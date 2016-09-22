@@ -45,12 +45,13 @@ class AppContainer extends React.Component {
 
   togglePlayCallback(){
     var _this=this;
-    this.setState({nowPlayingLoading: true});
+
     if(this.state.playStatus === Sound.status.PLAYING){
       this.setState({playStatus: Sound.status.PAUSED});
     } else {
       this.setState({playStatus: Sound.status.PLAYING});
       if(this.state.playQueue[0].streamurl==""){
+        this.setState({nowPlayingLoading: true});
         this.fetchSongStreamUrl(this.state.playQueue[0],
                                 function(){
                                   _this.setState({nowPlayingLoading: false});
@@ -71,7 +72,6 @@ class AppContainer extends React.Component {
 
   handleSongFinished(){
     var _this=this;
-    this.setState({nowPlayingLoading: true});
     this.state.playQueue.shift();
 
     if (this.state.playQueue.length == 0){
@@ -79,6 +79,7 @@ class AppContainer extends React.Component {
     }
 
     if(this.state.playQueue[0].streamurl==""){
+      _this.setState({nowPlayingLoading: true});
       this.fetchSongStreamUrl(this.state.playQueue[0],
                               function(){
                                 _this.setState({nowPlayingLoading: false});
