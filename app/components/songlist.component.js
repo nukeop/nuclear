@@ -1,6 +1,7 @@
 import React from 'react';
 
 import YoutubeSongList from './youtube-songlist.component.js';
+import SearchField from './searchfield.component.js';
 
 class SongList extends React.Component {
   constructor(props){
@@ -9,15 +10,18 @@ class SongList extends React.Component {
 
   youtubeSongList(){
     return(
-        <div className="col-md-6">
         <YoutubeSongList appContainer={this.props.appContainer} songs={this.props.songList} addToQueue={this.props.addToQueue}/>
-        </div>
     );
   }
 
   render () {
     if (!this.props.loading){
-      return this.youtubeSongList();
+      return(
+          <div className="col-md-6">
+          <SearchField handleSearch={this.props.handleSearch} />
+          {this.youtubeSongList()}
+        </div>
+      );
     }else{
       var divStyle={
         "textAlign": "center",
