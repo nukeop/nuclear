@@ -24,7 +24,7 @@ class Player extends React.Component{
         <ul className="nav navbar-nav navbar-left">
           <li><button type="button" className="btn btn-link navbar-btn player-buttons"><i className="fa fa-step-backward" aria-hidden="true"></i></button></li>
         <li><button type="button" className="btn btn-link navbar-btn player-buttons play-button" onClick={this.props.togglePlayCallback}><i className={playPauseClass} aria-hidden="true"></i></button></li>
-          <li><button type="button" className="btn btn-link navbar-btn player-buttons"><i className="fa fa-step-forward" aria-hidden="true"></i></button></li>
+        <li><button type="button" className="btn btn-link navbar-btn player-buttons" onClick={this.props.nextCallback}><i className="fa fa-step-forward" aria-hidden="true"></i></button></li>
         </ul>
 
         <ul className="nav navbar-nav">
