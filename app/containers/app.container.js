@@ -127,7 +127,7 @@ class AppContainer extends React.Component {
       appContainer={this}
       addToQueue={this.addToQueue}
       songList={this.state.songList}
-      loading={this.state.songListLoading}
+      songListLoading={this.state.songListLoading}
       songSearchStartCallback={this.songSearchStartCallback.bind(this)}
       songListChangeCallback={this.songListChangeCallback.bind(this)}
         />
