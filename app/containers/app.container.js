@@ -18,6 +18,7 @@ class AppContainer extends React.Component {
       playStatus: Sound.status.STOPPED,
       songListLoading: false,
       nowPlayingLoading: false,
+      nowPlayingCurrentSong: 0,
       songProgress: 0.0
     };
   }
@@ -50,13 +51,26 @@ class AppContainer extends React.Component {
       this.setState({playStatus: Sound.status.PAUSED});
     } else {
       this.setState({playStatus: Sound.status.PLAYING});
-      if(this.state.playQueue[0].streamurl==""){
+      if(this.state.playQueue[this.state.nowPlayingCurrentSong].streamurl==""){
         this.setState({nowPlayingLoading: true});
-        this.fetchSongStreamUrl(this.state.playQueue[0],
+        this.fetchSongStreamUrl(this.state.playQueue[this.state.nowPlayingCurrentSong],
                                 function(){
                                   _this.setState({nowPlayingLoading: false});
                                 });
       }
+    }
+  }
+
+  playerNextCallback(){
+    var _this=this;
+
+    if(this.state.playQueue[this.state.nowPlayingCurrentSong+1].streamurl==""){
+      this.setState({nowPlayingLoading: true});
+      this.fetchSongStreamUrl(this.state.playQueue[this.state.nowPlayingCurrentSong+1],
+                              function(){
+                                _this.setState({nowPlayingLoading: false});
+                                _this.setState({nowPlayingCurrentSong: _this.state.nowPlayingCurrentSong+1});
+                              });
     }
   }
 
@@ -72,15 +86,16 @@ class AppContainer extends React.Component {
 
   handleSongFinished(){
     var _this=this;
-    this.state.playQueue.shift();
+    this.setState({nowPlayingCurrentSong: this.state.nowPlayingCurrentSong+1});
 
     if (this.state.playQueue.length == 0){
+      console.log("queue empty");
       this.setState({playStatus: Sound.status.STOPPED});
     }
 
-    if(this.state.playQueue[0].streamurl==""){
+    if(this.state.playQueue[this.state.nowPlayingCurrentSong].streamurl==""){
       _this.setState({nowPlayingLoading: true});
-      this.fetchSongStreamUrl(this.state.playQueue[0],
+      this.fetchSongStreamUrl(this.state.playQueue[this.state.nowPlayingCurrentSong],
                               function(){
                                 _this.setState({nowPlayingLoading: false});
                               });
@@ -90,7 +105,7 @@ class AppContainer extends React.Component {
   renderSound(){
     if (this.state.playQueue.length>0){
       return (<Sound
-       url={this.state.playQueue[0].streamurl}
+       url={this.state.playQueue[this.state.nowPlayingCurrentSong].streamurl}
        playStatus={this.state.playStatus}
        onPlaying={this.handleSongPlaying.bind(this)}
        onFinishedPlaying={this.handleSongFinished.bind(this)}
@@ -120,6 +135,7 @@ class AppContainer extends React.Component {
         <NowPlaying
       queue={this.state.playQueue}
       loading={this.state.nowPlayingLoading}
+      currentSong={this.state.nowPlayingCurrentSong}
         />
 
         {this.renderSound()}
@@ -127,6 +143,7 @@ class AppContainer extends React.Component {
         <Player
       progress={this.state.songProgress}
       togglePlayCallback={this.togglePlayCallback.bind(this)}
+      nextCallback={this.playerNextCallback.bind(this)}
       playStatus={this.state.playStatus}
         />
         </div>
