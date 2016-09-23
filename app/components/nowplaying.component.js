@@ -5,12 +5,22 @@ class NowPlaying extends React.Component {
     super(props);
   }
 
+  loadingIcon(){
+    if(this.props.loading){
+      return (
+          <i className="fa fa-spinner fa-pulse fa-fw"></i>
+      );
+    } else {
+      return [];
+    }
+  }
+
   render() {
     return(
         <div className="col-md-4 now-playing">
         <div className="panel panel-default">
         <div className="panel-heading">
-          Now playing
+        Now playing {this.loadingIcon()}
         </div>
         <table className="table table-hover table-condensed">
         <thead>

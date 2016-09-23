@@ -16,40 +16,54 @@ class AppContainer extends React.Component {
       songList: [],
       playQueue: [],
       playStatus: Sound.status.STOPPED,
-      loading: false,
+      songListLoading: false,
+      nowPlayingLoading: false,
       songProgress: 0.0
     };
   }
 
+  fetchSongStreamUrl(song, callback){
+    if (song.streamurl==""){
+      var youtubedl = window.require('youtube-dl');
+      var url = 'http://www.youtube.com/watch?v='+song.id;
+      youtubedl.getInfo(url, ["--get-url", "--format=bestaudio"], function(err, info) {
+        if (err) throw err;
+
+        song.streamurl=info.url;
+        callback();
+      });
+    }
+  }
+
   songListChangeCallback(songs){
-    this.setState({songList: songs, loading: false});
+    this.setState({songList: songs, songListLoading: false});
   }
 
   songSearchStartCallback(){
-    this.setState({loading: true});
+    this.setState({songListLoading: true});
   }
 
   togglePlayCallback(){
+    var _this=this;
+
     if(this.state.playStatus === Sound.status.PLAYING){
       this.setState({playStatus: Sound.status.PAUSED});
     } else {
       this.setState({playStatus: Sound.status.PLAYING});
+      if(this.state.playQueue[0].streamurl==""){
+        this.setState({nowPlayingLoading: true});
+        this.fetchSongStreamUrl(this.state.playQueue[0],
+                                function(){
+                                  _this.setState({nowPlayingLoading: false});
+                                });
+      }
     }
   }
 
   addToQueue(song, event){
     var pq = this.state.playQueue;
-
-    var _this = this;
-    var youtubedl = window.require('youtube-dl');
-    var url = 'http://www.youtube.com/watch?v='+song.id;
-    youtubedl.getInfo(url, ["--get-url", "--format=bestaudio"], function(err, info) {
-      if (err) throw err;
-      song.streamurl = info.url;
-
-      pq.push(song);
-      _this.setState({playQueue: pq});
-    });
+    pq.push(song);
+    this.setState({playQueue: pq});
   }
 
   handleSongPlaying(audio){
@@ -57,17 +71,33 @@ class AppContainer extends React.Component {
   }
 
   handleSongFinished(){
+    var _this=this;
     this.state.playQueue.shift();
+
+    if (this.state.playQueue.length == 0){
+      this.setState({playStatus: Sound.status.STOPPED});
+    }
+
+    if(this.state.playQueue[0].streamurl==""){
+      _this.setState({nowPlayingLoading: true});
+      this.fetchSongStreamUrl(this.state.playQueue[0],
+                              function(){
+                                _this.setState({nowPlayingLoading: false});
+                              });
+    }
   }
 
   renderSound(){
-    return (this.state.playQueue.length>0)?
-      (<Sound
+    if (this.state.playQueue.length>0){
+      return (<Sound
        url={this.state.playQueue[0].streamurl}
        playStatus={this.state.playStatus}
        onPlaying={this.handleSongPlaying.bind(this)}
        onFinishedPlaying={this.handleSongFinished.bind(this)}
-        />) : [];
+              />);
+    } else {
+      return [];
+    }
   }
 
   render () {
@@ -84,11 +114,12 @@ class AppContainer extends React.Component {
       appContainer={this}
       addToQueue={this.addToQueue}
       songList={this.state.songList}
-      loading={this.state.loading}
+      loading={this.state.songListLoading}
         />
 
         <NowPlaying
       queue={this.state.playQueue}
+      loading={this.state.nowPlayingLoading}
         />
 
         {this.renderSound()}
