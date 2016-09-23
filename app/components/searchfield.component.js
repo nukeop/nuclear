@@ -10,10 +10,14 @@ class SearchField extends React.Component{
       display: 'none'
     };
 
+    const st = {
+      margin: "6px",
+      "borderBottom": "5px"
+    };
+
     return (
-      <div className="form-group">
-        <input type="text" id="searchField" className="form-control navbar-search" placeholder="Search" onKeyPress={this.props.handleSearch}/>
-      </div>
+        <input type="text" id="searchField" className="form-control searchfield" placeholder="Search" onKeyPress={this.props.handleSearch}/>
+
     );
 
   }

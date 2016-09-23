@@ -5,6 +5,7 @@ import Navbar from '../components/navbar.component';
 import NowPlaying from '../components/nowplaying.component';
 import Player from '../components/player.component';
 import SongList from '../components/songlist.component';
+import SongListContainer from '../containers/songlist.container';
 import Tools from '../components/tools.components';
 import ToolsContainer from '../containers/tools.container';
 
@@ -120,16 +121,15 @@ class AppContainer extends React.Component {
         <div>
         <Navbar />
 
-        <ToolsContainer
-      songSearchStartCallback={this.songSearchStartCallback.bind(this)}
-      songListChangeCallback={this.songListChangeCallback.bind(this)}
-        />
+        <ToolsContainer/>
 
-        <SongList
+        <SongListContainer
       appContainer={this}
       addToQueue={this.addToQueue}
       songList={this.state.songList}
       loading={this.state.songListLoading}
+      songSearchStartCallback={this.songSearchStartCallback.bind(this)}
+      songListChangeCallback={this.songListChangeCallback.bind(this)}
         />
 
         <NowPlaying

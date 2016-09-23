@@ -13,7 +13,6 @@ class Tools extends React.Component {
     return(
         <div className="col-md-2 tools-panel">
           <div className="panel panel-default">
-        <SearchField handleSearch={this.props.handleSearch} />
           </div>
         </div>
     );
