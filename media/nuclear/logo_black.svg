@@ -9,12 +9,12 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="744.09448"
-   height="1052.3622"
+   width="1000"
+   height="1000"
    id="svg12252"
    version="1.1"
    inkscape:version="0.91 r"
-   viewBox="0 0 744.09448 1052.3622"
+   viewBox="0 0 1000 1000"
    sodipodi:docname="logo_black.svg">
   <defs
      id="defs12254" />
@@ -26,8 +26,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="0"
      inkscape:zoom="0.35"
-     inkscape:cx="-80"
-     inkscape:cy="497.14286"
+     inkscape:cx="-501.42857"
+     inkscape:cy="474.28572"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -35,7 +35,11 @@
      inkscape:window-height="1006"
      inkscape:window-x="48"
      inkscape:window-y="310"
-     inkscape:window-maximized="1" />
+     inkscape:window-maximized="1"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0" />
   <metadata
      id="metadata12257">
     <rdf:RDF>
@@ -51,7 +55,8 @@
   <g
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
-     id="layer1">
+     id="layer1"
+     transform="translate(0,-52.362183)">
     <rect
        style="opacity:1;fill:#2d2d2d;fill-opacity:1;stroke:none"
        id="rect5859-7-56-6"

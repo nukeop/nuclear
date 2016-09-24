@@ -10,12 +10,12 @@
    xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="744.09448"
-   height="1052.3622"
+   width="3373.5608"
+   height="1000"
    id="svg12879"
    version="1.1"
    inkscape:version="0.91 r"
-   viewBox="0 0 744.09448 1052.3622"
+   viewBox="0 0 3373.5608 1000"
    sodipodi:docname="logo_full.svg">
   <defs
      id="defs12881">
@@ -82,8 +82,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="0"
      inkscape:zoom="0.12374369"
-     inkscape:cx="2004.71"
-     inkscape:cy="-298.72645"
+     inkscape:cx="812.73003"
+     inkscape:cy="-363.37621"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -91,7 +91,11 @@
      inkscape:window-height="1006"
      inkscape:window-x="48"
      inkscape:window-y="310"
-     inkscape:window-maximized="1" />
+     inkscape:window-maximized="1"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0" />
   <metadata
      id="metadata12884">
     <rdf:RDF>
@@ -107,7 +111,8 @@
   <g
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
-     id="layer1">
+     id="layer1"
+     transform="translate(0,-52.362183)">
     <rect
        style="opacity:1;fill:url(#linearGradient5875-5-8-0-0);fill-opacity:1;stroke:none"
        id="rect5859-6-8-8-0"
