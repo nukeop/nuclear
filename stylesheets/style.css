@@ -106,9 +106,9 @@ nav > a, nav > ul{
 }
 
 .player-buttons {
-  color: #ddd;
+  color: #FAFAFA;
   opacity: 0.85;
-  font-size: 16px;
+  font-size: 28px;
   margin: 0px 0px 0px 0px !important;
   padding: 12px 16px 0px 16px;
 }
@@ -167,7 +167,13 @@ nav > a, nav > ul{
 }
 
 th, td {
-  color: #ddd;
+  color: #FAFAFA;
+}
+
+tr {
+  border-radius: 0px;
+  border-bottom: solid rgba(255, 255, 255, 0.125);
+  border-width: 2px;
 }
 
 .table tbody>tr>td.vert-align{
@@ -180,6 +186,14 @@ th, td {
 
 .table>tbody>tr.info>td, .table>tbody>tr.info>th, .table>tbody>tr>td.info, .table>tbody>tr>th.info, .table>tfoot>tr.info>td, .table>tfoot>tr.info>th, .table>tfoot>tr>td.info, .table>tfoot>tr>th.info, .table>thead>tr.info>td, .table>thead>tr.info>th, .table>thead>tr>td.info, .table>thead>tr>th.info{
   background-color: #311b92;
+}
+
+.panel>.table-responsive:last-child>.table:last-child>tbody:last-child>tr:last-child, .panel>.table-responsive:last-child>.table:last-child>tfoot:last-child>tr:last-child, .panel>.table:last-child>tbody:last-child>tr:last-child, .panel>.table:last-child>tfoot:last-child>tr:last-child{
+  border-radius: 0px;
+}
+
+.table-hover>tbody>tr.info:hover>td{
+  background-color: #b388ff;
 }
 
 .col-md-2, .col-md-4, .col-md-6 {

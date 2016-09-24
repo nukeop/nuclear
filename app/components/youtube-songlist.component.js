@@ -7,6 +7,15 @@ class YoutubeSongList extends React.Component {
 
   render() {
     var _this=this;
+
+    if (this.props.songs.length == 0){
+      return (
+          <div className="scrolling-table">
+          </div>
+      );
+    }
+
+
     return (
         <div className="scrolling-table">
         <table className="table table-hover table-condensed">
