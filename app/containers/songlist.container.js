@@ -52,7 +52,7 @@ class SongListContainer extends React.Component{
 
               var newItem = {
                 id: el.id.videoId,
-                thumbnail: el.snippet.thumbnails.default.url,
+                thumbnail: el.snippet.thumbnails.medium.url,
                 title: el.snippet.title,
                 length: "Unknown",
                 streamurl: ""

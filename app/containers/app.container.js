@@ -126,12 +126,27 @@ class AppContainer extends React.Component {
     }
   }
 
+  renderTools(){
+    if(this.state.playQueue.length > 0){
+      return(
+        <ToolsContainer
+           albumart={this.state.playQueue[this.state.nowPlayingCurrentSong].thumbnail}
+           title={this.state.playQueue[this.state.nowPlayingCurrentSong].title}
+           />
+      );
+    } else {
+      return (
+        <ToolsContainer />
+      );
+    }
+  }
+
   render () {
     return (
         <div>
         <Navbar />
 
-        <ToolsContainer/>
+        {this.renderTools()}
 
         <SongListContainer
       appContainer={this}
