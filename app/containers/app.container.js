@@ -62,17 +62,25 @@ class AppContainer extends React.Component {
     }
   }
 
-  playerNextCallback(){
+  playerChangeSong(offset){
     var _this=this;
 
-    if(this.state.playQueue[this.state.nowPlayingCurrentSong+1].streamurl==""){
+    if(this.state.playQueue[this.state.nowPlayingCurrentSong+offset].streamurl==""){
       this.setState({nowPlayingLoading: true});
-      this.fetchSongStreamUrl(this.state.playQueue[this.state.nowPlayingCurrentSong+1],
+      this.fetchSongStreamUrl(this.state.playQueue[this.state.nowPlayingCurrentSong+offset],
                               function(){
                                 _this.setState({nowPlayingLoading: false});
-                                _this.setState({nowPlayingCurrentSong: _this.state.nowPlayingCurrentSong+1});
                               });
+      this.setState({nowPlayingCurrentSong: _this.state.nowPlayingCurrentSong+offset});
     }
+  }
+
+  playerNextCallback(){
+    this.playerChangeSong(1);
+  }
+
+  playerPrevCallback(){
+    this.playerChangeSong(-1);
   }
 
   addToQueue(song, event){
@@ -87,7 +95,9 @@ class AppContainer extends React.Component {
 
   handleSongFinished(){
     var _this=this;
-    this.setState({nowPlayingCurrentSong: this.state.nowPlayingCurrentSong+1});
+    if (this.state.nowPlayingCurrentSong<this.state.playQueue.length-1){
+      this.setState({nowPlayingCurrentSong: this.state.nowPlayingCurrentSong+1});
+    }
 
     if (this.state.playQueue.length == 0){
       console.log("queue empty");
@@ -144,6 +154,7 @@ class AppContainer extends React.Component {
       progress={this.state.songProgress}
       togglePlayCallback={this.togglePlayCallback.bind(this)}
       nextCallback={this.playerNextCallback.bind(this)}
+      prevCallback={this.playerPrevCallback.bind(this)}
       playStatus={this.state.playStatus}
         />
         </div>
