@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Tools from '../components/tools.components';
+import Tools from '../components/tools.component';
 
 class ToolsContainer extends React.Component {
 
@@ -10,7 +10,10 @@ class ToolsContainer extends React.Component {
 
   render() {
 
-    return <Tools />;
+    return <Tools
+    albumart={this.props.albumart}
+    title={this.props.title}
+      />;
   }
 }
 

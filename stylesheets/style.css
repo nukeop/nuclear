@@ -50,7 +50,7 @@ nav > a, nav > ul{
 .navbar-window-buttons{
   color: #FAFAFA !important;
   font-size: 12px;
-  padding: 0px 0px 0px 6px;
+  padding: 0px 3px 0px 8px;
   margin: 0px 0px 0px 0px;
   -webkit-user-select: none;
 }

@@ -10,7 +10,7 @@ let mainWindow;
 
 function createWindow () {
   // Create the browser window.
-  mainWindow = new BrowserWindow({width: 1600, height: 900, frame:false});
+  mainWindow = new BrowserWindow({width: 1600, height: 900, frame:false, icon: 'media/nuclear/icon_16x16.png'});
 
   // and load the index.html of the app.
   mainWindow.loadURL(`file://${__dirname}/index.html`);

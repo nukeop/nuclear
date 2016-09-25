@@ -33,7 +33,7 @@ class YoutubeSongList extends React.Component {
           this.props.songs.map(function(song, i){
           return (
               <tr>
-              <td className="vert-align"><img src={song.thumbnail} height="90" width="120" /></td>
+              <td className="vert-align"><img src={song.thumbnail} height="50%" width="75%" /></td>
               <td className="vert-align">{song.title}</td>
               <td className="vert-align">{song.length}</td>
               <td className="vert-align"><button className="btn btn-link" onClick={_this.props.addToQueue.bind(_this.props.appContainer, song)}><i className="fa fa-play-circle" aria-hidden="true"></i></button>
