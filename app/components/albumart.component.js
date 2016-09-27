@@ -19,7 +19,7 @@ class AlbumArt extends React.Component {
         <div style={footerStyle}>
         <img src={this.props.albumart} width='100%' height='100%'></img>
         <br /><br />
-        {this.props.title}
+        <div className="track-title">{this.props.title}</div>
         </div>
     );
   };
