@@ -9,7 +9,8 @@ class SongListContainer extends React.Component{
     this.state = {
       ytApiKey: "AIzaSyCIM4EzNqi1in22f4Z3Ru3iYvLaY8tc3bo",
       songs: [],
-      loading: false
+      loading: false,
+      searchTerms: ""
     };
   }
 
@@ -41,11 +42,11 @@ class SongListContainer extends React.Component{
     if(event.key=='Enter'){
       var _this=this;
       var sl = [];
-      var searchTerms = document.getElementById("searchField").value;
+      this.state.searchTerms = document.getElementById("searchField").value;
 
       _this.props.songSearchStartCallback();
 
-      Axios.get(this.prepareUrl("https://www.googleapis.com/youtube/v3/search?part=id,snippet&maxResults=50&q="+searchTerms))
+      Axios.get(this.prepareUrl("https://www.googleapis.com/youtube/v3/search?part=id,snippet&maxResults=50&q="+this.state.searchTerms))
         .then(function(response){
           response.data.items.map(function(el){
             if (el.id.kind == "youtube#video"){
@@ -81,6 +82,7 @@ class SongListContainer extends React.Component{
       songList={this.props.songList}
       loading={this.props.songListLoading}
       handleSearch={this.handleSearch.bind(this)}
+      searchTerms={this.state.searchTerms}
         />
     );
   }

@@ -110,10 +110,11 @@ nav > a, nav > ul{
   opacity: 0.85;
   font-size: 28px;
   margin: 0px 0px 0px 0px !important;
-  padding: 12px 16px 0px 16px;
+  padding: 6px 16px 0px 16px;
 }
 
 .play-button {
+  width: 72px;
   font-size: 36px;
   padding: 0px 16px 0px 16px;
 }
@@ -208,6 +209,21 @@ td .btn-link{
 .scrolling-table {
   height: 800px;
   overflow: auto;
+}
+
+.track-title{
+  color: #FAFAFA;
+  font-weight: bold;
+  font-size: 18px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.track-time{
+  color: #EEEEEE;
+  font-size: 16px;
+  vertical-align: middle;
 }
 
 body {

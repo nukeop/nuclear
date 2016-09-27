@@ -6,7 +6,7 @@ import NowPlaying from '../components/nowplaying.component';
 import Player from '../components/player.component';
 import SongList from '../components/songlist.component';
 import SongListContainer from '../containers/songlist.container';
-import Tools from '../components/tools.components';
+import Tools from '../components/tools.component';
 import ToolsContainer from '../containers/tools.container';
 
 
@@ -166,6 +166,7 @@ class AppContainer extends React.Component {
         {this.renderSound()}
 
         <Player
+      elapsed={this.state.songProgress}
       progress={this.state.songProgress}
       togglePlayCallback={this.togglePlayCallback.bind(this)}
       nextCallback={this.playerNextCallback.bind(this)}

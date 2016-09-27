@@ -28,17 +28,17 @@ class Player extends React.Component{
         </ul>
 
         <ul className="nav navbar-nav">
-          <li><p className="seekbar-text">{this.props.elapsed}</p></li>
+        <li><p className="seekbar-text track-time">{this.props.elapsed}</p></li>
         </ul>
 
         <ul className="nav navbar-nav">
-          <li>
-            <div className="progress seekbar">
-              <div className="progress-bar seekbar-bar" role="progressbar" aria-valuenow="70"
-                   aria-valuemin="0" aria-valuemax="100" style={seekBarStyle}>
-              </div>
-            </div>
-          </li>
+        <li>
+        <div className="progress seekbar">
+        <div className="progress-bar seekbar-bar" role="progressbar" aria-valuenow="70"
+      aria-valuemin="0" aria-valuemax="100" style={seekBarStyle}>
+        </div>
+        </div>
+        </li>
         </ul>
 
         <ul className="nav navbar-nav navbar-right" >
@@ -46,7 +46,7 @@ class Player extends React.Component{
             <button type="button" className="btn btn-link navbar-btn player-buttons">
               <i className="fa fa-volume-up" aria-hidden="true"></i>
             </button>
-          </li>
+        </li>
           <div className="progress volume-bar">
             <div className="progress-bar seekbar-bar" role="progressbar" aria-valuenow="30"
                  aria-valuemin="0" aria-valuemax="100" style={volumeBarStyle}>

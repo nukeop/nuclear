@@ -36,7 +36,7 @@ class Navbar extends React.Component{
         <img src="media/nuclear/icon_16x16.png" style={iconStyle}></img>
         </a>
         <a className="navbar-brand" style={brandStyle}>
-        Nuclear
+        nuclear
         </a>
 
         <ul className="nav navbar-nav navbar-right">

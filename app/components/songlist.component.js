@@ -18,7 +18,10 @@ class SongList extends React.Component {
     if (!this.props.loading){
       return(
           <div className="col-md-6">
-          <SearchField handleSearch={this.props.handleSearch} />
+          <SearchField
+        handleSearch={this.props.handleSearch}
+        searchTerms={this.props.searchTerms}
+          />
           {this.youtubeSongList()}
         </div>
       );
