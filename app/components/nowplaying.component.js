@@ -1,5 +1,9 @@
 import React from 'react';
 
+import { ContextMenu, Item, Separator, menuProvider } from 'react-contexify';
+
+
+
 class NowPlaying extends React.Component {
   constructor(props){
     super(props);
@@ -56,4 +60,6 @@ class NowPlaying extends React.Component {
   }
 }
 
-export default NowPlaying;
+const NowPlayingWithMenu = menuProvider('menu_id')(NowPlaying);
+
+export default NowPlayingWithMenu;
