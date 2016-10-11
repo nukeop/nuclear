@@ -226,6 +226,10 @@ td .btn-link{
   vertical-align: middle;
 }
 
+.react-contexify-provider{
+  display: inherit;
+}
+
 body {
   background: #16171a;
   background-image: url(../media/img/1.jpg);

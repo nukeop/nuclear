@@ -1,8 +1,10 @@
 import React from 'react';
 import Sound from 'react-sound';
+import { ContextMenu, Item, Separator, menuProvider } from 'react-contexify';
 
 import Navbar from '../components/navbar.component';
-import NowPlaying from '../components/nowplaying.component';
+import NowPlayingWithMenu from '../components/nowplaying.component';
+import NowPlayingContainer from '../containers/nowplaying.container';
 import Player from '../components/player.component';
 import SongList from '../components/songlist.component';
 import SongListContainer from '../containers/songlist.container';
@@ -113,6 +115,10 @@ class AppContainer extends React.Component {
     }
   }
 
+  clearQueue(){
+    this.setState({playQueue: [], nowPlayingCurrentSong: 0});
+  }
+
   renderSound(){
     if (this.state.playQueue.length>0){
       return (<Sound
@@ -144,6 +150,7 @@ class AppContainer extends React.Component {
   render () {
     return (
         <div>
+
         <Navbar />
 
         {this.renderTools()}
@@ -157,16 +164,19 @@ class AppContainer extends React.Component {
       songListChangeCallback={this.songListChangeCallback.bind(this)}
         />
 
-        <NowPlaying
+        <NowPlayingContainer
       queue={this.state.playQueue}
       loading={this.state.nowPlayingLoading}
       currentSong={this.state.nowPlayingCurrentSong}
+      clearQueueCallback={this.clearQueue.bind(this)}
         />
+
 
         {this.renderSound()}
 
         <Player
-      elapsed={this.state.songProgress}
+      elapsed="1:25"
+      //{Math.round((this.state.songProgress*100))%this.state.playQueue[this.state.nowPlayingCurrentSong].length}
       progress={this.state.songProgress}
       togglePlayCallback={this.togglePlayCallback.bind(this)}
       nextCallback={this.playerNextCallback.bind(this)}

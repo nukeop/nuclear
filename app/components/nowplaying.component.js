@@ -1,5 +1,16 @@
 import React from 'react';
 
+import { ContextMenu, Item, Separator, menuProvider } from 'react-contexify';
+
+function onClick(item, target){
+  console.log(item);
+  console.log(target);
+
+  console.log(item.props.label);
+  console.log(this.props);
+}
+
+
 class NowPlaying extends React.Component {
   constructor(props){
     super(props);
@@ -15,10 +26,27 @@ class NowPlaying extends React.Component {
     }
   }
 
+  deleteByName(item, target){
+    console.log(this.props);
+    console.log(target);
+    console.log(target.id);
+  }
+
+  nowPlayingMenu(){
+    return(
+        <ContextMenu id='menu_id'>
+        <Item label="Delete" icon="fa fa-trash" onClick={this.deleteByName.bind(this)} />
+        <Separator />
+        <Item label="Clear queue" icon="fa fa-remove" onClick={this.props.clearQueueCallback}/>
+        </ContextMenu>
+    );
+  }
+
   render() {
     var _this=this;
     return(
         <div className="col-md-4 now-playing">
+        {this.nowPlayingMenu()}
         <div className="panel panel-default">
         <div className="panel-heading">
         Now playing {this.loadingIcon()}
@@ -56,4 +84,6 @@ class NowPlaying extends React.Component {
   }
 }
 
-export default NowPlaying;
+const NowPlayingWithMenu = menuProvider('menu_id')(NowPlaying);
+
+export default NowPlayingWithMenu;
