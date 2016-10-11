@@ -4,25 +4,13 @@ import { ContextMenu, Item, Separator, menuProvider } from 'react-contexify';
 
 import Navbar from '../components/navbar.component';
 import NowPlayingWithMenu from '../components/nowplaying.component';
+import NowPlayingContainer from '../containers/nowplaying.container';
 import Player from '../components/player.component';
 import SongList from '../components/songlist.component';
 import SongListContainer from '../containers/songlist.container';
 import Tools from '../components/tools.component';
 import ToolsContainer from '../containers/tools.container';
 
-function onClick(item, target){
-  console.log(item);
-  console.log(target);
-
-}
-
-const NowPlayingMenu = () => {
-  return(
-      <ContextMenu id='menu_id'>
-      <Item label="Delete" icon="fa fa-trash" onClick={onClick} />
-      </ContextMenu>
-  );
-};
 
 class AppContainer extends React.Component {
   constructor(props) {
@@ -127,6 +115,10 @@ class AppContainer extends React.Component {
     }
   }
 
+  clearQueue(){
+    this.setState({playQueue: [], nowPlayingCurrentSong: 0});
+  }
+
   renderSound(){
     if (this.state.playQueue.length>0){
       return (<Sound
@@ -172,11 +164,11 @@ class AppContainer extends React.Component {
       songListChangeCallback={this.songListChangeCallback.bind(this)}
         />
 
-        <NowPlayingMenu />
-        <NowPlayingWithMenu
+        <NowPlayingContainer
       queue={this.state.playQueue}
       loading={this.state.nowPlayingLoading}
       currentSong={this.state.nowPlayingCurrentSong}
+      clearQueueCallback={this.clearQueue.bind(this)}
         />
 
 
