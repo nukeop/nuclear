@@ -1,0 +1,74 @@
+.songlist_container {
+  height: 650px;
+  overflow-y: scroll;;
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
+.songlist_header {
+  color: #FAFAFA;
+  font-size: 14px;
+  font-variant: small-caps;
+}
+
+.songlist_body {
+  color: #FAFAFA;
+  font-size: 14px;
+  text-align: left;
+}
+
+.songlist_img_container {
+  width:auto;
+  height: 35%;
+  position:relative;
+  text-align:center;
+}
+
+.songlist_thumb_btn {
+  position:absolute;
+  top: 5px;
+  bottom: 5px;
+  background-color: #00000000;
+  color: #00000000;
+
+  border-radius: 0px;
+  padding: 0px;
+  font-size: 24px;
+}
+
+.songlist_thumb_btn:hover {
+  display: inline-block;
+  background-color: #16171A00;
+  color: #FAFAFA;
+  #backdrop-filter: blur(3px);
+}
+
+.songlist_btn_container {
+  position: absolute;
+  top: 4px;
+  bottom: 4px;
+  left: 4px;
+  right: 4px;
+}
+
+.songlist_btn_container:hover {
+  backdrop-filter: blur(3px);
+}
+
+.songlist_thumb_btn_left {
+  left: 5px;
+  width: 46%;
+}
+
+.songlist_thumb_btn_right {
+  left: 50%;
+  width: 46%
+}
+
+.songlist_thumb {
+  border: 1px solid #FAFAFA;
+  border-radius: 4px;
+  padding: 4px;
+  max-height: 35%;
+  width: auto;
+}

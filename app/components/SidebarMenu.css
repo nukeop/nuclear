@@ -1,0 +1,11 @@
+.sidebar {
+  background-color: #16171AAA;
+  z-index: 0;
+  font-size: 20px;
+  color: #FFF;
+  width: 250px;
+  height: 100%;
+  margin-top: 25px;
+  overflow: hidden;
+  backdrop-filter: blur(3px);
+}

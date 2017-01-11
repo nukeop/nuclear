@@ -1,0 +1,177 @@
+@import "~../resources/external/bootstrap/css/bootstrap.min.css";
+@import "~../resources/external/font-awesome/css/font-awesome.min.css";
+@import "~../resources/external/fonts/Questrial/font.css";
+
+
+html {
+  cursor: default;
+  -webkit-user-select: none;
+}
+
+body {
+  position: relative;
+  height: 100vh;
+  background-color: #16171A;
+  background-image: linear-gradient(45deg, #4568DC, #B06AB3);
+  font-family: Questrial;
+  font-size: 24px;
+  overflow-y: hidden;
+  margin-bottom: 100px;
+  color: #FAFAFA;
+}
+
+a, a:hover, a:focus {
+  color: white;
+  text-decoration: none;
+}
+
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: #16171A00;
+    border-radius: 0px;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    background-color: #16171AAA;
+}
+
+.navbar {
+  min-height: 25px;
+  height: 25px;
+  line-height: 25px;
+  z-index: 3;
+  cursor: default;
+  border-radius: 0px;
+  border-width: 0px;
+  background-color: #16171A;
+  box-shadow: 0 -6px 25px #000000;
+}
+
+.navbar>a {
+  height:100%;
+  padding: 0;
+}
+
+.btn:focus,
+.btn:active {
+  outline:none;
+}
+
+.navbar>button.btn-link, .navbar>button.btn-link:focus {
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 2px;
+  padding-bottom: 0px;
+  color: white;
+  text-decoration: none;
+  cursor: default;
+  outline:none;
+}
+
+.navbar-header {
+  height: 25px;
+}
+
+.navbar-brand {
+  padding: 0;
+  padding-top: 2px;
+  height: 100%;
+}
+
+.table>tbody>tr:hover {
+  background-color: #16171ADD;
+}
+
+.form-inline {
+  width: 100%;
+}
+
+.form-group {
+  padding: 0px 0px 0px 0px;
+  margin: 0px;
+  width: 100%;
+}
+
+.searchfield-group{
+  margin-bottom: 12px;
+}
+
+.searchicon {
+  width: 24px !important;
+  color: #FAFAFA;
+  background-color:rgba(0,0,0,0) !important;
+  border-radius: 0px;
+  border: 0px;
+  border-bottom: 2px solid #FAFAFA;
+}
+
+.searchfield {
+  width:150px;
+  color: #FAFAFA;
+  background-color:rgba(0,0,0,0) !important;
+  border-radius: 0px;
+  border: 0px;
+  border-bottom: 2px solid #FAFAFA;
+  margin-bottom: 6px;
+  box-shadow: inset 0 0px 0px rgba(0,0,0,0),0 0 0px rgba(0,0,0,0);
+}
+
+.searchfield:focus {
+  box-shadow: inset 0 0px 0px rgba(0,0,0,0),0 0 0px rgba(0,0,0,0);
+}
+
+.multiselect-native-select>select {
+  display: none;
+}
+
+.multiselect-native-select>.btn-group {
+  width: 100%;
+}
+
+.multiselect-search-source,
+.multiselect-search-source:hover,
+.multiselect-search-source:focus,
+.multiselect-search-source:active  {
+  width: 100%;
+  color: #FAFAFA;
+  background-color:rgba(0,0,0,0) !important;
+  border-radius: 0px;
+  border: 0px;
+  border-bottom: 2px solid #FAFAFA;
+  margin-bottom: 1px;
+  box-shadow: inset 0 0px 0px rgba(0,0,0,0),0 0 0px rgba(0,0,0,0);
+}
+
+.btn-group.open .dropdown-toggle {
+  box-shadow: inset 0 0px 0px rgba(0,0,0,0),0 0 0px rgba(0,0,0,0);
+}
+
+.open>.dropdown-toggle.btn-default:focus,
+.open>.dropdown-toggle.btn-default:hover {
+  border-color: #66afe9;
+}
+
+.input-group .form-control{
+  z-index: auto;
+}
+
+.form-inline{
+  padding-left: 12px;
+  padding-right: 12px;
+  margin-bottom: 12px;
+}
+
+.content-loading {
+  height: 100%;
+  line-height: 750px;
+  vertical-align:middle;
+  text-align: center;
+}
+
+.alert {
+  padding: 0px;
+}

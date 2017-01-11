@@ -1,0 +1,10 @@
+.container {
+  position: absolute;
+  left: 0px;
+  right: 250px;
+  text-align: center;
+}
+
+.container h2 {
+  font-size: 5rem;
+}

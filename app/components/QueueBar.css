@@ -1,0 +1,9 @@
+.queuebar {
+  background-color: #16171AAA;
+  z-index: 0;
+  height: 100%;
+  margin-top: 25px;
+  width: 250px;
+  color: #FFF;
+  font-size: 12px;
+}
