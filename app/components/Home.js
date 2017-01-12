@@ -3,13 +3,18 @@ import React, { Component } from 'react';
 import Axios from 'axios';
 import { Link } from 'react-router';
 import AlertContainer from 'react-alert';
+import Sound from 'react-sound';
 
 import SidebarMenu from './SidebarMenu';
 import Navbar from './Navbar';
 import QueueBar from './QueueBar';
 import SearchField from './SearchField';
 import MainContent from './MainContent';
+import Player from './Player';
 import styles from './Home.css';
+
+var fs = require('fs');
+var ytdl = require('ytdl-core');
 
 
 export default class Home extends Component {
@@ -19,7 +24,9 @@ export default class Home extends Component {
       ytApiKey: "AIzaSyCIM4EzNqi1in22f4Z3Ru3iYvLaY8tc3bo",
       songList: [],
       songListLoading: false,
-      songQueue: []
+      songQueue: [],
+      playStatus: Sound.status.STOPPED,
+      currentSongUrl: ''
     };
 
     this.alertOptions = {
@@ -38,7 +45,36 @@ export default class Home extends Component {
     this.refs.sidebar_menu.toggleSidebar();
   }
 
-  addToQueue(song, event){
+  videoInfoCallback(song, err, info){
+    song.data.streamurl=info.formats.filter(function(e){return e.itag=='140'})[0].url;
+    song.data.streamurlloading=false;
+    this.setState({songQueue: this.state.songQueue});
+  }
+
+  videoInfoThenPlayCallback(song, err, info){
+    this.setState({playStatus: Sound.status.STOPPED});
+    this.videoInfoCallback(song, err, info);
+    this.togglePlay();
+  }
+
+  playNow(song, callback, event){
+    this.setState({songQueue: []});
+    this.state.songQueue.length = 0;
+    this.addToQueue(song, callback, event);
+  }
+
+  addToQueue(song, callback, event){
+    if (song.source === 'youtube'){
+      if (typeof(callback)==='undefined') callback=this.videoInfoCallback;
+
+      song.data.streamurlloading=true;
+      ytdl.getInfo(
+        `http://www.youtube.com/watch?v=${song.data.id}`,
+         callback.bind(this, song)
+      );
+
+    }
+
     this.state.songQueue.push(song);
     this.setState({songQueue: this.state.songQueue});
   }
@@ -103,7 +139,8 @@ export default class Home extends Component {
                   thumbnail: el.snippet.thumbnails.medium.url,
                   title: el.snippet.title,
                   length: "Unknown",
-                  streamurl: ""
+                  streamurl: "",
+                  streamurlloading: false
                 }
               };
 
@@ -120,6 +157,15 @@ export default class Home extends Component {
         });
       }
 
+    }
+  }
+
+  togglePlay(){
+    if (this.state.playStatus===Sound.status.PLAYING) {
+      this.setState({playStatus: Sound.status.STOPPED});
+    } else {
+      this.setState({playStatus: Sound.status.PLAYING});
+      this.setState({currentSongUrl: this.state.songQueue[0].data.streamurl});
     }
   }
 
@@ -153,6 +199,7 @@ export default class Home extends Component {
              songList={this.state.songList}
              songListLoading={this.state.songListLoading}
              addToQueue={this.addToQueue}
+             playNow={this.playNow}
              home={this}
            />
 
@@ -162,6 +209,15 @@ export default class Home extends Component {
             />
         </div>
 
+        <Player
+          playStatus={this.state.playStatus}
+          togglePlayCallback={this.togglePlay.bind(this)}
+        />
+
+        <Sound
+          url={this.state.currentSongUrl}
+          playStatus={this.state.playStatus}
+        />
 
       </div>
     );

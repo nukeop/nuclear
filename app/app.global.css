@@ -2,7 +2,6 @@
 @import "~../resources/external/font-awesome/css/font-awesome.min.css";
 @import "~../resources/external/fonts/Questrial/font.css";
 
-
 html {
   cursor: default;
   -webkit-user-select: none;
@@ -172,6 +171,19 @@ a, a:hover, a:focus {
   text-align: center;
 }
 
+.queue-loading {
+  font-size: 10px;
+}
+
 .alert {
   padding: 0px;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  left: 0px;
+  right: 250px;
+  background-color: #16171AAA;
+  height: 80px;
 }

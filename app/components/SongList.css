@@ -30,17 +30,18 @@
   bottom: 5px;
   background-color: #00000000;
   color: #00000000;
-
+  border: 0px;
   border-radius: 0px;
   padding: 0px;
   font-size: 24px;
 }
 
-.songlist_thumb_btn:hover {
-  display: inline-block;
+.songlist_thumb_btn:hover,
+.songlist_thumb_btn:focus {
   background-color: #16171A00;
   color: #FAFAFA;
   #backdrop-filter: blur(3px);
+  outline: 0px;
 }
 
 .songlist_btn_container {

@@ -1,0 +1,16 @@
+a.play_btn {
+  width: 48px;
+  height: 48px;
+  font-size: 24px;
+  margin: 16px 16px;
+  vertical-align: middle;
+  color: #FAFAFA;
+  border: 2px solid #FAFAFA;
+  border-radius: 4px;
+}
+
+a.play_btn:hover,
+a.play_btn:active,
+a.play_btn:focus {
+  color: #FAFAFA;
+}

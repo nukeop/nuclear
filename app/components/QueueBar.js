@@ -26,10 +26,15 @@ export default class QueueBar extends Component {
           <tbody>
 
             {this.props.queue.map(function(song, i){
+              var displayTitle = song.data.title;
+              if (song.data.streamurlloading) {
+                displayTitle=<i className="fa fa-spinner fa-spin fa-3x fa-fw queue-loading" />;
+              }
+
               return (
                   <tr>
                     <td>{i+1}</td>
-                    <td>{song.data.title}</td>
+                    <td>{displayTitle}</td>
                     <td>{song.data.length}</td>
                   </tr>
               );

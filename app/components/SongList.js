@@ -29,7 +29,6 @@ export default class SongList extends Component {
               <th>Title</th>
               <th>Length</th>
               <th>Source</th>
-              <th>Controls</th>
             </tr>
           </thead>
 
@@ -42,8 +41,10 @@ export default class SongList extends Component {
                     <div className={styles.songlist_img_container}>
                       <img className={styles.songlist_thumb} src={song.data.thumbnail} />
                       <div className={styles.songlist_btn_container}>
-                        <button className={`btn ${styles.songlist_thumb_btn} ${styles.songlist_thumb_btn_left}`}><i className="fa fa-play"></i></button>
-                        <button className={`btn ${styles.songlist_thumb_btn} ${styles.songlist_thumb_btn_right}`} onClick={_this.props.addToQueue.bind(_this.props.home, song)}>
+                        <button className={`${styles.songlist_thumb_btn} ${styles.songlist_thumb_btn_left}`} onClick={_this.props.playNow.bind(_this.props.home, song, _this.props.home.videoInfoThenPlayCallback)}>
+                          <i className="fa fa-play"></i>
+                        </button>
+                        <button className={`${styles.songlist_thumb_btn} ${styles.songlist_thumb_btn_right}`} onClick={_this.props.addToQueue.bind(_this.props.home, song, _this.props.home.videoInfoCallback)}>
                             <i className="fa fa-plus-square-o"></i>
                         </button>
                       </div>
