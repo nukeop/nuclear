@@ -26,7 +26,11 @@ export default class Home extends Component {
       songListLoading: false,
       songQueue: [],
       playStatus: Sound.status.STOPPED,
-      currentSongUrl: ''
+      currentSongNumber: 0,
+      currentSongUrl: '',
+      currentSongPosition: 0,
+      seekFromPosition: 0,
+      songStreamLoading: false
     };
 
     this.alertOptions = {
@@ -45,29 +49,54 @@ export default class Home extends Component {
     this.refs.sidebar_menu.toggleSidebar();
   }
 
-  videoInfoCallback(song, err, info){
-    song.data.streamurl=info.formats.filter(function(e){return e.itag=='140'})[0].url;
-    song.data.streamurlloading=false;
+  songLoadingCallback(loading) {
+    this.setState({songStreamLoading: !loading.loaded});
+  }
+
+  songPlayingCallback(playing) {
+    var progress = (playing.position/playing.duration)*100.0;
+
+    this.setState({currentSongPosition: playing.position});
+  }
+
+  songFinishedPlayingCallback() {
+    this.setState({
+      currentSongNumber: Math.min(
+        this.state.currentSongNumber+1,
+        this.state.songQueue.length
+      ),
+      currentSongPosition: 0,
+      seekFromPosition: 0,
+    });
+
+    if (this.state.currentSongNumber==this.state.songQueue.length-1){
+      this.setState({playStatus: Sound.status.STOPPED});
+    }
+  }
+
+  videoInfoCallback(song, err, info) {
+    song.data.streamUrl=info.formats.filter(function(e){return e.itag=='140'})[0].url;
+    song.data.streamUrlLoading=false;
     this.setState({songQueue: this.state.songQueue});
   }
 
-  videoInfoThenPlayCallback(song, err, info){
-    this.setState({playStatus: Sound.status.STOPPED});
+  videoInfoThenPlayCallback(song, err, info) {
     this.videoInfoCallback(song, err, info);
     this.togglePlay();
   }
 
-  playNow(song, callback, event){
+  playNow(song, callback, event) {
+    this.setState({playStatus: Sound.status.STOPPED});
     this.setState({songQueue: []});
     this.state.songQueue.length = 0;
     this.addToQueue(song, callback, event);
   }
 
-  addToQueue(song, callback, event){
+  addToQueue(song, callback, event) {
     if (song.source === 'youtube'){
       if (typeof(callback)==='undefined') callback=this.videoInfoCallback;
 
-      song.data.streamurlloading=true;
+      song.data.streamUrlLoading=true;
       ytdl.getInfo(
         `http://www.youtube.com/watch?v=${song.data.id}`,
          callback.bind(this, song)
@@ -113,7 +142,6 @@ export default class Home extends Component {
 
   handleSearch(event, value, searchSources) {
     if (event.key === 'Enter') {
-      //console.log(this.state.songList);
       var _this = this;
       this.state.searchTerms = document.getElementById("searchField").value;
       this.state.songList = [];
@@ -139,8 +167,8 @@ export default class Home extends Component {
                   thumbnail: el.snippet.thumbnails.medium.url,
                   title: el.snippet.title,
                   length: "Unknown",
-                  streamurl: "",
-                  streamurlloading: false
+                  streamUrl: "",
+                  streamUrlLoading: false
                 }
               };
 
@@ -164,8 +192,11 @@ export default class Home extends Component {
     if (this.state.playStatus===Sound.status.PLAYING) {
       this.setState({playStatus: Sound.status.STOPPED});
     } else {
-      this.setState({playStatus: Sound.status.PLAYING});
-      this.setState({currentSongUrl: this.state.songQueue[0].data.streamurl});
+      this.setState({
+        playStatus: Sound.status.PLAYING,
+        currentSongUrl: this.state.songQueue[this.state.currentSongNumber].data.streamUrl,
+        seekFromPosition: this.state.currentSongPosition
+      });
     }
   }
 
@@ -188,6 +219,7 @@ export default class Home extends Component {
         <QueueBar
           ref="queue_bar"
           queue={this.state.songQueue}
+          currentSong={this.state.currentSongNumber}
         />
 
         <div className={styles.container}>
@@ -212,11 +244,16 @@ export default class Home extends Component {
         <Player
           playStatus={this.state.playStatus}
           togglePlayCallback={this.togglePlay.bind(this)}
+          songStreamLoading={this.state.songStreamLoading}
         />
 
         <Sound
           url={this.state.currentSongUrl}
           playStatus={this.state.playStatus}
+          onLoading={this.songLoadingCallback.bind(this)}
+          onPlaying={this.songPlayingCallback.bind(this)}
+          onFinishedPlaying={this.songFinishedPlayingCallback.bind(this)}
+          playFromPosition={this.state.seekFromPosition}
         />
 
       </div>

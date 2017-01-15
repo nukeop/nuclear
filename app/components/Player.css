@@ -1,4 +1,4 @@
-a.play_btn {
+a.player_btn {
   width: 48px;
   height: 48px;
   font-size: 24px;
@@ -9,8 +9,8 @@ a.play_btn {
   border-radius: 4px;
 }
 
-a.play_btn:hover,
-a.play_btn:active,
-a.play_btn:focus {
+a.player_btn:hover,
+a.player_btn:active,
+a.player_btn:focus {
   color: #FAFAFA;
 }

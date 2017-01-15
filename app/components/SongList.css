@@ -40,7 +40,7 @@
 .songlist_thumb_btn:focus {
   background-color: #16171A00;
   color: #FAFAFA;
-  #backdrop-filter: blur(3px);
+  text-shadow: 0px 0px 4px #16171A;
   outline: 0px;
 }
 
@@ -70,6 +70,6 @@
   border: 1px solid #FAFAFA;
   border-radius: 4px;
   padding: 4px;
-  max-height: 35%;
+  height: 35%;
   width: auto;
 }

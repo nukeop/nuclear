@@ -15,9 +15,8 @@
     "build-renderer": "cross-env NODE_ENV=production node -r babel-register ./node_modules/webpack/bin/webpack --config webpack.config.production.js --progress --profile --colors",
     "build": "npm run build-main && npm run build-renderer",
     "start": "cross-env NODE_ENV=production electron ./app/",
-    "flow-typed-install": "flow-typed install",
     "start-hot": "cross-env HOT=1 NODE_ENV=development electron -r babel-register -r babel-polyfill ./app/main.development",
-    "postinstall": "concurrently \"npm run flow-typed-install\" \"install-app-deps\" \"node node_modules/fbjs-scripts/node/check-dev-engines.js package.json\"",
+    "postinstall": "concurrently \"install-app-deps\" \"node node_modules/fbjs-scripts/node/check-dev-engines.js package.json\"",
     "dev": "npm run hot-server -- --start-hot",
     "package": "npm run build && build --publish never",
     "package-win": "npm run build && build --win --x64",
@@ -120,8 +119,6 @@
     "eslint-formatter-pretty": "^1.1.0",
     "eslint-import-resolver-webpack": "^0.8.0",
     "eslint-loader": "^1.6.1",
-    "eslint-plugin-flowtype": "^2.29.1",
-    "eslint-plugin-flowtype-errors": "^2.0.1",
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^2.0.2",
     "eslint-plugin-mocha": "^4.7.0",
@@ -132,7 +129,6 @@
     "fbjs-scripts": "^0.7.1",
     "file-loader": "^0.9.0",
     "flow-bin": "^0.37.1",
-    "flow-typed": "^2.0.0",
     "html-webpack-plugin": "^2.24.1",
     "jsdom": "^9.9.1",
     "json-loader": "^0.5.4",
@@ -156,7 +152,9 @@
     "react-bootstrap-multiselect": "^2.3.0",
     "axios": "^0.9.1",
     "jquery": "^2.2.3",
-    "react-alert": "^1.0.14"
+    "react-alert": "^1.0.14",
+    "ytdl-core": "^0.7.21",
+    "react-sound": "^0.5.2"
   },
   "dependencies": {
     "electron-debug": "^1.1.0",

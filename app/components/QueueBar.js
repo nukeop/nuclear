@@ -13,6 +13,8 @@ export default class QueueBar extends Component {
 
 
   render() {
+    var _this = this;
+
     const contents = (
       <div>
         <table className="table table-hover table-condensed">
@@ -27,12 +29,14 @@ export default class QueueBar extends Component {
 
             {this.props.queue.map(function(song, i){
               var displayTitle = song.data.title;
-              if (song.data.streamurlloading) {
+              if (song.data.streamUrlLoading) {
                 displayTitle=<i className="fa fa-spinner fa-spin fa-3x fa-fw queue-loading" />;
               }
 
+              var rowClass = i=== _this.props.currentSong ? styles.current_song : '';
+
               return (
-                  <tr>
+                  <tr className={rowClass}>
                     <td>{i+1}</td>
                     <td>{displayTitle}</td>
                     <td>{song.data.length}</td>
