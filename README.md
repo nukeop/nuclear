@@ -13,3 +13,5 @@ This will be updated as the program evolves.
 ![screenshot 1](http://i.imgur.com/HHKaQpJ.png)
 
 ![screenshot 2](http://i.imgur.com/VjyWirg.png)
+
+![animated demo](http://i.imgur.com/ERZqLgY.gif)
