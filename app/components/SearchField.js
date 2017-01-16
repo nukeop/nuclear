@@ -40,7 +40,7 @@ handleSearch(event, value){
       <form className="form-inline">
         <div className="form-group searchfield-group">
           <div style={searchFieldStyle} className="input-group">
-            <div className="input-group-addon searchicon"><i className="fa fa-search" aria-hidden="true" /></div>
+            <div className="input-group-addon searchicon"><i className="fa fa-search"/></div>
             <input type="text" id="searchField" className="form-control searchfield" placeholder="Search" onKeyPress={this.handleSearch.bind(this)} />
           </div>
 

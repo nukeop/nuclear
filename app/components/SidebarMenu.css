@@ -1,11 +1,21 @@
 .sidebar {
-  background-color: #16171AAA;
+  background-image: linear-gradient(45deg, #003270, #000418);
   z-index: 0;
   font-size: 20px;
   color: #FFF;
-  width: 250px;
+  width: 300px;
   height: 100%;
-  margin-top: 25px;
   overflow: hidden;
-  backdrop-filter: blur(3px);
+  box-shadow: inset -2px 0px 25px #000000;
+}
+
+.sidebar_options {
+  position: absolute;
+  left: 0px;
+  right: 0px;
+  font-size: 16px;
+}
+
+.sidebar_options_cell {
+  padding: 16px 16px;
 }

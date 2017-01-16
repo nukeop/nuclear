@@ -1,21 +1,19 @@
 @import "~../resources/external/bootstrap/css/bootstrap.min.css";
 @import "~../resources/external/font-awesome/css/font-awesome.min.css";
 @import "~../resources/external/fonts/Questrial/font.css";
+@import "~../resources/external/fonts/FrancoisOne/font.css"
 
 html {
+  height: 100%;
   cursor: default;
   -webkit-user-select: none;
 }
 
 body {
-  position: relative;
-  height: 100vh;
-  background-color: #16171A;
-  background-image: linear-gradient(45deg, #4568DC, #B06AB3);
-  font-family: Questrial;
+  height: 100%;
+  background-image: linear-gradient(45deg, #3f72cb, #263652);
+  font-family: Francois One;
   font-size: 24px;
-  overflow-y: hidden;
-  margin-bottom: 100px;
   color: #FAFAFA;
 }
 
@@ -35,7 +33,7 @@ a, a:hover, a:focus {
 
 ::-webkit-scrollbar-thumb {
     border-radius: 8px;
-    background-color: #16171AAA;
+    background-color: #424242;
 }
 
 .navbar {
@@ -81,10 +79,6 @@ a, a:hover, a:focus {
   height: 100%;
 }
 
-.table>tbody>tr:hover {
-  background-color: #16171ADD;
-}
-
 .form-inline {
   width: 100%;
 }
@@ -97,6 +91,7 @@ a, a:hover, a:focus {
 
 .searchfield-group{
   margin-bottom: 12px;
+  margin-top: 2px;
 }
 
 .searchicon {
@@ -141,7 +136,6 @@ a, a:hover, a:focus {
   border-radius: 0px;
   border: 0px;
   border-bottom: 2px solid #FAFAFA;
-  margin-bottom: 1px;
   box-shadow: inset 0 0px 0px rgba(0,0,0,0),0 0 0px rgba(0,0,0,0);
 }
 
@@ -165,7 +159,9 @@ a, a:hover, a:focus {
 }
 
 .content-loading {
-  height: 100%;
+  position: absolute;
+  height: 80%;
+  width: 100%;
   line-height: 750px;
   vertical-align:middle;
   text-align: center;
@@ -181,9 +177,16 @@ a, a:hover, a:focus {
 
 .footer {
   position: absolute;
-  bottom: 0;
+  bottom: 0px;
   left: 0px;
-  right: 250px;
-  background-color: #16171AAA;
-  height: 80px;
+  right: 0px;
+  height: 100px;
+}
+
+.table-striped>tbody>tr:nth-of-type(odd){
+  background-color: #0d0b13;
+}
+
+.table-striped>tbody>tr:hover{
+  color: #FAFAFA;
 }

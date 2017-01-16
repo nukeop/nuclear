@@ -1,16 +1,47 @@
+.player_container {
+  height: 100%;
+  width: 100%;
+  text-align: center;
+}
+
 a.player_btn {
+  position: relative;
   width: 48px;
   height: 48px;
-  font-size: 24px;
+  font-size: 36px;
   margin: 16px 16px;
-  vertical-align: middle;
   color: #FAFAFA;
-  border: 2px solid #FAFAFA;
-  border-radius: 4px;
 }
 
 a.player_btn:hover,
 a.player_btn:active,
 a.player_btn:focus {
   color: #FAFAFA;
+}
+
+.player_backward {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  padding-top: 5px;
+  height: 100%;
+  width: 100%;
+}
+
+.player_forward {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  padding-top: 5px;
+  height: 100%;
+  width: 100%;
+}
+
+.player_play {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  padding-top: 5px;
+  height: 100%;
+  width: 100%;
 }

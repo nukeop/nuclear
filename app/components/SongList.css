@@ -1,26 +1,42 @@
 .songlist_container {
-  height: 650px;
-  overflow-y: scroll;;
-  padding-left: 12px;
-  padding-right: 12px;
+  position: relative;
+  height: 100%;
+  width: 100%;
+  padding: 0px 12px;
+  overflow-y: scroll;
 }
 
 .songlist_header {
+  position: relative;
+  width: 100%;
   color: #FAFAFA;
   font-size: 14px;
   font-variant: small-caps;
 }
 
 .songlist_body {
-  color: #FAFAFA;
+  width: 100%;
+  color: #9e9e9e;
   font-size: 14px;
   text-align: left;
+  top: 48px;
+  bottom: 0px;
+}
+
+.songlist_table>tbody>tr>td {
+  border: 0px;
+}
+
+.songlist_table {
+  position: relative;
+  height: 100%;
+  margin: 0px;
 }
 
 .songlist_img_container {
-  width:auto;
+  width: auto;
   height: 35%;
-  position:relative;
+  position: relative;
   text-align:center;
 }
 
@@ -70,6 +86,6 @@
   border: 1px solid #FAFAFA;
   border-radius: 4px;
   padding: 4px;
-  height: 35%;
-  width: auto;
+  width: 96px;
+  height: auto;
 }

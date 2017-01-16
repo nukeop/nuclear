@@ -19,10 +19,9 @@ export default class SongList extends Component {
       )
     }
 
-
     return(
       <div className={styles.songlist_container}>
-        <table className="table">
+        <table className={`${styles.songlist_table} table table-striped`}>
           <thead className={styles.songlist_header}>
             <tr>
               <th><i className="fa fa-camera-retro"></i></th>

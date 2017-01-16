@@ -16,6 +16,10 @@ import styles from './Home.css';
 var fs = require('fs');
 var ytdl = require('ytdl-core');
 
+var SidebarMenuItemEnum = {
+  DEFAULT: 0,
+  QUEUE: 1
+}
 
 export default class Home extends Component {
   constructor(props) {
@@ -24,13 +28,15 @@ export default class Home extends Component {
       ytApiKey: "AIzaSyCIM4EzNqi1in22f4Z3Ru3iYvLaY8tc3bo",
       songList: [],
       songListLoading: false,
+      queuebarOpen: false,
       songQueue: [],
       playStatus: Sound.status.STOPPED,
       currentSongNumber: 0,
       currentSongUrl: '',
       currentSongPosition: 0,
       seekFromPosition: 0,
-      songStreamLoading: false
+      songStreamLoading: false,
+      sidebarContents: SidebarMenuItemEnum.DEFAULT
     };
 
     this.alertOptions = {
@@ -39,14 +45,6 @@ export default class Home extends Component {
           time: 5000,
           transition: 'fade',
         };
-  }
-
-  componentWillMount() {
-    this.toggleSidebar = this.toggleSidebar.bind(this);
-  }
-
-  toggleSidebar() {
-    this.refs.sidebar_menu.toggleSidebar();
   }
 
   songLoadingCallback(loading) {
@@ -61,17 +59,37 @@ export default class Home extends Component {
 
   songFinishedPlayingCallback() {
     this.setState({
-      currentSongNumber: Math.min(
-        this.state.currentSongNumber+1,
-        this.state.songQueue.length
-      ),
       currentSongPosition: 0,
       seekFromPosition: 0,
     });
 
     if (this.state.currentSongNumber==this.state.songQueue.length-1){
       this.setState({playStatus: Sound.status.STOPPED});
+    } else {
+      this.nextSong();
     }
+  }
+
+  nextSong() {
+    // We need to update state in two steps - first we update the current song
+    // number, then we update the url to reflect the new number.
+    this.setState({
+      currentSongNumber: Math.min(
+        this.state.currentSongNumber+1,
+        this.state.songQueue.length
+      )});
+
+    this.setState({
+      currentSongUrl: this.state.songQueue[this.state.currentSongNumber].data.streamUrl
+    });
+  }
+
+  prevSong() {
+    this.setState({
+      currentSongNumber: Math.max(
+        this.state.currentSongNumber-1,
+        0
+      )});
   }
 
   videoInfoCallback(song, err, info) {
@@ -90,6 +108,10 @@ export default class Home extends Component {
     this.setState({songQueue: []});
     this.state.songQueue.length = 0;
     this.addToQueue(song, callback, event);
+  }
+
+  toggleQueue() {
+    this.setState({sidebarContents: SidebarMenuItemEnum.QUEUE});
   }
 
   addToQueue(song, callback, event) {
@@ -209,17 +231,30 @@ export default class Home extends Component {
   }
 
   render() {
+    var sidebarContentsRendered = '';
+    switch (this.state.sidebarContents) {
+      case SidebarMenuItemEnum.DEFAULT:
+        break;
+      case SidebarMenuItemEnum.QUEUE:
+      sidebarContentsRendered = (<QueueBar
+        queue={this.state.songQueue}
+        currentSong={this.state.currentSongNumber}
+      />);
+    }
+
     return (
       <div>
 
-        <Navbar onClick={this.toggleSidebar}/>
+        {/* <Navbar onClick={this.toggleSidebar}/> */}
 
-        <SidebarMenu ref="sidebar_menu" />
-
-        <QueueBar
-          ref="queue_bar"
-          queue={this.state.songQueue}
-          currentSong={this.state.currentSongNumber}
+        <SidebarMenu
+          playStatus={this.state.playStatus}
+          togglePlayCallback={this.togglePlay.bind(this)}
+          nextSongCallback={this.nextSong.bind(this)}
+          prevSongCallback={this.prevSong.bind(this)}
+          songStreamLoading={this.state.songStreamLoading}
+          toggleQueue={this.toggleQueue.bind(this)}
+          menu={sidebarContentsRendered}
         />
 
         <div className={styles.container}>
@@ -240,12 +275,6 @@ export default class Home extends Component {
              {...this.alertOptions}
             />
         </div>
-
-        <Player
-          playStatus={this.state.playStatus}
-          togglePlayCallback={this.togglePlay.bind(this)}
-          songStreamLoading={this.state.songStreamLoading}
-        />
 
         <Sound
           url={this.state.currentSongUrl}

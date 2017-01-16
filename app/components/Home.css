@@ -1,7 +1,9 @@
 .container {
+  background-color: #0e0c15;
   position: absolute;
-  left: 0px;
-  right: 250px;
+  left: 300px;
+  right: 0px;
+  height: 100%;
   text-align: center;
 }
 

@@ -16,11 +16,26 @@ export default class Player extends Component {
 
       return(
         <footer className="footer">
-          <a href='#' className={`btn ${styles.player_btn} ${styles.back_btn}`} ><i className="fa fa-backward"></i></a>
-          <a href='#' className={`btn ${styles.player_btn}`} onClick={this.props.togglePlayCallback}><i className={playButtonClass}></i></a>
-          <a href='#' className={`btn ${styles.player_btn}`} ><i className="fa fa-forward"></i></a>
-
-
+          <div className={styles.player_container}>
+            <a
+              href='#'
+              className={`btn ${styles.player_btn}`}
+              onClick={this.props.prevSongCallback}>
+                <i className={`${styles.player_backward} fa fa-backward`}></i>
+            </a>
+            <a
+              href='#'
+              className={`btn ${styles.player_btn}`}
+              onClick={this.props.togglePlayCallback}>
+                <i className={`${styles.player_play} ${playButtonClass}`}></i>
+            </a>
+            <a
+              href='#'
+              className={`btn ${styles.player_btn}`}
+              onClick={this.props.nextSongCallback}>
+                <i className={`${styles.player_forward} fa fa-forward`}></i>
+            </a>
+          </div>
         </footer>
       );
   }

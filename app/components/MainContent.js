@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import SongList from './SongList';
+import styles from './MainContent.css';
 
 export default class MainContent extends Component {
   constructor(props) {
@@ -18,7 +19,7 @@ export default class MainContent extends Component {
     }
 
     return(
-      <div>
+      <div className={styles.main_content_container}>
         <SongList
           songList={this.props.songList}
           addToQueue={this.props.addToQueue}

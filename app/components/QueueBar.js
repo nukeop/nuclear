@@ -10,13 +10,11 @@ export default class QueueBar extends Component {
     };
   }
 
-
-
   render() {
     var _this = this;
 
-    const contents = (
-      <div>
+    return (
+      <div className={styles.queuebar}>
         <table className="table table-hover table-condensed">
           <thead>
             <tr>
@@ -46,19 +44,6 @@ export default class QueueBar extends Component {
 
           </tbody>
         </table>
-      </div>
-    );
-
-    return (
-      <div>
-        <Sidebar
-          sidebar={contents}
-          open={this.state.queuebarOpen}
-          docked={true}
-          children=""
-          sidebarClassName={styles.queuebar}
-          pullRight={true}
-        />
       </div>
     );
 
