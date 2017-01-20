@@ -24,6 +24,7 @@ export default class SongList extends Component {
         <table className={`${styles.songlist_table} table table-striped`}>
           <thead className={styles.songlist_header}>
             <tr>
+              <th></th>
               <th><i className="fa fa-camera-retro"></i></th>
               <th>Title</th>
               <th>Length</th>
@@ -36,6 +37,9 @@ export default class SongList extends Component {
             {this.props.songList.map(function(song, i){
               return (
                 <tr>
+                  <td className={styles.songlist_details_btn_cell}>
+                    <button className={styles.songlist_details_btn}><i className="fa fa-ellipsis-h"/></button>
+                  </td>
                   <td>
                     <div className={styles.songlist_img_container}>
                       <img className={styles.songlist_thumb} src={song.data.thumbnail} />

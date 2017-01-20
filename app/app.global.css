@@ -66,7 +66,6 @@ a, a:hover, a:focus {
   color: white;
   text-decoration: none;
   cursor: default;
-  outline:none;
 }
 
 .navbar-header {
@@ -189,4 +188,8 @@ a, a:hover, a:focus {
 
 .table-striped>tbody>tr:hover{
   color: #FAFAFA;
+}
+
+.table>tbody>tr>td{
+  border: 0px;
 }

@@ -12,6 +12,11 @@ export default class SidebarMenu extends Component {
     var contents = [];
 
     if (("menu" in this.props) && this.props.menu!='') {
+      contents.push(
+        <div className={styles.sidebar_navbar}>
+          <button className={`${styles.sidebar_navbar_btn}`} onClick={this.props.goBackCallback}><i className="fa fa-chevron-left" /> Back</button>
+        </div>
+      );
       contents.push(this.props.menu);
     } else {
       contents.push(

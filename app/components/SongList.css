@@ -89,3 +89,23 @@
   width: 96px;
   height: auto;
 }
+
+.songlist_details_btn_cell {
+  position: relative;
+  height: 100%;
+  padding: 0px !important;
+  text-align: center;
+}
+
+.songlist_details_btn,
+.songlist_details_btn:hover,
+.songlist_details_btn:active,
+.songlist_details_btn:focus {
+  position: relative;
+  color: #FAFAFA;
+  height: 100%;
+  background-color: #00000000;
+  border: 0px;
+  outline: none;
+  cursor: default;
+}

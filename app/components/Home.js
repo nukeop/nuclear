@@ -104,14 +104,25 @@ export default class Home extends Component {
   }
 
   playNow(song, callback, event) {
-    this.setState({playStatus: Sound.status.STOPPED});
-    this.setState({songQueue: []});
+    this.setState({
+      playStatus: Sound.status.STOPPED,
+      songQueue: [],
+      currentSongNumber: 0,
+      currentSongPosition: 0,
+      seekFromPosition: 0,
+      songStreamLoading: false
+    });
+
     this.state.songQueue.length = 0;
     this.addToQueue(song, callback, event);
   }
 
   toggleQueue() {
     this.setState({sidebarContents: SidebarMenuItemEnum.QUEUE});
+  }
+
+  sidebarGoBackCallback() {
+    this.setState({sidebarContents: ''});
   }
 
   addToQueue(song, callback, event) {
@@ -236,10 +247,12 @@ export default class Home extends Component {
       case SidebarMenuItemEnum.DEFAULT:
         break;
       case SidebarMenuItemEnum.QUEUE:
-      sidebarContentsRendered = (<QueueBar
+      sidebarContentsRendered = (
+        <QueueBar
         queue={this.state.songQueue}
         currentSong={this.state.currentSongNumber}
-      />);
+        />
+      );
     }
 
     return (
@@ -254,6 +267,7 @@ export default class Home extends Component {
           prevSongCallback={this.prevSong.bind(this)}
           songStreamLoading={this.state.songStreamLoading}
           toggleQueue={this.toggleQueue.bind(this)}
+          goBackCallback={this.sidebarGoBackCallback.bind(this)}
           menu={sidebarContentsRendered}
         />
 
