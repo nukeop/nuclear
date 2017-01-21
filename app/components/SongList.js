@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import Popover from 'react-popover';
+const fs = require('fs');
+const https = require('https');
+const ytdl = require('ytdl-core');
 
 import styles from './SongList.css';
 
@@ -33,6 +36,17 @@ export default class SongList extends Component {
     });
   }
 
+  finishedDownloadCallback(msg) {
+    console.log('downloaded');
+    console.log(msg);
+  }
+
+  handleDownload(song, event, value){
+      ytdl(`http://www.youtube.com/watch?v=${song.data.id}`, {quality: '140'})
+      .pipe(fs.createWriteStream(song.data.title+'.m4a'));
+  }
+
+
   renderButton(i) {
     return (
       <button className={styles.songlist_details_btn} onClick={this.openPopover.bind(this, i)}><i className="fa fa-ellipsis-h"/></button>
@@ -44,9 +58,11 @@ export default class SongList extends Component {
       <div>
         <div className={styles.options_title}>{song.data.title}</div>
         <div className={styles.options_contents}>
-          <a href='#'>Info</a><br />
-          <a href='#'>Lyrics</a><br />
-          <a href='#'>Download</a><br />
+          <table className={`table table-hover ${styles.options_table}`}>
+            <tr><button className={styles.options_button}>Info</button></tr>
+            <tr><button className={styles.options_button}>Lyrics</button></tr>
+            <tr><button className={styles.options_button} onClick={this.handleDownload.bind(this, song)}>Download</button></tr>
+          </table>
         </div>
       </div>
     );

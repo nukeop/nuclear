@@ -111,11 +111,27 @@
 }
 
 .options_title {
-  padding: 4px 4px;
+  min-width: 240px;
+  padding: 8px 8px;
   border-radius: 4px 4px 0px 0px;
   background-color: #212121;
 }
 
 .options_contents {
-  padding: 4px 4px;
+  padding: 8px 8px;
+}
+
+.options_table {
+  margin: 0px !important;
+}
+
+.options_table>tr:hover {
+  background-color: #616161;
+}
+
+.options_button {
+  background-color: #00000000;
+  border: 0px;
+  width: 100%;
+  text-align: left;
 }

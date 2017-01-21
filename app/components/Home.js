@@ -13,12 +13,13 @@ import MainContent from './MainContent';
 import Player from './Player';
 import styles from './Home.css';
 
-var fs = require('fs');
-var ytdl = require('ytdl-core');
+const fs = require('fs');
+const ytdl = require('ytdl-core');
 
 var SidebarMenuItemEnum = {
   DEFAULT: 0,
-  QUEUE: 1
+  QUEUE: 1,
+  DOWNLOADS: 2
 }
 
 export default class Home extends Component {
@@ -119,6 +120,10 @@ export default class Home extends Component {
 
   toggleQueue() {
     this.setState({sidebarContents: SidebarMenuItemEnum.QUEUE});
+  }
+
+  toggleDownloads() {
+    this.setState({sidebarContents: SidebarMenuItemEnum.DOWNLOADS});
   }
 
   sidebarGoBackCallback() {

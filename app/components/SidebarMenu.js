@@ -31,6 +31,11 @@ export default class SidebarMenu extends Component {
                 <a href='#' onClick={this.props.toggleQueue}><i className="fa fa-list"/> Queue</a>
               </td>
             </tr>
+            <tr>
+              <td className={styles.sidebar_options_cell}>
+                <a href='#' onClick={this.props.toggleDownloads}><i className="fa fa-download"/> Downloads</a>
+              </td>
+            </tr>
           </table>
       );
     }

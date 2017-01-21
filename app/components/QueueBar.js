@@ -1,13 +1,9 @@
 import React, { Component } from 'react';
-import Sidebar from 'react-sidebar';
 import styles from './QueueBar.css';
 
 export default class QueueBar extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      queuebarOpen: true
-    };
   }
 
   render() {
