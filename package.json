@@ -154,7 +154,8 @@
     "jquery": "^2.2.3",
     "react-alert": "^1.0.14",
     "ytdl-core": "^0.7.21",
-    "react-sound": "^0.5.2"
+    "react-sound": "^0.5.2",
+    "react-popover": "^0.4.4"
   },
   "dependencies": {
     "electron-debug": "^1.1.0",

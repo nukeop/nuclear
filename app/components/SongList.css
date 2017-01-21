@@ -109,3 +109,13 @@
   outline: none;
   cursor: default;
 }
+
+.options_title {
+  padding: 4px 4px;
+  border-radius: 4px 4px 0px 0px;
+  background-color: #212121;
+}
+
+.options_contents {
+  padding: 4px 4px;
+}

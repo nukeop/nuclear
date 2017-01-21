@@ -1,10 +1,69 @@
 import React, { Component } from 'react';
+import Popover from 'react-popover';
 
 import styles from './SongList.css';
 
 export default class SongList extends Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      popoversOpen: [],
+    };
+  }
+
+  componentWillMount() {
+    this.openPopover = this.openPopover.bind(this);
+    this.closePopover = this.closePopover.bind(this);
+  }
+
+  openPopover(i) {
+    var popoverList = this.state.popoversOpen;
+    popoverList.push(i);
+    this.setState({
+      popoversOpen: popoverList,
+    });
+  }
+
+  closePopover(i) {
+    var popoverList = this.state.popoversOpen;
+    popoverList.splice(popoverList.indexOf(i), 1);
+    this.setState({
+      popoverOpen: popoverList,
+    });
+  }
+
+  renderButton(i) {
+    return (
+      <button className={styles.songlist_details_btn} onClick={this.openPopover.bind(this, i)}><i className="fa fa-ellipsis-h"/></button>
+    );
+  }
+
+  renderPopoverContents(song) {
+    return (
+      <div>
+        <div className={styles.options_title}>{song.data.title}</div>
+        <div className={styles.options_contents}>
+          <a href='#'>Info</a><br />
+          <a href='#'>Lyrics</a><br />
+          <a href='#'>Download</a><br />
+        </div>
+      </div>
+    );
+  }
+
+  renderPopover(i, song) {
+      return (
+        <Popover
+          body={this.renderPopoverContents(song)}
+          preferPlace='right'
+          isOpen={i === this.state.popoversOpen[0]}
+          onOuterAction={this.closePopover.bind(this, i)}
+          ref='songlist_popover'
+        >
+          {this.renderButton(i)}
+        </Popover>
+      );
   }
 
 
@@ -38,7 +97,7 @@ export default class SongList extends Component {
               return (
                 <tr>
                   <td className={styles.songlist_details_btn_cell}>
-                    <button className={styles.songlist_details_btn}><i className="fa fa-ellipsis-h"/></button>
+                      {_this.renderPopover(i, song)}
                   </td>
                   <td>
                     <div className={styles.songlist_img_container}>

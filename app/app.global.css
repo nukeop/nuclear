@@ -193,3 +193,14 @@ a, a:hover, a:focus {
 .table>tbody>tr>td{
   border: 0px;
 }
+
+.Popover-body {
+  background-color: #424242;
+  border-radius: 4px;
+  box-shadow: 0px 0px 15px #000000;
+  font-size: 12px;
+}
+
+.Popover-tipShape {
+  fill: #424242;
+}
