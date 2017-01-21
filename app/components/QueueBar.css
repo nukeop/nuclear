@@ -1,12 +1,10 @@
 .queuebar {
   position: absolute;
-  z-index: 0;
   height: 50%;
   margin-top: 25px;
   width: 100%;
-  color: #FFF;
+  color: #ecf0f1;
   font-size: 12px;
-  backdrop-filter: blur(3px);
 }
 
 .panel_button,
@@ -17,12 +15,12 @@
   display: inline-block;
   vertical-align: top;
   padding: 0px;
-  color: white;
+  color: ecf0f1;
   text-decoration: none;
   cursor: default;
   outline:none;
 }
 
 .current_song {
-  background-color: #FAFAFA44;
+  background-color: #ecf0f144;
 }

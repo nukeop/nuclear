@@ -22,6 +22,11 @@ export default class SidebarMenu extends Component {
       contents.push(
           <table className={`${styles.sidebar_options} table`}>
             <tr>
+              <td className={styles.sidebar_brand_cell}>
+                <img src="../media/nuclear/logo_full_light.png" height="36"/>
+              </td>
+            </tr>
+            <tr>
               <td className={styles.sidebar_options_cell}>
                 <a href='#'><i className="fa fa-search"/> Search</a>
               </td>

@@ -8,6 +8,7 @@ import Sound from 'react-sound';
 import SidebarMenu from './SidebarMenu';
 import Navbar from './Navbar';
 import QueueBar from './QueueBar';
+import DownloadQueue from './DownloadQueue';
 import SearchField from './SearchField';
 import MainContent from './MainContent';
 import Player from './Player';
@@ -252,12 +253,20 @@ export default class Home extends Component {
       case SidebarMenuItemEnum.DEFAULT:
         break;
       case SidebarMenuItemEnum.QUEUE:
-      sidebarContentsRendered = (
-        <QueueBar
-        queue={this.state.songQueue}
-        currentSong={this.state.currentSongNumber}
-        />
-      );
+        sidebarContentsRendered = (
+          <QueueBar
+          queue={this.state.songQueue}
+          currentSong={this.state.currentSongNumber}
+          />
+        );
+        break;
+
+      case SidebarMenuItemEnum.DOWNLOADS:
+        sidebarContentsRendered = (
+          <DownloadQueue
+          />
+        );
+        break;
     }
 
     return (

@@ -11,10 +11,10 @@ html {
 
 body {
   height: 100%;
-  background-image: linear-gradient(45deg, #3f72cb, #263652);
+  background-image: url(https://images8.alphacoders.com/401/401364.jpg);
   font-family: Francois One;
   font-size: 24px;
-  color: #FAFAFA;
+  color: #ecf0f1;
 }
 
 a, a:hover, a:focus {
@@ -27,13 +27,14 @@ a, a:hover, a:focus {
 }
 
 ::-webkit-scrollbar-track {
-    background-color: #16171A00;
+    background-color: #34495e00;
     border-radius: 0px;
 }
 
 ::-webkit-scrollbar-thumb {
+    border: 1px solid #95a5a644;
     border-radius: 8px;
-    background-color: #424242;
+    background-color: #1C1A24;
 }
 
 .navbar {
@@ -95,20 +96,20 @@ a, a:hover, a:focus {
 
 .searchicon {
   width: 24px !important;
-  color: #FAFAFA;
+  color: #ecf0f1;
   background-color:rgba(0,0,0,0) !important;
   border-radius: 0px;
   border: 0px;
-  border-bottom: 2px solid #FAFAFA;
+  border-bottom: 2px solid #ecf0f1;
 }
 
 .searchfield {
   width:150px;
-  color: #FAFAFA;
+  color: #ecf0f1;
   background-color:rgba(0,0,0,0) !important;
   border-radius: 0px;
   border: 0px;
-  border-bottom: 2px solid #FAFAFA;
+  border-bottom: 2px solid #ecf0f1;
   margin-bottom: 6px;
   box-shadow: inset 0 0px 0px rgba(0,0,0,0),0 0 0px rgba(0,0,0,0);
 }
@@ -130,11 +131,11 @@ a, a:hover, a:focus {
 .multiselect-search-source:focus,
 .multiselect-search-source:active  {
   width: 100%;
-  color: #FAFAFA;
+  color: #ecf0f1;
   background-color:rgba(0,0,0,0) !important;
   border-radius: 0px;
   border: 0px;
-  border-bottom: 2px solid #FAFAFA;
+  border-bottom: 2px solid #ecf0f1;
   box-shadow: inset 0 0px 0px rgba(0,0,0,0),0 0 0px rgba(0,0,0,0);
 }
 
@@ -183,11 +184,11 @@ a, a:hover, a:focus {
 }
 
 .table-striped>tbody>tr:nth-of-type(odd){
-  background-color: #0d0b13;
+  background-color: #1C1A24;
 }
 
 .table-striped>tbody>tr:hover{
-  color: #FAFAFA;
+  color: #ecf0f1;
 }
 
 .table>tbody>tr>td{
@@ -195,12 +196,12 @@ a, a:hover, a:focus {
 }
 
 .Popover-body {
-  background-color: #424242;
+  background-color: #1C1A24;
   border-radius: 4px;
-  box-shadow: 0px 0px 15px #000000;
+  box-shadow: 0px 0px 25px #000000;
   font-size: 14px;
 }
 
 .Popover-tipShape {
-  fill: #424242;
+  fill: #1C1A24;
 }

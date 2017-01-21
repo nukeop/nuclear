@@ -61,6 +61,7 @@ export default class SongList extends Component {
           <table className={`table table-hover ${styles.options_table}`}>
             <tr><button className={styles.options_button}>Info</button></tr>
             <tr><button className={styles.options_button}>Lyrics</button></tr>
+            <tr><button className={styles.options_button}>Related</button></tr>
             <tr><button className={styles.options_button} onClick={this.handleDownload.bind(this, song)}>Download</button></tr>
           </table>
         </div>

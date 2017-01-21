@@ -1,12 +1,12 @@
 .sidebar {
-  background-image: linear-gradient(45deg, #003270, #000418);
   z-index: 0;
   font-size: 20px;
-  color: #FFF;
+  color: #ecf0f1;
   width: 300px;
   height: 100%;
   overflow: hidden;
   box-shadow: inset -2px 0px 25px #000000;
+  backdrop-filter: blur(20px);
 }
 
 .sidebar_options {
@@ -20,8 +20,13 @@
   padding: 16px 16px;
 }
 
+.sidebar_brand_cell {
+  padding-top: 16px;
+  text-align: center;
+}
+
 .sidebar_navbar {
-  background-color: #FAFAFA44;
+  background-color: #ecf0f144;
 }
 
 .sidebar_navbar_btn,
@@ -33,7 +38,7 @@
   margin-top: 8px;
   margin-bottom: 8px;
   border: 0px;
-  color: #FAFAFA;
+  color: #ecf0f1;
   background: #00000000;
   outline: none;
 }

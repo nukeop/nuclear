@@ -10,13 +10,13 @@ a.player_btn {
   height: 48px;
   font-size: 36px;
   margin: 16px 16px;
-  color: #FAFAFA;
+  color: #ecf0f1;
 }
 
 a.player_btn:hover,
 a.player_btn:active,
 a.player_btn:focus {
-  color: #FAFAFA;
+  color: #ecf0f1;
 }
 
 .player_backward {
