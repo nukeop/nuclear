@@ -10,8 +10,8 @@ It's also focusing more on audio. Imagine Spotify which you don't have to pay fo
 ## Screenshots
 This will be updated as the program evolves.
 
-![screenshot 1](http://i.imgur.com/HHKaQpJ.png)
+![screenshot 1](http://i.imgur.com/LHvZOwc.png)
 
-![screenshot 2](http://i.imgur.com/VjyWirg.png)
+![screenshot 2](http://i.imgur.com/ZA8OsbC.png)
 
-![animated demo](http://i.imgur.com/ERZqLgY.gif)
+![screenshot 3](http://i.imgur.com/oUtAJ5Z.png)
