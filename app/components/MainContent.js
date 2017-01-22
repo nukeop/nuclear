@@ -23,6 +23,7 @@ export default class MainContent extends Component {
         <SongList
           songList={this.props.songList}
           addToQueue={this.props.addToQueue}
+          addToDownloads={this.props.addToDownloads}
           playNow={this.props.playNow}
           home={this.props.home}
         />

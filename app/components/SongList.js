@@ -43,7 +43,7 @@ export default class SongList extends Component {
 
   handleDownload(song, event, value){
       ytdl(`http://www.youtube.com/watch?v=${song.data.id}`, {quality: '140'})
-      .pipe(fs.createWriteStream(song.data.title+'.m4a'));
+      .pipe(fs.createWriteStream('Downloads/'+song.data.title+'.m4a'));
   }
 
 
@@ -62,7 +62,7 @@ export default class SongList extends Component {
             <tr><button className={styles.options_button}>Info</button></tr>
             <tr><button className={styles.options_button}>Lyrics</button></tr>
             <tr><button className={styles.options_button}>Related</button></tr>
-            <tr><button className={styles.options_button} onClick={this.handleDownload.bind(this, song)}>Download</button></tr>
+            <tr><button className={styles.options_button} onClick={this.props.addToDownloads.bind(this.props.home, song)}>Download</button></tr>
           </table>
         </div>
       </div>

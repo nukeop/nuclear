@@ -1,0 +1,24 @@
+.download_queue {
+  font-size: 14px;
+  margin-top: 25px;
+}
+
+.download_queued {
+  text-align: center;
+  color: #f1c40f;
+}
+
+.download_inprogress {
+  text-align: center;
+  color: #9b59b6;
+}
+
+.download_finished {
+  text-align: center;
+  color: #2ecc71;
+}
+
+.download_error {
+  text-align: center;
+  color: #e74c3c;
+}

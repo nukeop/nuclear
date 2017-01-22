@@ -16,12 +16,7 @@ import styles from './Home.css';
 
 const fs = require('fs');
 const ytdl = require('ytdl-core');
-
-var SidebarMenuItemEnum = {
-  DEFAULT: 0,
-  QUEUE: 1,
-  DOWNLOADS: 2
-}
+const enums = require('../api/Enum');
 
 export default class Home extends Component {
   constructor(props) {
@@ -32,13 +27,14 @@ export default class Home extends Component {
       songListLoading: false,
       queuebarOpen: false,
       songQueue: [],
+      downloadQueue: [],
       playStatus: Sound.status.STOPPED,
       currentSongNumber: 0,
       currentSongUrl: '',
       currentSongPosition: 0,
       seekFromPosition: 0,
       songStreamLoading: false,
-      sidebarContents: SidebarMenuItemEnum.DEFAULT
+      sidebarContents: enums.SidebarMenuItemEnum.DEFAULT
     };
 
     this.alertOptions = {
@@ -120,15 +116,30 @@ export default class Home extends Component {
   }
 
   toggleQueue() {
-    this.setState({sidebarContents: SidebarMenuItemEnum.QUEUE});
+    this.setState({sidebarContents: enums.SidebarMenuItemEnum.QUEUE});
   }
 
   toggleDownloads() {
-    this.setState({sidebarContents: SidebarMenuItemEnum.DOWNLOADS});
+    this.setState({sidebarContents: enums.SidebarMenuItemEnum.DOWNLOADS});
   }
 
   sidebarGoBackCallback() {
     this.setState({sidebarContents: ''});
+  }
+
+  addToDownloads(song, object, event) {
+    var newDownloadItem = {
+      source: song.source,
+      status: enums.DownloadQueueStatusEnum.QUEUED,
+      progress: 0,
+      data: {
+        id: song.data.id,
+        title: song.data.title
+      }
+    };
+
+    this.state.downloadQueue.push(newDownloadItem);
+    this.setState(this.state);
   }
 
   addToQueue(song, callback, event) {
@@ -250,9 +261,9 @@ export default class Home extends Component {
   render() {
     var sidebarContentsRendered = '';
     switch (this.state.sidebarContents) {
-      case SidebarMenuItemEnum.DEFAULT:
+      case enums.SidebarMenuItemEnum.DEFAULT:
         break;
-      case SidebarMenuItemEnum.QUEUE:
+      case enums.SidebarMenuItemEnum.QUEUE:
         sidebarContentsRendered = (
           <QueueBar
           queue={this.state.songQueue}
@@ -261,9 +272,10 @@ export default class Home extends Component {
         );
         break;
 
-      case SidebarMenuItemEnum.DOWNLOADS:
+      case enums.SidebarMenuItemEnum.DOWNLOADS:
         sidebarContentsRendered = (
           <DownloadQueue
+            downloads={this.state.downloadQueue}
           />
         );
         break;
@@ -281,6 +293,7 @@ export default class Home extends Component {
           prevSongCallback={this.prevSong.bind(this)}
           songStreamLoading={this.state.songStreamLoading}
           toggleQueue={this.toggleQueue.bind(this)}
+          toggleDownloads={this.toggleDownloads.bind(this)}
           goBackCallback={this.sidebarGoBackCallback.bind(this)}
           menu={sidebarContentsRendered}
         />
@@ -294,6 +307,7 @@ export default class Home extends Component {
              songList={this.state.songList}
              songListLoading={this.state.songListLoading}
              addToQueue={this.addToQueue}
+             addToDownloads={this.addToDownloads}
              playNow={this.playNow}
              home={this}
            />
