@@ -9,6 +9,7 @@ export default class SearchField extends Component {
     this.state = {
       allowableSources: [
         { value: 'youtube' },
+        { value: 'youtube playlists' },
         { value: 'bandcamp' },
         { value: 'soundcloud' },
         { value: 'vimeo' },

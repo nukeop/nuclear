@@ -1,15 +1,15 @@
 {
-  "name": "electron-react-boilerplate",
-  "productName": "electron-react-boilerplate",
-  "version": "1.0.0",
-  "description": "Electron application boilerplate based on React, React Router, Webpack, React Hot Loader for rapid application development",
+  "name": "nuclear",
+  "productName": "nuclear",
+  "version": "0.1.0",
+  "description": " An Electron-based, multiplatform music player app that streams from multiple sources ",
   "main": "./main.js",
   "author": {
-    "name": "C. T. Lin",
-    "email": "chentsulin@gmail.com",
-    "url": "https://github.com/chentsulin"
+    "name": "nukeop",
+    "email": "alsw@protonmail.com",
+    "url": "https://github.com/nukeop/"
   },
-  "license": "MIT",
+  "license": "GPL-3.0",
   "dependencies": {
   }
 }

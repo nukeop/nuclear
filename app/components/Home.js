@@ -195,7 +195,7 @@ export default class Home extends Component {
       var _this = this;
       this.state.searchTerms = document.getElementById("searchField").value;
       this.state.songList = [];
-      var tempList = [];
+      var searchResults = [];
 
       if (searchSources.length < 1) {
         this.showAlertInfo("Please select a source.");
@@ -205,37 +205,61 @@ export default class Home extends Component {
       _this.songSearchStartCallback();
 
       if (searchSources.indexOf('youtube') >= 0){
-        Axios.get(this.prepareUrl("https://www.googleapis.com/youtube/v3/search?part=id,snippet&maxResults=50&q="+this.state.searchTerms))
+        Axios.get(this.prepareUrl("https://www.googleapis.com/youtube/v3/search?part=id,snippet&type=video&maxResults=50&q="+this.state.searchTerms))
         .then(function(response) {
           response.data.items.map(function(el){
-            if (el.id.kind === "youtube#video"){
 
-              var newYoutubeItem = {
-                source: 'youtube',
-                data: {
-                  id: el.id.videoId,
-                  thumbnail: el.snippet.thumbnails.medium.url,
-                  title: el.snippet.title,
-                  length: "Unknown",
-                  streamUrl: "",
-                  streamUrlLoading: false
-                }
-              };
+            var newYoutubeItem = {
+              source: 'youtube',
+              data: {
+                id: el.id.videoId,
+                thumbnail: el.snippet.thumbnails.medium.url,
+                title: el.snippet.title,
+                length: "Unknown",
+                streamUrl: "",
+                streamUrlLoading: false
+              }
+            };
 
-              Axios.get(_this.prepareUrl("https://www.googleapis.com/youtube/v3/videos?part=id,snippet,contentDetails&id="+newYoutubeItem.data.id))
-                .then(function(response){
-                  newYoutubeItem.data.length = _this.ytDurationToStr(response.data.items[0].contentDetails.duration);
-                  tempList.push(newYoutubeItem);
+            Axios.get(_this.prepareUrl("https://www.googleapis.com/youtube/v3/videos?part=id,snippet,contentDetails&id="+newYoutubeItem.data.id))
+            .then(function(response){
+              newYoutubeItem.data.length = _this.ytDurationToStr(response.data.items[0].contentDetails.duration);
+              searchResults.push(newYoutubeItem);
 
-                  _this.songListChangeCallback(tempList);
-                  _this.setState({songList: tempList});
-                });
-            }
+              _this.songListChangeCallback(searchResults);
+              _this.setState({songList: searchResults});
+            });
           });
         });
       }
 
+      if (searchSources.indexOf('youtube playlists') >= 0) {
+        Axios.get(this.prepareUrl("https://www.googleapis.com/youtube/v3/search?part=id,snippet&type=playlist&maxResults=50&q="+this.state.searchTerms))
+        .then(function(response) {
+          response.data.items.map(function(el){
+
+            console.log(response);
+            var newYoutubePlaylistItem = {
+              source: 'youtube playlists',
+              data: {
+                id: el.id.playlistId,
+                thumbnail: el.snippet.thumbnails.medium.url,
+                title: el.snippet.title,
+                length: "N/A",
+              }
+            };
+            searchResults.push(newYoutubePlaylistItem);
+
+          });
+
+          _this.songListChangeCallback(searchResults);
+          _this.setState({songList: searchResults});
+        });
+      }
     }
+
+
+
   }
 
   togglePlay(){
