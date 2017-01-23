@@ -36,17 +36,6 @@ export default class SongList extends Component {
     });
   }
 
-  finishedDownloadCallback(msg) {
-    console.log('downloaded');
-    console.log(msg);
-  }
-
-  handleDownload(song, event, value){
-      ytdl(`http://www.youtube.com/watch?v=${song.data.id}`, {quality: '140'})
-      .pipe(fs.createWriteStream('Downloads/'+song.data.title+'.m4a'));
-  }
-
-
   renderButton(i) {
     return (
       <button className={styles.songlist_details_btn} onClick={this.openPopover.bind(this, i)}><i className="fa fa-ellipsis-h"/></button>

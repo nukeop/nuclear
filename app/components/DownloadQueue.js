@@ -11,11 +11,13 @@ export default class DownloadQueue extends Component {
   render() {
     return (
       <div className={styles.download_queue}>
+        <a href="#" className={styles.download_button} onClick={this.props.startDownload}><i className="fa fa-download" /> Start downloading</a>
         <table className="table table-hover table-condensed">
           <thead>
             <tr>
               <th>#</th>
               <th>File</th>
+              <th>Total</th>
               <th>Status</th>
             </tr>
           </thead>
@@ -41,7 +43,8 @@ export default class DownloadQueue extends Component {
                 <tr>
                   <td>{i+1}</td>
                   <td>{song.data.title}</td>
-                  {statusIcon}
+                  <td>{Math.round(Math.round(song.progress/1024)/Math.round(song.length/1024)*100)+'%'}</td>
+                  <td>{statusIcon}</td>
                 </tr>
             );
 

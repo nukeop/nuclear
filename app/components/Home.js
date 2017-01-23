@@ -91,14 +91,22 @@ export default class Home extends Component {
   }
 
   videoInfoCallback(song, err, info) {
-    song.data.streamUrl=info.formats.filter(function(e){return e.itag=='140'})[0].url;
-    song.data.streamUrlLoading=false;
+    var formatInfo = info.formats.filter(function(e){return e.itag=='140'})[0];
+    song.data.streamUrl = formatInfo.url;
+    song.data.streamUrlLoading = false;
+    song.data.streamLength = formatInfo.clen;
     this.setState({songQueue: this.state.songQueue});
   }
 
   videoInfoThenPlayCallback(song, err, info) {
     this.videoInfoCallback(song, err, info);
     this.togglePlay();
+  }
+
+  downloadVideoInfoCallback(song, err, info) {
+    var formatInfo = info.formats.filter(function(e){return e.itag=='140'})[0];
+    song.length = formatInfo.clen;
+    this.setState({});
   }
 
   playNow(song, callback, event) {
@@ -127,19 +135,56 @@ export default class Home extends Component {
     this.setState({sidebarContents: ''});
   }
 
+  startDownload() {
+    this.state.downloadQueue.map((song)=>{
+      if (song.status === enums.DownloadQueueStatusEnum.QUEUED){
+        song.status = enums.DownloadQueueStatusEnum.INPROGRESS;
+
+        ytdl(`http://www.youtube.com/watch?v=${song.data.id}`, {quality: '140'})
+        .on('data', (chunk)=>{
+          song.progress += chunk.length;
+          song.progressUpdates++;
+          if (song.progressUpdates%10 === 0) {
+            this.setState({downloadQueue: this.state.downloadQueue});
+          }
+        })
+        .pipe(fs.createWriteStream(song.data.title+'.m4a'))
+        .on('finish', ()=>{
+          song.status = enums.DownloadQueueStatusEnum.FINISHED;
+          this.setState({downloadQueue: this.state.downloadQueue});
+        })
+        .on('error', (error)=>{
+          song.status = enums.DownloadQueueStatusEnum.ERROR;
+          this.setState({downloadQueue: this.state.downloadQueue});
+        });
+      }
+    });
+
+    this.setState({downloadQueue: this.state.downloadQueue});
+  }
+
   addToDownloads(song, object, event) {
     var newDownloadItem = {
       source: song.source,
       status: enums.DownloadQueueStatusEnum.QUEUED,
+      length: song.data.streamLength,
       progress: 0,
+      progressUpdates: 0,
       data: {
         id: song.data.id,
         title: song.data.title
       }
     };
 
+    ytdl.getInfo(
+      `http://www.youtube.com/watch?v=${song.data.id}`,
+      this.downloadVideoInfoCallback.bind(this, newDownloadItem)
+    );
+
     this.state.downloadQueue.push(newDownloadItem);
     this.setState(this.state);
+
+    this.showAlertSuccess('Song "'+song.data.title+'" added to downloads.');
   }
 
   addToQueue(song, callback, event) {
@@ -158,33 +203,33 @@ export default class Home extends Component {
     this.setState({songQueue: this.state.songQueue});
   }
 
-  songListChangeCallback(songs){
+  songListChangeCallback(songs) {
     this.setState({songList: songs, songListLoading: false});
   }
 
-  songSearchStartCallback(){
+  songSearchStartCallback() {
     this.setState({songListLoading: true});
   }
 
-  ytDurationToStr(ytDuration){
-  var reptms = /^PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?$/;
-  var hours = 0, minutes = 0, seconds = 0, totalseconds;
+  ytDurationToStr(ytDuration) {
+    var reptms = /^PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?$/;
+    var hours = 0, minutes = 0, seconds = 0, totalseconds;
 
-  if (reptms.test(ytDuration)) {
-    var matches = reptms.exec(ytDuration);
-    if (matches[1]) hours = Number(matches[1]);
-    if (matches[2]) minutes = Number(matches[2]);
-    if (matches[3]) seconds = Number(matches[3]);
-    totalseconds = hours * 3600  + minutes * 60 + seconds;
-  }
+    if (reptms.test(ytDuration)) {
+      var matches = reptms.exec(ytDuration);
+      if (matches[1]) hours = Number(matches[1]);
+      if (matches[2]) minutes = Number(matches[2]);
+      if (matches[3]) seconds = Number(matches[3]);
+      totalseconds = hours * 3600  + minutes * 60 + seconds;
+    }
 
-  if (hours > 0){
-    return hours + ":" + minutes + ":" + seconds;
+    if (hours > 0){
+      return hours + ":" + minutes + ":" + seconds;
+    }
+    else {
+      return minutes + ":" + seconds;
+    }
   }
-  else {
-    return minutes + ":" + seconds;
-  }
-}
 
   prepareUrl(url) {
     return `${url}&key=${this.state.ytApiKey}`;
@@ -217,7 +262,8 @@ export default class Home extends Component {
                 title: el.snippet.title,
                 length: "Unknown",
                 streamUrl: "",
-                streamUrlLoading: false
+                streamUrlLoading: false,
+                streamLength: 0
               }
             };
 
@@ -257,8 +303,6 @@ export default class Home extends Component {
         });
       }
     }
-
-
 
   }
 
@@ -300,6 +344,7 @@ export default class Home extends Component {
         sidebarContentsRendered = (
           <DownloadQueue
             downloads={this.state.downloadQueue}
+            startDownload={this.startDownload.bind(this)}
           />
         );
         break;
