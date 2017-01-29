@@ -1,6 +1,5 @@
 .main_content_container {
   position: absolute;
   width: 100%;
-  top: 48px;
-  bottom: 0px;
+  height: 100%;
 }

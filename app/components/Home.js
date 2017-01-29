@@ -9,7 +9,6 @@ import SidebarMenu from './SidebarMenu';
 import Navbar from './Navbar';
 import QueueBar from './QueueBar';
 import DownloadQueue from './DownloadQueue';
-import SearchField from './SearchField';
 import MainContent from './MainContent';
 import Player from './Player';
 import styles from './Home.css';
@@ -17,7 +16,6 @@ import styles from './Home.css';
 const fs = require('fs');
 const ytdl = require('ytdl-core');
 
-const youtube = require('../api/Youtube');
 const enums = require('../api/Enum');
 
 
@@ -25,8 +23,6 @@ export default class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      songList: [],
-      songListLoading: false,
       queuebarOpen: false,
       songQueue: [],
       downloadQueue: [],
@@ -205,38 +201,6 @@ export default class Home extends Component {
     this.setState({songQueue: this.state.songQueue});
   }
 
-  songListChangeCallback(songs) {
-    this.setState({songList: songs, songListLoading: false});
-  }
-
-  songSearchStartCallback() {
-    this.setState({songListLoading: true});
-  }
-
-  handleSearch(event, value, searchSources) {
-    if (event.key === 'Enter') {
-      var _this = this;
-      this.state.searchTerms = document.getElementById("searchField").value;
-      this.state.songList = [];
-      var searchResults = [];
-
-      if (searchSources.length < 1) {
-        this.showAlertInfo("Please select a source.");
-        return;
-      }
-
-      _this.songSearchStartCallback();
-
-      if (searchSources.indexOf('youtube') >= 0){
-        youtube.youtubeVideoSearch.bind(this)(this.state.searchTerms, searchResults, this.songListChangeCallback);
-      }
-
-      if (searchSources.indexOf('youtube playlists') >= 0) {
-        youtube.youtubePlaylistSearch.bind(this)(this.state.searchTerms, searchResults, this.songListChangeCallback);
-      }
-    }
-  }
-
   togglePlay(){
     if (this.state.playStatus===Sound.status.PLAYING) {
       this.setState({playStatus: Sound.status.STOPPED});
@@ -283,9 +247,6 @@ export default class Home extends Component {
 
     return (
       <div>
-
-        {/* <Navbar onClick={this.toggleSidebar}/> */}
-
         <SidebarMenu
           playStatus={this.state.playStatus}
           togglePlayCallback={this.togglePlay.bind(this)}
@@ -299,13 +260,7 @@ export default class Home extends Component {
         />
 
         <div className={styles.container}>
-          <SearchField
-            ref="searchField_ref"
-            handleSearch={this.handleSearch.bind(this)}
-           />
            <MainContent
-             songList={this.state.songList}
-             songListLoading={this.state.songListLoading}
              addToQueue={this.addToQueue}
              addToDownloads={this.addToDownloads}
              playNow={this.playNow}
