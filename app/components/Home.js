@@ -16,13 +16,15 @@ import styles from './Home.css';
 
 const fs = require('fs');
 const ytdl = require('ytdl-core');
+
+const youtube = require('../api/Youtube');
 const enums = require('../api/Enum');
+
 
 export default class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      ytApiKey: "AIzaSyCIM4EzNqi1in22f4Z3Ru3iYvLaY8tc3bo",
       songList: [],
       songListLoading: false,
       queuebarOpen: false,
@@ -211,30 +213,6 @@ export default class Home extends Component {
     this.setState({songListLoading: true});
   }
 
-  ytDurationToStr(ytDuration) {
-    var reptms = /^PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?$/;
-    var hours = 0, minutes = 0, seconds = 0, totalseconds;
-
-    if (reptms.test(ytDuration)) {
-      var matches = reptms.exec(ytDuration);
-      if (matches[1]) hours = Number(matches[1]);
-      if (matches[2]) minutes = Number(matches[2]);
-      if (matches[3]) seconds = Number(matches[3]);
-      totalseconds = hours * 3600  + minutes * 60 + seconds;
-    }
-
-    if (hours > 0){
-      return hours + ":" + minutes + ":" + seconds;
-    }
-    else {
-      return minutes + ":" + seconds;
-    }
-  }
-
-  prepareUrl(url) {
-    return `${url}&key=${this.state.ytApiKey}`;
-  }
-
   handleSearch(event, value, searchSources) {
     if (event.key === 'Enter') {
       var _this = this;
@@ -250,60 +228,13 @@ export default class Home extends Component {
       _this.songSearchStartCallback();
 
       if (searchSources.indexOf('youtube') >= 0){
-        Axios.get(this.prepareUrl("https://www.googleapis.com/youtube/v3/search?part=id,snippet&type=video&maxResults=50&q="+this.state.searchTerms))
-        .then(function(response) {
-          response.data.items.map(function(el){
-
-            var newYoutubeItem = {
-              source: 'youtube',
-              data: {
-                id: el.id.videoId,
-                thumbnail: el.snippet.thumbnails.medium.url,
-                title: el.snippet.title,
-                length: "Unknown",
-                streamUrl: "",
-                streamUrlLoading: false,
-                streamLength: 0
-              }
-            };
-
-            Axios.get(_this.prepareUrl("https://www.googleapis.com/youtube/v3/videos?part=id,snippet,contentDetails&id="+newYoutubeItem.data.id))
-            .then(function(response){
-              newYoutubeItem.data.length = _this.ytDurationToStr(response.data.items[0].contentDetails.duration);
-              searchResults.push(newYoutubeItem);
-
-              _this.songListChangeCallback(searchResults);
-              _this.setState({songList: searchResults});
-            });
-          });
-        });
+        youtube.youtubeVideoSearch.bind(this)(this.state.searchTerms, searchResults, this.songListChangeCallback);
       }
 
       if (searchSources.indexOf('youtube playlists') >= 0) {
-        Axios.get(this.prepareUrl("https://www.googleapis.com/youtube/v3/search?part=id,snippet&type=playlist&maxResults=50&q="+this.state.searchTerms))
-        .then(function(response) {
-          response.data.items.map(function(el){
-
-            console.log(response);
-            var newYoutubePlaylistItem = {
-              source: 'youtube playlists',
-              data: {
-                id: el.id.playlistId,
-                thumbnail: el.snippet.thumbnails.medium.url,
-                title: el.snippet.title,
-                length: "N/A",
-              }
-            };
-            searchResults.push(newYoutubePlaylistItem);
-
-          });
-
-          _this.songListChangeCallback(searchResults);
-          _this.setState({songList: searchResults});
-        });
+        youtube.youtubePlaylistSearch.bind(this)(this.state.searchTerms, searchResults, this.songListChangeCallback);
       }
     }
-
   }
 
   togglePlay(){
