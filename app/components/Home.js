@@ -36,7 +36,7 @@ export default class Home extends Component {
     };
 
     this.alertOptions = {
-          position: 'bottom left',
+          position: 'bottom right',
           theme: 'dark',
           time: 5000,
           transition: 'fade',
@@ -69,24 +69,28 @@ export default class Home extends Component {
   nextSong() {
     // We need to update state in two steps - first we update the current song
     // number, then we update the url to reflect the new number.
-    this.setState({
+    this.setState((prevState, props) => ({
       currentSongNumber: Math.min(
-        this.state.currentSongNumber+1,
-        this.state.songQueue.length
-      )});
+        prevState.currentSongNumber+1,
+        prevState.songQueue.length
+      )}));
 
-    this.setState({
-      currentSongUrl: this.state.songQueue[this.state.currentSongNumber].data.streamUrl
-    });
-  }
+      this.setState((prevState, props) => ({
+        currentSongUrl: prevState.songQueue[prevState.currentSongNumber].data.streamUrl
+      }));
+    }
 
-  prevSong() {
-    this.setState({
-      currentSongNumber: Math.max(
-        this.state.currentSongNumber-1,
-        0
-      )});
-  }
+    prevSong() {
+      this.setState((prevState, props) => ({
+        currentSongNumber: Math.max(
+          prevState.currentSongNumber-1,
+          0
+        )}));
+
+        this.setState((prevState, props) => ({
+          currentSongUrl: prevState.songQueue[prevState.currentSongNumber].data.streamUrl
+        }));
+      }
 
   videoInfoCallback(song, err, info) {
     var formatInfo = info.formats.filter(function(e){return e.itag=='140'})[0];

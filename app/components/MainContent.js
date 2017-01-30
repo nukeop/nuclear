@@ -32,7 +32,7 @@ export default class MainContent extends Component {
       var searchResults = [];
 
       if (searchSources.length < 1) {
-        this.showAlertInfo("Please select a source.");
+        this.props.home.showAlertInfo("Please select a source.");
         return;
       }
 
