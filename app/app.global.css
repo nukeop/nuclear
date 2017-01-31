@@ -5,8 +5,6 @@
 
 html {
   height: 100%;
-  cursor: default;
-  -webkit-user-select: none;
 }
 
 body {
@@ -15,6 +13,8 @@ body {
   font-family: Francois One;
   font-size: 24px;
   color: #ecf0f1;
+  cursor: default;
+  -webkit-user-select: none;
 }
 
 a, a:hover, a:focus {
@@ -204,4 +204,8 @@ a, a:hover, a:focus {
 
 .Popover-tipShape {
   fill: #1C1A24;
+}
+
+.table-hover>tbody>tr:hover {
+  background-color: #F5F5F566;
 }

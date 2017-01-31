@@ -1,10 +1,12 @@
 .queuebar {
-  position: absolute;
-  height: 50%;
+  position: relative;
+  top: 0;
+  bottom: 0;
   margin-top: 25px;
   width: 100%;
   color: #ecf0f1;
   font-size: 14px;
+  overflow-y: scroll;
 }
 
 .panel_button,

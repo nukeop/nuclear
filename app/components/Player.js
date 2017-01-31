@@ -15,7 +15,6 @@ export default class Player extends Component {
     }
 
       return(
-        <footer className="footer">
           <div className={styles.player_container}>
             <a
               href='#'
@@ -25,7 +24,7 @@ export default class Player extends Component {
             </a>
             <a
               href='#'
-              className={`btn ${styles.player_btn}`}
+              className={`btn ${styles.player_btn} ${styles.player_play_btn}`}
               onClick={this.props.togglePlayCallback}>
                 <i className={`${styles.player_play} ${playButtonClass}`}></i>
             </a>
@@ -36,7 +35,6 @@ export default class Player extends Component {
                 <i className={`${styles.player_forward} fa fa-forward`}></i>
             </a>
           </div>
-        </footer>
       );
   }
 }
