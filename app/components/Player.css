@@ -43,12 +43,12 @@ a.player_btn:focus {
   width: 100%;
   height: 100%;
   font-size: 48px;
-  padding-top: 16px;
+  padding-top: 7px;
 }
 
 a.player_play_btn {
-  width: 96px;
-  height: 96px;
-  border: 2px solid #FAFAFA;
+  width: 80px;
+  height: 80px;
+  border: 3px solid #FAFAFA66;
   border-radius: 128px;
 }
