@@ -72,7 +72,7 @@ export default class Home extends Component {
     this.setState((prevState, props) => ({
       currentSongNumber: Math.min(
         prevState.currentSongNumber+1,
-        prevState.songQueue.length
+        prevState.songQueue.length-1
       )}));
 
       this.setState((prevState, props) => ({
@@ -260,6 +260,8 @@ export default class Home extends Component {
           toggleQueue={this.toggleQueue.bind(this)}
           toggleDownloads={this.toggleDownloads.bind(this)}
           goBackCallback={this.sidebarGoBackCallback.bind(this)}
+          songQueue={this.state.songQueue}
+          currentSongNumber={this.state.currentSongNumber}
           menu={sidebarContentsRendered}
         />
 

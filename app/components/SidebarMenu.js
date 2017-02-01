@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Sidebar from 'react-sidebar';
+import CoverPreview from './CoverPreview';
 import Player from './Player';
 import styles from './SidebarMenu.css';
 
@@ -45,6 +46,12 @@ export default class SidebarMenu extends Component {
       );
     }
 
+    contents.push(
+      <CoverPreview
+        songQueue={this.props.songQueue}
+        currentSongNumber={this.props.currentSongNumber}
+      />
+    );
 
     contents.push(
         <Player

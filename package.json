@@ -153,9 +153,10 @@
     "axios": "^0.9.1",
     "jquery": "^2.2.3",
     "react-alert": "^1.0.14",
-    "ytdl-core": "^0.7.21",
+    "ytdl-core": "^0.7.24",
     "react-sound": "^0.5.2",
-    "react-popover": "^0.4.4"
+    "react-popover": "^0.4.4",
+    "react-coverflow": "^0.2.3"
   },
   "dependencies": {
     "electron-debug": "^1.1.0",

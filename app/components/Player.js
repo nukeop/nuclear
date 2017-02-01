@@ -26,7 +26,7 @@ export default class Player extends Component {
               href='#'
               className={`btn ${styles.player_btn} ${styles.player_play_btn}`}
               onClick={this.props.togglePlayCallback}>
-                <i className={`${styles.player_play} ${playButtonClass}`}></i>
+                <i className={`${playButtonClass} ${styles.player_play}`}></i>
             </a>
             <a
               href='#'
