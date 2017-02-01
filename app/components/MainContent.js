@@ -24,6 +24,13 @@ export default class MainContent extends Component {
     this.setState({songListLoading: true});
   }
 
+  searchRelated(song) {
+    var searchResults = [];
+
+    this.songSearchStartCallback();
+    youtube.youtubeRelatedSearch.bind(this)(song.data.id, searchResults, this.songListChangeCallback);
+  }
+
   handleSearch(event, value, searchSources) {
     if (event.key === 'Enter') {
       var _this = this;
@@ -36,7 +43,7 @@ export default class MainContent extends Component {
         return;
       }
 
-      _this.songSearchStartCallback();
+      this.songSearchStartCallback();
 
       if (searchSources.indexOf('youtube') >= 0){
         youtube.youtubeVideoSearch.bind(this)(searchTerms, searchResults, this.songListChangeCallback);
@@ -60,6 +67,7 @@ export default class MainContent extends Component {
             songList={this.state.songList}
             addToQueue={this.props.addToQueue}
             addToDownloads={this.props.addToDownloads}
+            searchRelated={this.searchRelated.bind(this)}
             playNow={this.props.playNow}
             home={this.props.home}
           />) :

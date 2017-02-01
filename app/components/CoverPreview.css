@@ -2,4 +2,5 @@
   position: absolute;
   bottom: 100px;
   font-size: 16px;
+  cursor: default !important;
 }
