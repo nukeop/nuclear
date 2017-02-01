@@ -59,6 +59,7 @@ a.player_play_btn {
   bottom: 100px;
   border-radius: 0px;
   background-color: #ecf0f144;
+  cursor:pointer;
 }
 
 .player_progress_fill {

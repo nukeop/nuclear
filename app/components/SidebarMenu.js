@@ -59,6 +59,7 @@ export default class SidebarMenu extends Component {
           togglePlayCallback={this.props.togglePlayCallback}
           nextSongCallback={this.props.nextSongCallback}
           prevSongCallback={this.props.prevSongCallback}
+          seekFromCallback={this.props.seekFromCallback}
           songStreamLoading={this.props.songStreamLoading}
           currentSongProgress={this.props.currentSongProgress}
         />

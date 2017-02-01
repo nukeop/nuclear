@@ -8,6 +8,13 @@ export default class Player extends Component {
     super(props);
   }
 
+  onClickSeek(event, value){
+    var progressBar = document.getElementById("progress_bar");
+    var percent = (event.clientX - progressBar.offsetLeft)/(progressBar.offsetWidth);
+    console.log(percent);
+    this.props.seekFromCallback(percent);
+  }
+
   render() {
     var playButtonClass = this.props.playStatus===Sound.status.PLAYING ? 'fa fa-pause' : 'fa fa-play';
     if (this.props.songStreamLoading) {
@@ -18,7 +25,7 @@ export default class Player extends Component {
 
       return(
           <div className={styles.player_container}>
-            <div className={`${styles.player_progress} progress`}>
+            <div id="progress_bar" className={`${styles.player_progress} progress`} onClick={this.onClickSeek.bind(this)}>
               <div className={`${styles.player_progress_fill} progress-bar`} style={progressBarStyle} role="progressbar"/>
             </div>
 

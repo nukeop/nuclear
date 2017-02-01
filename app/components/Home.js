@@ -30,6 +30,7 @@ export default class Home extends Component {
       currentSongNumber: 0,
       currentSongUrl: '',
       currentSongPosition: 0,
+      currentSongDuration: 0,
       currentSongProgress: 0,
       seekFromPosition: 0,
       songStreamLoading: false,
@@ -44,6 +45,12 @@ export default class Home extends Component {
         };
   }
 
+  seekFrom(percent) {
+    this.setState({
+      seekFromPosition: percent * this.state.currentSongDuration
+    });
+  }
+
   songLoadingCallback(loading) {
     this.setState({songStreamLoading: !loading.loaded});
   }
@@ -53,6 +60,7 @@ export default class Home extends Component {
 
     this.setState({
       currentSongPosition: playing.position,
+      currentSongDuration: playing.duration,
       currentSongProgress: progress
     });
   }
@@ -272,6 +280,7 @@ export default class Home extends Component {
           togglePlayCallback={this.togglePlay.bind(this)}
           nextSongCallback={this.nextSong.bind(this)}
           prevSongCallback={this.prevSong.bind(this)}
+          seekFromCallback={this.seekFrom.bind(this)}
           songStreamLoading={this.state.songStreamLoading}
           toggleQueue={this.toggleQueue.bind(this)}
           toggleDownloads={this.toggleDownloads.bind(this)}
