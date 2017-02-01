@@ -55,13 +55,13 @@ a.player_play_btn {
 
 .player_progress {
   margin: 10px 20px;
-  height: 4px;
+  height: 4px !important;
   bottom: 100px;
-  border-radius: 0px;
-  background-color: #ecf0f144;
+  border-radius: 0px !important;
+  background-color: #ecf0f144 !important;
   cursor:pointer;
 }
 
 .player_progress_fill {
-  background-color: #ecf0f1;
+  background-color: #ecf0f1 !important;
 }

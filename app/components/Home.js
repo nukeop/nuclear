@@ -79,30 +79,27 @@ export default class Home extends Component {
   }
 
   nextSong() {
+    this.changeSong(Math.min(
+      this.state.currentSongNumber+1,
+      this.state.songQueue.length-1
+    ));
+  }
+
+  prevSong() {
+    this.changeSong(Math.max(this.state.currentSongNumber-1,0));
+  }
+
+  changeSong(num) {
     // We need to update state in two steps - first we update the current song
     // number, then we update the url to reflect the new number.
     this.setState((prevState, props) => ({
-      currentSongNumber: Math.min(
-        prevState.currentSongNumber+1,
-        prevState.songQueue.length-1
-      )}));
+      currentSongNumber: num
+    }));
 
-      this.setState((prevState, props) => ({
-        currentSongUrl: prevState.songQueue[prevState.currentSongNumber].data.streamUrl
-      }));
-    }
-
-    prevSong() {
-      this.setState((prevState, props) => ({
-        currentSongNumber: Math.max(
-          prevState.currentSongNumber-1,
-          0
-        )}));
-
-        this.setState((prevState, props) => ({
-          currentSongUrl: prevState.songQueue[prevState.currentSongNumber].data.streamUrl
-        }));
-      }
+    this.setState((prevState, props) => ({
+      currentSongUrl: prevState.songQueue[prevState.currentSongNumber].data.streamUrl
+    }));
+  }
 
   videoInfoCallback(song, err, info) {
     var formatInfo = info.formats.filter(function(e){return e.itag=='140'})[0];
@@ -259,6 +256,7 @@ export default class Home extends Component {
           queue={this.state.songQueue}
           currentSong={this.state.currentSongNumber}
           clearQueue={this.clearQueue.bind(this)}
+          changeSong={this.changeSong.bind(this)}
           />
         );
         break;

@@ -12,6 +12,7 @@ export default class QueueBar extends Component {
     return (
       <div className={styles.queuebar_container}>
         <a href="#" className={styles.control_button} onClick={this.props.clearQueue}>Clear queue</a>
+        <a href="#" className={styles.control_button}>Export queue</a>
         <div className={styles.queuebar_table_container}>
         <table className="table table-hover table-condensed">
           <thead>
@@ -32,7 +33,7 @@ export default class QueueBar extends Component {
               var rowClass = i=== _this.props.currentSong ? styles.current_song : '';
 
               return (
-                  <tr className={rowClass}>
+                  <tr className={rowClass} onDoubleClick={_this.props.changeSong.bind(this, i)}>
                     <td>{i+1}</td>
                     <td>{displayTitle}</td>
                     <td>{song.data.length}</td>
