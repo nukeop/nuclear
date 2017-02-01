@@ -1,11 +1,17 @@
-.queuebar {
-  position: relative;
-  top: 0;
-  bottom: 0;
-  margin-top: 25px;
+.queuebar_container {
+  position: absolute;
+  margin-top: 10px;
+  height: 55%;
   width: 100%;
   color: #ecf0f1;
   font-size: 14px;
+}
+
+.queuebar_table_container {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  margin-top: 10px;
   overflow-y: scroll;
 }
 
@@ -21,6 +27,14 @@
   text-decoration: none;
   cursor: default;
   outline:none;
+}
+
+.control_button {
+  position: relative;
+  margin-left: 8px;
+  padding: 4px;
+  background-color: #FAFAFA44;
+  border-radius: 4px;
 }
 
 .current_song {

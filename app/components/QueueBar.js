@@ -10,7 +10,9 @@ export default class QueueBar extends Component {
     var _this = this;
 
     return (
-      <div className={styles.queuebar}>
+      <div className={styles.queuebar_container}>
+        <a href="#" className={styles.control_button} onClick={this.props.clearQueue}>Clear queue</a>
+        <div className={styles.queuebar_table_container}>
         <table className="table table-hover table-condensed">
           <thead>
             <tr>
@@ -40,6 +42,7 @@ export default class QueueBar extends Component {
 
           </tbody>
         </table>
+      </div>
       </div>
     );
 

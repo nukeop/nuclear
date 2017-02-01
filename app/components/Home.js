@@ -129,6 +129,17 @@ export default class Home extends Component {
     this.addToQueue(song, callback, event);
   }
 
+  clearQueue() {
+    this.setState({
+      playStatus: Sound.status.STOPPED,
+      songQueue: [],
+      currentSongNumber: 0,
+      currentSongPosition: 0,
+      seekFromPosition: 0,
+      songStreamLoading: false
+    });
+  }
+
   toggleQueue() {
     this.setState({sidebarContents: enums.SidebarMenuItemEnum.QUEUE});
   }
@@ -239,6 +250,7 @@ export default class Home extends Component {
           <QueueBar
           queue={this.state.songQueue}
           currentSong={this.state.currentSongNumber}
+          clearQueue={this.clearQueue.bind(this)}
           />
         );
         break;
