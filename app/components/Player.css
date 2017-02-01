@@ -52,3 +52,15 @@ a.player_play_btn {
   border: 3px solid #FAFAFA66;
   border-radius: 128px;
 }
+
+.player_progress {
+  margin: 10px 20px;
+  height: 4px;
+  bottom: 100px;
+  border-radius: 0px;
+  background-color: #ecf0f144;
+}
+
+.player_progress_fill {
+  background-color: #ecf0f1;
+}

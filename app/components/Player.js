@@ -14,8 +14,14 @@ export default class Player extends Component {
       playButtonClass = 'fa fa-spinner fa-spin fa-fw';
     }
 
+    var progressBarStyle = {"width": this.props.currentSongProgress+"%"};
+
       return(
           <div className={styles.player_container}>
+            <div className={`${styles.player_progress} progress`}>
+              <div className={`${styles.player_progress_fill} progress-bar`} style={progressBarStyle} role="progressbar"/>
+            </div>
+
             <a
               href='#'
               className={`btn ${styles.player_btn}`}

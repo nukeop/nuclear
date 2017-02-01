@@ -30,6 +30,7 @@ export default class Home extends Component {
       currentSongNumber: 0,
       currentSongUrl: '',
       currentSongPosition: 0,
+      currentSongProgress: 0,
       seekFromPosition: 0,
       songStreamLoading: false,
       sidebarContents: enums.SidebarMenuItemEnum.DEFAULT
@@ -48,9 +49,12 @@ export default class Home extends Component {
   }
 
   songPlayingCallback(playing) {
-    var progress = (playing.position/playing.duration)*100.0;
+    var progress = Math.round((playing.position/playing.duration)*100.0);
 
-    this.setState({currentSongPosition: playing.position});
+    this.setState({
+      currentSongPosition: playing.position,
+      currentSongProgress: progress
+    });
   }
 
   songFinishedPlayingCallback() {
@@ -262,6 +266,7 @@ export default class Home extends Component {
           goBackCallback={this.sidebarGoBackCallback.bind(this)}
           songQueue={this.state.songQueue}
           currentSongNumber={this.state.currentSongNumber}
+          currentSongProgress={this.state.currentSongProgress}
           menu={sidebarContentsRendered}
         />
 
