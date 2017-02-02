@@ -15,3 +15,5 @@ This will be updated as the program evolves.
 ![screenshot 2](http://i.imgur.com/ZA8OsbC.png)
 
 ![screenshot 3](http://i.imgur.com/oUtAJ5Z.png)
+
+![coverflow](http://i.imgur.com/TJs6Q3D.gif)
