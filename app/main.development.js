@@ -1,4 +1,7 @@
 import { app, BrowserWindow, Menu, shell } from 'electron';
+const fs = require('fs');
+const path = require('path');
+const globals = require('./api/Globals');
 
 let menu;
 let template;
@@ -40,6 +43,20 @@ const installExtensions = async () => {
 
 app.on('ready', async () => {
   await installExtensions();
+
+  // Create required folders for user files
+  if (!fs.existsSync(globals.directories.userdata)) {
+    fs.mkdirSync(globals.directories.userdata);
+  };
+
+  if (!fs.existsSync(path.join(globals.directories.userdata, globals.directories.downloads))) {
+    fs.mkdirSync(path.join(globals.directories.userdata, globals.directories.downloads));
+  };
+
+  if (!fs.existsSync(path.join(globals.directories.userdata, globals.directories.playlists))) {
+    fs.mkdirSync(path.join(globals.directories.userdata, globals.directories.playlists));
+  };
+
 
   mainWindow = new BrowserWindow({
     show: false,

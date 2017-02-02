@@ -1,9 +1,35 @@
 import React, { Component } from 'react';
 import styles from './QueueBar.css';
 
+const jsonfile = require('jsonfile');
+const path = require('path');
+const globals = require('../api/Globals');
+
 export default class QueueBar extends Component {
   constructor(props) {
     super(props);
+  }
+
+  exportQueue() {
+    var allItems = [];
+    this.props.queue.map((song, i)=>{
+      var newItem = {
+        source: song.source,
+        data: {
+          id: song.data.id
+        }
+      }
+
+      allItems.push(newItem);
+    });
+
+    jsonfile.writeFile(path.join(
+      globals.directories.userdata,
+      globals.directories.playlists,
+      'playlist' + Date.now() + '.json'
+    ), allItems, (err) => {
+      console.error(err);
+    });
   }
 
   render() {
@@ -12,7 +38,7 @@ export default class QueueBar extends Component {
     return (
       <div className={styles.queuebar_container}>
         <a href="#" className={styles.control_button} onClick={this.props.clearQueue}>Clear queue</a>
-        <a href="#" className={styles.control_button}>Export queue</a>
+        <a href="#" className={styles.control_button} onClick={this.exportQueue.bind(this)}>Export queue</a>
         <div className={styles.queuebar_table_container}>
         <table className="table table-hover table-condensed">
           <thead>
