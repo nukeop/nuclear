@@ -34,14 +34,14 @@
 }
 
 .songlist_img_container {
-  width: auto;
-  height: 35%;
   position: relative;
+  width: 100%;
+  height: 35%;
   text-align:center;
 }
 
 .songlist_thumb_btn {
-  position:absolute;
+  position: absolute;
   top: 5px;
   bottom: 5px;
   background-color: #00000000;

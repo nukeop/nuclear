@@ -54,7 +54,7 @@ a.player_play_btn {
 }
 
 .player_progress {
-  margin: 10px 20px;
+  margin: 0px 20px;
   height: 4px !important;
   bottom: 100px;
   border-radius: 0px !important;

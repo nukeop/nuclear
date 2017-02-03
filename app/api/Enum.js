@@ -4,6 +4,11 @@ var SidebarMenuItemEnum = {
   DOWNLOADS: 2
 }
 
+var MainContentItemEnum = {
+  SEARCH: 0,
+  PLAYLISTS: 1
+}
+
 var DownloadQueueStatusEnum = {
   QUEUED: 0,
   INPROGRESS: 1,
@@ -13,5 +18,6 @@ var DownloadQueueStatusEnum = {
 
 module.exports = {
   SidebarMenuItemEnum: SidebarMenuItemEnum,
+  MainContentItemEnum: MainContentItemEnum,
   DownloadQueueStatusEnum: DownloadQueueStatusEnum
 }

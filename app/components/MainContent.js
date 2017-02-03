@@ -2,8 +2,11 @@ import React, { Component } from 'react';
 
 import SearchField from './SearchField';
 import SongList from './SongList';
+import SearchContainer from '../containers/SearchContainer';
+import PlaylistsContainer from '../containers/PlaylistsContainer';
 import styles from './MainContent.css';
 
+const enums = require('../api/Enum');
 const youtube = require('../api/Youtube');
 
 export default class MainContent extends Component {
@@ -56,26 +59,33 @@ export default class MainContent extends Component {
   }
 
   render() {
-    return(
-      <div className={styles.main_content_container}>
-        <SearchField
-          handleSearch={this.handleSearch.bind(this)}
-        />
+    switch (this.props.contents) {
+      case enums.MainContentItemEnum.PLAYLISTS:
+        return (
+          <div className={styles.main_content_container}>
+            <PlaylistsContainer
 
-        {!this.state.songListLoading ?
-          (<SongList
-            songList={this.state.songList}
-            addToQueue={this.props.addToQueue}
-            addToDownloads={this.props.addToDownloads}
-            searchRelated={this.searchRelated.bind(this)}
-            playNow={this.props.playNow}
-            home={this.props.home}
-          />) :
-          (<div className="content-loading">
-            <i className="fa fa-spinner fa-spin fa-3x fa-fw"></i>
-          </div>)
-        }
-      </div>
-    );
+            />
+          </div>
+        );
+        break;
+      case enums.MainContentItemEnum.SEARCH:
+        return (
+          <div className={styles.main_content_container}>
+            <SearchContainer
+              handleSearch={this.handleSearch.bind(this)}
+              searchRelated={this.searchRelated.bind(this)}
+              songList={this.state.songList}
+              addToQueue={this.props.addToQueue}
+              addToDownloads={this.props.addToDownloads}
+              playNow={this.props.playNow}
+              home={this.props.home}
+              songListLoading={this.state.songListLoading}
+            />
+          </div>
+        );
+      default:
+        return(<div className={styles.main_content_container} />);
+    }
   }
 }

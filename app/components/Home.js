@@ -34,7 +34,8 @@ export default class Home extends Component {
       currentSongProgress: 0,
       seekFromPosition: 0,
       songStreamLoading: false,
-      sidebarContents: enums.SidebarMenuItemEnum.DEFAULT
+      sidebarContents: enums.SidebarMenuItemEnum.DEFAULT,
+      mainContents: enums.MainContentItemEnum.SEARCH
     };
 
     this.alertOptions = {
@@ -145,6 +146,14 @@ export default class Home extends Component {
     });
   }
 
+  togglePlaylists() {
+    this.setState({mainContents: enums.MainContentItemEnum.PLAYLISTS});
+  }
+
+  toggleSearch() {
+    this.setState({mainContents: enums.MainContentItemEnum.SEARCH});
+  }
+
   toggleQueue() {
     this.setState({sidebarContents: enums.SidebarMenuItemEnum.QUEUE});
   }
@@ -154,7 +163,7 @@ export default class Home extends Component {
   }
 
   sidebarGoBackCallback() {
-    this.setState({sidebarContents: ''});
+    this.setState({sidebarContents: enums.SidebarMenuItemEnum.DEFAULT});
   }
 
   startDownload() {
@@ -282,6 +291,8 @@ export default class Home extends Component {
           songStreamLoading={this.state.songStreamLoading}
           toggleQueue={this.toggleQueue.bind(this)}
           toggleDownloads={this.toggleDownloads.bind(this)}
+          togglePlaylists={this.togglePlaylists.bind(this)}
+          toggleSearch={this.toggleSearch.bind(this)}
           goBackCallback={this.sidebarGoBackCallback.bind(this)}
           songQueue={this.state.songQueue}
           currentSongNumber={this.state.currentSongNumber}
@@ -291,6 +302,7 @@ export default class Home extends Component {
 
         <div className={styles.container}>
            <MainContent
+             contents={this.state.mainContents}
              addToQueue={this.addToQueue}
              addToDownloads={this.addToDownloads}
              playNow={this.playNow}

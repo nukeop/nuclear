@@ -29,7 +29,7 @@ export default class SidebarMenu extends Component {
             </tr>
             <tr>
               <td className={styles.sidebar_options_cell}>
-                <a href='#'><i className="fa fa-search"/> Search</a>
+                <a href='#' onClick={this.props.toggleSearch}><i className="fa fa-search"/> Search</a>
               </td>
             </tr>
             <tr>
@@ -40,6 +40,11 @@ export default class SidebarMenu extends Component {
             <tr>
               <td className={styles.sidebar_options_cell}>
                 <a href='#' onClick={this.props.toggleDownloads}><i className="fa fa-download"/> Downloads</a>
+              </td>
+            </tr>
+            <tr>
+              <td className={styles.sidebar_options_cell}>
+                <a href='#' onClick={this.props.togglePlaylists}><i className="fa fa-music"/> My Playlists</a>
               </td>
             </tr>
           </table>

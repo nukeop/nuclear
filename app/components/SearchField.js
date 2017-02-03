@@ -35,7 +35,7 @@ handleSearch(event, value){
 
 
   render() {
-    const searchFieldStyle = {width: "75%", 'padding-top': '1px'};
+    const searchFieldStyle = {width: "75%", 'paddingTop': '1px'};
     const sourceButtonStyle = {width: "25%"};
     return (
       <form className="form-inline">
