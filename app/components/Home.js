@@ -14,9 +14,11 @@ import Player from './Player';
 import styles from './Home.css';
 
 const fs = require('fs');
+const path = require('path');
 const ytdl = require('ytdl-core');
 
 const enums = require('../api/Enum');
+const globals = require('../api/Globals');
 
 
 export default class Home extends Component {
@@ -179,7 +181,13 @@ export default class Home extends Component {
             this.setState({downloadQueue: this.state.downloadQueue});
           }
         })
-        .pipe(fs.createWriteStream(song.data.title+'.m4a'))
+        .pipe(fs.createWriteStream(
+          path.join(
+            globals.directories.userdata,
+            globals.directories.downloads,
+            song.data.title+'.m4a'
+          )
+        ))
         .on('finish', ()=>{
           song.status = enums.DownloadQueueStatusEnum.FINISHED;
           this.setState({downloadQueue: this.state.downloadQueue});
@@ -304,7 +312,7 @@ export default class Home extends Component {
            <MainContent
              contents={this.state.mainContents}
              addToQueue={this.addToQueue}
-             addToDownloads={this.addToDownloads}
+             addToDownloads={this.addToDownloads.bind(this)}
              playNow={this.playNow}
              home={this}
            />

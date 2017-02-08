@@ -209,3 +209,38 @@ a, a:hover, a:focus {
 .table-hover>tbody>tr:hover {
   background-color: #F5F5F566;
 }
+
+.rc-table-body>table {
+  width: 100%;
+}
+
+.rc-table-tbody {
+  width: 100%;
+}
+
+.rc-table-row {
+  width: 100%;
+}
+
+.rc-table-row:hover {
+  color: #ecf0f1;
+}
+
+.rc-table-row:hover>td>a {
+  color: #ecf0f1;
+}
+
+.rc-table-expanded-row {
+  position: relative;
+  width: 100%;
+  background-color: #1C1A24;
+}
+
+.rc-table-expanded-row>td:last-child {
+  border-radius: 0px 0px 15px 15px;
+}
+
+.rc-table-expanded-row>td>ul {
+  margin: 10px 0px 10px 0px;
+  padding-left: 32px;
+}

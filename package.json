@@ -157,7 +157,8 @@
     "react-sound": "^0.5.2",
     "react-popover": "^0.4.4",
     "react-coverflow": "^0.2.3",
-    "jsonfile": "^2.4.0"
+    "jsonfile": "^2.4.0",
+    "rc-table": "^5.2.8"
   },
   "dependencies": {
     "electron-debug": "^1.1.0",

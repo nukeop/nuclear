@@ -16,7 +16,8 @@ export default class QueueBar extends Component {
       var newItem = {
         source: song.source,
         data: {
-          id: song.data.id
+          id: song.data.id,
+          title: song.data.title
         }
       }
 
