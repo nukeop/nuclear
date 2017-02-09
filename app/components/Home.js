@@ -129,6 +129,8 @@ export default class Home extends Component {
       youtube.youtubeFetchVideoDetails(el);
       this.addToQueue(el, this.videoInfoCallback, null)
     });
+
+    this.togglePlay();
   }
 
   playNow(song, callback, event) {
@@ -136,7 +138,6 @@ export default class Home extends Component {
       var songs = youtube.youtubeGetSongsFromPlaylist(song.data.id,
         this.addToPlaylistCallback.bind(this));
 
-        togglePlay();
         return;
     }
 
