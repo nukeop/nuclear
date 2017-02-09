@@ -115,11 +115,23 @@ function youtubePlaylistSearch(terms, searchResults, songListChangeCallback) {
   });
 }
 
+function youtubeFetchVideoDetails(video) {
+  // Takes an incomplete record containing at least a video id, and fills it with
+  // missing data
+
+  Axios.get(prepareUrl("https://www.googleapis.com/youtube/v3/videos?part=snippet,contentDetails&id="+video.data.id))
+  .then((response) => {
+    video.data.thumbnail = response.data.items[0].snippet.thumbnails.medium.url;
+    video.data.length = ytDurationToStr(response.data.items[0].contentDetails.duration);
+  });
+}
+
 module.exports = {
   prepareUrl: prepareUrl,
   youtubeVideoSearch: youtubeVideoSearch,
   youtubePlaylistSearch: youtubePlaylistSearch,
   youtubeRelatedSearch: youtubeRelatedSearch,
+  youtubeFetchVideoDetails: youtubeFetchVideoDetails,
   ytDurationToStr: ytDurationToStr,
   prepareUrl: prepareUrl
 }

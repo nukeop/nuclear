@@ -48,17 +48,16 @@ export default class PlaylistsContainer extends Component {
       songStreamLoading: false
     });
 
+    this.props.home.showAlertSuccess("Playing playlist "+playlist.filename+".");
+
     this.props.home.state.songQueue.length = 0;
     playlist.contents.map((el, i) => {
-
-      Axios.get(youtube.prepareUrl("https://www.googleapis.com/youtube/v3/videos?part=snippet,contentDetails&id="+el.data.id))
-      .then((response) => {
-        el.data.thumbnail = response.data.items[0].snippet.thumbnails.medium.url;
-        el.data.length = youtube.ytDurationToStr(response.data.items[0].contentDetails.duration);
-      });
-
+      youtube.youtubeFetchVideoDetails(el);
       this.props.home.addToQueue(el, this.props.home.videoInfoCallback, null);
     });
+
+    this.props.home.changeSong(0);
+    this.props.home.togglePlay();
   }
 
   playlistAddToQueueCallback(playlist, event, value) {
