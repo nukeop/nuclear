@@ -9,6 +9,12 @@
   color: #95a5a6;
 }
 
+.playlists_text_button {
+  padding: 4px;
+  background-color: #FAFAFA44;
+  border-radius: 4px;
+}
+
 .playlists_playlist_contents {
   color: #ecf0f1;
 }

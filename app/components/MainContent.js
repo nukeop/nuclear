@@ -64,7 +64,7 @@ export default class MainContent extends Component {
         return (
           <div className={styles.main_content_container}>
             <PlaylistsContainer
-
+              home={this.props.home}
             />
           </div>
         );

@@ -23,9 +23,51 @@ export default class Playlists extends Component {
     );
   }
 
+  renderRenameButton(text, record) {
+    return (
+      <a
+        href='#'
+        className={styles.playlists_text_button}
+        onClick={this.props.playlistRenameCallback.bind(null, record)}
+      >
+        Rename
+      </a>
+    );
+  }
+
+  renderDeleteButton(text, record) {
+    return (
+      <a
+        href='#'
+        className={styles.playlists_text_button}
+        onClick={this.props.playlistDeleteCallback.bind(null, record)}
+      >
+          Delete
+        </a>
+    );
+  }
+
   renderPlayButton(text, record) {
     return (
-      <a href="#" className={styles.playlists_play_button}><i className="fa fa-play" /></a>
+      <a
+        href='#'
+        className={styles.playlists_play_button}
+        onClick={this.props.playlistPlayCallback.bind(null, text)}
+      >
+        <i className="fa fa-play" />
+      </a>
+    );
+  }
+
+  renderAddToQueueButton(text, record) {
+    return (
+      <a
+        href='#'
+        className={styles.playlists_play_button}
+        onClick={this.props.playlistAddToQueueCallback.bind(null, text)}
+      >
+        <i className="fa fa-plus-square-o"></i>
+      </a>
     );
   }
 
@@ -39,14 +81,17 @@ export default class Playlists extends Component {
     });
   }
 
-  onRowClick(record, index) {
+  onRowDoubleClick(record, index) {
     var keys = this.state.expandedRowKeys;
     if (keys.indexOf(index) > -1) {
       keys.splice(keys.indexOf(index), 1);
-      this.setState({
-        expandedRowKeys: keys
-      });
+    } else {
+      keys.push(index);
     }
+
+    this.setState({
+      expandedRowKeys: keys
+    });
   }
 
   render() {
@@ -58,22 +103,38 @@ export default class Playlists extends Component {
       <div className={styles.playlists_container}>
         <Table
           data={this.props.playlists}
-          expandIconAsCell={true}
-          expandRowByClick={true}
           expandedRowRender={this.expandedRowRender.bind(this)}
           expandedRowKeys={this.state.expandedRowKeys}
           onExpandedRowsChange={this.onExpandedRowsChange.bind(this)}
-          onRowClick={this.onRowClick.bind(this)}
+          onRowDoubleClick={this.onRowDoubleClick.bind(this)}
         >
             <Column
                dataIndex=''
                key='playButton'
                width={50}
-               render={this.renderPlayButton}
+               render={this.renderPlayButton.bind(this)}
+            />
+            <Column
+               dataIndex=''
+               key='addToQueueButton'
+               width={50}
+               render={this.renderAddToQueueButton.bind(this)}
             />
             <Column
               dataIndex='filename'
               key='filename'
+            />
+            <Column
+              dataIndex=''
+              key='renameButton'
+              width={70}
+              render={this.renderRenameButton.bind(this)}
+            />
+            <Column
+              dataIndex=''
+              key='deleteButton'
+              width={50}
+              render={this.renderDeleteButton.bind(this)}
             />
         </Table>
       </div>

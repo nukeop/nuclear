@@ -220,6 +220,7 @@ a, a:hover, a:focus {
 
 .rc-table-row {
   width: 100%;
+  height: 50px;
 }
 
 .rc-table-row:hover {

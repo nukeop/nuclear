@@ -119,5 +119,7 @@ module.exports = {
   prepareUrl: prepareUrl,
   youtubeVideoSearch: youtubeVideoSearch,
   youtubePlaylistSearch: youtubePlaylistSearch,
-  youtubeRelatedSearch: youtubeRelatedSearch
+  youtubeRelatedSearch: youtubeRelatedSearch,
+  ytDurationToStr: ytDurationToStr,
+  prepareUrl: prepareUrl
 }
