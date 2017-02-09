@@ -95,7 +95,7 @@ function youtubeRelatedSearch(videoId, searchResults, songListChangeCallback) {
 function youtubePlaylistSearch(terms, searchResults, songListChangeCallback) {
   var _this = this;
 
-  Axios.get(prepareUrl("https://www.googleapis.com/youtube/v3/search?part=id,snippet&type=playlist&maxResults=50&q="+this.state.searchTerms))
+  Axios.get(prepareUrl("https://www.googleapis.com/youtube/v3/search?part=id,snippet&type=playlist&maxResults=50&q="+terms))
   .then(function(response) {
     response.data.items.map(function(el){
       var newYoutubePlaylistItem = {
@@ -126,12 +126,39 @@ function youtubeFetchVideoDetails(video) {
   });
 }
 
+function youtubeGetSongsFromPlaylist(playlistId, callback) {
+  var playlistItems = []
+
+  Axios.get(prepareUrl("https://www.googleapis.com/youtube/v3/playlistItems?part=snippet,contentDetails&maxResults=50&playlistId="+playlistId))
+  .then((response) => {
+    response.data.items.map((el, i) => {
+      playlistItems.push({
+        source: 'youtube',
+        data: {
+          id: el.snippet.resourceId.videoId,
+          thumbnail: el.snippet.thumbnails.medium.url,
+          title: el.snippet.title,
+          length: "Unknown",
+          streamUrl: "",
+          streamUrlLoading: false,
+          streamLength: 0
+        }
+      });
+    });
+
+    callback(playlistItems);
+  });
+
+
+}
+
 module.exports = {
   prepareUrl: prepareUrl,
   youtubeVideoSearch: youtubeVideoSearch,
   youtubePlaylistSearch: youtubePlaylistSearch,
   youtubeRelatedSearch: youtubeRelatedSearch,
   youtubeFetchVideoDetails: youtubeFetchVideoDetails,
+  youtubeGetSongsFromPlaylist: youtubeGetSongsFromPlaylist,
   ytDurationToStr: ytDurationToStr,
   prepareUrl: prepareUrl
 }

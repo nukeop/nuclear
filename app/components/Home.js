@@ -19,6 +19,7 @@ const ytdl = require('ytdl-core');
 
 const enums = require('../api/Enum');
 const globals = require('../api/Globals');
+const youtube = require('../api/Youtube');
 
 
 export default class Home extends Component {
@@ -123,7 +124,22 @@ export default class Home extends Component {
     this.setState({});
   }
 
+  addToPlaylistCallback(songs) {
+    songs.map((el, i) => {
+      youtube.youtubeFetchVideoDetails(el);
+      this.addToQueue(el, this.videoInfoCallback, null)
+    });
+  }
+
   playNow(song, callback, event) {
+    if (song.source==='youtube playlists') {
+      var songs = youtube.youtubeGetSongsFromPlaylist(song.data.id,
+        this.addToPlaylistCallback.bind(this));
+
+        togglePlay();
+        return;
+    }
+
     this.setState({
       playStatus: Sound.status.STOPPED,
       songQueue: [],
