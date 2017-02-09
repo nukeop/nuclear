@@ -107,11 +107,21 @@ function youtubePlaylistSearch(terms, searchResults, songListChangeCallback) {
           length: "N/A",
         }
       };
-      searchResults.push(newYoutubePlaylistItem);
+
+      Axios.get(prepareUrl("https://www.googleapis.com/youtube/v3/playlists?part=id,contentDetails,snippet&id="+el.id.playlistId))
+      .then((response) => {
+        newYoutubePlaylistItem.data.length = response.data.items[0].contentDetails.itemCount;
+
+        searchResults.push(newYoutubePlaylistItem);
+
+        songListChangeCallback.bind(_this)(searchResults);
+        _this.setState({songList: searchResults});
+      });
+
+
     });
 
-    songListChangeCallback.bind(_this)(searchResults);
-    _this.setState({songList: searchResults});
+
   });
 }
 
@@ -132,6 +142,7 @@ function youtubeGetSongsFromPlaylist(playlistId, callback) {
   Axios.get(prepareUrl("https://www.googleapis.com/youtube/v3/playlistItems?part=snippet,contentDetails&maxResults=50&playlistId="+playlistId))
   .then((response) => {
     response.data.items.map((el, i) => {
+
       if (el.snippet.description==='This video is unavailable.') {
         return;
       }
