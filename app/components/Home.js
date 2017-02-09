@@ -65,7 +65,8 @@ export default class Home extends Component {
     this.setState({
       currentSongPosition: playing.position,
       currentSongDuration: playing.duration,
-      currentSongProgress: progress
+      currentSongProgress: progress,
+      songStreamLoading: false
     });
   }
 
@@ -124,7 +125,7 @@ export default class Home extends Component {
     this.setState({});
   }
 
-  addToPlaylistCallback(songs) {
+  addFromPlaylistCallback(songs) {
     songs.map((el, i) => {
       youtube.youtubeFetchVideoDetails(el);
       this.addToQueue(el, this.videoInfoCallback, null)
@@ -133,22 +134,34 @@ export default class Home extends Component {
     this.togglePlay();
   }
 
+  addToQueue(song, callback, event) {
+    if (song.source === 'youtube'){
+      if (typeof(callback)==='undefined') callback=this.videoInfoCallback;
+
+      song.data.streamUrlLoading=true;
+      ytdl.getInfo(
+        `http://www.youtube.com/watch?v=${song.data.id}`,
+         callback.bind(this, song)
+      );
+
+      this.state.songQueue.push(song);
+    }
+
+
+    this.setState({songQueue: this.state.songQueue});
+  }
+
   playNow(song, callback, event) {
     if (song.source==='youtube playlists') {
+      this.clearQueue();
+
       var songs = youtube.youtubeGetSongsFromPlaylist(song.data.id,
-        this.addToPlaylistCallback.bind(this));
+        this.addFromPlaylistCallback.bind(this));
 
         return;
     }
 
-    this.setState({
-      playStatus: Sound.status.STOPPED,
-      songQueue: [],
-      currentSongNumber: 0,
-      currentSongPosition: 0,
-      seekFromPosition: 0,
-      songStreamLoading: false
-    });
+    this.clearQueue();
 
     this.state.songQueue.length = 0;
     this.addToQueue(song, callback, event);
@@ -241,22 +254,6 @@ export default class Home extends Component {
     this.setState(this.state);
 
     this.showAlertSuccess('Song "'+song.data.title+'" added to downloads.');
-  }
-
-  addToQueue(song, callback, event) {
-    if (song.source === 'youtube'){
-      if (typeof(callback)==='undefined') callback=this.videoInfoCallback;
-
-      song.data.streamUrlLoading=true;
-      ytdl.getInfo(
-        `http://www.youtube.com/watch?v=${song.data.id}`,
-         callback.bind(this, song)
-      );
-
-    }
-
-    this.state.songQueue.push(song);
-    this.setState({songQueue: this.state.songQueue});
   }
 
   togglePlay(){

@@ -132,6 +132,9 @@ function youtubeGetSongsFromPlaylist(playlistId, callback) {
   Axios.get(prepareUrl("https://www.googleapis.com/youtube/v3/playlistItems?part=snippet,contentDetails&maxResults=50&playlistId="+playlistId))
   .then((response) => {
     response.data.items.map((el, i) => {
+      if (el.snippet.description==='This video is unavailable.') {
+        return;
+      }
       playlistItems.push({
         source: 'youtube',
         data: {
