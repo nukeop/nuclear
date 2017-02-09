@@ -24,13 +24,17 @@ export default class QueueBar extends Component {
       allItems.push(newItem);
     });
 
+    var filename = 'playlist' + Date.now() + '.json';
+
     jsonfile.writeFile(path.join(
       globals.directories.userdata,
       globals.directories.playlists,
-      'playlist' + Date.now() + '.json'
+      filename
     ), allItems, (err) => {
       console.error(err);
     });
+
+    this.props.home.showAlertSuccess("Playlist "+filename+" exported.")
   }
 
   render() {

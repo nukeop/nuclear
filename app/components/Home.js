@@ -274,6 +274,7 @@ export default class Home extends Component {
           currentSong={this.state.currentSongNumber}
           clearQueue={this.clearQueue.bind(this)}
           changeSong={this.changeSong.bind(this)}
+          home={this}
           />
         );
         break;

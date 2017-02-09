@@ -61,7 +61,12 @@ export default class PlaylistsContainer extends Component {
   }
 
   playlistAddToQueueCallback(playlist, event, value) {
-    console.log(playlist);
+    this.props.home.showAlertSuccess("Playlist "+playlist.filename+" added to queue.");
+
+    playlist.contents.map((el, i) => {
+      youtube.youtubeFetchVideoDetails(el);
+      this.props.home.addToQueue(el, this.props.home.videoInfoCallback, null);
+    });
   }
 
   playlistRenameCallback(playlist, event, value) {
