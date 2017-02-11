@@ -22,9 +22,15 @@ export default class CoverPreview extends Component {
         >
           {this.props.songQueue.map((song, i)=>{
 
-            return (
-              <img alt={song.data.title} src={song.data.thumbnail}/>
-            );
+            if(song.data.thumbnail === null) {
+              return (
+                <img alt={song.data.title} src='../media/img/default-album-art.png' height="120px"/>
+              );
+            } else {
+              return (
+                <img alt={song.data.title} src={song.data.thumbnail} height="120px"/>
+              );
+            }
 
           })}
         </Coverflow>
