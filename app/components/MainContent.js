@@ -7,6 +7,7 @@ import PlaylistsContainer from '../containers/PlaylistsContainer';
 import styles from './MainContent.css';
 
 const enums = require('../api/Enum');
+const soundcloud = require('../api/Soundcloud');
 const youtube = require('../api/Youtube');
 
 export default class MainContent extends Component {
@@ -54,6 +55,10 @@ export default class MainContent extends Component {
 
       if (searchSources.indexOf('youtube playlists') >= 0) {
         youtube.youtubePlaylistSearch.bind(this)(searchTerms, searchResults, this.songListChangeCallback);
+      }
+
+      if(searchSources.indexOf('soundcloud') >= 0) {
+        soundcloud.soundcloudSearch.bind(this)(searchTerms, searchResults, this.songListChangeCallback);
       }
     }
   }
