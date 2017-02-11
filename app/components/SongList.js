@@ -72,6 +72,17 @@ export default class SongList extends Component {
       );
   }
 
+  renderSongThumbnail(song) {
+    if (song.data.thumbnail != null) {
+      return(
+        <img className={styles.songlist_thumb} src={song.data.thumbnail} />
+      );
+    } else {
+      return(
+        <img className={styles.songlist_thumb} src='../media/img/default-album-art.png' />
+      )
+    }
+  }
 
   render() {
     var _this=this;
@@ -107,7 +118,7 @@ export default class SongList extends Component {
                   </td>
                   <td>
                     <div className={styles.songlist_img_container}>
-                      <img className={styles.songlist_thumb} src={song.data.thumbnail} />
+                      {_this.renderSongThumbnail(song)}
                       <div className={styles.songlist_btn_container}>
                         <button className={`${styles.songlist_thumb_btn} ${styles.songlist_thumb_btn_left}`} onClick={_this.props.playNow.bind(_this.props.home, song, _this.props.home.videoInfoThenPlayCallback)}>
                           <i className="fa fa-play"></i>

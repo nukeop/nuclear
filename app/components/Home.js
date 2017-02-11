@@ -160,13 +160,16 @@ export default class Home extends Component {
       var songs = youtube.youtubeGetSongsFromPlaylist(song.data.id,
         this.addFromPlaylistCallback.bind(this));
 
-        return;
+      return;
     }
 
     this.clearQueue();
-
     this.state.songQueue.length = 0;
     this.addToQueue(song, callback, event);
+
+    if (song.source === 'soundcloud') {
+      this.togglePlay();
+    }
   }
 
   clearQueue() {
@@ -182,6 +185,10 @@ export default class Home extends Component {
 
   togglePlaylists() {
     this.setState({mainContents: enums.MainContentItemEnum.PLAYLISTS});
+  }
+
+  toggleSettings() {
+    this.setState({mainContents: enums.MainContentItemEnum.SETTINGS});
   }
 
   toggleSearch() {
@@ -318,6 +325,7 @@ export default class Home extends Component {
           toggleDownloads={this.toggleDownloads.bind(this)}
           togglePlaylists={this.togglePlaylists.bind(this)}
           toggleSearch={this.toggleSearch.bind(this)}
+          toggleSettings={this.toggleSettings.bind(this)}
           goBackCallback={this.sidebarGoBackCallback.bind(this)}
           songQueue={this.state.songQueue}
           currentSongNumber={this.state.currentSongNumber}

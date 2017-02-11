@@ -47,6 +47,11 @@ export default class SidebarMenu extends Component {
                 <a href='#' onClick={this.props.togglePlaylists}><i className="fa fa-music"/> My Playlists</a>
               </td>
             </tr>
+            <tr>
+              <td className={styles.sidebar_options_cell}>
+                <a href='#' onClick={this.props.toggleSettings}><i className="fa fa-cogs"/> Settings</a>
+              </td>
+            </tr>
           </table>
       );
     }

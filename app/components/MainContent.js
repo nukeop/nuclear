@@ -4,6 +4,7 @@ import SearchField from './SearchField';
 import SongList from './SongList';
 import SearchContainer from '../containers/SearchContainer';
 import PlaylistsContainer from '../containers/PlaylistsContainer';
+import SettingsContainer from '../containers/SettingsContainer';
 import styles from './MainContent.css';
 
 const enums = require('../api/Enum');
@@ -89,6 +90,13 @@ export default class MainContent extends Component {
             />
           </div>
         );
+      case enums.MainContentItemEnum.SETTINGS:
+      return (
+        <div className={styles.main_content_container}>
+          <SettingsContainer
+          />
+        </div>
+      );
       default:
         return(<div className={styles.main_content_container} />);
     }

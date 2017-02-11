@@ -6,7 +6,8 @@ var SidebarMenuItemEnum = {
 
 var MainContentItemEnum = {
   SEARCH: 0,
-  PLAYLISTS: 1
+  PLAYLISTS: 1,
+  SETTINGS: 2
 }
 
 var DownloadQueueStatusEnum = {
