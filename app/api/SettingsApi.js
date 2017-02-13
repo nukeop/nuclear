@@ -27,7 +27,8 @@ function saveSettings(settings) {
 }
 
 function loadFromSettings(property) {
-  return loadSettings()[property];
+  var settings = loadSettings();
+  return settings[property] != undefined ? settings[property] : null;
 }
 
 function saveInSettings(property, value){
