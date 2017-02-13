@@ -19,6 +19,9 @@ const ytdl = require('ytdl-core');
 
 const enums = require('../api/Enum');
 const globals = require('../api/Globals');
+const lastfm = require('../api/Lastfm');
+const settingsApi = require('../api/SettingsApi');
+const songInfo = require('../api/SongInfo');
 const youtube = require('../api/Youtube');
 
 
@@ -71,6 +74,16 @@ export default class Home extends Component {
   }
 
   songFinishedPlayingCallback() {
+    // last.fm scrobbling
+    var info = songInfo.getArtistAndTrack(
+      this.state.songQueue[this.state.currentSongNumber].data.title
+    );
+    lastfm.scrobble(
+      settingsApi.loadFromSettings('lastfmSession'),
+      info.artist,
+      info.track
+    );
+
     this.setState({
       currentSongPosition: 0,
       seekFromPosition: 0,
