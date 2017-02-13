@@ -21,7 +21,7 @@ function loadSettings() {
 }
 
 function saveSettings(settings) {
-  jsonfile.writeFile(settingsName, settings, (err) => {
+  jsonfile.writeFile(settingsName(), settings, (err) => {
     console.error(err);
   });
 }
@@ -31,9 +31,12 @@ function loadFromSettings(property) {
   return settings[property] != undefined ? settings[property] : null;
 }
 
-function saveInSettings(property, value){
+function saveInSettings(properties){
   var settings = loadSettings();
-  settings[property] = value;
+  for (var attrname in properties) {
+    settings[attrname] = properties[attrname];
+  }
+
   saveSettings(settings);
 }
 

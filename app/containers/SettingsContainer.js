@@ -34,8 +34,10 @@ export default class SettingsContainer extends Component {
   }
 
   saveSession() {
-    settingsApi.saveInSettings(lastfmSession, this.state.lastfmSession);
-    settingsApi.saveInSettings(lastfmUsername, this.state.lastfmUsername);
+    settingsApi.saveInSettings({
+      lastfmSession: this.state.lastfmSession,
+      lastfmUsername: this.state.lastfmUsername
+    });
   }
 
   loadSession() {
