@@ -6,6 +6,7 @@ const path = require('path');
 const jsonfile = require('jsonfile');
 const globals = require('../api/Globals');
 const lastfm = require('../api/Lastfm');
+const settingsApi = require('../api/SettingsApi');
 
 export default class SettingsContainer extends Component {
   constructor(props) {
@@ -33,50 +34,15 @@ export default class SettingsContainer extends Component {
   }
 
   saveSession() {
-    var filename = path.join(
-      globals.directories.userdata,
-      globals.directories.settings,
-      globals.files.settings
-    );
-
-    if (fs.existsSync(filename)) {
-
-      var settings = jsonfile.readFileSync(filename);
-
-      settings.lastfmSession = this.state.lastfmSession;
-
-      jsonfile.writeFile(filename, settings, (err) => {
-        console.error(err);
-      });
-
-    } else {
-      jsonfile.writeFile(
-        filename,
-        {
-          lastfmSession: this.state.lastfmSession,
-          lastfmUsername: this.state.lastfmUsername
-        },
-        (err) => {
-        console.error(err);
-      });
-    }
+    settingsApi.saveInSettings(lastfmSession, this.state.lastfmSession);
+    settingsApi.saveInSettings(lastfmUsername, this.state.lastfmUsername);
   }
 
   loadSession() {
-    var filename = path.join(
-      globals.directories.userdata,
-      globals.directories.settings,
-      globals.files.settings
-    );
-
-    if (fs.existsSync(filename)) {
-      var settings = jsonfile.readFileSync(filename);
-
-      this.setState({
-        lastfmSession: settings.lastfmSession,
-        lastfmUsername: settings.lastfmUsername
-      });
-    }
+    this.setState({
+      lastfmSession: settingsApi.loadFromSettings('lastfmSession'),
+      lastfmUsername: settingsApi.loadFromSettings('lastfmUsername')
+    });
   }
 
   lastfmLogin(event, value) {
