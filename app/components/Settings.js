@@ -31,7 +31,6 @@ export default class Settings extends Component {
         <h3><i style={{color: '#e74c3c'}} className="fa fa-lastfm-square" /> last.fm</h3>
 
         {this.renderLoginForm()}
-
       </div>
     );
   }

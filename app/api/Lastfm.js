@@ -36,7 +36,25 @@ function lastfmLogin(authToken, callback) {
     });
 }
 
+function scrobble(session, artist, track) {
+  Axios.post(prepareUrl(
+    scrobblingApiUrl +
+    '?method=track.scrobble&sk=' +
+    session +
+    '&artist=' +
+    artist +
+    '&track=' +
+    track +
+    '&timestamp=' +
+    (Math.floor(new Date()/1000 - 540))
+  ))
+  .then((response) => {
+
+  });
+}
+
 module.exports = {
   lastfmLoginConnect: lastfmLoginConnect,
-  lastfmLogin: lastfmLogin
+  lastfmLogin: lastfmLogin,
+  scrobble: scrobble
 }

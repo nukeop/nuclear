@@ -57,6 +57,10 @@ app.on('ready', async () => {
     fs.mkdirSync(path.join(globals.directories.userdata, globals.directories.playlists));
   };
 
+  if (!fs.existsSync(path.join(globals.directories.userdata, globals.directories.settings))) {
+    fs.mkdirSync(path.join(globals.directories.userdata, globals.directories.settings));
+  };
+
 
   mainWindow = new BrowserWindow({
     show: false,
