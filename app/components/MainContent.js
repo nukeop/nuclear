@@ -62,6 +62,8 @@ export default class MainContent extends Component {
         soundcloud.soundcloudSearch.bind(this)(searchTerms, searchResults, this.songListChangeCallback);
       }
     }
+
+    return false;
   }
 
   render() {

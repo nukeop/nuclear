@@ -1,4 +1,7 @@
 .playlists_container {
+  position: absolute;
+  height: 100%;
+  width: 100%;
   margin: 24px 24px;
   font-size: 14px;
   text-align: left;

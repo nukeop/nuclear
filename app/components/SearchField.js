@@ -30,7 +30,7 @@ export default class SearchField extends Component {
 
 
 handleSearch(event, value){
-  this.props.handleSearch(event, value, this.state.selectedSources);
+  return this.props.handleSearch(event, value, this.state.selectedSources);
 }
 
 
@@ -38,7 +38,7 @@ handleSearch(event, value){
     const searchFieldStyle = {width: "75%", 'paddingTop': '1px'};
     const sourceButtonStyle = {width: "25%"};
     return (
-      <form className="form-inline">
+      <form className="form-inline" onSubmit={(event) => {event.preventDefault(); return false;}}>
         <div className="form-group searchfield-group">
           <div style={searchFieldStyle} className="input-group">
             <div className="input-group-addon searchicon"><i className="fa fa-search"/></div>
