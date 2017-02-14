@@ -6,7 +6,7 @@ const apiUrl = 'http://www.last.fm/api/';
 const scrobblingApiUrl = 'http://ws.audioscrobbler.com/2.0/';
 
 function sign(url) {
-  var tokens = (url.split('?')[1].split('&').sort().join()).replace(/,/g, '').replace(/=/g,'');
+  var tokens = decodeURIComponent((url.split('?')[1].split('&').sort().join()).replace(/,/g, '').replace(/=/g,''));
 
   return require('md5')(tokens+globals.lastfmApiSecret);
 }
@@ -42,9 +42,9 @@ function scrobble(session, artist, track) {
     '?method=track.scrobble&sk=' +
     session +
     '&artist=' +
-    artist +
+    encodeURIComponent(artist) +
     '&track=' +
-    track +
+    encodeURIComponent(track) +
     '&timestamp=' +
     (Math.floor(new Date()/1000 - 540))
   ))
