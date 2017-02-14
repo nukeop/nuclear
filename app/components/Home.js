@@ -287,6 +287,16 @@ export default class Home extends Component {
         currentSongUrl: this.state.songQueue[this.state.currentSongNumber].data.streamUrl,
         seekFromPosition: this.state.currentSongPosition
       });
+
+      // last.fm scrobbling
+      var info = songInfo.getArtistAndTrack(
+        this.state.songQueue[this.state.currentSongNumber].data.title
+      );
+      lastfm.updateNowPlaying(
+        settingsApi.loadFromSettings('lastfmSession'),
+        info.artist,
+        info.track
+      );
     }
   }
 

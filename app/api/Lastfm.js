@@ -46,7 +46,22 @@ function scrobble(session, artist, track) {
     '&track=' +
     encodeURIComponent(track) +
     '&timestamp=' +
-    (Math.floor(new Date()/1000 - 540))
+    (Math.floor(new Date()/1000))
+  ))
+  .then((response) => {
+
+  });
+}
+
+function updateNowPlaying(session, artist, track) {
+  Axios.post(prepareUrl(
+    scrobblingApiUrl+
+    '?method=track.updateNowPlaying&sk=' +
+    session +
+    '&artist=' +
+    encodeURIComponent(artist) +
+    '&track=' +
+    encodeURIComponent(track)
   ))
   .then((response) => {
 
@@ -56,5 +71,6 @@ function scrobble(session, artist, track) {
 module.exports = {
   lastfmLoginConnect: lastfmLoginConnect,
   lastfmLogin: lastfmLogin,
-  scrobble: scrobble
+  scrobble: scrobble,
+  updateNowPlaying: updateNowPlaying
 }
