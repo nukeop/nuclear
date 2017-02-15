@@ -17,7 +17,9 @@ export default class PlaylistsContainer extends Component {
     this.state = {
       playlists: []
     };
+  }
 
+  componentWillMount() {
     fs.readdir(
       path.join(
         globals.directories.userdata,
@@ -35,7 +37,7 @@ export default class PlaylistsContainer extends Component {
           this.state.playlists.push({filename: item, contents: contents});
         });
       }
-    )
+    );
   }
 
   playlistPlayCallback(playlist, event, value) {
