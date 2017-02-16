@@ -28,7 +28,13 @@ export default class Settings extends Component {
   render() {
     return (
       <div className={styles.settings_container}>
-        <h3><i style={{color: '#e74c3c'}} className="fa fa-lastfm-square" /> last.fm</h3>
+        <h3>
+          <span className="fa-stack">
+            <i style={{color: '#fafafa'}} className="fa fa-square fa-stack-1x" />
+            <i style={{color: '#e74c3c'}} className="fa fa-lastfm-square fa-stack-1x" />
+          </span>
+          last.fm
+        </h3>
 
         {this.renderLoginForm()}
       </div>
