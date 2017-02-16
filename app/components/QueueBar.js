@@ -58,7 +58,7 @@ export default class QueueBar extends Component {
             {this.props.queue.map(function(song, i){
               var displayTitle = song.data.title;
               if (song.data.streamUrlLoading) {
-                displayTitle=<i className="fa fa-spinner fa-spin fa-3x fa-fw queue-loading" />;
+                displayTitle=<i className="fa fa-spinner fa-pulse fa-3x fa-fw queue-loading" />;
               }
 
               var rowClass = i=== _this.props.currentSong ? styles.current_song : '';

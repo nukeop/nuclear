@@ -46,6 +46,10 @@ a.player_btn:focus {
   padding-top: 7px;
 }
 
+.player_loading {
+
+}
+
 a.player_play_btn {
   width: 80px;
   height: 80px;

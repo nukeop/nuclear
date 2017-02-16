@@ -18,7 +18,7 @@ export default class Player extends Component {
   render() {
     var playButtonClass = this.props.playStatus===Sound.status.PLAYING ? 'fa fa-pause' : 'fa fa-play';
     if (this.props.songStreamLoading) {
-      playButtonClass = 'fa fa-spinner fa-spin fa-fw';
+      playButtonClass = `${styles.player_loading} fa fa-spinner fa-pulse fa-fw`;
     }
 
     var progressBarStyle = {"width": this.props.currentSongProgress+"%"};

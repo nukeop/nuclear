@@ -23,7 +23,7 @@ export default class SearchContainer extends Component {
             home={this.props.home}
           />) :
           (<div className="content-loading">
-            <i className="fa fa-spinner fa-spin fa-3x fa-fw"></i>
+            <i className="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
           </div>)
         }
       </div>
