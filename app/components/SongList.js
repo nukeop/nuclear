@@ -79,7 +79,7 @@ export default class SongList extends Component {
       );
     } else {
       return(
-        <img className={styles.songlist_thumb} src='../media/img/default-album-art.png' />
+        <img className={styles.songlist_thumb} src='../resources/media/img/default-album-art.png' />
       )
     }
   }

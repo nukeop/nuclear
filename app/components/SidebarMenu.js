@@ -24,7 +24,7 @@ export default class SidebarMenu extends Component {
           <table className={`${styles.sidebar_options} table`}>
             <tr>
               <td className={styles.sidebar_brand_cell}>
-                <img src="../media/nuclear/logo_full_light.png" height="36"/>
+                <img src="../resources/media/nuclear/logo_full_light.png" height="36"/>
               </td>
             </tr>
             <tr>

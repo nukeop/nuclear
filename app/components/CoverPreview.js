@@ -24,7 +24,7 @@ export default class CoverPreview extends Component {
 
             if(song.data.thumbnail === null) {
               return (
-                <img alt={song.data.title} src='../media/img/default-album-art.png' height="120px"/>
+                <img alt={song.data.title} src='../resources/media/img/default-album-art.png' height="120px"/>
               );
             } else {
               return (
