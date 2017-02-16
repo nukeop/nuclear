@@ -7,6 +7,7 @@ import PlaylistsContainer from '../containers/PlaylistsContainer';
 import SettingsContainer from '../containers/SettingsContainer';
 import styles from './MainContent.css';
 
+const bandcamp = require('../api/Bandcamp');
 const enums = require('../api/Enum');
 const soundcloud = require('../api/Soundcloud');
 const youtube = require('../api/Youtube');
@@ -60,6 +61,10 @@ export default class MainContent extends Component {
 
       if(searchSources.indexOf('soundcloud') >= 0) {
         soundcloud.soundcloudSearch.bind(this)(searchTerms, searchResults, this.songListChangeCallback);
+      }
+
+      if(searchSources.indexOf('bandcamp') >= 0) {
+        bandcamp.bandcampSearch.bind(this)(searchTerms, searchResults, this.songListChangeCallback);
       }
     }
 

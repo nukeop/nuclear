@@ -160,6 +160,8 @@ export default class Home extends Component {
       this.state.songQueue.push(song);
     } else if (song.source === 'soundcloud') {
       this.state.songQueue.push(song);
+    } else if (song.source === 'bandcamp track') {
+      this.state.songQueue.push(song);
     }
 
 
