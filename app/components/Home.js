@@ -17,6 +17,7 @@ const fs = require('fs');
 const path = require('path');
 const ytdl = require('ytdl-core');
 
+const bandcamp = require('../api/Bandcamp');
 const enums = require('../api/Enum');
 const globals = require('../api/Globals');
 const lastfm = require('../api/Lastfm');
@@ -151,7 +152,7 @@ export default class Home extends Component {
     if (song.source === 'youtube'){
       if (typeof(callback)==='undefined') callback=this.videoInfoCallback;
 
-      song.data.streamUrlLoading=true;
+      song.data.streamUrlLoading = true;
       ytdl.getInfo(
         `http://www.youtube.com/watch?v=${song.data.id}`,
          callback.bind(this, song)
@@ -161,6 +162,14 @@ export default class Home extends Component {
     } else if (song.source === 'soundcloud') {
       this.state.songQueue.push(song);
     } else if (song.source === 'bandcamp track') {
+
+      song.data.streamUrlLoading = true;
+      bandcamp.getTrackStream(song.data.id, (result) => {
+        song.data.streamUrl = result;
+        song.data.streamUrlLoading = false;
+        this.setState({songQueue: this.state.songQueue});
+      });
+
       this.state.songQueue.push(song);
     }
 

@@ -44,12 +44,6 @@ function bandcampSearch(terms, searchResults, songListChangeCallback) {
               }
             };
 
-            if (el.type ==='track') {
-              getTrackStream(el.url, (result) => {
-                newItem.data.streamUrl = result;
-              });
-            }
-
             searchResults.push(newItem);
           });
 
@@ -61,5 +55,6 @@ function bandcampSearch(terms, searchResults, songListChangeCallback) {
 }
 
 module.exports = {
-  bandcampSearch: bandcampSearch
+  bandcampSearch: bandcampSearch,
+  getTrackStream: getTrackStream
 }
