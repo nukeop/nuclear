@@ -1,5 +1,6 @@
 const bandcamp = require('bandcamp-scraper');
 const request = require('request');
+const youtube = require('./Youtube');
 
 function getTrackStream(url, callback) {
   var trackRegex = /{"mp3-128":"(.+?)"/ig;
@@ -19,8 +20,32 @@ function getTrackStream(url, callback) {
   });
 }
 
-function bandcampSearch(terms, searchResults, songListChangeCallback) {
+function getAlbumTracks(album, callback) {
+  var albumTracks = [];
+  bandcamp.getAlbumInfo(album.data.id, (error, albumInfo) => {
+    albumInfo.tracks.map((el, i) => {
+      var newItem = {
+        source: 'bandcamp track',
+        data: {
+          id: el.url,
+          thumbnail: album.data.thumbnail,
+          artist: albumInfo.artist,
+          title: albumInfo.artist + ' - ' + el.name,
+          length: youtube.ytDurationToStr(el.duration),
+          streamUrl: el.url,
+          streamUrlLoading: false,
+          streamLength: null
+        }
+      };
 
+      albumTracks.push(newItem);
+    });
+
+    callback(albumTracks);
+  });
+}
+
+function bandcampSearch(terms, searchResults, songListChangeCallback) {
   var tempResults = [];
   var added = 0;
 
@@ -56,5 +81,6 @@ function bandcampSearch(terms, searchResults, songListChangeCallback) {
 
 module.exports = {
   bandcampSearch: bandcampSearch,
-  getTrackStream: getTrackStream
+  getTrackStream: getTrackStream,
+  getAlbumTracks: getAlbumTracks
 }

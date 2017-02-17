@@ -171,6 +171,13 @@ export default class Home extends Component {
       });
 
       this.state.songQueue.push(song);
+    } else if(song.source === 'bandcamp album') {
+      bandcamp.getAlbumTracks(song, (result) => {
+        result.map((el, i) => {
+          this.addToQueue(el, callback, event);
+        });
+      });
+
     }
 
 
@@ -191,7 +198,7 @@ export default class Home extends Component {
     this.state.songQueue.length = 0;
     this.addToQueue(song, callback, event);
 
-    if (song.source === 'soundcloud') {
+    if (song.source === 'soundcloud' || song.source === 'bandcamp track') {
       this.togglePlay();
     }
   }
