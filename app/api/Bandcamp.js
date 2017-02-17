@@ -23,6 +23,11 @@ function getTrackStream(url, callback) {
 function getAlbumTracks(album, callback) {
   var albumTracks = [];
   bandcamp.getAlbumInfo(album.data.id, (error, albumInfo) => {
+    if (error) {
+      callback(error, null);
+      return;
+    }
+
     albumInfo.tracks.map((el, i) => {
       var newItem = {
         source: 'bandcamp track',
@@ -41,7 +46,7 @@ function getAlbumTracks(album, callback) {
       albumTracks.push(newItem);
     });
 
-    callback(albumTracks);
+    callback(null, albumTracks);
   });
 }
 
@@ -61,7 +66,7 @@ function bandcampSearch(terms, searchResults, songListChangeCallback) {
                 id: el.url,
                 thumbnail: el.imageUrl,
                 artist: el.artist,
-                title: el.name,
+                title: el.artist + ' - ' + el.name,
                 length: el.numTracks != undefined ? el.numTracks : 'Unknown',
                 streamUrl: el.url,
                 streamUrlLoading: false,

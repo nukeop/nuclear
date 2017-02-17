@@ -172,7 +172,13 @@ export default class Home extends Component {
 
       this.state.songQueue.push(song);
     } else if(song.source === 'bandcamp album') {
-      bandcamp.getAlbumTracks(song, (result) => {
+      bandcamp.getAlbumTracks(song, (err, result) => {
+        if(err) {
+          console.error(err);
+          showAlertError('Could not add album ' + song.data.title + '. Bandcamp returned invalid data.');
+          return;
+        }
+
         result.map((el, i) => {
           this.addToQueue(el, callback, event);
         });
@@ -324,6 +330,10 @@ export default class Home extends Component {
 
   showAlertSuccess(text){
     msg.success(text);
+  }
+
+  showAlertError(text){
+    msg.error(text);
   }
 
   render() {
