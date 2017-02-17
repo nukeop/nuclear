@@ -2,6 +2,19 @@ const bandcamp = require('bandcamp-scraper');
 const request = require('request');
 const youtube = require('./Youtube');
 
+function bandcampDurationToStr(duration) {
+
+  var hours = duration.split('P')[1].split('H')[0];
+  var minutes = duration.split('H')[1].split('M')[0];
+  var seconds = duration.split('M')[1].split('S')[0];
+
+  if(hours === '00') {
+    return minutes + ':' + seconds;
+  } else {
+    return hours + ':' + minutes + ':' + seconds;
+  }
+}
+
 function getTrackStream(url, callback) {
   var trackRegex = /{"mp3-128":"(.+?)"/ig;
 
@@ -36,7 +49,7 @@ function getAlbumTracks(album, callback) {
           thumbnail: album.data.thumbnail,
           artist: albumInfo.artist,
           title: albumInfo.artist + ' - ' + el.name,
-          length: youtube.ytDurationToStr(el.duration),
+          length: bandcampDurationToStr(el.duration),
           streamUrl: el.url,
           streamUrlLoading: false,
           streamLength: null
