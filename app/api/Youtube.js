@@ -143,9 +143,11 @@ function youtubeGetSongsFromPlaylist(playlistId, callback) {
   .then((response) => {
     response.data.items.map((el, i) => {
 
-      if (el.snippet.description==='This video is unavailable.') {
+      if (el.snippet.description==='This video is unavailable.' ||
+          el.snippet.description==='This video is private.') {
         return;
       }
+
       playlistItems.push({
         source: 'youtube',
         data: {

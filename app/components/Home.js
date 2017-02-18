@@ -159,10 +159,17 @@ export default class Home extends Component {
       );
 
       this.state.songQueue.push(song);
+    } else if (song.source === 'youtube playlists') {
+      youtube.youtubeGetSongsFromPlaylist(song.data.id,
+      (songs) => {
+        songs.map((el, i) => {
+          youtube.youtubeFetchVideoDetails(el);
+          this.addToQueue(el, this.videoInfoCallback, null);
+        });
+      });
     } else if (song.source === 'soundcloud') {
       this.state.songQueue.push(song);
     } else if (song.source === 'bandcamp track') {
-
       song.data.streamUrlLoading = true;
       bandcamp.getTrackStream(song.data.id, (result) => {
         song.data.streamUrl = result;
@@ -186,30 +193,22 @@ export default class Home extends Component {
 
     }
 
-
     this.setState({songQueue: this.state.songQueue});
   }
 
   playNow(song, callback, event) {
-    if (song.source==='youtube playlists') {
-      this.clearQueue();
-
-      var songs = youtube.youtubeGetSongsFromPlaylist(song.data.id,
-        this.addFromPlaylistCallback.bind(this));
-
-      return;
-    }
-
     this.clearQueue();
     this.state.songQueue.length = 0;
     this.addToQueue(song, callback, event);
 
-    if (song.source === 'soundcloud' || song.source === 'bandcamp track') {
+    if (song.source === 'youtube playlists' ||
+        song.source === 'soundcloud' ||
+        song.source === 'bandcamp track') {
       this.togglePlay();
     }
   }
 
-  clearQueue() {
+  clearQueue(callback) {
     this.setState({
       playStatus: Sound.status.STOPPED,
       songQueue: [],
