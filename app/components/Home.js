@@ -148,14 +148,12 @@ export default class Home extends Component {
     this.togglePlay();
   }
 
-  addToQueue(song, callback, event) {
+  addToQueue(song, event) {
     if (song.source === 'youtube'){
-      if (typeof(callback)==='undefined') callback=this.videoInfoCallback;
-
       song.data.streamUrlLoading = true;
       ytdl.getInfo(
         `http://www.youtube.com/watch?v=${song.data.id}`,
-         callback.bind(this, song)
+         this.videoInfoCallback.bind(this, song)
       );
 
       this.state.songQueue.push(song);
@@ -164,7 +162,7 @@ export default class Home extends Component {
       (songs) => {
         songs.map((el, i) => {
           youtube.youtubeFetchVideoDetails(el);
-          this.addToQueue(el, this.videoInfoCallback, null);
+          this.addToQueue(el, null);
         });
       });
     } else if (song.source === 'soundcloud') {
@@ -187,28 +185,22 @@ export default class Home extends Component {
         }
 
         result.map((el, i) => {
-          this.addToQueue(el, callback, event);
+          this.addToQueue(el, event);
         });
       });
-
     }
 
     this.setState({songQueue: this.state.songQueue});
   }
 
-  playNow(song, callback, event) {
+  playNow(song, event) {
     this.clearQueue();
     this.state.songQueue.length = 0;
-    this.addToQueue(song, callback, event);
-
-    if (song.source === 'youtube playlists' ||
-        song.source === 'soundcloud' ||
-        song.source === 'bandcamp track') {
-      this.togglePlay();
-    }
+    this.addToQueue(song, event);
+    this.togglePlay();
   }
 
-  clearQueue(callback) {
+  clearQueue() {
     this.setState({
       playStatus: Sound.status.STOPPED,
       songQueue: [],
