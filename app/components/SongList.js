@@ -123,7 +123,7 @@ export default class SongList extends Component {
                         <button className={`${styles.songlist_thumb_btn} ${styles.songlist_thumb_btn_left}`} onClick={_this.props.playNow.bind(_this.props.home, song)}>
                           <i className="fa fa-play"></i>
                         </button>
-                        <button className={`${styles.songlist_thumb_btn} ${styles.songlist_thumb_btn_right}`} onClick={_this.props.addToQueue.bind(_this.props.home, song,)}>
+                        <button className={`${styles.songlist_thumb_btn} ${styles.songlist_thumb_btn_right}`} onClick={_this.props.addToQueue.bind(_this.props.home, song, false)}>
                             <i className="fa fa-plus-square-o"></i>
                         </button>
                       </div>

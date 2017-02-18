@@ -120,12 +120,13 @@ export default class Home extends Component {
     }));
   }
 
-  videoInfoCallback(song, err, info) {
+  videoInfoCallback(song, playNow, err, info) {
     var formatInfo = info.formats.filter(function(e){return e.itag=='140'})[0];
     song.data.streamUrl = formatInfo.url;
     song.data.streamUrlLoading = false;
     song.data.streamLength = formatInfo.clen;
     this.setState({songQueue: this.state.songQueue});
+    if(playNow) this.togglePlay();
   }
 
   videoInfoThenPlayCallback(song, err, info) {
@@ -148,12 +149,12 @@ export default class Home extends Component {
     this.togglePlay();
   }
 
-  addToQueue(song, event) {
+  addToQueue(song, playNow, event) {
     if (song.source === 'youtube'){
       song.data.streamUrlLoading = true;
       ytdl.getInfo(
         `http://www.youtube.com/watch?v=${song.data.id}`,
-         this.videoInfoCallback.bind(this, song)
+         this.videoInfoCallback.bind(this, song, playNow)
       );
 
       this.state.songQueue.push(song);
@@ -162,20 +163,20 @@ export default class Home extends Component {
       (songs) => {
         songs.map((el, i) => {
           youtube.youtubeFetchVideoDetails(el);
-          this.addToQueue(el, null);
+          this.addToQueue(el, playNow&&i===0, null);
         });
       });
     } else if (song.source === 'soundcloud') {
       this.state.songQueue.push(song);
+      if(playNow) this.togglePlay();
     } else if (song.source === 'bandcamp track') {
       song.data.streamUrlLoading = true;
       bandcamp.getTrackStream(song.data.id, (result) => {
         song.data.streamUrl = result;
         song.data.streamUrlLoading = false;
-        this.setState({songQueue: this.state.songQueue});
+        this.state.songQueue.push(song);
+        if(playNow) this.togglePlay();
       });
-
-      this.state.songQueue.push(song);
     } else if(song.source === 'bandcamp album') {
       bandcamp.getAlbumTracks(song, (err, result) => {
         if(err) {
@@ -183,9 +184,8 @@ export default class Home extends Component {
           showAlertError('Could not add album ' + song.data.title + '. Bandcamp returned invalid data.');
           return;
         }
-
         result.map((el, i) => {
-          this.addToQueue(el, event);
+          this.addToQueue(el, playNow&&i===0, event);
         });
       });
     }
@@ -196,8 +196,7 @@ export default class Home extends Component {
   playNow(song, event) {
     this.clearQueue();
     this.state.songQueue.length = 0;
-    this.addToQueue(song, event);
-    this.togglePlay();
+    this.addToQueue(song, true, event);
   }
 
   clearQueue() {
