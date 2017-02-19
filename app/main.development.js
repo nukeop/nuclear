@@ -2,6 +2,7 @@ import { app, BrowserWindow, Menu, shell } from 'electron';
 const fs = require('fs');
 const path = require('path');
 const globals = require('./api/Globals');
+const updater = require('electron-simple-updater');
 
 let menu;
 let template;
@@ -60,6 +61,8 @@ app.on('ready', async () => {
   if (!fs.existsSync(path.join(globals.directories.userdata, globals.directories.settings))) {
     fs.mkdirSync(path.join(globals.directories.userdata, globals.directories.settings));
   };
+
+  updater.init('https://raw.githubusercontent.com/nukeop/nuclear/master/updates.js');
 
 
   mainWindow = new BrowserWindow({
