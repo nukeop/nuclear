@@ -1,7 +1,5 @@
-# ![nuclear](https://raw.githubusercontent.com/nukeop/nuclear/master/resources/media/nuclear/logo_small.png)
+# ![nuclear](https://raw.githubusercontent.com/nukeop/nuclear/master/resources/media/nuclear/logo_small.png) ![separator](http://i.imgur.com/O45QDav.png) [![website](http://i.imgur.com/HcCi4IT.png)](http://nuclear.gumblert.tech/)
 An Electron-based, multiplatform music player app that streams from multiple sources
-
-## ![Official website](http://nuclear.gumblert.tech/)
 
 ## What is this?
 nuclear is a free music streaming program that pulls content from free sources all over the internet.
