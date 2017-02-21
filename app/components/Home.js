@@ -210,28 +210,12 @@ export default class Home extends Component {
     });
   }
 
-  togglePlaylists() {
-    this.setState({mainContents: enums.MainContentItemEnum.PLAYLISTS});
+  toggleMainContents(content) {
+    this.setState({mainContents: content});
   }
 
-  toggleSettings() {
-    this.setState({mainContents: enums.MainContentItemEnum.SETTINGS});
-  }
-
-  toggleSearch() {
-    this.setState({mainContents: enums.MainContentItemEnum.SEARCH});
-  }
-
-  toggleQueue() {
-    this.setState({sidebarContents: enums.SidebarMenuItemEnum.QUEUE});
-  }
-
-  toggleDownloads() {
-    this.setState({sidebarContents: enums.SidebarMenuItemEnum.DOWNLOADS});
-  }
-
-  sidebarGoBackCallback() {
-    this.setState({sidebarContents: enums.SidebarMenuItemEnum.DEFAULT});
+  toggleSidebarContents(content) {
+    this.setState({sidebarContents: content});
   }
 
   startDownload() {
@@ -362,12 +346,9 @@ export default class Home extends Component {
           prevSongCallback={this.prevSong.bind(this)}
           seekFromCallback={this.seekFrom.bind(this)}
           songStreamLoading={this.state.songStreamLoading}
-          toggleQueue={this.toggleQueue.bind(this)}
-          toggleDownloads={this.toggleDownloads.bind(this)}
-          togglePlaylists={this.togglePlaylists.bind(this)}
-          toggleSearch={this.toggleSearch.bind(this)}
-          toggleSettings={this.toggleSettings.bind(this)}
-          goBackCallback={this.sidebarGoBackCallback.bind(this)}
+          toggleMainContents={this.toggleMainContents.bind(this)}
+          toggleSidebarContents={this.toggleSidebarContents.bind(this)}
+          goBackCallback={this.toggleSidebarContents.bind(this, enums.SidebarMenuItemEnum.DEFAULT)}
           songQueue={this.state.songQueue}
           currentSongNumber={this.state.currentSongNumber}
           currentSongProgress={this.state.currentSongProgress}

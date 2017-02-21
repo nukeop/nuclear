@@ -5,6 +5,7 @@ import Player from './Player';
 import styles from './SidebarMenu.css';
 
 const path = require('path');
+const enums = require('../api/Enum');
 
 export default class SidebarMenu extends Component {
   constructor(props) {
@@ -31,32 +32,32 @@ export default class SidebarMenu extends Component {
             </tr>
             <tr>
               <td className={styles.sidebar_options_cell}>
-                <a href='#' onClick={this.props.toggleSearch}><i className="fa fa-search"/> Search</a>
+                <a href='#' onClick={this.props.toggleMainContents.bind(null, enums.MainContentItemEnum.SEARCH)}><i className="fa fa-search"/> Search</a>
               </td>
             </tr>
             <tr>
               <td className={styles.sidebar_options_cell}>
-                <a href='#' onClick={this.props.toggleSearch}><i className="fa fa-search"/> Find albums</a>
+                <a href='#' onClick={this.props.toggleMainContents.bind(null, enums.MainContentItemEnum.ALBUMS)}><i className="fa fa-search"/> Find albums</a>
               </td>
             </tr>
             <tr>
               <td className={styles.sidebar_options_cell}>
-                <a href='#' onClick={this.props.toggleQueue}><i className="fa fa-list"/> Queue</a>
+                <a href='#' onClick={this.props.toggleSidebarContents.bind(null, enums.SidebarMenuItemEnum.QUEUE)}><i className="fa fa-list"/> Queue</a>
               </td>
             </tr>
             <tr>
               <td className={styles.sidebar_options_cell}>
-                <a href='#' onClick={this.props.toggleDownloads}><i className="fa fa-download"/> Downloads</a>
+                <a href='#' onClick={this.props.toggleSidebarContents.bind(null, enums.SidebarMenuItemEnum.DOWNLOADS)}><i className="fa fa-download"/> Downloads</a>
               </td>
             </tr>
             <tr>
               <td className={styles.sidebar_options_cell}>
-                <a href='#' onClick={this.props.togglePlaylists}><i className="fa fa-music"/> My Playlists</a>
+                <a href='#' onClick={this.props.toggleMainContents.bind(null, enums.MainContentItemEnum.PLAYLISTS)}><i className="fa fa-music"/> My Playlists</a>
               </td>
             </tr>
             <tr>
               <td className={styles.sidebar_options_cell}>
-                <a href='#' onClick={this.props.toggleSettings}><i className="fa fa-cogs"/> Settings</a>
+                <a href='#' onClick={this.props.toggleMainContents.bind(null, enums.MainContentItemEnum.SETTINGS)}><i className="fa fa-cogs"/> Settings</a>
               </td>
             </tr>
           </table>
