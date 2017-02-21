@@ -49,6 +49,7 @@ export default class QueueBar extends Component {
           <thead>
             <tr>
               <th>#</th>
+              <th><i className="fa fa-camera-retro" /></th>
               <th>Title</th>
               <th>Length</th>
             </tr>
@@ -66,6 +67,7 @@ export default class QueueBar extends Component {
               return (
                   <tr className={rowClass} onDoubleClick={_this.props.changeSong.bind(this, i)}>
                     <td>{i+1}</td>
+                    <td><div className={styles.song_thumbnail_cell} style={{background: 'url(' + song.data.thumbnail + ') center/96px no-repeat'}} /></td>
                     <td>{displayTitle}</td>
                     <td>{song.data.length}</td>
                   </tr>

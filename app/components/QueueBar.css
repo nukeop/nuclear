@@ -40,3 +40,9 @@
 .current_song {
   background-color: #ecf0f144;
 }
+
+.song_thumbnail_cell {
+  height: 48px !important;
+  width: 48px !important;
+  border-radius: 32px;
+}
