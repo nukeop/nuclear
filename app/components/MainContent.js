@@ -9,6 +9,7 @@ import styles from './MainContent.css';
 
 const bandcamp = require('../api/Bandcamp');
 const enums = require('../api/Enum');
+const mp3monkey = require('../api/Mp3monkey');
 const soundcloud = require('../api/Soundcloud');
 const youtube = require('../api/Youtube');
 
@@ -65,6 +66,10 @@ export default class MainContent extends Component {
 
       if(searchSources.indexOf('bandcamp') >= 0) {
         bandcamp.bandcampSearch.bind(this)(searchTerms, searchResults, this.songListChangeCallback);
+      }
+
+      if(searchSources.indexOf('mp3monkey') >= 0) {
+        mp3monkey.mp3monkeySearch.bind(this)(searchTerms, searchResults, this.songListChangeCallback);
       }
     }
 

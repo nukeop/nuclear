@@ -166,7 +166,7 @@ export default class Home extends Component {
           this.addToQueue(el, playNow&&i===0, null);
         });
       });
-    } else if (song.source === 'soundcloud') {
+    } else if (song.source === 'soundcloud' || song.source === 'mp3monkey') {
       this.state.songQueue.push(song);
       if(playNow) this.togglePlay();
     } else if (song.source === 'bandcamp track') {

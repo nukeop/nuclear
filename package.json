@@ -167,7 +167,8 @@
     "md5": "^2.2.1",
     "bandcamp-scraper": "^1.0.1",
     "request": "^2.79.0",
-    "electron-simple-updater": "^1.2.0"
+    "electron-simple-updater": "^1.2.0",
+    "mp3monkey": "^1.0.1"
   },
   "dependencies": {
     "electron-debug": "^1.1.0",
