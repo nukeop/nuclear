@@ -1,0 +1,19 @@
+.line_end_symbol {
+  width: 10%;
+  border-bottom: 2px solid #FAFAFA;
+}
+
+.clear_button {
+  background-color: #00000000 !important;
+  color: #FAFAFA !important;
+  border: 0px !important;
+  float: right !important;
+}
+
+.albumfinder_table {
+  position: relative;
+  font-size: 12px;
+  margin-left: 12px;
+  width: 100%;
+  text-align: left;
+}

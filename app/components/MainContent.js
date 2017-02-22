@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+import AlbumFinderContainer from '../containers/AlbumFinderContainer';
 import SearchField from './SearchField';
 import SongList from './SongList';
 import SearchContainer from '../containers/SearchContainer';
@@ -106,6 +107,13 @@ export default class MainContent extends Component {
       return (
         <div className={styles.main_content_container}>
           <SettingsContainer
+          />
+        </div>
+      );
+      case enums.MainContentItemEnum.ALBUMS:
+      return (
+        <div className={styles.main_content_container}>
+          <AlbumFinderContainer
           />
         </div>
       );

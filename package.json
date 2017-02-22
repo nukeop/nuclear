@@ -169,7 +169,8 @@
     "request": "^2.79.0",
     "electron-simple-updater": "^1.2.0",
     "mp3monkey": "^1.0.1",
-    "musicbrainz": "^0.2.6"
+    "musicbrainz": "^0.2.6",
+    "react-debounce-input": "^2.4.2"
   },
   "dependencies": {
     "electron-debug": "^1.1.0",

@@ -16,6 +16,10 @@ function prepareUrl(url) {
   return `${withApiKey}&api_sig=${sign(withApiKey)}` ;
 }
 
+function addApiKey(url) {
+  return `${url}&api_key=${globals.lastfmApiKey}`;
+}
+
 function lastfmLoginConnect(callback) {
   Axios.get(prepareUrl(scrobblingApiUrl + '?method=auth.getToken&format=json'))
   .then((response) => {
@@ -55,7 +59,7 @@ function scrobble(session, artist, track) {
 
 function updateNowPlaying(session, artist, track) {
   Axios.post(prepareUrl(
-    scrobblingApiUrl+
+    scrobblingApiUrl +
     '?method=track.updateNowPlaying&sk=' +
     session +
     '&artist=' +
@@ -68,9 +72,37 @@ function updateNowPlaying(session, artist, track) {
   });
 }
 
+function albumSearch(album, callback) {
+  Axios.get(addApiKey(
+    scrobblingApiUrl +
+    '?method=album.search&album=' +
+    encodeURIComponent(album) +
+    '&format=json'
+  ))
+  .then((response) => {
+    callback(response);
+  });
+}
+
+function getAlbumInfo(artist, album, callback) {
+  Axios.get(addApiKey(
+    scrobblingApiUrl +
+    '?method=album.getInfo&artist=' +
+    encodeURIComponent(artist) +
+    '&album=' +
+    encodeURIComponent(album) +
+    '&format=json'
+  ))
+  .then((response) => {
+    callback(response);
+  });
+}
+
 module.exports = {
   lastfmLoginConnect: lastfmLoginConnect,
   lastfmLogin: lastfmLogin,
   scrobble: scrobble,
-  updateNowPlaying: updateNowPlaying
+  updateNowPlaying: updateNowPlaying,
+  getAlbumInfo: getAlbumInfo,
+  albumSearch: albumSearch
 }
