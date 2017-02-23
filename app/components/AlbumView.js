@@ -75,21 +75,43 @@ export default class AlbumView extends Component {
           </tr>
         </table>
 
-        <table className={styles.album_view_track_list}>
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Song</th>
-              <th><i className="fa fa-clock-o" /></th>
-            </tr>
-          </thead>
+        {this.props.release.mediums.map((el, i) => {
 
-            <SortableList
-              items={this.props.release.mediums[0].tracks}
-              playTrack={this.props.playTrack}
-            />
+          var tableStyle = this.props.release.mediums.length>1 ? {} : {marginTop: '36px'};
+          var cdStyle = i===0 ? {marginTop: '36px'} : {};
 
-        </table>
+          return (
+
+            <div>
+              {
+                this.props.release.mediums.length>1
+                ? <div style={cdStyle} className={styles.album_view_cd}><i className="fa fa-circle" /> CD {i+1}</div>
+                : null
+              }
+
+              <table style={tableStyle} className={styles.album_view_track_list}>
+
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Song</th>
+                    <th><i className="fa fa-clock-o" /></th>
+                  </tr>
+                </thead>
+
+                <SortableList
+                  items={el.tracks}
+                  playTrack={this.props.playTrack}
+                />
+
+              </table>
+            </div>
+          );
+        })
+
+      }
+
+
 
       </div>
     );

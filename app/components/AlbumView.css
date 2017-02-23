@@ -54,8 +54,12 @@
 
 .album_view_track_list {
   width: 100%;
-  margin: 36px 24px 36px 0px;
+  margin: 0px 24px 36px 0px;
   font-size: 16px;
+}
+
+.album_view_cd {
+  font-size: 20px;
 }
 
 .album_view_track_list>thead {
