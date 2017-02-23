@@ -1,6 +1,4 @@
 .album_view_container {
-  height: 100%;
-  width: 100%;
   margin-left: 24px;
   margin-top: 24px;
   text-align: left;
@@ -44,4 +42,30 @@
   color: #ecf0f1;
   font-size: 14px;
   margin-left: 18px;
+}
+
+.album_view_track_list {
+  width: 100%;
+  margin: 36px 0px 0px 0px;
+  font-size: 16px;
+}
+
+.album_view_track_list>thead {
+  background-color: #282832;
+}
+
+.album_view_track_list>tbody>tr {
+  border-bottom: 1px solid #2a2b30;
+}
+
+.album_view_track_list>tbody>tr:hover {
+  background-color: #23232c;
+}
+
+.album_view_track_list>thead>tr>th {
+  padding: 12px 0px 12px 12px;
+}
+
+.album_view_track_list>tbody>tr>td {
+  padding: 12px 6px 12px 12px;
 }

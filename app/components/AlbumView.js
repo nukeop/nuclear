@@ -3,15 +3,20 @@ import {SortableContainer, SortableElement} from 'react-sortable-hoc';
 
 import styles from './AlbumView.css';
 
-const SortableItem = SortableElement(({value}) => <div style={{display: 'inline-block'}}>{value}</div>);
+const SortableItem = SortableElement(({value}) =>
+  <tr>
+    <td>{value.position}</td>
+    <td>{value.recording.title}</td>
+    <td>{Math.floor((value.length/1000)/60) + ':' + Math.floor((value.length/1000) - Math.floor((value.length/1000)/60)*60)}</td>
+  </tr>);
 
 const SortableList = SortableContainer(({items}) => {
 	return (
-		<div>
+		<tbody>
 			{items.map((value, index) =>
-                <SortableItem disabled key={`item-${index}`} index={index} value={value} />
+                <SortableItem key={`item-${index}`} index={index} value={value} />
             )}
-		</div>
+		</tbody>
 	);
 });
 
@@ -50,7 +55,19 @@ export default class AlbumView extends Component {
           </tr>
         </table>
 
+        <table className={styles.album_view_track_list}>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Song</th>
+              <th><i className="fa fa-clock-o" /></th>
+            </tr>
+          </thead>
 
+            <SortableList items={this.props.release.mediums[0].tracks}
+            />
+
+        </table>
 
       </div>
     );
