@@ -30,7 +30,7 @@ export default class Settings extends Component {
       <div className={styles.settings_container}>
         <h3>
           <span className="fa-stack">
-            <i style={{color: '#fafafa'}} className="fa fa-square fa-stack-1x" />
+            <i style={{color: '#ecf0f1'}} className="fa fa-square fa-stack-1x" />
             <i style={{color: '#e74c3c'}} className="fa fa-lastfm-square fa-stack-1x" />
           </span>
           last.fm

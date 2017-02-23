@@ -1,7 +1,8 @@
 @import "~../resources/external/bootstrap/css/bootstrap.min.css";
 @import "~../resources/external/font-awesome/css/font-awesome.min.css";
 @import "~../resources/external/fonts/Questrial/font.css";
-@import "~../resources/external/fonts/FrancoisOne/font.css"
+@import "~../resources/external/fonts/FrancoisOne/font.css";
+@import "~../resources/external/fonts/MavenPro/font.css";
 
 html {
   height: 100%;
@@ -32,9 +33,8 @@ a, a:hover, a:focus {
 }
 
 ::-webkit-scrollbar-thumb {
-    border: 1px solid #95a5a644;
     border-radius: 8px;
-    background-color: #1C1A24;
+    background-color: #2a2a35;
 }
 
 .navbar {

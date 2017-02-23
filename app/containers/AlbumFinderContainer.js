@@ -21,24 +21,9 @@ export default class AlbumFinderContainer extends Component {
 
       lastfm.albumSearch(searchTerms, (response) => {
 
-        console.log(response);
         this.setState({resultsLoading: false, searchResults: response.data.results.albummatches.album});
       });
 
-      // mb.musicbrainzSearch(this.state.searchTerms,
-      //   () => {
-      //     this.setState({resultsLoading: true});
-      //   },
-      //   (searchTerms, results) => {
-      //     this.setState({resultsLoading: false, searchResults: results});
-      //   },
-      //   (el) => {
-      //     lastfm.getAlbumInfo(el.artistCredits[0].artist.name, el.title, (response) => {
-      //       console.log(response);
-      //     });
-      //     this.setState(this.state);
-      //   }
-      // );
     });
 
   }

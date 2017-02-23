@@ -1,6 +1,8 @@
 .sidebar {
   z-index: 0;
+  font-family: Maven Pro;
   font-size: 20px;
+  font-weight: bold;
   color: #ecf0f1;
   width: 300px;
   height: 100%;

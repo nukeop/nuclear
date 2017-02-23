@@ -1,7 +1,22 @@
 import React, { Component } from 'react';
 import DebounceInput from 'react-debounce-input';
+import {SortableContainer, SortableElement} from 'react-sortable-hoc';
+
+import AlbumCover from './AlbumCover';
 
 import styles from './AlbumFinder.css';
+
+const SortableItem = SortableElement(({value}) => <div style={{display: 'inline-block'}}>{value}</div>);
+
+const SortableList = SortableContainer(({items}) => {
+	return (
+		<div>
+			{items.map((value, index) =>
+                <SortableItem disabled key={`item-${index}`} index={index} value={value} />
+            )}
+		</div>
+	);
+});
 
 export default class AlbumFinder extends Component {
   constructor(props) {
@@ -15,6 +30,14 @@ export default class AlbumFinder extends Component {
     } else if (this.props.resultsLoading) {
       lineEndSymbol = (<a href='#' className={`${styles.clear_button} btn btn-default`}><i className="fa fa-spinner fa-pulse fa-fw" /></a>);
     }
+
+    var albumElements = this.props.albums.map((el, i) => {
+        return (<AlbumCover
+          album={el}
+        />);
+    });
+
+
 
     return (
       <div style={{width: '100%', height: '100%'}}>
@@ -34,29 +57,8 @@ export default class AlbumFinder extends Component {
           </div>
         </form>
 
-          <table className={styles.albumfinder_table}>
-            <thead>
-              <tr>
-                <th>Artist</th>
-                <th>Album</th>
-                <th>Cover</th>
-              </tr>
-            </thead>
+        <SortableList axis='xy' items={albumElements} />
 
-            <tbody>
-
-              {this.props.albums.map((el, i) => {
-                return (
-                  <tr>
-                    <td>{el.artist}</td>
-                    <td>{el.name}</td>
-                    <td><img src={el.image[2]['#text']} /></td>
-                  </tr>
-                );
-              })}
-
-            </tbody>
-          </table>
       </div>
     );
   }

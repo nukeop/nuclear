@@ -53,7 +53,7 @@ a.player_btn:focus {
 a.player_play_btn {
   width: 80px;
   height: 80px;
-  border: 3px solid #FAFAFA66;
+  border: 3px solid #ecf0f166;
   border-radius: 128px;
 }
 

@@ -1,0 +1,18 @@
+.album_cover_container {
+  width: 170px;
+  margin: 12px 12px 12px 12px;
+  background-color: #2a2a35;
+  font-family: Maven Pro;
+  font-size: 14px;
+  text-align: left;
+}
+
+.artist_name {
+  padding: 4px 4px 8px 12px;
+  color: #95a5a6;
+}
+
+.album_name {
+  padding: 8px 4px 4px 12px;
+  font-weight: bold;
+}

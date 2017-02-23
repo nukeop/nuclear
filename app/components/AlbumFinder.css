@@ -1,11 +1,11 @@
 .line_end_symbol {
   width: 10%;
-  border-bottom: 2px solid #FAFAFA;
+  border-bottom: 2px solid #ecf0f1;
 }
 
 .clear_button {
   background-color: #00000000 !important;
-  color: #FAFAFA !important;
+  color: #ecf0f1 !important;
   border: 0px !important;
   float: right !important;
 }
