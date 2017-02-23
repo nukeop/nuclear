@@ -22,6 +22,7 @@ function musicbrainzLookup(releaseId, callback) {
   });
 }
 
+
 module.exports = {
   musicbrainzSearch: musicbrainzSearch,
   musicbrainzLookup: musicbrainzLookup

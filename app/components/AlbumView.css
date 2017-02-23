@@ -31,6 +31,14 @@
   font-size: 18px;
 }
 
+.album_view_misc_info_container {
+
+}
+
+.album_view_misc_info_line {
+  height: 24px;
+}
+
 .album_view_misc_info {
   display: inline;
   color: #95a5a6;
@@ -41,7 +49,7 @@
   display: inline;
   color: #ecf0f1;
   font-size: 14px;
-  margin-left: 18px;
+  margin-left: 12px;
 }
 
 .album_view_track_list {
@@ -68,4 +76,22 @@
 
 .album_view_track_list>tbody>tr>td {
   padding: 12px 0px 12px 12px;
+}
+
+.album_view_track_number {
+  position: relative;
+}
+
+.album_view_track_play_btn_container {
+  display: none !important;
+  position: relative;
+  max-width: 30px !important;
+}
+
+.album_view_track_list>tbody>tr:hover .album_view_track_number {
+  display: none;
+}
+
+.album_view_track_list>tbody>tr:hover .album_view_track_play_btn_container {
+  display: inline !important;
 }

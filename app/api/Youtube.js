@@ -26,6 +26,13 @@ function prepareUrl(url) {
   return `${url}&key=${globals.ytApiKey}`;
 }
 
+function youtubeTrackSearch(track, searchEndCallback) {
+  Axios.get(prepareUrl("https://www.googleapis.com/youtube/v3/search?part=id,snippet&type=video&maxResults=50&q="+encodeURIComponent(track)))
+  .then ((response) => {
+    searchEndCallback(response);
+  });
+}
+
 function youtubeVideoSearch(terms, searchResults, songListChangeCallback) {
   var _this = this;
 
@@ -125,7 +132,7 @@ function youtubePlaylistSearch(terms, searchResults, songListChangeCallback) {
   });
 }
 
-function youtubeFetchVideoDetails(video) {
+function youtubeFetchVideoDetails(video, callback) {
   // Takes an incomplete record containing at least a video id, and fills it with
   // missing data
 
@@ -133,6 +140,8 @@ function youtubeFetchVideoDetails(video) {
   .then((response) => {
     video.data.thumbnail = response.data.items[0].snippet.thumbnails.medium.url;
     video.data.length = ytDurationToStr(response.data.items[0].contentDetails.duration);
+
+    callback();
   });
 }
 
@@ -170,6 +179,7 @@ function youtubeGetSongsFromPlaylist(playlistId, callback) {
 
 module.exports = {
   prepareUrl: prepareUrl,
+  youtubeTrackSearch: youtubeTrackSearch,
   youtubeVideoSearch: youtubeVideoSearch,
   youtubePlaylistSearch: youtubePlaylistSearch,
   youtubeRelatedSearch: youtubeRelatedSearch,

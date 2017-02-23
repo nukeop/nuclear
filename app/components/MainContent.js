@@ -131,6 +131,7 @@ export default class MainContent extends Component {
         <div className={styles.main_content_container}>
           <AlbumViewContainer
             album={this.state.currentAlbum}
+            home={this.props.home}
           />
         </div>
       );

@@ -31,10 +31,13 @@ export default class AlbumFinder extends Component {
       lineEndSymbol = (<a href='#' className={`${styles.clear_button} btn btn-default`}><i className="fa fa-spinner fa-pulse fa-fw" /></a>);
     }
 
-    var albumElements = this.props.albums.map((el, i) => {
+    var albumElements = this.props.albums.filter((value) => {
+      return value.mbid !== "";
+    }).map((el, i) => {
         return (<AlbumCover
           album={el}
           goToAlbum={this.props.goToAlbum.bind(null, el)}
+          playAlbum={this.props.playAlbum.bind(null, el)}
         />);
     });
 

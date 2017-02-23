@@ -13,7 +13,12 @@ export default class AlbumCover extends Component {
         <div className={styles.album_cover_img_container}>
           <img style={{width: '170px', height: '170px'}} src={this.props.album.image[2]['#text']} />
           <div className={styles.album_cover_overlay}>
-        </div>
+            <div className={styles.album_cover_play_button_container}>
+              <button className={styles.album_cover_play_button} onClick={this.props.playAlbum}>
+                   <i style={{paddingLeft: '6px', paddingTop: '8px'}} className="fa fa-play" />
+              </button>
+            </div>
+          </div>
 
         </div>
         <div className={styles.album_name}><a href='#' onClick={this.props.goToAlbum}>{this.props.album.name}</a></div>
