@@ -46,7 +46,7 @@
 
 .album_view_track_list {
   width: 100%;
-  margin: 36px 0px 0px 0px;
+  margin: 36px 24px 36px 0px;
   font-size: 16px;
 }
 
@@ -67,5 +67,5 @@
 }
 
 .album_view_track_list>tbody>tr>td {
-  padding: 12px 6px 12px 12px;
+  padding: 12px 0px 12px 12px;
 }
