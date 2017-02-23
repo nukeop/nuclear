@@ -1,0 +1,47 @@
+.album_view_container {
+  height: 100%;
+  width: 100%;
+  margin-left: 24px;
+  margin-top: 24px;
+  text-align: left;
+  font-family: Questrial;
+}
+
+.album_view_cover_art_container {
+  display: inline-block;
+}
+
+.album_view_cover_art {
+  width: 170px;
+  height: 170px;
+}
+
+.album_view_info_container {
+  position: relative;
+  display: inline-block;
+  height: 170px;
+  margin-left: 24px;
+}
+
+.album_view_album_title {
+  font-size: 36px;
+}
+
+.album_view_album_artist {
+  margin-bottom: 6px;
+  color: #95a5a6;
+  font-size: 18px;
+}
+
+.album_view_misc_info {
+  display: inline;
+  color: #95a5a6;
+  font-size: 14px;
+}
+
+.album_view_misc_info_value {
+  display: inline;
+  color: #ecf0f1;
+  font-size: 14px;
+  margin-left: 18px;
+}

@@ -11,7 +11,7 @@ export default class AlbumCover extends Component {
     return (
       <div className={styles.album_cover_container}>
         <img style={{width: '170px', height: '170px'}} src={this.props.album.image[2]['#text']} />
-        <div className={styles.album_name}>{this.props.album.name}</div>
+        <div className={styles.album_name}><a href='#' onClick={this.props.goToAlbum}>{this.props.album.name}</a></div>
         <div className={styles.artist_name}>{this.props.album.artist}</div>
       </div>
     );

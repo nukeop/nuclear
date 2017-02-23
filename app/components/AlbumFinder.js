@@ -34,6 +34,7 @@ export default class AlbumFinder extends Component {
     var albumElements = this.props.albums.map((el, i) => {
         return (<AlbumCover
           album={el}
+          goToAlbum={this.props.goToAlbum.bind(null, el)}
         />);
     });
 
@@ -56,6 +57,14 @@ export default class AlbumFinder extends Component {
             { lineEndSymbol }
           </div>
         </form>
+
+        {
+          this.props.albums.length > 0
+          ? <div className={styles.album_finder_search_header}>
+                Search results for '{this.props.searchTerms}'
+            </div>
+          : null
+        }
 
         <SortableList axis='xy' items={albumElements} />
 

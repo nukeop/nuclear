@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import AlbumFinderContainer from '../containers/AlbumFinderContainer';
+import AlbumViewContainer from '../containers/AlbumViewContainer';
 import SearchField from './SearchField';
 import SongList from './SongList';
 import SearchContainer from '../containers/SearchContainer';
@@ -20,7 +21,8 @@ export default class MainContent extends Component {
 
     this.state = {
       songList: [],
-      songListLoading: false
+      songListLoading: false,
+      currentAlbum: null
     };
   }
 
@@ -37,6 +39,12 @@ export default class MainContent extends Component {
 
     this.songSearchStartCallback();
     youtube.youtubeRelatedSearch.bind(this)(song.data.id, searchResults, this.songListChangeCallback);
+  }
+
+  switchToAlbumView(album){
+    this.setState({currentAlbum: album}, () => {
+      this.props.home.setState({mainContents: enums.MainContentItemEnum.SINGLE_ALBUM});
+    });
   }
 
   handleSearch(event, value, searchSources) {
@@ -114,6 +122,15 @@ export default class MainContent extends Component {
       return (
         <div className={styles.main_content_container}>
           <AlbumFinderContainer
+            switchToAlbumView={this.switchToAlbumView.bind(this)}
+          />
+        </div>
+      );
+      case enums.MainContentItemEnum.SINGLE_ALBUM:
+      return (
+        <div className={styles.main_content_container}>
+          <AlbumViewContainer
+            album={this.state.currentAlbum}
           />
         </div>
       );

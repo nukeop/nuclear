@@ -14,6 +14,10 @@ export default class AlbumFinderContainer extends Component {
     };
   }
 
+  goToAlbum(album) {
+    this.props.switchToAlbumView(album);
+  }
+
   handleAlbumSearch(event, value) {
 
     var searchTerms = event.target.value;
@@ -35,6 +39,7 @@ export default class AlbumFinderContainer extends Component {
         searchTerms={this.state.searchTerms}
         resultsLoading={this.state.resultsLoading}
         albums={this.state.searchResults}
+        goToAlbum={this.goToAlbum.bind(this)}
       />
     );
   }

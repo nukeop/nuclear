@@ -14,10 +14,15 @@ function musicbrainzSearch(searchTerms, searchStartCallback, searchEndCallback, 
 
     searchEndCallback(searchTerms, results);
   });
+}
 
-
+function musicbrainzLookup(releaseId, callback) {
+  mb.lookupRelease(releaseId, {}, (err, result) => {
+    callback(result);
+  });
 }
 
 module.exports = {
-  musicbrainzSearch: musicbrainzSearch
+  musicbrainzSearch: musicbrainzSearch,
+  musicbrainzLookup: musicbrainzLookup
 }
