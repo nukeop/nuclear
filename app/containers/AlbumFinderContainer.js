@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import AlbumFinder from '../components/AlbumFinder';
 
 const lastfm = require('../api/Lastfm');
+const mb = require('../api/Musicbrainz');
+const songFinder = require('../utils/SongFinder');
 
 export default class AlbumFinderContainer extends Component {
   constructor(props) {
@@ -19,7 +21,30 @@ export default class AlbumFinderContainer extends Component {
   }
 
   playAlbum(album) {
-    console.log(album);
+    mb.musicbrainzLookup(album.mbid, (result) => {
+      result.load(['recordings'], () => {
+
+        var tracks = [];
+        result.mediums.map((el, i) => {
+          tracks = tracks.concat(el.tracks);
+        });
+
+        tracks.map((el, i) => {
+          songFinder.getTrack(
+            album.artist,
+            el.recording.title,
+            (track) => {
+              if (i===0) {
+                this.props.home.playNow(track);
+              } else {
+                this.props.home.addToQueue(track);
+              }
+
+            }
+          );
+        });
+      });
+    });
   }
 
   handleAlbumSearch(event, value) {

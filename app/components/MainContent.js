@@ -123,6 +123,7 @@ export default class MainContent extends Component {
         <div className={styles.main_content_container}>
           <AlbumFinderContainer
             switchToAlbumView={this.switchToAlbumView.bind(this)}
+            home={this.props.home}
           />
         </div>
       );

@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import AlbumView from '../components/AlbumView';
 
 const mb = require('../api/Musicbrainz');
-const yt = require('../api/Youtube');
+const songFinder = require('../utils/SongFinder');
 
 export default class AlbumViewContainer extends Component {
   constructor(props) {
@@ -27,32 +27,15 @@ export default class AlbumViewContainer extends Component {
 
   playTrack(track, event, value) {
     track.recording.load(['artists'], () => {
-      var fullTitle = track.recording.artistCredits[0].artist.name+ ' - '+ track.recording.title;
-      yt.youtubeTrackSearch(fullTitle, (response) => {
-        response.data.items.map((el, i) => {
-          if (el.snippet.title === fullTitle) {
-            console.log(el);
-            var newItem = {
-              source: 'youtube',
-              data: {
-                id: el.id.videoId,
-                thumbnail: el.snippet.thumbnails.medium.url,
-                title: fullTitle,
-                length: "Unknown",
-                streamUrl: "",
-                streamUrlLoading: false,
-                streamLength: 0
-              }
-            };
+      songFinder.getTrack(
+        track.recording.artistCredits[0].artist.name,
+        track.recording.title,
+        (track) => {
+          this.props.home.playNow(track);
+        }
+      );
 
-            yt.youtubeFetchVideoDetails(newItem, () => {
-              this.props.home.playNow(newItem);
-              return;
-            });
 
-          }
-        });
-      });
     });
 
   }
@@ -67,7 +50,6 @@ export default class AlbumViewContainer extends Component {
           release={this.state.release}
           playTrack={this.playTrack.bind(this)}
          />
-
 
     );
   }
