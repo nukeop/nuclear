@@ -4,6 +4,7 @@ import Axios from 'axios';
 import { Link } from 'react-router';
 import AlertContainer from 'react-alert';
 import Sound from 'react-sound';
+import arrayMove from 'react-sortable-hoc';
 
 import SidebarMenu from './SidebarMenu';
 import Navbar from './Navbar';
@@ -118,6 +119,30 @@ export default class Home extends Component {
     this.setState((prevState, props) => ({
       currentSongUrl: prevState.songQueue[prevState.currentSongNumber].data.streamUrl
     }));
+  }
+
+  arrayMove (arr, previousIndex, newIndex) {
+    const array = arr.slice(0);
+    if (newIndex >= array.length) {
+        let k = newIndex - array.length;
+        while ((k--) + 1) {
+            array.push(undefined);
+        }
+    }
+    array.splice(newIndex, 0, array.splice(previousIndex, 1)[0]);
+    return array;
+  }
+
+  changeQueueOrder(oldIndex, newIndex) {
+    this.setState({
+      songQueue: this.arrayMove(this.state.songQueue, oldIndex, newIndex),
+    });
+
+    if (oldIndex===this.state.currentSongNumber) {
+      this.setState({
+        currentSongNumber: newIndex
+      });
+    }
   }
 
   videoInfoCallback(song, playNow, err, info) {
@@ -322,6 +347,7 @@ export default class Home extends Component {
           currentSong={this.state.currentSongNumber}
           clearQueue={this.clearQueue.bind(this)}
           changeSong={this.changeSong.bind(this)}
+          changeQueueOrder={this.changeQueueOrder.bind(this)}
           home={this}
           />
         );

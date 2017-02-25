@@ -23,7 +23,7 @@
   display: inline-block;
   vertical-align: top;
   padding: 0px;
-  color: ecf0f1;
+  color: #ecf0f1;
   text-decoration: none;
   cursor: default;
   outline:none;
@@ -45,4 +45,10 @@
   height: 48px !important;
   width: 48px !important;
   border-radius: 32px;
+}
+
+.sortable_helper {
+  font-family: Questrial;
+  font-size: 16px;
+  z-index: 2;
 }

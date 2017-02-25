@@ -1,9 +1,49 @@
 import React, { Component } from 'react';
+import {SortableContainer, SortableElement, arrayMove} from 'react-sortable-hoc';
+
 import styles from './QueueBar.css';
 
 const jsonfile = require('jsonfile');
 const path = require('path');
 const globals = require('../api/Globals');
+
+const SortableItem = SortableElement(({song, ix, _this}) =>
+  {
+    var displayTitle = song.data.title;
+    if (song.data.streamUrlLoading) {
+      displayTitle=<i className="fa fa-spinner fa-pulse fa-3x fa-fw queue-loading" />;
+    }
+
+    var rowClass = ix=== _this.props.currentSong ? styles.current_song : '';
+
+    return (
+      <tr className={rowClass} onDoubleClick={_this.props.changeSong.bind(_this, ix)}>
+        <td>{ix+1}</td>
+        <td><div className={styles.song_thumbnail_cell} style={{background: 'url(' + song.data.thumbnail + ') center/96px no-repeat'}} /></td>
+        <td>{displayTitle}</td>
+        <td>{song.data.length}</td>
+      </tr>
+    );
+  }
+
+);
+
+const SortableList = SortableContainer(({songs, _this}) => {
+	return (
+		<tbody>
+			{songs.map((song, index) =>
+                <SortableItem
+                  key={`item-${index}`}
+                  index={index}
+                  song={song}
+                  ix={index}
+                  _this={_this}
+                />
+            )}
+		</tbody>
+	);
+});
+
 
 export default class QueueBar extends Component {
   constructor(props) {
@@ -54,27 +94,14 @@ export default class QueueBar extends Component {
               <th>Length</th>
             </tr>
           </thead>
-          <tbody>
 
-            {this.props.queue.map(function(song, i){
-              var displayTitle = song.data.title;
-              if (song.data.streamUrlLoading) {
-                displayTitle=<i className="fa fa-spinner fa-pulse fa-3x fa-fw queue-loading" />;
-              }
+          <SortableList
+            songs={this.props.queue}
+            _this={_this}
+            helperClass={styles.sortable_helper}
+            onSortEnd={({oldIndex, newIndex}) => {this.props.changeQueueOrder(oldIndex, newIndex);}}
+          />
 
-              var rowClass = i=== _this.props.currentSong ? styles.current_song : '';
-
-              return (
-                  <tr className={rowClass} onDoubleClick={_this.props.changeSong.bind(this, i)}>
-                    <td>{i+1}</td>
-                    <td><div className={styles.song_thumbnail_cell} style={{background: 'url(' + song.data.thumbnail + ') center/96px no-repeat'}} /></td>
-                    <td>{displayTitle}</td>
-                    <td>{song.data.length}</td>
-                  </tr>
-              );
-            })}
-
-          </tbody>
         </table>
       </div>
       </div>
