@@ -63,7 +63,7 @@ export default class AlbumView extends Component {
       },
       {
         text: (<span><i className="fa fa-download" /> Download</span>),
-        fun: null
+        fun: this.props.downloadAlbum
       }
     ];
   }

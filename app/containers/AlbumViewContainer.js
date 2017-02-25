@@ -37,6 +37,25 @@ export default class AlbumViewContainer extends Component {
     });
   }
 
+  downloadAlbum(album) {
+    this.state.release.load(['recordings'], () => {
+      var tracks = [];
+      this.state.release.mediums.map((el, i) => {
+        tracks = tracks.concat(el.tracks);
+      });
+
+      tracks.map((el, i) => {
+        songFinder.getTrack(
+          this.props.album.artist,
+          el.recording.title,
+          (track) => {
+            this.props.addToDownloads(track);
+          }
+        );
+      });
+    });
+  }
+
   render() {
     return (
 
@@ -47,6 +66,7 @@ export default class AlbumViewContainer extends Component {
           release={this.state.release}
           playTrack={this.playTrack.bind(this)}
           addAlbumToQueue={this.props.addAlbumToQueue.bind(this)}
+          downloadAlbum={this.downloadAlbum.bind(this, this.props.album)}
          />
 
     );

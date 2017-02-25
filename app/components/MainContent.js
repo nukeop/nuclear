@@ -164,6 +164,7 @@ export default class MainContent extends Component {
           <AlbumViewContainer
             album={this.state.currentAlbum}
             addAlbumToQueue={this.addAlbumToQueue}
+            addToDownloads={this.props.addToDownloads}
             home={this.props.home}
           />
         </div>
