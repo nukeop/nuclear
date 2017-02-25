@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import Popover from 'react-popover';
+
+import ContentPopover from './ContentPopover';
+
 const fs = require('fs');
 const https = require('https');
 const ytdl = require('ytdl-core');
@@ -42,26 +45,29 @@ export default class SongList extends Component {
     );
   }
 
-  renderPopoverContents(song) {
-    return (
-      <div>
-        <div className={styles.options_title}>{song.data.title}</div>
-        <div className={styles.options_contents}>
-          <table className={`table table-hover ${styles.options_table}`}>
-            <tr><button className={styles.options_button}>Info</button></tr>
-            <tr><button className={styles.options_button}>Lyrics</button></tr>
-            <tr><button className={styles.options_button} onClick={this.props.searchRelated.bind(this.props.home, song)}>Related</button></tr>
-            <tr><button className={styles.options_button} onClick={this.props.addToDownloads.bind(this, song)}>Download</button></tr>
-          </table>
-        </div>
-      </div>
-    );
+  buttons(song) {
+    return [
+      {
+        text: 'Related',
+        fun: this.props.searchRelated.bind(this.props.home, song)
+      },
+      {
+        text: 'Download',
+        fun: this.props.addToDownloads.bind(this, song)
+      }
+    ];
   }
 
   renderPopover(i, song) {
       return (
         <Popover
-          body={this.renderPopoverContents(song)}
+          body={
+            <ContentPopover
+              graphic={song.data.thumbnail}
+              title={song.data.title}
+              buttons={this.buttons(song)}
+            />
+          }
           preferPlace='right'
           isOpen={i === this.state.popoversOpen[0]}
           onOuterAction={this.closePopover.bind(this, i)}

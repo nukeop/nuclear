@@ -25,9 +25,15 @@ export default class ContentPopover extends Component {
               <div className={styles.popover_album_title}>
                 {this.props.title}
               </div>
-              <div className={styles.popover_artist}>
-                by {this.props.artist}
-              </div>
+              {
+                (this.props.artist===undefined || this.props.artist===null)
+                ? null
+                : (
+                  <div className={styles.popover_artist}>
+                    by {this.props.artist}
+                  </div>
+                )
+              }
             </td>
           </tr>
           <tr>
@@ -35,7 +41,9 @@ export default class ContentPopover extends Component {
           </tr>
 
           {
-            this.props.buttons.map((el, i) => {
+            (this.props.buttons===undefined || this.props.buttons===null)
+            ? null
+            : this.props.buttons.map((el, i) => {
 
               return (
 
