@@ -11,7 +11,9 @@ import styles from './MainContent.css';
 
 const bandcamp = require('../api/Bandcamp');
 const enums = require('../api/Enum');
+const mb = require('../api/Musicbrainz');
 const mp3monkey = require('../api/Mp3monkey');
+const songFinder = require('../utils/SongFinder');
 const soundcloud = require('../api/Soundcloud');
 const youtube = require('../api/Youtube');
 
@@ -32,6 +34,34 @@ export default class MainContent extends Component {
 
   songSearchStartCallback() {
     this.setState({songListLoading: true});
+  }
+
+  addAlbumToQueue(album, playNow) {
+    mb.musicbrainzLookup(album.mbid, (result) => {
+      result.load(['recordings'], () => {
+
+        var tracks = [];
+        result.mediums.map((el, i) => {
+          tracks = tracks.concat(el.tracks);
+        });
+
+        tracks.map((el, i) => {
+          songFinder.getTrack(
+            album.artist,
+            el.recording.title,
+            (track) => {
+              track.data.thumbnail = album.image[2]['#text'];
+              if (i===0 && playNow) {
+                this.props.home.playNow(track);
+              } else {
+                this.props.home.addToQueue(track);
+              }
+
+            }
+          );
+        });
+      });
+    });
   }
 
   searchRelated(song) {
@@ -123,6 +153,7 @@ export default class MainContent extends Component {
         <div className={styles.main_content_container}>
           <AlbumFinderContainer
             switchToAlbumView={this.switchToAlbumView.bind(this)}
+            addAlbumToQueue={this.addAlbumToQueue}
             home={this.props.home}
           />
         </div>
@@ -132,6 +163,7 @@ export default class MainContent extends Component {
         <div className={styles.main_content_container}>
           <AlbumViewContainer
             album={this.state.currentAlbum}
+            addAlbumToQueue={this.addAlbumToQueue}
             home={this.props.home}
           />
         </div>

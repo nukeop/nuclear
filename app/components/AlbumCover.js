@@ -14,7 +14,7 @@ export default class AlbumCover extends Component {
           <img style={{width: '170px', height: '170px'}} src={this.props.album.image[2]['#text']} />
           <div className={styles.album_cover_overlay}>
             <div className={styles.album_cover_play_button_container}>
-              <button className={styles.album_cover_play_button} onClick={this.props.playAlbum}>
+              <button className={styles.album_cover_play_button} onClick={this.props.addAlbumToQueue}>
                    <i style={{paddingLeft: '6px', paddingTop: '8px'}} className="fa fa-play" />
               </button>
             </div>

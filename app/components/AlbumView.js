@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
+import Popover from 'react-popover';
 import {SortableContainer, SortableElement} from 'react-sortable-hoc';
+
+import ContentPopover from './ContentPopover';
 
 import styles from './AlbumView.css';
 
@@ -34,10 +37,58 @@ const SortableList = SortableContainer(({items, playTrack}) => {
 export default class AlbumView extends Component {
   constructor(props) {
     super(props);
+
+    this.state={
+      popoverOpen: false
+    };
+  }
+
+  openPopover() {
+    this.setState({popoverOpen: true});
+  }
+
+  closePopover() {
+    this.setState({popoverOpen: false});
+  }
+
+  buttons() {
+    return [
+      {
+        text: (<span><i className="fa fa-plus" /> Add to queue</span>),
+        fun: this.props.addAlbumToQueue.bind(null, this.props.album, false)
+      },
+      {
+        text: (<span><i className="fa fa-plus-square" /> Play next</span>),
+        fun: null
+      },
+      {
+        text: (<span><i className="fa fa-download" /> Download</span>),
+        fun: null
+      }
+    ];
+  }
+
+  renderPopover() {
+    return (
+      <Popover
+        body={
+          <ContentPopover
+            graphic={this.props.album.image[1]['#text']}
+            artist={this.props.album.artist}
+            title={this.props.album.name}
+            buttons={this.buttons()}
+          />
+        }
+        preferPlace='below'
+        isOpen={this.state.popoverOpen}
+        onOuterAction={this.closePopover.bind(this)}
+        >
+          <a className={styles.album_view_show_more_btn} href='#' onClick={this.openPopover.bind(this)}><i className="fa fa-ellipsis-h" /></a>
+      </Popover>
+    );
   }
 
   render() {
-    var th = this;
     return (
       <div className={styles.album_view_container}>
 
@@ -45,10 +96,10 @@ export default class AlbumView extends Component {
           <tr>
             <td>
               <div className={styles.album_view_cover_art_container}>
-                <img className={styles.album_view_cover_art} src={this.props.album.image[2]['#text']} />
+                <img className={styles.album_view_cover_art} src={this.props.album.image[3]['#text']} />
               </div>
             </td>
-            <td>
+            <td style={{display: 'block'}}>
               <div className={styles.album_view_info_container}>
                 <div className={styles.album_view_album_title}>{this.props.album.name}</div>
                 <div className={styles.album_view_album_artist}>by {this.props.album.artist}</div>
@@ -69,6 +120,9 @@ export default class AlbumView extends Component {
                     <div className={styles.album_view_misc_info_value}>{this.props.release.minutes}:{this.props.release.seconds}</div>
                   </div>
                 </div>
+
+                <a className={styles.album_view_play_all_btn} href='#' onClick={this.props.addAlbumToQueue.bind(null, this.props.album, true)}><i className="fa fa-play" /> PLAY</a>
+                {this.renderPopover()}
 
               </div>
             </td>

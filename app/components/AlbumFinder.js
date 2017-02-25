@@ -37,10 +37,9 @@ export default class AlbumFinder extends Component {
         return (<AlbumCover
           album={el}
           goToAlbum={this.props.goToAlbum.bind(null, el)}
-          playAlbum={this.props.playAlbum.bind(null, el)}
+          addAlbumToQueue={this.props.addAlbumToQueue.bind(null, el, true)}
         />);
     });
-
 
 
     return (

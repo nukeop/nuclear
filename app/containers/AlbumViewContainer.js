@@ -34,10 +34,7 @@ export default class AlbumViewContainer extends Component {
           this.props.home.playNow(track);
         }
       );
-
-
     });
-
   }
 
   render() {
@@ -49,6 +46,7 @@ export default class AlbumViewContainer extends Component {
           album={this.props.album}
           release={this.state.release}
           playTrack={this.playTrack.bind(this)}
+          addAlbumToQueue={this.props.addAlbumToQueue.bind(this)}
          />
 
     );

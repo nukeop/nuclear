@@ -10,8 +10,8 @@
 }
 
 .album_view_cover_art {
-  width: 170px;
-  height: 170px;
+  width: 200px;
+  height: 200px;
 }
 
 .album_view_info_container {
@@ -26,13 +26,12 @@
 }
 
 .album_view_album_artist {
-  margin-bottom: 6px;
   color: #95a5a6;
   font-size: 18px;
 }
 
 .album_view_misc_info_container {
-
+  margin-bottom: 24px;
 }
 
 .album_view_misc_info_line {
@@ -98,4 +97,71 @@
 
 .album_view_track_list>tbody>tr:hover .album_view_track_play_btn_container {
   display: inline !important;
+}
+
+.album_view_play_all_btn {
+  margin-top: 6px;
+  padding: 6px 24px 6px 24px;
+  font-size: 14px;
+  border-radius: 16px;
+  background-color: #8e44ad;
+  font-variant: small-caps;
+}
+
+.album_view_show_more_btn {
+  margin-left: 24px;
+  padding: 6px 24px 6px 24px;
+  font-size: 14px;
+  border-radius: 16px;
+  border: 1px solid #95a5a6;
+}
+
+.popover {
+  font-family: Questrial;
+}
+
+.popover_table {
+  margin: 12px 12px 12px 12px;
+}
+
+.popover_cover_art {
+  margin: 0px 12px 0px 0px;
+}
+
+.popover_album_info {
+  display: inline-block;
+  margin: 0px 0px 0px 0px;
+}
+
+.popover_album_title {
+
+}
+
+.popover_artist {
+  color: #95a5a6;
+}
+
+.popover_separator {
+  margin: 12px 0px 12px 0px;
+  border-color: #95a5a6;
+}
+
+.popover_button {
+  width: 100%;
+  margin: 0px 0px 0px 0px;
+  padding: 6px 6px 6px 6px;
+}
+
+.popover_button:hover {
+}
+
+.popover_button_row {
+}
+
+.popover_button_row>td{
+  padding: 3px 0px 3px 0px;
+}
+
+.popover_button_row:hover {
+  background-color: #8e44ad;
 }
