@@ -96,14 +96,14 @@ body {
   color: #FAFAFA;
 }
 
-*::-webkit-input-placeholder,
-*:-moz-placeholder,
-*::-moz-placeholder,
-*:-ms-input-placeholder {
-  color: red;
-  opacity: 1;
-}
-
 .mc-field-group>label {
   display: none;
+}
+
+.footer-buttons {
+  margin-top: 72px;
+}
+
+.footer-button {
+  margin: 12px 12px 12px 12px;
 }
