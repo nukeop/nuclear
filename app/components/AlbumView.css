@@ -52,7 +52,6 @@
 }
 
 .album_view_track_list {
-  width: 100%;
   margin: 0px 24px 36px 0px;
   font-size: 16px;
 }
@@ -74,11 +73,12 @@
 }
 
 .album_view_track_list>thead>tr>th {
-  padding: 12px 0px 12px 12px;
+  padding: 12px 12px 12px 12px;
+  text-align: left;
 }
 
 .album_view_track_list>tbody>tr>td {
-  padding: 12px 0px 12px 12px;
+  padding: 12px 12px 12px 12px;
 }
 
 .album_view_track_number {
@@ -97,6 +97,20 @@
 
 .album_view_track_list>tbody>tr:hover .album_view_track_play_btn_container {
   display: inline !important;
+}
+
+.album_view_track_list_index {
+  width: 40px;
+  max-width: 40px;
+  min-width: 40px;
+}
+
+.album_view_track_list_title {
+  width: 2000px;
+}
+
+.album_view_track_list_length {
+  width: 120px;
 }
 
 .album_view_play_all_btn {

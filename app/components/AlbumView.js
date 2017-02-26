@@ -8,14 +8,14 @@ import styles from './AlbumView.css';
 
 const SortableItem = SortableElement(({value, playTrack}) =>
   <tr>
-    <td width='40px'>
+    <td className={styles.album_view_track_list_index}>
       <div className={styles.album_view_track_play_btn_container}>
         <a href='#' onClick={playTrack.bind(null, value)}><i className="fa fa-play" /></a>
       </div>
       <span className={styles.album_view_track_number}>{value.position}</span>
       </td>
-    <td>{value.recording.title}</td>
-    <td>{Math.floor((value.length/1000)/60) + ':' + Math.floor((value.length/1000) - Math.floor((value.length/1000)/60)*60)}</td>
+    <td className={styles.album_view_track_list_title}>{value.recording.title}</td>
+    <td classname={styles.album_view_track_list_length}>{Math.floor((value.length/1000)/60) + ':' + Math.floor((value.length/1000) - Math.floor((value.length/1000)/60)*60)}</td>
   </tr>);
 
 const SortableList = SortableContainer(({items, playTrack}) => {

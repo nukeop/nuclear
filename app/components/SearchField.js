@@ -12,7 +12,7 @@ export default class SearchField extends Component {
         { value: 'youtube playlists' },
         { value: 'bandcamp' },
         { value: 'soundcloud' },
-        { value: 'mp3monkey' },
+        { value: 'vimeo' },
       ],
       selectedSources: []
     };

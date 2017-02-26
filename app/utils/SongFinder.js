@@ -1,12 +1,16 @@
 const strSim = require('string-similarity');
 const yt = require('../api/Youtube');
 
-const similarityThreshold = 0.9; //When to consider a song to be a match
-const ratioTolerance = 0.1;
+const similarityThreshold = 0.85; //When to consider a song to be a match
+const ratioTolerance = 0.2;
 
 function selectBestMatch(matches, callback) {
-  matches.sort((a, b) => {return b.confidence - a.confidence;});
-  callback(matches[0].track);
+  if (matches.length < 1) {
+    callback('No matches found.', null)
+  } else {
+    matches.sort((a, b) => {return b.confidence - a.confidence;});
+    callback(null, matches[0].track);
+  }
 }
 
 function getTrack(artist, title, length, callback) {

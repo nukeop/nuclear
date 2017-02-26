@@ -31,8 +31,12 @@ export default class AlbumViewContainer extends Component {
         track.recording.artistCredits[0].artist.name,
         track.recording.title,
         track.length,
-        (track) => {
-          this.props.home.playNow(track);
+        (err, track) => {
+          if (err) {
+            this.props.home.showAlertError(err);
+          } else {
+            this.props.home.playNow(track);
+          }
         }
       );
     });
@@ -50,8 +54,12 @@ export default class AlbumViewContainer extends Component {
           this.props.album.artist,
           el.recording.title,
           el.length,
-          (track) => {
-            this.props.addToDownloads(track);
+          (err, track) => {
+            if (err) {
+              this.props.home.showAlertError(err);
+            } else {
+              this.props.addToDownloads(track);
+            }
           }
         );
       });
@@ -62,7 +70,7 @@ export default class AlbumViewContainer extends Component {
     return (
 
         this.state.release===null
-        ? <div style={{height: '100%', width: '100%', top: 0, bottom: 0, left: 0, right: 0, fontSize: '48px', verticalAlignment: 'middle'}}><i className='fa fa-spinner fa-pulse fa-fw' /></div>
+        ? <div style={{lineHeight: '750px', height: '100%', width: '100%', fontSize: '48px'}}><i className='fa fa-spinner fa-pulse fa-fw' /></div>
         : <AlbumView
           album={this.props.album}
           release={this.state.release}
