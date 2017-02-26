@@ -51,7 +51,11 @@ export default class QueueBar extends Component {
   }
 
   exportQueue() {
-    var allItems = [];
+    var playlist = {
+      name: 'playlist' + Date.now(),
+      thumbnail: this.props.queue[0].data.thumbnail,
+      tracks: []
+    };
     this.props.queue.map((song, i)=>{
       var newItem = {
         source: song.source,
@@ -61,16 +65,16 @@ export default class QueueBar extends Component {
         }
       }
 
-      allItems.push(newItem);
+      playlist.tracks.push(newItem);
     });
 
-    var filename = 'playlist' + Date.now() + '.json';
+    var filename = playlist.name + '.json';
 
     jsonfile.writeFile(path.join(
       globals.directories.userdata,
       globals.directories.playlists,
       filename
-    ), allItems, (err) => {
+    ), playlist, (err) => {
       console.error(err);
     });
 
@@ -100,6 +104,7 @@ export default class QueueBar extends Component {
             _this={_this}
             helperClass={styles.sortable_helper}
             onSortEnd={({oldIndex, newIndex}) => {this.props.changeQueueOrder(oldIndex, newIndex);}}
+            pressDelay={200}
           />
 
         </table>
