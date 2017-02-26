@@ -12,7 +12,7 @@ import styles from './MainContent.css';
 const bandcamp = require('../api/Bandcamp');
 const enums = require('../api/Enum');
 const mb = require('../api/Musicbrainz');
-const mp3monkey = require('../api/Mp3monkey');
+const vimeo = require('../api/Vimeo');
 const songFinder = require('../utils/SongFinder');
 const soundcloud = require('../api/Soundcloud');
 const youtube = require('../api/Youtube');
@@ -110,6 +110,10 @@ export default class MainContent extends Component {
 
       if(searchSources.indexOf('mp3monkey') >= 0) {
         mp3monkey.mp3monkeySearch.bind(this)(searchTerms, searchResults, this.songListChangeCallback);
+      }
+
+      if(searchSources.indexOf('vimeo') >= 0) {
+        vimeo.vimeoSearch.bind(this)(searchTerms, searchResults, this.songListChangeCallback);
       }
     }
 

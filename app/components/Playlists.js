@@ -14,7 +14,7 @@ export default class Playlists extends Component {
   renderPlaylistContents(contents) {
     return (
       <ul className={styles.playlists_playlist_contents}>
-        {contents.map((item, i) => {
+        {contents.tracks.map((item, i) => {
           return(
             <li>{item.data.title}</li>
           );
@@ -101,6 +101,20 @@ export default class Playlists extends Component {
 
     return(
       <div className={styles.playlists_container}>
+        <table>
+
+          {
+            this.props.playlists.map((el, i) => {
+              return (
+                <tr>
+                  <td><img src={el.contents.thumbnail} /></td>
+                  <td>{el.contents.name}</td>
+                </tr>
+              );
+            })
+          }
+
+        </table>
         <Table
           data={this.props.playlists}
           expandedRowRender={this.expandedRowRender.bind(this)}

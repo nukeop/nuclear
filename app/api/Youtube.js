@@ -47,7 +47,7 @@ function youtubeVideoSearch(terms, searchResults, songListChangeCallback) {
           thumbnail: el.snippet.thumbnails.medium.url,
           title: el.snippet.title,
           length: "Unknown",
-          streamUrl: "",
+          streamUrl: null,
           streamUrlLoading: false,
           streamLength: 0
         }

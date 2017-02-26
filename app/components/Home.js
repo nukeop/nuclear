@@ -24,6 +24,7 @@ const globals = require('../api/Globals');
 const lastfm = require('../api/Lastfm');
 const settingsApi = require('../api/SettingsApi');
 const songInfo = require('../api/SongInfo');
+const vimeo = require('../api/Vimeo');
 const youtube = require('../api/Youtube');
 
 
@@ -194,6 +195,12 @@ export default class Home extends Component {
     } else if (song.source === 'soundcloud' || song.source === 'mp3monkey') {
       this.state.songQueue.push(song);
       if(playNow) this.togglePlay();
+    } else if (song.source === 'vimeo') {
+      vimeo.vimeoFetchStream(song, (video) => {
+        this.state.songQueue.push(video);
+        this.setState(this.state);
+        if(playNow) this.togglePlay();
+      });
     } else if (song.source === 'bandcamp track') {
       song.data.streamUrlLoading = true;
       bandcamp.getTrackStream(song.data.id, (result) => {
