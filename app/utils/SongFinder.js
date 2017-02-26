@@ -1,11 +1,31 @@
+const strSim = require('string-similarity');
 const yt = require('../api/Youtube');
 
-function getTrack(artist, title, callback) {
+const similarityThreshold = 0.9; //When to consider a song to be a match
+const ratioTolerance = 0.1;
+
+function selectBestMatch(matches, callback) {
+  matches.sort((a, b) => {return b.confidence - a.confidence;});
+  callback(matches[0].track);
+}
+
+function getTrack(artist, title, length, callback) {
+  // To automatically find the best match, we first compare title similarity,
+  // and if it's above a certain threshold, we compare the length. If it's
+  // within acceptable range, we add it to potential matches, then we
+  // return the best match.
+
   var fullTitle = artist+ ' - '+ title;
+  var matches = [];
 
   yt.youtubeTrackSearch(fullTitle, (response) => {
-    response.data.items.some((el, i) => {
-      if (el.snippet.title === fullTitle) {
+
+    var processed = 0;
+
+    response.data.items.map((el, i) => {
+
+      var similarity = strSim.compareTwoStrings(fullTitle, el.snippet.title);
+      if (similarity > similarityThreshold) {
         var newItem = {
           source: 'youtube',
           artist: artist,
@@ -22,10 +42,33 @@ function getTrack(artist, title, callback) {
         };
 
         yt.youtubeFetchVideoDetails(newItem, () => {
-          callback(newItem);
+          var ytmillis = newItem.data.length.split(':');
+          ytmillis = (ytmillis[0]*60 + 1*ytmillis[1]) * 1000;
+          var ratio = ytmillis/length;
+
+          if (Math.abs(1.0-ratio) < ratioTolerance) {
+            matches.push({
+              confidence: (similarity+(1.0-Math.abs(1.0-ratio)))/2.0,
+              track: newItem
+            });
+            processed++;
+            if (processed===response.data.items.length) {
+              selectBestMatch(matches, callback);
+            }
+          } else {
+            processed++;
+            if (processed===response.data.items.length) {
+              selectBestMatch(matches, callback);
+            }
+          }
         });
 
-        return true;
+
+      } else {
+        processed++;
+        if (processed===response.data.items.length) {
+          selectBestMatch(matches, callback);
+        }
       }
     });
   });

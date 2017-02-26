@@ -30,6 +30,7 @@ export default class AlbumViewContainer extends Component {
       songFinder.getTrack(
         track.recording.artistCredits[0].artist.name,
         track.recording.title,
+        track.length,
         (track) => {
           this.props.home.playNow(track);
         }

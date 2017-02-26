@@ -49,6 +49,7 @@ export default class MainContent extends Component {
           songFinder.getTrack(
             album.artist,
             el.recording.title,
+            el.recording.length,
             (track) => {
               track.data.thumbnail = album.image[2]['#text'];
               if (i===0 && playNow) {
