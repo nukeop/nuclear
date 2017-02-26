@@ -11,7 +11,7 @@ nuclear is a free music streaming program that pulls content from free sources a
 If you know [mps-youtube](https://github.com/mps-youtube/mps-youtube), this is a similar music player but with a GUI.
 It's also focusing more on audio. Imagine Spotify which you don't have to pay for and with a bigger library.
 
-***IMPORTANT***: This is a pre-alpha project. Things _are_ broken, and will remain broken for at least some time, until I implement the core features and have more time for bug fixing. You can use the existing releases at the risk of being disappointed, or clone the repo and run the dev version (just clone the repo, then run `npm run install` then `npm run dev` in the directory you cloned it to). If you want to be notified when I release a not-so-broken version, check the official website and sign up to the mailing list (it will only ever be used to notify about major releases).
+***IMPORTANT***: This is a pre-alpha project. Things _are_ broken, and will remain broken for at least some time, until I implement the core features and have more time for bug fixing. You can use the existing releases at the risk of being disappointed, or clone the repo and run the dev version (just clone the repo, then run `npm install` and `npm run dev` in the directory you cloned it to). If you want to be notified when I release a not-so-broken version, check the official website and sign up to the mailing list (it will only ever be used to notify about major releases).
 
 ## Features
 
