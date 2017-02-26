@@ -49,6 +49,7 @@ export default class AlbumViewContainer extends Component {
         songFinder.getTrack(
           this.props.album.artist,
           el.recording.title,
+          el.length,
           (track) => {
             this.props.addToDownloads(track);
           }
