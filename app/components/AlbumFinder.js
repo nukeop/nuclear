@@ -1,22 +1,8 @@
 import React, { Component } from 'react';
 import DebounceInput from 'react-debounce-input';
-import {SortableContainer, SortableElement} from 'react-sortable-hoc';
 
-import AlbumCover from './AlbumCover';
-
-import styles from './AlbumFinder.css';
-
-const SortableItem = SortableElement(({value}) => <div style={{display: 'inline-block'}}>{value}</div>);
-
-const SortableList = SortableContainer(({items}) => {
-	return (
-		<div>
-			{items.map((value, index) =>
-                <SortableItem disabled key={`item-${index}`} index={index} value={value} />
-            )}
-		</div>
-	);
-});
+import AlbumGrid from './AlbumGrid';
+import RealtimeSearchBar from './RealtimeSearchBar';
 
 export default class AlbumFinder extends Component {
   constructor(props) {
@@ -24,52 +10,19 @@ export default class AlbumFinder extends Component {
   }
 
   render() {
-    var lineEndSymbol = '';
-    if (this.props.searchTerms!=='' && !this.props.resultsLoading) {
-      lineEndSymbol = (<a href='#' className={`${styles.clear_button} btn btn-default`}><i className="fa fa-times" /></a>);
-    } else if (this.props.resultsLoading) {
-      lineEndSymbol = (<a href='#' className={`${styles.clear_button} btn btn-default`}><i className="fa fa-spinner fa-pulse fa-fw" /></a>);
-    }
-
-    var albumElements = this.props.albums.filter((value) => {
-      return value.mbid !== "";
-    }).map((el, i) => {
-        return (<AlbumCover
-          album={el}
-          goToAlbum={this.props.goToAlbum.bind(null, el)}
-          addAlbumToQueue={this.props.addAlbumToQueue.bind(null, el, true)}
-        />);
-    });
-
-
     return (
       <div style={{width: '100%', height: '100%'}}>
-        <form style={{display: 'flex', marginTop: '4px'}} className="form-inline" onSubmit={(event) => {event.preventDefault(); return false;}}>
-          <div style={{width: '90%', marginRight:'auto'}} className="input-group">
-            <div className="input-group-addon searchicon"><i className="fa fa-search"/></div>
-            <DebounceInput
-              className="form-control searchfield"
-              placeholder="Search..."
-              minLength={2}
-              debounceTimeout={500}
-              onChange={this.props.handleAlbumSearch}
-            />
-          </div>
-          <div className={styles.line_end_symbol}>
-            { lineEndSymbol }
-          </div>
-        </form>
+        <RealtimeSearchBar
+          handleSearch={this.props.handleAlbumSearch}
+          resultsLoading={this.props.resultsLoading}
+        />
 
-        {
-          this.props.albums.length > 0
-          ? <div className={styles.album_finder_search_header}>
-                Search results for '{this.props.searchTerms}'
-            </div>
-          : null
-        }
-
-        <SortableList axis='xy' items={albumElements} />
-
+        <AlbumGrid
+          searchTerms={this.props.searchTerms}
+          albums={this.props.albums}
+          goToAlbum={this.props.goToAlbum}
+          addAlbumToQueue={this.props.addAlbumToQueue}
+        />
       </div>
     );
   }
