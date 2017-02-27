@@ -43,14 +43,12 @@ It's also focusing more on audio. Imagine Spotify which you don't have to pay fo
 ## Screenshots
 This will be updated as the program evolves.
 
-![album search](http://i.imgur.com/8KikWtc.png)
+![album search](http://i.imgur.com/HtaLDSa.jpg)
 
-![album display](http://i.imgur.com/fhUv1si.png)
+![album display](http://i.imgur.com/t5V0kXG.jpg)
 
-![screenshot 1](http://i.imgur.com/8RFe6Pg.png)
+![playlist view](http://i.imgur.com/KYFwu7P.jpg)
 
-![screenshot 2](http://i.imgur.com/BRvrqbt.png)
+![legacy search](http://i.imgur.com/WKBVq1u.jpg)
 
-![screenshot 3](http://i.imgur.com/nkyD0wc.png)
-
-![coverflow](http://i.imgur.com/TJs6Q3D.gif)
+![coverflow](http://i.imgur.com/eAPTDSc.gif)
