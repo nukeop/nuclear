@@ -25,43 +25,48 @@ export default class AlbumViewContainer extends Component {
     });
   }
 
+  findTrack(track, callback) {
+    songFinder.getTrack(
+      track.recording.artistCredits[0].artist.name,
+      track.recording.title,
+      track.length,
+      (err, track) => {
+        if (err) {
+          this.props.home.showAlertError(err);
+        } else {
+          callback(track);
+        }
+      }
+    );
+  }
+
   playTrack(track, event, value) {
     track.recording.load(['artists'], () => {
-      songFinder.getTrack(
-        track.recording.artistCredits[0].artist.name,
-        track.recording.title,
-        track.length,
-        (err, track) => {
-          if (err) {
-            this.props.home.showAlertError(err);
-          } else {
-            this.props.home.playNow(track);
-          }
-        }
-      );
+      this.findTrack(track, this.props.home.playNow.bind(this.props.home));
     });
   }
 
+  addTrackToQueue(track) {
+    track.recording.load(['artists'], () => {
+      this.findTrack(track, this.props.home.addToQueue.bind(this.props.home));
+    });
+  }
+
+  downloadTrack(track) {
+    track.recording.artistCredits = [{artist: {name: this.props.album.artist}}];
+    this.findTrack(track, this.props.addToDownloads);
+  }
+
   downloadAlbum(album) {
-    this.state.release.load(['recordings'], () => {
+    this.state.release.load(['recordings', 'artists'], () => {
       var tracks = [];
       this.state.release.mediums.map((el, i) => {
         tracks = tracks.concat(el.tracks);
       });
 
       tracks.map((el, i) => {
-        songFinder.getTrack(
-          this.props.album.artist,
-          el.recording.title,
-          el.length,
-          (err, track) => {
-            if (err) {
-              this.props.home.showAlertError(err);
-            } else {
-              this.props.addToDownloads(track);
-            }
-          }
-        );
+        el.recording.artistCredits = [{artist: {name: this.props.album.artist}}];
+        this.findTrack(el, this.props.addToDownloads);
       });
     });
   }
@@ -77,6 +82,8 @@ export default class AlbumViewContainer extends Component {
           playTrack={this.playTrack.bind(this)}
           addAlbumToQueue={this.props.addAlbumToQueue.bind(this)}
           downloadAlbum={this.downloadAlbum.bind(this, this.props.album)}
+          addToDownloads={this.downloadTrack.bind(this)}
+          addToQueue={this.addTrackToQueue.bind(this)}
          />
 
     );
