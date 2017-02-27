@@ -35,6 +35,7 @@ export default class PlaylistsContainer extends Component {
             )
           );
           this.state.playlists.push({filename: item, contents: contents});
+          this.setState(this.state);
         });
       }
     );
@@ -53,7 +54,7 @@ export default class PlaylistsContainer extends Component {
     this.props.home.showAlertSuccess("Playing playlist "+playlist.filename+".");
 
     this.props.home.state.songQueue.length = 0;
-    playlist.contents.map((el, i) => {
+    playlist.contents.tracks.map((el, i) => {
       youtube.youtubeFetchVideoDetails(el);
       this.props.home.addToQueue(el, this.props.home.videoInfoCallback, null);
     });
@@ -63,9 +64,9 @@ export default class PlaylistsContainer extends Component {
   }
 
   playlistAddToQueueCallback(playlist, event, value) {
-    this.props.home.showAlertSuccess("Playlist "+playlist.filename+" added to queue.");
+    this.props.home.showAlertSuccess("Playlist "+playlist.contents.name+" added to queue.");
 
-    playlist.contents.map((el, i) => {
+    playlist.contents.tracks.map((el, i) => {
       youtube.youtubeFetchVideoDetails(el);
       this.props.home.addToQueue(el, this.props.home.videoInfoCallback, null);
     });
