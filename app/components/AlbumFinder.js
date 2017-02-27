@@ -44,7 +44,7 @@ export default class AlbumFinder extends Component {
 
     return (
       <div style={{width: '100%', height: '100%'}}>
-        <form style={{display: 'flex'}} className="form-inline" onSubmit={(event) => {event.preventDefault(); return false;}}>
+        <form style={{display: 'flex', marginTop: '4px'}} className="form-inline" onSubmit={(event) => {event.preventDefault(); return false;}}>
           <div style={{width: '90%', marginRight:'auto'}} className="input-group">
             <div className="input-group-addon searchicon"><i className="fa fa-search"/></div>
             <DebounceInput

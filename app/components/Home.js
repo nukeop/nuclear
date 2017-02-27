@@ -44,7 +44,7 @@ export default class Home extends Component {
       seekFromPosition: 0,
       songStreamLoading: false,
       sidebarContents: enums.SidebarMenuItemEnum.DEFAULT,
-      mainContents: enums.MainContentItemEnum.SEARCH
+      mainContents: enums.MainContentItemEnum.ALBUMS
     };
 
     this.alertOptions = {
