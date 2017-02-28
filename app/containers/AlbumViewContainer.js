@@ -77,13 +77,13 @@ export default class AlbumViewContainer extends Component {
         this.state.release===null
         ? <div style={{lineHeight: '750px', height: '100%', width: '100%', fontSize: '48px'}}><i className='fa fa-spinner fa-pulse fa-fw' /></div>
         : <AlbumView
-          album={this.props.album}
-          release={this.state.release}
-          playTrack={this.playTrack.bind(this)}
-          addAlbumToQueue={this.props.addAlbumToQueue.bind(this)}
-          downloadAlbum={this.downloadAlbum.bind(this, this.props.album)}
-          addToDownloads={this.downloadTrack.bind(this)}
-          addToQueue={this.addTrackToQueue.bind(this)}
+            album={this.props.album}
+            release={this.state.release}
+            playTrack={this.playTrack.bind(this)}
+            addAlbumToQueue={this.props.addAlbumToQueue.bind(this)}
+            downloadAlbum={this.downloadAlbum.bind(this, this.props.album)}
+            addToDownloads={this.downloadTrack.bind(this)}
+            addToQueue={this.addTrackToQueue.bind(this)}
          />
 
     );

@@ -35,6 +35,11 @@ export default class SidebarMenu extends Component {
         </tr>
         <tr>
           <td className={styles.sidebar_options_cell}>
+            <a href='#' onClick={this.props.toggleMainContents.bind(null, enums.MainContentItemEnum.ARTISTS)}><i className="fa fa-search"/> Find artists</a>
+          </td>
+        </tr>
+        <tr>
+          <td className={styles.sidebar_options_cell}>
             <a href='#' onClick={this.props.toggleMainContents.bind(null, enums.MainContentItemEnum.SEARCH)}><i className="fa fa-search"/> Search</a>
           </td>
         </tr>

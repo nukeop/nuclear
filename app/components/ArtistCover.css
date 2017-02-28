@@ -1,0 +1,12 @@
+.artist_cover_container {
+  width: 170px;
+  margin: 12px 12px 12px 12px;
+  background-color: #2a2a35;
+  font-family: Questrial;
+  font-size: 14px;
+  text-align: center;
+}
+
+.artist_cover_artist_name {
+  padding: 4px 12px 4px 12px;
+}

@@ -26,11 +26,13 @@ export default class AlbumGrid extends Component {
     var albumElements = this.props.albums.filter((value) => {
       return value.mbid !== "";
     }).map((el, i) => {
-        return (<AlbumCover
-          album={el}
-          goToAlbum={this.props.goToAlbum.bind(null, el)}
-          addAlbumToQueue={this.props.addAlbumToQueue.bind(null, el, true)}
-        />);
+        return (
+            <AlbumCover
+              album={el}
+              goToAlbum={this.props.goToAlbum.bind(null, el)}
+              addAlbumToQueue={this.props.addAlbumToQueue.bind(null, el, true)}
+            />
+        );
     });
 
     return (

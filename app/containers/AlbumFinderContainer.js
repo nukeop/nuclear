@@ -19,12 +19,9 @@ export default class AlbumFinderContainer extends Component {
   }
 
   handleAlbumSearch(event, value) {
-
     var searchTerms = event.target.value;
     this.setState({searchTerms: searchTerms, resultsLoading: true, searchResults: []}, () => {
-
       lastfm.albumSearch(searchTerms, (response) => {
-
         this.setState({resultsLoading: false, searchResults: response.data.results.albummatches.album});
       });
 

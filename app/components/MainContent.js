@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 
 import AlbumFinderContainer from '../containers/AlbumFinderContainer';
 import AlbumViewContainer from '../containers/AlbumViewContainer';
+import ArtistFinderContainer from '../containers/ArtistFinderContainer';
+import ArtistViewContainer from '../containers/ArtistViewContainer';
 import SearchField from './SearchField';
 import SongList from './SongList';
 import SearchContainer from '../containers/SearchContainer';
@@ -24,7 +26,8 @@ export default class MainContent extends Component {
     this.state = {
       songList: [],
       songListLoading: false,
-      currentAlbum: null
+      currentAlbum: null,
+      currentArtist: null
     };
   }
 
@@ -75,6 +78,12 @@ export default class MainContent extends Component {
   switchToAlbumView(album){
     this.setState({currentAlbum: album}, () => {
       this.props.home.setState({mainContents: enums.MainContentItemEnum.SINGLE_ALBUM});
+    });
+  }
+
+  switchToArtistView(artist){
+    this.setState({currentArtist: artist}, () => {
+      this.props.home.setState({mainContents: enums.MainContentItemEnum.SINGLE_ARTIST});
     });
   }
 
@@ -172,6 +181,23 @@ export default class MainContent extends Component {
             addToDownloads={this.props.addToDownloads}
             addToQueue={this.props.addToQueue}
             home={this.props.home}
+          />
+        </div>
+      );
+      case enums.MainContentItemEnum.ARTISTS:
+      return (
+        <div className={styles.main_content_container}>
+          <ArtistFinderContainer
+            switchToArtistView={this.switchToArtistView.bind(this)}
+            home={this.props.home}
+          />
+        </div>
+      );
+      case enums.MainContentItemEnum.SINGLE_ARTIST:
+      return (
+        <div className={styles.main_content_container}>
+          <ArtistViewContainer
+            artist={this.state.currentArtist}
           />
         </div>
       );

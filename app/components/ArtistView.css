@@ -1,0 +1,78 @@
+.artist_view_container {
+  margin: 24px 0px 24px 24px;
+  font-family: Questrial;
+}
+
+.artist_view_main_photo {
+  display: inline-block;
+  border-radius: 100px;
+  border: 3px solid #ecf0f1;
+}
+
+.artist_view_info_cell {
+  display: block;
+  text-align: left;
+  margin: 0px 0px 0px 12px;
+}
+
+.artist_view_artist_name {
+  display: inline-block;
+  margin: 12px 0px 0px 0px;
+  font-size: 36px;
+  text-align: left;
+}
+
+.artist_view_tags {
+  font-size: 14px;
+  text-align: left;
+}
+
+.artist_view_tag {
+  display: inline;
+  margin: 0px 3px 0px 3px;
+  padding: 3px 6px 3px 6px;
+  background-color: #8e44ad;
+  border-radius: 12px;
+}
+
+.artist_view_bio {
+  margin: 12px 0px 0px 0px;
+  padding: 12px 12px 12px 12px;
+  background-color: #282832;
+  font-size: 14px;
+  border-radius: 12px;
+}
+
+.artist_view_top_tracks {
+  width: 50%;
+}
+
+.artist_view_similar_cell {
+  width: 300px;
+}
+
+.artist_view_similar_label {
+  margin-left: 3px;
+  font-size: 14px;
+  font-variant: small-caps;
+  text-align: left;
+}
+
+.artist_view_similar_artist {
+  padding: 3px 3px 3px 3px;
+  margin: 0px 0px 3px 3px;
+  font-size: 14px;
+  background-color: #282832;
+  text-align: left;
+}
+
+.artist_view_similar_thumb {
+  width: 48px;
+  height: 48px;
+  border-radius: 24px;
+}
+
+.artist_view_similar_name {
+  display: inline;
+  margin: 0px 0px 0px 6px;
+}
