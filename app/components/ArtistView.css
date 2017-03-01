@@ -98,7 +98,7 @@
 
 .artist_view_similar_cell {
   padding: 0px;
-  min-width: 300px;
+  min-width: 450px;
   float: right;
 }
 
@@ -110,7 +110,7 @@
 }
 
 .artist_view_similar_artist {
-  padding: 3px 3px 3px 3px;
+  padding: 5px 5px 5px 5px;
   margin: 0px 0px 3px 3px;
   font-size: 14px;
   background-color: #282832;
@@ -125,5 +125,5 @@
 
 .artist_view_similar_name {
   display: inline;
-  margin: 0px 0px 0px 6px;
+  margin: 0px 0px 0px 9px;
 }
