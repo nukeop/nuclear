@@ -18,6 +18,11 @@ export default class ArtistView extends Component {
             </td>
             <td className={styles.artist_view_info_cell}>
               <div className={styles.artist_view_artist_name}>{this.props.artist.name}</div>
+              {
+                this.props.artist.ontour==='1'
+                ? <div className={styles.artist_view_on_tour}>ON TOUR!</div>
+                : null
+              }
               <div className={styles.artist_view_tags}>
                 {
                   this.props.artist.tags.tag.map((el, i) => {
@@ -34,16 +39,38 @@ export default class ArtistView extends Component {
           </tr>
         </table>
 
-        <table style={{marginTop: '24px'}}>
+        <table style={{marginTop: '24px', padding: '12px 12px 12px 12px'}}>
           <tr>
-            <td><div className={styles.artist_view_top_tracks}></div></td>
+            <td className={styles.artist_view_top_tracks_cell}>
+              <div className={styles.artist_view_top_tracks}>
+                <div className={styles.artist_view_top_tracks_label}>Popular tracks:</div>
+                <div className={styles.artist_view_top_tracks_list}>
+                  <table style={{width: '100%'}}>
+                    {
+                      this.props.artistTopTracks.slice(0, 5).map((el, i) => {
+                        return (
+                          <tr className={styles.artist_view_top_track}>
+                            <td><img className={styles.artist_view_top_track_cover} src={el.albumCover} /></td>
+                            <td className={styles.artist_view_top_track_name}>{el.name}</td>
+                            <td>{el.listeners}</td>
+                          </tr>
+                        );
+                      })
+                    }
+                  </table>
+                </div>
+              </div>
+            </td>
+            <td style={{width: '100%'}}>
+
+            </td>
             <td className={styles.artist_view_similar_cell}>
               <div className={styles.artist_view_similar_label}>Similar artists:</div>
               {
                 this.props.artist.similar.artist.map((el, i) => {
                   return (
                     <div className={styles.artist_view_similar_artist}>
-                      <img className={styles.artist_view_similar_thumb} src={el.image[2]['#text']} />
+                      <img className={styles.artist_view_similar_thumb} src={el.image[0]['#text']} />
                       <div className={styles.artist_view_similar_name}>{el.name}</div>
                     </div>
                   )

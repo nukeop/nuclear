@@ -22,6 +22,17 @@
   text-align: left;
 }
 
+.artist_view_on_tour {
+  display: inline;
+  margin: 0px 0px 0px 12px;
+  padding: 3px 6px 3px 6px;
+  background-color: #ecf0f199;
+  font-size: 16px;
+  font-variant: small-caps;
+  border-radius: 16px;
+  vertical-align: middle;
+}
+
 .artist_view_tags {
   font-size: 14px;
   text-align: left;
@@ -43,17 +54,57 @@
   border-radius: 12px;
 }
 
+.artist_view_top_tracks_cell {
+  padding-right: 24px;
+  width: 100%;
+  vertical-align: top;
+}
+
 .artist_view_top_tracks {
-  width: 50%;
+  font-size: 14px;
+}
+
+.artist_view_top_tracks_list {
+  padding: 0px;
+  margin: 0px;
+}
+
+.artist_view_top_tracks_label {
+  margin: 0px 0px 6px 3px;
+  font-size: 18px;
+  font-variant: small-caps;
+  text-align: left;
+}
+
+.artist_view_top_track {
+  display: flex;
+  padding: 0px 12px 0px 12px;
+  margin: 0px;
+  background-color: #00000000;
+  border-bottom: 1px solid #2a2b30;
+  line-height: 2.4;
+}
+
+.artist_view_top_track_cover {
+  height: 32px;
+  width: 32px;
+}
+
+.artist_view_top_track_name {
+  width: 100%;
+  margin: 0px 24px 0px 24px;
+  text-align: left;
 }
 
 .artist_view_similar_cell {
-  width: 300px;
+  padding: 0px;
+  min-width: 300px;
+  float: right;
 }
 
 .artist_view_similar_label {
-  margin-left: 3px;
-  font-size: 14px;
+  margin: 0px 0px 6px 3px;
+  font-size: 18px;
   font-variant: small-caps;
   text-align: left;
 }
@@ -67,8 +118,8 @@
 }
 
 .artist_view_similar_thumb {
-  width: 48px;
-  height: 48px;
+  width: 40px;
+  height: 40px;
   border-radius: 24px;
 }
 

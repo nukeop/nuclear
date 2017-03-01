@@ -72,6 +72,20 @@ function updateNowPlaying(session, artist, track) {
   });
 }
 
+function getTrackInfo(artist, track, callback) {
+  Axios.get(addApiKey(
+    scrobblingApiUrl +
+    '?method=track.getInfo&artist=' +
+    encodeURIComponent(artist) +
+    '&track=' +
+    encodeURIComponent(track) +
+    '&format=json'
+  ))
+  .then((response) => {
+    callback(response);
+  });
+}
+
 function artistSearch(artist, callback) {
   Axios.get(addApiKey(
     scrobblingApiUrl +
@@ -88,6 +102,18 @@ function getArtistInfo(artist, callback) {
   Axios.get(addApiKey(
     scrobblingApiUrl +
     '?method=artist.getinfo&artist=' +
+    encodeURIComponent(artist) +
+    '&format=json'
+  ))
+  .then((response) => {
+    callback(response);
+  });
+}
+
+function getArtistTopTracks(artist, callback) {
+  Axios.get(addApiKey(
+    scrobblingApiUrl +
+    '?method=artist.gettoptracks&artist=' +
     encodeURIComponent(artist) +
     '&format=json'
   ))
@@ -130,5 +156,7 @@ module.exports = {
   getAlbumInfo: getAlbumInfo,
   albumSearch: albumSearch,
   artistSearch: artistSearch,
-  getArtistInfo: getArtistInfo
+  getArtistInfo: getArtistInfo,
+  getArtistTopTracks: getArtistTopTracks,
+  getTrackInfo: getTrackInfo
 }
