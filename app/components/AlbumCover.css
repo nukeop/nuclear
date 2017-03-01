@@ -25,11 +25,17 @@
 .artist_name {
   padding: 4px 4px 8px 12px;
   color: #95a5a6;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .album_name {
   padding: 8px 4px 4px 12px;
   font-weight: bold;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .album_cover_play_button_container {

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import AlbumGrid from './AlbumGrid';
+
 import styles from './ArtistView.css';
 
 export default class ArtistView extends Component {
@@ -43,7 +45,7 @@ export default class ArtistView extends Component {
           <tr>
             <td className={styles.artist_view_top_tracks_cell}>
               <div className={styles.artist_view_top_tracks}>
-                <div className={styles.artist_view_top_tracks_label}>Popular tracks:</div>
+                <div className={styles.artist_view_top_tracks_label}>Popular tracks</div>
                 <div className={styles.artist_view_top_tracks_list}>
                   <table style={{width: '100%'}}>
                     {
@@ -65,7 +67,7 @@ export default class ArtistView extends Component {
 
             </td>
             <td className={styles.artist_view_similar_cell}>
-              <div className={styles.artist_view_similar_label}>Similar artists:</div>
+              <div className={styles.artist_view_similar_label}>Similar artists</div>
               {
                 this.props.artist.similar.artist.map((el, i) => {
                   return (
@@ -79,6 +81,18 @@ export default class ArtistView extends Component {
             </td>
           </tr>
         </table>
+
+        <div className={styles.artist_view_album_separator_container}>
+          ALBUMS
+          <hr />
+        </div>
+
+        <AlbumGrid
+          albums={this.props.artistTopAlbums}
+          goToAlbum={() => {return false;}}
+          addAlbumToQueue={() => {return false;}}
+        />
+
       </div>
     );
   }

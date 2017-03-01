@@ -22,7 +22,13 @@ export default class AlbumCover extends Component {
 
         </div>
         <div className={styles.album_name}><a href='#' onClick={this.props.goToAlbum}>{this.props.album.name}</a></div>
-        <div className={styles.artist_name}>{this.props.album.artist}</div>
+        <div className={styles.artist_name}>
+          {
+            typeof this.props.album.artist === 'object'
+            ? this.props.album.artist.name
+            : this.props.album.artist
+          }
+        </div>
       </div>
     );
   }

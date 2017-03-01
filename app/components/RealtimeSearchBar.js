@@ -30,6 +30,8 @@ export default class RealtimeSearchBar extends Component {
             minLength={2}
             debounceTimeout={500}
             onChange={this.props.handleSearch}
+            ref={(input) => { this.debounceInput = input; }}
+            autoFocus
           />
         </div>
         <div className={styles.line_end_symbol}>

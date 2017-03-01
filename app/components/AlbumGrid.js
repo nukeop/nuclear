@@ -24,7 +24,7 @@ export default class AlbumGrid extends Component {
 
   render() {
     var albumElements = this.props.albums.filter((value) => {
-      return value.mbid !== "";
+      return value.mbid !== "" && value.mbid !== undefined;
     }).map((el, i) => {
         return (
             <AlbumCover
@@ -38,7 +38,7 @@ export default class AlbumGrid extends Component {
     return (
       <div>
         {
-          this.props.albums.length > 0
+          this.props.albums.length > 0 && this.props.searchTerms != null
           ? <div className={styles.album_finder_search_header}>
                 Search results for '{this.props.searchTerms}'
             </div>

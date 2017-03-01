@@ -1,5 +1,5 @@
 .artist_view_container {
-  margin: 24px 0px 24px 24px;
+  margin: 24px 24px 24px 24px;
   font-family: Questrial;
 }
 
@@ -126,4 +126,16 @@
 .artist_view_similar_name {
   display: inline;
   margin: 0px 0px 0px 9px;
+}
+
+.artist_view_album_separator_container {
+  margin-top: 12px;
+  font-size: 18px;
+  font-variant: small-caps;
+  text-align: left;
+}
+
+.artist_view_album_separator_container>hr {
+  margin-top: 6px;
+  border-color: #2a2b30;
 }

@@ -122,6 +122,18 @@ function getArtistTopTracks(artist, callback) {
   });
 }
 
+function getArtistTopAlbums(artist, callback) {
+  Axios.get(addApiKey(
+    scrobblingApiUrl +
+    '?method=artist.gettopalbums&artist=' +
+    encodeURIComponent(artist) +
+    '&format=json'
+  ))
+  .then((response) => {
+    callback(response);
+  });
+}
+
 function albumSearch(album, callback) {
   Axios.get(addApiKey(
     scrobblingApiUrl +
@@ -158,5 +170,6 @@ module.exports = {
   artistSearch: artistSearch,
   getArtistInfo: getArtistInfo,
   getArtistTopTracks: getArtistTopTracks,
+  getArtistTopAlbums: getArtistTopAlbums,
   getTrackInfo: getTrackInfo
 }
