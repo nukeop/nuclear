@@ -15,6 +15,10 @@ export default class ArtistViewContainer extends Component {
     }
   }
 
+  goToAlbum(album) {
+    this.props.switchToAlbumView(album);
+  }
+
   componentDidMount() {
     lastfm.getArtistInfo(this.props.artist.name, (response) => {
       this.setState({artistDetails: response.data.artist});
@@ -51,6 +55,8 @@ export default class ArtistViewContainer extends Component {
           artist={this.state.artistDetails}
           artistTopTracks={this.state.artistTopTracks}
           artistTopAlbums={this.state.artistTopAlbums}
+          goToAlbum={this.goToAlbum.bind(this)}
+          addAlbumToQueue={this.props.addAlbumToQueue.bind(this)}
         />
     );
   }

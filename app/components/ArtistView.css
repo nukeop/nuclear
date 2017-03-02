@@ -94,6 +94,9 @@
   width: 100%;
   margin: 0px 24px 0px 24px;
   text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .artist_view_similar_cell {

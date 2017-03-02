@@ -47,6 +47,7 @@ export default class MainContent extends Component {
         result.mediums.map((el, i) => {
           tracks = tracks.concat(el.tracks);
         });
+        console.log(tracks);
 
         tracks.map((el, i) => {
           songFinder.getTrack(
@@ -198,6 +199,8 @@ export default class MainContent extends Component {
         <div className={styles.main_content_container}>
           <ArtistViewContainer
             artist={this.state.currentArtist}
+            switchToAlbumView={this.switchToAlbumView.bind(this)}
+            addAlbumToQueue={this.addAlbumToQueue}
           />
         </div>
       );

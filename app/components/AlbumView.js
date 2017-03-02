@@ -89,7 +89,7 @@ export default class AlbumView extends Component {
         body={
           <ContentPopover
             graphic={this.props.album.image[1]['#text']}
-            artist={this.props.album.artist}
+            artist={typeof this.props.album.artist === 'object' ? this.props.album.artist.name : this.props.album.artist}
             title={this.props.album.name}
             buttons={this.albumPopoverButtons()}
           />
@@ -122,7 +122,7 @@ export default class AlbumView extends Component {
         body={
           <ContentPopover
             graphic={this.props.album.image[1]['#text']}
-            artist={this.props.album.artist}
+            artist={typeof this.props.album.artist === 'object' ? this.props.album.artist.name : this.props.album.artist}
             title={track.recording.title}
             buttons={this.trackPopoverButtons(track)}
           />
@@ -150,7 +150,12 @@ export default class AlbumView extends Component {
             <td style={{display: 'block'}}>
               <div className={styles.album_view_info_container}>
                 <div className={styles.album_view_album_title}>{this.props.album.name}</div>
-                <div className={styles.album_view_album_artist}>by {this.props.album.artist}</div>
+                <div className={styles.album_view_album_artist}>by {
+                  typeof this.props.album.artist === 'object'
+                  ? this.props.album.artist.name
+                  : this.props.album.artist
+                }
+                </div>
 
                 <div className={styles.album_view_misc_info_container}>
                   <div className={styles.album_view_misc_info_line}>

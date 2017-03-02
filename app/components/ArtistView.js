@@ -89,8 +89,8 @@ export default class ArtistView extends Component {
 
         <AlbumGrid
           albums={this.props.artistTopAlbums}
-          goToAlbum={() => {return false;}}
-          addAlbumToQueue={() => {return false;}}
+          goToAlbum={this.props.goToAlbum}
+          addAlbumToQueue={this.props.addAlbumToQueue}
         />
 
       </div>

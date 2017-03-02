@@ -25,7 +25,6 @@ const SortableItem = SortableElement(({song, ix, _this}) =>
       </tr>
     );
   }
-
 );
 
 const SortableList = SortableContainer(({songs, _this}) => {
@@ -43,7 +42,6 @@ const SortableList = SortableContainer(({songs, _this}) => {
 		</tbody>
 	);
 });
-
 
 export default class QueueBar extends Component {
   constructor(props) {
