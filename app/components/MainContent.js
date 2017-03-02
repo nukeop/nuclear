@@ -47,21 +47,25 @@ export default class MainContent extends Component {
         result.mediums.map((el, i) => {
           tracks = tracks.concat(el.tracks);
         });
-        console.log(tracks);
 
         tracks.map((el, i) => {
+          var artistName = typeof album.artist === 'object' ? album.artist.name : album.artist;
+
           songFinder.getTrack(
-            album.artist,
+            artistName,
             el.recording.title,
             el.recording.length,
             (err, track) => {
-              track.data.thumbnail = album.image[2]['#text'];
-              if (i===0 && playNow) {
-                this.props.home.playNow(track);
+              if (err) {
+                this.props.home.showAlertError(err);
               } else {
-                this.props.home.addToQueue(track);
+                track.data.thumbnail = album.image[2]['#text'];
+                if (i===0 && playNow) {
+                  this.props.home.playNow(track);
+                } else {
+                  this.props.home.addToQueue(track);
+                }
               }
-
             }
           );
         });
