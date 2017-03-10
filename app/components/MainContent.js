@@ -210,6 +210,7 @@ export default class MainContent extends Component {
             switchToAlbumView={this.switchToAlbumView.bind(this)}
             switchToArtistView={this.switchToArtistView.bind(this)}
             addAlbumToQueue={this.addAlbumToQueue}
+            home={this.props.home}
           />
         </div>
       );
