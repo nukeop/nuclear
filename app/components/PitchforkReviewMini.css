@@ -1,0 +1,67 @@
+.review_box {
+  display: inline-block;
+  margin: 12px 12px 12px 12px;
+  width: 350px;
+  background-color: #2a2a35;
+  font-family: Questrial;
+  font-size: 14px;
+  text-align: left;
+}
+
+.review_container {
+  display: flex;
+  width: 100%;
+  margin: 12px 12px 12px 12px;
+}
+
+.review_thumbnail_container {
+  display: inline-block;
+  margin: 0px 12px 12px 0px;
+}
+
+.review_thumbnail {
+  width: 100%;
+}
+
+.review_album_details_cell {
+  display: inline-block;
+}
+
+.review_album_details_container {
+
+}
+
+.review_artist_name {
+  color: #95a5a6;
+}
+
+.review_score_cell {
+  display: inline-block;
+  text-align: right;
+  padding-right: 12px;
+}
+
+.review_score {
+  margin: 12px 12px 0px 0px;
+  width: 48px;
+  height: 48px;
+  border: 2px solid #e74c3c;
+  border-radius: 100px;
+  color: #e74c3c;
+  font-size: 22px;
+  line-height: 2;
+  text-align: center;
+}
+
+.review_abstract_container {
+  margin: 12px 12px 12px 12px;
+  background-color: #23232c;
+  height: 125px;
+  overflow: overlay;
+}
+
+.review_abstract {
+  position: relative;
+  top: 0px; left: 0px;
+  padding: 12px 12px 12px 12px;
+}

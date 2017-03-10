@@ -5,10 +5,8 @@ import SongList from '../components/SongList';
 
 export default class SearchContainer extends Component {
   render() {
-    var style={position: 'absolute', width: '100%', height: '100%'};
-
     return (
-        <div style={style}>
+        <div>
         <SearchField
           handleSearch={this.props.handleSearch}
         />

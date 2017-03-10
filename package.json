@@ -172,7 +172,8 @@
     "react-debounce-input": "^2.4.2",
     "react-sortable-hoc": "^0.5.0",
     "string-similarity": "^1.1.0",
-    "vimeo": "^1.2.0"
+    "vimeo": "^1.2.0",
+    "cheerio": "^0.22.0"
   },
   "dependencies": {
     "electron-debug": "^1.1.0",

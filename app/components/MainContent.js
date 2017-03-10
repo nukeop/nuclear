@@ -4,6 +4,7 @@ import AlbumFinderContainer from '../containers/AlbumFinderContainer';
 import AlbumViewContainer from '../containers/AlbumViewContainer';
 import ArtistFinderContainer from '../containers/ArtistFinderContainer';
 import ArtistViewContainer from '../containers/ArtistViewContainer';
+import DashboardContainer from '../containers/DashboardContainer';
 import SearchField from './SearchField';
 import SongList from './SongList';
 import SearchContainer from '../containers/SearchContainer';
@@ -207,6 +208,12 @@ export default class MainContent extends Component {
             addAlbumToQueue={this.addAlbumToQueue}
           />
         </div>
+      );
+      case enums.MainContentItemEnum.DASHBOARD:
+      return (
+        <DashboardContainer
+
+        />
       );
       default:
         return(<div className={styles.main_content_container} />);

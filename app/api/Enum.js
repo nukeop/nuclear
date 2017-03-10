@@ -11,7 +11,8 @@ var MainContentItemEnum = {
   ALBUMS: 3,
   SINGLE_ALBUM: 4,
   ARTISTS: 5,
-  SINGLE_ARTIST: 6
+  SINGLE_ARTIST: 6,
+  DASHBOARD: 7
 }
 
 var DownloadQueueStatusEnum = {
