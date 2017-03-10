@@ -186,6 +186,7 @@ export default class MainContent extends Component {
             addAlbumToQueue={this.addAlbumToQueue}
             addToDownloads={this.props.addToDownloads}
             addToQueue={this.props.addToQueue}
+            switchToArtistView={this.switchToArtistView.bind(this)}
             home={this.props.home}
           />
         </div>

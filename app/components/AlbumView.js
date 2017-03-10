@@ -150,11 +150,14 @@ export default class AlbumView extends Component {
             <td style={{display: 'block'}}>
               <div className={styles.album_view_info_container}>
                 <div className={styles.album_view_album_title}>{this.props.album.name}</div>
-                <div className={styles.album_view_album_artist}>by {
-                  typeof this.props.album.artist === 'object'
-                  ? this.props.album.artist.name
-                  : this.props.album.artist
-                }
+                <div className={styles.album_view_album_artist}>by
+                  <a href='#'>
+                    {
+                      typeof this.props.album.artist === 'object'
+                      ? ' ' + this.props.album.artist.name
+                      : ' ' + this.props.album.artist
+                    }
+                  </a>
                 </div>
 
                 <div className={styles.album_view_misc_info_container}>

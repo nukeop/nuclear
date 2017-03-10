@@ -4,6 +4,7 @@ import {SortableContainer, SortableElement} from 'react-sortable-hoc';
 import styles from './AlbumGrid.css';
 
 import AlbumCover from './AlbumCover';
+import Heading from './Heading';
 
 const SortableItem = SortableElement(({value}) => <div style={{display: 'inline-block'}}>{value}</div>);
 
@@ -39,9 +40,9 @@ export default class AlbumGrid extends Component {
       <div>
         {
           this.props.albums.length > 0 && this.props.searchTerms != null
-          ? <div className={styles.album_finder_search_header}>
-                Search results for '{this.props.searchTerms}'
-            </div>
+          ? <Heading
+                text={"Search results for '" + this.props.searchTerms + "'"}
+            />
           : null
         }
 

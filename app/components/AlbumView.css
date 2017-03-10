@@ -25,7 +25,8 @@
   font-size: 36px;
 }
 
-.album_view_album_artist {
+.album_view_album_artist,
+.album_view_album_artist>a {
   color: #95a5a6;
   font-size: 18px;
 }
