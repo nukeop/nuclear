@@ -16,7 +16,6 @@ export default class DashboardContainer extends Component {
   componentDidMount() {
     p4k.getBestNewAlbums((result) => {
       this.setState({bestNewAlbums: result});
-      console.log(result);
     });
   }
 

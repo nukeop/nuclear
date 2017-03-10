@@ -71,10 +71,12 @@ export default class ArtistView extends Component {
               {
                 this.props.artist.similar.artist.map((el, i) => {
                   return (
-                    <div className={styles.artist_view_similar_artist}>
-                      <img className={styles.artist_view_similar_thumb} src={el.image[0]['#text']} />
-                      <div className={styles.artist_view_similar_name}>{el.name}</div>
-                    </div>
+                    <a href='#' onClick={this.props.switchToArtistView.bind(null, el.name)}>
+                      <div className={styles.artist_view_similar_artist}>
+                        <img className={styles.artist_view_similar_thumb} src={el.image[0]['#text']} />
+                        <div className={styles.artist_view_similar_name}>{el.name}</div>
+                      </div>
+                    </a>
                   )
                 })
               }

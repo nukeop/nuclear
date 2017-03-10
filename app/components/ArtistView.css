@@ -120,6 +120,10 @@
   text-align: left;
 }
 
+.artist_view_similar_artist:hover {
+  background-color: #31313d;
+}
+
 .artist_view_similar_thumb {
   width: 40px;
   height: 40px;

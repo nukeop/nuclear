@@ -208,6 +208,7 @@ export default class MainContent extends Component {
           <ArtistViewContainer
             artist={this.state.currentArtist}
             switchToAlbumView={this.switchToAlbumView.bind(this)}
+            switchToArtistView={this.switchToArtistView.bind(this)}
             addAlbumToQueue={this.addAlbumToQueue}
           />
         </div>

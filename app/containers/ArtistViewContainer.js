@@ -11,12 +11,26 @@ export default class ArtistViewContainer extends Component {
     this.state = {
       artistDetails: null,
       artistTopTracks: null,
-      artistTopAlbums: null
+      artistTopAlbums: null,
+      lastArtist: null
     }
   }
 
   goToAlbum(album) {
     this.props.switchToAlbumView(album);
+  }
+
+  componentDidUpdate() {
+    if(this.props.artist != this.state.lastArtist) {
+      this.setState({
+        artistDetails: null,
+        artistTopTracks: null,
+        artistTopAlbums: null,
+        lastArtist: this.props.artist
+      }, () => {
+        this.componentDidMount();
+      });
+    }
   }
 
   componentDidMount() {
@@ -57,6 +71,7 @@ export default class ArtistViewContainer extends Component {
           artistTopAlbums={this.state.artistTopAlbums}
           goToAlbum={this.goToAlbum.bind(this)}
           addAlbumToQueue={this.props.addAlbumToQueue.bind(this)}
+          switchToArtistView={this.props.switchToArtistView}
         />
     );
   }
