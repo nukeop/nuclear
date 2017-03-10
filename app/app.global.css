@@ -183,7 +183,7 @@ a, a:hover, a:focus {
 }
 
 .table-striped>tbody>tr:nth-of-type(odd){
-  background-color: #1C1A24;
+  background-color: #23232c;
 }
 
 .table-striped>tbody>tr:hover{

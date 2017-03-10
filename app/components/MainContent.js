@@ -88,7 +88,9 @@ export default class MainContent extends Component {
   }
 
   switchToArtistView(artist){
-    this.setState({currentArtist: artist}, () => {
+    var toSwitch = typeof artist === 'object' ? artist.name : artist;
+
+    this.setState({currentArtist: toSwitch}, () => {
       this.props.home.setState({mainContents: enums.MainContentItemEnum.SINGLE_ARTIST});
     });
   }

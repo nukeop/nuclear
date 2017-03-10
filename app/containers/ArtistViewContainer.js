@@ -20,17 +20,17 @@ export default class ArtistViewContainer extends Component {
   }
 
   componentDidMount() {
-    lastfm.getArtistInfo(this.props.artist.name, (response) => {
+    lastfm.getArtistInfo(this.props.artist, (response) => {
       this.setState({artistDetails: response.data.artist});
     });
 
-    lastfm.getArtistTopAlbums(this.props.artist.name, (response) => {
+    lastfm.getArtistTopAlbums(this.props.artist, (response) => {
       this.setState({artistTopAlbums: response.data.topalbums.album});
     });
 
-    lastfm.getArtistTopTracks(this.props.artist.name, (response) => {
+    lastfm.getArtistTopTracks(this.props.artist, (response) => {
       response.data.toptracks.track.slice(0, 5).map((el, i) => {
-        lastfm.getTrackInfo(this.props.artist.name, el.name, (responseTrack) => {
+        lastfm.getTrackInfo(this.props.artist, el.name, (responseTrack) => {
 
           if (responseTrack.data.track.album != undefined) {
             el.albumCover = responseTrack.data.track.album.image[0]['#text'];

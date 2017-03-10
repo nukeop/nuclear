@@ -84,6 +84,7 @@ export default class AlbumViewContainer extends Component {
             downloadAlbum={this.downloadAlbum.bind(this, this.props.album)}
             addToDownloads={this.downloadTrack.bind(this)}
             addToQueue={this.addTrackToQueue.bind(this)}
+            switchToArtistView={this.props.switchToArtistView.bind(null, this.props.album.artist)}
          />
 
     );

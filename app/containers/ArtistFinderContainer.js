@@ -15,7 +15,7 @@ export default class ArtistFinderContainer extends Component {
   }
 
   goToArtist(artist) {
-    this.props.switchToArtistView(artist);
+    this.props.switchToArtistView(artist.name);
   }
 
   handleArtistSearch(event, value) {

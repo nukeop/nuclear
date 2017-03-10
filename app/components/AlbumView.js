@@ -151,7 +151,7 @@ export default class AlbumView extends Component {
               <div className={styles.album_view_info_container}>
                 <div className={styles.album_view_album_title}>{this.props.album.name}</div>
                 <div className={styles.album_view_album_artist}>by
-                  <a href='#'>
+                  <a href='#' onClick={this.props.switchToArtistView}>
                     {
                       typeof this.props.album.artist === 'object'
                       ? ' ' + this.props.album.artist.name
