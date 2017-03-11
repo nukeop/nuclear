@@ -4,6 +4,8 @@
 }
 
 .artist_view_main_photo {
+  width: 100px;
+  height: 100px;
   display: inline-block;
   border-radius: 100px;
   border: 3px solid #ecf0f1;
@@ -145,4 +147,28 @@
 .artist_view_album_separator_container>hr {
   margin-top: 6px;
   border-color: #2a2b30;
+}
+
+.artist_view_hr {
+  border-color: #2a2b30;
+}
+
+.artist_view_header {
+  overflow: hidden;
+  height: 260px;
+}
+
+.artist_view_header_img {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  position: relative;
+  height: 100%;
+}
+
+.artist_view_header_overlay {
+  padding: 160px 0px 12px 12px;
+  backdrop-filter: brightness(50%);
+  position: relative;
+  top: -272px;
 }

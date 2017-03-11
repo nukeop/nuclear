@@ -19,7 +19,7 @@
 }
 
 .album_cover_overlay:hover {
-  backdrop-filter: blur(6px) brightness(50%);
+  backdrop-filter: blur(6px) brightness(40%);
 }
 
 .artist_name {
