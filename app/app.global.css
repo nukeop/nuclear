@@ -194,6 +194,10 @@ a, a:hover, a:focus {
   border: 0px;
 }
 
+.Popover {
+  z-index: 2;
+}
+
 .Popover-body {
   background-color: #1C1A24;
   border-radius: 4px;
@@ -203,6 +207,7 @@ a, a:hover, a:focus {
 
 .Popover-tipShape {
   fill: #1C1A24;
+  z-index: 2;
 }
 
 .table-hover>tbody>tr:hover {

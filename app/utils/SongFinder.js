@@ -4,6 +4,11 @@ const yt = require('../api/Youtube');
 const similarityThreshold = 0.85; //When to consider a song to be a match
 const ratioTolerance = 0.2;
 
+//These words will automatically give the match a score of 0 if they do not
+//occur in the original title
+const blacklist = ['cover', 'live'];
+
+
 function selectBestMatch(matches, callback) {
   if (matches.length < 1) {
     callback('No matches found.', null)
@@ -51,10 +56,18 @@ function getTrack(artist, title, length, callback) {
           var ratio = ytmillis/length;
 
           if (Math.abs(1.0-ratio) < ratioTolerance) {
-            matches.push({
+            var comparisonItem = {
               confidence: (similarity+(1.0-Math.abs(1.0-ratio)))/2.0,
               track: newItem
+            };
+
+            blacklist.forEach((word) => {
+              if (el.snippet.title.indexOf(word) != -1) {
+                comparisonItem.confidence = 0.0;
+              }
             });
+
+            matches.push(comparisonItem);
             processed++;
             if (processed===response.data.items.length) {
               selectBestMatch(matches, callback);
