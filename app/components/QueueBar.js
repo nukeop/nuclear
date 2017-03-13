@@ -103,7 +103,7 @@ export default class QueueBar extends Component {
     return [
       {
         text: (<span><i className="fa fa-trash-o" /> Remove from queue</span>),
-        fun: null
+        fun: this.props.home.removeFromQueue.bind(this.props.home, track)
       }
     ];
   }
@@ -114,12 +114,12 @@ export default class QueueBar extends Component {
                       graphic={track.data.thumbnail}
                       artist={track.artist}
                       title={track.title}
-                      buttons={this.popoverButtons()}
+                      buttons={this.popoverButtons(track)}
                   />)
                   : (<ContentPopover
                       graphic={track.data.thumbnail}
                       title={track.data.title}
-                      buttons={this.popoverButtons()}
+                      buttons={this.popoverButtons(track)}
                   />)
 
     return (

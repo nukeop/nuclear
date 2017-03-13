@@ -175,6 +175,11 @@ export default class Home extends Component {
     this.togglePlay();
   }
 
+  removeFromQueue(song) {
+    this.state.songQueue.splice(this.state.songQueue.indexOf(song), 1);
+    this.setState({songQueue: this.state.songQueue});
+  }
+
   addToQueue(song, playNow, event) {
     if (song.source === 'youtube'){
       song.data.streamUrlLoading = true;
