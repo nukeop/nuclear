@@ -25,6 +25,7 @@ export default class DashboardContainer extends Component {
       ? <div style={{lineHeight: '750px', height: '100%', width: '100%', fontSize: '48px'}}><i className='fa fa-spinner fa-pulse fa-fw' /></div>
       : <Dashboard
           bestNewAlbums={this.state.bestNewAlbums}
+          switchToArtistView={this.props.switchToArtistView}
         />
     );
   }
