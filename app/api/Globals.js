@@ -9,7 +9,7 @@ module.exports = {
     settings: "settings.json"
   },
   ytApiKey: "AIzaSyCIM4EzNqi1in22f4Z3Ru3iYvLaY8tc3bo",
-  soundcloudApiKey: "fDoItMDbsbZz8dY16ZzARCZmzgHBPotA",
+  soundcloudApiKey: "69b6a6bc4f7d483fd21b170137a9cd51",
   lastfmApiKey: "2b75dcb291e2b0c9a2c994aca522ac14",
   lastfmApiSecret: "2ee49e35f08b837d43b2824198171fc8",
   vimeoClientId: "8c997e332f00ecae0f200cb23d117a56cac00803",

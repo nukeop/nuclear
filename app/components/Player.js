@@ -1,11 +1,25 @@
 import React, { Component } from 'react';
 import Sound from 'react-sound';
+const { BrowserWindow, globalShortcut } = require('electron').remote;
 
 import styles from './Player.css';
 
 export default class Player extends Component {
   constructor(props){
     super(props);
+  }
+
+  componentDidMount() {
+    // Register media key shortcuts
+    if (!globalShortcut.isRegistered('mediaplaypause'))
+      globalShortcut.register('mediaplaypause', this.props.togglePlayCallback);
+
+    if (!globalShortcut.isRegistered('medianexttrack'))
+      globalShortcut.register('medianexttrack', this.props.nextSongCallback);
+
+    if (!globalShortcut.isRegistered('mediaprevioustrack'))
+      globalShortcut.register('mediaprevioustrack', this.props.prevSongCallback);
+
   }
 
   onClickSeek(event, value){

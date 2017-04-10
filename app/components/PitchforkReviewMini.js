@@ -23,7 +23,7 @@ export default class PitchforkReviewMini extends Component {
                 <td className={styles.review_album_details_cell}>
                   <div className={styles.review_album_details_container}>
                     <div>{this.props.album.title}</div>
-                    <div className={styles.review_artist_name}>by {this.props.album.artist}</div>
+                    <div className={styles.review_artist_name}>by <a href='#' onClick={this.props.switchToArtistView.bind(null, this.props.album.artist)} className={styles.review_artist_name_link}>{this.props.album.artist}</a></div>
                     <div>Genre: {this.props.album.genres.join(', ')}</div>
                   </div>
                   <div className={styles.review_score}>{this.props.album.details.score}</div>

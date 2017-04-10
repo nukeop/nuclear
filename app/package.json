@@ -1,7 +1,7 @@
 {
   "name": "nuclear",
   "productName": "nuclear",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": " An Electron-based, multiplatform music player app that streams from multiple sources ",
   "main": "./main.js",
   "author": {

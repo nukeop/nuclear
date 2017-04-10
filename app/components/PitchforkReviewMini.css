@@ -35,6 +35,10 @@
   color: #95a5a6;
 }
 
+.review_artist_name_link {
+  color: #95a5a6;
+}
+
 .review_score_cell {
   display: inline-block;
   text-align: right;

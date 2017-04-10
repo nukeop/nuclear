@@ -21,6 +21,7 @@ export default class Dashboard extends Component {
             return (
               <PitchforkReviewMini
                 album={el}
+                switchToArtistView={this.props.switchToArtistView}
               />
             )
           })

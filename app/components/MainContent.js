@@ -217,7 +217,7 @@ export default class MainContent extends Component {
       case enums.MainContentItemEnum.DASHBOARD:
       return (
         <DashboardContainer
-
+          switchToArtistView={this.switchToArtistView.bind(this)}
         />
       );
       default:

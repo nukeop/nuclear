@@ -47,6 +47,10 @@ This will be updated as the program evolves.
 
 ![album display](http://i.imgur.com/t5V0kXG.jpg)
 
+![dashboard](http://i.imgur.com/rVBAGLG.png)
+
+![artist view](http://i.imgur.com/EOd1auB.png)
+
 ![playlist view](http://i.imgur.com/KYFwu7P.jpg)
 
 ![legacy search](http://i.imgur.com/WKBVq1u.jpg)
