@@ -13,7 +13,12 @@ export default class Settings extends Component {
       var labelText = this.props.lastfmConnected ? 'Not logged in' : 'Not connected';
 
       return (
-        <form onSubmit={this.props.lastfmLogin.bind(null)}>
+        <form onSubmit={(event) => {
+            event.preventDefault();
+            this.props.lastfmLogin.bind(null)();
+            return false;
+          }
+        }>
           <div className={styles.settings_lastfm_label}><i style={{color: '#e74c3c'}} className="fa fa-times" /> {labelText}</div>
           <button className={`${styles.settings_form} btn btn-default`} type="submit">{buttonText}</button>
         </form>
