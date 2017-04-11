@@ -7,14 +7,18 @@
   width: 300px;
   height: 100%;
   overflow: hidden;
-  box-shadow: inset -2px 0px 25px #000000;
   backdrop-filter: blur(20px);
+  box-shadow: none !important;
+  display: table !important;
+}
+
+.sidebar_options_container {
+  overflow-y: scroll;
+  height: 85%
 }
 
 .sidebar_options {
-  position: absolute;
-  left: 0px;
-  right: 0px;
+  width: 100%;
   font-size: 16px;
 }
 

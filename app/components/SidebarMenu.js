@@ -22,53 +22,55 @@ export default class SidebarMenu extends Component {
 
   renderDefault() {
     return (
-      <table className={`${styles.sidebar_options} table`}>
-        <tr>
-          <td className={styles.sidebar_brand_cell}>
-            <img src={path.join(__dirname, "../media/nuclear/logo_full_light.png")} height="36"/>
-          </td>
-        </tr>
-        <tr>
-          <td className={styles.sidebar_options_cell}>
-            <a href='#' onClick={this.props.toggleMainContents.bind(null, enums.MainContentItemEnum.DASHBOARD)}><i className="fa fa-dashboard"/> Dashboard</a>
-          </td>
-        </tr>
-        <tr>
-          <td className={styles.sidebar_options_cell}>
-            <a href='#' onClick={this.props.toggleMainContents.bind(null, enums.MainContentItemEnum.ALBUMS)}><i className="fa fa-search"/> Find albums</a>
-          </td>
-        </tr>
-        <tr>
-          <td className={styles.sidebar_options_cell}>
-            <a href='#' onClick={this.props.toggleMainContents.bind(null, enums.MainContentItemEnum.ARTISTS)}><i className="fa fa-search"/> Find artists</a>
-          </td>
-        </tr>
-        <tr>
-          <td className={styles.sidebar_options_cell}>
-            <a href='#' onClick={this.props.toggleMainContents.bind(null, enums.MainContentItemEnum.SEARCH)}><i className="fa fa-search"/> Search</a>
-          </td>
-        </tr>
-        <tr>
-          <td className={styles.sidebar_options_cell}>
-            <a href='#' onClick={this.props.toggleSidebarContents.bind(null, enums.SidebarMenuItemEnum.QUEUE)}><i className="fa fa-list"/> Queue</a>
-          </td>
-        </tr>
-        <tr>
-          <td className={styles.sidebar_options_cell}>
-            <a href='#' onClick={this.props.toggleSidebarContents.bind(null, enums.SidebarMenuItemEnum.DOWNLOADS)}><i className="fa fa-download"/> Downloads</a>
-          </td>
-        </tr>
-        <tr>
-          <td className={styles.sidebar_options_cell}>
-            <a href='#' onClick={this.props.toggleMainContents.bind(null, enums.MainContentItemEnum.PLAYLISTS)}><i className="fa fa-music"/> My Playlists</a>
-          </td>
-        </tr>
-        <tr>
-          <td className={styles.sidebar_options_cell}>
-            <a href='#' onClick={this.props.toggleMainContents.bind(null, enums.MainContentItemEnum.SETTINGS)}><i className="fa fa-cogs"/> Settings</a>
-          </td>
-        </tr>
-      </table>
+      <div style={{display: 'table-row'}}>
+        <div className={styles.sidebar_brand_cell}>
+        <img src={path.join(__dirname, "../media/nuclear/logo_full_light.png")} height="36"/>
+        </div>
+        <div className={styles.sidebar_options_container}>
+        <table className={styles.sidebar_options}>
+          <tr>
+            <td className={styles.sidebar_options_cell}>
+              <a href='#' onClick={this.props.toggleMainContents.bind(null, enums.MainContentItemEnum.DASHBOARD)}><i className="fa fa-dashboard"/> Dashboard</a>
+            </td>
+          </tr>
+          <tr>
+            <td className={styles.sidebar_options_cell}>
+              <a href='#' onClick={this.props.toggleMainContents.bind(null, enums.MainContentItemEnum.ALBUMS)}><i className="fa fa-search"/> Find albums</a>
+            </td>
+          </tr>
+          <tr>
+            <td className={styles.sidebar_options_cell}>
+              <a href='#' onClick={this.props.toggleMainContents.bind(null, enums.MainContentItemEnum.ARTISTS)}><i className="fa fa-search"/> Find artists</a>
+            </td>
+          </tr>
+          <tr>
+            <td className={styles.sidebar_options_cell}>
+              <a href='#' onClick={this.props.toggleMainContents.bind(null, enums.MainContentItemEnum.SEARCH)}><i className="fa fa-search"/> Search</a>
+            </td>
+          </tr>
+          <tr>
+            <td className={styles.sidebar_options_cell}>
+              <a href='#' onClick={this.props.toggleSidebarContents.bind(null, enums.SidebarMenuItemEnum.QUEUE)}><i className="fa fa-list"/> Queue</a>
+            </td>
+          </tr>
+          <tr>
+            <td className={styles.sidebar_options_cell}>
+              <a href='#' onClick={this.props.toggleSidebarContents.bind(null, enums.SidebarMenuItemEnum.DOWNLOADS)}><i className="fa fa-download"/> Downloads</a>
+            </td>
+          </tr>
+          <tr>
+            <td className={styles.sidebar_options_cell}>
+              <a href='#' onClick={this.props.toggleMainContents.bind(null, enums.MainContentItemEnum.PLAYLISTS)}><i className="fa fa-music"/> My Playlists</a>
+            </td>
+          </tr>
+          <tr>
+            <td className={styles.sidebar_options_cell}>
+              <a href='#' onClick={this.props.toggleMainContents.bind(null, enums.MainContentItemEnum.SETTINGS)}><i className="fa fa-cogs"/> Settings</a>
+            </td>
+          </tr>
+        </table>
+        </div>
+      </div>
     );
   }
 
