@@ -1,6 +1,6 @@
 # ![nuclear](https://raw.githubusercontent.com/nukeop/nuclear/master/resources/media/nuclear/logo_small.png) 
 
-[![twitter](https://raw.githubusercontent.com/nukeop/nuclear/master/resources/media/nuclear/github/twitter.png)](https://twitter.com/nuclear_player) [![website](https://raw.githubusercontent.com/nukeop/nuclear/master/resources/media/nuclear/github/website.png)](http://nuclear.gumblert.tech/) 
+[![twitter](https://raw.githubusercontent.com/nukeop/nuclear/master/resources/media/nuclear/github/twitter.png)](https://twitter.com/nuclear_player) [![mobile](https://raw.githubusercontent.com/nukeop/nuclear/master/resources/media/nuclear/github/mobile.png)](https://github.com/nukeop/nuclear-mobile) [![website](https://raw.githubusercontent.com/nukeop/nuclear/master/resources/media/nuclear/github/website.png)](http://nuclear.gumblert.tech/) 
 
 
 An Electron-based, multiplatform music player app that streams from multiple sources
