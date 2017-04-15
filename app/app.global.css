@@ -249,3 +249,15 @@ a, a:hover, a:focus {
   margin: 10px 0px 10px 0px;
   padding-left: 32px;
 }
+
+.multiselect {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+}
+
+.multiselect-native-select {
+  display: block;
+  width: 100%;
+}
