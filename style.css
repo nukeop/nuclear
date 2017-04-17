@@ -88,7 +88,7 @@ body {
 }
 
 .mc-field-group>input {
-  background-color: #00000000;
+  background-color: transparent;
   border: 0px;
   border-bottom: 4px solid #8d53e7;
   width: 100%;
