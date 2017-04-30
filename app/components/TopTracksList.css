@@ -1,0 +1,16 @@
+.top_tracks_list_container {
+  margin: 12px 12px 12px 12px;
+  font-family: Questrial;
+  font-size: 14px;
+  display: flex;
+}
+
+.top_tracks_list_container>table {
+  flex: 1;
+  width: 100%;
+  text-align: left;
+}
+
+.top_tracks_list_container>table>tr {
+  border-bottom: 1px solid #e74c3c;
+}

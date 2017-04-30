@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import Heading from './Heading';
 import PitchforkReviewMini from './PitchforkReviewMini';
+import TopTracksListContainer from '../containers/TopTracksListContainer';
 
 import styles from './Dashboard.css';
 
@@ -15,6 +16,8 @@ export default class Dashboard extends Component {
       <div className={styles.dashboard_container}>
         <Heading
           text={'Best new music'}
+        />
+        <TopTracksListContainer
         />
         {
           this.props.bestNewAlbums.map((el, i) => {

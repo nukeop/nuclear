@@ -160,6 +160,15 @@ function getAlbumInfo(artist, album, callback) {
   });
 }
 
+function getTopTracks(callback) {
+  Axios.get(addApiKey(
+    scrobblingApiUrl +
+    '?method=chart.gettoptracks&format=json'
+  )).then((response) => {
+    callback(response);
+  });
+}
+
 module.exports = {
   lastfmLoginConnect: lastfmLoginConnect,
   lastfmLogin: lastfmLogin,
@@ -171,5 +180,6 @@ module.exports = {
   getArtistInfo: getArtistInfo,
   getArtistTopTracks: getArtistTopTracks,
   getArtistTopAlbums: getArtistTopAlbums,
-  getTrackInfo: getTrackInfo
+  getTrackInfo: getTrackInfo,
+  getTopTracks: getTopTracks
 }
