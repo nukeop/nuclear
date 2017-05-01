@@ -15,9 +15,12 @@ export default class Dashboard extends Component {
     return (
       <div className={styles.dashboard_container}>
         <Heading
-          text={'Best new music'}
+          text={'Top tracks'}
         />
         <TopTracksListContainer
+        />
+        <Heading
+          text={'Best new music'}
         />
         {
           this.props.bestNewAlbums.map((el, i) => {

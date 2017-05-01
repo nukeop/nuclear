@@ -11,6 +11,30 @@
   text-align: left;
 }
 
-.top_tracks_list_container>table>tr {
-  border-bottom: 1px solid #e74c3c;
+.top_tracks_list_item {
+  display: flex;
+  padding: 12px 0px 12px 0px;
+  border-bottom: 1px solid #ecf0f1;
+}
+
+.top_tracks_number {
+  padding: 20px 12px 20px 12px;
+  text-align: center;
+}
+
+.top_tracks_thumbnail {
+}
+
+.top_tracks_info {
+  flex: 1;
+  padding: 0px 0px 0px 12px;
+  text-align: left;
+}
+
+.top_tracks_artist {
+
+}
+
+.top_tracks_name {
+
 }

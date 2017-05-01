@@ -11,22 +11,22 @@ export default class TopTracksList extends Component {
     return(
       <div className={styles.top_tracks_list_container}>
         <table>
-          <thead>
-            <th><i className="fa fa-picture-o" /></th>
-            <th>Artist</th>
-            <th>Track</th>
-            <th>Playcount</th>
-          </thead>
           <tbody>
             {
-              this.props.topTracks.map((el, i) => {
+              this.props.topTracks
+              .slice(0, 10).map((el, i) => {
                 return (
                   <tr>
-                    <td><img src={el.image[0]['#text']} /></td>
-                    <td>{el.artist.name}</td>
-                    <td>{el.name}</td>
-                    <td>{el.playcount}</td>
-
+                    <td>
+                      <div className={styles.top_tracks_list_item}>
+                        <div className={styles.top_tracks_number}>{i}</div>
+                        <div className={styles.top_tracks_thumbnail}><img src={el.image[1]['#text']} /></div>
+                        <div className={styles.top_tracks_info}>
+                          <div className={styles.top_tracks_name}>{el.name}</div>
+                          <div className={styles.top_tracks_artist}>{el.artist.name}</div>
+                        </div>
+                      </div>
+                    </td>
                   </tr>
                 )
               })
