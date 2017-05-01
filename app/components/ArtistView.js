@@ -56,6 +56,14 @@ export default class ArtistView extends Component {
                 <div className={styles.artist_view_top_tracks_label}>Popular tracks</div>
                 <div className={styles.artist_view_top_tracks_list}>
                   <table style={{width: '100%'}}>
+                    <thead>
+                      <tr>
+                        <th><i className="fa fa-picture-o" /></th>
+                        <th style={{paddingLeft: '12px'}}>Track</th>
+                        <th>Playcount</th>
+                      </tr>
+                    </thead>
+                    <tbody>
                     {
                       this.props.artistTopTracks.slice(0, 5).map((el, i) => {
                         return (
@@ -67,6 +75,7 @@ export default class ArtistView extends Component {
                         );
                       })
                     }
+                  </tbody>
                   </table>
                 </div>
               </div>

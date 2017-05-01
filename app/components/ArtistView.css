@@ -79,7 +79,6 @@
 }
 
 .artist_view_top_track {
-  display: flex;
   padding: 0px 12px 0px 12px;
   margin: 0px;
   background-color: #00000000;
@@ -95,6 +94,7 @@
 .artist_view_top_track_name {
   width: 100%;
   margin: 0px 24px 0px 24px;
+  padding-left: 12px;
   text-align: left;
   white-space: nowrap;
   overflow: hidden;
