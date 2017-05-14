@@ -173,13 +173,19 @@ svg:hover path{
 
 .footer {
   margin: 0px;
-  padding: 8px 0px;
+  padding: 0px;
   width: 100%;
   font-size: 12px;
   text-align: center;
   color: #FAFAFA;
   font-variant: small-caps;
-  background: #8d53e7;
+}
+
+.footer>.container {
+  margin: 0px;
+  padding: 8px 0px;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
 }
 
 .footer a {
