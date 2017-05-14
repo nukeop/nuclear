@@ -4,8 +4,6 @@ html {
 }
 
 body {
-  background: url("bg.jpg") no-repeat fixed center;
-  background-size: cover;
   width: 100%;
   height: 100%;
   margin: 0px;
@@ -59,8 +57,6 @@ svg:hover path{
 .intro>.container {
   margin-bottom: 0px;
   width: 100%;
-  background-color: rgba(0, 0, 0, 0.3);
-  border-bottom: 1px solid #8e44ad;
 }
 
 .sources {
@@ -74,11 +70,9 @@ svg:hover path{
 .sources>.container {
   margin-top: 0px;
   margin-bottom: 0px;
-  padding-top: 12px;
-  padding-bottom: 36px;
+  padding-top: 60px;
+  padding-bottom: 72px;
   width: 100%;
-  background-color: rgba(0, 0, 0, 0.6);
-  border-bottom: 1px solid #8e44ad;
 }
 
 .lastfm {
@@ -92,12 +86,37 @@ svg:hover path{
 .lastfm>.container {
   margin-top: 0px;
   margin-bottom: 0px;
-  padding-top: 12px;
-  padding-bottom: 36px;
+  padding-top: 60px;
+  padding-bottom: 72px;
   width: 100%;
-  background-color: rgba(0, 0, 0, 0.3);
-  border-bottom: 1px solid #8e44ad;
   display: table;
+}
+
+.questions {
+  margin: 0px;
+  padding: 0px;
+  font-family: Questrial;
+  color: #FAFAFA;
+}
+
+.questions>.container {
+  text-align: center;
+  padding-top: 60px;
+  padding-bottom: 96px;
+  width: 100%;
+}
+
+.questions h1 {
+  font-size: 48px;
+  margin-bottom: 60px;
+}
+
+.questions a {
+  padding: 16px;
+  color: #FAFAFA;
+  font-size: 24px;
+  border: 1px #FAFAFA solid;
+  border-radius: 8px;
 }
 
 .subscribe {
@@ -114,8 +133,7 @@ svg:hover path{
   padding-top: 36px;
   padding-bottom: 36px;
   width: 100%;
-  background-color: rgba(0, 0, 0, 0.6);
-  border-bottom: 1px solid #8e44ad;
+  background-color: rgba(0, 0, 0, 0.3);
 }
 
 .clear {
@@ -154,15 +172,16 @@ svg:hover path{
 }
 
 .footer {
-  margin: 4px 0px;
-  padding: 4px 0px;
+  margin: 0px;
+  padding: 8px 0px;
   width: 100%;
   font-size: 12px;
   text-align: center;
   color: #FAFAFA;
   font-variant: small-caps;
+  background: #8d53e7;
 }
 
 .footer a {
-  color: #8d53e7;
+  color: #FAFAFA;
 }
