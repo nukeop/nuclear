@@ -92,6 +92,35 @@ svg:hover path{
   display: table;
 }
 
+.downloads{
+  padding-top: 60px;
+  margin-bottom: 0;
+  text-align: center;
+  padding-left: 150px;
+  padding-right: 150px;
+
+}
+
+
+.article{
+  border: 1px #FAFAFA solid;
+  border-radius: 8px;
+
+}
+
+
+.buttons{
+  text-align: center;
+  font-family: Questrial;
+  color: #FAFAFA;
+  font-size: 25px;
+  margin-left: 24px;
+  margin-right: 25px;
+}
+
+
+
+
 .questions {
   margin: 0px;
   padding: 0px;
