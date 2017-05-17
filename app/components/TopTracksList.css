@@ -2,39 +2,52 @@
   margin: 12px 12px 12px 12px;
   font-family: Questrial;
   font-size: 14px;
-  display: flex;
 }
 
 .top_tracks_list_container>table {
-  flex: 1;
   width: 100%;
   text-align: left;
 }
 
-.top_tracks_list_item {
-  display: flex;
+.top_tracks_row {
   padding: 12px 0px 12px 0px;
-  border-bottom: 1px solid #ecf0f1;
+  border-bottom: 1px solid #2a2b30;
 }
 
 .top_tracks_number {
   padding: 20px 12px 20px 12px;
-  text-align: center;
+  text-align: left;
+}
+
+.top_tracks_thumbnail_cell {
+  width: 64px;
 }
 
 .top_tracks_thumbnail {
+
 }
 
 .top_tracks_info {
-  flex: 1;
   padding: 0px 0px 0px 12px;
   text-align: left;
 }
 
 .top_tracks_artist {
+  color: #95a5a6;
+}
 
+.top_tracks_artist>a {
+  color: #95a5a6;
+}
+
+.top_tracks_artist>a:hover {
+  color: #ecf0f1;
 }
 
 .top_tracks_name {
 
+}
+
+.top_tracks_listeners {
+  text-align: right;
 }

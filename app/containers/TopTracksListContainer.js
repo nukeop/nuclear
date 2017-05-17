@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import TopTracksList from '../components/TopTracksList';
 
 const lastfm = require('../api/Lastfm');
+const sc = require('../api/SpotifyCharts');
 
 export default class TopTracksListContainer extends Component {
   constructor(props) {
@@ -14,9 +15,30 @@ export default class TopTracksListContainer extends Component {
   }
 
   componentDidMount() {
-    lastfm.getTopTracks((result) => {
-      this.setState({topTracks: result.data.tracks.track});
-      console.log(result.data.tracks.track);
+    sc.getDailyChart((result) => {
+
+      var tracks = [];
+      result.slice(0, 10).map((el) => {
+
+        var trackInfo = {
+          name: el[1],
+          artist: el[2],
+          listeners: el[3],
+          image: null
+        }
+
+        lastfm.getArtistInfo(el[2], (result) => {
+           trackInfo.image = result.data.artist.image;
+           tracks.push(trackInfo);
+
+           if (tracks.length == 10) {
+             this.setState({
+               topTracks: tracks.sort((a, b) => {return b.listeners-a.listeners})
+             });
+           }
+        });
+
+      })
     });
   }
 
