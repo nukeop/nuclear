@@ -48,6 +48,7 @@ export default class TopTracksListContainer extends Component {
       ? <div style={{lineHeight: '750px', height: '100%', width: '100%', fontSize: '48px'}}><i className='fa fa-spinner fa-pulse fa-fw' /></div>
       : <TopTracksList
         topTracks={this.state.topTracks}
+        switchToArtistView={this.props.switchToArtistView}
       />
     );
   }

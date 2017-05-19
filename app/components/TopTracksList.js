@@ -34,7 +34,14 @@ export default class TopTracksList extends Component {
                     <td>
                       <div className={styles.top_tracks_info}>
                         <div className={styles.top_tracks_name}>{el.name}</div>
-                        <div className={styles.top_tracks_artist}><a href="#">{el.artist}</a></div>
+                        <div className={styles.top_tracks_artist}>
+                          <a
+                            href="#"
+                            onClick={this.props.switchToArtistView.bind(null, el.artist)}
+                          >
+                            {el.artist}
+                          </a>
+                        </div>
                       </div>
                     </td>
                     <td>

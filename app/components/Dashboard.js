@@ -18,6 +18,7 @@ export default class Dashboard extends Component {
           text={'Top tracks'}
         />
         <TopTracksListContainer
+          switchToArtistView={this.props.switchToArtistView}
         />
         <Heading
           text={'Best new music'}
