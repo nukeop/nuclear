@@ -17,7 +17,7 @@ const SortableItem = SortableElement(({value, playTrack, renderTrackPopover, ope
         <span className={styles.album_view_track_number}>{value.position}</span>
       </td>
       <td className={styles.album_view_track_list_title}>{value.recording.title}</td>
-      <td classname={styles.album_view_track_list_length}>{Math.floor((value.length/1000)/60) + ':' + Math.floor((value.length/1000) - Math.floor((value.length/1000)/60)*60)}</td>
+      <td className={styles.album_view_track_list_length}>{Math.floor((value.length/1000)/60) + ':' + Math.floor((value.length/1000) - Math.floor((value.length/1000)/60)*60)}</td>
     </tr>)
   )
 );
