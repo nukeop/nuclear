@@ -23,8 +23,7 @@ const SortableItem = SortableElement(({song, ix, _this, renderPopover, openPopov
     renderPopover(
       song,
       (<tr className={rowClass} onContextMenu={openPopover} onDoubleClick={_this.props.changeSong.bind(_this, ix)}>
-        <td>{ix+1}</td>
-        <td><div className={styles.song_thumbnail_cell} style={{background: 'url(' + song.data.thumbnail + ') center/96px no-repeat'}} /></td>
+        <td style={{verticalAlign: "middle"}}><div className={styles.song_thumbnail_cell} style={{background: 'url(' + song.data.thumbnail + ') center/96px no-repeat'}} /></td>
         <td>{displayTitle}</td>
         <td>{song.data.length}</td>
       </tr>)
@@ -145,7 +144,6 @@ export default class QueueBar extends Component {
         <table className="table table-hover table-condensed">
           <thead>
             <tr>
-              <th>#</th>
               <th><i className="fa fa-camera-retro" /></th>
               <th>Title</th>
               <th>Length</th>

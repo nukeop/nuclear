@@ -42,8 +42,8 @@
 }
 
 .song_thumbnail_cell {
-  height: 48px !important;
-  width: 48px !important;
+  height: 36px !important;
+  width: 36px !important;
   border-radius: 32px;
 }
 
