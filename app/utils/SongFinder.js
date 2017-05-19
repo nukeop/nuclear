@@ -53,7 +53,10 @@ function getTrack(artist, title, length, callback) {
         yt.youtubeFetchVideoDetails(newItem, () => {
           var ytmillis = newItem.data.length.split(':');
           ytmillis = (ytmillis[0]*60 + 1*ytmillis[1]) * 1000;
-          var ratio = ytmillis/length;
+          var ratio = 1.0;
+          if (length !=0) {
+            ratio = ytmillis/length;
+          }
 
           if (Math.abs(1.0-ratio) < ratioTolerance) {
             var comparisonItem = {
