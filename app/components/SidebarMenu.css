@@ -1,5 +1,5 @@
 .sidebar {
-  z-index: 0;
+  z-index: 10;
   font-family: Questrial;
   font-size: 20px;
   font-weight: bold;
@@ -7,7 +7,6 @@
   width: 300px;
   height: 100%;
   overflow: hidden;
-  backdrop-filter: blur(20px);
   box-shadow: none !important;
   display: table !important;
 }
@@ -29,6 +28,37 @@
 .sidebar_brand_cell {
   padding-top: 16px;
   text-align: center;
+}
+
+.sidebar_search_cell {
+  width: 85%;
+  height: 36px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 24px;
+  margin-bottom: 0px;
+  border: 1px solid #ecf0f1;
+  background-color: transparent;
+  border-radius: 3px;
+}
+
+.sidebar_search_cell:focus {
+  border-color: #ecf0f1;
+}
+
+.sidebar_search_field {
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 0 10px;
+  background-color: transparent;
+  border: 0px;
+  font-weight: normal;
+}
+
+.sidebar_search_field:focus {
+  border: 0px;
 }
 
 .sidebar_navbar {

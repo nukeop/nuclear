@@ -1,0 +1,26 @@
+@keyframes slide_in {
+  0% {left: 0px;}
+  100% {left: 300px;}
+}
+
+@keyframes slide_out {
+  0% {left: 300px;}
+  100% {left: 0px;}
+}
+
+.search_sidebar_container {
+  position: absolute;
+  left: 300px;
+  top: 0px;
+  height: 100%;
+  animation: slide_in 0.5s ease-in-out;
+  backdrop-filter: none;
+}
+
+.search_sidebar {
+  position: relative;
+  width: 300px;
+  height: 100%;
+  background-color: #2a2a35;
+  overflow: scroll;
+}

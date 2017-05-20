@@ -10,3 +10,10 @@
 .container h2 {
   font-size: 5rem;
 }
+
+.home_container {
+  position: absolute;
+  display: flex;
+  height: 100%;
+  width: 100%;
+}

@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import Sidebar from 'react-sidebar';
+import DebounceInput from 'react-debounce-input';
+
 import CoverPreview from './CoverPreview';
 import Player from './Player';
+import SearchSidebarContainer from '../containers/SearchSidebarContainer';
 import styles from './SidebarMenu.css';
 
 const path = require('path');
@@ -10,6 +12,14 @@ const enums = require('../api/Enum');
 export default class SidebarMenu extends Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      searching: false
+    };
+  }
+
+  handleSearch(event, value) {
+    console.log(event.target.value);
   }
 
   renderGoBack() {
@@ -26,6 +36,20 @@ export default class SidebarMenu extends Component {
         <div className={styles.sidebar_brand_cell}>
         <img src={path.join(__dirname, "../media/nuclear/logo_full_light.png")} height="36"/>
         </div>
+
+        <div className={styles.sidebar_search_cell}>
+          <DebounceInput
+            className={styles.sidebar_search_field}
+            placeholder="Search..."
+            minLength={2}
+            debounceTimeout={500}
+            onChange={this.handleSearch}
+            autoFocus
+          />
+        </div>
+
+        {/* <SearchSidebarContainer /> */}
+
         <div className={styles.sidebar_options_container}>
         <table className={styles.sidebar_options}>
           <tr>
@@ -104,14 +128,8 @@ export default class SidebarMenu extends Component {
     );
 
     return (
-      <div>
-        <Sidebar
-          sidebar={contents}
-          docked={true}
-          open={true}
-          children=""
-          sidebarClassName={styles.sidebar}
-        />
+      <div className={styles.sidebar}>
+        {contents}
       </div>
     );
   }

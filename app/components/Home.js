@@ -376,7 +376,7 @@ export default class Home extends Component {
     }
 
     return (
-      <div>
+      <div className={styles.home_container}>
         <SidebarMenu
           playStatus={this.state.playStatus}
           togglePlayCallback={this.togglePlay.bind(this)}
