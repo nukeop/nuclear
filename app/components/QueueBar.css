@@ -1,15 +1,16 @@
 .queuebar_container {
-  position: absolute;
+  position: relative;
   margin-top: 10px;
-  height: 55%;
+  flex: 1 1 auto;
+  height: 0px;
   width: 100%;
   color: #ecf0f1;
   font-size: 14px;
+  overflow-y: auto;
 }
 
 .queuebar_table_container {
-  position: absolute;
-  height: 100%;
+  position: relative;
   width: 100%;
   margin-top: 10px;
   overflow-y: scroll;

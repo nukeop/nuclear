@@ -1,8 +1,8 @@
 .player_container {
   width: 100%;
-  height: 100px;
   text-align: center;
   display: table-row;
+  flex: 0 0 auto;
 }
 
 a.player_btn {
