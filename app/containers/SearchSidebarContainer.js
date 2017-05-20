@@ -8,6 +8,10 @@ export default class SearchSidebarContainer extends Component {
   }
 
   render() {
-    return <SearchSidebar />;
+    return(
+        <SearchSidebar
+          searchResults={this.props.searchResults}
+        />
+      );
   }
 }

@@ -9,17 +9,69 @@ import styles from './SidebarMenu.css';
 const path = require('path');
 const enums = require('../api/Enum');
 
+const lastfm = require('../api/Lastfm');
+
 export default class SidebarMenu extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      searching: false
+      searching: false,
+      searchValue: '',
+      searchSidebarOpen: false,
+      searchResults: null
     };
   }
 
   handleSearch(event, value) {
-    console.log(event.target.value);
+    this.setState({
+      searching: true,
+      searchValue: event.target.value
+    });
+
+    var albumPromise = new Promise((resolve, reject) => {
+
+      lastfm.albumSearch(this.state.searchValue, (response) => {
+        resolve({albums: response.data.results.albummatches});
+      }, 3);
+
+    });
+
+    var artistPromise = new Promise((resolve, reject) => {
+
+      lastfm.artistSearch(this.state.searchValue, (response) => {
+        resolve({artists: response.data.results.artistmatches});
+      }, 3);
+
+    });
+
+    var trackPromise = new Promise((resolve, reject) => {
+
+      lastfm.trackSearch(this.state.searchValue, (response) => {
+        resolve({tracks: response.data.results.trackmatches});
+      }, 3);
+
+    })
+
+    Promise.all([albumPromise, artistPromise, trackPromise])
+    .then(values => {
+      this.setState({
+        searching: false,
+        searchSidebarOpen: true,
+        searchResults: Object.assign(values[0], values[1], values[2])
+      });
+    });
+
+  }
+
+  handleClear(event, value) {
+    this.debounceInput.value = '';
+    this.setState({
+      searching: false,
+      searchValue: '',
+      searchSidebarOpen: true,
+      searchResults: null
+    });
   }
 
   renderGoBack() {
@@ -31,10 +83,21 @@ export default class SidebarMenu extends Component {
   }
 
   renderDefault() {
+
+    var spinnerStyle = {};
+    var clearStyle = {};
+
+    if (!this.state.searching) {
+      spinnerStyle.display = 'none';
+    }
+
+    if (this.state.searchValue.length == 0 || this.state.searching) {
+      clearStyle.display = 'none';
+    }
+
     var contents = [];
 
     contents.push(
-
       <div style={{flex: '0 0 auto'}}>
         <div className={styles.sidebar_brand_cell}>
           <img src={path.join(__dirname, "../media/nuclear/logo_full_light.png")} height="36"/>
@@ -46,12 +109,20 @@ export default class SidebarMenu extends Component {
             placeholder="Search..."
             minLength={2}
             debounceTimeout={500}
-            onChange={this.handleSearch}
+            onChange={this.handleSearch.bind(this)}
+            ref={(input) => { this.debounceInput = input; }}
+            value={this.state.searchValue}
             autoFocus
           />
+          <i style={spinnerStyle} className={`${styles.sidebar_search_spinner} ` + 'fa fa-spinner fa-pulse fa-fw'} />
+          <a style={clearStyle} href="#" onClick={this.handleClear.bind(this)} className={styles.sidebar_search_clear}>
+            <i className='fa fa-times' />
+          </a>
         </div>
 
-        {/* <SearchSidebarContainer /> */}
+        <SearchSidebarContainer
+          searchResults={this.state.searchResults}
+        />
       </div>
     );
 

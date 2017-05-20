@@ -18,9 +18,82 @@
 }
 
 .search_sidebar {
-  position: relative;
+  position: absolute;
   width: 300px;
   height: 100%;
+  background-color: #1e1e26;
+  overflow-y: scroll;
+}
+
+.search_sidebar>h3 {
+  margin: 20px 0px 10px 20px;
+  font-size: 20px;
+}
+
+.search_sidebar_artist_container {
+  font-size: 14px;
+  font-weight: normal;
   background-color: #2a2a35;
-  overflow: scroll;
+  padding: 4px;
+  margin: 12px;
+}
+
+.search_sidebar_artist_name {
+  margin: 16px;
+}
+
+.search_sidebar_track_container {
+  font-size: 14px;
+  font-weight: normal;
+  background-color: #2a2a35;
+  padding: 4px;
+  margin: 12px;
+  display: flex;
+  flex-flow: row;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.search_sidebar_track_info {
+  margin: auto 16px auto 16px;
+  width: 0px;
+  flex: 1 1 auto;
+}
+
+.search_sidebar_track_name {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.search_sidebar_track_artist {
+  color: #95a5a6;
+}
+
+.search_sidebar_album_container {
+  font-size: 14px;
+  font-weight: normal;
+  background-color: #2a2a35;
+  padding: 4px;
+  margin: 12px;
+  display: flex;
+  flex-flow: row;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.search_sidebar_album_info {
+  margin: auto 16px auto 16px;
+  width: 0px;
+  flex: 1 1 auto;
+}
+
+.search_sidebar_album_name {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.search_sidebar_album_artist {
+  color: #95a5a6;
 }

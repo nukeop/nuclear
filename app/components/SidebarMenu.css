@@ -1,5 +1,6 @@
 .sidebar {
-  z-index: 10;
+  position: absolute;
+  z-index: 50;
   font-family: Questrial;
   font-size: 20px;
   font-weight: bold;
@@ -55,6 +56,26 @@
   background-color: transparent;
   border: 0px;
   font-weight: normal;
+}
+
+.sidebar_search_spinner {
+  position: absolute;
+  display: inline-block;
+  top: 84px;
+  left: 245px;
+  text-align: center;
+}
+
+.sidebar_search_clear {
+  position: absolute;
+  display: inline-block;
+  top: 80px;
+  left: 250px;
+  text-align: center;
+}
+
+.sidebar_visible {
+  display: inline-block;
 }
 
 .sidebar_search_field:focus {

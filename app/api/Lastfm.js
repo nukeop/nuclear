@@ -86,13 +86,19 @@ function getTrackInfo(artist, track, callback) {
   });
 }
 
-function artistSearch(artist, callback) {
-  Axios.get(addApiKey(
+function artistSearch(artist, callback, limit) {
+  var url = addApiKey(
     scrobblingApiUrl +
     '?method=artist.search&artist=' +
     encodeURIComponent(artist) +
     '&format=json'
-  ))
+  );
+
+  if (limit !== undefined) {
+    url += '&limit=' + limit;
+  }
+
+  Axios.get(url)
   .then((response) => {
     callback(response);
   });
@@ -134,13 +140,19 @@ function getArtistTopAlbums(artist, callback) {
   });
 }
 
-function albumSearch(album, callback) {
-  Axios.get(addApiKey(
+function albumSearch(album, callback, limit) {
+  var url = addApiKey(
     scrobblingApiUrl +
     '?method=album.search&album=' +
     encodeURIComponent(album) +
     '&format=json'
-  ))
+  );
+
+  if (limit !== undefined) {
+    url += '&limit=' + limit;
+  }
+
+  Axios.get(url)
   .then((response) => {
     callback(response);
   });
@@ -169,6 +181,24 @@ function getTopTracks(callback) {
   });
 }
 
+function trackSearch(track, callback, limit) {
+  var url = addApiKey(
+    scrobblingApiUrl +
+    '?method=track.search&track=' +
+    encodeURIComponent(track) +
+    '&format=json'
+  );
+
+  if (limit !== undefined) {
+    url += '&limit=' + limit;
+  }
+
+  Axios.get(url)
+  .then((response) => {
+    callback(response);
+  });
+}
+
 module.exports = {
   lastfmLoginConnect: lastfmLoginConnect,
   lastfmLogin: lastfmLogin,
@@ -177,6 +207,7 @@ module.exports = {
   getAlbumInfo: getAlbumInfo,
   albumSearch: albumSearch,
   artistSearch: artistSearch,
+  trackSearch: trackSearch,
   getArtistInfo: getArtistInfo,
   getArtistTopTracks: getArtistTopTracks,
   getArtistTopAlbums: getArtistTopAlbums,
