@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import ArtistView from '../components/ArtistView';
 
 const lastfm = require('../api/Lastfm');
+const songFinder = require('../utils/SongFinder');
 
 export default class ArtistViewContainer extends Component {
   constructor(props) {
@@ -61,6 +62,24 @@ export default class ArtistViewContainer extends Component {
 
   }
 
+  findTrack(track, callback) {
+    songFinder.getTrack(track.artist.name, track.name, 0, (err, track) => {
+      if (err) {
+        this.props.home.showAlertError(err);
+      } else {
+        callback(track);
+      }
+    });
+  }
+
+  playTrack(track, event, value) {
+    this.findTrack(track, this.props.home.playNow.bind(this.props.home));
+  }
+
+  addTrackToQueue(track) {
+    this.findTrack(track, this.props.home.addToQueue.bind(this.props.home));
+  }
+
   render() {
     return (
       Object.keys(this.state).some((key) => {return (this.state[key] === null);})
@@ -72,6 +91,8 @@ export default class ArtistViewContainer extends Component {
           goToAlbum={this.goToAlbum.bind(this)}
           addAlbumToQueue={this.props.addAlbumToQueue.bind(this)}
           switchToArtistView={this.props.switchToArtistView}
+          playTrack={this.playTrack.bind(this)}
+          addTrackToQueue={this.addTrackToQueue.bind(this)}
         />
     );
   }

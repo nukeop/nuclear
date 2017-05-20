@@ -58,7 +58,9 @@ export default class ArtistView extends Component {
                   <table style={{width: '100%'}}>
                     <thead>
                       <tr>
-                        <th><i className="fa fa-picture-o" /></th>
+                        <th> </th>
+                        <th> </th>
+                        <th> </th>
                         <th style={{paddingLeft: '12px'}}>Track</th>
                         <th>Playcount</th>
                       </tr>
@@ -69,6 +71,16 @@ export default class ArtistView extends Component {
                         return (
                           <tr className={styles.artist_view_top_track}>
                             <td><img className={styles.artist_view_top_track_cover} src={el.albumCover} /></td>
+                            <td className={styles.artist_view_play_button}>
+                              <a href="#" onClick={this.props.playTrack.bind(null, el)}>
+                                <i className="fa fa-play" />
+                              </a>
+                            </td>
+                            <td className={styles.artist_view_add_button}>
+                              <a href="#" onClick={this.props.addTrackToQueue.bind(null, el)}>
+                                <i className="fa fa-plus" />
+                              </a>
+                            </td>
                             <td className={styles.artist_view_top_track_name}>{el.name}</td>
                             <td>{el.listeners}</td>
                           </tr>
