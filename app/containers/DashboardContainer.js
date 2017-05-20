@@ -26,6 +26,7 @@ export default class DashboardContainer extends Component {
       : <Dashboard
           bestNewAlbums={this.state.bestNewAlbums}
           switchToArtistView={this.props.switchToArtistView}
+          home={this.props.home}
         />
     );
   }

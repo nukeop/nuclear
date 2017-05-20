@@ -218,6 +218,8 @@ export default class MainContent extends Component {
       return (
         <DashboardContainer
           switchToArtistView={this.switchToArtistView.bind(this)}
+          playNow={this.props.playNow}
+          home={this.props.home}
         />
       );
       default:

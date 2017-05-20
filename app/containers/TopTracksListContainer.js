@@ -4,6 +4,7 @@ import TopTracksList from '../components/TopTracksList';
 
 const lastfm = require('../api/Lastfm');
 const sc = require('../api/SpotifyCharts');
+const songFinder = require('../utils/SongFinder');
 
 export default class TopTracksListContainer extends Component {
   constructor(props) {
@@ -42,6 +43,24 @@ export default class TopTracksListContainer extends Component {
     });
   }
 
+  findTrack(track, callback) {
+    songFinder.getTrack(track.artist, track.name, 0, (err, track) => {
+      if (err) {
+        this.props.home.showAlertError(err);
+      } else {
+        callback(track);
+      }
+    });
+  }
+
+  playTrack(track, event, value) {
+    this.findTrack(track, this.props.home.playNow.bind(this.props.home));
+  }
+
+  addTrackToQueue(track) {
+    this.findTrack(track, this.props.home.addToQueue.bind(this.props.home));
+  }
+
   render() {
     return (
       this.state.topTracks===null
@@ -49,6 +68,8 @@ export default class TopTracksListContainer extends Component {
       : <TopTracksList
         topTracks={this.state.topTracks}
         switchToArtistView={this.props.switchToArtistView}
+        playTrack={this.playTrack.bind(this)}
+        addTrackToQueue={this.addTrackToQueue.bind(this)}
       />
     );
   }

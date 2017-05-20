@@ -13,10 +13,11 @@ export default class TopTracksList extends Component {
         <table>
           <thead>
             <tr>
-              <th> </th>
-              <th> </th>
-              <th>Track</th>
-              <th>Listeners</th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th style={{textAlign: "left"}}>Track</th>
+              <th style={{textAlign: "right"}}>Listeners</th>
             </tr>
           </thead>
           <tbody>
@@ -28,8 +29,28 @@ export default class TopTracksList extends Component {
                     <td className={styles.top_tracks_thumbnail_cell}>
                       <img className={styles.top_tracks_thumbnail} src={el.image[1]['#text']} />
                     </td>
-                    <td>
-                      <div className={styles.top_tracks_number}>{i+1}</div>
+                    <td className={styles.top_tracks_number_cell}>
+                      <span className={styles.top_tracks_play_button}>
+                        <a
+                          href="#"
+                          onClick={this.props.playTrack.bind(null, el)}
+                        >
+                          <i className="fa fa-play" />
+                        </a>
+                      </span>
+                      <span className={styles.top_tracks_number}>
+                        {i+1}
+                      </span>
+                    </td>
+                    <td style={{verticalAlign: "middle"}}>
+                      <div className={styles.top_tracks_add_button}>
+                        <a
+                          href="#"
+                          onClick={this.props.addTrackToQueue.bind(null, el)}
+                        >
+                          <i className="fa fa-plus" />
+                        </a>
+                      </div>
                     </td>
                     <td>
                       <div className={styles.top_tracks_info}>

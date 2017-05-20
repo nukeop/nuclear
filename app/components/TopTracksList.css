@@ -14,9 +14,32 @@
   border-bottom: 1px solid #2a2b30;
 }
 
+.top_tracks_number_cell {
+  vertical-align: middle;
+  width: 40px;
+}
+
+.top_tracks_number_cell:hover .top_tracks_number {
+  display: none;
+}
+
+.top_tracks_number_cell:hover .top_tracks_play_button {
+  display: inline;
+}
+
 .top_tracks_number {
+  text-align: center;
   padding: 20px 0px 20px 16px;
-  text-align: left;
+}
+
+.top_tracks_play_button {
+  text-align: center;
+  padding: 20px 0px 20px 16px;
+  display: none;
+}
+
+.top_tracks_add_button {
+  text-align: center;
 }
 
 .top_tracks_thumbnail_cell {
