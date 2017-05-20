@@ -1,6 +1,9 @@
 .download_queue {
   font-size: 14px;
   margin-top: 10px;
+  flex: 1 1 auto;
+  height: 0px;
+  overflow-y: auto;
 }
 
 .download_queued {
