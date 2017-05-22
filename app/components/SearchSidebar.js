@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import SearchSidebarItem from './SearchSidebarItem';
+
 import styles from './SearchSidebar.css';
 
 export default class SearchSidebar extends Component {
@@ -21,10 +23,10 @@ export default class SearchSidebar extends Component {
               {
                 this.props.searchResults.artists.artist.map((el, i) => {
                   return (
-                    <div className={styles.search_sidebar_artist_container}>
-                      <img src={el.image[1]['#text']} />
-                      <span className={styles.search_sidebar_artist_name}>{el.name}</span>
-                    </div>
+                    <SearchSidebarItem
+                      thumbnail={el.image[1]['#text']}
+                      name={el.name}
+                    />
                   );
                 })
               }
@@ -32,13 +34,11 @@ export default class SearchSidebar extends Component {
               {
                 this.props.searchResults.tracks.track.map((el, i) => {
                   return (
-                    <div className={styles.search_sidebar_track_container}>
-                      <img src={el.image[1]['#text']} />
-                      <div className={styles.search_sidebar_track_info}>
-                        <div className={styles.search_sidebar_track_name}>{el.name}</div>
-                        <div className={styles.search_sidebar_track_artist}>by {el.artist}</div>
-                      </div>
-                    </div>
+                    <SearchSidebarItem
+                      thumbnail={el.image[1]['#text']}
+                      name={el.name}
+                      artist={el.artist}
+                    />
                   );
                 })
               }
@@ -46,13 +46,11 @@ export default class SearchSidebar extends Component {
               {
                 this.props.searchResults.albums.album.map((el, i) => {
                   return (
-                    <div className={styles.search_sidebar_album_container}>
-                      <img src={el.image[1]['#text']} />
-                      <div className={styles.search_sidebar_album_info}>
-                        <div className={styles.search_sidebar_album_name}>{el.name}</div>
-                        <div className={styles.search_sidebar_album_artist}>by {el.artist}</div>
-                      </div>
-                    </div>
+                    <SearchSidebarItem
+                      thumbnail={el.image[1]['#text']}
+                      name={el.name}
+                      artist={el.artist}
+                    />
                   );
                 })
               }

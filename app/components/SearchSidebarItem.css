@@ -1,0 +1,58 @@
+@keyframes highlight {
+  0% {
+    background-color: #2a2a35;
+  }
+  100% {
+    background-color: #31313d;
+  }
+}
+
+.sidebar_item_container {
+  font-size: 14px;
+  font-weight: normal;
+  background-color: #2a2a35;
+  padding: 4px;
+  margin: 12px;
+  display: flex;
+  flex-flow: row;
+  white-space: nowrap;
+  overflow: hidden;
+  border-radius: 3px;
+}
+
+.sidebar_item_container:hover {
+  cursor: pointer;
+  animation: highlight 0.5s;
+  background-color: #31313d;
+}
+
+.sidebar_item_info {
+  margin: auto 16px auto 16px;
+  width: 0px;
+  flex: 1 1 auto;
+}
+
+.sidebar_item_name {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sidebar_item_name>a {
+  color: #ecf0f1;
+}
+
+.sidebar_item_artist {
+  color: #95a5a6;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sidebar_item_artist>a {
+  color: #95a5a6;
+}
+
+.sidebar_item_artist>a:hover {
+  color: #ecf0f1;
+}
