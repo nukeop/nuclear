@@ -8,16 +8,24 @@ export default class SearchSidebarItem extends Component {
   }
 
   render() {
+    console.log(this.props.thumbnail);
     return (
       <div className={styles.sidebar_item_container}>
-        <img src={this.props.thumbnail} />
+        <img
+          className={styles.sidebar_item_thumbnail}
+          src={
+            this.props.thumbnail !== ''
+            ? this.props.thumbnail
+            : '../media/img/default-search-item.png'
+          }
+        />
         <div className={styles.sidebar_item_info} >
 
           <div className={styles.sidebar_item_name}>
             <a href='#'>{this.props.name}</a>
           </div>
           {
-            this.props.artist !== undefined
+            this.props.artist != undefined
             ? <div className={styles.sidebar_item_artist}>
               by <a href='#'>{this.props.artist}</a>
             </div>

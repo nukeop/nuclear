@@ -26,6 +26,11 @@
   background-color: #31313d;
 }
 
+.sidebar_item_thumbnail {
+  width: 64px;
+  height: 64px;
+}
+
 .sidebar_item_info {
   margin: auto 16px auto 16px;
   width: 0px;
