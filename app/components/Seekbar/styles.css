@@ -1,0 +1,11 @@
+.seekbar_container {
+  flex: 0 0 auto;
+  background-color: transparent;
+  height: 4px;
+  cursor: pointer;
+}
+
+.seekbar_fill {
+  height: 4px;
+  background-color: #ecf0f1;
+}

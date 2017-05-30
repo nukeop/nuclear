@@ -9,6 +9,7 @@ import VerticalPanel from './components/VerticalPanel';
 import Spacer from './components/Spacer';
 
 import PlayerControls from './components/PlayerControls';
+import Seekbar from './components/Seekbar';
 
 class App extends React.Component {
   render() {
@@ -21,10 +22,14 @@ class App extends React.Component {
           <VerticalPanel className={styles.right_panel}/>
         </div>
         <Footer className={styles.footer}>
-          <Spacer />
-          <PlayerControls />
-          <Spacer />
+          <Seekbar fill="30%"/>
+          <div className={styles.footer_wrapper}>
+            <Spacer />
+            <PlayerControls />
+            <Spacer />
+          </div>
         </Footer>
+
       </div>
     );
   }
