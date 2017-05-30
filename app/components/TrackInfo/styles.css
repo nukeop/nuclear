@@ -1,0 +1,19 @@
+.track_info_container {
+  display: flex;
+  flex-flow: column;
+  margin: 10px 20px;
+  color: #ecf0f1;
+  font-family: 'Cabin';
+}
+
+.track_name {
+  flex: 1 1 auto;
+  margin-bottom: 10px;
+  font-size: 22px;
+}
+
+.artist_name {
+  flex: 1 1 auto;
+  font-size: 16px;
+  color: rgba(189, 195, 199, 0.5);
+}

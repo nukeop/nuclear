@@ -11,6 +11,7 @@ import Spacer from './components/Spacer';
 import Cover from './components/Cover';
 import PlayerControls from './components/PlayerControls';
 import Seekbar from './components/Seekbar';
+import TrackInfo from './components/TrackInfo';
 
 class App extends React.Component {
   render() {
@@ -26,6 +27,7 @@ class App extends React.Component {
           <Seekbar fill="30%"/>
           <div className={styles.footer_wrapper}>
             <Cover cover="http://cdn.theobelisk.net/obelisk/wp-content/uploads/2012/01/vol4cover.jpg"/>
+            <TrackInfo track="Supernaut" artist="Black Sabbath" />
             <Spacer />
             <PlayerControls />
             <Spacer />

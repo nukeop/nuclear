@@ -1,5 +1,6 @@
 const webpack = require('webpack');
 const path = require('path');
+const GoogleFontsPlugin = require("google-fonts-webpack-plugin");
 
 const BUILD_DIR = path.resolve(__dirname, 'dist');
 const APP_DIR = path.resolve(__dirname, 'app');
@@ -36,7 +37,12 @@ const config = {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NamedModulesPlugin()
+    new webpack.NamedModulesPlugin(),
+    new GoogleFontsPlugin({
+      fonts: [
+        { family: 'cabin', variants: ['regular'] }
+      ]
+    })
   ]
 };
 
