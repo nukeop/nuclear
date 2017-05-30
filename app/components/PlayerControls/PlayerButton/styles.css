@@ -1,0 +1,15 @@
+.player_button_container {
+  width: 60px;
+  height: 60px;
+  color: #ecf0f1;
+  font-size: 30px;
+  flex: 0 0 auto;
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  text-align: center;
+}
+
+.player_button_container span {
+  flex: 1 1 auto;
+}

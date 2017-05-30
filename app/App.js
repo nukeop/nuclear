@@ -6,6 +6,9 @@ import styles from './styles.css';
 import Footer from './components/Footer';
 import Navbar from './components/Navbar';
 import VerticalPanel from './components/VerticalPanel';
+import Spacer from './components/Spacer';
+
+import PlayerControls from './components/PlayerControls';
 
 class App extends React.Component {
   render() {
@@ -17,7 +20,11 @@ class App extends React.Component {
           <VerticalPanel className={styles.center_panel}/>
           <VerticalPanel className={styles.right_panel}/>
         </div>
-        <Footer className={styles.footer}/>
+        <Footer className={styles.footer}>
+          <Spacer />
+          <PlayerControls />
+          <Spacer />
+        </Footer>
       </div>
     );
   }

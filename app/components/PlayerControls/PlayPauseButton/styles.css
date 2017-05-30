@@ -1,0 +1,17 @@
+.play_pause_button_container {
+  width: 56px;
+  height: 56px;
+  color: #ecf0f1;
+  font-size: 36px;
+  flex: 0 0 auto;
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  border: 2px solid rgba(189, 195, 199, 0.24);
+  border-radius: 50px;
+  text-align: center;
+}
+
+.play_pause_button_container span {
+  flex: 1 1 auto;
+}
