@@ -49,9 +49,16 @@
   flex-flow: column;
 }
 
-.footer_wrapper {
+.footer_horizontal {
   display: flex;
   flex-flow: row;
   flex: 1 1 auto;
   align-items: center;
+}
+
+.track_info_wrapper {
+  display: flex;
+  flex-flow: row;
+  flex: 1 1 auto;
+  width: 0px;
 }

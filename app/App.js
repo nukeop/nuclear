@@ -25,10 +25,11 @@ class App extends React.Component {
         </div>
         <Footer className={styles.footer}>
           <Seekbar fill="30%"/>
-          <div className={styles.footer_wrapper}>
-            <Cover cover="http://cdn.theobelisk.net/obelisk/wp-content/uploads/2012/01/vol4cover.jpg"/>
-            <TrackInfo track="Supernaut" artist="Black Sabbath" />
-            <Spacer />
+          <div className={styles.footer_horizontal}>
+            <div className={styles.track_info_wrapper}>
+              <Cover cover="http://cdn.theobelisk.net/obelisk/wp-content/uploads/2012/01/vol4cover.jpg"/>
+              <TrackInfo track="Supernaut" artist="Black Sabbath" />
+            </div>
             <PlayerControls />
             <Spacer />
           </div>
