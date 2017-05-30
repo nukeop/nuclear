@@ -13,26 +13,36 @@
 }
 
 .navbar {
-  background-color: red;
-  height: 100px;
+  background-color: #2c3e50;
+  height: 50px;
+  -webkit-app-region: drag;
+  box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.18), 0px 5px 20px 0px rgba(0, 0, 0, 0.09);
+  z-index: 20;
 }
 
 .left_panel {
-  background-color: yellow;
+  background-color: #34495e;
   width: 300px;
+  box-shadow: 5px 0px 5px 0px rgba(0, 0, 0, 0.18), 5px 0px 20px 0px rgba(0, 0, 0, 0.09);
+  z-index: 10;
 }
 
 .center_panel {
-  background-color: green;
+  background-color: #34495e;
   flex: 1 1 auto;
+
 }
 
 .right_panel {
-  background-color: blue;
+  background-color: #34495e;
   width: 300px;
+  box-shadow: -5px 0px 5px 0px rgba(0, 0, 0, 0.18), -5px 0px 20px 0px rgba(0, 0, 0, 0.09);
+  z-index: 10;
 }
 
 .footer {
-  background-color: purple;
-  height: 100px;
+  background-color: #2c3e50;
+  height: 50px;
+  box-shadow: 0px -5px 5px 0px rgba(0, 0, 0, 0.18), 0px -10px 20px 0px rgba(0, 0, 0, 0.09);
+  z-index: 20;
 }
