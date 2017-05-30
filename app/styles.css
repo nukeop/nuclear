@@ -1,15 +1,38 @@
 .app_container {
-
-}
-
-.panel_container {
   position: absolute;
   height: 100%;
   width: 100%;
   display: flex;
+  flex-flow: column;
+}
+
+.panel_container {
+  flex: 1 1 auto;
+  display: flex;
   flex-flow: row;
 }
 
+.navbar {
+  background-color: red;
+  height: 100px;
+}
+
 .left_panel {
-  
+  background-color: yellow;
+  width: 300px;
+}
+
+.center_panel {
+  background-color: green;
+  flex: 1 1 auto;
+}
+
+.right_panel {
+  background-color: blue;
+  width: 300px;
+}
+
+.footer {
+  background-color: purple;
+  height: 100px;
 }

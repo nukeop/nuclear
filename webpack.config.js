@@ -1,14 +1,16 @@
 const webpack = require('webpack');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const path = require('path');
 
 const BUILD_DIR = path.resolve(__dirname, 'dist');
 const APP_DIR = path.resolve(__dirname, 'app');
 
-module.exports = {
-  entry: {
-    app: path.resolve(APP_DIR, 'index.js')
-  },
+const config = {
+  entry: [
+    "react-hot-loader/patch",
+    'webpack-dev-server/client?http://localhost:8080',
+    'webpack/hot/only-dev-server',
+    path.resolve(APP_DIR, 'index.js')
+  ],
   output: {
     path: BUILD_DIR,
     filename: 'bundle.js',
@@ -37,3 +39,5 @@ module.exports = {
     new webpack.NamedModulesPlugin()
   ]
 };
+
+module.exports = config;

@@ -36,6 +36,7 @@
     "css-loader": "^0.28.4",
     "electron": "^1.6.10",
     "extract-text-webpack-plugin": "^2.1.0",
+    "react-hot-loader": "next",
     "react-redux": "^5.0.5",
     "react-router": "^4.1.1",
     "react-router-dom": "^4.1.1",
