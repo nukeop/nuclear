@@ -8,6 +8,8 @@ import Navbar from './components/Navbar';
 import VerticalPanel from './components/VerticalPanel';
 import Spacer from './components/Spacer';
 
+import SearchBox from './components/SearchBox';
+
 import Cover from './components/Cover';
 import PlayerControls from './components/PlayerControls';
 import Seekbar from './components/Seekbar';
@@ -17,7 +19,12 @@ class App extends React.Component {
   render() {
     return (
       <div className={styles.app_container}>
-        <Navbar className={styles.navbar}/>
+        <Navbar className={styles.navbar}>
+          <SearchBox />
+          <Spacer />
+          <Spacer />
+          <Spacer />
+        </Navbar>
         <div className={styles.panel_container}>
           <VerticalPanel className={styles.left_panel}/>
           <VerticalPanel className={styles.center_panel}/>

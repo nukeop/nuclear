@@ -18,6 +18,8 @@
   -webkit-app-region: drag;
   box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.18), 0px 5px 20px 0px rgba(0, 0, 0, 0.09);
   z-index: 20;
+  display: flex;
+  flex-flow: row;
 }
 
 .left_panel {

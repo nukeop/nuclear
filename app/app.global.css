@@ -4,6 +4,7 @@ html {
   height: 100%;
   -webkit-user-select: none;
   cursor: default;
+  font-family: 'Cabin';
 }
 
 body {
