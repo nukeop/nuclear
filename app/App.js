@@ -8,6 +8,7 @@ import Navbar from './components/Navbar';
 import VerticalPanel from './components/VerticalPanel';
 import Spacer from './components/Spacer';
 
+import Cover from './components/Cover';
 import PlayerControls from './components/PlayerControls';
 import Seekbar from './components/Seekbar';
 
@@ -24,6 +25,7 @@ class App extends React.Component {
         <Footer className={styles.footer}>
           <Seekbar fill="30%"/>
           <div className={styles.footer_wrapper}>
+            <Cover cover="http://cdn.theobelisk.net/obelisk/wp-content/uploads/2012/01/vol4cover.jpg"/>
             <Spacer />
             <PlayerControls />
             <Spacer />

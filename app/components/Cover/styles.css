@@ -1,0 +1,10 @@
+.cover_container {
+  flex: 0 0 auto;
+  width: 76px;
+  height: 76px;
+}
+
+.cover_container img {
+  width: 76px;
+  height: 76px;
+}
