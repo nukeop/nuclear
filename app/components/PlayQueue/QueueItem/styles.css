@@ -29,13 +29,14 @@
 
   white-space: nowrap;
   overflow: hidden;
-text-overflow: ellipsis;
+  text-overflow: ellipsis;
 }
 
 .name_container {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  margin-bottom: 6px;
 }
 
 .artist_container {

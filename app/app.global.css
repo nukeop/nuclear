@@ -13,3 +13,8 @@ body {
   height: 100%;
   margin: 0px;
 }
+
+a {
+  color: #f8f8f2;
+  text-decoration: none;
+}
