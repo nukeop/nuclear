@@ -4,7 +4,8 @@
   "description": "",
   "main": "main.js",
   "scripts": {
-    "start": "electron .",
+    "start": "npm-run-all --parallel watch electron",
+    "electron": "electron .",
     "watch": "webpack-dev-server --inline",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -38,6 +39,7 @@
     "electron": "^1.6.10",
     "extract-text-webpack-plugin": "^2.1.0",
     "google-fonts-webpack-plugin": "^0.3.2",
+    "npm-run-all": "^4.0.2",
     "react-fontawesome": "^1.6.1",
     "react-hot-loader": "next",
     "react-redux": "^5.0.5",

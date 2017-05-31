@@ -9,8 +9,8 @@
   display: flex;
   align-items: center;
   margin: 12px 0px 12px 12px;
-  color: #ecf0f1;
-  background-color: #9b59b6;
+  color: #f8f8f2;
+  background-color: #6272a4;
   width: 30px;
   height: 30px;
   border-radius: 2px 0px 0px 2px;
@@ -33,8 +33,8 @@
   border-radius: 0px 2px 2px 0px;
   height: 30px;
   border: none;
-  color: #ecf0f1;
-  background-color: #34495e;
+  color: #f8f8f2;
+  background-color: #282a36;
   font-family: Cabin;
   font-size: 16px;
   outline: none;

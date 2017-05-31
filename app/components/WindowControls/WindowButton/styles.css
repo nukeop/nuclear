@@ -1,16 +1,18 @@
-.close_button_container {
+.window_button_container {
   flex: 0 0 auto;
-  width: 50px;
-  height: 50px;
+  width: 30px;
+  height: 30px;
   display: flex;
   align-items: center;
-  color: #ecf0f1;
-  font-size: 24px;
+  color: #f8f8f2;
+  font-size: 16px;
   cursor: pointer;
+  -webkit-app-region: no-drag;
+  margin-right: 10px;
 }
 
 
-.close_button_container span {
+.window_button_container span {
   width: 100%;
   text-align: center;
 }

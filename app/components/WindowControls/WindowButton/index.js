@@ -9,7 +9,7 @@ class WindowButton extends React.Component {
     return (
       <div
         style={{backgroundColor: this.props.color}}
-        className={styles.close_button_container}
+        className={styles.window_button_container}
         onClick={this.props.onClick}
       >
         <FontAwesome name={this.props.icon} />
