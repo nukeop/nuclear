@@ -13,7 +13,7 @@
   background-color: #9b59b6;
   width: 30px;
   height: 30px;
-  border-radius: 2px;
+  border-radius: 2px 0px 0px 2px;
 }
 
 .search_box_container span:before {
@@ -28,9 +28,9 @@
 
 .search_box_container input {
   flex: 1 1 auto;
-  margin: 12px;
+  margin: 12px 0px;
   padding: 0px 12px;
-  border-radius: 2px;
+  border-radius: 0px 2px 2px 0px;
   height: 30px;
   border: none;
   color: #ecf0f1;

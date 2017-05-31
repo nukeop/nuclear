@@ -1,0 +1,16 @@
+.close_button_container {
+  flex: 0 0 auto;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  color: #ecf0f1;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+
+.close_button_container span {
+  width: 100%;
+  text-align: center;
+}

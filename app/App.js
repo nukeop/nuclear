@@ -14,6 +14,7 @@ import Cover from './components/Cover';
 import PlayerControls from './components/PlayerControls';
 import Seekbar from './components/Seekbar';
 import TrackInfo from './components/TrackInfo';
+import WindowControls from './components/WindowControls';
 
 class App extends React.Component {
   render() {
@@ -23,7 +24,7 @@ class App extends React.Component {
           <SearchBox />
           <Spacer />
           <Spacer />
-          <Spacer />
+          <WindowControls />
         </Navbar>
         <div className={styles.panel_container}>
           <VerticalPanel className={styles.left_panel}/>
