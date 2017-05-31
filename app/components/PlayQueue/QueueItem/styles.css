@@ -1,0 +1,47 @@
+.queue_item_container {
+  flex: 0 0 auto;
+  display: flex;
+  flex-flow: row;
+  margin: 8px;
+  background-color: rgba(248, 248, 242, 0.08);
+  border-radius: 2px;
+}
+
+.thumbnail_container {
+  flex: 0 0 auto;
+  width: 48px;
+  height: 48px;
+  margin: 6px;
+}
+
+.thumbnail_container img {
+  width: 48px;
+  height: 48px;
+  border-radius: 48px;
+}
+
+.item_info_container {
+  flex: 1 1 auto;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  margin: 6px;
+
+  white-space: nowrap;
+  overflow: hidden;
+text-overflow: ellipsis;
+}
+
+.name_container {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.artist_container {
+  color: rgba(248, 248, 242, 0.5);
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

@@ -12,9 +12,12 @@ import SearchBox from './components/SearchBox';
 
 import Cover from './components/Cover';
 import PlayerControls from './components/PlayerControls';
+import PlayQueue from './components/PlayQueue';
 import Seekbar from './components/Seekbar';
 import TrackInfo from './components/TrackInfo';
 import WindowControls from './components/WindowControls';
+
+import { queueData } from './mocks/queueMock';
 
 class App extends React.Component {
   render() {
@@ -29,7 +32,9 @@ class App extends React.Component {
         <div className={styles.panel_container}>
           <VerticalPanel className={styles.left_panel}/>
           <VerticalPanel className={styles.center_panel}/>
-          <VerticalPanel className={styles.right_panel}/>
+          <VerticalPanel className={styles.right_panel}>
+            <PlayQueue items={queueData}/>
+          </VerticalPanel>
         </div>
         <Footer className={styles.footer}>
           <Seekbar fill="30%"/>
