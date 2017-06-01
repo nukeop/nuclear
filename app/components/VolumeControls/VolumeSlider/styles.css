@@ -1,0 +1,21 @@
+.volume_slider_container {
+  position: relative;
+  flex: 1 1 auto;
+  height: 4px;
+
+}
+
+.volume_slider_bg {
+  position: absolute;
+  background-color: rgba(248, 248, 242, 0.25);
+  border-radius: 2px;
+  height: 100%;
+  width: 100%;
+}
+
+.volume_slider_fill {
+  top: 0;
+  background-color: rgba(248, 248, 242, 1);
+  border-radius: 2px;
+  height: 4px;
+}

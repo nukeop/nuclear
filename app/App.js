@@ -18,6 +18,8 @@ import Seekbar from './components/Seekbar';
 import SidebarMenu from './components/SidebarMenu';
 import TrackInfo from './components/TrackInfo';
 import WindowControls from './components/WindowControls';
+import VolumeControls from './components/VolumeControls';
+
 
 import { queueData } from './mocks/queueMock';
 
@@ -58,6 +60,7 @@ class App extends React.Component {
             </div>
             <PlayerControls />
             <Spacer />
+            <VolumeControls fill="60%"/>
           </div>
         </Footer>
 
