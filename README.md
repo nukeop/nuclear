@@ -2,8 +2,11 @@
 
 [![twitter](https://raw.githubusercontent.com/nukeop/nuclear/master/resources/media/nuclear/github/twitter.png)](https://twitter.com/nuclear_player) [![mobile](https://raw.githubusercontent.com/nukeop/nuclear/master/resources/media/nuclear/github/mobile.png)](https://github.com/nukeop/nuclear-mobile) [![website](https://raw.githubusercontent.com/nukeop/nuclear/master/resources/media/nuclear/github/website.png)](http://nuclear.gumblert.tech/) 
 
-
 An Electron-based, multiplatform music player app that streams from multiple sources
+
+#### Support on Beerpay
+
+[![Beerpay](https://beerpay.io/nukeop/nuclear/badge.svg?style=beer-square)](https://beerpay.io/nukeop/nuclear)  [![Beerpay](https://beerpay.io/nukeop/nuclear/make-wish.svg?style=flat-square)](https://beerpay.io/nukeop/nuclear?focus=wish)
 
 ## What is this?
 nuclear is a free music streaming program that pulls content from free sources all over the internet.
@@ -56,8 +59,3 @@ This will be updated as the program evolves.
 ![legacy search](http://i.imgur.com/WKBVq1u.jpg)
 
 ![coverflow](http://i.imgur.com/eAPTDSc.gif)
-
-## Support on Beerpay
-Hey dude! Help me out for a couple of :beers:!
-
-[![Beerpay](https://beerpay.io/nukeop/nuclear/badge.svg?style=beer-square)](https://beerpay.io/nukeop/nuclear)  [![Beerpay](https://beerpay.io/nukeop/nuclear/make-wish.svg?style=flat-square)](https://beerpay.io/nukeop/nuclear?focus=wish)
