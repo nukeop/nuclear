@@ -56,3 +56,8 @@ This will be updated as the program evolves.
 ![legacy search](http://i.imgur.com/WKBVq1u.jpg)
 
 ![coverflow](http://i.imgur.com/eAPTDSc.gif)
+
+## Support on Beerpay
+Hey dude! Help me out for a couple of :beers:!
+
+[![Beerpay](https://beerpay.io/nukeop/nuclear/badge.svg?style=beer-square)](https://beerpay.io/nukeop/nuclear)  [![Beerpay](https://beerpay.io/nukeop/nuclear/make-wish.svg?style=flat-square)](https://beerpay.io/nukeop/nuclear?focus=wish)
