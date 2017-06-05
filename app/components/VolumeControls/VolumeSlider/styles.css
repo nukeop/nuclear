@@ -2,7 +2,7 @@
   position: relative;
   flex: 1 1 auto;
   height: 4px;
-
+  cursor: pointer;
 }
 
 .volume_slider_bg {

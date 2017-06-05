@@ -10,6 +10,7 @@ import VerticalPanel from './components/VerticalPanel';
 import Spacer from './components/Spacer';
 
 import SearchBox from './components/SearchBox';
+import SearchBoxContainer from './containers/SearchBoxContainer';
 
 import Cover from './components/Cover';
 import PlayerControls from './components/PlayerControls';
@@ -28,7 +29,7 @@ class App extends React.Component {
     return (
       <div className={styles.app_container}>
         <Navbar className={styles.navbar}>
-          <SearchBox />
+          <SearchBoxContainer />
           <Spacer />
           <Spacer />
           <WindowControls />
@@ -58,6 +59,7 @@ class App extends React.Component {
               <Cover cover="http://cdn.theobelisk.net/obelisk/wp-content/uploads/2012/01/vol4cover.jpg" />
               <TrackInfo track="Supernaut" artist="Black Sabbath" />
             </div>
+            <Spacer />
             <PlayerControls />
             <Spacer />
             <VolumeControls fill="60%"/>

@@ -1,5 +1,6 @@
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
+import DebounceInput from 'react-debounce-input';
 
 import styles from './styles.css';
 
@@ -10,7 +11,13 @@ class SearchBox extends React.Component {
       <div className={styles.search_box_container}>
         <FontAwesome name="search"/>
         <form>
-          <input type="text" placeholder="Search..." />
+          <DebounceInput
+            placeholder="Search..."
+            minLength={2}
+            debounceTimeout={500}
+            onChange={this.props.handleSearch}
+            autoFocus
+          />
         </form>
       </div>
     );

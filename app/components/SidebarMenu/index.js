@@ -12,7 +12,7 @@ class SidebarMenu extends React.Component {
   renderItems(){
     return this.props.children.map((el, i) => {
       return (
-        <SidebarMenuItem>
+        <SidebarMenuItem key={i}>
           {el}
         </SidebarMenuItem>
       );
