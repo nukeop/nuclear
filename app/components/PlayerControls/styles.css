@@ -1,7 +1,8 @@
 .player_controls_container {
-  flex: 0 0 auto;
+  display: flex;
+
   width: 200px;
 
-  display: flex;
+  flex: 0 0 auto;
   align-items: center;
 }

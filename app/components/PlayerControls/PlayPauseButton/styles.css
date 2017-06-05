@@ -1,15 +1,20 @@
 .play_pause_button_container {
+  display: flex;
+
   width: 56px;
   height: 56px;
+
+  text-align: center;
+
   color: #f8f8f2;
-  font-size: 36px;
-  flex: 0 0 auto;
-  display: flex;
-  flex-flow: row;
-  align-items: center;
   border: 2px solid rgba(189, 195, 199, 0.24);
   border-radius: 50px;
-  text-align: center;
+
+  font-size: 36px;
+
+  flex: 0 0 auto;
+  flex-flow: row;
+  align-items: center;
 }
 
 .play_pause_button_container span {

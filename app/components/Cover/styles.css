@@ -1,7 +1,8 @@
 .cover_container {
-  flex: 0 0 auto;
   width: 76px;
   height: 76px;
+
+  flex: 0 0 auto;
 }
 
 .cover_container img {

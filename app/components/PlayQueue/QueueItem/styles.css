@@ -1,48 +1,58 @@
 .queue_item_container {
-  flex: 0 0 auto;
   display: flex;
-  flex-flow: row;
+
   margin: 8px;
-  background-color: rgba(248, 248, 242, 0.08);
+
   border-radius: 2px;
+  background-color: rgba(248, 248, 242, 0.08);
+
+  flex: 0 0 auto;
+  flex-flow: row;
 }
 
 .thumbnail_container {
-  flex: 0 0 auto;
   width: 48px;
   height: 48px;
   margin: 6px;
+
+  flex: 0 0 auto;
 }
 
 .thumbnail_container img {
   width: 48px;
   height: 48px;
+
   border-radius: 48px;
 }
 
 .item_info_container {
-  flex: 1 1 auto;
   display: flex;
-  flex-flow: column;
-  justify-content: center;
+  overflow: hidden;
+
   margin: 6px;
 
   white-space: nowrap;
-  overflow: hidden;
   text-overflow: ellipsis;
+
+  flex: 1 1 auto;
+  flex-flow: column;
+  justify-content: center;
 }
 
 .name_container {
-  white-space: nowrap;
   overflow: hidden;
-  text-overflow: ellipsis;
+
   margin-bottom: 6px;
+
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .artist_container {
-  color: rgba(248, 248, 242, 0.5);
+  overflow: hidden;
 
   white-space: nowrap;
-  overflow: hidden;
   text-overflow: ellipsis;
+
+  color: rgba(248, 248, 242, 0.5);
 }

@@ -1,65 +1,88 @@
 .app_container {
   position: absolute;
-  height: 100%;
-  width: 100%;
+
   display: flex;
-  flex-flow: column;
+
+  width: 100%;
+  height: 100%;
+
   color: #f8f8f2;
+
+  flex-flow: column;
 }
 
 .panel_container {
-  flex: 1 1 auto;
   display: flex;
+
+  flex: 1 1 auto;
   flex-flow: row;
 }
 
 .navbar {
-  background-color: #21222c;
-  height: 50px;
-  -webkit-app-region: drag;
-  box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.18), 0px 5px 20px 0px rgba(0, 0, 0, 0.09);
   z-index: 20;
+
   display: flex;
+
+  height: 50px;
+
+  background-color: #21222c;
+  box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.18), 0px 5px 20px 0px rgba(0, 0, 0, 0.09);
+
+  -webkit-app-region: drag;
   flex-flow: row;
 }
 
 .left_panel {
-  background-color: #282a36;
-  width: 300px;
-  box-shadow: 5px 0px 5px 0px rgba(0, 0, 0, 0.18), 5px 0px 20px 0px rgba(0, 0, 0, 0.09);
   z-index: 10;
+
   display: flex;
+
+  width: 300px;
+
+  background-color: #282a36;
+  box-shadow: 5px 0px 5px 0px rgba(0, 0, 0, 0.18), 5px 0px 20px 0px rgba(0, 0, 0, 0.09);
+
   flex-flow: column;
 }
 
 .center_panel {
   background-color: #282a36;
+
   flex: 1 1 auto;
 
 }
 
 .right_panel {
-  background-color: #282a36;
-  width: 300px;
-  box-shadow: -5px 0px 5px 0px rgba(0, 0, 0, 0.18), -5px 0px 20px 0px rgba(0, 0, 0, 0.09);
   z-index: 10;
+
   display: flex;
+
+  width: 300px;
+
+  background-color: #282a36;
+  box-shadow: -5px 0px 5px 0px rgba(0, 0, 0, 0.18), -5px 0px 20px 0px rgba(0, 0, 0, 0.09);
+
   flex-flow: column;
 }
 
 .footer {
-  flex: 0 0 auto;
-  overflow-y: hidden;
-  background-color: #21222c;
-  height: 80px;
-  box-shadow: 0px -5px 5px 0px rgba(0, 0, 0, 0.18), 0px -10px 20px 0px rgba(0, 0, 0, 0.09);
   z-index: 20;
+
   display: flex;
+  overflow-y: hidden;
+
+  height: 80px;
+
+  background-color: #21222c;
+  box-shadow: 0px -5px 5px 0px rgba(0, 0, 0, 0.18), 0px -10px 20px 0px rgba(0, 0, 0, 0.09);
+
+  flex: 0 0 auto;
   flex-flow: column;
 }
 
 .footer_horizontal {
   display: flex;
+
   flex-flow: row;
   flex: 1 1 auto;
   align-items: center;
@@ -67,6 +90,7 @@
 
 .track_info_wrapper {
   display: flex;
+
   flex-flow: row;
   flex: 0 0 auto;
 }

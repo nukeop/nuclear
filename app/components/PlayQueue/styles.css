@@ -1,6 +1,7 @@
 .play_queue_container {
-  flex: 1 1 auto;
   display: flex;
-  flex-flow: column;
   overflow-y: auto;
+
+  flex: 1 1 auto;
+  flex-flow: column;
 }

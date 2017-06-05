@@ -1,4 +1,4 @@
-import Plugin from './Plugin';
+import Plugin from './plugin';
 
 class MusicSourcePlugin extends Plugin {
   constructor() {

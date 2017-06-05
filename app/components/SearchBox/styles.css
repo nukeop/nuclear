@@ -1,43 +1,52 @@
 .search_box_container {
-  flex: 1 1 auto;
   display: flex;
+
+  flex: 1 1 auto;
   align-items: center;
   -webkit-app-region: no-drag;
 }
 
 .search_box_container span {
   display: flex;
-  align-items: center;
-  margin: 12px 0px 12px 12px;
-  color: #f8f8f2;
-  background-color: #6272a4;
+
   width: 30px;
   height: 30px;
+  margin: 12px 0px 12px 12px;
+
+  color: #f8f8f2;
   border-radius: 2px 0px 0px 2px;
+  background-color: #6272a4;
+
+  align-items: center;
 }
 
 .search_box_container span:before {
   text-align: center;
+
   flex: 1 1 auto;
 }
 
 .search_box_container form {
-  flex: 1 1 auto;
   display: flex;
+
+  flex: 1 1 auto;
 }
 
 .search_box_container input {
-  flex: 1 1 auto;
+  height: 30px;
   margin: 12px 0px;
   padding: 0px 12px;
-  border-radius: 0px 2px 2px 0px;
-  height: 30px;
-  border: none;
+
   color: #f8f8f2;
+  border: none;
+  border-radius: 0px 2px 2px 0px;
+  outline: none;
   background-color: #282a36;
+
   font-family: Cabin;
   font-size: 16px;
-  outline: none;
+
+  flex: 1 1 auto;
 }
 
 ::-webkit-input-placeholder {
