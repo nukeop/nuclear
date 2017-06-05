@@ -17,7 +17,7 @@ export function createSearchPlugins(pluginClasses) {
   };
 }
 
-export function unifiedSearch(terms) {
+export function unifiedSearch(terms, plugins) {
   console.log(terms);
 
   return {

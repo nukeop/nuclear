@@ -9,12 +9,13 @@ class SearchBoxContainer extends React.Component {
 
   handleSearch(event) {
     this.props.actions.unifiedSearch(event.target.value);
+    console.log(this.props);
   }
 
   render() {
     return(
       <SearchBox
-        handleSearch={(e)=>{console.log(e.target.value);}}
+        handleSearch={this.handleSearch.bind(this)}
       />
     )
   }
@@ -23,7 +24,7 @@ class SearchBoxContainer extends React.Component {
 
 function mapStateToProps(state) {
   return {
-
+    searchPlugins: state.search.searchPlugins
   }
 }
 
