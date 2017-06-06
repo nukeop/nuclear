@@ -1,4 +1,4 @@
-import * as MusicSourcePlugins from './musicSources.js';
+import * as MusicSourcePlugins from './MusicSources/';
 
 const config = {
   plugins: {

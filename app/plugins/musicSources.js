@@ -7,8 +7,10 @@ class MusicSourcePlugin extends Plugin {
     this.description = 'A generic music source plugin. Should never be instantiated directly';
   }
 
-  search(artist, track) {
+  search(terms) {
     console.error('search not implemented in plugin ' + this.name);
   }
 
 }
+
+export default MusicSourcePlugin;

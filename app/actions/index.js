@@ -19,6 +19,12 @@ export function createSearchPlugins(pluginClasses) {
 
 export function unifiedSearch(terms, plugins) {
   console.log(terms);
+  console.log(plugins);
+
+  var searchResults = {};
+  for(var i=0; i<plugins.length; i++) {
+    Object.assign(searchResults, plugins[i].search(terms));
+  }
 
   return {
     type: UNIFIED_SEARCH
