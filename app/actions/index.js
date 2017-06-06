@@ -48,6 +48,6 @@ export function unifiedSearch(terms) {
 
   return {
     type: UNIFIED_SEARCH,
-    unifiedSearchResults: Promise.all(search)
+    payload: Promise.all(search)
   }
 }
