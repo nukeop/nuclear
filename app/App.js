@@ -1,8 +1,13 @@
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as Actions from './actions';
 
 import './app.global.css';
 import styles from './styles.css';
+
+import { config as PluginConfig } from './plugins/config';
 
 import Footer from './components/Footer';
 import Navbar from './components/Navbar';
@@ -25,6 +30,10 @@ import VolumeControls from './components/VolumeControls';
 import { queueData } from './mocks/queueMock';
 
 class App extends React.Component {
+  componentWillMount() {
+    this.props.actions.createSearchPlugins(PluginConfig.plugins);
+  }
+
   render() {
     return (
       <div className={styles.app_container}>
@@ -71,4 +80,10 @@ class App extends React.Component {
   }
 }
 
-export default App;
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(Actions, dispatch)
+  };
+}
+
+export default connect(state => {return {};},mapDispatchToProps)(App);

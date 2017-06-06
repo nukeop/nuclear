@@ -3,11 +3,18 @@ export const UNIFIED_SEARCH = 'UNIFIED_SEARCH';
 
 export function createSearchPlugins(pluginClasses) {
   var plugins = {};
-  for(p in Object.keys(pluginClasses)) {
-    if (plugins[key] != undefined) {
-      plugins[key].push(pluginClass());
-    } else {
-      plugins[key] = [pluginClass()];
+
+  for ( var i=0; i<Object.keys(pluginClasses).length; i++ ) {
+    var category = Object.keys(pluginClasses)[i];
+
+    if (plugins[category] == undefined) {
+          plugins[category] = [];
+    }
+
+    for (var j=0; j<Object.keys(pluginClasses[category]).length; j++) {
+      var pluginName = Object.keys(pluginClasses[category])[j];
+      var plugin = new pluginClasses[category][pluginName]();
+      plugins[category].push(plugin);
     }
   }
 
@@ -18,12 +25,9 @@ export function createSearchPlugins(pluginClasses) {
 }
 
 export function unifiedSearch(terms, plugins) {
-  console.log(terms);
-  console.log(plugins);
-
   var searchResults = {};
-  for(var i=0; i<plugins.length; i++) {
-    Object.assign(searchResults, plugins[i].search(terms));
+  for(var i=0; i<plugins.musicSources.length; i++) {
+    Object.assign(searchResults, plugins.musicSources[i].search(terms));
   }
 
   return {

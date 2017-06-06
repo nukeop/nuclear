@@ -1,9 +1,7 @@
 import * as MusicSourcePlugins from './MusicSources/';
 
-const config = {
+export const config = {
   plugins: {
     musicSources: MusicSourcePlugins
   }
 };
-
-module.exports = config;
