@@ -39,7 +39,7 @@
     "electron": "^1.6.10",
     "extract-text-webpack-plugin": "^2.1.0",
     "google-fonts-webpack-plugin": "^0.3.2",
-    "musicbrainz": "^0.2.6",
+    "nodebrainz": "^2.1.1",
     "npm-run-all": "^4.0.2",
     "react-debounce-input": "^3.0.0",
     "react-fontawesome": "^1.6.1",

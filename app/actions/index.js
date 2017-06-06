@@ -1,5 +1,8 @@
+const mb = require('../rest/Musicbrainz');
+
 export const CREATE_PLUGINS = 'CREATE_PLUGINS';
 export const UNIFIED_SEARCH = 'UNIFIED_SEARCH';
+export const SOURCES_SEARCH = 'SOURCES_SEARCH';
 
 export function createSearchPlugins(pluginClasses) {
   var plugins = {};
@@ -24,13 +27,27 @@ export function createSearchPlugins(pluginClasses) {
   };
 }
 
-export function unifiedSearch(terms, plugins) {
+export function sourcesSearch(terms, plugins) {
   var searchResults = {};
   for(var i=0; i<plugins.musicSources.length; i++) {
     Object.assign(searchResults, plugins.musicSources[i].search(terms));
   }
 
   return {
-    type: UNIFIED_SEARCH
+    type: SOURCES_SEARCH
+  }
+}
+
+export function unifiedSearch(terms) {
+  var search = [
+    mb.artistSearch(terms),
+    mb.releaseSearch(terms),
+    mb.trackSearch(terms)
+  ];
+
+
+  return {
+    type: UNIFIED_SEARCH,
+    unifiedSearchResults: Promise.all(search)
   }
 }

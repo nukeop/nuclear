@@ -15,7 +15,7 @@ class SearchBox extends React.Component {
             placeholder="Search..."
             minLength={2}
             debounceTimeout={500}
-            onChange={this.props.handleSearch}
+            onChange={(e) => {e.preventDefault(); this.props.handleSearch(e);}}
             autoFocus
           />
         </form>

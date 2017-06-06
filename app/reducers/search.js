@@ -6,7 +6,8 @@ import {
 import config from '../plugins/config';
 
 const initialState = {
-  searchPlugins: []
+  searchPlugins: [],
+  unifiedSearchResults: []
 };
 
 export default function SearchReducer(state=initialState, action) {
@@ -17,7 +18,7 @@ export default function SearchReducer(state=initialState, action) {
     });
     case UNIFIED_SEARCH:
     return Object.assign({}, state, {
-      
+      unifiedSearchResults: action.payload
     });
     default:
     return state;
