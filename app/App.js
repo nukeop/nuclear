@@ -14,6 +14,8 @@ import Navbar from './components/Navbar';
 import VerticalPanel from './components/VerticalPanel';
 import Spacer from './components/Spacer';
 
+import MainContentContainer from './containers/MainContentContainer';
+
 import SearchBox from './components/SearchBox';
 import SearchBoxContainer from './containers/SearchBoxContainer';
 
@@ -56,7 +58,9 @@ class App extends React.Component {
               <a href="#"><FontAwesome name="cogs" /> Settings</a>
             </SidebarMenu>
           </VerticalPanel>
-          <VerticalPanel className={styles.center_panel} />
+          <VerticalPanel className={styles.center_panel}>
+            <MainContentContainer />
+          </VerticalPanel>
           <VerticalPanel className={styles.right_panel}>
             <PlayQueue items={queueData} />
           </VerticalPanel>
