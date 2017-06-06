@@ -1,0 +1,1 @@
+const mb = require('musicbrainz');
