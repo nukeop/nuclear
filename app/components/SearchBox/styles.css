@@ -6,7 +6,7 @@
   -webkit-app-region: no-drag;
 }
 
-.search_box_container span {
+.search_box_container>span {
   display: flex;
 
   width: 30px;
@@ -18,6 +18,7 @@
   background-color: #6272a4;
 
   align-items: center;
+
 }
 
 .search_box_container span:before {
@@ -30,6 +31,7 @@
   display: flex;
 
   flex: 1 1 auto;
+  align-items: center;
 }
 
 .search_box_container input {
@@ -47,6 +49,18 @@
   font-size: 16px;
 
   flex: 1 1 auto;
+}
+
+form>span {
+  position: relative;
+  right: 30px;
+
+  display: flex !important;
+
+  width: 30px;
+  height: 30px;
+
+  align-items: center;
 }
 
 ::-webkit-input-placeholder {

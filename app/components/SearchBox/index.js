@@ -18,6 +18,11 @@ class SearchBox extends React.Component {
             onChange={(e) => {e.preventDefault(); this.props.handleSearch(e);}}
             autoFocus
           />
+          {
+            this.props.loading
+            ? <FontAwesome name="spinner" pulse/>
+            : null
+          }
         </form>
       </div>
     );
