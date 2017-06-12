@@ -1,4 +1,5 @@
 import React from 'react';
+import FontAwesome from 'react-fontawesome';
 
 import styles from './styles.css';
 
@@ -9,19 +10,27 @@ class QueueItem extends React.Component {
 
   render() {
     return (
-      <div className={styles.queue_item_container}>
-        <div className={styles.thumbnail_container}>
-          <img src={this.props.track.thumbnail} />
-        </div>
-        <div className={styles.item_info_container}>
-          <div className={styles.name_container}>
-            {this.props.track.name}
+      this.props.loading
+      ? (
+          <div className={styles.queue_item_container}>
+            <FontAwesome name="spinner" size='2x' pulse/>
           </div>
-          <div className={styles.artist_container}>
-            {this.props.track.artist}
+        )
+      : (
+          <div className={styles.queue_item_container}>
+            <div className={styles.thumbnail_container}>
+              <img src={this.props.track.thumbnail} />
+            </div>
+            <div className={styles.item_info_container}>
+              <div className={styles.name_container}>
+                {this.props.track.name}
+              </div>
+              <div className={styles.artist_container}>
+                {this.props.track.artist}
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
+        )
     );
   }
 }

@@ -8,6 +8,19 @@
 
   flex: 0 0 auto;
   flex-flow: row;
+
+  height: 60px;
+}
+
+.queue_item_container>span {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.queue_item_container>span:before {
+  text-align: center;
+  flex: 1 1 auto;
 }
 
 .thumbnail_container {
