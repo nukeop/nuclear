@@ -9,7 +9,7 @@ class WindowControls extends React.Component {
   render() {
     return (
       <div className={styles.window_controls_container}>
-      <WindowButton
+        <WindowButton
           icon="window-minimize"
         />
         <WindowButton

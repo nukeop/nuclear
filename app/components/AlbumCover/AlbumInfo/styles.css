@@ -1,0 +1,7 @@
+.album_info_container {
+  height: 100px;
+  background-color: #44475a;
+  color: #f8f8f2;
+  display: flex;
+  flex-flow: column;
+}

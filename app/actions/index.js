@@ -2,6 +2,8 @@ const mb = require('../rest/Musicbrainz');
 
 export const CREATE_PLUGINS = 'CREATE_PLUGINS';
 export const UNIFIED_SEARCH = 'UNIFIED_SEARCH';
+export const UNIFIED_SEARCH_START = 'UNIFIED_SEARCH_START';
+export const SEARCH_ERROR = 'SEARCH_ERROR';
 export const SOURCES_SEARCH = 'SOURCES_SEARCH';
 
 export function createSearchPlugins(pluginClasses) {
@@ -38,6 +40,13 @@ export function sourcesSearch(terms, plugins) {
   }
 }
 
+export function unifiedSearchStart() {
+  return {
+    type: UNIFIED_SEARCH_START,
+    payload: null
+  }
+}
+
 export function unifiedSearch(terms) {
   var search = [
     mb.artistSearch(terms),
@@ -45,9 +54,19 @@ export function unifiedSearch(terms) {
     mb.trackSearch(terms)
   ];
 
-
-  return {
-    type: UNIFIED_SEARCH,
-    payload: Promise.all(search)
+  return (dispatch) => {
+    Promise.all(search)
+    .then(values => {
+      dispatch({
+        type: UNIFIED_SEARCH,
+        payload: values
+      });
+    })
+    .catch(error => {
+      dispatch({
+        type: SEARCH_ERROR,
+        payload: error
+      });
+    });
   }
 }

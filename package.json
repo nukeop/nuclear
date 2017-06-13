@@ -50,6 +50,7 @@
     "react-router-redux": "^4.0.8",
     "redux": "^3.6.0",
     "redux-promise": "^0.5.3",
+    "redux-thunk": "^2.2.0",
     "style-loader": "^0.18.1",
     "webpack": "^2.6.1",
     "webpack-dev-server": "^2.4.5"

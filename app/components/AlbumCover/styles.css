@@ -1,0 +1,10 @@
+.album_cover_container {
+  width: 200px;
+  display: flex;
+  margin: 12px;
+  flex-flow: column;
+}
+
+.album_cover_container img {
+  height: 200px;
+}

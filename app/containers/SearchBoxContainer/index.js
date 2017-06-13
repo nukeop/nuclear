@@ -8,6 +8,7 @@ import SearchBox from '../../components/SearchBox';
 class SearchBoxContainer extends React.Component {
 
   handleSearch(event) {
+    this.props.actions.unifiedSearchStart();
     this.props.actions.unifiedSearch(event.target.value);
   }
 
@@ -15,6 +16,7 @@ class SearchBoxContainer extends React.Component {
     return(
       <SearchBox
         handleSearch={this.handleSearch.bind(this)}
+        loading={this.props.unifiedSearchStarted}
       />
     )
   }
@@ -23,7 +25,8 @@ class SearchBoxContainer extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    searchPlugins: state.search.searchPlugins
+    searchPlugins: state.search.searchPlugins,
+    unifiedSearchStarted: state.search.unifiedSearchStarted
   }
 }
 
