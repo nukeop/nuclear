@@ -11,7 +11,9 @@ class AlbumCover extends React.Component {
       <div className={styles.album_cover_container}>
         <img src={this.props.album.cover} />
 
-        <AlbumInfo />
+        <AlbumInfo
+          album={this.props.album}
+        />
       </div>
     );
   }

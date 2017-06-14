@@ -1,7 +1,16 @@
 .album_info_container {
-  height: 100px;
+  height: 80px;
   background-color: #44475a;
   color: #f8f8f2;
   display: flex;
   flex-flow: column;
+}
+
+.title_container {
+  margin: 10px;
+}
+
+.artist_container {
+  margin: 10px;
+  color: rgba(248, 248, 242, 0.5);
 }
