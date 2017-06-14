@@ -1,4 +1,5 @@
 .album_cover_container {
+  position: relative;
   width: 200px;
   display: flex;
   margin: 12px;
