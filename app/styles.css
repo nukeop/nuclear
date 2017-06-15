@@ -16,6 +16,7 @@
 
   flex: 1 1 auto;
   flex-flow: row;
+  height: 100%;
 }
 
 .navbar {
@@ -43,6 +44,7 @@
   box-shadow: 5px 0px 5px 0px rgba(0, 0, 0, 0.18), 5px 0px 20px 0px rgba(0, 0, 0, 0.09);
 
   flex-flow: column;
+  flex: 0 0 auto;
 }
 
 .center_panel {
@@ -63,6 +65,7 @@
   box-shadow: -5px 0px 5px 0px rgba(0, 0, 0, 0.18), -5px 0px 20px 0px rgba(0, 0, 0, 0.09);
 
   flex-flow: column;
+  flex: 0 0 auto;
 }
 
 .footer {

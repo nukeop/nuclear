@@ -25,7 +25,7 @@ class SearchResults extends React.Component {
                   key={i}
                   album={{
                     artist: album['artist-credit'][0].artist.name,
-                    title: album.releases[0].title,
+                    title: album.title,
                     cover: album.cover
                   }}
                 />

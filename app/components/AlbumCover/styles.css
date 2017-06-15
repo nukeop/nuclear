@@ -1,11 +1,12 @@
 .album_cover_container {
   position: relative;
-  width: 200px;
+  width: 250px;
   display: flex;
   margin: 12px;
   flex-flow: column;
 }
 
 .album_cover_container img {
-  height: 200px;
+  height: 250px;
+  width: 250px;
 }
