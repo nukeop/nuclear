@@ -8,9 +8,15 @@
 
 .title_container {
   margin: 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .artist_container {
   margin: 10px;
   color: rgba(248, 248, 242, 0.5);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

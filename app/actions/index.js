@@ -57,10 +57,17 @@ export function unifiedSearch(terms) {
   return (dispatch) => {
     Promise.all(search)
     .then(values => {
-      dispatch({
-        type: UNIFIED_SEARCH,
-        payload: values
-      });
+
+      mb.addCoversToReleases(values[1])
+      .then(response => {
+        dispatch({
+          type: UNIFIED_SEARCH,
+          payload: values
+        });
+      })
+      .catch(console.log);
+
+
     })
     .catch(error => {
       dispatch({

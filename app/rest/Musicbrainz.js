@@ -1,5 +1,6 @@
 const NB = require('nodebrainz');
-const nb = new NB({userAgent:'nuclear/0.4.0 ( https://github.com/nukeop/nuclear/ )'});
+const nb = new NB({userAgent:'Mozilla/5.0 (Windows NT 6.3; WOW64; rv:37.0) Gecko/20100101 Firefox/37.0'});
+const covers = require('./CoverArtArchive');
 
 function artistSearch(terms) {
   return new Promise((fulfill, reject) => {
@@ -10,13 +11,23 @@ function artistSearch(terms) {
   });
 }
 
+function addCoversToReleases(searchResults) {
+    var coverPromises = searchResults['release-groups'].map(group => {
+      return covers.releaseGroupFront(group);
+    });
+
+    return Promise.all(coverPromises);
+}
+
 function releaseSearch(terms) {
-  return new Promise((fulfill, reject) => {
+  var nbSearch = new Promise((fulfill, reject) => {
     nb.search('release-group', {release: terms}, (err, response) => {
       if (err) reject(err);
       else fulfill(response);
-    });
+    })
   });
+
+  return nbSearch;
 }
 
 function trackSearch(terms) {
@@ -29,7 +40,8 @@ function trackSearch(terms) {
 }
 
 module.exports = {
-  artistSearch: artistSearch,
-  releaseSearch: releaseSearch,
-  trackSearch: trackSearch
+  artistSearch,
+  releaseSearch,
+  trackSearch,
+  addCoversToReleases
 }

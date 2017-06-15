@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux';
 import * as Actions from '../../actions';
 
 import MainLayout from '../../components/MainLayout';
+import SearchResults from '../../components/SearchResults';
 
 class MainContentContainer extends React.Component {
 
@@ -13,7 +14,9 @@ class MainContentContainer extends React.Component {
       <Route render={() =>
         <MainLayout
           unifiedSearchResults={this.props.unifiedSearchResults}
-        />
+        >
+          <SearchResults />
+        </MainLayout>
       }>
 
       </Route>
