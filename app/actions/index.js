@@ -65,7 +65,7 @@ export function unifiedSearch(terms) {
           payload: values
         });
       })
-      .catch(console.log);
+      .catch(console.error);
 
 
     })

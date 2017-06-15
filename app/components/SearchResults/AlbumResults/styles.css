@@ -1,11 +1,10 @@
-.search_results_container {
+.album_results_container {
   position: relative;
 
   width: 100%;
-  height: 100%;
 
   display: flex;
-  flex-flow: column;
+  flex-flow: row wrap;
 
   overflow-y: auto;
 }

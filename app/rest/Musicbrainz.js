@@ -13,7 +13,6 @@ function artistSearch(terms) {
 
 function addCoversToReleases(searchResults) {
     var coverPromises = searchResults['release-groups'].map(group => {
-      console.log(group);
       return covers.releaseGroupFront(group);
     });
 
