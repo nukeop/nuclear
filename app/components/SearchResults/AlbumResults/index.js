@@ -8,33 +8,20 @@ var _ = require('lodash');
 
 class AlbumResults extends React.Component {
 
-  renderAlbums(results) {
-    var noalbums = 'No albums found.';
-
-    if (this.props.results.length == 0) {
-      return noalbums;
+  renderAlbums() {
+    if(_.has(this.props.albums, 'results')){
+      return this.props.albums.results.map((el, i) => {
+        return (
+          <AlbumCover
+            key={i}
+            artist={el.title.split('-')[0]}
+            title={el.title.split('-')[1]}
+            cover={el.thumb}
+          />
+        );
+      });
     } else {
-      for (var i = 0; i<this.props.results.length; i++) {
-        if (_.has(this.props.results[i], 'release-groups')) {
-          var albums = this.props.results[i];
-          if (albums.length == 0) {
-            return noalbums;
-          } else {
-            return albums['release-groups'].map((album, i) => {
-              return (
-                <AlbumCover
-                  key={i}
-                  album={{
-                    artist: album['artist-credit'][0].artist.name,
-                    title: album.title,
-                    cover: album.cover
-                  }}
-                />
-              )
-            });
-          }
-        }
-      }
+      return 'No albums found.'
     }
   }
 

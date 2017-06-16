@@ -11,6 +11,9 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  display: flex;
+  flex: 1 1 auto;
+  align-items: center;
 }
 
 .artist_container {

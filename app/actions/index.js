@@ -1,4 +1,5 @@
 const mb = require('../rest/Musicbrainz');
+const discogs = require('../rest/Discogs');
 
 export const CREATE_PLUGINS = 'CREATE_PLUGINS';
 export const UNIFIED_SEARCH = 'UNIFIED_SEARCH';
@@ -49,25 +50,21 @@ export function unifiedSearchStart() {
 
 export function unifiedSearch(terms) {
   var search = [
-    mb.artistSearch(terms),
-    mb.releaseSearch(terms),
-    mb.trackSearch(terms)
+    discogs.searchArtists(terms),
+    discogs.searchReleases(terms)
   ];
 
   return (dispatch) => {
     Promise.all(search)
-    .then(values => {
-
-      mb.addCoversToReleases(values[1])
-      .then(response => {
-        dispatch({
-          type: UNIFIED_SEARCH,
-          payload: values
+    .then(responses => {
+        Promise.all(
+          responses.map(r => r.json())
+        ).then(responses => {
+          dispatch({
+            type: UNIFIED_SEARCH,
+            payload: responses
+          });
         });
-      })
-      .catch(console.error);
-
-
     })
     .catch(error => {
       dispatch({

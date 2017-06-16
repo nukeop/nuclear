@@ -13,10 +13,12 @@ class AlbumCover extends React.Component {
         <AlbumOverlay
           handlePlay={this.props.handlePlay}
         />
-        <img src={this.props.album.cover}/>
+        <img src={this.props.cover}/>
 
         <AlbumInfo
-          album={this.props.album}
+          artist={this.props.artist}
+          title={this.props.title}
+          nameOnly={this.props.nameOnly}
         />
       </div>
     );
