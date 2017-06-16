@@ -60,6 +60,16 @@ export function unifiedSearch(terms) {
         Promise.all(
           responses.map(r => r.json())
         ).then(responses => {
+
+
+           responses[1].results.map(r => {
+            discogs.releaseInfo(r.id)
+            .then(r => {
+              r.json()
+              .then(console.log);
+            })
+          });
+
           dispatch({
             type: UNIFIED_SEARCH,
             payload: responses
