@@ -2,7 +2,7 @@ import React from 'react';
 
 import styles from './styles.css';
 
-import AlbumCover from '../../AlbumCover';
+import AlbumCoverContainer from '../../../containers/AlbumCoverContainer';
 
 var _ = require('lodash');
 
@@ -12,11 +12,10 @@ class AlbumResults extends React.Component {
     if(_.has(this.props.albums, 'results')){
       return this.props.albums.results.map((el, i) => {
         return (
-          <AlbumCover
+          <AlbumCoverContainer
             key={i}
-            artist={el.title.split('-')[0]}
-            title={el.title.split('-')[1]}
-            cover={el.thumb}
+            album={el}
+            albumIndex={i}
           />
         );
       });

@@ -22,7 +22,6 @@ class SearchBoxContainer extends React.Component {
   }
 }
 
-
 function mapStateToProps(state) {
   return {
     searchPlugins: state.search.searchPlugins,
@@ -35,6 +34,5 @@ function mapDispatchToProps(dispatch) {
     actions: bindActionCreators(Actions, dispatch)
   };
 }
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchBoxContainer);

@@ -5,7 +5,7 @@ export const CREATE_PLUGINS = 'CREATE_PLUGINS';
 export const UNIFIED_SEARCH = 'UNIFIED_SEARCH';
 export const UNIFIED_SEARCH_START = 'UNIFIED_SEARCH_START';
 export const SEARCH_ERROR = 'SEARCH_ERROR';
-export const SOURCES_SEARCH = 'SOURCES_SEARCH';
+export const ALBUM_INFO_SEARCH = 'ALBUM_INFO_SEARCH';
 
 export function createSearchPlugins(pluginClasses) {
   var plugins = {};
@@ -56,25 +56,18 @@ export function unifiedSearch(terms) {
 
   return (dispatch) => {
     Promise.all(search)
-    .then(responses => {
-        Promise.all(
-          responses.map(r => r.json())
-        ).then(responses => {
+    .then(searchResults => {
+      Promise.all(
+        searchResults.map(response => response.json())
+      )
+      .then(responses => {
 
-
-           responses[1].results.map(r => {
-            discogs.releaseInfo(r.id)
-            .then(r => {
-              r.json()
-              .then(console.log);
-            })
-          });
-
-          dispatch({
-            type: UNIFIED_SEARCH,
-            payload: responses
-          });
+        dispatch({
+          type: UNIFIED_SEARCH,
+          payload: responses
         });
+
+      });
     })
     .catch(error => {
       dispatch({
@@ -83,4 +76,22 @@ export function unifiedSearch(terms) {
       });
     });
   }
+}
+
+export function albumInfoSearch(albumId) {
+
+  return (dispatch) => {
+
+    discogs.releaseInfo(albumId)
+    .then(info => {
+      info.json()
+      .then(albumInfo => {
+        dispatch({
+          type: ALBUM_INFO_SEARCH,
+          payload: albumInfo
+        });
+      })
+    });
+
+  };
 }

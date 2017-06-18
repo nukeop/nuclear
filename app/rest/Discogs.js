@@ -25,6 +25,7 @@ function searchQuery(terms) {
     + 'database/search'
     + '?q='
     + encodeURI(terms)
+    + '&per_page=15'
   );
 }
 
