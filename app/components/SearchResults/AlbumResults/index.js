@@ -3,6 +3,7 @@ import React from 'react';
 import styles from './styles.css';
 
 import AlbumCoverContainer from '../../../containers/AlbumCoverContainer';
+import Header from '../../Header';
 
 var _ = require('lodash');
 
@@ -26,8 +27,14 @@ class AlbumResults extends React.Component {
 
   render() {
     return (
-      <div className={styles.album_results_container}>
-        {this.renderAlbums()}
+      <div>
+        <Header>
+          Album search results:
+        </Header>
+        <div className={styles.album_results_container}>
+
+          {this.renderAlbums()}
+        </div>
       </div>
     );
   }

@@ -51,7 +51,7 @@ export function unifiedSearchStart() {
 export function unifiedSearch(terms) {
   var search = [
     discogs.searchArtists(terms),
-    discogs.searchReleases(terms)
+    discogs.searchReleases(terms, 3)
   ];
 
   return (dispatch) => {

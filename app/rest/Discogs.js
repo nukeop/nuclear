@@ -30,14 +30,14 @@ function searchQuery(terms, count=15) {
   );
 }
 
-function searchArtists(terms) {
-  return fetch(searchQuery(terms)
+function searchArtists(terms, count=15) {
+  return fetch(searchQuery(terms, count)
     + '&type=artist'
   );
 }
 
-function searchReleases(terms) {
-  return fetch(searchQuery(terms)
+function searchReleases(terms, count=15) {
+  return fetch(searchQuery(terms, count)
     + '&type=master'
   );
 }
