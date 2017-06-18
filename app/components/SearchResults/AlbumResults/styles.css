@@ -1,10 +1,11 @@
 .album_results_container {
   position: relative;
 
+  display: flex;
+  overflow-y: auto;
+
   width: 100%;
 
-  display: flex;
   flex-flow: row wrap;
-
-  overflow-y: auto;
+  justify-content: center;
 }

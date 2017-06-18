@@ -19,13 +19,14 @@ function addKeys(query, first=false) {
     return newQuery;
 }
 
-function searchQuery(terms) {
+function searchQuery(terms, count=15) {
   return addToken(
     apiUrl
     + 'database/search'
     + '?q='
     + encodeURI(terms)
-    + '&per_page=15'
+    + '&per_page='
+    + count
   );
 }
 
