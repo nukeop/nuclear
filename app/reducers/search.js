@@ -2,7 +2,8 @@ import {
   CREATE_PLUGINS,
   UNIFIED_SEARCH,
   UNIFIED_SEARCH_START,
-  ALBUM_INFO_SEARCH
+  ALBUM_INFO_SEARCH,
+  ARTIST_INFO_SEARCH
  } from '../actions';
 import config from '../plugins/config';
 
@@ -45,6 +46,9 @@ export default function SearchReducer(state=initialState, action) {
     return Object.assign({}, state, {
       unifiedSearchResults: newSearchResults
     });
+    case ARTIST_INFO_SEARCH:
+    console.log(action.payload);
+    return state;
     default:
     return state;
   }

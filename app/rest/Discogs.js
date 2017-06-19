@@ -43,15 +43,27 @@ function searchReleases(terms, count=15) {
 }
 
 function releaseInfo(releaseId) {
-  return fetch(addToken(
-    apiUrl
-    + 'masters/'
-    + releaseId
-  , true));
-}
+  return fetch(
+    addToken(
+      apiUrl
+      + 'masters/'
+      + releaseId
+      , true));
+    }
+
+function artistInfo(artistId) {
+  return fetch(
+    addToken(
+      apiUrl
+      + 'artists/'
+      + artistId
+      ,true)
+    );
+  }
 
 module.exports = {
   searchArtists,
   searchReleases,
-  releaseInfo
+  releaseInfo,
+  artistInfo
 }

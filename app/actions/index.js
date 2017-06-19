@@ -6,6 +6,7 @@ export const UNIFIED_SEARCH = 'UNIFIED_SEARCH';
 export const UNIFIED_SEARCH_START = 'UNIFIED_SEARCH_START';
 export const SEARCH_ERROR = 'SEARCH_ERROR';
 export const ALBUM_INFO_SEARCH = 'ALBUM_INFO_SEARCH';
+export const ARTIST_INFO_SEARCH = 'ARTIST_INFO_SEARCH';
 
 export function createSearchPlugins(pluginClasses) {
   var plugins = {};
@@ -50,7 +51,7 @@ export function unifiedSearchStart() {
 
 export function unifiedSearch(terms) {
   var search = [
-    discogs.searchArtists(terms),
+    discogs.searchArtists(terms, 3),
     discogs.searchReleases(terms, 3)
   ];
 
@@ -91,6 +92,23 @@ export function albumInfoSearch(albumId) {
           payload: albumInfo
         });
       })
+    });
+
+  };
+}
+
+export function artistInfoSearch(artistId) {
+  return (dispatch) => {
+
+    discogs.artistInfo(artistId)
+    .then(info => {
+      info.json()
+      .then(artistInfo => {
+        dispatch({
+          type: ARTIST_INFO_SEARCH,
+          payload: artistInfo
+        });
+      });
     });
 
   };

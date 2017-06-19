@@ -32,7 +32,6 @@ class AlbumResults extends React.Component {
           Album search results:
         </Header>
         <div className={styles.album_results_container}>
-
           {this.renderAlbums()}
         </div>
       </div>
