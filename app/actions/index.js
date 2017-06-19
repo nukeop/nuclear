@@ -104,6 +104,7 @@ export function artistInfoSearch(artistId) {
     .then(info => {
       info.json()
       .then(artistInfo => {
+        console.log(artistInfo);
         dispatch({
           type: ARTIST_INFO_SEARCH,
           payload: artistInfo

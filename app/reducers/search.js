@@ -30,11 +30,27 @@ export default function SearchReducer(state=initialState, action) {
       unifiedSearchStarted: false,
       unifiedSearchResults: action.payload
     });
+    case ARTIST_INFO_SEARCH:
+    var toReplace = _.filter(
+      state.unifiedSearchResults[0].results,
+      {'id': action.payload.id}
+    )[0];
+    toReplace = Object.assign({}, toReplace, action.payload);
+    var index = _.findIndex(
+      state.unifiedSearchResults[0].results,
+      {'id': action.payload.id}
+    );
+    var newSearchResults = Object.assign({}, state.unifiedSearchResults);
+    newSearchResults[0].results[index] = toReplace;
+
+    return Object.assign({}, state, {
+      unifiedSearchResults: newSearchResults
+    });
     case ALBUM_INFO_SEARCH:
     var toReplace = _.filter(
-        state.unifiedSearchResults[1].results,
-        {'id': action.payload.id}
-      )[0];
+      state.unifiedSearchResults[1].results,
+      {'id': action.payload.id}
+    )[0];
     toReplace = Object.assign({}, toReplace, action.payload);
     var index = _.findIndex(
       state.unifiedSearchResults[1].results,
@@ -46,8 +62,6 @@ export default function SearchReducer(state=initialState, action) {
     return Object.assign({}, state, {
       unifiedSearchResults: newSearchResults
     });
-    case ARTIST_INFO_SEARCH:
-    console.log(action.payload);
     return state;
     default:
     return state;

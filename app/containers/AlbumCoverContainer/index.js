@@ -6,6 +6,9 @@ import * as Actions from '../../actions';
 import AlbumCover from '../../components/AlbumCover';
 
 class AlbumCoverContainer extends React.Component {
+  constructor(props) {
+    super(props);
+  }
 
   componentWillMount() {
     this.props.actions.albumInfoSearch(this.props.album.id);
