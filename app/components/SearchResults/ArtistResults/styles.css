@@ -1,4 +1,11 @@
 .artist_results_container {
   position: relative;
+
+  display: flex;
+  overflow-y:auto;
+
   width: 100%;
+
+  flex-flow: row wrap;
+  justify-content: center;
 }
