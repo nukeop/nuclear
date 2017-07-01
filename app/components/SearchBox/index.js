@@ -2,7 +2,7 @@ import React from 'react';
 import FontAwesome from 'react-fontawesome';
 import DebounceInput from 'react-debounce-input';
 
-import styles from './styles.css';
+import styles from './styles.scss';
 
 class SearchBox extends React.Component {
 

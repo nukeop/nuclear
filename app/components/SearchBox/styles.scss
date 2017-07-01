@@ -1,3 +1,5 @@
+@import '../../vars';
+
 .search_box_container {
   display: flex;
 
@@ -13,9 +15,9 @@
   height: 30px;
   margin: 12px 0px 12px 12px;
 
-  color: #f8f8f2;
+  color: $grey;
   border-radius: 2px 0px 0px 2px;
-  background-color: #6272a4;
+  background-color: $blue;
 
   align-items: center;
 
@@ -39,11 +41,11 @@
   margin: 12px 0px;
   padding: 0px 12px;
 
-  color: #f8f8f2;
+  color: $grey;
   border: none;
   border-radius: 0px 2px 2px 0px;
   outline: none;
-  background-color: #282a36;
+  background-color: $background3;
 
   font-family: Cabin;
   font-size: 16px;

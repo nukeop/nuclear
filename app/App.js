@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 import * as Actions from './actions';
 
 import './app.global.scss';
-import styles from './styles.css';
+import styles from './styles.scss';
 
 import { config as PluginConfig } from './plugins/config';
 

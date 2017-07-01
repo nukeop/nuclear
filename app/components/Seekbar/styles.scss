@@ -1,3 +1,5 @@
+@import "../../vars";
+
 .seekbar_container {
   height: 4px;
 
@@ -11,5 +13,5 @@
 .seekbar_fill {
   height: 4px;
 
-  background-color: #ff79c6;
+  background-color: $pink;
 }
