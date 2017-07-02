@@ -10,7 +10,11 @@ import Card from '../../components/Card';
 const panes = [
   {menuItem: 'All', render: () => <Tab.Pane attached={false}> All search results </Tab.Pane>},
   {menuItem: 'Artists', render: () => <Tab.Pane attached={false}> All artists </Tab.Pane>},
-  {menuItem: 'Albums', render: () => <Tab.Pane attached={false}> All albums </Tab.Pane>}
+  {menuItem: 'Albums', render: () => <Tab.Pane attached={false}> <Card
+    header="Joe's Garage"
+    content='Frank Zappa'
+    image='https://upload.wikimedia.org/wikipedia/en/9/9a/Zappa_Joe%27s_Garage.jpg'
+  /> </Tab.Pane>}
 
 ];
 
@@ -22,11 +26,7 @@ class MainLayout extends React.Component {
 
         <Tab menu={{secondary: true, pointing: true}} panes={panes} />
 
-        <Card
-          header="Joe's Garage"
-          content='Frank Zappa'
-          image='https://upload.wikimedia.org/wikipedia/en/9/9a/Zappa_Joe%27s_Garage.jpg'
-        />
+
       </div>
     );
   }
