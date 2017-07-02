@@ -1,5 +1,6 @@
 import React from 'react';
-import { Route } from 'react-router';
+import { Route, Switch } from 'react-router';
+import { RouteTransition } from 'react-router-transition';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as Actions from '../../actions';
@@ -10,13 +11,26 @@ class MainContentContainer extends React.Component {
 
   render() {
     return(
-      <Route render={() =>
-        <MainLayout />
+
+      <Route path='/' render={({location, history, match}) => {
+        return (
+          <RouteTransition
+            pathname={location.pathname}
+            atEnter={{opacity: 0}}
+            atLeave={{opacity: 0}}
+            atActive={{opacity: 1}}
+            >
+              <Switch key={location.key} location={location}>
+                <Route path="/" component={MainLayout} />
+              </Switch>
+            </RouteTransition>
+          );
+        }
       }>
 
-      </Route>
-    );
-  }
+    </Route>
+  );
+}
 }
 
 function mapStateToProps(state) {

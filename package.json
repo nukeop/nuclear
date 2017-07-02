@@ -28,6 +28,7 @@
     "font-awesome": "^4.7.0",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
+    "react-router-transition": "^0.1.1",
     "semantic-ui-react": "^0.70.0"
   },
   "devDependencies": {
