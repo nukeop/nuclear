@@ -37,6 +37,7 @@
     "classnames": "^2.2.5",
     "css-loader": "^0.28.4",
     "electron": "^1.7.1",
+    "electron-devtools-installer": "^2.2.0",
     "extract-text-webpack-plugin": "^2.1.0",
     "google-fonts-webpack-plugin": "^0.3.2",
     "lodash": "^4.17.4",

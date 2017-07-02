@@ -8,7 +8,6 @@ import SearchBox from '../../components/SearchBox';
 class SearchBoxContainer extends React.Component {
 
   handleSearch(event) {
-    this.props.actions.unifiedSearchStart();
     this.props.actions.unifiedSearch(event.target.value);
   }
 

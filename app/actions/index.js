@@ -1,12 +1,12 @@
 const mb = require('../rest/Musicbrainz');
 const discogs = require('../rest/Discogs');
+const _ = require('lodash');
 
 export const CREATE_PLUGINS = 'CREATE_PLUGINS';
 export const UNIFIED_SEARCH = 'UNIFIED_SEARCH';
 export const UNIFIED_SEARCH_START = 'UNIFIED_SEARCH_START';
-export const SEARCH_ERROR = 'SEARCH_ERROR';
-export const ALBUM_INFO_SEARCH = 'ALBUM_INFO_SEARCH';
-export const ARTIST_INFO_SEARCH = 'ARTIST_INFO_SEARCH';
+export const UNIFIED_SEARCH_SUCCESS = 'UNIFIED_SEARCH_SUCCESS';
+export const UNIFIED_SEARCH_ERROR = 'UNIFIED_SEARCH_ERROR';
 
 export function createSearchPlugins(pluginClasses) {
   var plugins = {};
@@ -50,24 +50,24 @@ export function unifiedSearchStart() {
 }
 
 export function unifiedSearch(terms) {
-  var search = [
-    discogs.searchArtists(terms, 3),
-    discogs.searchReleases(terms, 3)
-  ];
-
   return (dispatch) => {
+    dispatch(unifiedSearchStart());
+
+    var search = [
+      discogs.searchArtists(terms, 3),
+      discogs.searchReleases(terms, 3)
+    ];
+
     Promise.all(search)
     .then(searchResults => {
-      Promise.all(
+      return Promise.all(
         searchResults.map(response => response.json())
       )
-      .then(responses => {
-
-        dispatch({
-          type: UNIFIED_SEARCH,
-          payload: responses
-        });
-
+    })
+    .then(responses => {
+      dispatch({
+        type: UNIFIED_SEARCH,
+        payload: responses
       });
     })
     .catch(error => {
@@ -79,38 +79,37 @@ export function unifiedSearch(terms) {
   }
 }
 
-export function albumInfoSearch(albumId) {
-
-  return (dispatch) => {
-
-    discogs.releaseInfo(albumId)
-    .then(info => {
-      info.json()
-      .then(albumInfo => {
-        dispatch({
-          type: ALBUM_INFO_SEARCH,
-          payload: albumInfo
-        });
-      })
-    });
-
-  };
-}
-
-export function artistInfoSearch(artistId) {
-  return (dispatch) => {
-
-    discogs.artistInfo(artistId)
-    .then(info => {
-      info.json()
-      .then(artistInfo => {
-        console.log(artistInfo);
-        dispatch({
-          type: ARTIST_INFO_SEARCH,
-          payload: artistInfo
-        });
-      });
-    });
-
-  };
-}
+// export function albumInfoSearch(albumId) {
+//
+//   return _.debounce( (dispatch) => {
+//     console.log('dispatched' + new Date());
+//     discogs.releaseInfo(albumId)
+//     .then(info => {
+//       info.json()
+//     })
+//     .then(albumInfo => {
+//       dispatch({
+//         type: ALBUM_INFO_SEARCH,
+//         payload: albumInfo
+//       });
+//     });
+//
+//   }, 1000);
+// }
+//
+// export function artistInfoSearch(artistId) {
+//   return (dispatch) => {
+//
+//     discogs.artistInfo(artistId)
+//     .then(info => {
+//       info.json()
+//     })
+//     .then(artistInfo => {
+//       dispatch({
+//         type: ARTIST_INFO_SEARCH,
+//         payload: artistInfo
+//       });
+//     });
+//
+//   };
+// }
