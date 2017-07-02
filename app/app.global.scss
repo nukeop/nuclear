@@ -2,26 +2,57 @@
 
 html {
   position: absolute;
-
   width: 100%;
   height: 100%;
-
   cursor: default;
   -webkit-user-select: none;
-
   font-family: 'Cabin';
 }
 
 body {
   position: absolute;
-
   width: 100%;
   height: 100%;
-  margin: 0px;
+  margin: 0;
 }
 
 a {
   text-decoration: none;
-
   color: $white;
+
+  &:hover {
+    text-decoration: none;
+    color: $white;
+  }
+}
+//Semantic UI section
+.ui.segment {
+  color: $white;
+  background: $background3;
+}
+
+.ui.menu {
+  .item {
+    color: $white;
+  }
+}
+
+.ui.secondary.pointing.menu {
+  border-color: rgba($white, 0.15);
+
+  a.item {
+    &:hover {
+      color: $white;
+    }
+  }
+
+  .active.item {
+    color: $white;
+    border-color: $green;
+
+    &:hover {
+      color: $white;
+      border-color: $green;
+    }
+  }
 }

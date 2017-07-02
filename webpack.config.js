@@ -33,7 +33,7 @@ const config = {
         loader: 'style-loader!css-loader?modules=true&localIdentName=[name]__[local]___[hash:base64:5]'
       }, {
         test: /\.scss$/,
-        loader: 'style-loader!css-loader?importLoaders=1&modules&localIdentName=[path]___[name]__[local]___[hash:base64:5]!sass-loader'
+        loader: 'style-loader!css-loader?importLoaders=1&modules&localIdentName=[local]!sass-loader'
       }
     ]
   },
