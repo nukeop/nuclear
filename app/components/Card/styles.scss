@@ -6,6 +6,7 @@
   transition: 0.3s;
   border-radius: 0.5rem;
   width: 15rem;
+  height: 20rem;
   margin: 1rem;
 
   &:hover {
@@ -13,8 +14,10 @@
   }
 
   img {
+    height: 15rem;
     width: 100%;
     border-radius: 0.4rem 0.4rem 0 0;
+    object-fit: cover;
   }
 
   hr {
@@ -26,7 +29,8 @@
 .container {
   padding: 0.125rem 1rem;
 
-  h4, p {
-    margin: 0.5rem 0rem;
+  h4,
+  p {
+    margin: 0.5rem 0;
   }
 }
