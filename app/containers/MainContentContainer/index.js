@@ -7,7 +7,7 @@ import * as Actions from '../../actions';
 
 import Dashboard from '../../components/Dashboard';
 import MainLayout from '../../components/MainLayout';
-import SearchResults from '../../components/SearchResults';
+import SearchResultsContainer from '../SearchResultsContainer';
 import VerticalPanel from '../../components/VerticalPanel';
 
 class MainContentContainer extends React.Component {
@@ -26,7 +26,7 @@ class MainContentContainer extends React.Component {
             >
               <Switch key={location.key} location={location}>
                 <Route path="/dashboard" component={Dashboard} />
-                <Route path="/" component={SearchResults} />
+                <Route path="/" component={SearchResultsContainer} />
               </Switch>
             </RouteTransition>
           </MainLayout>
@@ -41,7 +41,6 @@ class MainContentContainer extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    unifiedSearchResults: state.search.unifiedSearchResults
   }
 }
 
