@@ -2,6 +2,7 @@ import React from 'react';
 import FontAwesome from 'react-fontawesome';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { withRouter } from 'react-router-dom';
 import * as Actions from './actions';
 
 import './app.global.scss';
@@ -90,4 +91,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(state => {return {};},mapDispatchToProps)(App);
+export default withRouter(connect(state => {return {};},mapDispatchToProps)(App));
