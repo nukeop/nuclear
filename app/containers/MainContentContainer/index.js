@@ -10,6 +10,8 @@ import MainLayout from '../../components/MainLayout';
 import SearchResultsContainer from '../SearchResultsContainer';
 import VerticalPanel from '../../components/VerticalPanel';
 
+import styles from './styles.scss';
+
 class MainContentContainer extends React.Component {
 
   render() {
@@ -23,6 +25,7 @@ class MainContentContainer extends React.Component {
               atEnter={{ opacity: 0 }}
               atLeave={{ opacity: 0 }}
               atActive={{ opacity: 1 }}
+              className={styles.transition}
             >
               <Switch key={location.key} location={location}>
                 <Route path="/dashboard" component={Dashboard} />

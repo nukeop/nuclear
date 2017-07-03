@@ -3,9 +3,6 @@ import { Link } from 'react-router-dom';
 
 import styles from './styles.css';
 
-
-
-
 class MainLayout extends React.Component {
   render() {
     return (
