@@ -1,11 +1,25 @@
 import React from 'react';
 import { Tab } from 'semantic-ui-react';
 
+import AllResults from './AllResults';
 import Card from '../Card';
 
 import styles from './styles.scss';
 
 class SearchResults extends React.Component {
+
+  renderAllResultsPane() {
+    return (
+      <Tab.Pane loading={this.props.unifiedSearchStarted} attached={false}>
+        <div className={styles.pane_container}>
+          <AllResults
+            artistSearchResults={this.props.artistSearchResults}
+            albumSearchResults={this.props.albumSearchResults}
+          />
+        </div>
+      </Tab.Pane>
+    );
+  }
 
   renderPane(collection) {
     return (
@@ -30,6 +44,10 @@ class SearchResults extends React.Component {
 
   panes() {
     var panes = [
+      {
+        menuItem: 'All',
+        render: () => this.renderAllResultsPane()
+      },
       {
         menuItem: 'Artists',
         render: () => this.renderPane(this.props.artistSearchResults)
