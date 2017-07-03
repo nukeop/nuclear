@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Tab } from 'semantic-ui-react';
 
 import styles from './styles.css';
@@ -26,6 +27,7 @@ class MainLayout extends React.Component {
 
         <Tab menu={{secondary: true, pointing: true}} panes={panes} />
 
+        <Link to="/test">link</Link>
 
       </div>
     );
