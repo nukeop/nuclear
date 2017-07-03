@@ -1,4 +1,5 @@
 import React from 'react';
+import { Image } from 'semantic-ui-react';
 
 import styles from './styles.scss';
 
@@ -10,7 +11,7 @@ class Card extends React.Component {
   render() {
     return (
       <div className={styles.card}>
-        <img src={this.props.image}></img>
+        <Image src={this.props.image}></Image>
         <div className={styles.container}>
           <h4>{this.props.header}</h4>
           <p>{this.props.content}</p>

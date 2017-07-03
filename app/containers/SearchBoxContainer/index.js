@@ -23,7 +23,6 @@ class SearchBoxContainer extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    searchPlugins: state.search.searchPlugins,
     unifiedSearchStarted: state.search.unifiedSearchStarted
   }
 }

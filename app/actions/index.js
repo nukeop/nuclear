@@ -87,9 +87,12 @@ export function artistSearch(terms) {
 export function unifiedSearch(terms) {
   return (dispatch) => {
     dispatch(unifiedSearchStart());
-    dispatch(albumSearch(terms));
-    dispatch(artistSearch(terms));
-    dispatch(unifiedSearchSuccess());
+    Promise.all([
+      dispatch(albumSearch(terms)),
+      dispatch(artistSearch(terms))
+    ]).then(() => {
+      setTimeout(() => dispatch(unifiedSearchSuccess()), 2000);
+    });
   };
 }
 

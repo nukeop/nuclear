@@ -11,6 +11,7 @@ class SearchResultsContainer extends React.Component {
       <SearchResults
         artistSearchResults={this.props.artistSearchResults}
         albumSearchResults={this.props.albumSearchResults}
+        unifiedSearchStarted={this.props.unifiedSearchStarted}
       />
     );
   }
@@ -19,7 +20,8 @@ class SearchResultsContainer extends React.Component {
 function mapStateToProps(state) {
   return {
     artistSearchResults: state.search.artistSearchResults,
-    albumSearchResults: state.search.albumSearchResults
+    albumSearchResults: state.search.albumSearchResults,
+    unifiedSearchStarted: state.search.unifiedSearchStarted
   }
 }
 

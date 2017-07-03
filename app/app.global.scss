@@ -25,6 +25,7 @@ a {
     color: $white;
   }
 }
+
 //Semantic UI section
 .ui.segment {
   color: $white;
@@ -55,5 +56,16 @@ a {
       color: $white;
       border-color: $green;
     }
+  }
+}
+
+.ui.tab.loading.segment, .ui.tab.loading {
+  &:before {
+    background: rgba($background2, 0.2);
+    border: .2em solid rgba($background2, .6);
+  }
+
+  &:after {
+    border-color: $green transparent transparent;
   }
 }

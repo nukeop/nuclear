@@ -9,18 +9,20 @@ class SearchResults extends React.Component {
 
   renderPane(collection) {
     return (
-      <Tab.Pane attached={false}>
+      <Tab.Pane loading={this.props.unifiedSearchStarted} attached={false}>
         <div className={styles.pane_container}>
-        {
-          collection.map((el, i) => {
-            return (
-              <Card
-                header={el.title}
-                image={el.thumb}
-              />
-            )
-          })
-        }
+          {
+            this.props.unifiedSearchStarted
+            ? null
+            : collection.map((el, i) => {
+              return (
+                <Card
+                  header={el.title}
+                  image={el.thumb}
+                />
+              )
+            })
+          }
         </div>
       </Tab.Pane>
     );
