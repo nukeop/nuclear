@@ -1,4 +1,7 @@
-.artist_search_results_container {
+.pane_container {
   display: flex;
   flex-flow: row wrap;
+  position: relative;
+  height: 100%;
+  justify-content: center;
 }

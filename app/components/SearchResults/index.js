@@ -6,31 +6,37 @@ import Card from '../Card';
 import styles from './styles.scss';
 
 class SearchResults extends React.Component {
-  panes() {
-    var panes = [];
 
-    var artistPane = {
-      menuItem: 'Artists',
-      render: () => {
-        return (
-          <Tab.Pane attached={false}>
-            <div className={styles.artist_search_results_container}>
-            {
-              this.props.artistSearchResults.map((el, i) => {
-                return (
-                  <Card
-                    header={el.title}
-                    image={el.thumb}
-                  />
-                );
-              })
-            }
-            </div>
-          </Tab.Pane>
-        );
+  renderPane(collection) {
+    return (
+      <Tab.Pane attached={false}>
+        <div className={styles.pane_container}>
+        {
+          collection.map((el, i) => {
+            return (
+              <Card
+                header={el.title}
+                image={el.thumb}
+              />
+            )
+          })
+        }
+        </div>
+      </Tab.Pane>
+    );
+  }
+
+  panes() {
+    var panes = [
+      {
+        menuItem: 'Artists',
+        render: () => this.renderPane(this.props.artistSearchResults)
+      },
+      {
+        menuItem: 'Albums',
+        render: () => this.renderPane(this.props.albumSearchResults)
       }
-    }
-    panes.push(artistPane);
+    ];
 
     return panes;
   }

@@ -10,7 +10,7 @@ class SearchResultsContainer extends React.Component {
     return (
       <SearchResults
         artistSearchResults={this.props.artistSearchResults}
-        albumSearchResults={this.props.artistSearchResults}
+        albumSearchResults={this.props.albumSearchResults}
       />
     );
   }
