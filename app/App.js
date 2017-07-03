@@ -2,7 +2,7 @@ import React from 'react';
 import FontAwesome from 'react-fontawesome';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { withRouter } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import * as Actions from './actions';
 
 import './app.global.scss';
@@ -53,7 +53,7 @@ class App extends React.Component {
                 width="150px"
                 src="./resources/media/nuclear/logo_full_light.png"
               /></div>
-              <a href="#"><FontAwesome name="dashboard" /> Dashboard</a>
+              <Link to="/dashboard"><FontAwesome name="dashboard" /> Dashboard</Link>
               <a href="#"><FontAwesome name="download" /> Downloads</a>
               <a href="#"><FontAwesome name="music" /> Playlists</a>
               <a href="#"><FontAwesome name="cogs" /> Settings</a>

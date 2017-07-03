@@ -5,7 +5,9 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as Actions from '../../actions';
 
+import Dashboard from '../../components/Dashboard';
 import MainLayout from '../../components/MainLayout';
+import SearchResults from '../../components/SearchResults';
 import VerticalPanel from '../../components/VerticalPanel';
 
 class MainContentContainer extends React.Component {
@@ -15,17 +17,19 @@ class MainContentContainer extends React.Component {
     return(
       <Route render={({location, history, match}) => {
         return (
-          <RouteTransition
-            pathname={location.pathname}
-            atEnter={{ opacity: 0 }}
-            atLeave={{ opacity: 0 }}
-            atActive={{ opacity: 1 }}
-          >
-            <Switch key={location.key} location={location}>
-              <Route exact path="/" component={MainLayout} />
-              <Route exact path="/test" component={fff} />
-            </Switch>
-          </RouteTransition>
+          <MainLayout>
+            <RouteTransition
+              pathname={location.pathname}
+              atEnter={{ opacity: 0 }}
+              atLeave={{ opacity: 0 }}
+              atActive={{ opacity: 1 }}
+            >
+              <Switch key={location.key} location={location}>
+                <Route path="/dashboard" component={Dashboard} />
+                <Route path="/" component={SearchResults} />
+              </Switch>
+            </RouteTransition>
+          </MainLayout>
         );
       }
     }>
