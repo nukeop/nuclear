@@ -49,39 +49,39 @@ export default function SearchReducer(state=initialState, action) {
       });
     case ALBUM_INFO_SEARCH_START:
       return Object.assign({}, state, {
-        albumDetails: {
+        albumDetails: Object.assign(state.albumDetails, {
           [`${action.payload}`]: {
             loading: true
           }
-        }
+        })
       });
     case ALBUM_INFO_SEARCH_SUCCESS:
       return Object.assign({}, state, {
-        albumDetails: {
+        albumDetails: Object.assign(state.albumDetails, {
           [`${action.payload.id}`]: Object.assign(
             {},
             action.payload.info,
             {loading: false}
           )
-        }
+        })
       });
     case ARTIST_INFO_SEARCH_START:
       return Object.assign({}, state, {
-        artistDetails: {
+        artistDetails: Object.assign(state.artistDetails, {
           [`${action.payload}`]: {
             loading: true
           }
-        }
+        })
       });
     case ARTIST_INFO_SEARCH_SUCCESS:
       return Object.assign({}, state, {
-        artistDetails: {
+        artistDetails: Object.assign(state.artistDetails, {
           [`${action.payload.id}`]: Object.assign(
             {},
             action.payload.info,
             {loading: false}
           )
-        }
+        })
       });
     default:
       return state;

@@ -5,10 +5,13 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as Actions from '../../actions';
 
+
 import Dashboard from '../../components/Dashboard';
 import MainLayout from '../../components/MainLayout';
+
+import AlbumViewContainer from '../AlbumViewContainer';
 import SearchResultsContainer from '../SearchResultsContainer';
-import VerticalPanel from '../../components/VerticalPanel';
+
 
 import styles from './styles.scss';
 
@@ -28,6 +31,7 @@ class MainContentContainer extends React.Component {
               className={styles.transition}
             >
               <Switch key={location.key} location={location}>
+                <Route path="/album/:albumId" component={AlbumViewContainer} />
                 <Route path="/dashboard" component={Dashboard} />
                 <Route path="/" component={SearchResultsContainer} />
               </Switch>

@@ -57,11 +57,16 @@ class SearchResults extends React.Component {
       },
       {
         menuItem: 'Albums',
-        render: () => this.renderPane(this.props.albumSearchResults, this.props.albumInfoSearch)
+        render: () => this.renderPane(this.props.albumSearchResults, this.albumInfoSearch.bind(this))
       }
     ];
 
     return panes;
+  }
+
+  albumInfoSearch(albumId) {
+    this.props.albumInfoSearch(albumId);
+    this.props.history.push('/album/' + albumId)
   }
 
   render() {
