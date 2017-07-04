@@ -34,7 +34,6 @@ class SearchResults extends React.Component {
                   <Card
                     header={el.title}
                     image={el.thumb}
-                    small
                   />
                 )
               })
