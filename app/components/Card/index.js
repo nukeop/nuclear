@@ -19,7 +19,7 @@ class Card extends React.Component {
         })
       }>
         <Image src={this.props.image}></Image>
-        <div className={styles.container}>
+        <div className={styles.container} onClick={this.props.onClick}>
           <h4>{this.props.header}</h4>
           <p>{this.props.content}</p>
         </div>

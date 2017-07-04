@@ -12,6 +12,7 @@ class SearchResultsContainer extends React.Component {
         artistSearchResults={this.props.artistSearchResults}
         albumSearchResults={this.props.albumSearchResults}
         unifiedSearchStarted={this.props.unifiedSearchStarted}
+        albumInfoSearch={this.props.actions.albumInfoSearch}
       />
     );
   }

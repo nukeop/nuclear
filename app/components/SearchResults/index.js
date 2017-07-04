@@ -21,7 +21,7 @@ class SearchResults extends React.Component {
     );
   }
 
-  renderPane(collection) {
+  renderPane(collection, onClick) {
     return (
       <Tab.Pane loading={this.props.unifiedSearchStarted} attached={false}>
         <div className={styles.pane_container}>
@@ -34,6 +34,7 @@ class SearchResults extends React.Component {
                   <Card
                     header={el.title}
                     image={el.thumb}
+                    onClick={() => onClick(el.id)}
                   />
                 )
               })
@@ -56,7 +57,7 @@ class SearchResults extends React.Component {
       },
       {
         menuItem: 'Albums',
-        render: () => this.renderPane(this.props.albumSearchResults)
+        render: () => this.renderPane(this.props.albumSearchResults, this.props.albumInfoSearch)
       }
     ];
 
