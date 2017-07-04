@@ -6,7 +6,6 @@
   transition: 0.3s;
   border-radius: 0.5rem;
   width: 15rem;
-  height: 20rem;
   margin: 1rem;
 
   &:hover {
@@ -26,8 +25,17 @@
   }
 }
 
+.small {
+  width: 10rem;
+
+  img {
+    height: 10rem;
+  }
+}
+
 .container {
   padding: 0.125rem 1rem;
+  height: auto;
 
   h4,
   p {

@@ -3,6 +3,8 @@ import { Image } from 'semantic-ui-react';
 
 import styles from './styles.scss';
 
+var classNames = require('classnames');
+
 class Card extends React.Component {
   constructor(props) {
     super(props);
@@ -10,7 +12,12 @@ class Card extends React.Component {
 
   render() {
     return (
-      <div className={styles.card}>
+      <div className={
+        classNames({
+          [`${styles.card}`]: true,
+          [`${styles.small}`]: this.props.small
+        })
+      }>
         <Image src={this.props.image}></Image>
         <div className={styles.container}>
           <h4>{this.props.header}</h4>
