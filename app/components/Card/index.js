@@ -12,14 +12,17 @@ class Card extends React.Component {
 
   render() {
     return (
-      <div className={
-        classNames({
-          [`${styles.card}`]: true,
-          [`${styles.small}`]: this.props.small
-        })
-      }>
+      <div
+        className={
+          classNames({
+            [`${styles.card}`]: true,
+            [`${styles.small}`]: this.props.small
+          })
+        }
+        onClick={this.props.onClick}
+      >
         <Image src={this.props.image}></Image>
-        <div className={styles.container} onClick={this.props.onClick}>
+        <div className={styles.container}>
           <h4>{this.props.header}</h4>
           <p>{this.props.content}</p>
         </div>

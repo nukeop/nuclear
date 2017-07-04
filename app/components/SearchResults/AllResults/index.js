@@ -9,44 +9,42 @@ class AllResults extends React.Component {
     super(props);
   }
 
+  renderResults(collection) {
+    return (
+        collection.slice(0, 3).map((el, i) => {
+          return (
+            <Card
+              small
+              header={el.title}
+              image={el.thumb}
+            />
+          )
+        })
+    );
+  }
+
   render() {
+    if (this.props.artistSearchResults.length <= 0 &&
+        this.props.albumSearchResults.length <=0 ) {
+          return (<div>Nothing found.</div>);
+        }
+
     return (
       <div className={styles.all_results_container}>
 
         <div className={styles.column}>
-        <h3>Artists</h3>
-        <div className={styles.row}>
-        {
-          this.props.artistSearchResults.slice(0, 3).map((el, i) => {
-            return (
-              <Card
-                small
-                header={el.title}
-                image={el.thumb}
-              />
-            )
-          })
-        }
-        </div>
+          <h3>Artists</h3>
+          <div className={styles.row}>
+            { this.renderResults(this.props.artistSearchResults) }
+          </div>
         </div>
 
         <div className={styles.column}>
-        <h3>Albums</h3>
-        <div className={styles.row}>
-        {
-          this.props.albumSearchResults.slice(0, 3).map((el, i) => {
-            return (
-              <Card
-                small
-                header={el.title}
-                image={el.thumb}
-              />
-            )
-          })
-        }
+          <h3>Albums</h3>
+          <div className={styles.row}>
+            { this.renderResults(this.props.albumSearchResults) }
+          </div>
         </div>
-        </div>
-
 
       </div>
     );

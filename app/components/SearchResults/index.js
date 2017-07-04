@@ -26,7 +26,7 @@ class SearchResults extends React.Component {
       <Tab.Pane loading={this.props.unifiedSearchStarted} attached={false}>
         <div className={styles.pane_container}>
           {
-            collection
+            collection.length > 0
             ? this.props.unifiedSearchStarted
               ? null
               : collection.map((el, i) => {
@@ -53,7 +53,7 @@ class SearchResults extends React.Component {
       },
       {
         menuItem: 'Artists',
-        render: () => this.renderPane(this.props.artistSearchResults)
+        render: () => this.renderPane(this.props.artistSearchResults, this.props.artistInfoSearch)
       },
       {
         menuItem: 'Albums',

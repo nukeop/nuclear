@@ -7,7 +7,10 @@ import {
   ALBUM_SEARCH_SUCCESS,
 
   ALBUM_INFO_SEARCH_START,
-  ALBUM_INFO_SEARCH_SUCCESS
+  ALBUM_INFO_SEARCH_SUCCESS,
+
+  ARTIST_INFO_SEARCH_START,
+  ARTIST_INFO_SEARCH_SUCCESS
  } from '../actions';
 import config from '../plugins/config';
 
@@ -18,6 +21,7 @@ const initialState = {
   artistSearchResults: [],
   albumSearchResults: [],
   albumDetails: {},
+  artistDetails: {},
   unifiedSearchStarted: false
 };
 
@@ -61,7 +65,24 @@ export default function SearchReducer(state=initialState, action) {
           )
         }
       });
-      return state;
+    case ARTIST_INFO_SEARCH_START:
+      return Object.assign({}, state, {
+        artistDetails: {
+          [`${action.payload}`]: {
+            loading: true
+          }
+        }
+      });
+    case ARTIST_INFO_SEARCH_SUCCESS:
+      return Object.assign({}, state, {
+        artistDetails: {
+          [`${action.payload.id}`]: Object.assign(
+            {},
+            action.payload.info,
+            {loading: false}
+          )
+        }
+      });
     default:
       return state;
   }

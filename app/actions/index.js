@@ -13,6 +13,9 @@ export const ALBUM_SEARCH_SUCCESS = 'ALBUM_SEARCH_SUCCESS';
 export const ALBUM_INFO_SEARCH_START = 'ALBUM_INFO_SEARCH_START';
 export const ALBUM_INFO_SEARCH_SUCCESS = 'ALBUM_INFO_SEARCH_SUCCESS';
 
+export const ARTIST_INFO_SEARCH_START = 'ARTIST_INFO_SEARCH_START';
+export const ARTIST_INFO_SEARCH_SUCCESS = 'ARTIST_INFO_SEARCH_SUCCESS';
+
 export function createSearchPlugins(pluginClasses) {
   var plugins = {};
 
@@ -124,23 +127,33 @@ export function albumInfoSearch(albumId) {
     .then (albumInfo => {
       dispatch(albumInfoSuccess(albumId, albumInfo));
     });
-
   };
 }
 
-// export function artistInfoSearch(artistId) {
-//   return (dispatch) => {
-//
-//     discogs.artistInfo(artistId)
-//     .then(info => {
-//       info.json()
-//     })
-//     .then(artistInfo => {
-//       dispatch({
-//         type: ARTIST_INFO_SEARCH,
-//         payload: artistInfo
-//       });
-//     });
-//
-//   };
-// }
+export function artistInfoStart(artistId) {
+  return {
+    type: ARTIST_INFO_SEARCH_START,
+    payload: artistId
+  }
+}
+
+export function artistInfoSuccess(artistId, info) {
+  return {
+    type: ARTIST_INFO_SEARCH_SUCCESS,
+    payload: {
+      id: artistId,
+      info: info
+    }
+  }
+}
+
+export function artistInfoSearch(artistId) {
+  return (dispatch) => {
+    dispatch(artistInfoStart(artistId));
+    discogs.artistInfo(artistId)
+    .then (info => info.json())
+    .then (artistInfo => {
+      dispatch(artistInfoSuccess(artistId, artistInfo));
+    });
+  };
+}
