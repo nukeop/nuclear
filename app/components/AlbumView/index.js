@@ -1,5 +1,5 @@
 import React from 'react';
-import {Dimmer, Loader, Image} from 'semantic-ui-react'
+import {Dimmer, Loader, Image, Segment} from 'semantic-ui-react'
 
 import styles from './styles.scss';
 
@@ -11,10 +11,12 @@ class AlbumView extends React.Component {
   render() {
     return (
       <div className={styles.album_view_container}>
-        <Dimmer active>
-          <Loader/>
-        </Dimmer>
-        {this.props.album.name}
+
+        <Dimmer active={this.props.album.loading}>
+          <Loader  />
+
+          {this.props.album.title}
+          </Dimmer>
       </div>
     );
   }

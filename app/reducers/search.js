@@ -49,15 +49,16 @@ export default function SearchReducer(state=initialState, action) {
       });
     case ALBUM_INFO_SEARCH_START:
       return Object.assign({}, state, {
-        albumDetails: Object.assign(state.albumDetails, {
-          [`${action.payload}`]: {
-            loading: true
-          }
+        albumDetails: Object.assign({}, state.albumDetails, {
+          [`${action.payload}`]: Object.assign(
+            {},
+            {loading: true}
+          )
         })
       });
     case ALBUM_INFO_SEARCH_SUCCESS:
       return Object.assign({}, state, {
-        albumDetails: Object.assign(state.albumDetails, {
+        albumDetails: Object.assign({}, state.albumDetails, {
           [`${action.payload.id}`]: Object.assign(
             {},
             action.payload.info,

@@ -6,7 +6,7 @@ html {
   height: 100%;
   cursor: default;
   -webkit-user-select: none;
-  font-family: 'Cabin';
+  font-family: 'Lato';
 }
 
 body {
@@ -59,7 +59,7 @@ a {
   }
 }
 
-.ui.tab.loading.segment, .ui.tab.loading {
+.ui.tab.loading.segment, .ui.tab.loading, .ui.loader, .ui.dimmer .ui.loader {
   &:before {
     background: rgba($background2, 0.2);
     border: .2em solid rgba($background2, .6);

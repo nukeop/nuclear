@@ -57,6 +57,7 @@ class App extends React.Component {
               <a href="#"><FontAwesome name="download" /> Downloads</a>
               <a href="#"><FontAwesome name="music" /> Playlists</a>
               <a href="#"><FontAwesome name="cogs" /> Settings</a>
+              <Link to="/"><FontAwesome name="search" /> Search results</Link>
             </SidebarMenu>
           </VerticalPanel>
           <VerticalPanel className={styles.center_panel}>

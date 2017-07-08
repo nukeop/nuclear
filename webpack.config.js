@@ -43,7 +43,7 @@ const config = {
     new GoogleFontsPlugin({
       fonts: [
         {
-          family: 'cabin',
+          family: 'lato',
           variants: ['regular']
         }
       ]
