@@ -1,4 +1,49 @@
+@import '../../vars';
+
 .album_view_container {
   width: 100%;
   height: 100%;
+  margin: 1rem 0rem;
+
+  .dimmable {
+    width: 100%;
+    height: 100%;
+
+    .album_info_box {
+      display: flex;
+      flex-flow: row;
+      margin: 0rem 1rem;
+
+      img {
+        border-radius: 0.5rem;
+        width: 15rem;
+        height: 15rem;
+        flex: 0 0 auto;
+        box-shadow: 0rem 0rem 1rem 0.5rem rgba($black, 0.4);
+      }
+
+      .album_details {
+        display: flex;
+        flex-flow: column;
+        margin: 0rem 1rem;
+
+        .album_title {
+          font-size: 32px;
+          line-height: 32px;
+        }
+
+        .album_artist {
+          color: $background2;
+        }
+
+        .album_genre {
+
+        }
+
+        .album_year {
+          
+        }
+      }
+    }
+  }
 }
