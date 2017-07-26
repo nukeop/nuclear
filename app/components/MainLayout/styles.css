@@ -1,8 +1,0 @@
-.main_layout_container {
-  position: relative;
-
-  height: calc(100% - 1rem);
-  margin: 1rem;
-  box-sizing: border-box;
-  overflow: auto;
-}

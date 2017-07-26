@@ -53,7 +53,7 @@ class SearchResults extends React.Component {
       },
       {
         menuItem: 'Artists',
-        render: () => this.renderPane(this.props.artistSearchResults, this.props.artistInfoSearch)
+        render: () => this.renderPane(this.props.artistSearchResults, this.artistInfoSearch.bind(this))
       },
       {
         menuItem: 'Albums',
@@ -66,7 +66,12 @@ class SearchResults extends React.Component {
 
   albumInfoSearch(albumId) {
     this.props.albumInfoSearch(albumId);
-    this.props.history.push('/album/' + albumId)
+    this.props.history.push('/album/' + albumId);
+  }
+
+  artistInfoSearch(artistId) {
+    this.props.artistInfoSearch(artistId);
+    this.props.history.push('/artist/' + artistId);
   }
 
   render() {

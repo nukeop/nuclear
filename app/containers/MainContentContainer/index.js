@@ -10,6 +10,7 @@ import Dashboard from '../../components/Dashboard';
 import MainLayout from '../../components/MainLayout';
 
 import AlbumViewContainer from '../AlbumViewContainer';
+import ArtistViewContainer from '../ArtistViewContainer';
 import SearchResultsContainer from '../SearchResultsContainer';
 
 
@@ -32,6 +33,7 @@ class MainContentContainer extends React.Component {
             >
               <Switch key={location.key} location={location}>
                 <Route path="/album/:albumId" component={AlbumViewContainer} />
+                <Route path="/artist/:artistId" component={ArtistViewContainer} />
                 <Route path="/dashboard" component={Dashboard} />
                 <Route path="/" component={SearchResultsContainer} />
               </Switch>

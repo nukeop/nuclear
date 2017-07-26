@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import styles from './styles.css';
+import styles from './styles.scss';
 
 class MainLayout extends React.Component {
   render() {
