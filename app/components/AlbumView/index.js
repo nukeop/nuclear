@@ -9,6 +9,11 @@ class AlbumView extends React.Component {
     super(props);
   }
 
+  artistInfoSearch(artistId) {
+    this.props.artistInfoSearch(artistId);
+    this.props.history.push('/artist/' + artistId);
+  }
+
   render() {
     return (
       <div className={styles.album_view_container}>
@@ -25,7 +30,7 @@ class AlbumView extends React.Component {
                     <img src={this.props.album.images[0].uri}/>
                     <div className={styles.album_details}>
                       <div className={styles.album_title}>{this.props.album.title}</div>
-                      <div className={styles.album_artist}>by {this.props.album.artists[0].name}</div>
+                      <div className={styles.album_artist}>by <a href='#' onClick={() => {this.artistInfoSearch.bind(this)(this.props.album.artists[0].id)}}>{this.props.album.artists[0].name}</a></div>
                       <div className={styles.album_genre}>
                         <label>Genre:</label>
                         {this.props.album.styles[0]}</div>

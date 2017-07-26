@@ -10,8 +10,6 @@ class ArtistView extends React.Component {
   }
 
   render() {
-
-    console.log('derp', this.props.artist.images)
     return (
       <div className={styles.artist_view_container}>
         <Dimmer.Dimmable>
@@ -25,7 +23,6 @@ class ArtistView extends React.Component {
             : <div className={styles.artist}>
             <div
               style={{
-                background: 'red',
                 backgroundImage: 'url(' + this.props.artist.images[0].resource_url + ')'
               }}
               className={styles.artist_header}

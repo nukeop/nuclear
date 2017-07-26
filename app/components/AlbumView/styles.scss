@@ -57,6 +57,14 @@
           color: $lightbg;
 
           font-size: 20px;
+          a {
+            color: $lightbg;
+            transition: 0.25s;
+
+            &:hover {
+              color: $white;
+            }
+          }
         }
 
         .album_genre {
@@ -83,17 +91,21 @@
         background: $background2;
 
         th {
-          padding: 1rem 0;
+          padding: 1rem 1rem;
         }
       }
 
       tbody {
+        tr {
+          transition: 0.25s;
+        }
+
         tr:hover {
             background: rgba($background2, 0.25);
         }
 
         td {
-          padding: 1rem 0;
+          padding: 1rem 1rem;
           border-bottom: 1px solid $background2;
         }
       }

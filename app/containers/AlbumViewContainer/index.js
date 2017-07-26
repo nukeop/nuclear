@@ -15,6 +15,8 @@ class AlbumViewContainer extends React.Component {
     return (
       <AlbumView
         album={this.props.albumDetails[this.props.match.params.albumId]}
+        artistInfoSearch={this.props.actions.artistInfoSearch}
+        history={this.props.history}
       />
     )
   }
