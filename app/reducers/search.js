@@ -68,7 +68,7 @@ export default function SearchReducer(state=initialState, action) {
       });
     case ARTIST_INFO_SEARCH_START:
       return Object.assign({}, state, {
-        artistDetails: Object.assign(state.artistDetails, {
+        artistDetails: Object.assign({}, state.artistDetails, {
           [`${action.payload}`]: {
             loading: true
           }
@@ -76,7 +76,7 @@ export default function SearchReducer(state=initialState, action) {
       });
     case ARTIST_INFO_SEARCH_SUCCESS:
       return Object.assign({}, state, {
-        artistDetails: Object.assign(state.artistDetails, {
+        artistDetails: Object.assign({}, state.artistDetails, {
           [`${action.payload.id}`]: Object.assign(
             {},
             action.payload.info,

@@ -1,6 +1,6 @@
 import React from 'react';
 import {Dimmer, Image, Loader} from 'semantic-ui-react';
-
+import Spacer from '../Spacer';
 
 import styles from './styles.scss';
 
@@ -17,22 +17,30 @@ class ArtistView extends React.Component {
             <Loader/>
           </Dimmer>
 
-          {
-            this.props.artist.loading
+          {this.props.artist.loading
             ? null
             : <div className={styles.artist}>
-            <div
-              style={{
-                backgroundImage: 'url(' + this.props.artist.images[0].resource_url + ')'
-              }}
-              className={styles.artist_header}
-            >
+              <div style={{
+                background: `url('${this.props.artist.images[0].resource_url}')`,
+                backgroundRepeat: 'noRepeat',
+                backgroundPosition: 'center',
+                backgroundSize: 'cover'
+              }} className={styles.artist_header}>
 
-            </div>
-                {this.props.artist.name}
-                {this.props.artist.profile}
+                <Spacer/>
+
+                <div className={styles.artist_header_container}>
+                  <div className={styles.artist_avatar} style={{
+                    background: `url('${this.props.artist.images[1].resource_url}')`,
+                    backgroundRepeat: 'noRepeat',
+                    backgroundPosition: 'center',
+                    backgroundSize: 'cover'
+                  }}></div>
+                  <h1>{this.props.artist.name}</h1>
+                </div>
 
               </div>
+            </div>
           }
 
         </Dimmer.Dimmable>
