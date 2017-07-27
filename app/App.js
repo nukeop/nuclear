@@ -51,7 +51,7 @@ class App extends React.Component {
             <SidebarMenu>
               <div style={{textAlign: "center"}}><img
                 width="150px"
-                src="./resources/media/nuclear/logo_full_light.png"
+                src="/resources/media/nuclear/logo_full_light.png"
               /></div>
               <Link to="/dashboard"><FontAwesome name="dashboard" /> Dashboard</Link>
               <a href="#"><FontAwesome name="download" /> Downloads</a>

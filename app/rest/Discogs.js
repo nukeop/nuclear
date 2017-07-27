@@ -47,8 +47,8 @@ function releaseInfo(releaseId) {
     addToken(
       apiUrl
       + 'masters/'
-      + releaseId
-      , true));
+      + releaseId,
+      true));
     }
 
 function artistInfo(artistId) {
@@ -56,14 +56,27 @@ function artistInfo(artistId) {
     addToken(
       apiUrl
       + 'artists/'
-      + artistId
-      ,true)
+      + artistId,
+      true)
     );
   }
+
+function artistReleases(artistId) {
+  return fetch(
+    addToken(
+      apiUrl
+      + 'artists/'
+      + artistId
+      + '/releases',
+      true
+    )
+  );
+}
 
 module.exports = {
   searchArtists,
   searchReleases,
   releaseInfo,
-  artistInfo
+  artistInfo,
+  artistReleases
 }

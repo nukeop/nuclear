@@ -10,7 +10,10 @@ import {
   ALBUM_INFO_SEARCH_SUCCESS,
 
   ARTIST_INFO_SEARCH_START,
-  ARTIST_INFO_SEARCH_SUCCESS
+  ARTIST_INFO_SEARCH_SUCCESS,
+
+  ARTIST_RELEASES_SEARCH_START,
+  ARTIST_RELEASES_SEARCH_SUCCESS
  } from '../actions';
 import config from '../plugins/config';
 
@@ -81,6 +84,26 @@ export default function SearchReducer(state=initialState, action) {
             {},
             action.payload.info,
             {loading: false}
+          )
+        })
+      });
+    case ARTIST_RELEASES_SEARCH_START:
+      return Object.assign({}, state, {
+        artistDetails: Object.assign({}, state.artistDetails, {
+          [`${action.payload}`]: Object.assign(
+            {},
+            state.artistDetails[`${action.payload}`],
+          {releases: []}
+          )
+        })
+      });
+    case ARTIST_RELEASES_SEARCH_SUCCESS:
+      return Object.assign({}, state, {
+        artistDetails: Object.assign({}, state.artistDetails, {
+          [`${action.payload.id}`]: Object.assign(
+            {},
+            state.artistDetails[`${action.payload.id}`],
+          {releases: action.payload.releases.releases}
           )
         })
       });

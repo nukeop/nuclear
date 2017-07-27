@@ -11,10 +11,16 @@ class ArtistViewContainer extends React.Component {
     super(props);
   }
 
+  componentWillMount() {
+    this.props.actions.artistReleasesSearch(this.props.match.params.artistId);
+  }
+
   render() {
     return (
       <ArtistView
         artist={this.props.artistDetails[this.props.match.params.artistId]}
+        albumInfoSearch={this.props.actions.albumInfoSearch}
+        history={this.props.history}
       />
     )
   }
