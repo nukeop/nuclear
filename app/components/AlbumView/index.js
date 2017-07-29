@@ -1,6 +1,8 @@
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
-import {Dimmer, Loader, Image, Segment} from 'semantic-ui-react'
+import {Dimmer, Loader, Image, Segment} from 'semantic-ui-react';
+
+import ContextPopup from '../ContextPopup';
 
 import styles from './styles.scss';
 
@@ -57,11 +59,21 @@ class AlbumView extends React.Component {
                     {
                       this.props.album.tracklist.map((el, i) => {
                         return (
-                          <tr>
-                            <td className={styles.center}>{i + 1}</td>
-                            <td className={styles.left}>{el.title}</td>
-                            <td className={styles.center}>{el.duration}</td>
-                          </tr>
+                          <ContextPopup
+                            trigger={
+                              <tr>
+                                <td className={styles.center}>{i + 1}</td>
+                                <td className={styles.left}>{el.title}</td>
+                                <td className={styles.center}>{el.duration}</td>
+                              </tr>
+                            }
+                            artist={this.props.album.artists[0].name}
+                            title={el.title}
+                            thumb={this.props.album.images[0].uri}
+                          >
+                            <a href='#' className={styles.add_button}><FontAwesome name="plus" /> Add to queue</a>
+                            <a href='#' className={styles.add_button}><FontAwesome name="play" /> Play now</a>
+                          </ContextPopup>
                         )
                       })
                     }

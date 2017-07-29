@@ -1,0 +1,76 @@
+@import '../../vars';
+
+.popup_content {
+  display: flex !important;
+  flex-flow: row;
+  background-color: $background !important;
+  color: $white;
+  border-color: $background2 !important;
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.18), 0px 0px 20px 0px rgba(0, 0, 0, 0.09) !important;
+  height: auto;
+
+  &:before {
+    background-color: $background !important;
+    box-shadow: 1px 1px 0 0 $background2 !important;
+  }
+
+  transition: 0.2s;
+}
+
+.popup_content>.content {
+  position: absolute;
+  display: flex;
+  width: 100%;
+  height: auto;
+}
+
+.popup_header {
+  display: flex;
+  color: $white;
+  height: auto;
+  padding: 0.5rem 0;
+}
+
+.popup_thumb {
+  flex: 0 0 auto;
+  width: 5rem;
+  height: 5rem;
+
+  img {
+    width: 5rem;
+    height: 5rem;
+  }
+}
+
+.popup_info {
+  display: flex;
+  flex-flow: column;
+  flex: 1 1 auto;
+  padding: 0 1rem;
+}
+
+.popup_artist {
+  flex: 0 0 auto;
+  color: $lightbg;
+}
+
+.popup_title {
+  flex: 0 0 auto;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.popup_buttons {
+  display: flex;
+  flex-flow: column;
+  flex: 0 0 auto;
+  padding: 0.5rem 0;
+}
+
+.add_button {
+  width: 100%;
+  padding: 0.5rem;
+  &:hover {
+    background: $pink !important;
+  }
+}
