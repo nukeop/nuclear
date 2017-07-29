@@ -49,10 +49,14 @@ class App extends React.Component {
         <div className={styles.panel_container}>
           <VerticalPanel className={styles.left_panel}>
             <SidebarMenu>
-              <div style={{textAlign: "center"}}><img
-                width="150px"
-                src="/resources/media/nuclear/logo_full_light.png"
-              /></div>
+              <div style={{textAlign: "center"}}>
+                <img
+                  width="150px"
+                  src="./resources/media/nuclear/logo_full_light.png"
+                />
+                <div className={styles.version_string}>Version 0.4.0</div>
+              </div>
+
               <Link to="/dashboard"><FontAwesome name="dashboard" /> Dashboard</Link>
               <a href="#"><FontAwesome name="download" /> Downloads</a>
               <a href="#"><FontAwesome name="music" /> Playlists</a>
