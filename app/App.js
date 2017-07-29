@@ -74,8 +74,11 @@ class App extends React.Component {
           <Seekbar fill="30%"/>
           <div className={styles.footer_horizontal}>
             <div className={styles.track_info_wrapper}>
-              <Cover cover="http://cdn.theobelisk.net/obelisk/wp-content/uploads/2012/01/vol4cover.jpg" />
-              <TrackInfo track="Supernaut" artist="Black Sabbath" />
+              <Cover cover={this.props.queue.queueItems[0] ? this.props.queue.queueItems[0].thumbnail : null} />
+              <TrackInfo
+                track={this.props.queue.queueItems[0] ? this.props.queue.queueItems[0].name : null}
+                artist={this.props.queue.queueItems[0] ? this.props.queue.queueItems[0].artist : null}
+              />
             </div>
             <Spacer />
             <PlayerControls />
@@ -89,10 +92,16 @@ class App extends React.Component {
   }
 }
 
+function mapStateToProps(state) {
+  return {
+    queue: state.queue
+  }
+}
+
 function mapDispatchToProps(dispatch) {
   return {
     actions: bindActionCreators(Actions, dispatch)
   };
 }
 
-export default withRouter(connect(state => {return {};},mapDispatchToProps)(App));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
