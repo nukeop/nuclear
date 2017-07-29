@@ -7,7 +7,7 @@
   color: $white;
   border-color: $background2 !important;
   box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.18), 0px 0px 20px 0px rgba(0, 0, 0, 0.09) !important;
-  height: auto;
+  height: auto !important;
 
   &:before {
     background-color: $background !important;
@@ -27,7 +27,7 @@
 .popup_header {
   display: flex;
   color: $white;
-  height: auto;
+  height: auto !important;
   padding: 0.5rem 0;
 }
 
@@ -47,6 +47,7 @@
   flex-flow: column;
   flex: 1 1 auto;
   padding: 0 1rem;
+  height: auto;
 }
 
 .popup_artist {
@@ -65,6 +66,7 @@
   flex-flow: column;
   flex: 0 0 auto;
   padding: 0.5rem 0;
+  height: auto !important;
 }
 
 .add_button {
