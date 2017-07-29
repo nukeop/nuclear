@@ -1,6 +1,6 @@
 import React from 'react';
 
-import styles from './styles.css';
+import styles from './styles.scss';
 
 import QueueItem from './QueueItem';
 
@@ -10,6 +10,10 @@ class PlayQueue extends React.Component {
   }
 
   renderQueueItems() {
+    if (!this.props.items) {
+      return null;
+    }
+
     return this.props.items.map((el, i) => {
       return <QueueItem key={i} track={el}/>;
     });

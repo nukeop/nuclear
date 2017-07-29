@@ -71,7 +71,16 @@ class AlbumView extends React.Component {
                             title={el.title}
                             thumb={this.props.album.images[0].uri}
                           >
-                            <a href='#' className={styles.add_button}><FontAwesome name="plus" /> Add to queue</a>
+                            <a href='#'
+                              onClick={() => this.props.addToQueue({
+                                artist: this.props.album.artists[0].name,
+                                name: el.title,
+                                thumbnail: this.props.album.images[0].uri
+                              })}
+                              className={styles.add_button}
+                              >
+                                <FontAwesome name="plus" /> Add to queue
+                            </a>
                             <a href='#' className={styles.add_button}><FontAwesome name="play" /> Play now</a>
                           </ContextPopup>
                         )

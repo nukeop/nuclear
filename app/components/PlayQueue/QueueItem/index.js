@@ -1,7 +1,7 @@
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
-import styles from './styles.css';
+import styles from './styles.scss';
 
 class QueueItem extends React.Component {
   constructor(props){

@@ -17,6 +17,8 @@ import Spacer from './components/Spacer';
 
 import MainContentContainer from './containers/MainContentContainer';
 
+import PlayQueueContainer from './containers/PlayQueueContainer';
+
 import SearchBox from './components/SearchBox';
 import SearchBoxContainer from './containers/SearchBoxContainer';
 
@@ -28,9 +30,6 @@ import SidebarMenu from './components/SidebarMenu';
 import TrackInfo from './components/TrackInfo';
 import WindowControls from './components/WindowControls';
 import VolumeControls from './components/VolumeControls';
-
-
-import { queueData } from './mocks/queueMock';
 
 class App extends React.Component {
   componentWillMount() {
@@ -68,7 +67,7 @@ class App extends React.Component {
             <MainContentContainer />
           </VerticalPanel>
           <VerticalPanel className={styles.right_panel}>
-            <PlayQueue items={queueData} />
+            <PlayQueueContainer />
           </VerticalPanel>
         </div>
         <Footer className={styles.footer}>
