@@ -1,4 +1,5 @@
 import MusicSourcePlugin from '../musicSources';
+import * as Youtube from '../../rest/Youtube';
 
 class YoutubePlugin extends MusicSourcePlugin {
   constructor() {
@@ -9,7 +10,13 @@ class YoutubePlugin extends MusicSourcePlugin {
 
   search(terms) {
     console.log('searching youtube for: ', terms);
-    return Promise.resolve('example stream');
+    Youtube.trackSearch(terms)
+    .then(result => result.json())
+    .then(result => {
+      console.log(result);
+      return Promise.resolve('example stream');
+    });
+
   }
 }
 
