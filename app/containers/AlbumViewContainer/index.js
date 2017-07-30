@@ -20,6 +20,7 @@ class AlbumViewContainer extends React.Component {
         album={this.props.albumDetails[this.props.match.params.albumId]}
         artistInfoSearch={this.props.actions.artistInfoSearch}
         addToQueue={this.props.actions.addToQueue}
+        musicSources={this.props.musicSources}
         history={this.props.history}
       />
     )
@@ -28,7 +29,8 @@ class AlbumViewContainer extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    albumDetails: state.search.albumDetails
+    albumDetails: state.search.albumDetails,
+    musicSources: state.plugin.plugins.musicSources
   }
 }
 

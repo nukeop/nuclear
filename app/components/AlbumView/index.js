@@ -72,7 +72,7 @@ class AlbumView extends React.Component {
                             thumb={this.props.album.images[0].uri}
                           >
                             <a href='#'
-                              onClick={() => this.props.addToQueue({
+                              onClick={() => this.props.addToQueue(this.props.musicSources, {
                                 artist: this.props.album.artists[0].name,
                                 name: el.title,
                                 thumbnail: this.props.album.images[0].uri
