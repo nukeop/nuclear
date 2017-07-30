@@ -1,5 +1,4 @@
 import {
-  CREATE_PLUGINS,
   UNIFIED_SEARCH_START,
   UNIFIED_SEARCH_SUCCESS,
   UNIFIED_SEARCH_ERROR,
@@ -15,7 +14,6 @@ import {
   ARTIST_RELEASES_SEARCH_START,
   ARTIST_RELEASES_SEARCH_SUCCESS
  } from '../actions';
-import config from '../plugins/config';
 
 var _ = require('lodash');
 
@@ -30,10 +28,6 @@ const initialState = {
 
 export default function SearchReducer(state=initialState, action) {
   switch (action.type) {
-    case CREATE_PLUGINS:
-      return Object.assign({}, state, {
-        plugins: action.payload
-      });
     case UNIFIED_SEARCH_START:
       return Object.assign({}, state, {
         unifiedSearchStarted: action.payload

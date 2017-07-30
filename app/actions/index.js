@@ -2,7 +2,6 @@ const mb = require('../rest/Musicbrainz');
 const discogs = require('../rest/Discogs');
 const _ = require('lodash');
 
-export const CREATE_PLUGINS = 'CREATE_PLUGINS';
 export const UNIFIED_SEARCH_START = 'UNIFIED_SEARCH_START';
 export const UNIFIED_SEARCH_SUCCESS = 'UNIFIED_SEARCH_SUCCESS';
 export const UNIFIED_SEARCH_ERROR = 'UNIFIED_SEARCH_ERROR';
@@ -18,29 +17,6 @@ export const ARTIST_INFO_SEARCH_SUCCESS = 'ARTIST_INFO_SEARCH_SUCCESS';
 
 export const ARTIST_RELEASES_SEARCH_START = 'ARTIST_RELEASES_SEARCH_START';
 export const ARTIST_RELEASES_SEARCH_SUCCESS = 'ARTIST_RELEASES_SEARCH_SUCCESS';
-
-export function createSearchPlugins(pluginClasses) {
-  var plugins = {};
-
-  for ( var i=0; i<Object.keys(pluginClasses).length; i++ ) {
-    var category = Object.keys(pluginClasses)[i];
-
-    if (plugins[category] == undefined) {
-          plugins[category] = [];
-    }
-
-    for (var j=0; j<Object.keys(pluginClasses[category]).length; j++) {
-      var pluginName = Object.keys(pluginClasses[category])[j];
-      var plugin = new pluginClasses[category][pluginName]();
-      plugins[category].push(plugin);
-    }
-  }
-
-  return {
-    type: CREATE_PLUGINS,
-    payload: plugins
-  };
-}
 
 export function sourcesSearch(terms, plugins) {
   var searchResults = {};

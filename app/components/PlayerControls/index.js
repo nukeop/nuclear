@@ -1,6 +1,6 @@
 import React from 'react';
 
-import styles from './styles.css';
+import styles from './styles.scss';
 
 import PlayerButton from './PlayerButton';
 import PlayPauseButton from './PlayPauseButton';
@@ -11,9 +11,9 @@ class PlayerControls extends React.Component {
     return (
       <div className={styles.player_controls_container}>
         <Spacer />
-        <PlayerButton icon="step-backward" />
-        <PlayPauseButton />
-        <PlayerButton icon="step-forward" />
+        <PlayerButton onClick={this.props.back} icon="step-backward" />
+        <PlayPauseButton onClick={this.props.togglePlay} />
+        <PlayerButton onClick={this.props.forward} icon="step-forward" />
         <Spacer />
       </div>
     );

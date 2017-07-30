@@ -1,7 +1,7 @@
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
-import styles from './styles.css';
+import styles from './styles.scss';
 
 class PlayPauseButton extends React.Component {
   getIcon() {
@@ -17,9 +17,9 @@ class PlayPauseButton extends React.Component {
   render() {
     return (
       <div className={styles.play_pause_button_container}>
-        {
+        <a href='#' onClick={this.props.onClick}>{
           this.getIcon()
-        }
+        }</a>
       </div>
     );
   }

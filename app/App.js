@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Link, withRouter } from 'react-router-dom';
 import * as Actions from './actions';
+import * as PluginsActions from './actions/plugins';
 
 import './app.global.scss';
 import styles from './styles.scss';
@@ -100,7 +101,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators(Actions, dispatch)
+    actions: bindActionCreators(Object.assign({}, PluginsActions, Actions), dispatch)
   };
 }
 
