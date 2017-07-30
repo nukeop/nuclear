@@ -9,7 +9,7 @@ class YoutubePlugin extends MusicSourcePlugin {
 
   search(terms) {
     console.log('searching youtube for: ', terms);
-    return {};
+    return Promise.resolve({});
   }
 }
 

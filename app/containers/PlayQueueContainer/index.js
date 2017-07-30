@@ -3,6 +3,7 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as QueueActions from '../../actions/queue';
+import * as PluginsActions from '../../actions/plugins';
 
 
 import PlayQueue from '../../components/PlayQueue';
@@ -17,6 +18,8 @@ class PlayQueueContainer extends React.Component {
     return(
       <PlayQueue
         items={this.props.queue.queueItems}
+        musicSources={this.props.plugins.musicSources}
+        pluginListSearch={this.props.actions.pluginListSearch}
       />
     );
   }
@@ -24,13 +27,14 @@ class PlayQueueContainer extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    queue: state.queue
+    queue: state.queue,
+    plugins: state.plugin.plugins
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators(QueueActions, dispatch)
+    actions: bindActionCreators(Object.assign({}, PluginsActions, QueueActions), dispatch)
   };
 }
 
