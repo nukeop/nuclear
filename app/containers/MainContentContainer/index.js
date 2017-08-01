@@ -25,7 +25,7 @@ class MainContentContainer extends React.Component {
         return (
           <MainLayout>
             <RouteTransition
-              pathname={location.pathname}
+              pathname={location.key}
               atEnter={{ opacity: 0 }}
               atLeave={{ opacity: 0 }}
               atActive={{ opacity: 1 }}

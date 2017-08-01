@@ -2,6 +2,8 @@ const { default: installExtension, REACT_DEVELOPER_TOOLS, REDUX_DEVTOOLS } = req
 const { app, BrowserWindow } = require('electron');
 const path = require('path');
 const url = require('url');
+const Player = require('mpris-service');
+
 
 let win;
 
@@ -14,7 +16,6 @@ function createWindow() {
       experimentalFeatures: true
     }
   });
-
 
   installExtension(REACT_DEVELOPER_TOOLS)
   .then((name) => console.log(`Added Extension:  ${name}`))
@@ -32,6 +33,14 @@ function createWindow() {
   }));
 
   win.webContents.openDevTools();
+
+  var player = Player({
+	name: 'nodejs',
+	identity: 'nuclear',
+	supportedUriSchemes: ['file'],
+	supportedMimeTypes: ['audio/mpeg'],
+	supportedInterfaces: ['player']
+});
 
   win.on('closed', () => {
     win = null;

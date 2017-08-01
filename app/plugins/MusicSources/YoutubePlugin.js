@@ -13,8 +13,8 @@ class YoutubePlugin extends MusicSourcePlugin {
     Youtube.trackSearch(terms)
     .then(result => result.json())
     .then(result => {
-      console.log(result);
-      return Promise.resolve('example stream');
+      console.log(result.items[0]);
+      return Promise.resolve(result.items[0]);
     });
 
   }
