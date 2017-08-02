@@ -20,6 +20,11 @@ class QueueItem extends React.Component {
           <div className={styles.queue_item_container}>
             <div className={styles.thumbnail_container}>
               <img src={this.props.track.thumbnail} />
+              {
+                this.props.loading
+                ? <FontAwesome name="spinner" pulse/>
+                : null
+              }
             </div>
             <div className={styles.item_info_container}>
               <div className={styles.name_container}>

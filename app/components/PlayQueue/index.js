@@ -14,8 +14,10 @@ class PlayQueue extends React.Component {
       return null;
     }
 
+    console.log('queue items', this.props.items);
+
     return this.props.items.map((el, i) => {
-      return <QueueItem key={i} track={el}/>;
+      return <QueueItem key={i} track={el} loading={el.loading}/>;
     });
   }
 
