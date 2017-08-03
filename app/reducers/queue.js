@@ -17,9 +17,8 @@ export default function QueueReducer(state=initialState, action) {
       })
     case ADD_STREAMS_TO_QUEUE_ITEM:
       let replaceIx = _.findIndex(state.queueItems, item => action.payload.artist===item.artist && action.payload.name ===item.name);
-      let newQueue = Object.assign({}, state.queueItems);
-    //  newQueue[replaceIx] = Object.assign({}, action.payload.item, {streams: action.payload.streams, loading: false});
-    //  newQueue = _.map(Object.keys(newQueue), key => newQueue[key]);
+      let newQueue = _.cloneDeep(state.queueItems);
+      newQueue[replaceIx] = Object.assign({}, newQueue[replaceIx], action.payload);
 
       return Object.assign({}, state, {
         queueItems: newQueue

@@ -11,13 +11,11 @@ export function addToQueue(musicSources, item) {
     });
 
     Promise.all(_.map(musicSources, m => m.search(item.artist + ' ' + item.name)))
+    .then(results => Promise.all(results))
     .then(results => {
        dispatch({
          type: ADD_STREAMS_TO_QUEUE_ITEM,
-         payload: {
-           item: item,
-           streams: results
-         }
+         payload: Object.assign({}, item, {loading: false, streams: results})
        });
     });
   }

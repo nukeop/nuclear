@@ -16,7 +16,6 @@ export function createSearchPlugins(pluginClasses) {
       var pluginName = Object.keys(pluginClasses[category])[j];
       var plugin = new pluginClasses[category][pluginName]();
       plugins[category].push(plugin);
-      console.log(plugin);
     }
   }
 
