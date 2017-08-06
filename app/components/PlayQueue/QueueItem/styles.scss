@@ -6,7 +6,7 @@
   margin: 8px;
 
   border-radius: 2px;
-  background-color: rgba(248, 248, 242, 0.08);
+  background-color: rgba($background2, 0.5);
 
   flex: 0 0 auto;
   flex-flow: row;
@@ -72,9 +72,24 @@
   white-space: nowrap;
   text-overflow: ellipsis;
 
-  color: rgba(248, 248, 242, 0.5);
+  color: rgba($white, 0.5);
+}
+
+.item_duration_container {
+  display: flex;
+  overflow: hidden;
+
+  flex: 0 0 auto;
+  flex-flow: column;
+  justify-content: center;
+
+  margin: 0 0.5rem;
+
+  .item_duration {
+    color: rgba($white, 0.5);
+  }
 }
 
 .current_song {
-  box-shadow: 0px 0px 3px 1px $cyan;
+  background: rgba($green, 0.3);
 }

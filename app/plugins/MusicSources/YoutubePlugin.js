@@ -21,7 +21,8 @@ class YoutubePlugin extends MusicSourcePlugin {
     })
     .then(videoInfo => {
       let formatInfo = _.head(videoInfo.formats.filter(e => e.itag=='140'));
-      return formatInfo.url;
+      console.log(videoInfo);
+      return {stream: formatInfo.url, duration: videoInfo.length_seconds};
     });
   }
 }

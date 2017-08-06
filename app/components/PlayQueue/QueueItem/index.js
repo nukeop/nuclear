@@ -1,5 +1,6 @@
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
+import {formatDuration} from '../../../utils';
 
 import styles from './styles.scss';
 
@@ -36,8 +37,12 @@ class QueueItem extends React.Component {
                   {this.props.track.artist}
                 </div>
 
+            </div>
 
-
+            <div className={styles.item_duration_container}>
+              <div className={styles.item_duration}>
+                {formatDuration(this.props.track.streams[0].duration)}
+              </div>
             </div>
           </div>
     );

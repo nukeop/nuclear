@@ -2,15 +2,14 @@ const { default: installExtension, REACT_DEVELOPER_TOOLS, REDUX_DEVTOOLS } = req
 const { app, BrowserWindow } = require('electron');
 const path = require('path');
 const url = require('url');
-const Player = require('mpris-service');
 
 
 let win;
 
 function createWindow() {
   win = new BrowserWindow({
-    width: 800,
-    height: 600,
+    width: 1366,
+    height: 768,
     frame: false,
     webPreferences: {
       experimentalFeatures: true
@@ -33,14 +32,6 @@ function createWindow() {
   }));
 
   win.webContents.openDevTools();
-
-  var player = Player({
-	name: 'nodejs',
-	identity: 'nuclear',
-	supportedUriSchemes: ['file'],
-	supportedMimeTypes: ['audio/mpeg'],
-	supportedInterfaces: ['player']
-});
 
   win.on('closed', () => {
     win = null;
