@@ -1,12 +1,15 @@
 import {
   ADD_TO_QUEUE,
-  ADD_STREAMS_TO_QUEUE_ITEM
+  ADD_STREAMS_TO_QUEUE_ITEM,
+  NEXT_SONG,
+  PREVIOUS_SONG
 } from '../actions/queue';
 
 var _ = require('lodash');
 
 const initialState = {
-  queueItems: []
+  queueItems: [],
+  currentSong: 0
 };
 
 export default function QueueReducer(state=initialState, action) {
@@ -23,6 +26,14 @@ export default function QueueReducer(state=initialState, action) {
       return Object.assign({}, state, {
         queueItems: newQueue
       });
+    case NEXT_SONG:
+      return Object.assign({}, state, {
+        currentSong: (state.currentSong+1) % state.queueItems.length
+      });
+    case PREVIOUS_SONG:
+    return Object.assign({}, state, {
+      currentSong: ((state.currentSong-1) % state.queueItems.length + state.queueItems.length) % state.queueItems.length
+    });
     default:
       return state;
   }

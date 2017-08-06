@@ -18,6 +18,7 @@ class PlayQueueContainer extends React.Component {
     return(
       <PlayQueue
         items={this.props.queue.queueItems}
+        currentSong={this.props.queue.currentSong}
         musicSources={this.props.plugins.musicSources}
         pluginListSearch={this.props.actions.pluginListSearch}
       />

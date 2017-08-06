@@ -7,8 +7,8 @@ class PlayerButton extends React.Component {
 
   render() {
     return (
-      <div className={styles.player_button_container}>
-        <a href='#' onClick={this.props.onClick}><FontAwesome name={this.props.icon} /></a>
+      <div onClick={this.props.onClick} className={styles.player_button_container}>
+        <a href='#'><FontAwesome name={this.props.icon} /></a>
       </div>
     );
   }

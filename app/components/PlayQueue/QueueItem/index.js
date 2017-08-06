@@ -3,6 +3,8 @@ import FontAwesome from 'react-fontawesome';
 
 import styles from './styles.scss';
 
+var classNames = require('classnames');
+
 class QueueItem extends React.Component {
   constructor(props){
     super(props);
@@ -10,7 +12,10 @@ class QueueItem extends React.Component {
 
   render() {
     return (
-          <div className={styles.queue_item_container}>
+          <div className={classNames({
+            [`${styles.queue_item_container}`]: true,
+            [`${styles.current_song}`]: this.props.current})
+          }>
             <div className={styles.thumbnail_container}>
               {
                 this.props.loading

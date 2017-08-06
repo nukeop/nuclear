@@ -7,6 +7,7 @@ import { Link, withRouter } from 'react-router-dom';
 import * as Actions from './actions';
 import * as PlayerActions from './actions/player';
 import * as PluginsActions from './actions/plugins';
+import * as QueueActions from './actions/queue';
 
 import './app.global.scss';
 import styles from './styles.scss';
@@ -89,6 +90,8 @@ class App extends React.Component {
             <PlayerControls
               togglePlay={() => this.props.actions.togglePlayback(this.props.player.playbackStatus)}
               playing={this.props.player.playbackStatus == Sound.status.PLAYING}
+              forward={this.props.actions.nextSong}
+              back={this.props.actions.previousSong}
             />
             <Spacer />
             <VolumeControls fill="60%"/>
@@ -110,7 +113,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators(Object.assign({}, PlayerActions, PluginsActions, Actions), dispatch)
+    actions: bindActionCreators(Object.assign({}, QueueActions, PlayerActions, PluginsActions, Actions), dispatch)
   };
 }
 

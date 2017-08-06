@@ -8,7 +8,8 @@ import {
 
 const initialState = {
   playbackStatus: Sound.status.PLAYING,
-  playbackProgress: 0
+  playbackProgress: 0,
+  seek: 0
 };
 
 export default function PlayerReducer(state=initialState, action) {

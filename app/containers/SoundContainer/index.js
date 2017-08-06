@@ -16,9 +16,10 @@ class SoundContainer extends React.Component {
   render() {
     return (
       <Sound
-        url={this.props.queue.queueItems.length > 0 ? this.props.queue.queueItems[0].streams[0] : null}
+        url={this.props.queue.queueItems.length > 0 ? this.props.queue.queueItems[this.props.queue.currentSong].streams[0] : null}
         playStatus={this.props.player.playbackStatus}
         onPlaying={this.handlePlaying.bind(this)}
+        playFromPosition={this.props.player.seek}
       />
     );
   }

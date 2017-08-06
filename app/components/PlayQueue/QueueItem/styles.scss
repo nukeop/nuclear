@@ -1,3 +1,5 @@
+@import '../../../vars';
+
 .queue_item_container {
   display: flex;
 
@@ -71,4 +73,8 @@
   text-overflow: ellipsis;
 
   color: rgba(248, 248, 242, 0.5);
+}
+
+.current_song {
+  box-shadow: 0px 0px 3px 1px $cyan;
 }
