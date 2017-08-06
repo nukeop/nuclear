@@ -2,7 +2,8 @@ import {
   ADD_TO_QUEUE,
   ADD_STREAMS_TO_QUEUE_ITEM,
   NEXT_SONG,
-  PREVIOUS_SONG
+  PREVIOUS_SONG,
+  SELECT_SONG
 } from '../actions/queue';
 
 var _ = require('lodash');
@@ -34,6 +35,10 @@ export default function QueueReducer(state=initialState, action) {
     return Object.assign({}, state, {
       currentSong: ((state.currentSong-1) % state.queueItems.length + state.queueItems.length) % state.queueItems.length
     });
+    case SELECT_SONG:
+    return Object.assign({}, state, {
+      currentSong: action.payload
+    })
     default:
       return state;
   }

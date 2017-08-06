@@ -7,7 +7,7 @@ import {
 } from '../actions/player';
 
 const initialState = {
-  playbackStatus: Sound.status.PLAYING,
+  playbackStatus: Sound.status.PAUSED,
   playbackProgress: 0,
   seek: 0
 };

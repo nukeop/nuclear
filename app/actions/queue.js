@@ -3,6 +3,7 @@ export const ADD_TO_QUEUE = 'ADD_TO_QUEUE';
 export const ADD_STREAMS_TO_QUEUE_ITEM = 'ADD_STREAMS_TO_QUEUE_ITEM';
 export const NEXT_SONG = 'NEXT_SONG';
 export const PREVIOUS_SONG = 'PREVIOUS_SONG';
+export const SELECT_SONG = 'SELECT_SONG';
 
 export function addToQueue(musicSources, item) {
   return (dispatch) => {
@@ -35,4 +36,11 @@ export function previousSong() {
     type: PREVIOUS_SONG,
     payload: null
   };
+}
+
+export function selectSong(index) {
+  return {
+    type: SELECT_SONG,
+    payload: index
+  }
 }

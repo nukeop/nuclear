@@ -21,6 +21,7 @@ class PlayQueueContainer extends React.Component {
         currentSong={this.props.queue.currentSong}
         musicSources={this.props.plugins.musicSources}
         pluginListSearch={this.props.actions.pluginListSearch}
+        selectSong={this.props.actions.selectSong}
       />
     );
   }

@@ -12,10 +12,13 @@ class QueueItem extends React.Component {
 
   render() {
     return (
-          <div className={classNames({
-            [`${styles.queue_item_container}`]: true,
-            [`${styles.current_song}`]: this.props.current})
-          }>
+          <div
+            className={classNames({
+              [`${styles.queue_item_container}`]: true,
+              [`${styles.current_song}`]: this.props.current})
+            }
+            onDoubleClick={() => this.props.selectSong(this.props.index)}
+          >
             <div className={styles.thumbnail_container}>
               {
                 this.props.loading
