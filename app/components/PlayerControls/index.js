@@ -12,7 +12,7 @@ class PlayerControls extends React.Component {
       <div className={styles.player_controls_container}>
         <Spacer />
         <PlayerButton onClick={this.props.back} icon="step-backward" />
-        <PlayPauseButton onClick={this.props.togglePlay} />
+        <PlayPauseButton onClick={this.props.togglePlay} playing={this.props.playing} />
         <PlayerButton onClick={this.props.forward} icon="step-forward" />
         <Spacer />
       </div>

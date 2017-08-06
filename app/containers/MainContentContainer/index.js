@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as Actions from '../../actions';
 
-
 import Dashboard from '../../components/Dashboard';
 import MainLayout from '../../components/MainLayout';
 

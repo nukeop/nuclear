@@ -1,9 +1,11 @@
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
+import Sound from 'react-sound';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Link, withRouter } from 'react-router-dom';
 import * as Actions from './actions';
+import * as PlayerActions from './actions/player';
 import * as PluginsActions from './actions/plugins';
 
 import './app.global.scss';
@@ -22,6 +24,8 @@ import PlayQueueContainer from './containers/PlayQueueContainer';
 
 import SearchBox from './components/SearchBox';
 import SearchBoxContainer from './containers/SearchBoxContainer';
+
+import SoundContainer from './containers/SoundContainer';
 
 import Cover from './components/Cover';
 import PlayerControls from './components/PlayerControls';
@@ -72,7 +76,7 @@ class App extends React.Component {
           </VerticalPanel>
         </div>
         <Footer className={styles.footer}>
-          <Seekbar fill="30%"/>
+          <Seekbar fill={this.props.player.playbackProgress + '%'}/>
           <div className={styles.footer_horizontal}>
             <div className={styles.track_info_wrapper}>
               <Cover cover={this.props.queue.queueItems[0] ? this.props.queue.queueItems[0].thumbnail : null} />
@@ -82,11 +86,15 @@ class App extends React.Component {
               />
             </div>
             <Spacer />
-            <PlayerControls />
+            <PlayerControls
+              togglePlay={() => this.props.actions.togglePlayback(this.props.player.playbackStatus)}
+              playing={this.props.player.playbackStatus == Sound.status.PLAYING}
+            />
             <Spacer />
             <VolumeControls fill="60%"/>
           </div>
         </Footer>
+        <SoundContainer />
 
       </div>
     );
@@ -95,13 +103,14 @@ class App extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    queue: state.queue
+    queue: state.queue,
+    player: state.player
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators(Object.assign({}, PluginsActions, Actions), dispatch)
+    actions: bindActionCreators(Object.assign({}, PlayerActions, PluginsActions, Actions), dispatch)
   };
 }
 
