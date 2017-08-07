@@ -83,7 +83,7 @@ a {
 .ui.toggle.checkbox {
   input:checked~.box:before,
   input:checked~label:before {
-    background-color: $green !important;
+    background-color: $blue !important;
   }
 }
 

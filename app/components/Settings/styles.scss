@@ -3,8 +3,10 @@
 .settings_container {
   display: flex;
 
-  width: 100%;
+  width: 75%;
   height: 100%;
+  margin-left: auto;
+  margin-right: auto;
 
   flex-flow: column;
   font-size: 16px;
@@ -16,14 +18,16 @@
   .settings_item {
     display: flex;
     flex-flow: row;
-    align-items: center;
+    align-items: baseline;
+    justify-content: left;
 
     label {
-      margin: 0 0 0.25rem 0;
+      flex: 1 1 auto;
     }
 
     .checkbox {
       align-self: flex-end;
+      flex: 0 0 auto;
     }
   }
 
