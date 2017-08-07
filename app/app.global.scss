@@ -70,6 +70,23 @@ a {
   }
 }
 
+.ui.checkbox {
+  .box::before, label::before {
+    background-color: rgba($background3, 0.35) !important;
+  }
+
+  .box:hover::before, label:hover::before {
+    background-color: rgba($background2, 0.25) !important;
+  }
+}
+
+.ui.toggle.checkbox {
+  input:checked~.box:before,
+  input:checked~label:before {
+    background-color: $green !important;
+  }
+}
+
 hr {
   border: 1px solid $background2;
 }

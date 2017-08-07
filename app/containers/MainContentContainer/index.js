@@ -11,6 +11,7 @@ import MainLayout from '../../components/MainLayout';
 import AlbumViewContainer from '../AlbumViewContainer';
 import ArtistViewContainer from '../ArtistViewContainer';
 import SearchResultsContainer from '../SearchResultsContainer';
+import SettingsContainer from '../SettingsContainer';
 
 
 import styles from './styles.scss';
@@ -34,6 +35,7 @@ class MainContentContainer extends React.Component {
                 <Route path="/album/:albumId" component={AlbumViewContainer} />
                 <Route path="/artist/:artistId" component={ArtistViewContainer} />
                 <Route path="/dashboard" component={Dashboard} />
+                <Route path="/settings" component={SettingsContainer} />
                 <Route path="/" component={SearchResultsContainer} />
               </Switch>
             </RouteTransition>
