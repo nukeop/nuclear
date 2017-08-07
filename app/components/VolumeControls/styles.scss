@@ -1,17 +1,18 @@
 .volume_controls_container {
   display: flex;
 
-  width: 150px;
+  width: 15rem;
   height: 100%;
-  margin: 12px;
+  margin: 1rem;
 
-  flex: 0 0 auto;
+  flex: 0 0 33%;
   flex-flow: row;
   align-items: center;
+  justify-content: flex-end;
 }
 
 .volume_controls_container span {
-  margin: 12px;
+  margin: 1rem;
 
   font-size: 24px;
 }
