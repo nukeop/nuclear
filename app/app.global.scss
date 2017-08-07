@@ -73,17 +73,22 @@ a {
 .ui.checkbox {
   .box::before, label::before {
     background-color: rgba($background3, 0.35) !important;
+    transition: 0.5s;
   }
 
   .box:hover::before, label:hover::before {
     background-color: rgba($background2, 0.25) !important;
+    transition: 0.2s;
   }
 }
 
 .ui.toggle.checkbox {
+  input:focus:checked~.box:before,
+  input:focus:checked~label:before,
   input:checked~.box:before,
   input:checked~label:before {
     background-color: $blue !important;
+    transition: 0.5s;
   }
 }
 

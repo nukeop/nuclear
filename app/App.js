@@ -80,20 +80,18 @@ class App extends React.Component {
           <Seekbar fill={this.props.player.playbackProgress + '%'}/>
           <div className={styles.footer_horizontal}>
             <div className={styles.track_info_wrapper}>
-              <Cover cover={this.props.queue.queueItems[0] ? this.props.queue.queueItems[0].thumbnail : null} />
+              <Cover cover={this.props.queue.queueItems[this.props.queue.currentSong] ? this.props.queue.queueItems[this.props.queue.currentSong].thumbnail : null} />
               <TrackInfo
-                track={this.props.queue.queueItems[0] ? this.props.queue.queueItems[0].name : null}
-                artist={this.props.queue.queueItems[0] ? this.props.queue.queueItems[0].artist : null}
+                track={this.props.queue.queueItems[this.props.queue.currentSong] ? this.props.queue.queueItems[this.props.queue.currentSong].name : null}
+                artist={this.props.queue.queueItems[this.props.queue.currentSong] ? this.props.queue.queueItems[this.props.queue.currentSong].artist : null}
               />
             </div>
-            <Spacer />
             <PlayerControls
               togglePlay={() => this.props.actions.togglePlayback(this.props.player.playbackStatus)}
               playing={this.props.player.playbackStatus == Sound.status.PLAYING}
               forward={this.props.actions.nextSong}
               back={this.props.actions.previousSong}
             />
-            <Spacer />
             <VolumeControls fill="60%"/>
           </div>
         </Footer>

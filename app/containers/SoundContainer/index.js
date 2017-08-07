@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as Actions from '../../actions';
 import * as PlayerActions from '../../actions/player';
+import * as QueueActions from '../../actions/queue';
 import Sound from 'react-sound';
 
 class SoundContainer extends React.Component {
@@ -13,12 +14,17 @@ class SoundContainer extends React.Component {
     this.props.actions.updatePlaybackProgress(progress);
   }
 
+  handleFinishedPlaying() {
+    this.props.actions.nextSong();
+  }
+
   render() {
     return (
       <Sound
         url={this.props.queue.queueItems.length > 0 ? this.props.queue.queueItems[this.props.queue.currentSong].streams[0].stream : null}
         playStatus={this.props.player.playbackStatus}
         onPlaying={this.handlePlaying.bind(this)}
+        onFinishedPlaying={this.handleFinishedPlaying.bind(this)}
         playFromPosition={this.props.player.seek}
       />
     );
@@ -34,7 +40,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators(Object.assign({}, Actions, PlayerActions), dispatch)
+    actions: bindActionCreators(Object.assign({}, Actions, PlayerActions, QueueActions), dispatch)
   };
 }
 
