@@ -23,6 +23,7 @@ a {
   &:hover {
     text-decoration: none;
     color: $white;
+    transition: 0.25s;
   }
 }
 
@@ -78,7 +79,7 @@ a {
 
   .box:hover::before, label:hover::before {
     background-color: rgba($background2, 0.25) !important;
-    transition: 0.2s;
+    transition: 0.5s;
   }
 }
 
