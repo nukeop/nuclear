@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as Actions from '../../actions';
+import * as ScrobblingActions from '../../actions/scrobbling';
 
 import Settings from '../../components/Settings';
 
@@ -9,7 +9,7 @@ class SettingsContainer extends React.Component {
   render() {
     return (
       <Settings
-
+        lastFmConnect={this.props.actions.lastFmConnect}
       />
     );
   }
@@ -17,13 +17,13 @@ class SettingsContainer extends React.Component {
 
 function mapStateToProps(state) {
   return {
-
+    scrobbling: state.scrobbling
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators(Actions, dispatch)
+    actions: bindActionCreators(ScrobblingActions, dispatch)
   };
 }
 

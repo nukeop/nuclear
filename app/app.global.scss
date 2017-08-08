@@ -93,6 +93,13 @@ a {
   }
 }
 
+.ui.red.button,
+.ui.red.button:hover,
+.ui.red.button:focus,
+.ui.red.button:active {
+  background-color: $red;
+}
+
 hr {
   border: 1px solid $background2;
 }

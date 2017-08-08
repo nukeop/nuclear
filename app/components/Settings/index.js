@@ -1,6 +1,6 @@
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
-import {Radio} from 'semantic-ui-react';
+import { Button, Radio } from 'semantic-ui-react';
 
 import Header from '../Header';
 import Spacer from '../Spacer';
@@ -28,6 +28,11 @@ class Settings extends React.Component {
             </label>
           </div>
 
+          <div className={styles.settings_item}>
+            <span>User: <strong>Not logged in</strong></span>
+            <Spacer />
+            <Button onClick={this.props.lastFmConnect} color='red'>Connect with Last.fm</Button>
+          </div>
 
           <div className={styles.settings_item}>
             <label>Enable scrobbling to last.fm</label>

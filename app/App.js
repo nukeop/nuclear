@@ -57,7 +57,7 @@ class App extends React.Component {
               <div style={{textAlign: "center"}}>
                 <img
                   width="150px"
-                  src="./resources/media/nuclear/logo_full_light.png"
+                  src="./resources/media/logo_full_light.png"
                 />
                 <div className={styles.version_string}>Version 0.4.0</div>
               </div>

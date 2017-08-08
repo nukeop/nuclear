@@ -5,7 +5,6 @@ export const PAUSE_PLAYBACK = 'PAUSE_PLAYBACK';
 export const UPDATE_PLAYBACK_PROGRESS = 'UPDATE_PLAYBACK_PROGRESS';
 
 export function togglePlayback(currentState) {
-  console.log(currentState);
   return dispatch => {
     if (currentState == Sound.status.PLAYING) {
       dispatch(pausePlayback());
