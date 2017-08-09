@@ -8,7 +8,25 @@ import Spacer from '../Spacer';
 import styles from './styles.scss';
 
 class Settings extends React.Component {
+  toggleScrobbling(lastFmScrobblingEnabled, enableScrobbling, disableScrobbling) {
+    lastFmScrobblingEnabled ? disableScrobbling(): enableScrobbling();
+  }
+
   render() {
+    const {
+      lastFmAuthToken,
+      lastFmName,
+      lastFmSessionKey,
+      lastFmScrobblingEnabled
+    } = this.props.scrobbling;
+
+    const {
+      lastFmConnectAction,
+      lastFmLoginAction,
+      enableScrobbling,
+      disableScrobbling
+    } = this.props.actions;
+
     return (
       <div className={styles.settings_container}>
         <div className={styles.settings_section}>
@@ -35,24 +53,28 @@ class Settings extends React.Component {
           </div>
 
           <div className={styles.settings_item}>
-            <span>User: <strong>{this.props.lastFmName ? this.props.lastFmName : 'Not logged in'}</strong></span>
+            <span>User: <strong>{lastFmName ? lastFmName : 'Not logged in'}</strong></span>
             <Spacer />
             {
-              this.props.lastFmSessionKey
+              lastFmSessionKey
               ? null
-              : <Button onClick={this.props.lastFmConnect} color='red'>Connect with Last.fm</Button>
+              : <Button onClick={lastFmConnectAction} color='red'>Connect with Last.fm</Button>
             }
             {
-              this.props.lastFmSessionKey
+              lastFmSessionKey
               ? null
-              : <Button onClick={() => this.props.lastFmLogin(this.props.lastFmAuthToken)} color='red'>Log in</Button>
+              : <Button onClick={() => lastFmLoginAction(lastFmAuthToken)} color='red'>Log in</Button>
             }
           </div>
 
           <div className={styles.settings_item}>
             <label>Enable scrobbling to last.fm</label>
             <Spacer />
-            <Radio toggle />
+            <Radio
+              toggle
+              checked={lastFmScrobblingEnabled}
+              onChange={() => this.toggleScrobbling(lastFmScrobblingEnabled, enableScrobbling, disableScrobbling)}
+            />
           </div>
         </div>
 

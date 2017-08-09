@@ -1,13 +1,16 @@
 import {
   LASTFM_CONNECT,
   LASTFM_LOGIN,
-  LASTFM_READ_SETTINGS
+  LASTFM_READ_SETTINGS,
+  LASTFM_ENABLE_SCROBBLING,
+  LASTFM_DISABLE_SCROBBLING
 } from '../actions/scrobbling';
 
 const initialState = {
   lastFmName: null,
   lastFmAuthToken: null,
-  lastFmSessionKey: null
+  lastFmSessionKey: null,
+  lastFmScrobblingEnabled: false
 };
 
 export default function ScrobblingReducer(state=initialState, action) {
@@ -25,9 +28,18 @@ export default function ScrobblingReducer(state=initialState, action) {
       if (action.payload) {
           return Object.assign({}, state, {
             lastFmName: action.payload.lastFmName,
-            lastFmSessionKey: action.payload.lastFmSessionKey
+            lastFmSessionKey: action.payload.lastFmSessionKey,
+            lastFmScrobblingEnabled: action.payload.lastFmScrobblingEnabled
           });
       }
+    case LASTFM_ENABLE_SCROBBLING:
+      return Object.assign({}, state, {
+        lastFmScrobblingEnabled: true
+      });
+    case LASTFM_DISABLE_SCROBBLING:
+      return Object.assign({}, state, {
+        lastFmScrobblingEnabled: false
+      });
     default:
       return state;
   }
