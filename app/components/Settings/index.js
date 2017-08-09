@@ -29,9 +29,16 @@ class Settings extends React.Component {
           </div>
 
           <div className={styles.settings_item}>
-            <span>User: <strong>Not logged in</strong></span>
+            <p>
+              In order to enable scrobbling, you first have to connect and authorize nuclear on Last.fm, then click log in.
+            </p>
+          </div>
+
+          <div className={styles.settings_item}>
+            <span>User: <strong>{this.props.lastFmName ? this.props.lastFmName : 'Not logged in'}</strong></span>
             <Spacer />
             <Button onClick={this.props.lastFmConnect} color='red'>Connect with Last.fm</Button>
+            <Button onClick={() => this.props.lastFmLogin(this.props.lastFmAuthToken)} color='red'>Log in</Button>
           </div>
 
           <div className={styles.settings_item}>

@@ -44,7 +44,7 @@ const config = {
       fonts: [
         {
           family: 'lato',
-          variants: ['regular']
+          variants: ['regular', '300', '700']
         }
       ]
     })

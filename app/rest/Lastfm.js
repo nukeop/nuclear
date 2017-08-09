@@ -18,10 +18,15 @@ function addApiKey(url) {
   return `${url}&api_key=${globals.lastfmApiKey}`;
 }
 
-function lastfmLoginConnect() {
+function lastFmLoginConnect() {
   return fetch(prepareUrl(scrobblingApiUrl + '?method=auth.getToken&format=json'));
 }
 
+function lastFmLogin(authToken) {
+  return fetch(prepareUrl(scrobblingApiUrl + '?method=auth.getSession&token=' + authToken)+'&format=json');
+}
+
 module.exports = {
-  lastfmLoginConnect
+  lastFmLoginConnect,
+  lastFmLogin
 };

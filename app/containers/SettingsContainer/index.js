@@ -9,7 +9,10 @@ class SettingsContainer extends React.Component {
   render() {
     return (
       <Settings
-        lastFmConnect={this.props.actions.lastFmConnect}
+        lastFmConnect={this.props.actions.lastFmConnectAction}
+        lastFmLogin={this.props.actions.lastFmLoginAction}
+        lastFmAuthToken={this.props.scrobbling.lastFmAuthToken}
+        lastFmName={this.props.scrobbling.lastFmName}
       />
     );
   }
