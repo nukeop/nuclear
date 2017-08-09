@@ -1,3 +1,4 @@
+import { store } from '../persistence/store';
 import {
   lastFmLoginConnect,
   lastFmLogin
@@ -34,6 +35,8 @@ export function lastFmLoginAction(authToken) {
 
       let sessionKey = response.session.key;
       let sessionName = response.session.name;
+
+      store.set('lastFm', {name: sessionName, sessionKey: sessionKey});
 
       dispatch({
         type: LASTFM_LOGIN,
