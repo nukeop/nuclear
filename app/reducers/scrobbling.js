@@ -1,6 +1,7 @@
 import {
   LASTFM_CONNECT,
-  LASTFM_LOGIN
+  LASTFM_LOGIN,
+  LASTFM_READ_SETTINGS
 } from '../actions/scrobbling';
 
 const initialState = {
@@ -20,6 +21,13 @@ export default function ScrobblingReducer(state=initialState, action) {
         lastFmName: action.payload.name,
         lastFmSessionKey: action.payload.sessionKey
       });
+    case LASTFM_READ_SETTINGS:
+      if (action.payload) {
+          return Object.assign({}, state, {
+            lastFmName: action.payload.lastFmName,
+            lastFmSessionKey: action.payload.lastFmSessionKey
+          });
+      }
     default:
       return state;
   }

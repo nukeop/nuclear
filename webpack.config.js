@@ -22,6 +22,9 @@ const config = {
     contentBase: BUILD_DIR,
     publicPath: 'http://localhost:8080/'
   },
+  node: {
+    fs: "empty"
+  },
   module: {
     loaders: [
       {
@@ -48,7 +51,8 @@ const config = {
         }
       ]
     })
-  ]
+  ],
+  target: 'electron-main'
 };
 
 module.exports = config;

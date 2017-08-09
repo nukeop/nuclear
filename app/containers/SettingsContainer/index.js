@@ -13,6 +13,7 @@ class SettingsContainer extends React.Component {
         lastFmLogin={this.props.actions.lastFmLoginAction}
         lastFmAuthToken={this.props.scrobbling.lastFmAuthToken}
         lastFmName={this.props.scrobbling.lastFmName}
+        lastFmSessionKey={this.props.scrobbling.lastFmSessionKey}
       />
     );
   }

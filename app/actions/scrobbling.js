@@ -8,6 +8,27 @@ const electron = window.require('electron');
 
 export const LASTFM_CONNECT = 'LASTFM_CONNECT';
 export const LASTFM_LOGIN = 'LASTFM_LOGIN';
+export const LASTFM_READ_SETTINGS = 'LASTFM_READ_SETTINGS';
+
+export function lastFmReadSettings() {
+  return dispatch => {
+    let settings = store.get('lastFm').value();
+    if (settings) {
+        dispatch({
+          type: LASTFM_READ_SETTINGS,
+          payload: {
+            lastFmName: settings.name,
+            lastFmSessionKey: settings.sessionKey
+          }
+        });
+    } else {
+      dispatch({
+        type: LASTFM_READ_SETTINGS,
+        payload: null
+      });
+    }
+  }
+}
 
 export function lastFmConnectAction() {
   return dispatch => {
@@ -36,7 +57,7 @@ export function lastFmLoginAction(authToken) {
       let sessionKey = response.session.key;
       let sessionName = response.session.name;
 
-      store.set('lastFm', {name: sessionName, sessionKey: sessionKey});
+      store.set('lastFm', {name: sessionName, sessionKey: sessionKey}).write();
 
       dispatch({
         type: LASTFM_LOGIN,
