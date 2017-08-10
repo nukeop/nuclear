@@ -59,9 +59,19 @@ function updateNowPlaying(artist, track, session) {
   );
 }
 
+function getArtistInfo(artist) {
+  return fetch (addApiKey(
+    scrobblingApiUrl +
+    '?method=artist.getinfo&artist=' +
+    encodeURIComponent(artist) +
+    '&format=json'
+  ));
+}
+
 module.exports = {
   lastFmLoginConnect,
   lastFmLogin,
   scrobble,
-  updateNowPlaying
+  updateNowPlaying,
+  getArtistInfo
 };

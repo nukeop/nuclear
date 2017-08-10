@@ -12,7 +12,10 @@ import {
   ARTIST_INFO_SEARCH_SUCCESS,
 
   ARTIST_RELEASES_SEARCH_START,
-  ARTIST_RELEASES_SEARCH_SUCCESS
+  ARTIST_RELEASES_SEARCH_SUCCESS,
+
+  LASTFM_ARTIST_INFO_SEARCH_START,
+  LASTFM_ARTIST_INFO_SEARCH_SUCCESS
  } from '../actions';
 
 var _ = require('lodash');
@@ -101,6 +104,24 @@ export default function SearchReducer(state=initialState, action) {
           )
         })
       });
+      case LASTFM_ARTIST_INFO_SEARCH_START:
+        return Object.assign({}, state, {
+          artistDetails: Object.assign({}, state.artistDetails, {
+            [`${action.payload}`]: Object.assign (
+              state.artistDetails[`${action.payload.id}`],
+              {lastfm: {loading: true}}
+            )
+          })
+        });
+      case LASTFM_ARTIST_INFO_SEARCH_SUCCESS:
+      return Object.assign({}, state, {
+          artistDetails: Object.assign({}, state.artistDetails, {
+            [`${action.payload.id}`]: Object.assign(
+              state.artistDetails[`${action.payload.id}`],
+              {lastfm: Object.assign({}, action.payload.info, {loading: false})
+            })
+          })
+        });
     default:
       return state;
   }

@@ -1,5 +1,7 @@
 const mb = require('../rest/Musicbrainz');
 const discogs = require('../rest/Discogs');
+const lastfm = require('../rest/Lastfm');
+
 const _ = require('lodash');
 
 export const UNIFIED_SEARCH_START = 'UNIFIED_SEARCH_START';
@@ -17,6 +19,9 @@ export const ARTIST_INFO_SEARCH_SUCCESS = 'ARTIST_INFO_SEARCH_SUCCESS';
 
 export const ARTIST_RELEASES_SEARCH_START = 'ARTIST_RELEASES_SEARCH_START';
 export const ARTIST_RELEASES_SEARCH_SUCCESS = 'ARTIST_RELEASES_SEARCH_SUCCESS';
+
+export const LASTFM_ARTIST_INFO_SEARCH_START = 'LASTFM_ARTIST_INFO_SEARCH_START';
+export const LASTFM_ARTIST_INFO_SEARCH_SUCCESS = 'LASTFM_ARTIST_INFO_SEARCH_SUCCESS';
 
 export function sourcesSearch(terms, plugins) {
   var searchResults = {};
@@ -161,6 +166,34 @@ export function artistReleasesSearch(artistId) {
     .then (releases => releases.json())
     .then (releases => {
       dispatch(artistReleasesSuccess(artistId, releases));
+    });
+  };
+}
+
+export function lastFmArtistInfoStart(artistId) {
+  return {
+    type: LASTFM_ARTIST_INFO_SEARCH_START,
+    payload: artistId
+  }
+}
+
+export function lastFmArtistInfoSuccess(artistId, info) {
+  return {
+    type: LASTFM_ARTIST_INFO_SEARCH_SUCCESS,
+    payload: {
+      id: artistId,
+      info: info
+    }
+  }
+}
+
+export function lastFmArtistInfoSearch(artist, artistId) {
+  return dispatch => {
+    dispatch(lastFmArtistInfoStart(artistId));
+    lastfm.getArtistInfo(artist)
+    .then (info => info.json())
+    .then (info => {
+      dispatch(lastFmArtistInfoSuccess(artistId, info));
     });
   };
 }
