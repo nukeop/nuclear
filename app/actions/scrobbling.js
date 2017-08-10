@@ -19,8 +19,9 @@ export function lastFmReadSettings() {
         dispatch({
           type: LASTFM_READ_SETTINGS,
           payload: {
-            lastFmName: settings.name,
-            lastFmSessionKey: settings.sessionKey,
+            lastFmName: settings.lastFmName,
+            lastFmAuthToken: settings.lastFmAuthToken,
+            lastFmSessionKey: settings.lastFmSessionKey,
             lastFmScrobblingEnabled: settings.lastFmScrobblingEnabled
           }
         });
@@ -43,9 +44,7 @@ export function lastFmConnectAction() {
         'http://www.last.fm/api/auth/?api_key=' + globals.lastfmApiKey + '&token=' + authToken
       );
 
-
-      store.set('lastFm', lastFm).write();
-
+      store.set('lastFm.lastFmAuthToken', authToken).write();
 
       dispatch({
         type: LASTFM_CONNECT,
@@ -64,6 +63,9 @@ export function lastFmLoginAction(authToken) {
       let sessionKey = response.session.key;
       let sessionName = response.session.name;
 
+      store.set('lastFm.lastFmName', sessionName).write();
+      store.set('lastFm.lastFmSessionKey', sessionKey).write();
+
       dispatch({
         type: LASTFM_LOGIN,
         payload: {
@@ -76,6 +78,8 @@ export function lastFmLoginAction(authToken) {
 }
 
 export function enableScrobbling() {
+  store.set('lastFm.lastFmScrobblingEnabled', true).write();
+
   return {
     type: LASTFM_ENABLE_SCROBBLING,
     payload: null
@@ -83,6 +87,8 @@ export function enableScrobbling() {
 }
 
 export function disableScrobbling() {
+  store.set('lastFm.lastFmScrobblingEnabled', false).write();
+
   return {
     type: LASTFM_DISABLE_SCROBBLING,
     payload: null

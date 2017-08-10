@@ -28,6 +28,7 @@ export default function ScrobblingReducer(state=initialState, action) {
       if (action.payload) {
           return Object.assign({}, state, {
             lastFmName: action.payload.lastFmName,
+            lastFmAuthToken: action.payload.lastFmAuthToken,
             lastFmSessionKey: action.payload.lastFmSessionKey,
             lastFmScrobblingEnabled: action.payload.lastFmScrobblingEnabled
           });
