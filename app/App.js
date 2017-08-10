@@ -39,6 +39,25 @@ import WindowControls from './components/WindowControls';
 import VolumeControls from './components/VolumeControls';
 
 class App extends React.Component {
+  togglePlayback() {
+    if(this.props.player.playbackStatus==Sound.status.PAUSED &&
+        this.props.scrobbling.lastFmScrobblingEnabled &&
+        this.props.scrobbling.lastFmSessionKey) {
+      let currentSong = this.props.queue.queueItems[this.props.queue.currentSong];
+      this.props.actions.updateNowPlayingAction(currentSong.artist, currentSong.name, this.props.scrobbling.lastFmSessionKey);
+    }
+    this.props.actions.togglePlayback(this.props.player.playbackStatus);
+  }
+
+  nextSong() {
+    this.props.actions.nextSong();
+    if( this.props.scrobbling.lastFmScrobblingEnabled &&
+        this.props.scrobbling.lastFmSessionKey) {
+      let currentSong = this.props.queue.queueItems[this.props.queue.currentSong];
+      this.props.actions.updateNowPlayingAction(currentSong.artist, currentSong.name, this.props.scrobbling.lastFmSessionKey);
+    }
+  }
+
   componentWillMount() {
     this.props.actions.lastFmReadSettings();
     this.props.actions.createSearchPlugins(PluginConfig.plugins);
@@ -89,9 +108,9 @@ class App extends React.Component {
               />
             </div>
             <PlayerControls
-              togglePlay={() => this.props.actions.togglePlayback(this.props.player.playbackStatus)}
+              togglePlay={this.togglePlayback.bind(this)}
               playing={this.props.player.playbackStatus == Sound.status.PLAYING}
-              forward={this.props.actions.nextSong}
+              forward={this.nextSong.bind(this)}
               back={this.props.actions.previousSong}
             />
             <VolumeControls fill="60%"/>
@@ -107,7 +126,8 @@ class App extends React.Component {
 function mapStateToProps(state) {
   return {
     queue: state.queue,
-    player: state.player
+    player: state.player,
+    scrobbling: state.scrobbling
   }
 }
 

@@ -1,7 +1,9 @@
 import { store } from '../persistence/store';
 import {
   lastFmLoginConnect,
-  lastFmLogin
+  lastFmLogin,
+  scrobble,
+  updateNowPlaying
 } from '../rest/Lastfm';
 import globals from '../globals';
 const electron = window.require('electron');
@@ -11,6 +13,9 @@ export const LASTFM_LOGIN = 'LASTFM_LOGIN';
 export const LASTFM_READ_SETTINGS = 'LASTFM_READ_SETTINGS';
 export const LASTFM_ENABLE_SCROBBLING = 'LASTFM_ENABLE_SCROBBLING';
 export const LASTFM_DISABLE_SCROBBLING = 'LASTFM_DISABLE_SCROBBLING';
+
+export const LASTFM_SCROBBLE = 'LASTFM_SCROBBLE';
+export const LASTFM_UPDATE_NOW_PLAYING = 'LASTFM_UPDATE_NOW_PLAYING';
 
 export function lastFmReadSettings() {
   return dispatch => {
@@ -92,5 +97,29 @@ export function disableScrobbling() {
   return {
     type: LASTFM_DISABLE_SCROBBLING,
     payload: null
+  }
+}
+
+export function scrobbleAction(artist, track, session) {
+  return dispatch => {
+    scrobble(artist, track, session)
+    .then(response => {
+      dispatch({
+        type: LASTFM_SCROBBLE,
+        payload: null
+      });
+    });
+  }
+}
+
+export function updateNowPlayingAction(artist, track, session) {
+  return dispatch => {
+    updateNowPlaying(artist, track, session)
+    .then(response => {
+      dispatch({
+        type: LASTFM_UPDATE_NOW_PLAYING,
+        payload: null
+      });
+    });
   }
 }

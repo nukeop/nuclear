@@ -6,6 +6,7 @@ import { bindActionCreators } from 'redux';
 import * as Actions from '../../actions';
 import * as PlayerActions from '../../actions/player';
 import * as QueueActions from '../../actions/queue';
+import * as ScrobblingActions from '../../actions/scrobbling';
 import Sound from 'react-sound';
 
 class SoundContainer extends React.Component {
@@ -15,7 +16,11 @@ class SoundContainer extends React.Component {
   }
 
   handleFinishedPlaying() {
-    this.props.actions.nextSong();
+    if(this.props.scrobbling.lastFmScrobblingEnabled && this.props.scrobbling.lastFmSessionKey) {
+      let currentSong = this.props.queue.queueItems[this.props.queue.currentSong];
+      this.props.actions.scrobbleAction(currentSong.artist, currentSong.name, this.props.scrobbling.lastFmSessionKey);
+    }
+      this.props.actions.nextSong();
   }
 
   render() {
@@ -34,13 +39,14 @@ class SoundContainer extends React.Component {
 function mapStateToProps(state) {
   return {
     queue: state.queue,
-    player: state.player
+    player: state.player,
+    scrobbling: state.scrobbling
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators(Object.assign({}, Actions, PlayerActions, QueueActions), dispatch)
+    actions: bindActionCreators(Object.assign({}, Actions, PlayerActions, QueueActions, ScrobblingActions), dispatch)
   };
 }
 
