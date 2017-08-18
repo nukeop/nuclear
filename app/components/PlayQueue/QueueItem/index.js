@@ -41,7 +41,11 @@ class QueueItem extends React.Component {
 
             <div className={styles.item_duration_container}>
               <div className={styles.item_duration}>
-                {formatDuration(this.props.track.streams[0].duration)}
+                {
+                  this.props.track.streams
+                  ? formatDuration(this.props.track.streams[0].duration)
+                  : null
+                }
               </div>
             </div>
           </div>

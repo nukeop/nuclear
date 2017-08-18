@@ -108,7 +108,8 @@ export default function SearchReducer(state=initialState, action) {
         return Object.assign({}, state, {
           artistDetails: Object.assign({}, state.artistDetails, {
             [`${action.payload}`]: Object.assign (
-              state.artistDetails[`${action.payload.id}`],
+              {},
+              state.artistDetails[`${action.payload}`],
               {lastfm: {loading: true}}
             )
           })
@@ -117,6 +118,7 @@ export default function SearchReducer(state=initialState, action) {
       return Object.assign({}, state, {
           artistDetails: Object.assign({}, state.artistDetails, {
             [`${action.payload.id}`]: Object.assign(
+              {},
               state.artistDetails[`${action.payload.id}`],
               {lastfm: Object.assign({}, action.payload.info, {loading: false})
             })

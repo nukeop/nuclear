@@ -17,6 +17,7 @@ class AllResults extends React.Component {
               small
               header={el.title}
               image={el.thumb}
+              key={i}
             />
           )
         })

@@ -138,6 +138,7 @@ export function artistInfoSearch(artistId) {
     .then (info => info.json())
     .then (artistInfo => {
       dispatch(artistInfoSuccess(artistId, artistInfo));
+      dispatch(lastFmArtistInfoSearch(artistInfo.name, artistId));
     });
   };
 }
