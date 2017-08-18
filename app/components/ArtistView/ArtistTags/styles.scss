@@ -1,0 +1,19 @@
+@import '../../../vars';
+
+.tags_container {
+  display: flex;
+  flex-flow: row;
+  flex: 1 1 auto;
+
+  align-items: center;
+
+}
+
+.tag {
+  display: flex;
+  margin: 0 0.5rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.75rem;
+  background-color: rgba($green, 0.8);
+  color: $white;
+}

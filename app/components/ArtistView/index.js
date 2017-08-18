@@ -2,23 +2,31 @@ import React from 'react';
 import {Dimmer, Loader} from 'semantic-ui-react';
 import Spacer from '../Spacer';
 import AlbumList from '../AlbumList';
+import ArtistTags from './ArtistTags';
 
 import styles from './styles.scss';
 
 class ArtistView extends React.Component {
   constructor(props) {
     super(props);
+    this.isLoading = this.isLoading.bind(this);
+  }
+
+  isLoading() {
+    return this.props.artist.loading ||
+           !this.props.artist.lastfm ||
+           this.props.artist.lastfm.loading;
   }
 
   render() {
     return (
       <div className={styles.artist_view_container}>
         <Dimmer.Dimmable>
-          <Dimmer active={this.props.artist.loading}>
+          <Dimmer active={this.isLoading()}>
             <Loader/>
           </Dimmer>
 
-            {this.props.artist.loading
+            {this.isLoading()
               ? null
               : <div className={styles.artist}>
                 <div style={{
@@ -36,7 +44,10 @@ class ArtistView extends React.Component {
                         backgroundPosition: 'center',
                         backgroundSize: 'cover'
                       }}></div>
-                      <h1>{this.props.artist.name}</h1>
+                      <div className={styles.artist_name_container}>
+                        <h1>{this.props.artist.name}</h1>
+                        <ArtistTags tags={this.props.artist.lastfm.artist.tags.tag}/>
+                      </div>
                     </div>
                   </div>
 

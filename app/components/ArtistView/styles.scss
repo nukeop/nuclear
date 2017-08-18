@@ -50,9 +50,16 @@
     margin: 1rem;
   }
 
+  .artist_name_container{
+    display: flex;
+    flex-flow: column;
+    flex: 1 1 auto;
+    height: 8rem;
+    margin: 1rem;
+  }
+
   h1 {
     font-size: 48px;
     font-weight: normal;
-    margin: 1rem;
   }
 }
