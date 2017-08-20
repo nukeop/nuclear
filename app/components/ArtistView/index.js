@@ -3,6 +3,7 @@ import {Dimmer, Loader} from 'semantic-ui-react';
 import Spacer from '../Spacer';
 import AlbumList from '../AlbumList';
 import ArtistTags from './ArtistTags';
+import SimilarArtists from './SimilarArtists';
 
 import styles from './styles.scss';
 
@@ -56,6 +57,7 @@ class ArtistView extends React.Component {
           }
 
           <hr />
+          <SimilarArtists artists={this.props.artist.lastfm.artist.similar.artist}/>
           <AlbumList
             albums={this.props.artist.releases}
             albumInfoSearch={this.props.albumInfoSearch}

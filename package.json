@@ -25,9 +25,12 @@
   },
   "homepage": "https://github.com/nukeop/nuclear#readme",
   "dependencies": {
+    "dbus": "^1.0.0",
+    "electron": "^1.7.5",
     "font-awesome": "^4.7.0",
     "lowdb": "^0.16.2",
     "md5": "^2.2.1",
+    "mpris-service": "^1.1.3",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
     "react-router-transition": "^0.1.1",
