@@ -1,8 +1,9 @@
 const { default: installExtension, REACT_DEVELOPER_TOOLS, REDUX_DEVTOOLS } = require('electron-devtools-installer');
-const { app, ipcMain, BrowserWindow } = require('electron');
+const { app, BrowserWindow } = require('electron');
 const Player = require('mpris-service');
 const path = require('path');
 const url = require('url');
+const mpris = require('./mpris');
 
 let win;
 
@@ -20,6 +21,7 @@ function createWindow() {
     width: 1366,
     height: 768,
     frame: false,
+    icon: path.resolve(__dirname, 'resources', 'media', 'icon.png'),
     webPreferences: {
       experimentalFeatures: true
     }
@@ -28,7 +30,6 @@ function createWindow() {
   installExtension(REACT_DEVELOPER_TOOLS)
   .then((name) => console.log(`Added Extension:  ${name}`))
   .catch((err) => console.log('An error occurred: ', err));
-
 
   installExtension(REDUX_DEVTOOLS)
   .then((name) => console.log(`Added Extension:  ${name}`))
@@ -50,22 +51,7 @@ function createWindow() {
 	   win = null;
   });
 
-  var events = ['raise', 'quit', 'next', 'previous', 'pause', 'playpause', 'stop', 'play', 'seek', 'position', 'open', 'volume'];
-events.forEach(function (eventName) {
-	player.on(eventName, function () {
-		console.log('Event:', eventName, arguments);
-	});
-});
-
-  player.metadata = {
-		'mpris:trackid': player.objectPath('track/0'),
-		'mpris:length': 60 * 1000 * 1000, // In microseconds
-		'mpris:artUrl': 'http://3.bp.blogspot.com/_aNTsUIQhmf0/TJD02nFCD0I/AAAAAAAADyc/nEs2_ttp98c/s1600/Neutral+Milk+Hotel+-+In+the+Aeroplane+Over+the+Sea+-+1998.jpg',
-		'xesam:title': 'Two-Headed Boy',
-		'xesam:album': 'In The Aeroplane Over The Sea',
-		'xesam:artist': 'Neutral Milk Hotel'
-	};
-
+  player.on('next', mpris.onNext);
 }
 
 app.on('ready', createWindow);
