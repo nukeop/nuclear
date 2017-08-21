@@ -52,6 +52,11 @@ function createWindow() {
   });
 
   player.on('next', mpris.onNext);
+  player.on('previous', mpris.onPrevious);
+  player.on('pause', mpris.onPause);
+  player.on('playpause', mpris.onPlayPause);
+  player.on('stop', mpris.onStop);
+  player.on('play', mpris.onplay);
 }
 
 app.on('ready', createWindow);

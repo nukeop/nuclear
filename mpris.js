@@ -14,23 +14,23 @@ function onNext() {
 }
 
 function onPrevious() {
-
+  rendererWindow.send('previous');
 }
 
 function onPause() {
-
+  rendererWindow.send('pause');
 }
 
 function onPlayPause() {
-
+  rendererWindow.send('playpause');
 }
 
 function onStop() {
-
+  rendererWindow.send('stop');
 }
 
 function onPlay() {
-
+  rendererWindow.send('play');
 }
 
 module.exports = {
