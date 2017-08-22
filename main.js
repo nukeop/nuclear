@@ -1,20 +1,18 @@
 const { default: installExtension, REACT_DEVELOPER_TOOLS, REDUX_DEVTOOLS } = require('electron-devtools-installer');
 const { app, BrowserWindow } = require('electron');
-const Player = require('mpris-service');
+const platform = require('electron-platform');
 const path = require('path');
 const url = require('url');
 const mpris = require('./mpris');
+var Player;
+
+// GNU/Linux-specific
+if (!platform.isDarwin && !platform.isWin32) {
+  Player = require('mpris-service');
+}
 
 let win;
-
-let player = Player({
-  name: 'nuclear',
-  identity: 'nuclear music player',
-  supportedUriSchemes: ['file'],
-  supportedMimeTypes: ['audio/mpeg', 'application/ogg'],
-  supportedInterfaces: ['player'],
-  desktopEntry: 'nuclear'
-});
+let player;
 
 function createWindow() {
   win = new BrowserWindow({
@@ -47,16 +45,28 @@ function createWindow() {
     win = null;
   });
 
-  player.on('quit', function () {
-	   win = null;
-  });
+  // GNU/Linux-specific
+  if (!platform.isDarwin && !platform.isWin32) {
+    player = Player({
+      name: 'nuclear',
+      identity: 'nuclear music player',
+      supportedUriSchemes: ['file'],
+      supportedMimeTypes: ['audio/mpeg', 'application/ogg'],
+      supportedInterfaces: ['player'],
+      desktopEntry: 'nuclear'
+    });
 
-  player.on('next', mpris.onNext);
-  player.on('previous', mpris.onPrevious);
-  player.on('pause', mpris.onPause);
-  player.on('playpause', mpris.onPlayPause);
-  player.on('stop', mpris.onStop);
-  player.on('play', mpris.onplay);
+    player.on('quit', function () {
+  	   win = null;
+    });
+
+    player.on('next', mpris.onNext);
+    player.on('previous', mpris.onPrevious);
+    player.on('pause', mpris.onPause);
+    player.on('playpause', mpris.onPlayPause);
+    player.on('stop', mpris.onStop);
+    player.on('play', mpris.onplay);
+  }
 }
 
 app.on('ready', createWindow);
