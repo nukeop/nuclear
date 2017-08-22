@@ -11,7 +11,10 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "pack": "electron-builder --dir --em.main=main.prod.js",
     "dist": "electron-builder --em.main=main.prod.js",
-    "buildall": "npm run build:dist && npm run dist"
+    "build:linux": "electron-builder --em.main=main.prod.js --linux",
+    "build:windows": "electron-builder --em.main=main.prod.js --windows",
+    "build:macos": "electron-builder --em.main=main.prod.js --macos",
+    "build:all": "electron-builder --em.main=main.prod.js -mwl"
   },
   "repository": {
     "type": "git",
