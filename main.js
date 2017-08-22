@@ -1,5 +1,5 @@
 const { default: installExtension, REACT_DEVELOPER_TOOLS, REDUX_DEVTOOLS } = require('electron-devtools-installer');
-const { app, BrowserWindow } = require('electron');
+const { app, nativeImage, BrowserWindow } = require('electron');
 const platform = require('electron-platform');
 const path = require('path');
 const url = require('url');
@@ -13,13 +13,14 @@ if (!platform.isDarwin && !platform.isWin32) {
 
 let win;
 let player;
+let icon = nativeImage.createFromPath(path.resolve(__dirname, 'resources', 'media', 'icon.png'));
 
 function createWindow() {
   win = new BrowserWindow({
     width: 1366,
     height: 768,
     frame: false,
-    icon: path.resolve(__dirname, 'resources', 'media', 'icon.png'),
+    icon: icon,
     webPreferences: {
       experimentalFeatures: true
     }
@@ -44,6 +45,11 @@ function createWindow() {
   win.on('closed', () => {
     win = null;
   });
+
+  // MacOS specific
+  if (platform.isDarwin) {
+    app.dock.setIcon(icon);
+  }
 
   // GNU/Linux-specific
   if (!platform.isDarwin && !platform.isWin32) {
