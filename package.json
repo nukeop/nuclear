@@ -6,10 +6,12 @@
   "scripts": {
     "start": "npm-run-all --parallel watch electron",
     "electron": "electron .",
-    "watch": "webpack-dev-server --inline",
+    "watch": "webpack-dev-server --inline --env=dev",
+    "build:dist": "webpack --progress --colors --env=prod",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "pack": "electron-builder --dir",
-    "dist": "electron-builder"
+    "pack": "electron-builder --dir --em.main=main.prod.js",
+    "dist": "electron-builder --em.main=main.prod.js",
+    "buildall": "npm run build:dist && npm run dist"
   },
   "repository": {
     "type": "git",
@@ -41,6 +43,7 @@
   "devDependencies": {
     "babel-core": "^6.24.1",
     "babel-loader": "^7.0.0",
+    "babel-preset-env": "^1.6.0",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "classnames": "^2.2.5",
@@ -80,20 +83,36 @@
     "directories": {
       "output": "release"
     },
+    "files": [
+      "dist/",
+      "index.prod.html",
+      "main.prod.js",
+      "mpris.js",
+      "package.json"
+    ],
     "extraFiles": [
       "resources"
     ],
     "linux": {
-      "target": ["AppImage", "deb", "tar.gz"],
+      "target": [
+        "AppImage",
+        "deb",
+        "tar.gz"
+      ],
       "category": "Audio;AudioVideo;Network;Player;Music"
     },
     "mac": {
       "category": "public.app-category.music",
-      "target": ["dmg", "zip"]
+      "target": [
+        "dmg",
+        "zip"
+      ]
     },
     "win": {
-      "target": ["nsis", "portable"]
+      "target": [
+        "nsis",
+        "portable"
+      ]
     }
-
   }
 }
