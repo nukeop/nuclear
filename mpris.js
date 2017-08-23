@@ -34,5 +34,10 @@ function onPlay() {
 }
 
 module.exports = {
-  onNext
+  onNext,
+  onPrevious,
+  onPause,
+  onPlayPause,
+  onStop,
+  onPlay
 }
