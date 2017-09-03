@@ -57,7 +57,15 @@ class ArtistView extends React.Component {
           }
 
           <hr />
-          <SimilarArtists artists={this.props.artist.lastfm.artist.similar.artist}/>
+
+          {
+            this.isLoading()
+              ? null
+              : <SimilarArtists
+                artists={this.props.artist.lastfm.artist.similar.artist}
+              />
+          }
+
           <AlbumList
             albums={this.props.artist.releases}
             albumInfoSearch={this.props.albumInfoSearch}
