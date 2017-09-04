@@ -13,6 +13,9 @@ import * as ScrobblingActions from './actions/scrobbling';
 import './app.global.scss';
 import styles from './styles.scss';
 
+import logoImg from '../resources/media/logo_full_light.png';
+import artPlaceholder from '../resources/media/art_placeholder.png';
+
 import { config as PluginConfig } from './plugins/config';
 
 import Footer from './components/Footer';
@@ -79,7 +82,7 @@ class App extends React.Component {
               <div style={{textAlign: "center"}}>
                 <img
                   width="150px"
-                  src="./resources/media/logo_full_light.png"
+                  src={logoImg}
                 />
                 <div className={styles.version_string}>Version 0.4.0</div>
               </div>
@@ -102,7 +105,7 @@ class App extends React.Component {
           <Seekbar fill={this.props.player.playbackProgress + '%'}/>
           <div className={styles.footer_horizontal}>
             <div className={styles.track_info_wrapper}>
-              <Cover cover={this.props.queue.queueItems[this.props.queue.currentSong] ? this.props.queue.queueItems[this.props.queue.currentSong].thumbnail : './resources/media/art_placeholder.png'} />
+              <Cover cover={this.props.queue.queueItems[this.props.queue.currentSong] ? this.props.queue.queueItems[this.props.queue.currentSong].thumbnail : artPlaceholder} />
               <TrackInfo
                 track={this.props.queue.queueItems[this.props.queue.currentSong] ? this.props.queue.queueItems[this.props.queue.currentSong].name : null}
                 artist={this.props.queue.queueItems[this.props.queue.currentSong] ? this.props.queue.queueItems[this.props.queue.currentSong].artist : null}

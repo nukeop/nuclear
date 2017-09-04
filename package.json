@@ -55,6 +55,7 @@
     "electron-builder": "^19.24.1",
     "electron-devtools-installer": "^2.2.0",
     "extract-text-webpack-plugin": "^2.1.0",
+    "file-loader": "^0.11.2",
     "google-fonts-webpack-plugin": "^0.3.2",
     "lodash": "^4.17.4",
     "node-sass": "^4.5.3",
