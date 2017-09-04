@@ -81,7 +81,7 @@ export function unifiedSearch(terms) {
       dispatch(albumSearch(terms)),
       dispatch(artistSearch(terms))
     ]).then(() => {
-      setTimeout(() => dispatch(unifiedSearchSuccess()), 2000);
+      dispatch(unifiedSearchSuccess());
     });
   };
 }

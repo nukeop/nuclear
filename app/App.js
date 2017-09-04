@@ -102,7 +102,7 @@ class App extends React.Component {
           <Seekbar fill={this.props.player.playbackProgress + '%'}/>
           <div className={styles.footer_horizontal}>
             <div className={styles.track_info_wrapper}>
-              <Cover cover={this.props.queue.queueItems[this.props.queue.currentSong] ? this.props.queue.queueItems[this.props.queue.currentSong].thumbnail : null} />
+              <Cover cover={this.props.queue.queueItems[this.props.queue.currentSong] ? this.props.queue.queueItems[this.props.queue.currentSong].thumbnail : './resources/media/art_placeholder.png'} />
               <TrackInfo
                 track={this.props.queue.queueItems[this.props.queue.currentSong] ? this.props.queue.queueItems[this.props.queue.currentSong].name : null}
                 artist={this.props.queue.queueItems[this.props.queue.currentSong] ? this.props.queue.queueItems[this.props.queue.currentSong].artist : null}
