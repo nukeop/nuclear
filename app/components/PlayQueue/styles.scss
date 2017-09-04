@@ -4,4 +4,11 @@
 
   flex: 1 1 auto;
   flex-flow: column;
+
+  .play_queue_items {
+    display: flex;
+    flex-flow: column;
+    flex: 1 1 auto;
+    overflow-y: auto;
+  }
 }

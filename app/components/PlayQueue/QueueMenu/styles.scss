@@ -1,0 +1,18 @@
+@import '../../../vars';
+
+.queue_menu_container {
+  display: flex;
+  flex-flow: column;
+  margin: 0.5rem 0.5rem 0 0.5rem;
+  flex: 0 0 auto;
+
+  .queue_menu_buttons {
+    display: flex;
+    flex-flow: row;
+    margin: 0.5rem 0 0.5rem 0;
+  }
+
+  hr {
+    width: 100%;
+  }
+}

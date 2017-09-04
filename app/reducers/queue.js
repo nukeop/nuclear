@@ -1,5 +1,6 @@
 import {
   ADD_TO_QUEUE,
+  CLEAR_QUEUE,
   ADD_STREAMS_TO_QUEUE_ITEM,
   NEXT_SONG,
   PREVIOUS_SONG,
@@ -18,7 +19,11 @@ export default function QueueReducer(state=initialState, action) {
     case ADD_TO_QUEUE:
       return Object.assign({}, state, {
         queueItems: _.union(state.queueItems, [action.payload])
-      })
+      });
+    case CLEAR_QUEUE:
+      return Object.assign({}, state, {
+        queueItems: []
+      });
     case ADD_STREAMS_TO_QUEUE_ITEM:
       let replaceIx = _.findIndex(state.queueItems, item => action.payload.artist===item.artist && action.payload.name ===item.name);
       let newQueue = _.cloneDeep(state.queueItems);

@@ -3,6 +3,7 @@ import React from 'react';
 import styles from './styles.scss';
 
 import QueueItem from './QueueItem';
+import QueueMenu from './QueueMenu';
 
 class PlayQueue extends React.Component {
   constructor(props){
@@ -29,7 +30,10 @@ class PlayQueue extends React.Component {
   render() {
     return (
       <div className={styles.play_queue_container}>
-        {this.renderQueueItems()}
+        <QueueMenu clearQueue={this.props.clearQueue} />
+        <div className={styles.play_queue_items}>
+          {this.renderQueueItems()}
+        </div>
       </div>
     );
   }

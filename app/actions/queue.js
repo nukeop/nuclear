@@ -1,5 +1,6 @@
 var _ = require('lodash');
 export const ADD_TO_QUEUE = 'ADD_TO_QUEUE';
+export const CLEAR_QUEUE = 'CLEAR_QUEUE';
 export const ADD_STREAMS_TO_QUEUE_ITEM = 'ADD_STREAMS_TO_QUEUE_ITEM';
 export const NEXT_SONG = 'NEXT_SONG';
 export const PREVIOUS_SONG = 'PREVIOUS_SONG';
@@ -22,6 +23,13 @@ export function addToQueue(musicSources, item) {
        });
     });
   }
+}
+
+export function clearQueue() {
+  return {
+    type: CLEAR_QUEUE,
+    payload: null
+  };
 }
 
 export function nextSong() {
