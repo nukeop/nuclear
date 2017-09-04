@@ -14,6 +14,18 @@ class PopularTracks extends React.Component {
         <div className={styles.header}>
           Popular tracks:
         </div>
+        {
+          this.props.tracks.track.map(track => {
+            return (
+              <div className={styles.track_row}>
+                <img src={track.image[0]['#text']} />
+                <div>{track.name}</div>
+                <div>{track.playcount}</div>
+
+              </div>
+            )
+          })
+        }
       </div>
     );
 
