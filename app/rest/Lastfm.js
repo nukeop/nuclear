@@ -68,10 +68,20 @@ function getArtistInfo(artist) {
   ));
 }
 
+function getArtistTopTracks(artist) {
+  return fetch (addApiKey(
+    scrobblingApiUrl +
+    '?method=artist.gettoptracks&artist=' +
+    encodeURIComponent(artist) +
+    '&format=json'
+  ));
+}
+
 module.exports = {
   lastFmLoginConnect,
   lastFmLogin,
   scrobble,
   updateNowPlaying,
-  getArtistInfo
+  getArtistInfo,
+  getArtistTopTracks
 };

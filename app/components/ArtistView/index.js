@@ -4,6 +4,7 @@ import Spacer from '../Spacer';
 import AlbumList from '../AlbumList';
 import ArtistTags from './ArtistTags';
 import SimilarArtists from './SimilarArtists';
+import PopularTracks from './PopularTracks';
 
 import styles from './styles.scss';
 
@@ -57,6 +58,14 @@ class ArtistView extends React.Component {
           }
 
           <hr />
+
+          {
+            this.isLoading()
+            ? null
+            : <PopularTracks
+              tracks={this.props.artist.lastfm.toptracks}
+            />
+          }
 
           {
             this.isLoading()

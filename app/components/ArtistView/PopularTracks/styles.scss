@@ -1,0 +1,14 @@
+@import '../../../vars';
+
+.popular_tracks_container {
+  display: flex;
+  flex-flow: column;
+
+  flex: 1 1 auto;
+
+  .header {
+    font-variant: small-caps;
+    font-size: 16px;
+    margin-bottom: 0.25rem;
+  }
+}

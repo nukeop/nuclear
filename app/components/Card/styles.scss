@@ -4,7 +4,7 @@
   box-shadow: 0 0.25rem 0.5rem 0 rgba(0,0,0,0.2);
   background-color: $background2;
   transition: 0.3s;
-  border-radius: 0.5rem;
+  border-radius: 0.125rem;
   width: 15rem;
   margin: 1rem;
   transition: 0.25s ease-in-out;
@@ -17,7 +17,7 @@
   img {
     height: 15rem;
     width: 100%;
-    border-radius: 0.4rem 0.4rem 0 0;
+    border-radius: 0.125rem 0.125rem 0 0;
     object-fit: cover;
   }
 

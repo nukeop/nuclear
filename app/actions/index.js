@@ -191,9 +191,17 @@ export function lastFmArtistInfoSuccess(artistId, info) {
 export function lastFmArtistInfoSearch(artist, artistId) {
   return dispatch => {
     dispatch(lastFmArtistInfoStart(artistId));
-    lastfm.getArtistInfo(artist)
-    .then (info => info.json())
-    .then (info => {
+    Promise.all([
+      lastfm.getArtistInfo(artist),
+      lastfm.getArtistTopTracks(artist)
+    ])
+    .then (results => Promise.all(results.map(info => info.json())))
+    .then (results => {
+      let info = {};
+      results.forEach(result => {
+        info = Object.assign(info, result);
+      });
+
       dispatch(lastFmArtistInfoSuccess(artistId, info));
     });
   };
