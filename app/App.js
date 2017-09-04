@@ -27,6 +27,7 @@ import PlayQueueContainer from './containers/PlayQueueContainer';
 import SearchBox from './components/SearchBox';
 import SearchBoxContainer from './containers/SearchBoxContainer';
 
+import IpcContainer from './containers/IpcContainer';
 import SoundContainer from './containers/SoundContainer';
 
 import Cover from './components/Cover';
@@ -117,6 +118,7 @@ class App extends React.Component {
           </div>
         </Footer>
         <SoundContainer />
+        <IpcContainer />
 
       </div>
     );
