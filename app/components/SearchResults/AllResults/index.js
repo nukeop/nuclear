@@ -9,7 +9,7 @@ class AllResults extends React.Component {
     super(props);
   }
 
-  renderResults(collection) {
+  renderResults(collection, onClick) {
     return (
         collection.slice(0, 3).map((el, i) => {
           return (
@@ -17,6 +17,7 @@ class AllResults extends React.Component {
               small
               header={el.title}
               image={el.thumb}
+              onClick={() => onClick(el.id)}
               key={i}
             />
           )
@@ -36,14 +37,14 @@ class AllResults extends React.Component {
         <div className={styles.column}>
           <h3>Artists</h3>
           <div className={styles.row}>
-            { this.renderResults(this.props.artistSearchResults) }
+            { this.renderResults(this.props.artistSearchResults, this.props.artistInfoSearch) }
           </div>
         </div>
 
         <div className={styles.column}>
           <h3>Albums</h3>
           <div className={styles.row}>
-            { this.renderResults(this.props.albumSearchResults) }
+            { this.renderResults(this.props.albumSearchResults, this.props.albumInfoSearch) }
           </div>
         </div>
 

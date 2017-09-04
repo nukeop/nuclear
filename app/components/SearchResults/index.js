@@ -15,6 +15,8 @@ class SearchResults extends React.Component {
           <AllResults
             artistSearchResults={this.props.artistSearchResults}
             albumSearchResults={this.props.albumSearchResults}
+            albumInfoSearch={this.albumInfoSearch.bind(this)}
+            artistInfoSearch={this.artistInfoSearch.bind(this)}
           />
         </div>
       </Tab.Pane>
