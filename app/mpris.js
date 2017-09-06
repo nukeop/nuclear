@@ -1,31 +1,31 @@
 import { ipcRenderer } from 'electron';
 
-function onNext(event) {
-  console.log(event);
+function onNext(event, actions) {
+  actions.nextSong();
 }
 
-function onPrevious(event) {
-  console.log(event);
+function onPrevious(event, actions) {
+  actions.previousSong();
 }
 
-function onPause(event) {
-  console.log(event);
+function onPause(event, actions) {
+  actions.pausePlayback();
 }
 
-function onPlayPause(event) {
-  console.log(event);
+function onPlayPause(event, actions, state) {
+  actions.togglePlayback(state.playbackStatus);
 }
 
-function onStop(event) {
-  console.log(event);
+function onStop(event, actions) {
+  actions.pausePlayback();
 }
 
-function onPlay(event) {
-  console.log(event);
+function onPlay(event, actions) {
+  actions.startPlayback();
 }
 
 function onSongChange(song) {
-
+  console.log(song);
 }
 
 

@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { ipcRenderer } from 'electron';
 import * as PlayerActions from '../../actions/player';
+import * as QueueActions from '../../actions/queue';
 
 import { onNext, onPrevious, onPause, onPlayPause, onStop, onPlay, onSongChange} from '../../mpris';
 
@@ -15,12 +16,12 @@ class IpcContainer extends React.Component {
 
   componentDidMount() {
     ipcRenderer.send('started');
-    ipcRenderer.on('next', onNext);
-    ipcRenderer.on('previous', onPrevious);
-    ipcRenderer.on('pause', onPause);
-    ipcRenderer.on('playpause', onPlayPause);
-    ipcRenderer.on('stop', onStop);
-    ipcRenderer.on('play', onPlay);
+    ipcRenderer.on('next', event => onNext(event, this.props.actions));
+    ipcRenderer.on('previous', event => onPrevious(event, this.props.actions));
+    ipcRenderer.on('pause', event => onPause(event, this.props.actions));
+    ipcRenderer.on('playpause', event => onPlayPause(event, this.props.actions, this.props.player));
+    ipcRenderer.on('stop', event => onStop(event, this.props.actions));
+    ipcRenderer.on('play', event => onPlay(event, this.props.actions));
   }
 
   render() {
@@ -36,7 +37,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators(Object.assign({}, PlayerActions), dispatch)
+    actions: bindActionCreators(Object.assign({}, PlayerActions, QueueActions), dispatch)
   };
 }
 
