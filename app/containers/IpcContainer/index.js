@@ -24,6 +24,13 @@ class IpcContainer extends React.Component {
     ipcRenderer.on('play', event => onPlay(event, this.props.actions));
   }
 
+  componentWillReceiveProps(nextProps){
+    if (this.props != nextProps) {
+      let currentSong = nextProps.queue.queueItems[nextProps.queue.currentSong];
+      onSongChange(currentSong);
+    }
+  }
+
   render() {
     return null;
   }
@@ -32,6 +39,7 @@ class IpcContainer extends React.Component {
 function mapStateToProps(state) {
   return {
     player: state.player,
+    queue: state.queue
   }
 }
 

@@ -9,6 +9,7 @@ ipcMain.on('started', (event, arg) => {
   rendererWindow = event.sender;
 });
 
+
 function onNext() {
   rendererWindow.send('next');
 }

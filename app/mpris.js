@@ -25,7 +25,7 @@ function onPlay(event, actions) {
 }
 
 function onSongChange(song) {
-  console.log(song);
+  ipcRenderer.send('songChange', song);
 }
 
 

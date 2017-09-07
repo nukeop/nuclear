@@ -1,5 +1,5 @@
 const { default: installExtension, REACT_DEVELOPER_TOOLS, REDUX_DEVTOOLS } = require('electron-devtools-installer');
-const { app, nativeImage, BrowserWindow } = require('electron');
+const { app, ipcMain, nativeImage, BrowserWindow, Menu, Tray } = require('electron');
 const platform = require('electron-platform');
 const path = require('path');
 const url = require('url');
@@ -13,6 +13,7 @@ if (!platform.isDarwin && !platform.isWin32) {
 
 let win;
 let player;
+let tray;
 let icon = nativeImage.createFromPath(path.resolve(__dirname, 'resources', 'media', 'icon.png'));
 
 function createWindow() {
@@ -46,6 +47,10 @@ function createWindow() {
     win = null;
   });
 
+  tray = new Tray(icon);
+  tray.setToolTip('nuclear music player')
+
+
   // MacOS specific
   if (platform.isDarwin) {
     app.dock.setIcon(icon);
@@ -72,6 +77,20 @@ function createWindow() {
     player.on('playpause', mpris.onPlayPause);
     player.on('stop', mpris.onStop);
     player.on('play', mpris.onPlay);
+
+    ipcMain.on('songChange', (event, arg) => {
+      if (arg === null) {
+        return;
+      }
+
+      player.metadata = {
+        'mpris:trackid': player.objectPath('track/0'),
+      	'mpris:length': arg.streams[0].duration * 1000 * 1000, // In microseconds
+      	'mpris:artUrl': 'file://' + '/home/jcd/Pictures/terry/140414TerryADavis.jpg',// arg.thumbnail,
+      	'xesam:title': arg.name,
+      	'xesam:artist': arg.artist
+      };
+    });
   }
 }
 

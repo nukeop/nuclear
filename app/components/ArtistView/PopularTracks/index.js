@@ -8,7 +8,6 @@ class PopularTracks extends React.Component {
   }
 
   render() {
-    console.log(this.props.tracks);
     return (
       <div className={styles.popular_tracks_container}>
         <div className={styles.header}>
@@ -20,8 +19,6 @@ class PopularTracks extends React.Component {
               <div className={styles.track_row}>
                 <img src={track.image[0]['#text']} />
                 <div>{track.name}</div>
-                <div>{track.playcount}</div>
-
               </div>
             )
           })
