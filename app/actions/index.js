@@ -171,6 +171,22 @@ export function artistReleasesSearch(artistId) {
   };
 }
 
+export function artistInfoSearchByName(artistName, history) {
+  return (dispatch) => {
+
+    discogs.searchArtists(artistName)
+    .then(searchResults => searchResults.json())
+    .then(searchResultsJson => {
+        let artist = searchResultsJson.results[0];
+        if (history) {
+          history.push('/artist/' + artist.id);
+        }
+
+        dispatch(artistInfoSearch(artist.id));
+    });
+  }
+}
+
 export function lastFmArtistInfoStart(artistId) {
   return {
     type: LASTFM_ARTIST_INFO_SEARCH_START,

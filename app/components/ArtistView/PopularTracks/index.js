@@ -1,4 +1,5 @@
 import React from 'react';
+import artPlaceholder from '../../../../resources/media/art_placeholder.png';
 
 import styles from './styles.scss';
 
@@ -17,7 +18,7 @@ class PopularTracks extends React.Component {
           this.props.tracks.track.slice(0, 5).map(track => {
             return (
               <div className={styles.track_row}>
-                <img src={track.image[0]['#text']} />
+                <img src={track.image[0]['#text'] || artPlaceholder} />
                 <div>{track.name}</div>
               </div>
             )

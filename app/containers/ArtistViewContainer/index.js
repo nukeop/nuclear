@@ -20,6 +20,7 @@ class ArtistViewContainer extends React.Component {
       <ArtistView
         artist={this.props.artistDetails[this.props.match.params.artistId]}
         albumInfoSearch={this.props.actions.albumInfoSearch}
+        artistInfoSearchByName={this.props.actions.artistInfoSearchByName}
         history={this.props.history}
       />
     )

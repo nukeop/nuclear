@@ -73,6 +73,8 @@ class ArtistView extends React.Component {
                 ? null
                 : <SimilarArtists
                   artists={this.props.artist.lastfm.artist.similar.artist}
+                  artistInfoSearchByName={this.props.artistInfoSearchByName}
+                  history={this.props.history}
                 />
             }
           </div>

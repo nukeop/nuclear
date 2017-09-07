@@ -9,9 +9,8 @@ class SimilarArtists extends React.Component {
     super(props);
   }
 
-  artistInfoSearch(artistId) {
-    this.props.artistInfoSearch(artistId);
-    this.props.history.push('/artist/' + artistId);
+  artistInfoSearchByName(artistName) {
+    this.props.artistInfoSearchByName(artistName, this.props.history);
   }
 
   render() {
@@ -23,9 +22,9 @@ class SimilarArtists extends React.Component {
         {
           this.props.artists.map(artist => {
             return (
-                <div className={styles.artist_row}>
+                <div onClick={() => {this.artistInfoSearchByName(artist.name)}} className={styles.artist_row}>
                   <img src={artist.image[1]['#text']} />
-                  <div onClick={() => {console.log('discogs search by name')}}>{artist.name}</div>
+                  <div>{artist.name}</div>
                 </div>
             )
           })
