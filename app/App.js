@@ -89,7 +89,7 @@ class App extends React.Component {
 
               <Link to="/dashboard"><FontAwesome name="dashboard" /> Dashboard</Link>
               <a href="#"><FontAwesome name="download" /> Downloads</a>
-              <a href="#"><FontAwesome name="music" /> Playlists</a>
+              <Link to="/playlists"><FontAwesome name="music" /> Playlists</Link>
               <Link to='/settings'><FontAwesome name="cogs" /> Settings</Link>
               <Link to="/"><FontAwesome name="search" /> Search results</Link>
             </SidebarMenu>
