@@ -62,4 +62,10 @@
     font-size: 48px;
     font-weight: normal;
   }
+
+  .artist_related_container {
+    display: flex;
+    flex-flow: row;
+    margin: 0.5rem 0;
+  }
 }

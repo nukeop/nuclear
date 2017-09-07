@@ -15,5 +15,18 @@
   .track_row {
     display: flex;
     flex-flow: row;
+    align-items: center;
+    margin: 0.25rem 0;
+    padding: 0.25rem;
+
+    img {
+      flex: 0 0 auto;
+      width: 3rem;
+      height: 3rem;
+    }
+
+    div {
+      margin: 0.25rem 0.5rem;
+    }
   }
 }

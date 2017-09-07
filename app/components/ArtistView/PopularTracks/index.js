@@ -14,7 +14,7 @@ class PopularTracks extends React.Component {
           Popular tracks:
         </div>
         {
-          this.props.tracks.track.map(track => {
+          this.props.tracks.track.slice(0, 5).map(track => {
             return (
               <div className={styles.track_row}>
                 <img src={track.image[0]['#text']} />

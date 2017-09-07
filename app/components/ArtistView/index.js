@@ -59,21 +59,23 @@ class ArtistView extends React.Component {
 
           <hr />
 
-          {
-            this.isLoading()
-            ? null
-            : <PopularTracks
-              tracks={this.props.artist.lastfm.toptracks}
-            />
-          }
-
-          {
-            this.isLoading()
+          <div className={styles.artist_related_container}>
+            {
+              this.isLoading()
               ? null
-              : <SimilarArtists
-                artists={this.props.artist.lastfm.artist.similar.artist}
+              : <PopularTracks
+                tracks={this.props.artist.lastfm.toptracks}
               />
-          }
+            }
+
+            {
+              this.isLoading()
+                ? null
+                : <SimilarArtists
+                  artists={this.props.artist.lastfm.artist.similar.artist}
+                />
+            }
+          </div>
 
           <AlbumList
             albums={this.props.artist.releases}

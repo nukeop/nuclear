@@ -1,5 +1,6 @@
 import React from 'react';
 import { Image } from 'semantic-ui-react';
+import artPlaceholder from '../../../resources/media/art_placeholder.png';
 
 import styles from './styles.scss';
 
@@ -21,7 +22,7 @@ class Card extends React.Component {
         }
         onClick={this.props.onClick}
       >
-        <Image src={this.props.image}></Image>
+        <Image src={this.props.image || artPlaceholder}></Image>
         <div className={styles.container}>
           <h4>{this.props.header}</h4>
           <p>{this.props.content}</p>
