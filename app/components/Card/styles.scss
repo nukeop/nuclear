@@ -8,6 +8,7 @@
   width: 15rem;
   margin: 1rem;
   transition: 0.25s ease-in-out;
+  cursor: pointer;
 
   &:hover {
     box-shadow: 0 0.5rem 1rem 0 rgba(0,0,0,0.2);
@@ -39,8 +40,17 @@
   padding: 0.125rem 1rem;
   height: auto;
 
-  h4,
-  p {
+  h4 {
     margin: 0.5rem 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  p {
+    margin: 0 0 0.5rem 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: rgba($white, 0.6);
   }
 }

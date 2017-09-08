@@ -32,9 +32,16 @@ class SearchResults extends React.Component {
             ? this.props.unifiedSearchStarted
               ? null
               : collection.map((el, i) => {
+                let artist = null;
+                let title = el.title.split(' - ');
+                if (title.length > 1) {
+                  artist = title[0];
+                  title = title[1];
+                }
                 return (
                   <Card
-                    header={el.title}
+                    header={title}
+                    content={artist}
                     image={el.thumb}
                     onClick={() => onClick(el.id)}
                   />

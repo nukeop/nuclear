@@ -2,30 +2,37 @@
 
 .similar_artists_container {
   display: flex;
+  flex: 1 1 auto;
   flex-flow: column;
 
-  flex: 1 1 auto;
+  margin: 0 0.5rem;
 
   .header {
-    font-variant: small-caps;
+    margin-bottom: 1rem;
+
     font-size: 16px;
-    margin-bottom: 0.25rem;
+    font-variant: small-caps;
   }
 
   .artist_row {
     display: flex;
+    align-items: center;
     flex-flow: row;
-    background: $background2;
+
     margin: 0.25rem 0;
     padding: 0.25rem;
-    border-radius: 2px;
+
     transition: 0.25s ease-in-out;
-    align-items: center;
+
+    border-radius: 2px;
+    background: $background2;
 
     img {
       flex: 0 0 auto;
+
       width: 3rem;
       height: 3rem;
+
       border-radius: 50%;
     }
 

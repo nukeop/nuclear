@@ -25,19 +25,12 @@ class Card extends React.Component {
         <Image src={this.props.image || artPlaceholder}></Image>
         <div className={styles.container}>
           <h4>{this.props.header}</h4>
-          <p>{this.props.content}</p>
+          {
+            this.props.content
+            ? <p>{this.props.content}</p>
+            : null
+          }
         </div>
-        {
-          this.props.extraContent
-          ? <hr />
-          : null
-        }
-
-        {
-          this.props.extraContent
-          ? this.props.extraContent
-          : null
-        }
       </div>
     );
   }
