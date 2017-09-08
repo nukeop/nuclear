@@ -19,6 +19,8 @@
     align-items: center;
     flex-flow: row;
 
+    transition: 0.25s ease-in-out;
+
     border-bottom: 1px solid rgba($background2, 0.2);
 
     &:hover {
