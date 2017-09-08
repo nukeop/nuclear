@@ -13,23 +13,27 @@ class Card extends React.Component {
 
   render() {
     return (
-      <div
-        className={
-          classNames({
-            [`${styles.card}`]: true,
-            [`${styles.small}`]: this.props.small
-          })
-        }
-        onClick={this.props.onClick}
-      >
-        <Image src={this.props.image || artPlaceholder}></Image>
-        <div className={styles.container}>
-          <h4>{this.props.header}</h4>
-          {
-            this.props.content
-            ? <p>{this.props.content}</p>
-            : null
+      <div className={styles.card_container}>
+        <div
+          className={
+            classNames({
+              [`${styles.card}`]: true,
+              [`${styles.small}`]: this.props.small
+            })
           }
+          onClick={this.props.onClick}
+        >
+          <div className={styles.thumbnail}>
+            <Image src={this.props.image || artPlaceholder}></Image>
+          </div>
+          <div className={styles.container}>
+            <h4>{this.props.header}</h4>
+            {
+              this.props.content
+              ? <p>{this.props.content}</p>
+              : null
+            }
+          </div>
         </div>
       </div>
     );

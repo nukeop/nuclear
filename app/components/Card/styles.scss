@@ -1,12 +1,18 @@
 @import "../../vars";
 
+.card_container {
+  width: 20%;
+  padding: 1rem;
+}
+
 .card {
+  display: flex;
+  flex-flow: column;
   box-shadow: 0 0.25rem 0.5rem 0 rgba(0,0,0,0.2);
   background-color: $background2;
-  transition: 0.3s;
   border-radius: 0.125rem;
-  width: 15rem;
-  margin: 1rem;
+  width: auto;
+  height: 100%;
   transition: 0.25s ease-in-out;
   cursor: pointer;
 
@@ -15,11 +21,16 @@
     transform: scale(1.1);
   }
 
-  img {
-    height: 15rem;
+  .thumbnail {
+    flex: 1 1 auto;
     width: 100%;
     border-radius: 0.125rem 0.125rem 0 0;
-    object-fit: cover;
+
+    img {
+      width: 100%;
+      object-fit: cover;
+      border-radius: 0.125rem 0.125rem 0 0;
+    }
   }
 
   hr {
@@ -29,14 +40,11 @@
 }
 
 .small {
-  width: 10rem;
-
-  img {
-    height: 10rem;
-  }
+  width: auto;
 }
 
 .container {
+  flex: 0 0 auto;
   padding: 0.125rem 1rem;
   height: auto;
 
