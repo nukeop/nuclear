@@ -50,7 +50,7 @@ export function unifiedSearchSuccess() {
 
 export function albumSearch(terms) {
   return (dispatch) => {
-    discogs.searchReleases(terms)
+    return discogs.searchReleases(terms)
     .then(searchResults => searchResults.json())
     .then(searchResultsJson => {
       dispatch({
@@ -63,7 +63,7 @@ export function albumSearch(terms) {
 
 export function artistSearch(terms) {
   return (dispatch) => {
-    discogs.searchArtists(terms)
+    return discogs.searchArtists(terms)
     .then(searchResults => searchResults.json())
     .then(searchResultsJson => {
       dispatch({

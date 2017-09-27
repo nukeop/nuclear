@@ -11,7 +11,7 @@ class AllResults extends React.Component {
 
   renderResults(collection, onClick) {
     return (
-        collection.slice(0, 3).map((el, i) => {
+        collection.slice(0, 5).map((el, i) => {
           return (
             <Card
               small
