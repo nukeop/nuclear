@@ -24,7 +24,12 @@ class Card extends React.Component {
           onClick={this.props.onClick}
         >
           <div className={styles.thumbnail}>
-            <Image src={this.props.image || artPlaceholder}></Image>
+            <div style={{
+                        background: `url('${this.props.image}')`,
+                        backgroundRepeat: 'noRepeat',
+                        backgroundPosition: 'center',
+                        backgroundSize: 'cover'
+                      }}></div>
           </div>
           <div className={styles.container}>
             <h4>{this.props.header}</h4>

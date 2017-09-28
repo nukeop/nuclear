@@ -5,6 +5,7 @@ import {Dimmer, Loader, Image, Segment} from 'semantic-ui-react';
 import ContextPopup from '../ContextPopup';
 
 import styles from './styles.scss';
+import artPlaceholder from '../../../resources/media/art_placeholder.png';
 
 class AlbumView extends React.Component {
   constructor(props) {
@@ -29,7 +30,7 @@ class AlbumView extends React.Component {
               ? null
               : <div className={styles.album}>
                   <div className={styles.album_info_box}>
-                    <img src={this.props.album.images[0].uri}/>
+                    <img src={this.props.album.images ? this.props.album.images[0].uri : artPlaceholder}/>
                     <div className={styles.album_details}>
                       <div className={styles.album_title}>{this.props.album.title}</div>
                       <div className={styles.album_artist}>by <a href='#' onClick={() => {this.artistInfoSearch.bind(this)(this.props.album.artists[0].id)}}>{this.props.album.artists[0].name}</a></div>
