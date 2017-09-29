@@ -102,7 +102,11 @@ class App extends React.Component {
           </VerticalPanel>
         </div>
         <Footer className={styles.footer}>
-          <Seekbar fill={this.props.player.playbackProgress + '%'}/>
+          <Seekbar 
+            fill={this.props.player.playbackProgress + '%'} 
+            seek={this.props.actions.updateSeek}
+            queue={this.props.queue}
+          />
           <div className={styles.footer_horizontal}>
             <div className={styles.track_info_wrapper}>
               <Cover cover={this.props.queue.queueItems[this.props.queue.currentSong] ? this.props.queue.queueItems[this.props.queue.currentSong].thumbnail : artPlaceholder} />

@@ -3,6 +3,7 @@ import Sound from 'react-sound';
 export const START_PLAYBACK = 'START_PLAYBACK';
 export const PAUSE_PLAYBACK = 'PAUSE_PLAYBACK';
 export const UPDATE_PLAYBACK_PROGRESS = 'UPDATE_PLAYBACK_PROGRESS';
+export const UPDATE_SEEK = 'UPDATE_SEEK';
 
 export function togglePlayback(currentState) {
   return dispatch => {
@@ -32,5 +33,12 @@ export function updatePlaybackProgress(progress) {
   return {
     type: UPDATE_PLAYBACK_PROGRESS,
     payload: progress
+  }
+}
+
+export function updateSeek(seek) {
+  return {
+    type: UPDATE_SEEK,
+    payload: seek
   }
 }

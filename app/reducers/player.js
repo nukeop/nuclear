@@ -3,7 +3,8 @@ import Sound from 'react-sound';
 import {
   START_PLAYBACK,
   PAUSE_PLAYBACK,
-  UPDATE_PLAYBACK_PROGRESS
+  UPDATE_PLAYBACK_PROGRESS,
+  UPDATE_SEEK
 } from '../actions/player';
 
 const initialState = {
@@ -24,9 +25,13 @@ export default function PlayerReducer(state=initialState, action) {
       });
     case UPDATE_PLAYBACK_PROGRESS:
       return Object.assign({}, state, {
-        playbackProgress: action.payload
+        playbackProgress: action.payload,
+        seek: action.payload
       });
-
+    case UPDATE_SEEK:
+      return Object.assign({}, state, {
+        seek: action.payload
+      });
     default:
       return state;
   }

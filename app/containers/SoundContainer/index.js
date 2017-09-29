@@ -31,6 +31,7 @@ class SoundContainer extends React.Component {
         onPlaying={this.handlePlaying.bind(this)}
         onFinishedPlaying={this.handleFinishedPlaying.bind(this)}
         playFromPosition={this.props.player.seek}
+        
       />
     );
   }
