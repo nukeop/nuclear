@@ -57,7 +57,7 @@ const config = {
       ]
     })
   ],
-  target: 'electron-main'
+  target: 'electron-renderer'
 };
 
 module.exports = config;
