@@ -3,6 +3,7 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as Actions from '../../actions';
+import * as QueueActions from '../../actions/queue';
 
 import ArtistView from '../../components/ArtistView';
 
@@ -21,6 +22,8 @@ class ArtistViewContainer extends React.Component {
         artist={this.props.artistDetails[this.props.match.params.artistId]}
         albumInfoSearch={this.props.actions.albumInfoSearch}
         artistInfoSearchByName={this.props.actions.artistInfoSearchByName}
+        addToQueue={this.props.actions.addToQueue}
+        musicSources={this.props.musicSources}
         history={this.props.history}
       />
     )
@@ -29,13 +32,14 @@ class ArtistViewContainer extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    artistDetails: state.search.artistDetails
+    artistDetails: state.search.artistDetails,
+    musicSources: state.plugin.plugins.musicSources
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators(Actions, dispatch)
+    actions: bindActionCreators(Object.assign({}, Actions, QueueActions), dispatch)
   };
 }
 

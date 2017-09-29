@@ -34,8 +34,18 @@
       height: 3rem;
     }
 
-    div {
+    .popular_track_name {
+      flex: 1 1 auto;
       margin: 0.25rem 0.5rem;
+      text-align: left;
+    }
+
+    .playcount {
+      flex: 1 1 auto;
+      margin: 0.25rem 0.5rem;
+      text-align: right;
     }
   }
 }
+
+.add_button {text-align: left;}

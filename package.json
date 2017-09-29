@@ -36,6 +36,7 @@
     "font-awesome": "^4.7.0",
     "lowdb": "^0.16.2",
     "md5": "^2.2.1",
+    "numeral": "^2.0.6",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
     "react-router-transition": "^0.1.1",

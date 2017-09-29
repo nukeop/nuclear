@@ -61,6 +61,7 @@ class AlbumView extends React.Component {
                       this.props.album.tracklist.map((el, i) => {
                         return (
                           <ContextPopup
+                            key={i}
                             trigger={
                               <tr>
                                 <td className={styles.center}>{i + 1}</td>

@@ -65,6 +65,9 @@ class ArtistView extends React.Component {
               ? null
               : <PopularTracks
                 tracks={this.props.artist.lastfm.toptracks}
+                artist={this.props.artist}
+                addToQueue={this.props.addToQueue}
+                musicSources={this.props.musicSources}
               />
             }
 
