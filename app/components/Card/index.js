@@ -25,7 +25,7 @@ class Card extends React.Component {
         >
           <div className={styles.thumbnail}>
             <div style={{
-                        background: `url('${this.props.image}')`,
+                        background: `url('${(this.props.image ? this.props.image : artPlaceholder)}')`,
                         backgroundRepeat: 'noRepeat',
                         backgroundPosition: 'center',
                         backgroundSize: 'cover'

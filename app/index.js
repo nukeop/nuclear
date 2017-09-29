@@ -9,7 +9,7 @@ import configureStore from './store/configureStore';
 
 const store = configureStore();
 
-const render = (Component) => {
+const render = Component => {
   ReactDOM.render(
     <AppContainer>
       <Provider store={store}>
