@@ -11,8 +11,9 @@ import Sound from 'react-sound';
 
 class SoundContainer extends React.Component {
   handlePlaying(update) {
+    let seek = update.position;
     let progress = (update.position/update.duration) * 100;
-    this.props.actions.updatePlaybackProgress(progress);
+    this.props.actions.updatePlaybackProgress(progress, seek);
   }
 
   handleFinishedPlaying() {
@@ -30,8 +31,7 @@ class SoundContainer extends React.Component {
         playStatus={this.props.player.playbackStatus}
         onPlaying={this.handlePlaying.bind(this)}
         onFinishedPlaying={this.handleFinishedPlaying.bind(this)}
-        playFromPosition={this.props.player.seek}
-        
+        position={this.props.player.seek}
       />
     );
   }

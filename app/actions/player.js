@@ -29,10 +29,13 @@ export function pausePlayback() {
    }
 }
 
-export function updatePlaybackProgress(progress) {
+export function updatePlaybackProgress(progress, seek) {
   return {
     type: UPDATE_PLAYBACK_PROGRESS,
-    payload: progress
+    payload: {
+      progress, 
+      seek
+    }
   }
 }
 

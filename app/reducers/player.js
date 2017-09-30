@@ -25,7 +25,8 @@ export default function PlayerReducer(state=initialState, action) {
       });
     case UPDATE_PLAYBACK_PROGRESS:
       return Object.assign({}, state, {
-        playbackProgress: action.payload
+        playbackProgress: action.payload.progress,
+        seek: action.payload.seek
       });
     case UPDATE_SEEK:
       return Object.assign({}, state, {
