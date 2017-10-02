@@ -10,5 +10,14 @@
     flex-flow: column;
     flex: 1 1 auto;
     overflow-y: auto;
+  
+    .queue_item_container {
+      transition: all 0.4s ease-out;
+      opacity: 0;
+
+      &.show {
+        opacity: 1;
+      }
+    }
   }
 }

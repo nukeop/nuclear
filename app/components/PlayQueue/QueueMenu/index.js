@@ -10,12 +10,13 @@ class QueueMenu extends React.Component {
     super(props);
   }
 
-  //<a href='#' onClick={this.props.clearQueue}><FontAwesome name="trash-o" /> Clear queue</a>
+  
 
   render() {
     return (
       <div className={styles.queue_menu_container}>
         <div className={styles.queue_menu_buttons}>
+          <a href='#' onClick={this.props.clearQueue}><FontAwesome name="trash-o" /> Clear queue</a>
           <a href='#'><FontAwesome name="bars" /></a>
         </div>
         <hr />

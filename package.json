@@ -6,7 +6,7 @@
   "scripts": {
     "start": "npm-run-all --parallel watch electron",
     "electron": "electron .",
-    "watch": "webpack-dev-server --inline --env=dev",
+    "watch": "webpack-dev-server --inline --progress --env=dev",
     "build:dist": "webpack --progress --colors --env=prod",
     "test": "echo \"Error: no test specified\" && exit 1",
     "pack": "electron-builder --dir --em.main=main.prod.js",
@@ -41,7 +41,7 @@
     "react-dom": "^15.5.4",
     "react-router-transition": "^0.1.1",
     "react-sound": "^0.8.0",
-    "semantic-ui-react": "^0.70.0",
+    "semantic-ui-react": "^0.72.0",
     "ytdl-core": "^0.15.0"
   },
   "devDependencies": {

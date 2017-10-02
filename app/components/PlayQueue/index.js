@@ -1,4 +1,5 @@
 import React from 'react';
+import classnames from 'classnames';
 
 import styles from './styles.scss';
 
@@ -16,14 +17,16 @@ class PlayQueue extends React.Component {
     }
 
     return this.props.items.map((el, i) => {
-      return <QueueItem
-        key={i}
-        index={i}
-        track={el}
-        loading={el.loading}
-        current={this.props.currentSong==i}
-        selectSong={this.props.selectSong}
-      />;
+      return (
+        <QueueItem
+          key={i}
+          index={i}
+          track={el}
+          loading={el.loading}
+          current={this.props.currentSong==i}
+          selectSong={this.props.selectSong}
+        />
+      );
     });
   }
 
@@ -31,9 +34,11 @@ class PlayQueue extends React.Component {
     return (
       <div className={styles.play_queue_container}>
         <QueueMenu clearQueue={this.props.clearQueue} />
-        <div className={styles.play_queue_items}>
-          {this.renderQueueItems()}
-        </div>
+
+          <div className={classnames(styles.play_queue_items, styles.fade_in)}>
+            {this.renderQueueItems()}
+          </div>
+        
       </div>
     );
   }
