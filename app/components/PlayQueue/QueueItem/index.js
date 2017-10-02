@@ -1,22 +1,43 @@
 import React from 'react';
+import classNames from 'classnames';
 import FontAwesome from 'react-fontawesome';
 import {formatDuration} from '../../../utils';
 
 import styles from './styles.scss';
 
-var classNames = require('classnames');
-
 class QueueItem extends React.Component {
   constructor(props){
     super(props);
+
+    this.state = {
+      className: classNames(
+              styles.queue_item_container,
+              {
+                [`${styles.current_song}`]: this.props.current
+              }
+      )
+    };
+  }
+
+  componentDidMount() {
+    setTimeout(() => {
+        this.setState({
+        className: classNames(
+          styles.queue_item_container,
+          {
+            [`${styles.current_song}`]: this.props.current
+          },
+          'show'
+        )
+    })
+    }, 1);
   }
 
   render() {
     return (
           <div
-            className={classNames({
-              [`${styles.queue_item_container}`]: true,
-              [`${styles.current_song}`]: this.props.current})
+            className={
+              this.state.className
             }
             onDoubleClick={() => this.props.selectSong(this.props.index)}
           >
