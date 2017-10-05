@@ -4,6 +4,14 @@ import FontAwesome from 'react-fontawesome';
 import styles from './styles.scss';
 
 class Playlist extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  goToPlaylist(playlist) {
+      this.props.history.push('/playlist/' + playlist);
+  }
+
   render() {
   	let {
   		playlist
@@ -11,7 +19,7 @@ class Playlist extends React.Component {
 
     return (
       <div className={styles.playlist_outside_container}>
-        <div className={styles.playlist_container}>
+        <div onClick={this.goToPlaylist.bind(this)} className={styles.playlist_container}>
           <div>
             <img
               className={styles.playlist_thumbnail}

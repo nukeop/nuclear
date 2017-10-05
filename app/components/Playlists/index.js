@@ -7,6 +7,7 @@ import styles from './styles.scss';
 class Playlists extends React.Component {
   render() {
   	let {
+      history,
   		playlists
   	} = this.props;
 
@@ -17,6 +18,7 @@ class Playlists extends React.Component {
         		return (
         			<Playlist
         				playlist={playlist}
+                history={history}
         			/>
         		);
         	})
