@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as QueueActions from '../../actions/queue';
 import * as PluginsActions from '../../actions/plugins';
+import * as PlaylistsActions from '../../actions/playlists';
 
 
 import PlayQueue from '../../components/PlayQueue';
@@ -23,6 +24,7 @@ class PlayQueueContainer extends React.Component {
         pluginListSearch={this.props.actions.pluginListSearch}
         selectSong={this.props.actions.selectSong}
         clearQueue={this.props.actions.clearQueue}
+        addPlaylist={this.props.actions.addPlaylist}
       />
     );
   }
@@ -31,13 +33,14 @@ class PlayQueueContainer extends React.Component {
 function mapStateToProps(state) {
   return {
     queue: state.queue,
-    plugins: state.plugin.plugins
+    plugins: state.plugin.plugins,
+    playlists: state.playlists.playlists
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators(Object.assign({}, PluginsActions, QueueActions), dispatch)
+    actions: bindActionCreators(Object.assign({}, PluginsActions, QueueActions, PlaylistsActions), dispatch)
   };
 }
 
