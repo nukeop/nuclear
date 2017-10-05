@@ -10,6 +10,20 @@
     display: flex;
     flex-flow: row;
     margin: 0.5rem 0 0.5rem 0;
+
+    a {
+      background: $background2;
+      padding: 0.5rem 0.75rem;
+      margin: 0 0.5rem;
+
+      &:hover {
+        background: lighten($background2, 10%);
+      }
+
+      &:active {
+        background: lighten($background2, 20%);
+      }
+    }
   }
 
   hr {
