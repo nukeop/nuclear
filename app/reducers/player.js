@@ -41,7 +41,6 @@ export default function PlayerReducer(state=initialState, action) {
     case NEXT_SONG:
     case PREVIOUS_SONG:
     case SELECT_SONG:
-      console.log('derp');
       return Object.assign({}, state, {
         playbackProgress: 0,
         seek: 0
