@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
 
 import PlayerReducer from './player';
+import PlaylistsReducer from './playlists';
 import PluginsReducer from './plugins';
 import QueueReducer from './queue';
 import ScrobblingReducer from './scrobbling';
@@ -11,7 +12,8 @@ const rootReducer = combineReducers({
   queue: QueueReducer,
   plugin: PluginsReducer,
   player: PlayerReducer,
-  scrobbling: ScrobblingReducer
+  scrobbling: ScrobblingReducer,
+  playlists: PlaylistsReducer
 });
 
 export default rootReducer;

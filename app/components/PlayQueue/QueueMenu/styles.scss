@@ -16,6 +16,10 @@
       padding: 0.5rem 0.75rem;
       margin: 0 0.5rem;
 
+      &:first-child {
+        margin-left: 0;
+      }
+
       &:hover {
         background: lighten($background2, 10%);
       }

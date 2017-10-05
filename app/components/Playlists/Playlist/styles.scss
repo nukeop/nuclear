@@ -1,0 +1,35 @@
+@import '../../../vars';
+
+.playlist_outside_container {
+	width:  50%;
+}
+
+.playlist_container {
+	display:  flex;
+	flex-flow: row;
+	margin:  0.5rem;
+	padding: 0.5rem;
+	background: $background2;
+}
+
+.playlist_thumbnail {
+	width:  7.5rem;
+}
+
+.playlist_info {
+	display:  flex;
+	flex-flow: column;
+	flex:  1 1 auto;
+	padding-left: 1rem;
+
+	h1, h2, h3 {
+		margin:  0;
+	}
+}
+
+.playlist_chevron {
+	display: flex;
+	flex-flow: column;
+	justify-content: center;
+	padding: 0.5rem;
+}
