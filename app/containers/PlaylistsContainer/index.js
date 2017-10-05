@@ -15,6 +15,7 @@ class PlaylistsContainer extends React.Component {
     return (
       <Playlists 
       	playlists={this.props.playlists}
+        history={this.props.history}
       />
     );
   }
