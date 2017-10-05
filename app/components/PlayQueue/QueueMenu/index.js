@@ -16,8 +16,9 @@ class QueueMenu extends React.Component {
     return (
       <div className={styles.queue_menu_container}>
         <div className={styles.queue_menu_buttons}>
-          <a href='#' onClick={this.props.clearQueue}><FontAwesome name="trash-o" /> Clear queue</a>
-          <a href='#'><FontAwesome name="bars" /></a>
+          <a href='#' onClick={this.props.clearQueue}><FontAwesome name="trash-o" /></a>
+          <a href='#'><FontAwesome name="save" /></a>
+          <a href='#'><FontAwesome name="random" /></a>
         </div>
         <hr />
       </div>
