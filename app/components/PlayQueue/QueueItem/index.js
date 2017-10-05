@@ -10,35 +10,30 @@ class QueueItem extends React.Component {
     super(props);
 
     this.state = {
-      className: classNames(
-              styles.queue_item_container,
-              {
-                [`${styles.current_song}`]: this.props.current
-              }
-      )
+      style: {} 
     };
   }
 
   componentDidMount() {
     setTimeout(() => {
-        this.setState({
-        className: classNames(
-          styles.queue_item_container,
+        this.setState(
           {
-            [`${styles.current_song}`]: this.props.current
-          },
-          'show'
-        )
-    })
-    }, 1);
+            style: {'opacity': 1}
+          })}, 1);
   }
 
   render() {
     return (
           <div
             className={
-              this.state.className
+              classNames(
+                styles.queue_item_container,
+                {
+                  [`${styles.current_song}`]: this.props.current
+                }
+              )
             }
+            style={this.state.style}
             onDoubleClick={() => this.props.selectSong(this.props.index)}
           >
             <div className={styles.thumbnail_container}>
