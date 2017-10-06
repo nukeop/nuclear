@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter } from 'react-router-dom';
+import { MemoryRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { AppContainer } from 'react-hot-loader';
 
@@ -13,9 +13,9 @@ const render = Component => {
   ReactDOM.render(
     <AppContainer>
       <Provider store={store}>
-        <BrowserRouter>
+        <MemoryRouter>
           <Component />
-        </BrowserRouter>
+        </MemoryRouter>
       </Provider>
     </AppContainer>,
     document.getElementById('react_root')
