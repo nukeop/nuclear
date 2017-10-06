@@ -19,6 +19,7 @@ class Playlists extends React.Component {
         			<Playlist
         				playlist={playlist}
                 history={history}
+                index={i}
         			/>
         		);
         	})

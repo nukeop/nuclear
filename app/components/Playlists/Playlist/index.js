@@ -8,18 +8,20 @@ class Playlist extends React.Component {
     super(props);
   }
 
-  goToPlaylist(playlist) {
-      this.props.history.push('/playlist/' + playlist);
+  goToPlaylist(history, playlist) {
+      history.push('/playlist/' + playlist);
   }
 
   render() {
   	let {
-  		playlist
+  		playlist,
+      index,
+      history
   	} = this.props;
 
     return (
       <div className={styles.playlist_outside_container}>
-        <div onClick={this.goToPlaylist.bind(this)} className={styles.playlist_container}>
+        <div onClick={() => {this.goToPlaylist(history, index)}} className={styles.playlist_container}>
           <div>
             <img
               className={styles.playlist_thumbnail}
