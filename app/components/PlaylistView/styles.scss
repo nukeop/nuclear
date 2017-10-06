@@ -1,0 +1,30 @@
+@import '../../vars';
+
+.playlist_view_container {
+	width: 100%;
+	height: 100%;
+	margin: 1rem 0rem;
+
+	.playlist {
+		display: flex;
+		flex-flow: column;
+	}
+
+	.playlist_info {
+		display: flex;
+		flex-flow: row;
+
+		img {
+			width:  15rem;
+			border-radius: 0.5rem;
+        	box-shadow: 0rem 0rem 1rem 0.5rem rgba($black, 0.4);
+		}
+	}
+
+	.playlist_name {
+		margin: 0 1rem;
+		font-size: 32px;
+        line-height: 32px;
+	}
+}
+
