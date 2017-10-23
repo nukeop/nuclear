@@ -4,6 +4,7 @@ const GoogleFontsPlugin = require("google-fonts-webpack-plugin");
 
 const BUILD_DIR = path.resolve(__dirname, 'dist');
 const APP_DIR = path.resolve(__dirname, 'app');
+const RESOURCES_DIR = path.resolve(__dirname, 'resources');
 
 const config = {
   entry: path.resolve(APP_DIR, 'index.js'),
@@ -27,6 +28,10 @@ const config = {
       }, {
         test: /\.scss$/,
         loader: 'style-loader!css-loader?importLoaders=1&modules&localIdentName=[local]!sass-loader'
+      }, {
+        test: /\.(png|jpg|gif)$/,
+        loader: 'file-loader',
+        include: RESOURCES_DIR
       }
     ]
   },
