@@ -7,6 +7,7 @@ import SimilarArtists from './SimilarArtists';
 import PopularTracks from './PopularTracks';
 
 import styles from './styles.scss';
+import artPlaceholder from '../../../resources/media/art_placeholder.png';
 
 class ArtistView extends React.Component {
   constructor(props) {
@@ -32,7 +33,7 @@ class ArtistView extends React.Component {
               ? null
               : <div className={styles.artist}>
                 <div style={{
-                  background: `url('${this.props.artist.images[0].resource_url}')`,
+                  background: `url('${this.props.artist.images[0] ? this.props.artist.images[0].resource_url : artPlaceholder}')`,
                   backgroundRepeat: 'noRepeat',
                   backgroundPosition: 'center',
                   backgroundSize: 'cover'
@@ -41,7 +42,7 @@ class ArtistView extends React.Component {
                   <div className={styles.artist_header_overlay}>
                     <div className={styles.artist_header_container}>
                       <div className={styles.artist_avatar} style={{
-                        background: `url('${this.props.artist.images[1].resource_url}')`,
+                        background: `url('${this.props.artist.images[1] ? this.props.artist.images[1].resource_url : artPlaceholder}')`,
                         backgroundRepeat: 'noRepeat',
                         backgroundPosition: 'center',
                         backgroundSize: 'cover'
