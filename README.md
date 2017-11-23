@@ -4,10 +4,6 @@
 
 An Electron-based, multiplatform music player app that streams from multiple sources
 
-#### Support on Beerpay
-
-[![Beerpay](https://beerpay.io/nukeop/nuclear/badge.svg?style=beer-square)](https://beerpay.io/nukeop/nuclear)  [![Beerpay](https://beerpay.io/nukeop/nuclear/make-wish.svg?style=flat-square)](https://beerpay.io/nukeop/nuclear?focus=wish)
-
 ## What is this?
 nuclear is a free music streaming program that pulls content from free sources all over the internet.
 
@@ -42,6 +38,16 @@ It's also focusing more on audio. Imagine Spotify which you don't have to pay fo
 - Realtime lyrics
 - Some sort of locally stored library/favourites (no need to store this on anyone's servers like big players do)
 
+## Community-maintained packages
+
+Here's a list of packages maintained by third parties. We would like to thank the maintainers for their work.
+
+We do not control these and cannot be held responsible for their contents, but if any of these appear suspicious to you, feel free to open an issue so we can reach out to the maintainers.
+
+| Package type   |                        Link                        | Maintainer                    |
+|:--------------:|:--------------------------------------------------:|:-----------------------------:|
+| AUR (Arch)     | https://aur.archlinux.org/packages/nuclear-player/ | [mikelpint](https://github.com/mikelpint)  |
+
 
 ## Screenshots
 This will be updated as the program evolves.
@@ -59,3 +65,8 @@ This will be updated as the program evolves.
 ![legacy search](http://i.imgur.com/WKBVq1u.jpg)
 
 ![coverflow](http://i.imgur.com/eAPTDSc.gif)
+
+
+#### Support on Beerpay
+
+[![Beerpay](https://beerpay.io/nukeop/nuclear/badge.svg?style=beer-square)](https://beerpay.io/nukeop/nuclear)  [![Beerpay](https://beerpay.io/nukeop/nuclear/make-wish.svg?style=flat-square)](https://beerpay.io/nukeop/nuclear?focus=wish)
