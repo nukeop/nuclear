@@ -4,38 +4,45 @@ export const LOAD_PLAYLISTS = 'LOAD_PLAYLISTS';
 export const ADD_PLAYLIST = 'ADD_PLAYLIST';
 
 export function addPlaylist(tracks, name) {
-	return dispatch => {
-		let playlists = store.get('playlists').value();
-		let playlist = {name, tracks};
+  return dispatch => {
+    let playlists = store.get('playlists').value();
+    let playlist = {name, tracks};
 
-		if (playlists) {
-			playlists.push(playlist);
-		} else {
-			playlists = [playlist];
-		}
+    if (tracks.length === 0) {
+      dispatch({
+	type: null
+      });
+      return;
+    }
 
-		store.set('playlists', playlists).write();
-		dispatch({
-			type: ADD_PLAYLIST,
-			payload: playlists
-		});
-	};
+    if (playlists) {
+      playlists.push(playlist);
+    } else {
+      playlists = [playlist];
+    }
+
+    store.set('playlists', playlists).write();
+    dispatch({
+      type: ADD_PLAYLIST,
+      payload: playlists
+    });
+  };
 }
 
 export function loadPlaylists() {
-	return dispatch => {
-		let playlists = store.get('playlists').value();
+  return dispatch => {
+    let playlists = store.get('playlists').value();
 
-		if (playlists) {
-			dispatch({
-				type: LOAD_PLAYLISTS,
-				payload: playlists
-			});
-		} else {
-			dispatch({
-				type: LOAD_PLAYLISTS,
-				payload: []
-			});
-		}
-	};
+    if (playlists) {
+      dispatch({
+	type: LOAD_PLAYLISTS,
+	payload: playlists
+      });
+    } else {
+      dispatch({
+	type: LOAD_PLAYLISTS,
+	payload: []
+      });
+    }
+  };
 }

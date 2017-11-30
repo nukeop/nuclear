@@ -6,16 +6,17 @@ import { bindActionCreators } from 'redux';
 import PlaylistView from '../../components/PlaylistView';
 
 class PlaylistViewContainer extends React.Component {
-	constructor(props) {
-    	super(props);
-  	}
+  constructor(props) {
+    super(props);
+  }
 
-  	render() {
-  		return (
-  			<PlaylistView
-  			/>
-  		);
-  	}
+  render() {
+    return (
+      <PlaylistView
+        playlist={this.props.playlists.playlists[this.props.match.params.playlistId]}
+  	/>
+    );
+  }
 }
 
 function mapStateToProps(state) {
