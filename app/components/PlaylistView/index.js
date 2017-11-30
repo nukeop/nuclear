@@ -10,9 +10,19 @@ class PlaylistView extends React.Component {
     super(props);
   }
 
+  addPlaylistToQueue(musicSources, playlist, addTracks, selectSong, startPlayback) {
+    addTracks(musicSources, playlist.tracks);
+    selectSong(0);
+    startPlayback();
+  }
+
   render() {
     let {
-      playlist
+      playlist,
+      addTracks,
+      musicSources,
+      selectSong,
+      startPlayback
     } = this.props;
 
     return (
@@ -23,7 +33,7 @@ class PlaylistView extends React.Component {
 	      <img 
                 className={styles.playlist_thumbnail} 
                 src={playlist.tracks[0].thumbnail} 
-		/>
+	      />
 	    </div>
             <div className={styles.playlist_header}>
 	      <div className={styles.playlist_name}>
@@ -31,7 +41,7 @@ class PlaylistView extends React.Component {
 	      </div>
 	      <Spacer />
               <div className={styles.playlist_buttons}>
-                <a href="#" className={styles.play_button}><FontAwesome name="play" /> Play</a>
+                <a href="#" className={styles.play_button} onClick={() => this.addPlaylistToQueue(musicSources, playlist, addTracks, selectSong, startPlayback)}><FontAwesome name="play" /> Play</a>
 		<a href="#" className={styles.more_button}><FontAwesome name="ellipsis-h" /></a>
 	      </div>
 	    </div>
