@@ -47,15 +47,16 @@ function createWindow() {
     win = null;
   });
 
-  tray = new Tray(icon);
-  tray.setToolTip('nuclear music player')
-
 
   // MacOS specific
   if (platform.isDarwin) {
     app.dock.setIcon(icon);
+    icon = nativeImage.createFromPath(path.resolve(__dirname, 'resources', 'media', 'icon_apple.png'));
   }
 
+  tray = new Tray(icon);
+  tray.setToolTip('nuclear music player');
+  
   // GNU/Linux-specific
   if (!platform.isDarwin && !platform.isWin32) {
     player = Player({
