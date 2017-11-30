@@ -22,7 +22,30 @@ export function addToQueue(musicSources, item) {
           payload: Object.assign({}, item, {loading: false, streams: results})
 	});
       });
-  }
+  };
+}
+
+export function addPlaylistTracksToQueue(musicSources, tracks) {
+  return (dispatch) => {
+    tracks.map((track, i) => {
+      dispatch({
+	type: ADD_TO_QUEUE,
+	payload: track
+      });
+
+      
+      Promise.all(_.map(musicSources, m => m.search(track.artist + ' ' + track.name)))
+	.then(results => Promise.all(results))
+	.then(results => {
+	  let item = track;
+	  dispatch({
+	    type: ADD_STREAMS_TO_QUEUE_ITEM,
+	    payload: Object.assign({}, item, {streams: results})
+	  });
+	});
+    });
+
+  };
 }
 
 export function clearQueue() {
