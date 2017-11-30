@@ -1,6 +1,7 @@
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
+import ContextPopup from '../ContextPopup';
 import Spacer from '../Spacer';
 
 import styles from './styles.scss';
@@ -16,6 +17,19 @@ class PlaylistView extends React.Component {
     startPlayback();
   }
 
+  renderOptions(trigger, playlist) {
+    return (
+      <ContextPopup
+	trigger={trigger}
+	artist={null}
+	title={playlist.name}
+	thumb={playlist.tracks[0].thumbnail}
+	>
+        <div></div>
+      </ContextPopup>
+    );
+  }
+  
   render() {
     let {
       playlist,
@@ -25,6 +39,8 @@ class PlaylistView extends React.Component {
       startPlayback
     } = this.props;
 
+    let popupTrigger = (<a href="#" className={styles.more_button}><FontAwesome name="ellipsis-h" /></a>); 
+    
     return (
       <div className={styles.playlist_view_container}>
         <div className={styles.playlist}>
@@ -42,7 +58,7 @@ class PlaylistView extends React.Component {
 	      <Spacer />
               <div className={styles.playlist_buttons}>
                 <a href="#" className={styles.play_button} onClick={() => this.addPlaylistToQueue(musicSources, playlist, addTracks, selectSong, startPlayback)}><FontAwesome name="play" /> Play</a>
-		<a href="#" className={styles.more_button}><FontAwesome name="ellipsis-h" /></a>
+		{this.renderOptions(popupTrigger, playlist)}
 	      </div>
 	    </div>
 	    
