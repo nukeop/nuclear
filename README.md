@@ -47,19 +47,13 @@ We do not control these and cannot be held responsible for their contents, but i
 ## Screenshots
 This will be updated as the program evolves.
 
-![album search](http://i.imgur.com/HtaLDSa.jpg)
+![album search](http://i.imgur.com/tLSv6pw.png)
 
-![album display](http://i.imgur.com/t5V0kXG.jpg)
+![album display](http://i.imgur.com/hAEXUaQ.png)
 
-![dashboard](http://i.imgur.com/rVBAGLG.png)
+![artist view](http://i.imgur.com/DCrlVqt.png)
 
-![artist view](http://i.imgur.com/EOd1auB.png)
-
-![playlist view](http://i.imgur.com/KYFwu7P.jpg)
-
-![legacy search](http://i.imgur.com/WKBVq1u.jpg)
-
-![coverflow](http://i.imgur.com/eAPTDSc.gif)
+![playlist view](http://i.imgur.com/YM3eP3i.png)
 
 ## Dev build process
 To develop the project locally, you should only do:
