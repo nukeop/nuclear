@@ -61,6 +61,29 @@ This will be updated as the program evolves.
 
 ![coverflow](http://i.imgur.com/eAPTDSc.gif)
 
+## Dev build process
+To develop the project locally, you should only do:
+```
+npm install
+npm run watch
+```
+This launches webpack. It watches local files for changes and rebuilds the project as needed. The project also has hot reload built in.
+And in another terminal window:
+```
+npm run electron
+```
+
+This launches a development version of the program. Tmux is very useful here so you can keep an eye on all running processes.
+
+If you're getting a message about dbus being compiled with a different version of node when running the electron script, try the following:
+```
+npm install electron-rebuild
+.node_modules/.bin/electron-rebuild
+```
+
+And run the script again.
+
+
 #### Support on Beerpay
 
 [![Beerpay](https://beerpay.io/nukeop/nuclear/badge.svg?style=beer-square)](https://beerpay.io/nukeop/nuclear)  [![Beerpay](https://beerpay.io/nukeop/nuclear/make-wish.svg?style=flat-square)](https://beerpay.io/nukeop/nuclear?focus=wish)
