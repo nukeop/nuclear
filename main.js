@@ -54,8 +54,18 @@ function createWindow() {
     icon = nativeImage.createFromPath(path.resolve(__dirname, 'resources', 'media', 'icon_apple.png'));
   }
 
+  const trayMenu = Menu.buildFromTemplate([
+    {label: 'Quit', type: 'normal', click:
+     (menuItem, browserWindow, event) => {
+       app.quit();
+     }
+    }
+  ]);
+
   tray = new Tray(icon);
+  tray.setTitle('nuclear music player');
   tray.setToolTip('nuclear music player');
+  tray.setContextMenu(trayMenu);
   
   // GNU/Linux-specific
   if (!platform.isDarwin && !platform.isWin32) {
@@ -87,7 +97,7 @@ function createWindow() {
       player.metadata = {
         'mpris:trackid': player.objectPath('track/0'),
       	'mpris:length': arg.streams[0].duration * 1000 * 1000, // In microseconds
-      	'mpris:artUrl': 'file://' + '/home/jcd/Pictures/terry/140414TerryADavis.jpg',// arg.thumbnail,
+      	'mpris:artUrl': '',// arg.thumbnail,
       	'xesam:title': arg.name,
       	'xesam:artist': arg.artist
       };
