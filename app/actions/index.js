@@ -45,7 +45,7 @@ export function unifiedSearchSuccess() {
   return {
     type: UNIFIED_SEARCH_SUCCESS,
     payload: false
-  }
+  };
 }
 
 export function albumSearch(terms) {

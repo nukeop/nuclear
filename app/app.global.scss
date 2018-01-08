@@ -61,6 +61,8 @@ a {
     &:hover {
       color: $white;
     }
+
+    font-variant: small-caps;
   }
 
   .active.item {
