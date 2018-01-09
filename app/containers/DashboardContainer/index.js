@@ -9,16 +9,17 @@ class DashboardContainer extends React.Component {
   render() {
     return (
       <Dashboard
-	loadBestNewAlbums={this.props.actions.loadBestNewAlbums}
-	loadBestNewTracks={this.props.actions.loadBestNewTracks}
-	/>
+	 loadBestNewAlbums={this.props.actions.loadBestNewAlbums}
+	 loadBestNewTracks={this.props.actions.loadBestNewTracks}
+	 dashboardData={this.props.dashboard}
+	 />
     );
   }
 }
 
 function mapStateToProps(state) {
   return {
-    
+    dashboard: state.dashboard
   }
 }
 

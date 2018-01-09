@@ -1,12 +1,14 @@
 import React from 'react';
 import { Tab } from 'semantic-ui-react';
 
+import BestNewMusicTab from './BestNewMusicTab';
+
 class Dashboard extends React.Component {
   panes() {
     return [
       {
 	menuItem: 'Best new music',
-	render: () => { return null; }
+	render: () => <BestNewMusicTab dashboardData={this.props.dashboardData} />
       },
       {
 	menuItem: 'Genres',
