@@ -1,11 +1,26 @@
+@import '../../../../vars';
+
 .best_new_list_container {
   display: flex;
   position: relative;
-  flex-flow: row;
+  flex-flow: row wrap;
 
   width: 100%;
 
   .list_item {
-    
+    display: flex;
+    flex-flow: row;
+    margin: 1rem;
+
+    background-color: $background2;
+  }
+
+  .thumbnail {
+    padding: 1rem;
+  }
+
+  .review_box {
+    display: flex;
+    flex-flow: column;
   }
 }
