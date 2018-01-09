@@ -15,8 +15,8 @@ class BestNewMusicTab extends React.Component {
 
   render() {
     return (
-      <Tab.Pane loading={this.isLoading()} attached={false}>
-	<div className={styles.bestNewMusicTabContainer}>
+      <Tab.Pane loading={this.isLoading()} attached={false} className={styles.best_new_music_tab_pane}>
+	<div className={styles.best_new_music_tab_container}>
 	  <BestNewList
 	     data={this.props.dashboardData.bestNewAlbums}
 	     />
