@@ -18,6 +18,11 @@ class Dashboard extends React.Component {
       },
     ];
   }
+
+  componentDidMount() {
+    this.props.loadBestNewTracks();
+    this.props.loadBestNewAlbums();
+  }
   
   render() {
     return (

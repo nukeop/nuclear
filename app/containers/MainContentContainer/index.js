@@ -5,11 +5,11 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as Actions from '../../actions';
 
-import Dashboard from '../../components/Dashboard';
 import MainLayout from '../../components/MainLayout';
 
 import AlbumViewContainer from '../AlbumViewContainer';
 import ArtistViewContainer from '../ArtistViewContainer';
+import DashboardContainer from '../DashboardContainer';
 import PlaylistsContainer from '../PlaylistsContainer';
 import PlaylistViewContainer from '../PlaylistViewContainer';
 import SearchResultsContainer from '../SearchResultsContainer';
@@ -36,7 +36,7 @@ class MainContentContainer extends React.Component {
               <Switch key={location.key} location={location}>
                 <Route path="/album/:albumId" component={AlbumViewContainer} />
                 <Route path="/artist/:artistId" component={ArtistViewContainer} />
-                <Route path="/dashboard" component={Dashboard} />
+                <Route path="/dashboard" component={DashboardContainer} />
                 <Route path="/playlists" component={PlaylistsContainer} />
                 <Route path="/playlist/:playlistId" component={PlaylistViewContainer} />
                 <Route path="/settings" component={SettingsContainer} />
