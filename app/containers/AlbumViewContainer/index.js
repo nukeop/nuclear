@@ -23,7 +23,7 @@ class AlbumViewContainer extends React.Component {
         musicSources={this.props.musicSources}
         history={this.props.history}
       />
-    )
+    );
   }
 }
 
