@@ -1,6 +1,7 @@
 import low from 'lowdb';
+import FileSync from 'lowdb/adapters/FileSync';
 
-const store = low('nuclear.json', { storage: require('lowdb/lib/storages/file-sync') });
+const store = low(new FileSync('nuclear.json'));
 initStore();
 
 function initStore() {
