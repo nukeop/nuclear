@@ -17,7 +17,6 @@ class BestNewList extends React.Component {
 
 	{
 	  data.map((el, i) => {
-	    console.log(el);
 	    return (
 	      <div className={styles.list_item}>
 		<div className={styles.list_item_container}>
@@ -29,7 +28,7 @@ class BestNewList extends React.Component {
 
 		    <div className={styles.misc_info}>
                       <div>
-			{el.artist} - {el.title}
+			{el.artist} - {unescape(el.title)}
 		      </div>
                       <div>
 			{el.abstract}

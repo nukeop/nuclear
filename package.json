@@ -34,16 +34,16 @@
   "dependencies": {
     "electron-platform": "^1.2.0",
     "font-awesome": "^4.7.0",
-    "lowdb": "^0.16.2",
+    "lowdb": "^1.0.0",
     "md5": "^2.2.1",
     "numeral": "^2.0.6",
-    "pitchfork-bnm": "^1.0.0",
-    "react": "^15.5.4",
-    "react-dom": "^15.5.4",
-    "react-router-transition": "^0.1.1",
-    "react-sound": "^0.8.0",
-    "semantic-ui-react": "^0.72.0",
-    "ytdl-core": "^0.15.0"
+    "pitchfork-bnm": "^1.0.2",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-router-transition": "^1.1.3",
+    "react-sound": "^1.0.0",
+    "semantic-ui-react": "^0.77.2",
+    "ytdl-core": "^0.18.7"
   },
   "devDependencies": {
     "babel-core": "^6.24.1",
@@ -56,9 +56,9 @@
     "electron": "^1.7.5",
     "electron-builder": "^19.24.1",
     "electron-devtools-installer": "^2.2.0",
-    "extract-text-webpack-plugin": "^2.1.0",
-    "file-loader": "^0.11.2",
-    "google-fonts-webpack-plugin": "^0.3.2",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "file-loader": "^1.1.6",
+    "google-fonts-webpack-plugin": "^0.4.4",
     "lodash": "^4.17.4",
     "node-sass": "^4.5.3",
     "nodebrainz": "^2.1.1",
@@ -74,8 +74,8 @@
     "redux-promise": "^0.5.3",
     "redux-thunk": "^2.2.0",
     "sass-loader": "^6.0.6",
-    "style-loader": "^0.18.1",
-    "webpack": "^2.6.1",
+    "style-loader": "^0.19.1",
+    "webpack": "^3.10.0",
     "webpack-dev-server": "^2.4.5"
   },
   "optionalDependencies": {
