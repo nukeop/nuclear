@@ -41,7 +41,7 @@
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-router-transition": "^1.2.0",
-    "react-sound": "^1.0.0",
+    "react-sound": "^0.10.0",
     "semantic-ui-react": "^0.77.2",
     "ytdl-core": "^0.18.7"
   },

@@ -24,14 +24,34 @@ class SoundContainer extends React.Component {
       this.props.actions.nextSong();
   }
 
+  shouldComponentUpdate(nextProps) {
+    return (
+      this.props.queue.currentSong != nextProps.queue.currentSong ||
+	this.props.player.playbackStatus != nextProps.player.playbackStatus ||
+	this.props.player.seek != nextProps.player.seek
+    );
+  }
+
   render() {
+    let {
+      player,
+      queue
+    } = this.props;
+    let streamUrl = '';
+    if (queue.queueItems.length > 0) {
+      let currentSong = queue.queueItems[queue.currentSong];
+      if (currentSong.streams && currentSong.streams.length > 0) {
+	streamUrl = currentSong.streams[0].stream;
+      }
+    }
+   
     return (
       <Sound
-        url={this.props.queue.queueItems.length > 0 ? this.props.queue.queueItems[this.props.queue.currentSong].streams[0].stream : null}
-        playStatus={this.props.player.playbackStatus}
+        url={streamUrl}
+        playStatus={player.playbackStatus}
         onPlaying={this.handlePlaying.bind(this)}
         onFinishedPlaying={this.handleFinishedPlaying.bind(this)}
-        position={this.props.player.seek}
+        position={player.seek}
       />
     );
   }
