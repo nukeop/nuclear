@@ -1,0 +1,97 @@
+@import '../../../../../vars';
+
+.best_new_active_item {
+  position: relative;
+  display: flex;
+  flex-flow: row;
+
+  .thumbnail_box {
+    position: relative;
+    width: 25%;
+    height: 0;
+    padding-bottom: 25%;
+  }
+
+  .item_thumbnail {
+    position: absolute;
+    flex: 0 0 auto;
+    top: 1rem;
+    bottom: 1rem;
+    left: 1rem;
+    right: 1rem;
+    border-radius: 0.25rem;
+    transition: 0.25s;
+    background-size: cover;
+  }
+
+  .review_box {
+    display: flex;
+    flex-flow: column;
+    position: relative;
+    width: 75%;
+    height: auto;
+    padding: 1rem;
+  }
+
+  .header_row {
+    display: flex;
+    flex-flow: row;
+    height: 4rem;
+    flex: 0 0 auto;
+  }
+
+  .review {
+    display: flex;
+    flex-flow: column;
+    flex: 1 1 auto;
+    height: 0;
+    margin: 1rem 0;
+    font-size: 1.125rem;
+    line-height: 1.5rem;
+    overflow: auto;
+  }
+
+  .abstract {
+    flex: 1 1 auto;
+    color: rgba($white, 0.65);
+    padding-bottom: 1rem;
+  }
+
+  .review_content {
+    flex: 0 0 auto;
+    overflow: auto;
+  }
+
+  .score {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: $red;
+    width: 4rem;
+    height: 4rem;
+    font-size: 2rem;
+    border: 2px solid $red;
+    border-radius: 100%;
+  }
+
+  .artist_title_box {
+    display: flex;
+    flex-flow: column;
+    padding-left: 1rem;
+    justify-content: center;
+
+    &:first-child {
+      padding-left: 0;
+    }
+  }
+  
+  .artist {
+    font-size: 1.25rem;
+    color: $lightbg;
+  }
+
+  .title {
+    font-size: 1.5rem;
+    padding-bottom: 0.5rem;
+  }
+}

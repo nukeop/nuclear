@@ -1,0 +1,25 @@
+@import '../../../../../vars';
+
+.best_new_list_item {
+  position: relative;
+  width: 16.666%;
+  height: 0;
+  padding-bottom: 16.666%;
+  background-color: $background;
+  border-radius: 0.25rem;
+  transition: 0.25s;
+
+  &:hover {
+    background-color: $background2;
+  }
+
+  .item_thumbnail {
+    position: absolute;
+    top: 1rem;
+    bottom: 1rem;
+    right: 1rem;
+    left: 1rem;
+    background-size: contain;
+    border-radius: 0.25rem;
+  }
+}

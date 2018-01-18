@@ -16,15 +16,27 @@ class BestNewMusicTab extends React.Component {
   render() {
     return (
       <Tab.Pane loading={this.isLoading()} attached={false} className={styles.best_new_music_tab_pane}>
-	<div className={styles.best_new_music_tab_container}>
-	  <BestNewList
-	     data={this.props.dashboardData.bestNewAlbums}
-	    />
+        <div className={styles.best_new_music_tab_container}>
+	  <h2>
+	    Best new albums
+	  </h2>
+	  <div className={styles.best_new_music_section_container}>
+	    <BestNewList
+	       data={this.props.dashboardData.bestNewAlbums}
+	       />
 
-	  <BestNewList
-	     data={this.props.dashboardData.bestNewTracks}
-	     />
+	    
+	  </div>
+          <h2>
+	    Best new tracks
+	  </h2>
+          <div className={styles.best_new_music_section_container}>
+	    <BestNewList
+	       data={this.props.dashboardData.bestNewTracks}
+	       />
+	  </div>
 	</div>
+	
       </Tab.Pane>
     );
   }
