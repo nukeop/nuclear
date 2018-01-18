@@ -53,6 +53,8 @@ This will be updated as the program evolves.
 
 ![artist view](http://i.imgur.com/DCrlVqt.png)
 
+![dashboard](https://i.imgur.com/tewcTEu.png)
+
 ![playlist view](http://i.imgur.com/YM3eP3i.png)
 
 ## Dev build process
