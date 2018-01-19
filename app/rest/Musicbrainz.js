@@ -44,4 +44,4 @@ module.exports = {
   releaseSearch,
   trackSearch,
   addCoversToReleases
-}
+};

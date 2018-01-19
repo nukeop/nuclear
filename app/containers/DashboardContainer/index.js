@@ -11,6 +11,7 @@ class DashboardContainer extends React.Component {
       <Dashboard
 	 loadBestNewAlbums={this.props.actions.loadBestNewAlbums}
 	 loadBestNewTracks={this.props.actions.loadBestNewTracks}
+	 loadNuclearNews={this.props.actions.loadNuclearNews}
 	 dashboardData={this.props.dashboard}
 	 />
     );

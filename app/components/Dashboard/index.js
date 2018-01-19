@@ -2,6 +2,7 @@ import React from 'react';
 import { Tab } from 'semantic-ui-react';
 
 import BestNewMusicTab from './BestNewMusicTab';
+import NewsTab from './NewsTab';
 
 class Dashboard extends React.Component {
   panes() {
@@ -16,7 +17,7 @@ class Dashboard extends React.Component {
       },
       {
 	menuItem: 'News',
-	render: () => { return null; }
+	render: () => <NewsTab news={this.props.dashboardData.news}/>
       },
     ];
   }
@@ -24,6 +25,7 @@ class Dashboard extends React.Component {
   componentDidMount() {
     this.props.loadBestNewTracks();
     this.props.loadBestNewAlbums();
+    this.props.loadNuclearNews();
   }
   
   render() {
