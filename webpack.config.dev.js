@@ -1,6 +1,7 @@
 const webpack = require('webpack');
 const path = require('path');
 const GoogleFontsPlugin = require("google-fonts-webpack-plugin");
+const HappyPack = require('happypack');
 
 const BUILD_DIR = path.resolve(__dirname, 'dist');
 const APP_DIR = path.resolve(__dirname, 'app');
@@ -29,15 +30,17 @@ const config = {
   module: {
     loaders: [
       {
-        test: /\.jsx?/,
-        loader: 'babel-loader',
-        include: APP_DIR
-      }, {
+	test: /.jsx?$/,
+	use: 'happypack/loader?id=jsx',
+	include: APP_DIR
+      },
+      {
+	test: /.scss$/,
+	use: 'happypack/loader?id=scss'
+      },
+      {
         test: /\.css/,
         loader: 'style-loader!css-loader?modules=true&localIdentName=[name]__[local]___[hash:base64:5]'
-      }, {
-        test: /\.scss$/,
-        loader: 'style-loader!css-loader?importLoaders=1&modules&localIdentName=[local]!sass-loader'
       }, {
         test: /\.(png|jpg|gif)$/,
         loader: 'file-loader',
@@ -55,6 +58,14 @@ const config = {
           variants: ['regular', '300', '700']
         }
       ]
+    }),
+    new HappyPack({
+      id: 'jsx',
+      loaders: [ 'babel-loader' ]
+    }),
+    new HappyPack({
+      id: 'scss',
+      loaders: [ 'style-loader!css-loader?importLoaders=1&modules&localIdentName=[local]!sass-loader' ]
     })
   ],
   target: 'electron-renderer'
