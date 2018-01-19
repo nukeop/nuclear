@@ -1,5 +1,9 @@
 import React from 'react';
 import {Dimmer, Loader, Tab} from 'semantic-ui-react';
+import moment from 'moment';
+
+import NewsItem from './NewsItem';
+import styles from './styles.scss';
 
 class NewsTab extends React.Component {
   constructor(props) {
@@ -10,10 +14,15 @@ class NewsTab extends React.Component {
     let {
       news
     } = this.props;
-    console.log(news);
     return (
       <Tab.Pane attached={false}>
-	test
+        <div className={styles.news_container}>
+	  {
+	    news.map((item, i) => {
+	      return <NewsItem item={item} />;
+	    })
+	  }
+	</div>
       </Tab.Pane>
     );
   }
