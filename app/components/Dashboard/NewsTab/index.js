@@ -29,3 +29,5 @@ class NewsTab extends React.Component {
 }
 
 export default NewsTab;
+
+
