@@ -1,26 +1,28 @@
 @import '../../../../vars'; 
 
 .news_item {
-  border: 1px solid $white;
+  border: 1px solid rgba($lightbg, 0.3);
   padding: 1rem;
   border-radius: 0.25rem;
 
   h1 {
     width: 100%;
-    padding: 1rem;
-    border-radius: 0.25rem;
-    background-color: $green;
-    color: $background;
+    padding: 0.5rem 1rem 0.5rem 0;
+  }
+
+  h4 {
+    margin: 1rem 0;
   }
   
   .tags {
     display: flex;
     flex-flow: row;
+    justify-content: flex-end;
   }
 
   .tag {
-    padding: 0.5rem;
-    border-radius: 0.25rem;
-    background-color: $orange;
+    padding: 0.25rem 0.5rem;
+    border-radius: 1rem;
+    background-color: rgba(white, 0.5);
   }
 }
