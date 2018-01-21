@@ -25,11 +25,14 @@ class NewsItem extends React.Component {
 	  {item.body}
 	</p>
 
-	{
-	  item.tags.map((tag, i) => {
-	    return <span>{tag}</span>;
-	  })
-	}
+        <div className={styles.tags}>
+	  {
+	    item.tags.map((tag, i) => {
+	      return <span className={styles.tag}>{tag}</span>;
+	    })
+	  }
+	</div>
+	
       </div>
     );
   }
