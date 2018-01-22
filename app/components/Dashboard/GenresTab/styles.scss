@@ -1,3 +1,5 @@
+@import '../../../vars';
+
 .genre_tab_container {
   display: flex;
   flex-flow: row wrap;
@@ -11,10 +13,11 @@
     width: 25%;
     height: 0;
     padding-bottom: 25%;
+    border-radius: 0.25rem;
   }
 
-  .genre_bg,
-  .genre_name{
+  .genre_name,
+  .genre_overlay {
     position: absolute;
     top: 1rem;
     bottom: 1rem;
@@ -23,15 +26,29 @@
     border-radius: 0.25rem;
   }
 
-  .genre_bg {
-    background-image: url(https://source.unsplash.com/random/512x512);
+  .genre_overlay {
+    overflow: hidden;
+    background-color: $black;
   }
+  
+  .genre_bg {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-image: url(https://source.unsplash.com/random/512x512);
+    background-size: contain;
+    background-position: center;
+    opacity: 0.75;
+    filter: blur(10px);
+  }
+
+  
   
   .genre_name {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 1.5rem;
+    font-size: 100%;
     letter-spacing: 4px;
     text-transform: uppercase;
     text-align: center;
