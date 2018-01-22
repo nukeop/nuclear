@@ -64,6 +64,7 @@
     "file-loader": "^1.1.6",
     "google-fonts-webpack-plugin": "^0.4.4",
     "happypack": "^4.0.0",
+    "isomorphic-fetch": "^2.2.1",
     "lodash": "^4.17.4",
     "mocha": "^5.0.0",
     "node-sass": "^4.7.2",
