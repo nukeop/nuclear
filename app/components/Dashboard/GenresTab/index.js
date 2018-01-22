@@ -12,18 +12,26 @@ class GenresTab extends React.Component {
     let {
       genres
     } = this.props;
+
     return (
       <Tab.Pane attached={false}>
         <div className={styles.genre_tab_container}>
 	  {
 	    genres !== undefined
-	    ? genres.slice(0, 8).map((tag, i) => {
+	      ? genres.slice(0, 20).map((tag, i) => {
 	      return (
 		<div
 		  className={styles.genre_container}
 		  key={i}
 		  >
-                  <div className={styles.genre_bg}>
+                  
+                  <div className={styles.genre_overlay}>
+		    <div className={styles.genre_bg}
+			 style={{
+			   background: 'url(' + 'https://picsum.photos/500/500/?random&seed=' + i  + ')'
+			 }}
+			 >
+		    </div>
 		  </div>
                   <div className={styles.genre_name}>
 		    {tag.name}
