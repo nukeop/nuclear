@@ -27,7 +27,7 @@ class BestNewMusicTab extends React.Component {
 
 	    
 	  </div>
-          <h2>
+         <h2>
 	    Best new tracks
 	  </h2>
           <div className={styles.best_new_music_section_container}>

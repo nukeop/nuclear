@@ -9,7 +9,11 @@ import {
 
   LOAD_NUCLEAR_NEWS_START,
   LOAD_NUCLEAR_NEWS_SUCCESS,
-  LOAD_NUCLEAR_NEWS_ERROR
+  LOAD_NUCLEAR_NEWS_ERROR,
+
+  LOAD_TOP_TAGS_START,
+  LOAD_TOP_TAGS_SUCCESS,
+  LOAD_TOP_TAGS_ERROR
 } from '../actions/dashboard';
 
 const initialState = {
@@ -30,6 +34,10 @@ export default function DashboardReducer(state=initialState, action) {
   case LOAD_NUCLEAR_NEWS_SUCCESS:
     return Object.assign({}, state, {
       news: action.payload
+    });
+  case LOAD_TOP_TAGS_SUCCESS:
+    return Object.assign({}, state, {
+      topTags: action.payload
     });
   default:
     return state;

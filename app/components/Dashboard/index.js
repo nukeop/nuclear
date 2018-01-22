@@ -2,6 +2,7 @@ import React from 'react';
 import { Tab } from 'semantic-ui-react';
 
 import BestNewMusicTab from './BestNewMusicTab';
+import GenresTab from './GenresTab';
 import NewsTab from './NewsTab';
 
 class Dashboard extends React.Component {
@@ -17,7 +18,7 @@ class Dashboard extends React.Component {
       },
       {
 	menuItem: 'Genres',
-	render: () => { return null; }
+	render: () => <GenresTab genres={this.props.dashboardData.topTags}/>
       },
       {
 	menuItem: 'Events',
@@ -34,6 +35,7 @@ class Dashboard extends React.Component {
     this.props.loadBestNewTracks();
     this.props.loadBestNewAlbums();
     this.props.loadNuclearNews();
+    this.props.loadTopTags();
   }
   
   render() {
