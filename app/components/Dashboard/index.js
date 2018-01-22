@@ -12,7 +12,15 @@ class Dashboard extends React.Component {
 	render: () => <BestNewMusicTab dashboardData={this.props.dashboardData} />
       },
       {
+	menuItem: 'Charts',
+	render: () => { return null; }
+      },
+      {
 	menuItem: 'Genres',
+	render: () => { return null; }
+      },
+      {
+	menuItem: 'Events',
 	render: () => { return null; }
       },
       {
