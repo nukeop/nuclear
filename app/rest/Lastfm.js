@@ -77,11 +77,28 @@ function getArtistTopTracks(artist) {
   ));
 }
 
+function getTopTags() {
+  return fetch (addApiKey(
+    scrobblingApiUrl +
+    '?method=tag.getTopTags&format=json'
+  ));
+}
+
+function getTopTagTracks(tag) {
+  return fetch (addApiKey(
+    scrobblingApiUrl +
+    '?method=tag.getTopTracks&format=json&tag=' +
+    tag
+  ));
+}
+
 module.exports = {
   lastFmLoginConnect,
   lastFmLogin,
   scrobble,
   updateNowPlaying,
   getArtistInfo,
-  getArtistTopTracks
+  getArtistTopTracks,
+  getTopTags,
+  getTopTagTracks
 };
