@@ -1,0 +1,39 @@
+.genre_tab_container {
+  display: flex;
+  flex-flow: row wrap;
+
+  .genre_container {
+    position: relative;
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+    align-items: center;
+    width: 25%;
+    height: 0;
+    padding-bottom: 25%;
+  }
+
+  .genre_bg,
+  .genre_name{
+    position: absolute;
+    top: 1rem;
+    bottom: 1rem;
+    left: 1rem;
+    right: 1rem;
+    border-radius: 0.25rem;
+  }
+
+  .genre_bg {
+    background-image: url(https://source.unsplash.com/random/512x512);
+  }
+  
+  .genre_name {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    text-align: center;
+  }
+}
