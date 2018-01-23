@@ -18,7 +18,7 @@ class GenresTab extends React.Component {
         <div className={styles.genre_tab_container}>
 	  {
 	    genres !== undefined
-	      ? genres.slice(0, 20).map((tag, i) => {
+	      ? genres.map((tag, i) => {
 	      return (
 		<div
 		  className={styles.genre_container}
@@ -28,7 +28,7 @@ class GenresTab extends React.Component {
                   <div className={styles.genre_overlay}>
 		    <div className={styles.genre_bg}
 			 style={{
-			   background: 'url(' + 'https://picsum.photos/500/500/?random&seed=' + i  + ')'
+			   backgroundImage: 'url(' + 'https://picsum.photos/500/500/?random&blur&seed=' + i  + ')'
 			 }}
 			 >
 		    </div>

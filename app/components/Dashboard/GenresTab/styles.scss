@@ -14,6 +14,11 @@
     height: 0;
     padding-bottom: 25%;
     border-radius: 0.25rem;
+    transition: 0.25s;
+
+    &:hover {
+      transform: scale(1.1);
+    }
   }
 
   .genre_name,
@@ -38,19 +43,37 @@
     background-image: url(https://source.unsplash.com/random/512x512);
     background-size: contain;
     background-position: center;
-    opacity: 0.75;
-    filter: blur(10px);
+    opacity: 0.65;
   }
 
-  
-  
   .genre_name {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 100%;
+    font-size: 1rem;
     letter-spacing: 4px;
     text-transform: uppercase;
     text-align: center;
+  }
+
+  @media screen and (max-width: 1366px) {
+    .genre_container {
+      width: 33.33%;
+      padding-bottom: 33.33%;
+    }
+  }
+
+  @media screen and (max-width: 1180px) {
+    .genre_container {
+      width: 50%;
+      padding-bottom: 50%;
+    }
+  }
+
+  @media screen and (max-width: 1050px) {
+    .genre_container {
+      width: 100%;
+      padding-bottom: 100%;
+    }
   }
 }
