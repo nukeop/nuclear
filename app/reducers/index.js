@@ -7,6 +7,7 @@ import QueueReducer from './queue';
 import ScrobblingReducer from './scrobbling';
 import SearchReducer from './search';
 import DashboardReducer from './dashboard';
+import TagReducer from './tag';
 
 const rootReducer = combineReducers({
   search: SearchReducer,
@@ -15,7 +16,8 @@ const rootReducer = combineReducers({
   player: PlayerReducer,
   scrobbling: ScrobblingReducer,
   playlists: PlaylistsReducer,
-  dashboard: DashboardReducer
+  dashboard: DashboardReducer,
+  tags: TagReducer
 });
 
 export default rootReducer;

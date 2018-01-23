@@ -26,7 +26,7 @@ class ArtistViewContainer extends React.Component {
         musicSources={this.props.musicSources}
         history={this.props.history}
       />
-    )
+    );
   }
 }
 
@@ -34,7 +34,7 @@ function mapStateToProps(state) {
   return {
     artistDetails: state.search.artistDetails,
     musicSources: state.plugin.plugins.musicSources
-  }
+  };
 }
 
 function mapDispatchToProps(dispatch) {

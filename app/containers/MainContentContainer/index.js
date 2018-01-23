@@ -14,6 +14,7 @@ import PlaylistsContainer from '../PlaylistsContainer';
 import PlaylistViewContainer from '../PlaylistViewContainer';
 import SearchResultsContainer from '../SearchResultsContainer';
 import SettingsContainer from '../SettingsContainer';
+import TagViewContainer from '../TagViewContainer';
 
 
 import styles from './styles.scss';
@@ -40,6 +41,7 @@ class MainContentContainer extends React.Component {
                 <Route path="/playlists" component={PlaylistsContainer} />
                 <Route path="/playlist/:playlistId" component={PlaylistViewContainer} />
                 <Route path="/settings" component={SettingsContainer} />
+		<Route path="/tag/:tagName" component={TagViewContainer}/>
                 <Route path="/" component={SearchResultsContainer} />
               </Switch>
             </RouteTransition>
