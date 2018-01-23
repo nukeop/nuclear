@@ -38,8 +38,25 @@ describe('Last.fm api tests', () => {
       });
   });
 
-  it('tests getting a tag\'s top tracks', () => {
-    lastfm.getTopTagTracks('indie')
+  it('tests getting tag info', () => {
+    lastfm.getTagInfo('indie')
+      .then(response => response.json())
+      .then(results => {
+	expect(results).to.be.an('object').that.has.property('tag');
+	expect(results.tag).to.be.an('object').that.has.all.keys(
+	  'name',
+	  'total',
+	  'reach',
+	  'wiki'
+	);
+      })
+    .catch(err => {
+      console.error(err);
+    });
+  });
+
+  it('tests getting top tag tracks', () => {
+    lastfm.getTagTracks('indie')
       .then(response => response.json())
       .then(results => {
 	expect(results).to.be.an('object').that.has.nested.property('tracks.track');
@@ -60,5 +77,44 @@ describe('Last.fm api tests', () => {
       });
   });
 
+  it('tests getting top tag albums', () => {
+    lastfm.getTagAlbums('indie')
+      .then(response => response.json())
+      .then(results => {
+	expect(results).to.be.an('object').that.has.nested.property('albums.album');
+	var sample = results.albums.album[0];
+	expect(sample).to.be.an('object').that.has.all.keys(
+	  'name',
+	  'mbid',
+	  'url',
+	  'artist',
+	  'image',
+	  '@attr'
+	);
+      })
+      .catch(err => {
+	console.error(err);
+      });
+  });
 
+  it('tests getting top tag artists', () => {
+    lastfm.getTagArtists('indie')
+      .then(response => response.json())
+      .then(results => {
+	expect(results).to.be.an('object').that.has.nested.property('topartists.artist');
+	var sample = results.topartists.artist[0];
+	expect(sample).to.be.an('object').that.has.all.keys(
+	  'name',
+	  'mbid',
+	  'url',
+	  'streamable',
+	  'image',
+	  '@attr'
+	);
+      })
+      .catch(err => {
+	console.error(err);
+      });
+  });
+  
 });
