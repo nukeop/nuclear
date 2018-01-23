@@ -14,6 +14,7 @@ class DashboardContainer extends React.Component {
 	 loadNuclearNews={this.props.actions.loadNuclearNews}
 	 loadTopTags={this.props.actions.loadTopTags}
 	 dashboardData={this.props.dashboard}
+	 history={this.props.history}
 	 />
     );
   }

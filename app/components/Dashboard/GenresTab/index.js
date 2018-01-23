@@ -8,6 +8,10 @@ class GenresTab extends React.Component {
     super(props);
   }
 
+  onGenreClick(genreName) {
+    this.props.history.push('/tag/' + genreName);
+  }
+
   render() {
     let {
       genres
@@ -19,28 +23,29 @@ class GenresTab extends React.Component {
 	  {
 	    genres !== undefined
 	      ? genres.map((tag, i) => {
-	      return (
-		<div
-		  className={styles.genre_container}
-		  key={i}
-		  >
-                  
-                  <div className={styles.genre_overlay}>
-		    <div className={styles.genre_bg}
-			 style={{
-			   backgroundImage: 'url(' + 'https://picsum.photos/500/500/?random&blur&seed=' + i  + ')'
-			 }}
-			 >
+		return (
+		  <div
+		     className={styles.genre_container}
+		     key={i}
+		     onClick={() => this.onGenreClick(tag.name)}
+		     >
+                    
+                    <div className={styles.genre_overlay}>
+		      <div className={styles.genre_bg}
+			   style={{
+			     backgroundImage: 'url(' + 'https://picsum.photos/500/500/?random&blur&seed=' + i  + ')'
+			   }}
+			   >
+		      </div>
+		    </div>
+                    <div className={styles.genre_name}>
+		      {tag.name}
 		    </div>
 		  </div>
-                  <div className={styles.genre_name}>
-		    {tag.name}
-		  </div>
-		</div>
-	      );
-	    })
-	  : null
-	}
+		);
+	      })
+	    : null
+	  }
       </div>
 	</Tab.Pane>
     );

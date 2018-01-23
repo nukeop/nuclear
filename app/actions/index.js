@@ -31,14 +31,14 @@ export function sourcesSearch(terms, plugins) {
 
   return {
     type: SOURCES_SEARCH
-  }
+  };
 }
 
 export function unifiedSearchStart() {
   return {
     type: UNIFIED_SEARCH_START,
     payload: true
-  }
+  };
 }
 
 export function unifiedSearchSuccess() {
@@ -58,7 +58,7 @@ export function albumSearch(terms) {
         payload: searchResultsJson.results
       });
     });
-  }
+  };
 }
 
 export function artistSearch(terms) {
@@ -71,7 +71,7 @@ export function artistSearch(terms) {
         payload: searchResultsJson.results
       });
     });
-  }
+  };
 }
 
 export function unifiedSearch(terms) {
@@ -90,7 +90,7 @@ export function albumInfoStart(albumId) {
   return {
     type: ALBUM_INFO_SEARCH_START,
     payload: albumId
-  }
+  };
 }
 
 export function albumInfoSuccess(albumId, info) {
@@ -100,7 +100,7 @@ export function albumInfoSuccess(albumId, info) {
       id: albumId,
       info: info
     }
-  }
+  };
 }
 
 export function albumInfoSearch(albumId) {
@@ -118,7 +118,7 @@ export function artistInfoStart(artistId) {
   return {
     type: ARTIST_INFO_SEARCH_START,
     payload: artistId
-  }
+  };
 }
 
 export function artistInfoSuccess(artistId, info) {
@@ -128,7 +128,7 @@ export function artistInfoSuccess(artistId, info) {
       id: artistId,
       info: info
     }
-  }
+  };
 }
 
 export function artistInfoSearch(artistId) {
@@ -147,7 +147,7 @@ export function artistReleasesStart(artistId) {
   return {
     type: ARTIST_RELEASES_SEARCH_START,
     payload: artistId
-  }
+  };
 }
 
 export function artistReleasesSuccess(artistId, releases) {
@@ -157,7 +157,7 @@ export function artistReleasesSuccess(artistId, releases) {
       id: artistId,
       releases: releases
     }
-  }
+  };
 }
 
 export function artistReleasesSearch(artistId) {
@@ -184,14 +184,14 @@ export function artistInfoSearchByName(artistName, history) {
 
         dispatch(artistInfoSearch(artist.id));
     });
-  }
+  };
 }
 
 export function lastFmArtistInfoStart(artistId) {
   return {
     type: LASTFM_ARTIST_INFO_SEARCH_START,
     payload: artistId
-  }
+  };
 }
 
 export function lastFmArtistInfoSuccess(artistId, info) {
@@ -201,7 +201,7 @@ export function lastFmArtistInfoSuccess(artistId, info) {
       id: artistId,
       info: info
     }
-  }
+  };
 }
 
 export function lastFmArtistInfoSearch(artist, artistId) {

@@ -18,7 +18,10 @@ class Dashboard extends React.Component {
       },
       {
 	menuItem: 'Genres',
-	render: () => <GenresTab genres={this.props.dashboardData.topTags}/>
+	render: () => <GenresTab
+	               genres={this.props.dashboardData.topTags}
+	               history={this.props.history}
+	              />
       },
       {
 	menuItem: 'Events',
