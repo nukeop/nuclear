@@ -25,7 +25,7 @@ function mapStateToProps(state) {
     artistSearchResults: state.search.artistSearchResults,
     albumSearchResults: state.search.albumSearchResults,
     unifiedSearchStarted: state.search.unifiedSearchStarted
-  }
+  };
 }
 
 function mapDispatchToProps(dispatch) {

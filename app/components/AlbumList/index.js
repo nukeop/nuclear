@@ -15,30 +15,30 @@ class AlbumList extends React.Component {
   }
 
   render() {
-      return (
-        <div className={styles.album_list_container}>
-          {
-            this.props.albums && this.props.albums.length > 0
+    return (
+      <div className={styles.album_list_container}>
+        {
+          this.props.albums && this.props.albums.length > 0
             ? <div className={styles.album_list_cards}>
-                {
-                  this.props.albums.map((el, i) => {
-                    return  <Card
-                              key={i}
-                              header={el.title}
-                              image={el.thumb}
-                              onClick={() => this.albumInfoSearch(el.id)}
-                            />
-                  })
-                }
-              </div>
+            {
+              this.props.albums.map((el, i) => {
+                return  <Card
+			     key={i}
+                             header={el.title}
+                             image={el.thumb}
+                             onClick={() => this.albumInfoSearch(el.id)}
+                  />;
+              })
+              }
+          </div>
             : <Dimmer.Dimmable>
-                <Dimmer active>
-                  <Loader />
-                </Dimmer>
-              </Dimmer.Dimmable>
-          }
-        </div>
-      );
+            <Dimmer active>
+                <Loader />
+              </Dimmer>
+            </Dimmer.Dimmable>
+        }
+      </div>
+    );
   }
 }
 
