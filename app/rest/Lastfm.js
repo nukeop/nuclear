@@ -19,15 +19,15 @@ function addApiKey(url) {
   return `${url}&api_key=${globals.lastfmApiKey}`;
 }
 
-function lastFmLoginConnect() {
+export function lastFmLoginConnect() {
   return fetch(prepareUrl(scrobblingApiUrl + '?method=auth.getToken&format=json'));
 }
 
-function lastFmLogin(authToken) {
+export function lastFmLogin(authToken) {
   return fetch(prepareUrl(scrobblingApiUrl + '?method=auth.getSession&token=' + authToken)+'&format=json');
 }
 
-function scrobble(artist, track, session) {
+export function scrobble(artist, track, session) {
   return fetch(prepareUrl(
     scrobblingApiUrl +
     '?method=track.scrobble&sk=' +
@@ -44,7 +44,7 @@ function scrobble(artist, track, session) {
   );
 }
 
-function updateNowPlaying(artist, track, session) {
+export function updateNowPlaying(artist, track, session) {
   return fetch(prepareUrl(
     scrobblingApiUrl +
     '?method=track.updateNowPlaying&sk=' +
@@ -59,8 +59,8 @@ function updateNowPlaying(artist, track, session) {
   );
 }
 
-function getArtistInfo(artist) {
-  return fetch (addApiKey(
+export function getArtistInfo(artist) {
+  return fetch(addApiKey(
     scrobblingApiUrl +
     '?method=artist.getinfo&artist=' +
     encodeURIComponent(artist) +
@@ -68,8 +68,8 @@ function getArtistInfo(artist) {
   ));
 }
 
-function getArtistTopTracks(artist) {
-  return fetch (addApiKey(
+export function getArtistTopTracks(artist) {
+  return fetch(addApiKey(
     scrobblingApiUrl +
     '?method=artist.gettoptracks&artist=' +
     encodeURIComponent(artist) +
@@ -77,28 +77,41 @@ function getArtistTopTracks(artist) {
   ));
 }
 
-function getTopTags() {
-  return fetch (addApiKey(
+export function getTopTags() {
+  return fetch(addApiKey(
     scrobblingApiUrl +
     '?method=tag.getTopTags&format=json'
   ));
 }
 
-function getTopTagTracks(tag) {
-  return fetch (addApiKey(
+export function getTagInfo(tag) {
+  return fetch(addApiKey(
+    scrobblingApiUrl +
+      '?method=tag.getInfo&format=json&tag=' +
+      tag
+  ));
+}
+
+export function getTagTracks(tag) {
+  return fetch(addApiKey(
     scrobblingApiUrl +
     '?method=tag.getTopTracks&format=json&tag=' +
     tag
   ));
 }
 
-module.exports = {
-  lastFmLoginConnect,
-  lastFmLogin,
-  scrobble,
-  updateNowPlaying,
-  getArtistInfo,
-  getArtistTopTracks,
-  getTopTags,
-  getTopTagTracks
-};
+export function getTagAlbums(tag) {
+  return fetch(addApiKey(
+    scrobblingApiUrl +
+      '?method=tag.getTopAlbums&format=json&tag=' +
+      tag
+  ));
+}
+
+export function getTagArtists(tag) {
+  return fetch(addApiKey(
+    scrobblingApiUrl +
+      '?method=tag.getTopArtists&format=json&tag=' +
+      tag
+  ));
+}
