@@ -1,0 +1,29 @@
+.tag_header_container {
+  position: relative;
+  display: flex;
+  flex-flow: column;
+  height: 25rem;
+  width: 100%;
+
+  .tag_header_background {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-size: cover;
+    filter: brightness(40%);
+  }
+
+  .tag_header_name {
+    display: flex;
+    flex-flow: row;
+    justify-content: flex-start;
+    align-items: flex-end;
+    height: 100%;
+    font-size: 48px;
+    font-weight: normal;
+    z-index: 10;
+    padding: 2rem;
+  }
+}
