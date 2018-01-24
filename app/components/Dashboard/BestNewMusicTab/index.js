@@ -23,9 +23,7 @@ class BestNewMusicTab extends React.Component {
 	  <div className={styles.best_new_music_section_container}>
 	    <BestNewList
 	       data={this.props.dashboardData.bestNewAlbums}
-	       />
-
-	    
+	       />	    
 	  </div>
          <h2>
 	    Best new tracks
@@ -36,7 +34,6 @@ class BestNewMusicTab extends React.Component {
 	       />
 	  </div>
 	</div>
-	
       </Tab.Pane>
     );
   }

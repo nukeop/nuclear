@@ -33,7 +33,7 @@ class GenresTab extends React.Component {
                     <div className={styles.genre_overlay}>
 		      <div className={styles.genre_bg}
 			   style={{
-			     backgroundImage: 'url(' + 'https://picsum.photos/500/500/?random&blur&seed=' + i  + ')'
+			     backgroundImage: 'url(' + 'https://picsum.photos/256x256/?random&seed=' + i  + ')'
 			   }}
 			   >
 		      </div>
