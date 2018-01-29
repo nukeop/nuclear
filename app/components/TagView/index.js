@@ -1,6 +1,7 @@
 import React from 'react';
 import {Dimmer, Loader} from 'semantic-ui-react';
 
+import TagDescription from './TagDescription';
 import TagHeader from './TagHeader';
 import TagTopArtists from './TagTopArtists';
 import styles from './styles.scss';
@@ -45,6 +46,9 @@ class TagView extends React.Component {
 		     tag={tag}
 		     tagInfo={tagInfo}
 		     topArtists={topArtists}
+		     />
+		  <TagDescription
+		     tagInfo={tagInfo}
 		     />
 		  <TagTopArtists
 		     topArtists={topArtists}

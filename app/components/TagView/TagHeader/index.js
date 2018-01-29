@@ -14,7 +14,7 @@ class TagHeader extends React.Component {
       tagInfo,
       topArtists
     } = this.props;
-    
+    console.log(tagInfo);
     return (
       <div className={styles.tag_header_container}>
         <div
@@ -22,7 +22,7 @@ class TagHeader extends React.Component {
 	   className={styles.tag_header_background}
 	   />
         <div className={styles.tag_header_name}>
-	  {tag}
+	  #{tag}
 	</div>
       </div>
     );
