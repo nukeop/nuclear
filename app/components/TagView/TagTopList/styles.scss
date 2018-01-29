@@ -1,15 +1,16 @@
 @import '../../../vars';
 
-.tag_top_artists {
+.tag_top_list {
   position: relative;
   display: flex;
   flex-flow: column;
+  margin-bottom: 2rem;
   
   h4 {
     font-size: 2rem;
   }
 
-  .top_artists {
+  .top_list_items {
     position: relative;
     display: flex;
     flex-flow: row;
@@ -17,7 +18,7 @@
     padding: 0 1rem 0 0.5rem;
   }
 
-  .top_artist {
+  .top_item {
     position: relative;
     width: 50%;
     height: 0;
@@ -26,7 +27,7 @@
     overflow: hidden;
   }
 
-  .top_artist_photo {
+  .top_item_photo {
     position: absolute;
     top: 0;
     bottom: 0;
@@ -36,31 +37,7 @@
     background-position: center;
   }
 
-  .other_artists {
-    position: relative;
-    display: flex;
-    flex-flow: row wrap;
-    width: 50%;
-    height: 0;
-    padding-bottom: 50%;
-  }
-
-  .other_artist {
-    position: relative;
-    width: 50%;
-    height: 0;
-    padding-bottom: 50%;
-  }
-
-  .other_artist_photo {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-  }
-
-  .artist_overlay {
+  .item_overlay {
     position: absolute;
     display: flex;
     flex-flow: row;
@@ -74,11 +51,10 @@
     z-index: 10;
   }
 
-  .artist_name {
+  .item_name {
     position: relative;
     display: flex;
     flex-flow: row;
-    justify-content: flex-end;
     align-items: flex-end;
     width: 100%;
     padding: 1rem;
@@ -87,7 +63,31 @@
     color: $white;
   }
 
-  .other_artist_name {
+  .other_items {
+    position: relative;
+    display: flex;
+    flex-flow: row wrap;
+    width: 50%;
+    height: 0;
+    padding-bottom: 50%;
+  }
+
+  .other_item {
+    position: relative;
+    width: 50%;
+    height: 0;
+    padding-bottom: 50%;
+  }
+
+  .other_item_photo {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+
+  .other_item_name {
     font-size: 1.5rem;
     padding: 0.5rem;
   }

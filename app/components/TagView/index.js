@@ -4,6 +4,7 @@ import {Dimmer, Loader} from 'semantic-ui-react';
 import TagDescription from './TagDescription';
 import TagHeader from './TagHeader';
 import TagTopArtists from './TagTopArtists';
+import TagTopList from './TagTopList';
 import styles from './styles.scss';
 
 class TagView extends React.Component {
@@ -50,9 +51,14 @@ class TagView extends React.Component {
 		  <TagDescription
 		     tagInfo={tagInfo}
 		     />
-		  <TagTopArtists
-		     topArtists={topArtists}
-		     />
+		  <TagTopList
+		    topList={topArtists}
+		    header='Top Artists'
+		    />
+		  <TagTopList
+		    topList={topAlbums}
+		    header='Top Albums'
+		    />
 		</div>
 	      )
 	  }
