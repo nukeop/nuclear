@@ -1,3 +1,71 @@
-.tag_top_artists {
+@import '../../../vars';
 
+.tag_top_artists {
+  position: relative;
+  display: flex;
+  flex-flow: column;
+  width: 100%;
+  height: 0;
+  padding-bottom: 50%;
+  
+  h4 {
+    font-size: 2rem;
+  }
+
+  .top_artists {
+    position: relative;
+    display: flex;
+    flex-flow: row;
+    width: 100%;
+  }
+
+  .top_artist {
+    position: relative;
+    width: 50%;
+    height: 0;
+    padding-bottom: 50%;
+  }
+
+  .top_artist_photo {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-size: cover;
+    background-position: center;
+    border-radius: 0.25rem 0 0 0.25rem;
+  }
+
+  .other_artists {
+
+  }
+
+  .artist_overlay {
+    position: absolute;
+    display: flex;
+    flex-flow: row;
+    justify-content: flex-end;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1rem;
+    border-radius: 0.25rem 0 0 0.25rem;
+    background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%);
+    z-index: 10;
+  }
+
+  .artist_name {
+    position: relative;
+    display: flex;
+    flex-flow: row;
+    justify-content: flex-end;
+    align-items: flex-end;
+    width: 100%;
+    padding: 1rem;
+    font-size: 3rem;
+    z-index: 20;
+    color: $white;
+  }
 }
