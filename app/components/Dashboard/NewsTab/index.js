@@ -1,6 +1,7 @@
 import React from 'react';
 import {Dimmer, Loader, Tab} from 'semantic-ui-react';
 import moment from 'moment';
+import _ from 'lodash';
 
 import NewsItem from './NewsItem';
 import styles from './styles.scss';
@@ -14,11 +15,12 @@ class NewsTab extends React.Component {
     let {
       news
     } = this.props;
+    
     return (
       <Tab.Pane attached={false}>
         <div className={styles.news_container}>
 	  {
-	    news.map((item, i) => {
+	    _(news).sortBy('timestamp').reverse().value().map((item, i) => {
 	      return <NewsItem item={item} />;
 	    })
 	  }
