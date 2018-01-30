@@ -3,6 +3,18 @@
 .card_container {
   width: 20%;
   padding: 1rem;
+
+  @media screen and (max-width: 1600px) {
+    width: 25%;
+  }
+
+  @media screen and (max-width: 1280px) {
+    width: 33.33%;
+  }
+
+  @media screen and (max-width: 1100px) {
+    width: 50%;
+  }
 }
 
 .card {
@@ -31,6 +43,8 @@
       height: 0;
       padding-top: 100%;
       border-radius: 0.125rem 0.125rem 0 0;
+      background-size: cover !important;
+      background-position: center !important;
     }
   }
 
