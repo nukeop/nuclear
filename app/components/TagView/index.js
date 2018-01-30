@@ -4,6 +4,7 @@ import {Dimmer, Loader} from 'semantic-ui-react';
 import TagDescription from './TagDescription';
 import TagHeader from './TagHeader';
 import TagTopList from './TagTopList';
+import TagTopTracks from './TagTopTracks';
 import styles from './styles.scss';
 
 class TagView extends React.Component {
@@ -46,7 +47,7 @@ class TagView extends React.Component {
 		     tag={tag}
 		     tagInfo={tagInfo}
 		     topArtists={topArtists}
-		     />
+		     />		  
 		  <TagDescription
 		     tagInfo={tagInfo}
 		     />
@@ -60,6 +61,10 @@ class TagView extends React.Component {
 		       header='Top Albums'
 		       />
 		  </div>
+		  <TagTopTracks
+		     tracks={topTracks}
+		     />
+		  
 		</div>
 	      )
 	  }
