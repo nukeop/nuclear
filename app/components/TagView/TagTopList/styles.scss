@@ -5,6 +5,7 @@
   display: flex;
   flex-flow: column;
   margin-bottom: 2rem;
+  flex: 1 1 auto;
   
   h4 {
     font-size: 2rem;
@@ -59,6 +60,7 @@
     width: 100%;
     padding: 1rem;
     font-size: 3rem;
+    line-height: 3rem;
     z-index: 20;
     color: $white;
   }
@@ -91,6 +93,7 @@
 
   .other_item_name {
     font-size: 1.5rem;
+    line-height: 1.5rem;
     padding: 0.5rem;
   }
 }
