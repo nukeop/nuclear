@@ -2,6 +2,7 @@ import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
 import { formatDuration } from '../../../utils';
+import ContextPopup from '../../ContextPopup';
 import styles from './styles.scss';
 
 class TagTopTracks extends React.Component {
@@ -11,9 +12,10 @@ class TagTopTracks extends React.Component {
 
   render() {
     let {
-      tracks
+      tracks,
+      addToQueue,
+      musicSources
     } = this.props;
-    console.log(tracks);
     return (
       <div className={styles.tag_top_tracks}>
         <table>
@@ -30,18 +32,33 @@ class TagTopTracks extends React.Component {
 	    {
 	      tracks.map((track, i) => {
 		return (
-		  <tr
+		  <ContextPopup
 		     key={i}
-		     className={styles.track}
-		     >
-                    <td
-		       style={{backgroundImage: `url(${track.image[1]['#text']})`}}
-		       className={styles.track_thumbnail}
-		       />
-		    <td className={styles.track_artist}>{track.name}</td>
-                    <td className={styles.track_name}>{track.artist.name}</td>
-		    <td className={styles.track_duration}>{formatDuration(track.duration)}</td>
-		  </tr>
+		     artist={track.artist.name}
+		     title={track.name}
+		     thumb={track.image[1]['#text']}
+		     trigger={
+			 <tr className={styles.track}>
+			   <td
+				  style={{backgroundImage: `url(${track.image[1]['#text']})`}}
+				  className={styles.track_thumbnail}
+				  />
+			     <td className={styles.track_artist}>{track.name}</td>
+			     <td className={styles.track_name}>{track.artist.name}</td>
+			     <td className={styles.track_duration}>{formatDuration(track.duration)}</td>
+			   </tr>
+			 }
+			 >
+                    <a href="#"
+		       className='add_button'
+		       onClick={() => {addToQueue(musicSources, {
+			 artist: track.artist.name,
+			 name: track.name,
+			 thumbnail: track.image[1]['#text']
+		      })}}
+		       ><FontAwesome name="plus" /> Add to queue</a>
+		  </ContextPopup>
+		  
 		);
 	      })
 	    }
