@@ -52,6 +52,7 @@ class SoundContainer extends React.Component {
         onPlaying={this.handlePlaying.bind(this)}
         onFinishedPlaying={this.handleFinishedPlaying.bind(this)}
         position={player.seek}
+	volume={player.volume}
       />
     );
   }
@@ -62,7 +63,7 @@ function mapStateToProps(state) {
     queue: state.queue,
     player: state.player,
     scrobbling: state.scrobbling
-  }
+  };
 }
 
 function mapDispatchToProps(dispatch) {

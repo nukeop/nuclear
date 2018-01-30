@@ -121,7 +121,10 @@ class App extends React.Component {
               forward={this.nextSong.bind(this)}
               back={this.props.actions.previousSong}
             />
-            <VolumeControls fill="60%"/>
+            <VolumeControls
+	      fill={this.props.player.volume + '%'}
+	      updateVolume={this.props.actions.updateVolume}
+	      />
           </div>
         </Footer>
         <SoundContainer />
@@ -137,7 +140,7 @@ function mapStateToProps(state) {
     queue: state.queue,
     player: state.player,
     scrobbling: state.scrobbling
-  }
+  };
 }
 
 function mapDispatchToProps(dispatch) {
