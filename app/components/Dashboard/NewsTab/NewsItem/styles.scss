@@ -4,6 +4,11 @@
   border: 1px solid rgba($lightbg, 0.3);
   padding: 1rem;
   border-radius: 0.25rem;
+  margin-bottom: 1rem;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
 
   h1 {
     width: 100%;
