@@ -50,14 +50,16 @@ class TagView extends React.Component {
 		  <TagDescription
 		     tagInfo={tagInfo}
 		     />
-		  <TagTopList
-		    topList={topArtists}
-		    header='Top Artists'
-		    />
-		  <TagTopList
-		    topList={topAlbums}
-		    header='Top Albums'
-		    />
+                  <div className={styles.lists_container}>
+		    <TagTopList
+		       topList={topArtists}
+		       header='Top Artists'
+		       />
+		    <TagTopList
+		       topList={topAlbums}
+		       header='Top Albums'
+		       />
+		  </div>
 		</div>
 	      )
 	  }
