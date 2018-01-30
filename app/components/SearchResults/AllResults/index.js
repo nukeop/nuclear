@@ -20,7 +20,7 @@ class AllResults extends React.Component {
               onClick={() => onClick(el.id)}
               key={i}
             />
-          )
+          );
         })
     );
   }
