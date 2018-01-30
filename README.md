@@ -21,14 +21,14 @@ This version of Nuclear has been rewritten from scratch and is being currently p
 - Song queue, which can be exported as a playlist
 - Loading saved playlists (stored in json files)
 - Scrobbling to last.fm (along with updating the 'now playing' status)
+- Newest releases with reviews - tracks and albums
+- Browsing by genre
 
 ## Planned features
 
 - Support for local files
-- Browsing by genre
 - Browsing by popularity
 - Country-specific top lists
-- Newest releases
 - Listening suggestions (similar artists, albums, tracks)
 - Unlimited downloads
 - Realtime lyrics
@@ -56,6 +56,8 @@ This will be updated as the program evolves.
 ![dashboard](https://i.imgur.com/tewcTEu.png)
 
 ![playlist view](http://i.imgur.com/YM3eP3i.png)
+
+![genre view](https://i.imgur.com/KrzUvwp.png)
 
 ## Dev build process
 To develop the project locally, you should only do:
