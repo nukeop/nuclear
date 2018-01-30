@@ -96,11 +96,14 @@ function createWindow() {
 
       player.metadata = {
         'mpris:trackid': player.objectPath('track/0'),
-      	'mpris:length': arg.streams[0].duration * 1000 * 1000, // In microseconds
-      	'mpris:artUrl': '',// arg.thumbnail,
+      	'mpris:artUrl': arg.thumbnail,
       	'xesam:title': arg.name,
       	'xesam:artist': arg.artist
       };
+
+      if (arg.streams && arg.streams.length > 0) {
+	player.metadata['mpris:length'] = arg.streams[0].duration * 1000 * 1000; // In microseconds
+      }
     });
   }
 }
