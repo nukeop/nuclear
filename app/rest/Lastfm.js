@@ -115,3 +115,11 @@ export function getTagArtists(tag) {
       tag
   ));
 }
+
+export function getSimilarTags(tag) {
+  return fetch(addApiKey(
+    scrobblingApiUrl +
+      '?method=tag.getSimilar&format=json&tag=' +
+      tag
+  ));
+}

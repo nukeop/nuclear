@@ -1,0 +1,44 @@
+@import '../../../vars';
+
+.tag_top_tracks {
+  position: relative;
+  display: flex;
+  flex-flow: column;
+  width: 100%;
+
+
+  .track {
+    transition: 0.25s;
+  }
+
+  .track_thumbnail {
+    width: 3rem;
+    height: 3rem;
+  }
+
+  table {
+    width: 100%;
+  }
+  
+  thead {
+    background: $background2;
+  }
+
+  th {
+    padding: 1rem;
+    text-align: left;
+  }
+
+  tr {
+    transition: 0.25s;
+  }
+
+  tr:hover {
+    background: rgba($background2, 0.25);
+  }
+
+  td {
+    padding: 1rem 1rem;
+    border-bottom: 1px solid $background2;
+  }
+}

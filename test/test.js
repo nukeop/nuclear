@@ -116,5 +116,16 @@ describe('Last.fm api tests', () => {
 	console.error(err);
       });
   });
+
+  it('tests getting similar tags', () => {
+    lastfm.getSimilarTags('electronic')
+      .then(response => response.json())
+      .then(results => {
+	console.log(results);
+      })
+      .catch(err => {
+	console.error(err);
+      });
+  });
   
 });
