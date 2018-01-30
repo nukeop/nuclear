@@ -3,6 +3,7 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as TagActions from '../../actions/tag';
+import * as QueueActions from '../../actions/queue';
 
 import TagView from '../../components/TagView';
 
@@ -15,13 +16,16 @@ class TagViewContainer extends React.Component {
     let {
       actions,
       match,
-      tags
+      tags,
+      musicSources
     } = this.props;
     return (
       <TagView
 	 loadTagInfo={actions.loadTagInfo}
+	 addToQueue={actions.addToQueue}
 	 tag={match.params.tagName}
 	 tags={tags}
+	 musicSources={musicSources}
 	 />
     );
   }
@@ -29,13 +33,14 @@ class TagViewContainer extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    tags: state.tags
+    tags: state.tags,
+    musicSources: state.plugin.plugins.musicSources
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators(Object.assign({}, TagActions), dispatch)
+    actions: bindActionCreators(Object.assign({}, TagActions, QueueActions), dispatch)
   };
 }
 

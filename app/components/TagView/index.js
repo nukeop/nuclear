@@ -19,8 +19,10 @@ class TagView extends React.Component {
   render() {
     let {
       loadTagInfo,
+      addToQueue,
       tag,
-      tags
+      tags,
+      musicSources
     } = this.props;
 
     let tagInfo, topTracks, topAlbums, topArtists;
@@ -63,6 +65,8 @@ class TagView extends React.Component {
 		  </div>
 		  <TagTopTracks
 		     tracks={topTracks}
+		     addToQueue={addToQueue}
+		     musicSources={musicSources}
 		     />
 		  
 		</div>

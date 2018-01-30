@@ -29,6 +29,7 @@ class ContextPopup extends React.Component {
 	 open={this.state.isOpen}
 	 onClose={this.handleClose.bind(this)}
          onOpen={this.handleOpen.bind(this)}
+	 hideOnScroll
 	 >
         <div className={styles.popup_header}>
           <div className={styles.popup_thumb}><img src={this.props.thumb} /></div>
