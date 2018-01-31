@@ -17,34 +17,74 @@ class AlbumView extends React.Component {
     this.props.history.push('/artist/' + artistId);
   }
 
+  playAll(album) {
+    album.tracklist.map((track, i) => {
+      this.props.addToQueue(this.props.musicSources, {
+        artist: album.artists[0].name,
+        name: track.title,
+        thumbnail: album.images[0].uri
+      });
+    });
+
+    this.props.selectSong(0);
+    this.props.startPlayback();
+  }
+
+  renderOptions(album) {
+    return(
+      <ContextPopup
+	 trigger={<a href="#" className={styles.more_button}><FontAwesome name="ellipsis-h" /></a>}
+	 artist={album.artists[0].name}
+	 title={album.title}
+	 thumb={album.images ? album.images[0].uri : artPlaceholder}
+	 >
+
+      </ContextPopup>
+    );
+  }
+  
   render() {
+    let {
+      album
+    } = this.props;
     return (
       <div className={styles.album_view_container}>
         <Dimmer.Dimmable>
-          <Dimmer active={this.props.album.loading}>
+          <Dimmer active={album.loading}>
             <Loader/>
           </Dimmer>
 
           {
-            this.props.album.loading
+            album.loading
               ? null
               : <div className={styles.album}>
               <div className={styles.album_info_box}>
-                  <img src={this.props.album.images ? this.props.album.images[0].uri : artPlaceholder}/>
+                  <img src={album.images ? album.images[0].uri : artPlaceholder}/>
                     <div className={styles.album_details}>
-			<div className={styles.album_title}>{this.props.album.title}</div>
-			  <div className={styles.album_artist}>by <a href='#' onClick={() => {this.artistInfoSearch.bind(this)(this.props.album.artists[0].id)}}>{this.props.album.artists[0].name}</a></div>
+			<div className={styles.album_title}>{album.title}</div>
+			  <div className={styles.album_artist}>by <a href='#' onClick={() => {this.artistInfoSearch.bind(this)(album.artists[0].id);}}>{album.artists[0].name}</a></div>
 			    <div className={styles.album_genre}>
 				<label>Genre:</label>
-				  {this.props.album.styles[0]}</div>
+				  {album.styles[0]}
+			      </div>
 
 			      <div className={styles.album_year}>
 				  <label>Year:</label>
-				    {this.props.album.year}</div>
+				    {album.year}
+				</div>
 				<div className={styles.album_tracks}>
 				    <label>Tracks:</label>
-				      {this.props.album.tracklist.length}</div>
-                      </div>
+				      {album.tracklist.length}
+				  </div>
+                                  <div className={styles.album_buttons}>
+				      <a
+					   onClick={() => this.playAll(album)}
+					   href="#"
+					   className={styles.play_button}
+					   ><FontAwesome name="play" /> Play</a>
+					{this.renderOptions(album)}
+				  </div>
+		      </div>
 
                 </div>
 
@@ -58,7 +98,7 @@ class AlbumView extends React.Component {
                       </thead>
                       <tbody>
 			  {
-			    this.props.album.tracklist.map((el, i) => {
+			    album.tracklist.map((el, i) => {
                               return (
 				<ContextPopup
 				  key={i}
@@ -69,15 +109,15 @@ class AlbumView extends React.Component {
 					      <td className={styles.center}>{el.duration}</td>
 					</tr>
 				      }
-				      artist={this.props.album.artists[0].name}
+				      artist={album.artists[0].name}
 				      title={el.title}
-				      thumb={this.props.album.images[0].uri}
+				      thumb={album.images[0].uri}
 				      >
 				  <a href='#'
 				     onClick={() => this.props.addToQueue(this.props.musicSources, {
-                                       artist: this.props.album.artists[0].name,
+                                       artist: album.artists[0].name,
                                        name: el.title,
-                                       thumbnail: this.props.album.images[0].uri
+                                       thumbnail: album.images[0].uri
 				    })}
 				    className={styles.add_button}
 				    >
@@ -85,7 +125,7 @@ class AlbumView extends React.Component {
 				  </a>
 				  <a href='#' className={styles.add_button}><FontAwesome name="play" /> Play now</a>
 				</ContextPopup>
-                              )
+                              );
 			    })
                       }
             </tbody>

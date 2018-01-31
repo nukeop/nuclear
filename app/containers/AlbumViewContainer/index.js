@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as Actions from '../../actions';
 import * as QueueActions from '../../actions/queue';
+import * as PlayerActions from '../../actions/player';
 
 import AlbumView from '../../components/AlbumView';
 
@@ -17,11 +18,13 @@ class AlbumViewContainer extends React.Component {
   render() {
     return (
       <AlbumView
-        album={this.props.albumDetails[this.props.match.params.albumId]}
-        artistInfoSearch={this.props.actions.artistInfoSearch}
-        addToQueue={this.props.actions.addToQueue}
-        musicSources={this.props.musicSources}
-        history={this.props.history}
+         album={this.props.albumDetails[this.props.match.params.albumId]}
+         artistInfoSearch={this.props.actions.artistInfoSearch}
+         addToQueue={this.props.actions.addToQueue}
+         musicSources={this.props.musicSources}
+         history={this.props.history}
+	 selectSong={this.props.actions.selectSong}
+	 startPlayback={this.props.actions.startPlayback}
       />
     );
   }
@@ -31,12 +34,12 @@ function mapStateToProps(state) {
   return {
     albumDetails: state.search.albumDetails,
     musicSources: state.plugin.plugins.musicSources
-  }
+  };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators(Object.assign({}, Actions, QueueActions), dispatch)
+    actions: bindActionCreators(Object.assign({}, Actions, QueueActions, PlayerActions), dispatch)
   };
 }
 
