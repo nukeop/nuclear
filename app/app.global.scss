@@ -87,6 +87,41 @@ a {
   }
 }
 
+.ui.modals.dimmer {
+  background: rgba($background3, 0.6);
+
+  .content {
+    height: auto;
+  }
+}
+
+.ui.modal.transition {
+  height: auto;
+}
+
+.ui.button {
+  transition: 0.25s;
+}
+
+.ui.inverted.green.button {
+  border-color: $green;
+  color: $green;
+
+  &:hover,
+  &:focus {
+    background-color: $green;
+  }
+}
+
+.ui.inverted.red.basic.button:focus {
+  color: $red !important;
+
+  &:hover,
+  &:focus {
+    background-color: $red;
+  }
+}
+
 .ui.checkbox {
   .box::before, label::before {
     background-color: rgba($background3, 0.35) !important;
