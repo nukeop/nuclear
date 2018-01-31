@@ -5,6 +5,7 @@ import InputDialog from '../../InputDialog';
 import Spacer from '../../Spacer';
 
 import styles from './styles.scss';
+import globalStyles from '../../../app.global.scss';
 
 class QueueMenu extends React.Component {
   constructor(props){
@@ -40,7 +41,7 @@ class QueueMenu extends React.Component {
           >
             
 	    </InputDialog>
-          <a href='#'><FontAwesome name="random" /></a>
+          <a className={globalStyles.disabled} href='#'><FontAwesome name="random" /></a>
         </div>
         <hr />
       </div>
