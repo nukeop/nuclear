@@ -19,7 +19,7 @@ class ContextPopup extends React.Component {
   handleClose() {
     this.setState({ isOpen: false });
   }
-
+  
   render() {
     return (
       <Popup
@@ -35,7 +35,11 @@ class ContextPopup extends React.Component {
           <div className={styles.popup_thumb}><img src={this.props.thumb} /></div>
           <div className={styles.popup_info}>
             <div className={styles.popup_title}>{this.props.title}</div>
-            <div className={styles.popup_artist}>by {this.props.artist}</div>
+            {
+	      this.props.artist
+	      ? <div className={styles.popup_artist}>by {this.props.artist}</div>
+	      : null
+	    }
           </div>
         </div>
 
