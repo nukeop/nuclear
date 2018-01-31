@@ -14,7 +14,6 @@ class TagHeader extends React.Component {
       tagInfo,
       topArtists
     } = this.props;
-    console.log(tagInfo);
     return (
       <div className={styles.tag_header_container}>
         <div
