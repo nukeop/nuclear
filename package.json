@@ -25,8 +25,10 @@
 	"music",
 	"youtube"
     ],
-    "author": "nukeop",
-    "email": "nuclear@gumblert.tech",
+    "author": {
+	"name": "nukeop",
+	"email": "nuclear@gumblert.tech"
+    },
     "license": "GPL-3.0",
     "bugs": {
 	"url": "https://github.com/nukeop/nuclear/issues"
@@ -94,7 +96,6 @@
     "build": {
 	"appId": "nuclear",
 	"productName": "nuclear",
-	"icon": "resources/media/icon.png",
 	"directories": {
 	    "output": "release"
 	},
@@ -120,8 +121,9 @@
 	"mac": {
 	    "category": "public.app-category.music",
 	    "target": [
-		"dmg",
-		"zip"
+		"zip",
+		"pkg",
+		"dmg"
 	    ]
 	},
 	"win": {
