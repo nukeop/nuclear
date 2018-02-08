@@ -1,11 +1,29 @@
-language: node_js
-node_js:
-  - 6
+matrix:
+  include:
+    - os: osx
+      osx_image: xcode9.2
+      language: node_js
+      node_js: "9"
+      env:
+        - ELECTRON_CACHE=$HOME/.cache/electron
+        - ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder
 
+    - os: linux
+      services: docker
+      language: generic
+      
 script:
   - npm test
   - npm run build:dist
+  - |
+    if [ "$TRAVIS_OS_NAME" == "linux" ]; then
+       npm run build:linux && npm run build:windows
+    else
+       npm run build:macos
+    fi
 
 cache:
   directories:
     - node_modules
+    - $HOME/.cache/electron
+    - $HOME/.cache/electron-builder
