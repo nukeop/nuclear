@@ -9,8 +9,8 @@ matrix:
         - ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder
 
     - os: linux
-      services: docker
-      language: generic
+      language: node_js
+      node_js: "6"
       
 script:
   - npm test
