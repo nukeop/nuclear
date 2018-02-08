@@ -65,7 +65,7 @@ class AlbumView extends React.Component {
 			  <div className={styles.album_artist}>by <a href='#' onClick={() => {this.artistInfoSearch.bind(this)(album.artists[0].id);}}>{album.artists[0].name}</a></div>
 			    <div className={styles.album_genre}>
 				<label>Genre:</label>
-				  {album.styles[0]}
+				  {album.styles ? album.styles[0] : null}
 			      </div>
 
 			      <div className={styles.album_year}>
