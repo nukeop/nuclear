@@ -15,7 +15,7 @@ matrix:
 
 before_install:
   - wget -nc https://dl.winehq.org/wine-builds/Release.key
-  - sudo apt-key add Release.key -y
+  - sudo apt-key add Release.key
   - sudo apt-add-repository https://dl.winehq.org/wine-builds/ubuntu/ -y
   - sudo apt-get update -q
   - sudo apt-get install --install-recommends winehq-stable -y
