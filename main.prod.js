@@ -75,7 +75,7 @@ function createWindow() {
     player.on('pause', mpris.onPause);
     player.on('playpause', mpris.onPlayPause);
     player.on('stop', mpris.onStop);
-    player.on('play', mpris.onplay);
+    player.on('play', mpris.onPlay);
 
     ipcMain.on('songChange', (event, arg) => {
       if (arg === null) {
