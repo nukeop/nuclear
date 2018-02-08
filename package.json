@@ -9,12 +9,12 @@
     "watch": "webpack-dev-server --inline --progress --env=dev",
     "build:dist": "webpack --progress --colors --env=prod --define process.env.NODE_ENV=production",
     "test": "mocha --require babel-register",
-    "pack": "electron-builder --dir --em.main=main.prod.js",
-    "dist": "babel-node  electron-builder --em.main=main.prod.js",
-    "build:linux": "electron-builder --em.main=main.prod.js --linux",
-    "build:windows": "electron-builder --em.main=main.prod.js --windows",
-    "build:macos": "electron-builder --em.main=main.prod.js --macos",
-    "build:all": "electron-builder --em.main=main.prod.js -mwl"
+    "pack": "electron-builder --dir -c.extraMetadata.main=main.prod.js",
+    "dist": "babel-node  electron-builder -c.extraMetadata.main=main.prod.js",
+    "build:linux": "electron-builder -c.extraMetadata.main=main.prod.js --linux",
+    "build:windows": "electron-builder -c.extraMetadata.main=main.prod.js --windows",
+    "build:macos": "electron-builder -c.extraMetadata.main=main.prod.js --macos",
+    "build:all": "electron-builder -c.extraMetadata.main=main.prod.js -mwl"
   },
   "repository": {
     "type": "git",
