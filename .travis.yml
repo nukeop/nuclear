@@ -28,3 +28,22 @@ cache:
     - node_modules
     - $HOME/.cache/electron
     - $HOME/.cache/electron-builder
+
+before_deploy:
+  - git config --local user.name "nukeop"
+  - git config --local user.email "alsw@protonmail.com"
+  - git tag "$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)"
+    
+deploy:
+  provider: releases
+  api_key: $GITHUB_TOKEN
+  file_glob: true
+  file:
+    - "release/*.exe"
+    - "release/*.deb"
+    - "release/*.tar.gz"
+    - "release/*.zip"
+    - "release/*.AppImage"
+  skip_cleanup: true
+  on:
+    tags: true
