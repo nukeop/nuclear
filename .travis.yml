@@ -46,5 +46,3 @@ deploy:
     - "release/*.dmg"
     - "release/*.AppImage"
   skip_cleanup: true
-  on:
-    tags: true
