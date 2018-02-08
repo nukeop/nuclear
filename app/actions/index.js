@@ -74,7 +74,7 @@ export function artistSearch(terms) {
   };
 }
 
-export function unifiedSearch(terms) {
+export function unifiedSearch(terms, history) {
   return (dispatch) => {
     dispatch(unifiedSearchStart());
     Promise.all([
@@ -82,6 +82,7 @@ export function unifiedSearch(terms) {
       dispatch(artistSearch(terms))
     ]).then(() => {
       dispatch(unifiedSearchSuccess());
+      history.push('/');
     });
   };
 }
