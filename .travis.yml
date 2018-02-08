@@ -12,6 +12,11 @@ matrix:
     - os: linux
       language: node_js
       node_js: "6"
+
+addons:
+  apt:
+    packages:
+      - wine
       
 script:
   - npm test
@@ -33,6 +38,7 @@ before_deploy:
   - git config --local user.name "nukeop"
   - git config --local user.email "alsw@protonmail.com"
   - git tag "$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)"
+  # - export ARTIFACTS=$(if [ "$TRAVIS_OS_NAME" == "linux" ]; then )
     
 deploy:
   provider: releases
