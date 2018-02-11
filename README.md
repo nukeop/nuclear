@@ -9,6 +9,9 @@ nuclear is a free music streaming program that pulls content from free sources a
 If you know [mps-youtube](https://github.com/mps-youtube/mps-youtube), this is a similar music player but with a GUI.
 It's also focusing more on audio. Imagine Spotify which you don't have to pay for and with a bigger library.
 
+## Pre-alpha release
+The current version is a pre-alpha early access. Some of it is usable, some of it isn't. If there are things that don't work as expected or are counterintuitive, please open an issue so I can prioritize working on them.
+
 ## Rewritten from scratch
 
 This version of Nuclear has been rewritten from scratch and released in version 0.4.0. The code is completely new, much more maintainable and extensible.
