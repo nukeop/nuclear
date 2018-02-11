@@ -22,7 +22,7 @@ before_install:
 
 before_script:
   - if [ $TRAVIS_OS_NAME = linux ]; then npm install electron-rebuild; fi
-  - if [ $TRAVIS_OS_NAME = linux ]; then .node_modules/.bin/electron-rebuild; fi
+  - if [ $TRAVIS_OS_NAME = linux ]; then node_modules/.bin/electron-rebuild; fi
       
 script:
   - npm test
