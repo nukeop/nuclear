@@ -33,7 +33,7 @@ const config = {
         loader: 'style-loader!css-loader?modules=true&localIdentName=[name]__[local]___[hash:base64:5]'
       },  {
         test: /\.(png|jpg|gif)$/,
-        loader: 'file-loader?name=/resources/media/[name].[ext]',
+        loader: 'url-loader',
         include: RESOURCES_DIR
       }
     ]
