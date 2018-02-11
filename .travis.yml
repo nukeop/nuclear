@@ -21,6 +21,7 @@ before_install:
   - if [ $TRAVIS_OS_NAME = linux ]; then sudo apt-get install --install-recommends winehq-stable -y; fi
 
 before_script:
+  - if [ $TRAVIS_OS_NAME = linux ]; then npm install --save mpris-service dbus; fi
   - if [ $TRAVIS_OS_NAME = linux ]; then npm install electron-rebuild; fi
   - if [ $TRAVIS_OS_NAME = linux ]; then node_modules/.bin/electron-rebuild; fi
       
