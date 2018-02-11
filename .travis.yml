@@ -25,7 +25,7 @@ script:
   - npm run build:dist
   - |
     if [ "$TRAVIS_OS_NAME" == "linux" ]; then
-       npm run build:linux && npm run build:windows
+       npm run build:linux
     else
        npm run build:macos
     fi
@@ -40,19 +40,23 @@ before_deploy:
   - git config --local user.name "nukeop"
   - git config --local user.email "alsw@protonmail.com"
   - git tag "$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)"
-  # - export ARTIFACTS=$(if [ "$TRAVIS_OS_NAME" == "linux" ]; then )
+  - export ARTIFACTS_A=$(if [ "$TRAVIS_OS_NAME" == "linux" ]; then echo release/*.deb; fi)
+  - export ARTIFACTS_B=$(if [ "$TRAVIS_OS_NAME" == "linux" ]; then echo release/*.tar.gz; fi)
+  - export ARTIFACTS_C=$(if [ "$TRAVIS_OS_NAME" == "linux" ]; then echo release/*.AppImage; fi)
+  - export ARTIFACTS_D=$(if [ "$TRAVIS_OS_NAME" == "osx" ]; then echo release/*.zip; fi)
+  - export ARTIFACTS_E=$(if [ "$TRAVIS_OS_NAME" == "osx" ]; then echo release/*.dmg; fi)
+  
     
 deploy:
   provider: releases
   api_key: $GITHUB_TOKEN
   file_glob: true
   file:
-    - "release/*.exe"
-    - "release/*.deb"
-    - "release/*.tar.gz"
-    - "release/*.zip"
-    - "release/*.dmg"
-    - "release/*.AppImage"
+    - "${ARTIFACTS_A}"
+    - "${ARTIFACTS_B}"
+    - "${ARTIFACTS_C}"
+    - "${ARTIFACTS_D}"
+    - "${ARTIFACTS_E}"
   skip_cleanup: true
   on:
     tags: true
