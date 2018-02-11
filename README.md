@@ -1,4 +1,5 @@
-# nuclear [![Maintainability](https://api.codeclimate.com/v1/badges/a15c4888a63c900f6cc1/maintainability)](https://codeclimate.com/github/nukeop/nuclear/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/a15c4888a63c900f6cc1/test_coverage)](https://codeclimate.com/github/nukeop/nuclear/test_coverage) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/30750586202742279fa8958a12e519ed)](https://www.codacy.com/app/nukeop/nuclear?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=nukeop/nuclear&amp;utm_campaign=Badge_Grade) ![Travis](https://api.travis-ci.org/nukeop/nuclear.svg?branch=master)
+# ![nuclear](https://i.imgur.com/oT1006i.png) 
+[![Maintainability](https://api.codeclimate.com/v1/badges/a15c4888a63c900f6cc1/maintainability)](https://codeclimate.com/github/nukeop/nuclear/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/a15c4888a63c900f6cc1/test_coverage)](https://codeclimate.com/github/nukeop/nuclear/test_coverage) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/30750586202742279fa8958a12e519ed)](https://www.codacy.com/app/nukeop/nuclear?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=nukeop/nuclear&amp;utm_campaign=Badge_Grade) ![Travis](https://api.travis-ci.org/nukeop/nuclear.svg?branch=master)
 
 An Electron-based, multiplatform music player app that streams from multiple sources
 
@@ -10,7 +11,7 @@ It's also focusing more on audio. Imagine Spotify which you don't have to pay fo
 
 ## Rewritten from scratch
 
-This version of Nuclear has been rewritten from scratch and is being currently prepared for the 0.4.0 release. The code is completely new, much more maintainable and extensible.
+This version of Nuclear has been rewritten from scratch and released in version 0.4.0. The code is completely new, much more maintainable and extensible.
 
 ## Features
 
