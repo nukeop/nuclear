@@ -86,6 +86,7 @@
     "sass-loader": "^6.0.6",
     "style-loader": "^0.20.1",
     "uglifyjs-webpack-plugin": "^1.1.8",
+    "url-loader": "^0.6.2",
     "webpack": "^3.10.0",
     "webpack-dev-server": "^2.11.1"
   },
@@ -113,24 +114,24 @@
     ],
     "linux": {
       "target": [
-	"AppImage",
-	"deb",
-	"tar.gz"
+        "AppImage",
+        "deb",
+        "tar.gz"
       ],
       "category": "Audio;AudioVideo;Network;Player;Music"
     },
     "mac": {
       "category": "public.app-category.music",
       "target": [
-	"zip",
-	"pkg",
-	"dmg"
+        "zip",
+        "pkg",
+        "dmg"
       ]
     },
     "win": {
       "target": [
-	"nsis",
-	"portable"
+        "nsis",
+        "portable"
       ]
     }
   }
