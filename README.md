@@ -10,7 +10,7 @@ It's also focusing more on audio. Imagine Spotify which you don't have to pay fo
 
 ## Rewritten from scratch
 
-This version of Nuclear has been rewritten from scratch and is being currently prepared for the 0.4.0 release. The code is completely new, much more maintainable and extensible.
+This version of Nuclear has been rewritten from scratch and released in version 0.4.0. The code is completely new, much more maintainable and extensible.
 
 ## Features
 
