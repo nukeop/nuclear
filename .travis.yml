@@ -11,7 +11,7 @@ matrix:
 
     - os: linux
       language: node_js
-      node_js: "6"
+      node_js: "9"
 
 before_install:
   - wget -nc https://dl.winehq.org/wine-builds/Release.key
@@ -19,9 +19,9 @@ before_install:
   - if [ $TRAVIS_OS_NAME = linux ]; then sudo apt-add-repository https://dl.winehq.org/wine-builds/ubuntu/ -y; fi
   - if [ $TRAVIS_OS_NAME = linux ]; then sudo apt-get update -q; fi
   - if [ $TRAVIS_OS_NAME = linux ]; then sudo apt-get install --install-recommends winehq-stable -y; fi
+  - if [ $TRAVIS_OS_NAME = linux ]; then sudo apt-get install libdbus-1-dev -y; fi
 
 before_script:
-  - if [ $TRAVIS_OS_NAME = linux ]; then npm install --save mpris-service dbus; fi
   - if [ $TRAVIS_OS_NAME = linux ]; then npm install electron-rebuild; fi
   - if [ $TRAVIS_OS_NAME = linux ]; then node_modules/.bin/electron-rebuild; fi
       
