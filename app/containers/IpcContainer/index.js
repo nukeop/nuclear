@@ -40,7 +40,7 @@ function mapStateToProps(state) {
   return {
     player: state.player,
     queue: state.queue
-  }
+  };
 }
 
 function mapDispatchToProps(dispatch) {
