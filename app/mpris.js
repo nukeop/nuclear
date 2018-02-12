@@ -35,3 +35,15 @@ export function sendPlay() {
 export function sendPaused() {
   ipcRenderer.send('paused');
 }
+
+export function sendClose() {
+  ipcRenderer.send('close');
+}
+
+export function sendMinimize() {
+  ipcRenderer.send('minimize');
+}
+
+export function sendMaximize() {
+  ipcRenderer.send('maximize');
+}
