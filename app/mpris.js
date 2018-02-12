@@ -1,40 +1,37 @@
 import { ipcRenderer } from 'electron';
 
-function onNext(event, actions) {
+export function onNext(event, actions) {
   actions.nextSong();
 }
 
-function onPrevious(event, actions) {
+export function onPrevious(event, actions) {
   actions.previousSong();
 }
 
-function onPause(event, actions) {
+export function onPause(event, actions) {
   actions.pausePlayback();
 }
 
-function onPlayPause(event, actions, state) {
+export function onPlayPause(event, actions, state) {
   actions.togglePlayback(state.playbackStatus);
 }
 
-function onStop(event, actions) {
+export function onStop(event, actions) {
   actions.pausePlayback();
 }
 
-function onPlay(event, actions) {
+export function onPlay(event, actions) {
   actions.startPlayback();
 }
 
-function onSongChange(song) {
+export function onSongChange(song) {
   ipcRenderer.send('songChange', song);
 }
 
+export function sendPlay() {
+  ipcRenderer.send('play');
+}
 
-module.exports = {
-  onNext,
-  onPrevious,
-  onPause,
-  onPlayPause,
-  onStop,
-  onPlay,
-  onSongChange
-};
+export function sendPaused() {
+  ipcRenderer.send('paused');
+}

@@ -1,4 +1,5 @@
 import Sound from 'react-sound';
+import { sendPaused, sendPlay } from '../mpris';
 
 export const START_PLAYBACK = 'START_PLAYBACK';
 export const PAUSE_PLAYBACK = 'PAUSE_PLAYBACK';
@@ -17,6 +18,7 @@ export function togglePlayback(currentState) {
 }
 
 export function startPlayback() {
+  sendPlay();
   return {
     type: START_PLAYBACK,
     payload: null
@@ -24,6 +26,7 @@ export function startPlayback() {
 }
 
 export function pausePlayback() {
+  sendPaused();
   return {
     type: PAUSE_PLAYBACK,
     payload: null
