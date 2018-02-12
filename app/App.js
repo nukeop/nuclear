@@ -84,7 +84,7 @@ class App extends React.Component {
                   width="150px"
                   src={logoImg}
                 />
-                <div className={styles.version_string}>Version 0.4.0</div>
+                <div className={styles.version_string}>Version 0.4.2</div>
               </div>
 
               <Link to="/dashboard"><FontAwesome name="dashboard" /> Dashboard</Link>
