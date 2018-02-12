@@ -66,6 +66,18 @@ function createWindow() {
   tray.setTitle('nuclear music player');
   tray.setToolTip('nuclear music player');
   tray.setContextMenu(trayMenu);
+
+  ipcMain.on('close', () => {
+    app.quit();
+  });
+
+  ipcMain.on('minimize', () => {
+    win.minimize();
+  });
+
+  ipcMain.on('maximize', () => {
+    win.isMaximized() ? win.unmaximize() : win.maximize();
+  });
   
   // GNU/Linux-specific
   if (!platform.isDarwin && !platform.isWin32) {

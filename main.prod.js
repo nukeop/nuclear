@@ -55,6 +55,18 @@ function createWindow() {
   tray.setToolTip('nuclear music player');
   tray.setContextMenu(trayMenu);
 
+  ipcMain.on('close', () => {
+    app.quit();
+  });
+
+  ipcMain.on('minimize', () => {
+    win.minimize();
+  });
+
+  ipcMain.on('maximize', () => {
+    win.isMaximized() ? win.unmaximize() : win.maximize();
+  });
+
   // GNU/Linux-specific
   if (!platform.isDarwin && !platform.isWin32) {
     player = Player({
@@ -92,6 +104,14 @@ function createWindow() {
       if (arg.streams && arg.streams.length > 0) {
 	player.metadata['mpris:length'] = arg.streams[0].duration * 1000 * 1000; // In microseconds
       }
+    });
+
+    ipcMain.on('play', (event, arg) => {
+      player.playbackStatus = 'Playing';
+    });
+
+    ipcMain.on('paused', (event, arg) => {
+      player.playbackStatus = 'Paused';
     });
   }
 }
