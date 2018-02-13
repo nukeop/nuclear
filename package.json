@@ -114,7 +114,7 @@
 	    "resources"
 	],
 	"linux": {
-	    "icon": "build/1024x1024.png",
+	    "icon": "1024x1024.png",
 	    "target": [
 		"AppImage",
 		"deb",
