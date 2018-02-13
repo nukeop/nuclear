@@ -11,7 +11,7 @@
 
   &:before {
     background-color: $background !important;
-    box-shadow: 1px 1px 0 0 $background2 !important;
+    box-shadow: 1px -1px 0 0 $background2 !important;
   }
 
   transition: 0.2s;

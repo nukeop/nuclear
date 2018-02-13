@@ -30,7 +30,7 @@ script:
   - npm run build:dist
   - |
     if [ "$TRAVIS_OS_NAME" == "linux" ]; then
-       DEBUG=electron-builder npm run build:linux && npm run build:windows
+       npm run build:linux
     else
        npm run build:macos
     fi

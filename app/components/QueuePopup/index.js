@@ -16,6 +16,7 @@ class QueuePopup extends React.Component {
     this.setState({
       isOpen: !this.state.isOpen
     });
+    this.container.click();
   }
 
   handleOpen() {
@@ -36,12 +37,19 @@ class QueuePopup extends React.Component {
 	>
 	<Popup
 	  className={styles.queue_popup}
-	  trigger={trigger}
+	  trigger={
+	        <div
+		  ref={element => { this.container = element; }}
+		  >
+		  {trigger}
+		</div>
+	      }
 	  open={this.state.isOpen}
 	  onClose={this.handleClose.bind(this)}
 	  onOpen={this.handleOpen.bind(this)}
 	  hideOnScroll
 	  position='left center'
+	  on=''
 	>
           <div>
 	    test
