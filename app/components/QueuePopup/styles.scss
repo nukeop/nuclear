@@ -1,0 +1,18 @@
+@import '../../vars';
+
+.queue_popup {
+  display: flex !important;
+  flex-flow: row;
+  background-color: $background !important;
+  color: $white !important;
+  border-color: $background2 !important;
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.18), 0px 0px 20px 0px rgba(0, 0, 0, 0.09) !important;
+  height: auto !important;
+
+  &:before {
+    background-color: $background !important;
+    box-shadow: 1px 1px 0 0 $background2 !important;
+  }
+
+  transition: 0.2s;
+}

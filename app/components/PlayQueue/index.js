@@ -3,6 +3,7 @@ import classnames from 'classnames';
 
 import styles from './styles.scss';
 
+import QueuePopup from '../QueuePopup';
 import QueueItem from './QueueItem';
 import QueueMenu from './QueueMenu';
 
@@ -18,14 +19,18 @@ class PlayQueue extends React.Component {
 
     return this.props.items.map((el, i) => {
       return (
-        <QueueItem
-          key={i}
-          index={i}
-          track={el}
-          loading={el.loading}
-          current={this.props.currentSong==i}
-          selectSong={this.props.selectSong}
-        />
+	<QueuePopup
+          trigger={
+	      <QueueItem
+		key={i}
+		index={i}
+		track={el}
+		loading={el.loading}
+		current={this.props.currentSong==i}
+		selectSong={this.props.selectSong}
+	      />
+	      }
+	  />
       );
     });
   }
