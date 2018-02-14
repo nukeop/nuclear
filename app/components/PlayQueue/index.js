@@ -31,6 +31,7 @@ class PlayQueue extends React.Component {
 	      />
 	      }
 	  track={el}
+	  musicSources={this.props.musicSources}
 	/>
       );
     });

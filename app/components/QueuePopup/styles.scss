@@ -17,16 +17,33 @@
   transition: 0.2s;
 
   .stream_info {
+    position: relative;
+    display: block;
+  }
+
+  .stream_text_info {
+    position: absolute;
+    top: 0;
+    bottom: 0;
     display: flex;
     flex-flow: column;
+    padding: 0.5rem;
+    background: rgba($black, 0.85);
+    border-radius: 0.25rem;
+  }
+
+  .menu.transition.visible {
+    height: max-content;
+    background-color: $background2;
+    padding: 0;
+  }
+
+  .text {
+    color: $white;
   }
 
   .stream_source {
 
-  }
-
-  .stream_source_string {
-    color: rgba($white, 0.35);
   }
 
   .stream_title {
@@ -37,8 +54,18 @@
 
   }
 
+  .stream_thumbnail {
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    border-radius: 0.25rem;
+    overflow: hidden;
+  }
+
   img {
-    width: 33%;
+    width: 100%;
     height: auto;
   }
 }
