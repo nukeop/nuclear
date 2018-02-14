@@ -32,6 +32,7 @@ class QueuePopup extends React.Component {
       trigger,
       track
     } = this.props;
+    console.log(track);
     return (
       <div
 	 onContextMenu={this.toggleOpen.bind(this)}
@@ -52,9 +53,26 @@ class QueuePopup extends React.Component {
       position='left center'
       on=''
       >
-      <div>
-	test
-      </div>
+      {
+	track.streams && Object.keys(track.streams).length > 0
+	  ? (
+	    <div className={styles.stream_info}>
+              <div className={styles.stream_source}>
+		Source: <span className={styles.stream_source_string}>{track.streams[0].source}</span>
+	      </div>
+              <div className={styles.stream_title}>
+		Title: {track.streams[0].title}
+	      </div>
+              <div className={styles.stream_id}>
+		Stream ID: {track.streams[0].id}
+	      </div>
+              <img alt="" src={track.streams[0].thumbnail} />
+	      
+	    </div>
+	  )
+	: null
+      }
+      
       </Popup>
 </div>
     );

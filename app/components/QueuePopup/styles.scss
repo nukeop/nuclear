@@ -15,4 +15,30 @@
   }
 
   transition: 0.2s;
+
+  .stream_info {
+    display: flex;
+    flex-flow: column;
+  }
+
+  .stream_source {
+
+  }
+
+  .stream_source_string {
+    color: rgba($white, 0.35);
+  }
+
+  .stream_title {
+    
+  }
+
+  .stream_id {
+
+  }
+
+  img {
+    width: 33%;
+    height: auto;
+  }
 }
