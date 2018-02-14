@@ -17,11 +17,18 @@ class YoutubePlugin extends MusicSourcePlugin {
     .then(results => {
       let song = _.head(results.items);
       let id = song.id.videoId;
-      return ytdl.getInfo(`http://www.youtube.com/watch?v=${id}`, )
+      return ytdl.getInfo(`http://www.youtube.com/watch?v=${id}`);
     })
     .then(videoInfo => {
       let formatInfo = _.head(videoInfo.formats.filter(e => e.itag=='140'));
-      return {stream: formatInfo.url, duration: videoInfo.length_seconds};
+      return {
+	source: 'Youtube',
+	id: videoInfo.video_id,
+	stream: formatInfo.url,
+	duration: videoInfo.length_seconds,
+	title: videoInfo.title,
+	thumbnail: videoInfo.thumbnail_url
+      };
     });
   }
 }

@@ -29,33 +29,34 @@ class QueuePopup extends React.Component {
   
   render() {
     let {
-      trigger
+      trigger,
+      track
     } = this.props;
     return (
       <div
-	onContextMenu={this.toggleOpen.bind(this)}
-	>
+	 onContextMenu={this.toggleOpen.bind(this)}
+	 >
 	<Popup
-	  className={styles.queue_popup}
-	  trigger={
-	        <div
-		  ref={element => { this.container = element; }}
-		  >
-		  {trigger}
-		</div>
-	      }
-	  open={this.state.isOpen}
-	  onClose={this.handleClose.bind(this)}
-	  onOpen={this.handleOpen.bind(this)}
-	  hideOnScroll
-	  position='left center'
-	  on=''
-	>
-          <div>
-	    test
-	  </div>
-	</Popup>
+	   className={styles.queue_popup}
+	   trigger={
+	       <div
+		    ref={element => { this.container = element; }}
+		   >
+	       {trigger}
+	     </div>
+      }
+      open={this.state.isOpen}
+      onClose={this.handleClose.bind(this)}
+      onOpen={this.handleOpen.bind(this)}
+      hideOnScroll
+      position='left center'
+      on=''
+      >
+      <div>
+	test
       </div>
+      </Popup>
+</div>
     );
   }
 }

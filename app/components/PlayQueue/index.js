@@ -30,7 +30,8 @@ class PlayQueue extends React.Component {
 		selectSong={this.props.selectSong}
 	      />
 	      }
-	  />
+	  track={el}
+	/>
       );
     });
   }
