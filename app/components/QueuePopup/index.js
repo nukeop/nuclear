@@ -1,4 +1,5 @@
 import React from 'react';
+import FontAwesome from 'react-fontawesome';
 import _ from 'lodash';
 import {
   Dropdown,
@@ -30,6 +31,10 @@ class QueuePopup extends React.Component {
   handleClose() {
     this.setState({ isOpen: false });
   }
+
+  handleDoubleClick() {
+    this.container.dblclick();
+  }
   
   render() {
     let {
@@ -49,6 +54,7 @@ class QueuePopup extends React.Component {
     return (
       <div
 	 onContextMenu={this.toggleOpen.bind(this)}
+	 onDoubleCick={this.handleDoubleClick.bind(this)}
 	 >
 	<Popup
 	  className={styles.queue_popup}
@@ -75,24 +81,28 @@ class QueuePopup extends React.Component {
 		  </div>
 		  <div className={styles.stream_text_info}>
 		    <div className={styles.stream_source}>
-		      <span>Source:</span> <Dropdown
+		      <label>Source:</label> <Dropdown
 				inline
 				options={dropdownOptions}
 				defaultValue={_.find(dropdownOptions, o => o.value === track.streams[0].source).value}
 			/>
 		    </div>
 		    <div className={styles.stream_title}>
-		      <span>Title:</span>
+		      <label>Title:</label>
 		      <span>{track.streams[0].title}</span>
 		    </div>
 		    <div className={styles.stream_id}>
-		      Stream ID: {track.streams[0].id}
+		      <label>Stream ID:</label>
+		      <span>{track.streams[0].id}</span>
 		    </div>
+		  </div>
+                  <div className={styles.stream_buttons}>
+                    <a href="#"><FontAwesome name="refresh" /></a>
 		  </div>
 
 		</div>
 	      )
-	    : null
+	    : <div className={styles.stream_info}>Stream still loading.</div>
 	  }
       
         </Popup>
