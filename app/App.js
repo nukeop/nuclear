@@ -118,6 +118,7 @@ class App extends React.Component {
             <PlayerControls
               togglePlay={this.togglePlayback.bind(this)}
               playing={this.props.player.playbackStatus == Sound.status.PLAYING}
+	      loading={this.props.player.playbackStreamLoading}
               forward={this.nextSong.bind(this)}
               back={this.props.actions.previousSong}
             />

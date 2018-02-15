@@ -1,14 +1,15 @@
 import React from 'react';
+import classnames from 'classnames';
 import FontAwesome from 'react-fontawesome';
 
 import styles from './styles.scss';
 
 class PlayPauseButton extends React.Component {
   getIcon() {
-    if (this.props.playing) {
-      return <FontAwesome name="pause" />;
-    } else if (this.props.loading) {
+    if (this.props.loading) {
       return <FontAwesome name="spinner" pulse />;
+    } else if (this.props.playing) {
+      return <FontAwesome name="pause" />;
     } else {
       return <FontAwesome name="play" />;
     }
@@ -16,7 +17,7 @@ class PlayPauseButton extends React.Component {
 
   render() {
     return (
-      <div className={styles.play_pause_button_container}>
+      <div className={classnames(styles.play_pause_button_container, {'loading': this.props.loading})}>
         <a href='#' onClick={this.props.onClick}>{
           this.getIcon()
         }</a>

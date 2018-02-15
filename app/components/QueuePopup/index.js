@@ -56,8 +56,8 @@ class QueuePopup extends React.Component {
 	      <div
 		   ref={element => { this.container = element; }}
 		  >
-	      {trigger}
-	    </div>
+	        {trigger}
+	      </div>
 	  }
 	  open={this.state.isOpen}
 	  onClose={this.handleClose.bind(this)}
@@ -75,14 +75,15 @@ class QueuePopup extends React.Component {
 		  </div>
 		  <div className={styles.stream_text_info}>
 		    <div className={styles.stream_source}>
-		      Source: <Dropdown
+		      <span>Source:</span> <Dropdown
 				inline
 				options={dropdownOptions}
 				defaultValue={_.find(dropdownOptions, o => o.value === track.streams[0].source).value}
 			/>
 		    </div>
 		    <div className={styles.stream_title}>
-		      Title: {track.streams[0].title}
+		      <span>Title:</span>
+		      <span>{track.streams[0].title}</span>
 		    </div>
 		    <div className={styles.stream_id}>
 		      Stream ID: {track.streams[0].id}
