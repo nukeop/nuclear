@@ -14,6 +14,15 @@ class SoundContainer extends React.Component {
     let seek = update.position;
     let progress = (update.position/update.duration) * 100;
     this.props.actions.updatePlaybackProgress(progress, seek);
+    this.props.actions.updateStreamLoading(false);
+  }
+
+  handleLoading() {
+    this.props.actions.updateStreamLoading(true);
+  }
+
+  handleLoaded() {
+    this.props.actions.updateStreamLoading(false);
   }
 
   handleFinishedPlaying() {
@@ -21,7 +30,7 @@ class SoundContainer extends React.Component {
       let currentSong = this.props.queue.queueItems[this.props.queue.currentSong];
       this.props.actions.scrobbleAction(currentSong.artist, currentSong.name, this.props.scrobbling.lastFmSessionKey);
     }
-      this.props.actions.nextSong();
+    this.props.actions.nextSong();
   }
 
   shouldComponentUpdate(nextProps) {
@@ -44,16 +53,18 @@ class SoundContainer extends React.Component {
 	streamUrl = currentSong.streams[0].stream;
       }
     }
-   
+
     return (
       <Sound
-        url={streamUrl}
-        playStatus={player.playbackStatus}
-        onPlaying={this.handlePlaying.bind(this)}
-        onFinishedPlaying={this.handleFinishedPlaying.bind(this)}
-        position={player.seek}
-	volume={player.volume}
-      />
+	 url={streamUrl}
+	 playStatus={player.playbackStatus}
+	 onPlaying={this.handlePlaying.bind(this)}
+	 onFinishedPlaying={this.handleFinishedPlaying.bind(this)}
+	 onLoading={this.handleLoading.bind(this)}
+	 onLoad={this.handleLoaded.bind(this)}
+	 position={player.seek}
+	 volume={player.volume}
+	 />
     );
   }
 }

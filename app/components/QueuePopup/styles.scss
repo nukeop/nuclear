@@ -25,6 +25,7 @@
     position: absolute;
     top: 0;
     bottom: 0;
+    width: 100%;
     display: flex;
     flex-flow: column;
     padding: 0.5rem;
@@ -43,11 +44,19 @@
   }
 
   .stream_source {
-
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+    
+    span {
+      color: rgba($white, 0.25);
+    }
   }
 
   .stream_title {
-    
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
   }
 
   .stream_id {

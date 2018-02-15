@@ -6,6 +6,7 @@ export const PAUSE_PLAYBACK = 'PAUSE_PLAYBACK';
 export const UPDATE_PLAYBACK_PROGRESS = 'UPDATE_PLAYBACK_PROGRESS';
 export const UPDATE_SEEK = 'UPDATE_SEEK';
 export const UPDATE_VOLUME = 'UPDATE_VOLUME';
+export const UPDATE_PLAYBACK_STREAM_LOADING = 'UPDATE_PLAYBACK_STREAM_LOADING';
 
 export function togglePlayback(currentState) {
   return dispatch => {
@@ -54,5 +55,12 @@ export function updateVolume(volume) {
   return {
     type: UPDATE_VOLUME,
     payload: volume
+  };
+}
+
+export function updateStreamLoading(state) {
+  return {
+    type: UPDATE_PLAYBACK_STREAM_LOADING,
+    payload: state
   };
 }
