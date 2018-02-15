@@ -43,24 +43,24 @@
     color: $white;
   }
 
+  label {
+    color: rgba($white, 0.25);
+    font-size: 12px;
+  }
+  
   .stream_source {
     display: flex;
-    flex-flow: row;
-    justify-content: space-between;
-    
-    span {
-      color: rgba($white, 0.25);
-    }
+    flex-flow: column;
   }
 
   .stream_title {
     display: flex;
-    flex-flow: row;
-    justify-content: space-between;
+    flex-flow: column;
   }
 
   .stream_id {
-
+    display: flex;
+    flex-flow: column;
   }
 
   .stream_thumbnail {
@@ -76,5 +76,22 @@
   img {
     width: 100%;
     height: auto;
+  }
+
+  .stream_buttons {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    flex-flow: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+    padding: 0.5rem;
+
+    a {
+      background: rgba($black, 0.5);
+      padding: 0.5rem 0.75rem;
+    }
   }
 }
