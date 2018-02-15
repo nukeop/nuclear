@@ -5,7 +5,8 @@ import {
   PAUSE_PLAYBACK,
   UPDATE_PLAYBACK_PROGRESS,
   UPDATE_SEEK,
-  UPDATE_VOLUME
+  UPDATE_VOLUME,
+  UPDATE_PLAYBACK_STREAM_LOADING
 } from '../actions/player';
 
 import {
@@ -16,6 +17,7 @@ import {
 
 const initialState = {
   playbackStatus: Sound.status.PAUSED,
+  playbackStreamLoading: false,
   playbackProgress: 0,
   seek: 0,
   volume: 100
@@ -50,6 +52,10 @@ export default function PlayerReducer(state=initialState, action) {
       return Object.assign({}, state, {
         playbackProgress: 0,
         seek: 0
+      });
+    case UPDATE_PLAYBACK_STREAM_LOADING:
+      return Object.assign({}, state, {
+	playbackStreamLoading: action.payload
       });
     default:
       return state;
