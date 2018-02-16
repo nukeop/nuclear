@@ -12,6 +12,21 @@ class AlbumView extends React.Component {
     super(props);
   }
 
+  getArtistName(track, album) {
+    if (!track.artists) {
+      return album.artists[0].name;
+    } else {
+      let firstArtist = _.find(track.artists, artist => artist.join == '').name;
+      let artistName = firstArtist;
+      _(track.artists).filter(artist => artist.name != firstArtist).forEach(
+	artist => {
+	  artistName += ' ' + artist.join + ' ' + artist.name;
+	});
+
+      return artistName;
+    }
+  }
+
   artistInfoSearch(artistId) {
     this.props.artistInfoSearch(artistId);
     this.props.history.push('/artist/' + artistId);
@@ -117,7 +132,7 @@ class AlbumView extends React.Component {
 				     onClick={() => this.props.addToQueue(
 				       this.props.musicSources,
 				       {
-					 artist: album.artists[0].name,
+					 artist: this.getArtistName(el, album),
 					 name: el.title,
 					 thumbnail: album.images[0].uri
 				       }
