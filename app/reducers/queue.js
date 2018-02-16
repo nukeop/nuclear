@@ -28,10 +28,16 @@ export default function QueueReducer(state=initialState, action) {
       queueItems: _.union(state.queueItems, [action.payload])
     });
   case REMOVE_FROM_QUEUE:
+    let newCurrent = state.currentSong;
+    removeIx = findQueueItemIndex(state.queueItems, action.payload);
     newQueue = _.cloneDeep(state.queueItems);
     newQueue = _.filter(newQueue, item => action.payload.uuid!==item.uuid);
+    if (removeIx < state.currentSong) {
+      newCurrent--;
+    }
     return Object.assign({}, state, {
-      queueItems: newQueue
+      queueItems: newQueue,
+      currentSong: newCurrent
     });
   case CLEAR_QUEUE:
     return Object.assign({}, state, {
