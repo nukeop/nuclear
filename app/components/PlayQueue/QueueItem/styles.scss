@@ -13,20 +13,27 @@
   flex-flow: row;
 
   height: 60px;
-}
 
-.queue_item_container>span {
-  display: flex;
-  align-items: center;
-  width: 100%;
-}
+  span {
+    display: flex;
+    align-items: center;
+    width: 100%;
 
-.queue_item_container>span:before {
-  text-align: center;
-  flex: 1 1 auto;
+    &:before {
+      text-align: center;
+      flex: 1 1 auto;
+    }
+  }
+
+  &:hover {
+    .thumbnail_overlay {
+      opacity: 1;
+    }
+  }
 }
 
 .thumbnail_container {
+  position: relative;
   display: flex;
   width: 48px;
   height: 48px;
@@ -42,6 +49,22 @@
   height: 48px;
 
   border-radius: 48px;
+}
+
+.thumbnail_overlay {
+  position: absolute;
+  display: flex;
+  flex-flow: row;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba($black, 0.85);
+  opacity: 0;
+  border-radius: 50%;
+  cursor: pointer;
 }
 
 .item_info_container {
