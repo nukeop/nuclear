@@ -2,6 +2,7 @@ import {
   ADD_TO_QUEUE,
   CLEAR_QUEUE,
   ADD_STREAMS_TO_QUEUE_ITEM,
+  REPLACE_STREAMS_IN_QUEUE_ITEM,
   NEXT_SONG,
   PREVIOUS_SONG,
   SELECT_SONG
@@ -15,6 +16,7 @@ const initialState = {
 };
 
 export default function QueueReducer(state=initialState, action) {
+  let replaceIx, newQueue;
   switch (action.type) {
   case ADD_TO_QUEUE:
     return Object.assign({}, state, {
@@ -25,10 +27,17 @@ export default function QueueReducer(state=initialState, action) {
       queueItems: []
     });
   case ADD_STREAMS_TO_QUEUE_ITEM:
-    let replaceIx = _.findIndex(state.queueItems, item => action.payload.artist===item.artist && action.payload.name ===item.name);
-    let newQueue = _.cloneDeep(state.queueItems);
+    replaceIx = _.findIndex(state.queueItems, item => action.payload.artist===item.artist && action.payload.name ===item.name);
+    newQueue = _.cloneDeep(state.queueItems);
     newQueue[replaceIx] = Object.assign({}, newQueue[replaceIx], action.payload);
 
+    return Object.assign({}, state, {
+      queueItems: newQueue
+    });
+  case REPLACE_STREAMS_IN_QUEUE_ITEM:
+    replaceIx = _.findIndex(state.queueItems, item => action.payload.artist===item.artist && action.payload.name===item.name);
+    newQueue = _.cloneDeep(state.queueItems);
+    newQueue[replaceIx] = action.payload;
     return Object.assign({}, state, {
       queueItems: newQueue
     });

@@ -2,6 +2,7 @@ var _ = require('lodash');
 export const ADD_TO_QUEUE = 'ADD_TO_QUEUE';
 export const CLEAR_QUEUE = 'CLEAR_QUEUE';
 export const ADD_STREAMS_TO_QUEUE_ITEM = 'ADD_STREAMS_TO_QUEUE_ITEM';
+export const REPLACE_STREAMS_IN_QUEUE_ITEM = 'REPLACE_STREAMS_IN_QUEUE_ITEM';
 export const NEXT_SONG = 'NEXT_SONG';
 export const PREVIOUS_SONG = 'PREVIOUS_SONG';
 export const SELECT_SONG = 'SELECT_SONG';
@@ -48,6 +49,18 @@ export function addPlaylistTracksToQueue(musicSources, tracks) {
   };
 }
 
+export function rerollTrack(musicSource, track) {
+  return dispatch => {
+    musicSource.getAlternateStream(track.artist + ' ' + track.name, track.streams[0])
+      .then(newStream => {
+	dispatch({
+	  type: REPLACE_STREAMS_IN_QUEUE_ITEM,
+	  payload: Object.assign({}, track, {streams: [newStream]})
+	});
+    });
+  };
+}
+
 export function clearQueue() {
   return {
     type: CLEAR_QUEUE,
@@ -73,5 +86,5 @@ export function selectSong(index) {
   return {
     type: SELECT_SONG,
     payload: index
-  }
+  };
 }
