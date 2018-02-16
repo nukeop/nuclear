@@ -35,6 +35,11 @@ class QueuePopup extends React.Component {
   handleDoubleClick() {
     this.container.dblclick();
   }
+
+  rerollTrack(track) {
+    let musicSource = _.find(this.props.musicSources, s => s.sourceName == track.streams[0].source);
+    this.props.rerollTrack(musicSource, track);
+  }
   
   render() {
     let {
@@ -54,7 +59,7 @@ class QueuePopup extends React.Component {
     return (
       <div
 	 onContextMenu={this.toggleOpen.bind(this)}
-	 onDoubleCick={this.handleDoubleClick.bind(this)}
+	 onDoubleClick={this.handleDoubleClick.bind(this)}
 	 >
 	<Popup
 	  className={styles.queue_popup}
@@ -97,7 +102,7 @@ class QueuePopup extends React.Component {
 		    </div>
 		  </div>
                   <div className={styles.stream_buttons}>
-                    <a href="#"><FontAwesome name="refresh" /></a>
+                    <a href="#" onClick={() => this.rerollTrack.bind(this)(track)}><FontAwesome name="refresh" /></a>
 		  </div>
 
 		</div>
