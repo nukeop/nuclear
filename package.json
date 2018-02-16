@@ -15,7 +15,7 @@
     "build:windows": "electron-builder -c.extraMetadata.main=main.prod.js --windows",
     "build:macos": "electron-builder -c.extraMetadata.main=main.prod.js --macos",
     "build:all": "electron-builder -c.extraMetadata.main=main.prod.js -mwl",
-    "postinstall": "electron-rebuild"
+    "postinstall": "electron-rebuild install-app-deps"
   },
   "repository": {
     "type": "git",
