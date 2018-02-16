@@ -25,6 +25,7 @@ class PlayQueueContainer extends React.Component {
 	rerollTrack={this.props.actions.rerollTrack}
         selectSong={this.props.actions.selectSong}
         clearQueue={this.props.actions.clearQueue}
+	removeFromQueue={this.props.actions.removeFromQueue}
         addPlaylist={this.props.actions.addPlaylist}
       />
     );
@@ -36,7 +37,7 @@ function mapStateToProps(state) {
     queue: state.queue,
     plugins: state.plugin.plugins,
     playlists: state.playlists.playlists
-  }
+  };
 }
 
 function mapDispatchToProps(dispatch) {

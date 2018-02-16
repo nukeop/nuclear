@@ -28,6 +28,7 @@ class PlayQueue extends React.Component {
 		loading={el.loading}
 		current={this.props.currentSong==i}
 		selectSong={this.props.selectSong}
+		removeFromQueue={this.props.removeFromQueue}
 	      />
 	      }
 	  track={el}
@@ -42,7 +43,7 @@ class PlayQueue extends React.Component {
     return (
       <div className={styles.play_queue_container}>
         <QueueMenu 
-          clearQueue={this.props.clearQueue} 
+          clearQueue={this.props.clearQueue}
           addPlaylist={this.props.addPlaylist}
           items={this.props.items}
         />
