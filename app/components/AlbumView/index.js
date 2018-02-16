@@ -114,11 +114,14 @@ class AlbumView extends React.Component {
 				      thumb={album.images[0].uri}
 				      >
 				  <a href='#'
-				     onClick={() => this.props.addToQueue(this.props.musicSources, {
-                                       artist: album.artists[0].name,
-                                       name: el.title,
-                                       thumbnail: album.images[0].uri
-				    })}
+				     onClick={() => this.props.addToQueue(
+				       this.props.musicSources,
+				       {
+					 artist: album.artists[0].name,
+					 name: el.title,
+					 thumbnail: album.images[0].uri
+				       }
+				    )}
 				    className={styles.add_button}
 				    >
                                     <FontAwesome name="plus" /> Add to queue
