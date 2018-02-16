@@ -11,6 +11,10 @@ class MusicSourcePlugin extends Plugin {
     console.error('search not implemented in plugin ' + this.name);
   }
 
+  getAlternateStream(terms, currentStream) {
+    console.error('getAlternateStream not implemented in plugin ' + this.name);
+  }
+
 }
 
 export default MusicSourcePlugin;
