@@ -15,6 +15,10 @@ let player;
 let tray;
 let icon = nativeImage.createFromPath(path.resolve(__dirname, 'resources', 'media', 'icon.png'));
 
+function changeWindowTitle(artist, title) {
+  win.setTitle(`${artist} - ${title} - nuclear music player`);
+}
+
 function createWindow() {
   win = new BrowserWindow({
     width: 1366,
@@ -94,6 +98,8 @@ function createWindow() {
         return;
       }
 
+      changeWindowTitle(arg.artist, arg.name);
+
       player.metadata = {
         'mpris:trackid': player.objectPath('track/0'),
       	'mpris:artUrl': arg.thumbnail,
@@ -112,6 +118,10 @@ function createWindow() {
 
     ipcMain.on('paused', (event, arg) => {
       player.playbackStatus = 'Paused';
+    });
+  } else {
+    ipcMain.on('songChange', (event, arg) => {
+      changeWindowTitle(arg.artist, arg.name);
     });
   }
 }
