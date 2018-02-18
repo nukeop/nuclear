@@ -4,20 +4,19 @@
   position: absolute;
 
   display: flex;
+  flex-flow: column;
 
   width: 100%;
   height: 100%;
 
   color: $grey;
-
-  flex-flow: column;
 }
 
 .panel_container {
   display: flex;
-
   flex: 1 1 auto;
   flex-flow: row;
+
   height: 100%;
 }
 
@@ -25,6 +24,7 @@
   z-index: 20;
 
   display: flex;
+  flex-flow: row;
 
   height: 50px;
 
@@ -32,27 +32,25 @@
   box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.18), 0px 5px 20px 0px rgba(0, 0, 0, 0.09);
 
   -webkit-app-region: drag;
-  flex-flow: row;
 }
 
 .left_panel {
   z-index: 10;
 
   display: flex;
+  flex: 0 0 auto;
+  flex-flow: column;
 
   width: 300px;
 
   background-color: $background;
   box-shadow: 5px 0px 5px 0px rgba(0, 0, 0, 0.18), 5px 0px 20px 0px rgba(0, 0, 0, 0.09);
-
-  flex-flow: column;
-  flex: 0 0 auto;
 }
 
 .center_panel {
-  background-color: $background;
-
   flex: 1 1 auto;
+
+  background-color: $background;
 
 }
 
@@ -60,14 +58,13 @@
   z-index: 10;
 
   display: flex;
+  flex: 0 0 auto;
+  flex-flow: column;
 
   width: 300px;
 
   background-color: $background;
   box-shadow: -5px 0px 5px 0px rgba(0, 0, 0, 0.18), -5px 0px 20px 0px rgba(0, 0, 0, 0.09);
-
-  flex-flow: column;
-  flex: 0 0 auto;
 }
 
 .footer {
@@ -75,34 +72,37 @@
 
   display: flex;
   overflow-y: hidden;
+  flex: 0 0 auto;
+  flex-flow: column;
 
   height: 80px;
 
   background-color: $background3;
   box-shadow: 0px -5px 5px 0px rgba(0, 0, 0, 0.18), 0px -10px 20px 0px rgba(0, 0, 0, 0.09);
-
-  flex: 0 0 auto;
-  flex-flow: column;
 }
 
 .footer_horizontal {
   display: flex;
-
-  flex-flow: row;
-  flex: 1 1 auto;
   align-items: center;
+  flex: 1 1 auto;
+  flex-flow: row;
   justify-content: space-between;
 }
 
 .track_info_wrapper {
   display: flex;
-
-  flex-flow: row;
   flex: 0 0 33%;
+  flex-flow: row;
 }
 
 .version_string {
-  color: $lightbg;
-  text-align: center;
   margin: 0.5rem 0;
+
+  text-align: center;
+
+  color: $lightbg;
+}
+
+.active_nav_link {
+  color: $white !important;
 }
