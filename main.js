@@ -133,6 +133,9 @@ function createWindow() {
     });
   } else {
     ipcMain.on('songChange', (event, arg) => {
+      if (arg === null) {
+        return;
+      }
       changeWindowTitle(arg.artist, arg.name);
     });
   }
