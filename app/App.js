@@ -3,7 +3,7 @@ import FontAwesome from 'react-fontawesome';
 import Sound from 'react-sound';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Link, withRouter } from 'react-router-dom';
+import { NavLink, Link, withRouter } from 'react-router-dom';
 import * as Actions from './actions';
 import * as PlayerActions from './actions/player';
 import * as PluginsActions from './actions/plugins';
@@ -45,22 +45,22 @@ import VolumeControls from './components/VolumeControls';
 class App extends React.Component {
   togglePlayback() {
     if(this.props.player.playbackStatus==Sound.status.PAUSED &&
-        this.props.scrobbling.lastFmScrobblingEnabled &&
-        this.props.scrobbling.lastFmSessionKey) {
-      let currentSong = this.props.queue.queueItems[this.props.queue.currentSong];
-      this.props.actions.updateNowPlayingAction(currentSong.artist, currentSong.name, this.props.scrobbling.lastFmSessionKey);
+      this.props.scrobbling.lastFmScrobblingEnabled &&
+      this.props.scrobbling.lastFmSessionKey) {
+        let currentSong = this.props.queue.queueItems[this.props.queue.currentSong];
+        this.props.actions.updateNowPlayingAction(currentSong.artist, currentSong.name, this.props.scrobbling.lastFmSessionKey);
+      }
+      this.props.actions.togglePlayback(this.props.player.playbackStatus);
     }
-    this.props.actions.togglePlayback(this.props.player.playbackStatus);
-  }
 
   nextSong() {
     this.props.actions.nextSong();
     if( this.props.scrobbling.lastFmScrobblingEnabled &&
-        this.props.scrobbling.lastFmSessionKey) {
-      let currentSong = this.props.queue.queueItems[this.props.queue.currentSong];
-      this.props.actions.updateNowPlayingAction(currentSong.artist, currentSong.name, this.props.scrobbling.lastFmSessionKey);
+      this.props.scrobbling.lastFmSessionKey) {
+        let currentSong = this.props.queue.queueItems[this.props.queue.currentSong];
+        this.props.actions.updateNowPlayingAction(currentSong.artist, currentSong.name, this.props.scrobbling.lastFmSessionKey);
+      }
     }
-  }
 
   componentWillMount() {
     this.props.actions.lastFmReadSettings();
@@ -87,11 +87,11 @@ class App extends React.Component {
                 <div className={styles.version_string}>Version 0.4.2</div>
               </div>
 
-              <Link to="/dashboard"><FontAwesome name="dashboard" /> Dashboard</Link>
+              <NavLink to="/dashboard" activeClassName={styles.active_nav_link}><FontAwesome name="dashboard" /> Dashboard</NavLink>
               <a href="#"><FontAwesome name="download" /> Downloads</a>
-              <Link to="/playlists"><FontAwesome name="music" /> Playlists</Link>
-              <Link to='/settings'><FontAwesome name="cogs" /> Settings</Link>
-              <Link to="/"><FontAwesome name="search" /> Search results</Link>
+              <NavLink to="/playlists" activeClassName={styles.active_nav_link}><FontAwesome name="music" /> Playlists</NavLink>
+              <NavLink to='/settings' activeClassName={styles.active_nav_link}><FontAwesome name="cogs" /> Settings</NavLink>
+              <NavLink to="/search" activeClassName={styles.active_nav_link}><FontAwesome name="search" /> Search results</NavLink>
             </SidebarMenu>
           </VerticalPanel>
           <VerticalPanel className={styles.center_panel}>
@@ -102,8 +102,8 @@ class App extends React.Component {
           </VerticalPanel>
         </div>
         <Footer className={styles.footer}>
-          <Seekbar 
-            fill={this.props.player.playbackProgress + '%'} 
+          <Seekbar
+            fill={this.props.player.playbackProgress + '%'}
             seek={this.props.actions.updateSeek}
             queue={this.props.queue}
           />
@@ -118,14 +118,14 @@ class App extends React.Component {
             <PlayerControls
               togglePlay={this.togglePlayback.bind(this)}
               playing={this.props.player.playbackStatus == Sound.status.PLAYING}
-	      loading={this.props.player.playbackStreamLoading}
+              loading={this.props.player.playbackStreamLoading}
               forward={this.nextSong.bind(this)}
               back={this.props.actions.previousSong}
             />
             <VolumeControls
-	      fill={this.props.player.volume + '%'}
-	      updateVolume={this.props.actions.updateVolume}
-	      />
+              fill={this.props.player.volume + '%'}
+              updateVolume={this.props.actions.updateVolume}
+            />
           </div>
         </Footer>
         <SoundContainer />

@@ -42,7 +42,7 @@ class MainContentContainer extends React.Component {
                 <Route path="/playlist/:playlistId" component={PlaylistViewContainer} />
                 <Route path="/settings" component={SettingsContainer} />
 		<Route path="/tag/:tagName" component={TagViewContainer}/>
-                <Route path="/" component={SearchResultsContainer} />
+                <Route path="/search" component={SearchResultsContainer} />
               </Switch>
             </RouteTransition>
           </MainLayout>
