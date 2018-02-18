@@ -82,8 +82,8 @@ export function unifiedSearch(terms, history) {
       dispatch(artistSearch(terms))
     ]).then(() => {
       dispatch(unifiedSearchSuccess());
-      if(history.location.pathname !== '/') {
-	history.push('/');
+      if(history.location.pathname !== '/search') {
+        history.push('/search');
       }
     });
   };

@@ -1,0 +1,23 @@
+@import '../../../vars.scss';
+
+.sidebar_menu_item_container {
+  display: flex;
+  flex: 0 0 auto;
+  flex-flow: row;
+  justify-content: flex-start;
+
+  padding: 0.75rem;
+
+  letter-spacing: 0.5px;
+
+  font-size: 1.25rem;
+  font-variant: small-caps;
+
+  &:first-child {
+    justify-content: center;
+  }
+
+  &:hover:not(:first-child) {
+    background: $background3;
+  }
+}
