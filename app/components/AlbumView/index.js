@@ -19,13 +19,13 @@ class AlbumView extends React.Component {
       let firstArtist = _.find(track.artists, artist => artist.join == '').name;
       let artistName = firstArtist;
       _(track.artists).filter(artist => artist.name != firstArtist).forEach(
-	artist => {
-	  artistName += ' ' + artist.join + ' ' + artist.name;
-	});
+        artist => {
+          artistName += ' ' + artist.join + ' ' + artist.name;
+        });
 
-      return artistName;
+        return artistName;
+      }
     }
-  }
 
   artistInfoSearch(artistId) {
     this.props.artistInfoSearch(artistId);
@@ -48,16 +48,16 @@ class AlbumView extends React.Component {
   renderOptions(album) {
     return(
       <ContextPopup
-	 trigger={<a href="#" className={styles.more_button}><FontAwesome name="ellipsis-h" /></a>}
-	 artist={album.artists[0].name}
-	 title={album.title}
-	 thumb={album.images ? album.images[0].uri : artPlaceholder}
-	 >
+        trigger={<a href="#" className={styles.more_button}><FontAwesome name="ellipsis-h" /></a>}
+        artist={album.artists[0].name}
+        title={album.title}
+        thumb={album.images ? album.images[0].uri : artPlaceholder}
+      >
 
       </ContextPopup>
     );
   }
-  
+
   render() {
     let {
       album
@@ -70,91 +70,90 @@ class AlbumView extends React.Component {
           </Dimmer>
 
           {
-            album.loading
-              ? null
-              : <div className={styles.album}>
+            album.loading &&
+            <div className={styles.album}>
               <div className={styles.album_info_box}>
-                  <img src={album.images ? album.images[0].uri : artPlaceholder}/>
-                    <div className={styles.album_details}>
-			<div className={styles.album_title}>{album.title}</div>
-			  <div className={styles.album_artist}>by <a href='#' onClick={() => {this.artistInfoSearch.bind(this)(album.artists[0].id);}}>{album.artists[0].name}</a></div>
-			    <div className={styles.album_genre}>
-				<label>Genre:</label>
-				  {album.styles ? album.styles[0] : null}
-			      </div>
+                <img src={album.images ? album.images[0].uri : artPlaceholder}/>
+                <div className={styles.album_details}>
+                  <div className={styles.album_title}>{album.title}</div>
+                  <div className={styles.album_artist}>by <a href='#' onClick={() => {this.artistInfoSearch.bind(this)(album.artists[0].id);}}>{album.artists[0].name}</a></div>
+                  <div className={styles.album_genre}>
+                    <label>Genre:</label>
+                    { album.styles && album.styles[0] }
+                  </div>
 
-			      <div className={styles.album_year}>
-				  <label>Year:</label>
-				    {album.year}
-				</div>
-				<div className={styles.album_tracks}>
-				    <label>Tracks:</label>
-				      {album.tracklist.length}
-				  </div>
-                                  <div className={styles.album_buttons}>
-				      <a
-					   onClick={() => this.playAll(album)}
-					   href="#"
-					   className={styles.play_button}
-					   ><FontAwesome name="play" /> Play</a>
-					{this.renderOptions(album)}
-				  </div>
-		      </div>
-
+                  <div className={styles.album_year}>
+                    <label>Year:</label>
+                    {album.year}
+                  </div>
+                  <div className={styles.album_tracks}>
+                    <label>Tracks:</label>
+                    {album.tracklist.length}
+                  </div>
+                  <div className={styles.album_buttons}>
+                    <a
+                      onClick={() => this.playAll(album)}
+                      href="#"
+                      className={styles.play_button}
+                    ><FontAwesome name="play" /> Play</a>
+                    {this.renderOptions(album)}
+                  </div>
                 </div>
 
-                <table className={styles.album_tracklist}>
-                    <thead>
-			<tr>
-                            <th className={styles.center}><FontAwesome name="hashtag" /></th>
-                              <th className={styles.left}>Song</th>
-				<th className={styles.center}><FontAwesome name="clock-o" /></th>
-			  </tr>
-                      </thead>
-                      <tbody>
-			  {
-			    album.tracklist.map((el, i) => {
-                              return (
-				<ContextPopup
-				  key={i}
-				  trigger={
-				      <tr>
-					  <td className={styles.center}>{i + 1}</td>
-					    <td className={styles.left}>{el.title}</td>
-					      <td className={styles.center}>{el.duration}</td>
-					</tr>
-				      }
-				      artist={album.artists[0].name}
-				      title={el.title}
-				      thumb={album.images[0].uri}
-				      >
-				  <a href='#'
-				     onClick={() => this.props.addToQueue(
-				       this.props.musicSources,
-				       {
-					 artist: this.getArtistName(el, album),
-					 name: el.title,
-					 thumbnail: album.images[0].uri
-				       }
-				    )}
-				    className={styles.add_button}
-				    >
-                                    <FontAwesome name="plus" /> Add to queue
-				  </a>
-				  <a href='#' className={styles.add_button}><FontAwesome name="play" /> Play now</a>
-				</ContextPopup>
-                              );
-			    })
-                      }
-            </tbody>
-              </table>
+              </div>
 
+              <table className={styles.album_tracklist}>
+                <thead>
+                  <tr>
+                    <th className={styles.center}><FontAwesome name="hashtag" /></th>
+                    <th className={styles.left}>Song</th>
+                    <th className={styles.center}><FontAwesome name="clock-o" /></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {
+                    album.tracklist.map((el, i) => {
+                      return (
+                        <ContextPopup
+                          key={i}
+                          trigger={
+                            <tr>
+                              <td className={styles.center}>{i + 1}</td>
+                              <td className={styles.left}>{el.title}</td>
+                              <td className={styles.center}>{el.duration}</td>
+                            </tr>
+                          }
+                          artist={album.artists[0].name}
+                          title={el.title}
+                          thumb={album.images[0].uri}
+                        >
+                          <a href='#'
+                            onClick={
+                              () => this.props.addToQueue(
+                                this.props.musicSources,
+                                {
+                                  artist: this.getArtistName(el, album),
+                                  name: el.title,
+                                  thumbnail: album.images[0].uri
+                                }
+                              )
+                            }
+                            className={styles.add_button}
+                          >
+                            <FontAwesome name="plus" /> Add to queue
+                          </a>
+                          <a href='#' className={styles.add_button}><FontAwesome name="play" /> Play now</a>
+                        </ContextPopup>
+                      );
+                    })
+                  }
+                </tbody>
+              </table>
             </div>
           }
 
-
-      </Dimmer.Dimmable>
-	</div>
+        </Dimmer.Dimmable>
+      </div>
     );
   }
 }

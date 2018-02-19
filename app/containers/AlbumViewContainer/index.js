@@ -18,13 +18,13 @@ class AlbumViewContainer extends React.Component {
   render() {
     return (
       <AlbumView
-         album={this.props.albumDetails[this.props.match.params.albumId]}
-         artistInfoSearch={this.props.actions.artistInfoSearch}
-         addToQueue={this.props.actions.addToQueue}
-         musicSources={this.props.musicSources}
-         history={this.props.history}
-	 selectSong={this.props.actions.selectSong}
-	 startPlayback={this.props.actions.startPlayback}
+        album={this.props.albumDetails[this.props.match.params.albumId]}
+        artistInfoSearch={this.props.actions.artistInfoSearch}
+        addToQueue={this.props.actions.addToQueue}
+        musicSources={this.props.musicSources}
+        history={this.props.history}
+        selectSong={this.props.actions.selectSong}
+        startPlayback={this.props.actions.startPlayback}
       />
     );
   }
