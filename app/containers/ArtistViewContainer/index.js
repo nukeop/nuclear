@@ -17,14 +17,24 @@ class ArtistViewContainer extends React.Component {
   }
 
   render() {
+    let {
+      actions,
+      match,
+      history,
+      artistDetails,
+      musicSources
+    } = this.props;
     return (
       <ArtistView
-        artist={this.props.artistDetails[this.props.match.params.artistId]}
-        albumInfoSearch={this.props.actions.albumInfoSearch}
-        artistInfoSearchByName={this.props.actions.artistInfoSearchByName}
-        addToQueue={this.props.actions.addToQueue}
-        musicSources={this.props.musicSources}
-        history={this.props.history}
+        artist={artistDetails[match.params.artistId]}
+        albumInfoSearch={actions.albumInfoSearch}
+        artistInfoSearchByName={actions.artistInfoSearchByName}
+        addToQueue={actions.addToQueue}
+        selectSong={actions.selectSong}
+        startPlayback={actions.startPlayback}
+        clearQueue={actions.clearQueue}
+        musicSources={musicSources}
+        history={history}
       />
     );
   }
