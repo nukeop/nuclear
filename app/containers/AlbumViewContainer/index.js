@@ -16,15 +16,23 @@ class AlbumViewContainer extends React.Component {
   }
 
   render() {
+    let {
+      actions,
+      match,
+      history,
+      albumDetails,
+      musicSources
+    } = this.props;
     return (
       <AlbumView
-        album={this.props.albumDetails[this.props.match.params.albumId]}
-        artistInfoSearch={this.props.actions.artistInfoSearch}
-        addToQueue={this.props.actions.addToQueue}
-        musicSources={this.props.musicSources}
-        history={this.props.history}
-        selectSong={this.props.actions.selectSong}
-        startPlayback={this.props.actions.startPlayback}
+        album={albumDetails[match.params.albumId]}
+        artistInfoSearch={actions.artistInfoSearch}
+        addToQueue={actions.addToQueue}
+        musicSources={musicSources}
+        history={history}
+        selectSong={actions.selectSong}
+        startPlayback={actions.startPlayback}
+        clearQueue={actions.clearQueue}
       />
     );
   }
