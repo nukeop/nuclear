@@ -1,21 +1,29 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import * as Actions from '../../actions';
 import * as DashboardActions from '../../actions/dashboard';
 
 import Dashboard from '../../components/Dashboard';
 
 class DashboardContainer extends React.Component {
   render() {
+    let {
+      actions,
+      dashboard,
+      history
+    } = this.props;
     return (
       <Dashboard
-	 loadBestNewAlbums={this.props.actions.loadBestNewAlbums}
-	 loadBestNewTracks={this.props.actions.loadBestNewTracks}
-	 loadNuclearNews={this.props.actions.loadNuclearNews}
-	 loadTopTags={this.props.actions.loadTopTags}
-	 dashboardData={this.props.dashboard}
-	 history={this.props.history}
-	 />
+        albumInfoSearch={actions.albumInfoSearch}
+        artistInfoSearchByName={actions.artistInfoSearchByName}
+        loadBestNewAlbums={actions.loadBestNewAlbums}
+        loadBestNewTracks={actions.loadBestNewTracks}
+        loadNuclearNews={actions.loadNuclearNews}
+        loadTopTags={actions.loadTopTags}
+        dashboardData={dashboard}
+        history={history}
+      />
     );
   }
 }
@@ -28,7 +36,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators(DashboardActions, dispatch)
+    actions: bindActionCreators(Object.assign({}, Actions, DashboardActions), dispatch)
   };
 }
 
