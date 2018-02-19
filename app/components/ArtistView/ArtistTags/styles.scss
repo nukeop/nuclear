@@ -2,18 +2,19 @@
 
 .tags_container {
   display: flex;
-  flex-flow: row;
-  flex: 1 1 auto;
-
   align-items: center;
-
+  flex: 1 1 auto;
+  flex-flow: row wrap;
 }
 
 .tag {
   display: flex;
-  margin: 0 0.5rem;
+
+  margin: 0 0.5rem 0.5rem 0.5rem;
   padding: 0.25rem 0.5rem;
+
+  color: $white;
   border-radius: 0.75rem;
   background-color: rgba($green, 0.8);
-  color: $white;
+  white-space: nowrap;
 }
