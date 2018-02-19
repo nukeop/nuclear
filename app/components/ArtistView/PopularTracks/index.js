@@ -12,14 +12,31 @@ class PopularTracks extends React.Component {
     super(props);
   }
 
+  addToQueue(artist, track) {
+    this.props.addToQueue(this.props.musicSources, {
+      artist: artist.name,
+      name: track.name,
+      thumbnail: track.image[0]['#text'] || artPlaceholder
+    });
+  }
+
   render() {
+    let {
+      artist,
+      tracks,
+      addToQueue,
+      selectSong,
+      startPlayback,
+      clearQueue,
+      musicSources
+    } = this.props;
     return (
       <div className={styles.popular_tracks_container}>
         <div className={styles.header}>
           Popular tracks:
         </div>
         {
-          this.props.tracks.track.slice(0, 5).map((track, index)=> {
+          tracks.track.slice(0, 5).map((track, index)=> {
             return (
               <ContextPopup
                 key={index}
@@ -34,29 +51,37 @@ class PopularTracks extends React.Component {
                     </div>
                   </div>
                 }
-                artist={this.props.artist.name}
+                artist={artist.name}
                 title={track.name}
                 thumb={track.image[0]['#text'] || artPlaceholder}
               >
-                <a href='#'
-                  onClick={() => this.props.addToQueue(this.props.musicSources, {
-                    artist: this.props.artist.name,
-                    name: track.name,
-                    thumbnail: track.image[0]['#text'] || artPlaceholder
-                  })}
+                <a
+                  href='#'
+                  onClick={() => this.addToQueue(artist, track)}
                   className={styles.add_button}
                 >
                   <FontAwesome name="plus" /> Add to queue
                 </a>
-                <a href='#' className={styles.add_button}><FontAwesome name="play" /> Play now</a>
+                <a
+                  href='#'
+                  onClick={() => {
+                    clearQueue();
+                    this.addToQueue(artist, track);
+                    selectSong(0);
+                    startPlayback();
+                  }}
+                  className={styles.add_button}
+                >
+                  <FontAwesome name="play" /> Play now
+                </a>
               </ContextPopup>
             )
           })
         }
       </div>
-    );
+        );
 
-  }
-}
+      }
+    }
 
-export default PopularTracks;
+    export default PopularTracks;

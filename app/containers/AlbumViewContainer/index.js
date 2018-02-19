@@ -29,10 +29,10 @@ class AlbumViewContainer extends React.Component {
         artistInfoSearch={actions.artistInfoSearch}
         addToQueue={actions.addToQueue}
         musicSources={musicSources}
-        history={history}
         selectSong={actions.selectSong}
         startPlayback={actions.startPlayback}
         clearQueue={actions.clearQueue}
+        history={history}
       />
     );
   }
