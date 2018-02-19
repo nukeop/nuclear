@@ -33,22 +33,22 @@ class MainContentContainer extends React.Component {
               atLeave={{ opacity: 0 }}
               atActive={{ opacity: 1 }}
               className={styles.transition}
-            >
-              <Switch key={location.key} location={location}>
-                <Route path="/album/:albumId" component={AlbumViewContainer} />
-                <Route path="/artist/:artistId" component={ArtistViewContainer} />
-                <Route path="/dashboard" component={DashboardContainer} />
-                <Route path="/playlists" component={PlaylistsContainer} />
-                <Route path="/playlist/:playlistId" component={PlaylistViewContainer} />
-                <Route path="/settings" component={SettingsContainer} />
-		<Route path="/tag/:tagName" component={TagViewContainer}/>
-                <Route path="/search" component={SearchResultsContainer} />
-              </Switch>
-            </RouteTransition>
-          </MainLayout>
-        );
-      }
-    }>
+              >
+                <Switch key={location.key} location={location}>
+                  <Route path="/album/:albumId" component={AlbumViewContainer} />
+                  <Route path="/artist/:artistId" component={ArtistViewContainer} />
+                  <Route path="/dashboard" component={DashboardContainer} />
+                  <Route path="/playlists" component={PlaylistsContainer} />
+                  <Route path="/playlist/:playlistId" component={PlaylistViewContainer} />
+                  <Route path="/settings" component={SettingsContainer} />
+                  <Route path="/tag/:tagName" component={TagViewContainer}/>
+                  <Route path="/search" component={SearchResultsContainer} />
+                </Switch>
+              </RouteTransition>
+            </MainLayout>
+          );
+        }
+      }>
 
     </Route>
   );
