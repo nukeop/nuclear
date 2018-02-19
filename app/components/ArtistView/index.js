@@ -22,6 +22,17 @@ class ArtistView extends React.Component {
   }
 
   render() {
+    let {
+      artist,
+      history,
+      albumInfoSearch,
+      addToQueue,
+      selectSong,
+      startPlayback,
+      clearQueue,
+      artistInfoSearchByName,
+      musicSources
+    } = this.props;
     return (
       <div className={styles.artist_view_container}>
         <Dimmer.Dimmable>
@@ -29,64 +40,67 @@ class ArtistView extends React.Component {
             <Loader/>
           </Dimmer>
 
-            {this.isLoading()
-              ? null
-              : <div className={styles.artist}>
-                <div style={{
-                  background: `url('${this.props.artist.images[0] ? this.props.artist.images[0].resource_url : artPlaceholder}')`,
+          {
+            !this.isLoading() &&
+            <div className={styles.artist}>
+              <div
+                style={{
+                  background: `url('${artist.images[0] ? artist.images[0].resource_url : artPlaceholder}')`,
                   backgroundRepeat: 'noRepeat',
                   backgroundPosition: 'center',
                   backgroundSize: 'cover'
-                }} className={styles.artist_header}>
+                }}
+                className={styles.artist_header}>
 
-                  <div className={styles.artist_header_overlay}>
-                    <div className={styles.artist_header_container}>
-                      <div className={styles.artist_avatar} style={{
-                        background: `url('${this.props.artist.images[1] ? this.props.artist.images[1].resource_url : artPlaceholder}')`,
-                        backgroundRepeat: 'noRepeat',
-                        backgroundPosition: 'center',
-                        backgroundSize: 'cover'
-                      }}></div>
-                      <div className={styles.artist_name_container}>
-                        <h1>{this.props.artist.name}</h1>
-                        <ArtistTags tags={this.props.artist.lastfm.artist.tags.tag}/>
-                      </div>
-                    </div>
+              <div className={styles.artist_header_overlay}>
+                <div className={styles.artist_header_container}>
+                  <div
+                    className={styles.artist_avatar}
+                    style={{
+                      background: `url('${artist.images[1] ? artist.images[1].resource_url : artPlaceholder}')`,
+                      backgroundRepeat: 'noRepeat',
+                      backgroundPosition: 'center',
+                      backgroundSize: 'cover'
+                    }}></div>
+                  <div className={styles.artist_name_container}>
+                    <h1>{artist.name}</h1>
+                    <ArtistTags tags={artist.lastfm.artist.tags.tag}/>
                   </div>
-
                 </div>
               </div>
-          }
 
-          <hr />
-
-          <div className={styles.artist_related_container}>
+            </div>
+          </div>
+        }
+        <hr />
+        <div className={styles.artist_related_container}>
             {
-              this.isLoading()
-              ? null
-              : <PopularTracks
-                tracks={this.props.artist.lastfm.toptracks}
-                artist={this.props.artist}
-                addToQueue={this.props.addToQueue}
-                musicSources={this.props.musicSources}
+              !this.isLoading() &&
+              <PopularTracks
+                tracks={artist.lastfm.toptracks}
+                artist={artist}
+                addToQueue={addToQueue}
+                selectSong={selectSong}
+                startPlayback={startPlayback}
+                clearQueue={clearQueue}
+                musicSources={musicSources}
               />
             }
 
             {
-              this.isLoading()
-                ? null
-                : <SimilarArtists
-                  artists={this.props.artist.lastfm.artist.similar.artist}
-                  artistInfoSearchByName={this.props.artistInfoSearchByName}
-                  history={this.props.history}
-                />
+              !this.isLoading() &&
+              <SimilarArtists
+                artists={artist.lastfm.artist.similar.artist}
+                artistInfoSearchByName={artistInfoSearchByName}
+                history={history}
+              />
             }
           </div>
-
+          <hr />
           <AlbumList
-            albums={this.props.artist.releases}
-            albumInfoSearch={this.props.albumInfoSearch}
-            history={this.props.history}
+            albums={artist.releases}
+            albumInfoSearch={albumInfoSearch}
+            history={history}
           />
         </Dimmer.Dimmable>
       </div>
