@@ -52,19 +52,22 @@ class ArtistView extends React.Component {
                 }}
                 className={styles.artist_header}>
 
-              <div className={styles.artist_header_overlay}>
-                <div className={styles.artist_header_container}>
-                  <div
-                    className={styles.artist_avatar}
-                    style={{
+                <div className={styles.artist_header_overlay}>
+                  <div className={styles.artist_header_container}>
+                    <div
+                      className={styles.artist_avatar}
+                      style={{
                       background: `url('${artist.images[1] ? artist.images[1].resource_url : artPlaceholder}')`,
-                      backgroundRepeat: 'noRepeat',
-                      backgroundPosition: 'center',
-                      backgroundSize: 'cover'
-                    }}></div>
-                  <div className={styles.artist_name_container}>
-                    <h1>{artist.name}</h1>
-                    <ArtistTags tags={artist.lastfm.artist.tags.tag}/>
+                        backgroundRepeat: 'noRepeat',
+                        backgroundPosition: 'center',
+                        backgroundSize: 'cover'
+                      }}></div>
+                    <div className={styles.artist_name_container}>
+                      <h1>{artist.name}</h1>
+                      <ArtistTags
+                        tags={artist.lastfm.artist.tags.tag}
+                        history={history}
+                      />
                   </div>
                 </div>
               </div>
