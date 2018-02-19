@@ -105,4 +105,8 @@
 
 .active_nav_link {
   color: $white !important;
+  border-left: 6px solid $green;
+  margin-left: -0.75rem;
+  padding-left: 0.5rem;
+  transition: 0s;
 }
