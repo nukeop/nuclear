@@ -7,17 +7,25 @@ class ArtistTags extends React.Component {
     super(props);
   }
 
+  onTagClick(tag) {
+    this.props.history.push('/tag/' + tag);
+  }
+
   render() {
     return (
       <div className={styles.tags_container}>
         {
-          this.props.tags && this.props.tags.length > 0
-          ? this.props.tags.map((el, i) => {
-              return (
-                <span key={i} className={styles.tag}>#{el.name}</span>
+          this.props.tags && this.props.tags.length > 0 &&
+          this.props.tags.map((el, i) => {
+            return (
+              <a
+                href='#'
+                onClick={() => this.onTagClick.bind(this)(el.name)}
+                key={i}
+                className={styles.tag}
+                >#{el.name}</a>
               );
             })
-          : null
         }
       </div>
     );

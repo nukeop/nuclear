@@ -85,10 +85,18 @@
       padding-left: 0;
     }
   }
-  
+
   .artist {
     font-size: 1.25rem;
     color: $lightbg;
+
+    a {
+      color: $lightbg;
+
+      &:hover {
+        color: $white;
+      }
+    }
   }
 
   .title {
