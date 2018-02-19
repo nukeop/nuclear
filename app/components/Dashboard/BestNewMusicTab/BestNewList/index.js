@@ -14,33 +14,37 @@ class BestNewList extends React.Component {
 
   render() {
     let {
-      data
+      data,
+      artistInfoSearchByName,
+      history
     } = this.props;
 
     return (
       <div className={styles.best_new_list_container}>
 
         <div className={styles.best_new_main}>
-	  <BestNewListActiveItem
-	     item={data[this.state.activeItem]}
-	     />
-	</div>
+          <BestNewListActiveItem
+            item={data[this.state.activeItem]}
+            artistInfoSearchByName={artistInfoSearchByName}
+            history={history}
+          />
+        </div>
         <div className={styles.best_new_items}>
-	  {
-	    data.map((el, i) => {
-	      return <BestNewListItem
-			  onMouseEnter={
-			    () => this.setState({
-			      activeItem: i
-			    })
-			  }
-			  item={el}
-			  key={i}
-			  />;
-	    })
-	  }
-	</div>
-      
+          {
+            data.map((el, i) => {
+              return <BestNewListItem
+                onMouseEnter={
+                  () => this.setState({
+                    activeItem: i
+                  })
+                }
+                item={el}
+                key={i}
+              />;
+            })
+          }
+        </div>
+
       </div>
     );
   }

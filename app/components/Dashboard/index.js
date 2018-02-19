@@ -9,27 +9,33 @@ class Dashboard extends React.Component {
   panes() {
     return [
       {
-	menuItem: 'Best new music',
-	render: () => <BestNewMusicTab dashboardData={this.props.dashboardData} />
+        menuItem: 'Best new music',
+        render: () =>
+        <BestNewMusicTab
+          dashboardData={this.props.dashboardData}
+          artistInfoSearchByName={this.props.artistInfoSearchByName}
+          history={this.props.history}
+        />
       },
       {
-	menuItem: 'Charts',
-	render: () => { return null; }
+        menuItem: 'Charts',
+        render: () => { return null; }
       },
       {
-	menuItem: 'Genres',
-	render: () => <GenresTab
-	               genres={this.props.dashboardData.topTags}
-	               history={this.props.history}
-	              />
+        menuItem: 'Genres',
+        render: () =>
+        <GenresTab
+          genres={this.props.dashboardData.topTags}
+          history={this.props.history}
+        />
       },
       {
-	menuItem: 'Events',
-	render: () => { return null; }
+        menuItem: 'Events',
+        render: () => { return null; }
       },
       {
-	menuItem: 'News',
-	render: () => <NewsTab news={this.props.dashboardData.news}/>
+        menuItem: 'News',
+        render: () => <NewsTab news={this.props.dashboardData.news}/>
       },
     ];
   }
@@ -40,7 +46,7 @@ class Dashboard extends React.Component {
     this.props.loadNuclearNews();
     this.props.loadTopTags();
   }
-  
+
   render() {
     return (
       <div>
