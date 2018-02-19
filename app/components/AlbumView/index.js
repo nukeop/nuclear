@@ -38,13 +38,7 @@ class AlbumView extends React.Component {
     );
   }
 
-  artistInfoSearch(artistId) {
-    this.props.artistInfoSearch(artistId);
-    this.props.history.push('/artist/' + artistId);
-  }
-
-  playAll(album) {
-    this.props.clearQueue();
+  addAlbumToQueue(album) {
     album.tracklist.map((track, i) => {
       this.props.addToQueue(this.props.musicSources, {
         artist: album.artists[0].name,
@@ -52,7 +46,16 @@ class AlbumView extends React.Component {
         thumbnail: album.images[0].uri
       });
     });
+  }
 
+  artistInfoSearch(artistId) {
+    this.props.artistInfoSearch(artistId);
+    this.props.history.push('/artist/' + artistId);
+  }
+
+  playAll(album) {
+    this.props.clearQueue();
+    this.addAlbumToQueue(album);
     this.props.selectSong(0);
     this.props.startPlayback();
   }
@@ -65,7 +68,15 @@ class AlbumView extends React.Component {
         title={album.title}
         thumb={album.images ? album.images[0].uri : artPlaceholder}
       >
-
+        <a
+          href='#'
+          onClick={
+            () => this.addAlbumToQueue(album)
+          }
+          className={styles.add_button}
+        >
+          <FontAwesome name="plus" /> Add to queue
+        </a>
       </ContextPopup>
     );
   }
