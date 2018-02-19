@@ -23,9 +23,20 @@ class AlbumView extends React.Component {
           artistName += ' ' + artist.join + ' ' + artist.name;
         });
 
-        return artistName;
-      }
+      return artistName;
     }
+  }
+
+  addToQueue(album, track) {
+    this.props.addToQueue(
+      this.props.musicSources,
+      {
+        artist: this.getArtistName(track, album),
+        name: track.title,
+        thumbnail: album.images[0].uri
+      }
+    );
+  }
 
   artistInfoSearch(artistId) {
     this.props.artistInfoSearch(artistId);
@@ -33,6 +44,7 @@ class AlbumView extends React.Component {
   }
 
   playAll(album) {
+    this.props.clearQueue();
     album.tracklist.map((track, i) => {
       this.props.addToQueue(this.props.musicSources, {
         artist: album.artists[0].name,
@@ -70,7 +82,7 @@ class AlbumView extends React.Component {
           </Dimmer>
 
           {
-            album.loading &&
+            !album.loading &&
             <div className={styles.album}>
               <div className={styles.album_info_box}>
                 <img src={album.images ? album.images[0].uri : artPlaceholder}/>
@@ -79,7 +91,7 @@ class AlbumView extends React.Component {
                   <div className={styles.album_artist}>by <a href='#' onClick={() => {this.artistInfoSearch.bind(this)(album.artists[0].id);}}>{album.artists[0].name}</a></div>
                   <div className={styles.album_genre}>
                     <label>Genre:</label>
-                    { album.styles && album.styles[0] }
+                    { album.styles && Object.keys(album.styles) > 0 && album.styles[0] }
                   </div>
 
                   <div className={styles.album_year}>
@@ -127,22 +139,28 @@ class AlbumView extends React.Component {
                           title={el.title}
                           thumb={album.images[0].uri}
                         >
-                          <a href='#'
+                          <a
+                            href='#'
                             onClick={
-                              () => this.props.addToQueue(
-                                this.props.musicSources,
-                                {
-                                  artist: this.getArtistName(el, album),
-                                  name: el.title,
-                                  thumbnail: album.images[0].uri
-                                }
-                              )
+                              () => this.addToQueue(album, el)
                             }
                             className={styles.add_button}
                           >
                             <FontAwesome name="plus" /> Add to queue
                           </a>
-                          <a href='#' className={styles.add_button}><FontAwesome name="play" /> Play now</a>
+                          <a
+                            href='#'
+                            onClick={
+                              () => {
+                                this.props.clearQueue();
+                                this.addToQueue(album, el);
+                                this.props.selectSong(0);
+                                this.props.startPlayback();
+                              }
+                            }
+                            className={styles.add_button}
+                          ><FontAwesome name="play" /> Play now
+                          </a>
                         </ContextPopup>
                       );
                     })
