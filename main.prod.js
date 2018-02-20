@@ -2,7 +2,8 @@ const { app, ipcMain, nativeImage, BrowserWindow, Menu, Tray } = require('electr
 const platform = require('electron-platform');
 const path = require('path');
 const url = require('url');
-const mpris = require('./mpris');
+const mpris = require('./server/mpris');
+const store = require('./server/store').store;
 var Player;
 
 // GNU/Linux-specific
@@ -14,6 +15,7 @@ let win;
 let player;
 let tray;
 let icon = nativeImage.createFromPath(path.resolve(__dirname, 'resources', 'media', 'icon.png'));
+let settings = store.get('settings').value();
 
 function changeWindowTitle(artist, title) {
   win.setTitle(`${artist} - ${title} - nuclear music player`);
@@ -23,7 +25,7 @@ function createWindow() {
   win = new BrowserWindow({
     width: 1366,
     height: 768,
-    frame: false,
+    frame: !settings.framelessWindow,
     icon: icon,
     webPreferences: {
       experimentalFeatures: true
