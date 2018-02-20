@@ -36,8 +36,9 @@
   },
   "homepage": "https://github.com/nukeop/nuclear#readme",
   "dependencies": {
-    "billboard-top-100": "^2.0.8",
+    "billboard-top-100": "^2.0.9",
     "electron-platform": "^1.2.0",
+    "electron-react-devtools": "^0.5.3",
     "font-awesome": "^4.7.0",
     "lowdb": "^1.0.0",
     "md5": "^2.2.1",
@@ -63,23 +64,23 @@
     "classnames": "^2.2.5",
     "css-loader": "^0.28.9",
     "electron": "^1.8.2",
-    "electron-builder": "^20.0.4",
+    "electron-builder": "^20.0.6",
     "electron-devtools-installer": "^2.2.3",
     "electron-rebuild": "^1.7.3",
     "extract-text-webpack-plugin": "^3.0.2",
-    "file-loader": "^1.1.6",
+    "file-loader": "^1.1.7",
     "google-fonts-webpack-plugin": "^0.4.4",
     "happypack": "^4.0.1",
     "isomorphic-fetch": "^2.2.1",
     "lodash": "^4.17.5",
-    "mocha": "^5.0.0",
+    "mocha": "^5.0.1",
     "node-sass": "^4.7.2",
     "nodebrainz": "^2.1.1",
     "npm-run-all": "^4.1.2",
     "react-debounce-input": "^3.2.0",
     "react-fontawesome": "^1.6.1",
     "react-hot-loader": "next",
-    "react-redux": "^5.0.6",
+    "react-redux": "^5.0.7",
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
     "react-router-redux": "^4.0.8",
@@ -87,16 +88,16 @@
     "redux-promise": "^0.5.3",
     "redux-thunk": "^2.2.0",
     "sass-loader": "^6.0.6",
-    "style-loader": "^0.20.1",
-    "uglifyjs-webpack-plugin": "^1.1.8",
+    "style-loader": "^0.20.2",
+    "uglifyjs-webpack-plugin": "^1.2.0",
     "url-loader": "^0.6.2",
     "webpack": "^3.11.0",
     "webpack-dev-server": "^2.11.1"
   },
   "optionalDependencies": {
+    "7zip-bin-mac": "^1.0.1",
     "dbus": "^1.0.3",
-    "mpris-service": "^1.1.3",
-    "7zip-bin-mac": "^1.0.1"
+    "mpris-service": "^1.1.3"
   },
   "build": {
     "appId": "nuclear",
@@ -117,7 +118,12 @@
       "resources"
     ],
     "linux": {
-      "icon": "1024x1024.png",
+      "icon": "0x0.png",
+      "desktop": [
+        "Name=Nuclear",
+        "Name[es]=Reproductor de música Nuclear",
+        "Comment[es]=Reproductor que retransmite música desde fuentes encontradas automáticamente."
+      ],
       "target": [
         "AppImage",
         "deb",
