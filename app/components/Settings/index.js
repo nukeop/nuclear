@@ -1,6 +1,7 @@
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 import { Button, Radio } from 'semantic-ui-react';
+import _ from 'lodash';
 
 import Header from '../Header';
 import Spacer from '../Spacer';
@@ -12,8 +13,19 @@ class Settings extends React.Component {
     lastFmScrobblingEnabled ? disableScrobbling(): enableScrobbling();
   }
 
+  toggleOption(option, state) {
+    state !== undefined
+    ? this.props.actions.setBooleanOption(option, !state)
+    : this.props.actions.setBooleanOption(option, true);
+  }
+
   render() {
-    const {
+    let {
+      options,
+      settings
+    } = this.props;
+
+    let {
       lastFmAuthToken,
       lastFmName,
       lastFmSessionKey,
@@ -24,8 +36,11 @@ class Settings extends React.Component {
       lastFmConnectAction,
       lastFmLoginAction,
       enableScrobbling,
-      disableScrobbling
+      disableScrobbling,
+      setBooleanOption
     } = this.props.actions;
+
+    let optionsGroups = _.groupBy(options, 'category');
 
     return (
       <div className={styles.settings_container}>
@@ -56,14 +71,12 @@ class Settings extends React.Component {
             <span>User: <strong>{lastFmName ? lastFmName : 'Not logged in'}</strong></span>
             <Spacer />
             {
-              lastFmSessionKey
-              ? null
-              : <Button onClick={lastFmConnectAction} color='red'>Connect with Last.fm</Button>
+              !lastFmSessionKey &&
+              <Button onClick={lastFmConnectAction} color='red'>Connect with Last.fm</Button>
             }
             {
-              lastFmSessionKey
-              ? null
-              : <Button onClick={() => lastFmLoginAction(lastFmAuthToken)} color='red'>Log in</Button>
+              lastFmSessionKey &&
+              <Button onClick={() => lastFmLoginAction(lastFmAuthToken)} color='red'>Log in</Button>
             }
           </div>
 
@@ -78,23 +91,33 @@ class Settings extends React.Component {
           </div>
         </div>
 
-        <div className={styles.settings_section}>
-          <Header>
-            Playback
-          </Header>
-          <hr />
-        </div>
-        <div className={styles.settings_section}>
-          <Header>
-            Program settings
-          </Header>
-          <hr />
-          <div className={styles.settings_item}>
-            <label>Frameless window</label>
-            <Spacer />
-            <Radio toggle />
-          </div>
-        </div>
+        {
+          _.map(optionsGroups, (group, i) => {
+            return (
+              <div key={i} className={styles.settings_section}>
+                <Header>
+                  {i}
+                </Header>
+                <hr />
+                {
+                  _.map(group, (option, j) => {
+                    return (
+                      <div className={styles.settings_item}>
+                        <label>{option.prettyName}</label>
+                        <Spacer />
+                        <Radio
+                          toggle
+                          onChange={() => this.toggleOption(option.name, settings[option.name])}
+                          checked={settings[option.name]}
+                        />
+                      </div>
+                    );
+                  })
+                }
+              </div>
+            );
+          })
+        }
       </div>
 
     );
