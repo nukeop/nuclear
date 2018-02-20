@@ -108,7 +108,7 @@ class Settings extends React.Component {
                 {
                   _.map(group, (option, j) => {
                     return (
-                      <div className={styles.settings_item}>
+                      <div key={j} className={styles.settings_item}>
                         <label>{option.prettyName}</label>
                         <Spacer />
                         <Radio
