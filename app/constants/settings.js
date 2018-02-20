@@ -10,7 +10,7 @@ export default [
     name: 'framelessWindow',
     category: 'Program settings',
     type: 'boolean',
-    prettyName: 'Frameless window',
+    prettyName: 'Frameless window (requires restart)',
     default: true
   }
 ];
