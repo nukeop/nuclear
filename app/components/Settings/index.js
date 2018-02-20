@@ -15,8 +15,14 @@ class Settings extends React.Component {
 
   toggleOption(option, state) {
     state !== undefined
-    ? this.props.actions.setBooleanOption(option, !state)
-    : this.props.actions.setBooleanOption(option, true);
+    ? this.props.actions.setBooleanOption(option.name, !state)
+    : this.props.actions.setBooleanOption(option.name, !option.default);
+  }
+
+  isChecked(option) {
+    return this.props.settings[option.name] !== undefined
+    ? this.props.settings[option.name]
+    : option.default;
   }
 
   render() {
@@ -107,8 +113,8 @@ class Settings extends React.Component {
                         <Spacer />
                         <Radio
                           toggle
-                          onChange={() => this.toggleOption(option.name, settings[option.name])}
-                          checked={settings[option.name]}
+                          onChange={() => this.toggleOption(option, settings[option.name])}
+                          checked={this.isChecked(option)}
                         />
                       </div>
                     );
