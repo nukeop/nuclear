@@ -117,7 +117,12 @@
       "resources"
     ],
     "linux": {
-      "icon": "1024x1024.png",
+      "icon": "0x0.png",
+      "desktop": [
+        "Name=Nuclear",
+        "Name[es]=Reproductor de música Nuclear",
+        "Comment[es]=Reproductor que retransmite música desde fuentes encontradas automáticamente."
+      ],
       "target": [
         "AppImage",
         "deb",
