@@ -8,6 +8,7 @@ import * as Actions from './actions';
 import * as PlayerActions from './actions/player';
 import * as PluginsActions from './actions/plugins';
 import * as QueueActions from './actions/queue';
+import * as SettingsActions from './actions/settings';
 import * as ScrobblingActions from './actions/scrobbling';
 
 import './app.global.scss';
@@ -63,6 +64,7 @@ class App extends React.Component {
     }
 
   componentWillMount() {
+    this.props.actions.readSettings();
     this.props.actions.lastFmReadSettings();
     this.props.actions.createSearchPlugins(PluginConfig.plugins);
   }
@@ -148,6 +150,7 @@ function mapDispatchToProps(dispatch) {
   return {
     actions: bindActionCreators(Object.assign({},
       ScrobblingActions,
+      SettingsActions,
       QueueActions,
       PlayerActions,
       PluginsActions,

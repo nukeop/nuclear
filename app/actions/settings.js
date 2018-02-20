@@ -1,6 +1,15 @@
 import { store } from '../persistence/store';
 
+export const READ_SETTINGS = 'READ_SETTINGS';
 export const SET_BOOLEAN_OPTION = 'SET_BOOLEAN_OPTION';
+
+export function readSettings() {
+  let settings = store.get('settings').value();
+  return {
+    type: READ_SETTINGS,
+    payload: settings
+  };
+}
 
 export function setBooleanOption(option, state) {
   store.set(`settings.${option}`, state).write();
