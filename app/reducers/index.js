@@ -6,6 +6,7 @@ import PluginsReducer from './plugins';
 import QueueReducer from './queue';
 import ScrobblingReducer from './scrobbling';
 import SearchReducer from './search';
+import SettingsReducer from './settings';
 import DashboardReducer from './dashboard';
 import TagReducer from './tag';
 
@@ -17,7 +18,8 @@ const rootReducer = combineReducers({
   scrobbling: ScrobblingReducer,
   playlists: PlaylistsReducer,
   dashboard: DashboardReducer,
-  tags: TagReducer
+  tags: TagReducer,
+  settings: SettingsReducer
 });
 
 export default rootReducer;
