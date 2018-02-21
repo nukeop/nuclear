@@ -25,7 +25,7 @@ class IpcContainer extends React.Component {
   }
 
   componentWillReceiveProps(nextProps){
-    if (this.props != nextProps) {
+    if (this.props !== nextProps) {
       let currentSong = nextProps.queue.queueItems[nextProps.queue.currentSong];
       onSongChange(currentSong);
     }

@@ -39,9 +39,9 @@ class SoundContainer extends React.Component {
 
   shouldComponentUpdate(nextProps) {
     return (
-      this.props.queue.currentSong != nextProps.queue.currentSong ||
-      this.props.player.playbackStatus != nextProps.player.playbackStatus ||
-      this.props.player.seek != nextProps.player.seek
+      this.props.queue.currentSong !== nextProps.queue.currentSong ||
+      this.props.player.playbackStatus !== nextProps.player.playbackStatus ||
+      this.props.player.seek !== nextProps.player.seek
     );
   }
 
