@@ -19,22 +19,22 @@ class PlayQueue extends React.Component {
 
     return this.props.items.map((el, i) => {
       return (
-	<QueuePopup
+        <QueuePopup
           trigger={
-	      <QueueItem
-		key={i}
-		index={i}
-		track={el}
-		loading={el.loading}
-		current={this.props.currentSong==i}
-		selectSong={this.props.selectSong}
-		removeFromQueue={this.props.removeFromQueue}
-	      />
-	      }
-	  track={el}
-	  musicSources={this.props.musicSources}
-	  rerollTrack={this.props.rerollTrack}
-	/>
+            <QueueItem
+              key={i}
+              index={i}
+              track={el}
+              loading={el.loading}
+              current={this.props.currentSong==i}
+              selectSong={this.props.selectSong}
+              removeFromQueue={this.props.removeFromQueue}
+            />
+          }
+          track={el}
+          musicSources={this.props.musicSources}
+          rerollTrack={this.props.rerollTrack}
+        />
       );
     });
   }
@@ -42,16 +42,16 @@ class PlayQueue extends React.Component {
   render() {
     return (
       <div className={styles.play_queue_container}>
-        <QueueMenu 
+        <QueueMenu
           clearQueue={this.props.clearQueue}
           addPlaylist={this.props.addPlaylist}
           items={this.props.items}
         />
 
-          <div className={classnames(styles.play_queue_items, styles.fade_in)}>
-            {this.renderQueueItems()}
-          </div>
-        
+        <div className={classnames(styles.play_queue_items, styles.fade_in)}>
+          {this.renderQueueItems()}
+        </div>
+
       </div>
     );
   }
