@@ -32,12 +32,8 @@ class QueuePopup extends React.Component {
     this.setState({ isOpen: false });
   }
 
-  handleDoubleClick() {
-    this.container.dblclick();
-  }
-
   rerollTrack(track) {
-    let musicSource = _.find(this.props.musicSources, s => s.sourceName === track.streams[0].source);
+    let musicSource = _.find(this.props.musicSources, s => s.sourceName == track.streams[0].source);
     this.props.rerollTrack(musicSource, track);
   }
 
@@ -59,7 +55,6 @@ class QueuePopup extends React.Component {
     return (
       <div
 	 onContextMenu={this.toggleOpen.bind(this)}
-	 onDoubleClick={this.handleDoubleClick.bind(this)}
 	 >
 	<Popup
 	  className={styles.queue_popup}
