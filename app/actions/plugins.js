@@ -8,8 +8,8 @@ export function createSearchPlugins(pluginClasses) {
   for ( var i=0; i<Object.keys(pluginClasses).length; i++ ) {
     var category = Object.keys(pluginClasses)[i];
 
-    if (plugins[category] == undefined) {
-          plugins[category] = [];
+    if (plugins[category] === undefined) {
+      plugins[category] = [];
     }
 
     for (var j=0; j<Object.keys(pluginClasses[category]).length; j++) {

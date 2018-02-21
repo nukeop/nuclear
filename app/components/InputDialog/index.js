@@ -47,24 +47,24 @@ class InputDialog extends React.Component {
       onAccept(this.state.inputString);
       this.handleClose();
     };
-    
+
     return (
       <Modal
-	 basic
-	 closeIcon
-	 dimmer='blurring'
-	 trigger={trigger}
-	 onClose={this.handleClose}
-	 onOpen={this.handleOpen.bind(this)}
-	 open={this.state.isOpen}
-	 >
-	<Modal.Content>
-	  {header}
-	  <Input
-	     fluid
-	     inverted
-	     ref={input => { if (input) input.focus(); }}
-	     placeholder={placeholder}
+        basic
+        closeIcon
+        dimmer='blurring'
+        trigger={trigger}
+        onClose={this.handleClose}
+        onOpen={this.handleOpen.bind(this)}
+        open={this.state.isOpen}
+      >
+        <Modal.Content>
+          {header}
+          <Input
+            fluid
+            inverted
+            ref={input => { input && input.focus(); }}
+            placeholder={placeholder}
 	    onChange={this.handleChange}
 	     />
 	</Modal.Content>

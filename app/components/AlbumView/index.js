@@ -16,7 +16,7 @@ class AlbumView extends React.Component {
     if (!track.artists) {
       return album.artists[0].name;
     } else {
-      let firstArtist = _.find(track.artists, artist => artist.join == '').name;
+      let firstArtist = _.find(track.artists, artist => artist.join === '').name;
       let artistName = firstArtist;
       _(track.artists).filter(artist => artist.name != firstArtist).forEach(
         artist => {

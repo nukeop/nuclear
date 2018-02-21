@@ -21,7 +21,7 @@ class YoutubePlugin extends MusicSourcePlugin {
       return ytdl.getInfo(`http://www.youtube.com/watch?v=${id}`);
     })
     .then(videoInfo => {
-      let formatInfo = _.head(videoInfo.formats.filter(e => e.itag=='140'));
+      let formatInfo = _.head(videoInfo.formats.filter(e => e.itag === '140'));
       return {
 	source: 'Youtube',
 	id: videoInfo.video_id,
@@ -38,7 +38,7 @@ class YoutubePlugin extends MusicSourcePlugin {
       .then(results => results.json())
       .then(results => {
 	let song = _(results.items).find(item => {
-	  return item && item.id.videoId != currentStream.id;
+	  return item && item.id.videoId !== currentStream.id;
 	});
 	let id = song.id.videoId;
 	return ytdl.getInfo(`http://www.youtube.com/watch?v=${id}`);

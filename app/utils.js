@@ -8,7 +8,7 @@ export function formatDuration(duration) {
     if (minutes < 10) {minutes = "0"+minutes;}
     if (seconds < 10) {seconds = "0"+seconds;}
 
-    if (hours==0) {
+    if (hours === 0) {
       return minutes+':'+seconds;
     } else {
       return hours+':'+minutes+':'+seconds;
