@@ -10,7 +10,7 @@ export const UPDATE_PLAYBACK_STREAM_LOADING = 'UPDATE_PLAYBACK_STREAM_LOADING';
 
 export function togglePlayback(currentState) {
   return dispatch => {
-    if (currentState == Sound.status.PLAYING) {
+    if (currentState === Sound.status.PLAYING) {
       dispatch(pausePlayback());
     } else {
       dispatch(startPlayback());
@@ -38,7 +38,7 @@ export function updatePlaybackProgress(progress, seek) {
   return {
     type: UPDATE_PLAYBACK_PROGRESS,
     payload: {
-      progress, 
+      progress,
       seek
     }
   };

@@ -26,7 +26,7 @@ class PlayQueue extends React.Component {
               index={i}
               track={el}
               loading={el.loading}
-              current={this.props.currentSong==i}
+              current={this.props.currentSong === i}
               selectSong={this.props.selectSong}
               removeFromQueue={this.props.removeFromQueue}
             />

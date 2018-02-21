@@ -45,7 +45,7 @@ import VolumeControls from './components/VolumeControls';
 
 class App extends React.Component {
   togglePlayback() {
-    if(this.props.player.playbackStatus==Sound.status.PAUSED &&
+    if(this.props.player.playbackStatus===Sound.status.PAUSED &&
       this.props.scrobbling.lastFmScrobblingEnabled &&
       this.props.scrobbling.lastFmSessionKey) {
         let currentSong = this.props.queue.queueItems[this.props.queue.currentSong];

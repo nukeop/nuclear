@@ -36,7 +36,7 @@ class PopularTracks extends React.Component {
           Popular tracks:
         </div>
         {
-          tracks.track.slice(0, 5).map((track, index)=> {
+          tracks.track.slice(0, 5).map((track, index) => {
             return (
               <ContextPopup
                 key={index}

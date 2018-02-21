@@ -37,17 +37,17 @@ class QueuePopup extends React.Component {
   }
 
   rerollTrack(track) {
-    let musicSource = _.find(this.props.musicSources, s => s.sourceName == track.streams[0].source);
+    let musicSource = _.find(this.props.musicSources, s => s.sourceName === track.streams[0].source);
     this.props.rerollTrack(musicSource, track);
   }
-  
+
   render() {
     let {
       trigger,
       track,
       musicSources
     } = this.props;
-    
+
     let dropdownOptions = _.map(musicSources, s => {
       return {
 	key: s.sourceName,
@@ -109,7 +109,7 @@ class QueuePopup extends React.Component {
 	      )
 	    : <div className={styles.stream_info}>Stream still loading.</div>
 	  }
-      
+
         </Popup>
       </div>
     );
