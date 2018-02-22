@@ -8,7 +8,7 @@ const store = low(new FileSync('nuclear.json'));
 function getOption(key) {
   var value = store.get(key).value();
   if (!value || Object.keys(value).length < 1) {
-    value = _.find(options, option => option.name === key);\
+    value = _.find(options, option => option.name === key);
   }
 
   return value;
