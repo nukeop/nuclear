@@ -16,10 +16,15 @@ class TagView extends React.Component {
     this.props.loadTagInfo(this.props.tag);
   }
 
+  artistInfoSearchByName(artistName) {
+    this.props.artistInfoSearchByName(artistName, this.props.history);
+  }
+
   render() {
     let {
       loadTagInfo,
       addToQueue,
+      artistInfoSearchByName,
       tag,
       tags,
       musicSources
@@ -32,46 +37,47 @@ class TagView extends React.Component {
       topAlbums = tags[tag][2].albums.album;
       topArtists = tags[tag][3].topartists.artist;
     }
-    
+
     return (
       <div className={styles.tag_view_container}>
-	<Dimmer.Dimmable>
-	  <Dimmer active={tags[tag] === undefined || tags[tag].loading}>
-	    <Loader/>
+        <Dimmer.Dimmable>
+          <Dimmer active={tags[tag] === undefined || tags[tag].loading}>
+            <Loader/>
           </Dimmer>
 
-	  {
-	    tags[tag] === undefined || tags[tag].loading
-	      ? null
-	      : (
-		<div className={styles.tag_view}>
+          {
+            tags[tag] === undefined || tags[tag].loading
+              ? null
+              : (
+                <div className={styles.tag_view}>
                   <TagHeader
-		     tag={tag}
-		     tagInfo={tagInfo}
-		     topArtists={topArtists}
-		     />		  
-		  <TagDescription
-		     tagInfo={tagInfo}
-		     />
+                    tag={tag}
+                    tagInfo={tagInfo}
+                    topArtists={topArtists}
+                  />
+                  <TagDescription
+                    tagInfo={tagInfo}
+                  />
                   <div className={styles.lists_container}>
-		    <TagTopList
-		       topList={topArtists}
-		       header='Top Artists'
-		       />
-		    <TagTopList
-		       topList={topAlbums}
-		       header='Top Albums'
-		       />
-		  </div>
-		  <TagTopTracks
-		     tracks={topTracks}
-		     addToQueue={addToQueue}
-		     musicSources={musicSources}
-		     />
-		  
-		</div>
-	      )
-	  }
+                    <TagTopList
+                      topList={topArtists}
+                      onClick={this.artistInfoSearchByName.bind(this)}
+                      header='Top Artists'
+                    />
+                    <TagTopList
+                      topList={topAlbums}
+                      header='Top Albums'
+                    />
+                  </div>
+                  <TagTopTracks
+                    tracks={topTracks}
+                    addToQueue={addToQueue}
+                    musicSources={musicSources}
+                  />
+
+                </div>
+              )
+          }
 	</Dimmer.Dimmable>
       </div>
     );
