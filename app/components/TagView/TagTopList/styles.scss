@@ -6,7 +6,7 @@
   flex-flow: column;
   margin-bottom: 2rem;
   flex: 1 1 auto;
-  
+
   h4 {
     font-size: 2rem;
   }
@@ -26,6 +26,7 @@
     padding-bottom: 50%;
     border-radius: 0.25rem;
     overflow: hidden;
+    cursor: pointer;
   }
 
   .top_item_photo {
@@ -48,8 +49,12 @@
     left: 0;
     right: 0;
     padding: 1rem;
-    background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%);
+    background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.65) 100%);
     z-index: 10;
+
+    &:hover {
+      background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(#202020, 0.65) 100%);
+    }
   }
 
   .item_name {
@@ -79,6 +84,7 @@
     width: 50%;
     height: 0;
     padding-bottom: 50%;
+    cursor: pointer;
   }
 
   .other_item_photo {
