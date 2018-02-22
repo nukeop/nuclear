@@ -9,20 +9,13 @@ class SidebarMenu extends React.Component {
     super(props);
   }
 
-  renderItems(){
-    return this.props.children.map((el, i) => {
-      return (
-        <SidebarMenuItem key={i}>
-          {el}
-        </SidebarMenuItem>
-      );
-    });
-  }
-
   render() {
+    let {
+      children
+    } = this.props;
     return (
       <div className={styles.sidebar_menu_container}>
-        { this.renderItems() }
+        { children }
       </div>
     );
   }
