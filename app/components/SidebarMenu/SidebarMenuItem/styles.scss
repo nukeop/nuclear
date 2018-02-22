@@ -14,11 +14,7 @@
   font-size: 1.25rem;
   font-variant: small-caps;
 
-  &:first-child {
-    justify-content: center;
-  }
-
-  &:hover:not(:first-child) {
+  &:hover {
     background: $background3;
   }
 }

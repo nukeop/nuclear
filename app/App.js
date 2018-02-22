@@ -39,6 +39,7 @@ import PlayerControls from './components/PlayerControls';
 import PlayQueue from './components/PlayQueue';
 import Seekbar from './components/Seekbar';
 import SidebarMenu from './components/SidebarMenu';
+import SidebarMenuItem from './components/SidebarMenu/SidebarMenuItem';
 import TrackInfo from './components/TrackInfo';
 import WindowControls from './components/WindowControls';
 import VolumeControls from './components/VolumeControls';
@@ -81,7 +82,7 @@ class App extends React.Component {
         <div className={styles.panel_container}>
           <VerticalPanel className={styles.left_panel}>
             <SidebarMenu>
-              <div style={{textAlign: "center"}}>
+              <div className={styles.sidebar_brand}>
                 <img
                   width="150px"
                   src={logoImg}
@@ -89,12 +90,36 @@ class App extends React.Component {
                 <div className={styles.version_string}>Version 0.4.2</div>
               </div>
 
-              <NavLink to="/dashboard" activeClassName={styles.active_nav_link}><FontAwesome name="dashboard" /> Dashboard</NavLink>
-              <a href="#"><FontAwesome name="download" /> Downloads</a>
-              <NavLink to="/playlists" activeClassName={styles.active_nav_link}><FontAwesome name="music" /> Playlists</NavLink>
-              <NavLink to='/plugins' activeClassName={styles.active_nav_link}><FontAwesome name="flask" /> Plugins</NavLink>
-              <NavLink to='/settings' activeClassName={styles.active_nav_link}><FontAwesome name="cogs" /> Settings</NavLink>
-              <NavLink to="/search" activeClassName={styles.active_nav_link}><FontAwesome name="search" /> Search results</NavLink>
+              <NavLink to="/dashboard" activeClassName={styles.active_nav_link}>
+                <SidebarMenuItem>
+                  <FontAwesome name="dashboard" /> Dashboard
+                </SidebarMenuItem>
+              </NavLink>
+              <a href="#">
+                <SidebarMenuItem>
+                  <FontAwesome name="download" /> Downloads
+                </SidebarMenuItem>
+              </a>
+              <NavLink to="/playlists" activeClassName={styles.active_nav_link}>
+                <SidebarMenuItem>
+                  <FontAwesome name="music" /> Playlists
+                </SidebarMenuItem>
+              </NavLink>
+              <NavLink to='/plugins' activeClassName={styles.active_nav_link}>
+                <SidebarMenuItem>
+                  <FontAwesome name="flask" /> Plugins
+                </SidebarMenuItem>
+              </NavLink>
+              <NavLink to='/settings' activeClassName={styles.active_nav_link}>
+                <SidebarMenuItem>
+                  <FontAwesome name="cogs" /> Settings
+                </SidebarMenuItem>
+              </NavLink>
+              <NavLink to="/search" activeClassName={styles.active_nav_link}>
+                <SidebarMenuItem>
+                  <FontAwesome name="search" /> Search results
+                </SidebarMenuItem>
+              </NavLink>
             </SidebarMenu>
           </VerticalPanel>
           <VerticalPanel className={styles.center_panel}>
