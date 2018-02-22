@@ -92,6 +92,7 @@ class App extends React.Component {
               <NavLink to="/dashboard" activeClassName={styles.active_nav_link}><FontAwesome name="dashboard" /> Dashboard</NavLink>
               <a href="#"><FontAwesome name="download" /> Downloads</a>
               <NavLink to="/playlists" activeClassName={styles.active_nav_link}><FontAwesome name="music" /> Playlists</NavLink>
+              <NavLink to='/plugins' activeClassName={styles.active_nav_link}><FontAwesome name="flask" /> Plugins</NavLink>
               <NavLink to='/settings' activeClassName={styles.active_nav_link}><FontAwesome name="cogs" /> Settings</NavLink>
               <NavLink to="/search" activeClassName={styles.active_nav_link}><FontAwesome name="search" /> Search results</NavLink>
             </SidebarMenu>

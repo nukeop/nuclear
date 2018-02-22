@@ -12,6 +12,7 @@ import ArtistViewContainer from '../ArtistViewContainer';
 import DashboardContainer from '../DashboardContainer';
 import PlaylistsContainer from '../PlaylistsContainer';
 import PlaylistViewContainer from '../PlaylistViewContainer';
+import PluginsContainer from '../PluginsContainer';
 import SearchResultsContainer from '../SearchResultsContainer';
 import SettingsContainer from '../SettingsContainer';
 import TagViewContainer from '../TagViewContainer';
@@ -22,7 +23,6 @@ import styles from './styles.scss';
 class MainContentContainer extends React.Component {
 
   render() {
-
     return(
       <Route render={({location, history, match}) => {
         return (
@@ -33,26 +33,26 @@ class MainContentContainer extends React.Component {
               atLeave={{ opacity: 0 }}
               atActive={{ opacity: 1 }}
               className={styles.transition}
-              >
-                <Switch key={location.key} location={location}>
-                  <Route path="/album/:albumId" component={AlbumViewContainer} />
-                  <Route path="/artist/:artistId" component={ArtistViewContainer} />
-                  <Route path="/dashboard" component={DashboardContainer} />
-                  <Route path="/playlists" component={PlaylistsContainer} />
-                  <Route path="/playlist/:playlistId" component={PlaylistViewContainer} />
-                  <Route path="/settings" component={SettingsContainer} />
-                  <Route path="/tag/:tagName" component={TagViewContainer}/>
-                  <Route path="/search" component={SearchResultsContainer} />
-                </Switch>
-              </RouteTransition>
-            </MainLayout>
-          );
-        }
+            >
+              <Switch key={location.key} location={location}>
+                <Route path="/album/:albumId" component={AlbumViewContainer} />
+                <Route path="/artist/:artistId" component={ArtistViewContainer} />
+                <Route path="/dashboard" component={DashboardContainer} />
+                <Route path="/playlists" component={PlaylistsContainer} />
+                <Route path="/playlist/:playlistId" component={PlaylistViewContainer} />
+                <Route path="/plugins" component={PluginsContainer} />
+                <Route path="/settings" component={SettingsContainer} />
+                <Route path="/tag/:tagName" component={TagViewContainer}/>
+                <Route path="/search" component={SearchResultsContainer} />
+              </Switch>
+            </RouteTransition>
+          </MainLayout>
+        );
+      }
       }>
-
-    </Route>
-  );
-}
+      </Route>
+    );
+  }
 }
 
 function mapStateToProps(state) {
