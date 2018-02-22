@@ -81,7 +81,7 @@ class Settings extends React.Component {
               <Button onClick={lastFmConnectAction} color='red'>Connect with Last.fm</Button>
             }
             {
-              lastFmSessionKey &&
+              !lastFmSessionKey &&
               <Button onClick={() => lastFmLoginAction(lastFmAuthToken)} color='red'>Log in</Button>
             }
           </div>
