@@ -46,6 +46,19 @@
       text-align: right;
     }
   }
+
+  .expand_button {
+    display: flex;
+    justify-content: center;
+    padding: 0.5rem;
+    margin-top: 0.5rem;
+    transition: 0.25s;
+    cursor: pointer;
+
+    &:hover {
+      background: lighten($background, 5%);
+    }
+  }
 }
 
 .add_button {text-align: left;}
