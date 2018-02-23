@@ -1,6 +1,7 @@
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 import {Dimmer, Loader, Image, Segment} from 'semantic-ui-react';
+import _ from 'lodash';
 
 import ContextPopup from '../ContextPopup';
 
@@ -85,6 +86,12 @@ class AlbumView extends React.Component {
     let {
       album
     } = this.props;
+
+    let albumImage = _.find(album.images, {'type': 'primary'}).uri;
+    if(!albumImage) {
+      albumImage = album.images ? album.images[0].uri : artPlaceholder;
+    }
+
     return (
       <div className={styles.album_view_container}>
         <Dimmer.Dimmable>
@@ -96,7 +103,7 @@ class AlbumView extends React.Component {
             !album.loading &&
             <div className={styles.album}>
               <div className={styles.album_info_box}>
-                <img src={album.images ? album.images[0].uri : artPlaceholder}/>
+                <img src={albumImage}/>
                 <div className={styles.album_details}>
                   <div className={styles.album_title}>{album.title}</div>
                   <div className={styles.album_artist}>by <a href='#' onClick={() => {this.artistInfoSearch.bind(this)(album.artists[0].id);}}>{album.artists[0].name}</a></div>
