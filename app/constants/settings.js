@@ -17,7 +17,7 @@ module.exports = [
     name: 'compactMenuBar',
     category: 'Display',
     type: 'boolean',
-    prettyName: 'Make menu bar (left) more compact',
+    prettyName: 'Use compact style for menu bar',
     default: false
   }
 ];
