@@ -6,12 +6,17 @@
   }
 
   .sidebar_menu_item_container {
-    overflow: hidden;
-    padding: 0.25rem;
+    display: flex;
+    justify-content: center;
+    padding: 0.5rem 0.25rem;
   }
 
-  img {
-    width: 75%;
+  .active_nav_link {
+    border: none;
+  }
+
+  span {
+    margin: 0 !important;
   }
 
 }

@@ -97,40 +97,40 @@ class App extends React.Component {
                 <div className={styles.version_string}>
                   {
                     settings.compactMenuBar
-                    ? '0.4.2'
-                    : 'Version 0.4.2'
+                      ? '0.4.2'
+                      : 'Version 0.4.2'
                   }
                 </div>
               </div>
 
               <NavLink to="/dashboard" activeClassName={styles.active_nav_link}>
                 <SidebarMenuItem>
-                  <FontAwesome name="dashboard" /> Dashboard
+                  <FontAwesome name="dashboard" /> { !settings.compactMenuBar && 'Dashboard' }
                 </SidebarMenuItem>
               </NavLink>
               <a href="#">
                 <SidebarMenuItem>
-                  <FontAwesome name="download" /> Downloads
+                  <FontAwesome name="download" /> { !settings.compactMenuBar && 'Downloads' }
                 </SidebarMenuItem>
               </a>
               <NavLink to="/playlists" activeClassName={styles.active_nav_link}>
                 <SidebarMenuItem>
-                  <FontAwesome name="music" /> Playlists
+                  <FontAwesome name="music" /> { !settings.compactMenuBar && 'Playlists' }
                 </SidebarMenuItem>
               </NavLink>
               <NavLink to='/plugins' activeClassName={styles.active_nav_link}>
                 <SidebarMenuItem>
-                  <FontAwesome name="flask" /> Plugins
+                  <FontAwesome name="flask" /> { !settings.compactMenuBar && 'Plugins' }
                 </SidebarMenuItem>
               </NavLink>
               <NavLink to='/settings' activeClassName={styles.active_nav_link}>
                 <SidebarMenuItem>
-                  <FontAwesome name="cogs" /> Settings
+                  <FontAwesome name="cogs" /> { !settings.compactMenuBar && 'Settings' }
                 </SidebarMenuItem>
               </NavLink>
               <NavLink to="/search" activeClassName={styles.active_nav_link}>
                 <SidebarMenuItem>
-                  <FontAwesome name="search" /> Search results
+                  <FontAwesome name="search" /> { !settings.compactMenuBar && 'Search results' }
                 </SidebarMenuItem>
               </NavLink>
             </SidebarMenu>
