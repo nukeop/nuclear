@@ -10,6 +10,16 @@ import styles from './styles.scss';
 class PopularTracks extends React.Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      expanded: false
+    };
+  }
+
+  toggleExpand() {
+    this.setState(prevState => {
+      return { expanded: !prevState.expanded };
+    });
   }
 
   addToQueue(artist, track) {
@@ -30,13 +40,14 @@ class PopularTracks extends React.Component {
       clearQueue,
       musicSources
     } = this.props;
+
     return (
       <div className={styles.popular_tracks_container}>
         <div className={styles.header}>
           Popular tracks:
         </div>
         {
-          tracks.track.slice(0, 5).map((track, index) => {
+          tracks.track.slice(0, this.state.expanded ? 15 : 5).map((track, index) => {
             return (
               <ContextPopup
                 key={index}
@@ -78,10 +89,13 @@ class PopularTracks extends React.Component {
             )
           })
         }
+        <div className="expand_button" onClick={this.toggleExpand.bind(this)}>
+          <FontAwesome name={ this.state.expanded ? "angle-double-up" : "angle-double-down"} />
+        </div>
       </div>
-        );
+    );
 
-      }
-    }
+  }
+}
 
-    export default PopularTracks;
+export default PopularTracks;

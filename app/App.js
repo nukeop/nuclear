@@ -84,7 +84,7 @@ class App extends React.Component {
             <SidebarMenu>
               <div className={styles.sidebar_brand}>
                 <img
-                  width="150px"
+                  width="50%"
                   src={logoImg}
                 />
                 <div className={styles.version_string}>Version 0.4.2</div>
