@@ -30,72 +30,79 @@ class PopularTracks extends React.Component {
     });
   }
 
-  render() {
-    let {
-      artist,
-      tracks,
-      addToQueue,
-      selectSong,
-      startPlayback,
-      clearQueue,
-      musicSources
-    } = this.props;
-
+  renderPopup(key, artist, track, contents) {
     return (
-      <div className={styles.popular_tracks_container}>
-        <div className={styles.header}>
-          Popular tracks:
-        </div>
-        {
-          tracks.track.slice(0, this.state.expanded ? 15 : 5).map((track, index) => {
-            return (
-              <ContextPopup
-                key={index}
-                trigger={
-                  <div className={styles.track_row}>
-                    <img src={track.image[0]['#text'] || artPlaceholder} />
-                    <div className={styles.popular_track_name}>
-                      {track.name}
-                    </div>
-                    <div className={styles.playcount}>
-                      {numeral(track.playcount).format('0,0')}
-                    </div>
-                  </div>
-                }
-                artist={artist.name}
-                title={track.name}
-                thumb={track.image[0]['#text'] || artPlaceholder}
-              >
-                <a
-                  href='#'
-                  onClick={() => this.addToQueue(artist, track)}
-                  className={styles.add_button}
-                >
-                  <FontAwesome name="plus" /> Add to queue
-                </a>
-                <a
-                  href='#'
-                  onClick={() => {
-                    clearQueue();
-                    this.addToQueue(artist, track);
-                    selectSong(0);
-                    startPlayback();
-                  }}
-                  className={styles.add_button}
-                >
-                  <FontAwesome name="play" /> Play now
-                </a>
-              </ContextPopup>
-            )
-          })
+      <ContextPopup
+        key={key}
+        trigger={
+          <div className={styles.track_row}>
+            <img src={track.image[0]['#text'] || artPlaceholder} />
+            <div className={styles.popular_track_name}>
+              {track.name}
+            </div>
+            <div className={styles.playcount}>
+              {numeral(track.playcount).format('0,0')} plays
+            </div>
+          </div>
         }
-        <div className="expand_button" onClick={this.toggleExpand.bind(this)}>
-          <FontAwesome name={ this.state.expanded ? "angle-double-up" : "angle-double-down"} />
+        artist={artist.name}
+        title={track.name}
+        thumb={track.image[0]['#text'] || artPlaceholder}
+      >
+        { contents }
+      </ContextPopup>
+      );
+    }
+
+    render() {
+      let {
+        artist,
+        tracks,
+        addToQueue,
+        selectSong,
+        startPlayback,
+        clearQueue,
+        musicSources
+      } = this.props;
+
+      return (
+        <div className={styles.popular_tracks_container}>
+          <div className={styles.header}>
+            Popular tracks:
+          </div>
+          {
+            tracks.track.slice(0, this.state.expanded ? 15 : 5).map((track, index) => {
+              let popupContents = [
+              <a
+                href='#'
+                onClick={() => this.addToQueue(artist, track)}
+                className={styles.add_button}
+              >
+                <FontAwesome name="plus" /> Add to queue
+              </a>,
+              <a
+                href='#'
+                onClick={() => {
+                  clearQueue();
+                  this.addToQueue(artist, track);
+                  selectSong(0);
+                  startPlayback();
+                }}
+                className={styles.add_button}
+              >
+                <FontAwesome name="play" /> Play now
+              </a>
+              ];
+              return this.renderPopup(index, artist, track, popupContents);
+            })
+          }
+          <div className="expand_button" onClick={this.toggleExpand.bind(this)}>
+            <FontAwesome name={ this.state.expanded ? "angle-double-up" : "angle-double-down"} />
+          </div>
         </div>
-      </div>
-    );
+          );
 
-  }
-}
+        }
+      }
 
-export default PopularTracks;
+      export default PopularTracks;
