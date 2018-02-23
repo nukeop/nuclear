@@ -45,6 +45,9 @@ This version of Nuclear has been rewritten from scratch and released in version 
 - Realtime lyrics
 - Locally stored library/favourites
 
+## Manual and docs
+http://nuclearmusic.rtfd.io/
+
 ## Community-maintained packages
 
 Here's a list of packages maintained by third parties. We would like to thank the maintainers for their work.
