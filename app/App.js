@@ -4,6 +4,7 @@ import Sound from 'react-sound';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { NavLink, Link, withRouter } from 'react-router-dom';
+import classnames from 'classnames';
 import * as Actions from './actions';
 import * as PlayerActions from './actions/player';
 import * as PluginsActions from './actions/plugins';
@@ -13,8 +14,10 @@ import * as ScrobblingActions from './actions/scrobbling';
 
 import './app.global.scss';
 import styles from './styles.scss';
+import compact from './compact.scss';
 
 import logoImg from '../resources/media/logo_full_light.png';
+import logoIcon from '../resources/media/icon.png';
 import artPlaceholder from '../resources/media/art_placeholder.png';
 
 import { config as PluginConfig } from './plugins/config';
@@ -71,6 +74,10 @@ class App extends React.Component {
   }
 
   render() {
+    let {
+      settings
+    } = this.props;
+
     return (
       <div className={styles.app_container}>
         <Navbar className={styles.navbar}>
@@ -80,14 +87,20 @@ class App extends React.Component {
           <WindowControls />
         </Navbar>
         <div className={styles.panel_container}>
-          <VerticalPanel className={styles.left_panel}>
+          <VerticalPanel className={classnames(styles.left_panel, {[`${compact.compact_panel}`]: settings.compactMenuBar})}>
             <SidebarMenu>
               <div className={styles.sidebar_brand}>
                 <img
                   width="50%"
-                  src={logoImg}
+                  src={settings.compactMenuBar ? logoIcon : logoImg}
                 />
-                <div className={styles.version_string}>Version 0.4.2</div>
+                <div className={styles.version_string}>
+                  {
+                    settings.compactMenuBar
+                    ? '0.4.2'
+                    : 'Version 0.4.2'
+                  }
+                </div>
               </div>
 
               <NavLink to="/dashboard" activeClassName={styles.active_nav_link}>
@@ -168,7 +181,8 @@ function mapStateToProps(state) {
   return {
     queue: state.queue,
     player: state.player,
-    scrobbling: state.scrobbling
+    scrobbling: state.scrobbling,
+    settings: state.settings
   };
 }
 

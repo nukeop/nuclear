@@ -12,5 +12,12 @@ module.exports = [
     type: 'boolean',
     prettyName: 'Frameless window (requires restart)',
     default: true
+  },
+  {
+    name: 'compactMenuBar',
+    category: 'Display',
+    type: 'boolean',
+    prettyName: 'Make menu bar (left) more compact',
+    default: false
   }
 ];
