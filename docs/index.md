@@ -11,8 +11,9 @@ This means that you can search for your favourite artists, albums, and songs, an
 The primary sources of data on music-related entities are Discogs and Last.fm, which offer rich APIs.
 
 Discogs powers the following:
-- Artist search
-- Album search
+
+  - Artist search
+  - Album search
 
 Last.fm augments data returned by Discogs by adding extra information. When you visit an artist, or album page, Discogs provides broad information such as the name, images, list of releases, album covers, and so on, while Last.fm is simultaneously asked for more detailed information such as top tracks, Musicbrainz id, tags, short bio, and similar artists.
 
