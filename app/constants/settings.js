@@ -19,5 +19,12 @@ module.exports = [
     type: 'boolean',
     prettyName: 'Use compact style for menu bar',
     default: false
+  },
+  {
+    name: 'compactQueueBar',
+    category: 'Display',
+    type: 'boolean',
+    prettyName: 'Use compact style for queue bar',
+    default: false
   }
 ];
