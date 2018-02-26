@@ -17,7 +17,7 @@ class QueueMenu extends React.Component {
       fun(items, name);
     };
   }
-  
+
   render() {
     let {
       addPlaylist,
@@ -39,7 +39,7 @@ class QueueMenu extends React.Component {
 		 <a href='#'><FontAwesome name="save" /></a>
 	     }
           >
-            
+
 	    </InputDialog>
           <a className={globalStyles.disabled} href='#'><FontAwesome name="random" /></a>
         </div>

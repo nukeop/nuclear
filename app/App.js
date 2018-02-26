@@ -138,8 +138,8 @@ class App extends React.Component {
           <VerticalPanel className={styles.center_panel}>
             <MainContentContainer />
           </VerticalPanel>
-          <VerticalPanel className={styles.right_panel}>
-            <PlayQueueContainer />
+          <VerticalPanel className={classnames(styles.right_panel, {[`${compact.compact_panel}`]: settings.compactQueueBar})}>
+            <PlayQueueContainer compact={settings.compactQueueBar} />
           </VerticalPanel>
         </div>
         <Footer className={styles.footer}>

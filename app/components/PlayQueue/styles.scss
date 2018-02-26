@@ -10,10 +10,41 @@
     flex-flow: column;
     flex: 1 1 auto;
     overflow-y: auto;
-  
+
     .queue_item_container {
       transition: all 0.4s ease-out;
       opacity: 0;
+    }
+  }
+
+  &.compact {
+    .queue_menu_container {
+      display: none;
+    }
+
+    .queue_item_container {
+      margin: 0.25rem;
+      height: 2.5rem;
+    }
+
+    .thumbnail_container {
+      width: 100%;
+      height: auto;
+      margin: 0;
+      padding: 0.25rem;
+    }
+
+    .item_info_container {
+      display: none;
+    }
+
+    .item_duration_container {
+      display: none;
+    }
+
+    img {
+      width: 100%;
+      height: auto;
     }
   }
 }
