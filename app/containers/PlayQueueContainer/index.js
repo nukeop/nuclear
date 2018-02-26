@@ -27,6 +27,7 @@ class PlayQueueContainer extends React.Component {
         clearQueue={this.props.actions.clearQueue}
 	removeFromQueue={this.props.actions.removeFromQueue}
         addPlaylist={this.props.actions.addPlaylist}
+        compact={this.props.compact}
       />
     );
   }

@@ -40,12 +40,19 @@ class PlayQueue extends React.Component {
   }
 
   render() {
+    let {
+      compact,
+      clearQueue,
+      addPlaylist,
+      items
+    } = this.props;
+
     return (
-      <div className={styles.play_queue_container}>
+      <div className={classnames(styles.play_queue_container, {'compact': compact})}>
         <QueueMenu
-          clearQueue={this.props.clearQueue}
-          addPlaylist={this.props.addPlaylist}
-          items={this.props.items}
+          clearQueue={clearQueue}
+          addPlaylist={addPlaylist}
+          items={items}
         />
 
         <div className={classnames(styles.play_queue_items, styles.fade_in)}>
