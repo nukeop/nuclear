@@ -112,3 +112,28 @@
   text-align: center;
   padding: 1rem;
 }
+
+.sidebar_footer {
+  display: flex;
+  flex-flow: row;
+  justify-content: flex-end;
+  margin: 0.5rem;
+
+  a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: $background2;
+    color: $white !important;
+    width: 2rem;
+    height: 2rem;
+
+    &:hover {
+      background: lighten($background2, 10%);
+    }
+
+    &:active {
+      background: lighten($background2, 20%);
+    }
+  }
+}
