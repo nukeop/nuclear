@@ -1,22 +1,17 @@
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
+import _ from 'lodash';
 
 import InputDialog from '../../InputDialog';
 import Spacer from '../../Spacer';
 
 import styles from './styles.scss';
 import globalStyles from '../../../app.global.scss';
+import settingsConst from '../../../constants/settings';
 
 class QueueMenu extends React.Component {
   constructor(props){
     super(props);
-  }
-
-  toggleOption(option) {
-    let state = this.props.settings[option];
-    state !== undefined
-    ? this.props.setBooleanOption(option, !state)
-    : this.props.setBooleanOption(option, true);
   }
 
   handleAddPlaylist(fun, items) {
@@ -30,14 +25,15 @@ class QueueMenu extends React.Component {
       addPlaylist,
       clearQueue,
       items,
+      toggleOption,
       settings
     } = this.props;
 
     return (
       <div className={styles.queue_menu_container}>
         <div className={styles.queue_menu_buttons}>
-          <a href='#' className='compactButton' onClick={() => this.toggleOption('compactQueueBar')}>
-            <FontAwesome name={settings['compactQueueBar'] ? 'angle-left' : 'angle-right'} />
+          <a href='#' className='compactButton' onClick={() => toggleOption(_.find(settingsConst, ['name', 'compactQueueBar']), settings)}>
+            <FontAwesome name={settings.compactQueueBar ? 'angle-left' : 'angle-right'} />
           </a>
           <a href='#' onClick={clearQueue}><FontAwesome name="trash-o" /></a>
 

@@ -21,6 +21,7 @@ import logoIcon from '../resources/media/icon.png';
 import artPlaceholder from '../resources/media/art_placeholder.png';
 
 import { config as PluginConfig } from './plugins/config';
+import settingsConst from './constants/settings';
 
 import Footer from './components/Footer';
 import Navbar from './components/Navbar';
@@ -78,6 +79,10 @@ class App extends React.Component {
       settings
     } = this.props;
 
+    let {
+      toggleOption
+    } = this.props.actions;
+
     return (
       <div className={styles.app_container}>
         <Navbar className={styles.navbar}>
@@ -133,6 +138,12 @@ class App extends React.Component {
                   <FontAwesome name="search" /> { !settings.compactMenuBar && 'Search results' }
                 </SidebarMenuItem>
               </NavLink>
+              <Spacer />
+              <div className='sidebar_footer'>
+                <a onClick={() => toggleOption(_.find(settingsConst, ['name', 'compactMenuBar']), settings)} href="#">
+                  <FontAwesome name={settings.compactMenuBar ? 'angle-right' : 'angle-left'} />
+                </a>
+              </div>
             </SidebarMenu>
           </VerticalPanel>
           <VerticalPanel className={styles.center_panel}>
