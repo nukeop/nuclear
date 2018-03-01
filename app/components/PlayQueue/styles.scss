@@ -18,8 +18,10 @@
   }
 
   &.compact {
-    .queue_menu_container {
-      display: none;
+    .queue_menu_buttons {
+      a:not(.compactButton) {
+        display: none;
+      }
     }
 
     .queue_item_container {

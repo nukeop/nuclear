@@ -12,6 +12,13 @@ class QueueMenu extends React.Component {
     super(props);
   }
 
+  toggleOption(option) {
+    let state = this.props.settings[option];
+    state !== undefined
+    ? this.props.setBooleanOption(option, !state)
+    : this.props.setBooleanOption(option, true);
+  }
+
   handleAddPlaylist(fun, items) {
     return name => {
       fun(items, name);
@@ -22,25 +29,29 @@ class QueueMenu extends React.Component {
     let {
       addPlaylist,
       clearQueue,
-      items
+      items,
+      settings
     } = this.props;
 
     return (
       <div className={styles.queue_menu_container}>
         <div className={styles.queue_menu_buttons}>
+          <a href='#' className='compactButton' onClick={() => this.toggleOption('compactQueueBar')}>
+            <FontAwesome name={settings['compactQueueBar'] ? 'angle-left' : 'angle-right'} />
+          </a>
           <a href='#' onClick={clearQueue}><FontAwesome name="trash-o" /></a>
 
-	  <InputDialog
-	     header={<h4>Input playlist name:</h4>}
-	     placeholder='Playlist name...'
-	     accept='Save'
-	     onAccept={this.handleAddPlaylist(addPlaylist, items)}
-	     trigger={
-		 <a href='#'><FontAwesome name="save" /></a>
-	     }
+          <InputDialog
+            header={<h4>Input playlist name:</h4>}
+            placeholder='Playlist name...'
+            accept='Save'
+            onAccept={this.handleAddPlaylist(addPlaylist, items)}
+            trigger={
+              <a href='#'><FontAwesome name="save" /></a>
+            }
           >
 
-	    </InputDialog>
+          </InputDialog>
           <a className={globalStyles.disabled} href='#'><FontAwesome name="random" /></a>
         </div>
         <hr />
