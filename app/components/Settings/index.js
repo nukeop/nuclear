@@ -13,12 +13,6 @@ class Settings extends React.Component {
     lastFmScrobblingEnabled ? disableScrobbling(): enableScrobbling();
   }
 
-  toggleOption(option, state) {
-    state !== undefined
-    ? this.props.actions.setBooleanOption(option.name, !state)
-    : this.props.actions.setBooleanOption(option.name, !option.default);
-  }
-
   isChecked(option) {
     return this.props.settings[option.name] !== undefined
     ? this.props.settings[option.name]
@@ -113,7 +107,7 @@ class Settings extends React.Component {
                         <Spacer />
                         <Radio
                           toggle
-                          onChange={() => this.toggleOption(option, settings[option.name])}
+                          onChange={() => this.props.actions.toggleOption(option, settings)}
                           checked={this.isChecked(option)}
                         />
                       </div>
