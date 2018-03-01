@@ -9,12 +9,16 @@
   .queue_menu_buttons {
     display: flex;
     flex-flow: row;
-    margin: 0.5rem 0 0.5rem 0;
+    margin-top: 0.5rem;
 
     a {
+      display: flex;
+      justify-content: center;
+      align-items: center;
       background: $background2;
-      padding: 0.5rem 0.75rem;
-      margin: 0 0.5rem;
+      width: 2rem;
+      height: 2rem;
+      margin: 0;
 
       &:first-child {
         margin-left: 0;
