@@ -27,13 +27,13 @@ class PlayQueue extends React.Component {
               track={el}
               loading={el.loading}
               current={this.props.currentSong === i}
-              selectSong={this.props.selectSong}
-              removeFromQueue={this.props.removeFromQueue}
+              selectSong={this.props.actions.selectSong}
+              removeFromQueue={this.props.actions.removeFromQueue}
             />
           }
           track={el}
           musicSources={this.props.musicSources}
-          rerollTrack={this.props.rerollTrack}
+          rerollTrack={this.props.actions.rerollTrack}
         />
       );
     });
@@ -42,16 +42,23 @@ class PlayQueue extends React.Component {
   render() {
     let {
       compact,
+      items,
+      settings
+    } = this.props;
+
+    let {
       clearQueue,
       addPlaylist,
-      items
-    } = this.props;
+      setBooleanOption
+    } = this.props.actions;
 
     return (
       <div className={classnames(styles.play_queue_container, {'compact': compact})}>
         <QueueMenu
           clearQueue={clearQueue}
           addPlaylist={addPlaylist}
+          setBooleanOption={setBooleanOption}
+          settings={settings}
           items={items}
         />
 
