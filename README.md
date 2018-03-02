@@ -61,6 +61,10 @@ We do not control these and cannot be held responsible for their contents, but i
 ## Screenshots
 This will be updated as the program evolves.
 
+![laptop mockup 1](https://i.imgur.com/31Tc5qf.jpg)
+
+![laptop mockup 2](https://i.imgur.com/HqMP5HF.jpg)
+
 ![album search](http://i.imgur.com/tLSv6pw.png)
 
 ![album display](http://i.imgur.com/hAEXUaQ.png)
