@@ -11,17 +11,20 @@ class PluginsContainer extends React.Component {
 
   render() {
     let {
-
+      plugin
     } = this.props;
 
     return (
-      <PluginsView />
+      <PluginsView
+        plugins={plugin.plugins}
+      />
     );
   }
 }
 
 function mapStateToProps(state) {
 	return {
+    plugin: state.plugin
 	}
 }
 
