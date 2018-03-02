@@ -1,10 +1,12 @@
 import React from 'react';
+import classnames from 'classnames';
 import { Image } from 'semantic-ui-react';
+import Img from 'react-image-smooth-loading';
 import artPlaceholder from '../../../resources/media/art_placeholder.png';
 
 import styles from './styles.scss';
 
-var classNames = require('classnames');
+Img.globalPlaceholder = artPlaceholder;
 
 class Card extends React.Component {
   constructor(props) {
@@ -16,7 +18,7 @@ class Card extends React.Component {
       <div className={styles.card_container}>
         <div
           className={
-            classNames({
+            classnames({
               [`${styles.card}`]: true,
               [`${styles.small}`]: this.props.small
             })
@@ -24,12 +26,7 @@ class Card extends React.Component {
           onClick={this.props.onClick}
         >
           <div className={styles.thumbnail}>
-            <div style={{
-                        background: `url('${(this.props.image ? this.props.image : artPlaceholder)}')`,
-                        backgroundRepeat: 'noRepeat',
-                        backgroundPosition: 'center',
-                        backgroundSize: 'cover'
-                      }}></div>
+            <Img src={this.props.image ? this.props.image : artPlaceholder} />
           </div>
           <div className={styles.container}>
             <h4>{this.props.header}</h4>
