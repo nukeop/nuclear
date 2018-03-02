@@ -15,6 +15,7 @@
     padding-bottom: 25%;
     border-radius: 0.25rem;
     transition: 0.25s;
+    overflow: hidden;
 
     &:hover {
       transform: scale(1.1);
@@ -35,13 +36,8 @@
     overflow: hidden;
     background-color: $black;
   }
-  
-  .genre_bg {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    background-size: contain;
-    background-position: center;
+
+  .genre_overlay img:first-child {
     opacity: 0.60;
   }
 

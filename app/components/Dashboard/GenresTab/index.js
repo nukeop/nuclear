@@ -1,5 +1,6 @@
 import React from 'react';
 import {Tab} from 'semantic-ui-react';
+import Img from 'react-image-smooth-loading';
 
 import styles from './styles.scss';
 
@@ -31,12 +32,7 @@ class GenresTab extends React.Component {
                   >
 
                     <div className={styles.genre_overlay}>
-                      <div className={styles.genre_bg}
-                        style={{
-                          backgroundImage: 'url(' + 'https://picsum.photos/256x256/?random&seed=' + i  + ')'
-                        }}
-                        >
-                        </div>
+                      <Img src={'https://picsum.photos/256x256/?random&seed=' + i} />
                       </div>
                       <div className={styles.genre_name}>
                         {tag.name}

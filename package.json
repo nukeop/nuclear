@@ -46,9 +46,11 @@
     "pitchfork-bnm": "^1.0.3",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
+    "react-image-smooth-loading": "^2.0.0",
     "react-router-transition": "^1.2.1",
     "react-sound": "^1.1.0",
     "semantic-ui-react": "^0.78.2",
+    "styled-components": "^3.1.6",
     "uuid": "^3.2.1",
     "ytdl-core": "^0.20.1"
   },

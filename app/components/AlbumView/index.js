@@ -87,9 +87,11 @@ class AlbumView extends React.Component {
       album
     } = this.props;
 
-    let albumImage = _.find(album.images, {'type': 'primary'}).uri;
+    let albumImage = _.find(album.images, {'type': 'primary'});
     if(!albumImage) {
       albumImage = album.images ? album.images[0].uri : artPlaceholder;
+    } else {
+      albumImage = albumImage.uri;
     }
 
     return (
