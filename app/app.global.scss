@@ -60,6 +60,10 @@ a.disabled {
   position: relative;
 }
 
+.ui.inverted.segment {
+  background: $background3;
+}
+
 .ui.menu {
   .item {
     color: $white;
