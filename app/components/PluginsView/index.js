@@ -1,5 +1,5 @@
 import React from 'react';
-import { Menu } from 'semantic-ui-react';
+import { List, Segment } from 'semantic-ui-react';
 import _ from 'lodash';
 
 import Header from '../Header';
@@ -20,33 +20,29 @@ class PluginsView extends React.Component {
           Plugins
         </Header>
         <div className={styles.plugin_settings}>
-          <Menu vertical inverted>
-            {
-              _.map(plugins, (category, key) => {
-                return (
-                  <Menu.Item>
-                    <Menu.Header>{key}</Menu.Header>
-                    <Menu.Menu>
-                      {
-                        category.map(plugin => {
-                          return (
-                            <Menu.Item>
-                              {plugin.name}
-                            </Menu.Item>
-                          );
-                        })
-                      }
-                    </Menu.Menu>
-                  </Menu.Item>
-                );
-              })
-            }
-          </Menu>
-          <div className={styles.plugin_well}>
-            Plugin settings
-          </div>
+          <Header>
+            Music sources
+          </Header>
+          <Segment inverted>
+            <List celled inverted>
+              {
+                plugins.musicSources.map(source => {
+                  return (
+                    <List.Item>
+                      <List.Content>
+                        <List.Header>{source.name}</List.Header>
+                        {source.description}
+                      </List.Content>
+                      <div className={styles.plugin_buttons}>
+                        dupa
+                      </div>
+                    </List.Item>
+                  );
+                })
+              }
+            </List>
+          </Segment>
         </div>
-
       </div>
     );
   }
