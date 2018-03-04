@@ -178,3 +178,33 @@ hr {
   flex: 0 0 auto;
   margin: 0.5rem;
 }
+
+.ui.inverted.list .item a:not(.ui) {
+  color: $white !important;
+
+  &:hover,
+  &:focus,
+  &:active {
+    color: $white !important;
+  }
+}
+
+.link_button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: $background2;
+  color: $white !important;
+  width: 2rem;
+  height: 2rem;
+
+  &:hover {
+    background: lighten($background2, 10%);
+    color: $white !important;
+  }
+
+  &:active {
+    background: lighten($background2, 20%);
+    color: $white !important;
+  }
+}

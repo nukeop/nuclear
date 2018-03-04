@@ -1,4 +1,5 @@
 import React from 'react';
+import FontAwesome from 'react-fontawesome';
 import { List, Segment } from 'semantic-ui-react';
 import _ from 'lodash';
 
@@ -34,7 +35,8 @@ class PluginsView extends React.Component {
                         {source.description}
                       </List.Content>
                       <div className={styles.plugin_buttons}>
-                        dupa
+                        <a className='link_button' href='#'><FontAwesome name='angle-up'/></a>
+                        <a className='link_button' href='#'><FontAwesome name='angle-down'/></a>
                       </div>
                     </List.Item>
                   );
