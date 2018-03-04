@@ -47,7 +47,7 @@
     color: rgba($white, 0.25);
     font-size: 12px;
   }
-  
+
   .stream_source {
     display: flex;
     flex-flow: column;
@@ -88,10 +88,12 @@
     justify-content: flex-end;
     align-items: flex-end;
     padding: 0.5rem;
+    pointer-events: none;
 
     a {
       background: rgba($black, 0.5);
       padding: 0.5rem 0.75rem;
+      pointer-events: all;
     }
   }
 }
