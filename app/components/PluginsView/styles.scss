@@ -21,6 +21,11 @@
   .ui.list .item {
     display: flex;
     flex-flow: row;
+    padding-bottom: 0.5rem;
+
+    &:first-child {
+      padding-bottom: 0.5rem;
+    }
   }
 
   .plugin_buttons {
