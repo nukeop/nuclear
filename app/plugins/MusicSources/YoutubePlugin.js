@@ -9,7 +9,7 @@ class YoutubePlugin extends MusicSourcePlugin {
     super();
     this.name = 'Youtube Plugin';
     this.sourceName = 'Youtube';
-    this.description = 'A plugin allowing nuclear to search for music and play it from youtube';
+    this.description = 'A plugin allowing Nuclear to search for music and play it from youtube';
   }
 
   search(terms) {
@@ -23,12 +23,12 @@ class YoutubePlugin extends MusicSourcePlugin {
     .then(videoInfo => {
       let formatInfo = _.head(videoInfo.formats.filter(e => e.itag === '140'));
       return {
-	source: 'Youtube',
-	id: videoInfo.video_id,
-	stream: formatInfo.url,
-	duration: videoInfo.length_seconds,
-	title: videoInfo.title,
-	thumbnail: videoInfo.thumbnail_url
+        source: 'Youtube',
+        id: videoInfo.video_id,
+        stream: formatInfo.url,
+        duration: videoInfo.length_seconds,
+        title: videoInfo.title,
+        thumbnail: videoInfo.thumbnail_url
       };
     });
   }
