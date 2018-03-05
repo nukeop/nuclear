@@ -23,7 +23,7 @@ class YoutubePlugin extends MusicSourcePlugin {
     .then(videoInfo => {
       let formatInfo = _.head(videoInfo.formats.filter(e => e.itag === '140'));
       return {
-        source: 'Youtube',
+        source: this.sourceName,
         id: videoInfo.video_id,
         stream: formatInfo.url,
         duration: videoInfo.length_seconds,
