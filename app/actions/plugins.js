@@ -1,4 +1,5 @@
 export const CREATE_PLUGINS = 'CREATE_PLUGINS';
+export const REPLACE_PLUGINS = 'REPLACE_PLUGINS';
 
 import config from '../plugins/config';
 
@@ -22,5 +23,12 @@ export function createSearchPlugins(pluginClasses) {
   return {
     type: CREATE_PLUGINS,
     payload: plugins
+  };
+}
+
+export function replacePlugins(newPlugins) {
+  return {
+    type: REPLACE_PLUGINS,
+    payload: newPlugins
   };
 }

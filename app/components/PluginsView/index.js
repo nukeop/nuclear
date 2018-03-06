@@ -27,9 +27,12 @@ class PluginsView extends React.Component {
           <Segment inverted>
             <List celled inverted>
               {
-                plugins.musicSources.map(source => {
+                plugins.musicSources.map((source, index) => {
                   return (
                     <List.Item>
+                      <div className={styles.plugin_index}>
+                        {index + 1}.
+                      </div>
                       <List.Content>
                         <List.Header>{source.name}</List.Header>
                         {source.description}
