@@ -28,6 +28,13 @@
     }
   }
 
+  .plugin_index {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-right: 1rem;
+  }
+
   .plugin_buttons {
     display: flex;
     flex-flow: row;
