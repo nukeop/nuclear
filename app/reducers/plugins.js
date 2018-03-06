@@ -1,5 +1,6 @@
 import {
-  CREATE_PLUGINS
+  CREATE_PLUGINS,
+  REPLACE_PLUGINS
 } from '../actions/plugins';
 
 const initialState = {
@@ -9,10 +10,14 @@ const initialState = {
 export default function PluginsReducer(state=initialState, action) {
   switch(action.type) {
     case CREATE_PLUGINS:
-      return Object.assign({}, state, {
-        plugins: action.payload
-      });
+    return Object.assign({}, state, {
+      plugins: action.payload
+    });
+    case REPLACE_PLUGINS:
+    return Object.assign({}, {
+      plugins: action.payload
+    });
     default:
-      return state;
+    return state;
   }
 }
