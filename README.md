@@ -2,7 +2,7 @@
 
 [![Maintainability](https://api.codeclimate.com/v1/badges/a15c4888a63c900f6cc1/maintainability)](https://codeclimate.com/github/nukeop/nuclear/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/a15c4888a63c900f6cc1/test_coverage)](https://codeclimate.com/github/nukeop/nuclear/test_coverage) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/30750586202742279fa8958a12e519ed)](https://www.codacy.com/app/nukeop/nuclear?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=nukeop/nuclear&amp;utm_campaign=Badge_Grade) ![Travis](https://api.travis-ci.org/nukeop/nuclear.svg?branch=master)
 
-An Electron-based, multiplatform music player app that streams from multiple sources
+Desktop music player focused on streaming from free sources
 
 [Official website](http://nuclear.gumblert.tech)
 
