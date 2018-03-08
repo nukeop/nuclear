@@ -11,6 +11,14 @@ class PluginsView extends React.Component {
     super(props);
   }
 
+  movePlugin(index, dir) {
+    let newPlugins = _.cloneDeep(this.props.plugins);
+    let temp = newPlugins.musicSources[index+dir];
+    newPlugins.musicSources[index+dir] = newPlugins.musicSources[index];
+    newPlugins.musicSources[index] = temp;
+    this.props.actions.replacePlugins(newPlugins);
+  }
+
   render() {
     let {
       plugins
@@ -38,8 +46,14 @@ class PluginsView extends React.Component {
                         {source.description}
                       </List.Content>
                       <div className={styles.plugin_buttons}>
-                        <a className='link_button' href='#'><FontAwesome name='angle-up'/></a>
-                        <a className='link_button' href='#'><FontAwesome name='angle-down'/></a>
+                        {
+                          index > 0 &&
+                          <a className='link_button' disabled href='#' onClick={() => this.movePlugin(index, -1)}><FontAwesome name='angle-up'/></a>
+                        }
+                        {
+                          index < plugins.musicSources.length - 1 &&
+                          <a className='link_button' href='#' onClick={() => this.movePlugin(index, 1)}><FontAwesome name='angle-down'/></a>
+                        }
                       </div>
                     </List.Item>
                   );

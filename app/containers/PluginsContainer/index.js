@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import PluginsView from '../../components/PluginsView';
+import * as PluginsActions from '../../actions/plugins';
 
 class PluginsContainer extends React.Component {
   constructor(props) {
@@ -11,11 +12,13 @@ class PluginsContainer extends React.Component {
 
   render() {
     let {
+      actions,
       plugin
     } = this.props;
 
     return (
       <PluginsView
+        actions={actions}
         plugins={plugin.plugins}
       />
     );
@@ -30,7 +33,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
 	return {
-		actions: bindActionCreators(Object.assign({}), dispatch)
+		actions: bindActionCreators(Object.assign({}, PluginsActions), dispatch)
 	}
 }
 
