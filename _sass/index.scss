@@ -1,0 +1,340 @@
+body, html {
+  position: absolute;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-family: 'Lato', sans-serif;
+  background-image: linear-gradient(160deg, #290B36 0%, #043453 100%);
+  background-attachment: fixed;
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-flow: column;
+  color: $white;
+}
+
+header {
+  display: flex;
+  flex-flow: row;
+  padding: 1rem;
+  min-height: 3rem;
+  height: 3rem;
+  width: 100%;
+
+  a {
+    display: flex;
+    justify-content: flex-end;
+    position: relative;
+    width: auto;
+    height: 100%;
+  }
+
+  img {
+    width: auto;
+    height: 100%;
+  }
+}
+
+h1, h2, h3 {
+  font-weight: 400;
+  text-shadow: 0px 2px 6px rgba(0, 0, 0, 0.47);
+}
+
+h1 {
+  font-size: 3em;
+}
+
+h2 {
+  font-size: 2em;
+  margin-bottom: 2rem;
+}
+
+h3 {
+  font-size: 1.5em;
+  text-align: left;
+}
+
+h2 a {
+  text-decoration: none;
+  color: $white;
+}
+
+section {
+  display: flex;
+  flex-flow: column;
+  justify-content: flex-start;
+  align-items: center;
+  position: relative;
+  padding: 1rem 0;
+  width: 100%;
+
+  &.light {
+    background: $white;
+    color: $bg;
+
+    h1, h2, h3 {
+      text-shadow: none;
+    }
+  }
+}
+
+input {
+  padding: 1rem 2rem;
+  margin: 0;
+  border: 0;
+  font-family: 'Lato', sans-serif;
+
+  &:focus,
+  &:active {
+    outline: none;
+  }
+}
+
+form {
+  display: flex;
+  flex-flow: row;
+  width: 100%;
+  max-width: 600px;
+  height: 52px;
+  min-height: 52px;
+}
+
+.container {
+  display: flex;
+  flex-flow: column;
+  justify-content: flex-start;
+  align-items: center;
+  position: relative;
+  width: 75%;
+  margin: auto;
+  text-align: center;
+}
+
+.gradient-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 4rem;
+  background: linear-gradient(rgba($black, 0.0) 0%, rgba($black, 0.6) 100%);
+  z-index: 10;
+}
+
+.dark-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.screenshot {
+  position: relative;
+  width: 100%;
+  max-width: 1280px;
+}
+
+.input-hidden {
+  position: absolute;
+  left: -10000px;
+}
+
+.input-email {
+  flex: 1 1 auto;
+  background-image: linear-gradient(160deg, #290B36 0%, #043453 100%);
+  background-attachment: fixed;
+  color: $bg;
+  background: $white;
+  border-radius: 0.25rem 0 0 0.25rem;
+}
+
+.submit-button {
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  background: $purple;
+  color: $white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.25s;
+  border-radius: 0 0.25rem 0.25rem 0;
+
+  &:hover {
+    background: darken($purple, 15%);
+  }
+}
+
+.links {
+  display: flex;
+  flex-flow: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 600px;
+  margin: 5rem 0 1rem;
+
+  a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-decoration: none;
+    text-transform: uppercase;
+    padding: 1rem 2.5rem;
+    margin: 0 2rem;
+    border-radius: 0.25rem;
+  }
+
+  :first-child {
+    background: $blue;
+    border: 2px solid transparent;
+  }
+
+  :last-child {
+    background: transparent;
+    border: 2px solid $white;
+  }
+}
+
+.feature {
+  display: flex;
+  flex-flow: row;
+  width: 100%;
+  margin-top: 4rem;
+
+  .spacer {
+    width: 10%;
+  }
+
+  .logo, .description {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    width: 45%;
+  }
+
+  .logo div {
+    height: 100%;
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+
+  .logo.small div {
+    margin: 1.25rem 0;
+  }
+
+  &:last-child {
+    margin-bottom: 3rem;
+  }
+}
+
+.button {
+  color: white;
+  text-decoration: none;
+  padding: 0.75rem 1.5rem;
+  border: 1px solid rgba($white, 0.69);
+  border-radius: 0.25rem;
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.footer {
+  text-transform: uppercase;
+
+  a {
+    color: $white;
+  }
+}
+
+::placeholder {
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+}
+
+@media screen and (max-width: 768px) {
+  .feature {
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+
+    .logo, .description {
+      flex-flow: row;
+      height: 45%;
+      width: 100%;
+    }
+
+    .logo {
+      height: 10rem;
+    }
+
+    .logo div {
+      width: 100%;
+      background-position: center;
+    }
+
+    .logo.small div {
+      width:50%;
+      margin: 0;
+    }
+
+    img {
+      width:100%;
+    }
+  }
+
+  .links {
+    flex-flow: column;
+    margin: 2rem 0 0;
+
+    a {
+      margin: 0 0 2rem;
+      width: 100%;
+      box-sizing: border-box;
+    }
+  }
+
+  .screenshot {
+    width: 120%;
+  }
+
+  h1 {
+    font-size: 2em;
+  }
+
+  h2 {
+
+    font-size: 1.5em;
+  }
+
+  h3 {
+    font-size: 1.25em;
+  }
+
+  form {
+    flex-flow: column;
+    height: auto;
+
+    input {
+        padding: 1rem 2.5rem;
+        border: 3px solid transparent;
+    }
+  }
+
+  .input-email {
+    border-radius: 0.25rem;
+  }
+
+  .submit-button {
+    margin: 2rem 0 0;
+    border-radius: 0.25rem;
+  }
+}
