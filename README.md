@@ -97,7 +97,7 @@ npm install electron-rebuild
 .node_modules/.bin/electron-rebuild
 ```
 
-And run the script again.
+And run the script again. The rebuild will be done automatically by the postinstall script however.
 
 
 #### Support on Beerpay
