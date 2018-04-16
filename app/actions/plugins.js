@@ -1,5 +1,5 @@
 export const CREATE_PLUGINS = 'CREATE_PLUGINS';
-export const REPLACE_PLUGINS = 'REPLACE_PLUGINS';
+export const SAVE_MUSIC_SOURCE_ORDER = 'SAVE_MUSIC_SOURCE_ORDER';
 
 import config from '../plugins/config';
 
@@ -26,9 +26,9 @@ export function createSearchPlugins(pluginClasses) {
   };
 }
 
-export function replacePlugins(newPlugins) {
+export function saveMusicSourceOrder(musicSourceOrder) {
   return {
-    type: REPLACE_PLUGINS,
-    payload: newPlugins
+    type: SAVE_MUSIC_SOURCE_ORDER,
+    payload: musicSourceOrder
   };
 }

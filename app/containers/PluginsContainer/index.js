@@ -19,6 +19,7 @@ class PluginsContainer extends React.Component {
     return (
       <PluginsView
         actions={actions}
+        musicSourceOrder={plugin.musicSourceOrder}
         plugins={plugin.plugins}
       />
     );

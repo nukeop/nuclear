@@ -11,18 +11,38 @@ class PluginsView extends React.Component {
     super(props);
   }
 
+  sortPlugins(musicSources, musicSourceOrder) {
+    let result = musicSources;
+    if (musicSourceOrder) {
+      result = _.sortBy(musicSources, source => {
+        if(_.includes(musicSourceOrder, source.name)) {
+          return _.indexOf(musicSourceOrder, source.name);
+        } else {
+          return 99;
+        }
+      });
+    }
+    return result;
+  }
+
   movePlugin(index, dir) {
-    let newPlugins = _.cloneDeep(this.props.plugins);
-    let temp = newPlugins.musicSources[index+dir];
-    newPlugins.musicSources[index+dir] = newPlugins.musicSources[index];
-    newPlugins.musicSources[index] = temp;
-    this.props.actions.replacePlugins(newPlugins);
+    let order = this.sortPlugins(this.props.plugins.musicSources, this.props.musicSourceOrder);
+    order = _.map(order, source => source.name);
+    let temp = order[index + dir];
+    order[index + dir] = order[index];
+    order[index] = temp;
+    this.props.actions.saveMusicSourceOrder(order);
   }
 
   render() {
     let {
-      plugins
+      plugins,
+      musicSourceOrder
     } = this.props;
+
+    let musicSources = plugins.musicSources;
+    musicSources = this.sortPlugins(plugins.musicSources, musicSourceOrder);
+
     return (
       <div className={styles.plugins_view_container}>
         <Header>
@@ -35,7 +55,7 @@ class PluginsView extends React.Component {
           <Segment inverted>
             <List celled inverted>
               {
-                plugins.musicSources.map((source, index) => {
+                musicSources.map((source, index) => {
                   return (
                     <List.Item>
                       <div className={styles.plugin_index}>
