@@ -1,10 +1,11 @@
 import {
   CREATE_PLUGINS,
-  REPLACE_PLUGINS
+  SAVE_MUSIC_SOURCE_ORDER
 } from '../actions/plugins';
 
 const initialState = {
-  plugins: []
+  plugins: [],
+  musicSourceOrder: []
 };
 
 export default function PluginsReducer(state=initialState, action) {
@@ -13,9 +14,9 @@ export default function PluginsReducer(state=initialState, action) {
     return Object.assign({}, state, {
       plugins: action.payload
     });
-    case REPLACE_PLUGINS:
-    return Object.assign({}, {
-      plugins: action.payload
+    case SAVE_MUSIC_SOURCE_ORDER:
+    return Object.assign({}, state, {
+      musicSourceOrder: action.payload
     });
     default:
     return state;
