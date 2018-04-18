@@ -16,8 +16,7 @@
     "build:linux": "electron-builder -c.extraMetadata.main=dist/bundle.electron.js --linux",
     "build:windows": "electron-builder -c.extraMetadata.main=dist/bundle.electron.js --windows",
     "build:macos": "electron-builder -c.extraMetadata.main=dist/bundle.electron.js --macos",
-    "build:all": "electron-builder -c.extraMetadata.main=dist/bundle.electron.js -mwl",
-    "postinstall": "electron-rebuild install-app-deps"
+    "build:all": "electron-builder -c.extraMetadata.main=dist/bundle.electron.js -mwl"
   },
   "repository": {
     "type": "git",
