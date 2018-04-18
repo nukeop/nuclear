@@ -21,13 +21,13 @@ const config = {
   module: {
     loaders: [
       {
-	test: /.jsx?$/,
-	use: 'happypack/loader?id=jsx',
+        test: /.jsx?$/,
+        use: 'happypack/loader?id=jsx',
         exclude: /node_modules/
       },
       {
-	test: /.scss$/,
-	use: 'happypack/loader?id=scss'
+        test: /.scss$/,
+        use: 'happypack/loader?id=scss'
       }, {
         test: /\.css/,
         loader: 'style-loader!css-loader?modules=true&localIdentName=[name]__[local]___[hash:base64:5]'
