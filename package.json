@@ -5,7 +5,8 @@
   "main": "main.js",
   "scripts": {
     "start": "npm-run-all --parallel watch electron",
-    "electron": "electron .",
+    "electron:dev": "webpack --progress --colors --config=webpack.config.electron.js && electron ./bundle.electron.js",
+    "electron:prod": "webpack --progress --colors --config=webpack.config.electron.prod.js && cp index.prod.html dist && electron ./dist/bundle.electron.js",
     "watch": "webpack-dev-server --inline --progress --env=dev",
     "build:dist": "webpack --progress --colors --env=prod --define process.env.NODE_ENV=production",
     "test": "mocha --require babel-register",
@@ -75,6 +76,7 @@
     "isomorphic-fetch": "^2.2.1",
     "lodash": "^4.17.5",
     "mocha": "^5.0.0",
+    "node-loader": "^0.6.0",
     "node-sass": "^4.7.2",
     "nodebrainz": "^2.1.1",
     "npm-run-all": "^4.1.2",
@@ -111,7 +113,7 @@
       "dist/",
       "resources/",
       "index.prod.html",
-      "main.prod.js",
+      "dist/electron.bundle.js",
       "mpris.js",
       "package.json"
     ],
