@@ -1,0 +1,9 @@
+{
+    "title": "Re-rolling streams",
+    "timestamp": 1518775503,
+    "body": "There is now an option to choose an alternative stream source for queue items. Just right click a track and click the button in the lower righthand corner and the currently loaded plugin will provide a different stream, in case the one it picked automatically is inaccurate. <br />This new feature will be released in 0.4.2. Later releases will include more music source plugins.",
+    "tags": [
+	"announcement",
+	"feature"
+    ]
+}

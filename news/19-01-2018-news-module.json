@@ -1,0 +1,9 @@
+{
+    "title": "News module introduced",
+    "timestamp": 1516364010,
+    "body": "News module has been added to Nuclear.\nIt allows news items to be added to the official website in the form of json files, which can be later displayed in the player in the news tab of the dashboard. All important messages will be distributed in this form from now on.",
+    "tags": [
+	"announcement",
+	"feature"
+    ]
+}
