@@ -60,3 +60,4 @@ typings/
 release
 dist
 nuclear.json
+bundle.electron.js
