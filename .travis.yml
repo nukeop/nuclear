@@ -20,10 +20,11 @@ before_install:
   - if [ $TRAVIS_OS_NAME = linux ]; then sudo apt-get update -q; fi
   - if [ $TRAVIS_OS_NAME = linux ]; then sudo apt-get install --install-recommends winehq-stable -y; fi
   - if [ $TRAVIS_OS_NAME = linux ]; then sudo apt-get install libdbus-1-dev -y; fi
-      
+
 script:
   - npm test
   - npm run build:dist
+  - npm run build:electron
   - |
     if [ "$TRAVIS_OS_NAME" == "linux" ]; then
        npm run build:linux

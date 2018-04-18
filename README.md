@@ -1,4 +1,4 @@
-# ![nuclear](https://i.imgur.com/oT1006i.png) 
+# ![nuclear](https://i.imgur.com/oT1006i.png)
 
 [![Maintainability](https://api.codeclimate.com/v1/badges/a15c4888a63c900f6cc1/maintainability)](https://codeclimate.com/github/nukeop/nuclear/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/a15c4888a63c900f6cc1/test_coverage)](https://codeclimate.com/github/nukeop/nuclear/test_coverage) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/30750586202742279fa8958a12e519ed)](https://www.codacy.com/app/nukeop/nuclear?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=nukeop/nuclear&amp;utm_campaign=Badge_Grade) ![Travis](https://api.travis-ci.org/nukeop/nuclear.svg?branch=master)
 
@@ -79,26 +79,35 @@ This will be updated as the program evolves.
 
 ## Dev build process
 To develop the project locally, you should only do:
-```
-npm install
-npm run watch
+```bash
+$ npm install
+$ npm run watch
 ```
 This launches webpack. It watches local files for changes and rebuilds the project as needed. The project also has hot reload built in.
 And in another terminal window:
+```bash
+$ npm run electron:dev
 ```
-npm run electron
-```
-
 This launches a development version of the program. Tmux is very useful here so you can keep an eye on all running processes.
 
-If you're getting a message about dbus being compiled with a different version of node when running the electron script, try the following:
+---
+To run production version:
+
+```bash
+$ npm run build:dist
+$ npm run electron:prod
 ```
-npm install electron-rebuild
-.node_modules/.bin/electron-rebuild
+---
+To build for current operating system:
+```bash
+$ npm run build:dist
+$ npm run build:electron
+$ npm run pack
 ```
 
-And run the script again. The rebuild will be done automatically by the postinstall script however.
+Instead of `pack` you can use `build:all` to build for all operating systems or `build:[system]` to build for a particular system (see package.json).
 
+In case of errors with dbus/mpris, try removing optional dependencies from package.json and node_modules.
 
 #### Support on Beerpay
 
