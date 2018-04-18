@@ -9,13 +9,14 @@
     "electron:prod": "webpack --progress --colors --config=webpack.config.electron.prod.js && cp index.prod.html dist && electron ./dist/bundle.electron.js",
     "watch": "webpack-dev-server --inline --progress --env=dev",
     "build:dist": "webpack --progress --colors --env=prod --define process.env.NODE_ENV=production",
+    "build:electron": "webpack --progress --colors --config=webpack.config.electron.prod.js && cp index.prod.html dist",
     "test": "mocha --require babel-register",
-    "pack": "electron-builder --dir -c.extraMetadata.main=main.prod.js",
-    "dist": "babel-node  electron-builder -c.extraMetadata.main=main.prod.js",
-    "build:linux": "electron-builder -c.extraMetadata.main=main.prod.js --linux",
-    "build:windows": "electron-builder -c.extraMetadata.main=main.prod.js --windows",
-    "build:macos": "electron-builder -c.extraMetadata.main=main.prod.js --macos",
-    "build:all": "electron-builder -c.extraMetadata.main=main.prod.js -mwl",
+    "pack": "electron-builder --dir -c.extraMetadata.main=dist/bundle.electron.js",
+    "dist": "babel-node  electron-builder -c.extraMetadata.main=dist/bundle.electron.js",
+    "build:linux": "electron-builder -c.extraMetadata.main=dist/bundle.electron.js --linux",
+    "build:windows": "electron-builder -c.extraMetadata.main=dist/bundle.electron.js --windows",
+    "build:macos": "electron-builder -c.extraMetadata.main=dist/bundle.electron.js --macos",
+    "build:all": "electron-builder -c.extraMetadata.main=dist/bundle.electron.js -mwl",
     "postinstall": "electron-rebuild install-app-deps"
   },
   "repository": {
@@ -66,9 +67,8 @@
     "classnames": "^2.2.5",
     "css-loader": "^0.28.9",
     "electron": "^1.8.2",
-    "electron-builder": "^20.0.4",
+    "electron-builder": "^20.9.0",
     "electron-devtools-installer": "^2.2.3",
-    "electron-rebuild": "^1.7.3",
     "extract-text-webpack-plugin": "^3.0.2",
     "file-loader": "^1.1.6",
     "google-fonts-webpack-plugin": "^0.4.4",
@@ -106,27 +106,21 @@
     "appId": "nuclear",
     "productName": "nuclear",
     "directories": {
-      "output": "release",
-      "buildResources": "resources/media"
+      "output": "release"
     },
     "files": [
       "dist/",
       "resources/",
       "index.prod.html",
       "dist/electron.bundle.js",
-      "mpris.js",
       "package.json"
     ],
-    "extraFiles": [
-      "resources"
-    ],
     "linux": {
-      "icon": "0x0.png",
-      "desktop": [
-        "Name=Nuclear",
-        "Name[es]=Reproductor de música Nuclear",
-        "Comment[es]=Reproductor que retransmite música desde fuentes encontradas automáticamente."
-      ],
+      "desktop": {
+        "Name": "Nuclear",
+        "Name[es]": "Reproductor de música Nuclear",
+        "Comment[es]": "Reproductor que retransmite música desde fuentes encontradas automáticamente."
+      },
       "target": [
         "AppImage",
         "deb",
