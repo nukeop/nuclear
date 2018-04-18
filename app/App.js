@@ -17,7 +17,7 @@ import styles from './styles.scss';
 import compact from './compact.scss';
 
 import logoImg from '../resources/media/logo_full_light.png';
-import logoIcon from '../resources/media/icon.png';
+import logoIcon from '../resources/media/512x512.png';
 import artPlaceholder from '../resources/media/art_placeholder.png';
 
 import { config as PluginConfig } from './plugins/config';
