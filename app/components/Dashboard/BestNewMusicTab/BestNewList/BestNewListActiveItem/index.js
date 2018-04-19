@@ -55,7 +55,9 @@ class BestNewListActiveItem extends React.Component {
                 : null
               }
               <div className={styles.review_content}>
-                {item.review}
+                {item.review.split("\n").map(i => {
+                  return <div className={styles.paragraph}>{i}</div>;
+                })}
               </div>
 
             </div>
@@ -66,4 +68,4 @@ class BestNewListActiveItem extends React.Component {
     }
   }
 
-export default BestNewListActiveItem;
+  export default BestNewListActiveItem;
