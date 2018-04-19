@@ -20,13 +20,13 @@ export function addToQueue(musicSources, item) {
     });
 
     Promise.all(_.map(musicSources, m => m.search(item.artist + ' ' + item.name)))
-      .then(results => Promise.all(results))
-      .then(results => {
-	dispatch({
-          type: ADD_STREAMS_TO_QUEUE_ITEM,
-          payload: Object.assign({}, item, {loading: false, streams: results})
-	});
+    .then(results => Promise.all(results))
+    .then(results => {
+      dispatch({
+        type: ADD_STREAMS_TO_QUEUE_ITEM,
+        payload: Object.assign({}, item, {loading: false, streams: results})
       });
+    });
   };
 }
 
@@ -41,20 +41,20 @@ export function addPlaylistTracksToQueue(musicSources, tracks) {
   return (dispatch) => {
     tracks.map((track, i) => {
       dispatch({
-	type: ADD_TO_QUEUE,
-	payload: track
+        type: ADD_TO_QUEUE,
+        payload: track
       });
 
-      
+
       Promise.all(_.map(musicSources, m => m.search(track.artist + ' ' + track.name)))
-	.then(results => Promise.all(results))
-	.then(results => {
-	  let item = track;
-	  dispatch({
-	    type: ADD_STREAMS_TO_QUEUE_ITEM,
-	    payload: Object.assign({}, item, {streams: results})
-	  });
-	});
+      .then(results => Promise.all(results))
+      .then(results => {
+        let item = track;
+        dispatch({
+          type: ADD_STREAMS_TO_QUEUE_ITEM,
+          payload: Object.assign({}, item, {streams: results})
+        });
+      });
     });
 
   };
@@ -63,11 +63,15 @@ export function addPlaylistTracksToQueue(musicSources, tracks) {
 export function rerollTrack(musicSource, track) {
   return dispatch => {
     musicSource.getAlternateStream(track.artist + ' ' + track.name, track.streams[0])
-      .then(newStream => {
-	dispatch({
-	  type: REPLACE_STREAMS_IN_QUEUE_ITEM,
-	  payload: Object.assign({}, track, {streams: [newStream]})
-	});
+    .then(newStream => {
+      let streams = _.map(track.streams, stream => {
+        return stream.source === newStream.source ? newStream : stream;
+      });
+
+      dispatch({
+        type: REPLACE_STREAMS_IN_QUEUE_ITEM,
+        payload: Object.assign({}, track, {streams})
+      });
     });
   };
 }
