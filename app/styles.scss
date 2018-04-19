@@ -10,6 +10,18 @@
   height: 100%;
 
   color: $grey;
+
+  animation: init 1s ease-in-out;
+}
+
+@keyframes init {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
 }
 
 .panel_container {
