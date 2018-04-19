@@ -26,11 +26,15 @@ body {
 
 @keyframes gradient-anim {
   0%, 100% {
-    background-position: 100% 0%;
+    background-position: 50% 50%;
   }
 
-  50% {
+  25% {
     background-position: 0% 100%;
+  }
+
+  75% {
+    background-position: 100% 0%;
   }
 }
 
