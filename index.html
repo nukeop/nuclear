@@ -7,11 +7,16 @@
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.2/semantic.min.css"></link>
     <link href="http://localhost:8080/fonts.css" rel="stylesheet">
+    <link href="loader.css" rel="stylesheet">
   </head>
-  <body style="background: #282a36;">
-
-    <div id="react_root" />
-
+  <body>
+    <div id="react_root">
+      <div class="loader">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
     <script src="http://localhost:8080/webpack-dev-server.js"></script>
     <script src="http://localhost:8080/bundle.js"></script>
   </body>
