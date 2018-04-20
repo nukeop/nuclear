@@ -24,12 +24,12 @@ before_install:
 script:
   - npm test
   - npm run build:dist
-  - npm run build:electron
+
   - |
     if [ "$TRAVIS_OS_NAME" == "linux" ]; then
-       npm run build:linux
+       npm run build:electron:linux && npm run build:linux
     else
-       npm run build:macos
+       npm run build:electron && npm run build:macos
     fi
 
 cache:

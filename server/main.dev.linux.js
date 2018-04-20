@@ -1,15 +1,15 @@
+const { default: installExtension, REACT_DEVELOPER_TOOLS, REDUX_DEVTOOLS } = require('electron-devtools-installer');
 const { app, ipcMain, nativeImage, BrowserWindow, Menu, Tray } = require('electron');
 const platform = require('electron-platform');
 const path = require('path');
 const url = require('url');
-const mpris = require('./server/mpris');
-const getOption = require('./server/store').getOption;
+const mpris = require('./mpris');
+const getOption = require('./store').getOption;
 var Player;
 
 // GNU/Linux-specific
 if (!platform.isDarwin && !platform.isWin32) {
-  let mprisService = 'mpris-service';
-  Player = require(mprisService);
+  Player = require('mpris-service');
 }
 
 let win;
@@ -32,15 +32,26 @@ function createWindow() {
     }
   });
 
+  installExtension(REACT_DEVELOPER_TOOLS)
+  .then((name) => console.log(`Added Extension:  ${name}`))
+  .catch((err) => console.log('An error occurred: ', err));
+
+  installExtension(REDUX_DEVTOOLS)
+  .then((name) => console.log(`Added Extension:  ${name}`))
+  .catch((err) => console.log('An error occurred: ', err));
+
   win.loadURL(url.format({
-    pathname: path.join(__dirname, 'index.prod.html'),
+    pathname: path.join(__dirname, 'index.html'),
     protocol: 'file:',
     slashes: true
   }));
 
+  win.webContents.openDevTools();
+
   win.on('closed', () => {
     win = null;
   });
+
 
   // MacOS specific
   if (platform.isDarwin) {
