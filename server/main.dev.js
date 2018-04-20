@@ -3,15 +3,9 @@ const { app, ipcMain, nativeImage, BrowserWindow, Menu, Tray } = require('electr
 const platform = require('electron-platform');
 const path = require('path');
 const url = require('url');
-const mpris = require('./server/mpris');
-const getOption = require('./server/store').getOption;
+const getOption = require('./store').getOption;
 var Player;
 
-// GNU/Linux-specific
-if (!platform.isDarwin && !platform.isWin32) {
-  let mprisService = 'mpris-service';
-  Player = require(mprisService);
-}
 
 let win;
 let player;
@@ -84,63 +78,13 @@ function createWindow() {
   ipcMain.on('maximize', () => {
     win.isMaximized() ? win.unmaximize() : win.maximize();
   });
-
-  // GNU/Linux-specific
-  if (!platform.isDarwin && !platform.isWin32) {
-    player = Player({
-      name: 'nuclear',
-      identity: 'nuclear music player',
-      supportedUriSchemes: ['file'],
-      supportedMimeTypes: ['audio/mpeg', 'application/ogg'],
-      supportedInterfaces: ['player'],
-      desktopEntry: 'nuclear'
-    });
-
-    player.on('quit', function () {
-  	   win = null;
-    });
-
-    player.on('next', mpris.onNext);
-    player.on('previous', mpris.onPrevious);
-    player.on('pause', mpris.onPause);
-    player.on('playpause', mpris.onPlayPause);
-    player.on('stop', mpris.onStop);
-    player.on('play', mpris.onPlay);
-
-    ipcMain.on('songChange', (event, arg) => {
-      if (arg === null) {
-        return;
-      }
-
-      changeWindowTitle(arg.artist, arg.name);
-
-      player.metadata = {
-        'mpris:trackid': player.objectPath('track/0'),
-      	'mpris:artUrl': arg.thumbnail,
-      	'xesam:title': arg.name,
-      	'xesam:artist': arg.artist
-      };
-
-      if (arg.streams && arg.streams.length > 0) {
-	player.metadata['mpris:length'] = arg.streams[0].duration * 1000 * 1000; // In microseconds
-      }
-    });
-
-    ipcMain.on('play', (event, arg) => {
-      player.playbackStatus = 'Playing';
-    });
-
-    ipcMain.on('paused', (event, arg) => {
-      player.playbackStatus = 'Paused';
-    });
-  } else {
-    ipcMain.on('songChange', (event, arg) => {
-      if (arg === null) {
-        return;
-      }
-      changeWindowTitle(arg.artist, arg.name);
-    });
-  }
+  
+  ipcMain.on('songChange', (event, arg) => {
+    if (arg === null) {
+      return;
+    }
+    changeWindowTitle(arg.artist, arg.name);
+  });
 }
 
 app.on('ready', createWindow);
