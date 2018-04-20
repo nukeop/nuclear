@@ -9,7 +9,8 @@ var Player;
 
 // GNU/Linux-specific
 if (!platform.isDarwin && !platform.isWin32) {
-  Player = require('mpris-service');
+  let mprisService = 'mpris-service';
+  Player = require(mprisService);
 }
 
 let win;
