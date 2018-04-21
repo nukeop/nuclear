@@ -13,8 +13,11 @@ class SoundcloudPlugin extends MusicSourcePlugin {
     return Soundcloud.soundcloudSearch(terms)
     .then(data => data.json())
     .then(results => {
-      console.log(results[0]);
       let info = results[0];
+      if (!info) {
+        return null;
+      }
+
       return {
         source: this.sourceName,
         id: info.id,

@@ -15,8 +15,8 @@ class PluginsView extends React.Component {
     let result = musicSources;
     if (musicSourceOrder) {
       result = _.sortBy(musicSources, source => {
-        if(_.includes(musicSourceOrder, source.name)) {
-          return _.indexOf(musicSourceOrder, source.name);
+        if(_.includes(musicSourceOrder, source.sourceName)) {
+          return _.indexOf(musicSourceOrder, source.sourceName);
         } else {
           return 99;
         }
@@ -27,7 +27,7 @@ class PluginsView extends React.Component {
 
   movePlugin(index, dir) {
     let order = this.sortPlugins(this.props.plugins.musicSources, this.props.musicSourceOrder);
-    order = _.map(order, source => source.name);
+    order = _.map(order, source => source.sourceName);
     let temp = order[index + dir];
     order[index + dir] = order[index];
     order[index] = temp;
