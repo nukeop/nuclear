@@ -27,10 +27,13 @@ function createWindow() {
     height: 768,
     frame: !getOption('framelessWindow'),
     icon: icon,
+    show: false,
     webPreferences: {
       experimentalFeatures: true
     }
   });
+
+  win.setTitle('nuclear music player');
 
   installExtension(REACT_DEVELOPER_TOOLS)
   .then((name) => console.log(`Added Extension:  ${name}`))
@@ -45,6 +48,10 @@ function createWindow() {
     protocol: 'file:',
     slashes: true
   }));
+
+  win.once('ready-to-show', () => {
+    win.show()
+  });
 
   win.webContents.openDevTools();
 
@@ -115,13 +122,13 @@ function createWindow() {
 
       player.metadata = {
         'mpris:trackid': player.objectPath('track/0'),
-      	'mpris:artUrl': arg.thumbnail,
-      	'xesam:title': arg.name,
-      	'xesam:artist': arg.artist
+        'mpris:artUrl': arg.thumbnail,
+        'xesam:title': arg.name,
+        'xesam:artist': arg.artist
       };
 
       if (arg.streams && arg.streams.length > 0) {
-	player.metadata['mpris:length'] = arg.streams[0].duration * 1000 * 1000; // In microseconds
+        player.metadata['mpris:length'] = arg.streams[0].duration * 1000 * 1000; // In microseconds
       }
     });
 

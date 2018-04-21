@@ -26,16 +26,23 @@ function createWindow() {
     height: 768,
     frame: !getOption('framelessWindow'),
     icon: icon,
+    show: false,
     webPreferences: {
       experimentalFeatures: true
     }
   });
 
+  win.setTitle('nuclear music player');
+
   win.loadURL(url.format({
-    pathname: path.join(__dirname, 'index.prod.html'),
+    pathname: path.join(__dirname, 'index.html'),
     protocol: 'file:',
     slashes: true
   }));
+
+  win.once('ready-to-show', () => {
+    win.show()
+  });
 
   win.on('closed', () => {
     win = null;
