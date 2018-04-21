@@ -20,7 +20,7 @@ class PlayQueueContainer extends React.Component {
         actions={this.props.actions}
         items={this.props.queue.queueItems}
         currentSong={this.props.queue.currentSong}
-        musicSources={this.props.plugins.musicSources}
+        plugins={this.props.plugins}
         settings={this.props.settings}
         compact={this.props.compact}
       />
@@ -31,7 +31,7 @@ class PlayQueueContainer extends React.Component {
 function mapStateToProps(state) {
   return {
     queue: state.queue,
-    plugins: state.plugin.plugins,
+    plugins: state.plugin,
     playlists: state.playlists.playlists,
     settings: state.settings
   };

@@ -27,12 +27,13 @@ class PlayQueue extends React.Component {
               track={el}
               loading={el.loading}
               current={this.props.currentSong === i}
+              musicSourceOrder={this.props.plugins.musicSourceOrder}
               selectSong={this.props.actions.selectSong}
               removeFromQueue={this.props.actions.removeFromQueue}
             />
           }
           track={el}
-          musicSources={this.props.musicSources}
+          musicSources={this.props.plugins.plugins.musicSources}
           rerollTrack={this.props.actions.rerollTrack}
         />
       );
