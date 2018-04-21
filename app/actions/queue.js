@@ -60,9 +60,9 @@ export function addPlaylistTracksToQueue(musicSources, tracks) {
   };
 }
 
-export function rerollTrack(musicSource, track) {
+export function rerollTrack(musicSource, selectedStream, track) {
   return dispatch => {
-    musicSource.getAlternateStream(track.artist + ' ' + track.name, track.streams[0])
+    musicSource.getAlternateStream(track.artist + ' ' + track.name, selectedStream)
     .then(newStream => {
       let streams = _.map(track.streams, stream => {
         return stream.source === newStream.source ? newStream : stream;

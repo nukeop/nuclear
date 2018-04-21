@@ -34,6 +34,7 @@ class PlayQueue extends React.Component {
           }
           track={el}
           musicSources={this.props.plugins.plugins.musicSources}
+          musicSourceOrder={this.props.plugins.musicSourceOrder}
           rerollTrack={this.props.actions.rerollTrack}
         />
       );
