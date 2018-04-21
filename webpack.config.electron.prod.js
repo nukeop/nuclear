@@ -4,7 +4,7 @@ const HappyPack = require('happypack');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = env => {
-  let entry = env && env.LINUX ? './server/main.dev.linux.js' : './server/main.dev.js';
+  let entry = env && env.LINUX ? './server/main.prod.linux.js' : './server/main.prod.js';
 
   return {
     entry: entry,

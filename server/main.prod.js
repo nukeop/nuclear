@@ -2,17 +2,9 @@ const { app, ipcMain, nativeImage, BrowserWindow, Menu, Tray } = require('electr
 const platform = require('electron-platform');
 const path = require('path');
 const url = require('url');
-const mpris = require('./mpris');
 const getOption = require('./store').getOption;
-var Player;
-
-// GNU/Linux-specific
-if (!platform.isDarwin && !platform.isWin32) {
-  Player = require('mpris-service');
-}
 
 let win;
-let player;
 let tray;
 let icon = nativeImage.createFromPath(path.resolve(__dirname, 'resources', 'media', 'icon.png'));
 
@@ -26,16 +18,23 @@ function createWindow() {
     height: 768,
     frame: !getOption('framelessWindow'),
     icon: icon,
+    show: false,
     webPreferences: {
       experimentalFeatures: true
     }
   });
 
+  win.setTitle('nuclear music player');
+
   win.loadURL(url.format({
-    pathname: path.join(__dirname, 'index.prod.html'),
+    pathname: path.join(__dirname, 'index.html'),
     protocol: 'file:',
     slashes: true
   }));
+
+  win.once('ready-to-show', () => {
+    win.show()
+  });
 
   win.on('closed', () => {
     win = null;
@@ -72,62 +71,12 @@ function createWindow() {
     win.isMaximized() ? win.unmaximize() : win.maximize();
   });
 
-  // GNU/Linux-specific
-  if (!platform.isDarwin && !platform.isWin32) {
-    player = Player({
-      name: 'nuclear',
-      identity: 'nuclear music player',
-      supportedUriSchemes: ['file'],
-      supportedMimeTypes: ['audio/mpeg', 'application/ogg'],
-      supportedInterfaces: ['player'],
-      desktopEntry: 'nuclear'
-    });
-
-    player.on('quit', function () {
-  	   win = null;
-    });
-
-    player.on('next', mpris.onNext);
-    player.on('previous', mpris.onPrevious);
-    player.on('pause', mpris.onPause);
-    player.on('playpause', mpris.onPlayPause);
-    player.on('stop', mpris.onStop);
-    player.on('play', mpris.onPlay);
-
-    ipcMain.on('songChange', (event, arg) => {
-      if (arg === null) {
-        return;
-      }
-
-      changeWindowTitle(arg.artist, arg.name);
-
-      player.metadata = {
-        'mpris:trackid': player.objectPath('track/0'),
-      	'mpris:artUrl': arg.thumbnail,
-      	'xesam:title': arg.name,
-      	'xesam:artist': arg.artist
-      };
-
-      if (arg.streams && arg.streams.length > 0) {
-	player.metadata['mpris:length'] = arg.streams[0].duration * 1000 * 1000; // In microseconds
-      }
-    });
-
-    ipcMain.on('play', (event, arg) => {
-      player.playbackStatus = 'Playing';
-    });
-
-    ipcMain.on('paused', (event, arg) => {
-      player.playbackStatus = 'Paused';
-    });
-  } else {
-    ipcMain.on('songChange', (event, arg) => {
-      if (arg === null) {
-        return;
-      }
-      changeWindowTitle(arg.artist, arg.name);
-    });
-  }
+  ipcMain.on('songChange', (event, arg) => {
+    if (arg === null) {
+      return;
+    }
+    changeWindowTitle(arg.artist, arg.name);
+  });
 }
 
 app.on('ready', createWindow);

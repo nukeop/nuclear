@@ -4,11 +4,8 @@ const platform = require('electron-platform');
 const path = require('path');
 const url = require('url');
 const getOption = require('./store').getOption;
-var Player;
-
 
 let win;
-let player;
 let tray;
 let icon = nativeImage.createFromPath(path.resolve(__dirname, 'resources', 'media', 'icon.png'));
 
@@ -22,10 +19,13 @@ function createWindow() {
     height: 768,
     frame: !getOption('framelessWindow'),
     icon: icon,
+    show: false,
     webPreferences: {
       experimentalFeatures: true
     }
   });
+
+  win.setTitle('nuclear music player');
 
   installExtension(REACT_DEVELOPER_TOOLS)
   .then((name) => console.log(`Added Extension:  ${name}`))
@@ -40,6 +40,10 @@ function createWindow() {
     protocol: 'file:',
     slashes: true
   }));
+
+  win.once('ready-to-show', () => {
+    win.show()
+  });
 
   win.webContents.openDevTools();
 
@@ -78,7 +82,7 @@ function createWindow() {
   ipcMain.on('maximize', () => {
     win.isMaximized() ? win.unmaximize() : win.maximize();
   });
-  
+
   ipcMain.on('songChange', (event, arg) => {
     if (arg === null) {
       return;
