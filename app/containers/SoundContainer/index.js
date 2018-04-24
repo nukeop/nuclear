@@ -8,6 +8,7 @@ import * as PlayerActions from '../../actions/player';
 import * as QueueActions from '../../actions/queue';
 import * as ScrobblingActions from '../../actions/scrobbling';
 import Sound from 'react-sound';
+import { getSelectedStream } from '../../utils';
 
 class SoundContainer extends React.Component {
   handlePlaying(update) {
@@ -48,14 +49,15 @@ class SoundContainer extends React.Component {
   render() {
     let {
       player,
-      queue
+      queue,
+      plugins
     } = this.props;
+
     let streamUrl = '';
+
     if (queue.queueItems.length > 0) {
       let currentSong = queue.queueItems[queue.currentSong];
-      if (currentSong.streams && currentSong.streams.length > 0) {
-        streamUrl = currentSong.streams[0].stream;
-      }
+      streamUrl = getSelectedStream(currentSong.streams, plugins.musicSourceOrder).stream;
     }
 
     return (
@@ -76,6 +78,7 @@ class SoundContainer extends React.Component {
 function mapStateToProps(state) {
   return {
     queue: state.queue,
+    plugins: state.plugin,
     player: state.player,
     scrobbling: state.scrobbling,
     settings: state.settings
