@@ -3,100 +3,11 @@
 {% include head.html %}
 <body>
 
-  <section>
-    <div class="container">
-      <header>
-        <img src="{{ "/assets/images/logo_full_light.png" | relative_url }}">
-        <span class="spacer"></span>
-        <a href="https://github.com/nukeop/nuclear/"><img src="{{ "/assets/images/github.png" | relative_url }}"></a>
-      </header>
-      <h2>Modern music player focused on streaming from free sources.</h2>
-      <h3>Join beta now</h3>
-      <form action="http://tech.us15.list-manage.com/subscribe/post?u=9d6b789c87d2e7d4ba8fc55dc&amp;id=ebca2aa438" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
-        <input class="input-email" type="email" placeholder="Your e-mail" value="" name="EMAIL" id="mce-EMAIL">
-        <input class="submit-button" type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe">
-        <input class="input-hidden" type="text" name="b_9d6b789c87d2e7d4ba8fc55dc_ebca2aa438" tabindex="-1" value="">
-      </form>
-      <div class="links">
-        <a href="https://github.com/nukeop/nuclear/releases">Get it now</a>
-        <a href="https://github.com/nukeop/nuclear">Learn more</a>
-      </div>
-      <img class="screenshot" src="{{ "/assets/images/screenshot.png" | relative_url }}">
-    </div>
-    <div class="gradient-overlay"></div>
-  </section>
-
-  <section class='light'>
-    <div class="container">
-      <h1>Listen to music on your  terms</h1>
-      <h3>There's no need to use services that limit your freedom and seek to exploit you just to listen to your favourite artists. <strong>Nuclear</strong> empowers you to listen to what you want, where you want, and how you want, for free.</h3>
-      <div class="feature">
-        <div class="logo">
-          <div style="background-image: url({{ "/assets/images/sources.svg" | relative_url }});"></div>
-        </div>
-        <div class="spacer"></div>
-        <div class="description">
-          <h3>Stream from any free source on the internet. <strong>Nuclear</strong> supports Youtube and Soundcloud out of the box, with a plugin system allowing for easy addition of more.</h3>
-        </div>
-      </div>
-      <div class="feature">
-        <div class="logo small">
-          <div style="background-image: url({{ "/assets/images/lastfm.svg" | relative_url }});"></div>
-        </div>
-        <div class="spacer"></div>
-        <div class="description">
-          <h3><strong>Nuclear</strong> supports scrobbling to last.fm and updating the now playing status.</h3>
-        </div>
-      </div>
-      <div class="feature">
-        <div class="logo">
-          <div style="background-image: url({{ "/assets/images/ganoo.svg" | relative_url }})"></div>
-        </div>
-        <div class="spacer"></div>
-        <div class="description">
-          <h3><strong>Nuclear</strong> is developed on Github under Affero GPL, with the "GNU/Linux first" mindset. This means it respects your freedom, and we're giving you full access to source code, so you can modify it and contribute to the project.
-          </h3>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <div class="container">
-      <h1>Featured on:</h1>
-      <h2>
-        <a href="http://www.omgubuntu.co.uk/2017/02/nuclear-music-player-desktop-youtube">OMG! Ubuntu</a>
-        -
-        <a href="https://www.fossmint.com/nuclear-music-streaming-player-for-linux/">FOSSMint</a>
-        -
-        <a href="https://korben.info/nuclear-player-musical-multi-source.html">korben.info</a>
-        -
-        <a href="http://www.softpedia.com/get/Multimedia/Audio/Audio-Players/nuclear.shtml">Softpedia</a>
-        -
-        <a href="https://itsfoss.com/nuclear-music-player-linux/">It's FOSS</a>
-      </h2>
-    </div>
-  </section>
-
-  <section>
-    <div class="container">
-      <h1>
-        Got a question for nuclear?
-      </h1>
-      <a class="button" href="https://twitter.com/nuclear_player">
-        Ask us on Twitter
-      </a>
-    </div>
-  </section>
-
-  <section>
-    <div class="dark-overlay"></div>
-    <div class="container">
-      <div class="footer">
-        Nuclear is maintained by <a href="https://github.com/nukeop">nukeop</a>.
-      </div>
-    </div>
-  </section>
+  {% include section_intro.html %}
+  {% include section_features.html %}
+  {% include section_featured_on.html %}
+  {% include section_ask_us.html %}
+  {% include section_footer.html %}
 
 </body>
 </html>
