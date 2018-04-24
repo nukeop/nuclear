@@ -2,7 +2,10 @@ import React from 'react';
 import classNames from 'classnames';
 import FontAwesome from 'react-fontawesome';
 import _ from 'lodash';
-import {formatDuration} from '../../../utils';
+import {
+  formatDuration,
+  getSelectedStream
+} from '../../../utils';
 
 import styles from './styles.scss';
 
@@ -36,7 +39,7 @@ class QueueItem extends React.Component {
       removeFromQueue,
     } = this.props;
 
-    let selectedStream = _.find(track.streams, stream => stream.source === _.head(musicSourceOrder));
+    let selectedStream = getSelectedStream(track.streams, musicSourceOrder);
 
     return (
       <div
@@ -77,7 +80,7 @@ class QueueItem extends React.Component {
         <div className={styles.item_duration_container}>
           <div className={styles.item_duration}>
             {
-              track.streams
+              selectedStream
               ? formatDuration(selectedStream.duration)
               : null
             }
