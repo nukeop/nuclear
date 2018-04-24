@@ -5,6 +5,7 @@ import {
   Dropdown,
   Popup
 } from 'semantic-ui-react';
+import { getSelectedStream } from '../../utils';
 
 import styles from './styles.scss';
 
@@ -33,7 +34,7 @@ class QueuePopup extends React.Component {
   }
 
   rerollTrack(track) {
-    let selectedStream = _.find(track.streams, stream => stream.source === _.head(this.props.musicSourceOrder));
+    let selectedStream = getSelectedStream(track.streams, this.props.musicSourceOrder)
     let musicSource = _.find(this.props.musicSources, s => s.sourceName == selectedStream.source);
     this.props.rerollTrack(musicSource, selectedStream, track);
   }
@@ -55,7 +56,7 @@ class QueuePopup extends React.Component {
       };
     });
 
-    let selectedStream = _.find(track.streams, stream => stream.source === _.head(musicSourceOrder));
+    let selectedStream = getSelectedStream(track.streams, musicSourceOrder);
 
     return (
       <div
@@ -78,7 +79,7 @@ class QueuePopup extends React.Component {
           on=''
         >
           {
-            track.streams && Object.keys(track.streams).length > 0
+            track.streams && selectedStream
             ? (
               <div className={styles.stream_info}>
                 <div className={styles.stream_thumbnail}>
