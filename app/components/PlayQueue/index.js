@@ -1,5 +1,6 @@
 import React from 'react';
 import classnames from 'classnames';
+import { DragDropContext } from 'react-beautiful-dnd';
 
 import styles from './styles.scss';
 
@@ -55,20 +56,22 @@ class PlayQueue extends React.Component {
     } = this.props.actions;
 
     return (
-      <div className={classnames(styles.play_queue_container, {'compact': compact})}>
-        <QueueMenu
-          clearQueue={clearQueue}
-          addPlaylist={addPlaylist}
-          toggleOption={toggleOption}
-          settings={settings}
-          items={items}
-        />
+      <DragDropContext>
+        <div className={classnames(styles.play_queue_container, {'compact': compact})}>
+          <QueueMenu
+            clearQueue={clearQueue}
+            addPlaylist={addPlaylist}
+            toggleOption={toggleOption}
+            settings={settings}
+            items={items}
+          />
 
-        <div className={classnames(styles.play_queue_items, styles.fade_in)}>
-          {this.renderQueueItems()}
+          <div className={classnames(styles.play_queue_items, styles.fade_in)}>
+            {this.renderQueueItems()}
+          </div>
+
         </div>
-
-      </div>
+      </DragDropContext>
     );
   }
 }
