@@ -1,5 +1,6 @@
 import _ from 'lodash';
 
+import globals from '../../globals';
 import MusicSourcePlugin from '../musicSources';
 import * as Soundcloud from '../../rest/Soundcloud';
 
@@ -15,7 +16,7 @@ class SoundcloudPlugin extends MusicSourcePlugin {
     return {
       source: this.sourceName,
       id: result.id,
-      stream: result.stream_url,
+      stream: result.stream_url + `?client_id=${globals.soundcloudApiKey}`,
       duration: result.duration,
       title: result.title,
       thumbnail: result.user.avatar_url
