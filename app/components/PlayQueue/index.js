@@ -1,6 +1,6 @@
 import React from 'react';
 import classnames from 'classnames';
-import { DragDropContext } from 'react-beautiful-dnd';
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
 import styles from './styles.scss';
 
@@ -13,6 +13,10 @@ class PlayQueue extends React.Component {
     super(props);
   }
 
+  onDragEnd(result) {
+    console.log(result);
+  }
+
   renderQueueItems() {
     if (!this.props.items) {
       return null;
@@ -20,24 +24,33 @@ class PlayQueue extends React.Component {
 
     return this.props.items.map((el, i) => {
       return (
-        <QueuePopup
-          trigger={
-            <QueueItem
-              key={i}
-              index={i}
-              track={el}
-              loading={el.loading}
-              current={this.props.currentSong === i}
-              musicSourceOrder={this.props.plugins.musicSourceOrder}
-              selectSong={this.props.actions.selectSong}
-              removeFromQueue={this.props.actions.removeFromQueue}
-            />
-          }
-          track={el}
-          musicSources={this.props.plugins.plugins.musicSources}
-          musicSourceOrder={this.props.plugins.musicSourceOrder}
-          rerollTrack={this.props.actions.rerollTrack}
-        />
+        <Draggable key={i} index={i} draggableId={i}>
+          {(provided, snapshot) => (
+            <div
+              ref={provided.innerRef}
+              {...provided.draggableProps}
+              {...provided.dragHandleProps}
+            >
+              <QueuePopup
+                trigger={
+                  <QueueItem
+                    index={i}
+                    track={el}
+                    loading={el.loading}
+                    current={this.props.currentSong === i}
+                    musicSourceOrder={this.props.plugins.musicSourceOrder}
+                    selectSong={this.props.actions.selectSong}
+                    removeFromQueue={this.props.actions.removeFromQueue}
+                  />
+                }
+                track={el}
+                musicSources={this.props.plugins.plugins.musicSources}
+                musicSourceOrder={this.props.plugins.musicSourceOrder}
+                rerollTrack={this.props.actions.rerollTrack}
+              />
+            </div>
+          )}
+        </Draggable>
       );
     });
   }
@@ -56,7 +69,7 @@ class PlayQueue extends React.Component {
     } = this.props.actions;
 
     return (
-      <DragDropContext>
+      <DragDropContext onDragEnd={this.onDragEnd}>
         <div className={classnames(styles.play_queue_container, {'compact': compact})}>
           <QueueMenu
             clearQueue={clearQueue}
@@ -66,9 +79,18 @@ class PlayQueue extends React.Component {
             items={items}
           />
 
-          <div className={classnames(styles.play_queue_items, styles.fade_in)}>
-            {this.renderQueueItems()}
-          </div>
+          <Droppable droppableId="play_queue">
+            {(provided, snapshot) => (
+              <div
+                ref={provided.innerRef}
+                className={classnames(styles.play_queue_items, styles.fade_in)}
+                {...provided.droppableProps}
+              >
+                {this.renderQueueItems()}
+                {provided.placeholder}
+              </div>
+            )}
+          </Droppable>
 
         </div>
       </DragDropContext>
