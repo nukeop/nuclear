@@ -1,3 +1,5 @@
+@import '../../vars.scss';
+
 .play_queue_container {
   display: flex;
   overflow-y: auto;
@@ -10,11 +12,16 @@
     flex-flow: column;
     flex: 1 1 auto;
     overflow-y: auto;
+    transition: 0.25s;
 
     .queue_item_container {
       transition: all 0.4s ease-out;
       opacity: 0;
     }
+  }
+
+  .dragged_over {
+    background: $background3;
   }
 
   &.compact {

@@ -83,7 +83,13 @@ class PlayQueue extends React.Component {
             {(provided, snapshot) => (
               <div
                 ref={provided.innerRef}
-                className={classnames(styles.play_queue_items, styles.fade_in)}
+                className={
+                  classnames(
+                    styles.play_queue_items,
+                    styles.fade_in,
+                    {[`${styles.dragged_over}`]: snapshot.isDraggingOver}
+                  )
+                }
                 {...provided.droppableProps}
               >
                 {this.renderQueueItems()}
