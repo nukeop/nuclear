@@ -14,7 +14,7 @@ class PlayQueue extends React.Component {
   }
 
   onDragEnd(result) {
-    console.log(result);
+    this.props.actions.swapSongs(result.source.index, result.destination.index);
   }
 
   renderQueueItems() {
@@ -69,7 +69,7 @@ class PlayQueue extends React.Component {
     } = this.props.actions;
 
     return (
-      <DragDropContext onDragEnd={this.onDragEnd}>
+      <DragDropContext onDragEnd={this.onDragEnd.bind(this)}>
         <div className={classnames(styles.play_queue_container, {'compact': compact})}>
           <QueueMenu
             clearQueue={clearQueue}

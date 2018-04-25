@@ -6,7 +6,8 @@ import {
   REPLACE_STREAMS_IN_QUEUE_ITEM,
   NEXT_SONG,
   PREVIOUS_SONG,
-  SELECT_SONG
+  SELECT_SONG,
+  SWAP_SONGS
 } from '../actions/queue';
 
 var _ = require('lodash');
@@ -69,7 +70,15 @@ export default function QueueReducer(state=initialState, action) {
   case SELECT_SONG:
     return Object.assign({}, state, {
       currentSong: action.payload
-    })
+    });
+  case SWAP_SONGS:
+    newQueue = _.cloneDeep(state.queueItems);
+    let temp = newQueue[action.payload.itemFrom];
+    newQueue[action.payload.itemFrom] = newQueue[action.payload.itemTo];
+    newQueue[action.payload.itemTo] = temp;
+    return Object.assign({}, state, {
+      queueItems: newQueue
+    });
   default:
     return state;
   }
