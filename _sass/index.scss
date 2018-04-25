@@ -257,12 +257,14 @@ form {
   flex-flow: column;
   align-items: center;
   justify-content: center;
+padding: 2rem;
 
   q {
     font-style: italic;
     font-size: 2.5rem;
     font-weight: lighter;
     margin-bottom: 1rem;
+    text-align: center;
   }
 
   .rating {
@@ -271,6 +273,7 @@ form {
 
   .author {
     font-size: 1.6rem;
+    text-align: center;
   }
 }
 
@@ -342,6 +345,14 @@ form {
   .screenshot {
     width: 120%;
   }
+
+.testimonials {
+  flex-flow: column;
+}
+
+.testimonial {
+  padding: 0 2rem 4rem 2rem;
+}
 
   h1 {
     font-size: 2em;
