@@ -99,9 +99,10 @@ form {
   display: flex;
   flex-flow: row;
   width: 100%;
-  max-width: 600px;
+  max-width: 480px;
   height: 52px;
   min-height: 52px;
+  margin-top: 1rem;
 }
 
 .container {
@@ -176,11 +177,11 @@ form {
 .links {
   display: flex;
   flex-flow: row;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   width: 100%;
-  max-width: 600px;
-  margin: 5rem 0 1rem;
+  max-width: 480px;
+  margin: 2rem 0 1rem;
 
   a {
     display: flex;
@@ -190,8 +191,13 @@ form {
     text-decoration: none;
     text-transform: uppercase;
     padding: 1rem 2.5rem;
-    margin: 0 2rem;
+    margin: 0;
     border-radius: 0.25rem;
+    flex: 1 1 auto;
+
+    &:first-child {
+      margin: 0 2rem 0 0;
+    }
   }
 
   :first-child {
@@ -293,10 +299,10 @@ form {
 
   .links {
     flex-flow: column;
-    margin: 2rem 0 0;
+    margin: 1rem 0 0;
 
     a {
-      margin: 0 0 2rem;
+      margin: 0 0 1rem !important;
       width: 100%;
       box-sizing: border-box;
     }
@@ -334,7 +340,7 @@ form {
   }
 
   .submit-button {
-    margin: 2rem 0 0;
+    margin: 1rem 0 0;
     border-radius: 0.25rem;
   }
 }
