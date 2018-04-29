@@ -34,7 +34,7 @@ class QueuePopup extends React.Component {
   }
 
   rerollTrack(track) {
-    let selectedStream = getSelectedStream(track.streams, this.props.musicSourceOrder)
+    let selectedStream = getSelectedStream(track.streams, this.props.defaultMusicSource)
     let musicSource = _.find(this.props.musicSources, s => s.sourceName == selectedStream.source);
     this.props.rerollTrack(musicSource, selectedStream, track);
   }
@@ -44,7 +44,7 @@ class QueuePopup extends React.Component {
       trigger,
       track,
       musicSources,
-      musicSourceOrder
+      defaultMusicSource
     } = this.props;
 
     let dropdownOptions = _.map(musicSources, s => {
@@ -56,7 +56,7 @@ class QueuePopup extends React.Component {
       };
     });
 
-    let selectedStream = getSelectedStream(track.streams, musicSourceOrder);
+    let selectedStream = getSelectedStream(track.streams, defaultMusicSource);
 
     return (
       <div

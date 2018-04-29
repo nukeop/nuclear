@@ -38,14 +38,14 @@ class PlayQueue extends React.Component {
                     track={el}
                     loading={el.loading}
                     current={this.props.currentSong === i}
-                    musicSourceOrder={this.props.plugins.musicSourceOrder}
+                    defaultMusicSource={this.props.plugins.defaultMusicSource}
                     selectSong={this.props.actions.selectSong}
                     removeFromQueue={this.props.actions.removeFromQueue}
                   />
                 }
                 track={el}
                 musicSources={this.props.plugins.plugins.musicSources}
-                musicSourceOrder={this.props.plugins.musicSourceOrder}
+                defaultMusicSource={this.props.plugins.defaultMusicSource}
                 rerollTrack={this.props.actions.rerollTrack}
               />
             </div>
