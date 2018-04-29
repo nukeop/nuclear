@@ -13,7 +13,7 @@ body {
   z-index: -1;
 }
 
-.loader {
+.nuclear-loader {
   position: relative;
   display: flex;
   flex-flow: column;
@@ -40,7 +40,7 @@ body {
   }
 }
 
-.loader>span {
+.nuclear-loader>span {
   position: absolute;
   width: 0;
   height: 0;
@@ -49,18 +49,18 @@ body {
   border-right: 3rem solid transparent;
 }
 
-.loader>span:nth-child(1) {
+.nuclear-loader>span:nth-child(1) {
   right: 4.5rem;
   top: 3.5rem;
 }
 
-.loader>span:nth-child(2) {
+.nuclear-loader>span:nth-child(2) {
   right: 7.5rem;
   bottom: 3.5rem;
 
 }
 
-.loader>span:nth-child(3) {
+.nuclear-loader>span:nth-child(3) {
   left: 7.5rem;
   bottom: 3.5rem;
 }
