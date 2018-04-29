@@ -34,12 +34,12 @@ class QueueItem extends React.Component {
       loading,
       track,
       index,
-      musicSourceOrder,
+      defaultMusicSource,
       selectSong,
       removeFromQueue,
     } = this.props;
 
-    let selectedStream = getSelectedStream(track.streams, musicSourceOrder);
+    let selectedStream = getSelectedStream(track.streams, defaultMusicSource);
 
     return (
       <div
