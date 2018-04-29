@@ -1,6 +1,6 @@
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
-import { List, Segment } from 'semantic-ui-react';
+import { Dropdown, List, Segment } from 'semantic-ui-react';
 import _ from 'lodash';
 
 import Header from '../Header';
@@ -11,37 +11,26 @@ class PluginsView extends React.Component {
     super(props);
   }
 
-  sortPlugins(musicSources, musicSourceOrder) {
-    let result = musicSources;
-    if (musicSourceOrder) {
-      result = _.sortBy(musicSources, source => {
-        if(_.includes(musicSourceOrder, source.sourceName)) {
-          return _.indexOf(musicSourceOrder, source.sourceName);
-        } else {
-          return 99;
-        }
-      });
-    }
-    return result;
-  }
-
-  movePlugin(index, dir) {
-    let order = this.sortPlugins(this.props.plugins.musicSources, this.props.musicSourceOrder);
-    order = _.map(order, source => source.sourceName);
-    let temp = order[index + dir];
-    order[index + dir] = order[index];
-    order[index] = temp;
-    this.props.actions.saveMusicSourceOrder(order);
+  selectDefaultMusicSource(e, data) {
+    this.props.actions.selectDefaultMusicSource(data.value);
   }
 
   render() {
     let {
+      actions,
       plugins,
-      musicSourceOrder
+      defaultMusicSource
     } = this.props;
 
-    let musicSources = plugins.musicSources;
-    musicSources = this.sortPlugins(plugins.musicSources, musicSourceOrder);
+    let dropdownOptions = plugins.musicSources.map(s => {
+      return {
+        text: s.name,
+        value: s.sourceName
+      };
+    });
+
+    let defaultOption = _.find(dropdownOptions, {value: defaultMusicSource});
+    defaultOption = defaultOption || dropdownOptions[0];
 
     return (
       <div className={styles.plugins_view_container}>
@@ -52,35 +41,17 @@ class PluginsView extends React.Component {
           <Header>
             Music sources
           </Header>
-          <Segment inverted>
-            <List celled inverted>
-              {
-                musicSources.map((source, index) => {
-                  return (
-                    <List.Item>
-                      <div className={styles.plugin_index}>
-                        {index + 1}.
-                      </div>
-                      <List.Content>
-                        <List.Header>{source.name}</List.Header>
-                        {source.description}
-                      </List.Content>
-                      <div className={styles.plugin_buttons}>
-                        {
-                          index > 0 &&
-                          <a className='link_button' disabled href='#' onClick={() => this.movePlugin(index, -1)}><FontAwesome name='angle-up'/></a>
-                        }
-                        {
-                          index < plugins.musicSources.length - 1 &&
-                          <a className='link_button' href='#' onClick={() => this.movePlugin(index, 1)}><FontAwesome name='angle-down'/></a>
-                        }
-                      </div>
-                    </List.Item>
-                  );
-                })
-              }
-            </List>
-          </Segment>
+
+          <span>
+            Select the default music source:
+            {' '}
+            <Dropdown
+              inline
+              options={dropdownOptions}
+              defaultValue={defaultOption.value}
+              onChange={this.selectDefaultMusicSource.bind(this)}
+            />
+          </span>
         </div>
       </div>
     );

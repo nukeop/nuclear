@@ -1,5 +1,5 @@
 export const CREATE_PLUGINS = 'CREATE_PLUGINS';
-export const SAVE_MUSIC_SOURCE_ORDER = 'SAVE_MUSIC_SOURCE_ORDER';
+export const SELECT_DEFAULT_MUSIC_SOURCE = 'SELECT_DEFAULT_MUSIC_SOURCE';
 
 import config from '../plugins/config';
 
@@ -26,9 +26,9 @@ export function createSearchPlugins(pluginClasses) {
   };
 }
 
-export function saveMusicSourceOrder(musicSourceOrder) {
+export function selectDefaultMusicSource(musicSource) {
   return {
-    type: SAVE_MUSIC_SOURCE_ORDER,
-    payload: musicSourceOrder
+    type: SELECT_DEFAULT_MUSIC_SOURCE,
+    payload: musicSource
   };
 }

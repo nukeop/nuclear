@@ -7,6 +7,16 @@
   width: 100%;
   height: 100%;
 
+  .menu.transition.visible {
+    height: max-content;
+    background-color: $background2;
+    padding: 0;
+  }
+
+  .text {
+    color: $white;
+  }
+
   .plugin_settings {
     display: flex;
     flex-flow: column;

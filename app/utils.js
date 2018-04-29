@@ -17,8 +17,9 @@ export function formatDuration(duration) {
   }
 }
 
-export function getSelectedStream(streams, musicSourceOrder) {
-  let selectedStream = _.find(streams, stream => stream.source === _.head(musicSourceOrder));
+export function getSelectedStream(streams, defaultMusicSource) {
+  let selectedStream = _.find(streams, {source: defaultMusicSource});
+
   return selectedStream === undefined
   ? streams ? streams[0] : null
   : selectedStream;
