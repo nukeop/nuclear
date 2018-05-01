@@ -277,14 +277,39 @@ padding: 2rem;
   }
 }
 
-.button {
+.soc {
+  padding: 3rem 0;
+}
+
+.soc-buttons {
+  display: flex;
+  flex-flow: row;
+  justify-content: center;
+}
+
+.soc-button {
+  display: flex;
+  flex-flow: row;
+  justify-content: center;
+  align-items: center;
   color: white;
   text-decoration: none;
-  padding: 0.75rem 1.5rem;
+  padding: 0.75rem 0;
   border: 1px solid rgba($white, 0.69);
   border-radius: 0.25rem;
   font-size: 1.5rem;
   margin-bottom: 2rem;
+  width: 18rem;
+
+  &:first-child {
+    margin-right: 2rem;
+  }
+
+  svg {
+    width: 2rem;
+    height: 2rem;
+    margin-right: 1rem;
+  }
 }
 
 .footer {
