@@ -7,6 +7,13 @@ module.exports = [
     default: false
   },
   {
+    name: 'shuffleQueue',
+    category: 'Playback',
+    type: 'boolean',
+    prettyName: 'Shuffle songs',
+    default: false
+  },
+  {
     name: 'framelessWindow',
     category: 'Program settings',
     type: 'boolean',
