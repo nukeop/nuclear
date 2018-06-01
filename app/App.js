@@ -62,11 +62,11 @@ class App extends React.Component {
   nextSong() {
     this.props.actions.nextSong();
     if( this.props.scrobbling.lastFmScrobblingEnabled &&
-      this.props.scrobbling.lastFmSessionKey) {
-        let currentSong = this.props.queue.queueItems[this.props.queue.currentSong];
-        this.props.actions.updateNowPlayingAction(currentSong.artist, currentSong.name, this.props.scrobbling.lastFmSessionKey);
-      }
+	this.props.scrobbling.lastFmSessionKey) {
+      let currentSong = this.props.queue.queueItems[this.props.queue.currentSong];
+      this.props.actions.updateNowPlayingAction(currentSong.artist, currentSong.name, this.props.scrobbling.lastFmSessionKey);
     }
+  }
 
   componentWillMount() {
     this.props.actions.readSettings();

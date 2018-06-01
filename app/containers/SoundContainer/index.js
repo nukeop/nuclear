@@ -3,6 +3,8 @@ import { Route, Switch, Link, withRouter } from 'react-router-dom';
 import { RouteTransition } from 'react-router-transition';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import _ from 'lodash';
+
 import * as Actions from '../../actions';
 import * as PlayerActions from '../../actions/player';
 import * as QueueActions from '../../actions/queue';
@@ -26,13 +28,22 @@ class SoundContainer extends React.Component {
     this.props.actions.updateStreamLoading(false);
   }
 
+  nextSong() {
+    if(this.props.settings.shuffleQueue) {
+      let index = _.random(0, this.props.queue.queueItems.length-1);
+      this.props.actions.selectSong(index);
+    } else {
+      this.props.actions.nextSong();
+    }
+  }
+  
   handleFinishedPlaying() {
     if(this.props.scrobbling.lastFmScrobblingEnabled && this.props.scrobbling.lastFmSessionKey) {
       let currentSong = this.props.queue.queueItems[this.props.queue.currentSong];
       this.props.actions.scrobbleAction(currentSong.artist, currentSong.name, this.props.scrobbling.lastFmSessionKey);
     }
     if (this.props.queue.currentSong < this.props.queue.queueItems.length -1 || this.props.settings.loopAfterQueueEnd) {
-      this.props.actions.nextSong();
+      this.nextSong();
     } else {
       this.props.actions.pausePlayback();
     }
