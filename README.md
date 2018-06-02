@@ -111,4 +111,4 @@ In case of errors with dbus/mpris, try removing optional dependencies from packa
 
 #### Support on Beerpay
 
-[![Beerpay](https://beerpay.io/nukeop/nuclear/badge.svg?style=beer-square)](https://beerpay.io/nukeop/nuclear)  [![Beerpay](https://beerpay.io/nukeop/nuclear/make-wish.svg?style=flat-square)](https://beerpay.io/nukeop/nuclear?focus=wish)
+[![Beerpay](https://beerpay.io/nukeop/nuclear/badge.svg?style=beer-square)](https://beerpay.io/nukeop/nuclear)  [![Beerpay](https://beerpay.io/nukeop/nuclear/make-wish.svg?style=flat-square)](https://beerpay.io/nukeop/nuclear?focus=wish) [![Greenkeeper badge](https://badges.greenkeeper.io/nukeop/nuclear.svg)](https://greenkeeper.io/)
