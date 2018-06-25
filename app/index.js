@@ -20,12 +20,12 @@ const render = Component => {
     </AppContainer>,
     document.getElementById('react_root')
   );
-}
+};
 
 render(App);
 
 if (module.hot) {
   module.hot.accept( () => {
     render(App);
-    });
-  }
+  });
+}
