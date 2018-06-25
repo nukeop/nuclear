@@ -1,7 +1,6 @@
 const webpack = require('webpack');
 const path = require('path');
 const HappyPack = require('happypack');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = env => {
   let entry = env && env.LINUX ? './server/main.prod.linux.js' : './server/main.prod.js';
@@ -12,8 +11,13 @@ module.exports = env => {
       path: __dirname,
       filename: './dist/bundle.electron.js'
     },
+    mode: 'production',
+    optimization: {
+      namedModules: true,
+      minimize: true
+    },
     module: {
-      loaders: [
+      rules: [
         {
           test: /.jsx?$/,
           use: 'happypack/loader?id=jsx',
@@ -26,12 +30,10 @@ module.exports = env => {
       ]
     },
     plugins: [
-      new webpack.NamedModulesPlugin(),
       new HappyPack({
         id: 'jsx',
         loaders: [ 'babel-loader' ]
-      }),
-      new UglifyJsPlugin()
+      })
     ],
     node: {
       fs: "empty",
@@ -39,5 +41,5 @@ module.exports = env => {
       __filename: false
     },
     target: 'electron-main'
-  }
+  };
 };

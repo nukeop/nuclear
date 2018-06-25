@@ -57,12 +57,13 @@
     "semantic-ui-react": "^0.81.0",
     "styled-components": "^3.2.6",
     "uuid": "^3.2.1",
-    "ytdl-core": "^0.20.2"
+    "webpack-cli": "^3.0.8",
+    "ytdl-core": "^0.20.4"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
-    "babel-preset-env": "^1.6.1",
+    "babel-preset-env": "^1.7.0",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "babel-register": "^6.26.0",
@@ -71,10 +72,9 @@
     "css-loader": "^0.28.9",
     "electron": "^2.0.2",
     "electron-builder": "^20.9.0",
-    "electron-devtools-installer": "^2.2.3",
+    "electron-devtools-installer": "^2.2.4",
     "extract-text-webpack-plugin": "^3.0.2",
     "file-loader": "^1.1.6",
-    "google-fonts-webpack-plugin": "^0.4.4",
     "happypack": "^5.0.0",
     "isomorphic-fetch": "^2.2.1",
     "lodash": "^4.17.5",
@@ -95,9 +95,8 @@
     "redux-thunk": "^2.2.0",
     "sass-loader": "^7.0.1",
     "style-loader": "^0.21.0",
-    "uglifyjs-webpack-plugin": "^1.1.8",
     "url-loader": "^1.0.1",
-    "webpack": "^4.10.2",
+    "webpack": "^4.12.1",
     "webpack-dev-server": "^3.1.4"
   },
   "optionalDependencies": {

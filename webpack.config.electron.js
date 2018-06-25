@@ -11,8 +11,9 @@ module.exports = env => {
       path: __dirname,
       filename: 'bundle.electron.js'
     },
+    mode: 'development',
     module: {
-      loaders: [
+      rules: [
         {
           test: /.jsx?$/,
           use: 'happypack/loader?id=jsx',

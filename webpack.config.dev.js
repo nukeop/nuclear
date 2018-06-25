@@ -1,6 +1,5 @@
 const webpack = require('webpack');
 const path = require('path');
-const GoogleFontsPlugin = require("google-fonts-webpack-plugin");
 const HappyPack = require('happypack');
 
 const BUILD_DIR = path.resolve(__dirname, 'dist');
@@ -24,19 +23,20 @@ const config = {
     contentBase: BUILD_DIR,
     publicPath: 'http://localhost:8080/'
   },
+  mode: 'development',
   node: {
     fs: "empty"
   },
   module: {
-    loaders: [
+    rules: [
       {
-	test: /.jsx?$/,
-	use: 'happypack/loader?id=jsx',
-	include: APP_DIR
+	      test: /.jsx?$/,
+	      use: 'happypack/loader?id=jsx',
+	      include: APP_DIR
       },
       {
-	test: /.scss$/,
-	use: 'happypack/loader?id=scss'
+	      test: /.scss$/,
+	      use: 'happypack/loader?id=scss'
       },
       {
         test: /\.css/,
@@ -51,14 +51,6 @@ const config = {
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(),
-    new GoogleFontsPlugin({
-      fonts: [
-        {
-          family: 'lato',
-          variants: ['regular', '300', '700']
-        }
-      ]
-    }),
     new HappyPack({
       id: 'jsx',
       loaders: [ 'babel-loader' ]
