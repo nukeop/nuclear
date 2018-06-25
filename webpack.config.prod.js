@@ -1,7 +1,5 @@
 const webpack = require('webpack');
 const path = require('path');
-const GoogleFontsPlugin = require("google-fonts-webpack-plugin");
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const HappyPack = require('happypack');
 
 const BUILD_DIR = path.resolve(__dirname, 'dist');
@@ -18,8 +16,16 @@ const config = {
   node: {
     fs: "empty"
   },
+  mode: 'production',
+  optimization: {
+    namedModules: true,
+    minimize: true,
+    splitChunks: {
+      chunks: 'all'
+    }
+  },
   module: {
-    loaders: [
+    rules: [
       {
         test: /.jsx?$/,
         use: 'happypack/loader?id=jsx',
@@ -39,7 +45,6 @@ const config = {
     ]
   },
   plugins: [
-    new webpack.NamedModulesPlugin(),
     new HappyPack({
       id: 'jsx',
       loaders: [ 'babel-loader' ]
@@ -47,15 +52,6 @@ const config = {
     new HappyPack({
       id: 'scss',
       loaders: [ 'style-loader!css-loader?importLoaders=1&modules&localIdentName=[local]!sass-loader' ]
-    }),
-    new UglifyJsPlugin(),
-    new GoogleFontsPlugin({
-      fonts: [
-        {
-          family: 'lato',
-          variants: ['regular', '300', '700']
-        }
-      ]
     }),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('production')
