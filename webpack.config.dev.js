@@ -1,6 +1,7 @@
 const webpack = require('webpack');
-const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HappyPack = require('happypack');
+const path = require('path');
 
 const BUILD_DIR = path.resolve(__dirname, 'dist');
 const APP_DIR = path.resolve(__dirname, 'app');
@@ -51,6 +52,20 @@ const config = {
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(),
+    new HtmlWebpackPlugin({
+      template: 'index.html',
+      minify: {
+        html5: true,
+        removeComments: true,
+        collapseWhitespace: true,
+        removeRedundantAttributes: true,
+        useShortDoctype: true,
+        removeEmptyAttributes: true,
+        removeStyleLinkTypeAttributes: true,
+        keepClosingSlash: true
+      },
+      inject: true
+    }),
     new HappyPack({
       id: 'jsx',
       loaders: [ 'babel-loader' ]

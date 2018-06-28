@@ -36,8 +36,8 @@ function createWindow() {
   .catch((err) => console.log('An error occurred: ', err));
 
   win.loadURL(url.format({
-    pathname: path.join(__dirname, 'index.html'),
-    protocol: 'file:',
+    pathname: 'localhost:8080',
+    protocol: 'http:',
     slashes: true
   }));
 
