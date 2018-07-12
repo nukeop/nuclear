@@ -1,3 +1,5 @@
+import logger from 'electron-timber';
+
 import {
   getBestNewAlbums,
   getBestNewTracks
@@ -53,11 +55,11 @@ export function loadTopTags() {
     getTopTags()
       .then(response => response.json())
       .then(results => {
-	dispatch(loadTopTagsSuccess(results.toptags.tag));
+	      dispatch(loadTopTagsSuccess(results.toptags.tag));
       })
       .catch(error => {
-	dispatch(loadTopTagsError(error));
-	console.error(error);
+	      dispatch(loadTopTagsError(error));
+	      logger.error(error);
       });
   };
 }
@@ -86,11 +88,11 @@ export function loadBestNewAlbums() {
     dispatch(loadBestNewAlbumsStart());
     getBestNewAlbums().
       then(albums => {
-	dispatch(loadBestNewAlbumsSuccess(albums));
+	      dispatch(loadBestNewAlbumsSuccess(albums));
       })
       .catch(error => {
-	dispatch(loadBestNewAlbumsError());
-	console.error(error);
+	      dispatch(loadBestNewAlbumsError());
+	      logger.error(error);
       });
   };  
 }
@@ -119,11 +121,11 @@ export function loadBestNewTracks() {
     dispatch(loadBestNewAlbumsStart());
     getBestNewTracks().
       then(tracks => {
-	dispatch(loadBestNewTracksSuccess(tracks));
+	      dispatch(loadBestNewTracksSuccess(tracks));
       })
       .catch(error => {
-	dispatch(loadBestNewTracksError());
-	console.error(error);
+	      dispatch(loadBestNewTracksError());
+	      logger.error(error);
       });
   };
 }
@@ -152,15 +154,15 @@ export function loadNuclearNews() {
     dispatch(loadNuclearNewsStart());
     getNewsIndex()
       .then(index => {
-	return Promise.all(index.articles.map((item, i) => {
-	  return getNewsItem(item);
-	}));
+	      return Promise.all(index.articles.map((item, i) => {
+	        return getNewsItem(item);
+	      }));
       })
       .then(articles => {
-	dispatch(loadNuclearNewsSuccess(articles));
+	      dispatch(loadNuclearNewsSuccess(articles));
       })
       .catch(err => {
-	dispatch(loadNuclearNewsError(err));
+	      dispatch(loadNuclearNewsError(err));
       });
   };
 }

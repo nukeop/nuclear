@@ -1,3 +1,5 @@
+import logger from 'electron-timber';
+
 const mb = require('../rest/Musicbrainz');
 const discogs = require('../rest/Discogs');
 const lastfm = require('../rest/Lastfm');
@@ -48,6 +50,12 @@ export function unifiedSearchSuccess() {
   };
 }
 
+export function unifiedSearchError() {
+  return {
+    type: UNIFIED_SEARCH_ERROR
+  };
+}
+
 export function albumSearch(terms) {
   return (dispatch) => {
     return discogs.searchReleases(terms)
@@ -57,6 +65,9 @@ export function albumSearch(terms) {
         type: ALBUM_SEARCH_SUCCESS,
         payload: searchResultsJson.results
       });
+    })
+    .catch(error => {
+      logger.error(error);
     });
   };
 }
@@ -70,6 +81,9 @@ export function artistSearch(terms) {
         type: ARTIST_SEARCH_SUCCESS,
         payload: searchResultsJson.results
       });
+    })
+    .catch(error => {
+      logger.error(error);
     });
   };
 }
@@ -80,11 +94,16 @@ export function unifiedSearch(terms, history) {
     Promise.all([
       dispatch(albumSearch(terms)),
       dispatch(artistSearch(terms))
-    ]).then(() => {
+    ])
+    .then(() => {
       dispatch(unifiedSearchSuccess());
       if(history.location.pathname !== '/search') {
         history.push('/search');
       }
+    })
+    .catch(error => {
+      logger.error(error);
+      dispatch(unifiedSearchError());
     });
   };
 }
@@ -110,9 +129,18 @@ export function albumInfoSearch(albumId) {
   return (dispatch) => {
     dispatch(albumInfoStart(albumId));
     discogs.releaseInfo(albumId)
-    .then (info => info.json())
+      .then (info => {
+        if(info.ok) {
+          info.json();
+        } else {
+          throw `Error fetching album data from Discogs for id ${albumId}`;
+        }
+      })
     .then (albumInfo => {
       dispatch(albumInfoSuccess(albumId, albumInfo));
+    })
+    .catch(error => {
+      logger.error(error);
     });
   };
 }
@@ -142,6 +170,9 @@ export function artistInfoSearch(artistId) {
     .then (artistInfo => {
       dispatch(artistInfoSuccess(artistId, artistInfo));
       dispatch(lastFmArtistInfoSearch(artistInfo.name, artistId));
+    })
+    .catch(error => {
+      logger.error(error);
     });
   };
 }
@@ -170,6 +201,9 @@ export function artistReleasesSearch(artistId) {
     .then (releases => releases.json())
     .then (releases => {
       dispatch(artistReleasesSuccess(artistId, releases));
+    })
+    .catch(error => {
+      logger.error(error);
     });
   };
 }
@@ -180,12 +214,15 @@ export function artistInfoSearchByName(artistName, history) {
     discogs.searchArtists(artistName)
     .then(searchResults => searchResults.json())
     .then(searchResultsJson => {
-        let artist = searchResultsJson.results[0];
-        if (history) {
-          history.push('/artist/' + artist.id);
-        }
+      let artist = searchResultsJson.results[0];
+      if (history) {
+        history.push('/artist/' + artist.id);
+      }
 
-        dispatch(artistInfoSearch(artist.id));
+      dispatch(artistInfoSearch(artist.id));
+    })
+    .catch(error => {
+      logger.error(error);
     });
   };
 }
@@ -222,6 +259,9 @@ export function lastFmArtistInfoSearch(artist, artistId) {
       });
 
       dispatch(lastFmArtistInfoSuccess(artistId, info));
+    })
+    .catch(error => {
+      logger.error(error);
     });
   };
 }
