@@ -17,12 +17,12 @@ const config = {
   output: {
     path: BUILD_DIR,
     filename: 'bundle.js',
-    publicPath: 'http://localhost:8080/'
+    publicPath: '/'
   },
   devServer: {
     hot: true,
-    contentBase: BUILD_DIR,
-    publicPath: 'http://localhost:8080/'
+    contentBase: '/',
+    publicPath: '/'
   },
   mode: 'development',
   node: {
