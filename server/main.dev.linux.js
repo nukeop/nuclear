@@ -1,4 +1,5 @@
-const { default: installExtension, REACT_DEVELOPER_TOOLS, REDUX_DEVTOOLS } = require('electron-devtools-installer');
+import logger from 'electron-timber';
+//const { default: installExtension, REACT_DEVELOPER_TOOLS, REDUX_DEVTOOLS } = require('electron-devtools-installer');
 const { app, ipcMain, nativeImage, BrowserWindow, Menu, Tray } = require('electron');
 const platform = require('electron-platform');
 const path = require('path');
@@ -22,6 +23,7 @@ function changeWindowTitle(artist, title) {
 }
 
 function createWindow() {
+  logger.log('Electron is ready, creating a window');
   win = new BrowserWindow({
     width: 1366,
     height: 768,
@@ -35,13 +37,15 @@ function createWindow() {
 
   win.setTitle('nuclear music player');
 
-  // installExtension(REACT_DEVELOPER_TOOLS)
-  // .then((name) => console.log(`Added Extension:  ${name}`))
-  // .catch((err) => console.log('An error occurred: ', err));
+   // Needs to be commented for now
+   // https://github.com/electron/electron/issues/13008
+   // installExtension(REACT_DEVELOPER_TOOLS)
+   // .then((name) => console.log(`Added Extension:  ${name}`))
+   // .catch((err) => console.log('An error occurred: ', err));
 
-  // installExtension(REDUX_DEVTOOLS)
-  // .then((name) => console.log(`Added Extension:  ${name}`))
-  // .catch((err) => console.log('An error occurred: ', err));
+   // installExtension(REDUX_DEVTOOLS)
+   // .then((name) => console.log(`Added Extension:  ${name}`))
+   // .catch((err) => console.log('An error occurred: ', err));
 
   win.loadURL(url.format({
     pathname: 'localhost:8080',
@@ -80,6 +84,7 @@ function createWindow() {
   tray.setContextMenu(trayMenu);
 
   ipcMain.on('close', () => {
+    logger.log('Received a close message from ipc, quitting');
     app.quit();
   });
 
@@ -152,5 +157,6 @@ function createWindow() {
 app.on('ready', createWindow);
 
 app.on('window-all-closed', () => {
+  logger.log('All windows closed, quitting');
   app.quit();
 });

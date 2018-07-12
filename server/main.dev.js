@@ -27,13 +27,15 @@ function createWindow() {
 
   win.setTitle('nuclear music player');
 
-  installExtension(REACT_DEVELOPER_TOOLS)
-  .then((name) => console.log(`Added Extension:  ${name}`))
-  .catch((err) => console.log('An error occurred: ', err));
+   // Needs to be commented for now
+   // https://github.com/electron/electron/issues/13008
+   // installExtension(REACT_DEVELOPER_TOOLS)
+   // .then((name) => console.log(`Added Extension:  ${name}`))
+   // .catch((err) => console.log('An error occurred: ', err));
 
-  installExtension(REDUX_DEVTOOLS)
-  .then((name) => console.log(`Added Extension:  ${name}`))
-  .catch((err) => console.log('An error occurred: ', err));
+   // installExtension(REDUX_DEVTOOLS)
+   // .then((name) => console.log(`Added Extension:  ${name}`))
+   // .catch((err) => console.log('An error occurred: ', err));
 
   win.loadURL(url.format({
     pathname: 'localhost:8080',
@@ -42,7 +44,7 @@ function createWindow() {
   }));
 
   win.once('ready-to-show', () => {
-    win.show()
+    win.show();
   });
 
   win.webContents.openDevTools();
