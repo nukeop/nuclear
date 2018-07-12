@@ -7,6 +7,84 @@
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.2/semantic.min.css"></link>
     <link href="loader.css" rel="stylesheet">
+    <style type="text/css">
+     body {
+       background: #282a36;
+     }
+
+     .loader-container {
+       position: absolute;
+       width: 100%;
+       height: 100%;
+       background: transparent;
+       display: flex;
+       justify-content: center;
+       align-items: center;
+       z-index: -1;
+     }
+
+     .nuclear-loader {
+       position: relative;
+       display: flex;
+       flex-flow: column;
+       background: linear-gradient(45deg, #43CBFF 0%, #9708CC 100%);
+       background-size: 200% 200%;
+       width: 15rem;
+       height: 15rem;
+       border-radius: 2rem;
+       box-shadow: 0 0 38px rgba(0,0,0,0.30), 0 0 12px rgba(0,0,0,0.22);
+       animation: gradient-anim 2s ease-in-out infinite;
+     }
+
+     @keyframes gradient-anim {
+       0%, 100% {
+         background-position: 50% 50%;
+       }
+
+       25% {
+         background-position: 0% 100%;
+       }
+
+       75% {
+         background-position: 100% 0%;
+       }
+     }
+
+     .nuclear-loader>span {
+       position: absolute;
+       width: 0;
+       height: 0;
+       border-top: 4rem solid #FAFAFA;
+       border-left: 3rem solid transparent;
+       border-right: 3rem solid transparent;
+     }
+
+     .nuclear-loader>span:nth-child(1) {
+       right: 4.5rem;
+       top: 3.5rem;
+     }
+
+     .nuclear-loader>span:nth-child(2) {
+       right: 7.5rem;
+       bottom: 3.5rem;
+
+     }
+
+     .nuclear-loader>span:nth-child(3) {
+       left: 7.5rem;
+       bottom: 3.5rem;
+     }
+
+     @keyframes loader-anim {
+       0%, 100% {
+         border-top: 4rem solid #FAFAFA;
+       }
+
+       50% {
+         border-top: 4rem solid transparent;
+       }
+     }
+    </style>
   </head>
   <body>
     <div id="react_root"></div>
