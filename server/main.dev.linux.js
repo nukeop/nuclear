@@ -31,7 +31,8 @@ function createWindow() {
     icon: icon,
     show: false,
     webPreferences: {
-      experimentalFeatures: true
+      experimentalFeatures: true,
+      webSecurity: false
     }
   });
 
