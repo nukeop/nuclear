@@ -177,6 +177,8 @@ class App extends React.Component {
             <VolumeControls
               fill={this.props.player.volume + '%'}
               updateVolume={this.props.actions.updateVolume}
+              toggleOption={this.props.actions.toggleOption}
+              settings={settings}
             />
           </div>
         </Footer>

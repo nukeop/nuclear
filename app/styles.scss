@@ -94,11 +94,12 @@
 }
 
 .footer_horizontal {
+  position: relative;
   display: flex;
   align-items: center;
   flex: 1 1 auto;
   flex-flow: row;
-  justify-content: space-between;
+  justify-content: center;
 }
 
 .track_info_wrapper {

@@ -1,0 +1,29 @@
+@import '../../vars.scss';
+@import '../../mixin.scss';
+
+.play_options_controls {
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+
+  .icon {
+    @include transition;
+    color: rgba($white, 0.25);
+    cursor: pointer;
+
+    span {
+      font-size: 20px;
+      margin: 0.5em;
+    }
+    
+    &.active {
+      color: $white;
+    }
+
+    &:hover {
+      color: $white;
+    }
+  }
+}
