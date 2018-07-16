@@ -2,6 +2,7 @@ import React from 'react';
 import { Tab } from 'semantic-ui-react';
 
 import BestNewMusicTab from './BestNewMusicTab';
+import ChartsTab from './ChartsTab';
 import GenresTab from './GenresTab';
 import NewsTab from './NewsTab';
 
@@ -19,7 +20,7 @@ class Dashboard extends React.Component {
       },
       {
         menuItem: 'Charts',
-        render: () => { return null; }
+        render: () => <ChartsTab />
       },
       {
         menuItem: 'Genres',
