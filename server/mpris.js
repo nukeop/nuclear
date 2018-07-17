@@ -1,11 +1,12 @@
-const { ipcMain } = require('electron');
+import logger from 'electron-timber';
+import { ipcMain } from 'electron';
 
 var rendererWindow = null;
 
 var events = ['raise', 'quit', 'next', 'previous', 'pause', 'playpause', 'stop', 'play', 'seek', 'position', 'open', 'volume'];
 
 ipcMain.on('started', (event, arg) => {
-  console.log('Renderer process started and registered.');
+  logger.log('Renderer process started and registered.');
   rendererWindow = event.sender;
 });
 
