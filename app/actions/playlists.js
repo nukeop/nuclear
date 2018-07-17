@@ -5,12 +5,12 @@ export const ADD_PLAYLIST = 'ADD_PLAYLIST';
 
 export function addPlaylist(tracks, name) {
   return dispatch => {
-    let playlists = store.get('playlists').value();
+    let playlists = store.get('playlists') || {};
     let playlist = {name, tracks};
 
     if (tracks.length === 0) {
       dispatch({
-	type: null
+	      type: null
       });
       return;
     }
@@ -21,7 +21,7 @@ export function addPlaylist(tracks, name) {
       playlists = [playlist];
     }
 
-    store.set('playlists', playlists).write();
+    store.set('playlists', playlists);
     dispatch({
       type: ADD_PLAYLIST,
       payload: playlists
@@ -31,17 +31,17 @@ export function addPlaylist(tracks, name) {
 
 export function loadPlaylists() {
   return dispatch => {
-    let playlists = store.get('playlists').value();
+    let playlists = store.get('playlists') || {};
 
     if (playlists) {
       dispatch({
-	type: LOAD_PLAYLISTS,
-	payload: playlists
+	      type: LOAD_PLAYLISTS,
+	      payload: playlists
       });
     } else {
       dispatch({
-	type: LOAD_PLAYLISTS,
-	payload: []
+	      type: LOAD_PLAYLISTS,
+	      payload: []
       });
     }
   };

@@ -1,19 +1,20 @@
-const low = require('lowdb');
-const FileSync = require('lowdb/adapters/FileSync');
-const _ = require('lodash');
-const options = require('../app/constants/settings');
+import { app } from 'electron';
+import logger from 'electron-timber';
+import electronStore from 'electron-store';
+import _ from'lodash';
 
-const store = low(new FileSync('nuclear.json'));
+import options from '../app/constants/settings';
+const store = new electronStore();
+logger.log(`Initialized settings store at ${store.path}`);
 
 function getOption(key) {
-  var value = store.get(key).value();
-  if (!value || Object.keys(value).length < 1) {
-    value = _.find(options, option => option.name === key);
+  let settings = store.get('settings') || {};
+  let value = settings[key];
+  if (value === undefined) {
+    value =  _.find(options, { name: key }).default;
   }
-
+  
   return value;
-};
+}
 
-module.exports = {
-  getOption
-};
+export { getOption };

@@ -42,9 +42,9 @@
   "dependencies": {
     "billboard-top-100": "^2.0.8",
     "electron-platform": "^1.2.0",
+    "electron-store": "^2.0.0",
     "electron-timber": "^0.5.1",
     "font-awesome": "^4.7.0",
-    "lowdb": "^1.0.0",
     "md5": "^2.2.1",
     "moment": "^2.20.1",
     "numeral": "^2.0.6",
