@@ -1,16 +1,40 @@
 let { app } = require('electron').remote;
-import path from 'path';
-import low from 'lowdb';
-import FileSync from 'lowdb/adapters/FileSync';
+import electronStore from 'electron-store';
+import options from '../constants/settings';
 
-const store = low(new FileSync(path.join(app.getPath('userData'), 'nuclear.json')));
+const store = new electronStore();
 initStore();
 
 function initStore() {
-  store.defaults({lastFm: {}, settings: {}}).write();
-  store.write();
+  if(!store.get('lastFm')){
+    store.set('lastFm', {});
+  }
+
+  if(!store.get('settings')){
+    store.set('settings', {});
+  }
+
+  if(!store.get('playlists')){
+    store.set('playlists', {});
+  }
 }
 
-module.exports = {
-  store
+function getOption(key) {
+  let settings = store.get('settings') || {};
+  let value = settings[key];
+  if (value === undefined) {
+    value =  _.find(options, { name: key }).default;
+  }
+  
+  return value;
 }
+
+function setOption(key, value) {
+  let settings = store.get('settings') || {};
+  store.set(
+    'settings',
+    Object.assign({}, settings, {[`${key}`]: value})
+  );
+}
+
+export { store, getOption, setOption };
