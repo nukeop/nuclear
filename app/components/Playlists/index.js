@@ -10,11 +10,15 @@ class Playlists extends React.Component {
       history,
   		playlists
   	} = this.props;
-
+    
     return (
       <div className={styles.playlists_container}>
         {
-        	playlists.map((playlist, i) => {
+        (!playlists || Object.keys(playlists).length === 0 || playlists.length === 0) &&
+            <h3>No playlists.</h3>
+        }
+        {
+        	playlists && playlists.length > 0 && playlists.map((playlist, i) => {
         		return (
         			<Playlist
         				playlist={playlist}
