@@ -36,7 +36,7 @@ export function lastFmReadSettings() {
         payload: null
       });
     }
-  }
+  };
 }
 
 export function lastFmConnectAction() {
@@ -49,13 +49,7 @@ export function lastFmConnectAction() {
           'http://www.last.fm/api/auth/?api_key=' + globals.lastfmApiKey + '&token=' + authToken
         );
 
-        store.set('lastFm', Object.assign(
-          {},
-          store.get('lastFm'),
-          {
-            lastFmAuthToken: authToken
-          }
-        ));
+        store.set('lastFm.lastFmAuthToken', authToken);
 
         dispatch({
           type: LASTFM_CONNECT,
@@ -74,14 +68,8 @@ export function lastFmLoginAction(authToken) {
         let sessionKey = response.session.key;
         let sessionName = response.session.name;
 
-        store.set('lastFm', Object.assign(
-          {},
-          store.get('lastFm'),
-          {
-            lastFmName: sessionName,
-            lastFmSessionKey: sessionKey
-          }
-        ));
+        store.set('lastFm.lastFmName', sessionName);
+        store.set('lastFm.lastFmSessionKey', sessionKey);
 
         dispatch({
           type: LASTFM_LOGIN,
@@ -95,13 +83,7 @@ export function lastFmLoginAction(authToken) {
 }
 
 export function enableScrobbling() {
-  store.set('lastFm', Object.assign(
-    {},
-    store.get('lastFm'),
-    {
-      lastFmScrobblingEnabled: true
-    }
-  ));
+  store.set('lastFm.lastFmScrobblingEnabled', true);
 
   return {
     type: LASTFM_ENABLE_SCROBBLING,
@@ -110,13 +92,7 @@ export function enableScrobbling() {
 }
 
 export function disableScrobbling() {
-  store.set('lastFm', Object.assign(
-    {},
-    store.get('lastFm'),
-    {
-      lastFmScrobblingEnabled: false
-    }
-  ));
+  store.set('lastFm.lastFmScrobblingEnabled', false);
   
   return {
     type: LASTFM_DISABLE_SCROBBLING,
@@ -133,7 +109,7 @@ export function scrobbleAction(artist, track, session) {
           payload: null
         });
       });
-  }
+  };
 }
 
 export function updateNowPlayingAction(artist, track, session) {
@@ -145,5 +121,5 @@ export function updateNowPlayingAction(artist, track, session) {
           payload: null
         });
       });
-  }
+  };
 }
