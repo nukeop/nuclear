@@ -15,7 +15,7 @@
     "build:electron": "webpack --progress --colors --config=webpack.config.electron.prod.js && cp index.prod.html dist/index.html",
     "test": "mocha --require babel-register --require babel-polyfill --timeout 10000 --prof",
     "pack": "electron-builder --dir -c.extraMetadata.main=dist/bundle.electron.js",
-    "dist": "babel-node  electron-builder -c.extraMetadata.main=dist/bundle.electron.js",
+    "dist": "babel-node electron-builder -c.extraMetadata.main=dist/bundle.electron.js",
     "build:linux": "electron-builder -c.extraMetadata.main=dist/bundle.electron.js --linux",
     "build:windows": "electron-builder -c.extraMetadata.main=dist/bundle.electron.js --windows",
     "build:macos": "electron-builder -c.extraMetadata.main=dist/bundle.electron.js --macos",
