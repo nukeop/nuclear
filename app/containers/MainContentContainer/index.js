@@ -17,6 +17,7 @@ import SearchResultsContainer from '../SearchResultsContainer';
 import SettingsContainer from '../SettingsContainer';
 import TagViewContainer from '../TagViewContainer';
 
+import Downloads from '../../components/Downloads';
 
 import styles from './styles.scss';
 
@@ -38,6 +39,7 @@ class MainContentContainer extends React.Component {
                 <Route path="/album/:albumId" component={AlbumViewContainer} />
                 <Route path="/artist/:artistId" component={ArtistViewContainer} />
                 <Route path="/dashboard" component={DashboardContainer} />
+                <Route path="/downloads" component={Downloads} />
                 <Route path="/playlists" component={PlaylistsContainer} />
                 <Route path="/playlist/:playlistId" component={PlaylistViewContainer} />
                 <Route path="/plugins" component={PluginsContainer} />

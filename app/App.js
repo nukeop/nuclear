@@ -113,11 +113,11 @@ class App extends React.Component {
                   <FontAwesome name="dashboard" /> { !settings.compactMenuBar && 'Dashboard' }
                 </SidebarMenuItem>
               </NavLink>
-              <a href="#">
+              <NavLink to="downloads">
                 <SidebarMenuItem>
                   <FontAwesome name="download" /> { !settings.compactMenuBar && 'Downloads' }
                 </SidebarMenuItem>
-              </a>
+              </NavLink>
               <NavLink to="/playlists" activeClassName={styles.active_nav_link}>
                 <SidebarMenuItem>
                   <FontAwesome name="music" /> { !settings.compactMenuBar && 'Playlists' }
