@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import styles from './styles.css';
 
@@ -38,5 +39,13 @@ class AlbumCover extends React.Component {
     );
   }
 }
+
+AlbumCover.propTypes = {
+  nameOnly: PropTypes.bool,
+  cover: PropTypes.string,
+  artist: PropTypes.string,
+  title: PropTypes.string,
+  handlePlay: PropTypes.func
+};
 
 export default AlbumCover;
