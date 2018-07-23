@@ -20,6 +20,9 @@ function addKeys(query, first=false) {
 }
 
 function searchQuery(terms, count=15) {
+  // Strip # manually to prevent it being interpreted as anchor separator
+  terms = terms.replace('#', '');
+  
   return addToken(
     apiUrl
     + 'database/search'
