@@ -1,12 +1,8 @@
 import { store } from '../persistence/store';
-import {
-  lastFmLoginConnect,
-  lastFmLogin,
-  scrobble,
-  updateNowPlaying
-} from '../rest/Lastfm';
+import {LastFmApi} from 'nuclear-core';
 import globals from '../globals';
 const electron = window.require('electron');
+const lastfm = new LastFmApi(globals.lastfmApiKey, globals.lastfmApiSecret);
 
 export const LASTFM_CONNECT = 'LASTFM_CONNECT';
 export const LASTFM_LOGIN = 'LASTFM_LOGIN';
@@ -41,7 +37,7 @@ export function lastFmReadSettings() {
 
 export function lastFmConnectAction() {
   return dispatch => {
-    lastFmLoginConnect()
+    lastfm.lastFmLoginConnect()
       .then(response => response.json())
       .then(response => {
         let authToken = response.token;
@@ -61,7 +57,7 @@ export function lastFmConnectAction() {
 
 export function lastFmLoginAction(authToken) {
   return dispatch => {
-    lastFmLogin(authToken)
+    lastfm.lastFmLogin(authToken)
       .then(response => response.json())
       .then(response => {
 
@@ -102,7 +98,7 @@ export function disableScrobbling() {
 
 export function scrobbleAction(artist, track, session) {
   return dispatch => {
-    scrobble(artist, track, session)
+    lastfm.scrobble(artist, track, session)
       .then(response => {
         dispatch({
           type: LASTFM_SCROBBLE,
@@ -114,7 +110,7 @@ export function scrobbleAction(artist, track, session) {
 
 export function updateNowPlayingAction(artist, track, session) {
   return dispatch => {
-    updateNowPlaying(artist, track, session)
+    lastfm.updateNowPlaying(artist, track, session)
       .then(response => {
         dispatch({
           type: LASTFM_UPDATE_NOW_PLAYING,
