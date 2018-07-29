@@ -1,8 +1,10 @@
-const lastfm = require('../rest/Lastfm');
+import {LastFmApi} from 'nuclear-core';
+import globals from '../globals';
 
 export const LOAD_TAG_INFO_START = 'LOAD_TAG_INFO_START';
 export const LOAD_TAG_INFO_SUCCESS = 'LOAD_TAG_INFO_SUCCESS';
 export const LOAD_TAG_INFO_ERROR = 'LOAD_TAG_INFO_ERROR';
+const lastfm = new LastFmApi(globals.lastfmApiKey, globals.lastfmApiSecret);
 
 export function loadTagInfoStart(tag) {
   return {
