@@ -34,7 +34,7 @@
     "name": "nukeop",
     "email": "nuclear@gumblert.tech"
   },
-  "license": "GPL-3.0",
+  "license": "AGPL-3.0",
   "bugs": {
     "url": "https://github.com/nukeop/nuclear/issues"
   },
