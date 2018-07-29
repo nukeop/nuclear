@@ -1,18 +1,17 @@
 import logger from 'electron-timber';
-
+import {LastFmApi} from 'nuclear-core';
 import {
   getBestNewAlbums,
   getBestNewTracks
 } from 'pitchfork-bnm';
 
-import {
-  getTopTags
-} from '../rest/Lastfm';
-
+import globals from '../globals';
 import {
   getNewsIndex,
   getNewsItem
 } from '../rest/Nuclear';
+
+const lastfm = new LastFmApi(globals.lastfmApiKey, globals.lastfmApiSecret);
 
 export const LOAD_BEST_NEW_ALBUMS_START = 'LOAD_BEST_NEW_ALBUMS_START';
 export const LOAD_BEST_NEW_ALBUMS_SUCCESS = 'LOAD_BEST_NEW_ALBUMS_SUCCESS';
@@ -52,7 +51,7 @@ export function loadTopTagsError() {
 export function loadTopTags() {
   return dispatch => {
     dispatch(loadTopTagsStart());
-    getTopTags()
+    lastfm.getTopTags()
       .then(response => response.json())
       .then(results => {
 	      dispatch(loadTopTagsSuccess(results.toptags.tag));
