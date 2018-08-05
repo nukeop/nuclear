@@ -1,4 +1,5 @@
 const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 const HappyPack = require('happypack');
 
@@ -10,8 +11,7 @@ const config = {
   entry: path.resolve(APP_DIR, 'index.js'),
   output: {
     path: BUILD_DIR,
-    filename: 'bundle.js',
-    publicPath: BUILD_DIR
+    filename: 'bundle.js'
   },
   node: {
     fs: "empty"
@@ -19,17 +19,26 @@ const config = {
   mode: 'production',
   optimization: {
     namedModules: true,
-    minimize: true,
     splitChunks: {
-      chunks: 'all'
+      chunks: 'all',
+      cacheGroups: {
+        vendors: {
+          test: /[\\/]node_modules[\\/]/,
+          priority: -10
+        },
+        default: {
+          minChunks: 2,
+          priority: -20,
+          reuseExistingChunk: true
+        }
+      }
     }
   },
   module: {
     rules: [
       {
         test: /.jsx?$/,
-        use: 'happypack/loader?id=jsx',
-        exclude: /node_modules/
+        use: 'happypack/loader?id=jsx'
       },
       {
         test: /.scss$/,
@@ -45,6 +54,20 @@ const config = {
     ]
   },
   plugins: [
+    new HtmlWebpackPlugin({
+      template: 'index.prod.html',
+      minify: {
+        html5: true,
+        removeComments: true,
+        collapseWhitespace: true,
+        removeRedundantAttributes: true,
+        useShortDoctype: true,
+        removeEmptyAttributes: true,
+        removeStyleLinkTypeAttributes: true,
+        keepClosingSlash: true
+      },
+      inject: true
+    }),
     new HappyPack({
       id: 'jsx',
       loaders: [ 'babel-loader' ]
