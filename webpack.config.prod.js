@@ -17,6 +17,7 @@ const config = {
     fs: "empty"
   },
   mode: 'production',
+  devtool: 'source-map',
   optimization: {
     namedModules: true,
     splitChunks: {
