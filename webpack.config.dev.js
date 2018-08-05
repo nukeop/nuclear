@@ -25,6 +25,9 @@ const config = {
     publicPath: '/'
   },
   mode: 'development',
+  optimization: {
+    namedModules: true
+  },
   node: {
     fs: "empty"
   },
@@ -51,7 +54,6 @@ const config = {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NamedModulesPlugin(),
     new HtmlWebpackPlugin({
       template: 'index.html',
       minify: {

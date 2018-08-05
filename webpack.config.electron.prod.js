@@ -13,15 +13,13 @@ module.exports = env => {
     },
     mode: 'production',
     optimization: {
-      namedModules: true,
-      minimize: true
+      namedModules: true
     },
     module: {
       rules: [
         {
           test: /.jsx?$/,
-          use: 'happypack/loader?id=jsx',
-          exclude: /node_modules/
+          use: 'happypack/loader?id=jsx'
         },
         {
           test: /.node$/,
