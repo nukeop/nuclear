@@ -87,6 +87,15 @@ class AlbumView extends React.Component {
       album
     } = this.props;
 
+    if(_.some(_.map([album.images, album.artists, album.styles], _.isEmpty))) {
+      return (
+        <div>
+          <h3>Discogs returned invalid data.</h3>
+          <h4>Try going back to search.</h4>
+        </div>
+      );
+    }
+
     let albumImage = _.find(album.images, {'type': 'primary'});
     if(!albumImage) {
       albumImage = album.images ? album.images[0].uri : artPlaceholder;
