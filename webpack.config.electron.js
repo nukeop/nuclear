@@ -38,5 +38,5 @@ module.exports = env => {
       __filename: false
     },
     target: 'electron-main'
-  }
+  };
 };
