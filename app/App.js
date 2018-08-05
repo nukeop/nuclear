@@ -38,7 +38,7 @@ import SearchBoxContainer from './containers/SearchBoxContainer';
 import IpcContainer from './containers/IpcContainer';
 import SoundContainer from './containers/SoundContainer';
 
-import Cover from './components/Cover';
+import ui from 'nuclear-ui';
 import PlayerControls from './components/PlayerControls';
 import PlayQueue from './components/PlayQueue';
 import Seekbar from './components/Seekbar';
@@ -161,7 +161,7 @@ class App extends React.Component {
           />
           <div className={styles.footer_horizontal}>
             <div className={styles.track_info_wrapper}>
-              <Cover cover={this.props.queue.queueItems[this.props.queue.currentSong] ? this.props.queue.queueItems[this.props.queue.currentSong].thumbnail : artPlaceholder} />
+              <ui.Cover cover={this.props.queue.queueItems[this.props.queue.currentSong] ? this.props.queue.queueItems[this.props.queue.currentSong].thumbnail : artPlaceholder} />
               <TrackInfo
                 track={this.props.queue.queueItems[this.props.queue.currentSong] ? this.props.queue.queueItems[this.props.queue.currentSong].name : null}
                 artist={this.props.queue.queueItems[this.props.queue.currentSong] ? this.props.queue.queueItems[this.props.queue.currentSong].artist : null}
