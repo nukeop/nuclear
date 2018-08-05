@@ -1,8 +1,8 @@
 import { store } from '../persistence/store';
-import {LastFmApi} from 'nuclear-core';
+import core from 'nuclear-core';
 import globals from '../globals';
 const electron = window.require('electron');
-const lastfm = new LastFmApi(globals.lastfmApiKey, globals.lastfmApiSecret);
+const lastfm = new core.LastFmApi(globals.lastfmApiKey, globals.lastfmApiSecret);
 
 export const LASTFM_CONNECT = 'LASTFM_CONNECT';
 export const LASTFM_LOGIN = 'LASTFM_LOGIN';
