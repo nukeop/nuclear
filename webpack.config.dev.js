@@ -25,6 +25,7 @@ const config = {
     publicPath: '/'
   },
   mode: 'development',
+  devtool: 'source-map',
   optimization: {
     namedModules: true
   },
