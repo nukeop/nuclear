@@ -1,9 +1,11 @@
 require('isomorphic-fetch');
 import assert from 'assert';
 import { expect } from 'chai';
+import core from 'nuclear-core';
+import globals from '../app/globals';
 
 var billboard = require('../app/rest/Billboard');
-var lastfm = require('../app/rest/Lastfm');
+var lastfm = new core.LastFmApi(globals.lastfmApiKey, globals.lastfmApiSecret);
 
 describe('Billboard api tests', () => {
   it('tests exports', () => {
