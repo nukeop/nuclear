@@ -1,12 +1,12 @@
 import logger from 'electron-timber';
-import {LastFmApi} from 'nuclear-core';
+import core from 'nuclear-core';
 import _ from 'lodash';
 import globals from '../globals';
 
 const mb = require('../rest/Musicbrainz');
 const discogs = require('../rest/Discogs');
 
-const lastfm = new LastFmApi(globals.lastfmApiKey, globals.lastfmApiSecret);
+var lastfm = new core.LastFmApi(globals.lastfmApiKey, globals.lastfmApiSecret);
 
 export const UNIFIED_SEARCH_START = 'UNIFIED_SEARCH_START';
 export const UNIFIED_SEARCH_SUCCESS = 'UNIFIED_SEARCH_SUCCESS';

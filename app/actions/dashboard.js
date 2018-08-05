@@ -1,5 +1,5 @@
 import logger from 'electron-timber';
-import {LastFmApi} from 'nuclear-core';
+import core from 'nuclear-core';
 import {
   getBestNewAlbums,
   getBestNewTracks
@@ -11,7 +11,7 @@ import {
   getNewsItem
 } from '../rest/Nuclear';
 
-const lastfm = new LastFmApi(globals.lastfmApiKey, globals.lastfmApiSecret);
+const lastfm = new core.LastFmApi(globals.lastfmApiKey, globals.lastfmApiSecret);
 
 export const LOAD_BEST_NEW_ALBUMS_START = 'LOAD_BEST_NEW_ALBUMS_START';
 export const LOAD_BEST_NEW_ALBUMS_SUCCESS = 'LOAD_BEST_NEW_ALBUMS_SUCCESS';
