@@ -1,3 +1,4 @@
+require("babel-polyfill");
 const { app, ipcMain, nativeImage, BrowserWindow, Menu, Tray } = require('electron');
 const platform = require('electron-platform');
 const path = require('path');
