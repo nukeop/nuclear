@@ -47,7 +47,7 @@
     "font-awesome": "^4.7.0",
     "md5": "^2.2.1",
     "moment": "^2.20.1",
-    "nuclear-core": "0.0.3",
+    "nuclear-core": "0.0.4",
     "nuclear-ui": "0.0.4",
     "numeral": "^2.0.6",
     "pitchfork-bnm": "^1.0.3",
