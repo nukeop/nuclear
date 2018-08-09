@@ -52,7 +52,7 @@
     "numeral": "^2.0.6",
     "pitchfork-bnm": "^1.0.3",
     "react": "^16.3.2",
-    "react-beautiful-dnd": "^8.0.0",
+    "react-beautiful-dnd": "^9.0.0",
     "react-dom": "^16.3.2",
     "react-image-smooth-loading": "^2.0.0",
     "react-router-transition": "^1.2.1",
