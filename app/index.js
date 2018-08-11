@@ -10,6 +10,10 @@ import configureStore from './store/configureStore';
 
 const store = configureStore();
 
+// Sentry
+process.env.NODE_ENV === 'production' &&
+  Raven.config('https://2fb5587831994721a8b5f77bf6010679@sentry.io/1256142').install();
+
 const render = Component => {
   ReactDOM.render(
     <AppContainer>

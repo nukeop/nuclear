@@ -39,7 +39,12 @@ const config = {
     rules: [
       {
         test: /.jsx?$/,
-        use: 'happypack/loader?id=jsx'
+        use: 'happypack/loader?id=jsx',
+        exclude: /node_modules\/electron\-timber\/preload\.js/
+      },
+      {
+          test: /.node$/,
+          use: 'node-loader'
       },
       {
         test: /.scss$/,
