@@ -16,12 +16,12 @@ class TagTopList extends React.Component {
       onClick,
       header
     } = this.props;
-
+    
     return(
       <div className={styles.tag_top_list}>
         <h4>{header}</h4>
         <div className={styles.top_list_items}>
-          <div className={styles.top_item} onClick={() => onClick(topList[0].name)}>
+          <div className={styles.top_item} onClick={() => onClick && onClick(topList[0].name)}>
             <Img src={_.last(topList[0].image)['#text']} />
             <div
               className={styles.item_overlay}
@@ -36,7 +36,7 @@ class TagTopList extends React.Component {
                   <div
                     key={i}
                     className={styles.other_item}
-                    onClick={() => onClick(item.name)}
+                    onClick={() => onClick && onClick(item.name)}
                   >
                     <Img src={_.last(item.image)['#text']}/>
                     <div className={styles.item_overlay}

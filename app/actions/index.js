@@ -133,12 +133,12 @@ export function albumInfoSearch(albumId) {
     discogs.releaseInfo(albumId)
       .then (info => {
         if(info.ok) {
-          info.json();
+          return info.json();
         } else {
           throw `Error fetching album data from Discogs for id ${albumId}`;
         }
       })
-    .then (albumInfo => {
+      .then (albumInfo => {
       dispatch(albumInfoSuccess(albumId, albumInfo));
     })
     .catch(error => {
