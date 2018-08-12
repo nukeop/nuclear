@@ -3,7 +3,7 @@ matrix:
     - os: osx
       osx_image: xcode9.2
       language: node_js
-      node_js: "9"
+      node_js: "8"
       env:
         - ELECTRON_CACHE=$HOME/.cache/electron
         - ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder
@@ -11,7 +11,7 @@ matrix:
 
     - os: linux
       language: node_js
-      node_js: "9"
+      node_js: "8"
 
 before_install:
   - if [ $TRAVIS_OS_NAME = linux ]; then sudo apt-get install libdbus-1-dev -y; fi
