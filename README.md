@@ -109,6 +109,10 @@ Instead of `pack` you can use `build:all` to build for all operating systems or 
 
 In case of errors with dbus/mpris, try removing optional dependencies from package.json and node_modules.
 
+## License
+
+This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+
 #### Support on Beerpay
 
 [![Beerpay](https://beerpay.io/nukeop/nuclear/badge.svg?style=beer-square)](https://beerpay.io/nukeop/nuclear)  [![Beerpay](https://beerpay.io/nukeop/nuclear/make-wish.svg?style=flat-square)](https://beerpay.io/nukeop/nuclear?focus=wish) [![Greenkeeper badge](https://badges.greenkeeper.io/nukeop/nuclear.svg)](https://greenkeeper.io/)
