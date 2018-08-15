@@ -78,8 +78,8 @@
     "chai": "^4.1.2",
     "classnames": "^2.2.5",
     "css-loader": "^1.0.0",
-    "electron": "^2.0.2",
-    "electron-builder": "^20.9.0",
+    "electron": "^2.0.7",
+    "electron-builder": "^20.27.1",
     "electron-devtools-installer": "^2.2.4",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
@@ -113,8 +113,6 @@
     "webpack-dev-server": "^3.1.4"
   },
   "optionalDependencies": {
-    "dbus": "^1.0.3",
-    "mpris-service": "^1.1.3",
     "7zip-bin-mac": "^1.0.1"
   },
   "build": {

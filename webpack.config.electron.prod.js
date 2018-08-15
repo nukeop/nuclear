@@ -20,10 +20,6 @@ module.exports = env => {
         {
           test: /.jsx?$/,
           use: 'happypack/loader?id=jsx'
-        },
-        {
-          test: /.node$/,
-          use: 'node-loader'
         }
       ]
     },
@@ -33,6 +29,9 @@ module.exports = env => {
         loaders: [ 'babel-loader' ]
       })
     ],
+    externals: {
+      dbus: 'dbus'
+    },
     node: {
       fs: "empty",
       __dirname: false,
