@@ -82,7 +82,7 @@
     "electron-builder": "^20.27.1",
     "electron-devtools-installer": "^2.2.4",
     "enzyme": "^3.3.0",
-    "enzyme-adapter-react-16": "^1.1.1",
+    "enzyme-adapter-react-16": "^1.5.0",
     "extract-text-webpack-plugin": "^3.0.2",
     "file-loader": "^1.1.6",
     "happypack": "^5.0.0",
