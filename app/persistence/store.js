@@ -15,7 +15,7 @@ function initStore() {
   }
 
   if(!store.get('playlists')){
-    store.set('playlists', {});
+    store.set('playlists', []);
   }
 }
 
