@@ -18,10 +18,6 @@ module.exports = env => {
           test: /.jsx?$/,
           use: 'happypack/loader?id=jsx',
           exclude: /node_modules/
-        },
-        {
-          test: /.node$/,
-          use: 'node-loader'
         }
       ]
     },
