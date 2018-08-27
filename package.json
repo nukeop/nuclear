@@ -107,7 +107,7 @@
     "redux-promise": "^0.6.0",
     "redux-thunk": "^2.2.0",
     "sass-loader": "^7.0.1",
-    "style-loader": "^0.22.0",
+    "style-loader": "^0.23.0",
     "url-loader": "^1.0.1",
     "webpack": "^4.12.1",
     "webpack-dev-server": "^3.1.4"
