@@ -23,23 +23,23 @@ class ContextPopup extends React.Component {
   render() {
     return (
       <Popup
-         className={styles.popup_content}
-         trigger={this.props.trigger}
-         on='click'
-	 open={this.state.isOpen}
-	 onClose={this.handleClose.bind(this)}
-         onOpen={this.handleOpen.bind(this)}
-	 hideOnScroll
-	 >
+        className={styles.popup_content}
+        trigger={this.props.trigger}
+        on='click'
+	      open={this.state.isOpen}
+	      onClose={this.handleClose.bind(this)}
+        onOpen={this.handleOpen.bind(this)}
+	      hideOnScroll
+	    >
         <div className={styles.popup_header}>
           <div className={styles.popup_thumb}><img src={this.props.thumb} /></div>
           <div className={styles.popup_info}>
             <div className={styles.popup_title}>{this.props.title}</div>
             {
-	      this.props.artist
-	      ? <div className={styles.popup_artist}>by {this.props.artist}</div>
-	      : null
-	    }
+	            this.props.artist
+	              ? <div className={styles.popup_artist}>by {this.props.artist}</div>
+	              : null
+	          }
           </div>
         </div>
 

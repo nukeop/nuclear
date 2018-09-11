@@ -49,14 +49,15 @@ class TagTopTracks extends React.Component {
 			   </tr>
 			 }
 			 >
-                    <a href="#"
+        <a href="#"
 		       className='add_button'
 		       onClick={() => {addToQueue(musicSources, {
-			 artist: track.artist.name,
-			 name: track.name,
-			 thumbnail: track.image[1]['#text']
+			       artist: track.artist.name,
+			       name: track.name,
+			       thumbnail: track.image[1]['#text']
 		      })}}
-		       ><FontAwesome name="plus" /> Add to queue</a>
+          aria-label='Add track to queue'
+		    ><FontAwesome name="plus" /> Add to queue</a>
 		  </ContextPopup>
 		  
 		);
@@ -64,8 +65,8 @@ class TagTopTracks extends React.Component {
 	    }
       
       </tbody>
-	</table>
-	</div>
+	      </table>
+	      </div>
     );
   }
 }

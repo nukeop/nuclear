@@ -77,6 +77,7 @@ class PopularTracks extends React.Component {
                 href='#'
                 onClick={() => this.addToQueue(artist, track)}
                 className={styles.add_button}
+                aria-label='Add track to queue'
               >
                 <FontAwesome name="plus" /> Add to queue
               </a>,
@@ -89,6 +90,7 @@ class PopularTracks extends React.Component {
                   startPlayback();
                 }}
                 className={styles.add_button}
+                aria-label='Play this track now'
               >
                 <FontAwesome name="play" /> Play now
               </a>

@@ -75,6 +75,7 @@ class AlbumView extends React.Component {
             () => this.addAlbumToQueue(album)
           }
           className={styles.add_button}
+          aria-label='Add album to queue'
         >
           <FontAwesome name="plus" /> Add to queue
         </a>
@@ -174,6 +175,7 @@ class AlbumView extends React.Component {
                               () => this.addToQueue(album, el)
                             }
                             className={styles.add_button}
+                            aria-label='Add track to queue'
                           >
                             <FontAwesome name="plus" /> Add to queue
                           </a>
@@ -187,6 +189,7 @@ class AlbumView extends React.Component {
                                 this.props.startPlayback();
                               }
                             }
+                            aria-label='Play this track now'
                             className={styles.add_button}
                           ><FontAwesome name="play" /> Play now
                           </a>

@@ -17,7 +17,13 @@ class PlayPauseButton extends React.Component {
 
   render() {
     return (
-      <div className={classnames(styles.play_pause_button_container, {'loading': this.props.loading})}>
+      <div
+        className={classnames(
+          styles.play_pause_button_container,
+          {'loading': this.props.loading}
+        )}
+        aria-label='Play/Pause button'
+      >
         <a href='#' onClick={this.props.onClick}>{
           this.getIcon()
         }</a>
