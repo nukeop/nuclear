@@ -102,8 +102,8 @@ class App extends React.Component {
                 <div className={styles.version_string}>
                   {
                     settings.compactMenuBar
-                      ? '0.4.3'
-                      : 'Version 0.4.3'
+                      ? '0.4.4'
+                      : 'Version 0.4.4'
                   }
                 </div>
               </div>
