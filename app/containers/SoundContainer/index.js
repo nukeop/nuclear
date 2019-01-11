@@ -87,23 +87,17 @@ class SoundContainer extends React.Component {
       .then(topTracks => this.getRandomElement(topTracks.toptracks.track))
       .then(track => {
         return this.addToQueue(track.artist, track);
-      })
-      .catch(err => {
-        console.log('ERROR : ' + err);
       });
   }
 
   getSimilarArtists(artistJson) {
     return new Promise((resolve, reject) => {
-      console.log(artistJson);
       resolve(artistJson.similar.artist);
     });
   }
 
   getRandomElement(arr) {
-    console.log(arr);
     let randomElement = arr[Math.round(Math.random() * (arr.length - 1))];
-    console.log(randomElement);
     return new Promise((resolve, reject) => resolve(randomElement));
   }
 
