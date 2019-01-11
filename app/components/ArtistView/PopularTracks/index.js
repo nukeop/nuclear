@@ -67,6 +67,7 @@ class PopularTracks extends React.Component {
       <div className={styles.popular_tracks_container}>
         <div className={styles.header}>Popular tracks:</div>
         <a
+          key="add-all-tracks-to-queue"
           href="#"
           onClick={() => {
             tracks.track
