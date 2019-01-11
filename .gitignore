@@ -61,3 +61,6 @@ release
 dist
 nuclear.json
 bundle.electron.js
+
+# Prettier configuration file
+.prettierrc
