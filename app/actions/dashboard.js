@@ -1,17 +1,14 @@
 import logger from 'electron-timber';
 import core from 'nuclear-core';
-import {
-  getBestNewAlbums,
-  getBestNewTracks
-} from 'pitchfork-bnm';
+import { getBestNewAlbums, getBestNewTracks } from 'pitchfork-bnm';
 
 import globals from '../globals';
-import {
-  getNewsIndex,
-  getNewsItem
-} from '../rest/Nuclear';
+import { getNewsIndex, getNewsItem } from '../rest/Nuclear';
 
-const lastfm = new core.LastFmApi(globals.lastfmApiKey, globals.lastfmApiSecret);
+const lastfm = new core.LastFmApi(
+  globals.lastfmApiKey,
+  globals.lastfmApiSecret
+);
 
 export const LOAD_BEST_NEW_ALBUMS_START = 'LOAD_BEST_NEW_ALBUMS_START';
 export const LOAD_BEST_NEW_ALBUMS_SUCCESS = 'LOAD_BEST_NEW_ALBUMS_SUCCESS';
@@ -31,120 +28,121 @@ export const LOAD_TOP_TAGS_ERROR = 'LOAD_TOP_TAGS_ERROR';
 
 export function loadTopTagsStart() {
   return {
-    type: LOAD_TOP_TAGS_START
+    type: LOAD_TOP_TAGS_START,
   };
 }
 
 export function loadTopTagsSuccess(tags) {
   return {
     type: LOAD_TOP_TAGS_SUCCESS,
-    payload: tags
+    payload: tags,
   };
 }
 
 export function loadTopTagsError() {
   return {
-    type: LOAD_TOP_TAGS_ERROR
+    type: LOAD_TOP_TAGS_ERROR,
   };
 }
 
 export function loadTopTags() {
   return dispatch => {
     dispatch(loadTopTagsStart());
-    lastfm.getTopTags()
+    lastfm
+      .getTopTags()
       .then(response => response.json())
       .then(results => {
-	      dispatch(loadTopTagsSuccess(results.toptags.tag));
+        dispatch(loadTopTagsSuccess(results.toptags.tag));
       })
       .catch(error => {
-	      dispatch(loadTopTagsError(error));
-	      logger.error(error);
+        dispatch(loadTopTagsError(error));
+        logger.error(error);
       });
   };
 }
 
 export function loadBestNewAlbumsStart() {
   return {
-    type: LOAD_BEST_NEW_ALBUMS_START
+    type: LOAD_BEST_NEW_ALBUMS_START,
   };
 }
 
 export function loadBestNewAlbumsSuccess(albums) {
   return {
     type: LOAD_BEST_NEW_ALBUMS_SUCCESS,
-    payload: albums
+    payload: albums,
   };
 }
 
 export function loadBestNewAlbumsError() {
   return {
-    type: LOAD_BEST_NEW_ALBUMS_ERROR
+    type: LOAD_BEST_NEW_ALBUMS_ERROR,
   };
 }
 
 export function loadBestNewAlbums() {
   return dispatch => {
     dispatch(loadBestNewAlbumsStart());
-    getBestNewAlbums().
-      then(albums => {
-	      dispatch(loadBestNewAlbumsSuccess(albums));
+    getBestNewAlbums()
+      .then(albums => {
+        dispatch(loadBestNewAlbumsSuccess(albums));
       })
       .catch(error => {
-	      dispatch(loadBestNewAlbumsError());
-	      logger.error(error);
+        dispatch(loadBestNewAlbumsError());
+        logger.error(error);
       });
-  };  
+  };
 }
 
 export function loadBestNewTracksStart() {
   return {
-    type: LOAD_BEST_NEW_TRACKS_START
+    type: LOAD_BEST_NEW_TRACKS_START,
   };
 }
 
 export function loadBestNewTracksSuccess(tracks) {
   return {
     type: LOAD_BEST_NEW_TRACKS_SUCCESS,
-    payload: tracks
+    payload: tracks,
   };
 }
 
 export function loadBestNewTracksError() {
   return {
-    type: LOAD_BEST_NEW_TRACKS_ERROR
+    type: LOAD_BEST_NEW_TRACKS_ERROR,
   };
 }
 
 export function loadBestNewTracks() {
   return dispatch => {
     dispatch(loadBestNewAlbumsStart());
-    getBestNewTracks().
-      then(tracks => {
-	      dispatch(loadBestNewTracksSuccess(tracks));
+    getBestNewTracks()
+      .then(tracks => {
+        dispatch(loadBestNewTracksSuccess(tracks));
       })
       .catch(error => {
-	      dispatch(loadBestNewTracksError());
-	      logger.error(error);
+        dispatch(loadBestNewTracksError());
+        logger.error(error);
       });
   };
 }
 
 export function loadNuclearNewsStart() {
   return {
-    type: LOAD_NUCLEAR_NEWS_START
+    type: LOAD_NUCLEAR_NEWS_START,
   };
 }
 
 export function loadNuclearNewsSuccess(news) {
   return {
     type: LOAD_NUCLEAR_NEWS_SUCCESS,
-    payload: news
+    payload: news,
   };
 }
 
 export function loadNuclearNewsError() {
   return {
-    type: LOAD_NUCLEAR_NEWS_ERROR
+    type: LOAD_NUCLEAR_NEWS_ERROR,
   };
 }
 
@@ -153,15 +151,17 @@ export function loadNuclearNews() {
     dispatch(loadNuclearNewsStart());
     getNewsIndex()
       .then(index => {
-	      return Promise.all(index.articles.map((item, i) => {
-	        return getNewsItem(item);
-	      }));
+        return Promise.all(
+          index.articles.map((item, i) => {
+            return getNewsItem(item);
+          })
+        );
       })
       .then(articles => {
-	      dispatch(loadNuclearNewsSuccess(articles));
+        dispatch(loadNuclearNewsSuccess(articles));
       })
       .catch(err => {
-	      dispatch(loadNuclearNewsError(err));
+        dispatch(loadNuclearNewsError(err));
       });
   };
 }
