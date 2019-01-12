@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { NavLink, Link, withRouter } from 'react-router-dom';
 import classnames from 'classnames';
+import _ from 'lodash';
 import * as Actions from './actions';
 import * as PlayerActions from './actions/player';
 import * as PluginsActions from './actions/plugins';
