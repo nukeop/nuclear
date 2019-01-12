@@ -37,7 +37,7 @@ class SoundContainer extends React.Component {
   handleAutoRadio() {
     if (
       this.props.settings.autoradio &&
-      this.props.queue.currentSong == this.props.queue.queueItems.length - 1
+      this.props.queue.currentSong === this.props.queue.queueItems.length - 1
     ) {
       this.addAutoradioTrackToQueue();
     }
