@@ -167,29 +167,33 @@ class AlbumView extends React.Component {
           </tr>
         </thead>
         <tbody>
-          {album.tracklist.map((el, i) => renderContextPopup(album, el, i))}
+          {album.tracklist.map((el, i) =>
+            this.renderContextPopup(album, el, i)
+          )}
         </tbody>
       </table>
     );
   }
 
   renderContextPopup(album, el, i) {
-    <ContextPopup
-      key={i}
-      trigger={
-        <tr>
-          <td className={styles.center}>{i + 1}</td>
-          <td className={styles.left}>{el.title}</td>
-          <td className={styles.center}>{el.duration}</td>
-        </tr>
-      }
-      artist={album.artists[0].name}
-      title={el.title}
-      thumb={album.images[0].uri}
-    >
-      {this.renderAddTrackToQueueButton(album, el)}
-      {this.renderPlayTrackButton(album, el)}
-    </ContextPopup>;
+    return (
+      <ContextPopup
+        key={i}
+        trigger={
+          <tr>
+            <td className={styles.center}>{i + 1}</td>
+            <td className={styles.left}>{el.title}</td>
+            <td className={styles.center}>{el.duration}</td>
+          </tr>
+        }
+        artist={album.artists[0].name}
+        title={el.title}
+        thumb={album.images[0].uri}
+      >
+        {this.renderAddTrackToQueueButton(album, el)}
+        {this.renderPlayTrackButton(album, el)}
+      </ContextPopup>
+    );
   }
 
   renderPlayTrackButton(album, el) {
