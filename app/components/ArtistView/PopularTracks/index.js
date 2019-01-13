@@ -86,7 +86,7 @@ class PopularTracks extends React.Component {
           .map((track, index) => {
             let popupContents = [
               <a
-                key={index}
+                key={'add-track-' + index}
                 href="#"
                 onClick={() => this.addToQueue(artist, track)}
                 className={styles.add_button}
@@ -95,6 +95,7 @@ class PopularTracks extends React.Component {
                 <FontAwesome name="plus" /> Add to queue
               </a>,
               <a
+                key={'play-track-' + index}
                 href="#"
                 onClick={() => {
                   clearQueue();
