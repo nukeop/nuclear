@@ -58,6 +58,7 @@ class ArtistView extends React.Component {
                 }}
                 className={styles.artist_header}
               >
+                {console.log(artist)}
                 <div className={styles.artist_header_overlay}>
                   <div className={styles.artist_header_container}>
                     <div
@@ -76,7 +77,8 @@ class ArtistView extends React.Component {
 
                     <div className={styles.artist_name_container}>
                       <h1>{artist.name}</h1>
-                      {artist.tags !== undefined && (
+
+                      {artist.lastfm.artist.tags.tag !== undefined && (
                         <ArtistTags
                           tags={artist.lastfm.artist.tags.tag}
                           history={history}
@@ -88,6 +90,7 @@ class ArtistView extends React.Component {
               </div>
             </div>
           )}
+          <div>{artist.profile}</div>
           <hr />
           <div className={styles.artist_related_container}>
             {!this.isLoading() && artist.lastfm.toptracks !== undefined && (
