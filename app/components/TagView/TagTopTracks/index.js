@@ -16,6 +16,7 @@ class TagTopTracks extends React.Component {
       <div className={styles.tag_top_tracks}>
         <a
           href="#"
+          key="add-all-tag-tracks-to-queue"
           className="add_all_button"
           onClick={() => {
             tracks.map((track, i) => {
