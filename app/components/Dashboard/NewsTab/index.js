@@ -1,5 +1,5 @@
 import React from 'react';
-import {Dimmer, Loader, Tab} from 'semantic-ui-react';
+import { Dimmer, Loader, Tab } from 'semantic-ui-react';
 import moment from 'moment';
 import _ from 'lodash';
 
@@ -12,24 +12,22 @@ class NewsTab extends React.Component {
   }
 
   render() {
-    let {
-      news
-    } = this.props;
-    
+    let { news } = this.props;
+
     return (
       <Tab.Pane attached={false}>
         <div className={styles.news_container}>
-	  {
-	    _(news).sortBy('timestamp').reverse().value().map((item, i) => {
-	      return <NewsItem item={item} />;
-	    })
-	  }
-	</div>
+          {_(news)
+            .sortBy('timestamp')
+            .reverse()
+            .value()
+            .map((item, i) => {
+              return <NewsItem key={'newsitem-' + i} item={item} />;
+            })}
+        </div>
       </Tab.Pane>
     );
   }
 }
 
 export default NewsTab;
-
-
