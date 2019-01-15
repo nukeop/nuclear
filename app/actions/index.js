@@ -5,6 +5,7 @@ import globals from '../globals';
 
 const mb = require('../rest/Musicbrainz');
 const discogs = require('../rest/Discogs');
+const lastfmRest = require('../rest/LastFm');
 
 var lastfm = new core.LastFmApi(globals.lastfmApiKey, globals.lastfmApiSecret);
 
@@ -28,6 +29,9 @@ export const LASTFM_ARTIST_INFO_SEARCH_START =
   'LASTFM_ARTIST_INFO_SEARCH_START';
 export const LASTFM_ARTIST_INFO_SEARCH_SUCCESS =
   'LASTFM_ARTIST_INFO_SEARCH_SUCCESS';
+
+export const LASTFM_TRACK_SEARCH_START = 'LASTFM_TRACK_SEARCH_START';
+export const LASTFM_TRACK_SEARCH_SUCCESS = 'LASTFM_TRACK_SEARCH_SUCCESS';
 
 export function sourcesSearch(terms, plugins) {
   var searchResults = {};
@@ -60,6 +64,7 @@ export function unifiedSearchError() {
   };
 }
 
+
 function discogsSearch(terms, searchType, dispatchType) {
   return dispatch => {
     return searchType(terms)
@@ -67,6 +72,7 @@ function discogsSearch(terms, searchType, dispatchType) {
       .then(searchResultsJson => {
         dispatch({
           type: dispatchType,
+
           payload: searchResultsJson.results,
         });
       })
@@ -81,13 +87,17 @@ export function albumSearch(terms) {
 }
 
 export function artistSearch(terms) {
+
   return discogsSearch(terms, discogs.searchArtists, 'ARTIST_SEARCH_SUCCESS');
+
 }
 
 export function unifiedSearch(terms, history) {
   return dispatch => {
     dispatch(unifiedSearchStart());
+
     Promise.all([dispatch(albumSearch(terms)), dispatch(artistSearch(terms))])
+
       .then(() => {
         dispatch(unifiedSearchSuccess());
         if (history.location.pathname !== '/search') {
@@ -259,5 +269,41 @@ export function lastFmArtistInfoSearch(artist, artistId) {
       .catch(error => {
         logger.error(error);
       });
+
+  };
+}
+
+export function lastFmTrackSearchStart(terms) {
+  return {
+    type: LASTFM_ARTIST_INFO_SEARCH_START,
+    payload: terms,
+  };
+}
+
+export function lastFmTrackSearchSuccess(terms, searchResults) {
+  return {
+    type: LASTFM_TRACK_SEARCH_SUCCESS,
+    payload: {
+      id: terms,
+      info: searchResults,
+    },
+  };
+}
+
+export function lastFmTrackSearch(terms) {
+  return dispatch => {
+    dispatch(lastFmTrackSearchStart(terms));
+    Promise.all([lastfmRest.searchTracks(terms)])
+      .then(results => Promise.all(results.map(info => info.json())))
+      .then(results => {
+        console.log(results[0].results.trackmatches.track);
+        dispatch(
+          lastFmTrackSearchSuccess(terms, results[0].results.trackmatches.track)
+        );
+      })
+      .catch(error => {
+        logger.error(error);
+      });
+
   };
 }

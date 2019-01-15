@@ -22,7 +22,8 @@ class NewsTab extends React.Component {
             .reverse()
             .value()
             .map((item, i) => {
-              return <NewsItem key={i} item={item} />;
+
+              return <NewsItem key={'newsitem-' + i} item={item} />;
             })}
         </div>
       </Tab.Pane>

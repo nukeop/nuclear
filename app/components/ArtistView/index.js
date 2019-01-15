@@ -58,7 +58,7 @@ class ArtistView extends React.Component {
                 }}
                 className={styles.artist_header}
               >
-                {console.log(artist)}
+
                 <div className={styles.artist_header_overlay}>
                   <div className={styles.artist_header_container}>
                     <div
@@ -78,7 +78,8 @@ class ArtistView extends React.Component {
                     <div className={styles.artist_name_container}>
                       <h1>{artist.name}</h1>
 
-                      {artist.lastfm.artist.tags.tag !== undefined && (
+                      {artist.lastfm.loading && (
+
                         <ArtistTags
                           tags={artist.lastfm.artist.tags.tag}
                           history={history}
@@ -90,10 +91,10 @@ class ArtistView extends React.Component {
               </div>
             </div>
           )}
-          <div>{artist.profile}</div>
+
           <hr />
           <div className={styles.artist_related_container}>
-            {!this.isLoading() && artist.lastfm.toptracks !== undefined && (
+            {!this.isLoading() && artist.lastfm.loading && (
               <PopularTracks
                 tracks={artist.lastfm.toptracks}
                 artist={artist}
@@ -105,7 +106,9 @@ class ArtistView extends React.Component {
               />
             )}
 
-            {!this.isLoading() && artist.similar !== undefined && (
+
+            {!this.isLoading() && artist.lastfm.loading && (
+
               <SimilarArtists
                 artists={artist.lastfm.artist.similar.artist}
                 artistInfoSearchByName={artistInfoSearchByName}
