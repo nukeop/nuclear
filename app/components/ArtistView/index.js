@@ -74,10 +74,13 @@ class ArtistView extends React.Component {
                     />
                     <div className={styles.artist_name_container}>
                       <h1>{artist.name}</h1>
-                      <ArtistTags
-                        tags={artist.lastfm.artist.tags.tag}
-                        history={history}
-                      />
+                      {console.log(artist.lastfm)}
+                      {artist.lastfm.loading && (
+                        <ArtistTags
+                          tags={artist.lastfm.artist.tags.tag}
+                          history={history}
+                        />
+                      )}
                     </div>
                   </div>
                 </div>
@@ -86,7 +89,7 @@ class ArtistView extends React.Component {
           )}
           <hr />
           <div className={styles.artist_related_container}>
-            {!this.isLoading() && (
+            {!this.isLoading() && artist.lastfm.loading && (
               <PopularTracks
                 tracks={artist.lastfm.toptracks}
                 artist={artist}
@@ -98,7 +101,7 @@ class ArtistView extends React.Component {
               />
             )}
 
-            {!this.isLoading() && (
+            {!this.isLoading() && artist.lastfm.loading && (
               <SimilarArtists
                 artists={artist.lastfm.artist.similar.artist}
                 artistInfoSearchByName={artistInfoSearchByName}
