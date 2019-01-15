@@ -4,34 +4,41 @@ module.exports = [
     category: 'Playback',
     type: 'boolean',
     prettyName: 'Loop after playing the last queue item',
-    default: false
+    default: false,
   },
   {
     name: 'shuffleQueue',
     category: 'Playback',
     type: 'boolean',
     prettyName: 'Shuffle songs',
-    default: false
+    default: false,
+  },
+  {
+    name: 'autoradio',
+    category: 'Playback',
+    type: 'boolean',
+    prettyName: 'Autoradio',
+    default: true,
   },
   {
     name: 'framelessWindow',
     category: 'Program settings',
     type: 'boolean',
     prettyName: 'Frameless window (requires restart)',
-    default: true
+    default: true,
   },
   {
     name: 'compactMenuBar',
     category: 'Display',
     type: 'boolean',
     prettyName: 'Use compact style for menu bar',
-    default: false
+    default: false,
   },
   {
     name: 'compactQueueBar',
     category: 'Display',
     type: 'boolean',
     prettyName: 'Use compact style for queue bar',
-    default: false
-  }
+    default: false,
+  },
 ];
