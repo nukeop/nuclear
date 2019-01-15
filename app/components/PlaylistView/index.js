@@ -88,7 +88,9 @@ class PlaylistView extends React.Component {
           <div className={styles.playlist_tracks}>
             {playlist.tracks.map((track, i) => {
               return (
-                <div key={i} className={styles.playlist_track}>
+
+                <div key={'playlist-' + i} className={styles.playlist_track}>
+
                   <img
                     className={styles.track_thumbnail}
                     src={track.thumbnail}

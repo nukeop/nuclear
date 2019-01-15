@@ -50,7 +50,8 @@ class BestNewListActiveItem extends React.Component {
             <div className={styles.review_content}>
               {item.review.split('\n').map(i => {
                 return (
-                  <div key={i} className={styles.paragraph}>
+
+                  <div key={'item-' + i} className={styles.paragraph}>
                     {i}
                   </div>
                 );
