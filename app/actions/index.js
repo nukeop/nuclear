@@ -1,66 +1,67 @@
-import logger from 'electron-timber'
-import core from 'nuclear-core'
-import _ from 'lodash'
-import globals from '../globals'
+import logger from 'electron-timber';
+import core from 'nuclear-core';
+import _ from 'lodash';
+import globals from '../globals';
 
-const mb = require('../rest/Musicbrainz')
-const discogs = require('../rest/Discogs')
-const lastfmRest = require('../rest/LastFm')
+const mb = require('../rest/Musicbrainz');
+const discogs = require('../rest/Discogs');
+const lastfmRest = require('../rest/LastFm');
 
-var lastfm = new core.LastFmApi(globals.lastfmApiKey, globals.lastfmApiSecret)
+var lastfm = new core.LastFmApi(globals.lastfmApiKey, globals.lastfmApiSecret);
 
-export const UNIFIED_SEARCH_START = 'UNIFIED_SEARCH_START'
-export const UNIFIED_SEARCH_SUCCESS = 'UNIFIED_SEARCH_SUCCESS'
-export const UNIFIED_SEARCH_ERROR = 'UNIFIED_SEARCH_ERROR'
+export const UNIFIED_SEARCH_START = 'UNIFIED_SEARCH_START';
+export const UNIFIED_SEARCH_SUCCESS = 'UNIFIED_SEARCH_SUCCESS';
+export const UNIFIED_SEARCH_ERROR = 'UNIFIED_SEARCH_ERROR';
 
-export const ARTIST_SEARCH_SUCCESS = 'ARTIST_SEARCH_SUCCESS'
-export const ALBUM_SEARCH_SUCCESS = 'ALBUM_SEARCH_SUCCESS'
+export const ARTIST_SEARCH_SUCCESS = 'ARTIST_SEARCH_SUCCESS';
+export const ALBUM_SEARCH_SUCCESS = 'ALBUM_SEARCH_SUCCESS';
 
-export const ALBUM_INFO_SEARCH_START = 'ALBUM_INFO_SEARCH_START'
-export const ALBUM_INFO_SEARCH_SUCCESS = 'ALBUM_INFO_SEARCH_SUCCESS'
+export const ALBUM_INFO_SEARCH_START = 'ALBUM_INFO_SEARCH_START';
+export const ALBUM_INFO_SEARCH_SUCCESS = 'ALBUM_INFO_SEARCH_SUCCESS';
 
-export const ARTIST_INFO_SEARCH_START = 'ARTIST_INFO_SEARCH_START'
-export const ARTIST_INFO_SEARCH_SUCCESS = 'ARTIST_INFO_SEARCH_SUCCESS'
+export const ARTIST_INFO_SEARCH_START = 'ARTIST_INFO_SEARCH_START';
+export const ARTIST_INFO_SEARCH_SUCCESS = 'ARTIST_INFO_SEARCH_SUCCESS';
 
-export const ARTIST_RELEASES_SEARCH_START = 'ARTIST_RELEASES_SEARCH_START'
-export const ARTIST_RELEASES_SEARCH_SUCCESS = 'ARTIST_RELEASES_SEARCH_SUCCESS'
+export const ARTIST_RELEASES_SEARCH_START = 'ARTIST_RELEASES_SEARCH_START';
+export const ARTIST_RELEASES_SEARCH_SUCCESS = 'ARTIST_RELEASES_SEARCH_SUCCESS';
 
-export const LASTFM_ARTIST_INFO_SEARCH_START = 'LASTFM_ARTIST_INFO_SEARCH_START'
+export const LASTFM_ARTIST_INFO_SEARCH_START =
+  'LASTFM_ARTIST_INFO_SEARCH_START';
 export const LASTFM_ARTIST_INFO_SEARCH_SUCCESS =
-  'LASTFM_ARTIST_INFO_SEARCH_SUCCESS'
+  'LASTFM_ARTIST_INFO_SEARCH_SUCCESS';
 
-export const LASTFM_TRACK_SEARCH_START = 'LASTFM_TRACK_SEARCH_START'
-export const LASTFM_TRACK_SEARCH_SUCCESS = 'LASTFM_TRACK_SEARCH_SUCCESS'
+export const LASTFM_TRACK_SEARCH_START = 'LASTFM_TRACK_SEARCH_START';
+export const LASTFM_TRACK_SEARCH_SUCCESS = 'LASTFM_TRACK_SEARCH_SUCCESS';
 
 export function sourcesSearch(terms, plugins) {
-  var searchResults = {}
+  var searchResults = {};
   for (var i = 0; i < plugins.musicSources.length; i++) {
-    Object.assign(searchResults, plugins.musicSources[i].search(terms))
+    Object.assign(searchResults, plugins.musicSources[i].search(terms));
   }
 
   return {
-    type: SOURCES_SEARCH
-  }
+    type: SOURCES_SEARCH,
+  };
 }
 
 export function unifiedSearchStart() {
   return {
     type: UNIFIED_SEARCH_START,
-    payload: true
-  }
+    payload: true,
+  };
 }
 
 export function unifiedSearchSuccess() {
   return {
     type: UNIFIED_SEARCH_SUCCESS,
-    payload: false
-  }
+    payload: false,
+  };
 }
 
 export function unifiedSearchError() {
   return {
-    type: UNIFIED_SEARCH_ERROR
-  }
+    type: UNIFIED_SEARCH_ERROR,
+  };
 }
 
 function discogsSearch(terms, searchType, dispatchType) {
@@ -71,51 +72,51 @@ function discogsSearch(terms, searchType, dispatchType) {
         dispatch({
           type: dispatchType,
 
-          payload: searchResultsJson.results
-        })
+          payload: searchResultsJson.results,
+        });
       })
       .catch(error => {
-        logger.error(error)
-      })
-  }
+        logger.error(error);
+      });
+  };
 }
 
 export function albumSearch(terms) {
-  return discogsSearch(terms, discogs.searchReleases, 'ALBUM_SEARCH_SUCCESS')
+  return discogsSearch(terms, discogs.searchReleases, 'ALBUM_SEARCH_SUCCESS');
 }
 
 export function artistSearch(terms) {
-  return discogsSearch(terms, discogs.searchArtists, 'ARTIST_SEARCH_SUCCESS')
+  return discogsSearch(terms, discogs.searchArtists, 'ARTIST_SEARCH_SUCCESS');
 }
 
 export function unifiedSearch(terms, history) {
   return dispatch => {
-    dispatch(unifiedSearchStart())
+    dispatch(unifiedSearchStart());
 
     Promise.all([
       dispatch(albumSearch(terms)),
       dispatch(artistSearch(terms)),
-      dispatch(lastFmTrackSearch(terms))
+      dispatch(lastFmTrackSearch(terms)),
     ])
 
       .then(() => {
-        dispatch(unifiedSearchSuccess())
+        dispatch(unifiedSearchSuccess());
         if (history.location.pathname !== '/search') {
-          history.push('/search')
+          history.push('/search');
         }
       })
       .catch(error => {
-        logger.error(error)
-        dispatch(unifiedSearchError())
-      })
-  }
+        logger.error(error);
+        dispatch(unifiedSearchError());
+      });
+  };
 }
 
 export function albumInfoStart(albumId) {
   return {
     type: ALBUM_INFO_SEARCH_START,
-    payload: albumId
-  }
+    payload: albumId,
+  };
 }
 
 export function albumInfoSuccess(albumId, info) {
@@ -123,37 +124,37 @@ export function albumInfoSuccess(albumId, info) {
     type: ALBUM_INFO_SEARCH_SUCCESS,
     payload: {
       id: albumId,
-      info: info
-    }
-  }
+      info: info,
+    },
+  };
 }
 
 export function albumInfoSearch(albumId) {
   return dispatch => {
-    dispatch(albumInfoStart(albumId))
+    dispatch(albumInfoStart(albumId));
     discogs
       .releaseInfo(albumId)
       .then(info => {
         if (info.ok) {
-          return info.json()
+          return info.json();
         } else {
-          throw `Error fetching album data from Discogs for id ${albumId}`
+          throw `Error fetching album data from Discogs for id ${albumId}`;
         }
       })
       .then(albumInfo => {
-        dispatch(albumInfoSuccess(albumId, albumInfo))
+        dispatch(albumInfoSuccess(albumId, albumInfo));
       })
       .catch(error => {
-        logger.error(error)
-      })
-  }
+        logger.error(error);
+      });
+  };
 }
 
 export function artistInfoStart(artistId) {
   return {
     type: ARTIST_INFO_SEARCH_START,
-    payload: artistId
-  }
+    payload: artistId,
+  };
 }
 
 export function artistInfoSuccess(artistId, info) {
@@ -161,32 +162,32 @@ export function artistInfoSuccess(artistId, info) {
     type: ARTIST_INFO_SEARCH_SUCCESS,
     payload: {
       id: artistId,
-      info: info
-    }
-  }
+      info: info,
+    },
+  };
 }
 
 export function artistInfoSearch(artistId) {
   return dispatch => {
-    dispatch(artistInfoStart(artistId))
+    dispatch(artistInfoStart(artistId));
     discogs
       .artistInfo(artistId)
       .then(info => info.json())
       .then(artistInfo => {
-        dispatch(artistInfoSuccess(artistId, artistInfo))
-        dispatch(lastFmArtistInfoSearch(artistInfo.name, artistId))
+        dispatch(artistInfoSuccess(artistId, artistInfo));
+        dispatch(lastFmArtistInfoSearch(artistInfo.name, artistId));
       })
       .catch(error => {
-        logger.error(error)
-      })
-  }
+        logger.error(error);
+      });
+  };
 }
 
 export function artistReleasesStart(artistId) {
   return {
     type: ARTIST_RELEASES_SEARCH_START,
-    payload: artistId
-  }
+    payload: artistId,
+  };
 }
 
 export function artistReleasesSuccess(artistId, releases) {
@@ -194,24 +195,24 @@ export function artistReleasesSuccess(artistId, releases) {
     type: ARTIST_RELEASES_SEARCH_SUCCESS,
     payload: {
       id: artistId,
-      releases: releases
-    }
-  }
+      releases: releases,
+    },
+  };
 }
 
 export function artistReleasesSearch(artistId) {
   return dispatch => {
-    dispatch(artistReleasesStart(artistId))
+    dispatch(artistReleasesStart(artistId));
     discogs
       .artistReleases(artistId)
       .then(releases => releases.json())
       .then(releases => {
-        dispatch(artistReleasesSuccess(artistId, releases))
+        dispatch(artistReleasesSuccess(artistId, releases));
       })
       .catch(error => {
-        logger.error(error)
-      })
-  }
+        logger.error(error);
+      });
+  };
 }
 
 export function artistInfoSearchByName(artistName, history) {
@@ -220,24 +221,24 @@ export function artistInfoSearchByName(artistName, history) {
       .searchArtists(artistName)
       .then(searchResults => searchResults.json())
       .then(searchResultsJson => {
-        let artist = searchResultsJson.results[0]
+        let artist = searchResultsJson.results[0];
         if (history) {
-          history.push('/artist/' + artist.id)
+          history.push('/artist/' + artist.id);
         }
 
-        dispatch(artistInfoSearch(artist.id))
+        dispatch(artistInfoSearch(artist.id));
       })
       .catch(error => {
-        logger.error(error)
-      })
-  }
+        logger.error(error);
+      });
+  };
 }
 
 export function lastFmArtistInfoStart(artistId) {
   return {
     type: LASTFM_ARTIST_INFO_SEARCH_START,
-    payload: artistId
-  }
+    payload: artistId,
+  };
 }
 
 export function lastFmArtistInfoSuccess(artistId, info) {
@@ -245,38 +246,38 @@ export function lastFmArtistInfoSuccess(artistId, info) {
     type: LASTFM_ARTIST_INFO_SEARCH_SUCCESS,
     payload: {
       id: artistId,
-      info: info
-    }
-  }
+      info: info,
+    },
+  };
 }
 
 export function lastFmArtistInfoSearch(artist, artistId) {
   return dispatch => {
-    dispatch(lastFmArtistInfoStart(artistId))
+    dispatch(lastFmArtistInfoStart(artistId));
     Promise.all([
       lastfm.getArtistInfo(artist),
-      lastfm.getArtistTopTracks(artist)
+      lastfm.getArtistTopTracks(artist),
     ])
       .then(results => Promise.all(results.map(info => info.json())))
       .then(results => {
-        let info = {}
+        let info = {};
         results.forEach(result => {
-          info = Object.assign(info, result)
-        })
+          info = Object.assign(info, result);
+        });
 
-        dispatch(lastFmArtistInfoSuccess(artistId, info))
+        dispatch(lastFmArtistInfoSuccess(artistId, info));
       })
       .catch(error => {
-        logger.error(error)
-      })
-  }
+        logger.error(error);
+      });
+  };
 }
 
 export function lastFmTrackSearchStart(terms) {
   return {
     type: LASTFM_TRACK_SEARCH_START,
-    payload: terms
-  }
+    payload: terms,
+  };
 }
 
 export function lastFmTrackSearchSuccess(terms, searchResults) {
@@ -284,24 +285,23 @@ export function lastFmTrackSearchSuccess(terms, searchResults) {
     type: LASTFM_TRACK_SEARCH_SUCCESS,
     payload: {
       id: terms,
-      info: searchResults
-    }
-  }
+      info: searchResults,
+    },
+  };
 }
 
 export function lastFmTrackSearch(terms) {
   return dispatch => {
-    dispatch(lastFmTrackSearchStart(terms))
+    dispatch(lastFmTrackSearchStart(terms));
     Promise.all([lastfmRest.searchTracks(terms)])
       .then(results => Promise.all(results.map(info => info.json())))
       .then(results => {
-        console.log(results[0].results.trackmatches.track)
         dispatch(
           lastFmTrackSearchSuccess(terms, results[0].results.trackmatches.track)
-        )
+        );
       })
       .catch(error => {
-        logger.error(error)
-      })
-  }
+        logger.error(error);
+      });
+  };
 }
