@@ -74,7 +74,7 @@ class ArtistView extends React.Component {
                     />
                     <div className={styles.artist_name_container}>
                       <h1>{artist.name}</h1>
-                      {console.log(artist.lastfm)}
+
                       {artist.lastfm.loading && (
                         <ArtistTags
                           tags={artist.lastfm.artist.tags.tag}
