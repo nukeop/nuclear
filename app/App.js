@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { NavLink, Link, withRouter } from 'react-router-dom';
 import classnames from 'classnames';
+import _ from 'lodash';
 import * as Actions from './actions';
 import * as PlayerActions from './actions/player';
 import * as PluginsActions from './actions/plugins';
@@ -50,21 +51,37 @@ import VolumeControls from './components/VolumeControls';
 
 class App extends React.Component {
   togglePlayback() {
-    if(this.props.player.playbackStatus===Sound.status.PAUSED &&
+    if (
+      this.props.player.playbackStatus === Sound.status.PAUSED &&
       this.props.scrobbling.lastFmScrobblingEnabled &&
-      this.props.scrobbling.lastFmSessionKey) {
-        let currentSong = this.props.queue.queueItems[this.props.queue.currentSong];
-        this.props.actions.updateNowPlayingAction(currentSong.artist, currentSong.name, this.props.scrobbling.lastFmSessionKey);
-      }
-      this.props.actions.togglePlayback(this.props.player.playbackStatus);
+      this.props.scrobbling.lastFmSessionKey
+    ) {
+      let currentSong = this.props.queue.queueItems[
+        this.props.queue.currentSong
+      ];
+      this.props.actions.updateNowPlayingAction(
+        currentSong.artist,
+        currentSong.name,
+        this.props.scrobbling.lastFmSessionKey
+      );
     }
+    this.props.actions.togglePlayback(this.props.player.playbackStatus);
+  }
 
   nextSong() {
     this.props.actions.nextSong();
-    if( this.props.scrobbling.lastFmScrobblingEnabled &&
-	this.props.scrobbling.lastFmSessionKey) {
-      let currentSong = this.props.queue.queueItems[this.props.queue.currentSong];
-      this.props.actions.updateNowPlayingAction(currentSong.artist, currentSong.name, this.props.scrobbling.lastFmSessionKey);
+    if (
+      this.props.scrobbling.lastFmScrobblingEnabled &&
+      this.props.scrobbling.lastFmSessionKey
+    ) {
+      let currentSong = this.props.queue.queueItems[
+        this.props.queue.currentSong
+      ];
+      this.props.actions.updateNowPlayingAction(
+        currentSong.artist,
+        currentSong.name,
+        this.props.scrobbling.lastFmSessionKey
+      );
     }
   }
 
@@ -75,117 +92,203 @@ class App extends React.Component {
   }
 
   render() {
-    let {
-      settings
-    } = this.props;
-
-    let {
-      toggleOption
-    } = this.props.actions;
-
+    let { settings } = this.props;
+    let { toggleOption } = this.props.actions;
     return (
       <div className={styles.app_container}>
-        <Navbar className={styles.navbar}>
-          <SearchBoxContainer />
-          <Spacer />
-          <Spacer />
-          <WindowControls />
-        </Navbar>
+        {this.renderNavBar()}
         <div className={styles.panel_container}>
-          <VerticalPanel className={classnames(styles.left_panel, {[`${compact.compact_panel}`]: settings.compactMenuBar})}>
-            <SidebarMenu>
-              <div className={styles.sidebar_brand}>
-                <img
-                  width="50%"
-                  src={settings.compactMenuBar ? logoIcon : logoImg}
-                />
-                <div className={styles.version_string}>
-                  {
-                    settings.compactMenuBar
-                      ? '0.4.4'
-                      : 'Version 0.4.4'
-                  }
-                </div>
-              </div>
-
-              <NavLink to="/dashboard" activeClassName={styles.active_nav_link}>
-                <SidebarMenuItem>
-                  <FontAwesome name="dashboard" /> { !settings.compactMenuBar && 'Dashboard' }
-                </SidebarMenuItem>
-              </NavLink>
-              <NavLink to="downloads">
-                <SidebarMenuItem>
-                  <FontAwesome name="download" /> { !settings.compactMenuBar && 'Downloads' }
-                </SidebarMenuItem>
-              </NavLink>
-              <NavLink to="/playlists" activeClassName={styles.active_nav_link}>
-                <SidebarMenuItem>
-                  <FontAwesome name="music" /> { !settings.compactMenuBar && 'Playlists' }
-                </SidebarMenuItem>
-              </NavLink>
-              <NavLink to='/plugins' activeClassName={styles.active_nav_link}>
-                <SidebarMenuItem>
-                  <FontAwesome name="flask" /> { !settings.compactMenuBar && 'Plugins' }
-                </SidebarMenuItem>
-              </NavLink>
-              <NavLink to='/settings' activeClassName={styles.active_nav_link}>
-                <SidebarMenuItem>
-                  <FontAwesome name="cogs" /> { !settings.compactMenuBar && 'Settings' }
-                </SidebarMenuItem>
-              </NavLink>
-              <NavLink to="/search" activeClassName={styles.active_nav_link}>
-                <SidebarMenuItem>
-                  <FontAwesome name="search" /> { !settings.compactMenuBar && 'Search results' }
-                </SidebarMenuItem>
-              </NavLink>
-              <Spacer />
-              <div className='sidebar_footer'>
-                <a onClick={() => toggleOption(_.find(settingsConst, ['name', 'compactMenuBar']), settings)} href="#">
-                  <FontAwesome name={settings.compactMenuBar ? 'angle-right' : 'angle-left'} />
-                </a>
-              </div>
-            </SidebarMenu>
-          </VerticalPanel>
+          {this.renderSidebarMenu(settings, toggleOption)}
           <VerticalPanel className={styles.center_panel}>
             <MainContentContainer />
           </VerticalPanel>
-          <VerticalPanel className={classnames(styles.right_panel, {[`${compact.compact_panel}`]: settings.compactQueueBar})}>
-            <PlayQueueContainer compact={settings.compactQueueBar} />
-          </VerticalPanel>
+          {this.renderRightPanel(settings)}
         </div>
-        <Footer className={styles.footer}>
-          <Seekbar
-            fill={this.props.player.playbackProgress + '%'}
-            seek={this.props.actions.updateSeek}
-            queue={this.props.queue}
-          />
-          <div className={styles.footer_horizontal}>
-            <div className={styles.track_info_wrapper}>
-              <ui.Cover cover={this.props.queue.queueItems[this.props.queue.currentSong] ? this.props.queue.queueItems[this.props.queue.currentSong].thumbnail : artPlaceholder} />
-              <TrackInfo
-                track={this.props.queue.queueItems[this.props.queue.currentSong] ? this.props.queue.queueItems[this.props.queue.currentSong].name : null}
-                artist={this.props.queue.queueItems[this.props.queue.currentSong] ? this.props.queue.queueItems[this.props.queue.currentSong].artist : null}
-              />
-            </div>
-            <PlayerControls
-              togglePlay={this.togglePlayback.bind(this)}
-              playing={this.props.player.playbackStatus == Sound.status.PLAYING}
-              loading={this.props.player.playbackStreamLoading}
-              forward={this.nextSong.bind(this)}
-              back={this.props.actions.previousSong}
-            />
-            <VolumeControls
-              fill={this.props.player.volume + '%'}
-              updateVolume={this.props.actions.updateVolume}
-              toggleOption={this.props.actions.toggleOption}
-              settings={settings}
-            />
-          </div>
-        </Footer>
+        {this.renderFooter(settings)}
         <SoundContainer />
         <IpcContainer />
-
       </div>
+    );
+  }
+
+  renderNavBar() {
+    return (
+      <Navbar className={styles.navbar}>
+        <SearchBoxContainer />
+        <Spacer />
+        <Spacer />
+        <WindowControls />
+      </Navbar>
+    );
+  }
+
+  renderRightPanel(settings) {
+    return (
+      <VerticalPanel
+        className={classnames(styles.right_panel, {
+          [`${compact.compact_panel}`]: settings.compactQueueBar,
+        })}
+      >
+        <PlayQueueContainer compact={settings.compactQueueBar} />
+      </VerticalPanel>
+    );
+  }
+  renderSidebarMenu(settings, toggleOption) {
+    return (
+      <VerticalPanel
+        className={classnames(styles.left_panel, {
+          [`${compact.compact_panel}`]: settings.compactMenuBar,
+        })}
+      >
+        <SidebarMenu>
+          <div className={styles.sidebar_brand}>
+            <img
+              width="50%"
+              src={settings.compactMenuBar ? logoIcon : logoImg}
+            />
+            <div className={styles.version_string}>
+              {settings.compactMenuBar ? '0.4.4' : 'Version 0.4.4'}
+            </div>
+          </div>
+          {this.renderNavLink('dashboard', 'dashboard', 'Dashboard', settings)}
+          {this.renderNavLink('downloads', 'download', 'Downloads', settings)}
+          {this.renderNavLink('playlists', 'music', 'Playlists', settings)}
+          {this.renderNavLink('plugins', 'flask', 'Plugins', settings)}
+          {this.renderNavLink('settings', 'cogs', 'Settings', settings)}
+          {this.renderNavLink('search', 'search', 'Search Results', settings)}
+
+          <Spacer />
+          {this.renderSidebarFooter(settings, toggleOption)}
+        </SidebarMenu>
+      </VerticalPanel>
+    );
+  }
+
+  renderNavLink(name, icon, prettyName, settings) {
+    return (
+      <NavLink to={'/' + name} activeClassName={styles.active_nav_link}>
+        <SidebarMenuItem>
+          <FontAwesome name={icon} /> {!settings.compactMenuBar && prettyName}
+        </SidebarMenuItem>
+      </NavLink>
+    );
+  }
+
+  renderSidebarFooter(settings, toggleOption) {
+    return (
+      <div className="sidebar_footer">
+        <a
+          onClick={() =>
+            toggleOption(
+              _.find(settingsConst, ['name', 'compactMenuBar']),
+              settings
+            )
+          }
+          href="#"
+        >
+          <FontAwesome
+            name={settings.compactMenuBar ? 'angle-right' : 'angle-left'}
+          />
+        </a>
+      </div>
+    );
+  }
+
+  renderFooter(settings) {
+    return (
+      <Footer className={styles.footer}>
+        <Seekbar
+          fill={this.props.player.playbackProgress + '%'}
+          seek={this.props.actions.updateSeek}
+          queue={this.props.queue}
+        />
+        <div className={styles.footer_horizontal}>
+          <div className={styles.track_info_wrapper}>
+            {this.renderCover()}
+            {this.renderTrackInfo()}
+          </div>
+          {this.renderPlayerControls()}
+          {this.renderVolumeControl(settings)}
+        </div>
+      </Footer>
+    );
+  }
+
+  renderCover() {
+    return (
+      <ui.Cover
+        cover={
+          this.props.queue.queueItems[this.props.queue.currentSong]
+            ? this.props.queue.queueItems[this.props.queue.currentSong]
+                .thumbnail
+            : artPlaceholder
+        }
+      />
+    );
+  }
+  renderTrackInfo() {
+    return (
+      <TrackInfo
+        track={
+          this.props.queue.queueItems[this.props.queue.currentSong]
+            ? this.props.queue.queueItems[this.props.queue.currentSong].name
+            : null
+        }
+        artist={
+          this.props.queue.queueItems[this.props.queue.currentSong]
+            ? this.props.queue.queueItems[this.props.queue.currentSong].artist
+            : null
+        }
+      />
+    );
+  }
+  renderPlayerControls() {
+    return (
+      <PlayerControls
+        togglePlay={this.togglePlayback.bind(this)}
+        playing={this.props.player.playbackStatus == Sound.status.PLAYING}
+        loading={this.props.player.playbackStreamLoading}
+        forward={this.nextSong.bind(this)}
+        back={this.props.actions.previousSong}
+      />
+    );
+  }
+
+  renderVolumeControl(settings) {
+    return (
+      <VolumeControls
+        fill={this.props.player.volume + '%'}
+        updateVolume={this.props.actions.updateVolume}
+        toggleOption={this.props.actions.toggleOption}
+        settings={settings}
+      />
+    );
+  }
+
+  /*renderTrackInfo(){
+    return (<TrackInfo
+      track={
+        this.props.queue.queueItems[this.props.queue.currentSong]
+          ? this.props.queue.queueItems[this.props.queue.currentSong]
+              .name
+          : null
+      }
+      artist={
+        this.props.queue.queueItems[this.props.queue.currentSong]
+          ? this.props.queue.queueItems[this.props.queue.currentSong]
+              .artist
+          : null
+      }
+    />)
+  }*/
+  renderNavbar() {
+    return (
+      <Navbar className={styles.navbar}>
+        <SearchBoxContainer />
+        <Spacer />
+        <Spacer />
+        <WindowControls />
+      </Navbar>
     );
   }
 }
@@ -195,21 +298,30 @@ function mapStateToProps(state) {
     queue: state.queue,
     player: state.player,
     scrobbling: state.scrobbling,
-    settings: state.settings
+    settings: state.settings,
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators(Object.assign({},
-      ScrobblingActions,
-      SettingsActions,
-      QueueActions,
-      PlayerActions,
-      PluginsActions,
-      Actions
-    ), dispatch)
+    actions: bindActionCreators(
+      Object.assign(
+        {},
+        ScrobblingActions,
+        SettingsActions,
+        QueueActions,
+        PlayerActions,
+        PluginsActions,
+        Actions
+      ),
+      dispatch
+    ),
   };
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(App)
+);

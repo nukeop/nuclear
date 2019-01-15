@@ -8,6 +8,7 @@ import PopularTracks from './PopularTracks';
 
 import styles from './styles.scss';
 import artPlaceholder from '../../../resources/media/art_placeholder.png';
+import { artistInfoStart } from '../../actions';
 
 class ArtistView extends React.Component {
   constructor(props) {
@@ -57,6 +58,7 @@ class ArtistView extends React.Component {
                 }}
                 className={styles.artist_header}
               >
+
                 <div className={styles.artist_header_overlay}>
                   <div className={styles.artist_header_container}>
                     <div
@@ -72,10 +74,12 @@ class ArtistView extends React.Component {
                         backgroundSize: 'cover',
                       }}
                     />
+
                     <div className={styles.artist_name_container}>
                       <h1>{artist.name}</h1>
 
                       {artist.lastfm.loading && (
+
                         <ArtistTags
                           tags={artist.lastfm.artist.tags.tag}
                           history={history}
@@ -87,6 +91,7 @@ class ArtistView extends React.Component {
               </div>
             </div>
           )}
+
           <hr />
           <div className={styles.artist_related_container}>
             {!this.isLoading() && artist.lastfm.loading && (
@@ -101,7 +106,9 @@ class ArtistView extends React.Component {
               />
             )}
 
+
             {!this.isLoading() && artist.lastfm.loading && (
+
               <SimilarArtists
                 artists={artist.lastfm.artist.similar.artist}
                 artistInfoSearchByName={artistInfoSearchByName}
