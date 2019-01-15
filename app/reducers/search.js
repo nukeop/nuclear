@@ -4,19 +4,17 @@ import {
   UNIFIED_SEARCH_ERROR,
   ARTIST_SEARCH_SUCCESS,
   ALBUM_SEARCH_SUCCESS,
-
   ALBUM_INFO_SEARCH_START,
   ALBUM_INFO_SEARCH_SUCCESS,
-
   ARTIST_INFO_SEARCH_START,
   ARTIST_INFO_SEARCH_SUCCESS,
-
   ARTIST_RELEASES_SEARCH_START,
   ARTIST_RELEASES_SEARCH_SUCCESS,
-
   LASTFM_ARTIST_INFO_SEARCH_START,
-  LASTFM_ARTIST_INFO_SEARCH_SUCCESS
- } from '../actions';
+  LASTFM_ARTIST_INFO_SEARCH_SUCCESS,
+  LASTFM_TRACK_SEARCH_START,
+  LASTFM_TRACK_SEARCH_SUCCESS,
+} from '../actions';
 
 var _ = require('lodash');
 
@@ -24,65 +22,59 @@ const initialState = {
   plugins: [],
   artistSearchResults: [],
   albumSearchResults: [],
+  trackSearchResults: [],
   albumDetails: {},
   artistDetails: {},
-  unifiedSearchStarted: false
+  unifiedSearchStarted: false,
 };
 
-export default function SearchReducer(state=initialState, action) {
+export default function SearchReducer(state = initialState, action) {
   switch (action.type) {
     case UNIFIED_SEARCH_START:
       return Object.assign({}, state, {
-        unifiedSearchStarted: action.payload
+        unifiedSearchStarted: action.payload,
       });
     case ALBUM_SEARCH_SUCCESS:
       return Object.assign({}, state, {
-        albumSearchResults: action.payload
+        albumSearchResults: action.payload,
       });
     case ARTIST_SEARCH_SUCCESS:
       return Object.assign({}, state, {
-        artistSearchResults: action.payload
+        artistSearchResults: action.payload,
       });
     case UNIFIED_SEARCH_SUCCESS:
       return Object.assign({}, state, {
-        unifiedSearchStarted: action.payload
+        unifiedSearchStarted: action.payload,
       });
     case ALBUM_INFO_SEARCH_START:
       return Object.assign({}, state, {
         albumDetails: Object.assign({}, state.albumDetails, {
-          [`${action.payload}`]: Object.assign(
-            {},
-            {loading: true}
-          )
-        })
+          [`${action.payload}`]: Object.assign({}, { loading: true }),
+        }),
       });
     case ALBUM_INFO_SEARCH_SUCCESS:
       return Object.assign({}, state, {
         albumDetails: Object.assign({}, state.albumDetails, {
-          [`${action.payload.id}`]: Object.assign(
-            {},
-            action.payload.info,
-            {loading: false}
-          )
-        })
+          [`${action.payload.id}`]: Object.assign({}, action.payload.info, {
+            loading: false,
+          }),
+        }),
       });
     case ARTIST_INFO_SEARCH_START:
       return Object.assign({}, state, {
         artistDetails: Object.assign({}, state.artistDetails, {
           [`${action.payload}`]: {
-            loading: true
-          }
-        })
+            loading: true,
+          },
+        }),
       });
     case ARTIST_INFO_SEARCH_SUCCESS:
       return Object.assign({}, state, {
         artistDetails: Object.assign({}, state.artistDetails, {
-          [`${action.payload.id}`]: Object.assign(
-            {},
-            action.payload.info,
-            {loading: false}
-          )
-        })
+          [`${action.payload.id}`]: Object.assign({}, action.payload.info, {
+            loading: false,
+          }),
+        }),
       });
     case ARTIST_RELEASES_SEARCH_START:
       return Object.assign({}, state, {
@@ -90,9 +82,9 @@ export default function SearchReducer(state=initialState, action) {
           [`${action.payload}`]: Object.assign(
             {},
             state.artistDetails[`${action.payload}`],
-          {releases: []}
-          )
-        })
+            { releases: [] }
+          ),
+        }),
       });
     case ARTIST_RELEASES_SEARCH_SUCCESS:
       return Object.assign({}, state, {
@@ -100,30 +92,42 @@ export default function SearchReducer(state=initialState, action) {
           [`${action.payload.id}`]: Object.assign(
             {},
             state.artistDetails[`${action.payload.id}`],
-          {releases: action.payload.releases.releases}
-          )
-        })
+            { releases: action.payload.releases.releases }
+          ),
+        }),
       });
-      case LASTFM_ARTIST_INFO_SEARCH_START:
-        return Object.assign({}, state, {
-          artistDetails: Object.assign({}, state.artistDetails, {
-            [`${action.payload}`]: Object.assign (
-              {},
-              state.artistDetails[`${action.payload}`],
-              {lastfm: {loading: true}}
-            )
-          })
-        });
-      case LASTFM_ARTIST_INFO_SEARCH_SUCCESS:
+    case LASTFM_ARTIST_INFO_SEARCH_START:
       return Object.assign({}, state, {
-          artistDetails: Object.assign({}, state.artistDetails, {
-            [`${action.payload.id}`]: Object.assign(
-              {},
-              state.artistDetails[`${action.payload.id}`],
-              {lastfm: Object.assign({}, action.payload.info, {loading: false})
-            })
-          })
-        });
+        artistDetails: Object.assign({}, state.artistDetails, {
+          [`${action.payload}`]: Object.assign(
+            {},
+            state.artistDetails[`${action.payload}`],
+            { lastfm: { loading: true } }
+          ),
+        }),
+      });
+    case LASTFM_ARTIST_INFO_SEARCH_SUCCESS:
+      return Object.assign({}, state, {
+        artistDetails: Object.assign({}, state.artistDetails, {
+          [`${action.payload.id}`]: Object.assign(
+            {},
+            state.artistDetails[`${action.payload.id}`],
+            {
+              lastfm: Object.assign({}, action.payload.info, {
+                loading: false,
+              }),
+            }
+          ),
+        }),
+      });
+    case LASTFM_TRACK_SEARCH_START:
+      return Object.assign({}, state, {
+        trackSearchStarted: action.payload,
+      });
+    case LASTFM_TRACK_SEARCH_SUCCESS:
+      return Object.assign({}, state, {
+        trackSearchResults: action.payload,
+      });
     default:
       return state;
   }
