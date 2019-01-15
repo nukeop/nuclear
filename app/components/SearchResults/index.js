@@ -7,7 +7,6 @@ import Card from '../Card';
 import styles from './styles.scss';
 
 class SearchResults extends React.Component {
-
   renderAllResultsPane() {
     return (
       <Tab.Pane loading={this.props.unifiedSearchStarted} attached={false}>
@@ -15,8 +14,11 @@ class SearchResults extends React.Component {
           <AllResults
             artistSearchResults={this.props.artistSearchResults}
             albumSearchResults={this.props.albumSearchResults}
+            trackSearchResults={this.props.trackSearchResults}
             albumInfoSearch={this.albumInfoSearch.bind(this)}
             artistInfoSearch={this.artistInfoSearch.bind(this)}
+            addToQueue={this.props.addToQueue}
+            musicSources={this.props.musicSources}
           />
         </div>
       </Tab.Pane>
@@ -27,28 +29,57 @@ class SearchResults extends React.Component {
     return (
       <Tab.Pane loading={this.props.unifiedSearchStarted} attached={false}>
         <div className={styles.pane_container}>
-          {
-            collection.length > 0
+          {collection.length > 0
             ? this.props.unifiedSearchStarted
               ? null
               : collection.map((el, i) => {
-                let artist = null;
-                let title = el.title.split(' - ');
-                if (title.length > 1) {
-                  artist = title[0];
-                  title = title[1];
-                }
-                return (
-                  <Card
-                    header={title}
-                    content={artist}
-                    image={el.thumb}
-                    onClick={() => onClick(el.id)}
-                  />
-                )
-              })
-            : 'Nothing found.'
-          }
+                  let artist = null;
+                  let title = el.title.split(' - ');
+                  if (title.length > 1) {
+                    artist = title[0];
+                    title = title[1];
+                  }
+                  return (
+                    <Card
+                      header={title}
+                      content={artist}
+                      image={el.thumb}
+                      onClick={() => onClick(el.id)}
+                    />
+                  );
+                })
+            : 'Nothing found.'}
+        </div>
+      </Tab.Pane>
+    );
+  }
+
+  renderLastFmPane(collection) {
+    let addToQueue = this.props.addToQueue;
+    return (
+      <Tab.Pane loading={this.props.unifiedSearchStarted} attached={false}>
+        <div className={styles.pane_container}>
+          {collection.length > 0
+            ? this.props.unifiedSearchStarted
+              ? null
+              : collection.map((el, i) => {
+                  return (
+                    <Card
+                      small
+                      header={el.name + ' - ' + el.artist}
+                      image={el.image[2]['#text']}
+                      onClick={() => {
+                        addToQueue(this.props.musicSources, {
+                          artist: el.name,
+                          name: el.name,
+                          thumbnail: el.image[1]['#text'],
+                        });
+                      }}
+                      key={i}
+                    />
+                  );
+                })
+            : 'Nothing found.'}
         </div>
       </Tab.Pane>
     );
@@ -58,16 +89,28 @@ class SearchResults extends React.Component {
     var panes = [
       {
         menuItem: 'All',
-        render: () => this.renderAllResultsPane()
+        render: () => this.renderAllResultsPane(),
       },
       {
         menuItem: 'Artists',
-        render: () => this.renderPane(this.props.artistSearchResults, this.artistInfoSearch.bind(this))
+        render: () =>
+          this.renderPane(
+            this.props.artistSearchResults,
+            this.artistInfoSearch.bind(this)
+          ),
       },
       {
         menuItem: 'Albums',
-        render: () => this.renderPane(this.props.albumSearchResults, this.albumInfoSearch.bind(this))
-      }
+        render: () =>
+          this.renderPane(
+            this.props.albumSearchResults,
+            this.albumInfoSearch.bind(this)
+          ),
+      },
+      {
+        menuItem: 'Tracks',
+        render: () => this.renderLastFmPane(this.props.trackSearchResults.info),
+      },
     ];
 
     return panes;
@@ -86,7 +129,7 @@ class SearchResults extends React.Component {
   render() {
     return (
       <div>
-        <Tab menu={{secondary: true, pointing: true}} panes={this.panes()} />
+        <Tab menu={{ secondary: true, pointing: true }} panes={this.panes()} />
       </div>
     );
   }

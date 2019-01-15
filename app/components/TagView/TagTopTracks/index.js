@@ -11,62 +11,81 @@ class TagTopTracks extends React.Component {
   }
 
   render() {
-    let {
-      tracks,
-      addToQueue,
-      musicSources
-    } = this.props;
+    let { tracks, addToQueue, musicSources } = this.props;
     return (
       <div className={styles.tag_top_tracks}>
+        <a
+          href="#"
+          key="add-all-tag-tracks-to-queue"
+          className="add_all_button"
+          onClick={() => {
+            tracks.map((track, i) => {
+              addToQueue(musicSources, {
+                artist: track.artist.name,
+                name: track.name,
+                thumbnail: track.image[1]['#text'],
+              });
+            });
+          }}
+          aria-label="Add all tracks to queue"
+        >
+          <FontAwesome name="plus" /> Add all to queue
+        </a>
         <table>
           <thead>
             <tr>
-              <th><FontAwesome name='photo'/></th>
-	      <th>Artist</th>
-	      <th>Title</th>
-	      <th>Duration</th>
-	    </tr>
-	  </thead>
+              <th>
+                <FontAwesome name="photo" />
+              </th>
+              <th>Artist</th>
+              <th>Title</th>
+              <th>Duration</th>
+            </tr>
+          </thead>
           <tbody>
-            
-	    {
-	      tracks.map((track, i) => {
-		return (
-		  <ContextPopup
-		     key={i}
-		     artist={track.artist.name}
-		     title={track.name}
-		     thumb={track.image[1]['#text']}
-		     trigger={
-			 <tr className={styles.track}>
-			   <td
-				  style={{backgroundImage: `url(${track.image[1]['#text']})`}}
-				  className={styles.track_thumbnail}
-				  />
-			     <td className={styles.track_artist}>{track.name}</td>
-			     <td className={styles.track_name}>{track.artist.name}</td>
-			     <td className={styles.track_duration}>{formatDuration(track.duration)}</td>
-			   </tr>
-			 }
-			 >
-        <a href="#"
-		       className='add_button'
-		       onClick={() => {addToQueue(musicSources, {
-			       artist: track.artist.name,
-			       name: track.name,
-			       thumbnail: track.image[1]['#text']
-		      })}}
-          aria-label='Add track to queue'
-		    ><FontAwesome name="plus" /> Add to queue</a>
-		  </ContextPopup>
-		  
-		);
-	      })
-	    }
-      
-      </tbody>
-	      </table>
-	      </div>
+            {tracks.map((track, i) => {
+              return (
+                <ContextPopup
+                  key={i}
+                  artist={track.artist.name}
+                  title={track.name}
+                  thumb={track.image[1]['#text']}
+                  trigger={
+                    <tr className={styles.track}>
+                      <td
+                        style={{
+                          backgroundImage: `url(${track.image[1]['#text']})`,
+                        }}
+                        className={styles.track_thumbnail}
+                      />
+                      <td className={styles.track_artist}>{track.name}</td>
+                      <td className={styles.track_name}>{track.artist.name}</td>
+                      <td className={styles.track_duration}>
+                        {formatDuration(track.duration)}
+                      </td>
+                    </tr>
+                  }
+                >
+                  <a
+                    href="#"
+                    className="add_button"
+                    onClick={() => {
+                      addToQueue(musicSources, {
+                        artist: track.artist.name,
+                        name: track.name,
+                        thumbnail: track.image[1]['#text'],
+                      });
+                    }}
+                    aria-label="Add track to queue"
+                  >
+                    <FontAwesome name="plus" /> Add to queue
+                  </a>
+                </ContextPopup>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
     );
   }
 }
