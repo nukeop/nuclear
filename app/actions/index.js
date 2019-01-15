@@ -64,14 +64,15 @@ export function unifiedSearchError() {
   };
 }
 
-export function albumSearch(terms) {
+
+function discogsSearch(terms, searchType, dispatchType) {
   return dispatch => {
-    return discogs
-      .searchReleases(terms)
+    return searchType(terms)
       .then(searchResults => searchResults.json())
       .then(searchResultsJson => {
         dispatch({
-          type: ALBUM_SEARCH_SUCCESS,
+          type: dispatchType,
+
           payload: searchResultsJson.results,
         });
       })
@@ -81,31 +82,22 @@ export function albumSearch(terms) {
   };
 }
 
+export function albumSearch(terms) {
+  return discogsSearch(terms, discogs.searchReleases, 'ALBUM_SEARCH_SUCCESS');
+}
+
 export function artistSearch(terms) {
-  return dispatch => {
-    return discogs
-      .searchArtists(terms)
-      .then(searchResults => searchResults.json())
-      .then(searchResultsJson => {
-        dispatch({
-          type: ARTIST_SEARCH_SUCCESS,
-          payload: searchResultsJson.results,
-        });
-      })
-      .catch(error => {
-        logger.error(error);
-      });
-  };
+
+  return discogsSearch(terms, discogs.searchArtists, 'ARTIST_SEARCH_SUCCESS');
+
 }
 
 export function unifiedSearch(terms, history) {
   return dispatch => {
     dispatch(unifiedSearchStart());
-    Promise.all([
-      dispatch(albumSearch(terms)),
-      dispatch(artistSearch(terms)),
-      dispatch(lastFmTrackSearch(terms)),
-    ])
+
+    Promise.all([dispatch(albumSearch(terms)), dispatch(artistSearch(terms))])
+
       .then(() => {
         dispatch(unifiedSearchSuccess());
         if (history.location.pathname !== '/search') {
@@ -277,6 +269,7 @@ export function lastFmArtistInfoSearch(artist, artistId) {
       .catch(error => {
         logger.error(error);
       });
+
   };
 }
 
@@ -311,5 +304,6 @@ export function lastFmTrackSearch(terms) {
       .catch(error => {
         logger.error(error);
       });
+
   };
 }
