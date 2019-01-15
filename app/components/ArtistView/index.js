@@ -1,5 +1,5 @@
 import React from 'react';
-import {Dimmer, Loader} from 'semantic-ui-react';
+import { Dimmer, Loader } from 'semantic-ui-react';
 import Spacer from '../Spacer';
 import AlbumList from '../AlbumList';
 import ArtistTags from './ArtistTags';
@@ -16,9 +16,11 @@ class ArtistView extends React.Component {
   }
 
   isLoading() {
-    return this.props.artist.loading ||
-           !this.props.artist.lastfm ||
-           this.props.artist.lastfm.loading;
+    return (
+      this.props.artist.loading ||
+      !this.props.artist.lastfm ||
+      this.props.artist.lastfm.loading
+    );
   }
 
   render() {
@@ -31,54 +33,60 @@ class ArtistView extends React.Component {
       startPlayback,
       clearQueue,
       artistInfoSearchByName,
-      musicSources
+      musicSources,
     } = this.props;
     return (
       <div className={styles.artist_view_container}>
         <Dimmer.Dimmable>
           <Dimmer active={this.isLoading()}>
-            <Loader/>
+            <Loader />
           </Dimmer>
 
-          {
-            !this.isLoading() &&
+          {!this.isLoading() && (
             <div className={styles.artist}>
               <div
                 style={{
-                  background: `url('${artist.images[0] ? artist.images[0].resource_url : artPlaceholder}')`,
+                  background: `url('${
+                    artist.images[0]
+                      ? artist.images[0].resource_url
+                      : artPlaceholder
+                  }')`,
                   backgroundRepeat: 'noRepeat',
                   backgroundPosition: 'center',
-                  backgroundSize: 'cover'
+                  backgroundSize: 'cover',
                 }}
-                className={styles.artist_header}>
-
+                className={styles.artist_header}
+              >
                 <div className={styles.artist_header_overlay}>
                   <div className={styles.artist_header_container}>
                     <div
                       className={styles.artist_avatar}
                       style={{
-                      background: `url('${artist.images[1] ? artist.images[1].resource_url : artPlaceholder}')`,
+                        background: `url('${
+                          artist.images[1]
+                            ? artist.images[1].resource_url
+                            : artPlaceholder
+                        }')`,
                         backgroundRepeat: 'noRepeat',
                         backgroundPosition: 'center',
-                        backgroundSize: 'cover'
-                      }}></div>
+                        backgroundSize: 'cover',
+                      }}
+                    />
                     <div className={styles.artist_name_container}>
                       <h1>{artist.name}</h1>
                       <ArtistTags
                         tags={artist.lastfm.artist.tags.tag}
                         history={history}
                       />
+                    </div>
                   </div>
                 </div>
               </div>
-
             </div>
-          </div>
-        }
-        <hr />
-        <div className={styles.artist_related_container}>
-            {
-              !this.isLoading() &&
+          )}
+          <hr />
+          <div className={styles.artist_related_container}>
+            {!this.isLoading() && (
               <PopularTracks
                 tracks={artist.lastfm.toptracks}
                 artist={artist}
@@ -88,16 +96,15 @@ class ArtistView extends React.Component {
                 clearQueue={clearQueue}
                 musicSources={musicSources}
               />
-            }
+            )}
 
-            {
-              !this.isLoading() &&
+            {!this.isLoading() && (
               <SimilarArtists
                 artists={artist.lastfm.artist.similar.artist}
                 artistInfoSearchByName={artistInfoSearchByName}
                 history={history}
               />
-            }
+            )}
           </div>
           <hr />
           <AlbumList
@@ -107,7 +114,7 @@ class ArtistView extends React.Component {
           />
         </Dimmer.Dimmable>
       </div>
-    )
+    );
   }
 }
 export default ArtistView;
