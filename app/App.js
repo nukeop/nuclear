@@ -265,22 +265,6 @@ class App extends React.Component {
     );
   }
 
-  /*renderTrackInfo(){
-    return (<TrackInfo
-      track={
-        this.props.queue.queueItems[this.props.queue.currentSong]
-          ? this.props.queue.queueItems[this.props.queue.currentSong]
-              .name
-          : null
-      }
-      artist={
-        this.props.queue.queueItems[this.props.queue.currentSong]
-          ? this.props.queue.queueItems[this.props.queue.currentSong]
-              .artist
-          : null
-      }
-    />)
-  }*/
   renderNavbar() {
     return (
       <Navbar className={styles.navbar}>
