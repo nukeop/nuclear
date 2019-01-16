@@ -11,7 +11,6 @@ class ChartsTab extends React.Component {
   }
 
   render() {
-    console.log(this.props);
     return (
       <Tab.Pane attached={false}>
         <div className={styles.popular_tracks_container}>
@@ -30,7 +29,6 @@ class ChartsTab extends React.Component {
               </div>
             );
           })}
-          {console.log(this.props.topTracks)}
         </div>
       </Tab.Pane>
     );

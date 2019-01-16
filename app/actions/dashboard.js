@@ -196,8 +196,6 @@ export function loadTopTracks() {
     getTopTracks()
       .then(tracks => tracks.json())
       .then(tracksJson => {
-        //console.log('Top Trcks');
-        console.log(tracksJson);
         dispatch(loadTopTracksSuccess(tracksJson.tracks.track));
       })
       .catch(error => {
