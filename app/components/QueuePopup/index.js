@@ -37,7 +37,7 @@ class QueuePopup extends React.Component {
     );
     let musicSource = _.find(
       this.props.musicSources,
-      s => s.sourceName == selectedStream.source
+      s => s.sourceName === selectedStream.source
     );
     this.props.rerollTrack(musicSource, selectedStream, track);
   }
