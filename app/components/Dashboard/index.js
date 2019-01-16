@@ -38,12 +38,12 @@ class Dashboard extends React.Component {
           />
         ),
       },
-      {
+      /*{
         menuItem: 'Events',
         render: () => {
           return null;
         },
-      },
+      },*/
       {
         menuItem: 'News',
         render: () => <NewsTab news={this.props.dashboardData.news} />,
