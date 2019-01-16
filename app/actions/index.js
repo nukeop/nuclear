@@ -89,6 +89,39 @@ export function artistSearch(terms) {
   return discogsSearch(terms, discogs.searchArtists, 'ARTIST_SEARCH_SUCCESS');
 }
 
+export function lastFmTrackSearchStart(terms) {
+  return {
+    type: LASTFM_TRACK_SEARCH_START,
+    payload: terms,
+  };
+}
+
+export function lastFmTrackSearchSuccess(terms, searchResults) {
+  return {
+    type: LASTFM_TRACK_SEARCH_SUCCESS,
+    payload: {
+      id: terms,
+      info: searchResults,
+    },
+  };
+}
+
+export function lastFmTrackSearch(terms) {
+  return dispatch => {
+    dispatch(lastFmTrackSearchStart(terms));
+    Promise.all([lastfmRest.searchTracks(terms)])
+      .then(results => Promise.all(results.map(info => info.json())))
+      .then(results => {
+        dispatch(
+          lastFmTrackSearchSuccess(terms, results[0].results.trackmatches.track)
+        );
+      })
+      .catch(error => {
+        logger.error(error);
+      });
+  };
+}
+
 export function unifiedSearch(terms, history) {
   return dispatch => {
     dispatch(unifiedSearchStart());
@@ -266,39 +299,6 @@ export function lastFmArtistInfoSearch(artist, artistId) {
         });
 
         dispatch(lastFmArtistInfoSuccess(artistId, info));
-      })
-      .catch(error => {
-        logger.error(error);
-      });
-  };
-}
-
-export function lastFmTrackSearchStart(terms) {
-  return {
-    type: LASTFM_TRACK_SEARCH_START,
-    payload: terms,
-  };
-}
-
-export function lastFmTrackSearchSuccess(terms, searchResults) {
-  return {
-    type: LASTFM_TRACK_SEARCH_SUCCESS,
-    payload: {
-      id: terms,
-      info: searchResults,
-    },
-  };
-}
-
-export function lastFmTrackSearch(terms) {
-  return dispatch => {
-    dispatch(lastFmTrackSearchStart(terms));
-    Promise.all([lastfmRest.searchTracks(terms)])
-      .then(results => Promise.all(results.map(info => info.json())))
-      .then(results => {
-        dispatch(
-          lastFmTrackSearchSuccess(terms, results[0].results.trackmatches.track)
-        );
       })
       .catch(error => {
         logger.error(error);
