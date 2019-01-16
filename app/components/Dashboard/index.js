@@ -22,7 +22,11 @@ class Dashboard extends React.Component {
       {
         menuItem: 'Top Tracks',
         render: () => (
-          <ChartsTab topTracks={this.props.dashboardData.topTracks} />
+          <ChartsTab
+            topTracks={this.props.dashboardData.topTracks}
+            addToQueue={this.props.addToQueue}
+            musicSources={this.props.musicSources}
+          />
         ),
       },
       {
