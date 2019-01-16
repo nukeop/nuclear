@@ -10,6 +10,11 @@ function searchTracks(terms) {
   return makeLastfmRequest(parameters);
 }
 
+function getTopTracks() {
+  let parameters = 'chart.gettoptracks';
+  return makeLastfmRequest(parameters);
+}
+
 function makeLastfmRequest(parameters) {
   return fetch(
     apiUrl + parameters + '&api_key=' + lastfmApiKey + '&format=json'
@@ -18,4 +23,5 @@ function makeLastfmRequest(parameters) {
 
 module.exports = {
   searchTracks,
+  getTopTracks,
 };

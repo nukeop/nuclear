@@ -4,6 +4,7 @@ import { getBestNewAlbums, getBestNewTracks } from 'pitchfork-bnm';
 
 import globals from '../globals';
 import { getNewsIndex, getNewsItem } from '../rest/Nuclear';
+import { getTopTracks } from '../rest/LastFm';
 
 const lastfm = new core.LastFmApi(
   globals.lastfmApiKey,
@@ -25,6 +26,10 @@ export const LOAD_NUCLEAR_NEWS_ERROR = 'LOAD_NUCLEAR_NEWS_ERROR';
 export const LOAD_TOP_TAGS_START = 'LOAD_TOP_TAGS_START';
 export const LOAD_TOP_TAGS_SUCCESS = 'LOAD_TOP_TAGS_SUCCESS';
 export const LOAD_TOP_TAGS_ERROR = 'LOAD_TOP_TAGS_ERROR';
+
+export const LOAD_TOP_TRACKS_START = 'LOAD_TOP_TRACKS_START';
+export const LOAD_TOP_TRACKS_SUCCESS = 'LOAD_TOP_TRACKS_SUCCESS';
+export const LOAD_TOP_TRACKS_ERROR = 'LOAD_TOP_TRACKS_ERROR';
 
 export function loadTopTagsStart() {
   return {
@@ -162,6 +167,42 @@ export function loadNuclearNews() {
       })
       .catch(err => {
         dispatch(loadNuclearNewsError(err));
+      });
+  };
+}
+
+export function loadTopTracksStart() {
+  return {
+    type: LOAD_TOP_TRACKS_START,
+  };
+}
+
+export function loadTopTracksSuccess(tracks) {
+  return {
+    type: LOAD_TOP_TRACKS_SUCCESS,
+    payload: tracks,
+  };
+}
+
+export function loadTopTracksError() {
+  return {
+    type: LOAD_TOP_TRACKS_ERROR,
+  };
+}
+
+export function loadTopTracks() {
+  return dispatch => {
+    dispatch(loadTopTracksStart());
+    getTopTracks()
+      .then(tracks => tracks.json())
+      .then(tracksJson => {
+        //console.log('Top Trcks');
+        console.log(tracksJson);
+        dispatch(loadTopTracksSuccess(tracksJson.tracks.track));
+      })
+      .catch(error => {
+        dispatch(loadTopTracksError());
+        logger.error(error);
       });
   };
 }
