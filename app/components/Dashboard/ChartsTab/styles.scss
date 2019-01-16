@@ -1,3 +1,65 @@
+@import '../../../vars';
 .charts_container {
+}
 
+.popular_tracks_container {
+  /*display: flex;
+  flex: 1 1 auto;
+  flex-flow: column;
+
+  margin: 0 0.5rem;
+
+  .header {
+    margin-bottom: 1rem;
+
+    font-size: 16px;
+    font-variant: small-caps;
+  }*/
+
+  .track_row {
+    /*display: flex;
+    align-items: center;
+    flex-flow: row;*/
+
+    transition: 0.25s ease-in-out;
+
+    border-bottom: 1px solid rgba($background2, 0.2);
+
+    &:hover {
+      background: lighten($background, 10%);
+    }
+
+    img {
+      flex: 0 0 auto;
+
+      width: 3rem;
+      height: 3rem;
+    }
+
+    .popular_track_name {
+      flex: 1 1 auto;
+      margin: 0.25rem 0.5rem;
+      text-align: left;
+    }
+
+    .playcount {
+      flex: 1 1 auto;
+      margin: 0.25rem 0.5rem;
+      text-align: right;
+      text-transform: uppercase;
+    }
+  }
+
+  .expand_button {
+    display: flex;
+    justify-content: center;
+    padding: 0.5rem;
+    margin-top: 0.5rem;
+    transition: 0.25s;
+    cursor: pointer;
+
+    &:hover {
+      background: lighten($background, 5%);
+    }
+  }
 }

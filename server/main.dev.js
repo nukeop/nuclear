@@ -1,5 +1,16 @@
-const { default: installExtension, REACT_DEVELOPER_TOOLS, REDUX_DEVTOOLS } = require('electron-devtools-installer');
-const { app, ipcMain, nativeImage, BrowserWindow, Menu, Tray } = require('electron');
+const {
+  default: installExtension,
+  REACT_DEVELOPER_TOOLS,
+  REDUX_DEVTOOLS,
+} = require('electron-devtools-installer');
+const {
+  app,
+  ipcMain,
+  nativeImage,
+  BrowserWindow,
+  Menu,
+  Tray,
+} = require('electron');
 const platform = require('electron-platform');
 const path = require('path');
 const url = require('url');
@@ -7,7 +18,9 @@ const getOption = require('./store').getOption;
 
 let win;
 let tray;
-let icon = nativeImage.createFromPath(path.resolve(__dirname, 'resources', 'media', 'icon.png'));
+let icon = nativeImage.createFromPath(
+  path.resolve(__dirname, 'resources', 'media', 'icon.png')
+);
 
 function changeWindowTitle(artist, title) {
   win.setTitle(`${artist} - ${title} - nuclear music player`);
@@ -22,27 +35,29 @@ function createWindow() {
     show: false,
     webPreferences: {
       experimentalFeatures: true,
-      webSecurity: false
-    }
+      webSecurity: false,
+    },
   });
 
   win.setTitle('nuclear music player');
 
-   // Needs to be commented for now
-   // https://github.com/electron/electron/issues/13008
-   // installExtension(REACT_DEVELOPER_TOOLS)
-   // .then((name) => console.log(`Added Extension:  ${name}`))
-   // .catch((err) => console.log('An error occurred: ', err));
+  // Needs to be commented for now
+  // https://github.com/electron/electron/issues/13008
+  // installExtension(REACT_DEVELOPER_TOOLS)
+  // .then((name) => console.log(`Added Extension:  ${name}`))
+  // .catch((err) => console.log('An error occurred: ', err));
 
-   // installExtension(REDUX_DEVTOOLS)
-   // .then((name) => console.log(`Added Extension:  ${name}`))
-   // .catch((err) => console.log('An error occurred: ', err));
+  // installExtension(REDUX_DEVTOOLS)
+  // .then((name) => console.log(`Added Extension:  ${name}`))
+  // .catch((err) => console.log('An error occurred: ', err));
 
-  win.loadURL(url.format({
-    pathname: 'localhost:8080',
-    protocol: 'http:',
-    slashes: true
-  }));
+  win.loadURL(
+    url.format({
+      pathname: 'localhost:8080',
+      protocol: 'http:',
+      slashes: true,
+    })
+  );
 
   win.once('ready-to-show', () => {
     win.show();
@@ -54,19 +69,22 @@ function createWindow() {
     win = null;
   });
 
-
   // MacOS specific
   if (platform.isDarwin) {
     app.dock.setIcon(icon);
-    icon = nativeImage.createFromPath(path.resolve(__dirname, 'resources', 'media', 'icon_apple.png'));
+    icon = nativeImage.createFromPath(
+      path.resolve(__dirname, 'resources', 'media', 'icon_apple.png')
+    );
   }
 
   const trayMenu = Menu.buildFromTemplate([
-    {label: 'Quit', type: 'normal', click:
-     (menuItem, browserWindow, event) => {
-       app.quit();
-     }
-    }
+    {
+      label: 'Quit',
+      type: 'normal',
+      click: (menuItem, browserWindow, event) => {
+        app.quit();
+      },
+    },
   ]);
 
   tray = new Tray(icon);
