@@ -56,7 +56,6 @@ class Dashboard extends React.Component {
   }
 
   render() {
-    console.log(this.props);
     return (
       <div>
         <Tab menu={{ secondary: true, pointing: true }} panes={this.panes()} />
