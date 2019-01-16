@@ -14,7 +14,7 @@ class ChartsTab extends React.Component {
     console.log(this.props);
     return (
       <Tab.Pane attached={false}>
-        <div className={styles.charts_container}>
+        <div className={styles.popular_tracks_container}>
           <h3>Top Tracks from LastFm.</h3>
           {this.props.topTracks.map((track, i) => {
             return (
