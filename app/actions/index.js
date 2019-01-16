@@ -64,7 +64,6 @@ export function unifiedSearchError() {
   };
 }
 
-
 function discogsSearch(terms, searchType, dispatchType) {
   return dispatch => {
     return searchType(terms)
@@ -87,16 +86,51 @@ export function albumSearch(terms) {
 }
 
 export function artistSearch(terms) {
-
   return discogsSearch(terms, discogs.searchArtists, 'ARTIST_SEARCH_SUCCESS');
+}
 
+export function lastFmTrackSearchStart(terms) {
+  return {
+    type: LASTFM_TRACK_SEARCH_START,
+    payload: terms,
+  };
+}
+
+export function lastFmTrackSearchSuccess(terms, searchResults) {
+  return {
+    type: LASTFM_TRACK_SEARCH_SUCCESS,
+    payload: {
+      id: terms,
+      info: searchResults,
+    },
+  };
+}
+
+export function lastFmTrackSearch(terms) {
+  return dispatch => {
+    dispatch(lastFmTrackSearchStart(terms));
+    Promise.all([lastfmRest.searchTracks(terms)])
+      .then(results => Promise.all(results.map(info => info.json())))
+      .then(results => {
+        dispatch(
+          lastFmTrackSearchSuccess(terms, results[0].results.trackmatches.track)
+        );
+      })
+      .catch(error => {
+        logger.error(error);
+      });
+  };
 }
 
 export function unifiedSearch(terms, history) {
   return dispatch => {
     dispatch(unifiedSearchStart());
 
-    Promise.all([dispatch(albumSearch(terms)), dispatch(artistSearch(terms))])
+    Promise.all([
+      dispatch(albumSearch(terms)),
+      dispatch(artistSearch(terms)),
+      dispatch(lastFmTrackSearch(terms)),
+    ])
 
       .then(() => {
         dispatch(unifiedSearchSuccess());
@@ -269,41 +303,5 @@ export function lastFmArtistInfoSearch(artist, artistId) {
       .catch(error => {
         logger.error(error);
       });
-
-  };
-}
-
-export function lastFmTrackSearchStart(terms) {
-  return {
-    type: LASTFM_ARTIST_INFO_SEARCH_START,
-    payload: terms,
-  };
-}
-
-export function lastFmTrackSearchSuccess(terms, searchResults) {
-  return {
-    type: LASTFM_TRACK_SEARCH_SUCCESS,
-    payload: {
-      id: terms,
-      info: searchResults,
-    },
-  };
-}
-
-export function lastFmTrackSearch(terms) {
-  return dispatch => {
-    dispatch(lastFmTrackSearchStart(terms));
-    Promise.all([lastfmRest.searchTracks(terms)])
-      .then(results => Promise.all(results.map(info => info.json())))
-      .then(results => {
-        console.log(results[0].results.trackmatches.track);
-        dispatch(
-          lastFmTrackSearchSuccess(terms, results[0].results.trackmatches.track)
-        );
-      })
-      .catch(error => {
-        logger.error(error);
-      });
-
   };
 }

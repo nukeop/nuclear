@@ -11,32 +11,42 @@ class Dashboard extends React.Component {
     return [
       {
         menuItem: 'Best new music',
-        render: () =>
-        <BestNewMusicTab
-          dashboardData={this.props.dashboardData}
-          artistInfoSearchByName={this.props.artistInfoSearchByName}
-          history={this.props.history}
-        />
+        render: () => (
+          <BestNewMusicTab
+            dashboardData={this.props.dashboardData}
+            artistInfoSearchByName={this.props.artistInfoSearchByName}
+            history={this.props.history}
+          />
+        ),
       },
       {
-        menuItem: 'Charts',
-        render: () => <ChartsTab />
+        menuItem: 'Top Tracks',
+        render: () => (
+          <ChartsTab
+            topTracks={this.props.dashboardData.topTracks}
+            addToQueue={this.props.addToQueue}
+            musicSources={this.props.musicSources}
+          />
+        ),
       },
       {
         menuItem: 'Genres',
-        render: () =>
-        <GenresTab
-          genres={this.props.dashboardData.topTags}
-          history={this.props.history}
-        />
+        render: () => (
+          <GenresTab
+            genres={this.props.dashboardData.topTags}
+            history={this.props.history}
+          />
+        ),
       },
-      {
+      /*{
         menuItem: 'Events',
-        render: () => { return null; }
-      },
+        render: () => {
+          return null;
+        },
+      },*/
       {
         menuItem: 'News',
-        render: () => <NewsTab news={this.props.dashboardData.news}/>
+        render: () => <NewsTab news={this.props.dashboardData.news} />,
       },
     ];
   }
@@ -46,12 +56,13 @@ class Dashboard extends React.Component {
     this.props.loadBestNewAlbums();
     this.props.loadNuclearNews();
     this.props.loadTopTags();
+    this.props.loadTopTracks();
   }
 
   render() {
     return (
       <div>
-        <Tab menu={{secondary: true, pointing: true}} panes={this.panes()} />
+        <Tab menu={{ secondary: true, pointing: true }} panes={this.panes()} />
       </div>
     );
   }
