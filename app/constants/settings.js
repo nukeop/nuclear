@@ -41,4 +41,18 @@ module.exports = [
     prettyName: 'Use compact style for queue bar',
     default: false,
   },
+  {
+    name: 'mpd.host',
+    category: 'MPD',
+    type: 'string',
+    prettyName: 'MPD host address',
+    default: 'localhost:6600'
+  },
+  {
+    name: 'mpd.httpstream',
+    category: 'MPD',
+    type: 'string',
+    prettyName: 'MPD HTTP stream address',
+    default: 'localhost:8888'
+  }
 ];
