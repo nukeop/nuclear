@@ -22,7 +22,7 @@ class NewsItem extends React.Component {
         <div className={styles.tags}>
           {item.tags.map((tag, i) => {
             return (
-              <span key={'tag-' + i} className={styles.tag}>
+              <span key={'news-item-tag-' + i} className={styles.tag}>
                 {tag}
               </span>
             );
