@@ -24,27 +24,24 @@ class AllResults extends React.Component {
   }
 
   renderLastFmResults(collection) {
-    if (collection !== undefined) {
-      let addToQueue = this.props.addToQueue
-      return collection.slice(0, 5).map((el, i) => {
-        return (
-          <Card
-            small
-            header={el.name + ' - ' + el.artist}
-            image={el.image[2]['#text']}
-            onClick={() => {
-              addToQueue(this.props.musicSources, {
-                artist: el.name,
-                name: el.name,
-                thumbnail: el.image[1]['#text']
-              })
-            }}
-            key={i}
-          />
-        )
-      })
-    }
-    return 'No result'
+    let addToQueue = this.props.addToQueue;
+    return (collection || []).slice(0, 5).map((el, i) => {
+      return (
+        <Card
+          small
+          header={el.name + ' - ' + el.artist}
+          image={el.image[2]['#text']}
+          onClick={() => {
+            addToQueue(this.props.musicSources, {
+              artist: el.name,
+              name: el.name,
+              thumbnail: el.image[1]['#text'],
+            });
+          }}
+          key={i}
+        />
+      );
+    });
   }
 
   render() {

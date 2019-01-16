@@ -134,10 +134,10 @@ class SoundContainer extends React.Component {
 
     if (queue.queueItems.length > 0) {
       let currentSong = queue.queueItems[queue.currentSong];
-      streamUrl = getSelectedStream(
+      streamUrl = (getSelectedStream(
         currentSong.streams,
         plugins.defaultMusicSource
-      ).stream;
+      ) || {}).stream;
     }
 
     return (
