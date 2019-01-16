@@ -23,7 +23,7 @@ class AllResults extends React.Component {
     });
   }
 
-  renderLastFmResults(collection) {
+  renderLastFmResults(collection = []) {
     let addToQueue = this.props.addToQueue;
     return collection.slice(0, 5).map((el, i) => {
       return (
