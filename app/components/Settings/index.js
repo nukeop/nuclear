@@ -104,9 +104,9 @@ class Settings extends React.Component {
     );
   }
 
-  renderSettingSection(i, option, j) {
+  renderSettingSection(settings, option, key) {
     return (
-      <div key={j} className={styles.settings_item}>
+      <div key={key} className={styles.settings_item}>
         <label>{option.prettyName}</label>
         <Spacer />
         <Radio
@@ -132,7 +132,7 @@ class Settings extends React.Component {
               <Header>{i}</Header>
               <hr />
               {_.map(group, (option, j) =>
-                this.renderSettingSection(i, option, j)
+                this.renderSettingSection(settings, option, j)
               )}
             </div>
           );

@@ -29,7 +29,7 @@
   flex: 1 1 auto;
 }
 
-.search_box_container form {
+.search_box_container .form {
   display: flex;
 
   flex: 1 1 auto;
@@ -53,16 +53,19 @@
   flex: 1 1 auto;
 }
 
-form>span {
-  position: relative;
-  right: 30px;
+form,
+.form {
+  > span {
+    position: relative;
+    right: 30px;
 
-  display: flex !important;
+    display: flex !important;
 
-  width: 30px;
-  height: 30px;
+    width: 30px;
+    height: 30px;
 
-  align-items: center;
+    align-items: center;
+  }
 }
 
 ::-webkit-input-placeholder {
