@@ -23,40 +23,84 @@ class Settings extends React.Component {
       : option.default;
   }
 
-  renderSocialSettings() {
+  renderLastFmTitle() {
+    return (
+      <div className={styles.settings_item}>
+        <label>
+          <span className={styles.settings_logo}>
+            <span className="fa-stack fa-lg">
+              <FontAwesome name="square" stack="1x" />
+              <FontAwesome
+                name="lastfm-square"
+                stack="1x"
+                className={styles.lastfm_icon}
+              />
+            </span>
+          </span>
+          <span>Last.fm integration</span>
+        </label>
+      </div>
+    );
+  }
+
+  renderLastFmLoginButtons() {
     let {
       lastFmAuthToken,
       lastFmName,
       lastFmSessionKey,
-      lastFmScrobblingEnabled,
     } = this.props.scrobbling;
+    const { lastFmConnectAction, lastFmLoginAction } = this.props.actions;
+    return (
+      <div className={styles.settings_item}>
+        <span>
+          User: <strong>{lastFmName ? lastFmName : 'Not logged in'}</strong>
+        </span>
+        <Spacer />
+        {!lastFmSessionKey && (
+          <Button onClick={lastFmConnectAction} color="red">
+            Connect with Last.fm
+          </Button>
+        )}
+        {!lastFmSessionKey && (
+          <Button
+            onClick={() => lastFmLoginAction(lastFmAuthToken)}
+            color="red"
+          >
+            Log in
+          </Button>
+        )}
+      </div>
+    );
+  }
 
-    const {
-      lastFmConnectAction,
-      lastFmLoginAction,
-      enableScrobbling,
-      disableScrobbling,
-      setBooleanOption,
-    } = this.props.actions;
+  renderLastFmOptionRadio() {
+    let { lastFmScrobblingEnabled } = this.props.scrobbling;
+    const { enableScrobbling, disableScrobbling } = this.props.actions;
+    return (
+      <div className={styles.settings_item}>
+        <label>Enable scrobbling to last.fm</label>
+        <Spacer />
+        <Radio
+          toggle
+          checked={lastFmScrobblingEnabled}
+          onChange={() =>
+            this.toggleScrobbling(
+              lastFmScrobblingEnabled,
+              enableScrobbling,
+              disableScrobbling
+            )
+          }
+        />
+      </div>
+    );
+  }
+
+  renderSocialSettings() {
     return (
       <div className={styles.settings_section}>
         <Header>Social</Header>
         <hr />
-        <div className={styles.settings_item}>
-          <label>
-            <span className={styles.settings_logo}>
-              <span className="fa-stack fa-lg">
-                <FontAwesome name="square" stack="1x" />
-                <FontAwesome
-                  name="lastfm-square"
-                  stack="1x"
-                  className={styles.lastfm_icon}
-                />
-              </span>
-            </span>
-            <span>Last.fm integration</span>
-          </label>
-        </div>
+        {this.renderLastFmTitle()}
 
         <div className={styles.settings_item}>
           <p>
@@ -65,41 +109,8 @@ class Settings extends React.Component {
           </p>
         </div>
 
-        <div className={styles.settings_item}>
-          <span>
-            User: <strong>{lastFmName ? lastFmName : 'Not logged in'}</strong>
-          </span>
-          <Spacer />
-          {!lastFmSessionKey && (
-            <Button onClick={lastFmConnectAction} color="red">
-              Connect with Last.fm
-            </Button>
-          )}
-          {!lastFmSessionKey && (
-            <Button
-              onClick={() => lastFmLoginAction(lastFmAuthToken)}
-              color="red"
-            >
-              Log in
-            </Button>
-          )}
-        </div>
-
-        <div className={styles.settings_item}>
-          <label>Enable scrobbling to last.fm</label>
-          <Spacer />
-          <Radio
-            toggle
-            checked={lastFmScrobblingEnabled}
-            onChange={() =>
-              this.toggleScrobbling(
-                lastFmScrobblingEnabled,
-                enableScrobbling,
-                disableScrobbling
-              )
-            }
-          />
-        </div>
+        {this.renderLastFmLoginButtons()}
+        {this.renderLastFmOptionRadio()}
       </div>
     );
   }
@@ -120,7 +131,6 @@ class Settings extends React.Component {
 
   render() {
     let { options, settings } = this.props;
-    const { setBooleanOption } = this.props.actions;
     let optionsGroups = _.groupBy(options, 'category');
 
     return (
