@@ -16,6 +16,7 @@
     border-radius: 0.25rem;
     transition: $short-duration;
     overflow: hidden;
+    cursor: pointer;
 
     &:hover {
       transform: scale(1.1);
