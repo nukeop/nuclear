@@ -14,7 +14,7 @@
     height: 0;
     padding-bottom: 25%;
     border-radius: 0.25rem;
-    transition: 0.25s;
+    transition: $short-duration;
     overflow: hidden;
 
     &:hover {
@@ -38,7 +38,7 @@
   }
 
   .genre_overlay img:first-child {
-    opacity: 0.60;
+    opacity: 0.6;
   }
 
   .genre_name {

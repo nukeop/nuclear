@@ -52,16 +52,43 @@ class PopularTracks extends React.Component {
     );
   }
 
+  renderAddTrackToQueueButton(track, index, artist) {
+    return (
+      <a
+        key={'add-track-' + index}
+        href="#"
+        onClick={() => this.addToQueue(artist, track)}
+        className={styles.add_button}
+        aria-label="Add track to queue"
+      >
+        <FontAwesome name="plus" /> Add to queue
+      </a>
+    );
+  }
+
+  renderPlayTrackButton(track, index) {
+    let { artist, selectSong, startPlayback, clearQueue } = this.props;
+
+    return (
+      <a
+        key={'play-track-' + index}
+        href="#"
+        onClick={() => {
+          clearQueue();
+          this.addToQueue(artist, track);
+          selectSong(0);
+          startPlayback();
+        }}
+        className={styles.add_button}
+        aria-label="Play this track now"
+      >
+        <FontAwesome name="play" /> Play now
+      </a>
+    );
+  }
+
   render() {
-    let {
-      artist,
-      tracks,
-      addToQueue,
-      selectSong,
-      startPlayback,
-      clearQueue,
-      musicSources,
-    } = this.props;
+    let { artist, tracks } = this.props;
 
     return (
       <div className={styles.popular_tracks_container}>
@@ -85,29 +112,8 @@ class PopularTracks extends React.Component {
           .slice(0, this.state.expanded ? 15 : 5)
           .map((track, index) => {
             let popupContents = [
-              <a
-                key={'add-track-' + index}
-                href="#"
-                onClick={() => this.addToQueue(artist, track)}
-                className={styles.add_button}
-                aria-label="Add track to queue"
-              >
-                <FontAwesome name="plus" /> Add to queue
-              </a>,
-              <a
-                key={'play-track-' + index}
-                href="#"
-                onClick={() => {
-                  clearQueue();
-                  this.addToQueue(artist, track);
-                  selectSong(0);
-                  startPlayback();
-                }}
-                className={styles.add_button}
-                aria-label="Play this track now"
-              >
-                <FontAwesome name="play" /> Play now
-              </a>,
+              this.renderAddTrackToQueueButton(track, index, artist),
+              this.renderPlayTrackButton(track, index),
             ];
             return this.renderPopup(index, artist, track, popupContents);
           })}
