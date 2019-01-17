@@ -12,10 +12,9 @@
     flex-flow: column;
     flex: 1 1 auto;
     overflow-y: auto;
-    transition: 0.25s;
-
+    transition: $short-duration;
     .queue_item_container {
-      transition: all 0.4s ease-out;
+      transition: all $medium-duration ease-out;
       opacity: 0;
     }
   }
