@@ -1,10 +1,11 @@
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
-import { Button, Radio } from 'semantic-ui-react';
+import { Button, Input, Radio } from 'semantic-ui-react';
 import _ from 'lodash';
 
 import Header from '../Header';
 import Spacer from '../Spacer';
+import settingsEnum from '../../constants/settingsEnum';
 
 import styles from './styles.scss';
 
@@ -21,6 +22,10 @@ class Settings extends React.Component {
     return this.props.settings[option.name] !== undefined
       ? this.props.settings[option.name]
       : option.default;
+  }
+
+  getOptionValue(option) {
+    return this.props.settings[option.name];
   }
 
   renderLastFmTitle() {
@@ -115,16 +120,28 @@ class Settings extends React.Component {
     );
   }
 
-  renderSettingSection(settings, option, key) {
+  renderOption(settings, option, key) {
     return (
       <div key={key} className={styles.settings_item}>
         <label>{option.prettyName}</label>
         <Spacer />
-        <Radio
-          toggle
-          onChange={() => this.props.actions.toggleOption(option, settings)}
-          checked={this.isChecked(option)}
-        />
+        {
+          option.type === settingsEnum.BOOLEAN &&
+          <Radio
+            toggle
+            onChange={() => this.props.actions.toggleOption(option, settings)}
+            checked={this.isChecked(option)}
+          />
+        }
+            {
+              option.type === settingsEnum.STRING &&
+                <Input
+                    value={this.getOptionValue(option)}
+                    onChange={
+                      e =>this.props.actions.setStringOption(option.name, e.target.value)
+                    } 
+                />
+            }
       </div>
     );
   }
@@ -142,7 +159,7 @@ class Settings extends React.Component {
               <Header>{i}</Header>
               <hr />
               {_.map(group, (option, j) =>
-                this.renderSettingSection(settings, option, j)
+                this.renderOption(settings, option, j)
               )}
             </div>
           );
