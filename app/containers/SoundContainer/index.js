@@ -97,7 +97,9 @@ class SoundContainer extends React.Component {
   }
 
   getRandomElement(arr) {
-    let randomElement = arr[Math.round(Math.random() * (arr.length - 1))];
+    let devianceParameter = 0.2; // We will select one of the 20% most similar artists
+    let randomElement =
+      arr[Math.round(Math.random() * (devianceParameter * (arr.length - 1)))];
     return new Promise((resolve, reject) => resolve(randomElement));
   }
 
@@ -134,10 +136,9 @@ class SoundContainer extends React.Component {
 
     if (queue.queueItems.length > 0) {
       let currentSong = queue.queueItems[queue.currentSong];
-      streamUrl = (getSelectedStream(
-        currentSong.streams,
-        plugins.defaultMusicSource
-      ) || {}).stream;
+      streamUrl = (
+        getSelectedStream(currentSong.streams, plugins.defaultMusicSource) || {}
+      ).stream;
     }
 
     return (
