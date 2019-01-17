@@ -52,7 +52,7 @@ class PopularTracks extends React.Component {
     );
   }
 
-  renderAddTrackToQueueButton(track, index) {
+  renderAddTrackToQueueButton(track, index, artist) {
     return (
       <a
         key={'add-track-' + index}
@@ -112,7 +112,7 @@ class PopularTracks extends React.Component {
           .slice(0, this.state.expanded ? 15 : 5)
           .map((track, index) => {
             let popupContents = [
-              this.renderAddTrackToQueueButton(track, index),
+              this.renderAddTrackToQueueButton(track, index, artist),
               this.renderPlayTrackButton(track, index),
             ];
             return this.renderPopup(index, artist, track, popupContents);
