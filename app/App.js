@@ -117,7 +117,7 @@ class App extends React.Component {
         <SearchBoxContainer />
         <Spacer />
         <Spacer />
-        <WindowControls />
+        { this.props.settings.framelessWindow && <WindowControls />}
       </Navbar>
     );
   }
