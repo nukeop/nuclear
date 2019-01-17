@@ -19,7 +19,7 @@
     align-items: center;
     flex-flow: row;
 
-    transition: 0.25s ease-in-out;
+    transition: $short-duration ease-in-out;
 
     border-bottom: 1px solid rgba($background2, 0.2);
 
@@ -53,7 +53,7 @@
     justify-content: center;
     padding: 0.5rem;
     margin-top: 0.5rem;
-    transition: 0.25s;
+    transition: $short-duration;
     cursor: pointer;
 
     &:hover {
@@ -62,4 +62,6 @@
   }
 }
 
-.add_button {text-align: left;}
+.add_button {
+  text-align: left;
+}
