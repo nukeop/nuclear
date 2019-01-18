@@ -16,11 +16,20 @@
   }
 
   .settings_item {
+    position: relative;
     display: flex;
     flex-flow: row;
     align-items: baseline;
     justify-content: left;
     margin: 2rem 0;
+
+    &.string {
+      flex-flow: column;
+
+      label {
+        margin-bottom: 1em;
+      }
+    }
 
     p {
       font-size: 14px;
@@ -34,6 +43,17 @@
     .checkbox {
       align-self: flex-end;
       flex: 0 0 auto;
+    }
+
+    .ui.fluid.input {
+      width: 100%;
+
+      input {
+        color: $grey;
+        border: none;
+        border-radius: 0px 2px 2px 0px;
+        background-color: $background3;
+      }
     }
   }
 

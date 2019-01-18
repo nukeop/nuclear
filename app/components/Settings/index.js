@@ -1,6 +1,7 @@
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 import { Button, Input, Radio } from 'semantic-ui-react';
+import cx from 'classnames';
 import _ from 'lodash';
 
 import Header from '../Header';
@@ -20,8 +21,8 @@ class Settings extends React.Component {
 
   isChecked(option) {
     return this.props.settings[option.name] !== undefined
-      ? this.props.settings[option.name]
-      : option.default;
+    ? this.props.settings[option.name]
+    : option.default;
   }
 
   getOptionValue(option) {
@@ -70,103 +71,104 @@ class Settings extends React.Component {
           <Button
             onClick={() => lastFmLoginAction(lastFmAuthToken)}
             color="red"
-          >
-            Log in
-          </Button>
-        )}
-      </div>
-    );
-  }
-
-  renderLastFmOptionRadio() {
-    let { lastFmScrobblingEnabled } = this.props.scrobbling;
-    const { enableScrobbling, disableScrobbling } = this.props.actions;
-    return (
-      <div className={styles.settings_item}>
-        <label>Enable scrobbling to last.fm</label>
-        <Spacer />
-        <Radio
-          toggle
-          checked={lastFmScrobblingEnabled}
-          onChange={() =>
-            this.toggleScrobbling(
-              lastFmScrobblingEnabled,
-              enableScrobbling,
-              disableScrobbling
-            )
-          }
-        />
-      </div>
-    );
-  }
-
-  renderSocialSettings() {
-    return (
-      <div className={styles.settings_section}>
-        <Header>Social</Header>
-        <hr />
-        {this.renderLastFmTitle()}
-
-        <div className={styles.settings_item}>
-          <p>
-            In order to enable scrobbling, you first have to connect and
-            authorize nuclear on Last.fm, then click log in.
-          </p>
+            >
+              Log in
+            </Button>
+          )}
         </div>
+      );
+    }
 
-        {this.renderLastFmLoginButtons()}
-        {this.renderLastFmOptionRadio()}
-      </div>
-    );
-  }
-
-  renderOption(settings, option, key) {
-    return (
-      <div key={key} className={styles.settings_item}>
-        <label>{option.prettyName}</label>
-        <Spacer />
-        {
-          option.type === settingsEnum.BOOLEAN &&
+    renderLastFmOptionRadio() {
+      let { lastFmScrobblingEnabled } = this.props.scrobbling;
+      const { enableScrobbling, disableScrobbling } = this.props.actions;
+      return (
+        <div className={styles.settings_item}>
+          <label>Enable scrobbling to last.fm</label>
+          <Spacer />
           <Radio
             toggle
-            onChange={() => this.props.actions.toggleOption(option, settings)}
-            checked={this.isChecked(option)}
-          />
-        }
-            {
-              option.type === settingsEnum.STRING &&
-                <Input
-                    value={this.getOptionValue(option)}
-                    onChange={
-                      e =>this.props.actions.setStringOption(option.name, e.target.value)
-                    } 
-                />
+            checked={lastFmScrobblingEnabled}
+            onChange={() =>
+              this.toggleScrobbling(
+                lastFmScrobblingEnabled,
+                enableScrobbling,
+                disableScrobbling
+              )
             }
-      </div>
-    );
+          />
+        </div>
+      );
+    }
+
+    renderSocialSettings() {
+      return (
+        <div className={styles.settings_section}>
+          <Header>Social</Header>
+          <hr />
+          {this.renderLastFmTitle()}
+
+          <div className={styles.settings_item}>
+            <p>
+              In order to enable scrobbling, you first have to connect and
+              authorize nuclear on Last.fm, then click log in.
+            </p>
+          </div>
+
+          {this.renderLastFmLoginButtons()}
+          {this.renderLastFmOptionRadio()}
+        </div>
+      );
+    }
+
+    renderOption(settings, option, key) {
+      return (
+        <div key={key} className={cx(styles.settings_item, option.type)}>
+          <label>{option.prettyName}</label>
+          <Spacer />
+          {
+            option.type === settingsEnum.BOOLEAN &&
+            <Radio
+              toggle
+              onChange={() => this.props.actions.toggleOption(option, settings)}
+              checked={this.isChecked(option)}
+            />
+          }
+          {
+            option.type === settingsEnum.STRING &&
+            <Input
+              fluid
+              value={this.getOptionValue(option)}
+              onChange={
+                e =>this.props.actions.setStringOption(option.name, e.target.value)
+              }
+            />
+          }
+        </div>
+      );
+    }
+
+    render() {
+      let { options, settings } = this.props;
+      let optionsGroups = _.groupBy(options, 'category');
+
+      return (
+        <div className={styles.settings_container}>
+          {this.renderSocialSettings()}
+          {_.map(optionsGroups, (group, i) => {
+            return (
+              <div key={i} className={styles.settings_section}>
+                <Header>{i}</Header>
+                <hr />
+                {_.map(group, (option, j) =>
+                  this.renderOption(settings, option, j)
+                )}
+              </div>
+            );
+          })}
+        </div>
+      );
+    }
   }
 
-  render() {
-    let { options, settings } = this.props;
-    let optionsGroups = _.groupBy(options, 'category');
-
-    return (
-      <div className={styles.settings_container}>
-        {this.renderSocialSettings()}
-        {_.map(optionsGroups, (group, i) => {
-          return (
-            <div key={i} className={styles.settings_section}>
-              <Header>{i}</Header>
-              <hr />
-              {_.map(group, (option, j) =>
-                this.renderOption(settings, option, j)
-              )}
-            </div>
-          );
-        })}
-      </div>
-    );
-  }
-}
-
-export default Settings;
+  export default Settings;
