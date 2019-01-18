@@ -222,19 +222,18 @@ class App extends React.Component {
       />
     );
   }
+
+  getCurrentSongParameter(parameter) {
+    return this.props.queue.queueItems[this.props.queue.currentSong]
+      ? this.props.queue.queueItems[this.props.queue.currentSong][parameter]
+      : null;
+  }
+
   renderTrackInfo() {
     return (
       <TrackInfo
-        track={
-          this.props.queue.queueItems[this.props.queue.currentSong]
-            ? this.props.queue.queueItems[this.props.queue.currentSong].name
-            : null
-        }
-        artist={
-          this.props.queue.queueItems[this.props.queue.currentSong]
-            ? this.props.queue.queueItems[this.props.queue.currentSong].artist
-            : null
-        }
+        track={getCurrentSongParameter('name')}
+        artist={getCurrentSongParameter('artist')}
       />
     );
   }
