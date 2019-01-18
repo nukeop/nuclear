@@ -162,11 +162,11 @@ export function albumInfoSuccess(albumId, info) {
   };
 }
 
-export function albumInfoSearch(albumId) {
+export function albumInfoSearch(albumId, releaseType) {
   return dispatch => {
     dispatch(albumInfoStart(albumId));
     discogs
-      .releaseInfo(albumId)
+      .releaseInfo(albumId, releaseType)
       .then(info => {
         if (info.ok) {
           return info.json();

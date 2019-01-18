@@ -32,8 +32,13 @@ function searchReleases(terms, count = 15) {
   return fetch(searchQuery(terms, count) + '&type=master');
 }
 
-function releaseInfo(releaseId) {
-  return fetch(addToken(apiUrl + 'masters/' + releaseId, true));
+function releaseInfo(releaseId, releaseType) {
+  if(releaseType == 'master'){
+    return fetch(addToken(apiUrl + 'masters/' + releaseId, true));
+  }
+  else if(releaseType == 'release'){
+    return fetch(addToken(apiUrl + 'releases/' + releaseId, true));
+  }
 }
 
 function artistInfo(artistId) {
