@@ -232,8 +232,8 @@ class App extends React.Component {
   renderTrackInfo() {
     return (
       <TrackInfo
-        track={getCurrentSongParameter('name')}
-        artist={getCurrentSongParameter('artist')}
+        track={this.getCurrentSongParameter('name')}
+        artist={this.getCurrentSongParameter('artist')}
       />
     );
   }
