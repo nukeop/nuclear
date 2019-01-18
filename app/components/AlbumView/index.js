@@ -62,13 +62,10 @@ class AlbumView extends React.Component {
 
   render() {
     let { album } = this.props;
-
     if (_.some(_.map([album.images, album.artists, album.styles], _.isEmpty))) {
       return this.renderInvalidData();
     }
-
     let albumImage = this.getAlbumImage(album);
-
     return this.renderAlbumLoading(album, albumImage);
   }
 
@@ -91,6 +88,80 @@ class AlbumView extends React.Component {
     return albumImage;
   }
 
+  renderAlbumArtistName(album) {
+    return (
+      <div className={styles.album_artist}>
+        by{' '}
+        <a
+          href="#"
+          onClick={() => {
+            this.artistInfoSearch.bind(this)(album.artists[0].id);
+          }}
+        >
+          {album.artists[0].name}
+        </a>
+      </div>
+    );
+  }
+
+  renderAlbumGenre(album) {
+    return (
+      <div className={styles.album_genre}>
+        <label>Genre:</label>
+        {album.styles && Object.keys(album.styles) > 0 && album.styles[0]}
+      </div>
+    );
+  }
+
+  renderPlayAllButton(album) {
+    return (
+      <a
+        onClick={() => this.playAll(album)}
+        href="#"
+        className={styles.play_button}
+      >
+        <FontAwesome name="play" /> Play
+      </a>
+    );
+  }
+
+  renderAlbumYear(album) {
+    return (
+      <div className={styles.album_year}>
+        <label>Year:</label>
+        {album.year}
+      </div>
+    );
+  }
+
+  renderAlbumTracksCount(album) {
+    return (
+      <div className={styles.album_tracks}>
+        <label>Tracks:</label>
+        {album.tracklist.length}
+      </div>
+    );
+  }
+
+  renderAlbumInfoBox(album, albumImage) {
+    return (
+      <div className={styles.album_info_box}>
+        <img src={albumImage} />
+        <div className={styles.album_details}>
+          <div className={styles.album_title}>{album.title}</div>
+          {this.renderAlbumArtistName(album)}
+          {this.renderAlbumGenre(album)}
+          {this.renderAlbumYear(album)}
+          {this.renderAlbumTracksCount(album)}
+          <div className={styles.album_buttons}>
+            {this.renderPlayAllButton(album)}
+            {this.renderOptionsButtons(album)}
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   renderAlbumLoading(album, albumImage) {
     return (
       <div className={styles.album_view_container}>
@@ -98,52 +169,9 @@ class AlbumView extends React.Component {
           <Dimmer active={album.loading}>
             <Loader />
           </Dimmer>
-
           {!album.loading && (
             <div className={styles.album}>
-              <div className={styles.album_info_box}>
-                <img src={albumImage} />
-                <div className={styles.album_details}>
-                  <div className={styles.album_title}>{album.title}</div>
-                  <div className={styles.album_artist}>
-                    by{' '}
-                    <a
-                      href="#"
-                      onClick={() => {
-                        this.artistInfoSearch.bind(this)(album.artists[0].id);
-                      }}
-                    >
-                      {album.artists[0].name}
-                    </a>
-                  </div>
-                  <div className={styles.album_genre}>
-                    <label>Genre:</label>
-                    {album.styles &&
-                      Object.keys(album.styles) > 0 &&
-                      album.styles[0]}
-                  </div>
-
-                  <div className={styles.album_year}>
-                    <label>Year:</label>
-                    {album.year}
-                  </div>
-                  <div className={styles.album_tracks}>
-                    <label>Tracks:</label>
-                    {album.tracklist.length}
-                  </div>
-                  <div className={styles.album_buttons}>
-                    <a
-                      onClick={() => this.playAll(album)}
-                      href="#"
-                      className={styles.play_button}
-                    >
-                      <FontAwesome name="play" /> Play
-                    </a>
-                    {this.renderOptions(album)}
-                  </div>
-                </div>
-              </div>
-
+              {this.renderAlbumInfoBox(album, albumImage)}
               {this.renderAlbumTracksList(album)}
             </div>
           )}
@@ -226,7 +254,7 @@ class AlbumView extends React.Component {
       </a>
     );
   }
-  renderOptions(album) {
+  renderOptionsButtons(album) {
     return (
       <ContextPopup
         trigger={
