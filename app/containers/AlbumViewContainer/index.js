@@ -8,7 +8,7 @@ import * as PlayerActions from '../../actions/player';
 
 import AlbumView from '../../components/AlbumView';
 
-var _ = require('lodash');
+let _ = require('lodash');
 
 class AlbumViewContainer extends React.Component {
   constructor(props) {

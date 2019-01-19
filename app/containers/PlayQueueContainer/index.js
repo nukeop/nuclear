@@ -15,7 +15,7 @@ class PlayQueueContainer extends React.Component {
   }
 
   render() {
-    return(
+    return (
       <PlayQueue
         actions={this.props.actions}
         items={this.props.queue.queueItems}

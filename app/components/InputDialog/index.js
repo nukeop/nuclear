@@ -63,19 +63,21 @@ class InputDialog extends React.Component {
           <Input
             fluid
             inverted
-            ref={input => { input && input.focus(); }}
+            ref={input => {
+              input && input.focus(); 
+            }}
             placeholder={placeholder}
-	    onChange={this.handleChange}
+            onChange={this.handleChange}
 	     />
-	</Modal.Content>
-	<Modal.Actions>
-	  <Button onClick={this.handleClose} basic color='red' inverted>
+        </Modal.Content>
+        <Modal.Actions>
+          <Button onClick={this.handleClose} basic color='red' inverted>
             Cancel
-	  </Button>
-	  <Button color='green' inverted onClick={onClick}>
+          </Button>
+          <Button color='green' inverted onClick={onClick}>
             {accept}
-	  </Button>
-	</Modal.Actions>
+          </Button>
+        </Modal.Actions>
       </Modal>
     );
   }

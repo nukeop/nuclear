@@ -42,11 +42,11 @@ class PlaylistView extends React.Component {
       addTracks,
       musicSources,
       selectSong,
-      startPlayback,
+      startPlayback
     } = this.props;
     return (
       <a
-        href="#"
+        href='#'
         className={styles.play_button}
         onClick={() =>
           this.addPlaylistToQueue(
@@ -58,7 +58,7 @@ class PlaylistView extends React.Component {
           )
         }
       >
-        <FontAwesome name="play" /> Play
+        <FontAwesome name='play' /> Play
       </a>
     );
   }
@@ -78,8 +78,8 @@ class PlaylistView extends React.Component {
   renderPlaylistInfo() {
     let { playlist } = this.props;
     let popupTrigger = (
-      <a href="#" className={styles.more_button}>
-        <FontAwesome name="ellipsis-h" />
+      <a href='#' className={styles.more_button}>
+        <FontAwesome name='ellipsis-h' />
       </a>
     );
     return (

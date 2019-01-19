@@ -32,7 +32,7 @@ class DashboardContainer extends React.Component {
 function mapStateToProps(state) {
   return {
     dashboard: state.dashboard,
-    musicSources: state.plugin.plugins.musicSources,
+    musicSources: state.plugin.plugins.musicSources
   };
 }
 
@@ -41,7 +41,7 @@ function mapDispatchToProps(dispatch) {
     actions: bindActionCreators(
       Object.assign({}, Actions, DashboardActions, QueueActions),
       dispatch
-    ),
+    )
   };
 }
 

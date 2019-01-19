@@ -17,7 +17,7 @@ class Dashboard extends React.Component {
             artistInfoSearchByName={this.props.artistInfoSearchByName}
             history={this.props.history}
           />
-        ),
+        )
       },
       {
         menuItem: 'Top Tracks',
@@ -27,7 +27,7 @@ class Dashboard extends React.Component {
             addToQueue={this.props.addToQueue}
             musicSources={this.props.musicSources}
           />
-        ),
+        )
       },
       {
         menuItem: 'Genres',
@@ -36,9 +36,9 @@ class Dashboard extends React.Component {
             genres={this.props.dashboardData.topTags}
             history={this.props.history}
           />
-        ),
+        )
       },
-      /*{
+      /* {
         menuItem: 'Events',
         render: () => {
           return null;
@@ -46,8 +46,8 @@ class Dashboard extends React.Component {
       },*/
       {
         menuItem: 'News',
-        render: () => <NewsTab news={this.props.dashboardData.news} />,
-      },
+        render: () => <NewsTab news={this.props.dashboardData.news} />
+      }
     ];
   }
 

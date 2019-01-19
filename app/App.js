@@ -122,7 +122,7 @@ class App extends React.Component {
     return (
       <VerticalPanel
         className={classnames(styles.right_panel, {
-          [`${compact.compact_panel}`]: settings.compactQueueBar,
+          [`${compact.compact_panel}`]: settings.compactQueueBar
         })}
       >
         <PlayQueueContainer compact={settings.compactQueueBar} />
@@ -133,13 +133,13 @@ class App extends React.Component {
     return (
       <VerticalPanel
         className={classnames(styles.left_panel, {
-          [`${compact.compact_panel}`]: settings.compactMenuBar,
+          [`${compact.compact_panel}`]: settings.compactMenuBar
         })}
       >
         <SidebarMenu>
           <div className={styles.sidebar_brand}>
             <img
-              width="50%"
+              width='50%'
               src={settings.compactMenuBar ? logoIcon : logoImg}
             />
             <div className={styles.version_string}>
@@ -172,7 +172,7 @@ class App extends React.Component {
 
   renderSidebarFooter(settings, toggleOption) {
     return (
-      <div className="sidebar_footer">
+      <div className='sidebar_footer'>
         <a
           onClick={() =>
             toggleOption(
@@ -180,7 +180,7 @@ class App extends React.Component {
               settings
             )
           }
-          href="#"
+          href='#'
         >
           <FontAwesome
             name={settings.compactMenuBar ? 'angle-right' : 'angle-left'}
@@ -216,7 +216,7 @@ class App extends React.Component {
         cover={
           this.props.queue.queueItems[this.props.queue.currentSong]
             ? this.props.queue.queueItems[this.props.queue.currentSong]
-                .thumbnail
+              .thumbnail
             : artPlaceholder
         }
       />
@@ -277,7 +277,7 @@ function mapStateToProps(state) {
     queue: state.queue,
     player: state.player,
     scrobbling: state.scrobbling,
-    settings: state.settings,
+    settings: state.settings
   };
 }
 
@@ -294,7 +294,7 @@ function mapDispatchToProps(dispatch) {
         Actions
       ),
       dispatch
-    ),
+    )
   };
 }
 

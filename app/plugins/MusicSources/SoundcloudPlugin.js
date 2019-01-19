@@ -25,28 +25,28 @@ class SoundcloudPlugin extends MusicSourcePlugin {
 
   search(terms) {
     return Soundcloud.soundcloudSearch(terms)
-    .then(data => data.json())
-    .then(results => {
-      let info = results[0];
-      return info ? this.resultToStream(info) : null;
-    })
-    .catch(err => {
-      console.error(`Error looking up streams for ${terms} on Soundcloud`);
-      console.error(err);
-    });
+      .then(data => data.json())
+      .then(results => {
+        let info = results[0];
+        return info ? this.resultToStream(info) : null;
+      })
+      .catch(err => {
+        console.error(`Error looking up streams for ${terms} on Soundcloud`);
+        console.error(err);
+      });
   }
 
   getAlternateStream(terms, currentStream) {
     return Soundcloud.soundcloudSearch(terms)
-    .then(data => data.json())
-    .then(results => {
-      let info = _.find(results, result => result && result.id !== currentStream.id);
-      return info ? this.resultToStream(info) : null;
-    })
-    .catch(err => {
-      console.error(`Error looking up streams for ${terms} on Soundcloud`);
-      console.error(err);
-    });
+      .then(data => data.json())
+      .then(results => {
+        let info = _.find(results, result => result && result.id !== currentStream.id);
+        return info ? this.resultToStream(info) : null;
+      })
+      .catch(err => {
+        console.error(`Error looking up streams for ${terms} on Soundcloud`);
+        console.error(err);
+      });
   }
 }
 

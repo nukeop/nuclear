@@ -24,7 +24,7 @@ function mapStateToProps(state) {
   return {
     scrobbling: state.scrobbling,
     settings: state.settings
-  }
+  };
 }
 
 function mapDispatchToProps(dispatch) {

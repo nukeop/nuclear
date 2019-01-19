@@ -11,14 +11,14 @@ class QueueItem extends React.Component {
     super(props);
 
     this.state = {
-      style: {},
+      style: {}
     };
   }
 
   componentDidMount() {
     setTimeout(() => {
       this.setState({
-        style: { opacity: 1 },
+        style: { opacity: 1 }
       });
     }, 1);
   }
@@ -39,7 +39,7 @@ class QueueItem extends React.Component {
         className={styles.thumbnail_overlay}
         onClick={() => removeFromQueue(track)}
       >
-        <FontAwesome name="trash-o" size="2x" />
+        <FontAwesome name='trash-o' size='2x' />
       </div>
     );
   }
@@ -48,7 +48,7 @@ class QueueItem extends React.Component {
     return (
       <div className={styles.thumbnail_container}>
         {loading ? (
-          <FontAwesome name="spinner" size="2x" pulse />
+          <FontAwesome name='spinner' size='2x' pulse />
         ) : (
           <img src={this.props.track.thumbnail} />
         )}
@@ -59,7 +59,7 @@ class QueueItem extends React.Component {
 
   renderClassName(current) {
     return classNames(styles.queue_item_container, {
-      [`${styles.current_song}`]: current,
+      [`${styles.current_song}`]: current
     });
   }
 
@@ -79,7 +79,7 @@ class QueueItem extends React.Component {
       index,
       defaultMusicSource,
       selectSong,
-      removeFromQueue,
+      removeFromQueue
     } = this.props;
 
     let selectedStream = getSelectedStream(track.streams, defaultMusicSource);
