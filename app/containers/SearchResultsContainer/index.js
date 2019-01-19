@@ -1,17 +1,17 @@
-import React from 'react'
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
-import * as Actions from '../../actions'
-import * as QueueActions from '../../actions/queue'
+import React from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as Actions from '../../actions';
+import * as QueueActions from '../../actions/queue';
 
-import SearchResults from '../../components/SearchResults'
+import SearchResults from '../../components/SearchResults';
 
 class SearchResultsContainer extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
   }
   render() {
-    let { actions, musicSources } = this.props
+    let { actions, musicSources } = this.props;
 
     return (
       <SearchResults
@@ -25,7 +25,7 @@ class SearchResultsContainer extends React.Component {
         addToQueue={this.props.actions.addToQueue}
         musicSources={musicSources}
       />
-    )
+    );
   }
 }
 
@@ -36,7 +36,7 @@ function mapStateToProps(state) {
     trackSearchResults: state.search.trackSearchResults,
     unifiedSearchStarted: state.search.unifiedSearchStarted,
     musicSources: state.plugin.plugins.musicSources
-  }
+  };
 }
 
 function mapDispatchToProps(dispatch) {
@@ -45,10 +45,10 @@ function mapDispatchToProps(dispatch) {
       Object.assign({}, Actions, QueueActions),
       dispatch
     )
-  }
+  };
 }
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(SearchResultsContainer)
+)(SearchResultsContainer);

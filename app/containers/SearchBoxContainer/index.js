@@ -15,7 +15,7 @@ class SearchBoxContainer extends React.Component {
   }
 
   render() {
-    return(
+    return (
       <SearchBox
         handleSearch={this.handleSearch.bind(this)(this.props.history)}
         loading={this.props.unifiedSearchStarted}

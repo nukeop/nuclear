@@ -7,11 +7,11 @@ import styles from './styles.scss';
 class PlayPauseButton extends React.Component {
   getIcon() {
     if (this.props.loading) {
-      return <FontAwesome name="spinner" pulse />;
+      return <FontAwesome name='spinner' pulse />;
     } else if (this.props.playing) {
-      return <FontAwesome name="pause" />;
+      return <FontAwesome name='pause' />;
     } else {
-      return <FontAwesome name="play" />;
+      return <FontAwesome name='play' />;
     }
   }
 

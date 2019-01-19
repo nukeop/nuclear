@@ -11,7 +11,7 @@ const Downloads = props => {
       </h3>
     </div>
   );
-}
+};
 
 Downloads.propTypes = {
 

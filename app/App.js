@@ -30,10 +30,7 @@ import VerticalPanel from './components/VerticalPanel';
 import Spacer from './components/Spacer';
 
 import MainContentContainer from './containers/MainContentContainer';
-
 import PlayQueueContainer from './containers/PlayQueueContainer';
-
-import SearchBox from './components/SearchBox';
 import SearchBoxContainer from './containers/SearchBoxContainer';
 
 import IpcContainer from './containers/IpcContainer';
@@ -41,7 +38,6 @@ import SoundContainer from './containers/SoundContainer';
 
 import ui from 'nuclear-ui';
 import PlayerControls from './components/PlayerControls';
-import PlayQueue from './components/PlayQueue';
 import Seekbar from './components/Seekbar';
 import SidebarMenu from './components/SidebarMenu';
 import SidebarMenuItem from './components/SidebarMenu/SidebarMenuItem';
@@ -117,7 +113,7 @@ class App extends React.Component {
         <SearchBoxContainer />
         <Spacer />
         <Spacer />
-        { this.props.settings.framelessWindow && <WindowControls />}
+        {this.props.settings.framelessWindow && <WindowControls />}
       </Navbar>
     );
   }
@@ -126,7 +122,7 @@ class App extends React.Component {
     return (
       <VerticalPanel
         className={classnames(styles.right_panel, {
-          [`${compact.compact_panel}`]: settings.compactQueueBar,
+          [`${compact.compact_panel}`]: settings.compactQueueBar
         })}
       >
         <PlayQueueContainer compact={settings.compactQueueBar} />
@@ -137,13 +133,13 @@ class App extends React.Component {
     return (
       <VerticalPanel
         className={classnames(styles.left_panel, {
-          [`${compact.compact_panel}`]: settings.compactMenuBar,
+          [`${compact.compact_panel}`]: settings.compactMenuBar
         })}
       >
         <SidebarMenu>
           <div className={styles.sidebar_brand}>
             <img
-              width="50%"
+              width='50%'
               src={settings.compactMenuBar ? logoIcon : logoImg}
             />
             <div className={styles.version_string}>
@@ -176,7 +172,7 @@ class App extends React.Component {
 
   renderSidebarFooter(settings, toggleOption) {
     return (
-      <div className="sidebar_footer">
+      <div className='sidebar_footer'>
         <a
           onClick={() =>
             toggleOption(
@@ -184,7 +180,7 @@ class App extends React.Component {
               settings
             )
           }
-          href="#"
+          href='#'
         >
           <FontAwesome
             name={settings.compactMenuBar ? 'angle-right' : 'angle-left'}
@@ -220,25 +216,24 @@ class App extends React.Component {
         cover={
           this.props.queue.queueItems[this.props.queue.currentSong]
             ? this.props.queue.queueItems[this.props.queue.currentSong]
-                .thumbnail
+              .thumbnail
             : artPlaceholder
         }
       />
     );
   }
+
+  getCurrentSongParameter(parameter) {
+    return this.props.queue.queueItems[this.props.queue.currentSong]
+      ? this.props.queue.queueItems[this.props.queue.currentSong][parameter]
+      : null;
+  }
+
   renderTrackInfo() {
     return (
       <TrackInfo
-        track={
-          this.props.queue.queueItems[this.props.queue.currentSong]
-            ? this.props.queue.queueItems[this.props.queue.currentSong].name
-            : null
-        }
-        artist={
-          this.props.queue.queueItems[this.props.queue.currentSong]
-            ? this.props.queue.queueItems[this.props.queue.currentSong].artist
-            : null
-        }
+        track={this.getCurrentSongParameter('name')}
+        artist={this.getCurrentSongParameter('artist')}
       />
     );
   }
@@ -282,7 +277,7 @@ function mapStateToProps(state) {
     queue: state.queue,
     player: state.player,
     scrobbling: state.scrobbling,
-    settings: state.settings,
+    settings: state.settings
   };
 }
 
@@ -299,7 +294,7 @@ function mapDispatchToProps(dispatch) {
         Actions
       ),
       dispatch
-    ),
+    )
   };
 }
 
