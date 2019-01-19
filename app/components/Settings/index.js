@@ -21,8 +21,8 @@ class Settings extends React.Component {
 
   isChecked(option) {
     return this.props.settings[option.name] !== undefined
-    ? this.props.settings[option.name]
-    : option.default;
+      ? this.props.settings[option.name]
+      : option.default;
   }
 
   getOptionValue(option) {
@@ -34,11 +34,11 @@ class Settings extends React.Component {
       <div className={styles.settings_item}>
         <label>
           <span className={styles.settings_logo}>
-            <span className="fa-stack fa-lg">
-              <FontAwesome name="square" stack="1x" />
+            <span className='fa-stack fa-lg'>
+              <FontAwesome name='square' stack='1x' />
               <FontAwesome
-                name="lastfm-square"
-                stack="1x"
+                name='lastfm-square'
+                stack='1x'
                 className={styles.lastfm_icon}
               />
             </span>
@@ -53,7 +53,7 @@ class Settings extends React.Component {
     let {
       lastFmAuthToken,
       lastFmName,
-      lastFmSessionKey,
+      lastFmSessionKey
     } = this.props.scrobbling;
     const { lastFmConnectAction, lastFmLoginAction } = this.props.actions;
     return (
@@ -63,112 +63,112 @@ class Settings extends React.Component {
         </span>
         <Spacer />
         {!lastFmSessionKey && (
-          <Button onClick={lastFmConnectAction} color="red">
+          <Button onClick={lastFmConnectAction} color='red'>
             Connect with Last.fm
           </Button>
         )}
         {!lastFmSessionKey && (
           <Button
             onClick={() => lastFmLoginAction(lastFmAuthToken)}
-            color="red"
-            >
+            color='red'
+          >
               Log in
-            </Button>
-          )}
-        </div>
-      );
-    }
+          </Button>
+        )}
+      </div>
+    );
+  }
 
-    renderLastFmOptionRadio() {
-      let { lastFmScrobblingEnabled } = this.props.scrobbling;
-      const { enableScrobbling, disableScrobbling } = this.props.actions;
-      return (
+  renderLastFmOptionRadio() {
+    let { lastFmScrobblingEnabled } = this.props.scrobbling;
+    const { enableScrobbling, disableScrobbling } = this.props.actions;
+    return (
+      <div className={styles.settings_item}>
+        <label>Enable scrobbling to last.fm</label>
+        <Spacer />
+        <Radio
+          toggle
+          checked={lastFmScrobblingEnabled}
+          onChange={() =>
+            this.toggleScrobbling(
+              lastFmScrobblingEnabled,
+              enableScrobbling,
+              disableScrobbling
+            )
+          }
+        />
+      </div>
+    );
+  }
+
+  renderSocialSettings() {
+    return (
+      <div className={styles.settings_section}>
+        <Header>Social</Header>
+        <hr />
+        {this.renderLastFmTitle()}
+
         <div className={styles.settings_item}>
-          <label>Enable scrobbling to last.fm</label>
-          <Spacer />
-          <Radio
-            toggle
-            checked={lastFmScrobblingEnabled}
-            onChange={() =>
-              this.toggleScrobbling(
-                lastFmScrobblingEnabled,
-                enableScrobbling,
-                disableScrobbling
-              )
-            }
-          />
-        </div>
-      );
-    }
-
-    renderSocialSettings() {
-      return (
-        <div className={styles.settings_section}>
-          <Header>Social</Header>
-          <hr />
-          {this.renderLastFmTitle()}
-
-          <div className={styles.settings_item}>
-            <p>
+          <p>
               In order to enable scrobbling, you first have to connect and
               authorize nuclear on Last.fm, then click log in.
-            </p>
-          </div>
-
-          {this.renderLastFmLoginButtons()}
-          {this.renderLastFmOptionRadio()}
+          </p>
         </div>
-      );
-    }
 
-    renderOption(settings, option, key) {
-      return (
-        <div key={key} className={cx(styles.settings_item, option.type)}>
-          <label>{option.prettyName}</label>
-          <Spacer />
-          {
-            option.type === settingsEnum.BOOLEAN &&
+        {this.renderLastFmLoginButtons()}
+        {this.renderLastFmOptionRadio()}
+      </div>
+    );
+  }
+
+  renderOption(settings, option, key) {
+    return (
+      <div key={key} className={cx(styles.settings_item, option.type)}>
+        <label>{option.prettyName}</label>
+        <Spacer />
+        {
+          option.type === settingsEnum.BOOLEAN &&
             <Radio
               toggle
               onChange={() => this.props.actions.toggleOption(option, settings)}
               checked={this.isChecked(option)}
             />
-          }
-          {
-            option.type === settingsEnum.STRING &&
+        }
+        {
+          option.type === settingsEnum.STRING &&
             <Input
               fluid
               value={this.getOptionValue(option)}
               onChange={
-                e =>this.props.actions.setStringOption(option.name, e.target.value)
+                e => this.props.actions.setStringOption(option.name, e.target.value)
               }
             />
-          }
-        </div>
-      );
-    }
-
-    render() {
-      let { options, settings } = this.props;
-      let optionsGroups = _.groupBy(options, 'category');
-
-      return (
-        <div className={styles.settings_container}>
-          {this.renderSocialSettings()}
-          {_.map(optionsGroups, (group, i) => {
-            return (
-              <div key={i} className={styles.settings_section}>
-                <Header>{i}</Header>
-                <hr />
-                {_.map(group, (option, j) =>
-                  this.renderOption(settings, option, j)
-                )}
-              </div>
-            );
-          })}
-        </div>
-      );
-    }
+        }
+      </div>
+    );
   }
 
-  export default Settings;
+  render() {
+    let { options, settings } = this.props;
+    let optionsGroups = _.groupBy(options, 'category');
+
+    return (
+      <div className={styles.settings_container}>
+        {this.renderSocialSettings()}
+        {_.map(optionsGroups, (group, i) => {
+          return (
+            <div key={i} className={styles.settings_section}>
+              <Header>{i}</Header>
+              <hr />
+              {_.map(group, (option, j) =>
+                this.renderOption(settings, option, j)
+              )}
+            </div>
+          );
+        })}
+      </div>
+    );
+  }
+}
+
+export default Settings;

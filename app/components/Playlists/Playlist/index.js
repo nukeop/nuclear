@@ -9,7 +9,7 @@ class Playlist extends React.Component {
   }
 
   goToPlaylist(history, playlist) {
-      history.push('/playlist/' + playlist);
+    history.push('/playlist/' + playlist);
   }
 
   render() {
@@ -21,7 +21,9 @@ class Playlist extends React.Component {
 
     return (
       <div className={styles.playlist_outside_container}>
-        <div onClick={() => {this.goToPlaylist(history, index)}} className={styles.playlist_container}>
+        <div onClick={() => {
+          this.goToPlaylist(history, index);
+        }} className={styles.playlist_container}>
           <div>
             <img
               className={styles.playlist_thumbnail}
@@ -33,7 +35,7 @@ class Playlist extends React.Component {
             <h3>{playlist.tracks.length} songs</h3>
           </div>
           <div className={styles.playlist_chevron}>
-            <FontAwesome name="angle-right" size='2x'/>
+            <FontAwesome name='angle-right' size='2x'/>
           </div>
           
         </div>

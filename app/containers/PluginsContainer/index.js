@@ -27,15 +27,15 @@ class PluginsContainer extends React.Component {
 }
 
 function mapStateToProps(state) {
-	return {
+  return {
     plugin: state.plugin
-	}
+  };
 }
 
 function mapDispatchToProps(dispatch) {
-	return {
-		actions: bindActionCreators(Object.assign({}, PluginsActions), dispatch)
-	}
+  return {
+    actions: bindActionCreators(Object.assign({}, PluginsActions), dispatch)
+  };
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(PluginsContainer);

@@ -9,16 +9,16 @@ class AlbumInfo extends React.Component {
       <div className={styles.album_info_container}>
         {
           this.props.nameOnly
-          ?(
-            <div className={styles.title_container}>{this.props.artist}</div>
-          )
-          : <div className={styles.title_container}>{this.props.title}</div>
+            ?(
+              <div className={styles.title_container}>{this.props.artist}</div>
+            )
+            : <div className={styles.title_container}>{this.props.title}</div>
         }
 
         {
           !this.props.nameOnly
-          ? <div className={styles.artist_container}>{this.props.artist}</div>
-          : null
+            ? <div className={styles.artist_container}>{this.props.artist}</div>
+            : null
         }
       </div>
     );

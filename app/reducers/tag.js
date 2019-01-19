@@ -9,7 +9,7 @@ const initialState = {
 };
 
 export default function TagReducer(state=initialState, action) {
-  switch(action.type) {
+  switch (action.type) {
   case LOAD_TAG_INFO_START:
     return Object.assign({}, state, {
       [`${action.payload}`]: { loading: true }
