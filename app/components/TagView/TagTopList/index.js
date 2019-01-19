@@ -17,7 +17,7 @@ class TagTopList extends React.Component {
       header
     } = this.props;
     
-    return(
+    return (
       <div className={styles.tag_top_list}>
         <h4>{header}</h4>
         <div className={styles.top_list_items}>

@@ -55,9 +55,9 @@ Here's a list of packages maintained by third parties. We would like to thank th
 
 We do not control these and cannot be held responsible for their contents, but if any of these appear suspicious to you, feel free to open an issue so we can reach out to the maintainers.
 
-| Package type   |                        Link                        | Maintainer                    |
-|:--------------:|:--------------------------------------------------:|:-----------------------------:|
-| AUR (Arch)     | https://aur.archlinux.org/packages/nuclear-player/ | [mikelpint](https://github.com/mikelpint)  |
+| Package type   |                        Link                            | Maintainer                    |
+|:--------------:|:------------------------------------------------------:|:-----------------------------:|
+| AUR (Arch)     | https://aur.archlinux.org/packages/nuclear-player-bin/ | [mikelpint](https://github.com/mikelpint)  |
 
 ## Screenshots
 This will be updated as the program evolves.
