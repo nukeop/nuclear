@@ -1,4 +1,5 @@
 module.exports = {
+  "autoFixOnSave": true,
   "env": {
     "browser": true,
     "commonjs": true,
@@ -67,8 +68,8 @@ module.exports = {
 
     // React
     "jsx-quotes": [2, "prefer-single"],
-    "react/forbid-prop-types": [1, {"forbid": ["any"]}],
-    "react/jsx-equals-spacing":[2, "never"],
+    "react/forbid-prop-types": [1, { "forbid": ["any"] }],
+    "react/jsx-equals-spacing": [2, "never"],
     "react/jsx-indent": [2, 2],
     "react/jsx-indent-props": [2, 2],
     "react/jsx-key": 1,
@@ -87,6 +88,6 @@ module.exports = {
     "react/prefer-stateless-function": 1,
     "react/react-in-jsx-scope": 2,
     "react/self-closing-comp": 2
-    
+
   }
 };
