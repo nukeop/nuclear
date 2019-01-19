@@ -7,14 +7,14 @@ import {
   NEXT_SONG,
   PREVIOUS_SONG,
   SELECT_SONG,
-  SWAP_SONGS,
+  SWAP_SONGS
 } from '../actions/queue';
 
-var _ = require('lodash');
+let _ = require('lodash');
 
 const initialState = {
   queueItems: [],
-  currentSong: 0,
+  currentSong: 0
 };
 
 function findQueueItemIndex(queueItems, item) {
@@ -23,7 +23,7 @@ function findQueueItemIndex(queueItems, item) {
 
 function reduceAddToQueue(state, action) {
   return Object.assign({}, state, {
-    queueItems: _.union(state.queueItems, [action.payload]),
+    queueItems: _.union(state.queueItems, [action.payload])
   });
 }
 
@@ -38,13 +38,13 @@ function reduceRemoveFromQueue(state, action) {
   }
   return Object.assign({}, state, {
     queueItems: newQueue,
-    currentSong: newCurrent,
+    currentSong: newCurrent
   });
 }
 
 function reduceClearQueue(state, action) {
   return Object.assign({}, state, {
-    queueItems: [],
+    queueItems: []
   });
 }
 
@@ -55,7 +55,7 @@ function reduceAddStreamsToQueueItem(state, action) {
   newQueue[replaceIx] = Object.assign({}, newQueue[replaceIx], action.payload);
 
   return Object.assign({}, state, {
-    queueItems: newQueue,
+    queueItems: newQueue
   });
 }
 
@@ -65,13 +65,13 @@ function reduceReplaceStreamsInQueueItem(state, action) {
   newQueue = _.cloneDeep(state.queueItems);
   newQueue[replaceIx] = action.payload;
   return Object.assign({}, state, {
-    queueItems: newQueue,
+    queueItems: newQueue
   });
 }
 
 function reduceSelectSong(state, action) {
   return Object.assign({}, state, {
-    currentSong: action.payload,
+    currentSong: action.payload
   });
 }
 
@@ -82,13 +82,13 @@ function reduceSwapSongs(state, action) {
   newQueue[action.payload.itemFrom] = newQueue[action.payload.itemTo];
   newQueue[action.payload.itemTo] = temp;
   return Object.assign({}, state, {
-    queueItems: newQueue,
+    queueItems: newQueue
   });
 }
 
 function reduceNextSong(state, action) {
   return Object.assign({}, state, {
-    currentSong: (state.currentSong + 1) % state.queueItems.length,
+    currentSong: (state.currentSong + 1) % state.queueItems.length
   });
 }
 
@@ -97,31 +97,31 @@ function reducePreviousSong(state, action) {
     currentSong:
       (((state.currentSong - 1) % state.queueItems.length) +
         state.queueItems.length) %
-      state.queueItems.length,
+      state.queueItems.length
   });
 }
 
 export default function QueueReducer(state = initialState, action) {
   switch (action.type) {
-    case ADD_TO_QUEUE:
-      return reduceAddToQueue(state, action);
-    case REMOVE_FROM_QUEUE:
-      return reduceRemoveFromQueue(state, action);
-    case CLEAR_QUEUE:
-      return reduceClearQueue(state, action);
-    case ADD_STREAMS_TO_QUEUE_ITEM:
-      return reduceAddStreamsToQueueItem(state, action);
-    case REPLACE_STREAMS_IN_QUEUE_ITEM:
-      return reduceReplaceStreamsInQueueItem(state, action);
-    case NEXT_SONG:
-      return reduceNextSong(state, action);
-    case PREVIOUS_SONG:
-      return reducePreviousSong(state, action);
-    case SELECT_SONG:
-      return reduceSelectSong(state, action);
-    case SWAP_SONGS:
-      return reduceSwapSongs(state, action);
-    default:
-      return state;
+  case ADD_TO_QUEUE:
+    return reduceAddToQueue(state, action);
+  case REMOVE_FROM_QUEUE:
+    return reduceRemoveFromQueue(state, action);
+  case CLEAR_QUEUE:
+    return reduceClearQueue(state, action);
+  case ADD_STREAMS_TO_QUEUE_ITEM:
+    return reduceAddStreamsToQueueItem(state, action);
+  case REPLACE_STREAMS_IN_QUEUE_ITEM:
+    return reduceReplaceStreamsInQueueItem(state, action);
+  case NEXT_SONG:
+    return reduceNextSong(state, action);
+  case PREVIOUS_SONG:
+    return reducePreviousSong(state, action);
+  case SELECT_SONG:
+    return reduceSelectSong(state, action);
+  case SWAP_SONGS:
+    return reduceSwapSongs(state, action);
+  default:
+    return state;
   }
 }

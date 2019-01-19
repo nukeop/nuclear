@@ -30,7 +30,7 @@ class TagView extends React.Component {
       <TagTopList
         topList={topArtists}
         onClick={this.artistInfoSearchByName.bind(this)}
-        header="Top Artists"
+        header='Top Artists'
       />
     );
   }
@@ -48,7 +48,7 @@ class TagView extends React.Component {
     return (
       <div className={styles.lists_container}>
         {this.renderTopArtists(topArtists)}
-        <TagTopList topList={topAlbums} header="Top Albums" />
+        <TagTopList topList={topAlbums} header='Top Albums' />
       </div>
     );
   }

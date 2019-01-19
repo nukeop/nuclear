@@ -11,13 +11,13 @@ class QueuePopup extends React.Component {
     super(props);
 
     this.state = {
-      isOpen: false,
+      isOpen: false
     };
   }
 
   toggleOpen() {
     this.setState({
-      isOpen: !this.state.isOpen,
+      isOpen: !this.state.isOpen
     });
     this.container.click();
   }
@@ -50,7 +50,7 @@ class QueuePopup extends React.Component {
         key: s.sourceName,
         text: s.sourceName,
         value: s.sourceName,
-        content: s.sourceName,
+        content: s.sourceName
       };
     });
 
@@ -74,8 +74,8 @@ class QueuePopup extends React.Component {
     let { track } = this.props;
     return (
       <div className={styles.stream_buttons}>
-        <a href="#" onClick={() => this.rerollTrack.bind(this)(track)}>
-          <FontAwesome name="refresh" />
+        <a href='#' onClick={() => this.rerollTrack.bind(this)(track)}>
+          <FontAwesome name='refresh' />
         </a>
       </div>
     );
@@ -87,7 +87,7 @@ class QueuePopup extends React.Component {
     return (
       <div className={styles.stream_info}>
         <div className={styles.stream_thumbnail}>
-          <img alt="" src={selectedStream.thumbnail} />
+          <img alt='' src={selectedStream.thumbnail} />
         </div>
         <div className={styles.stream_text_info}>
           {this.renderStreamSourceDropdown()}
@@ -131,7 +131,7 @@ class QueuePopup extends React.Component {
           onClose={this.handleClose.bind(this)}
           onOpen={this.handleOpen.bind(this)}
           hideOnScroll
-          position="left center"
+          position='left center'
         >
           {track.streams && selectedStream ? (
             this.renderStreamInfo()

@@ -20,7 +20,7 @@ class BestNewListActiveItem extends React.Component {
           <div
             className={styles.item_thumbnail}
             style={{
-              backgroundImage: `url(${item.thumbnail})`,
+              backgroundImage: `url(${item.thumbnail})`
             }}
           />
         </div>
@@ -36,7 +36,7 @@ class BestNewListActiveItem extends React.Component {
                 by{' '}
                 <a
                   onClick={() => artistInfoSearchByName(item.artist, history)}
-                  href="#"
+                  href='#'
                 >
                   {item.artist}
                 </a>

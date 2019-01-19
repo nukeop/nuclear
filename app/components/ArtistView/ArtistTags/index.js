@@ -23,9 +23,9 @@ class ArtistTags extends React.Component {
                 onClick={() => this.onTagClick.bind(this)(el.name)}
                 key={i}
                 className={styles.tag}
-                >#{el.name}</a>
-              );
-            })
+              >#{el.name}</a>
+            );
+          })
         }
       </div>
     );

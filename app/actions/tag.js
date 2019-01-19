@@ -42,11 +42,11 @@ export function loadTagInfo(tag) {
     ])
       .then(results => Promise.all(results.map(r => r.json())))
       .then(results => {
-	dispatch(loadTagInfoSuccess(tag, results));
+        dispatch(loadTagInfoSuccess(tag, results));
       })
       .catch(error => {
-	console.error(error);
-	dispatch(loadTagInfoError(error));
+        console.error(error);
+        dispatch(loadTagInfoError(error));
       });
   };
 }

@@ -9,7 +9,7 @@ function renderOptionControl(props, settingName, fontAwesomeName) {
   return (
     <div
       className={classnames('icon', {
-        active: props.settings[settingName],
+        active: props.settings[settingName]
       })}
       onClick={() =>
         props.toggleOption(
@@ -25,7 +25,7 @@ function renderOptionControl(props, settingName, fontAwesomeName) {
 
 const PlayOptionsControls = props => {
   return (
-    <div className="play_options_controls">
+    <div className='play_options_controls'>
       {renderOptionControl(props, 'loopAfterQueueEnd', 'repeat')}
       {renderOptionControl(props, 'shuffleQueue', 'random')}
       {renderOptionControl(props, 'autoradio', 'magic')}

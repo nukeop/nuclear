@@ -15,7 +15,7 @@ function addTrackToQueue(track, musicSources, loading) {
   return dispatch => {
     dispatch({
       type: ADD_TO_QUEUE,
-      payload: track,
+      payload: track
     });
 
     Promise.all(
@@ -30,7 +30,7 @@ function addTrackToQueue(track, musicSources, loading) {
         }
         dispatch({
           type: ADD_STREAMS_TO_QUEUE_ITEM,
-          payload: Object.assign({}, track, payloadItem),
+          payload: Object.assign({}, track, payloadItem)
         });
       });
   };
@@ -43,7 +43,7 @@ export function addToQueue(musicSources, item) {
 export function removeFromQueue(item) {
   return {
     type: REMOVE_FROM_QUEUE,
-    payload: item,
+    payload: item
   };
 }
 
@@ -66,7 +66,7 @@ export function rerollTrack(musicSource, selectedStream, track) {
 
         dispatch({
           type: REPLACE_STREAMS_IN_QUEUE_ITEM,
-          payload: Object.assign({}, track, { streams }),
+          payload: Object.assign({}, track, { streams })
         });
       });
   };
@@ -75,28 +75,28 @@ export function rerollTrack(musicSource, selectedStream, track) {
 export function clearQueue() {
   return {
     type: CLEAR_QUEUE,
-    payload: null,
+    payload: null
   };
 }
 
 export function nextSong() {
   return {
     type: NEXT_SONG,
-    payload: null,
+    payload: null
   };
 }
 
 export function previousSong() {
   return {
     type: PREVIOUS_SONG,
-    payload: null,
+    payload: null
   };
 }
 
 export function selectSong(index) {
   return {
     type: SELECT_SONG,
-    payload: index,
+    payload: index
   };
 }
 
@@ -105,7 +105,7 @@ export function swapSongs(itemFrom, itemTo) {
     type: SWAP_SONGS,
     payload: {
       itemFrom,
-      itemTo,
-    },
+      itemTo
+    }
   };
 }

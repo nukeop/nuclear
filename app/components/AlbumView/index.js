@@ -34,7 +34,7 @@ class AlbumView extends React.Component {
     this.props.addToQueue(this.props.musicSources, {
       artist: this.getArtistName(track, album),
       name: track.title,
-      thumbnail: album.images[0].uri,
+      thumbnail: album.images[0].uri
     });
   }
 
@@ -43,7 +43,7 @@ class AlbumView extends React.Component {
       this.props.addToQueue(this.props.musicSources, {
         artist: album.artists[0].name,
         name: track.title,
-        thumbnail: album.images[0].uri,
+        thumbnail: album.images[0].uri
       });
     });
   }
@@ -93,7 +93,7 @@ class AlbumView extends React.Component {
       <div className={styles.album_artist}>
         by{' '}
         <a
-          href="#"
+          href='#'
           onClick={() => {
             this.artistInfoSearch.bind(this)(album.artists[0].id);
           }}
@@ -117,10 +117,10 @@ class AlbumView extends React.Component {
     return (
       <a
         onClick={() => this.playAll(album)}
-        href="#"
+        href='#'
         className={styles.play_button}
       >
-        <FontAwesome name="play" /> Play
+        <FontAwesome name='play' /> Play
       </a>
     );
   }
@@ -186,11 +186,11 @@ class AlbumView extends React.Component {
         <thead>
           <tr>
             <th className={styles.center}>
-              <FontAwesome name="hashtag" />
+              <FontAwesome name='hashtag' />
             </th>
             <th className={styles.left}>Song</th>
             <th className={styles.center}>
-              <FontAwesome name="clock-o" />
+              <FontAwesome name='clock-o' />
             </th>
           </tr>
         </thead>
@@ -227,17 +227,17 @@ class AlbumView extends React.Component {
   renderPlayTrackButton(album, el) {
     return (
       <a
-        href="#"
+        href='#'
         onClick={() => {
           this.props.clearQueue();
           this.addToQueue(album, el);
           this.props.selectSong(0);
           this.props.startPlayback();
         }}
-        aria-label="Play this track now"
+        aria-label='Play this track now'
         className={styles.add_button}
       >
-        <FontAwesome name="play" /> Play now
+        <FontAwesome name='play' /> Play now
       </a>
     );
   }
@@ -245,12 +245,12 @@ class AlbumView extends React.Component {
   renderAddTrackToQueueButton(album, el) {
     return (
       <a
-        href="#"
+        href='#'
         onClick={() => this.addToQueue(album, el)}
         className={styles.add_button}
-        aria-label="Add track to queue"
+        aria-label='Add track to queue'
       >
-        <FontAwesome name="plus" /> Add to queue
+        <FontAwesome name='plus' /> Add to queue
       </a>
     );
   }
@@ -258,8 +258,8 @@ class AlbumView extends React.Component {
     return (
       <ContextPopup
         trigger={
-          <a href="#" className={styles.more_button}>
-            <FontAwesome name="ellipsis-h" />
+          <a href='#' className={styles.more_button}>
+            <FontAwesome name='ellipsis-h' />
           </a>
         }
         artist={album.artists[0].name}
@@ -267,12 +267,12 @@ class AlbumView extends React.Component {
         thumb={album.images ? album.images[0].uri : artPlaceholder}
       >
         <a
-          href="#"
+          href='#'
           onClick={() => this.addAlbumToQueue(album)}
           className={styles.add_button}
-          aria-label="Add album to queue"
+          aria-label='Add album to queue'
         >
-          <FontAwesome name="plus" /> Add to queue
+          <FontAwesome name='plus' /> Add to queue
         </a>
       </ContextPopup>
     );

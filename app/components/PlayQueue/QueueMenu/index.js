@@ -35,7 +35,7 @@ class QueueMenu extends React.Component {
           <a href='#' className='compactButton' onClick={() => toggleOption(_.find(settingsConst, ['name', 'compactQueueBar']), settings)}>
             <FontAwesome name={settings.compactQueueBar ? 'angle-left' : 'angle-right'} />
           </a>
-          <a href='#' onClick={clearQueue}><FontAwesome name="trash-o" /></a>
+          <a href='#' onClick={clearQueue}><FontAwesome name='trash-o' /></a>
 
           <InputDialog
             header={<h4>Input playlist name:</h4>}
@@ -43,12 +43,10 @@ class QueueMenu extends React.Component {
             accept='Save'
             onAccept={this.handleAddPlaylist(addPlaylist, items)}
             trigger={
-              <a href='#'><FontAwesome name="save" /></a>
+              <a href='#'><FontAwesome name='save' /></a>
             }
-          >
-
-          </InputDialog>
-          <a className={globalStyles.disabled} href='#'><FontAwesome name="random" /></a>
+          />
+          <a className={globalStyles.disabled} href='#'><FontAwesome name='random' /></a>
         </div>
         <hr />
       </div>

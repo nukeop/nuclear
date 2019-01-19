@@ -12,11 +12,11 @@ class BestNewListItem extends React.Component {
       item,
       onMouseEnter
     } = this.props;
-    return(
+    return (
       <div onMouseEnter={onMouseEnter} className={styles.best_new_list_item}>
-	<div
-	   className={styles.item_thumbnail}
-	   style={{
+        <div
+          className={styles.item_thumbnail}
+          style={{
 	       backgroundImage: `url(${item.thumbnail})`
 	     }}/>
 	
