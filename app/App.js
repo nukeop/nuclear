@@ -30,10 +30,7 @@ import VerticalPanel from './components/VerticalPanel';
 import Spacer from './components/Spacer';
 
 import MainContentContainer from './containers/MainContentContainer';
-
 import PlayQueueContainer from './containers/PlayQueueContainer';
-
-import SearchBox from './components/SearchBox';
 import SearchBoxContainer from './containers/SearchBoxContainer';
 
 import IpcContainer from './containers/IpcContainer';
@@ -41,7 +38,6 @@ import SoundContainer from './containers/SoundContainer';
 
 import ui from 'nuclear-ui';
 import PlayerControls from './components/PlayerControls';
-import PlayQueue from './components/PlayQueue';
 import Seekbar from './components/Seekbar';
 import SidebarMenu from './components/SidebarMenu';
 import SidebarMenuItem from './components/SidebarMenu/SidebarMenuItem';
@@ -117,7 +113,7 @@ class App extends React.Component {
         <SearchBoxContainer />
         <Spacer />
         <Spacer />
-        { this.props.settings.framelessWindow && <WindowControls />}
+        {this.props.settings.framelessWindow && <WindowControls />}
       </Navbar>
     );
   }
@@ -226,19 +222,18 @@ class App extends React.Component {
       />
     );
   }
+
+  getCurrentSongParameter(parameter) {
+    return this.props.queue.queueItems[this.props.queue.currentSong]
+      ? this.props.queue.queueItems[this.props.queue.currentSong][parameter]
+      : null;
+  }
+
   renderTrackInfo() {
     return (
       <TrackInfo
-        track={
-          this.props.queue.queueItems[this.props.queue.currentSong]
-            ? this.props.queue.queueItems[this.props.queue.currentSong].name
-            : null
-        }
-        artist={
-          this.props.queue.queueItems[this.props.queue.currentSong]
-            ? this.props.queue.queueItems[this.props.queue.currentSong].artist
-            : null
-        }
+        track={this.getCurrentSongParameter('name')}
+        artist={this.getCurrentSongParameter('artist')}
       />
     );
   }

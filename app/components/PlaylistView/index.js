@@ -36,7 +36,7 @@ class PlaylistView extends React.Component {
     );
   }
 
-  render() {
+  renderPlayButton() {
     let {
       playlist,
       addTracks,
@@ -44,64 +44,74 @@ class PlaylistView extends React.Component {
       selectSong,
       startPlayback,
     } = this.props;
+    return (
+      <a
+        href="#"
+        className={styles.play_button}
+        onClick={() =>
+          this.addPlaylistToQueue(
+            musicSources,
+            playlist,
+            addTracks,
+            selectSong,
+            startPlayback
+          )
+        }
+      >
+        <FontAwesome name="play" /> Play
+      </a>
+    );
+  }
 
+  renderPlaylistTrack(track, i) {
+    return (
+      <div key={'playlist-track-' + i} className={styles.playlist_track}>
+        <img className={styles.track_thumbnail} src={track.thumbnail} />
+        <div className={styles.track_info}>
+          <div className={styles.track_artist}>{track.artist}</div>
+          <div className={styles.track_name}>{track.name}</div>
+        </div>
+      </div>
+    );
+  }
+
+  renderPlaylistInfo() {
+    let { playlist } = this.props;
     let popupTrigger = (
       <a href="#" className={styles.more_button}>
         <FontAwesome name="ellipsis-h" />
       </a>
     );
+    return (
+      <div className={styles.playlist_info}>
+        <div>
+          <img
+            className={styles.playlist_thumbnail}
+            src={playlist.tracks[0].thumbnail}
+          />
+        </div>
+        <div className={styles.playlist_header}>
+          <div className={styles.playlist_name}>{playlist.name}</div>
+          <Spacer />
+          <div className={styles.playlist_buttons}>
+            {this.renderPlayButton()}
+            {this.renderOptions(popupTrigger, playlist)}
+          </div>
+        </div>
+      </div>
+    );
+  }
 
+  render() {
+    let { playlist } = this.props;
     return (
       <div className={styles.playlist_view_container}>
         <div className={styles.playlist}>
-          <div className={styles.playlist_info}>
-            <div>
-              <img
-                className={styles.playlist_thumbnail}
-                src={playlist.tracks[0].thumbnail}
-              />
-            </div>
-            <div className={styles.playlist_header}>
-              <div className={styles.playlist_name}>{playlist.name}</div>
-              <Spacer />
-              <div className={styles.playlist_buttons}>
-                <a
-                  href="#"
-                  className={styles.play_button}
-                  onClick={() =>
-                    this.addPlaylistToQueue(
-                      musicSources,
-                      playlist,
-                      addTracks,
-                      selectSong,
-                      startPlayback
-                    )
-                  }
-                >
-                  <FontAwesome name="play" /> Play
-                </a>
-                {this.renderOptions(popupTrigger, playlist)}
-              </div>
-            </div>
-          </div>
-
+          {this.renderPlaylistInfo()}
           <div className={styles.playlist_tracks}>
-            {playlist.tracks.map((track, i) => {
-              return (
-
-                <div key={'playlist-' + i} className={styles.playlist_track}>
-
-                  <img
-                    className={styles.track_thumbnail}
-                    src={track.thumbnail}
-                  />
-                  <div className={styles.track_info}>
-                    <div className={styles.track_artist}>{track.artist}</div>
-                    <div className={styles.track_name}>{track.name}</div>
-                  </div>
-                </div>
-              );
-            })}
+            {playlist.tracks.map((track, i) =>
+              this.renderPlaylistTrack(track, i)
+            )}
           </div>
         </div>
       </div>
