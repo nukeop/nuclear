@@ -11,13 +11,12 @@ export const PREVIOUS_SONG = 'PREVIOUS_SONG';
 export const SELECT_SONG = 'SELECT_SONG';
 export const SWAP_SONGS = 'SWAP_SONGS';
 
-export function addToQueue (musicSources, item) {
+function addTrackToQueue (musicSources, item) {
   return dispatch => {
     item.loading = true;
     item.uuid = uuidv4();
     dispatch({
       type: ADD_TO_QUEUE,
-
       payload: item
     });
 
@@ -31,8 +30,11 @@ export function addToQueue (musicSources, item) {
           payload: Object.assign({}, item, { streams: results, loading: false })
         });
       });
-
   };
+}
+
+export function addToQueue (musicSources, item) {
+  return addTrackToQueue(musicSources, item)
 }
 
 export function removeFromQueue (item) {
@@ -44,24 +46,9 @@ export function removeFromQueue (item) {
 
 export function addPlaylistTracksToQueue (musicSources, tracks) {
   return (dispatch) => {
-    tracks.map((track, i) => {
-      dispatch({
-        type: ADD_TO_QUEUE,
-        payload: track
-      });
-
-
-      Promise.all(_.map(musicSources, m => m.search(track.artist + ' ' + track.name)))
-        .then(results => Promise.all(results))
-        .then(results => {
-
-          dispatch({
-            type: ADD_STREAMS_TO_QUEUE_ITEM,
-            payload: Object.assign({}, track, { streams: results })
-          });
-        });
-    });
-
+    tracks.map((item, i) => {
+      return addTrackToQueue(musicSources, item)
+    })
   };
 }
 
