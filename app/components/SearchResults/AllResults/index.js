@@ -1,12 +1,12 @@
-import React from 'react'
+import React from 'react';
 
-import Card from '../../Card'
+import Card from '../../Card';
 
-import styles from './styles.scss'
+import styles from './styles.scss';
 
 class AllResults extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
   }
 
   renderResults(collection, onClick) {
@@ -19,8 +19,8 @@ class AllResults extends React.Component {
           onClick={() => onClick(el.id)}
           key={i}
         />
-      )
-    })
+      );
+    });
   }
 
   renderLastFmResults(collection = []) {
@@ -35,7 +35,7 @@ class AllResults extends React.Component {
             addToQueue(this.props.musicSources, {
               artist: el.name,
               name: el.name,
-              thumbnail: el.image[1]['#text'],
+              thumbnail: el.image[1]['#text']
             });
           }}
           key={i}
@@ -50,7 +50,7 @@ class AllResults extends React.Component {
       this.props.albumSearchResults.length <= 0 &&
       this.props.trackSearchResults.length <= 0
     ) {
-      return <div>Nothing found.</div>
+      return <div>Nothing found.</div>;
     }
 
     return (
@@ -82,8 +82,8 @@ class AllResults extends React.Component {
           </div>
         </div>
       </div>
-    )
+    );
   }
 }
 
-export default AllResults
+export default AllResults;

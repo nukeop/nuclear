@@ -38,7 +38,7 @@ class ArtistViewContainer extends React.Component {
 function mapStateToProps(state) {
   return {
     artistDetails: state.search.artistDetails,
-    musicSources: state.plugin.plugins.musicSources,
+    musicSources: state.plugin.plugins.musicSources
   };
 }
 
@@ -47,7 +47,7 @@ function mapDispatchToProps(dispatch) {
     actions: bindActionCreators(
       Object.assign({}, Actions, QueueActions, PlayerActions),
       dispatch
-    ),
+    )
   };
 }
 

@@ -12,7 +12,7 @@ export function startPlayback() {
   sendPlay();
   return {
     type: START_PLAYBACK,
-    payload: null,
+    payload: null
   };
 }
 
@@ -20,7 +20,7 @@ export function pausePlayback() {
   sendPaused();
   return {
     type: PAUSE_PLAYBACK,
-    payload: null,
+    payload: null
   };
 }
 
@@ -39,28 +39,28 @@ export function updatePlaybackProgress(progress, seek) {
     type: UPDATE_PLAYBACK_PROGRESS,
     payload: {
       progress,
-      seek,
-    },
+      seek
+    }
   };
 }
 
 export function updateSeek(seek) {
   return {
     type: UPDATE_SEEK,
-    payload: seek,
+    payload: seek
   };
 }
 
 export function updateVolume(volume) {
   return {
     type: UPDATE_VOLUME,
-    payload: volume,
+    payload: volume
   };
 }
 
 export function updateStreamLoading(state) {
   return {
     type: UPDATE_PLAYBACK_STREAM_LOADING,
-    payload: state,
+    payload: state
   };
 }

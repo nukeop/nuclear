@@ -9,16 +9,16 @@ const initialState = {
 };
 
 export default function PluginsReducer(state=initialState, action) {
-  switch(action.type) {
-    case CREATE_PLUGINS:
+  switch (action.type) {
+  case CREATE_PLUGINS:
     return Object.assign({}, state, {
       plugins: action.payload
     });
-    case SELECT_DEFAULT_MUSIC_SOURCE:
+  case SELECT_DEFAULT_MUSIC_SOURCE:
     return Object.assign({}, state, {
       defaultMusicSource: action.payload
     });
-    default:
+  default:
     return state;
   }
 }

@@ -3,7 +3,7 @@ import { getChart } from 'billboard-top-100';
 export var lists = {
   genres: [
     {
-      name:'Mainstream Top 40',
+      name: 'Mainstream Top 40',
       link: 'pop-songs'
     },
     {
@@ -13,7 +13,7 @@ export var lists = {
     {
       name: 'Adult Top 40',
       link: 'adult-pop-songs'
-    },
+    }
     
   ]
 };
@@ -21,10 +21,10 @@ export var lists = {
 export function getTop(list) {
   return new Promise((resolve, reject) => {
     getChart(list, (songs, err) => {
-      if(err) {
-	reject(err);
+      if (err) {
+        reject(err);
       } else {
-	resolve(songs);
+        resolve(songs);
       }
     });
   });

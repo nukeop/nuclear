@@ -15,16 +15,16 @@ class WindowControls extends React.Component {
     return (
       <div className={styles.window_controls_container}>
         <WindowButton
-          icon="window-minimize"
-	  onClick={sendMinimize}
+          icon='window-minimize'
+          onClick={sendMinimize}
         />
         <WindowButton
-          icon="window-maximize"
-	  onClick={sendMaximize}
+          icon='window-maximize'
+          onClick={sendMaximize}
         />
         <WindowButton
-          icon="close"
-	  onClick={sendClose}
+          icon='close'
+          onClick={sendClose}
         />
       </div>
     );

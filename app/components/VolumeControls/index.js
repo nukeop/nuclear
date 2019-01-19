@@ -22,10 +22,10 @@ class VolumeControls extends React.Component {
           toggleOption={this.props.toggleOption}
           settings={this.props.settings}
         />
-        <FontAwesome name="volume-up"/>
+        <FontAwesome name='volume-up'/>
         <VolumeSlider
-	        fill={this.props.fill}
-	        handleClick={this.handleClick.bind(this)}
+          fill={this.props.fill}
+          handleClick={this.handleClick.bind(this)}
 	      />
       </div>
     );

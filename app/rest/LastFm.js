@@ -23,5 +23,5 @@ function getTopTracks() {
 
 module.exports = {
   searchTracks,
-  getTopTracks,
+  getTopTracks
 };
