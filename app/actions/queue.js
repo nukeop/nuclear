@@ -11,10 +11,13 @@ export const PREVIOUS_SONG = 'PREVIOUS_SONG';
 export const SELECT_SONG = 'SELECT_SONG';
 export const SWAP_SONGS = 'SWAP_SONGS';
 
-function addTrackToQueue(track, musicSources, loading) {
+export function addToQueue(musicSources, item) {
   return dispatch => {
+    item.loading = true;
+    item.uuid = uuidv4();
     dispatch({
       type: ADD_TO_QUEUE,
+<<<<<<< HEAD
       payload: track
     });
 
@@ -32,12 +35,20 @@ function addTrackToQueue(track, musicSources, loading) {
           type: ADD_STREAMS_TO_QUEUE_ITEM,
           payload: Object.assign({}, track, payloadItem)
         });
-      });
-  };
-}
+=======
+      payload: item
+    });
 
-export function addToQueue(musicSources, item) {
-  return addTrackToQueue(item, musicSources, false);
+    Promise.all(_.map(musicSources, m => m.search(item.artist + ' ' + item.name)))
+    .then(results => Promise.all(results))
+    .then(results => {
+      dispatch({
+        type: ADD_STREAMS_TO_QUEUE_ITEM,
+        payload: Object.assign({}, item, {loading: false, streams: results})
+>>>>>>> parent of ef3e635... Factorized addToQueue
+      });
+    });
+  };
 }
 
 export function removeFromQueue(item) {
@@ -48,27 +59,48 @@ export function removeFromQueue(item) {
 }
 
 export function addPlaylistTracksToQueue(musicSources, tracks) {
-  return dispatch => {
+  return (dispatch) => {
     tracks.map((track, i) => {
-      return addTrackToQueue(track, musicSources, true);
+      dispatch({
+        type: ADD_TO_QUEUE,
+        payload: track
+      });
+
+
+      Promise.all(_.map(musicSources, m => m.search(track.artist + ' ' + track.name)))
+      .then(results => Promise.all(results))
+      .then(results => {
+        let item = track;
+        dispatch({
+          type: ADD_STREAMS_TO_QUEUE_ITEM,
+          payload: Object.assign({}, item, {streams: results})
+        });
+      });
     });
+
   };
 }
 
 export function rerollTrack(musicSource, selectedStream, track) {
   return dispatch => {
-    musicSource
-      .getAlternateStream(track.artist + ' ' + track.name, selectedStream)
-      .then(newStream => {
-        let streams = _.map(track.streams, stream => {
-          return stream.source === newStream.source ? newStream : stream;
-        });
+    musicSource.getAlternateStream(track.artist + ' ' + track.name, selectedStream)
+    .then(newStream => {
+      let streams = _.map(track.streams, stream => {
+        return stream.source === newStream.source ? newStream : stream;
+      });
 
+<<<<<<< HEAD
         dispatch({
           type: REPLACE_STREAMS_IN_QUEUE_ITEM,
           payload: Object.assign({}, track, { streams })
         });
+=======
+      dispatch({
+        type: REPLACE_STREAMS_IN_QUEUE_ITEM,
+        payload: Object.assign({}, track, {streams})
+>>>>>>> parent of ef3e635... Factorized addToQueue
       });
+    });
   };
 }
 
