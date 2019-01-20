@@ -23,12 +23,12 @@ class AlbumList extends React.Component {
               {
                 this.props.albums.map((el, i) => {
                   return  (
-                   <Card
-                    key={i}
-                    header={el.title}
-                    image={el.thumb}
-                    onClick={() => this.albumInfoSearch(el.id, el.type)}
-                   />);
+                    <Card
+                      key={i}
+                      header={el.title}
+                      image={el.thumb}
+                      onClick={() => this.albumInfoSearch(el.id, el.type)}
+                    />);
                 })
               }
             </div>

@@ -24,40 +24,40 @@ const initialState = {
 };
 
 export default function PlayerReducer(state=initialState, action) {
-  switch(action.type) {
-    case START_PLAYBACK:
-      return Object.assign({}, state, {
-        playbackStatus: Sound.status.PLAYING
-      });
-    case PAUSE_PLAYBACK:
-      return Object.assign({}, state, {
-        playbackStatus: Sound.status.PAUSED
-      });
-    case UPDATE_PLAYBACK_PROGRESS:
-      return Object.assign({}, state, {
-        playbackProgress: action.payload.progress,
-        seek: action.payload.seek
-      });
-    case UPDATE_SEEK:
-      return Object.assign({}, state, {
-        seek: action.payload
-      });
-    case UPDATE_VOLUME:
-      return Object.assign({}, state, {
-	volume: action.payload
-      });
-    case NEXT_SONG:
-    case PREVIOUS_SONG:
-    case SELECT_SONG:
-      return Object.assign({}, state, {
-        playbackProgress: 0,
-        seek: 0
-      });
-    case UPDATE_PLAYBACK_STREAM_LOADING:
-      return Object.assign({}, state, {
-	playbackStreamLoading: action.payload
-      });
-    default:
-      return state;
+  switch (action.type) {
+  case START_PLAYBACK:
+    return Object.assign({}, state, {
+      playbackStatus: Sound.status.PLAYING
+    });
+  case PAUSE_PLAYBACK:
+    return Object.assign({}, state, {
+      playbackStatus: Sound.status.PAUSED
+    });
+  case UPDATE_PLAYBACK_PROGRESS:
+    return Object.assign({}, state, {
+      playbackProgress: action.payload.progress,
+      seek: action.payload.seek
+    });
+  case UPDATE_SEEK:
+    return Object.assign({}, state, {
+      seek: action.payload
+    });
+  case UPDATE_VOLUME:
+    return Object.assign({}, state, {
+      volume: action.payload
+    });
+  case NEXT_SONG:
+  case PREVIOUS_SONG:
+  case SELECT_SONG:
+    return Object.assign({}, state, {
+      playbackProgress: 0,
+      seek: 0
+    });
+  case UPDATE_PLAYBACK_STREAM_LOADING:
+    return Object.assign({}, state, {
+      playbackStreamLoading: action.payload
+    });
+  default:
+    return state;
   }
 }

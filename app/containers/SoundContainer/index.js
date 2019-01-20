@@ -15,7 +15,7 @@ import globals from '../../globals';
 import core from 'nuclear-core';
 import { consolidateStreamedStyles } from 'styled-components';
 
-var lastfm = new core.LastFmApi(globals.lastfmApiKey, globals.lastfmApiSecret);
+let lastfm = new core.LastFmApi(globals.lastfmApiKey, globals.lastfmApiSecret);
 
 class SoundContainer extends React.Component {
   handlePlaying(update) {
@@ -115,7 +115,7 @@ class SoundContainer extends React.Component {
       this.props.actions.addToQueue(musicSources, {
         artist: artist.name,
         name: track.name,
-        thumbnail: track.image[0]['#text'],
+        thumbnail: track.image[0]['#text']
       });
       resolve(true);
     });
@@ -162,7 +162,7 @@ function mapStateToProps(state) {
     plugins: state.plugin,
     player: state.player,
     scrobbling: state.scrobbling,
-    settings: state.settings,
+    settings: state.settings
   };
 }
 
@@ -175,10 +175,10 @@ function mapDispatchToProps(dispatch) {
         PlayerActions,
         QueueActions,
         ScrobblingActions
-        //AutoradioActions
+        // AutoradioActions
       ),
       dispatch
-    ),
+    )
   };
 }
 

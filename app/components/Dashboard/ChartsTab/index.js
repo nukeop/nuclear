@@ -38,18 +38,18 @@ class ChartsTab extends React.Component {
         trigger={this.renderTrackRow(track, i)}
       >
         <a
-          href="#"
-          className="add_button"
+          href='#'
+          className='add_button'
           onClick={() => {
             addToQueue(musicSources, {
               artist: track.artist.name,
               name: track.name,
-              thumbnail: track.image[1]['#text'],
+              thumbnail: track.image[1]['#text']
             });
           }}
-          aria-label="Add track to queue"
+          aria-label='Add track to queue'
         >
-          <FontAwesome name="plus" /> Add to queue
+          <FontAwesome name='plus' /> Add to queue
         </a>
       </ContextPopup>
     );
@@ -64,7 +64,7 @@ class ChartsTab extends React.Component {
             <thead>
               <tr>
                 <th>
-                  <FontAwesome name="photo" />
+                  <FontAwesome name='photo' />
                 </th>
                 <th>Artist</th>
                 <th>Title</th>

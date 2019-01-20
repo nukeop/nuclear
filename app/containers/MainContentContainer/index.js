@@ -24,7 +24,7 @@ import styles from './styles.scss';
 class MainContentContainer extends React.Component {
 
   render() {
-    return(
+    return (
       <Route render={({location, history, match}) => {
         return (
           <MainLayout>
@@ -36,30 +36,29 @@ class MainContentContainer extends React.Component {
               className={styles.transition}
             >
               <Switch key={location.key} location={location}>
-                <Route path="/album/:albumId" component={AlbumViewContainer} />
-                <Route path="/artist/:artistId" component={ArtistViewContainer} />
-                <Route path="/dashboard" component={DashboardContainer} />
-                <Route path="/downloads" component={Downloads} />
-                <Route path="/playlists" component={PlaylistsContainer} />
-                <Route path="/playlist/:playlistId" component={PlaylistViewContainer} />
-                <Route path="/plugins" component={PluginsContainer} />
-                <Route path="/settings" component={SettingsContainer} />
-                <Route path="/tag/:tagName" component={TagViewContainer}/>
-                <Route path="/search" component={SearchResultsContainer} />
+                <Route path='/album/:albumId' component={AlbumViewContainer} />
+                <Route path='/artist/:artistId' component={ArtistViewContainer} />
+                <Route path='/dashboard' component={DashboardContainer} />
+                <Route path='/downloads' component={Downloads} />
+                <Route path='/playlists' component={PlaylistsContainer} />
+                <Route path='/playlist/:playlistId' component={PlaylistViewContainer} />
+                <Route path='/plugins' component={PluginsContainer} />
+                <Route path='/settings' component={SettingsContainer} />
+                <Route path='/tag/:tagName' component={TagViewContainer}/>
+                <Route path='/search' component={SearchResultsContainer} />
               </Switch>
             </RouteTransition>
           </MainLayout>
         );
       }
-      }>
-      </Route>
+      } />
     );
   }
 }
 
 function mapStateToProps(state) {
   return {
-  }
+  };
 }
 
 function mapDispatchToProps(dispatch) {

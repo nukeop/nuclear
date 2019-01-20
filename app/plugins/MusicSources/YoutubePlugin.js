@@ -14,46 +14,46 @@ class YoutubePlugin extends MusicSourcePlugin {
 
   search(terms) {
     return Youtube.trackSearch(terms)
-    .then(results => results.json())
-    .then(results => {
-      let song = _.head(results.items);
-      let id = song.id.videoId;
-      return ytdl.getInfo(`http://www.youtube.com/watch?v=${id}`);
-    })
-    .then(videoInfo => {
-      let formatInfo = _.head(videoInfo.formats.filter(e => e.itag === '140'));
-      return {
-        source: this.sourceName,
-        id: videoInfo.video_id,
-        stream: formatInfo.url,
-        duration: videoInfo.length_seconds,
-        title: videoInfo.title,
-        thumbnail: videoInfo.thumbnail_url
-      };
-    });
+      .then(results => results.json())
+      .then(results => {
+        let song = _.head(results.items);
+        let id = song.id.videoId;
+        return ytdl.getInfo(`http://www.youtube.com/watch?v=${id}`);
+      })
+      .then(videoInfo => {
+        let formatInfo = _.head(videoInfo.formats.filter(e => e.itag === '140'));
+        return {
+          source: this.sourceName,
+          id: videoInfo.video_id,
+          stream: formatInfo.url,
+          duration: videoInfo.length_seconds,
+          title: videoInfo.title,
+          thumbnail: videoInfo.thumbnail_url
+        };
+      });
   }
 
   getAlternateStream(terms, currentStream) {
     return Youtube.trackSearch(terms)
-    .then(results => results.json())
-    .then(results => {
-      let song = _(results.items).find(item => {
-        return item && item.id.videoId !== currentStream.id;
+      .then(results => results.json())
+      .then(results => {
+        let song = _(results.items).find(item => {
+          return item && item.id.videoId !== currentStream.id;
+        });
+        let id = song.id.videoId;
+        return ytdl.getInfo(`http://www.youtube.com/watch?v=${id}`);
+      })
+      .then(videoInfo => {
+        let formatInfo = _.head(videoInfo.formats.filter(e => e.itag=='140'));
+        return {
+          source: 'Youtube',
+          id: videoInfo.video_id,
+          stream: formatInfo.url,
+          duration: videoInfo.length_seconds,
+          title: videoInfo.title,
+          thumbnail: videoInfo.thumbnail_url
+        };
       });
-      let id = song.id.videoId;
-      return ytdl.getInfo(`http://www.youtube.com/watch?v=${id}`);
-    })
-    .then(videoInfo => {
-      let formatInfo = _.head(videoInfo.formats.filter(e => e.itag=='140'));
-      return {
-        source: 'Youtube',
-        id: videoInfo.video_id,
-        stream: formatInfo.url,
-        duration: videoInfo.length_seconds,
-        title: videoInfo.title,
-        thumbnail: videoInfo.thumbnail_url
-      };
-    });
   }
 }
 

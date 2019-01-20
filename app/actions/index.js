@@ -7,7 +7,7 @@ const mb = require('../rest/Musicbrainz');
 const discogs = require('../rest/Discogs');
 const lastfmRest = require('../rest/LastFm');
 
-var lastfm = new core.LastFmApi(globals.lastfmApiKey, globals.lastfmApiSecret);
+let lastfm = new core.LastFmApi(globals.lastfmApiKey, globals.lastfmApiSecret);
 
 export const UNIFIED_SEARCH_START = 'UNIFIED_SEARCH_START';
 export const UNIFIED_SEARCH_SUCCESS = 'UNIFIED_SEARCH_SUCCESS';
@@ -34,33 +34,33 @@ export const LASTFM_TRACK_SEARCH_START = 'LASTFM_TRACK_SEARCH_START';
 export const LASTFM_TRACK_SEARCH_SUCCESS = 'LASTFM_TRACK_SEARCH_SUCCESS';
 
 export function sourcesSearch(terms, plugins) {
-  var searchResults = {};
-  for (var i = 0; i < plugins.musicSources.length; i++) {
+  let searchResults = {};
+  for (let i = 0; i < plugins.musicSources.length; i++) {
     Object.assign(searchResults, plugins.musicSources[i].search(terms));
   }
 
   return {
-    type: SOURCES_SEARCH,
+    type: SOURCES_SEARCH
   };
 }
 
 export function unifiedSearchStart() {
   return {
     type: UNIFIED_SEARCH_START,
-    payload: true,
+    payload: true
   };
 }
 
 export function unifiedSearchSuccess() {
   return {
     type: UNIFIED_SEARCH_SUCCESS,
-    payload: false,
+    payload: false
   };
 }
 
 export function unifiedSearchError() {
   return {
-    type: UNIFIED_SEARCH_ERROR,
+    type: UNIFIED_SEARCH_ERROR
   };
 }
 
@@ -72,7 +72,7 @@ function discogsSearch(terms, searchType, dispatchType) {
         dispatch({
           type: dispatchType,
 
-          payload: searchResultsJson.results,
+          payload: searchResultsJson.results
         });
       })
       .catch(error => {
@@ -92,7 +92,7 @@ export function artistSearch(terms) {
 export function lastFmTrackSearchStart(terms) {
   return {
     type: LASTFM_TRACK_SEARCH_START,
-    payload: terms,
+    payload: terms
   };
 }
 
@@ -101,8 +101,8 @@ export function lastFmTrackSearchSuccess(terms, searchResults) {
     type: LASTFM_TRACK_SEARCH_SUCCESS,
     payload: {
       id: terms,
-      info: searchResults,
-    },
+      info: searchResults
+    }
   };
 }
 
@@ -129,7 +129,7 @@ export function unifiedSearch(terms, history) {
     Promise.all([
       dispatch(albumSearch(terms)),
       dispatch(artistSearch(terms)),
-      dispatch(lastFmTrackSearch(terms)),
+      dispatch(lastFmTrackSearch(terms))
     ])
 
       .then(() => {
@@ -148,7 +148,7 @@ export function unifiedSearch(terms, history) {
 export function albumInfoStart(albumId) {
   return {
     type: ALBUM_INFO_SEARCH_START,
-    payload: albumId,
+    payload: albumId
   };
 }
 
@@ -157,8 +157,8 @@ export function albumInfoSuccess(albumId, info) {
     type: ALBUM_INFO_SEARCH_SUCCESS,
     payload: {
       id: albumId,
-      info: info,
-    },
+      info: info
+    }
   };
 }
 
@@ -186,7 +186,7 @@ export function albumInfoSearch(albumId, releaseType) {
 export function artistInfoStart(artistId) {
   return {
     type: ARTIST_INFO_SEARCH_START,
-    payload: artistId,
+    payload: artistId
   };
 }
 
@@ -195,8 +195,8 @@ export function artistInfoSuccess(artistId, info) {
     type: ARTIST_INFO_SEARCH_SUCCESS,
     payload: {
       id: artistId,
-      info: info,
-    },
+      info: info
+    }
   };
 }
 
@@ -219,7 +219,7 @@ export function artistInfoSearch(artistId) {
 export function artistReleasesStart(artistId) {
   return {
     type: ARTIST_RELEASES_SEARCH_START,
-    payload: artistId,
+    payload: artistId
   };
 }
 
@@ -228,8 +228,8 @@ export function artistReleasesSuccess(artistId, releases) {
     type: ARTIST_RELEASES_SEARCH_SUCCESS,
     payload: {
       id: artistId,
-      releases: releases,
-    },
+      releases: releases
+    }
   };
 }
 
@@ -270,7 +270,7 @@ export function artistInfoSearchByName(artistName, history) {
 export function lastFmArtistInfoStart(artistId) {
   return {
     type: LASTFM_ARTIST_INFO_SEARCH_START,
-    payload: artistId,
+    payload: artistId
   };
 }
 
@@ -279,8 +279,8 @@ export function lastFmArtistInfoSuccess(artistId, info) {
     type: LASTFM_ARTIST_INFO_SEARCH_SUCCESS,
     payload: {
       id: artistId,
-      info: info,
-    },
+      info: info
+    }
   };
 }
 
@@ -289,7 +289,7 @@ export function lastFmArtistInfoSearch(artist, artistId) {
     dispatch(lastFmArtistInfoStart(artistId));
     Promise.all([
       lastfm.getArtistInfo(artist),
-      lastfm.getArtistTopTracks(artist),
+      lastfm.getArtistTopTracks(artist)
     ])
       .then(results => Promise.all(results.map(info => info.json())))
       .then(results => {

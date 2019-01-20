@@ -38,7 +38,7 @@ class ArtistView extends React.Component {
               }')`,
               backgroundRepeat: 'noRepeat',
               backgroundPosition: 'center',
-              backgroundSize: 'cover',
+              backgroundSize: 'cover'
             }}
           />
 
@@ -64,7 +64,7 @@ class ArtistView extends React.Component {
       selectSong,
       startPlayback,
       clearQueue,
-      musicSources,
+      musicSources
     } = this.props;
     return (
       !this.isLoading() &&
@@ -108,7 +108,7 @@ class ArtistView extends React.Component {
           }')`,
           backgroundRepeat: 'noRepeat',
           backgroundPosition: 'center',
-          backgroundSize: 'cover',
+          backgroundSize: 'cover'
         }}
         className={styles.artist_header}
       >
