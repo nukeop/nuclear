@@ -8,10 +8,10 @@ class SearchBox extends React.Component {
   render() {
     return (
       <div className={styles.search_box_container}>
-        <FontAwesome name="search"/>
-        <div class="form">
+        <FontAwesome name='search'/>
+        <div className='form'>
           <DebounceInput
-            placeholder="Search..."
+            placeholder='Search...'
             minLength={2}
             debounceTimeout={500}
             onChange={this.props.handleSearch}
@@ -19,8 +19,8 @@ class SearchBox extends React.Component {
           />
           {
             this.props.loading
-            ? <FontAwesome name="spinner" pulse/>
-            : null
+              ? <FontAwesome name='spinner' pulse/>
+              : null
           }
         </div>
       </div>

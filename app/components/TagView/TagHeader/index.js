@@ -17,12 +17,12 @@ class TagHeader extends React.Component {
     return (
       <div className={styles.tag_header_container}>
         <div
-	   style={{backgroundImage: `url(${_.last(topArtists[0].image)['#text']})`}}
-	   className={styles.tag_header_background}
+          style={{backgroundImage: `url(${_.last(topArtists[0].image)['#text']})`}}
+          className={styles.tag_header_background}
 	   />
         <div className={styles.tag_header_name}>
 	  #{tag}
-	</div>
+        </div>
       </div>
     );
   }

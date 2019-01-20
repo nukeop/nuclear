@@ -1,6 +1,6 @@
 # ![nuclear](https://i.imgur.com/oT1006i.png)
 
-[![Maintainability](https://api.codeclimate.com/v1/badges/a15c4888a63c900f6cc1/maintainability)](https://codeclimate.com/github/nukeop/nuclear/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/a15c4888a63c900f6cc1/test_coverage)](https://codeclimate.com/github/nukeop/nuclear/test_coverage) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/30750586202742279fa8958a12e519ed)](https://www.codacy.com/app/nukeop/nuclear?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=nukeop/nuclear&amp;utm_campaign=Badge_Grade) ![Travis](https://api.travis-ci.org/nukeop/nuclear.svg?branch=master)
+[![Maintainability](https://api.codeclimate.com/v1/badges/a15c4888a63c900f6cc1/maintainability)](https://codeclimate.com/github/nukeop/nuclear/maintainability) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/30750586202742279fa8958a12e519ed)](https://www.codacy.com/app/nukeop/nuclear?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=nukeop/nuclear&amp;utm_campaign=Badge_Grade) ![Travis](https://api.travis-ci.org/nukeop/nuclear.svg?branch=master)
 
 Desktop music player focused on streaming from free sources
 
@@ -55,9 +55,9 @@ Here's a list of packages maintained by third parties. We would like to thank th
 
 We do not control these and cannot be held responsible for their contents, but if any of these appear suspicious to you, feel free to open an issue so we can reach out to the maintainers.
 
-| Package type   |                        Link                        | Maintainer                    |
-|:--------------:|:--------------------------------------------------:|:-----------------------------:|
-| AUR (Arch)     | https://aur.archlinux.org/packages/nuclear-player/ | [mikelpint](https://github.com/mikelpint)  |
+| Package type   |                        Link                            | Maintainer                    |
+|:--------------:|:------------------------------------------------------:|:-----------------------------:|
+| AUR (Arch)     | https://aur.archlinux.org/packages/nuclear-player-bin/ | [mikelpint](https://github.com/mikelpint)  |
 
 ## Screenshots
 This will be updated as the program evolves.
@@ -116,4 +116,4 @@ This program is free software: you can redistribute it and/or modify it under th
 
 #### Support on Beerpay
 
-[![Beerpay](https://beerpay.io/nukeop/nuclear/badge.svg?style=beer-square)](https://beerpay.io/nukeop/nuclear)  [![Beerpay](https://beerpay.io/nukeop/nuclear/make-wish.svg?style=flat-square)](https://beerpay.io/nukeop/nuclear?focus=wish) [![Greenkeeper badge](https://badges.greenkeeper.io/nukeop/nuclear.svg)](https://greenkeeper.io/)
+[![Beerpay](https://beerpay.io/nukeop/nuclear/badge.svg?style=beer-square)](https://beerpay.io/nukeop/nuclear)  [![Beerpay](https://beerpay.io/nukeop/nuclear/make-wish.svg?style=flat-square)](https://beerpay.io/nukeop/nuclear?focus=wish)

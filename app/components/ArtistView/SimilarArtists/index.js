@@ -22,11 +22,13 @@ class SimilarArtists extends React.Component {
         {
           this.props.artists.map((artist, index) => {
             return (
-                <div key={index} onClick={() => {this.artistInfoSearchByName(artist.name)}} className={styles.artist_row}>
-                  <img src={artist.image[1]['#text']} />
-                  <div>{artist.name}</div>
-                </div>
-            )
+              <div key={index} onClick={() => {
+                this.artistInfoSearchByName(artist.name);
+              }} className={styles.artist_row}>
+                <img src={artist.image[1]['#text']} />
+                <div>{artist.name}</div>
+              </div>
+            );
           })
         }
       </div>

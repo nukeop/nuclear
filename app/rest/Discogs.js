@@ -4,15 +4,21 @@ const key = 'EZaGPpKGBbTkjwmpjmNY';
 const secret = 'uluhDSPtelRtLUvjrvQhRBnNwpZMtkZq';
 
 function addToken(query, first = false) {
-  var newQuery = query + '&token=' + userToken;
-  if (first) return newQuery.replace('&', '?');
-  else return newQuery;
+  let newQuery = query + '&token=' + userToken;
+  if (first) {
+    return newQuery.replace('&', '?');
+  } else {
+    return newQuery;
+  }
 }
 
 function addKeys(query, first = false) {
-  var newQuery = query + '&key=' + key + '&secret=' + secret;
-  if (first) return newQuery.replace('&', '?');
-  else return newQuery;
+  let newQuery = query + '&key=' + key + '&secret=' + secret;
+  if (first) {
+    return newQuery.replace('&', '?');
+  } else {
+    return newQuery;
+  }
 }
 
 function searchQuery(terms, count = 15) {
@@ -63,5 +69,5 @@ module.exports = {
   searchReleases,
   releaseInfo,
   artistInfo,
-  artistReleases,
+  artistReleases
 };

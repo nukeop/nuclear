@@ -8,7 +8,7 @@ const initialState = {
 };
 
 export default function PlaylistsReducer(state=initialState, action) {
-  switch(action.type) {
+  switch (action.type) {
   case LOAD_PLAYLISTS:
   case ADD_PLAYLIST:
     return Object.assign({}, state, {

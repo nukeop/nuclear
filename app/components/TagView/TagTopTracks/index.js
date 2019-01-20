@@ -22,7 +22,7 @@ class TagTopTracks extends React.Component {
           <tr className={styles.track}>
             <td
               style={{
-                backgroundImage: `url(${track.image[1]['#text']})`,
+                backgroundImage: `url(${track.image[1]['#text']})`
               }}
               className={styles.track_thumbnail}
             />
@@ -35,18 +35,18 @@ class TagTopTracks extends React.Component {
         }
       >
         <a
-          href="#"
-          className="add_button"
+          href='#'
+          className='add_button'
           onClick={() => {
             addToQueue(musicSources, {
               artist: track.artist.name,
               name: track.name,
-              thumbnail: track.image[1]['#text'],
+              thumbnail: track.image[1]['#text']
             });
           }}
-          aria-label="Add track to queue"
+          aria-label='Add track to queue'
         >
-          <FontAwesome name="plus" /> Add to queue
+          <FontAwesome name='plus' /> Add to queue
         </a>
       </ContextPopup>
     );
@@ -56,21 +56,21 @@ class TagTopTracks extends React.Component {
     let { tracks, addToQueue, musicSources } = this.props;
     return (
       <a
-        href="#"
-        key="add-all-tag-tracks-to-queue"
-        className="add_all_button"
+        href='#'
+        key='add-all-tag-tracks-to-queue'
+        className='add_all_button'
         onClick={() => {
           tracks.map((track, i) => {
             addToQueue(musicSources, {
               artist: track.artist.name,
               name: track.name,
-              thumbnail: track.image[1]['#text'],
+              thumbnail: track.image[1]['#text']
             });
           });
         }}
-        aria-label="Add all tracks to queue"
+        aria-label='Add all tracks to queue'
       >
-        <FontAwesome name="plus" /> Add all to queue
+        <FontAwesome name='plus' /> Add all to queue
       </a>
     );
   }
@@ -84,7 +84,7 @@ class TagTopTracks extends React.Component {
           <thead>
             <tr>
               <th>
-                <FontAwesome name="photo" />
+                <FontAwesome name='photo' />
               </th>
               <th>Artist</th>
               <th>Title</th>

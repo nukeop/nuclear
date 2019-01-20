@@ -12,7 +12,7 @@ class PopularTracks extends React.Component {
     super(props);
 
     this.state = {
-      expanded: false,
+      expanded: false
     };
   }
 
@@ -26,7 +26,7 @@ class PopularTracks extends React.Component {
     this.props.addToQueue(this.props.musicSources, {
       artist: artist.name,
       name: track.name,
-      thumbnail: track.image[0]['#text'] || artPlaceholder,
+      thumbnail: track.image[0]['#text'] || artPlaceholder
     });
   }
 
@@ -56,12 +56,12 @@ class PopularTracks extends React.Component {
     return (
       <a
         key={'add-track-' + index}
-        href="#"
+        href='#'
         onClick={() => this.addToQueue(artist, track)}
         className={styles.add_button}
-        aria-label="Add track to queue"
+        aria-label='Add track to queue'
       >
-        <FontAwesome name="plus" /> Add to queue
+        <FontAwesome name='plus' /> Add to queue
       </a>
     );
   }
@@ -72,7 +72,7 @@ class PopularTracks extends React.Component {
     return (
       <a
         key={'play-track-' + index}
-        href="#"
+        href='#'
         onClick={() => {
           clearQueue();
           this.addToQueue(artist, track);
@@ -80,9 +80,9 @@ class PopularTracks extends React.Component {
           startPlayback();
         }}
         className={styles.add_button}
-        aria-label="Play this track now"
+        aria-label='Play this track now'
       >
-        <FontAwesome name="play" /> Play now
+        <FontAwesome name='play' /> Play now
       </a>
     );
   }
@@ -94,8 +94,8 @@ class PopularTracks extends React.Component {
       <div className={styles.popular_tracks_container}>
         <div className={styles.header}>Popular tracks:</div>
         <a
-          key="add-all-tracks-to-queue"
-          href="#"
+          key='add-all-tracks-to-queue'
+          href='#'
           onClick={() => {
             tracks.track
               .slice(0, this.state.expanded ? 15 : 5)
@@ -104,20 +104,20 @@ class PopularTracks extends React.Component {
               });
           }}
           className={styles.add_button}
-          aria-label="Add all tracks to queue"
+          aria-label='Add all tracks to queue'
         >
-          <FontAwesome name="plus" /> Add all
+          <FontAwesome name='plus' /> Add all
         </a>
         {tracks.track
           .slice(0, this.state.expanded ? 15 : 5)
           .map((track, index) => {
             let popupContents = [
               this.renderAddTrackToQueueButton(track, index, artist),
-              this.renderPlayTrackButton(track, index),
+              this.renderPlayTrackButton(track, index)
             ];
             return this.renderPopup(index, artist, track, popupContents);
           })}
-        <div className="expand_button" onClick={this.toggleExpand.bind(this)}>
+        <div className='expand_button' onClick={this.toggleExpand.bind(this)}>
           <FontAwesome
             name={this.state.expanded ? 'angle-double-up' : 'angle-double-down'}
           />

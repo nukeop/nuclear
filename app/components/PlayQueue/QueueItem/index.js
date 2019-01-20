@@ -2,15 +2,12 @@ import React from 'react';
 import classNames from 'classnames';
 import FontAwesome from 'react-fontawesome';
 import _ from 'lodash';
-import {
-  formatDuration,
-  getSelectedStream
-} from '../../../utils';
+import { formatDuration, getSelectedStream } from '../../../utils';
 
 import styles from './styles.scss';
 
 class QueueItem extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
 
     this.state = {
@@ -20,14 +17,60 @@ class QueueItem extends React.Component {
 
   componentDidMount() {
     setTimeout(() => {
-      this.setState(
-        {
-          style: {'opacity': 1}
-        }
-      );
+      this.setState({
+        style: { opacity: 1 }
+      });
     }, 1);
   }
 
+  renderTrackDuration(selectedStream) {
+    return (
+      <div className={styles.item_duration_container}>
+        <div className={styles.item_duration}>
+          {selectedStream ? formatDuration(selectedStream.duration) : null}
+        </div>
+      </div>
+    );
+  }
+
+  renderRemoveFromQueueButton(track, removeFromQueue) {
+    return (
+      <div
+        className={styles.thumbnail_overlay}
+        onClick={() => removeFromQueue(track)}
+      >
+        <FontAwesome name='trash-o' size='2x' />
+      </div>
+    );
+  }
+
+  renderThumbnailContainer(track, removeFromQueue, loading) {
+    return (
+      <div className={styles.thumbnail_container}>
+        {loading ? (
+          <FontAwesome name='spinner' size='2x' pulse />
+        ) : (
+          <img src={this.props.track.thumbnail} />
+        )}
+        {this.renderRemoveFromQueueButton(track, removeFromQueue)}
+      </div>
+    );
+  }
+
+  renderClassName(current) {
+    return classNames(styles.queue_item_container, {
+      [`${styles.current_song}`]: current
+    });
+  }
+
+  renderItemInfoContainer(track) {
+    return (
+      <div className={styles.item_info_container}>
+        <div className={styles.name_container}>{track.name}</div>
+        <div className={styles.artist_container}>{track.artist}</div>
+      </div>
+    );
+  }
   render() {
     let {
       current,
@@ -36,56 +79,20 @@ class QueueItem extends React.Component {
       index,
       defaultMusicSource,
       selectSong,
-      removeFromQueue,
+      removeFromQueue
     } = this.props;
 
     let selectedStream = getSelectedStream(track.streams, defaultMusicSource);
 
     return (
       <div
-        className={
-          classNames(
-            styles.queue_item_container,
-            {
-              [`${styles.current_song}`]: current
-            }
-          )
-        }
+        className={this.renderClassName(current)}
         style={this.state.style}
         onDoubleClick={() => selectSong(index)}
       >
-        <div className={styles.thumbnail_container}>
-          {
-            loading
-            ? <FontAwesome name="spinner" size='2x' pulse/>
-            : <img src={this.props.track.thumbnail} />
-          }
-
-          <div className={styles.thumbnail_overlay} onClick={() => removeFromQueue(track)}>
-            <FontAwesome name="trash-o" size='2x' />
-          </div>
-
-        </div>
-        <div className={styles.item_info_container}>
-
-          <div className={styles.name_container}>
-            {track.name}
-          </div>
-          <div className={styles.artist_container}>
-            {track.artist}
-          </div>
-
-        </div>
-
-        <div className={styles.item_duration_container}>
-          <div className={styles.item_duration}>
-            {
-              selectedStream
-              ? formatDuration(selectedStream.duration)
-              : null
-            }
-          </div>
-        </div>
+        {this.renderThumbnailContainer(track, removeFromQueue, loading)}
+        {this.renderItemInfoContainer(track)}
+        {this.renderTrackDuration(selectedStream)}
       </div>
     );
   }

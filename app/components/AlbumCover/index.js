@@ -9,7 +9,7 @@ import AlbumOverlay from './AlbumOverlay';
 class AlbumCover extends React.Component {
 
   render() {
-    var style = {};
+    let style = {};
 
     if (this.props.nameOnly) {
       style = {
@@ -26,8 +26,8 @@ class AlbumCover extends React.Component {
 
         {
           this.props.nameOnly
-          ? null
-          : <img src={this.props.cover}/>
+            ? null
+            : <img src={this.props.cover}/>
         }
 
         <AlbumInfo
