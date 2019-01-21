@@ -101,8 +101,11 @@ function createWindow () {
   });
 
   ipcMain.on('maximize', () => {
-    //win.isMaximized() ? win.unmaximize() : win.maximize();
-    win.isFullScreen() ? win.setFullScreen(false) : win.setFullScreen(true)
+    if (platform.isDarwin) {
+      win.isFullScreen() ? win.setFullScreen(false) : win.setFullScreen(true)
+    } else {
+      win.isMaximized() ? win.unmaximize() : win.maximize();
+    }
   });
 
   ipcMain.on('songChange', (event, arg) => {
