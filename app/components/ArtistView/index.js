@@ -32,9 +32,7 @@ class ArtistView extends React.Component {
             className={styles.artist_avatar}
             style={{
               background: `url('${
-                artist.images[1]
-                  ? artist.images[1].resource_url
-                  : artPlaceholder
+                _.get(artist, 'images[1].resource_url', artPlaceholder)
               }')`,
               backgroundRepeat: 'noRepeat',
               backgroundPosition: 'center',
@@ -104,7 +102,7 @@ class ArtistView extends React.Component {
       <div
         style={{
           background: `url('${
-            artist.images[0] ? artist.images[0].resource_url : artPlaceholder
+            _.get(artist, 'images[0].resource_url', artPlaceholder)
           }')`,
           backgroundRepeat: 'noRepeat',
           backgroundPosition: 'center',
