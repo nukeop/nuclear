@@ -12,7 +12,7 @@ class YoutubePlugin extends MusicSourcePlugin {
     this.description = 'A plugin allowing Nuclear to search for music and play it from youtube';
   }
 
-  search(terms) {
+  search (terms) {
     return Youtube.trackSearch(terms)
       .then(results => results.json())
       .then(results => {
@@ -33,7 +33,7 @@ class YoutubePlugin extends MusicSourcePlugin {
       });
   }
 
-  getAlternateStream(terms, currentStream) {
+  getAlternateStream (terms, currentStream) {
     return Youtube.trackSearch(terms)
       .then(results => results.json())
       .then(results => {
@@ -44,7 +44,7 @@ class YoutubePlugin extends MusicSourcePlugin {
         return ytdl.getInfo(`http://www.youtube.com/watch?v=${id}`);
       })
       .then(videoInfo => {
-        let formatInfo = _.head(videoInfo.formats.filter(e => e.itag=='140'));
+        let formatInfo = _.head(videoInfo.formats.filter(e => e.itag === '140'));
         return {
           source: 'Youtube',
           id: videoInfo.video_id,
