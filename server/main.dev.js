@@ -23,7 +23,7 @@ let icon = nativeImage.createFromPath(
 );
 
 function changeWindowTitle (artist, title) {
-  win.setTitle(`${artist} - ${title} - nuclear music player`);
+  win.setTitle(`${artist} - ${title} - Nuclear Music Player`);
 }
 
 function createWindow () {
@@ -39,7 +39,7 @@ function createWindow () {
     },
   });
 
-  win.setTitle('nuclear music player');
+  win.setTitle('Nuclear Music Player');
 
   // Needs to be commented for now
   // https://github.com/electron/electron/issues/13008
@@ -88,8 +88,8 @@ function createWindow () {
   ]);
 
   tray = new Tray(icon);
-  tray.setTitle('nuclear music player');
-  tray.setToolTip('nuclear music player');
+  tray.setTitle('Nuclear Music Player');
+  tray.setToolTip('Nuclear Music Player');
   tray.setContextMenu(trayMenu);
 
   ipcMain.on('close', () => {
