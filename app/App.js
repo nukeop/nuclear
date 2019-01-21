@@ -46,7 +46,7 @@ import WindowControls from './components/WindowControls';
 import VolumeControls from './components/VolumeControls';
 
 class App extends React.Component {
-  togglePlayback() {
+  togglePlayback () {
     if (
       this.props.player.playbackStatus === Sound.status.PAUSED &&
       this.props.scrobbling.lastFmScrobblingEnabled &&
@@ -64,7 +64,7 @@ class App extends React.Component {
     this.props.actions.togglePlayback(this.props.player.playbackStatus);
   }
 
-  nextSong() {
+  nextSong () {
     this.props.actions.nextSong();
     if (
       this.props.scrobbling.lastFmScrobblingEnabled &&
@@ -81,13 +81,13 @@ class App extends React.Component {
     }
   }
 
-  componentWillMount() {
+  componentWillMount () {
     this.props.actions.readSettings();
     this.props.actions.lastFmReadSettings();
     this.props.actions.createSearchPlugins(PluginConfig.plugins);
   }
 
-  render() {
+  render () {
     let { settings } = this.props;
     let { toggleOption } = this.props.actions;
     return (
@@ -107,7 +107,7 @@ class App extends React.Component {
     );
   }
 
-  renderNavBar() {
+  renderNavBar () {
     return (
       <Navbar className={styles.navbar}>
         <SearchBoxContainer />
@@ -118,7 +118,7 @@ class App extends React.Component {
     );
   }
 
-  renderRightPanel(settings) {
+  renderRightPanel (settings) {
     return (
       <VerticalPanel
         className={classnames(styles.right_panel, {
@@ -129,7 +129,7 @@ class App extends React.Component {
       </VerticalPanel>
     );
   }
-  renderSidebarMenu(settings, toggleOption) {
+  renderSidebarMenu (settings, toggleOption) {
     return (
       <VerticalPanel
         className={classnames(styles.left_panel, {
@@ -160,7 +160,7 @@ class App extends React.Component {
     );
   }
 
-  renderNavLink(name, icon, prettyName, settings) {
+  renderNavLink (name, icon, prettyName, settings) {
     return (
       <NavLink to={'/' + name} activeClassName={styles.active_nav_link}>
         <SidebarMenuItem>
@@ -170,7 +170,7 @@ class App extends React.Component {
     );
   }
 
-  renderSidebarFooter(settings, toggleOption) {
+  renderSidebarFooter (settings, toggleOption) {
     return (
       <div className='sidebar_footer'>
         <a
@@ -190,7 +190,7 @@ class App extends React.Component {
     );
   }
 
-  renderFooter(settings) {
+  renderFooter (settings) {
     return (
       <Footer className={styles.footer}>
         <Seekbar
@@ -210,7 +210,7 @@ class App extends React.Component {
     );
   }
 
-  renderCover() {
+  renderCover () {
     return (
       <ui.Cover
         cover={
@@ -223,13 +223,13 @@ class App extends React.Component {
     );
   }
 
-  getCurrentSongParameter(parameter) {
+  getCurrentSongParameter (parameter) {
     return this.props.queue.queueItems[this.props.queue.currentSong]
       ? this.props.queue.queueItems[this.props.queue.currentSong][parameter]
       : null;
   }
 
-  renderTrackInfo() {
+  renderTrackInfo () {
     return (
       <TrackInfo
         track={this.getCurrentSongParameter('name')}
@@ -237,11 +237,11 @@ class App extends React.Component {
       />
     );
   }
-  renderPlayerControls() {
+  renderPlayerControls () {
     return (
       <PlayerControls
         togglePlay={this.togglePlayback.bind(this)}
-        playing={this.props.player.playbackStatus == Sound.status.PLAYING}
+        playing={this.props.player.playbackStatus === Sound.status.PLAYING}
         loading={this.props.player.playbackStreamLoading}
         forward={this.nextSong.bind(this)}
         back={this.props.actions.previousSong}
@@ -249,7 +249,7 @@ class App extends React.Component {
     );
   }
 
-  renderVolumeControl(settings) {
+  renderVolumeControl (settings) {
     return (
       <VolumeControls
         fill={this.props.player.volume + '%'}
@@ -260,7 +260,7 @@ class App extends React.Component {
     );
   }
 
-  renderNavbar() {
+  renderNavbar () {
     return (
       <Navbar className={styles.navbar}>
         <SearchBoxContainer />
@@ -272,7 +272,7 @@ class App extends React.Component {
   }
 }
 
-function mapStateToProps(state) {
+function mapStateToProps (state) {
   return {
     queue: state.queue,
     player: state.player,
@@ -281,7 +281,7 @@ function mapStateToProps(state) {
   };
 }
 
-function mapDispatchToProps(dispatch) {
+function mapDispatchToProps (dispatch) {
   return {
     actions: bindActionCreators(
       Object.assign(
