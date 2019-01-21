@@ -62,7 +62,7 @@ class AlbumView extends React.Component {
 
   render() {
     let { album } = this.props;
-    if (_.some(_.map([album.images, album.artists, album.styles], _.isEmpty))) {
+    if (_.some(_.map([album.images, album.artists, album.genres], _.isEmpty))) {
       return this.renderInvalidData();
     }
     let albumImage = this.getAlbumImage(album);
@@ -108,7 +108,7 @@ class AlbumView extends React.Component {
     return (
       <div className={styles.album_genre}>
         <label>Genre:</label>
-        {album.styles && Object.keys(album.styles) > 0 && album.styles[0]}
+        {album.genres[0]}
       </div>
     );
   }
