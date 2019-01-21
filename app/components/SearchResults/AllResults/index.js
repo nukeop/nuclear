@@ -16,7 +16,7 @@ class AllResults extends React.Component {
           small
           header={el.title}
           image={el.thumb}
-          onClick={() => onClick(el.id)}
+          onClick={() => onClick(el.id, el.type)}
           key={i}
         />
       );
