@@ -45,7 +45,7 @@ class SearchResults extends React.Component {
                     header={title}
                     content={artist}
                     image={el.thumb}
-                    onClick={() => onClick(el.id)}
+                    onClick={() => onClick(el.id, el.type)}
                   />
                 );
               })
@@ -125,8 +125,8 @@ class SearchResults extends React.Component {
     return panes;
   }
 
-  albumInfoSearch(albumId) {
-    this.props.albumInfoSearch(albumId);
+  albumInfoSearch(albumId, releaseType) {
+    this.props.albumInfoSearch(albumId, releaseType);
     this.props.history.push('/album/' + albumId);
   }
 
