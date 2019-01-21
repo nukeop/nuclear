@@ -22,11 +22,11 @@ let icon = nativeImage.createFromPath(
   path.resolve(__dirname, 'resources', 'media', 'icon.png')
 );
 
-function changeWindowTitle(artist, title) {
+function changeWindowTitle (artist, title) {
   win.setTitle(`${artist} - ${title} - nuclear music player`);
 }
 
-function createWindow() {
+function createWindow () {
   win = new BrowserWindow({
     width: 1366,
     height: 768,
@@ -101,7 +101,11 @@ function createWindow() {
   });
 
   ipcMain.on('maximize', () => {
-    win.isMaximized() ? win.unmaximize() : win.maximize();
+    if (platform.isDarwin) {
+      win.isFullScreen() ? win.setFullScreen(false) : win.setFullScreen(true)
+    } else {
+      win.isMaximized() ? win.unmaximize() : win.maximize();
+    }
   });
 
   ipcMain.on('songChange', (event, arg) => {
