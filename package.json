@@ -79,7 +79,7 @@
     "babel-register": "^6.26.0",
     "chai": "^4.1.2",
     "classnames": "^2.2.5",
-    "css-loader": "^1.0.0",
+    "css-loader": "^2.1.0",
     "electron": "^2.0.7",
     "electron-builder": "^20.27.1",
     "electron-devtools-installer": "^2.2.4",
