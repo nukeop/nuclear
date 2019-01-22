@@ -104,7 +104,7 @@
     "react-debounce-input": "^3.2.0",
     "react-fontawesome": "^1.6.1",
     "react-hot-loader": "next",
-    "react-redux": "^5.0.6",
+    "react-redux": "^6.0.0",
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
     "react-router-redux": "^4.0.8",
