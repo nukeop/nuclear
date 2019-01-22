@@ -19,7 +19,6 @@ function addTrackToQueue (musicSources, item) {
       type: ADD_TO_QUEUE,
       payload: item
     });
-
     Promise.all(
       _.map(musicSources, m => m.search(item.artist + ' ' + item.name))
     )
@@ -47,7 +46,7 @@ export function removeFromQueue (item) {
 export function addPlaylistTracksToQueue (musicSources, tracks) {
   return (dispatch) => {
     tracks.map((item, i) => {
-      return addTrackToQueue(musicSources, item)
+      dispatch(addTrackToQueue(musicSources, item))
     })
   };
 }
