@@ -6,6 +6,7 @@ import globals from '../globals';
 const mb = require('../rest/Musicbrainz');
 const discogs = require('../rest/Discogs');
 const lastfmRest = require('../rest/LastFm');
+const youtube = require('../rest/Youtube');
 
 let lastfm = new core.LastFmApi(globals.lastfmApiKey, globals.lastfmApiSecret);
 
@@ -33,7 +34,10 @@ export const LASTFM_ARTIST_INFO_SEARCH_SUCCESS =
 export const LASTFM_TRACK_SEARCH_START = 'LASTFM_TRACK_SEARCH_START';
 export const LASTFM_TRACK_SEARCH_SUCCESS = 'LASTFM_TRACK_SEARCH_SUCCESS';
 
-export function sourcesSearch(terms, plugins) {
+export const YOUTUBE_PLAYLIST_SEARCH_START = 'YOUTUBE_PLAYLIST_SEARCH_START';
+export const YOUTUBE_PLAYLIST_SEARCH_SUCCESS = 'YOUTUBE_PLAYLIST_SEARCH_SUCCESS';
+
+export function sourcesSearch (terms, plugins) {
   let searchResults = {};
   for (let i = 0; i < plugins.musicSources.length; i++) {
     Object.assign(searchResults, plugins.musicSources[i].search(terms));
@@ -44,27 +48,27 @@ export function sourcesSearch(terms, plugins) {
   };
 }
 
-export function unifiedSearchStart() {
+export function unifiedSearchStart () {
   return {
     type: UNIFIED_SEARCH_START,
     payload: true
   };
 }
 
-export function unifiedSearchSuccess() {
+export function unifiedSearchSuccess () {
   return {
     type: UNIFIED_SEARCH_SUCCESS,
     payload: false
   };
 }
 
-export function unifiedSearchError() {
+export function unifiedSearchError () {
   return {
     type: UNIFIED_SEARCH_ERROR
   };
 }
 
-function discogsSearch(terms, searchType, dispatchType) {
+function discogsSearch (terms, searchType, dispatchType) {
   return dispatch => {
     return searchType(terms)
       .then(searchResults => searchResults.json())
@@ -81,22 +85,22 @@ function discogsSearch(terms, searchType, dispatchType) {
   };
 }
 
-export function albumSearch(terms) {
+export function albumSearch (terms) {
   return discogsSearch(terms, discogs.searchReleases, 'ALBUM_SEARCH_SUCCESS');
 }
 
-export function artistSearch(terms) {
+export function artistSearch (terms) {
   return discogsSearch(terms, discogs.searchArtists, 'ARTIST_SEARCH_SUCCESS');
 }
 
-export function lastFmTrackSearchStart(terms) {
+export function lastFmTrackSearchStart (terms) {
   return {
     type: LASTFM_TRACK_SEARCH_START,
     payload: terms
   };
 }
 
-export function lastFmTrackSearchSuccess(terms, searchResults) {
+export function lastFmTrackSearchSuccess (terms, searchResults) {
   return {
     type: LASTFM_TRACK_SEARCH_SUCCESS,
     payload: {
@@ -106,7 +110,7 @@ export function lastFmTrackSearchSuccess(terms, searchResults) {
   };
 }
 
-export function lastFmTrackSearch(terms) {
+export function lastFmTrackSearch (terms) {
   return dispatch => {
     dispatch(lastFmTrackSearchStart(terms));
     Promise.all([lastfmRest.searchTracks(terms)])
@@ -122,16 +126,60 @@ export function lastFmTrackSearch(terms) {
   };
 }
 
-export function unifiedSearch(terms, history) {
+export function youtubePlaylistSearchStart (terms) {
+  return {
+    type: YOUTUBE_PLAYLIST_SEARCH_START,
+    payload: terms
+  };
+}
+
+export function youtubePlaylistSearchSuccess (terms, results) {
+  return {
+    type: YOUTUBE_PLAYLIST_SEARCH_SUCCESS,
+    payload: {
+      id: terms,
+      info: results
+    }
+  };
+}
+
+export function youtubePlaylistSearch (terms) {
+  return dispatch => {
+    dispatch(youtubePlaylistSearchStart(terms));
+
+    youtube.playlistSearch(terms)
+      .then(results => {
+        //console.log(results)
+        dispatch(
+          youtubePlaylistSearchSuccess(terms, results)
+        );
+      })
+      .catch(error => {
+        logger.error(error);
+      });
+    /*Promise.all([lastfmRest.searchTracks(terms)])
+      .then(results => Promise.all(results.map(info => info.json())))
+      .then(results => {
+        dispatch(
+          //youtubePlaylistSearchSuccess(terms, results[0].results.trackmatches.track)
+        );
+      })
+      .catch(error => {
+        logger.error(error);
+      });*/
+  };
+}
+
+export function unifiedSearch (terms, history) {
   return dispatch => {
     dispatch(unifiedSearchStart());
 
     Promise.all([
       dispatch(albumSearch(terms)),
       dispatch(artistSearch(terms)),
-      dispatch(lastFmTrackSearch(terms))
+      dispatch(lastFmTrackSearch(terms)),
+      dispatch(youtubePlaylistSearch(terms))
     ])
-
       .then(() => {
         dispatch(unifiedSearchSuccess());
         if (history.location.pathname !== '/search') {
@@ -145,14 +193,14 @@ export function unifiedSearch(terms, history) {
   };
 }
 
-export function albumInfoStart(albumId) {
+export function albumInfoStart (albumId) {
   return {
     type: ALBUM_INFO_SEARCH_START,
     payload: albumId
   };
 }
 
-export function albumInfoSuccess(albumId, info) {
+export function albumInfoSuccess (albumId, info) {
   return {
     type: ALBUM_INFO_SEARCH_SUCCESS,
     payload: {
@@ -162,11 +210,11 @@ export function albumInfoSuccess(albumId, info) {
   };
 }
 
-export function albumInfoSearch(albumId) {
+export function albumInfoSearch (albumId, releaseType) {
   return dispatch => {
     dispatch(albumInfoStart(albumId));
     discogs
-      .releaseInfo(albumId)
+      .releaseInfo(albumId, releaseType)
       .then(info => {
         if (info.ok) {
           return info.json();
@@ -183,14 +231,14 @@ export function albumInfoSearch(albumId) {
   };
 }
 
-export function artistInfoStart(artistId) {
+export function artistInfoStart (artistId) {
   return {
     type: ARTIST_INFO_SEARCH_START,
     payload: artistId
   };
 }
 
-export function artistInfoSuccess(artistId, info) {
+export function artistInfoSuccess (artistId, info) {
   return {
     type: ARTIST_INFO_SEARCH_SUCCESS,
     payload: {
@@ -200,7 +248,7 @@ export function artistInfoSuccess(artistId, info) {
   };
 }
 
-export function artistInfoSearch(artistId) {
+export function artistInfoSearch (artistId) {
   return dispatch => {
     dispatch(artistInfoStart(artistId));
     discogs
@@ -216,14 +264,14 @@ export function artistInfoSearch(artistId) {
   };
 }
 
-export function artistReleasesStart(artistId) {
+export function artistReleasesStart (artistId) {
   return {
     type: ARTIST_RELEASES_SEARCH_START,
     payload: artistId
   };
 }
 
-export function artistReleasesSuccess(artistId, releases) {
+export function artistReleasesSuccess (artistId, releases) {
   return {
     type: ARTIST_RELEASES_SEARCH_SUCCESS,
     payload: {
@@ -233,7 +281,7 @@ export function artistReleasesSuccess(artistId, releases) {
   };
 }
 
-export function artistReleasesSearch(artistId) {
+export function artistReleasesSearch (artistId) {
   return dispatch => {
     dispatch(artistReleasesStart(artistId));
     discogs
@@ -248,7 +296,7 @@ export function artistReleasesSearch(artistId) {
   };
 }
 
-export function artistInfoSearchByName(artistName, history) {
+export function artistInfoSearchByName (artistName, history) {
   return dispatch => {
     discogs
       .searchArtists(artistName)
@@ -267,14 +315,14 @@ export function artistInfoSearchByName(artistName, history) {
   };
 }
 
-export function lastFmArtistInfoStart(artistId) {
+export function lastFmArtistInfoStart (artistId) {
   return {
     type: LASTFM_ARTIST_INFO_SEARCH_START,
     payload: artistId
   };
 }
 
-export function lastFmArtistInfoSuccess(artistId, info) {
+export function lastFmArtistInfoSuccess (artistId, info) {
   return {
     type: LASTFM_ARTIST_INFO_SEARCH_SUCCESS,
     payload: {
@@ -284,7 +332,7 @@ export function lastFmArtistInfoSuccess(artistId, info) {
   };
 }
 
-export function lastFmArtistInfoSearch(artist, artistId) {
+export function lastFmArtistInfoSearch (artist, artistId) {
   return dispatch => {
     dispatch(lastFmArtistInfoStart(artistId));
     Promise.all([
@@ -305,3 +353,5 @@ export function lastFmArtistInfoSearch(artist, artistId) {
       });
   };
 }
+
+
