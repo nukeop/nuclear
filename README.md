@@ -58,6 +58,7 @@ We do not control these and cannot be held responsible for their contents, but i
 | Package type   |                        Link                            | Maintainer                    |
 |:--------------:|:------------------------------------------------------:|:-----------------------------:|
 | AUR (Arch)     | https://aur.archlinux.org/packages/nuclear-player-bin/ | [mikelpint](https://github.com/mikelpint)  |
+| Choco (Win)     | https://chocolatey.org/packages/nuclear/ | [JourneyOver](https://github.com/JourneyOver)  |
 
 ## Screenshots
 This will be updated as the program evolves.
