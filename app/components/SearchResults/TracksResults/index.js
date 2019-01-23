@@ -19,14 +19,13 @@ class TracksResults extends React.Component {
                 });
             }}>
                 <img src={track.image[0]['#text'] || artPlaceholder} />
-                <div className={styles.popular_track_name}>{track.name}</div>
+                <div className={styles.popular_track_name}>{track.artist} - {track.name}</div>
 
             </div>
         );
     }
 
     render () {
-
         let collection = this.props.tracks || []
         let limit = this.props.limit
         if (collection.length == 0) {
