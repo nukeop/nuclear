@@ -14,7 +14,7 @@ export function trackSearch (track) {
 
 export function playlistSearch (url) {
   if (isValidURL(url)) {
-    console.log("Searching playlist : " + url)
+    logger.log("Searching playlist : " + url)
     return ytlist(url, 'name')
       .then(res => {
         let allTracks = res.data.playlist.map((elt, i) => {
