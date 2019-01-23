@@ -146,10 +146,8 @@ export function youtubePlaylistSearchSuccess (terms, results) {
 export function youtubePlaylistSearch (terms) {
   return dispatch => {
     dispatch(youtubePlaylistSearchStart(terms));
-
     youtube.playlistSearch(terms)
       .then(results => {
-        //console.log(results)
         dispatch(
           youtubePlaylistSearchSuccess(terms, results)
         );
@@ -157,16 +155,6 @@ export function youtubePlaylistSearch (terms) {
       .catch(error => {
         logger.error(error);
       });
-    /*Promise.all([lastfmRest.searchTracks(terms)])
-      .then(results => Promise.all(results.map(info => info.json())))
-      .then(results => {
-        dispatch(
-          //youtubePlaylistSearchSuccess(terms, results[0].results.trackmatches.track)
-        );
-      })
-      .catch(error => {
-        logger.error(error);
-      });*/
   };
 }
 
