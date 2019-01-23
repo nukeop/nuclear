@@ -10,6 +10,8 @@ Desktop music player focused on streaming from free sources
 
 [Twitter](https://twitter.com/nuclear_player)
 
+Support channel (Matrix): `#nuclear:matrix.org`
+
 ## What is this?
 nuclear is a free music streaming program that pulls content from free sources all over the internet.
 
@@ -58,6 +60,7 @@ We do not control these and cannot be held responsible for their contents, but i
 | Package type   |                        Link                            | Maintainer                    |
 |:--------------:|:------------------------------------------------------:|:-----------------------------:|
 | AUR (Arch)     | https://aur.archlinux.org/packages/nuclear-player-bin/ | [mikelpint](https://github.com/mikelpint)  |
+| Choco (Win)     | https://chocolatey.org/packages/nuclear/ | [JourneyOver](https://github.com/JourneyOver)  |
 
 ## Screenshots
 This will be updated as the program evolves.
