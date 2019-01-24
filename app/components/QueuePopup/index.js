@@ -132,6 +132,8 @@ class QueuePopup extends React.Component {
           onOpen={this.handleOpen.bind(this)}
           hideOnScroll
           position='left center'
+          // Do not touch - has to be null
+          on={null}
         >
           {track.streams && selectedStream ? (
             this.renderStreamInfo()
