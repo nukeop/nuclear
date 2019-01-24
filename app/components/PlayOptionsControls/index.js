@@ -3,12 +3,13 @@ import classnames from 'classnames';
 import FontAwesome from 'react-fontawesome';
 import _ from 'lodash';
 
+import styles from './styles.scss';
 import settingsConst from '../../constants/settings';
 
 function renderOptionControl(props, settingName, fontAwesomeName) {
   return (
     <div
-      className={classnames('icon', {
+      className={classnames(styles.icon, {
         active: props.settings[settingName]
       })}
       onClick={() =>
@@ -25,7 +26,7 @@ function renderOptionControl(props, settingName, fontAwesomeName) {
 
 const PlayOptionsControls = props => {
   return (
-    <div className='play_options_controls'>
+    <div className={styles.play_options_controls}>
       {renderOptionControl(props, 'loopAfterQueueEnd', 'repeat')}
       {renderOptionControl(props, 'shuffleQueue', 'random')}
       {renderOptionControl(props, 'autoradio', 'magic')}

@@ -81,32 +81,6 @@ class App extends React.Component {
     }
   }
 
-  componentWillMount () {
-    this.props.actions.readSettings();
-    this.props.actions.lastFmReadSettings();
-    this.props.actions.createSearchPlugins(PluginConfig.plugins);
-  }
-
-  render () {
-    let { settings } = this.props;
-    let { toggleOption } = this.props.actions;
-    return (
-      <div className={styles.app_container}>
-        {this.renderNavBar()}
-        <div className={styles.panel_container}>
-          {this.renderSidebarMenu(settings, toggleOption)}
-          <VerticalPanel className={styles.center_panel}>
-            <MainContentContainer />
-          </VerticalPanel>
-          {this.renderRightPanel(settings)}
-        </div>
-        {this.renderFooter(settings)}
-        <SoundContainer />
-        <IpcContainer />
-      </div>
-    );
-  }
-
   renderNavBar () {
     return (
       <Navbar className={styles.navbar}>
@@ -268,6 +242,32 @@ class App extends React.Component {
         <Spacer />
         <WindowControls />
       </Navbar>
+    );
+  }
+
+  componentWillMount () {
+    this.props.actions.readSettings();
+    this.props.actions.lastFmReadSettings();
+    this.props.actions.createSearchPlugins(PluginConfig.plugins);
+  }
+
+  render () {
+    let { settings } = this.props;
+    let { toggleOption } = this.props.actions;
+    return (
+      <div className={styles.app_container}>
+        {this.renderNavBar()}
+        <div className={styles.panel_container}>
+          {this.renderSidebarMenu(settings, toggleOption)}
+          <VerticalPanel className={styles.center_panel}>
+            <MainContentContainer />
+          </VerticalPanel>
+          {this.renderRightPanel(settings)}
+        </div>
+        {this.renderFooter(settings)}
+        <SoundContainer />
+        <IpcContainer />
+      </div>
     );
   }
 }
