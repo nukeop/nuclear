@@ -1,5 +1,4 @@
 module.exports = {
-  "autoFixOnSave": true,
   "env": {
     "browser": true,
     "commonjs": true,
