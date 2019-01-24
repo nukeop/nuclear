@@ -12,7 +12,7 @@ class PopularTracks extends React.Component {
     super(props);
 
     this.state = {
-      expanded: false,
+      expanded: false
     };
   }
 
@@ -26,7 +26,7 @@ class PopularTracks extends React.Component {
     this.props.addToQueue(this.props.musicSources, {
       artist: artist.name,
       name: track.name,
-      thumbnail: track.image[0]['#text'] || artPlaceholder,
+      thumbnail: track.image[0]['#text'] || artPlaceholder
     });
   }
 
@@ -52,23 +52,50 @@ class PopularTracks extends React.Component {
     );
   }
 
+  renderAddTrackToQueueButton(track, index, artist) {
+    return (
+      <a
+        key={'add-track-' + index}
+        href='#'
+        onClick={() => this.addToQueue(artist, track)}
+        className={styles.add_button}
+        aria-label='Add track to queue'
+      >
+        <FontAwesome name='plus' /> Add to queue
+      </a>
+    );
+  }
+
+  renderPlayTrackButton(track, index) {
+    let { artist, selectSong, startPlayback, clearQueue } = this.props;
+
+    return (
+      <a
+        key={'play-track-' + index}
+        href='#'
+        onClick={() => {
+          clearQueue();
+          this.addToQueue(artist, track);
+          selectSong(0);
+          startPlayback();
+        }}
+        className={styles.add_button}
+        aria-label='Play this track now'
+      >
+        <FontAwesome name='play' /> Play now
+      </a>
+    );
+  }
+
   render() {
-    let {
-      artist,
-      tracks,
-      addToQueue,
-      selectSong,
-      startPlayback,
-      clearQueue,
-      musicSources,
-    } = this.props;
+    let { artist, tracks } = this.props;
 
     return (
       <div className={styles.popular_tracks_container}>
         <div className={styles.header}>Popular tracks:</div>
         <a
-          key="add-all-tracks-to-queue"
-          href="#"
+          key='add-all-tracks-to-queue'
+          href='#'
           onClick={() => {
             tracks.track
               .slice(0, this.state.expanded ? 15 : 5)
@@ -77,41 +104,20 @@ class PopularTracks extends React.Component {
               });
           }}
           className={styles.add_button}
-          aria-label="Add all tracks to queue"
+          aria-label='Add all tracks to queue'
         >
-          <FontAwesome name="plus" /> Add all
+          <FontAwesome name='plus' /> Add all
         </a>
         {tracks.track
           .slice(0, this.state.expanded ? 15 : 5)
           .map((track, index) => {
             let popupContents = [
-              <a
-                key={'add-track-' + index}
-                href="#"
-                onClick={() => this.addToQueue(artist, track)}
-                className={styles.add_button}
-                aria-label="Add track to queue"
-              >
-                <FontAwesome name="plus" /> Add to queue
-              </a>,
-              <a
-                key={'play-track-' + index}
-                href="#"
-                onClick={() => {
-                  clearQueue();
-                  this.addToQueue(artist, track);
-                  selectSong(0);
-                  startPlayback();
-                }}
-                className={styles.add_button}
-                aria-label="Play this track now"
-              >
-                <FontAwesome name="play" /> Play now
-              </a>,
+              this.renderAddTrackToQueueButton(track, index, artist),
+              this.renderPlayTrackButton(track, index)
             ];
             return this.renderPopup(index, artist, track, popupContents);
           })}
-        <div className="expand_button" onClick={this.toggleExpand.bind(this)}>
+        <div className='expand_button' onClick={this.toggleExpand.bind(this)}>
           <FontAwesome
             name={this.state.expanded ? 'angle-double-up' : 'angle-double-down'}
           />

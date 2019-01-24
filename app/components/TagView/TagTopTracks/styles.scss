@@ -6,9 +6,8 @@
   flex-flow: column;
   width: 100%;
 
-
   .track {
-    transition: 0.25s;
+    transition: $short-duration;
   }
 
   .track_thumbnail {
@@ -19,7 +18,7 @@
   table {
     width: 100%;
   }
-  
+
   thead {
     background: $background2;
   }
@@ -30,7 +29,7 @@
   }
 
   tr {
-    transition: 0.25s;
+    transition: $short-duration;
   }
 
   tr:hover {

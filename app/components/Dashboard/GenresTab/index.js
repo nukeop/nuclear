@@ -23,29 +23,29 @@ class GenresTab extends React.Component {
         <div className={styles.genre_tab_container}>
           {
             genres !== undefined
-            ? genres.map((tag, i) => {
-              return (
-                <div
-                  className={styles.genre_container}
-                  key={i}
-                  onClick={() => this.onGenreClick(tag.name)}
+              ? genres.map((tag, i) => {
+                return (
+                  <div
+                    className={styles.genre_container}
+                    key={i}
+                    onClick={() => this.onGenreClick(tag.name)}
                   >
 
                     <div className={styles.genre_overlay}>
                       <Img src={'https://picsum.photos/256x256/?random&seed=' + i} />
-                      </div>
-                      <div className={styles.genre_name}>
-                        {tag.name}
-                      </div>
                     </div>
-                  );
-                })
-                : null
-              }
-            </div>
-          </Tab.Pane>
-        );
-      }
-    }
+                    <div className={styles.genre_name}>
+                      {tag.name}
+                    </div>
+                  </div>
+                );
+              })
+              : null
+          }
+        </div>
+      </Tab.Pane>
+    );
+  }
+}
 
 export default GenresTab;

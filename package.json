@@ -19,7 +19,8 @@
     "build:linux": "electron-builder -c.extraMetadata.main=dist/bundle.electron.js --linux",
     "build:windows": "electron-builder -c.extraMetadata.main=dist/bundle.electron.js --windows",
     "build:macos": "electron-builder -c.extraMetadata.main=dist/bundle.electron.js --macos",
-    "build:all": "electron-builder -c.extraMetadata.main=dist/bundle.electron.js -mwl"
+    "build:all": "electron-builder -c.extraMetadata.main=dist/bundle.electron.js -mwl",
+    "lint": "eslint app"
   },
   "repository": {
     "type": "git",
@@ -45,6 +46,7 @@
     "electron-store": "^2.0.0",
     "electron-timber": "^0.5.1",
     "font-awesome": "^4.7.0",
+    "get-artist-title": "^1.1.1",
     "md5": "^2.2.1",
     "moment": "^2.20.1",
     "nuclear-core": "0.0.4",
@@ -61,10 +63,12 @@
     "styled-components": "^3.2.6",
     "uuid": "^3.2.1",
     "webpack-cli": "^3.0.8",
+    "youtube-playlist": "^1.0.2",
     "ytdl-core": "^0.24.0"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
+    "babel-eslint": "^10.0.1",
     "babel-loader": "^7.1.2",
     "babel-plugin-add-module-exports": "^0.2.1",
     "babel-plugin-transform-class-properties": "^6.24.1",
@@ -83,6 +87,9 @@
     "electron-devtools-installer": "^2.2.4",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.3.1",
+    "eslint": "^5.12.1",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-react": "^7.12.4",
     "extract-text-webpack-plugin": "^3.0.2",
     "file-loader": "^1.1.6",
     "happypack": "^5.0.0",

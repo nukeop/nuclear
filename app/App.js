@@ -30,10 +30,7 @@ import VerticalPanel from './components/VerticalPanel';
 import Spacer from './components/Spacer';
 
 import MainContentContainer from './containers/MainContentContainer';
-
 import PlayQueueContainer from './containers/PlayQueueContainer';
-
-import SearchBox from './components/SearchBox';
 import SearchBoxContainer from './containers/SearchBoxContainer';
 
 import IpcContainer from './containers/IpcContainer';
@@ -41,7 +38,6 @@ import SoundContainer from './containers/SoundContainer';
 
 import ui from 'nuclear-ui';
 import PlayerControls from './components/PlayerControls';
-import PlayQueue from './components/PlayQueue';
 import Seekbar from './components/Seekbar';
 import SidebarMenu from './components/SidebarMenu';
 import SidebarMenuItem from './components/SidebarMenu/SidebarMenuItem';
@@ -50,7 +46,7 @@ import WindowControls from './components/WindowControls';
 import VolumeControls from './components/VolumeControls';
 
 class App extends React.Component {
-  togglePlayback() {
+  togglePlayback () {
     if (
       this.props.player.playbackStatus === Sound.status.PAUSED &&
       this.props.scrobbling.lastFmScrobblingEnabled &&
@@ -68,7 +64,7 @@ class App extends React.Component {
     this.props.actions.togglePlayback(this.props.player.playbackStatus);
   }
 
-  nextSong() {
+  nextSong () {
     this.props.actions.nextSong();
     if (
       this.props.scrobbling.lastFmScrobblingEnabled &&
@@ -85,13 +81,13 @@ class App extends React.Component {
     }
   }
 
-  componentWillMount() {
+  componentWillMount () {
     this.props.actions.readSettings();
     this.props.actions.lastFmReadSettings();
     this.props.actions.createSearchPlugins(PluginConfig.plugins);
   }
 
-  render() {
+  render () {
     let { settings } = this.props;
     let { toggleOption } = this.props.actions;
     return (
@@ -111,39 +107,39 @@ class App extends React.Component {
     );
   }
 
-  renderNavBar() {
+  renderNavBar () {
     return (
       <Navbar className={styles.navbar}>
         <SearchBoxContainer />
         <Spacer />
         <Spacer />
-        <WindowControls />
+        {this.props.settings.framelessWindow && <WindowControls />}
       </Navbar>
     );
   }
 
-  renderRightPanel(settings) {
+  renderRightPanel (settings) {
     return (
       <VerticalPanel
         className={classnames(styles.right_panel, {
-          [`${compact.compact_panel}`]: settings.compactQueueBar,
+          [`${compact.compact_panel}`]: settings.compactQueueBar
         })}
       >
         <PlayQueueContainer compact={settings.compactQueueBar} />
       </VerticalPanel>
     );
   }
-  renderSidebarMenu(settings, toggleOption) {
+  renderSidebarMenu (settings, toggleOption) {
     return (
       <VerticalPanel
         className={classnames(styles.left_panel, {
-          [`${compact.compact_panel}`]: settings.compactMenuBar,
+          [`${compact.compact_panel}`]: settings.compactMenuBar
         })}
       >
         <SidebarMenu>
           <div className={styles.sidebar_brand}>
             <img
-              width="50%"
+              width='50%'
               src={settings.compactMenuBar ? logoIcon : logoImg}
             />
             <div className={styles.version_string}>
@@ -164,7 +160,7 @@ class App extends React.Component {
     );
   }
 
-  renderNavLink(name, icon, prettyName, settings) {
+  renderNavLink (name, icon, prettyName, settings) {
     return (
       <NavLink to={'/' + name} activeClassName={styles.active_nav_link}>
         <SidebarMenuItem>
@@ -174,9 +170,9 @@ class App extends React.Component {
     );
   }
 
-  renderSidebarFooter(settings, toggleOption) {
+  renderSidebarFooter (settings, toggleOption) {
     return (
-      <div className="sidebar_footer">
+      <div className='sidebar_footer'>
         <a
           onClick={() =>
             toggleOption(
@@ -184,7 +180,7 @@ class App extends React.Component {
               settings
             )
           }
-          href="#"
+          href='#'
         >
           <FontAwesome
             name={settings.compactMenuBar ? 'angle-right' : 'angle-left'}
@@ -194,7 +190,7 @@ class App extends React.Component {
     );
   }
 
-  renderFooter(settings) {
+  renderFooter (settings) {
     return (
       <Footer className={styles.footer}>
         <Seekbar
@@ -214,39 +210,38 @@ class App extends React.Component {
     );
   }
 
-  renderCover() {
+  renderCover () {
     return (
       <ui.Cover
         cover={
           this.props.queue.queueItems[this.props.queue.currentSong]
             ? this.props.queue.queueItems[this.props.queue.currentSong]
-                .thumbnail
+              .thumbnail
             : artPlaceholder
         }
       />
     );
   }
-  renderTrackInfo() {
+
+  getCurrentSongParameter (parameter) {
+    return this.props.queue.queueItems[this.props.queue.currentSong]
+      ? this.props.queue.queueItems[this.props.queue.currentSong][parameter]
+      : null;
+  }
+
+  renderTrackInfo () {
     return (
       <TrackInfo
-        track={
-          this.props.queue.queueItems[this.props.queue.currentSong]
-            ? this.props.queue.queueItems[this.props.queue.currentSong].name
-            : null
-        }
-        artist={
-          this.props.queue.queueItems[this.props.queue.currentSong]
-            ? this.props.queue.queueItems[this.props.queue.currentSong].artist
-            : null
-        }
+        track={this.getCurrentSongParameter('name')}
+        artist={this.getCurrentSongParameter('artist')}
       />
     );
   }
-  renderPlayerControls() {
+  renderPlayerControls () {
     return (
       <PlayerControls
         togglePlay={this.togglePlayback.bind(this)}
-        playing={this.props.player.playbackStatus == Sound.status.PLAYING}
+        playing={this.props.player.playbackStatus === Sound.status.PLAYING}
         loading={this.props.player.playbackStreamLoading}
         forward={this.nextSong.bind(this)}
         back={this.props.actions.previousSong}
@@ -254,7 +249,7 @@ class App extends React.Component {
     );
   }
 
-  renderVolumeControl(settings) {
+  renderVolumeControl (settings) {
     return (
       <VolumeControls
         fill={this.props.player.volume + '%'}
@@ -265,7 +260,7 @@ class App extends React.Component {
     );
   }
 
-  renderNavbar() {
+  renderNavbar () {
     return (
       <Navbar className={styles.navbar}>
         <SearchBoxContainer />
@@ -277,16 +272,16 @@ class App extends React.Component {
   }
 }
 
-function mapStateToProps(state) {
+function mapStateToProps (state) {
   return {
     queue: state.queue,
     player: state.player,
     scrobbling: state.scrobbling,
-    settings: state.settings,
+    settings: state.settings
   };
 }
 
-function mapDispatchToProps(dispatch) {
+function mapDispatchToProps (dispatch) {
   return {
     actions: bindActionCreators(
       Object.assign(
@@ -299,7 +294,7 @@ function mapDispatchToProps(dispatch) {
         Actions
       ),
       dispatch
-    ),
+    )
   };
 }
 

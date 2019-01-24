@@ -2,7 +2,7 @@
 
 .queue_item_container {
   display: flex;
-  transition: all 0.4s ease-out;
+  transition: all $medium-duration ease-out;
 
   margin: 0.5rem;
 
@@ -65,7 +65,7 @@
   opacity: 0;
   border-radius: 50%;
   cursor: pointer;
-  transition: 0.25s;
+  transition: $medium-duration;
 }
 
 .item_info_container {

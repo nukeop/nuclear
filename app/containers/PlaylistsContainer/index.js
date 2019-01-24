@@ -14,7 +14,7 @@ class PlaylistsContainer extends React.Component {
   render() {
     return (
       <Playlists 
-      	playlists={this.props.playlists}
+        playlists={this.props.playlists}
         history={this.props.history}
       />
     );
@@ -22,15 +22,15 @@ class PlaylistsContainer extends React.Component {
 }
 
 function mapStateToProps(state) {
-	return {
-		playlists: state.playlists.playlists
-	}
+  return {
+    playlists: state.playlists.playlists
+  };
 }
 
 function mapDispatchToProps(dispatch) {
-	return {
-		actions: bindActionCreators(Object.assign({}, PlaylistsActions), dispatch)
-	}
+  return {
+    actions: bindActionCreators(Object.assign({}, PlaylistsActions), dispatch)
+  };
 }
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(PlaylistsContainer));

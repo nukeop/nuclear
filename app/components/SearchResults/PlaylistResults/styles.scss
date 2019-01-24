@@ -1,0 +1,22 @@
+.all_results_container {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    width: 100%;
+
+    .column {
+      display: flex;
+      flex-flow: column;
+      width: 100%;
+
+      h3 {
+        font-variant: small-caps;
+        margin: 1rem;
+      }
+
+      .row {
+        display: flex;
+        flex-flow: row wrap;
+      }
+    }
+}

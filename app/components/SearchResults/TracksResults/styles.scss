@@ -1,9 +1,32 @@
+
 @import '../../../vars';
-.charts_container {
+
+.all_results_container {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    width: 100%;
+
+    .column {
+      display: flex;
+      flex-flow: column;
+      width: 100%;
+
+      h3 {
+        font-variant: small-caps;
+        margin: 1rem;
+      }
+
+      .row {
+        display: flex;
+        flex-flow: row wrap;
+      }
+    }
 }
 
+
 .popular_tracks_container {
-  /*display: flex;
+  display: flex;
   flex: 1 1 auto;
   flex-flow: column;
 
@@ -14,12 +37,12 @@
 
     font-size: 16px;
     font-variant: small-caps;
-  }*/
+  }
 
   .track_row {
-    /*display: flex;
+    display: flex;
     align-items: center;
-    flex-flow: row;*/
+    flex-flow: row;
 
     transition: $short-duration ease-in-out;
 
@@ -62,4 +85,8 @@
       background: lighten($background, 5%);
     }
   }
+}
+
+.add_button {
+  text-align: left;
 }
