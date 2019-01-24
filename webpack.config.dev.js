@@ -9,7 +9,7 @@ const RESOURCES_DIR = path.resolve(__dirname, 'resources');
 
 const config = {
   entry: [
-    "react-hot-loader/patch",
+    'react-hot-loader/patch',
     'webpack-dev-server/client?http://localhost:8080',
     'webpack/hot/only-dev-server',
     path.resolve(APP_DIR, 'index.js')
@@ -30,18 +30,18 @@ const config = {
     namedModules: true
   },
   node: {
-    fs: "empty"
+    fs: 'empty'
   },
   module: {
     rules: [
       {
-	      test: /.jsx?$/,
-	      use: 'happypack/loader?id=jsx',
-	      include: APP_DIR
+        test: /.jsx?$/,
+        use: 'happypack/loader?id=jsx',
+        include: APP_DIR
       },
       {
-	      test: /.scss$/,
-	      use: 'happypack/loader?id=scss'
+        test: /.scss$/,
+        use: 'happypack/loader?id=scss'
       },
       {
         test: /\.css/,
@@ -71,11 +71,11 @@ const config = {
     }),
     new HappyPack({
       id: 'jsx',
-      loaders: [ 'babel-loader' ]
+      loaders: ['babel-loader']
     }),
     new HappyPack({
       id: 'scss',
-      loaders: [ 'style-loader!css-loader?importLoaders=1&modules&localIdentName=[local]!sass-loader' ]
+      loaders: ['style-loader!css-loader?importLoaders=1&modules&localIdentName=[local]!sass-loader']
     })
   ],
   target: 'electron-renderer'

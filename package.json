@@ -42,7 +42,6 @@
   "homepage": "https://github.com/nukeop/nuclear#readme",
   "dependencies": {
     "billboard-top-100": "^2.0.8",
-    "electron": "^4.0.2",
     "electron-platform": "^1.2.0",
     "electron-store": "^2.0.0",
     "electron-timber": "^0.5.1",
@@ -83,6 +82,7 @@
     "chai": "^4.1.2",
     "classnames": "^2.2.5",
     "css-loader": "^1.0.0",
+    "electron": "^4.0.2",
     "electron-builder": "^20.27.1",
     "electron-devtools-installer": "^2.2.4",
     "enzyme": "^3.3.0",
