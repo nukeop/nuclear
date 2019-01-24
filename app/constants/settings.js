@@ -21,6 +21,13 @@ module.exports = [
     default: true
   },
   {
+    name: 'disableGPU',
+    category: 'Program settings',
+    type: 'boolean',
+    prettyName: 'Disable hardware rendering (might fix issues with dragging elements and flashing screen)',
+    default: false
+  },
+  {
     name: 'framelessWindow',
     category: 'Program settings',
     type: 'boolean',
