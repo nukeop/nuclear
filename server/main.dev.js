@@ -1,7 +1,7 @@
 const {
   default: installExtension,
   REACT_DEVELOPER_TOOLS,
-  REDUX_DEVTOOLS,
+  REDUX_DEVTOOLS
 } = require('electron-devtools-installer');
 const {
   app,
@@ -9,7 +9,7 @@ const {
   nativeImage,
   BrowserWindow,
   Menu,
-  Tray,
+  Tray
 } = require('electron');
 const platform = require('electron-platform');
 const path = require('path');
@@ -35,8 +35,11 @@ function createWindow () {
     show: false,
     webPreferences: {
       experimentalFeatures: true,
-      webSecurity: false,
+      webSecurity: false
     },
+    additionalArguments: [
+      getOption('disableGPU') && '--disable-gpu'
+    ]
   });
 
   win.setTitle('Nuclear Music Player');
@@ -55,7 +58,7 @@ function createWindow () {
     url.format({
       pathname: 'localhost:8080',
       protocol: 'http:',
-      slashes: true,
+      slashes: true
     })
   );
 
@@ -83,8 +86,8 @@ function createWindow () {
       type: 'normal',
       click: (menuItem, browserWindow, event) => {
         app.quit();
-      },
-    },
+      }
+    }
   ]);
 
   tray = new Tray(icon);
@@ -102,7 +105,7 @@ function createWindow () {
 
   ipcMain.on('maximize', () => {
     if (platform.isDarwin) {
-      win.isFullScreen() ? win.setFullScreen(false) : win.setFullScreen(true)
+      win.isFullScreen() ? win.setFullScreen(false) : win.setFullScreen(true);
     } else {
       win.isMaximized() ? win.unmaximize() : win.maximize();
     }
