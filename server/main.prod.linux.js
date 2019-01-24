@@ -1,4 +1,4 @@
-require("babel-polyfill");
+require('babel-polyfill');
 const { app, ipcMain, nativeImage, BrowserWindow, Menu, Tray } = require('electron');
 const platform = require('electron-platform');
 const path = require('path');
@@ -25,7 +25,10 @@ function createWindow() {
     webPreferences: {
       experimentalFeatures: true,
       webSecurity: false
-    }
+    },
+    additionalArguments: [
+      getOption('disableGPU') && '--disable-gpu'
+    ]
   });
 
   win.setTitle('nuclear music player');
@@ -37,7 +40,7 @@ function createWindow() {
   }));
 
   win.once('ready-to-show', () => {
-    win.show()
+    win.show();
   });
 
   win.on('closed', () => {
