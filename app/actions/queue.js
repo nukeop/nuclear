@@ -33,7 +33,7 @@ function addTrackToQueue (musicSources, item) {
 }
 
 export function addToQueue (musicSources, item) {
-  return addTrackToQueue(musicSources, item)
+  return addTrackToQueue(musicSources, item);
 }
 
 export function removeFromQueue (item) {
@@ -46,8 +46,8 @@ export function removeFromQueue (item) {
 export function addPlaylistTracksToQueue (musicSources, tracks) {
   return (dispatch) => {
     tracks.map((item, i) => {
-      dispatch(addTrackToQueue(musicSources, item))
-    })
+      dispatch(addTrackToQueue(musicSources, item));
+    });
   };
 }
 
