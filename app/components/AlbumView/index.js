@@ -13,7 +13,7 @@ class AlbumView extends React.Component {
     super(props);
   }
 
-  getArtistName(track, album) {
+  getArtistName (track, album) {
     if (!track.artists) {
       return album.artists[0].name;
     } else {
@@ -21,7 +21,7 @@ class AlbumView extends React.Component {
         .name;
       let artistName = firstArtist;
       _(track.artists)
-        .filter(artist => artist.name != firstArtist)
+        .filter(artist => artist.name !== firstArtist)
         .forEach(artist => {
           artistName += ' ' + artist.join + ' ' + artist.name;
         });
@@ -30,49 +30,46 @@ class AlbumView extends React.Component {
     }
   }
 
-  addToQueue(album, track) {
+  addToQueue (album, track) {
     this.props.addToQueue(this.props.musicSources, {
       artist: this.getArtistName(track, album),
       name: track.title,
-      thumbnail: album.images[0].uri,
+      thumbnail: album.images[0].uri
     });
   }
 
-  addAlbumToQueue(album) {
+  addAlbumToQueue (album) {
     album.tracklist.map((track, i) => {
       this.props.addToQueue(this.props.musicSources, {
         artist: album.artists[0].name,
         name: track.title,
-        thumbnail: album.images[0].uri,
+        thumbnail: album.images[0].uri
       });
     });
   }
 
-  artistInfoSearch(artistId) {
+  artistInfoSearch (artistId) {
     this.props.artistInfoSearch(artistId);
     this.props.history.push('/artist/' + artistId);
   }
 
-  playAll(album) {
+  playAll (album) {
     this.props.clearQueue();
     this.addAlbumToQueue(album);
     this.props.selectSong(0);
     this.props.startPlayback();
   }
 
-  render() {
+  render () {
     let { album } = this.props;
-
-    if (_.some(_.map([album.images, album.artists, album.styles], _.isEmpty))) {
+    if (_.some(_.map([album.images, album.artists, album.genres], _.isEmpty))) {
       return this.renderInvalidData();
     }
-
     let albumImage = this.getAlbumImage(album);
-
     return this.renderAlbumLoading(album, albumImage);
   }
 
-  renderInvalidData() {
+  renderInvalidData () {
     return (
       <div>
         <h3>Discogs returned invalid data.</h3>
@@ -81,7 +78,7 @@ class AlbumView extends React.Component {
     );
   }
 
-  getAlbumImage(album) {
+  getAlbumImage (album) {
     let albumImage = _.find(album.images, { type: 'primary' });
     if (!albumImage) {
       albumImage = album.images ? album.images[0].uri : artPlaceholder;
@@ -91,59 +88,90 @@ class AlbumView extends React.Component {
     return albumImage;
   }
 
-  renderAlbumLoading(album, albumImage) {
+  renderAlbumArtistName (album) {
+    return (
+      <div className={styles.album_artist}>
+        by{' '}
+        <a
+          href='#'
+          onClick={() => {
+            this.artistInfoSearch.bind(this)(album.artists[0].id);
+          }}
+        >
+          {album.artists[0].name}
+        </a>
+      </div>
+    );
+  }
+
+  renderAlbumGenre (album) {
+    return (
+      <div className={styles.album_genre}>
+        <label>Genre:</label>
+        {album.genres[0]}
+      </div>
+    );
+  }
+
+  renderPlayAllButton (album) {
+    return (
+      <a
+        onClick={() => this.playAll(album)}
+        href='#'
+        className={styles.play_button}
+      >
+        <FontAwesome name='play' /> Play
+      </a>
+    );
+  }
+
+  renderAlbumYear (album) {
+    return (
+      <div className={styles.album_year}>
+        <label>Year:</label>
+        {album.year}
+      </div>
+    );
+  }
+
+  renderAlbumTracksCount (album) {
+    return (
+      <div className={styles.album_tracks}>
+        <label>Tracks:</label>
+        {album.tracklist.length}
+      </div>
+    );
+  }
+
+  renderAlbumInfoBox (album, albumImage) {
+    return (
+      <div className={styles.album_info_box}>
+        <img src={albumImage} />
+        <div className={styles.album_details}>
+          <div className={styles.album_title}>{album.title}</div>
+          {this.renderAlbumArtistName(album)}
+          {this.renderAlbumGenre(album)}
+          {this.renderAlbumYear(album)}
+          {this.renderAlbumTracksCount(album)}
+          <div className={styles.album_buttons}>
+            {this.renderPlayAllButton(album)}
+            {this.renderOptionsButtons(album)}
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  renderAlbumLoading (album, albumImage) {
     return (
       <div className={styles.album_view_container}>
         <Dimmer.Dimmable>
           <Dimmer active={album.loading}>
             <Loader />
           </Dimmer>
-
           {!album.loading && (
             <div className={styles.album}>
-              <div className={styles.album_info_box}>
-                <img src={albumImage} />
-                <div className={styles.album_details}>
-                  <div className={styles.album_title}>{album.title}</div>
-                  <div className={styles.album_artist}>
-                    by{' '}
-                    <a
-                      href="#"
-                      onClick={() => {
-                        this.artistInfoSearch.bind(this)(album.artists[0].id);
-                      }}
-                    >
-                      {album.artists[0].name}
-                    </a>
-                  </div>
-                  <div className={styles.album_genre}>
-                    <label>Genre:</label>
-                    {album.styles &&
-                      Object.keys(album.styles) > 0 &&
-                      album.styles[0]}
-                  </div>
-
-                  <div className={styles.album_year}>
-                    <label>Year:</label>
-                    {album.year}
-                  </div>
-                  <div className={styles.album_tracks}>
-                    <label>Tracks:</label>
-                    {album.tracklist.length}
-                  </div>
-                  <div className={styles.album_buttons}>
-                    <a
-                      onClick={() => this.playAll(album)}
-                      href="#"
-                      className={styles.play_button}
-                    >
-                      <FontAwesome name="play" /> Play
-                    </a>
-                    {this.renderOptions(album)}
-                  </div>
-                </div>
-              </div>
-
+              {this.renderAlbumInfoBox(album, albumImage)}
               {this.renderAlbumTracksList(album)}
             </div>
           )}
@@ -152,17 +180,17 @@ class AlbumView extends React.Component {
     );
   }
 
-  renderAlbumTracksList(album) {
+  renderAlbumTracksList (album) {
     return (
       <table className={styles.album_tracklist}>
         <thead>
           <tr>
             <th className={styles.center}>
-              <FontAwesome name="hashtag" />
+              <FontAwesome name='hashtag' />
             </th>
             <th className={styles.left}>Song</th>
             <th className={styles.center}>
-              <FontAwesome name="clock-o" />
+              <FontAwesome name='clock-o' />
             </th>
           </tr>
         </thead>
@@ -175,7 +203,7 @@ class AlbumView extends React.Component {
     );
   }
 
-  renderContextPopup(album, el, i) {
+  renderContextPopup (album, el, i) {
     return (
       <ContextPopup
         key={i}
@@ -196,42 +224,42 @@ class AlbumView extends React.Component {
     );
   }
 
-  renderPlayTrackButton(album, el) {
+  renderPlayTrackButton (album, el) {
     return (
       <a
-        href="#"
+        href='#'
         onClick={() => {
           this.props.clearQueue();
           this.addToQueue(album, el);
           this.props.selectSong(0);
           this.props.startPlayback();
         }}
-        aria-label="Play this track now"
+        aria-label='Play this track now'
         className={styles.add_button}
       >
-        <FontAwesome name="play" /> Play now
+        <FontAwesome name='play' /> Play now
       </a>
     );
   }
 
-  renderAddTrackToQueueButton(album, el) {
+  renderAddTrackToQueueButton (album, el) {
     return (
       <a
-        href="#"
+        href='#'
         onClick={() => this.addToQueue(album, el)}
         className={styles.add_button}
-        aria-label="Add track to queue"
+        aria-label='Add track to queue'
       >
-        <FontAwesome name="plus" /> Add to queue
+        <FontAwesome name='plus' /> Add to queue
       </a>
     );
   }
-  renderOptions(album) {
+  renderOptionsButtons (album) {
     return (
       <ContextPopup
         trigger={
-          <a href="#" className={styles.more_button}>
-            <FontAwesome name="ellipsis-h" />
+          <a href='#' className={styles.more_button}>
+            <FontAwesome name='ellipsis-h' />
           </a>
         }
         artist={album.artists[0].name}
@@ -239,12 +267,12 @@ class AlbumView extends React.Component {
         thumb={album.images ? album.images[0].uri : artPlaceholder}
       >
         <a
-          href="#"
+          href='#'
           onClick={() => this.addAlbumToQueue(album)}
           className={styles.add_button}
-          aria-label="Add album to queue"
+          aria-label='Add album to queue'
         >
-          <FontAwesome name="plus" /> Add to queue
+          <FontAwesome name='plus' /> Add to queue
         </a>
       </ContextPopup>
     );

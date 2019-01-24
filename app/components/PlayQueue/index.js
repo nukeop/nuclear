@@ -79,7 +79,7 @@ class PlayQueue extends React.Component {
             items={items}
           />
 
-          <Droppable droppableId="play_queue">
+          <Droppable droppableId='play_queue'>
             {(provided, snapshot) => (
               <div
                 ref={provided.innerRef}

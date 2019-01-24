@@ -3,19 +3,25 @@ const userToken = 'QDUeFOZNwIwOePlxpVziEHzamhbIHUdfENAJTnLR';
 const key = 'EZaGPpKGBbTkjwmpjmNY';
 const secret = 'uluhDSPtelRtLUvjrvQhRBnNwpZMtkZq';
 
-function addToken(query, first = false) {
-  var newQuery = query + '&token=' + userToken;
-  if (first) return newQuery.replace('&', '?');
-  else return newQuery;
+function addToken (query, first = false) {
+  let newQuery = query + '&token=' + userToken;
+  if (first) {
+    return newQuery.replace('&', '?');
+  } else {
+    return newQuery;
+  }
 }
 
-function addKeys(query, first = false) {
-  var newQuery = query + '&key=' + key + '&secret=' + secret;
-  if (first) return newQuery.replace('&', '?');
-  else return newQuery;
+function addKeys (query, first = false) {
+  let newQuery = query + '&key=' + key + '&secret=' + secret;
+  if (first) {
+    return newQuery.replace('&', '?');
+  } else {
+    return newQuery;
+  }
 }
 
-function searchQuery(terms, count = 15) {
+function searchQuery (terms, count = 15) {
   // Strip # manually to prevent it being interpreted as anchor separator
   terms = terms.replace('#', '');
 
@@ -24,30 +30,35 @@ function searchQuery(terms, count = 15) {
   );
 }
 
-function searchArtists(terms, count = 15) {
+function searchArtists (terms, count = 15) {
   return fetch(searchQuery(terms, count) + '&type=artist');
 }
 
-function searchReleases(terms, count = 15) {
+function searchReleases (terms, count = 15) {
   return fetch(searchQuery(terms, count) + '&type=master');
 }
 
-function releaseInfo(releaseId) {
-  return fetch(addToken(apiUrl + 'masters/' + releaseId, true));
+function releaseInfo (releaseId, releaseType) {
+  if (releaseType === 'master') {
+    return fetch(addToken(apiUrl + 'masters/' + releaseId, true));
+  }
+  else if (releaseType === 'release') {
+    return fetch(addToken(apiUrl + 'releases/' + releaseId, true));
+  }
 }
 
-function artistInfo(artistId) {
+function artistInfo (artistId) {
   return fetch(addToken(apiUrl + 'artists/' + artistId, true));
 }
 
-function artistReleases(artistId) {
+function artistReleases (artistId) {
   return fetch(
     addToken(
       apiUrl +
-        'artists/' +
-        artistId +
-        '/releases' +
-        '?sort=year&sort_order=desc',
+      'artists/' +
+      artistId +
+      '/releases' +
+      '?sort=year&sort_order=desc',
       false
     )
   );
@@ -58,5 +69,5 @@ module.exports = {
   searchReleases,
   releaseInfo,
   artistInfo,
-  artistReleases,
+  artistReleases
 };

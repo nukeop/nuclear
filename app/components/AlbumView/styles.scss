@@ -14,7 +14,7 @@
       padding: 0.375rem 2.5rem;
     }
   }
-  
+
   .play_button {
     background: $pink;
     color: $white;
@@ -82,7 +82,7 @@
           font-size: 20px;
           a {
             color: $lightbg;
-            transition: 0.25s;
+            transition: $short-duration;
 
             &:hover {
               color: $white;
@@ -120,7 +120,7 @@
 
       tbody {
         tr {
-          transition: 0.25s;
+          transition: $short-duration;
         }
 
         tr:hover {
@@ -144,4 +144,6 @@
   }
 }
 
-.add_button {text-align: left;}
+.add_button {
+  text-align: left;
+}

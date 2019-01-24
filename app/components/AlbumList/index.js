@@ -9,8 +9,8 @@ class AlbumList extends React.Component {
     super(props);
   }
 
-  albumInfoSearch(albumId) {
-    this.props.albumInfoSearch(albumId);
+  albumInfoSearch(albumId, releaseType) {
+    this.props.albumInfoSearch(albumId, releaseType);
     this.props.history.push('/album/' + albumId);
   }
 
@@ -23,12 +23,12 @@ class AlbumList extends React.Component {
               {
                 this.props.albums.map((el, i) => {
                   return  (
-                   <Card
-                    key={i}
-                    header={el.title}
-                    image={el.thumb}
-                    onClick={() => this.albumInfoSearch(el.id)}
-                   />);
+                    <Card
+                      key={i}
+                      header={el.title}
+                      image={el.thumb}
+                      onClick={() => this.albumInfoSearch(el.id, el.type)}
+                    />);
                 })
               }
             </div>

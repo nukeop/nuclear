@@ -14,7 +14,7 @@ class TagDescription extends React.Component {
     
     return (
       <div className={styles.tag_description}>
-	{tagInfo.wiki.summary.split('.').slice(0, -5).join('.')+'...'}
+        {tagInfo.wiki.summary.split('.').slice(0, -5).join('.')+'...'}
       </div>
     );
   }

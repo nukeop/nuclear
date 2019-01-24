@@ -1,4 +1,4 @@
-@import "vars";
+@import 'vars';
 
 html {
   position: absolute;
@@ -23,7 +23,7 @@ a {
   &:hover {
     text-decoration: none;
     color: $white;
-    transition: 0.25s;
+    transition: $short-duration;
   }
 }
 
@@ -35,22 +35,22 @@ a.disabled {
   &:focus,
   &:active {
     background-color: $background2 !important;
-    color: rgba($grey, 0.25);;
+    color: rgba($grey, 0.25);
   }
 }
 
 ::-webkit-scrollbar {
-    width: 0.5rem;
+  width: 0.5rem;
 }
 
 ::-webkit-scrollbar-track {
-    background-color: $background;
-    border-radius: 0;
+  background-color: $background;
+  border-radius: 0;
 }
 
 ::-webkit-scrollbar-thumb {
-    border-radius: 0.5rem;
-    background-color: $background2;
+  border-radius: 0.5rem;
+  background-color: $background2;
 }
 
 //Semantic UI section
@@ -92,10 +92,13 @@ a.disabled {
   }
 }
 
-.ui.tab.loading.segment, .ui.tab.loading, .ui.loader, .ui.dimmer .ui.loader {
+.ui.tab.loading.segment,
+.ui.tab.loading,
+.ui.loader,
+.ui.dimmer .ui.loader {
   &:before {
     background: rgba($background2, 0.2);
-    border: .2em solid rgba($background2, .6);
+    border: 0.2em solid rgba($background2, 0.6);
   }
 
   &:after {
@@ -116,7 +119,7 @@ a.disabled {
 }
 
 .ui.button {
-  transition: 0.25s;
+  transition: $short-duration;
 }
 
 .ui.inverted.green.button {
@@ -139,24 +142,26 @@ a.disabled {
 }
 
 .ui.checkbox {
-  .box::before, label::before {
+  .box::before,
+  label::before {
     background-color: rgba($background3, 0.35) !important;
-    transition: 0.5s;
+    transition: $medium-duration;
   }
 
-  .box:hover::before, label:hover::before {
+  .box:hover::before,
+  label:hover::before {
     background-color: rgba($background2, 0.25) !important;
-    transition: 0.5s;
+    transition: $medium-duration;
   }
 }
 
 .ui.toggle.checkbox {
-  input:focus:checked~.box:before,
-  input:focus:checked~label:before,
-  input:checked~.box:before,
-  input:checked~label:before {
+  input:focus:checked ~ .box:before,
+  input:focus:checked ~ label:before,
+  input:checked ~ .box:before,
+  input:checked ~ label:before {
     background-color: $blue !important;
-    transition: 0.5s;
+    transition: $medium-duration;
   }
 }
 

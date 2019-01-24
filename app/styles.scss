@@ -1,4 +1,4 @@
-@import "vars";
+@import 'vars';
 
 .app_container {
   position: absolute;
@@ -11,7 +11,7 @@
 
   color: $grey;
 
-  animation: init 1s ease-in-out;
+  animation: init $long-duration ease-in-out;
 }
 
 @keyframes init {
@@ -41,7 +41,8 @@
   height: 50px;
 
   background-color: $background;
-  box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.18), 0px 5px 20px 0px rgba(0, 0, 0, 0.09);
+  box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.18),
+    0px 5px 20px 0px rgba(0, 0, 0, 0.09);
 
   -webkit-app-region: drag;
 }
@@ -56,14 +57,14 @@
   width: 300px;
 
   background-color: $background;
-  box-shadow: 5px 0px 5px 0px rgba(0, 0, 0, 0.18), 5px 0px 20px 0px rgba(0, 0, 0, 0.09);
+  box-shadow: 5px 0px 5px 0px rgba(0, 0, 0, 0.18),
+    5px 0px 20px 0px rgba(0, 0, 0, 0.09);
 }
 
 .center_panel {
   flex: 1 1 auto;
 
   background-color: $background;
-
 }
 
 .right_panel {
@@ -76,7 +77,8 @@
   width: 300px;
 
   background-color: $background;
-  box-shadow: -5px 0px 5px 0px rgba(0, 0, 0, 0.18), -5px 0px 20px 0px rgba(0, 0, 0, 0.09);
+  box-shadow: -5px 0px 5px 0px rgba(0, 0, 0, 0.18),
+    -5px 0px 20px 0px rgba(0, 0, 0, 0.09);
 }
 
 .footer {
@@ -92,7 +94,8 @@
   max-width: 100%;
 
   background-color: $background3;
-  box-shadow: 0px -5px 5px 0px rgba(0, 0, 0, 0.18), 0px -10px 20px 0px rgba(0, 0, 0, 0.09);
+  box-shadow: 0px -5px 5px 0px rgba(0, 0, 0, 0.18),
+    0px -10px 20px 0px rgba(0, 0, 0, 0.09);
 }
 
 .footer_horizontal {

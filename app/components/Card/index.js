@@ -32,8 +32,8 @@ class Card extends React.Component {
             <h4>{this.props.header}</h4>
             {
               this.props.content
-              ? <p>{this.props.content}</p>
-              : null
+                ? <p>{this.props.content}</p>
+                : null
             }
           </div>
         </div>

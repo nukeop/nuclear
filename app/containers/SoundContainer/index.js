@@ -15,7 +15,7 @@ import globals from '../../globals';
 import core from 'nuclear-core';
 import { consolidateStreamedStyles } from 'styled-components';
 
-var lastfm = new core.LastFmApi(globals.lastfmApiKey, globals.lastfmApiSecret);
+let lastfm = new core.LastFmApi(globals.lastfmApiKey, globals.lastfmApiSecret);
 
 class SoundContainer extends React.Component {
   handlePlaying(update) {
@@ -97,7 +97,9 @@ class SoundContainer extends React.Component {
   }
 
   getRandomElement(arr) {
-    let randomElement = arr[Math.round(Math.random() * (arr.length - 1))];
+    let devianceParameter = 0.2; // We will select one of the 20% most similar artists
+    let randomElement =
+      arr[Math.round(Math.random() * (devianceParameter * (arr.length - 1)))];
     return new Promise((resolve, reject) => resolve(randomElement));
   }
 
@@ -113,7 +115,7 @@ class SoundContainer extends React.Component {
       this.props.actions.addToQueue(musicSources, {
         artist: artist.name,
         name: track.name,
-        thumbnail: track.image[0]['#text'],
+        thumbnail: track.image[0]['#text']
       });
       resolve(true);
     });
@@ -134,10 +136,9 @@ class SoundContainer extends React.Component {
 
     if (queue.queueItems.length > 0) {
       let currentSong = queue.queueItems[queue.currentSong];
-      streamUrl = (getSelectedStream(
-        currentSong.streams,
-        plugins.defaultMusicSource
-      ) || {}).stream;
+      streamUrl = (
+        getSelectedStream(currentSong.streams, plugins.defaultMusicSource) || {}
+      ).stream;
     }
 
     return (
@@ -161,7 +162,7 @@ function mapStateToProps(state) {
     plugins: state.plugin,
     player: state.player,
     scrobbling: state.scrobbling,
-    settings: state.settings,
+    settings: state.settings
   };
 }
 
@@ -174,10 +175,10 @@ function mapDispatchToProps(dispatch) {
         PlayerActions,
         QueueActions,
         ScrobblingActions
-        //AutoradioActions
+        // AutoradioActions
       ),
       dispatch
-    ),
+    )
   };
 }
 

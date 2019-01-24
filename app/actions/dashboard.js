@@ -33,20 +33,20 @@ export const LOAD_TOP_TRACKS_ERROR = 'LOAD_TOP_TRACKS_ERROR';
 
 export function loadTopTagsStart() {
   return {
-    type: LOAD_TOP_TAGS_START,
+    type: LOAD_TOP_TAGS_START
   };
 }
 
 export function loadTopTagsSuccess(tags) {
   return {
     type: LOAD_TOP_TAGS_SUCCESS,
-    payload: tags,
+    payload: tags
   };
 }
 
 export function loadTopTagsError() {
   return {
-    type: LOAD_TOP_TAGS_ERROR,
+    type: LOAD_TOP_TAGS_ERROR
   };
 }
 
@@ -68,20 +68,20 @@ export function loadTopTags() {
 
 export function loadBestNewAlbumsStart() {
   return {
-    type: LOAD_BEST_NEW_ALBUMS_START,
+    type: LOAD_BEST_NEW_ALBUMS_START
   };
 }
 
 export function loadBestNewAlbumsSuccess(albums) {
   return {
     type: LOAD_BEST_NEW_ALBUMS_SUCCESS,
-    payload: albums,
+    payload: albums
   };
 }
 
 export function loadBestNewAlbumsError() {
   return {
-    type: LOAD_BEST_NEW_ALBUMS_ERROR,
+    type: LOAD_BEST_NEW_ALBUMS_ERROR
   };
 }
 
@@ -101,20 +101,20 @@ export function loadBestNewAlbums() {
 
 export function loadBestNewTracksStart() {
   return {
-    type: LOAD_BEST_NEW_TRACKS_START,
+    type: LOAD_BEST_NEW_TRACKS_START
   };
 }
 
 export function loadBestNewTracksSuccess(tracks) {
   return {
     type: LOAD_BEST_NEW_TRACKS_SUCCESS,
-    payload: tracks,
+    payload: tracks
   };
 }
 
 export function loadBestNewTracksError() {
   return {
-    type: LOAD_BEST_NEW_TRACKS_ERROR,
+    type: LOAD_BEST_NEW_TRACKS_ERROR
   };
 }
 
@@ -134,20 +134,20 @@ export function loadBestNewTracks() {
 
 export function loadNuclearNewsStart() {
   return {
-    type: LOAD_NUCLEAR_NEWS_START,
+    type: LOAD_NUCLEAR_NEWS_START
   };
 }
 
 export function loadNuclearNewsSuccess(news) {
   return {
     type: LOAD_NUCLEAR_NEWS_SUCCESS,
-    payload: news,
+    payload: news
   };
 }
 
 export function loadNuclearNewsError() {
   return {
-    type: LOAD_NUCLEAR_NEWS_ERROR,
+    type: LOAD_NUCLEAR_NEWS_ERROR
   };
 }
 
@@ -173,20 +173,20 @@ export function loadNuclearNews() {
 
 export function loadTopTracksStart() {
   return {
-    type: LOAD_TOP_TRACKS_START,
+    type: LOAD_TOP_TRACKS_START
   };
 }
 
 export function loadTopTracksSuccess(tracks) {
   return {
     type: LOAD_TOP_TRACKS_SUCCESS,
-    payload: tracks,
+    payload: tracks
   };
 }
 
 export function loadTopTracksError() {
   return {
-    type: LOAD_TOP_TRACKS_ERROR,
+    type: LOAD_TOP_TRACKS_ERROR
   };
 }
 

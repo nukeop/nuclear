@@ -7,7 +7,7 @@
   padding-bottom: 16.666%;
   background-color: $background;
   border-radius: 0.25rem;
-  transition: 0.25s;
+  transition: $short-duration;
 
   &:hover {
     background-color: $background2;
