@@ -10,6 +10,8 @@ Desktop music player focused on streaming from free sources
 
 [Twitter](https://twitter.com/nuclear_player)
 
+Support channel (Matrix): `#nuclear:matrix.org`
+
 ## What is this?
 nuclear is a free music streaming program that pulls content from free sources all over the internet.
 
