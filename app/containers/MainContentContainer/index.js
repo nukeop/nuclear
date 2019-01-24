@@ -22,6 +22,13 @@ import Downloads from '../../components/Downloads';
 import styles from './styles.scss';
 
 class MainContentContainer extends React.Component {
+  componentDidMount() {
+    if (this.props.history
+    && this.props.location
+    && this.props.location.pathname === '/') {
+      this.props.history.push('/dashboard');
+    }
+  }
 
   render() {
     return (
