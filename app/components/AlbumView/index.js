@@ -62,9 +62,14 @@ class AlbumView extends React.Component {
 
   render () {
     let { album } = this.props;
-    if (_.some(_.map([album.images, album.artists, album.genres], _.isEmpty))) {
+
+    if (
+      _.some(_.map([album.images, album.artists, album.genres], _.isEmpty)) &&
+      album.loading !== true
+    ) {
       return this.renderInvalidData();
     }
+
     let albumImage = this.getAlbumImage(album);
     return this.renderAlbumLoading(album, albumImage);
   }
@@ -169,12 +174,14 @@ class AlbumView extends React.Component {
           <Dimmer active={album.loading}>
             <Loader />
           </Dimmer>
-          {!album.loading && (
-            <div className={styles.album}>
-              {this.renderAlbumInfoBox(album, albumImage)}
-              {this.renderAlbumTracksList(album)}
-            </div>
-          )}
+          {
+            album.loading !== true && (
+              <div className={styles.album}>
+                {this.renderAlbumInfoBox(album, albumImage)}
+                {this.renderAlbumTracksList(album)}
+              </div>
+            )
+          }
         </Dimmer.Dimmable>
       </div>
     );
