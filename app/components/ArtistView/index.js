@@ -1,6 +1,5 @@
 import React from 'react';
 import { Dimmer, Loader } from 'semantic-ui-react';
-import Spacer from '../Spacer';
 import AlbumList from '../AlbumList';
 import ArtistTags from './ArtistTags';
 import SimilarArtists from './SimilarArtists';
@@ -8,7 +7,6 @@ import PopularTracks from './PopularTracks';
 
 import styles from './styles.scss';
 import artPlaceholder from '../../../resources/media/art_placeholder.png';
-import { artistInfoStart } from '../../actions';
 
 class ArtistView extends React.Component {
   constructor(props) {
@@ -18,9 +16,9 @@ class ArtistView extends React.Component {
 
   isLoading() {
     return (
-      this.props.artist.loading ||
-      !this.props.artist.lastfm ||
-      this.props.artist.lastfm.loading
+      _.get(this.props, 'artist.loading') ||
+      _.isEmpty(_.get(this.props, 'artist.lastfm')) ||
+      _.get(this.props, 'artist.lastfm.loading')
     );
   }
 
@@ -136,7 +134,7 @@ class ArtistView extends React.Component {
           </div>
           <hr />
           <AlbumList
-            albums={artist.releases}
+            albums={_.get(artist, 'releases')}
             albumInfoSearch={albumInfoSearch}
             history={history}
           />
