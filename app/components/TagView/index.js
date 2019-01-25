@@ -20,6 +20,10 @@ class TagView extends React.Component {
     this.props.artistInfoSearchByName(artistName, this.props.history);
   }
 
+  albumInfoSearchByName(albumName) {
+    this.props.albumInfoSearchByName(albumName, this.props.history);
+  }
+
   renderTagHeader(tagInfo, topArtists) {
     let { tag } = this.props;
     return <TagHeader tag={tag} tagInfo={tagInfo} topArtists={topArtists} />;
@@ -31,6 +35,16 @@ class TagView extends React.Component {
         topList={topArtists}
         onClick={this.artistInfoSearchByName.bind(this)}
         header='Top Artists'
+      />
+    );
+  }
+
+  renderTopAlbums(topAlbums) {
+    return (
+      <TagTopList
+        topList={topAlbums}
+        onClick={this.albumInfoSearchByName.bind(this)}
+        header='Top Albums'
       />
     );
   }
@@ -48,7 +62,7 @@ class TagView extends React.Component {
     return (
       <div className={styles.lists_container}>
         {this.renderTopArtists(topArtists)}
-        <TagTopList topList={topAlbums} header='Top Albums' />
+        {this.renderTopAlbums(topAlbums)}
       </div>
     );
   }
