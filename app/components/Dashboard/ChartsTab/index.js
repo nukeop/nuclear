@@ -84,7 +84,6 @@ class ChartsTab extends React.Component {
 
 
   render() {
-    let {album} = this.props;
     return (
       <Tab.Pane attached={false}>
         <div className={styles.popular_tracks_container}>
