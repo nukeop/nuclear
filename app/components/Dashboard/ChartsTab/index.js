@@ -4,7 +4,6 @@ import artPlaceholder from '../../../../resources/media/art_placeholder.png';
 import numeral from 'numeral';
 import FontAwesome from 'react-fontawesome';
 import ContextPopup from '../../ContextPopup';
-import SoundContainer from '../../../containers/SoundContainer'
 import styles from './styles.scss';
 
 class ChartsTab extends React.Component {
