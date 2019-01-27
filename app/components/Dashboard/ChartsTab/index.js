@@ -28,7 +28,7 @@ class ChartsTab extends React.Component {
   }
 
   renderAddTrackToQueueButton(track, i) {
-    let { addToQueue, play, musicSources } = this.props;
+    let { addToQueue, musicSources } = this.props;
     return (
    
         <a
