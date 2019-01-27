@@ -243,6 +243,29 @@ form {
   }
 }
 
+.featured-on {
+  .forum {
+    display: inline-flex;
+    align-items: center;
+    margin-bottom: 1em;
+
+    &:first-child {
+      margin-right: 3em;
+    }
+  }
+  
+  span {
+    display: inline-flex;
+    flex-flow: row;
+    width: 2em;
+    height: 2em;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center center;
+    margin-right: 0.5em;
+  }
+}
+
 .testimonials {
   display: flex;
   flex-flow: row;
