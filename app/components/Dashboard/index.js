@@ -1,10 +1,13 @@
 import React from 'react';
 import { Tab } from 'semantic-ui-react';
 
+import '../../../app/actions/player'
 import BestNewMusicTab from './BestNewMusicTab';
 import ChartsTab from './ChartsTab';
 import GenresTab from './GenresTab';
 import NewsTab from './NewsTab';
+import { startPlayback } from '../../../app/actions/player';
+import '../../../app/actions/queue';
 
 class Dashboard extends React.Component {
   panes() {
@@ -23,6 +26,10 @@ class Dashboard extends React.Component {
         menuItem: 'Top Tracks',
         render: () => (
           <ChartsTab
+            startPlayback = {startPlayback}
+            clearQueue = {clearQueue}
+            selectSong={selectSong}
+            addToQueue={addToQueue}
             topTracks={this.props.dashboardData.topTracks}
             addToQueue={this.props.addToQueue}
             musicSources={this.props.musicSources}
