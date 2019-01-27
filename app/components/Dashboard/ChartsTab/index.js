@@ -5,6 +5,8 @@ import numeral from 'numeral';
 import FontAwesome from 'react-fontawesome';
 import ContextPopup from '../../ContextPopup';
 import styles from './styles.scss';
+import {startPlayback} from '../../../actions/player.js';
+import {clearQueue, addToQueue, selectSong} from '../../../actions/queue.js';
 
 class ChartsTab extends React.Component {
   constructor(props) {
@@ -49,7 +51,7 @@ class ChartsTab extends React.Component {
   }
 
   renderContextPopup (track, i) {
-    let { addToQueue, musicSources, clearQueue, selectSong, startPlayback } = this.props;
+    // let { addToQueue, musicSources, clearQueue, selectSong, startPlayback } = this.props;
     return (
       <ContextPopup
         key={'popup-' + i}
@@ -69,10 +71,10 @@ class ChartsTab extends React.Component {
       <a
         href='#'
         onClick={() => {
-          this.props.clearQueue();
-          this.props.addToQueue(track, el);
-          this.props.selectSong(0);
-          this.props.startPlayback();
+          clearQueue();
+          addToQueue(track, el);
+          selectSong(0);
+          startPlayback();
         }}
         aria-label='Play this track now'
         className={styles.add_button}
