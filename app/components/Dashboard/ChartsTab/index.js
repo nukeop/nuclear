@@ -69,7 +69,6 @@ class ChartsTab extends React.Component {
       <a
         href='#'
         onClick={() => {
-          console.log(this.props)
           this.props.clearQueue();
           this.props.addToQueue(track, el);
           this.props.selectSong(0);
