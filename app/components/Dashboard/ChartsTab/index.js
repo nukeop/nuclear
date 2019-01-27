@@ -4,7 +4,7 @@ import artPlaceholder from '../../../../resources/media/art_placeholder.png';
 import numeral from 'numeral';
 import FontAwesome from 'react-fontawesome';
 import ContextPopup from '../../ContextPopup';
-
+import SoundContainer from '../../../containers/SoundContainer'
 import styles from './styles.scss';
 
 class ChartsTab extends React.Component {
@@ -27,16 +27,10 @@ class ChartsTab extends React.Component {
     );
   }
 
-  renderContextPopup(track, i) {
-    let { addToQueue, musicSources } = this.props;
+  renderAddTrackToQueueButton(track, i) {
+    let { addToQueue, play, musicSources } = this.props;
     return (
-      <ContextPopup
-        key={'popup-' + i}
-        artist={track.artist.name}
-        title={track.name}
-        thumb={track.image[1]['#text']}
-        trigger={this.renderTrackRow(track, i)}
-      >
+   
         <a
           href='#'
           className='add_button'
@@ -49,13 +43,49 @@ class ChartsTab extends React.Component {
           }}
           aria-label='Add track to queue'
         >
+        
           <FontAwesome name='plus' /> Add to queue
         </a>
-      </ContextPopup>
     );
   }
 
+  renderContextPopup (track, i) {
+    let { addToQueue, musicSources, clearQueue, selectSong, startPlayback } = this.props;
+    return (
+      <ContextPopup
+        key={'popup-' + i}
+        artist={track.artist.name}
+        title={track.name}
+        thumb={track.image[1]['#text']}
+        trigger={this.renderTrackRow(track, i)}
+      >
+      {this.renderAddTrackToQueueButton(track, i)}
+      {this.renderPlayTrackButton(track, i)}
+    </ContextPopup>
+    );
+  }
+
+  renderPlayTrackButton (track, el) {
+    return (
+      <a
+        href='#'
+        onClick={() => {
+          this.props.clearQueue();
+          this.addToQueue(track, el);
+          this.props.selectSong(0);
+          this.props.startPlayback();
+        }}
+        aria-label='Play this track now'
+        className={styles.add_button}
+      >
+        <FontAwesome name='play' /> Play now
+      </a>
+    );
+  }
+
+
   render() {
+    let {album} = this.props;
     return (
       <Tab.Pane attached={false}>
         <div className={styles.popular_tracks_container}>
