@@ -1,51 +1,78 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import * as Actions from '../../actions';
-import * as DashboardActions from '../../actions/dashboard';
-import * as QueueActions from '../../actions/queue';
+import { Tab } from 'semantic-ui-react';
 
-import Dashboard from '../../components/Dashboard';
+import '../../../app/actions/player'
+import BestNewMusicTab from './BestNewMusicTab';
+import ChartsTab from './ChartsTab';
+import GenresTab from './GenresTab';
+import NewsTab from './NewsTab';
+import { startPlayback } from '../../../app/actions/player';
+import '../../../app/actions/queue';
 
-class DashboardContainer extends React.Component {
+class Dashboard extends React.Component {
+  panes() {
+    return [
+      {
+        menuItem: 'Best new music',
+        render: () => (
+          <BestNewMusicTab
+            dashboardData={this.props.dashboardData}
+            artistInfoSearchByName={this.props.artistInfoSearchByName}
+            history={this.props.history}
+          />
+        )
+      },
+      {
+        menuItem: 'Top Tracks',
+        render: () => (
+          <ChartsTab
+            startPlayback = {startPlayback}
+            clearQueue = {clearQueue}
+            selectSong={selectSong}
+            addToQueue={addToQueue}
+            topTracks={this.props.dashboardData.topTracks}
+            addToQueue={this.props.addToQueue}
+            musicSources={this.props.musicSources}
+          />
+        )
+      },
+      {
+        menuItem: 'Genres',
+        render: () => (
+          <GenresTab
+            genres={this.props.dashboardData.topTags}
+            history={this.props.history}
+          />
+        )
+      },
+      /* {
+        menuItem: 'Events',
+        render: () => {
+          return null;
+        },
+      },*/
+      {
+        menuItem: 'News',
+        render: () => <NewsTab news={this.props.dashboardData.news} />
+      }
+    ];
+  }
+
+  componentDidMount() {
+    this.props.loadBestNewTracks();
+    this.props.loadBestNewAlbums();
+    this.props.loadNuclearNews();
+    this.props.loadTopTags();
+    this.props.loadTopTracks();
+  }
+
   render() {
-    let { actions, dashboard, history, musicSources } = this.props;
-
     return (
-      <Dashboard
-        albumInfoSearch={actions.albumInfoSearch}
-        artistInfoSearchByName={actions.artistInfoSearchByName}
-        loadBestNewAlbums={actions.loadBestNewAlbums}
-        loadBestNewTracks={actions.loadBestNewTracks}
-        loadNuclearNews={actions.loadNuclearNews}
-        loadTopTags={actions.loadTopTags}
-        loadTopTracks={actions.loadTopTracks}
-        dashboardData={dashboard}
-        history={history}
-        addToQueue={actions.addToQueue}
-        musicSources={this.props.musicSources}
-      />
+      <div>
+        <Tab menu={{ secondary: true, pointing: true }} panes={this.panes()} />
+      </div>
     );
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    dashboard: state.dashboard,
-    musicSources: state.plugin.plugins.musicSources
-  };
-}
-
-function mapDispatchToProps(dispatch) {
-  return {
-    actions: bindActionCreators(
-      Object.assign({}, Actions, DashboardActions, QueueActions),
-      dispatch
-    )
-  };
-}
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(DashboardContainer);
+export default Dashboard;
