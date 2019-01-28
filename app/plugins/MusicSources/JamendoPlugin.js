@@ -18,7 +18,7 @@ class JamendoPlugin extends MusicSourcePlugin {
         return null;
       }
 
-      let track = responseJson.results[0].tracks[0];
+      const track = responseJson.results[0].tracks[0];
 
       return {
         source: this.sourceName,
