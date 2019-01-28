@@ -1,5 +1,4 @@
 import React from 'react';
-import { bindActionCreators } from 'redux';
 import { Tab } from 'semantic-ui-react';
 import artPlaceholder from '../../../../resources/media/art_placeholder.png';
 import numeral from 'numeral';
