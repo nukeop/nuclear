@@ -8,24 +8,29 @@ class TracksResults extends React.Component {
     super(props);
   }
 
-  renderTrack (track, index = 0) {
+  renderTrack(track, index = 0) {
     let addToQueue = this.props.addToQueue;
     return (
-      <div key={'track-' + index} className={styles.track_row} onClick={() => {
-        addToQueue(this.props.musicSources, {
-          artist: track.name,
-          name: track.name,
-          thumbnail: track.image[1]['#text']
-        });
-      }}>
+      <div
+        key={'track-' + index}
+        className={styles.track_row}
+        onClick={() => {
+          addToQueue(this.props.musicSources, {
+            artist: track.artist,
+            name: track.name,
+            thumbnail: track.image[1]['#text'],
+          });
+        }}
+      >
         <img src={track.image[0]['#text'] || artPlaceholder} />
-        <div className={styles.popular_track_name}>{track.artist} - {track.name}</div>
-
+        <div className={styles.popular_track_name}>
+          {track.artist} - {track.name}
+        </div>
       </div>
     );
   }
 
-  render () {
+  render() {
     let collection = this.props.tracks || [];
     let limit = this.props.limit;
     if (collection.length == 0) {
@@ -33,15 +38,15 @@ class TracksResults extends React.Component {
     } else {
       return (
         <div className={styles.popular_tracks_container}>
-          {
-            (collection || []).slice(0, limit).map((track, i) => {
-              if (track) {
-                if (track.name && track.image && track.artist) {
-                  { return this.renderTrack(track, i); }
+          {(collection || []).slice(0, limit).map((track, i) => {
+            if (track) {
+              if (track.name && track.image && track.artist) {
+                {
+                  return this.renderTrack(track, i);
                 }
               }
-            })
-          }
+            }
+          })}
         </div>
       );
     }
