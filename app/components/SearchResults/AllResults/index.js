@@ -2,8 +2,8 @@ import React from 'react';
 import artPlaceholder from '../../../../resources/media/art_placeholder.png';
 
 import Card from '../../Card';
-import PlaylistResults from '../PlaylistResults'
-import TracksResults from '../TracksResults'
+import PlaylistResults from '../PlaylistResults';
+import TracksResults from '../TracksResults';
 
 import styles from './styles.scss';
 
@@ -29,9 +29,9 @@ class AllResults extends React.Component {
     return (<TracksResults
       addToQueue={this.props.addToQueue}
       tracks={arr}
-      limit='5'
+      limit={limit}
       musicSources={this.props.musicSources}
-    />)
+    />);
   }
 
   renderPlaylistSection () {
@@ -44,33 +44,29 @@ class AllResults extends React.Component {
             playlistSearchResults={this.props.playlistSearchResults}
             addToQueue={this.props.addToQueue}
             musicSources={this.props.musicSources}
-          ></PlaylistResults>
+          />
         </div>
-      </div>)
+      </div>);
+  }
+
+  renderSection (title, collection, onClick) {
+    return (<div className={styles.column}>
+      <h3>{title}</h3>
+      <div className={styles.row}>
+        {this.renderResults(
+          collection,
+          onClick
+        )}
+      </div>
+    </div>);
   }
 
   renderArtistsSection () {
-    return (<div className={styles.column}>
-      <h3>Artists</h3>
-      <div className={styles.row}>
-        {this.renderResults(
-          this.props.artistSearchResults,
-          this.props.artistInfoSearch
-        )}
-      </div>
-    </div>)
+    return this.renderSection('Artists', this.props.artistSearchResults, this.props.artistInfoSearch);
   }
 
   renderAlbumsSection () {
-    return (<div className={styles.column}>
-      <h3>Albums</h3>
-      <div className={styles.row}>
-        {this.renderResults(
-          this.props.albumSearchResults,
-          this.props.albumInfoSearch
-        )}
-      </div>
-    </div>)
+    return this.renderSection('Albums', this.props.albumSearchResults, this.props.albumInfoSearch);
   }
 
   renderTracksSection () {
@@ -79,7 +75,7 @@ class AllResults extends React.Component {
       <div className={styles.row}>
         {this.renderTracks(this.props.trackSearchResults.info)}
       </div>
-    </div>)
+    </div>);
   }
 
   render () {
