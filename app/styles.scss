@@ -112,6 +112,7 @@
   display: flex;
   flex: 1 1 auto;
   flex-flow: row;
+  overflow: hidden;
 }
 
 .version_string {
