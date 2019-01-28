@@ -25,6 +25,9 @@ class Dashboard extends React.Component {
           <ChartsTab
             topTracks={this.props.dashboardData.topTracks}
             addToQueue={this.props.addToQueue}
+            selectSong={this.props.selectSong}
+            clearQueue={this.props.clearQueue}
+            startPlayback={this.props.startPlayback}
             musicSources={this.props.musicSources}
           />
         )
