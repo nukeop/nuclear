@@ -2,7 +2,6 @@ import React from 'react';
 import FontAwesome from 'react-fontawesome';
 import numeral from 'numeral';
 import artPlaceholder from '../../../../resources/media/art_placeholder.png';
-
 import ContextPopup from '../../ContextPopup';
 
 import styles from './styles.scss';

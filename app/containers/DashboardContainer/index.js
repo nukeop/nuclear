@@ -4,6 +4,8 @@ import { bindActionCreators } from 'redux';
 import * as Actions from '../../actions';
 import * as DashboardActions from '../../actions/dashboard';
 import * as QueueActions from '../../actions/queue';
+import * as PlayerActions from '../../actions/player';
+
 
 import Dashboard from '../../components/Dashboard';
 
@@ -24,6 +26,9 @@ class DashboardContainer extends React.Component {
         history={history}
         addToQueue={actions.addToQueue}
         musicSources={this.props.musicSources}
+        startPlayback={actions.startPlayback}
+        clearQueue={actions.clearQueue}
+        selectSong={actions.selectSong}
       />
     );
   }
@@ -39,7 +44,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     actions: bindActionCreators(
-      Object.assign({}, Actions, DashboardActions, QueueActions),
+      Object.assign({}, Actions, DashboardActions, QueueActions, PlayerActions),
       dispatch
     )
   };
