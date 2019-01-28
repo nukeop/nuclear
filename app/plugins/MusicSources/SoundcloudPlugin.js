@@ -23,7 +23,8 @@ class SoundcloudPlugin extends MusicSourcePlugin {
     };
   }
 
-  search(terms) {
+  search(query) {
+    let terms = query.artist + ' ' + query.track;
     return Soundcloud.soundcloudSearch(terms)
       .then(data => data.json())
       .then(results => {
@@ -36,7 +37,8 @@ class SoundcloudPlugin extends MusicSourcePlugin {
       });
   }
 
-  getAlternateStream(terms, currentStream) {
+  getAlternateStream(query, currentStream) {
+    let terms = query.artist + ' ' + query.track;
     return Soundcloud.soundcloudSearch(terms)
       .then(data => data.json())
       .then(results => {
