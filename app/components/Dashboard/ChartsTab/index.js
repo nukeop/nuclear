@@ -5,8 +5,6 @@ import artPlaceholder from '../../../../resources/media/art_placeholder.png';
 import numeral from 'numeral';
 import FontAwesome from 'react-fontawesome';
 import ContextPopup from '../../ContextPopup';
-import * as QueueActions from '../../../actions/queue';
-import * as PlayerActions from '../../../actions/player';
 
 
 
@@ -15,7 +13,6 @@ import styles from './styles.scss';
 class ChartsTab extends React.Component {
   constructor(props) {
     super(props);
-    console.log(props)
   }
 
   renderTrackRow(track, i) {
@@ -32,27 +29,7 @@ class ChartsTab extends React.Component {
       </tr>
     );
   }
-  /*  renderPlayTrackButton(track, index) {
-    let { artist, selectSong, startPlayback, clearQueue } = this.props;
 
-    return (
-      <a
-        key={'play-track-' + index}
-        href='#'
-        onClick={() => {
-          clearQueue();
-          this.addToQueue(artist, track);
-          selectSong(0);
-          startPlayback();
-        }}
-        className={styles.add_button}
-        aria-label='Play this track now'
-      >
-        <FontAwesome name='play' /> Play now
-      </a>
-    );
-  } */
-//--------------------------------------------
   renderContextPopup(track, i) {
     let { addToQueue, musicSources } = this.props;
     return (
@@ -99,7 +76,6 @@ class ChartsTab extends React.Component {
       </ContextPopup>
     );
   }
-  //--------------------------------------------------------
 
   render() {
     return (
