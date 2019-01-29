@@ -57,7 +57,7 @@
     "react-beautiful-dnd": "^9.0.0",
     "react-dom": "^16.3.2",
     "react-image-smooth-loading": "^2.0.0",
-    "react-range-progress": "^4.0.3",
+    "react-range-progress": "^4.0.2",
     "react-router-transition": "^1.2.1",
     "react-sound": "^1.1.0",
     "semantic-ui-react": "^0.82.1",
