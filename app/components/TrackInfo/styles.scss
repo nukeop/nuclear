@@ -1,20 +1,15 @@
 .track_info_container {
-  display: flex;
-
+  display: flex 1;
   margin: 10px 20px;
-
   color: #f8f8f2;
-
   flex-flow: column;
+  flex-wrap: wrap;
+  overflow: hidden;
 }
 
 .track_name {
   margin-bottom: 10px;
-
   font-size: 22px;
-
-  flex: 1 1 auto;
-
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -22,11 +17,8 @@
 
 .artist_name {
   color: rgba(248, 248, 242, 0.5);
-
   font-size: 16px;
-
   flex: 1 1 auto;
-
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
