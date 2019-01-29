@@ -8,14 +8,14 @@ import { formatDuration } from '../../utils';
 import styles from './styles.scss';
 
 class TrackRow extends React.Component {
-  renderAddTrackToQueueButton (track, index, artist, addToQueue, musicSources) {
+  renderAddTrackToQueueButton (track, index, addToQueue, musicSources) {
     return (
       <a
         key={'add-track-' + index}
         href='#'
         onClick={() =>
           addToQueue(musicSources, {
-            artist: artist.name,
+            artist: track.artist.name,
             name: track.name,
             thumbnail: track.image[0]['#text'] || artPlaceholder
           })
@@ -31,7 +31,7 @@ class TrackRow extends React.Component {
   renderPlayTrackButton (
     index,
     track,
-    artist,
+
     clearQueue,
     addToQueue,
     selectSong,
@@ -45,7 +45,7 @@ class TrackRow extends React.Component {
         onClick={() => {
           clearQueue();
           addToQueue(musicSources, {
-            artist: artist.name,
+            artist: track.artist.name,
             name: track.name,
             thumbnail: track.image[0]['#text'] || artPlaceholder
           });
@@ -84,14 +84,12 @@ class TrackRow extends React.Component {
       this.renderAddTrackToQueueButton(
         track,
         index,
-        artist,
         addToQueue,
         musicSources
       ),
       this.renderPlayTrackButton(
         index,
         track,
-        artist,
         clearQueue,
         addToQueue,
         selectSong,
@@ -99,7 +97,7 @@ class TrackRow extends React.Component {
         musicSources
       )
     ];
-    console.log(this.props);
+    // console.log(this.props);
     return (
       <ContextPopup
         key={'track-' + index}
@@ -117,7 +115,7 @@ class TrackRow extends React.Component {
             {this.props.displayPlayCount ? <td className={styles.playcount}>{numeral(track.playcount).format('0,0')}</td> : null}
           </tr>
         }
-        artist={artist.name}
+        artist={track.artist.name}
         title={track.name}
         thumb={track.image[0]['#text'] || artPlaceholder}
       >

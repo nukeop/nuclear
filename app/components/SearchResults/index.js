@@ -24,6 +24,9 @@ class SearchResults extends React.Component {
               artistInfoSearch={this.artistInfoSearch.bind(this)}
               addToQueue={this.props.addToQueue}
               musicSources={this.props.musicSources}
+              clearQueue={this.props.clearQueue}
+              startPlayback={this.props.startPlayback}
+              selectSong={this.props.selectSong}
             />
           </div>
         </div>
@@ -63,6 +66,7 @@ class SearchResults extends React.Component {
 
   renderLastFmPane (collection) {
     if (collection !== undefined) {
+
       return (
         <Tab.Pane loading={this.props.unifiedSearchStarted} attached={false}>
           <div className={styles.pane_container}>
@@ -70,7 +74,10 @@ class SearchResults extends React.Component {
               ? this.props.unifiedSearchStarted
                 ? null
                 : <TracksResults
+                  clearQueue={this.props.clearQueue}
                   addToQueue={this.props.addToQueue}
+                  startPlayback={this.props.startPlayback}
+                  selectSong={this.props.selectSong}
                   tracks={collection}
                   limit='15'
                 />
@@ -93,7 +100,7 @@ class SearchResults extends React.Component {
       playlistSearchResults={this.props.playlistSearchResults}
       addToQueue={this.props.addToQueue}
       musicSources={this.props.musicSources}
-    ></PlaylistResults>)
+    />);
   }
 
   panes () {
@@ -121,8 +128,7 @@ class SearchResults extends React.Component {
       {
         menuItem: 'Tracks',
         render: () => this.renderLastFmPane(this.props.trackSearchResults.info)
-      }
-      ,
+      },
       {
         menuItem: 'Playlist',
         render: () => this.renderPlaylistPane(this.props.playlistSearchResults)

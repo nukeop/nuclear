@@ -2,9 +2,9 @@ import React from 'react';
 import { Tab } from 'semantic-ui-react';
 import artPlaceholder from '../../../../resources/media/art_placeholder.png';
 import numeral from 'numeral';
+import TrackRow from '../../TrackRow';
 import FontAwesome from 'react-fontawesome';
 import ContextPopup from '../../ContextPopup';
-
 
 
 import styles from './styles.scss';
@@ -14,7 +14,7 @@ class ChartsTab extends React.Component {
     super(props);
   }
 
-  renderTrackRow(track, i) {
+  /* renderTrackRow (track, i) {
     return (
       <tr key={'toptrack-' + i} className={styles.track}>
         <td>
@@ -29,7 +29,7 @@ class ChartsTab extends React.Component {
     );
   }
 
-  renderContextPopup(track, i) {
+  renderContextPopup (track, i) {
     let { addToQueue, musicSources } = this.props;
     return (
       <ContextPopup
@@ -74,9 +74,9 @@ class ChartsTab extends React.Component {
         </a>
       </ContextPopup>
     );
-  }
+  }*/
 
-  render() {
+  render () {
     return (
       <Tab.Pane attached={false}>
         <div className={styles.popular_tracks_container}>
@@ -93,8 +93,20 @@ class ChartsTab extends React.Component {
               </tr>
             </thead>
             <tbody>
-              {this.props.topTracks.map((track, i) => {
-                return this.renderContextPopup(track, i);
+              {this.props.topTracks.map((track, index) => {
+                return <TrackRow
+                  key={'popular-track-row-' + index}
+                  track={track}
+                  index={'popular-track-' + index}
+                  clearQueue={this.props.clearQueue}
+                  addToQueue={this.props.addToQueue}
+                  startPlayback={this.props.startPlayback}
+                  selectSong={this.props.selectSong}
+                  musicSources={this.props.musicSources}
+                  displayArtist={true}
+                  displayDuration={false}
+                  displayPlayCount={true}
+                />;
               })}
             </tbody>
           </table>
