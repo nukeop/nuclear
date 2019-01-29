@@ -3,11 +3,12 @@ import numeral from 'numeral';
 import FontAwesome from 'react-fontawesome';
 import artPlaceholder from '../../../resources/media/art_placeholder.png';
 import ContextPopup from '../ContextPopup';
+import { formatDuration } from '../../utils';
 
 import styles from './styles.scss';
 
 class TrackRow extends React.Component {
-  renderAddTrackToQueueButton(track, index, artist, addToQueue, musicSources) {
+  renderAddTrackToQueueButton (track, index, artist, addToQueue, musicSources) {
     return (
       <a
         key={'add-track-' + index}
@@ -27,7 +28,7 @@ class TrackRow extends React.Component {
     );
   }
 
-  renderPlayTrackButton(
+  renderPlayTrackButton (
     index,
     track,
     artist,
@@ -59,7 +60,15 @@ class TrackRow extends React.Component {
     );
   }
 
-  render() {
+  renderDuration (track) {
+    return (
+      <td className={styles.track_duration}>
+        {formatDuration(track.duration)}
+      </td>
+    );
+  }
+
+  render () {
     let {
       index,
       track,
@@ -94,13 +103,25 @@ class TrackRow extends React.Component {
       <ContextPopup
         key={'track-' + index}
         trigger={
-          <div className={styles.track_row}>
+          /* <div className={styles.track_row}>
             <img src={track.image[0]['#text'] || artPlaceholder} />
             <div className={styles.row_track_name}>{track.name}</div>
             <div className={styles.playcount}>
               {numeral(track.playcount).format('0,0')} plays
             </div>
-          </div>
+          </div>*/
+          <tr className={styles.track}>
+            <td
+              style={{
+                backgroundImage: `url(${track.image[1]['#text']})`
+              }}
+              className={styles.track_thumbnail}
+            />
+            {this.props.displayArtist ? <td className={styles.track_artist}>{track.artist.name}</td> : null}
+            <td className={styles.track_name}>{track.name}</td>
+            {this.props.displayDuration ? this.renderDuration(track) : null}
+            {this.props.displayPlayCount ? <td className={styles.playcount}>{numeral(track.playcount).format('0,0')} plays</td> : null}
+          </tr>
         }
         artist={artist.name}
         title={track.name}
