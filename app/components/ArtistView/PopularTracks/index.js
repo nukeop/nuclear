@@ -28,7 +28,7 @@ class PopularTracks extends React.Component {
         onClick={() => {
           tracks.track
             .slice(0, this.state.expanded ? 15 : 5)
-            .map((track, index) => {
+            .map(track => {
               this.props.addToQueue(this.props.musicSources, {
                 artist: artist.name,
                 name: track.name,

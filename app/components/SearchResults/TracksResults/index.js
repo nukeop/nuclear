@@ -1,34 +1,11 @@
 import React from 'react';
-import artPlaceholder from '../../../../resources/media/art_placeholder.png';
+
 import TrackRow from '../../TrackRow';
-import styles from './styles.scss';
 
 class TracksResults extends React.Component {
   constructor(props) {
     super(props);
   }
-
-  /* renderTrack (track, index = 0) {
-    let addToQueue = this.props.addToQueue;
-    return (
-      <div
-        key={'track-' + index}
-        className={styles.track_row}
-        onClick={() => {
-          addToQueue(this.props.musicSources, {
-            artist: track.artist,
-            name: track.name,
-            thumbnail: track.image[1]['#text']
-          });
-        }}
-      >
-        <img src={track.image[0]['#text'] || artPlaceholder} />
-        <div className={styles.popular_track_name}>
-          {track.artist} - {track.name}
-        </div>
-      </div>
-    );
-  }*/
 
   render () {
     let collection = this.props.tracks || [];
