@@ -94,7 +94,6 @@ class TagTopTracks extends React.Component {
           </thead>
           <tbody>
             {tracks.map((track, index) => {
-              // console.log(track);
               return < TrackRow
                 key={'tag-track-row-' + index}
                 track={track}
