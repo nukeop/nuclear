@@ -29,7 +29,7 @@ class VolumeSlider extends React.Component {
 
 const volume_slider_colors = {
   fillColor: { r: 248, g: 248, b: 242, a: 1 },
-  trackColor: { r: 248, g: 248, b: 242, a: 0.75 },
+  trackColor: { r: 68, g: 71, b: 90, a: 1 },
   thumbColor: { r: 248, g: 248, b: 242, a: 1 }
 };
 

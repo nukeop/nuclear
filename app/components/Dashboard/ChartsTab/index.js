@@ -82,15 +82,16 @@ class ChartsTab extends React.Component {
         <div className={styles.popular_tracks_container}>
           <h3>Top Tracks from LastFm.</h3>
           <table>
-            <thead>
+            <thead className={styles.popular_tracks_header}>
               <tr>
                 <th>
-                  <FontAwesome name='photo' />
+                  <FontAwesome name='' />
                 </th>
                 <th>Artist</th>
                 <th>Title</th>
                 <th>Playcounts</th>
               </tr>
+              <tr></tr>
             </thead>
             <tbody>
               {this.props.topTracks.map((track, i) => {
