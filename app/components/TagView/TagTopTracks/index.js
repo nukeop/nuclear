@@ -4,13 +4,14 @@ import FontAwesome from 'react-fontawesome';
 import { formatDuration } from '../../../utils';
 import ContextPopup from '../../ContextPopup';
 import styles from './styles.scss';
+import TrackRow from '../../TrackRow';
 
 class TagTopTracks extends React.Component {
   constructor(props) {
     super(props);
   }
 
-  renderContextPopup(track, i) {
+  renderContextPopup (track, i) {
     let { addToQueue, musicSources } = this.props;
     return (
       <ContextPopup
@@ -52,7 +53,7 @@ class TagTopTracks extends React.Component {
     );
   }
 
-  renderAddAllButton() {
+  renderAddAllButton () {
     let { tracks, addToQueue, musicSources } = this.props;
     return (
       <a
@@ -75,7 +76,7 @@ class TagTopTracks extends React.Component {
     );
   }
 
-  render() {
+  render () {
     let { tracks, addToQueue, musicSources } = this.props;
     return (
       <div className={styles.tag_top_tracks}>
@@ -92,8 +93,22 @@ class TagTopTracks extends React.Component {
             </tr>
           </thead>
           <tbody>
-            {tracks.map((track, i) => {
-              return this.renderContextPopup(track, i);
+            {tracks.map((track, index) => {
+              // console.log(track);
+              return < TrackRow
+                key={'tag-track-row-' + index}
+                track={track}
+                index={'popular-track-' + index}
+                artist={track.artist}
+                clearQueue={this.props.clearQueue}
+                addToQueue={this.props.addToQueue}
+                startPlayback={this.props.startPlayback}
+                selectSong={this.props.selectSong}
+                musicSources={this.props.musicSources}
+                displayArtist={true}
+                displayDuration={true}
+                displayPlayCount={false}
+              />;
             })}
           </tbody>
         </table>

@@ -13,7 +13,7 @@ class TagViewContainer extends React.Component {
     super(props);
   }
 
-  render() {
+  render () {
     let {
       actions,
       match,
@@ -31,19 +31,22 @@ class TagViewContainer extends React.Component {
         tag={match.params.tagName}
         tags={tags}
         musicSources={musicSources}
+        clearQueue={actions.clearQueue}
+        selectSong={actions.selectSong}
+        startPlayback={actions.startPlayback}
       />
     );
   }
 }
 
-function mapStateToProps(state) {
+function mapStateToProps (state) {
   return {
     tags: state.tags,
     musicSources: state.plugin.plugins.musicSources
   };
 }
 
-function mapDispatchToProps(dispatch) {
+function mapDispatchToProps (dispatch) {
   return {
     actions: bindActionCreators(Object.assign({}, Actions, TagActions, QueueActions), dispatch)
   };
