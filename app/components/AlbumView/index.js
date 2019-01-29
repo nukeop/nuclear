@@ -4,6 +4,8 @@ import { Dimmer, Loader, Image, Segment } from 'semantic-ui-react';
 import _ from 'lodash';
 
 import ContextPopup from '../ContextPopup';
+import TrackRow from '../TrackRow';
+import * as Utils from '../../utils';
 
 import styles from './styles.scss';
 import artPlaceholder from '../../../resources/media/art_placeholder.png';
@@ -202,65 +204,91 @@ class AlbumView extends React.Component {
           </tr>
         </thead>
         <tbody>
-          {album.tracklist.map((el, i) =>
-            this.renderContextPopup(album, el, i)
+          {album.tracklist.map((track, index) => {
+            track.artist = this.getArtistName(track, album);
+            track.name = track.title;
+            if (parseInt(track.duration) !== track.duration) {
+              track.duration = Utils.stringDurationToSeconds(track.duration);
+            }
+            _.set(track, 'image[0][#text]', _.get(album, 'images[0].uri'));
+
+            return (<TrackRow
+              key={'album-track-row-' + index}
+              track={track}
+              index={'album-track-' + index}
+              clearQueue={this.props.clearQueue}
+              addToQueue={this.props.addToQueue}
+              startPlayback={this.props.startPlayback}
+              selectSong={this.props.selectSong}
+              musicSources={this.props.musicSources}
+              displayCover={false}
+              displayTrackNumber={true}
+              displayArtist={false}
+              displayDuration={true}
+              displayPlayCount={false}
+            />);
+
+            // return this.renderContextPopup(album, track, index);
+          }
           )}
         </tbody>
       </table>
     );
   }
+  /* 
+    renderContextPopup (album, el, i) {
+      return (
+        <ContextPopup
+          key={i}
+          trigger={
+            <tr>
+              <td className={styles.center}>{i + 1}</td>
+              <td className={styles.left}>{el.title}</td>
+              <td className={styles.center}>{el.duration}</td>
+            </tr>
+          }
+          artist={album.artists[0].name}
+          title={el.title}
+          thumb={album.images[0].uri}
+        >
+          {this.renderAddTrackToQueueButton(album, el)}
+          {this.renderPlayTrackButton(album, el)}
+        </ContextPopup>
+      );
+    }
+  
+    renderPlayTrackButton (album, el) {
+      return (
+        <a
+          href='#'
+          onClick={() => {
+            this.props.clearQueue();
+            this.addToQueue(album, el);
+            this.props.selectSong(0);
+            this.props.startPlayback();
+          }}
+          aria-label='Play this track now'
+          className={styles.add_button}
+        >
+          <FontAwesome name='play' /> Play now
+        </a>
+      );
+    }
+  
+    renderAddTrackToQueueButton (album, el) {
+      return (
+        <a
+          href='#'
+          onClick={() => this.addToQueue(album, el)}
+          className={styles.add_button}
+          aria-label='Add track to queue'
+        >
+          <FontAwesome name='plus' /> Add to queue
+        </a>
+      );
+    }
+    */
 
-  renderContextPopup (album, el, i) {
-    return (
-      <ContextPopup
-        key={i}
-        trigger={
-          <tr>
-            <td className={styles.center}>{i + 1}</td>
-            <td className={styles.left}>{el.title}</td>
-            <td className={styles.center}>{el.duration}</td>
-          </tr>
-        }
-        artist={album.artists[0].name}
-        title={el.title}
-        thumb={album.images[0].uri}
-      >
-        {this.renderAddTrackToQueueButton(album, el)}
-        {this.renderPlayTrackButton(album, el)}
-      </ContextPopup>
-    );
-  }
-
-  renderPlayTrackButton (album, el) {
-    return (
-      <a
-        href='#'
-        onClick={() => {
-          this.props.clearQueue();
-          this.addToQueue(album, el);
-          this.props.selectSong(0);
-          this.props.startPlayback();
-        }}
-        aria-label='Play this track now'
-        className={styles.add_button}
-      >
-        <FontAwesome name='play' /> Play now
-      </a>
-    );
-  }
-
-  renderAddTrackToQueueButton (album, el) {
-    return (
-      <a
-        href='#'
-        onClick={() => this.addToQueue(album, el)}
-        className={styles.add_button}
-        aria-label='Add track to queue'
-      >
-        <FontAwesome name='plus' /> Add to queue
-      </a>
-    );
-  }
   renderOptionsButtons (album) {
     return (
       <ContextPopup

@@ -1,4 +1,5 @@
 import React from 'react';
+import _ from 'lodash';
 import numeral from 'numeral';
 import FontAwesome from 'react-fontawesome';
 import artPlaceholder from '../../../resources/media/art_placeholder.png';
@@ -31,7 +32,6 @@ class TrackRow extends React.Component {
   renderPlayTrackButton (
     index,
     track,
-
     clearQueue,
     addToQueue,
     selectSong,
@@ -55,12 +55,16 @@ class TrackRow extends React.Component {
         className={styles.add_button}
         aria-label='Play this track now'
       >
+
         <FontAwesome name='play' /> Play now
       </a>
     );
   }
 
   renderDuration (track) {
+    if (track.duration === 0) {
+      return <td className={styles.track_duration} />;
+    }
     return (
       <td className={styles.track_duration}>
         {formatDuration(track.duration)}
@@ -72,7 +76,6 @@ class TrackRow extends React.Component {
     let {
       index,
       track,
-      artist,
       clearQueue,
       addToQueue,
       selectSong,
@@ -98,17 +101,19 @@ class TrackRow extends React.Component {
       )
     ];
     // console.log(this.props);
+
     return (
       <ContextPopup
         key={'track-' + index}
         trigger={
           <tr className={styles.track}>
-            <td
+            {this.props.displayCover ? <td
               style={{
                 backgroundImage: `url(${track.image[0]['#text'] || artPlaceholder})`
               }}
               className={styles.track_thumbnail}
-            />
+            /> : null}
+            {this.props.displayTrackNumber ? <td className={styles.track_artist}>{track.position}</td> : null}
             {this.props.displayArtist ? <td className={styles.track_artist}>{track.artist.name}</td> : null}
             <td className={styles.track_name}>{track.name}</td>
             {this.props.displayDuration ? this.renderDuration(track) : null}
@@ -117,7 +122,7 @@ class TrackRow extends React.Component {
         }
         artist={track.artist.name}
         title={track.name}
-        thumb={track.image[0]['#text'] || artPlaceholder}
+        thumb={_.get(track, 'image[0][#text]', artPlaceholder)}
       >
         {popupContents}
       </ContextPopup>
