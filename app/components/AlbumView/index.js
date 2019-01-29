@@ -1,6 +1,6 @@
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
-import { Dimmer, Loader, Image, Segment } from 'semantic-ui-react';
+import { Dimmer, Loader } from 'semantic-ui-react';
 import _ from 'lodash';
 
 import ContextPopup from '../ContextPopup';
@@ -41,7 +41,7 @@ class AlbumView extends React.Component {
   }
 
   addAlbumToQueue (album) {
-    album.tracklist.map((track, i) => {
+    album.tracklist.map(track => {
       this.props.addToQueue(this.props.musicSources, {
         artist: album.artists[0].name,
         name: track.title,
