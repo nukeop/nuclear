@@ -14,13 +14,13 @@ class PopularTracks extends React.Component {
     };
   }
 
-  toggleExpand() {
+  toggleExpand () {
     this.setState(prevState => {
       return { expanded: !prevState.expanded };
     });
   }
 
-  renderAddAllButton(artist, tracks) {
+  renderAddAllButton (artist, tracks) {
     return (
       <a
         key='add-all-tracks-to-queue'
@@ -44,30 +44,46 @@ class PopularTracks extends React.Component {
     );
   }
 
-  render() {
+  render () {
     let { artist, tracks } = this.props;
 
     return (
       <div className={styles.popular_tracks_container}>
         <div className={styles.header}>Popular tracks:</div>
         {this.renderAddAllButton(artist, tracks)}
-        {tracks.track
-          .slice(0, this.state.expanded ? 15 : 5)
-          .map((track, index) => {
-            return (
-              <TrackRow
-                key={'popular-track-row-' + index}
-                track={track}
-                index={'popular-track-' + index}
-                artist={artist}
-                clearQueue={this.props.clearQueue}
-                addToQueue={this.props.addToQueue}
-                startPlayback={this.props.startPlayback}
-                selectSong={this.props.selectSong}
-                musicSources={this.props.musicSources}
-              />
-            );
-          })}
+        <table>
+          <thead>
+            <tr>
+              <th>
+                <FontAwesome name='photo' />
+              </th>
+              <th>Title</th>
+              <th>Play Counts</th>
+            </tr>
+          </thead>
+          <tbody>
+            {tracks.track
+              .slice(0, this.state.expanded ? 15 : 5)
+              .map((track, index) => {
+                return (
+                  <TrackRow
+                    key={'popular-track-row-' + index}
+                    track={track}
+                    index={'popular-track-' + index}
+                    artist={artist}
+                    clearQueue={this.props.clearQueue}
+                    addToQueue={this.props.addToQueue}
+                    startPlayback={this.props.startPlayback}
+                    selectSong={this.props.selectSong}
+                    musicSources={this.props.musicSources}
+                    displayArtist={false}
+                    displayDuration={false}
+                    displayPlayCount={true}
+                  />
+                );
+              })}
+          </tbody>
+        </table>
         <div className='expand_button' onClick={this.toggleExpand.bind(this)}>
           <FontAwesome
             name={this.state.expanded ? 'angle-double-up' : 'angle-double-down'}
