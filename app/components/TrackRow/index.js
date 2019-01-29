@@ -100,7 +100,6 @@ class TrackRow extends React.Component {
         musicSources
       )
     ];
-    // console.log(this.props);
 
     return (
       <ContextPopup

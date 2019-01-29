@@ -36,7 +36,6 @@ class TracksResults extends React.Component {
     if (collection.length === 0) {
       return 'No result';
     } else {
-      console.log(this.props);
       return (
         <table>
           <tbody>

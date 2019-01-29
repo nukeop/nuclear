@@ -227,67 +227,12 @@ class AlbumView extends React.Component {
               displayDuration={true}
               displayPlayCount={false}
             />);
-
-            // return this.renderContextPopup(album, track, index);
           }
           )}
         </tbody>
       </table>
     );
   }
-  /* 
-    renderContextPopup (album, el, i) {
-      return (
-        <ContextPopup
-          key={i}
-          trigger={
-            <tr>
-              <td className={styles.center}>{i + 1}</td>
-              <td className={styles.left}>{el.title}</td>
-              <td className={styles.center}>{el.duration}</td>
-            </tr>
-          }
-          artist={album.artists[0].name}
-          title={el.title}
-          thumb={album.images[0].uri}
-        >
-          {this.renderAddTrackToQueueButton(album, el)}
-          {this.renderPlayTrackButton(album, el)}
-        </ContextPopup>
-      );
-    }
-  
-    renderPlayTrackButton (album, el) {
-      return (
-        <a
-          href='#'
-          onClick={() => {
-            this.props.clearQueue();
-            this.addToQueue(album, el);
-            this.props.selectSong(0);
-            this.props.startPlayback();
-          }}
-          aria-label='Play this track now'
-          className={styles.add_button}
-        >
-          <FontAwesome name='play' /> Play now
-        </a>
-      );
-    }
-  
-    renderAddTrackToQueueButton (album, el) {
-      return (
-        <a
-          href='#'
-          onClick={() => this.addToQueue(album, el)}
-          className={styles.add_button}
-          aria-label='Add track to queue'
-        >
-          <FontAwesome name='plus' /> Add to queue
-        </a>
-      );
-    }
-    */
 
   renderOptionsButtons (album) {
     return (
