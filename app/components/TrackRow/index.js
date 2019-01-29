@@ -113,7 +113,7 @@ class TrackRow extends React.Component {
           <tr className={styles.track}>
             <td
               style={{
-                backgroundImage: `url(${track.image[1]['#text']})`
+                backgroundImage: `url(${track.image[0]['#text'] || artPlaceholder})`
               }}
               className={styles.track_thumbnail}
             />
