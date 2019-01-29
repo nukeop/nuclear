@@ -99,17 +99,11 @@ class TrackRow extends React.Component {
         musicSources
       )
     ];
+    console.log(this.props);
     return (
       <ContextPopup
         key={'track-' + index}
         trigger={
-          /* <div className={styles.track_row}>
-            <img src={track.image[0]['#text'] || artPlaceholder} />
-            <div className={styles.row_track_name}>{track.name}</div>
-            <div className={styles.playcount}>
-              {numeral(track.playcount).format('0,0')} plays
-            </div>
-          </div>*/
           <tr className={styles.track}>
             <td
               style={{
@@ -120,7 +114,7 @@ class TrackRow extends React.Component {
             {this.props.displayArtist ? <td className={styles.track_artist}>{track.artist.name}</td> : null}
             <td className={styles.track_name}>{track.name}</td>
             {this.props.displayDuration ? this.renderDuration(track) : null}
-            {this.props.displayPlayCount ? <td className={styles.playcount}>{numeral(track.playcount).format('0,0')} plays</td> : null}
+            {this.props.displayPlayCount ? <td className={styles.playcount}>{numeral(track.playcount).format('0,0')}</td> : null}
           </tr>
         }
         artist={artist.name}
