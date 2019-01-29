@@ -41,6 +41,11 @@ class TagView extends React.Component {
         tracks={topTracks}
         addToQueue={addToQueue}
         musicSources={musicSources}
+        startPlayback={this.props.startPlayback}
+        clearQueue={this.props.clearQueue}
+        selectSong={this.props.selectSong}
+
+
       />
     );
   }
