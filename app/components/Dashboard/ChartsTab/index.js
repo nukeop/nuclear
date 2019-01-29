@@ -5,6 +5,8 @@ import numeral from 'numeral';
 import FontAwesome from 'react-fontawesome';
 import ContextPopup from '../../ContextPopup';
 
+
+
 import styles from './styles.scss';
 
 class ChartsTab extends React.Component {
@@ -50,6 +52,25 @@ class ChartsTab extends React.Component {
           aria-label='Add track to queue'
         >
           <FontAwesome name='plus' /> Add to queue
+        </a>
+        <a
+          href='#'
+          className='add_button'
+          onClick={() => {
+            this.props.clearQueue();
+            addToQueue(musicSources, {
+              artist: track.artist.name,
+              name: track.name,
+              thumbnail: track.image[1]['#text']
+            });
+            this.props.selectSong(0);
+            this.props.startPlayback();
+            this.props.startPlayback();
+
+          }}
+          aria-label='Play Song Right Now'
+        >
+          <FontAwesome name='play' /> Play now
         </a>
       </ContextPopup>
     );

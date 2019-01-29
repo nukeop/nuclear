@@ -9,14 +9,20 @@ class MusicSourcePlugin extends Plugin {
     this.image = null;
   }
 
-  search(terms) {
+  search(query) {
+    /*
+    query is an object : 
+    {
+      artist : 'The artist name,
+      track : 'The track to search'
+    }
+    */
     console.error('search not implemented in plugin ' + this.name);
   }
 
-  getAlternateStream(terms, currentStream) {
+  getAlternateStream(query, currentStream) {
     console.error('getAlternateStream not implemented in plugin ' + this.name);
   }
-
 }
 
 export default MusicSourcePlugin;
