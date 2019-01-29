@@ -76,6 +76,7 @@ class PopularTracks extends React.Component {
                     startPlayback={this.props.startPlayback}
                     selectSong={this.props.selectSong}
                     musicSources={this.props.musicSources}
+                    displayCover={true}
                     displayArtist={false}
                     displayDuration={false}
                     displayPlayCount={true}
