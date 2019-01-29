@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux';
 import * as Actions from '../../actions';
 import * as TagActions from '../../actions/tag';
 import * as QueueActions from '../../actions/queue';
+import * as PlayerActions from '../../actions/player';
 
 import TagView from '../../components/TagView';
 
@@ -25,12 +26,15 @@ class TagViewContainer extends React.Component {
     return (
       <TagView
         loadTagInfo={actions.loadTagInfo}
-        addToQueue={actions.addToQueue}
         artistInfoSearchByName={actions.artistInfoSearchByName}
         history={history}
         tag={match.params.tagName}
         tags={tags}
         musicSources={musicSources}
+        addToQueue={actions.addToQueue}
+        startPlayback={actions.startPlayback}
+        clearQueue={actions.clearQueue}
+        selectSong={actions.selectSong}
       />
     );
   }

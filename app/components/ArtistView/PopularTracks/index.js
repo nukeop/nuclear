@@ -77,6 +77,7 @@ class PopularTracks extends React.Component {
           this.addToQueue(artist, track);
           selectSong(0);
           startPlayback();
+          console.log(startPlayback())
         }}
         className={styles.add_button}
         aria-label='Play this track now'
