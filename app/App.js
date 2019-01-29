@@ -226,7 +226,7 @@ class App extends React.Component {
   renderVolumeControl (settings) {
     return (
       <VolumeControls
-        fill={this.props.player.volume + '%'}
+        fill={this.props.player.volume}
         updateVolume={this.props.actions.updateVolume}
         toggleOption={this.props.actions.toggleOption}
         settings={settings}
