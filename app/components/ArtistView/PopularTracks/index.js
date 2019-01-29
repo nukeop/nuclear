@@ -3,6 +3,7 @@ import FontAwesome from 'react-fontawesome';
 import numeral from 'numeral';
 import artPlaceholder from '../../../../resources/media/art_placeholder.png';
 import ContextPopup from '../../ContextPopup';
+import TrackRow from '../../TrackRow';
 
 import styles from './styles.scss';
 
@@ -110,11 +111,26 @@ class PopularTracks extends React.Component {
         {tracks.track
           .slice(0, this.state.expanded ? 15 : 5)
           .map((track, index) => {
+            return (
+              <TrackRow
+                key={'popular-track-row-' + index}
+                track={track}
+                index={'popular-track-' + index}
+                artist={artist}
+                clearQueue={this.props.clearQueue}
+                addToQueue={this.props.addToQueue}
+                startPlayback={this.props.startPlayback}
+                selectSong={this.props.selectSong}
+                musicSources={this.props.musicSources}
+              />
+            );
+            /* 
             let popupContents = [
               this.renderAddTrackToQueueButton(track, index, artist),
               this.renderPlayTrackButton(track, index)
             ];
             return this.renderPopup(index, artist, track, popupContents);
+            */
           })}
         <div className='expand_button' onClick={this.toggleExpand.bind(this)}>
           <FontAwesome
