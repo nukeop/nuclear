@@ -8,7 +8,7 @@ class TracksResults extends React.Component {
     super(props);
   }
 
-  renderTrack (track, index = 0) {
+  /* renderTrack (track, index = 0) {
     let addToQueue = this.props.addToQueue;
     return (
       <div
@@ -28,7 +28,7 @@ class TracksResults extends React.Component {
         </div>
       </div>
     );
-  }
+  }*/
 
   render () {
     let collection = this.props.tracks || [];
@@ -59,6 +59,7 @@ class TracksResults extends React.Component {
                     displayArtist={true}
                     displayDuration={false}
                     displayPlayCount={false}
+                    displayCover={true}
                   />;
                 }
 
