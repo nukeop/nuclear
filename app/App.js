@@ -208,6 +208,8 @@ class App extends React.Component {
       <TrackInfo
         track={this.getCurrentSongParameter('name')}
         artist={this.getCurrentSongParameter('artist')}
+        artistInfoSearchByName={this.props.actions.artistInfoSearchByName}
+        history={this.props.history}
       />
     );
   }
