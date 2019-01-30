@@ -82,13 +82,12 @@ This will be updated as the program evolves.
 ![genre view](https://i.imgur.com/KrzUvwp.png)
 
 ## Dev build process
-To develop the project locally, you should only do:
+Make sure you're using the latest version of Node and NPM. To develop the project locally, you should only do:
 ```bash
 $ npm install
 $ npm run watch
 ```
-This launches webpack. It watches local files for changes and rebuilds the project as needed. The project also has hot reload built in.
-And in another terminal window:
+This launches webpack. It watches local files for changes and rebuilds the project as needed. The project also has hot reload built in. And in another terminal window:
 ```bash
 $ npm run electron:dev
 ```
