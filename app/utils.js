@@ -24,17 +24,14 @@ export function formatDuration (duration) {
 }
 
 export function stringDurationToSeconds (duration) {
-  if (Number.isInteger(duration)) {
-    return duration;
+  if (duration.length > 0) {
+    const parts = duration.split(':');
+    if (parts.length === 2) {
+      parts.unshift(0);
+    }
+    return parseInt(parts[0]) * 3600 + parseInt(parts[1]) * 60 + parseInt(parts[1]);
   }
-  const parts = duration.split(':');
-  let minutes = 0;
-  let seconds = 0;
-  if (parts.length === 2) {
-    minutes = parseInt(parts[0]);
-    seconds = parseInt(parts[1]);
-  }
-  return minutes * 60 + seconds;
+  return 0;
 }
 
 export function getSelectedStream (streams, defaultMusicSource) {
