@@ -20,6 +20,10 @@ class TagView extends React.Component {
     this.props.artistInfoSearchByName(artistName, this.props.history);
   }
 
+  albumInfoSearchByName(albumName) {
+    this.props.albumInfoSearchByName(albumName, this.props.history);
+  }
+
   renderTagHeader(tagInfo, topArtists) {
     let { tag } = this.props;
     return <TagHeader tag={tag} tagInfo={tagInfo} topArtists={topArtists} />;
@@ -35,12 +39,27 @@ class TagView extends React.Component {
     );
   }
 
+  renderTopAlbums(topAlbums) {
+    return (
+      <TagTopList
+        topList={topAlbums}
+        onClick={this.albumInfoSearchByName.bind(this)}
+        header='Top Albums'
+      />
+    );
+  }
+
   renderTagTopTracks(topTracks, addToQueue, musicSources) {
     return (
       <TagTopTracks
         tracks={topTracks}
         addToQueue={addToQueue}
         musicSources={musicSources}
+        startPlayback={this.props.startPlayback}
+        clearQueue={this.props.clearQueue}
+        selectSong={this.props.selectSong}
+
+
       />
     );
   }
@@ -48,7 +67,7 @@ class TagView extends React.Component {
     return (
       <div className={styles.lists_container}>
         {this.renderTopArtists(topArtists)}
-        <TagTopList topList={topAlbums} header='Top Albums' />
+        {this.renderTopAlbums(topAlbums)}
       </div>
     );
   }
