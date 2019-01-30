@@ -27,6 +27,7 @@ class TagViewContainer extends React.Component {
       <TagView
         loadTagInfo={actions.loadTagInfo}
         artistInfoSearchByName={actions.artistInfoSearchByName}
+        albumInfoSearchByName={actions.albumInfoSearchByName}
         history={history}
         tag={match.params.tagName}
         tags={tags}
