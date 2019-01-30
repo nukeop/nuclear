@@ -303,6 +303,24 @@ export function artistInfoSearchByName (artistName, history) {
   };
 }
 
+export function albumInfoSearchByName (albumName, history) {
+  return dispatch => {
+    discogs
+      .searchAlbums(albumName)
+      .then(searchResults => searchResults.json())
+      .then(searchResultsJson => {
+        let album = searchResultsJson.results[0];
+        dispatch(albumInfoSearch(album.id, album.type));
+        if (history) {
+          history.push('/album/' + album.id);
+        }
+      })
+      .catch(error => {
+        logger.error(error);
+      });
+  };
+}
+
 export function lastFmArtistInfoStart (artistId) {
   return {
     type: LASTFM_ARTIST_INFO_SEARCH_START,
@@ -341,5 +359,3 @@ export function lastFmArtistInfoSearch (artist, artistId) {
       });
   };
 }
-
-
