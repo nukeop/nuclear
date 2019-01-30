@@ -30,6 +30,10 @@ function searchQuery (terms, count = 15) {
   );
 }
 
+function searchAlbums (terms, count = 15) {
+  return fetch(searchQuery(terms, count) + '&type=albums');
+}
+
 function searchArtists (terms, count = 15) {
   return fetch(searchQuery(terms, count) + '&type=artist');
 }
@@ -65,6 +69,7 @@ function artistReleases (artistId) {
 }
 
 module.exports = {
+  searchAlbums,
   searchArtists,
   searchReleases,
   releaseInfo,
