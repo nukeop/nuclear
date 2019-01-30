@@ -38,6 +38,7 @@ class ChartsTab extends React.Component {
                   startPlayback={this.props.startPlayback}
                   selectSong={this.props.selectSong}
                   musicSources={this.props.musicSources}
+                  displayCover={true}
                   displayArtist={true}
                   displayDuration={false}
                   displayPlayCount={true}
