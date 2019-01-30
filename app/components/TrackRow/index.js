@@ -18,7 +18,7 @@ class TrackRow extends React.Component {
           addToQueue(musicSources, {
             artist: track.artist.name,
             name: track.name,
-            thumbnail: track.image[0]['#text'] || artPlaceholder
+            thumbnail: _.get(track, 'image[0][\'#text\']', false) || artPlaceholder
           })
         }
         className={styles.add_button}
@@ -47,7 +47,7 @@ class TrackRow extends React.Component {
           addToQueue(musicSources, {
             artist: track.artist.name,
             name: track.name,
-            thumbnail: track.image[0]['#text'] || artPlaceholder
+            thumbnail: _.get(track, 'image[0][\'#text\']', false) || artPlaceholder
           });
           selectSong(0);
           startPlayback();
@@ -108,7 +108,7 @@ class TrackRow extends React.Component {
           <tr className={styles.track}>
             {this.props.displayCover ? <td
               style={{
-                backgroundImage: `url(${track.image[0]['#text'] || artPlaceholder})`,
+                backgroundImage: `url(${_.get(track, 'image[0][#text]') || artPlaceholder})`,
                 backgroundPosition: 'center'
               }}
               className={styles.track_thumbnail}
