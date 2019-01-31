@@ -118,11 +118,12 @@ class PlaylistView extends React.Component {
               {this.renderPlaylistTracksHeader()}
               <tbody>
                 {playlist.tracks.map((track, index) => {
-                  _.set(track, 'artist.name', track.artist);
-                  _.set(track, 'image[0][\'#text\']', track.thumbnail);
+                  const newTrack = _.cloneDeep(track);
+                  _.set(newTrack, 'artist.name', newTrack.artist);
+                  _.set(newTrack, 'image[0][\'#text\']', newTrack.thumbnail);
                   return (< TrackRow
                     key={'playlist-track-row-' + index}
-                    track={track}
+                    track={newTrack}
                     index={'playlist-track-' + index}
                     clearQueue={this.props.clearQueue}
                     addToQueue={this.props.addToQueue}
