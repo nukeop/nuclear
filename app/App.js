@@ -230,6 +230,8 @@ class App extends React.Component {
       <VolumeControls
         fill={this.props.player.volume}
         updateVolume={this.props.actions.updateVolume}
+        muted={this.props.player.muted}
+        toggleMute={this.props.actions.toggleMute}
         toggleOption={this.props.actions.toggleOption}
         settings={settings}
       />
