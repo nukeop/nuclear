@@ -31,10 +31,8 @@ class TracksResults extends React.Component {
                   startPlayback={this.props.startPlayback}
                   selectSong={this.props.selectSong}
                   musicSources={this.props.musicSources}
-                  displayArtist={true}
-                  displayDuration={false}
-                  displayPlayCount={false}
-                  displayCover={true}
+                  displayArtist
+                  displayCover
                 />;
               }
             })}
