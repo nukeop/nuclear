@@ -19,12 +19,13 @@ class TracksResults extends React.Component {
           <tbody>
             {(collection || []).slice(0, limit).map((track, index) => {
               if (track && _.hasIn(track, 'name') & _.hasIn(track, 'image') && _.hasIn(track, 'artist')) {
-                if (!track.artist.name) {
-                  track.artist = { name: track.artist };
+                const newTrack = _.cloneDeep(track);
+                if (!newTrack.artist.name) {
+                  _.set(newTrack, 'artist.name', newTrack.artist);
                 }
                 return < TrackRow
                   key={'search-result-track-row-' + index}
-                  track={track}
+                  track={newTrack}
                   index={'popular-track-' + index}
                   clearQueue={this.props.clearQueue}
                   addToQueue={this.props.addToQueue}
