@@ -221,11 +221,8 @@ class AlbumView extends React.Component {
               startPlayback={this.props.startPlayback}
               selectSong={this.props.selectSong}
               musicSources={this.props.musicSources}
-              displayCover={false}
-              displayTrackNumber={true}
-              displayArtist={false}
-              displayDuration={true}
-              displayPlayCount={false}
+              displayTrackNumber
+              displayDuration
             />);
           }
           )}
