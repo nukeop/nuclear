@@ -1,9 +1,10 @@
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 import Sound from 'react-sound';
+import { ToastContainer } from 'react-toastify';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { NavLink, Link, withRouter } from 'react-router-dom';
+import { NavLink, withRouter } from 'react-router-dom';
 import classnames from 'classnames';
 import _ from 'lodash';
 import * as Actions from './actions';
@@ -267,6 +268,7 @@ class App extends React.Component {
           {this.renderRightPanel(settings)}
         </div>
         {this.renderFooter(settings)}
+        <ToastContainer />
         <SoundContainer />
         <IpcContainer />
       </div>
