@@ -8,11 +8,8 @@ import VolumeSlider from './VolumeSlider';
 
 class VolumeControls extends React.Component {
 
-  handleClick(width) {
-    return event => {
-      let volume = event.nativeEvent.offsetX / width * 100;
-      this.props.updateVolume(volume);
-    };
+  handleClick(value) {
+    return this.props.updateVolume(value);
   }
   
   render() {

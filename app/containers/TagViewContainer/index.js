@@ -26,15 +26,16 @@ class TagViewContainer extends React.Component {
     return (
       <TagView
         loadTagInfo={actions.loadTagInfo}
-        addToQueue={actions.addToQueue}
         artistInfoSearchByName={actions.artistInfoSearchByName}
+        albumInfoSearchByName={actions.albumInfoSearchByName}
         history={history}
         tag={match.params.tagName}
         tags={tags}
         musicSources={musicSources}
+        addToQueue={actions.addToQueue}
+        startPlayback={actions.startPlayback}
         clearQueue={actions.clearQueue}
         selectSong={actions.selectSong}
-        startPlayback={actions.startPlayback}
       />
     );
   }
