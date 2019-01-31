@@ -1,3 +1,4 @@
+@import '../../vars';
 .track_info_container {
   display: flex 1;
   margin: 10px 20px;
@@ -16,7 +17,10 @@
 }
 
 .artist_name {
-  color: rgba(248, 248, 242, 0.5);
+  color: $lightbg;
+  &:hover {
+    color: $white;
+  }
   font-size: 16px;
   flex: 1 1 auto;
   overflow: hidden;

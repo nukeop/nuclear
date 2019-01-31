@@ -49,6 +49,25 @@ class TagTopTracks extends React.Component {
         >
           <FontAwesome name='plus' /> Add to queue
         </a>
+        <a
+          href='#'
+          className='add_button'
+          onClick={() => {
+            this.props.clearQueue();
+            addToQueue(musicSources, {
+              artist: track.artist.name,
+              name: track.name,
+              thumbnail: track.image[1]['#text']
+            });
+            this.props.selectSong(0);
+            this.props.startPlayback();
+            this.props.startPlayback();
+
+          }}
+          aria-label='Play Song Right Now'
+        >
+          <FontAwesome name='play' /> Play now
+        </a>
       </ContextPopup>
     );
   }

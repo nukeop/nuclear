@@ -15,7 +15,16 @@
     font-size: 16px;
     font-variant: small-caps;
   }*/
-
+  .popular_tracks_header {
+    tr {
+      height: 10px
+    }
+    th {
+      height: 30px;
+      text-align: inherit !important;
+      border-bottom: 2px solid #44475a;
+    }
+  }
   .track_row {
     /*display: flex;
     align-items: center;

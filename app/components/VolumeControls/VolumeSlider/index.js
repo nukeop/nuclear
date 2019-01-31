@@ -2,27 +2,35 @@ import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
 import styles from './styles.scss';
+import Range from 'react-range-progress';
 
 class VolumeSlider extends React.Component {
 
-  handleClick(event) {
-    this.props.handleClick(this.slider.offsetWidth)(event);
+  handleClick(value) {
+    this.props.handleClick(value);
   }
-  
+
   render() {
     return (
-      <div
-        onClick={this.handleClick.bind(this)}
-        className={styles.volume_slider_container}
-        ref={slider => {
-          this.slider = slider;
-        }}
-      >
-        <div className={styles.volume_slider_bg} />
-        <div style={{width: this.props.fill}} className={styles.volume_slider_fill} />
+      <div className={styles.volume_slider_container}>
+        <Range
+          value={this.props.fill}
+          fillColor={volume_slider_colors.fillColor}
+          trackColor={volume_slider_colors.trackColor}
+          thumbColor={volume_slider_colors.thumbColor}
+          height={4}
+          width='100%'
+          onChange={this.handleClick.bind(this)}
+        />
       </div>
     );
   }
 }
+
+const volume_slider_colors = {
+  fillColor: { r: 248, g: 248, b: 242, a: 1 },
+  trackColor: { r: 68, g: 71, b: 90, a: 1 },
+  thumbColor: { r: 248, g: 248, b: 242, a: 1 }
+};
 
 export default VolumeSlider;
