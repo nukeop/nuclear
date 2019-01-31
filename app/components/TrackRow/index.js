@@ -100,7 +100,6 @@ class TrackRow extends React.Component {
         musicSources
       )
     ];
-
     return (
       <ContextPopup
         key={'track-' + index}
@@ -122,7 +121,7 @@ class TrackRow extends React.Component {
         }
         artist={track.artist.name}
         title={track.name}
-        thumb={_.get(track, 'image[0][#text]', artPlaceholder)}
+        thumb={_.get(track, 'image[1][\'#text\']', _.get(track, 'image[0][\'#text\']', artPlaceholder))}
       >
         {popupContents}
       </ContextPopup>
