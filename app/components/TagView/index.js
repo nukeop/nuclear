@@ -12,13 +12,14 @@ class TagView extends React.Component {
     super(props);
   }
 
-  componentDidMount() {
+  componentDidMount () {
     this.props.loadTagInfo(this.props.tag);
   }
 
-  artistInfoSearchByName(artistName) {
+  artistInfoSearchByName (artistName) {
     this.props.artistInfoSearchByName(artistName, this.props.history);
   }
+
 
   albumInfoSearchByName(albumName) {
     this.props.albumInfoSearchByName(albumName, this.props.history);
@@ -29,7 +30,7 @@ class TagView extends React.Component {
     return <TagHeader tag={tag} tagInfo={tagInfo} topArtists={topArtists} />;
   }
 
-  renderTopArtists(topArtists) {
+  renderTopArtists (topArtists) {
     return (
       <TagTopList
         topList={topArtists}
@@ -38,6 +39,7 @@ class TagView extends React.Component {
       />
     );
   }
+
 
   renderTopAlbums(topAlbums) {
     return (
@@ -50,6 +52,7 @@ class TagView extends React.Component {
   }
 
   renderTagTopTracks(topTracks, addToQueue, musicSources) {
+
     return (
       <TagTopTracks
         tracks={topTracks}
@@ -58,12 +61,11 @@ class TagView extends React.Component {
         startPlayback={this.props.startPlayback}
         clearQueue={this.props.clearQueue}
         selectSong={this.props.selectSong}
-
-
       />
     );
   }
-  renderTopArtistsAndTopAlbums(topArtists, topAlbums) {
+
+  renderTopArtistsAndTopAlbums (topArtists, topAlbums) {
     return (
       <div className={styles.lists_container}>
         {this.renderTopArtists(topArtists)}
@@ -72,7 +74,7 @@ class TagView extends React.Component {
     );
   }
 
-  renderDimmer() {
+  renderDimmer () {
     let { tag, tags } = this.props;
     return (
       <Dimmer active={tags[tag] === undefined || tags[tag].loading}>
@@ -81,7 +83,7 @@ class TagView extends React.Component {
     );
   }
 
-  render() {
+  render () {
     let { addToQueue, tag, tags, musicSources } = this.props;
     let tagInfo, topTracks, topAlbums, topArtists;
     if (tags[tag] && tags[tag].loading !== true) {

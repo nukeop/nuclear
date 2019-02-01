@@ -14,7 +14,7 @@ class TagViewContainer extends React.Component {
     super(props);
   }
 
-  render() {
+  render () {
     let {
       actions,
       match,
@@ -41,16 +41,16 @@ class TagViewContainer extends React.Component {
   }
 }
 
-function mapStateToProps(state) {
+function mapStateToProps (state) {
   return {
     tags: state.tags,
     musicSources: state.plugin.plugins.musicSources
   };
 }
 
-function mapDispatchToProps(dispatch) {
+function mapDispatchToProps (dispatch) {
   return {
-    actions: bindActionCreators(Object.assign({}, Actions, TagActions, QueueActions), dispatch)
+    actions: bindActionCreators(Object.assign({}, Actions, TagActions, QueueActions, PlayerActions), dispatch)
   };
 }
 

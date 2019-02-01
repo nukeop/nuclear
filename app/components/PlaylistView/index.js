@@ -1,8 +1,12 @@
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
+import _ from 'lodash';
 
 import ContextPopup from '../ContextPopup';
+import TrackRow from '../TrackRow';
+
 import Spacer from '../Spacer';
+import artPlaceholder from '../../../resources/media/art_placeholder.png';
 
 import styles from './styles.scss';
 
@@ -11,7 +15,7 @@ class PlaylistView extends React.Component {
     super(props);
   }
 
-  addPlaylistToQueue(
+  addPlaylistToQueue (
     musicSources,
     playlist,
     addTracks,
@@ -23,20 +27,20 @@ class PlaylistView extends React.Component {
     startPlayback();
   }
 
-  renderOptions(trigger, playlist) {
+  renderOptions (trigger, playlist) {
     return (
       <ContextPopup
         trigger={trigger}
         artist={null}
         title={playlist.name}
-        thumb={playlist.tracks[0].thumbnail}
+        thumb={_.get(playlist, 'tracks[0].thumbnail', artPlaceholder)}
       >
         <div />
       </ContextPopup>
     );
   }
 
-  renderPlayButton() {
+  renderPlayButton () {
     let {
       playlist,
       addTracks,
@@ -63,19 +67,7 @@ class PlaylistView extends React.Component {
     );
   }
 
-  renderPlaylistTrack(track, i) {
-    return (
-      <div key={'playlist-track-' + i} className={styles.playlist_track}>
-        <img className={styles.track_thumbnail} src={track.thumbnail} />
-        <div className={styles.track_info}>
-          <div className={styles.track_artist}>{track.artist}</div>
-          <div className={styles.track_name}>{track.name}</div>
-        </div>
-      </div>
-    );
-  }
-
-  renderPlaylistInfo() {
+  renderPlaylistInfo () {
     let { playlist } = this.props;
     let popupTrigger = (
       <a href='#' className={styles.more_button}>
@@ -87,7 +79,7 @@ class PlaylistView extends React.Component {
         <div>
           <img
             className={styles.playlist_thumbnail}
-            src={playlist.tracks[0].thumbnail}
+            src={_.get(playlist, 'tracks[0].thumbnail', '')}
           />
         </div>
         <div className={styles.playlist_header}>
@@ -102,16 +94,50 @@ class PlaylistView extends React.Component {
     );
   }
 
-  render() {
+  renderPlaylistTracksHeader () {
+    return (
+      <thead>
+        <tr>
+          <th>
+            <FontAwesome name='photo' />
+          </th>
+          <th>Artist</th>
+          <th>Title</th>
+        </tr>
+      </thead>);
+  }
+
+  render () {
     let { playlist } = this.props;
     return (
       <div className={styles.playlist_view_container}>
         <div className={styles.playlist}>
           {this.renderPlaylistInfo()}
           <div className={styles.playlist_tracks}>
-            {playlist.tracks.map((track, i) =>
-              this.renderPlaylistTrack(track, i)
-            )}
+            <table>
+              {this.renderPlaylistTracksHeader()}
+              <tbody>
+                {playlist.tracks.map((track, index) => {
+                  const newTrack = _.cloneDeep(track);
+                  _.set(newTrack, 'artist.name', newTrack.artist);
+                  _.set(newTrack, 'image[0][\'#text\']', newTrack.thumbnail);
+                  return (< TrackRow
+                    key={'playlist-track-row-' + index}
+                    track={newTrack}
+                    index={'playlist-track-' + index}
+                    clearQueue={this.props.clearQueue}
+                    addToQueue={this.props.addToQueue}
+                    startPlayback={this.props.startPlayback}
+                    selectSong={this.props.selectSong}
+                    musicSources={this.props.musicSources}
+                    displayCover
+                    displayArtist
+                  />
+                  );
+                })
+                }
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
