@@ -47,7 +47,7 @@ Please include the following with each issue:
 ## Contributing Fixes
 
 If you are interested in writing code to fix issues or add features, 
-please see How to Contribute (work in progress) in the wiki.
+please see How to [Contribute](https://github.com/nukeop/nuclear/wiki/Contributing) in the wiki.
 
 # Thank You!
 
