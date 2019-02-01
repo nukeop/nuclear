@@ -8,40 +8,15 @@ import VolumeSlider from './VolumeSlider';
 
 class VolumeControls extends React.Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      isVolumeMuted: false,
-      volume: 100
-    };
-  }
-
   handleClick(value) {
-    this.setState({
-      volume: value,
-      isVolumeMuted: this.state.isVolumeMuted && value === 0
-    });
+    if (value > 0){
+      this.props.toggleMute(false);
+    }
     return this.props.updateVolume(value);
   }
 
   toggleMute = () => {
-    if (this.state.isVolumeMuted) {
-      this.handleMuteOff();
-    } else {
-      this.handleMuteOn();
-    }
-
-    this.setState({
-      isVolumeMuted: !this.state.isVolumeMuted
-    });
-  }
-
-  handleMuteOn() {
-    this.props.updateVolume(0);
-  }
-
-  handleMuteOff() {
-    this.handleClick(this.state.volume);
+    this.props.toggleMute(!this.props.muted);
   }
 
   render() {
@@ -52,12 +27,12 @@ class VolumeControls extends React.Component {
           settings={this.props.settings}
         />
         <div className={styles.volume_speaker_control}
-          onClick={this.toggleMute}>
-          <FontAwesome name={this.state.isVolumeMuted ? 'volume-off' : 'volume-up'} />
+          onClick={this.toggleMute.bind(this)}>
+          <FontAwesome name={this.props.muted ? 'volume-off' : 'volume-up'} />
         </div>
 
         <VolumeSlider
-          fill={this.state.volume}
+          fill={this.props.volume}
           handleClick={this.handleClick.bind(this)}
         />
       </div>

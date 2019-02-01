@@ -228,10 +228,12 @@ class App extends React.Component {
   renderVolumeControl (settings) {
     return (
       <VolumeControls
-        fill={this.props.player.volume}
+        volume={this.props.player.volume}
         updateVolume={this.props.actions.updateVolume}
         toggleOption={this.props.actions.toggleOption}
         settings={settings}
+        muted={this.props.player.muted}
+        toggleMute={this.props.actions.toggleMute}
       />
     );
   }
