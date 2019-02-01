@@ -72,6 +72,25 @@ class TrackRow extends React.Component {
     );
   }
 
+  renderTrigger (track) {
+    return (
+      <tr className={styles.track}>
+        {this.props.displayCover ? <td
+          style={{
+            backgroundImage: `url(${_.get(track, 'image[0][#text]', artPlaceholder)})`,
+            backgroundPosition: 'center'
+          }}
+          className={styles.track_thumbnail}
+        /> : null}
+        {this.props.displayTrackNumber ? <td className={styles.track_artist}>{track.position}</td> : null}
+        {this.props.displayArtist ? <td className={styles.track_artist}>{track.artist.name}</td> : null}
+        <td className={styles.track_name}>{track.name}</td>
+        {this.props.displayDuration ? this.renderDuration(track) : null}
+        {this.props.displayPlayCount ? <td className={styles.playcount}>{numeral(track.playcount).format('0,0')}</td> : null}
+      </tr>
+    );
+  }
+
   render () {
     let {
       index,
@@ -103,22 +122,7 @@ class TrackRow extends React.Component {
     return (
       <ContextPopup
         key={'track-' + index}
-        trigger={
-          <tr className={styles.track}>
-            {this.props.displayCover ? <td
-              style={{
-                backgroundImage: `url(${_.get(track, 'image[0][#text]', artPlaceholder)})`,
-                backgroundPosition: 'center'
-              }}
-              className={styles.track_thumbnail}
-            /> : null}
-            {this.props.displayTrackNumber ? <td className={styles.track_artist}>{track.position}</td> : null}
-            {this.props.displayArtist ? <td className={styles.track_artist}>{track.artist.name}</td> : null}
-            <td className={styles.track_name}>{track.name}</td>
-            {this.props.displayDuration ? this.renderDuration(track) : null}
-            {this.props.displayPlayCount ? <td className={styles.playcount}>{numeral(track.playcount).format('0,0')}</td> : null}
-          </tr>
-        }
+        trigger={this.renderTrigger(track)}
         artist={track.artist.name}
         title={track.name}
         thumb={_.get(track, 'image[1][\'#text\']', _.get(track, 'image[0][\'#text\']', artPlaceholder))}
