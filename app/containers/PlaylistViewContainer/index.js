@@ -12,7 +12,7 @@ class PlaylistViewContainer extends React.Component {
     super(props);
   }
 
-  render() {
+  render () {
     return (
       <PlaylistView
         playlist={this.props.playlists.playlists[this.props.match.params.playlistId]}
@@ -20,19 +20,22 @@ class PlaylistViewContainer extends React.Component {
         addTracks={this.props.actions.addPlaylistTracksToQueue}
         selectSong={this.props.actions.selectSong}
         startPlayback={this.props.actions.startPlayback}
+        clearQueue={this.props.actions.clearQueue}
+        addToQueue={this.props.actions.addToQueue}
       />
     );
   }
 }
 
-function mapStateToProps(state) {
+
+function mapStateToProps (state) {
   return {
     playlists: state.playlists,
     musicSources: state.plugin.plugins.musicSources
   };
 }
 
-function mapDispatchToProps(dispatch) {
+function mapDispatchToProps (dispatch) {
   return {
     actions: bindActionCreators(Object.assign({}, QueueActions, PlayerActions), dispatch)
   };
