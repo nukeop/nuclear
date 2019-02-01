@@ -107,6 +107,25 @@ class PlaylistView extends React.Component {
       </thead>);
   }
 
+  renderTrack (track, index) {
+    const newTrack = _.cloneDeep(track);
+    _.set(newTrack, 'artist.name', newTrack.artist);
+    _.set(newTrack, 'image[0][\'#text\']', newTrack.thumbnail);
+    return (< TrackRow
+      key={'playlist-track-row-' + index}
+      track={newTrack}
+      index={'playlist-track-' + index}
+      clearQueue={this.props.clearQueue}
+      addToQueue={this.props.addToQueue}
+      startPlayback={this.props.startPlayback}
+      selectSong={this.props.selectSong}
+      musicSources={this.props.musicSources}
+      displayCover
+      displayArtist
+    />
+    );
+  }
+
   render () {
     let { playlist } = this.props;
     return (
@@ -117,25 +136,7 @@ class PlaylistView extends React.Component {
             <table>
               {this.renderPlaylistTracksHeader()}
               <tbody>
-                {playlist.tracks.map((track, index) => {
-                  const newTrack = _.cloneDeep(track);
-                  _.set(newTrack, 'artist.name', newTrack.artist);
-                  _.set(newTrack, 'image[0][\'#text\']', newTrack.thumbnail);
-                  return (< TrackRow
-                    key={'playlist-track-row-' + index}
-                    track={newTrack}
-                    index={'playlist-track-' + index}
-                    clearQueue={this.props.clearQueue}
-                    addToQueue={this.props.addToQueue}
-                    startPlayback={this.props.startPlayback}
-                    selectSong={this.props.selectSong}
-                    musicSources={this.props.musicSources}
-                    displayCover
-                    displayArtist
-                  />
-                  );
-                })
-                }
+                {playlist.tracks.map((track, index) => this.renderTrack(track, index))}
               </tbody>
             </table>
           </div>
