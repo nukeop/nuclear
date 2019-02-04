@@ -150,7 +150,7 @@ class SoundContainer extends React.Component {
         onLoading={this.handleLoading.bind(this)}
         onLoad={this.handleLoaded.bind(this)}
         position={player.seek}
-        volume={player.volume}
+        volume={player.muted ? 0 : player.volume}
       />
     );
   }
