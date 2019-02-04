@@ -6,6 +6,8 @@ import {
   UPDATE_PLAYBACK_PROGRESS,
   UPDATE_SEEK,
   UPDATE_VOLUME,
+  MUTE,
+  UNMUTE,
   UPDATE_PLAYBACK_STREAM_LOADING
 } from '../actions/player';
 
@@ -20,7 +22,8 @@ const initialState = {
   playbackStreamLoading: false,
   playbackProgress: 0,
   seek: 0,
-  volume: 100
+  volume: 100,
+  muted: false
 };
 
 export default function PlayerReducer(state=initialState, action) {
@@ -45,6 +48,14 @@ export default function PlayerReducer(state=initialState, action) {
   case UPDATE_VOLUME:
     return Object.assign({}, state, {
       volume: action.payload
+    });
+  case MUTE:
+    return Object.assign({}, state, {
+      muted: true
+    });
+  case UNMUTE:
+    return Object.assign({}, state, {
+      muted: false
     });
   case NEXT_SONG:
   case PREVIOUS_SONG:
