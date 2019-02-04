@@ -11,7 +11,11 @@ class VolumeControls extends React.Component {
   handleClick(value) {
     return this.props.updateVolume(value);
   }
-  
+
+  toggleMute(){
+    this.props.toggleMute(!this.props.muted);
+  }
+
   render() {
     return (
       <div className={styles.volume_controls_container}>
@@ -19,11 +23,15 @@ class VolumeControls extends React.Component {
           toggleOption={this.props.toggleOption}
           settings={this.props.settings}
         />
-        <FontAwesome name='volume-up'/>
+        <div className={styles.volume_speaker_control}
+          onClick={this.toggleMute.bind(this)}>
+          <FontAwesome name={this.props.muted ? 'volume-off' : 'volume-up'} />
+        </div>
+
         <VolumeSlider
           fill={this.props.fill}
           handleClick={this.handleClick.bind(this)}
-	      />
+        />
       </div>
     );
   }
