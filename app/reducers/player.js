@@ -6,8 +6,8 @@ import {
   UPDATE_PLAYBACK_PROGRESS,
   UPDATE_SEEK,
   UPDATE_VOLUME,
-  MUTE_ON,
-  MUTE_OFF,
+  MUTE,
+  UNMUTE,
   UPDATE_PLAYBACK_STREAM_LOADING
 } from '../actions/player';
 
@@ -49,11 +49,11 @@ export default function PlayerReducer(state=initialState, action) {
     return Object.assign({}, state, {
       volume: action.payload
     });
-  case MUTE_ON:
+  case MUTE:
     return Object.assign({}, state, {
       muted: true
     });
-  case MUTE_OFF:
+  case UNMUTE:
     return Object.assign({}, state, {
       muted: false
     });
