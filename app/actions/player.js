@@ -6,6 +6,8 @@ export const PAUSE_PLAYBACK = 'PAUSE_PLAYBACK';
 export const UPDATE_PLAYBACK_PROGRESS = 'UPDATE_PLAYBACK_PROGRESS';
 export const UPDATE_SEEK = 'UPDATE_SEEK';
 export const UPDATE_VOLUME = 'UPDATE_VOLUME';
+export const MUTE = 'MUTE';
+export const UNMUTE = 'UNMUTE';
 export const UPDATE_PLAYBACK_STREAM_LOADING = 'UPDATE_PLAYBACK_STREAM_LOADING';
 
 export function startPlayback() {
@@ -55,6 +57,30 @@ export function updateVolume(volume) {
   return {
     type: UPDATE_VOLUME,
     payload: volume
+  };
+}
+
+export function mute(){
+  return {
+    type: MUTE,
+    payload: null
+  };
+}
+
+export function unMute(){
+  return {
+    type: UNMUTE,
+    payload: null
+  };
+}
+
+export function toggleMute(muted) {
+  return dispatch => {
+    if (muted){
+      dispatch(mute());
+    } else {
+      dispatch(unMute());
+    }
   };
 }
 
