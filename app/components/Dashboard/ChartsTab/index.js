@@ -1,10 +1,7 @@
 import React from 'react';
 import { Tab } from 'semantic-ui-react';
-import artPlaceholder from '../../../../resources/media/art_placeholder.png';
-import numeral from 'numeral';
+import TrackRow from '../../TrackRow';
 import FontAwesome from 'react-fontawesome';
-import ContextPopup from '../../ContextPopup';
-
 
 
 import styles from './styles.scss';
@@ -14,69 +11,7 @@ class ChartsTab extends React.Component {
     super(props);
   }
 
-  renderTrackRow(track, i) {
-    return (
-      <tr key={'toptrack-' + i} className={styles.track}>
-        <td>
-          <img src={track.image[0]['#text'] || artPlaceholder} />
-        </td>
-        <td className={styles.popular_track_artist}>{track.artist.name}</td>
-        <td className={styles.popular_track_name}>{track.name}</td>
-        <td className={styles.playcount}>
-          {numeral(track.playcount).format('0,0')}
-        </td>
-      </tr>
-    );
-  }
-
-  renderContextPopup(track, i) {
-    let { addToQueue, musicSources } = this.props;
-    return (
-      <ContextPopup
-        key={'popup-' + i}
-        artist={track.artist.name}
-        title={track.name}
-        thumb={track.image[1]['#text']}
-        trigger={this.renderTrackRow(track, i)}
-      >
-        <a
-          href='#'
-          className='add_button'
-          onClick={() => {
-            addToQueue(musicSources, {
-              artist: track.artist.name,
-              name: track.name,
-              thumbnail: track.image[1]['#text']
-            });
-          }}
-          aria-label='Add track to queue'
-        >
-          <FontAwesome name='plus' /> Add to queue
-        </a>
-        <a
-          href='#'
-          className='add_button'
-          onClick={() => {
-            this.props.clearQueue();
-            addToQueue(musicSources, {
-              artist: track.artist.name,
-              name: track.name,
-              thumbnail: track.image[1]['#text']
-            });
-            this.props.selectSong(0);
-            this.props.startPlayback();
-            this.props.startPlayback();
-
-          }}
-          aria-label='Play Song Right Now'
-        >
-          <FontAwesome name='play' /> Play now
-        </a>
-      </ContextPopup>
-    );
-  }
-
-  render() {
+  render () {
     return (
       <Tab.Pane attached={false}>
         <div className={styles.popular_tracks_container}>
@@ -94,8 +29,20 @@ class ChartsTab extends React.Component {
               <tr></tr>
             </thead>
             <tbody>
-              {this.props.topTracks.map((track, i) => {
-                return this.renderContextPopup(track, i);
+              {this.props.topTracks.map((track, index) => {
+                return <TrackRow
+                  key={'popular-track-row-' + index}
+                  track={track}
+                  index={'popular-track-' + index}
+                  clearQueue={this.props.clearQueue}
+                  addToQueue={this.props.addToQueue}
+                  startPlayback={this.props.startPlayback}
+                  selectSong={this.props.selectSong}
+                  musicSources={this.props.musicSources}
+                  displayCover
+                  displayArtist
+                  displayPlayCount
+                />;
               })}
             </tbody>
           </table>
