@@ -5,20 +5,18 @@ const secret = 'uluhDSPtelRtLUvjrvQhRBnNwpZMtkZq';
 
 function addToken (query, first = false) {
   let newQuery = query + '&token=' + userToken;
-  if (first) {
-    return newQuery.replace('&', '?');
-  } else {
-    return newQuery;
-  }
+  return replaceQuery(newQuery, first);
 }
 
 function addKeys (query, first = false) {
   let newQuery = query + '&key=' + key + '&secret=' + secret;
-  if (first) {
-    return newQuery.replace('&', '?');
-  } else {
-    return newQuery;
-  }
+  return replaceQuery(newQuery, first);
+}
+
+function replaceQuery(query, first) {
+  if (first)
+    return query.replace('&', '?');
+  return query;
 }
 
 function searchQuery (terms, count = 15) {
@@ -30,16 +28,8 @@ function searchQuery (terms, count = 15) {
   );
 }
 
-function searchAlbums (terms, count = 15) {
-  return fetch(searchQuery(terms, count) + '&type=albums');
-}
-
-function searchArtists (terms, count = 15) {
-  return fetch(searchQuery(terms, count) + '&type=artist');
-}
-
-function searchReleases (terms, count = 15) {
-  return fetch(searchQuery(terms, count) + '&type=master');
+function search (terms, type, count = 15) {
+  return fetch(searchQuery(terms, count) + '&type=' + type);
 }
 
 function releaseInfo (releaseId, releaseType) {
@@ -69,9 +59,7 @@ function artistReleases (artistId) {
 }
 
 module.exports = {
-  searchAlbums,
-  searchArtists,
-  searchReleases,
+  search,
   releaseInfo,
   artistInfo,
   artistReleases
