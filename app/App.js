@@ -1,7 +1,6 @@
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 import Sound from 'react-sound';
-import { ToastContainer } from 'react-toastify';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { NavLink, withRouter } from 'react-router-dom';
@@ -36,6 +35,7 @@ import SearchBoxContainer from './containers/SearchBoxContainer';
 
 import IpcContainer from './containers/IpcContainer';
 import SoundContainer from './containers/SoundContainer';
+import ToastContainer from './containers/ToastContainer';
 
 import ui from 'nuclear-ui';
 import PlayerControls from './components/PlayerControls';
@@ -127,7 +127,6 @@ class App extends React.Component {
           {this.renderNavLink('plugins', 'flask', 'Plugins', settings)}
           {this.renderNavLink('settings', 'cogs', 'Settings', settings)}
           {this.renderNavLink('search', 'search', 'Search Results', settings)}
-
           <Spacer />
           {this.renderSidebarFooter(settings, toggleOption)}
         </SidebarMenu>
@@ -258,20 +257,22 @@ class App extends React.Component {
     let { settings } = this.props;
     let { toggleOption } = this.props.actions;
     return (
-      <div className={styles.app_container}>
-        {this.renderNavBar()}
-        <div className={styles.panel_container}>
-          {this.renderSidebarMenu(settings, toggleOption)}
-          <VerticalPanel className={styles.center_panel}>
-            <MainContentContainer />
-          </VerticalPanel>
-          {this.renderRightPanel(settings)}
+      <React.Fragment>
+        <div className={styles.app_container}>
+          {this.renderNavBar()}
+          <div className={styles.panel_container}>
+            {this.renderSidebarMenu(settings, toggleOption)}
+            <VerticalPanel className={styles.center_panel}>
+              <MainContentContainer />
+            </VerticalPanel>
+            {this.renderRightPanel(settings)}
+            <ToastContainer/>
+          </div>
+          {this.renderFooter(settings)}
+          <SoundContainer />
+          <IpcContainer />
         </div>
-        {this.renderFooter(settings)}
-        <ToastContainer />
-        <SoundContainer />
-        <IpcContainer />
-      </div>
+      </React.Fragment>
     );
   }
 }
