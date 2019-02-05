@@ -3,17 +3,17 @@ export const SELECT_DEFAULT_MUSIC_SOURCE = 'SELECT_DEFAULT_MUSIC_SOURCE';
 
 import config from '../plugins/config';
 
-export function createSearchPlugins(pluginClasses) {
+export function createSearchPlugins (pluginClasses) {
   let plugins = {};
 
-  for ( let i=0; i<Object.keys(pluginClasses).length; i++ ) {
+  for (let i = 0; i < Object.keys(pluginClasses).length; i++) {
     let category = Object.keys(pluginClasses)[i];
 
-    if (plugins[category] === undefined) {
+    if (typeof plugins[category] === 'undefined') {
       plugins[category] = [];
     }
 
-    for (let j=0; j<Object.keys(pluginClasses[category]).length; j++) {
+    for (let j = 0; j < Object.keys(pluginClasses[category]).length; j++) {
       let pluginName = Object.keys(pluginClasses[category])[j];
       let plugin = new pluginClasses[category][pluginName]();
       plugins[category].push(plugin);
@@ -26,7 +26,7 @@ export function createSearchPlugins(pluginClasses) {
   };
 }
 
-export function selectDefaultMusicSource(musicSource) {
+export function selectDefaultMusicSource (musicSource) {
   return {
     type: SELECT_DEFAULT_MUSIC_SOURCE,
     payload: musicSource

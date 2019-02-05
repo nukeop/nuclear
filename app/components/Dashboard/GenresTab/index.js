@@ -1,5 +1,5 @@
 import React from 'react';
-import {Tab} from 'semantic-ui-react';
+import { Tab } from 'semantic-ui-react';
 import Img from 'react-image-smooth-loading';
 
 import styles from './styles.scss';
@@ -9,11 +9,11 @@ class GenresTab extends React.Component {
     super(props);
   }
 
-  onGenreClick(genreName) {
+  onGenreClick (genreName) {
     this.props.history.push('/tag/' + genreName);
   }
 
-  render() {
+  render () {
     let {
       genres
     } = this.props;
@@ -22,7 +22,7 @@ class GenresTab extends React.Component {
       <Tab.Pane attached={false}>
         <div className={styles.genre_tab_container}>
           {
-            genres !== undefined
+            typeof genres !== 'undefined'
               ? genres.map((tag, i) => {
                 return (
                   <div
