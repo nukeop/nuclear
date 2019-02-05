@@ -3,6 +3,13 @@ const userToken = 'QDUeFOZNwIwOePlxpVziEHzamhbIHUdfENAJTnLR';
 const key = 'EZaGPpKGBbTkjwmpjmNY';
 const secret = 'uluhDSPtelRtLUvjrvQhRBnNwpZMtkZq';
 
+function replaceQuery(query, first) {
+  if (first) {
+    return query.replace('&', '?');
+  }
+  return query;
+}
+
 function addToken (query, first = false) {
   let newQuery = query + '&token=' + userToken;
   return replaceQuery(newQuery, first);
@@ -11,12 +18,6 @@ function addToken (query, first = false) {
 function addKeys (query, first = false) {
   let newQuery = query + '&key=' + key + '&secret=' + secret;
   return replaceQuery(newQuery, first);
-}
-
-function replaceQuery(query, first) {
-  if (first)
-    return query.replace('&', '?');
-  return query;
 }
 
 function searchQuery (terms, count = 15) {
