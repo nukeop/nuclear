@@ -65,7 +65,7 @@ class SearchResults extends React.Component {
   }
 
   renderLastFmPane (collection) {
-    if (collection !== undefined) {
+    if (typeof collection !== 'undefined') {
 
       return (
         <Tab.Pane loading={this.props.unifiedSearchStarted} attached={false}>
