@@ -3,7 +3,6 @@ import core from 'nuclear-core';
 import _ from 'lodash';
 import globals from '../globals';
 
-const mb = require('../rest/Musicbrainz');
 const discogs = require('../rest/Discogs');
 const lastfmRest = require('../rest/LastFm');
 const youtube = require('../rest/Youtube');
@@ -146,7 +145,7 @@ export function youtubePlaylistSearchSuccess (terms, results) {
 export function youtubePlaylistSearch (terms) {
   return dispatch => {
     dispatch(youtubePlaylistSearchStart(terms));
-    youtube.playlistSearch(terms)
+    youtube.urlSearch(terms)
       .then(results => {
         dispatch(
           youtubePlaylistSearchSuccess(terms, results)
