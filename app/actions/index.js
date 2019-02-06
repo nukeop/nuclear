@@ -117,7 +117,7 @@ export function lastFmTrackSearch (terms) {
       .then(results => Promise.all(results.map(info => info.json())))
       .then(results => {
         dispatch(
-          lastFmTrackSearchSuccess(terms, results[0].results.trackmatches.track)
+          lastFmTrackSearchSuccess(terms, _.get(results[0], 'results.trackmatches.track', []))
         );
       })
       .catch(error => {
