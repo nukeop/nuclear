@@ -9,6 +9,7 @@ import * as Actions from '../../actions';
 import * as PlayerActions from '../../actions/player';
 import * as QueueActions from '../../actions/queue';
 import * as ScrobblingActions from '../../actions/scrobbling';
+import * as LyricsActions from '../../actions/lyrics';
 import Sound from 'react-sound';
 import { getSelectedStream } from '../../utils';
 import globals from '../../globals';
@@ -18,23 +19,34 @@ import { consolidateStreamedStyles } from 'styled-components';
 let lastfm = new core.LastFmApi(globals.lastfmApiKey, globals.lastfmApiSecret);
 
 class SoundContainer extends React.Component {
-  handlePlaying(update) {
+  handlePlaying (update) {
     let seek = update.position;
     let progress = (update.position / update.duration) * 100;
     this.props.actions.updatePlaybackProgress(progress, seek);
     this.props.actions.updateStreamLoading(false);
   }
 
-  handleLoading() {
+  handleLoading () {
     this.props.actions.updateStreamLoading(true);
   }
 
-  handleLoaded() {
+  handleLoaded () {
+    this.handleLoadLyrics();
     this.handleAutoRadio();
     this.props.actions.updateStreamLoading(false);
   }
 
-  handleAutoRadio() {
+  handleLoadLyrics () {
+    let currentSong = this.props.queue.queueItems[
+      this.props.queue.currentSong
+    ];
+
+    if (typeof currentSong.lyrics === 'undefined') {
+      this.props.actions.lyricsSearch(currentSong);
+    }
+  }
+
+  handleAutoRadio () {
     if (
       this.props.settings.autoradio &&
       this.props.queue.currentSong === this.props.queue.queueItems.length - 1
@@ -43,7 +55,7 @@ class SoundContainer extends React.Component {
     }
   }
 
-  nextSong() {
+  nextSong () {
     if (this.props.settings.shuffleQueue) {
       let index = _.random(0, this.props.queue.queueItems.length - 1);
       this.props.actions.selectSong(index);
@@ -52,7 +64,7 @@ class SoundContainer extends React.Component {
     }
   }
 
-  handleFinishedPlaying() {
+  handleFinishedPlaying () {
     if (
       this.props.scrobbling.lastFmScrobblingEnabled &&
       this.props.scrobbling.lastFmSessionKey
@@ -76,7 +88,7 @@ class SoundContainer extends React.Component {
     }
   }
 
-  addAutoradioTrackToQueue() {
+  addAutoradioTrackToQueue () {
     let currentSong = this.props.queue.queueItems[this.props.queue.currentSong];
     return lastfm
       .getArtistInfo(currentSong.artist)
@@ -90,26 +102,26 @@ class SoundContainer extends React.Component {
       });
   }
 
-  getSimilarArtists(artistJson) {
+  getSimilarArtists (artistJson) {
     return new Promise((resolve, reject) => {
       resolve(artistJson.similar.artist);
     });
   }
 
-  getRandomElement(arr) {
+  getRandomElement (arr) {
     let devianceParameter = 0.2; // We will select one of the 20% most similar artists
     let randomElement =
       arr[Math.round(Math.random() * (devianceParameter * (arr.length - 1)))];
     return new Promise((resolve, reject) => resolve(randomElement));
   }
 
-  getArtistTopTracks(artist) {
+  getArtistTopTracks (artist) {
     return lastfm
       .getArtistTopTracks(artist.name)
       .then(topTracks => topTracks.json());
   }
 
-  addToQueue(artist, track) {
+  addToQueue (artist, track) {
     return new Promise((resolve, reject) => {
       let musicSources = this.props.plugins.plugins.musicSources;
       this.props.actions.addToQueue(musicSources, {
@@ -121,7 +133,7 @@ class SoundContainer extends React.Component {
     });
   }
 
-  shouldComponentUpdate(nextProps) {
+  shouldComponentUpdate (nextProps) {
     return (
       this.props.queue.currentSong !== nextProps.queue.currentSong ||
       this.props.player.playbackStatus !== nextProps.player.playbackStatus ||
@@ -129,7 +141,7 @@ class SoundContainer extends React.Component {
     );
   }
 
-  render() {
+  render () {
     let { player, queue, plugins } = this.props;
 
     let streamUrl = '';
@@ -156,7 +168,7 @@ class SoundContainer extends React.Component {
   }
 }
 
-function mapStateToProps(state) {
+function mapStateToProps (state) {
   return {
     queue: state.queue,
     plugins: state.plugin,
@@ -166,7 +178,7 @@ function mapStateToProps(state) {
   };
 }
 
-function mapDispatchToProps(dispatch) {
+function mapDispatchToProps (dispatch) {
   return {
     actions: bindActionCreators(
       Object.assign(
@@ -174,8 +186,8 @@ function mapDispatchToProps(dispatch) {
         Actions,
         PlayerActions,
         QueueActions,
-        ScrobblingActions
-        // AutoradioActions
+        ScrobblingActions,
+        LyricsActions
       ),
       dispatch
     )

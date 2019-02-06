@@ -1,14 +1,12 @@
-import { createHttpError } from 'builder-util-runtime';
+import logger from 'electron-timber';
 
 const cheerio = require('cheerio');
 const _ = require('lodash');
-const request = require('request-promise');
-const levenshtein = require('fast-levenshtein');
-
-// export { default as LyricsSearch } from './LyricsSearch';
+import * as Promise from 'bluebird';
 
 const textln = (html) => {
-  // html.find('br').replaceWith('\n');
+  html.find('br').replaceWith('\n');
+  html.find('img').replaceWith('');
   html.find('h2').replaceWith('');
   html.find('script').replaceWith('');
   html.find('#video-musictory').replaceWith('');
@@ -19,7 +17,6 @@ const textln = (html) => {
   html = html.replace(/\n\r\n/g, '\n');
   html = html.replace(/ +/g, ' ');
   html = html.replace(/\n /g, '\n');
-  html = html.replace(/\n/g, '<br>');
   return html;
 };
 
@@ -29,126 +26,51 @@ const lyricsUrl = (title) => {
 const lyricsManiaUrl = (title) => {
   return _.snakeCase(_.trim(_.toLower(_.deburr(title))));
 };
-const lyricsManiaUrlAlt = (title) => {
-  title = _.trim(_.toLower(title));
-  title = title.replace('\'', '');
-  title = title.replace(' ', '_');
-  title = title.replace(/_+/g, '_');
-  return title;
-};
+
+function checkStatus (response) {
+  if (response.status !== 200 || !response.ok) {
+    let error = new Error(response.statusText);
+    error.response = response;
+    return Promise.reject(error);
+  }
+  return Promise.resolve(response);
+}
+
+function getLyricsText (url, selector) {
+  return fetch(url)
+    .then(response => checkStatus(response))
+    .then(response => response.text())
+    .then(html => cheerio.load(html))
+    .then(($) => {
+      if ($(selector).length === 0) {
+        let error = new Error('No text was found');
+        error.response = $;
+        return Promise.reject(error);
+      }
+      return textln($(selector));
+    })
+    .catch(function (err) {
+      let error = new Error('Unable to get the lyrics');
+      error.response = err;
+      return Promise.reject(error);
+    });
+}
 
 export function search (artistName, trackName) {
   let promises = [];
 
-  /*
-                        const reqWikia = request({
-                          uri: 'http://lyrics.wikia.com/wiki/' + encodeURIComponent(artistName) + ':' + encodeURIComponent(trackName),
-                          transform: (body) => {
-                            return cheerio.load(body);
-                          }
-                        }).then(($) => {
-                          return textln($('.lyricbox'));
-                        });*/
+  const reqParolesNet = getLyricsText('http://www.paroles.net/' + lyricsUrl(artistName) + '/paroles-' + lyricsUrl(trackName), '.song-text');
+  const reqWikia = getLyricsText('http://lyrics.wikia.com/wiki/' + encodeURIComponent(artistName) + ':' + encodeURIComponent(trackName), '.lyricbox');
+  const reqLyricsMania1 = getLyricsText('http://www.lyricsmania.com/' + lyricsManiaUrl(trackName) + '_lyrics_' + lyricsManiaUrl(artistName) + '.html', '.lyrics-body');
 
-  const reqParolesNet = request({
-    uri: 'http://www.paroles.net/' + lyricsUrl(artistName) + '/paroles-' + lyricsUrl(trackName),
-    transform: (body) => {
-      return cheerio.load(body);
-    }
-  }).then(($) => {
-    if ($('.song-text').length === 0) {
-      // return Promise.reject();
-      return Promise.resolve('');
-    }
-    return textln($('.song-text'));
-  });
-
-
-  /* const reqLyricsMania1 = request({
-          uri: 'http://www.lyricsmania.com/' + lyricsManiaUrl(trackName) + '_lyrics_' + lyricsManiaUrl(artistName) + '.html',
-          transform: (body) => {
-            return cheerio.load(body);
-          }
-        }).then(($) => {
-          if ($('.lyrics-body').length === 0) {
-            // return Promise.reject();
-            return Promise.resolve('');
-          }
-          return textln($('.lyrics-body'));
-        });
-      
-        const reqLyricsMania2 = request({
-          uri: 'http://www.lyricsmania.com/' + lyricsManiaUrl(trackName) + '_' + lyricsManiaUrl(artistName) + '.html',
-          transform: (body) => {
-            return cheerio.load(body);
-          }
-        }).then(($) => {
-          if ($('.lyrics-body').length === 0) {
-            // return Promise.reject();
-            return Promise.resolve('');
-          }
-          return textln($('.lyrics-body'));
-        });
-      
-        const reqLyricsMania3 = request({
-          uri: 'http://www.lyricsmania.com/' + lyricsManiaUrlAlt(trackName) + '_lyrics_' + encodeURIComponent(lyricsManiaUrlAlt(artistName)) + '.html',
-          transform: (body) => {
-            return cheerio.load(body);
-          }
-        }).then(($) => {
-          if ($('.lyrics-body').length === 0) {
-            // return Promise.reject();
-            return Promise.resolve('');
-          }
-          return textln($('.lyrics-body'));
-        });*/
-
-  /* const reqSweetLyrics = request({
-                     method: 'POST',
-                     uri: 'http://www.sweetslyrics.com/search.php',
-                     form: {
-                         search: 'trackName',
-                         searchtext: trackName
-                     },
-                     transform: (body) => {
-                         return cheerio.load(body);
-                     }
-                 }).then(($) => {
-                     let closestLink, closestScore = -1;
-                     _.forEach($('.search_results_row_color'), (e) => {
-                         let artist = $(e).text().replace(/ - .+$/, '');
-                         let currentScore = levenshtein.get(artistName, artist);
-                         if (closestScore === -1 || currentScore < closestScore) {
-                             closestScore = currentScore;
-                             closestLink = $(e).find('a').last().attr('href');
-                         }
-                     });
-                     if (!closestLink) {
-                         return Promise.reject();
-                     }
-                     return request({
-                         uri: 'http://www.sweetslyrics.com/' + closestLink,
-                         transform: (body) => {
-                             return cheerio.load(body);
-                         }
-                     });
-                 }).then(($) => {
-                     return textln($('.lyric_full_text'));
-                 });*/
-
-
-  // promises.push(reqWikia);
   promises.push(reqParolesNet);
-  /* promises.push(reqLyricsMania1);
-        promises.push(reqLyricsMania2);
-        promises.push(reqLyricsMania3);*/
-  // promises.push(reqSweetLyrics);
+  promises.push(reqWikia);
+  promises.push(reqLyricsMania1);
 
-  return Promise.all(promises).then((lyrics) => {
-    console.log(lyrics);
+  return Promise.any(promises).then((lyrics) => {
     return lyrics;
-  });
-  /* .catch(err => {
-            console.log(err);
-          });*/
+  })
+    .catch(err => {
+      // logger.log(err);
+    });
 }
