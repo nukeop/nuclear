@@ -22,7 +22,7 @@ class PlaylistResults extends React.Component {
     }
   }
   renderAddAllButton (tracks) {
-    return (<a
+    return (tracks.length > 0 ? <a
       key='add-all-tracks-to-queue'
       href='#'
       onClick={() => {
@@ -35,7 +35,7 @@ class PlaylistResults extends React.Component {
       aria-label='Add all tracks to queue'
     >
       <FontAwesome name='plus' /> Add all
-    </a>
+    </a> : null
     );
   }
 
