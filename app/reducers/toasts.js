@@ -16,6 +16,9 @@ export default function ToastsReducer(state=initialState, action) {
       notifications: _.concat(state.notifications, action.payload)
     });
   case REMOVE_NOTIFICATION:
+    return Object.assign({}, state, {
+      notifications: _.filter(state.notifications,  n => n.id !== action.payload)
+    });
   default:
     return state;
   }
