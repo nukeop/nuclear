@@ -3,21 +3,14 @@ const userToken = 'QDUeFOZNwIwOePlxpVziEHzamhbIHUdfENAJTnLR';
 const key = 'EZaGPpKGBbTkjwmpjmNY';
 const secret = 'uluhDSPtelRtLUvjrvQhRBnNwpZMtkZq';
 
-function replaceQuery(query, first) {
-  if (first) {
-    return query.replace('&', '?');
-  }
-  return query;
-}
-
 function addToken (query, first = false) {
   let newQuery = query + '&token=' + userToken;
-  return replaceQuery(newQuery, first);
+  return first ? newQuery.replace('&', '?') : newQuery;
 }
 
 function addKeys (query, first = false) {
   let newQuery = query + '&key=' + key + '&secret=' + secret;
-  return replaceQuery(newQuery, first);
+  return first ? newQuery.replace('&', '?') : newQuery;
 }
 
 function searchQuery (terms, count = 15) {
