@@ -18,7 +18,7 @@ function searchQuery (terms, count = 15) {
   terms = terms.replace('#', '');
 
   return addToken(
-    apiUrl + 'database/search' + '?q=' + encodeURI(terms) + '&per_page=' + count
+    apiUrl + 'database/search' + '?q=' + encodeURIComponent(terms) + '&per_page=' + count
   );
 }
 
@@ -29,8 +29,7 @@ function search (terms, type, count = 15) {
 function releaseInfo (releaseId, releaseType) {
   if (releaseType === 'master') {
     return fetch(addToken(apiUrl + 'masters/' + releaseId, true));
-  }
-  else if (releaseType === 'release') {
+  } else if (releaseType === 'release') {
     return fetch(addToken(apiUrl + 'releases/' + releaseId, true));
   }
 }
