@@ -17,7 +17,7 @@ export function removeNotification(id) {
   };
 }
 
-export function notify(title, details, icon) {
+export function notify(title, details, icon, timeout=3) {
   return dispatch => {
     let id = uuidv4();
     dispatch(addNotification({
@@ -29,11 +29,13 @@ export function notify(title, details, icon) {
       details,
       icon
     }));
+
+    setTimeout(() => dispatch(removeNotification(id)), timeout * 1000);
   };
 
 }
 
-export function error(title, details, icon) {
+export function error(title, details, icon, timeout=3) {
   return dispatch => {
     let id = uuidv4();
     dispatch(addNotification({
@@ -46,5 +48,7 @@ export function error(title, details, icon) {
       details,
       icon
     }));
+
+    setTimeout(() => dispatch(removeNotification(id)), timeout * 1000);
   };
 }
