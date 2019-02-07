@@ -32,14 +32,6 @@ class AlbumView extends React.Component {
     }
   }
 
-  addToQueue (album, track) {
-    this.props.addToQueue(this.props.musicSources, {
-      artist: this.getArtistName(track, album),
-      name: track.title,
-      thumbnail: album.images[0].uri
-    });
-  }
-
   addAlbumToQueue (album) {
     album.tracklist.map(track => {
       this.props.addToQueue(this.props.musicSources, {
@@ -64,7 +56,6 @@ class AlbumView extends React.Component {
 
   render () {
     let { album } = this.props;
-
     if (
       _.some(_.map([album.images, album.artists, album.genres], _.isEmpty)) &&
       album.loading !== true
@@ -189,42 +180,47 @@ class AlbumView extends React.Component {
     );
   }
 
+  renderTrack (track, album, index) {
+    if (parseInt(track.duration) !== track.duration) {
+      track.duration = Utils.stringDurationToSeconds(track.duration);
+    }
+    _.set(track, 'name', track.title);
+    _.set(track, 'image[0][#text]', _.get(album, 'images[0].uri'));
+    _.set(track, 'artist.name', this.getArtistName(track, album));
+    return (<TrackRow
+      key={'album-track-row-' + index}
+      track={track}
+      index={'album-track-' + index}
+      clearQueue={this.props.clearQueue}
+      addToQueue={this.props.addToQueue}
+      startPlayback={this.props.startPlayback}
+      selectSong={this.props.selectSong}
+      musicSources={this.props.musicSources}
+      displayTrackNumber
+      displayDuration
+    />);
+  }
+
+  renderTrackTableHeader () {
+    return (<thead>
+      <tr>
+        <th className={styles.center}>
+          <FontAwesome name='hashtag' />
+        </th>
+        <th className={styles.left}>Song</th>
+        <th className={styles.center}>
+          <FontAwesome name='clock-o' />
+        </th>
+      </tr>
+    </thead>);
+  }
+
   renderAlbumTracksList (album) {
     return (
       <table className={styles.album_tracklist}>
-        <thead>
-          <tr>
-            <th className={styles.center}>
-              <FontAwesome name='hashtag' />
-            </th>
-            <th className={styles.left}>Song</th>
-            <th className={styles.center}>
-              <FontAwesome name='clock-o' />
-            </th>
-          </tr>
-        </thead>
+        {this.renderTrackTableHeader()}
         <tbody>
-          {album.tracklist.map((track, index) => {
-            track.artist = this.getArtistName(track, album);
-            track.name = track.title;
-            if (parseInt(track.duration) !== track.duration) {
-              track.duration = Utils.stringDurationToSeconds(track.duration);
-            }
-            _.set(track, 'image[0][#text]', _.get(album, 'images[0].uri'));
-
-            return (<TrackRow
-              key={'album-track-row-' + index}
-              track={track}
-              index={'album-track-' + index}
-              clearQueue={this.props.clearQueue}
-              addToQueue={this.props.addToQueue}
-              startPlayback={this.props.startPlayback}
-              selectSong={this.props.selectSong}
-              musicSources={this.props.musicSources}
-              displayTrackNumber
-              displayDuration
-            />);
-          }
+          {album.tracklist.map((track, index) => this.renderTrack(track, album, index)
           )}
         </tbody>
       </table>
