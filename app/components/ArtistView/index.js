@@ -135,7 +135,9 @@ class ArtistView extends React.Component {
           </div>
           <hr />
           <AlbumList
-            albums={_.get(artist, 'releases')}
+            albums={_.get(artist, 'releases', []).sort((a, b) => {
+              return b.year - a.year;
+            })}
             albumInfoSearch={albumInfoSearch}
             history={history}
           />
