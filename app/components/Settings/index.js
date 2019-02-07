@@ -29,6 +29,11 @@ class Settings extends React.Component {
     return this.props.settings[option.name];
   }
 
+  validateNumberInput(value) {
+    const intValue = _.parseInt(value);
+    return _.isNull(value) || !_.isNaN(intValue);
+  }
+
   renderLastFmTitle() {
     return (
       <div className={styles.settings_item}>
@@ -138,9 +143,20 @@ class Settings extends React.Component {
           option.type === settingsEnum.STRING &&
             <Input
               fluid
-              value={this.getOptionValue(option)}
+              value={this.getOptionValue(option) || option.default}
               onChange={
                 e => this.props.actions.setStringOption(option.name, e.target.value)
+              }
+            />
+        }
+        {
+          option.type === settingsEnum.NUMBER &&
+            <Input
+              fluid
+              value={this.getOptionValue(option) || option.default}
+              error={!this.validateNumberInput(this.getOptionValue(option))}
+              onChange={
+                e => this.validateNumberInput(this.getOptionValue(option)) && this.props.actions.setNumberOption(option.name, _.parseInt(e.target.value))
               }
             />
         }
