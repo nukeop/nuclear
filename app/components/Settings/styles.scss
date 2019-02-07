@@ -23,7 +23,8 @@
     justify-content: left;
     margin: 2rem 0;
 
-    &.string {
+    &.string,
+    &.number {
       flex-flow: column;
 
       label {
