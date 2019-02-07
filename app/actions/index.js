@@ -69,7 +69,7 @@ export function unifiedSearchError () {
 
 function discogsSearch (terms, searchType, dispatchType) {
   return dispatch => {
-    return searchType(terms)
+    return discogs.search(terms, searchType)
       .then(searchResults => searchResults.json())
       .then(searchResultsJson => {
         dispatch({
@@ -85,11 +85,11 @@ function discogsSearch (terms, searchType, dispatchType) {
 }
 
 export function albumSearch (terms) {
-  return discogsSearch(terms, discogs.searchReleases, 'ALBUM_SEARCH_SUCCESS');
+  return discogsSearch(terms, 'albums', 'ALBUM_SEARCH_SUCCESS');
 }
 
 export function artistSearch (terms) {
-  return discogsSearch(terms, discogs.searchArtists, 'ARTIST_SEARCH_SUCCESS');
+  return discogsSearch(terms, 'artists', 'ARTIST_SEARCH_SUCCESS');
 }
 
 export function lastFmTrackSearchStart (terms) {
@@ -286,7 +286,7 @@ export function artistReleasesSearch (artistId) {
 export function artistInfoSearchByName (artistName, history) {
   return dispatch => {
     discogs
-      .searchArtists(artistName)
+      .search(artistName, 'artists')
       .then(searchResults => searchResults.json())
       .then(searchResultsJson => {
         let artist = searchResultsJson.results[0];
@@ -305,7 +305,7 @@ export function artistInfoSearchByName (artistName, history) {
 export function albumInfoSearchByName (albumName, history) {
   return dispatch => {
     discogs
-      .searchAlbums(albumName)
+      .search(albumName, 'albums')
       .then(searchResults => searchResults.json())
       .then(searchResultsJson => {
         let album = searchResultsJson.results[0];
