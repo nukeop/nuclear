@@ -47,6 +47,9 @@ class AllResults extends React.Component {
             playlistSearchStarted={this.props.playlistSearchStarted}
             playlistSearchResults={this.props.playlistSearchResults}
             addToQueue={this.props.addToQueue}
+            clearQueue={this.props.clearQueue}
+            startPlayback={this.props.startPlayback}
+            selectSong={this.props.selectSong}
             musicSources={this.props.musicSources}
           />
         </div>

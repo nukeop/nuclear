@@ -22,6 +22,7 @@ function addTrackToQueue (musicSources, item) {
     Promise.all(_.map(musicSources, m => m.search({ artist: item.artist, track: item.name })))
       .then(results => Promise.all(results))
       .then(results => {
+        _.pull(results, null);
         dispatch({
           type: ADD_STREAMS_TO_QUEUE_ITEM,
           payload: Object.assign({}, item, { streams: results, loading: false })
