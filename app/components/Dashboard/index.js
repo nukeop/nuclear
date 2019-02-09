@@ -17,6 +17,11 @@ class Dashboard extends React.Component {
             artistInfoSearchByName={this.props.artistInfoSearchByName}
             albumInfoSearchByName={this.props.albumInfoSearchByName}
             history={this.props.history}
+            addToQueue={this.props.addToQueue}
+            selectSong={this.props.selectSong}
+            clearQueue={this.props.clearQueue}
+            startPlayback={this.props.startPlayback}
+            musicSources={this.props.musicSources}
           />
         )
       },
