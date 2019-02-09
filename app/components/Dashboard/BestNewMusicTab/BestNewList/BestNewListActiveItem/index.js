@@ -1,4 +1,5 @@
 import React from 'react';
+import FontAwesome from 'react-fontawesome';
 
 import styles from './styles.scss';
 
@@ -57,6 +58,14 @@ class BestNewListActiveItem extends React.Component {
       </div>
     </div>);
   }
+
+  addToQueue (item) {
+    return this.props.addToQueue(this.props.musicSources, {
+      artist: item.artist,
+      name: item.title,
+      thumbnail: item.thumbnail
+    });
+  }
   render () {
     let { item } = this.props;
 
@@ -75,6 +84,23 @@ class BestNewListActiveItem extends React.Component {
             {this.renderArtistTitleBox(item)}
           </div>
           <div />
+          <div>
+            {!this.props.albumInfoSearchByName ? <div>
+              <a
+                onClick={() => {
+                  this.props.clearQueue();
+                  this.addToQueue(item);
+                  this.props.selectSong(0);
+                  this.props.startPlayback();
+                }}
+                href='#'
+                className={styles.play_button}
+              >
+                <FontAwesome name='play' /> Play
+              </a><a href='#' onClick={() => {
+                return this.addToQueue(item);
+              }}><FontAwesome name='plus' /> Add to queue</a></div> : null}
+          </div>
           {this.renderReview(item)}
         </div>
       </div>
