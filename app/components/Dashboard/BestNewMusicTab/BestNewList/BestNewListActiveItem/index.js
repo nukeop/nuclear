@@ -7,8 +7,58 @@ class BestNewListActiveItem extends React.Component {
     super(props);
   }
 
-  render() {
-    let { item, artistInfoSearchByName, history } = this.props;
+  renderThumbnail (item) {
+    return (<div className={styles.thumbnail_box}>
+      <div
+        className={styles.item_thumbnail}
+        style={{
+          backgroundImage: `url(${item.thumbnail})`
+        }}
+      />
+    </div>);
+  }
+
+  renderArtistTitleBox (item) {
+    return (<div className={styles.artist_title_box}>
+      <div className={styles.title}>
+        {this.props.albumInfoSearchByName ? <a
+          onClick={() => this.props.albumInfoSearchByName(item.title + ' ' + item.artist, this.props.history)}
+          href='#'
+        >
+          {item.title}
+        </a> : item.title}
+      </div>
+      <div className={styles.artist}>
+        by{' '}
+        <a
+          onClick={() => this.props.artistInfoSearchByName(item.artist, this.props.history)}
+          href='#'
+        >
+          {item.artist}
+        </a>
+      </div>
+    </div>);
+  }
+
+  renderReview (item) {
+    return (<div className={styles.review}>
+      {item.abstract ? (
+        <div className={styles.abstract}>{item.abstract}</div>
+      ) : null}
+      <div className={styles.review_content}>
+        {item.review.split('\n').map(i => {
+          return (
+
+            <div key={'item-' + i} className={styles.paragraph}>
+              {i}
+            </div>
+          );
+        })}
+      </div>
+    </div>);
+  }
+  render () {
+    let { item } = this.props;
 
     if (!item) {
       return null;
@@ -16,48 +66,16 @@ class BestNewListActiveItem extends React.Component {
 
     return (
       <div className={styles.best_new_active_item}>
-        <div className={styles.thumbnail_box}>
-          <div
-            className={styles.item_thumbnail}
-            style={{
-              backgroundImage: `url(${item.thumbnail})`
-            }}
-          />
-        </div>
+        {this.renderThumbnail(item)}
         <div className={styles.review_box}>
           <div className={styles.header_row}>
             {item.score ? (
               <div className={styles.score}>{item.score}</div>
             ) : null}
-
-            <div className={styles.artist_title_box}>
-              <div className={styles.title}>{item.title}</div>
-              <div className={styles.artist}>
-                by{' '}
-                <a
-                  onClick={() => artistInfoSearchByName(item.artist, history)}
-                  href='#'
-                >
-                  {item.artist}
-                </a>
-              </div>
-            </div>
+            {this.renderArtistTitleBox(item)}
           </div>
-          <div className={styles.review}>
-            {item.abstract ? (
-              <div className={styles.abstract}>{item.abstract}</div>
-            ) : null}
-            <div className={styles.review_content}>
-              {item.review.split('\n').map(i => {
-                return (
-
-                  <div key={'item-' + i} className={styles.paragraph}>
-                    {i}
-                  </div>
-                );
-              })}
-            </div>
-          </div>
+          <div />
+          {this.renderReview(item)}
         </div>
       </div>
     );
