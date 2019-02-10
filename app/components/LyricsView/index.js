@@ -1,5 +1,6 @@
 import React from 'react';
 import _ from 'lodash';
+import Header from '../Header';
 
 import styles from './styles.scss';
 
@@ -21,13 +22,10 @@ class LyricsView extends React.Component {
   renderLyricsHeader () {
     let track = this.props.track;
     return (
-      <div className={styles.lyrics_header_overlay}>
-        <div className={styles.lyrics_header_container}>
-          <div className={styles.lyrics_artist_name_container} >
-            <h1>{track.name} by {track.artist}</h1>
-          </div>
-        </div>
-      </div>
+      <Header>
+        {track.name} by {track.artist}
+      </Header>
+
     );
   }
 
