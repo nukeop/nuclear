@@ -5,25 +5,22 @@ import { bindActionCreators } from 'redux';
 
 import * as QueueActions from '../../actions/queue';
 import * as PlayerActions from '../../actions/player';
+import * as ToastActions from '../../actions/toasts';
+
 import PlaylistView from '../../components/PlaylistView';
 
-class PlaylistViewContainer extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <PlaylistView
-        playlist={this.props.playlists.playlists[this.props.match.params.playlistId]}
-        musicSources={this.props.musicSources}
-        addTracks={this.props.actions.addPlaylistTracksToQueue}
-        selectSong={this.props.actions.selectSong}
-        startPlayback={this.props.actions.startPlayback}
-      />
-    );
-  }
-}
+const PlaylistViewContainer = props => {
+  return (
+    <PlaylistView
+      playlist={this.props.playlists.playlists[this.props.match.params.playlistId]}
+      musicSources={this.props.musicSources}
+      addTracks={this.props.actions.addPlaylistTracksToQueue}
+      selectSong={this.props.actions.selectSong}
+      startPlayback={this.props.actions.startPlayback}
+      notify={this.props.actions.notify}
+    />
+  );
+};
 
 function mapStateToProps(state) {
   return {
@@ -34,7 +31,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators(Object.assign({}, QueueActions, PlayerActions), dispatch)
+    actions: bindActionCreators(Object.assign({}, QueueActions, PlayerActions, ToastActions), dispatch)
   };
 }
 

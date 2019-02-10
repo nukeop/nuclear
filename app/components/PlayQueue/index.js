@@ -65,7 +65,8 @@ class PlayQueue extends React.Component {
     let {
       clearQueue,
       addPlaylist,
-      toggleOption
+      toggleOption,
+      success
     } = this.props.actions;
 
     return (
@@ -75,6 +76,7 @@ class PlayQueue extends React.Component {
             clearQueue={clearQueue}
             addPlaylist={addPlaylist}
             toggleOption={toggleOption}
+            notify={success}
             settings={settings}
             items={items}
           />

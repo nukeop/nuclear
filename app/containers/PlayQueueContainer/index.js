@@ -6,27 +6,22 @@ import * as QueueActions from '../../actions/queue';
 import * as PluginsActions from '../../actions/plugins';
 import * as PlaylistsActions from '../../actions/playlists';
 import * as SettingsActions from '../../actions/settings';
+import * as ToastActions from '../../actions/toasts';
 
 import PlayQueue from '../../components/PlayQueue';
 
-class PlayQueueContainer extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <PlayQueue
-        actions={this.props.actions}
-        items={this.props.queue.queueItems}
-        currentSong={this.props.queue.currentSong}
-        plugins={this.props.plugins}
-        settings={this.props.settings}
-        compact={this.props.compact}
-      />
-    );
-  }
-}
+const PlayQueueContainer = props => {
+  return (
+    <PlayQueue
+      actions={props.actions}
+      items={props.queue.queueItems}
+      currentSong={props.queue.currentSong}
+      plugins={props.plugins}
+      settings={props.settings}
+      compact={props.compact}
+    />
+  );
+};
 
 function mapStateToProps(state) {
   return {
@@ -39,7 +34,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators(Object.assign({}, PluginsActions, QueueActions, PlaylistsActions, SettingsActions), dispatch)
+    actions: bindActionCreators(Object.assign({}, PluginsActions, QueueActions, PlaylistsActions, SettingsActions, ToastActions), dispatch)
   };
 }
 
