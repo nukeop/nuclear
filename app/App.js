@@ -124,9 +124,10 @@ class App extends React.Component {
           {this.renderNavLink('dashboard', 'dashboard', 'Dashboard', settings)}
           {this.renderNavLink('downloads', 'download', 'Downloads', settings)}
           {this.renderNavLink('playlists', 'music', 'Playlists', settings)}
+          {this.renderNavLink('lyrics', 'microphone', 'Lyrics', settings)}
           {this.renderNavLink('plugins', 'flask', 'Plugins', settings)}
-          {this.renderNavLink('settings', 'cogs', 'Settings', settings)}
           {this.renderNavLink('search', 'search', 'Search Results', settings)}
+          {this.renderNavLink('settings', 'cogs', 'Settings', settings)}
           <Spacer />
           {this.renderSidebarFooter(settings, toggleOption)}
         </SidebarMenu>
@@ -230,6 +231,8 @@ class App extends React.Component {
       <VolumeControls
         fill={this.props.player.volume}
         updateVolume={this.props.actions.updateVolume}
+        muted={this.props.player.muted}
+        toggleMute={this.props.actions.toggleMute}
         toggleOption={this.props.actions.toggleOption}
         settings={settings}
       />

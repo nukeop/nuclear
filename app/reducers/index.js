@@ -10,6 +10,7 @@ import SettingsReducer from './settings';
 import DashboardReducer from './dashboard';
 import TagReducer from './tag';
 import ToastsReducer from './toasts';
+import LyricsReducer from './lyrics';
 
 const rootReducer = combineReducers({
   search: SearchReducer,
@@ -22,6 +23,7 @@ const rootReducer = combineReducers({
   tags: TagReducer,
   settings: SettingsReducer,
   toasts: ToastsReducer
+  lyrics: LyricsReducer
 });
 
 export default rootReducer;

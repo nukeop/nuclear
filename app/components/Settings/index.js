@@ -11,7 +11,7 @@ import settingsEnum from '../../constants/settingsEnum';
 import styles from './styles.scss';
 
 class Settings extends React.Component {
-  toggleScrobbling(
+  toggleScrobbling (
     lastFmScrobblingEnabled,
     enableScrobbling,
     disableScrobbling
@@ -19,13 +19,13 @@ class Settings extends React.Component {
     lastFmScrobblingEnabled ? disableScrobbling() : enableScrobbling();
   }
 
-  isChecked(option) {
-    return this.props.settings[option.name] !== undefined
+  isChecked (option) {
+    return typeof this.props.settings[option.name] !== 'undefined'
       ? this.props.settings[option.name]
       : option.default;
   }
 
-  getOptionValue(option) {
+  getOptionValue (option) {
     return this.props.settings[option.name];
   }
 
@@ -34,7 +34,7 @@ class Settings extends React.Component {
     return _.isNull(value) || !_.isNaN(intValue);
   }
 
-  renderLastFmTitle() {
+  renderLastFmTitle () {
     return (
       <div className={styles.settings_item}>
         <label>
@@ -54,7 +54,7 @@ class Settings extends React.Component {
     );
   }
 
-  renderLastFmLoginButtons() {
+  renderLastFmLoginButtons () {
     let {
       lastFmAuthToken,
       lastFmName,
@@ -77,14 +77,14 @@ class Settings extends React.Component {
             onClick={() => lastFmLoginAction(lastFmAuthToken)}
             color='red'
           >
-              Log in
+            Log in
           </Button>
         )}
       </div>
     );
   }
 
-  renderLastFmOptionRadio() {
+  renderLastFmOptionRadio () {
     let { lastFmScrobblingEnabled } = this.props.scrobbling;
     const { enableScrobbling, disableScrobbling } = this.props.actions;
     return (
@@ -106,7 +106,7 @@ class Settings extends React.Component {
     );
   }
 
-  renderSocialSettings() {
+  renderSocialSettings () {
     return (
       <div className={styles.settings_section}>
         <Header>Social</Header>
@@ -115,8 +115,8 @@ class Settings extends React.Component {
 
         <div className={styles.settings_item}>
           <p>
-              In order to enable scrobbling, you first have to connect and
-              authorize nuclear on Last.fm, then click log in.
+            In order to enable scrobbling, you first have to connect and
+            authorize nuclear on Last.fm, then click log in.
           </p>
         </div>
 
@@ -126,28 +126,28 @@ class Settings extends React.Component {
     );
   }
 
-  renderOption(settings, option, key) {
+  renderOption (settings, option, key) {
     return (
       <div key={key} className={cx(styles.settings_item, option.type)}>
         <label>{option.prettyName}</label>
         <Spacer />
         {
           option.type === settingsEnum.BOOLEAN &&
-            <Radio
-              toggle
-              onChange={() => this.props.actions.toggleOption(option, settings)}
-              checked={this.isChecked(option)}
-            />
+          <Radio
+            toggle
+            onChange={() => this.props.actions.toggleOption(option, settings)}
+            checked={this.isChecked(option)}
+          />
         }
         {
           option.type === settingsEnum.STRING &&
-            <Input
-              fluid
-              value={this.getOptionValue(option) || option.default}
-              onChange={
-                e => this.props.actions.setStringOption(option.name, e.target.value)
-              }
-            />
+          <Input
+            fluid
+            value={this.getOptionValue(option)}
+            onChange={
+              e => this.props.actions.setStringOption(option.name, e.target.value)
+            }
+          />
         }
         {
           option.type === settingsEnum.NUMBER &&
@@ -164,7 +164,7 @@ class Settings extends React.Component {
     );
   }
 
-  render() {
+  render () {
     let { options, settings } = this.props;
     let optionsGroups = _.groupBy(options, 'category');
 

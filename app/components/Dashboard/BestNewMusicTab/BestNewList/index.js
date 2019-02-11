@@ -12,10 +12,11 @@ class BestNewList extends React.Component {
     };
   }
 
-  render() {
+  render () {
     let {
       data,
       artistInfoSearchByName,
+      albumInfoSearchByName,
       history
     } = this.props;
 
@@ -26,6 +27,12 @@ class BestNewList extends React.Component {
           <BestNewListActiveItem
             item={data[this.state.activeItem]}
             artistInfoSearchByName={artistInfoSearchByName}
+            albumInfoSearchByName={albumInfoSearchByName}
+            addToQueue={this.props.addToQueue}
+            selectSong={this.props.selectSong}
+            clearQueue={this.props.clearQueue}
+            startPlayback={this.props.startPlayback}
+            musicSources={this.props.musicSources}
             history={history}
           />
         </div>

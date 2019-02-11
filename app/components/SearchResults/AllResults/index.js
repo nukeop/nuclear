@@ -27,11 +27,15 @@ class AllResults extends React.Component {
 
   renderTracks (arr = [], limit = 5) {
     return (<TracksResults
+      clearQueue={this.props.clearQueue}
       addToQueue={this.props.addToQueue}
+      startPlayback={this.props.startPlayback}
+      selectSong={this.props.selectSong}
       tracks={arr}
       limit={limit}
       musicSources={this.props.musicSources}
     />);
+
   }
 
   renderPlaylistSection () {
@@ -43,6 +47,9 @@ class AllResults extends React.Component {
             playlistSearchStarted={this.props.playlistSearchStarted}
             playlistSearchResults={this.props.playlistSearchResults}
             addToQueue={this.props.addToQueue}
+            clearQueue={this.props.clearQueue}
+            startPlayback={this.props.startPlayback}
+            selectSong={this.props.selectSong}
             musicSources={this.props.musicSources}
           />
         </div>

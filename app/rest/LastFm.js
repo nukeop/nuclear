@@ -12,7 +12,7 @@ function makeLastfmRequest (parameters) {
 }
 
 function searchTracks (terms, limit = 30) {
-  let parameters = 'track.search&track=' + encodeURI(terms);
+  let parameters = 'track.search&track=' + encodeURIComponent(terms);
   parameters += '&limit=' + limit
   return makeLastfmRequest(parameters);
 }

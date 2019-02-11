@@ -1,7 +1,10 @@
 import globals from '../globals';
+import ytdl from 'ytdl-core';
+
 const ytlist = require('youtube-playlist');
 const getArtistTitle = require('get-artist-title');
 const lastfm = require('./LastFm');
+
 
 function prepareUrl (url) {
   return `${url}&key=${globals.ytApiKey}`;
@@ -22,33 +25,77 @@ function isValidURL (str) {
   return pattern.test(str);
 }
 
-export function playlistSearch (url) {
-  if (isValidURL(url)) {
-    return ytlist(url, 'name')
-      .then(res => {
-        let allTracks = res.data.playlist.map((elt) => {
-          let result = getArtistTitle(elt);
-          if (result) {
-            return lastfm.searchTracks(result[0] + ' ' + result[1], 1)
-              .then(tracks => tracks.json())
-              .then(tracksJson => {
-                return new Promise((resolve) => {
-                  resolve(tracksJson.results.trackmatches.track[0]);
-                });
-              });
-          } else {
-            return new Promise((resolve) => {
-              resolve({});
-            });
-          }
-        });
-        return Promise.all(allTracks);
-      })
-      .catch(function () {
+function analyseUrlType (url) {
+  let analysisResult = {
+    url: url,
+    isValid: false,
+    isYoutube: false,
+    isYoutubePlaylist: false,
+    isYoutubeVideo: false
+  };
+  analysisResult.isValid = isValidURL(url);
+  let isYoutubeRegex = /https\:\/\/www.youtube.com\/*./g;
+  let isYoutubePlaylistRegex = /[?&]list=([a-zA-Z0-9-_]*)/g;
+  let isYoutubeVideoRegex = /[?&]v=([a-zA-Z0-9-_]{11})[^0-9a-zA-Z_-]{0,1}/g;
+  analysisResult.isYoutube = url.match(isYoutubeRegex);
+  analysisResult.isYoutubePlaylist = analysisResult.isValid && analysisResult.isYoutube && url.match(isYoutubePlaylistRegex);
+  analysisResult.isYoutubeVideo = analysisResult.isValid && analysisResult.isYoutube && url.match(isYoutubeVideoRegex);
+  return analysisResult;
+}
+
+function getTrackFromTitle (title) {
+  let result = getArtistTitle(title);
+  if (result) {
+    return lastfm.searchTracks(result[0] + ' ' + result[1], 1)
+      .then(tracks => tracks.json())
+      .then(tracksJson => {
         return new Promise((resolve) => {
-          resolve([]);
+          resolve(tracksJson.results.trackmatches.track[0]);
         });
       });
+  } else {
+    return new Promise((resolve) => {
+      resolve({});
+    });
+  }
+}
+
+function handleYoutubePlaylist (url) {
+  return ytlist(url, 'name')
+    .then(res => {
+      let allTracks = res.data.playlist.map((elt) => {
+        return getTrackFromTitle(elt);
+      });
+      return Promise.all(allTracks);
+    })
+    .catch(function () {
+      return new Promise((resolve) => {
+        resolve([]);
+      });
+    });
+}
+
+function handleYoutubeVideo (url) {
+  return ytdl.getInfo(url)
+    .then(info => {
+      return getTrackFromTitle(info.title)
+        .then(track => {
+          return [track];
+        });
+    })
+    .catch(function (err) {
+      // console.log('error', err);
+      return Promise.resolve([]);
+    });
+}
+
+export function urlSearch (url) {
+  let urlAnalysis = analyseUrlType(url);
+  // console.log(urlAnalysis);
+  if (urlAnalysis.isYoutubePlaylist) {
+    return handleYoutubePlaylist(url);
+  } else if (urlAnalysis.isYoutubeVideo) {
+    return handleYoutubeVideo(url);
   } else {
     return new Promise((resolve) => {
       resolve([]);
