@@ -94,10 +94,10 @@ class BestNewListActiveItem extends React.Component {
                   this.props.startPlayback();
                 }}
                 href='#'
-                className={styles.play_button}
+                className={styles.add_button}
               >
                 <FontAwesome name='play' /> Play
-              </a><a href='#' onClick={() => {
+              </a><a href='#' className={styles.add_button} onClick={() => {
                 return this.addToQueue(item);
               }}><FontAwesome name='plus' /> Add to queue</a></div> : null}
           </div>
