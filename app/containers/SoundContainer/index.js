@@ -1,6 +1,5 @@
 import React from 'react';
-import { Route, Switch, Link, withRouter } from 'react-router-dom';
-import { RouteTransition } from 'react-router-transition';
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import _ from 'lodash';
@@ -14,7 +13,6 @@ import Sound from 'react-sound';
 import { getSelectedStream } from '../../utils';
 import globals from '../../globals';
 import core from 'nuclear-core';
-import { consolidateStreamedStyles } from 'styled-components';
 
 let lastfm = new core.LastFmApi(globals.lastfmApiKey, globals.lastfmApiSecret);
 
