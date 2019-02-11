@@ -11,6 +11,7 @@ import * as ScrobblingActions from '../../actions/scrobbling';
 import * as LyricsActions from '../../actions/lyrics';
 import Sound from 'react-sound';
 import { getSelectedStream } from '../../utils';
+import * as Autoradio from './autoradio';
 import globals from '../../globals';
 import core from 'nuclear-core';
 
@@ -43,13 +44,13 @@ class SoundContainer extends React.Component {
       this.props.actions.lyricsSearch(currentSong);
     }
   }
-
+  
   handleAutoRadio () {
     if (
       this.props.settings.autoradio &&
       this.props.queue.currentSong === this.props.queue.queueItems.length - 1
     ) {
-      this.addAutoradioTrackToQueue();
+      Autoradio.addAutoradioTrackToQueue(this.props);
     }
   }
 
