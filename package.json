@@ -52,6 +52,7 @@
     "get-artist-title": "^1.1.1",
     "md5": "^2.2.1",
     "moment": "^2.20.1",
+    "mousetrap": "^1.6.2",
     "nuclear-core": "0.0.4",
     "nuclear-ui": "0.0.6",
     "numeral": "^2.0.6",

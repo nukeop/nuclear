@@ -36,6 +36,7 @@ import SearchBoxContainer from './containers/SearchBoxContainer';
 import IpcContainer from './containers/IpcContainer';
 import SoundContainer from './containers/SoundContainer';
 import ToastContainer from './containers/ToastContainer';
+import ShortcutsContainer from './containers/ShortcutsContainer';
 
 import ui from 'nuclear-ui';
 import PlayerControls from './components/PlayerControls';
@@ -270,6 +271,7 @@ class App extends React.Component {
             </VerticalPanel>
             {this.renderRightPanel(settings)}
             <ToastContainer/>
+            <ShortcutsContainer/>
           </div>
           {this.renderFooter(settings)}
           <SoundContainer />
