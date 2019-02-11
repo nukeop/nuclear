@@ -22,7 +22,7 @@ let lastfm = new core.LastFmApi(globals.lastfmApiKey, globals.lastfmApiSecret);
  * If set to 1 : autoradio is likely to play different styles of music
  * If set to 0.1 : autoradio is quite conservative and will stay in the same style
  */
-const AUTORADIO_TRACKS_DEVIATION = 0.15;
+let AUTORADIO_TRACKS_DEVIATION = 0.15;
 
 /* 
  * No maximum
@@ -31,7 +31,7 @@ const AUTORADIO_TRACKS_DEVIATION = 0.15;
  * If set to 1 : autoradio will select next track only based on the current track in queue
  * If set to 10 : autoradio will select next track based on the 10 latest tracks in the queue
  */
-const AUTORADIO_IMPACTING_TRACK_NUMBER = 10;
+let AUTORADIO_IMPACTING_TRACK_NUMBER = 10;
 
 /* 
  * No maximum
@@ -43,15 +43,21 @@ const AUTORADIO_IMPACTING_TRACK_NUMBER = 10;
  * AUTORADIO_IMPACTING_TRACK_NUMBER * SIMILAR_TRACKS_RESULTS_LIMIT tracks
  * The more tracks, the more likely is the style to be changed
  */
-const SIMILAR_TRACKS_RESULTS_LIMIT = 10;
+let SIMILAR_TRACKS_RESULTS_LIMIT = 10;
 
 /* 
  * Min = 0 - Max = 1 (0 will only accept the most similar artist / 1 will go further down the list)
  * Will determine wether when looking for similar artists we stay close to the current artist
  * This is only used in the case we cannot find similar tracks => we fall back to similar artist search
  */
-const AUTORADIO_ARTIST_DEVIATION = 0.20;
+let AUTORADIO_ARTIST_DEVIATION = 0.20;
 
+function computeParameters (crazinessScore = 10) {
+  AUTORADIO_ARTIST_DEVIATION = crazinessScore / 100;
+  SIMILAR_TRACKS_RESULTS_LIMIT = crazinessScore;
+  AUTORADIO_IMPACTING_TRACK_NUMBER = 101 - crazinessScore;
+  AUTORADIO_TRACKS_DEVIATION = crazinessScore;
+}
 
 let props;
 /**
@@ -64,6 +70,7 @@ let props;
 export function addAutoradioTrackToQueue (callProps) {
   props = callProps;
   let currentSong = props.queue.queueItems[props.queue.currentSong];
+  computeParameters(props.settings.autoradioCraziness);
 
   return getSimilarTracksToQueue(AUTORADIO_IMPACTING_TRACK_NUMBER)
     .then(track => {

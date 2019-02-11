@@ -30,6 +30,16 @@ module.exports = [
     default: 3
   },
   {
+    name: 'autoradioCraziness',
+    category: 'Playback',
+    type: settingType.NUMBER,
+    prettyName: 'Autoradio craziness',
+    default: 10,
+    min: 1,
+    max: 100,
+    unit: ''
+  },
+  {
     name: 'disableGPU',
     category: 'Program settings',
     type: settingType.BOOLEAN,
