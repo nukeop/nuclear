@@ -15,21 +15,22 @@ import PluginsContainer from '../PluginsContainer';
 import SearchResultsContainer from '../SearchResultsContainer';
 import SettingsContainer from '../SettingsContainer';
 import TagViewContainer from '../TagViewContainer';
+import LyricsContainer from '../LyricsContainer';
 
 import Downloads from '../../components/Downloads';
 
 class MainContentContainer extends React.Component {
-  componentDidMount() {
+  componentDidMount () {
     if (this.props.history
-    && this.props.location
-    && this.props.location.pathname === '/') {
+      && this.props.location
+      && this.props.location.pathname === '/') {
       this.props.history.push('/dashboard');
     }
   }
 
-  render() {
+  render () {
     return (
-      <Route render={({location, history, match}) => {
+      <Route render={({ location, history, match }) => {
         return (
           <MainLayout>
             <Switch key={location.key} location={location}>
@@ -41,8 +42,9 @@ class MainContentContainer extends React.Component {
               <Route path='/playlist/:playlistId' component={PlaylistViewContainer} />
               <Route path='/plugins' component={PluginsContainer} />
               <Route path='/settings' component={SettingsContainer} />
-              <Route path='/tag/:tagName' component={TagViewContainer}/>
+              <Route path='/tag/:tagName' component={TagViewContainer} />
               <Route path='/search' component={SearchResultsContainer} />
+              <Route path='/lyrics' component={LyricsContainer} />
             </Switch>
           </MainLayout>
         );
@@ -52,12 +54,12 @@ class MainContentContainer extends React.Component {
   }
 }
 
-function mapStateToProps(state) {
+function mapStateToProps (state) {
   return {
   };
 }
 
-function mapDispatchToProps(dispatch) {
+function mapDispatchToProps (dispatch) {
   return {
     actions: bindActionCreators(Actions, dispatch)
   };

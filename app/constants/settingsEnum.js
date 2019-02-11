@@ -1,4 +1,5 @@
 export default {
   BOOLEAN: 'boolean',
-  STRING: 'string'
+  STRING: 'string',
+  NUMBER: 'number'
 };
