@@ -47,6 +47,9 @@ class PlaylistResults extends React.Component {
     return (<div>
       {this.renderAddAllButton(this.props.playlistSearchResults.info)}
       <TracksResults
+        clearQueue={this.props.clearQueue}
+        startPlayback={this.props.startPlayback}
+        selectSong={this.props.selectSong}
         addToQueue={this.props.addToQueue}
         tracks={this.props.playlistSearchResults.info}
         limit='100'

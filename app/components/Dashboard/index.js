@@ -7,7 +7,7 @@ import GenresTab from './GenresTab';
 import NewsTab from './NewsTab';
 
 class Dashboard extends React.Component {
-  panes() {
+  panes () {
     return [
       {
         menuItem: 'Best new music',
@@ -15,7 +15,13 @@ class Dashboard extends React.Component {
           <BestNewMusicTab
             dashboardData={this.props.dashboardData}
             artistInfoSearchByName={this.props.artistInfoSearchByName}
+            albumInfoSearchByName={this.props.albumInfoSearchByName}
             history={this.props.history}
+            addToQueue={this.props.addToQueue}
+            selectSong={this.props.selectSong}
+            clearQueue={this.props.clearQueue}
+            startPlayback={this.props.startPlayback}
+            musicSources={this.props.musicSources}
           />
         )
       },
@@ -54,7 +60,7 @@ class Dashboard extends React.Component {
     ];
   }
 
-  componentDidMount() {
+  componentDidMount () {
     this.props.loadBestNewTracks();
     this.props.loadBestNewAlbums();
     this.props.loadNuclearNews();
@@ -62,7 +68,7 @@ class Dashboard extends React.Component {
     this.props.loadTopTracks();
   }
 
-  render() {
+  render () {
     return (
       <div>
         <Tab menu={{ secondary: true, pointing: true }} panes={this.panes()} />
