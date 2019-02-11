@@ -1,11 +1,14 @@
 import { createStore, compose, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import ReduxPromise from 'redux-promise';
+import { composeWithDevTools } from 'remote-redux-devtools';
 
 import rootReducer from '../reducers';
 
 export default function configureStore(initialState) {
-  const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+  const composeEnhancers = process.env.NODE_ENV === 'production'
+    ? compose
+    : window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || composeWithDevTools; 
 
   const store = createStore(
     rootReducer,
