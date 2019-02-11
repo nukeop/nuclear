@@ -1,0 +1,13 @@
+.nuclear.toast_container {
+  height: auto;
+  top: 0;
+  bottom: 0;
+  z-index: 10;
+  pointer-events: none;
+
+  .toast {
+    min-width: 20rem;
+    height: auto;
+    pointer-events: all;
+  }
+}
