@@ -8,9 +8,14 @@ import * as Actions from '../../actions';
 import * as PlayerActions from '../../actions/player';
 import * as QueueActions from '../../actions/queue';
 import * as ScrobblingActions from '../../actions/scrobbling';
+import * as LyricsActions from '../../actions/lyrics';
 import Sound from 'react-sound';
 import { getSelectedStream } from '../../utils';
 import * as Autoradio from './autoradio';
+import globals from '../../globals';
+import core from 'nuclear-core';
+
+let lastfm = new core.LastFmApi(globals.lastfmApiKey, globals.lastfmApiSecret);
 
 class SoundContainer extends React.Component {
   handlePlaying (update) {
@@ -25,10 +30,21 @@ class SoundContainer extends React.Component {
   }
 
   handleLoaded () {
+    this.handleLoadLyrics();
     this.handleAutoRadio();
     this.props.actions.updateStreamLoading(false);
   }
 
+  handleLoadLyrics () {
+    let currentSong = this.props.queue.queueItems[
+      this.props.queue.currentSong
+    ];
+
+    if (typeof currentSong.lyrics === 'undefined') {
+      this.props.actions.lyricsSearch(currentSong);
+    }
+  }
+  
   handleAutoRadio () {
     if (
       this.props.settings.autoradio &&
@@ -69,6 +85,51 @@ class SoundContainer extends React.Component {
     } else {
       this.props.actions.pausePlayback();
     }
+  }
+
+  addAutoradioTrackToQueue () {
+    let currentSong = this.props.queue.queueItems[this.props.queue.currentSong];
+    return lastfm
+      .getArtistInfo(currentSong.artist)
+      .then(artist => artist.json())
+      .then(artistJson => this.getSimilarArtists(artistJson.artist))
+      .then(similarArtists => this.getRandomElement(similarArtists))
+      .then(selectedArtist => this.getArtistTopTracks(selectedArtist))
+      .then(topTracks => this.getRandomElement(topTracks.toptracks.track))
+      .then(track => {
+        return this.addToQueue(track.artist, track);
+      });
+  }
+
+  getSimilarArtists (artistJson) {
+    return new Promise((resolve, reject) => {
+      resolve(artistJson.similar.artist);
+    });
+  }
+
+  getRandomElement (arr) {
+    let devianceParameter = 0.2; // We will select one of the 20% most similar artists
+    let randomElement =
+      arr[Math.round(Math.random() * (devianceParameter * (arr.length - 1)))];
+    return new Promise((resolve, reject) => resolve(randomElement));
+  }
+
+  getArtistTopTracks (artist) {
+    return lastfm
+      .getArtistTopTracks(artist.name)
+      .then(topTracks => topTracks.json());
+  }
+
+  addToQueue (artist, track) {
+    return new Promise((resolve, reject) => {
+      let musicSources = this.props.plugins.plugins.musicSources;
+      this.props.actions.addToQueue(musicSources, {
+        artist: artist.name,
+        name: track.name,
+        thumbnail: track.image[0]['#text']
+      });
+      resolve(true);
+    });
   }
 
   shouldComponentUpdate (nextProps) {
@@ -124,7 +185,8 @@ function mapDispatchToProps (dispatch) {
         Actions,
         PlayerActions,
         QueueActions,
-        ScrobblingActions
+        ScrobblingActions,
+        LyricsActions
       ),
       dispatch
     )

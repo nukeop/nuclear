@@ -1,6 +1,5 @@
 import React from 'react';
-import { Route, Switch, Link, withRouter } from 'react-router-dom';
-import { RouteTransition } from 'react-router-transition';
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { ipcRenderer } from 'electron';
