@@ -18,18 +18,20 @@ const PlaylistViewContainer = props => {
       selectSong={this.props.actions.selectSong}
       startPlayback={this.props.actions.startPlayback}
       notify={this.props.actions.notify}
+      clearQueue={this.props.actions.clearQueue}
+      addToQueue={this.props.actions.addToQueue}
     />
   );
 };
 
-function mapStateToProps(state) {
+function mapStateToProps (state) {
   return {
     playlists: state.playlists,
     musicSources: state.plugin.plugins.musicSources
   };
 }
 
-function mapDispatchToProps(dispatch) {
+function mapDispatchToProps (dispatch) {
   return {
     actions: bindActionCreators(Object.assign({}, QueueActions, PlayerActions, ToastActions), dispatch)
   };

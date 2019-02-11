@@ -1,10 +1,11 @@
 let { app } = require('electron').remote;
+import _ from 'lodash';
 import electronStore from 'electron-store';
 import options from '../constants/settings';
 
 const store = new electronStore();
 
-function initStore() {
+function initStore () {
   if (!store.get('lastFm')) {
     store.set('lastFm', {});
   }
@@ -20,17 +21,17 @@ function initStore() {
 
 initStore();
 
-function getOption(key) {
+function getOption (key) {
   let settings = store.get('settings') || {};
   let value = settings[key];
-  if (value === undefined) {
+  if (typeof value === 'undefined') {
     value = _.find(options, { name: key }).default;
   }
 
   return value;
 }
 
-function setOption(key, value) {
+function setOption (key, value) {
   let settings = store.get('settings') || {};
   store.set('settings', Object.assign({}, settings, { [`${key}`]: value }));
 }
