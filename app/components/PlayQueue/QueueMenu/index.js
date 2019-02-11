@@ -14,9 +14,13 @@ class QueueMenu extends React.Component {
     super(props);
   }
 
-  handleAddPlaylist(fun, items) {
+  handleAddPlaylist(addPlaylist, notify, items) {
     return name => {
-      fun(items, name);
+      addPlaylist(items, name);
+      notify(
+        'Playlist created',
+        `Playlist ${name} has been created.`
+      );
     };
   }
 
@@ -24,6 +28,7 @@ class QueueMenu extends React.Component {
     let {
       addPlaylist,
       clearQueue,
+      notify,
       items,
       toggleOption,
       settings
@@ -41,7 +46,7 @@ class QueueMenu extends React.Component {
             header={<h4>Input playlist name:</h4>}
             placeholder='Playlist name...'
             accept='Save'
-            onAccept={this.handleAddPlaylist(addPlaylist, items)}
+            onAccept={this.handleAddPlaylist(addPlaylist, notify, items)}
             trigger={
               <a href='#'><FontAwesome name='save' /></a>
             }
