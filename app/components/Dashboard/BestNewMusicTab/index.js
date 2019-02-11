@@ -1,5 +1,5 @@
 import React from 'react';
-import {Dimmer, Loader, Tab} from 'semantic-ui-react';
+import { Tab } from 'semantic-ui-react';
 
 import BestNewList from './BestNewList';
 import styles from './styles.scss';
@@ -9,15 +9,16 @@ class BestNewMusicTab extends React.Component {
     super(props);
   }
 
-  isLoading() {
+  isLoading () {
     return this.props.dashboardData.bestNewAlbums.length < 1 || this.props.dashboardData.bestNewTracks.length < 1;
   }
 
-  render() {
+  render () {
     let {
       dashboardData,
       artistInfoSearchByName,
-      history
+      history,
+      albumInfoSearchByName
     } = this.props;
     return (
       <Tab.Pane loading={this.isLoading()} attached={false} className={styles.best_new_music_tab_pane}>
@@ -29,7 +30,13 @@ class BestNewMusicTab extends React.Component {
             <BestNewList
               data={dashboardData.bestNewAlbums}
               artistInfoSearchByName={artistInfoSearchByName}
+              albumInfoSearchByName={albumInfoSearchByName}
               history={history}
+              addToQueue={this.props.addToQueue}
+              selectSong={this.props.selectSong}
+              clearQueue={this.props.clearQueue}
+              startPlayback={this.props.startPlayback}
+              musicSources={this.props.musicSources}
             />
           </div>
           <h2>
@@ -40,6 +47,11 @@ class BestNewMusicTab extends React.Component {
               data={dashboardData.bestNewTracks}
               artistInfoSearchByName={artistInfoSearchByName}
               history={history}
+              addToQueue={this.props.addToQueue}
+              selectSong={this.props.selectSong}
+              clearQueue={this.props.clearQueue}
+              startPlayback={this.props.startPlayback}
+              musicSources={this.props.musicSources}
             />
           </div>
         </div>

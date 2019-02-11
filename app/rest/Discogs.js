@@ -5,20 +5,12 @@ const secret = 'uluhDSPtelRtLUvjrvQhRBnNwpZMtkZq';
 
 function addToken (query, first = false) {
   let newQuery = query + '&token=' + userToken;
-  if (first) {
-    return newQuery.replace('&', '?');
-  } else {
-    return newQuery;
-  }
+  return first ? newQuery.replace('&', '?') : newQuery;
 }
 
 function addKeys (query, first = false) {
   let newQuery = query + '&key=' + key + '&secret=' + secret;
-  if (first) {
-    return newQuery.replace('&', '?');
-  } else {
-    return newQuery;
-  }
+  return first ? newQuery.replace('&', '?') : newQuery;
 }
 
 function searchQuery (terms, count = 15) {
@@ -26,27 +18,18 @@ function searchQuery (terms, count = 15) {
   terms = terms.replace('#', '');
 
   return addToken(
-    apiUrl + 'database/search' + '?q=' + encodeURI(terms) + '&per_page=' + count
+    apiUrl + 'database/search' + '?q=' + encodeURIComponent(terms) + '&per_page=' + count
   );
 }
 
-function searchAlbums (terms, count = 15) {
-  return fetch(searchQuery(terms, count) + '&type=albums');
-}
-
-function searchArtists (terms, count = 15) {
-  return fetch(searchQuery(terms, count) + '&type=artist');
-}
-
-function searchReleases (terms, count = 15) {
-  return fetch(searchQuery(terms, count) + '&type=master');
+function search (terms, type, count = 15) {
+  return fetch(searchQuery(terms, count) + '&type=' + type);
 }
 
 function releaseInfo (releaseId, releaseType) {
   if (releaseType === 'master') {
     return fetch(addToken(apiUrl + 'masters/' + releaseId, true));
-  }
-  else if (releaseType === 'release') {
+  } else if (releaseType === 'release') {
     return fetch(addToken(apiUrl + 'releases/' + releaseId, true));
   }
 }
@@ -69,9 +52,7 @@ function artistReleases (artistId) {
 }
 
 module.exports = {
-  searchAlbums,
-  searchArtists,
-  searchReleases,
+  search,
   releaseInfo,
   artistInfo,
   artistReleases
