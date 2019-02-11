@@ -22,7 +22,7 @@ const rootReducer = combineReducers({
   dashboard: DashboardReducer,
   tags: TagReducer,
   settings: SettingsReducer,
-  toasts: ToastsReducer
+  toasts: ToastsReducer,
   lyrics: LyricsReducer
 });
 
