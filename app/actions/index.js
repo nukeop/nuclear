@@ -309,10 +309,18 @@ export function albumInfoSearchByName (albumName, history) {
       .then(searchResults => searchResults.json())
       .then(searchResultsJson => {
         let album = searchResultsJson.results[0];
-        dispatch(albumInfoSearch(album.id, album.type));
-        if (history) {
-          history.push('/album/' + album.id);
+        if (album.type == 'artist') {
+          dispatch(lastFmArtistInfoSearch(album.title, album.id));
+          if (history) {
+            history.push('/artist/' + album.id);
+          }
+        } else {
+          dispatch(albumInfoSearch(album.id, album.type));
+          if (history) {
+            history.push('/album/' + album.id);
+          }
         }
+
       })
       .catch(error => {
         logger.error(error);
