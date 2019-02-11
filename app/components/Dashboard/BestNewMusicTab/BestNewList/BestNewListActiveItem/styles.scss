@@ -112,3 +112,11 @@
     }
   }
 }
+
+.add_button {
+  width: 50%;
+  padding: 0.5rem;
+  &:hover {
+    background: $pink !important;
+  }
+}

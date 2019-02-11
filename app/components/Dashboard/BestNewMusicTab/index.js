@@ -32,6 +32,11 @@ class BestNewMusicTab extends React.Component {
               artistInfoSearchByName={artistInfoSearchByName}
               albumInfoSearchByName={albumInfoSearchByName}
               history={history}
+              addToQueue={this.props.addToQueue}
+              selectSong={this.props.selectSong}
+              clearQueue={this.props.clearQueue}
+              startPlayback={this.props.startPlayback}
+              musicSources={this.props.musicSources}
             />
           </div>
           <h2>
@@ -42,6 +47,11 @@ class BestNewMusicTab extends React.Component {
               data={dashboardData.bestNewTracks}
               artistInfoSearchByName={artistInfoSearchByName}
               history={history}
+              addToQueue={this.props.addToQueue}
+              selectSong={this.props.selectSong}
+              clearQueue={this.props.clearQueue}
+              startPlayback={this.props.startPlayback}
+              musicSources={this.props.musicSources}
             />
           </div>
         </div>
