@@ -172,7 +172,7 @@ class Settings extends React.Component {
     </div>);
   }
   renderNumberOption (option) {
-    if (option.min && option.max) {
+    if (typeof option.min === 'number' && typeof option.max === 'number') {
       return this.renderSliderOption(option);
     } else {
       return (<Input

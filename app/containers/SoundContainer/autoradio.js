@@ -22,7 +22,7 @@ let lastfm = new core.LastFmApi(globals.lastfmApiKey, globals.lastfmApiSecret);
  * If set to 1 : autoradio is likely to play different styles of music
  * If set to 0.1 : autoradio is quite conservative and will stay in the same style
  */
-let AUTORADIO_TRACKS_DEVIATION = 0.15;
+let autoradioTracksDeviation = 0.15;
 
 /* 
  * No maximum
@@ -31,7 +31,7 @@ let AUTORADIO_TRACKS_DEVIATION = 0.15;
  * If set to 1 : autoradio will select next track only based on the current track in queue
  * If set to 10 : autoradio will select next track based on the 10 latest tracks in the queue
  */
-let AUTORADIO_IMPACTING_TRACK_NUMBER = 10;
+let autoradioImpactingTrackNumber = 10;
 
 /* 
  * No maximum
@@ -43,20 +43,20 @@ let AUTORADIO_IMPACTING_TRACK_NUMBER = 10;
  * AUTORADIO_IMPACTING_TRACK_NUMBER * SIMILAR_TRACKS_RESULTS_LIMIT tracks
  * The more tracks, the more likely is the style to be changed
  */
-let SIMILAR_TRACKS_RESULTS_LIMIT = 10;
+let similarTracksResultsLimit = 10;
 
 /* 
  * Min = 0 - Max = 1 (0 will only accept the most similar artist / 1 will go further down the list)
  * Will determine wether when looking for similar artists we stay close to the current artist
  * This is only used in the case we cannot find similar tracks => we fall back to similar artist search
  */
-let AUTORADIO_ARTIST_DEVIATION = 0.20;
+let autoradioArtistDeviation = 0.20;
 
 function computeParameters (crazinessScore = 10) {
-  AUTORADIO_ARTIST_DEVIATION = crazinessScore / 100;
-  SIMILAR_TRACKS_RESULTS_LIMIT = crazinessScore;
-  AUTORADIO_IMPACTING_TRACK_NUMBER = 101 - crazinessScore;
-  AUTORADIO_TRACKS_DEVIATION = crazinessScore;
+  autoradioArtistDeviation = crazinessScore / 100;
+  similarTracksResultsLimit = crazinessScore;
+  autoradioImpactingTrackNumber = 101 - crazinessScore;
+  autoradioTracksDeviation = crazinessScore;
 }
 
 let props;
@@ -72,7 +72,7 @@ export function addAutoradioTrackToQueue (callProps) {
   let currentSong = props.queue.queueItems[props.queue.currentSong];
   computeParameters(props.settings.autoradioCraziness);
 
-  return getSimilarTracksToQueue(AUTORADIO_IMPACTING_TRACK_NUMBER)
+  return getSimilarTracksToQueue(autoradioImpactingTrackNumber)
     .then(track => {
       if (track === null) {
         track = getNewTrack('artist', currentSong);
@@ -94,7 +94,7 @@ function getSimilarTracksToQueue (number) {
   let similarTracksPromises = [];
 
   for (let i = props.queue.currentSong; i >= Math.max(0, props.queue.currentSong - number); i--) {
-    similarTracksPromises.push(getSimilarTracks(props.queue.queueItems[i], SIMILAR_TRACKS_RESULTS_LIMIT));
+    similarTracksPromises.push(getSimilarTracks(props.queue.queueItems[i], similarTracksResultsLimit));
   }
   return Promise.all(similarTracksPromises)
     .then(results => {
@@ -104,7 +104,7 @@ function getSimilarTracksToQueue (number) {
       });
       let notInQueueResults = flattenResults.filter((track) => !isTrackInQueue(track));
       if (notInQueueResults.length > 0) {
-        return getScoredRandomTrack(getArraySlice(notInQueueResults, AUTORADIO_TRACKS_DEVIATION));
+        return getScoredRandomTrack(getArraySlice(notInQueueResults, autoradioTracksDeviation));
       } else {
         return null;
       }
@@ -142,7 +142,7 @@ function getNewTrack (getter, track) {
   }
   return getTrack
     .then(similarTracks => {
-      return (getTrackNotInQueue(similarTracks, AUTORADIO_TRACKS_DEVIATION) || null);
+      return (getTrackNotInQueue(similarTracks, autoradioTracksDeviation) || null);
     });
 }
 
@@ -170,7 +170,7 @@ function getTracksFromSimilarArtist (artist) {
     .then(artist => artist.json())
     .then(artistJson => getSimilarArtists(artistJson))
     .then(similarArtists => {
-      let similarArtist = getRandomElement(getArraySlice(similarArtists, AUTORADIO_ARTIST_DEVIATION));
+      let similarArtist = getRandomElement(getArraySlice(similarArtists, autoradioArtistDeviation));
       return similarArtist;
     })
     .then(selectedArtist => getArtistTopTracks(selectedArtist))
