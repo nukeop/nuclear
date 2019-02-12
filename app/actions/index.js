@@ -85,11 +85,11 @@ function discogsSearch (terms, searchType, dispatchType) {
 }
 
 export function albumSearch (terms) {
-  return discogsSearch(terms, 'albums', 'ALBUM_SEARCH_SUCCESS');
+  return discogsSearch(terms, 'master', 'ALBUM_SEARCH_SUCCESS');
 }
 
 export function artistSearch (terms) {
-  return discogsSearch(terms, 'artists', 'ARTIST_SEARCH_SUCCESS');
+  return discogsSearch(terms, 'artist', 'ARTIST_SEARCH_SUCCESS');
 }
 
 export function lastFmTrackSearchStart (terms) {
