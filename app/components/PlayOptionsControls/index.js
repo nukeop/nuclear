@@ -6,12 +6,13 @@ import _ from 'lodash';
 import styles from './styles.scss';
 import settingsConst from '../../constants/settings';
 
-function renderOptionControl(props, settingName, fontAwesomeName) {
+function renderOptionControl(props, settingName, fontAwesomeName, title) {
   return (
     <div
       className={classnames(styles.icon, {
         active: props.settings[settingName]
       })}
+      title={title}
       onClick={() =>
         props.toggleOption(
           _.find(settingsConst, { name: settingName }),
@@ -27,9 +28,9 @@ function renderOptionControl(props, settingName, fontAwesomeName) {
 const PlayOptionsControls = props => {
   return (
     <div className={styles.play_options_controls}>
-      {renderOptionControl(props, 'loopAfterQueueEnd', 'repeat')}
-      {renderOptionControl(props, 'shuffleQueue', 'random')}
-      {renderOptionControl(props, 'autoradio', 'magic')}
+      {renderOptionControl(props, 'loopAfterQueueEnd', 'repeat', 'Loop')}
+      {renderOptionControl(props, 'shuffleQueue', 'random', 'Shuffle')}
+      {renderOptionControl(props, 'autoradio', 'magic', 'Autoradio')}
     </div>
   );
 };
