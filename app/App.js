@@ -118,7 +118,7 @@ class App extends React.Component {
               src={settings.compactMenuBar ? logoIcon : logoImg}
             />
             <div className={styles.version_string}>
-              {settings.compactMenuBar ? '0.4.4' : 'Version 0.4.4'}
+              {settings.compactMenuBar ? '0.4.5' : 'Version 0.4.5'}
             </div>
           </div>
           {this.renderNavLink('dashboard', 'dashboard', 'Dashboard', settings)}
