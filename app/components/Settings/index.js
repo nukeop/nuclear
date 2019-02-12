@@ -1,6 +1,7 @@
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 import { Button, Input, Radio } from 'semantic-ui-react';
+import Range from 'react-range-progress';
 import cx from 'classnames';
 import _ from 'lodash';
 
@@ -9,6 +10,12 @@ import Spacer from '../Spacer';
 import settingsEnum from '../../constants/settingsEnum';
 
 import styles from './styles.scss';
+
+const volumeSliderColors = {
+  fillColor: { r: 248, g: 248, b: 242, a: 1 },
+  trackColor: { r: 68, g: 71, b: 90, a: 1 },
+  thumbColor: { r: 248, g: 248, b: 242, a: 1 }
+};
 
 class Settings extends React.Component {
   toggleScrobbling (
@@ -29,7 +36,7 @@ class Settings extends React.Component {
     return this.props.settings[option.name];
   }
 
-  validateNumberInput(value) {
+  validateNumberInput (value) {
     const intValue = _.parseInt(value);
     return _.isNull(value) || !_.isNaN(intValue);
   }
@@ -126,6 +133,58 @@ class Settings extends React.Component {
     );
   }
 
+  handleSliderChange (value, option) {
+    this.props.actions.setNumberOption(option.name, _.parseInt(value));
+  }
+
+  renderRadioOption (option, settings) {
+    return (<Radio
+      toggle
+      onChange={() => this.props.actions.toggleOption(option, settings)}
+      checked={this.isChecked(option)}
+    />);
+  }
+
+  renderStringOption (option) {
+    return (<Input
+      fluid
+      value={this.getOptionValue(option)}
+      onChange={
+        e => this.props.actions.setStringOption(option.name, e.target.value)
+      }
+    />);
+  }
+
+  renderSliderOption (option) {
+    return (<div className={styles.slider_container}>
+      Value : {this.getOptionValue(option) || option.default} {option.unit}
+      <Range
+        value={this.getOptionValue(option) || option.default}
+        min={option.min}
+        max={option.max}
+        fillColor={volumeSliderColors.fillColor}
+        trackColor={volumeSliderColors.trackColor}
+        thumbColor={volumeSliderColors.thumbColor}
+        height={4}
+        width='100%'
+        onChange={(e) => this.handleSliderChange(e, option)}
+      />
+    </div>);
+  }
+  renderNumberOption (option) {
+    if (option.min && option.max) {
+      return this.renderSliderOption(option);
+    } else {
+      return (<Input
+        fluid
+        value={this.getOptionValue(option) || option.default}
+        error={!this.validateNumberInput(this.getOptionValue(option))}
+        onChange={
+          e => this.validateNumberInput(this.getOptionValue(option)) && this.props.actions.setNumberOption(option.name, _.parseInt(e.target.value))
+        }
+      />);
+    }
+  }
   renderOption (settings, option, key) {
     return (
       <div key={key} className={cx(styles.settings_item, option.type)}>
@@ -133,32 +192,15 @@ class Settings extends React.Component {
         <Spacer />
         {
           option.type === settingsEnum.BOOLEAN &&
-          <Radio
-            toggle
-            onChange={() => this.props.actions.toggleOption(option, settings)}
-            checked={this.isChecked(option)}
-          />
+          this.renderRadioOption(option, settings)
         }
         {
           option.type === settingsEnum.STRING &&
-          <Input
-            fluid
-            value={this.getOptionValue(option)}
-            onChange={
-              e => this.props.actions.setStringOption(option.name, e.target.value)
-            }
-          />
+          this.renderStringOption(option)
         }
         {
           option.type === settingsEnum.NUMBER &&
-            <Input
-              fluid
-              value={this.getOptionValue(option) || option.default}
-              error={!this.validateNumberInput(this.getOptionValue(option))}
-              onChange={
-                e => this.validateNumberInput(this.getOptionValue(option)) && this.props.actions.setNumberOption(option.name, _.parseInt(e.target.value))
-              }
-            />
+          this.renderNumberOption(option)
         }
       </div>
     );
