@@ -133,16 +133,18 @@ class SoundContainer extends React.Component {
   }
 
   shouldComponentUpdate (nextProps) {
+    const currentSong = nextProps.queue.queueItems[nextProps.queue.currentSong];
+
     return (
       this.props.queue.currentSong !== nextProps.queue.currentSong ||
       this.props.player.playbackStatus !== nextProps.player.playbackStatus ||
-      this.props.player.seek !== nextProps.player.seek
+      this.props.player.seek !== nextProps.player.seek ||
+      (!!currentSong && !!currentSong.streams && currentSong.streams.length > 0)
     );
   }
 
   render () {
     let { player, queue, plugins } = this.props;
-
     let streamUrl = '';
 
     if (queue.queueItems.length > 0) {
@@ -152,7 +154,7 @@ class SoundContainer extends React.Component {
       ).stream;
     }
 
-    return (
+    return !!streamUrl && (
       <Sound
         url={streamUrl}
         playStatus={player.playbackStatus}
