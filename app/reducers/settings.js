@@ -7,7 +7,7 @@ import {
 import settingsOptions from '../constants/settings';
 
 const initialState = {};
-const defautlSettings = settingsOptions.reduce((acc, option) => ({
+const defaultSettings = settingsOptions.reduce((acc, option) => ({
   ...acc,
   [option.name]: option.default
 }), {});
@@ -15,7 +15,7 @@ const defautlSettings = settingsOptions.reduce((acc, option) => ({
 export default function SettingsReducer(state=initialState, action) {
   switch (action.type) {
   case READ_SETTINGS:
-    return Object.assign(defautlSettings, action.payload);
+    return Object.assign(defaultSettings, action.payload);
   case SET_BOOLEAN_OPTION:
   case SET_STRING_OPTION:
   case SET_NUMBER_OPTION:
