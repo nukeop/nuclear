@@ -8,19 +8,20 @@ import * as PlayerActions from '../../actions/player';
 import * as QueueActions from '../../actions/queue';
 
 const VOLUME_ITERATION = 5;
-const SEEK_ITERATION = 100;
+const SEEK_ITERATION = 200;
 
 class Shortcuts extends React.Component {
   handleSpaceBar() {
     const { queue, player, actions } = this.props;
 
     if (queue.queueItems.length > 0) {
-      if(player.playbackStatus === Sound.status.PLAYING) {
+      if (player.playbackStatus === Sound.status.PLAYING) {
         actions.pausePlayback();
       } else {
         actions.startPlayback();
       }
     }
+    return false;
   }
 
   playCurrentSong() {
@@ -32,6 +33,7 @@ class Shortcuts extends React.Component {
     ) {
       actions.startPlayback();
     }
+    return false;
   }
 
   increaseVolume() {
@@ -40,6 +42,7 @@ class Shortcuts extends React.Component {
     if (player.volume < 100) {
       actions.updateVolume(player.volume + VOLUME_ITERATION);
     }
+    return false;
   }
 
   decreaseVolume() {
@@ -48,6 +51,7 @@ class Shortcuts extends React.Component {
     if (player.volume > 0) {
       actions.updateVolume(player.volume - VOLUME_ITERATION);
     }
+    return false;
   }
 
   increaseSeek() {
@@ -56,6 +60,7 @@ class Shortcuts extends React.Component {
     if (player.playbackProgress < 100) {
       actions.updateSeek(player.seek + SEEK_ITERATION);
     }
+    return false;
   }
 
   decreaseSeek() {
@@ -64,6 +69,7 @@ class Shortcuts extends React.Component {
     if (player.playbackProgress > 0) {
       actions.updateSeek(player.seek - SEEK_ITERATION);
     }
+    return false;
   }
 
   constructor(props) {
