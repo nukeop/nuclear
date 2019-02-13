@@ -7,11 +7,24 @@ import * as Mousetrap from 'mousetrap';
 import * as PlayerActions from '../../actions/player';
 import * as QueueActions from '../../actions/queue';
 
-const VOLUME_ITERATION = 5;
-const SEEK_ITERATION = 200;
+const VOLUME_ITERATION = 1;
+const SEEK_ITERATION = 100;
+const COEF_ITERATION = 0.1;
+const BASE_COEF = 1;
 
 class Shortcuts extends React.Component {
-  handleSpaceBar() {
+  coef = BASE_COEF;
+  timeout = null;
+
+  incrementCoef() {
+    clearTimeout(this.timeout);
+    this.coef = this.coef + COEF_ITERATION;
+    this.timeout = setTimeout(() => {
+      this.coef = BASE_COEF;
+    }, 100);
+  }
+
+  handleSpaceBar = () => {
     const { queue, player, actions } = this.props;
 
     if (queue.queueItems.length > 0) {
@@ -24,7 +37,7 @@ class Shortcuts extends React.Component {
     return false;
   }
 
-  playCurrentSong() {
+  playCurrentSong = () => {
     const { queue, player, actions } = this.props;
 
     if (
@@ -36,50 +49,44 @@ class Shortcuts extends React.Component {
     return false;
   }
 
-  increaseVolume() {
+  increaseVolume = () => {
     const { player, actions } = this.props;
 
     if (player.volume < 100) {
-      actions.updateVolume(player.volume + VOLUME_ITERATION);
+      actions.updateVolume(player.volume + VOLUME_ITERATION * this.coef);
+      this.incrementCoef();
     }
     return false;
   }
 
-  decreaseVolume() {
+  decreaseVolume = () => {
     const { player, actions } = this.props;
 
     if (player.volume > 0) {
-      actions.updateVolume(player.volume - VOLUME_ITERATION);
+      actions.updateVolume(player.volume - VOLUME_ITERATION * this.coef);
+      this.incrementCoef();
     }
     return false;
   }
 
-  increaseSeek() {
+  increaseSeek = () => {
     const { player, actions } = this.props;
-
+    
     if (player.playbackProgress < 100) {
-      actions.updateSeek(player.seek + SEEK_ITERATION);
+      actions.updateSeek(player.seek + SEEK_ITERATION * this.coef);
+      this.incrementCoef();
     }
     return false;
   }
 
-  decreaseSeek() {
+  decreaseSeek = () => {
     const { player, actions} = this.props;
 
     if (player.playbackProgress > 0) {
-      actions.updateSeek(player.seek - SEEK_ITERATION);
+      actions.updateSeek(player.seek - SEEK_ITERATION * this.coef);
+      this.incrementCoef();
     }
     return false;
-  }
-
-  constructor(props) {
-    super(props);
-    this.handleSpaceBar = this.handleSpaceBar.bind(this);
-    this.increaseVolume = this.increaseVolume.bind(this);
-    this.decreaseVolume = this.decreaseVolume.bind(this);
-    this.playCurrentSong = this.playCurrentSong.bind(this);
-    this.increaseSeek = this.increaseSeek.bind(this);
-    this.decreaseSeek = this.decreaseSeek.bind(this);
   }
 
   componentDidMount() {
@@ -98,12 +105,11 @@ class Shortcuts extends React.Component {
   componentWillUnmount() {
     Mousetrap.unbind([
       'space',
+      'enter',
       'left',
       'right',
       'up',
       'down',
-      'right',
-      'left',
       'ctrl+right',
       'command+right',
       'ctrl+left',
