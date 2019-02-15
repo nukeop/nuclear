@@ -31,27 +31,12 @@ class TrackRow extends React.Component {
 
   renderPlayTrackButton (
     index,
-    track,
-    clearQueue,
-    addToQueue,
-    selectSong,
-    startPlayback,
-    musicSources
   ) {
     return (
       <a
         key={'play-track-' + index}
         href='#'
-        onClick={() => {
-          clearQueue();
-          addToQueue(musicSources, {
-            artist: track.artist.name,
-            name: track.name,
-            thumbnail: _.get(track, 'image[0][\'#text\']', artPlaceholder)
-          });
-          selectSong(0);
-          startPlayback();
-        }}
+        onClick={this.playTrack}
         className={styles.add_button}
         aria-label='Play this track now'
       >
@@ -59,6 +44,26 @@ class TrackRow extends React.Component {
         <FontAwesome name='play' /> Play now
       </a>
     );
+  }
+
+  playTrack = () => {
+    const {
+      track,
+      clearQueue,
+      addToQueue,
+      selectSong,
+      startPlayback,
+      musicSources
+    } = this.props;
+
+    clearQueue();
+    addToQueue(musicSources, {
+      artist: track.artist.name,
+      name: track.name,
+      thumbnail: _.get(track, 'image[0][\'#text\']', artPlaceholder)
+    });
+    selectSong(0);
+    startPlayback();
   }
 
   renderDuration (track) {
@@ -74,7 +79,7 @@ class TrackRow extends React.Component {
 
   renderTrigger (track) {
     return (
-      <tr className={styles.track}>
+      <tr className={styles.track} onDoubleClick={this.playTrack}>
         {this.props.displayCover ? <td
           style={{
             backgroundImage: `url(${_.get(track, 'image[0][#text]', artPlaceholder)})`,
@@ -95,10 +100,7 @@ class TrackRow extends React.Component {
     let {
       index,
       track,
-      clearQueue,
       addToQueue,
-      selectSong,
-      startPlayback,
       musicSources
     } = this.props;
 
@@ -111,12 +113,6 @@ class TrackRow extends React.Component {
       ),
       this.renderPlayTrackButton(
         index,
-        track,
-        clearQueue,
-        addToQueue,
-        selectSong,
-        startPlayback,
-        musicSources
       )
     ];
     return (
