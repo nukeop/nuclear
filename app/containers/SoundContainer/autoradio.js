@@ -3,7 +3,6 @@ import logger from 'electron-timber';
 
 import globals from '../../globals';
 import core from 'nuclear-core';
-import * as LastFmRestApi from '../../rest/LastFm';
 
 let lastfm = new core.LastFmApi(globals.lastfmApiKey, globals.lastfmApiSecret);
 
@@ -157,7 +156,7 @@ function isTrackInQueue (track) {
 }
 
 function getSimilarTracks (currentSong, limit = 100) {
-  return LastFmRestApi.getSimilarTracks(currentSong.artist, currentSong.name, limit)
+  return lastfm.getSimilarTracks(currentSong.artist, currentSong.name, limit)
     .then(tracks => tracks.json())
     .then(trackJson => {
       return _.get(trackJson, 'similartracks.track', []);

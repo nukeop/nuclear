@@ -1,10 +1,14 @@
-import globals from '../globals';
+import core from 'nuclear-core';
 import ytdl from 'ytdl-core';
 
-const ytlist = require('youtube-playlist');
-const getArtistTitle = require('get-artist-title');
-const lastfm = require('./LastFm');
+import globals from '../globals';
+import ytlist from 'youtube-playlist';
+import getArtistTitle from 'get-artist-title';
 
+const lastfm = new core.LastFmApi(
+  globals.lastfmApiKey,
+  globals.lastfmApiSecret
+);
 
 function prepareUrl (url) {
   return `${url}&key=${globals.ytApiKey}`;
