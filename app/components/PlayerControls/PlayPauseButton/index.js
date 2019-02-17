@@ -16,15 +16,17 @@ class PlayPauseButton extends React.Component {
   }
 
   render() {
+    const {disable} = this.props;
     return (
       <div
         className={classnames(
           styles.play_pause_button_container,
-          {'loading': this.props.loading}
+          {'loading': this.props.loading},
+          (disable ? styles.noCursor : ''),
         )}
         aria-label='Play/Pause button'
       >
-        <a href='#' onClick={this.props.onClick}>{
+        <a href='#' onClick={this.props.onClick} className={disable ? 'disable' : ''}>{
           this.getIcon()
         }</a>
       </div>

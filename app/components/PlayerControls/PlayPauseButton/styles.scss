@@ -30,6 +30,13 @@
       margin-left: -0.3rem;
     }
   }
-
   
+}
+
+.noCursor {
+  cursor: not-allowed;
+}
+
+.disable{
+  pointer-events: none;
 }
