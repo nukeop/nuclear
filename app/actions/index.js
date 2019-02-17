@@ -4,7 +4,6 @@ import _ from 'lodash';
 import globals from '../globals';
 
 const discogs = require('../rest/Discogs');
-const lastfmRest = require('../rest/LastFm');
 const youtube = require('../rest/Youtube');
 
 let lastfm = new core.LastFmApi(globals.lastfmApiKey, globals.lastfmApiSecret);
@@ -112,7 +111,7 @@ export function lastFmTrackSearchSuccess (terms, searchResults) {
 export function lastFmTrackSearch (terms) {
   return dispatch => {
     dispatch(lastFmTrackSearchStart(terms));
-    Promise.all([lastfmRest.searchTracks(terms)])
+    Promise.all([lastfm.searchTracks(terms)])
       .then(results => Promise.all(results.map(info => info.json())))
       .then(results => {
         dispatch(
