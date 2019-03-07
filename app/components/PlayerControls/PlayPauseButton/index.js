@@ -20,7 +20,10 @@ class PlayPauseButton extends React.Component {
       <div
         className={classnames(
           styles.play_pause_button_container,
-          {'loading': this.props.loading}
+          {
+            'loading': this.props.loading,
+            [styles.player_button_disabled]: !this.props.onClick
+          }
         )}
         aria-label='Play/Pause button'
       >

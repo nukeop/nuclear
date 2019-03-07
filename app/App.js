@@ -216,13 +216,18 @@ class App extends React.Component {
     );
   }
   renderPlayerControls () {
+    const { player, queue } = this.props;
+    const couldPlay = queue.queueItems.length > 0;
+    const couldForward = queue.currentSong + 1 < queue.queueItems.length;
+    const couldBack = queue.currentSong > 0;
+
     return (
       <PlayerControls
-        togglePlay={this.togglePlayback.bind(this)}
-        playing={this.props.player.playbackStatus === Sound.status.PLAYING}
-        loading={this.props.player.playbackStreamLoading}
-        forward={this.nextSong.bind(this)}
-        back={this.props.actions.previousSong}
+        togglePlay={couldPlay ? this.togglePlayback.bind(this) : undefined}
+        playing={player.playbackStatus === Sound.status.PLAYING}
+        loading={player.playbackStreamLoading}
+        forward={couldForward ? this.nextSong.bind(this) : undefined}
+        back={couldBack ? this.props.actions.previousSong : undefined}
       />
     );
   }
