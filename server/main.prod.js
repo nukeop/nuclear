@@ -4,7 +4,9 @@ const platform = require('electron-platform');
 const path = require('path');
 const url = require('url');
 const getOption = require('./store').getOption;
+const runHttpServer = require('./http/server');
 
+let httpServer;
 let win;
 let tray;
 let icon = nativeImage.createFromPath(path.resolve(__dirname, 'resources', 'media', 'icon.png'));
@@ -53,7 +55,7 @@ function createWindow() {
 
   const trayMenu = Menu.buildFromTemplate([
     {label: 'Quit', type: 'normal', click:
-     (menuItem, browserWindow, event) => {
+     () => {
        app.quit();
      }
     }
@@ -84,8 +86,12 @@ function createWindow() {
   });
 }
 
-app.on('ready', createWindow);
+app.on('ready', () => {
+  createWindow();
+  httpServer = runHttpServer({ port: 8080 });
+});
 
 app.on('window-all-closed', () => {
+  httpServer.close();
   app.quit();
 });

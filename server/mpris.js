@@ -1,11 +1,11 @@
 import logger from 'electron-timber';
 import { ipcMain } from 'electron';
 
-var rendererWindow = null;
+let rendererWindow = null;
 
-var events = ['raise', 'quit', 'next', 'previous', 'pause', 'playpause', 'stop', 'play', 'seek', 'position', 'open', 'volume'];
+// const events = ['raise', 'quit', 'next', 'previous', 'pause', 'playpause', 'stop', 'play', 'seek', 'position', 'open', 'volume', 'settings'];
 
-ipcMain.on('started', (event, arg) => {
+ipcMain.on('started', event => {
   logger.log('Renderer process started and registered.');
   rendererWindow = event.sender;
 });
@@ -35,11 +35,26 @@ function onPlay() {
   rendererWindow.send('play');
 }
 
+function onVolume(volume) {
+  rendererWindow.send('volume', volume);
+}
+
+function onSeek(position) {
+  rendererWindow.send('seek', position);
+}
+
+function onSettings(settings) {
+  rendererWindow.send('settings', settings);
+}
+
 module.exports = {
   onNext,
   onPrevious,
   onPause,
   onPlayPause,
   onStop,
-  onPlay
-}
+  onPlay,
+  onSettings,
+  onVolume,
+  onSeek
+};
