@@ -18,7 +18,8 @@ import {
   onSettings,
   onVolume,
   onSeek,
-  sendPlayingStatus
+  sendPlayingStatus,
+  onMute
 } from '../../mpris';
 
 class IpcContainer extends React.Component {
@@ -31,6 +32,7 @@ class IpcContainer extends React.Component {
     ipcRenderer.on('stop', event => onStop(event, this.props.actions));
     ipcRenderer.on('play', event => onPlay(event, this.props.actions));
     ipcRenderer.on('settings', (event, data) => onSettings(event, data, this.props.actions));
+    ipcRenderer.on('mute', event => onMute(event, this.props.actions, this.props.player));
     ipcRenderer.on('volume', (event, data) => onVolume(event, data, this.props.actions));
     ipcRenderer.on('seek', (event, data) => onSeek(event, data, this.props.actions));
     ipcRenderer.on('playing-status', event => sendPlayingStatus(event, this.props.player, this.props.queue));
