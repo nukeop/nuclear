@@ -47,6 +47,7 @@
     "bluebird": "^3.5.3",
     "body-parser": "^1.18.3",
     "cheerio": "^1.0.0-rc.2",
+    "cors": "^2.8.5",
     "electron-platform": "^1.2.0",
     "electron-store": "^2.0.0",
     "electron-timber": "^0.5.1",
