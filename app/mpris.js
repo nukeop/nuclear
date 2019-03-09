@@ -42,6 +42,14 @@ export function onSettings(event, data, actions) {
   }
 }
 
+export function onMute(event, actions, playerState) {
+  if (playerState.muted) {
+    actions.unMute();
+  } else {
+    actions.mute();
+  }
+} 
+
 export function onVolume(event, data, actions) {
   actions.updateVolume(data);
 }

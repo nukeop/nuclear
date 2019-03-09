@@ -10,6 +10,7 @@ import {
   onPlay,
   onVolume,
   onSeek,
+  onMute,
   getPlayingStatus
 } from '../../mpris';
 import { volumeSchema, seekSchema } from './_schema';
@@ -53,6 +54,11 @@ export function playerRouter() {
 
   router.post('/play', (req, res) => {
     onPlay();
+    res.send();
+  });
+
+  router.post('/mute', (req, res) => {
+    onMute();
     res.send();
   });
 

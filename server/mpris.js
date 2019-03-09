@@ -47,6 +47,10 @@ function onSettings(settings) {
   rendererWindow.send('settings', settings);
 }
 
+function onMute() {
+  rendererWindow.send('mute');
+}
+
 function getPlayingStatus() {
   return new Promise(resolve => {
     rendererWindow.send('playing-status');
@@ -66,5 +70,6 @@ module.exports = {
   onSettings,
   onVolume,
   onSeek,
+  onMute,
   getPlayingStatus
 };
