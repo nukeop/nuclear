@@ -4,9 +4,8 @@ const { app, ipcMain, nativeImage, BrowserWindow, Menu, Tray } = require('electr
 const platform = require('electron-platform');
 const path = require('path');
 const url = require('url');
-const mpris = require('./mpris');
 const getOption = require('./store').getOption;
-// var Player;
+const runHttpServer = require('./http/server');
 
 // GNU/Linux-specific
 if (!platform.isDarwin && !platform.isWin32) {
@@ -14,7 +13,7 @@ if (!platform.isDarwin && !platform.isWin32) {
 }
 
 let win;
-let player;
+let httpServer;
 let tray;
 let icon = nativeImage.createFromPath(path.resolve(__dirname, 'resources', 'media', 'icon.png'));
 
@@ -76,7 +75,7 @@ function createWindow() {
 
   const trayMenu = Menu.buildFromTemplate([
     {label: 'Quit', type: 'normal', click:
-     (menuItem, browserWindow, event) => {
+     () => {
        app.quit();
      }
     }
@@ -158,9 +157,13 @@ function createWindow() {
   }
 }
 
-app.on('ready', createWindow);
+app.on('ready', () => {
+  createWindow();
+  httpServer = runHttpServer({ log: true });
+});
 
 app.on('window-all-closed', () => {
   logger.log('All windows closed, quitting');
+  httpServer.close();
   app.quit();
 });

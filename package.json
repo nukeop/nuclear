@@ -45,10 +45,13 @@
   "dependencies": {
     "billboard-top-100": "^2.0.8",
     "bluebird": "^3.5.3",
+    "body-parser": "^1.18.3",
     "cheerio": "^1.0.0-rc.2",
     "electron-platform": "^1.2.0",
     "electron-store": "^2.0.0",
     "electron-timber": "^0.5.1",
+    "express": "^4.16.4",
+    "express-json-validator-middleware": "^1.2.3",
     "fast-levenshtein": "^2.0.6",
     "font-awesome": "^4.7.0",
     "get-artist-title": "^1.1.1",

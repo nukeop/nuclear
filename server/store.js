@@ -1,4 +1,3 @@
-import { app } from 'electron';
 import logger from 'electron-timber';
 import electronStore from 'electron-store';
 import _ from 'lodash';
@@ -17,4 +16,4 @@ function getOption (key) {
   return value;
 }
 
-export { getOption };
+export { getOption, store };
