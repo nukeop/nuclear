@@ -1,6 +1,7 @@
 import Logger from 'electron-timber';
 import express from 'express';
 import bodyParser from 'body-parser';
+import cors from 'cors';
 
 import { windowRouter, playerRouter, settingsRouter } from './api';
 import { errorMiddleware, notFoundMiddleware } from './middlewares';
@@ -17,6 +18,7 @@ function runHttpServer({
     : { log: () => {}, error: () => {} };
 
   return app
+    .use(cors())
     .use(bodyParser.urlencoded({ extended: false }))
     .use(bodyParser.json())
     .use(`${prefix}/window`, windowRouter())
