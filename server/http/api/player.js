@@ -9,7 +9,8 @@ import {
   onStop,
   onPlay,
   onVolume,
-  onSeek
+  onSeek,
+  getPlayingStatus
 } from '../../mpris';
 import { volumeSchema, seekSchema } from './_schema';
 
@@ -18,6 +19,12 @@ const { validate } = new Validator({ allErrors: true });
 export function playerRouter() {
 
   const router = express.Router();
+
+  router.get('/now-playing', (req, res, next) => {
+    getPlayingStatus()
+      .then(res.json.bind(res))
+      .catch(next);
+  });
 
   router.post('/next', (req, res) => {
     onNext();

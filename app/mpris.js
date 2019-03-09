@@ -73,3 +73,13 @@ export function sendMinimize() {
 export function sendMaximize() {
   ipcRenderer.send('maximize');
 }
+
+export function sendPlayingStatus(event, playerState, queueState) {
+  try {
+    const { artist, name, thumbnail } = queueState.queueItems[queueState.currentSong];
+
+    ipcRenderer.send('playing-status', { ...playerState, artist, name, thumbnail });
+  } catch (err) {
+    ipcRenderer.send('playing-status', playerState);
+  }
+}

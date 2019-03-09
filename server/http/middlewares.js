@@ -3,6 +3,7 @@ import { ValidationError } from 'express-json-validator-middleware';
 const getValidationMessage = ({ validationErrors }) => {
   if (validationErrors.params) {
     const err = validationErrors.params.shift();
+
     return `${err.dataPath} ${err.message} ${err.params.allowedValues.toString()}`;
   } else {
     return `request body ${validationErrors.body.shift().message}`;
