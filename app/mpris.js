@@ -115,3 +115,19 @@ export function sendPlayingStatus(event, playerState, queueState) {
 export function sendQueueItems(event, queueItems) {
   ipcRenderer.send('queue', queueItems);
 }
+
+export function sendPlaybackProgress(progress) {
+  ipcRenderer.send('playbackProgress', progress);
+}
+
+export function sendVolume(volume) {
+  ipcRenderer.send('volume', volume);
+}
+
+export function sendSeek(position) {
+  ipcRenderer.send('seek', position);
+}
+
+export function sendSetOption(key, value) {
+  ipcRenderer.send('set-option', {key, value});
+}

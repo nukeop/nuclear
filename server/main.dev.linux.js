@@ -7,10 +7,12 @@ const path = require('path');
 const url = require('url');
 const getOption = require('./store').getOption;
 const { runHttpServer, closeHttpServer } = require('./http/server');
+const mpris = require('./mpris');
+var Player;
 
 // GNU/Linux-specific
 if (!platform.isDarwin && !platform.isWin32) {
-  // Player = require('mpris-service');
+  Player = require('mpris-service');
 }
 
 let win;
@@ -112,26 +114,88 @@ function createWindow() {
 
   // GNU/Linux-specific
   if (!platform.isDarwin && !platform.isWin32) {
-    //   player = Player({
-    //     name: 'nuclear',
-    //     identity: 'nuclear music player',
-    //     supportedUriSchemes: ['file'],
-    //     supportedMimeTypes: ['audio/mpeg', 'application/ogg'],
-    //     supportedInterfaces: ['player'],
-    //     desktopEntry: 'nuclear'
-    //   });
+    let hashCode = function(str) {
+      str = str.toString();
+      let hash = 0;
+      if (str.length == 0) {
+        return hash;
+      }
+      for (var i = 0; i < str.length; i++) {
+        var char = str.charCodeAt(i);
+        hash = ((hash<<5)-hash)+char;
+        hash = hash & hash; // Convert to 32bit integer
+      }
+      return hash;
+    }
 
-    // player.on('quit', function () {
-    //    win = null;
-    // });
+    let secToUs = function(sec) {
+      return Math.floor(Number(sec) * 1e6);
+    }
 
-    // player.on('next', mpris.onNext);
-    // player.on('previous', mpris.onPrevious);
-    // player.on('pause', mpris.onPause);
-    // player.on('playpause', mpris.onPlayPause);
-    // player.on('stop', mpris.onStop);
-    // player.on('play', mpris.onPlay);
+    let positionSec = 0.0;
 
+    let player = Player({
+      name: 'nuclear',
+      identity: 'nuclear music player',
+      supportedUriSchemes: ['file'],
+      supportedMimeTypes: ['audio/mpeg', 'application/ogg'],
+      supportedInterfaces: ['player'],
+      desktopEntry: 'nuclear'
+    });
+
+    if (getOption('loopAfterQueueEnd')) {
+      player.loopStatus = 'Track';
+    } else {
+      player.loopStatus = 'None';
+    }
+
+    player.shuffle = getOption('shuffleQueue');
+
+    player.volume = 1.0;
+
+    player.getPosition = function() {
+      return secToUs(positionSec);
+    };
+
+    player.on('quit', function () {
+      win = null;
+    });
+
+    player.on('next', mpris.onNext);
+    player.on('previous', mpris.onPrevious);
+    player.on('pause', mpris.onPause);
+    player.on('playpause', mpris.onPlayPause);
+    player.on('stop', mpris.onStop);
+    player.on('play', mpris.onPlay);
+    player.on('volume', function(volume) {
+      mpris.onVolume(volume * 100);
+    });
+    player.on('position', function(e) {
+      let {trackId, position} = e;
+      if (player.metadata && player.metadata['mpris:trackid'] === trackId) {
+        mpris.onSeek(position / 1e3);
+      }
+    });
+    player.on('seek', function(seek) {
+      let seekTo = (positionSec * 1e3) + (seek / 1e3);
+      mpris.onSeek(seekTo);
+    });
+    player.on('shuffle', function(shuffle) {
+      mpris.onSettings({shuffleQueue: shuffle});
+    });
+    player.on('loopStatus', function(status) {
+      if (status === 'None') {
+        mpris.onSettings({ loopAfterQueueEnd: false});
+      } else if (status === 'Track') {
+        mpris.onSettings({loopAfterQueueEnd: true});
+      } else {
+        // XXX 'Playlist' loop status is not supported, just do the closest
+        // thing.
+        mpris.onSettings({loopAfterQueueEnd: true});
+      }
+    });
+
+    let lastId = null;
     ipcMain.on('songChange', (event, arg) => {
       if (arg === null) {
         return;
@@ -139,32 +203,70 @@ function createWindow() {
 
       changeWindowTitle(arg.artist, arg.name);
 
-      // player.metadata = {
-      //   'mpris:trackid': player.objectPath('track/0'),
-      //   'mpris:artUrl': arg.thumbnail,
-      //   'xesam:title': arg.name,
-      //   'xesam:artist': arg.artist
-      // };
-
-      // if (arg.streams && arg.streams.length > 0) {
-      //   player.metadata['mpris:length'] = arg.streams[0].duration * 1000 * 1000; // In microseconds
-      // }
+      if (arg.streams && arg.streams.length > 0) {
+        let id = arg.streams[0].id;
+        if (id !== lastId) {
+          lastId = id;
+          let metadata = {
+            'mpris:trackid': player.objectPath(`track/${Math.abs(hashCode(id))}`),
+            'mpris:artUrl': arg.thumbnail || '',
+            'xesam:title': arg.name || '',
+            'xesam:artist': arg.artist || ''
+          };
+          if (arg.streams[0].source === 'Youtube') {
+            metadata['mpris:length'] = secToUs(Number(arg.streams[0].duration));
+          } else {
+            // XXX: Soundcloud is in ms, and I think this is reasonble, but I
+            // don't know what other duration formats to expect here.
+            metadata['mpris:length'] = Math.floor(Number(arg.streams[0].duration) * 1e3);
+          }
+          player.positionSec = 0;
+          player.metadata = metadata;
+        }
+      }
     });
 
-    //  ipcMain.on('play', (event, arg) => {
-    //     player.playbackStatus = 'Playing';
-    //   });
+    ipcMain.on('play', (event, arg) => {
+      player.playbackStatus = 'Playing';
+    });
 
-    //   ipcMain.on('paused', (event, arg) => {
-    //     player.playbackStatus = 'Paused';
-    //   });
-    // } else {
-    //   ipcMain.on('songChange', (event, arg) => {
-    //     if (arg === null) {
-    //       return;
-    //     }
-    //     changeWindowTitle(arg.artist, arg.name);
-    //   });
+    ipcMain.on('paused', (event, arg) => {
+      player.playbackStatus = 'Paused';
+    });
+
+    ipcMain.on('volume', (event, volume) => {
+      player.volume = volume / 100;
+    });
+
+    ipcMain.on('playbackProgress', (event, progress) => {
+      positionSec = progress;
+    });
+
+    ipcMain.on('seek', (event, seek) => {
+      // this is in miliseconds
+      player.positionSec = seek / 1e3;
+      player.seeked(Math.floor(seek * 1e3));
+    });
+
+    ipcMain.on('set-option', (event, kv) => {
+      let {key, value} = kv;
+      if (key === 'loopAfterQueueEnd') {
+        if (value) {
+          player.loopStatus = 'Track';
+        } else {
+          player.loopStatus = 'None';
+        }
+      } else if (key === 'shuffleQueue') {
+        player.shuffle = value;
+      }
+    });
+  } else {
+    ipcMain.on('songChange', (event, arg) => {
+      if (arg === null) {
+        return;
+      }
+      changeWindowTitle(arg.artist, arg.name);
+    });
   }
 }
 

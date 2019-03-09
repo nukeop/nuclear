@@ -1,12 +1,18 @@
 /* eslint-env node */
 const webpack = require('webpack');
 const HappyPack = require('happypack');
+const path = require('path');
 
 module.exports = env => {
   const entry = env && env.LINUX ? './server/main.dev.linux.js' : './server/main.dev.js';
 
   return {
     entry: entry,
+    resolve: {
+      alias: {
+        jsbi: path.resolve(__dirname, 'node_modules', 'jsbi', 'dist', 'jsbi-cjs.js')
+      }
+    },
     output: {
       path: __dirname,
       filename: 'bundle.electron.js'

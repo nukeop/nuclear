@@ -1,5 +1,5 @@
 import Sound from 'react-sound';
-import { sendPaused, sendPlay } from '../mpris';
+import { sendPaused, sendPlay, sendVolume, sendPlaybackProgress, sendSeek } from '../mpris';
 
 export const START_PLAYBACK = 'START_PLAYBACK';
 export const PAUSE_PLAYBACK = 'PAUSE_PLAYBACK';
@@ -37,6 +37,7 @@ export function togglePlayback(currentState) {
 }
 
 export function updatePlaybackProgress(progress, seek) {
+  sendPlaybackProgress(progress, seek);
   return {
     type: UPDATE_PLAYBACK_PROGRESS,
     payload: {
@@ -47,6 +48,7 @@ export function updatePlaybackProgress(progress, seek) {
 }
 
 export function updateSeek(seek) {
+  sendSeek(seek);
   return {
     type: UPDATE_SEEK,
     payload: seek
@@ -54,6 +56,7 @@ export function updateSeek(seek) {
 }
 
 export function updateVolume(volume) {
+  sendVolume(volume);
   return {
     type: UPDATE_VOLUME,
     payload: volume

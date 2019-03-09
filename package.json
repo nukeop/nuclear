@@ -77,7 +77,8 @@
     "uuid": "^3.2.1",
     "webpack-cli": "^3.0.8",
     "youtube-playlist": "^1.0.2",
-    "ytdl-core": "^0.24.0"
+    "ytdl-core": "^0.24.0",
+    "mpris-service": "^2.0.0"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
