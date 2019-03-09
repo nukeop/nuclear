@@ -47,6 +47,15 @@ function onSettings(settings) {
   rendererWindow.send('settings', settings);
 }
 
+function getPlayingStatus() {
+  return new Promise(resolve => {
+    rendererWindow.send('playing-status');
+    ipcMain.on('playing-status', (evt, data) => {
+      resolve(data);
+    });
+  });
+}
+
 module.exports = {
   onNext,
   onPrevious,
@@ -56,5 +65,6 @@ module.exports = {
   onPlay,
   onSettings,
   onVolume,
-  onSeek
+  onSeek,
+  getPlayingStatus
 };
