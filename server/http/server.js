@@ -8,7 +8,7 @@ import { errorMiddleware, notFoundMiddleware } from './middlewares';
 
 function runHttpServer({
   log,
-  port = 3000,
+  port,
   host = '0.0.0.0',
   prefix = '/nuclear'
 }) {

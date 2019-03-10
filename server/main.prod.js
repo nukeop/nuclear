@@ -84,11 +84,18 @@ function createWindow() {
     }
     changeWindowTitle(arg.artist, arg.name);
   });
+
+  ipcMain.on('restart-api', () => {
+    httpServer.close();
+    httpServer = runHttpServer({ port: getOption('api.port') });
+  });
 }
 
 app.on('ready', () => {
   createWindow();
-  httpServer = runHttpServer({ port: 8080 });
+  if (getOption('api.enabled')) {
+    httpServer = runHttpServer({ port: getOption('api.port') });
+  }
 });
 
 app.on('window-all-closed', () => {

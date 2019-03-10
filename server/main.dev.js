@@ -14,7 +14,7 @@ const {
 const platform = require('electron-platform');
 const path = require('path');
 const url = require('url');
-const getOption = require('./store').getOption;
+const { getOption, setOption } = require('./store');
 const runHttpServer = require('./http/server');
 
 let httpServer;
@@ -119,11 +119,20 @@ function createWindow () {
     }
     changeWindowTitle(arg.artist, arg.name);
   });
+
+  ipcMain.on('restart-api', () => {
+    httpServer.close();
+    httpServer = runHttpServer({ log: true, port: getOption('api.port') });
+  });
 }
 
 app.on('ready', () => {
   createWindow();
-  httpServer = runHttpServer({ log: true });
+
+  if (getOption('api.enabled')) {
+    setOption('api.port', 3000);
+    httpServer = runHttpServer({ log: true, port: 3000 });
+  }
 });
 
 app.on('window-all-closed', () => {

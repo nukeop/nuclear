@@ -1,4 +1,5 @@
 import logger from 'electron-timber';
+import { setOption } from './store';
 // const { default: installExtension, REACT_DEVELOPER_TOOLS, REDUX_DEVTOOLS } = require('electron-devtools-installer');
 const { app, ipcMain, nativeImage, BrowserWindow, Menu, Tray } = require('electron');
 const platform = require('electron-platform');
@@ -99,6 +100,11 @@ function createWindow() {
     win.isMaximized() ? win.unmaximize() : win.maximize();
   });
 
+  ipcMain.on('restart-api', () => {
+    httpServer.close();
+    httpServer = runHttpServer({ log: true, port: getOption('api.port') });
+  });
+
   // GNU/Linux-specific
   if (!platform.isDarwin && !platform.isWin32) {
     //   player = Player({
@@ -159,7 +165,11 @@ function createWindow() {
 
 app.on('ready', () => {
   createWindow();
-  httpServer = runHttpServer({ log: true });
+
+  if (getOption('api.enabled')) {
+    setOption('api.port', 3000);
+    httpServer = runHttpServer({ log: true, port: 3000 });
+  }
 });
 
 app.on('window-all-closed', () => {

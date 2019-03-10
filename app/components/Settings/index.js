@@ -172,15 +172,20 @@ class Settings extends React.Component {
     </div>);
   }
   renderNumberOption (option) {
-    if (typeof option.min === 'number' && typeof option.max === 'number') {
+    if (typeof option.unit === 'string') {
       return this.renderSliderOption(option);
     } else {
+      const value = this.getOptionValue(option);
+
       return (<Input
+        type={typeof option.min === 'number' && typeof option.max === 'number' ? 'number' : 'text' }
+        min={option.min}
+        max={option.max}
         fluid
-        value={this.getOptionValue(option) || option.default}
-        error={!this.validateNumberInput(this.getOptionValue(option))}
+        value={ value || option.default}
+        error={!this.validateNumberInput(value)}
         onChange={
-          e => this.validateNumberInput(this.getOptionValue(option)) && this.props.actions.setNumberOption(option.name, _.parseInt(e.target.value))
+          e => !!e.target.value && this.validateNumberInput(value) && this.props.actions.setNumberOption(option.name, _.parseInt(e.target.value))
         }
       />);
     }
