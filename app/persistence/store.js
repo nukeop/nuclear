@@ -2,7 +2,7 @@ import _ from 'lodash';
 import electronStore from 'electron-store';
 
 import options from '../constants/settings';
-import { restartApi } from '../mpris';
+import { restartApi, stopApi } from '../mpris';
 
 const store = new electronStore();
 
@@ -44,9 +44,11 @@ function setOption (key, value) {
 
   if (
     (key === 'api.port' && isValidPort(value) && getOption('api.enabled')) ||
-    (key === 'api.enabled' && getOption('api.enabled'))
+    (key === 'api.enabled' && value)
   ) {
     restartApi();
+  } else if (key === 'api.enabled' && !value) {
+    stopApi();
   }
 }
 

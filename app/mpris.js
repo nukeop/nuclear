@@ -86,6 +86,10 @@ export function restartApi() {
   ipcRenderer.send('restart-api');
 }
 
+export function stopApi() {
+  ipcRenderer.send('stop-api');
+}
+
 export function sendPlayingStatus(event, playerState, queueState) {
   try {
     const { artist, name, thumbnail } = queueState.queueItems[queueState.currentSong];
