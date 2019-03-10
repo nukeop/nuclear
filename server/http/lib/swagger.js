@@ -29,6 +29,7 @@ export function getStandardDescription({
 }
 
 export function initSwagger(app) {
+  swagger.reset();
   swagger.initialise(app, {
     title: 'Nuclear REST API',
     description: 'This Api allow you to remotly control nuclear desktop app',
