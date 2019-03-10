@@ -1,7 +1,8 @@
-let { app } = require('electron').remote;
 import _ from 'lodash';
 import electronStore from 'electron-store';
+
 import options from '../constants/settings';
+import { restartApi } from '../mpris';
 
 const store = new electronStore();
 
@@ -22,8 +23,9 @@ function initStore () {
 initStore();
 
 function getOption (key) {
-  let settings = store.get('settings') || {};
+  const settings = store.get('settings') || {};
   let value = settings[key];
+
   if (typeof value === 'undefined') {
     value = _.find(options, { name: key }).default;
   }
@@ -31,9 +33,21 @@ function getOption (key) {
   return value;
 }
 
+function isValidPort(value) {
+  return typeof value === 'number' && value > 1024 && value < 49151;
+}
+
 function setOption (key, value) {
-  let settings = store.get('settings') || {};
+  const settings = store.get('settings') || {};
+
   store.set('settings', Object.assign({}, settings, { [`${key}`]: value }));
+
+  if (
+    (key === 'api.port' && isValidPort(value) && getOption('api.enabled')) ||
+    (key === 'api.enabled' && getOption('api.enabled'))
+  ) {
+    restartApi();
+  }
 }
 
 export { store, getOption, setOption };

@@ -80,5 +80,21 @@ module.exports = [
     type: settingType.STRING,
     prettyName: 'MPD HTTP stream address',
     default: 'localhost:8888'
+  },
+  {
+    name: 'api.enabled',
+    category: 'HTTP API',
+    type: settingType.BOOLEAN,
+    prettyName: 'Enable the api',
+    default: true
+  },  
+  {
+    name: 'api.port',
+    category: 'HTTP API',
+    type: settingType.NUMBER,
+    prettyName: 'Port used by the api',
+    default: 8080,
+    min: 1024,
+    max: 49151
   }
 ];
