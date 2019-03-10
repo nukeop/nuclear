@@ -105,6 +105,10 @@ function createWindow() {
     httpServer = runHttpServer({ log: true, port: getOption('api.port') });
   });
 
+  ipcMain.on('stop-api', () => {
+    httpServer.close();
+  });
+
   // GNU/Linux-specific
   if (!platform.isDarwin && !platform.isWin32) {
     //   player = Player({

@@ -124,6 +124,10 @@ function createWindow () {
     httpServer.close();
     httpServer = runHttpServer({ log: true, port: getOption('api.port') });
   });
+
+  ipcMain.on('stop-api', () => {
+    httpServer.close();
+  });
 }
 
 app.on('ready', () => {
