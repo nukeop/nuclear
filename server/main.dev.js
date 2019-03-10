@@ -121,7 +121,9 @@ function createWindow () {
   });
 
   ipcMain.on('restart-api', () => {
-    httpServer.close();
+    if (httpServer && httpServer.listening) {
+      httpServer.close();
+    }
     httpServer = runHttpServer({ log: true, port: getOption('api.port') });
   });
 
