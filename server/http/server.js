@@ -46,4 +46,14 @@ function runHttpServer({
     });
 }
 
-module.exports = runHttpServer;
+function closeHttpServer(app) {
+  return new Promise(resolve => {
+    if (app && app.listening) {
+      app.close(resolve);
+    } else {
+      resolve();
+    }
+  });
+}
+
+module.exports = { runHttpServer, closeHttpServer };
