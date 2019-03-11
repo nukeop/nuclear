@@ -49,6 +49,10 @@ export function initSwagger(app) {
       {
         name: 'Playlist',
         description: 'Playlist related endpoints (create, clean queue ...)'
+      },
+      {
+        name: 'Queue',
+        description: 'Queue related endpoints'
       }
     ]
   });
