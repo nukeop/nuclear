@@ -69,3 +69,28 @@ export const seekSchema = {
     }
   }
 };
+
+export const addPlaylistSchema = {
+  body: {
+    type: 'object',
+    required: ['name'],
+    properties: {
+      name: {
+        type: 'string',
+        maxLength: 100
+      }
+    }
+  }
+};
+
+export const deletePlaylistSchema = {
+  params: {
+    type: 'object',
+    required: ['option'],
+    properties: {
+      name: {
+        type: 'string'
+      }
+    }
+  }
+};

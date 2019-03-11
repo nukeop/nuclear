@@ -1,6 +1,6 @@
 import swagger from 'swagger-spec-express';
 
-import { volumeSchema, seekSchema, updateSettingsSchema, getSettingsSchema } from '../schema';
+import { volumeSchema, seekSchema, updateSettingsSchema, getSettingsSchema, addPlaylistSchema, deletePlaylistSchema } from '../schema';
 
 export function getStandardDescription({
   successDescription = 'Action successfull',
@@ -45,6 +45,10 @@ export function initSwagger(app) {
       {
         name: 'Settings',
         description: 'Settings related endpoints (update settings ...)'
+      },
+      {
+        name: 'Playlist',
+        description: 'Playlist related endpoints (create, clean queue ...)'
       }
     ]
   });
@@ -60,14 +64,14 @@ export function initSwagger(app) {
     name: 'volumeValue',
     description: 'The new volume',
     required: true,
-    schema: volumeSchema.body.properties.value
+    schema: volumeSchema.body
   });
 
   swagger.common.parameters.addBody({
     name: 'seekValue',
     description: 'The new position of the seek',
     required: true,
-    schema: seekSchema.body.properties.value
+    schema: seekSchema.body
   });
 
   swagger.common.parameters.addPath({
@@ -75,6 +79,20 @@ export function initSwagger(app) {
     description: 'The name of the settings you want to get / update',
     required: true,
     ...getSettingsSchema.params.properties.option
+  });
+
+  swagger.common.parameters.addBody({
+    name: 'playlistName',
+    description: 'the name of the new playlist',
+    required: true,
+    schema: addPlaylistSchema.body
+  });
+
+  swagger.common.parameters.addPath({
+    name: 'name',
+    description: 'The name of the playlist to remove',
+    required: true,
+    ...deletePlaylistSchema.params.properties.name
   });
 }
 

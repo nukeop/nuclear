@@ -8,7 +8,8 @@ import {
   windowRouter,
   playerRouter,
   settingsRouter,
-  swaggerRouter
+  swaggerRouter,
+  playlistRouter
 } from './api';
 import { errorMiddleware, notFoundMiddleware } from './middlewares';
 import { initSwagger } from './lib/swagger';
@@ -34,6 +35,7 @@ function runHttpServer({
     .use(`${prefix}/player`, playerRouter())
     .use(`${prefix}/settings`, settingsRouter())
     .use(`${prefix}/docs`, swaggerRouter())
+    .use(`${prefix}/playlist`, playlistRouter())
     .use(notFoundMiddleware())
     .use(errorMiddleware(logger))
     .listen(port, host, err => {

@@ -58,6 +58,18 @@ export function onSeek(event, data, actions) {
   actions.updateSeek(data);
 }
 
+export function onEmptyQueue(event, actions) {
+  actions.clearQueue();
+}
+
+export function onCreatePlaylist(event, { tracks, name }, actions) {
+  actions.addPlaylist(tracks, name);
+}
+
+export function onRefreshPlaylists(event, actions) {
+  actions.loadPlaylists();
+}
+
 export function onSongChange(song) {
   ipcRenderer.send('songChange', song);
 }
