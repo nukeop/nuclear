@@ -3,10 +3,8 @@ import { Validator } from 'express-json-validator-middleware';
 import swagger from 'swagger-spec-express';
 
 import {
-  onEmptyQueue,
   onCreatePlaylist,
-  onRemovePlaylist,
-  getQueue
+  onRemovePlaylist
 } from '../../mpris';
 import { addPlaylistSchema } from '../schema';
 import { getStandardDescription } from '../lib/swagger';
@@ -73,25 +71,5 @@ export function playlistRouter() {
       })
     );
 
-  router.get('/queue', (req, res, next) => {
-    getQueue()
-      .then(res.json.bind(res))
-      .catch(next);
-  })
-    .describe(getStandardDescription({
-      successDescription: 'The current queue',
-      tags: ['Playlist', 'Queue']
-    }));
-
-  router
-    .post('/empty-queue', (req, res) => {
-      onEmptyQueue();
-      res.send();
-    })
-    .describe(getStandardDescription({
-      successDescription: 'The queue is now empty',
-      tags: ['Playlist', 'Queue']
-    }));
-  
   return router;
 }
