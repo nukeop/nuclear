@@ -1,0 +1,33 @@
+@import '../../vars.scss';
+
+.nav_buttons {
+  display: flex;
+  flex-flow: row;
+  justify-content: center;
+  align-items: center;
+  margin-left: 12px;
+  z-index: 40;
+  -webkit-app-region: no-drag;
+  
+  a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: $blue;
+    height: 30px;
+    width: 30px;
+    cursor: pointer;
+
+    &:hover {
+      background: darken($blue, 10%);
+    }
+
+    &:active {
+      background: darken($blue, 15%);
+    }
+
+    &:first-child {
+      margin-right: 12px;
+    }
+  }
+}
