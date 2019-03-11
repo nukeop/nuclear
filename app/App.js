@@ -39,6 +39,7 @@ import ToastContainer from './containers/ToastContainer';
 import ShortcutsContainer from './containers/ShortcutsContainer';
 
 import ui from 'nuclear-ui';
+import NavButtons from './components/NavButtons';
 import PlayerControls from './components/PlayerControls';
 import Seekbar from './components/Seekbar';
 import SidebarMenu from './components/SidebarMenu';
@@ -86,6 +87,10 @@ class App extends React.Component {
   renderNavBar () {
     return (
       <Navbar className={styles.navbar}>
+        <NavButtons
+          back={this.props.history.goBack}
+          forward={this.props.history.goForward}
+        />
         <SearchBoxContainer />
         <Spacer />
         <Spacer />
