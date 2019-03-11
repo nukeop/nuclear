@@ -5,7 +5,8 @@ import swagger from 'swagger-spec-express';
 import {
   onEmptyQueue,
   onCreatePlaylist,
-  onRemovePlaylist
+  onRemovePlaylist,
+  getQueue
 } from '../../mpris';
 import { addPlaylistSchema } from '../schema';
 import { getStandardDescription } from '../lib/swagger';
@@ -72,6 +73,16 @@ export function playlistRouter() {
       })
     );
 
+  router.get('/queue', (req, res, next) => {
+    getQueue()
+      .then(res.json.bind(res))
+      .catch(next);
+  })
+    .describe(getStandardDescription({
+      successDescription: 'The current queue',
+      tags: ['Playlist', 'Queue']
+    }));
+
   router
     .post('/empty-queue', (req, res) => {
       onEmptyQueue();
@@ -79,7 +90,7 @@ export function playlistRouter() {
     })
     .describe(getStandardDescription({
       successDescription: 'The queue is now empty',
-      tags: ['Playlist']
+      tags: ['Playlist', 'Queue']
     }));
   
   return router;

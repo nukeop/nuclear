@@ -63,6 +63,15 @@ function onRemovePlaylist() {
   rendererWindow.send('refresh-playlists');
 }
 
+function getQueue() {
+  return new Promise(resolve => {
+    rendererWindow.send('queue');
+    ipcMain.on('queue', (evt, data) => {
+      resolve(data);
+    });
+  });
+}
+
 function getPlayingStatus() {
   return new Promise(resolve => {
     rendererWindow.send('playing-status');
@@ -84,6 +93,7 @@ module.exports = {
   onSeek,
   onMute,
   onEmptyQueue,
+  getQueue,
   onCreatePlaylist,
   onRemovePlaylist,
   getPlayingStatus

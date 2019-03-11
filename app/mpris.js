@@ -111,3 +111,7 @@ export function sendPlayingStatus(event, playerState, queueState) {
     ipcRenderer.send('playing-status', playerState);
   }
 }
+
+export function sendQueueItems(event, queueItems) {
+  ipcRenderer.send('queue', queueItems);
+}
