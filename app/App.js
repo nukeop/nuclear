@@ -88,8 +88,8 @@ class App extends React.Component {
     return (
       <Navbar className={styles.navbar}>
         <NavButtons
-          back={this.props.history.back}
-          forward={this.props.history.forward}
+          back={this.props.history.goBack}
+          forward={this.props.history.goForward}
         />
         <SearchBoxContainer />
         <Spacer />
