@@ -51,6 +51,18 @@ function onMute() {
   rendererWindow.send('mute');
 }
 
+function onEmptyQueue() {
+  rendererWindow.send('empty-queue');
+}
+
+function onCreatePlaylist(name) {
+  rendererWindow.send('create-playlist', name);
+}
+
+function onRemovePlaylist() {
+  rendererWindow.send('refresh-playlists');
+}
+
 function getPlayingStatus() {
   return new Promise(resolve => {
     rendererWindow.send('playing-status');
@@ -71,5 +83,8 @@ module.exports = {
   onVolume,
   onSeek,
   onMute,
+  onEmptyQueue,
+  onCreatePlaylist,
+  onRemovePlaylist,
   getPlayingStatus
 };

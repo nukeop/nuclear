@@ -6,6 +6,7 @@ import { ipcRenderer } from 'electron';
 import * as PlayerActions from '../../actions/player';
 import * as QueueActions from '../../actions/queue';
 import * as SettingsActions from '../../actions/settings';
+import * as PlaylistActions from '../../actions/playlists';
 
 import {
   onNext,
@@ -19,7 +20,10 @@ import {
   onVolume,
   onSeek,
   sendPlayingStatus,
-  onMute
+  onMute,
+  onEmptyQueue,
+  onCreatePlaylist,
+  onRefreshPlaylists
 } from '../../mpris';
 
 class IpcContainer extends React.Component {
@@ -36,6 +40,9 @@ class IpcContainer extends React.Component {
     ipcRenderer.on('volume', (event, data) => onVolume(event, data, this.props.actions));
     ipcRenderer.on('seek', (event, data) => onSeek(event, data, this.props.actions));
     ipcRenderer.on('playing-status', event => sendPlayingStatus(event, this.props.player, this.props.queue));
+    ipcRenderer.on('empty-queue', event => onEmptyQueue(event, this.props.actions));
+    ipcRenderer.on('create-playlist', (event, name) => onCreatePlaylist(event, { name, tracks: this.props.queue.queueItems }, this.props.actions));
+    ipcRenderer.on('refresh-playlists', (event) => onRefreshPlaylists(event, this.props.actions));
   }
 
   componentWillReceiveProps(nextProps){
@@ -59,7 +66,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators(Object.assign({}, PlayerActions, QueueActions, SettingsActions), dispatch)
+    actions: bindActionCreators(Object.assign({}, PlayerActions, QueueActions, SettingsActions, PlaylistActions), dispatch)
   };
 }
 
