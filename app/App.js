@@ -90,6 +90,8 @@ class App extends React.Component {
         <NavButtons
           back={this.props.history.goBack}
           forward={this.props.history.goForward}
+          historyLength={this.props.history.length}
+          historyCurrentIndex={this.props.history.index}
         />
         <SearchBoxContainer />
         <Spacer />
