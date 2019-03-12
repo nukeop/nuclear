@@ -9,14 +9,10 @@ const NavButtons = props => {
   let enableBackButton = true;
   let enableForwardButton = true;
 
-  // Check to see if we are at the dashbashboard of if we cannot go forward anymore to disable buttons
-  console.log("Current index: " + props.historyCurrentIndex)
   if (props.historyCurrentIndex == 1) {
-    // We need to disable the back button because we can't go back anymore
     enableBackButton = false;
   }
 
-  console.log("historyLength: " + props.historyLength)
   if (props.historyCurrentIndex == (props.historyLength - 1)) {
     enableForwardButton = false;
   }
