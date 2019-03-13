@@ -12,14 +12,14 @@ import PlaylistView from '../../components/PlaylistView';
 const PlaylistViewContainer = props => {
   return (
     <PlaylistView
-      playlist={this.props.playlists.playlists[this.props.match.params.playlistId]}
-      musicSources={this.props.musicSources}
-      addTracks={this.props.actions.addPlaylistTracksToQueue}
-      selectSong={this.props.actions.selectSong}
-      startPlayback={this.props.actions.startPlayback}
-      notify={this.props.actions.notify}
-      clearQueue={this.props.actions.clearQueue}
-      addToQueue={this.props.actions.addToQueue}
+      playlist={props.playlists.playlists[props.match.params.playlistId]}
+      musicSources={props.musicSources}
+      addTracks={props.actions.addPlaylistTracksToQueue}
+      selectSong={props.actions.selectSong}
+      startPlayback={props.actions.startPlayback}
+      notify={props.actions.notify}
+      clearQueue={props.actions.clearQueue}
+      addToQueue={props.actions.addToQueue}
     />
   );
 };
