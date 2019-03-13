@@ -33,8 +33,8 @@ class NavButtons extends React.Component {
 
     return (
       <div className={styles.nav_buttons}>
-        <a href='#' onClick={(this.enableBackButton(historyLength) && back)} 
-          className={cx({'disable': !this.enableBackButton(historyLength)})}>
+        <a href='#' onClick={(this.enableBackButton(historyCurrentIndex) && back)} 
+          className={cx({'disable': !this.enableBackButton(historyCurrentIndex)})}>
             <FontAwesome name='chevron-left'/>
         </a>
         <a href='#' onClick={(this.enableForwardButton(historyCurrentIndex, historyLength) && forward)} 
