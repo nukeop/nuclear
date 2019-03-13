@@ -14,17 +14,17 @@ class NavButtons extends React.Component {
 
   enableBackButton(currentHistoryIndex) {
     if (currentHistoryIndex === 1) {
-      return false;
+      return !currentHistoryIndex;
     } else {
-      return true;
+      return currentHistoryIndex;
     }
   }
 
   enableForwardButton(currentHistoryIndex, historyLength) {
     if(currentHistoryIndex === (historyLength - 1)) {
-      return false;
+      return !currentHistoryIndex;
     } else {
-      return true;
+      return currentHistoryIndex;
     }
   }
 
@@ -33,11 +33,11 @@ class NavButtons extends React.Component {
 
     return (
       <div className={styles.nav_buttons}>
-        <a href='#' onClick={(this.enableBackButton(historyCurrentIndex) && back)} 
+        <a href='#' onClick={this.enableBackButton(historyCurrentIndex) ? back : undefined} 
           className={cx({'disable': !this.enableBackButton(historyCurrentIndex)})}>
             <FontAwesome name='chevron-left'/>
         </a>
-        <a href='#' onClick={(this.enableForwardButton(historyCurrentIndex, historyLength) && forward)} 
+        <a href='#' onClick={this.enableForwardButton(historyCurrentIndex, historyLength) ? forward : undefined} 
           className={cx({'disable': !this.enableForwardButton(historyCurrentIndex, historyLength)})}>
             <FontAwesome name="chevron-right"/>
         </a>
