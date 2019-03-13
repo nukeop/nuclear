@@ -13,7 +13,7 @@ class NavButtons extends React.Component {
   }
 
   enableBackButton(currentHistoryIndex) {
-    if (currentHistoryIndex == 1) {
+    if (currentHistoryIndex === 1) {
       return false;
     } else {
       return true;
@@ -21,7 +21,7 @@ class NavButtons extends React.Component {
   }
 
   enableForwardButton(currentHistoryIndex, historyLength) {
-    if(currentHistoryIndex == (historyLength - 1)) {
+    if(currentHistoryIndex === (historyLength - 1)) {
       return false;
     } else {
       return true;
