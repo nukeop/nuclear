@@ -14,15 +14,13 @@ const PlaylistViewContainer = props => {
   return (
     <PlaylistView
       playlist={props.playlists.playlists[props.match.params.playlistId]}
-      streamProviders={props.streamProviders}
+      musicSources={props.musicSources}
       addTracks={props.actions.addPlaylistTracksToQueue}
       selectSong={props.actions.selectSong}
       startPlayback={props.actions.startPlayback}
-      addToQueue={props.actions.addToQueue}
+      notify={props.actions.notify}
       clearQueue={props.actions.clearQueue}
-      deletePlaylist={props.actions.deletePlaylist}
-      updatePlaylist={props.actions.updatePlaylist}
-      history={props.history}
+      addToQueue={props.actions.addToQueue}
     />
   );
 };
