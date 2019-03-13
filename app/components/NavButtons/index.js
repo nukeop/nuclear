@@ -13,19 +13,11 @@ class NavButtons extends React.Component {
   }
 
   enableBackButton(currentHistoryIndex) {
-    if (currentHistoryIndex === 1) {
-      return !currentHistoryIndex;
-    } else {
-      return currentHistoryIndex;
-    }
+    return currentHistoryIndex > 1;
   }
 
   enableForwardButton(currentHistoryIndex, historyLength) {
-    if(currentHistoryIndex === (historyLength - 1)) {
-      return !currentHistoryIndex;
-    } else {
-      return currentHistoryIndex;
-    }
+    return currentHistoryIndex < (historyLength - 1);
   }
 
   render() {
