@@ -22,12 +22,13 @@ class PlayPauseButton extends React.Component {
           styles.play_pause_button_container,
           {
             'loading': this.props.loading,
-            [styles.player_button_disabled]: !this.props.onClick
+            [styles.player_button_disabled]: !this.props.onClick,
+            
           }
         )}
         aria-label='Play/Pause button'
       >
-        <a href='#' onClick={this.props.onClick}>{
+        <a href='#' onClick={this.props.onClick} className={classnames({[styles.darken_on_hover]: this.props.onClick})}>{
           this.getIcon()
         }</a>
       </div>

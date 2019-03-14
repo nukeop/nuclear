@@ -1,3 +1,10 @@
+.darken_on_hover {
+  &:hover {
+    transition: 0.3s;
+    color: darken(#fafafa, 50%);
+  }
+}
+
 .play_pause_button_container {
   display: flex;
 
@@ -16,12 +23,18 @@
   flex-flow: row;
   align-items: center;
 
+  &:not(.player_button_disabled):hover {
+    transition: 0.3s;
+    background: darken(#21222c, 2%);
+    color: darken(#fafafa, 50%);
+  }
+
   &.loading {
     a {
       padding: 0;
     }
   }
-  
+
   a {
     flex: 1 1 auto;
     padding-left: 0.3rem;
@@ -30,10 +43,9 @@
       margin-left: -0.3rem;
     }
   }
-
-  
 }
 
 .player_button_disabled a {
   cursor: not-allowed;
+  color: darken(#fafafa, 60%);
 }
