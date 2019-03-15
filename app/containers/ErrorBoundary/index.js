@@ -18,7 +18,7 @@ class ErrorBoundary extends React.Component {
 
   componentDidCatch(error) {
     logger.error(error);
-    this.props.actions.error('error', 'Something wrong happen');
+    this.props.actions.error('error', 'Something wrong happened');
 
     this.setState({ hasError: true }, () => {
       this.props.history.goBack();
