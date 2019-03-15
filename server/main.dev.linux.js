@@ -1,12 +1,12 @@
 import logger from 'electron-timber';
+import { setOption } from './store';
 // const { default: installExtension, REACT_DEVELOPER_TOOLS, REDUX_DEVTOOLS } = require('electron-devtools-installer');
 const { app, ipcMain, nativeImage, BrowserWindow, Menu, Tray } = require('electron');
 const platform = require('electron-platform');
 const path = require('path');
 const url = require('url');
-const mpris = require('./mpris');
 const getOption = require('./store').getOption;
-// var Player;
+const { runHttpServer, closeHttpServer } = require('./http/server');
 
 // GNU/Linux-specific
 if (!platform.isDarwin && !platform.isWin32) {
@@ -14,7 +14,7 @@ if (!platform.isDarwin && !platform.isWin32) {
 }
 
 let win;
-let player;
+let httpServer;
 let tray;
 let icon = nativeImage.createFromPath(path.resolve(__dirname, 'resources', 'media', 'icon.png'));
 
@@ -76,8 +76,8 @@ function createWindow() {
 
   const trayMenu = Menu.buildFromTemplate([
     {label: 'Quit', type: 'normal', click:
-     (menuItem, browserWindow, event) => {
-       app.quit();
+     () => {
+       closeHttpServer(httpServer).then(() => app.quit());
      }
     }
   ]);
@@ -98,6 +98,16 @@ function createWindow() {
 
   ipcMain.on('maximize', () => {
     win.isMaximized() ? win.unmaximize() : win.maximize();
+  });
+
+  ipcMain.on('restart-api', () => {
+    closeHttpServer(httpServer).then(() => {
+      httpServer = runHttpServer({ log: true, port: getOption('api.port') });
+    });
+  });
+
+  ipcMain.on('stop-api', () => {
+    closeHttpServer(httpServer);
   });
 
   // GNU/Linux-specific
@@ -158,9 +168,16 @@ function createWindow() {
   }
 }
 
-app.on('ready', createWindow);
+app.on('ready', () => {
+  createWindow();
+
+  if (getOption('api.enabled')) {
+    setOption('api.port', 3000);
+    httpServer = runHttpServer({ log: true, port: 3000 });
+  }
+});
 
 app.on('window-all-closed', () => {
   logger.log('All windows closed, quitting');
-  app.quit();
+  closeHttpServer(httpServer).then(() => app.quit());
 });

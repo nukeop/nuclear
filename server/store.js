@@ -1,9 +1,9 @@
-import { app } from 'electron';
 import logger from 'electron-timber';
 import electronStore from 'electron-store';
 import _ from 'lodash';
 
 import options from '../app/constants/settings';
+
 const store = new electronStore();
 logger.log(`Initialized settings store at ${store.path}`);
 
@@ -17,4 +17,10 @@ function getOption (key) {
   return value;
 }
 
-export { getOption };
+function setOption (key, value) {
+  const settings = store.get('settings') || {};
+
+  store.set('settings', Object.assign({}, settings, { [`${key}`]: value }));
+}
+
+export { getOption, setOption, store };

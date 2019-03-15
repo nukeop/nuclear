@@ -1,5 +1,4 @@
-const webpack = require('webpack');
-const path = require('path');
+/* eslint-env node */
 const HappyPack = require('happypack');
 
 module.exports = env => {
@@ -15,6 +14,9 @@ module.exports = env => {
     optimization: {
       namedModules: true
     },
+    stats: {
+      warningsFilter: 'express'
+    },
     module: {
       rules: [
         {
@@ -26,14 +28,14 @@ module.exports = env => {
     plugins: [
       new HappyPack({
         id: 'jsx',
-        loaders: [ 'babel-loader' ]
+        loaders: ['babel-loader']
       })
     ],
     externals: {
       dbus: 'dbus'
     },
     node: {
-      fs: "empty",
+      fs: 'empty',
       __dirname: false,
       __filename: false
     },
