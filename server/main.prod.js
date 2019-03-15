@@ -4,7 +4,9 @@ const platform = require('electron-platform');
 const path = require('path');
 const url = require('url');
 const getOption = require('./store').getOption;
+const { runHttpServer, closeHttpServer } = require('./http/server');
 
+let httpServer;
 let win;
 let tray;
 let icon = nativeImage.createFromPath(path.resolve(__dirname, 'resources', 'media', 'icon.png'));
@@ -53,8 +55,8 @@ function createWindow() {
 
   const trayMenu = Menu.buildFromTemplate([
     {label: 'Quit', type: 'normal', click:
-     (menuItem, browserWindow, event) => {
-       app.quit();
+     () => {
+       closeHttpServer(httpServer).then(() => app.quit());
      }
     }
   ]);
@@ -65,7 +67,7 @@ function createWindow() {
   tray.setContextMenu(trayMenu);
 
   ipcMain.on('close', () => {
-    app.quit();
+    closeHttpServer(httpServer).then(() => app.quit());
   });
 
   ipcMain.on('minimize', () => {
@@ -82,10 +84,25 @@ function createWindow() {
     }
     changeWindowTitle(arg.artist, arg.name);
   });
+
+  ipcMain.on('restart-api', () => {
+    closeHttpServer(httpServer).then(() => {
+      httpServer = runHttpServer({ port: getOption('api.port') });
+    });
+  });
+
+  ipcMain.on('stop-api', () => {
+    closeHttpServer(httpServer);
+  });
 }
 
-app.on('ready', createWindow);
+app.on('ready', () => {
+  createWindow();
+  if (getOption('api.enabled')) {
+    httpServer = runHttpServer({ port: getOption('api.port') });
+  }
+});
 
 app.on('window-all-closed', () => {
-  app.quit();
+  closeHttpServer(httpServer).then(() => app.quit());
 });

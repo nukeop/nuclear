@@ -1,9 +1,9 @@
+/* eslint-env node */
 const webpack = require('webpack');
-const path = require('path');
 const HappyPack = require('happypack');
 
 module.exports = env => {
-  let entry = env && env.LINUX ? './server/main.dev.linux.js' : './server/main.dev.js';
+  const entry = env && env.LINUX ? './server/main.dev.linux.js' : './server/main.dev.js';
 
   return {
     entry: entry,
@@ -12,6 +12,9 @@ module.exports = env => {
       filename: 'bundle.electron.js'
     },
     mode: 'development',
+    stats: {
+      warningsFilter: 'express'
+    },
     module: {
       rules: [
         {
@@ -25,11 +28,11 @@ module.exports = env => {
       new webpack.NamedModulesPlugin(),
       new HappyPack({
         id: 'jsx',
-        loaders: [ 'babel-loader' ]
-      }),
+        loaders: ['babel-loader']
+      })
     ],
     node: {
-      fs: "empty",
+      fs: 'empty',
       __dirname: false,
       __filename: false
     },

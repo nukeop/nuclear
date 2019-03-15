@@ -1,8 +1,8 @@
-const {
-  default: installExtension,
-  REACT_DEVELOPER_TOOLS,
-  REDUX_DEVTOOLS
-} = require('electron-devtools-installer');
+// const {
+//   default: installExtension,
+//   REACT_DEVELOPER_TOOLS,
+//   REDUX_DEVTOOLS
+// } = require('electron-devtools-installer');
 const {
   app,
   ipcMain,
@@ -14,8 +14,10 @@ const {
 const platform = require('electron-platform');
 const path = require('path');
 const url = require('url');
-const getOption = require('./store').getOption;
+const { getOption, setOption } = require('./store');
+const { runHttpServer, closeHttpServer } = require('./http/server');
 
+let httpServer;
 let win;
 let tray;
 let icon = nativeImage.createFromPath(
@@ -84,7 +86,7 @@ function createWindow () {
     {
       label: 'Quit',
       type: 'normal',
-      click: (menuItem, browserWindow, event) => {
+      click: () => {
         app.quit();
       }
     }
@@ -96,7 +98,7 @@ function createWindow () {
   tray.setContextMenu(trayMenu);
 
   ipcMain.on('close', () => {
-    app.quit();
+    closeHttpServer(httpServer).then(() => app.quit());
   });
 
   ipcMain.on('minimize', () => {
@@ -117,10 +119,27 @@ function createWindow () {
     }
     changeWindowTitle(arg.artist, arg.name);
   });
+
+  ipcMain.on('restart-api', () => {
+    closeHttpServer(httpServer).then(() => {
+      httpServer = runHttpServer({ log: true, port: getOption('api.port') });
+    });
+  });
+
+  ipcMain.on('stop-api', () => {
+    closeHttpServer(httpServer);
+  });
 }
 
-app.on('ready', createWindow);
+app.on('ready', () => {
+  createWindow();
+
+  if (getOption('api.enabled')) {
+    setOption('api.port', 3000);
+    httpServer = runHttpServer({ log: true, port: 3000 });
+  }
+});
 
 app.on('window-all-closed', () => {
-  app.quit();
+  closeHttpServer(httpServer).then(() => app.quit());
 });
