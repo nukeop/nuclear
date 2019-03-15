@@ -19,7 +19,7 @@
   align-items: center;
 
   &:not(.player_button_disabled) :hover {
-    transition: 0.3s;
+    transition: $short-duration;
     color: darken($white, 50%);
   }
 
