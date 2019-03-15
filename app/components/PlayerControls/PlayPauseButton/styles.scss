@@ -1,7 +1,9 @@
+@import '../../../vars.scss';
+
 .darken_on_hover {
   &:hover {
     transition: 0.3s;
-    color: darken(#fafafa, 50%);
+    color: darken($white, 50%);
   }
 }
 
@@ -13,7 +15,7 @@
 
   text-align: center;
 
-  color: #f8f8f2;
+  color: $grey;
   border: 2px solid rgba(248, 248, 242, 0.25);
   border-radius: 50px;
 
@@ -25,8 +27,8 @@
 
   &:not(.player_button_disabled):hover {
     transition: 0.3s;
-    background: darken(#21222c, 2%);
-    color: darken(#fafafa, 50%);
+    background: darken($background3, 2%);
+    color: darken($white, 50%);
   }
 
   &.loading {
@@ -47,5 +49,5 @@
 
 .player_button_disabled a {
   cursor: not-allowed;
-  color: darken(#fafafa, 60%);
+  color: darken($white, 60%);
 }
