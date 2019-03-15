@@ -28,7 +28,7 @@ class PlayPauseButton extends React.Component {
         )}
         aria-label='Play/Pause button'
       >
-        <a href='#' onClick={this.props.onClick} className={classnames({[styles.darken_on_hover]: this.props.onClick})}>{
+        <a href='#' onClick={this.props.onClick} >{
           this.getIcon()
         }</a>
       </div>
