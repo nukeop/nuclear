@@ -1,12 +1,5 @@
 @import '../../../vars.scss';
 
-.darken_on_hover {
-  &:hover {
-    transition: 0.3s;
-    color: darken($white, 50%);
-  }
-}
-
 .play_pause_button_container {
   display: flex;
 
@@ -25,9 +18,8 @@
   flex-flow: row;
   align-items: center;
 
-  &:not(.player_button_disabled):hover {
+  &:not(.player_button_disabled) :hover {
     transition: 0.3s;
-    background: darken($background3, 2%);
     color: darken($white, 50%);
   }
 
