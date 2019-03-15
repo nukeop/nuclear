@@ -37,6 +37,7 @@ import IpcContainer from './containers/IpcContainer';
 import SoundContainer from './containers/SoundContainer';
 import ToastContainer from './containers/ToastContainer';
 import ShortcutsContainer from './containers/ShortcutsContainer';
+import ErrorBoundary from './containers/ErrorBoundary';
 
 import ui from 'nuclear-ui';
 import NavButtons from './components/NavButtons';
@@ -274,21 +275,23 @@ class App extends React.Component {
     let { toggleOption } = this.props.actions;
     return (
       <React.Fragment>
-        <div className={styles.app_container}>
-          {this.renderNavBar()}
-          <div className={styles.panel_container}>
-            {this.renderSidebarMenu(settings, toggleOption)}
-            <VerticalPanel className={styles.center_panel}>
-              <MainContentContainer />
-            </VerticalPanel>
-            {this.renderRightPanel(settings)}
-            <ToastContainer/>
-            <ShortcutsContainer/>
+        <ErrorBoundary>
+          <div className={styles.app_container}>
+            {this.renderNavBar()}
+            <div className={styles.panel_container}>
+              {this.renderSidebarMenu(settings, toggleOption)}
+              <VerticalPanel className={styles.center_panel}>
+                <MainContentContainer />
+              </VerticalPanel>
+              {this.renderRightPanel(settings)}
+            </div>
+            {this.renderFooter(settings)}
+            <SoundContainer />
+            <IpcContainer />
           </div>
-          {this.renderFooter(settings)}
-          <SoundContainer />
-          <IpcContainer />
-        </div>
+        </ErrorBoundary>
+        <ShortcutsContainer/>
+        <ToastContainer/>
       </React.Fragment>
     );
   }
