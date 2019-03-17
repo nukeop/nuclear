@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import Sound from 'react-sound';
 import * as Mousetrap from 'mousetrap';
 
+import Sound from '../../components/Sound';
 import * as PlayerActions from '../../actions/player';
 import * as QueueActions from '../../actions/queue';
 

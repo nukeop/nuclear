@@ -1,4 +1,4 @@
-import Sound from 'react-sound';
+import Sound from '../components/Sound';
 import { sendPaused, sendPlay } from '../mpris';
 
 export const START_PLAYBACK = 'START_PLAYBACK';
