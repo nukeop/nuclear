@@ -9,7 +9,7 @@ import * as PlayerActions from '../../actions/player';
 import * as QueueActions from '../../actions/queue';
 import * as ScrobblingActions from '../../actions/scrobbling';
 import * as LyricsActions from '../../actions/lyrics';
-import Sound from 'react-sound';
+import Sound from '../../components/Sound';
 import { getSelectedStream } from '../../utils';
 import * as Autoradio from './autoradio';
 import globals from '../../globals';
@@ -18,6 +18,10 @@ import core from 'nuclear-core';
 let lastfm = new core.LastFmApi(globals.lastfmApiKey, globals.lastfmApiSecret);
 
 class SoundContainer extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
   handlePlaying (update) {
     let seek = update.position;
     let progress = (update.position / update.duration) * 100;
@@ -102,7 +106,7 @@ class SoundContainer extends React.Component {
   }
 
   getSimilarArtists (artistJson) {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
       resolve(artistJson.similar.artist);
     });
   }
@@ -111,7 +115,7 @@ class SoundContainer extends React.Component {
     let devianceParameter = 0.2; // We will select one of the 20% most similar artists
     let randomElement =
       arr[Math.round(Math.random() * (devianceParameter * (arr.length - 1)))];
-    return new Promise((resolve, reject) => resolve(randomElement));
+    return new Promise((resolve) => resolve(randomElement));
   }
 
   getArtistTopTracks (artist) {
@@ -121,7 +125,7 @@ class SoundContainer extends React.Component {
   }
 
   addToQueue (artist, track) {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
       let musicSources = this.props.plugins.plugins.musicSources;
       this.props.actions.addToQueue(musicSources, {
         artist: artist.name,

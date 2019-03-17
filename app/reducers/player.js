@@ -1,4 +1,4 @@
-import Sound from 'react-sound';
+import Sound from '../components/Sound';
 
 import {
   START_PLAYBACK,
