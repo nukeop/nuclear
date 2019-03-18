@@ -7,7 +7,7 @@ export const DELETE_PLAYLIST = 'DELETE_PLAYLIST';
 export function addPlaylist(tracks, name) {
   return dispatch => {
     let playlists = store.get('playlists') || {};
-    let playlist = { name, tracks };
+    let playlist = {name, tracks};
 
     if (tracks.length === 0) {
       dispatch({
