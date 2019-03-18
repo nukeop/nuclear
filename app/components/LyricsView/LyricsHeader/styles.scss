@@ -1,0 +1,17 @@
+@import '../../../vars.scss';
+
+.lyrics_header {
+  margin-left: 1rem;
+  margin-bottom: 1rem;
+
+  .lyrics_header_name {
+    font-size: 48px;
+    line-height: 48px;
+  }
+
+  .lyrics_header_artist {
+    font-size: 20px;
+    line-height: 30px;
+    color: rgba($white, 0.6);
+  }
+}
