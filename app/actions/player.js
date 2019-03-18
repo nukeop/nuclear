@@ -9,6 +9,7 @@ export const UPDATE_VOLUME = 'UPDATE_VOLUME';
 export const MUTE = 'MUTE';
 export const UNMUTE = 'UNMUTE';
 export const UPDATE_PLAYBACK_STREAM_LOADING = 'UPDATE_PLAYBACK_STREAM_LOADING';
+export const UPDATE_EQUALIZER = 'UPDATE_EQUALIZER';
 
 export function startPlayback() {
   sendPlay();
@@ -88,5 +89,12 @@ export function updateStreamLoading(state) {
   return {
     type: UPDATE_PLAYBACK_STREAM_LOADING,
     payload: state
+  };
+}
+
+export function updateEqualizer(payload) {
+  return {
+    type: UPDATE_EQUALIZER,
+    payload
   };
 }
