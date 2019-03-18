@@ -11,7 +11,7 @@ export function addPlaylist(tracks, name) {
 
     if (tracks.length === 0) {
       dispatch({
-              type: null
+	      type: null
       });
       return;
     }
