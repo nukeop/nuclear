@@ -1,4 +1,5 @@
 import React from 'react';
+import FontAwesome from 'react-fontawesome';
 import _ from 'lodash';
 import Header from '../Header';
 
@@ -30,18 +31,32 @@ class LyricsView extends React.Component {
   }
 
   renderNoSelectedTrack () {
-    return (<h1>Play a track from the queue to get the lyrics here</h1>);
+    return (
+      <div className={styles.empty_state}>
+        <FontAwesome name='music'/>
+        <h2>Nothing is playing.</h2>
+        <div>Add some music to the queue to display the lyrics here!</div>
+      </div>
+    );
   }
 
   render () {
     let track = this.props.track;
-    if (track === null) {
-      { this.renderNoSelectedTrack(); }
-    }
+    
     return (
-      <div>
-        {this.renderLyricsHeader()}
-        {this.renderLyrics()}
+      <div className={styles.lyrics_view}>
+        {
+          track === null &&
+            this.renderNoSelectedTrack()
+        }
+        {
+          track !== null &&
+            this.renderLyricsHeader()
+        }
+        {
+          track !== null &&
+            this.renderLyrics()
+        }
       </div >
     );
   }
