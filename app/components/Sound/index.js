@@ -1,10 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import _ from 'lodash';
 
 import styles from './styles.scss';
 
+const filterValues = [500, 1500, 2500, 4000, 6500, 8500, 12000, 16000];
+
+const qValues = filterValues.map((freq, i, arr) => {
+  if (!i || i === arr.length - 1) {
+    return null;
+  } else {
+    return 2 * freq / Math.abs(arr[i + 1] - arr[i - 1]);
+  }
+});
+
 class Sound extends React.Component {
   audio;
+  audioContext;
+  gainNode;
+  source;
+  filters = [];
 
   constructor(props) {
     super(props);
@@ -14,7 +29,37 @@ class Sound extends React.Component {
   }
 
   attachRef(element) {
-    this.audio = element;
+    if (element) {
+      this.audio = element;
+      this.audio.crossOrigin = 'anonymous';
+    }
+  }
+
+  createFilterNodes() {
+    let lastInChain = this.gainNode;
+
+    filterValues.forEach((freq, i, arr) => {
+      const biquadFilter = this.audioContext.createBiquadFilter();
+
+      biquadFilter.type = 'peaking';
+      biquadFilter.frequency.value = freq;
+      biquadFilter.gain.value = this.props.equalizer[i] || 0;
+      if (!i || i === arr.length - 1) {
+        biquadFilter.type = i ? 'highshelf' : 'lowshelf';
+      } else {
+        biquadFilter.Q.value = qValues[i];
+      }
+  
+      if (lastInChain) {
+        lastInChain.connect(biquadFilter);
+      }
+
+      lastInChain = biquadFilter;
+  
+      this.filters.push(biquadFilter);
+    });
+  
+    return lastInChain;
   }
 
   handleTimeUpdate({ target }) {
@@ -46,7 +91,7 @@ class Sound extends React.Component {
   }
 
   setVolume() {
-    this.audio.volume = this.props.volume / 100;
+    this.gainNode.gain.value = this.props.volume / 100;
   }
 
   setPosition() {
@@ -65,9 +110,22 @@ class Sound extends React.Component {
     if (this.props.playStatus !== prevProps.playStatus) {
       this.setPlayerState();
     }
+
+    if (!_.isEqual(this.props.equalizer, prevProps.equalizer)) {
+      this.props.equalizer.forEach((value, idx) => {
+        this.filters[idx].gain.value = value;
+      });
+    }
   }
 
   componentDidMount() {
+    this.audioContext = new AudioContext();
+    this.gainNode = this.audioContext.createGain();
+    this.source = this.audioContext.createMediaElementSource(this.audio);
+
+    this.source.connect(this.gainNode);
+    this.createFilterNodes().connect(this.audioContext.destination);
+
     this.setVolume();
     this.setPlayerState();
   }
@@ -104,7 +162,8 @@ Sound.propTypes = {
   onLoading: PropTypes.func,
   onLoad: PropTypes.func,
   position: PropTypes.number,
-  volume: PropTypes.number
+  volume: PropTypes.number,
+  equalizer: PropTypes.arrayOf(PropTypes.number)
 };
 
 export default Sound;

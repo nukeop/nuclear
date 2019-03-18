@@ -151,7 +151,7 @@ class App extends React.Component {
           {this.renderNavLink('plugins', 'flask', 'Plugins', settings)}
           {this.renderNavLink('search', 'search', 'Search Results', settings)}
           {this.renderNavLink('settings', 'cogs', 'Settings', settings)}
-          {this.renderNavLink('equalizer', 'cogs', 'Equalizer', settings)}
+          {this.renderNavLink('equalizer', 'sliders', 'Equalizer', settings)}
 
           <SidebarMenuCategoryHeader>
             Collection

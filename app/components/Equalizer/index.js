@@ -11,6 +11,8 @@ const Equalizer = ({ values, onChange }) => (
         <div key={idx} className={styles.slider_container}>
           <input
             type='range'
+            min='-10'
+            max='10'
             className={styles.slider}
             value={value}
             onChange={evt => {
