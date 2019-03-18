@@ -8,7 +8,8 @@ import {
   UPDATE_VOLUME,
   MUTE,
   UNMUTE,
-  UPDATE_PLAYBACK_STREAM_LOADING
+  UPDATE_PLAYBACK_STREAM_LOADING,
+  UPDATE_EQUALIZER
 } from '../actions/player';
 
 import {
@@ -23,7 +24,8 @@ const initialState = {
   playbackProgress: 0,
   seek: 0,
   volume: 100,
-  muted: false
+  muted: false,
+  equalizer: [500, 1500, 2500, 4000, 6500, 8500, 12000, 16000]
 };
 
 export default function PlayerReducer(state=initialState, action) {
@@ -68,6 +70,11 @@ export default function PlayerReducer(state=initialState, action) {
     return Object.assign({}, state, {
       playbackStreamLoading: action.payload
     });
+  case UPDATE_EQUALIZER:
+    return {
+      ...state,
+      equalizer: action.payload
+    };
   default:
     return state;
   }
