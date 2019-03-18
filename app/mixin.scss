@@ -1,3 +1,7 @@
 @mixin transition {
   transition: 0.25s;
 }
+
+@mixin roundCorners {
+  border-radius: 0.25rem;
+}

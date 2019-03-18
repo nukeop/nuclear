@@ -23,6 +23,10 @@ class ArtistView extends React.Component {
     );
   }
 
+  isOnTour() {
+    return _.get(this.props, 'artist.lastfm.artist.ontour') === "1";
+  }
+
   renderArtistHeader (artist, history) {
     return (
       <div className={styles.artist_header_overlay}>
@@ -40,7 +44,17 @@ class ArtistView extends React.Component {
           />
 
           <div className={styles.artist_name_container}>
-            <h1>{artist.name}</h1>
+            <div className={styles.artist_name_line}>
+              <h1>{artist.name}</h1>
+              {
+                this.isOnTour() &&
+                  <span
+                      className={styles.on_tour}
+                      >
+                      On tour
+                    </span>
+                  }
+            </div>
 
             {typeof artist.lastfm.artist !== 'undefined' && (
               <ArtistTags
@@ -63,6 +77,7 @@ class ArtistView extends React.Component {
       clearQueue,
       musicSources
     } = this.props;
+    
     return (
       !this.isLoading() &&
       artist.lastfm.toptracks && (
