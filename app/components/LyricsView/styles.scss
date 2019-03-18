@@ -1,5 +1,32 @@
-.lyrics_text{
+.lyrics_view {
+  position: relative;
+  height: 100%;
+
+  .empty_state {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+    
+    height: 100%;
+
+    .fa {
+      font-size: 72px;
+    }
+    
+    h2 {
+      font-size: 48px;
+      font-weight: normal;
+    }
+
+    div {
+      font-size: 20px;
+    }
+  }
+  
+  .lyrics_text{
     white-space: pre-line;
     font-size: 1.3em;
     padding: 1em;
+  }
 }
