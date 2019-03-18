@@ -6,6 +6,7 @@ import { bindActionCreators } from 'redux';
 import * as QueueActions from '../../actions/queue';
 import * as PlayerActions from '../../actions/player';
 import * as ToastActions from '../../actions/toasts';
+import * as PlaylistActions from '../../actions/playlists';
 
 import PlaylistView from '../../components/PlaylistView';
 
@@ -20,6 +21,7 @@ const PlaylistViewContainer = props => {
       notify={props.actions.notify}
       clearQueue={props.actions.clearQueue}
       addToQueue={props.actions.addToQueue}
+      deletePlaylist={props.actions.deletePlaylist}
     />
   );
 };
@@ -33,7 +35,7 @@ function mapStateToProps (state) {
 
 function mapDispatchToProps (dispatch) {
   return {
-    actions: bindActionCreators(Object.assign({}, QueueActions, PlayerActions, ToastActions), dispatch)
+    actions: bindActionCreators(Object.assign({}, QueueActions, PlayerActions, ToastActions, PlaylistActions), dispatch)
   };
 }
 

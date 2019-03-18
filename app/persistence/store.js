@@ -36,4 +36,5 @@ function setOption (key, value) {
   store.set('settings', Object.assign({}, settings, { [`${key}`]: value }));
 }
 
+
 export { store, getOption, setOption };
