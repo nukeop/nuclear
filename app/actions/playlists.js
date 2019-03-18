@@ -7,11 +7,11 @@ export const DELETE_PLAYLIST = 'DELETE_PLAYLIST';
 export function addPlaylist(tracks, name) {
   return dispatch => {
     let playlists = store.get('playlists') || {};
-    let playlist = {name, tracks};
+    let playlist = { name, tracks };
 
     if (tracks.length === 0) {
       dispatch({
-	      type: null
+        type: null
       });
       return;
     }
@@ -51,15 +51,16 @@ export function deletePlaylist(name) {
 export function loadPlaylists() {
   return dispatch => {
     let playlists = store.get('playlists') || {};
+
     if (playlists) {
       dispatch({
-	      type: LOAD_PLAYLISTS,
-	      payload: playlists
+        type: LOAD_PLAYLISTS,
+        payload: playlists
       });
     } else {
       dispatch({
-	 type: LOAD_PLAYLISTS,
-         payload: []
+        type: LOAD_PLAYLISTS,
+        payload: []
       });
     }
   };
