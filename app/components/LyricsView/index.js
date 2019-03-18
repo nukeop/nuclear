@@ -1,7 +1,8 @@
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 import _ from 'lodash';
-import Header from '../Header';
+
+import LyricsHeader from './LyricsHeader';
 
 import styles from './styles.scss';
 
@@ -17,16 +18,19 @@ class LyricsView extends React.Component {
     if (lyricsStr === '') {
       lyricsStr = 'No lyrics were found for this song.';
     }
-    return (<div className={styles.lyrics_text}>{lyricsStr}</div>);
+    return (
+      <div className={styles.lyrics_text}>
+        {lyricsStr}
+      </div>);
   }
 
   renderLyricsHeader () {
     let track = this.props.track;
     return (
-      <Header>
-        {track.name} by {track.artist}
-      </Header>
-
+      <LyricsHeader
+        name={track.name}
+        artist={track.artist}
+      />
     );
   }
 
