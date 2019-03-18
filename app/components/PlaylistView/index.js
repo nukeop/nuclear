@@ -37,7 +37,6 @@ class PlaylistView extends React.Component {
   ){
     deletePlaylist(playlist.name);
     history.push('/playlists');
-    // this.props.history.push('/playlists');
   }
 
   renderOptions (trigger, playlist) {
