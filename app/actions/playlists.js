@@ -11,7 +11,7 @@ export function addPlaylist(tracks, name) {
 
     if (tracks.length === 0) {
       dispatch({
-               type: null
+              type: null
       });
       return;
     }
@@ -54,13 +54,13 @@ export function loadPlaylists() {
 
     if (playlists) {
       dispatch({
-                type: LOAD_PLAYLISTS,
-                payload: playlists
+               type: LOAD_PLAYLISTS,
+               payload: playlists
       });
     } else {
       dispatch({
-                type: LOAD_PLAYLISTS,
-                payload: []
+               type: LOAD_PLAYLISTS,
+               payload: []
       });
     }
   };
