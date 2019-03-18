@@ -160,7 +160,8 @@
       "target": [
         "AppImage",
         "deb",
-        "tar.gz"
+        "tar.gz",
+        "snap"
       ],
       "category": "Audio;AudioVideo;Network;Player;Music"
     },
