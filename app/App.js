@@ -1,4 +1,6 @@
+/* eslint-disable linebreak-style */
 import React from 'react';
+// eslint-disable-next-line linebreak-style
 import FontAwesome from 'react-fontawesome';
 import Sound from 'react-sound';
 import { connect } from 'react-redux';
