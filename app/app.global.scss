@@ -16,6 +16,12 @@ body {
   margin: 0;
 }
 
+body.dimmed {
+  #react_root {
+    height: 100%;
+  }
+}
+
 a {
   text-decoration: none;
   color: $white;
