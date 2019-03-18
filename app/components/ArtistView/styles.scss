@@ -1,3 +1,4 @@
+@import '../../mixin';
 @import '../../vars';
 
 .artist_view_container {
@@ -58,9 +59,23 @@
     margin: 1rem;
   }
 
+  .artist_name_line {
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+  }
+
+  .on_tour {
+    @include roundCorners;
+    padding: 0.25rem;
+    background: $red;
+    text-transform: uppercase;
+  }
+
   h1 {
     font-size: 48px;
     font-weight: normal;
+    margin-right: 1rem;
   }
 
   .artist_related_container {
