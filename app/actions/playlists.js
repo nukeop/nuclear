@@ -2,11 +2,12 @@ import { store } from '../persistence/store';
 
 export const LOAD_PLAYLISTS = 'LOAD_PLAYLISTS';
 export const ADD_PLAYLIST = 'ADD_PLAYLIST';
+export const DELETE_PLAYLIST = 'DELETE_PLAYLIST';
 
 export function addPlaylist(tracks, name) {
   return dispatch => {
     let playlists = store.get('playlists') || {};
-    let playlist = {name, tracks};
+    let playlist = { name, tracks };
 
     if (tracks.length === 0) {
       dispatch({
@@ -28,6 +29,25 @@ export function addPlaylist(tracks, name) {
     });
   };
 }
+
+export function deletePlaylist(name) {
+  return dispatch => {
+    let playlists = store.get('playlists') || {};
+    if (playlists) {
+      playlists = _.filter(playlists, item => item.name !== name);
+    } else {
+      playlists = [];
+    }
+
+    store.set('playlists', playlists);
+    dispatch({
+      type: DELETE_PLAYLIST,
+      payload: playlists
+    });
+  };
+}
+
+
 
 export function loadPlaylists() {
   return dispatch => {

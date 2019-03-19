@@ -52,4 +52,5 @@ function setOption (key, value) {
   }
 }
 
+
 export { store, getOption, setOption };
