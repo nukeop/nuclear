@@ -3,6 +3,7 @@ import { store } from '../persistence/store';
 export const LOAD_PLAYLISTS = 'LOAD_PLAYLISTS';
 export const ADD_PLAYLIST = 'ADD_PLAYLIST';
 export const DELETE_PLAYLIST = 'DELETE_PLAYLIST';
+export const RENAME_PLAYLIST = 'RENAME_PLAYLIST';
 
 export function addPlaylist(tracks, name) {
   return dispatch => {
@@ -47,7 +48,26 @@ export function deletePlaylist(name) {
   };
 }
 
-
+export function renamePlaylist(playlist, newName) {
+  return dispatch => {
+    let playlists = store.get('playlists') || {};
+    if (playlists) {
+      playlists = _.filter(playlists, function(item){
+        if (item.name === playlist.name){
+          item.name = newName;
+        } else {
+          playlists = [];
+        }
+        console.log(playlists);
+        store.set('playlists', playlists);
+        dispatch({
+          type: RENAME_PLAYLIST,
+          payload: playlists
+        });
+      });
+    }
+  };
+}
 
 export function loadPlaylists() {
   return dispatch => {

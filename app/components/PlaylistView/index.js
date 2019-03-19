@@ -10,8 +10,8 @@ import artPlaceholder from '../../../resources/media/art_placeholder.png';
 
 import styles from './styles.scss';
 
-import { withRouter } from 'react-router-dom'
-
+import { withRouter } from 'react-router-dom';
+import InputDialog from '../InputDialog';
 
 class PlaylistView extends React.Component {
   constructor(props) {
@@ -37,6 +37,22 @@ class PlaylistView extends React.Component {
   ){
     deletePlaylist(playlist.name);
     history.push('/playlists');
+  }
+
+  renamePlaylist(
+    renamePlaylist,
+    successNotify,
+    playlist
+  ){
+    return name => {
+      console.log(name);
+      renamePlaylist(playlist, name);
+      successNotify(
+        'Playlist updated',
+        `Playlist ${playlist.name} has been updated.`
+      );
+    };
+    
   }
 
   renderOptions (trigger, playlist) {
@@ -76,6 +92,25 @@ class PlaylistView extends React.Component {
       >
         <FontAwesome name='play' /> Play
       </a>
+    );
+  }
+
+  renderRenameButton () {
+    let {
+      playlist,
+      renamePlaylist,
+      successNotify
+    } = this.props;
+    return (
+      <InputDialog
+        header={<h4>Input playlist name:</h4>}
+        placeholder={playlist.name}
+        accept='Save'
+        onAccept={this.renamePlaylist(renamePlaylist, successNotify, playlist)}
+        trigger={
+          <a href='#' className={styles.rename_button}> <FontAwesome name='edit' /> Rename</a>
+        }
+      />
     );
   }
 
@@ -125,6 +160,7 @@ class PlaylistView extends React.Component {
           <div className={styles.playlist_buttons}>
             {this.renderPlayButton()}
             {this.renderDeleteButton()}
+            {this.renderRenameButton()}
             {this.renderOptions(popupTrigger, playlist)}
           </div>
         </div>

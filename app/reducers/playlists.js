@@ -1,7 +1,8 @@
 import {
   ADD_PLAYLIST,
   LOAD_PLAYLISTS,
-  DELETE_PLAYLIST
+  DELETE_PLAYLIST,
+  RENAME_PLAYLIST
 } from '../actions/playlists';
 
 const initialState = {
@@ -16,6 +17,10 @@ export default function PlaylistsReducer(state=initialState, action) {
       playlists: action.payload
     });
   case DELETE_PLAYLIST:
+    return Object.assign({}, state, {
+      playlists: action.payload
+    });
+  case RENAME_PLAYLIST:
     return Object.assign({}, state, {
       playlists: action.payload
     });

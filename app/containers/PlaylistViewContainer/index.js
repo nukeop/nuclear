@@ -22,6 +22,8 @@ const PlaylistViewContainer = props => {
       clearQueue={props.actions.clearQueue}
       addToQueue={props.actions.addToQueue}
       deletePlaylist={props.actions.deletePlaylist}
+      renamePlaylist={props.actions.renamePlaylist}
+      successNotify={props.actions.success}
     />
   );
 };
