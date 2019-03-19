@@ -26,6 +26,19 @@ function initStore () {
       albums: []
     });
   }
+
+  if (!store.get('equalizer')) {
+    store.set('equalizer', {
+      selected: 'default',
+      presets: {
+        default: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        'Rock&Roll': [4, 6, -7, -8, 4, 3, 0, 5, 7, 10],
+        'Hip-Hop': [-6, 5, 1, 7, -8, 10, 9, 6, 0, 5],
+        'Soul': [3, 4, 5, 6, 7, 8, 9, 10, 1, 2],
+        'Classic': [1, 2, 3, 4, 5, 6, -10, -9, -8, -7]
+      }
+    });
+  }
 }
 
 initStore();

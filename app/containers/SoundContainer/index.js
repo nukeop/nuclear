@@ -148,7 +148,7 @@ class SoundContainer extends React.Component {
   }
 
   render () {
-    let { player, queue, plugins } = this.props;
+    let { player, queue, plugins, equalizer } = this.props;
     let streamUrl = '';
 
     if (queue.queueItems.length > 0) {
@@ -168,7 +168,7 @@ class SoundContainer extends React.Component {
         onLoad={this.handleLoaded.bind(this)}
         position={player.seek}
         volume={player.muted ? 0 : player.volume}
-        equalizer={player.equalizer}
+        equalizer={equalizer}
       />
     );
   }
@@ -180,7 +180,8 @@ function mapStateToProps (state) {
     plugins: state.plugin,
     player: state.player,
     scrobbling: state.scrobbling,
-    settings: state.settings
+    settings: state.settings,
+    equalizer: state.equalizer.presets[state.equalizer.selected]
   };
 }
 

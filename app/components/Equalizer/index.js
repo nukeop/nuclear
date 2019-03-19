@@ -112,8 +112,7 @@ class Equalizer extends React.Component {
         borderColor: 'rgb(30, 203, 92)',
         backgroundColor: gradient,
         data: this.props.values.map(val => val + 10),
-        pointHitRadius: 50,
-        pointHoverRadius: 10,
+        pointHoverRadius: 5,
         borderWidth: 2
       }]
     }));
@@ -128,6 +127,7 @@ class Equalizer extends React.Component {
   componentDidUpdate(prevProps) {
     if (!_.isEqual(prevProps.values, this.props.values)) {
       this.chartInstance.data.datasets[0].data = this.props.values.map(val => val + 10);
+      this.chartInstance.update(0);
     }
   }
 
