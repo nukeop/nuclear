@@ -2,24 +2,3 @@
   width: 100%;
   padding: 30px 50px;
 }
-
-.equalizer {
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-
-.slider_container {
-  margin-right: 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.slider {
-  width: 8px;
-  height: 175px;
-  padding: 0 5px;
-  -webkit-appearance: slider-vertical !important;
-}

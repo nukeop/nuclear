@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
 
+import { filterFrequencies } from '../Equalizer';
+
 import styles from './styles.scss';
 
-const filterValues = [500, 1500, 2500, 4000, 6500, 8500, 12000, 16000];
-
-const qValues = filterValues.map((freq, i, arr) => {
+const qValues = filterFrequencies.map((freq, i, arr) => {
   if (!i || i === arr.length - 1) {
     return null;
   } else {
@@ -38,7 +38,7 @@ class Sound extends React.Component {
   createFilterNodes() {
     let lastInChain = this.gainNode;
 
-    filterValues.forEach((freq, i, arr) => {
+    filterFrequencies.forEach((freq, i, arr) => {
       const biquadFilter = this.audioContext.createBiquadFilter();
 
       biquadFilter.type = 'peaking';

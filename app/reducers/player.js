@@ -25,7 +25,7 @@ const initialState = {
   seek: 0,
   volume: 100,
   muted: false,
-  equalizer: [0, 0, 0, 0, 0, 0, 0, 0]
+  equalizer: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 };
 
 export default function PlayerReducer(state=initialState, action) {
