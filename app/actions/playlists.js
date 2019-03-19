@@ -58,7 +58,6 @@ export function renamePlaylist(playlist, newName) {
         } else {
           playlists = [];
         }
-        console.log(playlists);
         store.set('playlists', playlists);
         dispatch({
           type: RENAME_PLAYLIST,

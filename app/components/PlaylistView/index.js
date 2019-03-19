@@ -45,7 +45,6 @@ class PlaylistView extends React.Component {
     playlist
   ){
     return name => {
-      console.log(name);
       renamePlaylist(playlist, name);
       successNotify(
         'Playlist updated',
