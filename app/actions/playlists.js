@@ -44,7 +44,7 @@ export function deletePlaylist(name) {
     dispatch({
       type: DELETE_PLAYLIST,
       payload: playlists
-    });
+    })
   };
 }
 
@@ -52,19 +52,19 @@ export function renamePlaylist(playlist, newName) {
   return dispatch => {
     let playlists = store.get('playlists') || {};
     if (playlists) {
-      playlists = _.filter(playlists, function(item){
-        if (item.name === playlist.name){
-          item.name = newName;
-        } else {
-          playlists = [];
-        }
-        store.set('playlists', playlists);
-        dispatch({
-          type: RENAME_PLAYLIST,
-          payload: playlists
-        });
+      let index = _.findIndex(playlists, function(item) { 
+        return item.name === playlist.name;
       });
+      playlists[index].name = newName;
+      console.log(playlists); 
+    } else {
+      playlists = [];
     }
+    store.set('playlists', playlists);
+    dispatch({
+      type: RENAME_PLAYLIST,
+      payload: playlists
+    });
   };
 }
 
