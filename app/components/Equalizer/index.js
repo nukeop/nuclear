@@ -101,7 +101,7 @@ class Equalizer extends React.Component {
     this.context = this.canvas.getContext('2d');
     
     const gradient = this.context.createLinearGradient(0, 0, 0, 400);
-    gradient.addColorStop(0, 'rgb(30, 203, 92, 0.3)');   
+    gradient.addColorStop(0, 'rgb(80, 250, 123, 0.3)');   
     gradient.addColorStop(1, 'rgba(40, 42, 54, 0)');
 
     this.chartInstance = new Chart(this.context, getChartOptions({
@@ -109,10 +109,11 @@ class Equalizer extends React.Component {
       datasets: [{
         pointBorderColor: 'white',
         pointBackgroundColor: 'white',
-        borderColor: 'rgb(30, 203, 92)',
+        borderColor: 'rgb(80, 250, 123)',
         backgroundColor: gradient,
         data: this.props.values.map(val => val + 10),
         pointHoverRadius: 5,
+        pointHitRadius: 10,
         borderWidth: 2
       }]
     }));
