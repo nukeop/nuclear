@@ -10,6 +10,9 @@ import artPlaceholder from '../../../resources/media/art_placeholder.png';
 
 import styles from './styles.scss';
 
+import { withRouter } from 'react-router-dom'
+
+
 class PlaylistView extends React.Component {
   constructor(props) {
     super(props);
@@ -25,6 +28,15 @@ class PlaylistView extends React.Component {
     addTracks(musicSources, playlist.tracks);
     selectSong(0);
     startPlayback();
+  }
+
+  deletePlaylist(
+    playlist,
+    deletePlaylist,
+    history
+  ){
+    deletePlaylist(playlist.name);
+    history.push('/playlists');
   }
 
   renderOptions (trigger, playlist) {
@@ -67,6 +79,31 @@ class PlaylistView extends React.Component {
     );
   }
 
+  renderDeleteButton () {
+    let {
+      playlist,
+      deletePlaylist
+    } = this.props;
+    const Button = withRouter(({ history }) => (
+      <a
+        href='#'
+        className={styles.delete_button}
+        onClick={() =>
+          this.deletePlaylist(
+            playlist,
+            deletePlaylist,
+            history
+          )
+        }
+      >
+        <FontAwesome name='trash-o' /> Delete
+      </a>
+    ));
+    return (
+      <Button/>
+    );
+  }
+
   renderPlaylistInfo () {
     let { playlist } = this.props;
     let popupTrigger = (
@@ -87,6 +124,7 @@ class PlaylistView extends React.Component {
           <Spacer />
           <div className={styles.playlist_buttons}>
             {this.renderPlayButton()}
+            {this.renderDeleteButton()}
             {this.renderOptions(popupTrigger, playlist)}
           </div>
         </div>
