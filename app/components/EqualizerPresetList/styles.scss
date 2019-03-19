@@ -1,0 +1,17 @@
+.list {
+  margin: auto !important;
+  width: 50%;
+  height: 200px;
+  overflow: auto;
+}
+
+.item {
+  padding: 5px !important;
+}
+
+.click_item {
+  cursor: pointer;
+  :hover {
+    border-right: solid 2px white;
+  }
+}

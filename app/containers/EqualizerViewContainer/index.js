@@ -2,25 +2,35 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import * as Player from '../../actions/player';
+import * as EqualizerActions from '../../actions/equalizer';
 import Equalizer from '../../components/Equalizer';
+import EqualizerPresetList from '../../components/EqualizerPresetList';
 
-const EqualizerViewContainer = ({ actions, values }) => (
-  <Equalizer
-    values={values}
-    onChange={actions.updateEqualizer}
-  />
+const EqualizerViewContainer = ({ actions, values, presets, selected }) => (
+  <React.Fragment>
+    <Equalizer
+      values={values}
+      onChange={actions.updateEqualizer}
+    />
+    <EqualizerPresetList
+      onClickItem={actions.setEqualizer}
+      presets={presets}
+      selected={selected}
+    />
+  </React.Fragment>
 );
 
-function mapStateToProps({ player }) {
+function mapStateToProps({ equalizer }) {
   return {
-    values: player.equalizer
+    selected: equalizer.selected,
+    values: equalizer.presets[equalizer.selected],
+    presets: Object.keys(equalizer.presets)
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators(Player, dispatch)
+    actions: bindActionCreators(EqualizerActions, dispatch)
   };
 }
 
