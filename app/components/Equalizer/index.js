@@ -135,7 +135,9 @@ class Equalizer extends React.Component {
     return (
       <div className={styles.equalizer_wrapper}>
         <h1>Equalizer</h1>
-        <canvas ref={this.attachCanvas} />
+        <div className={styles.chart_wrapper}>
+          <canvas ref={this.attachCanvas} />
+        </div>
       </div>
     );
   }
