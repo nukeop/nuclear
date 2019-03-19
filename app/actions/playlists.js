@@ -34,8 +34,7 @@ export function deletePlaylist(name) {
   return dispatch => {
     let playlists = store.get('playlists') || {};
     if (playlists) {
-      let index = _.findIndex(playlists, {'name': name});
-      playlists.pop(index);
+      playlists = _.filter(playlists, item => item.name !== name);
     } else {
       playlists = [];
     }
@@ -47,6 +46,8 @@ export function deletePlaylist(name) {
     });
   };
 }
+
+
 
 export function loadPlaylists() {
   return dispatch => {
