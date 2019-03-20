@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="32px" height="32px" viewBox="0 0 32 32" enable-background="new 0 0 32 32" xml:space="preserve">
+<g id="color">
+	<rect x="14.5" y="27.5" fill="#A35B21" width="3" height="3"/>
+	<polygon fill="#48BF41" points="7.499,27.5 11.496,20.502 8.495,20.5 12.504,14.502 9.498,14.5 13.301,8.655 13.641,8.733 
+		16,7.305 18.35,8.733 18.689,8.655 18.889,8.947 22.502,14.5 19.5,14.5 23.506,20.5 20.5,20.5 24.501,27.5 	"/>
+	<polygon fill="#FFDE52" points="14.284,6.055 12.196,4.271 14.938,4.042 16,1.507 17.062,4.037 19.805,4.271 17.715,6.06 
+		18.352,8.739 16,7.307 13.648,8.74 	"/>
+</g>
+<path id="stroke" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+	M18.119,7.761L22.5,14.5h-3l4,6h-3l4,7h-17l4-7h-3l4-6h-3l4.32-6.646 M16,1.5l1.06,2.542l2.745,0.223l-2.09,1.793l0.637,2.679
+	L16,7.303l-2.352,1.434l0.637-2.679l-2.09-1.793l2.745-0.223L16,1.5z M14.5,28v2 M17.5,28v2 M12.5,30.5h7"/>
+</svg>

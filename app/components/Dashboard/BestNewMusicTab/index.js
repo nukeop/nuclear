@@ -16,12 +16,12 @@ class BestNewMusicTab extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if(this.state.activeItem === null) {
+    if (this.state.activeItem === null) {
       const firstAlbum = _.head(
         _.get(nextProps, 'dashboardData.bestNewAlbums')
       );
       
-      if(firstAlbum) {
+      if (firstAlbum) {
         this.setState({
           activeItem: firstAlbum
         });
@@ -58,7 +58,7 @@ class BestNewMusicTab extends React.Component {
         />
         <BestNewMusicContent
           item={ this.state.activeItem }
-          />
+        />
       </Tab.Pane>
     );      
   }

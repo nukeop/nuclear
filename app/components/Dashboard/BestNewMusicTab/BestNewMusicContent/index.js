@@ -12,7 +12,7 @@ const BestNewMusicContent = props => {
   if (item === null) {
     return null;
   }
-  console.log(item);
+  
   return (
     <div className={styles.best_new_music_content}>
       <div className={styles.review_header}>
@@ -32,15 +32,15 @@ const BestNewMusicContent = props => {
       {
         item.review.split('\n').map(i => {
           return (
-              <p key={'item-' + i} className={styles.paragraph}>
-                  {i}
-                </p>
+            <p key={'item-' + i} className={styles.paragraph}>
+              {i}
+            </p>
           );
         })
       }
     </div>
   );
-}
+};
 
 BestNewMusicContent.propTypes = {
   item: bestNewItemShape
