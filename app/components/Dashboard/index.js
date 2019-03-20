@@ -6,6 +6,8 @@ import ChartsTab from './ChartsTab';
 import GenresTab from './GenresTab';
 import NewsTab from './NewsTab';
 
+import styles from './styles.scss';
+
 class Dashboard extends React.Component {
   panes () {
     return [
@@ -70,8 +72,12 @@ class Dashboard extends React.Component {
 
   render () {
     return (
-      <div>
-        <Tab menu={{ secondary: true, pointing: true }} panes={this.panes()} />
+      <div className={styles.dashboard}>
+        <Tab
+          menu={{ secondary: true, pointing: true }}
+          panes={this.panes()}
+          className={styles.dashboard_tabs}
+        />
       </div>
     );
   }
