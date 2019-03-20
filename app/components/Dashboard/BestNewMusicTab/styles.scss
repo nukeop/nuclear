@@ -1,3 +1,10 @@
+.best_new_music_tab_pane {
+  position: relative !important;
+  display: flex !important;
+  flex-flow: row;
+  height: 100%;
+}
+
 .best_new_music_tab_container {
   position: relative;
   display: flex;

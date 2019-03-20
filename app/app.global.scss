@@ -70,7 +70,10 @@ a.disabled {
   background: $background3;
 }
 
-.ui.menu {
+.ui.menu,
+.ui.vertical.menu {
+  background: $background;
+  
   .item {
     color: $white;
   }
