@@ -26,7 +26,7 @@ class ChartsTab extends React.Component {
                 <th>Title</th>
                 <th>Playcounts</th>
               </tr>
-              <tr></tr>
+              <tr />
             </thead>
             <tbody>
               {this.props.topTracks.map((track, index) => {
