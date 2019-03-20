@@ -2,6 +2,7 @@ import React from 'react';
 import { Tab } from 'semantic-ui-react';
 import Img from 'react-image-smooth-loading';
 
+import genreToIcon from './mapGenres';
 import styles from './styles.scss';
 
 class GenresTab extends React.Component {

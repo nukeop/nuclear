@@ -130,6 +130,7 @@
     "remote-redux-devtools": "^0.5.16",
     "sass-loader": "^7.0.1",
     "style-loader": "^0.23.0",
+    "svg-inline-loader": "^0.8.0",
     "url-loader": "^1.0.1",
     "webpack": "^4.12.1",
     "webpack-dev-server": "^3.1.4"

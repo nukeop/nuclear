@@ -29,7 +29,7 @@ const BestNewMusicCard = props => {
       </div>
     </div>
   );
-}
+};
 
 BestNewMusicCard.propTypes = {
   item: bestNewItemShape,

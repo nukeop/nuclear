@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="32px" height="32px" viewBox="0 0 32 32" enable-background="new 0 0 32 32" xml:space="preserve">
+<g id="color">
+	<path fill="#8C8C8C" d="M29.5,6.5v19c0,0,0,2-2,2h-23c0,0-2,0-2-2v-19c0,0,0-2,2-2h23C27.5,4.5,29.5,4.5,29.5,6.5z"/>
+	<path fill="#565656" d="M29.5,16.5v9c0,0,0,2-2,2h-23c0,0-2,0-2-2v-9H29.5z"/>
+	<circle fill="#8C8C8C" cx="24" cy="22" r="2.5"/>
+	<path fill="#565656" d="M27,8c0,0,0-1-1-1C21.813,7,5.867,7,5,7C4,7,4,8,4,8v5c0,0-0.001,1,1,1c0,0,20,0,21,0s1-1,1-1V8z"/>
+	<path fill="#FFDE52" d="M12,24h-2v-2h2V24z M18,22h-2v2h2V22z"/>
+	<path fill="#FFA655" d="M12,25H7v-1h5V25z M18,24h-2v1h2V24z"/>
+	<path fill="#7FFF7B" d="M12,22h-2v-2h2V22z M18,20h-2v2h2V20z"/>
+	<rect x="7" y="25" fill="#FF5069" width="11" height="2"/>
+</g>
+<path id="stroke" fill="none" stroke="#000000" stroke-miterlimit="10" d="M2.5,6.5c0,0,0-2,2-2h23c0,0,2,0,2,2v19c0,0,0,2-2,2h-23
+	c0,0-2,0-2-2V6.5z M6.5,7v7 M5,9.5h3 M12.5,7v7 M11,11.5h3 M18.5,7v7 M17,10.5h3 M24.5,7v7 M23,9.5h3 M26.5,22
+	c0-1.381-1.119-2.5-2.5-2.5s-2.5,1.119-2.5,2.5s1.119,2.5,2.5,2.5S26.5,23.381,26.5,22z M18.5,27.5v-7c0-1-1-1-1-1h-10c-1,0-1,1-1,1
+	v7 M6.5,21.5h12 M6.5,23.5h12 M6.5,25.5h12 M9.5,19.5v8 M12.5,19.5v8 M15.5,19.5v8 M2.5,16.5h27"/>
+</svg>

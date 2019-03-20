@@ -13,7 +13,7 @@ const BestNewMusicMenu = props => {
         <Menu.Item
           className={styles.best_new_music_menu_header}
           link
-          >
+        >
           Best new albums
         </Menu.Item>
         {
@@ -29,26 +29,26 @@ const BestNewMusicMenu = props => {
           })
         }
 
-      <Menu.Item
-    className={styles.best_new_music_menu_header}
-    link
-      >
+        <Menu.Item
+          className={styles.best_new_music_menu_header}
+          link
+        >
       Best new tracks
-    </Menu.Item>
-      {
-        props.tracks.map(track => {
-          return (
-            <Menu.Item link>
-              <BestNewMusicCard
-                item={ track }
-                onClick={ () => props.setActiveItem(track)}
-              />
-            </Menu.Item>
-          );
-        })
-      }
-    </Menu>
-      </div>
+        </Menu.Item>
+        {
+          props.tracks.map(track => {
+            return (
+              <Menu.Item link>
+                <BestNewMusicCard
+                  item={ track }
+                  onClick={ () => props.setActiveItem(track)}
+                />
+              </Menu.Item>
+            );
+          })
+        }
+      </Menu>
+    </div>
   );
 };
 

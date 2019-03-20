@@ -50,6 +50,9 @@ const config = {
         test: /\.(png|jpg|gif)$/,
         loader: 'url-loader',
         include: RESOURCES_DIR
+      }, {
+        test: /\.svg$/,
+        loader: 'svg-inline-loader'
       }
     ]
   },
