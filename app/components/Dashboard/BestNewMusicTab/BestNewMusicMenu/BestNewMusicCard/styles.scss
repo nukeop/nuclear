@@ -1,0 +1,59 @@
+@import '../../../../../vars.scss';
+@import '../../../../../mixin.scss';
+
+.best_new_music_card {
+  @include roundCorners;
+  display: flex;
+  flex-flow: row;
+  justify-content: flex-start;
+  height: 100%;
+  width: 100%;
+  background-color: rgba($background2, 0.5);
+  transition: $short-duration;
+
+  &:hover {
+    background-color: rgba($background2, 0.75)
+  }
+
+  .card_thumbnail {
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 64px;
+    height: 64px;
+    flex: 0 0 auto;
+    margin-right: 1em;
+    
+    img {
+      width: 64px;
+      height: 64px;
+    }
+  }
+  
+  .card_info {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    
+    overflow: hidden;
+    flex: 1 1 auto;
+
+    .card_title,
+    .card_artist {
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      line-height: 18px;
+    }
+
+    .card_title {
+      margin: 0 10px 10px 0;
+    }
+
+    .card_artist {
+      color: rgba($white, 0.5);
+      margin-right: 10px;
+    }
+  }
+}
