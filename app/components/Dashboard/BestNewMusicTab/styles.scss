@@ -2,7 +2,7 @@
   position: relative !important;
   display: flex !important;
   flex-flow: row;
-  height: 100%;
+  height: calc(100% - 54px);
   box-sizing: border-box;
 }
 
