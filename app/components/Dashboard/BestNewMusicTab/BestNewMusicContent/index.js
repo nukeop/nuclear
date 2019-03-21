@@ -12,7 +12,7 @@ const BestNewMusicContent = props => {
   if (item === null) {
     return null;
   }
-  
+  console.log(item);
   return (
     <div className={styles.best_new_music_content}>
       <div className={styles.review_header}>
@@ -23,11 +23,14 @@ const BestNewMusicContent = props => {
           <div className={styles.artist}>{ item.artist }</div>
           <div className={styles.title}>{ item.title }</div>
         </div>
-        <div className={styles.score}>
-          <div className={styles.score_box}>
-            { item.score }
-          </div>
-        </div>
+        {
+          item.score &&
+            <div className={styles.score}>
+                <div className={styles.score_box}>
+                    { item.score }
+                  </div>
+              </div>
+            }
       </div>
       {
         item.review.split('\n').map(i => {
