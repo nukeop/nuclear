@@ -19,7 +19,7 @@ const BestNewMusicMenu = props => {
         {
           props.albums.map(album => {
             return (
-              <Menu.Item link>
+              <Menu.Item link key={ album.title }>
                 <BestNewMusicCard
                   item={ album }
                   onClick={ () => props.setActiveItem(album )}
@@ -38,7 +38,7 @@ const BestNewMusicMenu = props => {
         {
           props.tracks.map(track => {
             return (
-              <Menu.Item link>
+              <Menu.Item link key={ track.title }>
                 <BestNewMusicCard
                   item={ track }
                   onClick={ () => props.setActiveItem(track)}
