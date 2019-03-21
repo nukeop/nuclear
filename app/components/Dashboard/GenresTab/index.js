@@ -5,6 +5,10 @@ import Img from 'react-image-smooth-loading';
 import genreToIcon from './mapGenres';
 import styles from './styles.scss';
 
+const bannedGenres = [
+  'seen live'
+];
+
 class GenresTab extends React.Component {
   constructor(props) {
     super(props);
@@ -24,7 +28,7 @@ class GenresTab extends React.Component {
         <div className={styles.genre_tab_container}>
           {
             typeof genres !== 'undefined'
-              ? genres.map((tag, i) => {
+              ? _.filter(genres, genre => !_.includes(bannedGenres, genre.name)).map((tag, i) => {
                 return (
                   <div
                     className={styles.genre_container}
@@ -36,7 +40,11 @@ class GenresTab extends React.Component {
                       <Img src={'https://picsum.photos/256x256/?random&seed=' + i} />
                     </div>
                     <div className={styles.genre_name}>
-                      {tag.name}
+                      <div
+                        className={styles.svg_icon}
+                        dangerouslySetInnerHTML={{ __html: genreToIcon(tag.name) }}
+                      />
+                      { tag.name }
                     </div>
                   </div>
                 );

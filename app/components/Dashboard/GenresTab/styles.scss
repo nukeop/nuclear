@@ -4,6 +4,20 @@
   display: flex;
   flex-flow: row wrap;
 
+  svg, path {
+    stroke: $white;
+  }
+
+  svg {
+    width: 96px;
+    height: 96px;
+  }
+    
+  
+  .svg_icon {
+    margin-bottom: 1rem;
+  }
+  
   .genre_container {
     position: relative;
     display: flex;
@@ -44,9 +58,10 @@
 
   .genre_name {
     display: flex;
+    flex-flow: column;
     justify-content: center;
     align-items: center;
-    font-size: 1rem;
+    font-size: 1.5rem;
     letter-spacing: 4px;
     text-transform: uppercase;
     text-align: center;
