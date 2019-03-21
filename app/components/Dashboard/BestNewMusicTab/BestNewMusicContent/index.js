@@ -12,7 +12,7 @@ const BestNewMusicContent = props => {
   if (item === null) {
     return null;
   }
-  console.log(item);
+  
   return (
     <div className={styles.best_new_music_content}>
       <div className={styles.review_header}>
