@@ -8,6 +8,10 @@ const APP_DIR = path.resolve(__dirname, 'app');
 const RESOURCES_DIR = path.resolve(__dirname, 'resources');
 
 const config = {
+  externals: {
+    bindings: 'require("bindings")',
+    'abstract-socket': 'require("abstract-socket")'
+  },
   entry: [
     'react-hot-loader/patch',
     'webpack-dev-server/client?http://localhost:8080',

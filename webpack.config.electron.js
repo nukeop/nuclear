@@ -7,6 +7,10 @@ module.exports = env => {
   const entry = env && env.LINUX ? './server/main.dev.linux.js' : './server/main.dev.js';
 
   return {
+    externals: {
+      bindings: 'require("bindings")',
+      'abstract-socket': 'require("abstract-socket")'
+    },
     entry: entry,
     resolve: {
       alias: {

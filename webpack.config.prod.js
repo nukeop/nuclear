@@ -8,6 +8,10 @@ const APP_DIR = path.resolve(__dirname, 'app');
 const RESOURCES_DIR = path.resolve(__dirname, 'resources');
 
 const config = {
+  externals: {
+    bindings: 'require("bindings")',
+    'abstract-socket': 'require("abstract-socket")'
+  },
   entry: path.resolve(APP_DIR, 'index.js'),
   output: {
     path: BUILD_DIR,

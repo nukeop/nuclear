@@ -5,6 +5,10 @@ module.exports = env => {
   let entry = env && env.LINUX ? './server/main.prod.linux.js' : './server/main.prod.js';
 
   return {
+    externals: {
+      bindings: 'require("bindings")',
+      'abstract-socket': 'require("abstract-socket")'
+    },
     entry: entry,
     output: {
       path: __dirname,
