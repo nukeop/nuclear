@@ -24,6 +24,7 @@ import artPlaceholder from '../resources/media/art_placeholder.png';
 import { config as PluginConfig } from './plugins/config';
 import settingsConst from './constants/settings';
 
+import ExpandingMenuNavLink from './components/ExpandingMenuNavLink';
 import Footer from './components/Footer';
 import Navbar from './components/Navbar';
 import VerticalPanel from './components/VerticalPanel';
@@ -132,11 +133,14 @@ class App extends React.Component {
           </div>
           {this.renderNavLink('dashboard', 'dashboard', 'Dashboard', settings)}
           {this.renderNavLink('downloads', 'download', 'Downloads', settings)}
-          {this.renderNavLink('playlists', 'music', 'Playlists', settings)}
           {this.renderNavLink('lyrics', 'microphone', 'Lyrics', settings)}
           {this.renderNavLink('plugins', 'flask', 'Plugins', settings)}
           {this.renderNavLink('search', 'search', 'Search Results', settings)}
           {this.renderNavLink('settings', 'cogs', 'Settings', settings)}
+          <ExpandingMenuNavLink>
+            {this.renderNavLink('playlists', 'music', 'Playlists', settings)}
+            {this.renderNavLink('favorites', 'star', 'Favorites', settings)}
+          </ExpandingMenuNavLink>
           <Spacer />
           {this.renderSidebarFooter(settings, toggleOption)}
         </SidebarMenu>
