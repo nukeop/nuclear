@@ -10,6 +10,7 @@
   width: 100%;
   background-color: rgba($background2, 0.5);
   transition: $short-duration;
+  overflow: hidden;
 
   &:hover {
     background-color: rgba($background2, 0.75)
