@@ -7,6 +7,7 @@ import * as PlayerActions from '../../actions/player';
 import * as QueueActions from '../../actions/queue';
 import * as SettingsActions from '../../actions/settings';
 import * as PlaylistActions from '../../actions/playlists';
+import * as EqualizerActions from '../../actions/equalizer';
 
 import {
   onNext,
@@ -24,7 +25,9 @@ import {
   onMute,
   onEmptyQueue,
   onCreatePlaylist,
-  onRefreshPlaylists
+  onRefreshPlaylists,
+  onUpdateEqualizer,
+  onSetEqualizer
 } from '../../mpris';
 
 class IpcContainer extends React.Component {
@@ -45,6 +48,8 @@ class IpcContainer extends React.Component {
     ipcRenderer.on('queue', event => sendQueueItems(event, this.props.queue.queueItems));
     ipcRenderer.on('create-playlist', (event, name) => onCreatePlaylist(event, { name, tracks: this.props.queue.queueItems }, this.props.actions));
     ipcRenderer.on('refresh-playlists', (event) => onRefreshPlaylists(event, this.props.actions));
+    ipcRenderer.on('update-equalizer', (event, data) =>  onUpdateEqualizer(event, this.props.actions, data));
+    ipcRenderer.on('set-equalizer', (event, data) => onSetEqualizer(event, this.props.actions, data));
   }
 
   componentWillReceiveProps(nextProps){
@@ -68,7 +73,17 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators(Object.assign({}, PlayerActions, QueueActions, SettingsActions, PlaylistActions), dispatch)
+    actions: bindActionCreators(
+      Object.assign(
+        {},
+        PlayerActions,
+        QueueActions,
+        SettingsActions,
+        PlaylistActions,
+        EqualizerActions
+      ),
+      dispatch
+    )
   };
 }
 
