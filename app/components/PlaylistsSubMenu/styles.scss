@@ -1,0 +1,23 @@
+@import '../../mixin.scss';
+@import '../../vars.scss';
+
+.playlists_submenu {
+  display: flex;
+  flex-flow: column;
+
+  .playlists_submenu_entry {
+    @include ellipsis;
+    color: rgba($white, 0.5);
+    padding: 0.5rem;
+
+    .fa {
+      margin-right: 0.5em;
+    }
+  }
+  
+  .active_nav_link {
+    .playlists_submenu_entry {
+      color: $white;
+    }
+  }
+}
