@@ -20,6 +20,10 @@ class ExpandingMenuNavLink extends React.Component {
   }
   
   render() {
+    if(this.props.compactMenuBar) {
+      return null;
+    }
+    
     return (
       <div
         className={styles.expanding_menu_navlink}
@@ -28,12 +32,11 @@ class ExpandingMenuNavLink extends React.Component {
           className={styles.expanding_menu_navlink_header}
           onClick={ this.toggleExpanded.bind(this) }
         >
-          Collection
+          { this.props.title }
         </div>
         {
           this.state.expanded &&
-            Array.isArray(this.props.children) &&
-            this.props.children.map(child => {
+            React.Children.map(this.props.children, child => {
               return (
                 <React.Fragment>
                   { child }
@@ -47,7 +50,9 @@ class ExpandingMenuNavLink extends React.Component {
 }
 
 ExpandingMenuNavLink.propTypes = {
-  children: PropTypes.node
+  children: PropTypes.node,
+  title: PropTypes.string,
+  compactMenuBar: PropTypes.bool
 };
 
 export default ExpandingMenuNavLink;

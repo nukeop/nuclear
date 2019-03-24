@@ -5,3 +5,9 @@
 @mixin roundCorners {
   border-radius: 0.25rem;
 }
+
+@mixin ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

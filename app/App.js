@@ -8,6 +8,7 @@ import classnames from 'classnames';
 import _ from 'lodash';
 import * as Actions from './actions';
 import * as PlayerActions from './actions/player';
+import * as PlaylistsActions from './actions/playlists';
 import * as PluginsActions from './actions/plugins';
 import * as QueueActions from './actions/queue';
 import * as SettingsActions from './actions/settings';
@@ -25,6 +26,8 @@ import { config as PluginConfig } from './plugins/config';
 import settingsConst from './constants/settings';
 
 import ExpandingMenuNavLink from './components/ExpandingMenuNavLink';
+import ExpandingMenuSection from './components/ExpandingMenuNavLink/ExpandingMenuSection';
+import PlaylistsSubMenu from './components/PlaylistsSubMenu';
 import Footer from './components/Footer';
 import Navbar from './components/Navbar';
 import VerticalPanel from './components/VerticalPanel';
@@ -51,6 +54,14 @@ import WindowControls from './components/WindowControls';
 import VolumeControls from './components/VolumeControls';
 
 class App extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  componentDidMount() {
+    this.props.actions.loadPlaylists();
+  }
+  
   togglePlayback () {
     if (
       this.props.player.playbackStatus === Sound.status.PAUSED &&
@@ -114,6 +125,7 @@ class App extends React.Component {
       </VerticalPanel>
     );
   }
+  
   renderSidebarMenu (settings, toggleOption) {
     return (
       <VerticalPanel
@@ -137,8 +149,14 @@ class App extends React.Component {
           {this.renderNavLink('plugins', 'flask', 'Plugins', settings)}
           {this.renderNavLink('search', 'search', 'Search Results', settings)}
           {this.renderNavLink('settings', 'cogs', 'Settings', settings)}
-          <ExpandingMenuNavLink>
-            {this.renderNavLink('playlists', 'music', 'Playlists', settings)}
+          <ExpandingMenuNavLink
+            title='Collection'
+            compactMenuBar={ settings.compactMenuBar }
+            >
+            <ExpandingMenuSection>
+              <FontAwesome name='music' /> Playlists
+            </ExpandingMenuSection>
+            <PlaylistsSubMenu playlists={this.props.playlists}/>
             {this.renderNavLink('favorites', 'star', 'Favorites', settings)}
           </ExpandingMenuNavLink>
           <Spacer />
@@ -305,6 +323,7 @@ function mapStateToProps (state) {
   return {
     queue: state.queue,
     player: state.player,
+    playlists: state.playlists.playlists,
     scrobbling: state.scrobbling,
     settings: state.settings
   };
@@ -319,6 +338,7 @@ function mapDispatchToProps (dispatch) {
         SettingsActions,
         QueueActions,
         PlayerActions,
+        PlaylistsActions,
         PluginsActions,
         Actions
       ),
