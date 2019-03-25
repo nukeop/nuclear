@@ -76,7 +76,7 @@ class PlayQueue extends React.Component {
             clearQueue={clearQueue}
             addPlaylist={addPlaylist}
             toggleOption={toggleOption}
-            notify={success}
+            success={success}
             settings={settings}
             items={items}
           />
