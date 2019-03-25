@@ -17,27 +17,27 @@ export function removeNotification(id) {
   };
 }
 
-export function notify(title, details, icon, timeout=3) {
-  return generateNotification(title, details, icon, {}, timeout);
+export function notify(title, details, icon, settings) {
+  return generateNotification(title, details, icon, {}, settings);
 }
 
-export function error(title, details, icon, timeout=3) {
-  return generateNotification(title, details, icon, {error: true}, timeout);
+export function error(title, details, icon, settings) {
+  return generateNotification(title, details, icon, {error: true}, settings);
 }
 
-export function warning(title, details, icon, timeout=3) {
-  return generateNotification(title, details, icon, {warning: true}, timeout);
+export function warning(title, details, icon, settings) {
+  return generateNotification(title, details, icon, {warning: true}, settings);
 }
 
-export function success(title, details, icon, timeout=3) {
-  return generateNotification(title, details, icon, {success: true}, timeout);
+export function success(title, details, icon, settings) {
+  return generateNotification(title, details, icon, {success: true}, settings);
 }
 
-export function info(title, details, icon, timeout=3) {
-  return generateNotification(title, details, icon, {info: true}, timeout);
+export function info(title, details, icon, settings) {
+  return generateNotification(title, details, icon, {info: true}, settings);
 }
 
-function generateNotification(title, details, icon, type, timeout=3) {
+function generateNotification(title, details, icon, type, settings) {
   return dispatch => {
     let id = uuidv4();
     dispatch(addNotification(Object.assign({}, {
@@ -48,6 +48,7 @@ function generateNotification(title, details, icon, type, timeout=3) {
     },
     type)));
 
+    const timeout = _.get(settings, 'notificationTimeout');
     setTimeout(() => dispatch(removeNotification(id)), timeout * 1000);
   };
 }

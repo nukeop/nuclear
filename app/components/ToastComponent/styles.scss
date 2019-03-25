@@ -1,8 +1,8 @@
 .nuclear.toast_container {
   height: auto;
   top: 0;
-  bottom: 0;
-  z-index: 10;
+  bottom: 90px; //footer height
+  z-index: 30;
   pointer-events: none;
 
   .toast {
