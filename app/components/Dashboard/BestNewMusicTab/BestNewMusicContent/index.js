@@ -7,7 +7,12 @@ import { bestNewItemShape } from '..';
 import styles from './styles.scss';
 
 const BestNewMusicContent = props => {
-  const { item } = props;
+  const {
+    item,
+    albumInfoSearchByName,
+    artistInfoSearchByName,
+    history
+  } = props;
 
   if (item === null) {
     return null;
@@ -20,8 +25,18 @@ const BestNewMusicContent = props => {
           <img alt={ item.title } src={ item.thumbnail }/>
         </div>
         <div className={styles.review_headings}>
-          <div className={styles.artist}>{ item.artist }</div>
-          <div className={styles.title}>{ item.title }</div>
+          <div
+            className={styles.artist}
+            onClick={() => artistInfoSearchByName(item.artist, history)}
+          >
+            { item.artist }
+          </div>
+          <div
+            className={styles.title}
+            onClick={() => albumInfoSearchByName(item.title + ' ' + item.artist, props.history)}
+          >
+            { item.title }
+          </div>
         </div>
         {
           item.score &&
@@ -46,11 +61,27 @@ const BestNewMusicContent = props => {
 };
 
 BestNewMusicContent.propTypes = {
-  item: bestNewItemShape
+  item: bestNewItemShape,
+  artistInfoSearchByName: PropTypes.func,
+  albumInfoSearchByName: PropTypes.func,
+  addToQueue: PropTypes.func,
+  selectSong: PropTypes.func,
+  clearQueue: PropTypes.func,
+  startPlayback: PropTypes.func,
+  musicSources: PropTypes.array,
+  history: PropTypes.object
 };
 
 BestNewMusicContent.defaultProps = {
-  item: null
+  item: null,
+  artistInfoSearchByName: () => {},
+  albumInfoSearchByName: () => {},
+  addToQueue: () => {},
+  selectSong: () => {},
+  clearQueue: () => {},
+  startPlayback: () => {},
+  musicSources: [],
+  history: {}
 };
 
 export default BestNewMusicContent;
