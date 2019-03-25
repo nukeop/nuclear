@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
 import _ from 'lodash';
 
@@ -34,6 +35,8 @@ class QueueMenu extends React.Component {
       settings
     } = this.props;
 
+    const firstTitle = _.get(_.head(items), 'name');
+    
     return (
       <div className={styles.queue_menu_container}>
         <div className={styles.queue_menu_buttons}>
@@ -50,6 +53,7 @@ class QueueMenu extends React.Component {
             trigger={
               <a href='#'><FontAwesome name='save' /></a>
             }
+            initialString={ firstTitle }
           />
           <a className={globalStyles.disabled} href='#'><FontAwesome name='random' /></a>
         </div>
@@ -58,5 +62,14 @@ class QueueMenu extends React.Component {
     );
   }
 }
+
+QueueMenu.propTypes = {
+  clearQueue: PropTypes.func,
+  addPlaylist: PropTypes.func,
+  toggleOption: PropTypes.func,
+  notify: PropTypes.func,
+  settings: PropTypes.object,
+  items: PropTypes.array
+};
 
 export default QueueMenu;

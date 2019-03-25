@@ -20,7 +20,7 @@ class ExpandingMenuNavLink extends React.Component {
   }
   
   render() {
-    if(this.props.compactMenuBar) {
+    if (this.props.compactMenuBar) {
       return null;
     }
     

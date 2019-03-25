@@ -8,11 +8,11 @@ const LyricsHeader = props => {
     <div className={styles.lyrics_header}>
       <div className={styles.lyrics_header_name}>{ props.name }</div>
       <div className={styles.lyrics_header_artist}>by { props.artist
-        }</div>
+      }</div>
       <hr/>
     </div>
   );
-}
+};
 
 LyricsHeader.propTypes = {
   name: PropTypes.string,
