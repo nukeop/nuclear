@@ -26,11 +26,11 @@ const BestNewMusicContent = props => {
         {
           item.score &&
             <div className={styles.score}>
-                <div className={styles.score_box}>
-                    { item.score }
-                  </div>
+              <div className={styles.score_box}>
+                { item.score }
               </div>
-            }
+            </div>
+        }
       </div>
       {
         item.review.split('\n').map(i => {

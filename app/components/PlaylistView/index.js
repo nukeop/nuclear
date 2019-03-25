@@ -10,7 +10,7 @@ import artPlaceholder from '../../../resources/media/art_placeholder.png';
 
 import styles from './styles.scss';
 
-import { withRouter } from 'react-router-dom'
+import { withRouter } from 'react-router-dom';
 
 
 class PlaylistView extends React.Component {

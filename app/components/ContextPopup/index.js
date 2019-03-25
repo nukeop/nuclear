@@ -8,7 +8,7 @@ class ContextPopup extends React.Component {
     super(props);
 
     this.clickOutsideListener = document.body.addEventListener('click', e => {
-      if(this.state.isOpen){
+      if (this.state.isOpen){
         setTimeout(() => {
           this.handleClose();
         }, 10);

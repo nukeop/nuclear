@@ -12,10 +12,14 @@ const PlaylistsSubMenu = props => {
       {
         props.playlists.map((playlist, i) => {
           return (
-            <NavLink to={'/playlist/' + i} activeClassName={appStyles.active_nav_link}>
-            <div className={styles.playlists_submenu_entry}>
-              <FontAwesome name='music'/> { playlist.name }
-            </div>
+            <NavLink
+              to={'/playlist/' + i}
+              activeClassName={appStyles.active_nav_link}
+              key={ playlist.name }
+            >
+              <div className={styles.playlists_submenu_entry}>
+                <FontAwesome name='music'/> { playlist.name }
+              </div>
             </NavLink>
           );
         })

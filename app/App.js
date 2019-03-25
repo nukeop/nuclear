@@ -152,7 +152,7 @@ class App extends React.Component {
           <ExpandingMenuNavLink
             title='Collection'
             compactMenuBar={ settings.compactMenuBar }
-            >
+          >
             <ExpandingMenuSection>
               <FontAwesome name='music' /> Playlists
             </ExpandingMenuSection>
