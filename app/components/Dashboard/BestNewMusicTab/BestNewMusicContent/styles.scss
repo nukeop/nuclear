@@ -31,12 +31,14 @@
     font-size: 24px;
     line-height: 24px;
     margin-bottom: 1rem;
+    cursor: pointer;
   }
 
   .title {
     text-align: center;
     font-size: 28px;
     line-height: 28px;
+    cursor: pointer;
   }
 
   .thumbnail {
@@ -70,5 +72,6 @@
     width: 100%;
     margin-left: auto;
     margin-right: auto;
+    color: rgba($white, 0.85);
   }
 }
