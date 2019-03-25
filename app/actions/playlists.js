@@ -48,7 +48,6 @@ export function deletePlaylist(name) {
 }
 
 
-
 export function loadPlaylists() {
   return dispatch => {
     let playlists = store.get('playlists') || {};

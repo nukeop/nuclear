@@ -27,15 +27,15 @@ class NavButtons extends React.Component {
       <div className={styles.nav_buttons}>
         <a href='#' onClick={this.enableBackButton(historyCurrentIndex) ? back : undefined} 
           className={cx({'disable': !this.enableBackButton(historyCurrentIndex)})}>
-            <FontAwesome name='chevron-left'/>
+          <FontAwesome name='chevron-left'/>
         </a>
         <a href='#' onClick={this.enableForwardButton(historyCurrentIndex, historyLength) ? forward : undefined} 
           className={cx({'disable': !this.enableForwardButton(historyCurrentIndex, historyLength)})}>
-            <FontAwesome name="chevron-right"/>
+          <FontAwesome name='chevron-right'/>
         </a>
       </div>
     );
-  };
+  }
 }
 
 NavButtons.propTypes = {

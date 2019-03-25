@@ -171,39 +171,39 @@ function reduceYoutubePlaylistSearchSuccess (state, action) {
 
 export default function SearchReducer (state = initialState, action) {
   switch (action.type) {
-    case UNIFIED_SEARCH_START:
-      return reduceUnifiedSearchStart(state, action);
-    case ALBUM_SEARCH_SUCCESS:
-      return reduceAlbumSearchSuccess(state, action);
-    case ARTIST_SEARCH_SUCCESS:
-      return reduceArtistSearchSuccess(state, action);
-    case UNIFIED_SEARCH_SUCCESS:
-      return reduceUnifiedSearchSuccess(state, action);
-    case ALBUM_INFO_SEARCH_START:
-      return reduceAlbumInfoSearchStart(state, action);
-    case ALBUM_INFO_SEARCH_SUCCESS:
-      return reduceAlbumInfoSearchSuccess(state, action);
-    case ARTIST_INFO_SEARCH_START:
-      return reduceArtistInfoSearchStart(state, action);
-    case ARTIST_INFO_SEARCH_SUCCESS:
-      return reduceArtistInfoSearchSuccess(state, action);
-    case ARTIST_RELEASES_SEARCH_START:
-      return reduceArtistReleasesSearchStart(state, action);
-    case ARTIST_RELEASES_SEARCH_SUCCESS:
-      return reduceArtistReleasesSearchSuccess(state, action);
-    case LASTFM_ARTIST_INFO_SEARCH_START:
-      return reduceLastfmArtistInfoSearchStart(state, action);
-    case LASTFM_ARTIST_INFO_SEARCH_SUCCESS:
-      return reduceLastfmArtistInfoSearchSuccess(state, action);
-    case LASTFM_TRACK_SEARCH_START:
-      return reduceLastfmTrackSearchStart(state, action);
-    case LASTFM_TRACK_SEARCH_SUCCESS:
-      return reduceLastfmTrackSearchSuccess(state, action);
-    case YOUTUBE_PLAYLIST_SEARCH_START:
-      return reduceYoutubePlaylistSearchStart(state, action);
-    case YOUTUBE_PLAYLIST_SEARCH_SUCCESS:
-      return reduceYoutubePlaylistSearchSuccess(state, action);
-    default:
-      return state;
+  case UNIFIED_SEARCH_START:
+    return reduceUnifiedSearchStart(state, action);
+  case ALBUM_SEARCH_SUCCESS:
+    return reduceAlbumSearchSuccess(state, action);
+  case ARTIST_SEARCH_SUCCESS:
+    return reduceArtistSearchSuccess(state, action);
+  case UNIFIED_SEARCH_SUCCESS:
+    return reduceUnifiedSearchSuccess(state, action);
+  case ALBUM_INFO_SEARCH_START:
+    return reduceAlbumInfoSearchStart(state, action);
+  case ALBUM_INFO_SEARCH_SUCCESS:
+    return reduceAlbumInfoSearchSuccess(state, action);
+  case ARTIST_INFO_SEARCH_START:
+    return reduceArtistInfoSearchStart(state, action);
+  case ARTIST_INFO_SEARCH_SUCCESS:
+    return reduceArtistInfoSearchSuccess(state, action);
+  case ARTIST_RELEASES_SEARCH_START:
+    return reduceArtistReleasesSearchStart(state, action);
+  case ARTIST_RELEASES_SEARCH_SUCCESS:
+    return reduceArtistReleasesSearchSuccess(state, action);
+  case LASTFM_ARTIST_INFO_SEARCH_START:
+    return reduceLastfmArtistInfoSearchStart(state, action);
+  case LASTFM_ARTIST_INFO_SEARCH_SUCCESS:
+    return reduceLastfmArtistInfoSearchSuccess(state, action);
+  case LASTFM_TRACK_SEARCH_START:
+    return reduceLastfmTrackSearchStart(state, action);
+  case LASTFM_TRACK_SEARCH_SUCCESS:
+    return reduceLastfmTrackSearchSuccess(state, action);
+  case YOUTUBE_PLAYLIST_SEARCH_START:
+    return reduceYoutubePlaylistSearchStart(state, action);
+  case YOUTUBE_PLAYLIST_SEARCH_SUCCESS:
+    return reduceYoutubePlaylistSearchSuccess(state, action);
+  default:
+    return state;
   }
 }

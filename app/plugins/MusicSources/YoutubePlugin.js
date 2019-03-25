@@ -31,7 +31,7 @@ class YoutubePlugin extends MusicSourcePlugin {
           stream: formatInfo.url,
           duration: videoInfo.length_seconds,
           title: videoInfo.title,
-          thumbnail,
+          thumbnail
         };
       });
   }
@@ -55,7 +55,7 @@ class YoutubePlugin extends MusicSourcePlugin {
           stream: formatInfo.url,
           duration: videoInfo.length_seconds,
           title: videoInfo.title,
-          thumbnail: videoInfo.thumbnail_url,
+          thumbnail: videoInfo.thumbnail_url
         };
       });
   }

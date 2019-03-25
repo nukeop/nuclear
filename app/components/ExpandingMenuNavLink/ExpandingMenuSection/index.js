@@ -9,7 +9,7 @@ const ExpandingMenuSection = props => {
       { props.children }
     </div>
   );
-}
+};
 
 ExpandingMenuSection.propTypes = {
   children: PropTypes.node

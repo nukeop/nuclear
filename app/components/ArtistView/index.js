@@ -24,7 +24,7 @@ class ArtistView extends React.Component {
   }
 
   isOnTour() {
-    return _.get(this.props, 'artist.lastfm.artist.ontour') === "1";
+    return _.get(this.props, 'artist.lastfm.artist.ontour') === '1';
   }
 
   renderArtistHeader (artist, history) {
@@ -49,11 +49,11 @@ class ArtistView extends React.Component {
               {
                 this.isOnTour() &&
                   <span
-                      className={styles.on_tour}
-                      >
+                    className={styles.on_tour}
+                  >
                       On tour
-                    </span>
-                  }
+                  </span>
+              }
             </div>
 
             {typeof artist.lastfm.artist !== 'undefined' && (
