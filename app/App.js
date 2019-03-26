@@ -25,8 +25,6 @@ import artPlaceholder from '../resources/media/art_placeholder.png';
 import { config as PluginConfig } from './plugins/config';
 import settingsConst from './constants/settings';
 
-import ExpandingMenuNavLink from './components/ExpandingMenuNavLink';
-import ExpandingMenuSection from './components/ExpandingMenuNavLink/ExpandingMenuSection';
 import PlaylistsSubMenu from './components/PlaylistsSubMenu';
 import Footer from './components/Footer';
 import Navbar from './components/Navbar';
@@ -49,6 +47,7 @@ import PlayerControls from './components/PlayerControls';
 import Seekbar from './components/Seekbar';
 import SidebarMenu from './components/SidebarMenu';
 import SidebarMenuItem from './components/SidebarMenu/SidebarMenuItem';
+import SidebarMenuCategoryHeader from './components/SidebarMenu/SidebarMenuCategoryHeader';
 import TrackInfo from './components/TrackInfo';
 import WindowControls from './components/WindowControls';
 import VolumeControls from './components/VolumeControls';
@@ -143,22 +142,26 @@ class App extends React.Component {
               {settings.compactMenuBar ? '0.4.5' : 'Version 0.4.5'}
             </div>
           </div>
+          <SidebarMenuCategoryHeader>
+            Main
+          </SidebarMenuCategoryHeader>
           {this.renderNavLink('dashboard', 'dashboard', 'Dashboard', settings)}
           {this.renderNavLink('downloads', 'download', 'Downloads', settings)}
           {this.renderNavLink('lyrics', 'microphone', 'Lyrics', settings)}
           {this.renderNavLink('plugins', 'flask', 'Plugins', settings)}
           {this.renderNavLink('search', 'search', 'Search Results', settings)}
           {this.renderNavLink('settings', 'cogs', 'Settings', settings)}
-          <ExpandingMenuNavLink
-            title='Collection'
-            compactMenuBar={ settings.compactMenuBar }
-          >
-            <ExpandingMenuSection>
-              <FontAwesome name='music' /> Playlists
-            </ExpandingMenuSection>
-            <PlaylistsSubMenu playlists={this.props.playlists}/>
-            {this.renderNavLink('favorites', 'star', 'Favorites', settings)}
-          </ExpandingMenuNavLink>
+          
+          <SidebarMenuCategoryHeader>
+            Collection
+          </SidebarMenuCategoryHeader>
+          {this.renderNavLink('favorites', 'star', 'Favorite tracks', settings)}
+
+          <SidebarMenuCategoryHeader>
+            Playlists
+          </SidebarMenuCategoryHeader>
+          <PlaylistsSubMenu playlists={this.props.playlists}/>
+          
           <Spacer />
           {this.renderSidebarFooter(settings, toggleOption)}
         </SidebarMenu>
