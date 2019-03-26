@@ -3,13 +3,14 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import _ from 'lodash';
+import Sound from 'react-sound-html5';
 
 import * as Actions from '../../actions';
 import * as PlayerActions from '../../actions/player';
 import * as QueueActions from '../../actions/queue';
 import * as ScrobblingActions from '../../actions/scrobbling';
 import * as LyricsActions from '../../actions/lyrics';
-import Sound from '../../components/Sound';
+import { filterFrequencies } from '../../components/Equalizer';
 import { getSelectedStream } from '../../utils';
 import * as Autoradio from './autoradio';
 import globals from '../../globals';
@@ -168,7 +169,10 @@ class SoundContainer extends React.Component {
         onLoad={this.handleLoaded.bind(this)}
         position={player.seek}
         volume={player.muted ? 0 : player.volume}
-        equalizer={equalizer}
+        equalizer={filterFrequencies.reduce((acc, freq, idx) => ({
+          ...acc,
+          [freq]: equalizer[idx] || 0
+        }), {})}
       />
     );
   }

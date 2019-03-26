@@ -5,6 +5,8 @@ import { bindActionCreators } from 'redux';
 import { NavLink, withRouter } from 'react-router-dom';
 import classnames from 'classnames';
 import _ from 'lodash';
+import Sound from 'react-sound-html5';
+
 import * as Actions from './actions';
 import * as PlayerActions from './actions/player';
 import * as PlaylistsActions from './actions/playlists';
@@ -25,7 +27,6 @@ import { config as PluginConfig } from './plugins/config';
 import settingsConst from './constants/settings';
 
 import PlaylistsSubMenu from './components/PlaylistsSubMenu';
-import Sound from './components/Sound';
 import Footer from './components/Footer';
 import Navbar from './components/Navbar';
 import VerticalPanel from './components/VerticalPanel';
