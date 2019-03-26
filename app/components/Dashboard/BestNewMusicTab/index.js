@@ -60,7 +60,7 @@ class BestNewMusicTab extends React.Component {
           albums={ dashboardData.bestNewAlbums }
           tracks={ dashboardData.bestNewTracks }
           setActiveItem={ this.setActiveItem.bind(this) }
-          />
+        />
         <BestNewMusicContent
           item={ this.state.activeItem }
           artistInfoSearchByName={artistInfoSearchByName}
