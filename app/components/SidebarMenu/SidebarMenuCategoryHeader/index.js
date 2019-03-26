@@ -3,16 +3,16 @@ import PropTypes from 'prop-types';
 
 import styles from './styles.scss';
 
-const ExpandingMenuSection = props => {
+const SidebarMenuCategoryHeader = props => {
   return (
-    <div className={styles.expanding_menu_section}>
+    <div className={styles.sidebar_menu_category_header}>
       { props.children }
     </div>
   );
 };
 
-ExpandingMenuSection.propTypes = {
+SidebarMenuCategoryHeader.propTypes = {
   children: PropTypes.node
 };
 
-export default ExpandingMenuSection;
+export default SidebarMenuCategoryHeader;

@@ -5,8 +5,9 @@
   flex: 0 0 auto;
   flex-flow: row;
   justify-content: flex-start;
+  align-items: baseline;
 
-  padding: 0.75rem;
+  padding: 0.75rem 1rem;
 
   transition: $short-duration;
   letter-spacing: 0.5px;
@@ -20,5 +21,9 @@
 
   span {
     margin-right: 0.75rem;
+  }
+
+  .fa {
+    width: 20px;
   }
 }
