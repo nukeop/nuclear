@@ -9,21 +9,40 @@ import NewsTab from './NewsTab';
 import styles from './styles.scss';
 
 class Dashboard extends React.Component {
+  
+  
   panes () {
+    const {
+      actions,
+      dashboardData,
+      history,
+      musicSources
+    } = this.props;
+
+    const {
+      artistInfoSearchByName,
+      albumInfoSearchByName,
+      addToQueue,
+      selectSong,
+      clearQueue,
+      startPlayback,
+      addFavoriteTrack
+    } = actions;
+    
     return [
       {
         menuItem: 'Best new music',
         render: () => (
           <BestNewMusicTab
-            dashboardData={this.props.dashboardData}
-            artistInfoSearchByName={this.props.artistInfoSearchByName}
-            albumInfoSearchByName={this.props.albumInfoSearchByName}
-            history={this.props.history}
-            addToQueue={this.props.addToQueue}
-            selectSong={this.props.selectSong}
-            clearQueue={this.props.clearQueue}
-            startPlayback={this.props.startPlayback}
-            musicSources={this.props.musicSources}
+            dashboardData={dashboardData}
+            artistInfoSearchByName={artistInfoSearchByName}
+            albumInfoSearchByName={albumInfoSearchByName}
+            history={history}
+            addToQueue={addToQueue}
+            selectSong={selectSong}
+            clearQueue={clearQueue}
+            startPlayback={startPlayback}
+            musicSources={musicSources}
           />
         )
       },
@@ -31,12 +50,13 @@ class Dashboard extends React.Component {
         menuItem: 'Top Tracks',
         render: () => (
           <ChartsTab
-            topTracks={this.props.dashboardData.topTracks}
-            addToQueue={this.props.addToQueue}
-            selectSong={this.props.selectSong}
-            clearQueue={this.props.clearQueue}
-            startPlayback={this.props.startPlayback}
-            musicSources={this.props.musicSources}
+            topTracks={dashboardData.topTracks}
+            addToQueue={addToQueue}
+            selectSong={selectSong}
+            clearQueue={clearQueue}
+            startPlayback={startPlayback}
+            musicSources={musicSources}
+            addFavoriteTrack={addFavoriteTrack}
           />
         )
       },
@@ -44,8 +64,8 @@ class Dashboard extends React.Component {
         menuItem: 'Genres',
         render: () => (
           <GenresTab
-            genres={this.props.dashboardData.topTags}
-            history={this.props.history}
+            genres={dashboardData.topTags}
+            history={history}
           />
         )
       },
@@ -57,17 +77,17 @@ class Dashboard extends React.Component {
       },*/
       {
         menuItem: 'News',
-        render: () => <NewsTab news={this.props.dashboardData.news} />
+        render: () => <NewsTab news={dashboardData.news} />
       }
     ];
   }
 
   componentDidMount () {
-    this.props.loadBestNewTracks();
-    this.props.loadBestNewAlbums();
-    this.props.loadNuclearNews();
-    this.props.loadTopTags();
-    this.props.loadTopTracks();
+    this.props.actions.loadBestNewTracks();
+    this.props.actions.loadBestNewAlbums();
+    this.props.actions.loadNuclearNews();
+    this.props.actions.loadTopTags();
+    this.props.actions.loadTopTracks();
   }
 
   render () {

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import _ from 'lodash';
 import numeral from 'numeral';
 import FontAwesome from 'react-fontawesome';
@@ -9,7 +10,7 @@ import { formatDuration } from '../../utils';
 import styles from './styles.scss';
 
 class TrackRow extends React.Component {
-  renderAddTrackToQueueButton (track, index, addToQueue, musicSources) {
+  renderAddTrackToQueueButton (index, track, addToQueue, musicSources) {
     return (
       <a
         key={'add-track-' + index}
@@ -29,9 +30,7 @@ class TrackRow extends React.Component {
     );
   }
 
-  renderPlayTrackButton (
-    index,
-  ) {
+  renderPlayTrackButton (index) {
     return (
       <a
         key={'play-track-' + index}
@@ -40,8 +39,20 @@ class TrackRow extends React.Component {
         className={styles.add_button}
         aria-label='Play this track now'
       >
-
         <FontAwesome name='play' /> Play now
+      </a>
+    );
+  }
+
+  renderAddToFavoritesButton(index, track, addFavoriteTrack) {
+    return (
+      <a
+        href='#'
+        onClick={() => addFavoriteTrack(track)}
+        className={styles.add_button}
+        aria-label='Add this track to favorites'
+      >
+        <FontAwesome name='star' /> Add to favorites
       </a>
     );
   }
@@ -80,18 +91,19 @@ class TrackRow extends React.Component {
   renderTrigger (track) {
     return (
       <tr className={styles.track} onDoubleClick={this.playTrack}>
-        {this.props.displayCover ? <td
-          style={{
-            backgroundImage: `url(${_.get(track, 'image[0][#text]', artPlaceholder)})`,
-            backgroundPosition: 'center'
-          }}
-          className={styles.track_thumbnail}
-        /> : null}
-        {this.props.displayTrackNumber ? <td className={styles.track_artist}>{track.position}</td> : null}
-        {this.props.displayArtist ? <td className={styles.track_artist}>{track.artist.name}</td> : null}
-        <td className={styles.track_name}>{track.name}</td>
-        {this.props.displayDuration ? this.renderDuration(track) : null}
-        {this.props.displayPlayCount ? <td className={styles.playcount}>{numeral(track.playcount).format('0,0')}</td> : null}
+        {this.props.displayCover &&
+          <td
+              style={{
+                backgroundImage: `url(${_.get(track, 'image[0][#text]', artPlaceholder)})`,
+                backgroundPosition: 'center'
+              }}
+              className={styles.track_thumbnail}
+            />}
+          {this.props.displayTrackNumber && <td className={styles.track_artist}>{track.position}</td>}
+          {this.props.displayArtist && <td className={styles.track_artist}>{track.artist.name}</td>}
+          <td className={styles.track_name}>{track.name}</td>
+          {this.props.displayDuration && this.renderDuration(track)}
+          {this.props.displayPlayCount && <td className={styles.playcount}>{numeral(track.playcount).format('0,0')}</td>}
       </tr>
     );
   }
@@ -101,20 +113,25 @@ class TrackRow extends React.Component {
       index,
       track,
       addToQueue,
+      addFavoriteTrack,
       musicSources
     } = this.props;
 
     let popupContents = [
       this.renderAddTrackToQueueButton(
-        track,
         index,
+        track,
         addToQueue,
         musicSources
       ),
-      this.renderPlayTrackButton(
+      this.renderPlayTrackButton(index),
+      this.renderAddToFavoritesButton(
         index,
+        track,
+        addFavoriteTrack
       )
     ];
+    
     return (
       <ContextPopup
         key={'track-' + index}
@@ -128,5 +145,21 @@ class TrackRow extends React.Component {
     );
   }
 }
+
+TrackRow.propTypes = {
+  index: PropTypes.number,
+  track: PropTypes.object,
+  addToQueue: PropTypes.func,
+  clearQueue: PropTypes.func,
+  selectSong: PropTypes.func,
+  startPlayback: PropTypes.func,
+  musicSources: PropTypes.array,
+
+  displayCover: PropTypes.bool,
+  displayTrackNumber: PropTypes.bool,
+  displayArtist: PropTypes.bool,
+  displayDuration: PropTypes.bool,
+  displayPlayCount: PropTypes.bool
+};
 
 export default TrackRow;
