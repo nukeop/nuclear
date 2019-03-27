@@ -155,7 +155,7 @@ class App extends React.Component {
           <SidebarMenuCategoryHeader>
             Collection
           </SidebarMenuCategoryHeader>
-          {this.renderNavLink('favorites', 'star', 'Favorite tracks', settings)}
+          {this.renderNavLink('favorites/tracks', 'star', 'Favorite tracks', settings)}
 
           <SidebarMenuCategoryHeader>
             Playlists

@@ -18,6 +18,14 @@ function initStore () {
   if (!store.get('playlists')) {
     store.set('playlists', []);
   }
+
+  if (!store.get('favorites')) {
+    store.set('favorites', {
+      tracks: [],
+      artists: [],
+      albums: []
+    });
+  }
 }
 
 initStore();
