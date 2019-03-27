@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
 import _ from 'lodash';
 import { Dropdown, Popup } from 'semantic-ui-react';
@@ -141,5 +142,13 @@ class QueuePopup extends React.Component {
     );
   }
 }
+
+QueuePopup.propTypes = {
+  trigger: PropTypes.node,
+  track: PropTypes.object,
+  defaultMusicSource: PropTypes.object,
+  musicSources: PropTypes.array,
+  rerollTrack: PropTypes.func
+};
 
 export default QueuePopup;

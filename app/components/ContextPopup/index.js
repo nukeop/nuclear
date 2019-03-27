@@ -19,9 +19,6 @@ class ContextPopup extends React.Component {
       isOpen: false      
     };
   }
-
-  componentDidMount() {
-  }
   
   handleOpen() {
     this.setState({ isOpen: true });

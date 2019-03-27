@@ -10,7 +10,7 @@ const FavoriteTracksView = props => {
         props.tracks.map(track => {
           return (
             <div className={styles.favorite_track}>
-              { track.artist } - { track.name }
+              { track.artist.name } - { track.name }
             </div>
           );
         })
@@ -21,7 +21,9 @@ const FavoriteTracksView = props => {
 
 FavoriteTracksView.propTypes = {
   tracks: PropTypes.arrayOf(PropTypes.shape({
-    artist: PropTypes.string,
+    artist: PropTypes.shape({
+      name: PropTypes.string
+    }),
     name: PropTypes.string
   }))
 };

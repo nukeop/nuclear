@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as Actions from '../../actions';
 import * as DashboardActions from '../../actions/dashboard';
+import * as FavoritesActions from '../../actions/favorites';
 import * as QueueActions from '../../actions/queue';
 import * as PlayerActions from '../../actions/player';
 
@@ -15,21 +16,10 @@ class DashboardContainer extends React.Component {
 
     return (
       <Dashboard
-        albumInfoSearch={actions.albumInfoSearch}
-        albumInfoSearchByName={actions.albumInfoSearchByName}
-        artistInfoSearchByName={actions.artistInfoSearchByName}
-        loadBestNewAlbums={actions.loadBestNewAlbums}
-        loadBestNewTracks={actions.loadBestNewTracks}
-        loadNuclearNews={actions.loadNuclearNews}
-        loadTopTags={actions.loadTopTags}
-        loadTopTracks={actions.loadTopTracks}
         dashboardData={dashboard}
         history={history}
-        addToQueue={actions.addToQueue}
+        actions={actions}
         musicSources={this.props.musicSources}
-        startPlayback={actions.startPlayback}
-        clearQueue={actions.clearQueue}
-        selectSong={actions.selectSong}
       />
     );
   }
@@ -45,7 +35,14 @@ function mapStateToProps (state) {
 function mapDispatchToProps (dispatch) {
   return {
     actions: bindActionCreators(
-      Object.assign({}, Actions, DashboardActions, QueueActions, PlayerActions),
+      Object.assign(
+        {},
+        Actions,
+        DashboardActions,
+        FavoritesActions,
+        QueueActions,
+        PlayerActions
+      ),
       dispatch
     )
   };
