@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 import { store } from '../persistence/store';
 
 export const READ_FAVORITES = 'READ_FAVORITES';
@@ -12,8 +14,12 @@ export function readFavorites() {
 }
 
 export function addFavoriteTrack(track) {
+  const favorites = store.get('favorites');
+  favorites.tracks = _.concat(favorites.tracks, track);
+  store.set('favorites', favorites);
+  
   return {
     type: ADD_FAVORITE_TRACK,
-    payload: track
+    payload: favorites
   };
 }

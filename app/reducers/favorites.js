@@ -16,9 +16,7 @@ export default function FavoritesReducer(state=initialState, action) {
   case READ_FAVORITES:
     return Object.assign({}, action.payload);
   case ADD_FAVORITE_TRACK:
-    return Object.assign({}, {
-      tracks: _.concat(state.tracks, action.payload)
-    });
+    return Object.assign({}, action.payload);
   default:
     return state;
   }
