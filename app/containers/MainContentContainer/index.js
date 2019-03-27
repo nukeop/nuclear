@@ -9,21 +9,22 @@ import MainLayout from '../../components/MainLayout';
 import AlbumViewContainer from '../AlbumViewContainer';
 import ArtistViewContainer from '../ArtistViewContainer';
 import DashboardContainer from '../DashboardContainer';
+import FavoritesContainer from '../FavoritesContainer';
+import LyricsContainer from '../LyricsContainer';
 import PlaylistsContainer from '../PlaylistsContainer';
 import PlaylistViewContainer from '../PlaylistViewContainer';
 import PluginsContainer from '../PluginsContainer';
 import SearchResultsContainer from '../SearchResultsContainer';
 import SettingsContainer from '../SettingsContainer';
 import TagViewContainer from '../TagViewContainer';
-import LyricsContainer from '../LyricsContainer';
 
 import Downloads from '../../components/Downloads';
 
 class MainContentContainer extends React.Component {
   componentDidMount () {
-    if (this.props.history
-      && this.props.location
-      && this.props.location.pathname === '/') {
+    if (this.props.history &&
+      this.props.location &&
+      this.props.location.pathname === '/') {
       this.props.history.push('/dashboard');
     }
   }
@@ -38,6 +39,7 @@ class MainContentContainer extends React.Component {
               <Route path='/artist/:artistId' component={ArtistViewContainer} />
               <Route path='/dashboard' component={DashboardContainer} />
               <Route path='/downloads' component={Downloads} />
+              <Route path='/favorites/tracks' component={FavoritesContainer} />
               <Route path='/playlists' component={PlaylistsContainer} />
               <Route path='/playlist/:playlistId' component={PlaylistViewContainer} />
               <Route path='/plugins' component={PluginsContainer} />
