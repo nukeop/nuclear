@@ -6,20 +6,27 @@ import * as DashboardActions from '../../actions/dashboard';
 import * as FavoritesActions from '../../actions/favorites';
 import * as QueueActions from '../../actions/queue';
 import * as PlayerActions from '../../actions/player';
-
+import * as ToastActions from '../../actions/toasts';
 
 import Dashboard from '../../components/Dashboard';
 
 class DashboardContainer extends React.Component {
   render () {
-    let { actions, dashboard, history } = this.props;
+    let {
+      actions,
+      dashboard,
+      settings,
+      history,
+      musicSources
+    } = this.props;
 
     return (
       <Dashboard
         dashboardData={dashboard}
         history={history}
+        settings={settings}
         actions={actions}
-        musicSources={this.props.musicSources}
+        musicSources={musicSources}
       />
     );
   }
@@ -28,7 +35,8 @@ class DashboardContainer extends React.Component {
 function mapStateToProps (state) {
   return {
     dashboard: state.dashboard,
-    musicSources: state.plugin.plugins.musicSources
+    musicSources: state.plugin.plugins.musicSources,
+    settings: state.settings
   };
 }
 
@@ -41,7 +49,8 @@ function mapDispatchToProps (dispatch) {
         DashboardActions,
         FavoritesActions,
         QueueActions,
-        PlayerActions
+        PlayerActions,
+        ToastActions
       ),
       dispatch
     )

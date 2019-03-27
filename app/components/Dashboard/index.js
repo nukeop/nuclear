@@ -16,7 +16,8 @@ class Dashboard extends React.Component {
       actions,
       dashboardData,
       history,
-      musicSources
+      musicSources,
+      settings
     } = this.props;
 
     const {
@@ -26,7 +27,8 @@ class Dashboard extends React.Component {
       selectSong,
       clearQueue,
       startPlayback,
-      addFavoriteTrack
+      addFavoriteTrack,
+      info
     } = actions;
     
     return [
@@ -57,6 +59,8 @@ class Dashboard extends React.Component {
             startPlayback={startPlayback}
             musicSources={musicSources}
             addFavoriteTrack={addFavoriteTrack}
+            notifyInfo={info}
+            settings={settings}
           />
         )
       },

@@ -7,9 +7,9 @@ const FavoriteTracksView = props => {
   return (
     <div className={styles.favorite_tracks_view}>
       {
-        props.tracks.map(track => {
+        props.tracks.map((track, i) => {
           return (
-            <div className={styles.favorite_track}>
+            <div key={`${track.name}-{i}`} className={styles.favorite_track}>
               { track.artist.name } - { track.name }
             </div>
           );
