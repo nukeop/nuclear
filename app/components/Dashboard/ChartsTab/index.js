@@ -31,19 +31,21 @@ class ChartsTab extends React.Component {
             <tbody>
               {this.props.topTracks.map((track, index) => {
                 return <TrackRow
-                           key={'popular-track-row-' + index}
-                           track={track}
-                           index={'popular-track-' + index}
-                           clearQueue={this.props.clearQueue}
-                           addToQueue={this.props.addToQueue}
-                           startPlayback={this.props.startPlayback}
-                           selectSong={this.props.selectSong}
-                           addFavoriteTrack={this.props.addFavoriteTrack}
-                           musicSources={this.props.musicSources}
-                           displayCover
-                           displayArtist
-                           displayPlayCount
-                           />;
+                  key={'popular-track-row-' + index}
+                  track={track}
+                  index={'popular-track-' + index}
+                  settings={this.props.settings}
+                  clearQueue={this.props.clearQueue}
+                  addToQueue={this.props.addToQueue}
+                  startPlayback={this.props.startPlayback}
+                  selectSong={this.props.selectSong}
+                  addFavoriteTrack={this.props.addFavoriteTrack}
+                  notifyInfo={this.props.notifyInfo}
+                  musicSources={this.props.musicSources}
+                  displayCover
+                  displayArtist
+                  displayPlayCount
+                />;
               })}
             </tbody>
           </table>

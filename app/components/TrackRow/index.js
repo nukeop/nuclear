@@ -44,11 +44,19 @@ class TrackRow extends React.Component {
     );
   }
 
-  renderAddToFavoritesButton(index, track, addFavoriteTrack) {
+  renderAddToFavoritesButton(index, track, settings, addFavoriteTrack, notifyInfo) {
     return (
       <a
         href='#'
-        onClick={() => addFavoriteTrack(track)}
+        onClick={() => {
+          addFavoriteTrack(track);
+          notifyInfo(
+            'Favorite track added',
+            `${track.artist.name} - ${track.name} has been added to favorites.`,
+            <img src={_.get(track, 'image[0][\'#text\']', artPlaceholder)} />,
+            settings
+          );
+        }}
         className={styles.add_button}
         aria-label='Add this track to favorites'
       >
@@ -93,17 +101,17 @@ class TrackRow extends React.Component {
       <tr className={styles.track} onDoubleClick={this.playTrack}>
         {this.props.displayCover &&
           <td
-              style={{
-                backgroundImage: `url(${_.get(track, 'image[0][#text]', artPlaceholder)})`,
-                backgroundPosition: 'center'
-              }}
-              className={styles.track_thumbnail}
-            />}
-          {this.props.displayTrackNumber && <td className={styles.track_artist}>{track.position}</td>}
-          {this.props.displayArtist && <td className={styles.track_artist}>{track.artist.name}</td>}
-          <td className={styles.track_name}>{track.name}</td>
-          {this.props.displayDuration && this.renderDuration(track)}
-          {this.props.displayPlayCount && <td className={styles.playcount}>{numeral(track.playcount).format('0,0')}</td>}
+            style={{
+              backgroundImage: `url(${_.get(track, 'image[0][#text]', artPlaceholder)})`,
+              backgroundPosition: 'center'
+            }}
+            className={styles.track_thumbnail}
+          />}
+        {this.props.displayTrackNumber && <td className={styles.track_artist}>{track.position}</td>}
+        {this.props.displayArtist && <td className={styles.track_artist}>{track.artist.name}</td>}
+        <td className={styles.track_name}>{track.name}</td>
+        {this.props.displayDuration && this.renderDuration(track)}
+        {this.props.displayPlayCount && <td className={styles.playcount}>{numeral(track.playcount).format('0,0')}</td>}
       </tr>
     );
   }
@@ -114,7 +122,9 @@ class TrackRow extends React.Component {
       track,
       addToQueue,
       addFavoriteTrack,
-      musicSources
+      notifyInfo,
+      musicSources,
+      settings
     } = this.props;
 
     let popupContents = [
@@ -128,7 +138,9 @@ class TrackRow extends React.Component {
       this.renderAddToFavoritesButton(
         index,
         track,
-        addFavoriteTrack
+        settings,
+        addFavoriteTrack,
+        notifyInfo
       )
     ];
     
@@ -154,6 +166,7 @@ TrackRow.propTypes = {
   selectSong: PropTypes.func,
   startPlayback: PropTypes.func,
   musicSources: PropTypes.array,
+  settings: PropTypes.object,
 
   displayCover: PropTypes.bool,
   displayTrackNumber: PropTypes.bool,
