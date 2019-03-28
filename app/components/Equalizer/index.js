@@ -11,7 +11,7 @@ import { getChartOptions, formatLabels} from './chart';
 
 import styles from './styles.scss';
 
-export const filterFrequencies = [50, 160, 500, 1500, 2500, 4000, 6500, 8500, 12000, 16000];
+export const filterFrequencies = [60, 170, 310, 600, 1000, 3000, 6000, 12000, 14000, 16000];
 
 class Equalizer extends React.Component {
   canvas;
