@@ -4,7 +4,7 @@
 
 Desktop music player focused on streaming from free sources
 
-[Official website](https://nuclear.gumblert.tech)
+[Official website](https://nuclear.js.org)
 
 [Mastodon](https://mstdn.io/@nuclear)
 
