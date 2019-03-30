@@ -11,11 +11,8 @@ import DashboardReducer from './dashboard';
 import TagReducer from './tag';
 import ToastsReducer from './toasts';
 import LyricsReducer from './lyrics';
-<<<<<<< HEAD
 import FavoritesReducer from './favorites';
-=======
 import EqualizerReducer from './equalizer';
->>>>>>> feat(equalizer): add equalizer presets
 
 const rootReducer = combineReducers({
   search: SearchReducer,
@@ -29,11 +26,8 @@ const rootReducer = combineReducers({
   settings: SettingsReducer,
   toasts: ToastsReducer,
   lyrics: LyricsReducer,
-<<<<<<< HEAD
-  favorites: FavoritesReducer 
-=======
+  favorites: FavoritesReducer,
   equalizer: EqualizerReducer
->>>>>>> feat(equalizer): add equalizer presets
 });
 
 export default rootReducer;

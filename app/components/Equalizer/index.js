@@ -7,6 +7,7 @@ import { drag } from 'd3-drag';
 import * as d3 from 'd3-selection';
 import _ from 'lodash';
 
+import PreAmp from './PreAmp';
 import { getChartOptions, formatLabels} from './chart';
 
 import styles from './styles.scss';
@@ -34,6 +35,7 @@ class Equalizer extends React.Component {
     this.attachCanvas = this.attachCanvas.bind(this);
     this.onDragStart = this.onDragStart.bind(this);
     this.updateChart = this.updateChart.bind(this);
+    this.handlePreampChange = this.handlePreampChange.bind(this);
   }
 
   attachCanvas(element) {
@@ -93,8 +95,21 @@ class Equalizer extends React.Component {
       this.par.chart.config.data.datasets[this.par.datasetIndex].data[this.par.index] = this.par.value;
       this.chartInstance.update(0);
   
-      this.props.onChange(this.par.chart.config.data.datasets[0].data.map(value => value - 10));
+      this.props.onChange({
+        values: this.par.chart.config.data.datasets[0].data.map(value => value - 10),
+        preAmp: this.props.preAmp
+      });
     } catch (err) {}
+  }
+
+  handlePreampChange(preAmp) {
+    this.props.onChange({
+      preAmp,
+      values: this.props.values
+    });
+    this.chartInstance.config.data.datasets[1].data = 
+      this.chartInstance.config.data.datasets[1].data.map(() => 10 - preAmp);
+    this.chartInstance.update(0);
   }
 
   componentDidMount() {
@@ -115,6 +130,15 @@ class Equalizer extends React.Component {
         pointHoverRadius: 5,
         pointHitRadius: 10,
         borderWidth: 2
+      }, {
+        data: Array.from(Array(10).keys()).map(() => 10 - this.props.preAmp),
+        borderColor: 'rgb(255, 255, 255, 0.7)',
+        fill: false,
+        borderWidth: 0.5,
+        pointBorderWidth: 0,
+        pointHitRadius: 0,
+        pointBorderColor: 'transparent',
+        pointBackgroundColor: 'transparent'
       }]
     }));
 
@@ -126,9 +150,20 @@ class Equalizer extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
+    let update = false;
+
     if (!_.isEqual(prevProps.values, this.props.values)) {
       this.chartInstance.data.datasets[0].data = this.props.values.map(val => val + 10);
-      this.chartInstance.update(0);
+      update = true;
+    }
+    if (prevProps.preAmp !== this.props.preAmp) {
+      this.chartInstance.data.datasets[1].data = 
+      this.chartInstance.data.datasets[1].data.map(() => 10 - this.props.preAmp);
+      update = true;
+    }
+
+    if (update) {
+      this.chartInstance.update(1);
     }
   }
 
@@ -136,8 +171,13 @@ class Equalizer extends React.Component {
     return (
       <div className={styles.equalizer_wrapper}>
         <h1>Equalizer</h1>
-        <div className={styles.chart_wrapper}>
-          <canvas ref={this.attachCanvas} />
+        <div className={styles.flexbox}>
+          <div>
+            <PreAmp value={this.props.preAmp} onChange={this.handlePreampChange} />
+          </div>
+          <div className={styles.chart_wrapper}>
+            <canvas ref={this.attachCanvas} />
+          </div>
         </div>
       </div>
     );
@@ -145,6 +185,7 @@ class Equalizer extends React.Component {
 }
 
 Equalizer.propTypes = {
+  preAmp: PropTypes.number,
   values: PropTypes.arrayOf(PropTypes.number),
   onChange: PropTypes.func
 };
