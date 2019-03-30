@@ -58,7 +58,7 @@ class PlaylistResults extends React.Component {
   }
 
   renderNoResult () {
-    return (<div>No result</div>);
+    return (<div>Nothing found.</div>);
   }
   render () {
     return (

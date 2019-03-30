@@ -1,4 +1,4 @@
-const nuclearNewsUrl = 'http://nuclear.gumblert.tech/news/';
+const nuclearNewsUrl = 'http://nuclear.js.org/news/';
 
 export function getNewsIndex() {
   return fetch(nuclearNewsUrl)

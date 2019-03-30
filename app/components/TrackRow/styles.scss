@@ -69,6 +69,21 @@
 .track {
   transition: $short-duration;
   cursor: pointer;
+
+  &:hover {
+    background: rgba($background2, 0.25);
+  }
+  
+  &:last-child {
+    td {
+      border-bottom: none;
+    }
+  }
+
+  td {
+    padding: 1rem 1rem;
+    border-bottom: 1px solid $background2;
+  }
 }
 
 .track_thumbnail {
@@ -82,23 +97,13 @@ table {
 }
 
 thead {
-  background: $background2;
+  font-variant: all-small-caps;
+  border-bottom: 1px solid $background2;
+  color: rgba($white, 0.5);
+  font-size: 20px;
 }
 
 th {
   padding: 1rem;
   text-align: left;
-}
-
-tr {
-  transition: $short-duration;
-}
-
-tr:hover {
-  background: rgba($background2, 0.25);
-}
-
-td {
-  padding: 1rem 1rem;
-  border-bottom: 1px solid $background2;
 }
