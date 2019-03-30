@@ -1,20 +1,46 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import FontAwesome from 'react-fontawesome';
+import { Segment } from 'semantic-ui-react';
+
+import Header from '../Header';
+import TrackRow from '../TrackRow';
 
 import styles from './styles.scss';
 
 const FavoriteTracksView = props => {
   return (
     <div className={styles.favorite_tracks_view}>
-      {
-        props.tracks.map((track, i) => {
-          return (
-            <div key={`${track.name}-{i}`} className={styles.favorite_track}>
-              { track.artist.name } - { track.name }
-            </div>
-          );
-        })
-      }
+      <Header>
+        Your favorite tracks
+      </Header>
+      <Segment>
+        <table>
+          <thead>
+            <tr>
+              <th><FontAwesome name='image' /></th>
+              <th>Artist</th>
+              <th>Title</th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              props.tracks.map((track, i) => {
+                return (
+                  <TrackRow
+                    key={'favorite-track-' + i}
+                    track={track}
+                    index={i}
+                    settings={null}
+                    displayCover
+                    displayArtist
+                  />
+                );
+              })
+            }
+          </tbody>
+        </table>
+      </Segment>
     </div>
   );
 };

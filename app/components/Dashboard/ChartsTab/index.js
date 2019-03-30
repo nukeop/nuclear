@@ -1,8 +1,8 @@
 import React from 'react';
 import { Tab } from 'semantic-ui-react';
-import TrackRow from '../../TrackRow';
 import FontAwesome from 'react-fontawesome';
 
+import TrackRow from '../../TrackRow';
 
 import styles from './styles.scss';
 
@@ -17,10 +17,10 @@ class ChartsTab extends React.Component {
         <div className={styles.popular_tracks_container}>
           <h3>Top Tracks from LastFm.</h3>
           <table>
-            <thead className={styles.popular_tracks_header}>
+            <thead>
               <tr>
                 <th>
-                  <FontAwesome name='' />
+                  <FontAwesome name='image' />
                 </th>
                 <th>Artist</th>
                 <th>Title</th>

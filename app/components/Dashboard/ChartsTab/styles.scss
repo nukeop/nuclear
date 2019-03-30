@@ -3,41 +3,7 @@
 }
 
 .popular_tracks_container {
-  /*display: flex;
-  flex: 1 1 auto;
-  flex-flow: column;
-
-  margin: 0 0.5rem;
-
-  .header {
-    margin-bottom: 1rem;
-
-    font-size: 16px;
-    font-variant: small-caps;
-  }*/
-  .popular_tracks_header {
-    tr {
-      height: 10px
-    }
-    th {
-      height: 30px;
-      text-align: inherit !important;
-      border-bottom: 2px solid #44475a;
-    }
-  }
   .track_row {
-    /*display: flex;
-    align-items: center;
-    flex-flow: row;*/
-
-    transition: $short-duration ease-in-out;
-
-    border-bottom: 1px solid rgba($background2, 0.2);
-
-    &:hover {
-      background: lighten($background, 10%);
-    }
-
     img {
       flex: 0 0 auto;
 
