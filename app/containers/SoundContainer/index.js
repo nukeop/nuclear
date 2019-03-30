@@ -171,8 +171,9 @@ class SoundContainer extends React.Component {
         volume={player.muted ? 0 : player.volume}
         equalizer={filterFrequencies.reduce((acc, freq, idx) => ({
           ...acc,
-          [freq]: equalizer[idx] || 0
+          [freq]: equalizer.values[idx] || 0
         }), {})}
+        preAmp={equalizer.preAmp}
       />
     );
   }

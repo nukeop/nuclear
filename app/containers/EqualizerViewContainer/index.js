@@ -6,10 +6,11 @@ import * as EqualizerActions from '../../actions/equalizer';
 import Equalizer from '../../components/Equalizer';
 import EqualizerPresetList from '../../components/EqualizerPresetList';
 
-const EqualizerViewContainer = ({ actions, values, presets, selected }) => (
+const EqualizerViewContainer = ({ actions, equalizer, presets, selected }) => (
   <React.Fragment>
     <Equalizer
-      values={values}
+      values={equalizer.values}
+      preAmp={equalizer.preAmp}
       onChange={actions.updateEqualizer}
     />
     <EqualizerPresetList
@@ -23,7 +24,7 @@ const EqualizerViewContainer = ({ actions, values, presets, selected }) => (
 function mapStateToProps({ equalizer }) {
   return {
     selected: equalizer.selected,
-    values: equalizer.presets[equalizer.selected],
+    equalizer: equalizer.presets[equalizer.selected],
     presets: Object.keys(equalizer.presets)
   };
 }

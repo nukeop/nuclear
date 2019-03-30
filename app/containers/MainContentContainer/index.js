@@ -17,11 +17,7 @@ import PluginsContainer from '../PluginsContainer';
 import SearchResultsContainer from '../SearchResultsContainer';
 import SettingsContainer from '../SettingsContainer';
 import TagViewContainer from '../TagViewContainer';
-<<<<<<< HEAD
-=======
-import LyricsContainer from '../LyricsContainer';
 import EqualizerViewContainer from '../EqualizerViewContainer';
->>>>>>> feat(equalizer): add equalizer view and component and store values in redux
 
 import Downloads from '../../components/Downloads';
 
