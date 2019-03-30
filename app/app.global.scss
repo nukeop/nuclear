@@ -87,7 +87,8 @@ a.disabled {
       color: $white;
     }
 
-    font-variant: small-caps;
+    font-variant: all-small-caps;
+    font-size: 20px;
   }
 
   .active.item {

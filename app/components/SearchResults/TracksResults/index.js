@@ -12,7 +12,7 @@ class TracksResults extends React.Component {
     let collection = this.props.tracks || [];
     let limit = this.props.limit;
     if (collection.length === 0) {
-      return 'No result';
+      return 'Nothing found.';
     } else {
       return (
         <table>
