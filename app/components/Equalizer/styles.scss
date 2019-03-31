@@ -6,6 +6,10 @@
 .chart_wrapper {
   margin: auto;
   width: 90%;
+  canvas {
+    width: 100% !important;
+    min-width: 442px;
+  }
 }
 
 .flexbox {

@@ -179,8 +179,6 @@ class Equalizer extends React.Component {
 
     if (!_.isEqual(prevProps.dataViz, this.props.dataViz)) {
       this.chartInstance.data.datasets[2].data = this.props.dataViz.map(b => b / 10 + (this.props.preAmp || 0));
-      // this.chartInstance.data.datasets[2].data[0] = 0;
-      // this.chartInstance.data.datasets[2].data[this.chartInstance.data.datasets[2].data.length - 1] = 0;
       update = true;
     }
 
