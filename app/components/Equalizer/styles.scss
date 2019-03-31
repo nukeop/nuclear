@@ -1,0 +1,27 @@
+.equalizer_wrapper {
+  width: 100%;
+  padding: 30px 50px;
+}
+
+.chart_wrapper {
+  margin: auto;
+  width: 90%;
+  canvas {
+    width: 100% !important;
+    min-width: 442px;
+  }
+}
+
+.flexbox {
+  display: flex;
+}
+
+.vertical_flex {
+  display: flex;
+  flex-direction: column;
+}
+
+.toggle_viz {
+  align-self: center;
+  margin-top: 20px;
+}

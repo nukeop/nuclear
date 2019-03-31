@@ -70,6 +70,14 @@ export function onRefreshPlaylists(event, actions) {
   actions.loadPlaylists();
 }
 
+export function onSetEqualizer(event, actions, equalizer) {
+  actions.setEqualizer(equalizer);
+}
+
+export function onUpdateEqualizer(event, actions, data) {
+  actions.updateEqualizer(data);
+}
+
 export function onSongChange(song) {
   ipcRenderer.send('songChange', song);
 }

@@ -63,6 +63,14 @@ function onRemovePlaylist() {
   rendererWindow.send('refresh-playlists');
 }
 
+function onUpdateEqualizer(data) {
+  rendererWindow.send('update-equalizer', data);
+}
+
+function onSetEqualizer(equalizer) {
+  rendererWindow.send('set-equalizer', equalizer);
+}
+
 function getQueue() {
   return new Promise(resolve => {
     rendererWindow.send('queue');
@@ -96,5 +104,7 @@ module.exports = {
   getQueue,
   onCreatePlaylist,
   onRemovePlaylist,
-  getPlayingStatus
+  getPlayingStatus,
+  onUpdateEqualizer,
+  onSetEqualizer
 };

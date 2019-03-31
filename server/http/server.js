@@ -10,7 +10,8 @@ import {
   settingsRouter,
   swaggerRouter,
   playlistRouter,
-  queueRouter
+  queueRouter,
+  equalizerRouter
 } from './api';
 import { errorMiddleware, notFoundMiddleware } from './middlewares';
 import { initSwagger } from './lib/swagger';
@@ -38,6 +39,7 @@ function runHttpServer({
     .use(`${prefix}/docs`, swaggerRouter())
     .use(`${prefix}/playlist`, playlistRouter())
     .use(`${prefix}/queue`, queueRouter())
+    .use(`${prefix}/equalizer`, equalizerRouter())
     .use(notFoundMiddleware())
     .use(errorMiddleware(logger))
     .listen(port, host, err => {

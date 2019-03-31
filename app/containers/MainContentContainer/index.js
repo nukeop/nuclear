@@ -17,6 +17,7 @@ import PluginsContainer from '../PluginsContainer';
 import SearchResultsContainer from '../SearchResultsContainer';
 import SettingsContainer from '../SettingsContainer';
 import TagViewContainer from '../TagViewContainer';
+import EqualizerViewContainer from '../EqualizerViewContainer';
 
 import Downloads from '../../components/Downloads';
 
@@ -31,7 +32,7 @@ class MainContentContainer extends React.Component {
 
   render () {
     return (
-      <Route render={({ location, history, match }) => {
+      <Route render={({ location }) => {
         return (
           <MainLayout>
             <Switch key={location.key} location={location}>
@@ -47,6 +48,7 @@ class MainContentContainer extends React.Component {
               <Route path='/tag/:tagName' component={TagViewContainer} />
               <Route path='/search' component={SearchResultsContainer} />
               <Route path='/lyrics' component={LyricsContainer} />
+              <Route path='/equalizer' component={EqualizerViewContainer} />
             </Switch>
           </MainLayout>
         );
@@ -56,9 +58,8 @@ class MainContentContainer extends React.Component {
   }
 }
 
-function mapStateToProps (state) {
-  return {
-  };
+function mapStateToProps () {
+  return {};
 }
 
 function mapDispatchToProps (dispatch) {

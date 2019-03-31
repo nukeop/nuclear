@@ -6,9 +6,10 @@ class Seekbar extends React.Component {
 
   handleClick(seek, queue) {
     return event => {
-      let percent = (event.pageX - event.target.offsetLeft)/document.body.clientWidth;
-      let duration = queue.queueItems[queue.currentSong].streams[0].duration;
-      seek(percent * duration * 1000);
+      const percent = (event.pageX - event.target.offsetLeft)/document.body.clientWidth;
+      const duration = queue.queueItems[queue.currentSong].streams[0].duration;
+
+      seek(percent * duration);
     };    
   }
 

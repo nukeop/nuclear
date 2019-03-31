@@ -1,11 +1,12 @@
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
-import Sound from 'react-sound';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { NavLink, withRouter } from 'react-router-dom';
 import classnames from 'classnames';
 import _ from 'lodash';
+import Sound from 'react-sound-html5';
+
 import * as Actions from './actions';
 import * as PlayerActions from './actions/player';
 import * as PlaylistsActions from './actions/playlists';
@@ -151,7 +152,8 @@ class App extends React.Component {
           {this.renderNavLink('plugins', 'flask', 'Plugins', settings)}
           {this.renderNavLink('search', 'search', 'Search Results', settings)}
           {this.renderNavLink('settings', 'cogs', 'Settings', settings)}
-          
+          {this.renderNavLink('equalizer', 'sliders', 'Equalizer', settings)}
+
           <SidebarMenuCategoryHeader>
             Collection
           </SidebarMenuCategoryHeader>
