@@ -45,6 +45,7 @@ class ChartsTab extends React.Component {
                   displayCover
                   displayArtist
                   displayPlayCount
+                  withFavorites
                 />;
               })}
             </tbody>

@@ -9,6 +9,23 @@ import TrackRow from '../TrackRow';
 import styles from './styles.scss';
 
 const FavoriteTracksView = props => {
+  const {
+    actions,
+    dashboardData,
+    history,
+    musicSources,
+    settings
+  } = props;
+
+  const {
+      artistInfoSearchByName,
+      albumInfoSearchByName,
+      addToQueue,
+      selectSong,
+      clearQueue,
+      startPlayback
+  } = actions;
+  
   return (
     <div className={styles.favorite_tracks_view}>
       <Header>
@@ -31,7 +48,12 @@ const FavoriteTracksView = props => {
                     key={'favorite-track-' + i}
                     track={track}
                     index={i}
-                    settings={null}
+                    addToQueue={addToQueue}
+                    selectSong={selectSong}
+                    clearQueue={clearQueue}
+                    startPlayback={startPlayback}
+                    musicSources={musicSources}
+                    settings={settings}
                     displayCover
                     displayArtist
                   />
@@ -51,7 +73,10 @@ FavoriteTracksView.propTypes = {
       name: PropTypes.string
     }),
     name: PropTypes.string
-  }))
+  })),
+  settings: PropTypes.object,
+  actions: PropTypes.object,
+  musicSources: PropTypes.array
 };
 
 FavoriteTracksView.defaultProps = {
