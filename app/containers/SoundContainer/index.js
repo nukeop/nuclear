@@ -7,6 +7,7 @@ import Sound from 'react-sound-html5';
 
 import * as Actions from '../../actions';
 import * as PlayerActions from '../../actions/player';
+import * as EqualizerActions from '../../actions/equalizer';
 import * as QueueActions from '../../actions/queue';
 import * as ScrobblingActions from '../../actions/scrobbling';
 import * as LyricsActions from '../../actions/lyrics';
@@ -149,11 +150,12 @@ class SoundContainer extends React.Component {
   }
 
   render () {
-    let { player, queue, plugins, equalizer } = this.props;
+    let { player, queue, plugins, equalizer, actions, viz } = this.props;
     let streamUrl = '';
 
     if (queue.queueItems.length > 0) {
-      let currentSong = queue.queueItems[queue.currentSong];
+      const currentSong = queue.queueItems[queue.currentSong];
+      
       streamUrl = (
         getSelectedStream(currentSong.streams, plugins.defaultMusicSource) || {}
       ).stream;
@@ -174,6 +176,7 @@ class SoundContainer extends React.Component {
           [freq]: equalizer.values[idx] || 0
         }), {})}
         preAmp={equalizer.preAmp}
+        onVisualizationChange={viz && actions.setVisualizationData}
       />
     );
   }
@@ -186,7 +189,8 @@ function mapStateToProps (state) {
     player: state.player,
     scrobbling: state.scrobbling,
     settings: state.settings,
-    equalizer: state.equalizer.presets[state.equalizer.selected]
+    equalizer: state.equalizer.presets[state.equalizer.selected],
+    viz: state.equalizer.viz
   };
 }
 
@@ -199,7 +203,8 @@ function mapDispatchToProps (dispatch) {
         PlayerActions,
         QueueActions,
         ScrobblingActions,
-        LyricsActions
+        LyricsActions,
+        EqualizerActions
       ),
       dispatch
     )

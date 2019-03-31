@@ -3,17 +3,9 @@ function getChartOptions(data) {
     type: 'line',
     data,
     options: {
-      events: ['mousemove'],
+      events: ['mousemove', 'click', 'mousedown'],
       onHover: (event, chartElement) => {
         event.target.style.cursor = chartElement[0] ? 'grab' : 'default';
-      },
-      layout: {
-        padding: {
-          left: 10,
-          right: 10,
-          top: 15,
-          bottom: 10
-        }
       },
       responsive: true,
       legend: {

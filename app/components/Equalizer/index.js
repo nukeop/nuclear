@@ -6,6 +6,7 @@ import Chart from 'chart.js';
 import { drag } from 'd3-drag';
 import * as d3 from 'd3-selection';
 import _ from 'lodash';
+import { Radio } from 'semantic-ui-react';
 
 import PreAmp from './PreAmp';
 import { getChartOptions, formatLabels} from './chart';
@@ -18,6 +19,7 @@ class Equalizer extends React.Component {
   canvas;
   context;
   chartInstance;
+  state = { viz: false }
 
   par = {
     chart: undefined,
@@ -115,9 +117,13 @@ class Equalizer extends React.Component {
   componentDidMount() {
     this.context = this.canvas.getContext('2d');
     
-    const gradient = this.context.createLinearGradient(0, 0, 0, 400);
-    gradient.addColorStop(0, 'rgb(80, 250, 123, 0.3)');   
-    gradient.addColorStop(1, 'rgba(40, 42, 54, 0)');
+    const lineGradient = this.context.createLinearGradient(0, 0, 0, 400);
+    lineGradient.addColorStop(0, 'rgb(80, 250, 123, 0.3)');   
+    lineGradient.addColorStop(1, 'rgba(40, 42, 54, 0)');
+
+    const barGradient = this.context.createLinearGradient(0, 0, 0, 400);
+    barGradient.addColorStop(0, 'rgb(80, 250, 123, 0.1)');   
+    barGradient.addColorStop(1, 'rgba(40, 42, 54, 0)');
 
     this.chartInstance = new Chart(this.context, getChartOptions({
       labels: formatLabels(filterFrequencies),
@@ -125,7 +131,7 @@ class Equalizer extends React.Component {
         pointBorderColor: 'white',
         pointBackgroundColor: 'white',
         borderColor: 'rgb(80, 250, 123)',
-        backgroundColor: gradient,
+        backgroundColor: lineGradient,
         data: this.props.values.map(val => val + 10),
         pointHoverRadius: 5,
         pointHitRadius: 10,
@@ -139,6 +145,15 @@ class Equalizer extends React.Component {
         pointHitRadius: 0,
         pointBorderColor: 'transparent',
         pointBackgroundColor: 'transparent'
+      }, {
+        backgroundColor: barGradient,
+        borderColor: 'transparent',
+        data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        pointBorderWidth: 0,
+        pointHitRadius: 0,
+        pointBorderColor: 'transparent',
+        pointBackgroundColor: 'transparent',
+        steppedLine: 'middle'
       }]
     }));
 
@@ -162,8 +177,20 @@ class Equalizer extends React.Component {
       update = true;
     }
 
+    if (!_.isEqual(prevProps.dataViz, this.props.dataViz)) {
+      this.chartInstance.data.datasets[2].data = this.props.dataViz.map(b => b / 10 + (this.props.preAmp || 0));
+      // this.chartInstance.data.datasets[2].data[0] = 0;
+      // this.chartInstance.data.datasets[2].data[this.chartInstance.data.datasets[2].data.length - 1] = 0;
+      update = true;
+    }
+
+    if (prevProps.viz && !this.props.viz) {
+      this.chartInstance.data.datasets[2].data = prevProps.dataViz.map(() => 0);
+      update = true;
+    }
+
     if (update) {
-      this.chartInstance.update(1);
+      this.chartInstance.update();
     }
   }
 
@@ -172,8 +199,14 @@ class Equalizer extends React.Component {
       <div className={styles.equalizer_wrapper}>
         <h1>Equalizer</h1>
         <div className={styles.flexbox}>
-          <div>
+          <div className={styles.vertical_flex}>
             <PreAmp value={this.props.preAmp} onChange={this.handlePreampChange} />
+            <Radio
+              toggle
+              checked={this.props.viz}
+              onChange={this.props.onToggleViz}
+              className={styles.toggle_viz}
+            />
           </div>
           <div className={styles.chart_wrapper}>
             <canvas ref={this.attachCanvas} />
@@ -187,7 +220,10 @@ class Equalizer extends React.Component {
 Equalizer.propTypes = {
   preAmp: PropTypes.number,
   values: PropTypes.arrayOf(PropTypes.number),
-  onChange: PropTypes.func
+  onChange: PropTypes.func,
+  viz: PropTypes.bool,
+  onToggleViz: PropTypes.func,
+  dataViz: PropTypes.arrayOf(PropTypes.number)
 };
 
 export default Equalizer;

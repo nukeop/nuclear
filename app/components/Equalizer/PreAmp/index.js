@@ -19,8 +19,8 @@ const PreAmp = ({
 );
 
 PreAmp.propTypes = {
-  onChange: PropTypes.func,
-  value: PropTypes.number
+  onChange: PropTypes.func.isRequired,
+  value: PropTypes.number.isRequired
 };
 
 export default PreAmp;
