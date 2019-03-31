@@ -1,0 +1,9 @@
+.preamp {
+  -webkit-appearance: slider-vertical !important;
+  height: 60%;
+  margin-top: 30px;
+  cursor: grab !important;
+  &:active {
+    cursor: grabbing !important;
+  }
+}

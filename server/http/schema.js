@@ -94,3 +94,29 @@ export const deletePlaylistSchema = {
     }
   }
 };
+
+export const setEqualizerSchema = {
+  params: {
+    type: 'object',
+    required: ['name'],
+    properties: {
+      name: {
+        type: 'string'
+      }
+    }
+  }
+};
+
+export const updateEqualizerSchema = {
+  body: {
+    required: ['values'],
+    properties: {
+      values: {
+        type: 'array',
+        minItems: 10,
+        maxItems: 10,
+        items: [{ type: 'number' }]
+      }
+    }
+  }
+};
