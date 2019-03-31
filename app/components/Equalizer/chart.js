@@ -3,9 +3,15 @@ function getChartOptions(data) {
     type: 'line',
     data,
     options: {
-      events: ['mousemove', 'click', 'mousedown'],
+      events: ['mousemove', 'mousedown'],
       onHover: (event, chartElement) => {
-        event.target.style.cursor = chartElement[0] ? 'grab' : 'default';
+        switch (event.type) {
+        case 'mousedown':
+          event.target.style.cursor = chartElement[0] ? 'grabbing' : 'default';
+          break;
+        default:
+          event.target.style.cursor = chartElement[0] ? 'grab' : 'default';
+        }
       },
       responsive: true,
       legend: {
