@@ -11,3 +11,13 @@
 .flexbox {
   display: flex;
 }
+
+.vertical_flex {
+  display: flex;
+  flex-direction: column;
+}
+
+.toggle_viz {
+  align-self: center;
+  margin-top: 20px;
+}
