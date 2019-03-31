@@ -124,6 +124,7 @@ class TrackRow extends React.Component {
       addFavoriteTrack,
       notifyInfo,
       musicSources,
+      withFavorites,
       settings
     } = this.props;
 
@@ -135,7 +136,7 @@ class TrackRow extends React.Component {
         musicSources
       ),
       this.renderPlayTrackButton(index),
-      this.renderAddToFavoritesButton(
+      withFavorites && this.renderAddToFavoritesButton(
         index,
         track,
         settings,
@@ -172,7 +173,12 @@ TrackRow.propTypes = {
   displayTrackNumber: PropTypes.bool,
   displayArtist: PropTypes.bool,
   displayDuration: PropTypes.bool,
-  displayPlayCount: PropTypes.bool
+  displayPlayCount: PropTypes.bool,
+  withFavorites: PropTypes.bool
+};
+
+TrackRow.defaultProps = {
+  withFavorites: false
 };
 
 export default TrackRow;
