@@ -64,3 +64,5 @@ bundle.electron.js
 
 # Prettier configuration file
 .prettierrc
+
+package-lock.json

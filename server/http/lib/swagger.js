@@ -1,6 +1,15 @@
 import swagger from 'swagger-spec-express';
 
-import { volumeSchema, seekSchema, updateSettingsSchema, getSettingsSchema, addPlaylistSchema, deletePlaylistSchema } from '../schema';
+import {
+  volumeSchema,
+  seekSchema,
+  updateSettingsSchema,
+  getSettingsSchema,
+  addPlaylistSchema,
+  deletePlaylistSchema,
+  updateEqualizerSchema,
+  setEqualizerSchema
+} from '../schema';
 
 export function getStandardDescription({
   successDescription = 'Action successfull',
@@ -53,6 +62,10 @@ export function initSwagger(app) {
       {
         name: 'Queue',
         description: 'Queue related endpoints'
+      },
+      {
+        name: 'Equalizer',
+        description: 'Equalizer related endpoints'
       }
     ]
   });
@@ -97,6 +110,20 @@ export function initSwagger(app) {
     description: 'The name of the playlist to remove',
     required: true,
     ...deletePlaylistSchema.params.properties.name
+  });
+
+  swagger.common.parameters.addPath({
+    name: 'eqName',
+    description: 'The name of the equalizer presets to set',
+    required: true,
+    ...setEqualizerSchema.params.properties.name
+  });
+
+  swagger.common.parameters.addBody({
+    name: 'eqValues',
+    description: 'The values of the equalizer to set',
+    required: true,
+    schema: updateEqualizerSchema.body
   });
 }
 
