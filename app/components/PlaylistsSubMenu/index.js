@@ -8,7 +8,7 @@ import styles from './styles.scss';
 
 const PlaylistsSubMenu = props => {
   return (
-    <div className={styles.playlists_submenu}>
+    !props.compact && <div className={styles.playlists_submenu}>
       {
         props.playlists.map((playlist, i) => {
           return (
@@ -41,7 +41,8 @@ PlaylistsSubMenu.propTypes = {
         })
       )
     })
-  )
+  ),
+  compact: PropTypes.bool
 };
 
 export default PlaylistsSubMenu;

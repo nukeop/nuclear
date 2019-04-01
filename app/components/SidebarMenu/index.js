@@ -13,6 +13,7 @@ class SidebarMenu extends React.Component {
     let {
       children
     } = this.props;
+    
     return (
       <div className={styles.sidebar_menu_container}>
         { children }
