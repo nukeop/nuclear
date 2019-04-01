@@ -143,7 +143,7 @@ class App extends React.Component {
               {settings.compactMenuBar ? '0.4.5' : 'Version 0.4.5'}
             </div>
           </div>
-          <SidebarMenuCategoryHeader>
+          <SidebarMenuCategoryHeader compact={ settings.compactMenuBar }>
             Main
           </SidebarMenuCategoryHeader>
           {this.renderNavLink('dashboard', 'dashboard', 'Dashboard', settings)}
@@ -154,15 +154,18 @@ class App extends React.Component {
           {this.renderNavLink('settings', 'cogs', 'Settings', settings)}
           {this.renderNavLink('equalizer', 'sliders', 'Equalizer', settings)}
 
-          <SidebarMenuCategoryHeader>
+          <SidebarMenuCategoryHeader compact={ settings.compactMenuBar }>
             Collection
           </SidebarMenuCategoryHeader>
           {this.renderNavLink('favorites/tracks', 'star', 'Favorite tracks', settings)}
 
-          <SidebarMenuCategoryHeader>
+          <SidebarMenuCategoryHeader compact={ settings.compactMenuBar }>
             Playlists
           </SidebarMenuCategoryHeader>
-          <PlaylistsSubMenu playlists={this.props.playlists}/>
+          <PlaylistsSubMenu
+            playlists={this.props.playlists}
+            compact={ settings.compactMenuBar }
+          />
           
           <Spacer />
           {this.renderSidebarFooter(settings, toggleOption)}

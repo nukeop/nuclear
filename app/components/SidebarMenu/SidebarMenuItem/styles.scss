@@ -22,8 +22,8 @@
   span {
     margin-right: 0.75rem;
   }
+}
 
-  .fa {
+.left_panel:not(.compact_panel) .sidebar_menu_item_container .fa {
     width: 20px;
-  }
 }
