@@ -15,6 +15,7 @@ import SearchReducer from './search';
 import SettingsReducer from './settings';
 import TagReducer from './tag';
 import ToastsReducer from './toasts';
+import LocalReducer from './local';
 
 const rootReducer = combineReducers({
   dashboard: DashboardReducer,
@@ -31,7 +32,8 @@ const rootReducer = combineReducers({
   search: SearchReducer,
   settings: SettingsReducer,
   tags: TagReducer,
-  toasts: ToastsReducer
+  toasts: ToastsReducer,
+  local: LocalReducer
 });
 
 export default rootReducer;
