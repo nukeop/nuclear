@@ -27,6 +27,10 @@ function initStore () {
     });
   }
 
+  if (!store.get('localFolders')) {
+    store.set('localFolders', []);
+  }
+
   if (!store.get('equalizer')) {
     store.set('equalizer', {
       selected: 'default',
