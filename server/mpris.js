@@ -1,8 +1,5 @@
 import logger from 'electron-timber';
 import { ipcMain } from 'electron';
-import { scanDirectories } from './file';
-import { store } from './store';
-import { inspect } from 'util';
 
 let rendererWindow = null;
 
@@ -11,11 +8,6 @@ let rendererWindow = null;
 ipcMain.once('started', event => {
   logger.log('Renderer process started and registered.');
   rendererWindow = event.sender;
-  scanDirectories(store.get('localFolders'))
-    .then(data => {
-      console.log(inspect(data));
-    })
-    .catch(console.error);
 });
 
 function onNext() {
@@ -49,7 +41,7 @@ function onVolume(volume) {
 function onSeek(position) {
   rendererWindow.send('seek', position);
 }
-
+ 
 function onSettings(settings) {
   rendererWindow.send('settings', settings);
 }

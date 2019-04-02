@@ -1,16 +1,26 @@
 import { promisify } from 'util';
 import glob from 'glob';
 import { parseFile } from 'music-metadata';
+import uuid from 'uuid/v4';
+import { getOption } from '../store';
 
-export function formatMeta({ common }) {
+export function formatMeta({ common, format }, path) {
+  const id = uuid();
+  const port = getOption('api.port');
+
   return {
+    id,
+    path,
+    duration: format.duration,
     name: common.title,
     pos: common.track.no,
     album: common.album,
+    artist: common.artist || 'unknown',
     genre: common.genre,
     year: common.year,
-    composer: common.composer,
-    cover: common.picture
+    cover: common.picture,
+    loading: false,
+    thumbnail: `http://127.0.0.1:${port}/nuclear/file/${id}/thumb`
   };
 }
 
@@ -21,8 +31,14 @@ export function scanDirectories(directories) {
     ...directories.map(dir => promisify(glob)(`${dir}/**/*.ogg`)),
     ...directories.map(dir => promisify(glob)(`${dir}/**/*.wav`))
   ])
-    .then(files => Promise.all(
-      files.flat().map(parseFile))
-    )
-    .then(files => files.map(formatMeta));
+    .then(files => files.flat())
+    .then(files => Promise.all([
+      ...files.map(parseFile),
+      Promise.resolve(files)
+    ]))
+    .then(meta => {
+      const files = meta.pop();
+
+      return files.map((file, i) => formatMeta(meta[i], file));
+    });
 }

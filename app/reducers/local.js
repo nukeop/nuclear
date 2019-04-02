@@ -11,7 +11,11 @@ const initialState = {
   pending: false,
   error: false,
   folders: store.get('localFolders'),
-  tracks: []
+  tracks: {
+    byId: {},
+    byAlbum: {},
+    byArtist: {}
+  }
 };
 
 export default function LocalReducer(state = initialState, action) {
