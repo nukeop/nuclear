@@ -10,7 +10,7 @@ import { store } from '../persistence/store';
 const initialState = {
   pending: false,
   error: false,
-  folders: [],
+  folders: store.get('localFolders'),
   tracks: []
 };
 
