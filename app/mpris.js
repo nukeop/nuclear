@@ -78,6 +78,14 @@ export function onUpdateEqualizer(event, actions, data) {
   actions.updateEqualizer(data);
 }
 
+export function onLocalFiles(event, actions, data) {
+  actions.scanLocalFoldersSuccess(data);
+}
+
+export function onLocalFilesError(event, actions, data) {
+  actions.scanLocalFoldersFailed(data);
+}
+
 export function onSongChange(song) {
   ipcRenderer.send('songChange', song);
 }

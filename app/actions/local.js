@@ -2,7 +2,6 @@ import { remote } from 'electron';
 
 export const ADD_LOCAL_FOLDERS = 'ADD_LOCAL_FOLDER';
 export const REMOVE_LOCAL_FOLDER = 'REMOVE_LOCAL_FOLDER';
-export const SCAN_LOCAL_FOLDER = 'SCAN_LOCAL_FOLDER';
 export const SCAN_LOCAL_FOLDER_SUCCESS = 'SCAN_LOCAL_FOLDER_SUCCESS';
 export const SCAN_LOCAL_FOLDER_FAILED = 'SCAN_LOCAL_FOLDER_FAILED';
 export const OPEN_LOCAL_FOLDER_PICKER = 'OPEN_LOCAL_FOLDER_PICKER';
@@ -21,17 +20,13 @@ export function removeLocalFolder(payload) {
   };
 }
 
-export function scanLocalFolders(payload) {
-  return {
-    type: SCAN_LOCAL_FOLDER,
-    payload
-  };
-}
-
 export function scanLocalFoldersSuccess(payload) {
   return {
     type: SCAN_LOCAL_FOLDER_SUCCESS,
-    payload
+    payload: payload.reduce((acc, track) => ({
+      ...acc,
+      [track.id]: track
+    }), {})
   };
 }
 
