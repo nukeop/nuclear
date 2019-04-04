@@ -68,7 +68,7 @@
     "numeral": "^2.0.6",
     "pitchfork-bnm": "^1.0.3",
     "react": "^16.3.2",
-    "react-beautiful-dnd": "^9.0.0",
+    "react-beautiful-dnd": "^10.1.1",
     "react-dom": "^16.3.2",
     "react-image-smooth-loading": "^2.0.0",
     "react-range-progress": "^4.0.3",
