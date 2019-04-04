@@ -1,15 +1,15 @@
-.list {
+.equalizer_list {
   margin: auto !important;
   width: 50%;
   height: 200px;
   overflow: auto;
 }
 
-.item {
+.equalizer_item {
   padding: 5px !important;
 }
 
-.click_item {
+.equalizer_click_item {
   cursor: pointer;
   :hover {
     border-right: solid 2px white;
