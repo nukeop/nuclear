@@ -87,9 +87,18 @@
 }
 
 .track_thumbnail {
-  width: 3rem;
-  height: 3rem;
-  background-repeat: no-repeat
+  position: relative;
+  box-sizing: content-box;
+  height: 3em;
+  width: 3em;
+  padding: 0 !important;
+
+  img {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    height: 100%;
+  }
 }
 
 table {

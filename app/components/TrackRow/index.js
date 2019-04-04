@@ -10,6 +10,18 @@ import { formatDuration } from '../../utils';
 import styles from './styles.scss';
 
 class TrackRow extends React.Component {
+  getThumbnail(track) {
+    return _.get(
+      track,
+      'image[1][\'#text\']',
+      _.get(
+        track,
+        'image[0][\'#text\']',
+        artPlaceholder
+      )
+    );
+  }
+  
   renderAddTrackToQueueButton (index, track, addToQueue, musicSources) {
     return (
       <a
@@ -19,7 +31,7 @@ class TrackRow extends React.Component {
           addToQueue(musicSources, {
             artist: track.artist.name,
             name: track.name,
-            thumbnail: _.get(track, 'image[0][\'#text\']', artPlaceholder)
+            thumbnail: this.getThumbnail(track)
           })
         }
         className={styles.add_button}
@@ -53,7 +65,7 @@ class TrackRow extends React.Component {
           notifyInfo(
             'Favorite track added',
             `${track.artist.name} - ${track.name} has been added to favorites.`,
-            <img src={_.get(track, 'image[0][\'#text\']', artPlaceholder)} />,
+            <img src={ this.getThumbnail(track) } />,
             settings
           );
         }}
@@ -79,7 +91,7 @@ class TrackRow extends React.Component {
     addToQueue(musicSources, {
       artist: track.artist.name,
       name: track.name,
-      thumbnail: _.get(track, 'image[0][\'#text\']', artPlaceholder)
+      thumbnail: this.getThumbnail(track)
     });
     selectSong(0);
     startPlayback();
@@ -99,14 +111,12 @@ class TrackRow extends React.Component {
   renderTrigger (track) {
     return (
       <tr className={styles.track} onDoubleClick={this.playTrack}>
-        {this.props.displayCover &&
-          <td
-            style={{
-              backgroundImage: `url(${_.get(track, 'image[0][#text]', artPlaceholder)})`,
-              backgroundPosition: 'center'
-            }}
-            className={styles.track_thumbnail}
-          />}
+        {
+          this.props.displayCover &&
+            <td className={styles.track_thumbnail}>
+              <img src={this.getThumbnail(track)}/>
+            </td>
+        }
         {this.props.displayTrackNumber && <td className={styles.track_artist}>{track.position}</td>}
         {this.props.displayArtist && <td className={styles.track_artist}>{track.artist.name}</td>}
         <td className={styles.track_name}>{track.name}</td>
@@ -151,7 +161,7 @@ class TrackRow extends React.Component {
         trigger={this.renderTrigger(track)}
         artist={track.artist.name}
         title={track.name}
-        thumb={_.get(track, 'image[1][\'#text\']', _.get(track, 'image[0][\'#text\']', artPlaceholder))}
+        thumb={ this.getThumbnail(track) }
       >
         {popupContents}
       </ContextPopup>
