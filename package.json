@@ -126,7 +126,7 @@
     "react-hot-loader": "next",
     "react-redux": "^5.0.6",
     "react-router": "^4.2.0",
-    "react-router-dom": "^4.2.2",
+    "react-router-dom": "^5.0.0",
     "react-router-redux": "^4.0.8",
     "redux": "^4.0.0",
     "redux-promise": "^0.6.0",
