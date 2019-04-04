@@ -18,12 +18,12 @@ const FavoriteTracksView = props => {
   } = props;
 
   const {
-      artistInfoSearchByName,
-      albumInfoSearchByName,
-      addToQueue,
-      selectSong,
-      clearQueue,
-      startPlayback
+    artistInfoSearchByName,
+    albumInfoSearchByName,
+    addToQueue,
+    selectSong,
+    clearQueue,
+    startPlayback
   } = actions;
   
   return (
