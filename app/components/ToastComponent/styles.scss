@@ -10,4 +10,9 @@
     height: auto;
     pointer-events: all;
   }
+
+  .toast_icon,
+  img {
+    max-height: 3.5rem;
+  }
 }
