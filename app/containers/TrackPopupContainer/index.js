@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Popup } from 'semantic-ui-react';
 
 import * as FavoritesActions from '../../actions/favorites';
 import * as PlayerActions from '../../actions/player';
 import * as QueueActions from '../../actions/queue';
+import * as ToastActions from '../../actions/toasts';
 
 import ContextPopup from '../../components/ContextPopup';
 import PopupButton from '../../components/ContextPopup/PopupButton';
@@ -14,14 +14,18 @@ import PopupButton from '../../components/ContextPopup/PopupButton';
 const TrackPopupContainer = props => {
   const {
     trigger,
+    track,
     artist,
     title,
     thumb,
     actions,
     musicSources,
+    settings,
 
     withAddToQueue,
-    withPlayNow
+    withPlayNow,
+    withAddToFavorites,
+    withAddToDownloads
   } = props;
   
   return (
@@ -69,12 +73,49 @@ const TrackPopupContainer = props => {
           label='Play now'
         />
       }
+
+      {
+        withAddToFavorites &&
+        <PopupButton
+          onClick={ () => {
+            actions.addFavoriteTrack(track);
+            actions.info(
+              'Favorite track added',
+              `${artist} - ${title} has been added to favorites.`,
+              <img src={ thumb } />,
+              settings
+            );
+          }}
+          ariaLabel='Add this track to favorites'
+          icon='star'
+          label='Add to favorites'
+        />
+      }
+
+      {
+        withAddToDownloads &&
+        <PopupButton
+          onClick={ () => {
+            actions.info(
+              'Track added to downloads',
+              `${artist} - ${title} has been added to downloads.`,
+              <img src={ thumb } />,
+              settings
+            );
+          }}
+          ariaLabel='Download this track'
+          icon='download'
+          label='Download'
+        />
+      }
+    
     </ContextPopup>
   );
 };
 
 TrackPopupContainer.propTypes = {
   trigger: PropTypes.node,
+  track: PropTypes.object,
   artist: PropTypes.string,
   title: PropTypes.string,
   thumb: PropTypes.string,
@@ -85,6 +126,7 @@ TrackPopupContainer.propTypes = {
     startPlayback: PropTypes.func
   }),
   musicSources: PropTypes.array,
+  settings: PropTypes.object,
 
   withAddToQueue: PropTypes.bool,
   withPlayNow: PropTypes.bool,
@@ -94,11 +136,13 @@ TrackPopupContainer.propTypes = {
 
 TrackPopupContainer.defaultProps = {
   trigger: null,
+  track: {},
   artist: '',
   title: '',
   thumb: '',
   actions: {},
   musicSources: [],
+  settings: {},
   
   withAddToQueue: true,
   withPlayNow: true,
@@ -108,7 +152,8 @@ TrackPopupContainer.defaultProps = {
 
 function mapStateToProps (state) {
   return {
-    musicSources: state.plugin.plugins.musicSources
+    musicSources: state.plugin.plugins.musicSources,
+    settings: state.settings
   };
 }
 
@@ -119,7 +164,8 @@ function mapDispatchToProps (dispatch) {
         {},
         FavoritesActions,
         QueueActions,
-        PlayerActions
+        PlayerActions,
+        ToastActions
       ),
       dispatch
     )
