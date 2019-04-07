@@ -15,6 +15,11 @@
     margin: 0 0 1rem 0;
   }
 
+  .segment {
+    background: rgba($background2, 0.35);
+    border: 1px solid $background2;
+  }
+
   .settings_item {
     position: relative;
     display: flex;
@@ -23,6 +28,14 @@
     justify-content: left;
     margin: 2rem 0;
 
+    &:first-child {
+      margin-top: 0;
+    }
+    
+    &:last-child {
+      margin-bottom: 0;
+    }
+    
     &.string,
     &.number {
       flex-flow: column;
@@ -51,8 +64,6 @@
 
       input {
         color: $grey;
-        border: none;
-        border-radius: 0px 2px 2px 0px;
         background-color: $background3;
       }
     }
