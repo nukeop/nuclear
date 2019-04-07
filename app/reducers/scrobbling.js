@@ -32,6 +32,8 @@ export default function ScrobblingReducer(state=initialState, action) {
         lastFmSessionKey: action.payload.lastFmSessionKey,
         lastFmScrobblingEnabled: action.payload.lastFmScrobblingEnabled
       });
+    } else {
+      return state;
     }
   case LASTFM_ENABLE_SCROBBLING:
     return Object.assign({}, state, {
