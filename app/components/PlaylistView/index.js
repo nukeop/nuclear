@@ -149,15 +149,11 @@ class PlaylistView extends React.Component {
     const newTrack = _.cloneDeep(track);
     _.set(newTrack, 'artist.name', newTrack.artist);
     _.set(newTrack, 'image[0][\'#text\']', newTrack.thumbnail);
+    
     return (< TrackRow
       key={'playlist-track-row-' + index}
       track={newTrack}
       index={'playlist-track-' + index}
-      clearQueue={this.props.clearQueue}
-      addToQueue={this.props.addToQueue}
-      startPlayback={this.props.startPlayback}
-      selectSong={this.props.selectSong}
-      musicSources={this.props.musicSources}
       displayCover
       displayArtist
     />

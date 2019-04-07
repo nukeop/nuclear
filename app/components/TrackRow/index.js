@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
 import numeral from 'numeral';
-import FontAwesome from 'react-fontawesome';
 
 import artPlaceholder from '../../../resources/media/art_placeholder.png';
 

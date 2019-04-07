@@ -53,14 +53,6 @@ class Dashboard extends React.Component {
         render: () => (
           <ChartsTab
             topTracks={dashboardData.topTracks}
-            addToQueue={addToQueue}
-            selectSong={selectSong}
-            clearQueue={clearQueue}
-            startPlayback={startPlayback}
-            musicSources={musicSources}
-            addFavoriteTrack={addFavoriteTrack}
-            notifyInfo={info}
-            settings={settings}
           />
         )
       },
