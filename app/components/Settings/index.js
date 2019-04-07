@@ -1,6 +1,6 @@
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
-import { Button, Input, Radio } from 'semantic-ui-react';
+import { Button, Input, Radio, Segment } from 'semantic-ui-react';
 import Range from 'react-range-progress';
 import cx from 'classnames';
 import _ from 'lodash';
@@ -43,7 +43,7 @@ class Settings extends React.Component {
 
   renderLastFmTitle () {
     return (
-      <div className={styles.settings_item}>
+      <React.Fragment>
         <label>
           <span className={styles.settings_logo}>
             <span className='fa-stack fa-lg'>
@@ -56,8 +56,12 @@ class Settings extends React.Component {
             </span>
           </span>
           <span>Last.fm integration</span>
+          <p>
+            In order to enable scrobbling, you first have to connect and
+            authorize Nuclear on Last.fm, then click log in.
+          </p>
         </label>
-      </div>
+      </React.Fragment>
     );
   }
 
@@ -67,6 +71,7 @@ class Settings extends React.Component {
       lastFmName,
       lastFmSessionKey
     } = this.props.scrobbling;
+    
     const { lastFmConnectAction, lastFmLoginAction } = this.props.actions;
     return (
       <div className={styles.settings_item}>
@@ -96,7 +101,7 @@ class Settings extends React.Component {
     const { enableScrobbling, disableScrobbling } = this.props.actions;
     return (
       <div className={styles.settings_item}>
-        <label>Enable scrobbling to last.fm</label>
+        <label>Enable scrobbling to Last.fm</label>
         <Spacer />
         <Radio
           toggle
@@ -118,17 +123,11 @@ class Settings extends React.Component {
       <div className={styles.settings_section}>
         <Header>Social</Header>
         <hr />
-        {this.renderLastFmTitle()}
-
-        <div className={styles.settings_item}>
-          <p>
-            In order to enable scrobbling, you first have to connect and
-            authorize nuclear on Last.fm, then click log in.
-          </p>
-        </div>
-
-        {this.renderLastFmLoginButtons()}
-        {this.renderLastFmOptionRadio()}
+        <Segment>
+          {this.renderLastFmTitle()}
+          {this.renderLastFmLoginButtons()}
+          {this.renderLastFmOptionRadio()}
+        </Segment>
       </div>
     );
   }
@@ -223,9 +222,11 @@ class Settings extends React.Component {
             <div key={i} className={styles.settings_section}>
               <Header>{i}</Header>
               <hr />
-              {_.map(group, (option, j) =>
-                this.renderOption(settings, option, j)
-              )}
+              <Segment>
+                {_.map(group, (option, j) =>
+                  this.renderOption(settings, option, j)
+                )}
+              </Segment>
             </div>
           );
         })}
