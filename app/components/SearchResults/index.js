@@ -74,10 +74,6 @@ class SearchResults extends React.Component {
               ? this.props.unifiedSearchStarted
                 ? null
                 : <TracksResults
-                  clearQueue={this.props.clearQueue}
-                  addToQueue={this.props.addToQueue}
-                  startPlayback={this.props.startPlayback}
-                  selectSong={this.props.selectSong}
                   tracks={collection}
                   limit='15'
                 />

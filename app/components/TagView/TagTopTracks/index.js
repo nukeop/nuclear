@@ -55,11 +55,6 @@ class TagTopTracks extends React.Component {
                 track={track}
                 index={'popular-track-' + index}
                 artist={track.artist}
-                clearQueue={this.props.clearQueue}
-                addToQueue={this.props.addToQueue}
-                startPlayback={this.props.startPlayback}
-                selectSong={this.props.selectSong}
-                musicSources={this.props.musicSources}
                 displayCover
                 displayArtist
                 displayDuration

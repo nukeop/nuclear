@@ -72,9 +72,6 @@ class ArtistView extends React.Component {
     let {
       artist,
       addToQueue,
-      selectSong,
-      startPlayback,
-      clearQueue,
       musicSources
     } = this.props;
     
@@ -85,9 +82,6 @@ class ArtistView extends React.Component {
           tracks={artist.lastfm.toptracks}
           artist={artist}
           addToQueue={addToQueue}
-          selectSong={selectSong}
-          startPlayback={startPlayback}
-          clearQueue={clearQueue}
           musicSources={musicSources}
         />
       )
