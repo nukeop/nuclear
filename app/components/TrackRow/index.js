@@ -3,8 +3,10 @@ import PropTypes from 'prop-types';
 import _ from 'lodash';
 import numeral from 'numeral';
 import FontAwesome from 'react-fontawesome';
+
 import artPlaceholder from '../../../resources/media/art_placeholder.png';
-import ContextPopup from '../ContextPopup';
+
+import TrackPopupContainer from '../../containers/TrackPopupContainer';
 import { formatDuration } from '../../utils';
 
 import styles from './styles.scss';
@@ -20,81 +22,6 @@ class TrackRow extends React.Component {
         artPlaceholder
       )
     );
-  }
-  
-  renderAddTrackToQueueButton (index, track, addToQueue, musicSources) {
-    return (
-      <a
-        key={'add-track-' + index}
-        href='#'
-        onClick={() =>
-          addToQueue(musicSources, {
-            artist: track.artist.name,
-            name: track.name,
-            thumbnail: this.getThumbnail(track)
-          })
-        }
-        className={styles.add_button}
-        aria-label='Add track to queue'
-      >
-        <FontAwesome name='plus' /> Add to queue
-      </a>
-    );
-  }
-
-  renderPlayTrackButton (index) {
-    return (
-      <a
-        key={'play-track-' + index}
-        href='#'
-        onClick={this.playTrack}
-        className={styles.add_button}
-        aria-label='Play this track now'
-      >
-        <FontAwesome name='play' /> Play now
-      </a>
-    );
-  }
-
-  renderAddToFavoritesButton(index, track, settings, addFavoriteTrack, notifyInfo) {
-    return (
-      <a
-        href='#'
-        onClick={() => {
-          addFavoriteTrack(track);
-          notifyInfo(
-            'Favorite track added',
-            `${track.artist.name} - ${track.name} has been added to favorites.`,
-            <img src={ this.getThumbnail(track) } />,
-            settings
-          );
-        }}
-        className={styles.add_button}
-        aria-label='Add this track to favorites'
-      >
-        <FontAwesome name='star' /> Add to favorites
-      </a>
-    );
-  }
-
-  playTrack = () => {
-    const {
-      track,
-      clearQueue,
-      addToQueue,
-      selectSong,
-      startPlayback,
-      musicSources
-    } = this.props;
-
-    clearQueue();
-    addToQueue(musicSources, {
-      artist: track.artist.name,
-      name: track.name,
-      thumbnail: this.getThumbnail(track)
-    });
-    selectSong(0);
-    startPlayback();
   }
 
   renderDuration (track) {
@@ -128,67 +55,51 @@ class TrackRow extends React.Component {
 
   render () {
     let {
-      index,
       track,
-      addToQueue,
-      addFavoriteTrack,
-      notifyInfo,
-      musicSources,
-      withFavorites,
-      settings
-    } = this.props;
 
-    let popupContents = [
-      this.renderAddTrackToQueueButton(
-        index,
-        track,
-        addToQueue,
-        musicSources
-      ),
-      this.renderPlayTrackButton(index),
-      withFavorites && this.renderAddToFavoritesButton(
-        index,
-        track,
-        settings,
-        addFavoriteTrack,
-        notifyInfo
-      )
-    ];
+      withAddToQueue,
+      withPlayNow,
+      withAddToFavorites,
+      withAddToDownloads
+    } = this.props;
     
     return (
-      <ContextPopup
-        key={'track-' + index}
+      <TrackPopupContainer
         trigger={this.renderTrigger(track)}
-        artist={track.artist.name}
-        title={track.name}
+        track={ track }
+        artist={ track.artist.name }
+        title={ track.name }
         thumb={ this.getThumbnail(track) }
-      >
-        {popupContents}
-      </ContextPopup>
+
+        withAddToQueue={ withAddToQueue }
+        withPlayNow={ withPlayNow }
+        withAddToFavorites={ withAddToFavorites }
+        withAddToDownloads={ withAddToDownloads }
+      />
     );
   }
 }
 
 TrackRow.propTypes = {
-  index: PropTypes.number,
   track: PropTypes.object,
-  addToQueue: PropTypes.func,
-  clearQueue: PropTypes.func,
-  selectSong: PropTypes.func,
-  startPlayback: PropTypes.func,
-  musicSources: PropTypes.array,
-  settings: PropTypes.object,
 
   displayCover: PropTypes.bool,
   displayTrackNumber: PropTypes.bool,
   displayArtist: PropTypes.bool,
   displayDuration: PropTypes.bool,
   displayPlayCount: PropTypes.bool,
-  withFavorites: PropTypes.bool
+  
+  withAddToQueue: PropTypes.bool,
+  withPlayNow: PropTypes.bool,
+  withAddToFavorites: PropTypes.bool,
+  withAddToDownloads: PropTypes.bool
 };
 
 TrackRow.defaultProps = {
-  withFavorites: false
+  withAddToQueue: true,
+  withPlayNow: true,
+  withAddToFavorites: true,
+  withAddToDownloads: true
 };
 
 export default TrackRow;
