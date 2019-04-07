@@ -27,11 +27,6 @@ class TracksResults extends React.Component {
                   key={'search-result-track-row-' + index}
                   track={newTrack}
                   index={'popular-track-' + index}
-                  clearQueue={this.props.clearQueue}
-                  addToQueue={this.props.addToQueue}
-                  startPlayback={this.props.startPlayback}
-                  selectSong={this.props.selectSong}
-                  musicSources={this.props.musicSources}
                   displayArtist
                   displayCover
                 />;
