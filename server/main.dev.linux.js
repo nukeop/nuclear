@@ -7,6 +7,7 @@ const path = require('path');
 const url = require('url');
 const getOption = require('./store').getOption;
 const { runHttpServer, closeHttpServer } = require('./http/server');
+import { registerDownloadsEvents } from './downloads';
 
 // GNU/Linux-specific
 if (!platform.isDarwin && !platform.isWin32) {

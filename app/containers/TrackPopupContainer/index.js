@@ -2,7 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { ipcRenderer } from 'electron';
 
+import * as DownloadsActions from '../../actions/downloads';
 import * as FavoritesActions from '../../actions/favorites';
 import * as PlayerActions from '../../actions/player';
 import * as QueueActions from '../../actions/queue';
@@ -96,6 +98,8 @@ const TrackPopupContainer = props => {
         withAddToDownloads &&
         <PopupButton
           onClick={ () => {
+            ipcRenderer.send('start-download', track);
+            actions.addToDownloads(track);
             actions.info(
               'Track added to downloads',
               `${artist} - ${title} has been added to downloads.`,
@@ -123,7 +127,8 @@ TrackPopupContainer.propTypes = {
     addToQueue: PropTypes.func,
     clearQueue: PropTypes.func,
     selectSong: PropTypes.func,
-    startPlayback: PropTypes.func
+    startPlayback: PropTypes.func,
+    addToDownloads: PropTypes.func
   }),
   musicSources: PropTypes.array,
   settings: PropTypes.object,
@@ -162,6 +167,7 @@ function mapDispatchToProps (dispatch) {
     actions: bindActionCreators(
       Object.assign(
         {},
+        DownloadsActions,
         FavoritesActions,
         QueueActions,
         PlayerActions,
