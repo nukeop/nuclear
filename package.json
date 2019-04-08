@@ -51,6 +51,7 @@
     "cors": "^2.8.5",
     "d3-drag": "^1.2.3",
     "d3-selection": "^1.4.0",
+    "electron-dl": "^1.14.0",
     "electron-platform": "^1.2.0",
     "electron-store": "^2.0.0",
     "electron-timber": "^0.5.1",
