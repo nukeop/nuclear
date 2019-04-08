@@ -19,7 +19,7 @@ import SettingsContainer from '../SettingsContainer';
 import TagViewContainer from '../TagViewContainer';
 import EqualizerViewContainer from '../EqualizerViewContainer';
 
-import Downloads from '../../components/Downloads';
+import DownloadsContainer from '../../containers/DownloadsContainer';
 
 class MainContentContainer extends React.Component {
   componentDidMount () {
@@ -39,7 +39,7 @@ class MainContentContainer extends React.Component {
               <Route path='/album/:albumId' component={AlbumViewContainer} />
               <Route path='/artist/:artistId' component={ArtistViewContainer} />
               <Route path='/dashboard' component={DashboardContainer} />
-              <Route path='/downloads' component={Downloads} />
+              <Route path='/downloads' component={DownloadsContainer} />
               <Route path='/favorites/tracks' component={FavoritesContainer} />
               <Route path='/playlists' component={PlaylistsContainer} />
               <Route path='/playlist/:playlistId' component={PlaylistViewContainer} />
