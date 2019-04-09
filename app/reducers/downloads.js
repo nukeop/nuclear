@@ -11,7 +11,7 @@ export default function DownloadsReducer(state=initialState, action) {
   switch (action.type) {
   case ADD_TO_DOWNLOADS:
     return Object.assign({}, state, {
-      downloads: _.concat(state.downloads, action.payload.track)
+      downloads: _.concat(state.downloads, action.payload.item)
     });
   default:
     return state;
