@@ -6,6 +6,7 @@ import { bindActionCreators } from 'redux';
 import Downloads from '../../components/Downloads';
 
 const DownloadsContainer = props => {
+  console.log(props);
   return (
     <Downloads
       downloads={ props.downloads }

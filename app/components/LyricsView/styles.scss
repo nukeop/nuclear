@@ -1,27 +1,11 @@
+@import '../../mixin.scss';
+
 .lyrics_view {
   position: relative;
   height: 100%;
 
   .empty_state {
-    display: flex;
-    flex-flow: column;
-    align-items: center;
-    justify-content: center;
-    
-    height: 100%;
-
-    .fa {
-      font-size: 72px;
-    }
-    
-    h2 {
-      font-size: 48px;
-      font-weight: normal;
-    }
-
-    div {
-      font-size: 20px;
-    }
+    @include emptyState;
   }
   
   .lyrics_text{
