@@ -10,7 +10,7 @@ const DownloadsList = props => {
   const {
     items
   } = props;
-  console.log(items);
+  
   return (
     <Table inverted>
       <Table.Header>
