@@ -99,7 +99,7 @@ const TrackPopupContainer = props => {
         <PopupButton
           onClick={ () => {
             ipcRenderer.send('start-download', track);
-            actions.addToDownloads(track);
+            actions.addToDownloads(musicSources, track);
             actions.info(
               'Track added to downloads',
               `${artist} - ${title} has been added to downloads.`,
