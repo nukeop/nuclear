@@ -1,31 +1,45 @@
 import _ from 'lodash';
 export const ADD_TO_DOWNLOADS = 'ADD_TO_DOWNLOADS';
+export const DOWNLOAD_STARTED = 'DOWNLOAD_STARTED';
+export const DOWNLOAD_PROGRESS = 'DOWNLOAD_PROGRESS';
+export const DOWNLOAD_FINISHED = 'DOWNLOAD_FINISHED';
+export const DOWNLOAD_ERROR = 'DOWNLOAD_ERROR';
 
-function addTrackToDownloads(track) {
+export function addToDownloads(musicSources, track) {
   return {
     type: ADD_TO_DOWNLOADS,
     payload: { item: {
-      status: 'Started',
+      status: 'Waiting',
       completion: 0,
       track
     } }
   };
 }
 
-export function addToDownloads(musicSources, track) {
-  return dispatch => {
-    Promise.all(_.map(musicSources, m => m.search({ artist: track.artist, track: track.name })))
-      .then(results => Promise.all(results))
-      .then(streams => {
-        dispatch(
-          addTrackToDownloads(
-            Object.assign(
-              {},
-              track,
-              { streams }
-            )
-          )
-        );
-      });
+export function onDownloadStarted(uuid) {
+  return {
+    type: DOWNLOAD_STARTED,
+    payload: {
+      uuid
+    }
+  };
+}
+
+export function onDownloadProgress(uuid, progress) {
+  return {
+    type: DOWNLOAD_PROGRESS,
+    payload: {
+      uuid,
+      progress
+    }
+  };
+}
+
+export function onDownloadFinished(uuid) {
+  return {
+    type: DOWNLOAD_FINISHED,
+    payload: {
+      uuid
+    }
   };
 }
