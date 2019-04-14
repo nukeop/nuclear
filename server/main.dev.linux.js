@@ -1,5 +1,5 @@
+import 'babel-polyfill';
 import logger from 'electron-timber';
-import electronDl from 'electron-dl';
 import platform from 'electron-platform';
 import path from 'path';
 import url from 'url';
@@ -17,7 +17,6 @@ const getOption = require('./store').getOption;
 if (!platform.isDarwin && !platform.isWin32) {
   // Player = require('mpris-service');
 }
-electronDl();
 
 let win;
 let httpServer;
@@ -93,7 +92,7 @@ function createWindow() {
   tray.setToolTip('nuclear music player');
   tray.setContextMenu(trayMenu);
 
-  registerDownloadsEvents();
+  registerDownloadsEvents(win);
 
   ipcMain.on('close', () => {
     logger.log('Received a close message from ipc, quitting');
