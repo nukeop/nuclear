@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Table } from 'semantic-ui-react';
+import { Segment, Table } from 'semantic-ui-react';
 
 import DownloadsItem from '../DownloadsItem';
 
@@ -12,24 +12,26 @@ const DownloadsList = props => {
   } = props;
   
   return (
-    <Table inverted>
-      <Table.Header>
-        <Table.Row>
-          <Table.HeaderCell>Status</Table.HeaderCell>
-          <Table.HeaderCell>Name</Table.HeaderCell>
-          <Table.HeaderCell>Completion</Table.HeaderCell>
-        </Table.Row>
-      </Table.Header>
-      {
-        items.map(item => {
-          return (
-            <DownloadsItem
-              item={ item }
-            />
-          );
-        })
-      }
-    </Table>
+    <Segment inverted>
+      <Table inverted className={styles.downloads_list}>
+        <Table.Header>
+          <Table.Row>
+            <Table.HeaderCell>Status</Table.HeaderCell>
+            <Table.HeaderCell>Name</Table.HeaderCell>
+            <Table.HeaderCell>Completion</Table.HeaderCell>
+          </Table.Row>
+        </Table.Header>
+        {
+          items.map(item => {
+            return (
+              <DownloadsItem
+                item={ item }
+              />
+            );
+          })
+        }
+      </Table>
+    </Segment>
   );
 };
 
