@@ -5,18 +5,14 @@ import globals from '../globals';
 import ytlist from 'youtube-playlist';
 import getArtistTitle from 'get-artist-title';
 
+import { trackSearch } from './youtube-search';
+
 const lastfm = new core.LastFmApi(
   globals.lastfmApiKey,
   globals.lastfmApiSecret
 );
 
-function prepareUrl (url) {
-  return `${url}&key=${globals.ytApiKey}`;
-}
-
-export function trackSearch (track) {
-  return fetch(prepareUrl('https://www.googleapis.com/youtube/v3/search?part=id,snippet&type=video&maxResults=50&q=' + encodeURIComponent(track)));
-}
+export { trackSearch };
 
 function isValidURL (str) {
   let pattern = new RegExp('^(https?:\\/\\/)' + // protocol
@@ -106,5 +102,3 @@ export function urlSearch (url) {
     });
   }
 }
-
-

@@ -25,9 +25,6 @@ class ArtistViewContainer extends React.Component {
         albumInfoSearch={actions.albumInfoSearch}
         artistInfoSearchByName={actions.artistInfoSearchByName}
         addToQueue={actions.addToQueue}
-        selectSong={actions.selectSong}
-        startPlayback={actions.startPlayback}
-        clearQueue={actions.clearQueue}
         musicSources={musicSources}
         history={history}
       />
