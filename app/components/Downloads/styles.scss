@@ -1,3 +1,10 @@
-.downloads_container {
+@import '../../mixin.scss';
 
+.downloads_container {
+  position: relative;
+  height: 100%;
+  
+  .empty_state {
+    @include emptyState;
+  }
 }

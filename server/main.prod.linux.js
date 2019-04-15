@@ -6,6 +6,7 @@ const url = require('url');
 // const mpris = require('./mpris');
 const getOption = require('./store').getOption;
 const { runHttpServer, closeHttpServer } = require('./http/server');
+import { registerDownloadsEvents } from './downloads';
 
 let httpServer;
 let win;
@@ -66,6 +67,8 @@ function createWindow() {
   tray.setTitle('nuclear music player');
   tray.setToolTip('nuclear music player');
   tray.setContextMenu(trayMenu);
+
+  registerDownloadsEvents(win);
 
   ipcMain.on('close', () => {
     closeHttpServer(httpServer).then(() => app.quit());

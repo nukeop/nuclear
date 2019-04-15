@@ -5,7 +5,7 @@ let rendererWindow = null;
 
 // const events = ['raise', 'quit', 'next', 'previous', 'pause', 'playpause', 'stop', 'play', 'seek', 'position', 'open', 'volume', 'settings'];
 
-ipcMain.on('started', event => {
+ipcMain.once('started', event => {
   logger.log('Renderer process started and registered.');
   rendererWindow = event.sender;
 });
