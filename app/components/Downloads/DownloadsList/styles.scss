@@ -1,3 +1,28 @@
-.downloads_list {
+@import '../../../vars.scss';
 
+.downloads_list {
+  background: none !important;
+  
+  thead {
+    font-size: 16px;
+    font-variant: small-caps;
+    background: none;
+
+    th:nth-child(3) {
+      text-align: right;
+    }
+  }
+
+  &>tr {
+    transition: $short-duration ease-in-out;
+    border-bottom: 1px solid rgba($background2, 0.2);
+
+    &:hover {
+      background: lighten($background, 10%);
+    }
+
+    td:nth-child(3) {
+      text-align: right;
+    }
+  }
 }
