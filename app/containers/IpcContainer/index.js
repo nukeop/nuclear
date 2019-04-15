@@ -8,6 +8,7 @@ import * as QueueActions from '../../actions/queue';
 import * as SettingsActions from '../../actions/settings';
 import * as PlaylistActions from '../../actions/playlists';
 import * as EqualizerActions from '../../actions/equalizer';
+import * as DownloadsActions from '../../actions/downloads';
 
 import {
   onNext,
@@ -50,6 +51,19 @@ class IpcContainer extends React.Component {
     ipcRenderer.on('refresh-playlists', (event) => onRefreshPlaylists(event, this.props.actions));
     ipcRenderer.on('update-equalizer', (event, data) =>  onUpdateEqualizer(event, this.props.actions, data));
     ipcRenderer.on('set-equalizer', (event, data) => onSetEqualizer(event, this.props.actions, data));
+
+    ipcRenderer.on('download-started', (event, data) => {
+      this.props.actions.onDownloadStarted(data);
+    });
+    ipcRenderer.on('download-progress', (event, data) => {
+      this.props.actions.onDownloadProgress(data.uuid, data.progress);
+    });
+    ipcRenderer.on('download-finished', (event, data) => {
+      this.props.actions.onDownloadFinished(data);
+    });
+    ipcRenderer.on('download-error', (event, data) => {
+      console.error(data);
+    });
   }
 
   componentWillReceiveProps(nextProps){
@@ -80,7 +94,8 @@ function mapDispatchToProps(dispatch) {
         QueueActions,
         SettingsActions,
         PlaylistActions,
-        EqualizerActions
+        EqualizerActions,
+        DownloadsActions
       ),
       dispatch
     )

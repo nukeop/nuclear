@@ -79,26 +79,4 @@
       border-top: 1px solid rgba($lightbg, 0.4);
     }
   }
-
-  .track_thumbnail {
-    width: 3rem;
-    height: 3rem;
-  }
-
-  .track_info {
-    display: flex;
-    flex-flow: row;
-    justify-content: space-around;
-    align-items: center;
-    margin: 0.75rem;
-  }
-
-  .track_artist {
-    color: rgba($grey, 0.5);
-    margin: 0 1rem;
-  }
-  
-  .track_name {
-
-  }
 }

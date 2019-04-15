@@ -27,10 +27,7 @@ class FavoritesContainer extends React.Component {
   render() {
     if (this.props.match.path.endsWith(TRACKS_PATH)) {
       return <FavoriteTracksView
-      tracks={_.get(this.props.favorites, 'tracks')}
-      settings={this.props.settings}
-      actions={this.props.actions}
-      musicSources={this.props.musicSources}
+        tracks={_.get(this.props.favorites, 'tracks')}
       />;
     }
     
@@ -39,28 +36,24 @@ class FavoritesContainer extends React.Component {
 }
 
 FavoritesContainer.propTypes = {
-  actions: PropTypes.object,
   favorites: PropTypes.shape({
     tracks: PropTypes.array,
     albums: PropTypes.array,
     artists: PropTypes.array
   }),
-  settings: PropTypes.object,
-  musicSources: PropTypes.array
+  actions: PropTypes.shape({
+    readFavorites: PropTypes.func
+  })
 };
 
 FavoritesContainer.defaultProps = {
-  actions: {},
   favorites: { tracks: [], albums: [], artists: [] },
-  settings: {},
-  musicSources: []
+  actions: {}
 };
 
 function mapStateToProps (state) {
   return {
-    favorites: state.favorites,
-    settings: state.settings,
-    musicSources: state.plugin.plugins.musicSources
+    favorites: state.favorites
   };
 }
 
@@ -69,10 +62,7 @@ function mapDispatchToProps (dispatch) {
     actions: bindActionCreators(
       Object.assign(
         {},
-        FavoritesActions,
-        QueueActions,
-        PlayerActions,
-        ToastActions
+        FavoritesActions
       ),
       dispatch
     )
