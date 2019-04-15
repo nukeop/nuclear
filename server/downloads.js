@@ -31,7 +31,7 @@ export const registerDownloadsEvents = window => {
         const streamUrl = formatInfo.url;
         
         return download(window, streamUrl, {
-          filename: filename,
+          filename: filename + `.${_.get(formatInfo, 'container')}`,
           onStarted: () => {
             rendererWindow.send('download-started', data.uuid);
           },
