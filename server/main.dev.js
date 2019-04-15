@@ -16,6 +16,7 @@ const path = require('path');
 const url = require('url');
 const { getOption, setOption } = require('./store');
 const { runHttpServer, closeHttpServer } = require('./http/server');
+import { registerDownloadsEvents } from './downloads';
 
 let httpServer;
 let win;
@@ -96,6 +97,8 @@ function createWindow () {
   tray.setTitle('Nuclear Music Player');
   tray.setToolTip('Nuclear Music Player');
   tray.setContextMenu(trayMenu);
+
+  registerDownloadsEvents(win);
 
   ipcMain.on('close', () => {
     closeHttpServer(httpServer).then(() => app.quit());
