@@ -1,0 +1,27 @@
+@import '../../vars.scss';
+
+.help_button {
+  position: relative;
+  display: inline-flex !important;
+  justify-content: center;
+  align-items: center;
+  background: transparent !important;
+  height: 36px;
+  width: 36px;
+  padding: 0;
+  transition: $short-duration !important;
+
+  i {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    color: rgba($white, 0.3);
+    font-size: 2rem;
+  }
+
+  &:hover i {
+    color: rgba($white, 0.75);
+  }
+}
