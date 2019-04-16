@@ -50,10 +50,6 @@
       font-weight: lighter;
     }
 
-    label {
-      flex: 1 1 auto;
-    }
-
     .checkbox {
       align-self: flex-end;
       flex: 0 0 auto;
@@ -85,6 +81,16 @@
   }
 
   .slider_container{
-    width:100%;
+    display: flex;
+    flex-flow: row;
+    width: 100%;
+
+    div {
+      flex: 1 1 auto;
+    }
+
+    #rrp-baseDiv {
+      margin: 0 2rem;
+    }
   }
 }
