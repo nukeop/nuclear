@@ -155,21 +155,27 @@ class Settings extends React.Component {
   }
 
   renderSliderOption (option) {
-    return (<div className={styles.slider_container}>
-      Value : {this.getOptionValue(option) || option.default} {option.unit}
-      <Range
-        value={this.getOptionValue(option) || option.default}
-        min={option.min}
-        max={option.max}
-        fillColor={volumeSliderColors.fillColor}
-        trackColor={volumeSliderColors.trackColor}
-        thumbColor={volumeSliderColors.thumbColor}
-        height={4}
-        width='100%'
-        onChange={(e) => this.handleSliderChange(e, option)}
-      />
-    </div>);
+    // Value : {this.getOptionValue(option) || option.default} {option.unit}
+    return (
+      <div className={styles.slider_container}>
+        <label>Less</label>  
+        <Range
+          value={this.getOptionValue(option) || option.default}
+          min={option.min}
+          max={option.max}
+          fillColor={volumeSliderColors.fillColor}
+          trackColor={volumeSliderColors.trackColor}
+          thumbColor={volumeSliderColors.thumbColor}
+          height={4}
+          width='auto'
+          onChange={(e) => this.handleSliderChange(e, option)}
+          thumbSize={21}
+        />
+        <label>More</label>
+      </div>
+    );
   }
+  
   renderNumberOption (option) {
     if (typeof option.unit === 'string') {
       return this.renderSliderOption(option);
