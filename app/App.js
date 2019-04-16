@@ -28,6 +28,7 @@ import settingsConst from './constants/settings';
 
 import PlaylistsSubMenu from './components/PlaylistsSubMenu';
 import Footer from './components/Footer';
+import HelpButton from './components/HelpButton';
 import Navbar from './components/Navbar';
 import VerticalPanel from './components/VerticalPanel';
 import Spacer from './components/Spacer';
@@ -109,6 +110,7 @@ class App extends React.Component {
         <SearchBoxContainer />
         <Spacer />
         <Spacer />
+        <HelpButton />
         {this.props.settings.framelessWindow && <WindowControls />}
       </Navbar>
     );
@@ -280,17 +282,6 @@ class App extends React.Component {
         toggleOption={this.props.actions.toggleOption}
         settings={settings}
       />
-    );
-  }
-
-  renderNavbar () {
-    return (
-      <Navbar className={styles.navbar}>
-        <SearchBoxContainer />
-        <Spacer />
-        <Spacer />
-        <WindowControls />
-      </Navbar>
     );
   }
 
