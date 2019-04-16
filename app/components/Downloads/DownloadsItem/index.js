@@ -13,6 +13,7 @@ const StatusIcon = props => {
     return <Icon name='checkmark' color='green'/>;
   case 'Started':
     return <Icon name='cloud download'/>;
+  case 'Error':
   default:
     return <Icon name='times' color='red'/>;
   }
@@ -37,7 +38,7 @@ const DownloadsItem = props => {
         { _.get(item, 'track.artist.name') } - { _.get(item, 'track.name') }
       </Table.Cell>
       <Table.Cell>
-        { _.round(item.completion, 2) * 100 + '%' }
+        { _.round(item.completion*100, 0)  + '%' }
       </Table.Cell>
     </Table.Row>
   );

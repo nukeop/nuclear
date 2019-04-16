@@ -13,7 +13,7 @@
     }
   }
 
-  &>tr {
+  tbody>tr {
     transition: $short-duration ease-in-out;
     border-bottom: 1px solid rgba($background2, 0.2);
 

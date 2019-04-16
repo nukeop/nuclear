@@ -132,6 +132,20 @@ a.disabled {
   transition: $short-duration;
 }
 
+.ui.primary.button {
+  background-color: $blue;
+
+  &:hover,
+  &:focus {
+    background-color: darken($blue, 10%);
+  }
+
+  
+  &:active {
+    background-color: darken($blue, 20%);
+  }
+}
+
 .ui.inverted.green.button {
   border-color: $green;
   color: $green;
