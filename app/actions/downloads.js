@@ -4,6 +4,7 @@ export const DOWNLOAD_STARTED = 'DOWNLOAD_STARTED';
 export const DOWNLOAD_PROGRESS = 'DOWNLOAD_PROGRESS';
 export const DOWNLOAD_FINISHED = 'DOWNLOAD_FINISHED';
 export const DOWNLOAD_ERROR = 'DOWNLOAD_ERROR';
+export const CLEAR_FINISHED_DOWNLOADS = 'CLEAR_FINISHED_DOWNLOADS';
 
 export function addToDownloads(musicSources, track) {
   return {
@@ -41,5 +42,11 @@ export function onDownloadFinished(uuid) {
     payload: {
       uuid
     }
+  };
+}
+
+export function clearFinishedDownloads() {
+  return {
+    type: CLEAR_FINISHED_DOWNLOADS
   };
 }

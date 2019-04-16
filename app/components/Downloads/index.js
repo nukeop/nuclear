@@ -22,21 +22,27 @@ const EmptyState = () => {
 };
 
 const Downloads = props => {
+  const {
+    downloads,
+    clearFinishedTracks
+  } = props;
+  
   return (
     <div className={styles.downloads_container}>
       
       {
-        props.downloads.length === 0 &&
+        downloads.length === 0 &&
           <EmptyState />
       }
       {
-        props.downloads.length > 0 &&
+        downloads.length > 0 &&
         <React.Fragment>
           <Header>
-                      Downloads
+            Downloads
           </Header>
           <DownloadsList
-            items={ props.downloads }
+            items={ downloads }
+            clearFinishedTracks={ clearFinishedTracks }
           />
         </React.Fragment>
       }
@@ -45,7 +51,13 @@ const Downloads = props => {
 };
 
 Downloads.propTypes = {
-  downloads: PropTypes.array
+  downloads: PropTypes.array,
+  clearFinishedTracks: PropTypes.func
+};
+
+Downloads.defaultProps = {
+  downloads: [],
+  clearFinishedTracks: () => {}
 };
 
 export default Downloads;
