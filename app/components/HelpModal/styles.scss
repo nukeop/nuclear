@@ -1,0 +1,9 @@
+@import '../../vars.scss';
+
+.help_modal {
+  top: 25% !important;
+  color: rgba($white, 0.75) !important;
+  a {
+    color: $cyan;
+  }
+}

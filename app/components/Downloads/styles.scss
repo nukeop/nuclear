@@ -2,6 +2,7 @@
 
 .downloads_container {
   position: relative;
+  height: 100%;
   
   .empty_state {
     @include emptyState;
