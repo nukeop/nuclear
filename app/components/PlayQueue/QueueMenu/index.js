@@ -4,7 +4,6 @@ import FontAwesome from 'react-fontawesome';
 import _ from 'lodash';
 
 import InputDialog from '../../InputDialog';
-import Spacer from '../../Spacer';
 
 import styles from './styles.scss';
 import globalStyles from '../../../app.global.scss';

@@ -1,8 +1,6 @@
 import React from 'react';
 import { Button, Input, Modal } from 'semantic-ui-react';
 
-import styles from './styles.scss';
-
 class InputDialog extends React.Component {
   constructor(props) {
     super(props);

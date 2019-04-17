@@ -28,7 +28,7 @@ import settingsConst from './constants/settings';
 
 import PlaylistsSubMenu from './components/PlaylistsSubMenu';
 import Footer from './components/Footer';
-import HelpButton from './components/HelpButton';
+import HelpModal from './components/HelpModal';
 import Navbar from './components/Navbar';
 import VerticalPanel from './components/VerticalPanel';
 import Spacer from './components/Spacer';
@@ -110,7 +110,7 @@ class App extends React.Component {
         <SearchBoxContainer />
         <Spacer />
         <Spacer />
-        <HelpButton />
+        <HelpModal />
         {this.props.settings.framelessWindow && <WindowControls />}
       </Navbar>
     );
