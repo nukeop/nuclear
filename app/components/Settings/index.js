@@ -4,9 +4,13 @@ import { Button, Input, Radio, Segment } from 'semantic-ui-react';
 import Range from 'react-range-progress';
 import cx from 'classnames';
 import _ from 'lodash';
+import {
+  Icon
+} from 'semantic-ui-react';
 
 import Header from '../Header';
 import Spacer from '../Spacer';
+import SocialIntegration from './SocialIntegration';
 import settingsEnum from '../../constants/settingsEnum';
 
 import styles from './styles.scss';
@@ -41,27 +45,24 @@ class Settings extends React.Component {
     return _.isNull(value) || !_.isNaN(intValue);
   }
 
-  renderLastFmTitle () {
+  renderLastFmSocialIntegration () {
     return (
-      <React.Fragment>
-        <label>
-          <span className={styles.settings_logo}>
-            <span className='fa-stack fa-lg'>
-              <FontAwesome name='square' stack='1x' />
-              <FontAwesome
-                name='lastfm-square'
-                stack='1x'
-                className={styles.lastfm_icon}
-              />
-            </span>
-          </span>
-          <span>Last.fm integration</span>
-          <p>
-            In order to enable scrobbling, you first have to connect and
-            authorize Nuclear on Last.fm, then click log in.
-          </p>
-        </label>
-      </React.Fragment>
+      <SocialIntegration
+        logo={
+          <Icon.Group size='big'>
+            <Icon name='square'/>
+            <Icon name='lastfm square' color='red'/>
+          </Icon.Group>
+        }
+        title='Last.fm integration'
+        description={
+          'In order to enable scrobbling, you first have to'
+                + ' connect and authorize Nuclear on Last.fm, then click log in.'
+        }
+      >
+        {this.renderLastFmLoginButtons()}
+        {this.renderLastFmOptionRadio()}
+      </SocialIntegration>
     );
   }
 
@@ -124,9 +125,7 @@ class Settings extends React.Component {
         <Header>Social</Header>
         <hr />
         <Segment>
-          {this.renderLastFmTitle()}
-          {this.renderLastFmLoginButtons()}
-          {this.renderLastFmOptionRadio()}
+          {this.renderLastFmSocialIntegration()}
         </Segment>
       </div>
     );
