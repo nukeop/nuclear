@@ -1,6 +1,6 @@
 .dashboard {
   position: relative;
-  height: 100%;
+  height: calc(100% - 2rem);
 
   .dashboard_tabs {
     position: relative;
