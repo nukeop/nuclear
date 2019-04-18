@@ -3,7 +3,8 @@
 .genre_tab_container {
   display: flex;
   flex-flow: row wrap;
-
+  overflow-x: hidden;
+  
   svg, path {
     stroke: $white;
   }
