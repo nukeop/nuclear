@@ -1,0 +1,18 @@
+.social_integration {
+  p {
+    margin-top: 1em;
+  }
+  
+  .row {
+    display: flex;
+    align-items: center;
+  }
+
+  .icons {
+    margin-right: 1rem;
+
+    &>i {
+      margin: 0 !important;
+    }
+  } 
+}

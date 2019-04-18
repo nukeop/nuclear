@@ -108,8 +108,11 @@ class App extends React.Component {
           historyCurrentIndex={this.props.history.index}
         />
         <SearchBoxContainer />
-        <Spacer />
-        <Spacer />
+        <Spacer style={{
+          height: '100%',
+          flex: '1 1 45%',
+          '-webkit-app-region': 'drag'
+        }}/>
         <HelpModal />
         {this.props.settings.framelessWindow && <WindowControls />}
       </Navbar>
