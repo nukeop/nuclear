@@ -50,8 +50,8 @@ class Settings extends React.Component {
       <SocialIntegration
         logo={
           <Icon.Group size='big'>
-            <Icon name='square'/>
-            <Icon name='lastfm square' color='red'/>
+            <Icon name='square' className={ styles.lastfm_icon_bg }/>
+            <Icon name='lastfm square' className={ styles.lastfm_icon }/>
           </Icon.Group>
         }
         title='Last.fm integration'
@@ -73,9 +73,13 @@ class Settings extends React.Component {
       lastFmSessionKey
     } = this.props.scrobbling;
     
-    const { lastFmConnectAction, lastFmLoginAction } = this.props.actions;
+    const {
+      lastFmConnectAction,
+      lastFmLoginAction,
+      lastFmLogOut
+    } = this.props.actions;
     return (
-      <div className={styles.settings_item}>
+      <div className={styles.settings_social_item}>
         <span>
           User: <strong>{lastFmName ? lastFmName : 'Not logged in'}</strong>
         </span>
@@ -93,6 +97,12 @@ class Settings extends React.Component {
             Log in
           </Button>
         )}
+        {
+          lastFmSessionKey &&
+            <Button onClick={ lastFmLogOut } inverted>
+          Log out
+            </Button>
+        }
       </div>
     );
   }

@@ -6,6 +6,8 @@ const lastfm = new core.LastFmApi(globals.lastfmApiKey, globals.lastfmApiSecret)
 
 export const LASTFM_CONNECT = 'LASTFM_CONNECT';
 export const LASTFM_LOGIN = 'LASTFM_LOGIN';
+export const LASTFM_LOGOUT = 'LASTFM_LOGOUT';
+
 export const LASTFM_READ_SETTINGS = 'LASTFM_READ_SETTINGS';
 export const LASTFM_ENABLE_SCROBBLING = 'LASTFM_ENABLE_SCROBBLING';
 export const LASTFM_DISABLE_SCROBBLING = 'LASTFM_DISABLE_SCROBBLING';
@@ -75,6 +77,12 @@ export function lastFmLoginAction(authToken) {
           }
         });
       });
+  };
+}
+
+export function lastFmLogOut() {
+  return {
+    type: LASTFM_LOGOUT
   };
 }
 
