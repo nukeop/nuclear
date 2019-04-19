@@ -19,8 +19,9 @@
     background: rgba($background2, 0.35);
     border: 1px solid $background2;
   }
-
-  .settings_item {
+  
+  .settings_item,
+  .settings_social_item {
     position: relative;
     display: flex;
     flex-flow: row;
@@ -65,8 +66,17 @@
     }
   }
 
+  .settings_social_item {
+    margin: 0;
+  }
+
   .lastfm_icon {
     color: $red;
+  }
+
+  .lastfm_icon_bg {
+    color: $white;
+    font-size: 24px;
   }
 
   .header_container {

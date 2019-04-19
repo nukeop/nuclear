@@ -1,6 +1,7 @@
 import {
   LASTFM_CONNECT,
   LASTFM_LOGIN,
+  LASTFM_LOGOUT,
   LASTFM_READ_SETTINGS,
   LASTFM_ENABLE_SCROBBLING,
   LASTFM_DISABLE_SCROBBLING
@@ -23,6 +24,12 @@ export default function ScrobblingReducer(state=initialState, action) {
     return Object.assign({}, state, {
       lastFmName: action.payload.name,
       lastFmSessionKey: action.payload.sessionKey
+    });
+  case LASTFM_LOGOUT:
+    return Object.assign({}, state, {
+      lastFmAuthToken: null,
+      lastFmName: null,
+      lastFmSessionKey: null
     });
   case LASTFM_READ_SETTINGS:
     if (action.payload) {
