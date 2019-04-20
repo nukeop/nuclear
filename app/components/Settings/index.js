@@ -144,7 +144,10 @@ class Settings extends React.Component {
           'Log in via Github to be able to create and share your playlists online (upcoming feature).'
         }
       >
-        <GithubSettings />
+        <GithubSettings
+          logIn={ this.props.actions.githubOauth }
+          logOut={console.log}
+        />
       </SocialIntegration>
     );
   }
