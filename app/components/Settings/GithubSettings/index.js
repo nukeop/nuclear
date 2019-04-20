@@ -34,7 +34,7 @@ const GithubSettings = props => {
             loading={ loading }
             onClick={ oauthProps.onClick }
           >
-            <Icon name='github '/>
+            <Icon name='github'/>
             Log in with Github
           </Button>
         } />
@@ -45,7 +45,7 @@ const GithubSettings = props => {
             inverted
             onClick={ logOut }
           >
-            <Icon name='github '/>
+            <Icon name='github'/>
               Log out
           </Button>
       }
