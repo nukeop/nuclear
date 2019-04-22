@@ -10,14 +10,16 @@ const volumeSliderColors = {
 };
 
 class VolumeSlider extends React.Component {
-
   handleClick (value) {
     this.props.handleClick(value);
   }
 
   render () {
     return (
-      <div className={styles.volume_slider_container}>
+      <div
+        className={styles.volume_slider_container}
+        onClick={this.props.muted ? this.props.toggleMute : () => {}}
+      >
         <Range
           value={this.props.fill}
           fillColor={volumeSliderColors.fillColor}
