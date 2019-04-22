@@ -1,16 +1,18 @@
 import React from 'react';
-import FontAwesome from 'react-fontawesome';
+import PropTypes from 'prop-types';
 import { Button, Input, Radio, Segment } from 'semantic-ui-react';
 import Range from 'react-range-progress';
 import cx from 'classnames';
 import _ from 'lodash';
 import {
+  Divider,
   Icon
 } from 'semantic-ui-react';
 
 import Header from '../Header';
 import Spacer from '../Spacer';
 import SocialIntegration from './SocialIntegration';
+import GithubSettings from './GithubSettings';
 import settingsEnum from '../../constants/settingsEnum';
 
 import styles from './styles.scss';
@@ -50,11 +52,11 @@ class Settings extends React.Component {
       <SocialIntegration
         logo={
           <Icon.Group size='big'>
-            <Icon name='square' className={ styles.lastfm_icon_bg }/>
+            <Icon name='square' className={ styles.social_icon_bg }/>
             <Icon name='lastfm square' className={ styles.lastfm_icon }/>
           </Icon.Group>
         }
-        title='Last.fm integration'
+        title='Last.fm'
         description={
           'In order to enable scrobbling, you first have to'
                 + ' connect and authorize Nuclear on Last.fm, then click log in.'
@@ -100,14 +102,14 @@ class Settings extends React.Component {
         {
           lastFmSessionKey &&
             <Button onClick={ lastFmLogOut } inverted>
-          Log out
+              Log out
             </Button>
         }
       </div>
     );
   }
 
-  renderLastFmOptionRadio () {
+  renderLastFmOptionRadio() {
     let { lastFmScrobblingEnabled } = this.props.scrobbling;
     const { enableScrobbling, disableScrobbling } = this.props.actions;
     return (
@@ -129,13 +131,44 @@ class Settings extends React.Component {
     );
   }
 
+  renderGithubSocialIntegration() {
+    const {
+      actions,
+      github
+    } = this.props;
+    
+    return (
+      <SocialIntegration
+        logo={
+          <Icon.Group size='big'>
+            <Icon name='square' className={ styles.social_icon_bg } />
+            <Icon color='black' name='github square' />
+          </Icon.Group>
+        }
+        title='Github'
+        description={
+          'Log in via Github to be able to create and share your playlists online (upcoming feature).'
+        }
+      >
+        <GithubSettings
+          logIn={ actions.githubOauth }
+          logOut={ actions.githubLogOut }
+          loading={ _.get(github, 'loading') }
+          username={ _.get(github, 'login') }
+        />
+      </SocialIntegration>
+    );
+  }
+
   renderSocialSettings () {
     return (
       <div className={styles.settings_section}>
         <Header>Social</Header>
         <hr />
         <Segment>
-          {this.renderLastFmSocialIntegration()}
+          { this.renderLastFmSocialIntegration() }
+          <Divider />
+          { this.renderGithubSocialIntegration() }
         </Segment>
       </div>
     );
@@ -249,5 +282,21 @@ class Settings extends React.Component {
     );
   }
 }
+
+Settings.propTypes = {
+  actions: PropTypes.object,
+  github: PropTypes.object,
+  scrobbling: PropTypes.object,
+  settings: PropTypes.object,
+  options: PropTypes.array
+};
+
+Settings.defaultProps = {
+  actions: {},
+  github: {},
+  scrobbling: {},
+  settings: {},
+  options: []
+};
 
 export default Settings;
