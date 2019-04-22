@@ -1,20 +1,30 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+
+import * as GithubActions from '../../actions/github';
 import * as ScrobblingActions from '../../actions/scrobbling';
 import * as SettingsActions from '../../actions/settings';
-import options from '../../constants/settings';
 
+import options from '../../constants/settings';
 import Settings from '../../components/Settings';
 
 class SettingsContainer extends React.Component {
   render() {
+    const {
+      actions,
+      github,
+      scrobbling,
+      settings
+    } = this.props;
+    
     return (
       <Settings
-        actions={this.props.actions}
-        scrobbling={this.props.scrobbling}
-        settings={this.props.settings}
-        options={options}
+        actions={ actions }
+        github={ github }
+        scrobbling={ scrobbling }
+        settings={ settings }
+        options={ options }
       />
     );
   }
@@ -22,6 +32,7 @@ class SettingsContainer extends React.Component {
 
 function mapStateToProps(state) {
   return {
+    github: state.github,
     scrobbling: state.scrobbling,
     settings: state.settings
   };
@@ -29,7 +40,15 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators(Object.assign({}, ScrobblingActions, SettingsActions), dispatch)
+    actions: bindActionCreators(
+      Object.assign(
+        {},
+        GithubActions,
+        ScrobblingActions,
+        SettingsActions
+      ),
+      dispatch
+    )
   };
 }
 
