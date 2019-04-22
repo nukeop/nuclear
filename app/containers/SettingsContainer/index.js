@@ -11,12 +11,20 @@ import Settings from '../../components/Settings';
 
 class SettingsContainer extends React.Component {
   render() {
+    const {
+      actions,
+      github,
+      scrobbling,
+      settings
+    } = this.props;
+    
     return (
       <Settings
-        actions={this.props.actions}
-        scrobbling={this.props.scrobbling}
-        settings={this.props.settings}
-        options={options}
+        actions={ actions }
+        github={ github }
+        scrobbling={ scrobbling }
+        settings={ settings }
+        options={ options }
       />
     );
   }
@@ -24,6 +32,7 @@ class SettingsContainer extends React.Component {
 
 function mapStateToProps(state) {
   return {
+    github: state.github,
     scrobbling: state.scrobbling,
     settings: state.settings
   };
