@@ -10,6 +10,7 @@ import {
 
 export const GITHUB_OAUTH_CODE_SUCCESS = 'GITHUB_OAUTH_CODE_SUCCESS';
 export const GITHUB_OAUTH_ACCESS_TOKEN_SUCCESS = 'GITHUB_OAUTH_ACCESS_TOKEN_SUCCESS';
+export const GITHUB_LOG_OUT = 'GITHUB_LOG_OUT';
 
 export const GITHUB_GET_USER_START = 'GITHUB_GET_USER_START';
 export const GITHUB_GET_USER_SUCCESS = 'GITHUB_GET_USER_SUCCESS';
@@ -54,6 +55,11 @@ export function githubOauth(code) {
   };
 }
 
+export function githubLogOut() {
+  return {
+    type: GITHUB_LOG_OUT
+  };
+}
 
 function githubGetUserStart() {
   return {
