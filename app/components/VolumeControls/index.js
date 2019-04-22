@@ -1,18 +1,18 @@
-import React from 'react'
-import FontAwesome from 'react-fontawesome'
+import React from 'react';
+import FontAwesome from 'react-fontawesome';
 
-import styles from './styles.scss'
+import styles from './styles.scss';
 
-import PlayOptionsControls from '../PlayOptionsControls'
-import VolumeSlider from './VolumeSlider'
+import PlayOptionsControls from '../PlayOptionsControls';
+import VolumeSlider from './VolumeSlider';
 
 class VolumeControls extends React.Component {
   handleClick (value) {
-    return this.props.updateVolume(value)
+    return this.props.updateVolume(value);
   }
 
   toggleMute () {
-    this.props.toggleMute(!this.props.muted)
+    this.props.toggleMute(!this.props.muted);
   }
 
   render () {
@@ -36,8 +36,8 @@ class VolumeControls extends React.Component {
           toggleMute={this.toggleMute.bind(this)}
         />
       </div>
-    )
+    );
   }
 }
 
-export default VolumeControls
+export default VolumeControls;
