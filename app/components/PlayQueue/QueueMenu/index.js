@@ -1,7 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import FontAwesome from 'react-fontawesome';
 import _ from 'lodash';
+import {
+  Icon,
+  Menu
+} from 'semantic-ui-react';
 
 import InputDialog from '../../InputDialog';
 
@@ -42,9 +45,9 @@ class QueueMenu extends React.Component {
       <div className={styles.queue_menu_container}>
         <div className={styles.queue_menu_buttons}>
           <a href='#' className='compactButton' onClick={() => toggleOption(_.find(settingsConst, ['name', 'compactQueueBar']), settings)}>
-            <FontAwesome name={settings.compactQueueBar ? 'angle-left' : 'angle-right'} />
+            <Icon name={settings.compactQueueBar ? 'angle left' : 'angle right'} />
           </a>
-          <a href='#' onClick={clearQueue}><FontAwesome name='trash-o' /></a>
+          <a href='#' onClick={clearQueue}><Icon name='trash alternate outline' /></a>
 
           <InputDialog
             header={<h4>Input playlist name:</h4>}
@@ -52,11 +55,11 @@ class QueueMenu extends React.Component {
             accept='Save'
             onAccept={this.handleAddPlaylist(addPlaylist, success, items, settings)}
             trigger={
-              <a href='#'><FontAwesome name='save' /></a>
+              <a href='#'><Icon name='save' /></a>
             }
             initialString={ firstTitle }
           />
-          <a className={globalStyles.disabled} href='#'><FontAwesome name='random' /></a>
+          <a className={globalStyles.disabled} href='#'><Icon name='random' /></a>
         </div>
         <hr />
       </div>
@@ -68,7 +71,7 @@ QueueMenu.propTypes = {
   clearQueue: PropTypes.func,
   addPlaylist: PropTypes.func,
   toggleOption: PropTypes.func,
-  notify: PropTypes.func,
+  success: PropTypes.func,
   settings: PropTypes.object,
   items: PropTypes.array
 };
