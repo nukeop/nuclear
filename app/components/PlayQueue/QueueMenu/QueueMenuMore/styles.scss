@@ -12,4 +12,12 @@
   .divider {
     border-top: 1px solid rgba($background2, 0.6) !important;
   }
+
+  .dropdown.left {
+    .dropdown.icon {
+      margin: 0 1em 0 0 !important;
+      transform: rotate(180deg);
+      float: left !important;
+    }
+  }
 }

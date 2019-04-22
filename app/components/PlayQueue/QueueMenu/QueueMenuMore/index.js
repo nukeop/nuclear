@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import cx from 'classnames';
+import _ from 'lodash';
 import {
   Dropdown,
   Icon,
@@ -11,6 +13,7 @@ import styles from './styles.scss';
 const QueueMenuMore = props => {
   const {
     clearQueue,
+    playlists,
     savePlaylistDialog
   } = props;
   
@@ -34,8 +37,20 @@ const QueueMenuMore = props => {
           Current track
         </Dropdown.Header>
         <Dropdown.Item>
-          <Icon name='plus'/>
-          Add to playlist
+          <Dropdown text='Add to playlist' className='left'>
+            <Dropdown.Menu className={ cx('left', styles.playlists_menu) }>
+              {
+                _.map(playlists, playlist => {
+                  return (
+                    <Dropdown.Item>
+                      <Icon name='music'/>
+                      { playlist.name }
+                    </Dropdown.Item>
+                  );
+                })
+              }
+            </Dropdown.Menu>
+          </Dropdown>
         </Dropdown.Item>
         <Dropdown.Item>
           <Icon name='star'/>
@@ -48,12 +63,16 @@ const QueueMenuMore = props => {
 
 QueueMenuMore.propTypes = {
   clearQueue: PropTypes.func,
-  savePlaylistDialog: PropTypes.node
+  addFavoriteTrack: PropTypes.func,
+  savePlaylistDialog: PropTypes.node,
+  playlists: PropTypes.array
 };
 
 QueueMenuMore.defaultProps = {
   clearQueue: () => {},
-  savePlaylistDialog: null
+  addFavoriteTrack: () => {},
+  savePlaylistDialog: null,
+  playlists: []
 };
 
 export default QueueMenuMore;

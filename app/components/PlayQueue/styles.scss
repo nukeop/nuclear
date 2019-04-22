@@ -2,7 +2,7 @@
 
 .play_queue_container {
   display: flex;
-  overflow-y: auto;
+  overflow: visible;
 
   flex: 1 1 auto;
   flex-flow: column;
@@ -11,7 +11,7 @@
     display: flex;
     flex-flow: column;
     flex: 1 1 auto;
-    overflow-y: auto;
+    overflow: auto;
     transition: $short-duration;
     .queue_item_container {
       transition: all $medium-duration ease-out;
