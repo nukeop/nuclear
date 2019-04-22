@@ -2,11 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
 import {
-  Icon,
-  Menu
+  Dropdown,
+  Icon
 } from 'semantic-ui-react';
 
 import InputDialog from '../../InputDialog';
+import QueueMenuMore from './QueueMenuMore';
 
 import styles from './styles.scss';
 import globalStyles from '../../../app.global.scss';
@@ -47,19 +48,26 @@ class QueueMenu extends React.Component {
           <a href='#' className='compactButton' onClick={() => toggleOption(_.find(settingsConst, ['name', 'compactQueueBar']), settings)}>
             <Icon name={settings.compactQueueBar ? 'angle left' : 'angle right'} />
           </a>
-          <a href='#' onClick={clearQueue}><Icon name='trash alternate outline' /></a>
 
-          <InputDialog
-            header={<h4>Input playlist name:</h4>}
-            placeholder='Playlist name...'
-            accept='Save'
-            onAccept={this.handleAddPlaylist(addPlaylist, success, items, settings)}
-            trigger={
-              <a href='#'><Icon name='save' /></a>
+          <QueueMenuMore
+            clearQueue={ clearQueue }
+            savePlaylistDialog={
+              <InputDialog
+                header={<h4>Input playlist name:</h4>}
+                placeholder='Playlist name...'
+                accept='Save'
+                onAccept={this.handleAddPlaylist(addPlaylist, success, items, settings)}
+                trigger={
+                  <Dropdown.Item>
+                    <Icon name='save'/>
+                    Save as playlist
+                  </Dropdown.Item>
+                }
+                initialString={ firstTitle }
+              />
             }
-            initialString={ firstTitle }
           />
-          <a className={globalStyles.disabled} href='#'><Icon name='random' /></a>
+          
         </div>
         <hr />
       </div>
