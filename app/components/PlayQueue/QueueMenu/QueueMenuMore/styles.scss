@@ -1,0 +1,15 @@
+@import '../../../../vars.scss';
+
+.queue_menu_more {
+  margin-left: auto;
+  align-self: center;
+
+  .menu {
+    left: auto !important;
+    right: 0;
+  }
+
+  .divider {
+    border-top: 1px solid rgba($background2, 0.6) !important;
+  }
+}

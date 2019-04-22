@@ -1,4 +1,4 @@
-@import 'vars';
+@import './vars.scss';
 
 html {
   position: absolute;
@@ -194,6 +194,24 @@ a.disabled {
 .ui.red.button:focus,
 .ui.red.button:active {
   background-color: $red;
+}
+
+.ui.dropdown {
+  .menu {
+    background: $background3;
+    border: 1px solid rgba($background2, 0.6);
+    box-shadow: 0rem 0.125rem 0.5rem 0.25rem rgba($black, 0.1);
+
+    .header,
+    .item,
+    .item:hover {
+      color: $white;
+    }
+
+    .item:hover {
+      background: $background2;
+    }
+  }
 }
 
 hr {
