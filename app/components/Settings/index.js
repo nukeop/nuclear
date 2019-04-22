@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Button, Input, Radio, Segment } from 'semantic-ui-react';
 import Range from 'react-range-progress';
 import cx from 'classnames';
@@ -131,6 +132,11 @@ class Settings extends React.Component {
   }
 
   renderGithubSocialIntegration() {
+    const {
+      actions,
+      github
+    } = this.props;
+    
     return (
       <SocialIntegration
         logo={
@@ -145,8 +151,10 @@ class Settings extends React.Component {
         }
       >
         <GithubSettings
-          logIn={ this.props.actions.githubOauth }
-          logOut={console.log}
+          logIn={ actions.githubOauth }
+          logOut={ actions.githubLogOut }
+          loading={ _.get(github, 'loading') }
+          username={ _.get(github, 'login') }
         />
       </SocialIntegration>
     );
@@ -274,5 +282,21 @@ class Settings extends React.Component {
     );
   }
 }
+
+Settings.propTypes = {
+  actions: PropTypes.object,
+  github: PropTypes.object,
+  scrobbling: PropTypes.object,
+  settings: PropTypes.object,
+  options: PropTypes.array
+};
+
+Settings.defaultProps = {
+  actions: {},
+  github: {},
+  scrobbling: {},
+  settings: {},
+  options: []
+};
 
 export default Settings;

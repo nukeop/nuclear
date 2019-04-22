@@ -22,30 +22,31 @@ const GithubSettings = props => {
   
   return (
     <div className={ settingsStyles.settings_item } >
-      <span>User: <strong>{ username }</strong></span>
+      <span>User: <strong>{ _.defaultTo(username, 'Not logged in') }</strong></span>
       <Spacer />
       
-      <OauthPopup
-        url={ getGithubOauthUrl() }
-        onCode={ code => logIn(code) } 
-        render={ oauthProps =>
-          <Button
-            color='black'
-            loading={ loading }
-            onClick={ oauthProps.onClick }
-          >
-            <Icon name='github'/>
-            Log in with Github
-          </Button>
-        } />
-
       {
         _.isNil(username) &&
+          <OauthPopup
+            url={ getGithubOauthUrl() }
+            onCode={ code => logIn(code) } 
+            render={ oauthProps =>
+              <Button
+                color='black'
+                loading={ loading }
+                onClick={ oauthProps.onClick }
+              >
+                <Icon name='github'/>
+            Log in with Github
+              </Button>
+            } />
+      }
+      {
+        !_.isNil(username) &&
           <Button
             inverted
             onClick={ logOut }
           >
-            <Icon name='github'/>
               Log out
           </Button>
       }
@@ -61,7 +62,7 @@ GithubSettings.propTypes = {
 };
 
 GithubSettings.defaultProps = {
-  username: 'Not logged in',
+  username: null,
   loading: false,
   logIn: () => {},
   logOut: () => {}
