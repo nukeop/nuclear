@@ -54,9 +54,10 @@ class QueueMenu extends React.Component {
 
           <QueueMenuMore
             clearQueue={ clearQueue }
-            playlists={ playlists }
             updatePlaylist={ updatePlaylist }
             addFavoriteTrack={ addFavoriteTrack }
+            playlists={ playlists }
+            currentItem={ _.head(items) }
             savePlaylistDialog={
               <InputDialog
                 header={<h4>Input playlist name:</h4>}

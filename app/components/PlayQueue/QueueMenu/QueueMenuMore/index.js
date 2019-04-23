@@ -10,13 +10,32 @@ import {
 
 import styles from './styles.scss';
 
+const addTrackToPlaylist = () => {
+
+};
+
+const addFavoriteTrackFromQueue = (addFavoriteTrack, track) => {
+  addFavoriteTrack({
+    artist: {
+      name: track.artist
+    },
+    name: track.name,
+    image: [
+      {
+        '#text': track.thumbnail
+      }
+    ]
+  });
+};
+
 const QueueMenuMore = props => {
   const {
     clearQueue,
-    playlists,
     savePlaylistDialog,
     addFavoriteTrack,
-    updatePlaylist
+    updatePlaylist,
+    playlists,
+    currentItem
   } = props;
   
   return (
@@ -54,7 +73,9 @@ const QueueMenuMore = props => {
             </Dropdown.Menu>
           </Dropdown>
         </Dropdown.Item>
-        <Dropdown.Item>
+        <Dropdown.Item onClick={
+          () => addFavoriteTrackFromQueue(addFavoriteTrack, currentItem)
+        }>
           <Icon name='star'/>
           Add to favorites
         </Dropdown.Item>
@@ -68,7 +89,8 @@ QueueMenuMore.propTypes = {
   addFavoriteTrack: PropTypes.func,
   updatePlaylist: PropTypes.func,
   savePlaylistDialog: PropTypes.node,
-  playlists: PropTypes.array
+  playlists: PropTypes.array,
+  currentItem: PropTypes.object
 };
 
 QueueMenuMore.defaultProps = {
@@ -76,7 +98,8 @@ QueueMenuMore.defaultProps = {
   addFavoriteTrack: () => {},
   updatePlaylist: () => {},
   savePlaylistDialog: null,
-  playlists: []
+  playlists: [],
+  currentItem: {}
 };
 
 export default QueueMenuMore;
