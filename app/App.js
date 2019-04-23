@@ -164,9 +164,12 @@ class App extends React.Component {
           </SidebarMenuCategoryHeader>
           {this.renderNavLink('favorites/tracks', 'star', 'Favorite tracks', settings)}
 
-          <SidebarMenuCategoryHeader compact={ settings.compactMenuBar }>
+          {
+            !_.isEmpty(this.props.playlists) &&
+            <SidebarMenuCategoryHeader compact={ settings.compactMenuBar }>
             Playlists
-          </SidebarMenuCategoryHeader>
+            </SidebarMenuCategoryHeader>
+          }
           <PlaylistsSubMenu
             playlists={this.props.playlists}
             compact={ settings.compactMenuBar }
