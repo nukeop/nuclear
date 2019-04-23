@@ -13,7 +13,7 @@ export function addPlaylist(tracks, name) {
     let playlists = store.get('playlists') || [];
     let playlist = { name, tracks, id: uuidv4() };
 
-    if (tracks.length === 0) {
+    if (_.isEmpty(tracks)) {
       dispatch({
         type: null
       });
