@@ -52,17 +52,10 @@ export function loadPlaylists() {
   return dispatch => {
     let playlists = store.get('playlists');
 
-    if (playlists) {
-      dispatch({
-        type: LOAD_PLAYLISTS,
-        payload: { playlists }
-      });
-    } else {
-      dispatch({
-        type: LOAD_PLAYLISTS,
-        payload: { playlists: [] }
-      });
-    }
+    dispatch({
+      type: LOAD_PLAYLISTS,
+      payload: { playlists: _.defaultTo(playlists, []) }
+    });
   };
 }
 
@@ -75,7 +68,7 @@ export function updatePlaylist(playlist) {
     store.set('playlists', playlists);
     dispatch({
       type: UPDATE_PLAYLIST,
-      payload: { playlist }
+      payload: { playlists }
     });
   };
 }

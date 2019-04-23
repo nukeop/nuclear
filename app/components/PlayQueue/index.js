@@ -66,6 +66,7 @@ class PlayQueue extends React.Component {
     let {
       clearQueue,
       addPlaylist,
+      updatePlaylist,
       toggleOption,
       addFavoriteTrack,
       success
@@ -77,6 +78,7 @@ class PlayQueue extends React.Component {
           <QueueMenu
             clearQueue={clearQueue}
             addPlaylist={addPlaylist}
+            updatePlaylist={updatePlaylist} 
             toggleOption={toggleOption}
             addFavoriteTrack={addFavoriteTrack}
             success={success}

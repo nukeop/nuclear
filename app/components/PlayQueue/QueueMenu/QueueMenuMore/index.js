@@ -14,7 +14,9 @@ const QueueMenuMore = props => {
   const {
     clearQueue,
     playlists,
-    savePlaylistDialog
+    savePlaylistDialog,
+    addFavoriteTrack,
+    updatePlaylist
   } = props;
   
   return (
@@ -42,7 +44,7 @@ const QueueMenuMore = props => {
               {
                 _.map(playlists, playlist => {
                   return (
-                    <Dropdown.Item>
+                    <Dropdown.Item onClick={ () => updatePlaylist(playlist) }>
                       <Icon name='music'/>
                       { playlist.name }
                     </Dropdown.Item>
@@ -64,6 +66,7 @@ const QueueMenuMore = props => {
 QueueMenuMore.propTypes = {
   clearQueue: PropTypes.func,
   addFavoriteTrack: PropTypes.func,
+  updatePlaylist: PropTypes.func,
   savePlaylistDialog: PropTypes.node,
   playlists: PropTypes.array
 };
@@ -71,6 +74,7 @@ QueueMenuMore.propTypes = {
 QueueMenuMore.defaultProps = {
   clearQueue: () => {},
   addFavoriteTrack: () => {},
+  updatePlaylist: () => {},
   savePlaylistDialog: null,
   playlists: []
 };
