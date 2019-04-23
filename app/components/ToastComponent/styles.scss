@@ -1,3 +1,5 @@
+@import '../../vars.scss';
+
 .nuclear.toast_container {
   height: auto;
   top: 0;
@@ -9,6 +11,22 @@
     min-width: 20rem;
     height: auto;
     pointer-events: all;
+
+    &.error {
+      background: rgba($red, 0.75);
+    }
+
+    &.warning {
+      background: rgba($orange, 0.75);
+    }
+
+    &.info {
+      background: rgba($blue, 0.75);
+    }
+
+    &.success {
+      background: rgba($green, 0.75);
+    }
   }
 
   .toast_icon,
