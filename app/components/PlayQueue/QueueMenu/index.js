@@ -33,6 +33,7 @@ class QueueMenu extends React.Component {
   render() {
     let {
       addPlaylist,
+      updatePlaylist,
       clearQueue,
       addFavoriteTrack,
       success,
@@ -54,6 +55,7 @@ class QueueMenu extends React.Component {
           <QueueMenuMore
             clearQueue={ clearQueue }
             playlists={ playlists }
+            updatePlaylist={ updatePlaylist }
             addFavoriteTrack={ addFavoriteTrack }
             savePlaylistDialog={
               <InputDialog
@@ -82,6 +84,7 @@ class QueueMenu extends React.Component {
 QueueMenu.propTypes = {
   clearQueue: PropTypes.func,
   addPlaylist: PropTypes.func,
+  updatePlaylist: PropTypes.func,
   toggleOption: PropTypes.func,
   addFavoriteTrack: PropTypes.func,
   success: PropTypes.func,
