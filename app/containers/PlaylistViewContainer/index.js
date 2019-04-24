@@ -20,6 +20,7 @@ const PlaylistViewContainer = props => {
       startPlayback={props.actions.startPlayback}
       addToQueue={props.actions.addToQueue}
       deletePlaylist={props.actions.deletePlaylist}
+      history={props.history}
     />
   );
 };

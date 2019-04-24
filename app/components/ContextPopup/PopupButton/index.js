@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import FontAwesome from 'react-fontawesome';
+import {
+  Icon
+} from 'semantic-ui-react';
 
 import styles from './styles.scss';
 
@@ -19,7 +21,7 @@ const PopupButton = props => {
       onClick={ onClick }
       aria-label={ ariaLabel }
     >
-      <FontAwesome name={ icon }/> { label }
+      <Icon name={ icon }/> { label }
     </a>
   );
 };

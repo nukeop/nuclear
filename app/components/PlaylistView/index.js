@@ -1,17 +1,16 @@
 import React from 'react';
-import FontAwesome from 'react-fontawesome';
 import _ from 'lodash';
+import {
+  Icon
+} from 'semantic-ui-react';
 
 import ContextPopup from '../ContextPopup';
+import PopupButton from '../ContextPopup/PopupButton';
 import TrackRow from '../TrackRow';
-
 import Spacer from '../Spacer';
 import artPlaceholder from '../../../resources/media/art_placeholder.png';
 
 import styles from './styles.scss';
-
-import { withRouter } from 'react-router-dom';
-
 
 class PlaylistView extends React.Component {
   constructor(props) {
@@ -31,12 +30,15 @@ class PlaylistView extends React.Component {
   }
 
   deletePlaylist(
-    playlist,
-    deletePlaylist,
-    history
+    playlist
   ){
+    let {
+      history,
+      deletePlaylist
+    } = this.props;
+    
     deletePlaylist(playlist.id);
-    history.goBack();
+    history.push('/playlists');
   }
 
   renderOptions (trigger, playlist) {
@@ -47,7 +49,14 @@ class PlaylistView extends React.Component {
         title={playlist.name}
         thumb={_.get(playlist, 'tracks[0].thumbnail', artPlaceholder)}
       >
-        <div />
+        <PopupButton
+          onClick={() =>
+            this.deletePlaylist(this.props.playlist)
+          }
+          ariaLabel='Delete this playlist'
+          icon='trash'
+          label='Delete this playlist'
+        />
       </ContextPopup>
     );
   }
@@ -60,6 +69,7 @@ class PlaylistView extends React.Component {
       selectSong,
       startPlayback
     } = this.props;
+    
     return (
       <a
         href='#'
@@ -74,33 +84,8 @@ class PlaylistView extends React.Component {
           )
         }
       >
-        <FontAwesome name='play' /> Play
+        <Icon name='play' /> Play
       </a>
-    );
-  }
-
-  renderDeleteButton () {
-    let {
-      playlist,
-      deletePlaylist
-    } = this.props;
-    const Button = withRouter(({ history }) => (
-      <a
-        href='#'
-        className={styles.delete_button}
-        onClick={() =>
-          this.deletePlaylist(
-            playlist,
-            deletePlaylist,
-            history
-          )
-        }
-      >
-        <FontAwesome name='trash-o' /> Delete
-      </a>
-    ));
-    return (
-      <Button/>
     );
   }
 
@@ -108,9 +93,10 @@ class PlaylistView extends React.Component {
     let { playlist } = this.props;
     let popupTrigger = (
       <a href='#' className={styles.more_button}>
-        <FontAwesome name='ellipsis-h' />
+        <Icon name='ellipsis horizontal' />
       </a>
     );
+    
     return (
       <div className={styles.playlist_info}>
         <div>
@@ -124,7 +110,6 @@ class PlaylistView extends React.Component {
           <Spacer />
           <div className={styles.playlist_buttons}>
             {this.renderPlayButton()}
-            {this.renderDeleteButton()}
             {this.renderOptions(popupTrigger, playlist)}
           </div>
         </div>
@@ -137,7 +122,7 @@ class PlaylistView extends React.Component {
       <thead>
         <tr>
           <th>
-            <FontAwesome name='photo' />
+            <Icon name='image' />
           </th>
           <th>Artist</th>
           <th>Title</th>
