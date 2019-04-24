@@ -4,14 +4,14 @@ import cx from 'classnames';
 import _ from 'lodash';
 import {
   Dropdown,
-  Icon,
-  Menu
+  Icon
 } from 'semantic-ui-react';
 
 import styles from './styles.scss';
 
-const addTrackToPlaylist = () => {
-
+const addTrackToPlaylist = (updatePlaylist, playlist, track) => {
+  playlist.tracks.push(track);
+  updatePlaylist(playlist);
 };
 
 const addFavoriteTrackFromQueue = (addFavoriteTrack, track) => {
@@ -63,7 +63,7 @@ const QueueMenuMore = props => {
               {
                 _.map(playlists, playlist => {
                   return (
-                    <Dropdown.Item onClick={ () => updatePlaylist(playlist) }>
+                    <Dropdown.Item onClick={ () => addTrackToPlaylist(updatePlaylist, playlist, currentItem) }>
                       <Icon name='music'/>
                       { playlist.name }
                     </Dropdown.Item>
