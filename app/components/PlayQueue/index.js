@@ -59,13 +59,16 @@ class PlayQueue extends React.Component {
     let {
       compact,
       items,
-      settings
+      settings,
+      playlists
     } = this.props;
 
     let {
       clearQueue,
       addPlaylist,
+      updatePlaylist,
       toggleOption,
+      addFavoriteTrack,
       success
     } = this.props.actions;
 
@@ -75,9 +78,12 @@ class PlayQueue extends React.Component {
           <QueueMenu
             clearQueue={clearQueue}
             addPlaylist={addPlaylist}
+            updatePlaylist={updatePlaylist} 
             toggleOption={toggleOption}
+            addFavoriteTrack={addFavoriteTrack}
             success={success}
             settings={settings}
+            playlists={playlists}
             items={items}
           />
 

@@ -55,7 +55,6 @@ class TrackRow extends React.Component {
   render () {
     let {
       track,
-
       withAddToQueue,
       withPlayNow,
       withAddToFavorites,
