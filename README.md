@@ -37,6 +37,9 @@ On an unrelated note, highly polarized opinions about languages and frameworks a
 - Scrobbling to last.fm (along with updating the 'now playing' status)
 - Newest releases with reviews - tracks and albums
 - Browsing by genre
+- Radio mode (automatically queue similar tracks)
+- Unlimited downloads
+- Realtime lyrics
 
 ## Planned features
 
@@ -44,8 +47,6 @@ On an unrelated note, highly polarized opinions about languages and frameworks a
 - Browsing by popularity
 - Country-specific top lists
 - Listening suggestions (similar artists, albums, tracks)
-- Unlimited downloads
-- Realtime lyrics
 - Locally stored library/favourites
 
 ## Manual and docs
