@@ -1,15 +1,19 @@
+import uuidv4 from 'uuid/v4';
+import _ from 'lodash';
+
 import { store } from '../persistence/store';
 
 export const LOAD_PLAYLISTS = 'LOAD_PLAYLISTS';
 export const ADD_PLAYLIST = 'ADD_PLAYLIST';
 export const DELETE_PLAYLIST = 'DELETE_PLAYLIST';
+export const UPDATE_PLAYLIST = 'UPDATE_PLAYLIST';
 
 export function addPlaylist(tracks, name) {
   return dispatch => {
-    let playlists = store.get('playlists') || {};
-    let playlist = { name, tracks };
+    let playlists = store.get('playlists') || [];
+    let playlist = { name, tracks, id: uuidv4() };
 
-    if (tracks.length === 0) {
+    if (_.isEmpty(tracks)) {
       dispatch({
         type: null
       });
@@ -25,24 +29,20 @@ export function addPlaylist(tracks, name) {
     store.set('playlists', playlists);
     dispatch({
       type: ADD_PLAYLIST,
-      payload: playlists
+      payload: { playlists }
     });
   };
 }
 
-export function deletePlaylist(name) {
+export function deletePlaylist(id) {
   return dispatch => {
-    let playlists = store.get('playlists') || {};
-    if (playlists) {
-      playlists = _.filter(playlists, item => item.name !== name);
-    } else {
-      playlists = [];
-    }
+    let playlists = store.get('playlists');
+    _.remove(playlists, { id });
 
     store.set('playlists', playlists);
     dispatch({
       type: DELETE_PLAYLIST,
-      payload: playlists
+      payload: { playlists }
     });
   };
 }
@@ -50,18 +50,25 @@ export function deletePlaylist(name) {
 
 export function loadPlaylists() {
   return dispatch => {
-    let playlists = store.get('playlists') || {};
+    let playlists = store.get('playlists');
 
-    if (playlists) {
-      dispatch({
-        type: LOAD_PLAYLISTS,
-        payload: playlists
-      });
-    } else {
-      dispatch({
-        type: LOAD_PLAYLISTS,
-        payload: []
-      });
-    }
+    dispatch({
+      type: LOAD_PLAYLISTS,
+      payload: { playlists: _.defaultTo(playlists, []) }
+    });
+  };
+}
+
+export function updatePlaylist(playlist) {
+  return dispatch => {
+    let playlists = store.get('playlists');
+    _.remove(playlists, { id: playlist.id });
+    playlists.push(playlist);
+
+    store.set('playlists', playlists);
+    dispatch({
+      type: UPDATE_PLAYLIST,
+      payload: { playlists }
+    });
   };
 }
