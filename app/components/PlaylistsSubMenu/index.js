@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
 import { NavLink } from 'react-router-dom';
+import _ from 'lodash';
 
 import appStyles from '../../styles.scss';
 import styles from './styles.scss';
@@ -10,7 +11,7 @@ const PlaylistsSubMenu = props => {
   return (
     !props.compact && <div className={styles.playlists_submenu}>
       {
-        props.playlists.map((playlist, i) => {
+        _.map(props.playlists, (playlist, i) => {
           return (
             <NavLink
               to={'/playlist/' + i}

@@ -1,4 +1,5 @@
-@import '../../vars';
+@import '../../mixin.scss';
+@import '../../vars.scss';
 
 .queue_popup {
   background-color: $background !important;
@@ -54,6 +55,10 @@
   .stream_title {
     display: flex;
     flex-flow: column;
+
+    span {
+      @include ellipsis;
+    }
   }
 
   .stream_id {

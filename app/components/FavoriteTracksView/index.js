@@ -37,6 +37,7 @@ const FavoriteTracksView = props => {
                     index={i}
                     displayCover
                     displayArtist
+                    withAddToFavorites={false}
                   />
                 );
               })

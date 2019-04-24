@@ -2,6 +2,8 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+
+import * as FavoritesActions from '../../actions/favorites';
 import * as QueueActions from '../../actions/queue';
 import * as PluginsActions from '../../actions/plugins';
 import * as PlaylistsActions from '../../actions/playlists';
@@ -11,14 +13,24 @@ import * as ToastActions from '../../actions/toasts';
 import PlayQueue from '../../components/PlayQueue';
 
 const PlayQueueContainer = props => {
+  const {
+    actions,
+    queue,
+    plugins,
+    settings,
+    playlists,
+    compact
+  } = props;
+  
   return (
     <PlayQueue
-      actions={props.actions}
-      items={props.queue.queueItems}
-      currentSong={props.queue.currentSong}
-      plugins={props.plugins}
-      settings={props.settings}
-      compact={props.compact}
+      actions={ actions }
+      items={ queue.queueItems }
+      currentSong={ queue.currentSong }
+      plugins={ plugins }
+      settings={ settings }
+      playlists={ playlists }
+      compact={ compact }
     />
   );
 };
@@ -34,7 +46,15 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators(Object.assign({}, PluginsActions, QueueActions, PlaylistsActions, SettingsActions, ToastActions), dispatch)
+    actions: bindActionCreators(Object.assign(
+      {},
+      FavoritesActions,
+      PluginsActions,
+      QueueActions,
+      PlaylistsActions,
+      SettingsActions,
+      ToastActions
+    ), dispatch)
   };
 }
 
