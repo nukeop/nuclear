@@ -38,7 +38,7 @@ export function deletePlaylist(id) {
   return dispatch => {
     let playlists = store.get('playlists');
     _.remove(playlists, { id });
-
+    
     store.set('playlists', playlists);
     dispatch({
       type: DELETE_PLAYLIST,
