@@ -40,7 +40,7 @@ export function localFileRouter() {
   let cache;
   let byArtist;
 
-  ipcMain.on('started', event => {
+  ipcMain.on('refresh-localfolders', event => {
     scanDirectories(store.get('localFolders'))
       .then(data => {
         cache = data.reduce((acc, item) => ({

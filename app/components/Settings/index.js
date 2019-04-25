@@ -53,7 +53,7 @@ class Settings extends React.Component {
         <Header>
           Local folders
           <Button
-            icon='plus'
+            icon='folder open'
             className={styles.add_folder}
             onClick={this.props.actions.openLocalFolderPicker}
           />  

@@ -118,6 +118,10 @@ export function stopApi() {
   ipcRenderer.send('stop-api');
 }
 
+export function refreshLocalFolders() {
+  ipcRenderer.send('refresh-localfolders');
+}
+
 export function sendPlayingStatus(event, playerState, queueState) {
   try {
     const { artist, name, thumbnail } = queueState.queueItems[queueState.currentSong];
