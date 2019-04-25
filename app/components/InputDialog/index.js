@@ -4,28 +4,19 @@ import { Button, Input, Modal } from 'semantic-ui-react';
 class InputDialog extends React.Component {
   constructor(props) {
     super(props);
-
+    
     this.state = {
       isOpen: false,
-      inputString: ''
+      inputString: this.props.initialString
     };
 
     this.handleClose = this.handleClose.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
 
-  componentDidUpdate() {
-    if (this.props.initialString &&
-        this.state.inputString !== this.props.initialString &&
-        !this.state.isOpen) {
-      this.setState({ inputString: this.props.initialString });
-    }
-  }
-
   handleClose() {
     this.setState({
-      isOpen: false,
-      inputString: ''
+      isOpen: false
     });
   }
 
@@ -54,7 +45,7 @@ class InputDialog extends React.Component {
       onAccept(this.state.inputString);
       this.handleClose();
     };
-
+    
     return (
       <Modal
         basic

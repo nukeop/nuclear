@@ -1,9 +1,11 @@
 import React from 'react';
 import _ from 'lodash';
 import {
+  Button,
   Icon
 } from 'semantic-ui-react';
 
+import InputDialog from '../InputDialog';
 import ContextPopup from '../ContextPopup';
 import PopupButton from '../ContextPopup/PopupButton';
 import TrackRow from '../TrackRow';
@@ -29,16 +31,20 @@ class PlaylistView extends React.Component {
     startPlayback();
   }
 
-  deletePlaylist(
-    playlist
-  ){
-    let {
+  deletePlaylist(playlist) {
+    const {
       history,
       deletePlaylist
     } = this.props;
     
     deletePlaylist(playlist.id);
     history.push('/playlists');
+  }
+
+  renamePlaylist(playlist, name) {
+    const updatedPlaylist = _.cloneDeep(playlist);
+    updatedPlaylist.name = name;
+    this.props.updatePlaylist(updatedPlaylist);
   }
 
   renderOptions (trigger, playlist) {
@@ -56,13 +62,13 @@ class PlaylistView extends React.Component {
           ariaLabel='Delete this playlist'
           icon='trash'
           label='Delete this playlist'
-        />
+        />           
       </ContextPopup>
     );
   }
 
   renderPlayButton () {
-    let {
+    const {
       playlist,
       addTracks,
       musicSources,
@@ -106,11 +112,29 @@ class PlaylistView extends React.Component {
           />
         </div>
         <div className={styles.playlist_header}>
-          <div className={styles.playlist_name}>{playlist.name}</div>
+          <div className={styles.playlist_name}>
+            { playlist.name }
+            <InputDialog
+              header={<h4>Input new playlist name:</h4>}
+              placeholder='Playlist name...'
+              accept='Rename'
+              initialString={ playlist.name }
+              onAccept={
+                name => this.renamePlaylist(playlist, name)
+              }
+              trigger={
+                <Button
+                  basic
+                  aria-label='Rename this playlist'
+                  icon='pencil'
+                />
+              }
+            />
+          </div>
           <Spacer />
           <div className={styles.playlist_buttons}>
-            {this.renderPlayButton()}
-            {this.renderOptions(popupTrigger, playlist)}
+            { this.renderPlayButton() }
+            { this.renderOptions(popupTrigger, playlist) }
           </div>
         </div>
       </div>
@@ -146,7 +170,7 @@ class PlaylistView extends React.Component {
   }
 
   render () {
-    let { playlist } = this.props;
+    const { playlist } = this.props;
     return (
       <div className={styles.playlist_view_container}>
         <div className={styles.playlist}>
