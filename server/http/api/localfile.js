@@ -1,6 +1,5 @@
 import express from 'express';
 import { ipcMain } from 'electron';
-import fs from 'fs';
 import { Validator } from 'express-json-validator-middleware';
 import _ from 'lodash';
 
@@ -71,7 +70,7 @@ export function localFileRouter() {
     validate(localGetSchema),
     checkCache,
     (req, res) => {
-      fs.createReadStream(cache[req.params.fileId].path).pipe(res);
+      res.download(cache[req.params.fileId].path);
     }
   );
 
