@@ -29,9 +29,28 @@
   }
   
   .playlist_name {
+    display: flex;
+    align-items: center;
     margin: 0 1rem 1rem 0;
     font-size: 32px;
     line-height: 32px;
+
+    button {
+      margin-left: 1rem;
+      border: 1px solid rgba($white, 0.3);
+
+      &:hover,
+      &:active,
+      &:focus {
+        i {
+          color: rgba($black, 0.9);
+        }
+      }
+    }
+
+    i {
+      color: rgba($white, 0.6);
+    }
   }
 
   .playlist_buttons {
