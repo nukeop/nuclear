@@ -10,7 +10,6 @@ import InputDialog from '../../InputDialog';
 import QueueMenuMore from './QueueMenuMore';
 
 import styles from './styles.scss';
-import globalStyles from '../../../app.global.scss';
 import settingsConst from '../../../constants/settings';
 
 class QueueMenu extends React.Component {
