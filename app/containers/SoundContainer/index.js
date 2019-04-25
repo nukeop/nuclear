@@ -161,6 +161,8 @@ class SoundContainer extends React.Component {
       ).stream;
     }
 
+    console.log('render sound', streamUrl, player.seek);
+
     return !!streamUrl && (
       <Sound
         url={streamUrl}
@@ -170,6 +172,7 @@ class SoundContainer extends React.Component {
         onLoading={this.handleLoading.bind(this)}
         onLoad={this.handleLoaded.bind(this)}
         position={player.seek}
+        onError={console.error}
       >
         <Volume value={player.muted ? 0 : player.volume} />
         <Equalizer
