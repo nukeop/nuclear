@@ -11,15 +11,17 @@ const PopupButton = props => {
     onClick,
     ariaLabel,
     icon,
-    label
+    label,
+    ...other
   } = props;
-
+  
   return (
     <a
       href='#'
       className={ styles.popup_button }
       onClick={ onClick }
       aria-label={ ariaLabel }
+      { ...other }
     >
       <Icon name={ icon }/> { label }
     </a>
