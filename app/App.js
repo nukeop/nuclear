@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 import { NavLink, withRouter } from 'react-router-dom';
 import classnames from 'classnames';
 import _ from 'lodash';
-import Sound from 'react-sound-html5';
+import Sound from 'react-hifi';
 
 import * as Actions from './actions';
 import * as PlayerActions from './actions/player';
