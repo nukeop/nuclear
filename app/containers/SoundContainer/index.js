@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import _ from 'lodash';
-import Sound from 'react-sound-html5';
+import Sound, { Volume, Equalizer, AnalyserByFrequency } from 'react-hifi';
 
 import * as Actions from '../../actions';
 import * as PlayerActions from '../../actions/player';
@@ -170,14 +170,20 @@ class SoundContainer extends React.Component {
         onLoading={this.handleLoading.bind(this)}
         onLoad={this.handleLoaded.bind(this)}
         position={player.seek}
-        volume={player.muted ? 0 : player.volume}
-        equalizer={filterFrequencies.reduce((acc, freq, idx) => ({
-          ...acc,
-          [freq]: equalizer.values[idx] || 0
-        }), {})}
-        preAmp={equalizer.preAmp}
-        onVisualizationChange={viz && actions.setVisualizationData}
-      />
+      >
+        <Volume value={player.muted ? 0 : player.volume} />
+        <Equalizer
+          data={filterFrequencies.reduce((acc, freq, idx) => ({
+            ...acc,
+            [freq]: equalizer.values[idx] || 0
+          }), {})}
+          preAmp={equalizer.preAmp}
+        />
+        <AnalyserByFrequency
+          frequencies={filterFrequencies}
+          onVisualisationData={viz && actions.setVisualizationData}
+        />
+      </Sound>
     );
   }
 }
