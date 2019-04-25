@@ -50,21 +50,26 @@ class Settings extends React.Component {
   renderLocalSettings() {
     return (
       <div className={styles.local_settings}>
-        <Header>Local folders</Header>
-        <hr />
-        <Button onClick={this.props.actions.openLocalFolderPicker}>add a folder</Button>
-        <div>
+        <Header>
+          Local folders
+          <Button
+            icon='plus'
+            className={styles.add_folder}
+            onClick={this.props.actions.openLocalFolderPicker}
+          />  
+        </Header>
+        <Segment>
           {this.props.localFolders.map(folder => (
             <div className={styles.folder_row} key={folder}>
               <label className={styles.folder_label}>{folder}</label>
-              {/* <FontAwesome
-                name='trash'
+              <Icon
+                name='trash alternate'
                 onClick={() => this.props.actions.removeLocalFolder(folder)}
                 className={styles.folder_remove_icon}
-              /> */}
+              />
             </div>
           ))}
-        </div>
+        </Segment>
       </div>
     );
   }
@@ -287,7 +292,6 @@ class Settings extends React.Component {
     return (
       <div className={styles.settings_container}>
         {this.renderSocialSettings()}
-        {this.renderLocalSettings()}
         {_.map(optionsGroups, (group, i) => {
           return (
             <div key={i} className={styles.settings_section}>
@@ -301,6 +305,7 @@ class Settings extends React.Component {
             </div>
           );
         })}
+        {this.renderLocalSettings()}
       </div>
     );
   }
