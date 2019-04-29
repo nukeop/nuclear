@@ -1,11 +1,11 @@
 import { promisify } from 'util';
 import glob from 'glob';
 import { parseFile } from 'music-metadata';
-import uuid from 'uuid/v4';
+import slug from 'slug';
 import { getOption } from '../store';
 
 export function formatMeta({ common, format }, path) {
-  const id = uuid();
+  const id = slug(`${common.artist} ${common.title}`);
   const port = getOption('api.port');
 
   return {
@@ -15,12 +15,19 @@ export function formatMeta({ common, format }, path) {
     name: common.title,
     pos: common.track.no,
     album: common.album,
-    artist: common.artist || 'unknown',
+    artist: {
+      name: common.artist || 'unknown'
+    },
     genre: common.genre,
     year: common.year,
     cover: common.picture,
     loading: false,
-    thumbnail: `http://127.0.0.1:${port}/nuclear/file/${id}/thumb`
+    local: true,
+    image: [
+      common.picture ? {
+        '#text': `http://127.0.0.1:${port}/nuclear/file/${id}/thumb`
+      } : undefined
+    ]
   };
 }
 
