@@ -3,7 +3,7 @@ import { ipcMain } from 'electron';
 import { Validator } from 'express-json-validator-middleware';
 import _ from 'lodash';
 
-import { scanDirectories } from '../../file';
+import { scanDirectories } from '../lib/files';
 import { store, getOption } from '../../store';
 
 export const localSearchSchema = {

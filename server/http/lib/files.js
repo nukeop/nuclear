@@ -2,7 +2,7 @@ import { promisify } from 'util';
 import glob from 'glob';
 import { parseFile } from 'music-metadata';
 import slug from 'slug';
-import { getOption } from '../store';
+import { getOption } from '../../store';
 
 export function formatMeta({ common, format }, path) {
   const id = slug(`${common.artist} ${common.title}`);
