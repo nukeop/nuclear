@@ -37,7 +37,7 @@ class GenresTab extends React.Component {
                   >
 
                     <div className={styles.genre_overlay}>
-                      <Img src={'https://picsum.photos/256x256/?random&seed=' + i} />
+                      <Img src={'https://picsum.photos/256?random=' + i} />
                     </div>
                     <div className={styles.genre_name}>
                       <div
