@@ -46,7 +46,7 @@ export function localFileRouter() {
           ...acc,
           [item.id]: item
         }), {});
-        byArtist = _.groupBy(data, track => track.artist);
+        byArtist = _.groupBy(data, track => track.artist.name);
 
         event.sender.send('local-files', data);
       })
@@ -107,8 +107,7 @@ export function localFileRouter() {
             stream: `http://127.0.0.1:${port}/nuclear/file/${track.id}`,
             thumbnail: `http://127.0.0.1:${port}/nuclear/file/${track.id}/thumb`
           }))
-          .pop()
-      );
+          .pop());
     } catch (err) {
       next(err);
     }

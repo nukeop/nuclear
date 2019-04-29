@@ -1,46 +1,59 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Icon } from 'semantic-ui-react';
+import { Icon, Segment } from 'semantic-ui-react';
 
-// import styles from './index.scss';
+import Header from '../Header';
+import TrackRow from '../TrackRow';
 
-const LibraryView = ({ byArtist, actions, musicSources, pending }) => {
+import styles from './index.scss';
+
+const LibraryView = ({ tracks, actions, pending }) => {
   return (
-    <div>
-      <h1>Local library</h1>
-      <div>
+    <div className={styles.local_files_view}>
+      <Header>
+        Local Library
         <Icon
           name='refresh'
           loading={pending}
-          onClick={actions.scanLocalFolders}  
+          onClick={actions.scanLocalFolders}
+          className={styles.refresh_icon}
         />
-      </div>
-      {pending && <span>Loading ...</span>}
-      {!pending && byArtist && Object.keys(byArtist).map((artist, idx) => (
-        <div key={idx}>
-          <h2>{artist}</h2>
-          <div>
-            {Array.isArray(byArtist[artist]) && byArtist[artist].map((track, idx) => (
-              <div style={{ cursor: 'pointer' }} key={idx} onClick={() => actions.addToQueue(musicSources, {
-                artist: track.artist,
-                name: track.name,
-                thumbnail: track.thumbnail
-              })}>
-                {track.name}
-              </div>
-            ))}
-          </div>
-        </div>
-      ))}
+      </Header>
+      {!pending && (
+        <Segment>
+          <table>
+            <thead>
+              <tr>
+                <th><Icon name='image' /></th>
+                <th>Artist</th>
+                <th>Title</th>
+              </tr>
+            </thead>
+            <tbody>
+              {tracks && tracks.map((track, idx) => (
+                <TrackRow
+                  key={'favorite-track-' + idx}
+                  track={track}
+                  index={idx}
+                  displayCover
+                  displayArtist
+                  withAddToDownloads={false}
+                  isLocal
+                />
+              ))}
+            </tbody>
+          </table>
+        </Segment>
+      )}
     </div>
   );
 };
 
 LibraryView.propTypes = {
   pending: PropTypes.bool,
-  byArtist: PropTypes.object,
-  actions: PropTypes.object,
-  musicSources: PropTypes.array
+  tracks: PropTypes.array,
+  // byArtist: PropTypes.object,
+  actions: PropTypes.object
 };
 
 export default LibraryView;

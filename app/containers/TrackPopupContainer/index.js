@@ -155,9 +155,13 @@ TrackPopupContainer.defaultProps = {
   withAddToDownloads: true
 };
 
-function mapStateToProps (state) {
+function mapStateToProps (state, { track }) {
   return {
-    musicSources: state.plugin.plugins.musicSources,
+    musicSources: track.local
+      ? state.plugin.plugins.musicSources.filter(({ sourceName }) => {
+        return sourceName === 'Local';
+      })
+      : state.plugin.plugins.musicSources,
     settings: state.settings
   };
 }
