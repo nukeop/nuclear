@@ -111,7 +111,7 @@ class App extends React.Component {
         <Spacer style={{
           height: '100%',
           flex: '1 1 45%',
-          '-webkit-app-region': 'drag'
+          WebkitAppRegion: 'drag'
         }}/>
         <HelpModal />
         {this.props.settings.framelessWindow && <WindowControls />}
