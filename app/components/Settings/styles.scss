@@ -104,27 +104,6 @@
     }
   }
 
-  .local_settings {
-    margin-bottom: 1rem;
-  }
-
-  .add_folder {
-    float: right;
-    margin-bottom: 10px;
-  }
-
-  .folder_row {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    padding-right: 5px;
-
-  }
-
-  .folder_remove_icon {
-    cursor: pointer;
-  }
-
   .folder_label {
     width: 95%;
     white-space: nowrap;

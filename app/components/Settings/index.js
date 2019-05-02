@@ -47,33 +47,6 @@ class Settings extends React.Component {
     return _.isNull(value) || !_.isNaN(intValue);
   }
 
-  renderLocalSettings() {
-    return (
-      <div className={styles.local_settings}>
-        <Header>
-          Local folders
-          <Button
-            icon='folder open'
-            className={styles.add_folder}
-            onClick={this.props.actions.openLocalFolderPicker}
-          />  
-        </Header>
-        <Segment>
-          {this.props.localFolders.map(folder => (
-            <div className={styles.folder_row} key={folder}>
-              <label className={styles.folder_label}>{folder}</label>
-              <Icon
-                name='trash alternate'
-                onClick={() => this.props.actions.removeLocalFolder(folder)}
-                className={styles.folder_remove_icon}
-              />
-            </div>
-          ))}
-        </Segment>
-      </div>
-    );
-  }
-
   renderLastFmSocialIntegration () {
     return (
       <SocialIntegration
@@ -305,7 +278,6 @@ class Settings extends React.Component {
             </div>
           );
         })}
-        {this.renderLocalSettings()}
       </div>
     );
   }

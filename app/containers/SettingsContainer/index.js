@@ -5,7 +5,6 @@ import { bindActionCreators } from 'redux';
 import * as GithubActions from '../../actions/github';
 import * as ScrobblingActions from '../../actions/scrobbling';
 import * as SettingsActions from '../../actions/settings';
-import * as LocalActions from '../../actions/local';
 import options from '../../constants/settings';
 import Settings from '../../components/Settings';
 
@@ -30,7 +29,6 @@ function mapStateToProps(state) {
   return {
     github: state.github,
     scrobbling: state.scrobbling,
-    local: state.local,
     settings: state.settings
   };
 }
@@ -43,7 +41,6 @@ function mapDispatchToProps(dispatch) {
         GithubActions,
         ScrobblingActions,
         SettingsActions,
-        LocalActions
       ),
       dispatch
     )
