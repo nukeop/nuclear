@@ -8,7 +8,8 @@ import * as LocalActions from '../../actions/local';
 function mapStateToProps(state) {
   return {
     pending: state.local.pending,
-    tracks: Object.values(state.local.tracks)
+    tracks: Object.values(state.local.tracks),
+    localFolders: state.local.folders
     // byArtist: _.groupBy(Object.values(state.local.tracks), track => track.artist)
   };
 }

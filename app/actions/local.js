@@ -51,7 +51,9 @@ export function scanLocalFoldersFailed(payload) {
 export function openLocalFolderPicker() {
   return dispatch => {
     remote.dialog.showOpenDialog({ properties: ['openDirectory', 'multiSelections'] }, folders => {
-      dispatch(addLocalFolders(folders));
+      if (folders) {
+        dispatch(addLocalFolders(folders));
+      }
     });
   };
 }
