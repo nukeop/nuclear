@@ -12,6 +12,10 @@ class LocalPlugin extends MusicSourcePlugin {
   search(query) {
     return localSearch(query);
   }
+
+  getAlternateStream(query) {
+    return localSearch(query);
+  }
 }
 
 export default LocalPlugin;
