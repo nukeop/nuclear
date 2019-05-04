@@ -8,6 +8,8 @@ export const SCAN_LOCAL_FOLDER = 'SCAN_LOCAL_FOLDERS';
 export const SCAN_LOCAL_FOLDER_SUCCESS = 'SCAN_LOCAL_FOLDER_SUCCESS';
 export const SCAN_LOCAL_FOLDER_FAILED = 'SCAN_LOCAL_FOLDER_FAILED';
 export const OPEN_LOCAL_FOLDER_PICKER = 'OPEN_LOCAL_FOLDER_PICKER';
+export const UPDATE_LOCAL_FILTER = 'UPDATE_LOCAL_FILTER';
+export const UPDATE_LOCAL_SORT = 'UPDATE_LOCAL_SORT';
 
 export function addLocalFolders(payload) {
   return {
@@ -55,5 +57,24 @@ export function openLocalFolderPicker() {
         dispatch(addLocalFolders(folders));
       }
     });
+  };
+}
+
+export function updateFilter(event) {
+  return {
+    type: UPDATE_LOCAL_FILTER,
+    payload: event.target.value
+  };
+}
+
+export function updateLocalSort(sortBy, column, direction) {
+  return {
+    type: UPDATE_LOCAL_SORT,
+    payload: {
+      sortBy,
+      direction: column !== sortBy
+        ? 'ascending'
+        : direction === 'ascending' ? 'descending' : 'ascending'
+    }
   };
 }

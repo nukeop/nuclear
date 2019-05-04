@@ -3,7 +3,9 @@ import {
   REMOVE_LOCAL_FOLDER,
   SCAN_LOCAL_FOLDER,
   SCAN_LOCAL_FOLDER_FAILED,
-  SCAN_LOCAL_FOLDER_SUCCESS
+  SCAN_LOCAL_FOLDER_SUCCESS,
+  UPDATE_LOCAL_FILTER,
+  UPDATE_LOCAL_SORT
 } from '../actions/local';
 import { store } from '../persistence/store';
 
@@ -11,6 +13,10 @@ const initialState = {
   pending: false,
   error: false,
   folders: store.get('localFolders'),
+  page: 0,
+  sortBy: 'artist',
+  direction: 'acsending',
+  filter: '',
   tracks: {
     byId: {},
     byAlbum: {},
@@ -60,6 +66,16 @@ export default function LocalReducer(state = initialState, action) {
       ...state,
       pending: false,
       error: true
+    };
+  case UPDATE_LOCAL_FILTER:
+    return {
+      ...state,
+      filter: action.payload
+    };
+  case UPDATE_LOCAL_SORT:
+    return {
+      ...state,
+      ...action.payload
     };
   default:
     return state;

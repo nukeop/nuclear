@@ -1,13 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Icon, Segment, Button, List } from 'semantic-ui-react';
+import { Icon, Segment, Button, List, Input, Table } from 'semantic-ui-react';
 
 import Header from '../Header';
 import TrackRow from '../TrackRow';
 
 import styles from './index.scss';
 
-const LibraryView = ({ tracks, actions, pending, localFolders }) => {
+const LibraryView = ({
+  tracks,
+  actions,
+  pending,
+  localFolders,
+  sortBy,
+  direction
+}) => {
+  const handleSort = columnName => () => {
+    actions.updateLocalSort(columnName, sortBy, direction);
+  };
+
   return (
     <div className={styles.local_files_view}>
       <Header>
@@ -21,9 +32,7 @@ const LibraryView = ({ tracks, actions, pending, localFolders }) => {
         />
         <List divided verticalAlign='middle' className={styles.equalizer_list}>
           {localFolders.map((folder, idx) => (
-            <List.Item
-              key={idx}
-            >
+            <List.Item key={idx}>
               <List.Content floated='right'>
                 <Icon
                   name='trash alternate'
@@ -43,16 +52,29 @@ const LibraryView = ({ tracks, actions, pending, localFolders }) => {
           onClick={actions.scanLocalFolders}
           className={styles.refresh_icon}
         />
+        <Input icon='search' placeholder='Search...' onChange={actions.updateFilter} />
         {!pending && (
-          <table>
-            <thead>
-              <tr>
-                <th><Icon name='image' /></th>
-                <th>Artist</th>
-                <th>Title</th>
-              </tr>
-            </thead>
-            <tbody>
+          <Table sortable className={styles.table}>
+            <Table.Header className={styles.thead}>
+              <Table.Row>
+                <Table.HeaderCell>
+                  <Icon name='image' />
+                </Table.HeaderCell>
+                <Table.HeaderCell
+                  sorted={sortBy === 'artist' ? direction : null}
+                  onClick={handleSort('artist')}
+                >
+                  Artist
+                </Table.HeaderCell>
+                <Table.HeaderCell
+                  sorted={sortBy === 'name' ? direction : null}
+                  onClick={handleSort('name')}
+                >
+                  Title
+                </Table.HeaderCell>
+              </Table.Row>
+            </Table.Header>
+            <Table.Body className={styles.tbody}>
               {tracks && tracks.map((track, idx) => (
                 <TrackRow
                   key={'favorite-track-' + idx}
@@ -64,8 +86,8 @@ const LibraryView = ({ tracks, actions, pending, localFolders }) => {
                   isLocal
                 />
               ))}
-            </tbody>
-          </table>
+            </Table.Body>
+          </Table>
         )}
       </Segment>
     </div>
@@ -77,7 +99,9 @@ LibraryView.propTypes = {
   tracks: PropTypes.array,
   localFolders: PropTypes.arrayOf(PropTypes.string),
   // byArtist: PropTypes.object,
-  actions: PropTypes.object
+  actions: PropTypes.object,
+  sortBy: PropTypes.string,
+  direction: PropTypes.string
 };
 
 export default LibraryView;

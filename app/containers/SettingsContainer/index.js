@@ -12,8 +12,7 @@ const SettingsContainer = ({
   actions,
   scrobbling,
   settings,
-  github,
-  local
+  github
 }) => (
   <Settings
     actions={actions}
@@ -21,7 +20,6 @@ const SettingsContainer = ({
     scrobbling={scrobbling}
     settings={settings}
     options={options}
-    localFolders={local.folders}
   />
 );
 
