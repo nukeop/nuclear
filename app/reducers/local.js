@@ -15,7 +15,7 @@ const initialState = {
   folders: store.get('localFolders'),
   page: 0,
   sortBy: 'artist',
-  direction: 'acsending',
+  direction: 'ascending',
   filter: '',
   tracks: {
     byId: {},

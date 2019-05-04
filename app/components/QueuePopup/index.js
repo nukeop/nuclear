@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
 import _ from 'lodash';
 import { Dropdown, Popup } from 'semantic-ui-react';
+import Img from 'react-image';
+
+import artPlaceholder from '../../../resources/media/art_placeholder.png';
 import { getSelectedStream } from '../../utils';
 
 import styles from './styles.scss';
@@ -79,12 +82,16 @@ class QueuePopup extends React.Component {
   }
 
   renderStreamInfo() {
-    let { trigger, track, musicSources, defaultMusicSource } = this.props;
+    let { track, defaultMusicSource } = this.props;
     let selectedStream = getSelectedStream(track.streams, defaultMusicSource);
     return (
       <div className={styles.stream_info}>
         <div className={styles.stream_thumbnail}>
-          <img alt='' src={selectedStream.thumbnail} />
+          <Img
+            alt=''
+            src={selectedStream.thumbnail}
+            unloader={<img src={artPlaceholder} />}
+          />
         </div>
         <div className={styles.stream_text_info}>
           {this.renderStreamSourceDropdown()}
@@ -116,7 +123,7 @@ class QueuePopup extends React.Component {
   }
 
   render() {
-    let { trigger, track, defaultMusicSource } = this.props;
+    let { track, defaultMusicSource } = this.props;
     let selectedStream = getSelectedStream(track.streams, defaultMusicSource);
 
     return (
