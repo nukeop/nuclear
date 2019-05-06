@@ -1,8 +1,8 @@
-// const {
-//   default: installExtension,
-//   REACT_DEVELOPER_TOOLS,
-//   REDUX_DEVTOOLS
-// } = require('electron-devtools-installer');
+const {
+  default: installExtension,
+  REACT_DEVELOPER_TOOLS,
+  REDUX_DEVTOOLS
+} = require('electron-devtools-installer');
 const {
   app,
   ipcMain,
@@ -47,15 +47,13 @@ function createWindow () {
 
   win.setTitle('Nuclear Music Player');
 
-  // Needs to be commented for now
-  // https://github.com/electron/electron/issues/13008
-  // installExtension(REACT_DEVELOPER_TOOLS)
-  // .then((name) => console.log(`Added Extension:  ${name}`))
-  // .catch((err) => console.log('An error occurred: ', err));
+  installExtension(REACT_DEVELOPER_TOOLS)
+    .then((name) => console.log(`Added Extension:  ${name}`))
+    .catch((err) => console.log('An error occurred: ', err));
 
-  // installExtension(REDUX_DEVTOOLS)
-  // .then((name) => console.log(`Added Extension:  ${name}`))
-  // .catch((err) => console.log('An error occurred: ', err));
+  installExtension(REDUX_DEVTOOLS)
+    .then((name) => console.log(`Added Extension:  ${name}`))
+    .catch((err) => console.log('An error occurred: ', err));
 
   win.loadURL(
     url.format({
