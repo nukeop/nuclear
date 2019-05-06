@@ -1,0 +1,35 @@
+.refresh_icon {
+  margin-left: 10px !important;
+  cursor: pointer;
+}
+
+.local_files_view {
+  display: flex;
+  flex-flow: column;
+}
+
+.folder_remove_icon {
+  cursor: pointer;
+}
+
+.table {
+  background: transparent !important;
+}
+
+.thead {
+  th {
+    color: rgba(250, 250, 250, 0.5) !important;
+    font-size: 20px !important;
+    background: transparent !important;
+    border-bottom: 0.5px solid rgba(250, 250, 250, 0.5) !important;
+  }
+}
+
+.tbody {
+  tr {
+    color: white;
+  }
+  td {
+    border-color: transparent;
+  }
+}

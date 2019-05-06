@@ -103,4 +103,11 @@
       margin: 0 2rem;
     }
   }
+
+  .folder_label {
+    width: 95%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 }

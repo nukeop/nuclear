@@ -10,7 +10,6 @@ ipcMain.once('started', event => {
   rendererWindow = event.sender;
 });
 
-
 function onNext() {
   rendererWindow.send('next');
 }
@@ -42,7 +41,7 @@ function onVolume(volume) {
 function onSeek(position) {
   rendererWindow.send('seek', position);
 }
-
+ 
 function onSettings(settings) {
   rendererWindow.send('settings', settings);
 }
