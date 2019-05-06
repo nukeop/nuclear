@@ -25,15 +25,24 @@
     display: flex;
     width: 100%;
     flex-flow: column;
+    justify-content: flex-end;
     margin: 0 2rem;
+  }
+
+  .playlist_header_label {
+    font-variant: all-small-caps;
+    letter-spacing: 2px;
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
   }
   
   .playlist_name {
     display: flex;
     align-items: center;
-    margin: 0 1rem 1rem 0;
-    font-size: 32px;
-    line-height: 32px;
+    margin: 0 1rem 2rem 0;
+    font-size: 40px;
+    line-height: 40px;
+    font-weight: bold;
 
     button {
       margin-left: 1rem;
