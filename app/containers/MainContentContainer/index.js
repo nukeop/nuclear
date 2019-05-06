@@ -18,6 +18,7 @@ import SearchResultsContainer from '../SearchResultsContainer';
 import SettingsContainer from '../SettingsContainer';
 import TagViewContainer from '../TagViewContainer';
 import EqualizerViewContainer from '../EqualizerViewContainer';
+import LibraryViewContainer from '../LibraryViewContainer';
 
 import DownloadsContainer from '../../containers/DownloadsContainer';
 
@@ -49,6 +50,7 @@ class MainContentContainer extends React.Component {
               <Route path='/search' component={SearchResultsContainer} />
               <Route path='/lyrics' component={LyricsContainer} />
               <Route path='/equalizer' component={EqualizerViewContainer} />
+              <Route path='/library' component={LibraryViewContainer} />
             </Switch>
           </MainLayout>
         );
