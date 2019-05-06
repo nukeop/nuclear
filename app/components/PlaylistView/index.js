@@ -112,6 +112,7 @@ class PlaylistView extends React.Component {
           />
         </div>
         <div className={styles.playlist_header}>
+          <label className={styles.playlist_header_label}>Playlist</label>
           <div className={styles.playlist_name}>
             { playlist.name }
             <InputDialog
@@ -131,7 +132,6 @@ class PlaylistView extends React.Component {
               }
             />
           </div>
-          <Spacer />
           <div className={styles.playlist_buttons}>
             { this.renderPlayButton() }
             { this.renderOptions(popupTrigger, playlist) }
