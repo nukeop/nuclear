@@ -18,7 +18,7 @@ const LibraryView = ({
   const handleSort = columnName => () => {
     actions.updateLocalSort(columnName, sortBy, direction);
   };
-
+  
   return (
     <div className={styles.local_files_view}>
       <Header>
@@ -26,9 +26,20 @@ const LibraryView = ({
       </Header>
       <Segment>
         <Button
-          icon='folder open'
+          icon
+          labelPosition='left'
           className={styles.add_folder}
           onClick={actions.openLocalFolderPicker}
+        >
+          
+          <Icon name='folder open' />
+          Add folders
+        </Button>
+        <Button
+          icon='refresh'
+          loading={pending}
+          onClick={actions.scanLocalFolders}
+          className={styles.refresh_icon}
         />
         <List divided verticalAlign='middle' className={styles.equalizer_list}>
           {localFolders.map((folder, idx) => (
@@ -46,12 +57,7 @@ const LibraryView = ({
         </List>
       </Segment>
       <Segment>
-        <Button
-          icon='refresh'
-          loading={pending}
-          onClick={actions.scanLocalFolders}
-          className={styles.refresh_icon}
-        />
+        
         <Input icon='search' placeholder='Search...' onChange={actions.updateFilter} />
         {!pending && (
           <Table sortable className={styles.table}>
@@ -72,6 +78,12 @@ const LibraryView = ({
                 >
                   Title
                 </Table.HeaderCell>
+                <Table.HeaderCell
+                  sorted={sortBy === 'album' ? direction : null}
+                  onClick={handleSort('album')}
+                >
+                  Album
+                </Table.HeaderCell>
               </Table.Row>
             </Table.Header>
             <Table.Body className={styles.tbody}>
@@ -82,6 +94,7 @@ const LibraryView = ({
                   index={idx}
                   displayCover
                   displayArtist
+                  displayAlbum
                   withAddToDownloads={false}
                   isLocal
                 />

@@ -23,6 +23,14 @@ class TrackRow extends React.Component {
     );
   }
 
+  renderAlbum(track) {
+    return (
+      <td className={styles.track_album}>
+        { track.album }
+      </td>
+    );
+  }
+  
   renderDuration (track) {
     if (track.duration === 0) {
       return <td className={styles.track_duration} />;
@@ -35,19 +43,29 @@ class TrackRow extends React.Component {
   }
 
   renderTrigger (track) {
+    const {
+      displayCover,
+      displayTrackNumber,
+      displayArtist,
+      displayAlbum,
+      displayDuration,
+      displayPlayCount
+    } = this.props;
+    
     return (
       <tr className={styles.track} onDoubleClick={this.playTrack}>
         {
-          this.props.displayCover &&
+          displayCover &&
             <td className={styles.track_thumbnail}>
               <img src={this.getThumbnail(track)}/>
             </td>
         }
-        {this.props.displayTrackNumber && <td className={styles.track_artist}>{track.position}</td>}
-        {this.props.displayArtist && <td className={styles.track_artist}>{track.artist.name}</td>}
-        <td className={styles.track_name}>{track.name}</td>
-        {this.props.displayDuration && this.renderDuration(track)}
-        {this.props.displayPlayCount && <td className={styles.playcount}>{numeral(track.playcount).format('0,0')}</td>}
+        { displayTrackNumber && <td className={styles.track_artist}>{track.position}</td> }
+        { displayArtist && <td className={styles.track_artist}>{track.artist.name}</td> }
+        <td className={styles.track_name}>{ track.name }</td>
+        { displayAlbum && this.renderAlbum(track) }
+        { displayDuration && this.renderDuration(track) }
+        { displayPlayCount && <td className={styles.playcount}>{numeral(track.playcount).format('0,0')}</td> }
       </tr>
     );
   }
@@ -84,6 +102,7 @@ TrackRow.propTypes = {
   displayCover: PropTypes.bool,
   displayTrackNumber: PropTypes.bool,
   displayArtist: PropTypes.bool,
+  displayAlbum: PropTypes.bool,
   displayDuration: PropTypes.bool,
   displayPlayCount: PropTypes.bool,
   
