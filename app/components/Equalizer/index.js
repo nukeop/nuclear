@@ -194,21 +194,21 @@ class Equalizer extends React.Component {
 
   render() {
     return (
-      <div className={styles.equalizer_wrapper}>
-        <h1>Equalizer</h1>
-        <div className={styles.flexbox}>
-          <div className={styles.vertical_flex}>
-            <PreAmp value={this.props.preAmp} onChange={this.handlePreampChange} />
-            <Radio
-              toggle
-              checked={this.props.viz}
-              onChange={this.props.onToggleViz}
-              className={styles.toggle_viz}
-            />
-          </div>
-          <div className={styles.chart_wrapper}>
-            <canvas ref={this.attachCanvas} />
-          </div>
+      <div className={styles.equalizer_container}>
+        <div className={styles.preamp_container}>
+          <PreAmp
+            value={this.props.preAmp}
+            onChange={this.handlePreampChange}
+          />
+          <Radio
+            toggle
+            checked={this.props.viz}
+            onChange={this.props.onToggleViz}
+            className={styles.toggle_viz}
+          />
+        </div>
+        <div className={styles.chart_wrapper}>
+          <canvas ref={this.attachCanvas} />
         </div>
       </div>
     );

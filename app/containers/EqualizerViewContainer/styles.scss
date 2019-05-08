@@ -1,0 +1,11 @@
+.equalizer_view {
+  display: flex;
+  flex-flow: column;
+
+  .equalizer_components {
+    display: flex;
+    flex-flow: row;
+    padding: 2rem 4rem;
+    margin-top: 4rem;
+  }
+}

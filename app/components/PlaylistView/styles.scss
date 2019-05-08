@@ -107,4 +107,32 @@
       border-top: 1px solid rgba($lightbg, 0.4);
     }
   }
+
+  table {
+    width: 100%;
+  }
+
+  thead {
+        background: $background2;
+
+        th {
+          padding: 1rem 1rem;
+          text-align: left;
+        }
+      }
+
+      tbody {
+        tr {
+          transition: $short-duration;
+        }
+
+        tr:hover {
+          background: rgba($background2, 0.25);
+        }
+
+        td {
+          padding: 1rem 1rem;
+          border-bottom: 1px solid $background2;
+        }
+      }
 }

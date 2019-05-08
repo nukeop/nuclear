@@ -1,17 +1,32 @@
-.equalizer_list {
-  margin: auto !important;
-  width: 50%;
-  height: 200px;
-  overflow: auto;
-}
+@import '../../mixin.scss';
+@import '../../vars.scss';
 
-.equalizer_item {
-  padding: 5px !important;
-}
+.preset_list_container {
+  display: flex;
+  flex-flow: column;
+  height: 100%;
+  flex: 1 1 auto;
 
-.equalizer_click_item {
-  cursor: pointer;
-  :hover {
-    border-right: solid 2px white;
+  h3 {
+    margin-bottom: 0;
+  }
+  
+  .equalizer_list {
+    @include roundCorners;
+    height: 100%;
+    overflow: auto;
+    background: $background3;
+  }
+
+  .equalizer_item {
+    padding: 5px !important;
+  }
+
+  .equalizer_click_item {
+    cursor: pointer;
+    :hover {
+      border-right: solid 2px white;
+    }
   }
 }
+
