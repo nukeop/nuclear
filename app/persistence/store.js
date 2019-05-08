@@ -34,9 +34,9 @@ function initStore () {
 
   if (!store.get('equalizer')) {
     store.set('equalizer', {
-      selected: 'default',
+      selected: 'Default',
       presets: {
-        default: {
+        Default: {
           values: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
           preAmp: 0
         },

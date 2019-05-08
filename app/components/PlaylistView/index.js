@@ -9,7 +9,6 @@ import InputDialog from '../InputDialog';
 import ContextPopup from '../ContextPopup';
 import PopupButton from '../ContextPopup/PopupButton';
 import TrackRow from '../TrackRow';
-import Spacer from '../Spacer';
 import artPlaceholder from '../../../resources/media/art_placeholder.png';
 
 import styles from './styles.scss';
