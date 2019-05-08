@@ -7,15 +7,19 @@ const PreAmp = ({
   onChange,
   value
 }) => (
-  <input
-    type='range'
-    onChange={evt => onChange(Number(evt.target.value))}
-    value={value}
-    className={styles.preamp}
-    min={-10}
-    max={10}
-    step={1}
-  />
+  <React.Fragment>
+    <span>10 dB</span>
+    <input
+      type='range'
+      onChange={evt => onChange(Number(evt.target.value))}
+      value={value}
+      className={styles.preamp}
+      min={-10}
+      max={10}
+      step={1}
+    />
+    <span>-10 dB</span>
+  </React.Fragment>
 );
 
 PreAmp.propTypes = {

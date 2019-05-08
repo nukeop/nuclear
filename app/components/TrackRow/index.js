@@ -60,7 +60,7 @@ class TrackRow extends React.Component {
               <img src={this.getThumbnail(track)}/>
             </td>
         }
-        { displayTrackNumber && <td className={styles.track_artist}>{track.position}</td> }
+        { displayTrackNumber && <td className={styles.track_number}>{track.position}</td> }
         { displayArtist && <td className={styles.track_artist}>{track.artist.name}</td> }
         <td className={styles.track_name}>{ track.name }</td>
         { displayAlbum && this.renderAlbum(track) }

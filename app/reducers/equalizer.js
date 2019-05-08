@@ -21,10 +21,10 @@ export default function EqualizerReducer(state = initialState, action) {
   switch (action.type) {
   case UPDATE_EQUALIZER:
     newState = {
-      selected: 'custom',
+      selected: 'Custom',
       presets: {
         ...state.presets,
-        custom: action.payload
+        Custom: action.payload
       }
     };
     store.set('equalizer', newState);
