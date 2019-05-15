@@ -1,4 +1,11 @@
+@import '../../mixin.scss';
+
 .favorite_tracks_view {
   display: flex;
   flex-flow: column;
+  height: 100%;
+
+  .empty_state {
+    @include emptyState;
+  }
 }

@@ -1,12 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import FontAwesome from 'react-fontawesome';
-import { Segment } from 'semantic-ui-react';
+import { Icon, Segment } from 'semantic-ui-react';
+import _ from 'lodash';
 
 import Header from '../Header';
 import TrackRow from '../TrackRow';
 
 import styles from './styles.scss';
+
+const EmptyState = () => {
+  return (
+    <div className={styles.empty_state} >
+      <Icon name='star'/>
+      <h2>No favorites added.</h2>
+      <div>Try favoriting some tracks and they will appear here!</div>
+    </div>
+  );
+};
 
 const FavoriteTracksView = props => {
   const {
@@ -15,36 +25,45 @@ const FavoriteTracksView = props => {
   
   return (
     <div className={styles.favorite_tracks_view}>
-      <Header>
+      {
+        _.isEmpty(tracks) &&
+          <EmptyState />
+      }
+      {
+        !_.isEmpty(tracks) &&
+        <React.Fragment>
+          <Header>
         Your favorite tracks
-      </Header>
-      <Segment>
-        <table>
-          <thead>
-            <tr>
-              <th><FontAwesome name='image' /></th>
-              <th>Artist</th>
-              <th>Title</th>
-            </tr>
-          </thead>
-          <tbody>
-            {
-              tracks.map((track, i) => {
-                return (
-                  <TrackRow
-                    key={'favorite-track-' + i}
-                    track={track}
-                    index={i}
-                    displayCover
-                    displayArtist
-                    withAddToFavorites={false}
-                  />
-                );
-              })
-            }
-          </tbody>
-        </table>
-      </Segment>
+          </Header>
+          <Segment>
+            <table>
+              <thead>
+                <tr>
+                  <th><Icon name='image' /></th>
+                  <th>Artist</th>
+                  <th>Title</th>
+                </tr>
+              </thead>
+              <tbody>
+                {
+                  tracks.map((track, i) => {
+                    return (
+                      <TrackRow
+                        key={'favorite-track-' + i}
+                        track={track}
+                        index={i}
+                        displayCover
+                        displayArtist
+                        withAddToFavorites={false}
+                      />
+                    );
+                  })
+                }
+              </tbody>
+            </table>
+          </Segment>
+        </React.Fragment>
+      }
     </div>
   );
 };
