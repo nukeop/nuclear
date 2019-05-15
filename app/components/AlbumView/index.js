@@ -54,19 +54,6 @@ class AlbumView extends React.Component {
     this.props.startPlayback();
   }
 
-  render () {
-    let { album } = this.props;
-    if (
-      _.some(_.map([album.images, album.artists, album.genres], _.isEmpty)) &&
-      album.loading !== true
-    ) {
-      return this.renderInvalidData();
-    }
-
-    let albumImage = this.getAlbumImage(album);
-    return this.renderAlbumLoading(album, albumImage);
-  }
-
   renderInvalidData () {
     return (
       <div>
