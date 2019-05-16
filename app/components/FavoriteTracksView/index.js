@@ -6,6 +6,7 @@ import _ from 'lodash';
 import Header from '../Header';
 import TrackRow from '../TrackRow';
 
+import trackRowStyles from '../TrackRow/styles.scss';
 import styles from './styles.scss';
 
 const EmptyState = () => {
@@ -35,7 +36,7 @@ const FavoriteTracksView = props => {
           <Header>
         Your favorite tracks
           </Header>
-          <Segment>
+          <Segment className={trackRowStyles.tracks_container}>
             <table>
               <thead>
                 <tr>

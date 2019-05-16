@@ -17,7 +17,7 @@ class SimilarArtists extends React.Component {
     return (
       <div className={styles.similar_artists_container}>
         <div className={styles.header}>
-          Similar artists:
+          Similar artists
         </div>
         {
           this.props.artists.map((artist, index) => {
