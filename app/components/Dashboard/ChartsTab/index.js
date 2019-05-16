@@ -1,9 +1,11 @@
 import React from 'react';
 import { Tab } from 'semantic-ui-react';
 import FontAwesome from 'react-fontawesome';
+import cx from 'classnames';
 
 import TrackRow from '../../TrackRow';
 
+import trackRowStyles from '../../TrackRow/styles.scss';
 import styles from './styles.scss';
 
 class ChartsTab extends React.Component {
@@ -14,7 +16,10 @@ class ChartsTab extends React.Component {
   render () {
     return (
       <Tab.Pane attached={false}>
-        <div className={styles.popular_tracks_container}>
+        <div className={cx(
+          styles.popular_tracks_container,
+          trackRowStyles.tracks_container
+        )}>
           <h3>Top Tracks from LastFm.</h3>
           <table>
             <thead>
