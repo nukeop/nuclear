@@ -45,7 +45,7 @@ class TagTopTracks extends React.Component {
               </th>
               <th>Artist</th>
               <th>Title</th>
-              <th>Duration</th>
+              <th style={{ textAlign: 'center' }}>Duration</th>
             </tr>
           </thead>
           <tbody>
