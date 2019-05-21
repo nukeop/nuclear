@@ -66,3 +66,6 @@ bundle.electron.js
 .prettierrc
 
 package-lock.json
+
+#editors configuration 
+.vscode/

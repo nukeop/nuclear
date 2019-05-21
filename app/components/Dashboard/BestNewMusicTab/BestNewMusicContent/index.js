@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import _ from 'lodash';
+
+import { bestNewItemShape } from '../BestNewMusicMenu/BestNewMusicCard';
 
 import styles from './styles.scss';
-import { bestNewItemShape } from '../BestNewMusicMenu/BestNewMusicCard';
 
 const BestNewMusicContent = props => {
   const {
@@ -63,11 +63,6 @@ BestNewMusicContent.propTypes = {
   item: bestNewItemShape,
   artistInfoSearchByName: PropTypes.func,
   albumInfoSearchByName: PropTypes.func,
-  addToQueue: PropTypes.func,
-  selectSong: PropTypes.func,
-  clearQueue: PropTypes.func,
-  startPlayback: PropTypes.func,
-  musicSources: PropTypes.array,
   history: PropTypes.object
 };
 
@@ -75,11 +70,6 @@ BestNewMusicContent.defaultProps = {
   item: null,
   artistInfoSearchByName: () => { },
   albumInfoSearchByName: () => { },
-  addToQueue: () => { },
-  selectSong: () => { },
-  clearQueue: () => { },
-  startPlayback: () => { },
-  musicSources: [],
   history: {}
 };
 

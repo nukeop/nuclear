@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import styles from './styles.scss';
-
 import TrackPopupContainer from '../../../../../containers/TrackPopupContainer';
+
+import styles from './styles.scss';
 
 const BestNewMusicCard = props => {
   const {
@@ -11,13 +11,6 @@ const BestNewMusicCard = props => {
     onClick,
     withPopupMenu
   } = props;
-
-  const track = {
-    artist: {
-      name: item.artist
-    },
-    name: item.title
-  };
 
   const card = () => (
     <div
@@ -37,6 +30,13 @@ const BestNewMusicCard = props => {
       </div>
     </div>
   );
+
+  const track = {
+    artist: {
+      name: item.artist
+    },
+    name: item.title
+  };
 
   return withPopupMenu ? (
     <TrackPopupContainer
@@ -67,6 +67,8 @@ BestNewMusicCard.propTypes = {
 };
 
 BestNewMusicCard.defaultProps = {
+  item: null,
+  onClick: () => { },
   withPopupMenu: false
 };
 
