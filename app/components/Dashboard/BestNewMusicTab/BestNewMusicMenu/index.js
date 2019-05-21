@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Menu } from 'semantic-ui-react';
 
-import BestNewMusicCard from './BestNewMusicCard';
+import BestNewMusicCard, { bestNewItemShape } from './BestNewMusicCard';
 
 import styles from './styles.scss';
 
@@ -19,10 +19,10 @@ const BestNewMusicMenu = props => {
         {
           props.albums.map(album => {
             return (
-              <Menu.Item link key={ album.title }>
+              <Menu.Item link key={album.title}>
                 <BestNewMusicCard
-                  item={ album }
-                  onClick={ () => props.setActiveItem(album )}
+                  item={album}
+                  onClick={() => props.setActiveItem(album)}
                 />
               </Menu.Item>
             );
@@ -33,15 +33,16 @@ const BestNewMusicMenu = props => {
           className={styles.best_new_music_menu_header}
           link
         >
-      Best new tracks
+          Best new tracks
         </Menu.Item>
         {
           props.tracks.map(track => {
             return (
-              <Menu.Item link key={ track.title }>
+              <Menu.Item link key={track.title}>
                 <BestNewMusicCard
-                  item={ track }
-                  onClick={ () => props.setActiveItem(track)}
+                  item={track}
+                  onClick={() => props.setActiveItem(track)}
+                  withPopupMenu
                 />
               </Menu.Item>
             );
@@ -51,15 +52,6 @@ const BestNewMusicMenu = props => {
     </div>
   );
 };
-
-export const bestNewItemShape = PropTypes.shape({
-  title: PropTypes.string,
-  artist: PropTypes.string,
-  thumbnail: PropTypes.string,
-  score: PropTypes.string,
-  abstract: PropTypes.string,
-  review: PropTypes.string
-});
 
 BestNewMusicMenu.propTypes = {
   albums: PropTypes.arrayOf(bestNewItemShape),

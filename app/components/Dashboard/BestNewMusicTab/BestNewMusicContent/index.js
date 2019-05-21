@@ -2,9 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
 
-import { bestNewItemShape } from '..';
-
 import styles from './styles.scss';
+import { bestNewItemShape } from '../BestNewMusicMenu/BestNewMusicCard';
 
 const BestNewMusicContent = props => {
   const {
@@ -17,34 +16,34 @@ const BestNewMusicContent = props => {
   if (item === null) {
     return null;
   }
-  
+
   return (
     <div className={styles.best_new_music_content}>
       <div className={styles.review_header}>
         <div className={styles.thumbnail}>
-          <img alt={ item.title } src={ item.thumbnail }/>
+          <img alt={item.title} src={item.thumbnail} />
         </div>
         <div className={styles.review_headings}>
           <div
             className={styles.artist}
             onClick={() => artistInfoSearchByName(item.artist, history)}
           >
-            { item.artist }
+            {item.artist}
           </div>
           <div
             className={styles.title}
             onClick={() => albumInfoSearchByName(item.title + ' ' + item.artist, props.history)}
           >
-            { item.title }
+            {item.title}
           </div>
         </div>
         {
           item.score &&
-            <div className={styles.score}>
-              <div className={styles.score_box}>
-                { item.score }
-              </div>
+          <div className={styles.score}>
+            <div className={styles.score_box}>
+              {item.score}
             </div>
+          </div>
         }
       </div>
       {
@@ -74,12 +73,12 @@ BestNewMusicContent.propTypes = {
 
 BestNewMusicContent.defaultProps = {
   item: null,
-  artistInfoSearchByName: () => {},
-  albumInfoSearchByName: () => {},
-  addToQueue: () => {},
-  selectSong: () => {},
-  clearQueue: () => {},
-  startPlayback: () => {},
+  artistInfoSearchByName: () => { },
+  albumInfoSearchByName: () => { },
+  addToQueue: () => { },
+  selectSong: () => { },
+  clearQueue: () => { },
+  startPlayback: () => { },
   musicSources: [],
   history: {}
 };
