@@ -16,8 +16,14 @@ export const registerDownloadsEvents = window => {
   });
   
   ipcMain.on('start-download', (event, data) => {
-    const query = `${_.get(data, 'artist.name')} ${_.get(data, 'name')}`;
-    const filename = `${_.get(data, 'artist.name')} - ${_.get(data, 'name')}`;
+    const artistName = _.isString(_.get(data, 'artist'))
+      ? _.get(data, 'artist')
+      : _.get(data, 'artist.name');
+    
+    const query = `${artistName} ${_.get(data, 'name')}`;
+    const filename = `${artistName} - ${_.get(data, 'name')}`;
+
+    logger.log(`Received a download request: ${artistName} - ${_.get(data, 'name')}`);
 
     // In order to get a valid stream URL, we need to generate it right before downloading
     trackSearch(query)
