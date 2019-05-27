@@ -33,6 +33,7 @@ const QueueMenuMore = props => {
     clearQueue,
     savePlaylistDialog,
     addFavoriteTrack,
+    addToDownloads,
     updatePlaylist,
     playlists,
     currentItem
@@ -79,6 +80,12 @@ const QueueMenuMore = props => {
           <Icon name='star'/>
           Add to favorites
         </Dropdown.Item>
+        <Dropdown.Item onClick={
+          () => addToDownloads(currentItem)
+        }>
+          <Icon name='download'/>
+          Download
+        </Dropdown.Item>
       </Dropdown.Menu>
     </Dropdown>
   );
@@ -87,6 +94,7 @@ const QueueMenuMore = props => {
 QueueMenuMore.propTypes = {
   clearQueue: PropTypes.func,
   addFavoriteTrack: PropTypes.func,
+  addToDownloads: PropTypes.func,
   updatePlaylist: PropTypes.func,
   savePlaylistDialog: PropTypes.node,
   playlists: PropTypes.array,
@@ -96,6 +104,7 @@ QueueMenuMore.propTypes = {
 QueueMenuMore.defaultProps = {
   clearQueue: () => {},
   addFavoriteTrack: () => {},
+  addToDownloads: () => {},
   updatePlaylist: () => {},
   savePlaylistDialog: null,
   playlists: [],
