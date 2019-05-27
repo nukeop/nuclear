@@ -27,6 +27,10 @@ const DownloadsItem = props => {
   const {
     item
   } = props;
+
+  const artistName = _.isString(_.get(item, 'track.artist'))
+    ? _.get(item, 'track.artist')
+    : _.get(item, 'track.artist.name');
   
   return (
     <Table.Row>
@@ -35,7 +39,7 @@ const DownloadsItem = props => {
         { item.status }
       </Table.Cell>
       <Table.Cell>
-        { _.get(item, 'track.artist.name') } - { _.get(item, 'track.name') }
+        { artistName } - { _.get(item, 'track.name') }
       </Table.Cell>
       <Table.Cell>
         { _.round(item.completion*100, 0)  + '%' }

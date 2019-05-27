@@ -1,5 +1,6 @@
 import React from 'react';
 import classnames from 'classnames';
+import { ipcRenderer } from 'electron';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
 import styles from './styles.scss';
@@ -15,6 +16,22 @@ class PlayQueue extends React.Component {
 
   onDragEnd(result) {
     this.props.actions.swapSongs(result.source.index, result.destination.index);
+  }
+
+  onAddToDownloads(track) {
+    const { actions, plugins, settings } = this.props;
+    const { addToDownloads, info } = actions;
+    const artistName = _.isString(_.get(track, 'artist'))
+      ? _.get(track, 'artist')
+      : _.get(track, 'artist.name');
+    ipcRenderer.send('start-download', track);
+    addToDownloads(plugins.plugins.musicSources, track);
+    info(
+      'Track added to downloads',
+      `${artistName} - ${track.name} has been added to downloads.`,
+      <img src={ track.thumbnail }/>,
+      settings
+    );
   }
 
   renderQueueItems() {
@@ -81,6 +98,7 @@ class PlayQueue extends React.Component {
             updatePlaylist={updatePlaylist} 
             toggleOption={toggleOption}
             addFavoriteTrack={addFavoriteTrack}
+            addToDownloads={ this.onAddToDownloads.bind(this) }
             success={success}
             settings={settings}
             playlists={playlists}
