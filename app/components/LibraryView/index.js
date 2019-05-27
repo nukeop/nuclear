@@ -1,10 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Icon, Segment, Button, List, Input, Table } from 'semantic-ui-react';
+import {
+  Button,
+  Dimmer,
+  Divider,
+  Icon,
+  Input,
+  List,
+  Segment,
+  Table
+} from 'semantic-ui-react';
 
 import Header from '../Header';
 import TrackRow from '../TrackRow';
 
+import trackRowStyles from '../TrackRow/styles.scss';
 import styles from './index.scss';
 
 const LibraryView = ({
@@ -27,6 +37,7 @@ const LibraryView = ({
       <Segment>
         <Button
           icon
+          inverted
           labelPosition='left'
           className={styles.add_folder}
           onClick={actions.openLocalFolderPicker}
@@ -36,11 +47,13 @@ const LibraryView = ({
           Add folders
         </Button>
         <Button
+          inverted
           icon='refresh'
           loading={pending}
           onClick={actions.scanLocalFolders}
           className={styles.refresh_icon}
         />
+        <Divider />
         <List divided verticalAlign='middle' className={styles.equalizer_list}>
           {localFolders.map((folder, idx) => (
             <List.Item key={idx}>
@@ -58,50 +71,63 @@ const LibraryView = ({
       </Segment>
       <Segment>
         
-        <Input icon='search' placeholder='Search...' onChange={actions.updateFilter} />
-        {!pending && (
-          <Table sortable className={styles.table}>
-            <Table.Header className={styles.thead}>
-              <Table.Row>
-                <Table.HeaderCell>
-                  <Icon name='image' />
-                </Table.HeaderCell>
-                <Table.HeaderCell
-                  sorted={sortBy === 'artist' ? direction : null}
-                  onClick={handleSort('artist')}
-                >
+        <div className={styles.search_field}>
+          <Input
+            inverted
+            transparent
+            icon='search'
+            iconPosition='left'
+            placeholder='Filter...'
+            onChange={actions.updateFilter}
+          />
+        </div>
+      
+        <Segment inverted className={trackRowStyles.tracks_container}>
+          <Dimmer active={ pending } loading={ pending } />
+          {!pending && (
+            <Table sortable className={styles.table}>
+              <Table.Header className={styles.thead}>
+                <Table.Row>
+                  <Table.HeaderCell>
+                    <Icon name='image' />
+                  </Table.HeaderCell>
+                  <Table.HeaderCell
+                    sorted={sortBy === 'artist' ? direction : null}
+                    onClick={handleSort('artist')}
+                  >
                   Artist
-                </Table.HeaderCell>
-                <Table.HeaderCell
-                  sorted={sortBy === 'name' ? direction : null}
-                  onClick={handleSort('name')}
-                >
+                  </Table.HeaderCell>
+                  <Table.HeaderCell
+                    sorted={sortBy === 'name' ? direction : null}
+                    onClick={handleSort('name')}
+                  >
                   Title
-                </Table.HeaderCell>
-                <Table.HeaderCell
-                  sorted={sortBy === 'album' ? direction : null}
-                  onClick={handleSort('album')}
-                >
+                  </Table.HeaderCell>
+                  <Table.HeaderCell
+                    sorted={sortBy === 'album' ? direction : null}
+                    onClick={handleSort('album')}
+                  >
                   Album
-                </Table.HeaderCell>
-              </Table.Row>
-            </Table.Header>
-            <Table.Body className={styles.tbody}>
-              {tracks && tracks.map((track, idx) => (
-                <TrackRow
-                  key={'favorite-track-' + idx}
-                  track={track}
-                  index={idx}
-                  displayCover
-                  displayArtist
-                  displayAlbum
-                  withAddToDownloads={false}
-                  isLocal
-                />
-              ))}
-            </Table.Body>
-          </Table>
-        )}
+                  </Table.HeaderCell>
+                </Table.Row>
+              </Table.Header>
+              <Table.Body className={styles.tbody}>
+                {tracks && tracks.map((track, idx) => (
+                  <TrackRow
+                    key={'favorite-track-' + idx}
+                    track={track}
+                    index={idx}
+                    displayCover
+                    displayArtist
+                    displayAlbum
+                    withAddToDownloads={false}
+                    isLocal
+                  />
+                ))}
+              </Table.Body>
+            </Table>
+          )}
+        </Segment>
       </Segment>
     </div>
   );
