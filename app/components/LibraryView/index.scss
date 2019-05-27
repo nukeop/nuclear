@@ -1,35 +1,63 @@
-.refresh_icon {
-  margin-left: 10px !important;
-  cursor: pointer;
-}
+@import '../../mixin.scss';
+@import '../../vars.scss';
 
 .local_files_view {
   display: flex;
   flex-flow: column;
-}
 
-.folder_remove_icon {
-  cursor: pointer;
-}
+  .refresh_icon {
+    margin-left: 10px !important;
+    cursor: pointer;
+  }
 
-.table {
-  background: transparent !important;
-}
+  .folder_remove_icon {
+    cursor: pointer;
+  }
 
-.thead {
-  th {
-    color: rgba(250, 250, 250, 0.5) !important;
-    font-size: 20px !important;
+  .search_field .input {
+    @include roundCorners;
+    @include transition;
+    border: 1px solid rgba($white, 0.7);
+    padding: .67861429em 1em;
+
+    &:hover,
+    &:focus,
+    &:active {
+      border: 1px solid rgba($blue, 0.9);
+    }
+
+    i {
+      margin-left: 0.7em !important;
+    }
+  }
+
+  .tracks_container {
+    margin-top: 0;
+  }
+  
+  .table {
     background: transparent !important;
-    border-bottom: 0.5px solid rgba(250, 250, 250, 0.5) !important;
+    margin-top: 0;
+  }
+
+  .thead {
+    th {
+      color: rgba(250, 250, 250, 0.5) !important;
+      font-size: 20px !important;
+      background: transparent !important;
+      border-bottom: 0.5px solid rgba(250, 250, 250, 0.5) !important;
+    }
+  }
+
+  .tbody {
+    tr {
+      color: white;
+    }
+    td {
+      border-color: transparent;
+    }
   }
 }
 
-.tbody {
-  tr {
-    color: white;
-  }
-  td {
-    border-color: transparent;
-  }
-}
+
+
