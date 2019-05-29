@@ -2,7 +2,8 @@ import _ from 'lodash';
 
 import {
   READ_FAVORITES,
-  ADD_FAVORITE_TRACK
+  ADD_FAVORITE_TRACK,
+  REMOVE_FAVORITE_TRACK
 } from '../actions/favorites';
 
 const initialState = {
@@ -16,6 +17,7 @@ export default function FavoritesReducer(state=initialState, action) {
   case READ_FAVORITES:
     return Object.assign({}, action.payload);
   case ADD_FAVORITE_TRACK:
+  case REMOVE_FAVORITE_TRACK:
     return Object.assign({}, action.payload);
   default:
     return state;

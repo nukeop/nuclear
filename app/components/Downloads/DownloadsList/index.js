@@ -31,7 +31,7 @@ const DownloadsList = props => {
             items.map(item => {
               return (
                 <DownloadsItem
-                  key={ item.track.id }
+                  key={ item.track.uuid }
                   item={ item }
                 />
               );
