@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
 import numeral from 'numeral';
+import { Icon } from 'semantic-ui-react';
 
 import artPlaceholder from '../../../resources/media/art_placeholder.png';
 
@@ -49,11 +50,21 @@ class TrackRow extends React.Component {
       displayArtist,
       displayAlbum,
       displayDuration,
-      displayPlayCount
+      displayPlayCount,
+      withDeleteButton,
+      onDelete
     } = this.props;
     
     return (
       <tr className={styles.track} onDoubleClick={this.playTrack}>
+        {
+          withDeleteButton &&
+            <td className={ styles.track_row_buttons }>
+              <a onClick={ onDelete }>
+                <Icon name='close' />
+              </a>
+            </td>
+        }
         {
           displayCover &&
             <td className={styles.track_thumbnail}>
@@ -109,14 +120,18 @@ TrackRow.propTypes = {
   withAddToQueue: PropTypes.bool,
   withPlayNow: PropTypes.bool,
   withAddToFavorites: PropTypes.bool,
-  withAddToDownloads: PropTypes.bool
+  withAddToDownloads: PropTypes.bool,
+  withDeleteButton: PropTypes.bool,
+
+  onDelete: PropTypes.func
 };
 
 TrackRow.defaultProps = {
   withAddToQueue: true,
   withPlayNow: true,
   withAddToFavorites: true,
-  withAddToDownloads: true
+  withAddToDownloads: true,
+  withDeleteButton: false
 };
 
 export default TrackRow;

@@ -21,7 +21,8 @@ const EmptyState = () => {
 
 const FavoriteTracksView = props => {
   const {
-    tracks
+    tracks,
+    removeFavoriteTrack
   } = props;
   
   return (
@@ -40,6 +41,7 @@ const FavoriteTracksView = props => {
             <table>
               <thead>
                 <tr>
+                  <th />
                   <th><Icon name='image' /></th>
                   <th>Artist</th>
                   <th>Title</th>
@@ -55,7 +57,12 @@ const FavoriteTracksView = props => {
                         index={i}
                         displayCover
                         displayArtist
-                        withAddToFavorites={false}
+                        withDeleteButton
+                        withAddToFavorites={ false }
+                        onDelete={ e => {
+                          e.stopPropagation();
+                          removeFavoriteTrack(track);
+                        } }
                       />
                     );
                   })
@@ -75,11 +82,13 @@ FavoriteTracksView.propTypes = {
       name: PropTypes.string
     }),
     name: PropTypes.string
-  }))
+  })),
+  removeFavoriteTrack: PropTypes.func
 };
 
 FavoriteTracksView.defaultProps = {
-  tracks: []
+  tracks: [],
+  removeFavoriteTrack: () => {}
 };
 
 export default FavoriteTracksView;

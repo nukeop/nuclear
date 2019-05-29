@@ -59,7 +59,7 @@ const LibraryView = ({
             <List.Item key={idx}>
               <List.Content floated='right'>
                 <Icon
-                  name='trash alternate'
+                  name='close'
                   onClick={() => actions.removeLocalFolder(folder)}
                   className={styles.folder_remove_icon}
                 />            
