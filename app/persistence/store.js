@@ -19,7 +19,6 @@ function initStore () {
     store.set('playlists', []);
   }
 
-  store.set('favorites', null);
   if (!store.get('favorites')) {
     store.set('favorites', {
       tracks: [],

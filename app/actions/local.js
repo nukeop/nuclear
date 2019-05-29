@@ -38,7 +38,7 @@ export function scanLocalFoldersSuccess(payload) {
     type: SCAN_LOCAL_FOLDER_SUCCESS,
     payload: payload.reduce((acc, track) => ({
       ...acc,
-      [track.id]: track
+      [track.uuid]: track
     }), {})
   };
 }

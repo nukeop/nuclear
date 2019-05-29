@@ -9,7 +9,7 @@ export function formatMeta({ common, format }, path) {
   const port = getOption('api.port');
 
   return {
-    id,
+    uuid: id,
     path,
     duration: format.duration,
     name: common.title,

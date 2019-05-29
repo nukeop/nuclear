@@ -44,7 +44,7 @@ export function localFileRouter() {
       .then(data => {
         cache = data.reduce((acc, item) => ({
           ...acc,
-          [item.id]: item
+          [item.uuid]: item
         }), {});
         byArtist = _.groupBy(data, track => track.artist.name);
 
@@ -100,12 +100,12 @@ export function localFileRouter() {
           .flat()
           .filter(track => track.name.includes(req.body.track))
           .map(track => ({
-            id: track.id,
+            uuid: track.uuid,
             title: track.name,
             duration: track.duration,
             source: 'Local',
-            stream: `http://127.0.0.1:${port}/nuclear/file/${track.id}`,
-            thumbnail: `http://127.0.0.1:${port}/nuclear/file/${track.id}/thumb`
+            stream: `http://127.0.0.1:${port}/nuclear/file/${track.uuid}`,
+            thumbnail: `http://127.0.0.1:${port}/nuclear/file/${track.uuid}/thumb`
           }))
           .pop());
     } catch (err) {
