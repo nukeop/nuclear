@@ -3,7 +3,7 @@ import { ipcMain } from 'electron';
 import { Validator } from 'express-json-validator-middleware';
 import _ from 'lodash';
 
-import { scanDirectories } from '../lib/files';
+import { scanDirectories } from '../../local-files';
 import { store, getOption } from '../../store';
 
 export const localSearchSchema = {
@@ -39,18 +39,19 @@ export function localFileRouter() {
   let cache;
   let byArtist;
 
-  ipcMain.on('refresh-localfolders', event => {
-    scanDirectories(store.get('localFolders'))
-      .then(data => {
-        cache = data.reduce((acc, item) => ({
-          ...acc,
-          [item.uuid]: item
-        }), {});
-        byArtist = _.groupBy(data, track => track.artist.name);
-
-        event.sender.send('local-files', data);
-      })
-      .catch(err => event.sender.send('local-files-error', err));
+  ipcMain.on('refresh-localfolders', async event => {
+    try {
+      const data = await scanDirectories(store.get('localFolders'));
+      cache = data.reduce((acc, item) => ({
+        ...acc,
+        [item.uuid]: item
+      }), {});
+      byArtist = _.groupBy(data, track => track.artist.name);
+  
+      event.sender.send('local-files', data);
+    } catch (err) {
+      event.sender.send('local-files-error', err);
+    }
   });
 
   const router = express.Router();

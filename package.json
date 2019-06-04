@@ -49,6 +49,7 @@
     "body-parser": "^1.18.3",
     "chart.js": "^2.8.0",
     "cheerio": "^1.0.0-rc.2",
+    "concat-stream": "^2.0.0",
     "cors": "^2.8.5",
     "d3-drag": "^1.2.3",
     "d3-selection": "^1.4.0",
@@ -57,6 +58,7 @@
     "electron-store": "^2.0.0",
     "electron-timber": "^0.5.1",
     "electron-util": "^0.11.0",
+    "event-stream": "^4.0.1",
     "express": "^4.16.4",
     "express-json-validator-middleware": "^1.2.3",
     "fast-levenshtein": "^2.0.6",
@@ -69,9 +71,12 @@
     "moment": "^2.20.1",
     "mousetrap": "^1.6.2",
     "music-metadata": "^3.5.3",
+    "node-fetch": "^2.6.0",
     "nuclear-core": "0.0.5",
     "nuclear-ui": "0.0.6",
     "numeral": "^2.0.6",
+    "once": "^1.4.0",
+    "os": "^0.1.1",
     "pitchfork-bnm": "^1.0.3",
     "react": "^16.8.6",
     "react-beautiful-dnd": "^9.0.0",
@@ -85,6 +90,8 @@
     "semantic-ui-react": "^0.82.1",
     "simple-get-lyrics": "0.0.4",
     "slug": "^1.1.0",
+    "stream-filter": "^2.1.0",
+    "stream-reduce": "^1.0.3",
     "styled-components": "^3.2.6",
     "swagger-spec-express": "^2.0.15",
     "uuid": "^3.3.2",
@@ -185,7 +192,16 @@
         "tar.gz",
         "snap"
       ],
-      "category": "Audio;AudioVideo;Network;Player;Music"
+      "category": "Audio;AudioVideo;Network;Player;Music",
+      "extraFiles": [
+        {
+          "from": "resources/bin/linux",
+          "to": "Resources/bin",
+          "filter": [
+            "**/*"
+          ]
+        }
+      ]
     },
     "mac": {
       "category": "public.app-category.music",
@@ -193,12 +209,30 @@
         "zip",
         "pkg",
         "dmg"
+      ],
+      "extraFiles": [
+        {
+          "from": "resources/bin/mac",
+          "to": "Resources/bin",
+          "filter": [
+            "**/*"
+          ]
+        }
       ]
     },
     "win": {
       "target": [
         "nsis",
         "portable"
+      ],
+      "extraFiles": [
+        {
+          "from": "resources/bin/win",
+          "to": "Resources/bin",
+          "filter": [
+            "**/*"
+          ]
+        }
       ]
     },
     "nsis": {
