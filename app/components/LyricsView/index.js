@@ -1,11 +1,13 @@
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 import _ from 'lodash';
+import { withTranslation } from 'react-i18next';
 
 import LyricsHeader from './LyricsHeader';
 
 import styles from './styles.scss';
 
+@withTranslation('lyrics')
 class LyricsView extends React.Component {
   constructor(props) {
     super(props);
@@ -16,7 +18,7 @@ class LyricsView extends React.Component {
     let lyricsStr = _.get(lyrics, 'lyricsSearchResults', '');
     lyricsStr = _.get(lyricsStr, 'type', '');
     if (lyricsStr === '') {
-      lyricsStr = 'No lyrics were found for this song.';
+      lyricsStr = this.props.t('not-found');
     }
     return (
       <div className={styles.lyrics_text}>
@@ -38,8 +40,8 @@ class LyricsView extends React.Component {
     return (
       <div className={styles.empty_state}>
         <FontAwesome name='music'/>
-        <h2>Nothing is playing.</h2>
-        <div>Add some music to the queue to display the lyrics here!</div>
+        <h2>{this.props.t('empty')}</h2>
+        <div>{this.props.t('empty-help')}</div>
       </div>
     );
   }

@@ -7,35 +7,35 @@ import * as PlayerActions from '../../actions/player';
 
 import SearchResults from '../../components/SearchResults';
 
-class SearchResultsContainer extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-  render () {
-    let { actions, musicSources } = this.props;
+const SearchResultsContainer = ({
+  artistSearchResults,
+  albumSearchResults,
+  trackSearchResults,
+  playlistSearchResults,
+  unifiedSearchStarted,
+  playlistSearchStarted,
+  actions,
+  musicSources
+}) => (
+  <SearchResults
+    artistSearchResults={artistSearchResults}
+    albumSearchResults={albumSearchResults}
+    trackSearchResults={trackSearchResults}
+    playlistSearchResults={playlistSearchResults}
+    unifiedSearchStarted={unifiedSearchStarted}
+    playlistSearchStarted={playlistSearchStarted}
+    albumInfoSearch={actions.albumInfoSearch}
+    artistInfoSearch={actions.artistInfoSearch}
+    history={history}
+    addToQueue={actions.addToQueue}
+    clearQueue={actions.clearQueue}
+    startPlayback={actions.startPlayback}
+    selectSong={actions.selectSong}
+    musicSources={musicSources}
+  />
+);
 
-    return (
-      <SearchResults
-        artistSearchResults={this.props.artistSearchResults}
-        albumSearchResults={this.props.albumSearchResults}
-        trackSearchResults={this.props.trackSearchResults}
-        playlistSearchResults={this.props.playlistSearchResults}
-        unifiedSearchStarted={this.props.unifiedSearchStarted}
-        playlistSearchStarted={this.props.playlistSearchStarted}
-        albumInfoSearch={this.props.actions.albumInfoSearch}
-        artistInfoSearch={this.props.actions.artistInfoSearch}
-        history={this.props.history}
-        addToQueue={this.props.actions.addToQueue}
-        clearQueue={this.props.actions.clearQueue}
-        startPlayback={this.props.actions.startPlayback}
-        selectSong={this.props.actions.selectSong}
-        musicSources={musicSources}
-      />
-    );
-  }
-}
-
-function mapStateToProps (state) {
+function mapStateToProps(state) {
   return {
     artistSearchResults: state.search.artistSearchResults,
     albumSearchResults: state.search.albumSearchResults,
@@ -47,7 +47,7 @@ function mapStateToProps (state) {
   };
 }
 
-function mapDispatchToProps (dispatch) {
+function mapDispatchToProps(dispatch) {
   return {
     actions: bindActionCreators(
       Object.assign({}, Actions, QueueActions, PlayerActions),

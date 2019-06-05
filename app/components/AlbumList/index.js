@@ -1,5 +1,5 @@
 import React from 'react';
-import {Dimmer, Image, Loader} from 'semantic-ui-react';
+import {Dimmer, Loader} from 'semantic-ui-react';
 import Card from '../Card';
 
 import styles from './styles.scss';

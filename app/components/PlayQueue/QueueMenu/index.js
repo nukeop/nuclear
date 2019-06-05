@@ -5,6 +5,7 @@ import {
   Dropdown,
   Icon
 } from 'semantic-ui-react';
+import { withTranslation } from 'react-i18next';
 
 import InputDialog from '../../InputDialog';
 import QueueMenuMore from './QueueMenuMore';
@@ -12,6 +13,7 @@ import QueueMenuMore from './QueueMenuMore';
 import styles from './styles.scss';
 import settingsConst from '../../../constants/settings';
 
+@withTranslation('queue')
 class QueueMenu extends React.Component {
   constructor(props){
     super(props);
@@ -21,8 +23,8 @@ class QueueMenu extends React.Component {
     return name => {
       addPlaylist(items, name);
       notify(
-        'Playlist created',
-        `Playlist ${name} has been created.`,
+        this.props.t('playlist-toast-title'),
+        this.props.t('playlist-toast-content', { name }),
         null,
         settings
       );
@@ -40,7 +42,8 @@ class QueueMenu extends React.Component {
       items,
       toggleOption,
       settings,
-      playlists
+      playlists,
+      t
     } = this.props;
 
     const firstTitle = _.get(_.head(items), 'name');
@@ -62,13 +65,13 @@ class QueueMenu extends React.Component {
             savePlaylistDialog={
               <InputDialog
                 header={<h4>Input playlist name:</h4>}
-                placeholder='Playlist name...'
-                accept='Save'
+                placeholder={t('dialog-placeholder')}
+                accept={t('dialog-accept')}
                 onAccept={this.handleAddPlaylist(addPlaylist, success, items, settings)}
                 trigger={
                   <Dropdown.Item>
                     <Icon name='save'/>
-                    Save as playlist
+                    {t('dialog-trigger')}
                   </Dropdown.Item>
                 }
                 initialString={ firstTitle }

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Tab } from 'semantic-ui-react';
+import { withTranslation } from 'react-i18next';
 
 import AllResults from './AllResults';
 import TracksResults from './TracksResults';
@@ -8,6 +9,7 @@ import Card from '../Card';
 
 import styles from './styles.scss';
 
+@withTranslation('search')
 class SearchResults extends React.Component {
   renderAllResultsPane () {
     return (
@@ -58,7 +60,7 @@ class SearchResults extends React.Component {
                   />
                 );
               })
-            : 'Nothing found.'}
+            : this.props.t('empty')}
         </div>
       </Tab.Pane>
     );
@@ -77,7 +79,7 @@ class SearchResults extends React.Component {
                   tracks={collection}
                   limit='15'
                 />
-              : 'Nothing found.'}
+              : this.props.t('empty')}
           </div>
         </Tab.Pane>
       );
