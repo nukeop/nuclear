@@ -6,46 +6,36 @@ import Header from '../Header';
 import DownloadsList from './DownloadsList';
 
 import styles from './styles.scss';
+import { useTranslation } from 'react-i18next';
 
 const EmptyState = () => {
+  const { t } = useTranslation('downloads');
+
   return (
     <div className={styles.empty_state}>
-      <FontAwesome name='download'/>
-      <h2>
-          Downloads are empty.
-      </h2>
-      <div>
-        Add something to your download queue and you'll see it here!
-      </div>
+      <FontAwesome name='download' />
+      <h2>{t('empty')}</h2>
+      <div>{t('empty-help')}</div>
     </div>
   );
 };
 
 const Downloads = props => {
-  const {
-    downloads,
-    clearFinishedTracks
-  } = props;
-  
+  const { downloads, clearFinishedTracks } = props;
+  const { t } = useTranslation('downloads');
+
   return (
     <div className={styles.downloads_container}>
-      
-      {
-        downloads.length === 0 &&
-          <EmptyState />
-      }
-      {
-        downloads.length > 0 &&
+      {downloads.length === 0 && <EmptyState />}
+      {downloads.length > 0 && (
         <React.Fragment>
-          <Header>
-            Downloads
-          </Header>
+          <Header>{t('downloads')}</Header>
           <DownloadsList
-            items={ downloads }
-            clearFinishedTracks={ clearFinishedTracks }
+            items={downloads}
+            clearFinishedTracks={clearFinishedTracks}
           />
         </React.Fragment>
-      }
+      )}
     </div>
   );
 };

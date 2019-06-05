@@ -1,61 +1,45 @@
-import React from 'react';
-import FontAwesome from 'react-fontawesome';
-import { Dropdown, List, Segment } from 'semantic-ui-react';
+import React, { useCallback } from 'react';
+import { Dropdown } from 'semantic-ui-react';
 import _ from 'lodash';
 
 import Header from '../Header';
 import styles from './styles.scss';
+import { useTranslation } from 'react-i18next';
 
-class PluginsView extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+const PluginsView = ({ actions, plugins, defaultMusicSource }) => {
+  const selectDefaultMusicSource = useCallback((e, data) => {
+    actions.selectDefaultMusicSource(data.value);
+  }, []);
+  const { t } = useTranslation('plugins');
 
-  selectDefaultMusicSource(e, data) {
-    this.props.actions.selectDefaultMusicSource(data.value);
-  }
+  const dropdownOptions = plugins.musicSources.map(s => {
+    return {
+      text: s.name,
+      value: s.sourceName
+    };
+  });
 
-  render() {
-    let {
-      actions,
-      plugins,
-      defaultMusicSource
-    } = this.props;
+  let defaultOption = _.find(dropdownOptions, { value: defaultMusicSource });
+  defaultOption = defaultOption || dropdownOptions[0];
 
-    let dropdownOptions = plugins.musicSources.map(s => {
-      return {
-        text: s.name,
-        value: s.sourceName
-      };
-    });
+  return (
+    <div className={styles.plugins_view_container}>
+      <Header>{t('header')}</Header>
+      <div className={styles.plugin_settings}>
+        <Header>{t('subtitle')}</Header>
 
-    let defaultOption = _.find(dropdownOptions, {value: defaultMusicSource});
-    defaultOption = defaultOption || dropdownOptions[0];
-
-    return (
-      <div className={styles.plugins_view_container}>
-        <Header>
-          Plugins
-        </Header>
-        <div className={styles.plugin_settings}>
-          <Header>
-            Music sources
-          </Header>
-
-          <span>
-            Select the default music source:
-            {' '}
-            <Dropdown
-              inline
-              options={dropdownOptions}
-              defaultValue={defaultOption.value}
-              onChange={this.selectDefaultMusicSource.bind(this)}
-            />
-          </span>
-        </div>
+        <span>
+          {t('placeholder')}
+          <Dropdown
+            inline
+            options={dropdownOptions}
+            defaultValue={defaultOption.value}
+            onChange={selectDefaultMusicSource}
+          />
+        </span>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 export default PluginsView;

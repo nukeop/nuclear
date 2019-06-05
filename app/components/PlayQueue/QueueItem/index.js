@@ -1,7 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
 import FontAwesome from 'react-fontawesome';
-import _ from 'lodash';
 import { formatDuration, getSelectedStream } from '../../../utils';
 
 import styles from './styles.scss';

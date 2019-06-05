@@ -4,21 +4,18 @@ import classNames from 'classnames';
 
 import styles from './styles.scss';
 
-class PlayerButton extends React.Component {
-
-  render() {
-    return (
-      <div
-        onClick={this.props.onClick}
-        className={classNames(styles.player_button_container, {
-          [styles.player_button_disabled]: !this.props.onClick
-        })}
-        aria-label={this.props.ariaLabel}
-      >
-        <a href='#'><FontAwesome name={this.props.icon} /></a>
-      </div>
-    );
-  }
-}
+const PlayerButton = ({ ariaLabel, icon, onClick }) => (
+  <div
+    onClick={onClick}
+    className={classNames(styles.player_button_container, {
+      [styles.player_button_disabled]: !onClick
+    })}
+    aria-label={ariaLabel}
+  >
+    <a href='#'>
+      <FontAwesome name={icon} />
+    </a>
+  </div>
+);
 
 export default PlayerButton;

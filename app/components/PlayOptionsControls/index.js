@@ -2,6 +2,7 @@ import React from 'react';
 import classnames from 'classnames';
 import FontAwesome from 'react-fontawesome';
 import _ from 'lodash';
+import { useTranslation } from 'react-i18next';
 
 import styles from './styles.scss';
 import settingsConst from '../../constants/settings';
@@ -26,11 +27,13 @@ function renderOptionControl(props, settingName, fontAwesomeName, title) {
 }
 
 const PlayOptionsControls = props => {
+  const { t } = useTranslation('option-control');
+  
   return (
     <div className={styles.play_options_controls}>
-      {renderOptionControl(props, 'loopAfterQueueEnd', 'repeat', 'Loop')}
-      {renderOptionControl(props, 'shuffleQueue', 'random', 'Shuffle')}
-      {renderOptionControl(props, 'autoradio', 'magic', 'Autoradio')}
+      {renderOptionControl(props, 'loopAfterQueueEnd', 'repeat', t('loop'))}
+      {renderOptionControl(props, 'shuffleQueue', 'random', t('shuffle'))}
+      {renderOptionControl(props, 'autoradio', 'magic', t('autoradio'))}
     </div>
   );
 };

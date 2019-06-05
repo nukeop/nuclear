@@ -6,7 +6,9 @@ import PlaylistResults from '../PlaylistResults';
 import TracksResults from '../TracksResults';
 
 import styles from './styles.scss';
+import { withTranslation } from 'react-i18next';
 
+@withTranslation('search')
 class AllResults extends React.Component {
   constructor(props) {
     super(props);
@@ -41,7 +43,7 @@ class AllResults extends React.Component {
   renderPlaylistSection () {
     return (
       <div className={styles.column}>
-        <h3>Playlist</h3>
+        <h3>{this.props.t('playlist', { count: this.props.playlistSearchResults.length })}</h3>
         <div className={styles.row}>
           <PlaylistResults
             playlistSearchStarted={this.props.playlistSearchStarted}
@@ -69,16 +71,20 @@ class AllResults extends React.Component {
   }
 
   renderArtistsSection () {
-    return this.renderSection('Artists', this.props.artistSearchResults, this.props.artistInfoSearch);
+    const { t, artistSearchResults, artistInfoSearch } = this.props;
+
+    return this.renderSection(t('artist', { count: artistSearchResults.length }), artistSearchResults, artistInfoSearch);
   }
 
   renderAlbumsSection () {
-    return this.renderSection('Albums', this.props.albumSearchResults, this.props.albumInfoSearch);
+    const { t, albumSearchResults, albumInfoSearch } = this.props;
+
+    return this.renderSection(t('album', { count: albumSearchResults.length }), albumSearchResults, albumInfoSearch);
   }
 
   renderTracksSection () {
     return (<div className={styles.column}>
-      <h3>Tracks</h3>
+      <h3>{this.props.t('track_plural')}</h3>
       <div className={styles.row}>
         {this.renderTracks(this.props.trackSearchResults.info)}
       </div>
@@ -91,7 +97,7 @@ class AllResults extends React.Component {
       this.props.albumSearchResults.length <= 0 &&
       this.props.trackSearchResults.length <= 0
     ) {
-      return <div>Nothing found.</div>;
+      return <div>{this.props.t('empty')}</div>;
     }
 
     return (

@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 
 import styles from './styles.scss';
 
-const SidebarMenuCategoryHeader = props => {
+const SidebarMenuCategoryHeader = ({ compact, children }) => {
   return (
-    !props.compact && <div className={styles.sidebar_menu_category_header}>
-      { props.children }
+    !compact && <div className={styles.sidebar_menu_category_header}>
+      { children }
     </div>
   );
 };

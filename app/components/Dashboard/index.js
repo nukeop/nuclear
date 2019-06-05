@@ -1,5 +1,6 @@
 import React from 'react';
 import { Tab } from 'semantic-ui-react';
+import { withTranslation } from 'react-i18next';
 
 import BestNewMusicTab from './BestNewMusicTab';
 import ChartsTab from './ChartsTab';
@@ -8,6 +9,7 @@ import NewsTab from './NewsTab';
 
 import styles from './styles.scss';
 
+@withTranslation('dashboard')
 class Dashboard extends React.Component {
   
   
@@ -17,7 +19,7 @@ class Dashboard extends React.Component {
       dashboardData,
       history,
       musicSources,
-      settings
+      t
     } = this.props;
 
     const {
@@ -26,14 +28,12 @@ class Dashboard extends React.Component {
       addToQueue,
       selectSong,
       clearQueue,
-      startPlayback,
-      addFavoriteTrack,
-      info
+      startPlayback
     } = actions;
     
     return [
       {
-        menuItem: 'Best new music',
+        menuItem: t('best'),
         render: () => (
           <BestNewMusicTab
             dashboardData={dashboardData}
@@ -49,7 +49,7 @@ class Dashboard extends React.Component {
         )
       },
       {
-        menuItem: 'Top Tracks',
+        menuItem: t('top'),
         render: () => (
           <ChartsTab
             topTracks={dashboardData.topTracks}
@@ -57,7 +57,7 @@ class Dashboard extends React.Component {
         )
       },
       {
-        menuItem: 'Genres',
+        menuItem: t('genres'),
         render: () => (
           <GenresTab
             genres={dashboardData.topTags}
@@ -72,7 +72,7 @@ class Dashboard extends React.Component {
         },
       },*/
       {
-        menuItem: 'News',
+        menuItem: t('news'),
         render: () => <NewsTab news={dashboardData.news} />
       }
     ];
