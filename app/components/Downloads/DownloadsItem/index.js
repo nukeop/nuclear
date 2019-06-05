@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import { Icon, Table } from 'semantic-ui-react';
 import _ from 'lodash';
 
-import styles from './styles.scss';
-
 const StatusIcon = props => {
   switch (props.status) {
   case 'Waiting':

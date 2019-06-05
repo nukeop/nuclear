@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button, Input, Radio, Segment } from 'semantic-ui-react';
+import { Button, Input, Radio, Segment, Select } from 'semantic-ui-react';
 import Range from 'react-range-progress';
 import cx from 'classnames';
 import _ from 'lodash';
@@ -8,6 +8,7 @@ import {
   Divider,
   Icon
 } from 'semantic-ui-react';
+import i18n from 'i18next';
 
 import Header from '../Header';
 import Spacer from '../Spacer';
@@ -16,6 +17,7 @@ import GithubSettings from './GithubSettings';
 import settingsEnum from '../../constants/settingsEnum';
 
 import styles from './styles.scss';
+import { withTranslation } from 'react-i18next';
 
 const volumeSliderColors = {
   fillColor: { r: 248, g: 248, b: 242, a: 1 },
@@ -23,6 +25,7 @@ const volumeSliderColors = {
   thumbColor: { r: 248, g: 248, b: 242, a: 1 }
 };
 
+@withTranslation('settings')
 class Settings extends React.Component {
   toggleScrobbling (
     lastFmScrobblingEnabled,
@@ -56,11 +59,8 @@ class Settings extends React.Component {
             <Icon name='lastfm square' className={ styles.lastfm_icon }/>
           </Icon.Group>
         }
-        title='Last.fm'
-        description={
-          'In order to enable scrobbling, you first have to'
-                + ' connect and authorize Nuclear on Last.fm, then click log in.'
-        }
+        title={this.props.t('lastfm-title')}
+        description={this.props.t('lastfm-description')}
       >
         {this.renderLastFmLoginButtons()}
         {this.renderLastFmOptionRadio()}
@@ -83,12 +83,12 @@ class Settings extends React.Component {
     return (
       <div className={styles.settings_social_item}>
         <span>
-          User: <strong>{lastFmName ? lastFmName : 'Not logged in'}</strong>
+          {this.props.t('user')} <strong>{lastFmName ? lastFmName : this.props.t('notlogged')}</strong>
         </span>
         <Spacer />
         {!lastFmSessionKey && (
           <Button onClick={lastFmConnectAction} color='red'>
-            Connect with Last.fm
+            {this.props.t('lastfm-connect')}
           </Button>
         )}
         {!lastFmSessionKey && (
@@ -96,13 +96,13 @@ class Settings extends React.Component {
             onClick={() => lastFmLoginAction(lastFmAuthToken)}
             color='red'
           >
-            Log in
+            {this.props.t('login')}
           </Button>
         )}
         {
           lastFmSessionKey &&
             <Button onClick={ lastFmLogOut } inverted>
-              Log out
+              {this.props.t('logout')}
             </Button>
         }
       </div>
@@ -114,7 +114,7 @@ class Settings extends React.Component {
     const { enableScrobbling, disableScrobbling } = this.props.actions;
     return (
       <div className={styles.settings_item}>
-        <label>Enable scrobbling to Last.fm</label>
+        <label>{this.props.t('lastfm-enable')}</label>
         <Spacer />
         <Radio
           toggle
@@ -134,7 +134,8 @@ class Settings extends React.Component {
   renderGithubSocialIntegration() {
     const {
       actions,
-      github
+      github,
+      t
     } = this.props;
     
     return (
@@ -145,10 +146,8 @@ class Settings extends React.Component {
             <Icon color='black' name='github square' />
           </Icon.Group>
         }
-        title='Github'
-        description={
-          'Log in via Github to be able to create and share your playlists online (upcoming feature).'
-        }
+        title={t('github-title')}
+        description={t('github-description')}
       >
         <GithubSettings
           logIn={ actions.githubOauth }
@@ -163,7 +162,7 @@ class Settings extends React.Component {
   renderSocialSettings () {
     return (
       <div className={styles.settings_section}>
-        <Header>Social</Header>
+        <Header>{this.props.t('social')}</Header>
         <hr />
         <Segment>
           { this.renderLastFmSocialIntegration() }
@@ -176,6 +175,21 @@ class Settings extends React.Component {
 
   handleSliderChange (value, option) {
     this.props.actions.setNumberOption(option.name, _.parseInt(value));
+  }
+
+  renderListOption({ placeholder, options }) {
+    return (
+      <Select
+        placeholder={placeholder}
+        value={i18n.language}
+        options={options.map(lng => ({
+          key: lng,
+          text: lng,
+          value: lng
+        }))}
+        onChange={(e, { value }) => i18n.changeLanguage(value)}
+      />
+    );
   }
 
   renderRadioOption (option, settings) {
@@ -240,7 +254,7 @@ class Settings extends React.Component {
   renderOption (settings, option, key) {
     return (
       <div key={key} className={cx(styles.settings_item, option.type)}>
-        <label>{option.prettyName}</label>
+        <label>{this.props.t(option.prettyName)}</label>
         <Spacer />
         {
           option.type === settingsEnum.BOOLEAN &&
@@ -254,12 +268,16 @@ class Settings extends React.Component {
           option.type === settingsEnum.NUMBER &&
           this.renderNumberOption(option)
         }
+        {
+          option.type === settingsEnum.LIST &&
+          this.renderListOption(option)
+        }
       </div>
     );
   }
 
   render () {
-    let { options, settings } = this.props;
+    let { options, settings, t } = this.props;
     let optionsGroups = _.groupBy(options, 'category');
 
     return (
@@ -268,7 +286,7 @@ class Settings extends React.Component {
         {_.map(optionsGroups, (group, i) => {
           return (
             <div key={i} className={styles.settings_section}>
-              <Header>{i}</Header>
+              <Header>{t(i)}</Header>
               <hr />
               <Segment>
                 {_.map(group, (option, j) =>

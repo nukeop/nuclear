@@ -4,6 +4,10 @@ module.exports = {
     "commonjs": true,
     "es6": true
   },
+  "globals": {
+    "process": true,
+    "Raven": true
+  },
   "extends": "eslint:recommended",
   "parser": "babel-eslint",
   "parserOptions": {

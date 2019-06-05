@@ -1,6 +1,7 @@
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 import cx from 'classnames';
+import { withTranslation } from 'react-i18next';
 
 import TrackRow from '../../TrackRow';
 import artPlaceholder from '../../../../resources/media/art_placeholder.png';
@@ -8,6 +9,7 @@ import artPlaceholder from '../../../../resources/media/art_placeholder.png';
 import trackRowStyles from '../../TrackRow/styles.scss';
 import styles from './styles.scss';
 
+@withTranslation('artist')
 class PopularTracks extends React.Component {
   constructor(props) {
     super(props);
@@ -40,7 +42,7 @@ class PopularTracks extends React.Component {
             });
         }}
         className={styles.add_button}
-        aria-label='Add all tracks to queue'
+        aria-label={this.props.t('queue')}
       >
         <FontAwesome name='plus' /> Add all
       </a>
@@ -48,7 +50,7 @@ class PopularTracks extends React.Component {
   }
 
   render () {
-    let { artist, tracks } = this.props;
+    let { artist, tracks, t } = this.props;
 
     return (
       <div className={cx(
@@ -63,8 +65,8 @@ class PopularTracks extends React.Component {
               <th>
                 <FontAwesome name='photo' />
               </th>
-              <th>Title</th>
-              <th>Play Counts</th>
+              <th>{t('title')}</th>
+              <th>{t('count')}</th>
             </tr>
           </thead>
           <tbody>
