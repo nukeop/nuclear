@@ -1,9 +1,9 @@
 import React from 'react';
+import { withTranslation } from 'react-i18next';
 
 import styles from './styles.scss';
 
-const _ = require('lodash');
-
+@withTranslation('artist')
 class SimilarArtists extends React.Component {
   constructor(props) {
     super(props);
@@ -17,7 +17,7 @@ class SimilarArtists extends React.Component {
     return (
       <div className={styles.similar_artists_container}>
         <div className={styles.header}>
-          Similar artists
+          {this.props.t('similar')}
         </div>
         {
           this.props.artists.map((artist, index) => {

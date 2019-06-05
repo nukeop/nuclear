@@ -1,5 +1,6 @@
 import React from 'react';
 import { Dimmer, Loader } from 'semantic-ui-react';
+import { withTranslation } from 'react-i18next';
 
 import TagDescription from './TagDescription';
 import TagHeader from './TagHeader';
@@ -7,6 +8,7 @@ import TagTopList from './TagTopList';
 import TagTopTracks from './TagTopTracks';
 import styles from './styles.scss';
 
+@withTranslation('tags')
 class TagView extends React.Component {
   constructor(props) {
     super(props);
@@ -35,7 +37,7 @@ class TagView extends React.Component {
       <TagTopList
         topList={topArtists}
         onClick={this.artistInfoSearchByName.bind(this)}
-        header='Top Artists'
+        header={this.props.t('artists')}
       />
     );
   }
@@ -46,7 +48,7 @@ class TagView extends React.Component {
       <TagTopList
         topList={topAlbums}
         onClick={this.albumInfoSearchByName.bind(this)}
-        header='Top Albums'
+        header={this.props.t('albums')}
       />
     );
   }

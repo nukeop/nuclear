@@ -1,6 +1,7 @@
 import React from 'react';
 import _ from 'lodash';
 import { Dimmer, Loader } from 'semantic-ui-react';
+import { withTranslation } from 'react-i18next';
 import AlbumList from '../AlbumList';
 import ArtistTags from './ArtistTags';
 import SimilarArtists from './SimilarArtists';
@@ -9,6 +10,7 @@ import PopularTracks from './PopularTracks';
 import styles from './styles.scss';
 import artPlaceholder from '../../../resources/media/art_placeholder.png';
 
+@withTranslation('artist')
 class ArtistView extends React.Component {
   constructor(props) {
     super(props);
@@ -51,7 +53,7 @@ class ArtistView extends React.Component {
                   <span
                     className={styles.on_tour}
                   >
-                      On tour
+                    {this.props.t('tour')}
                   </span>
               }
             </div>

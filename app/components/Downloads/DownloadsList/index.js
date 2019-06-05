@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Button, Icon, Segment, Table } from 'semantic-ui-react';
+import { useTranslation } from 'react-i18next';
 
 import DownloadsItem from '../DownloadsItem';
 
@@ -11,19 +12,21 @@ const DownloadsList = props => {
     items,
     clearFinishedTracks
   } = props;
+
+  const { t } = useTranslation('downloads');
   
   return (
     <Segment inverted>
       <Button primary onClick={ clearFinishedTracks }>
         <Icon name='trash'/>
-        Clear finished tracks
+        {t('clear')}
       </Button>
       <Table inverted className={styles.downloads_list}>
         <Table.Header>
           <Table.Row>
-            <Table.HeaderCell>Status</Table.HeaderCell>
-            <Table.HeaderCell>Name</Table.HeaderCell>
-            <Table.HeaderCell>Completion</Table.HeaderCell>
+            <Table.HeaderCell>{t('status')}</Table.HeaderCell>
+            <Table.HeaderCell>{t('name')}</Table.HeaderCell>
+            <Table.HeaderCell>{t('completion')}</Table.HeaderCell>
           </Table.Row>
         </Table.Header>
         <Table.Body>

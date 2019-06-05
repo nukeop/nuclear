@@ -5,24 +5,8 @@ import * as ToastActions from '../../actions/toasts';
 
 import ToastComponent from '../../components/ToastComponent';
 
-class ToastContainer extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+const ToastContainer = ({ toasts }) => <ToastComponent toasts={toasts.notifications} />;
 
-  render() {
-    let {
-      actions,
-      toasts
-    } = this.props;
-
-    return (
-      <ToastComponent
-        toasts={toasts.notifications}
-      />
-    );
-  }
-}
 function mapStateToProps(state) {
   return {
     toasts: state.toasts
@@ -31,10 +15,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators(
-      Object.assign({}, ToastActions),
-      dispatch
-    )
+    actions: bindActionCreators(Object.assign({}, ToastActions), dispatch)
   };
 }
 

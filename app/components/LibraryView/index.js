@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import {
   Button,
@@ -10,6 +10,7 @@ import {
   Segment,
   Table
 } from 'semantic-ui-react';
+import { useTranslation } from 'react-i18next';
 
 import Header from '../Header';
 import TrackRow from '../TrackRow';
@@ -25,15 +26,17 @@ const LibraryView = ({
   sortBy,
   direction
 }) => {
-  const handleSort = columnName => () => {
-    actions.updateLocalSort(columnName, sortBy, direction);
-  };
-  
+  const handleSort = useCallback(
+    columnName => () => {
+      actions.updateLocalSort(columnName, sortBy, direction);
+    },
+    [sortBy, direction, actions.updateLocalSort]
+  );
+  const { t } = useTranslation('library');
+
   return (
     <div className={styles.local_files_view}>
-      <Header>
-        Local Library
-      </Header>
+      <Header>{t('header')}</Header>
       <Segment>
         <Button
           icon
@@ -42,9 +45,8 @@ const LibraryView = ({
           className={styles.add_folder}
           onClick={actions.openLocalFolderPicker}
         >
-          
           <Icon name='folder open' />
-          Add folders
+          {t('add')}
         </Button>
         <Button
           inverted
@@ -62,7 +64,7 @@ const LibraryView = ({
                   name='close'
                   onClick={() => actions.removeLocalFolder(folder)}
                   className={styles.folder_remove_icon}
-                />            
+                />
               </List.Content>
               <List.Content>{folder}</List.Content>
             </List.Item>
@@ -70,20 +72,19 @@ const LibraryView = ({
         </List>
       </Segment>
       <Segment>
-        
         <div className={styles.search_field}>
           <Input
             inverted
             transparent
             icon='search'
             iconPosition='left'
-            placeholder='Filter...'
+            placeholder={t('filter-placeholder')}
             onChange={actions.updateFilter}
           />
         </div>
-      
+
         <Segment inverted className={trackRowStyles.tracks_container}>
-          <Dimmer active={ pending } loading={ pending } />
+          <Dimmer active={pending} loading={pending} />
           {!pending && (
             <Table sortable className={styles.table}>
               <Table.Header className={styles.thead}>
@@ -95,35 +96,36 @@ const LibraryView = ({
                     sorted={sortBy === 'artist' ? direction : null}
                     onClick={handleSort('artist')}
                   >
-                  Artist
+                    {t('artist')}
                   </Table.HeaderCell>
                   <Table.HeaderCell
                     sorted={sortBy === 'name' ? direction : null}
                     onClick={handleSort('name')}
                   >
-                  Title
+                    {t('title')}
                   </Table.HeaderCell>
                   <Table.HeaderCell
                     sorted={sortBy === 'album' ? direction : null}
                     onClick={handleSort('album')}
                   >
-                  Album
+                    {t('album')}
                   </Table.HeaderCell>
                 </Table.Row>
               </Table.Header>
               <Table.Body className={styles.tbody}>
-                {tracks && tracks.map((track, idx) => (
-                  <TrackRow
-                    key={'favorite-track-' + idx}
-                    track={track}
-                    index={idx}
-                    displayCover
-                    displayArtist
-                    displayAlbum
-                    withAddToDownloads={false}
-                    isLocal
-                  />
-                ))}
+                {tracks &&
+                  tracks.map((track, idx) => (
+                    <TrackRow
+                      key={'favorite-track-' + idx}
+                      track={track}
+                      index={idx}
+                      displayCover
+                      displayArtist
+                      displayAlbum
+                      withAddToDownloads={false}
+                      isLocal
+                    />
+                  ))}
               </Table.Body>
             </Table>
           )}

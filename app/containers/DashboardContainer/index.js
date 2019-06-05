@@ -10,29 +10,23 @@ import * as ToastActions from '../../actions/toasts';
 
 import Dashboard from '../../components/Dashboard';
 
-class DashboardContainer extends React.Component {
-  render () {
-    let {
-      actions,
-      dashboard,
-      settings,
-      history,
-      musicSources
-    } = this.props;
+const DashboardContainer = ({
+  actions,
+  dashboard,
+  settings,
+  history,
+  musicSources
+}) => (
+  <Dashboard
+    dashboardData={dashboard}
+    history={history}
+    settings={settings}
+    actions={actions}
+    musicSources={musicSources}
+  />
+);
 
-    return (
-      <Dashboard
-        dashboardData={dashboard}
-        history={history}
-        settings={settings}
-        actions={actions}
-        musicSources={musicSources}
-      />
-    );
-  }
-}
-
-function mapStateToProps (state) {
+function mapStateToProps(state) {
   return {
     dashboard: state.dashboard,
     musicSources: state.plugin.plugins.musicSources,
@@ -40,7 +34,7 @@ function mapStateToProps (state) {
   };
 }
 
-function mapDispatchToProps (dispatch) {
+function mapDispatchToProps(dispatch) {
   return {
     actions: bindActionCreators(
       Object.assign(

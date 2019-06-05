@@ -6,39 +6,30 @@ import styles from './styles.css';
 import AlbumInfo from './AlbumInfo';
 import AlbumOverlay from './AlbumOverlay';
 
-class AlbumCover extends React.Component {
+const AlbumCover = ({ artist, cover, nameOnly, handlePlay, title }) => {
+  let style = {};
 
-  render() {
-    let style = {};
-
-    if (this.props.nameOnly) {
-      style = {
-        backgroundImage: `url(${this.props.cover})`,
-        height: '250px'
-      };
-    }
-
-    return (
-      <div style={style} className={styles.album_cover_container}>
-        <AlbumOverlay
-          handlePlay={this.props.handlePlay}
-        />
-
-        {
-          this.props.nameOnly
-            ? null
-            : <img src={this.props.cover}/>
-        }
-
-        <AlbumInfo
-          artist={this.props.artist}
-          title={this.props.title}
-          nameOnly={this.props.nameOnly}
-        />
-      </div>
-    );
+  if (nameOnly) {
+    style = {
+      backgroundImage: `url(${cover})`,
+      height: '250px'
+    };
   }
-}
+
+  return (
+    <div style={style} className={styles.album_cover_container}>
+      <AlbumOverlay handlePlay={handlePlay} />
+
+      {nameOnly ? null : <img src={cover} />}
+
+      <AlbumInfo
+        artist={artist}
+        title={title}
+        nameOnly={nameOnly}
+      />
+    </div>
+  );
+};
 
 AlbumCover.propTypes = {
   nameOnly: PropTypes.bool,

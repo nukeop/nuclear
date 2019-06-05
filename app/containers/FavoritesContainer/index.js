@@ -5,15 +5,10 @@ import { bindActionCreators } from 'redux';
 import _ from 'lodash';
 
 import * as FavoritesActions from '../../actions/favorites';
-import * as QueueActions from '../../actions/queue';
-import * as PlayerActions from '../../actions/player';
-import * as ToastActions from '../../actions/toasts';
 
 import FavoriteTracksView from '../../components/FavoriteTracksView';
 
 const TRACKS_PATH = 'tracks';
-const ARTISTS_PATH = 'artists';
-const ALBUMS_PATH = 'albums';
 
 class FavoritesContainer extends React.Component {
   constructor(props) {
