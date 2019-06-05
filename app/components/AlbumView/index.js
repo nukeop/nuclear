@@ -2,6 +2,7 @@ import React from 'react';
 import FontAwesome from 'react-fontawesome';
 import { Dimmer, Loader } from 'semantic-ui-react';
 import _ from 'lodash';
+import { withTranslation } from 'react-i18next';
 
 import ContextPopup from '../ContextPopup';
 import TrackRow from '../TrackRow';
@@ -10,6 +11,7 @@ import * as Utils from '../../utils';
 import styles from './styles.scss';
 import artPlaceholder from '../../../resources/media/art_placeholder.png';
 
+@withTranslation('album')
 class AlbumView extends React.Component {
   constructor(props) {
     super(props);
@@ -225,7 +227,7 @@ class AlbumView extends React.Component {
           href='#'
           onClick={() => this.addAlbumToQueue(album)}
           className={styles.add_button}
-          aria-label='Add album to queue'
+          aria-label={this.props.t('queue')}
         >
           <FontAwesome name='plus' /> Add to queue
         </a>

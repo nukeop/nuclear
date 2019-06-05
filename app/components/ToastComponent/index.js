@@ -2,15 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ui from 'nuclear-ui';
 
-import styles from './styles.scss';
+import './styles.scss';
 
-const ToastComponent = props => {
-  return (
-    <ui.ToastContainer
-      toasts={props.toasts}
-    />
-  );
-};
+const ToastComponent = ({ toasts }) => <ui.ToastContainer toasts={toasts} />;
 
 ToastComponent.propTypes = {
   toasts: PropTypes.array

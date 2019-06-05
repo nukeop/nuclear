@@ -2,6 +2,8 @@ import React from 'react';
 import classnames from 'classnames';
 import { ipcRenderer } from 'electron';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import _ from 'lodash';
+import { withTranslation } from 'react-i18next';
 
 import styles from './styles.scss';
 
@@ -9,6 +11,7 @@ import QueuePopup from '../QueuePopup';
 import QueueItem from './QueueItem';
 import QueueMenu from './QueueMenu';
 
+@withTranslation('queue')
 class PlayQueue extends React.Component {
   constructor(props){
     super(props);
@@ -19,7 +22,7 @@ class PlayQueue extends React.Component {
   }
 
   onAddToDownloads(track) {
-    const { actions, plugins, settings } = this.props;
+    const { actions, plugins, settings, t } = this.props;
     const { addToDownloads, info } = actions;
     const artistName = _.isString(_.get(track, 'artist'))
       ? _.get(track, 'artist')
@@ -27,8 +30,8 @@ class PlayQueue extends React.Component {
     ipcRenderer.send('start-download', track);
     addToDownloads(plugins.plugins.musicSources, track);
     info(
-      'Track added to downloads',
-      `${artistName} - ${track.name} has been added to downloads.`,
+      t('download-toast-title'),
+      t('download-toast-content', { artist: artistName, title: track.name }),
       <img src={ track.thumbnail }/>,
       settings
     );
@@ -42,7 +45,7 @@ class PlayQueue extends React.Component {
     return this.props.items.map((el, i) => {
       return (
         <Draggable key={i} index={i} draggableId={i}>
-          {(provided, snapshot) => (
+          {(provided) => (
             <div
               ref={provided.innerRef}
               {...provided.draggableProps}

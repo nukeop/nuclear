@@ -1,15 +1,6 @@
 import React from 'react';
 
-import styles from './styles.css';
-
-class VerticalPanel extends React.Component {
-  render() {
-    return (
-      <div className={this.props.className}>
-        {this.props.children}
-      </div>
-    );
-  }
-}
-
+const VerticalPanel = ({ className, children }) => (
+  <div className={className}>{children}</div>
+);
 export default VerticalPanel;

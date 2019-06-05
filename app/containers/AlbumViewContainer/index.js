@@ -8,35 +8,24 @@ import * as PlayerActions from '../../actions/player';
 
 import AlbumView from '../../components/AlbumView';
 
-let _ = require('lodash');
-
-class AlbumViewContainer extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    let {
-      actions,
-      match,
-      history,
-      albumDetails,
-      musicSources
-    } = this.props;
-    return (
-      <AlbumView
-        album={albumDetails[match.params.albumId]}
-        artistInfoSearch={actions.artistInfoSearch}
-        addToQueue={actions.addToQueue}
-        musicSources={musicSources}
-        selectSong={actions.selectSong}
-        startPlayback={actions.startPlayback}
-        clearQueue={actions.clearQueue}
-        history={history}
-      />
-    );
-  }
-}
+const AlbumViewContainer = ({
+  actions,
+  match,
+  history,
+  albumDetails,
+  musicSources
+}) => (
+  <AlbumView
+    album={albumDetails[match.params.albumId]}
+    artistInfoSearch={actions.artistInfoSearch}
+    addToQueue={actions.addToQueue}
+    musicSources={musicSources}
+    selectSong={actions.selectSong}
+    startPlayback={actions.startPlayback}
+    clearQueue={actions.clearQueue}
+    history={history}
+  />
+);
 
 function mapStateToProps(state) {
   return {
@@ -47,8 +36,16 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators(Object.assign({}, Actions, QueueActions, PlayerActions), dispatch)
+    actions: bindActionCreators(
+      Object.assign({}, Actions, QueueActions, PlayerActions),
+      dispatch
+    )
   };
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(AlbumViewContainer));
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(AlbumViewContainer)
+);

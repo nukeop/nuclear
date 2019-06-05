@@ -1,9 +1,11 @@
 import React from 'react';
 import classnames from 'classnames';
 import FontAwesome from 'react-fontawesome';
+import { withTranslation } from 'react-i18next';
 
 import styles from './styles.scss';
 
+@withTranslation('player')
 class PlayPauseButton extends React.Component {
   getIcon() {
     if (this.props.loading) {
@@ -25,7 +27,7 @@ class PlayPauseButton extends React.Component {
             [styles.player_button_disabled]: !this.props.onClick
           }
         )}
-        aria-label='Play/Pause button'
+        aria-label={this.props.t('play-pause-button')}
       >
         <a href='#' onClick={this.props.onClick}>{
           this.getIcon()

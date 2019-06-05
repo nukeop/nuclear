@@ -6,6 +6,7 @@ import { NavLink, withRouter } from 'react-router-dom';
 import classnames from 'classnames';
 import _ from 'lodash';
 import Sound from 'react-hifi';
+import { withTranslation } from 'react-i18next';
 
 import * as Actions from './actions';
 import * as PlayerActions from './actions/player';
@@ -54,6 +55,7 @@ import TrackInfo from './components/TrackInfo';
 import WindowControls from './components/WindowControls';
 import VolumeControls from './components/VolumeControls';
 
+@withTranslation('app')
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -132,6 +134,8 @@ class App extends React.Component {
   }
   
   renderSidebarMenu (settings, toggleOption) {
+    const { t } = this.props;
+
     return (
       <VerticalPanel
         className={classnames(styles.left_panel, {
@@ -151,24 +155,24 @@ class App extends React.Component {
           <SidebarMenuCategoryHeader compact={ settings.compactMenuBar }>
             Main
           </SidebarMenuCategoryHeader>
-          {this.renderNavLink('dashboard', 'dashboard', 'Dashboard', settings)}
-          {this.renderNavLink('downloads', 'download', 'Downloads', settings)}
-          {this.renderNavLink('lyrics', 'microphone', 'Lyrics', settings)}
-          {this.renderNavLink('plugins', 'flask', 'Plugins', settings)}
-          {this.renderNavLink('search', 'search', 'Search Results', settings)}
-          {this.renderNavLink('settings', 'cogs', 'Settings', settings)}
-          {this.renderNavLink('equalizer', 'sliders', 'Equalizer', settings)}
+          {this.renderNavLink('dashboard', 'dashboard', t('dashboard'), settings)}
+          {this.renderNavLink('downloads', 'download', t('downloads'), settings)}
+          {this.renderNavLink('lyrics', 'microphone', t('lyrics'), settings)}
+          {this.renderNavLink('plugins', 'flask', t('plugins'), settings)}
+          {this.renderNavLink('search', 'search', t('search'), settings)}
+          {this.renderNavLink('settings', 'cogs', t('settings'), settings)}
+          {this.renderNavLink('equalizer', 'sliders', t('equalizer'), settings)}
 
           <SidebarMenuCategoryHeader compact={ settings.compactMenuBar }>
-            Collection
+            {t('collection')}
           </SidebarMenuCategoryHeader>
-          {this.renderNavLink('favorites/tracks', 'star', 'Favorite tracks', settings)}
-          {this.renderNavLink('library', 'file-sound-o', 'Local library', settings)}
+          {this.renderNavLink('favorites/tracks', 'star', t('favorite'), settings)}
+          {this.renderNavLink('library', 'file-sound-o', t('library'), settings)}
 
           {
             !_.isEmpty(this.props.playlists) &&
             <SidebarMenuCategoryHeader compact={ settings.compactMenuBar }>
-            Playlists
+              {t('playlists')}
             </SidebarMenuCategoryHeader>
           }
           <PlaylistsSubMenu

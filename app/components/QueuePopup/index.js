@@ -9,7 +9,9 @@ import artPlaceholder from '../../../resources/media/art_placeholder.png';
 import { getSelectedStream } from '../../utils';
 
 import styles from './styles.scss';
+import { withTranslation } from 'react-i18next';
 
+@withTranslation('queue')
 class QueuePopup extends React.Component {
   constructor(props) {
     super(props);
@@ -82,8 +84,9 @@ class QueuePopup extends React.Component {
   }
 
   renderStreamInfo() {
-    let { track, defaultMusicSource } = this.props;
-    let selectedStream = getSelectedStream(track.streams, defaultMusicSource);
+    const { track, defaultMusicSource, t } = this.props;
+    const selectedStream = getSelectedStream(track.streams, defaultMusicSource);
+
     return (
       <div className={styles.stream_info}>
         <div className={styles.stream_thumbnail}>
@@ -96,11 +99,11 @@ class QueuePopup extends React.Component {
         <div className={styles.stream_text_info}>
           {this.renderStreamSourceDropdown()}
           <div className={styles.stream_title}>
-            <label>Title:</label>
+            <label>{t('title')}</label>
             <span>{selectedStream.title}</span>
           </div>
           <div className={styles.stream_id}>
-            <label>Stream ID:</label>
+            <label>{t('id')}</label>
             <span>{selectedStream.id}</span>
           </div>
         </div>
@@ -123,8 +126,8 @@ class QueuePopup extends React.Component {
   }
 
   render() {
-    let { track, defaultMusicSource } = this.props;
-    let selectedStream = getSelectedStream(track.streams, defaultMusicSource);
+    const { track, defaultMusicSource, t } = this.props;
+    const selectedStream = getSelectedStream(track.streams, defaultMusicSource);
 
     return (
       <div onContextMenu={this.toggleOpen.bind(this)}>
@@ -142,7 +145,7 @@ class QueuePopup extends React.Component {
           {track.streams && selectedStream ? (
             this.renderStreamInfo()
           ) : (
-            <div className={styles.stream_info}>Stream still loading.</div>
+            <div className={styles.stream_info}>{t('loading')}</div>
           )}
         </Popup>
       </div>

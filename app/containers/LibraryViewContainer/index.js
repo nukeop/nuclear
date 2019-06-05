@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { sortBy } from 'lodash';
+import _ from 'lodash';
 
 import LibraryView from '../../components/LibraryView';
 import * as LocalActions from '../../actions/local';
@@ -19,10 +19,10 @@ function mapStateToProps(state) {
   let tracks;
   switch (state.local.sortBy) {
   case 'artist':
-    tracks = sortBy(filteredTracks, track => track.artist.name);
+    tracks = _.sortBy(filteredTracks, track => track.artist.name);
     break;
   case 'name':
-    tracks = sortBy(filteredTracks, track => track.name);
+    tracks = _.sortBy(filteredTracks, track => track.name);
     break;
   default:
     tracks = filteredTracks;

@@ -5,28 +5,31 @@ import { bindActionCreators } from 'redux';
 import LyricsView from '../../components/LyricsView';
 import * as LyricsActions from '../../actions/lyrics';
 
-class LyricsContainer extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-  render () {
-    return (
-      <LyricsView track={_.get(this.props.queue.queueItems, this.props.queue.currentSong, null)} lyrics={this.props.lyrics} />
-    );
-  }
-}
+const LyricsContainer = ({ queue, lyrics }) => (
+  <LyricsView
+    track={_.get(
+      queue.queueItems,
+      queue.currentSong,
+      null
+    )}
+    lyrics={lyrics}
+  />
+);
 
-function mapStateToProps (state) {
+function mapStateToProps(state) {
   return {
     queue: state.queue,
     lyrics: state.lyrics
   };
 }
 
-function mapDispatchToProps (dispatch) {
+function mapDispatchToProps(dispatch) {
   return {
     actions: bindActionCreators(LyricsActions, dispatch)
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(LyricsContainer);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(LyricsContainer);

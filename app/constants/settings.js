@@ -1,39 +1,39 @@
 import settingType from './settingsEnum';
 
-module.exports = [
+export default [
   {
     name: 'loopAfterQueueEnd',
-    category: 'Playback',
+    category: 'playback',
     type: settingType.BOOLEAN,
-    prettyName: 'Loop after playing the last queue item',
+    prettyName: 'loop-after-queue-end',
     default: false
   },
   {
     name: 'shuffleQueue',
-    category: 'Playback',
+    category: 'playback',
     type: settingType.BOOLEAN,
-    prettyName: 'Shuffle songs',
+    prettyName: 'shuffle-queue',
     default: false
   },
   {
     name: 'autoradio',
-    category: 'Playback',
+    category: 'playback',
     type: settingType.BOOLEAN,
-    prettyName: 'Autoradio',
+    prettyName: 'autoradio',
     default: true
   },
   {
     name: 'notificationTimeout',
-    category: 'Program settings',
+    category: 'program-settings',
     type: settingType.NUMBER,
-    prettyName: 'Notification timeout',
+    prettyName: 'notification-timeout',
     default: 3
   },
   {
     name: 'autoradioCraziness',
-    category: 'Playback',
+    category: 'playback',
     type: settingType.NUMBER,
-    prettyName: 'Autoradio craziness',
+    prettyName: 'autoradio-craziness',
     default: 10,
     min: 1,
     max: 100,
@@ -41,32 +41,57 @@ module.exports = [
   },
   {
     name: 'disableGPU',
-    category: 'Program settings',
+    category: 'program-settings',
     type: settingType.BOOLEAN,
-    prettyName: 'Disable hardware rendering (might fix issues with dragging elements and flashing screen)',
+    prettyName: 'disable-gpu',
     default: false
   },
   {
     name: 'framelessWindow',
-    category: 'Program settings',
+    category: 'program-settings',
     type: settingType.BOOLEAN,
-    prettyName: 'Frameless window (requires restart)',
+    prettyName: 'frameless-window',
     default: true
   },
   {
     name: 'compactMenuBar',
-    category: 'Display',
+    category: 'display',
     type: settingType.BOOLEAN,
-    prettyName: 'Use compact style for menu bar',
+    prettyName: 'compact-menu-bar',
     default: false
   },
   {
     name: 'compactQueueBar',
-    category: 'Display',
+    category: 'display',
     type: settingType.BOOLEAN,
-    prettyName: 'Use compact style for queue bar',
+    prettyName: 'compact-queue-bar',
     default: false
   },
+  {
+    name: 'api.enabled',
+    category: 'http',
+    type: settingType.BOOLEAN,
+    prettyName: 'enable-api',
+    default: true
+  },  
+  {
+    name: 'api.port',
+    category: 'http',
+    type: settingType.NUMBER,
+    prettyName: 'api-port',
+    default: 8080,
+    min: 1024,
+    max: 49151
+  },
+  {
+    name: 'language',
+    category: 'program-settings',
+    type: settingType.LIST,
+    prettyName: 'language',
+    placeholder: 'language-placeholder',
+    options: ['en', 'fr'],
+    default: undefined
+  }
   // To be enabled when MPD integration is ready
   // {
   //   name: 'mpd.host',
@@ -82,20 +107,4 @@ module.exports = [
   //   prettyName: 'MPD HTTP stream address',
   //   default: 'localhost:8888'
   // },
-  {
-    name: 'api.enabled',
-    category: 'HTTP API',
-    type: settingType.BOOLEAN,
-    prettyName: 'Enable the api',
-    default: true
-  },  
-  {
-    name: 'api.port',
-    category: 'HTTP API',
-    type: settingType.NUMBER,
-    prettyName: 'Port used by the api',
-    default: 8080,
-    min: 1024,
-    max: 49151
-  }
 ];
