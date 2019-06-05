@@ -10,11 +10,14 @@ import {
 import styles from './styles.scss';
 
 const addTrackToPlaylist = (updatePlaylist, playlist, track) => {
+  if (track.name) {
   playlist.tracks.push(track);
   updatePlaylist(playlist);
+  }
 };
 
 const addFavoriteTrackFromQueue = (addFavoriteTrack, track) => {
+  if (track.name) {
   addFavoriteTrack({
     artist: {
       name: track.artist
@@ -26,6 +29,7 @@ const addFavoriteTrackFromQueue = (addFavoriteTrack, track) => {
       }
     ]
   });
+  }
 };
 
 const QueueMenuMore = props => {
