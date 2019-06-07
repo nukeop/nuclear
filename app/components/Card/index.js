@@ -7,21 +7,21 @@ import styles from './styles.scss';
 
 Img.globalPlaceholder = artPlaceholder;
 
-const Card = () => (
+const Card = ({ small, onClick, image, header, content }) => (
   <div className={styles.card_container}>
     <div
       className={classnames({
         [`${styles.card}`]: true,
-        [`${styles.small}`]: this.props.small
+        [`${styles.small}`]: small
       })}
-      onClick={this.props.onClick}
+      onClick={onClick}
     >
       <div className={styles.thumbnail}>
-        <Img src={this.props.image ? this.props.image : artPlaceholder} />
+        <Img src={image ? image : artPlaceholder} />
       </div>
       <div className={styles.container}>
-        <h4>{this.props.header}</h4>
-        {this.props.content ? <p>{this.props.content}</p> : null}
+        <h4>{header}</h4>
+        {content ? <p>{content}</p> : null}
       </div>
     </div>
   </div>
