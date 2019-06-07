@@ -23,16 +23,16 @@
     "tour": "On tour"
   },
   "dashboard": {
-    "best": "Best new music",
-    "genres": "Genres",
-    "news": "News",
-    "top": "Top Tracks",
     "artist": "Artist",
-    "title": "Title",
-    "playcounts": "Playcounts",
+    "best": "Best new music",
+    "best-new-albums": "Best new albums",
+    "best-new-tracks": "Best new tracks",
+    "genres": "Genres",
     "lastfm-title": "Top Tracks from LastFm.",
-    "best-new-albums": "",
-    "best-new-tracks": ""
+    "news": "News",
+    "playcounts": "Playcounts",
+    "title": "Title",
+    "top": "Top Tracks"
   },
   "downloads": {
     "clear": "Clear finished tracks",
@@ -68,10 +68,10 @@
     "title": "Title"
   },
   "lyrics": {
+    "by-artist": "by {{artist}}",
     "empty": "Nothing is playing.",
     "empty-help": "Add some music to the queue to display the lyrics here!",
-    "not-found": "No lyrics were found for this song.",
-    "by-artist": "by {{artist}}"
+    "not-found": "No lyrics were found for this song."
   },
   "option-control": {
     "autoradio": "Autoradio",
