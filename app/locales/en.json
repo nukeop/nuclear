@@ -26,7 +26,13 @@
     "best": "Best new music",
     "genres": "Genres",
     "news": "News",
-    "top": "Top Tracks"
+    "top": "Top Tracks",
+    "artist": "Artist",
+    "title": "Title",
+    "playcounts": "Playcounts",
+    "lastfm-title": "Top Tracks from LastFm.",
+    "best-new-albums": "",
+    "best-new-tracks": ""
   },
   "downloads": {
     "clear": "Clear finished tracks",
@@ -64,7 +70,8 @@
   "lyrics": {
     "empty": "Nothing is playing.",
     "empty-help": "Add some music to the queue to display the lyrics here!",
-    "not-found": "No lyrics were found for this song."
+    "not-found": "No lyrics were found for this song.",
+    "by-artist": "by {{artist}}"
   },
   "option-control": {
     "autoradio": "Autoradio",

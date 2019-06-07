@@ -5,11 +5,11 @@ import Spacer from '../../Spacer';
 
 import styles from './styles.css';
 
-const AlbumOverlay = () => (
+const AlbumOverlay = ({ handlePlay }) => (
   <div className={styles.overlay_container}>
     <Spacer />
     <a
-      onClick={this.props.handlePlay}
+      onClick={handlePlay}
       href='#'
       className={styles.overlay_play_button}
     >
