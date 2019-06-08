@@ -29,7 +29,7 @@ const HelpModal = () => {
         <Image wrapped size='medium' src={logoImg} />
         <Modal.Description>
           <Header inverted>
-            Desktop music player for streaming from free sources
+            {t('header')}
           </Header>
           <p>
             Copyright © <a href='https://github.com/nukeop/'>nukeop</a> 2019,

@@ -23,13 +23,19 @@
     "tour": "En tournée"
   },
   "dashboard": {
-    "best": "Best new music",
+    "artist": "Artiste",
+    "best": "Nouveautées",
+    "best-new-albums": "Meilleur albums",
+    "best-new-tracks": "Meilleur morceaux",
     "genres": "Genres",
+    "lastfm-title": "Meilleurs morceaux de LastFm.",
     "news": "News",
+    "playcounts": "nombre de lecture",
+    "title": "Title",
     "top": "Top Tracks"
   },
   "downloads": {
-    "clear": "Supprimer les téléchargements tèrminer",
+    "clear": "Supprimer les téléchargements terminer",
     "completion": "Completion",
     "empty": "Aucun Téléchargement.",
     "empty-help": "Ajoutez quelque chose dans votre file de téléchargement et vous le verez apparaitre ici!",
@@ -62,6 +68,7 @@
     "title": "Titre"
   },
   "lyrics": {
+    "by-artist": "by {{artist}}",
     "empty": "Aucun morceau n'est joué.",
     "empty-help": "Ajouter un morceau dans la file et vous verez les paroles s'afficher ici!",
     "not-found": "Aucune paroles n'ont été trouver pour ce morceau."
@@ -158,7 +165,7 @@
     "artist": "Artiste",
     "artists": "Top Artistes",
     "duration": "Durée",
-    "queue-add": "AAjouter toutes les pistes dans la file",
+    "queue-add": "Ajouter toutes les pistes dans la file",
     "title": "Titre"
   }
 }

@@ -23,9 +23,15 @@
     "tour": "On tour"
   },
   "dashboard": {
+    "artist": "Artist",
     "best": "Best new music",
+    "best-new-albums": "Best new albums",
+    "best-new-tracks": "Best new tracks",
     "genres": "Genres",
+    "lastfm-title": "Top Tracks from LastFm.",
     "news": "News",
+    "playcounts": "Playcounts",
+    "title": "Title",
     "top": "Top Tracks"
   },
   "downloads": {
@@ -62,6 +68,7 @@
     "title": "Title"
   },
   "lyrics": {
+    "by-artist": "by {{artist}}",
     "empty": "Nothing is playing.",
     "empty-help": "Add some music to the queue to display the lyrics here!",
     "not-found": "No lyrics were found for this song."
