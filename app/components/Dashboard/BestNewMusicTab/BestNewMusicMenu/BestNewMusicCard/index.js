@@ -5,12 +5,11 @@ import { bestNewItemShape } from '..';
 
 import styles from './styles.scss';
 
-const BestNewMusicCard = props => {
-  const {
-    item,
-    onClick
-  } = props;
-  
+const BestNewMusicCard = ({
+  item,
+  onClick
+} ) => {
+
   return (
     <div
       className={styles.best_new_music_card}

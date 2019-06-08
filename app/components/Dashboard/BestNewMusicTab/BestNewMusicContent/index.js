@@ -1,19 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import _ from 'lodash';
 
-import { bestNewItemShape } from '..';
+import { bestNewItemShape } from '../index';
 
 import styles from './styles.scss';
 
-const BestNewMusicContent = props => {
-  const {
-    item,
-    albumInfoSearchByName,
-    artistInfoSearchByName,
-    history
-  } = props;
-
+const BestNewMusicContent = ({
+  item,
+  albumInfoSearchByName,
+  artistInfoSearchByName,
+  history
+}) => {
   if (item === null) {
     return null;
   }
@@ -33,7 +30,7 @@ const BestNewMusicContent = props => {
           </div>
           <div
             className={styles.title}
-            onClick={() => albumInfoSearchByName(item.title + ' ' + item.artist, props.history)}
+            onClick={() => albumInfoSearchByName(item.title + ' ' + item.artist, history)}
           >
             { item.title }
           </div>
@@ -64,11 +61,11 @@ BestNewMusicContent.propTypes = {
   item: bestNewItemShape,
   artistInfoSearchByName: PropTypes.func,
   albumInfoSearchByName: PropTypes.func,
-  addToQueue: PropTypes.func,
-  selectSong: PropTypes.func,
-  clearQueue: PropTypes.func,
-  startPlayback: PropTypes.func,
-  musicSources: PropTypes.array,
+  // addToQueue: PropTypes.func,
+  // selectSong: PropTypes.func,
+  // clearQueue: PropTypes.func,
+  // startPlayback: PropTypes.func,
+  // musicSources: PropTypes.array,
   history: PropTypes.object
 };
 
@@ -76,11 +73,11 @@ BestNewMusicContent.defaultProps = {
   item: null,
   artistInfoSearchByName: () => {},
   albumInfoSearchByName: () => {},
-  addToQueue: () => {},
-  selectSong: () => {},
-  clearQueue: () => {},
-  startPlayback: () => {},
-  musicSources: [],
+  // addToQueue: () => {},
+  // selectSong: () => {},
+  // clearQueue: () => {},
+  // startPlayback: () => {},
+  // musicSources: [],
   history: {}
 };
 

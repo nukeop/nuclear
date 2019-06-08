@@ -7,12 +7,10 @@ import DownloadsItem from '../DownloadsItem';
 
 import styles from './styles.scss';
 
-const DownloadsList = props => {
-  const {
-    items,
-    clearFinishedTracks
-  } = props;
-
+const DownloadsList = ({
+  items,
+  clearFinishedTracks
+}) => {
   const { t } = useTranslation('downloads');
   
   return (
