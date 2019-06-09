@@ -5,6 +5,7 @@ import { getOption, setOption } from './persistence/store';
 
 import en from './locales/en.json';
 import fr from './locales/fr.json';
+import nl from './locales/nl.json';
 
 const languageDetector = {
   init: Function.prototype,
@@ -19,7 +20,8 @@ export const setupI18n = () => {
     debug: process.env.NODE_ENV !== 'production',
     resources: {
       en,
-      fr
+      fr,
+      nl
     },
     interpolation: {
       escapeValue: false
