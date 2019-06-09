@@ -29,7 +29,7 @@ const Downloads = props => {
       {downloads.length === 0 && <EmptyState />}
       {downloads.length > 0 && (
         <React.Fragment>
-          <Header>{t('downloads')}</Header>
+          <Header>{t('header')}</Header>
           <DownloadsList
             items={downloads}
             clearFinishedTracks={clearFinishedTracks}
