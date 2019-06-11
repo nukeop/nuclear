@@ -7,13 +7,11 @@ import DownloadsItem from '../DownloadsItem';
 
 import styles from './styles.scss';
 
-const DownloadsList = props => {
+const DownloadsList = ({
+  items,
+  clearFinishedTracks
+}) => {
   const [sortAsc, setSort] = useState(true);
-  const {
-    items,
-    clearFinishedTracks
-  } = props;
-
   const { t } = useTranslation('downloads');
   return (
     <Segment inverted>

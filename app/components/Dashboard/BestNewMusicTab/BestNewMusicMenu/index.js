@@ -1,12 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Menu } from 'semantic-ui-react';
+import { useTranslation } from 'react-i18next';
 
 import BestNewMusicCard from './BestNewMusicCard';
 
 import styles from './styles.scss';
 
-const BestNewMusicMenu = props => {
+const BestNewMusicMenu = ({ albums, setActiveItem, tracks }) => {
+  const { t } = useTranslation('dashboard');
+
   return (
     <div className={styles.best_new_music_menu}>
       <Menu vertical size='large'>
@@ -14,15 +17,15 @@ const BestNewMusicMenu = props => {
           className={styles.best_new_music_menu_header}
           link
         >
-          Best new albums
+          {t('best-new-albums')}
         </Menu.Item>
         {
-          props.albums.map(album => {
+          albums.map(album => {
             return (
               <Menu.Item link key={ album.title }>
                 <BestNewMusicCard
                   item={ album }
-                  onClick={ () => props.setActiveItem(album )}
+                  onClick={ () => setActiveItem(album )}
                 />
               </Menu.Item>
             );
@@ -33,15 +36,15 @@ const BestNewMusicMenu = props => {
           className={styles.best_new_music_menu_header}
           link
         >
-      Best new tracks
+          {t('best-new-tracks')}
         </Menu.Item>
         {
-          props.tracks.map(track => {
+          tracks.map(track => {
             return (
               <Menu.Item link key={ track.title }>
                 <BestNewMusicCard
                   item={ track }
-                  onClick={ () => props.setActiveItem(track)}
+                  onClick={ () => setActiveItem(track)}
                 />
               </Menu.Item>
             );

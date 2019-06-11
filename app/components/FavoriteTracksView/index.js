@@ -22,11 +22,10 @@ const EmptyState = () => {
   );
 };
 
-const FavoriteTracksView = props => {
-  const {
-    tracks,
-    removeFavoriteTrack
-  } = props;
+const FavoriteTracksView = ({
+  tracks,
+  removeFavoriteTrack
+}) => {
   const { t } = useTranslation('favorites');
   
   return (

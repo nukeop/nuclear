@@ -1,14 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useTranslation } from 'react-i18next';
 
 import styles from './styles.scss';
 
-const LyricsHeader = props => {
+const LyricsHeader = ({ name, artist }) => {
+  const { t } = useTranslation('lyrics');
+
   return (
     <div className={styles.lyrics_header}>
-      <div className={styles.lyrics_header_name}>{ props.name }</div>
-      <div className={styles.lyrics_header_artist}>by { props.artist
-      }</div>
+      <div className={styles.lyrics_header_name}>{ name }</div>
+      <div className={styles.lyrics_header_artist}>{t('by-artist', { artist })}</div>
       <hr/>
     </div>
   );
