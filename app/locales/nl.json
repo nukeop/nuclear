@@ -1,0 +1,164 @@
+{
+  "album": {
+    "queue": "Album toevoegen aan wachtrij"
+  },
+  "app": {
+    "collection": "Verzameling",
+    "dashboard": "Overzicht",
+    "downloads": "Downloads",
+    "equalizer": "Equalizer",
+    "favorite": "Favoriete nummers",
+    "library": "Lokale verzameling",
+    "lyrics": "Songteksten",
+    "playlists": "Afspeellijsten",
+    "plugins": "Plug-ins",
+    "search": "Zoekresultaten",
+    "settings": "Instellingen"
+  },
+  "artist": {
+    "count": "Aantal keer beluisterd",
+    "queue": "Alle nummers toevoegen aan wachtrij",
+    "similar": "Vergelijkbare artiesten",
+    "title": "Titel",
+    "tour": "Aan het touren"
+  },
+  "dashboard": {
+    "best": "Beste nieuwe muziek",
+    "genres": "Genres",
+    "news": "Nieuws",
+    "top": "Topnummers"
+  },
+  "downloads": {
+    "clear": "Afgeronde nummers wissen",
+    "completion": "Voltooid",
+    "empty": "Geen downloads.",
+    "empty-help": "Voeg iets toe aan je downloadwachtrij om het hier te zien!",
+    "header": "Downloads",
+    "name": "Naam",
+    "status": "Status"
+  },
+  "favorites": {
+    "artist": "Artiest",
+    "empty": "Geen favorieten.",
+    "empty-help": "Voeg nummers toe aan je favorieten om ze hier te zien!",
+    "header": "Jouw favoriete nummers",
+    "title": "Titel"
+  },
+  "help": {
+    "about": "Over Nuclear Music Player",
+    "header": "Muziekspeler voor het streamen van vrije muziek",
+    "released": "uitgebracht onder de AGPL-3.0-licentie",
+    "thanks": "Hartelijk dank aan alle bijdragers op GitHub; zonder jullie was het niet gelukt."
+  },
+  "input-dialog": {
+    "cancel": "Annuleren"
+  },
+  "library": {
+    "add": "Mappen toevoegen",
+    "album": "Album",
+    "artist": "Artiest",
+    "filter-placeholder": "Filteren...",
+    "header": "Lokale verzameling",
+    "title": "Titel"
+  },
+  "lyrics": {
+    "empty": "Er wordt niks afgespeeld.",
+    "empty-help": "Voeg muziek toe aan de wachtrij om de songtekst hier te tonen!",
+    "not-found": "Geen songtekst gevonden bij dit nummer."
+  },
+  "option-control": {
+    "autoradio": "Automatische radio",
+    "loop": "Herhalen",
+    "shuffle": "Willekeurig"
+  },
+  "player": {
+    "next-button": "Volgend nummer",
+    "play-pause-button": "Afspelen/Pauzeren",
+    "previous-button": "Vorig nummer"
+  },
+  "playlists": {
+    "artist": "Artiest",
+    "delete": "Verwijderen",
+    "dialog-placeholder": "Naam van afspeellijst...",
+    "empty": "Geen afspeellijsten.",
+    "rename": "Naam wijzigen",
+    "songs": "{{total}} nummer",
+    "songs_plural": "{{total}} nummers",
+    "title": "Titel"
+  },
+  "plugins": {
+    "header": "Plug-ins",
+    "placeholder": "Kies de standaard muziekbron:",
+    "subtitle": "Muziekbronnen"
+  },
+  "queue": {
+    "clear": "Wachtrij legen",
+    "dialog-accept": "Opslaan",
+    "dialog-placeholder": "Naam van afspeellijst...",
+    "dialog-trigger": "Opslaan als afspeellijst",
+    "download": "Downloaden",
+    "download-toast-content": "{{artist}} - {{title}} is toegevoegd aan je downloads.",
+    "download-toast-title": "Nummer toegevoegd aan downloads",
+    "favorite-add": "Toevoegen aan favorieten",
+    "header": "Wachtrij",
+    "header-track": "Huidige nummer",
+    "id": "Stream-id:",
+    "loading": "Bezig met laden van stream...",
+    "playlist-add": "Toevoegen aan afspeellijst",
+    "playlist-toast-content": "De afspeellijst, '{{name}}', is gecreëerd.",
+    "playlist-toast-title": "Afspeellijst gecreëerd",
+    "title": "Titel:"
+  },
+  "search": {
+    "album": "Album",
+    "album_plural": "Albums",
+    "artist": "Artiest",
+    "artist_plural": "Artiesten",
+    "empty": "Niks gevonden.",
+    "placeholder": "Zoeken...",
+    "playlist": "Afspeellijst",
+    "playlist_plural": "Afspeellijsten",
+    "queue-add": "Alle nummers toevoegen aan wachtrij",
+    "track": "Nummer",
+    "track_plural": "Nummers"
+  },
+  "settings": {
+    "api-port": "Door de API gebruikte poort",
+    "autoradio": "Automatische radio",
+    "autoradio-craziness": "Automatische radio - gekte",
+    "compact-menu-bar": "Compacte menubalk",
+    "compact-queue-bar": "Compacte wachtrijbalk",
+    "disable-gpu": "Hardwareversnelling uitschakelen (lost mogelijk problemen op met verslepen en flitsende schermen)",
+    "display": "Weergave",
+    "enable-api": "API inschakelen",
+    "frameless-window": "Naadloos venster (herstart vereist)",
+    "github-connect": "Inloggen via GitHub",
+    "github-description": "Log in met je GitHub-account om online-afspeellijsten te creëren en delen (binnenkort).",
+    "github-title": "GitHub",
+    "http": "HTTP-API",
+    "language": "Taal",
+    "language-placeholder": "Kies een taal",
+    "lastfm-connect": "Koppelen aan Last.fm",
+    "lastfm-description": "Om scrobblen in te schakelen, moet je Nuclear eerst koppelen en autoriseren op Last.fm, en dan klikken op 'Inloggen'.",
+    "lastfm-enable": "Scrobblen naar Last.fm",
+    "lastfm-title": "Last.fm",
+    "login": "Inloggen",
+    "logout": "Uitloggen",
+    "loop-after-queue-end": "Herhalen na afspelen van laatste wachtrij-item",
+    "notification-timeout": "Time-out van meldingen",
+    "notlogged": "Niet ingelogd",
+    "playback": "Afspelen",
+    "program-settings": "Toepassingsinstellingen",
+    "shuffle-queue": "Nummers willekeurig afspelen",
+    "social": "Sociaal",
+    "user": "Gebruiker:"
+  },
+  "tags": {
+    "albums": "Topalbums",
+    "artist": "Artiest",
+    "artists": "Topartiesten",
+    "duration": "Duur",
+    "queue-add": "Alle nummers toevoegen aan wachtrij",
+    "title": "Titel"
+  }
+}

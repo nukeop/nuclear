@@ -1,16 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { bestNewItemShape } from '..';
-
 import styles from './styles.scss';
 
-const BestNewMusicCard = props => {
-  const {
-    item,
-    onClick
-  } = props;
-  
+const BestNewMusicCard = ({
+  item,
+  onClick
+} ) => {
+
   return (
     <div
       className={styles.best_new_music_card}
@@ -32,7 +29,11 @@ const BestNewMusicCard = props => {
 };
 
 BestNewMusicCard.propTypes = {
-  item: bestNewItemShape,
+  item: PropTypes.shape({
+    title: PropTypes.string,
+    artist: PropTypes.string,
+    thumbnail: PropTypes.string
+  }),
   onClick: PropTypes.func
 };
 
