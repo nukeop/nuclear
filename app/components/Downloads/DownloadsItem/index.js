@@ -21,10 +21,9 @@ StatusIcon.propTypes = {
   status: PropTypes.string.isRequired
 };
 
-const DownloadsItem = props => {
-  const {
-    item
-  } = props;
+const DownloadsItem = ({
+  item
+}) => {
 
   const artistName = _.isString(_.get(item, 'track.artist'))
     ? _.get(item, 'track.artist')

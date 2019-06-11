@@ -15,7 +15,8 @@ const SearchResultsContainer = ({
   unifiedSearchStarted,
   playlistSearchStarted,
   actions,
-  musicSources
+  musicSources,
+  history
 }) => (
   <SearchResults
     artistSearchResults={artistSearchResults}
