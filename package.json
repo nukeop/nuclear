@@ -1,4 +1,4 @@
-{
+﻿{
   "name": "nuclear",
   "version": "0.4.5",
   "description": "Streaming music player that finds music sources automatically.",
@@ -23,7 +23,7 @@
     "build:macos": "electron-builder -c.extraMetadata.main=dist/bundle.electron.js --macos",
     "build:all": "electron-builder -c.extraMetadata.main=dist/bundle.electron.js -mwl",
     "lint": "eslint app",
-    "i18n": "sync-i18n --files 'app/locales/*.json' --primary en --languages fr nl --space 2"
+    "i18n": "sync-i18n --files 'app/locales/*.json' --primary en --languages fr nl zh --space 2"
   },
   "repository": {
     "type": "git",
@@ -68,6 +68,7 @@
     "moment": "^2.20.1",
     "mousetrap": "^1.6.2",
     "music-metadata": "^3.5.3",
+    "npm": "^6.9.0",
     "nuclear-core": "0.0.5",
     "nuclear-ui": "0.0.6",
     "numeral": "^2.0.6",
