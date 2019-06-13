@@ -6,6 +6,7 @@ import { getOption, setOption } from './persistence/store';
 import en from './locales/en.json';
 import fr from './locales/fr.json';
 import nl from './locales/nl.json';
+import dk from './locales/dk.json';
 
 const languageDetector = {
   init: Function.prototype,
@@ -21,7 +22,8 @@ export const setupI18n = () => {
     resources: {
       en,
       fr,
-      nl
+      nl,
+      dk,
     },
     interpolation: {
       escapeValue: false
