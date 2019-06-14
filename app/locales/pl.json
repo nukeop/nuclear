@@ -1,82 +1,82 @@
 {
   "album": {
-    "queue": "Add album to queue"
+    "queue": "Dodaj album do kolejki"
   },
   "app": {
-    "collection": "Collection",
-    "dashboard": "Dashboard",
-    "downloads": "Downloads",
-    "equalizer": "Equalizer",
-    "favorite": "Favorite Tracks",
-    "library": "Local Library",
-    "lyrics": "Lyrics",
-    "playlists": "Playlists",
-    "plugins": "Plugins",
-    "search": "Search Results",
-    "settings": "Settings"
+    "collection": "Kolekcja",
+    "dashboard": "Pulpit nawigacyjny",
+    "downloads": "Pobrane",
+    "equalizer": "Korektor graficzny",
+    "favorite": "Ulubione",
+    "library": "Biblioteka lokalna",
+    "lyrics": "Teksty",
+    "playlists": "Playlisty",
+    "plugins": "Pluginy",
+    "search": "Wyniki wyszukiwania",
+    "settings": "Ustawienia"
   },
   "artist": {
-    "count": "Play counts",
-    "queue": "Add all tracks to queue",
-    "similar": "Similar artists",
-    "title": "Title",
-    "tour": "On tour"
+    "count": "Liczba odtworzeń",
+    "queue": "Dodaj wszystkie utwory do kolejki",
+    "similar": "Podobni artyści",
+    "title": "Tytuł",
+    "tour": "W trasie"
   },
   "dashboard": {
-    "artist": "Artist",
-    "best": "Best new music",
-    "best-new-albums": "Best new albums",
-    "best-new-tracks": "Best new tracks",
-    "genres": "Genres",
-    "lastfm-title": "Top Tracks from LastFm.",
-    "news": "News",
-    "playcounts": "Playcounts",
-    "title": "Title",
-    "top": "Top Tracks"
+    "artist": "Artysta",
+    "best": "Najlepsze nowości muzyczne",
+    "best-new-albums": "Najlepsze nowe albumy",
+    "best-new-tracks": "Najlepsze nowe utwory",
+    "genres": "Gatunki",
+    "lastfm-title": "Top utwory LastFm.",
+    "news": "Aktualności",
+    "playcounts": "Liczba odtworzeń",
+    "title": "Tytuł",
+    "top": "Top utwory"
   },
   "downloads": {
-    "clear": "Clear finished tracks",
-    "completion": "Completion",
-    "empty": "Downloads are empty.",
-    "empty-help": "Add something to your download queue and you'll see it here!",
-    "header": "Downloads",
-    "name": "Name",
+    "clear": "Wyczyść pobrane utwory",
+    "completion": "Pobrane",
+    "empty": "Brak pobranych utworów.",
+    "empty-help": "Dodaj utwór do kolejki pobranych, a pojawi się tutaj!",
+    "header": "Pobrane",
+    "name": "Nazwa",
     "status": "Status"
   },
   "favorites": {
-    "artist": "Artist",
-    "empty": "No favorites added.",
-    "empty-help": "Try favoriting some tracks and they will appear here!",
-    "header": "Your favorite tracks",
-    "title": "Title"
+    "artist": "Artysta",
+    "empty": "Nie dodano żadnego ulubionego utworu.",
+    "empty-help": "Dodaj utwór do ulubionych, a pojawi się tutaj!",
+    "header": "Twoje ulubione utwory",
+    "title": "Tytuł"
   },
   "help": {
-    "about": "About Nuclear Music Player",
-    "header": "Desktop music player for streaming from free sources",
-    "released": "released under AGPL-3.0",
-    "thanks": "Many thanks to our contributors on Github, your help was vital in creating this program."
+    "about": "O Nuclear Music Player",
+    "header": "Desktopowy odtwarzacz muzyki do streamowania z darmowych źródeł",
+    "released": "wydany na licencji AGPL-3.0",
+    "thanks": "Podziękowania dla współtwórców z serwisu Github, Wasza pomoc była nieoceniona w tworzeniu tego programu."
   },
   "input-dialog": {
-    "cancel": "Cancel"
+    "cancel": "Anuluj"
   },
   "library": {
-    "add": "Add folders",
+    "add": "Dodaj katalogi",
     "album": "Album",
-    "artist": "Artist",
-    "filter-placeholder": "Filter...",
-    "header": "Local Library",
-    "title": "Title"
+    "artist": "Artysta",
+    "filter-placeholder": "Filtruj...",
+    "header": "Biblioteka lokalna",
+    "title": "Tytuł"
   },
   "lyrics": {
-    "by-artist": "by {{artist}}",
-    "empty": "Nothing is playing.",
-    "empty-help": "Add some music to the queue to display the lyrics here!",
-    "not-found": "No lyrics were found for this song."
+    "by-artist": "przez {{artist}}",
+    "empty": "Nic nie jest odtwarzane.",
+    "empty-help": "Dodaj utwór do kolejki, aby wyświetlić tutaj tekst!",
+    "not-found": "Nie znaleziono tekstu dla tego utworu."
   },
   "option-control": {
     "autoradio": "Autoradio",
-    "loop": "Loop",
-    "shuffle": "Shuffle"
+    "loop": "Powtarzaj",
+    "shuffle": "Losuj"
   },
   "player": {
     "next-button": "Next track button",
