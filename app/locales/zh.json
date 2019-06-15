@@ -1,0 +1,171 @@
+﻿{
+  "album": {
+    "queue": "Add album to queue"
+  },
+  "app": {
+    "collection": "Collection",
+    "dashboard": "Dashboard",
+    "downloads": "Downloads",
+    "equalizer": "Equalizer",
+    "favorite": "Favorite Tracks",
+    "library": "Local Library",
+    "lyrics": "歌词",
+    "playlists": "Playlists",
+    "plugins": "Plugins",
+    "search": "Search Results",
+    "settings": "Settings"
+  },
+  "artist": {
+    "count": "Play counts",
+    "queue": "Add all tracks to queue",
+    "similar": "Similar artists",
+    "title": "Title",
+    "tour": "On tour"
+  },
+  "dashboard": {
+    "artist": "Artist",
+    "best": "最好新音乐",
+    "best-new-albums": "Best new albums",
+    "best-new-tracks": "Best new tracks",
+    "genres": "Genres",
+    "lastfm-title": "Top Tracks from LastFm.",
+    "news": "消息",
+    "playcounts": "Playcounts",
+    "title": "Title",
+    "top": "Top Tracks"
+  },
+  "downloads": {
+    "clear": "Clear finished tracks",
+    "completion": "Completion",
+    "empty": "Downloads are empty.",
+    "empty-help": "Add something to your download queue and you'll see it here!",
+    "header": "Downloads",
+    "name": "名字",
+    "status": "Status"
+  },
+  "favorites": {
+    "artist": "Artist",
+    "empty": "No favorites added.",
+    "empty-help": "Try favoriting some tracks and they will appear here!",
+    "header": "Your favorite tracks",
+    "title": "Title"
+  },
+  "help": {
+    "about": "About Nuclear Music Player",
+    "header": "Desktop music player for streaming from free sources",
+    "released": "released under AGPL-3.0",
+    "thanks": "Many thanks to our contributors on Github, your help was vital in creating this program."
+  },
+  "input-dialog": {
+    "cancel": "取消"
+  },
+  "library": {
+    "add": "Add folders",
+    "album": "Album",
+    "artist": "Artist",
+    "filter-placeholder": "Filter...",
+    "header": "Local Library",
+    "title": "Title"
+  },
+  "lyrics": {
+    "by-artist": "by {{artist}}",
+    "empty": "Nothing is playing.",
+    "empty-help": "Add some music to the queue to display the lyrics here!",
+    "not-found": "No lyrics were found for this song."
+  },
+  "option-control": {
+    "autoradio": "Autoradio",
+    "loop": "Loop",
+    "shuffle": "Shuffle"
+  },
+  "player": {
+    "next-button": "Next track button",
+    "play-pause-button": "Play/Pause button",
+    "previous-button": "Previous track button"
+  },
+  "playlists": {
+    "artist": "Artist",
+    "delete": "Delete this playlist",
+    "dialog-placeholder": "Playlist name...",
+    "empty": "No playlists.",
+    "rename": "Rename this playlist",
+    "songs": "{{total}} song",
+    "songs_plural": "{{total}} songs",
+    "title": "Title"
+  },
+  "plugins": {
+    "header": "Plugins",
+    "placeholder": "Select the default music source:",
+    "subtitle": "Music sources"
+  },
+  "queue": {
+    "clear": "Clear queue",
+    "dialog-accept": "Save",
+    "dialog-placeholder": "Playlist name...",
+    "dialog-trigger": "Save as playlist",
+    "download": "下载",
+    "download-toast-content": "{{artist}} - {{title}} has been added to downloads.",
+    "download-toast-title": "Track added to download",
+    "favorite-add": "Add to favorites",
+    "header": "Queue",
+    "header-track": "Current track",
+    "id": "Stream ID:",
+    "loading": "Stream still loading.",
+    "playlist-add": "Add to playlist",
+    "playlist-toast-content": "Playlist {{name}} has been created.",
+    "playlist-toast-title": "Playlist created",
+    "title": "Title:"
+  },
+  "search": {
+    "album": "Album",
+    "album_plural": "Albums",
+    "artist": "Artist",
+    "artist_plural": "Artists",
+    "empty": "Nothing found.",
+    "placeholder": "Search...",
+    "playlist": "Playlist",
+    "playlist_plural": "Playlists",
+    "queue-add": "Add all tracks to queue",
+    "track": "Track",
+    "track_plural": "Tracks"
+  },
+  "settings": {
+    "api-port": "Port used by the api",
+    "autoradio": "Autoradio",
+    "autoradio-craziness": "Autoradio craziness",
+    "compact-menu-bar": "Use compact style for menu bar",
+    "compact-queue-bar": "Use compact style for queue bar",
+    "disable-gpu": "Disable hardware rendering (might fix issues with dragging elements and flashing screen)",
+    "display": "Display",
+    "enable-api": "Enable the api",
+    "frameless-window": "Frameless window (requires restart)",
+    "github-connect": "Log in with Github",
+    "github-description": "Log in via Github to be able to create and share your playlists online (upcoming feature).",
+    "github-title": "Github",
+    "http": "HTTP API",
+    "language": "Language",
+    "language-placeholder": "Pick a language",
+    "lastfm-connect": "Connect with Last.fm",
+    "lastfm-description": "In order to enable scrobbling, you first have to connect and authorize Nuclear on Last.fm, then click log in.",
+    "lastfm-enable": "Enable scrobbling to Last.fm",
+    "lastfm-title": "Last.fm",
+    "login": "Log in",
+    "logout": "Log out",
+    "loop-after-queue-end": "Loop after playing the last queue item",
+    "notification-timeout": "Notification timeout",
+    "notlogged": "Not logged in",
+    "playback": "Playback",
+    "program-settings": "Program settings",
+    "shuffle-queue": "Shuffle songs",
+    "social": "Social",
+    "user": "User:"
+  },
+  "tags": {
+    "albums": "Top Albums",
+    "artist": "Artist",
+    "artists": "Top Artists",
+    "duration": "Duration",
+    "queue-add": "Add all tracks to queue",
+    "title": "Title"
+  }
+}
