@@ -25,7 +25,7 @@
   "dashboard": {
     "artist": "Artist",
     "best": "最好新音乐",
-    "best-new-albums": "Best new albums",
+    "best-new-albums": "最好新专辑",
     "best-new-tracks": "Best new tracks",
     "genres": "Genres",
     "lastfm-title": "Top Tracks from LastFm.",
@@ -61,8 +61,8 @@
   },
   "library": {
     "add": "Add folders",
-    "album": "Album",
-    "artist": "Artist",
+    "album": "专辑",
+    "artist": 艺人
     "filter-placeholder": "Filter...",
     "header": "Local Library",
     "title": "Title"
@@ -88,7 +88,7 @@
     "delete": "Delete this playlist",
     "dialog-placeholder": "Playlist name...",
     "empty": "No playlists.",
-    "rename": "重命名这个playlist",
+    "rename": "重命名这个播放列表",
     "songs": "{{total}} song",
     "songs_plural": "{{total}} songs",
     "title": "Title"
@@ -117,14 +117,14 @@
     "title": "Title:"
   },
   "search": {
-    "album": "Album",
-    "album_plural": "Albums",
+    "album": "专辑",
+    "album_plural": "专辑",
     "artist": "Artist",
     "artist_plural": "Artists",
     "empty": "Nothing found.",
     "placeholder": "搜索...",
-    "playlist": "Playlist",
-    "playlist_plural": "Playlists",
+    "playlist": "播放列表",
+    "playlist_plural": "播放列表",
     "queue-add": "Add all tracks to queue",
     "track": "Track",
     "track_plural": "Tracks"
@@ -143,19 +143,19 @@
     "github-description": "Log in via Github to be able to create and share your playlists online (upcoming feature).",
     "github-title": "Github",
     "http": "HTTP API",
-    "language": "Language",
+    "language": "语言",
     "language-placeholder": "Pick a language",
     "lastfm-connect": "Connect with Last.fm",
     "lastfm-description": "In order to enable scrobbling, you first have to connect and authorize Nuclear on Last.fm, then click log in.",
     "lastfm-enable": "Enable scrobbling to Last.fm",
     "lastfm-title": "Last.fm",
     "login": "登录",
-    "logout": "Log out",
+    "logout": "推出",
     "loop-after-queue-end": "Loop after playing the last queue item",
     "notification-timeout": "Notification timeout",
     "notlogged": "Not logged in",
     "playback": "Playback",
-    "program-settings": "Program设置",
+    "program-settings": "Program settings",
     "shuffle-queue": "Shuffle songs",
     "social": "Social",
     "user": "用户:"
