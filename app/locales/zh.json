@@ -62,7 +62,7 @@
   "library": {
     "add": "Add folders",
     "album": "专辑",
-    "artist": 艺人
+    "artist": "艺人"
     "filter-placeholder": "Filter...",
     "header": "Local Library",
     "title": "Title"
@@ -155,7 +155,7 @@
     "notification-timeout": "Notification timeout",
     "notlogged": "Not logged in",
     "playback": "Playback",
-    "program-settings": "Program settings",
+    "program-settings": "Program设置",
     "shuffle-queue": "Shuffle songs",
     "social": "Social",
     "user": "用户:"
