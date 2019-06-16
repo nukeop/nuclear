@@ -12,8 +12,8 @@
     "lyrics": "歌词",
     "playlists": "Playlists",
     "plugins": "Plugins",
-    "search": "Search Results",
-    "settings": "Settings"
+    "search": "搜索结果",
+    "settings": "设置"
   },
   "artist": {
     "count": "Play counts",
@@ -88,7 +88,7 @@
     "delete": "Delete this playlist",
     "dialog-placeholder": "Playlist name...",
     "empty": "No playlists.",
-    "rename": "Rename this playlist",
+    "rename": "重命名这个playlist",
     "songs": "{{total}} song",
     "songs_plural": "{{total}} songs",
     "title": "Title"
@@ -100,7 +100,7 @@
   },
   "queue": {
     "clear": "Clear queue",
-    "dialog-accept": "Save",
+    "dialog-accept": "保存",
     "dialog-placeholder": "Playlist name...",
     "dialog-trigger": "Save as playlist",
     "download": "下载",
@@ -110,7 +110,7 @@
     "header": "Queue",
     "header-track": "Current track",
     "id": "Stream ID:",
-    "loading": "Stream still loading.",
+    "loading": "Stream还在加载.",
     "playlist-add": "Add to playlist",
     "playlist-toast-content": "Playlist {{name}} has been created.",
     "playlist-toast-title": "Playlist created",
@@ -122,7 +122,7 @@
     "artist": "Artist",
     "artist_plural": "Artists",
     "empty": "Nothing found.",
-    "placeholder": "Search...",
+    "placeholder": "搜索...",
     "playlist": "Playlist",
     "playlist_plural": "Playlists",
     "queue-add": "Add all tracks to queue",
@@ -149,16 +149,16 @@
     "lastfm-description": "In order to enable scrobbling, you first have to connect and authorize Nuclear on Last.fm, then click log in.",
     "lastfm-enable": "Enable scrobbling to Last.fm",
     "lastfm-title": "Last.fm",
-    "login": "Log in",
+    "login": "登录",
     "logout": "Log out",
     "loop-after-queue-end": "Loop after playing the last queue item",
     "notification-timeout": "Notification timeout",
     "notlogged": "Not logged in",
     "playback": "Playback",
-    "program-settings": "Program settings",
+    "program-settings": "Program设置",
     "shuffle-queue": "Shuffle songs",
     "social": "Social",
-    "user": "User:"
+    "user": "用户:"
   },
   "tags": {
     "albums": "Top Albums",
