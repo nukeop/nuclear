@@ -62,7 +62,7 @@
   "library": {
     "add": "Add folders",
     "album": "专辑",
-    "artist": "艺人"
+    "artist": "艺人"，
     "filter-placeholder": "Filter...",
     "header": "Local Library",
     "title": "Title"
