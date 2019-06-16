@@ -1,0 +1,172 @@
+{
+  "album": {
+    "queue": "Tiløj album til kø"
+  },
+  "app": {
+    "collection": "Samling",
+    "dashboard": "Instrumentbræt",
+    "downloads": "Downloads",
+    "equalizer": "Udligner",
+    "favorite": "Favoritsange",
+    "library": "Lokalt bibliotek",
+    "lyrics": "Sangtekster",
+    "playlists": "Afspilningslister",
+    "plugins": "Plugins",
+    "search": "Søgeresultater",
+    "settings": "Indstillinger"
+  },
+  "artist": {
+    "count": "Antal afspilninger",
+    "queue": "Tilføj alle sange til kø",
+    "similar": "Lignende artister",
+    "title": "Titel",
+    "tour": "På turné"
+  },
+  "dashboard": {
+    "artist": "Artist",
+    "best": "Bedste nylige musik",
+    "best-new-albums": "Bedste nylige albums",
+    "best-new-tracks": "Bedste nylige sange",
+    "genres": "Genrer",
+    "lastfm-title": "Bedste sange fra LastFm.",
+    "news": "Nyheder",
+    "playcounts": "Antal afspilninger",
+    "title": "Titel",
+    "top": "Populære sange"
+  },
+  "downloads": {
+    "clear": "Klare færdige sange",
+    "completion": "Færdig",
+    "empty": "Downloads er tom.",
+    "empty-help": "Tiløj noget til din download-kø og du vil se det her!",
+    "header": "Downloads",
+    "name": "Navn",
+    "status": "Status"
+  },
+  "favorites": {
+    "artist": "Artist",
+    "empty": "Ingen farvoritter er tilføjet.",
+    "empty-help": "Dine farvoriserede sange vil blive vist her!",
+    "header": "Dine farvoritsange",
+    "title": "Titel"
+  },
+  "help": {
+    "about": "Om Nuclear Music Player",
+    "header": "Desktop music player for streaming fra gratis kilder",
+    "released": "Udgivet under AGPL-3.0",
+    "thanks": "Mange tak til Githubs brugere der har bidraget til projektet. Jeres hjælp har været afgørende i skabelsen af dette program."
+  },
+  "input-dialog": {
+    "cancel": "Annuller"
+  },
+  "library": {
+    "add": "Tilføj mapper",
+    "album": "Album",
+    "artist": "Artist",
+    "filter-placeholder": "Filter...",
+    "header": "Lokalt bibliotek",
+    "title": "Titel"
+  },
+  "lyrics": {
+    "by-artist": "af {{artist}}",
+    "empty": "Intet spiller.",
+    "empty-help": "Tilføj noget musik til køen for at vise sangteksten her!",
+    "not-found": "Ingen sangtekst blev fundet til denne sang."
+  },
+  "option-control": {
+    "autoradio": "Autoradio",
+    "loop": "Loop",
+    "shuffle": "Shuffle"
+  },
+  "player": {
+    "next-button": "Næste sang",
+    "play-pause-button": "Play/Pause",
+    "previous-button": "Forrige sang"
+  },
+  "playlists": {
+    "artist": "Artist",
+    "delete": "Slet denne afspilningsliste",
+    "dialog-placeholder": "Afspilningslistens navn...",
+    "empty": "Ingen afspilningsliste.",
+    "rename": "Omdøb denne afspilningsliste",
+    "songs": "{{total}} sang",
+    "songs_plural": "{{total}} sange",
+    "title": "Titel"
+  },
+  "plugins": {
+    "header": "Plugins",
+    "placeholder": "Vælg musikkildens standardsted:",
+    "subtitle": "Musikkilde"
+  },
+  "queue": {
+    "clear": "Ryd kø",
+    "dialog-accept": "Gem",
+    "dialog-placeholder": "Afspilningslistens navn...",
+    "dialog-trigger": "Gem som afspilningsliste",
+    "download": "Download",
+    "download-toast-content": "{{artist}} - {{title}} er blevet tilføjet til downloads.",
+    "download-toast-title": "Sang er tilføjet til download",
+    "favorite-add": "Tilføj til farvoritter",
+    "header": "Kø",
+    "header-track": "Nuværende sang",
+    "id": "Stream ID:",
+    "loading": "Stream loader stadig.",
+    "playlist-add": "Tilføj til afspilningsliste",
+    "playlist-toast-content": "Afspilningsliste {{name}} er blevet oprettet.",
+    "playlist-toast-title": "Afspilningsliste er oprettet",
+    "title": "Titel:"
+  },
+  "search": {
+    "album": "Album",
+    "album_plural": "Albums",
+    "artist": "Artist",
+    "artist_plural": "Artister",
+    "empty": "Intet fundet.",
+    "placeholder": "Søg...",
+    "playlist": "Afspilningsliste",
+    "playlist_plural": "Afspilningslister",
+    "queue-add": "Tilføj alle sange til kø",
+    "track": "Sang",
+    "track_plural": "Sange"
+  },
+  "settings": {
+    "api-port": "Port benyttet af api'en",
+    "autoradio": "Autoradio",
+    "autoradio-craziness": "Autoradio craziness",
+    "compact-menu-bar": "Benyt kompakt stil til menu",
+    "compact-queue-bar": "Benyt kompakt stil til kø",
+    "disable-gpu": "Deaktiver hardware-generering (Dette vil måske hjælpe på problemer med elementer, der skal trækkes samt, hvis skærmen flimrer)",
+    "display": "Vis",
+    "enable-api": "Aktiver api'en",
+    "frameless-window": "Frameless window (En genstart er påkrævet)",
+    "github-connect": "Log ind med Github",
+    "github-description": "Log ind via Github for at kunne oprette og dele dine afspilningslister online (Kommende feature).",
+    "github-title": "Github",
+    "http": "HTTP API",
+    "language": "Sprog",
+    "language-placeholder": "Vælg et sprog",
+    "lastfm-connect": "Forbind med Last.fm",
+    "lastfm-description": " For at aktivere scrobbling, skal du først forbinde og have bemyndigelsesadgang til Nuclear på Last.fm. Derefter skal du klikke på log ind.",
+    "lastfm-enable": "Aktiver scrobbling til Last.fm",
+    "lastfm-title": "Last.fm",
+    "login": "Log ind",
+    "logout": "Log ud",
+    "loop-after-queue-end": "Loop efter afspilning af den sidste sang i køen",
+    "notification-timeout": "Notifikation timeout",
+    "notlogged": "Ikke logget ind",
+    "playback": "Playback",
+    "program-settings": "Programindstillinger",
+    "shuffle-queue": "Shuffle sange",
+    "social": "Social",
+    "user": "Bruger:"
+  },
+  "tags": {
+    "albums": "Populære albums",
+    "artist": "Artist",
+    "artists": "Populære artister",
+    "duration": "Længde",
+    "queue-add": "Tilføj alle sange til kø",
+    "title": "Titel"
+  }
+}
+    
