@@ -21,16 +21,12 @@ It's also focusing more on audio. Imagine Spotify which you don't have to pay fo
 ## Pre-alpha release
 The current version is a pre-alpha early access. Some of it is usable, some of it isn't. If there are things that don't work as expected or are counterintuitive, please open an issue so I can prioritize working on them.
 
-## What if I am religiously opposed to using Electron for any and all purposes?
-Then you are not the target audience of this program. See mps-youtube (link above) for a similar program that will not taint your machine with a library you happen to dislike.
-
-On an unrelated note, highly polarized opinions about languages and frameworks are characteristic of people who lack real-world programming experience and are more interested in building an identity than creating computer programs.
+## What if I am religiously opposed to Electron?
+See [this](docs/electron.md).
 
 ## Features
 
-- Searching for and playing music from youtube (including integration with playlists), bandcamp (including albums), and soundcloud
-- Searching for related songs in youtube
-- Downloading from youtube
+- Searching for and playing music from youtube (including integration with playlists), jamendo, and soundcloud
 - Searching for albums (powered by last.fm and musicbrainz), album view, automatic song lookup based on artist and track name (in progress, can be dodgy sometimes)
 - Song queue, which can be exported as a playlist
 - Loading saved playlists (stored in json files)
@@ -38,16 +34,23 @@ On an unrelated note, highly polarized opinions about languages and frameworks a
 - Newest releases with reviews - tracks and albums
 - Browsing by genre
 - Radio mode (automatically queue similar tracks)
-- Unlimited downloads
+- Unlimited downloads (powered by youtube)
 - Realtime lyrics
-
-## Planned features
-
-- Support for local files
 - Browsing by popularity
-- Country-specific top lists
-- Listening suggestions (similar artists, albums, tracks)
-- Locally stored library/favourites
+- List of favorite tracks
+- Listening from local library
+
+## Community translations
+Nuclear has already been translated to several languages, and we're always looking for contributors who would like to add more. Below is a list of currently available languages, along with contributors who helped to translate Nuclear to that language.
+
+| Language | Contributor                                                                                          |
+|:--------:|:----------------------------------------------------------------------------------------------------:|
+| English  | N/A                                                                                                  |
+| French   | [charjac](https://github.com/charjac)                                                                |
+| Dutch    | [Vistaus](https://github.com/Vistaus)                                                                |
+| Danish   | [Hansen1992](https://github.com/Hansen1992)                                                          |
+| Spanish  | [mlucas94](https://github.com/mlucas94)                                                              |
+| Polish   | [kazimierczak-robert](https://github.com/kazimierczak-robert), [gradzka](https://github.com/gradzka) |
 
 ## Manual and docs
 https://nuclearmusic.rtfd.io/
