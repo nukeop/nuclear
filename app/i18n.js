@@ -6,6 +6,7 @@ import { getOption, setOption } from './persistence/store';
 import en from './locales/en.json';
 import fr from './locales/fr.json';
 import nl from './locales/nl.json';
+import zh from './locales/zh.json';
 import dk from './locales/dk.json';
 import es from './locales/es.json';
 import pl from './locales/pl.json';
@@ -25,6 +26,7 @@ export const setupI18n = () => {
       en,
       fr,
       nl,
+      zh,
       dk,
       es,
       pl,
