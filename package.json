@@ -76,6 +76,7 @@
     "react": "^16.8.6",
     "react-beautiful-dnd": "^9.0.0",
     "react-dom": "^16.8.6",
+    "react-dropdown": "^1.6.4",
     "react-hifi": "^2.1.2",
     "react-i18next": "^10.11.0",
     "react-image": "^2.1.1",
