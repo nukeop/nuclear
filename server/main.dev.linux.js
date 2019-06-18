@@ -11,7 +11,7 @@ import { registerDownloadsEvents } from './downloads';
 
 const { default: installExtension, REACT_DEVELOPER_TOOLS, REDUX_DEVTOOLS } = require('electron-devtools-installer');
 const getOption = require('./store').getOption;
-
+const getPort = require('get-port');
 
 // GNU/Linux-specific
 if (!platform.isDarwin && !platform.isWin32) {
@@ -176,10 +176,13 @@ function createWindow() {
 app.on('ready', () => {
   createWindow();
 
-  if (getOption('api.enabled')) {
-    setOption('api.port', 3000);
-    httpServer = runHttpServer({ log: true, port: 3000 });
-  }
+  (async () => {
+    const availablePort = await getPort({ port: getPort.makeRange(3000, 3100) });
+    if (getOption('api.enabled')) {
+      setOption('api.port', availablePort);
+      httpServer = runHttpServer({ log: true, port: availablePort });
+    }
+  })();
 });
 
 app.on('window-all-closed', () => {
