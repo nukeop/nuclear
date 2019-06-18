@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button, Input, Radio, Segment, Select } from 'semantic-ui-react';
+import { Button, Input, Radio, Segment, Dropdown } from 'semantic-ui-react';
 import Range from 'react-range-progress';
 import cx from 'classnames';
 import _ from 'lodash';
@@ -178,15 +178,25 @@ class Settings extends React.Component {
   }
 
   renderListOption({ placeholder, options }) {
+    const options1 = [
+	{
+		key: 'en',
+		text: 'English',
+		value: 'en', 
+	},
+	{
+		key: 'fr',
+		text: 'French',
+		value: 'fr',
+	},
+    ]
     return (
-      <Select
+      <Dropdown
+	basic
+	selection
         placeholder={placeholder}
         value={i18n.language}
-        options={options.map(lng => ({
-          key: lng,
-          text: lng,
-          value: lng
-        }))}
+	options={options}
         onChange={(e, { value }) => i18n.changeLanguage(value)}
       />
     );
