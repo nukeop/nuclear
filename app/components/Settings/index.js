@@ -178,18 +178,6 @@ class Settings extends React.Component {
   }
 
   renderListOption({ placeholder, options }) {
-    const options1 = [
-	{
-		key: 'en',
-		text: 'English',
-		value: 'en', 
-	},
-	{
-		key: 'fr',
-		text: 'French',
-		value: 'fr',
-	},
-    ]
     return (
       <Dropdown
 	basic
