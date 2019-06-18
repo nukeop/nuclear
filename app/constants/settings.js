@@ -89,7 +89,15 @@ export default [
     type: settingType.LIST,
     prettyName: 'language',
     placeholder: 'language-placeholder',
-    options: ['en', 'fr', 'nl', 'dk', 'es', 'pl', 'zh'],
+    options: [
+    {key: 'en', text: 'English', value: 'en'},
+    {key: 'fr', text: 'French', value: 'fr'}, 
+    {key: 'nl', text: 'Dutch', value: 'dk'}, 
+    {key: 'dk', text: 'Danish', value: 'dk'}, 
+    {key: 'es', text: 'Spanish', value: 'es'}, 
+    {key: 'pl', text: 'Polish', value: 'pl'}, 
+    {key: 'zh', text: 'Chinese', value: 'zh'},
+    ],
     default: undefined
   }
   // To be enabled when MPD integration is ready
