@@ -92,7 +92,8 @@ export default [
     options: [
     {key: 'en', text: 'English', value: 'en'},
     {key: 'fr', text: 'French', value: 'fr'}, 
-    {key: 'nl', text: 'Dutch', value: 'dk'}, 
+    {key: 'nl', text: 'Dutch', value: 'nl'},
+    {key: 'de', text: 'German', value: 'de'}, 
     {key: 'dk', text: 'Danish', value: 'dk'}, 
     {key: 'es', text: 'Spanish', value: 'es'}, 
     {key: 'pl', text: 'Polish', value: 'pl'}, 
