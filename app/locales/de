@@ -1,0 +1,171 @@
+{
+  "album": {
+    "queue": "Album zur Warteschlange hinzufügen"
+  },
+  "app": {
+    "collection": "Sammlung",
+    "dashboard": "Dashboard",
+    "downloads": "Downloads",
+    "equalizer": "Equalizer",
+    "favorite": "Lieblingslieder",
+    "library": "Lokale Bibliothek",
+    "lyrics": "Liedtext",
+    "playlists": "Wiedergabelisten",
+    "plugins": "Plugins",
+    "search": "Suchergebnisse",
+    "settings": "Einstellungen"
+  },
+  "artist": {
+    "count": "Spielen Zählt",
+    "queue": "Alle Lieder zur Warteschlange hinzufügen",
+    "similar": "Ähnliche Künstler",
+    "title": "Titel",
+    "tour": "Auf Tour"
+  },
+  "dashboard": {
+    "artist": "Künstler",
+    "best": "Beste neue Musik",
+    "best-new-albums": "Beste neue Alben",
+    "best-new-tracks": "Beste neue Lieder",
+    "genres": "Genres",
+    "lastfm-title": "Beste neue Lieder von LastFm.",
+    "news": "Neuigkeiten",
+    "playcounts": "Spielen Zählt",
+    "title": "Titel",
+    "top": "Beliebte Lieder"
+  },
+  "downloads": {
+    "clear": "Entferne fertige Lieder",
+    "completion": "Fertig",
+    "empty": "Downloads sind leer.",
+    "empty-help": "Füge etwas zu deiner Download-Warteschlange hinzu und du wirst es hier sehen!",
+    "header": "Downloads",
+    "name": "Name",
+    "status": "Status"
+  },
+  "favorites": {
+    "artist": "Künstler",
+    "empty": "Keine Favoriten hinzugefügt.",
+    "empty-help": ""Favorit" einige Lieden und sie werden hier erscheinen!",
+    "header": "Deine Lieblingslieder",
+    "title": "Titel"
+  },
+  "help": {
+    "about": "Über Nuclear Music Player",
+    "header": "Desktop-Musikplayer für das Streaming aus freien Quellen",
+    "released": "veröffentlicht unter AGPL-3.0",
+    "thanks": "Vielen Dank an unsere Mitwirkenden bei Github, Ihre Hilfe war entscheidend für die Entwicklung dieses Programms."
+  },
+  "input-dialog": {
+    "cancel": "Abbrechen"
+  },
+  "library": {
+    "add": "Ordner hinzufügen",
+    "album": "Album",
+    "artist": "Künstler",
+    "filter-placeholder": "Filter...",
+    "header": "Lokale Bibliothek",
+    "title": "Titel"
+  },
+  "lyrics": {
+    "by-artist": "by {{artist}}",
+    "empty": "Es spielt nichts.",
+    "empty-help": "Füge etwas Musik in die Warteschlange ein, um den Liedtext hier anzuzeigen!",
+    "not-found": "Es wurden keine Liedtexte für diesen Song gefunden."
+  },
+  "option-control": {
+    "autoradio": "Autoradio",
+    "loop": "Loop",
+    "shuffle": "Shuffle"
+  },
+  "player": {
+    "next-button": " Nächster Lied-Taste",
+    "play-pause-button": "Wiedergabe-/Pausentaste",
+    "previous-button": "Vorheriger Lied-Taste"
+  },
+  "playlists": {
+    "artist": "Künstler",
+    "delete": "Diese Wiedergabeliste löschen",
+    "dialog-placeholder": "Wiedergabelistenname...",
+    "empty": "Keine Wiedergabelisten.",
+    "rename": "Diese Wiedergabeliste umbenennen",
+    "songs": "{{total}} Lied",
+    "songs_plural": "{{total}} Lieder",
+    "title": "Titel"
+  },
+  "plugins": {
+    "header": "Plugins",
+    "placeholder": "Wählen Sie die Standardmusikquelle:",
+    "subtitle": "Musikquellen"
+  },
+  "queue": {
+    "clear": "Warteschlange löschen",
+    "dialog-accept": "Speichern",
+    "dialog-placeholder": "Wiedergabelistenname...",
+    "dialog-trigger": "Als Wiedergabeliste speichern",
+    "download": "Herunterladen",
+    "download-toast-content": "{{artist}} - {{title}} wurde zu den Downloads hinzugefügt.",
+    "download-toast-title": "Lied zum Herunterladen hinzugefügt",
+    "favorite-add": "Zu den Favoriten hinzufügen",
+    "header": "Warteschlange",
+    "header-track": "Aktueller Lied",
+    "id": "Stream ID:",
+    "loading": "Stream wird noch geladen.",
+    "playlist-add": "Zur Wiedergabeliste hinzufügen",
+    "playlist-toast-content": "Wiedergabeliste {{name}} wurde erstellt",
+    "playlist-toast-title": "Wiedergabeliste erstellt",
+    "title": "Titel:"
+  },
+  "search": {
+    "album": "Album",
+    "album_plural": "Alben",
+    "artist": "Künstler",
+    "artist_plural": "Künstler",
+    "empty": "Nichts gefunden.",
+    "placeholder": "Suchen...",
+    "playlist": "Wiedergabeliste",
+    "playlist_plural": "Wiedergabelisten",
+    "queue-add": "Alle Lieder zur Warteschlange hinzufügen",
+    "track": "Lied",
+    "track_plural": "Lieder"
+  },
+  "settings": {
+    "api-port": "Port wird von der API verwendet",
+    "autoradio": "Autoradio",
+    "autoradio-craziness": "Autoradio-Verrücktheit",
+    "compact-menu-bar": "Verwenden Sie einen kompakten Stil für die Menüleiste",
+    "compact-queue-bar": "Verwenden Sie einen kompakten Stil für die Warteschlangenleiste",
+    "disable-gpu": "Hardware-Rendering deaktivieren (könnte Probleme mit ziehenden Elementen und blinkenden Bildschirmen beheben)",
+    "display": "Anzeige",
+    "enable-api": "Aktiviere die API",
+    "frameless-window": "Rahmenloses Fenster (erfordert Neustart)",
+    "github-connect": "Mit Github einloggen",
+    "github-description": "Melden Sie sich über Github an, um Ihre Playlists online erstellen und freigeben zu können (kommende Funktion).",
+    "github-title": "Github",
+    "http": "HTTP API",
+    "language": "Sprache",
+    "language-placeholder": "Wähle eine Sprache",
+    "lastfm-connect": "Verbinden mit Last.fm",
+    "lastfm-description": "Um das Scrobbeln zu ermöglichen, müssen Sie sich zuerst mit Nuclear auf Last.fm verbinden und Nuclear autorisieren. Dann loggen Sie sich ein.",
+    "lastfm-enable": "Scrobbeln nach Last.fm aktivieren",
+    "lastfm-title": "Last.fm",
+    "login": "Log-in",
+    "logout": "Log-out",
+    "loop-after-queue-end": "Loop nach dem Ende der Warteschlange",
+    "notification-timeout": "Benachrichtigungs-Timeout",
+    "notlogged": "Nicht eingeloggt",
+    "playback": "Playback",
+    "program-settings": "Programmeinstellungen",
+    "shuffle-queue": "Shuffle Lieder",
+    "social": "Sozial",
+    "user": "Benutzer:"
+  },
+  "tags": {
+    "albums": "Beliebte Alben",
+    "artist": "Künstler",
+    "artists": "Beliebte Künstler",
+    "duration": "Dauer",
+    "queue-add": "Alle Lieder zur Warteschlange hinzufügen",
+    "title": "Titel"
+  }
+}
