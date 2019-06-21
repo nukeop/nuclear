@@ -1,17 +1,17 @@
 {
     "album": {
-      "queue": "Add album to queue"
+      "queue": "Добавить Альбом В Очередь"
     },
     "app": {
-      "collection": "Collection",
-      "dashboard": "Dashboard",
+      "collection": "Коллекция",
+      "dashboard": "Панель Управления",
       "downloads": "Загрузки",
       "equalizer": "Эквалайзер",
-      "favorite": "Favorite Tracks",
-      "library": "Local Library",
-      "lyrics": "Lyrics",
-      "playlists": "Playlists",
-      "plugins": "Plugins",
+      "favorite": "Избранные Композиции",
+      "library": "Локальная Библиотека",
+      "lyrics": "Слова",
+      "playlists": "Плейлист",
+      "plugins": "Плагины",
       "search": "Результаты Поиска",
       "settings": "Настройки"
     },
@@ -24,15 +24,15 @@
     },
     "dashboard": {
       "artist": "Артист",
-      "best": "Best new music",
+      "best": "Лучшая Новая Музыка",
       "best-new-albums": "Лучшие Новые Альбомы",
       "best-new-tracks": "Лучшии Новые Композиции",
       "genres": "Жанры",
-      "lastfm-title": "Top Tracks from LastFm.",
-      "news": "News",
+      "lastfm-title": "Лучшие Композиции от LastFm.",
+      "news": "Новости",
       "playcounts": "Playcounts",
-      "title": "Title",
-      "top": "Top Tracks"
+      "title": "Название",
+      "top": "Топ"
     },
     "downloads": {
       "clear": "Clear finished tracks",
