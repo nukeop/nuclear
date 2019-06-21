@@ -16,18 +16,18 @@
       "settings": "Настройки"
     },
     "artist": {
-      "count": "Play counts",
-      "queue": "Add all tracks to queue",
-      "similar": "Similar artists",
-      "title": "Title",
-      "tour": "On tour"
+      "count": "Счетчик проигрываний",
+      "queue": "Добавить Все Композиции в Очередь",
+      "similar": "Похожие Артисты",
+      "title": "Название",
+      "tour": "Концертный Тур"
     },
     "dashboard": {
-      "artist": "Artist",
+      "artist": "Артист",
       "best": "Best new music",
-      "best-new-albums": "Best new albums",
-      "best-new-tracks": "Best new tracks",
-      "genres": "Genres",
+      "best-new-albums": "Лучшие Новые Альбомы",
+      "best-new-tracks": "Лучшии Новые Композиции",
+      "genres": "Жанры",
       "lastfm-title": "Top Tracks from LastFm.",
       "news": "News",
       "playcounts": "Playcounts",
