@@ -23,9 +23,9 @@ const TagTopTracks = ({ tracks, addToQueue, musicSources }) => {
             });
           });
         }}
-        aria-label={this.props.t('queue-add')}
+        aria-label={t('queue-add')}
       >
-        <FontAwesome name='plus' /> {this.props.t('queue-add')}
+        <FontAwesome name='plus' /> {t('queue-add')}
       </a>
       <table>
         <thead>
