@@ -98,6 +98,7 @@ export default [
     {key: 'es', text: 'Spanish', value: 'es'}, 
     {key: 'pl', text: 'Polish', value: 'pl'}, 
     {key: 'zh', text: 'Chinese', value: 'zh'},
+    {key: 'ru', text: 'Russian', value: 'ru'}
     ],
     default: undefined
   }
