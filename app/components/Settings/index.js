@@ -180,11 +180,13 @@ class Settings extends React.Component {
   renderListOption({ placeholder, options }) {
     return (
       <Dropdown
-	basic
-	selection
+        basic
+        search
+        selection
+        className={ styles.list_option }
         placeholder={placeholder}
         value={i18n.language}
-	options={options}
+        options={options}
         onChange={(e, { value }) => i18n.changeLanguage(value)}
       />
     );

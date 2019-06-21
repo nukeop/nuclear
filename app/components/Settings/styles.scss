@@ -110,4 +110,39 @@
     overflow: hidden;
     text-overflow: ellipsis;
   }
+
+  .list_option {
+    color: $white !important;
+    background: $background3 !important;
+
+    &:hover,
+    &:active,
+    &:focus {
+      color: $white !important;
+    }
+    
+    .dropdown.icon {
+      display: flex;
+      align-items: center;
+      height: 100% !important;
+    }
+
+    .menu {
+      border-color: rgba($background2, 0.6) !important;
+
+      &:hover,
+      &:active,
+      &:focus {
+        border-color: rgba($background2, 0.6) !important;
+      }
+      
+      .item {
+        border-color: rgba($background2, 0.6) !important;
+      }
+
+      .active.selected.item {
+        color: $white !important;
+      }
+    }
+  }
 }
