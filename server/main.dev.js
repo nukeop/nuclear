@@ -17,6 +17,7 @@ const url = require('url');
 const { getOption, setOption } = require('./store');
 const { runHttpServer, closeHttpServer } = require('./http/server');
 import { registerDownloadsEvents } from './downloads';
+const getPort = require('get-port');
 
 let httpServer;
 let win;
@@ -135,10 +136,13 @@ function createWindow () {
 app.on('ready', () => {
   createWindow();
 
-  if (getOption('api.enabled')) {
-    setOption('api.port', 3000);
-    httpServer = runHttpServer({ log: true, port: 3000 });
-  }
+  (async () => {
+    const availablePort = await getPort({ port: getPort.makeRange(3000, 3100) });
+    if (getOption('api.enabled')) {
+      setOption('api.port', availablePort);
+      httpServer = runHttpServer({ log: true, port: availablePort });
+    }
+  })();
 });
 
 app.on('window-all-closed', () => {

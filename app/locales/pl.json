@@ -1,0 +1,171 @@
+{
+  "album": {
+    "queue": "Dodaj album do kolejki"
+  },
+  "app": {
+    "collection": "Kolekcja",
+    "dashboard": "Pulpit nawigacyjny",
+    "downloads": "Pobrane",
+    "equalizer": "Korektor graficzny",
+    "favorite": "Ulubione",
+    "library": "Biblioteka lokalna",
+    "lyrics": "Teksty",
+    "playlists": "Playlisty",
+    "plugins": "Pluginy",
+    "search": "Wyniki wyszukiwania",
+    "settings": "Ustawienia"
+  },
+  "artist": {
+    "count": "Liczba odtworzeń",
+    "queue": "Dodaj wszystkie utwory do kolejki",
+    "similar": "Podobni artyści",
+    "title": "Tytuł",
+    "tour": "W trasie"
+  },
+  "dashboard": {
+    "artist": "Artysta",
+    "best": "Najlepsze nowości muzyczne",
+    "best-new-albums": "Najlepsze nowe albumy",
+    "best-new-tracks": "Najlepsze nowe utwory",
+    "genres": "Gatunki",
+    "lastfm-title": "Top utwory LastFm.",
+    "news": "Aktualności",
+    "playcounts": "Liczba odtworzeń",
+    "title": "Tytuł",
+    "top": "Top utwory"
+  },
+  "downloads": {
+    "clear": "Wyczyść pobrane utwory",
+    "completion": "Pobrane",
+    "empty": "Brak pobranych utworów.",
+    "empty-help": "Dodaj utwór do kolejki pobranych, a pojawi się tutaj!",
+    "header": "Pobrane",
+    "name": "Nazwa",
+    "status": "Status"
+  },
+  "favorites": {
+    "artist": "Artysta",
+    "empty": "Nie dodano żadnego ulubionego utworu.",
+    "empty-help": "Dodaj utwór do ulubionych, a pojawi się tutaj!",
+    "header": "Twoje ulubione utwory",
+    "title": "Tytuł"
+  },
+  "help": {
+    "about": "O Nuclear Music Player",
+    "header": "Desktopowy odtwarzacz muzyki do strumieniowania z darmowych źródeł",
+    "released": "wydany na licencji AGPL-3.0",
+    "thanks": "Podziękowania dla współtwórców z serwisu Github, Wasza pomoc była nieoceniona w tworzeniu tego programu."
+  },
+  "input-dialog": {
+    "cancel": "Anuluj"
+  },
+  "library": {
+    "add": "Dodaj katalogi",
+    "album": "Album",
+    "artist": "Artysta",
+    "filter-placeholder": "Filtruj...",
+    "header": "Biblioteka lokalna",
+    "title": "Tytuł"
+  },
+  "lyrics": {
+    "by-artist": "przez {{artist}}",
+    "empty": "Nic nie jest odtwarzane.",
+    "empty-help": "Dodaj utwór do kolejki, aby wyświetlić tutaj tekst!",
+    "not-found": "Nie znaleziono tekstu dla tego utworu."
+  },
+  "option-control": {
+    "autoradio": "Autoradio",
+    "loop": "Powtarzaj",
+    "shuffle": "Pomieszaj"
+  },
+  "player": {
+    "next-button": "Następny utwór",
+    "play-pause-button": "Odtwarzaj/Wstrzymaj",
+    "previous-button": "Poprzedni utwór"
+  },
+  "playlists": {
+    "artist": "Artysta",
+    "delete": "Usuń tę playlistę",
+    "dialog-placeholder": "Nazwa playlisty...",
+    "empty": "Brak playlist.",
+    "rename": "Zmień nazwę tej playlisty",
+    "songs": "{{total}} utwór",
+    "songs_plural": "{{total}} utwory/utworów",
+    "title": "Tytuł"
+  },
+  "plugins": {
+    "header": "Pluginy",
+    "placeholder": "Wybierz domyślne źródło muzyki:",
+    "subtitle": "Żródła muzyki"
+  },
+  "queue": {
+    "clear": "Wyczyść kolejkę",
+    "dialog-accept": "Zapisz",
+    "dialog-placeholder": "Nazwa playlisty...",
+    "dialog-trigger": "Zapisz playlistę",
+    "download": "Pobierz",
+    "download-toast-content": "{{artist}} - {{title}} został dodany do pobranych.",
+    "download-toast-title": "Utwór dodany do pobierania",
+    "favorite-add": "Dodaj do ulubionych",
+    "header": "Kolejka",
+    "header-track": "Odtwarzane",
+    "id": "ID strumienia:",
+    "loading": "Strumień wciąż ładowany.",
+    "playlist-add": "Dodaj do playlisty",
+    "playlist-toast-content": "Playlista {{name}} została utworzona.",
+    "playlist-toast-title": "Playlista utworzona",
+    "title": "Tytuł:"
+  },
+  "search": {
+    "album": "Album",
+    "album_plural": "Albumy",
+    "artist": "Artysta",
+    "artist_plural": "Artyści",
+    "empty": "Brak wyników.",
+    "placeholder": "Wyszukaj...",
+    "playlist": "Playlista",
+    "playlist_plural": "Playlisty",
+    "queue-add": "Dodaj wszystkie utwory do kolejki",
+    "track": "Utwór",
+    "track_plural": "Utwory"
+  },
+  "settings": {
+    "api-port": "Port używany przez API",
+    "autoradio": "Autoradio",
+    "autoradio-craziness": "Autoradio - tryb szaleństwa",
+    "compact-menu-bar": "Włącz uproszczony pasek menu",
+    "compact-queue-bar": "Włącz uproszczony pasek kolejki",
+    "disable-gpu": "Wyłącz renderowanie sprzętowe (może naprawić problemy z przeciąganiem elementów i migotaniem ekranu)",
+    "display": "Wyświetlanie",
+    "enable-api": "Włącz obsługę API",
+    "frameless-window": "Bezramkowe okno (wymagany restart)",
+    "github-connect": "Zaloguj się za pomocą Github",
+    "github-description": "Zaloguj się za pomocą Github, aby móc tworzyć i dzielić się twoimi playlistami online (planowana funkcja).",
+    "github-title": "Github",
+    "http": "HTTP API",
+    "language": "Język",
+    "language-placeholder": "Wybierz język",
+    "lastfm-connect": "Połącz z Last.fm",
+    "lastfm-description": "Aby włączyć scrobblowanie, musisz najpierw połączyć się i autoryzować Nuclear na Last.fm, a następnie kliknąć Zaloguj.",
+    "lastfm-enable": "Włącz scrobblowanie do Last.fm",
+    "lastfm-title": "Last.fm",
+    "login": "Zaloguj",
+    "logout": "Wyloguj",
+    "loop-after-queue-end": "Zapętl po odtworzeniu ostatniego utworu w kolejce",
+    "notification-timeout": "Limit czasu powiadomienia",
+    "notlogged": "Niezalogowany",
+    "playback": "Odtwarzanie",
+    "program-settings": "Ustawienia programu",
+    "shuffle-queue": "Pomieszaj utwory",
+    "social": "Społeczność",
+    "user": "Użytkownik:"
+  },
+  "tags": {
+    "albums": "Top Albumy",
+    "artist": "Artysta",
+    "artists": "Top Artyści",
+    "duration": "Czas trwania",
+    "queue-add": "Dodaj wszystkie utwory do kolejki",
+    "title": "Tytuł"
+  }
+}
