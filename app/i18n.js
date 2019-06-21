@@ -10,6 +10,7 @@ import zh from './locales/zh.json';
 import de from './locales/de.json';
 import dk from './locales/dk.json';
 import es from './locales/es.json';
+import ru from './locales/ru.json';
 import pl from './locales/pl.json';
 
 const languageDetector = {
@@ -31,7 +32,8 @@ export const setupI18n = () => {
       de,
       dk,
       es,
-      pl,
+      ru,
+      pl
     },
     interpolation: {
       escapeValue: false
