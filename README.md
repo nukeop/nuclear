@@ -43,15 +43,17 @@ See [this](docs/electron.md).
 ## Community translations
 Nuclear has already been translated to several languages, and we're always looking for contributors who would like to add more. Below is a list of currently available languages, along with contributors who helped to translate Nuclear to that language.
 
-| Language | Contributor                                                                                          |
-|:--------:|:----------------------------------------------------------------------------------------------------:|
-| English  | N/A                                                                                                  |
-| French   | [charjac](https://github.com/charjac)                                                                |
-| Dutch    | [Vistaus](https://github.com/Vistaus)                                                                |
-| Danish   | [Hansen1992](https://github.com/Hansen1992)                                                          |
-| Spanish  | [mlucas94](https://github.com/mlucas94)                                                              |
-| Polish   | [kazimierczak-robert](https://github.com/kazimierczak-robert), [gradzka](https://github.com/gradzka) |
-| Brazilian Portuguese   | [JoaoPedroMoraes](https://github.com/JoaoPedroMoraes) |
+| Language             | Contributor                                                                                          |
+|:--------------------:|:----------------------------------------------------------------------------------------------------:|
+| English              | N/A                                                                                                  |
+| French               | [charjac](https://github.com/charjac)                                                                |
+| Dutch                | [Vistaus](https://github.com/Vistaus)                                                                |
+| Danish               | [Hansen1992](https://github.com/Hansen1992)                                                          |
+| Spanish              | [mlucas94](https://github.com/mlucas94)                                                              |
+| Polish               | [kazimierczak-robert](https://github.com/kazimierczak-robert), [gradzka](https://github.com/gradzka) |
+| German               | [schippas](https://github.com/schippas)                                                              |
+| Russian              | [ramstore07](https://github.com/ramstore07), [dmtrshat](https://github.com/dmtrshat)                 |
+| Brazilian Portuguese | [JoaoPedroMoraes](https://github.com/JoaoPedroMoraes)                                                |
 
 ## Manual and docs
 https://nuclearmusic.rtfd.io/
