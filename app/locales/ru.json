@@ -30,25 +30,25 @@
       "genres": "Жанры",
       "lastfm-title": "Лучшие Композиции от LastFm.",
       "news": "Новости",
-      "playcounts": "Playcounts",
+      "playcounts": "Прослушанно",
       "title": "Название",
       "top": "Топ"
     },
     "downloads": {
-      "clear": "Clear finished tracks",
-      "completion": "Completion",
-      "empty": "Downloads are empty.",
-      "empty-help": "Add something to your download queue and you'll see it here!",
-      "header": "Downloads",
-      "name": "Name",
-      "status": "Status"
+      "clear": "Убрать Завершенные Композиции",
+      "completion": "Завершение",
+      "empty": "Тут Ничего Нет",
+      "empty-help": "Добавьте что-нибудь к вашим Загрузкам и оно тут появится!",
+      "header": "Загрузки",
+      "name": "Имя",
+      "status": "Статус"
     },
     "favorites": {
-      "artist": "Artist",
-      "empty": "No favorites added.",
-      "empty-help": "Try favoriting some tracks and they will appear here!",
-      "header": "Your favorite tracks",
-      "title": "Title"
+      "artist": "Артист",
+      "empty": "Тут Ничего Нет",
+      "empty-help": "Добавьте  что-нибудь в Избранное и оно тут появится!",
+      "header": "Избронное",
+      "title": "Название"
     },
     "help": {
       "about": "About Nuclear Music Player",
@@ -57,41 +57,41 @@
       "thanks": "Many thanks to our contributors on Github, your help was vital in creating this program."
     },
     "input-dialog": {
-      "cancel": "Cancel"
+      "cancel": "Отменить"
     },
     "library": {
-      "add": "Add folders",
-      "album": "Album",
-      "artist": "Artist",
-      "filter-placeholder": "Filter...",
-      "header": "Local Library",
-      "title": "Title"
+      "add": "Добавить Папки",
+      "album": "Альбом",
+      "artist": "Артист",
+      "filter-placeholder": "Фильтр...",
+      "header": "Локальная Библиотека",
+      "title": "Название"
     },
     "lyrics": {
       "by-artist": "by {{artist}}",
-      "empty": "Nothing is playing.",
-      "empty-help": "Add some music to the queue to display the lyrics here!",
-      "not-found": "No lyrics were found for this song."
+      "empty": "Ничего не играет...",
+      "empty-help": "Добавьте музыку в очередь и здесь появится текст.",
+      "not-found": "Мы не нашли текст этой песни."
     },
     "option-control": {
-      "autoradio": "Autoradio",
-      "loop": "Loop",
-      "shuffle": "Shuffle"
+      "autoradio": "Авто",
+      "loop": "Повторить",
+      "shuffle": "Перемешать"
     },
     "player": {
-      "next-button": "Next track button",
-      "play-pause-button": "Play/Pause button",
-      "previous-button": "Previous track button"
+      "next-button": "Следующий трек",
+      "play-pause-button": "Играть/Пауза",
+      "previous-button": "Предыдущий трек"
     },
     "playlists": {
-      "artist": "Artist",
-      "delete": "Delete this playlist",
-      "dialog-placeholder": "Playlist name...",
-      "empty": "No playlists.",
-      "rename": "Rename this playlist",
-      "songs": "{{total}} song",
-      "songs_plural": "{{total}} songs",
-      "title": "Title"
+      "artist": "Артист",
+      "delete": "Удалить Этот Плайлист",
+      "dialog-placeholder": "Название...",
+      "empty": "Тут Ничего Нет...",
+      "rename": "Переименовать Этот Плейлист",
+      "songs": "{{total}} композиция",
+      "songs_plural": "{{total}} композиций",
+      "title": "Название"
     },
     "plugins": {
       "header": "Plugins",
@@ -166,6 +166,6 @@
       "artists": "Top Artists",
       "duration": "Duration",
       "queue-add": "Add all tracks to queue",
-      "title": "Title"
+      "title": "Название"
     }
   }
