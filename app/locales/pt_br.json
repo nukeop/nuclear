@@ -1,0 +1,171 @@
+{
+  "album": {
+    "queue": "Adicionar à Fila"
+  },
+  "app": {
+    "collection": "Coleção",
+    "dashboard": "Dashboard",
+    "downloads": "Downloads",
+    "equalizer": "Equalizador",
+    "favorite": "Favoritas",
+    "library": "Biblioteca",
+    "lyrics": "Letras",
+    "playlists": "Lista de Reprodução",
+    "plugins": "Plugins",
+    "search": "Busca",
+    "settings": "Configurações"
+  },
+  "artist": {
+    "count": "Play counts",
+    "queue": "Adicione todas as faixas à fila",
+    "similar": "Similar artists",
+    "title": "Título",
+    "tour": "Turnê"
+  },
+  "dashboard": {
+    "artist": "Artista",
+    "best": "Melhor nova musica",
+    "best-new-albums": "Melhores novos álbuns",
+    "best-new-tracks": "Melhores novas faixas",
+    "genres": "Gêneros",
+    "lastfm-title": "Mais tocadas no LastFm.",
+    "news": "Novidades",
+    "playcounts": "Playcounts",
+    "title": "Título",
+    "top": "Mais tocadas"
+  },
+  "downloads": {
+    "clear": "Limpar faixas acabadas",
+    "completion": "Completo",
+    "empty": "Downloads estão vazios.",
+    "empty-help": "Adicione algo à sua fila de download e você verá aqui!",
+    "header": "Downloads",
+    "name": "Nome",
+    "status": "Status"
+  },
+  "favorites": {
+    "artist": "Artista",
+    "empty": "Nenhum favorito adicionado.",
+    "empty-help": "Tente favoritar algumas faixas e elas aparecerão aqui!",
+    "header": "Suas faixas favoritas",
+    "title": "Título"
+  },
+  "help": {
+    "about": "About Nuclear Music Player",
+    "header": "Desktop music player for streaming from free sources",
+    "released": "released under AGPL-3.0",
+    "thanks": "Many thanks to our contributors on Github, your help was vital in creating this program."
+  },
+  "input-dialog": {
+    "cancel": "Cancelar"
+  },
+  "library": {
+    "add": "Adicionar pastas",
+    "album": "Álbum",
+    "artist": "Artistaa",
+    "filter-placeholder": "Filtro...",
+    "header": "Biblioteca local",
+    "title": "Título"
+  },
+  "lyrics": {
+    "by-artist": "por {{artist}}",
+    "empty": "Nada esta tocando",
+    "empty-help": "Adicione algumas músicas à fila para exibir as letras aqui!",
+    "not-found": "Nenhuma letra foi encontrada para esta música."
+  },
+  "option-control": {
+    "autoradio": "Autoradio",
+    "loop": "Loop",
+    "shuffle": "Aleatório"
+  },
+  "player": {
+    "next-button": "Botão de Próxima Faixa",
+    "play-pause-button": "Butão Play/Pause",
+    "previous-button": "Botão de Faixa Anterior"
+  },
+  "playlists": {
+    "artist": "Artista",
+    "delete": "Excluir Esta Lista de Reprodução",
+    "dialog-placeholder": "Nome da Lista de Reprodução...",
+    "empty": "Nenhuma Lista de Reprodução encontrada.",
+    "rename": "Renomear Lista de Reprodução",
+    "songs": "{{total}} Música",
+    "songs_plural": "{{total}} Músicas",
+    "title": "Título"
+  },
+  "plugins": {
+    "header": "Plugins",
+    "placeholder": "Selecione a fonte de música padrão:",
+    "subtitle": "Fontes de música"
+  },
+  "queue": {
+    "clear": "Limpar Fila",
+    "dialog-accept": "Salvar",
+    "dialog-placeholder": "Nome da Lista de Reprodução...",
+    "dialog-trigger": "Salvar como Lista de Reprodução",
+    "download": "Download",
+    "download-toast-content": "{{artist}} - {{title}} foi adicionado aos downloads.",
+    "download-toast-title": "Faixa adicionada para baixar",
+    "favorite-add": "Adiconar aos favoritos",
+    "header": "Lista",
+    "header-track": "Faixa Atual",
+    "id": "ID de Transmissão:",
+    "loading": "Transmissão ainda carregando.",
+    "playlist-add": "Adicionar à Lista de Reprodução",
+    "playlist-toast-content": "A Lista de Reprodução {{name}} Foi criada.",
+    "playlist-toast-title": "Lista de Reprodução Criada",
+    "title": "Título:"
+  },
+  "search": {
+    "album": "Álbum",
+    "album_plural": "Álbuns",
+    "artist": "Artista",
+    "artist_plural": "Artistas",
+    "empty": "Nada Encontrado.",
+    "placeholder": "Procurando...",
+    "playlist": "Lista de Reprodução",
+    "playlist_plural": "Listas de Reprodução",
+    "queue-add": "Adicione todas as faixas à fila",
+    "track": "Faixa",
+    "track_plural": "Faixas"
+  },
+  "settings": {
+    "api-port": "Porta usada pela api",
+    "autoradio": "Autoradio",
+    "autoradio-craziness": "Autoradio Louco",
+    "compact-menu-bar": "Use estilo compacto para barra de menu",
+    "compact-queue-bar": "Use estilo compacto para a barra de fila",
+    "disable-gpu": "Desativar a renderização de hardware (pode corrigir problemas com elementos de arrastamento e tela piscando)",
+    "display": "Exibição",
+    "enable-api": "Ativar a api",
+    "frameless-window": "Janela sem moldura (requer reinicialização)",
+    "github-connect": "Entrar com o Github",
+    "github-description": "Faça o login Através do Github para Poder Criar e Compartilhar suas Listas de Reprodução Online (próximo recurso).",
+    "github-title": "Github",
+    "http": "HTTP API",
+    "language": "Idioma",
+    "language-placeholder": "Escolha um idioma",
+    "lastfm-connect": "Conectar com o Last.fm",
+    "lastfm-description": "Para habilitar a scrobbling, você primeiro precisa conectar e autorizar a Nuclear na Last.fm, depois clique em log in.",
+    "lastfm-enable": "Ativar scrobbling para Last.fm",
+    "lastfm-title": "Last.fm",
+    "login": "Entrar",
+    "logout": "Sair",
+    "loop-after-queue-end": "Loop após jogar o último item da fila",
+    "notification-timeout": "Tempo limite de notificação",
+    "notlogged": "Não logado",
+    "playback": "Reprodução",
+    "program-settings": "Configurações do programa",
+    "shuffle-queue": "Reproduzir músicas aleatoriamente",
+    "social": "Social",
+    "user": "Usuário:"
+  },
+  "tags": {
+    "albums": "Top Álbums",
+    "artist": "Artista",
+    "artists": "Top Artistas",
+    "duration": "Duração",
+    "queue-add": "Adicione todas as faixas à fila",
+    "title": "Título"
+  }
+}
