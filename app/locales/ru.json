@@ -1,6 +1,6 @@
 {
     "album": {
-      "queue": "Добавить Альбом В Очередь"
+      "queue": "Добавить Альбом в Очередь"
     },
     "app": {
       "collection": "Коллекция",
@@ -51,10 +51,10 @@
       "title": "Название"
     },
     "help": {
-      "about": "About Nuclear Music Player",
-      "header": "Desktop music player for streaming from free sources",
-      "released": "released under AGPL-3.0",
-      "thanks": "Many thanks to our contributors on Github, your help was vital in creating this program."
+      "about": "О программе Nuclear Music Player",
+      "header": "Проигрыватель музыки из безплатных интернет каналов",
+      "released": "Выпущен под лицензией AGPL-3.0",
+      "thanks": "Огромное спасибо всем кто принял участие в создании этого проекта на Github. Ваша помощь была неоценима в подготовке этой программы."
     },
     "input-dialog": {
       "cancel": "Отменить"
@@ -68,7 +68,7 @@
       "title": "Название"
     },
     "lyrics": {
-      "by-artist": "by {{artist}}",
+      "by-artist": "Исполнено {{artist}}",
       "empty": "Ничего не играет...",
       "empty-help": "Добавьте музыку в очередь и здесь появится текст.",
       "not-found": "Мы не нашли текст этой песни."
@@ -94,78 +94,78 @@
       "title": "Название"
     },
     "plugins": {
-      "header": "Plugins",
-      "placeholder": "Select the default music source:",
-      "subtitle": "Music sources"
+      "header": "Плагины",
+      "placeholder": "Выберите музыкальный канал по умолчанию:",
+      "subtitle": "Музыкальные каналы"
     },
     "queue": {
-      "clear": "Clear queue",
-      "dialog-accept": "Save",
-      "dialog-placeholder": "Playlist name...",
-      "dialog-trigger": "Save as playlist",
-      "download": "Download",
-      "download-toast-content": "{{artist}} - {{title}} has been added to downloads.",
-      "download-toast-title": "Track added to download",
-      "favorite-add": "Add to favorites",
-      "header": "Queue",
-      "header-track": "Current track",
+      "clear": "Очистить очередь",
+      "dialog-accept": "Сохранить",
+      "dialog-placeholder": "Название...",
+      "dialog-trigger": "Сохранить как Плейлист",
+      "download": "Загрузить",
+      "download-toast-content": "{{artist}} - {{title}} Добавлен к загрузкам.",
+      "download-toast-title": "Композиция добавлена к загрузкам",
+      "favorite-add": "Добавить в избранное",
+      "header": "Очередь",
+      "header-track": "Сейчас играет",
       "id": "Stream ID:",
-      "loading": "Stream still loading.",
-      "playlist-add": "Add to playlist",
-      "playlist-toast-content": "Playlist {{name}} has been created.",
-      "playlist-toast-title": "Playlist created",
-      "title": "Title:"
+      "loading": "Поток загружается.",
+      "playlist-add": "Добавить в Плейлист",
+      "playlist-toast-content": "Плейлист {{name}} создан успешно.",
+      "playlist-toast-title": "Плейлист создан",
+      "title": "Название:"
     },
     "search": {
-      "album": "Album",
-      "album_plural": "Albums",
-      "artist": "Artist",
-      "artist_plural": "Artists",
-      "empty": "Nothing found.",
-      "placeholder": "Search...",
-      "playlist": "Playlist",
-      "playlist_plural": "Playlists",
-      "queue-add": "Add all tracks to queue",
-      "track": "Track",
-      "track_plural": "Tracks"
+      "album": "Альбом",
+      "album_plural": "Альбомы",
+      "artist": "Артист",
+      "artist_plural": "Артисты",
+      "empty": "Ничего не найдено.",
+      "placeholder": "Поиск...",
+      "playlist": "Плейлист",
+      "playlist_plural": "Плейлисты",
+      "queue-add": "Добавить все композиции в очередь",
+      "track": "Композиция",
+      "track_plural": "Композиции"
     },
     "settings": {
-      "api-port": "Port used by the api",
-      "autoradio": "Autoradio",
-      "autoradio-craziness": "Autoradio craziness",
-      "compact-menu-bar": "Use compact style for menu bar",
-      "compact-queue-bar": "Use compact style for queue bar",
-      "disable-gpu": "Disable hardware rendering (might fix issues with dragging elements and flashing screen)",
-      "display": "Display",
-      "enable-api": "Enable the api",
-      "frameless-window": "Frameless window (requires restart)",
-      "github-connect": "Log in with Github",
-      "github-description": "Log in via Github to be able to create and share your playlists online (upcoming feature).",
+      "api-port": "Порт используется для API",
+      "autoradio": "Авто",
+      "autoradio-craziness": "Авто сумасшествие",
+      "compact-menu-bar": "Использовать минималистичный стиль для меню",
+      "compact-queue-bar": "Использовать минималистичный стиль для очереди",
+      "disable-gpu": "Отключить апаратное ускорение (может исправить мигающий экран и застревающие элеметны)",
+      "display": "Отображение",
+      "enable-api": "Активировать API",
+      "frameless-window": "Безрамочный Режим (требуется перезапуск)",
+      "github-connect": "Войти через Github",
+      "github-description": "Войти через Github  чтобы создавать и делится пользовательскими плейлистами (Функция в разработке).",
       "github-title": "Github",
       "http": "HTTP API",
-      "language": "Language",
-      "language-placeholder": "Pick a language",
-      "lastfm-connect": "Connect with Last.fm",
-      "lastfm-description": "In order to enable scrobbling, you first have to connect and authorize Nuclear on Last.fm, then click log in.",
-      "lastfm-enable": "Enable scrobbling to Last.fm",
+      "language": "Язык",
+      "language-placeholder": "Выберите язык...",
+      "lastfm-connect": "Соединится с Last.fm",
+      "lastfm-description": "Для того чтобы активировать scrobbling, сперва нужно соединить Nuclear и Last.fm. После, кликнуть Войти",
+      "lastfm-enable": "Активировать scrobbling на Last.fm",
       "lastfm-title": "Last.fm",
-      "login": "Log in",
-      "logout": "Log out",
-      "loop-after-queue-end": "Loop after playing the last queue item",
-      "notification-timeout": "Notification timeout",
+      "login": "Войти",
+      "logout": "Выйти",
+      "loop-after-queue-end": "Повторить после проигрывания последней композиции в очереди",
+      "notification-timeout": "Таймер уведомлений",
       "notlogged": "Not logged in",
       "playback": "Playback",
-      "program-settings": "Program settings",
-      "shuffle-queue": "Shuffle songs",
-      "social": "Social",
-      "user": "User:"
+      "program-settings": "Программные Настройки",
+      "shuffle-queue": "Перемешать Композиции",
+      "social": "Социальные Сети",
+      "user": "Пользователь:"
     },
     "tags": {
-      "albums": "Top Albums",
-      "artist": "Artist",
-      "artists": "Top Artists",
-      "duration": "Duration",
-      "queue-add": "Add all tracks to queue",
+      "albums": "Лучшие Альбомы",
+      "artist": "Артисты",
+      "artists": "Лучшие Артисты",
+      "duration": "Продолжительность",
+      "queue-add": "Добавить все композиции в очередь",
       "title": "Название"
     }
   }
