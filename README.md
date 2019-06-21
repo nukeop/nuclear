@@ -51,6 +51,7 @@ Nuclear has already been translated to several languages, and we're always looki
 | Danish   | [Hansen1992](https://github.com/Hansen1992)                                                          |
 | Spanish  | [mlucas94](https://github.com/mlucas94)                                                              |
 | Polish   | [kazimierczak-robert](https://github.com/kazimierczak-robert), [gradzka](https://github.com/gradzka) |
+| Brazilian Portuguese   | [JoaoPedroMoraes](https://github.com/JoaoPedroMoraes) |
 
 ## Manual and docs
 https://nuclearmusic.rtfd.io/
