@@ -64,10 +64,10 @@ Here's a list of packages maintained by third parties. We would like to thank th
 
 We do not control these and cannot be held responsible for their contents, but if any of these appear suspicious to you, feel free to open an issue so we can reach out to the maintainers.
 
-| Package type   |                        Link                            | Maintainer                    |
-|:--------------:|:------------------------------------------------------:|:-----------------------------:|
-| AUR (Arch)     | https://aur.archlinux.org/packages/nuclear-player-bin/ | [mikelpint](https://github.com/mikelpint)  |
-| Choco (Win)     | https://chocolatey.org/packages/nuclear/ | [JourneyOver](https://github.com/JourneyOver)  |
+| Package type | Link                                                   | Maintainer                                    |
+|:------------:|:------------------------------------------------------:|:---------------------------------------------:|
+| AUR (Arch)   | https://aur.archlinux.org/packages/nuclear-player-bin/ | [mikelpint](https://github.com/mikelpint)     |
+| Choco (Win)  | https://chocolatey.org/packages/nuclear/               | [JourneyOver](https://github.com/JourneyOver) |
 
 ## Screenshots
 This will be updated as the program evolves.
@@ -89,16 +89,24 @@ This will be updated as the program evolves.
 ![genre view](https://i.imgur.com/KrzUvwp.png)
 
 ## Dev build process
-Make sure you're using the latest version of Node and NPM. To develop the project locally, you should only do:
+As all Electron applications, Nuclear has two parts: the server and the web app.
+
+Before you begin, make sure you're using the latest version of Node and NPM. 
+To run the web app part in development mode locally, you should only do:
 ```bash
 $ npm install
 $ npm run watch
 ```
-This launches webpack. It watches local files for changes and rebuilds the project as needed. The project also has hot reload built in. And in another terminal window:
+
+This launches webpack. It watches local files for changes and rebuilds the project as needed. The project also has hot reload built in. 
+
+To launch the server, you need to run this in another terminal window:
 ```bash
 $ npm run electron:dev
 ```
 This launches a development version of the program. Tmux is very useful here so you can keep an eye on all running processes.
+
+A new window should open that will load the web app part and run Nuclear.
 
 ---
 To run production version:
