@@ -89,7 +89,7 @@ export default [
     type: settingType.LIST,
     prettyName: 'language',
     placeholder: 'language-placeholder',
-    options: ['en', 'fr', 'nl', 'dk', 'es'],
+    options: ['en', 'fr', 'nl', 'dk', 'es', 'ru'],
     default: undefined
   }
   // To be enabled when MPD integration is ready
