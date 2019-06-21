@@ -6,8 +6,12 @@ import { getOption, setOption } from './persistence/store';
 import en from './locales/en.json';
 import fr from './locales/fr.json';
 import nl from './locales/nl.json';
+import zh from './locales/zh.json';
+import de from './locales/de.json';
 import dk from './locales/dk.json';
 import es from './locales/es.json';
+import ru from './locales/ru.json';
+import pl from './locales/pl.json';
 
 const languageDetector = {
   init: Function.prototype,
@@ -24,8 +28,12 @@ export const setupI18n = () => {
       en,
       fr,
       nl,
+      zh,
+      de,
       dk,
       es,
+      ru,
+      pl
     },
     interpolation: {
       escapeValue: false
