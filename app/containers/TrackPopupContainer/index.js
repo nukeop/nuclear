@@ -78,18 +78,7 @@ const TrackPopupContainer = props => {
       {
         withPlayNow &&
         <PopupButton
-          onClick={() => {
-            actions.clearQueue();
-            actions.addToQueue(
-              musicSources,
-              {
-                artist: props.artist,
-                name: props.title,
-                thumbnail: props.thumb
-              });
-            actions.selectSong(0);
-            actions.startPlayback();
-          }}
+          onClick={playSong}
           ariaLabel='Play this track now'
           icon='play'
           label='Play now'
