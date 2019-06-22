@@ -149,7 +149,7 @@ class App extends React.Component {
               src={settings.compactMenuBar ? logoIcon : logoImg}
             />
             <div className={styles.version_string}>
-              {settings.compactMenuBar ? '0.4.5' : 'Version 0.4.5'}
+              {settings.compactMenuBar ? '0.5.0' : 'Version 0.5.0'}
             </div>
           </div>
           <SidebarMenuCategoryHeader compact={ settings.compactMenuBar }>
