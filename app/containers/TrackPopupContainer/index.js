@@ -23,42 +23,62 @@ const TrackPopupContainer = props => {
     actions,
     musicSources,
     settings,
+    doubleClick,
 
     withAddToQueue,
     withPlayNow,
     withAddToFavorites,
     withAddToDownloads
   } = props;
-  
+
+  const playSong = () => {
+    if (withPlayNow) {
+      actions.clearQueue();
+      actions.addToQueue(
+        musicSources,
+        {
+          artist: props.artist,
+          name: props.title,
+          thumbnail: props.thumb
+        });
+      actions.selectSong(0);
+      actions.startPlayback();
+    }
+  };
+
+  if (doubleClick) {
+    playSong();
+  }
+
   return (
     <ContextPopup
-      trigger={ trigger }
-      artist={ artist }
-      title={ title }
-      thumb={ thumb }
+      trigger={trigger}
+      artist={artist}
+      title={title}
+      thumb={thumb}
     >
       {
         withAddToQueue &&
-          <PopupButton
-            onClick={() => {
-              actions.addToQueue(
-                musicSources,
-                {
-                  artist: props.artist,
-                  name: props.title,
-                  thumbnail: props.thumb
-                });
-            }}
-            ariaLabel='Add track to queue'
-            icon='plus'
-            label='Add to queue'
-          />
+        <PopupButton
+          onClick={() => {
+            actions.addToQueue(
+              musicSources,
+              {
+                artist: props.artist,
+                name: props.title,
+                thumbnail: props.thumb
+              });
+          }}
+          ariaLabel='Add track to queue'
+          icon='plus'
+          label='Add to queue'
+        />
       }
 
       {
         withPlayNow &&
         <PopupButton
-          onClick={ () => {
+          onClick={() => {
             actions.clearQueue();
             actions.addToQueue(
               musicSources,
@@ -79,12 +99,12 @@ const TrackPopupContainer = props => {
       {
         withAddToFavorites &&
         <PopupButton
-          onClick={ () => {
+          onClick={() => {
             actions.addFavoriteTrack(track);
             actions.info(
               'Favorite track added',
               `${artist} - ${title} has been added to favorites.`,
-              <img src={ thumb } />,
+              <img src={thumb} />,
               settings
             );
           }}
@@ -97,13 +117,13 @@ const TrackPopupContainer = props => {
       {
         withAddToDownloads &&
         <PopupButton
-          onClick={ () => {
+          onClick={() => {
             ipcRenderer.send('start-download', track);
             actions.addToDownloads(musicSources, track);
             actions.info(
               'Track added to downloads',
               `${artist} - ${title} has been added to downloads.`,
-              <img src={ thumb } />,
+              <img src={thumb} />,
               settings
             );
           }}
@@ -112,7 +132,7 @@ const TrackPopupContainer = props => {
           label='Download'
         />
       }
-    
+
     </ContextPopup>
   );
 };
@@ -148,14 +168,14 @@ TrackPopupContainer.defaultProps = {
   actions: {},
   musicSources: [],
   settings: {},
-  
+
   withAddToQueue: true,
   withPlayNow: true,
   withAddToFavorites: true,
   withAddToDownloads: true
 };
 
-function mapStateToProps (state, { track }) {
+function mapStateToProps(state, { track }) {
   return {
     musicSources: track.local
       ? state.plugin.plugins.musicSources.filter(({ sourceName }) => {
@@ -166,7 +186,7 @@ function mapStateToProps (state, { track }) {
   };
 }
 
-function mapDispatchToProps (dispatch) {
+function mapDispatchToProps(dispatch) {
   return {
     actions: bindActionCreators(
       Object.assign(
