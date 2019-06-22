@@ -1,4 +1,7 @@
-require('babel-polyfill');
+import 'babel-polyfill';
+import process from 'process';
+import logger from 'electron-timber';
+
 const { app, ipcMain, nativeImage, BrowserWindow, Menu, Tray } = require('electron');
 const platform = require('electron-platform');
 const path = require('path');
@@ -11,6 +14,10 @@ let httpServer;
 let win;
 let tray;
 let icon = nativeImage.createFromPath(path.resolve(__dirname, 'resources', 'media', 'icon.png'));
+
+process.on('uncaughtException', error => {
+  logger.log(error);
+});
 
 function changeWindowTitle(artist, title) {
   win.setTitle(`${artist} - ${title} - Nuclear Music Player`);
