@@ -3,7 +3,7 @@ const webpack = require('webpack');
 const HappyPack = require('happypack');
 
 module.exports = env => {
-  const entry = env && env.LINUX ? './server/main.dev.linux.js' : './server/main.dev.js';
+  const entry = './server/main.dev.js';
 
   return {
     entry: entry,
