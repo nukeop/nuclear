@@ -1,4 +1,6 @@
-require('babel-polyfill');
+import 'babel-polyfill';
+import process from 'process';
+import logger from 'electron-timber';
 const { app, ipcMain, nativeImage, BrowserWindow, Menu, Tray } = require('electron');
 const platform = require('electron-platform');
 const path = require('path');
@@ -16,6 +18,10 @@ let icon = nativeImage.createFromPath(path.resolve(__dirname, 'resources', 'medi
 // function changeWindowTitle(artist, title) {
 //   win.setTitle(`${artist} - ${title} - nuclear music player`);
 // }
+
+process.on('uncaughtException', error => {
+  logger.log(error);
+});
 
 function createWindow() {
   win = new BrowserWindow({
