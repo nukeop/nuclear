@@ -18,7 +18,7 @@ class TrackRow extends React.Component {
     this.playTrack = this.playTrack.bind(this);
   }
 
-  getThumbnail(track) {
+  getThumbnail (track) {
     return _.get(
       track,
       'image[1][\'#text\']',
@@ -54,7 +54,7 @@ class TrackRow extends React.Component {
     this.setState({ doubleClick: true });
   }
 
-  renderTrigger(track) {
+  renderTrigger (track) {
     const {
       displayCover,
       displayTrackNumber,
@@ -70,29 +70,29 @@ class TrackRow extends React.Component {
       <tr className={styles.track} onDoubleClick={this.playTrack}>
         {
           withDeleteButton &&
-          <td className={styles.track_row_buttons}>
-            <a onClick={onDelete}>
-              <Icon name='close' />
-            </a>
-          </td>
+            <td className={ styles.track_row_buttons }>
+              <a onClick={ onDelete }>
+                <Icon name='close' />
+              </a>
+            </td>
         }
         {
           displayCover &&
-          <td className={styles.track_thumbnail}>
-            <img src={this.getThumbnail(track)} />
-          </td>
+            <td className={styles.track_thumbnail}>
+              <img src={this.getThumbnail(track)} />
+            </td>
         }
-        {displayTrackNumber && <td className={styles.track_number}>{track.position}</td>}
-        {displayArtist && <td className={styles.track_artist}>{track.artist.name}</td>}
+        { displayTrackNumber && <td className={styles.track_number}>{track.position}</td> }
+        { displayArtist && <td className={styles.track_artist}>{track.artist.name}</td> }
         <td className={styles.track_name}>{track.name}</td>
-        {displayAlbum && this.renderAlbum(track)}
-        {displayDuration && this.renderDuration(track)}
-        {displayPlayCount && <td className={styles.playcount}>{numeral(track.playcount).format('0,0')}</td>}
+        { displayAlbum && this.renderAlbum(track) }
+        { displayDuration && this.renderDuration(track) }
+        { displayPlayCount && <td className={styles.playcount}>{numeral(track.playcount).format('0,0')}</td> }
       </tr>
     );
   }
 
-  render() {
+  render () {
     let {
       track,
       withAddToQueue,
@@ -103,18 +103,18 @@ class TrackRow extends React.Component {
 
     return (
       <TrackPopupContainer
-        trigger={this.renderTrigger(track)}
-        track={track}
-        artist={track.artist.name}
-        title={track.name}
-        thumb={this.getThumbnail(track)}
-        doubleClick={this.state.doubleClick}
+        trigger={ this.renderTrigger(track) }
+        track={ track }
+        artist={ track.artist.name }
+        title={ track.name }
+        thumb={ this.getThumbnail(track) }
+        doubleClick={ this.state.doubleClick }
         
 
-        withAddToQueue={withAddToQueue}
-        withPlayNow={withPlayNow}
-        withAddToFavorites={withAddToFavorites}
-        withAddToDownloads={withAddToDownloads}
+        withAddToQueue={ withAddToQueue }
+        withPlayNow={ withPlayNow }
+        withAddToFavorites={ withAddToFavorites }
+        withAddToDownloads={ withAddToDownloads }
       />
     );
   }
