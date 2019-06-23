@@ -93,7 +93,7 @@ const TrackPopupContainer = props => {
             actions.info(
               'Favorite track added',
               `${artist} - ${title} has been added to favorites.`,
-              <img src={thumb} />,
+              <img src={ thumb } />,
               settings
             );
           }}
@@ -112,7 +112,7 @@ const TrackPopupContainer = props => {
             actions.info(
               'Track added to downloads',
               `${artist} - ${title} has been added to downloads.`,
-              <img src={thumb} />,
+              <img src={ thumb } />,
               settings
             );
           }}
@@ -164,7 +164,7 @@ TrackPopupContainer.defaultProps = {
   withAddToDownloads: true
 };
 
-function mapStateToPropsg (state, { track }) {
+function mapStateToProps (state, { track }) {
   return {
     musicSources: track.local
       ? state.plugin.plugins.musicSources.filter(({ sourceName }) => {
