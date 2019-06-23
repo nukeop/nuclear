@@ -30,7 +30,7 @@ class TrackRow extends React.Component {
     );
   }
 
-  renderAlbum(track) {
+  renderAlbum (track) {
     return (
       <td className={styles.track_album}>
         { track.album }
