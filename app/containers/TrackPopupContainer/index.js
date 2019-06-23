@@ -52,10 +52,10 @@ const TrackPopupContainer = props => {
 
   return (
     <ContextPopup
-      trigger={trigger}
-      artist={artist}
-      title={title}
-      thumb={thumb}
+      trigger={ trigger }
+      artist={ artist }
+      title={ title }
+      thumb={ thumb }
     >
       {
         withAddToQueue &&

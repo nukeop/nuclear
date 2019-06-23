@@ -79,12 +79,12 @@ class TrackRow extends React.Component {
         {
           displayCover &&
             <td className={styles.track_thumbnail}>
-              <img src={this.getThumbnail(track)} />
+              <img src={this.getThumbnail(track)}/>
             </td>
         }
         { displayTrackNumber && <td className={styles.track_number}>{track.position}</td> }
         { displayArtist && <td className={styles.track_artist}>{track.artist.name}</td> }
-        <td className={styles.track_name}>{track.name}</td>
+        <td className={styles.track_name}>{ track.name }</td>
         { displayAlbum && this.renderAlbum(track) }
         { displayDuration && this.renderDuration(track) }
         { displayPlayCount && <td className={styles.playcount}>{numeral(track.playcount).format('0,0')}</td> }
@@ -103,7 +103,7 @@ class TrackRow extends React.Component {
 
     return (
       <TrackPopupContainer
-        trigger={ this.renderTrigger(track) }
+        trigger={this.renderTrigger(track)}
         track={ track }
         artist={ track.artist.name }
         title={ track.name }
