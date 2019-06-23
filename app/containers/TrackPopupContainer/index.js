@@ -59,26 +59,26 @@ const TrackPopupContainer = props => {
     >
       {
         withAddToQueue &&
-        <PopupButton
-          onClick={() => {
-            actions.addToQueue(
-              musicSources,
-              {
-                artist: props.artist,
-                name: props.title,
-                thumbnail: props.thumb
-              });
-          }}
-          ariaLabel='Add track to queue'
-          icon='plus'
-          label='Add to queue'
-        />
+          <PopupButton
+            onClick={() => {
+              actions.addToQueue(
+                musicSources,
+                {
+                  artist: props.artist,
+                  name: props.title,
+                  thumbnail: props.thumb
+                });
+            }}
+            ariaLabel='Add track to queue'
+            icon='plus'
+            label='Add to queue'
+          />
       }
 
       {
         withPlayNow &&
         <PopupButton
-          onClick={playSong}
+          onClick={ playSong }
           ariaLabel='Play this track now'
           icon='play'
           label='Play now'
@@ -88,7 +88,7 @@ const TrackPopupContainer = props => {
       {
         withAddToFavorites &&
         <PopupButton
-          onClick={() => {
+          onClick={ () => {
             actions.addFavoriteTrack(track);
             actions.info(
               'Favorite track added',
@@ -106,7 +106,7 @@ const TrackPopupContainer = props => {
       {
         withAddToDownloads &&
         <PopupButton
-          onClick={() => {
+          onClick={ () => {
             ipcRenderer.send('start-download', track);
             actions.addToDownloads(musicSources, track);
             actions.info(
@@ -164,7 +164,7 @@ TrackPopupContainer.defaultProps = {
   withAddToDownloads: true
 };
 
-function mapStateToProps(state, { track }) {
+function mapStateToPropsg (state, { track }) {
   return {
     musicSources: track.local
       ? state.plugin.plugins.musicSources.filter(({ sourceName }) => {
@@ -175,7 +175,7 @@ function mapStateToProps(state, { track }) {
   };
 }
 
-function mapDispatchToProps(dispatch) {
+function mapDispatchToProps (dispatch) {
   return {
     actions: bindActionCreators(
       Object.assign(
