@@ -42,7 +42,7 @@ function reduceRemoveFromQueue(state, action) {
   });
 }
 
-function reduceClearQueue(state, action) {
+function reduceClearQueue(state) {
   return Object.assign({}, state, {
     queueItems: []
   });
@@ -86,13 +86,13 @@ function reduceSwapSongs(state, action) {
   });
 }
 
-function reduceNextSong(state, action) {
+function reduceNextSong(state) {
   return Object.assign({}, state, {
     currentSong: (state.currentSong + 1) % state.queueItems.length
   });
 }
 
-function reducePreviousSong(state, action) {
+function reducePreviousSong(state) {
   return Object.assign({}, state, {
     currentSong:
       (((state.currentSong - 1) % state.queueItems.length) +
@@ -108,15 +108,15 @@ export default function QueueReducer(state = initialState, action) {
   case REMOVE_FROM_QUEUE:
     return reduceRemoveFromQueue(state, action);
   case CLEAR_QUEUE:
-    return reduceClearQueue(state, action);
+    return reduceClearQueue(state);
   case ADD_STREAMS_TO_QUEUE_ITEM:
     return reduceAddStreamsToQueueItem(state, action);
   case REPLACE_STREAMS_IN_QUEUE_ITEM:
     return reduceReplaceStreamsInQueueItem(state, action);
   case NEXT_SONG:
-    return reduceNextSong(state, action);
+    return reduceNextSong(state);
   case PREVIOUS_SONG:
-    return reducePreviousSong(state, action);
+    return reducePreviousSong(state);
   case SELECT_SONG:
     return reduceSelectSong(state, action);
   case SWAP_SONGS:
