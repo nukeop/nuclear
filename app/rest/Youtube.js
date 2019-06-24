@@ -27,7 +27,7 @@ function isValidURL (str) {
 
 function analyseUrlType (url) {
   let analysisResult = {
-    url: url,
+    url,
     isValid: false,
     isYoutube: false,
     isYoutubePlaylist: false,

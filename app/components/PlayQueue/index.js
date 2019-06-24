@@ -32,7 +32,7 @@ class PlayQueue extends React.Component {
     info(
       t('download-toast-title'),
       t('download-toast-content', { artist: artistName, title: track.name }),
-      <img src={ track.thumbnail }/>,
+      <img src={track.thumbnail}/>,
       settings
     );
   }
@@ -94,14 +94,14 @@ class PlayQueue extends React.Component {
 
     return (
       <DragDropContext onDragEnd={this.onDragEnd.bind(this)}>
-        <div className={classnames(styles.play_queue_container, {'compact': compact})}>
+        <div className={classnames(styles.play_queue_container, {compact})}>
           <QueueMenu
             clearQueue={clearQueue}
             addPlaylist={addPlaylist}
             updatePlaylist={updatePlaylist} 
             toggleOption={toggleOption}
             addFavoriteTrack={addFavoriteTrack}
-            addToDownloads={ this.onAddToDownloads.bind(this) }
+            addToDownloads={this.onAddToDownloads.bind(this)}
             success={success}
             settings={settings}
             playlists={playlists}

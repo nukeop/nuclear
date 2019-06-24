@@ -37,6 +37,7 @@ export function info(title, details, icon, settings) {
   return generateNotification(title, details, icon, {info: true}, settings);
 }
 
+/** @deprecated */
 function generateNotification(title, details, icon, type, settings) {
   return dispatch => {
     let id = uuidv4();
@@ -48,6 +49,7 @@ function generateNotification(title, details, icon, type, settings) {
     },
     type)));
 
+    // BUG: _ is undefined
     const timeout = _.get(settings, 'notificationTimeout');
     setTimeout(() => dispatch(removeNotification(id)), timeout * 1000);
   };
