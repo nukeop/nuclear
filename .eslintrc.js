@@ -50,6 +50,7 @@ module.exports = {
     "dot-notation": 2,
     "no-alert": 2,
     "object-shorthand": [2, "always"],
+    "no-console": ["error", { allow: ["warn", "error"] }],
 
     // Style
     "array-bracket-spacing": 2,
