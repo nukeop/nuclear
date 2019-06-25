@@ -253,7 +253,7 @@ class App extends React.Component {
       : null;
   }
 
-  renderTrackInfo() {
+  renderTrackInfo () {
     return (
       <TrackInfo
         track={this.getCurrentSongParameter('name')}
@@ -325,7 +325,7 @@ class App extends React.Component {
   }
 }
 
-function mapStateToProps(state) {
+function mapStateToProps (state) {
   return {
     queue: state.queue,
     player: state.player,
@@ -335,7 +335,7 @@ function mapStateToProps(state) {
   };
 }
 
-function mapDispatchToProps(dispatch) {
+function mapDispatchToProps (dispatch) {
   return {
     actions: bindActionCreators(
       Object.assign(
