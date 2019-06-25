@@ -174,7 +174,7 @@ class App extends React.Component {
     );
   }
 
-  renderMenuCategory(headerText, iconObject) {
+  renderMenuCategory (headerText, iconObject) {
     return <React.Fragment>
       <SidebarMenuCategoryHeader compact={this.props.settings.compactMenuBar} headerText={headerText} /> 
       {Object.keys(iconObject).map(
@@ -183,7 +183,7 @@ class App extends React.Component {
     </React.Fragment>;
   }
 
-  renderNavLink(name, icon) {
+  renderNavLink (name, icon) {
     return (
       <NavLink to={'/' + name} activeClassName={styles.active_nav_link}>
         <SidebarMenuItem>
@@ -193,7 +193,7 @@ class App extends React.Component {
     );
   }
 
-  renderSidebarFooter() {
+  renderSidebarFooter () {
     return (
       <div className='sidebar_footer'>
         <a
@@ -214,7 +214,7 @@ class App extends React.Component {
     );
   }
 
-  renderFooter(settings) {
+  renderFooter () {
     return (
       <Footer className={styles.footer}>
         <Seekbar
@@ -234,7 +234,7 @@ class App extends React.Component {
     );
   }
 
-  renderCover() {
+  renderCover () {
     return (
       <ui.Cover
         cover={
@@ -247,7 +247,7 @@ class App extends React.Component {
     );
   }
 
-  getCurrentSongParameter(parameter) {
+  getCurrentSongParameter (parameter) {
     return this.props.queue.queueItems[this.props.queue.currentSong]
       ? this.props.queue.queueItems[this.props.queue.currentSong][parameter]
       : null;
@@ -263,7 +263,8 @@ class App extends React.Component {
       />
     );
   }
-  renderPlayerControls() {
+
+  renderPlayerControls () {
     const { player, queue } = this.props;
     const couldPlay = queue.queueItems.length > 0;
     const couldForward = queue.currentSong + 1 < queue.queueItems.length;
@@ -280,7 +281,7 @@ class App extends React.Component {
     );
   }
 
-  renderVolumeControl() {
+  renderVolumeControl () {
     return (
       <VolumeControls
         fill={this.props.player.volume}
@@ -293,13 +294,13 @@ class App extends React.Component {
     );
   }
 
-  componentWillMount() {
+  componentWillMount () {
     this.props.actions.readSettings();
     this.props.actions.lastFmReadSettings();
     this.props.actions.createSearchPlugins(PluginConfig.plugins);
   }
 
-  render() {
+  render () {
     return (
       <React.Fragment>
         <ErrorBoundary>
