@@ -59,7 +59,6 @@ import VolumeControls from './components/VolumeControls';
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.settings = this.props;
   }
 
   componentDidMount() {
