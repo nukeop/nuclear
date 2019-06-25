@@ -21,16 +21,16 @@ class NavButtons extends React.Component {
   }
 
   render() {
-    let { back, forward, historyLength, historyCurrentIndex} = this.props;
-
+    const history = this.props.history;
+    
     return (
       <div className={styles.nav_buttons}>
-        <a href='#' onClick={this.enableBackButton(historyCurrentIndex) ? back : undefined} 
-          className={cx({'disable': !this.enableBackButton(historyCurrentIndex)})}>
+        <a href='#' onClick={this.enableBackButton(history.index) ? history.goBack : undefined} 
+          className={cx({'disable': !this.enableBackButton(history.index)})}>
           <FontAwesome name='chevron-left'/>
         </a>
-        <a href='#' onClick={this.enableForwardButton(historyCurrentIndex, historyLength) ? forward : undefined} 
-          className={cx({'disable': !this.enableForwardButton(historyCurrentIndex, historyLength)})}>
+        <a href='#' onClick={this.enableForwardButton(history.index, history.length) ? history.goForward : undefined} 
+          className={cx({'disable': !this.enableForwardButton(history.index, history.length)})}>
           <FontAwesome name='chevron-right'/>
         </a>
       </div>
@@ -39,13 +39,8 @@ class NavButtons extends React.Component {
 }
 
 NavButtons.propTypes = {
-  back: PropTypes.func,
-  forward: PropTypes.func
+  history: PropTypes.object.isRequired
 };
 
-NavButtons.defaultProps = {
-  back: () => {},
-  forward: () => {}
-};
 
 export default NavButtons;
