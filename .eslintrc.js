@@ -49,6 +49,8 @@ module.exports = {
     "dot-location": [2, "property"],
     "dot-notation": 2,
     "no-alert": 2,
+    "object-shorthand": [2, "always"],
+    "no-console": ["error", { allow: ["warn", "error"] }],
 
     // Style
     "array-bracket-spacing": 2,
@@ -72,6 +74,7 @@ module.exports = {
     // React
     "jsx-quotes": [2, "prefer-single"],
     "react/forbid-prop-types": [1, { "forbid": ["any"] }],
+    "react/jsx-curly-spacing": [2, "never"],
     "react/jsx-equals-spacing": [2, "never"],
     "react/jsx-indent": [2, 2],
     "react/jsx-indent-props": [2, 2],
@@ -91,6 +94,5 @@ module.exports = {
     "react/prefer-stateless-function": 1,
     "react/react-in-jsx-scope": 2,
     "react/self-closing-comp": 2
-
   }
 };

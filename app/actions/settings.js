@@ -1,4 +1,4 @@
-import { store, getOption, setOption } from '../persistence/store';
+import { store, setOption } from '../persistence/store';
 
 export const READ_SETTINGS = 'READ_SETTINGS';
 export const SET_BOOLEAN_OPTION = 'SET_BOOLEAN_OPTION';
