@@ -55,8 +55,8 @@ class Settings extends React.Component {
       <SocialIntegration
         logo={
           <Icon.Group size='big'>
-            <Icon name='square' className={ styles.social_icon_bg }/>
-            <Icon name='lastfm square' className={ styles.lastfm_icon }/>
+            <Icon name='square' className={styles.social_icon_bg}/>
+            <Icon name='lastfm square' className={styles.lastfm_icon}/>
           </Icon.Group>
         }
         title={this.props.t('lastfm-title')}
@@ -101,7 +101,7 @@ class Settings extends React.Component {
         )}
         {
           lastFmSessionKey &&
-            <Button onClick={ lastFmLogOut } inverted>
+            <Button onClick={lastFmLogOut} inverted>
               {this.props.t('logout')}
             </Button>
         }
@@ -142,7 +142,7 @@ class Settings extends React.Component {
       <SocialIntegration
         logo={
           <Icon.Group size='big'>
-            <Icon name='square' className={ styles.social_icon_bg } />
+            <Icon name='square' className={styles.social_icon_bg} />
             <Icon color='black' name='github square' />
           </Icon.Group>
         }
@@ -150,10 +150,10 @@ class Settings extends React.Component {
         description={t('github-description')}
       >
         <GithubSettings
-          logIn={ actions.githubOauth }
-          logOut={ actions.githubLogOut }
-          loading={ _.get(github, 'loading') }
-          username={ _.get(github, 'login') }
+          logIn={actions.githubOauth}
+          logOut={actions.githubLogOut}
+          loading={_.get(github, 'loading')}
+          username={_.get(github, 'login')}
         />
       </SocialIntegration>
     );
@@ -183,7 +183,7 @@ class Settings extends React.Component {
         basic
         search
         selection
-        className={ styles.list_option }
+        className={styles.list_option}
         placeholder={placeholder}
         value={i18n.language}
         options={options}
@@ -239,11 +239,11 @@ class Settings extends React.Component {
       const value = this.getOptionValue(option);
 
       return (<Input
-        type={typeof option.min === 'number' && typeof option.max === 'number' ? 'number' : 'text' }
+        type={typeof option.min === 'number' && typeof option.max === 'number' ? 'number' : 'text'}
         min={option.min}
         max={option.max}
         fluid
-        value={ value || option.default}
+        value={value || option.default}
         error={!this.validateNumberInput(value)}
         onChange={
           e => !!e.target.value && this.validateNumberInput(value) && this.props.actions.setNumberOption(option.name, _.parseInt(e.target.value))

@@ -1,5 +1,3 @@
-import _ from 'lodash';
-
 import {
   READ_FAVORITES,
   ADD_FAVORITE_TRACK,

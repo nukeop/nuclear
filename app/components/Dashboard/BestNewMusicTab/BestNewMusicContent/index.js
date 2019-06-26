@@ -19,7 +19,7 @@ const BestNewMusicContent = ({
     <div className={styles.best_new_music_content}>
       <div className={styles.review_header}>
         <div className={styles.thumbnail}>
-          <img alt={ item.title } src={ item.thumbnail }/>
+          <img alt={item.title} src={item.thumbnail}/>
         </div>
         <div className={styles.review_headings}>
           <div
