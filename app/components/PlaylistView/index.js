@@ -166,6 +166,8 @@ class PlaylistView extends React.Component {
       index={'playlist-track-' + index}
       displayCover
       displayArtist
+      withDeleteButton={ true }
+      onDelete={this.removeTrack}
     />
     );
   }

@@ -7,6 +7,7 @@ export const LOAD_PLAYLISTS = 'LOAD_PLAYLISTS';
 export const ADD_PLAYLIST = 'ADD_PLAYLIST';
 export const DELETE_PLAYLIST = 'DELETE_PLAYLIST';
 export const UPDATE_PLAYLIST = 'UPDATE_PLAYLIST';
+export const DELETE_TRACK = 'DELETE_TRACK';
 
 export function addPlaylist(tracks, name) {
   return dispatch => {
@@ -69,6 +70,18 @@ export function updatePlaylist(playlist) {
     dispatch({
       type: UPDATE_PLAYLIST,
       payload: { playlists }
+    });
+  };
+}
+export function removeTrack(id) {
+  return dispatch => {
+    let tracks = store.get('track');
+    _.remove(tracks, { id });
+    
+    store.set('track', tracks);
+    dispatch({
+      type: DELETE_TRACK,
+      payload: { tracks }
     });
   };
 }

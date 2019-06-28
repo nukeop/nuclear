@@ -2,7 +2,8 @@ import {
   ADD_PLAYLIST,
   LOAD_PLAYLISTS,
   DELETE_PLAYLIST,
-  UPDATE_PLAYLIST
+  UPDATE_PLAYLIST,
+  DELETE_TRACK
 } from '../actions/playlists';
 
 const initialState = {
@@ -15,6 +16,7 @@ export default function PlaylistsReducer(state=initialState, action) {
   case ADD_PLAYLIST:
   case DELETE_PLAYLIST:
   case UPDATE_PLAYLIST:
+  case DELETE_TRACK:
     return Object.assign({}, state, {
       playlists: action.payload.playlists
     });
