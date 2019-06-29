@@ -55,7 +55,7 @@ export function removeFromQueue (item) {
 
 export function addPlaylistTracksToQueue (musicSources, tracks) {
   return dispatch => {
-    tracks.map((item, i) => {
+    tracks.map(item => {
       dispatch(addTrackToQueue(musicSources, item));
     });
   };

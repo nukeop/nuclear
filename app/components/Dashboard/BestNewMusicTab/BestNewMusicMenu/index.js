@@ -22,10 +22,10 @@ const BestNewMusicMenu = ({ albums, setActiveItem, tracks }) => {
         {
           albums.map(album => {
             return (
-              <Menu.Item link key={ album.title }>
+              <Menu.Item link key={album.title}>
                 <BestNewMusicCard
-                  item={ album }
-                  onClick={ () => setActiveItem(album )}
+                  item={album}
+                  onClick={() => setActiveItem(album )}
                 />
               </Menu.Item>
             );
@@ -41,10 +41,10 @@ const BestNewMusicMenu = ({ albums, setActiveItem, tracks }) => {
         {
           tracks.map(track => {
             return (
-              <Menu.Item link key={ track.title }>
+              <Menu.Item link key={track.title}>
                 <BestNewMusicCard
-                  item={ track }
-                  onClick={ () => setActiveItem(track)}
+                  item={track}
+                  onClick={() => setActiveItem(track)}
                 />
               </Menu.Item>
             );

@@ -15,7 +15,7 @@ const DownloadsList = ({
   const { t } = useTranslation('downloads');
   return (
     <Segment inverted>
-      <Button primary onClick={ clearFinishedTracks }>
+      <Button primary onClick={clearFinishedTracks}>
         <Icon name='trash'/>
         {t('clear')}
       </Button>
@@ -24,20 +24,20 @@ const DownloadsList = ({
           <Table.Row>
             <Table.HeaderCell>{t('status')}</Table.HeaderCell>
             <Table.HeaderCell onClick={() => {
-                if(sortAsc){
-                  items.sort((a, b) => {
-                    return a.track.name.toLowerCase() > b.track.name.toLowerCase();
-                  })
-                  setSort(false)
-                } else {
-                  items.sort((a, b) => {
-                    return a.track.name.toLowerCase() < b.track.name.toLowerCase();
-                  })
-                  setSort(true)
-                }
+              if (sortAsc){
+                items.sort((a, b) => {
+                  return a.track.name.toLowerCase() > b.track.name.toLowerCase();
+                });
+                setSort(false);
+              } else {
+                items.sort((a, b) => {
+                  return a.track.name.toLowerCase() < b.track.name.toLowerCase();
+                });
+                setSort(true);
               }
+            }
             }>{t('name')} {
-                sortAsc ? <Icon name="caret up icon"></Icon> : <Icon name="caret down icon"></Icon>
+                sortAsc ? <Icon name='caret up icon' /> : <Icon name='caret down icon' />
               }
             </Table.HeaderCell>
             <Table.HeaderCell>{t('completion')}</Table.HeaderCell>
@@ -48,8 +48,8 @@ const DownloadsList = ({
             items.map(item => {
               return (
                 <DownloadsItem
-                  key={ item.track.uuid }
-                  item={ item }
+                  key={item.track.uuid}
+                  item={item}
                 />
               );
             })

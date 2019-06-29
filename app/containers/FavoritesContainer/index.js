@@ -29,7 +29,7 @@ class FavoritesContainer extends React.Component {
     if (match.path.endsWith(TRACKS_PATH)) {
       return <FavoriteTracksView
         tracks={_.get(favorites, 'tracks')}
-        removeFavoriteTrack={ actions.removeFavoriteTrack }
+        removeFavoriteTrack={actions.removeFavoriteTrack}
       />;
     }
     

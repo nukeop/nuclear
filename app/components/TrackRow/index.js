@@ -80,8 +80,8 @@ class TrackRow extends React.Component {
       <tr className={styles.track} onDoubleClick={this.playTrack}>
         {
           withDeleteButton &&
-            <td className={ styles.track_row_buttons }>
-              <a onClick={ onDelete }>
+            <td className={styles.track_row_buttons}>
+              <a onClick={onDelete}>
                 <Icon name='close' />
               </a>
             </td>
@@ -114,15 +114,15 @@ class TrackRow extends React.Component {
     return (
       <TrackPopupContainer
         trigger={this.renderTrigger(track)}
-        track={ track }
-        artist={ track.artist.name }
-        title={ track.name }
-        thumb={ this.getThumbnail(track) }
+        track={track}
+        artist={track.artist.name}
+        title={track.name}
+        thumb={this.getThumbnail(track)}
 
-        withAddToQueue={ withAddToQueue }
-        withPlayNow={ withPlayNow }
-        withAddToFavorites={ withAddToFavorites }
-        withAddToDownloads={ withAddToDownloads }
+        withAddToQueue={withAddToQueue}
+        withPlayNow={withPlayNow}
+        withAddToFavorites={withAddToFavorites}
+        withAddToDownloads={withAddToDownloads}
       />
     );
   }
