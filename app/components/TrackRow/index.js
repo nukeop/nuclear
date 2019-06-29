@@ -56,7 +56,6 @@ class TrackRow extends React.Component {
   }
 
   playTrack () {
-    console.log(this.getThumbnail(this.props.track));
     this.props.actions.playTrack(this.props.musicSources, {
       artist: this.props.track.artist.name,
       name: this.props.track.name,
