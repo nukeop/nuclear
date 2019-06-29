@@ -15,7 +15,7 @@ matrix:
 
     - os: windows
       language: node_js
-      node_js:  "10"
+      node_js:  "8"
 
 
 before_install:
@@ -25,7 +25,7 @@ script:
   - |
     if [ "$TRAVIS_OS_NAME" == "linux" ]; then
        npm test && npm run build:dist && npm run build:electron:linux && npm run build:linux
-    else if["$TRAVIS_OS_NAME" == "windows"]; then
+    elif["$TRAVIS_OS_NAME" == "windows"]; then
         npm test && npm run build:dist:windows && npm run build:electron && npm run build:windows
     else
        npm test && npm run build:dist && npm run build:electron && npm run build:macos
