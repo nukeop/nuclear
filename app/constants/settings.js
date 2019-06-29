@@ -58,7 +58,7 @@ export default [
     category: 'display',
     type: settingType.BOOLEAN,
     prettyName: 'compact-menu-bar',
-    default: true
+    default: false
   },
   {
     name: 'compactQueueBar',
