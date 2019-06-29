@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
 import cx from 'classnames';
 import styles from './styles.scss';
+import {withRouter} from 'react-router';
 
 class NavButtons extends React.Component {
 
@@ -43,4 +44,4 @@ NavButtons.propTypes = {
 };
 
 
-export default NavButtons;
+export default withRouter(NavButtons);

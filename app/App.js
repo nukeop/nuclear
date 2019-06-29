@@ -102,7 +102,7 @@ class App extends React.Component {
   renderNavBar () {
     return (
       <Navbar>
-        <NavButtons history={this.props.history}/>
+        <NavButtons/>
         <SearchBoxContainer />
         <div className={styles.navbar_spacer}/>
         <HelpModal />
@@ -124,8 +124,6 @@ class App extends React.Component {
   }
 
   renderSidebarMenu () {
-    const { t } = this.props;
-
     return (
       <VerticalPanel
         className={classnames(styles.left_panel, {
@@ -202,8 +200,7 @@ class App extends React.Component {
               _.find(settingsConst, ['name', 'compactMenuBar']),
               this.props.settings
             );
-          }
-          }
+          }}
           href='#'
         >
           <FontAwesome
@@ -289,7 +286,7 @@ class App extends React.Component {
         muted={this.props.player.muted}
         toggleMute={this.props.actions.toggleMute}
         toggleOption={this.props.actions.toggleOption}
-        settings={this.props}
+        settings={this.props.settings}
       />
     );
   }
