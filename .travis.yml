@@ -23,9 +23,7 @@ before_install:
 
 script:
   - 'if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then npm test && npm run build:dist && npm run build:electron:linux && npm run build:linux; fi'
-
   - 'if[[ "$TRAVIS_OS_NAME" == "windows" ]]; then npm test && npm run build:dist:windows && npm run build:electron && npm run build:windows; fi'
-
   - 'if[[ "$TRAVIS_OS_NAME" == "osx" ]]; then npm test && npm run build:dist && npm run build:electron && npm run build:macos; fi'
 
 
