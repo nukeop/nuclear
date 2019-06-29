@@ -1,10 +1,14 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
 import numeral from 'numeral';
 import { Icon } from 'semantic-ui-react';
 
 import artPlaceholder from '../../../resources/media/art_placeholder.png';
+
+import * as QueueActions from '../../actions/queue';
 
 import TrackPopupContainer from '../../containers/TrackPopupContainer';
 import { formatDuration } from '../../utils';
@@ -16,8 +20,10 @@ class TrackRow extends React.Component {
     super();
     this.state = { doubleClick: false };
     this.playTrack = this.playTrack.bind(this);
+    this.getThumbnail = this.getThumbnail.bind(this);
   }
 
+  // this function should be moved onto 'track'
   getThumbnail (track) {
     return _.get(
       track,
@@ -50,8 +56,12 @@ class TrackRow extends React.Component {
   }
 
   playTrack () {
-    console.log(this)
-    this.setState({ doubleClick: true });
+    console.log(this.getThumbnail(this.props.track));
+    this.props.actions.playTrack(this.props.musicSources, {
+      artist: this.props.track.artist.name,
+      name: this.props.track.name,
+      thumbnail: this.getThumbnail(this.props.track)
+    });
   }
 
   renderTrigger (track) {
@@ -108,8 +118,6 @@ class TrackRow extends React.Component {
         artist={ track.artist.name }
         title={ track.name }
         thumb={ this.getThumbnail(track) }
-        doubleClick={ this.state.doubleClick }
-        
 
         withAddToQueue={ withAddToQueue }
         withPlayNow={ withPlayNow }
@@ -147,4 +155,29 @@ TrackRow.defaultProps = {
   withDeleteButton: false
 };
 
-export default TrackRow;
+function mapStateToProps (state, { track }) {
+  return {
+    musicSources: track.local
+      ? state.plugin.plugins.musicSources.filter(({ sourceName }) => {
+        return sourceName === 'Local';
+      })
+      : state.plugin.plugins.musicSources,
+    settings: state.settings
+  };
+}
+
+function mapDispatchToProps (dispatch) {
+  return {
+    actions: bindActionCreators(
+      Object.assign({}, QueueActions),
+      dispatch
+    )
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(TrackRow);
+
+

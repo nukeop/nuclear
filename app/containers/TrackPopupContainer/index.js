@@ -23,7 +23,6 @@ const TrackPopupContainer = props => {
     actions,
     musicSources,
     settings,
-    doubleClick,
 
     withAddToQueue,
     withPlayNow,
@@ -31,24 +30,11 @@ const TrackPopupContainer = props => {
     withAddToDownloads
   } = props;
 
-  const playSong = () => {
-    if (withPlayNow) {
-      actions.clearQueue();
-      actions.addToQueue(
-        musicSources,
-        {
-          artist: props.artist,
-          name: props.title,
-          thumbnail: props.thumb
-        });
-      actions.selectSong(0);
-      actions.startPlayback();
-    }
+  const trackItem = {
+    artist,
+    name: props.title,
+    thumbnail: props.thumb
   };
-
-  if (doubleClick) {
-    playSong();
-  }
 
   return (
     <ContextPopup
@@ -60,15 +46,7 @@ const TrackPopupContainer = props => {
       {
         withAddToQueue &&
           <PopupButton
-            onClick={() => {
-              actions.addToQueue(
-                musicSources,
-                {
-                  artist: props.artist,
-                  name: props.title,
-                  thumbnail: props.thumb
-                });
-            }}
+            onClick={ () => actions.addToQueue(musicSources, trackItem)}
             ariaLabel='Add track to queue'
             icon='plus'
             label='Add to queue'
@@ -78,7 +56,7 @@ const TrackPopupContainer = props => {
       {
         withPlayNow &&
         <PopupButton
-          onClick={ playSong }
+          onClick={ () => actions.playSong(musicSources, trackItem) }
           ariaLabel='Play this track now'
           icon='play'
           label='Play now'

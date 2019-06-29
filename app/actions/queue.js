@@ -1,6 +1,8 @@
 const _ = require('lodash');
 const uuidv4 = require('uuid/v4');
 
+import { startPlayback } from './player.js';
+
 export const ADD_TO_QUEUE = 'ADD_TO_QUEUE';
 export const REMOVE_FROM_QUEUE = 'REMOVE_FROM_QUEUE';
 export const CLEAR_QUEUE = 'CLEAR_QUEUE';
@@ -28,6 +30,15 @@ function addTrackToQueue (musicSources, item) {
           payload: Object.assign({}, item, { streams: results, loading: false })
         });
       });
+  };
+}
+
+export function playTrack (musicSources, item) {
+  return dispatch => {
+    dispatch(clearQueue());
+    dispatch(addToQueue(musicSources, item));
+    dispatch(selectSong(0));
+    dispatch(startPlayback());
   };
 }
 
