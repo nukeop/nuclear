@@ -47,7 +47,7 @@ class PlaylistView extends React.Component {
     updatedPlaylist.name = name;
     this.props.updatePlaylist(updatedPlaylist);
   }
-
+  
   renderOptions (trigger, playlist) {
     return (
       <ContextPopup

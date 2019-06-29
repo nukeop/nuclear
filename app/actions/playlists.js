@@ -73,10 +73,10 @@ export function updatePlaylist(playlist) {
     });
   };
 }
-export function removeTrack(id) {
+export function removeTrack(updatedPlaylist, tracks) {
   return dispatch => {
-    let tracks = store.get('track');
-    _.remove(tracks, { id });
+    updatedPlaylist.tracks = _.filter(updatedPlaylist.tracks, 
+      track => track.id !== removeTrack.id );
     
     store.set('track', tracks);
     dispatch({
