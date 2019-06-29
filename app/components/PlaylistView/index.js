@@ -120,7 +120,7 @@ class PlaylistView extends React.Component {
               header={<h4>Input new playlist name:</h4>}
               placeholder={this.props.t('dialog-placeholder')}
               accept='Rename'
-              initialString={ playlist.name }
+              initialString={playlist.name}
               onAccept={
                 name => this.renamePlaylist(playlist, name)
               }

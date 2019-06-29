@@ -103,7 +103,8 @@ export default [
     ],
     default: undefined
   }
-  // TODO: enabled when MPD integration is ready
+
+  // TODO: Enable when MPD integration is ready
   // {
   //   name: 'mpd.host',
   //   category: 'MPD',
