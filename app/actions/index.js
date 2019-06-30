@@ -40,8 +40,7 @@ export function sourcesSearch (terms, plugins) {
   for (let i = 0; i < plugins.musicSources.length; i++) {
     Object.assign(searchResults, plugins.musicSources[i].search(terms));
   }
-
-  return { type: undefined };
+  return {};
 }
 
 export function unifiedSearchStart () {
