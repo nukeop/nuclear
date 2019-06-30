@@ -158,7 +158,9 @@
     "program-settings": "Program settings",
     "shuffle-queue": "Shuffle songs",
     "social": "Social",
-    "user": "User:"
+    "user": "User:",
+    "youtube": "Youtube:",
+    "yt-api-key": "Youtube API Key"
   },
   "tags": {
     "albums": "Top Albums",

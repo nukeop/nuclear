@@ -1,7 +1,7 @@
-import globals from '../globals';
+import { getOption } from '../persistence/store';
 
 export function prepareUrl (url) {
-  return `${url}&key=${globals.ytApiKey}`;
+  return `${url}&key=${ getOption('yt.apiKey')}`;
 }
 
 export function trackSearch (track) {
