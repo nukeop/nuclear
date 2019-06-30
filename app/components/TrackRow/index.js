@@ -16,14 +16,7 @@ import { formatDuration } from '../../utils';
 import styles from './styles.scss';
 
 class TrackRow extends React.Component {
-  constructor () {
-    super();
-    this.state = { doubleClick: false };
-    this.playTrack = this.playTrack.bind(this);
-    this.getThumbnail = this.getThumbnail.bind(this);
-  }
-
-  // this function should be moved onto 'track'
+  // this function should be moved onto interface for 'track'
   getThumbnail (track) {
     return _.get(
       track,
