@@ -149,6 +149,7 @@
     "svg-inline-loader": "^0.8.0",
     "url-loader": "^1.0.1",
     "utf-8-validate": "^5.0.2",
+    "webpack-sources": "1.0.1",
     "webpack": "^4.12.1",
     "webpack-dev-server": "^3.1.4"
   },
