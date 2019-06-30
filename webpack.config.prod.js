@@ -17,7 +17,7 @@ const config = {
     fs: "empty"
   },
   mode: 'production',
-  devtool: 'source-map',
+  devtool: process.env.NODE_ENV === "development" ? "source-map" : "none",
   optimization: {
     namedModules: true,
     splitChunks: {
