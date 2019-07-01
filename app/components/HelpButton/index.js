@@ -7,7 +7,7 @@ const HelpButton = props => {
   return (
     <Button icon
       className={styles.help_button}
-      { ...props }
+      {...props}
     >
       <Icon name='question circle outline'/>
     </Button>

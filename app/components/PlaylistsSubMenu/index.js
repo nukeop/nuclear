@@ -16,7 +16,7 @@ const PlaylistsSubMenu = props => {
             <NavLink
               to={'/playlist/' + i}
               activeClassName={appStyles.active_nav_link}
-              key={ playlist.name }
+              key={playlist.name}
             >
               <div className={styles.playlists_submenu_entry}>
                 <FontAwesome name='music'/> { playlist.name }

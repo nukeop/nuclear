@@ -57,12 +57,12 @@ class BestNewMusicTab extends React.Component {
         className={styles.best_new_music_tab_pane}
       >
         <BestNewMusicMenu
-          albums={ dashboardData.bestNewAlbums }
-          tracks={ dashboardData.bestNewTracks }
-          setActiveItem={ this.setActiveItem.bind(this) }
+          albums={dashboardData.bestNewAlbums}
+          tracks={dashboardData.bestNewTracks}
+          setActiveItem={this.setActiveItem.bind(this)}
         />
         <BestNewMusicContent
-          item={ this.state.activeItem }
+          item={this.state.activeItem}
           artistInfoSearchByName={artistInfoSearchByName}
           albumInfoSearchByName={albumInfoSearchByName}
           addToQueue={addToQueue}

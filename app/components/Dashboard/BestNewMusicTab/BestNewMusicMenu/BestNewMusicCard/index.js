@@ -11,7 +11,7 @@ const BestNewMusicCard = ({
   return (
     <div
       className={styles.best_new_music_card}
-      onClick={ onClick }
+      onClick={onClick}
     >
       <div className={styles.card_thumbnail}>
         <img alt={item.title} src={item.thumbnail}/>

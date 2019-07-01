@@ -32,7 +32,7 @@ const DownloadsItem = ({
   return (
     <Table.Row>
       <Table.Cell>
-        <StatusIcon status={ item.status }/>
+        <StatusIcon status={item.status}/>
         { item.status }
       </Table.Cell>
       <Table.Cell>
