@@ -85,7 +85,7 @@
     "simple-get-lyrics": "0.0.4",
     "slug": "^1.1.0",
     "styled-components": "^3.2.6",
-    "swagger-spec-express": "^2.0.7",
+    "swagger-spec-express": "^2.0.15",
     "uuid": "^3.3.2",
     "webpack-cli": "^3.0.8",
     "youtube-playlist": "^1.0.2",
