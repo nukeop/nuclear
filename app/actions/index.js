@@ -40,10 +40,7 @@ export function sourcesSearch (terms, plugins) {
   for (let i = 0; i < plugins.musicSources.length; i++) {
     Object.assign(searchResults, plugins.musicSources[i].search(terms));
   }
-
-  return {
-    type: SOURCES_SEARCH
-  };
+  return {};
 }
 
 export function unifiedSearchStart () {
@@ -191,7 +188,7 @@ export function albumInfoSuccess (albumId, info) {
     type: ALBUM_INFO_SEARCH_SUCCESS,
     payload: {
       id: albumId,
-      info: info
+      info
     }
   };
 }
@@ -229,7 +226,7 @@ export function artistInfoSuccess (artistId, info) {
     type: ARTIST_INFO_SEARCH_SUCCESS,
     payload: {
       id: artistId,
-      info: info
+      info
     }
   };
 }
@@ -262,7 +259,7 @@ export function artistReleasesSuccess (artistId, releases) {
     type: ARTIST_RELEASES_SEARCH_SUCCESS,
     payload: {
       id: artistId,
-      releases: releases
+      releases
     }
   };
 }
@@ -308,7 +305,7 @@ export function albumInfoSearchByName (albumName, history) {
       .then(searchResults => searchResults.json())
       .then(searchResultsJson => {
         let album = searchResultsJson.results[0];
-        if (album.type == 'artist') {
+        if (album.type === 'artist') {
           dispatch(lastFmArtistInfoSearch(album.title, album.id));
           if (history) {
             history.push('/artist/' + album.id);
@@ -339,7 +336,7 @@ export function lastFmArtistInfoSuccess (artistId, info) {
     type: LASTFM_ARTIST_INFO_SEARCH_SUCCESS,
     payload: {
       id: artistId,
-      info: info
+      info
     }
   };
 }

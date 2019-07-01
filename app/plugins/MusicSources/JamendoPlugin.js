@@ -1,6 +1,5 @@
 import _ from 'lodash';
 
-import globals from '../../globals';
 import MusicSourcePlugin from '../musicSources';
 import * as Jamendo from '../../rest/Jamendo';
 

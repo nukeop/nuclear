@@ -25,13 +25,13 @@ const PlayQueueContainer = props => {
   
   return (
     <PlayQueue
-      actions={ actions }
-      items={ queue.queueItems }
-      currentSong={ queue.currentSong }
-      plugins={ plugins }
-      settings={ settings }
-      playlists={ playlists }
-      compact={ compact }
+      actions={actions}
+      items={queue.queueItems}
+      currentSong={queue.currentSong}
+      plugins={plugins}
+      settings={settings}
+      playlists={playlists}
+      compact={compact}
     />
   );
 };

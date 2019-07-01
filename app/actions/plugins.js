@@ -1,8 +1,6 @@
 export const CREATE_PLUGINS = 'CREATE_PLUGINS';
 export const SELECT_DEFAULT_MUSIC_SOURCE = 'SELECT_DEFAULT_MUSIC_SOURCE';
 
-import config from '../plugins/config';
-
 export function createSearchPlugins (pluginClasses) {
   let plugins = {};
 

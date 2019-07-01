@@ -61,11 +61,11 @@ const FavoriteTracksView = ({
                         displayCover
                         displayArtist
                         withDeleteButton
-                        withAddToFavorites={ false }
-                        onDelete={ e => {
+                        withAddToFavorites={false}
+                        onDelete={e => {
                           e.stopPropagation();
                           removeFavoriteTrack(track);
-                        } }
+                        }}
                       />
                     );
                   })
