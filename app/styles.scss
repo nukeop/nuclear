@@ -48,8 +48,8 @@
 }
 
 .navbar_spacer {
-  height: '100%';
-  flex: '1 1 auto';
+  height: 100%;
+  flex: 1 1 auto;
 }
 
 .left_panel {
@@ -115,7 +115,7 @@
 
 .track_info_wrapper {
   display: flex;
-  flex: 1 1 auto;
+  flex: 1 1 33%;
   flex-flow: row;
   overflow: hidden;
 }
