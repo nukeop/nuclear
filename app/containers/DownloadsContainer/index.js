@@ -9,8 +9,8 @@ import Downloads from '../../components/Downloads';
 const DownloadsContainer = props => {
   return (
     <Downloads
-      downloads={ props.downloads }
-      clearFinishedTracks={ props.downloadActions.clearFinishedDownloads }
+      downloads={props.downloads}
+      clearFinishedTracks={props.downloadActions.clearFinishedDownloads}
     />
   );
 };

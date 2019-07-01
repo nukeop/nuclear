@@ -1,4 +1,3 @@
-import _ from 'lodash';
 export const ADD_TO_DOWNLOADS = 'ADD_TO_DOWNLOADS';
 export const DOWNLOAD_STARTED = 'DOWNLOAD_STARTED';
 export const DOWNLOAD_PROGRESS = 'DOWNLOAD_PROGRESS';

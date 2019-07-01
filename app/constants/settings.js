@@ -1,3 +1,4 @@
+import globals from '../globals';
 import settingType from './settingsEnum';
 
 export default [
@@ -73,7 +74,7 @@ export default [
     type: settingType.BOOLEAN,
     prettyName: 'enable-api',
     default: true
-  },  
+  },
   {
     name: 'api.port',
     category: 'http',
@@ -84,26 +85,34 @@ export default [
     max: 49151
   },
   {
+    name: 'yt.apiKey',
+    category: 'youtube',
+    type: settingType.STRING,
+    prettyName: 'yt-api-key',
+    default: globals.ytApiKey
+  },
+  {
     name: 'language',
     category: 'program-settings',
     type: settingType.LIST,
     prettyName: 'language',
     placeholder: 'language-placeholder',
     options: [
-    {key: 'en', text: 'English', value: 'en'},
-    {key: 'fr', text: 'French', value: 'fr'}, 
-    {key: 'nl', text: 'Dutch', value: 'nl'},
-    {key: 'de', text: 'German', value: 'de'}, 
-    {key: 'dk', text: 'Danish', value: 'dk'}, 
-    {key: 'es', text: 'Spanish', value: 'es'}, 
-    {key: 'pl', text: 'Polish', value: 'pl'}, 
-    {key: 'zh', text: 'Chinese', value: 'zh'},
-    {key: 'ru', text: 'Russian', value: 'ru'},
-    {key: 'pt_br', text: 'Português do Brasil', value: 'pt_br'}
+      {key: 'en', text: 'English', value: 'en'},
+      {key: 'fr', text: 'French', value: 'fr'},
+      {key: 'nl', text: 'Dutch', value: 'nl'},
+      {key: 'de', text: 'German', value: 'de'},
+      {key: 'dk', text: 'Danish', value: 'dk'},
+      {key: 'es', text: 'Spanish', value: 'es'},
+      {key: 'pl', text: 'Polish', value: 'pl'},
+      {key: 'zh', text: 'Chinese', value: 'zh'},
+      {key: 'ru', text: 'Russian', value: 'ru'},
+      {key: 'pt_br', text: 'Português do Brasil', value: 'pt_br'}
     ],
     default: undefined
   }
-  // To be enabled when MPD integration is ready
+
+  // TODO: Enable when MPD integration is ready
   // {
   //   name: 'mpd.host',
   //   category: 'MPD',

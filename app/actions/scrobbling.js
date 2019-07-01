@@ -72,7 +72,7 @@ export function lastFmLoginAction(authToken) {
         dispatch({
           type: LASTFM_LOGIN,
           payload: {
-            sessionKey: sessionKey,
+            sessionKey,
             name: sessionName
           }
         });

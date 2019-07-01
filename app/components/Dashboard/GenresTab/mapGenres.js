@@ -8,21 +8,21 @@ import classical from '../../../../resources/musicgenresicons/outline/classical.
 import country from '../../../../resources/musicgenresicons/outline/country.svg';
 import disco from '../../../../resources/musicgenresicons/outline/disco.svg';
 import edm from '../../../../resources/musicgenresicons/outline/edm.svg';
-import ethnic from '../../../../resources/musicgenresicons/outline/ethnic.svg';
+// import ethnic from '../../../../resources/musicgenresicons/outline/ethnic.svg';
 import exercise from '../../../../resources/musicgenresicons/outline/exercise.svg';
-import gospel from '../../../../resources/musicgenresicons/outline/gospel.svg';
+// import gospel from '../../../../resources/musicgenresicons/outline/gospel.svg';
 import hiphop from '../../../../resources/musicgenresicons/outline/hip_hop.svg';
 import hippie from '../../../../resources/musicgenresicons/outline/hippie.svg';
 import indie from '../../../../resources/musicgenresicons/outline/indie.svg';
 import jazz from '../../../../resources/musicgenresicons/outline/jazz.svg';
-import kpop from '../../../../resources/musicgenresicons/outline/k-pop.svg';
-import latin from '../../../../resources/musicgenresicons/outline/latin.svg';
+// import kpop from '../../../../resources/musicgenresicons/outline/k-pop.svg';
+// import latin from '../../../../resources/musicgenresicons/outline/latin.svg';
 import metal from '../../../../resources/musicgenresicons/outline/metal.svg';
 import pop from '../../../../resources/musicgenresicons/outline/pop.svg';
 import punk from '../../../../resources/musicgenresicons/outline/punk.svg';
 import rnb from '../../../../resources/musicgenresicons/outline/R&B.svg';
-import reggae from '../../../../resources/musicgenresicons/outline/reggae.svg';
-import romantic from '../../../../resources/musicgenresicons/outline/romantic.svg';
+// import reggae from '../../../../resources/musicgenresicons/outline/reggae.svg';
+// import romantic from '../../../../resources/musicgenresicons/outline/romantic.svg';
 import trending from '../../../../resources/musicgenresicons/outline/trending.svg';
 import vocal from '../../../../resources/musicgenresicons/outline/vocal.svg';
 

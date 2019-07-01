@@ -56,12 +56,12 @@ class QueueMenu extends React.Component {
           </a>
 
           <QueueMenuMore
-            clearQueue={ clearQueue }
-            updatePlaylist={ updatePlaylist }
-            addFavoriteTrack={ addFavoriteTrack }
-            addToDownloads={ addToDownloads }
-            playlists={ playlists }
-            currentItem={ _.head(items) }
+            clearQueue={clearQueue}
+            updatePlaylist={updatePlaylist}
+            addFavoriteTrack={addFavoriteTrack}
+            addToDownloads={addToDownloads}
+            playlists={playlists}
+            currentItem={_.head(items)}
             savePlaylistDialog={
               <InputDialog
                 header={<h4>Input playlist name:</h4>}
@@ -74,7 +74,7 @@ class QueueMenu extends React.Component {
                     {t('dialog-trigger')}
                   </Dropdown.Item>
                 }
-                initialString={ firstTitle }
+                initialString={firstTitle}
               />
             }
           />
