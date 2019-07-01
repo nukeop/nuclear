@@ -1,0 +1,30 @@
+@import '../../vars.scss';
+
+@mixin time {
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.track_duration {
+  @include time;
+  position: absolute;
+
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  padding: 0 0.5em;
+
+  font-size: 14px;
+  text-shadow: 1px 1px rgba($black, 0.6);
+
+  pointer-events: none;
+  
+  .time_played,
+  .time_to_end {
+    @include time;
+    height: 100%;
+    padding-bottom: 2px;
+  }
+}
