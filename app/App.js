@@ -104,7 +104,7 @@ class App extends React.Component {
       <Navbar>
         <NavButtons/>
         <SearchBoxContainer />
-        <div className={styles.navbar_spacer}/>
+        <Spacer className={styles.navbar_spacer}/>
         <HelpModal />
         {this.props.settings.framelessWindow && <WindowControls />}
       </Navbar>
