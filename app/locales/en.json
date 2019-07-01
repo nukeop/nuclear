@@ -135,6 +135,7 @@
     "autoradio-craziness": "Autoradio craziness",
     "compact-menu-bar": "Use compact style for menu bar",
     "compact-queue-bar": "Use compact style for queue bar",
+    "track-duration": "Display track duration over the seekbar",
     "disable-gpu": "Disable hardware rendering (might fix issues with dragging elements and flashing screen)",
     "display": "Display",
     "enable-api": "Enable the api",
@@ -159,7 +160,7 @@
     "shuffle-queue": "Shuffle songs",
     "social": "Social",
     "user": "User:",
-    "youtube": "Youtube:",
+    "youtube": "Youtube",
     "yt-api-key": "Youtube API Key"
   },
   "tags": {

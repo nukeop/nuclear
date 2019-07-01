@@ -25,6 +25,7 @@ import logoIcon from '../resources/media/512x512.png';
 import artPlaceholder from '../resources/media/art_placeholder.png';
 
 import { config as PluginConfig } from './plugins/config';
+import { formatDuration } from './utils';
 import settingsConst from './constants/settings';
 
 import PlaylistsSubMenu from './components/PlaylistsSubMenu';
@@ -51,6 +52,7 @@ import Seekbar from './components/Seekbar';
 import SidebarMenu from './components/SidebarMenu';
 import SidebarMenuItem from './components/SidebarMenu/SidebarMenuItem';
 import SidebarMenuCategoryHeader from './components/SidebarMenu/SidebarMenuCategoryHeader';
+import TrackDuration from './components/TrackDuration';
 import TrackInfo from './components/TrackInfo';
 import WindowControls from './components/WindowControls';
 import VolumeControls from './components/VolumeControls';
@@ -218,7 +220,13 @@ class App extends React.Component {
           fill={this.props.player.playbackProgress + '%'}
           seek={this.props.actions.updateSeek}
           queue={this.props.queue}
-        />
+        >
+          {
+            this.props.settings.trackDuration &&
+            !_.isNil(this.props.queue.queueItems[this.props.queue.currentSong]) &&
+            this.renderTrackDuration()
+          }
+        </Seekbar>
         <div className={styles.footer_horizontal}>
           <div className={styles.track_info_wrapper}>
             {this.renderCover()}
@@ -231,6 +239,27 @@ class App extends React.Component {
     );
   }
 
+  renderTrackDuration() {
+    const currentTrackStream = _.head(
+      _.get(
+        this.props.queue.queueItems[this.props.queue.currentSong],
+        'streams'
+      )
+    );
+    
+    const timeToEnd = _.get(
+      currentTrackStream,
+      'duration'
+    ) - this.props.player.seek;
+    
+    return (
+      <TrackDuration
+        timePlayed={formatDuration(this.props.player.seek)}
+        timeToEnd={'-' + formatDuration(timeToEnd)}
+      />
+    );
+  }
+  
   renderCover () {
     return (
       <ui.Cover
