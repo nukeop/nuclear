@@ -69,6 +69,13 @@ export default [
     default: false
   },
   {
+    name: 'trackDuration',
+    category: 'display',
+    type: settingType.BOOLEAN,
+    prettyName: 'track-duration',
+    default: true
+  },
+  {
     name: 'api.enabled',
     category: 'http',
     type: settingType.BOOLEAN,

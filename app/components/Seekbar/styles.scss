@@ -1,6 +1,7 @@
 @import "../../vars";
 
 .seekbar_container {
+  position: relative;
   height: 1em;
 
   cursor: pointer;
