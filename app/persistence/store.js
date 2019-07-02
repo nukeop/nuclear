@@ -19,6 +19,7 @@ function initStore () {
 
   setIfUnset('localFolders', []);
   setIfUnset('playLists', []);
+  setIfUnset('localMeta', []);
 
   setIfUnset('favorites', {
     tracks: [],

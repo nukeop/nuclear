@@ -2,12 +2,13 @@ import { promisify } from 'util';
 import glob from 'glob';
 import path from 'path';
 import { parseFile } from 'music-metadata';
-import slug from 'slug';
+import uuid from 'uuid/v4';
+
 import { getOption } from './store';
 import fetchAcousticId from './lib/acousticId';
 
 export function formatMeta({ common, format }, path) {
-  const id = slug(`${common.artist} ${common.title}`);
+  const id = uuid();
   const port = getOption('api.port');
 
   return {
@@ -33,35 +34,33 @@ export function formatMeta({ common, format }, path) {
   };
 }
 
-export async function scanDirectories(directories) {
+export async function scanFoldersAndGetMeta(directories) {
   const files = await Promise.all([
     ...directories.map(dir => promisify(glob)(`${dir}/**/*.mp3`)),
     ...directories.map(dir => promisify(glob)(`${dir}/**/*.ogg`)),
     ...directories.map(dir => promisify(glob)(`${dir}/**/*.wav`))
-  ]).then(files => files.flat());
+  ]).then(Array.prototype.flat);
     
   const metas = await Promise.all(files.map(parseFile));
 
   const formattedMetas = files.map((file, i) => formatMeta(metas[i], file));
 
   for (let i in formattedMetas) {
-    delete formattedMetas[i].name;
     if (!formattedMetas[i].name) {
       const [data] = await fetchAcousticId(formattedMetas[i].path);
 
-      if (data) {
+      if (data && data.recording && data.recording.length) {
         formattedMetas[i].name = data.recordings[0].title;
-        formattedMetas[i].artist.name = data.recordings[0].artists[0].name;
+        formattedMetas[i].artist.name = data.recordings[0].artists[0].name || 'unknown';
       } else {
         formattedMetas[i].name = path.basename(formattedMetas[i].path.split('.').shift());
       }
     }
-    if (!formattedMetas[i].artist.name) {
-      formattedMetas[i].artist.name = 'unknown';
-    }
   }
 
-
-  return formattedMetas;
+  return formattedMetas.reduce((acc, item) => ({
+    ...acc,
+    [item.uuid]: item
+  }), {});
 
 }

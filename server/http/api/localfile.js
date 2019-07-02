@@ -3,7 +3,7 @@ import { ipcMain } from 'electron';
 import { Validator } from 'express-json-validator-middleware';
 import _ from 'lodash';
 
-import { scanDirectories } from '../../local-files';
+import { scanFoldersAndGetMeta } from '../../local-files';
 import { store, getOption } from '../../store';
 
 export const localSearchSchema = {
@@ -35,20 +35,36 @@ export const localGetSchema = {
 
 const { validate } = new Validator({ allErrors: true });
 
+function mergeCache(data, cache = []) {
+  const storedCache = store.get('localMeta');
+
+  for (let track of data) {
+    for (let storedTrack of storedCache) {
+      if (track.path === storedTrack.path) {
+        cache.push(storedTrack);
+        break;
+      } 
+    }
+    cache.push(track);
+  }
+
+  return cache.reduce(track => ({
+    [track.uuid]: track
+  }));
+}
+
 export function localFileRouter() {
-  let cache;
-  let byArtist;
+  let cache = store.get('localMeta');
+  let byArtist = _.groupBy(Object.values(cache), track => track.artist.name);
 
   ipcMain.on('refresh-localfolders', async event => {
     try {
-      const data = await scanDirectories(store.get('localFolders'));
-      cache = data.reduce((acc, item) => ({
-        ...acc,
-        [item.uuid]: item
-      }), {});
-      byArtist = _.groupBy(data, track => track.artist.name);
+      const data = await scanFoldersAndGetMeta(store.get('localFolders'));
+      cache = mergeCache(data, cache);
+      store.set('localMeta', cache);
+      byArtist = _.groupBy(Object.values(cache), track => track.artist.name);
   
-      event.sender.send('local-files', data);
+      event.sender.send('local-files', cache);
     } catch (err) {
       event.sender.send('local-files-error', err);
     }
@@ -82,8 +98,8 @@ export function localFileRouter() {
     (req, res, next) => {
       const picture = cache[req.params.fileId].cover;
 
-      if (picture) {
-        res.end(picture[0].data);
+      if (picture && picture.length) {
+        res.end(Buffer.from(picture[0].data.data));
       } else {
         next();
       }
