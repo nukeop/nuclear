@@ -14,6 +14,7 @@ import { useTranslation } from 'react-i18next';
 
 import Header from '../Header';
 import TrackRow from '../TrackRow';
+import EmptyState from './EmptyState';
 
 import trackRowStyles from '../TrackRow/styles.scss';
 import styles from './index.scss';
@@ -72,48 +73,53 @@ const LibraryView = ({
         </List>
       </Segment>
       <Segment>
-        <div className={styles.search_field}>
-          <Input
-            inverted
-            transparent
-            icon='search'
-            iconPosition='left'
-            placeholder={t('filter-placeholder')}
-            onChange={actions.updateFilter}
-          />
-        </div>
+        {
+          _.isEmpty(tracks)
+            ? <EmptyState />
+            : <React.Fragment>
+              <div className={styles.search_field}>
+                <Input
+                  inverted
+                  transparent
+                  icon='search'
+                  iconPosition='left'
+                  placeholder={t('filter-placeholder')}
+                  onChange={actions.updateFilter}
+                />
+              </div>
 
-        <Segment inverted className={trackRowStyles.tracks_container}>
-          <Dimmer active={pending} loading={pending} />
-          {!pending && (
-            <Table sortable className={styles.table}>
-              <Table.Header className={styles.thead}>
-                <Table.Row>
-                  <Table.HeaderCell>
-                    <Icon name='image' />
-                  </Table.HeaderCell>
-                  <Table.HeaderCell
-                    sorted={sortBy === 'artist' ? direction : null}
-                    onClick={handleSort('artist')}
-                  >
-                    {t('artist')}
-                  </Table.HeaderCell>
-                  <Table.HeaderCell
-                    sorted={sortBy === 'name' ? direction : null}
-                    onClick={handleSort('name')}
-                  >
-                    {t('title')}
-                  </Table.HeaderCell>
-                  <Table.HeaderCell
-                    sorted={sortBy === 'album' ? direction : null}
-                    onClick={handleSort('album')}
-                  >
-                    {t('album')}
-                  </Table.HeaderCell>
-                </Table.Row>
-              </Table.Header>
-              <Table.Body className={styles.tbody}>
-                {tracks &&
+              <Segment inverted className={trackRowStyles.tracks_container}>
+                <Dimmer active={pending} loading={pending} />
+          
+                {!pending && (
+                  <Table sortable className={styles.table}>
+                    <Table.Header className={styles.thead}>
+                      <Table.Row>
+                        <Table.HeaderCell>
+                          <Icon name='image' />
+                        </Table.HeaderCell>
+                        <Table.HeaderCell
+                          sorted={sortBy === 'artist' ? direction : null}
+                          onClick={handleSort('artist')}
+                        >
+                          {t('artist')}
+                        </Table.HeaderCell>
+                        <Table.HeaderCell
+                          sorted={sortBy === 'name' ? direction : null}
+                          onClick={handleSort('name')}
+                        >
+                          {t('title')}
+                        </Table.HeaderCell>
+                        <Table.HeaderCell
+                          sorted={sortBy === 'album' ? direction : null}
+                          onClick={handleSort('album')}
+                        >
+                          {t('album')}
+                        </Table.HeaderCell>
+                      </Table.Row>
+                    </Table.Header>
+                    <Table.Body className={styles.tbody}>
+                      {tracks &&
                   tracks.map((track, idx) => (
                     <TrackRow
                       key={'favorite-track-' + idx}
@@ -126,10 +132,12 @@ const LibraryView = ({
                       isLocal
                     />
                   ))}
-              </Table.Body>
-            </Table>
-          )}
-        </Segment>
+                    </Table.Body>
+                  </Table>
+                )}
+              </Segment>
+            </React.Fragment>
+        }
       </Segment>
     </div>
   );
