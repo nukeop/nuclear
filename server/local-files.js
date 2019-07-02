@@ -1,5 +1,6 @@
 import { promisify } from 'util';
 import glob from 'glob';
+import path from 'path';
 import { parseFile } from 'music-metadata';
 import slug from 'slug';
 import { getOption } from './store';
@@ -52,10 +53,14 @@ export async function scanDirectories(directories) {
         formattedMetas[i].name = data.recordings[0].title;
         formattedMetas[i].artist.name = data.recordings[0].artists[0].name;
       } else {
-        formattedMetas[i].name = 'unknown';
+        formattedMetas[i].name = path.basename(formattedMetas[i].path.split('.').shift());
       }
     }
+    if (!formattedMetas[i].artist.name) {
+      formattedMetas[i].artist.name = 'unknown';
+    }
   }
+
 
   return formattedMetas;
 
