@@ -20,7 +20,7 @@ function initStore () {
   setIfUnset('localFolders', []);
   setIfUnset('playLists', []);
 
-  setIfUnset( 'favorites', {
+  setIfUnset('favorites', {
     tracks: [],
     artists: [],
     albums: []
@@ -68,7 +68,7 @@ function initStore () {
 // Should be called in startup process
 initStore();
 
-function getOption (key) {
+function getOption(key) {
   const settings = store.get('settings') || {};
   let value = settings[key];
 
@@ -83,7 +83,7 @@ function isValidPort(value) {
   return typeof value === 'number' && value > 1024 && value < 49151;
 }
 
-function setOption (key, value) {
+function setOption(key, value) {
   const settings = store.get('settings') || {};
 
   store.set('settings', Object.assign({}, settings, { [`${key}`]: value }));
@@ -97,6 +97,5 @@ function setOption (key, value) {
     stopApi();
   }
 }
-
 
 export { store, getOption, setOption };

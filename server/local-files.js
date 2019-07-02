@@ -3,7 +3,6 @@ import glob from 'glob';
 import { parseFile } from 'music-metadata';
 import slug from 'slug';
 import { getOption } from './store';
-import fpcalc from './lib/fpcalc';
 import fetchAcousticId from './lib/acousticId';
 
 export function formatMeta({ common, format }, path) {
@@ -44,17 +43,18 @@ export async function scanDirectories(directories) {
 
   const formattedMetas = files.map((file, i) => formatMeta(metas[i], file));
 
-  try {
-    for (let i in formattedMetas) {
-      if (!formattedMetas[i].name) {
-        const [{ recordings }] = await fetchAcousticId(await promisify(fpcalc)(formattedMetas[i].path));
+  for (let i in formattedMetas) {
+    delete formattedMetas[i].name;
+    if (!formattedMetas[i].name) {
+      const [data] = await fetchAcousticId(formattedMetas[i].path);
 
-        formattedMetas[i].name = recordings[0].title;
-        formattedMetas[i].artist.name = recordings[0].artists[0].name;
+      if (data) {
+        formattedMetas[i].name = data.recordings[0].title;
+        formattedMetas[i].artist.name = data.recordings[0].artists[0].name;
+      } else {
+        formattedMetas[i].name = 'unknown';
       }
     }
-  } catch (err) {
-    console.error(err);
   }
 
   return formattedMetas;

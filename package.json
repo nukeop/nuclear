@@ -4,7 +4,7 @@
   "description": "Streaming music player that finds music sources automatically.",
   "main": "main.js",
   "scripts": {
-    "start": "npm-run-all --parallel watch electron:dev:linux",
+    "start": "npm-run-all --parallel watch electron:dev",
     "electron:dev": "webpack --progress --colors --config=webpack.config.electron.js && electron ./bundle.electron.js",
     "electron:prod:linux": "npm run build:electron:linux && electron ./dist/bundle.electron.js",
     "electron:prod": "npm run build:electron && electron ./dist/bundle.electron.js",

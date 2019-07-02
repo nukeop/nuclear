@@ -1,4 +1,3 @@
-import once from 'once';
 import { spawn } from 'child_process';
 import es from 'event-stream';
 import concat from 'concat-stream';
@@ -9,52 +8,46 @@ import path from 'path';
 import getBinaryPath from './binaries';
 import getPlatform from './platform';
 
-export default function(file, options, callback) {
+export default function(file, options = {}) {
   // Handle `options` parameter being optional
-  if (!callback) {
-    callback = options;
-    options = {};
-  }
-
-  // Make sure the callback is called only once
-  callback = once(callback);
-
-  // Command-line arguments to pass to fpcalc
-  const args = [];
-
-  // `-length` command-line argument
-  if (options.length) {
-    args.push('-length', options.length);
-  }
-
-  // `-raw` command-line argument
-  if (options.raw) {
-    args.push('-raw');
-  }
-
-  if (file && typeof file.pipe === 'function') {
-    args.push('-');
-    options.stdin = file;
-  } else {
-    args.push(file);
-  }
-
-  run(args, options)
-    .on('error', callback)
-    .pipe(parse())
-    .on('data', function(results) {
-      if (options.raw) {
-        const fingerprint = results.fingerprint.split(',').map(function(value) {
-          return parseInt(value);
-        });
-        results.fingerprintRaw = results.fingerprint;
-        results.fingerprint = new Buffer(fingerprint.length * 4);
-        for (let i = 0; i < fingerprint.length; i++) {
-          results.fingerprint.writeInt32BE(fingerprint[i], i * 4, true);
+  return new Promise((resolve, reject) => {
+    // Command-line arguments to pass to fpcalc
+    const args = [];
+  
+    // `-length` command-line argument
+    if (options.length) {
+      args.push('-length', options.length);
+    }
+  
+    // `-raw` command-line argument
+    if (options.raw) {
+      args.push('-raw');
+    }
+  
+    if (file && typeof file.pipe === 'function') {
+      args.push('-');
+      options.stdin = file;
+    } else {
+      args.push(file);
+    }
+  
+    run(args, options)
+      .on('error', reject)
+      .pipe(parse())
+      .on('data', function(results) {
+        if (options.raw) {
+          const fingerprint = results.fingerprint.split(',').map(function(value) {
+            return parseInt(value);
+          });
+          results.fingerprintRaw = results.fingerprint;
+          results.fingerprint = new Buffer(fingerprint.length * 4);
+          for (let i = 0; i < fingerprint.length; i++) {
+            results.fingerprint.writeInt32BE(fingerprint[i], i * 4, true);
+          }
         }
-      }
-      callback(null, results);
-    });
+        resolve(results);
+      });
+  });
 }
 
 // -- Run fpcalc command
