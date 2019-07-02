@@ -143,20 +143,24 @@ class App extends React.Component {
             </div>
           </div>
           
-          {this.renderMenuCategory('main', {
-            'dashboard': 'dashboard',
-            'downloads': 'download',
-            'lyrics': 'microphone',
-            'plugins': 'flask',
-            'search': 'search',
-            'settings': 'cogs',
-            'equalizer': 'sliders'
-          })}
+          {
+            this.renderMenuCategory('main', [
+              { name: 'Dashboard', path: 'dashboard', icon: 'dashboard' },
+              { name: 'Downloads', path: 'downloads', icon: 'download' },
+              { name: 'Lyrics', path: 'lyrics', icon: 'microphone' },
+              { name: 'Plugins', path: 'plugins', icon: 'flask' },
+              { name: 'Search', path: 'search', icon: 'search' },
+              { name: 'Settings', path: 'settings', icon: 'cogs' },
+              { name: 'Equalizer', path: 'equalizer', icon: 'sliders' }
+            ])
+          }
 
-          {this.renderMenuCategory('collection', {
-            'favorites': 'star',
-            'library': 'file-sound-o'
-          })}
+          {
+            this.renderMenuCategory('collection', [
+              { name: 'Favorites', path: 'favorites/tracks', icon: 'star' },
+              { name: 'Library', path: 'library', icon: 'file-sound-o' }
+            ])
+          }
 
           {
             !_.isEmpty(this.props.playlists) &&
@@ -174,18 +178,20 @@ class App extends React.Component {
     );
   }
 
-  renderMenuCategory (headerText, iconObject) {
+  renderMenuCategory (headerText, links) {
     return <React.Fragment>
       <SidebarMenuCategoryHeader compact={this.props.settings.compactMenuBar} headerText={headerText} /> 
-      {Object.keys(iconObject).map(
-        name => this.renderNavLink(name, iconObject[name]))
+      {
+        links.map(
+          link => this.renderNavLink(link.name, link.path, link.icon)
+        )
       }
     </React.Fragment>;
   }
 
-  renderNavLink (name, icon) {
+  renderNavLink (name, path, icon) {
     return (
-      <NavLink to={'/' + name} activeClassName={styles.active_nav_link}>
+      <NavLink to={'/' + path} activeClassName={styles.active_nav_link}>
         <SidebarMenuItem>
           <FontAwesome name={icon} /> {!this.props.settings.compactMenuBar && name}
         </SidebarMenuItem>
