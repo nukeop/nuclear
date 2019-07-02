@@ -145,20 +145,20 @@ class App extends React.Component {
           
           {
             this.renderMenuCategory('main', [
-              { name: 'Dashboard', path: 'dashboard', icon: 'dashboard' },
-              { name: 'Downloads', path: 'downloads', icon: 'download' },
-              { name: 'Lyrics', path: 'lyrics', icon: 'microphone' },
-              { name: 'Plugins', path: 'plugins', icon: 'flask' },
-              { name: 'Search', path: 'search', icon: 'search' },
-              { name: 'Settings', path: 'settings', icon: 'cogs' },
-              { name: 'Equalizer', path: 'equalizer', icon: 'sliders' }
+              { name: 'dashboard', path: 'dashboard', icon: 'dashboard' },
+              { name: 'downloads', path: 'downloads', icon: 'download' },
+              { name: 'lyrics', path: 'lyrics', icon: 'microphone' },
+              { name: 'plugins', path: 'plugins', icon: 'flask' },
+              { name: 'search', path: 'search', icon: 'search' },
+              { name: 'settings', path: 'settings', icon: 'cogs' },
+              { name: 'equalizer', path: 'equalizer', icon: 'sliders' }
             ])
           }
 
           {
             this.renderMenuCategory('collection', [
-              { name: 'Favorites', path: 'favorites/tracks', icon: 'star' },
-              { name: 'Library', path: 'library', icon: 'file-sound-o' }
+              { name: 'favorite', path: 'favorites/tracks', icon: 'star' },
+              { name: 'library', path: 'library', icon: 'file-sound-o' }
             ])
           }
 
@@ -180,7 +180,10 @@ class App extends React.Component {
 
   renderMenuCategory (headerText, links) {
     return <React.Fragment>
-      <SidebarMenuCategoryHeader compact={this.props.settings.compactMenuBar} headerText={headerText} /> 
+      <SidebarMenuCategoryHeader
+        compact={this.props.settings.compactMenuBar}
+        headerText={this.props.t(headerText)}
+      /> 
       {
         links.map(
           link => this.renderNavLink(link.name, link.path, link.icon)
@@ -193,7 +196,7 @@ class App extends React.Component {
     return (
       <NavLink to={'/' + path} activeClassName={styles.active_nav_link}>
         <SidebarMenuItem>
-          <FontAwesome name={icon} /> {!this.props.settings.compactMenuBar && name}
+          <FontAwesome name={icon} /> {!this.props.settings.compactMenuBar && this.props.t(name)}
         </SidebarMenuItem>
       </NavLink>
     );
