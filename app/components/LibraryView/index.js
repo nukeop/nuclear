@@ -11,6 +11,7 @@ import {
   Table
 } from 'semantic-ui-react';
 import { useTranslation } from 'react-i18next';
+import _ from 'lodash';
 
 import Header from '../Header';
 import TrackRow from '../TrackRow';
@@ -89,7 +90,7 @@ const LibraryView = ({
               </div>
 
               <Segment inverted className={trackRowStyles.tracks_container}>
-                <Dimmer active={pending} loading={pending} />
+                <Dimmer active={pending} loading={pending.toString()} />
           
                 {!pending && (
                   <Table sortable className={styles.table}>

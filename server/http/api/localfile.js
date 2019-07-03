@@ -35,24 +35,6 @@ export const localGetSchema = {
 
 const { validate } = new Validator({ allErrors: true });
 
-function mergeCache(data, cache = []) {
-  const storedCache = store.get('localMeta');
-
-  for (let track of data) {
-    for (let storedTrack of storedCache) {
-      if (track.path === storedTrack.path) {
-        cache.push(storedTrack);
-        break;
-      } 
-    }
-    cache.push(track);
-  }
-
-  return cache.reduce(track => ({
-    [track.uuid]: track
-  }));
-}
-
 export function localFileRouter() {
   let cache = store.get('localMeta');
   let byArtist = _.groupBy(Object.values(cache), track => track.artist.name);
@@ -60,12 +42,16 @@ export function localFileRouter() {
   ipcMain.on('refresh-localfolders', async event => {
     try {
       const data = await scanFoldersAndGetMeta(store.get('localFolders'));
-      cache = mergeCache(data, cache);
+      cache = {
+        ...cache,
+        ...data
+      };
       store.set('localMeta', cache);
       byArtist = _.groupBy(Object.values(cache), track => track.artist.name);
-  
+
       event.sender.send('local-files', cache);
     } catch (err) {
+      console.error(err);
       event.sender.send('local-files-error', err);
     }
   });
@@ -82,14 +68,9 @@ export function localFileRouter() {
     }
   };
 
-  router.get(
-    '/:fileId',
-    validate(localGetSchema),
-    checkCache,
-    (req, res) => {
-      res.download(cache[req.params.fileId].path);
-    }
-  );
+  router.get('/:fileId', validate(localGetSchema), checkCache, (req, res) => {
+    res.download(cache[req.params.fileId].path);
+  });
 
   router.get(
     '/:fileId/thumb',
@@ -99,7 +80,7 @@ export function localFileRouter() {
       const picture = cache[req.params.fileId].cover;
 
       if (picture && picture.length) {
-        res.end(Buffer.from(picture[0].data.data));
+        res.end(picture[0].data);
       } else {
         next();
       }
@@ -122,9 +103,12 @@ export function localFileRouter() {
             duration: track.duration,
             source: 'Local',
             stream: `http://127.0.0.1:${port}/nuclear/file/${track.uuid}`,
-            thumbnail: `http://127.0.0.1:${port}/nuclear/file/${track.uuid}/thumb`
+            thumbnail: `http://127.0.0.1:${port}/nuclear/file/${
+              track.uuid
+            }/thumb`
           }))
-          .pop());
+          .pop()
+      );
     } catch (err) {
       next(err);
     }

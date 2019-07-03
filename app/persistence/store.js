@@ -1,6 +1,5 @@
 import _ from 'lodash';
 import electronStore from 'electron-store';
-import logger from 'electron-timber';
 
 import options from '../../common/settings';
 import { restartApi, stopApi } from '../mpris';
@@ -16,10 +15,10 @@ function setIfUnset (key, value) {
 function initStore () {
   setIfUnset('lastFm', {});
   setIfUnset('settings', {});
+  setIfUnset('localMeta', {});
 
   setIfUnset('localFolders', []);
   setIfUnset('playLists', []);
-  setIfUnset('localMeta', []);
 
   setIfUnset('favorites', {
     tracks: [],

@@ -4,15 +4,23 @@ import path from 'path';
 import { parseFile } from 'music-metadata';
 import uuid from 'uuid/v4';
 
-import { getOption } from './store';
+import { store, getOption } from './store';
 import fetchAcousticId from './lib/acousticId';
 
 export function formatMeta({ common, format }, path) {
-  const id = uuid();
+  const cachedMetas = store.get('localMeta');
+  let id;
+
+  for (let i of Object.values(cachedMetas)) {
+    if (i.name === common.title && (i.artist.name === common.artist || i.artist.name === 'unknown')) {
+      id = i.uuid;
+      break;
+    }
+  }
   const port = getOption('api.port');
 
   return {
-    uuid: id,
+    uuid: id || uuid(),
     path,
     duration: format.duration,
     name: common.title,
@@ -39,7 +47,7 @@ export async function scanFoldersAndGetMeta(directories) {
     ...directories.map(dir => promisify(glob)(`${dir}/**/*.mp3`)),
     ...directories.map(dir => promisify(glob)(`${dir}/**/*.ogg`)),
     ...directories.map(dir => promisify(glob)(`${dir}/**/*.wav`))
-  ]).then(Array.prototype.flat);
+  ]).then(result => result.flat());
     
   const metas = await Promise.all(files.map(parseFile));
 

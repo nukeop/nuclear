@@ -1,12 +1,13 @@
 /* eslint-env node */
 const webpack = require('webpack');
 const HappyPack = require('happypack');
+const nodeExternals = require('webpack-node-externals');
 
-module.exports = env => {
+module.exports = () => {
   const entry = './server/main.dev.js';
 
   return {
-    entry: entry,
+    entry,
     output: {
       path: __dirname,
       filename: 'bundle.electron.js'
@@ -15,6 +16,7 @@ module.exports = env => {
     stats: {
       warningsFilter: 'express'
     },
+    externals: [nodeExternals()],
     module: {
       rules: [
         {
