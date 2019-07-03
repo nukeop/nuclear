@@ -71,14 +71,14 @@ export function clearQueue () {
   };
 }
 
-export function nextSong () {
+function nextSongAction() {
   return {
     type: NEXT_SONG,
     payload: null
   };
 }
 
-export function previousSong () {
+function previousSongAction() {
   return {
     type: PREVIOUS_SONG,
     payload: null
@@ -99,5 +99,30 @@ export function swapSongs (itemFrom, itemTo) {
       itemFrom,
       itemTo
     }
+  };
+}
+
+function dispatchWithShuffle(dispatch, getState, action) {
+  const state = getState();
+  const settings = state.settings;
+  const queue = state.queue;
+    
+  if (settings.shuffleQueue) {
+    const index = _.random(0, queue.queueItems.length - 1);
+    dispatch(selectSong(index));
+  } else {
+    dispatch(action());
+  }
+}
+
+export function previousSong() {
+  return (dispatch, getState) => {
+    dispatchWithShuffle(dispatch, getState, previousSongAction);
+  };
+}
+
+export function nextSong() {
+  return (dispatch, getState) => {
+    dispatchWithShuffle(dispatch, getState, nextSongAction);
   };
 }
