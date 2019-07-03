@@ -161,6 +161,7 @@
     "playback": "Playback",
     "program-settings": "Program settings",
     "shuffle-queue": "Shuffle songs",
+    "shuffle-when-going-back": "Play a random track when shuffle is active and previous track button is clicked",
     "social": "Social",
     "user": "User:",
     "youtube": "Youtube",
