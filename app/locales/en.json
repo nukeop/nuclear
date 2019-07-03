@@ -134,6 +134,7 @@
   },
   "settings": {
     "api-port": "Port used by the api",
+    "api-url": "",
     "autoradio": "Autoradio",
     "autoradio-craziness": "Autoradio craziness",
     "autoradio-craziness-description": "Autoradio will select songs that are less similar to the ones already in the queue the crazier it is",

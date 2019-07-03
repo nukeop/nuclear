@@ -1,5 +1,8 @@
+import React from 'react';
 import globals from '../globals';
 import settingType from './settingsEnum';
+
+import HttpApiUrl from '../containers/HttpApiUrl';
 
 export default [
   {
@@ -93,18 +96,25 @@ export default [
     default: true
   },
   {
+    name: 'api.url',
+    category: 'http',
+    type: settingType.NODE,
+    prettyName: 'api-url',
+    node: <HttpApiUrl />
+  },
+  {
     name: 'api.enabled',
     category: 'http',
     type: settingType.BOOLEAN,
     prettyName: 'enable-api',
-    default: true
+    default: false
   },
   {
     name: 'api.port',
     category: 'http',
     type: settingType.NUMBER,
     prettyName: 'api-port',
-    default: 8080,
+    default: 3100,
     min: 1024,
     max: 49151
   },

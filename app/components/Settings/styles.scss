@@ -54,7 +54,8 @@
     }
     
     &.string,
-    &.number {
+    &.number,
+    &.node {
       flex-flow: column;
 
       .settings_item_text>label:only-child {
