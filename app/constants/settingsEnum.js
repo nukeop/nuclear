@@ -1,6 +1,7 @@
 export default {
   BOOLEAN: 'boolean',
-  STRING: 'string',
+  LIST: 'list',
+  NODE: 'node',
   NUMBER: 'number',
-  LIST: 'list'
+  STRING: 'string'
 };
