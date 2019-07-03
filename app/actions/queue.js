@@ -117,7 +117,14 @@ function dispatchWithShuffle(dispatch, getState, action) {
 
 export function previousSong() {
   return (dispatch, getState) => {
-    dispatchWithShuffle(dispatch, getState, previousSongAction);
+    const state = getState();
+    const settings = state.settings;
+
+    if (settings.shuffleWhenGoingBack) {
+      dispatchWithShuffle(dispatch, getState, previousSongAction);
+    } else {
+      dispatch(previousSongAction());
+    }
   };
 }
 

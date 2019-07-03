@@ -17,6 +17,13 @@ export default [
     default: false
   },
   {
+    name: 'shuffleWhenGoingBack',
+    category: 'playback',
+    type: settingType.BOOLEAN,
+    prettyName: 'shuffle-when-going-back',
+    default: false
+  },
+  {
     name: 'autoradio',
     category: 'playback',
     type: settingType.BOOLEAN,
