@@ -253,8 +253,19 @@ class Settings extends React.Component {
   }
   renderOption (settings, option, key) {
     return (
-      <div key={key} className={cx(styles.settings_item, option.type)}>
-        <label>{this.props.t(option.prettyName)}</label>
+      <div key={key} className={cx(styles.settings_item,
+        option.type)}>
+        <span className={styles.settings_item_text}>
+          <label className={styles.settings_item_name}>
+            {this.props.t(option.prettyName)}
+          </label>
+          {
+            !_.isNil(option.description) &&
+              <p className={styles.settings_item_description}>
+                {this.props.t(option.description)}
+              </p>
+          }
+        </span>
         <Spacer />
         {
           option.type === settingsEnum.BOOLEAN &&
