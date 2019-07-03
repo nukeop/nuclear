@@ -19,6 +19,7 @@ export default [
   {
     name: 'shuffleWhenGoingBack',
     category: 'playback',
+    description: 'shuffle-when-going-back-description',
     type: settingType.BOOLEAN,
     prettyName: 'shuffle-when-going-back',
     default: false
@@ -26,6 +27,7 @@ export default [
   {
     name: 'autoradio',
     category: 'playback',
+    description: 'autoradio-description',
     type: settingType.BOOLEAN,
     prettyName: 'autoradio',
     default: true
@@ -47,6 +49,7 @@ export default [
   {
     name: 'autoradioCraziness',
     category: 'playback',
+    description: 'autoradio-craziness-description',
     type: settingType.NUMBER,
     prettyName: 'autoradio-craziness',
     default: 10,
