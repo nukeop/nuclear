@@ -31,6 +31,13 @@ export default [
     default: true
   },
   {
+    name: 'seekIteration',
+    category: 'playback',
+    type: settingType.NUMBER,
+    prettyName: 'seek-iteration',
+    default: 10
+  },
+  {
     name: 'notificationTimeout',
     category: 'program-settings',
     type: settingType.NUMBER,
