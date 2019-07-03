@@ -160,6 +160,7 @@
     "notlogged": "Not logged in",
     "playback": "Playback",
     "program-settings": "Program settings",
+    "seek-iteration": "Number of seconds to seek forward/backwards when pressing arrow keys",
     "shuffle-queue": "Shuffle songs",
     "shuffle-when-going-back": "Play a random track when shuffle is active and previous track button is clicked",
     "social": "Social",
