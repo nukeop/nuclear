@@ -4,23 +4,16 @@ import path from 'path';
 import { parseFile } from 'music-metadata';
 import uuid from 'uuid/v4';
 
-import { store, getOption } from './store';
+import { getOption } from './store';
 import fetchAcousticId from './lib/acousticId';
 
 export function formatMeta({ common, format }, path) {
-  const cachedMetas = store.get('localMeta');
-  let id;
+  let id = uuid();
 
-  for (let i of Object.values(cachedMetas)) {
-    if (i.name === common.title && (i.artist.name === common.artist || i.artist.name === 'unknown')) {
-      id = i.uuid;
-      break;
-    }
-  }
   const port = getOption('api.port');
 
   return {
-    uuid: id || uuid(),
+    uuid: id,
     path,
     duration: format.duration,
     name: common.title,
@@ -31,24 +24,28 @@ export function formatMeta({ common, format }, path) {
     },
     genre: common.genre,
     year: common.year,
-    cover: common.picture,
+    cover: common.picture ? common.picture[0].data : undefined,
     loading: false,
     local: true,
     image: [
-      common.picture ? {
-        '#text': `http://127.0.0.1:${port}/nuclear/file/${id}/thumb`
-      } : undefined
+      common.picture
+        ? {
+          '#text': `http://127.0.0.1:${port}/nuclear/file/${id}/thumb`
+        }
+        : undefined
     ]
   };
 }
 
-export async function scanFoldersAndGetMeta(directories) {
+export async function scanFoldersAndGetMeta(directories, cache = {}) {
+  const cachedFiles = Object.values(cache).map(({ path }) => path);
+
   const files = await Promise.all([
     ...directories.map(dir => promisify(glob)(`${dir}/**/*.mp3`)),
     ...directories.map(dir => promisify(glob)(`${dir}/**/*.ogg`)),
     ...directories.map(dir => promisify(glob)(`${dir}/**/*.wav`))
-  ]).then(result => result.flat());
-    
+  ]).then(result => result.flat().filter(file => !cachedFiles.includes(file)));
+
   const metas = await Promise.all(files.map(parseFile));
 
   const formattedMetas = files.map((file, i) => formatMeta(metas[i], file));
@@ -59,16 +56,32 @@ export async function scanFoldersAndGetMeta(directories) {
 
       if (data && data.recording && data.recording.length) {
         formattedMetas[i].name = data.recordings[0].title;
-        formattedMetas[i].artist.name = data.recordings[0].artists[0].name || 'unknown';
+        formattedMetas[i].artist.name =
+          data.recordings[0].artists[0].name || 'unknown';
       } else {
-        formattedMetas[i].name = path.basename(formattedMetas[i].path.split('.').shift());
+        formattedMetas[i].name = path.basename(
+          formattedMetas[i].path.split('.').shift()
+        );
       }
     }
   }
 
-  return formattedMetas.reduce((acc, item) => ({
-    ...acc,
-    [item.uuid]: item
-  }), {});
+  const formattedFiles = formattedMetas.map(({ path }) => path);
+  const filteredCache = Object.values(cache)
+    .filter(({ path }) => !formattedFiles.includes(path))
+    .reduce(
+      (acc, item) => ({
+        ...acc,
+        [item.uuid]: item
+      }),
+      {}
+    );
 
+  return formattedMetas.reduce(
+    (acc, item) => ({
+      ...acc,
+      [item.uuid]: item
+    }),
+    filteredCache
+  );
 }

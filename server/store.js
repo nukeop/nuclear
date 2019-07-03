@@ -7,7 +7,7 @@ import options from '../common/settings';
 const store = new electronStore();
 logger.log(`Initialized settings store at ${store.path}`);
 
-function getOption (key) {
+function getOption(key) {
   let settings = store.get('settings') || {};
   let value = settings[key];
   if (typeof value === 'undefined') {
@@ -17,10 +17,44 @@ function getOption (key) {
   return value;
 }
 
-function setOption (key, value) {
+function setOption(key, value) {
   const settings = store.get('settings') || {};
 
   store.set('settings', Object.assign({}, settings, { [`${key}`]: value }));
 }
 
-export { getOption, setOption, store };
+function setLocalMeta(data) {
+  const meta = Object.values(data)
+    .map(item => ({
+      ...item,
+      cover: item.cover ? item.cover.toString('base64') : undefined
+    }))
+    .reduce(
+      (acc, item) => ({
+        ...acc,
+        [item.uuid]: item
+      }),
+      {}
+    );
+
+  store.set('localMeta', meta);
+}
+
+function getLocalMeta() {
+  const data = store.get('localMeta');
+
+  return Object.values(data)
+    .map(item => ({
+      ...item,
+      cover: item.cover ? Buffer.from(item.cover, 'base64') : undefined
+    }))
+    .reduce(
+      (acc, item) => ({
+        ...acc,
+        [item.uuid]: item
+      }),
+      {}
+    );
+}
+
+export { getOption, setOption, setLocalMeta, getLocalMeta, store };

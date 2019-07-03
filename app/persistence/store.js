@@ -6,13 +6,13 @@ import { restartApi, stopApi } from '../mpris';
 
 const store = new electronStore();
 
-function setIfUnset (key, value) {
+function setIfUnset(key, value) {
   if (!store.get(key)) {
     store.set(key, value);
   }
 }
 
-function initStore () {
+function initStore() {
   setIfUnset('lastFm', {});
   setIfUnset('settings', {});
   setIfUnset('localMeta', {});

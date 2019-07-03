@@ -4,7 +4,7 @@ import { Validator } from 'express-json-validator-middleware';
 import _ from 'lodash';
 
 import { scanFoldersAndGetMeta } from '../../local-files';
-import { store, getOption } from '../../store';
+import { store, getOption, getLocalMeta, setLocalMeta } from '../../store';
 
 export const localSearchSchema = {
   body: {
@@ -36,17 +36,14 @@ export const localGetSchema = {
 const { validate } = new Validator({ allErrors: true });
 
 export function localFileRouter() {
-  let cache = store.get('localMeta');
+  let cache = getLocalMeta();
   let byArtist = _.groupBy(Object.values(cache), track => track.artist.name);
 
   ipcMain.on('refresh-localfolders', async event => {
     try {
-      const data = await scanFoldersAndGetMeta(store.get('localFolders'));
-      cache = {
-        ...cache,
-        ...data
-      };
-      store.set('localMeta', cache);
+      cache = await scanFoldersAndGetMeta(store.get('localFolders'), cache);
+
+      setLocalMeta(cache);
       byArtist = _.groupBy(Object.values(cache), track => track.artist.name);
 
       event.sender.send('local-files', cache);
@@ -79,8 +76,8 @@ export function localFileRouter() {
     (req, res, next) => {
       const picture = cache[req.params.fileId].cover;
 
-      if (picture && picture.length) {
-        res.end(picture[0].data);
+      if (picture) {
+        res.end(picture);
       } else {
         next();
       }
