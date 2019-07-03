@@ -154,6 +154,11 @@ class PlaylistView extends React.Component {
         </tr>
       </thead>);
   }
+  deleteTrack(playlist, track) {
+    const updatedPlaylist = _.cloneDeep(playlist);
+    updatedPlaylist.tracks = _.filter(updatedPlaylist.tracks, track => 
+    track.id !== trackToRemove.id )
+    };
 
   renderTrack (track, index) {
     const newTrack = _.cloneDeep(track);
@@ -167,7 +172,7 @@ class PlaylistView extends React.Component {
       displayCover
       displayArtist
       withDeleteButton={ true }
-      onDelete={this.removeTrack}
+      onDelete={this.deleteTrack}
     />
     );
   }

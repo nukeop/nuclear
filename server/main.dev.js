@@ -127,7 +127,7 @@ function createWindow () {
     });
   });
 
-  ipcMain.on('stop-api', () => {
+ ipcMain.on('stop-api', () => {
     closeHttpServer(httpServer);
   });
 }
