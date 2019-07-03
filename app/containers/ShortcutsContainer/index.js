@@ -8,7 +8,7 @@ import * as PlayerActions from '../../actions/player';
 import * as QueueActions from '../../actions/queue';
 
 const VOLUME_ITERATION = 1;
-const SEEK_ITERATION = 100;
+const SEEK_ITERATION = 10;
 const COEF_ITERATION = 0.1;
 const BASE_COEF = 1;
 
@@ -16,6 +16,11 @@ class Shortcuts extends React.Component {
   coef = BASE_COEF;
   timeout = null;
 
+  getSeekIteration() {
+    const { settings } = this.props;
+    return _.defaultTo(settings.seekIteration, SEEK_ITERATION);
+  }
+  
   incrementCoef() {
     clearTimeout(this.timeout);
     this.coef = this.coef + COEF_ITERATION;
@@ -73,7 +78,7 @@ class Shortcuts extends React.Component {
     const { player, actions } = this.props;
     
     if (player.playbackProgress < 100) {
-      actions.updateSeek(player.seek + SEEK_ITERATION * this.coef);
+      actions.updateSeek(player.seek + this.getSeekIteration() * this.coef);
       this.incrementCoef();
     }
     return false;
@@ -83,7 +88,7 @@ class Shortcuts extends React.Component {
     const { player, actions} = this.props;
 
     if (player.playbackProgress > 0) {
-      actions.updateSeek(player.seek - SEEK_ITERATION * this.coef);
+      actions.updateSeek(player.seek - this.getSeekIteration() * this.coef);
       this.incrementCoef();
     }
     return false;
@@ -130,10 +135,11 @@ class Shortcuts extends React.Component {
   }
 }
 
-function mapStateToProps({ player, queue }) {
+function mapStateToProps({ player, queue, settings }) {
   return {
     player,
-    queue
+    queue,
+    settings
   };
 }
 
