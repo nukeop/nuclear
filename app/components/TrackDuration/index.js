@@ -5,7 +5,7 @@ import styles from './styles.scss';
 
 const TrackDuration = ({ timePlayed, timeToEnd }) => {
   return (
-    <div className={styles.track_duration}>
+    <div className={styles.track_duration_widget}>
       <div className={styles.time_played}>
         { timePlayed }
       </div>

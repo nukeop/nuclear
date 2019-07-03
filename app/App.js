@@ -255,16 +255,21 @@ class App extends React.Component {
         'streams'
       )
     );
-    
-    const timeToEnd = _.get(
+
+    const currentTrackDuration = _.get(
       currentTrackStream,
       'duration'
-    ) - this.props.player.seek;
+    );
+    
+    const timeToEnd = currentTrackDuration - this.props.player.seek;
     
     return (
       <TrackDuration
         timePlayed={formatDuration(this.props.player.seek)}
-        timeToEnd={'-' + formatDuration(timeToEnd)}
+        timeToEnd={
+          !_.isNil(currentTrackDuration) &&
+            ('-' + formatDuration(timeToEnd))
+        }
       />
     );
   }
