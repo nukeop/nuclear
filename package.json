@@ -88,7 +88,6 @@
     "styled-components": "^3.2.6",
     "swagger-spec-express": "^2.0.7",
     "uuid": "^3.3.2",
-    "webpack-sources": "1.0.1",
     "webpack-cli": "^3.0.8",
     "youtube-playlist": "^1.0.2",
     "ytdl-core": "^0.29.2"
@@ -150,7 +149,6 @@
     "svg-inline-loader": "^0.8.0",
     "url-loader": "^1.0.1",
     "utf-8-validate": "^5.0.2",
-    "webpack-sources": "1.0.1",
     "webpack": "^4.12.1",
     "webpack-dev-server": "^3.1.4"
   },
