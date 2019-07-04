@@ -1,4 +1,4 @@
-import settings from '../../app/constants/settings';
+import settings from '../../common/settings';
 
 export const RESTRICTED_SETTINGS = [];
 export const READONLY_SETTINGS = [];
