@@ -2,7 +2,7 @@ import logger from 'electron-timber';
 import electronStore from 'electron-store';
 import _ from 'lodash';
 
-import options from '../app/constants/settings';
+import options from '../common/settings';
 
 const store = new electronStore();
 logger.log(`Initialized settings store at ${store.path}`);
