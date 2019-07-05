@@ -11,6 +11,7 @@
     "electron:docker": "docker run --rm --net=host --env=\"DISPLAY\" --volume=\"$HOME/.Xauthority:/root/.Xauthority:rw\" --device /dev/snd nuclear",
     "watch": "webpack-dev-server --inline --progress --env=dev",
     "build:dist": "webpack --progress --colors --env=prod && cp loader.css dist",
+    "build:dist:windows": "webpack --progress --colors --env=prod && copy loader.css dist",
     "build:electron:linux": "webpack --progress --colors --env.LINUX=true --config=webpack.config.electron.prod.js",
     "build:electron": "webpack --progress --colors --config=webpack.config.electron.prod.js",
     "build:docker": "docker build -t nuclear .",
