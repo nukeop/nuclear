@@ -1,54 +1,54 @@
 ﻿{
   "album": {
-    "queue": "Add album to queue"
+    "queue": "将专辑添加到播放列表"
   },
   "app": {
-    "collection": "Collection",
-    "dashboard": "Dashboard",
-    "downloads": "Downloads",
-    "equalizer": "Equalizer",
-    "favorite": "Favorite Tracks",
-    "library": "Local Library",
+    "collection": "收藏",
+    "dashboard": "主页",
+    "downloads": "下载",
+    "equalizer": "均衡器",
+    "favorite": "喜欢的音乐",
+    "library": "本地音乐",
     "lyrics": "歌词",
-    "playlists": "Playlists",
-    "plugins": "Plugins",
+    "playlists": "播放列表",
+    "plugins": "插件",
     "search": "搜索结果",
     "settings": "设置"
   },
   "artist": {
-    "count": "Play counts",
-    "queue": "Add all tracks to queue",
-    "similar": "Similar artists",
-    "title": "Title",
-    "tour": "On tour"
+    "count": "播放次数",
+    "queue": "将全部歌曲添加到播放列表",
+    "similar": "相似歌手",
+    "title": "音乐标题",
+    "tour": "巡回演出"
   },
   "dashboard": {
-    "artist": "Artist",
-    "best": "最好新音乐",
-    "best-new-albums": "最好新专辑",
-    "best-new-tracks": "Best new tracks",
-    "genres": "Genres",
-    "lastfm-title": "Top Tracks from LastFm.",
+    "artist": "艺人",
+    "best": "最棒新音乐",
+    "best-new-albums": "最棒新专辑",
+    "best-new-tracks": "最棒新单曲",
+    "genres": "流派",
+    "lastfm-title": "LastFm. 的最新单曲 ",
     "news": "消息",
-    "playcounts": "Playcounts",
-    "title": "Title",
-    "top": "Top Tracks"
+    "playcounts": "播放次数",
+    "title": "音乐标题",
+    "top": "排行榜"
   },
   "downloads": {
-    "clear": "Clear finished tracks",
-    "completion": "Completion",
-    "empty": "Downloads are empty.",
-    "empty-help": "Add something to your download queue and you'll see it here!",
-    "header": "Downloads",
+    "clear": "清空已下载曲名",
+    "completion": "完成",
+    "empty": "下载列表为空",
+    "empty-help": "把歌曲添加到你的下载列表中,然后你就会在这里看到!",
+    "header": "下载",
     "name": "名字",
-    "status": "Status"
+    "status": "状态"
   },
   "favorites": {
-    "artist": "Artist",
-    "empty": "No favorites added.",
-    "empty-help": "Try favoriting some tracks and they will appear here!",
-    "header": "Your favorite tracks",
-    "title": "Title"
+    "artist": "艺人",
+    "empty": "还没有喜欢的歌曲",
+    "empty-help": "Try favoriting some tracks and they will appear here!您喜欢的歌曲将会显示在这里",
+    "header": "您喜欢的歌曲",
+    "title": "音乐标题"
   },
   "help": {
     "about": "About Nuclear Music Player",
@@ -65,7 +65,7 @@
     "artist": "艺人",
     "filter-placeholder": "Filter...",
     "header": "Local Library",
-    "title": "Title"
+    "title": "音乐标题"
   },
   "lyrics": {
     "by-artist": "by {{artist}}",
@@ -84,19 +84,19 @@
     "previous-button": "Previous track button"
   },
   "playlists": {
-    "artist": "Artist",
+    "artist": "艺人",
     "delete": "Delete this playlist",
     "dialog-placeholder": "Playlist name...",
     "empty": "No playlists.",
     "rename": "重命名这个播放列表",
     "songs": "{{total}} song",
     "songs_plural": "{{total}} songs",
-    "title": "Title"
+    "title": "音乐标题"
   },
   "plugins": {
-    "header": "Plugins",
-    "placeholder": "Select the default music source:",
-    "subtitle": "Music sources"
+    "header": "插件",
+    "placeholder": "选择默认音乐来源:",
+    "subtitle": "音乐源"
   },
   "queue": {
     "clear": "Clear queue",
@@ -114,19 +114,19 @@
     "playlist-add": "Add to playlist",
     "playlist-toast-content": "Playlist {{name}} has been created.",
     "playlist-toast-title": "Playlist created",
-    "title": "Title:"
+    "title": "音乐标题:"
   },
   "search": {
     "album": "专辑",
     "album_plural": "专辑",
-    "artist": "Artist",
+    "artist": "艺人",
     "artist_plural": "Artists",
     "empty": "Nothing found.",
     "placeholder": "搜索...",
     "playlist": "播放列表",
     "playlist_plural": "播放列表",
     "queue-add": "Add all tracks to queue",
-    "track": "Track",
+    "track": "音乐标题",
     "track_plural": "Tracks"
   },
   "settings": {
@@ -162,10 +162,10 @@
   },
   "tags": {
     "albums": "Top Albums",
-    "artist": "Artist",
+    "artist": "艺人",
     "artists": "Top Artists",
     "duration": "Duration",
     "queue-add": "Add all tracks to queue",
-    "title": "Title"
+    "title": "音乐标题"
   }
 }
