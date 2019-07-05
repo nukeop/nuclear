@@ -1,22 +1,21 @@
 import _ from 'lodash';
 import electronStore from 'electron-store';
+import logger from 'electron-timber';
 
 import options from '../../common/settings';
 import { restartApi, stopApi } from '../mpris';
 
 const store = new electronStore();
 
-function setIfUnset (storeKey) {
-  const args = [...arguments];
-  args.shift();
-  if (!store.get(storeKey)) {
-    store.set(storeKey, ...args);
+function setIfUnset (key, value) {
+  if (!store.get(key)) {
+    store.set(key, value);
   }
 }
 
 function initStore () {
-  setIfUnset('lastFm');
-  setIfUnset('settings');
+  setIfUnset('lastFm', {});
+  setIfUnset('settings', {});
 
   setIfUnset('localFolders', []);
   setIfUnset('playLists', []);
