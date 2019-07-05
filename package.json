@@ -112,7 +112,7 @@
     "classnames": "^2.2.5",
     "css-loader": "^1.0.0",
     "electron": "^4.0.2",
-    "electron-builder": "^20.38.5",
+    "electron-builder": "^20.44.4",
     "electron-devtools-installer": "^2.2.4",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.3.1",
@@ -158,6 +158,7 @@
   "build": {
     "appId": "nuclear",
     "productName": "nuclear",
+    "artifactName": "${productName}-${env.GITHASH}.${ext}",
     "directories": {
       "output": "release"
     },
@@ -196,6 +197,9 @@
         "nsis",
         "portable"
       ]
+    },
+    "nsis": {
+      "artifactName": "${productName} Setup ${env.GITHASH}.${ext}",
     }
   }
 }
