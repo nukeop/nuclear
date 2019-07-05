@@ -26,7 +26,7 @@ const config = {
     publicPath: '/'
   },
   mode: 'development',
-  devtool: process.env.NODE_ENV === "development" ? "source-map" : "none",
+  devtool: 'source-map',
   optimization: {
     namedModules: true
   },
