@@ -8,6 +8,7 @@ const APP_DIR = path.resolve(__dirname, 'app');
 const RESOURCES_DIR = path.resolve(__dirname, 'resources');
 
 const config = {
+
   entry: [
     'react-hot-loader/patch',
     'webpack-dev-server/client?http://localhost:8080',
@@ -25,7 +26,7 @@ const config = {
     publicPath: '/'
   },
   mode: 'development',
-  devtool: 'source-map',
+  devtool: process.env.NODE_ENV === "development" ? "source-map" : "none",
   optimization: {
     namedModules: true
   },
@@ -82,6 +83,7 @@ const config = {
     })
   ],
   target: 'electron-renderer'
+
 };
 
 module.exports = config;
