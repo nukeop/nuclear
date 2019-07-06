@@ -18,9 +18,9 @@
     "test": "mocha --require babel-register --require babel-polyfill --require ignore-styles --timeout 10000 --prof",
     "pack": "electron-builder --dir -c.extraMetadata.main=dist/bundle.electron.js",
     "dist": "babel-node electron-builder -c.extraMetadata.main=dist/bundle.electron.js",
-    "build:linux": "electron-builder -c.extraMetadata.main=dist/bundle.electron.js --linux",
-    "build:windows": "electron-builder -c.extraMetadata.main=dist/bundle.electron.js --windows",
-    "build:macos": "electron-builder -c.extraMetadata.main=dist/bundle.electron.js --macos",
+    "build:linux": "electron-builder -c.extraMetadata.main=dist/bundle.electron.js --linux --publish always",
+    "build:windows": "electron-builder -c.extraMetadata.main=dist/bundle.electron.js --windows --publish always",
+    "build:macos": "electron-builder -c.extraMetadata.main=dist/bundle.electron.js --macos --publish always",
     "build:all": "electron-builder -c.extraMetadata.main=dist/bundle.electron.js -mwl",
     "lint": "eslint app",
     "i18n": "sync-i18n --files 'app/locales/*.json' --primary en --languages fr nl de dk es pl zh ru --space 2"
@@ -170,7 +170,6 @@
     "extraFiles": [
       "resources"
     ],
-    "publish": "always",
     "releaseInfo": {
       "releaseName": "Nuclear ${env.GITHASH}"
     },
