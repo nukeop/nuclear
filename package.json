@@ -170,6 +170,10 @@
     "extraFiles": [
       "resources"
     ],
+    "publish": "always",
+    "releaseInfo": {
+      "releaseName": "Nuclear ${env.GITHASH}"
+    },
     "linux": {
       "desktop": {
         "Name": "Nuclear",
