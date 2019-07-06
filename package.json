@@ -199,7 +199,7 @@
       ]
     },
     "nsis": {
-      "artifactName": "${productName} Setup ${env.GITHASH}.${ext}",
+      "artifactName": "${productName} Setup ${env.GITHASH}.${ext}"
     }
   }
 }
