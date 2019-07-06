@@ -17,6 +17,9 @@ matrix:
       language: node_js
       node_js:  "8"
 
+env:
+  global:
+     - GITHASH=${TRAVIS_COMMIT::6}
 
 before_install:
   - if [ $TRAVIS_OS_NAME = linux ]; then sudo apt-get install libdbus-1-dev -y; fi
