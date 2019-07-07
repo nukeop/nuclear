@@ -1,4 +1,3 @@
-import fetch from 'node-fetch';
 import { stringify } from 'querystring';
 import fpcalc from './fpcalc';
 

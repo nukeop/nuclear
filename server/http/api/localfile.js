@@ -48,6 +48,7 @@ export function localFileRouter() {
 
       event.sender.send('local-files', cache);
     } catch (err) {
+      console.error(err);
       event.sender.send('local-files-error', err);
     }
   });

@@ -4,9 +4,9 @@ import concat from 'concat-stream';
 import filter from 'stream-filter';
 import reduce from 'stream-reduce';
 import path from 'path';
+import platform from 'electron-platform';
 
 import getBinaryPath from './binaries';
-import getPlatform from './platform';
 
 export default function(file, options = {}) {
   // Handle `options` parameter being optional
@@ -55,7 +55,7 @@ export default function(file, options = {}) {
 // Runs the fpcalc tool and returns a readable stream that will emit stdout
 // or an error event if an error occurs
 function run(args, options) {
-  const command = options.command || (getPlatform() === 'win' ? 'fpcalc.exe' : 'fpcalc');
+  const command = options.command || (platform.isWin32 ? 'fpcalc.exe' : 'fpcalc');
   const commandPath = path.join(getBinaryPath(), command);
   const cp = spawn(commandPath, args);
   const stream = es.through(null, function() {});
