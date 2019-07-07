@@ -16,6 +16,7 @@ import _ from 'lodash';
 import Header from '../Header';
 import TrackRow from '../TrackRow';
 import EmptyState from './EmptyState';
+import NoApi from './NoApi';
 
 import trackRowStyles from '../TrackRow/styles.scss';
 import styles from './index.scss';
@@ -26,7 +27,8 @@ const LibraryView = ({
   pending,
   localFolders,
   sortBy,
-  direction
+  direction,
+  api
 }) => {
   const handleSort = useCallback(
     columnName => () => {
@@ -74,10 +76,11 @@ const LibraryView = ({
         </List>
       </Segment>
       <Segment>
-        {
-          _.isEmpty(tracks)
-            ? <EmptyState />
-            : <React.Fragment>
+        {api ? (
+          _.isEmpty(tracks) ? (
+            <EmptyState />
+          ) : (
+            <React.Fragment>
               <div className={styles.search_field}>
                 <Input
                   inverted
@@ -91,7 +94,7 @@ const LibraryView = ({
 
               <Segment inverted className={trackRowStyles.tracks_container}>
                 <Dimmer active={pending} loading={pending.toString()} />
-          
+
                 {!pending && (
                   <Table sortable className={styles.table}>
                     <Table.Header className={styles.thead}>
@@ -121,24 +124,27 @@ const LibraryView = ({
                     </Table.Header>
                     <Table.Body className={styles.tbody}>
                       {tracks &&
-                  tracks.map((track, idx) => (
-                    <TrackRow
-                      key={'favorite-track-' + idx}
-                      track={track}
-                      index={idx}
-                      displayCover
-                      displayArtist
-                      displayAlbum
-                      withAddToDownloads={false}
-                      isLocal
-                    />
-                  ))}
+                        tracks.map((track, idx) => (
+                          <TrackRow
+                            key={'favorite-track-' + idx}
+                            track={track}
+                            index={idx}
+                            displayCover
+                            displayArtist
+                            displayAlbum
+                            withAddToDownloads={false}
+                            isLocal
+                          />
+                        ))}
                     </Table.Body>
                   </Table>
                 )}
               </Segment>
             </React.Fragment>
-        }
+          )
+        ) : (
+          <NoApi enableApi={actions.setBooleanOption} />
+        )}
       </Segment>
     </div>
   );

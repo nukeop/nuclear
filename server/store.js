@@ -23,38 +23,4 @@ function setOption(key, value) {
   store.set('settings', Object.assign({}, settings, { [`${key}`]: value }));
 }
 
-function setLocalMeta(data) {
-  const meta = Object.values(data)
-    .map(item => ({
-      ...item,
-      cover: item.cover ? item.cover.toString('base64') : undefined
-    }))
-    .reduce(
-      (acc, item) => ({
-        ...acc,
-        [item.uuid]: item
-      }),
-      {}
-    );
-
-  store.set('localMeta', meta);
-}
-
-function getLocalMeta() {
-  const data = store.get('localMeta');
-
-  return Object.values(data)
-    .map(item => ({
-      ...item,
-      cover: item.cover ? Buffer.from(item.cover, 'base64') : undefined
-    }))
-    .reduce(
-      (acc, item) => ({
-        ...acc,
-        [item.uuid]: item
-      }),
-      {}
-    );
-}
-
-export { getOption, setOption, setLocalMeta, getLocalMeta, store };
+export { getOption, setOption, store };

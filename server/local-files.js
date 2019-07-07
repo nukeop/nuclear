@@ -4,13 +4,10 @@ import path from 'path';
 import { parseFile } from 'music-metadata';
 import uuid from 'uuid/v4';
 
-import { getOption } from './store';
 import fetchAcousticId from './lib/acousticId';
 
 export function formatMeta({ common, format }, path) {
   let id = uuid();
-
-  const port = getOption('api.port');
 
   return {
     uuid: id,
@@ -24,13 +21,14 @@ export function formatMeta({ common, format }, path) {
     },
     genre: common.genre,
     year: common.year,
-    cover: common.picture ? common.picture[0].data : undefined,
     loading: false,
     local: true,
     image: [
       common.picture
         ? {
-          '#text': `http://127.0.0.1:${port}/nuclear/file/${id}/thumb`
+          '#text': `data:${
+            common.picture[0].format
+          };base64,${common.picture[0].data.toString('base64')}`
         }
         : undefined
     ]
@@ -38,13 +36,18 @@ export function formatMeta({ common, format }, path) {
 }
 
 export async function scanFoldersAndGetMeta(directories, cache = {}) {
-  const cachedFiles = Object.values(cache).map(({ path }) => path);
-
-  const files = await Promise.all([
+  const baseFiles = await Promise.all([
     ...directories.map(dir => promisify(glob)(`${dir}/**/*.mp3`)),
     ...directories.map(dir => promisify(glob)(`${dir}/**/*.ogg`)),
     ...directories.map(dir => promisify(glob)(`${dir}/**/*.wav`))
-  ]).then(result => result.flat().filter(file => !cachedFiles.includes(file)));
+  ]).then(result => result.flat());
+
+  const files = baseFiles.filter(
+    file =>
+      !Object.values(cache)
+        .map(({ path }) => path)
+        .includes(file)
+  );
 
   const metas = await Promise.all(files.map(parseFile));
 
@@ -53,7 +56,6 @@ export async function scanFoldersAndGetMeta(directories, cache = {}) {
   for (let i in formattedMetas) {
     if (!formattedMetas[i].name) {
       const [data] = await fetchAcousticId(formattedMetas[i].path);
-
       if (data && data.recording && data.recording.length) {
         formattedMetas[i].name = data.recordings[0].title;
         formattedMetas[i].artist.name =
@@ -66,9 +68,9 @@ export async function scanFoldersAndGetMeta(directories, cache = {}) {
     }
   }
 
-  const formattedFiles = formattedMetas.map(({ path }) => path);
-  const filteredCache = Object.values(cache)
-    .filter(({ path }) => !formattedFiles.includes(path))
+  return Object.values(cache)
+    .filter(({ path }) => baseFiles.includes(path))
+    .concat(formattedMetas)
     .reduce(
       (acc, item) => ({
         ...acc,
@@ -76,12 +78,4 @@ export async function scanFoldersAndGetMeta(directories, cache = {}) {
       }),
       {}
     );
-
-  return formattedMetas.reduce(
-    (acc, item) => ({
-      ...acc,
-      [item.uuid]: item
-    }),
-    filteredCache
-  );
 }
