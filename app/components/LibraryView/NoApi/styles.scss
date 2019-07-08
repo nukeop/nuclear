@@ -1,0 +1,6 @@
+@import '../../../mixin.scss';
+
+.library_no_api {
+  @include emptyState;
+  padding: 6rem 0;
+}
