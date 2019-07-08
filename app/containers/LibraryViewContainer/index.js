@@ -4,6 +4,7 @@ import _ from 'lodash';
 
 import LibraryView from '../../components/LibraryView';
 import * as LocalActions from '../../actions/local';
+import * as SettingsActions from '../../actions/settings';
 
 function mapStateToProps(state) {
   const lowercaseFilter = _.lowerCase(state.local.filter);
@@ -35,13 +36,14 @@ function mapStateToProps(state) {
       
     localFolders: state.local.folders,
     sortBy: state.local.sortBy,
-    direction: state.local.direction
+    direction: state.local.direction,
+    api: state.settings['api.enabled']
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators({ ...LocalActions }, dispatch)
+    actions: bindActionCreators({ ...LocalActions, ...SettingsActions }, dispatch)
   };
 }
 

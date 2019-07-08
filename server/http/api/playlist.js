@@ -7,7 +7,7 @@ import {
   onRemovePlaylist
 } from '../../mpris';
 import { addPlaylistSchema } from '../schema';
-import { getStandardDescription } from '../lib/swagger';
+import { getStandardDescription } from '../swagger';
 import { store } from '../../store';
 
 
