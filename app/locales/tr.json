@@ -1,0 +1,187 @@
+{
+    "album": {
+      "queue": "Albümü sıraya ekle"
+    },
+    "app": {
+      "collection": "Koleksiyon",
+      "dashboard": "Anamenü",
+      "downloads": "İndirilenler",
+      "equalizer": "Ses dengesi",
+      "favorite": "Favori müzikler",
+      "library": "Kütüphane",
+      "lyrics": "Şarkının sözleri",
+      "main": "Anasayfa",
+      "playlists": "Çalma listesi",
+      "plugins": "Eklentiler",
+      "search": "Arama",
+      "settings": "Ayarlar"
+    },
+    "artist": {
+      "count": "Oynatma sayısı",
+      "queue": "Tüm müzikleri sıraya Ekle",
+      "similar": "Benzer şarkıcılar",
+      "title": "Başlık",
+      "tour": "On tour"
+    },
+    "dashboard": {
+      "artist": "Sanatçı",
+      "best": "En İyiler",
+      "best-new-albums": "En iyi albümler",
+      "best-new-tracks": "En iyi müzikler",
+      "genres": "Müzik türü",
+      "lastfm-title": "Lastfm.'den en iyi müzikler",
+      "news": "Haberler",
+      "playcounts": "Oynatma sayısı",
+      "title": "Başlık",
+      "top": "Popüler müzikler"
+    },
+    "downloads": {
+      "clear": "İndirilenleri temizle",
+      "completion": "Tamamlanma",
+      "empty": "İndirilenler boş.",
+      "empty-help": "Birkaç müzik Ekle!",
+      "header": "İndirilenler",
+      "name": "İsmi",
+      "status": "Durumu"
+    },
+    "favorites": {
+      "artist": "Şarkıcı",
+      "empty": "Hiçbir favori şarkın yok.",
+      "empty-help": "Birkaç şarkı Ekle!",
+      "header": "Favori müziklerin",
+      "title": "Başlık"
+    },
+    "help": {
+      "about": "Nuclear müzik  oynatıcısı hakkında",
+      "header": "Açık kaynaklı masaüstü müzik oynatıcısı",
+      "released": "released under AGPL-3.0",
+      "thanks": "Github'taki katılımcılarımıza çok teşekkür ederiz.Katkılarınız bu programı yaratmamıza çok destek oldu"
+    },
+    "input-dialog": {
+      "cancel": "İptal"
+    },
+    "library": {
+      "add": "Dosyadan Ekle",
+      "album": "Albüm",
+      "artist": "Şarkıcı",
+      "filter-placeholder": "Filtrele...",
+      "header": "Kütüphane",
+      "title": "Başlık",
+      "empty": "Kütüphane Boş",
+      "empty-help": "Yukarıdaki butonu kullanarak birkaç müzik ekle",
+      "no-api": "Web Api aktif değil :(",
+      "no-api-help": "kütüphaneyi kullanabilmek için web apiyi aktif etmelisiniz.!",
+      "api-enable": "Api'yi aktive et"
+    },
+    "lyrics": {
+      "by-artist": "By {{artist}}",
+      "empty": "Çalan müzik yok.",
+      "empty-help": "Sözlerin gözükmesi için sıraya birkaç müzik ekle!",
+      "not-found": "Bu müzik için hiç söz bulunmadı."
+    },
+    "option-control": {
+      "autoradio": "Autoradio",
+      "loop": "Döndür",
+      "shuffle": "Karıştır"
+    },
+    "player": {
+      "next-button": "Sıradaki butonu",
+      "play-pause-button": "Başlat/Durdur butonu",
+      "previous-button": "Önceki Müzik butonu"
+    },
+    "playlists": {
+      "artist": "Şarkıcı",
+      "delete": "Oynatma listesini sil",
+      "dialog-placeholder": "Oynatma listesi adı...",
+      "empty": "Oynatma listesi yok",
+      "rename": "Oynatma listesini yeniden adlandır.",
+      "songs": "{{total}} müzik",
+      "songs_plural": "{{total}} müzik",
+      "title": "Başlık"
+    },
+    "plugins": {
+      "header": "Eklentiler",
+      "placeholder": "Varsayılan müzik kaynağı:",
+      "subtitle": "Müzik kaynağı"
+    },
+    "queue": {
+      "clear": "Sırayı temizle",
+      "dialog-accept": "Kaydet",
+      "dialog-placeholder": "Oynatma listesi adı...",
+      "dialog-trigger": "Oynatma listesi olarak kaydet.",
+      "download": "İndir",
+      "download-toast-content": "{{artist}} - {{title}} İndirilenlere eklendi.",
+      "download-toast-title": "Müzik indirilenlere eklendi.",
+      "favorite-add": "Favorilere ekle.",
+      "header": "Sıra",
+      "header-track": "Şuanki Müzik",
+      "id": "Stream ID:",
+      "loading": "Stream still loading.",
+      "playlist-add": "Oynatma listesine ekle",
+      "playlist-toast-content": "Oynatma listesi {{name}} oluşturuldu",
+      "playlist-toast-title": "Oynatma listesi oluşturuldu",
+      "title": "Başlık:"
+    },
+    "search": {
+      "album": "Albüm",
+      "album_plural": "Albümler",
+      "artist": "Şarkıcı",
+      "artist_plural": "Şarkıcılar",
+      "empty": "Birşey bulunamadı.",
+      "placeholder": "Arama...",
+      "playlist": "Oynatma Listesi",
+      "playlist_plural": "Oynatma Listeleri",
+      "queue-add": "Tüm şarkıları sıraya ekle",
+      "track": "Şarkı",
+      "track_plural": "Şarkılar"
+    },
+    "settings": {
+      "api-port": "Api tarafından kullanılan port.",
+      "api-url": "",
+      "autoradio": "Autoradio",
+      "autoradio-craziness": "Autoradio Çılgınlığı",
+      "autoradio-craziness-description": "Autoradio sizin için dinlediğiniz şarkılarınıza az benzer şarkıları seçicektir.",
+      "autoradio-description": "Sıralama bittiğinde benzer şarkıları otomatik listeye ekle",
+      "compact-menu-bar": "Menu bar için küçük stili kulllan",
+      "compact-queue-bar": "Sıralama için küçük stili kulllan",
+      "track-duration": "Şarkı süresini göster.",
+      "disable-gpu": "Ekran kartı hizmetini devre dışı bırak. (sürüklenen ekranları ve bazı hataları giderebilir)",
+      "display": "Görüntü",
+      "enable-api": "Api'yi etkinleştir",
+      "frameless-window": "Çerçevesiz ekran (Tekrardan başlatma gerekli)",
+      "github-connect": "Github'ile giriş yap",
+      "github-description": "Github'ile giriş yaparak online şekilde oynatma listesi yapıp paylaşabilirsin.!! (Gelecek Özellik).",
+      "github-title": "Github",
+      "http": "HTTP API",
+      "language": "Dil",
+      "language-placeholder": "Dil seçiniz",
+      "lastfm-connect": "Lastfm. ile bağlan",
+      "lastfm-description": "Scrobbling aktif etmek için ilk önce Nuclearden last.fm'e bağlanmanız lazım sonra login'e tıklayın",
+      "lastfm-enable": "Last.fm'de Scrobbling aktifleştir",
+      "lastfm-title": "Last.fm",
+      "login": "Giriş yap",
+      "logout": "Çıkış yap",
+      "loop-after-queue-end": "Liste bitince baştan başlat.",
+      "notification-timeout": "Bildirim zaman aşımı",
+      "notlogged": "Oturum kapalı",
+      "playback": "Oynatma",
+      "program-settings": "Program Ayarları",
+      "seek-iteration": "Number of seconds to seek forward/backwards when pressing arrow keys",
+      "shuffle-queue": "Şarkıları karıştır",
+      "shuffle-when-going-back": "Önceki Şarkıyla karıştır.",
+      "shuffle-when-going-back-description": "Karıştırma aktif ve önceki şarkı butonu aktifse random şarkı çal",
+      "social": "Sosyal Medya",
+      "user": "Kullanıcı:",
+      "youtube": "Youtube",
+      "yt-api-key": "Youtube API Key"
+    },
+    "tags": {
+      "albums": "En iyi albümler",
+      "artist": "Şarkıcılar",
+      "artists": "En iyi şarkıcılar",
+      "duration": "Süre",
+      "queue-add": "Tüm şarkıları sıraya ekle",
+      "title": "Başlık"
+    }
+  }
+  
