@@ -85,7 +85,7 @@ export function localFileRouter() {
             duration: track.duration,
             source: 'Local',
             stream: `http://127.0.0.1:${port}/nuclear/file/${track.uuid}`,
-            thumbnail: track.image ? track.image[0]['#text'] : undefined
+            thumbnail: track.image && track.image[0] ? track.image[0]['#text'] : undefined
           }))
           .pop()
       );
