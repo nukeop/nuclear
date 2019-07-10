@@ -13,7 +13,7 @@ import es from './locales/es.json';
 import ru from './locales/ru.json';
 import pl from './locales/pl.json';
 import pt_br from './locales/pt_br.json';
-import tr from '.locales/tr.json';
+import tr from '/.locales/tr.json';
 
 const languageDetector = {
   init: Function.prototype,
