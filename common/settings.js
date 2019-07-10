@@ -131,7 +131,8 @@ export default [
       {key: 'pl', text: 'Polish', value: 'pl'},
       {key: 'zh', text: 'Chinese', value: 'zh'},
       {key: 'ru', text: 'Russian', value: 'ru'},
-      {key: 'pt_br', text: 'Português do Brasil', value: 'pt_br'}
+      {key: 'pt_br', text: 'Português do Brasil', value: 'pt_br'},
+      {key: 'tr', text: 'Turkish', value: 'tr'}
     ],
     default: undefined
   }
