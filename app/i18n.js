@@ -35,7 +35,8 @@ export const setupI18n = () => {
       es,
       ru,
       pl,
-      pt_br
+      pt_br,
+      tr
     },
     interpolation: {
       escapeValue: false
