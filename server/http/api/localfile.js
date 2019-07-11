@@ -43,7 +43,7 @@ export function localFileRouter() {
     try {
       cache = await scanFoldersAndGetMeta(store.get('localFolders'), cache);
 
-      setOption('localMeta', cache);
+      store.set('localMeta', cache);
       byArtist = _.groupBy(Object.values(cache), track => track.artist.name);
 
       event.sender.send('local-files', cache);
