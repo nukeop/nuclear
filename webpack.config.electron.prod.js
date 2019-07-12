@@ -5,7 +5,7 @@ module.exports = env => {
   let entry = env && env.LINUX ? './server/main.prod.linux.js' : './server/main.prod.js';
 
   return {
-    entry: entry,
+    entry,
     output: {
       path: __dirname,
       filename: './dist/bundle.electron.js'

@@ -4,6 +4,8 @@ import { bindActionCreators } from 'redux';
 import * as Mousetrap from 'mousetrap';
 import Sound from 'react-hifi';
 
+import _ from 'lodash';
+
 import * as PlayerActions from '../../actions/player';
 import * as QueueActions from '../../actions/queue';
 
