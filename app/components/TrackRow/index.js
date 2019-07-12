@@ -16,8 +16,6 @@ import { formatDuration } from '../../utils';
 import styles from './styles.scss';
 
 class TrackRow extends React.Component {
-
-
   // this function should be moved onto interface for 'track'
   getThumbnail (track) {
     return _.get(
