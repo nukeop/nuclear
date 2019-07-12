@@ -1,7 +1,7 @@
 import React from 'react';
 
 import AlbumView from '../../components/AlbumView';
-import wrapComponent from '../FunctionalityWrapper';
+import wrapComponent from '../wrapComponent';
 
 const AlbumViewContainer = ({
   actions,
