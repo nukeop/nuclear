@@ -42,7 +42,7 @@ export function setNumberOption(option, state) {
 
 export function toggleOption(option, state) {
   let optionState = state[option.name];
-  return optionState !==undefined
+  return optionState !== undefined
     ? setBooleanOption(option.name, !optionState)
     : setBooleanOption(option.name, !option.default);
 }

@@ -14,7 +14,7 @@ const config = {
     filename: 'bundle.js'
   },
   node: {
-    fs: "empty"
+    fs: 'empty'
   },
   mode: 'production',
   devtool: 'source-map',
@@ -43,8 +43,8 @@ const config = {
         exclude: /node_modules\/electron\-timber\/preload\.js/
       },
       {
-          test: /.node$/,
-          use: 'node-loader'
+        test: /.node$/,
+        use: 'node-loader'
       },
       {
         test: /.scss$/,
@@ -79,11 +79,11 @@ const config = {
     }),
     new HappyPack({
       id: 'jsx',
-      loaders: [ 'babel-loader' ]
+      loaders: ['babel-loader']
     }),
     new HappyPack({
       id: 'scss',
-      loaders: [ 'style-loader!css-loader?importLoaders=1&modules&localIdentName=[local]!sass-loader' ]
+      loaders: ['style-loader!css-loader?importLoaders=1&modules&localIdentName=[local]!sass-loader']
     }),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('production')

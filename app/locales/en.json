@@ -10,6 +10,7 @@
     "favorite": "Favorite Tracks",
     "library": "Local Library",
     "lyrics": "Lyrics",
+    "main": "Main",
     "playlists": "Playlists",
     "plugins": "Plugins",
     "search": "Search Results",
@@ -65,7 +66,12 @@
     "artist": "Artist",
     "filter-placeholder": "Filter...",
     "header": "Local Library",
-    "title": "Title"
+    "title": "Title",
+    "empty": "The library is empty",
+    "empty-help": "Try adding some music using the button above.",
+    "no-api": "Web Api is not enabled :(",
+    "no-api-help": "In order to use the local library you need to enable the web api.",
+    "api-enable": "enable the api."
   },
   "lyrics": {
     "by-artist": "by {{artist}}",
@@ -131,10 +137,14 @@
   },
   "settings": {
     "api-port": "Port used by the api",
+    "api-url": "",
     "autoradio": "Autoradio",
     "autoradio-craziness": "Autoradio craziness",
+    "autoradio-craziness-description": "Autoradio will select songs that are less similar to the ones already in the queue the crazier it is",
+    "autoradio-description": "Add similar tracks automatically when the queue is ending",
     "compact-menu-bar": "Use compact style for menu bar",
     "compact-queue-bar": "Use compact style for queue bar",
+    "track-duration": "Display track duration over the seekbar",
     "disable-gpu": "Disable hardware rendering (might fix issues with dragging elements and flashing screen)",
     "display": "Display",
     "enable-api": "Enable the api",
@@ -156,9 +166,14 @@
     "notlogged": "Not logged in",
     "playback": "Playback",
     "program-settings": "Program settings",
+    "seek-iteration": "Number of seconds to seek forward/backwards when pressing arrow keys",
     "shuffle-queue": "Shuffle songs",
+    "shuffle-when-going-back": "Shuffle on previous track",
+    "shuffle-when-going-back-description": "Play a random track when shuffle is active and the previous track button is clicked",
     "social": "Social",
-    "user": "User:"
+    "user": "User:",
+    "youtube": "Youtube",
+    "yt-api-key": "Youtube API Key"
   },
   "tags": {
     "albums": "Top Albums",

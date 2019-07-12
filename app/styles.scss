@@ -47,6 +47,12 @@
     0px 5px 20px 0px rgba(0, 0, 0, 0.09);
 }
 
+.navbar_spacer {
+  height: 100%;
+  flex: 1 1 45%;
+  -webkit-app-region: drag;
+}
+
 .left_panel {
   z-index: 10;
 
@@ -110,7 +116,7 @@
 
 .track_info_wrapper {
   display: flex;
-  flex: 1 1 auto;
+  flex: 1 1 33%;
   flex-flow: row;
   overflow: hidden;
 }

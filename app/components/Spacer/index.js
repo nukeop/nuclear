@@ -1,7 +1,14 @@
 import React from 'react';
+import cx from 'classnames';
 
-const Spacer = ({ style }) => (
-  <div style={Object.assign({}, { flex: '1 1 auto' }, style)} />
-);
+import styles from './styles.scss';
 
-export default Spacer;
+export default ({ className, style }) => (<div
+  style={style}
+  className={
+    cx(
+      className,
+      styles.spacer
+    )
+  }
+/>);

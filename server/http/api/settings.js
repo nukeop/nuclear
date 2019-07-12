@@ -5,8 +5,8 @@ import swagger from 'swagger-spec-express';
 import { onSettings } from '../../mpris';
 import { getOption, store } from '../../store';
 import { getSettingsSchema, updateSettingsSchema, RESTRICTED_SETTINGS } from '../schema';
-import settingsParams from '../../../app/constants/settings';
-import { getStandardDescription } from '../lib/swagger';
+import settingsParams from '../../../common/settings';
+import { getStandardDescription } from '../swagger';
 
 const { validate } = new Validator({ allErrors: true });
 

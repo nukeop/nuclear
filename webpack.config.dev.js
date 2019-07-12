@@ -8,6 +8,7 @@ const APP_DIR = path.resolve(__dirname, 'app');
 const RESOURCES_DIR = path.resolve(__dirname, 'resources');
 
 const config = {
+
   entry: [
     'react-hot-loader/patch',
     'webpack-dev-server/client?http://localhost:8080',
@@ -82,6 +83,7 @@ const config = {
     })
   ],
   target: 'electron-renderer'
+
 };
 
 module.exports = config;

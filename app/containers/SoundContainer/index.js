@@ -60,15 +60,6 @@ class SoundContainer extends React.Component {
     }
   }
 
-  nextSong () {
-    if (this.props.settings.shuffleQueue) {
-      let index = _.random(0, this.props.queue.queueItems.length - 1);
-      this.props.actions.selectSong(index);
-    } else {
-      this.props.actions.nextSong();
-    }
-  }
-
   handleFinishedPlaying () {
     if (
       this.props.scrobbling.lastFmScrobblingEnabled &&
@@ -87,7 +78,7 @@ class SoundContainer extends React.Component {
       this.props.queue.currentSong <= this.props.queue.queueItems.length - 1 ||
       this.props.settings.loopAfterQueueEnd
     ) {
-      this.nextSong();
+      this.props.actions.nextSong();
     } else {
       this.props.actions.pausePlayback();
     }

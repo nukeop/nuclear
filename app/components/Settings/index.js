@@ -177,6 +177,10 @@ class Settings extends React.Component {
     this.props.actions.setNumberOption(option.name, _.parseInt(value));
   }
 
+  renderNodeOption(option) {
+    return option.node;
+  }
+
   renderListOption({ placeholder, options }) {
     return (
       <Dropdown
@@ -211,7 +215,6 @@ class Settings extends React.Component {
   }
 
   renderSliderOption (option) {
-    // Value : {this.getOptionValue(option) || option.default} {option.unit}
     return (
       <div className={styles.slider_container}>
         <label>Less</label>  
@@ -251,10 +254,28 @@ class Settings extends React.Component {
       />);
     }
   }
+  
   renderOption (settings, option, key) {
     return (
-      <div key={key} className={cx(styles.settings_item, option.type)}>
-        <label>{this.props.t(option.prettyName)}</label>
+      <div
+        key={key}
+        className={
+          cx(
+            styles.settings_item,
+            option.type
+          )
+        }>
+        <span className={styles.settings_item_text}>
+          <label className={styles.settings_item_name}>
+            {this.props.t(option.prettyName)}
+          </label>
+          {
+            !_.isNil(option.description) &&
+              <p className={styles.settings_item_description}>
+                {this.props.t(option.description)}
+              </p>
+          }
+        </span>
         <Spacer />
         {
           option.type === settingsEnum.BOOLEAN &&
@@ -271,6 +292,10 @@ class Settings extends React.Component {
         {
           option.type === settingsEnum.LIST &&
           this.renderListOption(option)
+        }
+        {
+          option.type === settingsEnum.NODE &&
+            this.renderNodeOption(option)
         }
       </div>
     );
