@@ -16,6 +16,8 @@ import { formatDuration } from '../../utils';
 import styles from './styles.scss';
 
 class TrackRow extends React.Component {
+
+
   // this function should be moved onto interface for 'track'
   getThumbnail (track) {
     return _.get(
@@ -36,7 +38,7 @@ class TrackRow extends React.Component {
       </td>
     );
   }
-  
+
   renderDuration (track) {
     if (track.duration === 0) {
       return <td className={styles.track_duration} />;
@@ -69,7 +71,7 @@ class TrackRow extends React.Component {
     } = this.props;
 
     return (
-      <tr className={styles.track} onDoubleClick={this.playTrack}>
+      <tr className={styles.track} onDoubleClick={this.playTrack.bind(this)}>
         {
           withDeleteButton &&
             <td className={styles.track_row_buttons}>
@@ -171,5 +173,3 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(TrackRow);
-
-
