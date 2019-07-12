@@ -1,12 +1,7 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import * as Actions from '../../actions';
-import * as QueueActions from '../../actions/queue';
-import * as PlayerActions from '../../actions/player';
 
 import AlbumView from '../../components/AlbumView';
+import wrapComponent from '../FunctionalityWrapper';
 
 const AlbumViewContainer = ({
   actions,
@@ -34,18 +29,4 @@ function mapStateToProps(state) {
   };
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    actions: bindActionCreators(
-      Object.assign({}, Actions, QueueActions, PlayerActions),
-      dispatch
-    )
-  };
-}
-
-export default withRouter(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(AlbumViewContainer)
-);
+export default wrapComponent(AlbumViewContainer, mapStateToProps);
