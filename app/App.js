@@ -29,7 +29,6 @@ import { formatDuration } from './utils';
 import settingsConst from './constants/settings';
 
 import PlaylistsSubMenu from './components/PlaylistsSubMenu';
-import Footer from './components/Footer';
 import HelpModal from './components/HelpModal';
 import Navbar from './components/Navbar';
 import VerticalPanel from './components/VerticalPanel';
