@@ -224,7 +224,7 @@ class App extends React.Component {
 
   renderFooter () {
     return (
-      <Footer className={styles.footer}>
+      <div className={styles.footer}>
         <Seekbar
           fill={this.props.player.playbackProgress + '%'}
           seek={this.props.actions.updateSeek}
@@ -244,7 +244,7 @@ class App extends React.Component {
           {this.renderPlayerControls()}
           {this.renderVolumeControl()}
         </div>
-      </Footer>
+      </div>
     );
   }
 
