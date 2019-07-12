@@ -204,7 +204,7 @@ class App extends React.Component {
 
   renderSidebarFooter () {
     return (
-      <div className='sidebar_footer'>
+      <footer className='sidebar_footer'>
         <a
           onClick={() => {
             this.props.actions.toggleOption(
@@ -218,13 +218,13 @@ class App extends React.Component {
             name={this.props.settings.compactMenuBar ? 'angle-right' : 'angle-left'}
           />
         </a>
-      </div>
+      </footer>
     );
   }
 
   renderFooter () {
     return (
-      <div className={styles.footer}>
+      <footer className={styles.footer}>
         <Seekbar
           fill={this.props.player.playbackProgress + '%'}
           seek={this.props.actions.updateSeek}
@@ -244,7 +244,7 @@ class App extends React.Component {
           {this.renderPlayerControls()}
           {this.renderVolumeControl()}
         </div>
-      </div>
+      </footer>
     );
   }
 
