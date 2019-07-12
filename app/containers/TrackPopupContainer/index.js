@@ -29,7 +29,13 @@ const TrackPopupContainer = props => {
     withAddToFavorites,
     withAddToDownloads
   } = props;
-  
+
+  const trackItem = {
+    artist,
+    name: props.title,
+    thumbnail: props.thumb
+  };
+
   return (
     <ContextPopup
       trigger={trigger}
@@ -40,15 +46,7 @@ const TrackPopupContainer = props => {
       {
         withAddToQueue &&
           <PopupButton
-            onClick={() => {
-              actions.addToQueue(
-                musicSources,
-                {
-                  artist: props.artist,
-                  name: props.title,
-                  thumbnail: props.thumb
-                });
-            }}
+            onClick={ () => actions.addToQueue(musicSources, trackItem)}
             ariaLabel='Add track to queue'
             icon='plus'
             label='Add to queue'
@@ -58,18 +56,7 @@ const TrackPopupContainer = props => {
       {
         withPlayNow &&
         <PopupButton
-          onClick={() => {
-            actions.clearQueue();
-            actions.addToQueue(
-              musicSources,
-              {
-                artist: props.artist,
-                name: props.title,
-                thumbnail: props.thumb
-              });
-            actions.selectSong(0);
-            actions.startPlayback();
-          }}
+          onClick={ () => actions.playSong(musicSources, trackItem) }
           ariaLabel='Play this track now'
           icon='play'
           label='Play now'
@@ -112,7 +99,7 @@ const TrackPopupContainer = props => {
           label='Download'
         />
       }
-    
+
     </ContextPopup>
   );
 };
@@ -148,7 +135,7 @@ TrackPopupContainer.defaultProps = {
   actions: {},
   musicSources: [],
   settings: {},
-  
+
   withAddToQueue: true,
   withPlayNow: true,
   withAddToFavorites: true,
