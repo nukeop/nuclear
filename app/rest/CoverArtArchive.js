@@ -1,7 +1,7 @@
 const apiUrl = 'http://coverartarchive.org/';
 
 function releaseGroupFront(group, size=250) {
-  return new Promise((fulfill, reject) => {
+  return new Promise(fulfill => {
     fetch(apiUrl + 'release-group/' + group.id + '/' + 'front-' + size)
       .then(cover => {
         if (!cover.ok) {
@@ -12,7 +12,7 @@ function releaseGroupFront(group, size=250) {
           fulfill(group);
         }
       })
-      .catch(error => {
+      .catch(() => {
         group.cover = null;
         fulfill(group);
       });

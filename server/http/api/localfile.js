@@ -43,7 +43,7 @@ export function localFileRouter() {
     try {
       cache = await scanFoldersAndGetMeta(store.get('localFolders'), cache);
 
-      setOption('localMeta', cache);
+      store.set('localMeta', cache);
       byArtist = _.groupBy(Object.values(cache), track => track.artist.name);
 
       event.sender.send('local-files', cache);
@@ -85,7 +85,7 @@ export function localFileRouter() {
             duration: track.duration,
             source: 'Local',
             stream: `http://127.0.0.1:${port}/nuclear/file/${track.uuid}`,
-            thumbnail: track.image ? track.image[0]['#text'] : undefined
+            thumbnail: track.image && track.image[0] ? track.image[0]['#text'] : undefined
           }))
           .pop()
       );

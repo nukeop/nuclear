@@ -34,7 +34,7 @@ function analyseUrlType (url) {
     isYoutubeVideo: false
   };
   analysisResult.isValid = isValidURL(url);
-  let isYoutubeRegex = /https\:\/\/www.youtube.com\/*./g;
+  let isYoutubeRegex = /https:\/\/www.youtube.com\/*./g;
   let isYoutubePlaylistRegex = /[?&]list=([a-zA-Z0-9-_]*)/g;
   let isYoutubeVideoRegex = /[?&]v=([a-zA-Z0-9-_]{11})[^0-9a-zA-Z_-]{0,1}/g;
   analysisResult.isYoutube = url.match(isYoutubeRegex);
@@ -83,7 +83,7 @@ function handleYoutubeVideo (url) {
           return [track];
         });
     })
-    .catch(function (err) {
+    .catch(function () {
       // console.log('error', err);
       return Promise.resolve([]);
     });

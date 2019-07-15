@@ -32,7 +32,7 @@ const TrackPopupContainer = props => {
 
   const trackItem = {
     artist,
-    name: props.title,
+    name: title,
     thumbnail: props.thumb
   };
 
@@ -56,7 +56,7 @@ const TrackPopupContainer = props => {
       {
         withPlayNow &&
         <PopupButton
-          onClick={ () => actions.playSong(musicSources, trackItem) }
+          onClick={ () => actions.playTrack(musicSources, trackItem) }
           ariaLabel='Play this track now'
           icon='play'
           label='Play now'
