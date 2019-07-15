@@ -1,6 +1,6 @@
 import { getChart } from 'billboard-top-100';
 
-export var lists = {
+export const lists = {
   genres: [
     {
       name: 'Mainstream Top 40',

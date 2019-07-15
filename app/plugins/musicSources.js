@@ -17,11 +17,14 @@ class MusicSourcePlugin extends Plugin {
       track : 'The track to search'
     }
     */
-    console.error('search not implemented in plugin ' + this.name);
+    console.error('search not implemented in plugin ' + this.name + 
+    '\n Query was: ' + query);
   }
 
   getAlternateStream(query, currentStream) {
-    console.error('getAlternateStream not implemented in plugin ' + this.name);
+    console.error('getAlternateStream not implemented in plugin ' + this.name +
+    '\n Query was: ' + query +
+    '\n CurrentStream was: ' + currentStream);
   }
 }
 
