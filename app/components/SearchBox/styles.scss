@@ -2,23 +2,28 @@
 
 .search_box_container {
   display: flex;
-
+  flex-direction: row-reverse;
   flex: 1 1 auto;
   align-items: center;
 }
 
-.search_box_container>span {
+.search_box_container span.fa-search {
   display: flex;
 
   width: 30px;
   height: 30px;
-  margin: 12px 0px 12px 12px;
 
-  color: $grey;
-  background-color: $blue;
-
+  color: $lightbg;
+  background-color: $background3;
   align-items: center;
-
+  
+}
+.search_box_container .fa-spinner {
+  opacity: 0;
+  transition: all 0.3s;
+  &.loading {
+    opacity: 1;
+  }
 }
 
 .search_box_container span:before {
@@ -28,10 +33,12 @@
 }
 
 .search_box_container .form {
+  position: relative;
   display: flex;
-
   flex: 1 1 auto;
   align-items: center;
+  
+  margin: 12px 0px 12px 12px;
 }
 
 .search_box_container input {
@@ -51,8 +58,8 @@
 form,
 .form {
   > span {
-    position: relative;
-    right: 30px;
+    position: absolute;
+    right: 0;
 
     display: flex !important;
 

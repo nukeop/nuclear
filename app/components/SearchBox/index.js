@@ -19,7 +19,7 @@ const SearchBox = ({ handleSearch, loading }) => {
           onChange={handleSearch}
           autoFocus
         />
-        {loading ? <FontAwesome name='spinner' pulse /> : null}
+        <FontAwesome name='spinner' pulse className={loading ? 'loading' : undefined} />
       </div>
     </div>
   );
