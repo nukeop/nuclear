@@ -1,4 +1,5 @@
 import uuidv4 from 'uuid/v4';
+import _ from 'lodash';
 
 export const ADD_NOTIFICATION = 'ADD_NOTIFICATION';
 export const REMOVE_NOTIFICATION = 'REMOVE_NOTIFICATION';
