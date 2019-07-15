@@ -56,7 +56,7 @@ export async function scanFoldersAndGetMeta(directories, cache = {}) {
   for (let i in formattedMetas) {
     if (!formattedMetas[i].name) {
       const [data] = await fetchAcousticId(formattedMetas[i].path);
-      if (data && data.recording && data.recording.length) {
+      if (data && data.recordings && data.recordings.length) {
         formattedMetas[i].name = data.recordings[0].title;
         formattedMetas[i].artist.name =
           data.recordings[0].artists[0].name || 'unknown';
