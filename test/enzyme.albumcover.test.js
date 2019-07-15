@@ -1,6 +1,8 @@
 import React from 'react';
 import { expect } from 'chai';
 import { shallow } from 'enzyme';
+import { describe, it } from 'mocha';
+
 import AlbumCover from '../app/components/AlbumCover';
 
 describe('<AlbumCover />', () => {
