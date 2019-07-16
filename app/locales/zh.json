@@ -7,8 +7,8 @@
     "dashboard": "主页",
     "downloads": "下载",
     "equalizer": "均衡器",
-    "favorite": "喜欢的音乐",
-    "library": "本地音乐",
+    "favorite": "喜欢",
+    "library": "本地",
     "lyrics": "歌词",
     "playlists": "播放列表",
     "plugins": "插件",
@@ -71,12 +71,12 @@
     "by-artist": "by {{artist}}",
     "empty": "Nothing is playing.",
     "empty-help": "Add some music to the queue to display the lyrics here!",
-    "not-found": "No lyrics were found for this song."
+    "not-found": "这首歌未找到歌词"
   },
   "option-control": {
     "autoradio": "Autoradio",
     "loop": "Loop",
-    "shuffle": "Shuffle"
+    "shuffle": "随机播放"
   },
   "player": {
     "next-button": "Next track button",
