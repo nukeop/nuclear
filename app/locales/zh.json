@@ -7,12 +7,12 @@
     "dashboard": "主页",
     "downloads": "下载",
     "equalizer": "均衡器",
-    "favorite": "喜欢",
-    "library": "本地",
+    "favorite": "喜欢的音乐",
+    "library": "本地音乐",
     "lyrics": "歌词",
     "playlists": "播放列表",
     "plugins": "插件",
-    "search": "搜索结果",
+    "search": "搜索",
     "settings": "设置"
   },
   "artist": {
