@@ -1,4 +1,5 @@
-import 'babel-polyfill';
+import 'core-js';
+import 'regenerator-runtime/runtime';
 import logger from 'electron-timber';
 import platform from 'electron-platform';
 import path from 'path';

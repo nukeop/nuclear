@@ -1,4 +1,5 @@
-import 'babel-polyfill';
+import 'core-js';
+import 'regenerator-runtime/runtime';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { MemoryRouter } from 'react-router-dom';

@@ -1,4 +1,6 @@
-import 'babel-polyfill';
+import 'core-js';
+import 'regenerator-runtime/runtime';
+
 import process from 'process';
 import logger from 'electron-timber';
 const { app, ipcMain, nativeImage, BrowserWindow, Menu, Tray } = require('electron');

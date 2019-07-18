@@ -8,7 +8,7 @@ module.exports = {
     "process": true,
     "Raven": true
   },
-  "extends": "eslint:recommended",
+  "extends": ["eslint:recommended", "plugin:node/recommended"],
   "parser": "babel-eslint",
   "parserOptions": {
     "ecmaFeatures": {
@@ -18,7 +18,9 @@ module.exports = {
     "sourceType": "module"
   },
   "plugins": [
-    "react"
+    "react",
+    "node",
+    "react-hooks"
   ],
   "settings": {
     "react": {
@@ -93,6 +95,10 @@ module.exports = {
     "react/prefer-es6-class": 1,
     "react/prefer-stateless-function": 1,
     "react/react-in-jsx-scope": 2,
-    "react/self-closing-comp": 2
+    "react/self-closing-comp": 2,
+    "node/no-unpublished-require": 0,
+    "node/no-unsupported-features/es-syntax": 0,
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn"
   }
 };
