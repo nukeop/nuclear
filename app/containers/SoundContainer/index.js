@@ -2,7 +2,6 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import _ from 'lodash';
 import Sound, { Volume, Equalizer, AnalyserByFrequency } from 'react-hifi';
 
 import * as Actions from '../../actions';

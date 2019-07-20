@@ -1,4 +1,5 @@
 import React, { useState, useCallback } from 'react';
+import electron from 'electron';
 import { Header, Image, Modal } from 'semantic-ui-react';
 import { useTranslation } from 'react-i18next';
 
@@ -7,6 +8,10 @@ import { agplDisclaimer } from './const';
 
 import logoImg from '../../../resources/media/logo_full_light.png';
 import styles from './styles.scss';
+
+const handleAuthorClick = () => {
+  electron.shell.openExternal('https://github.com/nukeop');
+};
 
 const HelpModal = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -32,7 +37,7 @@ const HelpModal = () => {
             {t('header')}
           </Header>
           <p>
-            Copyright © <a href='https://github.com/nukeop/'>nukeop</a> 2019,
+            Copyright © <a href='#' onClick={handleAuthorClick}>nukeop</a> 2019,
             {t('released')}
           </p>
           <p>

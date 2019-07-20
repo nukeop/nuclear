@@ -7,7 +7,7 @@ import options from '../common/settings';
 const store = new electronStore();
 logger.log(`Initialized settings store at ${store.path}`);
 
-function getOption (key) {
+function getOption(key) {
   let settings = store.get('settings') || {};
   let value = settings[key];
   if (typeof value === 'undefined') {
@@ -17,7 +17,7 @@ function getOption (key) {
   return value;
 }
 
-function setOption (key, value) {
+function setOption(key, value) {
   const settings = store.get('settings') || {};
 
   store.set('settings', Object.assign({}, settings, { [`${key}`]: value }));

@@ -1,4 +1,6 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
 import numeral from 'numeral';
@@ -6,13 +8,16 @@ import { Icon } from 'semantic-ui-react';
 
 import artPlaceholder from '../../../resources/media/art_placeholder.png';
 
+import * as QueueActions from '../../actions/queue';
+
 import TrackPopupContainer from '../../containers/TrackPopupContainer';
 import { formatDuration } from '../../utils';
 
 import styles from './styles.scss';
 
 class TrackRow extends React.Component {
-  getThumbnail(track) {
+  // this function should be moved onto interface for 'track'
+  getThumbnail (track) {
     return _.get(
       track,
       'image[1][\'#text\']',
@@ -24,14 +29,14 @@ class TrackRow extends React.Component {
     );
   }
 
-  renderAlbum(track) {
+  renderAlbum (track) {
     return (
       <td className={styles.track_album}>
         { track.album }
       </td>
     );
   }
-  
+
   renderDuration (track) {
     if (track.duration === 0) {
       return <td className={styles.track_duration} />;
@@ -41,6 +46,14 @@ class TrackRow extends React.Component {
         {formatDuration(track.duration)}
       </td>
     );
+  }
+
+  playTrack () {
+    this.props.actions.playTrack(this.props.musicSources, {
+      artist: this.props.track.artist.name,
+      name: this.props.track.name,
+      thumbnail: this.getThumbnail(this.props.track)
+    });
   }
 
   renderTrigger (track) {
@@ -54,9 +67,9 @@ class TrackRow extends React.Component {
       withDeleteButton,
       onDelete
     } = this.props;
-    
+
     return (
-      <tr className={styles.track} onDoubleClick={this.playTrack}>
+      <tr className={styles.track} onDoubleClick={this.playTrack.bind(this)}>
         {
           withDeleteButton &&
             <td className={styles.track_row_buttons}>
@@ -89,7 +102,7 @@ class TrackRow extends React.Component {
       withAddToFavorites,
       withAddToDownloads
     } = this.props;
-    
+
     return (
       <TrackPopupContainer
         trigger={this.renderTrigger(track)}
@@ -116,7 +129,7 @@ TrackRow.propTypes = {
   displayAlbum: PropTypes.bool,
   displayDuration: PropTypes.bool,
   displayPlayCount: PropTypes.bool,
-  
+
   withAddToQueue: PropTypes.bool,
   withPlayNow: PropTypes.bool,
   withAddToFavorites: PropTypes.bool,
@@ -134,4 +147,27 @@ TrackRow.defaultProps = {
   withDeleteButton: false
 };
 
-export default TrackRow;
+function mapStateToProps (state, { track }) {
+  return {
+    musicSources: track.local
+      ? state.plugin.plugins.musicSources.filter(({ sourceName }) => {
+        return sourceName === 'Local';
+      })
+      : state.plugin.plugins.musicSources,
+    settings: state.settings
+  };
+}
+
+function mapDispatchToProps (dispatch) {
+  return {
+    actions: bindActionCreators(
+      Object.assign({}, QueueActions),
+      dispatch
+    )
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(TrackRow);

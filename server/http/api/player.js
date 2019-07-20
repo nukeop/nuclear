@@ -15,7 +15,7 @@ import {
   getPlayingStatus
 } from '../../mpris';
 import { volumeSchema, seekSchema } from '../schema';
-import { getStandardDescription } from '../lib/swagger';
+import { getStandardDescription } from '../swagger';
 
 
 const { validate } = new Validator({ allErrors: true });

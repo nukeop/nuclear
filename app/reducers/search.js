@@ -1,7 +1,6 @@
 import {
   UNIFIED_SEARCH_START,
   UNIFIED_SEARCH_SUCCESS,
-  UNIFIED_SEARCH_ERROR,
   ARTIST_SEARCH_SUCCESS,
   ALBUM_SEARCH_SUCCESS,
   ALBUM_INFO_SEARCH_START,
@@ -17,8 +16,6 @@ import {
   YOUTUBE_PLAYLIST_SEARCH_START,
   YOUTUBE_PLAYLIST_SEARCH_SUCCESS
 } from '../actions';
-
-let _ = require('lodash');
 
 const initialState = {
   plugins: [],

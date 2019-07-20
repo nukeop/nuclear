@@ -107,7 +107,7 @@ export function disableScrobbling() {
 export function scrobbleAction(artist, track, session) {
   return dispatch => {
     lastfm.scrobble(artist, track, session)
-      .then(response => {
+      .then(() => {
         dispatch({
           type: LASTFM_SCROBBLE,
           payload: null
@@ -119,7 +119,7 @@ export function scrobbleAction(artist, track, session) {
 export function updateNowPlayingAction(artist, track, session) {
   return dispatch => {
     lastfm.updateNowPlaying(artist, track, session)
-      .then(response => {
+      .then(() => {
         dispatch({
           type: LASTFM_UPDATE_NOW_PLAYING,
           payload: null

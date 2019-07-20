@@ -4,7 +4,7 @@
   "description": "Streaming music player that finds music sources automatically.",
   "main": "main.js",
   "scripts": {
-    "start": "npm-run-all --parallel watch electron:dev:linux",
+    "start": "npm-run-all --parallel watch electron:dev",
     "electron:dev": "webpack --progress --colors --config=webpack.config.electron.js && electron ./bundle.electron.js",
     "electron:prod:linux": "npm run build:electron:linux && electron ./dist/bundle.electron.js",
     "electron:prod": "npm run build:electron && electron ./dist/bundle.electron.js",
@@ -22,8 +22,8 @@
     "build:windows": "electron-builder -c.extraMetadata.main=dist/bundle.electron.js --windows --publish always",
     "build:macos": "electron-builder -c.extraMetadata.main=dist/bundle.electron.js --macos --publish always",
     "build:all": "electron-builder -c.extraMetadata.main=dist/bundle.electron.js -mwl",
-    "lint": "eslint app",
-    "i18n": "sync-i18n --files 'app/locales/*.json' --primary en --languages fr nl de dk es pl zh ru --space 2"
+    "lint": "eslint app test",
+    "i18n": "sync-i18n --files 'app/locales/*.json' --primary en --languages fr nl de dk es pl zh ru tr --space 2"
   },
   "repository": {
     "type": "git",
@@ -49,6 +49,7 @@
     "body-parser": "^1.18.3",
     "chart.js": "^2.8.0",
     "cheerio": "^1.0.0-rc.2",
+    "concat-stream": "^2.0.0",
     "cors": "^2.8.5",
     "d3-drag": "^1.2.3",
     "d3-selection": "^1.4.0",
@@ -57,6 +58,7 @@
     "electron-store": "^2.0.0",
     "electron-timber": "^0.5.1",
     "electron-util": "^0.11.0",
+    "event-stream": "^4.0.1",
     "express": "^4.16.4",
     "express-json-validator-middleware": "^1.2.3",
     "fast-levenshtein": "^2.0.6",
@@ -81,10 +83,13 @@
     "react-image": "^2.1.1",
     "react-image-smooth-loading": "^2.0.0",
     "react-range-progress": "^4.0.3",
+    "react-redux": "^7.1.0",
     "react-toastify": "^4.5.2",
+    "redux": "^4.0.4",
     "semantic-ui-react": "^0.82.1",
     "simple-get-lyrics": "0.0.4",
-    "slug": "^1.1.0",
+    "stream-filter": "^2.1.0",
+    "stream-reduce": "^1.0.3",
     "styled-components": "^3.2.6",
     "swagger-spec-express": "^2.0.15",
     "uuid": "^3.3.2",
@@ -136,11 +141,9 @@
     "react-debounce-input": "^3.2.0",
     "react-fontawesome": "^1.6.1",
     "react-hot-loader": "4.8",
-    "react-redux": "^5.0.6",
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
     "react-router-redux": "^4.0.8",
-    "redux": "^4.0.0",
     "redux-promise": "^0.6.0",
     "redux-thunk": "^2.2.0",
     "remote-redux-devtools": "^0.5.16",
@@ -150,7 +153,8 @@
     "url-loader": "^1.0.1",
     "utf-8-validate": "^5.0.2",
     "webpack": "^4.12.1",
-    "webpack-dev-server": "^3.1.4"
+    "webpack-dev-server": "^3.1.4",
+    "webpack-node-externals": "^1.7.2"
   },
   "optionalDependencies": {
     "7zip-bin-mac": "^1.0.1"
@@ -185,7 +189,16 @@
         "tar.gz",
         "snap"
       ],
-      "category": "Audio;AudioVideo;Network;Player;Music"
+      "category": "Audio;AudioVideo;Network;Player;Music",
+      "extraFiles": [
+        {
+          "from": "resources/bin/linux",
+          "to": "Resources/bin",
+          "filter": [
+            "**/*"
+          ]
+        }
+      ]
     },
     "mac": {
       "category": "public.app-category.music",
@@ -193,12 +206,30 @@
         "zip",
         "pkg",
         "dmg"
+      ],
+      "extraFiles": [
+        {
+          "from": "resources/bin/mac",
+          "to": "Resources/bin",
+          "filter": [
+            "**/*"
+          ]
+        }
       ]
     },
     "win": {
       "target": [
         "nsis",
         "portable"
+      ],
+      "extraFiles": [
+        {
+          "from": "resources/bin/win",
+          "to": "Resources/bin",
+          "filter": [
+            "**/*"
+          ]
+        }
       ]
     },
     "nsis": {

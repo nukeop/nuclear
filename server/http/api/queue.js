@@ -5,7 +5,7 @@ import {
   onEmptyQueue,
   getQueue
 } from '../../mpris';
-import { getStandardDescription } from '../lib/swagger';
+import { getStandardDescription } from '../swagger';
 
 export function queueRouter() {
 
