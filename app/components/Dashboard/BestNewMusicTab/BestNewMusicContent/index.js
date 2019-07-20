@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { bestNewItemShape } from '../index';
+import { bestNewItemShape } from '../BestNewMusicMenu';
 
 import styles from './styles.scss';
 
@@ -45,10 +45,10 @@ const BestNewMusicContent = ({
         }
       </div>
       {
-        item.review.split('\n').map(i => {
+        item.review.split('\n').map((paragraph, i) => {
           return (
             <p key={'item-' + i} className={styles.paragraph}>
-              {i}
+              { paragraph }
             </p>
           );
         })
@@ -61,11 +61,6 @@ BestNewMusicContent.propTypes = {
   item: bestNewItemShape,
   artistInfoSearchByName: PropTypes.func,
   albumInfoSearchByName: PropTypes.func,
-  // addToQueue: PropTypes.func,
-  // selectSong: PropTypes.func,
-  // clearQueue: PropTypes.func,
-  // startPlayback: PropTypes.func,
-  // musicSources: PropTypes.array,
   history: PropTypes.object
 };
 
@@ -73,11 +68,6 @@ BestNewMusicContent.defaultProps = {
   item: null,
   artistInfoSearchByName: () => {},
   albumInfoSearchByName: () => {},
-  // addToQueue: () => {},
-  // selectSong: () => {},
-  // clearQueue: () => {},
-  // startPlayback: () => {},
-  // musicSources: [],
   history: {}
 };
 
