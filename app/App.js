@@ -194,7 +194,7 @@ class App extends React.Component {
 
   renderNavLink (name, path, icon) {
     return (
-      <NavLink to={'/' + path} activeClassName={styles.active_nav_link}>
+      <NavLink key={path} to={'/' + path} activeClassName={styles.active_nav_link}>
         <SidebarMenuItem>
           <FontAwesome name={icon} /> {!this.props.settings.compactMenuBar && this.props.t(name)}
         </SidebarMenuItem>
