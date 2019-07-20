@@ -1,3 +1,4 @@
+import logger from 'electron-timber';
 import _ from 'lodash';
 import ytdl from 'ytdl-core';
 
@@ -33,6 +34,10 @@ class YoutubePlugin extends MusicSourcePlugin {
           title: videoInfo.title,
           thumbnail
         };
+      })
+      .catch(error => {
+        logger.error(`Error while searching  for ${terms} on Youtube`);
+        logger.error(error); 
       });
   }
 
@@ -57,6 +62,10 @@ class YoutubePlugin extends MusicSourcePlugin {
           title: videoInfo.title,
           thumbnail: videoInfo.thumbnail_url
         };
+      })
+      .catch(error => {
+        logger.error(`Error while looking up streams for ${terms} on Youtube`);
+        logger.error(error); 
       });
   }
 }

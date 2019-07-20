@@ -1,3 +1,4 @@
+import logger from 'electron-timber';
 import { getOption } from '../persistence/store';
 
 export function localSearch(body) {
@@ -9,5 +10,5 @@ export function localSearch(body) {
     }
   })
     .then(res => res.json())
-    .catch(console.error);
+    .catch(logger.error);
 }
