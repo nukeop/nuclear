@@ -1,4 +1,5 @@
 import express from 'express';
+import logger from 'electron-timber';
 import { ipcMain } from 'electron';
 import { Validator } from 'express-json-validator-middleware';
 import _ from 'lodash';
@@ -48,7 +49,7 @@ export function localFileRouter() {
 
       event.sender.send('local-files', cache);
     } catch (err) {
-      console.error(err);
+      logger.error(err);
       event.sender.send('local-files-error', err);
     }
   });

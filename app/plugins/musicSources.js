@@ -1,3 +1,5 @@
+import logger from 'electron-timber';
+
 import Plugin from './plugin';
 
 class MusicSourcePlugin extends Plugin {
@@ -17,12 +19,12 @@ class MusicSourcePlugin extends Plugin {
       track : 'The track to search'
     }
     */
-    console.error('search not implemented in plugin ' + this.name + 
+    logger.error('search not implemented in plugin ' + this.name + 
     '\n Query was: ' + query);
   }
 
   getAlternateStream(query, currentStream) {
-    console.error('getAlternateStream not implemented in plugin ' + this.name +
+    logger.error('getAlternateStream not implemented in plugin ' + this.name +
     '\n Query was: ' + query +
     '\n CurrentStream was: ' + currentStream);
   }

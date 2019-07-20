@@ -1,3 +1,4 @@
+import logger from 'electron-timber';
 import core from 'nuclear-core';
 import globals from '../globals';
 
@@ -45,7 +46,7 @@ export function loadTagInfo(tag) {
         dispatch(loadTagInfoSuccess(tag, results));
       })
       .catch(error => {
-        console.error(error);
+        logger.error(error);
         dispatch(loadTagInfoError(error));
       });
   };
