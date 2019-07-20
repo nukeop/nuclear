@@ -1,3 +1,4 @@
+import logger from 'electron-timber';
 import _ from 'lodash';
 
 import globals from '../../globals';
@@ -32,8 +33,8 @@ class SoundcloudPlugin extends MusicSourcePlugin {
         return info ? this.resultToStream(info) : null;
       })
       .catch(err => {
-        console.error(`Error looking up streams for ${terms} on Soundcloud`);
-        console.error(err);
+        logger.error(`Error while looking up streams for ${terms} on Soundcloud`);
+        logger.error(err);
       });
   }
 
@@ -46,8 +47,8 @@ class SoundcloudPlugin extends MusicSourcePlugin {
         return info ? this.resultToStream(info) : null;
       })
       .catch(err => {
-        console.error(`Error looking up streams for ${terms} on Soundcloud`);
-        console.error(err);
+        logger.error(`Error while looking up streams for ${terms} on Soundcloud`);
+        logger.error(err);
       });
   }
 }
