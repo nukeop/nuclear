@@ -1,5 +1,5 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React, {useMemo} from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import * as EqualizerActions from '../../actions/equalizer';
@@ -8,44 +8,41 @@ import EqualizerPresetList from '../../components/EqualizerPresetList';
 
 import styles from './styles.scss';
 
-const EqualizerViewContainer = ({ actions, equalizer, presets, selected, viz, dataViz }) => (
-  <div className={styles.equalizer_view}>
-    <h1>Equalizer</h1>
-    <div className={styles.equalizer_components}>
-      <Equalizer
-        values={equalizer.values}
-        preAmp={equalizer.preAmp}
-        onChange={actions.updateEqualizer}
-        viz={viz}
-        dataViz={dataViz}
-        onToggleViz={actions.toggleVisualization}
-      />
-      <EqualizerPresetList
-        onClickItem={actions.setEqualizer}
-        presets={presets}
-        selected={selected}
-      />
+const usePresets = () => {
+  const map = useSelector(state => state.equalizer.presets);
+  const ids = useSelector(state => state.equalizer.presetIDs);
+  return useMemo(() => denormalize({ids, map}), [ids, map]);
+};
+
+const denormalize = ({map, ids}) => ids.map(id => map[id]);
+
+const EqualizerViewContainer = () => {
+  const equalizer = useSelector(state => state.equalizer);
+  const preset = equalizer.presets[equalizer.selected];
+  const dispatch = useDispatch();
+  const actions = useMemo(() => bindActionCreators(EqualizerActions, dispatch), [dispatch]);
+  const presets = usePresets();
+  return (
+    <div className={styles.equalizer_view}>
+      <h1>Equalizer</h1>
+      <div className={styles.equalizer_components}>
+        <Equalizer
+          values={preset.values}
+          preAmp={preset.preAmp}
+          onEqualizerChange={actions.changeValue}
+          onPreampChange={actions.setPreAmp}
+          onToggleSpectrum={actions.toggleSpectrum}
+          enableSpectrum={equalizer.enableSpectrum}
+          spectrum={equalizer.spectrum}
+        />
+        <EqualizerPresetList
+          onClickItem={actions.selectPreset}
+          presets={presets}
+          selected={preset.id}
+        />
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
-function mapStateToProps({ equalizer }) {
-  return {
-    selected: equalizer.selected,
-    equalizer: equalizer.presets[equalizer.selected],
-    presets: Object.keys(equalizer.presets),
-    viz: equalizer.viz,
-    dataViz: equalizer.dataViz
-  };
-}
-
-function mapDispatchToProps(dispatch) {
-  return {
-    actions: bindActionCreators(EqualizerActions, dispatch)
-  };
-}
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(EqualizerViewContainer);
+export default EqualizerViewContainer;
