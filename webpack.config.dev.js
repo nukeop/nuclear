@@ -81,11 +81,13 @@ const config = {
     }),
     new HappyPack({
       id: 'jsx',
-      loaders: ['babel-loader']
+      loaders: ['babel-loader'],
+      verbose: false
     }),
     new HappyPack({
       id: 'scss',
-      loaders: ['style-loader!css-loader?importLoaders=1&modules&localIdentName=[local]!sass-loader']
+      loaders: ['style-loader!css-loader?importLoaders=1&modules&localIdentName=[local]!sass-loader'],
+      verbose: false
     })
   ],
   target: 'electron-renderer'

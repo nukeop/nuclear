@@ -30,7 +30,8 @@ module.exports = () => {
       new webpack.NamedModulesPlugin(),
       new HappyPack({
         id: 'jsx',
-        loaders: ['babel-loader']
+        loaders: ['babel-loader'],
+        verbose: false
       })
     ],
     node: {

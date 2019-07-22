@@ -28,7 +28,8 @@ module.exports = env => {
     plugins: [
       new HappyPack({
         id: 'jsx',
-        loaders: ['babel-loader']
+        loaders: ['babel-loader'],
+        verbose: false
       })
     ],
     externals: {
