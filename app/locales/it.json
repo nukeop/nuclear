@@ -67,14 +67,14 @@
     "filter-placeholder": "Filtra...",
     "header": "Libreria Locale",
     "title": "Titolo",
-    "empty": "La libreria e' vuota,
+    "empty": "La libreria e' vuota",
     "empty-help": "Prova ad aggiungere qualche brano usando il bottone qui sopra",
     "no-api": "Web Api non e' abilitato :(",
     "no-api-help": "Per utilizzare la libreria locale devi abilitare le web api.",
     "api-enable": "Abilita le api."
   },
   "lyrics": {
-    "by-artist": "by {{artista}}",
+    "by-artist": "by {{artist}}",
     "empty": "Nessun brano in riproduzione.",
     "empty-help": "Aggiungi qualche brano alla cosa per vederne qui il testo!",
     "not-found": "Nessun testo trovato su questa canzone."
@@ -95,8 +95,8 @@
     "dialog-placeholder": "Nome della playlist...",
     "empty": "Nessuna playlist.",
     "rename": "Rinomina questa playlist",
-    "songs": "{{totali}} brano",
-    "songs_plural": "{{totali}} brani",
+    "songs": "{{total}} brano",
+    "songs_plural": "{{total}} brani",
     "title": "Titolo"
   },
   "plugins": {
@@ -110,7 +110,7 @@
     "dialog-placeholder": "Nome della playlist...",
     "dialog-trigger": "Salva come playlist",
     "download": "Download",
-    "download-toast-content": "{{artista}} - {{titolo}} e; stato aggiunto alla coda.",
+    "download-toast-content": "{{artist}} - {{title}} e; stato aggiunto alla coda.",
     "download-toast-title": "Brano aggiungo ai download",
     "favorite-add": "Aggiungi ai favoriti",
     "header": "Coda",
