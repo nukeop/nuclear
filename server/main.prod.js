@@ -1,4 +1,3 @@
-import 'babel-polyfill';
 import process from 'process';
 import logger from 'electron-timber';
 
