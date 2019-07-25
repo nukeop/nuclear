@@ -9,7 +9,7 @@ describe("<VerticalPanel />", () => {
   it("renders with correct className", () => {
     const className = "wrapper";
     const wrapper = shallow(<VerticalPanel className={className} />);
-    expect(wrapper.hasClass(className)).to.equal(true);
+    expect(wrapper.closest('div').hasClass(className)).to.equal(true);
   });
 
   it("renders with no children", () => {
