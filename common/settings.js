@@ -122,17 +122,18 @@ export default [
     prettyName: 'language',
     placeholder: 'language-placeholder',
     options: [
-      {key: 'en', text: 'English', value: 'en'},
-      {key: 'fr', text: 'French', value: 'fr'},
-      {key: 'nl', text: 'Dutch', value: 'nl'},
       {key: 'de', text: 'German', value: 'de'},
       {key: 'dk', text: 'Danish', value: 'dk'},
+      {key: 'en', text: 'English', value: 'en'},
       {key: 'es', text: 'Spanish', value: 'es'},
+      {key: 'fr', text: 'French', value: 'fr'},
+      {key: 'it', text: 'Italian', value: 'it'},
+      {key: 'nl', text: 'Dutch', value: 'nl'},
       {key: 'pl', text: 'Polish', value: 'pl'},
-      {key: 'zh', text: 'Chinese', value: 'zh'},
+      {key: 'pt_br', text: 'Brazilian Portuguese', value: 'pt_br'},
       {key: 'ru', text: 'Russian', value: 'ru'},
-      {key: 'pt_br', text: 'Português do Brasil', value: 'pt_br'},
-      {key: 'tr', text: 'Turkish', value: 'tr'}
+      {key: 'tr', text: 'Turkish', value: 'tr'},
+      {key: 'zh', text: 'Chinese', value: 'zh'}
     ],
     default: undefined
   }
