@@ -9,12 +9,12 @@ describe("<VerticalPanel />", () => {
   it("renders with correct className", () => {
     const className = "wrapper";
     const wrapper = shallow(<VerticalPanel className={className} />);
-    expect(wrapper.closest("div").hasClass(className)).to.equal(true);
+    expect(wrapper.hasClass(className)).to.equal(true);
   });
 
   it("renders with no children", () => {
     const wrapper = shallow(<VerticalPanel />);
-    expect(wrapper.closest("div").children()).to.have.lengthOf(0);
+    expect(wrapper.children()).to.have.lengthOf(0);
   });
 
   it("renders with children", () => {
@@ -24,6 +24,6 @@ describe("<VerticalPanel />", () => {
         <div>Second</div>
       </VerticalPanel>
     );
-    expect(wrapper.closest("div").children()).to.have.lengthOf(2);
+    expect(wrapper.children()).to.have.lengthOf(2);
   });
 });
