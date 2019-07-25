@@ -74,7 +74,8 @@ We do not control these and cannot be held responsible for their contents, but i
 ## Screenshots
 This will be updated as the program evolves.
 
-![Album Search](https://imgur.com/idFVnAF)
+![Album Search](https://i.imgur.com/idFVnAF.png)
+
 
 ![Album Display](https://imgur.com/Kvzo3q7)
 
