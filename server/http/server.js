@@ -64,4 +64,4 @@ function closeHttpServer(app) {
   });
 }
 
-module.exports = { runHttpServer, closeHttpServer };
+export {runHttpServer, closeHttpServer};

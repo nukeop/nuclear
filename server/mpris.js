@@ -88,7 +88,7 @@ function getPlayingStatus() {
   });
 }
 
-module.exports = {
+export {
   onNext,
   onPrevious,
   onPause,

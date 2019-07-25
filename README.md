@@ -74,21 +74,21 @@ We do not control these and cannot be held responsible for their contents, but i
 ## Screenshots
 This will be updated as the program evolves.
 
-![laptop mockup 1](https://i.imgur.com/31Tc5qf.jpg)
+![Album Search](https://i.imgur.com/idFVnAF.png)
 
-![laptop mockup 2](https://i.imgur.com/HqMP5HF.jpg)
+![Album Display](https://i.imgur.com/Kvzo3q7.png)
 
-![album search](https://i.imgur.com/tLSv6pw.png)
+![Artist View](https://i.imgur.com/imBLYl3.png)
 
-![album display](https://i.imgur.com/hAEXUaQ.png)
+![Dashboard Best New Music](https://i.imgur.com/bMDrR4M.png)
 
-![artist view](https://i.imgur.com/DCrlVqt.png)
+![Dashboard Genres](https://i.imgur.com/g0aCmKx.png)
 
-![dashboard](https://i.imgur.com/tewcTEu.png)
+![Playlist View](https://i.imgur.com/2VMXHDC.png)
 
-![playlist view](https://i.imgur.com/YM3eP3i.png)
+![Lyrics View](https://i.imgur.com/7e3DJKJ.png)
 
-![genre view](https://i.imgur.com/KrzUvwp.png)
+![Equalizer View](https://i.imgur.com/WreRL0w.png)
 
 ## Dev build process
 As all Electron applications, Nuclear has two parts: the server and the web app.
