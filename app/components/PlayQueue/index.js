@@ -106,6 +106,7 @@ class PlayQueue extends React.Component {
             settings={settings}
             playlists={playlists}
             items={items}
+            compact={compact}
           />
 
           <Droppable droppableId='play_queue'>
