@@ -1,4 +1,3 @@
-import 'babel-polyfill';
 import logger from 'electron-timber';
 import platform from 'electron-platform';
 import path from 'path';

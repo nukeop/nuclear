@@ -75,7 +75,7 @@ const config = {
     }),
     new HappyPack({
       id: 'jsx',
-      loaders: ['babel-loader']
+      loaders: [{loader: 'babel-loader', options: {cacheDirectory: true}}]
     }),
     new HappyPack({
       id: 'scss',
