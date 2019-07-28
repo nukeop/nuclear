@@ -154,11 +154,12 @@ class PlaylistView extends React.Component {
         </tr>
       </thead>);
   }
-  deleteTrack(playlist, track) {
+  deleteTrack(playlist, tracks ) {
     const updatedPlaylist = _.cloneDeep(playlist);
-    updatedPlaylist.tracks = _.filter(updatedPlaylist.tracks, track => 
-    track.id !== trackToRemove.id )
-    };
+    updatedPlaylist.tracks = _.filter(function (track) { 
+    track.tracks !== tracks
+    })
+  };
 
   renderTrack (track, index) {
     const newTrack = _.cloneDeep(track);
