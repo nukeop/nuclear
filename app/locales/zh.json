@@ -51,7 +51,7 @@
     "title": "音乐标题"
   },
   "help": {
-    "about": "About Nuclear Music Player",
+    "about": "关于",
     "header": "Desktop music player for streaming from free sources",
     "released": "released under AGPL-3.0",
     "thanks": "Many thanks to our contributors on Github, your help was vital in creating this program."
@@ -60,7 +60,7 @@
     "cancel": "取消"
   },
   "library": {
-    "add": "Add folders",
+    "add": "新建文件夹",
     "album": "专辑",
     "artist": "艺人",
     "filter-placeholder": "Filter...",
@@ -85,10 +85,10 @@
   },
   "playlists": {
     "artist": "艺人",
-    "delete": "Delete this playlist",
+    "delete": "删除播放列表",
     "dialog-placeholder": "Playlist name...",
-    "empty": "No playlists.",
-    "rename": "重命名这个播放列表",
+    "empty": "没有任何播放列表。",
+    "rename": "重命名播放列表",
     "songs": "{{total}} song",
     "songs_plural": "{{total}} songs",
     "title": "音乐标题"
@@ -120,7 +120,7 @@
     "album": "专辑",
     "album_plural": "专辑",
     "artist": "艺人",
-    "artist_plural": "Artists",
+    "artist_plural": "艺人",
     "empty": "Nothing found.",
     "placeholder": "搜索...",
     "playlist": "播放列表",
@@ -139,12 +139,12 @@
     "display": "Display",
     "enable-api": "Enable the api",
     "frameless-window": "Frameless window (requires restart)",
-    "github-connect": "Log in with Github",
+    "github-connect": "用GitHub登陆",
     "github-description": "Log in via Github to be able to create and share your playlists online (upcoming feature).",
     "github-title": "Github",
     "http": "HTTP API",
     "language": "语言",
-    "language-placeholder": "Pick a language",
+    "language-placeholder": "选择一个语言",
     "lastfm-connect": "Connect with Last.fm",
     "lastfm-description": "In order to enable scrobbling, you first have to connect and authorize Nuclear on Last.fm, then click log in.",
     "lastfm-enable": "Enable scrobbling to Last.fm",
@@ -153,7 +153,7 @@
     "logout": "推出",
     "loop-after-queue-end": "Loop after playing the last queue item",
     "notification-timeout": "Notification timeout",
-    "notlogged": "Not logged in",
+    "notlogged": "没有登陆",
     "playback": "Playback",
     "program-settings": "Program设置",
     "shuffle-queue": "Shuffle songs",
