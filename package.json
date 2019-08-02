@@ -1,6 +1,6 @@
 {
   "name": "nuclear",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "Streaming music player that finds music sources automatically.",
   "main": "main.js",
   "scripts": {
