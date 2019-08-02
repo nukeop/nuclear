@@ -29,26 +29,24 @@ const TrackPopupContainer = props => {
     withAddToFavorites,
     withAddToDownloads
   } = props;
-  
+
+  const trackItem = {
+    artist,
+    name: title,
+    thumbnail: props.thumb
+  };
+
   return (
     <ContextPopup
-      trigger={ trigger }
-      artist={ artist }
-      title={ title }
-      thumb={ thumb }
+      trigger={trigger}
+      artist={artist}
+      title={title}
+      thumb={thumb}
     >
       {
         withAddToQueue &&
           <PopupButton
-            onClick={() => {
-              actions.addToQueue(
-                musicSources,
-                {
-                  artist: props.artist,
-                  name: props.title,
-                  thumbnail: props.thumb
-                });
-            }}
+            onClick={ () => actions.addToQueue(musicSources, trackItem)}
             ariaLabel='Add track to queue'
             icon='plus'
             label='Add to queue'
@@ -58,18 +56,7 @@ const TrackPopupContainer = props => {
       {
         withPlayNow &&
         <PopupButton
-          onClick={ () => {
-            actions.clearQueue();
-            actions.addToQueue(
-              musicSources,
-              {
-                artist: props.artist,
-                name: props.title,
-                thumbnail: props.thumb
-              });
-            actions.selectSong(0);
-            actions.startPlayback();
-          }}
+          onClick={ () => actions.playTrack(musicSources, trackItem) }
           ariaLabel='Play this track now'
           icon='play'
           label='Play now'
@@ -79,12 +66,12 @@ const TrackPopupContainer = props => {
       {
         withAddToFavorites &&
         <PopupButton
-          onClick={ () => {
+          onClick={() => {
             actions.addFavoriteTrack(track);
             actions.info(
               'Favorite track added',
               `${artist} - ${title} has been added to favorites.`,
-              <img src={ thumb } />,
+              <img src={thumb} />,
               settings
             );
           }}
@@ -97,13 +84,13 @@ const TrackPopupContainer = props => {
       {
         withAddToDownloads &&
         <PopupButton
-          onClick={ () => {
+          onClick={() => {
             ipcRenderer.send('start-download', track);
             actions.addToDownloads(musicSources, track);
             actions.info(
               'Track added to downloads',
               `${artist} - ${title} has been added to downloads.`,
-              <img src={ thumb } />,
+              <img src={thumb} />,
               settings
             );
           }}
@@ -112,7 +99,7 @@ const TrackPopupContainer = props => {
           label='Download'
         />
       }
-    
+
     </ContextPopup>
   );
 };
@@ -148,7 +135,7 @@ TrackPopupContainer.defaultProps = {
   actions: {},
   musicSources: [],
   settings: {},
-  
+
   withAddToQueue: true,
   withPlayNow: true,
   withAddToFavorites: true,

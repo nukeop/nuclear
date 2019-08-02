@@ -4,6 +4,7 @@ import {
   Button,
   Icon
 } from 'semantic-ui-react';
+import { withTranslation } from 'react-i18next';
 
 import InputDialog from '../InputDialog';
 import ContextPopup from '../ContextPopup';
@@ -13,6 +14,7 @@ import artPlaceholder from '../../../resources/media/art_placeholder.png';
 
 import styles from './styles.scss';
 
+@withTranslation('playlists')
 class PlaylistView extends React.Component {
   constructor(props) {
     super(props);
@@ -58,9 +60,9 @@ class PlaylistView extends React.Component {
           onClick={() =>
             this.deletePlaylist(this.props.playlist)
           }
-          ariaLabel='Delete this playlist'
+          ariaLabel={this.props.t('delete')}
           icon='trash'
-          label='Delete this playlist'
+          label={this.props.t('delete')}
         />           
       </ContextPopup>
     );
@@ -116,16 +118,16 @@ class PlaylistView extends React.Component {
             { playlist.name }
             <InputDialog
               header={<h4>Input new playlist name:</h4>}
-              placeholder='Playlist name...'
+              placeholder={this.props.t('dialog-placeholder')}
               accept='Rename'
-              initialString={ playlist.name }
+              initialString={playlist.name}
               onAccept={
                 name => this.renamePlaylist(playlist, name)
               }
               trigger={
                 <Button
                   basic
-                  aria-label='Rename this playlist'
+                  aria-label={this.props.t('rename')}
                   icon='pencil'
                 />
               }
@@ -147,8 +149,8 @@ class PlaylistView extends React.Component {
           <th>
             <Icon name='image' />
           </th>
-          <th>Artist</th>
-          <th>Title</th>
+          <th>{this.props.t('artist')}</th>
+          <th>{this.props.t('title')}</th>
         </tr>
       </thead>);
   }

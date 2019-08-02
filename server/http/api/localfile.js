@@ -1,10 +1,11 @@
 import express from 'express';
+import logger from 'electron-timber';
 import { ipcMain } from 'electron';
 import { Validator } from 'express-json-validator-middleware';
 import _ from 'lodash';
 
-import { scanDirectories } from '../lib/files';
-import { store, getOption } from '../../store';
+import { scanFoldersAndGetMeta } from '../../local-files';
+import { store, getOption, setOption } from '../../store';
 
 export const localSearchSchema = {
   body: {
@@ -36,21 +37,21 @@ export const localGetSchema = {
 const { validate } = new Validator({ allErrors: true });
 
 export function localFileRouter() {
-  let cache;
-  let byArtist;
+  let cache = store.get('localMeta');
+  let byArtist = _.groupBy(Object.values(cache), track => track.artist.name);
 
-  ipcMain.on('refresh-localfolders', event => {
-    scanDirectories(store.get('localFolders'))
-      .then(data => {
-        cache = data.reduce((acc, item) => ({
-          ...acc,
-          [item.id]: item
-        }), {});
-        byArtist = _.groupBy(data, track => track.artist.name);
+  ipcMain.on('refresh-localfolders', async event => {
+    try {
+      cache = await scanFoldersAndGetMeta(store.get('localFolders'), cache);
 
-        event.sender.send('local-files', data);
-      })
-      .catch(err => event.sender.send('local-files-error', err));
+      store.set('localMeta', cache);
+      byArtist = _.groupBy(Object.values(cache), track => track.artist.name);
+
+      event.sender.send('local-files', cache);
+    } catch (err) {
+      logger.error(err);
+      event.sender.send('local-files-error', err);
+    }
   });
 
   const router = express.Router();
@@ -65,29 +66,9 @@ export function localFileRouter() {
     }
   };
 
-  router.get(
-    '/:fileId',
-    validate(localGetSchema),
-    checkCache,
-    (req, res) => {
-      res.download(cache[req.params.fileId].path);
-    }
-  );
-
-  router.get(
-    '/:fileId/thumb',
-    validate(localGetSchema),
-    checkCache,
-    (req, res, next) => {
-      const picture = cache[req.params.fileId].cover;
-
-      if (picture) {
-        res.end(picture[0].data);
-      } else {
-        next();
-      }
-    }
-  );
+  router.get('/:fileId', validate(localGetSchema), checkCache, (req, res) => {
+    res.download(cache[req.params.fileId].path);
+  });
 
   router.post('/search', validate(localSearchSchema), (req, res, next) => {
     const port = getOption('api.port');
@@ -100,14 +81,15 @@ export function localFileRouter() {
           .flat()
           .filter(track => track.name.includes(req.body.track))
           .map(track => ({
-            id: track.id,
+            uuid: track.uuid,
             title: track.name,
             duration: track.duration,
             source: 'Local',
-            stream: `http://127.0.0.1:${port}/nuclear/file/${track.id}`,
-            thumbnail: `http://127.0.0.1:${port}/nuclear/file/${track.id}/thumb`
+            stream: `http://127.0.0.1:${port}/nuclear/file/${track.uuid}`,
+            thumbnail: track.image && track.image[0] ? track.image[0]['#text'] : undefined
           }))
-          .pop());
+          .pop()
+      );
     } catch (err) {
       next(err);
     }

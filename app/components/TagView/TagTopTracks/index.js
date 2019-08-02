@@ -3,21 +3,19 @@ import FontAwesome from 'react-fontawesome';
 
 import styles from './styles.scss';
 import TrackRow from '../../TrackRow';
+import { useTranslation } from 'react-i18next';
 
-class TagTopTracks extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+const TagTopTracks = ({ tracks, addToQueue, musicSources }) => {
+  const { t } = useTranslation('tags');
 
-  renderAddAllButton () {
-    let { tracks, addToQueue, musicSources } = this.props;
-    return (
+  return (
+    <div className={styles.tag_top_tracks}>
       <a
         href='#'
         key='add-all-tag-tracks-to-queue'
         className='add_all_button'
         onClick={() => {
-          tracks.map((track, i) => {
+          tracks.map((track) => {
             addToQueue(musicSources, {
               artist: track.artist.name,
               name: track.name,
@@ -25,46 +23,37 @@ class TagTopTracks extends React.Component {
             });
           });
         }}
-        aria-label='Add all tracks to queue'
+        aria-label={t('queue-add')}
       >
-        <FontAwesome name='plus' /> Add all to queue
+        <FontAwesome name='plus' /> {t('queue-add')}
       </a>
-    );
-  }
-
-  render () {
-    let { tracks } = this.props;
-    return (
-      <div className={styles.tag_top_tracks}>
-        {this.renderAddAllButton()}
-        <table>
-          <thead>
-            <tr>
-              <th>
-                <FontAwesome name='photo' />
-              </th>
-              <th>Artist</th>
-              <th>Title</th>
-              <th style={{ textAlign: 'center' }}>Duration</th>
-            </tr>
-          </thead>
-          <tbody>
-            {tracks.map((track, index) => {
-              return < TrackRow
-                key={'tag-track-row-' + index}
-                track={track}
-                index={'popular-track-' + index}
-                artist={track.artist}
-                displayCover
-                displayArtist
-                displayDuration
-              />;
-            })}
-          </tbody>
-        </table>
-      </div>
-    );
-  }
-}
+      <table>
+        <thead>
+          <tr>
+            <th>
+              <FontAwesome name='photo' />
+            </th>
+            <th>{t('artist')}</th>
+            <th>{t('title')}</th>
+            <th style={{ textAlign: 'center' }}>{t('duration')}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {tracks.map((track, index) => {
+            return < TrackRow
+              key={'tag-track-row-' + index}
+              track={track}
+              index={'popular-track-' + index}
+              artist={track.artist}
+              displayCover
+              displayArtist
+              displayDuration
+            />;
+          })}
+        </tbody>
+      </table>
+    </div>
+  );
+};
 
 export default TagTopTracks;

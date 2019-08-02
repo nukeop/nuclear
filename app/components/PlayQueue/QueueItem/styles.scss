@@ -5,6 +5,8 @@
   transition: all $medium-duration ease-out;
 
   margin: 0.5rem;
+  margin-top: 0;
+  padding: 0.5rem 0.25rem 0.5rem 0.5rem;
 
   border-radius: 2px;
   background-color: rgba($background2, 0.5);
@@ -12,7 +14,6 @@
   flex: 0 0 auto;
   flex-flow: row;
 
-  height: 60px;
 
   span {
     display: flex;
@@ -37,7 +38,7 @@
   display: flex;
   width: 48px;
   height: 48px;
-  margin: 6px;
+  margin-right: 0.5rem;
 
   flex: 0 0 auto;
   align-items: center;
@@ -85,8 +86,6 @@
 .name_container {
   overflow: hidden;
 
-  margin-bottom: 6px;
-
   white-space: nowrap;
   text-overflow: ellipsis;
 }
@@ -103,6 +102,7 @@
 .item_duration_container {
   display: flex;
   overflow: hidden;
+  font-size: 0.85em;
 
   flex: 0 0 auto;
   flex-flow: column;

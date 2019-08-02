@@ -15,7 +15,7 @@ import {
   localFileRouter
 } from './api';
 import { errorMiddleware, notFoundMiddleware } from './middlewares';
-import { initSwagger } from './lib/swagger';
+import { initSwagger } from './swagger';
 
 function runHttpServer({
   log,
@@ -64,4 +64,4 @@ function closeHttpServer(app) {
   });
 }
 
-module.exports = { runHttpServer, closeHttpServer };
+export {runHttpServer, closeHttpServer};

@@ -65,7 +65,12 @@ bundle.electron.js
 # Prettier configuration file
 .prettierrc
 
+# npm
 package-lock.json
 
-#editors configuration 
+# vscode
 .vscode/
+tsconfig.json
+
+#nvm
+.nvmrc

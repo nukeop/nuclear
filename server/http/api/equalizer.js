@@ -5,7 +5,7 @@ import swagger from 'swagger-spec-express';
 import { store } from '../../store';
 import { onUpdateEqualizer, onSetEqualizer } from '../../mpris';
 import { updateEqualizerSchema } from '../schema';
-import { getStandardDescription } from '../lib/swagger';
+import { getStandardDescription } from '../swagger';
 
 const { validate } = new Validator({ allErrors: true });
 

@@ -156,7 +156,7 @@ export function loadNuclearNews() {
     getNewsIndex()
       .then(index => {
         return Promise.all(
-          index.articles.map((item, i) => {
+          index.articles.map(item => {
             return getNewsItem(item);
           })
         );

@@ -1,19 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { bestNewItemShape } from '../BestNewMusicMenu/BestNewMusicCard';
+import { bestNewItemShape } from '../BestNewMusicMenu';
 
 import styles from './styles.scss';
 
-const BestNewMusicContent = props => {
-  const {
-    item,
-    albumInfoSearchByName,
-    artistInfoSearchByName,
-    history,
-    isPlayable
-  } = props;
-
+const BestNewMusicContent = ({
+  item,
+  albumInfoSearchByName,
+  artistInfoSearchByName,
+  history,
+  isPlayable
   if (item === null) {
     return null;
   }
@@ -33,7 +30,7 @@ const BestNewMusicContent = props => {
           </div>
           <div
             className={styles.title}
-            onClick={() => albumInfoSearchByName(item.title + ' ' + item.artist, props.history)}
+            onClick={() => albumInfoSearchByName(item.title + ' ' + item.artist, history)}
           >
             {item.title}
           </div>
@@ -54,10 +51,10 @@ const BestNewMusicContent = props => {
         </div>
       }
       {
-        item.review.split('\n').map(i => {
+        item.review.split('\n').map((paragraph, i) => {
           return (
             <p key={'item-' + i} className={styles.paragraph}>
-              {i}
+              { paragraph }
             </p>
           );
         })

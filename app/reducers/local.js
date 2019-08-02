@@ -17,11 +17,7 @@ const initialState = {
   sortBy: 'artist',
   direction: 'ascending',
   filter: '',
-  tracks: {
-    byId: {},
-    byAlbum: {},
-    byArtist: {}
-  }
+  tracks: {}
 };
 
 export default function LocalReducer(state = initialState, action) {

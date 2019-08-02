@@ -1,3 +1,5 @@
+import logger from 'electron-timber';
+
 const nuclearNewsUrl = 'http://nuclear.js.org/news/';
 
 export function getNewsIndex() {
@@ -7,7 +9,7 @@ export function getNewsIndex() {
       return Promise.resolve(response);
     })
     .catch(err => {
-      console.error(err);
+      logger.error(err);
     });
 }
 
@@ -18,6 +20,6 @@ export function getNewsItem(itemName) {
       return Promise.resolve(response);
     })
     .catch(err => {
-      console.error(err);
+      logger.error(err);
     });
 }

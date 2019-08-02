@@ -4,9 +4,11 @@ import TracksResults from '../TracksResults';
 import FontAwesome from 'react-fontawesome';
 import artPlaceholder from '../../../../resources/media/art_placeholder.png';
 import _ from 'lodash';
+import { withTranslation } from 'react-i18next';
 
 import styles from './styles.scss';
 
+@withTranslation('search')
 class PlaylistResults extends React.Component {
   constructor(props) {
     super(props);
@@ -32,7 +34,7 @@ class PlaylistResults extends React.Component {
           });
       }}
       className={styles.add_button}
-      aria-label='Add all tracks to queue'
+      aria-label={this.props.t('queue-add')}
     >
       <FontAwesome name='plus' /> Add all
     </a> : null
@@ -58,7 +60,7 @@ class PlaylistResults extends React.Component {
   }
 
   renderNoResult () {
-    return (<div>Nothing found.</div>);
+    return (<div>{this.props.t('empty')}</div>);
   }
   render () {
     return (

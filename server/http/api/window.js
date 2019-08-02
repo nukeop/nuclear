@@ -1,7 +1,7 @@
 import express from 'express';
 const { ipcMain } = require('electron');
 import swagger from 'swagger-spec-express';
-import { getStandardDescription } from '../lib/swagger';
+import { getStandardDescription } from '../swagger';
 
 export function windowRouter() {
 

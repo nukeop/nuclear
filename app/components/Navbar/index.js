@@ -1,15 +1,6 @@
 import React from 'react';
+import styles from './styles.scss';
 
-import styles from './styles.css';
-
-class Navbar extends React.Component {
-  render() {
-    return (
-      <div className={this.props.className}>
-        {this.props.children}
-      </div>
-    );
-  }
-}
+const Navbar = ({ children }) => <div className={styles.navbar}>{children}</div>;
 
 export default Navbar;

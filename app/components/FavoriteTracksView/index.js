@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Icon, Segment } from 'semantic-ui-react';
 import _ from 'lodash';
+import { useTranslation } from 'react-i18next';
 
 import Header from '../Header';
 import TrackRow from '../TrackRow';
@@ -10,19 +11,22 @@ import trackRowStyles from '../TrackRow/styles.scss';
 import styles from './styles.scss';
 
 const EmptyState = () => {
+  const { t } = useTranslation('favorites');
+
   return (
     <div className={styles.empty_state} >
       <Icon name='star'/>
-      <h2>No favorites added.</h2>
-      <div>Try favoriting some tracks and they will appear here!</div>
+      <h2>{t('empty')}</h2>
+      <div>{t('empty-help')}</div>
     </div>
   );
 };
 
-const FavoriteTracksView = props => {
-  const {
-    tracks
-  } = props;
+const FavoriteTracksView = ({
+  tracks,
+  removeFavoriteTrack
+}) => {
+  const { t } = useTranslation('favorites');
   
   return (
     <div className={styles.favorite_tracks_view}>
@@ -34,15 +38,16 @@ const FavoriteTracksView = props => {
         !_.isEmpty(tracks) &&
         <React.Fragment>
           <Header>
-        Your favorite tracks
+            {t('header')}
           </Header>
           <Segment className={trackRowStyles.tracks_container}>
             <table>
               <thead>
                 <tr>
+                  <th />
                   <th><Icon name='image' /></th>
-                  <th>Artist</th>
-                  <th>Title</th>
+                  <th>{t('artist')}</th>
+                  <th>{t('title')}</th>
                 </tr>
               </thead>
               <tbody>
@@ -55,7 +60,12 @@ const FavoriteTracksView = props => {
                         index={i}
                         displayCover
                         displayArtist
+                        withDeleteButton
                         withAddToFavorites={false}
+                        onDelete={e => {
+                          e.stopPropagation();
+                          removeFavoriteTrack(track);
+                        }}
                       />
                     );
                   })
@@ -75,11 +85,13 @@ FavoriteTracksView.propTypes = {
       name: PropTypes.string
     }),
     name: PropTypes.string
-  }))
+  })),
+  removeFavoriteTrack: PropTypes.func
 };
 
 FavoriteTracksView.defaultProps = {
-  tracks: []
+  tracks: [],
+  removeFavoriteTrack: () => {}
 };
 
 export default FavoriteTracksView;

@@ -1,15 +1,10 @@
 const apiUrl = 'https://api.discogs.com/';
 const userToken = 'QDUeFOZNwIwOePlxpVziEHzamhbIHUdfENAJTnLR';
-const key = 'EZaGPpKGBbTkjwmpjmNY';
-const secret = 'uluhDSPtelRtLUvjrvQhRBnNwpZMtkZq';
+// const key = 'EZaGPpKGBbTkjwmpjmNY';
+// const secret = 'uluhDSPtelRtLUvjrvQhRBnNwpZMtkZq';
 
 function addToken (query, first = false) {
   let newQuery = query + '&token=' + userToken;
-  return first ? newQuery.replace('&', '?') : newQuery;
-}
-
-function addKeys (query, first = false) {
-  let newQuery = query + '&key=' + key + '&secret=' + secret;
   return first ? newQuery.replace('&', '?') : newQuery;
 }
 

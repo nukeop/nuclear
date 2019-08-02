@@ -1,0 +1,171 @@
+﻿{
+  "album": {
+    "queue": "将专辑添加到播放列表"
+  },
+  "app": {
+    "collection": "收藏",
+    "dashboard": "主页",
+    "downloads": "下载",
+    "equalizer": "均衡器",
+    "favorite": "喜欢的音乐",
+    "library": "本地音乐",
+    "lyrics": "歌词",
+    "playlists": "播放列表",
+    "plugins": "插件",
+    "search": "搜索",
+    "settings": "设置"
+  },
+  "artist": {
+    "count": "播放次数",
+    "queue": "将全部歌曲添加到播放列表",
+    "similar": "相似歌手",
+    "title": "音乐标题",
+    "tour": "巡回演出"
+  },
+  "dashboard": {
+    "artist": "艺人",
+    "best": "最棒新音乐",
+    "best-new-albums": "最棒新专辑",
+    "best-new-tracks": "最棒新单曲",
+    "genres": "流派",
+    "lastfm-title": "LastFm. 的最新单曲 ",
+    "news": "消息",
+    "playcounts": "播放次数",
+    "title": "音乐标题",
+    "top": "排行榜"
+  },
+  "downloads": {
+    "clear": "清空已下载曲名",
+    "completion": "完成",
+    "empty": "下载列表为空",
+    "empty-help": "把歌曲添加到你的下载列表中,然后你就会在这里看到!",
+    "header": "下载",
+    "name": "名字",
+    "status": "状态"
+  },
+  "favorites": {
+    "artist": "艺人",
+    "empty": "还没有喜欢的歌曲",
+    "empty-help": "Try favoriting some tracks and they will appear here!您喜欢的歌曲将会显示在这里",
+    "header": "您喜欢的歌曲",
+    "title": "音乐标题"
+  },
+  "help": {
+    "about": "关于",
+    "header": "Desktop music player for streaming from free sources",
+    "released": "released under AGPL-3.0",
+    "thanks": "Many thanks to our contributors on Github, your help was vital in creating this program."
+  },
+  "input-dialog": {
+    "cancel": "取消"
+  },
+  "library": {
+    "add": "新建文件夹",
+    "album": "专辑",
+    "artist": "艺人",
+    "filter-placeholder": "Filter...",
+    "header": "Local Library",
+    "title": "音乐标题"
+  },
+  "lyrics": {
+    "by-artist": "by {{artist}}",
+    "empty": "Nothing is playing.",
+    "empty-help": "Add some music to the queue to display the lyrics here!",
+    "not-found": "这首歌未找到歌词"
+  },
+  "option-control": {
+    "autoradio": "Autoradio",
+    "loop": "循环",
+    "shuffle": "随机播放"
+  },
+  "player": {
+    "next-button": "Next track button",
+    "play-pause-button": "Play/Pause button",
+    "previous-button": "Previous track button"
+  },
+  "playlists": {
+    "artist": "艺人",
+    "delete": "删除播放列表",
+    "dialog-placeholder": "Playlist name...",
+    "empty": "没有任何播放列表。",
+    "rename": "重命名播放列表",
+    "songs": "{{total}} song",
+    "songs_plural": "{{total}} songs",
+    "title": "音乐标题"
+  },
+  "plugins": {
+    "header": "插件",
+    "placeholder": "选择默认音乐来源:",
+    "subtitle": "音乐源"
+  },
+  "queue": {
+    "clear": "Clear queue",
+    "dialog-accept": "保存",
+    "dialog-placeholder": "Playlist name...",
+    "dialog-trigger": "Save as playlist",
+    "download": "下载",
+    "download-toast-content": "{{artist}} - {{title}} has been added to downloads.",
+    "download-toast-title": "Track added to download",
+    "favorite-add": "Add to favorites",
+    "header": "Queue",
+    "header-track": "Current track",
+    "id": "Stream ID:",
+    "loading": "Stream还在加载.",
+    "playlist-add": "Add to playlist",
+    "playlist-toast-content": "Playlist {{name}} has been created.",
+    "playlist-toast-title": "Playlist created",
+    "title": "音乐标题:"
+  },
+  "search": {
+    "album": "专辑",
+    "album_plural": "专辑",
+    "artist": "艺人",
+    "artist_plural": "艺人",
+    "empty": "Nothing found.",
+    "placeholder": "搜索...",
+    "playlist": "播放列表",
+    "playlist_plural": "播放列表",
+    "queue-add": "Add all tracks to queue",
+    "track": "音乐标题",
+    "track_plural": "Tracks"
+  },
+  "settings": {
+    "api-port": "Port used by the api",
+    "autoradio": "Autoradio",
+    "autoradio-craziness": "Autoradio craziness",
+    "compact-menu-bar": "Use compact style for menu bar",
+    "compact-queue-bar": "Use compact style for queue bar",
+    "disable-gpu": "Disable hardware rendering (might fix issues with dragging elements and flashing screen)",
+    "display": "Display",
+    "enable-api": "Enable the api",
+    "frameless-window": "Frameless window (requires restart)",
+    "github-connect": "用GitHub登陆",
+    "github-description": "Log in via Github to be able to create and share your playlists online (upcoming feature).",
+    "github-title": "Github",
+    "http": "HTTP API",
+    "language": "语言",
+    "language-placeholder": "选择一个语言",
+    "lastfm-connect": "Connect with Last.fm",
+    "lastfm-description": "In order to enable scrobbling, you first have to connect and authorize Nuclear on Last.fm, then click log in.",
+    "lastfm-enable": "Enable scrobbling to Last.fm",
+    "lastfm-title": "Last.fm",
+    "login": "登录",
+    "logout": "推出",
+    "loop-after-queue-end": "Loop after playing the last queue item",
+    "notification-timeout": "Notification timeout",
+    "notlogged": "没有登陆",
+    "playback": "Playback",
+    "program-settings": "Program设置",
+    "shuffle-queue": "Shuffle songs",
+    "social": "Social",
+    "user": "用户:"
+  },
+  "tags": {
+    "albums": "Top Albums",
+    "artist": "艺人",
+    "artists": "Top Artists",
+    "duration": "Duration",
+    "queue-add": "Add all tracks to queue",
+    "title": "音乐标题"
+  }
+}

@@ -1,29 +1,46 @@
-import React from 'react';
+import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import { Button, Icon, Segment, Table } from 'semantic-ui-react';
+import { useTranslation } from 'react-i18next';
 
 import DownloadsItem from '../DownloadsItem';
 
 import styles from './styles.scss';
 
-const DownloadsList = props => {
-  const {
-    items,
-    clearFinishedTracks
-  } = props;
-  
+const DownloadsList = ({
+  items,
+  clearFinishedTracks
+}) => {
+  const [sortAsc, setSort] = useState(true);
+  const { t } = useTranslation('downloads');
   return (
     <Segment inverted>
-      <Button primary onClick={ clearFinishedTracks }>
+      <Button primary onClick={clearFinishedTracks}>
         <Icon name='trash'/>
-        Clear finished tracks
+        {t('clear')}
       </Button>
       <Table inverted className={styles.downloads_list}>
         <Table.Header>
           <Table.Row>
-            <Table.HeaderCell>Status</Table.HeaderCell>
-            <Table.HeaderCell>Name</Table.HeaderCell>
-            <Table.HeaderCell>Completion</Table.HeaderCell>
+            <Table.HeaderCell>{t('status')}</Table.HeaderCell>
+            <Table.HeaderCell onClick={() => {
+              if (sortAsc){
+                items.sort((a, b) => {
+                  return a.track.name.toLowerCase() > b.track.name.toLowerCase();
+                });
+                setSort(false);
+              } else {
+                items.sort((a, b) => {
+                  return a.track.name.toLowerCase() < b.track.name.toLowerCase();
+                });
+                setSort(true);
+              }
+            }
+            }>{t('name')} {
+                sortAsc ? <Icon name='caret up icon' /> : <Icon name='caret down icon' />
+              }
+            </Table.HeaderCell>
+            <Table.HeaderCell>{t('completion')}</Table.HeaderCell>
           </Table.Row>
         </Table.Header>
         <Table.Body>
@@ -31,8 +48,8 @@ const DownloadsList = props => {
             items.map(item => {
               return (
                 <DownloadsItem
-                  key={ item.track.id }
-                  item={ item }
+                  key={item.track.uuid}
+                  item={item}
                 />
               );
             })

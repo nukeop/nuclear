@@ -6,6 +6,7 @@ import { NavLink, withRouter } from 'react-router-dom';
 import classnames from 'classnames';
 import _ from 'lodash';
 import Sound from 'react-hifi';
+import { withTranslation } from 'react-i18next';
 
 import * as Actions from './actions';
 import * as PlayerActions from './actions/player';
@@ -24,6 +25,7 @@ import logoIcon from '../resources/media/512x512.png';
 import artPlaceholder from '../resources/media/art_placeholder.png';
 
 import { config as PluginConfig } from './plugins/config';
+import { formatDuration } from './utils';
 import settingsConst from './constants/settings';
 
 import PlaylistsSubMenu from './components/PlaylistsSubMenu';
@@ -50,10 +52,12 @@ import Seekbar from './components/Seekbar';
 import SidebarMenu from './components/SidebarMenu';
 import SidebarMenuItem from './components/SidebarMenu/SidebarMenuItem';
 import SidebarMenuCategoryHeader from './components/SidebarMenu/SidebarMenuCategoryHeader';
+import TrackDuration from './components/TrackDuration';
 import TrackInfo from './components/TrackInfo';
 import WindowControls from './components/WindowControls';
 import VolumeControls from './components/VolumeControls';
 
+@withTranslation('app')
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -64,175 +68,212 @@ class App extends React.Component {
   }
   
   togglePlayback () {
-    if (
-      this.props.player.playbackStatus === Sound.status.PAUSED &&
-      this.props.scrobbling.lastFmScrobblingEnabled &&
-      this.props.scrobbling.lastFmSessionKey
-    ) {
-      let currentSong = this.props.queue.queueItems[
-        this.props.queue.currentSong
-      ];
-      this.props.actions.updateNowPlayingAction(
-        currentSong.artist,
-        currentSong.name,
-        this.props.scrobbling.lastFmSessionKey
-      );
+    if (this.props.player.playbackStatus === Sound.status.PAUSED) {
+      this.scrobbleLastFmIfAble();
     }
     this.props.actions.togglePlayback(this.props.player.playbackStatus);
   }
 
   nextSong () {
     this.props.actions.nextSong();
-    if (
-      this.props.scrobbling.lastFmScrobblingEnabled &&
-      this.props.scrobbling.lastFmSessionKey
-    ) {
-      let currentSong = this.props.queue.queueItems[
-        this.props.queue.currentSong
-      ];
-      this.props.actions.updateNowPlayingAction(
-        currentSong.artist,
-        currentSong.name,
-        this.props.scrobbling.lastFmSessionKey
-      );
+    this.scrobbleLastFmIfAble();
+  }
+
+  scrobbleLastFmIfAble () {
+    if (this.canScrobbleLastFm()) {
+      this.scrobbleLastFm();
     }
+  }
+
+  scrobbleLastFm () {
+    let currentSong = this.props.queue.queueItems[
+      this.props.queue.currentSong
+    ];
+    this.props.actions.updateNowPlayingAction(
+      currentSong.artist,
+      currentSong.name,
+      this.props.scrobbling.lastFmSessionKey
+    );
+  }
+
+  canScrobbleLastFm () {
+    return this.props.scrobbling.lastFmScrobblingEnabled &&
+      this.props.scrobbling.lastFmSessionKey;
   }
 
   renderNavBar () {
     return (
-      <Navbar className={styles.navbar}>
-        <NavButtons
-          back={this.props.history.goBack}
-          forward={this.props.history.goForward}
-          historyLength={this.props.history.length}
-          historyCurrentIndex={this.props.history.index}
-        />
+      <Navbar>
+        <NavButtons/>
         <SearchBoxContainer />
-        <Spacer style={{
-          height: '100%',
-          flex: '1 1 45%',
-          WebkitAppRegion: 'drag'
-        }}/>
+        <Spacer className={styles.navbar_spacer}/>
         <HelpModal />
         {this.props.settings.framelessWindow && <WindowControls />}
       </Navbar>
     );
   }
 
-  renderRightPanel (settings) {
+  renderRightPanel () {
     return (
       <VerticalPanel
         className={classnames(styles.right_panel, {
-          [`${compact.compact_panel}`]: settings.compactQueueBar
+          [`${compact.compact_panel}`]: this.props.settings.compactQueueBar
         })}
       >
-        <PlayQueueContainer compact={settings.compactQueueBar} />
+        <PlayQueueContainer compact={this.props.settings.compactQueueBar} />
       </VerticalPanel>
     );
   }
-  
-  renderSidebarMenu (settings, toggleOption) {
+
+  renderSidebarMenu () {
     return (
       <VerticalPanel
         className={classnames(styles.left_panel, {
-          [`${compact.compact_panel}`]: settings.compactMenuBar
+          [`${compact.compact_panel}`]: this.props.settings.compactMenuBar
         })}
       >
         <SidebarMenu>
           <div className={styles.sidebar_brand}>
             <img
               width='50%'
-              src={settings.compactMenuBar ? logoIcon : logoImg}
+              src={this.props.settings.compactMenuBar ? logoIcon : logoImg}
             />
             <div className={styles.version_string}>
-              {settings.compactMenuBar ? '0.4.5' : 'Version 0.4.5'}
+              {this.props.settings.compactMenuBar ? '0.5.0' : 'Version 0.5.0'}
             </div>
           </div>
-          <SidebarMenuCategoryHeader compact={ settings.compactMenuBar }>
-            Main
-          </SidebarMenuCategoryHeader>
-          {this.renderNavLink('dashboard', 'dashboard', 'Dashboard', settings)}
-          {this.renderNavLink('downloads', 'download', 'Downloads', settings)}
-          {this.renderNavLink('lyrics', 'microphone', 'Lyrics', settings)}
-          {this.renderNavLink('plugins', 'flask', 'Plugins', settings)}
-          {this.renderNavLink('search', 'search', 'Search Results', settings)}
-          {this.renderNavLink('settings', 'cogs', 'Settings', settings)}
-          {this.renderNavLink('equalizer', 'sliders', 'Equalizer', settings)}
+          
+          {
+            this.renderMenuCategory('main', [
+              { name: 'dashboard', path: 'dashboard', icon: 'dashboard' },
+              { name: 'downloads', path: 'downloads', icon: 'download' },
+              { name: 'lyrics', path: 'lyrics', icon: 'microphone' },
+              { name: 'plugins', path: 'plugins', icon: 'flask' },
+              { name: 'search', path: 'search', icon: 'search' },
+              { name: 'settings', path: 'settings', icon: 'cogs' },
+              { name: 'equalizer', path: 'equalizer', icon: 'sliders' }
+            ])
+          }
 
-          <SidebarMenuCategoryHeader compact={ settings.compactMenuBar }>
-            Collection
-          </SidebarMenuCategoryHeader>
-          {this.renderNavLink('favorites/tracks', 'star', 'Favorite tracks', settings)}
-          {this.renderNavLink('library', 'file-sound-o', 'Library', settings)}
+          {
+            this.renderMenuCategory('collection', [
+              { name: 'favorite', path: 'favorites/tracks', icon: 'star' },
+              { name: 'library', path: 'library', icon: 'file-sound-o' }
+            ])
+          }
 
           {
             !_.isEmpty(this.props.playlists) &&
-            <SidebarMenuCategoryHeader compact={ settings.compactMenuBar }>
-            Playlists
-            </SidebarMenuCategoryHeader>
+            <SidebarMenuCategoryHeader compact={this.props.settings.compactMenuBar} headerText={'playlists'}/>
           }
           <PlaylistsSubMenu
             playlists={this.props.playlists}
-            compact={ settings.compactMenuBar }
+            compact={this.props.settings.compactMenuBar}
           />
-          
+
           <Spacer />
-          {this.renderSidebarFooter(settings, toggleOption)}
+          {this.renderSidebarFooter()}
         </SidebarMenu>
       </VerticalPanel>
     );
   }
 
-  renderNavLink (name, icon, prettyName, settings) {
+  renderMenuCategory (headerText, links) {
+    return <React.Fragment>
+      <SidebarMenuCategoryHeader
+        compact={this.props.settings.compactMenuBar}
+        headerText={this.props.t(headerText)}
+      /> 
+      {
+        links.map(
+          link => this.renderNavLink(link.name, link.path, link.icon)
+        )
+      }
+    </React.Fragment>;
+  }
+
+  renderNavLink (name, path, icon) {
     return (
-      <NavLink to={'/' + name} activeClassName={styles.active_nav_link}>
+      <NavLink key={path} to={'/' + path} activeClassName={styles.active_nav_link}>
         <SidebarMenuItem>
-          <FontAwesome name={icon} /> {!settings.compactMenuBar && prettyName}
+          <FontAwesome name={icon} /> {!this.props.settings.compactMenuBar && this.props.t(name)}
         </SidebarMenuItem>
       </NavLink>
     );
   }
 
-  renderSidebarFooter (settings, toggleOption) {
+  renderSidebarFooter () {
     return (
       <div className='sidebar_footer'>
         <a
-          onClick={() =>
-            toggleOption(
+          onClick={() => {
+            this.props.actions.toggleOption(
               _.find(settingsConst, ['name', 'compactMenuBar']),
-              settings
-            )
-          }
+              this.props.settings
+            );
+          }}
           href='#'
         >
           <FontAwesome
-            name={settings.compactMenuBar ? 'angle-right' : 'angle-left'}
+            name={this.props.settings.compactMenuBar ? 'angle-right' : 'angle-left'}
           />
         </a>
       </div>
     );
   }
 
-  renderFooter (settings) {
+  renderFooter () {
     return (
       <Footer className={styles.footer}>
         <Seekbar
           fill={this.props.player.playbackProgress + '%'}
           seek={this.props.actions.updateSeek}
           queue={this.props.queue}
-        />
+        >
+          {
+            this.props.settings.trackDuration &&
+            !_.isNil(this.props.queue.queueItems[this.props.queue.currentSong]) &&
+            this.renderTrackDuration()
+          }
+        </Seekbar>
         <div className={styles.footer_horizontal}>
           <div className={styles.track_info_wrapper}>
             {this.renderCover()}
             {this.renderTrackInfo()}
           </div>
           {this.renderPlayerControls()}
-          {this.renderVolumeControl(settings)}
+          {this.renderVolumeControl()}
         </div>
       </Footer>
     );
   }
 
+  renderTrackDuration() {
+    const currentTrackStream = _.head(
+      _.get(
+        this.props.queue.queueItems[this.props.queue.currentSong],
+        'streams'
+      )
+    );
+
+    const currentTrackDuration = _.get(
+      currentTrackStream,
+      'duration'
+    );
+    
+    const timeToEnd = currentTrackDuration - this.props.player.seek;
+    
+    return (
+      <TrackDuration
+        timePlayed={formatDuration(this.props.player.seek)}
+        timeToEnd={
+          !_.isNil(currentTrackDuration) &&
+            ('-' + formatDuration(timeToEnd))
+        }
+      />
+    );
+  }
+  
   renderCover () {
     return (
       <ui.Cover
@@ -262,6 +303,7 @@ class App extends React.Component {
       />
     );
   }
+
   renderPlayerControls () {
     const { player, queue } = this.props;
     const couldPlay = queue.queueItems.length > 0;
@@ -279,7 +321,7 @@ class App extends React.Component {
     );
   }
 
-  renderVolumeControl (settings) {
+  renderVolumeControl () {
     return (
       <VolumeControls
         fill={this.props.player.volume}
@@ -287,7 +329,7 @@ class App extends React.Component {
         muted={this.props.player.muted}
         toggleMute={this.props.actions.toggleMute}
         toggleOption={this.props.actions.toggleOption}
-        settings={settings}
+        settings={this.props.settings}
       />
     );
   }
@@ -299,27 +341,25 @@ class App extends React.Component {
   }
 
   render () {
-    let { settings } = this.props;
-    let { toggleOption } = this.props.actions;
     return (
       <React.Fragment>
         <ErrorBoundary>
           <div className={styles.app_container}>
             {this.renderNavBar()}
             <div className={styles.panel_container}>
-              {this.renderSidebarMenu(settings, toggleOption)}
+              {this.renderSidebarMenu()}
               <VerticalPanel className={styles.center_panel}>
                 <MainContentContainer />
               </VerticalPanel>
-              {this.renderRightPanel(settings)}
+              {this.renderRightPanel()}
             </div>
-            {this.renderFooter(settings)}
+            {this.renderFooter()}
             <SoundContainer />
             <IpcContainer />
           </div>
         </ErrorBoundary>
-        <ShortcutsContainer/>
-        <ToastContainer/>
+        <ShortcutsContainer />
+        <ToastContainer />
       </React.Fragment>
     );
   }

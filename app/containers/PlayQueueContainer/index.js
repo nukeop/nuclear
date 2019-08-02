@@ -3,6 +3,7 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
+import * as DownloadsActions from '../../actions/downloads';
 import * as FavoritesActions from '../../actions/favorites';
 import * as QueueActions from '../../actions/queue';
 import * as PluginsActions from '../../actions/plugins';
@@ -24,13 +25,13 @@ const PlayQueueContainer = props => {
   
   return (
     <PlayQueue
-      actions={ actions }
-      items={ queue.queueItems }
-      currentSong={ queue.currentSong }
-      plugins={ plugins }
-      settings={ settings }
-      playlists={ playlists }
-      compact={ compact }
+      actions={actions}
+      items={queue.queueItems}
+      currentSong={queue.currentSong}
+      plugins={plugins}
+      settings={settings}
+      playlists={playlists}
+      compact={compact}
     />
   );
 };
@@ -48,10 +49,11 @@ function mapDispatchToProps(dispatch) {
   return {
     actions: bindActionCreators(Object.assign(
       {},
+      DownloadsActions,
       FavoritesActions,
+      PlaylistsActions,
       PluginsActions,
       QueueActions,
-      PlaylistsActions,
       SettingsActions,
       ToastActions
     ), dispatch)

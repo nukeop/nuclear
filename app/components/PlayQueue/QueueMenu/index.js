@@ -5,6 +5,7 @@ import {
   Dropdown,
   Icon
 } from 'semantic-ui-react';
+import { withTranslation } from 'react-i18next';
 
 import InputDialog from '../../InputDialog';
 import QueueMenuMore from './QueueMenuMore';
@@ -12,6 +13,7 @@ import QueueMenuMore from './QueueMenuMore';
 import styles from './styles.scss';
 import settingsConst from '../../../constants/settings';
 
+@withTranslation('queue')
 class QueueMenu extends React.Component {
   constructor(props){
     super(props);
@@ -21,8 +23,8 @@ class QueueMenu extends React.Component {
     return name => {
       addPlaylist(items, name);
       notify(
-        'Playlist created',
-        `Playlist ${name} has been created.`,
+        this.props.t('playlist-toast-title'),
+        this.props.t('playlist-toast-content', { name }),
         null,
         settings
       );
@@ -35,11 +37,14 @@ class QueueMenu extends React.Component {
       updatePlaylist,
       clearQueue,
       addFavoriteTrack,
+      addToDownloads,
       success,
       items,
       toggleOption,
       settings,
-      playlists
+      playlists,
+      compact,
+      t
     } = this.props;
 
     const firstTitle = _.get(_.head(items), 'name');
@@ -51,29 +56,33 @@ class QueueMenu extends React.Component {
             <Icon name={settings.compactQueueBar ? 'angle left' : 'angle right'} />
           </a>
 
-          <QueueMenuMore
-            clearQueue={ clearQueue }
-            updatePlaylist={ updatePlaylist }
-            addFavoriteTrack={ addFavoriteTrack }
-            playlists={ playlists }
-            currentItem={ _.head(items) }
-            savePlaylistDialog={
-              <InputDialog
-                header={<h4>Input playlist name:</h4>}
-                placeholder='Playlist name...'
-                accept='Save'
-                onAccept={this.handleAddPlaylist(addPlaylist, success, items, settings)}
-                trigger={
-                  <Dropdown.Item>
-                    <Icon name='save'/>
-                    Save as playlist
-                  </Dropdown.Item>
-                }
-                initialString={ firstTitle }
-              />
-            }
-          />
-          
+          {
+            !compact &&
+              <QueueMenuMore
+                  clearQueue={clearQueue}
+                  updatePlaylist={updatePlaylist}
+                  addFavoriteTrack={addFavoriteTrack}
+                  addToDownloads={addToDownloads}
+                  playlists={playlists}
+                  currentItem={_.head(items)}
+                  savePlaylistDialog={
+                      <InputDialog
+                          header={<h4>Input playlist name:</h4>}
+                          placeholder={t('dialog-placeholder')}
+                          accept={t('dialog-accept')}
+                          onAccept={this.handleAddPlaylist(addPlaylist, success, items, settings)}
+                          trigger={
+                              <Dropdown.Item>
+                                  <Icon name='save'/>
+                                    {t('dialog-trigger')}
+                                </Dropdown.Item>
+                                }
+                                initialString={firstTitle}
+                                />
+                        }
+                        />
+              }
+              
         </div>
         <hr />
       </div>
@@ -90,7 +99,8 @@ QueueMenu.propTypes = {
   success: PropTypes.func,
   settings: PropTypes.object,
   playlists: PropTypes.array,
-  items: PropTypes.array
+  items: PropTypes.array,
+  compact: PropTypes.bool
 };
 
 export default QueueMenu;

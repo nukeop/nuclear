@@ -1,6 +1,8 @@
 const _ = require('lodash');
 const uuidv4 = require('uuid/v4');
 
+import { startPlayback } from './player.js';
+
 export const ADD_TO_QUEUE = 'ADD_TO_QUEUE';
 export const REMOVE_FROM_QUEUE = 'REMOVE_FROM_QUEUE';
 export const CLEAR_QUEUE = 'CLEAR_QUEUE';
@@ -31,6 +33,15 @@ function addTrackToQueue (musicSources, item) {
   };
 }
 
+export function playTrack (musicSources, item) {
+  return dispatch => {
+    dispatch(clearQueue());
+    dispatch(addToQueue(musicSources, item));
+    dispatch(selectSong(0));
+    dispatch(startPlayback());
+  };
+}
+
 export function addToQueue (musicSources, item) {
   return addTrackToQueue(musicSources, item);
 }
@@ -44,7 +55,7 @@ export function removeFromQueue (item) {
 
 export function addPlaylistTracksToQueue (musicSources, tracks) {
   return dispatch => {
-    tracks.map((item, i) => {
+    tracks.map(item => {
       dispatch(addTrackToQueue(musicSources, item));
     });
   };
@@ -71,14 +82,14 @@ export function clearQueue () {
   };
 }
 
-export function nextSong () {
+function nextSongAction() {
   return {
     type: NEXT_SONG,
     payload: null
   };
 }
 
-export function previousSong () {
+function previousSongAction() {
   return {
     type: PREVIOUS_SONG,
     payload: null
@@ -99,5 +110,37 @@ export function swapSongs (itemFrom, itemTo) {
       itemFrom,
       itemTo
     }
+  };
+}
+
+function dispatchWithShuffle(dispatch, getState, action) {
+  const state = getState();
+  const settings = state.settings;
+  const queue = state.queue;
+    
+  if (settings.shuffleQueue) {
+    const index = _.random(0, queue.queueItems.length - 1);
+    dispatch(selectSong(index));
+  } else {
+    dispatch(action());
+  }
+}
+
+export function previousSong() {
+  return (dispatch, getState) => {
+    const state = getState();
+    const settings = state.settings;
+
+    if (settings.shuffleWhenGoingBack) {
+      dispatchWithShuffle(dispatch, getState, previousSongAction);
+    } else {
+      dispatch(previousSongAction());
+    }
+  };
+}
+
+export function nextSong() {
+  return (dispatch, getState) => {
+    dispatchWithShuffle(dispatch, getState, nextSongAction);
   };
 }

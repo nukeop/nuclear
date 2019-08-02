@@ -1,21 +1,29 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { sortBy } from 'lodash';
+import _ from 'lodash';
 
 import LibraryView from '../../components/LibraryView';
 import * as LocalActions from '../../actions/local';
+import * as SettingsActions from '../../actions/settings';
 
 function mapStateToProps(state) {
-  const filteredTracks = Object.values(state.local.tracks)
-    .filter(({ artist, name }) => artist.name.includes(state.local.filter) || name.includes(state.local.filter));
-
+  const lowercaseFilter = _.lowerCase(state.local.filter);
+  const checkFilter = string => _.includes(_.lowerCase(string), lowercaseFilter);
+  const filteredTracks = _.filter(_.values(state.local.tracks), track => {
+    return _.some([
+      checkFilter(track.name),
+      checkFilter(track.album),
+      checkFilter(_.get(track, 'artist.name'))
+    ]);
+  });
+  
   let tracks;
   switch (state.local.sortBy) {
   case 'artist':
-    tracks = sortBy(filteredTracks, track => track.artist.name);
+    tracks = _.sortBy(filteredTracks, track => track.artist.name);
     break;
   case 'name':
-    tracks = sortBy(filteredTracks, track => track.name);
+    tracks = _.sortBy(filteredTracks, track => track.name);
     break;
   default:
     tracks = filteredTracks;
@@ -28,13 +36,14 @@ function mapStateToProps(state) {
       
     localFolders: state.local.folders,
     sortBy: state.local.sortBy,
-    direction: state.local.direction
+    direction: state.local.direction,
+    api: state.settings['api.enabled']
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators({ ...LocalActions }, dispatch)
+    actions: bindActionCreators({ ...LocalActions, ...SettingsActions }, dispatch)
   };
 }
 

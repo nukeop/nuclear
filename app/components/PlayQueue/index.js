@@ -1,6 +1,9 @@
 import React from 'react';
 import classnames from 'classnames';
+import { ipcRenderer } from 'electron';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import _ from 'lodash';
+import { withTranslation } from 'react-i18next';
 
 import styles from './styles.scss';
 
@@ -8,6 +11,7 @@ import QueuePopup from '../QueuePopup';
 import QueueItem from './QueueItem';
 import QueueMenu from './QueueMenu';
 
+@withTranslation('queue')
 class PlayQueue extends React.Component {
   constructor(props){
     super(props);
@@ -15,6 +19,22 @@ class PlayQueue extends React.Component {
 
   onDragEnd(result) {
     this.props.actions.swapSongs(result.source.index, result.destination.index);
+  }
+
+  onAddToDownloads(track) {
+    const { actions, plugins, settings, t } = this.props;
+    const { addToDownloads, info } = actions;
+    const artistName = _.isString(_.get(track, 'artist'))
+      ? _.get(track, 'artist')
+      : _.get(track, 'artist.name');
+    ipcRenderer.send('start-download', track);
+    addToDownloads(plugins.plugins.musicSources, track);
+    info(
+      t('download-toast-title'),
+      t('download-toast-content', { artist: artistName, title: track.name }),
+      <img src={track.thumbnail}/>,
+      settings
+    );
   }
 
   renderQueueItems() {
@@ -25,7 +45,7 @@ class PlayQueue extends React.Component {
     return this.props.items.map((el, i) => {
       return (
         <Draggable key={i} index={i} draggableId={i}>
-          {(provided, snapshot) => (
+          {(provided) => (
             <div
               ref={provided.innerRef}
               {...provided.draggableProps}
@@ -74,17 +94,19 @@ class PlayQueue extends React.Component {
 
     return (
       <DragDropContext onDragEnd={this.onDragEnd.bind(this)}>
-        <div className={classnames(styles.play_queue_container, {'compact': compact})}>
+        <div className={classnames(styles.play_queue_container, {compact})}>
           <QueueMenu
             clearQueue={clearQueue}
             addPlaylist={addPlaylist}
             updatePlaylist={updatePlaylist} 
             toggleOption={toggleOption}
             addFavoriteTrack={addFavoriteTrack}
+            addToDownloads={this.onAddToDownloads.bind(this)}
             success={success}
             settings={settings}
             playlists={playlists}
             items={items}
+            compact={compact}
           />
 
           <Droppable droppableId='play_queue'>

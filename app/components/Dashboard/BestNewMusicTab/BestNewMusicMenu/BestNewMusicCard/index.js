@@ -4,13 +4,12 @@ import PropTypes from 'prop-types';
 import styles from './styles.scss';
 import { Icon } from 'semantic-ui-react';
 
-const BestNewMusicCard = props => {
-  const {
-    item,
-    isFavorite,
-    onClick,
-    withFavoriteButton
-  } = props;
+const BestNewMusicCard = ({
+  item,
+  isFavorite,
+  onClick,
+  withFavoriteButton
+} ) => {
 
   return (
     <div
@@ -47,7 +46,11 @@ export const bestNewItemShape = PropTypes.shape({
 });
 
 BestNewMusicCard.propTypes = {
-  item: bestNewItemShape,
+  item: PropTypes.shape({
+    title: PropTypes.string,
+    artist: PropTypes.string,
+    thumbnail: PropTypes.string
+  }),
   isFavorite: PropTypes.bool,
   onClick: PropTypes.func,
   withFavoriteButton: PropTypes.bool

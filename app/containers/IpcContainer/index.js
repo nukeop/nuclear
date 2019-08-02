@@ -1,4 +1,5 @@
 import React from 'react';
+import logger from 'electron-timber';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -68,7 +69,7 @@ class IpcContainer extends React.Component {
       this.props.actions.onDownloadFinished(data);
     });
     ipcRenderer.on('download-error', (event, data) => {
-      console.error(data);
+      logger.error(data);
     });
   }
 

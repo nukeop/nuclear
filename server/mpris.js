@@ -73,7 +73,7 @@ function onSetEqualizer(equalizer) {
 function getQueue() {
   return new Promise(resolve => {
     rendererWindow.send('queue');
-    ipcMain.on('queue', (evt, data) => {
+    ipcMain.once('queue', (evt, data) => {
       resolve(data);
     });
   });
@@ -82,13 +82,13 @@ function getQueue() {
 function getPlayingStatus() {
   return new Promise(resolve => {
     rendererWindow.send('playing-status');
-    ipcMain.on('playing-status', (evt, data) => {
+    ipcMain.once('playing-status', (evt, data) => {
       resolve(data);
     });
   });
 }
 
-module.exports = {
+export {
   onNext,
   onPrevious,
   onPause,

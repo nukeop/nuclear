@@ -4,7 +4,11 @@ module.exports = {
     "commonjs": true,
     "es6": true
   },
-  "extends": "eslint:recommended",
+  "globals": {
+    "process": true,
+    "Raven": true
+  },
+  "extends": ["eslint:recommended", "plugin:node/recommended"],
   "parser": "babel-eslint",
   "parserOptions": {
     "ecmaFeatures": {
@@ -14,7 +18,9 @@ module.exports = {
     "sourceType": "module"
   },
   "plugins": [
-    "react"
+    "react",
+    "node",
+    "react-hooks"
   ],
   "settings": {
     "react": {
@@ -45,6 +51,8 @@ module.exports = {
     "dot-location": [2, "property"],
     "dot-notation": 2,
     "no-alert": 2,
+    "object-shorthand": [2, "always"],
+    "no-console": ["error", { allow: ["warn", "error"] }],
 
     // Style
     "array-bracket-spacing": 2,
@@ -68,6 +76,7 @@ module.exports = {
     // React
     "jsx-quotes": [2, "prefer-single"],
     "react/forbid-prop-types": [1, { "forbid": ["any"] }],
+    "react/jsx-curly-spacing": [2, "never"],
     "react/jsx-equals-spacing": [2, "never"],
     "react/jsx-indent": [2, 2],
     "react/jsx-indent-props": [2, 2],
@@ -86,7 +95,10 @@ module.exports = {
     "react/prefer-es6-class": 1,
     "react/prefer-stateless-function": 1,
     "react/react-in-jsx-scope": 2,
-    "react/self-closing-comp": 2
-
+    "react/self-closing-comp": 2,
+    "node/no-unpublished-require": 0,
+    "node/no-unsupported-features/es-syntax": 0,
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn"
   }
 };

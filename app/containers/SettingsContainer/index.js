@@ -38,7 +38,7 @@ function mapDispatchToProps(dispatch) {
         {},
         GithubActions,
         ScrobblingActions,
-        SettingsActions,
+        SettingsActions
       ),
       dispatch
     )

@@ -10,10 +10,15 @@
   .best_new_music_menu_header {
     font-weight: bold !important;
     font-size: 18px;
+    margin-top: 1.25rem;
+    margin-bottom: 0.25rem;
+    &:first-child {
+      margin-top: 0;
+    }
   }
   
   .item {
-    padding: 6px 8px !important;
+    padding: 0.15rem !important;
 
     &:hover {
       color: $white !important;

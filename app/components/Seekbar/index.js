@@ -1,25 +1,39 @@
-import React from 'react';
+import React, { useCallback } from 'react';
+import PropTypes from 'prop-types';
 
 import styles from './styles.scss';
 
-class Seekbar extends React.Component {
+const Seekbar = ({ seek, queue, fill, children }) => {
+  const handleClick = useCallback(event => {
+    const percent = (event.pageX - event.target.offsetLeft)/document.body.clientWidth;
+    const duration = queue.queueItems[queue.currentSong].streams[0].duration;
 
-  handleClick(seek, queue) {
-    return event => {
-      const percent = (event.pageX - event.target.offsetLeft)/document.body.clientWidth;
-      const duration = queue.queueItems[queue.currentSong].streams[0].duration;
+    seek(percent * duration);
+  }, [seek, queue.queueItems]);
 
-      seek(percent * duration);
-    };    
-  }
+  return (
+    <div onClick={handleClick} className={styles.seekbar_container}>
+      <div style={{width: fill}} className={styles.seekbar_fill} />
+      { children }
+    </div>
+  );
+};
 
-  render() {
-    return (
-      <div onClick={this.handleClick(this.props.seek, this.props.queue)} className={styles.seekbar_container}>
-        <div style={{width: this.props.fill}} className={styles.seekbar_fill} />
-      </div>
-    );
-  }
-}
+Seekbar.propTypes = {
+  seek: PropTypes.func,
+  queue: PropTypes.shape({
+    currentSong: PropTypes.number,
+    queueItems: PropTypes.array
+  }),
+  fill: PropTypes.string,
+  children: PropTypes.node
+};
+
+Seekbar.defaultProps = {
+  seek: () => {},
+  queue: {},
+  fill: '0%',
+  children: null
+};
 
 export default Seekbar;

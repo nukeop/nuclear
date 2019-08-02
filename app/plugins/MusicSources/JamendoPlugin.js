@@ -1,6 +1,6 @@
+import logger from 'electron-timber';
 import _ from 'lodash';
 
-import globals from '../../globals';
 import MusicSourcePlugin from '../musicSources';
 import * as Jamendo from '../../rest/Jamendo';
 
@@ -35,8 +35,8 @@ class JamendoPlugin extends MusicSourcePlugin {
     return Jamendo.search(query)
       .then(response => response.json())
       .catch(err => {
-        console.error(`Error looking up streams for ${query.artist} ${query.track} on Jamendo`);
-        console.error(err);
+        logger.error(`Error looking up streams for ${query.artist} ${query.track} on Jamendo`);
+        logger.error(err);
       });
   }
 

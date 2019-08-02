@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import { Icon, Table } from 'semantic-ui-react';
 import _ from 'lodash';
 
-import styles from './styles.scss';
-
 const StatusIcon = props => {
   switch (props.status) {
   case 'Waiting':
@@ -23,19 +21,22 @@ StatusIcon.propTypes = {
   status: PropTypes.string.isRequired
 };
 
-const DownloadsItem = props => {
-  const {
-    item
-  } = props;
+const DownloadsItem = ({
+  item
+}) => {
+
+  const artistName = _.isString(_.get(item, 'track.artist'))
+    ? _.get(item, 'track.artist')
+    : _.get(item, 'track.artist.name');
   
   return (
     <Table.Row>
       <Table.Cell>
-        <StatusIcon status={ item.status }/>
+        <StatusIcon status={item.status}/>
         { item.status }
       </Table.Cell>
       <Table.Cell>
-        { _.get(item, 'track.artist.name') } - { _.get(item, 'track.name') }
+        { artistName } - { _.get(item, 'track.name') }
       </Table.Cell>
       <Table.Cell>
         { _.round(item.completion*100, 0)  + '%' }
