@@ -1,18 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import TrackPopupContainer from '../../../../../containers/TrackPopupContainer';
-
 import styles from './styles.scss';
+import { Icon } from 'semantic-ui-react';
 
 const BestNewMusicCard = props => {
   const {
     item,
+    isFavorite,
     onClick,
-    withPopupMenu
+    withFavoriteButton
   } = props;
 
-  const card = () => (
+  return (
     <div
       className={styles.best_new_music_card}
       onClick={onClick}
@@ -21,8 +21,11 @@ const BestNewMusicCard = props => {
         <img alt={item.title} src={item.thumbnail} />
       </div>
       <div className={styles.card_info}>
-        <div className={styles.card_title}>
-          {item.title}
+        <div className={styles.card_title_row}>
+          <div className={styles.card_title}>
+            {item.title}
+          </div>
+          {withFavoriteButton && isFavorite && <Icon className={styles.card_favorite} name='star' size='large' />}
         </div>
         <div className={styles.card_artist}>
           {item.artist}
@@ -30,23 +33,6 @@ const BestNewMusicCard = props => {
       </div>
     </div>
   );
-
-  const track = {
-    artist: {
-      name: item.artist
-    },
-    name: item.title
-  };
-
-  return withPopupMenu ? (
-    <TrackPopupContainer
-      trigger={card()}
-      track={track}
-      artist={item.artist}
-      title={item.title}
-      thumb={item.thumbnail}
-    />
-  ) : card();
 };
 
 export const bestNewItemShape = PropTypes.shape({
@@ -62,14 +48,16 @@ export const bestNewItemShape = PropTypes.shape({
 
 BestNewMusicCard.propTypes = {
   item: bestNewItemShape,
+  isFavorite: PropTypes.bool,
   onClick: PropTypes.func,
-  withPopupMenu: PropTypes.bool
+  withFavoriteButton: PropTypes.bool
 };
 
 BestNewMusicCard.defaultProps = {
   item: null,
+  isFavorite: false,
   onClick: () => { },
-  withPopupMenu: false
+  withFavoriteButton: false
 };
 
 export default BestNewMusicCard;

@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Menu } from 'semantic-ui-react';
 
+import BestNewMusicCardContainer from '../../../../containers/BestNewMusicCardContainer';
 import BestNewMusicCard, { bestNewItemShape } from './BestNewMusicCard';
 
 import styles from './styles.scss';
@@ -39,10 +40,10 @@ const BestNewMusicMenu = props => {
           props.tracks.map(track => {
             return (
               <Menu.Item link key={track.title}>
-                <BestNewMusicCard
+                <BestNewMusicCardContainer
                   item={track}
                   onClick={() => props.setActiveItem(track)}
-                  withPopupMenu
+                  withFavoriteButton
                 />
               </Menu.Item>
             );
