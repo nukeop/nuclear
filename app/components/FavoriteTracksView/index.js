@@ -10,7 +10,7 @@ import TrackRow from '../TrackRow';
 import trackRowStyles from '../TrackRow/styles.scss';
 import styles from './styles.scss';
 
-const EmptyState = () => {
+export const EmptyState = () => {
   const { t } = useTranslation('favorites');
 
   return (
