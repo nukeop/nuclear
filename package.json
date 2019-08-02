@@ -137,6 +137,7 @@
     "node-sass": "^4.8.3",
     "nodebrainz": "^2.1.1",
     "npm-run-all": "^4.1.2",
+    "proxyquire": "^2.1.1",
     "react-debounce-input": "^3.2.0",
     "react-fontawesome": "^1.6.1",
     "react-hot-loader": "4.8",
