@@ -25,7 +25,7 @@
 
     color: rgba($white, 0.80);
 
-    transition: 85ms ease;
+    transition: $very-short-duration ease all;
 
     &:hover {
       color: $white;
