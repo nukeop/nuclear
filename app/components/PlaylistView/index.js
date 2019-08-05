@@ -47,6 +47,12 @@ class PlaylistView extends React.Component {
     updatedPlaylist.name = name;
     this.props.updatePlaylist(updatedPlaylist);
   }
+
+  removeTrack(playlist, trackToRemove) {
+    const updatedPlaylist = _.cloneDeep(playlist);
+    updatedPlaylist.tracks = _.filter(updatedPlaylist.tracks, playlistTrack => playlistTrack.uuid != trackToRemove.uuid );
+    this.props.updatePlaylist(updatedPlaylist)
+  }
   
   renderOptions (trigger, playlist) {
     return (
@@ -162,6 +168,7 @@ class PlaylistView extends React.Component {
   };
 
   renderTrack (track, index) {
+    let { playlist } = this.props;
     const newTrack = _.cloneDeep(track);
     _.set(newTrack, 'artist.name', newTrack.artist);
     _.set(newTrack, 'image[0][\'#text\']', newTrack.thumbnail);
@@ -172,8 +179,11 @@ class PlaylistView extends React.Component {
       index={'playlist-track-' + index}
       displayCover
       displayArtist
-      withDeleteButton={ true }
-      onDelete={this.deleteTrack}
+      withDeleteButton
+      onDelete={e => {
+        e.stopPropagation();
+        this.removeTrack(playlist, newTrack)
+      }}
     />
     );
   }
