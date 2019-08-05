@@ -5,10 +5,10 @@ import { describe, it } from 'mocha';
 import proxyquire from 'proxyquire';
 
 const electronStoreStub = function () {
-  this.get = () => {}
-  this.set = () => {}
-}
-electronStoreStub['@global'] = true
+  this.get = () => {};
+  this.set = () => {};
+};
+electronStoreStub['@global'] = true;
 
 const {
   default: FavoriteTracksView,

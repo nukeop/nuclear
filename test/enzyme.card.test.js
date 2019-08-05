@@ -9,8 +9,8 @@ import Card from '../app/components/Card';
 
 describe('<Card />', () => {
   it('Should render given image', () => {
-    const wrapper = shallow(<Card image="IMG" />);
-    expect(wrapper.find(Img).prop('src')).to.equals('IMG')
+    const wrapper = shallow(<Card image='IMG' />);
+    expect(wrapper.find(Img).prop('src')).to.equals('IMG');
   });
 
   it('Check onClick event', () => {
@@ -22,14 +22,14 @@ describe('<Card />', () => {
   });
 
   it('Should display given header', () => {
-    const wrapper = shallow(<Card header="HEADER" />)
+    const wrapper = shallow(<Card header='HEADER' />);
 
-    expect(wrapper.find('h4').text()).to.be.equal('HEADER')
-  })
+    expect(wrapper.find('h4').text()).to.be.equal('HEADER');
+  });
 
   it('Should display given content', () => {
-    const wrapper = shallow(<Card content="TEXT" />)
+    const wrapper = shallow(<Card content='TEXT' />);
 
-    expect(wrapper.find('p').text()).to.be.equal('TEXT')
-  })
+    expect(wrapper.find('p').text()).to.be.equal('TEXT');
+  });
 });

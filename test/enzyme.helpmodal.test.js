@@ -6,7 +6,7 @@ import { Modal } from 'semantic-ui-react';
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 
-import HelpButton from '../app/components/HelpButton'
+import HelpButton from '../app/components/HelpButton';
 import HelpModal from '../app/components/HelpModal';
 
 describe('<HelpModal />', () => {
@@ -24,7 +24,7 @@ describe('<HelpModal />', () => {
   it('Test handleClose', () => {
     const wrapper = shallow(<HelpModal />);
 
-    wrapper.find(Modal).prop('onClose')()
+    wrapper.find(Modal).prop('onClose')();
     expect(wrapper.find(Modal).prop('open')).to.be.false;
-  })
+  });
 });

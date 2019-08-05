@@ -5,33 +5,33 @@ import { describe, it } from 'mocha';
 import sinon from  'sinon';
 import { Loader } from 'semantic-ui-react';
 
-import Card from '../app/components/Card'
-import AlbumList from '../app/components/AlbumList'
+import Card from '../app/components/Card';
+import AlbumList from '../app/components/AlbumList';
 
 describe('<AlbumList />', () => {
   const mockedAlbums = [
     {
-      id: "ID1",
-      type: "TYPE1",
+      id: 'ID1',
+      type: 'TYPE1',
       title: 'TITLE1',
       thumb: 'THUMB1'
     },
     {
-      id: "ID2",
-      type: "TYPE2",
+      id: 'ID2',
+      type: 'TYPE2',
       title: 'TITLE2',
       thumb: 'THUMB2'
     },
     {
-      id: "ID3",
-      type: "TYPE3",
+      id: 'ID3',
+      type: 'TYPE3',
       title: 'TITLE3',
       thumb: 'THUMB3'
     }
   ];
 
   it('Should render loader when there is no album', () => {
-    const wrapper = shallow(<AlbumList />)
+    const wrapper = shallow(<AlbumList />);
 
     expect(wrapper.exists(Loader)).to.be.true;
   });
@@ -57,5 +57,5 @@ describe('<AlbumList />', () => {
     instance.albumInfoSearch('ALBUM_ID', 'RELEASE_TYPE');
     expect(albumInfoSearch.calledOnceWithExactly('ALBUM_ID', 'RELEASE_TYPE')).to.be.true;
     expect(historySpy.calledOnceWith('/album/ALBUM_ID')).to.be.true;
-  })
+  });
 });
