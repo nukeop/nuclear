@@ -1,6 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
-import { Dimmer, Loader } from 'semantic-ui-react';
+import { Dimmer, Icon, Loader } from 'semantic-ui-react';
 import _ from 'lodash';
 import { withTranslation } from 'react-i18next';
 
@@ -145,6 +146,20 @@ class AlbumView extends React.Component {
             {this.renderOptionsButtons(album)}
           </div>
         </div>
+        <a
+          href='#'
+          className={styles.album_favorites_button_wrap}
+          onClick={
+            this.props.isFavorite()
+              ? () => this.props.removeFavoriteAlbum(album)
+              : () => this.props.addFavoriteAlbum(album)
+          }
+        >
+          <Icon
+            name={this.props.isFavorite() ? 'star' : 'star outline'}
+            size='big'
+          />
+        </a>
       </div>
     );
   }
@@ -237,6 +252,7 @@ class AlbumView extends React.Component {
   
   render () {
     let { album } = this.props;
+    
     if (
       _.some(_.map([album.images, album.artists, album.genres], _.isEmpty)) &&
       album.loading !== true
@@ -248,5 +264,15 @@ class AlbumView extends React.Component {
     return this.renderAlbumLoading(album, albumImage);
   }
 }
+
+AlbumView.propTypes = {
+  addFavoriteAlbum: PropTypes.func,
+  isFavorite: PropTypes.func
+};
+
+AlbumView.defaultProps = {
+  addFavoriteAlbum: () => {},
+  isFavorite: () => {}
+};
 
 export default AlbumView;

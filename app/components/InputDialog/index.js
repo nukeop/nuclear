@@ -13,6 +13,7 @@ const InputDialog = ({ initialString, trigger, header, placeholder, accept, onAc
   const onClick = useCallback(e => {
     setInputString(e.target.value);
     onAccept(inputString);
+    handleClose();
   }, [inputString, onAccept]);
 
   return (
