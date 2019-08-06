@@ -193,7 +193,7 @@ export function albumInfoSuccess (albumId, info) {
   };
 }
 
-export function albumInfoSearch (albumId, releaseType) {
+export function albumInfoSearch (albumId, releaseType='master') {
   return dispatch => {
     dispatch(albumInfoStart(albumId));
     discogs
