@@ -1,4 +1,5 @@
 import React from 'react';
+import classnames from 'classnames';
 import FontAwesome from 'react-fontawesome';
 import DebounceInput from 'react-debounce-input';
 
@@ -19,7 +20,7 @@ const SearchBox = ({ handleSearch, loading }) => {
           onChange={handleSearch}
           autoFocus
         />
-        {loading ? <FontAwesome name='spinner' pulse /> : null}
+        <FontAwesome name='spinner' pulse className={classnames({loading})} />
       </div>
     </div>
   );
