@@ -14,6 +14,10 @@ class AlbumList extends React.Component {
     this.props.history.push('/album/' + albumId);
   }
 
+  getThumbnail(album) {
+    return _.get(album, 'images[0].uri', 'thumb');
+  }
+
   render() {
     return (
       <div className={styles.album_list_container}>
@@ -26,7 +30,7 @@ class AlbumList extends React.Component {
                     <Card
                       key={i}
                       header={el.title}
-                      image={el.thumb}
+                      image={this.getThumbnail(el)}
                       onClick={() => this.albumInfoSearch(el.id, el.type)}
                     />);
                 })

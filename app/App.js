@@ -157,7 +157,8 @@ class App extends React.Component {
 
           {
             this.renderMenuCategory('collection', [
-              { name: 'favorite', path: 'favorites/tracks', icon: 'star' },
+              { name: 'favorite-albums', path: 'favorites/albums', icon: 'star' },
+              { name: 'favorite-tracks', path: 'favorites/tracks', icon: 'star' },
               { name: 'library', path: 'library', icon: 'file-sound-o' }
             ])
           }

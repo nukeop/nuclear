@@ -4,10 +4,13 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import _ from 'lodash';
 
+import * as SearchActions from '../../actions';
 import * as FavoritesActions from '../../actions/favorites';
 
+import FavoriteAlbumsView from '../../components/FavoriteAlbumsView';
 import FavoriteTracksView from '../../components/FavoriteTracksView';
 
+const ALBUMS_PATH = 'albums';
 const TRACKS_PATH = 'tracks';
 
 class FavoritesContainer extends React.Component {
@@ -16,20 +19,29 @@ class FavoritesContainer extends React.Component {
   }
 
   componentDidMount() {
-    this.props.actions.readFavorites();
+    this.props.favoritesActions.readFavorites();
   }
 
   render() {
     const {
       favorites,
-      actions,
+      favoritesActions,
+      searchActions,
       match
     } = this.props;
+
+    if(match.path.endsWith(ALBUMS_PATH)) {
+      return <FavoriteAlbumsView
+               albums={_.get(favorites, 'albums')}
+               removeFavoriteAlbum={favoritesActions.removeFavoriteAlbum}
+               albumInfoSearch={searchActions.albumInfoSearch}
+             />;
+    }
     
     if (match.path.endsWith(TRACKS_PATH)) {
       return <FavoriteTracksView
         tracks={_.get(favorites, 'tracks')}
-        removeFavoriteTrack={actions.removeFavoriteTrack}
+        removeFavoriteTrack={favoritesActions.removeFavoriteTrack}
       />;
     }
     
@@ -43,15 +55,19 @@ FavoritesContainer.propTypes = {
     albums: PropTypes.array,
     artists: PropTypes.array
   }),
-  actions: PropTypes.shape({
+  favoritesActions: PropTypes.shape({
     readFavorites: PropTypes.func,
     removeFavoriteTrack: PropTypes.func
+  }),
+  searchActions: PropTypes.shape({
+    albumInfoSearch: PropTypes.func
   })
 };
 
 FavoritesContainer.defaultProps = {
   favorites: { tracks: [], albums: [], artists: [] },
-  actions: {}
+  favoritesActions: {},
+  searchActions: {},
 };
 
 function mapStateToProps (state) {
@@ -62,13 +78,8 @@ function mapStateToProps (state) {
 
 function mapDispatchToProps (dispatch) {
   return {
-    actions: bindActionCreators(
-      Object.assign(
-        {},
-        FavoritesActions
-      ),
-      dispatch
-    )
+    favoritesActions: bindActionCreators(FavoritesActions, dispatch),
+    searchActions: bindActionCreators(SearchActions, dispatch)
   };
 }
 
