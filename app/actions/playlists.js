@@ -1,7 +1,10 @@
 import uuidv4 from 'uuid/v4';
 import _ from 'lodash';
 
-import { deletePlaylistInjectable } from './playlists.injectable';
+import {
+  deletePlaylistInjectable,
+  updatePlaylistInjectable
+} from './playlists.injectable';
 
 import { store } from '../persistence/store';
 
@@ -47,7 +50,6 @@ export function deletePlaylist(id) {
   };
 }
 
-
 export function loadPlaylists() {
   return dispatch => {
     let playlists = store.get('playlists');
@@ -61,11 +63,7 @@ export function loadPlaylists() {
 
 export function updatePlaylist(playlist) {
   return dispatch => {
-    let playlists = store.get('playlists');
-    _.remove(playlists, { id: playlist.id });
-    playlists.push(playlist);
-
-    store.set('playlists', playlists);
+    const playlists = updatePlaylistInjectable(store)(playlist);
     dispatch({
       type: UPDATE_PLAYLIST,
       payload: { playlists }
