@@ -47,10 +47,15 @@
   },
   "favorites": {
     "artist": "Artist",
-    "empty": "No favorites added.",
+    "empty": "No favorites added",
     "empty-help": "Try favoriting some tracks and they will appear here!",
     "header": "Your favorite tracks",
     "title": "Title"
+  },
+  "favorite-albums": {
+    "header": "Your favorite albums",
+    "empty": "No favorite albums",
+    "empty-help": "Try adding some albums to favorites and they will appear here!"
   },
   "help": {
     "about": "About Nuclear Music Player",
