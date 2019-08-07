@@ -134,6 +134,14 @@
   border-left: 0.5rem solid $green;
 }
 
+.sidebar_menus {
+  flex-grow: 1;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
 .sidebar_brand {
   text-align: center;
   padding: 1rem;
