@@ -1,5 +1,7 @@
 import React from 'react';
 import {Dimmer, Loader} from 'semantic-ui-react';
+import _ from 'lodash';
+
 import Card from '../Card';
 
 import styles from './styles.scss';
@@ -15,7 +17,7 @@ class AlbumList extends React.Component {
   }
 
   getThumbnail(album) {
-    return _.get(album, 'images[0].uri', 'thumb');
+    return _.get(album, 'images[0].uri', _.get(album, 'thumb'));
   }
 
   render() {
