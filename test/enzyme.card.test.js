@@ -1,11 +1,14 @@
 import React from 'react';
-import { expect } from 'chai';
+import chai from 'chai';
 import { shallow } from 'enzyme';
 import { describe, it } from 'mocha';
-import sinon from 'sinon';
+import spies from 'chai-spies';
 import Img from 'react-image-smooth-loading';
 
 import Card from '../app/components/Card';
+
+chai.use(spies);
+const { expect } = chai;
 
 describe('<Card />', () => {
   it('Should render given image', () => {
@@ -14,11 +17,11 @@ describe('<Card />', () => {
   });
 
   it('Check onClick event', () => {
-    const callback = sinon.spy();
-    const wrapper = shallow(<Card onClick={callback} />);
+    const spy = chai.spy();
+    const wrapper = shallow(<Card onClick={spy} />);
 
     wrapper.find('div[onClick]').simulate('click');
-    expect(callback.called).to.be.true;
+    expect(spy).to.have.been.called;
   });
 
   it('Should display given header', () => {

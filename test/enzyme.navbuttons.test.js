@@ -1,18 +1,21 @@
 import React from 'react';
-import { expect } from 'chai';
+import chai from 'chai';
+import spies from 'chai-spies';
 import { shallow } from 'enzyme';
 import { beforeEach, describe, it } from 'mocha';
-import sinon from 'sinon';
 
 import { NavButtons } from '../app/components/NavButtons';
+
+chai.use(spies);
+const { expect } = chai;
 
 describe('<NavButtons />', () => {
   let history;
 
   beforeEach(() => {
     history = {
-      goBack: sinon.spy(),
-      goForward: sinon.spy()
+      goBack: chai.spy(),
+      goForward: chai.spy(),
     };
   });
 
@@ -21,7 +24,7 @@ describe('<NavButtons />', () => {
     const wrapper = shallow(<NavButtons history={history} />);
 
     wrapper.at(0).childAt(0).simulate('click');
-    expect(history.goBack.called).to.be.true;
+    expect(history.goBack).to.have.been.called;
   });
 
   it('Test forward button', () => {
@@ -30,7 +33,7 @@ describe('<NavButtons />', () => {
     const wrapper = shallow(<NavButtons history={history} />);
 
     wrapper.at(0).childAt(1).simulate('click');
-    expect(history.goForward.called).to.be.true;
+    expect(history.goForward).to.have.been.called;
   });
 
   it('Back button should be disabled when there is no previous page', () => {

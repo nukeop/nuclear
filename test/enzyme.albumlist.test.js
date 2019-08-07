@@ -1,12 +1,15 @@
 import React from 'react';
-import { expect } from 'chai';
+import chai from 'chai';
 import { shallow } from 'enzyme';
 import { describe, it } from 'mocha';
-import sinon from  'sinon';
 import { Loader } from 'semantic-ui-react';
+import spies from 'chai-spies';
 
 import Card from '../app/components/Card';
 import AlbumList from '../app/components/AlbumList';
+
+chai.use(spies);
+const { expect } = chai;
 
 describe('<AlbumList />', () => {
   const mockedAlbums = [
@@ -47,15 +50,15 @@ describe('<AlbumList />', () => {
 
   it('Test albumInfoSearch method', () => {
     const fakeHistory = { push: () => {} };
-    const historySpy = sinon.spy(fakeHistory, 'push');
-    const albumInfoSearch = sinon.spy();
+    const historySpy = chai.spy.on(fakeHistory, 'push');
+    const albumInfoSearch = chai.spy();
     const wrapper = shallow(
       <AlbumList history={fakeHistory} albumInfoSearch={albumInfoSearch} />
     );
     const instance = wrapper.instance();
 
     instance.albumInfoSearch('ALBUM_ID', 'RELEASE_TYPE');
-    expect(albumInfoSearch.calledOnceWithExactly('ALBUM_ID', 'RELEASE_TYPE')).to.be.true;
-    expect(historySpy.calledOnceWith('/album/ALBUM_ID')).to.be.true;
+    expect(albumInfoSearch).to.have.been.called.with('ALBUM_ID', 'RELEASE_TYPE')
+    expect(historySpy).to.have.been.called.with('/album/ALBUM_ID')
   });
 });
