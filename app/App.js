@@ -142,35 +142,36 @@ class App extends React.Component {
               {this.props.settings.compactMenuBar ? '0.5.0' : 'Version 0.5.0'}
             </div>
           </div>
-          
-          {
-            this.renderMenuCategory('main', [
-              { name: 'dashboard', path: 'dashboard', icon: 'dashboard' },
-              { name: 'downloads', path: 'downloads', icon: 'download' },
-              { name: 'lyrics', path: 'lyrics', icon: 'microphone' },
-              { name: 'plugins', path: 'plugins', icon: 'flask' },
-              { name: 'search', path: 'search', icon: 'search' },
-              { name: 'settings', path: 'settings', icon: 'cogs' },
-              { name: 'equalizer', path: 'equalizer', icon: 'sliders' }
-            ])
-          }
+          <div className={styles.sidebar_menus}>
+            {
+              this.renderMenuCategory('main', [
+                { name: 'dashboard', path: 'dashboard', icon: 'dashboard' },
+                { name: 'downloads', path: 'downloads', icon: 'download' },
+                { name: 'lyrics', path: 'lyrics', icon: 'microphone' },
+                { name: 'plugins', path: 'plugins', icon: 'flask' },
+                { name: 'search', path: 'search', icon: 'search' },
+                { name: 'settings', path: 'settings', icon: 'cogs' },
+                { name: 'equalizer', path: 'equalizer', icon: 'sliders' }
+              ])
+            }
 
-          {
-            this.renderMenuCategory('collection', [
-              { name: 'favorite-albums', path: 'favorites/albums', icon: 'star' },
-              { name: 'favorite-tracks', path: 'favorites/tracks', icon: 'star' },
-              { name: 'library', path: 'library', icon: 'file-sound-o' }
-            ])
-          }
+            {
+              this.renderMenuCategory('collection', [
+                { name: 'favorite-albums', path: 'favorites/albums', icon: 'star' },
+                { name: 'favorite-tracks', path: 'favorites/tracks', icon: 'star' },
+                { name: 'library', path: 'library', icon: 'file-sound-o' }
+              ])
+            }
 
-          {
-            !_.isEmpty(this.props.playlists) &&
-            <SidebarMenuCategoryHeader compact={this.props.settings.compactMenuBar} headerText={'playlists'}/>
-          }
-          <PlaylistsSubMenu
-            playlists={this.props.playlists}
-            compact={this.props.settings.compactMenuBar}
-          />
+            {
+              !_.isEmpty(this.props.playlists) &&
+              <SidebarMenuCategoryHeader compact={this.props.settings.compactMenuBar} headerText={'playlists'}/>
+            }
+            <PlaylistsSubMenu
+              playlists={this.props.playlists}
+              compact={this.props.settings.compactMenuBar}
+            />
+          </div>
 
           <Spacer />
           {this.renderSidebarFooter()}

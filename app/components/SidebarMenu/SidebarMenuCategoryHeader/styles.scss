@@ -3,6 +3,7 @@
 .sidebar_menu_category_header {
   display: flex;
   flex-flow: row;
+  flex-shrink: 0;
   padding: 0.5rem 1rem;
   margin-top: 1.5rem;
   font-size: 1.5rem;
