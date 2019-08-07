@@ -7,8 +7,7 @@ import LyricsHeader from './LyricsHeader';
 
 import styles from './styles.scss';
 
-@withTranslation('lyrics')
-class LyricsView extends React.Component {
+export class LyricsView extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -68,4 +67,5 @@ class LyricsView extends React.Component {
   }
 }
 
-export default LyricsView;
+
+export default withTranslation('lyrics')(LyricsView);

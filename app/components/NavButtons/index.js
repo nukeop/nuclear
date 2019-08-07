@@ -5,7 +5,7 @@ import cx from 'classnames';
 import styles from './styles.scss';
 import {withRouter} from 'react-router';
 
-class NavButtons extends React.Component {
+export class NavButtons extends React.Component {
 
   constructor(props) {
     super(props);
