@@ -22,7 +22,7 @@ describe('<HelpModal />', () => {
   });
 
   it('Test handleClose', () => {
-    const wrapper = shallow(<HelpModal />);
+    const wrapper = mount(<HelpModal />);
 
     wrapper.find(Modal).prop('onClose')();
     expect(wrapper.find(Modal).prop('open')).to.be.false;
