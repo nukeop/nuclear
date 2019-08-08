@@ -9,8 +9,7 @@ const BestNewMusicContent = ({
   item,
   albumInfoSearchByName,
   artistInfoSearchByName,
-  history,
-  isPlayable
+  history
 }) => {
   if (item === null) {
     return null;
@@ -46,12 +45,6 @@ const BestNewMusicContent = ({
         }
       </div>
       {
-        isPlayable &&
-        <div>
-          Track buttons
-        </div>
-      }
-      {
         item.review.split('\n').map((paragraph, i) => {
           return (
             <p key={'item-' + i} className={styles.paragraph}>
@@ -68,8 +61,7 @@ BestNewMusicContent.propTypes = {
   item: bestNewItemShape,
   artistInfoSearchByName: PropTypes.func,
   albumInfoSearchByName: PropTypes.func,
-  history: PropTypes.object,
-  isPlayable: PropTypes.bool
+  history: PropTypes.object
 };
 
 BestNewMusicContent.defaultProps = {
