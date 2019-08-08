@@ -1,6 +1,6 @@
 import _ from 'lodash';
 
-export function formatDuration (duration) {
+export function formatDuration(duration) {
   let secNum = parseInt(duration, 10);
   let hours = Math.floor(secNum / 3600);
   let minutes = Math.floor((secNum - (hours * 3600)) / 60);
@@ -23,7 +23,7 @@ export function formatDuration (duration) {
   }
 }
 
-export function stringDurationToSeconds (duration) {
+export function stringDurationToSeconds(duration) {
   if (duration.length > 0) {
     const parts = duration.split(':');
     if (parts.length === 2) {
@@ -34,10 +34,26 @@ export function stringDurationToSeconds (duration) {
   return 0;
 }
 
-export function getSelectedStream (streams, defaultMusicSource) {
+export function getSelectedStream(streams, defaultMusicSource) {
   let selectedStream = _.find(streams, { source: defaultMusicSource });
 
   return typeof selectedStream === 'undefined'
     ? streams ? streams[0] : null
     : selectedStream;
+}
+
+export function removeQuotes(text) {
+  return String(text).replace(/[“”]/g, '');
+}
+
+export function createLastFMLink(artist, track) {
+  if (!artist) {
+    throw Error('"createLastFMLink" function requires at least "artist" argument');
+  }
+
+  const encodedArtist = artist.split(' ').map(encodeURIComponent).join('+');
+  const encodedTrack = track ? track.split(' ').map(encodeURIComponent).join('+') : null;
+  const linkSuffix = encodedTrack ? `${encodedArtist}/_/${encodedTrack}` : encodedArtist;
+
+  return `https://www.last.fm/music/${linkSuffix}`;
 }

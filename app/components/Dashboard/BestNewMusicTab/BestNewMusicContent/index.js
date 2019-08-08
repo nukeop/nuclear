@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { bestNewItemShape } from '../BestNewMusicMenu';
+import { bestNewItemShape } from '../BestNewMusicMenu/BestNewMusicCard';
 
 import styles from './styles.scss';
 
@@ -11,6 +11,7 @@ const BestNewMusicContent = ({
   artistInfoSearchByName,
   history,
   isPlayable
+}) => {
   if (item === null) {
     return null;
   }
@@ -54,7 +55,7 @@ const BestNewMusicContent = ({
         item.review.split('\n').map((paragraph, i) => {
           return (
             <p key={'item-' + i} className={styles.paragraph}>
-              { paragraph }
+              {paragraph}
             </p>
           );
         })
