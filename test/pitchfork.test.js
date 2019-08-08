@@ -33,7 +33,6 @@ describe('Pitchfork API tests', () => {
   it('gets best new tracks', async () => {
     const result = await getBestNewTracks()
       .then(tracks => {
-        debugger
         return tracks;
       })
       .catch(error => {
