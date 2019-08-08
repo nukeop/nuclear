@@ -13,12 +13,12 @@
   flex-flow: row;
   align-items: center;
 
-  transition: $very-short-duration ease all;
+  transition: $short-duration ease all;
 
   a {
     flex: 1 1 auto;
-    color: rgba($white, 0.87);
-    transition: $very-short-duration ease all;
+    color: rgba($white, 0.8);
+    transition: $short-duration ease all;
   }
 
   

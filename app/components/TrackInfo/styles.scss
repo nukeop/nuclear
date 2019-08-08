@@ -1,15 +1,16 @@
 @import '../../vars';
 .track_info_container {
-  display: flex 1;
-  margin: 10px 20px;
+  display: flex;
+  margin: 0 0 0 14px;
   color: #f8f8f2;
   flex-flow: column;
   flex-wrap: wrap;
   overflow: hidden;
+  justify-content: center;
 }
 
 .track_name {
-  margin-bottom: 10px;
+  margin-bottom: 0.15em;
   font-size: 22px;
   overflow: visible;
   white-space: nowrap;
@@ -21,8 +22,7 @@
   &:hover {
     color: $white;
   }
-  font-size: 16px;
-  flex: 1 1 auto;
+  font-size: 14px;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
