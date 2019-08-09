@@ -14,7 +14,7 @@ const Seekbar = ({ seek, queue, fill, children }) => {
   return (
     <div onClick={handleClick} className={styles.seekbar_container}>
       <div style={{width: fill}} className={styles.seekbar_fill} />
-      { children }
+      { children || <div className={styles.seekbar_placeholder}>00:00</div> }
     </div>
   );
 };

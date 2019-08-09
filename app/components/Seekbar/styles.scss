@@ -6,7 +6,7 @@
   background-color: $background2;
   flex: none !important;
   padding: 4px 0 !important;
-  height: 13px !important;
+  height: auto !important;
 }
 
 .seekbar_fill {
@@ -16,4 +16,9 @@
   top: 0;
   height: 100%;
   will-change: auto;
+}
+.seekbar_placeholder {
+  opacity: 0;
+  font-size: 13px;
+  line-height: 13px;
 }
