@@ -9,12 +9,12 @@
 
 .tag {
   display: flex;
-
-  margin: 0 0.5rem 0.5rem 0.5rem;
-  padding: 0.25rem 0.5rem;
+  line-height: 1;
+  margin: 0 0.5rem 0.5rem 0;
+  padding: 0.5rem 1rem;
 
   color: $white;
-  border-radius: 0.75rem;
+  border-radius: 1.25rem;
   background-color: rgba($green, 0.8);
   white-space: nowrap;
 }
