@@ -1,17 +1,14 @@
-import 'jsdom-global/register';
 import React from 'react';
 import chai from 'chai';
 import spies from 'chai-spies';
-import { shallow, mount, configure } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import { describe, it } from 'mocha';
-import Adapter from 'enzyme-adapter-react-16';
 import FontAwesome from 'react-fontawesome';
 
 import PlayerControls from '../app/components/PlayerControls'
 import PlayPauseButton from '../app/components/PlayerControls/PlayPauseButton';
 import PlayerButton from '../app/components/PlayerControls/PlayerButton';
 
-configure({ adapter: new Adapter() });
 chai.use(spies);
 const { expect } = chai;
 
