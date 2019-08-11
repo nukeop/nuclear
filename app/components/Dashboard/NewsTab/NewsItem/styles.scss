@@ -26,8 +26,12 @@
   }
 
   .tag {
-    padding: 0.25rem 0.5rem;
-    border-radius: 1rem;
-    background-color: rgba(white, 0.5);
+    margin: 0 0.5rem 0.5rem 0;
+    padding: 0.5rem 1rem;
+
+    color: $white;
+    border-radius: 1.25rem;
+    background-color: rgba($background2, 0.8);
+    white-space: nowrap;
   }
 }
