@@ -2,11 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
-import _ from 'lodash';
 import numeral from 'numeral';
 import { Icon } from 'semantic-ui-react';
-
-import artPlaceholder from '../../../resources/media/art_placeholder.png';
 
 import * as QueueActions from '../../actions/queue';
 
@@ -15,20 +12,10 @@ import { formatDuration } from '../../utils';
 
 import styles from './styles.scss';
 
+
 class TrackRow extends React.Component {
   // this function should be moved onto interface for 'track'
-  getThumbnail (track) {
-    return _.get(
-      track,
-      'image[1][\'#text\']',
-      _.get(
-        track,
-        'image[0][\'#text\']',
-        artPlaceholder
-      )
-    );
-  }
-
+  
   renderAlbum (track) {
     return (
       <td className={styles.track_album}>
@@ -52,7 +39,7 @@ class TrackRow extends React.Component {
     this.props.actions.playTrack(this.props.musicSources, {
       artist: this.props.track.artist.name,
       name: this.props.track.name,
-      thumbnail: this.getThumbnail(this.props.track)
+      thumbnail: this.props.track.thumbnail
     });
   }
 
@@ -81,7 +68,7 @@ class TrackRow extends React.Component {
         {
           displayCover &&
             <td className={styles.track_thumbnail}>
-              <img src={this.getThumbnail(track)}/>
+              <img src={track.thumbnail}/>
             </td>
         }
         { displayTrackNumber && <td className={styles.track_number}>{track.position}</td> }
@@ -109,7 +96,7 @@ class TrackRow extends React.Component {
         track={track}
         artist={track.artist.name}
         title={track.name}
-        thumb={this.getThumbnail(track)}
+        thumb={track.thumbnail}
 
         withAddToQueue={withAddToQueue}
         withPlayNow={withPlayNow}
