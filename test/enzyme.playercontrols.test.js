@@ -1,24 +1,21 @@
 import 'jsdom-global/register';
 import React from 'react';
-import { expect } from 'chai';
-import { shallow, mount, render, configure } from 'enzyme';
-import { describe, it, before } from 'mocha';
+import chai from 'chai';
+import spies from 'chai-spies';
+import { shallow, mount, configure } from 'enzyme';
+import { describe, it } from 'mocha';
 import Adapter from 'enzyme-adapter-react-16';
 import FontAwesome from 'react-fontawesome';
-import i18n from 'i18next';
-import { initReactI18next } from 'react-i18next';
 
 import PlayerControls from '../app/components/PlayerControls'
 import PlayPauseButton from '../app/components/PlayerControls/PlayPauseButton';
 import PlayerButton from '../app/components/PlayerControls/PlayerButton';
 
 configure({ adapter: new Adapter() });
+chai.use(spies);
+const { expect } = chai;
 
 describe('Rendering <PlayerControls /> and its children', () => {
-  before(() => {
-    return i18n.use(initReactI18next).init({ lng: 'en' });
-  });
-
   it('Should render the PlayPauseButton and two PlayerButton ', () => {
     const wrapper = shallow(<PlayerControls />);
     expect(wrapper.containsMatchingElement(<PlayPauseButton />)).to.equal(true);
@@ -28,16 +25,50 @@ describe('Rendering <PlayerControls /> and its children', () => {
   })
 });
 
-describe('<PlayPauseButton/> loading', () => {
-  before(() => {
-    return i18n.use(initReactI18next).init({ lng: 'en' });
-  });
+describe('Back button onClick', () => {
+  it('has an onclick event that gets triggered', () => {
+    const wrapper = shallow(<PlayerControls back={spy} />);
+    const spy = chai.spy();
+    wrapper.find(PlayerButton).first().simulate('click');
+    expect(spy).to.have.been.called;
+  })
+})
 
+describe('Forward button onClick', () => {
+  it('has an onclick event that gets triggered', () => {
+    const wrapper = shallow(<PlayerControls forward={spy} />);
+    const spy = chai.spy();
+    wrapper.find(PlayerButton).last().simulate('click');
+    expect(spy).to.have.been.called;
+  })
+})
+
+describe('<PlayPauseButton/> loading', () => {
   it('Loading indicator showing', () => {
-    const onClick = () => {
-      testVal = 'clicked';
-    };
     const wrapper = mount(<PlayPauseButton loading={true} playing={false} onClick={undefined} />)
-    expect(wrapper.find(FontAwesome)).to.have.lengthOf(1)
+    expect(wrapper.find(FontAwesome).prop('name')).to.equal('spinner')
+  })
+})
+
+describe('<PlayPauseButton/> playing', () => {
+  it('Shows pause button', () => {
+    const wrapper = mount(<PlayPauseButton loading={false} playing={true} onClick={undefined} />)
+    expect(wrapper.find(FontAwesome).prop('name')).to.equal('pause')
+  })
+})
+
+describe('<PlayPauseButton/> ready to play', () => {
+  it('Shows play button', () => {
+    const wrapper = mount(<PlayPauseButton loading={false} playing={false} onClick={undefined} />)
+    expect(wrapper.find(FontAwesome).prop('name')).to.equal('play')
+  })
+})
+
+describe('<PlayPauseButton/> onClick', () => {
+  it('Shows play button', () => {
+    const spy = chai.spy();
+    const wrapper = mount(<PlayPauseButton loading={false} playing={false} onClick={spy} />);
+    wrapper.find('a').simulate('click');
+    expect(spy).to.have.been.called;
   })
 })
