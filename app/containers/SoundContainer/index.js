@@ -122,7 +122,7 @@ class SoundContainer extends React.Component {
       this.props.actions.addToQueue(musicSources, {
         artist: artist.name,
         name: track.name,
-        thumbnail: track.image[0]['#text']
+        thumbnail: track.thumbnail || track.image[0]['#text']
       });
       resolve(true);
     });
