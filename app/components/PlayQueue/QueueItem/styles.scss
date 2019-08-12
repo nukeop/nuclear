@@ -1,8 +1,17 @@
 @import '../../../vars';
 
+@keyframes appear {
+  0% {
+      opacity: 0;
+  }
+
+  100% {
+      opacity: 0.25;
+  }
+}
+
 .queue_item_container {
   display: flex;
-  transition: all $medium-duration ease-out;
 
   margin: 0.5rem;
   margin-top: 0;
@@ -13,6 +22,9 @@
 
   flex: 0 0 auto;
   flex-flow: row;
+
+  animation-name: appear;
+  animation-duration: $short-duration;
 
 
   span {
@@ -30,6 +42,12 @@
     .thumbnail_overlay {
       opacity: 1;
     }
+  }
+}
+
+.queue_item_container_loading {
+  .item_info_container, .item_duration_container {
+    opacity: 0.3;
   }
 }
 
