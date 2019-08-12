@@ -1,31 +1,29 @@
-export const UPDATE_EQUALIZER = 'UPDATE_EQUALIZER';
-export const SET_EQUALIZER = 'SET_EQUALIZER';
-export const TOGGLE_VISUALIZATION = 'TOGGLE_VISUALIZATION'; 
-export const SET_VISUALIZATION_DATA = 'SET_VISUALIZATION_DATA';
+export const CHANGE_VALUE = 'CHANGE_VALUE';
+export const SELECT_PRESET = 'SELECT_PRESET';
+export const SET_PREAMP = 'SET_PREAMP';
+export const TOGGLE_SPECTRUM = 'TOGGLE_VISUALIZATION'; 
+export const SET_SPECTRUM = 'SET_SPECTRUM';
 
-export function updateEqualizer(payload) {
-  return {
-    type: UPDATE_EQUALIZER,
-    payload
-  };
-}
+export const changeValue = ({index, value}) => ({
+  type: CHANGE_VALUE,
+  payload: {index, value}
+});
 
-export function setEqualizer(payload) {
-  return {
-    type: SET_EQUALIZER,
-    payload
-  };
-}
+export const selectPreset = (payload) => ({
+  type: SELECT_PRESET,
+  payload
+});
 
-export function toggleVisualization() {
-  return {
-    type: TOGGLE_VISUALIZATION
-  };
-}
+export const setPreAmp = (value) => ({
+  type: SET_PREAMP,
+  payload: value
+});
 
-export function setVisualizationData(payload) {
-  return {
-    type: SET_VISUALIZATION_DATA,
-    payload
-  };
-}
+export const toggleSpectrum = () => ({
+  type: TOGGLE_SPECTRUM
+});
+
+export const setSpectrum = (payload) => ({
+  type: SET_SPECTRUM,
+  payload
+});
