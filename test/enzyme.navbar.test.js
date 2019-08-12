@@ -1,14 +1,12 @@
 import React from 'react';
-import { expect } from 'chai';
 import { shallow } from 'enzyme';
-import { describe, it } from 'mocha';
 
 import Navbar from '../app/components/Navbar';
 
 describe('<Navbar />', () => {
   it('renders with no children', () => {
     const wrapper = shallow(<Navbar />);
-    expect(wrapper.children()).to.have.lengthOf(0);
+    expect(wrapper.children().length).toBe(0);
   });
 
   it('renders with children', () => {
@@ -19,6 +17,6 @@ describe('<Navbar />', () => {
         <div>Third</div>
       </Navbar>
     );
-    expect(wrapper.children()).to.have.lengthOf(3);
+    expect(wrapper.children().length).toBe(3);
   });
 });

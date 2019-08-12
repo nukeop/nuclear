@@ -1,7 +1,5 @@
 import React from 'react';
-import { expect } from 'chai';
 import { shallow } from 'enzyme';
-import { describe, it } from 'mocha';
 
 import FontAwesome from 'react-fontawesome';
 
@@ -11,7 +9,7 @@ import WindowControls from '../app/components/WindowControls';
 describe('<WindowControls />', () => {
   it('renders with window buttons', () => {
     const wrapper = shallow(<WindowControls />);
-    expect(wrapper.containsMatchingElement(<WindowButton />)).to.equal(true);
+    expect(wrapper.containsMatchingElement(<WindowButton />)).toBe(true);
   });
 });
 
@@ -29,7 +27,7 @@ describe('<WindowButton />', () => {
     );
 
     wrapper.simulate('click');
-    expect(testVal).to.equal('clicked');
+    expect(testVal).toBe('clicked');
   });
 
   it('displays correct icon', () => {
@@ -42,6 +40,6 @@ describe('<WindowButton />', () => {
         .find(FontAwesome)
         .at(0)
         .prop('name')
-    ).to.equal(icon);
+    ).toBe(icon);
   });
 });

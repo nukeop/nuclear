@@ -1,7 +1,5 @@
 import React from 'react';
-import { expect } from 'chai';
-import { mount, shallow } from 'enzyme';
-import { describe, it, before } from 'mocha';
+import { mount } from 'enzyme';
 import { Modal } from 'semantic-ui-react';
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
@@ -10,7 +8,7 @@ import HelpButton from '../app/components/HelpButton';
 import HelpModal from '../app/components/HelpModal';
 
 describe('<HelpModal />', () => {
-  before(() => {
+  beforeEach(() => {
     return i18n.use(initReactI18next).init({ lng: 'en' });
   });
 
@@ -18,13 +16,13 @@ describe('<HelpModal />', () => {
     const wrapper = mount(<HelpModal />);
 
     wrapper.find(HelpButton).simulate('click');
-    expect(wrapper.find(Modal).prop('open')).to.be.true;
+    expect(wrapper.find(Modal).prop('open')).toBe(true);
   });
 
   it('Test handleClose', () => {
     const wrapper = mount(<HelpModal />);
 
     wrapper.find(Modal).prop('onClose')();
-    expect(wrapper.find(Modal).prop('open')).to.be.false;
+    expect(wrapper.find(Modal).prop('open')).toBe(false);
   });
 });

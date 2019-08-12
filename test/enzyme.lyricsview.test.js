@@ -1,7 +1,5 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { expect } from 'chai';
-import { describe, it } from 'mocha';
 
 import { LyricsView } from '../app/components/LyricsView';
 
@@ -12,7 +10,7 @@ describe('<LyricsView />', () => {
     const wrapper = shallow(<LyricsView track={null} t={t} />);
     const instance = wrapper.instance();
 
-    expect(wrapper.contains(instance.renderNoSelectedTrack())).to.be.true;
+    expect(wrapper.contains(instance.renderNoSelectedTrack())).toBe(true);
   });
 
   it('Test if there is selected track', () => {

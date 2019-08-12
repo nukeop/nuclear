@@ -1,7 +1,5 @@
 import React from 'react';
-import { expect } from 'chai';
 import { shallow } from 'enzyme';
-import { describe, it } from 'mocha';
 import proxyquire from 'proxyquire';
 
 const electronStoreStub = function () {
@@ -26,7 +24,7 @@ describe('<FavoriteTracksView />', () => {
   it('Should render <EmptyState /> when there is no track', () => {
     const wrapper = shallow(<FavoriteTracksView />);
 
-    expect(wrapper.exists(EmptyState)).to.be.true;
+    expect(wrapper.exists(EmptyState)).toBe(true);
   });
 
   it('Should display given tracks', () => {
@@ -47,6 +45,6 @@ describe('<FavoriteTracksView />', () => {
     const wrapper = shallow(<FavoriteTracksView tracks={mockedTracks} />);
     const renderedTracks = wrapper.find('tbody').children().map(item => item.prop('track'));
 
-    expect(renderedTracks).to.be.equal(renderedTracks);
+    expect(renderedTracks).toBeEqual(renderedTracks);
   });
 });

@@ -2,8 +2,6 @@ import {
   getBestNewAlbums,
   getBestNewTracks
 } from 'pitchfork-bnm';
-import { expect } from 'chai';
-import { describe, it } from 'mocha';
 
 describe('Pitchfork API tests', () => {
   it('gets best new albums', async () => {
@@ -31,23 +29,17 @@ describe('Pitchfork API tests', () => {
   });
 
   it('gets best new tracks', async () => {
-    const result = await getBestNewTracks()
-      .then(tracks => {
-        return tracks;
-      })
-      .catch(error => {
-        console.error(error);
-        expect(false).to.equal(true);
-      });
-
-    expect(result).to.be.an('array');
+    const result = await getBestNewTracks();
+    expect(typeof result).toBe('array');
     result.forEach(entry => {
-      expect(entry).to.be.an('object').that.has.all.keys(
+      expect(typeof entry).toBe('object');
+      expect(new Set(Object.keys(entry))).toEqual(new Set([
         'thumbnail',
         'artist',
         'title',
         'reviewUrl',
-        'review');
+        'review'])
+      ); 
     });
   });
 });

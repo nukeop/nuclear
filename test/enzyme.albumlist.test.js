@@ -1,15 +1,9 @@
 import React from 'react';
-import chai from 'chai';
 import { shallow } from 'enzyme';
-import { describe, it } from 'mocha';
 import { Loader } from 'semantic-ui-react';
-import spies from 'chai-spies';
 
 import Card from '../app/components/Card';
 import AlbumList from '../app/components/AlbumList';
-
-chai.use(spies);
-const { expect } = chai;
 
 describe('<AlbumList />', () => {
   const mockedAlbums = [
@@ -36,7 +30,7 @@ describe('<AlbumList />', () => {
   it('Should render loader when there is no album', () => {
     const wrapper = shallow(<AlbumList />);
 
-    expect(wrapper.exists(Loader)).to.be.true;
+    expect(wrapper.exists(Loader)).toBe(true);
   });
 
   it('Should render given albums', () => {
@@ -45,20 +39,19 @@ describe('<AlbumList />', () => {
 
     expect(mockedAlbums.every(({ title, thumb }, i) =>
       cardsProps[i].header === title && cardsProps[i].image === thumb
-    )).to.be.true;
+    )).toBe(true);
   });
 
   it('Test albumInfoSearch method', () => {
-    const fakeHistory = { push: () => {} };
-    const historySpy = chai.spy.on(fakeHistory, 'push');
-    const albumInfoSearch = chai.spy();
+    const fakeHistory = { push: jest.fn() };
+    const albumInfoSearch = jest.fn();
     const wrapper = shallow(
       <AlbumList history={fakeHistory} albumInfoSearch={albumInfoSearch} />
     );
     const instance = wrapper.instance();
 
     instance.albumInfoSearch('ALBUM_ID', 'RELEASE_TYPE');
-    expect(albumInfoSearch).to.have.been.called.with('ALBUM_ID', 'RELEASE_TYPE')
-    expect(historySpy).to.have.been.called.with('/album/ALBUM_ID')
+    expect(albumInfoSearch).toHaveBeenCalledWith('ALBUM_ID', 'RELEASE_TYPE');
+    expect(fakeHistory.push).toHaveBeenCalledWith('/album/ALBUM_ID');
   });
 });
