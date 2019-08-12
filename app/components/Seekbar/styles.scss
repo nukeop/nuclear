@@ -5,8 +5,10 @@
   cursor: pointer;
   background-color: $background2;
   flex: none !important;
-  padding: 4px 0 !important;
+  padding: 3px 0 !important;
   height: auto !important;
+  font-size: 12px;
+  line-height: 1em;
 }
 
 .seekbar_fill {
@@ -19,6 +21,4 @@
 }
 .seekbar_placeholder {
   opacity: 0;
-  font-size: 13px;
-  line-height: 13px;
 }
