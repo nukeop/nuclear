@@ -6,11 +6,13 @@ import DebounceInput from 'react-debounce-input';
 import styles from './styles.scss';
 import { useTranslation } from 'react-i18next';
 
+const RETURN_KEYCODE = 13;
+
 const SearchBox = ({ handleSearch, loading }) => {
   const { t } = useTranslation('search');
   const [latestSearch, setSearch] = useState('');
   const handleKeyDown = useCallback((e) => {
-    if (e.which === 13) {
+    if (e.which === RETURN_KEYCODE) {
       handleSearch(latestSearch);
     }
   }, [handleSearch, latestSearch]);
