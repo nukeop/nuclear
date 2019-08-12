@@ -1,6 +1,5 @@
 /* eslint-env node */
 const webpack = require('webpack');
-const HappyPack = require('happypack');
 const nodeExternals = require('webpack-node-externals');
 
 module.exports = () => {
@@ -21,17 +20,14 @@ module.exports = () => {
       rules: [
         {
           test: /.jsx?$/,
-          use: 'happypack/loader?id=jsx',
+          loader: 'babel-loader', 
+          options: {cacheDirectory: true},
           exclude: /node_modules/
         }
       ]
     },
     plugins: [
-      new webpack.NamedModulesPlugin(),
-      new HappyPack({
-        id: 'jsx',
-        loaders: [{loader: 'babel-loader', options: {cacheDirectory: true}}]
-      })
+      new webpack.NamedModulesPlugin()
     ],
     node: {
       fs: 'empty',
