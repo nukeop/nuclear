@@ -12,8 +12,6 @@
   z-index: 2;
   @include time;
   padding: 0 14px;
-  font-size: 13px;
-  line-height: 13px;
   pointer-events: none;
   .time_played,
   .time_to_end {
