@@ -1,6 +1,5 @@
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const HappyPack = require('happypack');
 const path = require('path');
 
 const BUILD_DIR = path.resolve(__dirname, 'dist');
@@ -37,12 +36,16 @@ const config = {
     rules: [
       {
         test: /.jsx?$/,
-        use: 'happypack/loader?id=jsx',
+        loader: 'babel-loader', 
+        options: {cacheDirectory: true},
         include: APP_DIR
       },
       {
         test: /.scss$/,
-        use: 'happypack/loader?id=scss'
+        use: [
+          'style-loader',
+          'css-loader?importLoaders=1&modules&localIdentName=[local]!sass-loader'
+        ]
       },
       {
         test: /\.css/,
@@ -72,18 +75,9 @@ const config = {
         keepClosingSlash: true
       },
       inject: true
-    }),
-    new HappyPack({
-      id: 'jsx',
-      loaders: [{loader: 'babel-loader', options: {cacheDirectory: true}}]
-    }),
-    new HappyPack({
-      id: 'scss',
-      loaders: ['style-loader!css-loader?importLoaders=1&modules&localIdentName=[local]!sass-loader']
     })
   ],
   target: 'electron-renderer'
-
 };
 
 module.exports = config;
