@@ -106,12 +106,8 @@ export function lastFmTrackSearchSuccess (terms, searchResults) {
   };
 }
 
-const isAcceptableLastFMThumbnail = thumbnail => {
-  if (/https?:\/\/lastfm-img\d.akamaized.net\/i\/u\/\d+s\/2a96cbd8b46e442fc41c2b86b821562f\.png/.test(thumbnail)) {
-    return false;
-  }
-  return true;
-};
+const isAcceptableLastFMThumbnail = thumbnail =>
+  !(/https?:\/\/lastfm-img\d.akamaized.net\/i\/u\/\d+s\/2a96cbd8b46e442fc41c2b86b821562f\.png/.test(thumbnail));
   
 const getTrackThumbnail = track => {
   const image = 
