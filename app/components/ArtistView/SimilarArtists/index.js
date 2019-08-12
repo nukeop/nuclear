@@ -25,7 +25,7 @@ class SimilarArtists extends React.Component {
               <div key={index} onClick={() => {
                 this.artistInfoSearchByName(artist.name);
               }} className={styles.artist_row}>
-                <img src={artist.image[1]['#text']} />
+                <img src={artist.thumbnail} />
                 <div>{artist.name}</div>
               </div>
             );

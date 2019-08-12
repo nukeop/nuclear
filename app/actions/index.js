@@ -1,12 +1,13 @@
 import logger from 'electron-timber';
 import core from 'nuclear-core';
 import _ from 'lodash';
+import artPlaceholder from '../../resources/media/art_placeholder.png';
 import globals from '../globals';
 
 const discogs = require('../rest/Discogs');
 const youtube = require('../rest/Youtube');
 
-let lastfm = new core.LastFmApi(globals.lastfmApiKey, globals.lastfmApiSecret);
+const lastfm = new core.LastFmApi(globals.lastfmApiKey, globals.lastfmApiSecret);
 
 export const UNIFIED_SEARCH_START = 'UNIFIED_SEARCH_START';
 export const UNIFIED_SEARCH_SUCCESS = 'UNIFIED_SEARCH_SUCCESS';
@@ -105,6 +106,28 @@ export function lastFmTrackSearchSuccess (terms, searchResults) {
   };
 }
 
+const isAcceptableLastFMThumbnail = thumbnail =>
+  !(/https?:\/\/lastfm-img\d.akamaized.net\/i\/u\/\d+s\/2a96cbd8b46e442fc41c2b86b821562f\.png/.test(thumbnail));
+  
+const getTrackThumbnail = track => {
+  const image = 
+  _.get(
+    track,
+    ['image', 1, '#text'],
+    _.get(
+      track,
+      ['image', 0, '#text'],
+      artPlaceholder
+    )
+  );
+  return isAcceptableLastFMThumbnail(image) ? image : artPlaceholder; 
+};
+
+const mapLastFMTrackToInternal = track => ({
+  ...track,
+  thumbnail: getTrackThumbnail(track)
+});
+
 export function lastFmTrackSearch (terms) {
   return dispatch => {
     dispatch(lastFmTrackSearchStart(terms));
@@ -112,7 +135,7 @@ export function lastFmTrackSearch (terms) {
       .then(results => Promise.all(results.map(info => info.json())))
       .then(results => {
         dispatch(
-          lastFmTrackSearchSuccess(terms, _.get(results[0], 'results.trackmatches.track', []))
+          lastFmTrackSearchSuccess(terms, _.get(results[0], 'results.trackmatches.track', []).map(mapLastFMTrackToInternal))
         );
       })
       .catch(error => {
@@ -354,8 +377,22 @@ export function lastFmArtistInfoSearch (artist, artistId) {
         results.forEach(result => {
           info = Object.assign(info, result);
         });
-
-        dispatch(lastFmArtistInfoSuccess(artistId, info));
+        
+        const mappedInfo = {
+          ...info, 
+          artist: {
+            ...info.artist,
+            similar: {
+              artist: info.artist.similar.artist.map(mapLastFMTrackToInternal)
+            }
+          },
+          toptracks: {
+            ...info.toptracks, 
+            track: info.toptracks.track.map(mapLastFMTrackToInternal)
+          }
+        };
+        console.info('mapped', mappedInfo);
+        dispatch(lastFmArtistInfoSuccess(artistId, mappedInfo));
       })
       .catch(error => {
         logger.error(error);

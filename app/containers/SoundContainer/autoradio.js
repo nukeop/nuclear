@@ -199,9 +199,8 @@ function addToQueue (artist, track) {
     props.actions.addToQueue(musicSources, {
       artist: artist.name,
       name: track.name,
-      thumbnail: track.image[0]['#text']
+      thumbnail: track.thumbnail || track.image[0]['#text']
     });
     resolve(true);
   });
 }
-
