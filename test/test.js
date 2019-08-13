@@ -1,69 +1,65 @@
 require('isomorphic-fetch');
-import { expect } from 'chai';
 import core from 'nuclear-core';
 import globals from '../app/globals';
-import { describe, it } from 'mocha';
 
 const billboard = require('../app/rest/Billboard');
 const lastfm = new core.LastFmApi(globals.lastfmApiKey, globals.lastfmApiSecret);
 
 describe('Billboard api tests', () => {
   it('tests exports', () => {
-    expect(billboard).to.be.an('object');
-    expect(billboard).to.have.property('getTop');
-    expect(billboard).to.have.property('lists');
+    expect(typeof billboard).toBe('object');
+    expect(billboard).toHaveProperty('getTop');
+    expect(billboard).toHaveProperty('lists');
   });
 
-  it('gets a pop songs list', () => {
-    billboard.getTop(billboard.lists.genres[0].link)
-      .then(songs => {
-        expect(songs).to.be.an('array').that.has.lengthOf(40);
-      })
-      .catch(err => {
-        console.error(err);
-      });
+  it('gets a pop songs list', async () => {
+    const songs = (await billboard.getTop(billboard.lists.genres[0].link)).songs;
+    expect(songs).toHaveLength(40);
   });
 });
 
 describe('Last.fm api tests', () => {
   it('tests exports', () => {
-    expect(lastfm).to.be.an('object');
+    expect(typeof lastfm).toBe('object');
   });
 
   it('tests getting top tags', () => {
-    lastfm.getTopTags()
+    return lastfm.getTopTags()
       .then(response => response.json())
       .then(results => {
-        expect(results).to.be.an('object').that.has.nested.property('toptags.tag');
+        expect(typeof results).toBe('object');
+        expect(results.toptags).toHaveProperty('tag');
         const sample = results.toptags.tag[0];
-        expect(sample).to.be.an('object').that.has.all.keys('name', 'count', 'reach');
+        expect(typeof sample).toBe('object')
+        expect(Object.keys(sample)).toEqual(expect.arrayContaining(['name', 'count', 'reach']));
       });
   });
 
   it('tests getting tag info', () => {
-    lastfm.getTagInfo('indie')
+    return lastfm.getTagInfo('indie')
       .then(response => response.json())
       .then(results => {
-        expect(results).to.be.an('object').that.has.property('tag');
-        expect(results.tag).to.be.an('object').that.has.all.keys(
+        expect(typeof results).toBe('object');
+        expect(results).toHaveProperty('tag');
+        expect(typeof results.tag).toBe('object');
+        expect(Object.keys(results.tag)).toEqual(expect.arrayContaining([
           'name',
           'total',
           'reach',
           'wiki'
-        );
-      })
-      .catch(err => {
-        console.error(err);
+        ]));
       });
   });
 
   it('tests getting top tag tracks', () => {
-    lastfm.getTagTracks('indie')
+    return lastfm.getTagTracks('indie')
       .then(response => response.json())
       .then(results => {
-        expect(results).to.be.an('object').that.has.nested.property('tracks.track');
+        expect(typeof results).toBe('object');
+        expect(results.tracks).toHaveProperty('track');
         const sample = results.tracks.track[0];
-        expect(sample).to.be.an('object').that.has.all.keys(
+        expect(typeof sample).toBe('object');
+        expect(Object.keys(sample)).toEqual(expect.arrayContaining([
           'name',
           'artist',
           'duration',
@@ -72,61 +68,56 @@ describe('Last.fm api tests', () => {
           'url',
           'image',
           '@attr'
-        );
-      })
-      .catch(err => {
-        console.error(err);
+        ]));
       });
+      
   });
 
   it('tests getting top tag albums', () => {
-    lastfm.getTagAlbums('indie')
+    return lastfm.getTagAlbums('indie')
       .then(response => response.json())
       .then(results => {
-        expect(results).to.be.an('object').that.has.nested.property('albums.album');
+        expect(typeof results).toBe('object');
+        expect(results.albums).toHaveProperty('album');
         const sample = results.albums.album[0];
-        expect(sample).to.be.an('object').that.has.all.keys(
+        expect(typeof sample).toBe('object');
+        expect(Object.keys(sample)).toEqual(expect.arrayContaining([
           'name',
           'mbid',
           'url',
           'artist',
           'image',
           '@attr'
-        );
-      })
-      .catch(err => {
-        console.error(err);
+        ]));
       });
+      
   });
 
   it('tests getting top tag artists', () => {
-    lastfm.getTagArtists('indie')
+    return lastfm.getTagArtists('indie')
       .then(response => response.json())
       .then(results => {
-        expect(results).to.be.an('object').that.has.nested.property('topartists.artist');
+        expect(typeof results).toBe('object');
+        expect(results.topartists).toHaveProperty('artist');
         const sample = results.topartists.artist[0];
-        expect(sample).to.be.an('object').that.has.all.keys(
+        expect(typeof sample).toBe('object');
+        expect(Object.keys(sample)).toEqual(expect.arrayContaining([
           'name',
           'mbid',
           'url',
           'streamable',
           'image',
           '@attr'
-        );
-      })
-      .catch(err => {
-        console.error(err);
+        ]));
       });
   });
 
   it('tests getting similar tags', () => {
-    lastfm.getSimilarTags('electronic')
+    return lastfm.getSimilarTags('electronic')
       .then(response => response.json())
       .then(results => {
-        expect(results).to.be.an('object').that.has.property('similartags');
-      })
-      .catch(err => {
-        console.error(err);
+        expect(typeof results).toBe('object');
+        expect(results).toHaveProperty('similartags');
       });
   });
 

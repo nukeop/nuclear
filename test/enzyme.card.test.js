@@ -8,6 +8,7 @@ import Card from '../app/components/Card';
 describe('<Card />', () => {
   it('Should render given image', () => {
     const wrapper = shallow(<Card image='IMG' />);
+    expect(wrapper).toMatchSnapshot();
     expect(wrapper.find(Img).prop('src')).toBe('IMG');
   });
 
@@ -21,7 +22,6 @@ describe('<Card />', () => {
 
   it('Should display given header', () => {
     const wrapper = shallow(<Card header='HEADER' />);
-
     expect(wrapper.find('h4').text()).toEqual('HEADER');
   });
 

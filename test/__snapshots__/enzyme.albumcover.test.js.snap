@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<AlbumCover /> renders an album cover 1`] = `ShallowWrapper {}`;

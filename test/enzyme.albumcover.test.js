@@ -8,7 +8,7 @@ describe('<AlbumCover />', () => {
     const wrapper = shallow(
       <AlbumCover />
     );
-
+    expect(wrapper).toMatchSnapshot();
     expect(wrapper.containsMatchingElement(
       <div className='album_cover_container' />
     ));

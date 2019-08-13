@@ -20,7 +20,7 @@ export const lists = {
 
 export function getTop(list) {
   return new Promise((resolve, reject) => {
-    getChart(list, (songs, err) => {
+    getChart(list, (err, songs) => {
       if (err) {
         reject(err);
       } else {

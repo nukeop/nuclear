@@ -1,5 +1,3 @@
-import { expect } from 'chai';
-
 import {
   deletePlaylistInjectable,
   updatePlaylistInjectable
@@ -19,7 +17,7 @@ describe('Playlist actions tests', () => {
     const fakeStore = createFakeStore();
     const deletePlaylist = deletePlaylistInjectable(fakeStore);
     const playlists = deletePlaylist('abc');
-    expect(playlists).to.eql([
+    expect(playlists).toEqual([
       { id: 'qwerty' },
       { id: 'asdf' }
     ]);
@@ -32,7 +30,7 @@ describe('Playlist actions tests', () => {
       id: 'abc',
       tracks: [ 4, 8, 15 ]
     });
-    expect(playlists).to.eql([
+    expect(playlists).toEqual([
       { id: 'qwerty' },
         { id: 'asdf' },
       {

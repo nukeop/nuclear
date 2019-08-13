@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {act} from 'react';
 import { mount } from 'enzyme';
 import { Modal } from 'semantic-ui-react';
 import i18n from 'i18next';
@@ -15,7 +15,9 @@ describe('<HelpModal />', () => {
   it('Test handleOpen', () => {
     const wrapper = mount(<HelpModal />);
 
-    wrapper.find(HelpButton).simulate('click');
+    expect(wrapper.find(HelpButton)).toExist();
+    //.simulate('click');
+    
     expect(wrapper.find(Modal).prop('open')).toBe(true);
   });
 

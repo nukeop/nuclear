@@ -5,18 +5,11 @@ import {
 
 describe('Pitchfork API tests', () => {
   it('gets best new albums', async () => {
-    const result = await getBestNewAlbums()
-      .then(albums => {
-        return albums;
-      })
-      .catch(error => {
-        console.error(error);
-        expect(false).to.equal(true);
-      });
-
-    expect(result).to.be.an('array');
+    const result = await getBestNewAlbums();
+    expect(typeof result).toBe('array');
     result.forEach(entry => {
-      expect(entry).to.be.an('object').that.has.all.keys(
+      expect(typeof entry).toBe('object');
+      expect(Object.keys(entry)).toEqual(expect.arrayContaining([
         'thumbnail',
         'artist',
         'title',
@@ -24,7 +17,8 @@ describe('Pitchfork API tests', () => {
         'genres',
         'score',
         'abstract',
-        'review');
+        'review'
+      ]));
     });
   });
 
@@ -33,7 +27,7 @@ describe('Pitchfork API tests', () => {
     expect(typeof result).toBe('array');
     result.forEach(entry => {
       expect(typeof entry).toBe('object');
-      expect(new Set(Object.keys(entry))).toEqual(new Set([
+      expect(Object.keys(entry)).toEqual(expect.arrayContaining([
         'thumbnail',
         'artist',
         'title',
