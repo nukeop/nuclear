@@ -48,7 +48,6 @@ class QueueMenu extends React.Component {
     } = this.props;
 
     const firstTitle = _.get(_.head(items), 'name');
-    
     return (
       <div className={styles.queue_menu_container}>
         <div className={styles.queue_menu_buttons}>
@@ -82,7 +81,7 @@ class QueueMenu extends React.Component {
                         }
                         />
               }
-              
+
         </div>
         <hr />
       </div>
