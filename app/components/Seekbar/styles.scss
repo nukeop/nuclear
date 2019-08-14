@@ -2,15 +2,23 @@
 
 .seekbar_container {
   position: relative;
-  height: 1em;
-
   cursor: pointer;
-
   background-color: $background2;
-
-  flex: 0 0 auto;
+  flex: none !important;
+  padding: 3px 0 !important;
+  height: auto !important;
+  font-size: 12px;
+  line-height: 1em;
 }
 
 .seekbar_fill {
   background-color: $pink;
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  will-change: auto;
+}
+.seekbar_placeholder {
+  opacity: 0;
 }

@@ -9,12 +9,12 @@ const Seekbar = ({ seek, queue, fill, children }) => {
     const duration = queue.queueItems[queue.currentSong].streams[0].duration;
 
     seek(percent * duration);
-  }, [seek, queue.queueItems]);
+  }, [queue.queueItems, queue.currentSong, seek]);
 
   return (
     <div onClick={handleClick} className={styles.seekbar_container}>
       <div style={{width: fill}} className={styles.seekbar_fill} />
-      { children }
+      { children || <div className={styles.seekbar_placeholder}>00:00</div> }
     </div>
   );
 };

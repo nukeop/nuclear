@@ -16,7 +16,7 @@ const NewsItem = ({ item }) => (
       {item.tags.map((tag, i) => {
         return (
           <span key={'news-item-tag-' + i} className={styles.tag}>
-            {tag}
+            #{tag}
           </span>
         );
       })}

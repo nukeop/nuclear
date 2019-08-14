@@ -37,7 +37,7 @@ class PopularTracks extends React.Component {
               this.props.addToQueue(this.props.musicSources, {
                 artist: artist.name,
                 name: track.name,
-                thumbnail: track.image[0]['#text'] || artPlaceholder
+                thumbnail: track.thumbnail || track.image[0]['#text'] || artPlaceholder
               });
             });
         }}

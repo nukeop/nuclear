@@ -8,23 +8,13 @@
 }
 
 .track_duration_widget {
+  position: relative;
+  z-index: 2;
   @include time;
-  position: absolute;
-
-  top: 0;
-  bottom: 0;
-  width: 100%;
-  padding: 0 0.5em;
-
-  font-size: 14px;
-  text-shadow: 1px 1px rgba($black, 0.6);
-
+  padding: 0 14px;
   pointer-events: none;
-  
   .time_played,
   .time_to_end {
     @include time;
-    height: 100%;
-    padding-bottom: 2px;
   }
 }

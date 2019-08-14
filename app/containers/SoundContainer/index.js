@@ -10,7 +10,7 @@ import * as EqualizerActions from '../../actions/equalizer';
 import * as QueueActions from '../../actions/queue';
 import * as ScrobblingActions from '../../actions/scrobbling';
 import * as LyricsActions from '../../actions/lyrics';
-import { filterFrequencies } from '../../components/Equalizer';
+import { filterFrequencies } from '../../components/Equalizer/chart';
 import { getSelectedStream } from '../../utils';
 import * as Autoradio from './autoradio';
 import globals from '../../globals';
@@ -122,7 +122,7 @@ class SoundContainer extends React.Component {
       this.props.actions.addToQueue(musicSources, {
         artist: artist.name,
         name: track.name,
-        thumbnail: track.image[0]['#text']
+        thumbnail: track.thumbnail || track.image[0]['#text']
       });
       resolve(true);
     });
@@ -132,6 +132,7 @@ class SoundContainer extends React.Component {
     const currentSong = nextProps.queue.queueItems[nextProps.queue.currentSong];
 
     return (
+      this.props.equalizer !== nextProps.equalizer ||
       this.props.queue.currentSong !== nextProps.queue.currentSong ||
       this.props.player.playbackStatus !== nextProps.player.playbackStatus ||
       this.props.player.seek !== nextProps.player.seek ||
@@ -140,7 +141,7 @@ class SoundContainer extends React.Component {
   }
 
   render () {
-    let { player, queue, plugins, equalizer, actions, viz } = this.props;
+    let { player, queue, plugins, equalizer, actions, enableSpectrum } = this.props;
     let streamUrl = '';
 
     if (queue.queueItems.length > 0) {
@@ -150,7 +151,6 @@ class SoundContainer extends React.Component {
         getSelectedStream(currentSong.streams, plugins.defaultMusicSource) || {}
       ).stream;
     }
-
     return !!streamUrl && (
       <Sound
         url={streamUrl}
@@ -171,7 +171,7 @@ class SoundContainer extends React.Component {
         />
         <AnalyserByFrequency
           frequencies={filterFrequencies}
-          onVisualisationData={viz && actions.setVisualizationData}
+          onVisualisationData={enableSpectrum && actions.setSpectrum}
         />
       </Sound>
     );
@@ -186,7 +186,7 @@ function mapStateToProps (state) {
     scrobbling: state.scrobbling,
     settings: state.settings,
     equalizer: state.equalizer.presets[state.equalizer.selected],
-    viz: state.equalizer.viz
+    enableSpectrum: state.equalizer.enableSpectrum
   };
 }
 

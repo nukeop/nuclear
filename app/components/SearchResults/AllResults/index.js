@@ -1,4 +1,5 @@
 import React from 'react';
+import _ from 'lodash';
 import artPlaceholder from '../../../../resources/media/art_placeholder.png';
 
 import Card from '../../Card';
@@ -92,20 +93,20 @@ class AllResults extends React.Component {
   }
 
   render () {
-    if (
-      this.props.artistSearchResults.length <= 0 &&
-      this.props.albumSearchResults.length <= 0 &&
-      this.props.trackSearchResults.length <= 0
-    ) {
+    const tracksLength = _.get(this.props.trackSearchResults, ['info', 'length'], 0);
+    const artistsLength = _.get(this.props.artistSearchResults, ['length'], 0);
+    const albumsLength = _.get(this.props.albumSearchResults, ['length'], 0);
+    const playlistsLength = _.get(this.props.playlistSearchResults, ['info', 'length'], 0);
+    if (tracksLength + artistsLength + albumsLength + playlistsLength === 0) {
       return <div>{this.props.t('empty')}</div>;
     }
 
     return (
       <div className={styles.all_results_container}>
-        {this.renderArtistsSection()}
-        {this.renderAlbumsSection()}
-        {this.renderTracksSection()}
-        {this.renderPlaylistSection()}
+        {artistsLength > 0 && this.renderArtistsSection()}
+        {albumsLength > 0 && this.renderAlbumsSection()}
+        {tracksLength > 0 && this.renderTracksSection()}
+        {playlistsLength > 0 && this.renderPlaylistSection()}
       </div>
     );
   }
