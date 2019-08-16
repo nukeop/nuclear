@@ -27,8 +27,9 @@ function toFavoriteTrack({ artist, title, thumbnail }) {
 const FavoriteIcon = ({ isFavorite, onClick }) =>
   <Icon
     className={styles.card_favorite}
-    name={isFavorite ? 'heart' : 'heart outline'}
+    name='star'
     size='large' onClick={onClick}
+    disabled={!isFavorite}
   />;
 
 const BestNewMusicCard = ({
