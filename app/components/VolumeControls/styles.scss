@@ -1,3 +1,4 @@
+@import '../../vars.scss';
 .volume_controls_container {
   display: flex;
 
@@ -8,19 +9,26 @@
   flex-flow: row;
   align-items: center;
   justify-content: flex-end;
-}
 
-.volume_controls_container span {
-  margin: 1rem;
+  span {
+    margin: 1rem;
+    font-size: 24px;
+  }
 
-  font-size: 24px;
-}
-
-.volume_speaker_control{
+  .volume_speaker_control {
     display: flex;
 
     cursor: pointer;
 
     width: 50px;
-    height: 52px
+    height: 52px;
+
+    color: rgba($white, 0.80);
+
+    transition: $very-short-duration ease all;
+
+    &:hover {
+      color: $white;
+    }
+  }
 }

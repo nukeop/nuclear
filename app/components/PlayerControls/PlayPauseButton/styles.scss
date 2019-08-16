@@ -1,39 +1,42 @@
+@import '../../../vars.scss';
 .play_pause_button_container {
   display: flex;
-
   width: 56px;
   height: 56px;
-
   text-align: center;
-
-  color: #f8f8f2;
-  border: 2px solid rgba(248, 248, 242, 0.25);
-  border-radius: 50px;
-
-  font-size: 36px;
+  font-size: 42px;
 
   flex: 0 0 auto;
   flex-flow: row;
   align-items: center;
-
+  
   &.loading {
     a {
       padding: 0;
+    }
+  }
+
+  &:hover:not(.player_button_disabled) {
+    a {
+      color: $white;
     }
   }
   
   a {
     flex: 1 1 auto;
     padding-left: 0.3rem;
+    color: rgba($white, 0.8);
+    transition: $short-duration ease-out;
 
     .fa-pause {
       margin-left: -0.3rem;
     }
   }
 
-  
-}
-
-.player_button_disabled a {
-  cursor: not-allowed;
+  &.player_button_disabled {
+    a {
+      cursor: default;
+      color: rgba($white, 0.25);
+    }
+  }
 }

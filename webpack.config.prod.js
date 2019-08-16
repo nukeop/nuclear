@@ -1,7 +1,6 @@
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
-const HappyPack = require('happypack');
 
 const BUILD_DIR = path.resolve(__dirname, 'dist');
 const APP_DIR = path.resolve(__dirname, 'app');
@@ -39,7 +38,10 @@ const config = {
     rules: [
       {
         test: /.jsx?$/,
-        use: 'happypack/loader?id=jsx',
+        loader: 'babel-loader',
+        options: {
+          cacheDirectory: true
+        },
         exclude: /node_modules\/electron\-timber\/preload\.js/
       },
       {
@@ -48,7 +50,10 @@ const config = {
       },
       {
         test: /.scss$/,
-        use: 'happypack/loader?id=scss'
+        use: [
+          'style-loader',
+          'css-loader?importLoaders=1&modules&localIdentName=[local]!sass-loader'
+        ]
       }, {
         test: /\.css/,
         loader: 'style-loader!css-loader?modules=true&localIdentName=[name]__[local]___[hash:base64:5]'
@@ -76,14 +81,6 @@ const config = {
         keepClosingSlash: true
       },
       inject: true
-    }),
-    new HappyPack({
-      id: 'jsx',
-      loaders: [{loader: 'babel-loader', options: {cacheDirectory: true}}]
-    }),
-    new HappyPack({
-      id: 'scss',
-      loaders: ['style-loader!css-loader?importLoaders=1&modules&localIdentName=[local]!sass-loader']
     }),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('production')

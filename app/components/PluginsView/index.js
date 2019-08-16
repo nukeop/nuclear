@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react';
-import { Dropdown } from 'semantic-ui-react';
+import { Dropdown, Segment } from 'semantic-ui-react';
 import _ from 'lodash';
 
 import Header from '../Header';
@@ -25,19 +25,24 @@ const PluginsView = ({ actions, plugins, defaultMusicSource }) => {
   return (
     <div className={styles.plugins_view_container}>
       <Header>{t('header')}</Header>
-      <div className={styles.plugin_settings}>
-        <Header>{t('subtitle')}</Header>
-
-        <span>
-          {t('placeholder')}
-          <Dropdown
-            inline
-            options={dropdownOptions}
-            defaultValue={defaultOption.value}
-            onChange={selectDefaultMusicSource}
-          />
-        </span>
+      <div className={styles.flex_grid_thirds}>
+        <div className={styles.col}>
+          <div className={styles.plugin_settings}>
+            <Header>{t('subtitle')}</Header>
+            <Segment>
+              {t('placeholder')}
+              {'\u00A0'}
+              <Dropdown
+                inline
+                options={dropdownOptions}
+                defaultValue={defaultOption.value}
+                onChange={selectDefaultMusicSource}
+              />
+            </Segment>
+          </div>
+        </div>
       </div>
+      
     </div>
   );
 };

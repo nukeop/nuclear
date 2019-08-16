@@ -13,10 +13,6 @@
     flex: 1 1 auto;
     overflow: auto;
     transition: $short-duration;
-    .queue_item_container {
-      transition: all $medium-duration ease-out;
-      opacity: 0;
-    }
   }
 
   .dragged_over {

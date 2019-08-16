@@ -17,15 +17,36 @@
     color: $white;
   }
 
+  
+  .flex_grid_thirds {
+    display: flex;
+    justify-content: space-between;
+
+    .col {
+      width: 32.5%;
+    }
+
+  }
+
   .plugin_settings {
     display: flex;
     flex-flow: column;
 
     margin-top: 1rem;
 
-    .header_container {
-      font-size: 24px;
-    }
+    .segment {
+      background: rgba($background2, 0.35);
+      border: 1px solid $background2;
+      margin: 12px;
+
+      .header_container {
+        font-size: 24px;
+        margin: 12px 0 8px 0;
+      }
+      .content_container {
+        margin: 0;
+      }
+    }    
   }
 
   .ui.list .item {

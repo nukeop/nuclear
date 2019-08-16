@@ -29,7 +29,7 @@ const render = async Component => {
         </Provider>
       </I18nextProvider>
     </AppContainer>,
-    document.getElementById('react_root')
+    document.getElementById('react-root')
   );
 };
 

@@ -3,8 +3,17 @@ import glob from 'glob';
 import path from 'path';
 import { parseFile } from 'music-metadata';
 import uuid from 'uuid/v4';
+import _ from 'lodash';
 
 import fetchAcousticId from './lib/acousticId';
+
+const SUPPORTED_FORMATS = [
+  'aac',
+  'flac',
+  'mp3',
+  'ogg',
+  'wav'
+];
 
 export function formatMeta({ common, format }, path) {
   let id = uuid();
@@ -36,11 +45,14 @@ export function formatMeta({ common, format }, path) {
 }
 
 export async function scanFoldersAndGetMeta(directories, cache = {}) {
-  const baseFiles = await Promise.all([
-    ...directories.map(dir => promisify(glob)(`${dir}/**/*.mp3`)),
-    ...directories.map(dir => promisify(glob)(`${dir}/**/*.ogg`)),
-    ...directories.map(dir => promisify(glob)(`${dir}/**/*.wav`))
-  ]).then(result => result.flat());
+  const baseFiles = await Promise.all(
+    _.flatMap(
+      SUPPORTED_FORMATS,
+      format => directories.map(
+        dir => promisify(glob)(`${dir}/**/*.${format}`)
+      )
+    )
+  ).then(result => result.flat());
 
   const files = baseFiles.filter(
     file =>

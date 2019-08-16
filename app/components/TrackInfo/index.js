@@ -5,7 +5,7 @@ import styles from './styles.scss';
 const TrackInfo = ({ track, artist, artistInfoSearchByName, history }) => {
   const handleInfoSearch = useCallback(() => {
     artistInfoSearchByName(artist, history);
-  }, [artist, history]);
+  }, [artist, artistInfoSearchByName, history]);
 
   return (
     <div className={styles.track_info_container}>

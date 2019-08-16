@@ -27,41 +27,7 @@ function initStore() {
   });
 
   setIfUnset('equalizer', {
-    selected: 'Default',
-    presets: {
-      Default: {
-        values: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        preAmp: 0
-      },
-      Classical: {
-        values: [0, 0, 0, 0, 0, 0, -4, -4, -4, -6],
-        preAmp: 0
-      },
-      Club: {
-        values: [0, 0, 2, 4, 4, 4, 2, 0, 0, 0],
-        preAmp: 0
-      },
-      Pop: {
-        values: [-1, 2, 3, 4, 3, 0, -1, -1, -1, -1],
-        preAmp: 0
-      },
-      Reggae: {
-        values: [0, 0, 0, -2, 0, 2, 2, 0, 0, 0],
-        preAmp: 0
-      },
-      Rock: {
-        values: [4, 3, -2, -3, -2, 2, 5, 6, 6, 6],
-        preAmp: 0
-      },
-      'Full bass': {
-        values: [6, 6, 6, 4, 0, -2, -4, -6, -6, -6],
-        preAmp: 0
-      },
-      'Full trebble': {
-        values: [-6, -6, -6, -2, 2, 6, 8, 8, 9, 9],
-        preAmp: 0
-      }
-    }
+    selected: 'Default'
   });
 }
 

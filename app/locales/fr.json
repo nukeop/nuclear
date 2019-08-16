@@ -7,7 +7,7 @@
     "dashboard": "Tableau de bord",
     "downloads": "Téléchargements",
     "equalizer": "Equalizer",
-    "favorite": "Favoris",
+    "favorite-tracks": "Favoris",
     "library": "Bibliothèque locale",
     "lyrics": "Paroles",
     "playlists": "Playlists",
@@ -24,9 +24,9 @@
   },
   "dashboard": {
     "artist": "Artiste",
-    "best": "Nouveautées",
-    "best-new-albums": "Meilleur albums",
-    "best-new-tracks": "Meilleur morceaux",
+    "best": "Nouveautés",
+    "best-new-albums": "Meilleurs albums",
+    "best-new-tracks": "Meilleurs morceaux",
     "genres": "Genres",
     "lastfm-title": "Meilleurs morceaux de LastFm.",
     "news": "News",
@@ -35,24 +35,24 @@
     "top": "Top Tracks"
   },
   "downloads": {
-    "clear": "Supprimer les téléchargements terminer",
+    "clear": "Supprimer les téléchargements terminés",
     "completion": "Completion",
     "empty": "Aucun Téléchargement.",
-    "empty-help": "Ajoutez quelque chose dans votre file de téléchargement et vous le verez apparaitre ici!",
+    "empty-help": "Ajoutez quelque chose dans votre file de téléchargement et vous le verrez apparaître ici!",
     "header": "Téléchargements",
     "name": "Nom",
     "status": "Status"
   },
   "favorites": {
     "artist": "Artiste",
-    "empty": "Aucun favoris.",
-    "empty-help": "Essayez d'ajouter des pistes en favoris, elles apparaitront ici!",
+    "empty": "Aucun favori.",
+    "empty-help": "Essayez d'ajouter des pistes en favoris, elles apparaîtront ici!",
     "header": "Vos morceaux favoris",
     "title": "Titre"
   },
   "help": {
     "about": "A propos de \"Nuclear Music Player\"",
-    "header": "Application de bureau qui joue de la musique à partir de sources libre",
+    "header": "Application de bureau qui joue de la musique à partir de sources libres",
     "released": "distribué sous licence AGPL-3.0",
     "thanks": "Un grand merci à tous nos contributeurs sur Github."
   },
@@ -68,10 +68,10 @@
     "title": "Titre"
   },
   "lyrics": {
-    "by-artist": "by {{artist}}",
+    "by-artist": "par {{artist}}",
     "empty": "Aucun morceau n'est joué.",
-    "empty-help": "Ajouter un morceau dans la file et vous verez les paroles s'afficher ici!",
-    "not-found": "Aucune paroles n'ont été trouver pour ce morceau."
+    "empty-help": "Ajoutez un morceau dans la file et vous verrez les paroles s'afficher ici!",
+    "not-found": "Aucune paroles n'ont été trouvée pour ce morceau."
   },
   "option-control": {
     "autoradio": "Autoradio",
@@ -88,7 +88,7 @@
     "delete": "Supprimer cette playlist",
     "dialog-placeholder": "Nom de la playlist...",
     "empty": "Aucune playlist.",
-    "rename": "Renomer cette playlist",
+    "rename": "Renommer cette playlist",
     "songs": "{{total}} piste",
     "songs_plural": "{{total}} pistes",
     "title": "Titre"
@@ -104,7 +104,7 @@
     "dialog-placeholder": "Nom de la playlist...",
     "dialog-trigger": "Sauvegarder en tant que playlist",
     "download": "Télécharger",
-    "download-toast-content": "{{artist}} - {{title}} a été ajouter aux téléchargements.",
+    "download-toast-content": "{{artist}} - {{title}} a été ajouté aux téléchargements.",
     "download-toast-title": "Piste ajoutée aux téléchargements",
     "favorite-add": "Ajouter aux favoris",
     "header": "File de lecture",
@@ -112,8 +112,8 @@
     "id": "id du flux:",
     "loading": "Flux en chargement.",
     "playlist-add": "Ajouter à la playlist",
-    "playlist-toast-content": "La playlist {{name}} a été créer.",
-    "playlist-toast-title": "Playliste crée",
+    "playlist-toast-content": "La playlist {{name}} a été créée.",
+    "playlist-toast-title": "Playliste créée",
     "title": "Titre:"
   },
   "search": {
@@ -138,13 +138,13 @@
     "disable-gpu": "Desactiver l'accélération materielle (peut resoudre certains bug d'affichage)",
     "display": "Affichage",
     "enable-api": "Activer l'api",
-    "frameless-window": "Fenêtre sans bord (necessite un reémarage)",
+    "frameless-window": "Fenêtre sans bord (necessite un redémarrage)",
     "github-connect": "Se connecter avec Github",
     "github-description": "Se connecter avec Github afin d'être capable de partager des playlists en ligne (en cours de dévelopement).",
     "github-title": "Github",
     "http": "HTTP API",
     "language": "Language",
-    "language-placeholder": "Chaoisir une langue",
+    "language-placeholder": "Choisir une langue",
     "lastfm-connect": "Connecter avec Last.fm",
     "lastfm-description": "Afin d'activer le scrobbler, vous devez vous connecter et authoriser Nuclear sur lastfm.",
     "lastfm-enable": "Activer le scrobbler de Last.fm",

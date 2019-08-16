@@ -1,5 +1,7 @@
 import React from 'react';
 import {Dimmer, Loader} from 'semantic-ui-react';
+import _ from 'lodash';
+
 import Card from '../Card';
 
 import styles from './styles.scss';
@@ -14,6 +16,10 @@ class AlbumList extends React.Component {
     this.props.history.push('/album/' + albumId);
   }
 
+  getThumbnail(album) {
+    return _.get(album, 'images[0].uri', _.get(album, 'thumb'));
+  }
+
   render() {
     return (
       <div className={styles.album_list_container}>
@@ -26,7 +32,7 @@ class AlbumList extends React.Component {
                     <Card
                       key={i}
                       header={el.title}
-                      image={el.thumb}
+                      image={this.getThumbnail(el)}
                       onClick={() => this.albumInfoSearch(el.id, el.type)}
                     />);
                 })

@@ -9,7 +9,7 @@
   height: 100%;
 
   .icon {
-    @include transition;
+    transition: 85ms ease-out;
     color: rgba($white, 0.25);
     cursor: pointer;
 

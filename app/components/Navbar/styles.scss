@@ -8,6 +8,8 @@
   align-items: center;
 
   height: 50px;
+  flex-grow: 0;
+  flex-shrink: 0;
 
   background-color: $background;
   box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.18),

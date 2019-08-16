@@ -1,3 +1,4 @@
+@import '../../../vars.scss';
 .player_button_container {
   display: flex;
 
@@ -6,19 +7,31 @@
 
   text-align: center;
 
-  color: #f8f8f2;
-
   font-size: 30px;
 
   flex: 0 0 auto;
   flex-flow: row;
   align-items: center;
-}
 
-.player_button_container a {
-  flex: 1 1 auto;
-}
+  transition: $short-duration ease all;
 
-.player_button_disabled a {
-  cursor: not-allowed;
+  a {
+    flex: 1 1 auto;
+    color: rgba($white, 0.8);
+    transition: $short-duration ease all;
+  }
+
+  
+  &:hover:not(.player_button_disabled) {
+    a {
+      color: $white;
+    }
+  }
+
+  &.player_button_disabled {
+    a {
+      cursor: default;
+      color: rgba($white, 0.25);
+    }
+  }
 }
