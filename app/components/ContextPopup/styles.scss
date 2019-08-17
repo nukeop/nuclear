@@ -68,12 +68,12 @@
   flex: 0 0 auto;
   padding: 0.5rem 0;
   height: auto !important;
-}
 
-.add_button {
-  width: 100%;
-  padding: 0.5rem;
-  &:hover {
-    background: $pink !important;
+  a {
+    width: 100%;
+    padding: 0.5rem;
+    &:hover {
+      background: $pink !important;
+    }
   }
 }

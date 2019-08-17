@@ -57,20 +57,18 @@ class ArtistView extends React.Component {
                   </span>
               }
             </div>
-
-            {typeof artist.lastfm.artist !== 'undefined' && (
-              <ArtistTags
-                tags={artist.lastfm.artist.tags.tag}
-                history={history}
-              />
-            )}
+            
+            <ArtistTags
+              tags={_.get(artist, 'lastfm.artist.tags.tag')}
+              history={history}
+            />
           </div>
         </div>
       </div>
     );
   }
 
-  renderPopularTrack () {
+  renderPopularTracks () {
     let {
       artist,
       addToQueue,
@@ -81,7 +79,7 @@ class ArtistView extends React.Component {
       !this.isLoading() &&
       artist.lastfm.toptracks && (
         <PopularTracks
-          tracks={artist.lastfm.toptracks}
+          tracks={_.get(artist, 'lastfm.toptracks')}
           artist={artist}
           addToQueue={addToQueue}
           musicSources={musicSources}
@@ -95,13 +93,11 @@ class ArtistView extends React.Component {
 
     return (
       !this.isLoading() &&
-      typeof artist.lastfm.artist !== 'undefined' && (
         <SimilarArtists
-          artists={artist.lastfm.artist.similar.artist}
+          artists={_.get(artist, 'lastfm.artist.similar.artist', [])}
           artistInfoSearchByName={artistInfoSearchByName}
           history={history}
         />
-      )
     );
   }
 
@@ -127,6 +123,7 @@ class ArtistView extends React.Component {
 
   render () {
     let { artist, history, albumInfoSearch } = this.props;
+    
     return (
       <div className={styles.artist_view_container}>
         <Dimmer.Dimmable>
@@ -140,7 +137,7 @@ class ArtistView extends React.Component {
 
           <hr />
           <div className={styles.artist_related_container}>
-            {this.renderPopularTrack()}
+            {this.renderPopularTracks()}
 
             {this.renderSimilarArtists()}
           </div>
