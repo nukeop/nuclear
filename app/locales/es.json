@@ -9,7 +9,7 @@
     "equalizer": "Equalizador",
     "favorite-albums": "Álbumes favoritos",
     "favorite-tracks": "Canciones favoritas",
-    "library": "Libreria Local",
+    "library": "Librería Local",
     "lyrics": "Letras",
     "main": "Principal",
     "playlists": "Playlists",
@@ -29,16 +29,16 @@
     "best": "Novedades",
     "best-new-albums": "Mejores nuevos álbumes",
     "best-new-tracks": "Mejores nuevas canciones",
-    "genres": "Generos",
-    "lastfm-title": "Mejores canciones en LastFM",
+    "genres": "Géneros",
+    "lastfm-title": "Mejores canciones en Last.fm",
     "news": "Noticias",
     "playcounts": "Número de reproducciones",
     "title": "Título",
     "top": "Mejores canciones"
   },
   "downloads": {
-    "clear": "Borrar descargas terminadas",
-    "completion": "Finalización",
+    "clear": "Borrar descargas completadas",
+    "completion": "Completado",
     "empty": "No hay descargas",
     "empty-help": "¡Añade algo a tu lista de descargas y lo veras aquí!",
     "header": "Descargas",
@@ -47,9 +47,9 @@
   },
   "favorites": {
     "artist": "Artista",
-    "empty": "Ningun favorito añadido",
-    "empty-help": "¡Añade tus canciones a favoritos y las veras aquí!",
-    "header": "Tus canciones favoritss",
+    "empty": "No hay favoritos",
+    "empty-help": "¡Añade tus canciones a favoritos y las verás aquí!",
+    "header": "Tus canciones favoritas",
     "title": "Título"
   },
   "favorite-albums": {
@@ -59,9 +59,9 @@
   },
   "help": {
     "about": "Acerca de Nuclear Music Player",
-    "header": "Reproductor de música para reproducir de fuentes libres",
+    "header": "Reproductor de música de escritorio de fuentes libres",
     "released": "Distribuido bajo licencia AGPL-3.0",
-    "thanks": "Agradecemos a todos nuestros contribuyentes en Github, su ayuda ha sido vital en la creación de este programa"
+    "thanks": "Agradecemos a todos nuestros contribuyentes en GitHub, su ayuda ha sido vital en la creación de este programa"
   },
   "input-dialog": {
     "cancel": "Cancelar"
@@ -70,8 +70,8 @@
     "add": "Añadir carpetas",
     "album": "Álbum",
     "artist": "Artista",
-    "filter-placeholder": "Filtros...",
-    "header": "Libreria local",
+    "filter-placeholder": "Filtro...",
+    "header": "Librería local",
     "title": "Título",
     "empty": "La librería está vacia",
     "empty-help": "Intenta añadir canciones con el botón de arriba",
@@ -111,7 +111,7 @@
     "subtitle": "Fuentes de música"
   },
   "queue": {
-    "clear": "Limpiar cola",
+    "clear": "Vaciar cola",
     "dialog-accept": "Guardar",
     "dialog-placeholder": "Nombre de la playlist...",
     "dialog-trigger": "Guardar como playlist",
@@ -124,7 +124,7 @@
     "id": "Stream ID:",
     "loading": "Cargando",
     "playlist-add": "Añadir a playlist",
-    "playlist-toast-content": "La playlist {{name}} ha sido creada",
+    "playlist-toast-content": "La playlist '{{name}}' ha sido creada",
     "playlist-toast-title": "Playlist creada",
     "title": "Título:"
   },
@@ -137,7 +137,7 @@
     "placeholder": "Buscar...",
     "playlist": "Playlist",
     "playlist_plural": "Playlists",
-    "queue-add": "Añadir todas a la playlist",
+    "queue-add": "Añadir todas las pistas a la playlist",
     "track": "Canción",
     "track_plural": "Canciones"
   },
@@ -147,16 +147,16 @@
     "autoradio": "Autoradio",
     "autoradio-craziness": "Nivel de locura de Autoradio",
     "autoradio-craziness-description": "Autoradio seleccionará canciones más distintas a aquellas en la cola mientras más loco esté",
-    "autoradio-description": "Añadir pistas similares cuando la colá esté cerca de terminar",
+    "autoradio-description": "Añadir pistas similares cuando la cola esté cerca de terminar",
     "compact-menu-bar": "Usar estilo compacto en la barra de menú",
     "compact-queue-bar": "Usar estilo compacto en la cola de reproducción",
-    "disable-gpu": "Deshabilitar renderizado de hardware (puede arreglar ciertos bugs de visualización)",
+    "disable-gpu": "Deshabilitar renderizado por hardware (puede arreglar ciertos bugs de visualización)",
     "display": "Visualización",
     "enable-api": "Habilitar API",
     "frameless-window": "Ventana sin marco (requiere reiniciar)",
-    "github-connect": "Iniciar sesión con Github",
-    "github-description": "Inicia sesión via Github para crear y compartir tus playlist en linea (proximamente disponible)",
-    "github-title": "Github",
+    "github-connect": "Iniciar sesión con GitHub",
+    "github-description": "Inicia sesión en GitHub para crear y compartir tus playlist en linea (proximamente disponible)",
+    "github-title": "GitHub",
     "http": "HTTP API",
     "language": "Idioma",
     "language-placeholder": "Elige un idioma",
@@ -170,7 +170,7 @@
     "notification-timeout": "Notificar tiempo de espera",
     "notlogged": "Sesión no iniciada",
     "playback": "Playback",
-    "program-settings": "Ajustes de programa",
+    "program-settings": "Ajustes del programa",
     "seek-iteration": "Cantidad de segundos a desplazar al pulsar las flechas direccionales",
     "shuffle-queue": "Orden aleatorio",
     "shuffle-when-going-back": "Aleatorizar pista previa",
