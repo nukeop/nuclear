@@ -11,7 +11,7 @@ import styles from './styles.scss';
 
 @withTranslation('search')
 class SearchResults extends React.Component {
-  renderAllResultsPane () {
+  renderAllResultsPane() {
     return (
       <Tab.Pane loading={this.props.unifiedSearchStarted} attached={false}>
         <div className={styles.pane_container}>
@@ -36,7 +36,7 @@ class SearchResults extends React.Component {
     );
   }
 
-  renderPane (collection, onClick) {
+  renderPane(collection, onClick) {
     return (
       <Tab.Pane loading={this.props.unifiedSearchStarted} attached={false}>
         <div className={styles.pane_container}>
@@ -66,7 +66,7 @@ class SearchResults extends React.Component {
     );
   }
 
-  renderLastFmPane (collection) {
+  renderLastFmPane(collection) {
     if (typeof collection !== 'undefined') {
 
       return (
@@ -86,14 +86,14 @@ class SearchResults extends React.Component {
     } else {
       return (
         <Tab.Pane loading={this.props.unifiedSearchStarted} attached={false}>
-          <div className={styles.pane_container}>Nothing found.</div>
+          <div className={styles.pane_container}>{this.props.t('empty')}</div>
         </Tab.Pane>
       );
     }
   }
 
 
-  renderPlaylistPane () {
+  renderPlaylistPane() {
     return (
       <Tab.Pane attached={false}>
         <PlaylistResults
@@ -109,14 +109,14 @@ class SearchResults extends React.Component {
     );
   }
 
-  panes () {
+  panes() {
     let panes = [
       {
-        menuItem: 'All',
+        menuItem: 'All', // Missing translation key 'all'
         render: () => this.renderAllResultsPane()
       },
       {
-        menuItem: 'Artists',
+        menuItem: this.props.t('artist_plural'),
         render: () =>
           this.renderPane(
             this.props.artistSearchResults,
@@ -124,7 +124,7 @@ class SearchResults extends React.Component {
           )
       },
       {
-        menuItem: 'Albums',
+        menuItem: this.props.t('album_plural'),
         render: () =>
           this.renderPane(
             this.props.albumSearchResults,
@@ -132,11 +132,11 @@ class SearchResults extends React.Component {
           )
       },
       {
-        menuItem: 'Tracks',
+        menuItem: this.props.t('track_plural'),
         render: () => this.renderLastFmPane(this.props.trackSearchResults.info)
       },
       {
-        menuItem: 'Playlist',
+        menuItem: this.props.t('playlist'),
         render: () => this.renderPlaylistPane(this.props.playlistSearchResults)
       }
     ];
@@ -144,17 +144,17 @@ class SearchResults extends React.Component {
     return panes;
   }
 
-  albumInfoSearch (albumId, releaseType) {
+  albumInfoSearch(albumId, releaseType) {
     this.props.albumInfoSearch(albumId, releaseType);
     this.props.history.push('/album/' + albumId);
   }
 
-  artistInfoSearch (artistId) {
+  artistInfoSearch(artistId) {
     this.props.artistInfoSearch(artistId);
     this.props.history.push('/artist/' + artistId);
   }
 
-  render () {
+  render() {
     return (
       <div>
         <Tab menu={{ secondary: true, pointing: true }} panes={this.panes()} />

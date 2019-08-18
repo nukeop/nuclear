@@ -66,6 +66,14 @@
   "input-dialog": {
     "cancel": "Cancelar"
   },
+  "track-popup": {
+    "add-to-queue": "Añadir a la cola",
+    "play": "Escuchar ahora",
+    "add-to-favorites": "Añadir a favoritos",
+    "download-track": "Descargar",
+    "favorite-added": "ha sido añadida a favoritos",
+    "download-added": "ha sido añadida a las descargas"
+  },
   "library": {
     "add": "Añadir carpetas",
     "album": "Álbum",
@@ -77,7 +85,7 @@
     "empty-help": "Intenta añadir canciones con el botón de arriba",
     "no-api": "La API Web no está habilitada :(",
     "no-api-help": "Para poder usar la librería local debes habilitar la API Web",
-    "api-enabled": "Habilitar la API"
+    "api-enable": "Habilitar la API"
   },
   "lyrics": {
     "by-artist": "por {{artist}}",

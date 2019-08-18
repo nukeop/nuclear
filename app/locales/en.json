@@ -66,6 +66,14 @@
   "input-dialog": {
     "cancel": "Cancel"
   },
+  "track-popup": {
+    "add-to-queue": "Add to queue",
+    "play": "Play now",
+    "add-to-favorites": "Add to favorites",
+    "download-track": "Download",
+    "favorite-added": "has been added to favorites",
+    "download-added": "has been added to downloads"
+  },
   "library": {
     "add": "Add folders",
     "album": "Album",

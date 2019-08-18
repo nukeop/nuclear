@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { ipcRenderer } from 'electron';
+import { useTranslation } from "react-i18next"
 
 import * as DownloadsActions from '../../actions/downloads';
 import * as FavoritesActions from '../../actions/favorites';
@@ -14,6 +15,8 @@ import ContextPopup from '../../components/ContextPopup';
 import PopupButton from '../../components/ContextPopup/PopupButton';
 
 const TrackPopupContainer = props => {
+  const { t } = useTranslation('track-popup')
+
   const {
     trigger,
     track,
@@ -45,21 +48,21 @@ const TrackPopupContainer = props => {
     >
       {
         withAddToQueue &&
-          <PopupButton
-            onClick={ () => actions.addToQueue(musicSources, trackItem)}
-            ariaLabel='Add track to queue'
-            icon='plus'
-            label='Add to queue'
-          />
+        <PopupButton
+          onClick={() => actions.addToQueue(musicSources, trackItem)}
+          ariaLabel='Add track to queue'
+          icon='plus'
+          label={t('add-to-queue')}
+        />
       }
 
       {
         withPlayNow &&
         <PopupButton
-          onClick={ () => actions.playTrack(musicSources, trackItem) }
+          onClick={() => actions.playTrack(musicSources, trackItem)}
           ariaLabel='Play this track now'
           icon='play'
-          label='Play now'
+          label={t('play')}
         />
       }
 
@@ -70,14 +73,14 @@ const TrackPopupContainer = props => {
             actions.addFavoriteTrack(track);
             actions.info(
               'Favorite track added',
-              `${artist} - ${title} has been added to favorites.`,
+              `${artist} - ${title} ${t('favorite-added')}`,
               <img src={thumb} />,
               settings
             );
           }}
           ariaLabel='Add this track to favorites'
           icon='star'
-          label='Add to favorites'
+          label={t('add-to-favorites')}
         />
       }
 
@@ -89,14 +92,14 @@ const TrackPopupContainer = props => {
             actions.addToDownloads(musicSources, track);
             actions.info(
               'Track added to downloads',
-              `${artist} - ${title} has been added to downloads.`,
+              `${artist} - ${title} ${t('download-added-long')}`,
               <img src={thumb} />,
               settings
             );
           }}
           ariaLabel='Download this track'
           icon='download'
-          label='Download'
+          label={t('download-track')}
         />
       }
 
@@ -142,7 +145,7 @@ TrackPopupContainer.defaultProps = {
   withAddToDownloads: true
 };
 
-function mapStateToProps (state, { track }) {
+function mapStateToProps(state, { track }) {
   return {
     musicSources: track.local
       ? state.plugin.plugins.musicSources.filter(({ sourceName }) => {
@@ -153,7 +156,7 @@ function mapStateToProps (state, { track }) {
   };
 }
 
-function mapDispatchToProps (dispatch) {
+function mapDispatchToProps(dispatch) {
   return {
     actions: bindActionCreators(
       Object.assign(
