@@ -2,9 +2,10 @@ import React from 'react';
 import classnames from 'classnames';
 import { ipcRenderer } from 'electron';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-import _ from 'lodash';
 import { withTranslation } from 'react-i18next';
+import _ from 'lodash';
 
+import { safeAddUuid } from '../../actions/helpers';
 import styles from './styles.scss';
 
 import QueuePopup from '../QueuePopup';
@@ -24,11 +25,13 @@ class PlayQueue extends React.Component {
   onAddToDownloads(track) {
     const { actions, plugins, settings, t } = this.props;
     const { addToDownloads, info } = actions;
+
+    const clonedTrack = safeAddUuid(track);
     const artistName = _.isString(_.get(track, 'artist'))
       ? _.get(track, 'artist')
       : _.get(track, 'artist.name');
-    ipcRenderer.send('start-download', track);
-    addToDownloads(plugins.plugins.musicSources, track);
+    ipcRenderer.send('start-download', clonedTrack);
+    addToDownloads(plugins.plugins.musicSources, clonedTrack);
     info(
       t('download-toast-title'),
       t('download-toast-content', { artist: artistName, title: track.name }),

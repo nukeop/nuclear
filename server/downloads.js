@@ -28,8 +28,8 @@ export const registerDownloadsEvents = window => {
     // In order to get a valid stream URL, we need to generate it right before downloading
     trackSearch(query)
       .then(results => results.json())
-      .then(data => {
-        const trackId = _.get(_.head(data.items), 'id.videoId');
+      .then(ytData => {
+        const trackId = _.get(_.head(ytData.items), 'id.videoId');
         return ytdl.getInfo(`http://www.youtube.com/watch?v=${trackId}`);
       })
       .then(videoInfo => {
@@ -41,20 +41,21 @@ export const registerDownloadsEvents = window => {
           onStarted: () => {
             rendererWindow.send('download-started', data.uuid);
           },
-          onProgress: progress => {
+          onProgress: _.throttle(progress => {
             rendererWindow.send('download-progress', {
               uuid: data.uuid,
               progress
             });
-          }
+          }, 1000)
         });
       })
       .then(() => {
+        logger.log(data);
         rendererWindow.send('download-finished', data.uuid);
       })
       .catch(error => {
         logger.error(error);
-        rendererWindow.send('download-error', { uui: data.uuid, error });
+        rendererWindow.send('download-error', { uuid: data.uuid, error });
       });
     
   });

@@ -3,9 +3,11 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as Actions from '../../actions';
+import * as DownloadsActions from '../../actions/downloads';
 import * as QueueActions from '../../actions/queue';
 import * as PlayerActions from '../../actions/player';
 import * as FavoritesActions from '../../actions/favorites';
+import * as ToastActions from '../../actions/toasts';
 
 import AlbumView from '../../components/AlbumView';
 
@@ -25,11 +27,14 @@ class AlbumViewContainer extends React.Component {
       queueActions,
       playerActions,
       favoritesActions,
+      downloadsActions,
+      toastActions,
       match,
       history,
       albumDetails,
       musicSources,
-      favoriteAlbums
+      favoriteAlbums,
+      settings
     } = this.props;
     
     return (
@@ -44,6 +49,9 @@ class AlbumViewContainer extends React.Component {
         addFavoriteAlbum={favoritesActions.addFavoriteAlbum}
         removeFavoriteAlbum={favoritesActions.removeFavoriteAlbum}
         isFavorite={() => isFavorite(match.params.albumId, favoriteAlbums)}
+        addToDownloads={downloadsActions.addToDownloads}
+        info={toastActions.info}
+        settings={settings}
         history={history}
       />
     );
@@ -54,7 +62,8 @@ function mapStateToProps(state) {
   return {
     albumDetails: state.search.albumDetails,
     musicSources: state.plugin.plugins.musicSources,
-    favoriteAlbums: state.favorites.albums
+    favoriteAlbums: state.favorites.albums,
+    settings: state.settings
   };
 }
 
@@ -63,7 +72,9 @@ function mapDispatchToProps(dispatch) {
     actions: bindActionCreators(Actions, dispatch),
     queueActions: bindActionCreators(QueueActions, dispatch),
     playerActions: bindActionCreators(PlayerActions, dispatch),
-    favoritesActions: bindActionCreators(FavoritesActions, dispatch)
+    favoritesActions: bindActionCreators(FavoritesActions, dispatch),
+    downloadsActions: bindActionCreators(DownloadsActions, dispatch),
+    toastActions: bindActionCreators(ToastActions, dispatch)
   };
 }
 

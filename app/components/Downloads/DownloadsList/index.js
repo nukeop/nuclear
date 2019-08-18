@@ -37,7 +37,7 @@ const DownloadsList = ({
               }
             }
             }>{t('name')} {
-                sortAsc ? <Icon name='caret up icon' /> : <Icon name='caret down icon' />
+                sortAsc ? <Icon name='caret up' /> : <Icon name='caret down' />
               }
             </Table.HeaderCell>
             <Table.HeaderCell>{t('completion')}</Table.HeaderCell>
