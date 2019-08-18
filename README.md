@@ -49,7 +49,7 @@ Nuclear has already been translated to several languages, and we're always looki
 | French               | [charjac](https://github.com/charjac)                                                                |
 | Dutch                | [Vistaus](https://github.com/Vistaus)                                                                |
 | Danish               | [Hansen1992](https://github.com/Hansen1992)                                                          |
-| Spanish              | [mlucas94](https://github.com/mlucas94)                                                              |
+| Spanish              | [mlucas94](https://github.com/mlucas94), [emlautarom1](https://github.com/emlautarom1)                                                             |
 | Polish               | [kazimierczak-robert](https://github.com/kazimierczak-robert), [gradzka](https://github.com/gradzka) |
 | German               | [schippas](https://github.com/schippas)                                                              |
 | Russian              | [ramstore07](https://github.com/ramstore07), [dmtrshat](https://github.com/dmtrshat)                 |
