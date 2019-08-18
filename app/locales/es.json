@@ -1,6 +1,12 @@
 {
   "album": {
-    "queue": "Añadir a la cola"
+    "queue": "Añadir a la cola",
+    "play": "Reproducir",
+    "genre": "Género:",
+    "by": "por",
+    "year": "Año:",
+    "tracks": "Pistas:",
+    "song": "Canción"
   },
   "app": {
     "collection": "Colección",

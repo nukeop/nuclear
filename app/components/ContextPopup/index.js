@@ -8,26 +8,26 @@ class ContextPopup extends React.Component {
     super(props);
 
     this.clickOutsideListener = document.body.addEventListener('click', () => {
-      if (this.state.isOpen){
+      if (this.state.isOpen) {
         setTimeout(() => {
           this.handleClose();
         }, 10);
       }
     });
-    
+
     this.state = {
-      isOpen: false      
+      isOpen: false
     };
   }
-  
+
   handleOpen() {
     this.setState({ isOpen: true });
   }
 
-  handleClose() {    
+  handleClose() {
     this.setState({ isOpen: false });
   }
-  
+
   render() {
     return (
       <Popup
@@ -45,7 +45,7 @@ class ContextPopup extends React.Component {
             <div className={styles.popup_title}>{this.props.title}</div>
             {
               this.props.artist
-                ? <div className={styles.popup_artist}>by {this.props.artist}</div>
+                ? <div className={styles.popup_artist}>by {/* TODO: Remove hardcoded string */}{this.props.artist}</div>
                 : null
             }
           </div>

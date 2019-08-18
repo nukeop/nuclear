@@ -1,6 +1,12 @@
 {
   "album": {
-    "queue": "Add album to queue"
+    "queue": "Add to queue",
+    "play": "Play",
+    "genre": "Genre:",
+    "by": "by",
+    "year": "Year:",
+    "tracks": "Tracks:",
+    "song": "Song"
   },
   "app": {
     "collection": "Collection",

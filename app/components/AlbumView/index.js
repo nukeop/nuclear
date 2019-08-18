@@ -18,7 +18,7 @@ class AlbumView extends React.Component {
     super(props);
   }
 
-  getArtistName (track, album) {
+  getArtistName(track, album) {
     if (!track.artists) {
       return album.artists[0].name;
     } else {
@@ -35,7 +35,7 @@ class AlbumView extends React.Component {
     }
   }
 
-  addAlbumToQueue (album) {
+  addAlbumToQueue(album) {
     album.tracklist.map(track => {
       this.props.addToQueue(this.props.musicSources, {
         artist: album.artists[0].name,
@@ -45,19 +45,19 @@ class AlbumView extends React.Component {
     });
   }
 
-  artistInfoSearch (artistId) {
+  artistInfoSearch(artistId) {
     this.props.artistInfoSearch(artistId);
     this.props.history.push('/artist/' + artistId);
   }
 
-  playAll (album) {
+  playAll(album) {
     this.props.clearQueue();
     this.addAlbumToQueue(album);
     this.props.selectSong(0);
     this.props.startPlayback();
   }
 
-  renderInvalidData () {
+  renderInvalidData() {
     return (
       <div>
         <h3>Discogs returned invalid data.</h3>
@@ -66,7 +66,7 @@ class AlbumView extends React.Component {
     );
   }
 
-  getAlbumImage (album) {
+  getAlbumImage(album) {
     let albumImage = _.find(album.images, { type: 'primary' });
     if (!albumImage) {
       albumImage = album.images ? album.images[0].uri : artPlaceholder;
@@ -76,10 +76,10 @@ class AlbumView extends React.Component {
     return albumImage;
   }
 
-  renderAlbumArtistName (album) {
+  renderAlbumArtistName(album) {
     return (
       <div className={styles.album_artist}>
-        by{' '}
+        {this.props.t('by') + ' '}
         <a
           href='#'
           onClick={() => {
@@ -92,46 +92,46 @@ class AlbumView extends React.Component {
     );
   }
 
-  renderAlbumGenre (album) {
+  renderAlbumGenre(album) {
     return (
       <div className={styles.album_genre}>
-        <label>Genre:</label>
+        <label>{this.props.t('genre')}</label>
         {album.genres[0]}
       </div>
     );
   }
 
-  renderPlayAllButton (album) {
+  renderPlayAllButton(album) {
     return (
       <a
         onClick={() => this.playAll(album)}
         href='#'
         className={styles.play_button}
       >
-        <FontAwesome name='play' /> Play
+        <FontAwesome name='play' /> {this.props.t('play')}
       </a>
     );
   }
 
-  renderAlbumYear (album) {
+  renderAlbumYear(album) {
     return (
       <div className={styles.album_year}>
-        <label>Year:</label>
+        <label>{this.props.t('year')}</label>
         {album.year}
       </div>
     );
   }
 
-  renderAlbumTracksCount (album) {
+  renderAlbumTracksCount(album) {
     return (
       <div className={styles.album_tracks}>
-        <label>Tracks:</label>
+        <label>{this.props.t('tracks')}</label>
         {album.tracklist.length}
       </div>
     );
   }
 
-  renderAlbumInfoBox (album, albumImage) {
+  renderAlbumInfoBox(album, albumImage) {
     return (
       <div className={styles.album_info_box}>
         <img src={albumImage} />
@@ -164,7 +164,7 @@ class AlbumView extends React.Component {
     );
   }
 
-  renderAlbumLoading (album, albumImage) {
+  renderAlbumLoading(album, albumImage) {
     return (
       <div className={styles.album_view_container}>
         <Dimmer.Dimmable>
@@ -184,7 +184,7 @@ class AlbumView extends React.Component {
     );
   }
 
-  renderTrack (track, album, index) {
+  renderTrack(track, album, index) {
     if (parseInt(track.duration) !== track.duration) {
       track.duration = Utils.stringDurationToSeconds(track.duration);
     }
@@ -200,13 +200,13 @@ class AlbumView extends React.Component {
     />);
   }
 
-  renderTrackTableHeader () {
+  renderTrackTableHeader() {
     return (<thead>
       <tr>
         <th className={styles.center}>
           <FontAwesome name='hashtag' />
         </th>
-        <th className={styles.left}>Song</th>
+        <th className={styles.left}>{this.props.t('song')}</th>
         <th className={styles.center}>
           <FontAwesome name='clock-o' />
         </th>
@@ -214,7 +214,7 @@ class AlbumView extends React.Component {
     </thead>);
   }
 
-  renderAlbumTracksList (album) {
+  renderAlbumTracksList(album) {
     return (
       <table className={styles.album_tracklist}>
         {this.renderTrackTableHeader()}
@@ -226,7 +226,7 @@ class AlbumView extends React.Component {
     );
   }
 
-  renderOptionsButtons (album) {
+  renderOptionsButtons(album) {
     return (
       <ContextPopup
         trigger={
@@ -244,15 +244,15 @@ class AlbumView extends React.Component {
           className={styles.add_button}
           aria-label={this.props.t('queue')}
         >
-          <FontAwesome name='plus' /> Add to queue
+          <FontAwesome name='plus' /> {this.props.t('queue')}
         </a>
       </ContextPopup>
     );
   }
-  
-  render () {
+
+  render() {
     let { album } = this.props;
-    
+
     if (
       _.some(_.map([album.images, album.artists, album.genres], _.isEmpty)) &&
       album.loading !== true
@@ -271,8 +271,8 @@ AlbumView.propTypes = {
 };
 
 AlbumView.defaultProps = {
-  addFavoriteAlbum: () => {},
-  isFavorite: () => {}
+  addFavoriteAlbum: () => { },
+  isFavorite: () => { }
 };
 
 export default AlbumView;
