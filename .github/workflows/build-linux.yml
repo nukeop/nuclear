@@ -15,7 +15,7 @@ jobs:
         version: 10.x
     - name: npm install, build, and test
       run: |
-        GITHASH=$(git rev-parse --short HEAD)
+        export GITHASH=$(git rev-parse --short HEAD)
         npm install
         npm test
         npm run build:dist
