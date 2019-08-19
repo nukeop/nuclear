@@ -1,5 +1,7 @@
+import uuidv4 from 'uuid/v4';
 import _ from 'lodash';
 
+import { safeAddUuid } from './helpers';
 import { store } from '../persistence/store';
 
 export const READ_FAVORITES = 'READ_FAVORITES';
@@ -18,8 +20,10 @@ export function readFavorites() {
 }
 
 export function addFavoriteTrack(track) {
+  const clonedTrack = safeAddUuid(track);
+  
   const favorites = store.get('favorites');
-  favorites.tracks = _.concat(favorites.tracks, track);
+  favorites.tracks = _.concat(favorites.tracks, clonedTrack);
   store.set('favorites', favorites);
   
   return {

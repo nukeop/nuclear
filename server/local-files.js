@@ -10,6 +10,7 @@ import fetchAcousticId from './lib/acousticId';
 const SUPPORTED_FORMATS = [
   'aac',
   'flac',
+  'm4a',
   'mp3',
   'ogg',
   'wav'
