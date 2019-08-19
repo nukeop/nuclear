@@ -15,8 +15,8 @@ const handleAuthorClick = () => {
 
 const HelpModal = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const handleOpen = useCallback(() => setIsOpen(true), []);
-  const handleClose = useCallback(() => setIsOpen(false), []);
+  const handleOpen = useCallback(() => setIsOpen(true), [setIsOpen]);
+  const handleClose = useCallback(() => setIsOpen(false), [setIsOpen]);
   const { t } = useTranslation('help');
 
   return (
