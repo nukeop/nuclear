@@ -383,15 +383,14 @@ export function lastFmArtistInfoSearch (artist, artistId) {
           artist: {
             ...info.artist,
             similar: {
-              artist: info.artist.similar.artist.map(mapLastFMTrackToInternal)
+              artist: _.invoke(info, 'artist.similar.artist.map', mapLastFMTrackToInternal)
             }
           },
           toptracks: {
             ...info.toptracks, 
-            track: info.toptracks.track.map(mapLastFMTrackToInternal)
+            track: _.invoke(info, 'toptracks.track.map', mapLastFMTrackToInternal)
           }
         };
-        console.info('mapped', mappedInfo);
         dispatch(lastFmArtistInfoSuccess(artistId, mappedInfo));
       })
       .catch(error => {

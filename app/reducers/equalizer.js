@@ -77,10 +77,9 @@ const getSelected = (selected, presets) => {
 };
 
 const getLegacyCustom = ({presets}) => {
-  const values = presets.Custom.values;
   return {
-    values: [values[0], ...values],
-    preAmp: presets.Custom.preAmp
+    values: _.get(presets, 'Custom.values', []),
+    preAmp: _.get(presets, 'Custom.preAmp', 0)
   };
 };
 const getInitialState = () => {

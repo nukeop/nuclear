@@ -13,9 +13,8 @@ import { formatDuration } from '../../utils';
 import styles from './styles.scss';
 
 
-class TrackRow extends React.Component {
+class TrackRow extends React.Component {  
   // this function should be moved onto interface for 'track'
-  
   renderAlbum (track) {
     return (
       <td className={styles.track_album}>
@@ -39,10 +38,18 @@ class TrackRow extends React.Component {
     this.props.actions.playTrack(this.props.musicSources, {
       artist: this.props.track.artist.name,
       name: this.props.track.name,
-      thumbnail: this.props.track.thumbnail
+      thumbnail: this.getTrackThumbnail()
     });
   }
 
+  getTrackThumbnail() {
+    return _.get(
+      this.props.track,
+      'thumbnail',
+      _.get(this.props.track, 'image[0][#text]')
+    );
+  }
+  
   renderTrigger (track) {
     const {
       displayCover,
@@ -68,7 +75,7 @@ class TrackRow extends React.Component {
         {
           displayCover &&
             <td className={styles.track_thumbnail}>
-              <img src={track.thumbnail}/>
+              <img src={this.getTrackThumbnail()}/>
             </td>
         }
         { displayTrackNumber && <td className={styles.track_number}>{track.position}</td> }
@@ -96,7 +103,7 @@ class TrackRow extends React.Component {
         track={track}
         artist={track.artist.name}
         title={track.name}
-        thumb={track.thumbnail}
+        thumb={this.getTrackThumbnail()}
 
         withAddToQueue={withAddToQueue}
         withPlayNow={withPlayNow}
