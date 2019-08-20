@@ -1,0 +1,928 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<QueueMenuMore /> Add favorite track button Has star icon and addFavoriteTrack fired on click of playlist item 1`] = `
+<QueueMenuMore
+  addFavoriteTrack={[MockFunction]}
+  addToDownloads={[Function]}
+  clearQueue={[Function]}
+  currentItem={
+    Object {
+      "name": "test",
+    }
+  }
+  playlists={
+    Array [
+      Object {
+        "name": "test",
+        "tracks": Array [],
+      },
+    ]
+  }
+  savePlaylistDialog={null}
+  updatePlaylist={[Function]}
+>
+  <Dropdown
+    additionLabel="Add "
+    additionPosition="top"
+    className="queue_menu_more"
+    closeOnBlur={true}
+    deburr={false}
+    icon="ellipsis vertical"
+    item={true}
+    minCharacters={1}
+    noResultsMessage="No results found."
+    openOnFocus={true}
+    renderLabel={[Function]}
+    searchInput="text"
+    selectOnBlur={true}
+    selectOnNavigation={true}
+    wrapSelection={true}
+  >
+    <div
+      aria-expanded={false}
+      className="ui item dropdown queue_menu_more"
+      onBlur={[Function]}
+      onChange={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onMouseDown={[Function]}
+      role="listbox"
+      tabIndex={0}
+    >
+      <div
+        aria-live="polite"
+        className="text"
+        role="alert"
+      />
+      <Icon
+        as="i"
+        name="ellipsis vertical"
+        onClick={[Function]}
+      >
+        <i
+          aria-hidden="true"
+          className="ellipsis vertical icon"
+          onClick={[Function]}
+        />
+      </Icon>
+      <DropdownMenu
+        className=""
+      >
+        <div
+          className="menu transition"
+        >
+          <DropdownHeader>
+            <div
+              className="header"
+            >
+              header
+            </div>
+          </DropdownHeader>
+          <DropdownItem
+            onClick={[Function]}
+          >
+            <div
+              className="item"
+              onClick={[Function]}
+              role="option"
+            >
+              <Icon
+                as="i"
+                name="trash"
+              >
+                <i
+                  aria-hidden="true"
+                  className="trash icon"
+                />
+              </Icon>
+              clear
+            </div>
+          </DropdownItem>
+          <DropdownDivider>
+            <div
+              className="divider"
+            />
+          </DropdownDivider>
+          <DropdownHeader>
+            <div
+              className="header"
+            >
+              header-track
+            </div>
+          </DropdownHeader>
+          <DropdownItem>
+            <div
+              className="item"
+              onClick={[Function]}
+              role="option"
+            >
+              <Dropdown
+                additionLabel="Add "
+                additionPosition="top"
+                className="left"
+                closeOnBlur={true}
+                deburr={false}
+                icon="dropdown"
+                minCharacters={1}
+                noResultsMessage="No results found."
+                openOnFocus={true}
+                renderLabel={[Function]}
+                searchInput="text"
+                selectOnBlur={true}
+                selectOnNavigation={true}
+                text="playlist-add"
+                wrapSelection={true}
+              >
+                <div
+                  aria-expanded={false}
+                  className="ui dropdown left"
+                  onBlur={[Function]}
+                  onChange={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  onMouseDown={[Function]}
+                  role="listbox"
+                  tabIndex={0}
+                >
+                  <div
+                    aria-live="polite"
+                    className="text"
+                    role="alert"
+                  >
+                    playlist-add
+                  </div>
+                  <Icon
+                    as="i"
+                    name="dropdown"
+                    onClick={[Function]}
+                  >
+                    <i
+                      aria-hidden="true"
+                      className="dropdown icon"
+                      onClick={[Function]}
+                    />
+                  </Icon>
+                  <DropdownMenu
+                    className="left playlists_menu"
+                  >
+                    <div
+                      className="menu transition left playlists_menu"
+                    >
+                      <DropdownItem
+                        key="0"
+                        onClick={[Function]}
+                      >
+                        <div
+                          className="item"
+                          onClick={[Function]}
+                          role="option"
+                        >
+                          <Icon
+                            as="i"
+                            name="music"
+                          >
+                            <i
+                              aria-hidden="true"
+                              className="music icon"
+                            />
+                          </Icon>
+                          test
+                        </div>
+                      </DropdownItem>
+                    </div>
+                  </DropdownMenu>
+                </div>
+              </Dropdown>
+            </div>
+          </DropdownItem>
+          <DropdownItem
+            onClick={[Function]}
+          >
+            <div
+              className="item"
+              onClick={[Function]}
+              role="option"
+            >
+              <Icon
+                as="i"
+                name="star"
+              >
+                <i
+                  aria-hidden="true"
+                  className="star icon"
+                />
+              </Icon>
+              favorite-add
+            </div>
+          </DropdownItem>
+          <DropdownItem
+            onClick={[Function]}
+          >
+            <div
+              className="item"
+              onClick={[Function]}
+              role="option"
+            >
+              <Icon
+                as="i"
+                name="download"
+              >
+                <i
+                  aria-hidden="true"
+                  className="download icon"
+                />
+              </Icon>
+              download
+            </div>
+          </DropdownItem>
+        </div>
+      </DropdownMenu>
+    </div>
+  </Dropdown>
+</QueueMenuMore>
+`;
+
+exports[`<QueueMenuMore /> Add to downloads button Has download icon and fires addToDownloads on click of playlist item 1`] = `
+<QueueMenuMore
+  addFavoriteTrack={[Function]}
+  addToDownloads={[MockFunction]}
+  clearQueue={[Function]}
+  currentItem={Object {}}
+  playlists={
+    Array [
+      1,
+    ]
+  }
+  savePlaylistDialog={null}
+  updatePlaylist={[Function]}
+>
+  <Dropdown
+    additionLabel="Add "
+    additionPosition="top"
+    className="queue_menu_more"
+    closeOnBlur={true}
+    deburr={false}
+    icon="ellipsis vertical"
+    item={true}
+    minCharacters={1}
+    noResultsMessage="No results found."
+    openOnFocus={true}
+    renderLabel={[Function]}
+    searchInput="text"
+    selectOnBlur={true}
+    selectOnNavigation={true}
+    wrapSelection={true}
+  >
+    <div
+      aria-expanded={false}
+      className="ui item dropdown queue_menu_more"
+      onBlur={[Function]}
+      onChange={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onMouseDown={[Function]}
+      role="listbox"
+      tabIndex={0}
+    >
+      <div
+        aria-live="polite"
+        className="text"
+        role="alert"
+      />
+      <Icon
+        as="i"
+        name="ellipsis vertical"
+        onClick={[Function]}
+      >
+        <i
+          aria-hidden="true"
+          className="ellipsis vertical icon"
+          onClick={[Function]}
+        />
+      </Icon>
+      <DropdownMenu
+        className=""
+      >
+        <div
+          className="menu transition"
+        >
+          <DropdownHeader>
+            <div
+              className="header"
+            >
+              header
+            </div>
+          </DropdownHeader>
+          <DropdownItem
+            onClick={[Function]}
+          >
+            <div
+              className="item"
+              onClick={[Function]}
+              role="option"
+            >
+              <Icon
+                as="i"
+                name="trash"
+              >
+                <i
+                  aria-hidden="true"
+                  className="trash icon"
+                />
+              </Icon>
+              clear
+            </div>
+          </DropdownItem>
+          <DropdownDivider>
+            <div
+              className="divider"
+            />
+          </DropdownDivider>
+          <DropdownHeader>
+            <div
+              className="header"
+            >
+              header-track
+            </div>
+          </DropdownHeader>
+          <DropdownItem>
+            <div
+              className="item"
+              onClick={[Function]}
+              role="option"
+            >
+              <Dropdown
+                additionLabel="Add "
+                additionPosition="top"
+                className="left"
+                closeOnBlur={true}
+                deburr={false}
+                icon="dropdown"
+                minCharacters={1}
+                noResultsMessage="No results found."
+                openOnFocus={true}
+                renderLabel={[Function]}
+                searchInput="text"
+                selectOnBlur={true}
+                selectOnNavigation={true}
+                text="playlist-add"
+                wrapSelection={true}
+              >
+                <div
+                  aria-expanded={false}
+                  className="ui dropdown left"
+                  onBlur={[Function]}
+                  onChange={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  onMouseDown={[Function]}
+                  role="listbox"
+                  tabIndex={0}
+                >
+                  <div
+                    aria-live="polite"
+                    className="text"
+                    role="alert"
+                  >
+                    playlist-add
+                  </div>
+                  <Icon
+                    as="i"
+                    name="dropdown"
+                    onClick={[Function]}
+                  >
+                    <i
+                      aria-hidden="true"
+                      className="dropdown icon"
+                      onClick={[Function]}
+                    />
+                  </Icon>
+                  <DropdownMenu
+                    className="left playlists_menu"
+                  >
+                    <div
+                      className="menu transition left playlists_menu"
+                    >
+                      <DropdownItem
+                        key="0"
+                        onClick={[Function]}
+                      >
+                        <div
+                          className="item"
+                          onClick={[Function]}
+                          role="option"
+                        >
+                          <Icon
+                            as="i"
+                            name="music"
+                          >
+                            <i
+                              aria-hidden="true"
+                              className="music icon"
+                            />
+                          </Icon>
+                        </div>
+                      </DropdownItem>
+                    </div>
+                  </DropdownMenu>
+                </div>
+              </Dropdown>
+            </div>
+          </DropdownItem>
+          <DropdownItem
+            onClick={[Function]}
+          >
+            <div
+              className="item"
+              onClick={[Function]}
+              role="option"
+            >
+              <Icon
+                as="i"
+                name="star"
+              >
+                <i
+                  aria-hidden="true"
+                  className="star icon"
+                />
+              </Icon>
+              favorite-add
+            </div>
+          </DropdownItem>
+          <DropdownItem
+            onClick={[Function]}
+          >
+            <div
+              className="item"
+              onClick={[Function]}
+              role="option"
+            >
+              <Icon
+                as="i"
+                name="download"
+              >
+                <i
+                  aria-hidden="true"
+                  className="download icon"
+                />
+              </Icon>
+              download
+            </div>
+          </DropdownItem>
+        </div>
+      </DropdownMenu>
+    </div>
+  </Dropdown>
+</QueueMenuMore>
+`;
+
+exports[`<QueueMenuMore /> Clear queue button Has trash icon and clearQueue action fired on click 1`] = `
+<QueueMenuMore
+  addFavoriteTrack={[Function]}
+  addToDownloads={[Function]}
+  clearQueue={[MockFunction]}
+  currentItem={Object {}}
+  playlists={Array []}
+  savePlaylistDialog={null}
+  updatePlaylist={[Function]}
+>
+  <Dropdown
+    additionLabel="Add "
+    additionPosition="top"
+    className="queue_menu_more"
+    closeOnBlur={true}
+    deburr={false}
+    icon="ellipsis vertical"
+    item={true}
+    minCharacters={1}
+    noResultsMessage="No results found."
+    openOnFocus={true}
+    renderLabel={[Function]}
+    searchInput="text"
+    selectOnBlur={true}
+    selectOnNavigation={true}
+    wrapSelection={true}
+  >
+    <div
+      aria-expanded={false}
+      className="ui item dropdown queue_menu_more"
+      onBlur={[Function]}
+      onChange={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onMouseDown={[Function]}
+      role="listbox"
+      tabIndex={0}
+    >
+      <div
+        aria-live="polite"
+        className="text"
+        role="alert"
+      />
+      <Icon
+        as="i"
+        name="ellipsis vertical"
+        onClick={[Function]}
+      >
+        <i
+          aria-hidden="true"
+          className="ellipsis vertical icon"
+          onClick={[Function]}
+        />
+      </Icon>
+      <DropdownMenu
+        className=""
+      >
+        <div
+          className="menu transition"
+        >
+          <DropdownHeader>
+            <div
+              className="header"
+            >
+              header
+            </div>
+          </DropdownHeader>
+          <DropdownItem
+            onClick={[MockFunction]}
+          >
+            <div
+              className="item"
+              onClick={[Function]}
+              role="option"
+            >
+              <Icon
+                as="i"
+                name="trash"
+              >
+                <i
+                  aria-hidden="true"
+                  className="trash icon"
+                />
+              </Icon>
+              clear
+            </div>
+          </DropdownItem>
+          <DropdownDivider>
+            <div
+              className="divider"
+            />
+          </DropdownDivider>
+          <DropdownHeader>
+            <div
+              className="header"
+            >
+              header-track
+            </div>
+          </DropdownHeader>
+          <DropdownItem>
+            <div
+              className="item"
+              onClick={[Function]}
+              role="option"
+            >
+              <Dropdown
+                additionLabel="Add "
+                additionPosition="top"
+                className="left"
+                closeOnBlur={true}
+                deburr={false}
+                icon="dropdown"
+                minCharacters={1}
+                noResultsMessage="No results found."
+                openOnFocus={true}
+                renderLabel={[Function]}
+                searchInput="text"
+                selectOnBlur={true}
+                selectOnNavigation={true}
+                text="playlist-add"
+                wrapSelection={true}
+              >
+                <div
+                  aria-expanded={false}
+                  className="ui dropdown left"
+                  onBlur={[Function]}
+                  onChange={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  onMouseDown={[Function]}
+                  role="listbox"
+                  tabIndex={0}
+                >
+                  <div
+                    aria-live="polite"
+                    className="text"
+                    role="alert"
+                  >
+                    playlist-add
+                  </div>
+                  <Icon
+                    as="i"
+                    name="dropdown"
+                    onClick={[Function]}
+                  >
+                    <i
+                      aria-hidden="true"
+                      className="dropdown icon"
+                      onClick={[Function]}
+                    />
+                  </Icon>
+                  <DropdownMenu
+                    className="left playlists_menu"
+                  >
+                    <div
+                      className="menu transition left playlists_menu"
+                    />
+                  </DropdownMenu>
+                </div>
+              </Dropdown>
+            </div>
+          </DropdownItem>
+          <DropdownItem
+            onClick={[Function]}
+          >
+            <div
+              className="item"
+              onClick={[Function]}
+              role="option"
+            >
+              <Icon
+                as="i"
+                name="star"
+              >
+                <i
+                  aria-hidden="true"
+                  className="star icon"
+                />
+              </Icon>
+              favorite-add
+            </div>
+          </DropdownItem>
+          <DropdownItem
+            onClick={[Function]}
+          >
+            <div
+              className="item"
+              onClick={[Function]}
+              role="option"
+            >
+              <Icon
+                as="i"
+                name="download"
+              >
+                <i
+                  aria-hidden="true"
+                  className="download icon"
+                />
+              </Icon>
+              download
+            </div>
+          </DropdownItem>
+        </div>
+      </DropdownMenu>
+    </div>
+  </Dropdown>
+</QueueMenuMore>
+`;
+
+exports[`<QueueMenuMore /> Playlist button Has music icon and adds track to playlist on click 1`] = `
+<QueueMenuMore
+  addFavoriteTrack={[Function]}
+  addToDownloads={[Function]}
+  clearQueue={[Function]}
+  currentItem={
+    Object {
+      "name": "test",
+    }
+  }
+  playlists={
+    Array [
+      Object {
+        "name": "test",
+        "tracks": Array [],
+      },
+    ]
+  }
+  savePlaylistDialog={null}
+  updatePlaylist={[MockFunction]}
+>
+  <Dropdown
+    additionLabel="Add "
+    additionPosition="top"
+    className="queue_menu_more"
+    closeOnBlur={true}
+    deburr={false}
+    icon="ellipsis vertical"
+    item={true}
+    minCharacters={1}
+    noResultsMessage="No results found."
+    openOnFocus={true}
+    renderLabel={[Function]}
+    searchInput="text"
+    selectOnBlur={true}
+    selectOnNavigation={true}
+    wrapSelection={true}
+  >
+    <div
+      aria-expanded={false}
+      className="ui item dropdown queue_menu_more"
+      onBlur={[Function]}
+      onChange={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onMouseDown={[Function]}
+      role="listbox"
+      tabIndex={0}
+    >
+      <div
+        aria-live="polite"
+        className="text"
+        role="alert"
+      />
+      <Icon
+        as="i"
+        name="ellipsis vertical"
+        onClick={[Function]}
+      >
+        <i
+          aria-hidden="true"
+          className="ellipsis vertical icon"
+          onClick={[Function]}
+        />
+      </Icon>
+      <DropdownMenu
+        className=""
+      >
+        <div
+          className="menu transition"
+        >
+          <DropdownHeader>
+            <div
+              className="header"
+            >
+              header
+            </div>
+          </DropdownHeader>
+          <DropdownItem
+            onClick={[Function]}
+          >
+            <div
+              className="item"
+              onClick={[Function]}
+              role="option"
+            >
+              <Icon
+                as="i"
+                name="trash"
+              >
+                <i
+                  aria-hidden="true"
+                  className="trash icon"
+                />
+              </Icon>
+              clear
+            </div>
+          </DropdownItem>
+          <DropdownDivider>
+            <div
+              className="divider"
+            />
+          </DropdownDivider>
+          <DropdownHeader>
+            <div
+              className="header"
+            >
+              header-track
+            </div>
+          </DropdownHeader>
+          <DropdownItem>
+            <div
+              className="item"
+              onClick={[Function]}
+              role="option"
+            >
+              <Dropdown
+                additionLabel="Add "
+                additionPosition="top"
+                className="left"
+                closeOnBlur={true}
+                deburr={false}
+                icon="dropdown"
+                minCharacters={1}
+                noResultsMessage="No results found."
+                openOnFocus={true}
+                renderLabel={[Function]}
+                searchInput="text"
+                selectOnBlur={true}
+                selectOnNavigation={true}
+                text="playlist-add"
+                wrapSelection={true}
+              >
+                <div
+                  aria-expanded={false}
+                  className="ui dropdown left"
+                  onBlur={[Function]}
+                  onChange={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  onMouseDown={[Function]}
+                  role="listbox"
+                  tabIndex={0}
+                >
+                  <div
+                    aria-live="polite"
+                    className="text"
+                    role="alert"
+                  >
+                    playlist-add
+                  </div>
+                  <Icon
+                    as="i"
+                    name="dropdown"
+                    onClick={[Function]}
+                  >
+                    <i
+                      aria-hidden="true"
+                      className="dropdown icon"
+                      onClick={[Function]}
+                    />
+                  </Icon>
+                  <DropdownMenu
+                    className="left playlists_menu"
+                  >
+                    <div
+                      className="menu transition left playlists_menu"
+                    >
+                      <DropdownItem
+                        key="0"
+                        onClick={[Function]}
+                      >
+                        <div
+                          className="item"
+                          onClick={[Function]}
+                          role="option"
+                        >
+                          <Icon
+                            as="i"
+                            name="music"
+                          >
+                            <i
+                              aria-hidden="true"
+                              className="music icon"
+                            />
+                          </Icon>
+                          test
+                        </div>
+                      </DropdownItem>
+                    </div>
+                  </DropdownMenu>
+                </div>
+              </Dropdown>
+            </div>
+          </DropdownItem>
+          <DropdownItem
+            onClick={[Function]}
+          >
+            <div
+              className="item"
+              onClick={[Function]}
+              role="option"
+            >
+              <Icon
+                as="i"
+                name="star"
+              >
+                <i
+                  aria-hidden="true"
+                  className="star icon"
+                />
+              </Icon>
+              favorite-add
+            </div>
+          </DropdownItem>
+          <DropdownItem
+            onClick={[Function]}
+          >
+            <div
+              className="item"
+              onClick={[Function]}
+              role="option"
+            >
+              <Icon
+                as="i"
+                name="download"
+              >
+                <i
+                  aria-hidden="true"
+                  className="download icon"
+                />
+              </Icon>
+              download
+            </div>
+          </DropdownItem>
+        </div>
+      </DropdownMenu>
+    </div>
+  </Dropdown>
+</QueueMenuMore>
+`;
