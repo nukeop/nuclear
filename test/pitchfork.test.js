@@ -32,8 +32,8 @@ describe('Pitchfork API tests', () => {
         'artist',
         'title',
         'reviewUrl',
-        'review'])
-      ); 
+        'review'
+      ])); 
     });
   });
 });

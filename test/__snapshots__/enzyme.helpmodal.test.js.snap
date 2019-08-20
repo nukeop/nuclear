@@ -1,0 +1,520 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<HelpModal /> Test handleClose 1`] = `
+<HelpModal>
+  <Modal
+    basic={true}
+    centered={true}
+    className="help_modal"
+    closeOnDimmerClick={true}
+    closeOnDocumentClick={false}
+    dimmer="blurring"
+    eventPool="Modal"
+    onClose={[Function]}
+    open={false}
+    trigger={
+      <HelpButton
+        onClick={[Function]}
+      />
+    }
+  >
+    <Portal
+      closeOnDocumentClick={false}
+      closeOnEscape={true}
+      eventPool="Modal"
+      mountNode={
+        <body
+          class="dimmable dimmed blurring"
+        >
+          <div
+            class="ui page modals dimmer transition visible active"
+            style="display: flex;"
+          >
+            <div
+              class="ui basic modal transition visible active help_modal"
+            >
+              <div
+                class="header"
+              >
+                about
+              </div>
+              <div
+                class="image content"
+              >
+                <div
+                  class="ui medium image"
+                >
+                  <img
+                    src=""
+                  />
+                </div>
+                <div
+                  class="description"
+                >
+                  <div
+                    class="ui inverted header"
+                  >
+                    header
+                  </div>
+                  <p>
+                    Copyright © 
+                    <a
+                      href="#"
+                    >
+                      nukeop
+                    </a>
+                     2019,
+                    released
+                  </p>
+                  <p>
+                    thanks
+                  </p>
+                </div>
+              </div>
+              <div
+                class="content"
+              >
+                <div
+                  class="description"
+                >
+                  This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. See the GNU Affero General Public License for more details.
+                </div>
+              </div>
+            </div>
+          </div>
+        </body>
+      }
+      onClose={[Function]}
+      onMount={[Function]}
+      onOpen={[Function]}
+      onUnmount={[Function]}
+      open={false}
+      openOnTriggerClick={true}
+      trigger={
+        <HelpButton
+          onClick={[Function]}
+        />
+      }
+    >
+      <Ref
+        innerRef={[Function]}
+        key="trigger"
+      >
+        <HelpButton
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+        >
+          <Button
+            as="button"
+            className="help_button"
+            icon={true}
+            onBlur={[Function]}
+            onClick={[Function]}
+            onFocus={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+            role="button"
+          >
+            <button
+              className="ui icon button help_button"
+              onBlur={[Function]}
+              onClick={[Function]}
+              onFocus={[Function]}
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
+              role="button"
+            >
+              <Icon
+                as="i"
+                name="question circle outline"
+              >
+                <i
+                  aria-hidden="true"
+                  className="question circle outline icon"
+                />
+              </Icon>
+            </button>
+          </Button>
+        </HelpButton>
+      </Ref>
+    </Portal>
+  </Modal>
+</HelpModal>
+`;
+
+exports[`<HelpModal /> Test handleOpen 1`] = `
+<HelpModal>
+  <Modal
+    basic={true}
+    centered={true}
+    className="help_modal"
+    closeOnDimmerClick={true}
+    closeOnDocumentClick={false}
+    dimmer="blurring"
+    eventPool="Modal"
+    onClose={[Function]}
+    open={true}
+    trigger={
+      <HelpButton
+        onClick={[Function]}
+      />
+    }
+  >
+    <Portal
+      closeOnDocumentClick={false}
+      closeOnEscape={true}
+      eventPool="Modal"
+      mountNode={
+        <body
+          class="dimmable dimmed blurring"
+        >
+          <div
+            class="ui page modals dimmer transition visible active"
+            style="display: flex;"
+          >
+            <div
+              class="ui basic modal transition visible active help_modal"
+            >
+              <div
+                class="header"
+              >
+                about
+              </div>
+              <div
+                class="image content"
+              >
+                <div
+                  class="ui medium image"
+                >
+                  <img
+                    src=""
+                  />
+                </div>
+                <div
+                  class="description"
+                >
+                  <div
+                    class="ui inverted header"
+                  >
+                    header
+                  </div>
+                  <p>
+                    Copyright © 
+                    <a
+                      href="#"
+                    >
+                      nukeop
+                    </a>
+                     2019,
+                    released
+                  </p>
+                  <p>
+                    thanks
+                  </p>
+                </div>
+              </div>
+              <div
+                class="content"
+              >
+                <div
+                  class="description"
+                >
+                  This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. See the GNU Affero General Public License for more details.
+                </div>
+              </div>
+            </div>
+          </div>
+        </body>
+      }
+      onClose={[Function]}
+      onMount={[Function]}
+      onOpen={[Function]}
+      onUnmount={[Function]}
+      open={true}
+      openOnTriggerClick={true}
+      trigger={
+        <HelpButton
+          onClick={[Function]}
+        />
+      }
+    >
+      <PortalInner
+        key="inner"
+        mountNode={
+          <body
+            class="dimmable dimmed blurring"
+          >
+            <div
+              class="ui page modals dimmer transition visible active"
+              style="display: flex;"
+            >
+              <div
+                class="ui basic modal transition visible active help_modal"
+              >
+                <div
+                  class="header"
+                >
+                  about
+                </div>
+                <div
+                  class="image content"
+                >
+                  <div
+                    class="ui medium image"
+                  >
+                    <img
+                      src=""
+                    />
+                  </div>
+                  <div
+                    class="description"
+                  >
+                    <div
+                      class="ui inverted header"
+                    >
+                      header
+                    </div>
+                    <p>
+                      Copyright © 
+                      <a
+                        href="#"
+                      >
+                        nukeop
+                      </a>
+                       2019,
+                      released
+                    </p>
+                    <p>
+                      thanks
+                    </p>
+                  </div>
+                </div>
+                <div
+                  class="content"
+                >
+                  <div
+                    class="description"
+                  >
+                    This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. See the GNU Affero General Public License for more details.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </body>
+        }
+        onMount={[Function]}
+        onUnmount={[Function]}
+      >
+        <Portal
+          containerInfo={
+            <body
+              class="dimmable dimmed blurring"
+            >
+              <div
+                class="ui page modals dimmer transition visible active"
+                style="display: flex;"
+              >
+                <div
+                  class="ui basic modal transition visible active help_modal"
+                >
+                  <div
+                    class="header"
+                  >
+                    about
+                  </div>
+                  <div
+                    class="image content"
+                  >
+                    <div
+                      class="ui medium image"
+                    >
+                      <img
+                        src=""
+                      />
+                    </div>
+                    <div
+                      class="description"
+                    >
+                      <div
+                        class="ui inverted header"
+                      >
+                        header
+                      </div>
+                      <p>
+                        Copyright © 
+                        <a
+                          href="#"
+                        >
+                          nukeop
+                        </a>
+                         2019,
+                        released
+                      </p>
+                      <p>
+                        thanks
+                      </p>
+                    </div>
+                  </div>
+                  <div
+                    class="content"
+                  >
+                    <div
+                      class="description"
+                    >
+                      This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. See the GNU Affero General Public License for more details.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </body>
+          }
+        >
+          <Ref
+            innerRef={[Function]}
+          >
+            <div
+              className="ui page modals dimmer transition visible active"
+            >
+              <Ref
+                innerRef={[Function]}
+              >
+                <div
+                  className="ui basic modal transition visible active help_modal"
+                  style={
+                    Object {
+                      "marginTop": null,
+                    }
+                  }
+                >
+                  <MountNode
+                    className="dimmable dimmed blurring"
+                  />
+                  <ModalHeader>
+                    <div
+                      className="header"
+                    >
+                      about
+                    </div>
+                  </ModalHeader>
+                  <ModalContent
+                    image={true}
+                  >
+                    <div
+                      className="image content"
+                    >
+                      <Image
+                        as="img"
+                        size="medium"
+                        src=""
+                        ui={true}
+                        wrapped={true}
+                      >
+                        <div
+                          className="ui medium image"
+                        >
+                          <img
+                            src=""
+                          />
+                        </div>
+                      </Image>
+                      <ModalDescription>
+                        <div
+                          className="description"
+                        >
+                          <Header
+                            inverted={true}
+                          >
+                            <div
+                              className="ui inverted header"
+                            >
+                              header
+                            </div>
+                          </Header>
+                          <p>
+                            Copyright © 
+                            <a
+                              href="#"
+                              onClick={[Function]}
+                            >
+                              nukeop
+                            </a>
+                             2019,
+                            released
+                          </p>
+                          <p>
+                            thanks
+                          </p>
+                        </div>
+                      </ModalDescription>
+                    </div>
+                  </ModalContent>
+                  <ModalContent>
+                    <div
+                      className="content"
+                    >
+                      <ModalDescription>
+                        <div
+                          className="description"
+                        >
+                          This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. See the GNU Affero General Public License for more details.
+                        </div>
+                      </ModalDescription>
+                    </div>
+                  </ModalContent>
+                </div>
+              </Ref>
+            </div>
+          </Ref>
+        </Portal>
+      </PortalInner>
+      <Ref
+        innerRef={[Function]}
+        key="trigger"
+      >
+        <HelpButton
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+        >
+          <Button
+            as="button"
+            className="help_button"
+            icon={true}
+            onBlur={[Function]}
+            onClick={[Function]}
+            onFocus={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+            role="button"
+          >
+            <button
+              className="ui icon button help_button"
+              onBlur={[Function]}
+              onClick={[Function]}
+              onFocus={[Function]}
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
+              role="button"
+            >
+              <Icon
+                as="i"
+                name="question circle outline"
+              >
+                <i
+                  aria-hidden="true"
+                  className="question circle outline icon"
+                />
+              </Icon>
+            </button>
+          </Button>
+        </HelpButton>
+      </Ref>
+    </Portal>
+  </Modal>
+</HelpModal>
+`;

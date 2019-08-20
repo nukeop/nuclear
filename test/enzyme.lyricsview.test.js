@@ -8,6 +8,7 @@ describe('<LyricsView />', () => {
 
   it('Test if there is no track selected', () => {
     const wrapper = shallow(<LyricsView track={null} t={t} />);
+    expect(wrapper).toMatchSnapshot();
     const instance = wrapper.instance();
 
     expect(wrapper.contains(instance.renderNoSelectedTrack())).toBe(true);
@@ -23,6 +24,7 @@ describe('<LyricsView />', () => {
       type: 'TYPE'
     };
     const wrapper = shallow(<LyricsView t={t} track={track} lyrics={lyrics} />);
+    expect(wrapper).toMatchSnapshot();
     const instance = wrapper.instance();
 
     expect(wrapper.contains(instance.renderLyricsHeader()));

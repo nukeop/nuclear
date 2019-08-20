@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<WindowButton /> displays correct icon 1`] = `
+<div
+  className="window_button_container"
+  onClick={[Function]}
+  style={
+    Object {
+      "backgroundColor": "#fff",
+    }
+  }
+>
+  <FontAwesome
+    name="icon"
+  />
+</div>
+`;
+
+exports[`<WindowButton /> fires onClick func 1`] = `
+<div
+  className="window_button_container"
+  onClick={[Function]}
+  style={
+    Object {
+      "backgroundColor": "#fff",
+    }
+  }
+>
+  <FontAwesome
+    name="icon"
+  />
+</div>
+`;
+
+exports[`<WindowControls /> renders with window buttons 1`] = `
+<div
+  className="window_controls_container"
+>
+  <WindowButton
+    icon="window-minimize"
+    onClick={[Function]}
+  />
+  <WindowButton
+    icon="window-maximize"
+    onClick={[Function]}
+  />
+  <WindowButton
+    icon="close"
+    onClick={[Function]}
+  />
+</div>
+`;

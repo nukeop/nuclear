@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<LyricsView /> Test if there is no track selected 1`] = `
+<div
+  className="lyrics_view"
+>
+  <div
+    className="empty_state"
+  >
+    <FontAwesome
+      name="music"
+    />
+    <h2 />
+    <div />
+  </div>
+</div>
+`;
+
+exports[`<LyricsView /> Test if there is selected track 1`] = `
+<div
+  className="lyrics_view"
+>
+  <LyricsHeader
+    artist="ARTIST"
+    name="NAME"
+  />
+  <div
+    className="lyrics_text"
+  />
+</div>
+`;

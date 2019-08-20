@@ -1,0 +1,58 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<AlbumList /> Should render given albums 1`] = `
+<div
+  className="album_list_container"
+>
+  <div
+    className="album_list_cards"
+  >
+    <Card
+      header="TITLE1"
+      image="THUMB1"
+      key="0"
+      onClick={[Function]}
+    />
+    <Card
+      header="TITLE2"
+      image="THUMB2"
+      key="1"
+      onClick={[Function]}
+    />
+    <Card
+      header="TITLE3"
+      image="THUMB3"
+      key="2"
+      onClick={[Function]}
+    />
+  </div>
+</div>
+`;
+
+exports[`<AlbumList /> Should render loader when there is no album 1`] = `
+<div
+  className="album_list_container"
+>
+  <DimmerDimmable>
+    <Dimmer
+      active={true}
+    >
+      <Loader />
+    </Dimmer>
+  </DimmerDimmable>
+</div>
+`;
+
+exports[`<AlbumList /> Test albumInfoSearch method 1`] = `
+<div
+  className="album_list_container"
+>
+  <DimmerDimmable>
+    <Dimmer
+      active={true}
+    >
+      <Loader />
+    </Dimmer>
+  </DimmerDimmable>
+</div>
+`;

@@ -1,0 +1,171 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<PlayPauseButton/> loading Loading indicator showing 1`] = `
+<withI18nextTranslation(PlayPauseButton)
+  loading={true}
+  playing={false}
+>
+  <PlayPauseButton
+    i18n={Object {}}
+    loading={true}
+    playing={false}
+    t={[Function]}
+    tReady={true}
+  >
+    <div
+      aria-label="play-pause-button"
+      className="play_pause_button_container loading player_button_disabled"
+    >
+      <a
+        href="#"
+      >
+        <FontAwesome
+          name="spinner"
+          pulse={true}
+        >
+          <span
+            aria-hidden={true}
+            className="fa fa-spinner fa-pulse"
+          />
+        </FontAwesome>
+      </a>
+    </div>
+  </PlayPauseButton>
+</withI18nextTranslation(PlayPauseButton)>
+`;
+
+exports[`<PlayPauseButton/> onClick Shows play button 1`] = `
+<withI18nextTranslation(PlayPauseButton)
+  loading={false}
+  onClick={[MockFunction]}
+  playing={false}
+>
+  <PlayPauseButton
+    i18n={Object {}}
+    loading={false}
+    onClick={[MockFunction]}
+    playing={false}
+    t={[Function]}
+    tReady={true}
+  >
+    <div
+      aria-label="play-pause-button"
+      className="play_pause_button_container"
+    >
+      <a
+        href="#"
+        onClick={[MockFunction]}
+      >
+        <FontAwesome
+          name="play"
+        >
+          <span
+            aria-hidden={true}
+            className="fa fa-play"
+          />
+        </FontAwesome>
+      </a>
+    </div>
+  </PlayPauseButton>
+</withI18nextTranslation(PlayPauseButton)>
+`;
+
+exports[`<PlayPauseButton/> playing Shows pause button 1`] = `
+<withI18nextTranslation(PlayPauseButton)
+  loading={false}
+  playing={true}
+>
+  <PlayPauseButton
+    i18n={Object {}}
+    loading={false}
+    playing={true}
+    t={[Function]}
+    tReady={true}
+  >
+    <div
+      aria-label="play-pause-button"
+      className="play_pause_button_container player_button_disabled"
+    >
+      <a
+        href="#"
+      >
+        <FontAwesome
+          name="pause"
+        >
+          <span
+            aria-hidden={true}
+            className="fa fa-pause"
+          />
+        </FontAwesome>
+      </a>
+    </div>
+  </PlayPauseButton>
+</withI18nextTranslation(PlayPauseButton)>
+`;
+
+exports[`<PlayPauseButton/> ready to play Shows play button 1`] = `
+<withI18nextTranslation(PlayPauseButton)
+  loading={false}
+  playing={false}
+>
+  <PlayPauseButton
+    i18n={Object {}}
+    loading={false}
+    playing={false}
+    t={[Function]}
+    tReady={true}
+  >
+    <div
+      aria-label="play-pause-button"
+      className="play_pause_button_container player_button_disabled"
+    >
+      <a
+        href="#"
+      >
+        <FontAwesome
+          name="play"
+        >
+          <span
+            aria-hidden={true}
+            className="fa fa-play"
+          />
+        </FontAwesome>
+      </a>
+    </div>
+  </PlayPauseButton>
+</withI18nextTranslation(PlayPauseButton)>
+`;
+
+exports[`Back button onClick has an onclick event that gets triggered 1`] = `
+<div
+  className="player_controls_container"
+>
+  <PlayerButton
+    ariaLabel="previous-button"
+    icon="step-backward"
+    onClick={[MockFunction]}
+  />
+  <withI18nextTranslation(PlayPauseButton) />
+  <PlayerButton
+    ariaLabel="next-button"
+    icon="step-forward"
+  />
+</div>
+`;
+
+exports[`Forward button onClick has an onclick event that gets triggered 1`] = `
+<div
+  className="player_controls_container"
+>
+  <PlayerButton
+    ariaLabel="previous-button"
+    icon="step-backward"
+  />
+  <withI18nextTranslation(PlayPauseButton) />
+  <PlayerButton
+    ariaLabel="next-button"
+    icon="step-forward"
+    onClick={[MockFunction]}
+  />
+</div>
+`;

@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Navbar /> renders with children 1`] = `
+<div
+  className="navbar"
+>
+  <div>
+    First
+  </div>
+  <div>
+    Second
+  </div>
+  <div>
+    Third
+  </div>
+</div>
+`;
+
+exports[`<Navbar /> renders with no children 1`] = `
+<div
+  className="navbar"
+/>
+`;

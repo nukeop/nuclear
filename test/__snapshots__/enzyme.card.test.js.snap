@@ -1,5 +1,80 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`<Card /> Check onClick event 1`] = `
+<div
+  className="card_container"
+>
+  <div
+    className="card"
+    onClick={[MockFunction]}
+  >
+    <div
+      className="thumbnail"
+    >
+      <Img
+        src=""
+      />
+    </div>
+    <div
+      className="container"
+    >
+      <h4 />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`<Card /> Should display given content 1`] = `
+<div
+  className="card_container"
+>
+  <div
+    className="card"
+  >
+    <div
+      className="thumbnail"
+    >
+      <Img
+        src=""
+      />
+    </div>
+    <div
+      className="container"
+    >
+      <h4 />
+      <p>
+        TEXT
+      </p>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`<Card /> Should display given header 1`] = `
+<div
+  className="card_container"
+>
+  <div
+    className="card"
+  >
+    <div
+      className="thumbnail"
+    >
+      <Img
+        src=""
+      />
+    </div>
+    <div
+      className="container"
+    >
+      <h4>
+        HEADER
+      </h4>
+    </div>
+  </div>
+</div>
+`;
+
 exports[`<Card /> Should render given image 1`] = `
 <div
   className="card_container"

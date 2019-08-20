@@ -15,19 +15,20 @@ describe('<Card />', () => {
   it('Check onClick event', () => {
     const spy = jest.fn();
     const wrapper = shallow(<Card onClick={spy} />);
-
+    expect(wrapper).toMatchSnapshot();
     wrapper.find('div[onClick]').simulate('click');
     expect(spy).toHaveBeenCalled();
   });
 
   it('Should display given header', () => {
     const wrapper = shallow(<Card header='HEADER' />);
+    expect(wrapper).toMatchSnapshot();
     expect(wrapper.find('h4').text()).toEqual('HEADER');
   });
 
   it('Should display given content', () => {
     const wrapper = shallow(<Card content='TEXT' />);
-
+    expect(wrapper).toMatchSnapshot();
     expect(wrapper.find('p').text()).toBe('TEXT');
   });
 });

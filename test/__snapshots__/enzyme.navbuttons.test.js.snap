@@ -1,0 +1,97 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<NavButtons /> Back button should be disabled when there is no previous page 1`] = `
+<div
+  className="nav_buttons"
+>
+  <a
+    className="disable"
+    href="#"
+  >
+    <FontAwesome
+      name="chevron-left"
+    />
+  </a>
+  <a
+    className="disable"
+    href="#"
+  >
+    <FontAwesome
+      name="chevron-right"
+    />
+  </a>
+</div>
+`;
+
+exports[`<NavButtons /> Forward button should be disabled when there is no entry in history stack after current page 1`] = `
+<div
+  className="nav_buttons"
+>
+  <a
+    className=""
+    href="#"
+    onClick={[MockFunction]}
+  >
+    <FontAwesome
+      name="chevron-left"
+    />
+  </a>
+  <a
+    className="disable"
+    href="#"
+  >
+    <FontAwesome
+      name="chevron-right"
+    />
+  </a>
+</div>
+`;
+
+exports[`<NavButtons /> Test back button 1`] = `
+<div
+  className="nav_buttons"
+>
+  <a
+    className=""
+    href="#"
+    onClick={[MockFunction]}
+  >
+    <FontAwesome
+      name="chevron-left"
+    />
+  </a>
+  <a
+    className="disable"
+    href="#"
+  >
+    <FontAwesome
+      name="chevron-right"
+    />
+  </a>
+</div>
+`;
+
+exports[`<NavButtons /> Test forward button 1`] = `
+<div
+  className="nav_buttons"
+>
+  <a
+    className=""
+    href="#"
+    onClick={[MockFunction]}
+  >
+    <FontAwesome
+      name="chevron-left"
+    />
+  </a>
+  <a
+    className=""
+    href="#"
+    onClick={[MockFunction]}
+  >
+    <FontAwesome
+      name="chevron-right"
+    />
+  </a>
+</div>
+`;

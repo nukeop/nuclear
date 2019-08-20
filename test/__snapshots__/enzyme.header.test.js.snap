@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Header /> renders a header with children 1`] = `
+<div
+  className="header_container"
+>
+  test
+</div>
+`;
+
+exports[`<Header /> renders a header with no children 1`] = `
+<div
+  className="header_container"
+/>
+`;

@@ -21,6 +21,7 @@ describe('Back button onClick', () => {
   it('has an onclick event that gets triggered', () => {
     const spy = jest.fn();
     const wrapper = shallow(<PlayerControls back={spy} />);
+    expect(wrapper).toMatchSnapshot();
     wrapper.find(PlayerButton).first().simulate('click');
     expect(spy).toHaveBeenCalled();
   });
@@ -30,6 +31,7 @@ describe('Forward button onClick', () => {
   it('has an onclick event that gets triggered', () => {
     const spy = jest.fn();
     const wrapper = shallow(<PlayerControls forward={spy} />);
+    expect(wrapper).toMatchSnapshot();
     wrapper.find(PlayerButton).last().simulate('click');
     expect(spy).toHaveBeenCalled();
   });
@@ -38,6 +40,7 @@ describe('Forward button onClick', () => {
 describe('<PlayPauseButton/> loading', () => {
   it('Loading indicator showing', () => {
     const wrapper = mount(<PlayPauseButton loading={true} playing={false} onClick={undefined} />);
+    expect(wrapper).toMatchSnapshot();
     expect(wrapper.find(FontAwesome).prop('name')).toBe('spinner');
   });
 });
@@ -45,6 +48,7 @@ describe('<PlayPauseButton/> loading', () => {
 describe('<PlayPauseButton/> playing', () => {
   it('Shows pause button', () => {
     const wrapper = mount(<PlayPauseButton loading={false} playing={true} onClick={undefined} />);
+    expect(wrapper).toMatchSnapshot();
     expect(wrapper.find(FontAwesome).prop('name')).toBe('pause');
   });
 });
@@ -52,6 +56,7 @@ describe('<PlayPauseButton/> playing', () => {
 describe('<PlayPauseButton/> ready to play', () => {
   it('Shows play button', () => {
     const wrapper = mount(<PlayPauseButton loading={false} playing={false} onClick={undefined} />);
+    expect(wrapper).toMatchSnapshot();
     expect(wrapper.find(FontAwesome).prop('name')).toEqual('play');
   });
 });
@@ -60,6 +65,7 @@ describe('<PlayPauseButton/> onClick', () => {
   it('Shows play button', () => {
     const spy = jest.fn();
     const wrapper = mount(<PlayPauseButton loading={false} playing={false} onClick={spy} />);
+    expect(wrapper).toMatchSnapshot();
     wrapper.find('a').simulate('click');
     expect(spy).toHaveBeenCalled();
   });

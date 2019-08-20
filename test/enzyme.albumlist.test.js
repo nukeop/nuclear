@@ -29,14 +29,14 @@ describe('<AlbumList />', () => {
 
   it('Should render loader when there is no album', () => {
     const wrapper = shallow(<AlbumList />);
-
+    expect(wrapper).toMatchSnapshot();
     expect(wrapper.exists(Loader)).toBe(true);
   });
 
   it('Should render given albums', () => {
     const wrapper = shallow(<AlbumList albums={mockedAlbums} />);
     const cardsProps = wrapper.find(Card).map(card => card.props());
-
+    expect(wrapper).toMatchSnapshot();
     expect(mockedAlbums.every(({ title, thumb }, i) =>
       cardsProps[i].header === title && cardsProps[i].image === thumb
     )).toBe(true);
@@ -48,6 +48,7 @@ describe('<AlbumList />', () => {
     const wrapper = shallow(
       <AlbumList history={fakeHistory} albumInfoSearch={albumInfoSearch} />
     );
+    expect(wrapper).toMatchSnapshot();
     const instance = wrapper.instance();
 
     instance.albumInfoSearch('ALBUM_ID', 'RELEASE_TYPE');

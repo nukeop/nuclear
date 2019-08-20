@@ -14,14 +14,15 @@ describe('<HelpModal />', () => {
 
   it('Test handleOpen', () => {
     const wrapper = mount(<HelpModal />);
-    wrapper.find(HelpButton).simulate('click');  
+    wrapper.find(HelpButton).simulate('click'); 
+    expect(wrapper).toMatchSnapshot(); 
     expect(wrapper.find(HelpButton)).toExist();
     expect(wrapper.find(Modal).prop('open')).toBe(true);
   });
 
   it('Test handleClose', () => {
     const wrapper = mount(<HelpModal />);
-
+    expect(wrapper).toMatchSnapshot();
     wrapper.find(Modal).prop('onClose')();
     expect(wrapper.find(Modal).prop('open')).toBe(false);
   });

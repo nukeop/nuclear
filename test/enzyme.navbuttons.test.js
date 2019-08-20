@@ -16,7 +16,7 @@ describe('<NavButtons />', () => {
   it('Test back button', () => {
     history.index = 2;
     const wrapper = shallow(<NavButtons history={history} />);
-
+    expect(wrapper).toMatchSnapshot();
     wrapper.at(0).childAt(0).simulate('click');
     expect(history.goBack).toHaveBeenCalled();
   });
@@ -25,7 +25,7 @@ describe('<NavButtons />', () => {
     history.index = 2;
     history.length = 4;
     const wrapper = shallow(<NavButtons history={history} />);
-
+    expect(wrapper).toMatchSnapshot();
     wrapper.at(0).childAt(1).simulate('click');
     expect(history.goForward).toHaveBeenCalled();
   });
@@ -33,7 +33,7 @@ describe('<NavButtons />', () => {
   it('Back button should be disabled when there is no previous page', () => {
     history.index = 1;
     const wrapper = shallow(<NavButtons history={history} />);
-
+    expect(wrapper).toMatchSnapshot();
     expect(wrapper.at(0).childAt(0).hasClass('disable')).toBe(true);
   });
 
@@ -41,7 +41,7 @@ describe('<NavButtons />', () => {
     history.index = 3;
     history.length = 4;
     const wrapper = shallow(<NavButtons history={history} />);
-
+    expect(wrapper).toMatchSnapshot();
     expect(wrapper.at(0).childAt(1).hasClass('disable')).toBe(true);
   });
 });

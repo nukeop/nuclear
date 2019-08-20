@@ -7,11 +7,13 @@ describe('<VerticalPanel />', () => {
   it('renders with correct className', () => {
     const className = 'wrapper';
     const wrapper = shallow(<VerticalPanel className={className} />);
+    expect(wrapper).toMatchSnapshot();
     expect(wrapper.closest('div').hasClass(className)).toBe(true);
   });
 
   it('renders with no children', () => {
     const wrapper = shallow(<VerticalPanel />);
+    expect(wrapper).toMatchSnapshot();
     expect(wrapper.children().length).toBe(0);
   });
 
@@ -22,6 +24,7 @@ describe('<VerticalPanel />', () => {
         <div>Second</div>
       </VerticalPanel>
     );
+    expect(wrapper).toMatchSnapshot();
     expect(wrapper.children().length).toBe(2);
   });
 });

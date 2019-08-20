@@ -9,6 +9,7 @@ import WindowControls from '../app/components/WindowControls';
 describe('<WindowControls />', () => {
   it('renders with window buttons', () => {
     const wrapper = shallow(<WindowControls />);
+    expect(wrapper).toMatchSnapshot();
     expect(wrapper.containsMatchingElement(<WindowButton />)).toBe(true);
   });
 });
@@ -25,7 +26,7 @@ describe('<WindowButton />', () => {
     const wrapper = shallow(
       <WindowButton color={color} icon={icon} onClick={onClick} />
     );
-
+    expect(wrapper).toMatchSnapshot();
     wrapper.simulate('click');
     expect(testVal).toBe('clicked');
   });
@@ -34,7 +35,7 @@ describe('<WindowButton />', () => {
     const wrapper = shallow(
       <WindowButton color={color} icon={icon} onClick={() => {}} />
     );
-
+    expect(wrapper).toMatchSnapshot();
     expect(
       wrapper
         .find(FontAwesome)

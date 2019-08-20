@@ -1,29 +1,21 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-// import proxyquire from 'proxyquire';
+import {Provider} from 'react-redux';
+import { mount } from 'enzyme';
+jest.mock('../app/persistence/store', () => {
+  return null;
+});
+import FavoriteTracksView,  {EmptyState} from '../app/components/FavoriteTracksView';
 
-// const electronStoreStub = function () {
-//   this.get = () => {};
-//   this.set = () => {};
-// };
-// electronStoreStub['@global'] = true;
+const mockStore = () => ({
+  getState: jest.fn(() => ({plugin: {plugins: {musicSources: []}}})),
+  subscribe: jest.fn(),
+  dispatch: jest.fn()
+});
 
-// const {
-//   default: FavoriteTracksView,
-//   EmptyState
-// } = proxyquire.noCallThru().load('../app/components/FavoriteTracksView', {
-//   'electron-store': electronStoreStub,
-//   'react-i18next': {
-//     useTranslation: () => ({
-//       t: () => ''
-//     })
-//   }
-// });
-
-describe.skip('<FavoriteTracksView />', () => {
+describe('<FavoriteTracksView />', () => {  
   it('Should render <EmptyState /> when there is no track', () => {
-    const wrapper = shallow(<FavoriteTracksView />);
-
+    const wrapper = mount(<Provider store={mockStore()}><FavoriteTracksView /></Provider>);
+    expect(wrapper.find(FavoriteTracksView)).toMatchSnapshot();
     expect(wrapper.exists(EmptyState)).toBe(true);
   });
 
@@ -42,9 +34,9 @@ describe.skip('<FavoriteTracksView />', () => {
         name: 'TRACK3'
       }
     ];
-    const wrapper = shallow(<FavoriteTracksView tracks={mockedTracks} />);
+    const wrapper = mount(<Provider store={mockStore()}><FavoriteTracksView tracks={mockedTracks} /></Provider>);
     const renderedTracks = wrapper.find('tbody').children().map(item => item.prop('track'));
-
-    expect(renderedTracks).toBeEqual(renderedTracks);
+    expect(wrapper.find(FavoriteTracksView)).toMatchSnapshot();
+    expect(renderedTracks).toEqual(mockedTracks);
   });
 });

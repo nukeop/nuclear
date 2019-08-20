@@ -1,0 +1,1245 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<FavoriteTracksView /> Should display given tracks 1`] = `
+<FavoriteTracksView
+  removeFavoriteTrack={[Function]}
+  tracks={
+    Array [
+      Object {
+        "artist": Object {
+          "name": "ARTIST1",
+        },
+        "name": "TRACK1",
+      },
+      Object {
+        "artist": Object {
+          "name": "ARTIST2",
+        },
+        "name": "TRACK2",
+      },
+      Object {
+        "artist": Object {
+          "name": "ARTIST3",
+        },
+        "name": "TRACK3",
+      },
+    ]
+  }
+>
+  <div
+    className="favorite_tracks_view"
+  >
+    <Header>
+      <div
+        className="header_container"
+      >
+        header
+      </div>
+    </Header>
+    <Segment
+      className="tracks_container"
+    >
+      <div
+        className="ui segment tracks_container"
+      >
+        <table>
+          <thead>
+            <tr>
+              <th />
+              <th>
+                <Icon
+                  as="i"
+                  name="image"
+                >
+                  <i
+                    aria-hidden="true"
+                    className="image icon"
+                  />
+                </Icon>
+              </th>
+              <th>
+                artist
+              </th>
+              <th>
+                title
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <Connect(TrackRow)
+              displayArtist={true}
+              displayCover={true}
+              index={0}
+              key="favorite-track-0"
+              onDelete={[Function]}
+              track={
+                Object {
+                  "artist": Object {
+                    "name": "ARTIST1",
+                  },
+                  "name": "TRACK1",
+                }
+              }
+              withAddToFavorites={false}
+              withDeleteButton={true}
+            >
+              <TrackRow
+                actions={
+                  Object {
+                    "addPlaylistTracksToQueue": [Function],
+                    "addToQueue": [Function],
+                    "clearQueue": [Function],
+                    "nextSong": [Function],
+                    "playTrack": [Function],
+                    "previousSong": [Function],
+                    "removeFromQueue": [Function],
+                    "rerollTrack": [Function],
+                    "selectSong": [Function],
+                    "swapSongs": [Function],
+                  }
+                }
+                displayArtist={true}
+                displayCover={true}
+                index={0}
+                musicSources={Array []}
+                onDelete={[Function]}
+                track={
+                  Object {
+                    "artist": Object {
+                      "name": "ARTIST1",
+                    },
+                    "name": "TRACK1",
+                  }
+                }
+                withAddToDownloads={true}
+                withAddToFavorites={false}
+                withAddToQueue={true}
+                withDeleteButton={true}
+                withPlayNow={true}
+              >
+                <Connect(TrackPopupContainer)
+                  artist="ARTIST1"
+                  title="TRACK1"
+                  track={
+                    Object {
+                      "artist": Object {
+                        "name": "ARTIST1",
+                      },
+                      "name": "TRACK1",
+                    }
+                  }
+                  trigger={
+                    <tr
+                      className="track"
+                      onDoubleClick={[Function]}
+                    >
+                      <td
+                        className="track_row_buttons"
+                      >
+                        <a
+                          onClick={[Function]}
+                        >
+                          <Icon
+                            as="i"
+                            name="close"
+                          />
+                        </a>
+                      </td>
+                      <td
+                        className="track_thumbnail"
+                      >
+                        <img />
+                      </td>
+                      <td
+                        className="track_artist"
+                      >
+                        ARTIST1
+                      </td>
+                      <td
+                        className="track_name"
+                      >
+                        TRACK1
+                      </td>
+                    </tr>
+                  }
+                  withAddToDownloads={true}
+                  withAddToFavorites={false}
+                  withAddToQueue={true}
+                  withPlayNow={true}
+                >
+                  <TrackPopupContainer
+                    actions={
+                      Object {
+                        "addFavoriteAlbum": [Function],
+                        "addFavoriteTrack": [Function],
+                        "addNotification": [Function],
+                        "addPlaylistTracksToQueue": [Function],
+                        "addToDownloads": [Function],
+                        "addToQueue": [Function],
+                        "clearFinishedDownloads": [Function],
+                        "clearQueue": [Function],
+                        "error": [Function],
+                        "info": [Function],
+                        "mute": [Function],
+                        "nextSong": [Function],
+                        "notify": [Function],
+                        "onDownloadFinished": [Function],
+                        "onDownloadProgress": [Function],
+                        "onDownloadStarted": [Function],
+                        "pausePlayback": [Function],
+                        "playTrack": [Function],
+                        "previousSong": [Function],
+                        "readFavorites": [Function],
+                        "removeFavoriteAlbum": [Function],
+                        "removeFavoriteTrack": [Function],
+                        "removeFromQueue": [Function],
+                        "removeNotification": [Function],
+                        "rerollTrack": [Function],
+                        "selectSong": [Function],
+                        "startPlayback": [Function],
+                        "success": [Function],
+                        "swapSongs": [Function],
+                        "toggleMute": [Function],
+                        "togglePlayback": [Function],
+                        "unMute": [Function],
+                        "updatePlaybackProgress": [Function],
+                        "updateSeek": [Function],
+                        "updateStreamLoading": [Function],
+                        "updateVolume": [Function],
+                        "warning": [Function],
+                      }
+                    }
+                    artist="ARTIST1"
+                    musicSources={Array []}
+                    settings={Object {}}
+                    thumb=""
+                    title="TRACK1"
+                    track={
+                      Object {
+                        "artist": Object {
+                          "name": "ARTIST1",
+                        },
+                        "name": "TRACK1",
+                      }
+                    }
+                    trigger={
+                      <tr
+                        className="track"
+                        onDoubleClick={[Function]}
+                      >
+                        <td
+                          className="track_row_buttons"
+                        >
+                          <a
+                            onClick={[Function]}
+                          >
+                            <Icon
+                              as="i"
+                              name="close"
+                            />
+                          </a>
+                        </td>
+                        <td
+                          className="track_thumbnail"
+                        >
+                          <img />
+                        </td>
+                        <td
+                          className="track_artist"
+                        >
+                          ARTIST1
+                        </td>
+                        <td
+                          className="track_name"
+                        >
+                          TRACK1
+                        </td>
+                      </tr>
+                    }
+                    withAddToDownloads={true}
+                    withAddToFavorites={false}
+                    withAddToQueue={true}
+                    withPlayNow={true}
+                  >
+                    <ContextPopup
+                      artist="ARTIST1"
+                      thumb=""
+                      title="TRACK1"
+                      trigger={
+                        <tr
+                          className="track"
+                          onDoubleClick={[Function]}
+                        >
+                          <td
+                            className="track_row_buttons"
+                          >
+                            <a
+                              onClick={[Function]}
+                            >
+                              <Icon
+                                as="i"
+                                name="close"
+                              />
+                            </a>
+                          </td>
+                          <td
+                            className="track_thumbnail"
+                          >
+                            <img />
+                          </td>
+                          <td
+                            className="track_artist"
+                          >
+                            ARTIST1
+                          </td>
+                          <td
+                            className="track_name"
+                          >
+                            TRACK1
+                          </td>
+                        </tr>
+                      }
+                    >
+                      <Popup
+                        className="popup_content"
+                        hideOnScroll={true}
+                        keepInViewPort={true}
+                        on="click"
+                        onClose={[Function]}
+                        onOpen={[Function]}
+                        open={false}
+                        position="top left"
+                        trigger={
+                          <tr
+                            className="track"
+                            onDoubleClick={[Function]}
+                          >
+                            <td
+                              className="track_row_buttons"
+                            >
+                              <a
+                                onClick={[Function]}
+                              >
+                                <Icon
+                                  as="i"
+                                  name="close"
+                                />
+                              </a>
+                            </td>
+                            <td
+                              className="track_thumbnail"
+                            >
+                              <img />
+                            </td>
+                            <td
+                              className="track_artist"
+                            >
+                              ARTIST1
+                            </td>
+                            <td
+                              className="track_name"
+                            >
+                              TRACK1
+                            </td>
+                          </tr>
+                        }
+                      >
+                        <Portal
+                          closeOnDocumentClick={true}
+                          closeOnEscape={true}
+                          closeOnTriggerClick={true}
+                          eventPool="default"
+                          onClose={[Function]}
+                          onMount={[Function]}
+                          onOpen={[Function]}
+                          onUnmount={[Function]}
+                          open={false}
+                          openOnTriggerClick={true}
+                          trigger={
+                            <tr
+                              className="track"
+                              onDoubleClick={[Function]}
+                            >
+                              <td
+                                className="track_row_buttons"
+                              >
+                                <a
+                                  onClick={[Function]}
+                                >
+                                  <Icon
+                                    as="i"
+                                    name="close"
+                                  />
+                                </a>
+                              </td>
+                              <td
+                                className="track_thumbnail"
+                              >
+                                <img />
+                              </td>
+                              <td
+                                className="track_artist"
+                              >
+                                ARTIST1
+                              </td>
+                              <td
+                                className="track_name"
+                              >
+                                TRACK1
+                              </td>
+                            </tr>
+                          }
+                          triggerRef={[Function]}
+                        >
+                          <Ref
+                            innerRef={[Function]}
+                            key="trigger"
+                          >
+                            <tr
+                              className="track"
+                              onBlur={[Function]}
+                              onClick={[Function]}
+                              onDoubleClick={[Function]}
+                              onFocus={[Function]}
+                              onMouseEnter={[Function]}
+                              onMouseLeave={[Function]}
+                            >
+                              <td
+                                className="track_row_buttons"
+                              >
+                                <a
+                                  onClick={[Function]}
+                                >
+                                  <Icon
+                                    as="i"
+                                    name="close"
+                                  >
+                                    <i
+                                      aria-hidden="true"
+                                      className="close icon"
+                                    />
+                                  </Icon>
+                                </a>
+                              </td>
+                              <td
+                                className="track_thumbnail"
+                              >
+                                <img />
+                              </td>
+                              <td
+                                className="track_artist"
+                              >
+                                ARTIST1
+                              </td>
+                              <td
+                                className="track_name"
+                              >
+                                TRACK1
+                              </td>
+                            </tr>
+                          </Ref>
+                        </Portal>
+                      </Popup>
+                    </ContextPopup>
+                  </TrackPopupContainer>
+                </Connect(TrackPopupContainer)>
+              </TrackRow>
+            </Connect(TrackRow)>
+            <Connect(TrackRow)
+              displayArtist={true}
+              displayCover={true}
+              index={1}
+              key="favorite-track-1"
+              onDelete={[Function]}
+              track={
+                Object {
+                  "artist": Object {
+                    "name": "ARTIST2",
+                  },
+                  "name": "TRACK2",
+                }
+              }
+              withAddToFavorites={false}
+              withDeleteButton={true}
+            >
+              <TrackRow
+                actions={
+                  Object {
+                    "addPlaylistTracksToQueue": [Function],
+                    "addToQueue": [Function],
+                    "clearQueue": [Function],
+                    "nextSong": [Function],
+                    "playTrack": [Function],
+                    "previousSong": [Function],
+                    "removeFromQueue": [Function],
+                    "rerollTrack": [Function],
+                    "selectSong": [Function],
+                    "swapSongs": [Function],
+                  }
+                }
+                displayArtist={true}
+                displayCover={true}
+                index={1}
+                musicSources={Array []}
+                onDelete={[Function]}
+                track={
+                  Object {
+                    "artist": Object {
+                      "name": "ARTIST2",
+                    },
+                    "name": "TRACK2",
+                  }
+                }
+                withAddToDownloads={true}
+                withAddToFavorites={false}
+                withAddToQueue={true}
+                withDeleteButton={true}
+                withPlayNow={true}
+              >
+                <Connect(TrackPopupContainer)
+                  artist="ARTIST2"
+                  title="TRACK2"
+                  track={
+                    Object {
+                      "artist": Object {
+                        "name": "ARTIST2",
+                      },
+                      "name": "TRACK2",
+                    }
+                  }
+                  trigger={
+                    <tr
+                      className="track"
+                      onDoubleClick={[Function]}
+                    >
+                      <td
+                        className="track_row_buttons"
+                      >
+                        <a
+                          onClick={[Function]}
+                        >
+                          <Icon
+                            as="i"
+                            name="close"
+                          />
+                        </a>
+                      </td>
+                      <td
+                        className="track_thumbnail"
+                      >
+                        <img />
+                      </td>
+                      <td
+                        className="track_artist"
+                      >
+                        ARTIST2
+                      </td>
+                      <td
+                        className="track_name"
+                      >
+                        TRACK2
+                      </td>
+                    </tr>
+                  }
+                  withAddToDownloads={true}
+                  withAddToFavorites={false}
+                  withAddToQueue={true}
+                  withPlayNow={true}
+                >
+                  <TrackPopupContainer
+                    actions={
+                      Object {
+                        "addFavoriteAlbum": [Function],
+                        "addFavoriteTrack": [Function],
+                        "addNotification": [Function],
+                        "addPlaylistTracksToQueue": [Function],
+                        "addToDownloads": [Function],
+                        "addToQueue": [Function],
+                        "clearFinishedDownloads": [Function],
+                        "clearQueue": [Function],
+                        "error": [Function],
+                        "info": [Function],
+                        "mute": [Function],
+                        "nextSong": [Function],
+                        "notify": [Function],
+                        "onDownloadFinished": [Function],
+                        "onDownloadProgress": [Function],
+                        "onDownloadStarted": [Function],
+                        "pausePlayback": [Function],
+                        "playTrack": [Function],
+                        "previousSong": [Function],
+                        "readFavorites": [Function],
+                        "removeFavoriteAlbum": [Function],
+                        "removeFavoriteTrack": [Function],
+                        "removeFromQueue": [Function],
+                        "removeNotification": [Function],
+                        "rerollTrack": [Function],
+                        "selectSong": [Function],
+                        "startPlayback": [Function],
+                        "success": [Function],
+                        "swapSongs": [Function],
+                        "toggleMute": [Function],
+                        "togglePlayback": [Function],
+                        "unMute": [Function],
+                        "updatePlaybackProgress": [Function],
+                        "updateSeek": [Function],
+                        "updateStreamLoading": [Function],
+                        "updateVolume": [Function],
+                        "warning": [Function],
+                      }
+                    }
+                    artist="ARTIST2"
+                    musicSources={Array []}
+                    settings={Object {}}
+                    thumb=""
+                    title="TRACK2"
+                    track={
+                      Object {
+                        "artist": Object {
+                          "name": "ARTIST2",
+                        },
+                        "name": "TRACK2",
+                      }
+                    }
+                    trigger={
+                      <tr
+                        className="track"
+                        onDoubleClick={[Function]}
+                      >
+                        <td
+                          className="track_row_buttons"
+                        >
+                          <a
+                            onClick={[Function]}
+                          >
+                            <Icon
+                              as="i"
+                              name="close"
+                            />
+                          </a>
+                        </td>
+                        <td
+                          className="track_thumbnail"
+                        >
+                          <img />
+                        </td>
+                        <td
+                          className="track_artist"
+                        >
+                          ARTIST2
+                        </td>
+                        <td
+                          className="track_name"
+                        >
+                          TRACK2
+                        </td>
+                      </tr>
+                    }
+                    withAddToDownloads={true}
+                    withAddToFavorites={false}
+                    withAddToQueue={true}
+                    withPlayNow={true}
+                  >
+                    <ContextPopup
+                      artist="ARTIST2"
+                      thumb=""
+                      title="TRACK2"
+                      trigger={
+                        <tr
+                          className="track"
+                          onDoubleClick={[Function]}
+                        >
+                          <td
+                            className="track_row_buttons"
+                          >
+                            <a
+                              onClick={[Function]}
+                            >
+                              <Icon
+                                as="i"
+                                name="close"
+                              />
+                            </a>
+                          </td>
+                          <td
+                            className="track_thumbnail"
+                          >
+                            <img />
+                          </td>
+                          <td
+                            className="track_artist"
+                          >
+                            ARTIST2
+                          </td>
+                          <td
+                            className="track_name"
+                          >
+                            TRACK2
+                          </td>
+                        </tr>
+                      }
+                    >
+                      <Popup
+                        className="popup_content"
+                        hideOnScroll={true}
+                        keepInViewPort={true}
+                        on="click"
+                        onClose={[Function]}
+                        onOpen={[Function]}
+                        open={false}
+                        position="top left"
+                        trigger={
+                          <tr
+                            className="track"
+                            onDoubleClick={[Function]}
+                          >
+                            <td
+                              className="track_row_buttons"
+                            >
+                              <a
+                                onClick={[Function]}
+                              >
+                                <Icon
+                                  as="i"
+                                  name="close"
+                                />
+                              </a>
+                            </td>
+                            <td
+                              className="track_thumbnail"
+                            >
+                              <img />
+                            </td>
+                            <td
+                              className="track_artist"
+                            >
+                              ARTIST2
+                            </td>
+                            <td
+                              className="track_name"
+                            >
+                              TRACK2
+                            </td>
+                          </tr>
+                        }
+                      >
+                        <Portal
+                          closeOnDocumentClick={true}
+                          closeOnEscape={true}
+                          closeOnTriggerClick={true}
+                          eventPool="default"
+                          onClose={[Function]}
+                          onMount={[Function]}
+                          onOpen={[Function]}
+                          onUnmount={[Function]}
+                          open={false}
+                          openOnTriggerClick={true}
+                          trigger={
+                            <tr
+                              className="track"
+                              onDoubleClick={[Function]}
+                            >
+                              <td
+                                className="track_row_buttons"
+                              >
+                                <a
+                                  onClick={[Function]}
+                                >
+                                  <Icon
+                                    as="i"
+                                    name="close"
+                                  />
+                                </a>
+                              </td>
+                              <td
+                                className="track_thumbnail"
+                              >
+                                <img />
+                              </td>
+                              <td
+                                className="track_artist"
+                              >
+                                ARTIST2
+                              </td>
+                              <td
+                                className="track_name"
+                              >
+                                TRACK2
+                              </td>
+                            </tr>
+                          }
+                          triggerRef={[Function]}
+                        >
+                          <Ref
+                            innerRef={[Function]}
+                            key="trigger"
+                          >
+                            <tr
+                              className="track"
+                              onBlur={[Function]}
+                              onClick={[Function]}
+                              onDoubleClick={[Function]}
+                              onFocus={[Function]}
+                              onMouseEnter={[Function]}
+                              onMouseLeave={[Function]}
+                            >
+                              <td
+                                className="track_row_buttons"
+                              >
+                                <a
+                                  onClick={[Function]}
+                                >
+                                  <Icon
+                                    as="i"
+                                    name="close"
+                                  >
+                                    <i
+                                      aria-hidden="true"
+                                      className="close icon"
+                                    />
+                                  </Icon>
+                                </a>
+                              </td>
+                              <td
+                                className="track_thumbnail"
+                              >
+                                <img />
+                              </td>
+                              <td
+                                className="track_artist"
+                              >
+                                ARTIST2
+                              </td>
+                              <td
+                                className="track_name"
+                              >
+                                TRACK2
+                              </td>
+                            </tr>
+                          </Ref>
+                        </Portal>
+                      </Popup>
+                    </ContextPopup>
+                  </TrackPopupContainer>
+                </Connect(TrackPopupContainer)>
+              </TrackRow>
+            </Connect(TrackRow)>
+            <Connect(TrackRow)
+              displayArtist={true}
+              displayCover={true}
+              index={2}
+              key="favorite-track-2"
+              onDelete={[Function]}
+              track={
+                Object {
+                  "artist": Object {
+                    "name": "ARTIST3",
+                  },
+                  "name": "TRACK3",
+                }
+              }
+              withAddToFavorites={false}
+              withDeleteButton={true}
+            >
+              <TrackRow
+                actions={
+                  Object {
+                    "addPlaylistTracksToQueue": [Function],
+                    "addToQueue": [Function],
+                    "clearQueue": [Function],
+                    "nextSong": [Function],
+                    "playTrack": [Function],
+                    "previousSong": [Function],
+                    "removeFromQueue": [Function],
+                    "rerollTrack": [Function],
+                    "selectSong": [Function],
+                    "swapSongs": [Function],
+                  }
+                }
+                displayArtist={true}
+                displayCover={true}
+                index={2}
+                musicSources={Array []}
+                onDelete={[Function]}
+                track={
+                  Object {
+                    "artist": Object {
+                      "name": "ARTIST3",
+                    },
+                    "name": "TRACK3",
+                  }
+                }
+                withAddToDownloads={true}
+                withAddToFavorites={false}
+                withAddToQueue={true}
+                withDeleteButton={true}
+                withPlayNow={true}
+              >
+                <Connect(TrackPopupContainer)
+                  artist="ARTIST3"
+                  title="TRACK3"
+                  track={
+                    Object {
+                      "artist": Object {
+                        "name": "ARTIST3",
+                      },
+                      "name": "TRACK3",
+                    }
+                  }
+                  trigger={
+                    <tr
+                      className="track"
+                      onDoubleClick={[Function]}
+                    >
+                      <td
+                        className="track_row_buttons"
+                      >
+                        <a
+                          onClick={[Function]}
+                        >
+                          <Icon
+                            as="i"
+                            name="close"
+                          />
+                        </a>
+                      </td>
+                      <td
+                        className="track_thumbnail"
+                      >
+                        <img />
+                      </td>
+                      <td
+                        className="track_artist"
+                      >
+                        ARTIST3
+                      </td>
+                      <td
+                        className="track_name"
+                      >
+                        TRACK3
+                      </td>
+                    </tr>
+                  }
+                  withAddToDownloads={true}
+                  withAddToFavorites={false}
+                  withAddToQueue={true}
+                  withPlayNow={true}
+                >
+                  <TrackPopupContainer
+                    actions={
+                      Object {
+                        "addFavoriteAlbum": [Function],
+                        "addFavoriteTrack": [Function],
+                        "addNotification": [Function],
+                        "addPlaylistTracksToQueue": [Function],
+                        "addToDownloads": [Function],
+                        "addToQueue": [Function],
+                        "clearFinishedDownloads": [Function],
+                        "clearQueue": [Function],
+                        "error": [Function],
+                        "info": [Function],
+                        "mute": [Function],
+                        "nextSong": [Function],
+                        "notify": [Function],
+                        "onDownloadFinished": [Function],
+                        "onDownloadProgress": [Function],
+                        "onDownloadStarted": [Function],
+                        "pausePlayback": [Function],
+                        "playTrack": [Function],
+                        "previousSong": [Function],
+                        "readFavorites": [Function],
+                        "removeFavoriteAlbum": [Function],
+                        "removeFavoriteTrack": [Function],
+                        "removeFromQueue": [Function],
+                        "removeNotification": [Function],
+                        "rerollTrack": [Function],
+                        "selectSong": [Function],
+                        "startPlayback": [Function],
+                        "success": [Function],
+                        "swapSongs": [Function],
+                        "toggleMute": [Function],
+                        "togglePlayback": [Function],
+                        "unMute": [Function],
+                        "updatePlaybackProgress": [Function],
+                        "updateSeek": [Function],
+                        "updateStreamLoading": [Function],
+                        "updateVolume": [Function],
+                        "warning": [Function],
+                      }
+                    }
+                    artist="ARTIST3"
+                    musicSources={Array []}
+                    settings={Object {}}
+                    thumb=""
+                    title="TRACK3"
+                    track={
+                      Object {
+                        "artist": Object {
+                          "name": "ARTIST3",
+                        },
+                        "name": "TRACK3",
+                      }
+                    }
+                    trigger={
+                      <tr
+                        className="track"
+                        onDoubleClick={[Function]}
+                      >
+                        <td
+                          className="track_row_buttons"
+                        >
+                          <a
+                            onClick={[Function]}
+                          >
+                            <Icon
+                              as="i"
+                              name="close"
+                            />
+                          </a>
+                        </td>
+                        <td
+                          className="track_thumbnail"
+                        >
+                          <img />
+                        </td>
+                        <td
+                          className="track_artist"
+                        >
+                          ARTIST3
+                        </td>
+                        <td
+                          className="track_name"
+                        >
+                          TRACK3
+                        </td>
+                      </tr>
+                    }
+                    withAddToDownloads={true}
+                    withAddToFavorites={false}
+                    withAddToQueue={true}
+                    withPlayNow={true}
+                  >
+                    <ContextPopup
+                      artist="ARTIST3"
+                      thumb=""
+                      title="TRACK3"
+                      trigger={
+                        <tr
+                          className="track"
+                          onDoubleClick={[Function]}
+                        >
+                          <td
+                            className="track_row_buttons"
+                          >
+                            <a
+                              onClick={[Function]}
+                            >
+                              <Icon
+                                as="i"
+                                name="close"
+                              />
+                            </a>
+                          </td>
+                          <td
+                            className="track_thumbnail"
+                          >
+                            <img />
+                          </td>
+                          <td
+                            className="track_artist"
+                          >
+                            ARTIST3
+                          </td>
+                          <td
+                            className="track_name"
+                          >
+                            TRACK3
+                          </td>
+                        </tr>
+                      }
+                    >
+                      <Popup
+                        className="popup_content"
+                        hideOnScroll={true}
+                        keepInViewPort={true}
+                        on="click"
+                        onClose={[Function]}
+                        onOpen={[Function]}
+                        open={false}
+                        position="top left"
+                        trigger={
+                          <tr
+                            className="track"
+                            onDoubleClick={[Function]}
+                          >
+                            <td
+                              className="track_row_buttons"
+                            >
+                              <a
+                                onClick={[Function]}
+                              >
+                                <Icon
+                                  as="i"
+                                  name="close"
+                                />
+                              </a>
+                            </td>
+                            <td
+                              className="track_thumbnail"
+                            >
+                              <img />
+                            </td>
+                            <td
+                              className="track_artist"
+                            >
+                              ARTIST3
+                            </td>
+                            <td
+                              className="track_name"
+                            >
+                              TRACK3
+                            </td>
+                          </tr>
+                        }
+                      >
+                        <Portal
+                          closeOnDocumentClick={true}
+                          closeOnEscape={true}
+                          closeOnTriggerClick={true}
+                          eventPool="default"
+                          onClose={[Function]}
+                          onMount={[Function]}
+                          onOpen={[Function]}
+                          onUnmount={[Function]}
+                          open={false}
+                          openOnTriggerClick={true}
+                          trigger={
+                            <tr
+                              className="track"
+                              onDoubleClick={[Function]}
+                            >
+                              <td
+                                className="track_row_buttons"
+                              >
+                                <a
+                                  onClick={[Function]}
+                                >
+                                  <Icon
+                                    as="i"
+                                    name="close"
+                                  />
+                                </a>
+                              </td>
+                              <td
+                                className="track_thumbnail"
+                              >
+                                <img />
+                              </td>
+                              <td
+                                className="track_artist"
+                              >
+                                ARTIST3
+                              </td>
+                              <td
+                                className="track_name"
+                              >
+                                TRACK3
+                              </td>
+                            </tr>
+                          }
+                          triggerRef={[Function]}
+                        >
+                          <Ref
+                            innerRef={[Function]}
+                            key="trigger"
+                          >
+                            <tr
+                              className="track"
+                              onBlur={[Function]}
+                              onClick={[Function]}
+                              onDoubleClick={[Function]}
+                              onFocus={[Function]}
+                              onMouseEnter={[Function]}
+                              onMouseLeave={[Function]}
+                            >
+                              <td
+                                className="track_row_buttons"
+                              >
+                                <a
+                                  onClick={[Function]}
+                                >
+                                  <Icon
+                                    as="i"
+                                    name="close"
+                                  >
+                                    <i
+                                      aria-hidden="true"
+                                      className="close icon"
+                                    />
+                                  </Icon>
+                                </a>
+                              </td>
+                              <td
+                                className="track_thumbnail"
+                              >
+                                <img />
+                              </td>
+                              <td
+                                className="track_artist"
+                              >
+                                ARTIST3
+                              </td>
+                              <td
+                                className="track_name"
+                              >
+                                TRACK3
+                              </td>
+                            </tr>
+                          </Ref>
+                        </Portal>
+                      </Popup>
+                    </ContextPopup>
+                  </TrackPopupContainer>
+                </Connect(TrackPopupContainer)>
+              </TrackRow>
+            </Connect(TrackRow)>
+          </tbody>
+        </table>
+      </div>
+    </Segment>
+  </div>
+</FavoriteTracksView>
+`;
+
+exports[`<FavoriteTracksView /> Should render <EmptyState /> when there is no track 1`] = `
+<FavoriteTracksView
+  removeFavoriteTrack={[Function]}
+  tracks={Array []}
+>
+  <div
+    className="favorite_tracks_view"
+  >
+    <EmptyState>
+      <div
+        className="empty_state"
+      >
+        <Icon
+          as="i"
+          name="star"
+        >
+          <i
+            aria-hidden="true"
+            className="star icon"
+          />
+        </Icon>
+        <h2>
+          empty
+        </h2>
+        <div>
+          empty-help
+        </div>
+      </div>
+    </EmptyState>
+  </div>
+</FavoriteTracksView>
+`;
