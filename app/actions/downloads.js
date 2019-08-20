@@ -1,3 +1,5 @@
+import { safeAddUuid } from './helpers';
+
 export const ADD_TO_DOWNLOADS = 'ADD_TO_DOWNLOADS';
 export const DOWNLOAD_STARTED = 'DOWNLOAD_STARTED';
 export const DOWNLOAD_PROGRESS = 'DOWNLOAD_PROGRESS';
@@ -5,13 +7,13 @@ export const DOWNLOAD_FINISHED = 'DOWNLOAD_FINISHED';
 export const DOWNLOAD_ERROR = 'DOWNLOAD_ERROR';
 export const CLEAR_FINISHED_DOWNLOADS = 'CLEAR_FINISHED_DOWNLOADS';
 
-export function addToDownloads(musicSources, track) {
+export function addToDownloads(musicSources, track) {  
   return {
     type: ADD_TO_DOWNLOADS,
     payload: { item: {
       status: 'Waiting',
       completion: 0,
-      track
+      track: safeAddUuid(track)
     } }
   };
 }

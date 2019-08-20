@@ -10,6 +10,7 @@ import * as FavoritesActions from '../../actions/favorites';
 import * as PlayerActions from '../../actions/player';
 import * as QueueActions from '../../actions/queue';
 import * as ToastActions from '../../actions/toasts';
+import { safeAddUuid } from '../../actions/helpers';
 
 import ContextPopup from '../../components/ContextPopup';
 import PopupButton from '../../components/ContextPopup/PopupButton';
@@ -88,8 +89,9 @@ const TrackPopupContainer = props => {
         withAddToDownloads &&
         <PopupButton
           onClick={() => {
-            ipcRenderer.send('start-download', track);
-            actions.addToDownloads(musicSources, track);
+            const clonedTrack = safeAddUuid(track);
+            ipcRenderer.send('start-download', clonedTrack);
+            actions.addToDownloads(musicSources, clonedTrack);
             actions.info(
               'Track added to downloads',
               `${artist} - ${title} ${t('download-added-long')}`,

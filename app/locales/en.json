@@ -7,6 +7,10 @@
     "year": "Year:",
     "tracks": "Tracks:",
     "song": "Song"
+    "queue": "Add album to queue",
+    "download": "Download",
+    "download-toast-title": "Album added to downloads",
+    "download-toast-content": "{{artist}} - {{title}} has been added to downloads."
   },
   "app": {
     "collection": "Collection",
@@ -131,7 +135,7 @@
     "dialog-trigger": "Save as playlist",
     "download": "Download",
     "download-toast-content": "{{artist}} - {{title}} has been added to downloads.",
-    "download-toast-title": "Track added to download",
+    "download-toast-title": "Track added to downloads",
     "favorite-add": "Add to favorites",
     "header": "Queue",
     "header-track": "Current track",

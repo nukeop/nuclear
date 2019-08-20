@@ -1,13 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import FontAwesome from 'react-fontawesome';
 import { Dimmer, Icon, Loader } from 'semantic-ui-react';
-import _ from 'lodash';
+import { ipcRenderer } from 'electron';
 import { withTranslation } from 'react-i18next';
+import _ from 'lodash';
 
 import ContextPopup from '../ContextPopup';
 import TrackRow from '../TrackRow';
 import * as Utils from '../../utils';
+import {safeAddUuid} from '../../actions/helpers';
 
 import styles from './styles.scss';
 import artPlaceholder from '../../../resources/media/art_placeholder.png';
@@ -35,17 +36,43 @@ class AlbumView extends React.Component {
     }
   }
 
-  addAlbumToQueue(album) {
+  addAlbumToQueue (album) {
+    const albumThumbnail = this.getAlbumImage(album);
     album.tracklist.map(track => {
       this.props.addToQueue(this.props.musicSources, {
         artist: album.artists[0].name,
         name: track.title,
-        thumbnail: album.images[0].uri
+        thumbnail: albumThumbnail
       });
     });
   }
 
-  artistInfoSearch(artistId) {
+  addAlbumToDownloads(album) {
+    const {
+      addToDownloads,
+      musicSources,
+      info,
+      settings,
+      t
+    } = this.props;
+    _.forEach(album.tracklist, track => {
+      const clonedTrack = safeAddUuid(track);
+      ipcRenderer.send('start-download', clonedTrack);
+      addToDownloads(musicSources, clonedTrack);
+    });
+
+    info(
+      t('download-toast-title'),
+      t('download-toast-content', {
+        artist: _.head(album.artists).name,
+        title: album.title
+      }),
+      <img src={this.getAlbumImage(album)}/>,
+      settings
+    );
+  }
+
+  artistInfoSearch (artistId) {
     this.props.artistInfoSearch(artistId);
     this.props.history.push('/artist/' + artistId);
   }
@@ -108,7 +135,7 @@ class AlbumView extends React.Component {
         href='#'
         className={styles.play_button}
       >
-        <FontAwesome name='play' /> {this.props.t('play')}
+        <Icon name='play' /> {this.props.t('play')}
       </a>
     );
   }
@@ -189,7 +216,7 @@ class AlbumView extends React.Component {
       track.duration = Utils.stringDurationToSeconds(track.duration);
     }
     _.set(track, 'name', track.title);
-    _.set(track, 'image[0][#text]', _.get(album, 'images[0].uri'));
+    _.set(track, 'thumbnail', this.getAlbumImage(album));
     _.set(track, 'artist.name', this.getArtistName(track, album));
     return (<TrackRow
       key={'album-track-row-' + index}
@@ -204,11 +231,11 @@ class AlbumView extends React.Component {
     return (<thead>
       <tr>
         <th className={styles.center}>
-          <FontAwesome name='hashtag' />
+          <Icon name='hashtag' />
         </th>
         <th className={styles.left}>{this.props.t('song')}</th>
         <th className={styles.center}>
-          <FontAwesome name='clock-o' />
+          <Icon name='clock outline' />
         </th>
       </tr>
     </thead>);
@@ -219,8 +246,7 @@ class AlbumView extends React.Component {
       <table className={styles.album_tracklist}>
         {this.renderTrackTableHeader()}
         <tbody>
-          {album.tracklist.map((track, index) => this.renderTrack(track, album, index)
-          )}
+          {album.tracklist.map((track, index) => this.renderTrack(track, album, index))}
         </tbody>
       </table>
     );
@@ -231,20 +257,25 @@ class AlbumView extends React.Component {
       <ContextPopup
         trigger={
           <a href='#' className={styles.more_button}>
-            <FontAwesome name='ellipsis-h' />
+            <Icon name='ellipsis horizontal' />
           </a>
         }
         artist={album.artists[0].name}
         title={album.title}
-        thumb={album.images ? album.images[0].uri : artPlaceholder}
+        thumb={this.getAlbumImage(album)}
       >
         <a
           href='#'
           onClick={() => this.addAlbumToQueue(album)}
-          className={styles.add_button}
           aria-label={this.props.t('queue')}
         >
-          <FontAwesome name='plus' /> {this.props.t('queue')}
+          <Icon name='plus' /> {this.props.t('queue')}
+        </a>
+        <a
+          href="#"
+          onClick={() => this.addAlbumToDownloads(album)}
+        >
+          <Icon name='download'/> {this.props.t('download')}
         </a>
       </ContextPopup>
     );
@@ -267,12 +298,18 @@ class AlbumView extends React.Component {
 
 AlbumView.propTypes = {
   addFavoriteAlbum: PropTypes.func,
-  isFavorite: PropTypes.func
+  isFavorite: PropTypes.func,
+  addToDownloads: PropTypes.func,
+  musicSources: PropTypes.array,
+  settings: PropTypes.object
 };
 
 AlbumView.defaultProps = {
-  addFavoriteAlbum: () => { },
-  isFavorite: () => { }
+  addFavoriteAlbum: () => {},
+  isFavorite: () => {},
+  addToDownloads: () => {},
+  musicSources: [],
+  settings: {}
 };
 
 export default AlbumView;

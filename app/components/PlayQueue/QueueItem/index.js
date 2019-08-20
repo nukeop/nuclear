@@ -1,6 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
-import FontAwesome from 'react-fontawesome';
+import { Icon } from 'semantic-ui-react';
+
 import { formatDuration, getSelectedStream } from '../../../utils';
 import styles from './styles.scss';
 
@@ -22,7 +23,7 @@ class QueueItem extends React.Component {
         className={styles.thumbnail_overlay}
         onClick={() => removeFromQueue(track)}
       >
-        <FontAwesome name='trash-o' size='2x' />
+        <Icon name='trash outline' size='big' />
       </div>
     );
   }
