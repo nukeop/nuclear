@@ -123,7 +123,7 @@ const getTrackThumbnail = track => {
   return isAcceptableLastFMThumbnail(image) ? image : artPlaceholder; 
 };
 
-const mapLastFMTrackToInternal = track => ({
+export const mapLastFMTrackToInternal = track => ({
   ...track,
   thumbnail: getTrackThumbnail(track)
 });
