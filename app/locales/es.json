@@ -6,7 +6,10 @@
     "by": "por",
     "year": "Año:",
     "tracks": "Pistas:",
-    "song": "Canción"
+    "song": "Canción",
+    "download": "Descargar",
+    "download-toast-title": "Álbum añadido a descargas",
+    "download-toast-content": "{{artist}} - {{title}} se ha añadido a descargas"
   },
   "app": {
     "collection": "Colección",
