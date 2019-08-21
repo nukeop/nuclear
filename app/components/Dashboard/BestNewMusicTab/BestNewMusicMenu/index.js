@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import { Menu } from 'semantic-ui-react';
 import { useTranslation } from 'react-i18next';
 
-import BestNewMusicCard from './BestNewMusicCard';
+import BestNewMusicCardContainer from '../../../../containers/BestNewMusicCardContainer';
+import BestNewMusicCard, { bestNewItemShape } from './BestNewMusicCard';
 
 import styles from './styles.scss';
 
@@ -25,7 +26,7 @@ const BestNewMusicMenu = ({ albums, setActiveItem, tracks }) => {
               <Menu.Item link key={album.title}>
                 <BestNewMusicCard
                   item={album}
-                  onClick={() => setActiveItem(album )}
+                  onClick={() => setActiveItem(album)}
                 />
               </Menu.Item>
             );
@@ -42,9 +43,10 @@ const BestNewMusicMenu = ({ albums, setActiveItem, tracks }) => {
           tracks.map(track => {
             return (
               <Menu.Item link key={track.title}>
-                <BestNewMusicCard
+                <BestNewMusicCardContainer
                   item={track}
                   onClick={() => setActiveItem(track)}
+                  withFavoriteButton
                 />
               </Menu.Item>
             );
@@ -54,15 +56,6 @@ const BestNewMusicMenu = ({ albums, setActiveItem, tracks }) => {
     </div>
   );
 };
-
-export const bestNewItemShape = PropTypes.shape({
-  title: PropTypes.string,
-  artist: PropTypes.string,
-  thumbnail: PropTypes.string,
-  score: PropTypes.string,
-  abstract: PropTypes.string,
-  review: PropTypes.string
-});
 
 BestNewMusicMenu.propTypes = {
   albums: PropTypes.arrayOf(bestNewItemShape),
