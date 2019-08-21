@@ -49,13 +49,13 @@
     border: 2px solid $white;
     border-radius: 50%;
     margin: 1rem;
+    flex-shrink: 0;
   }
 
   .artist_name_container{
     display: flex;
     flex-flow: column;
     flex: 1 1 auto;
-    height: 8rem;
     margin: 1rem;
   }
 
@@ -63,6 +63,10 @@
     display: flex;
     flex-flow: row;
     align-items: center;
+    h1 {
+      line-height: 1.15;  
+    }
+    margin-bottom: 0.75em;
   }
 
   .on_tour {
