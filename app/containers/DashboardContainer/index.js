@@ -10,21 +10,35 @@ import * as ToastActions from '../../actions/toasts';
 
 import Dashboard from '../../components/Dashboard';
 
-const DashboardContainer = ({
-  actions,
-  dashboard,
-  settings,
-  history,
-  musicSources
-}) => (
-  <Dashboard
-    dashboardData={dashboard}
-    history={history}
-    settings={settings}
-    actions={actions}
-    musicSources={musicSources}
-  />
-);
+class DashboardContainer extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  componentDidMount() {
+    this.props.actions.readFavorites();
+  }
+
+  render() {
+    const {
+      actions,
+      dashboard,
+      settings,
+      history,
+      musicSources
+    } = this.props;
+
+    return (
+      <Dashboard
+        dashboardData={dashboard}
+        history={history}
+        settings={settings}
+        actions={actions}
+        musicSources={musicSources}
+      />
+    );
+  }
+}
 
 function mapStateToProps(state) {
   return {

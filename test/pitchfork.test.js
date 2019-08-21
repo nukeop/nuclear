@@ -15,7 +15,7 @@ describe('Pitchfork API tests', () => {
         console.error(error);
         expect(false).to.equal(true);
       });
-    
+
     expect(result).to.be.an('array');
     result.forEach(entry => {
       expect(entry).to.be.an('object').that.has.all.keys(
@@ -39,7 +39,7 @@ describe('Pitchfork API tests', () => {
         console.error(error);
         expect(false).to.equal(true);
       });
-    
+
     expect(result).to.be.an('array');
     result.forEach(entry => {
       expect(entry).to.be.an('object').that.has.all.keys(
