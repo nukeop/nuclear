@@ -63,6 +63,10 @@
     display: flex;
     flex-flow: row;
     align-items: center;
+    h1 {
+      line-height: 1.15;  
+    }
+    margin-bottom: 0.75em;
   }
 
   .on_tour {
