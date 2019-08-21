@@ -1,12 +1,11 @@
 {
   "album": {
-    "queue": "Add to queue",
     "play": "Play",
     "genre": "Genre:",
     "by": "by",
     "year": "Year:",
     "tracks": "Tracks:",
-    "song": "Song"
+    "song": "Song",
     "queue": "Add album to queue",
     "download": "Download",
     "download-toast-title": "Album added to downloads",
