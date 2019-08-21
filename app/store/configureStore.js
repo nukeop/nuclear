@@ -1,8 +1,10 @@
 import { createStore, compose, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import ReduxPromise from 'redux-promise';
-
+import {queryMiddleware} from 'redux-query';
+import SuperagentInterface from 'redux-query-interface-superagent';
 import rootReducer from '../reducers';
+import { getEntities, getQueries } from '../selectors/redux-query';
 
 export default function configureStore(initialState) {
   const composeEnhancers = process.env.NODE_ENV === 'production'
@@ -13,7 +15,7 @@ export default function configureStore(initialState) {
     rootReducer,
     initialState,
     composeEnhancers(
-      applyMiddleware(ReduxPromise, thunk)
+      applyMiddleware(ReduxPromise, thunk, queryMiddleware(SuperagentInterface, getQueries, getEntities))
     )
   );
 

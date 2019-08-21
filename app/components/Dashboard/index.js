@@ -83,7 +83,7 @@ class Dashboard extends React.Component {
     this.props.actions.loadBestNewAlbums();
     this.props.actions.loadNuclearNews();
     this.props.actions.loadTopTags();
-    this.props.actions.loadTopTracks();
+    // this.props.actions.loadTopTracks();
   }
 
   render () {

@@ -5,7 +5,8 @@ import { MemoryRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { AppContainer } from 'react-hot-loader';
 import { I18nextProvider } from 'react-i18next';
-
+import {Provider as ReduxQueryProvider} from 'redux-query-react';
+import {getQueries} from './selectors/redux-query';
 import i18n, { setupI18n } from './i18n';
 import App from './App';
 import configureStore from './store/configureStore';
@@ -22,11 +23,13 @@ const render = async Component => {
   ReactDOM.render(
     <AppContainer>
       <I18nextProvider i18n={i18n}>
-        <Provider store={store}>
-          <MemoryRouter>
-            <Component />
-          </MemoryRouter>
-        </Provider>
+        <ReduxQueryProvider queriesSelector={getQueries}>
+          <Provider store={store}>
+            <MemoryRouter>
+              <Component />
+            </MemoryRouter>
+          </Provider>
+        </ReduxQueryProvider>
       </I18nextProvider>
     </AppContainer>,
     document.getElementById('react-root')

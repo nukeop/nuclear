@@ -1,4 +1,6 @@
 import { combineReducers } from 'redux';
+import {queriesReducer, entitiesReducer} from 'redux-query';
+
 
 import DashboardReducer from './dashboard';
 import DownloadsReducer from './downloads';
@@ -33,7 +35,9 @@ const rootReducer = combineReducers({
   settings: SettingsReducer,
   tags: TagReducer,
   toasts: ToastsReducer,
-  local: LocalReducer
+  local: LocalReducer,
+  entities: entitiesReducer,
+  queries: queriesReducer
 });
 
 export default rootReducer;
