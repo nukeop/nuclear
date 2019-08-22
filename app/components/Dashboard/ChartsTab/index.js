@@ -10,14 +10,19 @@ import trackRowStyles from '../../TrackRow/styles.scss';
 import styles from './styles.scss';
 import { useTranslation } from 'react-i18next';
 import { useRequest } from 'redux-query-react';
+import globals from '../../../globals';
 
 import {mapLastFMTrackToInternal} from '../../../actions/index';
 
-const useTopTracks = () => {
+const getLastFMUrl = (globals, method) => 
+  `https://ws.audioscrobbler.com/2.0/?method=${method}&format=json&api_key=${globals.lastfmApiKey}`;
+  
+const mapLastFMTracksResponseToState = response => response.tracks.track.map(mapLastFMTrackToInternal);
+const useTopTracks = (globals) => {
   const topTracks = useSelector(state => state.entities.topTracks || []);
   const [state] = useRequest({
-    url: 'http://ws.audioscrobbler.com/2.0/?method=chart.getTopTracks&format=json&api_key=2b75dcb291e2b0c9a2c994aca522ac14', 
-    transform: response => ({topTracks: response.tracks.track.map(mapLastFMTrackToInternal)}),
+    url: getLastFMUrl(globals, 'chart.getTopTracks'), 
+    transform: response => ({topTracks: mapLastFMTracksResponseToState(response)}),
     force: true,
     update: {
       topTracks: (prev, next) => next
@@ -28,10 +33,10 @@ const useTopTracks = () => {
 
 const ChartsTab = () => {
   const { t } = useTranslation('dashboard');
-  const [topTracks, state] = useTopTracks;
+  const [topTracks, state] = useTopTracks(globals);
   
   return (
-    <Tab.Pane attached={false} loading={state.isPending}>
+    <Tab.Pane attached={false} loading={state.isPending && !state.queryCount}>
       <div
         className={cx(
           styles.popular_tracks_container,
