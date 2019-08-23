@@ -23,7 +23,7 @@ describe('Last.fm api tests', () => {
     expect(typeof lastfm).toBe('object');
   });
 
-  it('tests getting top tags', () => {
+  it('tests getting top tags', async () => {
     return lastfm.getTopTags()
       .then(response => response.json())
       .then(results => {
@@ -35,7 +35,7 @@ describe('Last.fm api tests', () => {
       });
   });
 
-  it('tests getting tag info', () => {
+  it('tests getting tag info', async () => {
     return lastfm.getTagInfo('indie')
       .then(response => response.json())
       .then(results => {
@@ -51,7 +51,7 @@ describe('Last.fm api tests', () => {
       });
   });
 
-  it('tests getting top tag tracks', () => {
+  it('tests getting top tag tracks', async () => {
     return lastfm.getTagTracks('indie')
       .then(response => response.json())
       .then(results => {
@@ -73,7 +73,7 @@ describe('Last.fm api tests', () => {
       
   });
 
-  it('tests getting top tag albums', () => {
+  it('tests getting top tag albums', async () => {
     return lastfm.getTagAlbums('indie')
       .then(response => response.json())
       .then(results => {
@@ -93,7 +93,7 @@ describe('Last.fm api tests', () => {
       
   });
 
-  it('tests getting top tag artists', () => {
+  it('tests getting top tag artists', async () => {
     return lastfm.getTagArtists('indie')
       .then(response => response.json())
       .then(results => {
@@ -112,7 +112,7 @@ describe('Last.fm api tests', () => {
       });
   });
 
-  it('tests getting similar tags', () => {
+  it('tests getting similar tags', async () => {
     return lastfm.getSimilarTags('electronic')
       .then(response => response.json())
       .then(results => {

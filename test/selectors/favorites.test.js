@@ -1,5 +1,3 @@
-import { describe, it } from 'mocha';
-import { expect } from 'chai';
 
 import { getFavoriteTrack } from '../../app/selectors/favorites';
 
@@ -26,17 +24,17 @@ describe('selectors / favorites', () => {
 
   describe('getFavoriteTrack', () => {
     it('returns null in case of invalid params', () => {
-      expect(getFavoriteTrack(state)).to.be.null;
-      expect(getFavoriteTrack(state, 'Queen')).to.be.null;
-      expect(getFavoriteTrack(state, '', 'Bohemian Rhapsody')).to.be.null;
+      expect(getFavoriteTrack(state)).toBe(null);
+      expect(getFavoriteTrack(state, 'Queen')).toBe(null);
+      expect(getFavoriteTrack(state, '', 'Bohemian Rhapsody')).toBe(null);
     });
 
     it('returns undefined in case params not matching state', () => {
-      expect(getFavoriteTrack(state, 'Metallica', 'Enter Sandman')).to.be.undefined;
+      expect(getFavoriteTrack(state, 'Metallica', 'Enter Sandman')).toBe(undefined);
     });
 
     it('returns track in case of params matching state', () => {
-      expect(getFavoriteTrack(state, 'Queen', 'Bohemian Rhapsody')).to.eql({
+      expect(getFavoriteTrack(state, 'Queen', 'Bohemian Rhapsody')).toEqual({
         artist: {
           name: 'Queen'
         },
@@ -45,7 +43,7 @@ describe('selectors / favorites', () => {
     });
 
     it('returns track in case of params matching (regardless case and accent) state', () => {
-      expect(getFavoriteTrack(state, 'die arzte', 'SCHREI NACH LIEBE')).to.eql({
+      expect(getFavoriteTrack(state, 'die arzte', 'SCHREI NACH LIEBE')).toEqual({
         artist: {
           name: 'Die Ärzte'
         },
