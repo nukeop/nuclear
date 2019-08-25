@@ -35,10 +35,26 @@
   .card_info {
     display: flex;
     flex-flow: column;
+    flex: 1 1 auto;
     justify-content: center;
     
+    margin-right: .5em;
     overflow: hidden;
-    flex: 1 1 auto;
+
+    .card_title_row {
+      display: flex;
+      justify-content: center;
+
+      margin-bottom: 10px;
+
+      .card_title {
+        margin-right: auto;
+      }
+
+      .card_favorite {
+        margin: 0 0 0 auto;
+      }
+    }
 
     .card_title,
     .card_artist {
@@ -48,13 +64,8 @@
       line-height: 18px;
     }
 
-    .card_title {
-      margin: 0 10px 10px 0;
-    }
-
     .card_artist {
       color: rgba($white, 0.5);
-      margin-right: 10px;
     }
   }
 }

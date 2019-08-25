@@ -4,6 +4,7 @@ import { getBestNewAlbums, getBestNewTracks } from 'pitchfork-bnm';
 
 import globals from '../globals';
 import { getNewsIndex, getNewsItem } from '../rest/Nuclear';
+import {mapLastFMTrackToInternal} from './index';
 
 const lastfm = new core.LastFmApi(
   globals.lastfmApiKey,
@@ -196,7 +197,7 @@ export function loadTopTracks() {
       .getTopTracks()
       .then(tracks => tracks.json())
       .then(tracksJson => {
-        dispatch(loadTopTracksSuccess(tracksJson.tracks.track));
+        dispatch(loadTopTracksSuccess(tracksJson.tracks.track.map(mapLastFMTrackToInternal)));
       })
       .catch(error => {
         dispatch(loadTopTracksError());
