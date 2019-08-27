@@ -122,18 +122,18 @@ export default [
     prettyName: 'language',
     placeholder: 'language-placeholder',
     options: [
-      {key: 'de', text: 'German', value: 'de'},
-      {key: 'dk', text: 'Danish', value: 'dk'},
-      {key: 'en', text: 'English', value: 'en'},
-      {key: 'es', text: 'Spanish', value: 'es'},
-      {key: 'fr', text: 'French', value: 'fr'},
-      {key: 'it', text: 'Italian', value: 'it'},
-      {key: 'nl', text: 'Dutch', value: 'nl'},
-      {key: 'pl', text: 'Polish', value: 'pl'},
-      {key: 'pt_br', text: 'Brazilian Portuguese', value: 'pt_br'},
-      {key: 'ru', text: 'Russian', value: 'ru'},
-      {key: 'tr', text: 'Turkish', value: 'tr'},
-      {key: 'zh', text: 'Chinese', value: 'zh'}
+      { key: 'de', text: 'Deutsch', value: 'de' },
+      { key: 'dk', text: 'Dansk', value: 'dk' },
+      { key: 'en', text: 'English', value: 'en' },
+      { key: 'es', text: 'Español', value: 'es' },
+      { key: 'fr', text: 'Français', value: 'fr' },
+      { key: 'it', text: 'Italiano', value: 'it' },
+      { key: 'nl', text: 'Nederlands', value: 'nl' },
+      { key: 'pl', text: 'Polski', value: 'pl' },
+      { key: 'pt_br', text: 'Português (Brasil)', value: 'pt_br' },
+      { key: 'ru', text: 'Русский', value: 'ru' },
+      { key: 'tr', text: 'Türkçe', value: 'tr' },
+      { key: 'zh', text: '中文', value: 'zh' }
     ],
     default: undefined
   }
