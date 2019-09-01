@@ -1,15 +1,20 @@
 {
   "album": {
-    "queue": "Dodaj album do kolejki"
+    "queue": "Dodaj album do kolejki",
+    "download": "Pobierz",
+    "download-toast-title": "Album dodany do pobranych",
+    "download-toast-content": "{{artist}} - {{title}} został dodany do pobranych."
   },
   "app": {
     "collection": "Kolekcja",
     "dashboard": "Pulpit nawigacyjny",
     "downloads": "Pobrane",
     "equalizer": "Korektor graficzny",
-    "favorite-tracks": "Ulubione",
+    "favorite-albums": "Ulubione albumy",
+    "favorite-tracks": "Ulubione utwory",
     "library": "Biblioteka lokalna",
     "lyrics": "Teksty",
+    "main": "Panel główny",
     "playlists": "Playlisty",
     "plugins": "Pluginy",
     "search": "Wyniki wyszukiwania",
@@ -45,10 +50,15 @@
   },
   "favorites": {
     "artist": "Artysta",
-    "empty": "Nie dodano żadnego ulubionego utworu.",
+    "empty": "Brak ulubionych utworów",
     "empty-help": "Dodaj utwór do ulubionych, a pojawi się tutaj!",
     "header": "Twoje ulubione utwory",
     "title": "Tytuł"
+  },
+  "favorite-albums": {
+    "header": "Twoje ulubione albumy",
+    "empty": "Brak ulubionych albumów",
+    "empty-help": "Dodaj album do ulubionych, a pojawi się tutaj!!"
   },
   "help": {
     "about": "O Nuclear Music Player",
@@ -65,7 +75,12 @@
     "artist": "Artysta",
     "filter-placeholder": "Filtruj...",
     "header": "Biblioteka lokalna",
-    "title": "Tytuł"
+    "title": "Tytuł",
+    "empty": "Biblioteka jest pusta",
+    "empty-help": "Dodaj muzykę, używając przycisku powyżej.",
+    "no-api": "Web Api jest niedostępne :(",
+    "no-api-help": "Aby móc używać biblioteki lokalnej, musisz włączyć obsługę Web Api.",
+    "api-enable": "Włącz obsługę Api"
   },
   "lyrics": {
     "by-artist": "przez {{artist}}",
@@ -76,7 +91,7 @@
   "option-control": {
     "autoradio": "Autoradio",
     "loop": "Powtarzaj",
-    "shuffle": "Pomieszaj"
+    "shuffle": "Mieszaj utwory"
   },
   "player": {
     "next-button": "Następny utwór",
@@ -105,7 +120,7 @@
     "dialog-trigger": "Zapisz playlistę",
     "download": "Pobierz",
     "download-toast-content": "{{artist}} - {{title}} został dodany do pobranych.",
-    "download-toast-title": "Utwór dodany do pobierania",
+    "download-toast-title": "Utwór dodany do pobranych",
     "favorite-add": "Dodaj do ulubionych",
     "header": "Kolejka",
     "header-track": "Odtwarzane",
@@ -131,10 +146,14 @@
   },
   "settings": {
     "api-port": "Port używany przez API",
+    "api-url": "",
     "autoradio": "Autoradio",
     "autoradio-craziness": "Autoradio - tryb szaleństwa",
+    "autoradio-craziness-description": "Autoradio będzie wybierać tym mniej podobne utwory do tych z kolejki odtwarzania, im większe wybrano szaleństwo",
+    "autoradio-description": "Dodaj automatycznie podobne utwory, kiedy kolejka odtwarzania się kończy",
     "compact-menu-bar": "Włącz uproszczony pasek menu",
     "compact-queue-bar": "Włącz uproszczony pasek kolejki",
+    "track-duration": "Wyświetl czas trwania utworu na pasku postępu odtwarzania",
     "disable-gpu": "Wyłącz renderowanie sprzętowe (może naprawić problemy z przeciąganiem elementów i migotaniem ekranu)",
     "display": "Wyświetlanie",
     "enable-api": "Włącz obsługę API",
@@ -156,14 +175,19 @@
     "notlogged": "Niezalogowany",
     "playback": "Odtwarzanie",
     "program-settings": "Ustawienia programu",
-    "shuffle-queue": "Pomieszaj utwory",
+    "seek-iteration": "Liczba sekund, o którą będzie przewijany utwór do przodu/wstecz, kiedy przyciski strzałek będą wciśnięte",
+    "shuffle-queue": "Mieszaj utwory",
+    "shuffle-when-going-back": "Mieszaj utwory wstecz",
+    "shuffle-when-going-back-description": "Odtwarzaj losowy utwór, kiedy mieszanie utworów jest włączone i kliknięto przycisk Poprzedni utwór",
     "social": "Społeczność",
     "user": "Użytkownik:"
+    "youtube": "Youtube",
+    "yt-api-key": "Youtube API Key"
   },
   "tags": {
-    "albums": "Top Albumy",
+    "albums": "Top albumy",
     "artist": "Artysta",
-    "artists": "Top Artyści",
+    "artists": "Top artyści",
     "duration": "Czas trwania",
     "queue-add": "Dodaj wszystkie utwory do kolejki",
     "title": "Tytuł"
