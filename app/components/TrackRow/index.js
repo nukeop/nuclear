@@ -51,7 +51,7 @@ class TrackRow extends React.Component {
     );
   }
   
-  addToFavorites() {
+  canAddToFavorites() {
     return _.findIndex(this.props.favoriteTracks, (currentTrack) => { 
       return _.isMatch(currentTrack, this.props.track);
     }) < 0;
@@ -114,7 +114,7 @@ class TrackRow extends React.Component {
 
         withAddToQueue={withAddToQueue}
         withPlayNow={withPlayNow}
-        withAddToFavorites={this.addToFavorites()}
+        withAddToFavorites={this.canAddToFavorites()}
         withAddToDownloads={withAddToDownloads}
       />
     );
