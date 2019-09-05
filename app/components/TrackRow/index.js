@@ -51,6 +51,12 @@ class TrackRow extends React.Component {
     );
   }
   
+  canAddToFavorites() {
+    return _.findIndex(this.props.favoriteTracks, (currentTrack) => { 
+      return _.isMatch(currentTrack, this.props.track);
+    }) < 0;
+  }
+
   renderTrigger (track) {
     const {
       displayCover,
@@ -90,6 +96,7 @@ class TrackRow extends React.Component {
   }
 
   render () {
+    
     let {
       track,
       withAddToQueue,
@@ -97,7 +104,6 @@ class TrackRow extends React.Component {
       withAddToFavorites,
       withAddToDownloads
     } = this.props;
-
     return (
       <TrackPopupContainer
         trigger={this.renderTrigger(track)}
@@ -108,7 +114,7 @@ class TrackRow extends React.Component {
 
         withAddToQueue={withAddToQueue}
         withPlayNow={withPlayNow}
-        withAddToFavorites={withAddToFavorites}
+        withAddToFavorites={this.canAddToFavorites()}
         withAddToDownloads={withAddToDownloads}
       />
     );
@@ -149,7 +155,8 @@ function mapStateToProps (state, { track }) {
         return sourceName === 'Local';
       })
       : state.plugin.plugins.musicSources,
-    settings: state.settings
+    settings: state.settings,
+    favoriteTracks: state.favorites.tracks
   };
 }
 
