@@ -46,7 +46,7 @@
   "favorites": {
     "artist": "艺人",
     "empty": "还没有喜欢的歌曲",
-    "empty-help": "Try favoriting some tracks and they will appear here!您喜欢的歌曲将会显示在这里",
+    "empty-help": "您喜欢的歌曲将会显示在这里",
     "header": "您喜欢的歌曲",
     "title": "音乐标题"
   },
@@ -64,7 +64,7 @@
     "album": "专辑",
     "artist": "艺人",
     "filter-placeholder": "Filter...",
-    "header": "Local Library",
+    "header": "本地",
     "title": "音乐标题"
   },
   "lyrics": {
@@ -89,8 +89,8 @@
     "dialog-placeholder": "Playlist name...",
     "empty": "没有任何播放列表。",
     "rename": "重命名播放列表",
-    "songs": "{{total}} song",
-    "songs_plural": "{{total}} songs",
+    "songs": "{{total}} 首歌",
+    "songs_plural": "{{total}} 首歌",
     "title": "音乐标题"
   },
   "plugins": {
