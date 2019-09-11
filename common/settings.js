@@ -133,7 +133,8 @@ export default [
       { key: 'pt_br', text: 'Português (Brasil)', value: 'pt_br' },
       { key: 'ru', text: 'Русский', value: 'ru' },
       { key: 'tr', text: 'Türkçe', value: 'tr' },
-      { key: 'zh', text: '中文', value: 'zh' }
+      { key: 'zh', text: '中文', value: 'zh' },
+      { key: 'id', text: 'Bahasa Indonesia', value: 'id' }
     ],
     default: undefined
   }
