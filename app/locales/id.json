@@ -1,0 +1,195 @@
+{
+  "album": {
+    "queue": "Tambahkan album ke antrian",
+    "download": "Unduh",
+    "download-toast-title": "Album ditambahkan ke unduhan",
+    "download-toast-content": "{{artist}} - {{title}} telah ditambahkan ke unduhan."
+  },
+  "app": {
+    "collection": "Koleksi",
+    "dashboard": "Panel kendali",
+    "downloads": "Unduhan",
+    "equalizer": "Penyelaras Suara",
+    "favorite-albums": "Album Favorit",
+    "favorite-tracks": "Lagu Favorit",
+    "library": "Pustaka Lokal",
+    "lyrics": "Lirik",
+    "main": "Utama",
+    "playlists": "Daftar Putar",
+    "plugins": "Plugins",
+    "search": "Hasil Pencarian",
+    "settings": "Pengaturan"
+  },
+  "artist": {
+    "count": "Jumlah pemutaran",
+    "queue": "Tambahkan semua lagu ke antrian",
+    "similar": "Musisi yang senada",
+    "title": "Judul",
+    "tour": "Sedang ada tur"
+  },
+  "dashboard": {
+    "artist": "Musisi",
+    "best": "Musik baru terbaik",
+    "best-new-albums": "Album baru terbaik",
+    "best-new-tracks": "Lagu baru terbaik",
+    "genres": "Genre",
+    "lastfm-title": "Lagu Teratas dari LastFm.",
+    "news": "Berita",
+    "playcounts": "Jumlah pemutaran",
+    "title": "Judul",
+    "top": "Lagu Teratas"
+  },
+  "downloads": {
+    "clear": "Bersihkan unduhan selesai",
+    "completion": "Selesai",
+    "empty": "Unduhan tidak tersedia.",
+    "empty-help": "Lagu yang kamu tambahkan ke daftar tunggu unduhan akan muncul di sini!",
+    "header": "Unduhan",
+    "name": "Nama",
+    "status": "Status"
+  },
+  "favorites": {
+    "artist": "Musisi",
+    "empty": "Belum ada lagu favorit",
+    "empty-help": "Lagu yang kamu favoritkan akan muncul di sini!",
+    "header": "Lagu favorit kamu",
+    "title": "Judul"
+  },
+  "favorite-albums": {
+    "header": "Album favorit kamu",
+    "empty": "Belum ada album favorit",
+    "empty-help": "Album yang kamu favoritkan akan muncul di sini!"
+  },
+  "help": {
+    "about": "Tentang Nuclear Music Player",
+    "header": "Pemutar musik desktop untuk streaming dari penyedia-penyedia bebas biaya",
+    "released": "dirilis dengan lisensi AGPL-3.0",
+    "thanks": "Terima kasih untuk para kontributor di Github atas peran pentingnya dalam pengembangan program ini."
+  },
+  "input-dialog": {
+    "cancel": "Batal"
+  },
+  "library": {
+    "add": "Tambahkan folder",
+    "album": "Album",
+    "artist": "Musisi",
+    "filter-placeholder": "Filter...",
+    "header": "Pustaka Lokal",
+    "title": "Judul",
+    "empty": "Pustaka masih kosong",
+    "empty-help": "Gunakan tombol di atas untuk menambahkan lagu",
+    "no-api": "Web Api tidak tersedia :(",
+    "no-api-help": "Untuk menggunakan pustaka lokal kamu harus aktifkan web api.",
+    "api-enable": "aktifkan Api."
+  },
+  "lyrics": {
+    "by-artist": "oleh {{artist}}",
+    "empty": "Tidak ada lagu sedang diputar.",
+    "empty-help": "Tambahkan lagu ke antrian agar liriknya ditampilkan di sini!",
+    "not-found": "Lirik untuk lagu ini tidak ditemukan"
+  },
+  "option-control": {
+    "autoradio": "Autoradio",
+    "loop": "Ulang",
+    "shuffle": "Acak"
+  },
+  "player": {
+    "next-button": "Lagu berikutnya",
+    "play-pause-button": "Tombol Putar/Jeda",
+    "previous-button": "Lagu sebelumnya"
+  },
+  "playlists": {
+    "artist": "Musisi",
+    "delete": "Hapus daftar putar ini",
+    "dialog-placeholder": "Nama daftar putar...",
+    "empty": "Daftar putar tidak ditemukan.",
+    "rename": "Ubah nama daftar putar",
+    "songs": "{{total}} lagu",
+    "songs_plural": "{{total}} lagu",
+    "title": "Judul"
+  },
+  "plugins": {
+    "header": "Plugin",
+    "placeholder": "Pilih sumber musik bawaan:",
+    "subtitle": "Sumber musik"
+  },
+  "queue": {
+    "clear": "Bersihkan antrian",
+    "dialog-accept": "Simpan",
+    "dialog-placeholder": "Nama daftar putar...",
+    "dialog-trigger": "Simpan sebagai daftar putar",
+    "download": "Unduh",
+    "download-toast-content": "{{artist}} - {{title}} telah ditambahkan ke daftar unduhan.",
+    "download-toast-title": "Lagu ditambahkan ke unduhan",
+    "favorite-add": "Tambahkan ke favorit",
+    "header": "antrian",
+    "header-track": "Lagu sekarang",
+    "id": "Stream ID:",
+    "loading": "Stream sedang memuat.",
+    "playlist-add": "Tambahkan ke daftar putar",
+    "playlist-toast-content": "Daftar putar {{name}} berhasil dibuat.",
+    "playlist-toast-title": "Daftar putar dibuat",
+    "title": "JUdul:"
+  },
+  "search": {
+    "album": "Album",
+    "album_plural": "Album",
+    "artist": "Musisi",
+    "artist_plural": "Musisi",
+    "empty": "Tak ada hasil temuan.",
+    "placeholder": "Cari...",
+    "playlist": "Daftar putar",
+    "playlist_plural": "Daftar putar",
+    "queue-add": "Tambahkan semua lagu ke antrian",
+    "track": "Lagu",
+    "track_plural": "Lagu"
+  },
+  "settings": {
+    "api-port": "Port yang digunakan oleh api",
+    "api-url": "",
+    "autoradio": "Autoradio",
+    "autoradio-craziness": "Autoradio craziness",
+    "autoradio-craziness-description": "Semakin tinggi tingkat craziness, semakin kecil tingkat kemiripan lagu yang akan dipilih dengan lagu-lagu yang sudah ada di antrian",
+    "autoradio-description": "Tambahkan lagu yang mirip secara otomatis di akhir daftar antrian",
+    "compact-menu-bar": "Gunakan gaya ringkas untuk papan menu",
+    "compact-queue-bar": "Gunakan gaya ringkas untuk papan antrian",
+    "track-duration": "Tampilkan durasi lagu di atas seekbar",
+    "disable-gpu": "Non-aktifkan hardware rendering (berpotensi mengatasi masalah dragging elements dan flashing screen)",
+    "display": "Tampilan",
+    "enable-api": "Aktifkan api",
+    "frameless-window": "Jendela tanpa bingkai (memerlukan buka-ulang)",
+    "github-connect": "Log masuk dengan Github",
+    "github-description": "Log masuk melalui Github agar dapat membuat dan berbagi daftar putar secara daring (fitur yang akan datang).",
+    "github-title": "Github",
+    "http": "HTTP API",
+    "language": "Bahasa",
+    "language-placeholder": "Pilih bahasa",
+    "lastfm-connect": "Sambungkan dengan Last.fm",
+    "lastfm-description": "Agar dapat menggunakan fitur scrobbling, kamu harus sambungkan dan otorisasi Nuclear di Last.fm, kemudian klik log masuk.",
+    "lastfm-enable": "Aktifkan scrobbling di Last.fm",
+    "lastfm-title": "Last.fm",
+    "login": "Log masuk",
+    "logout": "Log keluar",
+    "loop-after-queue-end": "Ulang pemutaran dari awal setelah item terakhir di daftar antrian",
+    "notification-timeout": "Lama waktu-habis pada notifikasi",
+    "notlogged": "Kamu belum log masuk",
+    "playback": "Pemutaran",
+    "program-settings": "Pengaturan program",
+    "seek-iteration": "Rentang detik yang dilewatkan/dikembalikan ketika menekan tombol arah",
+    "shuffle-queue": "Acak lagu",
+    "shuffle-when-going-back": "Acak lagu sebelumnya",
+    "shuffle-when-going-back-description": "Putar lagu sembarang saat mode acak aktif dan tombol lagu sebelumnya diklik",
+    "social": "Sosial",
+    "user": "Pengguna:",
+    "youtube": "Youtube",
+    "yt-api-key": "Kunci API Youtube"
+  },
+  "tags": {
+    "albums": "Album Teratas",
+    "artist": "Musisi",
+    "artists": "Musisi Teratas",
+    "duration": "Durasi",
+    "queue-add": "Tambahkan semua lagu ke antrian",
+    "title": "Judul"
+  }
+}
