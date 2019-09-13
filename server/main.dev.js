@@ -23,6 +23,9 @@ let win;
 let icon = nativeImage.createFromPath(
   path.resolve(__dirname, 'resources', 'media', 'icon.png')
 );
+logger.hookConsole({
+	main: true
+});
 
 function changeWindowTitle (artist, title) {
   win.setTitle(`${artist} - ${title} - Nuclear Music Player`);
@@ -46,7 +49,7 @@ function createWindow() {
   });
 
   win.setTitle('Nuclear Music Player');
-  
+
   installExtension(REACT_DEVELOPER_TOOLS)
     .then((name) => console.log(`Added Extension:  ${name}`))
     .catch((err) => console.log('An error occurred: ', err));

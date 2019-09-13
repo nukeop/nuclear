@@ -9,7 +9,7 @@ export const trackShape = PropTypes.shape({
   url: PropTypes.string,
   image: PropTypes.arrayOf(PropTypes.shape({
     '#text': PropTypes.string,
-    size: PropTypes.oneOf('small', 'medium', 'large', 'extralarge')
+    size: PropTypes.oneOf(['small', 'medium', 'large', 'extralarge'])
   }))
 });
 
