@@ -1,0 +1,7 @@
+FROM node
+
+RUN apt-get update && apt-get install -y libnss3 libgtk-3-0 libx11-xcb1 libxss1 libasound2
+
+RUN mkdir -p /nuclear
+WORKDIR /nuclear
+ADD . /nuclear
