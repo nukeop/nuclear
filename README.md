@@ -90,25 +90,16 @@ This will be updated as the program evolves.
 
 ![Equalizer View](https://i.imgur.com/WreRL0w.png)
 
-## Dev build process
-As all Electron applications, Nuclear has two parts: the server and the web app.
+## Development process
+You will need docker and docker-compose.
+As all Electron applications, Nuclear has two parts: the server and the web app. Both are containerized. You need to allow the root user to connect to X11 display, and then you can run docker-compose:
 
-Before you begin, make sure you're using the latest version of Node and NPM. 
-To run the web app part in development mode locally, you should only do:
-```bash
-$ npm install
-$ npm run watch
+```shell
+$ xhost SI:localuser:root
+$ sudo docker-compose up dev
 ```
 
-This launches webpack. It watches local files for changes and rebuilds the project as needed. The project also has hot reload built in. 
-
-To launch the server, you need to run this in another terminal window:
-```bash
-$ npm run electron:dev
-```
-This launches a development version of the program. Tmux is very useful here so you can keep an eye on all running processes.
-
-A new window should open that will load the web app part and run Nuclear.
+A new window should open that will load the web app and run Nuclear.
 
 ---
 To run production version:
