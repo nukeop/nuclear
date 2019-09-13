@@ -7,8 +7,7 @@ services:
       dockerfile: ./Dockerfile.dev
     volumes:
     - .:/nuclear
-    command: bash -xc "
-       npm install"
+    command: bash -xc "npm install"
 
   dev:
     build:
@@ -19,9 +18,9 @@ services:
     volumes:
       - /tmp/.X11-unix:/tmp/.X11-unix
       - .:/nuclear
-    command: bash -xc "
-        npm start"
+    command: bash -xc "npm start"
     devices:
       - "/dev/snd"
     environment:
       - DISPLAY
+    network_mode: host

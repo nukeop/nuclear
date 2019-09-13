@@ -90,8 +90,9 @@ This will be updated as the program evolves.
 
 ![Equalizer View](https://i.imgur.com/WreRL0w.png)
 
-## Dev build process
-As all Electron applications, Nuclear has two parts: the server and the web app. Both are containerized. You need to allow the root user to connect to X11 display, and then you can run `docker-compose`:
+## Development process
+You will need docker and docker-compose.
+As all Electron applications, Nuclear has two parts: the server and the web app. Both are containerized. You need to allow the root user to connect to X11 display, and then you can run docker-compose:
 
 ```shell
 $ xhost SI:localuser:root
