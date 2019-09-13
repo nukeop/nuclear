@@ -1,24 +1,27 @@
 version: '3.7'
 services:
 
-  app:
+  install:
     build:
       context: .
       dockerfile: ./Dockerfile.dev
     volumes:
+    - .:/nuclear
+    command: bash -xc "
+       npm install"
+
+  dev:
+    build:
+      context: .
+      dockerfile: ./Dockerfile.dev
+    depends_on:
+      - install
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix
       - .:/nuclear
     command: bash -xc "
-              npm run watch; npm run electron:dev"
-
-  storybook:
-    build:
-      context: .
-      dockerfile: ./Dockerfile.dev
-    ports:
-      - "6006:6006"
-    volumes:
-      - .:/app
-    command: bash -xc "
-              lerna link;
-              lerna exec yarn install;
-              lerna run storybook:ci --scope @cyc/storybook --stream"
+        npm start"
+    devices:
+      - "/dev/snd"
+    environment:
+      - DISPLAY
