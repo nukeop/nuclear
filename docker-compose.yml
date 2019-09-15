@@ -21,6 +21,7 @@ services:
       - /tmp/.X11-unix:/tmp/.X11-unix
       - .:/nuclear
     command: bash -xc "
+      cd /nuclear;
       npm install;
       npm start  "
     devices:
