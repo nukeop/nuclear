@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 
 const trackImageShape = PropTypes.shape({
   '#text': PropTypes.string,
-  size: PropTypes.oneOf('small', 'medium', 'large', 'extralarge')
+  size: PropTypes.oneOf(['small', 'medium', 'large', 'extralarge'])
 });
 
 export const trackShape = PropTypes.shape({

@@ -23,7 +23,7 @@
     "build:macos": "electron-builder -c.extraMetadata.main=dist/bundle.electron.js --macos --publish always",
     "build:all": "electron-builder -c.extraMetadata.main=dist/bundle.electron.js -mwl",
     "lint": "eslint app test",
-    "i18n": "sync-i18n --files 'app/locales/*.json' --primary en --languages fr nl de dk es pl zh ru tr --space 2"
+    "i18n": "sync-i18n --files 'app/locales/*.json' --primary en --languages fr nl de dk es pl zh ru tr id --space 2"
   },
   "repository": {
     "type": "git",
