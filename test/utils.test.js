@@ -18,7 +18,7 @@ describe('utils', () => {
     });
   });
 
-  describe.only('createLastFMLink', () => {
+  describe('createLastFMLink', () => {
     it('creates a link with an artist', () => {
       expect(createLastFMLink('Hüsker Dü')).to.be.string('https://www.last.fm/music/H%C3%BCsker+D%C3%BC');
       expect(createLastFMLink('nǽnøĉÿbbœrğ vbëřřħōlökäävsŧ'))
