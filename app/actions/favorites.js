@@ -44,8 +44,10 @@ export function removeFavoriteTrack(track) {
 }
 
 export function addFavoriteAlbum(album) {
+  const clonedAlbum = safeAddUuid(album);
+
   const favorites = store.get('favorites');
-  favorites.albums = _.concat(favorites.albums, album);
+  favorites.albums = _.concat(favorites.albums, clonedAlbum);
   store.set('favorites', favorites);
 
   return {

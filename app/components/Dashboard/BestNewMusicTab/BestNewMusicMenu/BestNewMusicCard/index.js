@@ -1,9 +1,15 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { Icon } from 'semantic-ui-react';
+import logger from 'electron-timber';
+import _ from 'lodash';
+
 
 import { removeQuotes, createLastFMLink } from '../../../../../utils';
-import { favoriteTrackShape } from '../../../../../constants/propTypes';
+import { favoriteTrackShape, favoriteAlbumShape } from '../../../../../constants/propTypes';
+import ItemType from '../../../../../constants/itemType';
+import { findAlbum, releaseInfo } from '../../../../../rest/Discogs';
+
 import styles from './styles.scss';
 
 function toFavoriteTrack({ artist, title, thumbnail }) {
@@ -24,23 +30,95 @@ function toFavoriteTrack({ artist, title, thumbnail }) {
   };
 }
 
+function getReleaseInfo({ artist, title }) {
+  let masterId;
+  return findAlbum(artist, title)
+    .then(findResponse => findResponse.json())
+    .then(findResults => {
+      if (_.isEmpty(findResults) || _.isEmpty(findResults.results)) {
+        return null;
+      }
+
+      return findResults.results[0].master_id;
+    })
+    .then(id => {
+      if (!id) {
+        throw Error(`No release was found for given search criteria. Artist: ${artist}, ablum: ${title}`);
+      }
+
+      masterId = id;
+      return releaseInfo(masterId, 'master');
+    })
+    .then(releaseResponse => releaseResponse.json())
+    .catch(error => {
+      logger.error(error);
+
+      throw error;
+    });
+}
+
 const FavoriteIcon = ({ isFavorite, onClick }) =>
   <Icon
     className={styles.card_favorite}
-    name='star'
-    size='large' onClick={onClick}
-    disabled={!isFavorite}
+    name={isFavorite ? 'star' : 'star outline'}
+    size='large'
+    onClick={onClick}
   />;
 
 const BestNewMusicCard = ({
   actions,
   item,
-  favoriteTrack,
+  favoriteItem,
   onClick,
   settings,
-  withFavoriteButton
+  type
 }) => {
   const { artist, title, thumbnail } = item;
+
+  const handleFavoriteIconClick = useCallback((e) => {
+    e.stopPropagation();
+
+    if (favoriteItem) {
+      const removeAction = type === ItemType.ALBUM
+        ? actions.removeFavoriteAlbum
+        : actions.removeFavoriteTrack;
+
+      removeAction(favoriteItem);
+    } else {
+      if (type === ItemType.TRACK) {
+        actions.addFavoriteTrack(toFavoriteTrack(item));
+
+        actions.info(
+          `Favorite ${type} added`,
+          `${artist} - ${title} has been added to favorites.`,
+          <img src={thumbnail} />,
+          settings
+        );
+      }
+
+      if (type === ItemType.ALBUM) {
+        getReleaseInfo(item)
+          .then(releaseItem => {
+            actions.addFavoriteAlbum(releaseItem);
+
+            actions.info(
+              `Favorite ${type} added`,
+              `${artist} - ${title} has been added to favorites.`,
+              <img src={thumbnail} />,
+              settings
+            );
+          })
+          .catch(() => {
+            actions.info(
+              `Failed to add ${artist} - ${title} to favorites`,
+              'Probably album is not available at Discogs database',
+              <img src={thumbnail} />,
+              settings
+            );
+          });
+      }
+    }
+  }, [favoriteItem, type, actions, item, artist, title, thumbnail, settings]);
 
   return (
     <div
@@ -55,21 +133,7 @@ const BestNewMusicCard = ({
           <div className={styles.card_title}>
             {title}
           </div>
-          {withFavoriteButton && <FavoriteIcon isFavorite={!!favoriteTrack} onClick={e => {
-            e.stopPropagation();
-
-            if (favoriteTrack) {
-              actions.removeFavoriteTrack(favoriteTrack);
-            } else {
-              actions.addFavoriteTrack(toFavoriteTrack(item));
-              actions.info(
-                'Favorite track added',
-                `${artist} - ${title} has been added to favorites.`,
-                <img src={thumbnail} />,
-                settings
-              );
-            }
-          }} />}
+          <FavoriteIcon isFavorite={!!favoriteItem} onClick={handleFavoriteIconClick} />
         </div>
         <div className={styles.card_artist}>
           {item.artist}
@@ -92,24 +156,25 @@ export const bestNewItemShape = PropTypes.shape({
 
 BestNewMusicCard.propTypes = {
   actions: PropTypes.shape({
+    addFavoriteAlbum: PropTypes.func,
     addFavoriteTrack: PropTypes.func,
+    remoteFavoriteAlbum: PropTypes.func,
     removeFavoriteTrack: PropTypes.func,
     info: PropTypes.func
   }),
   item: bestNewItemShape,
-  favoriteTrack: favoriteTrackShape,
+  favoriteItem: PropTypes.oneOfType([favoriteTrackShape, favoriteAlbumShape]),
   onClick: PropTypes.func,
   settings: PropTypes.object,
-  withFavoriteButton: PropTypes.bool
+  type: PropTypes.oneOf([ItemType.TRACK, ItemType.ALBUM]).isRequired
 };
 
 BestNewMusicCard.defaultProps = {
   actions: {},
   item: null,
-  favoriteTrack: null,
+  favoriteItem: null,
   onClick: () => { },
-  settings: {},
-  withFavoriteButton: false
+  settings: {}
 };
 
 export default BestNewMusicCard;

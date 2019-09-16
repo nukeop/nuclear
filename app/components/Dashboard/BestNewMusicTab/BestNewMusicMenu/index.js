@@ -4,7 +4,8 @@ import { Menu } from 'semantic-ui-react';
 import { useTranslation } from 'react-i18next';
 
 import BestNewMusicCardContainer from '../../../../containers/BestNewMusicCardContainer';
-import BestNewMusicCard, { bestNewItemShape } from './BestNewMusicCard';
+import ItemType from '../../../../constants/itemType';
+import { bestNewItemShape } from './BestNewMusicCard';
 
 import styles from './styles.scss';
 
@@ -24,9 +25,10 @@ const BestNewMusicMenu = ({ albums, setActiveItem, tracks }) => {
           albums.map(album => {
             return (
               <Menu.Item link key={album.title}>
-                <BestNewMusicCard
+                <BestNewMusicCardContainer
                   item={album}
                   onClick={() => setActiveItem(album)}
+                  type={ItemType.ALBUM}
                 />
               </Menu.Item>
             );
@@ -46,7 +48,7 @@ const BestNewMusicMenu = ({ albums, setActiveItem, tracks }) => {
                 <BestNewMusicCardContainer
                   item={track}
                   onClick={() => setActiveItem(track)}
-                  withFavoriteButton
+                  type={ItemType.TRACK}
                 />
               </Menu.Item>
             );

@@ -1,7 +1,7 @@
 import { describe, it } from 'mocha';
 import { expect } from 'chai';
 
-import { getFavoriteTrack } from '../../app/selectors/favorites';
+import { getFavoriteTrack, getFavoriteAlbum } from '../../app/selectors/favorites';
 
 const state = {
   favorites: {
@@ -18,7 +18,18 @@ const state = {
         },
         name: 'Schrei nach Liebe'
       }
-    ]
+    ],
+    albums: [{
+      title: 'Runter mit den Spendierhosen, Unsichtbarer!',
+      artists: [{
+        name: 'Die Ärzte'
+      }]
+    }, {
+      title: 'Emily Alone',
+      artists: [{
+        name: 'Florist (2)'
+      }]
+    }]
   }
 };
 
@@ -50,6 +61,45 @@ describe('selectors / favorites', () => {
           name: 'Die Ärzte'
         },
         name: 'Schrei nach Liebe'
+      });
+    });
+  });
+
+  describe('getFavoriteAlbum', () => {
+    it('returns null in case of invalid params', () => {
+      expect(getFavoriteAlbum(state)).to.be.null;
+      expect(getFavoriteAlbum(state, 'Die Ärzte')).to.be.null;
+      expect(getFavoriteAlbum(state, '', 'Runter mit den Spendierhosen, Unsichtbarer!')).to.be.null;
+    });
+
+    it('returns undefined in case params not matching state', () => {
+      expect(getFavoriteAlbum(state, 'Nirvana', 'In Utero')).to.be.undefined;
+    });
+
+    it('returns album in case of params matching state', () => {
+      expect(getFavoriteAlbum(state, 'Die Ärzte', 'Runter mit den Spendierhosen, Unsichtbarer!')).to.eql({
+        title: 'Runter mit den Spendierhosen, Unsichtbarer!',
+        artists: [{
+          name: 'Die Ärzte'
+        }]
+      });
+    });
+
+    it('returns album in case of params matching (regardless case and accent) state', () => {
+      expect(getFavoriteAlbum(state, 'die arzte', 'RUNTER MIT DEN SPENDIERHOSEN, UNSICHTBARER!')).to.eql({
+        title: 'Runter mit den Spendierhosen, Unsichtbarer!',
+        artists: [{
+          name: 'Die Ärzte'
+        }]
+      });
+    });
+
+    it('returns album in case of params matching (regardless artist quantifier with parentheses) state', () => {
+      expect(getFavoriteAlbum(state, 'Florist', 'Emily Alone')).to.eql({
+        title: 'Emily Alone',
+        artists: [{
+          name: 'Florist (2)'
+        }]
       });
     });
   });

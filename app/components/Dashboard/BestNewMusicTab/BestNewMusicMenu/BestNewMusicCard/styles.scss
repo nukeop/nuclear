@@ -53,6 +53,10 @@
 
       .card_favorite {
         margin: 0 0 0 auto;
+
+        &.star.outline::before {
+          content: "\f006"; // fix for semantic-ui-react bug
+        }
       }
     }
 
