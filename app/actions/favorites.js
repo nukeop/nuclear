@@ -58,7 +58,12 @@ export function addFavoriteAlbum(album) {
 
 export function removeFavoriteAlbum(album) {
   const favorites = store.get('favorites');
-  _.remove(favorites.albums, { id: album.id });
+  if (album.uuid) {
+    _.remove(favorites.albums, { uuid: album.uuid });
+  } else if (album.id) {
+    _.remove(favorites.albums, { id: album.id });
+  }
+
   store.set('favorites', favorites);
 
   return {

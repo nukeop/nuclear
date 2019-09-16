@@ -57,6 +57,16 @@ function getReleaseInfo({ artist, title }) {
     });
 }
 
+function showSuccessInfo(action, item, settings, type) {
+  const { artist, title, thumbnail } = item;
+  action(
+    `Favorite ${type} added`,
+    `${artist} - ${title} has been added to favorites.`,
+    <img src={thumbnail} />,
+    settings
+  );
+}
+
 const FavoriteIcon = ({ isFavorite, onClick }) =>
   <Icon
     className={styles.card_favorite}
@@ -87,26 +97,14 @@ const BestNewMusicCard = ({
     } else {
       if (type === ItemType.TRACK) {
         actions.addFavoriteTrack(toFavoriteTrack(item));
-
-        actions.info(
-          `Favorite ${type} added`,
-          `${artist} - ${title} has been added to favorites.`,
-          <img src={thumbnail} />,
-          settings
-        );
+        showSuccessInfo(actions.info, item, settings, type);
       }
 
       if (type === ItemType.ALBUM) {
         getReleaseInfo(item)
           .then(releaseItem => {
             actions.addFavoriteAlbum(releaseItem);
-
-            actions.info(
-              `Favorite ${type} added`,
-              `${artist} - ${title} has been added to favorites.`,
-              <img src={thumbnail} />,
-              settings
-            );
+            showSuccessInfo(actions.info, item, settings, type);
           })
           .catch(() => {
             actions.info(
