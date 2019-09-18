@@ -1,10 +1,11 @@
 import get from 'lodash/get';
+import map from 'lodash/map';
 import uuidv4 from 'uuid/v4';
 
 export default class Artist {
   constructor(data) {
     this.uuid = uuidv4();
-    this.ids = get(data, 'ids');
+    this.ids = get(data, 'ids') || [];
     this.name = get(data, 'name');
     this.description = get(data, 'description');
     this.tags = get(data, 'tags');
@@ -19,32 +20,44 @@ export default class Artist {
     this.similarArtists = get(data, 'similarArtists');
   }
 
+  addDiscogsSearchData(data) {
+    this.ids = { ...this.ids, discogs: data.id };
+    this.name = data.title;
+    this.coverImage = data.cover_image;
+    this.thumbnail = data.thumb;
+  }
+
+  addDiscogsData(data) {
+    this.ids = { ...this.ids, discogs: data.id };
+    this.name = data.name;
+    this.description = data.profile;
+    this.images = data.images;
+  }
+
+  addLastfmData(data) {
+    this.ids = { ...this.ids, musicbrainz: data.mbid };
+    this.name = data.name;
+    this.description = get(data, 'bio.content');
+    this.tags = map(get(data, 'tags.tag'), 'name');
+    this.onTour = data.ontour === 1;
+    this.similarArtists = map(get(data, 'similar.artist'), 'name');
+  }
+
   static fromDiscogsSearchData(data) {
-    return new Artist({
-      ids: { discogs: data.id },
-      name: data.title,
-      coverImage: data.cover_image,
-      thumbnail: data.thumb
-    });
+    let artist = new Artist();
+    artist.addDiscogsSearchData(data);
+    return artist;
   }
 
   static fromDiscogsData(data) {
-    return new Artist({
-      ids: { discogs: data.id },
-      name: data.name,
-      description: data.profile,
-      images: data.images
-    });
+    let artist = new Artist();
+    artist.addDiscogsData(data);
+    return artist;
   }
 
   static fromLastfmData(data) {
-    return new Artist({
-      ids: { musicbrainz: data.mbid },
-      name: data.name,
-      description: _.get(data, 'bio.content'),
-      tags: _.map(_.get(data, 'tags.tag'), 'name'),
-      onTour: data.ontour === 1,
-      similarArtists: _.map(_.get(data, 'similar.artist'), 'name')
-    });
+    let artist = new Artist();
+    artist.addLastfmData(data);
+    return artist;
   }
 }
