@@ -11,9 +11,11 @@ export default ({ enableApi }) => {
   });
 
   return  (
-    <div className={styles.library_empty_state}>
-      <Icon name='file audio outline' />
-      <h2>{ t('no-api')}</h2>
+    <div className={styles.library_no_api}>
+      <h2>
+        { t('no-api')}
+        <Icon name='frown outline' />
+      </h2>
       <div>{ t('no-api-help')}</div>
       <Button onClick={handleClick}>{t('api-enable')}</Button>
     </div>
