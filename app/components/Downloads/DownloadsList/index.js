@@ -12,6 +12,7 @@ const DownloadsList = ({
   clearFinishedTracks
 }) => {
   const [sortAsc, setSort] = useState(true);
+  const [sortArtistAsc, setArtistSort] = useState(true);
   const { t } = useTranslation('downloads');
   return (
     <Segment inverted>
@@ -23,6 +24,23 @@ const DownloadsList = ({
         <Table.Header>
           <Table.Row>
             <Table.HeaderCell>{t('status')}</Table.HeaderCell>
+            <Table.HeaderCell onClick={() => {
+              if (sortArtistAsc){
+                items.sort((a, b) => {
+                  return a.track.artist.name.toLowerCase() > b.track.artist.name.toLowerCase();
+                });
+                setArtistSort(false);
+              } else {
+                items.sort((a, b) => {
+                  return a.track.artist.name.toLowerCase() < b.track.artist.name.toLowerCase();
+                });
+                setArtistSort(true);
+              }
+            }
+            }>{t('Artist')} {
+                sortArtistAsc ? <Icon name='caret up' /> : <Icon name='caret down' />
+              }
+            </Table.HeaderCell>
             <Table.HeaderCell onClick={() => {
               if (sortAsc){
                 items.sort((a, b) => {
@@ -36,7 +54,7 @@ const DownloadsList = ({
                 setSort(true);
               }
             }
-            }>{t('name')} {
+            }>{t('Song')} {
                 sortAsc ? <Icon name='caret up' /> : <Icon name='caret down' />
               }
             </Table.HeaderCell>

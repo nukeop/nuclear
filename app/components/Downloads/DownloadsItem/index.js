@@ -24,7 +24,6 @@ StatusIcon.propTypes = {
 const DownloadsItem = ({
   item
 }) => {
-
   const artistName = _.isString(_.get(item, 'track.artist'))
     ? _.get(item, 'track.artist')
     : _.get(item, 'track.artist.name');
@@ -34,6 +33,9 @@ const DownloadsItem = ({
       <Table.Cell>
         <StatusIcon status={item.status}/>
         { item.status }
+      </Table.Cell>
+      <Table.Cell>
+        { artistName } - { _.get(item, 'track.name') }
       </Table.Cell>
       <Table.Cell>
         { artistName } - { _.get(item, 'track.name') }
