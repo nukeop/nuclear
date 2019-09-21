@@ -137,6 +137,13 @@ export default [
       { key: 'id', text: 'Bahasa Indonesia', value: 'id' }
     ],
     default: undefined
+  }, {
+    name: 'downloads.dir',
+    category: 'downloads',
+    type: settingType.DIRECTORY,
+    prettyName: 'downloads-dir',
+    buttonText: 'downloads-dir-button',
+    buttonIcon: 'folder open'
   }
 
   // TODO: Enable when MPD integration is ready

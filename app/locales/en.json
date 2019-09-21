@@ -182,7 +182,10 @@
     "social": "Social",
     "user": "User:",
     "youtube": "Youtube",
-    "yt-api-key": "Youtube API Key"
+    "yt-api-key": "Youtube API Key",
+    "downloads": "Downloads",
+    "downloads-dir": "Downloads directory",
+    "downloads-dir-button": "Choose a directory..."
   },
   "tags": {
     "albums": "Top Albums",
