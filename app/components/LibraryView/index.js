@@ -34,10 +34,10 @@ const LibraryView = ({
     columnName => () => {
       actions.updateLocalSort(columnName, sortBy, direction);
     },
-    [sortBy, direction, actions.updateLocalSort]
+    [actions, sortBy, direction]
   );
   const { t } = useTranslation('library');
-
+  
   return (
     <div className={styles.local_files_view}>
       <Header>{t('header')}</Header>
@@ -55,25 +55,30 @@ const LibraryView = ({
         <Button
           inverted
           icon='refresh'
+          disabled={localFolders.length < 1}
           loading={pending}
           onClick={actions.scanLocalFolders}
           className={styles.refresh_icon}
         />
-        <Divider />
-        <List divided verticalAlign='middle' className={styles.equalizer_list}>
-          {localFolders.map((folder, idx) => (
-            <List.Item key={idx}>
-              <List.Content floated='right'>
-                <Icon
-                  name='close'
-                  onClick={() => actions.removeLocalFolder(folder)}
-                  className={styles.folder_remove_icon}
-                />
-              </List.Content>
-              <List.Content>{folder}</List.Content>
-            </List.Item>
-          ))}
-        </List>
+        {localFolders.length > 0 &&
+          <>
+            <Divider />
+            <List divided verticalAlign='middle' className={styles.equalizer_list}>
+              {localFolders.map((folder, idx) => (
+                <List.Item key={idx}>
+                  <List.Content floated='right'>
+                    <Icon
+                      name='close'
+                      onClick={() => actions.removeLocalFolder(folder)}
+                      className={styles.folder_remove_icon}
+                    />
+                  </List.Content>
+                  <List.Content>{folder}</List.Content>
+                </List.Item>
+              ))}
+            </List>
+          </>
+        }
       </Segment>
       <Segment>
         {api ? (
