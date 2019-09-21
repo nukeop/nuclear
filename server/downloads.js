@@ -6,6 +6,7 @@ import _ from 'lodash';
 import { ipcMain } from 'electron';
 
 import { trackSearch } from '../app/rest/youtube-search';
+import { getOption } from './store';
 
 let rendererWindow = null;
 electronDl();
@@ -38,6 +39,7 @@ export const registerDownloadsEvents = window => {
         
         return download(window, streamUrl, {
           filename: filename + `.${_.get(formatInfo, 'container')}`,
+          directory: getOption('downloads.dir'),
           onStarted: () => {
             rendererWindow.send('download-started', data.uuid);
           },
