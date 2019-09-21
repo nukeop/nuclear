@@ -78,9 +78,9 @@
     "title": "Title",
     "empty": "The library is empty",
     "empty-help": "Try adding some music using the button above.",
-    "no-api": "Web Api is not enabled :(",
+    "no-api": "Web API is not enabled",
     "no-api-help": "In order to use the local library you need to enable the web api.",
-    "api-enable": "enable the api."
+    "api-enable": "Enable the API"
   },
   "lyrics": {
     "by-artist": "by {{artist}}",

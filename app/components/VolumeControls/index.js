@@ -26,7 +26,7 @@ class VolumeControls extends React.Component {
           className={styles.volume_speaker_control}
           onClick={this.toggleMute.bind(this)}
         >
-          <FontAwesome name={this.props.muted ? 'volume-off' : 'volume-up'} />
+          <FontAwesome name={this.props.muted ? 'volume-off' : this.props.fill > 40 ? 'volume-up' : 'volume-down'}/>
         </div>
 
         <VolumeSlider
