@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { remote } from 'electron';
 import { Button, Input, Radio, Segment, Dropdown } from 'semantic-ui-react';
 import Range from 'react-range-progress';
 import cx from 'classnames';
@@ -14,7 +15,7 @@ import Header from '../Header';
 import Spacer from '../Spacer';
 import SocialIntegration from './SocialIntegration';
 import GithubSettings from './GithubSettings';
-import settingsEnum from '../../constants/settingsEnum';
+import settingsEnum from '../../../common/settingsEnum';
 
 import styles from './styles.scss';
 import { withTranslation } from 'react-i18next';
@@ -50,6 +51,18 @@ class Settings extends React.Component {
     return _.isNull(value) || !_.isNaN(intValue);
   }
 
+  setDirectoryOption(option) {
+    let dialogResult = remote.dialog.showOpenDialog({
+      properties: ['openDirectory']
+    });
+    if (!_.isNil(dialogResult)) {
+      this.props.actions.setStringOption(
+        option.name,
+        _.head(dialogResult)
+      );
+    }
+  }
+
   renderLastFmSocialIntegration () {
     return (
       <SocialIntegration
@@ -74,7 +87,7 @@ class Settings extends React.Component {
       lastFmName,
       lastFmSessionKey
     } = this.props.scrobbling;
-    
+
     const {
       lastFmConnectAction,
       lastFmLoginAction,
@@ -137,7 +150,7 @@ class Settings extends React.Component {
       github,
       t
     } = this.props;
-    
+
     return (
       <SocialIntegration
         logo={
@@ -214,10 +227,28 @@ class Settings extends React.Component {
     />);
   }
 
+  renderDirectoryOption(option) {
+    return (<span
+      className={styles.directory_option}>
+      <span
+        className={styles.directory_content}>
+        { this.getOptionValue(option) }
+      </span>
+      <Button
+        icon
+        inverted
+        labelPosition='left'
+        onClick={() => this.setDirectoryOption(option)}>
+        <Icon name={option.buttonIcon} />
+        {this.props.t(option.buttonText)}
+      </Button>
+    </span>);
+  }
+
   renderSliderOption (option) {
     return (
       <div className={styles.slider_container}>
-        <label>Less</label>  
+        <label>Less</label>
         <Range
           value={this.getOptionValue(option) || option.default}
           min={option.min}
@@ -234,7 +265,7 @@ class Settings extends React.Component {
       </div>
     );
   }
-  
+
   renderNumberOption (option) {
     if (typeof option.unit === 'string') {
       return this.renderSliderOption(option);
@@ -254,7 +285,7 @@ class Settings extends React.Component {
       />);
     }
   }
-  
+
   renderOption (settings, option, key) {
     return (
       <div
@@ -296,6 +327,10 @@ class Settings extends React.Component {
         {
           option.type === settingsEnum.NODE &&
             this.renderNodeOption(option)
+        }
+        {
+          option.type === settingsEnum.DIRECTORY &&
+          this.renderDirectoryOption(option)
         }
       </div>
     );

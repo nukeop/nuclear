@@ -3,5 +3,6 @@ export default {
   LIST: 'list',
   NODE: 'node',
   NUMBER: 'number',
-  STRING: 'string'
+  STRING: 'string',
+  DIRECTORY: 'directory'
 };
