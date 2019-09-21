@@ -2,27 +2,17 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as Actions from '../../actions';
+import { compose, withHandlers } from 'recompose';
 
+import * as Actions from '../../actions';
 import SearchBox from '../../components/SearchBox';
 
-class SearchBoxContainer extends React.Component {
-
-  handleSearch(history) {
-    return event => {
-      this.props.actions.unifiedSearch(event.target.value, history);
-    };
-  }
-
-  render() {
-    return (
-      <SearchBox
-        handleSearch={this.handleSearch.bind(this)(this.props.history)}
-        loading={this.props.unifiedSearchStarted}
-      />
-    );
-  }
-}
+const SearchBoxContainer = props => (
+  <SearchBox
+    handleSearch={props.handleSearch}
+    loading={props.unifiedSearchStarted}
+  />
+);
 
 function mapStateToProps(state) {
   return {
@@ -36,4 +26,12 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SearchBoxContainer));
+export default compose(
+  withRouter,
+  connect(mapStateToProps, mapDispatchToProps),
+  withHandlers({
+    handleSearch: props => event => {
+      props.actions.unifiedSearch(event.target.value, props.history);
+    }
+  })
+)(SearchBoxContainer);
