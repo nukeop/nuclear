@@ -85,6 +85,7 @@
     "react-range-progress": "^4.0.3",
     "react-redux": "^7.1.0",
     "react-toastify": "^4.5.2",
+    "recompose": "^0.30.0",
     "redux": "^4.0.4",
     "regenerator-runtime": "^0.13.2",
     "semantic-ui-react": "^0.82.1",
