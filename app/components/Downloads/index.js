@@ -4,6 +4,7 @@ import FontAwesome from 'react-fontawesome';
 
 import Header from '../Header';
 import DownloadsList from './DownloadsList';
+import DownloadsHeader from './DownloadsHeader';
 
 import styles from './styles.scss';
 import { useTranslation } from 'react-i18next';
@@ -20,12 +21,20 @@ const EmptyState = () => {
   );
 };
 
-const Downloads = props => {
-  const { downloads, clearFinishedTracks } = props;
+const Downloads = ({
+  downloads,
+  downloadsDir,
+  clearFinishedTracks,
+  setStringOption
+}) => {
   const { t } = useTranslation('downloads');
 
   return (
     <div className={styles.downloads_container}>
+      <DownloadsHeader
+        directory={downloadsDir}
+        setStringOption={setStringOption}
+      />
       {downloads.length === 0 && <EmptyState />}
       {downloads.length > 0 && (
         <React.Fragment>
@@ -42,12 +51,16 @@ const Downloads = props => {
 
 Downloads.propTypes = {
   downloads: PropTypes.array,
-  clearFinishedTracks: PropTypes.func
+  downloadsDir: PropTypes.string,
+  clearFinishedTracks: PropTypes.func,
+  setStringOption: PropTypes.func
 };
 
 Downloads.defaultProps = {
   downloads: [],
-  clearFinishedTracks: () => {}
+  downloadsDir: '',
+  clearFinishedTracks: () => {},
+  setStringOption: () => {}
 };
 
 export default Downloads;
