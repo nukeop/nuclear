@@ -1,0 +1,15 @@
+.downloads_header {
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+
+  .label, .directory {
+    display: flex;
+    align-items: center;
+  }
+
+  .directory {
+    margin-left: 1rem;
+    font-weight: bold;
+  }
+}
