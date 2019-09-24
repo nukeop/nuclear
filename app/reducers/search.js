@@ -16,6 +16,7 @@ import {
   YOUTUBE_PLAYLIST_SEARCH_START,
   YOUTUBE_PLAYLIST_SEARCH_SUCCESS
 } from '../actions';
+import Artist from '../structs/artist';
 
 const initialState = {
   plugins: [],
@@ -42,7 +43,7 @@ function reduceAlbumSearchSuccess (state, action) {
 
 function reduceArtistSearchSuccess (state, action) {
   return Object.assign({}, state, {
-    artistSearchResults: action.payload
+    artistSearchResults: action.payload.map(artist => Artist.fromDiscogsSearchData(artist))
   });
 }
 
