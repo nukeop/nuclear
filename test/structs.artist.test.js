@@ -82,4 +82,11 @@ describe('Artist structure tests', () => {
     expect(artist.tags).to.eql(['test-tag1', 'test-tag2']);
     expect(artist.similarArtists).to.eql(['test-artist1', 'test-artist2']);
   });
+
+  it('Removes the artist quantifier from the name', () => {
+    let artist = new Artist({
+      name: 'Test (2)'
+    });
+    should.equal(artist.name, 'Test');
+  });
 });

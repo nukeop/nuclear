@@ -16,12 +16,14 @@ class AllResults extends React.Component {
   }
   renderResults (collection, onClick) {
     return collection.slice(0, 5).map((el, i) => {
+      let id = _.get(el, 'ids.discogs', el.id);
+
       return (
         <Card
           small
           header={el.title||el.name}
           image={_.defaultTo(_.defaultTo(el.thumb, el.thumbnail), artPlaceholder)}
-          onClick={() => onClick(el.id, el.type)}
+          onClick={() => onClick(id, el.type)}
           key={'item-' + i}
         />
       );
