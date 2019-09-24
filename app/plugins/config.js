@@ -1,7 +1,7 @@
-import * as MusicSourcePlugins from './MusicSources/';
+import * as StreamProviderPlugins from './stream/';
 
 export const config = {
   plugins: {
-    musicSources: MusicSourcePlugins
+    musicSources: StreamProviderPlugins
   }
 };

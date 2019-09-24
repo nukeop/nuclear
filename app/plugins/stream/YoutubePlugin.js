@@ -2,10 +2,10 @@ import logger from 'electron-timber';
 import _ from 'lodash';
 import ytdl from 'ytdl-core';
 
-import MusicSourcePlugin from '../musicSources';
+import StreamProviderPlugin from '../streamProvider';
 import * as Youtube from '../../rest/Youtube';
 
-class YoutubePlugin extends MusicSourcePlugin {
+class YoutubePlugin extends StreamProviderPlugin {
   constructor() {
     super();
     this.name = 'Youtube Plugin';
@@ -37,7 +37,7 @@ class YoutubePlugin extends MusicSourcePlugin {
       })
       .catch(error => {
         logger.error(`Error while searching  for ${terms} on Youtube`);
-        logger.error(error); 
+        logger.error(error);
       });
   }
 
@@ -65,7 +65,7 @@ class YoutubePlugin extends MusicSourcePlugin {
       })
       .catch(error => {
         logger.error(`Error while looking up streams for ${terms} on Youtube`);
-        logger.error(error); 
+        logger.error(error);
       });
   }
 }

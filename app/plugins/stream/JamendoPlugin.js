@@ -1,10 +1,10 @@
 import logger from 'electron-timber';
 import _ from 'lodash';
 
-import MusicSourcePlugin from '../musicSources';
+import StreamProviderPlugin from '../streamProvider';
 import * as Jamendo from '../../rest/Jamendo';
 
-class JamendoPlugin extends MusicSourcePlugin {
+class JamendoPlugin extends StreamProviderPlugin {
   constructor() {
     super();
     this.name = 'Jamendo Plugin';

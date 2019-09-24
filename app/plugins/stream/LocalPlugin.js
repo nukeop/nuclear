@@ -1,7 +1,7 @@
-import MusicSourcePlugin from '../musicSources';
+import StreamProviderPlugin from '../streamProvider';
 import { localSearch } from '../../rest/Local';
 
-class LocalPlugin extends MusicSourcePlugin {
+class LocalPlugin extends StreamProviderPlugin {
   constructor() {
     super();
     this.name = 'Local Plugin';
