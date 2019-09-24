@@ -36,6 +36,11 @@ export const LASTFM_TRACK_SEARCH_SUCCESS = 'LASTFM_TRACK_SEARCH_SUCCESS';
 export const YOUTUBE_PLAYLIST_SEARCH_START = 'YOUTUBE_PLAYLIST_SEARCH_START';
 export const YOUTUBE_PLAYLIST_SEARCH_SUCCESS = 'YOUTUBE_PLAYLIST_SEARCH_SUCCESS';
 
+const SEARCH_TYPE = Object.freeze({
+  ARTIST: 'artist',
+  MASTER: 'master'
+});
+
 export function sourcesSearch (terms, plugins) {
   let searchResults = {};
   for (let i = 0; i < plugins.musicSources.length; i++) {
@@ -71,7 +76,6 @@ function discogsSearch (terms, searchType, dispatchType) {
       .then(searchResultsJson => {
         dispatch({
           type: dispatchType,
-
           payload: searchResultsJson.results
         });
       })
@@ -82,11 +86,11 @@ function discogsSearch (terms, searchType, dispatchType) {
 }
 
 export function albumSearch (terms) {
-  return discogsSearch(terms, 'master', 'ALBUM_SEARCH_SUCCESS');
+  return discogsSearch(terms, SEARCH_TYPE.MASTER, 'ALBUM_SEARCH_SUCCESS');
 }
 
 export function artistSearch (terms) {
-  return discogsSearch(terms, 'artist', 'ARTIST_SEARCH_SUCCESS');
+  return discogsSearch(terms, SEARCH_TYPE.ARTIST, 'ARTIST_SEARCH_SUCCESS');
 }
 
 export function lastFmTrackSearchStart (terms) {
@@ -108,9 +112,9 @@ export function lastFmTrackSearchSuccess (terms, searchResults) {
 
 const isAcceptableLastFMThumbnail = thumbnail =>
   !(/https?:\/\/lastfm-img\d.akamaized.net\/i\/u\/\d+s\/2a96cbd8b46e442fc41c2b86b821562f\.png/.test(thumbnail));
-  
+
 const getTrackThumbnail = track => {
-  const image = 
+  const image =
   _.get(
     track,
     ['image', 1, '#text'],
@@ -120,7 +124,7 @@ const getTrackThumbnail = track => {
       artPlaceholder
     )
   );
-  return isAcceptableLastFMThumbnail(image) ? image : artPlaceholder; 
+  return isAcceptableLastFMThumbnail(image) ? image : artPlaceholder;
 };
 
 export const mapLastFMTrackToInternal = track => ({
@@ -377,9 +381,9 @@ export function lastFmArtistInfoSearch (artist, artistId) {
         results.forEach(result => {
           info = Object.assign(info, result);
         });
-        
+
         const mappedInfo = {
-          ...info, 
+          ...info,
           artist: {
             ...info.artist,
             similar: {
@@ -387,7 +391,7 @@ export function lastFmArtistInfoSearch (artist, artistId) {
             }
           },
           toptracks: {
-            ...info.toptracks, 
+            ...info.toptracks,
             track: _.invoke(info, 'toptracks.track.map', mapLastFMTrackToInternal)
           }
         };

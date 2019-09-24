@@ -19,8 +19,8 @@ class AllResults extends React.Component {
       return (
         <Card
           small
-          header={el.title}
-          image={el.thumb || artPlaceholder}
+          header={el.title||el.name}
+          image={_.defaultTo(_.defaultTo(el.thumb, el.thumbnail), artPlaceholder)}
           onClick={() => onClick(el.id, el.type)}
           key={'item-' + i}
         />
