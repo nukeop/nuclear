@@ -2,6 +2,8 @@ import get from 'lodash/get';
 import map from 'lodash/map';
 import uuidv4 from 'uuid/v4';
 
+const artistQuantifierRegex = /\s\([0-9]*\)$/;
+
 export default class Artist {
   constructor(data) {
     this.uuid = uuidv4();
@@ -18,6 +20,11 @@ export default class Artist {
     this.albums = get(data, 'albums');
     this.topTracks = get(data, 'topTracks');
     this.similarArtists = get(data, 'similarArtists');
+    this.cleanName();
+  }
+
+  cleanName() {
+    this.name = this.name && this.name.replace(artistQuantifierRegex, '');
   }
 
   addDiscogsSearchData(data) {
@@ -25,6 +32,7 @@ export default class Artist {
     this.name = data.title;
     this.coverImage = data.cover_image;
     this.thumbnail = data.thumb;
+    this.cleanName();
   }
 
   addDiscogsData(data) {
@@ -32,6 +40,7 @@ export default class Artist {
     this.name = data.name;
     this.description = data.profile;
     this.images = data.images;
+    this.cleanName();
   }
 
   addLastfmData(data) {
@@ -41,6 +50,7 @@ export default class Artist {
     this.tags = map(get(data, 'tags.tag'), 'name');
     this.onTour = data.ontour === 1;
     this.similarArtists = map(get(data, 'similar.artist'), 'name');
+    this.cleanName();
   }
 
   static fromDiscogsSearchData(data) {
