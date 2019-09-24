@@ -2,10 +2,10 @@ import logger from 'electron-timber';
 import _ from 'lodash';
 
 import globals from '../../globals';
-import MusicSourcePlugin from '../musicSources';
+import StreamProviderPlugin from '../streamProvider';
 import * as Soundcloud from '../../rest/Soundcloud';
 
-class SoundcloudPlugin extends MusicSourcePlugin {
+class SoundcloudPlugin extends StreamProviderPlugin {
   constructor() {
     super();
     this.name = 'Soundcloud Plugin';

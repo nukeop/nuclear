@@ -2,24 +2,24 @@ import logger from 'electron-timber';
 
 import Plugin from './plugin';
 
-class MusicSourcePlugin extends Plugin {
+class StreamProviderPlugin extends Plugin {
   constructor() {
     super();
-    this.name = 'Music Source Plugin';
-    this.sourceName = 'Generic Music Source';
-    this.description = 'A generic music source plugin. Should never be instantiated directly';
+    this.name = 'Stream Provider Plugin';
+    this.sourceName = 'Generic Stream Provider';
+    this.description = 'A generic stream provider plugin. Should never be instantiated directly';
     this.image = null;
   }
 
   search(query) {
     /*
-    query is an object : 
+    query is an object :
     {
       artist : 'The artist name,
       track : 'The track to search'
     }
     */
-    logger.error('search not implemented in plugin ' + this.name + 
+    logger.error('search not implemented in plugin ' + this.name +
     '\n Query was: ' + query);
   }
 
@@ -30,4 +30,4 @@ class MusicSourcePlugin extends Plugin {
   }
 }
 
-export default MusicSourcePlugin;
+export default StreamProviderPlugin;
