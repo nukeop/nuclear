@@ -1,0 +1,70 @@
+{
+  "name": "@nuclear/ui",
+  "version": "0.5.1",
+  "description": "Nuclear - UI components",
+  "author": "nukeop <nukeop@gumblert.tech>",
+  "homepage": "https://github.com/nukeop/nuclear/tree/master/packages/ui#readme",
+  "license": "AGPL-3.0",
+  "scripts": {
+    "storybook": "start-storybook -p 9001 -c .storybook",
+    "test": "eslint lib && ava"
+  },
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nukeop/nuclear.git"
+  },
+  "bugs": {
+    "url": "https://github.com/nukeop/nuclear/issues"
+  },
+  "devDependencies": {
+    "@storybook/addon-actions": "^3.4.8",
+    "@storybook/addon-knobs": "^3.4.8",
+    "@storybook/addon-links": "^3.4.10",
+    "@storybook/cli": "^4.0.0-alpha.14",
+    "@storybook/react": "^4.0.0-alpha.14",
+    "ava": "^0.25.0",
+    "babel-core": "^6.26.3",
+    "babel-eslint": "^7.0.0",
+    "babel-loader": "^7.1.5",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "css-loader": "^1.0.0",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "eslint": "^5.6.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-react": "^7.11.0",
+    "jsdom": "^11.12.0",
+    "mini-css-extract-plugin": "^0.4.1",
+    "node-sass": "^4.9.2",
+    "optimize-css-assets-webpack-plugin": "^5.0.0",
+    "react-hot-loader": "^4.3.4",
+    "sass-loader": "^7.0.3",
+    "style-loader": "^0.21.0",
+    "uglifyjs-webpack-plugin": "^1.2.7",
+    "webpack": "^4.16.3",
+    "webpack-cli": "^3.1.0",
+    "webpack-dev-server": "^3.1.5"
+  },
+  "dependencies": {
+    "boxicons": "^1.7.1",
+    "classnames": "^2.2.6",
+    "prop-types": "^15.6.2",
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1"
+  },
+  "ava": {
+    "require": [
+      "babel-register",
+      "babel-polyfill",
+      "babel-plugin-transform-object-rest-spread"
+    ],
+    "babel": "inherit"
+  }
+}
