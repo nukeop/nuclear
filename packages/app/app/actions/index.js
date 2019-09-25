@@ -1,5 +1,5 @@
 import logger from 'electron-timber';
-import core from 'nuclear-core';
+import core from '@nuclear/core';
 import _ from 'lodash';
 import artPlaceholder from '../../resources/media/art_placeholder.png';
 import globals from '../globals';

@@ -2,7 +2,7 @@ import _ from 'lodash';
 import logger from 'electron-timber';
 
 import globals from '../../globals';
-import core from 'nuclear-core';
+import core from '@nuclear/core';
 
 let lastfm = new core.LastFmApi(globals.lastfmApiKey, globals.lastfmApiSecret);
 

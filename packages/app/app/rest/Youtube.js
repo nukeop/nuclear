@@ -1,4 +1,4 @@
-import core from 'nuclear-core';
+import core from '@nuclear/core';
 import ytdl from 'ytdl-core';
 
 import globals from '../globals';

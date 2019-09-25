@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ui from 'nuclear-ui';
+import ui from '@nuclear/ui';
 
 import './styles.scss';
 

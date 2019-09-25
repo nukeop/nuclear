@@ -14,7 +14,7 @@ import { filterFrequencies } from '../../components/Equalizer/chart';
 import { getSelectedStream } from '../../utils';
 import * as Autoradio from './autoradio';
 import globals from '../../globals';
-import core from 'nuclear-core';
+import core from '@nuclear/core';
 
 let lastfm = new core.LastFmApi(globals.lastfmApiKey, globals.lastfmApiSecret);
 

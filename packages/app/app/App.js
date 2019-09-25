@@ -45,7 +45,7 @@ import ToastContainer from './containers/ToastContainer';
 import ShortcutsContainer from './containers/ShortcutsContainer';
 import ErrorBoundary from './containers/ErrorBoundary';
 
-import ui from 'nuclear-ui';
+import ui from '@nuclear/ui';
 import NavButtons from './components/NavButtons';
 import PlayerControls from './components/PlayerControls';
 import Seekbar from './components/Seekbar';
@@ -66,7 +66,7 @@ class App extends React.Component {
   componentDidMount() {
     this.props.actions.loadPlaylists();
   }
-  
+
   togglePlayback () {
     if (this.props.player.playbackStatus === Sound.status.PAUSED) {
       this.scrobbleLastFmIfAble();
@@ -185,7 +185,7 @@ class App extends React.Component {
       <SidebarMenuCategoryHeader
         compact={this.props.settings.compactMenuBar}
         headerText={this.props.t(headerText)}
-      /> 
+      />
       {
         links.map(
           link => this.renderNavLink(link.name, link.path, link.icon)
@@ -262,9 +262,9 @@ class App extends React.Component {
       currentTrackStream,
       'duration'
     );
-    
+
     const timeToEnd = currentTrackDuration - this.props.player.seek;
-    
+
     return (
       <TrackDuration
         timePlayed={formatDuration(this.props.player.seek)}
@@ -275,7 +275,7 @@ class App extends React.Component {
       />
     );
   }
-  
+
   renderCover () {
     return (
       <ui.Cover

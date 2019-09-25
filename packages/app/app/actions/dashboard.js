@@ -1,5 +1,5 @@
 import logger from 'electron-timber';
-import core from 'nuclear-core';
+import core from '@nuclear/core';
 import { getBestNewAlbums, getBestNewTracks } from 'pitchfork-bnm';
 
 import globals from '../globals';

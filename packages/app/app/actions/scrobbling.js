@@ -1,5 +1,5 @@
 import { store } from '../persistence/store';
-import core from 'nuclear-core';
+import core from '@nuclear/core';
 import globals from '../globals';
 const electron = window.require('electron');
 const lastfm = new core.LastFmApi(globals.lastfmApiKey, globals.lastfmApiSecret);

@@ -1,5 +1,5 @@
 import logger from 'electron-timber';
-import core from 'nuclear-core';
+import core from '@nuclear/core';
 import globals from '../globals';
 
 export const LOAD_TAG_INFO_START = 'LOAD_TAG_INFO_START';
