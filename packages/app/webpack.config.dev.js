@@ -36,9 +36,12 @@ const config = {
     rules: [
       {
         test: /.jsx?$/,
-        loader: 'babel-loader', 
-        options: {cacheDirectory: true},
-        include: APP_DIR
+        loader: 'babel-loader',
+        options: { cacheDirectory: true },
+        include: [
+          APP_DIR,
+          /..\/ui/
+        ]
       },
       {
         test: /.scss$/,
@@ -54,6 +57,10 @@ const config = {
         test: /\.(png|jpg|gif)$/,
         loader: 'url-loader',
         include: RESOURCES_DIR
+      }, {
+        test: /\.(ttf|eot|woff|woff2|svg)$/,
+        loader: 'url-loader',
+        include: /..\/ui/
       }, {
         test: /\.svg$/,
         loader: 'svg-inline-loader'
