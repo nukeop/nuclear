@@ -35,10 +35,10 @@ const DownloadsItem = ({
         { item.status }
       </Table.Cell>
       <Table.Cell>
-        { artistName } - { _.get(item, 'track.name') }
+        { artistName }
       </Table.Cell>
       <Table.Cell>
-        { artistName } - { _.get(item, 'track.name') }
+        { _.get(item, 'track.name') }
       </Table.Cell>
       <Table.Cell>
         { _.round(item.completion*100, 0)  + '%' }
