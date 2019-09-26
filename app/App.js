@@ -401,4 +401,3 @@ export default withRouter(
     mapDispatchToProps
   )(App)
 );
-/* magordon97 test edit */
