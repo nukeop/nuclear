@@ -6,6 +6,8 @@ const BUILD_DIR = path.resolve(__dirname, 'dist');
 const APP_DIR = path.resolve(__dirname, 'app');
 const RESOURCES_DIR = path.resolve(__dirname, 'resources');
 
+const UI_DIR = path.resolve(__dirname, '..', 'ui');
+
 const config = {
   entry: path.resolve(APP_DIR, 'index.js'),
   output: {
@@ -42,6 +44,10 @@ const config = {
         options: {
           cacheDirectory: true
         },
+        include: [
+          APP_DIR,
+          UI_DIR
+        ],
         exclude: /node_modules\/electron\-timber\/preload\.js/
       },
       {
@@ -61,6 +67,10 @@ const config = {
         test: /\.(png|jpg|gif)$/,
         loader: 'url-loader',
         include: RESOURCES_DIR
+      }, {
+        test: /\.(ttf|eot|woff|woff2|svg)$/,
+        loader: 'url-loader',
+        include: /..\/ui/
       }, {
         test: /\.svg$/,
         loader: 'svg-inline-loader'
