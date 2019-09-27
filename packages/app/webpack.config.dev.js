@@ -6,8 +6,9 @@ const BUILD_DIR = path.resolve(__dirname, 'dist');
 const APP_DIR = path.resolve(__dirname, 'app');
 const RESOURCES_DIR = path.resolve(__dirname, 'resources');
 
-const config = {
+const UI_DIR = path.resolve(__dirname, '..', 'ui');
 
+const config = {
   entry: [
     'react-hot-loader/patch',
     'webpack-dev-server/client?http://localhost:8080',
@@ -40,7 +41,7 @@ const config = {
         options: { cacheDirectory: true },
         include: [
           APP_DIR,
-          /..\/ui/
+          UI_DIR
         ]
       },
       {
@@ -70,7 +71,7 @@ const config = {
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
-      template: 'index.html',
+      template: path.resolve(__dirname, 'index.html'),
       minify: {
         html5: true,
         removeComments: true,

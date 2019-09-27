@@ -1,3 +1,3 @@
-import ui from './lib';lib
+import ui from './lib';
 
 export default ui;
