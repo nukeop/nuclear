@@ -33,7 +33,7 @@ test('prepare url', t => {
 
 test('get top tracks', async t => {
   let api = setupLastFmApi('2b75dcb291e2b0c9a2c994aca522ac14',
-                           '2ee49e35f08b837d43b2824198171fc8');
+    '2ee49e35f08b837d43b2824198171fc8');
   
   let data = await api.getTopTracks();
   data = await data.json();
@@ -44,7 +44,7 @@ test('get top tracks', async t => {
 
 test('search tracks', async t => {
   let api = setupLastFmApi('2b75dcb291e2b0c9a2c994aca522ac14',
-                           '2ee49e35f08b837d43b2824198171fc8');
+    '2ee49e35f08b837d43b2824198171fc8');
 
   let data = await api.searchTracks('billie jean');
   data = await data.json();
@@ -56,7 +56,7 @@ test('search tracks', async t => {
 
 test('get similar tracks', async t => {
   let api = setupLastFmApi('2b75dcb291e2b0c9a2c994aca522ac14',
-                           '2ee49e35f08b837d43b2824198171fc8');
+    '2ee49e35f08b837d43b2824198171fc8');
 
   let data = await api.searchTracks('michael jackson', 'billie jean');
   data = await data.json();

@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
-import _ from 'lodash';
-
 import Toast from './Toast';
 
 import common from '../../common.scss';

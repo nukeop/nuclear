@@ -20,6 +20,10 @@
     "url": "https://github.com/nukeop/nuclear/issues"
   },
   "homepage": "https://github.com/nukeop/nuclear#readme",
+  "scripts": {
+    "test": "lerna run test",
+    "lint:fix": "lerna run lint:fix"
+  },
   "dependencies": {
   },
   "devDependencies": {

@@ -12,7 +12,7 @@ test('shallow', (t) => {
   const wrapper = shallow(<Cover cover='https://i.imgur.com/4euOws2.jpg'/>);
   t.is(wrapper.containsMatchingElement(
     <div className='nuclear cover_container'>
-      <img src="https://i.imgur.com/4euOws2.jpg" />
+      <img src='https://i.imgur.com/4euOws2.jpg' />
     </div>
   ), true);
 });

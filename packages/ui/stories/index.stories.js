@@ -52,10 +52,14 @@ storiesOf('QueueItem', module)
           }}
           isLoading={false}
           isCurrent={false}
-          duration={ formatDuration(123) }
+          duration={formatDuration(123)}
           defaultMusicSource={{}}
-          selectSong={() => {alert('Item selected')}}
-          removeFromQueue={() => {alert('Item removed from queue')}}
+          selectSong={() => {
+            alert('Item selected');
+          }}
+          removeFromQueue={() => {
+            alert('Item removed from queue');
+          }}
         />
       </div>
     );
@@ -76,10 +80,14 @@ storiesOf('QueueItem', module)
           }}
           isLoading={true}
           isCurrent={false}
-          duration={ formatDuration(123) }
+          duration={formatDuration(123)}
           defaultMusicSource={{}}
-          selectSong={() => {alert('Item selected')}}
-          removeFromQueue={() => {alert('Item removed from queue')}}
+          selectSong={() => {
+            alert('Item selected');
+          }}
+          removeFromQueue={() => {
+            alert('Item removed from queue');
+          }}
         />
       </div>
     );
@@ -100,10 +108,14 @@ storiesOf('QueueItem', module)
           }}
           isLoading={false}
           isCurrent={true}
-          duration={ formatDuration(123) }
+          duration={formatDuration(123)}
           defaultMusicSource={{}}
-          selectSong={() => {alert('Item selected')}}
-          removeFromQueue={() => {alert('Item removed from queue')}}
+          selectSong={() => {
+            alert('Item selected');
+          }}
+          removeFromQueue={() => {
+            alert('Item removed from queue');
+          }}
         />
       </div>
     );

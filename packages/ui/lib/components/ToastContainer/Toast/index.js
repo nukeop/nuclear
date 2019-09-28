@@ -21,7 +21,7 @@ const Toast = props => {
       style={{
         bottom: `calc(1em + ${(props.offset[1])} * ${TOAST_HEIGHT_PADDED})`
       }}
-      onClick={ props.onClick }
+      onClick={props.onClick}
     >
       <div
         className={styles.toast_content}
@@ -37,8 +37,8 @@ const Toast = props => {
         <div
           className={styles.toast_text}
         >
-          <div className={ styles.title }>{ props.title }</div>
-          <div className={styles.details }>{ props.details }</div>
+          <div className={styles.title}>{ props.title }</div>
+          <div className={styles.details}>{ props.details }</div>
         </div>
       </div>
     </div>

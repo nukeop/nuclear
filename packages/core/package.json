@@ -10,6 +10,7 @@
     "url": "git+https://github.com/nukeop/nuclear.git"
   },
   "scripts": {
+    "lint:fix": "eslint lib --fix",
     "test": "eslint lib && ava -v"
   },
   "bugs": {
@@ -23,8 +24,12 @@
     "@babel/preset-react": "^7.0.0",
     "@babel/register": "^7.6.2",
     "ava": "^0.25.0",
+    "babel-eslint": "^10.0.3",
     "babel-loader": "^7.1.5",
     "eslint": "^5.2.0",
+    "eslint-plugin-node": "^10.0.0",
+    "eslint-plugin-react": "^7.14.3",
+    "eslint-plugin-react-hooks": "^2.1.1",
     "webpack": "^4.16.3",
     "webpack-cli": "^3.1.0",
     "webpack-dev-server": "^3.1.5"
@@ -36,7 +41,10 @@
   },
   "ava": {
     "require": [
-      "@babel/register"
-    ]
+      "@babel/register",
+      "@babel/polyfill",
+      "@babel/plugin-proposal-object-rest-spread"
+    ],
+    "babel": "inherit"
   }
 }
