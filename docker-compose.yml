@@ -23,6 +23,7 @@ services:
     working_dir: /nuclear
     command: bash -xc "
       lerna bootstrap;
+      lerna exec npm rebuild node-sass;
       lerna run start "
     devices:
       - "/dev/snd"
