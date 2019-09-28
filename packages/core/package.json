@@ -16,11 +16,14 @@
     "url": "https://github.com/nukeop/nuclear/issues"
   },
   "devDependencies": {
+    "@babel/core": "^7.6.2",
+    "@babel/plugin-proposal-object-rest-spread": "^7.6.2",
+    "@babel/polyfill": "^7.6.0",
+    "@babel/preset-env": "^7.6.2",
+    "@babel/preset-react": "^7.0.0",
+    "@babel/register": "^7.6.2",
     "ava": "^0.25.0",
-    "babel-core": "^6.26.3",
     "babel-loader": "^7.1.5",
-    "babel-preset-env": "^1.7.0",
-    "babel-register": "^6.26.0",
     "eslint": "^5.2.0",
     "webpack": "^4.16.3",
     "webpack-cli": "^3.1.0",
@@ -33,7 +36,7 @@
   },
   "ava": {
     "require": [
-      "babel-register"
+      "@babel/register"
     ]
   }
 }

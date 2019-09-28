@@ -20,20 +20,20 @@
     "url": "https://github.com/nukeop/nuclear/issues"
   },
   "devDependencies": {
-    "@storybook/addon-actions": "^3.4.8",
-    "@storybook/addon-knobs": "^3.4.8",
+    "@babel/core": "^7.6.2",
+    "@babel/plugin-proposal-object-rest-spread": "^7.6.2",
+    "@babel/polyfill": "^7.6.0",
+    "@babel/preset-env": "^7.6.2",
+    "@babel/preset-react": "^7.0.0",
+    "@babel/register": "^7.6.2",
+    "@storybook/addon-actions": "^3.4.12",
+    "@storybook/addon-knobs": "^3.4.12",
     "@storybook/addon-links": "^3.4.10",
-    "@storybook/cli": "^4.0.0-alpha.14",
-    "@storybook/react": "^4.0.0-alpha.14",
+    "@storybook/cli": "^4.1.18",
+    "@storybook/react": "^4.1.18",
     "ava": "^0.25.0",
-    "babel-core": "^6.26.3",
     "babel-eslint": "^7.0.0",
     "babel-loader": "^7.1.5",
-    "babel-plugin-transform-object-rest-spread": "^6.26.0",
-    "babel-polyfill": "^6.26.0",
-    "babel-preset-env": "^1.7.0",
-    "babel-preset-react": "^6.24.1",
-    "babel-preset-stage-2": "^6.24.1",
     "css-loader": "^1.0.0",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
@@ -61,9 +61,9 @@
   },
   "ava": {
     "require": [
-      "babel-register",
-      "babel-polyfill",
-      "babel-plugin-transform-object-rest-spread"
+      "@babel/register",
+      "@babel/polyfill",
+      "@babel/plugin-proposal-object-rest-spread"
     ],
     "babel": "inherit"
   }
