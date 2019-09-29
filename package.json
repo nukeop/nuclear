@@ -26,6 +26,7 @@
     "lint:fix": "lerna run lint:fix",
     "storybook": "cd packages/ui && npm run storybook",
     "build": "cd packages/app && npm run build:dist && npm run build:electron && npm run pack",
+    "build:win": "cd packages/app && npm run build:dist:windows && npm run build:electron && npm run pack",
     "build:all": "cd packages/app && npm run build:dist && npm run build:electron && npm run build:all"
   },
   "dependencies": {},

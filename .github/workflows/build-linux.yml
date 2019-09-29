@@ -17,8 +17,6 @@ jobs:
       run: |
         npm install
         npm test
-        npm run build:dist
-        npm run build:electron
-        cd packages/app && npm run build:linux
+        npm run build
       env:
         GITHASH: ${GITHUB_SHA}
