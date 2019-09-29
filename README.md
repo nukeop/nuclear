@@ -40,6 +40,20 @@ See [this](docs/electron.md).
 - List of favorite tracks
 - Listening from local library
 
+## Manual and docs
+https://nuclearmusic.rtfd.io/
+
+## Community-maintained packages
+
+Here's a list of packages maintained by third parties. We would like to thank the maintainers for their work.
+
+We do not control these and cannot be held responsible for their contents, but if any of these appear suspicious to you, feel free to open an issue so we can reach out to the maintainers.
+
+| Package type | Link                                                   | Maintainer                                    |
+|:------------:|:------------------------------------------------------:|:---------------------------------------------:|
+| AUR (Arch)   | https://aur.archlinux.org/packages/nuclear-player-bin/ | [mikelpint](https://github.com/mikelpint)     |
+| Choco (Win)  | https://chocolatey.org/packages/nuclear/               | [JourneyOver](https://github.com/JourneyOver) |
+
 ## Community translations
 Nuclear has already been translated to several languages, and we're always looking for contributors who would like to add more. Below is a list of currently available languages, along with contributors who helped to translate Nuclear to that language.
 
@@ -56,20 +70,6 @@ Nuclear has already been translated to several languages, and we're always looki
 | Brazilian Portuguese | [JoaoPedroMoraes](https://github.com/JoaoPedroMoraes)                                                |
 | Turkish              | [3DShark](https://github.com/3DShark)                                                                |
 | Italian              | [gello94](https://github.com/gello94)                                                                |
-
-## Manual and docs
-https://nuclearmusic.rtfd.io/
-
-## Community-maintained packages
-
-Here's a list of packages maintained by third parties. We would like to thank the maintainers for their work.
-
-We do not control these and cannot be held responsible for their contents, but if any of these appear suspicious to you, feel free to open an issue so we can reach out to the maintainers.
-
-| Package type | Link                                                   | Maintainer                                    |
-|:------------:|:------------------------------------------------------:|:---------------------------------------------:|
-| AUR (Arch)   | https://aur.archlinux.org/packages/nuclear-player-bin/ | [mikelpint](https://github.com/mikelpint)     |
-| Choco (Win)  | https://chocolatey.org/packages/nuclear/               | [JourneyOver](https://github.com/JourneyOver) |
 
 ## Screenshots
 This will be updated as the program evolves.
@@ -102,23 +102,14 @@ $ sudo docker-compose up dev
 A new window should open that will load the web app and run Nuclear.
 
 ---
-To run production version:
-
-```bash
-$ npm run build:dist
-$ npm run electron:prod
-```
----
 To build for current operating system:
 ```bash
-$ npm run build:dist
-$ npm run build:electron
-$ npm run pack
+$ npm run build
 ```
 
-Instead of `pack` you can use `build:all` to build for all operating systems or `build:[system]` to build for a particular system (see package.json).
+Instead of `build` you can use `build:all` to build for all operating systems. The binaries will be in `packages/app/release`
 
-In case of errors with dbus/mpris, try removing optional dependencies from package.json and node_modules.
+In case of errors with dbus/mpris, try removing optional dependencies from `packages/app/package.json` and node_modules.
 
 ## License
 

@@ -1,3 +1,1 @@
-import core from './lib';
-
-export default core;
+module.exports = require('./lib');

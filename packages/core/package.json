@@ -23,10 +23,10 @@
     "@babel/preset-env": "^7.6.2",
     "@babel/preset-react": "^7.0.0",
     "@babel/register": "^7.6.2",
-    "ava": "^0.25.0",
+    "ava": "^2.4.0",
     "babel-eslint": "^10.0.3",
     "babel-loader": "^7.1.5",
-    "eslint": "^5.2.0",
+    "eslint": "^5.16.0",
     "eslint-plugin-node": "^10.0.0",
     "eslint-plugin-react": "^7.14.3",
     "eslint-plugin-react-hooks": "^2.1.1",
@@ -40,11 +40,16 @@
     "md5": "^2.2.1"
   },
   "ava": {
+    "babel": {
+      "testOptions": {
+        "plugins": [
+          "@babel/plugin-proposal-object-rest-spread"
+        ]
+      }
+    },
     "require": [
       "@babel/register",
-      "@babel/polyfill",
-      "@babel/plugin-proposal-object-rest-spread"
-    ],
-    "babel": "inherit"
+      "@babel/polyfill"
+    ]
   }
 }

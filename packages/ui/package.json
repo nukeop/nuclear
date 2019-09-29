@@ -30,19 +30,20 @@
     "@storybook/addon-actions": "^3.4.12",
     "@storybook/addon-knobs": "^3.4.12",
     "@storybook/addon-links": "^3.4.10",
-    "@storybook/cli": "^4.1.18",
-    "@storybook/react": "^4.1.18",
+    "@storybook/cli": "^5.2.1",
+    "@storybook/react": "^5.2.1",
     "ava": "^2.4.0",
     "babel-eslint": "^7.2.3",
     "babel-loader": "^8.0.6",
     "css-loader": "^1.0.0",
-    "enzyme": "^3.3.0",
+    "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.1.1",
-    "eslint": "^5.6.0",
+    "eslint": "^5.16.0",
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-node": "^10.0.0",
     "eslint-plugin-react": "^7.11.0",
     "eslint-plugin-react-hooks": "^2.1.1",
+    "ignore-styles": "^5.0.1",
     "jsdom": "^11.12.0",
     "mini-css-extract-plugin": "^0.4.1",
     "node-sass": "^4.9.2",
@@ -63,10 +64,24 @@
     "react-dom": "^16.4.1"
   },
   "ava": {
+    "babel": {
+      "testOptions": {
+        "presets": [
+          "@babel/preset-react"
+        ],
+        "plugins": [
+          "@babel/plugin-syntax-jsx",
+          "@babel/plugin-proposal-object-rest-spread"
+        ]
+      }
+    },
     "require": [
       "@babel/register",
       "@babel/polyfill",
-      "@babel/plugin-proposal-object-rest-spread"
+      "ignore-styles"
+    ],
+    "files": [
+      "!test/helpers"
     ]
   }
 }
