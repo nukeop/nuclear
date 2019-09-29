@@ -30,7 +30,7 @@
     "@storybook/addon-actions": "^3.4.12",
     "@storybook/addon-knobs": "^3.4.12",
     "@storybook/addon-links": "^3.4.10",
-    "@storybook/cli": "^4.1.18",
+    "@storybook/cli": "^5.2.1",
     "@storybook/react": "^4.1.18",
     "ava": "^2.4.0",
     "babel-eslint": "^7.2.3",

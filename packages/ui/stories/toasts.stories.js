@@ -1,7 +1,8 @@
 import React from 'react';
+import _ from 'lodash';
 import { storiesOf } from '@storybook/react';
 
-import ui from '../lib';
+import {ToastContainer} from '..';
 import './toasts.styles.scss';
 
 storiesOf('Toasts', module)
@@ -14,7 +15,7 @@ storiesOf('Toasts', module)
           boxSizing: 'border-box'
         }}
       >
-        <ui.ToastContainer
+        <ToastContainer
           toasts={[
             {
               title: 'Example toast',
@@ -100,7 +101,7 @@ storiesOf('Toasts', module)
               </a>
             </div>
 
-            <ui.ToastContainer
+            <ToastContainer
               toasts={this.state.toasts}
             />
           </div>
@@ -120,7 +121,7 @@ storiesOf('Toasts', module)
           boxSizing: 'border-box'
         }}
       >
-        <ui.ToastContainer
+        <ToastContainer
           toasts={[
             {
               title: 'Example clickable toast',

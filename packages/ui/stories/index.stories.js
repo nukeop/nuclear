@@ -1,13 +1,13 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 
-import ui from '../';
+import {Cover, Seekbar, QueueItem, Loader} from '..';
 import { formatDuration } from '../lib/utils';
 import './styles.scss';
 
 storiesOf('Cover', module)
   .add('Basic', () => (
-    <ui.Cover cover='https://i.imgur.com/4euOws2.jpg'/>
+    <Cover cover='https://i.imgur.com/4euOws2.jpg'/>
   ));
 
 storiesOf('Seekbar', module)
@@ -17,19 +17,19 @@ storiesOf('Seekbar', module)
         Seekbars filled to various levels.
         <br /><br />
         60%:
-        <ui.Seekbar fill='60%' />
+        <Seekbar fill='60%' />
         <br />
         70%:
-        <ui.Seekbar fill='70%' />
+        <Seekbar fill='70%' />
         <br />
         80%:
-        <ui.Seekbar fill='80%' />
+        <Seekbar fill='80%' />
         <br />
         30%:
-        <ui.Seekbar fill='30%' />
+        <Seekbar fill='30%' />
         <br />
         10%:
-        <ui.Seekbar fill='10%' />
+        <Seekbar fill='10%' />
         <br />
       </div>
     );
@@ -44,7 +44,7 @@ storiesOf('QueueItem', module)
         padding: '2rem',
         boxSizing: 'border-box'
       }}>
-        <ui.QueueItem
+        <QueueItem
           track={{
             thumbnail: 'https://i.imgur.com/4euOws2.jpg',
             name: 'Test track name',
@@ -72,7 +72,7 @@ storiesOf('QueueItem', module)
         padding: '2rem',
         boxSizing: 'border-box'
       }}>
-        <ui.QueueItem
+        <QueueItem
           track={{
             thumbnail: 'https://i.imgur.com/4euOws2.jpg',
             name: 'Test track name',
@@ -100,7 +100,7 @@ storiesOf('QueueItem', module)
         padding: '2rem',
         boxSizing: 'border-box'
       }}>
-        <ui.QueueItem
+        <QueueItem
           track={{
             thumbnail: 'https://i.imgur.com/4euOws2.jpg',
             name: 'Test track name',
@@ -132,7 +132,7 @@ storiesOf('Loader', module)
         padding: '1em',
         boxSizing: 'border-box'
       }}>
-        <ui.Loader />
+        <Loader />
       </div>
     );
   })
@@ -145,7 +145,7 @@ storiesOf('Loader', module)
         padding: '1em',
         boxSizing: 'border-box'
       }}>
-        <ui.Loader type='circle'/>
+        <Loader type='circle'/>
       </div>
     );
   })
@@ -158,7 +158,7 @@ storiesOf('Loader', module)
         padding: '1em',
         boxSizing: 'border-box'
       }}>
-        <ui.Loader type='small'/>
+        <Loader type='small'/>
       </div>
     );
   });
