@@ -22,7 +22,8 @@
   "homepage": "https://github.com/nukeop/nuclear#readme",
   "scripts": {
     "test": "lerna run test",
-    "lint:fix": "lerna run lint:fix"
+    "lint:fix": "lerna run lint:fix",
+    "storybook": "cd packages/ui && npm run storybook"
   },
   "dependencies": {
   },
