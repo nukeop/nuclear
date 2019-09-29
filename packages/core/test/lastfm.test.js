@@ -1,7 +1,5 @@
-import lib from '../lib';
 import test from 'ava';
-
-const LastFmApi = lib.LastFmApi;
+import {LastFmApi} from '..';
 
 const setupLastFmApi = (key, secret) => {
   return new LastFmApi(key, secret);
@@ -34,7 +32,7 @@ test('prepare url', t => {
 test('get top tracks', async t => {
   let api = setupLastFmApi('2b75dcb291e2b0c9a2c994aca522ac14',
     '2ee49e35f08b837d43b2824198171fc8');
-  
+
   let data = await api.getTopTracks();
   data = await data.json();
 
