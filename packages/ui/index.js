@@ -1,3 +1,1 @@
-import ui from './lib';
-
-export default ui;
+module.exports = require('./lib');

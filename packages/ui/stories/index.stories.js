@@ -1,8 +1,8 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 
-import ui from '@nuclear/ui/lib';
-import { formatDuration } from '@nuclear/ui/lib/utils';
+import ui from '../';
+import { formatDuration } from '../lib/utils';
 import './styles.scss';
 
 storiesOf('Cover', module)

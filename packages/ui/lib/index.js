@@ -6,10 +6,8 @@ import ToastContainer from './components/ToastContainer';
 
 import '../resources/Lato.css';
 
-export default {
-  Cover,
-  Loader,
-  QueueItem,
-  Seekbar,
-  ToastContainer
-};
+export { Cover } from './components/Cover';
+export { Loader } from './components/Loader';
+export { QueueItem } from './components/QueueItem';
+export { Seekbar } from './components/Seekbar';
+export { ToastContainer } from './components/ToastContainer'; 

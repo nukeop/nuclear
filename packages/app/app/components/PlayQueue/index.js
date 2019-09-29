@@ -8,8 +8,8 @@ import _ from 'lodash';
 import { safeAddUuid } from '../../actions/helpers';
 import styles from './styles.scss';
 
+import QueueItem from '@nuclear/ui/lib/components/QueueItem/';
 import QueuePopup from '../QueuePopup';
-import QueueItem from './QueueItem';
 import QueueMenu from './QueueMenu';
 
 @withTranslation('queue')
@@ -101,7 +101,7 @@ class PlayQueue extends React.Component {
           <QueueMenu
             clearQueue={clearQueue}
             addPlaylist={addPlaylist}
-            updatePlaylist={updatePlaylist} 
+            updatePlaylist={updatePlaylist}
             toggleOption={toggleOption}
             addFavoriteTrack={addFavoriteTrack}
             addToDownloads={this.onAddToDownloads.bind(this)}
