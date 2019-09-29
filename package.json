@@ -27,9 +27,13 @@
     "build": "cd packages/app && npm run build:dist && npm run build:electron && npm run pack",
     "build:all": "cd packages/app && npm run build:dist && npm run build:electron && npm run build:all"
   },
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
+    "eslint": "^6.5.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-node": "^10.0.0",
+    "eslint-plugin-react": "^7.14.3",
+    "eslint-plugin-react-hooks": "^2.1.1",
     "lerna": "^3.16.4"
   }
 }
