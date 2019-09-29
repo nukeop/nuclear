@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/nukeop/nuclear#readme",
   "scripts": {
+    "postinstall": "lerna bootstrap",
     "test": "lerna run test",
     "lint:fix": "lerna run lint:fix",
     "storybook": "cd packages/ui && npm run storybook",
@@ -29,12 +30,6 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "babel-eslint": "^10.0.3",
-    "eslint": "^6.5.0",
-    "eslint-plugin-import": "^2.18.2",
-    "eslint-plugin-node": "^10.0.0",
-    "eslint-plugin-react": "^7.14.3",
-    "eslint-plugin-react-hooks": "^2.1.1",
     "lerna": "^3.16.4"
   }
 }
