@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/nukeop/nuclear#readme",
   "scripts": {
-    "postinstall": "lerna bootstrap",
+    "postinstall": "lerna bootstrap --no-ci",
     "test": "lerna run test",
     "lint:fix": "lerna run lint:fix",
     "storybook": "cd packages/ui && npm run storybook",
