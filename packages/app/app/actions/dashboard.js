@@ -1,12 +1,12 @@
 import logger from 'electron-timber';
-import core from '@nuclear/core';
+import { LastFmApi } from '@nuclear/core';
 import { getBestNewAlbums, getBestNewTracks } from 'pitchfork-bnm';
 
 import globals from '../globals';
 import { getNewsIndex, getNewsItem } from '../rest/Nuclear';
 import {mapLastFMTrackToInternal} from './index';
 
-const lastfm = new core.LastFmApi(
+const lastfm = new LastFmApi(
   globals.lastfmApiKey,
   globals.lastfmApiSecret
 );

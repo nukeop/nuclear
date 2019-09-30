@@ -58,29 +58,29 @@ class QueueMenu extends React.Component {
           {
             !compact &&
               <QueueMenuMore
-                  clearQueue={clearQueue}
-                  updatePlaylist={updatePlaylist}
-                  addFavoriteTrack={addFavoriteTrack}
-                  addToDownloads={addToDownloads}
-                  playlists={playlists}
-                  currentItem={_.head(items)}
-                  savePlaylistDialog={
-                      <InputDialog
-                          header={<h4>Input playlist name:</h4>}
-                          placeholder={t('dialog-placeholder')}
-                          accept={t('dialog-accept')}
-                          onAccept={this.handleAddPlaylist(addPlaylist, success, items, settings)}
-                          trigger={
-                              <Dropdown.Item>
-                                  <Icon name='save'/>
-                                    {t('dialog-trigger')}
-                                </Dropdown.Item>
-                                }
-                                initialString={firstTitle}
-                                />
-                        }
-                        />
-              }
+                clearQueue={clearQueue}
+                updatePlaylist={updatePlaylist}
+                addFavoriteTrack={addFavoriteTrack}
+                addToDownloads={addToDownloads}
+                playlists={playlists}
+                currentItem={_.head(items)}
+                savePlaylistDialog={
+                  <InputDialog
+                    header={<h4>Input playlist name:</h4>}
+                    placeholder={t('dialog-placeholder')}
+                    accept={t('dialog-accept')}
+                    onAccept={this.handleAddPlaylist(addPlaylist, success, items, settings)}
+                    trigger={
+                      <Dropdown.Item>
+                        <Icon name='save'/>
+                        {t('dialog-trigger')}
+                      </Dropdown.Item>
+                    }
+                    initialString={firstTitle}
+                  />
+                }
+              />
+          }
 
         </div>
         <hr />

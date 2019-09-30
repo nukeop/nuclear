@@ -5,7 +5,7 @@ import { shallow, mount } from 'enzyme';
 import { describe, it } from 'mocha';
 import FontAwesome from 'react-fontawesome';
 
-import PlayerControls from '../app/components/PlayerControls'
+import PlayerControls from '../app/components/PlayerControls';
 import PlayPauseButton from '../app/components/PlayerControls/PlayPauseButton';
 import PlayerButton from '../app/components/PlayerControls/PlayerButton';
 
@@ -19,7 +19,7 @@ describe('Rendering <PlayerControls /> and its children', () => {
     expect(wrapper.find(PlayerButton)).to.have.lengthOf(2);
     expect(wrapper.find(PlayerButton).first().props().icon).to.equal('step-backward');
     expect(wrapper.find(PlayerButton).last().props().icon).to.equal('step-forward');
-  })
+  });
 });
 
 describe('Back button onClick', () => {
@@ -28,8 +28,8 @@ describe('Back button onClick', () => {
     const spy = chai.spy();
     wrapper.find(PlayerButton).first().simulate('click');
     expect(spy).to.have.been.called;
-  })
-})
+  });
+});
 
 describe('Forward button onClick', () => {
   it('has an onclick event that gets triggered', () => {
@@ -37,29 +37,29 @@ describe('Forward button onClick', () => {
     const spy = chai.spy();
     wrapper.find(PlayerButton).last().simulate('click');
     expect(spy).to.have.been.called;
-  })
-})
+  });
+});
 
 describe('<PlayPauseButton/> loading', () => {
   it('Loading indicator showing', () => {
-    const wrapper = mount(<PlayPauseButton loading={true} playing={false} onClick={undefined} />)
-    expect(wrapper.find(FontAwesome).prop('name')).to.equal('spinner')
-  })
-})
+    const wrapper = mount(<PlayPauseButton loading={true} playing={false} onClick={undefined} />);
+    expect(wrapper.find(FontAwesome).prop('name')).to.equal('spinner');
+  });
+});
 
 describe('<PlayPauseButton/> playing', () => {
   it('Shows pause button', () => {
-    const wrapper = mount(<PlayPauseButton loading={false} playing={true} onClick={undefined} />)
-    expect(wrapper.find(FontAwesome).prop('name')).to.equal('pause')
-  })
-})
+    const wrapper = mount(<PlayPauseButton loading={false} playing={true} onClick={undefined} />);
+    expect(wrapper.find(FontAwesome).prop('name')).to.equal('pause');
+  });
+});
 
 describe('<PlayPauseButton/> ready to play', () => {
   it('Shows play button', () => {
-    const wrapper = mount(<PlayPauseButton loading={false} playing={false} onClick={undefined} />)
-    expect(wrapper.find(FontAwesome).prop('name')).to.equal('play')
-  })
-})
+    const wrapper = mount(<PlayPauseButton loading={false} playing={false} onClick={undefined} />);
+    expect(wrapper.find(FontAwesome).prop('name')).to.equal('play');
+  });
+});
 
 describe('<PlayPauseButton/> onClick', () => {
   it('Shows play button', () => {
@@ -67,5 +67,5 @@ describe('<PlayPauseButton/> onClick', () => {
     const wrapper = mount(<PlayPauseButton loading={false} playing={false} onClick={spy} />);
     wrapper.find('a').simulate('click');
     expect(spy).to.have.been.called;
-  })
-})
+  });
+});

@@ -15,7 +15,7 @@ describe('<NavButtons />', () => {
   beforeEach(() => {
     history = {
       goBack: chai.spy(),
-      goForward: chai.spy(),
+      goForward: chai.spy()
     };
   });
 

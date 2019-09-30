@@ -2,19 +2,19 @@ import _ from 'lodash';
 import logger from 'electron-timber';
 
 import globals from '../../globals';
-import core from '@nuclear/core';
+import { LastFmApi } from '@nuclear/core';
 
-let lastfm = new core.LastFmApi(globals.lastfmApiKey, globals.lastfmApiSecret);
+let lastfm = new LastFmApi(globals.lastfmApiKey, globals.lastfmApiSecret);
 
 /*
- * The following const will determine how random will be the next track compared to 
+ * The following const will determine how random will be the next track compared to
  * the previous ones.
  * The biggest impact are :
  * Very similar track < 0 --- AUTORADIO_TRACKS_DEVIATION --- 1 > Different track
  * Small variety of track < 0 --- SIMILAR_TRACKS_RESULTS_LIMIT --- 1 > Large variety
  */
 
-/* 
+/*
  * Will determine wether when looking for similar tracks we stay close to the current tracks
  * Min = 0 - Max = 1 (0 will only accept the most similar track / 1 will go further down the list)
  * Example :
@@ -23,7 +23,7 @@ let lastfm = new core.LastFmApi(globals.lastfmApiKey, globals.lastfmApiSecret);
  */
 let autoradioTracksDeviation = 0.15;
 
-/* 
+/*
  * No maximum
  * Will determine how many tracks in the queue do we take into account to get a similar track
  * Example :
@@ -32,19 +32,19 @@ let autoradioTracksDeviation = 0.15;
  */
 let autoradioImpactingTrackNumber = 10;
 
-/* 
+/*
  * No maximum
- * Will determine how many similar track we will be looking for each queue element. 
+ * Will determine how many similar track we will be looking for each queue element.
  * The higher, the highest is the chance of changing a lot the style of the future track
  * Example :
  * If set to 10 : for each element in the queue, we will look for 10 similar tracks
- * The next track will be chosen pseudo randomly between 
+ * The next track will be chosen pseudo randomly between
  * AUTORADIO_IMPACTING_TRACK_NUMBER * SIMILAR_TRACKS_RESULTS_LIMIT tracks
  * The more tracks, the more likely is the style to be changed
  */
 let similarTracksResultsLimit = 10;
 
-/* 
+/*
  * Min = 0 - Max = 1 (0 will only accept the most similar artist / 1 will go further down the list)
  * Will determine wether when looking for similar artists we stay close to the current artist
  * This is only used in the case we cannot find similar tracks => we fall back to similar artist search
@@ -60,10 +60,10 @@ function computeParameters (crazinessScore = 10) {
 
 let props;
 /**
- * addAutoradioTrackToQueue will first try to find tracks similar to the 
- * current queue. 
- * If no track is found, it will look for similar artists and choose a 
- * random track to play. 
+ * addAutoradioTrackToQueue will first try to find tracks similar to the
+ * current queue.
+ * If no track is found, it will look for similar artists and choose a
+ * random track to play.
  * It will remove all tracks which are already present in the queue.
  */
 export function addAutoradioTrackToQueue (callProps) {

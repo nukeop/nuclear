@@ -1,4 +1,4 @@
-import core from '@nuclear/core';
+import { LastFmApi } from '@nuclear/core';
 import ytdl from 'ytdl-core';
 
 import globals from '../globals';
@@ -7,7 +7,7 @@ import getArtistTitle from 'get-artist-title';
 
 import { trackSearch } from './youtube-search';
 
-const lastfm = new core.LastFmApi(
+const lastfm = new LastFmApi(
   globals.lastfmApiKey,
   globals.lastfmApiSecret
 );
@@ -84,14 +84,12 @@ function handleYoutubeVideo (url) {
         });
     })
     .catch(function () {
-      // console.log('error', err);
       return Promise.resolve([]);
     });
 }
 
 export function urlSearch (url) {
   let urlAnalysis = analyseUrlType(url);
-  // console.log(urlAnalysis);
   if (urlAnalysis.isYoutubePlaylist) {
     return handleYoutubePlaylist(url);
   } else if (urlAnalysis.isYoutubeVideo) {

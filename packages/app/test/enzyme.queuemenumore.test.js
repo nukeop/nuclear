@@ -5,7 +5,7 @@ import { mount } from 'enzyme';
 import { describe, it } from 'mocha';
 import { Dropdown, Icon } from 'semantic-ui-react';
 
-import QueueMenuMore from '../app/components/PlayQueue/QueueMenu/QueueMenuMore'
+import QueueMenuMore from '../app/components/PlayQueue/QueueMenu/QueueMenuMore';
 
 chai.use(spies);
 const { expect } = chai;
@@ -26,7 +26,7 @@ describe('<QueueMenuMore /> Playlist button', () => {
   it('Has music icon and adds track to playlist on click', () => {
     const spy = chai.spy();
     const wrapper = mount(<QueueMenuMore updatePlaylist={spy} playlists={[1]}/>);
-    const trackItem = wrapper.find(Dropdown.Item).at(2)
+    const trackItem = wrapper.find(Dropdown.Item).at(2);
 
     trackItem.simulate('click');
     expect(spy).to.have.been.called;
@@ -50,7 +50,7 @@ describe('<QueueMenuMore /> Add to downloads button', () => {
   it('Has download icon and fires addToDownloads on click of playlist item', () => {
     const spy = chai.spy();
     const wrapper = mount(<QueueMenuMore addToDownloads={spy} playlists={[1]}/>);
-    const downloadItem = wrapper.find(Dropdown.Item).at(4)
+    const downloadItem = wrapper.find(Dropdown.Item).at(4);
 
     downloadItem.simulate('click');
     expect(spy).to.have.been.called;

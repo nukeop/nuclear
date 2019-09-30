@@ -272,7 +272,7 @@ class AlbumView extends React.Component {
           <Icon name='plus' /> {this.props.t('queue')}
         </a>
         <a
-          href="#"
+          href='#'
           onClick={() => this.addAlbumToDownloads(album)}
         >
           <Icon name='download'/> {this.props.t('download')}

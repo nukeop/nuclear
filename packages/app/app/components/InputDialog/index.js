@@ -14,7 +14,7 @@ const InputDialog = ({ initialString, trigger, header, placeholder, accept, onAc
     setInputString(e.target.value);
     onAccept(inputString);
     handleClose();
-  }, [inputString, onAccept]);
+  }, [handleClose, inputString, onAccept]);
 
   return (
     <Modal

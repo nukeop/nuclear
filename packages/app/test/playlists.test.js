@@ -7,12 +7,12 @@ import {
 
 describe('Playlist actions tests', () => {
   const createFakeStore = () => ({
-      get: () => ([
-        { id: 'qwerty' },
-        { id: 'asdf' },
-        { id: 'abc' }
-      ]),
-      set: () => {}
+    get: () => ([
+      { id: 'qwerty' },
+      { id: 'asdf' },
+      { id: 'abc' }
+    ]),
+    set: () => {}
   });
   
   it('deletes a track from a playlist', () => {
@@ -30,14 +30,14 @@ describe('Playlist actions tests', () => {
     const updatePlaylist = updatePlaylistInjectable(fakeStore);
     const playlists = updatePlaylist({
       id: 'abc',
-      tracks: [ 4, 8, 15 ]
+      tracks: [4, 8, 15]
     });
     expect(playlists).to.eql([
       { id: 'qwerty' },
-        { id: 'asdf' },
+      { id: 'asdf' },
       {
         id: 'abc',
-        tracks: [ 4, 8, 15 ]
+        tracks: [4, 8, 15]
       }
     ]);
   });

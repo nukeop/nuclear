@@ -30,12 +30,12 @@ class FavoritesContainer extends React.Component {
       match
     } = this.props;
 
-    if(match.path.endsWith(ALBUMS_PATH)) {
+    if (match.path.endsWith(ALBUMS_PATH)) {
       return <FavoriteAlbumsView
-               albums={_.get(favorites, 'albums')}
-               removeFavoriteAlbum={favoritesActions.removeFavoriteAlbum}
-               albumInfoSearch={searchActions.albumInfoSearch}
-             />;
+        albums={_.get(favorites, 'albums')}
+        removeFavoriteAlbum={favoritesActions.removeFavoriteAlbum}
+        albumInfoSearch={searchActions.albumInfoSearch}
+      />;
     }
     
     if (match.path.endsWith(TRACKS_PATH)) {
@@ -67,7 +67,7 @@ FavoritesContainer.propTypes = {
 FavoritesContainer.defaultProps = {
   favorites: { tracks: [], albums: [], artists: [] },
   favoritesActions: {},
-  searchActions: {},
+  searchActions: {}
 };
 
 function mapStateToProps (state) {

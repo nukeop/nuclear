@@ -8,7 +8,7 @@ import _ from 'lodash';
 import { safeAddUuid } from '../../actions/helpers';
 import styles from './styles.scss';
 
-import QueueItem from '@nuclear/ui/lib/components/QueueItem/';
+import {QueueItem} from '@nuclear/ui';
 import QueuePopup from '../QueuePopup';
 import QueueMenu from './QueueMenu';
 

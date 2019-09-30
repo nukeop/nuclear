@@ -1,1 +1,1 @@
-module.exports = require('./lib');
+export { LastFmApi } from './lib';

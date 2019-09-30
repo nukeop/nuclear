@@ -14,9 +14,9 @@ import { filterFrequencies } from '../../components/Equalizer/chart';
 import { getSelectedStream } from '../../utils';
 import * as Autoradio from './autoradio';
 import globals from '../../globals';
-import core from '@nuclear/core';
+import { LastFmApi } from '@nuclear/core';
 
-let lastfm = new core.LastFmApi(globals.lastfmApiKey, globals.lastfmApiSecret);
+let lastfm = new LastFmApi(globals.lastfmApiKey, globals.lastfmApiSecret);
 
 class SoundContainer extends React.Component {
   constructor(props) {
@@ -49,7 +49,7 @@ class SoundContainer extends React.Component {
       this.props.actions.lyricsSearch(currentSong);
     }
   }
-  
+
   handleAutoRadio () {
     if (
       this.props.settings.autoradio &&
@@ -146,7 +146,7 @@ class SoundContainer extends React.Component {
 
     if (queue.queueItems.length > 0) {
       const currentSong = queue.queueItems[queue.currentSong];
-      
+
       streamUrl = (
         getSelectedStream(currentSong.streams, plugins.defaultMusicSource) || {}
       ).stream;
