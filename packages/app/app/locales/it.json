@@ -1,0 +1,186 @@
+{
+  "album": {
+    "queue": "Aggiungi album alla coda"
+  },
+  "app": {
+    "collection": "Collezione",
+    "dashboard": "Dashboard",
+    "downloads": "Downloads",
+    "equalizer": "Equalizzatore",
+    "favorite-tracks": "Brani Preferiti",
+    "library": "Libreria Locale",
+    "lyrics": "Testi",
+    "main": "Principale",
+    "playlists": "Playlist",
+    "plugins": "Plugins",
+    "search": "Cerca",
+    "settings": "Impostazioni"
+  },
+  "artist": {
+    "count": "Play counts",
+    "queue": "Aggiungi tutti i brani alla coda",
+    "similar": "Artisti simili",
+    "title": "Titolo",
+    "tour": "In tour"
+  },
+  "dashboard": {
+    "artist": "Artista",
+    "best": "Novita'",
+    "best-new-albums": "Nuovi album migliori",
+    "best-new-tracks": "Migliori nuovi brani",
+    "genres": "Generi",
+    "lastfm-title": "Migliori brani da LastFm.",
+    "news": "Novita'",
+    "playcounts": "Numero di riproduzioni",
+    "title": "Titoli",
+    "top": "Miglior Brani"
+  },
+  "downloads": {
+    "clear": "Elimina i download completati",
+    "completion": "Completato",
+    "empty": "La cartella download e' vuota.",
+    "empty-help": "Aggiungi qualcosa al tuo elenco di download e lo vedrai qui!",
+    "header": "Scaricato",
+    "name": "Nome",
+    "status": "Stato"
+  },
+  "favorites": {
+    "artist": "Artisti",
+    "empty": "Nessun favorito aggiunto.",
+    "empty-help": "Aggiungi i tuoi brani ai preferiti e li vedrai qui!",
+    "header": "I tuoi brani preferiti",
+    "title": "Titolo"
+  },
+  "help": {
+    "about": "A riguardo di Nuclear Music Player",
+    "header": "Riproduttore musicale desktop che riproduce musica da fonti gratuite",
+    "released": "rilasciata sotto AGPL-3.0",
+    "thanks": "Grazie mille ai contributori su GitHub, il vostro aiuto e' stato vitale nel creare questo programma."
+  },
+  "input-dialog": {
+    "cancel": "Cancella"
+  },
+  "library": {
+    "add": "Aggiungi cartella",
+    "album": "Album",
+    "artist": "Artista",
+    "filter-placeholder": "Filtra...",
+    "header": "Libreria Locale",
+    "title": "Titolo",
+    "empty": "La libreria e' vuota",
+    "empty-help": "Prova ad aggiungere qualche brano usando il pulsante qui sopra",
+    "no-api": "Web Api non e' abilitato :(",
+    "no-api-help": "Per utilizzare la libreria locale devi abilitare le web api.",
+    "api-enable": "Abilita le api."
+  },
+  "lyrics": {
+    "by-artist": "by {{artist}}",
+    "empty": "Nessun brano in riproduzione.",
+    "empty-help": "Aggiungi qualche brano alla coda per vederne qui il testo!",
+    "not-found": "Nessun testo trovato su questa canzone."
+  },
+  "option-control": {
+    "autoradio": "Riproduzione automatica",
+    "loop": "Ripeti",
+    "shuffle": "Riproduzione casuale"
+  },
+  "player": {
+    "next-button": "Pulsante Prossimo Brano",
+    "play-pause-button": "Pulsante Riproduci/Pausa",
+    "previous-button": "Pulsante Brano Precedente"
+  },
+  "playlists": {
+    "artist": "Artista",
+    "delete": "Cancella questa playlist",
+    "dialog-placeholder": "Nome della playlist...",
+    "empty": "Nessuna playlist.",
+    "rename": "Rinomina questa playlist",
+    "songs": "{{total}} brano",
+    "songs_plural": "{{total}} brani",
+    "title": "Titolo"
+  },
+  "plugins": {
+    "header": "Plugins",
+    "placeholder": "Seleziona la fonte musicale predefinita:",
+    "subtitle": "Fonte musicale"
+  },
+  "queue": {
+    "clear": "Elimina coda",
+    "dialog-accept": "Salva",
+    "dialog-placeholder": "Nome della playlist...",
+    "dialog-trigger": "Salva come playlist",
+    "download": "Download",
+    "download-toast-content": "{{artist}} - {{title}} e' stato aggiunto alla coda.",
+    "download-toast-title": "Brano aggiunto ai download",
+    "favorite-add": "Aggiungi ai favoriti",
+    "header": "Coda",
+    "header-track": "Traccia corrente",
+    "id": "Stream ID:",
+    "loading": "Caricando.",
+    "playlist-add": "Aggiungi alla playlist",
+    "playlist-toast-content": "La playlist {{name}} e' stata creata.",
+    "playlist-toast-title": "Playlist creata",
+    "title": "Titolo:"
+  },
+  "search": {
+    "album": "Album",
+    "album_plural": "Album",
+    "artist": "Artista",
+    "artist_plural": "Artisti",
+    "empty": "Nessun risultato.",
+    "placeholder": "Cerca...",
+    "playlist": "Playlist",
+    "playlist_plural": "Playlist",
+    "queue-add": "Aggiungi tutti i brani alla lista",
+    "track": "Brano",
+    "track_plural": "Brani"
+  },
+  "settings": {
+    "api-port": "Porta utilizzata per l'api",
+    "api-url": "",
+    "autoradio": "Autoradio",
+    "autoradio-craziness": "Livello di follia dell'Autoradio",
+    "autoradio-craziness-description": "L'Autoradio selezionera' i brani meno simili tra loro in coda",
+    "autoradio-description": "Aggiungi brani simili quando la coda sta per finire",
+    "compact-menu-bar": "Usa lo stile compatto per il menu principale",
+    "compact-queue-bar": "Usa lo stile compatto per la coda principale",
+    "track-duration": "Mostra la durata del brano sulla SeekBar",
+    "disable-gpu": "Disabilita il rendering dell'hardware (potrebbe correggere alcuni bug di visualizzazione)",
+    "display": "Display",
+    "enable-api": "Abilita l'api",
+    "frameless-window": "Schermata senza cornici (richiede il riavvio)",
+    "github-connect": "Log in con Github",
+    "github-description": "Log in via Github per creare e condividere le tue playlist on line (novita' in arrivo).",
+    "github-title": "Github",
+    "http": "HTTP API",
+    "language": "Lingua",
+    "language-placeholder": "Seleziona una lingua",
+    "lastfm-connect": "Connettiti con Last.fm",
+    "lastfm-description": "Per abilitare lo scrobbling, devi prima connetterti e autorizzare Nuclear in Last.fm ed effettuale il Log in.",
+    "lastfm-enable": "Abilita scrobbling a Last.fm",
+    "lastfm-title": "Last.fm",
+    "login": "Log in",
+    "logout": "Log out",
+    "loop-after-queue-end": "Riproduci di nuovo dopo aver riprodotto l'ultimo brano in coda",
+    "notification-timeout": "Notifica timeout",
+    "notlogged": "Non loggato",
+    "playback": "Playback",
+    "program-settings": "Impostazioni del programma",
+    "seek-iteration": "Numero di secondi richiesti per mandare avanti/indietro quando si premono le frecce",
+    "shuffle-queue": "Mescola i brani",
+    "shuffle-when-going-back": "Mescola sul brano precedente",
+    "shuffle-when-going-back-description": "Riproduci un brano casuale quando la funzione mescola e' abilitata e il pulsante brano precedente viene clickato",
+    "social": "Social",
+    "user": "Utente:",
+    "youtube": "Youtube",
+    "yt-api-key": "Youtube API Key"
+  },
+  "tags": {
+    "albums": "Migliori Album",
+    "artist": "Artista",
+    "artists": "Migliori Artisti",
+    "duration": "Durata",
+    "queue-add": "Aggiungi tutti i brani alla coda",
+    "title": "Titolo"
+  }
+}

@@ -6,7 +6,8 @@ module.exports = {
   },
   "globals": {
     "process": true,
-    "Raven": true
+    "Raven": true,
+    "_": true
   },
   "extends": ["eslint:recommended", "plugin:node/recommended"],
   "parser": "babel-eslint",
@@ -99,6 +100,9 @@ module.exports = {
     "node/no-unpublished-require": 0,
     "node/no-unsupported-features/es-syntax": 0,
     "react-hooks/rules-of-hooks": "error",
-    "react-hooks/exhaustive-deps": "warn"
+    "react-hooks/exhaustive-deps": "warn",
+
+    // Node
+    "node/no-unpublished-import": 0
   }
 };
