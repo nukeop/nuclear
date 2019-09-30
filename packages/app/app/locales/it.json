@@ -4,7 +4,7 @@
   },
   "app": {
     "collection": "Collezione",
-    "dashboard": "Pannello Principale",
+    "dashboard": "Dashboard",
     "downloads": "Downloads",
     "equalizer": "Equalizzatore",
     "favorite-tracks": "Brani Preferiti",
@@ -29,7 +29,7 @@
     "best-new-albums": "Nuovi album migliori",
     "best-new-tracks": "Migliori nuovi brani",
     "genres": "Generi",
-    "lastfm-title": "Migliori bradi da LastFm.",
+    "lastfm-title": "Migliori brani da LastFm.",
     "news": "Novita'",
     "playcounts": "Numero di riproduzioni",
     "title": "Titoli",
@@ -55,7 +55,7 @@
     "about": "A riguardo di Nuclear Music Player",
     "header": "Riproduttore musicale desktop che riproduce musica da fonti gratuite",
     "released": "rilasciata sotto AGPL-3.0",
-    "thanks": "Grazie mille ai contributori su GitHub, il vostro aiuto e' stato vitale in creare questo programma."
+    "thanks": "Grazie mille ai contributori su GitHub, il vostro aiuto e' stato vitale nel creare questo programma."
   },
   "input-dialog": {
     "cancel": "Cancella"
@@ -68,7 +68,7 @@
     "header": "Libreria Locale",
     "title": "Titolo",
     "empty": "La libreria e' vuota",
-    "empty-help": "Prova ad aggiungere qualche brano usando il bottone qui sopra",
+    "empty-help": "Prova ad aggiungere qualche brano usando il pulsante qui sopra",
     "no-api": "Web Api non e' abilitato :(",
     "no-api-help": "Per utilizzare la libreria locale devi abilitare le web api.",
     "api-enable": "Abilita le api."
@@ -76,7 +76,7 @@
   "lyrics": {
     "by-artist": "by {{artist}}",
     "empty": "Nessun brano in riproduzione.",
-    "empty-help": "Aggiungi qualche brano alla cosa per vederne qui il testo!",
+    "empty-help": "Aggiungi qualche brano alla coda per vederne qui il testo!",
     "not-found": "Nessun testo trovato su questa canzone."
   },
   "option-control": {
@@ -110,8 +110,8 @@
     "dialog-placeholder": "Nome della playlist...",
     "dialog-trigger": "Salva come playlist",
     "download": "Download",
-    "download-toast-content": "{{artist}} - {{title}} e; stato aggiunto alla coda.",
-    "download-toast-title": "Brano aggiungo ai download",
+    "download-toast-content": "{{artist}} - {{title}} e' stato aggiunto alla coda.",
+    "download-toast-title": "Brano aggiunto ai download",
     "favorite-add": "Aggiungi ai favoriti",
     "header": "Coda",
     "header-track": "Traccia corrente",
@@ -163,9 +163,9 @@
     "logout": "Log out",
     "loop-after-queue-end": "Riproduci di nuovo dopo aver riprodotto l'ultimo brano in coda",
     "notification-timeout": "Notifica timeout",
-    "notlogged": "Non accesso",
+    "notlogged": "Non loggato",
     "playback": "Playback",
-    "program-settings": "Impostazioni di programma",
+    "program-settings": "Impostazioni del programma",
     "seek-iteration": "Numero di secondi richiesti per mandare avanti/indietro quando si premono le frecce",
     "shuffle-queue": "Mescola i brani",
     "shuffle-when-going-back": "Mescola sul brano precedente",
