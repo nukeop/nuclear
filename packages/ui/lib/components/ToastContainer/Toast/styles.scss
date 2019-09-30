@@ -1,0 +1,65 @@
+@import '../../../common.scss';
+
+.toast {
+  @include roundCorners;
+  @include transition;
+  @include shadow;
+  position: absolute;
+  background: $background2;
+  padding: 1em;
+  animation: fade-in 0.5s normal forwards ease-in-out;
+  user-select: none;
+  -moz-user-select: none;
+  cursor: pointer;
+
+  bottom: 1em;
+  right: 1em;
+  height: 2.5em;
+
+  .toast_content {
+    display: flex;
+    flex-flow: row;
+    height: 100%;
+  }
+
+  .toast_icon {
+    display: flex;
+    height: 100%;
+    margin-right: 1em;
+
+    * {
+      height: 100%;
+      width: auto;
+    }
+  }
+
+  .toast_text {
+    display: flex;
+    flex-flow: column;
+  }
+
+  .title {
+    color: $white;
+    font-weight: bold;
+  }
+
+  .details {
+    color: rgba($white, 0.7);
+  }
+
+  &.error {
+    background: $red;
+  }
+
+  &.warning {
+    background: darken($orange, 15%);
+  }
+
+  &.info {
+    background: $blue;
+  }
+
+  &.success {
+    background: darken($green, 25%);
+  }
+}

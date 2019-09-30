@@ -1,0 +1,95 @@
+@import '../../common.scss';
+
+.queue_item {
+  @include transition;
+  @include roundCorners;
+  
+  display: flex;
+  flex-flow: row;
+  flex: 0 0 auto;
+  height: 4em;
+  margin: 0.5em;
+  background-color: rgba($background2, 0.5);
+
+  animation: queue_item_fade_in 0.5s;
+
+  .thumbnail {
+    @include center;
+    @include circle;
+
+    position: relative;
+    display: flex;
+    width: 3em;
+    height: 3em;
+    margin: 0.5em;
+  }
+
+  .thumbnail_overlay {
+    @include center;
+    @include circle;
+    @include transition;
+    
+    position: absolute;
+    display: flex;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: $black;
+    color: $white;
+    opacity: 0;
+    cursor: pointer;
+
+    &:hover {
+      opacity: 0.85;
+    }
+  }
+}
+
+.item_info_container {
+  @include ellipsis;
+  
+  display: flex;
+  margin: 0.25em;
+  flex: 1 1 auto;
+  flex-flow: column;
+  justify-content: center;
+
+  .name_container {
+    @include ellipsis;
+    margin-bottom: 0.25 em;
+  }
+
+  .artist_container {
+    @include ellipsis;
+    color: rgba($white, 0.5);
+  }
+}
+
+.item_duration_container {
+  display: flex;
+  overflow: hidden;
+  flex: 0 0 auto;
+  flex-flow: column;
+  justify-content: center;
+
+  margin: 0 0.5em;
+
+  .item_duration {
+    color: rgba($white, 0.5);
+  }
+}
+
+.current_song {
+  background: rgba($green, 0.3);
+}
+
+@keyframes queue_item_fade_in {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}

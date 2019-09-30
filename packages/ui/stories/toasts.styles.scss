@@ -1,0 +1,17 @@
+.buttons {
+  position: absolute;
+  display: flex;
+  flex-flow: column;
+
+  width: 200px;
+  z-index: 2;
+}
+
+.toast-button {
+  background: #44475a;
+  color: #FAFAFA;
+  text-decoration: none;
+  padding: 1em 1.5em;
+  margin: 1em;
+  cursor: pointer;
+}
