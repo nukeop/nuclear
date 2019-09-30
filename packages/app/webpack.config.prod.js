@@ -70,7 +70,7 @@ const config = {
       }, {
         test: /\.(ttf|eot|woff|woff2|svg)$/,
         loader: 'url-loader',
-        include: /..\/ui/
+        include: UI_DIR
       }, {
         test: /\.svg$/,
         loader: 'svg-inline-loader'
