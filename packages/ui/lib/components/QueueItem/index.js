@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
-import 'boxicons/css/boxicons.min.css';
 
 import Loader from '../Loader';
 import common from '../../common.scss';
@@ -17,7 +16,7 @@ const QueueItem = props => {
     selectSong,
     removeFromQueue
   } = props;
-  
+
   return (
     <div
       className={cx(

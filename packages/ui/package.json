@@ -57,7 +57,6 @@
     "webpack-dev-server": "^3.1.5"
   },
   "dependencies": {
-    "boxicons": "^1.7.1",
     "classnames": "^2.2.6",
     "prop-types": "^15.6.2",
     "react": "^16.4.1",
