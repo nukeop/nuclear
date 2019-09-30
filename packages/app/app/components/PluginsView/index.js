@@ -9,7 +9,7 @@ import { useTranslation } from 'react-i18next';
 const PluginsView = ({ actions, plugins, defaultMusicSource }) => {
   const selectDefaultMusicSource = useCallback((e, data) => {
     actions.selectDefaultMusicSource(data.value);
-  }, []);
+  }, [actions]);
   const { t } = useTranslation('plugins');
 
   const dropdownOptions = plugins.musicSources.map(s => {

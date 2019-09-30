@@ -24,7 +24,7 @@ let icon = nativeImage.createFromPath(
   path.resolve(__dirname, 'resources', 'media', 'icon.png')
 );
 logger.hookConsole({
-	main: true
+  main: true
 });
 
 function changeWindowTitle (artist, title) {
@@ -37,7 +37,7 @@ function createWindow() {
     width: 1366,
     height: 768,
     frame: !getOption('framelessWindow'),
-    icon: icon,
+    icon,
     show: false,
     webPreferences: {
       experimentalFeatures: true,

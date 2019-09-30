@@ -13,7 +13,7 @@ import configureStore from './store/configureStore';
 
 const store = configureStore();
 logger.hookConsole({
-	renderer: true
+  renderer: true
 });
 
 // Sentry

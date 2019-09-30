@@ -28,7 +28,7 @@ function createWindow() {
     width: 1366,
     height: 768,
     frame: !getOption('framelessWindow'),
-    icon: icon,
+    icon,
     show: false,
     webPreferences: {
       experimentalFeatures: true,

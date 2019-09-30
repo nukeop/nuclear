@@ -45,7 +45,7 @@ import ToastContainer from './containers/ToastContainer';
 import ShortcutsContainer from './containers/ShortcutsContainer';
 import ErrorBoundary from './containers/ErrorBoundary';
 
-import ui from '@nuclear/ui';
+import { Cover } from '@nuclear/ui';
 import NavButtons from './components/NavButtons';
 import PlayerControls from './components/PlayerControls';
 import Seekbar from './components/Seekbar';
@@ -278,7 +278,7 @@ class App extends React.Component {
 
   renderCover () {
     return (
-      <ui.Cover
+      <Cover
         cover={
           this.props.queue.queueItems[this.props.queue.currentSong]
             ? this.props.queue.queueItems[this.props.queue.currentSong]

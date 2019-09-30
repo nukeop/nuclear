@@ -47,7 +47,7 @@ const TrackPopupContainer = props => {
       {
         withAddToQueue &&
           <PopupButton
-            onClick={ () => actions.addToQueue(musicSources, trackItem)}
+            onClick={() => actions.addToQueue(musicSources, trackItem)}
             ariaLabel='Add track to queue'
             icon='plus'
             label='Add to queue'
@@ -57,7 +57,7 @@ const TrackPopupContainer = props => {
       {
         withPlayNow &&
         <PopupButton
-          onClick={ () => actions.playTrack(musicSources, trackItem) }
+          onClick={() => actions.playTrack(musicSources, trackItem)}
           ariaLabel='Play this track now'
           icon='play'
           label='Play now'

@@ -1,5 +1,5 @@
 {
-  "extends": "../.eslintrc.js",
+  "extends": "../../../.eslintrc.js",
   "env": {
     "node": true
   }

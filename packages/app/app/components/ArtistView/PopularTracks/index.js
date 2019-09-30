@@ -72,19 +72,19 @@ class PopularTracks extends React.Component {
           <tbody>
             {
               _.get(tracks, 'track', [])
-              .slice(0, this.state.expanded ? 15 : 5)
-              .map((track, index) => {
-                return (
-                  <TrackRow
-                    key={'popular-track-row-' + index}
-                    track={track}
-                    index={'popular-track-' + index}
-                    artist={artist}
-                    displayCover
-                    displayPlayCount
-                  />
-                );
-              })
+                .slice(0, this.state.expanded ? 15 : 5)
+                .map((track, index) => {
+                  return (
+                    <TrackRow
+                      key={'popular-track-row-' + index}
+                      track={track}
+                      index={'popular-track-' + index}
+                      artist={artist}
+                      displayCover
+                      displayPlayCount
+                    />
+                  );
+                })
             }
           </tbody>
         </table>

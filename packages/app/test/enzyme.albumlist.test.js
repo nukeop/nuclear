@@ -58,7 +58,7 @@ describe('<AlbumList />', () => {
     const instance = wrapper.instance();
 
     instance.albumInfoSearch('ALBUM_ID', 'RELEASE_TYPE');
-    expect(albumInfoSearch).to.have.been.called.with('ALBUM_ID', 'RELEASE_TYPE')
-    expect(historySpy).to.have.been.called.with('/album/ALBUM_ID')
+    expect(albumInfoSearch).to.have.been.called.with('ALBUM_ID', 'RELEASE_TYPE');
+    expect(historySpy).to.have.been.called.with('/album/ALBUM_ID');
   });
 });

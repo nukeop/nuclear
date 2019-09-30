@@ -1,5 +1,5 @@
 import logger from 'electron-timber';
-import core from '@nuclear/core';
+import { LastFmApi } from '@nuclear/core';
 import _ from 'lodash';
 import artPlaceholder from '../../resources/media/art_placeholder.png';
 import globals from '../globals';
@@ -7,7 +7,7 @@ import globals from '../globals';
 const discogs = require('../rest/Discogs');
 const youtube = require('../rest/Youtube');
 
-const lastfm = new core.LastFmApi(globals.lastfmApiKey, globals.lastfmApiSecret);
+const lastfm = new LastFmApi(globals.lastfmApiKey, globals.lastfmApiSecret);
 
 export const UNIFIED_SEARCH_START = 'UNIFIED_SEARCH_START';
 export const UNIFIED_SEARCH_SUCCESS = 'UNIFIED_SEARCH_SUCCESS';
