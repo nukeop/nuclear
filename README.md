@@ -100,6 +100,12 @@ $ sudo docker-compose up dev
 ```
 
 A new window should open that will load the web app and run Nuclear.
+On non-Linux systems, you can use lerna:
+```shell
+$ npm i -g lerna #installs lerna globally
+$ lerna bootstrap
+$ lerna run start
+```
 
 ---
 To build for current operating system:
