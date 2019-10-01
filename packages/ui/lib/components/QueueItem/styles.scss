@@ -3,7 +3,7 @@
 .queue_item {
   @include transition;
   @include roundCorners;
-  
+
   display: flex;
   flex-flow: row;
   flex: 0 0 auto;
@@ -28,7 +28,7 @@
     @include center;
     @include circle;
     @include transition;
-    
+
     position: absolute;
     display: flex;
     top: 0;
@@ -43,12 +43,16 @@
     &:hover {
       opacity: 0.85;
     }
+
+    i {
+      margin: 0;
+    }
   }
 }
 
 .item_info_container {
   @include ellipsis;
-  
+
   display: flex;
   margin: 0.25em;
   flex: 1 1 auto;

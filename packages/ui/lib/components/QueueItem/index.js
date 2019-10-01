@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
+import { Icon } from 'semantic-ui-react';
+import { compose, withHandlers } from 'recompose';
 
 import Loader from '../Loader';
 import common from '../../common.scss';
@@ -10,11 +12,11 @@ const QueueItem = props => {
   let {
     isLoading,
     isCurrent,
-    index,
     track,
     duration,
-    selectSong,
-    removeFromQueue
+
+    handleRemoveFromQueue,
+    handleSelectSong
   } = props;
 
   return (
@@ -24,7 +26,7 @@ const QueueItem = props => {
         styles.queue_item,
         {[`${styles.current_song}`]: isCurrent}
       )}
-      onDoubleClick={() => selectSong(index)}
+      onDoubleClick={handleSelectSong}
     >
       <div className={styles.thumbnail}>
         {
@@ -35,9 +37,9 @@ const QueueItem = props => {
 
         <div
           className={styles.thumbnail_overlay}
-          onClick={() => removeFromQueue(index)}
+          onClick={handleRemoveFromQueue}
         >
-          <i className='bx bx-trash bx-sm' />
+          <Icon name='trash alternate outline' size='big' />
         </div>
       </div>
 
@@ -73,4 +75,9 @@ QueueItem.propTypes = {
   removeFromQueue: PropTypes.func
 };
 
-export default QueueItem;
+export default compose(
+  withHandlers({
+    handleRemoveFromQueue: ({removeFromQueue, track}) => () => removeFromQueue(track),
+    handleSelectSong: ({selectSong, index}) => () => selectSong(index)
+  })
+)(QueueItem);
