@@ -1,5 +1,6 @@
 import {
   ADD_TO_QUEUE,
+  ADD_TO_START_OF_QUEUE,
   REMOVE_FROM_QUEUE,
   CLEAR_QUEUE,
   ADD_STREAMS_TO_QUEUE_ITEM,
@@ -24,6 +25,15 @@ function findQueueItemIndex(queueItems, item) {
 function reduceAddToQueue(state, action) {
   return Object.assign({}, state, {
     queueItems: _.union(state.queueItems, [action.payload])
+  });
+}
+
+function reduceAddToStartOfQueue(state, action) {
+  let queue = state.queueItems;
+  queue.unshift(action.payload);
+
+  return Object.assign({}, state, {
+    queueItems: queue
   });
 }
 
@@ -105,6 +115,8 @@ export default function QueueReducer(state = initialState, action) {
   switch (action.type) {
   case ADD_TO_QUEUE:
     return reduceAddToQueue(state, action);
+  case ADD_TO_START_OF_QUEUE:
+    return reduceAddToStartOfQueue(state, action);
   case REMOVE_FROM_QUEUE:
     return reduceRemoveFromQueue(state, action);
   case CLEAR_QUEUE:

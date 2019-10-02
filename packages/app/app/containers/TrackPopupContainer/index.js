@@ -27,6 +27,7 @@ const TrackPopupContainer = props => {
 
     withAddToQueue,
     withPlayNow,
+    withAddToStartOfQueue,
     withAddToFavorites,
     withAddToDownloads
   } = props;
@@ -61,6 +62,16 @@ const TrackPopupContainer = props => {
           ariaLabel='Play this track now'
           icon='play'
           label='Play now'
+        />
+      }
+
+      {
+        withAddToStartOfQueue &&
+        <PopupButton
+          onClick={() => actions.addToStartOfQueue(musicSources, trackItem)}
+          ariaLabel='Play this track next'
+          icon='play-circle-outline'
+          label='Play next'
         />
       }
 
@@ -114,6 +125,7 @@ TrackPopupContainer.propTypes = {
   thumb: PropTypes.string,
   actions: PropTypes.shape({
     addToQueue: PropTypes.func,
+    addToStartOfQueue: PropTypes.func,
     clearQueue: PropTypes.func,
     selectSong: PropTypes.func,
     startPlayback: PropTypes.func,
@@ -124,6 +136,7 @@ TrackPopupContainer.propTypes = {
 
   withAddToQueue: PropTypes.bool,
   withPlayNow: PropTypes.bool,
+  withAddToStartOfQueue: PropTypes.bool,
   withAddToFavorites: PropTypes.bool,
   withAddToDownloads: PropTypes.bool
 };
@@ -140,6 +153,7 @@ TrackPopupContainer.defaultProps = {
 
   withAddToQueue: true,
   withPlayNow: true,
+  withAddToStartOfQueue: true,
   withAddToFavorites: true,
   withAddToDownloads: true
 };
