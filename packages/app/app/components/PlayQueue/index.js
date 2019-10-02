@@ -83,7 +83,8 @@ class PlayQueue extends React.Component {
       compact,
       items,
       settings,
-      playlists
+      playlists,
+      currentSong
     } = this.props;
 
     let {
@@ -105,6 +106,7 @@ class PlayQueue extends React.Component {
             toggleOption={toggleOption}
             addFavoriteTrack={addFavoriteTrack}
             addToDownloads={this.onAddToDownloads.bind(this)}
+            currentSong={currentSong}
             success={success}
             settings={settings}
             playlists={playlists}
