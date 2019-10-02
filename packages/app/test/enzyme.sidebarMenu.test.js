@@ -1,12 +1,11 @@
 import React from 'react';
 import chai from 'chai';
 import spies from 'chai-spies';
-import { shallow, mount } from 'enzyme';
+import { shallow } from 'enzyme';
 import { describe, it } from 'mocha';
 import SidebarMenu from '../app/components/SidebarMenu';
 import SidebarMenuCategoryHeader from '../app/components/SidebarMenu/SidebarMenuCategoryHeader';
 import SidebarMenuItem from '../app/components/SidebarMenu/SidebarMenuItem';
-// import FontAwesome from 'react-fontawesome';
 
 chai.use(spies);
 const { expect } = chai;
