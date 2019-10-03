@@ -1,0 +1,198 @@
+{
+  "album": {
+    "queue": "Přidat album do fronty",
+    "download": "Stáhnout",
+    "download-toast-title": "Album přidáno do stažených",
+    "download-toast-content": "{{artist}} - {{title}} byl přidán do stažených."
+  },
+  "app": {
+    "collection": "Kolekce",
+    "dashboard": "Dashboard",
+    "downloads": "Stažené",
+    "equalizer": "Ekvalizér",
+    "favorite-albums": "Oblíbená alba",
+    "favorite-tracks": "Oblíbené skladby",
+    "library": "Lokální knihovna",
+    "lyrics": "Texty",
+    "main": "Hlavní",
+    "playlists": "Seznamy skladeb",
+    "plugins": "Zásuvné moduly",
+    "search": "Výsledky vyhledávání",
+    "settings": "Nastavení"
+  },
+  "artist": {
+    "count": "Počet přehrání",
+    "queue": "Přidat všechny skladby do fronty",
+    "similar": "Podobní umělci",
+    "title": "Název",
+    "tour": "Na turné"
+  },
+  "dashboard": {
+    "artist": "Umělec",
+    "best": "Nejlepší nová hudba",
+    "best-new-albums": "Nejlepší nová alba",
+    "best-new-tracks": "Nejlepší nové skladby",
+    "genres": "Žánry",
+    "lastfm-title": "Nejlepší skladby z LastFm.",
+    "news": "Novinky",
+    "playcounts": "Počty přehrání",
+    "title": "Název",
+    "top": "Nejlepší skladby"
+  },
+  "downloads": {
+    "clear": "Smazat stažené skladby",
+    "completion": "Dokončeno",
+    "empty": "Složka se staženými skladbami je prázdná.",
+    "empty-help": "Přidejte něco do vaší fronty stahování a uvidíte to zde!",
+    "header": "Stažené",
+    "name": "Název",
+    "status": "Stav"
+  },
+  "favorites": {
+    "artist": "Umělec",
+    "empty": "Nebyly přidány žádné oblíbené skladby",
+    "empty-help": "Zkuste dát některým skladbám to se mi líbí a objeví se zde!",
+    "header": "Vaše oblíbené skladby",
+    "title": "Název"
+  },
+  "favorite-albums": {
+    "header": "Vaše oblíbená alba",
+    "empty": "Žádná oblíbená alba",
+    "empty-help": "Zkuste některá alba přidat mezi oblíbená a objeví se zde!"
+  },
+  "help": {
+    "about": "O hudebním přehrávači Nuclear",
+    "header": "Desktopový přehrávač hudby pro streamování z volně dostupných zdrojů",
+    "released": "Vydán pod licencí AGPL-3.0",
+    "thanks": "Mnoho díků našim přispěvatelům na Githubu, vaše pomoc byla při vytváření tohoto programu velmi důležitá."
+  },
+  "input-dialog": {
+    "cancel": "Storno"
+  },
+  "library": {
+    "add": "Přidat složky",
+    "album": "Album",
+    "artist": "Umělec",
+    "filter-placeholder": "Filtr...",
+    "header": "Lokální knihovna",
+    "title": "Název",
+    "empty": "Knihovna je prázdná",
+    "empty-help": "Zkuste přidat nějakou hudbu pomocí tlačítka nahoře.",
+    "no-api": "Web API není povoleno",
+    "no-api-help": "Pokud chcete použít lokální knihovnu, musíte povolit web api.",
+    "api-enable": "Povolit API"
+  },
+  "lyrics": {
+    "by-artist": "od {{artist}}",
+    "empty": "Nic nehraje.",
+    "empty-help": "Přidejte nějakou hudbu do fronty, aby se zde zobrazily texty!",
+    "not-found": "Pro tuto skladbu nebyly nalezeny žádné texty."
+  },
+  "option-control": {
+    "autoradio": "Autoradio",
+    "loop": "Smyčka",
+    "shuffle": "Náhodně"
+  },
+  "player": {
+    "next-button": "Tlačítko pro další skladbu",
+    "play-pause-button": "Tlačítko Přehrát/Pozastavit",
+    "previous-button": "Tlačítko pro předchozí skladbu"
+  },
+  "playlists": {
+    "artist": "Umělec",
+    "delete": "Odstranit tento seznam skladeb",
+    "dialog-placeholder": "Název seznamu skladeb...",
+    "empty": "Žádné seznamy skladeb.",
+    "rename": "Přejmenovat tento seznam skladeb",
+    "songs": "{{total}} skladba",
+    "songs_plural": "{{total}} skladeb",
+    "title": "Název"
+  },
+  "plugins": {
+    "header": "Zásuvné moduly",
+    "placeholder": "Zvolte defaultní zdroj hudby:",
+    "subtitle": "Zdroje hudby"
+  },
+  "queue": {
+    "clear": "Smazat frontu",
+    "dialog-accept": "Uložit",
+    "dialog-placeholder": "Název seznamu skladeb...",
+    "dialog-trigger": "Uložit jako seznam skladeb",
+    "download": "Stáhnout",
+    "download-toast-content": "{{artist}} - {{title}} byl přidán do stažených.",
+    "download-toast-title": "Skladba přidána do stažených",
+    "favorite-add": "Přidat k oblíbeným",
+    "header": "Fronta",
+    "header-track": "Aktuální skladba",
+    "id": "ID Streamu:",
+    "loading": "Stream se ještě nahrává.",
+    "playlist-add": "Přidat do seznamu skladeb",
+    "playlist-toast-content": "Seznam skladeb {{name}} byl vytvořen.",
+    "playlist-toast-title": "Seznam skladeb vytvořen",
+    "title": "Název:"
+  },
+  "search": {
+    "album": "Album",
+    "album_plural": "Alba",
+    "artist": "Umělec",
+    "artist_plural": "Umělci",
+    "empty": "Nic nenalezeno.",
+    "placeholder": "Vyhledat...",
+    "playlist": "Seznam skladeb",
+    "playlist_plural": "Seznamy skladeb",
+    "queue-add": "Přidat všechny skladby do fronty",
+    "track": "Skladba",
+    "track_plural": "Skladby"
+  },
+  "settings": {
+    "api-port": "Port, který používá api",
+    "api-url": "",
+    "autoradio": "Autoradio",
+    "autoradio-craziness": "Bláznivost Autoradio",
+    "autoradio-craziness-description": "Čím bláznivější, tím spíše Autoradio vybere skladby, které se méně podobají těm, které jsou již ve frontě",
+    "autoradio-description": "Přidat automaticky podobné skladby po dokončení přehrávání fronty",
+    "compact-menu-bar": "Použít kompaktní styl lišty menu",
+    "compact-queue-bar": "Použít kompaktní styl lišty fronta",
+    "track-duration": "Zobrazit dobu trvání skladby na liště vyhledávání",
+    "disable-gpu": "Zakázat hardwarové vykreslování (může odstranit potíže s přetahováním prvků a blikající obrazovkou)",
+    "display": "Zobrazení",
+    "enable-api": "Povolit api",
+    "frameless-window": "Bezrámečkové okno (vyžaduje restart)",
+    "github-connect": "Přihlásit se přes Github",
+    "github-description": "Přihlaste se přes Github, abyste mohli vytvářet a sdílet vaše seznamy skladeb online (chystaná funkce).",
+    "github-title": "Github",
+    "http": "HTTP API",
+    "language": "Jazyk",
+    "language-placeholder": "Vyberte jazyk",
+    "lastfm-connect": "Připojit k Last.fm",
+    "lastfm-description": "Pro automatické přidání poslouchaných skladeb do profilu se musíte nejprve připojit a autorizovat Nuclear k Last.fm, poté kliknout na přihlásit se.",
+    "lastfm-enable": "Povolit automatické přidání poslouchaných skladeb do profilu na Last.fm",
+    "lastfm-title": "Last.fm",
+    "login": "Přihlásit",
+    "logout": "Odhlásit",
+    "loop-after-queue-end": "Smyčka po přehrání poslední položky ve frontě",
+    "notification-timeout": "Časový limit notifikace",
+    "notlogged": "Nepřihlášen",
+    "playback": "Playback",
+    "program-settings": "Nastavení programu",
+    "seek-iteration": "Počet vteřin posunu vpřed/zpět po stisknutí kláves šipek",
+    "shuffle-queue": "Zamíchat skladby",
+    "shuffle-when-going-back": "Zamíchat při přechodu na předchozí skladbu",
+    "shuffle-when-going-back-description": "Přehrát náhodnou skladbu pokud je aktivováno zamíchání skladeb a je stisknuto tlačítko předchozí skladby",
+    "social": "Sociální sítě",
+    "user": "Uživatel:",
+    "youtube": "Youtube",
+    "yt-api-key": "Youtube API Key",
+    "downloads": "Stažené",
+    "downloads-dir": "Složka stažené",
+    "downloads-dir-button": "Vyberte složku..."
+  },
+  "tags": {
+    "albums": "Nejlepší alba",
+    "artist": "Umělec",
+    "artists": "Nejlepší umělci",
+    "duration": "Doba trvání",
+    "queue-add": "Přidat všechny skladby do fronty",
+    "title": "Název"
+  }
+}
