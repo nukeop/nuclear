@@ -96,7 +96,7 @@
   "plugins": {
     "header": "Plugins",
     "placeholder": "Selectionner la source de musique par defaut:",
-    "subtitle": "Sources de musique"
+    "stream-providers": "Sources de musique"
   },
   "queue": {
     "clear": "Vider la file",

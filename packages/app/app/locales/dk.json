@@ -96,7 +96,7 @@
   "plugins": {
     "header": "Plugins",
     "placeholder": "Vælg musikkildens standardsted:",
-    "subtitle": "Musikkilde"
+    "stream-providers": "Musikkilde"
   },
   "queue": {
     "clear": "Ryd kø",

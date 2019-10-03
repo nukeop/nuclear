@@ -111,7 +111,7 @@
   "plugins": {
     "header": "Pluginy",
     "placeholder": "Wybierz domyślne źródło muzyki:",
-    "subtitle": "Żródła muzyki"
+    "stream-providers": "Żródła muzyki"
   },
   "queue": {
     "clear": "Wyczyść kolejkę",

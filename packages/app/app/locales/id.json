@@ -111,7 +111,7 @@
   "plugins": {
     "header": "Plugin",
     "placeholder": "Pilih sumber musik bawaan:",
-    "subtitle": "Sumber musik"
+    "stream-providers": "Sumber musik"
   },
   "queue": {
     "clear": "Bersihkan antrian",

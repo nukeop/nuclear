@@ -96,7 +96,7 @@
   "plugins": {
     "header": "Plugins",
     "placeholder": "Wählen Sie die Standardmusikquelle:",
-    "subtitle": "Musikquellen"
+    "stream-providers": "Musikquellen"
   },
   "queue": {
     "clear": "Warteschlange löschen",

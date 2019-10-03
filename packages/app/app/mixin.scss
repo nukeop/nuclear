@@ -17,13 +17,13 @@
   flex-flow: column;
   align-items: center;
   justify-content: center;
-  
+
   height: 100%;
 
   .fa, .icon {
     font-size: 72px;
   }
-  
+
   h2 {
     font-size: 48px;
     font-weight: normal;
@@ -31,5 +31,47 @@
 
   div {
     font-size: 20px;
+  }
+}
+
+@mixin dropdownOverride {
+  color: $white !important;
+  background: $background3 !important;
+  border: 1px solid rgba($background2, 0.6);
+
+  &:hover,
+  &:active,
+  &:focus,
+  &.ui.selection.active.dropdown {
+    color: $white !important;
+    border: 1px solid rgba($background2, 0.6);
+  }
+
+  .dropdown.icon {
+    display: flex;
+    align-items: center;
+    height: 100% !important;
+  }
+
+  .menu {
+    border-color: rgba($background2, 0.6) !important;
+
+    &:hover,
+    &:active,
+    &:focus {
+      border-color: rgba($background2, 0.6) !important;
+    }
+
+    .item {
+      border-color: rgba($background2, 0.6) !important;
+    }
+
+    .active.selected.item {
+      color: $white !important;
+    }
+  }
+
+  .text {
+    color: white !important;
   }
 }

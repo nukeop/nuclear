@@ -102,7 +102,7 @@
     "plugins": {
       "header": "Eklentiler",
       "placeholder": "Varsayılan müzik kaynağı:",
-      "subtitle": "Müzik kaynağı"
+      "stream-providers": "Müzik kaynağı"
     },
     "queue": {
       "clear": "Sırayı temizle",

@@ -96,7 +96,7 @@
   "plugins": {
     "header": "插件",
     "placeholder": "选择默认音乐来源:",
-    "subtitle": "音乐源"
+    "stream-providers": "音乐源"
   },
   "queue": {
     "clear": "Clear queue",
