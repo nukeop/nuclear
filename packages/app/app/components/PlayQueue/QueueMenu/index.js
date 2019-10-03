@@ -59,6 +59,7 @@ class QueueMenu extends React.Component {
           {
             !compact &&
               <QueueMenuMore
+                disabled={_.isEmpty(items)}
                 clearQueue={clearQueue}
                 updatePlaylist={updatePlaylist}
                 addFavoriteTrack={addFavoriteTrack}
