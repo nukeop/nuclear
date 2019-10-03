@@ -37,7 +37,7 @@ describe('<QueueMenuMore /> Playlist button', () => {
 describe('<QueueMenuMore /> Add favorite track button', () => {
   it('Has star icon and addFavoriteTrack fired on click of playlist item', () => {
     const spy = chai.spy();
-    const wrapper = mount(<QueueMenuMore addFavoriteTrack={spy} playlists={[1]}/>);
+    const wrapper = mount(<QueueMenuMore addFavoriteTrack={spy} playlists={[1]} currentItem={{name: 'test'}}/>);
     const favItem = wrapper.find(Dropdown.Item).at(3);
 
     favItem.simulate('click');
