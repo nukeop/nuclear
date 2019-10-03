@@ -38,6 +38,7 @@ class QueueMenu extends React.Component {
       clearQueue,
       addFavoriteTrack,
       addToDownloads,
+      currentSong,
       success,
       items,
       toggleOption,
@@ -58,12 +59,13 @@ class QueueMenu extends React.Component {
           {
             !compact &&
               <QueueMenuMore
+                disabled={_.isEmpty(items)}
                 clearQueue={clearQueue}
                 updatePlaylist={updatePlaylist}
                 addFavoriteTrack={addFavoriteTrack}
                 addToDownloads={addToDownloads}
                 playlists={playlists}
-                currentItem={_.head(items)}
+                currentItem={_.get(items, currentSong)}
                 savePlaylistDialog={
                   <InputDialog
                     header={<h4>Input playlist name:</h4>}

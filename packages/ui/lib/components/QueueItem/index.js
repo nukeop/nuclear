@@ -69,10 +69,10 @@ QueueItem.propTypes = {
     name: PropTypes.string,
     artist: PropTypes.string
   }),
-  index: PropTypes.number,
+  index: PropTypes.number, //eslint-disable-line
   duration: PropTypes.string,
-  selectSong: PropTypes.func,
-  removeFromQueue: PropTypes.func
+  selectSong: PropTypes.func, //eslint-disable-line
+  removeFromQueue: PropTypes.func //eslint-disable-line
 };
 
 export default compose(

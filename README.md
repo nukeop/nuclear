@@ -2,6 +2,8 @@
 
 [![Maintainability](https://api.codeclimate.com/v1/badges/a15c4888a63c900f6cc1/maintainability)](https://codeclimate.com/github/nukeop/nuclear/maintainability) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/30750586202742279fa8958a12e519ed)](https://www.codacy.com/app/nukeop/nuclear?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=nukeop/nuclear&amp;utm_campaign=Badge_Grade) ![Travis](https://api.travis-ci.org/nukeop/nuclear.svg?branch=master)
 
+[![Get it from the Snap Store](https://snapcraft.io/static/images/badges/en/snap-store-black.svg)](https://snapcraft.io/nuclear)
+
 Desktop music player focused on streaming from free sources
 
 [Official website](https://nuclear.js.org)
@@ -26,8 +28,8 @@ See [this](docs/electron.md).
 
 ## Features
 
-- Searching for and playing music from youtube (including integration with playlists), jamendo, and soundcloud
-- Searching for albums (powered by last.fm and musicbrainz), album view, automatic song lookup based on artist and track name (in progress, can be dodgy sometimes)
+- Searching for and playing music from YouTube (including integration with playlists), Jamendo, and SoundCloud
+- Searching for albums (powered by Last.fm and MusicBrainz), album view, automatic song lookup based on artist and track name (in progress, can be dodgy sometimes)
 - Song queue, which can be exported as a playlist
 - Loading saved playlists (stored in json files)
 - Scrobbling to last.fm (along with updating the 'now playing' status)
@@ -70,6 +72,7 @@ Nuclear has already been translated to several languages, and we're always looki
 | Brazilian Portuguese | [JoaoPedroMoraes](https://github.com/JoaoPedroMoraes)                                                |
 | Turkish              | [3DShark](https://github.com/3DShark)                                                                |
 | Italian              | [gello94](https://github.com/gello94)                                                                |
+| Czech              | [PetrTodorov](https://github.com/PetrTodorov)                                                                |
 
 ## Screenshots
 This will be updated as the program evolves.

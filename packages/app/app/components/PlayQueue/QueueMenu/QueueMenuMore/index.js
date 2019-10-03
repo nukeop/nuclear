@@ -4,6 +4,7 @@ import cx from 'classnames';
 import _ from 'lodash';
 import { Dropdown, Icon } from 'semantic-ui-react';
 import { useTranslation } from 'react-i18next';
+import { compose, withHandlers } from 'recompose';
 
 import styles from './styles.scss';
 
@@ -14,35 +15,22 @@ const addTrackToPlaylist = (updatePlaylist, playlist, track) => {
   }
 };
 
-const addFavoriteTrackFromQueue = (addFavoriteTrack, track) => {
-  if (track.name) {
-    addFavoriteTrack({
-      artist: {
-        name: track.artist
-      },
-      name: track.name,
-      image: [
-        {
-          '#text': track.thumbnail
-        }
-      ]
-    });
-  }
-};
-
 const QueueMenuMore = ({
+  disabled,
   clearQueue,
   savePlaylistDialog,
   addFavoriteTrack,
-  addToDownloads,
   updatePlaylist,
   playlists,
-  currentItem
+  currentItem,
+
+  handleAddToDownloads,
+  handleAddFavoriteTrack
 }) => {
   const { t } = useTranslation('queue');
 
   return (
-    <Dropdown item icon='ellipsis vertical' className={styles.queue_menu_more}>
+    <Dropdown item icon='ellipsis vertical' className={styles.queue_menu_more} disabled={disabled}>
       <Dropdown.Menu>
         <Dropdown.Header>{t('header')}</Dropdown.Header>
         <Dropdown.Item onClick={clearQueue}>
@@ -73,14 +61,12 @@ const QueueMenuMore = ({
           </Dropdown>
         </Dropdown.Item>
         <Dropdown.Item
-          onClick={() =>
-            addFavoriteTrackFromQueue(addFavoriteTrack, currentItem)
-          }
+          onClick={handleAddFavoriteTrack}
         >
           <Icon name='star' />
           {t('favorite-add')}
         </Dropdown.Item>
-        <Dropdown.Item onClick={() => addToDownloads(currentItem)}>
+        <Dropdown.Item onClick={handleAddToDownloads}>
           <Icon name='download' />
           {t('download')}
         </Dropdown.Item>
@@ -90,6 +76,7 @@ const QueueMenuMore = ({
 };
 
 QueueMenuMore.propTypes = {
+  disabled: PropTypes.bool,
   clearQueue: PropTypes.func,
   addFavoriteTrack: PropTypes.func,
   addToDownloads: PropTypes.func,
@@ -100,6 +87,7 @@ QueueMenuMore.propTypes = {
 };
 
 QueueMenuMore.defaultProps = {
+  disabled: true,
   clearQueue: () => {},
   addFavoriteTrack: () => {},
   addToDownloads: () => {},
@@ -109,4 +97,23 @@ QueueMenuMore.defaultProps = {
   currentItem: {}
 };
 
-export default QueueMenuMore;
+export default compose(
+  withHandlers({
+    handleAddToDownloads: ({addToDownloads, currentItem}) => () => addToDownloads(currentItem),
+    handleAddFavoriteTrack: ({addFavoriteTrack, currentItem}) => () => {
+      if (currentItem.name) {
+        addFavoriteTrack({
+          artist: {
+            name: currentItem.artist
+          },
+          name: currentItem.name,
+          image: [
+            {
+              '#text': currentItem.thumbnail
+            }
+          ]
+        });
+      }
+    }
+  })
+)(QueueMenuMore);
