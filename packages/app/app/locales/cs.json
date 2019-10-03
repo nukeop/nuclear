@@ -111,7 +111,7 @@
   "plugins": {
     "header": "Zásuvné moduly",
     "placeholder": "Zvolte defaultní zdroj hudby:",
-    "subtitle": "Zdroje hudby"
+    "stream-providers": "Zdroje hudby"
   },
   "queue": {
     "clear": "Smazat frontu",

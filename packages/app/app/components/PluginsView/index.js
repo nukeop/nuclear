@@ -24,25 +24,36 @@ const PluginsView = ({ actions, plugins, defaultMusicSource }) => {
 
   return (
     <div className={styles.plugins_view_container}>
-      <Header>{t('header')}</Header>
-      <div className={styles.flex_grid_thirds}>
-        <div className={styles.col}>
-          <div className={styles.plugin_settings}>
-            <Header>{t('subtitle')}</Header>
-            <Segment>
-              {t('placeholder')}
-              {'\u00A0'}
-              <Dropdown
-                inline
-                options={dropdownOptions}
-                defaultValue={defaultOption.value}
-                onChange={selectDefaultMusicSource}
-              />
-            </Segment>
-          </div>
-        </div>
+      <div className={styles.plugin_settings_section}>
+        <Header>{t('stream-providers')}</Header>
+        <hr />
+        <Segment>
+          <label>
+            {t('placeholder')}
+          </label>
+          <Dropdown
+            selection
+            options={dropdownOptions}
+            defaultValue={defaultOption.value}
+            onChange={selectDefaultMusicSource}
+          />
+        </Segment>
       </div>
-      
+
+      <div className={styles.plugin_settings_section}>
+        <Header>{t('meta-providers')}</Header>
+        <hr />
+      </div>
+
+      <div className={styles.plugin_settings_section}>
+        <Header>{t('lyric-providers')}</Header>
+        <hr />
+      </div>
+
+      <div className={styles.plugin_settings_section}>
+        <Header>{t('user-plugins')}</Header>
+        <hr />
+      </div>
     </div>
   );
 };

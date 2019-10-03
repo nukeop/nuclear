@@ -89,7 +89,7 @@
   "plugins": {
     "header": "Plug-ins",
     "placeholder": "Kies de standaard muziekbron:",
-    "subtitle": "Muziekbronnen"
+    "stream-providers": "Muziekbronnen"
   },
   "queue": {
     "clear": "Wachtrij legen",
