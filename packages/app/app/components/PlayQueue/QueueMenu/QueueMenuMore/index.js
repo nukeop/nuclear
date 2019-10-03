@@ -16,6 +16,7 @@ const addTrackToPlaylist = (updatePlaylist, playlist, track) => {
 };
 
 const QueueMenuMore = ({
+  disabled,
   clearQueue,
   savePlaylistDialog,
   addFavoriteTrack,
@@ -29,7 +30,7 @@ const QueueMenuMore = ({
   const { t } = useTranslation('queue');
 
   return (
-    <Dropdown item icon='ellipsis vertical' className={styles.queue_menu_more}>
+    <Dropdown item icon='ellipsis vertical' className={styles.queue_menu_more} disabled={disabled}>
       <Dropdown.Menu>
         <Dropdown.Header>{t('header')}</Dropdown.Header>
         <Dropdown.Item onClick={clearQueue}>
@@ -75,6 +76,7 @@ const QueueMenuMore = ({
 };
 
 QueueMenuMore.propTypes = {
+  disabled: PropTypes.bool,
   clearQueue: PropTypes.func,
   addFavoriteTrack: PropTypes.func,
   addToDownloads: PropTypes.func,
@@ -85,6 +87,7 @@ QueueMenuMore.propTypes = {
 };
 
 QueueMenuMore.defaultProps = {
+  disabled: true,
   clearQueue: () => {},
   addFavoriteTrack: () => {},
   addToDownloads: () => {},
