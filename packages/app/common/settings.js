@@ -122,6 +122,7 @@ export default [
     prettyName: 'language',
     placeholder: 'language-placeholder',
     options: [
+      { key: 'cs', text: 'Česky', value: 'cs' },
       { key: 'de', text: 'Deutsch', value: 'de' },
       { key: 'dk', text: 'Dansk', value: 'dk' },
       { key: 'en', text: 'English', value: 'en' },

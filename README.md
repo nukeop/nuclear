@@ -72,6 +72,7 @@ Nuclear has already been translated to several languages, and we're always looki
 | Brazilian Portuguese | [JoaoPedroMoraes](https://github.com/JoaoPedroMoraes)                                                |
 | Turkish              | [3DShark](https://github.com/3DShark)                                                                |
 | Italian              | [gello94](https://github.com/gello94)                                                                |
+| Czech              | [PetrTodorov](https://github.com/PetrTodorov)                                                                |
 
 ## Screenshots
 This will be updated as the program evolves.
