@@ -36,7 +36,6 @@ const DownloadsItem = ({
       </Table.Cell>
       <Table.Cell>
         <StatusIcon status={item.status}/>
-        { item.status }
         { _.round(item.completion*100, 0)  + '%' }
       </Table.Cell>
     </Table.Row>
