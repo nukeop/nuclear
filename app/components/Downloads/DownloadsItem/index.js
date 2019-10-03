@@ -7,10 +7,10 @@ const StatusIcon = props => {
   switch (props.status) {
   case 'Waiting':
     return <Icon name='hourglass start'/>;
-  case 'Finished':
-    return <Icon name='checkmark' color='green'/>;
   case 'Started':
     return <Icon name='cloud download'/>;
+  case 'Finished':
+    return <Icon name='checkmark' color='green'/>;
   case 'Error':
   default:
     return <Icon name='times' color='red'/>;
@@ -32,13 +32,11 @@ const DownloadsItem = ({
   return (
     <Table.Row>
       <Table.Cell>
-        <StatusIcon status={item.status}/>
-        { item.status }
-      </Table.Cell>
-      <Table.Cell>
         { artistName } - { _.get(item, 'track.name') }
       </Table.Cell>
       <Table.Cell>
+        <StatusIcon status={item.status}/>
+        { item.status }
         { _.round(item.completion*100, 0)  + '%' }
       </Table.Cell>
     </Table.Row>
