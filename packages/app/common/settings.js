@@ -134,7 +134,8 @@ export default [
       { key: 'ru', text: 'Русский', value: 'ru' },
       { key: 'tr', text: 'Türkçe', value: 'tr' },
       { key: 'zh', text: '中文', value: 'zh' },
-      { key: 'id', text: 'Bahasa Indonesia', value: 'id' }
+      { key: 'id', text: 'Bahasa Indonesia', value: 'id' },
+	    { key: 'sk', text: 'Slovenčina', value: 'sk' }
     ],
     default: undefined
   }, {
