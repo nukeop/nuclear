@@ -7,6 +7,7 @@ import _ from 'lodash';
 
 import Header from '../Header';
 import {withDropdownOptions} from '../../hoc/withDropdownOptions';
+import UserPluginsSection from './UserPluginsSection';
 import styles from './styles.scss';
 
 const PluginsView = ({
@@ -24,7 +25,7 @@ const PluginsView = ({
   t
 }) => (
   <div className={styles.plugins_view_container}>
-    <div className={styles.plugin_settings_section}>
+    <section className={styles.plugin_settings_section}>
       <Header>{t('stream-providers')}</Header>
       <hr />
       <Segment>
@@ -38,9 +39,9 @@ const PluginsView = ({
           onChange={selectStreamProvider}
         />
       </Segment>
-    </div>
+    </section>
 
-    <div className={styles.plugin_settings_section}>
+    <section className={styles.plugin_settings_section}>
       <Header>{t('meta-providers')}</Header>
       <hr />
       <Segment>
@@ -54,9 +55,9 @@ const PluginsView = ({
           onChange={selectMetaProvider}
         />
       </Segment>
-    </div>
+    </section>
 
-    <div className={styles.plugin_settings_section}>
+    <section className={styles.plugin_settings_section}>
       <Header>{t('lyrics-providers')}</Header>
       <hr />
       <Segment>
@@ -70,12 +71,13 @@ const PluginsView = ({
           onChange={selectLyricsProvider}
         />
       </Segment>
-    </div>
+    </section>
 
-    <div className={styles.plugin_settings_section}>
+    <section className={styles.plugin_settings_section}>
       <Header>{t('user-plugins')}</Header>
       <hr />
-    </div>
+      <UserPluginsSection />
+    </section>
   </div>
 );
 
@@ -96,8 +98,8 @@ PluginsView.propTypes = {
 
 export default compose(
   withHandlers({
-    selectMusicSource: ({actions}) => (e, data) => actions.selectDefaultMusicSource(data.value),
-    selectLyricsProvider: ({actions}) => (e, data) => actions.selectDefaultLyricsProvider(data.value)
+    selectMusicSource: ({actions}) => (e, data) => actions.selectStreamProvider(data.value),
+    selectLyricsProvider: ({actions}) => (e, data) => actions.selectLyricsProvider(data.value)
   }),
   withDropdownOptions({
     options: props => props.plugins.streamProviders,
