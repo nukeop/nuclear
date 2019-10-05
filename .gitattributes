@@ -2,3 +2,4 @@
 * text eol=lf
 
 packages/app/resources/** binary
+packages/app/build/** binary
