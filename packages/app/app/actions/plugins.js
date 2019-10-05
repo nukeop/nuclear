@@ -1,6 +1,7 @@
 export const CREATE_PLUGINS = 'CREATE_PLUGINS';
-export const SELECT_DEFAULT_MUSIC_SOURCE = 'SELECT_DEFAULT_MUSIC_SOURCE';
-export const SELECT_DEFAULT_LYRICS_PROVIDER = 'SELECT_DEFAULT_LYRICS_PROVIDER';
+export const SELECT_STREAM_PROVIDER = 'SELECT_STREAM_PROVIDER';
+export const SELECT_LYRICS_PROVIDER = 'SELECT_LYRICS_PROVIDER';
+export const SELECT_META_PROVIDER = 'SELECT_META_PROVIDER';
 
 export function createPlugins (pluginClasses) {
   let plugins = {};
@@ -34,16 +35,24 @@ export function createPlugins (pluginClasses) {
   };
 }
 
-export function selectDefaultMusicSource (streamProvider) {
+export function selectMetaProvider (metaProvider) {
   return {
-    type: SELECT_DEFAULT_MUSIC_SOURCE,
+    type: SELECT_META_PROVIDER,
+    payload: metaProvider
+  };
+}
+
+
+export function selectStreamProvider (streamProvider) {
+  return {
+    type: SELECT_STREAM_PROVIDER,
     payload: streamProvider
   };
 }
 
-export function selectDefaultLyricsProvider(lyricsProvider) {
+export function selectLyricsProvider(lyricsProvider) {
   return {
-    type: SELECT_DEFAULT_LYRICS_PROVIDER,
+    type: SELECT_LYRICS_PROVIDER,
     payload: lyricsProvider
   };
 }

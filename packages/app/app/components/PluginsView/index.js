@@ -10,16 +10,17 @@ import {withDropdownOptions} from '../../hoc/withDropdownOptions';
 import styles from './styles.scss';
 
 const PluginsView = ({
-  plugins,
-  defaultLyricsProvider,
-
-  selectDefaultMusicSource,
+  selectStreamProvider,
   streamProvidersDropdownOptions,
   streamProvidersDefaultOption,
 
-  selectDefaultLyricsProvider,
+  selectLyricsProvider,
   lyricsProvidersDropdownOptions,
   lyricsProvidersDefaultOption,
+
+  selectMetaProvider,
+  metaProvidersDropdownOptions,
+  metaProvidersDefaultOption,
   t
 }) => (
   <div className={styles.plugins_view_container}>
@@ -34,7 +35,7 @@ const PluginsView = ({
           selection
           options={streamProvidersDropdownOptions}
           defaultValue={streamProvidersDefaultOption.value}
-          onChange={selectDefaultMusicSource}
+          onChange={selectStreamProvider}
         />
       </Segment>
     </div>
@@ -42,6 +43,17 @@ const PluginsView = ({
     <div className={styles.plugin_settings_section}>
       <Header>{t('meta-providers')}</Header>
       <hr />
+      <Segment>
+        <label>
+          {t('select-lyrics-provider')}
+        </label>
+        <Dropdown
+          selection
+          options={metaProvidersDropdownOptions}
+          defaultValue={metaProvidersDefaultOption.value}
+          onChange={selectMetaProvider}
+        />
+      </Segment>
     </div>
 
     <div className={styles.plugin_settings_section}>
@@ -55,7 +67,7 @@ const PluginsView = ({
           selection
           options={lyricsProvidersDropdownOptions}
           defaultValue={lyricsProvidersDefaultOption.value}
-          onChange={selectDefaultLyricsProvider}
+          onChange={selectLyricsProvider}
         />
       </Segment>
     </div>
@@ -67,9 +79,12 @@ const PluginsView = ({
   </div>
 );
 
+/* eslint-disable */
 PluginsView.propTypes = {
   actions: PropTypes.shape({
-    selectDefaultMusicSource: PropTypes.func
+    selectStreamProvider: PropTypes.func,
+    selectLyricsProvider: PropTypes.func,
+    selectMetaProvider: PropTypes.func
   }),
   plugins: PropTypes.object,
   defaultMusicSource: PropTypes.oneOfType([
@@ -77,15 +92,16 @@ PluginsView.propTypes = {
     PropTypes.oneOf([null])
   ])
 };
+/* eslint-enable */
 
 export default compose(
   withHandlers({
-    selectDefaultMusicSource: ({actions}) => (e, data) => actions.selectDefaultMusicSource(data.value),
-    selectDefaultLyricsProvider: ({actions}) => (e, data) => actions.selectDefaultLyricsProvider(data.value)
+    selectMusicSource: ({actions}) => (e, data) => actions.selectDefaultMusicSource(data.value),
+    selectLyricsProvider: ({actions}) => (e, data) => actions.selectDefaultLyricsProvider(data.value)
   }),
   withDropdownOptions({
     options: props => props.plugins.streamProviders,
-    defaultValue: props => props.defaultMusicSource,
+    defaultValue: props => props.selectedMusicSource,
     mappings: [
       'streamProvidersDropdownOptions',
       'streamProvidersDefaultOption'
@@ -93,10 +109,18 @@ export default compose(
   }),
   withDropdownOptions({
     options: props => props.plugins.lyricsProviders,
-    defaultValue: props => props.defaultLyricsProvider,
+    defaultValue: props => props.selectedLyricsProvider,
     mappings: [
       'lyricsProvidersDropdownOptions',
       'lyricsProvidersDefaultOption'
+    ]
+  }),
+  withDropdownOptions({
+    options: props => props.plugins.metaProviders,
+    defaultValue: props => props.selectedMetaProvider,
+    mappings: [
+      'metaProvidersDropdownOptions',
+      'metaProvidersDefaultOption'
     ]
   }),
   withTranslation('plugins')
