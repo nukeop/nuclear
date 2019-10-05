@@ -25,7 +25,7 @@ class DashboardContainer extends React.Component {
       dashboard,
       settings,
       history,
-      musicSources
+      streamProviders
     } = this.props;
 
     return (
@@ -34,7 +34,7 @@ class DashboardContainer extends React.Component {
         history={history}
         settings={settings}
         actions={actions}
-        musicSources={musicSources}
+        streamProviders={streamProviders}
       />
     );
   }
@@ -43,7 +43,7 @@ class DashboardContainer extends React.Component {
 function mapStateToProps(state) {
   return {
     dashboard: state.dashboard,
-    musicSources: state.plugin.plugins.musicSources,
+    streamProviders: state.plugin.plugins.streamProviders,
     settings: state.settings
   };
 }

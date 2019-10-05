@@ -18,14 +18,14 @@ class ArtistViewContainer extends React.Component {
   }
 
   render() {
-    let { actions, match, history, artistDetails, musicSources } = this.props;
+    let { actions, match, history, artistDetails, streamProviders } = this.props;
     return (
       <ArtistView
         artist={artistDetails[match.params.artistId]}
         albumInfoSearch={actions.albumInfoSearch}
         artistInfoSearchByName={actions.artistInfoSearchByName}
         addToQueue={actions.addToQueue}
-        musicSources={musicSources}
+        streamProviders={streamProviders}
         history={history}
       />
     );
@@ -35,7 +35,7 @@ class ArtistViewContainer extends React.Component {
 function mapStateToProps(state) {
   return {
     artistDetails: state.search.artistDetails,
-    musicSources: state.plugin.plugins.musicSources
+    streamProviders: state.plugin.plugins.streamProviders
   };
 }
 

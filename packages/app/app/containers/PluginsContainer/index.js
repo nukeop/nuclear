@@ -10,6 +10,7 @@ const PluginsContainer = ({ actions, plugin }) => (
     actions={actions}
     plugins={plugin.plugins}
     defaultMusicSource={plugin.defaultMusicSource}
+    defaultLyricsProvider={plugin.defaultLyricsProvider}
   />
 );
 

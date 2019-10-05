@@ -38,7 +38,7 @@ class AllResults extends React.Component {
       selectSong={this.props.selectSong}
       tracks={arr}
       limit={limit}
-      musicSources={this.props.musicSources}
+      streamProviders={this.props.streamProviders}
     />);
 
   }
@@ -55,7 +55,7 @@ class AllResults extends React.Component {
             clearQueue={this.props.clearQueue}
             startPlayback={this.props.startPlayback}
             selectSong={this.props.selectSong}
-            musicSources={this.props.musicSources}
+            streamProviders={this.props.streamProviders}
           />
         </div>
       </div>);

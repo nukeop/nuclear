@@ -57,7 +57,7 @@ class ArtistView extends React.Component {
                   </span>
               }
             </div>
-            
+
             <ArtistTags
               tags={_.get(artist, 'lastfm.artist.tags.tag')}
               history={history}
@@ -72,9 +72,9 @@ class ArtistView extends React.Component {
     let {
       artist,
       addToQueue,
-      musicSources
+      streamProviders
     } = this.props;
-    
+
     return (
       !this.isLoading() &&
       artist.lastfm.toptracks && (
@@ -82,7 +82,7 @@ class ArtistView extends React.Component {
           tracks={_.get(artist, 'lastfm.toptracks')}
           artist={artist}
           addToQueue={addToQueue}
-          musicSources={musicSources}
+          streamProviders={streamProviders}
         />
       )
     );
@@ -123,7 +123,7 @@ class ArtistView extends React.Component {
 
   render () {
     let { artist, history, albumInfoSearch } = this.props;
-    
+
     return (
       <div className={styles.artist_view_container}>
         <Dimmer.Dimmable>

@@ -9,7 +9,7 @@ import * as PlayerActions from '../../actions/player';
 
 import TagView from '../../components/TagView';
 
-const TagViewContainer = ({ actions, history, match, tags, musicSources }) => (
+const TagViewContainer = ({ actions, history, match, tags, streamProviders }) => (
   <TagView
     loadTagInfo={actions.loadTagInfo}
     artistInfoSearchByName={actions.artistInfoSearchByName}
@@ -17,7 +17,7 @@ const TagViewContainer = ({ actions, history, match, tags, musicSources }) => (
     history={history}
     tag={match.params.tagName}
     tags={tags}
-    musicSources={musicSources}
+    streamProviders={streamProviders}
     addToQueue={actions.addToQueue}
   />
 );
@@ -25,7 +25,7 @@ const TagViewContainer = ({ actions, history, match, tags, musicSources }) => (
 function mapStateToProps(state) {
   return {
     tags: state.tags,
-    musicSources: state.plugin.plugins.musicSources
+    streamProviders: state.plugin.plugins.streamProviders
   };
 }
 
