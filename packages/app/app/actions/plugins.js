@@ -22,7 +22,7 @@ export function createPlugins (pluginClasses) {
   const categories = Object.keys(pluginClasses);
   let selected = {};
   _.forEach(categories, category => {
-    selected[category] = _.head(plugins[category]).name;
+    selected[category] = _.head(plugins[category]).sourceName;
   });
 
   return {
