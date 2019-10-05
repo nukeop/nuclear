@@ -2,7 +2,7 @@ export const CREATE_PLUGINS = 'CREATE_PLUGINS';
 export const SELECT_DEFAULT_MUSIC_SOURCE = 'SELECT_DEFAULT_MUSIC_SOURCE';
 export const SELECT_DEFAULT_LYRICS_PROVIDER = 'SELECT_DEFAULT_LYRICS_PROVIDER';
 
-export function createSearchPlugins (pluginClasses) {
+export function createPlugins (pluginClasses) {
   let plugins = {};
 
   for (let i = 0; i < Object.keys(pluginClasses).length; i++) {
@@ -19,9 +19,18 @@ export function createSearchPlugins (pluginClasses) {
     }
   }
 
+  const categories = Object.keys(pluginClasses);
+  let selected = {};
+  _.forEach(categories, category => {
+    selected[category] = _.head(plugins[category]).name;
+  });
+
   return {
     type: CREATE_PLUGINS,
-    payload: plugins
+    payload: {
+      plugins,
+      selected
+    }
   };
 }
 

@@ -9,8 +9,8 @@ const PluginsContainer = ({ actions, plugin }) => (
   <PluginsView
     actions={actions}
     plugins={plugin.plugins}
-    defaultMusicSource={plugin.defaultMusicSource}
-    defaultLyricsProvider={plugin.defaultLyricsProvider}
+    defaultMusicSource={plugin.selected.streamProviders}
+    defaultLyricsProvider={plugin.selected.lyricsProviders}
   />
 );
 
