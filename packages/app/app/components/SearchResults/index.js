@@ -25,7 +25,7 @@ class SearchResults extends React.Component {
               albumInfoSearch={this.albumInfoSearch.bind(this)}
               artistInfoSearch={this.artistInfoSearch.bind(this)}
               addToQueue={this.props.addToQueue}
-              musicSources={this.props.musicSources}
+              streamProviders={this.props.streamProviders}
               clearQueue={this.props.clearQueue}
               startPlayback={this.props.startPlayback}
               selectSong={this.props.selectSong}
@@ -103,7 +103,7 @@ class SearchResults extends React.Component {
           clearQueue={this.props.clearQueue}
           startPlayback={this.props.startPlayback}
           selectSong={this.props.selectSong}
-          musicSources={this.props.musicSources}
+          streamProviders={this.props.streamProviders}
         />
       </Tab.Pane>
     );

@@ -14,7 +14,7 @@ const PlaylistViewContainer = props => {
   return (
     <PlaylistView
       playlist={props.playlists.playlists[props.match.params.playlistId]}
-      musicSources={props.musicSources}
+      streamProviders={props.streamProviders}
       addTracks={props.actions.addPlaylistTracksToQueue}
       selectSong={props.actions.selectSong}
       startPlayback={props.actions.startPlayback}
@@ -29,7 +29,7 @@ const PlaylistViewContainer = props => {
 function mapStateToProps (state) {
   return {
     playlists: state.playlists,
-    musicSources: state.plugin.plugins.musicSources
+    streamProviders: state.plugin.plugins.streamProviders
   };
 }
 

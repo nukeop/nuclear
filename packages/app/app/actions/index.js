@@ -43,8 +43,8 @@ const SEARCH_TYPE = Object.freeze({
 
 export function sourcesSearch (terms, plugins) {
   let searchResults = {};
-  for (let i = 0; i < plugins.musicSources.length; i++) {
-    Object.assign(searchResults, plugins.musicSources[i].search(terms));
+  for (let i = 0; i < plugins.streamProviders.length; i++) {
+    Object.assign(searchResults, plugins.streamProviders[i].search(terms));
   }
   return {};
 }

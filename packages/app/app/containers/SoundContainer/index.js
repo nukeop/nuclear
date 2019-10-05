@@ -118,8 +118,8 @@ class SoundContainer extends React.Component {
 
   addToQueue (artist, track) {
     return new Promise((resolve) => {
-      let musicSources = this.props.plugins.plugins.musicSources;
-      this.props.actions.addToQueue(musicSources, {
+      let streamProviders = this.props.plugins.plugins.streamProviders;
+      this.props.actions.addToQueue(streamProviders, {
         artist: artist.name,
         name: track.name,
         thumbnail: track.thumbnail || track.image[0]['#text']

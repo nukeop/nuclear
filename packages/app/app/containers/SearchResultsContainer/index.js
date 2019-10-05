@@ -15,7 +15,7 @@ const SearchResultsContainer = ({
   unifiedSearchStarted,
   playlistSearchStarted,
   actions,
-  musicSources,
+  streamProviders,
   history
 }) => (
   <SearchResults
@@ -32,7 +32,7 @@ const SearchResultsContainer = ({
     clearQueue={actions.clearQueue}
     startPlayback={actions.startPlayback}
     selectSong={actions.selectSong}
-    musicSources={musicSources}
+    streamProviders={streamProviders}
   />
 );
 
@@ -44,7 +44,7 @@ function mapStateToProps(state) {
     playlistSearchResults: state.search.playlistSearchResults,
     unifiedSearchStarted: state.search.unifiedSearchStarted,
     playlistSearchStarted: state.search.playlistSearchStarted,
-    musicSources: state.plugin.plugins.musicSources
+    streamProviders: state.plugin.plugins.streamProviders
   };
 }
 

@@ -14,7 +14,7 @@ import { formatDuration } from '../../utils';
 import styles from './styles.scss';
 
 
-class TrackRow extends React.Component {  
+class TrackRow extends React.Component {
   // this function should be moved onto interface for 'track'
   renderAlbum (track) {
     return (
@@ -36,7 +36,7 @@ class TrackRow extends React.Component {
   }
 
   playTrack () {
-    this.props.actions.playTrack(this.props.musicSources, {
+    this.props.actions.playTrack(this.props.streamProviders, {
       artist: this.props.track.artist.name,
       name: this.props.track.name,
       thumbnail: this.getTrackThumbnail()
@@ -50,9 +50,9 @@ class TrackRow extends React.Component {
       _.get(this.props.track, 'image[0][#text]')
     );
   }
-  
+
   canAddToFavorites() {
-    return _.findIndex(this.props.favoriteTracks, (currentTrack) => { 
+    return _.findIndex(this.props.favoriteTracks, (currentTrack) => {
       return _.isMatch(currentTrack, this.props.track);
     }) < 0;
   }
@@ -96,7 +96,7 @@ class TrackRow extends React.Component {
   }
 
   render () {
-    
+
     let {
       track,
       withAddToQueue,
@@ -114,7 +114,7 @@ class TrackRow extends React.Component {
 
         withAddToQueue={withAddToQueue}
         withPlayNow={withPlayNow}
-        withAddToFavorites={this.canAddToFavorites()}
+        withAddToFavorites={withAddToFavorites && this.canAddToFavorites()}
         withAddToDownloads={withAddToDownloads}
       />
     );
@@ -150,11 +150,11 @@ TrackRow.defaultProps = {
 
 function mapStateToProps (state, { track }) {
   return {
-    musicSources: track.local
-      ? state.plugin.plugins.musicSources.filter(({ sourceName }) => {
+    streamProviders: track.local
+      ? state.plugin.plugins.streamProviders.filter(({ sourceName }) => {
         return sourceName === 'Local';
       })
-      : state.plugin.plugins.musicSources,
+      : state.plugin.plugins.streamProviders,
     settings: state.settings,
     favoriteTracks: state.favorites.tracks
   };

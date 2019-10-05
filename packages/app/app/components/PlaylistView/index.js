@@ -21,13 +21,13 @@ class PlaylistView extends React.Component {
   }
 
   addPlaylistToQueue (
-    musicSources,
+    streamProviders,
     playlist,
     addTracks,
     selectSong,
     startPlayback
   ) {
-    addTracks(musicSources, playlist.tracks);
+    addTracks(streamProviders, playlist.tracks);
     selectSong(0);
     startPlayback();
   }
@@ -37,7 +37,7 @@ class PlaylistView extends React.Component {
       history,
       deletePlaylist
     } = this.props;
-    
+
     deletePlaylist(playlist.id);
     history.push('/playlists');
   }
@@ -63,7 +63,7 @@ class PlaylistView extends React.Component {
           ariaLabel={this.props.t('delete')}
           icon='trash'
           label={this.props.t('delete')}
-        />           
+        />
       </ContextPopup>
     );
   }
@@ -72,18 +72,18 @@ class PlaylistView extends React.Component {
     const {
       playlist,
       addTracks,
-      musicSources,
+      streamProviders,
       selectSong,
       startPlayback
     } = this.props;
-    
+
     return (
       <a
         href='#'
         className={styles.play_button}
         onClick={() =>
           this.addPlaylistToQueue(
-            musicSources,
+            streamProviders,
             playlist,
             addTracks,
             selectSong,
@@ -103,7 +103,7 @@ class PlaylistView extends React.Component {
         <Icon name='ellipsis horizontal' />
       </a>
     );
-    
+
     return (
       <div className={styles.playlist_info}>
         <div>
@@ -159,7 +159,7 @@ class PlaylistView extends React.Component {
     const newTrack = _.cloneDeep(track);
     _.set(newTrack, 'artist.name', newTrack.artist);
     _.set(newTrack, 'image[0][\'#text\']', newTrack.thumbnail);
-    
+
     return (< TrackRow
       key={'playlist-track-row-' + index}
       track={newTrack}

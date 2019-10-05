@@ -22,7 +22,7 @@ const TrackPopupContainer = props => {
     title,
     thumb,
     actions,
-    musicSources,
+    streamProviders,
     settings,
 
     withAddToQueue,
@@ -47,7 +47,7 @@ const TrackPopupContainer = props => {
       {
         withAddToQueue &&
           <PopupButton
-            onClick={() => actions.addToQueue(musicSources, trackItem)}
+            onClick={() => actions.addToQueue(streamProviders, trackItem)}
             ariaLabel='Add track to queue'
             icon='plus'
             label='Add to queue'
@@ -57,7 +57,7 @@ const TrackPopupContainer = props => {
       {
         withPlayNow &&
         <PopupButton
-          onClick={() => actions.playTrack(musicSources, trackItem)}
+          onClick={() => actions.playTrack(streamProviders, trackItem)}
           ariaLabel='Play this track now'
           icon='play'
           label='Play now'
@@ -88,7 +88,7 @@ const TrackPopupContainer = props => {
           onClick={() => {
             const clonedTrack = safeAddUuid(track);
             ipcRenderer.send('start-download', clonedTrack);
-            actions.addToDownloads(musicSources, clonedTrack);
+            actions.addToDownloads(streamProviders, clonedTrack);
             actions.info(
               'Track added to downloads',
               `${artist} - ${title} has been added to downloads.`,
@@ -119,7 +119,7 @@ TrackPopupContainer.propTypes = {
     startPlayback: PropTypes.func,
     addToDownloads: PropTypes.func
   }),
-  musicSources: PropTypes.array,
+  streamProviders: PropTypes.array,
   settings: PropTypes.object,
 
   withAddToQueue: PropTypes.bool,
@@ -135,7 +135,7 @@ TrackPopupContainer.defaultProps = {
   title: '',
   thumb: '',
   actions: {},
-  musicSources: [],
+  streamProviders: [],
   settings: {},
 
   withAddToQueue: true,
@@ -146,11 +146,11 @@ TrackPopupContainer.defaultProps = {
 
 function mapStateToProps (state, { track }) {
   return {
-    musicSources: track.local
-      ? state.plugin.plugins.musicSources.filter(({ sourceName }) => {
+    streamProviders: track.local
+      ? state.plugin.plugins.streamProviders.filter(({ sourceName }) => {
         return sourceName === 'Local';
       })
-      : state.plugin.plugins.musicSources,
+      : state.plugin.plugins.streamProviders,
     settings: state.settings
   };
 }
@@ -175,4 +175,3 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(TrackPopupContainer);
-
