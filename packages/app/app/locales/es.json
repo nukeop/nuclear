@@ -12,7 +12,7 @@
     "library": "Librería Local",
     "lyrics": "Letras",
     "main": "Principal",
-    "playlists": "Listas",
+    "playlists": "Listas de reproducción",
     "plugins": "Plugins",
     "search": "Búsqueda",
     "settings": "Ajustes"
@@ -97,10 +97,10 @@
   },
   "playlists": {
     "artist": "Artista",
-    "delete": "Eliminar esta Lista",
-    "dialog-placeholder": "Nombre de la lista...",
+    "delete": "Eliminar esta Lista de reproducción",
+    "dialog-placeholder": "Nombre de la lista de reproducción...",
     "empty": "No hay lista",
-    "rename": "Renombrar lista",
+    "rename": "Renombrar lista de reproducción",
     "songs": "{{total}} canción",
     "songs_plural": "{{total}} canciones",
     "title": "Título"
@@ -113,7 +113,7 @@
   "queue": {
     "clear": "Vaciar cola",
     "dialog-accept": "Guardar",
-    "dialog-placeholder": "Nombre de la lista...",
+    "dialog-placeholder": "Nombre de la lista de reproduccion...",
     "dialog-trigger": "Guardar como lista",
     "download": "Descargar",
     "download-toast-content": "{{artist}} - {{title}} ha sido añadida a las descargas",
@@ -124,8 +124,8 @@
     "id": "Stream ID:",
     "loading": "Cargando",
     "playlist-add": "Añadir a lista",
-    "playlist-toast-content": "La lista '{{name}}' ha sido creada",
-    "playlist-toast-title": "Lista creada",
+    "playlist-toast-content": "La lista de reproducción'{{name}}' ha sido creada",
+    "playlist-toast-title": "Lista de reproducción creada",
     "title": "Título:"
   },
   "search": {
@@ -135,9 +135,9 @@
     "artist_plural": "Artistas",
     "empty": "No hay resultados",
     "placeholder": "Buscar...",
-    "playlist": "Lista",
+    "playlist": "Lista de reproducción",
     "playlist_plural": "Listas",
-    "queue-add": "Añadir todas las pistas a la Lista",
+    "queue-add": "Añadir todas las pistas a la lista de reproducción",
     "track": "Canción",
     "track_plural": "Canciones"
   },
