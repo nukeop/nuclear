@@ -14,8 +14,8 @@ describe('Playlist actions tests', () => {
     ]),
     set: () => {}
   });
-  
-  it('deletes a track from a playlist', () => {
+
+  it('deletes a playlist', () => {
     const fakeStore = createFakeStore();
     const deletePlaylist = deletePlaylistInjectable(fakeStore);
     const playlists = deletePlaylist('abc');
