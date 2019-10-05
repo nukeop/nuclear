@@ -339,7 +339,7 @@ class App extends React.Component {
   componentWillMount () {
     this.props.actions.readSettings();
     this.props.actions.lastFmReadSettings();
-    this.props.actions.createSearchPlugins(PluginConfig.plugins);
+    this.props.actions.createPlugins(PluginConfig.plugins);
   }
 
   render () {

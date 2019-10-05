@@ -6,7 +6,7 @@ import {
 
 const initialState = {
   plugins: [],
-  defaultMusicSource: null
+  selected: {}
 };
 
 export default function PluginsReducer(state=initialState, action) {
@@ -14,17 +14,23 @@ export default function PluginsReducer(state=initialState, action) {
   case CREATE_PLUGINS:
     return {
       ...state,
-      plugins: action.payload
+      ...action.payload
     };
   case SELECT_DEFAULT_MUSIC_SOURCE:
     return {
       ...state,
-      defaultMusicSource: action.payload
+      selected: {
+        ...state.selected,
+        streamProviders: action.payload
+      }
     };
   case SELECT_DEFAULT_LYRICS_PROVIDER:
     return {
       ...state,
-      defaultLyricsProvider: action.payload
+      selected: {
+        ...state.selected,
+        lyricsProviders: action.payload
+      }
     };
   default:
     return state;

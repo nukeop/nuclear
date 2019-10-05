@@ -61,14 +61,14 @@ class PlayQueue extends React.Component {
                     track={el}
                     isLoading={el.loading}
                     isCurrent={this.props.currentSong === i}
-                    defaultMusicSource={this.props.plugins.defaultMusicSource}
+                    defaultMusicSource={this.props.plugins.selected.streamProviders}
                     selectSong={this.props.actions.selectSong}
                     removeFromQueue={this.props.actions.removeFromQueue}
                   />
                 }
                 track={el}
                 streamProviders={this.props.plugins.plugins.streamProviders}
-                defaultMusicSource={this.props.plugins.defaultMusicSource}
+                defaultMusicSource={this.props.plugins.selected.streamProviders}
                 rerollTrack={this.props.actions.rerollTrack}
               />
             </div>
