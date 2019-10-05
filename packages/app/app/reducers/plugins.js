@@ -1,7 +1,7 @@
 import {
   CREATE_PLUGINS,
-  SELECT_DEFAULT_MUSIC_SOURCE,
-  SELECT_DEFAULT_LYRICS_PROVIDER
+  SELECT_STREAM_PROVIDER,
+  SELECT_LYRICS_PROVIDER
 } from '../actions/plugins';
 
 const initialState = {
@@ -16,7 +16,7 @@ export default function PluginsReducer(state=initialState, action) {
       ...state,
       ...action.payload
     };
-  case SELECT_DEFAULT_MUSIC_SOURCE:
+  case SELECT_STREAM_PROVIDER:
     return {
       ...state,
       selected: {
@@ -24,7 +24,7 @@ export default function PluginsReducer(state=initialState, action) {
         streamProviders: action.payload
       }
     };
-  case SELECT_DEFAULT_LYRICS_PROVIDER:
+  case SELECT_LYRICS_PROVIDER:
     return {
       ...state,
       selected: {
