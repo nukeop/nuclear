@@ -18,6 +18,7 @@ import it from './locales/it.json';
 import id from './locales/id.json';
 import sk from './locales/sk.json';
 import cs from './locales/cs.json';
+import ko from './locales/ko.json';
 
 const languageDetector = {
   init: Function.prototype,
@@ -45,7 +46,8 @@ export const setupI18n = () => {
       it,
       id,
 	    sk,
-      cs
+      cs,
+      ko
     },
     interpolation: {
       escapeValue: false
