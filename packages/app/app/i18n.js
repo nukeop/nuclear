@@ -16,6 +16,7 @@ import pt_br from './locales/pt_br.json';
 import tr from './locales/tr.json';
 import it from './locales/it.json';
 import id from './locales/id.json';
+import sk from './locales/sk.json';
 import cs from './locales/cs.json';
 
 const languageDetector = {
@@ -43,6 +44,7 @@ export const setupI18n = () => {
       tr,
       it,
       id,
+	    sk,
       cs
     },
     interpolation: {
