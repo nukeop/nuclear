@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import {
   ADD_TO_QUEUE,
   PLAY_NEXT,

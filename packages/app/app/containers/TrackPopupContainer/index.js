@@ -66,7 +66,7 @@ const TrackPopupContainer = props => {
       }
 
       {
-        withPlayNext && 
+        withPlayNext &&
         <PopupButton
           onClick={() => actions.playTrackNext(musicSources, trackItem)}
           ariaLabel='Play this track next'
@@ -76,7 +76,7 @@ const TrackPopupContainer = props => {
       }
 
       {
-        withAddToFavorites && 
+        withAddToFavorites &&
         <PopupButton
           onClick={() => {
             actions.addFavoriteTrack(track);
@@ -94,7 +94,7 @@ const TrackPopupContainer = props => {
       }
 
       {
-        withAddToDownloads && 
+        withAddToDownloads &&
         <PopupButton
           onClick={() => {
             const clonedTrack = safeAddUuid(track);
@@ -158,7 +158,7 @@ TrackPopupContainer.defaultProps = {
   withAddToDownloads: true
 };
 
-function mapStateToProps(state, { track }) {
+function mapStateToProps (state, { track }) {
   return {
     musicSources: track.local
       ? state.plugin.plugins.musicSources.filter(({ sourceName }) => {
@@ -169,7 +169,7 @@ function mapStateToProps(state, { track }) {
   };
 }
 
-function mapDispatchToProps(dispatch) {
+function mapDispatchToProps (dispatch) {
   return {
     actions: bindActionCreators(
       Object.assign(
