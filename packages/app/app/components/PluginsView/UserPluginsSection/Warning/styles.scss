@@ -1,0 +1,11 @@
+@import '../../../../vars';
+
+.ui.warning.message.plugins_warning {
+  background-color: $yellow;
+  color: darken($yellow, 60%);
+  box-shadow: none;
+
+  .header {
+    color: darken($yellow, 60%);
+  }
+}

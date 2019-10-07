@@ -1,3 +1,5 @@
-.user_plugins_section {
-  
+.ui.segment.user_plugins_section {
+  display: flex;
+  flex-flow: column;
+  align-items: flex-start !important;
 }

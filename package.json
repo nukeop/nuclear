@@ -29,8 +29,11 @@
     "build:win": "cd packages/app && npm run build:dist:windows && npm run build:electron && npm run pack",
     "build:all": "cd packages/app && npm run build:dist && npm run build:electron && npm run build:all"
   },
-  "dependencies": {},
+  "dependencies": {
+    "eslint": "^6.5.1"
+  },
   "devDependencies": {
     "lerna": "^3.16.4"
-  }
+  },
+  "engines" : { "node" : ">=0.11.0", "npm": ">=6.0.0" }
 }
