@@ -23,7 +23,7 @@
     "build:all": "electron-builder -c.extraMetadata.main=dist/bundle.electron.js -mwl",
     "lint": "eslint app test server",
     "lint:fix": "eslint app test server --fix",
-    "i18n": "sync-i18n --files 'app/locales/*.json' --primary en --languages fr nl de dk es pl zh ru tr id --space 2"
+    "i18n": "sync-i18n --files 'app/locales/*.json' --primary en --languages fr nl de dk es pl zh ru tr id sk --space 2"
   },
   "repository": {
     "type": "git",
@@ -48,7 +48,7 @@
     "@nuclear/ui": "0.5.1",
     "music-metadata": "^3.5.3",
     "billboard-top-100": "^2.0.8",
-    "bluebird": "^3.5.3",
+    "bluebird": "3.5.3",
     "body-parser": "^1.18.3",
     "chart.js": "^2.8.0",
     "cheerio": "^1.0.0-rc.2",
