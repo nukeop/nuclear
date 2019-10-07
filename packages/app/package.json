@@ -23,7 +23,7 @@
     "build:all": "electron-builder -c.extraMetadata.main=dist/bundle.electron.js -mwl",
     "lint": "eslint app test server",
     "lint:fix": "eslint app test server --fix",
-    "i18n": "sync-i18n --files 'app/locales/*.json' --primary en --languages fr nl de dk es pl zh ru tr id sk --space 2"
+    "i18n": "sync-i18n --files 'app/locales/*.json' --primary en --languages fr nl de dk es pl zh ru tr id sk ko --space 2"
   },
   "repository": {
     "type": "git",
