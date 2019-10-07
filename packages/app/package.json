@@ -48,7 +48,7 @@
     "@nuclear/ui": "0.5.1",
     "music-metadata": "^3.5.3",
     "billboard-top-100": "^2.0.8",
-    "bluebird": "^3.5.3",
+    "bluebird": "3.5.3",
     "body-parser": "^1.18.3",
     "chart.js": "^2.8.0",
     "cheerio": "^1.0.0-rc.2",
