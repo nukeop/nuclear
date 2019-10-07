@@ -27,7 +27,7 @@ const TrackPopupContainer = props => {
 
     withAddToQueue,
     withPlayNow,
-    withAddToStartOfQueue,
+    withPlayNext,
     withAddToFavorites,
     withAddToDownloads
   } = props;
@@ -47,12 +47,12 @@ const TrackPopupContainer = props => {
     >
       {
         withAddToQueue &&
-          <PopupButton
-            onClick={() => actions.addToQueue(musicSources, trackItem)}
-            ariaLabel='Add track to queue'
-            icon='plus'
-            label='Add to queue'
-          />
+        <PopupButton
+          onClick={() => actions.addToQueue(musicSources, trackItem)}
+          ariaLabel='Add track to queue'
+          icon='plus'
+          label='Add to queue'
+        />
       }
 
       {
@@ -66,17 +66,17 @@ const TrackPopupContainer = props => {
       }
 
       {
-        withAddToStartOfQueue &&
+        withPlayNext && 
         <PopupButton
-          onClick={() => actions.addToStartOfQueue(musicSources, trackItem)}
+          onClick={() => actions.playTrackNext(musicSources, trackItem)}
           ariaLabel='Play this track next'
-          icon='play-circle-outline'
+          icon='play'
           label='Play next'
         />
       }
 
       {
-        withAddToFavorites &&
+        withAddToFavorites && 
         <PopupButton
           onClick={() => {
             actions.addFavoriteTrack(track);
@@ -94,7 +94,7 @@ const TrackPopupContainer = props => {
       }
 
       {
-        withAddToDownloads &&
+        withAddToDownloads && 
         <PopupButton
           onClick={() => {
             const clonedTrack = safeAddUuid(track);
@@ -125,7 +125,7 @@ TrackPopupContainer.propTypes = {
   thumb: PropTypes.string,
   actions: PropTypes.shape({
     addToQueue: PropTypes.func,
-    addToStartOfQueue: PropTypes.func,
+    playTrackNext: PropTypes.func,
     clearQueue: PropTypes.func,
     selectSong: PropTypes.func,
     startPlayback: PropTypes.func,
@@ -136,7 +136,7 @@ TrackPopupContainer.propTypes = {
 
   withAddToQueue: PropTypes.bool,
   withPlayNow: PropTypes.bool,
-  withAddToStartOfQueue: PropTypes.bool,
+  withPlayNext: PropTypes.bool,
   withAddToFavorites: PropTypes.bool,
   withAddToDownloads: PropTypes.bool
 };
@@ -153,12 +153,12 @@ TrackPopupContainer.defaultProps = {
 
   withAddToQueue: true,
   withPlayNow: true,
-  withAddToStartOfQueue: true,
+  withPlayNext: true,
   withAddToFavorites: true,
   withAddToDownloads: true
 };
 
-function mapStateToProps (state, { track }) {
+function mapStateToProps(state, { track }) {
   return {
     musicSources: track.local
       ? state.plugin.plugins.musicSources.filter(({ sourceName }) => {
@@ -169,7 +169,7 @@ function mapStateToProps (state, { track }) {
   };
 }
 
-function mapDispatchToProps (dispatch) {
+function mapDispatchToProps(dispatch) {
   return {
     actions: bindActionCreators(
       Object.assign(

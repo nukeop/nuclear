@@ -100,7 +100,7 @@ class TrackRow extends React.Component {
     let {
       track,
       withAddToQueue,
-      withAddToStartOfQueue,
+      withPlayNext,
       withPlayNow,
       withAddToFavorites,
       withAddToDownloads
@@ -114,7 +114,7 @@ class TrackRow extends React.Component {
         thumb={this.getTrackThumbnail()}
 
         withAddToQueue={withAddToQueue}
-        withAddToStartOfQueue={withAddToStartOfQueue}
+        withPlayNext={withPlayNext}
         withPlayNow={withPlayNow}
         withAddToFavorites={this.canAddToFavorites()}
         withAddToDownloads={withAddToDownloads}
@@ -134,7 +134,7 @@ TrackRow.propTypes = {
   displayPlayCount: PropTypes.bool,
 
   withAddToQueue: PropTypes.bool,
-  withAddToStartOfQueue: PropTypes.bool,
+  withPlayNext: PropTypes.bool,
   withPlayNow: PropTypes.bool,
   withAddToFavorites: PropTypes.bool,
   withAddToDownloads: PropTypes.bool,
@@ -145,7 +145,7 @@ TrackRow.propTypes = {
 
 TrackRow.defaultProps = {
   withAddToQueue: true,
-  withAddToStartOfQueue: true,
+  withPlayNext: true,
   withPlayNow: true,
   withAddToFavorites: true,
   withAddToDownloads: true,
