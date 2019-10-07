@@ -1,16 +1,29 @@
 import React, { useState, useCallback } from 'react';
 import electron from 'electron';
-import { Header, Image, Modal } from 'semantic-ui-react';
+import { Header, Image, Modal, Icon } from 'semantic-ui-react';
 import { useTranslation } from 'react-i18next';
 
 import HelpButton from '../HelpButton';
 import { agplDisclaimer } from './const';
 
 import logoImg from '../../../resources/media/logo_full_light.png';
+import mastadonImg from '../../../resources/media/mastadon.png';
 import styles from './styles.scss';
 
 const handleAuthorClick = () => {
   electron.shell.openExternal('https://github.com/nukeop');
+};
+
+const handleTwitterClick = () => {
+  electron.shell.openExternal('https://twitter.com/nuclear_player');
+};
+
+const handleGithubClick = () => {
+  electron.shell.openExternal('https://github.com/nukeop/nuclear');
+};
+
+const handleMastadonClick = () => {
+  electron.shell.openExternal('https://mstdn.io/@nuclear');
 };
 
 const HelpModal = () => {
@@ -37,7 +50,8 @@ const HelpModal = () => {
             {t('header')}
           </Header>
           <p>
-            Copyright © <a href='#' onClick={handleAuthorClick}>nukeop</a> 2019,
+            Copyright © <a href='#' onClick={handleAuthorClick}>nukeop</a>
+            {' 2019, '}
             {t('released')}
           </p>
           <p>
@@ -47,6 +61,19 @@ const HelpModal = () => {
       </Modal.Content>
       <Modal.Content>
         <Modal.Description>{agplDisclaimer}</Modal.Description>
+      </Modal.Content>
+      <Modal.Content>
+        <div className={styles.social_icons}>
+          <div className={styles.icon}>
+            <Icon link size={'big'} name='twitter' onClick={handleTwitterClick}/>
+          </div>
+          <div className={styles.mastadon}>
+            <Image src={mastadonImg} onClick={handleMastadonClick} />
+          </div>
+          <div className={styles.icon}>
+            <Icon link size={'big'} name='github' onClick={handleGithubClick}/>
+          </div>
+        </div>
       </Modal.Content>
     </Modal>
   );

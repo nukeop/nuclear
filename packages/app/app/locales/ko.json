@@ -1,0 +1,198 @@
+{
+  "album": {
+    "queue": "재생목록에 앨범 추가",
+    "download": "다운로드",
+    "download-toast-title": "다운로드에 추가된 앨범",
+    "download-toast-content": "{{artist}} - {{title}} 가 다운로드에 추가 되었습니다."
+  },
+  "app": {
+    "collection": "컬렉션",
+    "dashboard": "대쉬보드",
+    "downloads": "다운로드",
+    "equalizer": "이퀄라이저",
+    "favorite-albums": "즐겨찾는 앨범",
+    "favorite-tracks": "즐겨찾는 트랙",
+    "library": "로컬 라이브러리",
+    "lyrics": "가사",
+    "main": "메인",
+    "playlists": "플레이 리스트",
+    "plugins": "플러그인",
+    "search": "검색 결과",
+    "settings": "설정"
+  },
+  "artist": {
+    "count": "총 재생 횟수",
+    "queue": "모든 트랙을 재생목록에 추가",
+    "similar": "비슷한 아티스트",
+    "title": "제목",
+    "tour": "투어 중"
+  },
+  "dashboard": {
+    "artist": "아티스트",
+    "best": "새롭게 뜨는 음악",
+    "best-new-albums": "새롭게 뜨는 앨범",
+    "best-new-tracks": "새롭게 뜨는 트랙",
+    "genres": "장르",
+    "lastfm-title": "LastFm의 상위 트랙",
+    "news": "뉴스",
+    "playcounts": "총 재생 횟수",
+    "title": "제목",
+    "top": "상위 트랙"
+  },
+  "downloads": {
+    "clear": "완료된 트랙 비우기",
+    "completion": "완료",
+    "empty": "다운로드가 비었습니다.",
+    "empty-help": "다운로드를 추가하면 여기에 표시가 됩니다!",
+    "header": "다운로드",
+    "name": "이름",
+    "status": "상태"
+  },
+  "favorites": {
+    "artist": "아티스트",
+    "empty": "즐겨찾는 트랙이 없습니다.",
+    "empty-help": "트랙에 즐겨찾기를 누르면 이곳에 표시됩니다!",
+    "header": "즐겨찾는 트랙",
+    "title": "제목"
+  },
+  "favorite-albums": {
+    "header": "즐겨찾는 앨범",
+    "empty": "즐겨찾는 앨범이 없습니다.",
+    "empty-help": "앨범에 즐겨찾기를 누르면 이곳에 표시됩니다!"
+  },
+  "help": {
+    "about": "About Nuclear Music Player",
+    "header": "Desktop music player for streaming from free sources",
+    "released": "released under AGPL-3.0",
+    "thanks": "Many thanks to our contributors on Github, your help was vital in creating this program."
+  },
+  "input-dialog": {
+    "cancel": "취소"
+  },
+  "library": {
+    "add": "폴더 추가",
+    "album": "앨범",
+    "artist": "아티스트",
+    "filter-placeholder": "필터...",
+    "header": "로컬 라이브러리",
+    "title": "제목",
+    "empty": "라이브러리가 비었습니다.",
+    "empty-help": "위 버튼을 클릭해 음악을 추가하세요.",
+    "no-api": "Web API가 사용 가능하지 않습니다.",
+    "no-api-help": "로컬 라이브러리를 사용하려면 Web API를 사용 가능으로 설정해야 합니다.",
+    "api-enable": "API 사용 가능"
+  },
+  "lyrics": {
+    "by-artist": "by {{artist}}",
+    "empty": "아무것도 재생되고 있지 않습니다.",
+    "empty-help": "재생목록에 추가된 음악의 가사가 이곳에 표시됩니다!",
+    "not-found": "가사가 없는 음악입니다."
+  },
+  "option-control": {
+    "autoradio": "자동",
+    "loop": "반복",
+    "shuffle": "셔플"
+  },
+  "player": {
+    "next-button": "다음 트랙 버튼",
+    "play-pause-button": "재생/정지 버튼",
+    "previous-button": "이전 트랙 버튼"
+  },
+  "playlists": {
+    "artist": "아티스트",
+    "delete": "재생목록에서 삭제",
+    "dialog-placeholder": "재생목록 이름...",
+    "empty": "재생목록이 없습니다.",
+    "rename": "재생목록 이름 바꾸기",
+    "songs": "{{total}} song",
+    "songs_plural": "{{total}} songs",
+    "title": "제목"
+  },
+  "plugins": {
+    "header": "플러그인",
+    "placeholder": "기본 Music Source 선택:",
+    "subtitle": "Music sources"
+  },
+  "queue": {
+    "clear": "재생목록 비우기",
+    "dialog-accept": "저장",
+    "dialog-placeholder": "재생목록 이름...",
+    "dialog-trigger": "재생목록 저장",
+    "download": "다운로드",
+    "download-toast-content": "{{artist}} - {{title}} 가 다운로드에 추가 되었습니다.",
+    "download-toast-title": "다운로드에 추가된 트랙",
+    "favorite-add": "즐겨찾기에 추가",
+    "header": "재생목록",
+    "header-track": "현재 트랙",
+    "id": "Stream ID:",
+    "loading": "스트림이 현재 로딩중.",
+    "playlist-add": "재생목록에 추가",
+    "playlist-toast-content": "재생목록 {{name}} 가 만들어졌습니다.",
+    "playlist-toast-title": "재생목록 만들기",
+    "title": "제목:"
+  },
+  "search": {
+    "album": "앨범",
+    "album_plural": "앨범들",
+    "artist": "아티스트",
+    "artist_plural": "아티스트들",
+    "empty": "찾을수 없습니다.",
+    "placeholder": "검색...",
+    "playlist": "재생목록",
+    "playlist_plural": "재생목록들",
+    "queue-add": "재생목록에 모든 트랙을 추가",
+    "track": "트랙",
+    "track_plural": "트랙들"
+  },
+  "settings": {
+    "api-port": "API에서 사용하는 포트",
+    "api-url": "",
+    "autoradio": "자동",
+    "autoradio-craziness": "Autoradio craziness",
+    "autoradio-craziness-description": "Autoradio will select songs that are less similar to the ones already in the queue the crazier it is",
+    "autoradio-description": "재생목록이 끝나면 자동으로 비슷한 트랙을 추가",
+    "compact-menu-bar": "컴팩트 스타일의 메뉴바 사용",
+    "compact-queue-bar": "컴팩트 스타일의 재생목록 바 사용",
+    "track-duration": "남은 시간을 디스플레이에 표시",
+    "disable-gpu": "하드웨어 렌더링 사용 안 함(끌기 요소 및 깜박임 화면 문제 해결 가능)",
+    "display": "디스플레이",
+    "enable-api": "가능한 API",
+    "frameless-window": "프레임 낮추기 (다시 실행시 적용)",
+    "github-connect": "Github로 로그인",
+    "github-description": "Gitub을 통해 로그인하여 온라인으로 재생 목록을 만들고 공유할 수 있음(추가될 기능)",
+    "github-title": "Github",
+    "http": "HTTP API",
+    "language": "언어",
+    "language-placeholder": "언어 선택",
+    "lastfm-connect": "Last.fm에 연결",
+    "lastfm-description": "Scrobbling을 활성화하려면 먼저 Last.fm에 Nuclear를 연결 및 인증한 후 로그인을 클릭하십시오.",
+    "lastfm-enable": "Last.fm에서 Scrobbling 활성화 ",
+    "lastfm-title": "Last.fm",
+    "login": "로그인",
+    "logout": "로그아웃",
+    "loop-after-queue-end": "마지막 재생목록을 재생한 후 반복",
+    "notification-timeout": "알림 시간 초과",
+    "notlogged": "로그인 되지 않았습니다.",
+    "playback": "재생",
+    "program-settings": "프로그램 설정",
+    "seek-iteration": "앞/뒤 버튼을 누를때 탐색할 시간(초)",
+    "shuffle-queue": "음악 셔플",
+    "shuffle-when-going-back": "이전 트랙에서 셔플",
+    "shuffle-when-going-back-description": "셔플이 활성화되어 있고, 이전 트랙 버튼을 클릭할 때 임의 트랙 재생",
+    "social": "소셜",
+    "user": "유저:",
+    "youtube": "Youtube",
+    "yt-api-key": "Youtube API 키",
+    "downloads": "다운로드",
+    "downloads-dir": "록폴더",
+    "downloads-dir-button": "폴더를 선택하세요..."
+  },
+  "tags": {
+    "albums": "상위 앨범",
+    "artist": "아티스트",
+    "artists": "상위 아티스트",
+    "duration": "시간",
+    "queue-add": "모든 트랙을 재생목록에 추가",
+    "title": "제목"
+  }
+}
