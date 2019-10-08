@@ -26,7 +26,7 @@ class PlayQueue extends React.Component {
       return;
     }
 
-    this.props.actions.swapSongs(result.source.index, result.destination.index);
+    this.props.actions.repositionSong(result.source.index, result.destination.index);
   }
 
   onAddToDownloads(track) {

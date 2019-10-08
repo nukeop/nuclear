@@ -7,7 +7,7 @@ import {
   NEXT_SONG,
   PREVIOUS_SONG,
   SELECT_SONG,
-  SWAP_SONGS
+  REPOSITION_SONG
 } from '../actions/queue';
 
 let _ = require('lodash');
@@ -75,12 +75,11 @@ function reduceSelectSong(state, action) {
   });
 }
 
-function reduceSwapSongs(state, action) {
+function reduceRepositionSong(state, action) {
   let newQueue;
   newQueue = _.cloneDeep(state.queueItems);
-  let temp = newQueue[action.payload.itemFrom];
-  newQueue[action.payload.itemFrom] = newQueue[action.payload.itemTo];
-  newQueue[action.payload.itemTo] = temp;
+  const [removed] = newQueue.splice(action.payload.itemFrom, 1);
+  newQueue.splice(action.payload.itemTo, 0, removed)
   return Object.assign({}, state, {
     queueItems: newQueue
   });
@@ -119,8 +118,8 @@ export default function QueueReducer(state = initialState, action) {
     return reducePreviousSong(state);
   case SELECT_SONG:
     return reduceSelectSong(state, action);
-  case SWAP_SONGS:
-    return reduceSwapSongs(state, action);
+  case REPOSITION_SONG:
+    return reduceRepositionSong(state, action);
   default:
     return state;
   }

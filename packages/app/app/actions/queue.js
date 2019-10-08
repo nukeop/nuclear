@@ -11,7 +11,7 @@ export const REPLACE_STREAMS_IN_QUEUE_ITEM = 'REPLACE_STREAMS_IN_QUEUE_ITEM';
 export const NEXT_SONG = 'NEXT_SONG';
 export const PREVIOUS_SONG = 'PREVIOUS_SONG';
 export const SELECT_SONG = 'SELECT_SONG';
-export const SWAP_SONGS = 'SWAP_SONGS';
+export const REPOSITION_SONG = 'REPOSITION_SONG';
 
 function addTrackToQueue (musicSources, item) {
   return dispatch => {
@@ -104,9 +104,9 @@ export function selectSong (index) {
   };
 }
 
-export function swapSongs (itemFrom, itemTo) {
+export function repositionSong (itemFrom, itemTo) {
   return {
-    type: SWAP_SONGS,
+    type: REPOSITION_SONG,
     payload: {
       itemFrom,
       itemTo
