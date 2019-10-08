@@ -22,23 +22,20 @@ const UserPluginsSectionComponent = ({handleAddPlugin}) => {
 };
 
 UserPluginsSectionComponent.propTypes = {
-
+  // eslint-disable-next-line react/no-unused-prop-types
+  loadUserPlugin: PropTypes.func
 };
 
 export default compose(
   withHandlers({
-    handleAddPlugin: () => async () => {
+    handleAddPlugin: ({loadUserPlugin}) => async () => {
       let dialogResult = remote.dialog.showOpenDialog({
         filters: [{name: 'Javascript files', extensions: ['js', 'jsx']}]
       });
-      if (_.isNil(dialogResult)) {
-        return;
+      if (!_.isNil(dialogResult)) {
+        const api = createApi();
+        loadUserPlugin(_.head(dialogResult), api);
       }
-      const pluginContents = await fs.promises.readFile(_.head(dialogResult), 'utf8');
-      const plugin = eval(pluginContents);
-      const api = createApi();
-      console.log(plugin, api);
-      plugin.start(api);
     }
   })
 )(UserPluginsSectionComponent);
