@@ -11,6 +11,8 @@ import UserPluginsSection from './UserPluginsSection';
 import styles from './styles.scss';
 
 const PluginsView = ({
+  actions,
+
   selectStreamProvider,
   streamProvidersDropdownOptions,
   streamProvidersDefaultOption,
@@ -76,7 +78,9 @@ const PluginsView = ({
     <section className={styles.plugin_settings_section}>
       <Header>{t('user-plugins')}</Header>
       <hr />
-      <UserPluginsSection />
+      <UserPluginsSection
+        loadUserPlugin={actions.loadUserPlugin}
+      />
     </section>
   </div>
 );
@@ -86,7 +90,8 @@ PluginsView.propTypes = {
   actions: PropTypes.shape({
     selectStreamProvider: PropTypes.func,
     selectLyricsProvider: PropTypes.func,
-    selectMetaProvider: PropTypes.func
+    selectMetaProvider: PropTypes.func,
+    loadUserPlugin: PropTypes.func
   }),
   plugins: PropTypes.object,
   defaultMusicSource: PropTypes.oneOfType([

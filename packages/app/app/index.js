@@ -15,6 +15,7 @@ const store = configureStore();
 logger.hookConsole({
   renderer: true
 });
+window.store = store; // put store in global scope for plugins
 
 // Sentry
 process.env.NODE_ENV === 'production' &&
