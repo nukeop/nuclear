@@ -80,7 +80,12 @@ function reduceRepositionSong(state, action) {
   newQueue = _.cloneDeep(state.queueItems);
   const [removed] = newQueue.splice(action.payload.itemFrom, 1);
   newQueue.splice(action.payload.itemTo, 0, removed)
+
+  const oldCurrentSong = state.queueItems[state.currentSong];
+  const newCurrentSong = findQueueItemIndex(newQueue, oldCurrentSong)
+
   return Object.assign({}, state, {
+    currentSong: newCurrentSong,
     queueItems: newQueue
   });
 }
