@@ -2,14 +2,21 @@
 
 .user_plugins_item {
   @include roundCorners;
+  position: relative;
   display: flex;
   flex-flow: row;
   align-items: flex-start;
+  width: 100%;
 
   background: rgba($background2, 0.35);
   border: 1px solid $background2;
   color: $white;
-  margin: 1em;
+
+  margin-top: 1em;
+
+  &.error {
+    border: 3px solid $red;
+  }
 
   .plugin_icon {
     @include center;
@@ -32,6 +39,10 @@
     margin: 1em 1em 1em 0;
     width: 100%;
     color: rgba($white, 0.6);
+
+    &:only-child {
+      margin-left: 1em;
+    }
   }
 
   .plugin_name {
@@ -50,8 +61,8 @@
 
   .delete_button_box {
     position: absolute;
-    top: 2em;
-    right: 2em;
+    top: 1em;
+    right: 1em;
     height: 3em;
     width: 3em;
     min-width: 3em;
@@ -67,5 +78,12 @@
       width: 100%;
       height: 100%;
     }
+  }
+
+  .error_message {
+    color: $red;
+    font-weight: bold;
+    font-size: 1.25em;
+    line-height: 1.5em;
   }
 }

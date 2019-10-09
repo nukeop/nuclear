@@ -12,6 +12,7 @@ import styles from './styles.scss';
 
 const PluginsView = ({
   actions,
+  userPlugins,
 
   selectStreamProvider,
   streamProvidersDropdownOptions,
@@ -80,7 +81,8 @@ const PluginsView = ({
       <hr />
       <UserPluginsSection
         loadUserPlugin={actions.loadUserPlugin}
-        userPlugins={plugins.userPlugins}
+        deleteUserPlugin={actions.deleteUserPlugin}
+        userPlugins={userPlugins}
       />
     </section>
   </div>
@@ -92,9 +94,11 @@ PluginsView.propTypes = {
     selectStreamProvider: PropTypes.func,
     selectLyricsProvider: PropTypes.func,
     selectMetaProvider: PropTypes.func,
-    loadUserPlugin: PropTypes.func
+    loadUserPlugin: PropTypes.func,
+    deleteUserPlugin: PropTypes.func
   }),
   plugins: PropTypes.object,
+  userPlugins: PropTypes.object,
   defaultMusicSource: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.oneOf([null])
