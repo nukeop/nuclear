@@ -15,15 +15,25 @@ const UserPluginsSectionComponent = ({handleAddPlugin}) => {
       <Warning />
       <Button icon inverted onClick={handleAddPlugin}>
         <Icon name='plus' />
-    Add a plugin
+        Add a plugin
       </Button>
     </Segment>
   );
 };
 
 UserPluginsSectionComponent.propTypes = {
-  // eslint-disable-next-line react/no-unused-prop-types
-  loadUserPlugin: PropTypes.func
+  /* eslint-disable react/no-unused-prop-types */
+  loadUserPlugin: PropTypes.func,
+  userPlugins: PropTypes.objectOf(PropTypes.shape({
+    path: PropTypes.string,
+    name: PropTypes.string,
+    description: PropTypes.string,
+    image: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.instanceOf(null)
+    ])
+  }))
+  /* eslint-enable */
 };
 
 export default compose(

@@ -3,5 +3,6 @@ export {
   Loader,
   QueueItem,
   Seekbar,
-  ToastContainer
+  ToastContainer,
+  UserPluginsItem
 } from './lib';
