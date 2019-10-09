@@ -80,6 +80,7 @@ const PluginsView = ({
       <hr />
       <UserPluginsSection
         loadUserPlugin={actions.loadUserPlugin}
+        userPlugins={plugins.userPlugins}
       />
     </section>
   </div>
