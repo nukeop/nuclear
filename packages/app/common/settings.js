@@ -138,7 +138,8 @@ export default [
       { key: 'zh', text: '中文', value: 'zh' },
       { key: 'id', text: 'Bahasa Indonesia', value: 'id' },
 	    { key: 'sk', text: 'Slovenčina', value: 'sk' },
-      { key: 'ko', text: '한국어', value: 'ko' }
+      { key: 'ko', text: '한국어', value: 'ko' },
+      { key: 'tl', text: 'Tagalog (Filipino)', value: 'tl' }
     ],
     default: undefined
   }, {
