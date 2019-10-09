@@ -17,6 +17,7 @@ const UserPluginsSectionComponent = ({
   return (
     <Segment className={styles.user_plugins_section}>
       <Warning />
+      <hr />
       <Button icon inverted onClick={handleAddPlugin}>
         <Icon name='plus' />
         Add a plugin

@@ -7,7 +7,8 @@ import {
   LOAD_USER_PLUGIN_START,
   LOAD_USER_PLUGIN_OK,
   LOAD_USER_PLUGIN_ERROR,
-  DELETE_USER_PLUGIN
+  DELETE_USER_PLUGIN,
+  DESERIALIZE_PLUGINS
 } from '../actions/plugins';
 
 const initialState = {
@@ -78,6 +79,11 @@ export default function PluginsReducer(state=initialState, action) {
     return {
       ...state,
       userPlugins: _.filter(state.userPlugins, plugin => plugin.path !== action.payload.path)
+    };
+  case DESERIALIZE_PLUGINS:
+    return {
+      ...state,
+      userPlugins: action.payload.plugins
     };
   default:
     return state;
