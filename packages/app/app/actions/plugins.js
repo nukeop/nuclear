@@ -93,7 +93,7 @@ function loadUserPluginError(path, error) {
 }
 
 export function loadUserPlugin(path, api) {
-  return async dispatch => {
+  return async (dispatch, getState) => {
     dispatch(loadUserPluginStart(path));
     try {
       const pluginContents = await fs.promises.readFile(path, 'utf8');
@@ -116,6 +116,9 @@ export function loadUserPlugin(path, api) {
 
       pluginStruct.onLoad(api);
       dispatch(loadUserPluginOk(pluginStruct, path));
+
+      const userPlugins = getState().plugin.userPlugins;
+      dispatch(serializePlugins(userPlugins));
     } catch (err) {
       dispatch(error('Could not load plugin', `The plugin at ${path} is invalid`));
       dispatch(loadUserPluginError(path, err));
