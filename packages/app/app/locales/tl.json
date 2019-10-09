@@ -1,0 +1,198 @@
+{
+  "album": {
+    "queue": "Idagdag ang album sa pila",
+    "download": "Download",
+    "download-toast-title": "Idinagdag ang album sa mga download",
+    "download-toast-content": "{{artist}} - {{title}} ay naidagdag sa mga download."
+  },
+  "app": {
+    "collection": "Koleksyon",
+    "dashboard": "Dashboard",
+    "downloads": "Mga Download",
+    "equalizer": "Equalizer",
+    "favorite-albums": "Paboritong mga Album",
+    "favorite-tracks": "Paboritong mga Kanta",
+    "library": "Lokal na Library",
+    "lyrics": "Liriko",
+    "main": "Pangunahin",
+    "playlists": "Mga Playlist",
+    "plugins": "Mga Plugin",
+    "search": "Resulta ng Paghahanap",
+    "settings": "Settings"
+  },
+  "artist": {
+    "count": "Bilang ng pagtugtog",
+    "queue": "Idagdag lahat sa pila",
+    "similar": "Katulad na artist",
+    "title": "Title",
+    "tour": "Nasa tour"
+  },
+  "dashboard": {
+    "artist": "Artist",
+    "best": "Nangungunang bagong musika",
+    "best-new-albums": "Nangungunang bagong mga album",
+    "best-new-tracks": "Nangungunang bagong kanta",
+    "genres": "Mga Genre",
+    "lastfm-title": "Nangungunang kanta mula sa LastFm.",
+    "news": "Balita",
+    "playcounts": "Bilang ng pagtugtog",
+    "title": "Title",
+    "top": "Nangungunang mga kanta"
+  },
+  "downloads": {
+    "clear": "Alisin ang mga natapos na kanta",
+    "completion": "Pagkumpleto",
+    "empty": "Walang laman ang mga downloads.",
+    "empty-help": "Magdagdag ng Downloads at makikita mo rito!",
+    "header": "Mga Download",
+    "name": "Pangalan",
+    "status": "Kalagayan"
+  },
+  "favorites": {
+    "artist": "Artist",
+    "empty": "Wala pang naidadagdag na mga paboritong kanta",
+    "empty-help": "Subukan magdagdag ng mga paboritong kanta at makikita mo rito!",
+    "header": "Ang iyong mga pabirotong kanta",
+    "title": "Title"
+  },
+  "favorite-albums": {
+    "header": "Ang iyong paboritong mga album",
+    "empty": "Walang paboritong album",
+    "empty-help": "Subukan magdagdag ng mga paboritong album at makikita mo rito!"
+  },
+  "help": {
+    "about": "Tungkol sa Nuclear Music Player",
+    "header": "Desktop music player para sa streaming mula sa libreng pinanggalingan",
+    "released": "released under AGPL-3.0",
+    "thanks": "Salamat sa mga nag-aambag sa Github. Ang iyong tulong ay mahalaga sa paggawa nitong programa."
+  },
+  "input-dialog": {
+    "cancel": "Kanselahin"
+  },
+  "library": {
+    "add": "Magdagdag ng folders",
+    "album": "Album",
+    "artist": "Artist",
+    "filter-placeholder": "Salaan...",
+    "header": "Lokal na Library",
+    "title": "Title",
+    "empty": "Walang laman ang library",
+    "empty-help": "Subukan magdagdag ng kanta gamit ang pindutan sa taas.",
+    "no-api": "Ang Web API ay hindi gumagana",
+    "no-api-help": "Para magamit ang lokal na library, kailangang i-enable ang Web API.",
+    "api-enable": "paganahin ang API"
+  },
+  "lyrics": {
+    "by-artist": "by {{artist}}",
+    "empty": "Walang tumutugtog.",
+    "empty-help": "Magdagdag ng tugtugin sa pila para makita ang liriko dito!",
+    "not-found": "Walang liriko nahanap para sa kantang ito."
+  },
+  "option-control": {
+    "autoradio": "Autoradio",
+    "loop": "Loop",
+    "shuffle": "Shuffle"
+  },
+  "player": {
+    "next-button": "Pindutan para sa susunod na kanta",
+    "play-pause-button": "Pindutan para sa Pagtugtog/Paghinto",
+    "previous-button": "Pindutan para sa nakaraang kanta"
+  },
+  "playlists": {
+    "artist": "Artist",
+    "delete": "Alisin itong playlist",
+    "dialog-placeholder": "Pangalan ng playlist...",
+    "empty": "Walang playlists.",
+    "rename": "Palitan ang pangalan nitong playlist",
+    "songs": "{{total}} na kanta",
+    "songs_plural": "{{total}} na mga kanta",
+    "title": "Title"
+  },
+  "plugins": {
+    "header": "Plugins",
+    "placeholder": "Piliin ang pangunahing panggalingan ng musika:",
+    "subtitle": "Mga pinanggalingan ng musika"
+  },
+  "queue": {
+    "clear": "Alisin lahat ng nakapilang kanta",
+    "dialog-accept": "I-save",
+    "dialog-placeholder": "Pangalan ng playlist...",
+    "dialog-trigger": "I-save bilang playlist",
+    "download": "Download",
+    "download-toast-content": "{{artist}} - {{title}} ay naidagdag sa mga download.",
+    "download-toast-title": "Idinagdag ang kanta sa mga download",
+    "favorite-add": "Magdagdag sa mga paborito",
+    "header": "Pila",
+    "header-track": "Kasalukuyang kanta",
+    "id": "Stream ID:",
+    "loading": "Stream ay inaabangan.",
+    "playlist-add": "Idagdag sa playlist",
+    "playlist-toast-content": "Nagawa ang playlist {{name}}.",
+    "playlist-toast-title": "Nagawa ang playlist",
+    "title": "Title:"
+  },
+  "search": {
+    "album": "Album",
+    "album_plural": "Mga Album",
+    "artist": "Artist",
+    "artist_plural": "Mga Artist",
+    "empty": "Walang nahanap.",
+    "placeholder": "Hinahanap...",
+    "playlist": "Playlist",
+    "playlist_plural": "Mga Playlist",
+    "queue-add": "Idagdag lahat ng kanta sa pila",
+    "track": "Kanta",
+    "track_plural": "Mga Kanta"
+  },
+  "settings": {
+    "api-port": "Port na gamit ng API",
+    "api-url": "",
+    "autoradio": "Autoradio",
+    "autoradio-craziness": "Kabaliwan ng Autoradio",
+    "autoradio-craziness-description": "Ang Autoradio ay mamimili ng mga kanta na lalong kakaiba sa mga kanta na nasa pila",
+    "autoradio-description": "Kusang magdagdag ng katulad na kanta pag paubos na ang nasa pila",
+    "compact-menu-bar": "Gamitin ang compact style para sa menu bar",
+    "compact-queue-bar": "Gamitin ang compact style para sa bar ng mga nakapilang kanta",
+    "track-duration": "Ipakita ang track duration sa ibabaw ng seekbar",
+    "disable-gpu": "Huwag paganahin ang hardware rendering (maaaring maayos ang isyu sa pag-drag ng mga bagay at pag-flash ng screen)",
+    "display": "Display",
+    "enable-api": "I-enable ang API",
+    "frameless-window": "Frameless window (Nangangailangan ng restart)",
+    "github-connect": "Log in gamit ang Github",
+    "github-description": "Log in gamit ang Github para makagawa at makabahagi ng iyong mga playlist online (upcoming feature).",
+    "github-title": "Github",
+    "http": "HTTP API",
+    "language": "Wika",
+    "language-placeholder": "Mamili ng wika",
+    "lastfm-connect": "Ikonekta sa Last.fm",
+    "lastfm-description": "Para i-enable ang scrobbling, kailangan mo muna i-connect at i-authorize ang Nuclear sa Last.fm, tapos pindutin ang log in.",
+    "lastfm-enable": "I-enable ang scrobbling sa Last.fm",
+    "lastfm-title": "Last.fm",
+    "login": "Log in",
+    "logout": "Log out",
+    "loop-after-queue-end": "i-loop pagkatapos patugtugin ang huling nasa pila",
+    "notification-timeout": "Notification timeout",
+    "notlogged": "Hindi naka log in",
+    "playback": "Playback",
+    "program-settings": "Program settings",
+    "seek-iteration": "Bilang ng segunda sa pag-seek forward/backward pag nakapindot ang arrow keys",
+    "shuffle-queue": "I-shuffle ang mga kanta",
+    "shuffle-when-going-back": "I-shuffle pag punta sa nakaraang kanta",
+    "shuffle-when-going-back-description": "Magplay ng random na kanta pag aktiba ang shuffle at nakapindot ang pindutan ng nakaraang kanta",
+    "social": "Social",
+    "user": "User:",
+    "youtube": "Youtube",
+    "yt-api-key": "Youtube API Key",
+    "downloads": "Downloads",
+    "downloads-dir": "Downloads directory",
+    "downloads-dir-button": "Mamili ng directory..."
+  },
+  "tags": {
+    "albums": "Nangungunang mga Album",
+    "artist": "Artist",
+    "artists": "Nangungunang mga Artist",
+    "duration": "Durasyon",
+    "queue-add": "Idagdag lahat ng kanta sa pila",
+    "title": "Title"
+  }
+}

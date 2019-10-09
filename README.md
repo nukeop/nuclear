@@ -74,6 +74,7 @@ Nuclear has already been translated to several languages, and we're always looki
 | Italian              | [gello94](https://github.com/gello94)                                                                |
 | Slovak               | [MartinT](https://github.com/MartinTuroci)                                                           |
 | Czech                | [PetrTodorov](https://github.com/PetrTodorov)                                                        |
+| Tagalog                | [giftofgrub](https://github.com/giftofgrub)                                                        |
 
 ## Screenshots
 This will be updated as the program evolves.
