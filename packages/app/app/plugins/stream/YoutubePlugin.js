@@ -20,7 +20,7 @@ class YoutubePlugin extends StreamProviderPlugin {
       .then(results => {
         let song = _.head(results.items);
         let id = song.id.videoId;
-        return ytdl.getInfo(`http://www.youtube.com/watch?v=${id}`);
+        return ytdl.getInfo(`https://www.youtube.com/watch?v=${id}`);
       })
       .then(videoInfo => {
         let thumbnail = _.get(videoInfo, 'player_response.videoDetails.thumbnail.thumbnails');
@@ -50,7 +50,7 @@ class YoutubePlugin extends StreamProviderPlugin {
           return item && item.id.videoId !== currentStream.id;
         });
         let id = song.id.videoId;
-        return ytdl.getInfo(`http://www.youtube.com/watch?v=${id}`);
+        return ytdl.getInfo(`https://www.youtube.com/watch?v=${id}`);
       })
       .then(videoInfo => {
         let formatInfo = _.head(videoInfo.formats.filter(e => e.itag === '140'));

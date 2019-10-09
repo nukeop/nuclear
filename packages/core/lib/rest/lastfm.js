@@ -1,6 +1,6 @@
 import md5 from 'md5';
 
-const scrobblingApiUrl = 'http://ws.audioscrobbler.com/2.0/';
+const scrobblingApiUrl = 'https://ws.audioscrobbler.com/2.0/';
 
 class LastFmApi {
   constructor(key, secret) {
