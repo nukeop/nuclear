@@ -10,7 +10,7 @@ export const queueData = [
     name: 'Joe\'s Garage'
   },
   {
-    thumbnail: 'http://3.bp.blogspot.com/_aNTsUIQhmf0/TJD02nFCD0I/AAAAAAAADyc/nEs2_ttp98c/s1600/Neutral+Milk+Hotel+-+In+the+Aeroplane+Over+the+Sea+-+1998.jpg',
+    thumbnail: 'https://3.bp.blogspot.com/_aNTsUIQhmf0/TJD02nFCD0I/AAAAAAAADyc/nEs2_ttp98c/s1600/Neutral+Milk+Hotel+-+In+the+Aeroplane+Over+the+Sea+-+1998.jpg',
     artist: 'Neutral Milk Hotel',
     name: 'The King of Carrot Flowers Pts. Two & Three'
   }
