@@ -62,7 +62,7 @@ Nuclear has already been translated to several languages, and we're always looki
 | Language             | Contributor                                                                                          |
 |:--------------------:|:----------------------------------------------------------------------------------------------------:|
 | English              | N/A                                                                                                  |
-| French               | [charjac](https://github.com/charjac)                                                                |
+| French               | [charjac](https://github.com/charjac), [Zalax](https://github.com/Zalaxx)                            |
 | Dutch                | [Vistaus](https://github.com/Vistaus)                                                                |
 | Danish               | [Hansen1992](https://github.com/Hansen1992)                                                          |
 | Spanish              | [mlucas94](https://github.com/mlucas94), [emlautarom1](https://github.com/emlautarom1)                                                             |
