@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import {
   CREATE_PLUGINS,
   SELECT_STREAM_PROVIDER,
@@ -5,7 +6,8 @@ import {
   SELECT_META_PROVIDER,
   LOAD_USER_PLUGIN_START,
   LOAD_USER_PLUGIN_OK,
-  LOAD_USER_PLUGIN_ERROR
+  LOAD_USER_PLUGIN_ERROR,
+  DELETE_USER_PLUGIN
 } from '../actions/plugins';
 
 const initialState = {
@@ -66,8 +68,16 @@ export default function PluginsReducer(state=initialState, action) {
       ...state,
       userPlugins: {
         ...state.userPlugins,
-        [action.payload.path]: {error: true}
+        [action.payload.path]: {
+          path: action.payload.path,
+          error: true
+        }
       }
+    };
+  case DELETE_USER_PLUGIN:
+    return {
+      ...state,
+      userPlugins: _.filter(state.userPlugins, plugin => plugin.path !== action.payload.path)
     };
   default:
     return state;

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import cx from 'classnames';
 import { Button, Icon } from 'semantic-ui-react';
 
+import Loader from '../Loader';
 import common from '../../common.scss';
 import styles from './styles.scss';
 
@@ -11,17 +12,29 @@ const UserPluginsItem = ({
   name,
   description,
   image,
+  loading,
+  error,
   handleDelete
 }) => (
   <div
     className={cx(
       common.nuclear,
-      styles.user_plugins_item
+      styles.user_plugins_item,
+      { loading, error }
     )}
   >
-    <div className={styles.plugin_icon}>
-      <img src={image}/>
-    </div>
+    {
+      image && !loading &&
+      <div className={styles.plugin_icon}>
+        <img src={image}/>
+      </div>
+    }
+    {
+      loading &&
+        <div className={styles.plugin_icon}>
+          <Loader type='small' />
+        </div>
+    }
 
     <div className={styles.plugin_info}>
       <div className={styles.plugin_name}>
@@ -42,6 +55,12 @@ const UserPluginsItem = ({
           <Icon name='trash alternate outline' size='large'/>
         </Button>
       </div>
+      {
+        error &&
+        <div className={styles.error_message}>
+        This plugin could not be loaded correctly.
+        </div>
+      }
     </div>
 
   </div>
@@ -55,6 +74,8 @@ UserPluginsItem.propTypes = {
     PropTypes.string,
     PropTypes.instanceOf(null)
   ]),
+  loading: PropTypes.bool,
+  error: PropTypes.bool,
   handleDelete: PropTypes.func
 };
 

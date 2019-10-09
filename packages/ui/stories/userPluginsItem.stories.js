@@ -25,5 +25,48 @@ storiesOf('User plugins item', module)
         handleDelete={() => alert('Plugin deleted')}
       />
     </div>
+  ))
+  .add('With no icon', () => (
+    <div className='bg'>
+      <UserPluginsItem
+        path='/usr/bin/local'
+        name='test plugin'
+      />
+    </div>
+  ))
+  .add('Loading', () => (
+    <div className='bg'>
+      <UserPluginsItem
+        path='/usr/bin/local'
+        name='test plugin'
+        description='test description'
+        loading={true}
+      />
+    </div>
+  ))
+  .add('Error', () => (
+    <div className='bg'>
+      <UserPluginsItem
+        path='/usr/bin/local'
+        name='test plugin'
+        description='test description'
+        error={true}
+      />
+    </div>
+  ))
+  .add('Several in a list', () => (
+    <div className='bg'>
+      <UserPluginsItem
+        path='/usr/bin/local'
+        name='test plugin'
+      />
+      <UserPluginsItem
+        path='/usr/bin/local'
+        name='test plugin'
+      />
+      <UserPluginsItem
+        path='/usr/bin/local'
+        name='test plugin'
+      />
+    </div>
   ));
-

@@ -1,15 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import fs from 'fs';
 import { Button, Icon, Segment } from 'semantic-ui-react';
 import { remote } from 'electron';
 import { compose, withHandlers } from 'recompose';
+import { UserPluginsItem } from '@nuclear/ui';
 
 import createApi from '../../../plugins/api';
 import Warning from './Warning';
 import styles from './styles.scss';
 
-const UserPluginsSectionComponent = ({handleAddPlugin}) => {
+const UserPluginsSectionComponent = ({
+  handleAddPlugin,
+  handleDeletePlugin,
+  userPlugins
+}) => {
   return (
     <Segment className={styles.user_plugins_section}>
       <Warning />
@@ -17,6 +21,21 @@ const UserPluginsSectionComponent = ({handleAddPlugin}) => {
         <Icon name='plus' />
         Add a plugin
       </Button>
+      {
+        userPlugins &&
+        _.map(userPlugins, plugin => (
+          <UserPluginsItem
+            key={plugin.path}
+            path={plugin.path}
+            name={plugin.name}
+            description={plugin.description}
+            image={plugin.image}
+            loading={plugin.loading}
+            error={plugin.error}
+            handleDelete={() => handleDeletePlugin(plugin.path)}
+          />
+        ))
+      }
     </Segment>
   );
 };
@@ -24,6 +43,7 @@ const UserPluginsSectionComponent = ({handleAddPlugin}) => {
 UserPluginsSectionComponent.propTypes = {
   /* eslint-disable react/no-unused-prop-types */
   loadUserPlugin: PropTypes.func,
+  deleteUserPlugin: PropTypes.func,
   userPlugins: PropTypes.objectOf(PropTypes.shape({
     path: PropTypes.string,
     name: PropTypes.string,
@@ -38,7 +58,7 @@ UserPluginsSectionComponent.propTypes = {
 
 export default compose(
   withHandlers({
-    handleAddPlugin: ({loadUserPlugin}) => async () => {
+    handleAddPlugin: ({loadUserPlugin}) => () => {
       let dialogResult = remote.dialog.showOpenDialog({
         filters: [{name: 'Javascript files', extensions: ['js', 'jsx']}]
       });
@@ -46,6 +66,9 @@ export default compose(
         const api = createApi();
         loadUserPlugin(_.head(dialogResult), api);
       }
+    },
+    handleDeletePlugin: ({deleteUserPlugin}) => path => {
+      deleteUserPlugin(path);
     }
   })
 )(UserPluginsSectionComponent);

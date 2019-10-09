@@ -13,6 +13,8 @@ export const LOAD_USER_PLUGIN_START = 'LOAD_USER_PLUGIN_START';
 export const LOAD_USER_PLUGIN_OK = 'LOAD_USER_PLUGIN_OK';
 export const LOAD_USER_PLUGIN_ERROR = 'LOAD_USER_PLUGIN_ERROR';
 
+export const DELETE_USER_PLUGIN = 'DELETE_USER_PLUGIN';
+
 export const SERIALIZE_PLUGINS = 'SERIALIZE_PLUGINS';
 export const DESERIALIZE_PLUGINS = 'DESERIALIZE_PLUGINS';
 
@@ -118,6 +120,13 @@ export function loadUserPlugin(path, api) {
       dispatch(error('Could not load plugin', `The plugin at ${path} is invalid`));
       dispatch(loadUserPluginError(path, err));
     }
+  };
+}
+
+export function deleteUserPlugin(path) {
+  return {
+    type: DELETE_USER_PLUGIN,
+    payload: { path }
   };
 }
 
