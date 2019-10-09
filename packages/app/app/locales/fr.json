@@ -1,15 +1,20 @@
 {
   "album": {
-    "queue": "Ajouter l'album à la liste de lecture"
+    "queue": "Ajouter l'album à la liste de lecture",
+    "download": "Download",
+    "download-toast-title": "Album added to downloads",
+    "download-toast-content": "{{artist}} - {{title}} has been added to downloads."
   },
   "app": {
     "collection": "Collection",
     "dashboard": "Tableau de bord",
     "downloads": "Téléchargements",
     "equalizer": "Equalizer",
+    "favorite-albums": "Favorite Albums",
     "favorite-tracks": "Favoris",
     "library": "Bibliothèque locale",
     "lyrics": "Paroles",
+    "main": "Main",
     "playlists": "Playlists",
     "plugins": "Plugins",
     "search": "Recherche",
@@ -50,6 +55,11 @@
     "header": "Vos morceaux favoris",
     "title": "Titre"
   },
+  "favorite-albums": {
+    "header": "Your favorite albums",
+    "empty": "No favorite albums",
+    "empty-help": "Try adding some albums to favorites and they will appear here!"
+  },
   "help": {
     "about": "A propos de \"Nuclear Music Player\"",
     "header": "Application de bureau qui joue de la musique à partir de sources libres",
@@ -65,7 +75,12 @@
     "artist": "Artiste",
     "filter-placeholder": "Filtrer...",
     "header": "Bibliothèque locale",
-    "title": "Titre"
+    "title": "Titre",
+    "empty": "The library is empty",
+    "empty-help": "Try adding some music using the button above.",
+    "no-api": "Web API is not enabled",
+    "no-api-help": "In order to use the local library you need to enable the web api.",
+    "api-enable": "Enable the API"
   },
   "lyrics": {
     "by-artist": "par {{artist}}",
@@ -131,10 +146,14 @@
   },
   "settings": {
     "api-port": "Port utilisé par l'api",
+    "api-url": "",
     "autoradio": "Autoradio",
     "autoradio-craziness": "Niveau de folie de l'autoradio",
+    "autoradio-craziness-description": "Autoradio will select songs that are less similar to the ones already in the queue the crazier it is",
+    "autoradio-description": "Add similar tracks automatically when the queue is ending",
     "compact-menu-bar": "Utiliser le style compact pour la barre de menu",
     "compact-queue-bar": "Utiliser le style compact pour la barre de file",
+    "track-duration": "Display track duration over the seekbar",
     "disable-gpu": "Desactiver l'accélération materielle (peut resoudre certains bug d'affichage)",
     "display": "Affichage",
     "enable-api": "Activer l'api",
@@ -156,9 +175,17 @@
     "notlogged": "Non connecté",
     "playback": "Playback",
     "program-settings": "Application",
+    "seek-iteration": "Number of seconds to seek forward/backwards when pressing arrow keys",
     "shuffle-queue": "Ordre aléatoire",
+    "shuffle-when-going-back": "Shuffle on previous track",
+    "shuffle-when-going-back-description": "Play a random track when shuffle is active and the previous track button is clicked",
     "social": "Social",
-    "user": "Utilisateur:"
+    "user": "Utilisateur:",
+    "youtube": "Youtube",
+    "yt-api-key": "Youtube API Key",
+    "downloads": "Downloads",
+    "downloads-dir": "Downloads directory",
+    "downloads-dir-button": "Choose a directory..."
   },
   "tags": {
     "albums": "Top Albums",
