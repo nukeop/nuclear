@@ -48,7 +48,7 @@ class TrackRow extends React.Component {
     return _.get(
       this.props.track,
       'thumbnail',
-      artPlaceholder
+      _.get(this.props.track, 'image[0][#text]', artPlaceholder)
     );
   }
 
