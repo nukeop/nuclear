@@ -1,7 +1,6 @@
 @import '../../common.scss';
 
 .queue_item {
-  @include transition;
   @include roundCorners;
 
   display: flex;
@@ -10,8 +9,6 @@
   height: 4em;
   margin: 0.5em;
   background-color: rgba($background2, 0.5);
-
-  animation: queue_item_fade_in 0.5s;
 
   .thumbnail {
     @include center;
@@ -86,14 +83,4 @@
 
 .current_song {
   background: rgba($green, 0.3);
-}
-
-@keyframes queue_item_fade_in {
-  0% {
-    opacity: 0;
-  }
-
-  100% {
-    opacity: 1;
-  }
 }
