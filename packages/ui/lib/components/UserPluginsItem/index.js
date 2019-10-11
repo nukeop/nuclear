@@ -3,17 +3,10 @@ import PropTypes from 'prop-types';
 import cx from 'classnames';
 import { Button, Icon } from 'semantic-ui-react';
 import { compose, withHandlers } from 'recompose';
-import { isElectron } from '@nuclear/core';
 
 import Loader from '../Loader';
 import common from '../../common.scss';
 import styles from './styles.scss';
-
-// Require instead of import so storybook works
-let  electron;
-if (isElectron()) {
-  electron = require('electron');
-}
 
 const UserPluginsItem = ({
   path,
@@ -97,16 +90,19 @@ UserPluginsItem.propTypes = {
   author: PropTypes.string,
   loading: PropTypes.bool,
   error: PropTypes.bool,
-  deleteUserPlugin: PropTypes.func
+  // eslint-disable-next-line react/no-unused-prop-types
+  deleteUserPlugin: PropTypes.func,
+  // eslint-disable-next-line react/no-unused-prop-types
+  onAuthorClick: PropTypes.func
 };
 
 export default compose(
   withHandlers({
-    handleAuthorClick: ({author}) => () => {
-      electron.shell.openExternal(`https://github.com/${author}`);
-    },
     handleDelete: ({path, deleteUserPlugin}) => () => {
       deleteUserPlugin(path);
+    },
+    handleAuthorClick: ({author, onAuthorClick}) => () => {
+      onAuthorClick(author);
     }
   })
 )(UserPluginsItem);

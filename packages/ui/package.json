@@ -22,8 +22,7 @@
   },
   "peerDependencies": {
     "react": "^16.4.1",
-    "react-dom": "^16.4.1",
-    "electron": "^4.2.11"
+    "react-dom": "^16.4.1"
   },
   "devDependencies": {
     "@babel/core": "^7.6.2",

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Button, Icon, Segment } from 'semantic-ui-react';
-import { remote } from 'electron';
+import electron, { remote } from 'electron';
 import { compose, withHandlers } from 'recompose';
 import { UserPluginsItem } from '@nuclear/ui';
 
@@ -12,6 +12,7 @@ import styles from './styles.scss';
 const UserPluginsSectionComponent = ({
   handleAddPlugin,
   deleteUserPlugin,
+  handleAuthorClick,
   userPlugins
 }) => {
   return (
@@ -35,6 +36,7 @@ const UserPluginsSectionComponent = ({
             loading={plugin.loading}
             error={plugin.error}
             deleteUserPlugin={deleteUserPlugin}
+            onAuthorClick={handleAuthorClick}
           />
         ))
       }
@@ -68,6 +70,9 @@ export default compose(
         const api = createApi();
         loadUserPlugin(_.head(dialogResult), api);
       }
+    },
+    handleAuthorClick: () => author => {
+      electron.shell.openExternal(`https://github.com/${author}`);
     }
   })
 )(UserPluginsSectionComponent);
