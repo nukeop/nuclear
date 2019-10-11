@@ -4,6 +4,7 @@ import logger from 'electron-timber';
 import { store } from '../persistence/store';
 import UserPlugin from '../structs/userPlugin';
 import { error } from './toasts';
+import createApi from '../plugins/api';
 
 export const CREATE_PLUGINS = 'CREATE_PLUGINS';
 export const SELECT_STREAM_PROVIDER = 'SELECT_STREAM_PROVIDER';
@@ -93,10 +94,11 @@ function loadUserPluginError(path, error) {
   };
 }
 
-export function loadUserPlugin(path, api) {
+export function loadUserPlugin(path) {
   return async (dispatch, getState) => {
     dispatch(loadUserPluginStart(path));
     try {
+      const api = createApi();
       const pluginContents = await fs.promises.readFile(path, 'utf8');
       const plugin = eval(pluginContents);
       if (_.isNil(plugin)) {
@@ -116,7 +118,6 @@ export function loadUserPlugin(path, api) {
         throw new Error('Unnamed plugins are not allowed');
       }
 
-      console.log(pluginStruct);
       pluginStruct.onLoad(api);
       dispatch(loadUserPluginOk(pluginStruct, path));
 
@@ -138,20 +139,16 @@ export function deleteUserPlugin(path) {
 }
 
 export function serializePlugins(plugins) {
-  return dispatch => {
+  return () => {
     store.set('plugins', plugins);
-    dispatch({
-      type: SERIALIZE_PLUGINS
-    });
   };
 }
 
 export function deserializePlugins() {
   return dispatch => {
     const plugins = store.get('plugins') || [];
-    dispatch({
-      type: DESERIALIZE_PLUGINS,
-      payload: { plugins }
+    _.forEach(plugins, plugin => {
+      dispatch(loadUserPlugin(plugin.path));
     });
   };
 }
