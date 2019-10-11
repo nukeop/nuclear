@@ -5,7 +5,6 @@ import electron, { remote } from 'electron';
 import { compose, withHandlers } from 'recompose';
 import { UserPluginsItem } from '@nuclear/ui';
 
-import createApi from '../../../plugins/api';
 import Warning from './Warning';
 import styles from './styles.scss';
 
@@ -67,8 +66,7 @@ export default compose(
         filters: [{name: 'Javascript files', extensions: ['js', 'jsx']}]
       });
       if (!_.isNil(dialogResult)) {
-        const api = createApi();
-        loadUserPlugin(_.head(dialogResult), api);
+        loadUserPlugin(_.head(dialogResult));
       }
     },
     handleAuthorClick: () => author => {
