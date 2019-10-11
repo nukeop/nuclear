@@ -1,0 +1,198 @@
+{
+  "album": {
+    "queue": "Pridať album do poradia",
+    "download": "Stiahnuť",
+    "download-toast-title": "Album pridaný medzi stiahnuté",
+    "download-toast-content": "{{artist}} - {{title}} bol pridaný do stiahnutých."
+  },
+  "app": {
+    "collection": "Zbierka",
+    "dashboard": "Dashboard",
+    "downloads": "Stiahnuté",
+    "equalizer": "Ekvalizér",
+    "favorite-albums": "Obľúbené albumy",
+    "favorite-tracks": "Obľúbené skladby",
+    "library": "Lokálna knižnica",
+    "lyrics": "Titulky",
+    "main": "Hlavné",
+    "playlists": "Playlisty",
+    "plugins": "Doplnky",
+    "search": "Výsledky vyhľadávania",
+    "settings": "Nastavenia"
+  },
+  "artist": {
+    "count": "Počet prehratí",
+    "queue": "Pridať všetky skladby do poradia",
+    "similar": "Podobný umelci",
+    "title": "Názov",
+    "tour": "Na tour"
+  },
+  "dashboard": {
+    "artist": "Umelec",
+    "best": "Najlepšia nová hudba",
+    "best-new-albums": "Najlepšie nové albumy",
+    "best-new-tracks": "Najlepšie nové skladby",
+    "genres": "Žánre",
+    "lastfm-title": "Top skladby z LastFm.",
+    "news": "Novinky",
+    "playcounts": "Počet prehratí",
+    "title": "Názov",
+    "top": "Top skladby"
+  },
+  "downloads": {
+    "clear": "Vymazať prehraté skladby",
+    "completion": "Dokončenie",
+    "empty": "Stiahnuté sú prázdne.",
+    "empty-help": "Pridajte niečo medzi stiahnuté a uvidíte to tu!",
+    "header": "Stiahnuté",
+    "name": "Meno",
+    "status": "Stav"
+  },
+  "favorites": {
+    "artist": "Umelec",
+    "empty": "Žiadne obľubené",
+    "empty-help": "Označte obľúbené skladby a objavia sa tu!",
+    "header": "Vaše obľubené skladby",
+    "title": "Názov"
+  },
+  "favorite-albums": {
+    "header": "Vaše obľúbené albumy",
+    "empty": "Žiadne obľúbené albumy",
+    "empty-help": "Skúste pridať album medzi obľubené a objaví sa tu!"
+  },
+  "help": {
+    "about": "O Nuclear Music Player",
+    "header": "Desktopový prehrávač hudby na streamovanie hudby z voľne dostupnyých zdrojov",
+    "released": "vydaný pod AGPL-3.0",
+    "thanks": "Veľká vďaka patrí prispievateľom na Githube, Vaša pomoc bola neoceniteľná."
+  },
+  "input-dialog": {
+    "cancel": "Späť"
+  },
+  "library": {
+    "add": "Pridať súbory",
+    "album": "Album",
+    "artist": "Umelec",
+    "filter-placeholder": "Filter...",
+    "header": "Lokálna knižnica",
+    "title": "Názov",
+    "empty": "Knižnica je prázdna",
+    "empty-help": "Skúste pridať hudbu kliknutím na horné tlačidlo.",
+    "no-api": "Webové API nie je povolené",
+    "no-api-help": "Ak chcete používať lokálnu knižnicu, povoľte webové api.",
+    "api-enable": "Povoliť webové API"
+  },
+  "lyrics": {
+    "by-artist": "od {{artist}}",
+    "empty": "Nič sa neprehráva.",
+    "empty-help": "Pridajte hudbu do poradia a uvidíte tu titulky!",
+    "not-found": "Pre túto pieseň neboli nájdené žiadne titulky."
+  },
+  "option-control": {
+    "autoradio": "Autorádio",
+    "loop": "Slučka",
+    "shuffle": "Náhodné poradie"
+  },
+  "player": {
+    "next-button": "Ďalšia skladba",
+    "play-pause-button": "Prehrať/Zastaviť",
+    "previous-button": "Predošlá skladba"
+  },
+  "playlists": {
+    "artist": "Umelec",
+    "delete": "Vymazať tento playlist",
+    "dialog-placeholder": "Názov playlistu...",
+    "empty": "Žiadne playlisty.",
+    "rename": "Premenovať tento playlist",
+    "songs": "{{total}} pieseň",
+    "songs_plural": "{{total}} piesní",
+    "title": "Názov"
+  },
+  "plugins": {
+    "header": "Doplnky",
+    "placeholder": "Vybrať predvolený hudobný zdroj:",
+    "subtitle": "Hudobné zdroje"
+  },
+  "queue": {
+    "clear": "Vymazať poradie",
+    "dialog-accept": "Uložiť",
+    "dialog-placeholder": "Názov playlistu...",
+    "dialog-trigger": "Uložiť ako playlist",
+    "download": "Stiahnuť",
+    "download-toast-content": "{{artist}} - {{title}} bol pridaný do stiahnutých.",
+    "download-toast-title": "Skladba pridaná do stiahnutýćh",
+    "favorite-add": "Pridať do obľúbených",
+    "header": "Poradie",
+    "header-track": "Aktuálna skladba",
+    "id": "Stream ID:",
+    "loading": "Stream sa stále načítava.",
+    "playlist-add": "Pridať do playlistu",
+    "playlist-toast-content": "Playlist {{name}} bol vytvorený.",
+    "playlist-toast-title": "Playlist vytvorený",
+    "title": "Názov:"
+  },
+  "search": {
+    "album": "Album",
+    "album_plural": "Albumy",
+    "artist": "Umelec",
+    "artist_plural": "Umelci",
+    "empty": "Nič sa nenašlo.",
+    "placeholder": "Hľadať...",
+    "playlist": "Playlist",
+    "playlist_plural": "Playlisty",
+    "queue-add": "Pridať všetky skladby do poradia",
+    "track": "Skladba",
+    "track_plural": "Skladby"
+  },
+  "settings": {
+    "api-port": "Port použitý pre API",
+    "api-url": "",
+    "autoradio": "Autorádio",
+    "autoradio-craziness": "Autorádiové šialenstvo",
+    "autoradio-craziness-description": "Autorádio zvolí skladby, ktoré sú menej podobné skladbám, ktoré už v poradí sú",
+    "autoradio-description": "Pridať podobné skladby automaticky, keď sa poradie končí",
+    "compact-menu-bar": "Stlačíť miesto pre menu",
+    "compact-queue-bar": "Stlačiť miesto pre poradie",
+    "track-duration": "Zobraziť trvanie skladby vo vyhľadávacom poli",
+    "disable-gpu": "Zakázať hardvérové zobrazovanie (môže vyriešiť problémy s ťahaním elementov a blikajúcou obrazovkou)",
+    "display": "Displej",
+    "enable-api": "Povoliť api",
+    "frameless-window": "Bezrámové okno (vyžaduje reštart)",
+    "github-connect": "Prihlásiť sa cez Github",
+    "github-description": "Prihláste sa cez Github aby Ste mohli vytvárať a zdieľať playlisty online (nadchádzajúca funkcia).",
+    "github-title": "Github",
+    "http": "HTTP API",
+    "language": "Jazyk",
+    "language-placeholder": "Zvoliť jazyk",
+    "lastfm-connect": "Pripojiť s Last.fm",
+    "lastfm-description": "Aby Ste mohli odosielať dáta o skladbách a tak dostávať relevantnejšie tipy, musíte pripojiť a autorizovať Nuclear na Last.fm, potom kliknite na prihlásenie",
+    "lastfm-enable": "Povoliť odosielanie dát do Last.fm",
+    "lastfm-title": "Last.fm",
+    "login": "Prihlásiť sa",
+    "logout": "Odhlásiť sa",
+    "loop-after-queue-end": "Slučka po prehratí poslednej skladby z poradia",
+    "notification-timeout": "Oznámenie o vypršaní času",
+    "notlogged": "Neprihlásený",
+    "playback": "Prehrávanie",
+    "program-settings": "Programové nastavenia",
+    "seek-iteration": "Počet sekúnd, ktoré majú ubehnúť pri pretáčaní vpred-vzad pri stláčaní šipiek",
+    "shuffle-queue": "Poprehadzovať skladby",
+    "shuffle-when-going-back": "Poprehadzovať na predošlej skladbe",
+    "shuffle-when-going-back-description": "Hrať náhodnú skladbu keď je zapnutý náhodný výber a tlačidlo späť je stlačené",
+    "social": "Socialne",
+    "user": "Používateľ:",
+    "youtube": "Youtube",
+    "yt-api-key": "Youtube API kľúč",
+    "downloads": "Stiahnuté",
+    "downloads-dir": "Stiahnuté položky",
+    "downloads-dir-button": "Zvoliť priečinok..."
+  },
+  "tags": {
+    "albums": "Top Albumy",
+    "artist": "Umelec",
+    "artists": "Top umeleci",
+    "duration": "Trvanie",
+    "queue-add": "Pridať všetky skladby do poradia",
+    "title": "Názov"
+  }
+}

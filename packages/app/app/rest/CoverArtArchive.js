@@ -1,4 +1,4 @@
-const apiUrl = 'http://coverartarchive.org/';
+const apiUrl = 'https://coverartarchive.org/';
 
 function releaseGroupFront(group, size=250) {
   return new Promise(fulfill => {

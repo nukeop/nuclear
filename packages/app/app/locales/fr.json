@@ -1,24 +1,29 @@
 {
   "album": {
-    "queue": "Ajouter l'album à la liste de lecture"
+    "queue": "Ajouter l'album à la liste de lecture",
+    "download": "Télécharger",
+    "download-toast-title": "L'album a été ajouté aux téléchargements",
+    "download-toast-content": "{{artist}} - {{title}} a été ajouté aux téléchargements."
   },
   "app": {
     "collection": "Collection",
     "dashboard": "Tableau de bord",
     "downloads": "Téléchargements",
-    "equalizer": "Equalizer",
+    "equalizer": "Égalisateur",
+    "favorite-albums": "Albums favoris",
     "favorite-tracks": "Favoris",
     "library": "Bibliothèque locale",
     "lyrics": "Paroles",
+    "main": "Main",
     "playlists": "Playlists",
     "plugins": "Plugins",
     "search": "Recherche",
-    "settings": "Règlages"
+    "settings": "Réglages"
   },
   "artist": {
-    "count": "compteur",
-    "queue": "Ajouter toutes les pistes à la liste de lecture",
-    "similar": "Artistes similaire",
+    "count": "Nombre d'écoute",
+    "queue": "Ajouter toutes les pistes à la file de lecture",
+    "similar": "Artistes similaires",
     "title": "Titre",
     "tour": "En tournée"
   },
@@ -29,30 +34,35 @@
     "best-new-tracks": "Meilleurs morceaux",
     "genres": "Genres",
     "lastfm-title": "Meilleurs morceaux de LastFm.",
-    "news": "News",
-    "playcounts": "nombre de lecture",
-    "title": "Title",
+    "news": "Nouveautés",
+    "playcounts": "Nombre d'écoute",
+    "title": "Titre",
     "top": "Top Tracks"
   },
   "downloads": {
     "clear": "Supprimer les téléchargements terminés",
-    "completion": "Completion",
-    "empty": "Aucun Téléchargement.",
-    "empty-help": "Ajoutez quelque chose dans votre file de téléchargement et vous le verrez apparaître ici!",
+    "completion": "Avancement",
+    "empty": "Aucun Téléchargement",
+    "empty-help": "Ajoutez quelque chose à télécharger et vous le verrez apparaître ici !",
     "header": "Téléchargements",
     "name": "Nom",
     "status": "Status"
   },
   "favorites": {
     "artist": "Artiste",
-    "empty": "Aucun favori.",
-    "empty-help": "Essayez d'ajouter des pistes en favoris, elles apparaîtront ici!",
+    "empty": "Aucun favoris",
+    "empty-help": "Essayez d'ajouter des morceaux en favoris, ils apparaîtront ici !",
     "header": "Vos morceaux favoris",
     "title": "Titre"
   },
+  "favorite-albums": {
+    "header": "Vos albums favoris",
+    "empty": "Aucun album favoris",
+    "empty-help": "Essayez d'ajouter des albums à vos favoris, ils apparaîtront ici !"
+  },
   "help": {
-    "about": "A propos de \"Nuclear Music Player\"",
-    "header": "Application de bureau qui joue de la musique à partir de sources libres",
+    "about": "À propos de \"Nuclear Music Player\"",
+    "header": "Application de bureau jouant de la musique à partir de sources libres.",
     "released": "distribué sous licence AGPL-3.0",
     "thanks": "Un grand merci à tous nos contributeurs sur Github."
   },
@@ -65,13 +75,18 @@
     "artist": "Artiste",
     "filter-placeholder": "Filtrer...",
     "header": "Bibliothèque locale",
-    "title": "Titre"
+    "title": "Titre",
+    "empty": "La bibliothèque est vide",
+    "empty-help": "Essayez d'ajouter un peu de musique avec le bouton au dessus.",
+    "no-api": "L'API Web n'est pas activée",
+    "no-api-help": "Pour pouvoir utiliser la bibliothèque locale, vous devez activer l'API Web.",
+    "api-enable": "Activer l'API"
   },
   "lyrics": {
-    "by-artist": "par {{artist}}",
-    "empty": "Aucun morceau n'est joué.",
-    "empty-help": "Ajoutez un morceau dans la file et vous verrez les paroles s'afficher ici!",
-    "not-found": "Aucune paroles n'ont été trouvée pour ce morceau."
+    "by-artist": "de {{artist}}",
+    "empty": "Aucun morceau n'est en cours",
+    "empty-help": "Ajoutez un morceau dans la file de lecture et vous verrez les paroles s'afficher ici !",
+    "not-found": "Aucune paroles n'ont été trouvées pour ce morceau."
   },
   "option-control": {
     "autoradio": "Autoradio",
@@ -79,9 +94,9 @@
     "shuffle": "Aléatoire"
   },
   "player": {
-    "next-button": "Next track button",
-    "play-pause-button": "Play/Pause button",
-    "previous-button": "Previous track button"
+    "next-button": "Musique suivante",
+    "play-pause-button": "Jouer/pause",
+    "previous-button": "Musique précédente"
   },
   "playlists": {
     "artist": "Artiste",
@@ -89,8 +104,8 @@
     "dialog-placeholder": "Nom de la playlist...",
     "empty": "Aucune playlist.",
     "rename": "Renommer cette playlist",
-    "songs": "{{total}} piste",
-    "songs_plural": "{{total}} pistes",
+    "songs": "{{total}} morceau",
+    "songs_plural": "{{total}} morceaux",
     "title": "Titre"
   },
   "plugins": {
@@ -99,7 +114,7 @@
     "stream-providers": "Sources de musique"
   },
   "queue": {
-    "clear": "Vider la file",
+    "clear": "Vider la file le lecture",
     "dialog-accept": "Sauvegarder",
     "dialog-placeholder": "Nom de la playlist...",
     "dialog-trigger": "Sauvegarder en tant que playlist",
@@ -108,12 +123,12 @@
     "download-toast-title": "Piste ajoutée aux téléchargements",
     "favorite-add": "Ajouter aux favoris",
     "header": "File de lecture",
-    "header-track": "Piste courante",
-    "id": "id du flux:",
-    "loading": "Flux en chargement.",
+    "header-track": "  actuelle",
+    "id": "Id du flux:",
+    "loading": "Chargement du flux.",
     "playlist-add": "Ajouter à la playlist",
-    "playlist-toast-content": "La playlist {{name}} a été créée.",
-    "playlist-toast-title": "Playliste créée",
+    "playlist-toast-content": "La playlist {{name}} a été créé.",
+    "playlist-toast-title": "Playliste créé",
     "title": "Titre:"
   },
   "search": {
@@ -125,40 +140,52 @@
     "placeholder": "Rechercher...",
     "playlist": "Playlist",
     "playlist_plural": "Playlists",
-    "queue-add": "Ajouter toutes les pistes à la file",
+    "queue-add": "Ajouter toutes les pistes à la file de lecture",
     "track": "Piste",
     "track_plural": "Pistes"
   },
   "settings": {
     "api-port": "Port utilisé par l'api",
+    "api-url": "",
     "autoradio": "Autoradio",
     "autoradio-craziness": "Niveau de folie de l'autoradio",
-    "compact-menu-bar": "Utiliser le style compact pour la barre de menu",
-    "compact-queue-bar": "Utiliser le style compact pour la barre de file",
-    "disable-gpu": "Desactiver l'accélération materielle (peut resoudre certains bug d'affichage)",
+    "autoradio-craziness-description": "Plus le niveau de folie de l'autoradio est élevé, moins les morceaux choisis seront cohérent avec ceux déjà dans la file de lecture",
+    "autoradio-description": "Ajouter des morceaux similaires automatiquement lorsque la file de lecture se termine",
+    "compact-menu-bar": "Utiliser le style compacte pour la barre de menu",
+    "compact-queue-bar": "Utiliser le style compacte pour la barre de file de lecture",
+    "track-duration": "Afficher la durée du morceau sur la barre d'avancement de lecture",
+    "disable-gpu": "Désactiver l'accélération matérielle (peut résoudre certains bugs d'affichage)",
     "display": "Affichage",
     "enable-api": "Activer l'api",
-    "frameless-window": "Fenêtre sans bord (necessite un redémarrage)",
+    "frameless-window": "Fenêtre sans bord (nécessite un redémarrage)",
     "github-connect": "Se connecter avec Github",
-    "github-description": "Se connecter avec Github afin d'être capable de partager des playlists en ligne (en cours de dévelopement).",
+    "github-description": "Se connecter avec Github afin d'être capable de partager des playlists en ligne (en cours de développement).",
     "github-title": "Github",
     "http": "HTTP API",
-    "language": "Language",
+    "language": "Langage",
     "language-placeholder": "Choisir une langue",
     "lastfm-connect": "Connecter avec Last.fm",
     "lastfm-description": "Afin d'activer le scrobbler, vous devez vous connecter et authoriser Nuclear sur lastfm.",
     "lastfm-enable": "Activer le scrobbler de Last.fm",
     "lastfm-title": "Last.fm",
     "login": "Se connecter",
-    "logout": "Se decoonecter",
-    "loop-after-queue-end": "Boucle à la fin de la liste de lecture",
-    "notification-timeout": "Durée de vie des notifications",
+    "logout": "Se déconnecter",
+    "loop-after-queue-end": "Lecture en boucle à la fin de la liste de lecture",
+    "notification-timeout": "Temps d'affichage des notifications",
     "notlogged": "Non connecté",
     "playback": "Playback",
     "program-settings": "Application",
+    "seek-iteration": "Nombre de seconde à avancer/reculer en appuyant sur les flèches",
     "shuffle-queue": "Ordre aléatoire",
+    "shuffle-when-going-back": "Mélanger les morceaux précédents",
+    "shuffle-when-going-back-description": "Joue un morceau aléatoire lorsque le bouton de morceau précédent est cliqué",
     "social": "Social",
-    "user": "Utilisateur:"
+    "user": "Utilisateur:",
+    "youtube": "YouTube",
+    "yt-api-key": "Clé d'API YouTube",
+    "downloads": "Téléchargements",
+    "downloads-dir": "Dossier de téléchargement",
+    "downloads-dir-button": "Choisir un dossier..."
   },
   "tags": {
     "albums": "Top Albums",

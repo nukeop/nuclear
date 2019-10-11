@@ -62,7 +62,7 @@ Nuclear has already been translated to several languages, and we're always looki
 | Language             | Contributor                                                                                          |
 |:--------------------:|:----------------------------------------------------------------------------------------------------:|
 | English              | N/A                                                                                                  |
-| French               | [charjac](https://github.com/charjac)                                                                |
+| French               | [charjac](https://github.com/charjac), [Zalax](https://github.com/Zalaxx)                            |
 | Dutch                | [Vistaus](https://github.com/Vistaus)                                                                |
 | Danish               | [Hansen1992](https://github.com/Hansen1992)                                                          |
 | Spanish              | [mlucas94](https://github.com/mlucas94), [emlautarom1](https://github.com/emlautarom1)                                                             |
@@ -72,7 +72,9 @@ Nuclear has already been translated to several languages, and we're always looki
 | Brazilian Portuguese | [JoaoPedroMoraes](https://github.com/JoaoPedroMoraes)                                                |
 | Turkish              | [3DShark](https://github.com/3DShark)                                                                |
 | Italian              | [gello94](https://github.com/gello94)                                                                |
-| Czech              | [PetrTodorov](https://github.com/PetrTodorov)                                                                |
+| Slovak               | [MartinT](https://github.com/MartinTuroci)                                                           |
+| Czech                | [PetrTodorov](https://github.com/PetrTodorov)                                                        |
+| Tagalog                | [giftofgrub](https://github.com/giftofgrub)                                                        |
 
 ## Screenshots
 This will be updated as the program evolves.
@@ -123,7 +125,3 @@ In case of errors with dbus/mpris, try removing optional dependencies from `pack
 ## License
 
 This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
-
-#### Support on Beerpay
-
-[![Beerpay](https://beerpay.io/nukeop/nuclear/badge.svg?style=beer-square)](https://beerpay.io/nukeop/nuclear)  [![Beerpay](https://beerpay.io/nukeop/nuclear/make-wish.svg?style=flat-square)](https://beerpay.io/nukeop/nuclear?focus=wish)

@@ -102,10 +102,12 @@ class QueuePopup extends React.Component {
             <label>{t('title')}</label>
             <span>{selectedStream.title}</span>
           </div>
-          <div className={styles.stream_id}>
-            <label>{t('id')}</label>
-            <span>{selectedStream.id}</span>
-          </div>
+          {selectedStream.id && (
+            <div className={styles.stream_id}>
+              <label>{t('id')}</label>
+              <span>{selectedStream.id}</span>
+            </div>
+          )}
         </div>
         {this.renderStreamRefreshButton()}
       </div>

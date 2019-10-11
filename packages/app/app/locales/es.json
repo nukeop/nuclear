@@ -12,7 +12,7 @@
     "library": "Librería Local",
     "lyrics": "Letras",
     "main": "Principal",
-    "playlists": "Playlists",
+    "playlists": "Listas de reproducción",
     "plugins": "Plugins",
     "search": "Búsqueda",
     "settings": "Ajustes"
@@ -30,7 +30,7 @@
     "best-new-albums": "Mejores nuevos álbumes",
     "best-new-tracks": "Mejores nuevas canciones",
     "genres": "Géneros",
-    "lastfm-title": "Mejores canciones en Last.fm",
+    "lastfm-title": "Lo mejor en Last.fm",
     "news": "Noticias",
     "playcounts": "Número de reproducciones",
     "title": "Título",
@@ -40,7 +40,7 @@
     "clear": "Borrar descargas completadas",
     "completion": "Completado",
     "empty": "No hay descargas",
-    "empty-help": "¡Añade algo a tu lista de descargas y lo veras aquí!",
+    "empty-help": "¡Añade algo a tu lista de descargas para visualizar!",
     "header": "Descargas",
     "name": "Nombre",
     "status": "Estado"
@@ -48,14 +48,14 @@
   "favorites": {
     "artist": "Artista",
     "empty": "No hay favoritos",
-    "empty-help": "¡Añade tus canciones a favoritos y las verás aquí!",
+    "empty-help": "¡Añade tus canciones a favoritos para visualizar!",
     "header": "Tus canciones favoritas",
     "title": "Título"
   },
   "favorite-albums": {
     "header": "Tus álbumes favoritos",
     "empty": "No hay álbumes favoritos",
-    "empty-help": "¡Añade álbumes a favoritos y los verás aquí!"
+    "empty-help": "¡Añade álbumes a favoritos para visualizar!"
   },
   "help": {
     "about": "Acerca de Nuclear Music Player",
@@ -73,17 +73,17 @@
     "filter-placeholder": "Filtro...",
     "header": "Librería local",
     "title": "Título",
-    "empty": "La librería está vacia",
-    "empty-help": "Intenta añadir canciones con el botón de arriba",
+    "empty": "¡Libreria Vacia!",
+    "empty-help": "Prueba añadir canciones con el botón de arriba",
     "no-api": "La API Web no está habilitada :(",
     "no-api-help": "Para poder usar la librería local debes habilitar la API Web",
     "api-enabled": "Habilitar la API"
   },
   "lyrics": {
     "by-artist": "por {{artist}}",
-    "empty": "No se está reproduciendo nada",
-    "empty-help": "¡Añade algo de música a la cola de reproducción para ver la letra aquí!",
-    "not-found": "No se encontró la letra de esta canción"
+    "empty": "No hay reproducción",
+    "empty-help": "¡Añade algo de música a la cola de reproducción para visualizar!",
+    "not-found": "Letra no Encontrada"
   },
   "option-control": {
     "autoradio": "Autoradio",
@@ -92,15 +92,15 @@
   },
   "player": {
     "next-button": "Botón de siguiente pista",
-    "play-pause-button": "Botón de Siguiente/Pausa",
+    "play-pause-button": "Botón de Inicio/Pausa",
     "previous-button": "Botón de pista previa"
   },
   "playlists": {
     "artist": "Artista",
-    "delete": "Eliminar esta playlist",
-    "dialog-placeholder": "Nombre de la playlist...",
-    "empty": "No hay playlists",
-    "rename": "Renombrar playlist",
+    "delete": "Eliminar esta Lista de reproducción",
+    "dialog-placeholder": "Nombre de la lista de reproducción...",
+    "empty": "No hay lista",
+    "rename": "Renombrar lista de reproducción",
     "songs": "{{total}} canción",
     "songs_plural": "{{total}} canciones",
     "title": "Título"
@@ -113,8 +113,8 @@
   "queue": {
     "clear": "Vaciar cola",
     "dialog-accept": "Guardar",
-    "dialog-placeholder": "Nombre de la playlist...",
-    "dialog-trigger": "Guardar como playlist",
+    "dialog-placeholder": "Nombre de la lista de reproduccion...",
+    "dialog-trigger": "Guardar como lista",
     "download": "Descargar",
     "download-toast-content": "{{artist}} - {{title}} ha sido añadida a las descargas",
     "download-toast-title": "Añadida a descargas",
@@ -123,9 +123,9 @@
     "header-track": "Canción actual",
     "id": "Stream ID:",
     "loading": "Cargando",
-    "playlist-add": "Añadir a playlist",
-    "playlist-toast-content": "La playlist '{{name}}' ha sido creada",
-    "playlist-toast-title": "Playlist creada",
+    "playlist-add": "Añadir a lista",
+    "playlist-toast-content": "La lista de reproducción'{{name}}' ha sido creada",
+    "playlist-toast-title": "Lista de reproducción creada",
     "title": "Título:"
   },
   "search": {
@@ -135,9 +135,9 @@
     "artist_plural": "Artistas",
     "empty": "No hay resultados",
     "placeholder": "Buscar...",
-    "playlist": "Playlist",
-    "playlist_plural": "Playlists",
-    "queue-add": "Añadir todas las pistas a la playlist",
+    "playlist": "Lista de reproducción",
+    "playlist_plural": "Listas",
+    "queue-add": "Añadir todas las pistas a la lista de reproducción",
     "track": "Canción",
     "track_plural": "Canciones"
   },
@@ -146,7 +146,7 @@
     "api-url": "",
     "autoradio": "Autoradio",
     "autoradio-craziness": "Nivel de locura de Autoradio",
-    "autoradio-craziness-description": "Autoradio seleccionará canciones más distintas a aquellas en la cola mientras más loco esté",
+    "autoradio-craziness-description": "Autoradio seleccionará canciones diferentes a aquellas en la cola mientras más loco esté",
     "autoradio-description": "Añadir pistas similares cuando la cola esté cerca de terminar",
     "compact-menu-bar": "Usar estilo compacto en la barra de menú",
     "compact-queue-bar": "Usar estilo compacto en la cola de reproducción",
@@ -161,7 +161,7 @@
     "language": "Idioma",
     "language-placeholder": "Elige un idioma",
     "lastfm-connect": "Conectar con Last.fm",
-    "lastfm-description": "Para habilitar scrobbling primero debes conectar y autorizar Nuclear en Last.fm, y luego iniciar sesión.",
+    "lastfm-description": "Para habilitar scrobbling(Recomendaciones) primero debes conectar y autorizar Nuclear en Last.fm, y luego iniciar sesión.",
     "lastfm-enable": "Habilitar scrobbling a Last.fm",
     "lastfm-title": "Last.fm",
     "login": "Iniciar sesión",
