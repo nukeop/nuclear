@@ -108,7 +108,7 @@
   "plugins": {
     "header": "Plugins",
     "placeholder": "Seleccione la fuente de música predeterminada:",
-    "subtitle": "Fuentes de música"
+    "stream-providers": "Fuentes de música"
   },
   "queue": {
     "clear": "Vaciar cola",

@@ -8,7 +8,7 @@
     "electron:prod:linux": "npm run build:electron:linux && electron ./dist/bundle.electron.js",
     "electron:prod": "npm run build:electron && electron ./dist/bundle.electron.js",
     "electron:docker": "docker run --rm --net=host --env=\"DISPLAY\" --volume=\"$HOME/.Xauthority:/root/.Xauthority:rw\" --device /dev/snd nuclear",
-    "watch": "webpack-dev-server --inline --progress --env=dev",
+    "watch": "webpack-dev-server --verbose --inline --progress --env=dev",
     "build:dist": "webpack --progress --colors --env=prod && cp loader.css dist",
     "build:dist:windows": "webpack --progress --colors --env=prod && copy loader.css dist",
     "build:electron:linux": "webpack --progress --colors --env.LINUX=true --config=webpack.config.electron.prod.js",
@@ -23,7 +23,7 @@
     "build:all": "electron-builder -c.extraMetadata.main=dist/bundle.electron.js -mwl",
     "lint": "eslint app test server",
     "lint:fix": "eslint app test server --fix",
-    "i18n": "sync-i18n --files 'app/locales/*.json' --primary en --languages fr nl de dk es pl zh ru tr id sk ko --space 2"
+    "i18n": "sync-i18n --files 'app/locales/*.json' --primary en --languages fr tl nl de dk es pl zh ru tr id sk ko --space 2"
   },
   "repository": {
     "type": "git",
@@ -116,7 +116,7 @@
     "chai-spies": "^1.0.0",
     "classnames": "^2.2.5",
     "css-loader": "^1.0.0",
-    "electron": "^4.0.2",
+    "electron": "^4.2.11",
     "electron-builder": "^20.44.4",
     "electron-devtools-installer": "^2.2.4",
     "enzyme": "^3.3.0",

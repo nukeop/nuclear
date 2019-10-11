@@ -1,0 +1,9 @@
+.ui.segment.user_plugins_section {
+  display: flex;
+  flex-flow: column;
+  align-items: flex-start !important;
+
+  hr {
+    margin: 1em 0;
+  }
+}

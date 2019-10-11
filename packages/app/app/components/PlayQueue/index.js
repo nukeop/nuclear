@@ -31,7 +31,7 @@ class PlayQueue extends React.Component {
       ? _.get(track, 'artist')
       : _.get(track, 'artist.name');
     ipcRenderer.send('start-download', clonedTrack);
-    addToDownloads(plugins.plugins.musicSources, clonedTrack);
+    addToDownloads(plugins.plugins.streamProviders, clonedTrack);
     info(
       t('download-toast-title'),
       t('download-toast-content', { artist: artistName, title: track.name }),
@@ -61,14 +61,14 @@ class PlayQueue extends React.Component {
                     track={el}
                     isLoading={el.loading}
                     isCurrent={this.props.currentSong === i}
-                    defaultMusicSource={this.props.plugins.defaultMusicSource}
+                    defaultMusicSource={this.props.plugins.selected.streamProviders}
                     selectSong={this.props.actions.selectSong}
                     removeFromQueue={this.props.actions.removeFromQueue}
                   />
                 }
                 track={el}
-                musicSources={this.props.plugins.plugins.musicSources}
-                defaultMusicSource={this.props.plugins.defaultMusicSource}
+                streamProviders={this.props.plugins.plugins.streamProviders}
+                defaultMusicSource={this.props.plugins.selected.streamProviders}
                 rerollTrack={this.props.actions.rerollTrack}
               />
             </div>

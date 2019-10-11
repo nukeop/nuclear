@@ -11,14 +11,14 @@ import styles from './styles.scss';
 
 @withTranslation('dashboard')
 class Dashboard extends React.Component {
-  
-  
+
+
   panes () {
     const {
       actions,
       dashboardData,
       history,
-      musicSources,
+      streamProviders,
       t
     } = this.props;
 
@@ -30,7 +30,7 @@ class Dashboard extends React.Component {
       clearQueue,
       startPlayback
     } = actions;
-    
+
     return [
       {
         menuItem: t('best'),
@@ -44,7 +44,7 @@ class Dashboard extends React.Component {
             selectSong={selectSong}
             clearQueue={clearQueue}
             startPlayback={startPlayback}
-            musicSources={musicSources}
+            streamProviders={streamProviders}
           />
         )
       },

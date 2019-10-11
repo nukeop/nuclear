@@ -14,21 +14,21 @@ storiesOf('Seekbar', module)
   .add('Basic', () => {
     return (
       <div>
-        Seekbars filled to various levels.
+    Seekbars filled to various levels.
         <br /><br />
-        60%:
+    60%:
         <Seekbar fill='60%' />
         <br />
-        70%:
+    70%:
         <Seekbar fill='70%' />
         <br />
-        80%:
+    80%:
         <Seekbar fill='80%' />
         <br />
-        30%:
+    30%:
         <Seekbar fill='30%' />
         <br />
-        10%:
+    10%:
         <Seekbar fill='10%' />
         <br />
       </div>
@@ -48,6 +48,23 @@ storiesOf('QueueItem', module)
           track={{
             thumbnail: 'https://i.imgur.com/4euOws2.jpg',
             name: 'Test track name',
+            artist: 'Test artist'
+          }}
+          isLoading={false}
+          isCurrent={false}
+          duration={formatDuration(123)}
+          defaultMusicSource={{}}
+          selectSong={() => {
+            alert('Item selected');
+          }}
+          removeFromQueue={() => {
+            alert('Item removed from queue');
+          }}
+        />
+        <QueueItem
+          track={{
+            thumbnail: 'https://i.imgur.com/aVNWf3j.jpg',
+            name: 'Small thumbnail',
             artist: 'Test artist'
           }}
           isLoading={false}
@@ -159,6 +176,26 @@ storiesOf('Loader', module)
         boxSizing: 'border-box'
       }}>
         <Loader type='small'/>
+      </div>
+    );
+  })
+  .add('Small overflowing its box', () => {
+    return (
+      <div style={{
+        background: '#282a36',
+        height: '4em',
+        width: '4em',
+        padding: '1em',
+        boxSizing: 'border-box'
+      }}>
+        <div
+          style={{
+            height: '1em',
+            width: '1em'
+          }}
+        >
+          <Loader type='small'/>
+        </div>
       </div>
     );
   });

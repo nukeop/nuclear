@@ -96,7 +96,7 @@
   "plugins": {
     "header": "Plugins",
     "placeholder": "Selecione a fonte de música padrão:",
-    "subtitle": "Fontes de música"
+    "stream-providers": "Fontes de música"
   },
   "queue": {
     "clear": "Limpar Fila",

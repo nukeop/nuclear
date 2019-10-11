@@ -6,6 +6,11 @@ Nuclear is a free music streaming program that pulls content from free sources a
 
 This means that you can search for your favourite artists, albums, and songs, and the player will find information about these, as well as song streams aggregating data from multiple sources.
 
+### Developer resources
+
+* [Plugin API](plugins.md)
+* [Why Electron?](electron.md)
+
 ### Search
 
 The primary sources of data on music-related entities are Discogs and Last.fm, which offer rich APIs.
@@ -22,8 +27,8 @@ Last.fm augments data returned by Discogs by adding extra information. When you 
 | Site        | Website                                              |
 |-------------|------------------------------------------------------|
 | Github      | <https://github.com/nukeop/nuclear>                  |
-| ReadTheDocs | <http://nuclearmusic.rtfd.io>                        |
+| ReadTheDocs | <https://nuclearmusic.rtfd.io>                       |
 | Mastodon    | <https://mstdn.io/@nuclear>                          |
-| Twitter     | <http://twitter.com/nuclear_player>                  |
+| Twitter     | <https://twitter.com/nuclear_player>                 |
 | Beerpay     | <https://beerpay.io/nukeop/nuclear>                  |
 | AUR         | <https://aur.archlinux.org/packages/nuclear-player/> |

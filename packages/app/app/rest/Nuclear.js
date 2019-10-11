@@ -1,6 +1,6 @@
 import logger from 'electron-timber';
 
-const nuclearNewsUrl = 'http://nuclear.js.org/news/';
+const nuclearNewsUrl = 'https://nuclear.js.org/news/';
 
 export function getNewsIndex() {
   return fetch(nuclearNewsUrl)

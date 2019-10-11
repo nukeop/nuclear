@@ -3,7 +3,7 @@ matrix:
     - os: osx
       osx_image: xcode9.2
       language: node_js
-      node_js: "8"
+      node_js: "11"
       env:
         - ELECTRON_CACHE=$HOME/.cache/electron
         - ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder
@@ -11,11 +11,11 @@ matrix:
 
     - os: linux
       language: node_js
-      node_js: "8"
+      node_js: "11"
 
     - os: windows
       language: node_js
-      node_js:  "8"
+      node_js:  "11"
 
 env:
   global:

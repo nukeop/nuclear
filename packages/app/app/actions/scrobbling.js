@@ -44,7 +44,7 @@ export function lastFmConnectAction() {
       .then(response => {
         let authToken = response.token;
         electron.shell.openExternal(
-          'http://www.last.fm/api/auth/?api_key=' + globals.lastfmApiKey + '&token=' + authToken
+          'https://www.last.fm/api/auth/?api_key=' + globals.lastfmApiKey + '&token=' + authToken
         );
 
         store.set('lastFm.lastFmAuthToken', authToken);
