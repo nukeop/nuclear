@@ -15,12 +15,12 @@ export const registerDownloadsEvents = window => {
   ipcMain.once('started', event => {
     rendererWindow = event.sender;
   });
-  
+
   ipcMain.on('start-download', (event, data) => {
     const artistName = _.isString(_.get(data, 'artist'))
       ? _.get(data, 'artist')
       : _.get(data, 'artist.name');
-    
+
     const query = `${artistName} ${_.get(data, 'name')}`;
     const filename = `${artistName} - ${_.get(data, 'name')}`;
 
@@ -31,12 +31,12 @@ export const registerDownloadsEvents = window => {
       .then(results => results.json())
       .then(ytData => {
         const trackId = _.get(_.head(ytData.items), 'id.videoId');
-        return ytdl.getInfo(`http://www.youtube.com/watch?v=${trackId}`);
+        return ytdl.getInfo(`https://www.youtube.com/watch?v=${trackId}`);
       })
       .then(videoInfo => {
         const formatInfo = _.head(videoInfo.formats.filter(e => e.itag === '140'));
         const streamUrl = formatInfo.url;
-        
+
         return download(window, streamUrl, {
           filename: filename + `.${_.get(formatInfo, 'container')}`,
           directory: getOption('downloads.dir'),
@@ -59,6 +59,6 @@ export const registerDownloadsEvents = window => {
         logger.error(error);
         rendererWindow.send('download-error', { uuid: data.uuid, error });
       });
-    
+
   });
 };

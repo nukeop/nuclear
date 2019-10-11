@@ -27,8 +27,8 @@ Last.fm augments data returned by Discogs by adding extra information. When you 
 | Site        | Website                                              |
 |-------------|------------------------------------------------------|
 | Github      | <https://github.com/nukeop/nuclear>                  |
-| ReadTheDocs | <http://nuclearmusic.rtfd.io>                        |
+| ReadTheDocs | <https://nuclearmusic.rtfd.io>                       |
 | Mastodon    | <https://mstdn.io/@nuclear>                          |
-| Twitter     | <http://twitter.com/nuclear_player>                  |
+| Twitter     | <https://twitter.com/nuclear_player>                 |
 | Beerpay     | <https://beerpay.io/nukeop/nuclear>                  |
 | AUR         | <https://aur.archlinux.org/packages/nuclear-player/> |
