@@ -1,1 +1,4 @@
-export { LastFmApi } from './lib';
+export {
+  LastFmApi,
+  isElectron
+} from './lib';

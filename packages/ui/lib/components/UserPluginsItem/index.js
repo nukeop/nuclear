@@ -2,19 +2,29 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 import { Button, Icon } from 'semantic-ui-react';
+import { compose, withHandlers } from 'recompose';
+import { isElectron } from '@nuclear/core';
 
 import Loader from '../Loader';
 import common from '../../common.scss';
 import styles from './styles.scss';
+
+// Require instead of import so storybook works
+let  electron;
+if (isElectron()) {
+  electron = require('electron');
+}
 
 const UserPluginsItem = ({
   path,
   name,
   description,
   image,
+  author,
   loading,
   error,
-  handleDelete
+  handleDelete,
+  handleAuthorClick
 }) => (
   <div
     className={cx(
@@ -47,22 +57,32 @@ const UserPluginsItem = ({
       <div className={styles.plugin_description}>
         {description}
       </div>
-      <div className={styles.delete_button_box}>
+
+      <div className={styles.plugin_footer}>
+        <div className={styles.plugin_author}>
+          <label>Author:</label>
+          <span className={styles.link} onClick={handleAuthorClick}>
+            {author}
+          </span>
+        </div>
         <Button basic inverted icon
           className={styles.delete_button}
           onClick={handleDelete}
         >
-          <Icon name='trash alternate outline' size='large'/>
+          <Icon name='trash alternate outline'/>
+          Uninstall
         </Button>
       </div>
-      {
-        error &&
-        <div className={styles.error_message}>
-        This plugin could not be loaded correctly.
-        </div>
-      }
-    </div>
 
+      <div className={styles.error_footer}>
+        {
+          error &&
+          <div className={styles.error_message}>
+          This plugin could not be loaded correctly.
+          </div>
+        }
+      </div>
+    </div>
   </div>
 );
 
@@ -74,9 +94,19 @@ UserPluginsItem.propTypes = {
     PropTypes.string,
     PropTypes.instanceOf(null)
   ]),
+  author: PropTypes.string,
   loading: PropTypes.bool,
   error: PropTypes.bool,
-  handleDelete: PropTypes.func
+  deleteUserPlugin: PropTypes.func
 };
 
-export default UserPluginsItem;
+export default compose(
+  withHandlers({
+    handleAuthorClick: ({author}) => () => {
+      electron.shell.openExternal(`https://github.com/${author}`);
+    },
+    handleDelete: ({path, deleteUserPlugin}) => () => {
+      deleteUserPlugin(path);
+    }
+  })
+)(UserPluginsItem);

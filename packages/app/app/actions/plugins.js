@@ -1,4 +1,5 @@
 import fs from 'fs';
+import logger from 'electron-timber';
 
 import { store } from '../persistence/store';
 import UserPlugin from '../structs/userPlugin';
@@ -107,6 +108,7 @@ export function loadUserPlugin(path, api) {
         plugin.name,
         plugin.description,
         plugin.image,
+        plugin.author,
         plugin.onLoad
       );
 
@@ -114,12 +116,14 @@ export function loadUserPlugin(path, api) {
         throw new Error('Unnamed plugins are not allowed');
       }
 
+      console.log(pluginStruct);
       pluginStruct.onLoad(api);
       dispatch(loadUserPluginOk(pluginStruct, path));
 
       const userPlugins = getState().plugin.userPlugins;
       dispatch(serializePlugins(userPlugins));
     } catch (err) {
+      logger.error(err);
       dispatch(error('Could not load plugin', `The plugin at ${path} is invalid`));
       dispatch(loadUserPluginError(path, err));
     }

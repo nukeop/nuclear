@@ -11,7 +11,7 @@ import styles from './styles.scss';
 
 const UserPluginsSectionComponent = ({
   handleAddPlugin,
-  handleDeletePlugin,
+  deleteUserPlugin,
   userPlugins
 }) => {
   return (
@@ -31,9 +31,10 @@ const UserPluginsSectionComponent = ({
             name={plugin.name}
             description={plugin.description}
             image={plugin.image}
+            author={plugin.author}
             loading={plugin.loading}
             error={plugin.error}
-            handleDelete={() => handleDeletePlugin(plugin.path)}
+            deleteUserPlugin={deleteUserPlugin}
           />
         ))
       }
@@ -67,9 +68,6 @@ export default compose(
         const api = createApi();
         loadUserPlugin(_.head(dialogResult), api);
       }
-    },
-    handleDeletePlugin: ({deleteUserPlugin}) => path => {
-      deleteUserPlugin(path);
     }
   })
 )(UserPluginsSectionComponent);

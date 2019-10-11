@@ -8,6 +8,7 @@ A plugin file should export an object with the following keys:
 - `name` - The name of the plugin (required)
 - `description` - A short summary of the plugin's functionality
 - `image` - either null or a URL to an icon
+- `author` - Github username of the author. If it exists, it will be turned into a link
 - `onLoad` a function which accepts a single argument where the API will be passed. This will be called when the plugin is loaded. The plugin is loaded when the user adds the plugin file to his list, and afterwards whenever Nuclear is started.
 
 Example of a complete plugin file:

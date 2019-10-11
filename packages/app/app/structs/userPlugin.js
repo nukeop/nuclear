@@ -1,9 +1,10 @@
 export default class UserPlugin {
-  constructor(path, name, description, image, onLoad) {
+  constructor(path, name, description, image, author, onLoad) {
     this.path = path;
     this.name = name;
     this.description = description;
     this.image = image;
+    this.author = author;
     this.onLoad = onLoad;
   }
 
@@ -12,6 +13,7 @@ export default class UserPlugin {
       path: this.path,
       name: this.name,
       description: this.description,
+      author: this.author,
       image: this.image
     };
   }

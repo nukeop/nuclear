@@ -78,7 +78,7 @@ export default function PluginsReducer(state=initialState, action) {
   case DELETE_USER_PLUGIN:
     return {
       ...state,
-      userPlugins: _.filter(state.userPlugins, plugin => plugin.path !== action.payload.path)
+      userPlugins: _.pickBy(state.userPlugins, plugin => plugin.path !== action.payload.path)
     };
   case DESERIALIZE_PLUGINS:
     return {
