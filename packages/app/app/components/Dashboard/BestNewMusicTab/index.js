@@ -20,7 +20,7 @@ class BestNewMusicTab extends React.Component {
       const firstAlbum = _.head(
         _.get(nextProps, 'dashboardData.bestNewAlbums')
       );
-      
+
       if (firstAlbum) {
         this.setState({
           activeItem: firstAlbum
@@ -46,10 +46,10 @@ class BestNewMusicTab extends React.Component {
       selectSong,
       clearQueue,
       startPlayback,
-      musicSources,
+      streamProviders,
       history
     } = this.props;
-    
+
     return (
       <Tab.Pane
         loading={this.isLoading()}
@@ -69,7 +69,7 @@ class BestNewMusicTab extends React.Component {
           selectSong={selectSong}
           clearQueue={clearQueue}
           startPlayback={startPlayback}
-          musicSources={musicSources}
+          streamProviders={streamProviders}
           history={history}
         />
       </Tab.Pane>

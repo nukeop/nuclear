@@ -64,7 +64,11 @@ class App extends React.Component {
   }
 
   componentDidMount() {
+    this.props.actions.readSettings();
+    this.props.actions.lastFmReadSettings();
+    this.props.actions.createPlugins(PluginConfig.plugins);
     this.props.actions.loadPlaylists();
+    this.props.actions.deserializePlugins();
   }
 
   togglePlayback () {
@@ -334,12 +338,6 @@ class App extends React.Component {
         settings={this.props.settings}
       />
     );
-  }
-
-  componentWillMount () {
-    this.props.actions.readSettings();
-    this.props.actions.lastFmReadSettings();
-    this.props.actions.createSearchPlugins(PluginConfig.plugins);
   }
 
   render () {

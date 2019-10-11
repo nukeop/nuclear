@@ -19,7 +19,7 @@ $black: #202020;
 }
 
 @mixin circle {
-  border-radius: 50%;
+  border-radius: 9999px;
   overflow: hidden;
 }
 

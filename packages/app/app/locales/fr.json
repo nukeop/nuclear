@@ -110,8 +110,8 @@
   },
   "plugins": {
     "header": "Plugins",
-    "placeholder": "Sélectionner la source de musique par défaut:",
-    "subtitle": "Sources de musique"
+    "placeholder": "Selectionner la source de musique par defaut:",
+    "stream-providers": "Sources de musique"
   },
   "queue": {
     "clear": "Vider la file le lecture",

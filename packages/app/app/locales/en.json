@@ -111,7 +111,11 @@
   "plugins": {
     "header": "Plugins",
     "placeholder": "Select the default music source:",
-    "subtitle": "Music sources"
+    "select-lyrics-provider": "Select the default lyrics provider:",
+    "meta-providers": "Metadata providers",
+    "stream-providers": "Stream providers",
+    "lyrics-providers": "Lyrics providers",
+    "user-plugins": "User plugins"
   },
   "queue": {
     "clear": "Clear queue",

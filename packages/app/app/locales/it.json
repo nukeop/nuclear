@@ -102,7 +102,7 @@
   "plugins": {
     "header": "Plugins",
     "placeholder": "Seleziona la fonte musicale predefinita:",
-    "subtitle": "Fonte musicale"
+    "stream-providers": "Fonte musicale"
   },
   "queue": {
     "clear": "Elimina coda",

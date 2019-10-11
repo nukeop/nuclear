@@ -38,16 +38,16 @@ class QueuePopup extends React.Component {
       this.props.defaultMusicSource
     );
     let musicSource = _.find(
-      this.props.musicSources,
+      this.props.streamProviders,
       s => s.sourceName === selectedStream.source
     );
     this.props.rerollTrack(musicSource, selectedStream, track);
   }
 
   renderStreamSourceDropdown() {
-    let { track, musicSources, defaultMusicSource } = this.props;
+    let { track, streamProviders, defaultMusicSource } = this.props;
 
-    let dropdownOptions = _.map(musicSources, s => {
+    let dropdownOptions = _.map(streamProviders, s => {
       return {
         key: s.sourceName,
         text: s.sourceName,
@@ -159,7 +159,7 @@ QueuePopup.propTypes = {
   trigger: PropTypes.node,
   track: PropTypes.object,
   defaultMusicSource: PropTypes.object,
-  musicSources: PropTypes.array,
+  streamProviders: PropTypes.array,
   rerollTrack: PropTypes.func
 };
 

@@ -13,16 +13,16 @@ export const PREVIOUS_SONG = 'PREVIOUS_SONG';
 export const SELECT_SONG = 'SELECT_SONG';
 export const SWAP_SONGS = 'SWAP_SONGS';
 
-function addTrackToQueue (musicSources, item) {
+function addTrackToQueue (streamProviders, item) {
   return dispatch => {
     item.loading = true;
     item = safeAddUuid(item);
-    
+
     dispatch({
       type: ADD_TO_QUEUE,
       payload: item
     });
-    Promise.all(_.map(musicSources, m => m.search({ artist: item.artist, track: item.name })))
+    Promise.all(_.map(streamProviders, m => m.search({ artist: item.artist, track: item.name })))
       .then(results => Promise.all(results))
       .then(results => {
         _.pull(results, null);
@@ -34,17 +34,17 @@ function addTrackToQueue (musicSources, item) {
   };
 }
 
-export function playTrack (musicSources, item) {
+export function playTrack (streamProviders, item) {
   return dispatch => {
     dispatch(clearQueue());
-    dispatch(addToQueue(musicSources, item));
+    dispatch(addToQueue(streamProviders, item));
     dispatch(selectSong(0));
     dispatch(startPlayback());
   };
 }
 
-export function addToQueue (musicSources, item) {
-  return addTrackToQueue(musicSources, item);
+export function addToQueue (streamProviders, item) {
+  return addTrackToQueue(streamProviders, item);
 }
 
 export function removeFromQueue (item) {
@@ -54,17 +54,17 @@ export function removeFromQueue (item) {
   };
 }
 
-export function addPlaylistTracksToQueue (musicSources, tracks) {
+export function addPlaylistTracksToQueue (streamProviders, tracks) {
   return dispatch => {
     tracks.map(item => {
-      dispatch(addTrackToQueue(musicSources, item));
+      dispatch(addTrackToQueue(streamProviders, item));
     });
   };
 }
 
-export function rerollTrack (musicSource, selectedStream, track) {
+export function rerollTrack (streamProvider, selectedStream, track) {
   return dispatch => {
-    musicSource.getAlternateStream({ artist: track.artist, track: track.name }, selectedStream).then(newStream => {
+    streamProvider.getAlternateStream({ artist: track.artist, track: track.name }, selectedStream).then(newStream => {
       let streams = _.map(track.streams, stream => {
         return stream.source === newStream.source ? newStream : stream;
       });
@@ -118,7 +118,7 @@ function dispatchWithShuffle(dispatch, getState, action) {
   const state = getState();
   const settings = state.settings;
   const queue = state.queue;
-    
+
   if (settings.shuffleQueue) {
     const index = _.random(0, queue.queueItems.length - 1);
     dispatch(selectSong(index));

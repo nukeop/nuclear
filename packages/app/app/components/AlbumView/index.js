@@ -39,7 +39,7 @@ class AlbumView extends React.Component {
   addAlbumToQueue (album) {
     const albumThumbnail = this.getAlbumImage(album);
     album.tracklist.map(track => {
-      this.props.addToQueue(this.props.musicSources, {
+      this.props.addToQueue(this.props.streamProviders, {
         artist: album.artists[0].name,
         name: track.title,
         thumbnail: albumThumbnail
@@ -50,7 +50,7 @@ class AlbumView extends React.Component {
   addAlbumToDownloads(album) {
     const {
       addToDownloads,
-      musicSources,
+      streamProviders,
       info,
       settings,
       t
@@ -58,7 +58,7 @@ class AlbumView extends React.Component {
     _.forEach(album.tracklist, track => {
       const clonedTrack = safeAddUuid(track);
       ipcRenderer.send('start-download', clonedTrack);
-      addToDownloads(musicSources, clonedTrack);
+      addToDownloads(streamProviders, clonedTrack);
     });
 
     info(
@@ -280,10 +280,10 @@ class AlbumView extends React.Component {
       </ContextPopup>
     );
   }
-  
+
   render () {
     let { album } = this.props;
-    
+
     if (
       _.some(_.map([album.images, album.artists, album.genres], _.isEmpty)) &&
       album.loading !== true
@@ -300,7 +300,7 @@ AlbumView.propTypes = {
   addFavoriteAlbum: PropTypes.func,
   isFavorite: PropTypes.func,
   addToDownloads: PropTypes.func,
-  musicSources: PropTypes.array,
+  streamProviders: PropTypes.array,
   settings: PropTypes.object
 };
 
@@ -308,7 +308,7 @@ AlbumView.defaultProps = {
   addFavoriteAlbum: () => {},
   isFavorite: () => {},
   addToDownloads: () => {},
-  musicSources: [],
+  streamProviders: [],
   settings: {}
 };
 
