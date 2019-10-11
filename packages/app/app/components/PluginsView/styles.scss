@@ -11,11 +11,8 @@
   margin-right: auto;
 
   .plugin_settings_section {
-    display: flex;
-    flex-flow: column;
-
-    &:not(:first-child){
-      margin-top: 1rem;
+    &:not(:last-child){
+      margin-bottom: 1rem;
     }
 
     hr {

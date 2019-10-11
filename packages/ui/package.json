@@ -20,6 +20,11 @@
   "bugs": {
     "url": "https://github.com/nukeop/nuclear/issues"
   },
+  "peerDependencies": {
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1",
+    "electron": "^4.2.11"
+  },
   "devDependencies": {
     "@babel/core": "^7.6.2",
     "@babel/plugin-proposal-object-rest-spread": "^7.6.2",
@@ -32,6 +37,7 @@
     "@storybook/addon-links": "^3.4.10",
     "@storybook/cli": "^5.2.1",
     "@storybook/react": "^5.2.1",
+    "@nuclear/core": "^0.5.1",
     "ava": "^2.4.0",
     "babel-eslint": "^7.2.3",
     "babel-loader": "^8.0.6",
@@ -59,8 +65,6 @@
   "dependencies": {
     "classnames": "^2.2.6",
     "prop-types": "^15.6.2",
-    "react": "^16.4.1",
-    "react-dom": "^16.4.1",
     "recompose": "^0.30.0",
     "semantic-ui-react": "^0.88.1"
   },
