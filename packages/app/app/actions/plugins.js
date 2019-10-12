@@ -1,5 +1,5 @@
-import fs from 'fs';
 import logger from 'electron-timber';
+import { transformPluginFile } from '@nuclear/core';
 
 import { store } from '../persistence/store';
 import UserPlugin from '../structs/userPlugin';
@@ -99,7 +99,7 @@ export function loadUserPlugin(path) {
     dispatch(loadUserPluginStart(path));
     try {
       const api = createApi();
-      const pluginContents = await fs.promises.readFile(path, 'utf8');
+      const pluginContents = await transformPluginFile(path, 'utf8');
       const plugin = eval(pluginContents);
       if (_.isNil(plugin)) {
         throw new Error('Invalid plugin file');
