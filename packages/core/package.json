@@ -19,8 +19,6 @@
   "devDependencies": {
     "@babel/plugin-proposal-object-rest-spread": "^7.6.2",
     "@babel/polyfill": "^7.6.0",
-    "@babel/preset-env": "^7.6.2",
-    "@babel/preset-react": "^7.0.0",
     "@babel/register": "^7.6.2",
     "ava": "^2.4.0",
     "babel-eslint": "^10.0.3",
@@ -35,9 +33,13 @@
   },
   "dependencies": {
     "@babel/core": "^7.6.4",
+    "@babel/preset-env": "^7.6.2",
+    "@babel/preset-react": "^7.0.0",
     "isomorphic-fetch": "^2.2.1",
     "lodash": "^4.17.10",
-    "md5": "^2.2.1"
+    "md5": "^2.2.1",
+    "react": "^16.10.2",
+    "react-dom": "^16.10.2"
   },
   "ava": {
     "files": [
