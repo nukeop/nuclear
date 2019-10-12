@@ -53,7 +53,7 @@ class TrackRow extends React.Component {
 
   canAddToFavorites() {
     return _.findIndex(this.props.favoriteTracks, (currentTrack) => {
-      return _.isMatch(currentTrack, this.props.track);
+      return currentTrack.name == this.props.track.name
     }) < 0;
   }
 
