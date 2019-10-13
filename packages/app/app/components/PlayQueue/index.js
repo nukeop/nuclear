@@ -54,7 +54,7 @@ class PlayQueue extends React.Component {
 
     return this.props.items.map((el, i) => {
       return (
-        <Draggable key={el.uuid} index={i} draggableId={el.uuid}>
+        <Draggable key={`${el.uuid}+${i}`} index={i} draggableId={`${el.uuid}+${i}`}>
           {(provided) => (
             <div
               ref={provided.innerRef}

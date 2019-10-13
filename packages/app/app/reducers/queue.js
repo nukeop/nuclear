@@ -81,8 +81,25 @@ function reduceRepositionSong(state, action) {
   const [removed] = newQueue.splice(action.payload.itemFrom, 1);
   newQueue.splice(action.payload.itemTo, 0, removed)
 
-  const oldCurrentSong = state.queueItems[state.currentSong];
-  const newCurrentSong = findQueueItemIndex(newQueue, oldCurrentSong)
+
+  let newCurrentSong = state.currentSong;
+  if (action.payload.itemFrom == state.currentSong) {
+    newCurrentSong = action.payload.itemTo;
+  } else if (action.payload.itemFrom < action.payload.itemTo) {
+    // moving top to bottom and
+    // current song is in between
+    if (state.currentSong > action.payload.itemFrom && state.currentSong <= action.payload.itemTo) {
+      newCurrentSong--;
+    }
+  } 
+  else if (action.payload.itemFrom > action.payload.itemTo) {
+    // moving bottom to top
+    // current song is in between
+    if (state.currentSong < action.payload.itemFrom && state.currentSong >= action.payload.itemTo) {
+      newCurrentSong++;
+    }
+  }
+  // otherwise does not change
 
   return Object.assign({}, state, {
     currentSong: newCurrentSong,
