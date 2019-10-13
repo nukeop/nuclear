@@ -1,6 +1,5 @@
 /* eslint-env node */
 const webpack = require('webpack');
-const nodeExternals = require('webpack-node-externals');
 
 module.exports = () => {
   const entry = './server/main.dev.js';
@@ -15,14 +14,13 @@ module.exports = () => {
     stats: {
       warningsFilter: 'express'
     },
-    externals: [nodeExternals()],
     module: {
       rules: [
         {
           test: /.jsx?$/,
-          loader: 'babel-loader', 
+          loader: 'babel-loader',
           options: {cacheDirectory: true},
-          exclude: /node_modules/
+          exclude: /node_modules\/(?!@nuclear).*/
         }
       ]
     },

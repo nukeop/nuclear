@@ -39,10 +39,7 @@ const config = {
         test: /.jsx?$/,
         loader: 'babel-loader',
         options: { cacheDirectory: true },
-        include: [
-          APP_DIR,
-          UI_DIR
-        ]
+        exclude: /node_modules\/(?!@nuclear).*/
       },
       {
         test: /.scss$/,

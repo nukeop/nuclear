@@ -49,7 +49,7 @@ const PluginsView = ({
       <hr />
       <Segment>
         <label>
-          {t('select-lyrics-provider')}
+          {t('select-meta-provider')}
         </label>
         <Dropdown
           selection
