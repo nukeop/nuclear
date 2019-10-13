@@ -1,4 +1,6 @@
 export {
   LastFmApi,
-  isElectron
+  isElectron,
+  transformSource,
+  transformPluginFile
 } from './lib';

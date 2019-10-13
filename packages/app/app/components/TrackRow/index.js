@@ -10,6 +10,7 @@ import * as QueueActions from '../../actions/queue';
 
 import TrackPopupContainer from '../../containers/TrackPopupContainer';
 import { formatDuration } from '../../utils';
+import artPlaceholder from '../../../resources/media/art_placeholder.png';
 
 import styles from './styles.scss';
 
@@ -47,13 +48,13 @@ class TrackRow extends React.Component {
     return _.get(
       this.props.track,
       'thumbnail',
-      _.get(this.props.track, 'image[0][#text]')
+      _.get(this.props.track, 'image[0][#text]', artPlaceholder)
     );
   }
 
   canAddToFavorites() {
     return _.findIndex(this.props.favoriteTracks, (currentTrack) => {
-      return _.isMatch(currentTrack, this.props.track);
+      return currentTrack.name === this.props.track.name && currentTrack.artist.name === this.props.track.artist.name
     }) < 0;
   }
 

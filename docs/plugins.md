@@ -1,6 +1,8 @@
 ## Plugin API
 User plugins are supported in the form of arbitrary js files, which can be loaded at runtime. Obviously, plugins should be loaded only from trusted sources, because they can run arbitrary code.
 
+As plugins are loaded, they are transpiled with Babel using `@babel/preset-env` and `@babel/preset-react`. This enables plugin developers to use React to render custom UI, and use modern ES syntax.
+
 ### Plugin files
 
 A plugin file should export an object with the following keys:
@@ -25,6 +27,8 @@ module.exports = {
 };
 ```
 
+Uses the `module.exports` syntax to export your plugin so that Nuclear can access it. No other module syntax is supported at this time.
+
 ### The API object
 
 The plugin API that's passed to the plugin exposes the following keys:
@@ -32,3 +36,36 @@ The plugin API that's passed to the plugin exposes the following keys:
 - `app` - app object from the Electron API, as defined here: https://electronjs.org/docs/api/app
 - `store` - Redux store. This lets you use `getState()` to retrieve the complete application state, as well as use `dispatch` to dispatch actions. You can also use `subscribe` to react to actions.
 - `React` and `ReactDOM` give you access to these two libraries exactly as used by Nuclear itself.
+
+### Using React in plugins to render UI
+
+It is possible to use React directly in plugins to render new UI elements. For example:
+
+```javascript
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+module.exports = {
+  name: 'Navbar plugin',
+  description: 'Creates a navbar under the main one',
+  image: null,
+  author: 'nukeop',
+  onLoad: api => {
+
+    const root = document.createElement('nav');
+    root.id = 'plugin-root';
+    const navbar = document.getElementsByClassName('navbar')[0];
+    navbar.parentNode.insertBefore(root, navbar.nextSibling);
+
+    ReactDOM.render(
+      <nav style={{padding: '1em'}}>Plugin navbar</nav>,
+      document.getElementById('plugin-root')
+    );
+  }
+};
+
+```
+
+### Removing plugins
+
+After uninstlaling a plugin, its effects will remain until Nuclear is restarted or reloaded (ctrl+r).

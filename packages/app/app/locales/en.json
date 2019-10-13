@@ -112,10 +112,14 @@
     "header": "Plugins",
     "placeholder": "Select the default music source:",
     "select-lyrics-provider": "Select the default lyrics provider:",
+    "select-meta-provider": "Select the default metadata provider:",
     "meta-providers": "Metadata providers",
     "stream-providers": "Stream providers",
     "lyrics-providers": "Lyrics providers",
-    "user-plugins": "User plugins"
+    "user-plugins": "User plugins",
+    "user-plugins-warning-title": "Danger zone!",
+    "user-plugins-warning-desc": "Plugins work by running code on your computer. Load plugins only from sources you trust!",
+    "add-a-plugin": "Add a plugin"
   },
   "queue": {
     "clear": "Clear queue",

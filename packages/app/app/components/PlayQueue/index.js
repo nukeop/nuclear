@@ -19,7 +19,14 @@ class PlayQueue extends React.Component {
   }
 
   onDragEnd(result) {
-    this.props.actions.swapSongs(result.source.index, result.destination.index);
+
+    const { source, destination } = result;
+    // when dragging to non droppable area or back to same position
+    if (!destination || source.index == destination.index) {
+      return;
+    }
+
+    this.props.actions.repositionSong(result.source.index, result.destination.index);
   }
 
   onAddToDownloads(track) {
@@ -47,7 +54,7 @@ class PlayQueue extends React.Component {
 
     return this.props.items.map((el, i) => {
       return (
-        <Draggable key={i} index={i} draggableId={i}>
+        <Draggable key={`${el.uuid}+${i}`} index={i} draggableId={`${el.uuid}+${i}`}>
           {(provided) => (
             <div
               ref={provided.innerRef}
