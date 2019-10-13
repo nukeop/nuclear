@@ -1,6 +1,7 @@
 import 'regenerator-runtime';
 import process from 'process';
 import logger from 'electron-timber';
+import { transformSource } from '@nuclear/core';
 
 const { app, ipcMain, nativeImage, BrowserWindow, Menu, Tray } = require('electron');
 const platform = require('electron-platform');
@@ -40,6 +41,8 @@ function createWindow() {
   });
 
   win.setTitle('Nuclear Music Player');
+
+  app.transformSource = transformSource;
 
   win.loadURL(url.format({
     pathname: path.join(__dirname, 'index.html'),

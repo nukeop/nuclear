@@ -1,11 +1,12 @@
 import 'regenerator-runtime';
 import process from 'process';
 import logger from 'electron-timber';
-const { app, ipcMain, nativeImage, BrowserWindow, Menu, Tray } = require('electron');
-const platform = require('electron-platform');
-const path = require('path');
-const url = require('url');
-// const mpris = require('./mpris');
+import platform from 'electron-platform';
+import path from 'path';
+import url from 'url';
+import { app, ipcMain, nativeImage, BrowserWindow, Menu, Tray } from 'electron';
+import { transformSource } from '@nuclear/core';
+
 const getOption = require('./store').getOption;
 const { runHttpServer, closeHttpServer } = require('./http/server');
 import { registerDownloadsEvents } from './downloads';
@@ -15,9 +16,9 @@ let win;
 let tray;
 let icon = nativeImage.createFromPath(path.resolve(__dirname, 'resources', 'media', 'icon.png'));
 
-// function changeWindowTitle(artist, title) {
-//   win.setTitle(`${artist} - ${title} - nuclear music player`);
-// }
+function changeWindowTitle(artist, title) {
+  win.setTitle(`${artist} - ${title} - Nuclear Music Player`);
+}
 
 process.on('uncaughtException', error => {
   logger.log(error);
@@ -39,7 +40,9 @@ function createWindow() {
     ]
   });
 
-  win.setTitle('nuclear music player');
+  win.setTitle('Nuclear Music Player');
+
+  app.transformSource = transformSource;
 
   win.loadURL(url.format({
     pathname: path.join(__dirname, 'index.html'),
@@ -96,6 +99,13 @@ function createWindow() {
 
   ipcMain.on('stop-api', () => {
     closeHttpServer(httpServer);
+  });
+
+  ipcMain.on('songChange', (event, arg) => {
+    if (arg === null) {
+      return;
+    }
+    changeWindowTitle(arg.artist, arg.name);
   });
 }
 
