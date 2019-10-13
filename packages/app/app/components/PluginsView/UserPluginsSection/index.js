@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Button, Icon, Segment } from 'semantic-ui-react';
 import electron, { remote } from 'electron';
 import { compose, withHandlers } from 'recompose';
+import { withTranslation } from 'react-i18nxt';
 import { UserPluginsItem } from '@nuclear/ui';
 
 import Warning from './Warning';
@@ -12,7 +13,8 @@ const UserPluginsSectionComponent = ({
   handleAddPlugin,
   deleteUserPlugin,
   handleAuthorClick,
-  userPlugins
+  userPlugins,
+  t
 }) => {
   return (
     <Segment className={styles.user_plugins_section}>
@@ -20,7 +22,7 @@ const UserPluginsSectionComponent = ({
       <hr />
       <Button icon inverted onClick={handleAddPlugin}>
         <Icon name='plus' />
-        Add a plugin
+        {t('add-a-plugin')}
       </Button>
       {
         userPlugins &&
@@ -72,5 +74,6 @@ export default compose(
     handleAuthorClick: () => author => {
       electron.shell.openExternal(`https://github.com/${author}`);
     }
-  })
+  }),
+  withTranslation('plugins')
 )(UserPluginsSectionComponent);

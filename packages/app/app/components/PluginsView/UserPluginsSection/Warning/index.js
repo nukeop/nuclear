@@ -1,20 +1,21 @@
 import React from 'react';
 import { Icon, Message } from 'semantic-ui-react';
+import { withTranslation } from 'react-i18next';
 
 import styles from './styles.scss';
 
-const Warning = () => {
+const Warning = ({t}) => {
   return (
     <Message warning className={styles.plugins_warning}>
       <Message.Header>
         <Icon name='warning sign' />
-        Danger zone!
+        {t('user-plugins-warning-title')}
       </Message.Header>
       <p>
-        Plugins work by running code on your computer. Load plugins only from sources you trust!
+        {t('user-plugins-warning-desc')}
       </p>
     </Message>
   );
 };
 
-export default Warning;
+export default withTranslation('plugins')(Warning);
