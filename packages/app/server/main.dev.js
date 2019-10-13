@@ -6,6 +6,7 @@ import url from 'url';
 import getPort from 'get-port';
 import { app, ipcMain, nativeImage, BrowserWindow, Menu, Tray } from
   'electron';
+import { transformSource } from '@nuclear/core';
 
 import { runHttpServer, closeHttpServer } from './http/server';
 import { setOption } from './store';
@@ -57,6 +58,8 @@ function createWindow() {
   installExtension(REDUX_DEVTOOLS)
     .then((name) => console.log(`Added Extension:  ${name}`))
     .catch((err) => console.log('An error occurred: ', err));
+
+  app.transformSource = transformSource;
 
   win.loadURL(
     url.format({
