@@ -1,5 +1,6 @@
+import fs from 'fs';
 import logger from 'electron-timber';
-import { transformPluginFile } from '@nuclear/core';
+import { remote } from 'electron';
 
 import { store } from '../persistence/store';
 import UserPlugin from '../structs/userPlugin';
@@ -99,8 +100,11 @@ export function loadUserPlugin(path) {
     dispatch(loadUserPluginStart(path));
     try {
       const api = createApi();
-      const pluginContents = await transformPluginFile(path, 'utf8');
-      const plugin = eval(pluginContents);
+      const pluginContents = await fs.promises.readFile(path, 'utf8');
+      const transformedPluginContents = await remote.app.transformSource(pluginContents);
+
+      const plugin = eval(transformedPluginContents.code);
+
       if (_.isNil(plugin)) {
         throw new Error('Invalid plugin file');
       }
@@ -131,10 +135,18 @@ export function loadUserPlugin(path) {
   };
 }
 
-export function deleteUserPlugin(path) {
+export function deleteUserPluginAction(path) {
   return {
     type: DELETE_USER_PLUGIN,
     payload: { path }
+  };
+}
+
+export function deleteUserPlugin(path) {
+  return async (dispatch, getState) => {
+    await dispatch(deleteUserPluginAction(path));
+    const userPlugins = getState().plugin.userPlugins;
+    dispatch(serializePlugins(userPlugins));
   };
 }
 
