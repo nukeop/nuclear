@@ -38,7 +38,13 @@ export function getSelectedStream(streams, defaultMusicSource) {
   let selectedStream = _.find(streams, { source: defaultMusicSource });
 
   return typeof selectedStream === 'undefined'
-    ? streams ? streams[0] : null
+    ? (streams
+      ? (streams[0]
+        ? streams[0]
+        : (streams[1]
+          ? streams[1]
+          : null))
+      : null)
     : selectedStream;
 }
 
