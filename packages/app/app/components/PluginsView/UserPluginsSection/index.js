@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Button, Icon, Segment } from 'semantic-ui-react';
 import electron, { remote } from 'electron';
 import { compose, withHandlers } from 'recompose';
-import { withTranslation } from 'react-i18nxt';
+import { withTranslation } from 'react-i18next';
 import { UserPluginsItem } from '@nuclear/ui';
 
 import Warning from './Warning';
