@@ -6,9 +6,9 @@ On an unrelated note, highly polarized opinions about languages and frameworks a
 
 ## The reasons behind Electron
 
-* It's fun to develop for
-* It uses as much resources as a single browser tab, if used in a sane way
-* It provides a low barrier to entry for contributors
-* It lets us easily build and deploy to all major desktop platforms (various Linux distros, MacOS, Windows)
-* It lets us use React for managing the GUI
-* There is no good alternative that would provide all these benefits (don't get me started on qt)
+* It's fun to develop for,
+* It uses as much resources as a single browser tab, if used in a sane way,
+* It provides a low barrier to entry for contributors,
+* It lets us easily build and deploy to all major desktop platforms (various Linux distros, MacOS, Windows),
+* It lets us use React for managing the GUI,
+* There is no good alternative that would provide all these benefits (don't get me started on qt).
