@@ -4,6 +4,8 @@
 
 [![Get it from the Snap Store](https://snapcraft.io/static/images/badges/en/snap-store-black.svg)](https://snapcraft.io/nuclear)
 
+Brazilian portuguese version [here.](docs/README-ptbr.md)
+
 Desktop music player focused on streaming from free sources
 
 [Official website](https://nuclear.js.org)
