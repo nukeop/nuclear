@@ -78,6 +78,10 @@ export function onUpdateEqualizer(event, actions, data) {
   actions.updateEqualizer(data);
 }
 
+export function onLocalFilesProgress(event, actions, {scanProgress, scanTotal}) {
+  actions.scanLocalFoldersProgress(scanProgress, scanTotal);
+}
+
 export function onLocalFiles(event, actions, data) {
   actions.scanLocalFoldersSuccess(data);
 }

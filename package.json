@@ -35,5 +35,8 @@
   "devDependencies": {
     "lerna": "^3.16.4"
   },
-  "engines" : { "node" : ">=0.11.0", "npm": ">=6.0.0" }
+  "engines": {
+    "node": ">=0.11.0",
+    "npm": ">=6.0.0"
+  }
 }

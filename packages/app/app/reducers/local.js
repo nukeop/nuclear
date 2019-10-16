@@ -3,6 +3,7 @@ import {
   REMOVE_LOCAL_FOLDER,
   SCAN_LOCAL_FOLDER,
   SCAN_LOCAL_FOLDER_FAILED,
+  SCAN_LOCAL_FOLDER_PROGRESS,
   SCAN_LOCAL_FOLDER_SUCCESS,
   UPDATE_LOCAL_FILTER,
   UPDATE_LOCAL_SORT
@@ -51,16 +52,26 @@ export default function LocalReducer(state = initialState, action) {
       pending: true,
       error: false
     };
+  case SCAN_LOCAL_FOLDER_PROGRESS:
+    return {
+      ...state,
+      scanProgress: action.payload.scanProgress,
+      scanTotal: action.payload.scanTotal
+    };
   case SCAN_LOCAL_FOLDER_SUCCESS:
     return {
       ...state,
       pending: false,
+      scanProgress: null,
+      scanTotal: null,
       tracks: action.payload
     };
   case SCAN_LOCAL_FOLDER_FAILED:
     return {
       ...state,
       pending: false,
+      scanProgress: null,
+      scanTotal: null,
       error: true
     };
   case UPDATE_LOCAL_FILTER:

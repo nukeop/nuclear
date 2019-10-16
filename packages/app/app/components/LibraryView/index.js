@@ -7,6 +7,7 @@ import {
   Icon,
   Input,
   List,
+  Progress,
   Segment,
   Table
 } from 'semantic-ui-react';
@@ -25,6 +26,8 @@ const LibraryView = ({
   tracks,
   actions,
   pending,
+  scanProgress,
+  scanTotal,
   localFolders,
   sortBy,
   direction,
@@ -42,24 +45,29 @@ const LibraryView = ({
     <div className={styles.local_files_view}>
       <Header>{t('header')}</Header>
       <Segment>
-        <Button
-          icon
-          inverted
-          labelPosition='left'
-          className={styles.add_folder}
-          onClick={actions.openLocalFolderPicker}
-        >
-          <Icon name='folder open' />
-          {t('add')}
-        </Button>
-        <Button
-          inverted
-          icon='refresh'
-          disabled={localFolders.length < 1}
-          loading={pending}
-          onClick={actions.scanLocalFolders}
-          className={styles.refresh_icon}
-        />
+        <Segment className={styles.control_bar}>
+          <Button
+            icon
+            inverted
+            labelPosition='left'
+            className={styles.add_folder}
+            onClick={actions.openLocalFolderPicker}
+          >
+            <Icon name='folder open' />
+            {t('add')}
+          </Button>
+          <Button
+            inverted
+            icon='refresh'
+            disabled={localFolders.length < 1}
+            loading={pending}
+            onClick={actions.scanLocalFolders}
+            className={styles.refresh_icon}
+          />
+          {scanTotal && (
+            <Progress className={styles.progress_bar} value={scanProgress} total={scanTotal} progress='ratio' />
+          )}
+        </Segment>
         {localFolders.length > 0 &&
           <>
             <Divider />
