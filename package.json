@@ -30,10 +30,14 @@
     "build:all": "cd packages/app && npm run build:dist && npm run build:electron && npm run build:all"
   },
   "dependencies": {
-    "eslint": "^6.5.1"
+    "eslint": "^6.5.1",
+    "tiny-async-pool": "^1.0.4"
   },
   "devDependencies": {
     "lerna": "^3.16.4"
   },
-  "engines" : { "node" : ">=0.11.0", "npm": ">=6.0.0" }
+  "engines": {
+    "node": ">=0.11.0",
+    "npm": ">=6.0.0"
+  }
 }

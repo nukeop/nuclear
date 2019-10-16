@@ -4,6 +4,7 @@ import path from 'path';
 import { parseFile } from 'music-metadata';
 import uuid from 'uuid/v4';
 import _ from 'lodash';
+import asyncPool from "tiny-async-pool";
 
 import fetchAcousticId from './lib/acousticId';
 
@@ -61,25 +62,34 @@ export async function scanFoldersAndGetMeta(directories, cache = {}) {
         .map(({ path }) => path)
         .includes(file)
   );
+  // An empty array otherwise causes an error in asyncPool
+  if (files.length === 0) {
+    return {};
+  }
 
   const metas = await Promise.all(files.map(parseFile));
 
   const formattedMetas = files.map((file, i) => formatMeta(metas[i], file));
 
-  for (let i in formattedMetas) {
-    if (!formattedMetas[i].name) {
-      const [data] = await fetchAcousticId(formattedMetas[i].path);
+  // Limit acoustic-id fetching to a max of 50 at a time
+  await asyncPool(50, formattedMetas, async meta => {
+    if (!meta.name) {
+      let data;
+      try {
+        [data] = await fetchAcousticId(meta.path);
+      } catch (ex) {
+        // Log errors to console, but don't halt the entire scanning process
+        console.error(ex);
+      }
+
       if (data && data.recordings && data.recordings.length) {
-        formattedMetas[i].name = data.recordings[0].title;
-        formattedMetas[i].artist.name =
-          data.recordings[0].artists[0].name || 'unknown';
+        meta.name = data.recordings[0].title;
+        meta.artist.name = data.recordings[0].artists[0].name || 'unknown';
       } else {
-        formattedMetas[i].name = path.basename(
-          formattedMetas[i].path.split('.').shift()
-        );
+        meta.name = path.basename(meta.path.split('.').shift());
       }
     }
-  }
+  });
 
   return Object.values(cache)
     .filter(({ path }) => baseFiles.includes(path))
