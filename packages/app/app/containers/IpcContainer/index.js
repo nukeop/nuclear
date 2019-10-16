@@ -31,6 +31,7 @@ import {
   onRefreshPlaylists,
   onUpdateEqualizer,
   onSetEqualizer,
+  onLocalFilesProgress,
   onLocalFiles,
   onLocalFilesError
 } from '../../mpris';
@@ -56,6 +57,7 @@ class IpcContainer extends React.Component {
     ipcRenderer.on('refresh-playlists', (event) => onRefreshPlaylists(event, this.props.actions));
     ipcRenderer.on('update-equalizer', (event, data) =>  onUpdateEqualizer(event, this.props.actions, data));
     ipcRenderer.on('set-equalizer', (event, data) => onSetEqualizer(event, this.props.actions, data));
+    ipcRenderer.on('local-files-progress', (event, data) => onLocalFilesProgress(event, this.props.actions, data));
     ipcRenderer.on('local-files', (event, data) => onLocalFiles(event, this.props.actions, data));
     ipcRenderer.on('local-files-error', (event, err) => onLocalFilesError(event, this.props.actions, err));
 

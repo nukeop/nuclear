@@ -5,9 +5,19 @@
   display: flex;
   flex-flow: column;
 
+  .control_bar {
+    display: flex;
+  }
+
   .refresh_icon {
     margin-left: 10px !important;
     cursor: pointer;
+  }
+
+  .progress_bar {
+    display: inline-block;
+    flex: 1;
+    margin: auto 0 auto 10px !important;
   }
 
   .folder_remove_icon {

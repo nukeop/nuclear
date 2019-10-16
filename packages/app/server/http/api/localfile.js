@@ -42,7 +42,10 @@ export function localFileRouter() {
 
   ipcMain.on('refresh-localfolders', async event => {
     try {
-      cache = await scanFoldersAndGetMeta(store.get('localFolders'), cache);
+      let onProgress = (scanProgress, scanTotal) => {
+        event.sender.send('local-files-progress', {scanProgress, scanTotal});
+      };
+      cache = await scanFoldersAndGetMeta(store.get('localFolders'), cache, onProgress);
 
       store.set('localMeta', cache);
       byArtist = _.groupBy(Object.values(cache), track => track.artist.name);

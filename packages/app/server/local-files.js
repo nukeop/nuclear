@@ -46,7 +46,7 @@ export function formatMeta({ common, format }, path) {
   };
 }
 
-export async function scanFoldersAndGetMeta(directories, cache = {}) {
+export async function scanFoldersAndGetMeta(directories, cache = {}, onProgress = null) {
   const baseFiles = await Promise.all(
     _.flatMap(
       SUPPORTED_FORMATS,
@@ -62,23 +62,28 @@ export async function scanFoldersAndGetMeta(directories, cache = {}) {
         .map(({ path }) => path)
         .includes(file)
   );
-  // An empty array otherwise causes an error in asyncPool
-  if (files.length === 0) {
-    return {};
-  }
 
   const metas = await Promise.all(files.map(parseFile));
 
   const formattedMetas = files.map((file, i) => formatMeta(metas[i], file));
+  const formattedMetasWithoutName = formattedMetas.filter(meta => !meta.name);
 
-  // Limit acoustic-id fetching to a max of 50 at a time
-  await asyncPool(50, formattedMetas, async meta => {
-    if (!meta.name) {
+  if (formattedMetasWithoutName.length) {
+    let scanProgress = 0;
+    const scanTotal = formattedMetasWithoutName.length;
+
+    // Limit acoustic-id fetching to a max of X at a time
+    await asyncPool(10, formattedMetasWithoutName, async meta => {
       let data;
       try {
-        [data] = await fetchAcousticId(meta.path);
+        const {results, error} = await fetchAcousticId(meta.path);
+        if (results) {
+          data = results[0];
+        } else if (error) {
+          console.error(`Acoustic ID error (code ${error.code}): ${error.message}`);
+        }
       } catch (ex) {
-        // Log errors to console, but don't halt the entire scanning process
+        // Log errors (from fpcalc) to console, but don't halt the entire scanning process
         console.error(ex);
       }
 
@@ -88,8 +93,13 @@ export async function scanFoldersAndGetMeta(directories, cache = {}) {
       } else {
         meta.name = path.basename(meta.path.split('.').shift());
       }
-    }
-  });
+      
+      scanProgress++;
+      if (onProgress) {
+        onProgress(scanProgress, scanTotal);
+      }
+    });
+  }
 
   return Object.values(cache)
     .filter(({ path }) => baseFiles.includes(path))

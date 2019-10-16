@@ -15,7 +15,6 @@ export default async (filePath) => {
     fingerprint
   })}`);
 
-  const { results } = await res.json();
-
-  return results;
+  const output = await res.json();
+  return output;
 };
