@@ -30,8 +30,7 @@
     "build:all": "cd packages/app && npm run build:dist && npm run build:electron && npm run build:all"
   },
   "dependencies": {
-    "eslint": "^6.5.1",
-    "tiny-async-pool": "^1.0.4"
+    "eslint": "^6.5.1"
   },
   "devDependencies": {
     "lerna": "^3.16.4"
