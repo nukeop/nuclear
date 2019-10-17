@@ -21,9 +21,11 @@ import NoApi from './NoApi';
 
 import trackRowStyles from '../TrackRow/styles.scss';
 import styles from './index.scss';
+import NoSearchResults from './NoSearchResults';
 
 const LibraryView = ({
   tracks,
+  filterApplied,
   actions,
   pending,
   scanProgress,
@@ -90,21 +92,24 @@ const LibraryView = ({
       </Segment>
       <Segment>
         {api ? (
-          _.isEmpty(tracks) ? (
-            <EmptyState />
-          ) : (
-            <React.Fragment>
-              <div className={styles.search_field}>
-                <Input
-                  inverted
-                  transparent
-                  icon='search'
-                  iconPosition='left'
-                  placeholder={t('filter-placeholder')}
-                  onChange={actions.updateFilter}
-                />
-              </div>
-
+          <React.Fragment>
+            <div className={styles.search_field}>
+              <Input
+                inverted
+                transparent
+                icon='search'
+                iconPosition='left'
+                placeholder={t('filter-placeholder')}
+                onChange={actions.updateFilter}
+              />
+            </div>
+            {_.isEmpty(tracks) ? (
+              filterApplied ? (
+                <NoSearchResults />
+              ) : (
+                <EmptyState />
+              )
+            ) : (
               <Segment inverted className={trackRowStyles.tracks_container}>
                 <Dimmer active={pending} loading={pending.toString()} />
 
@@ -153,8 +158,8 @@ const LibraryView = ({
                   </Table>
                 )}
               </Segment>
-            </React.Fragment>
-          )
+            )}
+          </React.Fragment>
         ) : (
           <NoApi enableApi={actions.setBooleanOption} />
         )}
@@ -164,8 +169,11 @@ const LibraryView = ({
 };
 
 LibraryView.propTypes = {
-  pending: PropTypes.bool,
   tracks: PropTypes.array,
+  filterApplied: PropTypes.bool,
+  pending: PropTypes.bool,
+  scanProgress: PropTypes.number,
+  scanTotal: PropTypes.number,
   localFolders: PropTypes.arrayOf(PropTypes.string),
   // byArtist: PropTypes.object,
   actions: PropTypes.object,
