@@ -9,7 +9,8 @@ import * as SettingsActions from '../../actions/settings';
 function mapStateToProps(state) {
   const lowercaseFilter = _.lowerCase(state.local.filter);
   const checkFilter = string => _.includes(_.lowerCase(string), lowercaseFilter);
-  const filteredTracks = _.filter(_.values(state.local.tracks), track => {
+  const unfilteredTracks = _.values(state.local.tracks);
+  const filteredTracks = _.filter(unfilteredTracks, track => {
     return _.some([
       checkFilter(track.name),
       checkFilter(track.album),
@@ -31,10 +32,12 @@ function mapStateToProps(state) {
   }
 
   return {
+    tracks: state.local.direction === 'ascending' ? tracks : tracks.reverse(),
+    filterApplied: tracks.length < unfilteredTracks.length,
+
     pending: state.local.pending,
     scanProgress: state.local.scanProgress,
     scanTotal: state.local.scanTotal,
-    tracks: state.local.direction === 'ascending' ? tracks : tracks.reverse(),
       
     localFolders: state.local.folders,
     sortBy: state.local.sortBy,
