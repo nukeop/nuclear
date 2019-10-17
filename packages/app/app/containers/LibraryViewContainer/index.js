@@ -32,6 +32,8 @@ function mapStateToProps(state) {
 
   return {
     pending: state.local.pending,
+    scanProgress: state.local.scanProgress,
+    scanTotal: state.local.scanTotal,
     tracks: state.local.direction === 'ascending' ? tracks : tracks.reverse(),
       
     localFolders: state.local.folders,
