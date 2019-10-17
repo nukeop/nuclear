@@ -150,7 +150,7 @@
     "redux-promise": "^0.6.0",
     "redux-thunk": "^2.2.0",
     "remote-redux-devtools": "^0.5.16",
-    "sass-loader": "^7.0.1",
+    "sass-loader": "^8.0.0",
     "style-loader": "^0.23.0",
     "svg-inline-loader": "^0.8.0",
     "url-loader": "^1.0.1",
