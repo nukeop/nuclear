@@ -8,6 +8,7 @@ This means that you can search for your favourite artists, albums, and songs, an
 
 ### Developer resources
 
+* [Troubleshooting common issues](troubleshooting.md)
 * [Plugin API](plugins.md)
 * [Why Electron?](electron.md)
 
@@ -26,9 +27,9 @@ Last.fm augments data returned by Discogs by adding extra information. When you 
 
 | Site        | Website                                              |
 |-------------|------------------------------------------------------|
+| Website     | <https://nuclear.js.org>                             |
 | Github      | <https://github.com/nukeop/nuclear>                  |
 | ReadTheDocs | <https://nuclearmusic.rtfd.io>                       |
 | Mastodon    | <https://mstdn.io/@nuclear>                          |
 | Twitter     | <https://twitter.com/nuclear_player>                 |
-| Beerpay     | <https://beerpay.io/nukeop/nuclear>                  |
 | AUR         | <https://aur.archlinux.org/packages/nuclear-player/> |
