@@ -54,7 +54,7 @@
     "node-sass": "^4.9.2",
     "optimize-css-assets-webpack-plugin": "^5.0.0",
     "react-hot-loader": "^4.3.4",
-    "sass-loader": "^8.0.0",
+    "sass-loader": "^6.0.7",
     "style-loader": "^0.21.0",
     "uglifyjs-webpack-plugin": "^1.2.7",
     "webpack": "^4.16.3",
