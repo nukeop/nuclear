@@ -20,16 +20,11 @@ class PlaylistView extends React.Component {
     super(props);
   }
 
-  addPlaylistToQueue (
-    streamProviders,
-    playlist,
-    addTracks,
-    selectSong,
-    startPlayback
-  ) {
-    addTracks(streamProviders, playlist.tracks);
-    selectSong(0);
-    startPlayback();
+  playAll (playlist, streamProviders) {
+    this.props.clearQueue();
+    this.props.addTracks(streamProviders, playlist.tracks);
+    this.props.selectSong(0);
+    this.props.startPlayback();
   }
 
   deletePlaylist(playlist) {
@@ -48,7 +43,11 @@ class PlaylistView extends React.Component {
     this.props.updatePlaylist(updatedPlaylist);
   }
 
-  renderOptions (trigger, playlist) {
+  renderOptions (
+    trigger, 
+    playlist,
+    streamProviders,
+    ) {
     return (
       <ContextPopup
         trigger={trigger}
@@ -64,6 +63,14 @@ class PlaylistView extends React.Component {
           icon='trash'
           label={this.props.t('delete')}
         />
+        <PopupButton 
+          onClick={() => 
+            this.props.addTracks(streamProviders, playlist.tracks)
+          }
+          ariaLabel={this.props.t('queue')}
+          icon='plus'
+          label={this.props.t('queue')}
+        />
       </ContextPopup>
     );
   }
@@ -71,10 +78,7 @@ class PlaylistView extends React.Component {
   renderPlayButton () {
     const {
       playlist,
-      addTracks,
       streamProviders,
-      selectSong,
-      startPlayback
     } = this.props;
 
     return (
@@ -82,13 +86,7 @@ class PlaylistView extends React.Component {
         href='#'
         className={styles.play_button}
         onClick={() =>
-          this.addPlaylistToQueue(
-            streamProviders,
-            playlist,
-            addTracks,
-            selectSong,
-            startPlayback
-          )
+          this.playAll(playlist, streamProviders)
         }
       >
         <Icon name='play' /> Play
@@ -97,7 +95,10 @@ class PlaylistView extends React.Component {
   }
 
   renderPlaylistInfo () {
-    let { playlist } = this.props;
+    let { 
+      playlist,
+      streamProviders,
+     } = this.props;
     let popupTrigger = (
       <a href='#' className={styles.more_button}>
         <Icon name='ellipsis horizontal' />
@@ -135,7 +136,12 @@ class PlaylistView extends React.Component {
           </div>
           <div className={styles.playlist_buttons}>
             { this.renderPlayButton() }
-            { this.renderOptions(popupTrigger, playlist) }
+            { this.renderOptions(
+                popupTrigger,
+                playlist,
+                streamProviders,
+                ) 
+              }
           </div>
         </div>
       </div>

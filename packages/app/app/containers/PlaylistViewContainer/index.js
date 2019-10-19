@@ -19,6 +19,7 @@ const PlaylistViewContainer = props => {
       selectSong={props.actions.selectSong}
       startPlayback={props.actions.startPlayback}
       addToQueue={props.actions.addToQueue}
+      clearQueue={props.actions.clearQueue}
       deletePlaylist={props.actions.deletePlaylist}
       updatePlaylist={props.actions.updatePlaylist}
       history={props.history}
