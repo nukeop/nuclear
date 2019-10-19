@@ -37,15 +37,9 @@ export function stringDurationToSeconds(duration) {
 export function getSelectedStream(streams, defaultMusicSource) {
   let selectedStream = _.find(streams, { source: defaultMusicSource });
 
-  return typeof selectedStream === 'undefined'
-    ? (streams
-      ? (streams[0]
-        ? streams[0]
-        : (streams[1]
-          ? streams[1]
-          : null))
-      : null)
-    : selectedStream;
+  return _.isNil(selectedStream)
+   ? _.filter(streams, 'source')[0] || null
+   : selectedStream;
 }
 
 export function removeQuotes(text) {
