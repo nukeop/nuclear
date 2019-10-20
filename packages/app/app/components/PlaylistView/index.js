@@ -20,16 +20,11 @@ class PlaylistView extends React.Component {
     super(props);
   }
 
-  addPlaylistToQueue (
-    streamProviders,
-    playlist,
-    addTracks,
-    selectSong,
-    startPlayback
-  ) {
-    addTracks(streamProviders, playlist.tracks);
-    selectSong(0);
-    startPlayback();
+  playAll (playlist) {
+    this.props.clearQueue();
+    this.props.addTracks(this.props.streamProviders, playlist.tracks);
+    this.props.selectSong(0);
+    this.props.startPlayback();
   }
 
   deletePlaylist(playlist) {
@@ -48,7 +43,10 @@ class PlaylistView extends React.Component {
     this.props.updatePlaylist(updatedPlaylist);
   }
 
-  renderOptions (trigger, playlist) {
+  renderOptions (
+    trigger, 
+    playlist,
+    ) {
     return (
       <ContextPopup
         trigger={trigger}
@@ -56,6 +54,14 @@ class PlaylistView extends React.Component {
         title={playlist.name}
         thumb={_.get(playlist, 'tracks[0].thumbnail', artPlaceholder)}
       >
+        <PopupButton 
+          onClick={() => 
+            this.props.addTracks(this.props.streamProviders, playlist.tracks)
+          }
+          ariaLabel={this.props.t('queue')}
+          icon='plus'
+          label={this.props.t('queue')}
+        />
         <PopupButton
           onClick={() =>
             this.deletePlaylist(this.props.playlist)
@@ -68,27 +74,14 @@ class PlaylistView extends React.Component {
     );
   }
 
-  renderPlayButton () {
-    const {
-      playlist,
-      addTracks,
-      streamProviders,
-      selectSong,
-      startPlayback
-    } = this.props;
+  renderPlayButton (playlist) {
 
     return (
       <a
         href='#'
         className={styles.play_button}
         onClick={() =>
-          this.addPlaylistToQueue(
-            streamProviders,
-            playlist,
-            addTracks,
-            selectSong,
-            startPlayback
-          )
+          this.playAll(playlist, this.props.streamProviders)
         }
       >
         <Icon name='play' /> Play
@@ -96,8 +89,7 @@ class PlaylistView extends React.Component {
     );
   }
 
-  renderPlaylistInfo () {
-    let { playlist } = this.props;
+  renderPlaylistInfo (playlist) {
     let popupTrigger = (
       <a href='#' className={styles.more_button}>
         <Icon name='ellipsis horizontal' />
@@ -134,8 +126,12 @@ class PlaylistView extends React.Component {
             />
           </div>
           <div className={styles.playlist_buttons}>
-            { this.renderPlayButton() }
-            { this.renderOptions(popupTrigger, playlist) }
+            { this.renderPlayButton(playlist) }
+            { this.renderOptions(
+                popupTrigger,
+                playlist,
+                ) 
+              }
           </div>
         </div>
       </div>
@@ -175,7 +171,7 @@ class PlaylistView extends React.Component {
     return (
       <div className={styles.playlist_view_container}>
         <div className={styles.playlist}>
-          {this.renderPlaylistInfo()}
+          {this.renderPlaylistInfo(playlist)}
           <div className={styles.playlist_tracks}>
             <table>
               {this.renderPlaylistTracksHeader()}
