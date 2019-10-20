@@ -65,8 +65,9 @@ const TrackPopupContainer = props => {
       }
 
       {
-        withAddToFavorites &&
-        <PopupButton
+        withAddToFavorites ?
+        (
+          <PopupButton
           onClick={() => {
             actions.addFavoriteTrack(track);
             actions.info(
@@ -80,6 +81,20 @@ const TrackPopupContainer = props => {
           icon='star'
           label='Add to favorites'
         />
+        ) : (
+          <PopupButton
+          onClick={(removeFavoriteTrack(track);
+            actions.info(
+              'Favorite track removed',
+              `${artist} - ${title} has been removed from favorites.`,
+              <img src={thumb} />,
+              settings
+            );
+          }}
+          ariaLabel='Remove this track from favorites'
+          icon='star'
+          label='Remove from favorites'
+        )
       }
 
       {
