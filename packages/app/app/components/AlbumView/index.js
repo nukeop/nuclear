@@ -6,6 +6,7 @@ import { withTranslation } from 'react-i18next';
 import _ from 'lodash';
 
 import ContextPopup from '../ContextPopup';
+import PopupButton from '../ContextPopup/PopupButton';
 import TrackRow from '../TrackRow';
 import * as Utils from '../../utils';
 import {safeAddUuid} from '../../actions/helpers';
@@ -264,19 +265,21 @@ class AlbumView extends React.Component {
         title={album.title}
         thumb={this.getAlbumImage(album)}
       >
-        <a
-          href='#'
-          onClick={() => this.addAlbumToQueue(album)}
-          aria-label={this.props.t('queue')}
-        >
-          <Icon name='plus' /> {this.props.t('queue')}
-        </a>
-        <a
-          href='#'
-          onClick={() => this.addAlbumToDownloads(album)}
-        >
-          <Icon name='download'/> {this.props.t('download')}
-        </a>
+        <PopupButton 
+          onClick={() => 
+            this.addAlbumToQueue(album)
+          }
+          ariaLabel={this.props.t('queue')}
+          icon='plus'
+          label={this.props.t('queue')}
+        />
+        <PopupButton 
+          onClick={() =>
+          this.addAlbumToDownloads(album)}
+          ariaLabel={this.props.t('download')}
+          icon='download'
+          label={this.props.t('download')}
+        />
       </ContextPopup>
     );
   }

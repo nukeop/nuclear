@@ -55,7 +55,7 @@
   &:hover {
     background: rgba($background2, 0.25);
   }
-  
+
   &:last-child {
     td {
       border-bottom: none;
@@ -82,6 +82,7 @@
     width: 3em;
     height: 3em;
     display: block;
+    object-fit: contain;
   }
 }
 

@@ -103,6 +103,7 @@
   "playlists": {
     "artist": "Artist",
     "delete": "Delete this playlist",
+    "queue": "Add playlist to queue",
     "dialog-placeholder": "Playlist name...",
     "empty": "No playlists.",
     "rename": "Rename this playlist",
