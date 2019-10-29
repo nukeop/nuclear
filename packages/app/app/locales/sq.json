@@ -1,0 +1,209 @@
+{
+  "album": {
+    "queue": "Shto album në radhë",
+    "download": "Shkarko",
+    "download-toast-title": "Albumi u shtua tek shkarkimet",
+    "download-toast-content": "{{artist}} - {{title}} është shtuar tek shkarkimet."
+  },
+  "app": {
+    "collection": "Koleksion",
+    "dashboard": "Paneli i administrimit",
+    "downloads": "Shkarkimet",
+    "equalizer": "Barazues",
+    "favorite-albums": "Albumet e Perferuara",
+    "favorite-tracks": "Këngët e Preferuara",
+    "library": "Libraria Lokale",
+    "lyrics": "Teskti i këngës",
+    "main": "Kreu",
+    "playlists": "Listat e këngëve",
+    "plugins": "Shtojcat",
+    "search": "Rezultatet e kërkimit",
+    "settings": "Përcaktimet"
+  },
+  "artist": {
+    "count": "Numërimi i këngëve",
+    "queue": "Shto të gjitha këngët në radhë",
+    "similar": "Artistë të ngjashëm",
+    "title": "Titulli",
+    "tour": "Në turn"
+  },
+  "dashboard": {
+    "artist": "Artisti",
+    "best": "Muzika e re më e mirë",
+    "best-new-albums": "Albumet e reja më të mira",
+    "best-new-tracks": "Këngët e reja më të mira",
+    "genres": "Zhanri",
+    "lastfm-title": "Këngët më të kërkuara nga LastFm.",
+    "news": "Të reja",
+    "playcounts": "Numërimet",
+    "title": "Titulli",
+    "top": "Këngët më të kërkuara"
+  },
+  "downloads": {
+    "clear": "Fshi këngët e përfunduara",
+    "completion": "Përfundim",
+    "empty": "Shkarkimet janë bosh.",
+    "empty-help": "Shto diçka në radhën tuaj të shkarkimeve dhe do shfaqet këtu!",
+    "header": "Shkarkimet",
+    "name": "Emri",
+    "status": "Statusi"
+  },
+  "favorites": {
+    "artist": "Artisti",
+    "empty": "Nuk janë shtuar të preferuara",
+    "empty-help": "Duke shtuar si të preferuara disa këngë ato do shfaqen këtu!",
+    "header": "Këngët tuaja të preferuara",
+    "title": "Titulli"
+  },
+  "favorite-albums": {
+    "header": "Albumet tuaja të preferuara",
+    "empty": "Nuk ka albume të preferuara",
+    "empty-help": "Shtoni disa albume tek të preferuarit dhe ato do shfaqen këtu!"
+  },
+  "help": {
+    "about": "Rreth Nuclear Music Player",
+    "header": "Aplikacion desktop për të dëgjuar muzikë nga burime të hapura",
+    "released": "publikuar nën licensën AGPL-3.0",
+    "thanks": "Shumë falenderime për kontribuesit në Github, ndihma juaj ishte e rëndësishme për krijimin e këtij programi."
+  },
+  "input-dialog": {
+    "cancel": "Anullo"
+  },
+  "library": {
+    "add": "Shto skedar",
+    "album": "Album",
+    "artist": "Artist",
+    "filter-placeholder": "Filtro...",
+    "header": "Libraria Lokale",
+    "title": "Titulli",
+    "empty": "Libraria është bosh",
+    "empty-help": "Provoni të shtoni muzikë me butonin më poshtë.",
+    "no-search-results": "Nuk ka rezultate kërkimi",
+    "no-search-results-help": "Nuk u gjetën këngë me emrin, albumin ose artistin e dhënë.",
+    "no-api": "Web API nuk është aktivizuar",
+    "no-api-help": "Në mënyrë që të përdorni librarinë lokale aktivizoni web api.",
+    "api-enable": "Aktivizoni API"
+  },
+  "lyrics": {
+    "by-artist": "nga {{artist}}",
+    "empty": "Nuk po luhet asgjë.",
+    "empty-help": "Shto muzikë në radhë që të shfaqet teksti i këngës këtu!",
+    "not-found": "Nuk u gjet teksti për këtë këngë."
+  },
+  "option-control": {
+    "autoradio": "Autoradio",
+    "loop": "Cikël i përsëritur",
+    "shuffle": "Përziej"
+  },
+  "player": {
+    "next-button": "Butoni për këngët e radhës",
+    "play-pause-button": "Butoni Luaj/Ndalo",
+    "previous-button": "Butoni për këngët e mëparshme"
+  },
+  "playlists": {
+    "artist": "Artisti",
+    "delete": "Fshi këtë listë këngësh",
+    "queue": "Shto këtë listë në radhë",
+    "dialog-placeholder": "Emri i listës...",
+    "empty": "Nuk ka lista këngësh.",
+    "rename": "Riemërtoje këtë listë",
+    "songs": "{{total}} këngë",
+    "songs_plural": "{{total}} këngësh",
+    "title": "Titulli"
+  },
+  "plugins": {
+    "header": "Shtojcat",
+    "placeholder": "Zgjidh burimin automatik të këngëve:",
+    "select-lyrics-provider": "Zgjidh mundësuesin automatik të titrave:",
+    "select-meta-provider": "Zgjidh mundësuesin automatik të metadatave:",
+    "meta-providers": "Mundësuesit e metadatave",
+    "stream-providers": "Mundësuesit e transmetimit",
+    "lyrics-providers": "Mundësuesi i testeve të këngëve",
+    "user-plugins": "Shtojcat e përdoruesit",
+    "user-plugins-warning-title": "Zona e rrezikut!",
+    "user-plugins-warning-desc": "Shtojcat funksionojnë duke ekzekutuar kodin në kompjuterin tuaj. Ngarko shtojca vetëm nga burime të cilave u besoni!",
+    "add-a-plugin": "Shto një plugin"
+  },
+  "queue": {
+    "clear": "Pastro radhën",
+    "dialog-accept": "Ruaj",
+    "dialog-placeholder": "Emri i listës...",
+    "dialog-trigger": "Ruaj si listë këngësh",
+    "download": "Shkarko",
+    "download-toast-content": "{{artist}} - {{title}} është shtuar tek shkarkimet.",
+    "download-toast-title": "Kënga u shtua tek shkarkimet",
+    "favorite-add": "Shto tek të preferuarat",
+    "header": "Radha",
+    "header-track": "Kënga aktuale",
+    "id": "ID e transmetimit:",
+    "loading": "Transmetimi akoma duke u ngarkuar.",
+    "playlist-add": "Shto në listë",
+    "playlist-toast-content": "Lista {{name}} është krijuar.",
+    "playlist-toast-title": "U krijua lista",
+    "title": "Titulli:"
+  },
+  "search": {
+    "album": "Albumi",
+    "album_plural": "Albumet",
+    "artist": "Artisti",
+    "artist_plural": "Artistët",
+    "empty": "Nuk u gjet asgjë.",
+    "placeholder": "Kërko...",
+    "playlist": "Lista e këngëve",
+    "playlist_plural": "Listat e këngëve",
+    "queue-add": "Shto të gjitha këngët në radhë",
+    "track": "Kënga",
+    "track_plural": "Këngët"
+  },
+  "settings": {
+    "api-port": "Porta është përdorur nga api",
+    "api-url": "",
+    "autoradio": "Autoradio",
+    "autoradio-craziness": "Autoradio craziness",
+    "autoradio-craziness-description": "Autoradio do përzgjedhë këngë të cilat janë më pak të ngjashme me ato që janë aktualisht në radhë dhe më të çmenduara",
+    "autoradio-description": "Shto këngë të ngjashme automatikisht kur radha është në përfundim",
+    "compact-menu-bar": "Përdor stilin kompakt për shiritin e menusë",
+    "compact-queue-bar": "Përdor stilin kompakt për shiritin e radhës",
+    "track-duration": "Shfaq kohëzgjatjen e këngës mbi seekbar",
+    "disable-gpu": "Çaktivizoni intepretimin nga hardware (mund të zgjidhë problematikat me elementët lëvizës dhe ekranin e ndezur)",
+    "display": "Shfaq",
+    "enable-api": "Aktivizo api",
+    "frameless-window": "Dritare e pakufizuar (kërkon restart)",
+    "github-connect": "Kyçuni me Github",
+    "github-description": "Kyçuni nëpërmjet Github në mënyrë që të krijoni dhe të ndani listat tuaja online (veçori e ardshme).",
+    "github-title": "Github",
+    "http": "HTTP API",
+    "language": "Gjuha",
+    "language-placeholder": "Zgjidhni një gjuhë",
+    "lastfm-connect": "Lidhuni me Last.fm",
+    "lastfm-description": "Në mënyrë që të aktivizoni dërgimin automatik të këngëve të dëgjuara, në fillim ju duhet të lidheni dhe të autorizoni Nuclear në Last.fm, dhe pastaj klikoni kyçuni.",
+    "lastfm-enable": "Aktivizoni dërgimin automatik të këngëve të dëgjuara në Last.fm",
+    "lastfm-title": "Last.fm",
+    "login": "Kyçuni",
+    "logout": "Dilni",
+    "loop-after-queue-end": "Rifilloni pasi të luani këngët e fundit në listë",
+    "notification-timeout": "Njoftim për mbarimt ë kohës",
+    "notlogged": "Nuk jeni kyçur",
+    "playback": "Playback",
+    "program-settings": "Cilësimet e programit",
+    "seek-iteration": "Numri i sekondave për të parë përpara/pas kur shtypni butonat e shigjetave",
+    "shuffle-queue": "Përzieni këngët",
+    "shuffle-when-going-back": "Përzieni në këngën e mëparshme",
+    "shuffle-when-going-back-description": "Luani një këngë rastësore kur përzierja është aktive dhe butoni i këngës së mëpashme është klikuar",
+    "social": "Sociale",
+    "user": "Përdoruesi:",
+    "youtube": "Youtube",
+    "yt-api-key": "Youtube API Key",
+    "downloads": "Shkarkimet",
+    "downloads-dir": "Direktoria e shkarkimeve",
+    "downloads-dir-button": "Zgjidhni një direktori..."
+  },
+  "tags": {
+    "albums": "Albumet në krye",
+    "artist": "Artisti",
+    "artists": "Artistët në krye",
+    "duration": "Kohëzgjatja",
+    "queue-add": "Shto të gjitha këngët në radhë",
+    "title": "Titulli"
+  }
+}
