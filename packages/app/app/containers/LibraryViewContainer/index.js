@@ -5,6 +5,7 @@ import _ from 'lodash';
 import LibraryView from '../../components/LibraryView';
 import * as LocalActions from '../../actions/local';
 import * as SettingsActions from '../../actions/settings';
+import { sortTracks } from './utils';
 
 function mapStateToProps(state) {
   const lowercaseFilter = _.lowerCase(state.local.filter);
@@ -17,19 +18,8 @@ function mapStateToProps(state) {
       checkFilter(_.get(track, 'artist.name'))
     ]);
   });
-  
-  let tracks;
-  switch (state.local.sortBy) {
-  case 'artist':
-    tracks = _.sortBy(filteredTracks, track => track.artist.name);
-    break;
-  case 'name':
-    tracks = _.sortBy(filteredTracks, track => track.name);
-    break;
-  default:
-    tracks = filteredTracks;
-    break;
-  }
+
+  let tracks = sortTracks(filteredTracks, state.local.sortBy);
 
   return {
     tracks: state.local.direction === 'ascending' ? tracks : tracks.reverse(),
@@ -38,7 +28,7 @@ function mapStateToProps(state) {
     pending: state.local.pending,
     scanProgress: state.local.scanProgress,
     scanTotal: state.local.scanTotal,
-      
+
     localFolders: state.local.folders,
     sortBy: state.local.sortBy,
     direction: state.local.direction,
