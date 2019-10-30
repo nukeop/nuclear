@@ -117,8 +117,9 @@ const LibraryView = ({
 
                 {!pending && (
                   <ReactList
-                    type='uniform'
+                    type='variable'
                     length={tracks.length}
+                    itemSizeEstimator={() => 44}
                     itemsRenderer={(items, ref) => {
                       return (
                         <Table sortable className={styles.table}>
