@@ -71,9 +71,10 @@ function createWindow() {
 
   win.once('ready-to-show', () => {
     win.show();
+    // this must run after win.show(), otherwise startup errors cause
+    // dev-tools to pause execution, causing "ready-to-show" to never trigger
+    win.webContents.openDevTools();
   });
-
-  win.webContents.openDevTools();
 
   win.on('closed', () => {
     win = null;

@@ -9,10 +9,12 @@ import {
   List,
   Progress,
   Segment,
-  Table
+  Table,
+  Ref
 } from 'semantic-ui-react';
 import { useTranslation } from 'react-i18next';
 import _ from 'lodash';
+import ReactList from 'react-list';
 
 import Header from '../Header';
 import TrackRow from '../TrackRow';
@@ -114,48 +116,60 @@ const LibraryView = ({
                 <Dimmer active={pending} loading={pending.toString()} />
 
                 {!pending && (
-                  <Table sortable className={styles.table}>
-                    <Table.Header className={styles.thead}>
-                      <Table.Row>
-                        <Table.HeaderCell>
-                          <Icon name='image' />
-                        </Table.HeaderCell>
-                        <Table.HeaderCell
-                          sorted={sortBy === 'artist' ? direction : null}
-                          onClick={handleSort('artist')}
-                        >
-                          {t('artist')}
-                        </Table.HeaderCell>
-                        <Table.HeaderCell
-                          sorted={sortBy === 'name' ? direction : null}
-                          onClick={handleSort('name')}
-                        >
-                          {t('title')}
-                        </Table.HeaderCell>
-                        <Table.HeaderCell
-                          sorted={sortBy === 'album' ? direction : null}
-                          onClick={handleSort('album')}
-                        >
-                          {t('album')}
-                        </Table.HeaderCell>
-                      </Table.Row>
-                    </Table.Header>
-                    <Table.Body className={styles.tbody}>
-                      {tracks &&
-                        tracks.map((track, idx) => (
-                          <TrackRow
-                            key={'favorite-track-' + idx}
-                            track={track}
-                            index={idx}
-                            displayCover
-                            displayArtist
-                            displayAlbum
-                            withAddToDownloads={false}
-                            isLocal
-                          />
-                        ))}
-                    </Table.Body>
-                  </Table>
+                  <ReactList
+                    type='uniform'
+                    length={tracks.length}
+                    itemsRenderer={(items, ref) => {
+                      return (
+                        <Table sortable className={styles.table}>
+                          <Table.Header className={styles.thead}>
+                            <Table.Row>
+                              <Table.HeaderCell>
+                                <Icon name='image' />
+                              </Table.HeaderCell>
+                              <Table.HeaderCell
+                                sorted={sortBy === 'artist' ? direction : null}
+                                onClick={handleSort('artist')}
+                              >
+                                {t('artist')}
+                              </Table.HeaderCell>
+                              <Table.HeaderCell
+                                sorted={sortBy === 'name' ? direction : null}
+                                onClick={handleSort('name')}
+                              >
+                                {t('title')}
+                              </Table.HeaderCell>
+                              <Table.HeaderCell
+                                sorted={sortBy === 'album' ? direction : null}
+                                onClick={handleSort('album')}
+                              >
+                                {t('album')}
+                              </Table.HeaderCell>
+                            </Table.Row>
+                          </Table.Header>
+                          <Ref innerRef={ref}>
+                            <Table.Body className={styles.tbody}>
+                              {items}
+                            </Table.Body>
+                          </Ref>
+                        </Table>
+                      );
+                    }}
+                    itemRenderer={index => {
+                      const track = tracks[index];
+                      return (
+                        <TrackRow
+                          key={'favorite-track-' + index}
+                          track={track}
+                          index={index}
+                          displayCover
+                          displayArtist
+                          displayAlbum
+                          withAddToDownloads={false}
+                          isLocal
+                        />
+                      );
+                    }}/>
                 )}
               </Segment>
             )}

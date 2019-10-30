@@ -46,7 +46,6 @@
   "dependencies": {
     "@nuclear/core": "0.5.1",
     "@nuclear/ui": "0.5.1",
-    "music-metadata": "^3.5.3",
     "billboard-top-100": "^2.0.8",
     "bluebird": "3.5.3",
     "body-parser": "^1.18.3",
@@ -73,6 +72,7 @@
     "md5": "^2.2.1",
     "moment": "^2.20.1",
     "mousetrap": "^1.6.2",
+    "music-metadata": "^3.5.3",
     "numeral": "^2.0.6",
     "pitchfork-bnm": "^1.0.3",
     "react": "^16.8.6",
@@ -82,6 +82,7 @@
     "react-i18next": "^10.11.0",
     "react-image": "^2.1.1",
     "react-image-smooth-loading": "^2.0.0",
+    "react-list": "^0.8.13",
     "react-range-progress": "^4.0.3",
     "react-redux": "^7.1.0",
     "react-toastify": "^4.5.2",
