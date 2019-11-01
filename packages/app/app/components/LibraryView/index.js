@@ -36,6 +36,7 @@ const LibraryView = ({
   localFolders,
   sortBy,
   direction,
+  listType,
   api
 }) => {
   const handleSort = useCallback(
@@ -45,6 +46,7 @@ const LibraryView = ({
     [actions, sortBy, direction]
   );
   const { t } = useTranslation('library');
+  console.log(listType)
 
   return (
     <div className={styles.local_files_view}>
@@ -106,7 +108,10 @@ const LibraryView = ({
                 onChange={actions.updateFilter}
               />
 
-              <LibraryListTypeToggle />
+              <LibraryListTypeToggle
+                listType={listType}
+                toggleListType={actions.updateLibraryListType}
+              />
             </div>
             {_.isEmpty(tracks) ? (
               filterApplied ? (

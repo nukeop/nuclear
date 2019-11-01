@@ -5,26 +5,43 @@ import { withHandlers } from 'recompose';
 
 import styles from './styles.scss';
 
+export const LIST_TYPE = Object.freeze({
+  SIMPLE_LIST: 'simple-list',
+  ALBUM_GRID: 'album-grid',
+  ALBUM_LIST: 'album-list'
+});
+
 const LibraryListTypeToggle = ({
   toggleSimpleList,
   toggleAlbumGrid,
-  toggleAlbumList
+  toggleAlbumList,
+  listType
 }) => (
   <Button.Group className={styles.library_list_type_toggle}>
-    <Button inverted icon='bars' onClick={toggleAlbumList} />
-    <Button inverted icon='th' onClick={toggleAlbumGrid} />
-    <Button inverted icon='table' onClick={toggleSimpleList} />
+    <Button
+      inverted icon='bars' onClick={toggleAlbumList}
+      active={listType === LIST_TYPE.ALBUM_LIST}
+    />
+    <Button
+      inverted icon='th' onClick={toggleAlbumGrid}
+      active={listType === LIST_TYPE.ALBUM_GRID}
+    />
+    <Button
+      inverted icon='table' onClick={toggleSimpleList}
+      active={listType === LIST_TYPE.SIMPLE_LIST}
+    />
   </Button.Group>
 );
 
 
 LibraryListTypeToggle.propTypes = {
   // eslint-disable-next-line react/no-unused-prop-types
-  toggleListType: PropTypes.func
+  toggleListType: PropTypes.func,
+  listType: PropTypes.string
 };
 
 export default withHandlers({
-  toggleSimpleList: ({toggleListType}) => () => toggleListType('simple-list'),
-  toggleAlbumGrid: ({toggleListType}) => () => toggleListType('album-grid'),
-  toggleAlbumList: ({toggleListType}) => () => toggleListType('album-list')
+  toggleSimpleList: ({toggleListType}) => () => toggleListType(LIST_TYPE.SIMPLE_LIST),
+  toggleAlbumGrid: ({toggleListType}) => () => toggleListType(LIST_TYPE.ALBUM_GRID),
+  toggleAlbumList: ({toggleListType}) => () => toggleListType(LIST_TYPE.ALBUM_LIST)
 })(LibraryListTypeToggle);
