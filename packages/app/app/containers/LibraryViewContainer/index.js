@@ -32,6 +32,7 @@ function mapStateToProps(state) {
     localFolders: state.local.folders,
     sortBy: state.local.sortBy,
     direction: state.local.direction,
+    listType: state.local.listType,
     api: state.settings['api.enabled']
   };
 }
