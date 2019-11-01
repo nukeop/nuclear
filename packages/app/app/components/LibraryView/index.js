@@ -1,4 +1,5 @@
 import React, { useCallback } from 'react';
+import ReactList from 'react-list';
 import PropTypes from 'prop-types';
 import {
   Button,
@@ -13,8 +14,8 @@ import {
   Ref
 } from 'semantic-ui-react';
 import { useTranslation } from 'react-i18next';
+import { LibraryListTypeToggle } from '@nuclear/ui';
 import _ from 'lodash';
-import ReactList from 'react-list';
 
 import Header from '../Header';
 import TrackRow from '../TrackRow';
@@ -44,7 +45,7 @@ const LibraryView = ({
     [actions, sortBy, direction]
   );
   const { t } = useTranslation('library');
-  
+
   return (
     <div className={styles.local_files_view}>
       <Header>{t('header')}</Header>
@@ -95,7 +96,7 @@ const LibraryView = ({
       <Segment>
         {api ? (
           <React.Fragment>
-            <div className={styles.search_field}>
+            <div className={styles.search_field_row}>
               <Input
                 inverted
                 transparent
@@ -104,6 +105,8 @@ const LibraryView = ({
                 placeholder={t('filter-placeholder')}
                 onChange={actions.updateFilter}
               />
+
+              <LibraryListTypeToggle />
             </div>
             {_.isEmpty(tracks) ? (
               filterApplied ? (

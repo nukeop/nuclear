@@ -1,5 +1,6 @@
 export {
   Cover,
+  LibraryListTypeToggle,
   Loader,
   QueueItem,
   Seekbar,

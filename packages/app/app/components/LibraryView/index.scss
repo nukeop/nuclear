@@ -7,6 +7,7 @@
 
   .control_bar {
     display: flex;
+    padding: 0;
   }
 
   .refresh_icon {
@@ -24,29 +25,37 @@
     cursor: pointer;
   }
 
-  .search_field .input {
-    @include roundCorners;
-    @include transition;
-    border: 1px solid rgba($white, 0.7);
-    padding: .67861429em 1em;
+  .search_field_row{
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
 
-    &:hover,
-    &:focus,
-    &:active {
-      border: 1px solid rgba($blue, 0.9);
-    }
+    .input {
+      @include roundCorners;
+      @include transition;
+      border: 1px solid $white;
+      padding: .67861429em 1em;
 
-    i {
-      margin-left: 0.7em !important;
+      &:hover,
+      &:focus,
+      &:active {
+        border: 1px solid rgba($blue, 0.9);
+      }
+
+      i {
+        margin-left: 0.7em !important;
+      }
     }
   }
 
   .tracks_container {
     margin-top: 0;
+    padding-left: 0;
+    padding-right: 0;
     // fix for react-list excluding header from its height-calc
     div:nth-child(2) { margin-bottom: 58px; }
   }
-  
+
   .table {
     background: transparent !important;
     margin-top: 0;
@@ -75,6 +84,3 @@
     }
   }
 }
-
-
-
