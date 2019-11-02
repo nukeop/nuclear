@@ -6,7 +6,9 @@ import { Provider } from 'react-redux';
 import { AppContainer } from 'react-hot-loader';
 import { I18nextProvider } from 'react-i18next';
 import logger from 'electron-timber';
+import Img from 'react-image-smooth-loading';
 
+import artPlaceholder from '../resources/media/art_placeholder.png';
 import i18n, { setupI18n } from './i18n';
 import App from './App';
 import configureStore from './store/configureStore';
@@ -20,6 +22,9 @@ window.store = store; // put store in global scope for plugins
 // Sentry
 process.env.NODE_ENV === 'production' &&
   Raven.config('https://2fb5587831994721a8b5f77bf6010679@sentry.io/1256142').install();
+
+// Global image placeholder
+Img.globalPlaceholder = artPlaceholder;
 
 const render = async Component => {
   await setupI18n();

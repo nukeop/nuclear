@@ -5,7 +5,6 @@
   padding: 1rem;
 
   &.small {
-    width: auto;
   }
 
   @media screen and (max-width: 1600px) {
@@ -47,6 +46,10 @@
         height: auto;
         background-size: cover !important;
         background-position: center !important;
+
+        img[src*=unknown] {
+          opacity: 1;
+        }
       }
     }
 

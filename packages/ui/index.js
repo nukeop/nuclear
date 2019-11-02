@@ -1,4 +1,5 @@
 export {
+  AlbumGrid,
   Card,
   Cover,
   LibraryListTypeToggle,
