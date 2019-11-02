@@ -14,7 +14,7 @@
     "build:electron:linux": "webpack --progress --colors --env.LINUX=true --config=webpack.config.electron.prod.js",
     "build:electron": "webpack --progress --colors --config=webpack.config.electron.prod.js",
     "build:docker": "docker build -t nuclear .",
-    "test": "mocha --require ./test/testHelper.js --require @babel/register --require regenerator-runtime --timeout 10000 --prof --recursive",
+    "test": "mocha --require ./test/testHelper.js --require regenerator-runtime --timeout 10000 --prof --recursive",
     "pack": "electron-builder --dir -c.extraMetadata.main=dist/bundle.electron.js",
     "dist": "babel-node electron-builder -c.extraMetadata.main=dist/bundle.electron.js",
     "build:linux": "electron-builder -c.extraMetadata.main=dist/bundle.electron.js --linux --publish always",
