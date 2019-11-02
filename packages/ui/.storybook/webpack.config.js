@@ -33,6 +33,11 @@ module.exports = {
           path.resolve(__dirname, '../resources'),
           path.resolve(__dirname, '../node_modules/boxicons')
         ]
+      },
+      {
+        test: /\.(png|jpg|gif)$/,
+        loader: 'url-loader',
+        include: path.resolve(__dirname, '../resources')
       }
     ]
   }

@@ -64,8 +64,10 @@
   "dependencies": {
     "classnames": "^2.2.6",
     "prop-types": "^15.6.2",
+    "react-image-smooth-loading": "^2.0.0",
     "recompose": "^0.30.0",
-    "semantic-ui-react": "^0.88.1"
+    "semantic-ui-react": "^0.88.1",
+    "styled-components": "^4.4.1"
   },
   "ava": {
     "babel": {

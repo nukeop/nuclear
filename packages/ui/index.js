@@ -1,4 +1,5 @@
 export {
+  Card,
   Cover,
   LibraryListTypeToggle,
   Loader,

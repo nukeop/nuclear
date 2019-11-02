@@ -1,0 +1,69 @@
+@import '../../common';
+
+.card_container {
+  width: 20%;
+  padding: 1rem;
+
+  &.small {
+    width: auto;
+  }
+
+  @media screen and (max-width: 1600px) {
+    width: 25%;
+  }
+
+  @media screen and (max-width: 1280px) {
+    width: 33.33%;
+  }
+
+  @media screen and (max-width: 1100px) {
+    width: 50%;
+  }
+
+  .card {
+    @include roundCorners;
+    display: flex;
+    flex-flow: column;
+
+    width: auto;
+    height: auto;
+    box-shadow: 0 0.25rem 0.5rem 0 rgba(0, 0, 0, 0.2);
+    background-color: $background2;
+    transition: $short-duration ease-in-out;
+    cursor: pointer;
+
+    &:hover {
+      box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.2);
+      transform: scale(1.1);
+    }
+
+    .thumbnail {
+      @include roundCorners;
+      width: 100%;
+      overflow: hidden;
+
+      div {
+        width: 100%;
+        height: auto;
+        background-size: cover !important;
+        background-position: center !important;
+      }
+    }
+
+    .card_content {
+      padding: 1em;
+      height: auto;
+
+      h4 {
+        @include ellipsis;
+      }
+
+      p {
+        @include ellipsis;
+        color: rgba($white, 0.6);
+      }
+    }
+
+
+  }
+}

@@ -1,5 +1,6 @@
 import '../resources/Lato.css';
 
+export { default as Card } from './components/Card';
 export { default as Cover } from './components/Cover';
 export { default as LibraryListTypeToggle } from './components/LibraryListTypeToggle';
 export { default as Loader } from './components/Loader';
