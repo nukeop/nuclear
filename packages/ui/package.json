@@ -40,6 +40,8 @@
     "ava": "^2.4.0",
     "babel-eslint": "^7.2.3",
     "babel-loader": "^8.0.6",
+    "chai": "^4.2.0",
+    "chai-spies": "^1.0.0",
     "css-loader": "^1.0.0",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.1.1",
@@ -63,6 +65,7 @@
   },
   "dependencies": {
     "classnames": "^2.2.6",
+    "lodash": "^4.17.15",
     "prop-types": "^15.6.2",
     "react-image-smooth-loading": "^2.0.0",
     "recompose": "^0.30.0",

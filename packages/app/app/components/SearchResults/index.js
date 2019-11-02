@@ -1,11 +1,11 @@
 import React from 'react';
 import { Tab } from 'semantic-ui-react';
 import { withTranslation } from 'react-i18next';
+import {Card} from '@nuclear/ui';
 
 import AllResults from './AllResults';
 import TracksResults from './TracksResults';
 import PlaylistResults from './PlaylistResults';
-import Card from '../Card';
 
 import styles from './styles.scss';
 

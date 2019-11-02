@@ -1,11 +1,11 @@
 import React from 'react';
 import chai from 'chai';
+import spies from 'chai-spies';
 import { shallow } from 'enzyme';
 import { describe, it } from 'mocha';
 import { Loader } from 'semantic-ui-react';
-import spies from 'chai-spies';
+import {Card} from '@nuclear/ui';
 
-import Card from '../app/components/Card';
 import AlbumList from '../app/components/AlbumList';
 
 chai.use(spies);
