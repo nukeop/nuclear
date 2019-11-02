@@ -2,7 +2,7 @@ import React from 'react';
 import {Dimmer, Loader} from 'semantic-ui-react';
 import _ from 'lodash';
 
-import Card from '../Card';
+import {Card} from '@nuclear/ui';
 
 import styles from './styles.scss';
 

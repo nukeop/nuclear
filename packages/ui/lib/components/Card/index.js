@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 import Img from 'react-image-smooth-loading';
+import _ from 'lodash';
 
 import artPlaceholder from '../../../resources/media/art_placeholder.png';
 import common from '../../common.scss';
