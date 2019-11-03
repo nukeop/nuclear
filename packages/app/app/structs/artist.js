@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import get from 'lodash/get';
 import map from 'lodash/map';
 import uuidv4 from 'uuid/v4';
@@ -71,3 +72,18 @@ export default class Artist {
     return artist;
   }
 }
+
+export const ArtistShape = PropTypes.shape({
+  uuid: PropTypes.string,
+  ids: PropTypes.objectOf(PropTypes.string),
+  name: PropTypes.string,
+  description: PropTypes.string,
+  tags: PropTypes.arrayOf(PropTypes.string),
+  onTour: PropTypes.string,
+  coverImage: PropTypes.string,
+  thumbnail: PropTypes.string,
+  images: PropTypes.arrayOf(PropTypes.string),
+  albums: PropTypes.array,
+  topTracks: PropTypes.array,
+  similarArtists: PropTypes.array
+});
