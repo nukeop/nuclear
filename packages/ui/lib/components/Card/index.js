@@ -13,23 +13,19 @@ const Card = ({
   header,
   content,
   image,
-  small,
   onClick
 }) => (
   <div className={cx(
-    styles.card_container,
-    {[`${styles.small}`]: small}
+    common.nuclear,
+    styles.card_container
   )}>
     <div
-      className={cx(
-        common.nuclear,
-        styles.card
-      )}
+      className={styles.card}
       onClick={onClick}
     >
-      <div className={styles.thumbnail}>
-        <Img src={_.defaultTo(image, artPlaceholder)} />
-      </div>
+      <div className={styles.thumbnail}
+        style={{backgroundImage: `url('${_.isEmpty(image) ? artPlaceholder : image}')`}}
+      />
       <div className={styles.card_content}>
         <h4>{header}</h4>
         {
@@ -46,7 +42,6 @@ Card.propTypes = {
   header: PropTypes.string,
   content: PropTypes.string,
   image: PropTypes.string,
-  small: PropTypes.bool,
   onClick: PropTypes.func
 };
 

@@ -2,10 +2,8 @@
 
 .card_container {
   width: 20%;
+  max-width: 240px;
   padding: 1rem;
-
-  &.small {
-  }
 
   @media screen and (max-width: 1600px) {
     width: 25%;
@@ -24,8 +22,6 @@
     display: flex;
     flex-flow: column;
 
-    width: auto;
-    height: auto;
     box-shadow: 0 0.25rem 0.5rem 0 rgba(0, 0, 0, 0.2);
     background-color: $background2;
     transition: $short-duration ease-in-out;
@@ -38,19 +34,11 @@
 
     .thumbnail {
       @include roundCorners;
-      width: 100%;
-      overflow: hidden;
-
-      div {
-        width: 100%;
-        height: auto;
-        background-size: cover !important;
-        background-position: center !important;
-
-        img[src*=unknown] {
-          opacity: 1;
-        }
-      }
+      position: relative;
+      height: 0;
+      padding-top: 100%;
+      background-size: cover !important;
+      background-position: center !important;
     }
 
     .card_content {
