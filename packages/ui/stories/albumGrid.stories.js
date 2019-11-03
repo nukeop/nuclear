@@ -6,6 +6,13 @@ import { AlbumGrid } from '..';
 storiesOf('Album grid', module)
   .add('Basic', () => (
     <div className='bg'>
-      <AlbumGrid />
+      <AlbumGrid
+        albums={[
+          { title: 'test' },
+          { title: 'test' },
+          { title: 'test' },
+          { title: 'test' }
+        ]}
+      />
     </div>
   ));
