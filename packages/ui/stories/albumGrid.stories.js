@@ -15,4 +15,8 @@ storiesOf('Album grid', module)
         ]}
       />
     </div>
+  )).add('Loading', () => (
+    <div className='bg'>
+      <AlbumGrid loading />
+    </div>
   ));
