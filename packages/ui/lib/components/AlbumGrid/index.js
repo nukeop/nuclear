@@ -4,6 +4,7 @@ import cx from 'classnames';
 import _ from 'lodash';
 
 import Card from '../Card';
+import Loader from '../Loader';
 import common from '../../common.scss';
 import styles from './styles.scss';
 
@@ -11,10 +12,11 @@ const getThumbnail = album => {
   return _.get(album, 'images[0].uri', _.get(album, 'thumb'));
 };
 
-const AlbumGrid = ({ albums, onAlbumClick }) => (
+const AlbumGrid = ({ albums, onAlbumClick, loading }) => (
   <div className={cx(
     common.nuclear,
-    styles.album_grid
+    styles.album_grid,
+    {[styles.loading]: loading}
   )} >
     {
       !_.isEmpty(albums) && albums.map((album, i) => (
@@ -22,16 +24,18 @@ const AlbumGrid = ({ albums, onAlbumClick }) => (
           key={i}
           header={album.title}
           image={getThumbnail(album)}
-          onClick={onAlbumClick}
+          onClick={() => onAlbumClick(album)}
         />
       ))
     }
+    { loading && <Loader /> }
   </div>
 );
 
 AlbumGrid.propTypes = {
   albums: PropTypes.array,
-  onAlbumClick: PropTypes.func
+  onAlbumClick: PropTypes.func,
+  loading: PropTypes.bool
 };
 
 export default AlbumGrid;
