@@ -46,7 +46,6 @@ const LibraryView = ({
     [actions, sortBy, direction]
   );
   const { t } = useTranslation('library');
-  console.log(listType)
 
   return (
     <div className={styles.local_files_view}>
