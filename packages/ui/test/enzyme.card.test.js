@@ -1,5 +1,4 @@
 import React from 'react';
-import Img from 'react-image-smooth-loading';
 import test from 'ava';
 import chai from 'chai';
 import spies from 'chai-spies';
@@ -15,7 +14,10 @@ const { expect } = chai;
 
 test('Should render given image', t => {
   const wrapper = shallow(<Card image='IMG' />);
-  t.is(wrapper.find(Img).prop('src'), 'IMG');
+  t.is(
+    wrapper.find('div>div>div:first-child').prop('style').backgroundImage,
+    'url(\'IMG\')'
+  );
 });
 
 test('Check onClick event', t => {
