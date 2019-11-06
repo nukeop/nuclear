@@ -14,7 +14,8 @@ import {
   Ref
 } from 'semantic-ui-react';
 import { useTranslation } from 'react-i18next';
-import { LibraryListTypeToggle } from '@nuclear/ui';
+import { AlbumGrid, LibraryListTypeToggle } from '@nuclear/ui';
+import { LIST_TYPE } from '@nuclear/ui/lib/components/LibraryListTypeToggle';
 import _ from 'lodash';
 
 import Header from '../Header';
@@ -74,7 +75,8 @@ const LibraryView = ({
             <Progress className={styles.progress_bar} value={scanProgress} total={scanTotal} progress='ratio' />
           )}
         </Segment>
-        {localFolders.length > 0 &&
+        {
+          !_.isEmpty(localFolders) &&
           <>
             <Divider />
             <List divided verticalAlign='middle' className={styles.equalizer_list}>
@@ -112,7 +114,8 @@ const LibraryView = ({
                 toggleListType={actions.updateLibraryListType}
               />
             </div>
-            {_.isEmpty(tracks) ? (
+            {
+              _.isEmpty(tracks) ? (
               filterApplied ? (
                 <NoSearchResults />
               ) : (
@@ -122,7 +125,9 @@ const LibraryView = ({
               <Segment inverted className={trackRowStyles.tracks_container}>
                 <Dimmer active={pending} loading={pending.toString()} />
 
-                {!pending && (
+                {
+                  !pending &&
+                  listType === LIST_TYPE.SIMPLE_LIST && (
                   <ReactList
                     type='variable'
                     length={tracks.length}
@@ -179,12 +184,22 @@ const LibraryView = ({
                       );
                     }}/>
                 )}
+
+                {
+                  !pending &&
+                  !_.isEmpty(localFolders) &&
+                  listType === LIST_TYPE.ALBUM_GRID &&
+                  <AlbumGrid
+                  />
+                }
               </Segment>
             )}
           </React.Fragment>
         ) : (
           <NoApi enableApi={actions.setBooleanOption} />
         )}
+
+
       </Segment>
     </div>
   );
