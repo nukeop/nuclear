@@ -26,6 +26,7 @@ import NoApi from './NoApi';
 import trackRowStyles from '../TrackRow/styles.scss';
 import styles from './index.scss';
 import NoSearchResults from './NoSearchResults';
+import LibraryFolders from './LibraryFolders';
 
 const LibraryView = ({
   tracks,
@@ -51,6 +52,14 @@ const LibraryView = ({
   return (
     <div className={styles.local_files_view}>
       <Header>{t('header')}</Header>
+      <LibraryFolders
+        openLocalFolderPicker={actions.openLocalFolderPicker}
+        scanLocalFolders={actions.scanLocalFolders}
+        localFolders={localFolders}
+        scanTotal={scanTotal}
+        scanProgress={scanProgress}
+        loading={pending}
+      />
       <Segment>
         <Segment className={styles.control_bar}>
           <Button
@@ -116,84 +125,84 @@ const LibraryView = ({
             </div>
             {
               _.isEmpty(tracks) ? (
-              filterApplied ? (
-                <NoSearchResults />
+                filterApplied ? (
+                  <NoSearchResults />
+                ) : (
+                  <EmptyState />
+                )
               ) : (
-                <EmptyState />
-              )
-            ) : (
-              <Segment inverted className={trackRowStyles.tracks_container}>
-                <Dimmer active={pending} loading={pending.toString()} />
+                <Segment inverted className={trackRowStyles.tracks_container}>
+                  <Dimmer active={pending} loading={pending.toString()} />
 
-                {
-                  !pending &&
+                  {
+                    !pending &&
                   listType === LIST_TYPE.SIMPLE_LIST && (
                   <ReactList
-                    type='variable'
-                    length={tracks.length}
-                    itemSizeEstimator={() => 44}
-                    itemsRenderer={(items, ref) => {
-                      return (
-                        <Table sortable className={styles.table}>
-                          <Table.Header className={styles.thead}>
-                            <Table.Row>
-                              <Table.HeaderCell>
-                                <Icon name='image' />
-                              </Table.HeaderCell>
-                              <Table.HeaderCell
-                                sorted={sortBy === 'artist' ? direction : null}
-                                onClick={handleSort('artist')}
-                              >
-                                {t('artist')}
-                              </Table.HeaderCell>
-                              <Table.HeaderCell
-                                sorted={sortBy === 'name' ? direction : null}
-                                onClick={handleSort('name')}
-                              >
-                                {t('title')}
-                              </Table.HeaderCell>
-                              <Table.HeaderCell
-                                sorted={sortBy === 'album' ? direction : null}
-                                onClick={handleSort('album')}
-                              >
-                                {t('album')}
-                              </Table.HeaderCell>
-                            </Table.Row>
-                          </Table.Header>
-                          <Ref innerRef={ref}>
-                            <Table.Body className={styles.tbody}>
-                              {items}
-                            </Table.Body>
-                          </Ref>
-                        </Table>
-                      );
-                    }}
-                    itemRenderer={index => {
-                      const track = tracks[index];
-                      return (
-                        <TrackRow
-                          key={'favorite-track-' + index}
-                          track={track}
-                          index={index}
-                          displayCover
-                          displayArtist
-                          displayAlbum
-                          withAddToDownloads={false}
-                          isLocal
-                        />
-                      );
-                    }}/>
-                )}
+                        type='variable'
+                        length={tracks.length}
+                        itemSizeEstimator={() => 44}
+                        itemsRenderer={(items, ref) => {
+                          return (
+                            <Table sortable className={styles.table}>
+                              <Table.Header className={styles.thead}>
+                                <Table.Row>
+                                  <Table.HeaderCell>
+                                    <Icon name='image' />
+                                  </Table.HeaderCell>
+                                  <Table.HeaderCell
+                                    sorted={sortBy === 'artist' ? direction : null}
+                                    onClick={handleSort('artist')}
+                                  >
+                                    {t('artist')}
+                                  </Table.HeaderCell>
+                                  <Table.HeaderCell
+                                    sorted={sortBy === 'name' ? direction : null}
+                                    onClick={handleSort('name')}
+                                  >
+                                    {t('title')}
+                                  </Table.HeaderCell>
+                                  <Table.HeaderCell
+                                    sorted={sortBy === 'album' ? direction : null}
+                                    onClick={handleSort('album')}
+                                  >
+                                    {t('album')}
+                                  </Table.HeaderCell>
+                                </Table.Row>
+                              </Table.Header>
+                              <Ref innerRef={ref}>
+                                <Table.Body className={styles.tbody}>
+                                  {items}
+                                </Table.Body>
+                              </Ref>
+                            </Table>
+                          );
+                        }}
+                        itemRenderer={index => {
+                          const track = tracks[index];
+                          return (
+                            <TrackRow
+                              key={'favorite-track-' + index}
+                              track={track}
+                              index={index}
+                              displayCover
+                              displayArtist
+                              displayAlbum
+                              withAddToDownloads={false}
+                              isLocal
+                            />
+                          );
+                        }}/>
+                    )}
 
-                {
-                  !pending &&
+                  {
+                    !pending &&
                   !_.isEmpty(localFolders) &&
                   listType === LIST_TYPE.ALBUM_GRID &&
                   <AlbumGrid
                   />
-                }
-              </Segment>
-            )}
+                  }
+                </Segment>
+              )}
           </React.Fragment>
         ) : (
           <NoApi enableApi={actions.setBooleanOption} />
