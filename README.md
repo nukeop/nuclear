@@ -77,6 +77,7 @@ Nuclear has already been translated to several languages, and we're always looki
 | Slovak               | [MartinT](https://github.com/MartinTuroci)                                                           |
 | Czech                | [PetrTodorov](https://github.com/PetrTodorov)                                                        |
 | Tagalog                | [giftofgrub](https://github.com/giftofgrub)                                                        |
+| Traditional Chinese         | [oxygen-TW](https://github.com/oxygen-TW)                                                     |
 
 ## Screenshots
 This will be updated as the program evolves.
