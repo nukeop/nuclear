@@ -72,7 +72,7 @@ function reduceAlbumInfoSearchSuccess (state, action) {
     ...state,
     albumDetails: {
       ...state.albumDetails,
-      [`${action.payload.id}`]: {
+      [action.payload.id]: {
         ...action.payload.info,
         loading: false
       }
@@ -85,7 +85,7 @@ function reduceArtistInfoSearchStart (state, action) {
     ...state,
     artistDetails: {
       ...state.artistDetails,
-      [`${action.payload}`]: {
+      [action.payload]: {
         loading: true
       }
     }
@@ -97,7 +97,8 @@ function reduceArtistInfoSearchSuccess (state, action) {
     ...state,
     artistDetails: {
       ...state.artistDetails,
-      [`${action.payload.id}`]: {
+      [action.payload.id]: {
+        ...state.artistDetails[action.payload.id],
         ...action.payload.info,
         loading: false
       }
@@ -110,8 +111,8 @@ function reduceArtistReleasesSearchStart (state, action) {
     ...state,
     artistDetails: {
       ...state.artistDetails,
-        [`${action.payload}`]: {
-          ...state.artistDetails[`${action.payload}`],
+        [action.payload]: {
+          ...state.artistDetails[action.payload],
           releases: []
       }
     }
@@ -123,8 +124,8 @@ function reduceArtistReleasesSearchSuccess (state, action) {
     ...state,
     artistDetails: {
       ...state.artistDetails,
-      [`${action.payload.id}`]: {
-        ...state.artistDetails[`${action.payload.id}`],
+      [action.payload.id]: {
+        ...state.artistDetails[action.payload.id],
         releases: action.payload.releases.releases
       }
     }
@@ -136,8 +137,8 @@ function reduceLastfmArtistInfoSearchStart (state, action) {
     ...state,
     artistDetails: {
       ...state.artistDetails,
-      [`${action.payload}`]: {
-        ...state.artistDetails[`${action.payload}`],
+      [action.payload]: {
+        ...state.artistDetails[action.payload],
         lastfm: { loading: true }
       }
     }
@@ -149,8 +150,8 @@ function reduceLastfmArtistInfoSearchSuccess (state, action) {
     ...state,
     artistDetails: {
       ...state.artistDetails,
-      [`${action.payload.id}`]: {
-        ...state.artistDetails[`${action.payload.id}`],
+      [action.payload.id]: {
+        ...state.artistDetails[action.payload.id],
         lastfm: {
           ... action.payload.info,
           loading: false
