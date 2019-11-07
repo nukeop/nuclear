@@ -55,56 +55,12 @@ const LibraryView = ({
       <LibraryFolders
         openLocalFolderPicker={actions.openLocalFolderPicker}
         scanLocalFolders={actions.scanLocalFolders}
+        removeLocalFolder={actions.removeLocalFolder}
         localFolders={localFolders}
         scanTotal={scanTotal}
         scanProgress={scanProgress}
         loading={pending}
       />
-      <Segment>
-        <Segment className={styles.control_bar}>
-          <Button
-            icon
-            inverted
-            labelPosition='left'
-            className={styles.add_folder}
-            onClick={actions.openLocalFolderPicker}
-          >
-            <Icon name='folder open' />
-            {t('add')}
-          </Button>
-          <Button
-            inverted
-            icon='refresh'
-            disabled={localFolders.length < 1}
-            loading={pending}
-            onClick={actions.scanLocalFolders}
-            className={styles.refresh_icon}
-          />
-          {scanTotal && (
-            <Progress className={styles.progress_bar} value={scanProgress} total={scanTotal} progress='ratio' />
-          )}
-        </Segment>
-        {
-          !_.isEmpty(localFolders) &&
-          <>
-            <Divider />
-            <List divided verticalAlign='middle' className={styles.equalizer_list}>
-              {localFolders.map((folder, idx) => (
-                <List.Item key={idx}>
-                  <List.Content floated='right'>
-                    <Icon
-                      name='close'
-                      onClick={() => actions.removeLocalFolder(folder)}
-                      className={styles.folder_remove_icon}
-                    />
-                  </List.Content>
-                  <List.Content>{folder}</List.Content>
-                </List.Item>
-              ))}
-            </List>
-          </>
-        }
-      </Segment>
       <Segment>
         {api ? (
           <React.Fragment>

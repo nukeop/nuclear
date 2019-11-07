@@ -17,6 +17,7 @@ import styles from './styles.scss';
 const LibraryFolders = ({
   openLocalFolderPicker,
   scanLocalFolders,
+  onRemoveClick,
   localFolders,
   scanTotal,
   scanProgress,
@@ -64,7 +65,7 @@ const LibraryFolders = ({
             <List.Content floated='right'>
               <Icon
                 name='close'
-                onClick={() => actions.removeLocalFolder(folder)}
+                onClick={() => onRemoveClick(folder)}
                 className={styles.folder_remove_icon}
               />
             </List.Content>
@@ -80,6 +81,7 @@ const LibraryFolders = ({
 LibraryFolders.propTypes = {
   openLocalFolderPicker: PropTypes.func,
   scanLocalFolders: PropTypes.func,
+  removeLocalFolder: PropTypes.func,
   localFolders: PropTypes.array,
   loading: PropTypes.bool
 };
@@ -87,6 +89,6 @@ LibraryFolders.propTypes = {
 export default compose(
   withTranslation('library'),
   withHandlers({
-    onRemoveClick: ({removeLocalFolder}) => ()
+    onRemoveClick: ({removeLocalFolder}) => folder => removeLocalFolder(folder)
   })
 )(LibraryFolders);
