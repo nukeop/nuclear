@@ -1,17 +1,9 @@
 import React, { useCallback } from 'react';
-import ReactList from 'react-list';
 import PropTypes from 'prop-types';
 import {
-  Button,
   Dimmer,
-  Divider,
-  Icon,
   Input,
-  List,
-  Progress,
-  Segment,
-  Table,
-  Ref
+  Segment
 } from 'semantic-ui-react';
 import { useTranslation } from 'react-i18next';
 import { AlbumGrid, LibraryListTypeToggle } from '@nuclear/ui';
@@ -19,7 +11,6 @@ import { LIST_TYPE } from '@nuclear/ui/lib/components/LibraryListTypeToggle';
 import _ from 'lodash';
 
 import Header from '../Header';
-import TrackRow from '../TrackRow';
 import EmptyState from './EmptyState';
 import NoApi from './NoApi';
 
@@ -27,6 +18,7 @@ import trackRowStyles from '../TrackRow/styles.scss';
 import styles from './index.scss';
 import NoSearchResults from './NoSearchResults';
 import LibraryFolders from './LibraryFolders';
+import LibrarySimpleList from './LibrarySimpleList';
 
 const LibraryView = ({
   tracks,
@@ -92,63 +84,14 @@ const LibraryView = ({
 
                   {
                     !pending &&
-                  listType === LIST_TYPE.SIMPLE_LIST && (
-                  <ReactList
-                        type='variable'
-                        length={tracks.length}
-                        itemSizeEstimator={() => 44}
-                        itemsRenderer={(items, ref) => {
-                          return (
-                            <Table sortable className={styles.table}>
-                              <Table.Header className={styles.thead}>
-                                <Table.Row>
-                                  <Table.HeaderCell>
-                                    <Icon name='image' />
-                                  </Table.HeaderCell>
-                                  <Table.HeaderCell
-                                    sorted={sortBy === 'artist' ? direction : null}
-                                    onClick={handleSort('artist')}
-                                  >
-                                    {t('artist')}
-                                  </Table.HeaderCell>
-                                  <Table.HeaderCell
-                                    sorted={sortBy === 'name' ? direction : null}
-                                    onClick={handleSort('name')}
-                                  >
-                                    {t('title')}
-                                  </Table.HeaderCell>
-                                  <Table.HeaderCell
-                                    sorted={sortBy === 'album' ? direction : null}
-                                    onClick={handleSort('album')}
-                                  >
-                                    {t('album')}
-                                  </Table.HeaderCell>
-                                </Table.Row>
-                              </Table.Header>
-                              <Ref innerRef={ref}>
-                                <Table.Body className={styles.tbody}>
-                                  {items}
-                                </Table.Body>
-                              </Ref>
-                            </Table>
-                          );
-                        }}
-                        itemRenderer={index => {
-                          const track = tracks[index];
-                          return (
-                            <TrackRow
-                              key={'favorite-track-' + index}
-                              track={track}
-                              index={index}
-                              displayCover
-                              displayArtist
-                              displayAlbum
-                              withAddToDownloads={false}
-                              isLocal
-                            />
-                          );
-                        }}/>
-                    )}
+                    listType === LIST_TYPE.SIMPLE_LIST &&
+                    <LibrarySimpleList
+                      tracks={tracks}
+                      sortBy={sortBy}
+                      direction={direction}
+                      handleSort={handleSort}
+                    />
+                  }
 
                   {
                     !pending &&

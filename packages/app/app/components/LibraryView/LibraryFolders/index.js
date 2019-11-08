@@ -55,24 +55,24 @@ const LibraryFolders = ({
     {
       !_.isEmpty(localFolders) &&
       <>
-      <Divider />
-      <List
-      divided
-      verticalAlign='middle'
-      className={styles.equalizer_list}>
-        {localFolders.map((folder, idx) => (
-          <List.Item key={idx}>
-            <List.Content floated='right'>
-              <Icon
-                name='close'
-                onClick={() => onRemoveClick(folder)}
-                className={styles.folder_remove_icon}
-              />
-            </List.Content>
-            <List.Content>{folder}</List.Content>
-          </List.Item>
-        ))}
-      </List>
+        <Divider />
+        <List
+          divided
+          verticalAlign='middle'
+          className={styles.equalizer_list}>
+          {localFolders.map((folder, idx) => (
+            <List.Item key={idx}>
+              <List.Content floated='right'>
+                <Icon
+                  name='close'
+                  onClick={() => onRemoveClick(folder)}
+                  className={styles.folder_remove_icon}
+                />
+              </List.Content>
+              <List.Content>{folder}</List.Content>
+            </List.Item>
+          ))}
+        </List>
       </>
     }
   </Segment>
