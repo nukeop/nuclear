@@ -80,6 +80,7 @@ class PlayQueue extends React.Component {
                         )
                       )
                     }
+                    resetPlayer={this.props.items.length == 1 ? this.props.actions.resetPlayer : undefined}
                   />
                 }
                 track={el}
