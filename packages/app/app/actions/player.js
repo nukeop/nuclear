@@ -36,6 +36,14 @@ export function togglePlayback(currentState) {
   };
 }
 
+export function resetPlayer() {
+  return dispatch => {
+    dispatch(updatePlaybackProgress(0,0));
+    dispatch(pausePlayback());
+    dispatch(updateStreamLoading(false));
+  }
+}
+
 export function updatePlaybackProgress(progress, seek) {
   return {
     type: UPDATE_PLAYBACK_PROGRESS,

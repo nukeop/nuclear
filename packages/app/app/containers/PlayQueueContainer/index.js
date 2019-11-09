@@ -10,6 +10,7 @@ import * as PluginsActions from '../../actions/plugins';
 import * as PlaylistsActions from '../../actions/playlists';
 import * as SettingsActions from '../../actions/settings';
 import * as ToastActions from '../../actions/toasts';
+import * as PlayerActions from '../../actions/player';
 
 import PlayQueue from '../../components/PlayQueue';
 
@@ -55,7 +56,8 @@ function mapDispatchToProps(dispatch) {
       PluginsActions,
       QueueActions,
       SettingsActions,
-      ToastActions
+      ToastActions,
+      PlayerActions
     ), dispatch)
   };
 }

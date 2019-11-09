@@ -105,6 +105,7 @@ class PlayQueue extends React.Component {
 
     let {
       clearQueue,
+      resetPlayer,
       addPlaylist,
       updatePlaylist,
       toggleOption,
@@ -117,6 +118,7 @@ class PlayQueue extends React.Component {
         <div className={classnames(styles.play_queue_container, {compact})}>
           <QueueMenu
             clearQueue={clearQueue}
+            resetPlayer={resetPlayer}
             addPlaylist={addPlaylist}
             updatePlaylist={updatePlaylist}
             toggleOption={toggleOption}
