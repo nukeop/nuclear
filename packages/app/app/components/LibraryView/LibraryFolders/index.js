@@ -25,24 +25,26 @@ const LibraryFolders = ({
   t
 }) => (
   <Segment className={styles.library_folders}>
-    <Button
-      icon
-      inverted
-      labelPosition='left'
-      className={styles.add_folder}
-      onClick={openLocalFolderPicker}
-    >
-      <Icon name='folder open' />
-      {t('add')}
-    </Button>
-    <Button
-      inverted
-      icon='refresh'
-      disabled={_.isEmpty(localFolders)}
-      loading={loading}
-      onClick={scanLocalFolders}
-      className={styles.refresh_icon}
-    />
+    <Segment className={styles.control_bar}>
+      <Button
+        icon
+        inverted
+        labelPosition='left'
+        className={styles.add_folder}
+        onClick={openLocalFolderPicker}
+      >
+        <Icon name='folder open' />
+        {t('add')}
+      </Button>
+      <Button
+        inverted
+        icon='refresh'
+        disabled={_.isEmpty(localFolders)}
+        loading={loading}
+        onClick={scanLocalFolders}
+        className={styles.refresh_icon}
+      />
+    </Segment>
     {
       scanTotal &&
       <Progress
