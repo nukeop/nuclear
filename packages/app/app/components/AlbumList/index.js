@@ -1,6 +1,5 @@
 import React from 'react';
-import _ from 'lodash';
-import { compose, withHandlers, lifecycle } from 'recompose';
+import {compose, withHandlers} from 'recompose';
 import {AlbumGrid} from '@nuclear/ui';
 
 const AlbumListComponent = props => <AlbumGrid {...props} />;

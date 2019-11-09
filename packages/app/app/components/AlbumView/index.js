@@ -275,7 +275,7 @@ class AlbumView extends React.Component {
         />
         <PopupButton 
           onClick={() =>
-          this.addAlbumToDownloads(album)}
+            this.addAlbumToDownloads(album)}
           ariaLabel={this.props.t('download')}
           icon='download'
           label={this.props.t('download')}

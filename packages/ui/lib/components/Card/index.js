@@ -24,7 +24,7 @@ const Card = ({
       onClick={onClick}
     >
       <div className={styles.thumbnail}
-        style={{backgroundImage: `url('${_.isEmpty(image) ? artPlaceholder : image}')`}}
+        style={{backgroundImage: `url('${(_.isNil(image) || _.isEmpty(image)) ? artPlaceholder : image}')`}}
       />
       <div className={styles.card_content}>
         <h4>{header}</h4>
