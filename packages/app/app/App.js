@@ -313,8 +313,8 @@ class App extends React.Component {
   renderPlayerControls () {
     const { player, queue } = this.props;
     const couldPlay = queue.queueItems.length > 0;
-    const couldForward = queue.currentSong + 1 < queue.queueItems.length;
-    const couldBack = queue.currentSong > 0;
+    const couldForward = couldPlay && queue.currentSong + 1 < queue.queueItems.length;
+    const couldBack = couldPlay && queue.currentSong > 0;
 
     return (
       <PlayerControls
