@@ -18,6 +18,7 @@ const addTrackToPlaylist = (updatePlaylist, playlist, track) => {
 const QueueMenuMore = ({
   disabled,
   clearQueue,
+  resetPlayer,
   savePlaylistDialog,
   addFavoriteTrack,
   updatePlaylist,
@@ -33,7 +34,7 @@ const QueueMenuMore = ({
     <Dropdown item icon='ellipsis vertical' className={styles.queue_menu_more} disabled={disabled}>
       <Dropdown.Menu>
         <Dropdown.Header>{t('header')}</Dropdown.Header>
-        <Dropdown.Item onClick={clearQueue}>
+        <Dropdown.Item onClick={() => {clearQueue();resetPlayer();}}>
           <Icon name='trash' />
           {t('clear')}
         </Dropdown.Item>
