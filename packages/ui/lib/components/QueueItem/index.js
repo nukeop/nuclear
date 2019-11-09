@@ -72,12 +72,18 @@ QueueItem.propTypes = {
   index: PropTypes.number, //eslint-disable-line
   duration: PropTypes.string,
   selectSong: PropTypes.func, //eslint-disable-line
-  removeFromQueue: PropTypes.func //eslint-disable-line
+  removeFromQueue: PropTypes.func, //eslint-disable-line
+  resetPlayer: PropTypes.func //eslint-disable-line
 };
 
 export default compose(
   withHandlers({
-    handleRemoveFromQueue: ({removeFromQueue, track}) => () => removeFromQueue(track),
+    handleRemoveFromQueue: ({removeFromQueue, track, resetPlayer}) => () => {
+      removeFromQueue(track);
+      if (resetPlayer) { 
+        resetPlayer(); 
+      }
+    },
     handleSelectSong: ({selectSong, index}) => () => selectSong(index)
   })
 )(QueueItem);

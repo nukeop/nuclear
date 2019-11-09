@@ -71,6 +71,7 @@ class PlayQueue extends React.Component {
                     defaultMusicSource={this.props.plugins.selected.streamProviders}
                     selectSong={this.props.actions.selectSong}
                     removeFromQueue={this.props.actions.removeFromQueue}
+                    resetPlayer={this.props.items.length == 1 ? this.props.actions.resetPlayer : undefined}
                   />
                 }
                 track={el}
