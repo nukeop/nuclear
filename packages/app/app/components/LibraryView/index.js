@@ -19,6 +19,7 @@ import styles from './index.scss';
 import NoSearchResults from './NoSearchResults';
 import LibraryFolders from './LibraryFolders';
 import LibrarySimpleList from './LibrarySimpleList';
+import LibraryAlbumGrid from './LibraryAlbumGrid';
 
 const LibraryView = ({
   tracks,
@@ -97,7 +98,8 @@ const LibraryView = ({
                     !pending &&
                   !_.isEmpty(localFolders) &&
                   listType === LIST_TYPE.ALBUM_GRID &&
-                  <AlbumGrid
+                  <LibraryAlbumGrid
+                    tracks={tracks}
                   />
                   }
                 </Segment>
