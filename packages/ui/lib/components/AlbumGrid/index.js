@@ -12,7 +12,12 @@ const getThumbnail = album => {
   return _.get(album, 'images[0].uri', _.get(album, 'thumb'));
 };
 
-const AlbumGrid = ({ albums, onAlbumClick, loading }) => (
+const AlbumGrid = ({
+  albums,
+  onAlbumClick,
+  loading,
+  withArtistNames
+}) => (
   <div className={cx(
     common.nuclear,
     styles.album_grid,
@@ -23,6 +28,7 @@ const AlbumGrid = ({ albums, onAlbumClick, loading }) => (
         <Card
           key={i}
           header={album.title}
+          content={withArtistNames && _.get(album, 'artist.name')}
           image={getThumbnail(album)}
           onClick={() => onAlbumClick(album)}
         />
@@ -35,7 +41,8 @@ const AlbumGrid = ({ albums, onAlbumClick, loading }) => (
 AlbumGrid.propTypes = {
   albums: PropTypes.array,
   onAlbumClick: PropTypes.func,
-  loading: PropTypes.bool
+  loading: PropTypes.bool,
+  withArtistNames: PropTypes.bool
 };
 
 export default AlbumGrid;
