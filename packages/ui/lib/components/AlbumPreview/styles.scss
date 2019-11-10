@@ -1,0 +1,19 @@
+@import '../../common';
+
+.album_preview {
+  position: relative;
+  display: flex;
+  flex-flow: row;
+  height: 100%;
+  max-height: 240px;
+
+  .album_cover {
+    @include roundCorners;
+    position: relative;
+    height: 100%;
+    max-width: 240px;
+    background-size: cover !important;
+    background-position: center !important;
+    flex: 1 1 auto;
+  }
+}
