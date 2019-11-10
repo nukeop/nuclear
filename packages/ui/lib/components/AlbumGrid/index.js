@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 import _ from 'lodash';
+import {Dimmer, Loader } from 'semantic-ui-react';
 
 import Card from '../Card';
-import Loader from '../Loader';
 import common from '../../common.scss';
 import styles from './styles.scss';
 
@@ -24,7 +24,9 @@ const AlbumGrid = ({
     {[styles.loading]: loading}
   )} >
     {
-      !_.isEmpty(albums) && albums.map((album, i) => (
+      !loading &&
+      !_.isEmpty(albums) &&
+      albums.map((album, i) => (
         <Card
           key={i}
           header={album.title}
@@ -34,7 +36,7 @@ const AlbumGrid = ({
         />
       ))
     }
-    { loading && <Loader /> }
+    { loading && <Dimmer active><Loader /></Dimmer> }
   </div>
 );
 
