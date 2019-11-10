@@ -34,27 +34,27 @@ function reduceUnifiedSearchStart (state, action) {
   return {
     ...state,
     unifiedSearchStarted: action.payload
-  }
+  };
 }
 function reduceAlbumSearchSuccess (state, action) {
   return {...
-    state,
-    albumSearchResults: action.payload
-  }
+  state,
+  albumSearchResults: action.payload
+  };
 }
 
 function reduceArtistSearchSuccess (state, action) {
   return {
     ...state,
     artistSearchResults: action.payload.map(artist => Artist.fromDiscogsSearchData(artist))
-  }
+  };
 }
 
 function reduceUnifiedSearchSuccess (state, action) {
   return {
     ...state,
     unifiedSearchStarted: action.payload
-  }
+  };
 }
 
 function reduceAlbumInfoSearchStart (state, action) {
@@ -64,7 +64,7 @@ function reduceAlbumInfoSearchStart (state, action) {
       ...state.albumDetails,
       [`${action.payload}`]: { loading: true }
     }
-  }
+  };
 }
 
 function reduceAlbumInfoSearchSuccess (state, action) {
@@ -77,7 +77,7 @@ function reduceAlbumInfoSearchSuccess (state, action) {
         loading: false
       }
     }
-  }
+  };
 }
 
 function reduceArtistInfoSearchStart (state, action) {
@@ -89,7 +89,7 @@ function reduceArtistInfoSearchStart (state, action) {
         loading: true
       }
     }
-  }
+  };
 }
 
 function reduceArtistInfoSearchSuccess (state, action) {
@@ -103,7 +103,7 @@ function reduceArtistInfoSearchSuccess (state, action) {
         loading: false
       }
     }
-  }
+  };
 }
 
 function reduceArtistReleasesSearchStart (state, action) {
@@ -111,12 +111,13 @@ function reduceArtistReleasesSearchStart (state, action) {
     ...state,
     artistDetails: {
       ...state.artistDetails,
-        [action.payload]: {
-          ...state.artistDetails[action.payload],
-          releases: []
+      [action.payload]: {
+        ...state.artistDetails[action.payload],
+        releases: [],
+        releasesLoading: true
       }
     }
-  }
+  };
 }
 
 function reduceArtistReleasesSearchSuccess (state, action) {
@@ -126,10 +127,11 @@ function reduceArtistReleasesSearchSuccess (state, action) {
       ...state.artistDetails,
       [action.payload.id]: {
         ...state.artistDetails[action.payload.id],
-        releases: action.payload.releases.releases
+        releases: action.payload.releases.releases,
+        releasesLoading: false
       }
     }
-  }
+  };
 }
 
 function reduceLastfmArtistInfoSearchStart (state, action) {
@@ -142,7 +144,7 @@ function reduceLastfmArtistInfoSearchStart (state, action) {
         lastfm: { loading: true }
       }
     }
-  }
+  };
 }
 
 function reduceLastfmArtistInfoSearchSuccess (state, action) {
@@ -158,21 +160,21 @@ function reduceLastfmArtistInfoSearchSuccess (state, action) {
         }
       }
     }
-  }
+  };
 }
 
 function reduceLastfmTrackSearchStart (state, action) {
   return {
     ...state,
     trackSearchResults: action.payload
-  }
+  };
 }
 
 function reduceLastfmTrackSearchSuccess (state, action) {
   return {
     ...state,
     trackSearchResults: action.payload
-  }
+  };
 }
 
 function reduceYoutubePlaylistSearchStart (state, action) {
@@ -180,14 +182,14 @@ function reduceYoutubePlaylistSearchStart (state, action) {
     ...state,
     playlistSearchStarted: action.payload,
     playlistSearchResults: []
-  }
+  };
 }
 
 function reduceYoutubePlaylistSearchSuccess (state, action) {
   return {
     ...state,
     playlistSearchResults: action.payload
-  }
+  };
 }
 
 export default function SearchReducer (state = initialState, action) {
