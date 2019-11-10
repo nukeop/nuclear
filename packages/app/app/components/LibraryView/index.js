@@ -6,7 +6,7 @@ import {
   Segment
 } from 'semantic-ui-react';
 import { useTranslation } from 'react-i18next';
-import { AlbumGrid, LibraryListTypeToggle } from '@nuclear/ui';
+import { LibraryListTypeToggle } from '@nuclear/ui';
 import { LIST_TYPE } from '@nuclear/ui/lib/components/LibraryListTypeToggle';
 import _ from 'lodash';
 
