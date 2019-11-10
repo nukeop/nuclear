@@ -1,6 +1,7 @@
 import '../resources/Lato.css';
 
 export { default as AlbumGrid } from './components/AlbumGrid';
+export { default as AlbumPreview } from './components/AlbumPreview';
 export { default as Card } from './components/Card';
 export { default as Cover } from './components/Cover';
 export { default as LibraryListTypeToggle } from './components/LibraryListTypeToggle';
