@@ -6,3 +6,7 @@ register(undefined, (module, filename) => {
     module.exports = 'IMAGE_MOCK';
   }
 });
+
+require("@babel/register")({
+  ignore: [/node_modules/]
+});
