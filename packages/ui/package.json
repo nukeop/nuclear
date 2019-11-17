@@ -31,7 +31,6 @@
     "@babel/preset-env": "^7.6.2",
     "@babel/preset-react": "^7.0.0",
     "@babel/register": "^7.6.2",
-    "@nuclear/core": "^0.5.1",
     "@storybook/addon-actions": "^3.4.12",
     "@storybook/addon-knobs": "^3.4.12",
     "@storybook/addon-links": "^3.4.10",
@@ -64,8 +63,10 @@
     "webpack-dev-server": "^3.1.5"
   },
   "dependencies": {
+    "@nuclear/core": "^0.5.1",
     "classnames": "^2.2.6",
     "lodash": "^4.17.15",
+    "numeral": "^2.0.6",
     "prop-types": "^15.6.2",
     "react-image-smooth-loading": "^2.0.0",
     "recompose": "^0.30.0",
