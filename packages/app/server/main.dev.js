@@ -11,6 +11,7 @@ import { transformSource } from '@nuclear/core';
 import { runHttpServer, closeHttpServer } from './http/server';
 import { setOption } from './store';
 import { registerDownloadsEvents } from './downloads';
+import MprisPlayer from './mpris';
 
 import installExtension, {
   REACT_DEVELOPER_TOOLS,
@@ -19,6 +20,7 @@ import installExtension, {
 import { getOption } from './store';
 
 let httpServer;
+let mprisPlayer;
 let tray;
 let win;
 let icon = nativeImage.createFromPath(
@@ -136,13 +138,22 @@ function createWindow() {
     if (arg === null) {
       return;
     }
+    console.log('song change', arg);
     changeWindowTitle(arg.artist, arg.name);
+    mprisPlayer.metadata = {
+      'mpris:trackid': mprisPlayer.objectPath('track/0'),
+      'mpris:length': 60 * 1000 * 1000, // In microseconds
+      'mpris:artUrl': 'http://www.adele.tv/images/facebook/adele.jpg',
+      'xesam:title': arg.name,
+      'xesam:album': '21',
+      'xesam:artist': [arg.artist]
+    };
   });
 }
 
 app.on('ready', () => {
   createWindow();
-
+  mprisPlayer = new MprisPlayer();
   (async () => {
     const availablePort = await getPort({ port: getPort.makeRange(3000, 3100) });
     if (getOption('api.enabled')) {

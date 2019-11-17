@@ -5,7 +5,7 @@ import swagger from 'swagger-spec-express';
 import {
   onCreatePlaylist,
   onRemovePlaylist
-} from '../../mpris';
+} from '../../ipc';
 import { addPlaylistSchema } from '../schema';
 import { getStandardDescription } from '../swagger';
 import { store } from '../../store';

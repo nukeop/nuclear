@@ -2,7 +2,7 @@ import express from 'express';
 import { Validator } from 'express-json-validator-middleware';
 import swagger from 'swagger-spec-express';
 
-import { onSettings } from '../../mpris';
+import { onSettings } from '../../ipc';
 import { getOption, store } from '../../store';
 import { getSettingsSchema, updateSettingsSchema, RESTRICTED_SETTINGS } from '../schema';
 import settingsParams from '../../../common/settings';

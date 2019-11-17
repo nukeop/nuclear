@@ -3,7 +3,7 @@ import { Validator } from 'express-json-validator-middleware';
 import swagger from 'swagger-spec-express';
 
 import { store } from '../../store';
-import { onUpdateEqualizer, onSetEqualizer } from '../../mpris';
+import { onUpdateEqualizer, onSetEqualizer } from '../../ipc';
 import { updateEqualizerSchema } from '../schema';
 import { getStandardDescription } from '../swagger';
 

@@ -4,7 +4,7 @@ import swagger from 'swagger-spec-express';
 import {
   onEmptyQueue,
   getQueue
-} from '../../mpris';
+} from '../../ipc';
 import { getStandardDescription } from '../swagger';
 
 export function queueRouter() {

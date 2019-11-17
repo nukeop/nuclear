@@ -13,7 +13,7 @@ import {
   onSeek,
   onMute,
   getPlayingStatus
-} from '../../mpris';
+} from '../../ipc';
 import { volumeSchema, seekSchema } from '../schema';
 import { getStandardDescription } from '../swagger';
 
