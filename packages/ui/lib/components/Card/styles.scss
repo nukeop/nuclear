@@ -1,21 +1,9 @@
 @import '../../common';
 
 .card_container {
-  width: 20%;
+  width: 100%;
   max-width: 240px;
   padding: 1rem;
-
-  @media screen and (max-width: 1600px) {
-    width: 25%;
-  }
-
-  @media screen and (max-width: 1280px) {
-    width: 33.33%;
-  }
-
-  @media screen and (max-width: 1100px) {
-    width: 50%;
-  }
 
   .card {
     @include roundCorners;
