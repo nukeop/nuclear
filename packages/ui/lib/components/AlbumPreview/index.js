@@ -5,12 +5,13 @@ import _ from 'lodash';
 import TrackRow from '../TrackRow';
 import artPlaceholder from '../../../resources/media/art_placeholder.png';
 import styles from './styles.scss';
+import { getThumbnail } from '../AlbumGrid';
 
 const AlbumPreview = ({album}) => (
   <div className={styles.album_preview} >
     <div
       className={styles.album_cover}
-      style={{backgroundImage: `url(${_.get(album, 'image[0][\'#text\']', artPlaceholder)})`}}
+      style={{backgroundImage: `url(${_.defaultTo(getThumbnail(album), artPlaceholder)})`}}
     />
     <div className={styles.track_list}>
       <table>

@@ -12,7 +12,7 @@ storiesOf('Album preview', module)
           artist: {
             name: 'test artist'
           },
-          image: [{'#text': 'https://i.imgur.com/4euOws2.jpg'}],
+          images: [{'uri': 'https://i.imgur.com/4euOws2.jpg'}],
           tracks: _().range(10).map(i => (
             {
               name: `Test track ${i}`,
