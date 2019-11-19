@@ -20,7 +20,8 @@
   .track_list {
     flex: 1 1 auto;
     overflow: auto;
-    margin: 0 1em;
+    padding-right: 1em;
+    padding-left: 1em;
 
     table {
       width: 100%;

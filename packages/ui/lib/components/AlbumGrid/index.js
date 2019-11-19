@@ -42,6 +42,8 @@ const AlbumGrid = ({
       }
     </div>
 
+    <hr />
+
     {
       !loading && withAlbumPreview &&
         <AlbumPreview
