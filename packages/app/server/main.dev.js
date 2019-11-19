@@ -138,22 +138,21 @@ function createWindow() {
     if (arg === null) {
       return;
     }
-    console.log('song change', arg);
     changeWindowTitle(arg.artist, arg.name);
-    mprisPlayer.metadata = {
-      'mpris:trackid': mprisPlayer.objectPath('track/0'),
-      'mpris:length': 60 * 1000 * 1000, // In microseconds
-      'mpris:artUrl': 'http://www.adele.tv/images/facebook/adele.jpg',
-      'xesam:title': arg.name,
-      'xesam:album': '21',
-      'xesam:artist': [arg.artist]
-    };
+    mprisPlayer.setMetadata(arg);
   });
 }
 
 app.on('ready', () => {
   createWindow();
   mprisPlayer = new MprisPlayer();
+  mprisPlayer.listen();
+
+  setTimeout(() => {
+    console.log('SUUUUUUBSCRIBE !!!!!');
+    mprisPlayer.subscribeForStatus();
+  }, 10000);
+
   (async () => {
     const availablePort = await getPort({ port: getPort.makeRange(3000, 3100) });
     if (getOption('api.enabled')) {

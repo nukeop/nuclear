@@ -6,6 +6,11 @@ module.exports = () => {
 
   return {
     entry,
+    resolve: {
+      alias: {
+        jsbi: __dirname + '/node_modules/jsbi/dist/jsbi-cjs.js'
+      }
+    },
     output: {
       path: __dirname,
       filename: 'bundle.electron.js'

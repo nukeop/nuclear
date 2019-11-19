@@ -126,13 +126,13 @@ export function refreshLocalFolders() {
   ipcRenderer.send('refresh-localfolders');
 }
 
-export function sendPlayingStatus(event, playerState, queueState) {
+export function sendPlayingStatus(event, playerState, queueState, { loopAfterQueueEnd, shuffleQueue }) {
   try {
     const { artist, name, thumbnail } = queueState.queueItems[queueState.currentSong];
 
-    ipcRenderer.send('playing-status', { ...playerState, artist, name, thumbnail });
+    ipcRenderer.send('playing-status', { ...playerState, artist, name, thumbnail, loopAfterQueueEnd, shuffleQueue });
   } catch (err) {
-    ipcRenderer.send('playing-status', playerState);
+    ipcRenderer.send('playing-status', { ...playerState, loopAfterQueueEnd, shuffleQueue });
   }
 }
 

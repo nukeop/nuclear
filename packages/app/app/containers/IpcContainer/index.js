@@ -50,7 +50,7 @@ class IpcContainer extends React.Component {
     ipcRenderer.on('mute', event => onMute(event, this.props.actions, this.props.player));
     ipcRenderer.on('volume', (event, data) => onVolume(event, data, this.props.actions));
     ipcRenderer.on('seek', (event, data) => onSeek(event, data, this.props.actions));
-    ipcRenderer.on('playing-status', event => sendPlayingStatus(event, this.props.player, this.props.queue));
+    ipcRenderer.on('playing-status', event => sendPlayingStatus(event, this.props.player, this.props.queue, this.props.settings));
     ipcRenderer.on('empty-queue', event => onEmptyQueue(event, this.props.actions));
     ipcRenderer.on('queue', event => sendQueueItems(event, this.props.queue.queueItems));
     ipcRenderer.on('create-playlist', (event, name) => onCreatePlaylist(event, { name, tracks: this.props.queue.queueItems }, this.props.actions));
@@ -90,7 +90,8 @@ class IpcContainer extends React.Component {
 function mapStateToProps(state) {
   return {
     player: state.player,
-    queue: state.queue
+    queue: state.queue,
+    settings: state.settings
   };
 }
 
