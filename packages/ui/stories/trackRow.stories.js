@@ -4,9 +4,9 @@ import { storiesOf } from '@storybook/react';
 import { TrackRow } from '..';
 
 storiesOf('Track row', module)
-  .add('Basic', () => (
+  .add('With all columns', () => (
     <div className='bg'>
-      <table>
+      <table style={{width: '100%'}}>
         <tbody>
           <TrackRow
             track={{
@@ -14,14 +14,22 @@ storiesOf('Track row', module)
               artist: { name: 'Test artist' },
               duration: 100,
               position: 0,
-              playcount: 100
+              playcount: Math.random() * 100000000
             }}
+            onDelete={() => alert('Track deleted')}
+
             displayArtist
             displayAlbum
             displayCover
             displayDuration
             displayPlayCount
             displayTrackNumber
+
+            withAddToDownloads
+            withAddToFavorites
+            withAddToQueue
+            withDeleteButton
+            withPlayNow
           />
         </tbody>
       </table>
@@ -29,7 +37,7 @@ storiesOf('Track row', module)
   ))
   .add('Several rows', () => (
     <div className='bg'>
-      <table>
+      <table style={{width: '100%'}}>
         <tbody>
           {
             _().range(10).map(() => (
@@ -39,7 +47,7 @@ storiesOf('Track row', module)
                   artist: { name: 'Test artist' },
                   duration: 100,
                   position: 0,
-                  playcount: 100
+                  playcount: Math.random() * 100000000
                 }}
                 displayArtist
                 displayAlbum

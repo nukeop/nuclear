@@ -18,9 +18,17 @@
     }
   }
 
+  a {
+    color: $white;
+  }
+
   td {
     padding: $padding;
     border-bottom: 1px solid $background2;
+
+    &:last-child {
+      text-align: right;
+    }
   }
 
   &.mini td {
