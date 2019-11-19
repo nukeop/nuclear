@@ -1,14 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import _ from 'lodash';
 
 import TrackRow from '../TrackRow';
+import artPlaceholder from '../../../resources/media/art_placeholder.png';
 import styles from './styles.scss';
 
 const AlbumPreview = ({album}) => (
   <div className={styles.album_preview} >
     <div
       className={styles.album_cover}
-      style={{backgroundImage: `url(${album.image[0]['#text']})`}}
+      style={{backgroundImage: `url(${_.get(album, 'image[0][\'#text\']', artPlaceholder)})`}}
     />
     <div className={styles.track_list}>
       <table>
