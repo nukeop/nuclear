@@ -5,6 +5,7 @@ import cx from 'classnames';
 import { Icon } from 'semantic-ui-react';
 
 import artPlaceholder from '../../../resources/media/art_placeholder.png';
+import { formatDuration } from '../../utils';
 import styles from './styles.scss';
 
 const getTrackThumbnail = track => {
@@ -18,12 +19,12 @@ const getTrackThumbnail = track => {
 const TrackRow = ({
   track,
   mini,
-  displayCover,
-  displayTrackNumber,
-  displayArtist,
   displayAlbum,
+  displayArtist,
+  displayCover,
   displayDuration,
   displayPlayCount,
+  displayTrackNumber,
   withDeleteButton,
   onDelete
 }) => (
@@ -35,7 +36,7 @@ const TrackRow = ({
       withDeleteButton &&
       <td className={styles.track_row_buttons}>
         <a onClick={onDelete}>
-          <Icon name='close'/>
+          <Icon name='close' />
         </a>
       </td>
     }
@@ -57,6 +58,9 @@ const TrackRow = ({
         { track.artist.name }
       </td>
     }
+    <td className={styles.track_row_name}>
+      { track.name }
+    </td>
     {
       displayAlbum &&
       <td className={styles.track_row_album}>
@@ -66,7 +70,7 @@ const TrackRow = ({
     {
       displayDuration &&
       <td className={styles.track_row_duration}>
-        { track.duration }
+        { formatDuration(track.duration) }
       </td>
     }
     {
@@ -92,18 +96,18 @@ TrackRow.propTypes = {
 
   mini: PropTypes.bool,
 
-  displayCover: PropTypes.bool,
-  displayTrackNumber: PropTypes.bool,
-  displayArtist: PropTypes.bool,
   displayAlbum: PropTypes.bool,
+  displayArtist: PropTypes.bool,
+  displayCover: PropTypes.bool,
   displayDuration: PropTypes.bool,
   displayPlayCount: PropTypes.bool,
+  displayTrackNumber: PropTypes.bool,
 
-  withAddToQueue: PropTypes.bool,
-  withPlayNow: PropTypes.bool,
-  withAddToFavorites: PropTypes.bool,
   withAddToDownloads: PropTypes.bool,
+  withAddToFavorites: PropTypes.bool,
+  withAddToQueue: PropTypes.bool,
   withDeleteButton: PropTypes.bool,
+  withPlayNow: PropTypes.bool,
 
   onDelete: PropTypes.func
 };

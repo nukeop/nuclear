@@ -164,7 +164,7 @@ function mapStateToProps (state, { track }) {
 function mapDispatchToProps (dispatch) {
   return {
     actions: bindActionCreators(
-      Object.assign({}, QueueActions),
+      QueueActions,
       dispatch
     )
   };
