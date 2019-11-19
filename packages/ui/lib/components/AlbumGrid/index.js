@@ -10,13 +10,14 @@ import Card from '../Card';
 import common from '../../common.scss';
 import styles from './styles.scss';
 
-const getThumbnail = album => {
+export const getThumbnail = album => {
   return _.get(album, 'images[0].uri', _.get(album, 'thumb'));
 };
 
 const AlbumGrid = ({
   albums,
   onAlbumClick,
+  selectedAlbum,
   loading,
   withArtistNames,
   withAlbumPreview
@@ -26,31 +27,32 @@ const AlbumGrid = ({
     styles.album_grid,
     {[styles.loading]: loading}
   )} >
-    <div className={styles.album_cards}>
-      {
-        !loading &&
-        !_.isEmpty(albums) &&
-        albums.map((album, i) => (
-          <Card
-            key={i}
-            header={album.title}
-            content={withArtistNames && _.get(album, 'artist.name')}
-            image={getThumbnail(album)}
-            onClick={() => onAlbumClick(album)}
-          />
-        ))
-      }
-    </div>
+  <div className={styles.album_cards}>
+  {
+    !loading &&
+    !_.isEmpty(albums) &&
+    albums.map((album, i) => (
+      <Card
+      key={i}
+      header={album.title}
+      content={withArtistNames && _.get(album, 'artist.name')}
+      image={getThumbnail(album)}
+      onClick={() => onAlbumClick(album)}
+      />
+    ))
+  }
+  </div>
 
+  {
+    !loading && withAlbumPreview &&
+    <>
     <hr />
-
-    {
-      !loading && withAlbumPreview &&
-        <AlbumPreview
-          album={_.head(albums)}
-        />
-    }
-    { loading && <Dimmer active><Loader /></Dimmer> }
+    <AlbumPreview
+    album={ selectedAlbum }
+    />
+    </>
+  }
+  { loading && <Dimmer active><Loader /></Dimmer> }
   </div>
 );
 
@@ -62,4 +64,12 @@ AlbumGrid.propTypes = {
   withAlbumPreview: PropTypes.bool
 };
 
-export default AlbumGrid;
+export default compose(
+  withState(
+    'selectedAlbum',
+    'selectAlbum',
+  ({ albums }) => _.head(albums)),
+  withHandlers({
+    onAlbumClick: ({ selectAlbum }) => album => selectAlbum(album)
+  })
+)(AlbumGrid);
