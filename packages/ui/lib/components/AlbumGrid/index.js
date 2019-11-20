@@ -11,7 +11,9 @@ import common from '../../common.scss';
 import styles from './styles.scss';
 
 export const getThumbnail = album => {
-  return _.get(album, 'images[0].uri', _.get(album, 'thumb'));
+  return _.get(album, 'images[0].uri',
+    _.get(album, 'image[0][\'#text\']',
+      _.get(album, 'thumb')));
 };
 
 const AlbumGrid = ({
@@ -27,32 +29,32 @@ const AlbumGrid = ({
     styles.album_grid,
     {[styles.loading]: loading}
   )} >
-  <div className={styles.album_cards}>
-  {
-    !loading &&
+    <div className={styles.album_cards}>
+      {
+        !loading &&
     !_.isEmpty(albums) &&
     albums.map((album, i) => (
       <Card
-      key={i}
-      header={album.title}
-      content={withArtistNames && _.get(album, 'artist.name')}
-      image={getThumbnail(album)}
-      onClick={() => onAlbumClick(album)}
+        key={i}
+        header={album.title}
+        content={withArtistNames && _.get(album, 'artist.name')}
+        image={getThumbnail(album)}
+        onClick={() => onAlbumClick(album)}
       />
     ))
-  }
-  </div>
+      }
+    </div>
 
-  {
-    !loading && withAlbumPreview &&
-    <>
-    <hr />
-    <AlbumPreview
-    album={ selectedAlbum }
-    />
-    </>
-  }
-  { loading && <Dimmer active><Loader /></Dimmer> }
+    {
+      !loading && withAlbumPreview &&
+      <>
+        <hr />
+        <AlbumPreview
+          album={selectedAlbum}
+        />
+      </>
+    }
+    { loading && <Dimmer active><Loader /></Dimmer> }
   </div>
 );
 
@@ -68,7 +70,7 @@ export default compose(
   withState(
     'selectedAlbum',
     'selectAlbum',
-  ({ albums }) => _.head(albums)),
+    ({ albums }) => _.head(albums)),
   withHandlers({
     onAlbumClick: ({ selectAlbum }) => album => selectAlbum(album)
   })

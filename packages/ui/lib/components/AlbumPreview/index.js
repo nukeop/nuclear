@@ -6,34 +6,37 @@ import TrackRow from '../TrackRow';
 import artPlaceholder from '../../../resources/media/art_placeholder.png';
 import styles from './styles.scss';
 import { getThumbnail } from '../AlbumGrid';
+console.log(artPlaceholder);
 
-const AlbumPreview = ({album}) => (
-  <div className={styles.album_preview} >
-    <div
-      className={styles.album_cover}
-      style={{backgroundImage: `url(${_.defaultTo(getThumbnail(album), artPlaceholder)})`}}
-    />
-    <div className={styles.track_list}>
-      <table>
-        <tbody>
-          {
-            album.tracks.map(track => (
-              <TrackRow
-                key={track.position}
-                track={track}
-                mini
-                displayArtist
-                displayAlbum
-                displayTrackNumber
-                displayDuration
-              />
-            ))
-          }
-        </tbody>
-      </table>
+const AlbumPreview = ({album}) => {
+  return (
+    <div className={styles.album_preview} >
+      <div
+        className={styles.album_cover}
+        style={{backgroundImage: `url(${_.defaultTo(getThumbnail(album), artPlaceholder)})`}}
+      />
+      <div className={styles.track_list}>
+        <table>
+          <tbody>
+            {
+              album.tracks.map(track => (
+                <TrackRow
+                  key={track.position}
+                  track={track}
+                  mini
+                  displayArtist
+                  displayAlbum
+                  displayTrackNumber
+                  displayDuration
+                />
+              ))
+            }
+          </tbody>
+        </table>
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 AlbumPreview.propTypes = {
   album: PropTypes.shape({
