@@ -30,7 +30,7 @@ storiesOf('Album grid', module)
           artist: {
             name: 'test artist'
           },
-          images: [{'uri': 'https://i.imgur.com/4euOws2.jpg'}],
+          image: [{'#text': 'https://i.imgur.com/4euOws2.jpg'}],
           tracks: _().range(10).map(i => (
             {
               name: `Test track ${Math.random() * i}`,

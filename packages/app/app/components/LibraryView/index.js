@@ -101,6 +101,8 @@ const LibraryView = ({
                   listType === LIST_TYPE.ALBUM_GRID &&
                   <LibraryAlbumGrid
                     tracks={tracks}
+                    withArtistNames
+                    withAlbumPreview
                   />
                   }
                 </Segment>

@@ -10,11 +10,11 @@
   .album_cover {
     @include roundCorners;
     position: relative;
-    height: 100%;
-    max-width: 240px;
+    height: auto;
+    width: 240px;
     background-size: cover !important;
     background-position: center !important;
-    flex: 1 1 auto;
+    flex: 0 0 auto;
   }
 
   .track_list {
