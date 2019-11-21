@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Icon } from 'semantic-ui-react';
+import { withHandlers } from 'recompose';
 
 import styles from './styles.scss';
 
@@ -36,4 +37,9 @@ PopupButton.defaultProps = {
   label: ''
 };
 
-export default PopupButton;
+export default withHandlers({
+  onClick: ({ onClick }) => e => {
+    onClick();
+    e.preventDefault();
+  }
+})(PopupButton);

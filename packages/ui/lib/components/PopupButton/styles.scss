@@ -6,6 +6,7 @@
   text-decoration: none;
   color: $white;
   transition: $short-duration;
+  user-select: none;
 
   &:hover {
     background: $pink;
