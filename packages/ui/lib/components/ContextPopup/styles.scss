@@ -1,0 +1,74 @@
+@import '../../common';
+
+.context_popup {
+  display: flex;
+  flex-flow: row;
+  background-color: $background !important;
+  color: $white;
+  border-color: $background2 !important;
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.18),
+  0px 0px 20px 0px rgba(0, 0, 0, 0.09) !important;
+
+  &:before {
+    background-color: $background !important;
+    box-shadow: -1px -1px 0 0 $background2 !important;
+  }
+
+  hr {
+    margin: 0.5em 0 0 0;
+    border: none;
+    border-bottom: 1px solid $background2;
+  }
+
+  .popup_content > .content {
+    position: absolute;
+    display: flex;
+    width: 100%;
+    height: auto;
+  }
+
+  .popup_header {
+    display: flex;
+    padding: 0.5rem 0;
+  }
+
+  .popup_thumb {
+    flex: 0 0 auto;
+    width: 5em;
+    height: 5em;
+    object-fit: contain;
+    margin-right: 1em;
+
+    img {
+      width: 5em;
+      height: 5em;
+    }
+  }
+
+  .popup_info {
+    display: flex;
+    flex-flow: column;
+    flex: 1 1 auto;
+    height: auto;
+  }
+
+  .popup_artist {
+    flex: 0 0 auto;
+    color: rgba($white, 0.6);
+  }
+
+  .popup_title {
+    flex: 0 0 auto;
+    font-weight: bold;
+    font-size: 16px;
+    color: $white;
+  }
+
+  .popup_buttons {
+    display: flex;
+    flex-flow: column;
+    flex: 0 0 auto;
+    padding: 0.5rem 0;
+    height: auto !important;
+  }
+}

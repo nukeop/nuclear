@@ -1,0 +1,15 @@
+@import '../../common.scss';
+
+.popup_button {
+  width: 100%;
+  padding: 0.5em;
+  text-decoration: none;
+  color: $white;
+  transition: $short-duration;
+
+  &:hover {
+    background: $pink;
+    text-decoration: none;
+    color: $white;
+  }
+}
