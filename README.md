@@ -12,6 +12,7 @@ Desktop music player focused on streaming from free sources
 [Twitter](https://twitter.com/nuclear_player)
 
 Support channel (Matrix): `#nuclear:matrix.org`
+Discord channel: https://discord.gg/JqPjKxE
 
 Readme translations: 
 * [Brazilian Portuguese](docs/README-ptbr.md)
