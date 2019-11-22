@@ -12,6 +12,7 @@ Desktop music player focused on streaming from free sources
 [Twitter](https://twitter.com/nuclear_player)
 
 Support channel (Matrix): `#nuclear:matrix.org`
+Discord channel: https://discord.gg/JqPjKxE
 
 Readme translations: 
 * [Brazilian Portuguese](docs/README-ptbr.md)
@@ -77,6 +78,7 @@ Nuclear has already been translated to several languages, and we're always looki
 | Slovak               | [MartinT](https://github.com/MartinTuroci)                                                           |
 | Czech                | [PetrTodorov](https://github.com/PetrTodorov)                                                        |
 | Tagalog                | [giftofgrub](https://github.com/giftofgrub)                                                        |
+| Traditional Chinese         | [oxygen-TW](https://github.com/oxygen-TW)                                                     |
 
 ## Screenshots
 This will be updated as the program evolves.
