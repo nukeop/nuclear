@@ -2,13 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
 
+import { getThumbnail } from '../AlbumGrid';
+import ContextPopup from '../ContextPopup';
+import PopupButton from '../PopupButton';
 import TrackRow from '../TrackRow';
 import artPlaceholder from '../../../resources/media/art_placeholder.png';
 import styles from './styles.scss';
-import { getThumbnail } from '../AlbumGrid';
-console.log(artPlaceholder);
 
-const AlbumPreview = ({album}) => {
+const AlbumPreview = ({ album, trackButtons }) => {
   return (
     <div className={styles.album_preview} >
       <div
@@ -20,15 +21,21 @@ const AlbumPreview = ({album}) => {
           <tbody>
             {
               album.tracks.map(track => (
-                <TrackRow
-                  key={track.position}
-                  track={track}
-                  mini
-                  displayArtist
-                  displayAlbum
-                  displayTrackNumber
-                  displayDuration
-                />
+                <ContextPopup
+                  trigger={
+                    <TrackRow
+                      key={track.position}
+                      track={track}
+                      mini
+                      displayArtist
+                      displayAlbum
+                      displayTrackNumber
+                      displayDuration
+                    />
+                  }
+                >
+                  { trackButtons.map(trackButton => <PopupButton {...trackButton}/>) }
+                </ContextPopup>
               ))
             }
           </tbody>
@@ -56,7 +63,13 @@ AlbumPreview.propTypes = {
     image: PropTypes.arrayOf(PropTypes.shape({
       '#text': PropTypes.string
     }))
-  })
+  }),
+  trackButtons: PropTypes.arrayOf(PropTypes.shape({
+    onClick: PropTypes.func,
+    ariaLabel: PropTypes.string,
+    icon: PropTypes.string,
+    label: PropTypes.string
+  }))
 };
 
 export default AlbumPreview;

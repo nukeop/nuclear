@@ -1,12 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import _ from 'lodash';
 import { Dimmer, Icon, Loader } from 'semantic-ui-react';
 import { ipcRenderer } from 'electron';
 import { withTranslation } from 'react-i18next';
-import _ from 'lodash';
+import { ContextPopup, PopupButton } from '@nuclear/ui';
 
-import ContextPopup from '../ContextPopup';
-import PopupButton from '../ContextPopup/PopupButton';
 import TrackRow from '../TrackRow';
 import * as Utils from '../../utils';
 import {safeAddUuid} from '../../actions/helpers';
@@ -265,15 +264,15 @@ class AlbumView extends React.Component {
         title={album.title}
         thumb={this.getAlbumImage(album)}
       >
-        <PopupButton 
-          onClick={() => 
+        <PopupButton
+          onClick={() =>
             this.addAlbumToQueue(album)
           }
           ariaLabel={this.props.t('queue')}
           icon='plus'
           label={this.props.t('queue')}
         />
-        <PopupButton 
+        <PopupButton
           onClick={() =>
             this.addAlbumToDownloads(album)}
           ariaLabel={this.props.t('download')}

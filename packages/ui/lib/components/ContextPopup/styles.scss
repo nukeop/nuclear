@@ -12,7 +12,14 @@
 
   &:before {
     background-color: $background !important;
+  }
+
+  &.bottom:before {
     box-shadow: -1px -1px 0 0 $background2 !important;
+  }
+
+  &.top:before {
+    box-shadow: 1px 1px 0 0 $background2 !important;
   }
 
   hr {

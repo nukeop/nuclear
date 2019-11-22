@@ -21,6 +21,7 @@ const AlbumGrid = ({
   onAlbumClick,
   selectedAlbum,
   loading,
+  trackButtons,
   withArtistNames,
   withAlbumPreview
 }) => (
@@ -51,6 +52,7 @@ const AlbumGrid = ({
         <hr />
         <AlbumPreview
           album={selectedAlbum}
+          trackButtons={trackButtons}
         />
       </>
     }
@@ -63,7 +65,14 @@ AlbumGrid.propTypes = {
   onAlbumClick: PropTypes.func,
   loading: PropTypes.bool,
   withArtistNames: PropTypes.bool,
-  withAlbumPreview: PropTypes.bool
+  withAlbumPreview: PropTypes.bool,
+
+  trackButtons: PropTypes.arrayOf(PropTypes.shape({
+    onClick: PropTypes.func,
+    ariaLabel: PropTypes.string,
+    icon: PropTypes.string,
+    label: PropTypes.string
+  }))
 };
 
 export default compose(
