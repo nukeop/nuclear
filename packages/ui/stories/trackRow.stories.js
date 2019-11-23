@@ -12,6 +12,7 @@ storiesOf('Track row', module)
             track={{
               album: 'Test album',
               artist: { name: 'Test artist' },
+              name: 'Test track',
               duration: 100,
               position: 0,
               playcount: Math.random() * 100000000
@@ -40,11 +41,12 @@ storiesOf('Track row', module)
       <table style={{width: '100%'}}>
         <tbody>
           {
-            _().range(10).map(() => (
+            _().range(10).map(i => (
               <TrackRow
                 track={{
                   album: 'Test album',
                   artist: { name: 'Test artist' },
+                  name: `Test track ${i}`,
                   duration: 100,
                   position: 0,
                   playcount: Math.random() * 100000000

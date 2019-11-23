@@ -26,12 +26,16 @@ const TrackRow = ({
   displayPlayCount,
   displayTrackNumber,
   withDeleteButton,
-  onDelete
+  onDelete,
+  ...other
 }) => (
-  <tr className={cx(
-    styles.track_row,
-    {[styles.mini]: mini}
-  )}>
+  <tr
+    className={cx(
+      styles.track_row,
+      {[styles.mini]: mini}
+    )}
+    {...other}
+  >
     {
       withDeleteButton &&
       <td className={styles.track_row_buttons}>

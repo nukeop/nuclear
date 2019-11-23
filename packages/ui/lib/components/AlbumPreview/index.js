@@ -10,11 +10,13 @@ import artPlaceholder from '../../../resources/media/art_placeholder.png';
 import styles from './styles.scss';
 
 const AlbumPreview = ({ album, trackButtons }) => {
+  const thumb = _.defaultTo(getThumbnail(album), artPlaceholder);
+
   return (
     <div className={styles.album_preview} >
       <div
         className={styles.album_cover}
-        style={{backgroundImage: `url(${_.defaultTo(getThumbnail(album), artPlaceholder)})`}}
+        style={{backgroundImage: `url(${thumb})`}}
       />
       <div className={styles.track_list}>
         <table>
@@ -33,8 +35,11 @@ const AlbumPreview = ({ album, trackButtons }) => {
                       displayDuration
                     />
                   }
+                  thumb={thumb}
+                  title={track.name}
+                  artist={_.get(album, 'artist.name')}
                 >
-                  { trackButtons.map(trackButton => <PopupButton {...trackButton}/>) }
+                  { trackButtons && trackButtons.map(trackButton => <PopupButton {...trackButton}/>) }
                 </ContextPopup>
               ))
             }
@@ -56,6 +61,7 @@ AlbumPreview.propTypes = {
       artist: PropTypes.shape({
         name: PropTypes.string
       }),
+      name: PropTypes.string,
       duration: PropTypes.number,
       position: PropTypes.number,
       playcount: PropTypes.number
