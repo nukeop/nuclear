@@ -7,6 +7,7 @@
   transition: $short-duration;
   cursor: pointer;
   color: $white;
+  user-select: none;
 
   &:hover {
     background: rgba($background2, 0.25);
