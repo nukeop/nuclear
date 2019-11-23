@@ -1,3 +1,4 @@
+import { ipcMain } from 'electron';
 import Player from 'mpris-service';
 
 import {
@@ -13,22 +14,27 @@ import {
 } from './ipc';
 
 const statusMapper = {
-  PLAYING: 'Playing',
-  PAUSED: 'Paused'
+  PLAYING: Player.PLAYBACK_STATUS_PLAYING,
+  PAUSED: Player.PLAYBACK_STATUS_PAUSED
+};
+
+const loopStatusMapper = {
+  true: Player.LOOP_STATUS_TRACK,
+  false: Player.LOOP_STATUS_NONE
 };
 
 const basicEvents = [
   // 'raise',
   // 'quit',
+  // 'loopStatus',
+  // 'shuffle',
   'next',
   'previous',
   'pause',
   'playpause',
   'stop',
   'play',
-  'volume',
-  'loopStatus',
-  'shuffle'
+  'volume'
   // 'seek',
   // 'position',
   // 'open',
@@ -37,6 +43,18 @@ const basicEvents = [
 class MprisPlayer extends Player {
   position = 0;
   statusInterval;
+  eventMapper = {
+    next: onNext,
+    previous: onPrevious,
+    stop: this._onStop,
+    pause: this._onPause,
+    playpause: this._onPlayPause,
+    play: this._onPlay,
+    // seek: this._onSeek,
+    volume: this._onVolume,
+    loopStatus: this._onLoop,
+    shuffle: this._onShuffle
+  };
 
   constructor() {
     super({
@@ -48,32 +66,42 @@ class MprisPlayer extends Player {
     });
   }
 
-  _onShuffle(shuffleQueue) {
-    this.shuffle = shuffleQueue;
-    onSettings({ shuffleQueue  });
+  _onShuffle() {
+    onSettings({ shuffleQueue: !this.shuffle });
+    this.shuffle = !this.shuffle;
   }
 
-  _onLoop(loopAfterQueueEnd) {
-    this.loopStatus = loopAfterQueueEnd;
-    onSettings({ loopAfterQueueEnd });
+  _onLoop() {
+    this.loopStatus = this.loopStatus === Player.LOOP_STATUS_TRACK
+      ? Player.LOOP_STATUS_NONE
+      : Player.LOOP_STATUS_TRACK;
+    onSettings({ loopAfterQueueEnd: this.loopStatus === Player.LOOP_STATUS_TRACK });
   }
 
-  _onPlay() {
-    this.playbackStatus = 'Playing';
+  _onPlay(evt) {
+    this.playbackStatus = Player.PLAYBACK_STATUS_PLAYING;
     onPlay();
   }
 
   _onPause() {
-    this.playbackStatus = 'Paused';
+    this.playbackStatus = Player.PLAYBACK_STATUS_PAUSED;
     onPause();
   }
 
+  _onStop() {
+    this.playbackStatus = Player.PLAYBACK_STATUS_STOPED;
+    onStop();
+  }
+
   _onPlayPause() {
-    this.playbackStatus = this.playbackStatus === 'Playing' ? 'Paused' : 'Playing';
+    this.playbackStatus = this.playbackStatus === Player.PLAYBACK_STATUS_PLAYING
+      ? Player.PLAYBACK_STATUS_PAUSED
+      : Player.PLAYBACK_STATUS_STOPED;
     onPlayPause();
   }
 
   _onVolume(data) {
+    this.volume = data;
     onVolume(data * 100);
   }
 
@@ -82,22 +110,11 @@ class MprisPlayer extends Player {
   // }
 
   listen() {
-    const eventMapper = {
-      next: onNext,
-      previous: onPrevious,
-      stop: onStop,
-      pause: this._onPause,
-      playpause: this._onPlayPause,
-      play: this._onPlay,
-      // seek: this._onSeek,
-      volume: this._onVolume,
-      loopStatus: this._onLoop,
-      shuffle: this._onShuffle
-    };
-
+    this.on('shuffle', this._onShuffle);
+    this.on('loopStatus', this._onLoop);
     basicEvents.forEach((eventName) => {
       this.on(eventName, data => {
-        eventMapper[eventName](data);
+        this.eventMapper[eventName](data);
       });
     });
   }
@@ -113,7 +130,7 @@ class MprisPlayer extends Player {
       this.playbackStatus = statusMapper[status.playbackStatus];
       this.volume = status.volume / 100;
       this.shuffle = status.shuffleQueue;
-      this.loopStatus = status.loopAfterQueueEnd;
+      this.loopStatus = loopStatusMapper[status.loopAfterQueueEnd];
       // this.canPlay = !status.playbackStreamLoading;
       // this.canPause = !status.playbackStreamLoading;
     }, 1000);
@@ -130,7 +147,7 @@ class MprisPlayer extends Player {
         'mpris:length': track.streams && track.streams.length ? track.streams[0].duration * 1000 * 1000 : 0, // In microseconds
         'mpris:artUrl': track.thumbnail,
         'xesam:title': track.name,
-        'xesam:album': '21',
+        // 'xesam:album': '21',
         'xesam:artist': [track.artist]
       };
     }
