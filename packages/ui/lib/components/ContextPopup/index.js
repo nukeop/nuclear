@@ -14,7 +14,8 @@ const ContextPopup = ({
   handleClose,
   thumb,
   title,
-  artist
+  artist,
+  target
 }) => (
   <Popup
     className={styles.context_popup}
@@ -24,6 +25,9 @@ const ContextPopup = ({
     onOpen={handleOpen}
     on='click'
     hideOnScroll
+    style={{
+      transform: `translate3d(${target.x}px, ${target.y}px, 0px)`
+    }}
   >
     <div className={styles.popup_header}>
       {
@@ -61,7 +65,11 @@ ContextPopup.propTypes = {
   trigger: PropTypes.node,
   thumb: PropTypes.string,
   title: PropTypes.string,
-  artist: PropTypes.string
+  artist: PropTypes.string,
+  target: PropTypes.shape({
+    x: PropTypes.number,
+    y: PropTypes.number
+  })
 };
 
 export default compose(

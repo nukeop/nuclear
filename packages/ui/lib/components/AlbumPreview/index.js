@@ -1,6 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
+import {
+  withHandlers,
+  withState,
+  compose
+} from 'recompose';
 
 import { getThumbnail } from '../AlbumGrid';
 import ContextPopup from '../ContextPopup';
@@ -9,7 +14,12 @@ import TrackRow from '../TrackRow';
 import artPlaceholder from '../../../resources/media/art_placeholder.png';
 import styles from './styles.scss';
 
-const AlbumPreview = ({ album, trackButtons }) => {
+const AlbumPreview = ({
+  album,
+  trackButtons,
+  target,
+  handleListClick
+}) => {
   const thumb = _.defaultTo(getThumbnail(album), artPlaceholder);
 
   return (
@@ -18,7 +28,10 @@ const AlbumPreview = ({ album, trackButtons }) => {
         className={styles.album_cover}
         style={{backgroundImage: `url(${thumb})`}}
       />
-      <div className={styles.track_list}>
+      <div
+        className={styles.track_list}
+        onClick={handleListClick}
+      >
         <table>
           <tbody>
             {
@@ -38,6 +51,7 @@ const AlbumPreview = ({ album, trackButtons }) => {
                   thumb={thumb}
                   title={track.name}
                   artist={_.get(album, 'artist.name')}
+                  target={target}
                 >
                   { trackButtons && trackButtons.map(trackButton => <PopupButton {...trackButton}/>) }
                 </ContextPopup>
@@ -78,4 +92,11 @@ AlbumPreview.propTypes = {
   }))
 };
 
-export default AlbumPreview;
+export default compose(
+  withState(
+    'target', 'setTarget', {x: 0, y: 0}
+  ),
+  withHandlers({
+    handleListClick: ({ setTarget }) => e => setTarget({ x: e.clientX, y: e.clientY })
+  })
+)(AlbumPreview);
