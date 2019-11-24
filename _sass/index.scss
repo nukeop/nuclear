@@ -25,6 +25,7 @@ header {
   min-height: 3rem;
   height: 3rem;
   width: 100%;
+  justify-content: space-between;
 
   a {
     display: flex;
@@ -32,11 +33,47 @@ header {
     position: relative;
     width: auto;
     height: 100%;
+
+    &:not(:last-child) {
+      margin-right: 1em;
+    }
   }
 
   img {
     width: auto;
     height: 100%;
+  }
+
+  svg {
+    width: 48px;
+    height: 48px;
+    opacity: 0.7;
+  }
+
+  .buttons {
+    display: flex;
+    flex-flow: row;
+    margin-left: 1em;
+
+    a {
+      width: 48px;
+      height: 48px;
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    display: block;
+    height: auto;
+
+    img {
+      height: 64px;
+    }
+
+    .buttons {
+      margin-top: 1em;
+      margin-left: 0;
+      justify-content: center;
+    }
   }
 }
 
@@ -253,7 +290,7 @@ form {
       margin-right: 3em;
     }
   }
-  
+
   span {
     display: inline-flex;
     flex-flow: row;
@@ -280,7 +317,7 @@ form {
   flex-flow: column;
   align-items: center;
   justify-content: center;
-padding: 2rem;
+  padding: 2rem;
 
   q {
     font-style: italic;
@@ -394,13 +431,13 @@ padding: 2rem;
     width: 120%;
   }
 
-.testimonials {
-  flex-flow: column;
-}
+  .testimonials {
+    flex-flow: column;
+  }
 
-.testimonial {
-  padding: 0 2rem 4rem 2rem;
-}
+  .testimonial {
+    padding: 0 2rem 4rem 2rem;
+  }
 
   h1 {
     font-size: 2em;
