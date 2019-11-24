@@ -50,7 +50,7 @@ function ipcListener(event) {
 }
 
 class MprisPlayer extends Player {
-  constructor() {
+  constructor(window, app) {
     super({
       name: 'Nuclear',
       identity: 'Nuclear audio player',
@@ -66,6 +66,8 @@ class MprisPlayer extends Player {
       supportedInterfaces: ['player', 'trackList']
     });
 
+    this.window = window;
+    this.app = app;
     this.tracks = [];
   }
 
@@ -79,6 +81,16 @@ class MprisPlayer extends Player {
       'xesam:artist': [track.artist]
       // 'xesam:album': '21'
     };
+  }
+
+  @mprisListener('raise')
+  _onRaise() {
+    this.window.focus();
+  }
+
+  @mprisListener('quit')
+  _onQuit() {
+    this.app.quit();
   }
 
   @mprisListener('shuffle')

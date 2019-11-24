@@ -76,7 +76,7 @@ function createWindow() {
     // this must run after win.show(), otherwise startup errors cause
     // dev-tools to pause execution, causing "ready-to-show" to never trigger
     win.webContents.openDevTools();
-    mprisPlayer = new MprisPlayer();
+    mprisPlayer = new MprisPlayer(win, app);
     mprisPlayer.listen();
   });
 
