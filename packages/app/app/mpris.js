@@ -164,6 +164,9 @@ export function removeTrack(track) {
   ipcRenderer.send('removeTrack', track);
 }
 
-export function queueGoTo(index) {
-  ipcRenderer.send('goTo', index);
+export function onActivatePlaylist(playlists, playlistName, streamProviders, actions) {
+  const tracks = playlists.find(({ name }) => playlistName === name).tracks;
+
+  actions.clearQueue();
+  actions.addPlaylistTracksToQueue(streamProviders, tracks);
 }

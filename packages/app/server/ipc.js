@@ -66,6 +66,10 @@ function onRemovePlaylist() {
   rendererWindow.send('refresh-playlists');
 }
 
+function onActivatePlaylist(name) {
+  rendererWindow.send('activate-playlist', name);
+}
+
 function onUpdateEqualizer(data) {
   rendererWindow.send('update-equalizer', data);
 }
@@ -107,6 +111,7 @@ export {
   getQueue,
   onCreatePlaylist,
   onRemovePlaylist,
+  onActivatePlaylist,
   getPlayingStatus,
   onUpdateEqualizer,
   onSetEqualizer,

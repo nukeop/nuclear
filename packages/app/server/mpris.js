@@ -1,6 +1,9 @@
 import { ipcMain } from 'electron';
 import Player from 'mpris-service';
 
+import { autobind, ipcListener, mprisListener } from './lib/decorators';
+import { store } from './store';
+
 import {
   onPlayPause,
   onNext,
@@ -11,7 +14,8 @@ import {
   onStop,
   getPlayingStatus,
   onSettings,
-  onSelectTrack
+  onSelectTrack,
+  onActivatePlaylist
 } from './ipc';
 
 const statusMapper = {
@@ -23,31 +27,6 @@ const loopStatusMapper = {
   true: Player.LOOP_STATUS_PLAYLIST,
   false: Player.LOOP_STATUS_NONE
 };
-
-function mprisListener(event) {
-  return (target, handler) => {
-    target.mprisEvents = target.mprisEvents || [];
-    target.mprisEvents.push({ event, handler });
-  };
-}
-
-function ipcListener(event) {
-  return (target, handler, descriptor) => {
-    target.ipcEvents = target.ipcEvents || [];
-    target.ipcEvents.push({ event, handler });
-
-    return {
-      configurable: true,
-      get() {
-        return descriptor.value.bind(this);
-      },
-      set(value) {
-        descriptor.value = value;
-        delete this[handler];
-      }
-    };
-  };
-}
 
 class MprisPlayer extends Player {
   constructor(window, app) {
@@ -61,16 +40,18 @@ class MprisPlayer extends Player {
         'audio/x-flac',
         'audio/wav',
         'audio/ogg'
-      
       ],
-      supportedInterfaces: ['player', 'trackList']
+      supportedInterfaces: ['player', 'trackList', 'playlists']
     });
 
+    const storedPlaylists = store.get('playlists');
     this.window = window;
     this.app = app;
     this.tracks = [];
+    this.setPlaylists(storedPlaylists ? storedPlaylists.map(this._playlistMapper) : []);
   }
 
+  @autobind
   _trackMapper(track, index = 0) {
     return {
       id: track.uuid,
@@ -81,6 +62,21 @@ class MprisPlayer extends Player {
       'xesam:artist': [track.artist]
       // 'xesam:album': '21'
     };
+  }
+
+  @autobind
+  _playlistMapper(playlist, index = 0) {
+    return {
+      Id: this.objectPath(`playlist/${index}`),
+      Name: playlist.name,
+      Icon: playlist.tracks[0].thumbnail
+    };
+  }
+
+  @mprisListener('activatePlaylist')
+  _onActivatePlaylist(playlistId) {
+    this.setActivePlaylist(playlistId);
+    onActivatePlaylist(this.playlists[this.getPlaylistIndex(playlistId)].Name);
   }
 
   @mprisListener('raise')

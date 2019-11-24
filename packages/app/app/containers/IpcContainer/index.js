@@ -34,7 +34,8 @@ import {
   onLocalFilesProgress,
   onLocalFiles,
   onLocalFilesError,
-  onSelectTrack
+  onSelectTrack,
+  onActivatePlaylist
 } from '../../mpris';
 
 class IpcContainer extends React.Component {
@@ -57,6 +58,7 @@ class IpcContainer extends React.Component {
     ipcRenderer.on('select-track', (event, index) => onSelectTrack(index, this.props.actions));
     ipcRenderer.on('create-playlist', (event, name) => onCreatePlaylist(event, { name, tracks: this.props.queue.queueItems }, this.props.actions));
     ipcRenderer.on('refresh-playlists', (event) => onRefreshPlaylists(event, this.props.actions));
+    ipcRenderer.on('activate-playlist', (event, name) => onActivatePlaylist(this.props.playlists, name, this.props.streamProviders, this.props.actions));
     ipcRenderer.on('update-equalizer', (event, data) =>  onUpdateEqualizer(event, this.props.actions, data));
     ipcRenderer.on('set-equalizer', (event, data) => onSetEqualizer(event, this.props.actions, data));
     ipcRenderer.on('local-files-progress', (event, data) => onLocalFilesProgress(event, this.props.actions, data));
@@ -93,7 +95,9 @@ function mapStateToProps(state) {
   return {
     player: state.player,
     queue: state.queue,
-    settings: state.settings
+    settings: state.settings,
+    playlists: state.playlists.playlists,
+    streamProviders: state.plugin.plugins.streamProviders
   };
 }
 
