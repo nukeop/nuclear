@@ -1,5 +1,5 @@
 import Sound from 'react-hifi';
-import { sendPaused, sendPlay } from '../mpris';
+import { sendPaused, sendPlay, sendVolume } from '../mpris';
 
 export const START_PLAYBACK = 'START_PLAYBACK';
 export const PAUSE_PLAYBACK = 'PAUSE_PLAYBACK';
@@ -54,6 +54,7 @@ export function updateSeek(seek) {
 }
 
 export function updateVolume(volume) {
+  sendVolume(volume);
   return {
     type: UPDATE_VOLUME,
     payload: volume

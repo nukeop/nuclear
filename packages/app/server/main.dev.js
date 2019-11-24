@@ -76,6 +76,8 @@ function createWindow() {
     // this must run after win.show(), otherwise startup errors cause
     // dev-tools to pause execution, causing "ready-to-show" to never trigger
     win.webContents.openDevTools();
+    mprisPlayer = new MprisPlayer();
+    mprisPlayer.listen();
   });
 
   win.on('closed', () => {
@@ -145,13 +147,6 @@ function createWindow() {
 
 app.on('ready', () => {
   createWindow();
-  mprisPlayer = new MprisPlayer();
-  mprisPlayer.listen();
-
-  setTimeout(() => {
-    console.log('SUUUUUUBSCRIBE !!!!!');
-    mprisPlayer.subscribeForStatus();
-  }, 10000);
 
   (async () => {
     const availablePort = await getPort({ port: getPort.makeRange(3000, 3100) });

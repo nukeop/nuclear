@@ -102,6 +102,18 @@ export function sendPaused() {
   ipcRenderer.send('paused');
 }
 
+export function sendVolume(data) {
+  ipcRenderer.send('volume', data);
+}
+
+export function sendShuffle(data) {
+  ipcRenderer.send('shuffle', data);
+}
+
+export function sendLoop(data) {
+  ipcRenderer.send('loopStatus', data);
+}
+
 export function sendClose() {
   ipcRenderer.send('close');
 }
