@@ -18,6 +18,10 @@ function onPrevious() {
   rendererWindow.send('previous');
 }
 
+function onSelectTrack(index) {
+  rendererWindow.send('select-track', index);
+}
+
 function onPause() {
   rendererWindow.send('pause');
 }
@@ -105,5 +109,6 @@ export {
   onRemovePlaylist,
   getPlayingStatus,
   onUpdateEqualizer,
-  onSetEqualizer
+  onSetEqualizer,
+  onSelectTrack
 };

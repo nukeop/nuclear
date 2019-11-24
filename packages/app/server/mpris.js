@@ -10,7 +10,8 @@ import {
   onVolume,
   onStop,
   getPlayingStatus,
-  onSettings
+  onSettings,
+  onSelectTrack
 } from './ipc';
 
 const statusMapper = {
@@ -19,7 +20,7 @@ const statusMapper = {
 };
 
 const loopStatusMapper = {
-  true: Player.LOOP_STATUS_TRACK,
+  true: Player.LOOP_STATUS_PLAYLIST,
   false: Player.LOOP_STATUS_NONE
 };
 
@@ -31,23 +32,53 @@ function mprisListener(event) {
 }
 
 function ipcListener(event) {
-  return (target, handler) => {
+  return (target, handler, descriptor) => {
     target.ipcEvents = target.ipcEvents || [];
     target.ipcEvents.push({ event, handler });
+
+    return {
+      configurable: true,
+      get() {
+        return descriptor.value.bind(this);
+      },
+      set(value) {
+        descriptor.value = value;
+        delete this[handler];
+      }
+    };
   };
 }
 
 class MprisPlayer extends Player {
-  // position = 0;
-
   constructor() {
     super({
       name: 'Nuclear',
-      identity: 'Nuclear',
-      supportedUriSchemes: ['file'],
-      supportedMimeTypes: ['audio/mpeg', 'application/ogg'],
-      supportedInterfaces: ['player']
+      identity: 'Nuclear audio player',
+      supportedUriSchemes: ['file', 'uri'],
+      supportedMimeTypes: [
+        'audio/mpeg',
+        'audio/acc',
+        'audio/x-flac',
+        'audio/wav',
+        'audio/ogg'
+      
+      ],
+      supportedInterfaces: ['player', 'trackList']
     });
+
+    this.tracks = [];
+  }
+
+  _trackMapper(track, index = 0) {
+    return {
+      id: track.uuid,
+      'mpris:trackid': this.objectPath(`track/${index}`),
+      'mpris:artUrl': track.thumbnail,
+      'mpris:length': track.streams && track.streams.length ? track.streams[0].duration * 1000 * 1000 : 0, // In microseconds
+      'xesam:title': track.name,
+      'xesam:artist': [track.artist]
+      // 'xesam:album': '21'
+    };
   }
 
   @mprisListener('shuffle')
@@ -106,6 +137,11 @@ class MprisPlayer extends Player {
     onPrevious();
   }
 
+  @mprisListener('goTo')
+  _onSelectTrack(trackId) {
+    onSelectTrack(this.getTrackIndex(trackId));
+  }
+
   @ipcListener('play')
   _ipcPlay() {
     this.playbackStatus = Player.PLAYBACK_STATUS_PLAYING;
@@ -131,9 +167,24 @@ class MprisPlayer extends Player {
     this.shuffle = data;
   }
 
+  @ipcListener('addTrack')
+  _ipcAddTrack(evt, track) {
+    this.tracks = [
+      ...this.tracks,
+      this._trackMapper(track, this.tracks.length)
+    ];
+  }
+
+  @ipcListener('removeTrack')
+  _ipcRemoveTrack(evt, { uuid }) {
+    this.tracks = this.tracks.filter((track) => uuid !== track.id);
+  }
+
   async listen() {
     const status = await getPlayingStatus();
 
+    this.canControl = true;
+    this.canEditTracks = true;
     this.playbackStatus = statusMapper[status.playbackStatus];
     this.volume = status.volume / 100;
     this.shuffle = status.shuffleQueue;
@@ -144,27 +195,15 @@ class MprisPlayer extends Player {
     });
 
     MprisPlayer.prototype.ipcEvents.forEach(({ event, handler }) => {
-      ipcMain.on(event, this[handler].bind(this));
+      ipcMain.on(event, this[handler]);
     });
   }
 
   setMetadata(track) {
     if (track.streams) {
-      // this.position++;
-      this.metadata = {
-        'mpris:trackid': this.objectPath('track/0'),
-        'mpris:artUrl': track.thumbnail,
-        'xesam:title': track.name,
-        'xesam:artist': [track.artist]
-        // 'xesam:album': '21',
-        // 'mpris:length': track.streams && track.streams.length ? track.streams[0].duration *1000 * 1000 : 0, // In microseconds
-      };
+      this.metadata = this._trackMapper(track);
     }
   }
-
-  // getPosition() {
-  //   return this.position;
-  // }
 }
 
 export default MprisPlayer;

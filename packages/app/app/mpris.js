@@ -62,6 +62,10 @@ export function onEmptyQueue(event, actions) {
   actions.clearQueue();
 }
 
+export function onSelectTrack(index, actions) {
+  actions.selectSong(index);
+}
+
 export function onCreatePlaylist(event, { tracks, name }, actions) {
   actions.addPlaylist(tracks, name);
 }
@@ -148,6 +152,18 @@ export function sendPlayingStatus(event, playerState, queueState, { loopAfterQue
   }
 }
 
-export function sendQueueItems(event, queueItems) {
+export function sendQueueItems(queueItems) {
   ipcRenderer.send('queue', queueItems);
+}
+
+export function addTrack(track) {
+  ipcRenderer.send('addTrack', track);
+}
+
+export function removeTrack(track) {
+  ipcRenderer.send('removeTrack', track);
+}
+
+export function queueGoTo(index) {
+  ipcRenderer.send('goTo', index);
 }
