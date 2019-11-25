@@ -9,8 +9,8 @@ import {
 } from 'semantic-ui-react';
 import { compose } from 'recompose';
 import { withTranslation } from 'react-i18next';
+import { TrackRow } from '@nuclear/ui';
 
-import TrackRow from '../../TrackRow';
 import styles from './styles.scss';
 
 const LibrarySimpleList = ({

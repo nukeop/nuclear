@@ -11,6 +11,7 @@
     @include roundCorners;
     position: relative;
     height: auto;
+    min-height: 240px;
     width: 240px;
     background-size: cover !important;
     background-position: center !important;
