@@ -115,7 +115,7 @@
     "header": "Plugins",
     "placeholder": "Sélectionner la source de musique par défaut :",
     "select-lyrics-provider": "Sélectionner la source des paroles par défaut :",
-    "select-meta-provider": "Select la source de métadonnées par défaut :",
+    "select-meta-provider": "Sélectionner la source de métadonnées par défaut :",
     "meta-providers": "Sources de métadonnées",
     "stream-providers": "Sources de musique",
     "lyrics-providers": "Sources de paroles",
