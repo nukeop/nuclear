@@ -25,7 +25,7 @@ const ContextPopup = ({
     onOpen={handleOpen}
     on='click'
     hideOnScroll
-    style={{
+    style={target && {
       transform: `translate3d(${target.x}px, ${target.y}px, 0px)`
     }}
   >
