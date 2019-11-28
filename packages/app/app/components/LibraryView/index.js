@@ -21,6 +21,7 @@ import NoSearchResults from './NoSearchResults';
 import LibraryFolders from './LibraryFolders';
 import LibrarySimpleList from './LibrarySimpleList';
 import LibraryAlbumGrid from './LibraryAlbumGrid';
+import LibraryHeader from './LibraryHeader';
 
 const LibraryView = ({
   tracks,
@@ -45,8 +46,7 @@ const LibraryView = ({
 
   return (
     <div className={styles.local_files_view}>
-      <Header>{t('header')}</Header>
-      <LibraryFolders
+      <LibraryHeader
         openLocalFolderPicker={actions.openLocalFolderPicker}
         scanLocalFolders={actions.scanLocalFolders}
         removeLocalFolder={actions.removeLocalFolder}
