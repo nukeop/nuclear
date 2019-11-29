@@ -9,7 +9,6 @@ import {
 
 import { getThumbnail } from '../AlbumGrid';
 import ContextPopup from '../ContextPopup';
-import PopupButton from '../PopupButton';
 import TrackRow from '../TrackRow';
 import artPlaceholder from '../../../resources/media/art_placeholder.png';
 import styles from './styles.scss';
@@ -53,7 +52,7 @@ const AlbumPreview = ({
                   artist={_.get(album, 'artist.name')}
                   target={target}
                 >
-                  { trackButtons && trackButtons.map(trackButton => <PopupButton {...trackButton}/>) }
+                  { trackButtons }
                 </ContextPopup>
               ))
             }
@@ -84,12 +83,7 @@ AlbumPreview.propTypes = {
       '#text': PropTypes.string
     }))
   }),
-  trackButtons: PropTypes.arrayOf(PropTypes.shape({
-    onClick: PropTypes.func,
-    ariaLabel: PropTypes.string,
-    icon: PropTypes.string,
-    label: PropTypes.string
-  }))
+  trackButtons: PropTypes.node
 };
 
 export default compose(
