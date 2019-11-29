@@ -18,10 +18,14 @@ const LibraryListTypeToggle = ({
   listType
 }) => (
   <Button.Group className={styles.library_list_type_toggle}>
-    <Button
-      inverted icon='bars' onClick={toggleAlbumList}
-      active={listType === LIST_TYPE.ALBUM_LIST}
-    />
+    {
+    // TODO: To be developed and re-enabled later
+    // <Button
+    //   inverted icon='bars' onClick={toggleAlbumList}
+    //   active={listType === LIST_TYPE.ALBUM_LIST}
+    //
+    // />
+    }
     <Button
       inverted icon='th' onClick={toggleAlbumGrid}
       active={listType === LIST_TYPE.ALBUM_GRID}
