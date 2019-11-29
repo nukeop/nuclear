@@ -4,12 +4,13 @@
 .local_files_view {
   display: flex;
   flex-flow: column;
-  padding-right: 1em;
+  height: 100%;
 
   .search_field_row {
     display: flex;
     flex-flow: row;
     justify-content: space-between;
+    flex: 0 0 auto;
 
     .input {
       @include roundCorners;
@@ -29,10 +30,22 @@
     }
   }
 
+  .library_contents {
+    position: relative;
+    display: flex;
+    flex-flow: column;
+  }
+
+  .tracks_container {
+    padding: 0;
+    overflow: auto;
+  }
+
   .tracks_container .library_simple_list {
     margin-top: 0;
     padding-left: 0;
     padding-right: 0;
+
     // fix for react-list excluding header from its height-calc
     div:nth-child(2) { margin-bottom: 58px; }
   }

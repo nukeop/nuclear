@@ -55,9 +55,11 @@ const LibraryView = ({
         scanProgress={scanProgress}
         loading={pending}
       />
-      <Segment>
+      <Segment
+        className={styles.library_contents}
+      >
         {api ? (
-          <React.Fragment>
+          <>
             <div className={styles.search_field_row}>
               <Input
                 inverted
@@ -107,7 +109,7 @@ const LibraryView = ({
                   }
                 </Segment>
               )}
-          </React.Fragment>
+          </>
         ) : (
           <NoApi enableApi={actions.setBooleanOption} />
         )}
