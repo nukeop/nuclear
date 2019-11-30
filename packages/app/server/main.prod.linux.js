@@ -55,10 +55,8 @@ function createWindow() {
   win.once('ready-to-show', () => {
     win.show();
 
-    if (process.platform !== 'win32' && process.platform !== 'darwin') {
-      mprisPlayer = new MprisPlayer(win, app);
-      mprisPlayer.listen();
-    }
+    mprisPlayer = new MprisPlayer(win, app);
+    mprisPlayer.listen();
   });
 
   win.on('closed', () => {

@@ -10,8 +10,10 @@ const url = require('url');
 const getOption = require('./store').getOption;
 const { runHttpServer, closeHttpServer } = require('./http/server');
 import { registerDownloadsEvents } from './downloads';
+import MprisPlayer from './mpris';
 
 let httpServer;
+let mprisPlayer;
 let win;
 let tray;
 let icon = nativeImage.createFromPath(path.resolve(__dirname, 'resources', 'media', 'icon.png'));
@@ -52,6 +54,11 @@ function createWindow() {
 
   win.once('ready-to-show', () => {
     win.show();
+
+    if (process.platform !== 'win32' && process.platform !== 'darwin') {
+      mprisPlayer = new MprisPlayer(win, app);
+      mprisPlayer.listen();
+    }
   });
 
   win.on('closed', () => {
