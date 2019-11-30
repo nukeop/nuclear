@@ -20,6 +20,7 @@ const AlbumPreview = ({
   handleListClick
 }) => {
   const thumb = _.defaultTo(getThumbnail(album), artPlaceholder);
+  const TrackButtons = trackButtons;
 
   return (
     <div className={styles.album_preview} >
@@ -52,7 +53,9 @@ const AlbumPreview = ({
                   artist={_.get(album, 'artist.name')}
                   target={target}
                 >
-                  { trackButtons }
+                  <TrackButtons
+                    track={track}
+                  />
                 </ContextPopup>
               ))
             }
