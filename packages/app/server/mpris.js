@@ -51,13 +51,17 @@ class MprisPlayer extends Player {
     this.setPlaylists(storedPlaylists ? storedPlaylists.map(this._playlistMapper) : []);
   }
 
+  _getDuration(streams) {
+    return (streams && streams.length) ? streams[0].duration * 1000 * 1000 : 0; // In microseconds
+  }
+
   @autobind
   _trackMapper(track, index = 0) {
     return {
       id: track.uuid,
       'mpris:trackid': this.objectPath(`track/${index}`),
       'mpris:artUrl': track.thumbnail,
-      'mpris:length': track.streams && track.streams.length ? track.streams[0].duration * 1000 * 1000 : 0, // In microseconds
+      'mpris:length': this._getDuration(track.streams),
       'xesam:title': track.name,
       'xesam:artist': [track.artist]
       // 'xesam:album': '21'
