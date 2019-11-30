@@ -1,9 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import _ from 'lodash';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { compose, withHandlers } from 'recompose';
 import { PopupButton } from '@nuclear/ui';
+import { getThumbnail } from '@nuclear/ui/lib/components/AlbumGrid';
 
 import * as QueueActions from '../../actions/queue';
 
@@ -17,20 +19,22 @@ const TrackPopupButtons = ({
   handleAddToQueue
 }) => (
   <>
-  {
-    withAddToQueue &&
-    <PopupButton
-    onClick={handleAddToQueue}
-    ariaLabel='Add track to queue'
-    icon='plus'
-    label='Add to queue'
-    />
-  }
+    {
+      withAddToQueue &&
+      <PopupButton
+        onClick={handleAddToQueue}
+        ariaLabel='Add track to queue'
+        icon='plus'
+        label='Add to queue'
+      />
+    }
   </>
 );
 
-const mapStateToProps = state => ({
-  streamProviders: state.plugin.plugins.streamProviders
+const mapStateToProps = (state, { track }) => ({
+  streamProviders: track.local
+    ? _.filter(state.plugin.plugins.streamProviders, {sourceName: 'Local'})
+    : state.plugin.plugins.streamProviders
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -59,7 +63,7 @@ TrackPopupButtons.defaultProps = {
   withPlayNow: true,
   withAddToFavorites: true,
   withAddToDownloads: true
-}
+};
 
 export default compose(
   connect(
@@ -68,6 +72,10 @@ export default compose(
   ),
   withHandlers({
     handleAddToQueue: ({ track, queueActions, streamProviders }) => () =>
-    queueActions.addToQueue(streamProviders, track)
+      queueActions.addToQueue(streamProviders, {
+        artist: track.artist.name,
+        name: track.name,
+        thumbnail: getThumbnail(track)
+      })
   })
 )(TrackPopupButtons);
