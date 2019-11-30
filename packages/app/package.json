@@ -196,8 +196,8 @@
       "category": "Audio;AudioVideo;Network;Player;Music",
       "extraFiles": [
         {
-          "from": "resources/bin/linux",
-          "to": "Resources/bin",
+          "from": "bin/linux",
+          "to": "resources/bin",
           "filter": [
             "**/*"
           ]
@@ -213,8 +213,8 @@
       ],
       "extraFiles": [
         {
-          "from": "resources/bin/mac",
-          "to": "Resources/bin",
+          "from": "bin/mac",
+          "to": "resources/bin",
           "filter": [
             "**/*"
           ]
@@ -228,8 +228,8 @@
       ],
       "extraFiles": [
         {
-          "from": "resources/bin/win",
-          "to": "Resources/bin",
+          "from": "bin/win",
+          "to": "resources/bin",
           "filter": [
             "**/*"
           ]
