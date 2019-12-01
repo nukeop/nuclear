@@ -67,7 +67,7 @@ AlbumGrid.propTypes = {
   withArtistNames: PropTypes.bool,
   withAlbumPreview: PropTypes.bool,
 
-  trackButtons: PropTypes.arrayOf(PropTypes.node)
+  trackButtons: PropTypes.object
 };
 
 export default compose(
