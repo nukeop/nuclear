@@ -4,19 +4,32 @@ import _ from 'lodash';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { compose, withHandlers } from 'recompose';
+import { ipcRenderer } from 'electron';
 import { PopupButton } from '@nuclear/ui';
 import { getThumbnail } from '@nuclear/ui/lib/components/AlbumGrid';
 
+import * as DownloadsActions from '../../actions/downloads';
 import * as QueueActions from '../../actions/queue';
+import * as FavoritesActions from '../../actions/favorites';
+import * as ToastActions from '../../actions/toasts';
+import { safeAddUuid } from '../../actions/helpers';
 
 const getTrackItem = track => ({
-
+  artist: track.artist.name,
+  name: track.name,
+  thumbnail: getThumbnail(track)
 });
 
 const TrackPopupButtons = ({
   track,
   withAddToQueue,
-  handleAddToQueue
+  withPlayNow,
+  withAddToFavorites,
+  withAddToDownloads,
+  handleAddToQueue,
+  handlePlayNow,
+  handleAddFavorite,
+  handleAddToDownloads
 }) => (
   <>
     {
@@ -28,17 +41,48 @@ const TrackPopupButtons = ({
         label='Add to queue'
       />
     }
+    {
+      withPlayNow &&
+      <PopupButton
+        onClick={handlePlayNow}
+        ariaLabel='Play this track now'
+        icon='play'
+        label='Play now'
+      />
+    }
+    {
+      withAddToFavorites &&
+      <PopupButton
+        onClick={handleAddFavorite}
+        ariaLabel='Add this track to favorites'
+        icon='star'
+        label='Add to favorites'
+      />
+    }
+    {
+      withAddToDownloads &&
+      <PopupButton
+        onClick={handleAddToDownloads}
+        ariaLabel='Download this track'
+        icon='download'
+        label='Download'
+      />
+    }
   </>
 );
 
 const mapStateToProps = (state, { track }) => ({
   streamProviders: track.local
     ? _.filter(state.plugin.plugins.streamProviders, {sourceName: 'Local'})
-    : state.plugin.plugins.streamProviders
+    : state.plugin.plugins.streamProviders,
+  settings: state.settings
 });
 
 const mapDispatchToProps = dispatch => ({
-  queueActions: bindActionCreators(QueueActions, dispatch)
+  downloadsActions: bindActionCreators(DownloadsActions, dispatch),
+  queueActions: bindActionCreators(QueueActions, dispatch),
+  favoritesActions: bindActionCreators(FavoritesActions, dispatch),
+  toastActions: bindActionCreators(ToastActions, dispatch)
 });
 
 TrackPopupButtons.propTypes = {
@@ -72,10 +116,27 @@ export default compose(
   ),
   withHandlers({
     handleAddToQueue: ({ track, queueActions, streamProviders }) => () =>
-      queueActions.addToQueue(streamProviders, {
-        artist: track.artist.name,
-        name: track.name,
-        thumbnail: getThumbnail(track)
-      })
+      queueActions.addToQueue(streamProviders, getTrackItem(track)),
+    handlePlayNow: ({ track, queueActions, streamProviders }) => () => queueActions.playTrack(streamProviders, getTrackItem(track)),
+    handleAddFavorite: ({ track, settings, favoritesActions, toastActions }) => () => {
+      favoritesActions.addFavoriteTrack(track);
+      toastActions.info(
+        'Favorite track added',
+        `${track.artist.name} - ${track.name} has been added to favorites.`,
+        <img src={getThumbnail(track)} />,
+        settings
+      );
+    },
+    handleAddToDownloads: ({ track, downloadsActions, toastActions, streamProviders }) => () => {
+      const clonedTrack = safeAddUuid(track);
+      ipcRenderer.send('start-download', clonedTrack);
+      actions.addToDownloads(streamProviders, clonedTrack);
+      actions.info(
+        'Track added to downloads',
+        `${track.artist.name} - ${track.name} has been added to downloads.`,
+        <img src={getThumbnail(track)} />,
+        settings
+      );
+    }
   })
 )(TrackPopupButtons);

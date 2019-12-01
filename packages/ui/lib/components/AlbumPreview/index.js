@@ -55,6 +55,7 @@ const AlbumPreview = ({
                 >
                   <TrackButtons
                     track={track}
+                    withAddToDownloads={false}
                   />
                 </ContextPopup>
               ))
@@ -86,7 +87,7 @@ AlbumPreview.propTypes = {
       '#text': PropTypes.string
     }))
   }),
-  trackButtons: PropTypes.node
+  trackButtons: PropTypes.object
 };
 
 export default compose(
