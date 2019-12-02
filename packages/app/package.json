@@ -99,7 +99,7 @@
     "uuid": "^3.3.2",
     "webpack-cli": "^3.0.8",
     "youtube-playlist": "^1.0.2",
-    "ytdl-core": "^0.29.5"
+    "ytdl-core": "^1.0.3"
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",
