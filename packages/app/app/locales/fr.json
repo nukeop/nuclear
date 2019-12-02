@@ -17,12 +17,12 @@
     "main": "Main",
     "playlists": "Playlists",
     "plugins": "Plugins",
-    "search": "Recherche",
+    "search": "Recherches",
     "settings": "Réglages"
   },
   "artist": {
-    "count": "Nombre d'écoute",
-    "queue": "Ajouter toutes les pistes à la file de lecture",
+    "count": "Nombre d'écoutes",
+    "queue": "Ajouter tous les morceaux à la file de lecture",
     "similar": "Artistes similaires",
     "title": "Titre",
     "tour": "En tournée"
@@ -37,12 +37,12 @@
     "news": "Actualités",
     "playcounts": "Nombre d'écoute",
     "title": "Titre",
-    "top": "Top Tracks"
+    "top": "Meilleurs morceaux"
   },
   "downloads": {
     "clear": "Supprimer les téléchargements terminés",
     "completion": "Avancement",
-    "empty": "Aucun Téléchargement",
+    "empty": "Aucun téléchargement",
     "empty-help": "Ajoutez quelque chose à télécharger et vous le verrez apparaître ici !",
     "header": "Téléchargements",
     "name": "Nom",
@@ -78,13 +78,15 @@
     "title": "Titre",
     "empty": "La bibliothèque est vide",
     "empty-help": "Essayez d'ajouter un peu de musique avec le bouton au dessus.",
+    "no-search-results": "Aucun résultat de recherche",
+    "no-search-results-help": "Aucun morceau trouvé avec le nom, ablum ou artiste fourni.",
     "no-api": "L'API Web n'est pas activée",
     "no-api-help": "Pour pouvoir utiliser la bibliothèque locale, vous devez activer l'API Web.",
     "api-enable": "Activer l'API"
   },
   "lyrics": {
     "by-artist": "de {{artist}}",
-    "empty": "Aucun morceau n'est en cours",
+    "empty": "Aucun morceau n'est en cours de lecture",
     "empty-help": "Ajoutez un morceau dans la file de lecture et vous verrez les paroles s'afficher ici !",
     "not-found": "Aucune paroles n'ont été trouvées pour ce morceau."
   },
@@ -101,6 +103,7 @@
   "playlists": {
     "artist": "Artiste",
     "delete": "Supprimer cette playlist",
+    "queue": "Ajouter la playlist à la file de lecture",
     "dialog-placeholder": "Nom de la playlist...",
     "empty": "Aucune playlist.",
     "rename": "Renommer cette playlist",
@@ -110,8 +113,16 @@
   },
   "plugins": {
     "header": "Plugins",
-    "placeholder": "Selectionner la source de musique par defaut:",
-    "stream-providers": "Sources de musique"
+    "placeholder": "Sélectionner la source de musique par défaut :",
+    "select-lyrics-provider": "Sélectionner la source des paroles par défaut :",
+    "select-meta-provider": "Sélectionner la source de métadonnées par défaut :",
+    "meta-providers": "Sources de métadonnées",
+    "stream-providers": "Sources de musique",
+    "lyrics-providers": "Sources de paroles",
+    "user-plugins": "Plugins de l'utilisateur",
+    "user-plugins-warning-title": "Zone de danger !",
+    "user-plugins-warning-desc": "Les plugins fonctionnent en exécutant du code sur votre ordinateur. Ne chargez des plugins que depuis des sources de confiance !",
+    "add-a-plugin": "Ajouter un plugin"
   },
   "queue": {
     "clear": "Vider la file le lecture",
@@ -120,16 +131,16 @@
     "dialog-trigger": "Sauvegarder en tant que playlist",
     "download": "Télécharger",
     "download-toast-content": "{{artist}} - {{title}} a été ajouté aux téléchargements.",
-    "download-toast-title": "Piste ajoutée aux téléchargements",
+    "download-toast-title": "Morceau ajouté aux téléchargements",
     "favorite-add": "Ajouter aux favoris",
     "header": "File de lecture",
-    "header-track": "  actuelle",
-    "id": "Id du flux:",
+    "header-track": "Morceau actuel",
+    "id": "Id du flux :",
     "loading": "Chargement du flux.",
     "playlist-add": "Ajouter à la playlist",
     "playlist-toast-content": "La playlist {{name}} a été créé.",
     "playlist-toast-title": "Playliste créé",
-    "title": "Titre:"
+    "title": "Titre :"
   },
   "search": {
     "album": "Album",
@@ -140,9 +151,9 @@
     "placeholder": "Rechercher...",
     "playlist": "Playlist",
     "playlist_plural": "Playlists",
-    "queue-add": "Ajouter toutes les pistes à la file de lecture",
-    "track": "Piste",
-    "track_plural": "Pistes"
+    "queue-add": "Ajouter tous les morceaux à la file de lecture",
+    "track": "Morceau",
+    "track_plural": "Morceaux"
   },
   "settings": {
     "api-port": "Port utilisé par l'api",
@@ -161,7 +172,7 @@
     "github-connect": "Se connecter avec Github",
     "github-description": "Se connecter avec Github afin d'être capable de partager des playlists en ligne (en cours de développement).",
     "github-title": "Github",
-    "http": "HTTP API",
+    "http": "API HTTP",
     "language": "Langage",
     "language-placeholder": "Choisir une langue",
     "lastfm-connect": "Connecter avec Last.fm",
@@ -180,7 +191,7 @@
     "shuffle-when-going-back": "Mélanger les morceaux précédents",
     "shuffle-when-going-back-description": "Joue un morceau aléatoire lorsque le bouton de morceau précédent est cliqué",
     "social": "Social",
-    "user": "Utilisateur:",
+    "user": "Utilisateur :",
     "youtube": "YouTube",
     "yt-api-key": "Clé d'API YouTube",
     "downloads": "Téléchargements",
@@ -192,7 +203,7 @@
     "artist": "Artiste",
     "artists": "Top Artistes",
     "duration": "Durée",
-    "queue-add": "Ajouter toutes les pistes dans la file",
+    "queue-add": "Ajouter tous les morceaux dans la file",
     "title": "Titre"
   }
 }
