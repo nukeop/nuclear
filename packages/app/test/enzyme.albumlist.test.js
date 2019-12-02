@@ -3,7 +3,8 @@ import chai from 'chai';
 import spies from 'chai-spies';
 import { shallow, mount } from 'enzyme';
 import { describe, it } from 'mocha';
-import {Card, Loader} from '@nuclear/ui';
+import { Loader } from 'semantic-ui-react';
+import { Card } from '@nuclear/ui';
 
 import AlbumList from '../app/components/AlbumList';
 
@@ -35,7 +36,14 @@ describe('<AlbumList />', () => {
   it('Should render loader when there is no album', () => {
     const wrapper = mount(<AlbumList loading />);
 
-    expect(wrapper.exists(Loader)).to.be.true;
+    expect(wrapper.containsMatchingElement(<div className='nuclear album_grid loading'>
+      <div className='ui active visible dimmer'>
+        <div className='content'>
+          <div className='ui loader'/>
+        </div>
+      </div>
+    </div>));
+    expect(wrapper.exists('Loader')).to.be.true;
   });
 
   it('Should render given albums', () => {
