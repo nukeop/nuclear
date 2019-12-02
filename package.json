@@ -24,16 +24,15 @@
     "postinstall": "lerna bootstrap --no-ci",
     "test": "lerna run test",
     "lint:fix": "lerna run lint:fix",
-    "storybook": "cd packages/ui && npm run storybook",
+    "storybook": "lerna run storybook",
     "build": "cd packages/app && npm run build:dist && npm run build:electron && npm run pack",
     "build:win": "cd packages/app && npm run build:dist:windows && npm run build:electron && npm run pack",
     "build:all": "cd packages/app && npm run build:dist && npm run build:electron && npm run build:all"
   },
-  "dependencies": {
-    "eslint": "^6.5.1"
-  },
   "devDependencies": {
-    "lerna": "^3.16.4"
+    "babel-eslint": "^10.0.3",
+    "lerna": "^3.16.4",
+    "eslint": "^6.7.2"
   },
   "engines": {
     "node": ">=0.11.0",

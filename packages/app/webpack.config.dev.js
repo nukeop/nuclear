@@ -54,7 +54,10 @@ const config = {
       }, {
         test: /\.(png|jpg|gif)$/,
         loader: 'url-loader',
-        include: RESOURCES_DIR
+        include: [
+          RESOURCES_DIR,
+          UI_DIR
+        ]
       }, {
         test: /\.(ttf|eot|woff|woff2|svg)$/,
         loader: 'url-loader',

@@ -132,10 +132,16 @@ class ArtistView extends React.Component {
           </Dimmer>
 
           {!this.isLoading() && (
-            <div className={styles.artist}>{this.renderHeaderBanner()}</div>
+            <>
+              <div
+                className={styles.artist}
+              >
+                {this.renderHeaderBanner()}
+              </div>
+              <hr />
+            </>
           )}
 
-          <hr />
           <div className={styles.artist_related_container}>
             {this.renderPopularTracks()}
 
@@ -148,6 +154,7 @@ class ArtistView extends React.Component {
             })}
             albumInfoSearch={albumInfoSearch}
             history={history}
+            loading={_.get(artist, 'releasesLoading')}
           />
         </Dimmer.Dimmable>
       </div>

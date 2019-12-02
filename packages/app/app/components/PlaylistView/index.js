@@ -5,10 +5,9 @@ import {
   Icon
 } from 'semantic-ui-react';
 import { withTranslation } from 'react-i18next';
+import { ContextPopup, PopupButton } from '@nuclear/ui';
 
 import InputDialog from '../InputDialog';
-import ContextPopup from '../ContextPopup';
-import PopupButton from '../ContextPopup/PopupButton';
 import TrackRow from '../TrackRow';
 import artPlaceholder from '../../../resources/media/art_placeholder.png';
 
@@ -44,9 +43,9 @@ class PlaylistView extends React.Component {
   }
 
   renderOptions (
-    trigger, 
+    trigger,
     playlist,
-    ) {
+  ) {
     return (
       <ContextPopup
         trigger={trigger}
@@ -54,8 +53,8 @@ class PlaylistView extends React.Component {
         title={playlist.name}
         thumb={_.get(playlist, 'tracks[0].thumbnail', artPlaceholder)}
       >
-        <PopupButton 
-          onClick={() => 
+        <PopupButton
+          onClick={() =>
             this.props.addTracks(this.props.streamProviders, playlist.tracks)
           }
           ariaLabel={this.props.t('queue')}
@@ -128,10 +127,10 @@ class PlaylistView extends React.Component {
           <div className={styles.playlist_buttons}>
             { this.renderPlayButton(playlist) }
             { this.renderOptions(
-                popupTrigger,
-                playlist,
-                ) 
-              }
+              popupTrigger,
+              playlist,
+            )
+            }
           </div>
         </div>
       </div>

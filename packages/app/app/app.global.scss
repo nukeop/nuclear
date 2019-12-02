@@ -73,7 +73,7 @@ a.disabled {
 .ui.menu,
 .ui.vertical.menu {
   background: $background3;
-  
+
   .item {
     color: $white;
   }
@@ -140,10 +140,14 @@ a.disabled {
     background-color: darken($blue, 10%);
   }
 
-  
+
   &:active {
     background-color: darken($blue, 20%);
   }
+}
+
+.ui.inverted.button {
+  box-shadow: 0 0 0 1px $grey inset !important;
 }
 
 .ui.inverted.green.button {

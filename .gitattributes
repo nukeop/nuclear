@@ -3,3 +3,4 @@
 
 packages/app/resources/** binary
 packages/app/build/** binary
+packages/ui/resources/** binary

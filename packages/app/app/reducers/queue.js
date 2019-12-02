@@ -79,7 +79,7 @@ function reduceRepositionSong(state, action) {
   let newQueue;
   newQueue = _.cloneDeep(state.queueItems);
   const [removed] = newQueue.splice(action.payload.itemFrom, 1);
-  newQueue.splice(action.payload.itemTo, 0, removed)
+  newQueue.splice(action.payload.itemTo, 0, removed);
 
 
   let newCurrentSong = state.currentSong;
@@ -91,8 +91,7 @@ function reduceRepositionSong(state, action) {
     if (state.currentSong > action.payload.itemFrom && state.currentSong <= action.payload.itemTo) {
       newCurrentSong--;
     }
-  } 
-  else if (action.payload.itemFrom > action.payload.itemTo) {
+  } else if (action.payload.itemFrom > action.payload.itemTo) {
     // moving bottom to top
     // current song is in between
     if (state.currentSong < action.payload.itemFrom && state.currentSong >= action.payload.itemTo) {

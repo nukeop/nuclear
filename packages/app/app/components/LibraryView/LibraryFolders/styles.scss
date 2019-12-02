@@ -1,0 +1,34 @@
+.library_folders {
+  display: flex;
+  flex-flow: column;
+  padding: 0;
+  flex: 0 0 auto;
+
+  .add_folder {
+
+  }
+
+  .control_bar {
+    margin: 0;
+    padding: 0;
+  }
+
+  .list {
+    margin: 0;
+  }
+
+  .refresh_icon {
+    margin-left: 10px !important;
+    cursor: pointer;
+  }
+
+  .progress_bar {
+    display: inline-block;
+    flex: 1;
+    margin: auto 0 auto 10px !important;
+  }
+
+  .folder_remove_icon {
+    cursor: pointer;
+  }
+}

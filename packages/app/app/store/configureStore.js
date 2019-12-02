@@ -7,7 +7,7 @@ import rootReducer from '../reducers';
 export default function configureStore(initialState) {
   const composeEnhancers = process.env.NODE_ENV === 'production'
     ? compose
-    : window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__; 
+    : _.defaultTo(window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__, compose);
 
   const store = createStore(
     rootReducer,

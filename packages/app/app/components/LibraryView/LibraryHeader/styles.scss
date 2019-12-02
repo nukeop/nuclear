@@ -1,0 +1,35 @@
+@import '../../../vars';
+
+.library_header_row {
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+  align-items: center;
+  flex: 0 0 auto;
+
+  &.collapsed {
+    .header_container {
+      font-size: 24px;
+      line-height: 24px;
+    }
+  }
+
+  button.ui.button {
+    width: 3em;
+    height: 3em;
+    margin-right: 1em;
+    border: 1px solid rgba($white,0.3);
+
+    &:hover,
+    &:active,
+    &:focus {
+      i {
+        color: rgba($black, 0.9);
+      }
+    }
+
+    i {
+      color: rgba($white, 0.6);
+    }
+  }
+}

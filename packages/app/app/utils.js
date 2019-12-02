@@ -38,8 +38,8 @@ export function getSelectedStream(streams, defaultMusicSource) {
   let selectedStream = _.find(streams, { source: defaultMusicSource });
 
   return _.isNil(selectedStream)
-   ? _.filter(streams, 'source')[0] || null
-   : selectedStream;
+    ? _.filter(streams, 'source')[0] || null
+    : selectedStream;
 }
 
 export function removeQuotes(text) {

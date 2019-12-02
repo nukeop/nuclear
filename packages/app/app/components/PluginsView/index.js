@@ -14,7 +14,7 @@ const PluginsView = ({
   actions,
   userPlugins,
 
-  selectStreamProvider,
+  selectMusicSource,
   streamProvidersDropdownOptions,
   streamProvidersDefaultOption,
 
@@ -39,7 +39,7 @@ const PluginsView = ({
           selection
           options={streamProvidersDropdownOptions}
           defaultValue={streamProvidersDefaultOption.value}
-          onChange={selectStreamProvider}
+          onChange={selectMusicSource}
         />
       </Segment>
     </section>
@@ -109,6 +109,7 @@ PluginsView.propTypes = {
 export default compose(
   withHandlers({
     selectMusicSource: ({actions}) => (e, data) => actions.selectStreamProvider(data.value),
+    selectMetaProvider: ({actions}) => (e, data) => actions.selectMetaProvider(data.value),
     selectLyricsProvider: ({actions}) => (e, data) => actions.selectLyricsProvider(data.value)
   }),
   withDropdownOptions({

@@ -31,7 +31,6 @@
     "@babel/preset-env": "^7.6.2",
     "@babel/preset-react": "^7.0.0",
     "@babel/register": "^7.6.2",
-    "@nuclear/core": "^0.5.1",
     "@storybook/addon-actions": "^3.4.12",
     "@storybook/addon-knobs": "^3.4.12",
     "@storybook/addon-links": "^3.4.10",
@@ -40,10 +39,12 @@
     "ava": "^2.4.0",
     "babel-eslint": "^7.2.3",
     "babel-loader": "^8.0.6",
+    "chai": "^4.2.0",
+    "chai-spies": "^1.0.0",
     "css-loader": "^1.0.0",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.1.1",
-    "eslint": "^5.16.0",
+    "eslint": "^6.7.2",
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-node": "^10.0.0",
     "eslint-plugin-react": "^7.11.0",
@@ -62,10 +63,15 @@
     "webpack-dev-server": "^3.1.5"
   },
   "dependencies": {
+    "@nuclear/core": "^0.5.1",
     "classnames": "^2.2.6",
+    "lodash": "^4.17.15",
+    "numeral": "^2.0.6",
     "prop-types": "^15.6.2",
+    "react-image-smooth-loading": "^2.0.0",
     "recompose": "^0.30.0",
-    "semantic-ui-react": "^0.88.1"
+    "semantic-ui-react": "^0.88.1",
+    "styled-components": "^4.4.1"
   },
   "ava": {
     "babel": {
