@@ -4,7 +4,7 @@ import path from 'path';
 import { parseFile } from 'music-metadata';
 import uuid from 'uuid/v4';
 import _ from 'lodash';
-import asyncPool from "tiny-async-pool";
+import asyncPool from 'tiny-async-pool';
 
 import fetchAcousticId from './lib/acousticId';
 

@@ -92,5 +92,5 @@ export function updateLibraryListType(listType) {
   return {
     type: UPDATE_LIBRARY_LIST_TYPE,
     payload: { listType }
-  }
+  };
 }

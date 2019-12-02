@@ -30,24 +30,24 @@ const AlbumGrid = ({
     styles.album_grid,
     {[styles.loading]: loading}
   )} >
-  <div className={styles.album_cards}>
-  {
-    !loading &&
+    <div className={styles.album_cards}>
+      {
+        !loading &&
     !_.isEmpty(albums) &&
     albums.map((album, i) => (
       <Card
-      key={i}
-      header={album.title}
-      content={withArtistNames && _.get(album, 'artist.name')}
-      image={getThumbnail(album)}
-      onClick={() => onAlbumClick(album)}
+        key={i}
+        header={album.title}
+        content={withArtistNames && _.get(album, 'artist.name')}
+        image={getThumbnail(album)}
+        onClick={() => onAlbumClick(album)}
       />
     ))
-  }
-  </div>
+      }
+    </div>
 
-  {
-    !loading && withAlbumPreview &&
+    {
+      !loading && withAlbumPreview &&
       <>
         <hr />
         <AlbumPreview
