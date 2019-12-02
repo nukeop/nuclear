@@ -1,0 +1,171 @@
+﻿{
+  "album": {
+    "queue": "將專輯新增到播放清單"
+  },
+  "app": {
+    "collection": "收藏",
+    "dashboard": "控制台",
+    "downloads": "下載",
+    "equalizer": "等化器",
+    "favorite-tracks": "我的最愛",
+    "library": "本機音樂",
+    "lyrics": "歌詞",
+    "playlists": "播放清單",
+    "plugins": "插件",
+    "search": "搜尋",
+    "settings": "設定"
+  },
+  "artist": {
+    "count": "播放次數",
+    "queue": "將所有歌曲新增到播放清單",
+    "similar": "相關歌手",
+    "title": "音樂標題",
+    "tour": "巡迴演出"
+  },
+  "dashboard": {
+    "artist": "演出者",
+    "best": "熱門新音樂",
+    "best-new-albums": "熱門新專輯",
+    "best-new-tracks": "熱門新單曲",
+    "genres": "流派",
+    "lastfm-title": "LastFm. 的最新單曲 ",
+    "news": "新聞",
+    "playcounts": "播放次數",
+    "title": "音樂標題",
+    "top": "排行榜"
+  },
+  "downloads": {
+    "clear": "清空",
+    "completion": "完成",
+    "empty": "下載列為空",
+    "empty-help": "把歌曲下載後,會顯示在這裡。",
+    "header": "下載",
+    "name": "名字",
+    "status": "狀態"
+  },
+  "favorites": {
+    "artist": "演出者",
+    "empty": "我的最愛為空",
+    "empty-help": "加入我的最愛後的歌曲會顯示在這裡",
+    "header": "我的最愛",
+    "title": "音樂標題"
+  },
+  "help": {
+    "about": "關於",
+    "header": "免費的串流播放軟體",
+    "released": "遵循 AGPL-3.0 發行",
+    "thanks": "非常感謝 Github 上貢獻者的貢獻，您的貢獻對本程式的誕生至關重要。"
+  },
+  "input-dialog": {
+    "cancel": "取消"
+  },
+  "library": {
+    "add": "新建資料夾",
+    "album": "專輯",
+    "artist": "演出者",
+    "filter-placeholder": "篩選...",
+    "header": "本機",
+    "title": "音樂標題"
+  },
+  "lyrics": {
+    "by-artist": "{{artist}}",
+    "empty": "沒有播放中的曲目",
+    "empty-help": "把歌曲加到播放佇列後,會顯示在這裡。",
+    "not-found": "這首歌沒有歌詞資料"
+  },
+  "option-control": {
+    "autoradio": "自動播放",
+    "loop": "循環播放",
+    "shuffle": "隨機播放"
+  },
+  "player": {
+    "next-button": "下一曲",
+    "play-pause-button": "播放/暫停",
+    "previous-button": "上一曲"
+  },
+  "playlists": {
+    "artist": "演出者",
+    "delete": "删除播放清單",
+    "dialog-placeholder": "播放清單名稱...",
+    "empty": "没有播放清單",
+    "rename": "重命名播放列表",
+    "songs": "{{total}} 首歌",
+    "songs_plural": "{{total}} 首歌",
+    "title": "音樂標題"
+  },
+  "plugins": {
+    "header": "插件",
+    "placeholder": "選擇預設音樂串流來源:",
+    "stream-providers": "串流來源"
+  },
+  "queue": {
+    "clear": "清除播放佇列",
+    "dialog-accept": "保存",
+    "dialog-placeholder": "播放清單名稱...",
+    "dialog-trigger": "儲存到播放清單",
+    "download": "下載",
+    "download-toast-content": "{{artist}} - {{title}} 下載中...",
+    "download-toast-title": "下載歌曲",
+    "favorite-add": "加到我的最愛",
+    "header": "播放佇列",
+    "header-track": "目前曲目",
+    "id": "串流 ID:",
+    "loading": "串流處理中",
+    "playlist-add": "加到播放清單",
+    "playlist-toast-content": "{{name}} 已建立",
+    "playlist-toast-title": "播放清單建立成功",
+    "title": "音樂標題"
+  },
+  "search": {
+    "album": "專輯",
+    "album_plural": "專輯",
+    "artist": "演出者",
+    "artist_plural": "演出者",
+    "empty": "找不到資料",
+    "placeholder": "搜尋...",
+    "playlist": "播放清單",
+    "playlist_plural": "播放清單",
+    "queue-add": "將所有曲目新增到播放佇列",
+    "track": "音樂標題",
+    "track_plural": "曲目"
+  },
+  "settings": {
+    "api-port": "API 網路埠",
+    "autoradio": "自動播放",
+    "autoradio-craziness": "Autoradio craziness",
+    "compact-menu-bar": "使用最小化工具列",
+    "compact-queue-bar": "使用最小化播放佇列",
+    "disable-gpu": "關閉硬體渲染 (可能可以修復拖移延遲與螢幕閃爍的問題)",
+    "display": "顯示",
+    "enable-api": "啟用 api",
+    "frameless-window": "Frameless window (需要重新啟動)",
+    "github-connect": "用GitHub登入",
+    "github-description": "登入 GitHub 並將歌曲清單分享到網路 (即將期待).",
+    "github-title": "Github",
+    "http": "HTTP API",
+    "language": "語言",
+    "language-placeholder": "設定語言",
+    "lastfm-connect": "連接到 Last.fm",
+    "lastfm-description": "為了要啟用連接，您必須先到 Last.fm 連接與認證再登入",
+    "lastfm-enable": "啟用連接到 Last.fm",
+    "lastfm-title": "Last.fm",
+    "login": "登入",
+    "logout": "登出",
+    "loop-after-queue-end": "到達最後曲目後自動循環",
+    "notification-timeout": "超時提醒",
+    "notlogged": "未登入",
+    "playback": "播放",
+    "program-settings": "程式設定",
+    "shuffle-queue": "隨機曲目",
+    "social": "Social",
+    "user": "帳號:"
+  },
+  "tags": {
+    "albums": "優秀專輯",
+    "artist": "演出者",
+    "artists": "優秀演出者",
+    "duration": "期間",
+    "queue-add": "新增所有曲目到播放佇列",
+    "title": "音樂標題"
+  }
+}

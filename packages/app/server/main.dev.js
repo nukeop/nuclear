@@ -52,12 +52,12 @@ function createWindow() {
   win.setTitle('Nuclear Music Player');
 
   installExtension(REACT_DEVELOPER_TOOLS)
-    .then((name) => console.log(`Added Extension:  ${name}`))
-    .catch((err) => console.log('An error occurred: ', err));
+    .then((name) => logger.log(`Added Extension:  ${name}`))
+    .catch((err) => logger.log('An error occurred: ', err));
 
   installExtension(REDUX_DEVTOOLS)
-    .then((name) => console.log(`Added Extension:  ${name}`))
-    .catch((err) => console.log('An error occurred: ', err));
+    .then((name) => logger.log(`Added Extension:  ${name}`))
+    .catch((err) => logger.log('An error occurred: ', err));
 
   app.transformSource = transformSource;
 
