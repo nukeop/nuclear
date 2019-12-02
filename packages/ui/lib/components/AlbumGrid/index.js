@@ -76,6 +76,6 @@ export default compose(
     'selectAlbum',
     ({ albums }) => _.head(albums)),
   withHandlers({
-    onAlbumClick: ({ selectAlbum }) => album => selectAlbum(album)
+    onAlbumClick: ({ onAlbumClick, selectAlbum }) => album => _.isNil(onAlbumClick) ? selectAlbum(album) : onAlbumClick(album)
   })
 )(AlbumGrid);
