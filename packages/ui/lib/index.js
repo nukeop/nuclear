@@ -13,3 +13,5 @@ export { default as Seekbar } from './components/Seekbar';
 export { default as UserPluginsItem } from './components/UserPluginsItem';
 export { default as ToastContainer } from './components/ToastContainer';
 export { default as TrackRow } from './components/TrackRow';
+
+export * from './utils';
