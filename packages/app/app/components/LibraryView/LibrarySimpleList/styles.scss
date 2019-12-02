@@ -1,0 +1,27 @@
+.library_simple_list {
+  background: transparent !important;
+  margin-top: 0;
+
+  .thead {
+    th {
+      color: rgba(250, 250, 250, 0.5) !important;
+      font-size: 20px !important;
+      background: transparent !important;
+      border-bottom: 0.5px solid rgba(250, 250, 250, 0.5) !important;
+    }
+    // since virtualization is used, we have to pre-define the column widths
+    // (the width of the third column, title, is whatever is left over)
+    th:nth-child(1) { width: 42px; }
+    th:nth-child(2) { width: 30%; }
+    th:nth-child(4) { width: 25%; }
+  }
+
+  .tbody {
+    tr {
+      color: white;
+    }
+    td {
+      border-color: transparent;
+    }
+  }
+}

@@ -19,6 +19,6 @@ export default () => {
   const { isPackaged, getAppPath } = app;
 
   return IS_PROD && isPackaged
-    ? path.join(path.dirname(getAppPath()), '..', './Resources', './bin')
-    : path.join(root, './resources', './bin', getPlatform());
+    ? path.join(path.dirname(getAppPath()), '..', './resources', './bin')
+    : path.join(root, './bin', getPlatform());
 };

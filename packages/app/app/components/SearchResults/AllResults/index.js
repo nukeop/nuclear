@@ -1,8 +1,9 @@
 import React from 'react';
 import _ from 'lodash';
+import {Card} from '@nuclear/ui';
+
 import artPlaceholder from '../../../../resources/media/art_placeholder.png';
 
-import Card from '../../Card';
 import PlaylistResults from '../PlaylistResults';
 import TracksResults from '../TracksResults';
 

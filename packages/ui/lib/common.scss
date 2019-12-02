@@ -14,6 +14,11 @@ $yellow: #f1fa8c;
 $white: #FAFAFA;
 $black: #202020;
 
+$very-short-duration: 0.1s;
+$short-duration: 0.3s;
+$medium-duration: 0.5s;
+$long-duration: 1s;
+
 @mixin roundCorners {
   border-radius: 0.25em;
 }

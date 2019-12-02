@@ -13,7 +13,7 @@
     background: linear-gradient(45deg, #43CBFF 0%, #9708CC 100%);
     background-size: 100% 100%;
     border-radius: 1em;
-    
+
     span {
       position: absolute;
       width: 0;
@@ -69,7 +69,7 @@
       animation: circle-anim 1s cubic-bezier(0.55, 0.15, 0.45, 0.85) infinite;
     }
 
-    
+
   }
 
   &.small {
@@ -78,7 +78,7 @@
     align-items: center;
     width: 2em;
     height: 2em;
-    
+
     span:first-child {
       display: flex;
       width: 100%;

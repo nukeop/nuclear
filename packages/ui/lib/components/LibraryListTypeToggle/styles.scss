@@ -1,0 +1,5 @@
+.library_list_type_toggle {
+  i.icon.th::before {
+    content: "\f009"; // fix for semantic-ui-react bug
+  }
+}

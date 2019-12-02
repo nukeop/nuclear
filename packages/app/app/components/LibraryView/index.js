@@ -1,29 +1,27 @@
 import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import {
-  Button,
   Dimmer,
-  Divider,
-  Icon,
   Input,
-  List,
-  Progress,
-  Segment,
-  Table,
-  Ref
+  Segment
 } from 'semantic-ui-react';
 import { useTranslation } from 'react-i18next';
+import { LibraryListTypeToggle } from '@nuclear/ui';
+import { LIST_TYPE } from '@nuclear/ui/lib/components/LibraryListTypeToggle';
 import _ from 'lodash';
-import ReactList from 'react-list';
+import { withProps } from 'recompose';
 
 import Header from '../Header';
-import TrackRow from '../TrackRow';
 import EmptyState from './EmptyState';
 import NoApi from './NoApi';
 
 import trackRowStyles from '../TrackRow/styles.scss';
 import styles from './index.scss';
 import NoSearchResults from './NoSearchResults';
+import LibraryFolders from './LibraryFolders';
+import LibrarySimpleList from './LibrarySimpleList';
+import LibraryAlbumGrid from './LibraryAlbumGrid';
+import LibraryHeader from './LibraryHeader';
 
 const LibraryView = ({
   tracks,
@@ -35,6 +33,7 @@ const LibraryView = ({
   localFolders,
   sortBy,
   direction,
+  listType,
   api
 }) => {
   const handleSort = useCallback(
@@ -44,58 +43,24 @@ const LibraryView = ({
     [actions, sortBy, direction]
   );
   const { t } = useTranslation('library');
-  
+
   return (
     <div className={styles.local_files_view}>
-      <Header>{t('header')}</Header>
-      <Segment>
-        <Segment className={styles.control_bar}>
-          <Button
-            icon
-            inverted
-            labelPosition='left'
-            className={styles.add_folder}
-            onClick={actions.openLocalFolderPicker}
-          >
-            <Icon name='folder open' />
-            {t('add')}
-          </Button>
-          <Button
-            inverted
-            icon='refresh'
-            disabled={localFolders.length < 1}
-            loading={pending}
-            onClick={actions.scanLocalFolders}
-            className={styles.refresh_icon}
-          />
-          {scanTotal && (
-            <Progress className={styles.progress_bar} value={scanProgress} total={scanTotal} progress='ratio' />
-          )}
-        </Segment>
-        {localFolders.length > 0 &&
-          <>
-            <Divider />
-            <List divided verticalAlign='middle' className={styles.equalizer_list}>
-              {localFolders.map((folder, idx) => (
-                <List.Item key={idx}>
-                  <List.Content floated='right'>
-                    <Icon
-                      name='close'
-                      onClick={() => actions.removeLocalFolder(folder)}
-                      className={styles.folder_remove_icon}
-                    />
-                  </List.Content>
-                  <List.Content>{folder}</List.Content>
-                </List.Item>
-              ))}
-            </List>
-          </>
-        }
-      </Segment>
-      <Segment>
+      <LibraryHeader
+        openLocalFolderPicker={actions.openLocalFolderPicker}
+        scanLocalFolders={actions.scanLocalFolders}
+        removeLocalFolder={actions.removeLocalFolder}
+        localFolders={localFolders}
+        scanTotal={scanTotal}
+        scanProgress={scanProgress}
+        loading={pending}
+      />
+      <Segment
+        className={styles.library_contents}
+      >
         {api ? (
-          <React.Fragment>
-            <div className={styles.search_field}>
+          <>
+            <div className={styles.search_field_row}>
               <Input
                 inverted
                 transparent
@@ -104,80 +69,52 @@ const LibraryView = ({
                 placeholder={t('filter-placeholder')}
                 onChange={actions.updateFilter}
               />
-            </div>
-            {_.isEmpty(tracks) ? (
-              filterApplied ? (
-                <NoSearchResults />
-              ) : (
-                <EmptyState />
-              )
-            ) : (
-              <Segment inverted className={trackRowStyles.tracks_container}>
-                <Dimmer active={pending} loading={pending.toString()} />
 
-                {!pending && (
-                  <ReactList
-                    type='variable'
-                    length={tracks.length}
-                    itemSizeEstimator={() => 44}
-                    itemsRenderer={(items, ref) => {
-                      return (
-                        <Table sortable className={styles.table}>
-                          <Table.Header className={styles.thead}>
-                            <Table.Row>
-                              <Table.HeaderCell>
-                                <Icon name='image' />
-                              </Table.HeaderCell>
-                              <Table.HeaderCell
-                                sorted={sortBy === 'artist' ? direction : null}
-                                onClick={handleSort('artist')}
-                              >
-                                {t('artist')}
-                              </Table.HeaderCell>
-                              <Table.HeaderCell
-                                sorted={sortBy === 'name' ? direction : null}
-                                onClick={handleSort('name')}
-                              >
-                                {t('title')}
-                              </Table.HeaderCell>
-                              <Table.HeaderCell
-                                sorted={sortBy === 'album' ? direction : null}
-                                onClick={handleSort('album')}
-                              >
-                                {t('album')}
-                              </Table.HeaderCell>
-                            </Table.Row>
-                          </Table.Header>
-                          <Ref innerRef={ref}>
-                            <Table.Body className={styles.tbody}>
-                              {items}
-                            </Table.Body>
-                          </Ref>
-                        </Table>
-                      );
-                    }}
-                    itemRenderer={index => {
-                      const track = tracks[index];
-                      return (
-                        <TrackRow
-                          key={'favorite-track-' + index}
-                          track={track}
-                          index={index}
-                          displayCover
-                          displayArtist
-                          displayAlbum
-                          withAddToDownloads={false}
-                          isLocal
-                        />
-                      );
-                    }}/>
-                )}
-              </Segment>
-            )}
-          </React.Fragment>
+              <LibraryListTypeToggle
+                listType={listType}
+                toggleListType={actions.updateLibraryListType}
+              />
+            </div>
+            {
+              _.isEmpty(tracks) ? (
+                filterApplied ? (
+                  <NoSearchResults />
+                ) : (
+                  <EmptyState />
+                )
+              ) : (
+                <Segment inverted className={trackRowStyles.tracks_container}>
+                  <Dimmer active={pending} loading={pending.toString()} />
+
+                  {
+                    !pending &&
+                    listType === LIST_TYPE.SIMPLE_LIST &&
+                    <LibrarySimpleList
+                      tracks={tracks}
+                      sortBy={sortBy}
+                      direction={direction}
+                      handleSort={handleSort}
+                    />
+                  }
+
+                  {
+                    !pending &&
+                  !_.isEmpty(localFolders) &&
+                  listType === LIST_TYPE.ALBUM_GRID &&
+                  <LibraryAlbumGrid
+                    tracks={tracks}
+                    withArtistNames
+                    withAlbumPreview
+                  />
+                  }
+                </Segment>
+              )}
+          </>
         ) : (
           <NoApi enableApi={actions.setBooleanOption} />
         )}
+
+
       </Segment>
     </div>
   );

@@ -25,7 +25,8 @@ class YoutubePlugin extends StreamProviderPlugin {
       .then(videoInfo => {
         let thumbnail = _.get(videoInfo, 'player_response.videoDetails.thumbnail.thumbnails');
         thumbnail = _.find(thumbnail, { width: 246 }).url;
-        let formatInfo = _.head(videoInfo.formats.filter(e => e.itag === '140'));
+        let formatInfo = _.head(videoInfo.formats.filter(e => e.itag === 140));
+
         return {
           source: this.sourceName,
           id: videoInfo.video_id,
@@ -53,7 +54,7 @@ class YoutubePlugin extends StreamProviderPlugin {
         return ytdl.getInfo(`https://www.youtube.com/watch?v=${id}`);
       })
       .then(videoInfo => {
-        let formatInfo = _.head(videoInfo.formats.filter(e => e.itag === '140'));
+        let formatInfo = _.head(videoInfo.formats.filter(e => e.itag === 140));
         return {
           source: 'Youtube',
           id: videoInfo.video_id,

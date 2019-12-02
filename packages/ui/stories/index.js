@@ -1,7 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 
-import {Cover} from '@nuclear/ui';
+import {Cover} from '..';
 
 storiesOf('Cover', module)
   .add('Basic', () => (

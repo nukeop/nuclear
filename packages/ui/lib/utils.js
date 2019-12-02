@@ -1,4 +1,10 @@
+import _ from 'lodash';
+
 export function formatDuration(duration) {
+  if (!_.isNumber(duration) || duration < 0) {
+    return '00:00';
+  }
+
   let sec_num = parseInt(duration, 10);
   let hours   = Math.floor(sec_num / 3600);
   let minutes = Math.floor((sec_num - (hours * 3600)) / 60);
@@ -13,7 +19,7 @@ export function formatDuration(duration) {
   if (seconds < 10) {
     seconds = '0' + seconds;
   }
-  
+
   if (hours === '00') {
     return minutes+':'+seconds;
   } else {

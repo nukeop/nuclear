@@ -4,77 +4,49 @@
 .local_files_view {
   display: flex;
   flex-flow: column;
+  height: 100%;
 
-  .control_bar {
+  .search_field_row {
     display: flex;
-  }
+    flex-flow: row;
+    justify-content: space-between;
+    flex: 0 0 auto;
 
-  .refresh_icon {
-    margin-left: 10px !important;
-    cursor: pointer;
-  }
+    .input {
+      @include roundCorners;
+      @include transition;
+      border: 1px solid $white;
+      padding: .67861429em 1em;
 
-  .progress_bar {
-    display: inline-block;
-    flex: 1;
-    margin: auto 0 auto 10px !important;
-  }
+      &:hover,
+      &:focus,
+      &:active {
+        border: 1px solid rgba($blue, 0.9);
+      }
 
-  .folder_remove_icon {
-    cursor: pointer;
-  }
-
-  .search_field .input {
-    @include roundCorners;
-    @include transition;
-    border: 1px solid rgba($white, 0.7);
-    padding: .67861429em 1em;
-
-    &:hover,
-    &:focus,
-    &:active {
-      border: 1px solid rgba($blue, 0.9);
+      i {
+        margin-left: 0.7em !important;
+      }
     }
+  }
 
-    i {
-      margin-left: 0.7em !important;
-    }
+  .library_contents {
+    position: relative;
+    display: flex;
+    flex-flow: column;
   }
 
   .tracks_container {
+    padding: 0;
+    overflow: auto;
+  }
+
+  .tracks_container .library_simple_list {
     margin-top: 0;
+    padding-left: 0;
+    padding-right: 0;
+
     // fix for react-list excluding header from its height-calc
     div:nth-child(2) { margin-bottom: 58px; }
   }
-  
-  .table {
-    background: transparent !important;
-    margin-top: 0;
-  }
-
-  .thead {
-    th {
-      color: rgba(250, 250, 250, 0.5) !important;
-      font-size: 20px !important;
-      background: transparent !important;
-      border-bottom: 0.5px solid rgba(250, 250, 250, 0.5) !important;
-    }
-    // since virtualization is used, we have to pre-define the column widths
-    // (the width of the third column, title, is whatever is left over)
-    th:nth-child(1) { width: 42px; }
-    th:nth-child(2) { width: 30%; }
-    th:nth-child(4) { width: 25%; }
-  }
-
-  .tbody {
-    tr {
-      color: white;
-    }
-    td {
-      border-color: transparent;
-    }
-  }
 }
-
-
-

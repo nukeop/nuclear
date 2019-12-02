@@ -31,8 +31,8 @@ describe('<HelpModal />', () => {
   it('Has 3 Icons', () => {
     const wrapper = mount(<HelpModal open={true}/>);
     const modalChildren = wrapper.find(Modal).prop('children');
-    const lastModalContent = modalChildren[modalChildren.length -1].props.children.props.children
+    const lastModalContent = modalChildren[modalChildren.length -1].props.children.props.children;
 
-    expect(lastModalContent.length).to.equal(3)
-  })
+    expect(lastModalContent.length).to.equal(3);
+  });
 });

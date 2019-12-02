@@ -1,11 +1,11 @@
 import React from 'react';
 import chai from 'chai';
-import { shallow } from 'enzyme';
+import spies from 'chai-spies';
+import { shallow, mount } from 'enzyme';
 import { describe, it } from 'mocha';
 import { Loader } from 'semantic-ui-react';
-import spies from 'chai-spies';
+import { Card } from '@nuclear/ui';
 
-import Card from '../app/components/Card';
 import AlbumList from '../app/components/AlbumList';
 
 chai.use(spies);
@@ -34,13 +34,20 @@ describe('<AlbumList />', () => {
   ];
 
   it('Should render loader when there is no album', () => {
-    const wrapper = shallow(<AlbumList />);
+    const wrapper = mount(<AlbumList loading />);
 
-    expect(wrapper.exists(Loader)).to.be.true;
+    expect(wrapper.containsMatchingElement(<div className='nuclear album_grid loading'>
+      <div className='ui active visible dimmer'>
+        <div className='content'>
+          <div className='ui loader'/>
+        </div>
+      </div>
+    </div>));
+    expect(wrapper.exists('Loader')).to.be.true;
   });
 
   it('Should render given albums', () => {
-    const wrapper = shallow(<AlbumList albums={mockedAlbums} />);
+    const wrapper = mount(<AlbumList albums={mockedAlbums} />);
     const cardsProps = wrapper.find(Card).map(card => card.props());
 
     expect(mockedAlbums.every(({ title, thumb }, i) =>
@@ -56,8 +63,7 @@ describe('<AlbumList />', () => {
       <AlbumList history={fakeHistory} albumInfoSearch={albumInfoSearch} />
     );
     const instance = wrapper.instance();
-
-    instance.albumInfoSearch('ALBUM_ID', 'RELEASE_TYPE');
+    instance.handlers.onAlbumClick({id: 'ALBUM_ID', type: 'RELEASE_TYPE'});
     expect(albumInfoSearch).to.have.been.called.with('ALBUM_ID', 'RELEASE_TYPE');
     expect(historySpy).to.have.been.called.with('/album/ALBUM_ID');
   });

@@ -1,11 +1,11 @@
 import React from 'react';
 import { Tab } from 'semantic-ui-react';
 import { withTranslation } from 'react-i18next';
+import {Card} from '@nuclear/ui';
 
 import AllResults from './AllResults';
 import TracksResults from './TracksResults';
 import PlaylistResults from './PlaylistResults';
-import Card from '../Card';
 
 import styles from './styles.scss';
 
@@ -45,17 +45,16 @@ class SearchResults extends React.Component {
               ? null
               : collection.map((el, i) => {
                 let artist = null;
-                let title = el.title.split(' - ');
-                if (title.length > 1) {
-                  artist = title[0];
-                  title = title[1];
+                let title = el.title && el.title.split(' - ');
+                if (_.isArray(title)) {
+                  [artist, title] = title;
                 }
                 return (
                   <Card
                     key={'title-card-' + i}
-                    header={title}
+                    header={el.name || title}
                     content={artist}
-                    image={el.thumb}
+                    image={el.thumb || el.thumbnail}
                     onClick={() => onClick(el.id, el.type)}
                   />
                 );

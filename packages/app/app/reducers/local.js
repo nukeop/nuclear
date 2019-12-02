@@ -1,3 +1,4 @@
+import { LIST_TYPE } from '@nuclear/ui/lib/components/LibraryListTypeToggle';
 import {
   ADD_LOCAL_FOLDERS,
   REMOVE_LOCAL_FOLDER,
@@ -6,7 +7,8 @@ import {
   SCAN_LOCAL_FOLDER_PROGRESS,
   SCAN_LOCAL_FOLDER_SUCCESS,
   UPDATE_LOCAL_FILTER,
-  UPDATE_LOCAL_SORT
+  UPDATE_LOCAL_SORT,
+  UPDATE_LIBRARY_LIST_TYPE
 } from '../actions/local';
 import { store } from '../persistence/store';
 
@@ -18,6 +20,7 @@ const initialState = {
   sortBy: 'artist',
   direction: 'ascending',
   filter: '',
+  listType: LIST_TYPE.SIMPLE_LIST,
   tracks: {}
 };
 
@@ -75,11 +78,8 @@ export default function LocalReducer(state = initialState, action) {
       error: true
     };
   case UPDATE_LOCAL_FILTER:
-    return {
-      ...state,
-      filter: action.payload
-    };
   case UPDATE_LOCAL_SORT:
+  case UPDATE_LIBRARY_LIST_TYPE:
     return {
       ...state,
       ...action.payload
