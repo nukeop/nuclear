@@ -14,7 +14,7 @@ export const LIST_TYPE = Object.freeze({
 const LibraryListTypeToggle = ({
   toggleSimpleList,
   toggleAlbumGrid,
-  toggleAlbumList,
+  // toggleAlbumList,
   listType
 }) => (
   <Button.Group className={styles.library_list_type_toggle}>

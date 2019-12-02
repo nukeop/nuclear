@@ -21,10 +21,10 @@ export function lyricSearchSuccess (query, result) {
 
 export function lyricsSearch (track) {
   return (dispatch, getState) => {
-    dispatch(lyricSearchStart(track))
+    dispatch(lyricSearchStart(track));
     const providers = getState().plugin.plugins.lyricsProviders;
     const selectedProvider = getState().plugin.selected.lyricsProviders;
-    const lyricsProvider = _.find(providers, {sourceName: selectedProvider})
+    const lyricsProvider = _.find(providers, {sourceName: selectedProvider});
 
     lyricsProvider.search(track.artist, track.name)
       .then(results => {
