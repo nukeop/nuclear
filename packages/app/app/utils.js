@@ -34,12 +34,22 @@ export function stringDurationToSeconds(duration) {
   return 0;
 }
 
-export function getSelectedStream(streams, defaultMusicSource) {
-  let selectedStream = _.find(streams, { source: defaultMusicSource });
+export function getSelectedStream(streams, selectedStreamProvider) {
+  let selectedStream = _.find(streams, { source: selectedStreamProvider });
 
   return _.isNil(selectedStream)
     ? _.filter(streams, 'source')[0] || null
     : selectedStream;
+}
+
+export function getTrackDuration(track, selectedStreamProvider) {
+  let trackStreams = _.get(track, 'streams');
+  let selectedStream = _.find(trackStreams, { source: selectedStreamProvider });
+  let localStream = _.find(trackStreams, { source: 'Local' });
+
+  return _.isNil(localStream)
+  ? _.get(selectedStream, 'duration')
+  : _.get(localStream, 'duration');
 }
 
 export function removeQuotes(text) {

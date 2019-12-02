@@ -5,11 +5,11 @@ import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import numeral from 'numeral';
 import { Icon } from 'semantic-ui-react';
+import { formatDuration } from '@nuclear/ui';
 
 import * as QueueActions from '../../actions/queue';
 
 import TrackPopupContainer from '../../containers/TrackPopupContainer';
-import { formatDuration } from '../../utils';
 import artPlaceholder from '../../../resources/media/art_placeholder.png';
 
 import styles from './styles.scss';

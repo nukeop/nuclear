@@ -3,12 +3,13 @@ import classnames from 'classnames';
 import { ipcRenderer } from 'electron';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { withTranslation } from 'react-i18next';
+import { QueueItem, formatDuration } from '@nuclear/ui';
 import _ from 'lodash';
 
+import { getTrackDuration } from '../../utils';
 import { safeAddUuid } from '../../actions/helpers';
 import styles from './styles.scss';
 
-import {QueueItem} from '@nuclear/ui';
 import QueuePopup from '../QueuePopup';
 import QueueMenu from './QueueMenu';
 
@@ -19,7 +20,6 @@ class PlayQueue extends React.Component {
   }
 
   onDragEnd(result) {
-
     const { source, destination } = result;
     // when dragging to non droppable area or back to same position
     if (!destination || source.index == destination.index) {
@@ -51,7 +51,6 @@ class PlayQueue extends React.Component {
     if (!this.props.items) {
       return null;
     }
-
     return this.props.items.map((el, i) => {
       return (
         <Draggable key={`${el.uuid}+${i}`} index={i} draggableId={`${el.uuid}+${i}`}>
@@ -66,11 +65,20 @@ class PlayQueue extends React.Component {
                   <QueueItem
                     index={i}
                     track={el}
+                    duration={formatDuration}
                     isLoading={el.loading}
                     isCurrent={this.props.currentSong === i}
                     defaultMusicSource={this.props.plugins.selected.streamProviders}
                     selectSong={this.props.actions.selectSong}
                     removeFromQueue={this.props.actions.removeFromQueue}
+                    duration={
+                      formatDuration(
+                        getTrackDuration(
+                          el,
+                          this.props.plugins.selected.streamProviders
+                        )
+                      )
+                    }
                   />
                 }
                 track={el}
