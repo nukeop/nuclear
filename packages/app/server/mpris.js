@@ -52,7 +52,7 @@ class MprisPlayer extends Player {
   }
 
   _getDuration(streams) {
-    return (streams && streams.length) ? streams[0].duration * 1000 * 1000 : 0; // In microseconds
+    return (_.get(streams, '[0].duration')* 1000 * 1000) || 0; // In microseconds
   }
 
   @autobind
