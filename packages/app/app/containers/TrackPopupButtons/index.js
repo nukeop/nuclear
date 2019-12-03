@@ -5,8 +5,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { compose, withHandlers } from 'recompose';
 import { ipcRenderer } from 'electron';
-import { PopupButton } from '@nuclear/ui';
-import { getThumbnail } from '@nuclear/ui/lib/components/AlbumGrid';
+import { PopupButton, getThumbnail } from '@nuclear/ui';
 
 import * as DownloadsActions from '../../actions/downloads';
 import * as QueueActions from '../../actions/queue';

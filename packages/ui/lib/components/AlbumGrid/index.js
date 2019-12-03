@@ -5,16 +5,12 @@ import _ from 'lodash';
 import {Dimmer, Loader } from 'semantic-ui-react';
 import { compose, withState, withHandlers } from 'recompose';
 
+import { getThumbnail } from '../../utils';
 import AlbumPreview from '../AlbumPreview';
 import Card from '../Card';
 import common from '../../common.scss';
 import styles from './styles.scss';
 
-export const getThumbnail = album => {
-  return _.get(album, 'images[0].uri',
-    _.get(album, 'image[0][\'#text\']',
-      _.get(album, 'thumb')));
-};
 
 const AlbumGrid = ({
   albums,

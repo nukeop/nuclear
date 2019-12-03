@@ -7,7 +7,7 @@ import {
   compose
 } from 'recompose';
 
-import { getThumbnail } from '../AlbumGrid';
+import { getThumbnail } from '../../utils';
 import ContextPopup from '../ContextPopup';
 import TrackRow from '../TrackRow';
 import artPlaceholder from '../../../resources/media/art_placeholder.png';
