@@ -26,3 +26,9 @@ export function formatDuration(duration) {
     return hours+':'+minutes+':'+seconds;
   }
 }
+
+export const getThumbnail = album => {
+  return _.get(album, 'images[0].uri',
+    _.get(album, 'image[0][\'#text\']',
+      _.get(album, 'thumb')));
+};

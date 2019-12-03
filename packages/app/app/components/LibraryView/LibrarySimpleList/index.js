@@ -9,8 +9,9 @@ import {
 } from 'semantic-ui-react';
 import { compose } from 'recompose';
 import { withTranslation } from 'react-i18next';
-import { TrackRow } from '@nuclear/ui';
+import { ContextPopup, TrackRow, getThumbnail } from '@nuclear/ui';
 
+import TrackPopupButtons from '../../../containers/TrackPopupButtons';
 import styles from './styles.scss';
 
 const LibrarySimpleList = ({
@@ -65,15 +66,27 @@ const LibrarySimpleList = ({
       </Table>
     )}
     itemRenderer={index => (
-      <TrackRow
-        key={'library-track-'+index}
-        track={tracks[index]}
-        displayCover
-        displayArtist
-        displayAlbum
-        withAddToDownloads={false}
-        isLocal
-      />
+      <ContextPopup
+        trigger={
+          <TrackRow
+            key={'library-track-'+index}
+            track={tracks[index]}
+            displayCover
+            displayArtist
+            displayAlbum
+            withAddToDownloads={false}
+            isLocal
+          />
+        }
+        thumb={getThumbnail(_.get(tracks, index))}
+        title={_.get(tracks, [index, 'name'])}
+        artist={_.get(tracks, [index, 'artist', 'name'])}
+      >
+        <TrackPopupButtons
+          track={tracks[index]}
+          withAddToDownloads={false}
+        />
+      </ContextPopup>
     )}
   />
 );
