@@ -6,6 +6,7 @@ import {
   withState,
   compose
 } from 'recompose';
+import { Button } from 'semantic-ui-react';
 
 import { getThumbnail } from '../../utils';
 import ContextPopup from '../ContextPopup';
@@ -17,7 +18,10 @@ const AlbumPreview = ({
   album,
   trackButtons,
   target,
-  handleListClick
+  handleListClick,
+
+  handleAddToQueue,
+  handlePlayAll
 }) => {
   const thumb = _.defaultTo(getThumbnail(album), artPlaceholder);
   const TrackButtons = trackButtons;
@@ -26,8 +30,23 @@ const AlbumPreview = ({
     <div className={styles.album_preview} >
       <div
         className={styles.album_cover}
-        style={{backgroundImage: `url(${thumb})`}}
-      />
+        style={{ backgroundImage: `url(${thumb})` }}
+      >
+        <div className={styles.album_cover_overlay}>
+          <Button
+            basic
+            icon='plus'
+            size='huge'
+            onClick={ handleAddToQueue }
+          />
+          <Button
+            basic
+            icon='play'
+            size='huge'
+            onClick={ handlePlayAll }
+          />
+        </div>
+      </div>
       <div
         className={styles.track_list}
         onClick={handleListClick}
@@ -92,7 +111,7 @@ AlbumPreview.propTypes = {
 
 export default compose(
   withState(
-    'target', 'setTarget', {x: 0, y: 0}
+    'target', 'setTarget', { x: 0, y: 0 }
   ),
   withHandlers({
     handleListClick: ({ setTarget }) => e => setTarget({ x: e.clientX, y: e.clientY })

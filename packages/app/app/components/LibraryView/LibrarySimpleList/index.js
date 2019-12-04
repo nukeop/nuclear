@@ -100,5 +100,4 @@ LibrarySimpleList.propTypes = {
 
 export default compose(
   withTranslation('library')
-
 )(LibrarySimpleList);
