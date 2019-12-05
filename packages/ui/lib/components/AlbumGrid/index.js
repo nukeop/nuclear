@@ -20,13 +20,15 @@ const AlbumGrid = ({
   trackButtons,
   onAddToQueue,
   onPlayAll,
+  autoSize,
   withArtistNames,
   withAlbumPreview
 }) => (
     <div className={cx(
       common.nuclear,
       styles.album_grid,
-      { [styles.loading]: loading }
+      { [styles.loading]: loading },
+      { [styles.auto_size]: autoSize }
     )} >
       <div className={styles.album_cards}>
         {
@@ -71,6 +73,8 @@ AlbumGrid.propTypes = {
   startPlayback: PropTypes.func,
   onAddToQueue: PropTypes.func,
   onPlayAll: PropTypes.func,
+
+  autoSize: PropTypes.bool,
   withArtistNames: PropTypes.bool,
   withAlbumPreview: PropTypes.bool,
 

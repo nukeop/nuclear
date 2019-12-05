@@ -13,6 +13,10 @@
     align-items: center;
   }
 
+  &.auto_size {
+    height: auto;
+  }
+
   hr {
     border: 1px solid rgba($background2, 0.6);
     width: 100%;
