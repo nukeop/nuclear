@@ -46,13 +46,15 @@
       &:hover,
       &:active,
       &:focus {
+        border: none;
+
         i {
           color: rgba($black, 0.9);
         }
       }
 
       i {
-        color: rgba($white, 0.6);
+        color: rgba($white, 0.8);
       }
     }
   }

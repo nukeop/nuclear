@@ -4,6 +4,8 @@ import _ from 'lodash';
 
 import LibraryView from '../../components/LibraryView';
 import * as LocalActions from '../../actions/local';
+import * as QueueActions from '../../actions/queue';
+import * as PlayerActions from '../../actions/player';
 import * as SettingsActions from '../../actions/settings';
 import { sortTracks } from './utils';
 
@@ -24,6 +26,7 @@ function mapStateToProps(state) {
   return {
     tracks: state.local.direction === 'ascending' ? tracks : tracks.reverse(),
     filterApplied: tracks.length < unfilteredTracks.length,
+    streamProviders: _.filter(state.plugin.plugins.streamProviders, { sourceName: 'Local' }),
 
     pending: state.local.pending,
     scanProgress: state.local.scanProgress,
@@ -39,7 +42,9 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators({ ...LocalActions, ...SettingsActions }, dispatch)
+    actions: bindActionCreators({ ...LocalActions, ...SettingsActions }, dispatch),
+    queueActions: bindActionCreators(QueueActions, dispatch),
+    playerActions: bindActionCreators(PlayerActions, dispatch)
   };
 }
 
