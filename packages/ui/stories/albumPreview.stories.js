@@ -23,6 +23,8 @@ storiesOf('Album preview', module)
             }
           )).value()
         }}
+        handleAddToQueue={() => alert('Album added to queue')}
+        handlePlayAll={() => alert('Album started playing')}
       />
     </div>
   ))

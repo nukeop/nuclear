@@ -11,14 +11,12 @@ import { LIST_TYPE } from '@nuclear/ui/lib/components/LibraryListTypeToggle';
 import _ from 'lodash';
 import { withProps } from 'recompose';
 
-import Header from '../Header';
 import EmptyState from './EmptyState';
 import NoApi from './NoApi';
 
 import trackRowStyles from '../TrackRow/styles.scss';
 import styles from './index.scss';
 import NoSearchResults from './NoSearchResults';
-import LibraryFolders from './LibraryFolders';
 import LibrarySimpleList from './LibrarySimpleList';
 import LibraryAlbumGrid from './LibraryAlbumGrid';
 import LibraryHeader from './LibraryHeader';
@@ -26,7 +24,10 @@ import LibraryHeader from './LibraryHeader';
 const LibraryView = ({
   tracks,
   filterApplied,
+  streamProviders,
   actions,
+  queueActions,
+  playerActions,
   pending,
   scanProgress,
   scanTotal,
@@ -80,41 +81,44 @@ const LibraryView = ({
                 filterApplied ? (
                   <NoSearchResults />
                 ) : (
-                  <EmptyState />
-                )
+                    <EmptyState />
+                  )
               ) : (
-                <Segment inverted className={trackRowStyles.tracks_container}>
-                  <Dimmer active={pending} loading={pending.toString()} />
+                  <Segment inverted className={trackRowStyles.tracks_container}>
+                    <Dimmer active={pending} loading={pending.toString()} />
 
-                  {
-                    !pending &&
-                    listType === LIST_TYPE.SIMPLE_LIST &&
-                    <LibrarySimpleList
-                      tracks={tracks}
-                      sortBy={sortBy}
-                      direction={direction}
-                      handleSort={handleSort}
-                    />
-                  }
+                    {
+                      !pending &&
+                      listType === LIST_TYPE.SIMPLE_LIST &&
+                      <LibrarySimpleList
+                        tracks={tracks}
+                        sortBy={sortBy}
+                        direction={direction}
+                        handleSort={handleSort}
+                      />
+                    }
 
-                  {
-                    !pending &&
-                  !_.isEmpty(localFolders) &&
-                  listType === LIST_TYPE.ALBUM_GRID &&
-                  <LibraryAlbumGrid
-                    tracks={tracks}
-                    withArtistNames
-                    withAlbumPreview
-                  />
-                  }
-                </Segment>
-              )}
+                    {
+                      !pending &&
+                      !_.isEmpty(localFolders) &&
+                      listType === LIST_TYPE.ALBUM_GRID &&
+                      <LibraryAlbumGrid
+                        tracks={tracks}
+                        streamProviders={streamProviders}
+                        addToQueue={queueActions.addToQueue}
+                        clearQueue={queueActions.clearQueue}
+                        selectSong={queueActions.selectSong}
+                        startPlayback={playerActions.startPlayback}
+                        withArtistNames
+                        withAlbumPreview
+                      />
+                    }
+                  </Segment>
+                )}
           </>
         ) : (
-          <NoApi enableApi={actions.setBooleanOption} />
-        )}
-
-
+            <NoApi enableApi={actions.setBooleanOption} />
+          )}
       </Segment>
     </div>
   );
@@ -127,8 +131,17 @@ LibraryView.propTypes = {
   scanProgress: PropTypes.number,
   scanTotal: PropTypes.number,
   localFolders: PropTypes.arrayOf(PropTypes.string),
-  // byArtist: PropTypes.object,
+  streamProviders: PropTypes.array,
   actions: PropTypes.object,
+  queueActions: PropTypes.shape({
+    addToQueue: PropTypes.func,
+    clearQueue: PropTypes.func,
+    selectSong: PropTypes.func,
+    playTrack: PropTypes.func
+  }),
+  playerActions: PropTypes.shape({
+    startPlayback: PropTypes.func
+  }),
   sortBy: PropTypes.string,
   direction: PropTypes.string
 };
