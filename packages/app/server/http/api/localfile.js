@@ -1,12 +1,12 @@
 import express from 'express';
-import logger from 'electron-timber';
-import { ipcMain } from 'electron';
 import { Validator } from 'express-json-validator-middleware';
-import _ from 'lodash';
 
+<<<<<<< HEAD
 import { scanFoldersAndGetMeta } from '../../local-files';
 import { getOption } from '../../store';
 import store from '../../libraryStore';
+=======
+>>>>>>> refactor(server): huge refactor server codebase
 
 export const localSearchSchema = {
   body: {
@@ -37,33 +37,13 @@ export const localGetSchema = {
 
 const { validate } = new Validator({ allErrors: true });
 
-export function localFileRouter() {
-  let cache = store.get('localMeta');
-  let byArtist = _.groupBy(Object.values(cache), track => track.artist.name);
-
-  ipcMain.on('refresh-localfolders', async event => {
-    try {
-      let onProgress = (scanProgress, scanTotal) => {
-        event.sender.send('local-files-progress', {scanProgress, scanTotal});
-      };
-      cache = await scanFoldersAndGetMeta(store.get('localFolders'), cache, onProgress);
-
-      store.set('localMeta', cache);
-      byArtist = _.groupBy(Object.values(cache), track => track.artist.name);
-
-      event.sender.send('local-files', cache);
-    } catch (err) {
-      logger.error(err);
-      event.sender.send('local-files-error', err);
-    }
-  });
-
+export function localFileRouter(localService, store) {
   const router = express.Router();
 
   const checkCache = (req, res, next) => {
-    if (!cache) {
+    if (!localService.cache) {
       next(new Error('files are not availabale'));
-    } else if (!cache[req.params.fileId]) {
+    } else if (!localService.cache[req.params.fileId]) {
       res.status(404).send('Not Found');
     } else {
       return next();
@@ -71,17 +51,17 @@ export function localFileRouter() {
   };
 
   router.get('/:fileId', validate(localGetSchema), checkCache, (req, res) => {
-    res.download(cache[req.params.fileId].path);
+    res.download(localService.cache[req.params.fileId].path);
   });
 
   router.post('/search', validate(localSearchSchema), (req, res, next) => {
-    const port = getOption('api.port');
+    const port = store.getOption('api.port');
 
     try {
       res.json(
-        Object.keys(byArtist)
+        Object.keys(localService.byArtist)
           .filter(artist => artist.includes(req.body.artist))
-          .map(artist => byArtist[artist])
+          .map(artist => localService.byArtist[artist])
           .flat()
           .filter(track => track.name.includes(req.body.track))
           .map(track => ({

@@ -1,8 +1,7 @@
 import express from 'express';
 import swagger from 'swagger-spec-express';
-import { getOption } from '../../store';
 
-export function swaggerRouter() {
+export function swaggerRouter(store) {
   const router = express.Router();
 
   router.get('/swagger.json', (req, res) => {
@@ -10,7 +9,7 @@ export function swaggerRouter() {
   });
 
   router.get('/', (req, res) => {
-    const PORT = getOption('api.port');
+    const PORT = store.getOption('api.port');
 
     res.setHeader('Content-Type', 'text/html');
     res.send(`

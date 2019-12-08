@@ -2,14 +2,12 @@ import express from 'express';
 import { Validator } from 'express-json-validator-middleware';
 import swagger from 'swagger-spec-express';
 
-import { store } from '../../store';
-import { onUpdateEqualizer, onSetEqualizer } from '../../ipc';
 import { updateEqualizerSchema } from '../schema';
 import { getStandardDescription } from '../swagger';
 
 const { validate } = new Validator({ allErrors: true });
 
-export function equalizerRouter() {
+export function equalizerRouter(store, rendererWindow) {
   const router = express.Router();
 
   swagger.swaggerize(router);
@@ -23,7 +21,7 @@ export function equalizerRouter() {
     }));
 
   router.post('/', validate(updateEqualizerSchema), (req, res) => {
-    onUpdateEqualizer(req.body.values);
+    rendererWindow.send('update-equalizer', req.body.values);
     res.send();
   })
     .describe(getStandardDescription({
@@ -37,7 +35,7 @@ export function equalizerRouter() {
     if (!equalizerNames.includes(req.params.eqName)) {
       res.status('400').send(`name should be one of ${equalizerNames.toString()}`);
     } else {
-      onSetEqualizer(req.params.eqName);
+      rendererWindow.send('set-equalizer', req.params.eqName);
       res.send();
     }
   })

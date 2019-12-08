@@ -1,22 +1,20 @@
+import { ipcMain } from 'electron';
 import express from 'express';
 import swagger from 'swagger-spec-express';
 
-import {
-  onEmptyQueue,
-  getQueue
-} from '../../ipc';
 import { getStandardDescription } from '../swagger';
 
-export function queueRouter() {
+export function queueRouter(rendererWindow) {
 
   const router = express.Router();
   
   swagger.swaggerize(router);
 
-  router.get('/', (req, res, next) => {
-    getQueue()
-      .then(res.json.bind(res))
-      .catch(next);
+  router.get('/', (req, res) => {
+    rendererWindow.send('queue');
+    ipcMain.once('queue', (evt, data) => {
+      res.json(data);
+    });
   })
     .describe(getStandardDescription({
       successDescription: 'The current queue',
@@ -25,7 +23,7 @@ export function queueRouter() {
 
   router
     .post('/empty', (req, res) => {
-      onEmptyQueue();
+      rendererWindow.send('empty-queue');
       res.send();
     })
     .describe(getStandardDescription({

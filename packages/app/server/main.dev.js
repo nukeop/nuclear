@@ -1,166 +1,113 @@
 import 'regenerator-runtime';
-import logger from 'electron-timber';
-import platform from 'electron-platform';
-import path from 'path';
-import url from 'url';
-import getPort from 'get-port';
-import { app, ipcMain, nativeImage, BrowserWindow, Menu, Tray } from
-  'electron';
+
 import { transformSource } from '@nuclear/core';
-
-import { runHttpServer, closeHttpServer } from './http/server';
-import { setOption } from './store';
-import { registerDownloadsEvents } from './downloads';
-import MprisPlayer from './mpris';
-
+import { app, ipcMain } from 'electron';
+import logger from 'electron-timber';
 import installExtension, {
   REACT_DEVELOPER_TOOLS,
   REDUX_DEVTOOLS
 } from 'electron-devtools-installer';
-import { getOption } from './store';
+import getPort from 'get-port';
+import url from 'url';
 
-let httpServer;
-let mprisPlayer;
-let tray;
-let win;
-let icon = nativeImage.createFromPath(
-  path.resolve(__dirname, 'resources', 'media', 'icon.png')
-);
-logger.hookConsole({
-  main: true
-});
+import DownloadIpcCtrl from './ipc/download';
+import LocalLibraryIpcCtrl from './ipc/localLibrary';
+import PlayerIpcCtrl from './ipc/player';
+import SettingsIpcCtrl from './ipc/settings';
 
-function changeWindowTitle (artist, title) {
-  win.setTitle(`${artist} - ${title} - Nuclear Music Player`);
-}
+import { trackSearch } from '../app/rest/youtube-search';
+import AcousticId from './services/acousticId';
+import Download from './services/download';
+import HttpApi from './services/http';
+import LocalLibrary from './services/localLibrary';
+import Mpris from './services/mpris';
+import Store from './services/store';
+import Window from './services/window';
+import * as platform from './services/platform';
+import Container from './helpers/container';
 
-function createWindow() {
-  logger.log('Electron is ready, creating a window');
-  win = new BrowserWindow({
-    width: 1366,
-    height: 768,
-    frame: !getOption('framelessWindow'),
-    icon,
-    show: false,
-    webPreferences: {
-      experimentalFeatures: true,
-      webSecurity: false
-    },
-    additionalArguments: [
-      getOption('disableGPU') && '--disable-gpu'
-    ]
-  });
+let container;
+const services = [
+  { provide: 'acousticId', useClass: AcousticId },
+  { provide: 'download', useClass: Download },
+  { provide: 'httpApi', useClass: HttpApi },
+  { provide: 'localLibrary', useClass: LocalLibrary },
+  { provide: 'store', useClass: Store },
+  { provide: 'window', useClass: Window },
+  { provide: 'platform', useValue: platform },
+  { provide: 'youtubeSearch', useValue: trackSearch },
+  { provide: 'logger', useValue: logger },
+  { provide: 'ipcLogger', useValue: logger.create({ name: 'ipc api' }) },
+  { provide: 'httpLogger', useValue: logger.create({ name: 'http api' }) }
+];
 
-  win.setTitle('Nuclear Music Player');
+const ipcControllers = [
+  DownloadIpcCtrl,
+  LocalLibraryIpcCtrl,
+  PlayerIpcCtrl,
+  SettingsIpcCtrl
+];
 
-  installExtension(REACT_DEVELOPER_TOOLS)
-    .then((name) => logger.log(`Added Extension:  ${name}`))
-    .catch((err) => logger.log('An error occurred: ', err));
-
-  installExtension(REDUX_DEVTOOLS)
-    .then((name) => logger.log(`Added Extension:  ${name}`))
-    .catch((err) => logger.log('An error occurred: ', err));
+app.on('ready', async () => {
+  try {
+    await Promise.all([
+      installExtension(REACT_DEVELOPER_TOOLS),
+      installExtension(REDUX_DEVTOOLS)
+    ]);
+    logger.log('devtools installed');
+  } catch (err) {
+    logger.warn('something fails while trying to install devtools');
+  }
 
   app.transformSource = transformSource;
 
-  win.loadURL(
-    url.format({
-      pathname: 'localhost:8080',
-      protocol: 'http:',
-      slashes: true
-    })
-  );
-
-  win.once('ready-to-show', () => {
-    win.show();
-    // this must run after win.show(), otherwise startup errors cause
-    // dev-tools to pause execution, causing "ready-to-show" to never trigger
-    win.webContents.openDevTools();
-
-    if (process.platform !== 'win32' && process.platform !== 'darwin') {
-      mprisPlayer = new MprisPlayer(win, app);
-      mprisPlayer.listen();
+  try {
+    if (platform.isLinux()) {
+      services.push(
+        { provide: 'mprisLogger', useValue: logger.create({ name: 'mpris' }) },
+        { provide: 'mpris', useClass: Mpris }
+      );
     }
-  });
 
-  win.on('closed', () => {
-    win = null;
-  });
+    const container = new Container({ ipcControllers, services }, { ipc: ipcMain });
+    const store = container.resolve('store');
+    const window = container.resolve('window');
+  
+    container.ipcListen();
 
-  // MacOS specific
-  if (platform.isDarwin) {
-    app.dock.setIcon(icon);
-    icon = nativeImage.createFromPath(
-      path.resolve(__dirname, 'resources', 'media', 'icon_apple.png')
+    window.loadURL(
+      url.format({
+        pathname: 'localhost:8080',
+        protocol: 'http:',
+        slashes: true
+      })
     );
-  }
-
-  const trayMenu = Menu.buildFromTemplate([
-    {
-      label: 'Quit',
-      type: 'normal',
-      click: () => {
-        closeHttpServer(httpServer).then(() => app.quit());
-      }
-    }
-  ]);
-
-  tray = new Tray(icon);
-  tray.setTitle('Nuclear Music Player');
-  tray.setToolTip('Nuclear Music Player');
-  tray.setContextMenu(trayMenu);
-
-  registerDownloadsEvents(win);
-
-  ipcMain.on('close', () => {
-    logger.log('Received a close message from ipc, quitting');
-    closeHttpServer(httpServer).then(() => app.quit());
-  });
-
-  ipcMain.on('minimize', () => {
-    win.minimize();
-  });
-
-  ipcMain.on('maximize', () => {
-    if (platform.isDarwin) {
-      win.isFullScreen() ? win.setFullScreen(false) : win.setFullScreen(true);
-    } else {
-      win.isMaximized() ? win.unmaximize() : win.maximize();
-    }
-  });
-
-  ipcMain.on('restart-api', () => {
-    closeHttpServer(httpServer).then(() => {
-      httpServer = runHttpServer({ log: true, port: getOption('api.port') });
+  
+    window.once('ready-to-show', () => {
+      window.show();
+      window.webContents.openDevTools();
     });
-  });
 
-  ipcMain.on('stop-api', () => {
-    closeHttpServer(httpServer);
-  });
-
-  ipcMain.on('songChange', (event, arg) => {
-    if (arg === null) {
-      return;
-    }
-    changeWindowTitle(arg.artist, arg.name);
-    mprisPlayer.setMetadata(arg);
-  });
-}
-
-app.on('ready', () => {
-  createWindow();
-
-  (async () => {
     const availablePort = await getPort({ port: getPort.makeRange(3000, 3100) });
-    if (getOption('api.enabled')) {
-      setOption('api.port', availablePort);
-      httpServer = runHttpServer({ log: true, port: availablePort });
-    }
-  })();
+    store.setOption('api.port', availablePort);
+  } catch (err) {
+    logger.error('something fail during app bootstrap');
+    logger.error(err);
+
+    return app.quit();
+  }
 });
 
-app.on('window-all-closed', () => {
-  logger.log('All windows closed, quitting');
-  closeHttpServer(httpServer).then(() => app.quit());
+app.on('window-all-closed', async () => {  
+  try {
+    logger.log('All windows closed, quitting');
+    const httpApi = container.resolve('httpApi');
+    await httpApi.close();
+
+    app.quit();
+  } catch (err) {
+    logger.error('something fail during app close');
+    logger.error(err);
+    app.quit();
+  }
 });

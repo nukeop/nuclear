@@ -2,15 +2,13 @@ import express from 'express';
 import { Validator } from 'express-json-validator-middleware';
 import swagger from 'swagger-spec-express';
 
-import { onSettings } from '../../ipc';
-import { getOption, store } from '../../store';
 import { getSettingsSchema, updateSettingsSchema, RESTRICTED_SETTINGS } from '../schema';
 import settingsParams from '../../../common/settings';
 import { getStandardDescription } from '../swagger';
 
 const { validate } = new Validator({ allErrors: true });
 
-export function settingsRouter() {
+export function settingsRouter(store, rendererWindow) {
 
   const router = express.Router();
 
@@ -41,7 +39,7 @@ export function settingsRouter() {
       '/:option',
       validate(getSettingsSchema),
       (req, res) => {
-        res.send(getOption(req.params.option));
+        res.send(store.getOption(req.params.option));
       }
     )
     .describe(
@@ -56,7 +54,7 @@ export function settingsRouter() {
       '/:option',
       validate(updateSettingsSchema),
       (req, res) => {
-        onSettings({ [req.params.option]: req.body.value });
+        rendererWindow.send('settings', { [req.params.option]: req.body.value });
         res.send();
       }
     )

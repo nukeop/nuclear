@@ -2,18 +2,13 @@ import express from 'express';
 import { Validator } from 'express-json-validator-middleware';
 import swagger from 'swagger-spec-express';
 
-import {
-  onCreatePlaylist,
-  onRemovePlaylist
-} from '../../ipc';
 import { addPlaylistSchema } from '../schema';
 import { getStandardDescription } from '../swagger';
-import { store } from '../../store';
 
 
 const { validate } = new Validator({ allErrors: true });
 
-export function playlistRouter() {
+export function playlistRouter(store, rendererWindow) {
 
   const router = express.Router();
   
@@ -21,7 +16,7 @@ export function playlistRouter() {
 
   router
     .post('/', validate(addPlaylistSchema), (req, res) => {
-      onCreatePlaylist(req.body.name);
+      rendererWindow.send('create-playlist', req.body.name);
       res.send();
     })
     .describe(
@@ -57,7 +52,7 @@ export function playlistRouter() {
         const playlists = store.get('playlists');
 
         store.set('playlists', playlists.filter(({ name }) => name !== req.params.name));
-        onRemovePlaylist();
+        rendererWindow.send('refresh-playlists');
         res.send();
       } catch (err) {
         next(err);

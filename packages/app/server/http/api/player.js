@@ -1,36 +1,26 @@
 import express from 'express';
+import { ipcMain } from 'electron';
 import { Validator } from 'express-json-validator-middleware';
 import swagger from 'swagger-spec-express';
 
-import {
-  onNext,
-  onPrevious,
-  onPause,
-  onPlayPause,
-  onStop,
-  onPlay,
-  onVolume,
-  onSeek,
-  onMute,
-  getPlayingStatus
-} from '../../ipc';
 import { volumeSchema, seekSchema } from '../schema';
 import { getStandardDescription } from '../swagger';
 
 
 const { validate } = new Validator({ allErrors: true });
 
-export function playerRouter() {
+export function playerRouter(rendererWindow) {
 
   const router = express.Router();
   
   swagger.swaggerize(router);
 
   router
-    .get('/now-playing', (req, res, next) => {
-      getPlayingStatus()
-        .then(res.json.bind(res))
-        .catch(next);
+    .get('/now-playing', (req, res) => {
+      rendererWindow.send('playing-status');
+      ipcMain.once('playing-status', (evt, data) => {
+        res.json(data);
+      });
     })
     .describe(
       getStandardDescription({
@@ -41,56 +31,56 @@ export function playerRouter() {
 
   router
     .post('/next', (req, res) => {
-      onNext();
+      rendererWindow.send('next');
       res.send();
     })
     .describe(getStandardDescription({ tags: ['Player'] }));
 
   router
     .post('/previous', (req, res) => {
-      onPrevious();
+      rendererWindow.send('previous');
       res.send();
     })
     .describe(getStandardDescription({ tags: ['Player'] }));
 
   router
     .post('/pause', (req, res) => {
-      onPause();
+      rendererWindow.send('pause');
       res.send();
     })
     .describe(getStandardDescription({ tags: ['Player'] }));
 
   router
     .post('/play-pause', (req, res) => {
-      onPlayPause();
+      rendererWindow.send('playpause');
       res.send();
     })
     .describe(getStandardDescription({ tags: ['Player'] }));
 
   router
     .post('/stop', (req, res) => {
-      onStop();
+      rendererWindow.send('stop');
       res.send();
     })
     .describe(getStandardDescription({ tags: ['Player'] }));
 
   router
     .post('/play', (req, res) => {
-      onPlay();
+      rendererWindow.send('play');
       res.send();
     })
     .describe(getStandardDescription({ tags: ['Player'] }));
 
   router
     .post('/mute', (req, res) => {
-      onMute();
+      rendererWindow.send('mute');
       res.send();
     })
     .describe(getStandardDescription({ tags: ['Player'] }));
 
   router
     .post('/volume', validate(volumeSchema), (req, res) => {
-      onVolume(req.body.value);
+      rendererWindow.send('volume', req.body.value);
       res.send();
     })
     .describe(
@@ -102,7 +92,7 @@ export function playerRouter() {
 
   router
     .post('/seek', validate(seekSchema), (req, res) => {
-      onSeek(req.body.value);
+      rendererWindow.send('send', req.body.value);
       res.send();
     })
     .describe(

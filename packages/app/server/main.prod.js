@@ -1,128 +1,78 @@
 import 'regenerator-runtime';
-import process from 'process';
-import logger from 'electron-timber';
+
 import { transformSource } from '@nuclear/core';
+import { app, ipcMain } from 'electron';
+import path from 'path';
+import url from 'url';
 
-const { app, ipcMain, nativeImage, BrowserWindow, Menu, Tray } = require('electron');
-const platform = require('electron-platform');
-const path = require('path');
-const url = require('url');
-const getOption = require('./store').getOption;
-const { runHttpServer, closeHttpServer } = require('./http/server');
-import { registerDownloadsEvents } from './downloads';
-import MprisPlayer from './mpris';
+import DownloadIpcCtrl from './ipc/download';
+import LocalLibraryIpcCtrl from './ipc/localLibrary';
+import PlayerIpcCtrl from './ipc/player';
+import SettingsIpcCtrl from './ipc/settings';
 
-let httpServer;
-let mprisPlayer;
-let win;
-let tray;
-let icon = nativeImage.createFromPath(path.resolve(__dirname, 'resources', 'media', 'icon.png'));
+import { trackSearch } from '../app/rest/youtube-search';
+import AcousticId from './services/acousticId';
+import Download from './services/download';
+import HttpApi from './services/http';
+import LocalLibrary from './services/localLibrary';
+import Mpris from './services/mpris';
+import Store from './services/store';
+import Window from './services/window';
+import logger from './services/loggerProd';
+import * as platform from './services/platform';
+import Container from './helpers/container';
 
-process.on('uncaughtException', error => {
-  logger.log(error);
-});
+let container;
+const services = [
+  { provide: 'acousticId', useClass: AcousticId },
+  { provide: 'download', useClass: Download },
+  { provide: 'httpApi', useClass: HttpApi },
+  { provide: 'localLibrary', useClass: LocalLibrary },
+  { provide: 'platform', useValue: platform },
+  { provide: 'store', useClass: Store },
+  { provide: 'window', useClass: Window },
+  { provide: 'youtubeSearch', useValue: trackSearch },
+  { provide: 'logger', useValue: logger },
+  { provide: 'ipcLogger', useValue: logger },
+  { provide: 'httpLogger', useValue: logger }
+];
 
-function changeWindowTitle(artist, title) {
-  win.setTitle(`${artist} - ${title} - Nuclear Music Player`);
-}
+const ipcControllers = [
+  DownloadIpcCtrl,
+  LocalLibraryIpcCtrl,
+  PlayerIpcCtrl,
+  SettingsIpcCtrl
+];
 
-function createWindow() {
-  win = new BrowserWindow({
-    width: 1366,
-    height: 768,
-    frame: !getOption('framelessWindow'),
-    icon,
-    show: false,
-    webPreferences: {
-      experimentalFeatures: true,
-      webSecurity: false
-    },
-    additionalArguments: [
-      getOption('disableGPU') && '--disable-gpu'
-    ]
-  });
-
-  win.setTitle('Nuclear Music Player');
-
+app.on('ready', () => {
   app.transformSource = transformSource;
+  if (platform.isLinux()) {
+    services.push(
+      { provide: 'mprisLogger', useValue: logger },
+      { provide: 'mpris', useClass: Mpris }
+    );
+  }
 
-  win.loadURL(url.format({
+  container = new Container({ ipcControllers, services }, { ipc: ipcMain });
+  const window = container.resolve('window');
+
+  container.ipcListen();
+
+  window.loadURL(url.format({
     pathname: path.join(__dirname, 'index.html'),
     protocol: 'file:',
     slashes: true
   }));
 
-  win.once('ready-to-show', () => {
-    win.show();
-
-    if (process.platform !== 'win32' && process.platform !== 'darwin') {
-      mprisPlayer = new MprisPlayer(win, app);
-      mprisPlayer.listen();
-    }
-  });
-
-  win.on('closed', () => {
-    win = null;
-  });
-
-  // MacOS specific
-  if (platform.isDarwin) {
-    app.dock.setIcon(icon);
-    icon = nativeImage.createFromPath(path.resolve(__dirname, 'resources', 'media', 'icon_apple.png'));
-  }
-
-  const trayMenu = Menu.buildFromTemplate([
-    {label: 'Quit', type: 'normal', click:
-     () => {
-       closeHttpServer(httpServer).then(() => app.quit());
-     }
-    }
-  ]);
-
-  tray = new Tray(icon);
-  tray.setTitle('Nuclear Music Player');
-  tray.setToolTip('Nuclear Music Player');
-  tray.setContextMenu(trayMenu);
-
-  registerDownloadsEvents(win);
-
-  ipcMain.on('close', () => {
-    closeHttpServer(httpServer).then(() => app.quit());
-  });
-
-  ipcMain.on('minimize', () => {
-    win.minimize();
-  });
-
-  ipcMain.on('maximize', () => {
-    win.isMaximized() ? win.unmaximize() : win.maximize();
-  });
-
-  ipcMain.on('songChange', (event, arg) => {
-    if (arg === null) {
-      return;
-    }
-    changeWindowTitle(arg.artist, arg.name);
-  });
-
-  ipcMain.on('restart-api', () => {
-    closeHttpServer(httpServer).then(() => {
-      httpServer = runHttpServer({ port: getOption('api.port') });
-    });
-  });
-
-  ipcMain.on('stop-api', () => {
-    closeHttpServer(httpServer);
-  });
-}
-
-app.on('ready', () => {
-  createWindow();
-  if (getOption('api.enabled')) {
-    httpServer = runHttpServer({ port: getOption('api.port') });
-  }
+  window.once('ready-to-show', window.show);
 });
 
-app.on('window-all-closed', () => {
-  closeHttpServer(httpServer).then(() => app.quit());
+app.on('window-all-closed', async () => {
+  const store = container.resolve('store');
+
+  if (store.getOption('api.enabled')) {
+    const httpApi = container.resolve('httpApi');
+    await httpApi.close();
+  }
+  app.quit();
 });
