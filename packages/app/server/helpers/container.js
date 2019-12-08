@@ -16,6 +16,7 @@ import { createContainer, asClass, asValue, Lifetime } from 'awilix';
  * 
  * @typedef {Object} ContainerDependencies
  * @property {IpcControllers[]} ipcControllers
+ * @property {IpcControllers[]} ipcControllers
  * @property {ServiceProvider[]} services
  * 
  * @typedef {Object} ContainerOptions
@@ -130,7 +131,7 @@ class Container {
    */
   close() {
     this.ipcControllers.forEach(Controller => {
-      Controller.prototype.forEach(({ event }) => {
+      Controller.prototype.ipcEvents.forEach(({ event }) => {
         this.ipc.removeAllListeners(event);
         this.logger.log(`ipc events of ${Controller.name} unsuscribed`);
       });
