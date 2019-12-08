@@ -138,7 +138,7 @@ export default [
       { key: 'zh', text: '简体中文', value: 'zh' },
       { key: 'zh_tw', text: '繁體中文', value: 'zh_tw' },
       { key: 'id', text: 'Bahasa Indonesia', value: 'id' },
-	    { key: 'sk', text: 'Slovenčina', value: 'sk' },
+      { key: 'sk', text: 'Slovenčina', value: 'sk' },
       { key: 'ko', text: '한국어', value: 'ko' },
       { key: 'tl', text: 'Tagalog (Filipino)', value: 'tl' }
     ],
