@@ -35,7 +35,7 @@ const services = [
   { provide: 'logger', useValue: logger },
   { provide: 'ipcLogger', useValue: logger },
   { provide: 'httpLogger', useValue: logger },
-  { provide: 'mprisLogger', useValue: logger.create({ name: 'mpris' }) },
+  { provide: 'mprisLogger', useValue: logger },
   { provide: 'mpris', useClass: platform.isLinux() ? Mpris : class EmptyClass{} }
 ];
 
