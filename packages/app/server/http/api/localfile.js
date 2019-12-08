@@ -5,7 +5,8 @@ import { Validator } from 'express-json-validator-middleware';
 import _ from 'lodash';
 
 import { scanFoldersAndGetMeta } from '../../local-files';
-import { store, getOption, setOption } from '../../store';
+import { getOption } from '../../store';
+import { initDb } from '../../libraryStore';
 
 export const localSearchSchema = {
   body: {
@@ -36,8 +37,9 @@ export const localGetSchema = {
 
 const { validate } = new Validator({ allErrors: true });
 
-export function localFileRouter() {
-  let cache = store.get('localMeta');
+export async function localFileRouter() {
+  let db = await initDb();
+  let cache = await db.get('localMeta').value();
   let byArtist = _.groupBy(Object.values(cache), track => track.artist.name);
 
   ipcMain.on('refresh-localfolders', async event => {
@@ -45,9 +47,9 @@ export function localFileRouter() {
       let onProgress = (scanProgress, scanTotal) => {
         event.sender.send('local-files-progress', {scanProgress, scanTotal});
       };
-      cache = await scanFoldersAndGetMeta(store.get('localFolders'), cache, onProgress);
+      cache = await scanFoldersAndGetMeta(await db.get('localFolders').value(), cache, onProgress);
 
-      store.set('localMeta', cache);
+      await db.set('localMeta', cache).write();
       byArtist = _.groupBy(Object.values(cache), track => track.artist.name);
 
       event.sender.send('local-files', cache);

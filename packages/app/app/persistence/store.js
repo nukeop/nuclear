@@ -15,9 +15,6 @@ function setIfUnset(key, value) {
 function initStore() {
   setIfUnset('lastFm', {});
   setIfUnset('settings', {});
-  setIfUnset('localMeta', {});
-
-  setIfUnset('localFolders', []);
   setIfUnset('playLists', []);
 
   setIfUnset('favorites', {

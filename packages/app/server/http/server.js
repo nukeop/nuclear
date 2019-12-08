@@ -17,7 +17,7 @@ import {
 import { errorMiddleware, notFoundMiddleware } from './middlewares';
 import { initSwagger } from './swagger';
 
-function runHttpServer({
+async function runHttpServer({
   log,
   port,
   host = '0.0.0.0',
@@ -41,7 +41,7 @@ function runHttpServer({
     .use(`${prefix}/playlist`, playlistRouter())
     .use(`${prefix}/queue`, queueRouter())
     .use(`${prefix}/equalizer`, equalizerRouter())
-    .use(`${prefix}/file`, localFileRouter())
+    .use(`${prefix}/file`, await localFileRouter())
     .use(notFoundMiddleware())
     .use(errorMiddleware(logger))
     .listen(port, host, err => {
