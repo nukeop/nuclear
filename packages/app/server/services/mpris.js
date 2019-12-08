@@ -217,12 +217,11 @@ class MprisPlayer extends Player {
 
     MprisPlayer.prototype.mprisEvents.forEach(({ event, handler }) => {
       this.on(event, _.throttle((data) => {
-        if (this.logger) {
-          this.logger.log(`Incomming event ${event}`);
-        }
+        this.logger.log(`Incomming event ${event}`);
+
         const result = this[handler](data);
 
-        if (result instanceof Promise && this.logger) {
+        if (result instanceof Promise) {
           result.catch((err) => {
             this.logger.error(`Error in event ${event} handler => ${err.message}`);
           });

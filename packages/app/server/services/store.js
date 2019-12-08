@@ -14,7 +14,8 @@ class Store extends ElectronStore {
    */
   constructor({ logger }) {
     super();
-    logger && logger.log(`Initialized settings store at ${this.path}`);
+
+    logger.log(`Initialized settings store at ${this.path}`);
   }
 
   /**

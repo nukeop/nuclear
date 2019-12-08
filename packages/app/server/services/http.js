@@ -58,12 +58,12 @@ class HttpApi {
       .use(notFoundMiddleware())
       .use(errorMiddleware(this.logger))
       .listen(port, HOST, err => {
-        if (err && this.logger) {
+        if (err) {
           this.logger.error('Something fail during http api initialisation');
           this.logger.error(err);
         } else {
           swagger.compile();
-          this.logger && this.logger.log(`nuclear http api available on port ${port}`);
+          this.logger.log(`nuclear http api available on port ${port}`);
         }
       });
   }

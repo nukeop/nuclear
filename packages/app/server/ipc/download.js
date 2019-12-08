@@ -23,7 +23,7 @@ class DownloadIpcCtrl {
       const query = `${artistName} ${_.get(data, 'name')}`;
       const filename = `${artistName} - ${_.get(data, 'name')}`;
   
-      this.logger && this.logger.log(`Start Download: ${artistName} - ${_.get(data, 'name')}`);
+      this.logger.log(`Start Download: ${artistName} - ${_.get(data, 'name')}`);
   
       const data = await this.download.start({
         query,

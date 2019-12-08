@@ -127,12 +127,12 @@ class LocalLibrary {
         const {results, error} = await this.acousticId.getMetadata(meta.path);
         if (results) {
           data = results[0];
-        } else if (error && this.logger) {
+        } else if (error) {
           this.logger.error(`Acoustic ID error (code ${error.code}): ${error.message}`);
         }
       } catch (ex) {
         // Log errors (from fpcalc) to console, but don't halt the entire scanning process
-        this.logger && this.logger.error(ex);
+        this.logger.error(ex);
       }
 
       if (data && data.recordings && data.recordings.length) {

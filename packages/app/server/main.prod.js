@@ -34,7 +34,9 @@ const services = [
   { provide: 'youtubeSearch', useValue: trackSearch },
   { provide: 'logger', useValue: logger },
   { provide: 'ipcLogger', useValue: logger },
-  { provide: 'httpLogger', useValue: logger }
+  { provide: 'httpLogger', useValue: logger },
+  { provide: 'mprisLogger', useValue: logger.create({ name: 'mpris' }) },
+  { provide: 'mpris', useClass: platform.isLinux() ? Mpris : class EmptyClass{} }
 ];
 
 const ipcControllers = [
@@ -46,13 +48,6 @@ const ipcControllers = [
 
 app.on('ready', () => {
   app.transformSource = transformSource;
-  if (platform.isLinux()) {
-    services.push(
-      { provide: 'mprisLogger', useValue: logger },
-      { provide: 'mpris', useClass: Mpris }
-    );
-  }
-
   container = new Container({ ipcControllers, services }, { ipc: ipcMain });
   const window = container.resolve('window');
 

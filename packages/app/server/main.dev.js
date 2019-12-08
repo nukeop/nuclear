@@ -38,7 +38,9 @@ const services = [
   { provide: 'youtubeSearch', useValue: trackSearch },
   { provide: 'logger', useValue: logger },
   { provide: 'ipcLogger', useValue: logger.create({ name: 'ipc api' }) },
-  { provide: 'httpLogger', useValue: logger.create({ name: 'http api' }) }
+  { provide: 'httpLogger', useValue: logger.create({ name: 'http api' }) },
+  { provide: 'mprisLogger', useValue: logger.create({ name: 'mpris' }) },
+  { provide: 'mpris', useClass: platform.isLinux() ? Mpris : class EmptyClass{} }
 ];
 
 const ipcControllers = [
@@ -62,13 +64,6 @@ app.on('ready', async () => {
   app.transformSource = transformSource;
 
   try {
-    if (platform.isLinux()) {
-      services.push(
-        { provide: 'mprisLogger', useValue: logger.create({ name: 'mpris' }) },
-        { provide: 'mpris', useClass: Mpris }
-      );
-    }
-
     const container = new Container({ ipcControllers, services }, { ipc: ipcMain });
     const store = container.resolve('store');
     const window = container.resolve('window');
@@ -108,6 +103,5 @@ app.on('window-all-closed', async () => {
   } catch (err) {
     logger.error('something fail during app close');
     logger.error(err);
-    app.quit();
   }
 });
