@@ -64,7 +64,7 @@ app.on('ready', async () => {
   app.transformSource = transformSource;
 
   try {
-    const container = new Container({ ipcControllers, services }, { ipc: ipcMain });
+    container = new Container({ ipcControllers, services }, { ipc: ipcMain });
     const store = container.resolve('store');
     const window = container.resolve('window');
   
