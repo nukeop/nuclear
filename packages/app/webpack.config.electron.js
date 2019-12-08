@@ -1,11 +1,34 @@
-/* eslint-env node */
-const webpack = require('webpack');
+module.exports = (env) => {
+  const IS_PROD = env.NODE_ENV === 'production';
 
-module.exports = () => {
-  const entry = './server/main.dev.js';
+  const jsxRule = {
+    test: /.jsx?$/,
+    loader: 'babel-loader',
+    options: {
+      cacheDirectory: true,
+      presets: [
+        ['@babel/preset-env', {
+          targets: {
+            electron: '4.2'
+          }
+        }]
+      ],
+      plugins: [
+        ['@babel/plugin-proposal-decorators', { 'legacy': true }],
+        '@babel/plugin-proposal-class-properties',
+        '@babel/plugin-proposal-object-rest-spread'
+      ],
+      ignore: [/node_modules/]
+    },
+    exclude: /node_modules\/(?!@nuclear).*/
+  };
+
+  if (IS_PROD) {
+    delete jsxRule.exclude;
+  }
 
   return {
-    entry,
+    entry: IS_PROD ? './server/main.prod.js' : './server/main.dev.js',
     resolve: {
       alias: {
         jsbi: __dirname + '/node_modules/jsbi/dist/jsbi-cjs.js'
@@ -13,25 +36,15 @@ module.exports = () => {
     },
     output: {
       path: __dirname,
-      filename: 'bundle.electron.js'
+      filename: IS_PROD ? './dist/bundle.electron.js' : './bundle.electron.js'
     },
-    mode: 'development',
-    stats: {
-      warningsFilter: 'express'
-    },
+    mode: IS_PROD ? 'production' : 'development',
+    stats: 'errors-only',
+    // stats: 'minimal'
+    optimization: { namedModules: true },
     module: {
-      rules: [
-        {
-          test: /.jsx?$/,
-          loader: 'babel-loader',
-          options: {cacheDirectory: true},
-          exclude: /node_modules\/(?!@nuclear).*/
-        }
-      ]
+      rules: [jsxRule]
     },
-    plugins: [
-      new webpack.NamedModulesPlugin()
-    ],
     node: {
       fs: 'empty',
       __dirname: false,

@@ -71,6 +71,7 @@ package-lock.json
 # vscode
 .vscode/
 tsconfig.json
+jsconfig.json
 
 #nvm
 .nvmrc
