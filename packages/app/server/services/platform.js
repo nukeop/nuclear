@@ -55,6 +55,6 @@ export function getBinaryPath() {
   const { isPackaged, getAppPath } = app;
 
   return process.env.NODE_ENV === 'production' && isPackaged
-    ? path.join(path.dirname(getAppPath()), '..', './Resources', './bin')
-    : path.join(process.cwd(), './resources', './bin', getPlatform());
+    ? path.join(path.dirname(getAppPath()), '..', './resources', './bin')
+    : path.join(process.cwd(), './bin', getPlatform());
 }
