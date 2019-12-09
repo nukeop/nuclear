@@ -1,6 +1,11 @@
+import * as Sentry from '@sentry/electron';
+
 const logger = {
   log() {},
-  error() {}
+  warn() {},
+  error(err) {
+    Sentry.captureException(err);
+  }
 };
 
 export default logger;

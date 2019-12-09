@@ -2,6 +2,7 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 const fs = require('fs');
+const dotenv = require ('dotenv');
 
 const BUILD_DIR = path.resolve(__dirname, 'dist');
 const APP_DIR = path.resolve(__dirname, 'app');
@@ -11,7 +12,7 @@ const UI_DIR = path.resolve(__dirname, '..', 'ui');
 
 module.exports = (env) => {
   const IS_PROD = env.NODE_ENV === 'production';
-  const IS_DEV = env.NODE_ENV = 'development';
+  const IS_DEV = env.NODE_ENV === 'development';
 
   const entry = IS_PROD
     ? path.resolve(APP_DIR, 'index.js')
@@ -52,6 +53,8 @@ module.exports = (env) => {
   
   
   if (IS_PROD) {
+    // TODO remove this when env variable are set on the CI server
+    dotenv.config();
     jsxRule.include = [
       APP_DIR,
       UI_DIR
@@ -119,7 +122,6 @@ module.exports = (env) => {
       new webpack.HotModuleReplacementPlugin(),
       new HtmlWebpackPlugin({
         template: path.resolve(__dirname, 'index.html'),
-        production: IS_PROD,
         minify: {
           html5: true,
           removeComments: true,
@@ -133,7 +135,8 @@ module.exports = (env) => {
         inject: true
       }),
       new webpack.DefinePlugin({
-        'process.env.NODE_ENV': JSON.stringify(env.NODE_ENV)
+        'process.env.NODE_ENV': JSON.stringify(env.NODE_ENV),
+        'process.env.SENTRY_DSN': IS_PROD ? JSON.stringify(process.env.SENTRY_DSN) : null
       })
     ],
     target: 'electron-renderer'

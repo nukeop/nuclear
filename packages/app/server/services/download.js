@@ -16,7 +16,7 @@ import _ from 'lodash';
  * @see {@link https://github.com/sindresorhus/electron-dl}
  */
 class Download {
-  constructor({ window, youtubeSearch, store }) {
+  constructor({ config, window, youtubeSearch, store }) {
     electronDl();
     /** @type {import('./window').default} */
     this.window = window;
@@ -24,6 +24,8 @@ class Download {
     this.youtubeSearch = youtubeSearch;
     /** @type {import('./store').default} */
     this.store = store;
+    /** @type {import('./config').default} */
+    this.config = config;
   }
 
   /**
@@ -40,7 +42,7 @@ class Download {
     const response = await this.youtubeSearch(query);
     const ytData = await response.json();
     const trackId = _.get(_.head(ytData.items), 'id.videoId');
-    const videoInfo = await ytdl.getInfo(`https://www.youtube.com/watch?v=${trackId}`);
+    const videoInfo = await ytdl.getInfo(`${this.config.youtubeUrl}?v=${trackId}`);
     const formatInfo = _.head(videoInfo.formats.filter(e => e.itag === 140));
     const streamUrl = formatInfo.url;
 

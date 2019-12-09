@@ -6,9 +6,6 @@ import filter from 'stream-filter';
 import reduce from 'stream-reduce';
 import path from 'path';
 
-const API_KEY = 'Fivodjxo37';
-const API_URL = 'https://api.acoustid.org/v2/lookup';
-
 /**
  * Generate audio fingerprint with fpcalc
  * Send fingerprint to acousticId and get metadata 
@@ -16,7 +13,9 @@ const API_URL = 'https://api.acoustid.org/v2/lookup';
  * @see {@link https://helpmanual.io/help/fpcalc/}
  */
 class AcousticId {
-  constructor({ platform }) {
+  constructor({ config, platform }) {
+    /** @type {import('./config').default} */
+    this.config = config;
     /** @type {import('./platform')} */
     this.platform = platform;
   }
@@ -31,12 +30,12 @@ class AcousticId {
     const query = {
       format: 'json',
       meta: 'recordings',
-      client: API_KEY,
+      client: this.config.acousticId.key,
       duration,
       fingerprint
     };
 
-    const res = await fetch(`${API_URL}?${stringify(query)}
+    const res = await fetch(`${this.config.acousticId.url}?${stringify(query)}
   `);
 
     return res.json();

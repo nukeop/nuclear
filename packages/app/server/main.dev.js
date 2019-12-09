@@ -9,6 +9,7 @@ import installExtension, {
 } from 'electron-devtools-installer';
 import getPort from 'get-port';
 import url from 'url';
+import dotenv from 'dotenv';
 
 import DownloadIpcCtrl from './ipc/download';
 import LocalLibraryIpcCtrl from './ipc/localLibrary';
@@ -25,10 +26,14 @@ import Store from './services/store';
 import Window from './services/window';
 import * as platform from './services/platform';
 import Container from './helpers/container';
+import Config from './services/config';
+
+dotenv.config();
 
 let container;
 const services = [
   { provide: 'acousticId', useClass: AcousticId },
+  { provide: 'config', useClass: Config },
   { provide: 'download', useClass: Download },
   { provide: 'httpApi', useClass: HttpApi },
   { provide: 'localLibrary', useClass: LocalLibrary },

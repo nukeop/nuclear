@@ -39,8 +39,8 @@ module.exports = (env) => {
       filename: IS_PROD ? './dist/bundle.electron.js' : './bundle.electron.js'
     },
     mode: IS_PROD ? 'production' : 'development',
-    stats: 'errors-only',
-    // stats: 'minimal'
+    // stats: 'errors-only',
+    stats: 'minimal',
     optimization: { namedModules: true },
     module: {
       rules: [jsxRule]

@@ -8,15 +8,16 @@ import path from 'path';
 class Window extends BrowserWindow {
   /**
    * @param {{
-  *   httpApi: import('./http').default,
-  *   platform: import('./platform'),
-  *   store: import('./store').default
-  * }} param0 
+   *   config: import('./config').default,
+   *   httpApi: import('./http').default,
+   *   platform: import('./platform'),
+   *   store: import('./store').default
+   * }} param0 
    */
-  constructor({ httpApi, platform, store }) {
+  constructor({ config, httpApi, platform, store }) {
     let icon = nativeImage.createFromPath(path.resolve(__dirname, 'resources', 'media', 'icon.png'));
     super({
-      title: 'Nuclear Music Player',
+      title: config.title,
       width: 1366,
       height: 768,
       frame: !store.getOption('framelessWindow'),
@@ -51,8 +52,8 @@ class Window extends BrowserWindow {
     ]);
   
     const tray = new Tray(icon);
-    tray.setTitle('Nuclear Music Player');
-    tray.setToolTip('Nuclear Music Player');
+    tray.setTitle(config.title);
+    tray.setToolTip(config.title);
     tray.setContextMenu(trayMenu);
   }
 }

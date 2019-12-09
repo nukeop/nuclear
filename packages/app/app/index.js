@@ -1,4 +1,5 @@
 import 'regenerator-runtime';
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { MemoryRouter } from 'react-router-dom';
@@ -7,22 +8,26 @@ import { AppContainer } from 'react-hot-loader';
 import { I18nextProvider } from 'react-i18next';
 import logger from 'electron-timber';
 import Img from 'react-image-smooth-loading';
+import * as Sentry from '@sentry/electron';
 
 import artPlaceholder from '../resources/media/art_placeholder.png';
 import i18n, { setupI18n } from './i18n';
 import App from './App';
 import configureStore from './store/configureStore';
 
+if (process.env.NODE_ENV === 'production') {
+  process.env.SENTRY_DSN && Sentry.init({
+    dsn: process.env.SENTRY_DSN
+  });
+} else {
+  logger.hookConsole({
+    renderer: true
+  });
+}
+
+
 const store = configureStore();
-logger.hookConsole({
-  renderer: true
-});
 window.store = store; // put store in global scope for plugins
-
-// Sentry
-process.env.NODE_ENV === 'production' &&
-  Raven.config('https://2fb5587831994721a8b5f77bf6010679@sentry.io/1256142').install();
-
 // Global image placeholder
 Img.globalPlaceholder = artPlaceholder;
 

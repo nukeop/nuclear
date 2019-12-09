@@ -7,15 +7,6 @@ import path from 'path';
 import { promisify } from 'util';
 import uuid from 'uuid/v4';
 
-const SUPPORTED_FORMATS = [
-  'aac',
-  'flac',
-  'm4a',
-  'mp3',
-  'ogg',
-  'wav'
-];
-
 /**
  * @typedef {Object} Image
  * @property {string} #text
@@ -40,7 +31,9 @@ const SUPPORTED_FORMATS = [
  * format all these metadata the nuclear way and store it in a memory cache
  */
 class LocalLibrary {
-  constructor({ store, acousticId, logger }) {
+  constructor({ config, store, acousticId, logger }) {
+    /** @type {import('./config').default} */
+    this.config = config;
     /** @type {import('./store').default} */
     this.store = store;
     /** @type {import('./acousticId').default} */
@@ -158,7 +151,7 @@ class LocalLibrary {
     const directories = this.store.get('localFolders');
     const baseFiles = await Promise.all(
       _.flatMap(
-        SUPPORTED_FORMATS,
+        this.config.supportedFormats,
         format => directories.map(
           dir => promisify(glob)(`${dir}/**/*.${format}`)
         )

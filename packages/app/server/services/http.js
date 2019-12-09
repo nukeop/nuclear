@@ -16,7 +16,6 @@ import {
 import { errorMiddleware, notFoundMiddleware } from '../http/middlewares';
 import { initSwagger } from '../http/swagger';
 
-const HOST = '0.0.0.0';
 const PREFIX = '/nuclear';
 
 /**
@@ -57,7 +56,7 @@ class HttpApi {
       .use(`${PREFIX}/equalizer`, equalizerRouter(this.store, this.rendererWindow))
       .use(notFoundMiddleware())
       .use(errorMiddleware(this.logger))
-      .listen(port, HOST, err => {
+      .listen(port, '0.0.0.0', err => {
         if (err) {
           this.logger.error('Something fail during http api initialisation');
           this.logger.error(err);

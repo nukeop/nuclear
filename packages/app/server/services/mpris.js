@@ -47,18 +47,12 @@ const loopStatusMapper = {
  * @see {@link https://github.com/altdesktop/playerctl}
  */
 class MprisPlayer extends Player {
-  constructor({ ipc, window, store, mprisLogger }) {
+  constructor({ config, ipc, window, store, mprisLogger }) {
     super({
-      name: 'Nuclear',
-      identity: 'Nuclear Music Player',
+      name: config.title.replace(/ /g, '_'),
+      identity: config.title,
+      supportedMimeTypes: config.supportedFormats.map(format => `audio/${format}`),
       supportedUriSchemes: ['file', 'uri'],
-      supportedMimeTypes: [
-        'audio/mpeg',
-        'audio/acc',
-        'audio/x-flac',
-        'audio/wav',
-        'audio/ogg'
-      ],
       supportedInterfaces: ['player', 'trackList', 'playlists']
     });
 
