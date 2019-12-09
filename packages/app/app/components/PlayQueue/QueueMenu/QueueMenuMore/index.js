@@ -4,8 +4,8 @@ import cx from 'classnames';
 import _ from 'lodash';
 import { Dropdown, Icon } from 'semantic-ui-react';
 import { useTranslation } from 'react-i18next';
-import { compose, withHandlers } from 'recompose';
-
+import { compose, withHandlers, withProps } from 'recompose';
+import { sendPaused } from '../../../../mpris';
 import styles from './styles.scss';
 
 const addTrackToPlaylist = (updatePlaylist, playlist, track) => {
@@ -15,7 +15,7 @@ const addTrackToPlaylist = (updatePlaylist, playlist, track) => {
   }
 };
 
-const QueueMenuMore = ({
+export const QueueMenuMore = ({
   disabled,
   clearQueue,
   resetPlayer,
@@ -24,7 +24,7 @@ const QueueMenuMore = ({
   updatePlaylist,
   playlists,
   currentItem,
-
+  sendPaused,
   handleAddToDownloads,
   handleAddFavoriteTrack
 }) => {
@@ -34,7 +34,7 @@ const QueueMenuMore = ({
     <Dropdown item icon='ellipsis vertical' className={styles.queue_menu_more} disabled={disabled}>
       <Dropdown.Menu>
         <Dropdown.Header>{t('header')}</Dropdown.Header>
-        <Dropdown.Item onClick={() => {clearQueue();resetPlayer();}}>
+        <Dropdown.Item onClick={() => {clearQueue();resetPlayer(sendPaused);}}>
           <Icon name='trash' />
           {t('clear')}
         </Dropdown.Item>
@@ -116,5 +116,8 @@ export default compose(
         });
       }
     }
+  }),
+  withProps({
+    sendPaused: sendPaused
   })
 )(QueueMenuMore);

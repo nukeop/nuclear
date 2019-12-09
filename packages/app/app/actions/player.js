@@ -18,7 +18,7 @@ export function startPlayback() {
   };
 }
 
-export function pausePlayback() {
+export function pausePlayback(sendPaused) {
   sendPaused();
   return {
     type: PAUSE_PLAYBACK,
@@ -26,20 +26,20 @@ export function pausePlayback() {
   };
 }
 
-export function togglePlayback(currentState) {
+export function togglePlayback(currentState, sendPaused) {
   return dispatch => {
     if (currentState === Sound.status.PLAYING) {
-      dispatch(pausePlayback());
+      dispatch(pausePlayback(sendPaused));
     } else {
       dispatch(startPlayback());
     }
   };
 }
 
-export function resetPlayer() {
+export function resetPlayer(sendPaused) {
   return dispatch => {
     dispatch(updatePlaybackProgress(0,0));
-    dispatch(pausePlayback());
+    dispatch(pausePlayback(sendPaused));
     dispatch(updateStreamLoading(false));
   }
 }
