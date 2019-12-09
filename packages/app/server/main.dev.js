@@ -123,8 +123,8 @@ function createWindow() {
   });
 
   ipcMain.on('restart-api', () => {
-    closeHttpServer(httpServer).then(async () => {
-      httpServer = await runHttpServer({ log: true, port: getOption('api.port') });
+    closeHttpServer(httpServer).then(() => {
+      httpServer = runHttpServer({ log: true, port: getOption('api.port') });
     });
   });
 
@@ -147,7 +147,7 @@ app.on('ready', () => {
     const availablePort = await getPort({ port: getPort.makeRange(3000, 3100) });
     if (getOption('api.enabled')) {
       setOption('api.port', availablePort);
-      httpServer = await runHttpServer({ log: true, port: availablePort });
+      httpServer = runHttpServer({ log: true, port: availablePort });
     }
   })();
 });

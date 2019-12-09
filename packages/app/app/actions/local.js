@@ -1,7 +1,7 @@
 import { remote } from 'electron';
 import _ from 'lodash';
 
-import { initDb } from '../../server/libraryStore';
+import store from '../../server/libraryStore';
 import { refreshLocalFolders } from '../mpris';
 
 export const UPDATE_LOCAL_FOLDERS = 'UPDATE_LOCAL_FOLDERS';
@@ -22,11 +22,10 @@ function updateLocalFolders(folders) {
 }
 
 export function addLocalFolders(folders) {
-  return async (dispatch, getState) => {
+  return (dispatch, getState) => {
     const stateFolders = getState().folders || [];
     const newFolders = [...stateFolders, ...folders];
-    const db = await initDb();
-    await db.set('localFolders', newFolders).write();
+    store.set('localFolders', newFolders);
     dispatch(updateLocalFolders(newFolders));
   }
 }
@@ -34,8 +33,7 @@ export function addLocalFolders(folders) {
 export function removeLocalFolder(folder) {
   return async (dispatch, getState) => {
     const folders = _.filter(getState().folders, f => f !== folder);
-    const db = await initDb();
-    await db.set('localFolders', folders).write();
+    store.set('localFolders', folders);
     dispatch(updateLocalFolders(folders));
   }
 }
