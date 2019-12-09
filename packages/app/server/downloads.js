@@ -52,7 +52,6 @@ export const registerDownloadsEvents = window => {
         });
       })
       .then(() => {
-        logger.log(data);
         rendererWindow.send('download-finished', data.uuid);
       })
       .catch(error => {

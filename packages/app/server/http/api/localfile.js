@@ -6,7 +6,7 @@ import _ from 'lodash';
 
 import { scanFoldersAndGetMeta } from '../../local-files';
 import { getOption } from '../../store';
-import { initDb } from '../../libraryStore';
+import store from '../../libraryStore';
 
 export const localSearchSchema = {
   body: {
@@ -37,9 +37,8 @@ export const localGetSchema = {
 
 const { validate } = new Validator({ allErrors: true });
 
-export async function localFileRouter() {
-  let db = await initDb();
-  let cache = await db.get('localMeta').value();
+export function localFileRouter() {
+  let cache = store.get('localMeta');
   let byArtist = _.groupBy(Object.values(cache), track => track.artist.name);
 
   ipcMain.on('refresh-localfolders', async event => {
@@ -47,9 +46,9 @@ export async function localFileRouter() {
       let onProgress = (scanProgress, scanTotal) => {
         event.sender.send('local-files-progress', {scanProgress, scanTotal});
       };
-      cache = await scanFoldersAndGetMeta(await db.get('localFolders').value(), cache, onProgress);
+      cache = await scanFoldersAndGetMeta(store.get('localFolders'), cache, onProgress);
 
-      await db.set('localMeta', cache).write();
+      store.set('localMeta', cache);
       byArtist = _.groupBy(Object.values(cache), track => track.artist.name);
 
       event.sender.send('local-files', cache);

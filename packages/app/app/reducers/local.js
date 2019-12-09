@@ -9,13 +9,12 @@ import {
   UPDATE_LIBRARY_LIST_TYPE,
   UPDATE_LOCAL_FOLDERS
 } from '../actions/local';
-import { initDbSync } from '../../server/libraryStore';
+import store from '../../server/libraryStore';
 
-const db = initDbSync();
 const initialState = {
   pending: false,
   error: false,
-  folders: db.get('localFolders').value(),
+  folders: store.get('localFolders'),
   page: 0,
   sortBy: 'artist',
   direction: 'ascending',
