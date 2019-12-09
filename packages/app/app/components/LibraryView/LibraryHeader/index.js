@@ -44,7 +44,7 @@ LibraryHeader.defaultProps = {
 
 export default compose(
   withTranslation('library'),
-  withState('collapsed', 'setCollapsed', 'false'),
+  withState('collapsed', 'setCollapsed', false),
   withHandlers({
     toggleCollapsed: ({ collapsed, setCollapsed }) => () => setCollapsed(!collapsed)
   })
