@@ -33,7 +33,7 @@ template.innerHTML = `
     z-index: -1;
   }
 
-  .nuclear-loader {
+  :host>div {
     position: relative;
     display: flex;
     flex-flow: column;
@@ -46,7 +46,7 @@ template.innerHTML = `
     animation: gradient-anim 2s ease-in-out infinite;
   }
 
-  .nuclear-loader>span {
+  :host>div>span {
     position: absolute;
     width: 0;
     height: 0;
@@ -55,22 +55,22 @@ template.innerHTML = `
     border-right: 3rem solid transparent;
   }
 
-  .nuclear-loader>span:nth-child(1) {
+  :host>div>span:nth-child(1) {
     right: 4.5rem;
     top: 3.5rem;
   }
 
-  .nuclear-loader>span:nth-child(2) {
+  :host>div>span:nth-child(2) {
     right: 7.5rem;
     bottom: 3.5rem;
   }
 
-  .nuclear-loader>span:nth-child(3) {
+  :host>div>span:nth-child(3) {
     left: 7.5rem;
     bottom: 3.5rem;
   }
 </style>
-<div class="nuclear-loader">
+<div>
   <span></span>
   <span></span>
   <span></span>
