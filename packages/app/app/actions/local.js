@@ -1,7 +1,7 @@
 import { remote } from 'electron';
 import _ from 'lodash';
 
-import { store } from '../persistence/store';
+import { initDb } from '../../server/libraryStore';
 import { refreshLocalFolders } from '../mpris';
 
 export const UPDATE_LOCAL_FOLDERS = 'UPDATE_LOCAL_FOLDERS';
@@ -22,18 +22,20 @@ function updateLocalFolders(folders) {
 }
 
 export function addLocalFolders(folders) {
-  return (dispatch, getState) => {
+  return async (dispatch, getState) => {
     const stateFolders = getState().folders || [];
     const newFolders = [...stateFolders, ...folders];
-    store.set('localFolders', newFolders);
+    const db = await initDb();
+    await db.set('localFolders', newFolders).write();
     dispatch(updateLocalFolders(newFolders));
   }
 }
 
 export function removeLocalFolder(folder) {
-  return (dispatch, getState) => {
+  return async (dispatch, getState) => {
     const folders = _.filter(getState().folders, f => f !== folder);
-    store.set('localFolders', folders);
+    const db = await initDb();
+    await db.set('localFolders', folders).write();
     dispatch(updateLocalFolders(folders));
   }
 }

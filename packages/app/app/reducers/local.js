@@ -9,12 +9,13 @@ import {
   UPDATE_LIBRARY_LIST_TYPE,
   UPDATE_LOCAL_FOLDERS
 } from '../actions/local';
-import { store } from '../persistence/store';
+import { initDbSync } from '../../server/libraryStore';
 
+const db = initDbSync();
 const initialState = {
   pending: false,
   error: false,
-  folders: store.get('localFolders'),
+  folders: db.get('localFolders').value(),
   page: 0,
   sortBy: 'artist',
   direction: 'ascending',
