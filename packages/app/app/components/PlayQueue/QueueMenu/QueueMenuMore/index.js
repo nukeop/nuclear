@@ -79,6 +79,7 @@ export const QueueMenuMore = ({
 QueueMenuMore.propTypes = {
   disabled: PropTypes.bool,
   clearQueue: PropTypes.func,
+  resetPlayer: PropTypes.func,
   addFavoriteTrack: PropTypes.func,
   addToDownloads: PropTypes.func,
   updatePlaylist: PropTypes.func,
@@ -90,6 +91,7 @@ QueueMenuMore.propTypes = {
 QueueMenuMore.defaultProps = {
   disabled: true,
   clearQueue: () => {},
+  resetPlayer: () => {},
   addFavoriteTrack: () => {},
   addToDownloads: () => {},
   updatePlaylist: () => {},
