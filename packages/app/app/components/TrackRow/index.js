@@ -25,6 +25,10 @@ class TrackRow extends React.Component {
     );
   }
 
+  componentWillMount () {
+    this.setState({ hoveringOnTrackNum: false})
+  }
+
   renderDuration (track) {
     if (track.duration === 0) {
       return <td className={styles.track_duration} />;
@@ -58,6 +62,11 @@ class TrackRow extends React.Component {
     }) < 0;
   }
 
+  changeNumberIcon(hovering) {
+    this.setState({ hoveringOnTrackNum: hovering });
+    console.log("changing state: ", hovering);
+  }
+
   renderTrigger (track) {
     const {
       displayCover,
@@ -86,7 +95,21 @@ class TrackRow extends React.Component {
               <img src={this.getTrackThumbnail()}/>
             </td>
         }
-        { displayTrackNumber && <td className={styles.track_number}>{track.position}</td> }
+        {
+          displayTrackNumber &&
+          <td
+            onClick={()=>this.playTrack()}
+            className={styles.track_number}
+            onMouseEnter={()=>this.changeNumberIcon(true)}
+            onMouseLeave={()=>this.changeNumberIcon(false)}
+          >
+            {
+              this.state.hoveringOnTrackNum ?
+              <Icon name={"play"} /> :
+              track.position
+            }
+          </td>
+        }
         { displayArtist && <td className={styles.track_artist}>{track.artist.name}</td> }
         <td className={styles.track_name}>{ track.name }</td>
         { displayAlbum && this.renderAlbum(track) }

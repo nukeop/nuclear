@@ -43,7 +43,7 @@
     "chai-spies": "^1.0.0",
     "css-loader": "^1.0.0",
     "enzyme": "^3.10.0",
-    "enzyme-adapter-react-16": "^1.1.1",
+    "enzyme-adapter-react-16": "^1.15.1",
     "eslint": "^6.7.2",
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-node": "^10.0.0",

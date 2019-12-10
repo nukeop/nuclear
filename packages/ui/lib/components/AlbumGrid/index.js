@@ -24,53 +24,53 @@ const AlbumGrid = ({
   withArtistNames,
   withAlbumPreview
 }) => (
-    <div className={cx(
-      common.nuclear,
-      styles.album_grid,
-      { [styles.loading]: loading },
-      { [styles.auto_size]: autoSize }
-    )} >
-      <div className={styles.album_cards}>
-        {
-          !loading &&
-          !_.isEmpty(albums) &&
-          albums.map((album, i) => (
-            <Card
-              key={i}
-              header={album.title}
-              content={withArtistNames && _.get(album, 'artist.name')}
-              image={getThumbnail(album)}
-              onClick={() => onAlbumClick(album)}
-            />
-          ))
-        }
-      </div>
-
+  <div className={cx(
+    common.nuclear,
+    styles.album_grid,
+    { [styles.loading]: loading },
+    { [styles.auto_size]: autoSize }
+  )} >
+    <div className={styles.album_cards}>
       {
-        !loading && withAlbumPreview &&
-        <>
-          <hr />
-          <AlbumPreview
-            album={selectedAlbum}
-            trackButtons={trackButtons}
-            handleAddToQueue={onAddToQueue}
-            handlePlayAll={onPlayAll}
+        !loading &&
+        !_.isEmpty(albums) &&
+        albums.map((album, i) => (
+          <Card
+            key={i}
+            header={album.title}
+            content={withArtistNames && _.get(album, 'artist.name')}
+            image={getThumbnail(album)}
+            onClick={() => onAlbumClick(album)}
           />
-        </>
+        ))
       }
-      {loading && <Dimmer active><Loader /></Dimmer>}
     </div>
-  );
+
+    {
+      !loading && withAlbumPreview &&
+      <>
+        <hr />
+        <AlbumPreview
+          album={selectedAlbum}
+          trackButtons={trackButtons}
+          handleAddToQueue={onAddToQueue}
+          handlePlayAll={onPlayAll}
+        />
+      </>
+    }
+    {loading && <Dimmer active><Loader /></Dimmer>}
+  </div>
+);
 
 AlbumGrid.propTypes = {
   albums: PropTypes.array,
-  streamProviders: PropTypes.array,
+  // streamProviders: PropTypes.array,
   onAlbumClick: PropTypes.func,
   loading: PropTypes.bool,
-  addToQueue: PropTypes.func,
-  clearQueue: PropTypes.func,
-  selectSong: PropTypes.func,
-  startPlayback: PropTypes.func,
+  // addToQueue: PropTypes.func,
+  // clearQueue: PropTypes.func,
+  // selectSong: PropTypes.func,
+  // startPlayback: PropTypes.func,
   onAddToQueue: PropTypes.func,
   onPlayAll: PropTypes.func,
 
@@ -92,11 +92,11 @@ export default compose(
     onAddToQueue: ({ addToQueue, selectedAlbum, streamProviders }) => () => {
       selectedAlbum.tracks.map(track => addToQueue(
         streamProviders, {
-        artist: _.get(track, 'artist.name'),
-        name: _.get(track, 'name'),
-        thumbnail: getThumbnail(track)
-      }
-      ))
+          artist: _.get(track, 'artist.name'),
+          name: _.get(track, 'name'),
+          thumbnail: getThumbnail(track)
+        }
+      ));
     }
   }),
   withHandlers({
