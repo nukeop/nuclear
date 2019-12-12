@@ -19,12 +19,13 @@ const LibrarySimpleList = ({
   sortBy,
   direction,
   handleSort,
+  estimateItemSize,
   t
 }) => (
   <ReactList
-    type='variable'
+    type='uniform'
+    useStaticSize
     length={tracks.length}
-    itemSizeEstimator={() => 44}
     itemsRenderer={(items, ref) => (
       <Table
         sortable
@@ -78,6 +79,7 @@ const LibrarySimpleList = ({
             isLocal
           />
         }
+        key={'library-track-'+index}
         thumb={getThumbnail(_.get(tracks, index))}
         title={_.get(tracks, [index, 'name'])}
         artist={_.get(tracks, [index, 'artist', 'name'])}
