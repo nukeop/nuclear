@@ -1,9 +1,10 @@
 import { remote } from 'electron';
+import _ from 'lodash';
 
+import store from '../../server/libraryStore';
 import { refreshLocalFolders } from '../mpris';
 
-export const ADD_LOCAL_FOLDERS = 'ADD_LOCAL_FOLDER';
-export const REMOVE_LOCAL_FOLDER = 'REMOVE_LOCAL_FOLDER';
+export const UPDATE_LOCAL_FOLDERS = 'UPDATE_LOCAL_FOLDERS';
 export const SCAN_LOCAL_FOLDER = 'SCAN_LOCAL_FOLDERS';
 export const SCAN_LOCAL_FOLDER_PROGRESS = 'SCAN_LOCAL_FOLDER_PROGRESS';
 export const SCAN_LOCAL_FOLDER_SUCCESS = 'SCAN_LOCAL_FOLDER_SUCCESS';
@@ -13,18 +14,28 @@ export const UPDATE_LOCAL_FILTER = 'UPDATE_LOCAL_FILTER';
 export const UPDATE_LOCAL_SORT = 'UPDATE_LOCAL_SORT';
 export const UPDATE_LIBRARY_LIST_TYPE = 'UPDATE_LIBRARY_LIST_TYPE';
 
-export function addLocalFolders(payload) {
+function updateLocalFolders(folders) {
   return {
-    type: ADD_LOCAL_FOLDERS,
-    payload
-  };
+    type: UPDATE_LOCAL_FOLDERS,
+    payload: { folders }
+  }
 }
 
-export function removeLocalFolder(payload) {
-  return {
-    type: REMOVE_LOCAL_FOLDER,
-    payload
-  };
+export function addLocalFolders(folders) {
+  return (dispatch, getState) => {
+    const stateFolders = getState().folders || [];
+    const newFolders = [...stateFolders, ...folders];
+    store.set('localFolders', newFolders);
+    dispatch(updateLocalFolders(newFolders));
+  }
+}
+
+export function removeLocalFolder(folder) {
+  return async (dispatch, getState) => {
+    const folders = _.filter(getState().folders, f => f !== folder);
+    store.set('localFolders', folders);
+    dispatch(updateLocalFolders(folders));
+  }
 }
 
 export function scanLocalFolders() {

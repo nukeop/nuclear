@@ -5,7 +5,8 @@ import { Validator } from 'express-json-validator-middleware';
 import _ from 'lodash';
 
 import { scanFoldersAndGetMeta } from '../../local-files';
-import { store, getOption, setOption } from '../../store';
+import { getOption } from '../../store';
+import store from '../../libraryStore';
 
 export const localSearchSchema = {
   body: {
