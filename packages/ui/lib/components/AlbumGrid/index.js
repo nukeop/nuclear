@@ -11,7 +11,6 @@ import Card from '../Card';
 import common from '../../common.scss';
 import styles from './styles.scss';
 
-
 const AlbumGrid = ({
   albums,
   onAlbumClick,
@@ -24,15 +23,15 @@ const AlbumGrid = ({
   withArtistNames,
   withAlbumPreview
 }) => (
-    <div className={cx(
-      common.nuclear,
-      styles.album_grid,
-      { [styles.loading]: loading },
-      { [styles.auto_size]: autoSize }
-    )} >
-      <div className={styles.album_cards}>
-        {
-          !loading &&
+  <div className={cx(
+    common.nuclear,
+    styles.album_grid,
+    { [styles.loading]: loading },
+    { [styles.auto_size]: autoSize }
+  )} >
+    <div className={styles.album_cards}>
+      {
+        !loading &&
           !_.isEmpty(albums) &&
           albums.map((album, i) => (
             <Card
@@ -43,11 +42,11 @@ const AlbumGrid = ({
               onClick={() => onAlbumClick(album)}
             />
           ))
-        }
-      </div>
+      }
+    </div>
 
-      {
-        !loading && withAlbumPreview &&
+    {
+      !loading && withAlbumPreview &&
         <>
           <hr />
           <AlbumPreview
@@ -57,20 +56,20 @@ const AlbumGrid = ({
             handlePlayAll={onPlayAll}
           />
         </>
-      }
-      {loading && <Dimmer active><Loader /></Dimmer>}
-    </div>
-  );
+    }
+    {loading && <Dimmer active><Loader /></Dimmer>}
+  </div>
+);
 
 AlbumGrid.propTypes = {
   albums: PropTypes.array,
-  streamProviders: PropTypes.array,
+  streamProviders: PropTypes.array, // eslint-disable-line react/no-unused-prop-types
   onAlbumClick: PropTypes.func,
   loading: PropTypes.bool,
-  addToQueue: PropTypes.func,
-  clearQueue: PropTypes.func,
-  selectSong: PropTypes.func,
-  startPlayback: PropTypes.func,
+  addToQueue: PropTypes.func, // eslint-disable-line react/no-unused-prop-types
+  clearQueue: PropTypes.func, // eslint-disable-line react/no-unused-prop-types
+  selectSong: PropTypes.func, // eslint-disable-line react/no-unused-prop-types
+  startPlayback: PropTypes.func, // eslint-disable-line react/no-unused-prop-types
   onAddToQueue: PropTypes.func,
   onPlayAll: PropTypes.func,
 
@@ -92,11 +91,11 @@ export default compose(
     onAddToQueue: ({ addToQueue, selectedAlbum, streamProviders }) => () => {
       selectedAlbum.tracks.map(track => addToQueue(
         streamProviders, {
-        artist: _.get(track, 'artist.name'),
-        name: _.get(track, 'name'),
-        thumbnail: getThumbnail(track)
-      }
-      ))
+          artist: _.get(track, 'artist.name'),
+          name: _.get(track, 'name'),
+          thumbnail: getThumbnail(track)
+        }
+      ));
     }
   }),
   withHandlers({

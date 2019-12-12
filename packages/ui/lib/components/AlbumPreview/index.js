@@ -37,13 +37,13 @@ const AlbumPreview = ({
             basic
             icon='plus'
             size='huge'
-            onClick={ handleAddToQueue }
+            onClick={handleAddToQueue}
           />
           <Button
             basic
             icon='play'
             size='huge'
-            onClick={ handlePlayAll }
+            onClick={handlePlayAll}
           />
         </div>
       </div>
@@ -67,6 +67,7 @@ const AlbumPreview = ({
                       displayDuration
                     />
                   }
+                  key={track.position}
                   thumb={thumb}
                   title={track.name}
                   artist={_.get(album, 'artist.name')}
