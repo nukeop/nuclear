@@ -1,16 +1,15 @@
 import { LIST_TYPE } from '@nuclear/ui/lib/components/LibraryListTypeToggle';
 import {
-  ADD_LOCAL_FOLDERS,
-  REMOVE_LOCAL_FOLDER,
   SCAN_LOCAL_FOLDER,
   SCAN_LOCAL_FOLDER_FAILED,
   SCAN_LOCAL_FOLDER_PROGRESS,
   SCAN_LOCAL_FOLDER_SUCCESS,
   UPDATE_LOCAL_FILTER,
   UPDATE_LOCAL_SORT,
-  UPDATE_LIBRARY_LIST_TYPE
+  UPDATE_LIBRARY_LIST_TYPE,
+  UPDATE_LOCAL_FOLDERS
 } from '../actions/local';
-import { store } from '../persistence/store';
+import store from '../../server/libraryStore';
 
 const initialState = {
   pending: false,
@@ -26,65 +25,47 @@ const initialState = {
 
 export default function LocalReducer(state = initialState, action) {
   switch (action.type) {
-  case ADD_LOCAL_FOLDERS: {
-    const folders = [
-      ...state.folders,
-      ...action.payload
-    ];
-
-    store.set('localFolders', folders);
-
-    return {
-      ...state,
-      folders
-    };
-  }
-  case REMOVE_LOCAL_FOLDER: {
-    const folders = state.folders.filter(folder => folder !== action.payload);
-
-    store.set('localFolders', folders);
-
-    return {
-      ...state,
-      folders
-    };
-  }
-  case SCAN_LOCAL_FOLDER:
-    return {
-      ...state,
-      pending: true,
-      error: false
-    };
-  case SCAN_LOCAL_FOLDER_PROGRESS:
-    return {
-      ...state,
-      scanProgress: action.payload.scanProgress,
-      scanTotal: action.payload.scanTotal
-    };
-  case SCAN_LOCAL_FOLDER_SUCCESS:
-    return {
-      ...state,
-      pending: false,
-      scanProgress: null,
-      scanTotal: null,
-      tracks: action.payload
-    };
-  case SCAN_LOCAL_FOLDER_FAILED:
-    return {
-      ...state,
-      pending: false,
-      scanProgress: null,
-      scanTotal: null,
-      error: true
-    };
-  case UPDATE_LOCAL_FILTER:
-  case UPDATE_LOCAL_SORT:
-  case UPDATE_LIBRARY_LIST_TYPE:
-    return {
-      ...state,
-      ...action.payload
-    };
-  default:
-    return state;
+    case UPDATE_LOCAL_FOLDERS:
+      return {
+        ...state,
+        folders: action.payload.folders
+      };
+    case SCAN_LOCAL_FOLDER:
+      return {
+        ...state,
+        pending: true,
+        error: false
+      };
+    case SCAN_LOCAL_FOLDER_PROGRESS:
+      return {
+        ...state,
+        scanProgress: action.payload.scanProgress,
+        scanTotal: action.payload.scanTotal
+      };
+    case SCAN_LOCAL_FOLDER_SUCCESS:
+      return {
+        ...state,
+        pending: false,
+        scanProgress: null,
+        scanTotal: null,
+        tracks: action.payload
+      };
+    case SCAN_LOCAL_FOLDER_FAILED:
+      return {
+        ...state,
+        pending: false,
+        scanProgress: null,
+        scanTotal: null,
+        error: true
+      };
+    case UPDATE_LOCAL_FILTER:
+    case UPDATE_LOCAL_SORT:
+    case UPDATE_LIBRARY_LIST_TYPE:
+      return {
+        ...state,
+        ...action.payload
+      };
+    default:
+      return state;
   }
 }
