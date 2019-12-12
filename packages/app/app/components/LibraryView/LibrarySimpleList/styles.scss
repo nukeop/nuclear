@@ -1,3 +1,5 @@
+@import '../../../mixin';
+
 .library_simple_list {
   background: transparent !important;
   margin-top: 0;
@@ -20,8 +22,11 @@
     tr {
       color: white;
     }
+
     td {
+      @include ellipsis;
       border-color: transparent;
+      max-width: 0;
     }
   }
 }
