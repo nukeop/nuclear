@@ -1,8 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 
-import {Cover, Seekbar, QueueItem, Loader} from '..';
-import { formatDuration } from '../lib/utils';
+import {Cover, Seekbar, Loader} from '..';
 import './styles.scss';
 
 storiesOf('Cover', module)
@@ -35,111 +34,7 @@ storiesOf('Seekbar', module)
     );
   });
 
-storiesOf('QueueItem', module)
-  .add('Basic', () => {
-    return (
-      <div style={{
-        background: '#282a36',
-        height: '100%',
-        padding: '2rem',
-        boxSizing: 'border-box'
-      }}>
-        <QueueItem
-          track={{
-            thumbnail: 'https://i.imgur.com/4euOws2.jpg',
-            name: 'Test track name',
-            artist: 'Test artist'
-          }}
-          isLoading={false}
-          isCurrent={false}
-          duration={formatDuration(123)}
-          defaultMusicSource={{}}
-          selectSong={() => {
-            alert('Item selected');
-          }}
-          removeFromQueue={() => {
-            alert('Item removed from queue');
-          }}
-        />
-        <QueueItem
-          track={{
-            thumbnail: 'https://i.imgur.com/aVNWf3j.jpg',
-            name: 'Small thumbnail',
-            artist: 'Test artist'
-          }}
-          isLoading={false}
-          isCurrent={false}
-          duration={formatDuration(123)}
-          defaultMusicSource={{}}
-          selectSong={() => {
-            alert('Item selected');
-          }}
-          removeFromQueue={() => {
-            alert('Item removed from queue');
-          }}
-        />
-      </div>
-    );
-  })
-  .add('Loading', () => {
-    return (
-      <div style={{
-        background: '#282a36',
-        height: '100%',
-        padding: '2rem',
-        boxSizing: 'border-box'
-      }}>
-        <QueueItem
-          track={{
-            thumbnail: 'https://i.imgur.com/4euOws2.jpg',
-            name: 'Test track name',
-            artist: 'Test artist'
-          }}
-          isLoading={true}
-          isCurrent={false}
-          duration={formatDuration(123)}
-          defaultMusicSource={{}}
-          selectSong={() => {
-            alert('Item selected');
-          }}
-          removeFromQueue={() => {
-            alert('Item removed from queue');
-          }}
-        />
-      </div>
-    );
-  })
-  .add('Current', () => {
-    return (
-      <div style={{
-        background: '#282a36',
-        height: '100%',
-        padding: '2rem',
-        boxSizing: 'border-box'
-      }}>
-        <QueueItem
-          track={{
-            thumbnail: 'https://i.imgur.com/4euOws2.jpg',
-            name: 'Test track name',
-            artist: 'Test artist'
-          }}
-          isLoading={false}
-          isCurrent={true}
-          duration={formatDuration(123)}
-          defaultMusicSource={{}}
-          selectSong={() => {
-            alert('Item selected');
-          }}
-          removeFromQueue={() => {
-            alert('Item removed from queue');
-          }}
-        />
-      </div>
-    );
-  });
-
-
-storiesOf('Loader', module)
+  storiesOf('Loader', module)
   .add('Default', () => {
     return (
       <div style={{

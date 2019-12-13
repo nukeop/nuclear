@@ -1,4 +1,4 @@
-@import '../../common.scss';
+@import "../../common.scss";
 
 .queue_item {
   @include roundCorners;
@@ -8,11 +8,11 @@
   flex: 0 0 auto;
   height: 4em;
   margin: 0.5em;
+  margin-top: 0;
   background-color: rgba($background2, 0.5);
 
   .thumbnail {
     @include center;
-    @include circle;
 
     position: relative;
     display: flex;
@@ -21,6 +21,7 @@
     margin: 0.5em;
 
     img {
+      @include circle;
       width: 100%;
     }
   }
@@ -32,10 +33,8 @@
 
     position: absolute;
     display: flex;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    width: 100%;
+    height: 100%;
     background: $black;
     color: $white;
     opacity: 0;
@@ -47,6 +46,30 @@
 
     i {
       margin: 0;
+    }
+  }
+
+  &.compact {
+    width: auto;
+    height: auto;
+    margin: 0.25em;
+    padding: 0.25em;
+    margin-top: 0.5px;
+
+    .item_info_container,
+    .item_duration_container {
+      display: none;
+    }
+
+    .thumbnail {
+      margin: 0;
+      height: auto;
+      width: 100%;
+    }
+
+    .thumbnail_overlay {
+      height: 100%;
+      width: 100%;
     }
   }
 }

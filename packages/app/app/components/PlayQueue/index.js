@@ -67,6 +67,7 @@ class PlayQueue extends React.Component {
                     track={el}
                     duration={formatDuration}
                     isLoading={el.loading}
+                    isCompact={this.props.compact}
                     isCurrent={this.props.currentSong === i}
                     defaultMusicSource={this.props.plugins.selected.streamProviders}
                     selectSong={this.props.actions.selectSong}

@@ -12,6 +12,7 @@ const QueueItem = props => {
   let {
     isLoading,
     isCurrent,
+    isCompact,
     track,
     duration,
 
@@ -24,7 +25,8 @@ const QueueItem = props => {
       className={cx(
         common.nuclear,
         styles.queue_item,
-        {[`${styles.current_song}`]: isCurrent}
+        {[`${styles.current_song}`]: isCurrent},
+        {[`${styles.compact}`]: isCompact}
       )}
       onDoubleClick={handleSelectSong}
     >
@@ -64,15 +66,16 @@ const QueueItem = props => {
 QueueItem.propTypes = {
   isLoading: PropTypes.bool,
   isCurrent: PropTypes.bool,
+  isCompact: PropTypes.bool,
   track: PropTypes.shape({
     thumbnail: PropTypes.string,
     name: PropTypes.string,
     artist: PropTypes.string
   }),
-  index: PropTypes.number, //eslint-disable-line
+  index: PropTypes.number, // eslint-disable-line
   duration: PropTypes.string,
-  selectSong: PropTypes.func, //eslint-disable-line
-  removeFromQueue: PropTypes.func //eslint-disable-line
+  selectSong: PropTypes.func, // eslint-disable-line
+  removeFromQueue: PropTypes.func // eslint-disable-line
 };
 
 export default compose(
