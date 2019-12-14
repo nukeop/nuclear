@@ -43,6 +43,11 @@ class Window extends BrowserWindow {
       icon = nativeImage.createFromPath(path.resolve(__dirname, iconPath, 'media', 'icon_apple.png'));
     }
 
+    if (platform.isWindows()) {
+      this.flashFrame(true);
+      this.once('focus', () => this.flashFrame(false));
+    }
+
     const trayMenu = Menu.buildFromTemplate([
       {
         label: 'Quit',

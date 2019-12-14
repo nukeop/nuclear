@@ -26,7 +26,7 @@ class IpcPlayer {
 
   @ipcEvent('volume')
   onVolume(evt: Event, data: number) {
-    this.systemApi.volume = data / 100;
+    this.systemApi.setVolume && this.systemApi.setVolume(data);
   }
 
   @ipcEvent('loopStatus')

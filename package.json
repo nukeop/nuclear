@@ -65,6 +65,13 @@
         "filter": [
           "**/*"
         ]
+      },
+      {
+        "from": "packages/main/resources",
+        "to": "resources",
+        "filter": [
+          "**/*"
+        ]
       }
     ],
     "releaseInfo": {

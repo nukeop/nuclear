@@ -1,5 +1,12 @@
+export enum PlaybackStatus {
+  PAUSED = 'PAUSED',
+  PLAYING = 'PLAYING',
+  STOPPED = 'STOPPED',
+}
+
+
 export interface NuclearStatus {
-  playbackStatus: string;
+  playbackStatus: PlaybackStatus;
   volume: number;
   shuffleQueue: boolean;
   loopAfterQueueEnd: boolean;

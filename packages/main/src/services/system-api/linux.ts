@@ -195,6 +195,10 @@ class Mpris extends MprisService implements NuclearApi {
     this.playbackStatus = MprisService.PLAYBACK_STATUS_PLAYING;
   }
 
+  setVolume(volume: number) {
+    this.volume = volume / 100;
+  }
+
   pause() {
     this.playbackStatus = MprisService.PLAYBACK_STATUS_PAUSED;
   }

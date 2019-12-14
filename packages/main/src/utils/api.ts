@@ -4,7 +4,6 @@ import { Event } from 'electron';
 
 interface NuclearApi {
   shuffle?: any;
-  volume?: any;
   rendererWindow: Event['sender'];
   onRaise?(): any;
   onQuit?(): any;
@@ -24,6 +23,7 @@ interface NuclearApi {
   removeTrack?(uuid: string): any;
   play(): any;
   pause(): any;
+  setVolume?(volume: number): any;
   setLoopStatus?(data: boolean): any;
   listen(): any;
 }
