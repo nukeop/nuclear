@@ -79,9 +79,11 @@ class IpcContainer extends React.Component {
     });
   }
 
-  componentWillReceiveProps(nextProps){
-    if (this.props !== nextProps) {
-      const currentSong = nextProps.queue.queueItems[nextProps.queue.currentSong];
+  componentDidUpdate(prevProps) {
+    const { queue } = this.props;
+
+    if (queue.queueItems[queue.currentSong] !== prevProps.queue.queueItems[prevProps.queue.currentSong]) {
+      const currentSong = queue.queueItems[queue.currentSong];
       onSongChange(currentSong);
     }
   }

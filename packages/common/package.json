@@ -1,0 +1,24 @@
+{
+  "name": "@nuclear/common",
+  "version": "0.5.1",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nukeop/nuclear.git"
+  },
+  "author": "nukeop <nukeop@gumblert.tech>",
+  "license": "AGPL-3.0",
+  "bugs": {
+    "url": "https://github.com/nukeop/nuclear/issues"
+  },
+  "homepage": "https://github.com/nukeop/nuclear#readme",
+  "main": "lib/index.js",
+  "typings": "lib/index.d.ts",
+  "scripts": {
+    "start": "rm -rf lib && tsc ./**/*.ts --outDir lib --declaration",
+    "build": "npm start"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "typescript": "^3.7.3"
+  }
+}

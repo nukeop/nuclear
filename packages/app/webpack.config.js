@@ -1,10 +1,9 @@
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
-const fs = require('fs');
 const dotenv = require ('dotenv');
 
-const BUILD_DIR = path.resolve(__dirname, 'dist');
+const BUILD_DIR = path.resolve(__dirname, '../../dist');
 const APP_DIR = path.resolve(__dirname, 'app');
 const RESOURCES_DIR = path.resolve(__dirname, 'resources');
 
@@ -24,7 +23,7 @@ module.exports = (env) => {
     ];
   const output = {
     path: BUILD_DIR,
-    filename: 'bundle.js'
+    filename: 'renderer.js'
   };
   const optimization = {
     namedModules: true
@@ -50,11 +49,30 @@ module.exports = (env) => {
       ignore: [/node_modules/]
     }
   };
-  
+  const plugins = [
+    new HtmlWebpackPlugin({
+      template: path.resolve(__dirname, 'index.html'),
+      minify: {
+        html5: true,
+        removeComments: true,
+        collapseWhitespace: true,
+        removeRedundantAttributes: true,
+        useShortDoctype: true,
+        removeEmptyAttributes: true,
+        removeStyleLinkTypeAttributes: true,
+        keepClosingSlash: true
+      },
+      inject: true
+    }),
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify(env.NODE_ENV),
+      'process.env.SENTRY_DSN': IS_PROD && JSON.stringify(process.env.SENTRY_DSN)
+    })
+  ];
   
   if (IS_PROD) {
     // TODO remove this when env variable are set on the CI server
-    dotenv.config();
+    dotenv.config({ path: path.resolve(__dirname, '../../.env') });
     jsxRule.include = [
       APP_DIR,
       UI_DIR
@@ -77,14 +95,15 @@ module.exports = (env) => {
   } else {
     output.publicPath = '/';
     jsxRule.exclude = /node_modules\/(?!@nuclear).*/;
+    plugins.push(new webpack.HotModuleReplacementPlugin());
   }
 
   const config = {
     entry,
     output,
     mode: IS_PROD ? 'production' : 'development',
-    devtool: 'source-map',
     optimization,
+    stats: 'minimal',
     node: {
       fs: 'empty'
     },
@@ -118,27 +137,7 @@ module.exports = (env) => {
         }
       ]
     },
-    plugins: [
-      new webpack.HotModuleReplacementPlugin(),
-      new HtmlWebpackPlugin({
-        template: path.resolve(__dirname, 'index.html'),
-        minify: {
-          html5: true,
-          removeComments: true,
-          collapseWhitespace: true,
-          removeRedundantAttributes: true,
-          useShortDoctype: true,
-          removeEmptyAttributes: true,
-          removeStyleLinkTypeAttributes: true,
-          keepClosingSlash: true
-        },
-        inject: true
-      }),
-      new webpack.DefinePlugin({
-        'process.env.NODE_ENV': JSON.stringify(env.NODE_ENV),
-        'process.env.SENTRY_DSN': IS_PROD ? JSON.stringify(process.env.SENTRY_DSN) : null
-      })
-    ],
+    plugins,
     target: 'electron-renderer'
   };
 
@@ -148,9 +147,6 @@ module.exports = (env) => {
       contentBase: '/',
       publicPath: '/'
     };
-    process.on('SIGINT', () => {
-      fs.unlink(path.resolve(__dirname, 'bundle.electron.js'), () => {});
-    });
   }
 
   return config;

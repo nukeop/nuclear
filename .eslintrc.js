@@ -6,7 +6,6 @@ module.exports = {
   },
   "globals": {
     "process": true,
-    "Raven": true,
     "_": true
   },
   "extends": ["eslint:recommended", "plugin:node/recommended"],
