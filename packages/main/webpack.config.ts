@@ -32,7 +32,13 @@ module.exports = (env: { NODE_ENV: string }): import('webpack').Configuration =>
     stats: 'minimal',
     optimization: { namedModules: true },
     module: {
-      rules: [tsRule]
+      rules: [
+        tsRule,
+        {
+          test: /\.node$/,
+          use: 'node-loader'
+        }
+      ]
     },
     node: {
       fs: 'empty',
