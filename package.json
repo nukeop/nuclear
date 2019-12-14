@@ -36,8 +36,6 @@
     "build:all": "lerna run build && electron-builder -c.extraMetadata.main=dist/main.js -mwl"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^2.11.0",
-    "@typescript-eslint/parser": "^2.11.0",
     "babel-eslint": "^10.0.3",
     "electron": "^4.2.11",
     "electron-builder": "^21.2.0",

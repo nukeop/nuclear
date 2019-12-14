@@ -65,6 +65,8 @@
     "@types/tiny-async-pool": "^1.0.0",
     "@types/uuid": "^3.4.6",
     "@types/webpack": "^4.41.0",
+    "@typescript-eslint/eslint-plugin": "^2.11.0",
+    "@typescript-eslint/parser": "^2.11.0",
     "copy-webpack-plugin": "^5.1.1",
     "node-loader": "^0.6.0",
     "ts-loader": "^6.2.1",

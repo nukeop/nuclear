@@ -1,22 +1,8 @@
-module.exports = {
-  "env": {
-    "browser": true,
-    "commonjs": true,
-    "es6": true
-  },
+{
   "globals": {
-    "process": true,
-    "_": true
+    "process": true
   },
   "extends": ["eslint:recommended", "plugin:node/recommended"],
-  "parser": "babel-eslint",
-  "parserOptions": {
-    "ecmaFeatures": {
-      "jsx": true
-    },
-    "ecmaVersion": 2018,
-    "sourceType": "module"
-  },
   "plugins": [
     "react",
     "node",
@@ -52,7 +38,7 @@ module.exports = {
     "dot-notation": 2,
     "no-alert": 2,
     "object-shorthand": [2, "always"],
-    "no-console": ["error", { allow: ["warn", "error"] }],
+    "no-console": ["error", { "allow": ["warn", "error"] }],
 
     // Style
     "array-bracket-spacing": 2,
@@ -104,4 +90,4 @@ module.exports = {
     // Node
     "node/no-unpublished-import": 0
   }
-};
+}
