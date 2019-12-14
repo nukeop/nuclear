@@ -17,16 +17,13 @@ const addTrackToPlaylist = (updatePlaylist, playlist, track) => {
 
 export const QueueMenuMore = ({
   disabled,
-  clearQueue,
-  resetPlayer,
   savePlaylistDialog,
-  addFavoriteTrack,
   updatePlaylist,
   playlists,
   currentItem,
-  sendPaused,
   handleAddToDownloads,
-  handleAddFavoriteTrack
+  handleAddFavoriteTrack,
+  handleClearClick
 }) => {
   const { t } = useTranslation('queue');
 
@@ -34,7 +31,7 @@ export const QueueMenuMore = ({
     <Dropdown item icon='ellipsis vertical' className={styles.queue_menu_more} disabled={disabled}>
       <Dropdown.Menu>
         <Dropdown.Header>{t('header')}</Dropdown.Header>
-        <Dropdown.Item onClick={() => {clearQueue();resetPlayer(sendPaused);}}>
+        <Dropdown.Item onClick={handleClearClick}>
           <Icon name='trash' />
           {t('clear')}
         </Dropdown.Item>
@@ -101,6 +98,7 @@ QueueMenuMore.defaultProps = {
 };
 
 export default compose(
+  withProps({ sendPaused }),
   withHandlers({
     handleAddToDownloads: ({addToDownloads, currentItem}) => () => addToDownloads(currentItem),
     handleAddFavoriteTrack: ({addFavoriteTrack, currentItem}) => () => {
@@ -117,9 +115,10 @@ export default compose(
           ]
         });
       }
+    },
+    handleClearClick: ({clearQueue, resetPlayer, sendPaused}) => () => {
+      clearQueue();
+      resetPlayer(sendPaused);
     }
-  }),
-  withProps({
-    sendPaused: sendPaused
   })
 )(QueueMenuMore);
