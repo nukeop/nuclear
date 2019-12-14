@@ -34,15 +34,11 @@ class Config {
       'wav'
     ];
 
-    logger.log('Environement', this.env);
-
-    const envFilePath = this.isDev() ? '../../../.env' : '.env';
-
     dotenv.config({
-      path: path.resolve(__dirname, envFilePath)
+      path: path.resolve(__dirname, '.env')
     });
 
-    logger.log('Env variables loaded');
+    logger.log(this.env, 'Env variables loaded');
   
     if (process.env.NODE_ENV === 'production') {
       MANDATORY_ENV.push('SENTRY_DSN');

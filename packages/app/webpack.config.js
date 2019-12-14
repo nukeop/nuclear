@@ -12,6 +12,8 @@ const UI_DIR = path.resolve(__dirname, '..', 'ui');
 module.exports = (env) => {
   const IS_PROD = env.NODE_ENV === 'production';
   const IS_DEV = env.NODE_ENV === 'development';
+  // TODO remove this when env variable are set on the CI server
+  dotenv.config({ path: path.resolve(__dirname, '.env') });
 
   const entry = IS_PROD
     ? path.resolve(APP_DIR, 'index.js')
@@ -65,14 +67,15 @@ module.exports = (env) => {
       inject: true
     }),
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify(env.NODE_ENV),
-      'process.env.SENTRY_DSN': IS_PROD && JSON.stringify(process.env.SENTRY_DSN)
+      'process.env': Object.entries(dotenv.parse(path.resolve(__dirname, '.env')))
+        .reduce((acc, [value, key]) => ({
+          ...acc,
+          [key]: JSON.stringify(value)
+        }), {})
     })
   ];
   
   if (IS_PROD) {
-    // TODO remove this when env variable are set on the CI server
-    dotenv.config({ path: path.resolve(__dirname, '../../.env') });
     jsxRule.include = [
       APP_DIR,
       UI_DIR

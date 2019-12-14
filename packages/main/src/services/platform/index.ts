@@ -1,6 +1,6 @@
 import { app } from 'electron';
-import path from 'path';
 import { injectable } from 'inversify';
+import path from 'path';
 
 export enum PlatformNames {
   LINUX= 'linux',

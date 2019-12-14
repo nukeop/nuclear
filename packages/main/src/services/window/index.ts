@@ -20,7 +20,6 @@ class Window extends BrowserWindow {
     @inject(Store) store: Store
   ) {
     const iconPath = config.isProd() ? 'resources' : '../app/resources';
-    const preloadScriptPath = config.isProd() ? '' : '../';
     let icon = nativeImage.createFromPath(path.resolve(__dirname, iconPath, 'media', 'icon.png'));
 
     super({
@@ -35,8 +34,7 @@ class Window extends BrowserWindow {
         experimentalFeatures: false,
         webSecurity: false,
         allowRunningInsecureContent: false,
-        additionalArguments: [store.getOption('disableGPU') && '--disable-gpu'],
-        preload: path.resolve(__dirname, preloadScriptPath, 'preload.js')
+        additionalArguments: [store.getOption('disableGPU') && '--disable-gpu']
       }
     });
 

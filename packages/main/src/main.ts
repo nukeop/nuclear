@@ -3,7 +3,6 @@ import 'reflect-metadata';
 
 import * as Sentry from '@sentry/electron/dist/main';
 import { app } from 'electron';
-// import installExtension, { REACT_DEVELOPER_TOOLS, REDUX_DEVTOOLS } from 'electron-devtools-installer';
 import logger from 'electron-timber';
 import getPort from 'get-port';
 import path from 'path';
@@ -23,7 +22,6 @@ let container: Container;
 
 app.on('ready', async () => {
   try {
-    logger.log(`env => ${process.env.NODE_ENV}`);
     container = new Container({ controllers, services });
     const platform = container.get<Platform>(Platform);
 
@@ -47,15 +45,17 @@ app.on('ready', async () => {
         })
       );
     } else if (isDev) {
-      // try {
-      //   await Promise.all([
-      //     installExtension(REACT_DEVELOPER_TOOLS),
-      //     installExtension(REDUX_DEVTOOLS)
-      //   ]);
-      //   logger.log('devtools installed');
-      // } catch (err) {
-      //   logger.warn('something fails while trying to install devtools');
-      // }
+      try {
+        // const { REACT_DEVELOPER_TOOLS, REDUX_DEVTOOLS, default: installExtension } = await import('electron-devtools-installer');
+
+        // await Promise.all([
+        //   installExtension(REACT_DEVELOPER_TOOLS),
+        //   installExtension(REDUX_DEVTOOLS)
+        // ]);
+        logger.log('devtools installed');
+      } catch (err) {
+        logger.warn('something fails while trying to install devtools');
+      }
 
       window.loadURL(
         url.format({

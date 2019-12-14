@@ -43,7 +43,7 @@ module.exports = (env: { NODE_ENV: string }): import('webpack').Configuration =>
     plugins: [
       new CopyPlugin([
         { from: 'preload.js' },
-        { from: path.resolve(__dirname, '../../.env') }
+        { from: path.resolve(__dirname, '.env') }
       ])
     ]
   };

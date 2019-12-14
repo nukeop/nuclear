@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import electronDl, { download } from 'electron-dl';
+import electronDl, { download, Progress } from 'electron-dl';
 import { inject, injectable } from 'inversify';
 import _ from 'lodash';
 import ytdl from 'ytdl-core';
@@ -12,7 +12,7 @@ interface DownloadParams {
   query: any;
   filename: string;
   onStart: () => void;
-  onProgress: (progress: number) => void;
+  onProgress: (progress: Progress) => any;
 }
 
 /**
