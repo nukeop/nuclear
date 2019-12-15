@@ -2,7 +2,7 @@ import { app, Event } from 'electron';
 import { inject } from 'inversify';
 
 import HttpApi from '../services/http';
-import NuclearApi from '../utils/api';
+import NuclearApi from '../utils/nuclear-api';
 import Platform from '../services/platform';
 import Store from '../services/store';
 import SystemApi from '../services/system-api';

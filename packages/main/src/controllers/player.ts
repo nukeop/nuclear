@@ -5,7 +5,7 @@ import { inject } from 'inversify';
 import SystemApi from '../services/system-api';
 import Window from '../services/window';
 import { ipcEvent, ipcController } from '../utils/decorators';
-import NuclearApi from '../utils/api';
+import NuclearApi from '../utils/nuclear-api';
 
 @ipcController()
 class IpcPlayer {

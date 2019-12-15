@@ -3,7 +3,7 @@ import { Event, nativeImage, NativeImage, IpcMain } from 'electron';
 import { inject } from 'inversify';
 import path from 'path';
 
-import NuclearApi from '../../utils/api';
+import NuclearApi from '../../utils/nuclear-api';
 import Config from '../config';
 import Ipc from '../ipc';
 import Window from '../window';
