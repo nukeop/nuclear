@@ -28,7 +28,9 @@ module.exports = (env: { NODE_ENV: string }): import('webpack').Configuration =>
       filename: 'main.js'
     },
     mode: IS_PROD ? 'production' : 'development',
-    stats: 'minimal',
+    stats: {
+      warningsFilter: 'express'
+    },
     optimization: { namedModules: true },
     module: {
       rules: [
