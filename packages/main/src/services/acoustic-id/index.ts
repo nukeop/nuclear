@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { stringify } from 'querystring';
 import { spawn } from 'child_process';
+import fetch from 'node-fetch';
 import { Stream, PassThrough } from 'stream';
 import concat from 'concat-stream';
 import split from 'split2';

@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import electronDl, { download, Progress } from 'electron-dl';
 import { inject, injectable } from 'inversify';
+import fetch from 'node-fetch';
 import _ from 'lodash';
 import ytdl from 'ytdl-core';
 
