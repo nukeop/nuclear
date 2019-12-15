@@ -37,8 +37,8 @@ class Window extends BrowserWindow {
     @inject(Platform) platform: Platform,
     @inject(Store) store: Store
   ) {
-    const iconPath = config.isProd() ? 'resources' : '../app/resources';
-    let icon = nativeImage.createFromPath(path.resolve(__dirname, iconPath, 'media', 'icon.png'));
+    const iconPath = config.isProd() ? 'resources' : '../resources/media';
+    let icon = nativeImage.createFromPath(path.resolve(__dirname, iconPath, 'icon.png'));
 
     super({
       title: config.title,
@@ -60,7 +60,7 @@ class Window extends BrowserWindow {
 
     if (platform.isMac()) {
       app.dock.setIcon(icon);
-      icon = nativeImage.createFromPath(path.resolve(__dirname, iconPath, 'media', 'icon_apple.png'));
+      icon = nativeImage.createFromPath(path.resolve(__dirname, iconPath, 'icon_apple.png'));
     }
 
     if (platform.isWindows()) {

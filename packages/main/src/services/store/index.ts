@@ -34,6 +34,13 @@ class Store extends ElectronStore {
   
     this.set('settings', Object.assign({}, settings, { [`${key}`]: value }));
   }
+
+  async setAvailableHttpPort(startPort: number, endPort: number) {
+    const { default: getPort } = await import('get-port');
+    const availablePort = await getPort({ port: getPort.makeRange(startPort, endPort) });
+  
+    this.setOption('api.port', availablePort);
+  }
 }
 
 export default Store;

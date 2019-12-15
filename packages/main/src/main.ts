@@ -3,7 +3,6 @@ import 'reflect-metadata';
 
 import { app } from 'electron';
 import logger from 'electron-timber';
-import getPort from 'get-port';
 
 import { controllers, services } from './ioc';
 import HttpApi from './services/http';
@@ -42,13 +41,11 @@ app.on('ready', async () => {
       //   logger.warn('something fails while trying to install devtools');
       // }
 
-      const availablePort = await getPort({ port: getPort.makeRange(3000, 3100) });
-      store.setOption('api.port', availablePort);
+      await store.setAvailableHttpPort(3000, 3100);
     }
-
-    window.load();
-
+    
     container.listen();
+    window.load();
 
     window.once('ready-to-show', () => {
       window.show();
