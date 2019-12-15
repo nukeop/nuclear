@@ -9,7 +9,6 @@ import { useTranslation } from 'react-i18next';
 import { LibraryListTypeToggle } from '@nuclear/ui';
 import { LIST_TYPE } from '@nuclear/ui/lib/components/LibraryListTypeToggle';
 import _ from 'lodash';
-import { withProps } from 'recompose';
 
 import EmptyState from './EmptyState';
 import NoApi from './NoApi';
