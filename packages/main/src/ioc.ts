@@ -12,6 +12,7 @@ import Download from './services/download';
 import HttpApi from './services/http';
 import ipc from './services/ipc';
 import LocalLibrary from './services/local-library';
+import LocalLibraryDb from './services/local-library/db';
 import Logger, { httpApiLogger, ipcLogger, mainLogger, systemApiLogger } from './services/logger';
 import Platform from './services/platform';
 import Store from './services/store';
@@ -25,6 +26,7 @@ const services: ServiceProvider[] = [
   { useClass: Download },
   { useClass: HttpApi },
   { useClass: LocalLibrary },
+  { useClass: LocalLibraryDb },
   { useClass: Store },
   { useClass: Window },
   { useClass: Platform },

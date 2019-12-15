@@ -11,8 +11,8 @@ import uuid from 'uuid/v4';
 
 import AcousticId from '../acoustic-id';
 import Config from '../config';
-import Store from '../store';
 import Logger, { mainLogger } from '../logger';
+import LocalLibraryDb from './db';
 
 /**
  * Manage local files, extract metadata directly from files, or get it from acousticId api
@@ -25,7 +25,7 @@ class LocalLibrary {
 
   constructor(
     @inject(Config) private config: Config,
-    @inject(Store) private store: Store,
+    @inject(LocalLibraryDb) private store: LocalLibraryDb,
     @inject(AcousticId) private acousticId: AcousticId,
     @inject(mainLogger) private logger: Logger
   ) {

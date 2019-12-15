@@ -1,19 +1,13 @@
 {
-  "name": "nuclear",
+  "name": "@nuclear/app",
   "version": "0.5.1",
-  "description": "Nuclear - Electron app",
+  "description": "Nuclear - Renderer process",
   "scripts": {
     "start": "webpack-dev-server --verbose --inline --env.NODE_ENV=development",
     "build": "webpack --colors --env.NODE_ENV=production",
     "test": "mocha --require ./test/testHelper.js --require regenerator-runtime --timeout 10000 --prof --recursive",
-    "pack": "electron-builder --dir -c.extraMetadata.main=dist/bundle.electron.js",
-    "dist": "babel-node electron-builder -c.extraMetadata.main=dist/bundle.electron.js",
-    "build:linux": "electron-builder -c.extraMetadata.main=dist/bundle.electron.js --linux --publish always",
-    "build:windows": "electron-builder -c.extraMetadata.main=dist/bundle.electron.js --windows --publish always",
-    "build:macos": "electron-builder -c.extraMetadata.main=dist/bundle.electron.js --macos --publish always",
-    "build:all": "electron-builder -c.extraMetadata.main=dist/bundle.electron.js -mwl",
-    "lint": "eslint app test server",
-    "lint:fix": "eslint app test server --fix",
+    "lint": "eslint app test",
+    "lint:fix": "eslint app test --fix",
     "i18n": "sync-i18n --files 'app/locales/*.json' --primary en --languages fr tl nl de dk es pl zh ru tr id sk ko zh_tw --space 2"
   },
   "repository": {
@@ -35,40 +29,24 @@
   },
   "homepage": "https://github.com/nukeop/nuclear#readme",
   "dependencies": {
+    "@nuclear/common": "0.5.1",
     "@nuclear/core": "0.5.1",
     "@nuclear/ui": "0.5.1",
     "billboard-top-100": "^2.0.8",
     "bluebird": "3.5.3",
-    "body-parser": "^1.18.3",
     "chart.js": "^2.8.0",
-    "cheerio": "^1.0.0-rc.2",
-    "concat-stream": "^2.0.0",
-    "cors": "^2.8.5",
+    "classnames": "^2.2.5",
     "d3-drag": "^1.2.3",
     "d3-selection": "^1.4.0",
-    "dotenv": "^8.2.0",
-    "electron-dl": "^1.14.0",
-    "electron-platform": "^1.2.0",
     "electron": "^4.2.11",
     "electron-store": "^2.0.0",
     "electron-timber": "^0.5.1",
-    "electron-util": "^0.11.0",
-    "event-stream": "^4.0.1",
-    "express": "^4.16.4",
-    "express-json-validator-middleware": "^1.2.3",
-    "fast-levenshtein": "^2.0.6",
     "font-awesome": "^4.7.0",
     "get-artist-title": "^1.1.1",
-    "get-port": "^5.0.0",
-    "glob": "^7.1.3",
     "i18next": "^17.0.1",
-    "lowdb": "^1.0.0",
-		"jsbi": "^2.0.5",
-    "md5": "^2.2.1",
+    "lodash": "^4.17.5",
     "moment": "^2.20.1",
     "mousetrap": "^1.6.2",
-    "mpris-service": "^2.1.0",
-    "music-metadata": "^3.5.3",
     "numeral": "^2.0.6",
     "pitchfork-bnm": "^1.0.3",
     "react": "^16.8.6",
@@ -87,14 +65,7 @@
     "regenerator-runtime": "^0.13.2",
     "semantic-ui-react": "^0.82.1",
     "simple-get-lyrics": "0.0.4",
-    "stream-filter": "^2.1.0",
-    "stream-reduce": "^1.0.3",
     "styled-components": "^3.2.6",
-    "swagger-spec-express": "^2.0.15",
-    "tiny-async-pool": "^1.0.4",
-    "uuid": "^3.3.2",
-    "webpack-cli": "^3.0.8",
-    "x11": "^2.3.0",
     "youtube-playlist": "^1.0.2",
     "ytdl-core": "^1.0.3"
   },
@@ -110,14 +81,9 @@
     "ava": "^2.4.0",
     "babel-eslint": "^10.0.1",
     "babel-loader": "^8.0.6",
-    "bufferutil": "^4.0.1",
     "chai": "^4.1.2",
     "chai-spies": "^1.0.0",
-    "classnames": "^2.2.5",
     "css-loader": "^1.0.0",
-    "electron": "^4.2.11",
-    "electron-builder": "^20.44.4",
-    "electron-devtools-installer": "^2.2.4",
     "dotenv": "^8.2.0",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.3.1",
@@ -131,14 +97,10 @@
     "html-webpack-plugin": "^3.2.0",
     "i18next-json-sync": "^2.3.1",
     "ignore-styles": "^5.0.1",
-    "isomorphic-fetch": "^2.2.1",
     "jsdom": "^12.0.0",
-    "lodash": "^4.17.5",
     "mocha": "^5.0.0",
-    "node-loader": "^0.6.0",
     "node-sass": "^4.13.0",
     "nodebrainz": "^2.1.1",
-    "npm-run-all": "^4.1.2",
     "proxyquire": "^2.1.1",
     "react-debounce-input": "^3.2.0",
     "react-fontawesome": "^1.6.1",
@@ -154,88 +116,8 @@
     "svg-inline-loader": "^0.8.0",
     "url-loader": "^1.0.1",
     "utf-8-validate": "^5.0.2",
-    "webpack": "^4.12.1",
-    "webpack-dev-server": "^3.1.4",
-    "webpack-node-externals": "^1.7.2"
-  },
-  "optionalDependencies": {
-    "7zip-bin-mac": "^1.0.1"
-  },
-  "build": {
-    "appId": "nuclear",
-    "productName": "nuclear",
-    "artifactName": "${productName}-${env.GITHASH}.${ext}",
-    "directories": {
-      "output": "release"
-    },
-    "files": [
-      "dist/",
-      "dist/electron.bundle.js",
-      "package.json"
-    ],
-    "extraFiles": [
-      "resources"
-    ],
-    "releaseInfo": {
-      "releaseName": "Nuclear ${env.GITHASH}"
-    },
-    "linux": {
-      "desktop": {
-        "Name": "Nuclear",
-        "Name[es]": "Reproductor de música Nuclear",
-        "Comment[es]": "Reproductor que retransmite música desde fuentes encontradas automáticamente."
-      },
-      "target": [
-        "AppImage",
-        "deb",
-        "tar.gz",
-        "snap"
-      ],
-      "category": "Audio;AudioVideo;Network;Player;Music",
-      "extraFiles": [
-        {
-          "from": "bin/linux",
-          "to": "resources/bin",
-          "filter": [
-            "**/*"
-          ]
-        }
-      ]
-    },
-    "mac": {
-      "category": "public.app-category.music",
-      "target": [
-        "zip",
-        "pkg",
-        "dmg"
-      ],
-      "extraFiles": [
-        {
-          "from": "bin/mac",
-          "to": "resources/bin",
-          "filter": [
-            "**/*"
-          ]
-        }
-      ]
-    },
-    "win": {
-      "target": [
-        "nsis",
-        "portable"
-      ],
-      "extraFiles": [
-        {
-          "from": "bin/win",
-          "to": "resources/bin",
-          "filter": [
-            "**/*"
-          ]
-        }
-      ]
-    },
-    "nsis": {
-      "artifactName": "${productName} Setup ${env.GITHASH}.${ext}"
-    }
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.9.0"
   }
 }

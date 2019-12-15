@@ -142,6 +142,14 @@ export function refreshLocalFolders() {
   ipcRenderer.send('refresh-localfolders');
 }
 
+export function getLocalFolders() {
+  return ipcRenderer.sendSync('get-localfolders');
+}
+
+export function setLocalFolders(localFolders) {
+  ipcRenderer.send('set-localfolders', localFolders);
+}
+
 export function sendPlayingStatus(event, playerState, queueState, { loopAfterQueueEnd, shuffleQueue }) {
   try {
     const { artist, name, thumbnail } = queueState.queueItems[queueState.currentSong];

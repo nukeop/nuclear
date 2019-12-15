@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import electronStore from 'electron-store';
 
-import options from '../../common/settings';
+import { settingsConfig } from '@nuclear/common';
 import { restartApi, stopApi } from '../mpris';
 
 const store = new electronStore();
@@ -36,7 +36,7 @@ function getOption(key) {
   let value = settings[key];
 
   if (typeof value === 'undefined') {
-    value = _.find(options, { name: key }).default;
+    value = _.find(settingsConfig, { name: key }).default;
   }
 
   return value;
