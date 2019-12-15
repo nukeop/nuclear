@@ -38,7 +38,7 @@ export const localGetSchema = {
 const { validate } = new Validator({ allErrors: true });
 
 export function localFileRouter() {
-  let cache = store.get('localMeta');
+  let cache = _.defaultTo(store.get('localMeta'), {});
   let byArtist = _.groupBy(Object.values(cache), track => track.artist.name);
 
   ipcMain.on('refresh-localfolders', async event => {
