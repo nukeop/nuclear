@@ -1,6 +1,6 @@
 import { NuclearStatus, PlaybackStatus } from '@nuclear/common';
 import { Event, nativeImage, NativeImage, IpcMain } from 'electron';
-import { inject } from 'inversify';
+import { inject, injectable } from 'inversify';
 import path from 'path';
 
 import NuclearApi from '../../utils/nuclear-api';
@@ -8,6 +8,7 @@ import Config from '../config';
 import Ipc from '../ipc';
 import Window from '../window';
 
+@injectable()
 class Thumbar implements NuclearApi {
   private status: NuclearStatus;
   private previousIcon = this.createNativeImage('previous.sg');
