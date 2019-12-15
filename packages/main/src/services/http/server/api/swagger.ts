@@ -1,13 +1,14 @@
 import express, { Router } from 'express';
-import swagger from 'swagger-spec-express';
+// import swagger from 'swagger-spec-express';
 
 import Store from '../../../store';
+import swaggerJson from '../swagger.json';
 
 export function swaggerRouter(store: Store): Router {
   const router = express.Router();
 
   router.get('/swagger.json', (req, res) => {
-    res.json(swagger.json());
+    res.json(swaggerJson);
   });
 
   router.get('/', (req, res) => {

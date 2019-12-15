@@ -67,3 +67,6 @@ jsconfig.json
 
 #nvm
 .nvmrc
+
+#lerna
+lerna-debug.log
