@@ -46,12 +46,12 @@ app.on('ready', async () => {
       );
     } else if (isDev) {
       try {
-        // const { REACT_DEVELOPER_TOOLS, REDUX_DEVTOOLS, default: installExtension } = await import('electron-devtools-installer');
+        const { REACT_DEVELOPER_TOOLS, REDUX_DEVTOOLS, default: installExtension } = await import('electron-devtools-installer');
 
-        // await Promise.all([
-        //   installExtension(REACT_DEVELOPER_TOOLS),
-        //   installExtension(REDUX_DEVTOOLS)
-        // ]);
+        await Promise.all([
+          installExtension(REACT_DEVELOPER_TOOLS),
+          installExtension(REDUX_DEVTOOLS)
+        ]);
         logger.log('devtools installed');
       } catch (err) {
         logger.warn('something fails while trying to install devtools');

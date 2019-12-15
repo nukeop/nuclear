@@ -52,7 +52,6 @@
     "ytdl-core": "^1.0.3"
   },
   "devDependencies": {
-    "7zip": "0.0.6",
     "@types/body-parser": "^1.17.1",
     "@types/concat-stream": "^1.6.0",
     "@types/cors": "^2.8.6",
@@ -77,6 +76,7 @@
     "webpack-cli": "^3.3.10"
   },
   "optionalDependencies": {
-    "7zip-bin-mac": "^1.0.1"
+    "7zip-bin-mac": "^1.0.1",
+    "mpris-service": "2.1.0"
   }
 }

@@ -42,6 +42,9 @@
     "eslint": "^6.7.2",
     "lerna": "^3.16.4"
   },
+  "optionalDependencies": {
+    "7zip-bin-mac": "^1.0.1"
+  },
   "engines": {
     "node": ">=0.11.0",
     "npm": ">=6.0.0"

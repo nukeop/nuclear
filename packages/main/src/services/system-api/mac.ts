@@ -1,7 +1,7 @@
 import { Event } from 'electron';
-import NuclearApi from '../../utils/api';
+import NuclearApi from '../../utils/nuclear-api';
 
-class TouchBar implements NuclearApi {
+class MacMediaService implements NuclearApi {
   rendererWindow: Event['sender'];
 
   onPlay() {}
@@ -11,4 +11,4 @@ class TouchBar implements NuclearApi {
   listen() {}
 }
 
-export default TouchBar;
+export default MacMediaService;

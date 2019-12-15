@@ -36,7 +36,7 @@ const loopStatusMapper: Record<string, LoopStatus> = {
  */
 
 @mprisController() 
-class Mpris extends MprisService implements NuclearApi {
+class LinuxMediaService extends MprisService implements NuclearApi {
   tracks: MprisMeta[];
   rendererWindow: Event['sender'];
 
@@ -217,7 +217,7 @@ class Mpris extends MprisService implements NuclearApi {
     this.shuffle = status.shuffleQueue;
     this.loopStatus =loopStatusMapper[status.loopAfterQueueEnd.toString()];
 
-    const meta: ControllerMeta[] = Reflect.getMetadata(MPRIS_EVENT_KEY, Mpris.prototype);
+    const meta: ControllerMeta[] = Reflect.getMetadata(MPRIS_EVENT_KEY, LinuxMediaService.prototype);
 
     meta.forEach(({ eventName, name }) => {
 
@@ -236,4 +236,4 @@ class Mpris extends MprisService implements NuclearApi {
   }
 }
 
-export default Mpris;
+export default LinuxMediaService;
