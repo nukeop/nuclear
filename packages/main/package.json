@@ -18,7 +18,6 @@
   "homepage": "https://github.com/nukeop/nuclear#readme",
   "dependencies": {
     "@nuclear/common": "0.5.1",
-    "@sentry/electron": "^1.0.0",
     "autobind-decorator": "^2.4.0",
     "body-parser": "^1.19.0",
     "concat-stream": "^2.0.0",
@@ -36,9 +35,7 @@
     "glob": "^7.1.6",
     "inversify": "^5.0.1",
     "isomorphic-fetch": "^2.2.1",
-    "jsbi": "^2.0.5",
     "lodash": "^4.17.15",
-    "mpris-service": "^2.1.0",
     "music-metadata": "^5.1.1",
     "reflect-metadata": "^0.1.13",
     "split2": "^3.1.1",
@@ -48,7 +45,6 @@
     "tiny-async-pool": "^1.1.0",
     "url": "^0.11.0",
     "uuid": "^3.3.3",
-    "x11": "^2.3.0",
     "ytdl-core": "^1.0.3"
   },
   "devDependencies": {
@@ -77,6 +73,8 @@
   },
   "optionalDependencies": {
     "7zip-bin-mac": "^1.0.1",
-    "mpris-service": "2.1.0"
+    "mpris-service": "2.1.0",
+    "x11": "^2.3.0",
+    "jsbi": "^2.0.5"
   }
 }

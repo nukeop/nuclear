@@ -37,9 +37,6 @@
   "dependencies": {
     "@nuclear/core": "0.5.1",
     "@nuclear/ui": "0.5.1",
-    "@sentry/electron": "^1.0.0",
-    "@sentry/node": "^5.10.1",
-    "awilix": "^4.2.3",
     "billboard-top-100": "^2.0.8",
     "bluebird": "3.5.3",
     "body-parser": "^1.18.3",

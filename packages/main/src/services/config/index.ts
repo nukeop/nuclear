@@ -20,7 +20,9 @@ class Config {
   supportedFormats: string[];
   env: Env;
 
-  constructor(@inject(mainLogger) logger: Logger) {
+  constructor(
+    @inject(mainLogger) logger: Logger
+  ) {
     this.env = process.env.NODE_ENV as Env || Env.DEV;
     this.title = 'Nuclear Music Player';
     this.youtubeUrl = 'https://www.youtube.com/watch';
@@ -39,10 +41,6 @@ class Config {
     });
 
     logger.log(this.env, 'Env variables loaded');
-  
-    if (process.env.NODE_ENV === 'production') {
-      MANDATORY_ENV.push('SENTRY_DSN');
-    }
 
     this.validateEnv();
 
