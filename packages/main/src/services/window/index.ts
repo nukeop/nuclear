@@ -3,11 +3,12 @@ import { inject, injectable } from 'inversify';
 import path from 'path';
 import url from 'url';
 
+import { Env } from '../../utils/env';
 import Config from '../config';
 import HttpApi from '../http';
+import Logger, { mainLogger } from '../logger';
 import Platform from '../platform';
 import Store from '../store';
-import { Env } from '../../utils/env';
 
 const urlMapper: Record<Env, string> = {
   [Env.DEV]: url.format({
@@ -30,12 +31,14 @@ const urlMapper: Record<Env, string> = {
 @injectable()
 class Window extends BrowserWindow {
   private config: Config;
+  private logger: Logger;
 
   constructor(
     @inject(Config) config: Config,
     @inject(HttpApi) httpApi: HttpApi,
     @inject(Platform) platform: Platform,
-    @inject(Store) store: Store
+    @inject(Store) store: Store,
+    @inject(mainLogger) logger: Logger
   ) {
     const iconPath = config.isProd() ? 'resources' : '../resources/media';
     let icon = nativeImage.createFromPath(path.resolve(__dirname, iconPath, 'icon.png'));
@@ -57,6 +60,7 @@ class Window extends BrowserWindow {
     });
 
     this.config = config;
+    this.logger = logger;
 
     if (platform.isMac()) {
       app.dock.setIcon(icon);
@@ -88,6 +92,20 @@ class Window extends BrowserWindow {
 
   load() {
     this.loadURL(urlMapper[this.config.env]);
+  }
+
+  async installDevTools() {
+    try {
+      const { REACT_DEVELOPER_TOOLS, REDUX_DEVTOOLS, default: installExtension } = await import('electron-devtools-installer');
+
+      await Promise.all([
+        installExtension(REACT_DEVELOPER_TOOLS),
+        installExtension(REDUX_DEVTOOLS)
+      ]);
+      this.logger.log('devtools installed');
+    } catch (err) {
+      this.logger.warn('something fails while trying to install devtools');
+    }
   }
 }
 

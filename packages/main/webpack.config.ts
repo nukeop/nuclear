@@ -18,7 +18,7 @@ module.exports = (env: { NODE_ENV: string }): import('webpack').Configuration =>
   return {
     entry: './src/main.ts',
     resolve: {
-      extensions: ['.ts', '.js'],
+      extensions: ['.ts', '.js', '.json'],
       alias: {
         jsbi: __dirname + '/node_modules/jsbi/dist/jsbi-cjs.js'
       }

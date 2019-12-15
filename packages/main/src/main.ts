@@ -1,4 +1,3 @@
-import 'isomorphic-fetch';
 import 'reflect-metadata';
 
 import { app } from 'electron';
@@ -29,19 +28,10 @@ app.on('ready', async () => {
     });
 
     if (config.isDev()) {
-      // try {
-      //   const { REACT_DEVELOPER_TOOLS, REDUX_DEVTOOLS, default: installExtension } = await import('electron-devtools-installer');
-
-      //   await Promise.all([
-      //     installExtension(REACT_DEVELOPER_TOOLS),
-      //     installExtension(REDUX_DEVTOOLS)
-      //   ]);
-      //   logger.log('devtools installed');
-      // } catch (err) {
-      //   logger.warn('something fails while trying to install devtools');
-      // }
-
-      await store.setAvailableHttpPort(3000, 3100);
+      await Promise.all([
+        window.installDevTools(),
+        store.setAvailableHttpPort(3000, 3100)
+      ]);
     }
     
     container.listen();

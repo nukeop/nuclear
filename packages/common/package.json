@@ -14,7 +14,7 @@
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
   "scripts": {
-    "start": "rm -rf lib && tsc ./src/index.ts --declaration --outDir lib",
+    "start": "tsc ./src/index.ts --declaration --outDir lib",
     "build": "npm start"
   },
   "dependencies": {},
