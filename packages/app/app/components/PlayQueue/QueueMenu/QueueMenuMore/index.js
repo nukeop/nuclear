@@ -97,7 +97,7 @@ QueueMenuMore.defaultProps = {
   currentItem: {}
 };
 
-export default compose(
+export const enhance = compose(
   withProps({ sendPaused }),
   withHandlers({
     handleAddToDownloads: ({addToDownloads, currentItem}) => () => addToDownloads(currentItem),
@@ -121,4 +121,6 @@ export default compose(
       resetPlayer(sendPaused);
     }
   })
-)(QueueMenuMore);
+);
+
+export default enhance(QueueMenuMore);
