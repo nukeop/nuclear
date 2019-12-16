@@ -5,4 +5,3 @@ export * from './swagger';
 export * from './playlist';
 export * from './queue';
 export * from './equalizer';
-export * from './localfile';
