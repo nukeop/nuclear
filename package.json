@@ -22,20 +22,119 @@
   "homepage": "https://github.com/nukeop/nuclear#readme",
   "scripts": {
     "postinstall": "lerna bootstrap --no-ci",
+    "start": "lerna run start --stream",
+    "build": "rm -rf dist && lerna run build && npm run pack",
     "test": "lerna run test",
     "lint:fix": "lerna run lint:fix",
     "storybook": "lerna run storybook",
-    "build": "cd packages/app && npm run build:dist && npm run build:electron && npm run pack",
-    "build:win": "cd packages/app && npm run build:dist:windows && npm run build:electron && npm run pack",
-    "build:all": "cd packages/app && npm run build:dist && npm run build:electron && npm run build:all"
+    "docker": "docker run --rm --net=host --env=\"DISPLAY\" --volume=\"$HOME/.Xauthority:/root/.Xauthority:rw\" --device /dev/snd nuclear",
+    "build:docker": "docker build -t nuclear .",
+    "pack": "electron-builder --dir -c.extraMetadata.main=dist/main.js",
+    "build:linux": "lerna run build && electron-builder -c.extraMetadata.main=dist/main.js --linux --publish always",
+    "build:windows": "lerna run build && electron-builder -c.extraMetadata.main=dist/main.js --windows --publish always",
+    "build:macos": "lerna run build && electron-builder -c.extraMetadata.main=dist/main.js --macos --publish always",
+    "build:all": "lerna run build && electron-builder -c.extraMetadata.main=dist/main.js -mwl"
   },
   "devDependencies": {
     "babel-eslint": "^10.0.3",
-    "lerna": "^3.16.4",
-    "eslint": "^6.7.2"
+    "electron": "^4.2.11",
+    "electron-builder": "^21.2.0",
+    "eslint": "^6.7.2",
+    "lerna": "^3.16.4"
+  },
+  "optionalDependencies": {
+    "7zip-bin-mac": "^1.0.1"
   },
   "engines": {
     "node": ">=0.11.0",
     "npm": ">=6.0.0"
+  },
+  "build": {
+    "appId": "nuclear",
+    "productName": "nuclear",
+    "artifactName": "${productName}-${env.GITHASH}.${ext}",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "dist/"
+    ],
+    "extraFiles": [
+      {
+        "from": "packages/app/resources",
+        "to": "resources",
+        "filter": [
+          "**/*"
+        ]
+      },
+      {
+        "from": "packages/main/resources",
+        "to": "resources",
+        "filter": [
+          "**/*"
+        ]
+      }
+    ],
+    "releaseInfo": {
+      "releaseName": "Nuclear ${env.GITHASH}"
+    },
+    "linux": {
+      "desktop": {
+        "Name": "Nuclear",
+        "Name[es]": "Reproductor de música Nuclear",
+        "Comment[es]": "Reproductor que retransmite música desde fuentes encontradas automáticamente."
+      },
+      "target": [
+        "AppImage",
+        "deb",
+        "tar.gz",
+        "snap"
+      ],
+      "category": "Audio;AudioVideo;Network;Player;Music",
+      "extraFiles": [
+        {
+          "from": "packages/main/bin/linux",
+          "to": "resources/bin",
+          "filter": [
+            "**/*"
+          ]
+        }
+      ]
+    },
+    "mac": {
+      "category": "public.app-category.music",
+      "target": [
+        "zip",
+        "pkg",
+        "dmg"
+      ],
+      "extraFiles": [
+        {
+          "from": "packages/main/bin/mac",
+          "to": "resources/bin",
+          "filter": [
+            "**/*"
+          ]
+        }
+      ]
+    },
+    "win": {
+      "target": [
+        "nsis",
+        "portable"
+      ],
+      "extraFiles": [
+        {
+          "from": "packages/main/bin/win",
+          "to": "resources/bin",
+          "filter": [
+            "**/*"
+          ]
+        }
+      ]
+    },
+    "nsis": {
+      "artifactName": "${productName} Setup ${env.GITHASH}.${ext}"
+    }
   }
 }

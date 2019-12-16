@@ -9,12 +9,12 @@ import {
   UPDATE_LIBRARY_LIST_TYPE,
   UPDATE_LOCAL_FOLDERS
 } from '../actions/local';
-import store from '../../server/libraryStore';
+import { getLocalFolders } from '../mpris';
 
 const initialState = {
   pending: false,
   error: false,
-  folders: store.get('localFolders'),
+  folders: getLocalFolders(),
   page: 0,
   sortBy: 'artist',
   direction: 'ascending',

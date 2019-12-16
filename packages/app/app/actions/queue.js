@@ -2,6 +2,7 @@ const _ = require('lodash');
 
 import { safeAddUuid } from './helpers';
 import { startPlayback } from './player.js';
+import * as mpris from '../mpris';
 
 export const ADD_TO_QUEUE = 'ADD_TO_QUEUE';
 export const REMOVE_FROM_QUEUE = 'REMOVE_FROM_QUEUE';
@@ -17,6 +18,7 @@ function addTrackToQueue (streamProviders, item) {
   return dispatch => {
     item.loading = true;
     item = safeAddUuid(item);
+    mpris.addTrack(item);
 
     dispatch({
       type: ADD_TO_QUEUE,
@@ -48,6 +50,7 @@ export function addToQueue (streamProviders, item) {
 }
 
 export function removeFromQueue (item) {
+  mpris.removeTrack(item);
   return {
     type: REMOVE_FROM_QUEUE,
     payload: item
@@ -77,6 +80,7 @@ export function rerollTrack (streamProvider, selectedStream, track) {
 }
 
 export function clearQueue () {
+  mpris.sendQueueItems([]);
   return {
     type: CLEAR_QUEUE,
     payload: null

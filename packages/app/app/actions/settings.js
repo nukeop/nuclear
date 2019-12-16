@@ -1,4 +1,5 @@
 import { store, setOption } from '../persistence/store';
+import { sendShuffle, sendLoop } from '../mpris';
 
 export const READ_SETTINGS = 'READ_SETTINGS';
 export const SET_BOOLEAN_OPTION = 'SET_BOOLEAN_OPTION';
@@ -15,6 +16,15 @@ export function readSettings() {
 
 export function setBooleanOption(option, state) {
   setOption(option, state);
+
+  switch (option) {
+  case 'shuffleQueue':
+    sendShuffle(state);
+    break;
+  case 'loopAfterQueueEnd':
+    sendLoop(state);
+    break;
+  }
 
   return {
     type: SET_BOOLEAN_OPTION,

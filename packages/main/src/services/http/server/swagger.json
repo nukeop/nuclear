@@ -1,0 +1,646 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Nuclear REST API",
+    "description": "This Api allow you to remotly control nuclear desktop app"
+  },
+  "basePath": "/",
+  "paths": {
+    "/nuclear/window/quit": {
+      "post": {
+        "tags": [
+          "Window"
+        ],
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Action successfull"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        },
+        "parameters": []
+      }
+    },
+    "/nuclear/window/maximize": {
+      "post": {
+        "tags": [
+          "Window"
+        ],
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Action successfull"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        },
+        "parameters": []
+      }
+    },
+    "/nuclear/window/minimize": {
+      "post": {
+        "tags": [
+          "Window"
+        ],
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Action successfull"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        },
+        "parameters": []
+      }
+    },
+    "/nuclear/player/now-playing": {
+      "get": {
+        "tags": [
+          "Player"
+        ],
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "the status of nuclear player"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        },
+        "parameters": []
+      }
+    },
+    "/nuclear/player/next": {
+      "post": {
+        "tags": [
+          "Player"
+        ],
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Action successfull"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        },
+        "parameters": []
+      }
+    },
+    "/nuclear/player/previous": {
+      "post": {
+        "tags": [
+          "Player"
+        ],
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Action successfull"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        },
+        "parameters": []
+      }
+    },
+    "/nuclear/player/pause": {
+      "post": {
+        "tags": [
+          "Player"
+        ],
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Action successfull"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        },
+        "parameters": []
+      }
+    },
+    "/nuclear/player/play-pause": {
+      "post": {
+        "tags": [
+          "Player"
+        ],
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Action successfull"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        },
+        "parameters": []
+      }
+    },
+    "/nuclear/player/stop": {
+      "post": {
+        "tags": [
+          "Player"
+        ],
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Action successfull"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        },
+        "parameters": []
+      }
+    },
+    "/nuclear/player/play": {
+      "post": {
+        "tags": [
+          "Player"
+        ],
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Action successfull"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        },
+        "parameters": []
+      }
+    },
+    "/nuclear/player/mute": {
+      "post": {
+        "tags": [
+          "Player"
+        ],
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Action successfull"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        },
+        "parameters": []
+      }
+    },
+    "/nuclear/player/volume": {
+      "post": {
+        "tags": [
+          "Player"
+        ],
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Action successfull"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        },
+        "parameters": [
+          {
+            "name": "volumeValue",
+            "description": "The new volume",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "value"
+              ],
+              "properties": {
+                "value": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 100
+                }
+              }
+            },
+            "in": "body"
+          }
+        ],
+        "addedParameters": {
+          "body": {
+            "volumeValue": true
+          }
+        }
+      }
+    },
+    "/nuclear/player/seek": {
+      "post": {
+        "tags": [
+          "Player"
+        ],
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Action successfull"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        },
+        "parameters": [
+          {
+            "name": "seekValue",
+            "description": "The new position of the seek",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "value"
+              ],
+              "properties": {
+                "value": {
+                  "type": "number",
+                  "minimum": 0
+                }
+              }
+            },
+            "in": "body"
+          }
+        ],
+        "addedParameters": {
+          "body": {
+            "seekValue": true
+          }
+        }
+      }
+    },
+    "/nuclear/settings": {
+      "get": {
+        "tags": [
+          "Settings"
+        ],
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "nuclear's settings"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        },
+        "parameters": []
+      }
+    },
+    "/nuclear/settings/{option}": {
+      "get": {
+        "tags": [
+          "Settings"
+        ],
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Action successfull"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        },
+        "parameters": [
+          {
+            "name": "option",
+            "description": "The name of the settings you want to get / update",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "loopAfterQueueEnd",
+              "shuffleQueue",
+              "shuffleWhenGoingBack",
+              "autoradio",
+              "seekIteration",
+              "notificationTimeout",
+              "autoradioCraziness",
+              "disableGPU",
+              "framelessWindow",
+              "compactMenuBar",
+              "compactQueueBar",
+              "trackDuration",
+              "api.enabled",
+              "api.port",
+              "yt.apiKey",
+              "language",
+              "downloads.dir"
+            ],
+            "in": "path"
+          }
+        ],
+        "addedParameters": {
+          "path": {
+            "option": true
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Settings"
+        ],
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Action successfull"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        },
+        "parameters": [
+          {
+            "name": "settingsValue",
+            "description": "The value of the property you want to change",
+            "required": true,
+            "schema": {
+              "type": [
+                "string",
+                "boolean",
+                "number"
+              ]
+            },
+            "in": "body"
+          },
+          {
+            "name": "option",
+            "description": "The name of the settings you want to get / update",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "loopAfterQueueEnd",
+              "shuffleQueue",
+              "shuffleWhenGoingBack",
+              "autoradio",
+              "seekIteration",
+              "notificationTimeout",
+              "autoradioCraziness",
+              "disableGPU",
+              "framelessWindow",
+              "compactMenuBar",
+              "compactQueueBar",
+              "trackDuration",
+              "api.enabled",
+              "api.port",
+              "yt.apiKey",
+              "language",
+              "downloads.dir"
+            ],
+            "in": "path"
+          }
+        ],
+        "addedParameters": {
+          "body": {
+            "settingsValue": true
+          },
+          "path": {
+            "option": true
+          }
+        }
+      }
+    },
+    "/nuclear/playlist": {
+      "post": {
+        "tags": [
+          "Playlist"
+        ],
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "The playlist has been created"
+          },
+          "500": {
+            "description": "The playlist has not been created"
+          }
+        },
+        "parameters": [
+          {
+            "name": "playlistName",
+            "description": "the name of the new playlist",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "name"
+              ],
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "maxLength": 100
+                }
+              }
+            },
+            "in": "body"
+          }
+        ],
+        "addedParameters": {
+          "body": {
+            "playlistName": true
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Playlist"
+        ],
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "The list of all playlists"
+          },
+          "500": {
+            "description": "The playlist has not been created"
+          }
+        },
+        "parameters": []
+      }
+    },
+    "/nuclear/playlist/{name}": {
+      "delete": {
+        "tags": [
+          "Playlist"
+        ],
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Action successfull"
+          },
+          "500": {
+            "description": "The playlist has not been removed"
+          }
+        },
+        "parameters": [
+          {
+            "name": "name",
+            "description": "The name of the playlist to remove",
+            "required": true,
+            "type": "string",
+            "in": "path"
+          }
+        ],
+        "addedParameters": {
+          "path": {
+            "name": true
+          }
+        }
+      }
+    },
+    "/nuclear/queue": {
+      "get": {
+        "tags": [
+          "Queue"
+        ],
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "The current queue"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        },
+        "parameters": []
+      }
+    },
+    "/nuclear/queue/empty": {
+      "post": {
+        "tags": [
+          "Queue"
+        ],
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "The queue is now empty"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        },
+        "parameters": []
+      }
+    },
+    "/nuclear/equalizer": {
+      "get": {
+        "tags": [
+          "Equalizer"
+        ],
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "the selected equalizer and the presets"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        },
+        "parameters": []
+      },
+      "post": {
+        "tags": [
+          "Equalizer"
+        ],
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Action successfull"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        },
+        "parameters": [
+          {
+            "name": "eqValues",
+            "description": "The values of the equalizer to set",
+            "required": true,
+            "schema": {
+              "required": [
+                "values"
+              ],
+              "properties": {
+                "values": {
+                  "type": "array",
+                  "minItems": 10,
+                  "maxItems": 10,
+                  "items": [
+                    {
+                      "type": "number"
+                    }
+                  ]
+                }
+              }
+            },
+            "in": "body"
+          }
+        ],
+        "addedParameters": {
+          "body": {
+            "eqValues": true
+          }
+        }
+      }
+    },
+    "/nuclear/equalizer/{eqName}/set": {
+      "post": {
+        "tags": [
+          "Equalizer"
+        ],
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Action successfull"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        },
+        "parameters": [
+          {
+            "name": "eqName",
+            "description": "The name of the equalizer presets to set",
+            "required": true,
+            "type": "string",
+            "in": "path"
+          }
+        ],
+        "addedParameters": {
+          "path": {
+            "eqName": true
+          }
+        }
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Player",
+      "description": "Player related endpoints (play, pause, volume ...)"
+    },
+    {
+      "name": "Window",
+      "description": "Window related endpoints (maximize, close ...)"
+    },
+    {
+      "name": "Settings",
+      "description": "Settings related endpoints (update settings ...)"
+    },
+    {
+      "name": "Playlist",
+      "description": "Playlist related endpoints (create, clean queue ...)"
+    },
+    {
+      "name": "Queue",
+      "description": "Queue related endpoints"
+    },
+    {
+      "name": "Equalizer",
+      "description": "Equalizer related endpoints"
+    }
+  ]
+}

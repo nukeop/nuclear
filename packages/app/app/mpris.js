@@ -62,6 +62,10 @@ export function onEmptyQueue(event, actions) {
   actions.clearQueue();
 }
 
+export function onSelectTrack(index, actions) {
+  actions.selectSong(index);
+}
+
 export function onCreatePlaylist(event, { tracks, name }, actions) {
   actions.addPlaylist(tracks, name);
 }
@@ -102,6 +106,18 @@ export function sendPaused() {
   ipcRenderer.send('paused');
 }
 
+export function sendVolume(data) {
+  ipcRenderer.send('volume', data);
+}
+
+export function sendShuffle(data) {
+  ipcRenderer.send('shuffle', data);
+}
+
+export function sendLoop(data) {
+  ipcRenderer.send('loopStatus', data);
+}
+
 export function sendClose() {
   ipcRenderer.send('close');
 }
@@ -126,16 +142,39 @@ export function refreshLocalFolders() {
   ipcRenderer.send('refresh-localfolders');
 }
 
-export function sendPlayingStatus(event, playerState, queueState) {
+export function getLocalFolders() {
+  return ipcRenderer.sendSync('get-localfolders');
+}
+
+export function setLocalFolders(localFolders) {
+  ipcRenderer.send('set-localfolders', localFolders);
+}
+
+export function sendPlayingStatus(event, playerState, queueState, { loopAfterQueueEnd, shuffleQueue }) {
   try {
     const { artist, name, thumbnail } = queueState.queueItems[queueState.currentSong];
 
-    ipcRenderer.send('playing-status', { ...playerState, artist, name, thumbnail });
+    ipcRenderer.send('playing-status', { ...playerState, artist, name, thumbnail, loopAfterQueueEnd, shuffleQueue });
   } catch (err) {
-    ipcRenderer.send('playing-status', playerState);
+    ipcRenderer.send('playing-status', { ...playerState, loopAfterQueueEnd, shuffleQueue });
   }
 }
 
-export function sendQueueItems(event, queueItems) {
+export function sendQueueItems(queueItems) {
   ipcRenderer.send('queue', queueItems);
+}
+
+export function addTrack(track) {
+  ipcRenderer.send('addTrack', track);
+}
+
+export function removeTrack(track) {
+  ipcRenderer.send('removeTrack', track);
+}
+
+export function onActivatePlaylist(playlists, playlistName, streamProviders, actions) {
+  const tracks = playlists.find(({ name }) => playlistName === name).tracks;
+
+  actions.clearQueue();
+  actions.addPlaylistTracksToQueue(streamProviders, tracks);
 }

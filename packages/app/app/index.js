@@ -1,4 +1,5 @@
 import 'regenerator-runtime';
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { MemoryRouter } from 'react-router-dom';
@@ -13,16 +14,12 @@ import i18n, { setupI18n } from './i18n';
 import App from './App';
 import configureStore from './store/configureStore';
 
-const store = configureStore();
 logger.hookConsole({
   renderer: true
 });
+
+const store = configureStore();
 window.store = store; // put store in global scope for plugins
-
-// Sentry
-process.env.NODE_ENV === 'production' &&
-  Raven.config('https://2fb5587831994721a8b5f77bf6010679@sentry.io/1256142').install();
-
 // Global image placeholder
 Img.globalPlaceholder = artPlaceholder;
 
