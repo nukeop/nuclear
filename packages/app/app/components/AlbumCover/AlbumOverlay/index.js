@@ -3,7 +3,7 @@ import FontAwesome from 'react-fontawesome';
 
 import Spacer from '../../Spacer';
 
-import styles from './styles.css';
+import styles from './styles.scss';
 
 const AlbumOverlay = ({ handlePlay }) => (
   <div className={styles.overlay_container}>
