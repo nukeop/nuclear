@@ -2,6 +2,5 @@
 * text eol=lf
 
 packages/app/bin/** binary
-packages/app/build/** binary
-packages/app/bin/** binary
+packages/main/bin/** binary
 packages/ui/resources/** binary
