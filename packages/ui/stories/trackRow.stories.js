@@ -41,8 +41,9 @@ storiesOf('Track row', module)
       <table style={{width: '100%'}}>
         <tbody>
           {
-            _().range(10).map(i => (
+            _().range(10).map((i, idx) => (
               <TrackRow
+                key={idx}
                 track={{
                   album: 'Test album',
                   artist: { name: 'Test artist' },

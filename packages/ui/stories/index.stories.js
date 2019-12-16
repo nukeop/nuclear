@@ -34,7 +34,7 @@ storiesOf('Seekbar', module)
     );
   });
 
-  storiesOf('Loader', module)
+storiesOf('Loader', module)
   .add('Default', () => {
     return (
       <div style={{
