@@ -68,10 +68,7 @@
       "header": "Kütüphane",
       "title": "Başlık",
       "empty": "Kütüphane Boş",
-      "empty-help": "Yukarıdaki butonu kullanarak birkaç müzik ekle",
-      "no-api": "Web Api aktif değil :(",
-      "no-api-help": "kütüphaneyi kullanabilmek için web apiyi aktif etmelisiniz.!",
-      "api-enable": "Api'yi aktive et"
+      "empty-help": "Yukarıdaki butonu kullanarak birkaç müzik ekle"
     },
     "lyrics": {
       "by-artist": "By {{artist}}",

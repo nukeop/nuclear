@@ -1,5 +1,6 @@
+import { ipcRenderer } from 'electron';
+
 import StreamProviderPlugin from '../streamProvider';
-import { localSearch } from '../../rest/Local';
 
 class LocalPlugin extends StreamProviderPlugin {
   constructor() {
@@ -10,11 +11,11 @@ class LocalPlugin extends StreamProviderPlugin {
   }
 
   search(query) {
-    return localSearch(query);
+    return ipcRenderer.sendSync('local-search', query);
   }
 
   getAlternateStream(query) {
-    return localSearch(query);
+    return this.search(query);
   }
 }
 

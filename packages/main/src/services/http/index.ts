@@ -16,8 +16,7 @@ import {
   swaggerRouter,
   playlistRouter,
   queueRouter,
-  equalizerRouter,
-  localFileRouter
+  equalizerRouter
 } from './server/api';
 import { errorMiddleware, notFoundMiddleware } from './server/middlewares';
 import { initSwagger } from './server/swagger';
@@ -57,7 +56,6 @@ class HttpApi {
       .use(`${PREFIX}/settings`, settingsRouter(this.store, this.rendererWindow))
       .use(`${PREFIX}/docs`, swaggerRouter(this.store))
       .use(`${PREFIX}/playlist`, playlistRouter(this.store, this.rendererWindow))
-      .use(`${PREFIX}/file`, localFileRouter(this.localLibrary, this.store))
       .use(`${PREFIX}/queue`, queueRouter(this.rendererWindow))
       .use(`${PREFIX}/equalizer`, equalizerRouter(this.store, this.rendererWindow))
       .use(notFoundMiddleware())

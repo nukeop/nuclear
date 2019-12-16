@@ -68,10 +68,7 @@
     "header": "Libreria Locale",
     "title": "Titolo",
     "empty": "La libreria e' vuota",
-    "empty-help": "Prova ad aggiungere qualche brano usando il pulsante qui sopra",
-    "no-api": "Web Api non e' abilitato :(",
-    "no-api-help": "Per utilizzare la libreria locale devi abilitare le web api.",
-    "api-enable": "Abilita le api."
+    "empty-help": "Prova ad aggiungere qualche brano usando il pulsante qui sopra"
   },
   "lyrics": {
     "by-artist": "by {{artist}}",

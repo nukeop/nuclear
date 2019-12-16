@@ -77,10 +77,7 @@
     "header": "Lokal na Library",
     "title": "Title",
     "empty": "Walang laman ang library",
-    "empty-help": "Subukan magdagdag ng kanta gamit ang pindutan sa taas.",
-    "no-api": "Ang Web API ay hindi gumagana",
-    "no-api-help": "Para magamit ang lokal na library, kailangang i-enable ang Web API.",
-    "api-enable": "paganahin ang API"
+    "empty-help": "Subukan magdagdag ng kanta gamit ang pindutan sa taas."
   },
   "lyrics": {
     "by-artist": "by {{artist}}",

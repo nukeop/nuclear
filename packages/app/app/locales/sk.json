@@ -77,10 +77,7 @@
     "header": "Lokálna knižnica",
     "title": "Názov",
     "empty": "Knižnica je prázdna",
-    "empty-help": "Skúste pridať hudbu kliknutím na horné tlačidlo.",
-    "no-api": "Webové API nie je povolené",
-    "no-api-help": "Ak chcete používať lokálnu knižnicu, povoľte webové api.",
-    "api-enable": "Povoliť webové API"
+    "empty-help": "Skúste pridať hudbu kliknutím na horné tlačidlo."
   },
   "lyrics": {
     "by-artist": "od {{artist}}",

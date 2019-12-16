@@ -60,10 +60,6 @@ class LinuxMediaService extends MprisService implements NuclearApi {
     this.setPlaylists(storedPlaylists ? storedPlaylists.map(this.playlistMapper) : []);
   }
 
-  private getDuration(streams: Array<{ duration: number }>) {
-    return (_.get(streams, '[0].duration')* 1000 * 1000) || 0; // In microseconds
-  }
-
   private getPlayingStatus(): Promise<NuclearStatus> {
     return new Promise(resolve => {
       this.rendererWindow.send('playing-status');
@@ -79,9 +75,9 @@ class LinuxMediaService extends MprisService implements NuclearApi {
       id: track.uuid,
       'mpris:trackid': this.objectPath(`track/${index}`),
       'mpris:artUrl': track.thumbnail,
-      'mpris:length': this.getDuration(track.streams),
       'xesam:title': track.name,
       'xesam:artist': [track.artist]
+      // 'mpris:length': this.getDuration(track.streams),
       // 'xesam:album': '21'
     };
   }
