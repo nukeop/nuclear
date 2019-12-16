@@ -1,5 +1,5 @@
 import { NuclearMeta } from '@nuclear/common';
-import { Event } from 'electron';
+import { IpcMessageEvent } from 'electron';
 import { inject } from 'inversify';
 
 import SystemApi from '../services/system-api';
@@ -25,32 +25,32 @@ class IpcPlayer {
   }
 
   @ipcEvent('volume')
-  onVolume(evt: Event, data: number) {
+  onVolume(evt: IpcMessageEvent, data: number) {
     this.systemApi.setVolume && this.systemApi.setVolume(data);
   }
 
   @ipcEvent('loopStatus')
-  onLoop(evt: Event, data: boolean) {
+  onLoop(evt: IpcMessageEvent, data: boolean) {
     this.systemApi.setLoopStatus && this.systemApi.setLoopStatus(data);
   }
 
   @ipcEvent('shuffle')
-  onShuffle(evt: Event, data: boolean) {
+  onShuffle(evt: IpcMessageEvent, data: boolean) {
     this.systemApi.shuffle = data;
   }
 
   @ipcEvent('addTrack')
-  onAddTrack(evt: Event, track: NuclearMeta) {
+  onAddTrack(evt: IpcMessageEvent, track: NuclearMeta) {
     this.systemApi.addTrack && this.systemApi.addTrack(track);
   }
 
   @ipcEvent('removeTrack')
-  onRemoveTrack(evt: Event, { uuid }: NuclearMeta) {
+  onRemoveTrack(evt: IpcMessageEvent, { uuid }: NuclearMeta) {
     this.systemApi.removeTrack && this.systemApi.removeTrack(uuid);
   }
 
   @ipcEvent('songChange')
-  onSongChange(evt: Event, arg: NuclearMeta) {
+  onSongChange(evt: IpcMessageEvent, arg: NuclearMeta) {
     if (arg === null) {
       return;
     }

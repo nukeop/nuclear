@@ -1,5 +1,5 @@
 import {NuclearBrutMeta } from '@nuclear/common';
-import { Event } from 'electron';
+import { IpcMessageEvent } from 'electron';
 import { inject } from 'inversify';
 import _ from 'lodash';
 
@@ -18,7 +18,7 @@ class DownloadIpcCtrl {
    * Start a download using the download service
    */
   @ipcEvent('start-download')
-  async onStartDownload(event: Event, data: NuclearBrutMeta) {
+  async onStartDownload(event: IpcMessageEvent, data: NuclearBrutMeta) {
     try {
       const artistName = _.isString(_.get(data, 'artist'))
         ? _.get(data, 'artist')

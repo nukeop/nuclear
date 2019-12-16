@@ -1,5 +1,5 @@
 import { inject } from 'inversify';
-import { Event, IpcMessageEvent } from 'electron';
+import { IpcMessageEvent } from 'electron';
 
 import LocalLibrary from '../services/local-library';
 import { ipcController, ipcEvent } from '../utils/decorators';
@@ -26,7 +26,7 @@ class LocalIpcCtrl {
    * scan local library for audio files, format and store all the metadata
    */
   @ipcEvent('refresh-localfolders')
-  async onRefreshLocalFolders(event: Event) {
+  async onRefreshLocalFolders(event: IpcMessageEvent) {
     try {      
       const cache = await this.localLibrary.scanFoldersAndGetMeta((scanProgress, scanTotal) => {
         event.sender.send('local-files-progress', {scanProgress, scanTotal});
