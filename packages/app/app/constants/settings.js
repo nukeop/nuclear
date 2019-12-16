@@ -1,6 +1,5 @@
+import { SettingType, settingsConfig } from '@nuclear/common';
 import React from 'react';
-import settingType from '../../common/settingsEnum';
-import settingsBase from '../../common/settings';
 
 import HttpApiUrl from '../containers/HttpApiUrl';
 
@@ -8,9 +7,9 @@ export default [
   {
     name: 'api.url',
     category: 'http',
-    type: settingType.NODE,
+    type: SettingType.NODE,
     prettyName: 'api-url',
     node: <HttpApiUrl />
   },
-  ...settingsBase
+  ...settingsConfig
 ];

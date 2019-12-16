@@ -1,7 +1,7 @@
 # never EVER use CRLF, Windows
 * text eol=lf
 
-packages/app/resources/** binary
+packages/app/bin/** binary
 packages/app/build/** binary
 packages/app/bin/** binary
 packages/ui/resources/** binary

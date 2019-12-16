@@ -33,7 +33,9 @@ import {
   onSetEqualizer,
   onLocalFilesProgress,
   onLocalFiles,
-  onLocalFilesError
+  onLocalFilesError,
+  onSelectTrack,
+  onActivatePlaylist
 } from '../../mpris';
 
 class IpcContainer extends React.Component {
@@ -50,11 +52,13 @@ class IpcContainer extends React.Component {
     ipcRenderer.on('mute', event => onMute(event, this.props.actions, this.props.player));
     ipcRenderer.on('volume', (event, data) => onVolume(event, data, this.props.actions));
     ipcRenderer.on('seek', (event, data) => onSeek(event, data, this.props.actions));
-    ipcRenderer.on('playing-status', event => sendPlayingStatus(event, this.props.player, this.props.queue));
+    ipcRenderer.on('playing-status', event => sendPlayingStatus(event, this.props.player, this.props.queue, this.props.settings));
     ipcRenderer.on('empty-queue', event => onEmptyQueue(event, this.props.actions));
-    ipcRenderer.on('queue', event => sendQueueItems(event, this.props.queue.queueItems));
+    ipcRenderer.on('queue', () => sendQueueItems(this.props.queue.queueItems));
+    ipcRenderer.on('select-track', (event, index) => onSelectTrack(index, this.props.actions));
     ipcRenderer.on('create-playlist', (event, name) => onCreatePlaylist(event, { name, tracks: this.props.queue.queueItems }, this.props.actions));
     ipcRenderer.on('refresh-playlists', (event) => onRefreshPlaylists(event, this.props.actions));
+    ipcRenderer.on('activate-playlist', (event, name) => onActivatePlaylist(this.props.playlists, name, this.props.streamProviders, this.props.actions));
     ipcRenderer.on('update-equalizer', (event, data) =>  onUpdateEqualizer(event, this.props.actions, data));
     ipcRenderer.on('set-equalizer', (event, data) => onSetEqualizer(event, this.props.actions, data));
     ipcRenderer.on('local-files-progress', (event, data) => onLocalFilesProgress(event, this.props.actions, data));
@@ -75,9 +79,11 @@ class IpcContainer extends React.Component {
     });
   }
 
-  componentWillReceiveProps(nextProps){
-    if (this.props !== nextProps) {
-      const currentSong = nextProps.queue.queueItems[nextProps.queue.currentSong];
+  componentDidUpdate(prevProps) {
+    const { queue } = this.props;
+
+    if (queue.queueItems[queue.currentSong] !== prevProps.queue.queueItems[prevProps.queue.currentSong]) {
+      const currentSong = queue.queueItems[queue.currentSong];
       onSongChange(currentSong);
     }
   }
@@ -90,7 +96,10 @@ class IpcContainer extends React.Component {
 function mapStateToProps(state) {
   return {
     player: state.player,
-    queue: state.queue
+    queue: state.queue,
+    settings: state.settings,
+    playlists: state.playlists.playlists,
+    streamProviders: state.plugin.plugins.streamProviders
   };
 }
 

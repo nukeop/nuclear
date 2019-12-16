@@ -24,8 +24,8 @@ describe('Rendering <PlayerControls /> and its children', () => {
 
 describe('Back button onClick', () => {
   it('has an onclick event that gets triggered', () => {
-    const wrapper = shallow(<PlayerControls back={spy} />);
     const spy = chai.spy();
+    const wrapper = shallow(<PlayerControls back={spy} />);
     wrapper.find(PlayerButton).first().simulate('click');
     expect(spy).to.have.been.called;
   });
@@ -33,8 +33,8 @@ describe('Back button onClick', () => {
 
 describe('Forward button onClick', () => {
   it('has an onclick event that gets triggered', () => {
-    const wrapper = shallow(<PlayerControls forward={spy} />);
     const spy = chai.spy();
+    const wrapper = shallow(<PlayerControls forward={spy} />);
     wrapper.find(PlayerButton).last().simulate('click');
     expect(spy).to.have.been.called;
   });

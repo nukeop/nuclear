@@ -1,3 +1,4 @@
+import { SettingType } from '@nuclear/common';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { remote } from 'electron';
@@ -15,7 +16,6 @@ import Header from '../Header';
 import Spacer from '../Spacer';
 import SocialIntegration from './SocialIntegration';
 import GithubSettings from './GithubSettings';
-import settingsEnum from '../../../common/settingsEnum';
 
 import styles from './styles.scss';
 import { withTranslation } from 'react-i18next';
@@ -309,27 +309,27 @@ class Settings extends React.Component {
         </span>
         <Spacer />
         {
-          option.type === settingsEnum.BOOLEAN &&
+          option.type === SettingType.BOOLEAN &&
           this.renderRadioOption(option, settings)
         }
         {
-          option.type === settingsEnum.STRING &&
+          option.type === SettingType.STRING &&
           this.renderStringOption(option)
         }
         {
-          option.type === settingsEnum.NUMBER &&
+          option.type === SettingType.NUMBER &&
           this.renderNumberOption(option)
         }
         {
-          option.type === settingsEnum.LIST &&
+          option.type === SettingType.LIST &&
           this.renderListOption(option)
         }
         {
-          option.type === settingsEnum.NODE &&
+          option.type === SettingType.NODE &&
             this.renderNodeOption(option)
         }
         {
-          option.type === settingsEnum.DIRECTORY &&
+          option.type === SettingType.DIRECTORY &&
           this.renderDirectoryOption(option)
         }
       </div>

@@ -36,9 +36,6 @@ build/Release
 node_modules/
 jspm_packages/
 
-# Typescript v1 declaration files
-typings/
-
 # Optional npm cache directory
 .npm
 
@@ -54,13 +51,9 @@ typings/
 # Yarn Integrity file
 .yarn-integrity
 
-# dotenv environment variables file
-.env
-
 release
 dist
 nuclear.json
-bundle.electron.js
 
 # Prettier configuration file
 .prettierrc
@@ -70,7 +63,10 @@ package-lock.json
 
 # vscode
 .vscode/
-tsconfig.json
+jsconfig.json
 
 #nvm
 .nvmrc
+
+#lerna
+lerna-debug.log

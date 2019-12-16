@@ -32,7 +32,7 @@ const languageDetector = {
 export const setupI18n = () => {
   return i18n.use(languageDetector).init({
     fallbackLng: 'en',
-    debug: process.env.NODE_ENV !== 'production',
+    debug: false,
     resources: {
       en,
       fr,
@@ -47,7 +47,7 @@ export const setupI18n = () => {
       tr,
       it,
       id,
-	    sk,
+      sk,
       cs,
       ko,
       tl,
