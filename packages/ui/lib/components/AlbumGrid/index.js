@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 import _ from 'lodash';
@@ -47,7 +47,7 @@ const AlbumGrid = ({
 
     {
       !loading && withAlbumPreview &&
-        <>
+        <Fragment>
           <hr />
           <AlbumPreview
             album={selectedAlbum}
@@ -55,7 +55,7 @@ const AlbumGrid = ({
             handleAddToQueue={onAddToQueue}
             handlePlayAll={onPlayAll}
           />
-        </>
+        </Fragment>
     }
     {loading && <Dimmer active><Loader /></Dimmer>}
   </div>

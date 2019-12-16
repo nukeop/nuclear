@@ -16,22 +16,16 @@ import LocalLibraryDb from './db';
 
 /**
  * Manage local files, extract metadata directly from files, or get it from acousticId api
- * format all these metadata the nuclear way and store it in a memory cache
+ * format all these metadata the nuclear way and store it in a db
  */
 @injectable()
 class LocalLibrary {
-  cache: Record<string, NuclearBrutMeta>;
-  byArtist: Record<string, NuclearBrutMeta[]>;
-
   constructor(
     @inject(Config) private config: Config,
     @inject(LocalLibraryDb) private store: LocalLibraryDb,
     @inject(AcousticId) private acousticId: AcousticId,
     @inject(mainLogger) private logger: Logger
-  ) {
-    this.cache = this.store.get('localMeta') || {};
-    this.byArtist = _.groupBy(Object.values(this.cache), track => track.artist.name);
-  }
+  ) {}
 
   /**
    * Format metadata from files to nuclear format
@@ -61,25 +55,6 @@ class LocalLibrary {
           : undefined
       ]
     };
-  }
-
-  /**
-   * update metadata memory cache and index
-   */
-  private updateCache(baseFiles: string[], formattedMetas: NuclearBrutMeta[]): void {
-    this.cache = Object.values(this.cache)
-      .filter(({ path }) => baseFiles.includes(path as string))
-      .concat(formattedMetas)
-      .reduce(
-        (acc, item) => ({
-          ...acc,
-          [item.uuid]: item
-        }),
-        {}
-      );
-
-    this.store.set('localMeta', this.cache);
-    this.byArtist = _.groupBy(Object.values(this.cache), track => track.artist.name);
   }
 
   /**
@@ -135,7 +110,7 @@ class LocalLibrary {
   
     const files = baseFiles.filter(
       file =>
-        !Object.values(this.cache)
+        !Object.values(this.store.getCache())
           .map(({ path }) => path)
           .includes(file)
     );
@@ -149,9 +124,7 @@ class LocalLibrary {
       await this.fetchAcousticIdBatch(formattedMetasWithoutName, onProgress);
     }
   
-    this.updateCache(baseFiles, formattedMetas);
-
-    return this.cache;
+    return this.store.updateCache(baseFiles, formattedMetas);
   }  
 }
 

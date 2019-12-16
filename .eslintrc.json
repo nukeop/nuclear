@@ -4,8 +4,8 @@
   },
   "extends": ["eslint:recommended", "plugin:node/recommended"],
   "plugins": [
-    "react",
     "node",
+    "react",
     "react-hooks"
   ],
   "settings": {

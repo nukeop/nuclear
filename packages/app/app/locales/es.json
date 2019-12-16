@@ -74,10 +74,7 @@
     "header": "Librería local",
     "title": "Título",
     "empty": "¡Libreria Vacia!",
-    "empty-help": "Prueba añadir canciones con el botón de arriba",
-    "no-api": "La API Web no está habilitada :(",
-    "no-api-help": "Para poder usar la librería local debes habilitar la API Web",
-    "api-enabled": "Habilitar la API"
+    "empty-help": "Prueba añadir canciones con el botón de arriba"
   },
   "lyrics": {
     "by-artist": "por {{artist}}",

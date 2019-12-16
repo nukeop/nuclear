@@ -1,9 +1,13 @@
 {
-  "extends": "../../.eslintrc.js",
+  "extends": "../../.eslintrc.json",
   "env": {
     "browser": true,
     "commonjs": true,
     "es6": true
+  },
+  "globals": {
+    "_": true,
+    "process": true
   },
   "parser": "babel-eslint",
   "parserOptions": {

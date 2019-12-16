@@ -77,10 +77,7 @@
     "header": "로컬 라이브러리",
     "title": "제목",
     "empty": "라이브러리가 비었습니다.",
-    "empty-help": "위 버튼을 클릭해 음악을 추가하세요.",
-    "no-api": "Web API가 사용 가능하지 않습니다.",
-    "no-api-help": "로컬 라이브러리를 사용하려면 Web API를 사용 가능으로 설정해야 합니다.",
-    "api-enable": "API 사용 가능"
+    "empty-help": "위 버튼을 클릭해 음악을 추가하세요."
   },
   "lyrics": {
     "by-artist": "by {{artist}}",
