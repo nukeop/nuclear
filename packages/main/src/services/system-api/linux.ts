@@ -71,7 +71,6 @@ class LinuxMediaService extends MprisService implements NuclearApi {
 
   @autobind
   private trackMapper(track: NuclearMeta, index = 0): MprisMeta {
-    console.log(track.thumbnail.slice(0, 30));
     return {
       id: track.uuid,
       'mpris:trackid': this.objectPath(`track/${index}`),

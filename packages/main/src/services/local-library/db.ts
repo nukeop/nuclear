@@ -50,8 +50,6 @@ class LocalLibraryDb extends ElectronStore {
         thumbnail: track.image && track.image[0] ? track.image[0]['#text'] : undefined
       }))
       .pop();
-
-    // this.logger.log('RESULT ====================================< ', result);
     
     return result;
   }
