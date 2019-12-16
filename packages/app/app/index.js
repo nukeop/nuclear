@@ -1,10 +1,13 @@
 import 'regenerator-runtime';
 
+import 'font-awesome/css/font-awesome.css';
+import 'semantic-ui-css/semantic.min.css';
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { MemoryRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import { AppContainer } from 'react-hot-loader';
+import { AppContainer, setConfig } from 'react-hot-loader';
 import { I18nextProvider } from 'react-i18next';
 import logger from 'electron-timber';
 import Img from 'react-image-smooth-loading';
@@ -16,6 +19,10 @@ import configureStore from './store/configureStore';
 
 logger.hookConsole({
   renderer: true
+});
+
+setConfig({
+  showReactDomPatchNotification: false
 });
 
 const store = configureStore();
