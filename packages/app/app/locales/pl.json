@@ -78,9 +78,7 @@
     "title": "Tytuł",
     "empty": "Biblioteka jest pusta",
     "empty-help": "Dodaj muzykę, używając przycisku powyżej.",
-    "no-api": "Web Api jest niedostępne :(",
-    "no-api-help": "Aby móc używać biblioteki lokalnej, musisz włączyć obsługę Web Api.",
-    "api-enable": "Włącz obsługę Api"
+    "no-api": "Web Api jest niedostępne :("
   },
   "lyrics": {
     "by-artist": "przez {{artist}}",

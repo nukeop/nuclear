@@ -79,10 +79,7 @@
     "empty": "The library is empty",
     "empty-help": "Try adding some music using the button above.",
     "no-search-results": "No search results",
-    "no-search-results-help": "No tracks found with the given name, album, or artist.",
-    "no-api": "Web API is not enabled",
-    "no-api-help": "In order to use the local library you need to enable the web api.",
-    "api-enable": "Enable the API"
+    "no-search-results-help": "No tracks found with the given name, album, or artist."
   },
   "lyrics": {
     "by-artist": "by {{artist}}",

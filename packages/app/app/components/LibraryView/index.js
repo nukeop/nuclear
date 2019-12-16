@@ -1,18 +1,12 @@
 import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
-import {
-  Dimmer,
-  Input,
-  Segment
-} from 'semantic-ui-react';
+import { Dimmer, Input, Segment } from 'semantic-ui-react';
 import { useTranslation } from 'react-i18next';
 import { LibraryListTypeToggle } from '@nuclear/ui';
 import { LIST_TYPE } from '@nuclear/ui/lib/components/LibraryListTypeToggle';
 import _ from 'lodash';
-import { withProps } from 'recompose';
 
 import EmptyState from './EmptyState';
-import NoApi from './NoApi';
 
 import trackRowStyles from '../TrackRow/styles.scss';
 import styles from './index.scss';
@@ -34,8 +28,7 @@ const LibraryView = ({
   localFolders,
   sortBy,
   direction,
-  listType,
-  api
+  listType
 }) => {
   const handleSort = useCallback(
     columnName => () => {
@@ -56,69 +49,49 @@ const LibraryView = ({
         scanProgress={scanProgress}
         loading={pending}
       />
-      <Segment
-        className={styles.library_contents}
-      >
-        {api ? (
-          <>
-            <div className={styles.search_field_row}>
-              <Input
-                inverted
-                transparent
-                icon='search'
-                iconPosition='left'
-                placeholder={t('filter-placeholder')}
-                onChange={actions.updateFilter}
-              />
+      <Segment className={styles.library_contents}>
+        <>
+          <div className={styles.search_field_row}>
+            <Input
+              inverted
+              transparent
+              icon="search"
+              iconPosition="left"
+              placeholder={t('filter-placeholder')}
+              onChange={actions.updateFilter}
+            />
 
-              <LibraryListTypeToggle
-                listType={listType}
-                toggleListType={actions.updateLibraryListType}
-              />
-            </div>
-            {
-              _.isEmpty(tracks) ? (
-                filterApplied ? (
-                  <NoSearchResults />
-                ) : (
-                    <EmptyState />
-                  )
-              ) : (
-                  <Segment inverted className={trackRowStyles.tracks_container}>
-                    <Dimmer active={pending} loading={pending.toString()} />
+            <LibraryListTypeToggle listType={listType} toggleListType={actions.updateLibraryListType} />
+          </div>
+          {_.isEmpty(tracks) ? (
+            filterApplied ? (
+              <NoSearchResults />
+            ) : (
+              <EmptyState />
+            )
+          ) : (
+            <Segment inverted className={trackRowStyles.tracks_container}>
+              <Dimmer active={pending} loading={pending.toString()} />
 
-                    {
-                      !pending &&
-                      listType === LIST_TYPE.SIMPLE_LIST &&
-                      <LibrarySimpleList
-                        tracks={tracks}
-                        sortBy={sortBy}
-                        direction={direction}
-                        handleSort={handleSort}
-                      />
-                    }
+              {!pending && listType === LIST_TYPE.SIMPLE_LIST && (
+                <LibrarySimpleList tracks={tracks} sortBy={sortBy} direction={direction} handleSort={handleSort} />
+              )}
 
-                    {
-                      !pending &&
-                      !_.isEmpty(localFolders) &&
-                      listType === LIST_TYPE.ALBUM_GRID &&
-                      <LibraryAlbumGrid
-                        tracks={tracks}
-                        streamProviders={streamProviders}
-                        addToQueue={queueActions.addToQueue}
-                        clearQueue={queueActions.clearQueue}
-                        selectSong={queueActions.selectSong}
-                        startPlayback={playerActions.startPlayback}
-                        withArtistNames
-                        withAlbumPreview
-                      />
-                    }
-                  </Segment>
-                )}
-          </>
-        ) : (
-            <NoApi enableApi={actions.setBooleanOption} />
+              {!pending && !_.isEmpty(localFolders) && listType === LIST_TYPE.ALBUM_GRID && (
+                <LibraryAlbumGrid
+                  tracks={tracks}
+                  streamProviders={streamProviders}
+                  addToQueue={queueActions.addToQueue}
+                  clearQueue={queueActions.clearQueue}
+                  selectSong={queueActions.selectSong}
+                  startPlayback={playerActions.startPlayback}
+                  withArtistNames
+                  withAlbumPreview
+                />
+              )}
+            </Segment>
           )}
+        </>
       </Segment>
     </div>
   );

@@ -77,10 +77,7 @@
     "header": "Pustaka Lokal",
     "title": "Judul",
     "empty": "Pustaka masih kosong",
-    "empty-help": "Gunakan tombol di atas untuk menambahkan lagu",
-    "no-api": "Web Api tidak tersedia :(",
-    "no-api-help": "Untuk menggunakan pustaka lokal kamu harus aktifkan web api.",
-    "api-enable": "aktifkan Api."
+    "empty-help": "Gunakan tombol di atas untuk menambahkan lagu"
   },
   "lyrics": {
     "by-artist": "oleh {{artist}}",

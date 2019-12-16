@@ -79,10 +79,7 @@
     "empty": "Libraria është bosh",
     "empty-help": "Provoni të shtoni muzikë me butonin më poshtë.",
     "no-search-results": "Nuk ka rezultate kërkimi",
-    "no-search-results-help": "Nuk u gjetën këngë me emrin, albumin ose artistin e dhënë.",
-    "no-api": "Web API nuk është aktivizuar",
-    "no-api-help": "Në mënyrë që të përdorni librarinë lokale aktivizoni web api.",
-    "api-enable": "Aktivizoni API"
+    "no-search-results-help": "Nuk u gjetën këngë me emrin, albumin ose artistin e dhënë."
   },
   "lyrics": {
     "by-artist": "nga {{artist}}",

@@ -79,10 +79,7 @@
     "empty": "La bibliothèque est vide",
     "empty-help": "Essayez d'ajouter un peu de musique avec le bouton au dessus.",
     "no-search-results": "Aucun résultat de recherche",
-    "no-search-results-help": "Aucun morceau trouvé avec le nom, ablum ou artiste fourni.",
-    "no-api": "L'API Web n'est pas activée",
-    "no-api-help": "Pour pouvoir utiliser la bibliothèque locale, vous devez activer l'API Web.",
-    "api-enable": "Activer l'API"
+    "no-search-results-help": "Aucun morceau trouvé avec le nom, ablum ou artiste fourni."
   },
   "lyrics": {
     "by-artist": "de {{artist}}",
