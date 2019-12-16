@@ -51,10 +51,9 @@ class Window extends BrowserWindow {
       icon,
       show: false,
       webPreferences: {
+        // required by electron-timber
         nodeIntegration: true,
-        experimentalFeatures: false,
-        webSecurity: false,
-        allowRunningInsecureContent: false,
+        webSecurity: config.isProd(),
         additionalArguments: [store.getOption('disableGPU') && '--disable-gpu']
       }
     });
