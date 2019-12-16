@@ -52,8 +52,20 @@ module.exports = (env) => {
       ignore: [/node_modules/]
     }
   };
+  const contentSecurity = 'connect-src *; style-src \'unsafe-inline\' https:; font-src https: data:; img-src https: data:;';
   const plugins = [
     new HtmlWebpackPlugin({
+      meta: {
+        charset: {
+          charset: 'UTF-8'
+        },
+        'Content-Security-Policy': {
+          'http-equiv': 'Content-Security-Policy',
+          content: IS_DEV
+            ? `${contentSecurity} script-src 'unsafe-eval' 'unsafe-inline' localhost:8080`
+            : contentSecurity
+        }
+      },
       template: path.resolve(__dirname, 'index.html'),
       minify: {
         html5: true,
