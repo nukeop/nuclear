@@ -121,7 +121,8 @@ module.exports = (env) => {
     optimization,
     resolve: {
       alias: {
-        react: path.resolve(__dirname, 'node_modules/react')
+        react: path.resolve(__dirname, 'node_modules/react'),
+        'styled-component': path.resolve(__dirname, 'node_modules/styled-component')
       }
     },
     stats: 'errors-only',

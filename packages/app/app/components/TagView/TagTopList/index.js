@@ -1,5 +1,5 @@
 import React from 'react';
-import Img from 'react-image-smooth-loading';
+import { SmoothImage } from '@nuclear/ui';
 import classnames from 'classnames';
 import _ from 'lodash';
 
@@ -13,7 +13,7 @@ const TagTopList = ({ topList, onClick, header }) => (
         className={styles.top_item}
         onClick={() => onClick && onClick(topList[0].name)}
       >
-        <Img src={_.last(topList[0].image)['#text']} />
+        <SmoothImage src={_.last(topList[0].image)['#text']} />
         <div className={styles.item_overlay}>
           <div className={styles.item_name}>{topList[0].name}</div>
         </div>
@@ -26,7 +26,7 @@ const TagTopList = ({ topList, onClick, header }) => (
               className={styles.other_item}
               onClick={() => onClick && onClick(item.name)}
             >
-              <Img src={_.last(item.image)['#text']} />
+              <SmoothImage src={_.last(item.image)['#text']} />
               <div className={styles.item_overlay}>
                 <div
                   className={classnames(

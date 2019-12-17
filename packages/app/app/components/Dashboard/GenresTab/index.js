@@ -1,6 +1,6 @@
+import { SmoothImage } from '@nuclear/ui';
 import React from 'react';
 import { Tab } from 'semantic-ui-react';
-import Img from 'react-image-smooth-loading';
 import _ from 'lodash';
 
 import genreToIcon from './mapGenres';
@@ -38,7 +38,7 @@ class GenresTab extends React.Component {
                   >
 
                     <div className={styles.genre_overlay}>
-                      <Img src={'https://picsum.photos/256?random=' + i} />
+                      <SmoothImage src={'https://picsum.photos/256?random=' + i} />
                     </div>
                     <div className={styles.genre_name}>
                       <div
