@@ -218,7 +218,7 @@ class LinuxMediaService extends MprisService implements NuclearApi {
     meta.forEach(({ eventName, name }) => {
 
       this.on(eventName, (event: Event, data: any) => {
-        this.logger.log(`incomming event => ${eventName}`);
+        this.logger.log(`incoming event => ${eventName}`);
 
         const result = (this as any)[name](event, data);
 
