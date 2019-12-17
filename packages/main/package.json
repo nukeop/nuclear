@@ -73,6 +73,10 @@
     "webpack-cli": "^3.3.10"
   },
   "optionalDependencies": {
+    "@nodert-win10/windows.foundation": "^0.2.96",
+    "@nodert-win10/windows.media": "^0.2.96",
+    "@nodert-win10/windows.media.playback": "^0.2.96",
+    "@nodert-win10/windows.storage.streams": "^0.2.96",
     "7zip-bin-mac": "^1.0.1",
     "electron-media-service": "^0.2.2",
     "jsbi": "^2.0.5",

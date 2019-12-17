@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { NuclearStatus, NuclearMeta, NuclearPlaylist } from '@nuclear/common';
+import { NuclearStatus, NuclearMeta, NuclearPlaylist, PlaybackStatus } from '@nuclear/common';
 import autobind from 'autobind-decorator';
 import { app, IpcMain, Event } from 'electron';
 import { inject } from 'inversify';
 import _ from 'lodash';
-import MprisService, { MprisPlaylist, MprisMeta, PlaybackStatus, LoopStatus } from 'mpris-service';
+import MprisService, { MprisPlaylist, MprisMeta, PlaybackStatus as MprisStatus, LoopStatus } from 'mpris-service';
 
 import NuclearApi from '../../utils/nuclear-api';
 import { systemMediaController, systemMediaEvent, SYSTEM_MEDIA_EVENT_KEY } from '../../utils/decorators';
@@ -15,9 +15,9 @@ import Logger, { systemApiLogger } from '../logger';
 import Store from '../store';
 import Window from '../window';
 
-const statusMapper: Record<string, PlaybackStatus> = {
-  PLAYING: MprisService.PLAYBACK_STATUS_PLAYING,
-  PAUSED: MprisService.PLAYBACK_STATUS_PAUSED
+const statusMapper: Record<string, MprisStatus> = {
+  [PlaybackStatus.PLAYING]: MprisService.PLAYBACK_STATUS_PLAYING,
+  [PlaybackStatus.PAUSED]: MprisService.PLAYBACK_STATUS_PAUSED
 };
 
 const loopStatusMapper: Record<string, LoopStatus> = {
