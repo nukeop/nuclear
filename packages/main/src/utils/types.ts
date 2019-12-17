@@ -1,6 +1,22 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Class } from 'type-fest';
 
+export type MediaEventName =
+  | 'play'
+  | 'pause'
+  | 'playpause'
+  | 'stop'
+  | 'next'
+  | 'previous'
+  | 'volume'
+  | 'seek'
+  | 'activatePlaylist'
+  | 'raise'
+  | 'quit'
+  | 'shuffle'
+  | 'loopStatus'
+  | 'goTo';
+
 export interface ServiceProvider {
   provide?: symbol | Class | string;
   useClass?: Class;
@@ -9,7 +25,7 @@ export interface ServiceProvider {
 
 export interface AsyncServiceProvider {
   provide: symbol | Class | string;
-  usePromise: Promise<{ default: Class }>; 
+  usePromise: Promise<{ default: Class }>;
 }
 
 export interface AppDependencies {
@@ -21,8 +37,8 @@ export interface AppOptions {
   logger?: Logger;
 }
 
-export interface ControllerMeta {
-  eventName: string;
+export interface ControllerMeta<E = string> {
+  eventName: E;
   name: string;
   once?: boolean;
 }

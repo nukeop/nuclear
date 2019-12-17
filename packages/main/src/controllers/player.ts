@@ -56,7 +56,7 @@ class IpcPlayer {
     }
 
     this.window.setTitle(`${arg.artist} - ${arg.name} - Nuclear Music Player`);
-    this.systemApi.setMetadata && this.systemApi.setMetadata(arg);
+    this.systemApi.sendMetadata && this.systemApi.sendMetadata(arg);
   }
 }
 

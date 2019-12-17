@@ -9,9 +9,9 @@ import { ClassDecorator, MethodDecorator, ControllerMeta } from './types';
 export const IPC_EVENT_KEY = Symbol('$$ipc-event-prefix');
 
 /**
- * the key of the mpris metadata
+ * the key of the system media metadata
  */
-export const MPRIS_EVENT_KEY = Symbol('$$mpris-event-prefix');
+export const SYSTEM_MEDIA_EVENT_KEY = Symbol('$$system-media-event-prefix');
 
 const eventEmitterControllerFactory = (metadataKey: symbol): ClassDecorator => (prefix?: string) => {
   /**
@@ -81,5 +81,5 @@ const eventListenerFactory = (metadataKey: symbol): MethodDecorator => (
 export const ipcController = eventEmitterControllerFactory(IPC_EVENT_KEY);
 export const ipcEvent = eventListenerFactory(IPC_EVENT_KEY);
 
-export const mprisController = eventEmitterControllerFactory(MPRIS_EVENT_KEY);
-export const mprisEvent = eventListenerFactory(MPRIS_EVENT_KEY);
+export const systemMediaController = eventEmitterControllerFactory(SYSTEM_MEDIA_EVENT_KEY);
+export const systemMediaEvent = eventListenerFactory(SYSTEM_MEDIA_EVENT_KEY);

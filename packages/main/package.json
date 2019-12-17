@@ -74,8 +74,9 @@
   },
   "optionalDependencies": {
     "7zip-bin-mac": "^1.0.1",
+    "electron-media-service": "^0.2.2",
+    "jsbi": "^2.0.5",
     "mpris-service": "2.1.0",
-    "x11": "^2.3.0",
-    "jsbi": "^2.0.5"
+    "x11": "^2.3.0"
   }
 }

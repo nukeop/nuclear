@@ -16,9 +16,10 @@ interface NuclearApi {
   onVolume?(data: number): any;
   onNext?(): any;
   onPrevious?(): any;
+  onSeek?(seek: number): any;
   onSelectTrack?(trackId: string): any;
 
-  setMetadata?(track: NuclearMeta): any;
+  sendMetadata?(track: NuclearMeta): any;
   addTrack?(track: NuclearMeta): any;
   removeTrack?(uuid: string): any;
   play(): any;
