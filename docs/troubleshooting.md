@@ -24,16 +24,11 @@ Try the manual start. Note that `lerna bootstrap` is required to link the packag
 ```shell
 $ lerna bootstrap
 $ cd packages/app
-$ npm run watch
+$ npm start
 
 # Run this in another shell
-$ cd packages/app
-$ npm run electron:dev
-
-# Instead of watch/electron: dev, you can also do this:
-$ cd packages/app
+$ cd packages/main
 $ npm start
-```
 
 ### There is no debug output
 Lerna eats it. If you want to see the debug output, try the manual start above.
@@ -48,4 +43,4 @@ This indicates a problem with the initial html loading. During development, all 
 This typically means that the Redux Devtools extension failed to download or install. You can temporarily disable it by changing `composeEnhancers` in `packages/app/app/store/configureStore.js` to just `compose`. You won't have access to the devtools though, and developing without them can be a pain.
 
 ### Songs load but fail to start
-Sometimes out Youtube API key gets too much traffic and becomes rate limited. This causes problems with loading streams. As a workaround, you can use your own API key by pasting it in the settings section, near the bottom.
+Sometimes our Youtube API key gets too much traffic and becomes rate limited. This causes problems with loading streams. As a workaround, you can use your own API key by pasting it in the settings section, near the bottom.

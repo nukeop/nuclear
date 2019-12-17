@@ -47,7 +47,7 @@ class Container extends InversifyContainer {
         const on = once ? ipc.once : ipc.on;
 
         on.bind(ipc)(eventName, (event: Event, data: any) => {
-          logger.log(`incomming event => ${eventName}`);
+          logger.log(`incoming event => ${eventName}`);
 
           const result = controller[name](event, data);
 
