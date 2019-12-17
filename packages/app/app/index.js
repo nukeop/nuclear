@@ -3,10 +3,6 @@ import 'regenerator-runtime';
 import 'font-awesome/css/font-awesome.css';
 import 'semantic-ui-css/semantic.min.css';
 
-// TODO remove this when updating electron
-window.ELECTRON_ENABLE_SECURITY_WARNINGS=false;
-window.ELECTRON_DISABLE_SECURITY_WARNINGS=true;
-
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { MemoryRouter } from 'react-router-dom';
