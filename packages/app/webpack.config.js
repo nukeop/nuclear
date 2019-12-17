@@ -119,6 +119,11 @@ module.exports = (env) => {
     output,
     mode: IS_PROD ? 'production' : 'development',
     optimization,
+    resolve: {
+      alias: {
+        react: path.resolve(__dirname, 'node_modules/react')
+      }
+    },
     stats: 'errors-only',
     node: {
       fs: 'empty'

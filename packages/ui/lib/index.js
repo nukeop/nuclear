@@ -9,9 +9,10 @@ export { default as LibraryListTypeToggle } from './components/LibraryListTypeTo
 export { default as Loader } from './components/Loader';
 export { default as PopupButton } from './components/PopupButton';
 export { default as QueueItem } from './components/QueueItem';
+export { default as Range } from './components/Range';
 export { default as Seekbar } from './components/Seekbar';
-export { default as UserPluginsItem } from './components/UserPluginsItem';
 export { default as ToastContainer } from './components/ToastContainer';
 export { default as TrackRow } from './components/TrackRow';
+export { default as UserPluginsItem } from './components/UserPluginsItem';
 
 export * from './utils';
