@@ -11,13 +11,15 @@ chai.use(spies);
 const { expect } = chai;
 
 describe('<QueueMenuMore /> Clear queue button', () => {
-  it('Has trash icon and clearQueue action fired on click', () => {
-    const spy = chai.spy();
-    const wrapper = mount(<QueueMenuMore clearQueue={spy}/>);
+  it('Has trash icon and clearQueue and resetPlayer action fired on click', () => {
+    const clearQueueSpy = chai.spy();
+    const resetPlayerSpy = chai.spy();
+    const wrapper = mount(<QueueMenuMore clearQueue={clearQueueSpy} resetPlayer={resetPlayerSpy}/>);
     const trashItem = wrapper.find(Dropdown.Item).at(0);
 
     trashItem.simulate('click');
-    expect(spy).to.have.been.called;
+    expect(clearQueueSpy).to.have.been.called;
+    expect(resetPlayerSpy).to.have.been.called;
     expect(trashItem.find(Icon).prop('name')).to.equal('trash');
   });
 });

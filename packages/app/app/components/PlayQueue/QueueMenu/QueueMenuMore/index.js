@@ -4,8 +4,8 @@ import cx from 'classnames';
 import _ from 'lodash';
 import { Dropdown, Icon } from 'semantic-ui-react';
 import { useTranslation } from 'react-i18next';
-import { compose, withHandlers } from 'recompose';
-
+import { compose, withHandlers, defaultProps } from 'recompose';
+import { sendPaused } from '../../../../mpris';
 import styles from './styles.scss';
 
 const addTrackToPlaylist = (updatePlaylist, playlist, track) => {
@@ -15,17 +15,15 @@ const addTrackToPlaylist = (updatePlaylist, playlist, track) => {
   }
 };
 
-const QueueMenuMore = ({
+export const QueueMenuMore = ({
   disabled,
-  clearQueue,
   savePlaylistDialog,
-  addFavoriteTrack,
   updatePlaylist,
   playlists,
   currentItem,
-
   handleAddToDownloads,
-  handleAddFavoriteTrack
+  handleAddFavoriteTrack,
+  handleClearClick
 }) => {
   const { t } = useTranslation('queue');
 
@@ -33,7 +31,7 @@ const QueueMenuMore = ({
     <Dropdown item icon='ellipsis vertical' className={styles.queue_menu_more} disabled={disabled}>
       <Dropdown.Menu>
         <Dropdown.Header>{t('header')}</Dropdown.Header>
-        <Dropdown.Item onClick={clearQueue}>
+        <Dropdown.Item onClick={handleClearClick}>
           <Icon name='trash' />
           {t('clear')}
         </Dropdown.Item>
@@ -78,6 +76,7 @@ const QueueMenuMore = ({
 QueueMenuMore.propTypes = {
   disabled: PropTypes.bool,
   clearQueue: PropTypes.func,
+  resetPlayer: PropTypes.func,
   addFavoriteTrack: PropTypes.func,
   addToDownloads: PropTypes.func,
   updatePlaylist: PropTypes.func,
@@ -89,6 +88,7 @@ QueueMenuMore.propTypes = {
 QueueMenuMore.defaultProps = {
   disabled: true,
   clearQueue: () => {},
+  resetPlayer: () => {},
   addFavoriteTrack: () => {},
   addToDownloads: () => {},
   updatePlaylist: () => {},
@@ -97,7 +97,8 @@ QueueMenuMore.defaultProps = {
   currentItem: {}
 };
 
-export default compose(
+export const enhance = compose(
+  defaultProps({ sendPaused }),
   withHandlers({
     handleAddToDownloads: ({addToDownloads, currentItem}) => () => addToDownloads(currentItem),
     handleAddFavoriteTrack: ({addFavoriteTrack, currentItem}) => () => {
@@ -114,6 +115,12 @@ export default compose(
           ]
         });
       }
+    },
+    handleClearClick: ({clearQueue, resetPlayer, sendPaused}) => () => {
+      clearQueue();
+      resetPlayer(sendPaused);
     }
   })
-)(QueueMenuMore);
+);
+
+export default enhance(QueueMenuMore);
