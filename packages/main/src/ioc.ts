@@ -17,6 +17,7 @@ import Logger, { httpApiLogger, ipcLogger, mainLogger, systemApiLogger } from '.
 import Platform from './services/platform';
 import Store from './services/store';
 import Window from './services/window';
+import SystemApi from './services/system-api';
 
 import { ServiceProvider } from './utils/types';
 
@@ -30,6 +31,7 @@ const services: ServiceProvider[] = [
   { useClass: Store },
   { useClass: Window },
   { useClass: Platform },
+  { useClass: SystemApi },
 
   { provide: ipc, useValue: ipcMain },
   { provide: mainLogger, useValue: new Logger() },

@@ -9,9 +9,8 @@ import { inject, injectable } from 'inversify';
 import Ipc from '../ipc';
 import Config from '../config';
 import NuclearApi from '../../utils/nuclear-api';
-import { mprisController } from '../../utils/decorators';
 
-@mprisController()
+@injectable()
 class WindowsMediaService implements NuclearApi {
   private controls: any;
   rendererWindow: Event['sender'];
