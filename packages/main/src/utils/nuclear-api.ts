@@ -28,5 +28,4 @@ interface NuclearApi {
   listen(): any;
 }
 
-// eslint-disable-next-line no-undef
 export default NuclearApi;
