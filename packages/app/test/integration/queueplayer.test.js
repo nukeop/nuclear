@@ -36,7 +36,7 @@ describe('Queue and Player Integration', () => {
         return store;
     };
 
-    it.only('resets the player if the queue is cleared', () => {
+    it('resets the player if the queue is cleared', () => {
 
         // create store
         const store = createFakeStore();
@@ -56,7 +56,6 @@ describe('Queue and Player Integration', () => {
                 null, dispatch => bindActionCreators({resetPlayer}, dispatch)
             )
         )(MenuEnhance(QueueMenuMore));
-        
 
         const wrapper = mount(
             <Provider store={store}>
@@ -65,14 +64,13 @@ describe('Queue and Player Integration', () => {
             </Provider>
         );
         
-        console.log(wrapper.find(QueueMenuMore).props());
         // expect player with 50% fill
         expect(wrapper.find(Seekbar).prop('fill')).to.equal('50%');
         
         // simulate click clear queue
         const clearQueueAction = wrapper.find(QueueMenuMore).find(Dropdown.Item).at(0);
         clearQueueAction.simulate('click');
-        
+
         // expect player with 0% fill
         wrapper.update();
         expect(wrapper.find(Seekbar).prop('fill')).to.equal('0%');

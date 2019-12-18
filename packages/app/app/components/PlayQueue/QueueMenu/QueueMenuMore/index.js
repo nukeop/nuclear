@@ -4,7 +4,7 @@ import cx from 'classnames';
 import _ from 'lodash';
 import { Dropdown, Icon } from 'semantic-ui-react';
 import { useTranslation } from 'react-i18next';
-import { compose, withHandlers, withProps } from 'recompose';
+import { compose, withHandlers, defaultProps } from 'recompose';
 import { sendPaused } from '../../../../mpris';
 import styles from './styles.scss';
 
@@ -98,7 +98,7 @@ QueueMenuMore.defaultProps = {
 };
 
 export const enhance = compose(
-  withProps({ sendPaused }),
+  defaultProps({ sendPaused }),
   withHandlers({
     handleAddToDownloads: ({addToDownloads, currentItem}) => () => addToDownloads(currentItem),
     handleAddFavoriteTrack: ({addFavoriteTrack, currentItem}) => () => {
