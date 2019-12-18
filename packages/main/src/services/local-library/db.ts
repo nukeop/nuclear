@@ -55,7 +55,7 @@ class LocalLibraryDb extends ElectronStore {
   }
 
   updateCache(baseFiles: string[], formattedMetas: NuclearBrutMeta[]) {
-    const oldCache: LocalMeta = this.get('localMeta');
+    const oldCache: LocalMeta = this.get('localMeta') || {};
 
     const cache = Object.values(oldCache)
     .filter(({ path }) => baseFiles.includes(path as string))

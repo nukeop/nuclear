@@ -108,9 +108,9 @@ class LocalLibrary {
       )
     ).then(result => result.flat());
   
+    const cache = this.store.getCache() || {};
     const files = baseFiles.filter(
-      file =>
-        !Object.values(this.store.getCache())
+      file => !Object.values(cache)
           .map(({ path }) => path)
           .includes(file)
     );
