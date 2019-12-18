@@ -8,6 +8,7 @@ const APP_DIR = path.resolve(__dirname, 'app');
 const RESOURCES_DIR = path.resolve(__dirname, 'resources');
 
 const UI_DIR = path.resolve(__dirname, '..', 'ui');
+const VENDOR_DIR = path.resolve(__dirname, 'node_modules');
 
 module.exports = (env) => {
   const IS_PROD = env.NODE_ENV === 'production';
@@ -51,8 +52,20 @@ module.exports = (env) => {
       ignore: [/node_modules/]
     }
   };
+  const contentSecurity = 'connect-src *; style-src \'unsafe-inline\' https:; font-src https: data:; img-src https: data:;';
   const plugins = [
     new HtmlWebpackPlugin({
+      meta: {
+        charset: {
+          charset: 'UTF-8'
+        },
+        'Content-Security-Policy': {
+          'http-equiv': 'Content-Security-Policy',
+          content: IS_DEV
+            ? `${contentSecurity} script-src 'unsafe-eval' 'unsafe-inline' localhost:8080`
+            : contentSecurity
+        }
+      },
       template: path.resolve(__dirname, 'index.html'),
       minify: {
         html5: true,
@@ -106,7 +119,13 @@ module.exports = (env) => {
     output,
     mode: IS_PROD ? 'production' : 'development',
     optimization,
-    stats: 'minimal',
+    resolve: {
+      alias: {
+        react: path.resolve(__dirname, 'node_modules/react'),
+        'styled-component': path.resolve(__dirname, 'node_modules/styled-component')
+      }
+    },
+    stats: 'errors-only',
     node: {
       fs: 'empty'
     },
@@ -117,24 +136,44 @@ module.exports = (env) => {
           test: /.scss$/,
           use: [
             'style-loader',
-            'css-loader?importLoaders=1&modules&localIdentName=[local]!sass-loader'
+            {
+              loader: 'css-loader',
+              options: {
+                importLoaders: 1,
+                modules: true,
+                localIdentName: '[local]'
+              }
+            },
+            'sass-loader'
           ]
         },
         {
           test: /\.css/,
-          loader: 'style-loader!css-loader?modules=true&localIdentName=[name]__[local]___[hash:base64:5]'
-        }, {
+          use: [
+            'style-loader',
+            'css-loader'
+          ]
+        },
+        {
           test: /\.(png|jpg|gif)$/,
           loader: 'url-loader',
           include: [
             RESOURCES_DIR,
-            UI_DIR
+            APP_DIR,
+            UI_DIR,
+            VENDOR_DIR
           ]
-        }, {
+        },
+        {
           test: /\.(ttf|eot|woff|woff2|svg)$/,
           loader: 'url-loader',
-          include: UI_DIR
-        }, {
+          include: [
+            UI_DIR,
+            APP_DIR,
+            VENDOR_DIR
+          ]
+        },
+        {
           test: /\.svg$/,
           loader: 'svg-inline-loader'
         }

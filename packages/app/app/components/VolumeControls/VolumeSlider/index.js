@@ -1,7 +1,7 @@
 import React from 'react';
 
 import styles from './styles.scss';
-import Range from 'react-range-progress';
+import { Range } from '@nuclear/ui';
 
 const volumeSliderColors = {
   fillColor: { r: 248, g: 248, b: 242, a: 1 },

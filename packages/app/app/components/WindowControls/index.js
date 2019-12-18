@@ -1,6 +1,6 @@
 import React from 'react';
 
-import styles from './styles.css';
+import styles from './styles.scss';
 
 import { sendClose, sendMinimize, sendMaximize } from '../../mpris';
 import WindowButton from './WindowButton';
