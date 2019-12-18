@@ -8,7 +8,7 @@ import Loader from '../Loader';
 import common from '../../common.scss';
 import styles from './styles.scss';
 
-const QueueItem = props => {
+export const QueueItem = props => {
   let {
     isLoading,
     isCurrent,
@@ -74,13 +74,22 @@ QueueItem.propTypes = {
   }),
   index: PropTypes.number, // eslint-disable-line
   duration: PropTypes.string,
-  selectSong: PropTypes.func, // eslint-disable-line
-  removeFromQueue: PropTypes.func // eslint-disable-line
+  selectSong: PropTypes.func, //eslint-disable-line
+  removeFromQueue: PropTypes.func, //eslint-disable-line
+  resetPlayer: PropTypes.func, //eslint-disable-line
+  sendPaused: PropTypes.func //eslint-disable-line
 };
 
-export default compose(
+export const enhance = compose(
   withHandlers({
-    handleRemoveFromQueue: ({removeFromQueue, track}) => () => removeFromQueue(track),
+    handleRemoveFromQueue: ({removeFromQueue, track, resetPlayer, sendPaused}) => () => {
+      removeFromQueue(track);
+      if (resetPlayer) { 
+        resetPlayer(sendPaused); 
+      }
+    },
     handleSelectSong: ({selectSong, index}) => () => selectSong(index)
   })
-)(QueueItem);
+);
+
+export default enhance(QueueItem);

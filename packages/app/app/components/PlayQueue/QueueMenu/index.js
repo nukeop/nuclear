@@ -36,6 +36,7 @@ class QueueMenu extends React.Component {
       addPlaylist,
       updatePlaylist,
       clearQueue,
+      resetPlayer,
       addFavoriteTrack,
       addToDownloads,
       currentSong,
@@ -61,6 +62,7 @@ class QueueMenu extends React.Component {
               <QueueMenuMore
                 disabled={_.isEmpty(items)}
                 clearQueue={clearQueue}
+                resetPlayer={resetPlayer}
                 updatePlaylist={updatePlaylist}
                 addFavoriteTrack={addFavoriteTrack}
                 addToDownloads={addToDownloads}
@@ -93,6 +95,7 @@ class QueueMenu extends React.Component {
 
 QueueMenu.propTypes = {
   clearQueue: PropTypes.func,
+  resetPlayer: PropTypes.func,
   addPlaylist: PropTypes.func,
   updatePlaylist: PropTypes.func,
   toggleOption: PropTypes.func,

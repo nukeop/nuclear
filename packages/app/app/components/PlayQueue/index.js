@@ -7,6 +7,7 @@ import { QueueItem, formatDuration } from '@nuclear/ui';
 import _ from 'lodash';
 
 import { getTrackDuration } from '../../utils';
+import { sendPaused } from '../../mpris';
 import { safeAddUuid } from '../../actions/helpers';
 import styles from './styles.scss';
 
@@ -80,6 +81,8 @@ class PlayQueue extends React.Component {
                         )
                       )
                     }
+                    resetPlayer={this.props.items.length == 1 ? this.props.actions.resetPlayer : undefined}
+                    sendPaused={sendPaused}
                   />
                 }
                 track={el}
@@ -105,6 +108,7 @@ class PlayQueue extends React.Component {
 
     let {
       clearQueue,
+      resetPlayer,
       addPlaylist,
       updatePlaylist,
       toggleOption,
@@ -117,6 +121,7 @@ class PlayQueue extends React.Component {
         <div className={classnames(styles.play_queue_container, {compact})}>
           <QueueMenu
             clearQueue={clearQueue}
+            resetPlayer={resetPlayer}
             addPlaylist={addPlaylist}
             updatePlaylist={updatePlaylist}
             toggleOption={toggleOption}

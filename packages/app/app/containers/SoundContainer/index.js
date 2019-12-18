@@ -15,6 +15,7 @@ import { getSelectedStream } from '../../utils';
 import * as Autoradio from './autoradio';
 import globals from '../../globals';
 import { LastFmApi } from '@nuclear/core';
+import { sendPaused } from '../../mpris';
 
 let lastfm = new LastFmApi(globals.lastfmApiKey, globals.lastfmApiSecret);
 
@@ -79,7 +80,7 @@ class SoundContainer extends React.Component {
     ) {
       this.props.actions.nextSong();
     } else {
-      this.props.actions.pausePlayback();
+      this.props.actions.pausePlayback(sendPaused);
     }
   }
 

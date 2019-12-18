@@ -16,6 +16,7 @@ import * as PluginsActions from './actions/plugins';
 import * as QueueActions from './actions/queue';
 import * as SettingsActions from './actions/settings';
 import * as ScrobblingActions from './actions/scrobbling';
+import { sendPaused } from './mpris';
 
 import './app.global.scss';
 import styles from './styles.scss';
@@ -75,7 +76,7 @@ class App extends React.Component {
     if (this.props.player.playbackStatus === Sound.status.PAUSED) {
       this.scrobbleLastFmIfAble();
     }
-    this.props.actions.togglePlayback(this.props.player.playbackStatus);
+    this.props.actions.togglePlayback(this.props.player.playbackStatus, sendPaused);
   }
 
   nextSong () {
@@ -313,8 +314,8 @@ class App extends React.Component {
   renderPlayerControls () {
     const { player, queue } = this.props;
     const couldPlay = queue.queueItems.length > 0;
-    const couldForward = queue.currentSong + 1 < queue.queueItems.length;
-    const couldBack = queue.currentSong > 0;
+    const couldForward = couldPlay && queue.currentSong + 1 < queue.queueItems.length;
+    const couldBack = couldPlay && queue.currentSong > 0;
 
     return (
       <PlayerControls

@@ -8,6 +8,8 @@ import _ from 'lodash';
 
 import * as PlayerActions from '../../actions/player';
 import * as QueueActions from '../../actions/queue';
+import { sendPaused } from '../../mpris';
+
 
 const VOLUME_ITERATION = 1;
 const SEEK_ITERATION = 10;
@@ -36,7 +38,7 @@ class Shortcuts extends React.Component {
 
     if (queue.queueItems.length > 0) {
       if (player.playbackStatus === Sound.status.PLAYING) {
-        actions.pausePlayback();
+        actions.pausePlayback(sendPaused);
       } else {
         actions.startPlayback();
       }
