@@ -1,9 +1,9 @@
 import { SettingType } from '@nuclear/common';
+import { Range } from '@nuclear/ui';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { remote } from 'electron';
 import { Button, Input, Radio, Segment, Dropdown } from 'semantic-ui-react';
-import Range from 'react-range-progress';
 import cx from 'classnames';
 import _ from 'lodash';
 import {

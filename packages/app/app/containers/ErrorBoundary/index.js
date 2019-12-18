@@ -17,12 +17,12 @@ class ErrorBoundary extends React.Component {
   }
 
   componentDidCatch(error) {
-    logger.error(error);
+    logger.error(error.message ? error.message : error);
     this.props.actions.error('error', 'Something wrong happened');
 
     this.setState({ hasError: true }, () => {
-      this.props.history.goBack();
-      this.setState(initialState);
+      // this.props.history.goBack();
+      // this.setState(initialState);
     });
   }
 
