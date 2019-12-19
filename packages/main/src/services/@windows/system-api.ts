@@ -8,7 +8,7 @@ import { inject, injectable } from 'inversify';
 
 import Ipc from '../ipc';
 import Config from '../config';
-import NuclearApi from '../../utils/nuclear-api';
+import NuclearApi from '../../interfaces/nuclear-api';
 
 @injectable()
 class WindowsMediaService implements NuclearApi {

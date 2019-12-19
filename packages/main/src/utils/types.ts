@@ -34,18 +34,16 @@ export interface AppDependencies {
 }
 
 export interface AppOptions {
-  logger?: Logger;
+  logger?: {
+    log(message: string): void;
+    error(err: any): void;
+  };
 }
 
 export interface ControllerMeta<E = string> {
   eventName: E;
   name: string;
   once?: boolean;
-}
-
-export interface Logger {
-  log(message: string): void;
-  error(err: any): void;
 }
 
 export type ClassDecorator<Target = any, Return = void> = (...args: any[]) => (target: Class<Target>) => Return;

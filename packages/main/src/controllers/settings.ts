@@ -2,16 +2,18 @@ import { app, IpcMessageEvent } from 'electron';
 import { inject } from 'inversify';
 
 import HttpApi from '../services/http';
-import NuclearApi from '../utils/nuclear-api';
+import NuclearApi from '../interfaces/nuclear-api';
 import Platform from '../services/platform';
 import Store from '../services/store';
 import SystemApi from '../services/system-api';
 import Window from '../services/window';
 import { ipcEvent, ipcController } from '../utils/decorators';
+import ControlBar from '../services/control-bar';
 
 @ipcController()
 class SettingsIpcCtrl {
   constructor(
+    @inject(ControlBar) private controlBar: ControlBar,
     @inject(HttpApi) private httpApi: HttpApi,
     @inject(SystemApi) private systemApi: NuclearApi,
     @inject(Platform) private platform: Platform,
@@ -24,6 +26,7 @@ class SettingsIpcCtrl {
     this.httpApi.rendererWindow = event.sender;
     this.store.getOption('api.enabled') && this.httpApi.listen();
 
+    this.controlBar.rendererWindow = event.sender;
     this.systemApi.rendererWindow = event.sender;
     this.systemApi.listen();
   }

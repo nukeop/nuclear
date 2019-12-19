@@ -4,7 +4,7 @@ import MediaService, { MediaMetadata, MediaState } from 'electron-media-service'
 import { inject } from 'inversify';
 
 import { SYSTEM_MEDIA_EVENT_KEY, systemMediaController, systemMediaEvent } from '../../utils/decorators';
-import NuclearApi from '../../utils/nuclear-api';
+import NuclearApi from '../../interfaces/nuclear-api';
 import { ControllerMeta, MediaEventName } from '../../utils/types';
 import Ipc from '../ipc';
 import Logger, { systemApiLogger } from '../logger';

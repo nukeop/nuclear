@@ -6,7 +6,7 @@ import { inject } from 'inversify';
 import _ from 'lodash';
 import MprisService, { MprisPlaylist, MprisMeta, PlaybackStatus as MprisStatus, LoopStatus } from 'mpris-service';
 
-import NuclearApi from '../../utils/nuclear-api';
+import NuclearApi from '../../interfaces/nuclear-api';
 import { systemMediaController, systemMediaEvent, SYSTEM_MEDIA_EVENT_KEY } from '../../utils/decorators';
 import { ControllerMeta } from '../../utils/types';
 import Config from '../config';

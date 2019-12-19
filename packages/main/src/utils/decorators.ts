@@ -1,7 +1,7 @@
 import { injectable } from 'inversify';
 import { Class } from 'type-fest';
 
-import { ClassDecorator, MethodDecorator, ControllerMeta } from './types';
+import { ClassDecorator, MethodDecorator, ControllerMeta, MediaEventName } from './types';
 
 /**
  * the key of the ipc metadata
@@ -53,7 +53,7 @@ interface IpcEventOptions {
  * @param eventName - a string representing the event to be handled by the decorated method
  */
 const eventListenerFactory = (metadataKey: symbol): MethodDecorator => (
-  eventName: string,
+  eventName: MediaEventName,
   options?: IpcEventOptions
 ) => {
   /**

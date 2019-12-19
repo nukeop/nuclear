@@ -8,6 +8,7 @@ import SettingsCtrl from './controllers/settings';
 
 import AcousticId from './services/acoustic-id';
 import Config from './services/config';
+import ControlBar from './services/control-bar';
 import Download from './services/download';
 import HttpApi from './services/http';
 import ipc from './services/ipc';
@@ -24,6 +25,7 @@ import { ServiceProvider } from './utils/types';
 const services: ServiceProvider[] = [
   { useClass: AcousticId },
   { useClass: Config },
+  { useClass: ControlBar },
   { useClass: Download },
   { useClass: HttpApi },
   { useClass: LocalLibrary },
@@ -37,7 +39,7 @@ const services: ServiceProvider[] = [
   { provide: mainLogger, useValue: new Logger() },
   { provide: ipcLogger, useValue: new Logger('ipc api') },
   { provide: httpApiLogger, useValue: new Logger('http api') },
-  { provide: systemApiLogger, useValue: new Logger('mpris') }
+  { provide: systemApiLogger, useValue: new Logger('system api') }
 ];
 
 const controllers: Class[] = [DownloadCtrl, LocalLibraryCtrl, PlayerCtrl, SettingsCtrl];

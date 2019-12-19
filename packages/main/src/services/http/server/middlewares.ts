@@ -1,6 +1,6 @@
 import { ValidationError } from 'express-json-validator-middleware';
 import { Request, Response, NextFunction } from 'express';
-import { Logger } from '../../../utils/types';
+import Logger from '../../../services/logger';
 
 const getValidationMessage = ({ validationErrors }: ValidationError): string => {
   if (validationErrors.params) {

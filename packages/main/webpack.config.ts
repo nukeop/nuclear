@@ -1,6 +1,6 @@
 const path = require('path');
 const CopyPlugin = require('copy-webpack-plugin');
-const webpack = require('webpack');
+const { NormalModuleReplacementPlugin } = require('webpack');
 const os = require('os');
 
 interface BuildEnv {
@@ -70,8 +70,11 @@ module.exports = (env: BuildEnv): import('webpack').Configuration => {
         { from: 'preload.js' },
         { from: path.resolve(__dirname, '.env') }
       ]),
-      new webpack.NormalModuleReplacementPlugin(/(.*)system-api(\.*)/, (resource: any) =>  {
+      new NormalModuleReplacementPlugin(/(.*)system-api(\.*)/, (resource: any) =>  {
         resource.request = resource.request.replace(/system-api/, `@${env.TARGET}/system-api`);
+      }),
+      new NormalModuleReplacementPlugin(/(.*)control-bar(\.*)/, (resource: any) =>  {
+        resource.request = resource.request.replace(/control-bar/, `@${env.TARGET}/control-bar`);
       })
     ]
   };
