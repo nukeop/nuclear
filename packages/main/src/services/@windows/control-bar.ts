@@ -1,5 +1,5 @@
 import { PlaybackStatus } from '@nuclear/common';
-import { NativeImage, Event } from 'electron';
+import { nativeImage, Event } from 'electron';
 import { inject, injectable } from 'inversify';
 import path from 'path';
 
@@ -53,17 +53,17 @@ class WindowsControlBar extends WithState<ControlBarState> {
     this.window.setThumbarButtons([
       {
         click: this.onPrevious,
-        icon: NativeImage.createFromPath(path.resolve(__dirname, this.iconsPath, 'previous.svg')),
+        icon: nativeImage.createFromPath(path.resolve(__dirname, this.iconsPath, 'previous.svg')),
         tooltip: 'previous track'
       },
       {
         click: this.onPlaypause,
-        icon: NativeImage.createFromPath(this.isPlaying() ? this.playIcon : this.pauseIcon),
+        icon: nativeImage.createFromPath(this.isPlaying() ? this.playIcon : this.pauseIcon),
         tooltip: 'play/pause'
       },
       {
         click: this.onNext,
-        icon: NativeImage.createFromPath(path.resolve(__dirname, this.iconsPath, 'next.svg')),
+        icon: nativeImage.createFromPath(path.resolve(__dirname, this.iconsPath, 'next.svg')),
         tooltip: 'next track'
       }
     ]);
