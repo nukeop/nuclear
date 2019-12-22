@@ -1,6 +1,8 @@
-import NuclearApi from "../../interfaces/nuclear-api";
-import { Event } from "electron";
+import NuclearApi from '../../interfaces/nuclear-api';
+import { Event } from 'electron';
+import { injectable } from 'inversify';
 
+@injectable()
 class WindowsMediaService implements NuclearApi {
   rendererWindow: Event['sender'];
   onPause() {}
