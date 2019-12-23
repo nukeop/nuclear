@@ -11,7 +11,7 @@ class LocalIpcCtrl {
     @inject(LocalLibrary) private localLibrary: LocalLibrary,
     @inject(LocalLibraryDb) private localLibraryDb: LocalLibraryDb
   ) {}
-  
+
   /**
    * get local libray folder from store
    */
@@ -21,7 +21,7 @@ class LocalIpcCtrl {
   }
 
   /**
-   * store local library folders 
+   * store local library folders
    */
   @ipcEvent('set-localfolders')
   setLocalFolders(event: IpcMessageEvent, localFolders: string[]) {
@@ -33,11 +33,11 @@ class LocalIpcCtrl {
    */
   @ipcEvent('refresh-localfolders')
   async onRefreshLocalFolders(event: IpcMessageEvent) {
-    try {      
+    try {
       const cache = await this.localLibrary.scanFoldersAndGetMeta((scanProgress, scanTotal) => {
         event.sender.send('local-files-progress', {scanProgress, scanTotal});
       });
-  
+
       event.sender.send('local-files', cache);
     } catch (err) {
       event.sender.send('local-files-error', err);
