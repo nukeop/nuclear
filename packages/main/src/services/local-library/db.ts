@@ -26,7 +26,7 @@ class LocalLibraryDb extends ElectronStore {
   byArtist(): Record<string, NuclearBrutMeta[]> {
     const cache: LocalMeta = this.get('localMeta');
 
-    return _.groupBy(Object.values(cache), track => track.artist.name);
+    return cache ? _.groupBy(Object.values(cache), track => track.artist.name) : {};
   }
 
   search({ artist, track }: LocalSearchQuery) {
@@ -50,7 +50,7 @@ class LocalLibraryDb extends ElectronStore {
         thumbnail: track.image && track.image[0] ? track.image[0]['#text'] : undefined
       }))
       .pop();
-    
+
     return result;
   }
 
