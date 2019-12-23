@@ -1,7 +1,8 @@
 import { getOption } from '../persistence/store';
+import { ytApiKey } from '../globals';
 
 export function prepareUrl (url) {
-  return `${url}&key=${ getOption('yt.apiKey')}`;
+  return `${url}&key=${ getOption('yt.apiKey') || ytApiKey }`;
 }
 
 export function trackSearch (track) {
