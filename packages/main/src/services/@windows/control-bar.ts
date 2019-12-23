@@ -4,9 +4,10 @@ import { inject, injectable } from 'inversify';
 import path from 'path';
 
 import { ControlBarState } from '../../interfaces/control-bar';
-import WithState from '../../utils/withState';
+// import WithState from '../../utils/withState';
 import Window from '../window';
 import Config from '../config';
+import Logger, { mainLogger } from '../logger';
 
 const initialState: ControlBarState = {
   status: PlaybackStatus.PAUSED,
@@ -15,18 +16,27 @@ const initialState: ControlBarState = {
 };
 
 @injectable()
-class WindowsControlBar extends WithState<ControlBarState> {
+class WindowsControlBar {
   private iconsPath = this.config.isProd() ? './resources/media' : '../../../resources/media';
   private playIcon = path.resolve(__dirname, this.iconsPath, 'play.svg');
   private pauseIcon = path.resolve(__dirname, this.iconsPath, 'pause.svg');
-  
+  private state = initialState;
+
   rendererWindow: Event['sender'];
 
   constructor(
+    @inject(Config) private config: Config,
+    @inject(mainLogger) private logger: Logger,
     @inject(Window) private window: Window,
-    @inject(Config) private config: Config
-  ) {
-    super(initialState);
+  ) {}
+
+  private setState(update: Partial<typeof initialState>) {
+    this.state = {
+      ...this.state,
+      ...update,
+    }
+
+    this.render();
   }
 
   private isPlaying() {
@@ -50,7 +60,7 @@ class WindowsControlBar extends WithState<ControlBarState> {
   }
 
   render() {
-    this.window.setThumbarButtons([
+    const foo = this.window.setThumbarButtons([
       {
         click: this.onPrevious,
         icon: nativeImage.createFromPath(path.resolve(__dirname, this.iconsPath, 'previous.svg')),
@@ -67,6 +77,8 @@ class WindowsControlBar extends WithState<ControlBarState> {
         tooltip: 'next track'
       }
     ]);
+
+    this.logger.log('is thumbar attached ', foo);
   }
 }
 

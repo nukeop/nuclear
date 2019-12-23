@@ -12,7 +12,7 @@ class Logger {
   private logger: typeof timber;
 
   constructor(name?: string) {
-    this.logger = name ? timber.create({ name }) : timber;
+    this.logger = name ? timber.create({ name, logLevel: 'info' }) : timber;
   }
 
   log(...args: any[]): void {

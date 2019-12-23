@@ -24,10 +24,12 @@ class SettingsIpcCtrl {
   @ipcEvent('started', { once: true })
   onStart(event: IpcMessageEvent) {
     this.httpApi.rendererWindow = event.sender;
-    this.store.getOption('api.enabled') && this.httpApi.listen();
-
     this.controlBar.rendererWindow = event.sender;
     this.systemApi.rendererWindow = event.sender;
+
+    this.store.getOption('api.enabled') && this.httpApi.listen();
+
+    this.controlBar.render();
     this.systemApi.listen();
   }
 
