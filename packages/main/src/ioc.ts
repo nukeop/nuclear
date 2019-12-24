@@ -17,6 +17,7 @@ import Logger, { httpApiLogger, ipcLogger, mainLogger, systemApiLogger } from '.
 import Platform from './services/platform';
 import Store from './services/store';
 import Window from './services/window';
+import SystemApi from './services/system-api';
 
 import { ServiceProvider } from './utils/types';
 
@@ -30,12 +31,13 @@ const services: ServiceProvider[] = [
   { useClass: Store },
   { useClass: Window },
   { useClass: Platform },
+  { useClass: SystemApi },
 
   { provide: ipc, useValue: ipcMain },
   { provide: mainLogger, useValue: new Logger() },
   { provide: ipcLogger, useValue: new Logger('ipc api') },
   { provide: httpApiLogger, useValue: new Logger('http api') },
-  { provide: systemApiLogger, useValue: new Logger('mpris') }
+  { provide: systemApiLogger, useValue: new Logger('system api') }
 ];
 
 const controllers: Class[] = [DownloadCtrl, LocalLibraryCtrl, PlayerCtrl, SettingsCtrl];

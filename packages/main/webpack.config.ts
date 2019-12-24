@@ -1,14 +1,34 @@
 const path = require('path');
 const CopyPlugin = require('copy-webpack-plugin');
+const { NormalModuleReplacementPlugin } = require('webpack');
+const os = require('os');
 
-module.exports = (env: { NODE_ENV: string }): import('webpack').Configuration => {
+interface BuildEnv {
+  NODE_ENV: 'development' | 'production' | 'test';
+  TARGET?: 'linux' | 'windows' | 'mac';
+}
+
+const osMapper: Record<string, BuildEnv['TARGET']> = {
+  linux: 'linux',
+  darwin: 'mac',
+  win32: 'windows'
+}
+
+module.exports = (env: BuildEnv): import('webpack').Configuration => {
+  if (!env.TARGET) {
+    env.TARGET = osMapper[os.platform() as string]
+  }
+
   const IS_PROD = env.NODE_ENV === 'production';
   const outputDir = IS_PROD ? '../../dist' : './build';
 
   const tsRule = {
     test: /.ts?$/,
     loader: 'ts-loader',
-    exclude: /node_modules\/(?!@nuclear).*/
+    exclude: /node_modules\/(?!@nuclear).*/,
+    options: {
+      configFile: path.join(__dirname, `/config/tsconfig.${env.TARGET}.json`),
+    }
   };
 
   if (IS_PROD) {
@@ -49,7 +69,10 @@ module.exports = (env: { NODE_ENV: string }): import('webpack').Configuration =>
       new CopyPlugin([
         { from: 'preload.js' },
         { from: path.resolve(__dirname, '.env') }
-      ])
+      ]),
+      new NormalModuleReplacementPlugin(/(.*)system-api(\.*)/, (resource: any) =>  {
+        resource.request = resource.request.replace(/system-api/, `@${env.TARGET}/system-api`);
+      })
     ]
   };
 };

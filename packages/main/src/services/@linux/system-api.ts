@@ -1,13 +1,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { NuclearStatus, NuclearMeta, NuclearPlaylist } from '@nuclear/common';
+import { NuclearStatus, NuclearMeta, NuclearPlaylist, PlaybackStatus } from '@nuclear/common';
 import autobind from 'autobind-decorator';
 import { app, IpcMain, Event } from 'electron';
 import { inject } from 'inversify';
 import _ from 'lodash';
-import MprisService, { MprisPlaylist, MprisMeta, PlaybackStatus, LoopStatus } from 'mpris-service';
+import MprisService, { MprisPlaylist, MprisMeta, PlaybackStatus as MprisStatus, LoopStatus } from 'mpris-service';
 
-import NuclearApi from '../../utils/nuclear-api';
-import { mprisController, mprisEvent, MPRIS_EVENT_KEY } from '../../utils/decorators';
+import NuclearApi from '../../interfaces/nuclear-api';
+import { systemMediaController, systemMediaEvent, SYSTEM_MEDIA_EVENT_KEY } from '../../utils/decorators';
 import { ControllerMeta } from '../../utils/types';
 import Config from '../config';
 import Ipc from '../ipc';
@@ -15,9 +15,9 @@ import Logger, { systemApiLogger } from '../logger';
 import Store from '../store';
 import Window from '../window';
 
-const statusMapper: Record<string, PlaybackStatus> = {
-  PLAYING: MprisService.PLAYBACK_STATUS_PLAYING,
-  PAUSED: MprisService.PLAYBACK_STATUS_PAUSED
+const statusMapper: Record<string, MprisStatus> = {
+  [PlaybackStatus.PLAYING]: MprisService.PLAYBACK_STATUS_PLAYING,
+  [PlaybackStatus.PAUSED]: MprisService.PLAYBACK_STATUS_PAUSED
 };
 
 const loopStatusMapper: Record<string, LoopStatus> = {
@@ -35,7 +35,7 @@ const loopStatusMapper: Record<string, LoopStatus> = {
  * @see {@link https://github.com/altdesktop/playerctl}
  */
 
-@mprisController() 
+@systemMediaController() 
 class LinuxMediaService extends MprisService implements NuclearApi {
   tracks: MprisMeta[];
   rendererWindow: Event['sender'];
@@ -91,29 +91,29 @@ class LinuxMediaService extends MprisService implements NuclearApi {
     };
   }
 
-  @mprisEvent('activatePlaylist')
+  @systemMediaEvent('activatePlaylist')
   onActivatePlaylist(playlistId: string) {
     this.setActivePlaylist(playlistId);
     this.rendererWindow.send('activate-playlist', this.playlists[this.getPlaylistIndex(playlistId)].Name);
   }
 
-  @mprisEvent('raise')
+  @systemMediaEvent('raise')
   onRaise() {
     this.window.focus();
   }
 
-  @mprisEvent('quit')
+  @systemMediaEvent('quit')
   onQuit() {
     app.quit();
   }
 
-  @mprisEvent('shuffle')
+  @systemMediaEvent('shuffle')
   onShuffle() {
     this.shuffle = !this.shuffle;
     this.rendererWindow.send('settings', { shuffleQueue: this.shuffle });
   }
 
-  @mprisEvent('loopStatus')
+  @systemMediaEvent('loopStatus')
   onLoop() {
     this.loopStatus = this.loopStatus === MprisService.LOOP_STATUS_PLAYLIST
       ? MprisService.LOOP_STATUS_NONE
@@ -122,25 +122,25 @@ class LinuxMediaService extends MprisService implements NuclearApi {
     this.rendererWindow.send('settings', { loopAfterQueueEnd: this.loopStatus === MprisService.LOOP_STATUS_PLAYLIST });
   }
 
-  @mprisEvent('play')
+  @systemMediaEvent('play')
   onPlay() {
     this.playbackStatus = MprisService.PLAYBACK_STATUS_PLAYING;
     this.rendererWindow.send('play');
   }
 
-  @mprisEvent('pause')
+  @systemMediaEvent('pause')
   onPause() {
     this.playbackStatus = MprisService.PLAYBACK_STATUS_PAUSED;
     this.rendererWindow.send('pause');
   }
 
-  @mprisEvent('stop')
+  @systemMediaEvent('stop')
   onStop() {
     this.playbackStatus = MprisService.PLAYBACK_STATUS_STOPED;
     this.rendererWindow.send('stop');
   }
 
-  @mprisEvent('playpause')
+  @systemMediaEvent('playpause')
   onPlayPause() {
     this.playbackStatus = this.playbackStatus === MprisService.PLAYBACK_STATUS_PLAYING
       ? MprisService.PLAYBACK_STATUS_PAUSED
@@ -149,28 +149,28 @@ class LinuxMediaService extends MprisService implements NuclearApi {
     this.rendererWindow.send('playpause');
   }
 
-  @mprisEvent('volume')
+  @systemMediaEvent('volume')
   onVolume(data: number) {
     this.volume = data;
     this.rendererWindow.send('volume', data * 100);
   }
 
-  @mprisEvent('next')
+  @systemMediaEvent('next')
   onNext() {
     this.rendererWindow.send('next');
   }
 
-  @mprisEvent('previous')
+  @systemMediaEvent('previous')
   onPrevious() {
     this.rendererWindow.send('previous');
   }
 
-  @mprisEvent('goTo')
+  @systemMediaEvent('goTo')
   onSelectTrack(trackId: string) {
     this.rendererWindow.send('select-track', this.getTrackIndex(trackId));
   }
 
-  setMetadata(track: NuclearMeta) {
+  sendMetadata(track: NuclearMeta) {
     if (track.streams) {
       this.metadata = this.trackMapper(track);
     }
@@ -213,7 +213,7 @@ class LinuxMediaService extends MprisService implements NuclearApi {
     this.shuffle = status.shuffleQueue;
     this.loopStatus =loopStatusMapper[status.loopAfterQueueEnd.toString()];
 
-    const meta: ControllerMeta[] = Reflect.getMetadata(MPRIS_EVENT_KEY, LinuxMediaService.prototype);
+    const meta: ControllerMeta[] = Reflect.getMetadata(SYSTEM_MEDIA_EVENT_KEY, LinuxMediaService.prototype);
 
     meta.forEach(({ eventName, name }) => {
 

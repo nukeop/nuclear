@@ -9,15 +9,15 @@ export function onPrevious(event, actions) {
 }
 
 export function onPause(event, actions) {
-  actions.pausePlayback(this.sendPaused);
+  actions.pausePlayback(sendPaused);
 }
 
 export function onPlayPause(event, actions, state) {
-  actions.togglePlayback(state.playbackStatus, this.sendPaused);
+  actions.togglePlayback(state.playbackStatus, sendPaused);
 }
 
 export function onStop(event, actions) {
-  actions.pausePlayback(this.sendPaused);
+  actions.pausePlayback(sendPaused);
 }
 
 export function onPlay(event, actions) {

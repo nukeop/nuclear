@@ -58,15 +58,15 @@ class LocalLibraryDb extends ElectronStore {
     const oldCache: LocalMeta = this.get('localMeta') || {};
 
     const cache = Object.values(oldCache)
-    .filter(({ path }) => baseFiles.includes(path as string))
-    .concat(formattedMetas)
-    .reduce(
-      (acc, item) => ({
-        ...acc,
-        [item.uuid]: item
-      }),
-      {}
-    );
+      .filter(({ path }) => baseFiles.includes(path as string))
+      .concat(formattedMetas)
+      .reduce(
+        (acc, item) => ({
+          ...acc,
+          [item.uuid]: item
+        }),
+        {}
+      );
 
     this.set('localMeta', cache);
 

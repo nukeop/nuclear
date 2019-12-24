@@ -2,10 +2,10 @@ import { NuclearMeta } from '@nuclear/common';
 import { IpcMessageEvent } from 'electron';
 import { inject } from 'inversify';
 
+import NuclearApi from '../interfaces/nuclear-api';
 import SystemApi from '../services/system-api';
 import Window from '../services/window';
 import { ipcEvent, ipcController } from '../utils/decorators';
-import NuclearApi from '../utils/nuclear-api';
 
 @ipcController()
 class IpcPlayer {
@@ -56,7 +56,7 @@ class IpcPlayer {
     }
 
     this.window.setTitle(`${arg.artist} - ${arg.name} - Nuclear Music Player`);
-    this.systemApi.setMetadata && this.systemApi.setMetadata(arg);
+    this.systemApi.sendMetadata && this.systemApi.sendMetadata(arg);
   }
 }
 
