@@ -2,7 +2,7 @@ import { app, IpcMessageEvent } from 'electron';
 import { inject } from 'inversify';
 
 import HttpApi from '../services/http';
-import NuclearApi from '../utils/nuclear-api';
+import NuclearApi from '../interfaces/nuclear-api';
 import Platform from '../services/platform';
 import Store from '../services/store';
 import SystemApi from '../services/system-api';
@@ -22,9 +22,10 @@ class SettingsIpcCtrl {
   @ipcEvent('started', { once: true })
   onStart(event: IpcMessageEvent) {
     this.httpApi.rendererWindow = event.sender;
+    this.systemApi.rendererWindow = event.sender;
+
     this.store.getOption('api.enabled') && this.httpApi.listen();
 
-    this.systemApi.rendererWindow = event.sender;
     this.systemApi.listen();
   }
 

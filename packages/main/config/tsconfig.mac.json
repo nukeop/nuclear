@@ -1,0 +1,10 @@
+{
+  "extends": "../tsconfig.json",
+  "include": [
+    "../"
+  ],
+  "exclude": [
+    "../src/services/@windows",
+    "../src/services/@linux"
+  ]
+}
