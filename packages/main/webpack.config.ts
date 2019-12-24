@@ -72,9 +72,6 @@ module.exports = (env: BuildEnv): import('webpack').Configuration => {
       ]),
       new NormalModuleReplacementPlugin(/(.*)system-api(\.*)/, (resource: any) =>  {
         resource.request = resource.request.replace(/system-api/, `@${env.TARGET}/system-api`);
-      }),
-      new NormalModuleReplacementPlugin(/(.*)control-bar(\.*)/, (resource: any) =>  {
-        resource.request = resource.request.replace(/control-bar/, `@${env.TARGET}/control-bar`);
       })
     ]
   };

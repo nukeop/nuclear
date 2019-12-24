@@ -3,7 +3,6 @@ import { IpcMessageEvent } from 'electron';
 import { inject } from 'inversify';
 
 import NuclearApi from '../interfaces/nuclear-api';
-import ControlBar from '../services/control-bar';
 import SystemApi from '../services/system-api';
 import Window from '../services/window';
 import { ipcEvent, ipcController } from '../utils/decorators';
@@ -11,7 +10,6 @@ import { ipcEvent, ipcController } from '../utils/decorators';
 @ipcController()
 class IpcPlayer {
   constructor(
-    @inject(ControlBar) private controlBar: ControlBar,
     @inject(SystemApi) private systemApi: NuclearApi,
     @inject(Window) private window: Window
   ) {}
@@ -19,13 +17,11 @@ class IpcPlayer {
   @ipcEvent('play')
   onPlay() {
     this.systemApi.play();
-    this.controlBar.play();
   }
 
   @ipcEvent('paused')
   onPause() {
     this.systemApi.pause();
-    this.controlBar.pause();
   }
 
   @ipcEvent('volume')
