@@ -171,9 +171,7 @@ class LinuxMediaService extends MprisService implements NuclearApi {
   }
 
   sendMetadata(track: NuclearMeta) {
-    if (track.streams) {
-      this.metadata = this.trackMapper(track);
-    }
+    this.metadata = this.trackMapper(track);
   }
 
   addTrack(track: NuclearMeta) {
@@ -185,6 +183,17 @@ class LinuxMediaService extends MprisService implements NuclearApi {
 
   removeTrack(uuid: string) {
     this.tracks = this.tracks.filter((track) => uuid !== track.id);
+  }
+
+  clearTrackList() {
+    this.tracks = [];
+    this.sendMetadata({
+      artist: 'Nuclear',
+      name: '',
+      uuid: '0',
+      thumbnail: '',
+      streams: []
+    })
   }
 
   play() {
