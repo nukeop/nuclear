@@ -19,16 +19,18 @@ const statusMapper: Record<PlaybackStatus, MediaState> = {
 class MacMediaService extends MediaService implements NuclearApi {
   private ipc: IpcMain;
   private status: MediaMetadata;
+  private logger: Logger;
 
   rendererWindow: Event['sender'];
 
   constructor(
     @inject(Ipc) ipc: IpcMain,
-    @inject(systemApiLogger) private logger: Logger
+    @inject(systemApiLogger) logger: Logger
   ) {
     super();
 
     this.ipc = ipc;
+    this.logger = logger;
   }
 
   private getPlayingStatus(): Promise<NuclearStatus> {
