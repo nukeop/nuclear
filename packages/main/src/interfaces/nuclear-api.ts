@@ -3,14 +3,18 @@ import { NuclearMeta } from '@nuclear/common';
 import { Event } from 'electron';
 
 interface NuclearApi {
-  shuffle?: any;
   rendererWindow: Event['sender'];
+  play(): any;
+  pause(): any;
+  listen(): any;
+  
+  shuffle?: any;
   onRaise?(): any;
   onQuit?(): any;
   onShuffle?(): any;
   onLoop?(): any;
-  onPlay(): any;
-  onPause(): any;
+  onPlay?(): any;
+  onPause?(): any;
   onStop?(): any;
   onPlayPause?(): any;
   onVolume?(data: number): any;
@@ -18,15 +22,12 @@ interface NuclearApi {
   onPrevious?(): any;
   onSeek?(seek: number): any;
   onSelectTrack?(trackId: string): any;
-
   sendMetadata?(track: NuclearMeta): any;
   addTrack?(track: NuclearMeta): any;
   removeTrack?(uuid: string): any;
-  play(): any;
-  pause(): any;
+  clearTrackList?(): any
   setVolume?(volume: number): any;
   setLoopStatus?(data: boolean): any;
-  listen(): any;
 }
 
 export default NuclearApi;

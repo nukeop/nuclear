@@ -172,6 +172,10 @@ export function removeTrack(track) {
   ipcRenderer.send('removeTrack', track);
 }
 
+export function clearTrackList() {
+  ipcRenderer.send('clear-tracklist');
+}
+
 export function onActivatePlaylist(playlists, playlistName, streamProviders, actions) {
   const tracks = playlists.find(({ name }) => playlistName === name).tracks;
 
