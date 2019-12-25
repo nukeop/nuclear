@@ -37,6 +37,7 @@ function addTrackToQueue (streamProviders, item) {
 }
 
 export function playTrack (streamProviders, item) {
+  mpris.clearTrackList();
   return dispatch => {
     dispatch(clearQueue());
     dispatch(addToQueue(streamProviders, item));
@@ -80,7 +81,7 @@ export function rerollTrack (streamProvider, selectedStream, track) {
 }
 
 export function clearQueue () {
-  mpris.sendQueueItems([]);
+  mpris.clearTrackList();
   return {
     type: CLEAR_QUEUE,
     payload: null

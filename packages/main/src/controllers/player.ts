@@ -49,6 +49,11 @@ class IpcPlayer {
     this.systemApi.removeTrack && this.systemApi.removeTrack(uuid);
   }
 
+  @ipcEvent('clear-tracklist')
+  onClearTrackList() {
+    this.systemApi.clearTrackList && this.systemApi.clearTrackList();
+  }
+
   @ipcEvent('songChange')
   onSongChange(evt: IpcMessageEvent, arg: NuclearMeta) {
     if (arg === null) {
