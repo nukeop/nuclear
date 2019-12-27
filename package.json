@@ -24,7 +24,7 @@
     "postinstall": "lerna bootstrap --no-ci",
     "start": "lerna run start --stream",
     "build": "rm -rf dist && lerna run build && npm run pack",
-    "test": "lerna run test",
+    "test": "lerna run build && lerna run test",
     "lint:fix": "lerna run lint:fix",
     "storybook": "lerna run storybook",
     "docker": "docker run --rm --net=host --env=\"DISPLAY\" --volume=\"$HOME/.Xauthority:/root/.Xauthority:rw\" --device /dev/snd nuclear",
