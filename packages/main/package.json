@@ -4,7 +4,8 @@
   "description": "Nuclear main process",
   "scripts": {
     "start": "rm -rf build && webpack --env.NODE_ENV=development && electron build/main.js",
-    "build": "webpack --colors --env.NODE_ENV=production"
+    "build": "webpack --colors --env.NODE_ENV=production",
+    "lint": "eslint src/**/*.ts --fix"
   },
   "repository": {
     "type": "git",

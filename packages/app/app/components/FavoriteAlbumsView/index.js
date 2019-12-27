@@ -22,7 +22,7 @@ const EmptyState = () => {
 
 const FavoriteAlbumsView = ({
   albums,
-  removeFavoriteAlbum,
+  // removeFavoriteAlbum,
   albumInfoSearch,
   history
 }) => {

@@ -48,8 +48,8 @@ export function getTrackDuration(track, selectedStreamProvider) {
   let localStream = _.find(trackStreams, { source: 'Local' });
 
   return _.isNil(localStream)
-  ? _.get(selectedStream, 'duration')
-  : _.get(localStream, 'duration');
+    ? _.get(selectedStream, 'duration')
+    : _.get(localStream, 'duration');
 }
 
 export function removeQuotes(text) {

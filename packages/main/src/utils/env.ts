@@ -12,4 +12,4 @@ export {
   isDev,
   isProd,
   isTest
-}
+};

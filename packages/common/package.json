@@ -15,7 +15,8 @@
   "typings": "lib/index.d.ts",
   "scripts": {
     "start": "tsc ./src/index.ts --declaration --outDir lib",
-    "build": "npm start"
+    "build": "npm start",
+    "lint": "eslint src/*.ts --fix"
   },
   "dependencies": {},
   "devDependencies": {
