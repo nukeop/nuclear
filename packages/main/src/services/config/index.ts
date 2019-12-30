@@ -5,7 +5,7 @@ import path from 'path';
 import { Env } from '../../utils/env';
 import Logger, { mainLogger } from '../logger';
 
-const MANDATORY_ENV = ['ACOUSTIC_ID_KEY'];
+const MANDATORY_ENV = ['ACOUSTIC_ID_KEY', 'YOUTUBE_API_KEY'];
 
 @injectable()
 class Config {
@@ -15,6 +15,7 @@ class Config {
     url: string;
   };
   youtubeUrl: string;
+  defaultYoutubeApiKey: string;
   youtubeSearch: string;
   title: string;
   supportedFormats: string[];
@@ -44,12 +45,12 @@ class Config {
 
     this.validateEnv();
 
-    this.sentryDsn = process.env.SENTRY_DSN;
-
     this.acousticId = {
       key: process.env.ACOUSTIC_ID_KEY,
       url: 'https://api.acoustid.org/v2/lookup'
     };
+
+    this.defaultYoutubeApiKey = process.env.YOUTUBE_API_KEY;
   }
 
   private validateEnv(): void {

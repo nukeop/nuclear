@@ -38,7 +38,7 @@ class DownloadIpcCtrl {
         onProgress: (progress) => {
           event.sender.send('download-progress', {
             uuid: data.uuid,
-            progress
+            progress: progress.percent
           });
         }
       });
