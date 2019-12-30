@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import electronDl, { download, Progress } from 'electron-dl';
+import registerDownloader, { download, Progress } from 'electron-dl';
 import { inject, injectable } from 'inversify';
 import fetch from 'node-fetch';
 import _ from 'lodash';
@@ -8,7 +8,6 @@ import ytdl from 'ytdl-core';
 import Store from '../store';
 import Config from '../config';
 import Window from '../window';
-import Logger, { mainLogger } from '../logger';
 
 interface DownloadParams {
   query: any;
@@ -27,9 +26,8 @@ class Download {
     @inject(Window) private window: Window,
     @inject(Store) private store: Store,
     @inject(Config) private config: Config,
-    @inject(mainLogger) private logger: Logger
   ) {
-    electronDl();
+    registerDownloader();
   }
 
   async youtubeSearch(query: any): Promise<any> {
@@ -60,7 +58,7 @@ class Download {
     const formatInfo = _.head(videoInfo.formats.filter(e => (e.itag as unknown) === 140)) as ytdl.videoFormat;
     const streamUrl = formatInfo.url;
 
-    return download(this.window, streamUrl, {
+    return download(this.window.getBrowserWindow(), streamUrl, {
       filename: filename + `.${_.get(formatInfo, 'container')}`,
       directory: this.store.getOption('downloads.dir'),
       onStarted: onStart,

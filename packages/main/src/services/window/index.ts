@@ -29,21 +29,21 @@ const urlMapper: Record<Env, string> = {
  * @see {@link https://electronjs.org/docs/api/browser-window}
  */
 @injectable()
-class Window extends BrowserWindow {
-  private config: Config;
-  private logger: Logger;
+class Window {
+  private browserWindow: BrowserWindow;
 
   constructor(
-    @inject(Config) config: Config,
+    @inject(Platform) private platform: Platform,
+    @inject(Config) private config: Config,
+    @inject(mainLogger) private logger: Logger,
     @inject(HttpApi) httpApi: HttpApi,
-    @inject(Platform) platform: Platform,
-    @inject(Store) store: Store,
-    @inject(mainLogger) logger: Logger
+    @inject(Store) store: Store
   ) {
     const iconPath = config.isProd() ? 'resources' : '../resources/media';
     let icon = nativeImage.createFromPath(path.resolve(__dirname, iconPath, 'icon.png'));
 
-    super({
+    this.browserWindow = new BrowserWindow({
+
       title: config.title,
       width: 1366,
       height: 768,
@@ -58,17 +58,14 @@ class Window extends BrowserWindow {
       }
     });
 
-    this.config = config;
-    this.logger = logger;
-
     if (platform.isMac()) {
       app.dock.setIcon(icon);
       icon = nativeImage.createFromPath(path.resolve(__dirname, iconPath, 'icon_apple.png'));
     }
 
     if (platform.isWindows()) {
-      this.flashFrame(true);
-      this.once('focus', () => this.flashFrame(false));
+      this.browserWindow.flashFrame(true);
+      this.browserWindow.once('focus', () => this.browserWindow.flashFrame(false));
     }
 
     const trayMenu = Menu.buildFromTemplate([
@@ -87,10 +84,40 @@ class Window extends BrowserWindow {
     tray.setTitle(config.title);
     tray.setToolTip(config.title);
     tray.setContextMenu(trayMenu);
+
+    this.browserWindow.once('ready-to-show', () => {
+      this.browserWindow.show();
+
+      config.isDev() && this.browserWindow.webContents.openDevTools();
+    });
+  }
+
+  focus() {
+    this.browserWindow.focus();
+  }
+
+  getBrowserWindow() {
+    return this.browserWindow;
   }
 
   load() {
-    this.loadURL(urlMapper[this.config.env]);
+    this.browserWindow.loadURL(urlMapper[this.config.env]);
+  }
+
+  minimize() {
+    this.browserWindow.minimize();
+  }
+
+  maximize() {
+    if (this.platform.isMac()) {
+      this.browserWindow.isFullScreen() ? this.browserWindow.setFullScreen(false) : this.browserWindow.setFullScreen(true);
+    } else {
+      this.browserWindow.isMaximized() ? this.browserWindow.unmaximize() : this.browserWindow.maximize();
+    }
+  }
+
+  setTitle(title: string) {
+    this.browserWindow.setTitle(title);
   }
 
   async installDevTools() {
