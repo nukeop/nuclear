@@ -5,6 +5,7 @@ import { inject, injectable } from 'inversify';
 import _ from 'lodash';
 
 import Logger, { mainLogger } from '../logger';
+import Config from '../config';
 
 /**
  * Wrapper around electron-store
@@ -12,8 +13,15 @@ import Logger, { mainLogger } from '../logger';
  */
 @injectable()
 class Store extends ElectronStore {
-  constructor(@inject(mainLogger) private logger: Logger) {
+  constructor(
+    @inject(mainLogger) private logger: Logger,
+    @inject(Config) private config: Config
+  ) {
     super();
+
+    if (!this.getOption('yt.apiKey')) {
+      this.setOption('yt.apiKey', this.config.defaultYoutubeApiKey);
+    }
 
     this.logger.log(`Initialized settings store at ${this.path}`);
   }

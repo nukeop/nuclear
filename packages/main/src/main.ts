@@ -28,11 +28,6 @@ app.on('ready', async () => {
     
     container.listen();
     window.load();
-
-    window.once('ready-to-show', () => {
-      window.show();
-      config.isDev() && window.webContents.openDevTools();
-    });
   } catch (err) {
     logger.error('something fail during app bootstrap');
     logger.error(err);
