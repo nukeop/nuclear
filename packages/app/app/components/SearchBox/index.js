@@ -1,7 +1,6 @@
 import React, {useCallback, useState} from 'react';
-import classnames from 'classnames';
-import FontAwesome from 'react-fontawesome';
 import DebounceInput from 'react-debounce-input';
+import { Icon } from 'semantic-ui-react'; 
 
 import styles from './styles.scss';
 import { useTranslation } from 'react-i18next';
@@ -24,7 +23,7 @@ const SearchBox = ({ handleSearch, loading }) => {
 
   return (
     <div className={styles.search_box_container}>
-      <FontAwesome name='search' />
+      <Icon name='search' />
       <div className='form'>
         <DebounceInput
           placeholder={t('placeholder')}
@@ -34,7 +33,7 @@ const SearchBox = ({ handleSearch, loading }) => {
           onKeyDown={handleKeyDown}
           autoFocus
         />
-        <FontAwesome name='spinner' pulse className={classnames({loading})} />
+        <Icon name='spinner' loading={ loading } />
       </div>
     </div>
   );
