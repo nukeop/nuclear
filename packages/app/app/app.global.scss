@@ -45,6 +45,10 @@ a.disabled {
   }
 }
 
+table {
+  border-collapse: collapse;
+}
+
 ::-webkit-scrollbar {
   width: 0.5rem !important;
 }
