@@ -1,6 +1,6 @@
 import { NuclearStatus } from '@nuclear/common';
 import express from 'express';
-import { ipcMain, Event } from 'electron';
+import { ipcMain, Event, BrowserWindow } from 'electron';
 import { Validator } from 'express-json-validator-middleware';
 import swagger, { ISwaggerizedRouter } from 'swagger-spec-express';
 
@@ -10,7 +10,7 @@ import { getStandardDescription } from '../swagger';
 
 const { validate } = new Validator({ allErrors: true });
 
-export function playerRouter(rendererWindow: Event['sender']): ISwaggerizedRouter {
+export function playerRouter(rendererWindow: BrowserWindow['webContents']): ISwaggerizedRouter {
 
   const router = express.Router() as ISwaggerizedRouter;
   

@@ -23,6 +23,19 @@ class LocalLibraryDb extends ElectronStore {
     logger.log(`Initialized library index at ${ this.path }`);
   }
 
+  getLocalFolders(): string[] {
+    return this.get('localFolders') || [];
+  }
+
+  addLocalFolder(folder: string) {
+    const localFolders = this.get('localFolders') || [];
+    if (localFolders.includes(folder)) {
+      return;
+    };
+    localFolders.push(folder);
+    this.set('localFolders', localFolders);
+  }
+
   byArtist(): Record<string, NuclearBrutMeta[]> {
     const cache: LocalMeta = this.get('localMeta');
 
@@ -52,6 +65,12 @@ class LocalLibraryDb extends ElectronStore {
       .pop();
 
     return result;
+  }
+
+  addOneToCache(meta: NuclearBrutMeta) {
+    const cache: LocalMeta = this.get('localMeta') || {};
+    cache[meta.uuid] = meta;
+    this.set('localMeta', meta);
   }
 
   updateCache(baseFiles: string[], formattedMetas: NuclearBrutMeta[]) {

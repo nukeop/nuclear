@@ -1,10 +1,8 @@
 import NuclearApi from '../../interfaces/nuclear-api';
-import { Event } from 'electron';
 import { injectable } from 'inversify';
 
 @injectable()
 class WindowsMediaService implements NuclearApi {
-  rendererWindow: Event['sender'];
   onPause() {}
   onPlay() {}
   pause() {}
@@ -26,20 +24,21 @@ export default WindowsMediaService;
 // import Ipc from '../ipc';
 // import Config from '../config';
 // import NuclearApi from '../../interfaces/nuclear-api';
+// import Window from '../window';
 
 // @injectable()
 // class WindowsMediaService implements NuclearApi {
 //   private controls: any;
-//   rendererWindow: Event['sender'];
 
 //   constructor(
 //     @inject(Config) private config: Config,
-//     @inject(Ipc) private ipc: IpcMain
+//     @inject(Ipc) private ipc: IpcMain,
+//     @inject(Window) private window: Window
 //   ) {}
 
 //   private getPlayingStatus(): Promise<NuclearStatus> {
 //     return new Promise(resolve => {
-//       this.rendererWindow.send('playing-status');
+//       this.window.send('playing-status');
 //       this.ipc.once('playing-status', (evt: Event, data: NuclearStatus) => {
 //         resolve(data);
 //       });
@@ -47,23 +46,23 @@ export default WindowsMediaService;
 //   }
 
 //   onPlay() {
-//     this.rendererWindow.send('play');
+//     this.window.send('play');
 //   }
   
 //   onPause() {
-//     this.rendererWindow.send('pause');
+//     this.window.send('pause');
 //   }
 
 //   onStop() {
-//     this.rendererWindow.send('stop');
+//     this.window.send('stop');
 //   }
 
 //   onNext() {
-//     this.rendererWindow.send('next');
+//     this.window.send('next');
 //   }
 
 //   onPrevious() {
-//     this.rendererWindow.send('previous');
+//     this.window.send('previous');
 //   }
 
 //   play() {

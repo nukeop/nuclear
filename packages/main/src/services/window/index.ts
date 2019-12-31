@@ -2,13 +2,14 @@ import { app, nativeImage, BrowserWindow, Menu, Tray } from 'electron';
 import { inject, injectable } from 'inversify';
 import path from 'path';
 import url from 'url';
+import _ from 'lodash';
 
 import { Env } from '../../utils/env';
 import Config from '../config';
-import HttpApi from '../http';
 import Logger, { mainLogger } from '../logger';
 import Platform from '../platform';
 import Store from '../store';
+import LocalLibrary from '../local-library';
 
 const urlMapper: Record<Env, string> = {
   [Env.DEV]: url.format({
@@ -31,19 +32,19 @@ const urlMapper: Record<Env, string> = {
 @injectable()
 class Window {
   private browserWindow: BrowserWindow;
+  private isReady: Promise<void>;
+  private resolve: () => void;
 
   constructor(
-    @inject(Platform) private platform: Platform,
     @inject(Config) private config: Config,
+    @inject(LocalLibrary) private localLibrary: LocalLibrary,
     @inject(mainLogger) private logger: Logger,
-    @inject(HttpApi) httpApi: HttpApi,
+    @inject(Platform) private platform: Platform,
     @inject(Store) store: Store
   ) {
-    const iconPath = config.isProd() ? 'resources' : '../resources/media';
-    let icon = nativeImage.createFromPath(path.resolve(__dirname, iconPath, 'icon.png'));
+    const icon = nativeImage.createFromPath(config.icon);
 
     this.browserWindow = new BrowserWindow({
-
       title: config.title,
       width: 1366,
       height: 768,
@@ -51,16 +52,16 @@ class Window {
       icon,
       show: false,
       webPreferences: {
-        // required by electron-timber
         nodeIntegration: true,
         webSecurity: config.isProd(),
-        additionalArguments: [store.getOption('disableGPU') && '--disable-gpu']
+        additionalArguments: [
+          store.getOption('disableGPU') && '--disable-gpu'
+        ]
       }
     });
 
     if (platform.isMac()) {
       app.dock.setIcon(icon);
-      icon = nativeImage.createFromPath(path.resolve(__dirname, iconPath, 'icon_apple.png'));
     }
 
     if (platform.isWindows()) {
@@ -68,28 +69,23 @@ class Window {
       this.browserWindow.once('focus', () => this.browserWindow.flashFrame(false));
     }
 
-    const trayMenu = Menu.buildFromTemplate([
-      {
-        label: 'Quit',
-        type: 'normal',
-        click: async () => {
-          await httpApi.close();
-
-          app.quit();
-        }
-      }
-    ]);
-
-    const tray = new Tray(icon);
-    tray.setTitle(config.title);
-    tray.setToolTip(config.title);
-    tray.setContextMenu(trayMenu);
+    this.isReady = new Promise((resolve) => {
+      this.resolve = resolve;
+    })
 
     this.browserWindow.once('ready-to-show', () => {
       this.browserWindow.show();
 
-      config.isDev() && this.browserWindow.webContents.openDevTools();
+      if (config.isDev()) {
+        this.browserWindow.webContents.openDevTools();
+      }
+
+      this.resolve();
     });
+  }
+
+  send(event: string, param?: any): void {
+    this.browserWindow.webContents.send(event, param);
   }
 
   focus() {
@@ -102,6 +98,7 @@ class Window {
 
   load() {
     this.browserWindow.loadURL(urlMapper[this.config.env]);
+    return this.isReady;
   }
 
   minimize() {

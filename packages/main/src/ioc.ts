@@ -18,6 +18,7 @@ import Platform from './services/platform';
 import Store from './services/store';
 import Window from './services/window';
 import SystemApi from './services/system-api';
+import TrayMenu from './services/trayMenu';
 
 import { ServiceProvider } from './utils/types';
 
@@ -32,6 +33,7 @@ const services: ServiceProvider[] = [
   { useClass: Window },
   { useClass: Platform },
   { useClass: SystemApi },
+  { useClass: TrayMenu },
 
   { provide: ipc, useValue: ipcMain },
   { provide: mainLogger, useValue: new Logger() },

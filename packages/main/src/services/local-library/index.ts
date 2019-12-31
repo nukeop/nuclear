@@ -8,6 +8,7 @@ import path from 'path';
 import asyncPool from 'tiny-async-pool';
 import { promisify } from 'util';
 import uuid from 'uuid/v4';
+import fs from 'fs';
 
 import AcousticId from '../acoustic-id';
 import Config from '../config';
@@ -52,15 +53,47 @@ class LocalLibrary {
               common.picture[0].format
             };base64,${common.picture[0].data.toString('base64')}`
           }
-          : undefined
-      ]
+          : undefined,
+      ],
     };
+  }
+
+  /**
+   * Get meta for a single file
+   */
+  async getSingleMeta(filePath: string): Promise<any> {
+    if (!this.config.supportedFormats.includes(path.extname(filePath).split('.')[1])) {
+      throw new Error('unsupported file');
+    }
+
+    const fileExist = await promisify(fs.exists)(filePath);
+    if (!fileExist) {
+      throw new Error('unknown file');
+    }
+
+    const formattedMeta = this.formatMeta(await parseFile(filePath), filePath);
+  
+    if (!formattedMeta.name) {
+      await this.fetchAcousticIdBatch([formattedMeta]);
+    }
+
+    // const added = this.store.addLocalFolder(path.dirname(filePath));
+    // if (added) {
+    //   this.store.addOneToCache(formattedMeta);
+    // }
+
+    return {
+      ...formattedMeta,
+      image: undefined,
+      artist: _.get(formattedMeta, ['artist', 'name']),
+      thumbnail: _.get(formattedMeta, ['image', 0, '#text'])
+    }
   }
 
   /**
    * fetch acousticId metadata 10 by 10
    */
-  fetchAcousticIdBatch(metas: NuclearBrutMeta[], onProgress: (progress: number, total: number) => void): Promise<void[]> {
+  fetchAcousticIdBatch(metas: NuclearBrutMeta[], onProgress?: (progress: number, total: number) => void): Promise<void[]> {
     let scanProgress = 0;
     const scanTotal = metas.length;
 
@@ -98,7 +131,7 @@ class LocalLibrary {
    * scan folders on local machine, extract metadata and store it to a memory cache
    */
   async scanFoldersAndGetMeta(onProgress: (progress: number, total: number) => void): Promise<Record<string, NuclearBrutMeta>> {
-    const directories: string[] = this.store.get('localFolders');
+    const directories: string[] = this.store.getLocalFolders();
     const baseFiles = await Promise.all(
       _.flatMap(
         this.config.supportedFormats,
@@ -109,6 +142,7 @@ class LocalLibrary {
     ).then(result => result.flat());
   
     const cache = this.store.getCache() || {};
+
     const files = baseFiles.filter(
       file => !Object.values(cache)
           .map(({ path }) => path)

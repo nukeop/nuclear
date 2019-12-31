@@ -1,4 +1,4 @@
-import { Event } from 'electron';
+import { BrowserWindow } from 'electron';
 import express from 'express';
 import { Validator } from 'express-json-validator-middleware';
 import swagger, { ISwaggerizedRouter } from 'swagger-spec-express';
@@ -9,7 +9,7 @@ import Store from '../../../store';
 
 const { validate } = new Validator({ allErrors: true });
 
-export function equalizerRouter(store: Store, rendererWindow: Event['sender']): ISwaggerizedRouter {
+export function equalizerRouter(store: Store, rendererWindow: BrowserWindow['webContents']): ISwaggerizedRouter {
   const router = express.Router() as ISwaggerizedRouter;
 
   swagger.swaggerize(router);

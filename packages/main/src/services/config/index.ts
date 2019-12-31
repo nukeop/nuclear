@@ -9,7 +9,6 @@ const MANDATORY_ENV = ['ACOUSTIC_ID_KEY', 'YOUTUBE_API_KEY'];
 
 @injectable()
 class Config {
-  sentryDsn: string;
   acousticId: {
     key: string;
     url: string;
@@ -20,6 +19,8 @@ class Config {
   title: string;
   supportedFormats: string[];
   env: Env;
+  icon: string;
+  macIcon: string;
 
   constructor(
     @inject(mainLogger) logger: Logger
@@ -36,6 +37,10 @@ class Config {
       'ogg',
       'wav'
     ];
+    const iconPath = path.resolve(__dirname, this.isProd() ? 'resources' : '../resources/media');
+
+    this.icon = path.resolve(iconPath, 'icon.png');
+    this.macIcon = path.resolve(iconPath, 'icon_apple.png')
 
     dotenv.config({
       path: path.resolve(__dirname, '.env')
