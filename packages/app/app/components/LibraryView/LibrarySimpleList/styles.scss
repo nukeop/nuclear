@@ -6,10 +6,23 @@
 
   .thead {
     th {
+      position: relative;
       color: rgba(250, 250, 250, 0.5) !important;
       font-size: 20px !important;
       background: transparent !important;
       border-bottom: 0.5px solid rgba(250, 250, 250, 0.5) !important;
+
+      &:last-child {
+        text-align: right;
+      }
+
+      i {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        width: 100%;
+      }
     }
     // since virtualization is used, we have to pre-define the column widths
     // (the width of the third column, title, is whatever is left over)
