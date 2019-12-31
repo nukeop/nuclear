@@ -46,17 +46,17 @@ a.disabled {
 }
 
 ::-webkit-scrollbar {
-  width: 0.5rem;
+  width: 0.5rem !important;
 }
 
 ::-webkit-scrollbar-track {
-  background-color: $background;
+  background-color: $background !important;
   border-radius: 0;
 }
 
 ::-webkit-scrollbar-thumb {
-  border-radius: 0.5rem;
-  background-color: $background2;
+  border-radius: 0.5rem !important;
+  background-color: $background2 !important;
 }
 
 //Semantic UI section
