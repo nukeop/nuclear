@@ -2,6 +2,7 @@ import dotenv from 'dotenv';
 import { injectable, inject } from 'inversify';
 import path from 'path';
 
+import pkg from '../../../../../package.json';
 import { Env } from '../../utils/env';
 import Logger, { mainLogger } from '../logger';
 
@@ -29,14 +30,8 @@ class Config {
     this.title = 'Nuclear Music Player';
     this.youtubeUrl = 'https://www.youtube.com/watch';
     this.youtubeSearch = 'https://www.googleapis.com/youtube/v3/search?part=id,snippet&type=video&maxResults=50&q=';
-    this.supportedFormats = [
-      'aac',
-      'flac',
-      'm4a',
-      'mp3',
-      'ogg',
-      'wav'
-    ];
+    this.supportedFormats = pkg.build.fileAssociations.map(({ ext }) => ext);
+
     const iconPath = path.resolve(__dirname, this.isProd() ? 'resources' : '../resources/media');
 
     this.icon = path.resolve(iconPath, 'icon.png');

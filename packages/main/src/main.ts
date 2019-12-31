@@ -40,7 +40,7 @@ app.on('ready', async () => {
     if (config.isProd() && process.argv[1]) {
       try {  
         const meta = await localLibrary.getSingleMeta(path.resolve(process.cwd(), process.argv[1]));
-        logger.log('playing local file => ', meta.name);
+
         window.send('play-startup-track', meta);
       } catch (err) {
         logger.error('Error trying to play audio file');

@@ -39,7 +39,7 @@
     "@typescript-eslint/eslint-plugin": "^2.13.0",
     "babel-eslint": "^10.0.3",
     "electron": "^4.2.11",
-    "electron-builder": "^21.2.0",
+    "electron-builder": "^20.44.4",
     "eslint": "^6.7.2",
     "eslint-plugin-node": "^9.1.0",
     "eslint-plugin-react": "^7.12.4",
@@ -95,6 +95,40 @@
     "releaseInfo": {
       "releaseName": "Nuclear ${env.GITHASH}"
     },
+    "fileAssociations": [
+      {
+        "ext": "mp3",
+        "mimeType": "audio/mp3"
+      },
+      {
+        "ext": "mp3",
+        "mimeType": "audio/mpeg"
+      },
+      {
+        "ext": "ogg",
+        "mimeType": "audio/ogg"
+      },
+      {
+        "ext": "aac",
+        "mimeType": "audio/aac"
+      },
+      {
+        "ext": "flac",
+        "mimeType": "audio/flac"
+      },
+      {
+        "ext": "wav",
+        "mimeType": "audio/x-wav"
+      },
+      {
+        "ext": "m4a",
+        "mimeType": "audio/m4a"
+      },
+      {
+        "ext": "weba",
+        "mimeType": "audio/weba"
+      }
+    ],
     "linux": {
       "desktop": {
         "Name": "Nuclear",
