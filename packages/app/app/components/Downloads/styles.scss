@@ -1,10 +1,14 @@
 @import '../../mixin.scss';
 
 .downloads_container {
+  display: flex;
   position: relative;
   height: 100%;
+  flex-flow: column;
   
   .empty_state {
     @include emptyState;
+    height: auto;
+    flex: 1 1 auto;
   }
 }
