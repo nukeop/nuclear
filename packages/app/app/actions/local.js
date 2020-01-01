@@ -20,10 +20,22 @@ function updateLocalFolders(folders) {
   };
 }
 
+function removeChildPath(folders) {
+  return folders.filter(folder => {
+    return folders.reduce((acc, file) => {
+      return (acc && folder === file) || (acc && !folder.startsWith(file));
+    }, true);
+  });
+}
+
 export function addLocalFolders(folders, send = true) {
   return (dispatch, getState) => {
     const stateFolders = getState().local.folders || [];
-    const newFolders = [...stateFolders, ...folders];
+
+    const newFolders = removeChildPath([
+      ...stateFolders,
+      ...folders
+    ]);
     send && setLocalFolders(newFolders);
     dispatch(updateLocalFolders(newFolders));
   };

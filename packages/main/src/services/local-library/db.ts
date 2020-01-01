@@ -23,9 +23,6 @@ class LocalLibraryDb extends ElectronStore {
   ) {
     super({ name: 'nuclear-local-library' });
 
-    this.set('localFolders', null);
-    this.set('localMeta', null);
-
     if (config.isProd() && process.argv[1]) {
       this.addLocalFolder(
         path.dirname(
@@ -33,6 +30,7 @@ class LocalLibraryDb extends ElectronStore {
         )
       );
     }
+  
     logger.log(`Initialized library index at ${ this.path }`);
   }
 
@@ -49,10 +47,13 @@ class LocalLibraryDb extends ElectronStore {
     if (localFolders.includes(folder)) {
       return;
     }
-    if (this.isNotParentOfFolder(folder)) {
-      localFolders.push(folder);
-      this.set('localFolders', localFolders);
+  
+    if (this.isParentOfFolder(folder)) {
+      localFolders.filter(file => !file.startsWith(folder));
     }
+
+    localFolders.push(folder);
+    this.set('localFolders', localFolders);
   }
 
   updateCache(formattedMetas: NuclearBrutMeta[], baseFiles?: string[]): LocalMeta {
@@ -74,7 +75,7 @@ class LocalLibraryDb extends ElectronStore {
     return cache;
   }
 
-  byArtist(): Record<string, NuclearBrutMeta[]> {
+  private byArtist(): Record<string, NuclearBrutMeta[]> {
     const cache = this.getCache();
 
     return _.groupBy(Object.values(cache), track => track.artist.name);
@@ -105,16 +106,16 @@ class LocalLibraryDb extends ElectronStore {
     return result;
   }
 
-  isNotParentOfFolder(filePath: string): boolean {
+  private isParentOfFolder(filePath: string): boolean {
     const localFolders = this.getLocalFolders();
 
-    return localFolders.reduce<boolean>((acc, folder) => {
+    return !localFolders.reduce<boolean>((acc, folder) => {
       return acc && !filePath.includes(folder);
     }, true);
   }
 
   filterParentFolder(folders: string[]): string[] {
-    return folders.filter((folder) => this.isNotParentOfFolder(folder));
+    return folders.filter((folder) => !this.isParentOfFolder(folder));
   }
 
   filterNotStored(filesPath: string[]): string[] {
