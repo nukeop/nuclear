@@ -1,6 +1,6 @@
 import React from 'react';
 import { expect } from 'chai';
-import { mount, shallow } from 'enzyme';
+import { mount } from 'enzyme';
 import { describe, it, before } from 'mocha';
 import { Modal } from 'semantic-ui-react';
 import i18n from 'i18next';

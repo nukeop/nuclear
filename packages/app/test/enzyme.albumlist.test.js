@@ -3,7 +3,6 @@ import chai from 'chai';
 import spies from 'chai-spies';
 import { shallow, mount } from 'enzyme';
 import { describe, it } from 'mocha';
-import { Loader } from 'semantic-ui-react';
 import { Card } from '@nuclear/ui';
 
 import AlbumList from '../app/components/AlbumList';

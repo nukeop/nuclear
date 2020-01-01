@@ -13,7 +13,7 @@ class ArtistViewContainer extends React.Component {
     super(props);
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.props.actions.artistReleasesSearch(this.props.match.params.artistId);
   }
 

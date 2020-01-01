@@ -19,7 +19,7 @@ const LibrarySimpleList = ({
   sortBy,
   direction,
   handleSort,
-  estimateItemSize,
+  // estimateItemSize,
   t
 }) => (
   <ReactList

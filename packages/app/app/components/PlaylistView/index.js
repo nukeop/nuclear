@@ -44,7 +44,7 @@ class PlaylistView extends React.Component {
 
   renderOptions (
     trigger,
-    playlist,
+    playlist
   ) {
     return (
       <ContextPopup
@@ -128,7 +128,7 @@ class PlaylistView extends React.Component {
             { this.renderPlayButton(playlist) }
             { this.renderOptions(
               popupTrigger,
-              playlist,
+              playlist
             )
             }
           </div>

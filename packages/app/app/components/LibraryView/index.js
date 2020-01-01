@@ -55,8 +55,8 @@ const LibraryView = ({
             <Input
               inverted
               transparent
-              icon="search"
-              iconPosition="left"
+              icon='search'
+              iconPosition='left'
               placeholder={t('filter-placeholder')}
               onChange={actions.updateFilter}
             />

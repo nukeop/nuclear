@@ -1,5 +1,5 @@
 import Sound from 'react-hifi';
-import { sendPaused, sendPlay, sendVolume } from '../mpris';
+import { sendPlay, sendVolume } from '../mpris';
 
 export const START_PLAYBACK = 'START_PLAYBACK';
 export const PAUSE_PLAYBACK = 'PAUSE_PLAYBACK';
@@ -38,10 +38,10 @@ export function togglePlayback(currentState, sendPaused) {
 
 export function resetPlayer(sendPaused) {
   return dispatch => {
-    dispatch(updatePlaybackProgress(0,0));
+    dispatch(updatePlaybackProgress(0, 0));
     dispatch(pausePlayback(sendPaused));
     dispatch(updateStreamLoading(false));
-  }
+  };
 }
 
 export function updatePlaybackProgress(progress, seek) {

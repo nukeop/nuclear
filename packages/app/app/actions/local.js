@@ -17,7 +17,7 @@ function updateLocalFolders(folders) {
   return {
     type: UPDATE_LOCAL_FOLDERS,
     payload: { folders }
-  }
+  };
 }
 
 export function addLocalFolders(folders) {
@@ -26,7 +26,7 @@ export function addLocalFolders(folders) {
     const newFolders = [...stateFolders, ...folders];
     setLocalFolders(newFolders);
     dispatch(updateLocalFolders(newFolders));
-  }
+  };
 }
 
 export function removeLocalFolder(folder) {
@@ -34,7 +34,7 @@ export function removeLocalFolder(folder) {
     const folders = _.filter(getState().local.folders, f => f !== folder);
     setLocalFolders(folders);
     dispatch(updateLocalFolders(folders));
-  }
+  };
 }
 
 export function scanLocalFolders() {

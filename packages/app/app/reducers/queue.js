@@ -83,7 +83,7 @@ function reduceRepositionSong(state, action) {
 
 
   let newCurrentSong = state.currentSong;
-  if (action.payload.itemFrom == state.currentSong) {
+  if (action.payload.itemFrom === state.currentSong) {
     newCurrentSong = action.payload.itemTo;
   } else if (action.payload.itemFrom < action.payload.itemTo) {
     // moving top to bottom and

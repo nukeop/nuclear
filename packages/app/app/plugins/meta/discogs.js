@@ -9,15 +9,15 @@ class DiscogsMetaProvider extends MetaProvider {
     this.image = null;
   }
 
-  searchForArtists(query) {
+  searchForArtists() {
     return new Promise();
   }
 
-  searchForReleases(query) {
+  searchForReleases() {
     return new Promise();
   }
 
-  searchAll(query) {
+  searchAll() {
     return new Promise();
   }
 }

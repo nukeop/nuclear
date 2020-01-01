@@ -10,7 +10,7 @@
     "url": "git+https://github.com/nukeop/nuclear.git"
   },
   "scripts": {
-    "lint:fix": "eslint lib --fix",
+    "lint": "eslint lib --fix",
     "test": "eslint lib test && ava -v"
   },
   "bugs": {
