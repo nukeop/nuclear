@@ -69,6 +69,8 @@ class IpcContainer extends React.Component {
         this.props.streamProviders.filter(({ sourceName }) => sourceName === 'Local'),
         track
       );
+
+      this.props.history.push('/library');
     });
 
     ipcRenderer.on('download-started', (event, data) => {
