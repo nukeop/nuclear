@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
 // This file is here just to make webpac NormalModuleReplacementPlugin works with typescript
 import NuclearApi from '../../interfaces/nuclear-api';
 
