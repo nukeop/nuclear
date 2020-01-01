@@ -1,6 +1,7 @@
 import dotenv from 'dotenv';
 import { injectable, inject } from 'inversify';
 import path from 'path';
+import _ from 'lodash';
 
 import pkg from '../../../../../package.json';
 import { Env } from '../../utils/env';
@@ -30,12 +31,12 @@ class Config {
     this.title = 'Nuclear Music Player';
     this.youtubeUrl = 'https://www.youtube.com/watch';
     this.youtubeSearch = 'https://www.googleapis.com/youtube/v3/search?part=id,snippet&type=video&maxResults=50&q=';
-    this.supportedFormats = pkg.build.fileAssociations.map(({ ext }) => ext);
+    this.supportedFormats = _.uniq(pkg.build.fileAssociations.map(({ ext }) => ext));
 
     const iconPath = path.resolve(__dirname, this.isProd() ? 'resources' : '../resources/media');
 
     this.icon = path.resolve(iconPath, 'icon.png');
-    this.macIcon = path.resolve(iconPath, 'icon_apple.png')
+    this.macIcon = path.resolve(iconPath, 'icon_apple.png');
 
     dotenv.config({
       path: path.resolve(__dirname, '.env')

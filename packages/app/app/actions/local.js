@@ -20,11 +20,11 @@ function updateLocalFolders(folders) {
   };
 }
 
-export function addLocalFolders(folders) {
+export function addLocalFolders(folders, send = true) {
   return (dispatch, getState) => {
     const stateFolders = getState().local.folders || [];
     const newFolders = [...stateFolders, ...folders];
-    setLocalFolders(newFolders);
+    send && setLocalFolders(newFolders);
     dispatch(updateLocalFolders(newFolders));
   };
 }

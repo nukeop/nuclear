@@ -1,7 +1,5 @@
 import { inject } from 'inversify';
 import { IpcMessageEvent } from 'electron';
-import _ from 'lodash';
-import path from 'path';
 
 import LocalLibrary from '../services/local-library';
 import { ipcController, ipcEvent } from '../utils/decorators';
@@ -27,7 +25,9 @@ class LocalIpcCtrl {
    */
   @ipcEvent('set-localfolders')
   setLocalFolders(event: IpcMessageEvent, localFolders: string[]) {
-    this.localLibraryDb.set('localFolders', localFolders);
+    localFolders.forEach(folder => {
+      this.localLibraryDb.addLocalFolder(folder);
+    });
   }
 
   /**
@@ -52,19 +52,10 @@ class LocalIpcCtrl {
   }
 
   @ipcEvent('queue-drop')
-  async addTrack(event: IpcMessageEvent, filesPath: string[]) {
-    const metas = await Promise.all(
-      filesPath.map(filePath => this.localLibrary.getSingleMeta(filePath))
-    );
+  async addTracks(event: IpcMessageEvent, filesPath: string[]) {
+    const metas = await this.localLibrary.getMetas(filesPath);
 
-    _.uniq(
-      filesPath.map(filePath => path.dirname(filePath))
-    ).forEach(folder => {
-      this.localLibraryDb.addLocalFolder(folder)
-    });
-
-    await this.localLibrary.scanFoldersAndGetMeta();
-
+    event.sender.send('local-files', this.localLibraryDb.getCache());
     event.sender.send('queue-add', metas);
   }
 }

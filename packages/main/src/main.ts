@@ -39,9 +39,12 @@ app.on('ready', async () => {
     // if args is pass to  nuclear command and its a path to a supported file, just play it.
     if (config.isProd() && process.argv[1]) {
       try {
-        const meta = await localLibrary.getSingleMeta(path.resolve(process.cwd(), process.argv[1]));
+        const { metas, folders } = await localLibrary.getMetas([path.resolve(process.cwd(), process.argv[1])]);
 
-        window.send('play-startup-track', meta);
+        window.send('play-startup-track', {
+          meta: metas[0],
+          folders
+        });
       } catch (err) {
         logger.error('Error trying to play audio file');
         logger.error(err);
