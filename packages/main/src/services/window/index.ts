@@ -83,7 +83,7 @@ class Window {
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   send(event: string, ...param: any[]): void {
-    this.browserWindow.webContents.send(event, param);
+    this.browserWindow.webContents.send(event, ...param);
   }
 
   focus() {

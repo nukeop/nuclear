@@ -40,16 +40,8 @@ class LocalLibraryDb extends ElectronStore {
     return this.get('localFolders') || [];
   }
 
-  isNotParentOfFolder(filePath: string): boolean {
-    const localFolders = this.getLocalFolders();
-
-    return localFolders.reduce<boolean>((acc, folder) => {
-      return acc && !filePath.includes(folder);
-    }, true);
-  }
-
-  filterParentFolder(folders: string[]): string[] {
-    return folders.filter((folder) => this.isNotParentOfFolder(folder));
+  getCache(): LocalMeta {
+    return this.get('localMeta') || {};
   }
 
   addLocalFolder(folder: string) {
@@ -61,6 +53,25 @@ class LocalLibraryDb extends ElectronStore {
       localFolders.push(folder);
       this.set('localFolders', localFolders);
     }
+  }
+
+  updateCache(formattedMetas: NuclearBrutMeta[], baseFiles?: string[]): LocalMeta {
+    const oldCache = this.getCache();
+
+    const cache = Object.values(oldCache)
+      .filter(({ path }) => baseFiles ? baseFiles.includes(path as string) : true)
+      .concat(formattedMetas)
+      .reduce(
+        (acc, item) => ({
+          ...acc,
+          [item.uuid]: item
+        }),
+        {}
+      );
+
+    this.set('localMeta', cache);
+
+    return cache;
   }
 
   byArtist(): Record<string, NuclearBrutMeta[]> {
@@ -94,27 +105,16 @@ class LocalLibraryDb extends ElectronStore {
     return result;
   }
 
-  updateCache(formattedMetas: NuclearBrutMeta[], baseFiles?: string[]): LocalMeta {
-    const oldCache = this.getCache();
+  isNotParentOfFolder(filePath: string): boolean {
+    const localFolders = this.getLocalFolders();
 
-    const cache = Object.values(oldCache)
-      .filter(({ path }) => baseFiles ? baseFiles.includes(path as string) : true)
-      .concat(formattedMetas)
-      .reduce(
-        (acc, item) => ({
-          ...acc,
-          [item.uuid]: item
-        }),
-        {}
-      );
-
-    this.set('localMeta', cache);
-
-    return cache;
+    return localFolders.reduce<boolean>((acc, folder) => {
+      return acc && !filePath.includes(folder);
+    }, true);
   }
 
-  getCache(): LocalMeta {
-    return this.get('localMeta') || {};
+  filterParentFolder(folders: string[]): string[] {
+    return folders.filter((folder) => this.isNotParentOfFolder(folder));
   }
 
   filterNotStored(filesPath: string[]): string[] {
@@ -128,13 +128,6 @@ class LocalLibraryDb extends ElectronStore {
     const cache = this.getCache();
 
     return Object.values(cache).filter(({ path }) => filePaths.includes(path));
-  }
-
-  isStored(path: string): boolean {
-    const cache = this.getCache();
-    const storedPath = Object.values(cache).map(({ path }) => path);
-
-    return storedPath.includes(path);
   }
 }
 
