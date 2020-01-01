@@ -19,6 +19,12 @@
     background: $background3;
   }
 
+  .file_icon {
+    font-size: 5em;
+    color: $green;
+    align-self: center;
+  }
+
   &.compact {
     .queue_menu_buttons {
       a:not(.compactButton) {

@@ -5,6 +5,8 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { withTranslation } from 'react-i18next';
 import { QueueItem, formatDuration } from '@nuclear/ui';
 import _ from 'lodash';
+import FontAwesome from 'react-fontawesome';
+
 
 import { getTrackDuration } from '../../utils';
 import { sendPaused } from '../../mpris';
@@ -18,9 +20,47 @@ import QueueMenu from './QueueMenu';
 class PlayQueue extends React.Component {
   constructor(props){
     super(props);
+
+    this.state = {
+      isFileHovered: false
+    };
   }
 
-  onDragEnd(result) {
+  onDropFile = (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+    const paths = [];
+  
+    for (let f of event.dataTransfer.files) {
+      paths.push(f.path);
+    }
+
+    this.setState({
+      isFileHovered: false
+    });
+  
+    ipcRenderer.send('queue-drop', paths);
+  }
+
+  onDragOverFile = (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+
+    this.setState({
+      isFileHovered: true
+    });
+  }
+
+  onDragEndFile = (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+
+    this.setState({
+      isFileHovered: false
+    });
+  }
+
+  onDragEnd = (result) => {
     const { source, destination } = result;
     // when dragging to non droppable area or back to same position
     if (!destination || source.index === destination.index) {
@@ -30,7 +70,7 @@ class PlayQueue extends React.Component {
     this.props.actions.repositionSong(result.source.index, result.destination.index);
   }
 
-  onAddToDownloads(track) {
+  onAddToDownloads = (track) => {
     const { actions, plugins, settings, t } = this.props;
     const { addToDownloads, info } = actions;
 
@@ -97,6 +137,7 @@ class PlayQueue extends React.Component {
   }
 
   render() {
+    const { isFileHovered } = this.state;
     let {
       compact,
       items,
@@ -116,8 +157,16 @@ class PlayQueue extends React.Component {
     } = this.props.actions;
 
     return (
-      <DragDropContext onDragEnd={this.onDragEnd.bind(this)}>
-        <div className={classnames(styles.play_queue_container, {compact})}>
+      <DragDropContext onDragEnd={this.onDragEnd}>
+        <div
+          onDragOver={this.onDragOverFile}
+          onDrop={this.onDropFile}
+          onDragLeave={this.onDragEndFile}
+          className={classnames(
+            styles.play_queue_container,
+            {compact}
+          )}
+        >
           <QueueMenu
             clearQueue={clearQueue}
             resetPlayer={resetPlayer}
@@ -125,7 +174,7 @@ class PlayQueue extends React.Component {
             updatePlaylist={updatePlaylist}
             toggleOption={toggleOption}
             addFavoriteTrack={addFavoriteTrack}
-            addToDownloads={this.onAddToDownloads.bind(this)}
+            addToDownloads={this.onAddToDownloads}
             currentSong={currentSong}
             success={success}
             settings={settings}
@@ -142,17 +191,19 @@ class PlayQueue extends React.Component {
                   classnames(
                     styles.play_queue_items,
                     styles.fade_in,
-                    {[`${styles.dragged_over}`]: snapshot.isDraggingOver}
+                    {[`${styles.dragged_over}`]: snapshot.isDraggingOver || isFileHovered}
                   )
                 }
                 {...provided.droppableProps}
               >
                 {this.renderQueueItems()}
                 {provided.placeholder}
+                {isFileHovered && (
+                  <FontAwesome name='plus' className={styles.file_icon} />
+                )}
               </div>
             )}
           </Droppable>
-
         </div>
       </DragDropContext>
     );

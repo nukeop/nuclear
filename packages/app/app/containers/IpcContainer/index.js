@@ -73,6 +73,13 @@ class IpcContainer extends React.Component {
       this.props.history.push('/library');
     });
 
+    ipcRenderer.on('queue-add', (event, queue) => {
+      this.props.actions.addPlaylistTracksToQueue(
+        this.props.streamProviders.filter(({ sourceName }) => sourceName === 'Local'),
+        queue
+      );
+    });
+
     ipcRenderer.on('download-started', (event, data) => {
       this.props.actions.onDownloadStarted(data);
     });

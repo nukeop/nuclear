@@ -1,5 +1,7 @@
 import { inject } from 'inversify';
 import { IpcMessageEvent } from 'electron';
+import _ from 'lodash';
+import path from 'path';
 
 import LocalLibrary from '../services/local-library';
 import { ipcController, ipcEvent } from '../utils/decorators';
@@ -47,6 +49,23 @@ class LocalIpcCtrl {
   @ipcEvent('local-search')
   async search(event: IpcMessageEvent, query: LocalSearchQuery) {
     event.returnValue = this.localLibraryDb.search(query);
+  }
+
+  @ipcEvent('queue-drop')
+  async addTrack(event: IpcMessageEvent, filesPath: string[]) {
+    const metas = await Promise.all(
+      filesPath.map(filePath => this.localLibrary.getSingleMeta(filePath))
+    );
+
+    _.uniq(
+      filesPath.map(filePath => path.dirname(filePath))
+    ).forEach(folder => {
+      this.localLibraryDb.addLocalFolder(folder)
+    });
+
+    await this.localLibrary.scanFoldersAndGetMeta();
+
+    event.sender.send('queue-add', metas);
   }
 }
 
