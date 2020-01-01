@@ -77,11 +77,6 @@ class LocalLibrary {
       await this.fetchAcousticIdBatch([formattedMeta]);
     }
 
-    // const added = this.store.addLocalFolder(path.dirname(filePath));
-    // if (added) {
-    //   this.store.addOneToCache(formattedMeta);
-    // }
-
     return {
       ...formattedMeta,
       image: undefined,
@@ -130,7 +125,7 @@ class LocalLibrary {
   /**
    * scan folders on local machine, extract metadata and store it to a memory cache
    */
-  async scanFoldersAndGetMeta(onProgress: (progress: number, total: number) => void): Promise<Record<string, NuclearBrutMeta>> {
+  async scanFoldersAndGetMeta(onProgress?: (progress: number, total: number) => void): Promise<Record<string, NuclearBrutMeta>> {
     const directories: string[] = this.store.getLocalFolders();
     const baseFiles = await Promise.all(
       _.flatMap(

@@ -3,8 +3,10 @@ import ElectronStore from 'electron-store';
 import { injectable, inject } from 'inversify';
 import _ from 'lodash';
 import url from 'url';
+import path from 'path';
 
 import Logger, { mainLogger } from '../logger';
+import Config from '../config';
 
 type LocalMeta = Record<string, NuclearBrutMeta>;
 
@@ -16,10 +18,18 @@ export interface LocalSearchQuery {
 @injectable()
 class LocalLibraryDb extends ElectronStore {
   constructor(
-    @inject(mainLogger) private logger: Logger
+    @inject(Config) config: Config,
+    @inject(mainLogger) logger: Logger
   ) {
     super({ name: 'nuclear-local-library' });
 
+    if (config.isProd() && process.argv[1]) {
+      this.addLocalFolder(
+        path.dirname(
+          path.resolve(process.cwd(), process.argv[1])
+        )
+      )
+    }
     logger.log(`Initialized library index at ${ this.path }`);
   }
 
@@ -65,12 +75,6 @@ class LocalLibraryDb extends ElectronStore {
       .pop();
 
     return result;
-  }
-
-  addOneToCache(meta: NuclearBrutMeta) {
-    const cache: LocalMeta = this.get('localMeta') || {};
-    cache[meta.uuid] = meta;
-    this.set('localMeta', meta);
   }
 
   updateCache(baseFiles: string[], formattedMetas: NuclearBrutMeta[]) {

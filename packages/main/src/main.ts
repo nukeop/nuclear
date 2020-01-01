@@ -38,7 +38,7 @@ app.on('ready', async () => {
 
     // if args is pass to  nuclear command and its a path to a supported file, just play it.
     if (config.isProd() && process.argv[1]) {
-      try {  
+      try {
         const meta = await localLibrary.getSingleMeta(path.resolve(process.cwd(), process.argv[1]));
 
         window.send('play-startup-track', meta);
