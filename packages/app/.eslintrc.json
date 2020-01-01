@@ -3,7 +3,8 @@
   "env": {
     "browser": true,
     "commonjs": true,
-    "es6": true
+    "es6": true,
+    "mocha": true
   },
   "globals": {
     "process": true,
@@ -16,5 +17,8 @@
     },
     "ecmaVersion": 2018,
     "sourceType": "module"
+  },
+  "rules": {
+    "react/no-unused-prop-types": "off"
   }
 }

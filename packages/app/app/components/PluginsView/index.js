@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { Dropdown, Segment } from 'semantic-ui-react';
 import { withTranslation } from 'react-i18next';
 import { compose, withHandlers } from 'recompose';
-import _ from 'lodash';
 
 import Header from '../Header';
 import {withDropdownOptions} from '../../hoc/withDropdownOptions';

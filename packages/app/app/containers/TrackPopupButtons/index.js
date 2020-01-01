@@ -20,7 +20,7 @@ const getTrackItem = track => ({
 });
 
 const TrackPopupButtons = ({
-  track,
+  // track,
   withAddToQueue,
   withPlayNow,
   withAddToFavorites,
@@ -126,11 +126,11 @@ export default compose(
         settings
       );
     },
-    handleAddToDownloads: ({ track, downloadsActions, toastActions, streamProviders }) => () => {
+    handleAddToDownloads: ({ track, settings, downloadsActions, toastActions, streamProviders }) => () => {
       const clonedTrack = safeAddUuid(track);
       ipcRenderer.send('start-download', clonedTrack);
-      actions.addToDownloads(streamProviders, clonedTrack);
-      actions.info(
+      downloadsActions.addToDownloads(streamProviders, clonedTrack);
+      toastActions.info(
         'Track added to downloads',
         `${track.artist.name} - ${track.name} has been added to downloads.`,
         <img src={getThumbnail(track)} />,

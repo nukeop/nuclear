@@ -25,7 +25,7 @@ interface NuclearApi {
   sendMetadata?(track: NuclearMeta): any;
   addTrack?(track: NuclearMeta): any;
   removeTrack?(uuid: string): any;
-  clearTrackList?(): any
+  clearTrackList?(): any;
   setVolume?(volume: number): any;
   setLoopStatus?(data: boolean): any;
 }

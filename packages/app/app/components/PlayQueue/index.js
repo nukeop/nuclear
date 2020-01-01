@@ -23,7 +23,7 @@ class PlayQueue extends React.Component {
   onDragEnd(result) {
     const { source, destination } = result;
     // when dragging to non droppable area or back to same position
-    if (!destination || source.index == destination.index) {
+    if (!destination || source.index === destination.index) {
       return;
     }
 
@@ -66,7 +66,6 @@ class PlayQueue extends React.Component {
                   <QueueItem
                     index={i}
                     track={el}
-                    duration={formatDuration}
                     isLoading={el.loading}
                     isCompact={this.props.compact}
                     isCurrent={this.props.currentSong === i}
@@ -81,7 +80,7 @@ class PlayQueue extends React.Component {
                         )
                       )
                     }
-                    resetPlayer={this.props.items.length == 1 ? this.props.actions.resetPlayer : undefined}
+                    resetPlayer={this.props.items.length === 1 ? this.props.actions.resetPlayer : undefined}
                     sendPaused={sendPaused}
                   />
                 }
