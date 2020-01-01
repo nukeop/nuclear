@@ -13,6 +13,7 @@ import AcousticId from '../acoustic-id';
 import Config from '../config';
 import Logger, { mainLogger } from '../logger';
 import LocalLibraryDb, { LocalMeta } from './db';
+import Window from '../window';
 
 export type ProgressHandler = (progress: number, total: number) => void
 
@@ -26,7 +27,8 @@ class LocalLibrary {
     @inject(Config) private config: Config,
     @inject(LocalLibraryDb) private store: LocalLibraryDb,
     @inject(AcousticId) private acousticId: AcousticId,
-    @inject(mainLogger) private logger: Logger
+    @inject(mainLogger) private logger: Logger,
+    @inject(Window) private window: Window
   ) {}
 
   /**
@@ -183,7 +185,23 @@ class LocalLibrary {
     }
   
     return this.store.updateCache(formattedMetas, baseFiles);
-  }  
+  }
+
+  async playStartupFile(filePath: string) {
+    try {
+      const { metas, folders } = await this.getMetas([
+        path.isAbsolute(filePath) ? filePath : path.resolve(process.cwd(), filePath)
+      ]);
+
+      this.window.send('play-startup-track', {
+        meta: metas[0],
+        folders
+      });
+    } catch (err) {
+      this.logger.error('Error trying to play audio file');
+      this.logger.error(err);
+    }
+  }
 }
 
 export default LocalLibrary;

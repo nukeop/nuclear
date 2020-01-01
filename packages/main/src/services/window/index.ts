@@ -1,15 +1,13 @@
-import { app, nativeImage, BrowserWindow, Menu, Tray } from 'electron';
+import { app, nativeImage, BrowserWindow } from 'electron';
 import { inject, injectable } from 'inversify';
 import path from 'path';
 import url from 'url';
-import _ from 'lodash';
 
 import { Env } from '../../utils/env';
 import Config from '../config';
 import Logger, { mainLogger } from '../logger';
 import Platform from '../platform';
 import Store from '../store';
-import LocalLibrary from '../local-library';
 
 const urlMapper: Record<Env, string> = {
   [Env.DEV]: url.format({
@@ -37,7 +35,6 @@ class Window {
 
   constructor(
     @inject(Config) private config: Config,
-    @inject(LocalLibrary) private localLibrary: LocalLibrary,
     @inject(mainLogger) private logger: Logger,
     @inject(Platform) private platform: Platform,
     @inject(Store) store: Store
@@ -71,7 +68,7 @@ class Window {
 
     this.isReady = new Promise((resolve) => {
       this.resolve = resolve;
-    })
+    });
 
     this.browserWindow.once('ready-to-show', () => {
       this.browserWindow.show();
@@ -84,7 +81,8 @@ class Window {
     });
   }
 
-  send(event: string, param?: any): void {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  send(event: string, ...param: any[]): void {
     this.browserWindow.webContents.send(event, param);
   }
 
@@ -110,6 +108,12 @@ class Window {
       this.browserWindow.isFullScreen() ? this.browserWindow.setFullScreen(false) : this.browserWindow.setFullScreen(true);
     } else {
       this.browserWindow.isMaximized() ? this.browserWindow.unmaximize() : this.browserWindow.maximize();
+    }
+  }
+
+  restore() {
+    if (this.browserWindow.isMinimized()) {
+      this.browserWindow.restore();
     }
   }
 

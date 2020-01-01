@@ -2,7 +2,6 @@ import 'reflect-metadata';
 
 import { app } from 'electron';
 import logger from 'electron-timber';
-import path from 'path';
 import { controllers, services } from './ioc';
 import Config from './services/config';
 import HttpApi from './services/http';
@@ -15,6 +14,26 @@ import LocalLibrary from './services/local-library';
 app.commandLine.appendSwitch('autoplay-policy', 'no-user-gesture-required');
 
 let container: Container;
+
+if (!app.requestSingleInstanceLock()) {
+  app.quit();
+} else {
+  app.on('second-instance', async (event, commandLine) => {
+    const window = container.get<Window>(Window);
+    const localLibrary = container.get<LocalLibrary>(LocalLibrary);
+    const config = container.get<Config>(Config);
+
+    // Another instance is fired, lets focus the first one and play the eventual song
+    if (window) {
+      window.restore();
+      window.focus();
+
+      if (commandLine[1] && config.isFileSupported(commandLine[1])) {
+        localLibrary.playStartupFile(commandLine[1]);
+      }
+    }
+  });
+}
 
 app.on('ready', async () => {
   try {
@@ -37,18 +56,8 @@ app.on('ready', async () => {
     trayMenu.init();
 
     // if args is pass to  nuclear command and its a path to a supported file, just play it.
-    if (config.isProd() && process.argv[1]) {
-      try {
-        const { metas, folders } = await localLibrary.getMetas([path.resolve(process.cwd(), process.argv[1])]);
-
-        window.send('play-startup-track', {
-          meta: metas[0],
-          folders
-        });
-      } catch (err) {
-        logger.error('Error trying to play audio file');
-        logger.error(err);
-      }
+    if (config.isProd() && process.argv[1], config.isFileSupported(process.argv[1])) {
+      localLibrary.playStartupFile(process.argv[1]);
     }
   } catch (err) {
     logger.error('something fail during app bootstrap');

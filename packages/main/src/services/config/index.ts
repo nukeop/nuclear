@@ -69,6 +69,10 @@ class Config {
   isProd(): boolean {
     return this.env === Env.PROD;
   }
+
+  isFileSupported(filePath: string): boolean {
+    return this.supportedFormats.includes(path.extname(filePath).split('.')[1]);
+  } 
 }
 
 export default Config;
