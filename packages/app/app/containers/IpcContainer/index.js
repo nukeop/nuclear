@@ -65,7 +65,10 @@ class IpcContainer extends React.Component {
     ipcRenderer.on('local-files', (event, data) => onLocalFiles(event, this.props.actions, data));
     ipcRenderer.on('local-files-error', (event, err) => onLocalFilesError(event, this.props.actions, err));
     ipcRenderer.on('play-startup-track', (event, track) => {
-      this.props.actions.playTrack(this.props.streamProviders, track);
+      this.props.actions.playTrack(
+        this.props.streamProviders.filter(({ sourceName }) => sourceName === 'Local'),
+        track
+      );
     });
 
     ipcRenderer.on('download-started', (event, data) => {
