@@ -26,6 +26,8 @@ const TrackRow = ({
   displayPlayCount,
   displayTrackNumber,
   withDeleteButton,
+  // eslint-disable-next-line no-unused-vars
+  withAddToDownloads,
   onDelete,
   ...other
 }) => (

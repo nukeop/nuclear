@@ -158,7 +158,7 @@ class QueuePopup extends React.Component {
 QueuePopup.propTypes = {
   trigger: PropTypes.node,
   track: PropTypes.object,
-  defaultMusicSource: PropTypes.object,
+  defaultMusicSource: PropTypes.string,
   streamProviders: PropTypes.array,
   rerollTrack: PropTypes.func
 };
