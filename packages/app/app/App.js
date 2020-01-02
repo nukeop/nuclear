@@ -274,8 +274,8 @@ class App extends React.Component {
       <TrackDuration
         timePlayed={formatDuration(this.props.player.seek)}
         timeToEnd={
-          !_.isNil(currentTrackDuration) &&
-            ('-' + formatDuration(timeToEnd))
+          (!_.isNil(currentTrackDuration) && ('-' + formatDuration(timeToEnd)))
+          || '0'
         }
       />
     );

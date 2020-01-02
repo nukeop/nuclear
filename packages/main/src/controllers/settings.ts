@@ -1,4 +1,4 @@
-import { app, IpcMessageEvent } from 'electron';
+import { app } from 'electron';
 import { inject } from 'inversify';
 
 import HttpApi from '../services/http';
@@ -18,10 +18,7 @@ class SettingsIpcCtrl {
   ) {}
 
   @ipcEvent('started', { once: true })
-  onStart(event: IpcMessageEvent) {
-    this.httpApi.rendererWindow = event.sender;
-    this.systemApi.rendererWindow = event.sender;
-
+  onStart() {
     this.store.getOption('api.enabled') && this.httpApi.listen();
 
     this.systemApi.listen();

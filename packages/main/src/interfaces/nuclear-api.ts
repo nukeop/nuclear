@@ -1,9 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { NuclearMeta } from '@nuclear/common';
-import { Event } from 'electron';
 
 interface NuclearApi {
-  rendererWindow: Event['sender'];
   play(): any;
   pause(): any;
   listen(): any;

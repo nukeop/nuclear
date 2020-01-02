@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { ipcMain, Event } from 'electron';
+import { ipcMain, Event, BrowserWindow } from 'electron';
 import express from 'express';
 import swagger, { ISwaggerizedRouter } from 'swagger-spec-express';
 
 import { getStandardDescription } from '../swagger';
 
-export function queueRouter(rendererWindow: Event['sender']): ISwaggerizedRouter {
+export function queueRouter(rendererWindow: BrowserWindow['webContents']): ISwaggerizedRouter {
 
   const router = express.Router() as ISwaggerizedRouter;
   

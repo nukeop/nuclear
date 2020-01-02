@@ -58,8 +58,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged",
-      "pre-push": "npm test"
+      "pre-commit": "lint-staged"
     }
   },
   "lint-staged": {
@@ -95,6 +94,40 @@
     "releaseInfo": {
       "releaseName": "Nuclear ${env.GITHASH}"
     },
+    "fileAssociations": [
+      {
+        "ext": "mp3",
+        "mimeType": "audio/mp3"
+      },
+      {
+        "ext": "mp3",
+        "mimeType": "audio/mpeg"
+      },
+      {
+        "ext": "ogg",
+        "mimeType": "audio/ogg"
+      },
+      {
+        "ext": "aac",
+        "mimeType": "audio/aac"
+      },
+      {
+        "ext": "flac",
+        "mimeType": "audio/flac"
+      },
+      {
+        "ext": "wav",
+        "mimeType": "audio/x-wav"
+      },
+      {
+        "ext": "m4a",
+        "mimeType": "audio/m4a"
+      },
+      {
+        "ext": "weba",
+        "mimeType": "audio/weba"
+      }
+    ],
     "linux": {
       "desktop": {
         "Name": "Nuclear",

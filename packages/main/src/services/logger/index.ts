@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import timber from 'electron-timber';
-// import Sentry from '@sentry/electron';
 
 timber.hookConsole();
 
@@ -25,10 +24,6 @@ class Logger {
 
   error(...args: any[]): void {
     this.logger.error(...args);
-
-    if (process.env.NODE_ENV === 'production') {
-      // Sentry.captureException(args[0]);
-    }
   }
 }
 

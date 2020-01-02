@@ -1,4 +1,3 @@
-/* eslint-disable require-atomic-updates */
 import { NuclearBrutMeta } from '@nuclear/common';
 import glob from 'glob';
 import { inject, injectable } from 'inversify';
@@ -8,11 +7,15 @@ import path from 'path';
 import asyncPool from 'tiny-async-pool';
 import { promisify } from 'util';
 import uuid from 'uuid/v4';
+import fs from 'fs';
 
 import AcousticId from '../acoustic-id';
 import Config from '../config';
 import Logger, { mainLogger } from '../logger';
-import LocalLibraryDb from './db';
+import LocalLibraryDb, { LocalMeta } from './db';
+import Window from '../window';
+
+export type ProgressHandler = (progress: number, total: number) => void
 
 /**
  * Manage local files, extract metadata directly from files, or get it from acousticId api
@@ -24,7 +27,8 @@ class LocalLibrary {
     @inject(Config) private config: Config,
     @inject(LocalLibraryDb) private store: LocalLibraryDb,
     @inject(AcousticId) private acousticId: AcousticId,
-    @inject(mainLogger) private logger: Logger
+    @inject(mainLogger) private logger: Logger,
+    @inject(Window) private window: Window
   ) {}
 
   /**
@@ -57,10 +61,65 @@ class LocalLibrary {
     };
   }
 
+  async getMetas(filesPath: string[], onProgress?: ProgressHandler): Promise<{
+    metas: Array<{
+      image: undefined;
+      artist: string;
+      thumbnail: string;
+    }>;
+    folders: string[];
+  }> {
+    const folders: string[] = [];
+    const files = filesPath
+      .map((filePath) => {
+        const stats = fs.lstatSync(filePath);
+
+        if (stats.isDirectory()) {
+          folders.push(filePath);
+
+          return _.flatMap(
+            this.config.supportedFormats,
+            format => glob.sync(`${filePath}/**/*.${format}`)
+          );
+        } else if (stats.isFile()) {
+          folders.push(path.dirname(filePath));
+          return filePath;
+        }
+      })
+      .flat();
+
+    const notStoredPath = this.store.filterNotStored(files);
+    const storedMetas = this.store.getFromPath(files); 
+
+    const metas = await Promise.all(notStoredPath.map(file => parseFile(file)));
+    const formattedMetas = notStoredPath.map((file, i) => this.formatMeta(metas[i], file));
+    const formattedMetasWithoutName = formattedMetas.filter(meta => !meta.name);
+
+    if (formattedMetasWithoutName.length) {
+      await this.fetchAcousticIdBatch(formattedMetasWithoutName, onProgress);
+    }
+
+    this.store.updateCache(formattedMetas);
+    const filteredFolders = _.uniq(this.store.filterParentFolder(folders));
+    filteredFolders.forEach(folder => this.store.addLocalFolder(folder));
+
+    return {
+      metas: formattedMetas
+        .concat(storedMetas)
+        .map(meta => ({
+          ...meta,
+          image: undefined,
+          artist: _.get(meta, ['artist', 'name']),
+          thumbnail: _.get(meta, ['image', 0, '#text'])
+        })),
+      folders: filteredFolders
+    };
+  }
+
   /**
    * fetch acousticId metadata 10 by 10
    */
-  fetchAcousticIdBatch(metas: NuclearBrutMeta[], onProgress: (progress: number, total: number) => void): Promise<void[]> {
+  fetchAcousticIdBatch(metas: NuclearBrutMeta[], onProgress?: ProgressHandler): Promise<void[]> {
     let scanProgress = 0;
     const scanTotal = metas.length;
 
@@ -97,8 +156,8 @@ class LocalLibrary {
   /**
    * scan folders on local machine, extract metadata and store it to a memory cache
    */
-  async scanFoldersAndGetMeta(onProgress: (progress: number, total: number) => void): Promise<Record<string, NuclearBrutMeta>> {
-    const directories: string[] = this.store.get('localFolders');
+  async scanFoldersAndGetMeta(onProgress?: ProgressHandler): Promise<LocalMeta> {
+    const directories = this.store.getLocalFolders();
     const baseFiles = await Promise.all(
       _.flatMap(
         this.config.supportedFormats,
@@ -109,10 +168,11 @@ class LocalLibrary {
     ).then(result => result.flat());
   
     const cache = this.store.getCache() || {};
+
     const files = baseFiles.filter(
       file => !Object.values(cache)
-          .map(({ path }) => path)
-          .includes(file)
+        .map(({ path }) => path)
+        .includes(file)
     );
   
     const metas = await Promise.all(files.map(filePath => parseFile(filePath)));
@@ -124,8 +184,24 @@ class LocalLibrary {
       await this.fetchAcousticIdBatch(formattedMetasWithoutName, onProgress);
     }
   
-    return this.store.updateCache(baseFiles, formattedMetas);
-  }  
+    return this.store.updateCache(formattedMetas, baseFiles);
+  }
+
+  async playStartupFile(filePath: string) {
+    try {
+      const { metas, folders } = await this.getMetas([
+        path.isAbsolute(filePath) ? filePath : path.resolve(process.cwd(), filePath)
+      ]);
+
+      this.window.send('play-startup-track', {
+        meta: metas[0],
+        folders
+      });
+    } catch (err) {
+      this.logger.error('Error trying to play audio file');
+      this.logger.error(err);
+    }
+  }
 }
 
 export default LocalLibrary;

@@ -1,4 +1,4 @@
-import { NuclearStatus, NuclearMeta, NuclearPlaylist, PlaybackStatus } from '@nuclear/common';
+import { NuclearStatus, NuclearMeta, PlaybackStatus } from '@nuclear/common';
 import { Event, IpcMain } from 'electron';
 import MediaService, { MediaMetadata, MediaState } from 'electron-media-service';
 import { inject } from 'inversify';
@@ -8,6 +8,7 @@ import NuclearApi from '../../interfaces/nuclear-api';
 import { ControllerMeta, MediaEventName } from '../../utils/types';
 import Ipc from '../ipc';
 import Logger, { systemApiLogger } from '../logger';
+import Window from '../window';
 
 const statusMapper: Record<PlaybackStatus, MediaState> = {
   [PlaybackStatus.PLAYING]: 'playing',
@@ -20,22 +21,23 @@ class MacMediaService extends MediaService implements NuclearApi {
   private ipc: IpcMain;
   private status: MediaMetadata;
   private logger: Logger;
-
-  rendererWindow: Event['sender'];
+  private window: Window;
 
   constructor(
     @inject(Ipc) ipc: IpcMain,
-    @inject(systemApiLogger) logger: Logger
+    @inject(systemApiLogger) logger: Logger,
+    @inject(Window) window:Window
   ) {
     super();
 
     this.ipc = ipc;
     this.logger = logger;
+    this.window = window;
   }
 
   private getPlayingStatus(): Promise<NuclearStatus> {
     return new Promise(resolve => {
-      this.rendererWindow.send('playing-status');
+      this.window.send('playing-status');
       this.ipc.once('playing-status', (evt: Event, data: NuclearStatus) => {
         resolve(data);
       });
@@ -55,32 +57,32 @@ class MacMediaService extends MediaService implements NuclearApi {
 
   @systemMediaEvent('play')
   onPlay() {
-    this.rendererWindow.send('play');
+    this.window.send('play');
   }
 
   @systemMediaEvent('pause')
   onPause() {
-    this.rendererWindow.send('pause');
+    this.window.send('pause');
   }
 
   @systemMediaEvent('playpause')
   onPlayPause() {
-    this.rendererWindow.send('playpause');
+    this.window.send('playpause');
   }
 
   @systemMediaEvent('next')
   onNext() {
-    this.rendererWindow.send('next');
+    this.window.send('next');
   }
 
   @systemMediaEvent('previous')
   onPrevious() {
-    this.rendererWindow.send('previous');
+    this.window.send('previous');
   }
 
   @systemMediaEvent('seek')
   onSeek(position: number) {
-    this.rendererWindow.send('seek', position);
+    this.window.send('seek', position);
   }
 
 

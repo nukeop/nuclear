@@ -76,7 +76,6 @@ const LibrarySimpleList = ({
             displayArtist
             displayAlbum
             withAddToDownloads={false}
-            isLocal
           />
         }
         key={'library-track-'+index}
