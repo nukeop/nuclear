@@ -18,12 +18,7 @@ import QueuePopup from '../QueuePopup';
 import QueueMenu from './QueueMenu';
 
 @withTranslation('queue')
-class PlayQueue extends React.Component {
-  constructor(props){
-    super(props);
-
-  }
-
+class PlayQueue extends React.PureComponent {
   onDropFile = (event) => {
     event.preventDefault();
     event.stopPropagation();
@@ -203,4 +198,4 @@ class PlayQueue extends React.Component {
 
 export default compose(
   withState('isFileHovered', 'setFileHovered', false)
-  )(PlayQueue);
+)(PlayQueue);
