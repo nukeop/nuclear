@@ -3,10 +3,11 @@ import classnames from 'classnames';
 import { ipcRenderer } from 'electron';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { withTranslation } from 'react-i18next';
-import { QueueItem, formatDuration } from '@nuclear/ui';
+import { Icon } from 'semantic-ui-react';
 import _ from 'lodash';
-import FontAwesome from 'react-fontawesome';
+import { withState, compose } from 'recompose';
 
+import { QueueItem, formatDuration } from '@nuclear/ui';
 
 import { getTrackDuration } from '../../utils';
 import { sendPaused } from '../../mpris';
@@ -21,9 +22,6 @@ class PlayQueue extends React.Component {
   constructor(props){
     super(props);
 
-    this.state = {
-      isFileHovered: false
-    };
   }
 
   onDropFile = (event) => {
@@ -35,9 +33,7 @@ class PlayQueue extends React.Component {
       paths.push(f.path);
     }
 
-    this.setState({
-      isFileHovered: false
-    });
+    this.props.setFileHovered(false);
   
     ipcRenderer.send('queue-drop', paths);
   }
@@ -46,18 +42,14 @@ class PlayQueue extends React.Component {
     event.preventDefault();
     event.stopPropagation();
 
-    this.setState({
-      isFileHovered: true
-    });
+    this.props.setFileHovered(true);
   }
 
   onDragEndFile = (event) => {
     event.preventDefault();
     event.stopPropagation();
 
-    this.setState({
-      isFileHovered: false
-    });
+    this.props.setFileHovered(false);
   }
 
   onDragEnd = (result) => {
@@ -136,13 +128,13 @@ class PlayQueue extends React.Component {
   }
 
   render() {
-    const { isFileHovered } = this.state;
     let {
       compact,
       items,
       settings,
       playlists,
-      currentSong
+      currentSong,
+      isFileHovered
     } = this.props;
 
     let {
@@ -198,7 +190,7 @@ class PlayQueue extends React.Component {
                 {this.renderQueueItems()}
                 {provided.placeholder}
                 {isFileHovered && (
-                  <FontAwesome name='plus' className={styles.file_icon} />
+                  <Icon name='plus' className={styles.file_icon} />
                 )}
               </div>
             )}
@@ -209,4 +201,6 @@ class PlayQueue extends React.Component {
   }
 }
 
-export default PlayQueue;
+export default compose(
+  withState('isFileHovered', 'setFileHovered', false)
+  )(PlayQueue);
