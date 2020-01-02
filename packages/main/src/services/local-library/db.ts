@@ -1,4 +1,4 @@
-import { NuclearBrutMeta } from '@nuclear/common';
+import { NuclearBrutMeta, NuclearStream } from '@nuclear/common';
 import ElectronStore from 'electron-store';
 import { injectable, inject } from 'inversify';
 import _ from 'lodash';
@@ -75,6 +75,20 @@ class LocalLibraryDb extends ElectronStore {
     return cache;
   }
 
+  mapToStream(track: NuclearBrutMeta): NuclearStream {
+    return {
+      uuid: track.uuid,
+      title: track.name,
+      duration: track.duration,
+      source: 'Local',
+      stream: url.format({
+        pathname: track.path,
+        protocol: 'file',
+        slashes: true
+      })
+    };
+  }
+
   private byArtist(): Record<string, NuclearBrutMeta[]> {
     const cache = this.getCache();
 
@@ -89,18 +103,7 @@ class LocalLibraryDb extends ElectronStore {
       .map(artist => byArtist[artist])
       .flat()
       .filter(song => song.name && song.name.includes(track))
-      .map(track => ({
-        uuid: track.uuid,
-        title: track.name,
-        duration: track.duration,
-        source: 'Local',
-        stream: url.format({
-          pathname: track.path,
-          protocol: 'file',
-          slashes: true
-        }),
-        thumbnail: track.image && track.image[0] ? track.image[0]['#text'] : undefined
-      }))
+      .map(this.mapToStream)
       .pop();
 
     return result;
