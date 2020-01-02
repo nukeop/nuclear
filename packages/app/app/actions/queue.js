@@ -14,9 +14,9 @@ export const PREVIOUS_SONG = 'PREVIOUS_SONG';
 export const SELECT_SONG = 'SELECT_SONG';
 export const REPOSITION_SONG = 'REPOSITION_SONG';
 
-function addTrackToQueue (streamProviders, item) {
+function addTrackToQueue (streamProviders, item) {  
   return dispatch => {
-    item.loading = true;
+    item.loading = !item.local;
     item = safeAddUuid(item);
     mpris.addTrack(item);
 
@@ -24,7 +24,7 @@ function addTrackToQueue (streamProviders, item) {
       type: ADD_TO_QUEUE,
       payload: item
     });
-    Promise.all(_.map(streamProviders, m => m.search({ artist: item.artist, track: item.name })))
+    !item.local && Promise.all(_.map(streamProviders, m => m.search({ artist: item.artist, track: item.name })))
       .then(results => Promise.all(results))
       .then(results => {
         _.pull(results, null);
