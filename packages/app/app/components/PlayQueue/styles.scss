@@ -16,12 +16,20 @@
   }
 
   .dragged_over {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background: $background3;
+    margin: 1rem;
+    border: 6px dashed rgba($white, 0.8);
+
+    *:not(i) {
+      display: none;
+    }
   }
 
   .file_icon {
     font-size: 5em;
-    color: $green;
     align-self: center;
   }
 
