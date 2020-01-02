@@ -33,7 +33,7 @@ const SearchBox = ({ handleSearch, loading }) => {
           onKeyDown={handleKeyDown}
           autoFocus
         />
-        <Icon name='spinner' loading={ loading } />
+        <Icon name='spinner' loading={loading} />
       </div>
     </div>
   );

@@ -3,10 +3,12 @@ import ElectronStore from 'electron-store';
 import { injectable, inject } from 'inversify';
 import _ from 'lodash';
 import url from 'url';
+import path from 'path';
 
 import Logger, { mainLogger } from '../logger';
+import Config from '../config';
 
-type LocalMeta = Record<string, NuclearBrutMeta>;
+export type LocalMeta = Record<string, NuclearBrutMeta>;
 
 export interface LocalSearchQuery {
   artist: string;
@@ -16,17 +18,67 @@ export interface LocalSearchQuery {
 @injectable()
 class LocalLibraryDb extends ElectronStore {
   constructor(
-    @inject(mainLogger) private logger: Logger
+    @inject(Config) config: Config,
+    @inject(mainLogger) logger: Logger
   ) {
     super({ name: 'nuclear-local-library' });
 
+    if (config.isProd() && process.argv[1]) {
+      this.addLocalFolder(
+        path.dirname(
+          path.resolve(process.cwd(), process.argv[1])
+        )
+      );
+    }
+  
     logger.log(`Initialized library index at ${ this.path }`);
   }
 
-  byArtist(): Record<string, NuclearBrutMeta[]> {
-    const cache: LocalMeta = this.get('localMeta');
+  getLocalFolders(): string[] {
+    return this.get('localFolders') || [];
+  }
 
-    return cache ? _.groupBy(Object.values(cache), track => track.artist.name) : {};
+  getCache(): LocalMeta {
+    return this.get('localMeta') || {};
+  }
+
+  addLocalFolder(folder: string) {
+    const localFolders = this.getLocalFolders();
+    if (localFolders.includes(folder)) {
+      return;
+    }
+  
+    if (this.isParentOfFolder(folder)) {
+      localFolders.filter(file => !file.startsWith(folder));
+    }
+
+    localFolders.push(folder);
+    this.set('localFolders', localFolders);
+  }
+
+  updateCache(formattedMetas: NuclearBrutMeta[], baseFiles?: string[]): LocalMeta {
+    const oldCache = this.getCache();
+
+    const cache = Object.values(oldCache)
+      .filter(({ path }) => baseFiles ? baseFiles.includes(path as string) : true)
+      .concat(formattedMetas)
+      .reduce(
+        (acc, item) => ({
+          ...acc,
+          [item.uuid]: item
+        }),
+        {}
+      );
+
+    this.set('localMeta', cache);
+
+    return cache;
+  }
+
+  private byArtist(): Record<string, NuclearBrutMeta[]> {
+    const cache = this.getCache();
+
+    return _.groupBy(Object.values(cache), track => track.artist.name);
   }
 
   search({ artist, track }: LocalSearchQuery) {
@@ -54,27 +106,29 @@ class LocalLibraryDb extends ElectronStore {
     return result;
   }
 
-  updateCache(baseFiles: string[], formattedMetas: NuclearBrutMeta[]) {
-    const oldCache: LocalMeta = this.get('localMeta') || {};
+  private isParentOfFolder(filePath: string): boolean {
+    const localFolders = this.getLocalFolders();
 
-    const cache = Object.values(oldCache)
-      .filter(({ path }) => baseFiles.includes(path as string))
-      .concat(formattedMetas)
-      .reduce(
-        (acc, item) => ({
-          ...acc,
-          [item.uuid]: item
-        }),
-        {}
-      );
-
-    this.set('localMeta', cache);
-
-    return cache;
+    return !localFolders.reduce<boolean>((acc, folder) => {
+      return acc && !filePath.includes(folder);
+    }, true);
   }
 
-  getCache(): LocalMeta {
-    return this.get('localMeta');
+  filterParentFolder(folders: string[]): string[] {
+    return folders.filter((folder) => !this.isParentOfFolder(folder));
+  }
+
+  filterNotStored(filesPath: string[]): string[] {
+    const cache = this.getCache();
+    const storedPath = Object.values(cache).map(({ path }) => path);
+
+    return filesPath.filter(file => !storedPath.includes(file));
+  }
+
+  getFromPath(filePaths: string[]): NuclearBrutMeta[] {
+    const cache = this.getCache();
+
+    return Object.values(cache).filter(({ path }) => filePaths.includes(path));
   }
 }
 

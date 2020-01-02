@@ -2,21 +2,46 @@ import 'reflect-metadata';
 
 import { app } from 'electron';
 import logger from 'electron-timber';
-
 import { controllers, services } from './ioc';
+import Config from './services/config';
 import HttpApi from './services/http';
 import Store from './services/store';
+import TrayMenu from './services/trayMenu';
 import Window from './services/window';
-import Config from './services/config';
 import Container from './utils/container';
+import LocalLibrary from './services/local-library';
+
+app.commandLine.appendSwitch('autoplay-policy', 'no-user-gesture-required');
 
 let container: Container;
+
+if (!app.requestSingleInstanceLock()) {
+  app.quit();
+} else {
+  app.on('second-instance', async (event, commandLine) => {
+    const window = container.get<Window>(Window);
+    const localLibrary = container.get<LocalLibrary>(LocalLibrary);
+    const config = container.get<Config>(Config);
+
+    // Another instance is fired, lets focus the first one and play the eventual song
+    if (window) {
+      window.restore();
+      window.focus();
+
+      if (commandLine[1] && config.isFileSupported(commandLine[1])) {
+        localLibrary.playStartupFile(commandLine[1]);
+      }
+    }
+  });
+}
 
 app.on('ready', async () => {
   try {
     container = new Container({ controllers, services });
     const config = container.get<Config>(Config);
+    const localLibrary = container.get<LocalLibrary>(LocalLibrary);
     const store = container.get<Store>(Store);
+    const trayMenu = container.get<TrayMenu>(TrayMenu);
     const window = container.get<Window>(Window);
 
     if (config.isDev()) {
@@ -25,9 +50,15 @@ app.on('ready', async () => {
         store.setAvailableHttpPort(3000, 3100)
       ]);
     }
-    
+
     container.listen();
-    window.load();
+    await window.load();
+    trayMenu.init();
+
+    // if args is pass to  nuclear command and its a path to a supported file, just play it.
+    if (config.isProd() && process.argv[1], config.isFileSupported(process.argv[1])) {
+      localLibrary.playStartupFile(process.argv[1]);
+    }
   } catch (err) {
     logger.error('something fail during app bootstrap');
     logger.error(err);
