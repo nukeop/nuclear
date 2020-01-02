@@ -20,6 +20,15 @@ export interface NuclearMeta {
   artist: string;
 }
 
+export interface NuclearStream {
+  uuid: string;
+  title?: string;
+  duration?: number;
+  source: 'Local' | string;
+  stream: string;
+  thumbnail?: string;
+}
+
 export interface NuclearBrutMeta {
   uuid: string;
   duration?: number;
@@ -33,6 +42,7 @@ export interface NuclearBrutMeta {
   loading: boolean;
   local?: boolean;
   image: Array<{ '#text': string } | undefined>;
+  streams?: NuclearStream[];
 }
 
 export interface NuclearPlaylist {

@@ -8,6 +8,7 @@ import asyncPool from 'tiny-async-pool';
 import { promisify } from 'util';
 import uuid from 'uuid/v4';
 import fs from 'fs';
+import url from 'url';
 
 import AcousticId from '../acoustic-id';
 import Config from '../config';
@@ -35,8 +36,10 @@ class LocalLibrary {
    * Format metadata from files to nuclear format
    */
   private formatMeta({ common, format }: IAudioMetadata, path: string): NuclearBrutMeta {
+    const id = uuid();
+  
     return {
-      uuid: uuid(),
+      uuid: id,
       path,
       duration: format.duration,
       name: common.title,
@@ -57,6 +60,19 @@ class LocalLibrary {
             };base64,${common.picture[0].data.toString('base64')}`
           }
           : undefined
+      ],
+      streams: [
+        {
+          uuid: id,
+          title: common.title,
+          duration: format.duration,
+          source: 'Local',
+          stream: url.format({
+            pathname: path,
+            protocol: 'file',
+            slashes: true
+          })
+        }
       ]
     };
   }
