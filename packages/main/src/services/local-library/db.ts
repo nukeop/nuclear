@@ -5,7 +5,7 @@ import _ from 'lodash';
 import url from 'url';
 import path from 'path';
 
-import Logger, { mainLogger } from '../logger';
+import Logger, { $mainLogger } from '../logger';
 import Config from '../config';
 
 export type LocalMeta = Record<string, NuclearBrutMeta>;
@@ -19,7 +19,7 @@ export interface LocalSearchQuery {
 class LocalLibraryDb extends ElectronStore {
   constructor(
     @inject(Config) config: Config,
-    @inject(mainLogger) logger: Logger
+    @inject($mainLogger) logger: Logger
   ) {
     super({ name: 'nuclear-local-library' });
 

@@ -3,15 +3,14 @@ import { NuclearStatus, NuclearMeta, NuclearPlaylist, PlaybackStatus } from '@nu
 import autobind from 'autobind-decorator';
 import { app, IpcMain, Event } from 'electron';
 import { inject } from 'inversify';
-import _ from 'lodash';
 import MprisService, { MprisPlaylist, MprisMeta, PlaybackStatus as MprisStatus, LoopStatus } from 'mpris-service';
 
 import NuclearApi from '../../interfaces/nuclear-api';
 import { systemMediaController, systemMediaEvent, SYSTEM_MEDIA_EVENT_KEY } from '../../utils/decorators';
 import { ControllerMeta } from '../../utils/types';
 import Config from '../config';
-import Ipc from '../ipc';
-import Logger, { systemApiLogger } from '../logger';
+import $ipc from '../ipc';
+import Logger, { $systemApiLogger } from '../logger';
 import Store from '../store';
 import Window from '../window';
 
@@ -41,8 +40,8 @@ class LinuxMediaService extends MprisService implements NuclearApi {
 
   constructor(
     @inject(Config) config: Config,
-    @inject(Ipc) private ipc: IpcMain,
-    @inject(systemApiLogger) private logger: Logger,
+    @inject($ipc) private ipc: IpcMain,
+    @inject($systemApiLogger) private logger: Logger,
     @inject(Store) private store: Store,
     @inject(Window) private window: Window
   ) {
@@ -192,7 +191,7 @@ class LinuxMediaService extends MprisService implements NuclearApi {
       uuid: '0',
       thumbnail: '',
       streams: []
-    })
+    });
   }
 
   play() {
@@ -226,7 +225,7 @@ class LinuxMediaService extends MprisService implements NuclearApi {
     meta.forEach(({ eventName, name }) => {
 
       this.on(eventName, (event: Event, data: any) => {
-        this.logger.log(`incoming event => ${eventName}`);
+        this.logger.logEvent({ direction: 'in', event: eventName, data });
 
         const result = (this as any)[name](event, data);
 

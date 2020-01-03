@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { NuclearStatus, NuclearMeta, PlaybackStatus } from '@nuclear/common';
 import { Event, IpcMain } from 'electron';
 import MediaService, { MediaMetadata, MediaState } from 'electron-media-service';
@@ -6,8 +7,8 @@ import { inject } from 'inversify';
 import { SYSTEM_MEDIA_EVENT_KEY, systemMediaController, systemMediaEvent } from '../../utils/decorators';
 import NuclearApi from '../../interfaces/nuclear-api';
 import { ControllerMeta, MediaEventName } from '../../utils/types';
-import Ipc from '../ipc';
-import Logger, { systemApiLogger } from '../logger';
+import $ipc from '../ipc';
+import Logger, { $systemApiLogger } from '../logger';
 import Window from '../window';
 
 const statusMapper: Record<PlaybackStatus, MediaState> = {
@@ -24,9 +25,9 @@ class MacMediaService extends MediaService implements NuclearApi {
   private window: Window;
 
   constructor(
-    @inject(Ipc) ipc: IpcMain,
-    @inject(systemApiLogger) logger: Logger,
-    @inject(Window) window:Window
+    @inject($ipc) ipc: IpcMain,
+    @inject($systemApiLogger) logger: Logger,
+    @inject(Window) window: Window
   ) {
     super();
 
@@ -44,13 +45,13 @@ class MacMediaService extends MediaService implements NuclearApi {
     });
   }
 
-  private trackMapper(track: NuclearMeta, index = 0): Partial<MediaMetadata> {
+  private trackMapper(track: NuclearMeta): Partial<MediaMetadata> {
     return {
       album: '',
       albumArt: track.thumbnail,
       artist: track.artist,
       title: track.name,
-      duration: track.streams[0].duration,
+      duration: track.streams[0].duration
     };
   }
 
@@ -99,7 +100,7 @@ class MacMediaService extends MediaService implements NuclearApi {
   sendMetadata(meta: NuclearMeta) {
     this.setMetaData({
       ...this.status,
-      ...this.trackMapper(meta),
+      ...this.trackMapper(meta)
     });
   }
 
@@ -117,7 +118,7 @@ class MacMediaService extends MediaService implements NuclearApi {
       id: 0,
       state: statusMapper[status.playbackStatus],
       title: ''
-    }
+    };
 
     this.setMetaData(this.status);
 
@@ -126,7 +127,7 @@ class MacMediaService extends MediaService implements NuclearApi {
     meta.forEach(({ eventName, name }) => {
 
       this.on(eventName, (data: any) => {
-        this.logger.log(`incomming event => ${eventName}`);
+        this.logger.logEvent({ direction: 'in', event: eventName, data });
 
         const result = (this as any)[name](data);
 

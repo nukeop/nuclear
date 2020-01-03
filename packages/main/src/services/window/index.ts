@@ -5,7 +5,7 @@ import url from 'url';
 
 import { Env } from '../../utils/env';
 import Config from '../config';
-import Logger, { mainLogger } from '../logger';
+import Logger, { $mainLogger, $ipcLogger } from '../logger';
 import Platform from '../platform';
 import Store from '../store';
 
@@ -35,7 +35,8 @@ class Window {
 
   constructor(
     @inject(Config) private config: Config,
-    @inject(mainLogger) private logger: Logger,
+    @inject($mainLogger) private logger: Logger,
+    @inject($ipcLogger) private ipcLogger: Logger,
     @inject(Platform) private platform: Platform,
     @inject(Store) store: Store
   ) {
@@ -83,6 +84,8 @@ class Window {
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   send(event: string, ...param: any[]): void {
+    this.ipcLogger.logEvent({ direction: 'out', event, data: param[0] });
+
     this.browserWindow.webContents.send(event, ...param);
   }
 

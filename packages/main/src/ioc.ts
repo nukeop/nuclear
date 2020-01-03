@@ -10,10 +10,10 @@ import AcousticId from './services/acoustic-id';
 import Config from './services/config';
 import Download from './services/download';
 import HttpApi from './services/http';
-import ipc from './services/ipc';
+import $ipc from './services/ipc';
 import LocalLibrary from './services/local-library';
 import LocalLibraryDb from './services/local-library/db';
-import Logger, { httpApiLogger, ipcLogger, mainLogger, systemApiLogger } from './services/logger';
+import Logger, { $httpApiLogger, $ipcLogger, $mainLogger, $systemApiLogger } from './services/logger';
 import Platform from './services/platform';
 import Store from './services/store';
 import Window from './services/window';
@@ -35,11 +35,11 @@ const services: ServiceProvider[] = [
   { useClass: SystemApi },
   { useClass: TrayMenu },
 
-  { provide: ipc, useValue: ipcMain },
-  { provide: mainLogger, useValue: new Logger() },
-  { provide: ipcLogger, useValue: new Logger('ipc api') },
-  { provide: httpApiLogger, useValue: new Logger('http api') },
-  { provide: systemApiLogger, useValue: new Logger('system api') }
+  { provide: $ipc, useValue: ipcMain },
+  { provide: $mainLogger, useValue: new Logger() },
+  { provide: $ipcLogger, useValue: new Logger('ipc api') },
+  { provide: $httpApiLogger, useValue: new Logger('http api') },
+  { provide: $systemApiLogger, useValue: new Logger('system api') }
 ];
 
 const controllers: Class[] = [DownloadCtrl, LocalLibraryCtrl, PlayerCtrl, SettingsCtrl];
