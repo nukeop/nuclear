@@ -23,6 +23,8 @@ class LocalLibraryDb extends ElectronStore {
   ) {
     super({ name: 'nuclear-local-library' });
 
+    this.set('localFolders', null);
+    this.set('localMeta', null);
     if (config.isProd() && process.argv[1]) {
       this.addLocalFolder(
         path.dirname(
@@ -36,6 +38,22 @@ class LocalLibraryDb extends ElectronStore {
 
   getLocalFolders(): string[] {
     return this.get('localFolders') || [];
+  }
+
+  removeLocalFolder(folder: string) {
+    const folders = this.getLocalFolders();
+    this.set('localFolders', folders.filter(path => path !== folder));
+
+    const cache = Object
+      .values(this.getCache())
+      .filter(({ path }) => !path.includes(folder))
+      .reduce(
+        (acc, item) => ({ ...acc, [item.uuid]: item }),
+        {}
+      );
+    this.set('localMeta', cache);
+
+    return cache;
   }
 
   getCache(): LocalMeta {

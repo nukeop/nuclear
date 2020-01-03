@@ -142,12 +142,20 @@ export function refreshLocalFolders() {
   ipcRenderer.send('refresh-localfolders');
 }
 
+export function setLocalFolders(localFolders) {
+  ipcRenderer.send('set-localfolders', localFolders);
+}
+
 export function getLocalFolders() {
   return ipcRenderer.sendSync('get-localfolders');
 }
 
-export function setLocalFolders(localFolders) {
-  ipcRenderer.send('set-localfolders', localFolders);
+export function sendRemoveLocalFolder(localFolder) {
+  ipcRenderer.send('remove-localfolder', localFolder);
+}
+
+export function sendAddLocalFolder(localFolder) {
+  ipcRenderer.send('add-local-folder', localFolder);
 }
 
 export function sendPlayingStatus(event, playerState, queueState, { loopAfterQueueEnd, shuffleQueue }) {

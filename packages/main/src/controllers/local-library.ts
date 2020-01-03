@@ -31,6 +31,16 @@ class LocalIpcCtrl {
   }
 
   /**
+   * Remove a local folder and all metadata attached to it 
+   */
+  @ipcEvent('remove-localfolder')
+  removeLocalFolder(event: IpcMessageEvent, localFolder: string) {
+    const metas = this.localLibraryDb.removeLocalFolder(localFolder);
+
+    event.sender.send('local-files', metas);
+  }
+
+  /**
    * scan local library for audio files, format and store all the metadata
    */
   @ipcEvent('refresh-localfolders')
