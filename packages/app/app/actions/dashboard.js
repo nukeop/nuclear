@@ -3,7 +3,6 @@ import { LastFmApi } from '@nuclear/core';
 import { getBestNewAlbums, getBestNewTracks } from 'pitchfork-bnm';
 
 import globals from '../globals';
-import { getNewsIndex, getNewsItem } from '../rest/Nuclear';
 import {mapLastFMTrackToInternal} from './index';
 
 const lastfm = new LastFmApi(
@@ -18,10 +17,6 @@ export const LOAD_BEST_NEW_ALBUMS_ERROR = 'LOAD_BEST_NEW_ALBUMS_ERROR';
 export const LOAD_BEST_NEW_TRACKS_START = 'LOAD_BEST_NEW_TRACKS_START';
 export const LOAD_BEST_NEW_TRACKS_SUCCESS = 'LOAD_BEST_NEW_TRACKS_SUCCESS';
 export const LOAD_BEST_NEW_TRACKS_ERROR = 'LOAD_BEST_NEW_TRACKS_ERROR';
-
-export const LOAD_NUCLEAR_NEWS_START = 'LOAD_NUCLEAR_NEWS_START';
-export const LOAD_NUCLEAR_NEWS_SUCCESS = 'LOAD_NUCLEAR_NEWS_SUCCESS';
-export const LOAD_NUCLEAR_NEWS_ERROR = 'LOAD_NUCLEAR_NEWS_ERROR';
 
 export const LOAD_TOP_TAGS_START = 'LOAD_TOP_TAGS_START';
 export const LOAD_TOP_TAGS_SUCCESS = 'LOAD_TOP_TAGS_SUCCESS';
@@ -128,45 +123,6 @@ export function loadBestNewTracks() {
       .catch(error => {
         dispatch(loadBestNewTracksError());
         logger.error(error);
-      });
-  };
-}
-
-export function loadNuclearNewsStart() {
-  return {
-    type: LOAD_NUCLEAR_NEWS_START
-  };
-}
-
-export function loadNuclearNewsSuccess(news) {
-  return {
-    type: LOAD_NUCLEAR_NEWS_SUCCESS,
-    payload: news
-  };
-}
-
-export function loadNuclearNewsError() {
-  return {
-    type: LOAD_NUCLEAR_NEWS_ERROR
-  };
-}
-
-export function loadNuclearNews() {
-  return dispatch => {
-    dispatch(loadNuclearNewsStart());
-    getNewsIndex()
-      .then(index => {
-        return Promise.all(
-          index.articles.map(item => {
-            return getNewsItem(item);
-          })
-        );
-      })
-      .then(articles => {
-        dispatch(loadNuclearNewsSuccess(articles));
-      })
-      .catch(err => {
-        dispatch(loadNuclearNewsError(err));
       });
   };
 }

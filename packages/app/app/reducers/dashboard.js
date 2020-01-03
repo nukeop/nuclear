@@ -1,7 +1,6 @@
 import {
   LOAD_BEST_NEW_ALBUMS_SUCCESS,
   LOAD_BEST_NEW_TRACKS_SUCCESS,
-  LOAD_NUCLEAR_NEWS_SUCCESS,
   LOAD_TOP_TAGS_SUCCESS,
   LOAD_TOP_TRACKS_SUCCESS
 } from '../actions/dashboard';
@@ -21,10 +20,6 @@ export default function DashboardReducer(state = initialState, action) {
   case LOAD_BEST_NEW_TRACKS_SUCCESS:
     return Object.assign({}, state, {
       bestNewTracks: action.payload
-    });
-  case LOAD_NUCLEAR_NEWS_SUCCESS:
-    return Object.assign({}, state, {
-      news: action.payload
     });
   case LOAD_TOP_TAGS_SUCCESS:
     return Object.assign({}, state, {
