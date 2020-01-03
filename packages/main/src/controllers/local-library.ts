@@ -24,10 +24,16 @@ class LocalIpcCtrl {
    * store local library folders
    */
   @ipcEvent('set-localfolders')
-  setLocalFolders(event: IpcMessageEvent, localFolders: string[]) {
+  async setLocalFolders(event: IpcMessageEvent, localFolders: string[]) {
     localFolders.forEach(folder => {
       this.localLibraryDb.addLocalFolder(folder);
     });
+
+    const cache = await this.localLibrary.scanFoldersAndGetMeta((scanProgress, scanTotal) => {
+      event.sender.send('local-files-progress', {scanProgress, scanTotal});
+    });
+
+    event.sender.send('local-files', cache);
   }
 
   /**

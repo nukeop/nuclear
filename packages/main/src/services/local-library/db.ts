@@ -23,8 +23,6 @@ class LocalLibraryDb extends ElectronStore {
   ) {
     super({ name: 'nuclear-local-library' });
 
-    this.set('localFolders', null);
-    this.set('localMeta', null);
     if (config.isProd() && process.argv[1]) {
       this.addLocalFolder(
         path.dirname(
