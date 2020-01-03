@@ -5,13 +5,15 @@ import _ from 'lodash';
 
 import { ipcController, ipcEvent } from '../utils/decorators';
 import Download from '../services/download';
-import Logger, { mainLogger } from '../services/logger';
+import Logger, { $mainLogger } from '../services/logger';
+import Window from '../services/window';
 
 @ipcController()
 class DownloadIpcCtrl {
   constructor(
     @inject(Download) private download: Download,
-    @inject(mainLogger) private logger: Logger
+    @inject($mainLogger) private logger: Logger,
+    @inject(Window) private window: Window
   ) {}
   
   /**
@@ -33,19 +35,19 @@ class DownloadIpcCtrl {
         query,
         filename,
         onStart: () => {
-          event.sender.send('download-started', data.uuid);
+          this.window.send('download-started', data.uuid);
         },
         onProgress: (progress) => {
-          event.sender.send('download-progress', {
+          this.window.send('download-progress', {
             uuid: data.uuid,
             progress: progress.percent
           });
         }
       });
       this.logger.log(`Download success: ${artistName} - ${_.get(data, 'name')}`);
-      event.sender.send('download-finished', data.uuid);
+      this.window.send('download-finished', data.uuid);
     } catch (error) {
-      event.sender.send('download-error', { uuid: data.uuid, error });
+      this.window.send('download-error', { uuid: data.uuid, error });
       throw error;
     }
   }

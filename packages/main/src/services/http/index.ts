@@ -5,7 +5,7 @@ import { inject, injectable } from 'inversify';
 import { Server } from 'http';
 import swagger from 'swagger-spec-express';
 
-import Logger, { httpApiLogger } from '../logger';
+import Logger, { $httpApiLogger } from '../logger';
 import Store from '../store';
 import {
   windowRouter,
@@ -31,7 +31,7 @@ class HttpApi {
   app: Server;
 
   constructor(
-    @inject(httpApiLogger) private logger: Logger,
+    @inject($httpApiLogger) private logger: Logger,
     @inject(Store) private store: Store,
     @inject(Window) private window: Window
   ){}

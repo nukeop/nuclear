@@ -5,7 +5,7 @@ import { Container as InversifyContainer } from 'inversify';
 import { Class } from 'type-fest';
 
 import ipcService from '../services/ipc';
-import Logger, { ipcLogger, mainLogger } from '../services/logger';
+import Logger, { $ipcLogger, $mainLogger } from '../services/logger';
 import { IPC_EVENT_KEY } from '../utils/decorators';
 import { AppDependencies, ControllerMeta, AsyncServiceProvider } from './types';
 
@@ -27,7 +27,7 @@ class Container extends InversifyContainer {
 
   async bindAsync({ provide, usePromise }: AsyncServiceProvider): Promise<void> {
     const { default: service } = await usePromise;
-    const logger = this.get<Logger>(mainLogger);
+    const logger = this.get<Logger>($mainLogger);
 
     logger.log(`Async service loaded => ${service.name}`);
     
@@ -36,7 +36,7 @@ class Container extends InversifyContainer {
 
   listen(): void {
     const ipc = this.get<EventEmitter>(ipcService);
-    const logger = this.get<Logger>(ipcLogger);
+    const logger = this.get<Logger>($ipcLogger);
 
     this.controllers.forEach((Controller) => {
       this.bind(Controller).to(Controller).inSingletonScope();
@@ -47,7 +47,7 @@ class Container extends InversifyContainer {
         const on = once ? ipc.once : ipc.on;
 
         on.bind(ipc)(eventName, (event: Event, data: any) => {
-          logger.log(`incoming event => ${eventName}`);
+          logger.logEvent({ once, direction: 'in', event: eventName, data });
 
           const result = controller[name](event, data);
 

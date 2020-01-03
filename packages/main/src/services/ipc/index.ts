@@ -1,3 +1,3 @@
-const ipc = Symbol('ipc');
+const $ipc = Symbol('ipc');
 
-export default ipc;
+export default $ipc;

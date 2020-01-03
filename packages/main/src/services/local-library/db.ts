@@ -5,7 +5,7 @@ import _ from 'lodash';
 import url from 'url';
 import path from 'path';
 
-import Logger, { mainLogger } from '../logger';
+import Logger, { $mainLogger } from '../logger';
 import Config from '../config';
 
 export type LocalMeta = Record<string, NuclearBrutMeta>;
@@ -19,7 +19,7 @@ export interface LocalSearchQuery {
 class LocalLibraryDb extends ElectronStore {
   constructor(
     @inject(Config) config: Config,
-    @inject(mainLogger) logger: Logger
+    @inject($mainLogger) logger: Logger
   ) {
     super({ name: 'nuclear-local-library' });
 
@@ -36,6 +36,22 @@ class LocalLibraryDb extends ElectronStore {
 
   getLocalFolders(): string[] {
     return this.get('localFolders') || [];
+  }
+
+  removeLocalFolder(folder: string) {
+    const folders = this.getLocalFolders();
+    this.set('localFolders', folders.filter(path => path !== folder));
+
+    const cache = Object
+      .values(this.getCache())
+      .filter(({ path }) => !path.includes(folder))
+      .reduce(
+        (acc, item) => ({ ...acc, [item.uuid]: item }),
+        {}
+      );
+    this.set('localMeta', cache);
+
+    return cache;
   }
 
   getCache(): LocalMeta {
