@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
 import NuclearApi from '../../interfaces/nuclear-api';
 import { injectable } from 'inversify';
 

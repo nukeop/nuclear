@@ -1,7 +1,7 @@
 import { remote } from 'electron';
 import _ from 'lodash';
 
-import { refreshLocalFolders, setLocalFolders } from '../mpris';
+import { refreshLocalFolders, sendRemoveLocalFolder, setLocalFolders } from '../mpris';
 
 export const UPDATE_LOCAL_FOLDERS = 'UPDATE_LOCAL_FOLDERS';
 export const SCAN_LOCAL_FOLDER = 'SCAN_LOCAL_FOLDERS';
@@ -44,7 +44,7 @@ export function addLocalFolders(folders, send = true) {
 export function removeLocalFolder(folder) {
   return async (dispatch, getState) => {
     const folders = _.filter(getState().local.folders, f => f !== folder);
-    setLocalFolders(folders);
+    sendRemoveLocalFolder(folder);
     dispatch(updateLocalFolders(folders));
   };
 }

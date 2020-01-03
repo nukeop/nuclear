@@ -4,12 +4,14 @@ import { IpcMessageEvent } from 'electron';
 import LocalLibrary from '../services/local-library';
 import { ipcController, ipcEvent } from '../utils/decorators';
 import LocalLibraryDb, { LocalSearchQuery } from '../services/local-library/db';
+import Window from '../services/window';
 
 @ipcController()
 class LocalIpcCtrl {
   constructor(
     @inject(LocalLibrary) private localLibrary: LocalLibrary,
-    @inject(LocalLibraryDb) private localLibraryDb: LocalLibraryDb
+    @inject(LocalLibraryDb) private localLibraryDb: LocalLibraryDb,
+    @inject(Window) private window: Window
   ) {}
 
   /**
@@ -24,25 +26,41 @@ class LocalIpcCtrl {
    * store local library folders
    */
   @ipcEvent('set-localfolders')
-  setLocalFolders(event: IpcMessageEvent, localFolders: string[]) {
+  async setLocalFolders(event: IpcMessageEvent, localFolders: string[]) {
     localFolders.forEach(folder => {
       this.localLibraryDb.addLocalFolder(folder);
     });
+
+    const cache = await this.localLibrary.scanFoldersAndGetMeta((scanProgress, scanTotal) => {
+      this.window.send('local-files-progress', {scanProgress, scanTotal});
+    });
+
+    this.window.send('local-files', cache);
+  }
+
+  /**
+   * Remove a local folder and all metadata attached to it 
+   */
+  @ipcEvent('remove-localfolder')
+  removeLocalFolder(event: IpcMessageEvent, localFolder: string) {
+    const metas = this.localLibraryDb.removeLocalFolder(localFolder);
+
+    this.window.send('local-files', metas);
   }
 
   /**
    * scan local library for audio files, format and store all the metadata
    */
   @ipcEvent('refresh-localfolders')
-  async onRefreshLocalFolders(event: IpcMessageEvent) {
+  async onRefreshLocalFolders() {
     try {
       const cache = await this.localLibrary.scanFoldersAndGetMeta((scanProgress, scanTotal) => {
-        event.sender.send('local-files-progress', {scanProgress, scanTotal});
+        this.window.send('local-files-progress', {scanProgress, scanTotal});
       });
 
-      event.sender.send('local-files', cache);
+      this.window.send('local-files', cache);
     } catch (err) {
-      event.sender.send('local-files-error', err);
+      this.window.send('local-files-error', err);
     }
   }
 
@@ -55,8 +73,8 @@ class LocalIpcCtrl {
   async addTracks(event: IpcMessageEvent, filesPath: string[]) {
     const metas = await this.localLibrary.getMetas(filesPath);
 
-    event.sender.send('local-files', this.localLibraryDb.getCache());
-    event.sender.send('queue-add', metas);
+    this.window.send('local-files', this.localLibraryDb.getCache());
+    this.window.send('queue-add', metas);
   }
 }
 

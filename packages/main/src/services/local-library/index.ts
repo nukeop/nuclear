@@ -12,7 +12,7 @@ import url from 'url';
 
 import AcousticId from '../acoustic-id';
 import Config from '../config';
-import Logger, { mainLogger } from '../logger';
+import Logger, { $mainLogger } from '../logger';
 import LocalLibraryDb, { LocalMeta } from './db';
 import Window from '../window';
 
@@ -28,7 +28,7 @@ class LocalLibrary {
     @inject(Config) private config: Config,
     @inject(LocalLibraryDb) private store: LocalLibraryDb,
     @inject(AcousticId) private acousticId: AcousticId,
-    @inject(mainLogger) private logger: Logger,
+    @inject($mainLogger) private logger: Logger,
     @inject(Window) private window: Window
   ) {}
 

@@ -5,7 +5,7 @@ import _ from 'lodash';
 
 import pkg from '../../../../../package.json';
 import { Env } from '../../utils/env';
-import Logger, { mainLogger } from '../logger';
+import Logger, { $mainLogger } from '../logger';
 
 const MANDATORY_ENV = ['ACOUSTIC_ID_KEY', 'YOUTUBE_API_KEY'];
 
@@ -25,7 +25,7 @@ class Config {
   macIcon: string;
 
   constructor(
-    @inject(mainLogger) logger: Logger
+    @inject($mainLogger) logger: Logger
   ) {
     this.env = process.env.NODE_ENV as Env || Env.DEV;
     this.title = 'Nuclear Music Player';

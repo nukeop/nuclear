@@ -4,7 +4,7 @@ import ElectronStore from 'electron-store';
 import { inject, injectable } from 'inversify';
 import _ from 'lodash';
 
-import Logger, { mainLogger } from '../logger';
+import Logger, { $mainLogger } from '../logger';
 import Config from '../config';
 
 /**
@@ -14,7 +14,7 @@ import Config from '../config';
 @injectable()
 class Store extends ElectronStore {
   constructor(
-    @inject(mainLogger) private logger: Logger,
+    @inject($mainLogger) private logger: Logger,
     @inject(Config) private config: Config
   ) {
     super();
