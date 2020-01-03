@@ -5,13 +5,11 @@ import { withTranslation } from 'react-i18next';
 import BestNewMusicTab from './BestNewMusicTab';
 import ChartsTab from './ChartsTab';
 import GenresTab from './GenresTab';
-import NewsTab from './NewsTab';
 
 import styles from './styles.scss';
 
 @withTranslation('dashboard')
 class Dashboard extends React.Component {
-
 
   panes () {
     const {
@@ -71,17 +69,12 @@ class Dashboard extends React.Component {
           return null;
         },
       },*/
-      {
-        menuItem: t('news'),
-        render: () => <NewsTab news={dashboardData.news} />
-      }
     ];
   }
 
   componentDidMount () {
     this.props.actions.loadBestNewTracks();
     this.props.actions.loadBestNewAlbums();
-    this.props.actions.loadNuclearNews();
     this.props.actions.loadTopTags();
     this.props.actions.loadTopTracks();
   }
