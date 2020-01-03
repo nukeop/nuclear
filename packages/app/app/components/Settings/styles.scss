@@ -118,6 +118,16 @@
       flex: 1 1 auto;
     }
 
+    label {
+      &:first-child {
+        margin-right: 1em;
+      }
+
+      &:last-child {
+        margin-left: 1em;
+      }
+    }
+
     #rrp-baseDiv {
       margin: 0 2rem;
     }
