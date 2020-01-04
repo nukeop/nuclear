@@ -1,4 +1,4 @@
-import { SettingType, settingsConfig } from '@nuclear/common';
+import { SettingType, settingsConfig } from '@nuclear/core';
 import React from 'react';
 
 import HttpApiUrl from '../containers/HttpApiUrl';

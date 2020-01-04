@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { NuclearStatus, NuclearMeta, PlaybackStatus } from '@nuclear/common';
+import { NuclearStatus, NuclearMeta, PlaybackStatus } from '@nuclear/core';
 import { Event, IpcMain } from 'electron';
 import MediaService, { MediaMetadata, MediaState } from 'electron-media-service';
 import { inject } from 'inversify';
