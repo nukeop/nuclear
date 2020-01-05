@@ -62,7 +62,7 @@ class Dashboard extends React.Component {
             history={history}
           />
         )
-      },
+      }
       /* {
         menuItem: 'Events',
         render: () => {
@@ -73,20 +73,31 @@ class Dashboard extends React.Component {
   }
 
   componentDidMount () {
-    this.props.actions.loadBestNewTracks();
-    this.props.actions.loadBestNewAlbums();
-    this.props.actions.loadTopTags();
-    this.props.actions.loadTopTracks();
+    if (this.props.isConnected) {
+      this.props.actions.loadBestNewTracks();
+      this.props.actions.loadBestNewAlbums();
+      this.props.actions.loadTopTags();
+      this.props.actions.loadTopTracks();
+    } else {
+      this.props.history.push('/library');
+    }
   }
 
   render () {
+    const { isConnected } = this.props;
+
     return (
       <div className={styles.dashboard}>
-        <Tab
-          menu={{ secondary: true, pointing: true }}
-          panes={this.panes()}
-          className={styles.dashboard_tabs}
-        />
+        {isConnected && (
+          <Tab
+            menu={{ secondary: true, pointing: true }}
+            panes={this.panes()}
+            className={styles.dashboard_tabs}
+          />
+        )}
+        {!isConnected && (
+          <div>No connection !!!!!!!</div>
+        )}
       </div>
     );
   }

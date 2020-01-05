@@ -16,7 +16,9 @@ import { safeAddUuid } from '../../actions/helpers';
 const getTrackItem = track => ({
   artist: track.artist.name,
   name: track.name,
-  thumbnail: getThumbnail(track)
+  thumbnail: getThumbnail(track),
+  local: track.local,
+  streams: track.streams
 });
 
 const TrackPopupButtons = ({

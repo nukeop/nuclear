@@ -15,6 +15,7 @@ class Config {
     key: string;
     url: string;
   };
+  isConnected: boolean;
   youtubeUrl: string;
   defaultYoutubeApiKey: string;
   youtubeSearch: string;
@@ -72,7 +73,11 @@ class Config {
 
   isFileSupported(filePath: string): boolean {
     return this.supportedFormats.includes(path.extname(filePath).split('.')[1]);
-  } 
+  }
+
+  setConnectivity(isConnected: boolean) {
+    this.isConnected = isConnected;
+  }
 }
 
 export default Config;

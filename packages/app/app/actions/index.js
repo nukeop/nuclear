@@ -181,15 +181,18 @@ export function youtubePlaylistSearch (terms) {
 }
 
 export function unifiedSearch (terms, history) {
-  return dispatch => {
+  return (dispatch, getState) => {
     dispatch(unifiedSearchStart());
 
-    Promise.all([
-      dispatch(albumSearch(terms)),
-      dispatch(artistSearch(terms)),
-      dispatch(lastFmTrackSearch(terms)),
-      dispatch(youtubePlaylistSearch(terms))
-    ])
+    const searchActions = getState().connectivity
+      ? [
+        dispatch(albumSearch(terms)),
+        dispatch(artistSearch(terms)),
+        dispatch(lastFmTrackSearch(terms)),
+        dispatch(youtubePlaylistSearch(terms))
+      ]
+      : [];
+    Promise.all(searchActions)
       .then(() => {
         dispatch(unifiedSearchSuccess());
         if (history.location.pathname !== '/search') {

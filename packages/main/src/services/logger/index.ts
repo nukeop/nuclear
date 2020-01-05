@@ -41,7 +41,7 @@ class Logger {
           arrayType = 'void';
         }
         dataMessage = `Array<${arrayType}>`;
-      } else {
+      } else if (data) {
         dataMessage = data.constructor.name;
       }
     }
