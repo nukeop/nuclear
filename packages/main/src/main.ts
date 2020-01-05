@@ -56,7 +56,7 @@ app.on('ready', async () => {
     trayMenu.init();
 
     // if args is pass to  nuclear command and its a path to a supported file, just play it.
-    if (config.isProd() && process.argv[1], config.isFileSupported(process.argv[1])) {
+    if (config.isProd() && process.argv[1] && config.isFileSupported(process.argv[1])) {
       localLibrary.playStartupFile(process.argv[1]);
     }
   } catch (err) {
