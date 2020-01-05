@@ -15,7 +15,7 @@
     transition: $short-duration;
   }
 
-  .dragged_over {
+  .file_dragged_over {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -26,6 +26,10 @@
     *:not(i) {
       display: none;
     }
+  }
+
+  .track_dragged_over {
+    background: $background3;
   }
 
   .file_icon {

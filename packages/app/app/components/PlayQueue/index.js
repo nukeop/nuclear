@@ -177,7 +177,10 @@ class PlayQueue extends React.PureComponent {
                   classnames(
                     styles.play_queue_items,
                     styles.fade_in,
-                    {[`${styles.dragged_over}`]: snapshot.isDraggingOver || isFileHovered}
+                    {
+                      [styles.file_dragged_over]: isFileHovered,
+                      [styles.track_dragged_over]: snapshot.isDraggingOver
+                    }
                   )
                 }
                 {...provided.droppableProps}
