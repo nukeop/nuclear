@@ -1,6 +1,7 @@
 import React from 'react';
 import { Tab } from 'semantic-ui-react';
 import { withTranslation } from 'react-i18next';
+import { Redirect } from 'react-router-dom';
 
 import BestNewMusicTab from './BestNewMusicTab';
 import ChartsTab from './ChartsTab';
@@ -78,8 +79,6 @@ class Dashboard extends React.Component {
       this.props.actions.loadBestNewAlbums();
       this.props.actions.loadTopTags();
       this.props.actions.loadTopTracks();
-    } else {
-      this.props.history.push('/library');
     }
   }
 
@@ -95,9 +94,7 @@ class Dashboard extends React.Component {
             className={styles.dashboard_tabs}
           />
         )}
-        {!isConnected && (
-          <div>No connection !!!!!!!</div>
-        )}
+        {!isConnected && <Redirect to='/library' />}
       </div>
     );
   }

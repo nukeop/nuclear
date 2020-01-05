@@ -74,19 +74,14 @@ class App extends React.PureComponent {
     this.props.actions.loadPlaylists();
     this.props.actions.deserializePlugins();
 
-    this.updateConnectivityStatus();
-    window.addEventListener('online',  this.updateConnectivityStatus);
-    window.addEventListener('offline',  this.updateConnectivityStatus);
+    this.updateConnectivityStatus(navigator.onLine);
+    window.addEventListener('online',  () => this.updateConnectivityStatus(true));
+    window.addEventListener('offline',  () => this.updateConnectivityStatus(false));
   }
 
-  componentWillUnmount() {
-    window.removeEventListener('online',  this.updateConnectivityStatus);
-    window.removeEventListener('offline',  this.updateConnectivityStatus);
-  }
-
-  updateConnectivityStatus = () => {
-    mpris.sendConnectivity(navigator.onLine);
-    this.props.actions.changeConnectivity(navigator.onLine);
+  updateConnectivityStatus = (isConnected) => {
+    mpris.sendConnectivity(isConnected);
+    this.props.actions.changeConnectivity(isConnected);
   }
 
   togglePlayback () {
