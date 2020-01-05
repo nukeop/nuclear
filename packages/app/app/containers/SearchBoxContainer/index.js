@@ -11,12 +11,14 @@ const SearchBoxContainer = props => (
   <SearchBox
     handleSearch={props.handleSearch}
     loading={props.unifiedSearchStarted}
+    isConnected={props.isConnected}
   />
 );
 
 function mapStateToProps(state) {
   return {
-    unifiedSearchStarted: state.search.unifiedSearchStarted
+    unifiedSearchStarted: state.search.unifiedSearchStarted,
+    isConnected: state.connectivity
   };
 }
 

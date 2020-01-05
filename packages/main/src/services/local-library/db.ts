@@ -1,19 +1,12 @@
-import { NuclearBrutMeta, NuclearStream } from '@nuclear/common';
+import { NuclearBrutMeta } from '@nuclear/common';
 import ElectronStore from 'electron-store';
 import { injectable, inject } from 'inversify';
-import _ from 'lodash';
-import url from 'url';
 import path from 'path';
 
 import Logger, { $mainLogger } from '../logger';
 import Config from '../config';
 
 export type LocalMeta = Record<string, NuclearBrutMeta>;
-
-export interface LocalSearchQuery {
-  artist: string;
-  track: string;
-}
 
 @injectable()
 class LocalLibraryDb extends ElectronStore {
@@ -89,40 +82,6 @@ class LocalLibraryDb extends ElectronStore {
     this.set('localMeta', cache);
 
     return cache;
-  }
-
-  mapToStream(track: NuclearBrutMeta): NuclearStream {
-    return {
-      uuid: track.uuid,
-      title: track.name,
-      duration: track.duration,
-      source: 'Local',
-      stream: url.format({
-        pathname: track.path,
-        protocol: 'file',
-        slashes: true
-      })
-    };
-  }
-
-  private byArtist(): Record<string, NuclearBrutMeta[]> {
-    const cache = this.getCache();
-
-    return _.groupBy(Object.values(cache), track => track.artist.name);
-  }
-
-  search({ artist, track }: LocalSearchQuery) {
-    const byArtist = this.byArtist();
-
-    const result = Object.keys(byArtist)
-      .filter(artistKey => artistKey.includes(artist))
-      .map(artist => byArtist[artist])
-      .flat()
-      .filter(song => song.name && song.name.includes(track))
-      .map(this.mapToStream)
-      .pop();
-
-    return result;
   }
 
   private isParentOfFolder(filePath: string): boolean {
