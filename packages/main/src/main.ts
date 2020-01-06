@@ -1,7 +1,9 @@
 import 'reflect-metadata';
 
+import { transformSource } from '@nuclear/core';
 import { app } from 'electron';
 import logger from 'electron-timber';
+
 import { controllers, services } from './ioc';
 import Config from './services/config';
 import HttpApi from './services/http';
@@ -12,6 +14,8 @@ import Container from './utils/container';
 import LocalLibrary from './services/local-library';
 
 app.commandLine.appendSwitch('autoplay-policy', 'no-user-gesture-required');
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+(app as any).transformSource = transformSource;
 
 let container: Container;
 
@@ -56,7 +60,7 @@ app.on('ready', async () => {
     trayMenu.init();
 
     // if args is pass to  nuclear command and its a path to a supported file, just play it.
-    if (config.isProd() && process.argv[1], config.isFileSupported(process.argv[1])) {
+    if (config.isProd() && process.argv[1] && config.isFileSupported(process.argv[1])) {
       localLibrary.playStartupFile(process.argv[1]);
     }
   } catch (err) {

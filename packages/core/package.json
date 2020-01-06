@@ -1,61 +1,55 @@
 {
   "name": "@nuclear/core",
   "version": "0.5.1",
-  "description": "Nuclear - core functionality",
-  "author": "nukeop <nukeop@gumblert.tech>",
-  "homepage": "https://github.com/nukeop/nuclear/tree/master/packages/core#readme",
-  "license": "AGPL-3.0",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/nukeop/nuclear.git"
   },
-  "scripts": {
-    "lint": "eslint lib --fix",
-    "test": "eslint lib test && ava -v"
-  },
+  "author": "nukeop <nukeop@gumblert.tech>",
+  "license": "AGPL-3.0",
   "bugs": {
     "url": "https://github.com/nukeop/nuclear/issues"
   },
-  "devDependencies": {
-    "@babel/plugin-proposal-object-rest-spread": "^7.6.2",
-    "@babel/polyfill": "^7.6.0",
-    "@babel/register": "^7.6.2",
-    "ava": "^2.4.0",
-    "babel-eslint": "^10.0.3",
-    "babel-loader": "^7.1.5",
-    "eslint": "^6.7.2",
-    "eslint-plugin-node": "^10.0.0",
-    "eslint-plugin-react": "^7.14.3",
-    "eslint-plugin-react-hooks": "^2.1.1",
-    "webpack": "^4.16.3",
-    "webpack-cli": "^3.1.0",
-    "webpack-dev-server": "^3.1.5"
+  "homepage": "https://github.com/nukeop/nuclear#readme",
+  "main": "lib/index.js",
+  "typings": "lib/index.d.ts",
+  "scripts": {
+    "start": "tsc",
+    "build": "tsc",
+    "lint": "eslint src/**/*.ts test/**/*.ts --fix",
+    "test": "eslint src/**/*.ts test/**/*.ts && ava -v"
   },
   "dependencies": {
-    "@babel/core": "^7.6.4",
-    "@babel/preset-env": "^7.6.2",
-    "@babel/preset-react": "^7.0.0",
+    "@babel/core": "^7.7.7",
+    "@babel/preset-env": "^7.7.7",
+    "@babel/preset-react": "^7.7.4",
     "isomorphic-fetch": "^2.2.1",
-    "lodash": "^4.17.10",
     "md5": "^2.2.1",
-    "react": "^16.10.2",
-    "react-dom": "^16.10.2"
+    "react": "^16.12.0",
+    "redux": "^4.0.5"
+  },
+  "devDependencies": {
+    "@types/isomorphic-fetch": "0.0.35",
+    "@types/md5": "^2.1.33",
+    "@types/react": "^16.9.17",
+    "@typescript-eslint/eslint-plugin": "^2.11.0",
+    "@typescript-eslint/parser": "^2.11.0",
+    "ava": "^2.4.0",
+    "eslint": "^6.8.0",
+    "ts-node": "^8.5.4",
+    "typescript": "^3.7.3"
   },
   "ava": {
     "files": [
       "test/**",
       "!test/plugins"
     ],
-    "babel": {
-      "testOptions": {
-        "plugins": [
-          "@babel/plugin-proposal-object-rest-spread"
-        ]
-      }
-    },
+    "compileEnhancements": false,
+    "extensions": [
+      "ts"
+    ],
     "require": [
-      "@babel/register",
-      "@babel/polyfill"
+      "ts-node/register"
     ]
   }
 }

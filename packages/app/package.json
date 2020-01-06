@@ -32,7 +32,6 @@
   },
   "homepage": "https://github.com/nukeop/nuclear#readme",
   "dependencies": {
-    "@nuclear/common": "0.5.1",
     "@nuclear/core": "0.5.1",
     "@nuclear/ui": "0.5.1",
     "billboard-top-100": "^2.0.8",

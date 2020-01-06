@@ -26,9 +26,9 @@ const UserPluginsSectionComponent = ({
       </Button>
       {
         userPlugins &&
-        _.map(userPlugins, plugin => (
+        _.map(Object.values(userPlugins), (plugin, idx) => (
           <UserPluginsItem
-            key={plugin.path}
+            key={idx}
             path={plugin.path}
             name={plugin.name}
             description={plugin.description}

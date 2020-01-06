@@ -94,6 +94,10 @@ export function onLocalFilesError(event, actions, data) {
   actions.scanLocalFoldersFailed(data);
 }
 
+export function sendConnectivity(isConnected) {
+  ipcRenderer.send('connectivity', isConnected);
+}
+
 export function onSongChange(song) {
   ipcRenderer.send('songChange', song);
 }

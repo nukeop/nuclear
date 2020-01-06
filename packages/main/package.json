@@ -18,7 +18,7 @@
   },
   "homepage": "https://github.com/nukeop/nuclear#readme",
   "dependencies": {
-    "@nuclear/common": "0.5.1",
+    "@nuclear/core": "0.5.1",
     "autobind-decorator": "^2.4.0",
     "body-parser": "^1.19.0",
     "concat-stream": "^2.0.0",

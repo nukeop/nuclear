@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { settingsConfig } from '@nuclear/common';
+import { settingsConfig } from '@nuclear/core';
 import ElectronStore from 'electron-store';
 import { inject, injectable } from 'inversify';
 import _ from 'lodash';

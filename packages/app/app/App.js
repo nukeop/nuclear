@@ -16,6 +16,7 @@ import * as PluginsActions from './actions/plugins';
 import * as QueueActions from './actions/queue';
 import * as SettingsActions from './actions/settings';
 import * as ScrobblingActions from './actions/scrobbling';
+import * as ConnectivityActions from './actions/connectivity';
 import { sendPaused } from './mpris';
 
 import './app.global.scss';
@@ -58,8 +59,10 @@ import TrackInfo from './components/TrackInfo';
 import WindowControls from './components/WindowControls';
 import VolumeControls from './components/VolumeControls';
 
+import * as mpris from './mpris';
+
 @withTranslation('app')
-class App extends React.Component {
+class App extends React.PureComponent {
   constructor(props) {
     super(props);
   }
@@ -70,6 +73,15 @@ class App extends React.Component {
     this.props.actions.createPlugins(PluginConfig.plugins);
     this.props.actions.loadPlaylists();
     this.props.actions.deserializePlugins();
+
+    this.updateConnectivityStatus(navigator.onLine);
+    window.addEventListener('online',  () => this.updateConnectivityStatus(true));
+    window.addEventListener('offline',  () => this.updateConnectivityStatus(false));
+  }
+
+  updateConnectivityStatus = (isConnected) => {
+    mpris.sendConnectivity(isConnected);
+    this.props.actions.changeConnectivity(isConnected);
   }
 
   togglePlayback () {
@@ -131,6 +143,7 @@ class App extends React.Component {
   }
 
   renderSidebarMenu () {
+    
     return (
       <VerticalPanel
         className={classnames(styles.left_panel, {
@@ -372,7 +385,8 @@ function mapStateToProps (state) {
     player: state.player,
     playlists: state.playlists.playlists,
     scrobbling: state.scrobbling,
-    settings: state.settings
+    settings: state.settings,
+    isConnected: state.connectivity
   };
 }
 
@@ -387,6 +401,7 @@ function mapDispatchToProps (dispatch) {
         PlayerActions,
         PlaylistsActions,
         PluginsActions,
+        ConnectivityActions,
         Actions
       ),
       dispatch

@@ -1,6 +1,7 @@
-import { app } from 'electron';
+import { app, IpcMessageEvent } from 'electron';
 import { inject } from 'inversify';
 
+import Config from '../services/config';
 import HttpApi from '../services/http';
 import NuclearApi from '../interfaces/nuclear-api';
 import Store from '../services/store';
@@ -11,6 +12,7 @@ import { ipcEvent, ipcController } from '../utils/decorators';
 @ipcController()
 class SettingsIpcCtrl {
   constructor(
+    @inject(Config) private config: Config,
     @inject(HttpApi) private httpApi: HttpApi,
     @inject(SystemApi) private systemApi: NuclearApi,
     @inject(Store) private store: Store,
@@ -50,6 +52,11 @@ class SettingsIpcCtrl {
   @ipcEvent('stop-api')
   closeHttpServer() {
     return this.httpApi.close();
+  }
+
+  @ipcEvent('connectivity')
+  toggleConnectivity(event: IpcMessageEvent, isConnected: boolean) {
+    this.config.setConnectivity(isConnected);
   }
 }
 
