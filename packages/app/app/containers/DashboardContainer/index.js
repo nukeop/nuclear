@@ -25,7 +25,8 @@ class DashboardContainer extends React.Component {
       dashboard,
       settings,
       history,
-      streamProviders
+      streamProviders,
+      isConnected
     } = this.props;
 
     return (
@@ -35,6 +36,7 @@ class DashboardContainer extends React.Component {
         settings={settings}
         actions={actions}
         streamProviders={streamProviders}
+        isConnected={isConnected}
       />
     );
   }
@@ -44,7 +46,8 @@ function mapStateToProps(state) {
   return {
     dashboard: state.dashboard,
     streamProviders: state.plugin.plugins.streamProviders,
-    settings: state.settings
+    settings: state.settings,
+    isConnected: state.connectivity
   };
 }
 

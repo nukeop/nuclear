@@ -64,8 +64,10 @@ class QueuePopup extends React.Component {
           inline
           options={dropdownOptions}
           defaultValue={
-            _.find(dropdownOptions, o => o.value === selectedStream.source)
-              .value
+            _.get(
+              _.find(dropdownOptions, o => o.value === selectedStream.source),
+              'value'
+            )
           }
         />
       </div>
@@ -130,6 +132,10 @@ class QueuePopup extends React.Component {
   render() {
     const { track, defaultMusicSource, t } = this.props;
     const selectedStream = getSelectedStream(track.streams, defaultMusicSource);
+
+    if (track.local) {
+      return this.renderPopupTrigger();
+    }
 
     return (
       <div onContextMenu={this.toggleOpen.bind(this)}>

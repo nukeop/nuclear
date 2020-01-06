@@ -16,6 +16,7 @@ import SettingsReducer from './settings';
 import TagReducer from './tag';
 import ToastsReducer from './toasts';
 import LocalReducer from './local';
+import ConnectivityReducer from './connectivity';
 
 const rootReducer = combineReducers({
   dashboard: DashboardReducer,
@@ -33,7 +34,8 @@ const rootReducer = combineReducers({
   settings: SettingsReducer,
   tags: TagReducer,
   toasts: ToastsReducer,
-  local: LocalReducer
+  local: LocalReducer,
+  connectivity: ConnectivityReducer
 });
 
 export default rootReducer;

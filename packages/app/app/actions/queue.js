@@ -15,16 +15,20 @@ export const SELECT_SONG = 'SELECT_SONG';
 export const REPOSITION_SONG = 'REPOSITION_SONG';
 
 function addTrackToQueue (streamProviders, item) {  
-  return dispatch => {
+  return (dispatch, getState) => {
     item.loading = !item.local;
     item = safeAddUuid(item);
     mpris.addTrack(item);
 
-    dispatch({
+    const { connectivity } = getState();
+    const isAbleToAdd = (!connectivity && item.local) || connectivity;
+
+    isAbleToAdd && dispatch({
       type: ADD_TO_QUEUE,
       payload: item
     });
-    !item.local && Promise.all(_.map(streamProviders, m => m.search({ artist: item.artist, track: item.name })))
+
+    !item.local && isAbleToAdd && Promise.all(_.map(streamProviders, m => m.search({ artist: item.artist, track: item.name })))
       .then(results => Promise.all(results))
       .then(results => {
         _.pull(results, null);
