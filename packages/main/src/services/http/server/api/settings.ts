@@ -1,5 +1,5 @@
-import { settingsConfig } from '@nuclear/common';
-import { Event, BrowserWindow } from 'electron';
+import { settingsConfig } from '@nuclear/core';
+import { BrowserWindow } from 'electron';
 import express from 'express';
 import { Validator } from 'express-json-validator-middleware';
 import swagger, { ISwaggerizedRouter } from 'swagger-spec-express';

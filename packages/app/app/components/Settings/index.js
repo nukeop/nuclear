@@ -1,4 +1,4 @@
-import { SettingType } from '@nuclear/common';
+import { SettingType } from '@nuclear/core';
 import { Range } from '@nuclear/ui';
 import React from 'react';
 import PropTypes from 'prop-types';

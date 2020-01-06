@@ -1,4 +1,4 @@
-import { NuclearBrutMeta } from '@nuclear/common';
+import { NuclearBrutMeta } from '@nuclear/core';
 import glob from 'glob';
 import { inject, injectable } from 'inversify';
 import _ from 'lodash';

@@ -1,4 +1,4 @@
-import {NuclearBrutMeta } from '@nuclear/common';
+import {NuclearBrutMeta } from '@nuclear/core';
 import { IpcMessageEvent } from 'electron';
 import { inject } from 'inversify';
 import _ from 'lodash';

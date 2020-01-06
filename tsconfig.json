@@ -14,5 +14,9 @@
     "emitDecoratorMetadata": true,
     "esModuleInterop": true,
     "resolveJsonModule": true
-  }
+  },
+  "exclude": [
+    "dist",
+    "packages/app"
+  ]
 }

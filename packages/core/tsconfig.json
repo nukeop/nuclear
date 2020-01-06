@@ -1,0 +1,23 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "module": "commonjs",
+    "lib": ["DOM"],
+    "declaration": true,
+    "outDir": "lib",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "strict": false,
+    "typeRoots": [
+      "node_modules/@types",
+      "typings"
+    ]
+  },
+  "include": [
+    "src",
+    "typings"
+  ],
+  "exclude": [
+    "lib"
+  ]
+}
