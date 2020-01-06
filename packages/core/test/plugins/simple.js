@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 export default {
   name: 'test plugin',
   description: 'test plugin description',

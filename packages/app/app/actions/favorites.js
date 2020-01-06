@@ -22,7 +22,10 @@ export function addFavoriteTrack(track) {
   const clonedTrack = safeAddUuid(track);
 
   const favorites = store.get('favorites');
-  favorites.tracks = _.concat(favorites.tracks, clonedTrack);
+  const filteredTracks = favorites.tracks.filter(({ name, artist }) => {
+    return artist.name !== clonedTrack.artist.name || name !== clonedTrack.name;
+  });
+  favorites.tracks = _.concat(filteredTracks, clonedTrack);
 
   store.set('favorites', favorites);
 

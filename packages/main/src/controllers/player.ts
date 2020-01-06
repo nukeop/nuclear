@@ -1,4 +1,4 @@
-import { NuclearMeta } from '@nuclear/common';
+import { NuclearMeta } from '@nuclear/core';
 import { IpcMessageEvent } from 'electron';
 import { inject } from 'inversify';
 

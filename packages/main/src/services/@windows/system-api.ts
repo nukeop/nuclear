@@ -18,7 +18,7 @@ export default WindowsMediaService;
 // import { BackgroundMediaPlayer } from '@nodert-win10/windows.media.playback';
 // import { RandomAccessStreamReference } from '@nodert-win10/windows.storage.streams';
 // import { Uri } from '@nodert-win10/windows.foundation';
-// import { NuclearStatus, PlaybackStatus, NuclearMeta } from '@nuclear/common';
+// import { NuclearStatus, PlaybackStatus, NuclearMeta } from '@nuclear/core';
 // import { Event, IpcMain } from 'electron';
 // import { inject, injectable } from 'inversify';
 

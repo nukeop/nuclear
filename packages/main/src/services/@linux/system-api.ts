@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { NuclearStatus, NuclearMeta, NuclearPlaylist, PlaybackStatus } from '@nuclear/common';
+import { NuclearStatus, NuclearMeta, NuclearPlaylist, PlaybackStatus } from '@nuclear/core';
 import autobind from 'autobind-decorator';
 import { app, IpcMain, Event } from 'electron';
 import { inject } from 'inversify';

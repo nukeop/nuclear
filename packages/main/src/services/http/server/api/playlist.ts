@@ -1,4 +1,4 @@
-import { NuclearPlaylist } from '@nuclear/common';
+import { NuclearPlaylist } from '@nuclear/core';
 import { BrowserWindow } from 'electron';
 import express from 'express';
 import { Validator } from 'express-json-validator-middleware';
