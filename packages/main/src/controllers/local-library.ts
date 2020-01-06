@@ -3,7 +3,7 @@ import { IpcMessageEvent } from 'electron';
 
 import LocalLibrary from '../services/local-library';
 import { ipcController, ipcEvent } from '../utils/decorators';
-import LocalLibraryDb, { LocalSearchQuery } from '../services/local-library/db';
+import LocalLibraryDb from '../services/local-library/db';
 import Window from '../services/window';
 
 @ipcController()
@@ -62,11 +62,6 @@ class LocalIpcCtrl {
     } catch (err) {
       this.window.send('local-files-error', err);
     }
-  }
-
-  @ipcEvent('local-search')
-  async search(event: IpcMessageEvent, query: LocalSearchQuery) {
-    event.returnValue = this.localLibraryDb.search(query);
   }
 
   @ipcEvent('queue-drop')

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Tab } from 'semantic-ui-react';
 import { withTranslation } from 'react-i18next';
+import { Redirect } from 'react-router-dom';
 
 import BestNewMusicTab from './BestNewMusicTab';
 import ChartsTab from './ChartsTab';
@@ -73,20 +74,27 @@ class Dashboard extends React.Component {
   }
 
   componentDidMount () {
-    this.props.actions.loadBestNewTracks();
-    this.props.actions.loadBestNewAlbums();
-    this.props.actions.loadTopTags();
-    this.props.actions.loadTopTracks();
+    if (this.props.isConnected) {
+      this.props.actions.loadBestNewTracks();
+      this.props.actions.loadBestNewAlbums();
+      this.props.actions.loadTopTags();
+      this.props.actions.loadTopTracks();
+    }
   }
 
   render () {
+    const { isConnected } = this.props;
+
     return (
       <div className={styles.dashboard}>
-        <Tab
-          menu={{ secondary: true, pointing: true }}
-          panes={this.panes()}
-          className={styles.dashboard_tabs}
-        />
+        {isConnected && (
+          <Tab
+            menu={{ secondary: true, pointing: true }}
+            panes={this.panes()}
+            className={styles.dashboard_tabs}
+          />
+        )}
+        {!isConnected && <Redirect to='/library' />}
       </div>
     );
   }

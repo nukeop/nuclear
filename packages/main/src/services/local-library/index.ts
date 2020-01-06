@@ -109,10 +109,13 @@ class LocalLibrary {
 
     const metas = await Promise.all(notStoredPath.map(file => parseFile(file)));
     const formattedMetas = notStoredPath.map((file, i) => this.formatMeta(metas[i], file));
-    const formattedMetasWithoutName = formattedMetas.filter(meta => !meta.name);
 
-    if (formattedMetasWithoutName.length) {
-      await this.fetchAcousticIdBatch(formattedMetasWithoutName, onProgress);
+    if (this.config.isConnected) {
+      const formattedMetasWithoutName = formattedMetas.filter(meta => !meta.name);
+  
+      if (formattedMetasWithoutName.length) {
+        await this.fetchAcousticIdBatch(formattedMetasWithoutName, onProgress);
+      }
     }
 
     this.store.updateCache(formattedMetas);
@@ -194,10 +197,13 @@ class LocalLibrary {
     const metas = await Promise.all(files.map(filePath => parseFile(filePath)));
   
     const formattedMetas = files.map((file, i) => this.formatMeta(metas[i], file));
-    const formattedMetasWithoutName = formattedMetas.filter(meta => !meta.name);
-  
-    if (formattedMetasWithoutName.length) {
-      await this.fetchAcousticIdBatch(formattedMetasWithoutName, onProgress);
+
+    if (this.config.isConnected) {
+      const formattedMetasWithoutName = formattedMetas.filter(meta => !meta.name);
+    
+      if (formattedMetasWithoutName.length) {
+        await this.fetchAcousticIdBatch(formattedMetasWithoutName, onProgress);
+      }
     }
   
     return this.store.updateCache(formattedMetas, baseFiles);
