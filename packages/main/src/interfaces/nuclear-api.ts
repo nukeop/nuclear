@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { NuclearMeta } from '@nuclear/common';
+import { NuclearMeta } from '@nuclear/core';
 
 interface NuclearApi {
   play(): any;

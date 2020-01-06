@@ -1,4 +1,4 @@
-import { settingsConfig } from '@nuclear/common';
+import { settingsConfig } from '@nuclear/core';
 
 export const RESTRICTED_SETTINGS = [];
 export const READONLY_SETTINGS = [];

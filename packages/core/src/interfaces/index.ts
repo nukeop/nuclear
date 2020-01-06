@@ -1,9 +1,27 @@
+import { App } from 'electron';
+import { ReactType, ReactDOM } from 'react';
+import { Store } from 'redux';
+
 export enum PlaybackStatus {
   PAUSED = 'PAUSED',
   PLAYING = 'PLAYING',
   STOPPED = 'STOPPED',
 }
 
+export interface PluginApi {
+  React: ReactType;
+  ReactDOM: ReactDOM;
+  app: App;
+  store: Store;
+}
+
+export interface NuclearPlugin {
+  name: string;
+  description: string;
+  image?: string;
+  author: string;
+  onLoad: (api: PluginApi) => void;
+}
 
 export interface NuclearStatus {
   playbackStatus: PlaybackStatus;

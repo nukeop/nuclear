@@ -1,4 +1,4 @@
-import { NuclearStatus } from '@nuclear/common';
+import { NuclearStatus } from '@nuclear/core';
 import express from 'express';
 import { ipcMain, Event, BrowserWindow } from 'electron';
 import { Validator } from 'express-json-validator-middleware';

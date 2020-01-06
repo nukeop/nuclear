@@ -1,4 +1,4 @@
-import { NuclearBrutMeta, NuclearStream } from '@nuclear/common';
+import { NuclearBrutMeta, NuclearStream } from '@nuclear/core';
 import ElectronStore from 'electron-store';
 import { injectable, inject } from 'inversify';
 import _ from 'lodash';

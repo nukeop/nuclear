@@ -62,7 +62,7 @@ class Dashboard extends React.Component {
             history={history}
           />
         )
-      },
+      }
       /* {
         menuItem: 'Events',
         render: () => {

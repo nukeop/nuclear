@@ -3,35 +3,36 @@ import md5 from 'md5';
 const scrobblingApiUrl = 'https://ws.audioscrobbler.com/2.0/';
 
 class LastFmApi {
-  constructor(key, secret) {
-    this.key = key;
-    this.secret = secret;
-  }
+  constructor(
+    private key: string,
+    private secret: string
+  ) {}
 
-  sign(url) {
-    let tokens = decodeURIComponent((url.split('?')[1].split('&').sort().join()).replace(/,/g, '').replace(/=/g, ''));
+  sign(url: string): string {
+    const tokens = decodeURIComponent((url.split('?')[1].split('&').sort().join()).replace(/,/g, '').replace(/=/g, ''));
 
     return md5(tokens + this.secret);
   }
 
-  prepareUrl(url) {
-    let withApiKey = `${url}&api_key=${this.key}`;
+  prepareUrl(url: string): string {
+    const withApiKey = `${url}&api_key=${this.key}`;
+  
     return `${withApiKey}&api_sig=${this.sign(withApiKey)}` ;
   }
 
-  addApiKey(url) {
+  addApiKey(url: string): string {
     return `${url}&api_key=${this.key}`;
   }
 
-  lastFmLoginConnect() {
+  lastFmLoginConnect(): Promise<Response> {
     return fetch(this.prepareUrl(scrobblingApiUrl + '?method=auth.getToken&format=json'));
   }
 
-  lastFmLogin(authToken) {
+  lastFmLogin(authToken: string): Promise<Response> {
     return fetch(this.prepareUrl(scrobblingApiUrl + '?method=auth.getSession&token=' + authToken)+'&format=json');
   }
 
-  scrobble(artist, track, session) {
+  scrobble(artist: string, track: string, session: string): Promise<Response> {
     return fetch(this.prepareUrl(
       scrobblingApiUrl +
         '?method=track.scrobble&sk=' +
@@ -41,14 +42,14 @@ class LastFmApi {
         '&track=' +
         encodeURIComponent(track) +
         '&timestamp=' +
-        (Math.floor(new Date()/1000 - 540))),
+        (Math.floor(Date.now() /1000 - 540))),
     {
       method: 'POST'
     }
     );
   }
 
-  updateNowPlaying(artist, track, session) {
+  updateNowPlaying(artist: string, track: string, session: string): Promise<Response> {
     return fetch(this.prepareUrl(
       scrobblingApiUrl +
         '?method=track.updateNowPlaying&sk=' +
@@ -63,7 +64,7 @@ class LastFmApi {
     );
   }
 
-  getArtistInfo(artist) {
+  getArtistInfo(artist: string): Promise<Response> {
     return fetch(this.addApiKey(
       scrobblingApiUrl +
         '?method=artist.getinfo&artist=' +
@@ -72,7 +73,7 @@ class LastFmApi {
     ));
   }
 
-  getArtistTopTracks(artist) {
+  getArtistTopTracks(artist: string): Promise<Response> {
     return fetch(this.addApiKey(
       scrobblingApiUrl +
         '?method=artist.gettoptracks&artist=' +
@@ -81,21 +82,21 @@ class LastFmApi {
     ));
   }
 
-  getTopTags() {
+  getTopTags(): Promise<Response> {
     return fetch(this.addApiKey(
       scrobblingApiUrl +
         '?method=tag.getTopTags&format=json'
     ));
   }
 
-  getTopTracks() {
+  getTopTracks(): Promise<Response> {
     return fetch(this.addApiKey(
       scrobblingApiUrl +
         '?method=chart.getTopTracks&format=json'
     ));
   }
 
-  getTagInfo(tag) {
+  getTagInfo(tag: string): Promise<Response> {
     return fetch(this.addApiKey(
       scrobblingApiUrl +
         '?method=tag.getInfo&format=json&tag=' +
@@ -103,7 +104,7 @@ class LastFmApi {
     ));
   }
 
-  getTagTracks(tag) {
+  getTagTracks(tag: string): Promise<Response> {
     return fetch(this.addApiKey(
       scrobblingApiUrl +
         '?method=tag.getTopTracks&format=json&tag=' +
@@ -111,7 +112,7 @@ class LastFmApi {
     ));
   }
 
-  getTagAlbums(tag) {
+  getTagAlbums(tag: string): Promise<Response> {
     return fetch(this.addApiKey(
       scrobblingApiUrl +
         '?method=tag.getTopAlbums&format=json&tag=' +
@@ -119,7 +120,7 @@ class LastFmApi {
     ));
   }
 
-  getTagArtists(tag) {
+  getTagArtists(tag: string): Promise<Response> {
     return fetch(this.addApiKey(
       scrobblingApiUrl +
         '?method=tag.getTopArtists&format=json&tag=' +
@@ -127,7 +128,7 @@ class LastFmApi {
     ));
   }
 
-  getSimilarTags(tag) {
+  getSimilarTags(tag: string): Promise<Response> {
     return fetch(this.addApiKey(
       scrobblingApiUrl +
         '?method=tag.getSimilar&format=json&tag=' +
@@ -135,7 +136,7 @@ class LastFmApi {
     ));
   }
 
-  getSimilarTracks(artist, track, limit=100) {
+  getSimilarTracks(artist: string, track: string, limit = 100): Promise<Response> {
     return fetch(this.addApiKey(
       scrobblingApiUrl +
         '?method=track.getSimilar&format=json&artist=' +
@@ -147,7 +148,7 @@ class LastFmApi {
     ));
   }
 
-  searchTracks(terms, limit=30) {
+  searchTracks(terms: string, limit = 30): Promise<Response> {
     return fetch(this.addApiKey(
       scrobblingApiUrl +
         '?method=track.search&format=json&track=' +
