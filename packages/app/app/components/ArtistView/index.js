@@ -1,7 +1,9 @@
 import React from 'react';
+import cx from 'classnames';
 import _ from 'lodash';
 import { Dimmer, Loader } from 'semantic-ui-react';
 import { withTranslation } from 'react-i18next';
+
 import AlbumList from '../AlbumList';
 import ArtistTags from './ArtistTags';
 import SimilarArtists from './SimilarArtists';
@@ -126,7 +128,7 @@ class ArtistView extends React.Component {
 
     return (
       <div className={styles.artist_view_container}>
-        <Dimmer.Dimmable>
+        <Dimmer.Dimmable className={cx({ [styles.loading]: this.isLoading() })}>
           <Dimmer active={this.isLoading()}>
             <Loader />
           </Dimmer>
@@ -142,7 +144,12 @@ class ArtistView extends React.Component {
             </>
           )}
 
-          <div className={styles.artist_related_container}>
+          <div className={
+            cx(
+              styles.artist_related_container,
+              { [styles.loading]: this.isLoading() }
+              )
+            }>
             {this.renderPopularTracks()}
 
             {this.renderSimilarArtists()}

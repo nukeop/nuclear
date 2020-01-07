@@ -1,5 +1,5 @@
-@import '../../mixin';
-@import '../../vars';
+@import "../../mixin";
+@import "../../vars";
 
 .artist_view_container {
   position: relative;
@@ -9,6 +9,19 @@
   .dimmable {
     width: 100%;
     height: 100%;
+  }
+
+  .dimmable.loading {
+    display: flex;
+    flex-flow: column;
+
+    & > div {
+      flex: 1 1 auto;
+    }
+
+    hr {
+      width: 100%;
+    }
   }
 
   .artist {
@@ -52,7 +65,7 @@
     flex-shrink: 0;
   }
 
-  .artist_name_container{
+  .artist_name_container {
     display: flex;
     flex-flow: column;
     flex: 1 1 auto;
@@ -64,7 +77,7 @@
     flex-flow: row;
     align-items: center;
     h1 {
-      line-height: 1.15;  
+      line-height: 1.15;
     }
     margin-bottom: 0.75em;
   }
@@ -86,5 +99,9 @@
     display: flex;
     flex-flow: row;
     margin: 0.5rem 0;
+
+    &.loading {
+      display: none;
+    }
   }
 }

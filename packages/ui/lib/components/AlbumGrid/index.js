@@ -27,7 +27,7 @@ const AlbumGrid = ({
     common.nuclear,
     styles.album_grid,
     { [styles.loading]: loading },
-    { [styles.auto_size]: autoSize }
+    { [styles.auto_size]: autoSize && !loading }
   )} >
     <div className={styles.album_cards}>
       {
