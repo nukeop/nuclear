@@ -1,9 +1,91 @@
 <!DOCTYPE html>
 <html>
-<head></head>
-<body style="background: #282a36; margin: 0;">
+
+<head>
+  <style>
+    @keyframes gradient-anim {
+
+      0%,
+      100% {
+        background-position: 50% 50%;
+      }
+
+      25% {
+        background-position: 0% 100%;
+      }
+
+      75% {
+        background-position: 100% 0%;
+      }
+    }
+
+    html,
+    body {
+      background: #282a36;
+      margin: 0;
+      font-size: 14px;
+    }
+
+    .loader-container {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: transparent;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: -1;
+    }
+
+    .nuclear-loader {
+      position: relative;
+      display: flex;
+      flex-flow: column;
+      background: linear-gradient(45deg, #43CBFF 0%, #9708CC 100%);
+      background-size: 200% 200%;
+      width: 15rem;
+      height: 15rem;
+      border-radius: 2rem;
+      box-shadow: 0 0 38px rgba(0, 0, 0, 0.30), 0 0 12px rgba(0, 0, 0, 0.22);
+      animation: gradient-anim 2s ease-in-out infinite;
+    }
+
+    .nuclear-loader>span {
+      position: absolute;
+      width: 0;
+      height: 0;
+      border-top: 4em solid #FAFAFA;
+      border-left: 3em solid transparent;
+      border-right: 3em solid transparent;
+    }
+
+    .nuclear-loader>span:nth-child(1) {
+      right: 4.5em;
+      top: 3.5em;
+    }
+
+    .nuclear-loader>span:nth-child(2) {
+      right: 7.5em;
+      bottom: 3.5em;
+    }
+
+    .nuclear-loader>span:nth-child(3) {
+      left: 7.5em;
+      bottom: 3.5em;
+    }
+  </style>
+</head>
+
+<body>
   <main id="react-root">
-    <nuclear-loader />
+    <div class='loader-container'>
+      <div class='nuclear-loader'>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
   </main>
 </body>
+
 </html>
