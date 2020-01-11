@@ -5,7 +5,7 @@ import _ from 'lodash';
 import { Dimmer, Loader } from 'semantic-ui-react';
 import { compose, withState, withHandlers } from 'recompose';
 
-import { getThumbnail } from '../../utils';
+import { getThumbnail, getTrackItem } from '../../utils';
 import AlbumPreview from '../AlbumPreview';
 import Card from '../Card';
 import common from '../../common.scss';
@@ -90,11 +90,8 @@ export default compose(
     onAlbumClick: ({ onAlbumClick, selectAlbum }) => album => _.isNil(onAlbumClick) ? selectAlbum(album) : onAlbumClick(album),
     onAddToQueue: ({ addToQueue, selectedAlbum, streamProviders }) => () => {
       selectedAlbum.tracks.map(track => addToQueue(
-        streamProviders, {
-          artist: _.get(track, 'artist.name'),
-          name: _.get(track, 'name'),
-          thumbnail: getThumbnail(track)
-        }
+        streamProviders, 
+        getTrackItem(track)
       ));
     }
   }),
