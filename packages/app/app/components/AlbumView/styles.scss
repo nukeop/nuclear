@@ -109,10 +109,6 @@
         top: 0;
         right: 0;
         margin:  0rem 2rem;
-        
-        .star.outline::before {
-          content: "\f006"; // fix for semantic-ui-react bug
-        }
       }
     }
 
