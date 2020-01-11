@@ -6,7 +6,7 @@ const AlbumListComponent = props => <AlbumGrid {...props} autoSize/>;
 export default compose(
   withHandlers({
     onAlbumClick: ({albumInfoSearch, history}) => (album) => {
-      albumInfoSearch(album.id, album.type);
+      albumInfoSearch(album.id, album.type, album);
       history.push('/album/' + album.id);
     }
   })

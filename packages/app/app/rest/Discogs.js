@@ -3,12 +3,12 @@ const userToken = 'QDUeFOZNwIwOePlxpVziEHzamhbIHUdfENAJTnLR';
 // const key = 'EZaGPpKGBbTkjwmpjmNY';
 // const secret = 'uluhDSPtelRtLUvjrvQhRBnNwpZMtkZq';
 
-function addToken (query, first = false) {
+function addToken(query, first = false) {
   let newQuery = query + '&token=' + userToken;
   return first ? newQuery.replace('&', '?') : newQuery;
 }
 
-function searchQuery (terms, count = 15) {
+function searchQuery(terms, count = 15) {
   // Strip # manually to prevent it being interpreted as anchor separator
   terms = terms.replace('#', '');
 
@@ -17,11 +17,16 @@ function searchQuery (terms, count = 15) {
   );
 }
 
-function search (terms, type, count = 15) {
+function search(terms, type, count = 15) {
   return fetch(searchQuery(terms, count) + '&type=' + type);
 }
 
-function releaseInfo (releaseId, releaseType) {
+function releaseInfo(releaseId, releaseType, release) {
+  const resource_url = _.get(release, 'resource_url');
+  if (resource_url) {
+    return fetch(addToken(resource_url, true));
+  }
+
   if (releaseType === 'master') {
     return fetch(addToken(apiUrl + 'masters/' + releaseId, true));
   } else if (releaseType === 'release') {
@@ -29,11 +34,11 @@ function releaseInfo (releaseId, releaseType) {
   }
 }
 
-function artistInfo (artistId) {
+function artistInfo(artistId) {
   return fetch(addToken(apiUrl + 'artists/' + artistId, true));
 }
 
-function artistReleases (artistId) {
+function artistReleases(artistId) {
   return fetch(
     addToken(
       apiUrl +
