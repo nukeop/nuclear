@@ -32,3 +32,11 @@ export const getThumbnail = album => {
     _.get(album, 'image[0][\'#text\']',
       _.get(album, 'thumb')));
 };
+
+export const getTrackItem = track => ({
+  artist: track.artist.name,
+  name: track.name,
+  thumbnail: getThumbnail(track),
+  local: track.local,
+  streams: track.streams
+});

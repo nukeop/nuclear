@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { compose, withHandlers } from 'recompose';
 import { ipcRenderer } from 'electron';
-import { PopupButton, getThumbnail } from '@nuclear/ui';
+import { PopupButton, getThumbnail, getTrackItem } from '@nuclear/ui';
 
 import * as DownloadsActions from '../../actions/downloads';
 import * as QueueActions from '../../actions/queue';
@@ -13,13 +13,6 @@ import * as FavoritesActions from '../../actions/favorites';
 import * as ToastActions from '../../actions/toasts';
 import { safeAddUuid } from '../../actions/helpers';
 
-const getTrackItem = track => ({
-  artist: track.artist.name,
-  name: track.name,
-  thumbnail: getThumbnail(track),
-  local: track.local,
-  streams: track.streams
-});
 
 const TrackPopupButtons = ({
   // track,
