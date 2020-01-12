@@ -30,7 +30,7 @@ type Setting = {
   buttonIcon?: string;
 }
 
-export const settingsConfig: Array<Setting> =  [
+export const settingsConfig: Array<Setting> = [
   {
     name: 'loopAfterQueueEnd',
     category: 'playback',
