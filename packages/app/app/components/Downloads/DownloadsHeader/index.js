@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import _ from 'lodash';
 import {
   Button,
   Icon,
@@ -15,27 +16,25 @@ const DownloadsHeader = ({
   directory,
   setDirectory,
   t
-}) => {
-  return (
-    <Segment className={styles.downloads_header}>
-      <span className={styles.label}>
+}) => (
+  <Segment className={styles.downloads_header}>
+    <span className={styles.label}>
         Saving in:
-        <span className={styles.directory}>
-          { directory }
-        </span>
+      <span className={styles.directory}>
+        { _.isEmpty(directory) ? remote.app.getPath('downloads') : directory}
       </span>
-      <Button
-        icon
-        inverted
-        labelPosition='left'
-        onClick={setDirectory}
-      >
-        <Icon name='folder open' />
-        { t('downloads-dir-button') }
-      </Button>
-    </Segment>
-  );
-};
+    </span>
+    <Button
+      icon
+      inverted
+      labelPosition='left'
+      onClick={setDirectory}
+    >
+      <Icon name='folder open' />
+      {t('downloads-dir-button')}
+    </Button>
+  </Segment>
+);
 
 DownloadsHeader.propTypes = {
   directory: PropTypes.string,
@@ -44,15 +43,15 @@ DownloadsHeader.propTypes = {
 };
 
 DownloadsHeader.defaultProps = {
-  directory: '',
-  setDirectory: () => {},
-  setStringOption: () => {}
+  directory: remote.app.getPath('downloads'),
+  setDirectory: () => { },
+  setStringOption: () => { }
 };
 
 export default compose(
   withTranslation('settings'),
   withHandlers({
-    setDirectory: ({setStringOption}) => () => {
+    setDirectory: ({ setStringOption }) => () => {
       let dialogResult = remote.dialog.showOpenDialog({
         properties: ['openDirectory']
       });

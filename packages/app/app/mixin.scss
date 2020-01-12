@@ -66,12 +66,17 @@
       border-color: rgba($background2, 0.6) !important;
     }
 
-    .active.selected.item {
+    .active.selected.item,
+    .message {
       color: $white !important;
     }
   }
 
   .text {
     color: white !important;
+  }
+
+  input {
+    color: $white;
   }
 }
