@@ -1,4 +1,5 @@
-@import '../../mixin.scss';
+@import "../../mixin";
+@import "../../vars";
 
 .favorite_tracks_view {
   display: flex;
@@ -7,5 +8,35 @@
 
   .empty_state {
     @include emptyState;
+  }
+
+  .favorite_tracks_table {
+    background: transparent !important;
+
+    .thead {
+      th {
+        position: relative;
+        color: rgba($white, 0.5) !important;
+        font-size: 20px !important;
+        background: transparent !important;
+        border-bottom: 0.5px solid rgba($white, 0.2) !important;
+      }
+
+      i {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        width: 100%;
+      }
+
+      th:nth-child(2) { width: 42px; }
+    }
+
+    .tbody {
+      tr {
+        color: $white;
+      }
+    }
   }
 }
