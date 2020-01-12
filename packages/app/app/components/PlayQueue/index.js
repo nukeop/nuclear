@@ -7,14 +7,13 @@ import { Icon } from 'semantic-ui-react';
 import _ from 'lodash';
 import { withState, compose } from 'recompose';
 
-import { QueueItem, formatDuration } from '@nuclear/ui';
+import { QueueItem, QueuePopup, formatDuration } from '@nuclear/ui';
 
-import { getTrackDuration } from '../../utils';
+import { getTrackDuration, getSelectedStream } from '../../utils';
 import { sendPaused } from '../../mpris';
 import { safeAddUuid } from '../../actions/helpers';
 import styles from './styles.scss';
 
-import QueuePopup from '../QueuePopup';
 import QueueMenu from './QueueMenu';
 
 @withTranslation('queue')
@@ -75,10 +74,26 @@ class PlayQueue extends React.PureComponent {
     );
   }
 
+  handleRerollTrack = (track, selectedStream) => {
+    let musicSource = _.find(
+      this.props.plugins.plugins.streamProviders,
+      s => s.sourceName === selectedStream
+    );
+    this.props.actions.rerollTrack(musicSource, selectedStream, track);
+  }
+
   renderQueueItems() {
     if (!this.props.items) {
       return null;
     }
+
+    const dropdownOptions = _.map(this.props.plugins.plugins.streamProviders, s => ({
+      key: s.sourceName,
+      text: s.sourceName,
+      value: s.sourceName,
+      content: s.sourceName
+    }));
+
     return this.props.items.map((el, i) => {
       return (
         <Draggable key={`${el.uuid}+${i}`} index={i} draggableId={`${el.uuid}+${i}`}>
@@ -110,10 +125,15 @@ class PlayQueue extends React.PureComponent {
                     sendPaused={sendPaused}
                   />
                 }
+                onRerollTrack={this.handleRerollTrack}
                 track={el}
-                streamProviders={this.props.plugins.plugins.streamProviders}
-                defaultMusicSource={this.props.plugins.selected.streamProviders}
-                rerollTrack={this.props.actions.rerollTrack}
+                selectedStream={getSelectedStream(
+                  el.streams,
+                  this.props.plugins.selected.streamProviders
+                )}
+                dropdownOptions={dropdownOptions}
+                titleLabel={this.props.t('title')}
+                idLabel={this.props.t('id')}
               />
             </div>
           )}
