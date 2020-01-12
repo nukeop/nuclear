@@ -3,10 +3,13 @@ import PropTypes from 'prop-types';
 import cx from 'classnames';
 import { Icon } from 'semantic-ui-react';
 import { compose, withHandlers } from 'recompose';
+import _ from 'lodash';
 
 import Loader from '../Loader';
 import common from '../../common.scss';
 import styles from './styles.scss';
+
+import artPlaceholder from '../../../resources/media/art_placeholder.png';
 
 export const QueueItem = props => {
   let {
@@ -34,14 +37,14 @@ export const QueueItem = props => {
         {
           isLoading
             ? <Loader type='small' />
-            : <img src={track.thumbnail} />
+            : <img src={_.defaultTo(track.thumbnail, artPlaceholder)} />
         }
 
         <div
           className={styles.thumbnail_overlay}
           onClick={handleRemoveFromQueue}
         >
-          <Icon name='trash alternate outline' size='big' />
+          <Icon name='trash alternate outline' size={isCompact?'':'big'} />
         </div>
       </div>
 
