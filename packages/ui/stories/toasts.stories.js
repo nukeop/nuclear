@@ -42,6 +42,18 @@ storiesOf('Toasts', module)
               details: 'Toast notification description',
               icon: <img src='https://cdn.svgporn.com/logos/atom.svg' />,
               success: true
+            },
+            {
+              title: 'Toast with a very long description and a very long title that overflows',
+              details: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce posuere feugiat orci, sed elementum neque malesuada a.'
+            },
+            {
+              title: 'Toast with a long description and an icon',
+              details: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce posuere feugiat orci, sed elementum neque malesuada a.',
+              icon: <img src='https://cdn.svgporn.com/logos/emacs.svg' />
+            },
+            {
+              title: 'Toast with no description'
             }
           ]}
         />

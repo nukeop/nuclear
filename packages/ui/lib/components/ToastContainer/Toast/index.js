@@ -18,9 +18,6 @@ const Toast = props => {
         { info: props.info },
         { success: props.success }
       )}
-      style={{
-        bottom: `calc(1em + ${(props.offset[1])} * ${TOAST_HEIGHT_PADDED})`
-      }}
       onClick={props.onClick}
     >
       <div
