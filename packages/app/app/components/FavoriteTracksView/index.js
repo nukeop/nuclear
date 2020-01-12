@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Icon, Segment } from 'semantic-ui-react';
-import _ from 'lodash';
+import cx from 'classnames';
+import { Icon, Segment, Table } from 'semantic-ui-react';
 import { useTranslation } from 'react-i18next';
+import _ from 'lodash';
 
 import Header from '../Header';
 import TrackRow from '../TrackRow';
@@ -41,16 +42,21 @@ const FavoriteTracksView = ({
             {t('header')}
           </Header>
           <Segment className={trackRowStyles.tracks_container}>
-            <table>
-              <thead>
-                <tr>
-                  <th />
-                  <th><Icon name='image' /></th>
-                  <th>{t('artist')}</th>
-                  <th>{t('title')}</th>
-                </tr>
-              </thead>
-              <tbody>
+            <Table
+              className={cx(
+                styles.favorite_tracks_table,
+                styles.table
+                )}
+            >
+              <Table.Header className={styles.thead}>
+                <Table.Row>
+                  <Table.HeaderCell />
+                  <Table.HeaderCell><Icon name='image' /></Table.HeaderCell>
+                  <Table.HeaderCell>{t('artist')}</Table.HeaderCell>
+                  <Table.HeaderCell>{t('title')}</Table.HeaderCell>
+                </Table.Row>
+              </Table.Header>
+              <Table.Body className={styles.tbody}>
                 {
                   tracks.map((track, i) => {
                     return (
@@ -70,8 +76,8 @@ const FavoriteTracksView = ({
                     );
                   })
                 }
-              </tbody>
-            </table>
+              </Table.Body>
+            </Table>
           </Segment>
         </React.Fragment>
       }

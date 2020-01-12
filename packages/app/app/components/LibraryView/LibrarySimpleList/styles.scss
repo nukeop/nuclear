@@ -1,4 +1,5 @@
 @import '../../../mixin';
+@import '../../../vars';
 
 .library_simple_list {
   background: transparent !important;
@@ -7,10 +8,10 @@
   .thead {
     th {
       position: relative;
-      color: rgba(250, 250, 250, 0.5) !important;
+      color: rgba($white, 0.5) !important;
       font-size: 20px !important;
       background: transparent !important;
-      border-bottom: 0.5px solid rgba(250, 250, 250, 0.5) !important;
+      border-bottom: 0.5px solid rgba($white, 0.2) !important;
 
       &:last-child {
         text-align: right;
@@ -33,7 +34,7 @@
 
   .tbody {
     tr {
-      color: white;
+      color: $white;
     }
 
     td {
