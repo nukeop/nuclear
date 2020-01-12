@@ -4,7 +4,7 @@
   @include roundCorners;
   @include transition;
   @include shadow;
-  position: absolute;
+  position: relative;
   background: $background2;
   padding: 1em;
   animation: fade-in 0.5s normal forwards ease-in-out;
@@ -13,20 +13,24 @@
   cursor: pointer;
   box-sizing: content-box;
 
-  bottom: 1em;
-  right: 1em;
-  height: 2.5em;
+  height: 3em;
+  width: 35em;
+  margin-bottom: 1em;
 
   .toast_content {
+    position: relative;
     display: flex;
     flex-flow: row;
     height: 100%;
+    width: 100%;
   }
 
   .toast_icon {
+    position: relative;
     display: flex;
     height: 100%;
     margin-right: 1em;
+    flex: 0 0 auto;
 
     * {
       height: 100%;
@@ -35,16 +39,26 @@
   }
 
   .toast_text {
+    position: relative;
     display: flex;
     flex-flow: column;
+    flex: 1 1 auto;
+    max-width: 100%;
+  
+    white-space: nowrap;
+    overflow: hidden;
   }
 
   .title {
+    overflow: hidden;
+    text-overflow: ellipsis;
     color: $white;
     font-weight: bold;
   }
 
   .details {
+    overflow: hidden;
+    text-overflow: ellipsis;
     color: rgba($white, 0.7);
   }
 
