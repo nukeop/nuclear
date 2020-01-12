@@ -45,9 +45,13 @@
       opacity: 0.85;
     }
 
-    i {
+    .icon {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
       margin: 0;
     }
+
   }
 
   &.compact {
@@ -66,6 +70,7 @@
       margin: 0;
       height: auto;
       width: 100%;
+      min-width: auto;
     }
 
     .thumbnail_overlay {
