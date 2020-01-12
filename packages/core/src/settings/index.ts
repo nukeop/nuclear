@@ -7,7 +7,30 @@ export enum SettingType {
   DIRECTORY = 'directory'
 }
 
-export const settingsConfig =  [
+type SettingOption = {
+  key: string;
+  text: string;
+  value: string;
+}
+
+type Setting = {
+  name: string;
+  category: string;
+  description?: string;
+  type: SettingType;
+  prettyName: string;
+  default?: boolean | number;
+
+  options?: Array<SettingOption>;
+  placeholder?: string;
+  min?: number;
+  max?: number;
+  unit?: string;
+  buttonText?: string;
+  buttonIcon?: string;
+}
+
+export const settingsConfig: Array<Setting> =  [
   {
     name: 'loopAfterQueueEnd',
     category: 'playback',

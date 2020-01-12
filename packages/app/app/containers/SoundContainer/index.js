@@ -74,8 +74,9 @@ class SoundContainer extends React.Component {
         this.props.scrobbling.lastFmSessionKey
       );
     }
+
     if (
-      this.props.queue.currentSong <= this.props.queue.queueItems.length - 1 ||
+      this.props.queue.currentSong < this.props.queue.queueItems.length - 1 ||
       this.props.settings.loopAfterQueueEnd
     ) {
       this.props.actions.nextSong();
