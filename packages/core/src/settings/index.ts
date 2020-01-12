@@ -1,3 +1,5 @@
+import { app, remote } from 'electron';
+
 export enum SettingType {
   BOOLEAN = 'boolean',
   LIST = 'list',
@@ -19,7 +21,7 @@ type Setting = {
   description?: string;
   type: SettingType;
   prettyName: string;
-  default?: boolean | number;
+  default?: boolean | number | string;
 
   options?: Array<SettingOption>;
   placeholder?: string;
@@ -178,7 +180,8 @@ export const settingsConfig: Array<Setting> = [
     type: SettingType.DIRECTORY,
     prettyName: 'downloads-dir',
     buttonText: 'downloads-dir-button',
-    buttonIcon: 'folder open'
+    buttonIcon: 'folder open',
+    default: app ? app.getPath('downloads') : remote.app.getPath('downloads')
   }
 
   // TODO: Enable when MPD integration is ready
