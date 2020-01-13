@@ -2,6 +2,11 @@ import React, { useState, useCallback } from 'react';
 import electron from 'electron';
 import { Header, Image, Modal, Icon } from 'semantic-ui-react';
 import { useTranslation } from 'react-i18next';
+import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+
+import { githubContribInfo } from '../../actions/githubContrib';
+import Contributors from './Contributors';
 
 import HelpButton from '../HelpButton';
 import { agplDisclaimer } from './const';
@@ -26,7 +31,7 @@ const handleMastadonClick = () => {
   electron.shell.openExternal('https://mstdn.io/@nuclear');
 };
 
-const HelpModal = () => {
+const HelpModal = (props) => {
   const [isOpen, setIsOpen] = useState(false);
   const handleOpen = useCallback(() => setIsOpen(true), []);
   const handleClose = useCallback(() => setIsOpen(false), []);
@@ -39,7 +44,7 @@ const HelpModal = () => {
       basic
       centered
       dimmer='blurring'
-      trigger={<HelpButton onClick={handleOpen} />}
+      trigger={<HelpButton onClick={() => handleOpen()} />}
       className={styles.help_modal}
     >
       <Modal.Header>{t('about')}</Modal.Header>
@@ -75,8 +80,17 @@ const HelpModal = () => {
           </div>
         </div>
       </Modal.Content>
+      <Modal.Content>
+        <Contributors {...props.githubContrib} />
+      </Modal.Content>
     </Modal>
   );
 };
 
-export default HelpModal;
+function mapStateToProps(state) {
+  return {
+    githubContrib: state.githubContrib
+  };
+}
+
+export default withRouter(connect(mapStateToProps, {githubContribInfo})(HelpModal));
