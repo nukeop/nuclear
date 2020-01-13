@@ -7,6 +7,8 @@ import styles from './styles.scss';
 
 import artPlaceholder from '../../../resources/media/art_placeholder.png';
 
+const POPUP_MARGIN = 15;
+
 export const QueuePopup = ({
   trigger,
   dropdownOptions,
@@ -92,11 +94,23 @@ export default compose(
     handleOpen: ({setOpen}) => () => setOpen(true),
     handleClose: ({setOpen}) => () => setOpen(false),
     handleChangeStream: ({ setStream }) => (_, { value }) => setStream(value),
-    handleRerollTrack: ({ onRerollTrack, track, stream }) => () => onRerollTrack(track, stream),
-    handleTriggerClick: ({ setTarget }) => e => {
-      const { left, top, width } = e.target.closest('.queue_item').getBoundingClientRect();
+    handleRerollTrack: ({ onRerollTrack, track, stream }) => (event) => {
+      event.preventDefault();
+      onRerollTrack(track, stream);
+    },
+    handleTriggerClick: ({ setTarget }) => event => {
+      event.persist();
+      const itemElem = event.target.closest('.queue_item');
+      const { left, top } = itemElem.getBoundingClientRect();
 
-      setTarget({ x: left - width + 20, y: top - 45 });
+      setTimeout(() => {
+        const popupElement = document.querySelector('.queue_popup');
+        const { width: popupWidth } = popupElement.getBoundingClientRect();
+        setTarget({
+          x: left - popupWidth - POPUP_MARGIN,
+          y: top - popupElement.offsetHeight / 2 + itemElem.offsetHeight / 2
+        });
+      });
     }
   })
 )(QueuePopup);
