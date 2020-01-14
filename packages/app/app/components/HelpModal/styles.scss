@@ -6,6 +6,15 @@
   a {
     color: $cyan;
   }
+  .contributors {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  .contributors_header {
+    color: $white !important;
+  }
   .social_icons {
     width: 20%;
     margin: 0 auto;

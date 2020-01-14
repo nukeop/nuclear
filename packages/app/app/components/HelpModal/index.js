@@ -23,8 +23,9 @@ const handleTwitterClick = () => {
   electron.shell.openExternal('https://twitter.com/nuclear_player');
 };
 
-const handleGithubClick = () => {
-  electron.shell.openExternal('https://github.com/nukeop/nuclear');
+const handleGithubClick = (link=undefined) => {
+  // By default open the nuclear repo unless specified
+  electron.shell.openExternal(link || 'https://github.com/nukeop/nuclear');
 };
 
 const handleMastadonClick = () => {
@@ -81,7 +82,10 @@ const HelpModal = (props) => {
         </div>
       </Modal.Content>
       <Modal.Content>
-        <Contributors {...props.githubContrib} />
+        <div className={styles.contributors}>
+          <Header className={styles.contributors_header}>Our top 10 Contributors</Header>
+          <Contributors handleGithubClick={handleGithubClick} {...props.githubContrib} />
+        </div>
       </Modal.Content>
     </Modal>
   );
