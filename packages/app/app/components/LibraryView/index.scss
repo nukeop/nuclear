@@ -34,6 +34,16 @@
     position: relative;
     display: flex;
     flex-flow: column;
+    flex: 1 1 auto;
+
+    .album_cards,
+    .album_grid {
+      flex: 1 1 auto;
+    }
+
+    .album_cards {
+      padding-right: 2em;
+    }
   }
 
   .tracks_container {
