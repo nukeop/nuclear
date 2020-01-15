@@ -44,7 +44,7 @@ export const QueueItem = props => {
           className={styles.thumbnail_overlay}
           onClick={handleRemoveFromQueue}
         >
-          <Icon name='trash alternate outline' size={isCompact?'':'big'} />
+          <Icon name='trash alternate outline' size={isCompact?'large':'big'} />
         </div>
       </div>
 

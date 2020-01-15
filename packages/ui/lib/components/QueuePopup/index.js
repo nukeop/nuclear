@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useCallback } from 'react';
 import Img from 'react-image';
 import cs from 'classnames';
 import { withState, withHandlers, compose } from 'recompose';
@@ -16,15 +16,37 @@ export const QueuePopup = ({
   idLabel,
   isOpen,
   handleClose,
-  handleOpen,
   handleRerollTrack,
-  handleImageLoaded,
   imageReady,
   selectedStream,
+  setImageReady,
+  setOpen,
+  setTarget,
   target,
   titleLabel,
   track
 }) => {
+  const triggerElement = useRef(null);
+  const popupElement = useRef(null);
+
+  const handleOpen = useCallback((event) => {
+    event.preventDefault();
+    triggerElement.current.click();
+    const { left, top } = triggerElement.current.getBoundingClientRect();
+    setTarget({ itemX: left, itemY: top, itemHeight: triggerElement.current.offsetHeight });
+    setOpen(true);
+  }, [triggerElement, setOpen, setTarget]);
+
+  const handleImageLoaded = useCallback(() => {
+    setImageReady(true);
+    const popupWrapper = popupElement.current.parentElement;
+    const { width: popupWidth } = popupWrapper.getBoundingClientRect();
+    setTarget({
+      x: target.itemX - popupWidth - POPUP_MARGIN,
+      y: target.itemY - popupWrapper.offsetHeight / 2 + target.itemHeight / 2
+    });
+  }, [popupElement, setImageReady, setTarget, target]);
+
   if (!!track.local || !(track.streams && selectedStream)) {
     return trigger;
   }
@@ -34,7 +56,7 @@ export const QueuePopup = ({
       className={cs(styles.queue_popup, {
         [styles.hidden]: !imageReady
       })}
-      trigger={<div onContextMenu={handleOpen}>{trigger}</div>}
+      trigger={<div ref={triggerElement} onContextMenu={handleOpen}>{trigger}</div>}
       open={isOpen}
       onClose={handleClose}
       hideOnScroll
@@ -44,7 +66,7 @@ export const QueuePopup = ({
         transform: `translate3d(${target.x}px, ${target.y}px, 0px)`
       }}
     >
-      <div className={styles.stream_info}>
+      <div className={styles.stream_info} ref={popupElement}>
         <div className={styles.stream_thumbnail}>
           <Img
             alt=''
@@ -59,12 +81,10 @@ export const QueuePopup = ({
             <Dropdown
               inline
               options={dropdownOptions}
-              defaultValue={
-                _.get(
-                  _.find(dropdownOptions, o => o.value === selectedStream.source),
-                  'value'
-                )
-              }
+              defaultValue={_.get(
+                _.find(dropdownOptions, o => o.value === selectedStream.source),
+                'value'
+              )}
             />
           </div>
           <div className={styles.stream_title}>
@@ -94,31 +114,9 @@ export default compose(
   withState('imageReady', 'setImageReady', false),
   withHandlers({
     handleClose: ({ setOpen }) => () => setOpen(false),
-    handleImageLoaded: ({ setImageReady, setTarget, target }) => () => {
-      setImageReady(true);
-      const popupElement = document.querySelector('.queue_popup');
-      const { width: popupWidth } = popupElement.getBoundingClientRect();
-
-      setTarget({
-        x: target.itemX - popupWidth - POPUP_MARGIN,
-        y: target.itemY - popupElement.offsetHeight / 2 + target.itemHeight / 2
-      });
-    },
-    handleRerollTrack: ({ onRerollTrack, track, setOpen }) => (event) => {
+    handleRerollTrack: ({ onRerollTrack, track }) => (event) => {
       event.preventDefault();
       onRerollTrack(track);
-      setOpen(false);
-      setOpen(true);
-    },
-    handleOpen: ({ setOpen, setTarget }) => event => {
-      event.persist();
-      event.preventDefault();
-      setOpen(true);
-
-      const itemElement = event.target.closest('.queue_item');
-      const { left, top } = itemElement.getBoundingClientRect();
-
-      setTarget({ itemX: left, itemY: top, itemHeight: itemElement.offsetHeight });
     }
   })
 )(QueuePopup);
