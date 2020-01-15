@@ -10,6 +10,7 @@ export { default as LibraryListTypeToggle } from './components/LibraryListTypeTo
 export { default as Loader } from './components/Loader';
 export { default as PopupButton } from './components/PopupButton';
 export { default as QueueItem } from './components/QueueItem';
+export { default as QueuePopup } from './components/QueuePopup';
 export { default as Range } from './components/Range';
 export { default as Seekbar } from './components/Seekbar';
 export { default as ToastContainer } from './components/ToastContainer';
