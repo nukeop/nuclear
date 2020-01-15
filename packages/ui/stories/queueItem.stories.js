@@ -1,7 +1,8 @@
+/* eslint-disable no-console */
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 
-import { QueueItem } from '..';
+import { QueueItem, QueuePopup } from '..';
 import { formatDuration } from '../lib/utils';
 
 const commonProps = {
@@ -83,5 +84,38 @@ storiesOf('Queue item', module)
           }}
         />
       </div>
+    </div>
+  ))
+  .add('WithPopup', () => (
+    <div className='bg padding_xl'>
+      <QueuePopup
+        trigger={<QueueItem {...commonProps} />}
+        onRerollTrack={console.log}
+        track={{
+          streams: []
+        }}
+        selectedStream={{
+          thumbnail: 'https://i.imgur.com/4euOws2.jpg',
+          source: 'Youtube',
+          title: 'What a song',
+          id: '666'
+        }}
+        dropdownOptions={[
+          {
+            key: 'Youtube',
+            text: 'Youtube',
+            value: 'Youtube',
+            content: 'Youtube'
+          },
+          {
+            key: 'Soundcloud',
+            text: 'Soundcloud',
+            value: 'Soundcloud',
+            content: 'Soundcloud'
+          }
+        ]}
+        titleLabel='title'
+        idLabel='id'
+      />
     </div>
   ));

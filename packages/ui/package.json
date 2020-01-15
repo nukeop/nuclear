@@ -68,6 +68,7 @@
     "lodash": "^4.17.15",
     "numeral": "^2.0.6",
     "prop-types": "^15.6.2",
+    "react-image": "^2.2.2",
     "react-image-smooth-loading": "^2.0.0",
     "recompose": "^0.30.0",
     "semantic-ui-react": "^0.88.1",

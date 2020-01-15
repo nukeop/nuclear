@@ -1,5 +1,4 @@
-@import '../../mixin.scss';
-@import '../../vars.scss';
+@import '../../common.scss';
 
 .queue_popup {
   background-color: $background !important;
@@ -8,11 +7,15 @@
   box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.18),
     0px 0px 20px 0px rgba(0, 0, 0, 0.09) !important;
   height: auto !important;
-  transition: $very-short-duration;
+  transition: opacity $very-short-duration;
 
   &:before {
     background-color: $background !important;
     box-shadow: 1px -1px 0 0 $background2 !important;
+  }
+
+  &.hidden {
+    opacity: 0;
   }
 
   .stream_info {
