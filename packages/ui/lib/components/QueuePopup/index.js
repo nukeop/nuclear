@@ -36,7 +36,6 @@ export const QueuePopup = ({
       })}
       trigger={<div onContextMenu={handleOpen}>{trigger}</div>}
       open={isOpen}
-      onOpen={handleClose}
       onClose={handleClose}
       hideOnScroll
       position='right center'
@@ -113,6 +112,7 @@ export default compose(
     },
     handleOpen: ({ setOpen, setTarget }) => event => {
       event.persist();
+      event.preventDefault();
       setOpen(true);
 
       const itemElement = event.target.closest('.queue_item');
