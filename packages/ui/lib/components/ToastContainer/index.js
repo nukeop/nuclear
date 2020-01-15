@@ -26,7 +26,6 @@ const ToastContainer = props => {
             info={_.get(toast, 'info')}
             success={_.get(toast, 'success')}
             onClick={_.get(toast, 'onClick')}
-            offset={[0, i]}
           />
         );
       })}
