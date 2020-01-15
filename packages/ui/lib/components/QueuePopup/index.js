@@ -63,7 +63,7 @@ export const QueuePopup = ({
       position='right center'
       on={null}
       style={target && {
-        transform: `translate3d(${target.x}px, ${target.y}px, 0px)`
+        transform: `translate3d(${Math.round(target.x)}px, ${Math.round(target.y)}px, 0px)`
       }}
     >
       <div className={styles.stream_info} ref={popupElement}>

@@ -1,4 +1,4 @@
-@import '../../vars.scss';
+@import "../../vars.scss";
 
 .play_queue_container {
   display: flex;
@@ -13,6 +13,14 @@
     flex: 1 1 auto;
     overflow: auto;
     transition: $short-duration;
+
+    div {
+      &:hover,
+      &:active,
+      &:focus {
+        outline: none;
+      }
+    }
   }
 
   .file_dragged_over {
