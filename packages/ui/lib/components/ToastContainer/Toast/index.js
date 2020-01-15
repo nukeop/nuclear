@@ -5,8 +5,6 @@ import cx from 'classnames';
 import common from '../../../common.scss';
 import styles from './styles.scss';
 
-const TOAST_HEIGHT_PADDED = '5.5em';
-
 const Toast = props => {
   return (
     <div
@@ -50,8 +48,7 @@ Toast.propTypes = {
   icon: PropTypes.node,
   title: PropTypes.string,
   details: PropTypes.string,
-  onClick: PropTypes.func,
-  offset: PropTypes.arrayOf(PropTypes.number)
+  onClick: PropTypes.func
 };
 
 Toast.defaultProps = {
@@ -62,8 +59,7 @@ Toast.defaultProps = {
   icon: null,
   title: '',
   details: '',
-  onClick: () => {},
-  offset: [0, 0]
+  onClick: () => {}
 };
 
 export default Toast;
