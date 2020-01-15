@@ -74,11 +74,16 @@ class PlayQueue extends React.PureComponent {
     );
   }
 
-  handleRerollTrack = (track, selectedStream) => {
-    let musicSource = _.find(
-      this.props.plugins.plugins.streamProviders,
-      s => s.sourceName === selectedStream
+  handleRerollTrack = (track) => {
+    const selectedStream = getSelectedStream(
+      track.streams,
+      this.props.plugins.selected.streamProviders
     );
+    const musicSource = _.find(
+      this.props.plugins.plugins.streamProviders,
+      s => s.sourceName === selectedStream.source
+    );
+
     this.props.actions.rerollTrack(musicSource, selectedStream, track);
   }
 

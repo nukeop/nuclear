@@ -1,8 +1,9 @@
 import React from 'react';
+import Img from 'react-image';
+import cs from 'classnames';
 import { withState, withHandlers, compose } from 'recompose';
 import { Icon, Dropdown, Popup } from 'semantic-ui-react';
 
-import Img from 'react-image';
 import styles from './styles.scss';
 
 import artPlaceholder from '../../../resources/media/art_placeholder.png';
@@ -16,9 +17,9 @@ export const QueuePopup = ({
   isOpen,
   handleClose,
   handleOpen,
-  handleTriggerClick,
   handleRerollTrack,
-  handleChangeStream,
+  handleImageLoaded,
+  imageReady,
   selectedStream,
   target,
   titleLabel,
@@ -30,14 +31,16 @@ export const QueuePopup = ({
 
   return (
     <Popup
-      className={styles.queue_popup}
-      trigger={<div onClick={handleTriggerClick}>{trigger}</div>}
+      className={cs(styles.queue_popup, {
+        [styles.hidden]: !imageReady
+      })}
+      trigger={<div onContextMenu={handleOpen}>{trigger}</div>}
       open={isOpen}
+      onOpen={handleClose}
       onClose={handleClose}
-      onOpen={handleOpen}
       hideOnScroll
       position='right center'
-      on='click'
+      on={null}
       style={target && {
         transform: `translate3d(${target.x}px, ${target.y}px, 0px)`
       }}
@@ -46,8 +49,9 @@ export const QueuePopup = ({
         <div className={styles.stream_thumbnail}>
           <Img
             alt=''
-            src={selectedStream.thumbnail}
+            src={selectedStream.thumbnail || track.thumbnail}
             unloader={<img src={artPlaceholder} />}
+            onLoad={handleImageLoaded}
           />
         </div>
         <div className={styles.stream_text_info}>
@@ -56,7 +60,6 @@ export const QueuePopup = ({
             <Dropdown
               inline
               options={dropdownOptions}
-              onChange={handleChangeStream}
               defaultValue={
                 _.get(
                   _.find(dropdownOptions, o => o.value === selectedStream.source),
@@ -87,30 +90,35 @@ export const QueuePopup = ({
 };
 
 export default compose(
-  withState('target', 'setTarget', { x: 0, y: 0 }),
+  withState('target', 'setTarget', { x: 0, y: 0, itemX: 0, itemY: 0, itemHeight: 0 }),
   withState('isOpen', 'setOpen', false),
-  withState('stream', 'setStream', 'Youtube'),
+  withState('imageReady', 'setImageReady', false),
   withHandlers({
-    handleOpen: ({setOpen}) => () => setOpen(true),
-    handleClose: ({setOpen}) => () => setOpen(false),
-    handleChangeStream: ({ setStream }) => (_, { value }) => setStream(value),
-    handleRerollTrack: ({ onRerollTrack, track, stream }) => (event) => {
-      event.preventDefault();
-      onRerollTrack(track, stream);
-    },
-    handleTriggerClick: ({ setTarget }) => event => {
-      event.persist();
-      const itemElem = event.target.closest('.queue_item');
-      const { left, top } = itemElem.getBoundingClientRect();
+    handleClose: ({ setOpen }) => () => setOpen(false),
+    handleImageLoaded: ({ setImageReady, setTarget, target }) => () => {
+      setImageReady(true);
+      const popupElement = document.querySelector('.queue_popup');
+      const { width: popupWidth } = popupElement.getBoundingClientRect();
 
-      setTimeout(() => {
-        const popupElement = document.querySelector('.queue_popup');
-        const { width: popupWidth } = popupElement.getBoundingClientRect();
-        setTarget({
-          x: left - popupWidth - POPUP_MARGIN,
-          y: top - popupElement.offsetHeight / 2 + itemElem.offsetHeight / 2
-        });
+      setTarget({
+        x: target.itemX - popupWidth - POPUP_MARGIN,
+        y: target.itemY - popupElement.offsetHeight / 2 + target.itemHeight / 2
       });
+    },
+    handleRerollTrack: ({ onRerollTrack, track, setOpen }) => (event) => {
+      event.preventDefault();
+      onRerollTrack(track);
+      setOpen(false);
+      setOpen(true);
+    },
+    handleOpen: ({ setOpen, setTarget }) => event => {
+      event.persist();
+      setOpen(true);
+
+      const itemElement = event.target.closest('.queue_item');
+      const { left, top } = itemElement.getBoundingClientRect();
+
+      setTarget({ itemX: left, itemY: top, itemHeight: itemElement.offsetHeight });
     }
   })
 )(QueuePopup);
