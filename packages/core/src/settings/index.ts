@@ -181,7 +181,11 @@ export const settingsConfig: Array<Setting> = [
     prettyName: 'downloads-dir',
     buttonText: 'downloads-dir-button',
     buttonIcon: 'folder open',
-    default: app ? app.getPath('downloads') : remote.app.getPath('downloads')
+    default: app
+      ? app.getPath('downloads')
+      : remote
+        ? remote.app.getPath('downloads')
+        : ''
   }
 
   // TODO: Enable when MPD integration is ready
