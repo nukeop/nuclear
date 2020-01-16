@@ -17,6 +17,7 @@ import * as QueueActions from './actions/queue';
 import * as SettingsActions from './actions/settings';
 import * as ScrobblingActions from './actions/scrobbling';
 import * as ConnectivityActions from './actions/connectivity';
+import * as GithubContribActions from './actions/githubContrib';
 import { sendPaused } from './mpris';
 
 import './app.global.scss';
@@ -73,6 +74,7 @@ class App extends React.PureComponent {
     this.props.actions.createPlugins(PluginConfig.plugins);
     this.props.actions.loadPlaylists();
     this.props.actions.deserializePlugins();
+    this.props.actions.githubContribInfo();
 
     this.updateConnectivityStatus(navigator.onLine);
     window.addEventListener('online',  () => this.updateConnectivityStatus(true));
@@ -402,7 +404,8 @@ function mapDispatchToProps (dispatch) {
         PlaylistsActions,
         PluginsActions,
         ConnectivityActions,
-        Actions
+        Actions,
+        GithubContribActions
       ),
       dispatch
     )

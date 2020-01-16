@@ -5,6 +5,7 @@ import DownloadsReducer from './downloads';
 import EqualizerReducer from './equalizer';
 import FavoritesReducer from './favorites';
 import GithubReducer from './github';
+import GithubContribReducer from './githubContrib';
 import LyricsReducer from './lyrics';
 import PlayerReducer from './player';
 import PlaylistsReducer from './playlists';
@@ -24,6 +25,7 @@ const rootReducer = combineReducers({
   equalizer: EqualizerReducer,
   favorites: FavoritesReducer,
   github: GithubReducer,
+  githubContrib: GithubContribReducer,
   lyrics: LyricsReducer,
   player: PlayerReducer,
   playlists: PlaylistsReducer,
