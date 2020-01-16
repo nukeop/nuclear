@@ -46,7 +46,7 @@
     "tiny-async-pool": "^1.1.0",
     "url": "^0.11.0",
     "uuid": "^3.3.3",
-    "ytdl-core": "^1.0.3"
+    "ytdl-core": "^1.0.6"
   },
   "devDependencies": {
     "@types/body-parser": "^1.17.1",
