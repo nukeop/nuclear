@@ -1,9 +1,11 @@
 import React, { useState, useCallback } from 'react';
 import electron from 'electron';
+import cx from 'classnames';
 import { Header, Image, Modal, Icon } from 'semantic-ui-react';
 import { useTranslation } from 'react-i18next';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { withHandlers, compose } from 'recompose';
 
 import { githubContribInfo } from '../../actions/githubContrib';
 import Contributors from './Contributors';
@@ -12,27 +14,17 @@ import HelpButton from '../HelpButton';
 import { agplDisclaimer } from './const';
 
 import logoImg from '../../../resources/media/logo_full_light.png';
-import mastadonImg from '../../../resources/media/mastadon.png';
+import mastodonImg from '../../../resources/media/mastodon.svg';
 import styles from './styles.scss';
 
-const handleAuthorClick = () => {
-  electron.shell.openExternal('https://github.com/nukeop');
-};
-
-const handleTwitterClick = () => {
-  electron.shell.openExternal('https://twitter.com/nuclear_player');
-};
-
-const handleGithubClick = (link=undefined) => {
-  // By default open the nuclear repo unless specified
-  electron.shell.openExternal(link || 'https://github.com/nukeop/nuclear');
-};
-
-const handleMastadonClick = () => {
-  electron.shell.openExternal('https://mstdn.io/@nuclear');
-};
-
-const HelpModal = (props) => {
+const HelpModal = ({
+  handleAuthorClick,
+  handleGithubClick,
+  handleTwitterClick,
+  handleMastodonClick,
+  handleDiscordClick,
+  githubContrib
+}) => {
   const [isOpen, setIsOpen] = useState(false);
   const handleOpen = useCallback(() => setIsOpen(true), []);
   const handleClose = useCallback(() => setIsOpen(false), []);
@@ -70,21 +62,20 @@ const HelpModal = (props) => {
       </Modal.Content>
       <Modal.Content>
         <div className={styles.social_icons}>
-          <div className={styles.icon}>
-            <Icon link size={'big'} name='twitter' onClick={handleTwitterClick}/>
-          </div>
-          <div className={styles.mastadon}>
-            <Image src={mastadonImg} onClick={handleMastadonClick} />
-          </div>
-          <div className={styles.icon}>
-            <Icon link size={'big'} name='github' onClick={handleGithubClick}/>
-          </div>
+            <Icon link size='big' name='twitter' onClick={handleTwitterClick} />
+          <div
+          className={cx(styles.mastodon, styles.icon)} 
+          onClick={handleMastodonClick}
+          dangerouslySetInnerHTML={{ __html: mastodonImg }}
+          />
+            <Icon link size='big' name='discord' onClick={handleDiscordClick} />
+            <Icon link size='big' name='github' onClick={handleGithubClick} />
         </div>
       </Modal.Content>
       <Modal.Content>
         <div className={styles.contributors}>
           <Header className={styles.contributors_header}>Our top 10 Contributors</Header>
-          <Contributors handleGithubClick={handleGithubClick} {...props.githubContrib} />
+          <Contributors handleGithubClick={handleGithubClick} {...githubContrib} />
         </div>
       </Modal.Content>
     </Modal>
@@ -97,4 +88,14 @@ function mapStateToProps(state) {
   };
 }
 
-export default withRouter(connect(mapStateToProps, {githubContribInfo})(HelpModal));
+export default compose(
+  withRouter,
+  connect(mapStateToProps, {githubContribInfo}),
+  withHandlers({
+    handleMastodonClick: () => () => electron.shell.openExternal('https://mstdn.io/@nuclear'),
+    handleGithubClick: () => link => electron.shell.openExternal(_.defaultTo(link, 'https://github.com/nukeop/nuclear')),
+    handleTwitterClick: () => () => electron.shell.openExternal('https://twitter.com/nuclear_player'),
+    handleAuthorClick: () => () => electron.shell.openExternal('https://github.com/nukeop'),
+    handleDiscordClick: () => () => electron.shell.openExternal('https://discord.gg/JqPjKxE')
+  })
+  )(HelpModal);

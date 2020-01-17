@@ -1,8 +1,10 @@
 @import '../../vars.scss';
 
+$icon_color: rgba($white, 0.75) !important;
+
 .help_modal {
   top: 25% !important;
-  color: rgba($white, 0.75) !important;
+  color: $icon_color;
   a {
     color: $cyan;
   }
@@ -16,24 +18,18 @@
     color: $white !important;
   }
   .social_icons {
-    width: 20%;
+    display: flex;
+    width: 30%;
     margin: 0 auto;
-    .icon, .mastadon {
-      display: inline-block;
-      padding-left: 10px;
-      height: 28px;
+    justify-content: space-between;
+    
+    .mastodon {
+      width: 28px;
+      cursor: pointer;
+      opacity: 0.9;
 
-    }
-    .mastadon {
-      vertical-align: bottom;
-      padding-left: 20px;
-      img {
-        height: 28px;
-        opacity: 0.5;
-      }
-      img:hover {
-        cursor: pointer;
-        opacity: .7;
+      svg {
+        fill: $icon_color;
       }
     }
   }
