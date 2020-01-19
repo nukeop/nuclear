@@ -3,11 +3,9 @@ import electron from 'electron';
 import cx from 'classnames';
 import { Header, Image, Modal, Icon } from 'semantic-ui-react';
 import { useTranslation } from 'react-i18next';
-import { withRouter } from 'react-router-dom';
-import { connect } from 'react-redux';
+
 import { withHandlers, compose } from 'recompose';
 
-import { githubContribInfo } from '../../actions/githubContrib';
 import Contributors from './Contributors';
 
 import HelpButton from '../HelpButton';
@@ -62,14 +60,14 @@ const HelpModal = ({
       </Modal.Content>
       <Modal.Content>
         <div className={styles.social_icons}>
-            <Icon link size='big' name='twitter' onClick={handleTwitterClick} />
+          <Icon link size='big' name='twitter' onClick={handleTwitterClick} />
           <div
-          className={cx(styles.mastodon, styles.icon)} 
-          onClick={handleMastodonClick}
-          dangerouslySetInnerHTML={{ __html: mastodonImg }}
+            className={cx(styles.mastodon, styles.icon)} 
+            onClick={handleMastodonClick}
+            dangerouslySetInnerHTML={{ __html: mastodonImg }}
           />
-            <Icon link size='big' name='discord' onClick={handleDiscordClick} />
-            <Icon link size='big' name='github' onClick={handleGithubClick} />
+          <Icon link size='big' name='discord' onClick={handleDiscordClick} />
+          <Icon link size='big' name='github' onClick={handleGithubClick} />
         </div>
       </Modal.Content>
       <Modal.Content>
@@ -82,15 +80,7 @@ const HelpModal = ({
   );
 };
 
-function mapStateToProps(state) {
-  return {
-    githubContrib: state.githubContrib
-  };
-}
-
 export default compose(
-  withRouter,
-  connect(mapStateToProps, {githubContribInfo}),
   withHandlers({
     handleMastodonClick: () => () => electron.shell.openExternal('https://mstdn.io/@nuclear'),
     handleGithubClick: () => link => electron.shell.openExternal(_.defaultTo(link, 'https://github.com/nukeop/nuclear')),
@@ -98,4 +88,4 @@ export default compose(
     handleAuthorClick: () => () => electron.shell.openExternal('https://github.com/nukeop'),
     handleDiscordClick: () => () => electron.shell.openExternal('https://discord.gg/JqPjKxE')
   })
-  )(HelpModal);
+)(HelpModal);
