@@ -1,9 +1,35 @@
-.contributors {
-    &_card_container {
-        padding: 1rem;
+@import "../../../vars";
+
+a.contributors_card.ui.card {
+  background: transparent;
+  color: $white;
+  border: 2px solid $white;
+
+  &:hover,
+  &:focus,
+  &:active {
+    background: transparent;
+    border: 2px solid $white;
+  }
+
+  .content {
+    .header,
+    .description {
+      color: $white;
     }
-    .meta_text {
-        font-size: .85em !important;
-        word-break: break-all;
+
+    .meta {
+      font-size: 0.85em !important;
+      word-break: break-all;
+      color: rgba($white, 0.75);
     }
+  }
+}
+
+.ui.loader.contributors_loader {
+  margin-top: 4rem;
+}
+
+.contributors_error {
+  color: $red;
 }
