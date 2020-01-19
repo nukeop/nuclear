@@ -8,6 +8,7 @@ import SettingsCtrl from './controllers/settings';
 
 import AcousticId from './services/acoustic-id';
 import Config from './services/config';
+import Discord from './services/discord';
 import Download from './services/download';
 import HttpApi from './services/http';
 import $ipc from './services/ipc';
@@ -25,6 +26,7 @@ import { ServiceProvider } from './utils/types';
 const services: ServiceProvider[] = [
   { useClass: AcousticId },
   { useClass: Config },
+  { useClass: Discord },
   { useClass: Download },
   { useClass: HttpApi },
   { useClass: LocalLibrary },
