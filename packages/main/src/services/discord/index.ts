@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { NuclearMeta } from '@nuclear/core';
 import DiscordRPC from 'discord-rpc';
 import { injectable, inject } from 'inversify';
@@ -15,11 +16,7 @@ class Discord {
     @inject($mainLogger) private logger: Logger
   ) {}
 
-  async setActivity(track: NuclearMeta) {
-    if (!this.rpc || !this.isReady) {
-      return null;
-    }
-
+  private async sendActivity(track: NuclearMeta) {
     try {
       await this.rpc.setActivity({
         details: `listening to ${track.artist} ${track.name}`,
@@ -27,24 +24,37 @@ class Discord {
         largeImageKey: 'logo'
       });
     } catch (err) {
-      this.logger.error(err);
+      this.logger.error('error trying to set discord activity');
     }
-
   }
 
-  async init() {
+  async init(cb?: () => any) {
     DiscordRPC.register(this.config.discordClientId);
     this.rpc = new DiscordRPC.Client({ transport: 'ipc' });
 
-    this.rpc.on('ready', () => {
+    this.rpc.once('ready', () => {
+      this.logger.log('ready');
       this.isReady = true;
+      cb && cb();
     });
-    
+
     try {
       await this.rpc.login({ clientId: this.config.discordClientId });
     } catch (err) {
-      this.logger.error(err);
+      this.logger.error('error trying to connect discord');
     }
+  }
+
+  async setActivity(track: NuclearMeta) {
+    if (!this.rpc) {
+      return null;
+    } else if (!this.isReady) {
+      return this.init(() => {
+        this.sendActivity(track);
+      });
+    }
+
+    this.sendActivity(track);
   }
 }
 
