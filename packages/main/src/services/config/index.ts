@@ -7,7 +7,7 @@ import pkg from '../../../../../package.json';
 import { Env } from '../../utils/env';
 import Logger, { $mainLogger } from '../logger';
 
-const MANDATORY_ENV = ['ACOUSTIC_ID_KEY', 'YOUTUBE_API_KEY'];
+const MANDATORY_ENV = ['ACOUSTIC_ID_KEY', 'YOUTUBE_API_KEY', 'DISCORD_CLIENT_ID'];
 
 @injectable()
 class Config {
@@ -24,6 +24,7 @@ class Config {
   env: Env;
   icon: string;
   macIcon: string;
+  discordClientId: string;
 
   constructor(
     @inject($mainLogger) logger: Logger
@@ -53,6 +54,7 @@ class Config {
     };
 
     this.defaultYoutubeApiKey = process.env.YOUTUBE_API_KEY;
+    this.discordClientId = process.env.DISCORD_CLIENT_ID;
   }
 
   private validateEnv(): void {

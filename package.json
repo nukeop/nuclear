@@ -1,6 +1,6 @@
 {
   "name": "nuclear",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "description": "Streaming music player that finds music sources automatically.",
   "repository": {
     "type": "git",
@@ -126,6 +126,10 @@
       {
         "ext": "weba",
         "mimeType": "audio/weba"
+      },
+      {
+        "ext": "mp4",
+        "mimeType": "audio/mp4"
       }
     ],
     "linux": {

@@ -28,6 +28,10 @@ $icon_color: rgba($white, 0.75) !important;
       cursor: pointer;
       opacity: 0.9;
 
+      &:hover {
+        opacity: 1;
+      }
+
       svg {
         fill: $icon_color;
       }
