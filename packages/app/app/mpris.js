@@ -154,6 +154,10 @@ export function getLocalFolders() {
   return ipcRenderer.sendSync('get-localfolders');
 }
 
+export function getLocalMetas() {
+  return ipcRenderer.sendSync('get-metas');
+}
+
 export function sendRemoveLocalFolder(localFolder) {
   ipcRenderer.send('remove-localfolder', localFolder);
 }

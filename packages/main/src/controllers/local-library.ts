@@ -15,6 +15,14 @@ class LocalIpcCtrl {
   ) {}
 
   /**
+   * get local files metas
+   */
+  @ipcEvent('get-metas')
+  getLocalMetas(event: IpcMessageEvent) {
+    event.returnValue = this.localLibraryDb.getCache();
+  }
+
+  /**
    * get local libray folder from store
    */
   @ipcEvent('get-localfolders')

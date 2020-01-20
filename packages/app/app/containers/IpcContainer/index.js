@@ -41,7 +41,7 @@ import {
 class IpcContainer extends React.Component {
   componentDidMount() {
     ipcRenderer.send('started');
-    ipcRenderer.send('refresh-localfolders');
+
     ipcRenderer.on('next', event => onNext(event, this.props.actions));
     ipcRenderer.on('previous', event => onPrevious(event, this.props.actions));
     ipcRenderer.on('pause', event => onPause(event, this.props.actions));
