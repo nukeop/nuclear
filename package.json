@@ -126,6 +126,10 @@
       {
         "ext": "weba",
         "mimeType": "audio/weba"
+      },
+      {
+        "ext": "mp4",
+        "mimeType": "audio/mp4"
       }
     ],
     "linux": {
