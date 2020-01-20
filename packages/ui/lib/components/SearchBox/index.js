@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
+import _ from 'lodash';
 import { Input, Dropdown } from 'semantic-ui-react';
+import { withHandlers } from 'recompose';
 
 import common from '../../common.scss';
 import styles from './styles.scss';
@@ -13,26 +15,27 @@ const SearchBox = ({
   selectedSearchProvider,
   onSearchProviderSelect
 }) => (
-    <div
-      className={cx(
-        common.nuclear,
-        styles.search_box
-      )}
-    >
-      <Input
-        inverted
-        loading={loading}
-        label={
-          <Dropdown 
-            value={selectedSearchProvider}
-            options={searchProviders}
-          />
-        }
-        labelPosition='right'
-        placeholder={placeholder}
-      />
-    </div>
-  );
+  <div
+    className={cx(
+      common.nuclear,
+      styles.search_box
+    )}
+  >
+    <Input
+      inverted
+      loading={loading}
+      label={
+        <Dropdown 
+          value={selectedSearchProvider.value}
+          onChange={onSearchProviderSelect}
+          options={searchProviders}
+        />
+      }
+      labelPosition='right'
+      placeholder={placeholder}
+    />
+  </div>
+);
 
 const optionShape = PropTypes.shape({
   key: PropTypes.string,
@@ -45,7 +48,14 @@ SearchBox.propTypes = {
   placeholder: PropTypes.string,
   searchProviders: PropTypes.arrayOf(optionShape),
   selectedSearchProvider: PropTypes.string,
-  onSearchProviderSelect: PropTypes.func,
+  onSearchProviderSelect: PropTypes.func
 };
 
-export default SearchBox;
+export default withHandlers(
+  {
+    onSearchProviderSelect: 
+    ({searchProviders, onSearchProviderSelect}) => 
+      (e, {value}) => 
+        onSearchProviderSelect(_.find(searchProviders, { value }))
+  }
+)(SearchBox);
