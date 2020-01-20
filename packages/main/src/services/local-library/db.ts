@@ -1,28 +1,17 @@
 import { NuclearBrutMeta } from '@nuclear/core';
 import ElectronStore from 'electron-store';
 import { injectable, inject } from 'inversify';
-import path from 'path';
 
 import Logger, { $mainLogger } from '../logger';
-import Config from '../config';
 
 export type LocalMeta = Record<string, NuclearBrutMeta>;
 
 @injectable()
 class LocalLibraryDb extends ElectronStore {
   constructor(
-    @inject(Config) config: Config,
     @inject($mainLogger) logger: Logger
   ) {
     super({ name: 'nuclear-local-library' });
-
-    if (config.isProd() && process.argv[1]) {
-      this.addLocalFolder(
-        path.dirname(
-          path.resolve(process.cwd(), process.argv[1])
-        )
-      );
-    }
   
     logger.log(`Initialized library index at ${ this.path }`);
   }

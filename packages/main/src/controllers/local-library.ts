@@ -76,7 +76,6 @@ class LocalIpcCtrl {
   async addTracks(event: IpcMessageEvent, filesPath: string[]) {
     const metas = await this.localLibrary.getMetas(filesPath);
 
-    this.window.send('local-files', this.localLibraryDb.getCache());
     this.window.send('queue-add', metas);
   }
 }
