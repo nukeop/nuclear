@@ -6,6 +6,7 @@ import logger from 'electron-timber';
 
 import { controllers, services } from './ioc';
 import Config from './services/config';
+import Discord from './services/discord';
 import HttpApi from './services/http';
 import Store from './services/store';
 import TrayMenu from './services/trayMenu';
@@ -47,6 +48,7 @@ app.on('ready', async () => {
     const store = container.get<Store>(Store);
     const trayMenu = container.get<TrayMenu>(TrayMenu);
     const window = container.get<Window>(Window);
+    const discord = container.get<Discord>(Discord);
 
     if (config.isDev()) {
       await Promise.all([
@@ -56,8 +58,9 @@ app.on('ready', async () => {
     }
 
     container.listen();
-    await window.load();
+    await window.load(),
     trayMenu.init();
+    discord.init();
 
     // if args is pass to  nuclear command and its a path to a supported file, just play it.
     if (config.isProd() && process.argv[1] && config.isFileSupported(process.argv[1])) {

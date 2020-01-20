@@ -2,9 +2,9 @@
 import { stringify } from 'querystring';
 import { spawn } from 'child_process';
 import fetch from 'node-fetch';
-import { Stream, PassThrough } from 'stream';
+import { Stream } from 'stream';
+import es from 'event-stream';
 import concat from 'concat-stream';
-import split from 'split2';
 import filter from 'stream-filter';
 import reduce from 'stream-reduce';
 import path from 'path';
@@ -46,16 +46,13 @@ class AcousticId {
     return res.json();
   }
 
-  /**
-   * Transform fpCalc stream
-   */
-  private reduceFpCalcStream(acc: any, buffer: Buffer): any {
+  private parseData(buffer: Buffer) {
     const data = buffer.toString();
     const index = data.indexOf('=');
   
     return {
-      [data.slice(0, index).toLowerCase()]: data.slice(index + 1),
-      ...acc
+      name: data.slice(0, index).toLowerCase(),
+      value: data.slice(index + 1)
     };
   }
 
@@ -65,10 +62,18 @@ class AcousticId {
   async getFingerPrint(file: string): Promise<{ duration: number; fingerprint: string }> {
     return new Promise((resolve, reject) => {
       this.runFpCalc(file)
-        .pipe(split())
-        .pipe(filter(Boolean))
-        .pipe(reduce(this.reduceFpCalcStream, {}))
         .on('error', reject)
+        .pipe(
+          es.pipeline(
+            es.split(),
+            filter(Boolean),
+            es.mapSync(this.parseData),
+            reduce((result, data) => ({
+              [data.name]: data.value,
+              ...result
+            }), {})
+          )
+        )
         .on('data', resolve);
     });
   }
@@ -80,8 +85,9 @@ class AcousticId {
     const command = this.platform.isWindows() ? 'fpcalc.exe' : 'fpcalc';
     const commandPath = path.join(this.platform.getBinaryPath(), command);
     const cp = spawn(commandPath, [file]);
-    const stream = new PassThrough();
-    
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
+    const stream = es.through(null, () => {});
+
     cp.stdout.pipe(stream);
   
     // Catch fpcalc stderr errors even when exit code is 0
@@ -98,6 +104,8 @@ class AcousticId {
       if (code !== 0) {
         stream.emit('error', new Error('fpcalc failed'));
       }
+
+      stream.queue(null);
     });
   
     return stream;

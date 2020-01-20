@@ -6,10 +6,12 @@ import NuclearApi from '../interfaces/nuclear-api';
 import SystemApi from '../services/system-api';
 import Window from '../services/window';
 import { ipcEvent, ipcController } from '../utils/decorators';
+import Discord from '../services/discord';
 
 @ipcController()
 class IpcPlayer {
   constructor(
+    @inject(Discord) private discord: Discord,
     @inject(SystemApi) private systemApi: NuclearApi,
     @inject(Window) private window: Window
   ) {}
@@ -62,6 +64,7 @@ class IpcPlayer {
 
     this.window.setTitle(`${arg.artist} - ${arg.name} - Nuclear Music Player`);
     this.systemApi.sendMetadata && this.systemApi.sendMetadata(arg);
+    this.discord.setActivity(arg);
   }
 }
 

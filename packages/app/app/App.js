@@ -33,11 +33,11 @@ import settingsConst from './constants/settings';
 
 import PlaylistsSubMenu from './components/PlaylistsSubMenu';
 import Footer from './components/Footer';
-import HelpModal from './components/HelpModal';
 import Navbar from './components/Navbar';
 import VerticalPanel from './components/VerticalPanel';
 import Spacer from './components/Spacer';
 
+import HelpModalContainer from './containers/HelpModalContainer';
 import MainContentContainer from './containers/MainContentContainer';
 import PlayQueueContainer from './containers/PlayQueueContainer';
 import SearchBoxContainer from './containers/SearchBoxContainer';
@@ -126,7 +126,7 @@ class App extends React.PureComponent {
         <NavButtons/>
         <SearchBoxContainer />
         <Spacer className={styles.navbar_spacer}/>
-        <HelpModal />
+        <HelpModalContainer />
         {this.props.settings.framelessWindow && <WindowControls />}
       </Navbar>
     );
