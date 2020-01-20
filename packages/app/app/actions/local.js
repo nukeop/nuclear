@@ -42,7 +42,7 @@ export function addLocalFolders(folders, send = true) {
 }
 
 export function removeLocalFolder(folder) {
-  return async (dispatch, getState) => {
+  return (dispatch, getState) => {
     const folders = _.filter(getState().local.folders, f => f !== folder);
     sendRemoveLocalFolder(folder);
     dispatch(updateLocalFolders(folders));
