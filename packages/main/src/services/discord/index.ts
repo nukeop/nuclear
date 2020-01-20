@@ -33,7 +33,6 @@ class Discord {
     this.rpc = new DiscordRPC.Client({ transport: 'ipc' });
 
     this.rpc.once('ready', () => {
-      this.logger.log('ready');
       this.isReady = true;
       cb && cb();
     });
@@ -41,7 +40,7 @@ class Discord {
     try {
       await this.rpc.login({ clientId: this.config.discordClientId });
     } catch (err) {
-      this.logger.error('error trying to connect discord');
+      this.logger.log('error trying to connect discord');
     }
   }
 

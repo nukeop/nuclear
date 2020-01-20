@@ -15,6 +15,14 @@ class LocalIpcCtrl {
   ) {}
 
   /**
+   * get local files metas
+   */
+  @ipcEvent('get-metas')
+  getLocalMetas(event: IpcMessageEvent) {
+    event.returnValue = this.localLibraryDb.getCache();
+  }
+
+  /**
    * get local libray folder from store
    */
   @ipcEvent('get-localfolders')
@@ -68,7 +76,6 @@ class LocalIpcCtrl {
   async addTracks(event: IpcMessageEvent, filesPath: string[]) {
     const metas = await this.localLibrary.getMetas(filesPath);
 
-    this.window.send('local-files', this.localLibraryDb.getCache());
     this.window.send('queue-add', metas);
   }
 }

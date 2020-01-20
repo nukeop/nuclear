@@ -9,7 +9,7 @@ import {
   UPDATE_LIBRARY_LIST_TYPE,
   UPDATE_LOCAL_FOLDERS
 } from '../actions/local';
-import { getLocalFolders } from '../mpris';
+import { getLocalFolders, getLocalMetas } from '../mpris';
 
 const initialState = {
   pending: false,
@@ -20,7 +20,7 @@ const initialState = {
   direction: 'ascending',
   filter: '',
   listType: LIST_TYPE.SIMPLE_LIST,
-  tracks: {}
+  tracks: getLocalMetas()
 };
 
 export default function LocalReducer(state = initialState, action) {

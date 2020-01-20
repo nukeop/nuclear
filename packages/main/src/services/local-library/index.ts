@@ -7,7 +7,6 @@ import path from 'path';
 import asyncPool from 'tiny-async-pool';
 import { promisify } from 'util';
 import uuid from 'uuid/v4';
-import fs from 'fs';
 import url from 'url';
 
 import AcousticId from '../acoustic-id';
@@ -78,37 +77,12 @@ class LocalLibrary {
   }
 
   async getMetas(filesPath: string[], onProgress?: ProgressHandler): Promise<{
-    metas: Array<{
-      image: undefined;
-      artist: string;
-      thumbnail: string;
-    }>;
-    folders: string[];
-  }> {
-    const folders: string[] = [];
-    const files = filesPath
-      .map((filePath) => {
-        const stats = fs.lstatSync(filePath);
-
-        if (stats.isDirectory()) {
-          folders.push(filePath);
-
-          return _.flatMap(
-            this.config.supportedFormats,
-            format => glob.sync(`${filePath}/**/*.${format}`)
-          );
-        } else if (stats.isFile()) {
-          folders.push(path.dirname(filePath));
-          return filePath;
-        }
-      })
-      .flat();
-
-    const notStoredPath = this.store.filterNotStored(files);
-    const storedMetas = this.store.getFromPath(files); 
-
-    const metas = await Promise.all(notStoredPath.map(file => parseFile(file)));
-    const formattedMetas = notStoredPath.map((file, i) => this.formatMeta(metas[i], file));
+    image: undefined;
+    artist: string;
+    thumbnail: string;
+  }[]> {
+    const metas = await Promise.all(filesPath.map(file => parseFile(file)));
+    const formattedMetas = filesPath.map((file, i) => this.formatMeta(metas[i], file));
 
     if (this.config.isConnected) {
       const formattedMetasWithoutName = formattedMetas.filter(meta => !meta.name);
@@ -118,21 +92,13 @@ class LocalLibrary {
       }
     }
 
-    this.store.updateCache(formattedMetas);
-    const filteredFolders = _.uniq(this.store.filterParentFolder(folders));
-    filteredFolders.forEach(folder => this.store.addLocalFolder(folder));
-
-    return {
-      metas: formattedMetas
-        .concat(storedMetas)
-        .map(meta => ({
-          ...meta,
-          image: undefined,
-          artist: _.get(meta, ['artist', 'name']),
-          thumbnail: _.get(meta, ['image', 0, '#text'])
-        })),
-      folders: filteredFolders
-    };
+    return formattedMetas
+      .map(meta => ({
+        ...meta,
+        image: undefined,
+        artist: _.get(meta, ['artist', 'name']),
+        thumbnail: _.get(meta, ['image', 0, '#text'])
+      }));
   }
 
   /**
@@ -211,14 +177,11 @@ class LocalLibrary {
 
   async playStartupFile(filePath: string) {
     try {
-      const { metas, folders } = await this.getMetas([
+      const metas = await this.getMetas([
         path.isAbsolute(filePath) ? filePath : path.resolve(process.cwd(), filePath)
       ]);
 
-      this.window.send('play-startup-track', {
-        meta: metas[0],
-        folders
-      });
+      this.window.send('play-startup-track', metas[0]);
     } catch (err) {
       this.logger.error('Error trying to play audio file');
       this.logger.error(err);

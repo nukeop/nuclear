@@ -41,7 +41,7 @@ import {
 class IpcContainer extends React.Component {
   componentDidMount() {
     ipcRenderer.send('started');
-    ipcRenderer.send('refresh-localfolders');
+
     ipcRenderer.on('next', event => onNext(event, this.props.actions));
     ipcRenderer.on('previous', event => onPrevious(event, this.props.actions));
     ipcRenderer.on('pause', event => onPause(event, this.props.actions));
@@ -64,22 +64,19 @@ class IpcContainer extends React.Component {
     ipcRenderer.on('local-files-progress', (event, data) => onLocalFilesProgress(event, this.props.actions, data));
     ipcRenderer.on('local-files', (event, data) => onLocalFiles(event, this.props.actions, data));
     ipcRenderer.on('local-files-error', (event, err) => onLocalFilesError(event, this.props.actions, err));
-    ipcRenderer.on('play-startup-track', (event, { meta, folders }) => {
+    ipcRenderer.on('play-startup-track', (event, meta) => {
       this.props.actions.playTrack(
         this.props.streamProviders.filter(({ sourceName }) => sourceName === 'Local'),
         meta
       );
-      this.props.actions.addLocalFolders(folders);
       this.props.history.push('/library');
     });
 
-    ipcRenderer.on('queue-add', (event, { metas, folders }) => {
+    ipcRenderer.on('queue-add', (event, metas) => {
       this.props.actions.addPlaylistTracksToQueue(
         this.props.streamProviders.filter(({ sourceName }) => sourceName === 'Local'),
         metas
       );
-
-      this.props.actions.addLocalFolders(folders, false);
     });
 
     ipcRenderer.on('download-started', (event, data) => {
