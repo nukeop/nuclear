@@ -1,9 +1,11 @@
-# ![nuclear](https://i.imgur.com/oT1006i.png)
+# ![nuclear](https://i.imgur.com/oT1006i.png) 
+[![Maintainability](https://api.codeclimate.com/v1/badges/a15c4888a63c900f6cc1/maintainability)](https://codeclimate.com/github/nukeop/nuclear/maintainability) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/30750586202742279fa8958a12e519ed)](https://www.codacy.com/app/nukeop/nuclear?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=nukeop/nuclear&amp;utm_campaign=Badge_Grade) [![nuclear](https://snapcraft.io//nuclear/badge.svg)](https://snapcraft.io/nuclear) ![Travis](https://api.travis-ci.org/nukeop/nuclear.svg?branch=master)
+
 Desktop music player focused on streaming from free sources
 
-[![Maintainability](https://api.codeclimate.com/v1/badges/a15c4888a63c900f6cc1/maintainability)](https://codeclimate.com/github/nukeop/nuclear/maintainability) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/30750586202742279fa8958a12e519ed)](https://www.codacy.com/app/nukeop/nuclear?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=nukeop/nuclear&amp;utm_campaign=Badge_Grade) ![Travis](https://api.travis-ci.org/nukeop/nuclear.svg?branch=master)
+![Showcase](https://i.imgur.com/G9BqIHl.png)
 
-[![Get it from the Snap Store](https://snapcraft.io/static/images/badges/en/snap-store-black.svg)](https://snapcraft.io/nuclear)
+# Links
 
 [Official website](https://nuclear.js.org)
 
@@ -23,9 +25,6 @@ nuclear is a free music streaming program that pulls content from free sources a
 
 If you know [mps-youtube](https://github.com/mps-youtube/mps-youtube), this is a similar music player but with a GUI.
 It's also focusing more on audio. Imagine Spotify which you don't have to pay for and with a bigger library.
-
-## Pre-alpha release
-The current version is a pre-alpha early access. Some of it is usable, some of it isn't. If there are things that don't work as expected or are counterintuitive, please open an issue so I can prioritize working on them.
 
 ## What if I am religiously opposed to Electron?
 See [this](docs/electron.md).
@@ -81,6 +80,35 @@ Nuclear has already been translated to several languages, and we're always looki
 | Tagalog                | [giftofgrub](https://github.com/giftofgrub)                                                        |
 | Traditional Chinese         | [oxygen-TW](https://github.com/oxygen-TW)                                                     |
 
+## Development process
+Use lerna:
+```shell
+$ npm i -g lerna #installs lerna globally
+$ lerna bootstrap
+$ npm start
+```
+
+A new window should open that will load the web app and run Nuclear.
+
+---
+To build for current operating system:
+```bash
+$ lerna bootstrap
+$ npm run build
+```
+
+Instead of `build` you can use `build:all` to build for all operating systems. The binaries will be in `packages/app/release`
+
+---
+It's also possible to run the development environment using docker containers.
+
+You will need docker and docker-compose. You need to allow the root user to connect to X11 display, and then you can run docker-compose:
+
+```shell
+$ xhost SI:localuser:root
+$ sudo docker-compose up dev
+```
+
 ## Screenshots
 This will be updated as the program evolves.
 
@@ -99,33 +127,6 @@ This will be updated as the program evolves.
 ![Lyrics View](https://i.imgur.com/7e3DJKJ.png)
 
 ![Equalizer View](https://i.imgur.com/WreRL0w.png)
-
-## Development process
-You will need docker and docker-compose.
-As all Electron applications, Nuclear has two parts: the server and the web app. Both are containerized. You need to allow the root user to connect to X11 display, and then you can run docker-compose:
-
-```shell
-$ xhost SI:localuser:root
-$ sudo docker-compose up dev
-```
-
-A new window should open that will load the web app and run Nuclear.
-On non-Linux systems, you can use lerna:
-```shell
-$ npm i -g lerna #installs lerna globally
-$ lerna bootstrap
-$ lerna run start
-```
-
----
-To build for current operating system:
-```bash
-$ npm run build
-```
-
-Instead of `build` you can use `build:all` to build for all operating systems. The binaries will be in `packages/app/release`
-
-In case of errors with dbus/mpris, try removing optional dependencies from `packages/app/package.json` and node_modules.
 
 ## License
 
