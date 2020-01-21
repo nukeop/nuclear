@@ -15,7 +15,6 @@ const HttpApiUrl = ({ settings }) => {
   return (
     <a
       className={styles.http_api_url}
-      href='javascript:void(0)'
       onClick={() => handleClick(settings)}>
       <Icon name='linkify'/>
       API Docs
