@@ -1,7 +1,58 @@
-.search_box {
-  .ui.dropdown.label {
-      border-top-left-radius: 0;
-      border-bottom-left-radius: 0;
+@import "../../common.scss";
 
+$input_height: 30px;
+
+.search_box_container {
+  display: flex;
+  flex: 1 1 auto;
+
+  i.icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: $white;
+
+    width: $input_height;
+    height: $input_height;
+    margin: 0;
+  }
+
+  i.search.icon {
+    border-radius: 0;
+    background-color: $blue;
+  }
+
+  i.spinner.icon {
+    margin-left: -$input_height;
+  }
+
+  .ui.input {
+    flex: 1 1 auto;
+  }
+
+  .ui.input input {
+    flex: 1 1 auto;
+    height: $input_height;
+    border-radius: 0;
+
+    color: $grey;
+    outline: none;
+    background-color: $background3;
+
+    font-size: 16px;
+
+    &::selection {
+      background: rgba($lightbg, 0.85);
+    }
+  }
+
+  .ui.dropdown {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 12px;
+
+    color: $white;
+    background: $blue;
   }
 }
