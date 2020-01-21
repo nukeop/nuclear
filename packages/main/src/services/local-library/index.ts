@@ -7,7 +7,7 @@ import path from 'path';
 import asyncPool from 'tiny-async-pool';
 import { promisify } from 'util';
 import uuid from 'uuid/v4';
-import url from 'url';
+import url, { URL } from 'url';
 import fs from 'fs';
 
 import LocalLibraryDb, { LocalMeta } from './db';
@@ -26,6 +26,8 @@ const THUMBNAILS_DIR = 'thumbnails';
  */
 @injectable()
 class LocalLibrary {
+  private mediaDir: string;
+
   constructor(
     @inject(Config) private config: Config,
     @inject(LocalLibraryDb) private store: LocalLibraryDb,
@@ -33,19 +35,22 @@ class LocalLibrary {
     @inject($mainLogger) private logger: Logger,
     @inject(Window) private window: Window
   ) {
+    this.mediaDir = this.config.isProd()
+      ? path.resolve(__dirname, '../../', 'media', THUMBNAILS_DIR)
+      : path.resolve(__dirname, THUMBNAILS_DIR);
     this.createThumbnailsDirectory();
   }
 
   private async createThumbnailsDirectory() {
-    const coverDir = path.resolve(__dirname, THUMBNAILS_DIR);
     try {
-      await promisify(fs.stat)(coverDir);
+      await promisify(fs.stat)(this.mediaDir);
     } catch (err) {
       try {
-        await promisify(fs.mkdir)(coverDir);
+        await promisify(fs.mkdir)(this.mediaDir);
         this.logger.log('Thumbnails cache directory created');
       } catch (err) {
         this.logger.error('Error while creating Thumbnails cache directory');
+        this.logger.error(err);
       }
     }
   }
@@ -114,7 +119,9 @@ class LocalLibrary {
   }
 
   private async persistCover(cover: Buffer, album: string, mime: string) {
-    const coverPath = path.resolve(__dirname, THUMBNAILS_DIR, album + '.' + mime.split('/')[1]);
+    const coverPath = path.resolve(
+      this.mediaDir,
+      album + '.' + mime.split('/')[1]);
     const existingCover = await this.existCover(coverPath);
 
     if (existingCover) {
@@ -131,7 +138,6 @@ class LocalLibrary {
 
     const formattedMetas = await Promise.all(filesPath.map((file, i) => this.formatMeta(metas[i], file)));
 
-
     if (this.config.isConnected) {
       const formattedMetasWithoutName = formattedMetas.filter(meta => !meta.name);
   
@@ -143,16 +149,40 @@ class LocalLibrary {
     return formattedMetas;
   }
 
+  async cleanUnusedLocalThumbnails() {
+    const metas = this.store.getCache();
+
+    const files = await promisify(fs.readdir)(this.mediaDir);
+    const storedThumbPaths = _.uniq(
+      Object.values(metas)
+        .map(({ image }) => image[0]
+          ? decodeURIComponent(new URL(image[0]['#text']).pathname)
+          : null
+        )
+        .filter(Boolean)
+    );
+
+    await Promise.all(
+      files
+        .filter(filename => !storedThumbPaths.includes(path.resolve(this.mediaDir, filename)))
+        .map(filename => promisify(fs.unlink)(`${this.mediaDir}/${filename}`))
+    );
+  }
+
   async removeLocalFolder(folder: string): Promise<LocalMeta> {
     const oldMetas = this.store.getCache();
     const metas = this.store.removeLocalFolder(folder);
     const removedImages: string[] = [];
 
-    for (const { path, image } of Object.values(oldMetas)) {
-      if (path.includes(folder) && image[0] && !removedImages.includes((image as any)[0]['#text'])) {
-        removedImages.push((image as any)[0]['#text']);
-        await promisify(fs.unlink)((image as any)[0]['#text'].split('://')[1]);
+    try {
+      for (const { path, image } of Object.values(oldMetas)) {
+        if (path.includes(folder) && image[0] && !removedImages.includes(image[0]['#text'])) {
+          removedImages.push(image[0]['#text']);
+          await promisify(fs.unlink)(image[0]['#text'].split('://')[1]);
+        }
       }
+    } catch (err) {
+      this.logger.error('error trying to delete thumbnails');
     }
 
     return metas;
