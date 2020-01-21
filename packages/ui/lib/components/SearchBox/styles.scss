@@ -26,23 +26,26 @@ $input_height: 30px;
     margin-left: -$input_height;
   }
 
-  .ui.input {
-    flex: 1 1 auto;
-  }
-
-  .ui.input input {
+  input {
     flex: 1 1 auto;
     height: $input_height;
     border-radius: 0;
+    border: none;
+    padding: 0 1em;
 
     color: $grey;
     outline: none;
     background-color: $background3;
 
+    font-family: inherit;
     font-size: 16px;
 
     &::selection {
       background: rgba($lightbg, 0.85);
+    }
+
+    &.disabled {
+      opacity: .45;
     }
   }
 

@@ -8,6 +8,7 @@ import { SearchBox } from '@nuclear/ui';
 
 import * as Actions from '../../actions';
 
+const MIN_SEARCH_LENGTH = 3;
 const SearchBoxContainer = ({
   handleSearch,
   unifiedSearchStarted,
@@ -16,16 +17,16 @@ const SearchBoxContainer = ({
   <SearchBox
     loading={unifiedSearchStarted}
     disabled={!isConnected}
-    onChange={handleSearch}
+    onChange={_.debounce(handleSearch, 500)}
   />
 );
 
-function mapStateToProps(state) {
-  return {
-    unifiedSearchStarted: state.search.unifiedSearchStarted,
-    isConnected: state.connectivity
-  };
-}
+const mapStateToProps = state => ({
+  unifiedSearchStarted: state.search.unifiedSearchStarted,
+  isConnected: state.connectivity,
+  searchProviders: state.plugin.plugins,
+  selectedSearchProvider: state.plugin.selected
+});
 
 function mapDispatchToProps(dispatch) {
   return {
@@ -37,6 +38,8 @@ export default compose(
   withRouter,
   connect(mapStateToProps, mapDispatchToProps),
   withHandlers({
-    handleSearch: ({actions, history}) => (event, data) => console.log(data)
+    handleSearch: 
+    ({ actions, history }) => value => 
+      value.length >= MIN_SEARCH_LENGTH ? actions.unifiedSearch(value, history) : null
   })
 )(SearchBoxContainer);
