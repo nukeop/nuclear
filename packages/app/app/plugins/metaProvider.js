@@ -8,6 +8,7 @@ class MetaProvider extends Plugin {
     this.name = 'Meta Provider Plugin';
     this.sourceName = 'Generic Metadata Provider';
     this.description = 'A generic metadata provider plugin. Should never be instantiated directly';
+    this.searchName = 'Generic';
     this.image = null;
   }
 

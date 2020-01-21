@@ -54,7 +54,7 @@ SearchBox.propTypes = {
   disabled: PropTypes.bool,
   placeholder: PropTypes.string,
   searchProviders: PropTypes.arrayOf(optionShape),
-  selectedSearchProvider: PropTypes.string,
+  selectedSearchProvider: optionShape,
   onSearchProviderSelect: PropTypes.func,
   onChange: PropTypes.func
 };

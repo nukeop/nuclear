@@ -6,6 +6,7 @@ class DiscogsMetaProvider extends MetaProvider {
     this.name = 'Discogs Meta Provider';
     this.sourceName = 'Discogs Metadata Provider';
     this.description = 'Metadata provider that uses Discogs as a source.';
+    this.searchName = 'Discogs';
     this.image = null;
   }
 
