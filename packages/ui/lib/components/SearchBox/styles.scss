@@ -57,5 +57,10 @@ $input_height: 30px;
 
     color: $white;
     background: $blue;
+
+    .item,
+    .text {
+      color: $white !important;
+    }
   }
 }
