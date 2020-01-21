@@ -33,4 +33,14 @@ storiesOf('Search box', module)
       loading
     />
     </div>;
+  })
+  .add('Disabled', () => {
+    let [selectedSearchProvider, onSearchProviderSelect] = useState(searchProviders[0]);
+    return <div className='bg'><SearchBox 
+      {...commonProps} 
+      selectedSearchProvider={selectedSearchProvider}
+      onSearchProviderSelect={onSearchProviderSelect}
+      disabled
+    />
+    </div>;
   });
