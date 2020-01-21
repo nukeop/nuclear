@@ -51,14 +51,14 @@ https://nuclearmusic.rtfd.io/
 
 ## Community-maintained packages
 
-Here's a list of packages maintained by third parties. We would like to thank the maintainers for their work.
+Here's a list of packages for various managers, most of which are maintained by third parties. We would like to thank the maintainers for their work.
 
-We do not control these and cannot be held responsible for their contents, but if any of these appear suspicious to you, feel free to open an issue so we can reach out to the maintainers.
-
-| Package type | Link                                                   | Maintainer                                    |
-|:------------:|:------------------------------------------------------:|:---------------------------------------------:|
-| AUR (Arch)   | https://aur.archlinux.org/packages/nuclear-player-bin/ | [mikelpint](https://github.com/mikelpint)     |
-| Choco (Win)  | https://chocolatey.org/packages/nuclear/               | [JourneyOver](https://github.com/JourneyOver) |
+| Package type   | Link                                                   | Maintainer                                    |
+|:--------------:|:------------------------------------------------------:|:---------------------------------------------:|
+| AUR (Arch)     | https://aur.archlinux.org/packages/nuclear-player-bin/ | [mikelpint](https://github.com/mikelpint)     |
+| Choco (Win)    | https://chocolatey.org/packages/nuclear/               | [JourneyOver](https://github.com/JourneyOver) |
+| Homebrew (Mac) | https://formulae.brew.sh/cask/nuclear                  | Homebrew                                      |
+| Snap           | https://snapcraft.io/nuclear                           | [nukeop](https://github.com/nukeop)           | 
 
 ## Community translations
 Nuclear has already been translated to several languages, and we're always looking for contributors who would like to add more. Below is a list of currently available languages, along with contributors who helped to translate Nuclear to that language.
