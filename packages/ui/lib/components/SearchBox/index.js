@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 import _ from 'lodash';
-import { Icon, Input, Dropdown } from 'semantic-ui-react';
+import { Icon, Dropdown } from 'semantic-ui-react';
 import { withHandlers } from 'recompose';
 
 import common from '../../common.scss';
@@ -23,25 +23,23 @@ const SearchBox = ({
       styles.search_box_container
     )}
   >
-    <Input
-      inverted
+    <Icon name='search' disabled={disabled}/>
+    <input
       placeholder={placeholder}
       onChange={onChange}
       disabled={disabled}
-    >
-      <Icon name='search' />
-      <input autoFocus/>
-      { loading && <Icon name='spinner' loading /> }
-      {
-        !_.isNil(searchProviders) && !_.isEmpty(searchProviders) &&
+      className={cx({ [styles.disabled]: disabled })}
+    />
+    { loading && <Icon name='spinner' loading /> }
+    {
+      !_.isNil(searchProviders) && !_.isEmpty(searchProviders) &&
         <Dropdown 
           value={selectedSearchProvider.value}
           onChange={onSearchProviderSelect}
           options={searchProviders}
           disabled={disabled}
         />
-      }
-    </Input>
+    }
   </div>
 );
 
@@ -66,6 +64,7 @@ export default withHandlers(
     onSearchProviderSelect: 
     ({searchProviders, onSearchProviderSelect}) => 
       (e, {value}) => 
-        onSearchProviderSelect(_.find(searchProviders, { value }))
+        onSearchProviderSelect(_.find(searchProviders, { value })),
+    onChange: ({ onChange }) => e => onChange(e.target.value)
   }
 )(SearchBox);
