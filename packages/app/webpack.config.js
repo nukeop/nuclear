@@ -52,7 +52,7 @@ module.exports = (env) => {
       ignore: [/node_modules/]
     }
   };
-  const contentSecurity = 'connect-src *; style-src \'unsafe-inline\' https:; font-src https: data:; img-src https: data:;';
+  const contentSecurity = 'connect-src *; style-src \'unsafe-inline\' https:; font-src https: data:; img-src https: data: file:;';
   const plugins = [
     new HtmlWebpackPlugin({
       meta: {

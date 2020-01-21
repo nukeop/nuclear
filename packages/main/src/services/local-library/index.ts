@@ -8,14 +8,17 @@ import asyncPool from 'tiny-async-pool';
 import { promisify } from 'util';
 import uuid from 'uuid/v4';
 import url from 'url';
+import fs from 'fs';
 
+import LocalLibraryDb, { LocalMeta } from './db';
 import AcousticId from '../acoustic-id';
 import Config from '../config';
 import Logger, { $mainLogger } from '../logger';
-import LocalLibraryDb, { LocalMeta } from './db';
 import Window from '../window';
 
 export type ProgressHandler = (progress: number, total: number) => void
+
+const THUMBNAILS_DIR = 'thumbnails';
 
 /**
  * Manage local files, extract metadata directly from files, or get it from acousticId api
@@ -29,14 +32,36 @@ class LocalLibrary {
     @inject(AcousticId) private acousticId: AcousticId,
     @inject($mainLogger) private logger: Logger,
     @inject(Window) private window: Window
-  ) {}
+  ) {
+    this.createThumbnailsDirectory();
+  }
+
+  private async createThumbnailsDirectory() {
+    const coverDir = path.resolve(__dirname, THUMBNAILS_DIR);
+    try {
+      await promisify(fs.stat)(coverDir);
+    } catch (err) {
+      try {
+        await promisify(fs.mkdir)(coverDir);
+        this.logger.log('Thumbnails cache directory created');
+      } catch (err) {
+        this.logger.error('Error while creating Thumbnails cache directory');
+      }
+    }
+  }
 
   /**
    * Format metadata from files to nuclear format
    */
-  private formatMeta({ common, format }: IAudioMetadata, path: string): NuclearBrutMeta {
+  private async formatMeta({ common, format }: IAudioMetadata, path: string): Promise<NuclearBrutMeta> {
     const id = uuid();
   
+    let imagePath: string | undefined;
+
+    if (common.picture && common.album) {
+      imagePath = await this.persistCover(common.picture[0].data, common.album, common.picture[0].format);
+    }
+
     return {
       uuid: id,
       path,
@@ -52,11 +77,13 @@ class LocalLibrary {
       loading: false,
       local: true,
       image: [
-        common.picture
+        imagePath
           ? {
-            '#text': `data:${
-              common.picture[0].format
-            };base64,${common.picture[0].data.toString('base64')}`
+            '#text': url.format({
+              pathname: imagePath,
+              protocol: 'file:',
+              slashes: true
+            })
           }
           : undefined
       ],
@@ -76,13 +103,34 @@ class LocalLibrary {
     };
   }
 
-  async getMetas(filesPath: string[], onProgress?: ProgressHandler): Promise<{
-    image: undefined;
-    artist: string;
-    thumbnail: string;
-  }[]> {
+  private async existCover(coverPath: string): Promise<string | undefined> {
+    try {
+      const { isFile } = await promisify(fs.stat)(coverPath);
+      return isFile && coverPath;
+    } catch (err) {
+      return undefined;
+    }
+
+  }
+
+  private async persistCover(cover: Buffer, album: string, mime: string) {
+    const coverPath = path.resolve(__dirname, THUMBNAILS_DIR, album + '.' + mime.split('/')[1]);
+    const existingCover = await this.existCover(coverPath);
+
+    if (existingCover) {
+      return existingCover;
+    }
+
+    await promisify(fs.writeFile)(coverPath, cover);
+
+    return coverPath;
+  }
+
+  private async parseMeta(filesPath: string[], onProgress?: ProgressHandler): Promise<NuclearBrutMeta[]> {
     const metas = await Promise.all(filesPath.map(file => parseFile(file)));
-    const formattedMetas = filesPath.map((file, i) => this.formatMeta(metas[i], file));
+
+    const formattedMetas = await Promise.all(filesPath.map((file, i) => this.formatMeta(metas[i], file)));
+
 
     if (this.config.isConnected) {
       const formattedMetasWithoutName = formattedMetas.filter(meta => !meta.name);
@@ -91,6 +139,31 @@ class LocalLibrary {
         await this.fetchAcousticIdBatch(formattedMetasWithoutName, onProgress);
       }
     }
+
+    return formattedMetas;
+  }
+
+  async removeLocalFolder(folder: string): Promise<LocalMeta> {
+    const oldMetas = this.store.getCache();
+    const metas = this.store.removeLocalFolder(folder);
+    const removedImages: string[] = [];
+
+    for (const { path, image } of Object.values(oldMetas)) {
+      if (path.includes(folder) && image[0] && !removedImages.includes((image as any)[0]['#text'])) {
+        removedImages.push((image as any)[0]['#text']);
+        await promisify(fs.unlink)((image as any)[0]['#text'].split('://')[1]);
+      }
+    }
+
+    return metas;
+  }
+
+  async getMetas(filesPath: string[], onProgress?: ProgressHandler): Promise<{
+    image: undefined;
+    artist: string;
+    thumbnail: string;
+  }[]> {
+    const formattedMetas = await this.parseMeta(filesPath, onProgress);
 
     return formattedMetas
       .map(meta => ({
@@ -159,18 +232,8 @@ class LocalLibrary {
         .map(({ path }) => path)
         .includes(file)
     );
-  
-    const metas = await Promise.all(files.map(filePath => parseFile(filePath)));
-  
-    const formattedMetas = files.map((file, i) => this.formatMeta(metas[i], file));
-
-    if (this.config.isConnected) {
-      const formattedMetasWithoutName = formattedMetas.filter(meta => !meta.name);
     
-      if (formattedMetasWithoutName.length) {
-        await this.fetchAcousticIdBatch(formattedMetasWithoutName, onProgress);
-      }
-    }
+    const formattedMetas = await this.parseMeta(files, onProgress);
   
     return this.store.updateCache(formattedMetas, baseFiles);
   }
