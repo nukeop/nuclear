@@ -32,12 +32,15 @@ const SearchBox = ({
       <Icon name='search' />
       <input autoFocus/>
       { loading && <Icon name='spinner' loading /> }
-      <Dropdown 
-        value={selectedSearchProvider.value}
-        onChange={onSearchProviderSelect}
-        options={searchProviders}
-        disabled={disabled}
-      />
+      {
+        !_.isNil(searchProviders) && !_.isEmpty(searchProviders) &&
+        <Dropdown 
+          value={selectedSearchProvider.value}
+          onChange={onSearchProviderSelect}
+          options={searchProviders}
+          disabled={disabled}
+        />
+      }
     </Input>
   </div>
 );
