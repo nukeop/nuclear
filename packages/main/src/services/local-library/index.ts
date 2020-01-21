@@ -9,6 +9,7 @@ import { promisify } from 'util';
 import uuid from 'uuid/v4';
 import url, { URL } from 'url';
 import fs from 'fs';
+import crypto from 'crypto';
 
 import LocalLibraryDb, { LocalMeta } from './db';
 import AcousticId from '../acoustic-id';
@@ -58,18 +59,22 @@ class LocalLibrary {
   /**
    * Format metadata from files to nuclear format
    */
-  private async formatMeta({ common, format }: IAudioMetadata, path: string): Promise<NuclearBrutMeta> {
+  private async formatMeta({ common, format }: IAudioMetadata, filePath: string): Promise<NuclearBrutMeta> {
     const id = uuid();
   
     let imagePath: string | undefined;
 
     if (common.picture && common.album) {
-      imagePath = await this.persistCover(common.picture[0].data, common.album, common.picture[0].format);
+      imagePath = await this.persistCover(
+        common.picture[0].data,
+        common.album || crypto.createHash('md5').update(path.basename(filePath)).digest('hex'),
+        common.picture[0].format
+      );
     }
 
     return {
       uuid: id,
-      path,
+      path: filePath,
       duration: format.duration,
       name: common.title,
       pos: common.track.no,
@@ -99,7 +104,7 @@ class LocalLibrary {
           duration: format.duration,
           source: 'Local',
           stream: url.format({
-            pathname: path,
+            pathname: filePath,
             protocol: 'file',
             slashes: true
           })
