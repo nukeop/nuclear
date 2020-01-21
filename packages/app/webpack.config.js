@@ -2,6 +2,7 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 const dotenv = require ('dotenv');
+const fs = require('fs');
 
 const BUILD_DIR = path.resolve(__dirname, '../../dist');
 const APP_DIR = path.resolve(__dirname, 'app');
@@ -13,8 +14,6 @@ const VENDOR_DIR = path.resolve(__dirname, 'node_modules');
 module.exports = (env) => {
   const IS_PROD = env.NODE_ENV === 'production';
   const IS_DEV = env.NODE_ENV === 'development';
-  // TODO remove this when env variable are set on the CI server
-  dotenv.config({ path: path.resolve(__dirname, '.env') });
 
   const entry = IS_PROD
     ? path.resolve(APP_DIR, 'index.js')
@@ -79,15 +78,19 @@ module.exports = (env) => {
       },
       inject: true
     }),
-    new webpack.DefinePlugin({
-      'process.env': Object.entries(dotenv.parse(path.resolve(__dirname, '.env')))
-        .reduce((acc, [value, key]) => ({
+    new webpack.DefinePlugin(
+      Object.entries(
+        dotenv.parse(
+          fs.readFileSync(path.resolve(__dirname, '../../.env'))
+        )
+      )
+        .reduce((acc, [key, value]) => ({
           ...acc,
-          [key]: JSON.stringify(value)
+          [`process.env.${key}`]: JSON.stringify(value)
         }), {})
-    })
+    )
   ];
-  
+
   if (IS_PROD) {
     jsxRule.include = [
       APP_DIR,
