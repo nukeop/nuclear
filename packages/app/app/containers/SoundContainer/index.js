@@ -10,6 +10,7 @@ import * as EqualizerActions from '../../actions/equalizer';
 import * as QueueActions from '../../actions/queue';
 import * as ScrobblingActions from '../../actions/scrobbling';
 import * as LyricsActions from '../../actions/lyrics';
+import * as PluginActions from '../../actions/plugins';
 import { filterFrequencies } from '../../components/Equalizer/chart';
 import { getSelectedStream } from '../../utils';
 import * as Autoradio from './autoradio';
@@ -22,6 +23,12 @@ let lastfm = new LastFmApi(globals.lastfmApiKey, globals.lastfmApiSecret);
 class SoundContainer extends React.Component {
   constructor(props) {
     super(props);
+
+    this.handlePlaying = this.handlePlaying.bind(this);
+    this.handleFinishedPlaying = this.handleFinishedPlaying.bind(this);
+    this.handleLoading = this.handleLoading.bind(this);
+    this.handleLoaded = this.handleLoaded.bind(this);
+    this.handleError = this.handleError.bind(this);
   }
 
   handlePlaying (update) {
@@ -130,6 +137,14 @@ class SoundContainer extends React.Component {
     });
   }
 
+  handleError() {
+    const { plugins, actions } = this.props;
+
+    if (plugins.selected.streamProviders === 'Invidious') {
+      actions.selectStreamProvider('Youtube');
+    }
+  }
+
   shouldComponentUpdate (nextProps) {
     const currentSong = nextProps.queue.queueItems[nextProps.queue.currentSong];
 
@@ -157,11 +172,12 @@ class SoundContainer extends React.Component {
       <Sound
         url={streamUrl}
         playStatus={player.playbackStatus}
-        onPlaying={this.handlePlaying.bind(this)}
-        onFinishedPlaying={this.handleFinishedPlaying.bind(this)}
-        onLoading={this.handleLoading.bind(this)}
-        onLoad={this.handleLoaded.bind(this)}
+        onPlaying={this.handlePlaying}
+        onFinishedPlaying={this.handleFinishedPlaying}
+        onLoading={this.handleLoading}
+        onLoad={this.handleLoaded}
         position={player.seek}
+        onError={this.handleError}
       >
         <Volume value={player.muted ? 0 : player.volume} />
         <Equalizer
@@ -202,7 +218,8 @@ function mapDispatchToProps (dispatch) {
         QueueActions,
         ScrobblingActions,
         LyricsActions,
-        EqualizerActions
+        EqualizerActions,
+        PluginActions
       ),
       dispatch
     )
