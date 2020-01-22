@@ -1,5 +1,8 @@
 {
   "album": {
+    "download": "Download",
+    "download-toast-content": "{{artist}} - {{title}} has been added to downloads.",
+    "download-toast-title": "Album added to downloads",
     "queue": "Adicionar à Fila"
   },
   "app": {
@@ -7,9 +10,11 @@
     "dashboard": "Dashboard",
     "downloads": "Downloads",
     "equalizer": "Equalizador",
+    "favorite-albums": "Favorite Albums",
     "favorite-tracks": "Favoritas",
     "library": "Biblioteca",
     "lyrics": "Letras",
+    "main": "Main",
     "playlists": "Lista de Reprodução",
     "plugins": "Plugins",
     "search": "Busca",
@@ -43,6 +48,11 @@
     "name": "Nome",
     "status": "Status"
   },
+  "favorite-albums": {
+    "empty": "No favorite albums",
+    "empty-help": "Try adding some albums to favorites and they will appear here!",
+    "header": "Your favorite albums"
+  },
   "favorites": {
     "artist": "Artista",
     "empty": "Nenhum favorito adicionado.",
@@ -63,8 +73,12 @@
     "add": "Adicionar pastas",
     "album": "Álbum",
     "artist": "Artistaa",
+    "empty": "The library is empty",
+    "empty-help": "Try adding some music using the button above.",
     "filter-placeholder": "Filtro...",
     "header": "Biblioteca local",
+    "no-search-results": "No search results",
+    "no-search-results-help": "No tracks found with the given name, album, or artist.",
     "title": "Título"
   },
   "lyrics": {
@@ -88,15 +102,24 @@
     "delete": "Excluir Esta Lista de Reprodução",
     "dialog-placeholder": "Nome da Lista de Reprodução...",
     "empty": "Nenhuma Lista de Reprodução encontrada.",
+    "queue": "Add playlist to queue",
     "rename": "Renomear Lista de Reprodução",
     "songs": "{{total}} Música",
     "songs_plural": "{{total}} Músicas",
     "title": "Título"
   },
   "plugins": {
+    "add-a-plugin": "Add a plugin",
     "header": "Plugins",
+    "lyrics-providers": "Lyrics providers",
+    "meta-providers": "Metadata providers",
     "placeholder": "Selecione a fonte de música padrão:",
-    "stream-providers": "Fontes de música"
+    "select-lyrics-provider": "Select the default lyrics provider:",
+    "select-meta-provider": "Select the default metadata provider:",
+    "stream-providers": "Fontes de música",
+    "user-plugins": "User plugins",
+    "user-plugins-warning-desc": "Plugins work by running code on your computer. Load plugins only from sources you trust!",
+    "user-plugins-warning-title": "Danger zone!"
   },
   "queue": {
     "clear": "Limpar Fila",
@@ -131,12 +154,18 @@
   },
   "settings": {
     "api-port": "Porta usada pela api",
+    "api-url": "",
     "autoradio": "Autoradio",
     "autoradio-craziness": "Autoradio Louco",
+    "autoradio-craziness-description": "Autoradio will select songs that are less similar to the ones already in the queue the crazier it is",
+    "autoradio-description": "Add similar tracks automatically when the queue is ending",
     "compact-menu-bar": "Use estilo compacto para barra de menu",
     "compact-queue-bar": "Use estilo compacto para a barra de fila",
     "disable-gpu": "Desativar a renderização de hardware (pode corrigir problemas com elementos de arrastamento e tela piscando)",
     "display": "Exibição",
+    "downloads": "Downloads",
+    "downloads-dir": "Downloads directory",
+    "downloads-dir-button": "Choose a directory...",
     "enable-api": "Ativar a api",
     "frameless-window": "Janela sem moldura (requer reinicialização)",
     "github-connect": "Entrar com o Github",
@@ -156,9 +185,15 @@
     "notlogged": "Não logado",
     "playback": "Reprodução",
     "program-settings": "Configurações do programa",
+    "seek-iteration": "Number of seconds to seek forward/backwards when pressing arrow keys",
     "shuffle-queue": "Reproduzir músicas aleatoriamente",
+    "shuffle-when-going-back": "Shuffle on previous track",
+    "shuffle-when-going-back-description": "Play a random track when shuffle is active and the previous track button is clicked",
     "social": "Social",
-    "user": "Usuário:"
+    "track-duration": "Display track duration over the seekbar",
+    "user": "Usuário:",
+    "youtube": "Youtube",
+    "yt-api-key": "Youtube API Key"
   },
   "tags": {
     "albums": "Top Álbums",

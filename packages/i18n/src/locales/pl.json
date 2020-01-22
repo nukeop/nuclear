@@ -1,9 +1,9 @@
 {
   "album": {
-    "queue": "Dodaj album do kolejki",
     "download": "Pobierz",
+    "download-toast-content": "{{artist}} - {{title}} został dodany do pobranych.",
     "download-toast-title": "Album dodany do pobranych",
-    "download-toast-content": "{{artist}} - {{title}} został dodany do pobranych."
+    "queue": "Dodaj album do kolejki"
   },
   "app": {
     "collection": "Kolekcja",
@@ -48,17 +48,17 @@
     "name": "Nazwa",
     "status": "Status"
   },
+  "favorite-albums": {
+    "empty": "Brak ulubionych albumów",
+    "empty-help": "Dodaj album do ulubionych, a pojawi się tutaj!!",
+    "header": "Twoje ulubione albumy"
+  },
   "favorites": {
     "artist": "Artysta",
     "empty": "Brak ulubionych utworów",
     "empty-help": "Dodaj utwór do ulubionych, a pojawi się tutaj!",
     "header": "Twoje ulubione utwory",
     "title": "Tytuł"
-  },
-  "favorite-albums": {
-    "header": "Twoje ulubione albumy",
-    "empty": "Brak ulubionych albumów",
-    "empty-help": "Dodaj album do ulubionych, a pojawi się tutaj!!"
   },
   "help": {
     "about": "O Nuclear Music Player",
@@ -73,12 +73,13 @@
     "add": "Dodaj katalogi",
     "album": "Album",
     "artist": "Artysta",
-    "filter-placeholder": "Filtruj...",
-    "header": "Biblioteka lokalna",
-    "title": "Tytuł",
     "empty": "Biblioteka jest pusta",
     "empty-help": "Dodaj muzykę, używając przycisku powyżej.",
-    "no-api": "Web Api jest niedostępne :("
+    "filter-placeholder": "Filtruj...",
+    "header": "Biblioteka lokalna",
+    "no-search-results": "No search results",
+    "no-search-results-help": "No tracks found with the given name, album, or artist.",
+    "title": "Tytuł"
   },
   "lyrics": {
     "by-artist": "przez {{artist}}",
@@ -101,15 +102,25 @@
     "delete": "Usuń tę playlistę",
     "dialog-placeholder": "Nazwa playlisty...",
     "empty": "Brak playlist.",
+    "queue": "Add playlist to queue",
     "rename": "Zmień nazwę tej playlisty",
-    "songs": "{{total}} utwór",
-    "songs_plural": "{{total}} utwory/utworów",
+    "songs_0": "{{total}} songs",
+    "songs_1": "{{total}} songs",
+    "songs_2": "{{total}} songs",
     "title": "Tytuł"
   },
   "plugins": {
+    "add-a-plugin": "Add a plugin",
     "header": "Pluginy",
+    "lyrics-providers": "Lyrics providers",
+    "meta-providers": "Metadata providers",
     "placeholder": "Wybierz domyślne źródło muzyki:",
-    "stream-providers": "Żródła muzyki"
+    "select-lyrics-provider": "Select the default lyrics provider:",
+    "select-meta-provider": "Select the default metadata provider:",
+    "stream-providers": "Żródła muzyki",
+    "user-plugins": "User plugins",
+    "user-plugins-warning-desc": "Plugins work by running code on your computer. Load plugins only from sources you trust!",
+    "user-plugins-warning-title": "Danger zone!"
   },
   "queue": {
     "clear": "Wyczyść kolejkę",
@@ -130,17 +141,21 @@
     "title": "Tytuł:"
   },
   "search": {
-    "album": "Album",
-    "album_plural": "Albumy",
-    "artist": "Artysta",
-    "artist_plural": "Artyści",
+    "album_0": "Albums",
+    "album_1": "Albums",
+    "album_2": "Albums",
+    "artist_0": "Artists",
+    "artist_1": "Artists",
+    "artist_2": "Artists",
     "empty": "Brak wyników.",
     "placeholder": "Wyszukaj...",
-    "playlist": "Playlista",
-    "playlist_plural": "Playlisty",
+    "playlist_0": "Playlists",
+    "playlist_1": "Playlists",
+    "playlist_2": "Playlists",
     "queue-add": "Dodaj wszystkie utwory do kolejki",
-    "track": "Utwór",
-    "track_plural": "Utwory"
+    "track_0": "Tracks",
+    "track_1": "Tracks",
+    "track_2": "Tracks"
   },
   "settings": {
     "api-port": "Port używany przez API",
@@ -151,9 +166,11 @@
     "autoradio-description": "Dodaj automatycznie podobne utwory, kiedy kolejka odtwarzania się kończy",
     "compact-menu-bar": "Włącz uproszczony pasek menu",
     "compact-queue-bar": "Włącz uproszczony pasek kolejki",
-    "track-duration": "Wyświetl czas trwania utworu na pasku postępu odtwarzania",
     "disable-gpu": "Wyłącz renderowanie sprzętowe (może naprawić problemy z przeciąganiem elementów i migotaniem ekranu)",
     "display": "Wyświetlanie",
+    "downloads": "Downloads",
+    "downloads-dir": "Downloads directory",
+    "downloads-dir-button": "Choose a directory...",
     "enable-api": "Włącz obsługę API",
     "frameless-window": "Bezramkowe okno (wymagany restart)",
     "github-connect": "Zaloguj się za pomocą Github",
@@ -178,6 +195,7 @@
     "shuffle-when-going-back": "Mieszaj utwory wstecz",
     "shuffle-when-going-back-description": "Odtwarzaj losowy utwór, kiedy mieszanie utworów jest włączone i kliknięto przycisk Poprzedni utwór",
     "social": "Społeczność",
+    "track-duration": "Wyświetl czas trwania utworu na pasku postępu odtwarzania",
     "user": "Użytkownik:",
     "youtube": "Youtube",
     "yt-api-key": "Youtube API Key"

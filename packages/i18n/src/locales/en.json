@@ -1,9 +1,9 @@
 {
   "album": {
-    "queue": "Add album to queue",
     "download": "Download",
+    "download-toast-content": "{{artist}} - {{title}} has been added to downloads.",
     "download-toast-title": "Album added to downloads",
-    "download-toast-content": "{{artist}} - {{title}} has been added to downloads."
+    "queue": "Add album to queue"
   },
   "app": {
     "collection": "Collection",
@@ -48,17 +48,17 @@
     "name": "Name",
     "status": "Status"
   },
+  "favorite-albums": {
+    "empty": "No favorite albums",
+    "empty-help": "Try adding some albums to favorites and they will appear here!",
+    "header": "Your favorite albums"
+  },
   "favorites": {
     "artist": "Artist",
     "empty": "No favorites added",
     "empty-help": "Try favoriting some tracks and they will appear here!",
     "header": "Your favorite tracks",
     "title": "Title"
-  },
-  "favorite-albums": {
-    "header": "Your favorite albums",
-    "empty": "No favorite albums",
-    "empty-help": "Try adding some albums to favorites and they will appear here!"
   },
   "help": {
     "about": "About Nuclear Music Player",
@@ -73,13 +73,13 @@
     "add": "Add folders",
     "album": "Album",
     "artist": "Artist",
-    "filter-placeholder": "Filter...",
-    "header": "Local Library",
-    "title": "Title",
     "empty": "The library is empty",
     "empty-help": "Try adding some music using the button above.",
+    "filter-placeholder": "Filter...",
+    "header": "Local Library",
     "no-search-results": "No search results",
-    "no-search-results-help": "No tracks found with the given name, album, or artist."
+    "no-search-results-help": "No tracks found with the given name, album, or artist.",
+    "title": "Title"
   },
   "lyrics": {
     "by-artist": "by {{artist}}",
@@ -100,26 +100,26 @@
   "playlists": {
     "artist": "Artist",
     "delete": "Delete this playlist",
-    "queue": "Add playlist to queue",
     "dialog-placeholder": "Playlist name...",
     "empty": "No playlists.",
+    "queue": "Add playlist to queue",
     "rename": "Rename this playlist",
     "songs": "{{total}} song",
     "songs_plural": "{{total}} songs",
     "title": "Title"
   },
   "plugins": {
+    "add-a-plugin": "Add a plugin",
     "header": "Plugins",
+    "lyrics-providers": "Lyrics providers",
+    "meta-providers": "Metadata providers",
     "placeholder": "Select the default music source:",
     "select-lyrics-provider": "Select the default lyrics provider:",
     "select-meta-provider": "Select the default metadata provider:",
-    "meta-providers": "Metadata providers",
     "stream-providers": "Stream providers",
-    "lyrics-providers": "Lyrics providers",
     "user-plugins": "User plugins",
-    "user-plugins-warning-title": "Danger zone!",
     "user-plugins-warning-desc": "Plugins work by running code on your computer. Load plugins only from sources you trust!",
-    "add-a-plugin": "Add a plugin"
+    "user-plugins-warning-title": "Danger zone!"
   },
   "queue": {
     "clear": "Clear queue",
@@ -161,9 +161,11 @@
     "autoradio-description": "Add similar tracks automatically when the queue is ending",
     "compact-menu-bar": "Use compact style for menu bar",
     "compact-queue-bar": "Use compact style for queue bar",
-    "track-duration": "Display track duration over the seekbar",
     "disable-gpu": "Disable hardware rendering (might fix issues with dragging elements and flashing screen)",
     "display": "Display",
+    "downloads": "Downloads",
+    "downloads-dir": "Downloads directory",
+    "downloads-dir-button": "Choose a directory...",
     "enable-api": "Enable the api",
     "frameless-window": "Frameless window (requires restart)",
     "github-connect": "Log in with Github",
@@ -188,12 +190,10 @@
     "shuffle-when-going-back": "Shuffle on previous track",
     "shuffle-when-going-back-description": "Play a random track when shuffle is active and the previous track button is clicked",
     "social": "Social",
+    "track-duration": "Display track duration over the seekbar",
     "user": "User:",
     "youtube": "Youtube",
-    "yt-api-key": "Youtube API Key",
-    "downloads": "Downloads",
-    "downloads-dir": "Downloads directory",
-    "downloads-dir-button": "Choose a directory..."
+    "yt-api-key": "Youtube API Key"
   },
   "tags": {
     "albums": "Top Albums",

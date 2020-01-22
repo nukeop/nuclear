@@ -7,7 +7,7 @@ import classnames from 'classnames';
 import _ from 'lodash';
 import Sound from 'react-hifi';
 import { withTranslation } from 'react-i18next';
-import { formatDuration } from '@nuclear/ui';
+import { Cover, formatDuration } from '@nuclear/ui';
 
 import * as Actions from './actions';
 import * as PlayerActions from './actions/player';
@@ -48,7 +48,6 @@ import ToastContainer from './containers/ToastContainer';
 import ShortcutsContainer from './containers/ShortcutsContainer';
 import ErrorBoundary from './containers/ErrorBoundary';
 
-import { Cover } from '@nuclear/ui';
 import NavButtons from './components/NavButtons';
 import PlayerControls from './components/PlayerControls';
 import Seekbar from './components/Seekbar';

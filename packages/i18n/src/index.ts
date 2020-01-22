@@ -1,7 +1,4 @@
-import i18n from 'i18next';
-import { remote } from 'electron';
-
-import { getOption, setOption } from './persistence/store';
+import i18n, { LanguageDetectorModule } from 'i18next';
 
 import en from './locales/en.json';
 import fr from './locales/fr.json';
@@ -22,17 +19,16 @@ import ko from './locales/ko.json';
 import tl from './locales/tl.json';
 import zh_tw from './locales/zh_tw.json';
 
-const languageDetector = {
-  init: Function.prototype,
-  type: 'languageDetector',
-  detect: () => getOption('language') || remote.app.getLocale(),
-  cacheUserLanguage: Function.prototype
-};
+interface I18nOptions {
+  languageDetector: LanguageDetectorModule;
+  debug?: boolean;
+  react?: boolean;
+}
 
-export const setupI18n = () => {
+export const setupI18n = ({ languageDetector, debug, react }: I18nOptions) => {
   return i18n.use(languageDetector).init({
     fallbackLng: 'en',
-    debug: false,
+    debug,
     resources: {
       en,
       fr,
@@ -57,11 +53,9 @@ export const setupI18n = () => {
       escapeValue: false
     },
     react: {
-      wait: true
+      wait: react
     }
   });
 };
-
-i18n.on('languageChanged', lng => setOption('language', lng));
 
 export default i18n;
