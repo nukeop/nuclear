@@ -1,5 +1,8 @@
-﻿{
+{
   "album": {
+    "download": "Download",
+    "download-toast-content": "{{artist}} - {{title}} has been added to downloads.",
+    "download-toast-title": "Album added to downloads",
     "queue": "將專輯新增到播放清單"
   },
   "app": {
@@ -7,9 +10,11 @@
     "dashboard": "控制台",
     "downloads": "下載",
     "equalizer": "等化器",
+    "favorite-albums": "Favorite Albums",
     "favorite-tracks": "我的最愛",
     "library": "本機音樂",
     "lyrics": "歌詞",
+    "main": "Main",
     "playlists": "播放清單",
     "plugins": "插件",
     "search": "搜尋",
@@ -43,6 +48,11 @@
     "name": "名字",
     "status": "狀態"
   },
+  "favorite-albums": {
+    "empty": "No favorite albums",
+    "empty-help": "Try adding some albums to favorites and they will appear here!",
+    "header": "Your favorite albums"
+  },
   "favorites": {
     "artist": "演出者",
     "empty": "我的最愛為空",
@@ -63,8 +73,12 @@
     "add": "新建資料夾",
     "album": "專輯",
     "artist": "演出者",
+    "empty": "The library is empty",
+    "empty-help": "Try adding some music using the button above.",
     "filter-placeholder": "篩選...",
     "header": "本機",
+    "no-search-results": "No search results",
+    "no-search-results-help": "No tracks found with the given name, album, or artist.",
     "title": "音樂標題"
   },
   "lyrics": {
@@ -88,15 +102,23 @@
     "delete": "删除播放清單",
     "dialog-placeholder": "播放清單名稱...",
     "empty": "没有播放清單",
+    "queue": "Add playlist to queue",
     "rename": "重命名播放列表",
     "songs": "{{total}} 首歌",
-    "songs_plural": "{{total}} 首歌",
     "title": "音樂標題"
   },
   "plugins": {
+    "add-a-plugin": "Add a plugin",
     "header": "插件",
+    "lyrics-providers": "Lyrics providers",
+    "meta-providers": "Metadata providers",
     "placeholder": "選擇預設音樂串流來源:",
-    "stream-providers": "串流來源"
+    "select-lyrics-provider": "Select the default lyrics provider:",
+    "select-meta-provider": "Select the default metadata provider:",
+    "stream-providers": "串流來源",
+    "user-plugins": "User plugins",
+    "user-plugins-warning-desc": "Plugins work by running code on your computer. Load plugins only from sources you trust!",
+    "user-plugins-warning-title": "Danger zone!"
   },
   "queue": {
     "clear": "清除播放佇列",
@@ -118,25 +140,27 @@
   },
   "search": {
     "album": "專輯",
-    "album_plural": "專輯",
     "artist": "演出者",
-    "artist_plural": "演出者",
     "empty": "找不到資料",
     "placeholder": "搜尋...",
     "playlist": "播放清單",
-    "playlist_plural": "播放清單",
     "queue-add": "將所有曲目新增到播放佇列",
-    "track": "音樂標題",
-    "track_plural": "曲目"
+    "track": "音樂標題"
   },
   "settings": {
     "api-port": "API 網路埠",
+    "api-url": "",
     "autoradio": "自動播放",
     "autoradio-craziness": "Autoradio craziness",
+    "autoradio-craziness-description": "Autoradio will select songs that are less similar to the ones already in the queue the crazier it is",
+    "autoradio-description": "Add similar tracks automatically when the queue is ending",
     "compact-menu-bar": "使用最小化工具列",
     "compact-queue-bar": "使用最小化播放佇列",
     "disable-gpu": "關閉硬體渲染 (可能可以修復拖移延遲與螢幕閃爍的問題)",
     "display": "顯示",
+    "downloads": "Downloads",
+    "downloads-dir": "Downloads directory",
+    "downloads-dir-button": "Choose a directory...",
     "enable-api": "啟用 api",
     "frameless-window": "Frameless window (需要重新啟動)",
     "github-connect": "用GitHub登入",
@@ -156,9 +180,15 @@
     "notlogged": "未登入",
     "playback": "播放",
     "program-settings": "程式設定",
+    "seek-iteration": "Number of seconds to seek forward/backwards when pressing arrow keys",
     "shuffle-queue": "隨機曲目",
+    "shuffle-when-going-back": "Shuffle on previous track",
+    "shuffle-when-going-back-description": "Play a random track when shuffle is active and the previous track button is clicked",
     "social": "Social",
-    "user": "帳號:"
+    "track-duration": "Display track duration over the seekbar",
+    "user": "帳號:",
+    "youtube": "Youtube",
+    "yt-api-key": "Youtube API Key"
   },
   "tags": {
     "albums": "優秀專輯",

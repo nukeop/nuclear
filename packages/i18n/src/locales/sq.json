@@ -1,9 +1,9 @@
 {
   "album": {
-    "queue": "Shto album në radhë",
     "download": "Shkarko",
+    "download-toast-content": "{{artist}} - {{title}} është shtuar tek shkarkimet.",
     "download-toast-title": "Albumi u shtua tek shkarkimet",
-    "download-toast-content": "{{artist}} - {{title}} është shtuar tek shkarkimet."
+    "queue": "Shto album në radhë"
   },
   "app": {
     "collection": "Koleksion",
@@ -48,17 +48,17 @@
     "name": "Emri",
     "status": "Statusi"
   },
+  "favorite-albums": {
+    "empty": "Nuk ka albume të preferuara",
+    "empty-help": "Shtoni disa albume tek të preferuarit dhe ato do shfaqen këtu!",
+    "header": "Albumet tuaja të preferuara"
+  },
   "favorites": {
     "artist": "Artisti",
     "empty": "Nuk janë shtuar të preferuara",
     "empty-help": "Duke shtuar si të preferuara disa këngë ato do shfaqen këtu!",
     "header": "Këngët tuaja të preferuara",
     "title": "Titulli"
-  },
-  "favorite-albums": {
-    "header": "Albumet tuaja të preferuara",
-    "empty": "Nuk ka albume të preferuara",
-    "empty-help": "Shtoni disa albume tek të preferuarit dhe ato do shfaqen këtu!"
   },
   "help": {
     "about": "Rreth Nuclear Music Player",
@@ -73,13 +73,13 @@
     "add": "Shto skedar",
     "album": "Album",
     "artist": "Artist",
-    "filter-placeholder": "Filtro...",
-    "header": "Libraria Lokale",
-    "title": "Titulli",
     "empty": "Libraria është bosh",
     "empty-help": "Provoni të shtoni muzikë me butonin më poshtë.",
+    "filter-placeholder": "Filtro...",
+    "header": "Libraria Lokale",
     "no-search-results": "Nuk ka rezultate kërkimi",
-    "no-search-results-help": "Nuk u gjetën këngë me emrin, albumin ose artistin e dhënë."
+    "no-search-results-help": "Nuk u gjetën këngë me emrin, albumin ose artistin e dhënë.",
+    "title": "Titulli"
   },
   "lyrics": {
     "by-artist": "nga {{artist}}",
@@ -100,26 +100,26 @@
   "playlists": {
     "artist": "Artisti",
     "delete": "Fshi këtë listë këngësh",
-    "queue": "Shto këtë listë në radhë",
     "dialog-placeholder": "Emri i listës...",
     "empty": "Nuk ka lista këngësh.",
+    "queue": "Shto këtë listë në radhë",
     "rename": "Riemërtoje këtë listë",
     "songs": "{{total}} këngë",
     "songs_plural": "{{total}} këngësh",
     "title": "Titulli"
   },
   "plugins": {
+    "add-a-plugin": "Shto një plugin",
     "header": "Shtojcat",
+    "lyrics-providers": "Mundësuesi i testeve të këngëve",
+    "meta-providers": "Mundësuesit e metadatave",
     "placeholder": "Zgjidh burimin automatik të këngëve:",
     "select-lyrics-provider": "Zgjidh mundësuesin automatik të titrave:",
     "select-meta-provider": "Zgjidh mundësuesin automatik të metadatave:",
-    "meta-providers": "Mundësuesit e metadatave",
     "stream-providers": "Mundësuesit e transmetimit",
-    "lyrics-providers": "Mundësuesi i testeve të këngëve",
     "user-plugins": "Shtojcat e përdoruesit",
-    "user-plugins-warning-title": "Zona e rrezikut!",
     "user-plugins-warning-desc": "Shtojcat funksionojnë duke ekzekutuar kodin në kompjuterin tuaj. Ngarko shtojca vetëm nga burime të cilave u besoni!",
-    "add-a-plugin": "Shto një plugin"
+    "user-plugins-warning-title": "Zona e rrezikut!"
   },
   "queue": {
     "clear": "Pastro radhën",
@@ -161,9 +161,11 @@
     "autoradio-description": "Shto këngë të ngjashme automatikisht kur radha është në përfundim",
     "compact-menu-bar": "Përdor stilin kompakt për shiritin e menusë",
     "compact-queue-bar": "Përdor stilin kompakt për shiritin e radhës",
-    "track-duration": "Shfaq kohëzgjatjen e këngës mbi seekbar",
     "disable-gpu": "Çaktivizoni intepretimin nga hardware (mund të zgjidhë problematikat me elementët lëvizës dhe ekranin e ndezur)",
     "display": "Shfaq",
+    "downloads": "Shkarkimet",
+    "downloads-dir": "Direktoria e shkarkimeve",
+    "downloads-dir-button": "Zgjidhni një direktori...",
     "enable-api": "Aktivizo api",
     "frameless-window": "Dritare e pakufizuar (kërkon restart)",
     "github-connect": "Kyçuni me Github",
@@ -188,12 +190,10 @@
     "shuffle-when-going-back": "Përzieni në këngën e mëparshme",
     "shuffle-when-going-back-description": "Luani një këngë rastësore kur përzierja është aktive dhe butoni i këngës së mëpashme është klikuar",
     "social": "Sociale",
+    "track-duration": "Shfaq kohëzgjatjen e këngës mbi seekbar",
     "user": "Përdoruesi:",
     "youtube": "Youtube",
-    "yt-api-key": "Youtube API Key",
-    "downloads": "Shkarkimet",
-    "downloads-dir": "Direktoria e shkarkimeve",
-    "downloads-dir-button": "Zgjidhni një direktori..."
+    "yt-api-key": "Youtube API Key"
   },
   "tags": {
     "albums": "Albumet në krye",

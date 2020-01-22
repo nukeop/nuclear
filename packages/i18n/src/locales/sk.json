@@ -1,9 +1,9 @@
 {
   "album": {
-    "queue": "Pridať album do poradia",
     "download": "Stiahnuť",
+    "download-toast-content": "{{artist}} - {{title}} bol pridaný do stiahnutých.",
     "download-toast-title": "Album pridaný medzi stiahnuté",
-    "download-toast-content": "{{artist}} - {{title}} bol pridaný do stiahnutých."
+    "queue": "Pridať album do poradia"
   },
   "app": {
     "collection": "Zbierka",
@@ -48,17 +48,17 @@
     "name": "Meno",
     "status": "Stav"
   },
+  "favorite-albums": {
+    "empty": "Žiadne obľúbené albumy",
+    "empty-help": "Skúste pridať album medzi obľubené a objaví sa tu!",
+    "header": "Vaše obľúbené albumy"
+  },
   "favorites": {
     "artist": "Umelec",
     "empty": "Žiadne obľubené",
     "empty-help": "Označte obľúbené skladby a objavia sa tu!",
     "header": "Vaše obľubené skladby",
     "title": "Názov"
-  },
-  "favorite-albums": {
-    "header": "Vaše obľúbené albumy",
-    "empty": "Žiadne obľúbené albumy",
-    "empty-help": "Skúste pridať album medzi obľubené a objaví sa tu!"
   },
   "help": {
     "about": "O Nuclear Music Player",
@@ -73,11 +73,13 @@
     "add": "Pridať súbory",
     "album": "Album",
     "artist": "Umelec",
+    "empty": "Knižnica je prázdna",
+    "empty-help": "Skúste pridať hudbu kliknutím na horné tlačidlo.",
     "filter-placeholder": "Filter...",
     "header": "Lokálna knižnica",
-    "title": "Názov",
-    "empty": "Knižnica je prázdna",
-    "empty-help": "Skúste pridať hudbu kliknutím na horné tlačidlo."
+    "no-search-results": "No search results",
+    "no-search-results-help": "No tracks found with the given name, album, or artist.",
+    "title": "Názov"
   },
   "lyrics": {
     "by-artist": "od {{artist}}",
@@ -100,15 +102,25 @@
     "delete": "Vymazať tento playlist",
     "dialog-placeholder": "Názov playlistu...",
     "empty": "Žiadne playlisty.",
+    "queue": "Add playlist to queue",
     "rename": "Premenovať tento playlist",
-    "songs": "{{total}} pieseň",
-    "songs_plural": "{{total}} piesní",
+    "songs_0": "{{total}} songs",
+    "songs_1": "{{total}} songs",
+    "songs_2": "{{total}} songs",
     "title": "Názov"
   },
   "plugins": {
+    "add-a-plugin": "Add a plugin",
     "header": "Doplnky",
+    "lyrics-providers": "Lyrics providers",
+    "meta-providers": "Metadata providers",
     "placeholder": "Vybrať predvolený hudobný zdroj:",
-    "subtitle": "Hudobné zdroje"
+    "select-lyrics-provider": "Select the default lyrics provider:",
+    "select-meta-provider": "Select the default metadata provider:",
+    "stream-providers": "Stream providers",
+    "user-plugins": "User plugins",
+    "user-plugins-warning-desc": "Plugins work by running code on your computer. Load plugins only from sources you trust!",
+    "user-plugins-warning-title": "Danger zone!"
   },
   "queue": {
     "clear": "Vymazať poradie",
@@ -129,17 +141,21 @@
     "title": "Názov:"
   },
   "search": {
-    "album": "Album",
-    "album_plural": "Albumy",
-    "artist": "Umelec",
-    "artist_plural": "Umelci",
+    "album_0": "Albums",
+    "album_1": "Albums",
+    "album_2": "Albums",
+    "artist_0": "Artists",
+    "artist_1": "Artists",
+    "artist_2": "Artists",
     "empty": "Nič sa nenašlo.",
     "placeholder": "Hľadať...",
-    "playlist": "Playlist",
-    "playlist_plural": "Playlisty",
+    "playlist_0": "Playlists",
+    "playlist_1": "Playlists",
+    "playlist_2": "Playlists",
     "queue-add": "Pridať všetky skladby do poradia",
-    "track": "Skladba",
-    "track_plural": "Skladby"
+    "track_0": "Tracks",
+    "track_1": "Tracks",
+    "track_2": "Tracks"
   },
   "settings": {
     "api-port": "Port použitý pre API",
@@ -150,9 +166,11 @@
     "autoradio-description": "Pridať podobné skladby automaticky, keď sa poradie končí",
     "compact-menu-bar": "Stlačíť miesto pre menu",
     "compact-queue-bar": "Stlačiť miesto pre poradie",
-    "track-duration": "Zobraziť trvanie skladby vo vyhľadávacom poli",
     "disable-gpu": "Zakázať hardvérové zobrazovanie (môže vyriešiť problémy s ťahaním elementov a blikajúcou obrazovkou)",
     "display": "Displej",
+    "downloads": "Stiahnuté",
+    "downloads-dir": "Stiahnuté položky",
+    "downloads-dir-button": "Zvoliť priečinok...",
     "enable-api": "Povoliť api",
     "frameless-window": "Bezrámové okno (vyžaduje reštart)",
     "github-connect": "Prihlásiť sa cez Github",
@@ -177,12 +195,10 @@
     "shuffle-when-going-back": "Poprehadzovať na predošlej skladbe",
     "shuffle-when-going-back-description": "Hrať náhodnú skladbu keď je zapnutý náhodný výber a tlačidlo späť je stlačené",
     "social": "Socialne",
+    "track-duration": "Zobraziť trvanie skladby vo vyhľadávacom poli",
     "user": "Používateľ:",
     "youtube": "Youtube",
-    "yt-api-key": "Youtube API kľúč",
-    "downloads": "Stiahnuté",
-    "downloads-dir": "Stiahnuté položky",
-    "downloads-dir-button": "Zvoliť priečinok..."
+    "yt-api-key": "Youtube API kľúč"
   },
   "tags": {
     "albums": "Top Albumy",

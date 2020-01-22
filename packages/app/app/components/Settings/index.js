@@ -10,7 +10,7 @@ import {
   Divider,
   Icon
 } from 'semantic-ui-react';
-import i18n from 'i18next';
+import i18n from '@nuclear/i18n';
 
 import Header from '../Header';
 import Spacer from '../Spacer';

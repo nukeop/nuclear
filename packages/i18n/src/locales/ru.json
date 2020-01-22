@@ -1,0 +1,211 @@
+{
+  "album": {
+    "download": "Download",
+    "download-toast-content": "{{artist}} - {{title}} has been added to downloads.",
+    "download-toast-title": "Album added to downloads",
+    "queue": "Добавить Альбом в Очередь"
+  },
+  "app": {
+    "collection": "Коллекция",
+    "dashboard": "Панель Управления",
+    "downloads": "Загрузки",
+    "equalizer": "Эквалайзер",
+    "favorite-albums": "Favorite Albums",
+    "favorite-tracks": "Избранные Композиции",
+    "library": "Локальная Библиотека",
+    "lyrics": "Текст",
+    "main": "Main",
+    "playlists": "Плейлист",
+    "plugins": "Плагины",
+    "search": "Результаты Поиска",
+    "settings": "Настройки"
+  },
+  "artist": {
+    "count": "Счетчик проигрываний",
+    "queue": "Добавить Все Композиции в Очередь",
+    "similar": "Похожие Исполнители",
+    "title": "Название",
+    "tour": "Концертный Тур"
+  },
+  "dashboard": {
+    "artist": "Исполнитель",
+    "best": "Лучшая Новая Музыка",
+    "best-new-albums": "Лучшие Новые Альбомы",
+    "best-new-tracks": "Лучшии Новые Композиции",
+    "genres": "Жанры",
+    "lastfm-title": "Лучшие Композиции от LastFm.",
+    "news": "Новости",
+    "playcounts": "Прослушанно",
+    "title": "Название",
+    "top": "Топ"
+  },
+  "downloads": {
+    "clear": "Убрать Завершенные Композиции",
+    "completion": "Завершение",
+    "empty": "Тут Ничего Нет",
+    "empty-help": "Добавьте что-нибудь в Загрузки и оно тут появится!",
+    "header": "Загрузки",
+    "name": "Имя",
+    "status": "Статус"
+  },
+  "favorite-albums": {
+    "empty": "No favorite albums",
+    "empty-help": "Try adding some albums to favorites and they will appear here!",
+    "header": "Your favorite albums"
+  },
+  "favorites": {
+    "artist": "Исполнитель",
+    "empty": "Тут Ничего Нет",
+    "empty-help": "Добавьте что-нибудь в Избранное и оно тут появится!",
+    "header": "Избранное",
+    "title": "Название"
+  },
+  "help": {
+    "about": "О программе Nuclear Music Player",
+    "header": "Проигрыватель музыки из безплатных интернет источников",
+    "released": "выпущен под лицензией AGPL-3.0",
+    "thanks": "Большое спасибо нашим участникам на Github, ваша помощь была жизненно важна в создании этой программы."
+  },
+  "input-dialog": {
+    "cancel": "Отменить"
+  },
+  "library": {
+    "add": "Добавить Папки",
+    "album": "Альбом",
+    "artist": "Исполнитель",
+    "empty": "The library is empty",
+    "empty-help": "Try adding some music using the button above.",
+    "filter-placeholder": "Фильтр...",
+    "header": "Локальная Библиотека",
+    "no-search-results": "No search results",
+    "no-search-results-help": "No tracks found with the given name, album, or artist.",
+    "title": "Название"
+  },
+  "lyrics": {
+    "by-artist": "Исполнено {{artist}}",
+    "empty": "Ничего не играет...",
+    "empty-help": "Добавьте музыку в очередь и здесь появится текст.",
+    "not-found": "Текст этой песни не найден."
+  },
+  "option-control": {
+    "autoradio": "Авто подборка",
+    "loop": "Повторить",
+    "shuffle": "Перемешать"
+  },
+  "player": {
+    "next-button": "Следующий трек",
+    "play-pause-button": "Играть/Пауза",
+    "previous-button": "Предыдущий трек"
+  },
+  "playlists": {
+    "artist": "Исполнитель",
+    "delete": "Удалить Этот Плейлист",
+    "dialog-placeholder": "Название...",
+    "empty": "Тут Ничего Нет...",
+    "queue": "Add playlist to queue",
+    "rename": "Переименовать Этот Плейлист",
+    "songs_0": "{{total}} songs",
+    "songs_1": "{{total}} songs",
+    "songs_2": "{{total}} songs",
+    "title": "Название"
+  },
+  "plugins": {
+    "add-a-plugin": "Add a plugin",
+    "header": "Плагины",
+    "lyrics-providers": "Lyrics providers",
+    "meta-providers": "Metadata providers",
+    "placeholder": "Выберите музыкальный канал по умолчанию:",
+    "select-lyrics-provider": "Select the default lyrics provider:",
+    "select-meta-provider": "Select the default metadata provider:",
+    "stream-providers": "Музыкальные каналы",
+    "user-plugins": "User plugins",
+    "user-plugins-warning-desc": "Plugins work by running code on your computer. Load plugins only from sources you trust!",
+    "user-plugins-warning-title": "Danger zone!"
+  },
+  "queue": {
+    "clear": "Очистить очередь",
+    "dialog-accept": "Сохранить",
+    "dialog-placeholder": "Название...",
+    "dialog-trigger": "Сохранить как Плейлист",
+    "download": "Загрузить",
+    "download-toast-content": "{{artist}} - {{title}} Добавлен к загрузкам.",
+    "download-toast-title": "Композиция добавлена к загрузкам",
+    "favorite-add": "Добавить в избранное",
+    "header": "Очередь",
+    "header-track": "Сейчас играет",
+    "id": "ID потока:",
+    "loading": "Поток загружается.",
+    "playlist-add": "Добавить в Плейлист",
+    "playlist-toast-content": "Плейлист {{name}} успешно создан .",
+    "playlist-toast-title": "Плейлист создан",
+    "title": "Название:"
+  },
+  "search": {
+    "album_0": "Albums",
+    "album_1": "Albums",
+    "album_2": "Albums",
+    "artist_0": "Artists",
+    "artist_1": "Artists",
+    "artist_2": "Artists",
+    "empty": "Ничего не найдено.",
+    "placeholder": "Поиск...",
+    "playlist_0": "Playlists",
+    "playlist_1": "Playlists",
+    "playlist_2": "Playlists",
+    "queue-add": "Добавить все композиции в очередь",
+    "track_0": "Tracks",
+    "track_1": "Tracks",
+    "track_2": "Tracks"
+  },
+  "settings": {
+    "api-port": "Порт для API",
+    "api-url": "",
+    "autoradio": "Авто подборка",
+    "autoradio-craziness": "Сумасшествие авто подборки",
+    "autoradio-craziness-description": "Autoradio will select songs that are less similar to the ones already in the queue the crazier it is",
+    "autoradio-description": "Add similar tracks automatically when the queue is ending",
+    "compact-menu-bar": "Использовать минималистичный стиль для меню",
+    "compact-queue-bar": "Использовать минималистичный стиль для очереди",
+    "disable-gpu": "Отключить аппаратный рендеринг (может решить проблемы с перетаскиванием элементов и миганием экрана)",
+    "display": "Отображение",
+    "downloads": "Downloads",
+    "downloads-dir": "Downloads directory",
+    "downloads-dir-button": "Choose a directory...",
+    "enable-api": "Включить API",
+    "frameless-window": "Безрамочный Режим (требуется перезапуск)",
+    "github-connect": "Войти через Github",
+    "github-description": "Войти через Github, чтобы создавать и делится пользовательскими плейлистами (Функция в разработке).",
+    "github-title": "Github",
+    "http": "HTTP API",
+    "language": "Язык",
+    "language-placeholder": "Выберите язык...",
+    "lastfm-connect": "Соединиться с Last.fm",
+    "lastfm-description": "Чтобы включить скробблинг, необходимо подключиться и авторизовать Nuclear на Last.fm, а затем нажать «Войти».",
+    "lastfm-enable": "Включить скробблинг на Last.fm",
+    "lastfm-title": "Last.fm",
+    "login": "Войти",
+    "logout": "Выйти",
+    "loop-after-queue-end": "Повторить после проигрывания последней композиции в очереди",
+    "notification-timeout": "Таймер уведомлений",
+    "notlogged": "Не вошли",
+    "playback": "Проигрывание",
+    "program-settings": "Программные Настройки",
+    "seek-iteration": "Number of seconds to seek forward/backwards when pressing arrow keys",
+    "shuffle-queue": "Перемешать Композиции",
+    "shuffle-when-going-back": "Shuffle on previous track",
+    "shuffle-when-going-back-description": "Play a random track when shuffle is active and the previous track button is clicked",
+    "social": "Социальные Сети",
+    "track-duration": "Display track duration over the seekbar",
+    "user": "Пользователь:",
+    "youtube": "Youtube",
+    "yt-api-key": "Youtube API Key"
+  },
+  "tags": {
+    "albums": "Лучшие Альбомы",
+    "artist": "Исполнители",
+    "artists": "Лучшие Исполнители",
+    "duration": "Продолжительность",
+    "queue-add": "Добавить все композиции в очередь",
+    "title": "Название"
+  }
+}
