@@ -1,5 +1,5 @@
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const getEmptyKeys = <T = any>(obj: T, base: T): Record<string, string[]> => {
+export const getMissingKeys = <T = any>(obj: T, base: T): Record<string, string[]> => {
   const emptyKeys = {};
 
   for (const [key, value] of Object.entries(obj)) {

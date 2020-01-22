@@ -47,6 +47,7 @@
     "electron-timber": "^0.5.1",
     "font-awesome": "^4.7.0",
     "get-artist-title": "^1.1.1",
+    "i18next": "^19.0.3",
     "lodash": "^4.17.5",
     "moment": "^2.20.1",
     "mousetrap": "^1.6.2",

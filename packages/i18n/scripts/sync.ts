@@ -6,7 +6,7 @@ import glob from 'glob';
 import path from 'path';
 import { promisify } from 'util';
 
-import { getEmptyKeys } from './helpers/object';
+import { getMissingKeys } from './helpers/object';
 import { generateMdFile } from './helpers/md';
 
 const PRIMARY_LANGUAGE = 'en';
@@ -33,7 +33,7 @@ const PRIMARY_LANGUAGE = 'en';
     for (const filePath of files) {
       const fileContent = await promisify(fs.readFile)(filePath, 'utf-8');
 
-      data[path.basename(filePath).split('.')[0]] = getEmptyKeys(
+      data[path.basename(filePath).split('.')[0]] = getMissingKeys(
         JSON.parse(fileContent),
         JSON.parse(enJson)
       );
@@ -43,9 +43,6 @@ const PRIMARY_LANGUAGE = 'en';
       .on('error', () => {
         throw new Error('error writing i18n.md');
       });
-  
-    await promisify(setTimeout)(2000);
-
   } catch (err) {
     console.error(err);
     process.exit(1);
