@@ -1,7 +1,7 @@
 {
   "album": {
     "queue": "Album zur Warteschlange hinzufügen",
-	"download": "Heruntergeladen",
+	  "download": "Heruntergeladen",
     "download-toast-title": "Album zu Downloads hinzugefügt",
     "download-toast-content": "{{artist}} - {{title}} wurde zu Downloads hinzugefügt."
   },
