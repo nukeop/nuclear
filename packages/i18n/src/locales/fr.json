@@ -1,9 +1,9 @@
 {
   "album": {
-    "queue": "Ajouter l'album à la liste de lecture",
     "download": "Télécharger",
+    "download-toast-content": "{{artist}} - {{title}} a été ajouté aux téléchargements.",
     "download-toast-title": "L'album a été ajouté aux téléchargements",
-    "download-toast-content": "{{artist}} - {{title}} a été ajouté aux téléchargements."
+    "queue": "Ajouter l'album à la liste de lecture"
   },
   "app": {
     "collection": "Collection",
@@ -48,17 +48,17 @@
     "name": "Nom",
     "status": "Status"
   },
+  "favorite-albums": {
+    "empty": "Aucun album favoris",
+    "empty-help": "Essayez d'ajouter des albums à vos favoris, ils apparaîtront ici !",
+    "header": "Vos albums favoris"
+  },
   "favorites": {
     "artist": "Artiste",
     "empty": "Aucun favoris",
     "empty-help": "Essayez d'ajouter des morceaux en favoris, ils apparaîtront ici !",
     "header": "Vos morceaux favoris",
     "title": "Titre"
-  },
-  "favorite-albums": {
-    "header": "Vos albums favoris",
-    "empty": "Aucun album favoris",
-    "empty-help": "Essayez d'ajouter des albums à vos favoris, ils apparaîtront ici !"
   },
   "help": {
     "about": "À propos de \"Nuclear Music Player\"",
@@ -73,13 +73,13 @@
     "add": "Ajouter des dossiers",
     "album": "Album",
     "artist": "Artiste",
-    "filter-placeholder": "Filtrer...",
-    "header": "Bibliothèque locale",
-    "title": "Titre",
     "empty": "La bibliothèque est vide",
     "empty-help": "Essayez d'ajouter un peu de musique avec le bouton au dessus.",
+    "filter-placeholder": "Filtrer...",
+    "header": "Bibliothèque locale",
     "no-search-results": "Aucun résultat de recherche",
-    "no-search-results-help": "Aucun morceau trouvé avec le nom, ablum ou artiste fourni."
+    "no-search-results-help": "Aucun morceau trouvé avec le nom, ablum ou artiste fourni.",
+    "title": "Titre"
   },
   "lyrics": {
     "by-artist": "de {{artist}}",
@@ -100,26 +100,26 @@
   "playlists": {
     "artist": "Artiste",
     "delete": "Supprimer cette playlist",
-    "queue": "Ajouter la playlist à la file de lecture",
     "dialog-placeholder": "Nom de la playlist...",
     "empty": "Aucune playlist.",
+    "queue": "Ajouter la playlist à la file de lecture",
     "rename": "Renommer cette playlist",
     "songs": "{{total}} morceau",
     "songs_plural": "{{total}} morceaux",
     "title": "Titre"
   },
   "plugins": {
+    "add-a-plugin": "Ajouter un plugin",
     "header": "Plugins",
+    "lyrics-providers": "Sources de paroles",
+    "meta-providers": "Sources de métadonnées",
     "placeholder": "Sélectionner la source de musique par défaut :",
     "select-lyrics-provider": "Sélectionner la source des paroles par défaut :",
     "select-meta-provider": "Sélectionner la source de métadonnées par défaut :",
-    "meta-providers": "Sources de métadonnées",
     "stream-providers": "Sources de musique",
-    "lyrics-providers": "Sources de paroles",
     "user-plugins": "Plugins de l'utilisateur",
-    "user-plugins-warning-title": "Zone de danger !",
     "user-plugins-warning-desc": "Les plugins fonctionnent en exécutant du code sur votre ordinateur. Ne chargez des plugins que depuis des sources de confiance !",
-    "add-a-plugin": "Ajouter un plugin"
+    "user-plugins-warning-title": "Zone de danger !"
   },
   "queue": {
     "clear": "Vider la file le lecture",
@@ -161,9 +161,11 @@
     "autoradio-description": "Ajouter des morceaux similaires automatiquement lorsque la file de lecture se termine",
     "compact-menu-bar": "Utiliser le style compacte pour la barre de menu",
     "compact-queue-bar": "Utiliser le style compacte pour la barre de file de lecture",
-    "track-duration": "Afficher la durée du morceau sur la barre d'avancement de lecture",
     "disable-gpu": "Désactiver l'accélération matérielle (peut résoudre certains bugs d'affichage)",
     "display": "Affichage",
+    "downloads": "Téléchargements",
+    "downloads-dir": "Dossier de téléchargement",
+    "downloads-dir-button": "Choisir un dossier...",
     "enable-api": "Activer l'api",
     "frameless-window": "Fenêtre sans bord (nécessite un redémarrage)",
     "github-connect": "Se connecter avec Github",
@@ -188,12 +190,10 @@
     "shuffle-when-going-back": "Mélanger les morceaux précédents",
     "shuffle-when-going-back-description": "Joue un morceau aléatoire lorsque le bouton de morceau précédent est cliqué",
     "social": "Social",
+    "track-duration": "Afficher la durée du morceau sur la barre d'avancement de lecture",
     "user": "Utilisateur :",
     "youtube": "YouTube",
-    "yt-api-key": "Clé d'API YouTube",
-    "downloads": "Téléchargements",
-    "downloads-dir": "Dossier de téléchargement",
-    "downloads-dir-button": "Choisir un dossier..."
+    "yt-api-key": "Clé d'API YouTube"
   },
   "tags": {
     "albums": "Top Albums",

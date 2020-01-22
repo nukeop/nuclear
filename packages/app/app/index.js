@@ -10,10 +10,12 @@ import { Provider } from 'react-redux';
 import { AppContainer, setConfig } from 'react-hot-loader';
 import { I18nextProvider } from 'react-i18next';
 import logger from 'electron-timber';
+import i18n, { setupI18n } from '@nuclear/i18n';
+import { remote } from 'electron';
 
-import i18n, { setupI18n } from './i18n';
 import App from './App';
 import configureStore from './store/configureStore';
+import { getOption, setOption } from './persistence/store';
 
 logger.hookConsole({
   renderer: true
@@ -26,8 +28,18 @@ setConfig({
 const store = configureStore();
 window.store = store; // put store in global scope for plugins
 
+i18n.on('languageChanged', lng => setOption('language', lng));
+
 const render = async Component => {
-  await setupI18n();
+  await setupI18n({
+    languageDetector: {
+      init: Function.prototype,
+      type: 'languageDetector',
+      detect: () => getOption('language') || remote.app.getLocale(),
+      cacheUserLanguage: Function.prototype
+    },
+    react: true
+  });
 
   ReactDOM.render(
     <AppContainer>

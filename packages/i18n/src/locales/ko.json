@@ -1,9 +1,9 @@
 {
   "album": {
-    "queue": "재생목록에 앨범 추가",
     "download": "다운로드",
+    "download-toast-content": "{{artist}} - {{title}} 가 다운로드에 추가 되었습니다.",
     "download-toast-title": "다운로드에 추가된 앨범",
-    "download-toast-content": "{{artist}} - {{title}} 가 다운로드에 추가 되었습니다."
+    "queue": "재생목록에 앨범 추가"
   },
   "app": {
     "collection": "컬렉션",
@@ -48,17 +48,17 @@
     "name": "이름",
     "status": "상태"
   },
+  "favorite-albums": {
+    "empty": "즐겨찾는 앨범이 없습니다.",
+    "empty-help": "앨범에 즐겨찾기를 누르면 이곳에 표시됩니다!",
+    "header": "즐겨찾는 앨범"
+  },
   "favorites": {
     "artist": "아티스트",
     "empty": "즐겨찾는 트랙이 없습니다.",
     "empty-help": "트랙에 즐겨찾기를 누르면 이곳에 표시됩니다!",
     "header": "즐겨찾는 트랙",
     "title": "제목"
-  },
-  "favorite-albums": {
-    "header": "즐겨찾는 앨범",
-    "empty": "즐겨찾는 앨범이 없습니다.",
-    "empty-help": "앨범에 즐겨찾기를 누르면 이곳에 표시됩니다!"
   },
   "help": {
     "about": "About Nuclear Music Player",
@@ -73,11 +73,13 @@
     "add": "폴더 추가",
     "album": "앨범",
     "artist": "아티스트",
+    "empty": "라이브러리가 비었습니다.",
+    "empty-help": "위 버튼을 클릭해 음악을 추가하세요.",
     "filter-placeholder": "필터...",
     "header": "로컬 라이브러리",
-    "title": "제목",
-    "empty": "라이브러리가 비었습니다.",
-    "empty-help": "위 버튼을 클릭해 음악을 추가하세요."
+    "no-search-results": "No search results",
+    "no-search-results-help": "No tracks found with the given name, album, or artist.",
+    "title": "제목"
   },
   "lyrics": {
     "by-artist": "by {{artist}}",
@@ -100,15 +102,23 @@
     "delete": "재생목록에서 삭제",
     "dialog-placeholder": "재생목록 이름...",
     "empty": "재생목록이 없습니다.",
+    "queue": "Add playlist to queue",
     "rename": "재생목록 이름 바꾸기",
     "songs": "{{total}} song",
-    "songs_plural": "{{total}} songs",
     "title": "제목"
   },
   "plugins": {
+    "add-a-plugin": "Add a plugin",
     "header": "플러그인",
+    "lyrics-providers": "Lyrics providers",
+    "meta-providers": "Metadata providers",
     "placeholder": "기본 Music Source 선택:",
-    "subtitle": "Music sources"
+    "select-lyrics-provider": "Select the default lyrics provider:",
+    "select-meta-provider": "Select the default metadata provider:",
+    "stream-providers": "Stream providers",
+    "user-plugins": "User plugins",
+    "user-plugins-warning-desc": "Plugins work by running code on your computer. Load plugins only from sources you trust!",
+    "user-plugins-warning-title": "Danger zone!"
   },
   "queue": {
     "clear": "재생목록 비우기",
@@ -130,16 +140,12 @@
   },
   "search": {
     "album": "앨범",
-    "album_plural": "앨범들",
     "artist": "아티스트",
-    "artist_plural": "아티스트들",
     "empty": "찾을수 없습니다.",
     "placeholder": "검색...",
     "playlist": "재생목록",
-    "playlist_plural": "재생목록들",
     "queue-add": "재생목록에 모든 트랙을 추가",
-    "track": "트랙",
-    "track_plural": "트랙들"
+    "track": "트랙"
   },
   "settings": {
     "api-port": "API에서 사용하는 포트",
@@ -150,9 +156,11 @@
     "autoradio-description": "재생목록이 끝나면 자동으로 비슷한 트랙을 추가",
     "compact-menu-bar": "컴팩트 스타일의 메뉴바 사용",
     "compact-queue-bar": "컴팩트 스타일의 재생목록 바 사용",
-    "track-duration": "남은 시간을 디스플레이에 표시",
     "disable-gpu": "하드웨어 렌더링 사용 안 함(끌기 요소 및 깜박임 화면 문제 해결 가능)",
     "display": "디스플레이",
+    "downloads": "다운로드",
+    "downloads-dir": "록폴더",
+    "downloads-dir-button": "폴더를 선택하세요...",
     "enable-api": "가능한 API",
     "frameless-window": "프레임 낮추기 (다시 실행시 적용)",
     "github-connect": "Github로 로그인",
@@ -177,12 +185,10 @@
     "shuffle-when-going-back": "이전 트랙에서 셔플",
     "shuffle-when-going-back-description": "셔플이 활성화되어 있고, 이전 트랙 버튼을 클릭할 때 임의 트랙 재생",
     "social": "소셜",
+    "track-duration": "남은 시간을 디스플레이에 표시",
     "user": "유저:",
     "youtube": "Youtube",
-    "yt-api-key": "Youtube API 키",
-    "downloads": "다운로드",
-    "downloads-dir": "록폴더",
-    "downloads-dir-button": "폴더를 선택하세요..."
+    "yt-api-key": "Youtube API 키"
   },
   "tags": {
     "albums": "상위 앨범",

@@ -6,7 +6,6 @@
     "lib": ["ESNext"],
     "skipLibCheck": true,
     "strict": true,
-    "allowJs": true,
     "sourceMap": false,
     "strictPropertyInitialization": false,
     "allowSyntheticDefaultImports": true,
@@ -16,7 +15,6 @@
     "resolveJsonModule": true
   },
   "exclude": [
-    "dist",
-    "packages/app"
+    "dist"
   ]
 }
