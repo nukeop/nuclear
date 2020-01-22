@@ -172,6 +172,7 @@
     "github-description": "Se connecter avec Github afin d'être capable de partager des playlists en ligne (en cours de développement).",
     "github-title": "Github",
     "http": "API HTTP",
+    "invidious-url": "Invidious instance url",
     "language": "Langage",
     "language-placeholder": "Choisir une langue",
     "lastfm-connect": "Connecter avec Last.fm",

@@ -177,6 +177,7 @@
     "github-description": "Войти через Github, чтобы создавать и делится пользовательскими плейлистами (Функция в разработке).",
     "github-title": "Github",
     "http": "HTTP API",
+    "invidious-url": "Invidious instance url",
     "language": "Язык",
     "language-placeholder": "Выберите язык...",
     "lastfm-connect": "Соединиться с Last.fm",

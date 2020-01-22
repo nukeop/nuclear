@@ -177,6 +177,7 @@
     "github-description": "Přihlaste se přes Github, abyste mohli vytvářet a sdílet vaše seznamy skladeb online (chystaná funkce).",
     "github-title": "Github",
     "http": "HTTP API",
+    "invidious-url": "Invidious instance url",
     "language": "Jazyk",
     "language-placeholder": "Vyberte jazyk",
     "lastfm-connect": "Připojit k Last.fm",

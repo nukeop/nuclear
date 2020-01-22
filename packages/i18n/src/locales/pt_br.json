@@ -172,6 +172,7 @@
     "github-description": "Faça o login Através do Github para Poder Criar e Compartilhar suas Listas de Reprodução Online (próximo recurso).",
     "github-title": "Github",
     "http": "HTTP API",
+    "invidious-url": "Invidious instance url",
     "language": "Idioma",
     "language-placeholder": "Escolha um idioma",
     "lastfm-connect": "Conectar com o Last.fm",
