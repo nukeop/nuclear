@@ -1,5 +1,8 @@
-﻿{
+{
   "album": {
+    "download": "Download",
+    "download-toast-content": "{{artist}} - {{title}} has been added to downloads.",
+    "download-toast-title": "Album added to downloads",
     "queue": "将专辑添加到播放列表"
   },
   "app": {
@@ -7,9 +10,11 @@
     "dashboard": "主页",
     "downloads": "下载",
     "equalizer": "均衡器",
+    "favorite-albums": "Favorite Albums",
     "favorite-tracks": "喜欢的音乐",
     "library": "本地音乐",
     "lyrics": "歌词",
+    "main": "Main",
     "playlists": "播放列表",
     "plugins": "插件",
     "search": "搜索",
@@ -43,6 +48,11 @@
     "name": "名字",
     "status": "状态"
   },
+  "favorite-albums": {
+    "empty": "No favorite albums",
+    "empty-help": "Try adding some albums to favorites and they will appear here!",
+    "header": "Your favorite albums"
+  },
   "favorites": {
     "artist": "艺人",
     "empty": "还没有喜欢的歌曲",
@@ -63,8 +73,12 @@
     "add": "新建文件夹",
     "album": "专辑",
     "artist": "艺人",
+    "empty": "The library is empty",
+    "empty-help": "Try adding some music using the button above.",
     "filter-placeholder": "Filter...",
     "header": "本地",
+    "no-search-results": "No search results",
+    "no-search-results-help": "No tracks found with the given name, album, or artist.",
     "title": "音乐标题"
   },
   "lyrics": {
@@ -88,15 +102,23 @@
     "delete": "删除播放列表",
     "dialog-placeholder": "Playlist name...",
     "empty": "没有任何播放列表。",
+    "queue": "Add playlist to queue",
     "rename": "重命名播放列表",
     "songs": "{{total}} 首歌",
-    "songs_plural": "{{total}} 首歌",
     "title": "音乐标题"
   },
   "plugins": {
+    "add-a-plugin": "Add a plugin",
     "header": "插件",
+    "lyrics-providers": "Lyrics providers",
+    "meta-providers": "Metadata providers",
     "placeholder": "选择默认音乐来源:",
-    "stream-providers": "音乐源"
+    "select-lyrics-provider": "Select the default lyrics provider:",
+    "select-meta-provider": "Select the default metadata provider:",
+    "stream-providers": "音乐源",
+    "user-plugins": "User plugins",
+    "user-plugins-warning-desc": "Plugins work by running code on your computer. Load plugins only from sources you trust!",
+    "user-plugins-warning-title": "Danger zone!"
   },
   "queue": {
     "clear": "Clear queue",
@@ -118,25 +140,27 @@
   },
   "search": {
     "album": "专辑",
-    "album_plural": "专辑",
     "artist": "艺人",
-    "artist_plural": "艺人",
     "empty": "Nothing found.",
     "placeholder": "搜索...",
     "playlist": "播放列表",
-    "playlist_plural": "播放列表",
     "queue-add": "Add all tracks to queue",
-    "track": "音乐标题",
-    "track_plural": "Tracks"
+    "track": "音乐标题"
   },
   "settings": {
     "api-port": "Port used by the api",
+    "api-url": "",
     "autoradio": "Autoradio",
     "autoradio-craziness": "Autoradio craziness",
+    "autoradio-craziness-description": "Autoradio will select songs that are less similar to the ones already in the queue the crazier it is",
+    "autoradio-description": "Add similar tracks automatically when the queue is ending",
     "compact-menu-bar": "Use compact style for menu bar",
     "compact-queue-bar": "Use compact style for queue bar",
     "disable-gpu": "Disable hardware rendering (might fix issues with dragging elements and flashing screen)",
     "display": "Display",
+    "downloads": "Downloads",
+    "downloads-dir": "Downloads directory",
+    "downloads-dir-button": "Choose a directory...",
     "enable-api": "Enable the api",
     "frameless-window": "Frameless window (requires restart)",
     "github-connect": "用GitHub登陆",
@@ -156,9 +180,15 @@
     "notlogged": "没有登陆",
     "playback": "Playback",
     "program-settings": "Program设置",
+    "seek-iteration": "Number of seconds to seek forward/backwards when pressing arrow keys",
     "shuffle-queue": "Shuffle songs",
+    "shuffle-when-going-back": "Shuffle on previous track",
+    "shuffle-when-going-back-description": "Play a random track when shuffle is active and the previous track button is clicked",
     "social": "Social",
-    "user": "用户:"
+    "track-duration": "Display track duration over the seekbar",
+    "user": "用户:",
+    "youtube": "Youtube",
+    "yt-api-key": "Youtube API Key"
   },
   "tags": {
     "albums": "Top Albums",

@@ -1,9 +1,9 @@
 {
   "album": {
-    "queue": "Tambahkan album ke antrian",
     "download": "Unduh",
+    "download-toast-content": "{{artist}} - {{title}} telah ditambahkan ke unduhan.",
     "download-toast-title": "Album ditambahkan ke unduhan",
-    "download-toast-content": "{{artist}} - {{title}} telah ditambahkan ke unduhan."
+    "queue": "Tambahkan album ke antrian"
   },
   "app": {
     "collection": "Koleksi",
@@ -48,17 +48,17 @@
     "name": "Nama",
     "status": "Status"
   },
+  "favorite-albums": {
+    "empty": "Belum ada album favorit",
+    "empty-help": "Album yang kamu favoritkan akan muncul di sini!",
+    "header": "Album favorit kamu"
+  },
   "favorites": {
     "artist": "Musisi",
     "empty": "Belum ada lagu favorit",
     "empty-help": "Lagu yang kamu favoritkan akan muncul di sini!",
     "header": "Lagu favorit kamu",
     "title": "Judul"
-  },
-  "favorite-albums": {
-    "header": "Album favorit kamu",
-    "empty": "Belum ada album favorit",
-    "empty-help": "Album yang kamu favoritkan akan muncul di sini!"
   },
   "help": {
     "about": "Tentang Nuclear Music Player",
@@ -73,11 +73,13 @@
     "add": "Tambahkan folder",
     "album": "Album",
     "artist": "Musisi",
+    "empty": "Pustaka masih kosong",
+    "empty-help": "Gunakan tombol di atas untuk menambahkan lagu",
     "filter-placeholder": "Filter...",
     "header": "Pustaka Lokal",
-    "title": "Judul",
-    "empty": "Pustaka masih kosong",
-    "empty-help": "Gunakan tombol di atas untuk menambahkan lagu"
+    "no-search-results": "No search results",
+    "no-search-results-help": "No tracks found with the given name, album, or artist.",
+    "title": "Judul"
   },
   "lyrics": {
     "by-artist": "oleh {{artist}}",
@@ -100,15 +102,23 @@
     "delete": "Hapus daftar putar ini",
     "dialog-placeholder": "Nama daftar putar...",
     "empty": "Daftar putar tidak ditemukan.",
+    "queue": "Add playlist to queue",
     "rename": "Ubah nama daftar putar",
     "songs": "{{total}} lagu",
-    "songs_plural": "{{total}} lagu",
     "title": "Judul"
   },
   "plugins": {
+    "add-a-plugin": "Add a plugin",
     "header": "Plugin",
+    "lyrics-providers": "Lyrics providers",
+    "meta-providers": "Metadata providers",
     "placeholder": "Pilih sumber musik bawaan:",
-    "stream-providers": "Sumber musik"
+    "select-lyrics-provider": "Select the default lyrics provider:",
+    "select-meta-provider": "Select the default metadata provider:",
+    "stream-providers": "Sumber musik",
+    "user-plugins": "User plugins",
+    "user-plugins-warning-desc": "Plugins work by running code on your computer. Load plugins only from sources you trust!",
+    "user-plugins-warning-title": "Danger zone!"
   },
   "queue": {
     "clear": "Bersihkan antrian",
@@ -130,16 +140,12 @@
   },
   "search": {
     "album": "Album",
-    "album_plural": "Album",
     "artist": "Musisi",
-    "artist_plural": "Musisi",
     "empty": "Tak ada hasil temuan.",
     "placeholder": "Cari...",
     "playlist": "Daftar putar",
-    "playlist_plural": "Daftar putar",
     "queue-add": "Tambahkan semua lagu ke antrian",
-    "track": "Lagu",
-    "track_plural": "Lagu"
+    "track": "Lagu"
   },
   "settings": {
     "api-port": "Port yang digunakan oleh api",
@@ -150,9 +156,11 @@
     "autoradio-description": "Tambahkan lagu yang mirip secara otomatis di akhir daftar antrian",
     "compact-menu-bar": "Gunakan gaya ringkas untuk papan menu",
     "compact-queue-bar": "Gunakan gaya ringkas untuk papan antrian",
-    "track-duration": "Tampilkan durasi lagu di atas seekbar",
     "disable-gpu": "Non-aktifkan hardware rendering (berpotensi mengatasi masalah dragging elements dan flashing screen)",
     "display": "Tampilan",
+    "downloads": "Downloads",
+    "downloads-dir": "Downloads directory",
+    "downloads-dir-button": "Choose a directory...",
     "enable-api": "Aktifkan api",
     "frameless-window": "Jendela tanpa bingkai (memerlukan buka-ulang)",
     "github-connect": "Log masuk dengan Github",
@@ -177,6 +185,7 @@
     "shuffle-when-going-back": "Acak lagu sebelumnya",
     "shuffle-when-going-back-description": "Putar lagu sembarang saat mode acak aktif dan tombol lagu sebelumnya diklik",
     "social": "Sosial",
+    "track-duration": "Tampilkan durasi lagu di atas seekbar",
     "user": "Pengguna:",
     "youtube": "Youtube",
     "yt-api-key": "Kunci API Youtube"

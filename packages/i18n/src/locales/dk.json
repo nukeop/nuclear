@@ -1,5 +1,8 @@
 {
   "album": {
+    "download": "Download",
+    "download-toast-content": "{{artist}} - {{title}} has been added to downloads.",
+    "download-toast-title": "Album added to downloads",
     "queue": "Tiløj album til kø"
   },
   "app": {
@@ -7,9 +10,11 @@
     "dashboard": "Instrumentbræt",
     "downloads": "Downloads",
     "equalizer": "Udligner",
+    "favorite-albums": "Favorite Albums",
     "favorite-tracks": "Favoritsange",
     "library": "Lokalt bibliotek",
     "lyrics": "Sangtekster",
+    "main": "Main",
     "playlists": "Afspilningslister",
     "plugins": "Plugins",
     "search": "Søgeresultater",
@@ -43,6 +48,11 @@
     "name": "Navn",
     "status": "Status"
   },
+  "favorite-albums": {
+    "empty": "No favorite albums",
+    "empty-help": "Try adding some albums to favorites and they will appear here!",
+    "header": "Your favorite albums"
+  },
   "favorites": {
     "artist": "Artist",
     "empty": "Ingen farvoritter er tilføjet.",
@@ -63,8 +73,12 @@
     "add": "Tilføj mapper",
     "album": "Album",
     "artist": "Artist",
+    "empty": "The library is empty",
+    "empty-help": "Try adding some music using the button above.",
     "filter-placeholder": "Filter...",
     "header": "Lokalt bibliotek",
+    "no-search-results": "No search results",
+    "no-search-results-help": "No tracks found with the given name, album, or artist.",
     "title": "Titel"
   },
   "lyrics": {
@@ -88,15 +102,22 @@
     "delete": "Slet denne afspilningsliste",
     "dialog-placeholder": "Afspilningslistens navn...",
     "empty": "Ingen afspilningsliste.",
+    "queue": "Add playlist to queue",
     "rename": "Omdøb denne afspilningsliste",
-    "songs": "{{total}} sang",
-    "songs_plural": "{{total}} sange",
     "title": "Titel"
   },
   "plugins": {
+    "add-a-plugin": "Add a plugin",
     "header": "Plugins",
+    "lyrics-providers": "Lyrics providers",
+    "meta-providers": "Metadata providers",
     "placeholder": "Vælg musikkildens standardsted:",
-    "stream-providers": "Musikkilde"
+    "select-lyrics-provider": "Select the default lyrics provider:",
+    "select-meta-provider": "Select the default metadata provider:",
+    "stream-providers": "Musikkilde",
+    "user-plugins": "User plugins",
+    "user-plugins-warning-desc": "Plugins work by running code on your computer. Load plugins only from sources you trust!",
+    "user-plugins-warning-title": "Danger zone!"
   },
   "queue": {
     "clear": "Ryd kø",
@@ -117,26 +138,24 @@
     "title": "Titel:"
   },
   "search": {
-    "album": "Album",
-    "album_plural": "Albums",
-    "artist": "Artist",
-    "artist_plural": "Artister",
     "empty": "Intet fundet.",
     "placeholder": "Søg...",
-    "playlist": "Afspilningsliste",
-    "playlist_plural": "Afspilningslister",
-    "queue-add": "Tilføj alle sange til kø",
-    "track": "Sang",
-    "track_plural": "Sange"
+    "queue-add": "Tilføj alle sange til kø"
   },
   "settings": {
     "api-port": "Port benyttet af api'en",
+    "api-url": "",
     "autoradio": "Autoradio",
     "autoradio-craziness": "Autoradio craziness",
+    "autoradio-craziness-description": "Autoradio will select songs that are less similar to the ones already in the queue the crazier it is",
+    "autoradio-description": "Add similar tracks automatically when the queue is ending",
     "compact-menu-bar": "Benyt kompakt stil til menu",
     "compact-queue-bar": "Benyt kompakt stil til kø",
     "disable-gpu": "Deaktiver hardware-generering (Dette vil måske hjælpe på problemer med elementer, der skal trækkes samt, hvis skærmen flimrer)",
     "display": "Vis",
+    "downloads": "Downloads",
+    "downloads-dir": "Downloads directory",
+    "downloads-dir-button": "Choose a directory...",
     "enable-api": "Aktiver api'en",
     "frameless-window": "Frameless window (En genstart er påkrævet)",
     "github-connect": "Log ind med Github",
@@ -156,9 +175,15 @@
     "notlogged": "Ikke logget ind",
     "playback": "Playback",
     "program-settings": "Programindstillinger",
+    "seek-iteration": "Number of seconds to seek forward/backwards when pressing arrow keys",
     "shuffle-queue": "Shuffle sange",
+    "shuffle-when-going-back": "Shuffle on previous track",
+    "shuffle-when-going-back-description": "Play a random track when shuffle is active and the previous track button is clicked",
     "social": "Social",
-    "user": "Bruger:"
+    "track-duration": "Display track duration over the seekbar",
+    "user": "Bruger:",
+    "youtube": "Youtube",
+    "yt-api-key": "Youtube API Key"
   },
   "tags": {
     "albums": "Populære albums",
@@ -169,4 +194,3 @@
     "title": "Titel"
   }
 }
-    

@@ -1,9 +1,9 @@
 {
   "album": {
-    "queue": "Přidat album do fronty",
     "download": "Stáhnout",
+    "download-toast-content": "{{artist}} - {{title}} byl přidán do stažených.",
     "download-toast-title": "Album přidáno do stažených",
-    "download-toast-content": "{{artist}} - {{title}} byl přidán do stažených."
+    "queue": "Přidat album do fronty"
   },
   "app": {
     "collection": "Kolekce",
@@ -48,17 +48,17 @@
     "name": "Název",
     "status": "Stav"
   },
+  "favorite-albums": {
+    "empty": "Žádná oblíbená alba",
+    "empty-help": "Zkuste některá alba přidat mezi oblíbená a objeví se zde!",
+    "header": "Vaše oblíbená alba"
+  },
   "favorites": {
     "artist": "Umělec",
     "empty": "Nebyly přidány žádné oblíbené skladby",
     "empty-help": "Zkuste dát některým skladbám to se mi líbí a objeví se zde!",
     "header": "Vaše oblíbené skladby",
     "title": "Název"
-  },
-  "favorite-albums": {
-    "header": "Vaše oblíbená alba",
-    "empty": "Žádná oblíbená alba",
-    "empty-help": "Zkuste některá alba přidat mezi oblíbená a objeví se zde!"
   },
   "help": {
     "about": "O hudebním přehrávači Nuclear",
@@ -73,11 +73,13 @@
     "add": "Přidat složky",
     "album": "Album",
     "artist": "Umělec",
+    "empty": "Knihovna je prázdná",
+    "empty-help": "Zkuste přidat nějakou hudbu pomocí tlačítka nahoře.",
     "filter-placeholder": "Filtr...",
     "header": "Lokální knihovna",
-    "title": "Název",
-    "empty": "Knihovna je prázdná",
-    "empty-help": "Zkuste přidat nějakou hudbu pomocí tlačítka nahoře."
+    "no-search-results": "No search results",
+    "no-search-results-help": "No tracks found with the given name, album, or artist.",
+    "title": "Název"
   },
   "lyrics": {
     "by-artist": "od {{artist}}",
@@ -100,15 +102,25 @@
     "delete": "Odstranit tento seznam skladeb",
     "dialog-placeholder": "Název seznamu skladeb...",
     "empty": "Žádné seznamy skladeb.",
+    "queue": "Add playlist to queue",
     "rename": "Přejmenovat tento seznam skladeb",
-    "songs": "{{total}} skladba",
-    "songs_plural": "{{total}} skladeb",
+    "songs_0": "{{total}} songs",
+    "songs_1": "{{total}} songs",
+    "songs_2": "{{total}} songs",
     "title": "Název"
   },
   "plugins": {
+    "add-a-plugin": "Add a plugin",
     "header": "Zásuvné moduly",
+    "lyrics-providers": "Lyrics providers",
+    "meta-providers": "Metadata providers",
     "placeholder": "Zvolte defaultní zdroj hudby:",
-    "stream-providers": "Zdroje hudby"
+    "select-lyrics-provider": "Select the default lyrics provider:",
+    "select-meta-provider": "Select the default metadata provider:",
+    "stream-providers": "Zdroje hudby",
+    "user-plugins": "User plugins",
+    "user-plugins-warning-desc": "Plugins work by running code on your computer. Load plugins only from sources you trust!",
+    "user-plugins-warning-title": "Danger zone!"
   },
   "queue": {
     "clear": "Smazat frontu",
@@ -129,17 +141,21 @@
     "title": "Název:"
   },
   "search": {
-    "album": "Album",
-    "album_plural": "Alba",
-    "artist": "Umělec",
-    "artist_plural": "Umělci",
+    "album_0": "Albums",
+    "album_1": "Albums",
+    "album_2": "Albums",
+    "artist_0": "Artists",
+    "artist_1": "Artists",
+    "artist_2": "Artists",
     "empty": "Nic nenalezeno.",
     "placeholder": "Vyhledat...",
-    "playlist": "Seznam skladeb",
-    "playlist_plural": "Seznamy skladeb",
+    "playlist_0": "Playlists",
+    "playlist_1": "Playlists",
+    "playlist_2": "Playlists",
     "queue-add": "Přidat všechny skladby do fronty",
-    "track": "Skladba",
-    "track_plural": "Skladby"
+    "track_0": "Tracks",
+    "track_1": "Tracks",
+    "track_2": "Tracks"
   },
   "settings": {
     "api-port": "Port, který používá api",
@@ -150,9 +166,11 @@
     "autoradio-description": "Přidat automaticky podobné skladby po dokončení přehrávání fronty",
     "compact-menu-bar": "Použít kompaktní styl lišty menu",
     "compact-queue-bar": "Použít kompaktní styl lišty fronta",
-    "track-duration": "Zobrazit dobu trvání skladby na liště vyhledávání",
     "disable-gpu": "Zakázat hardwarové vykreslování (může odstranit potíže s přetahováním prvků a blikající obrazovkou)",
     "display": "Zobrazení",
+    "downloads": "Stažené",
+    "downloads-dir": "Složka stažené",
+    "downloads-dir-button": "Vyberte složku...",
     "enable-api": "Povolit api",
     "frameless-window": "Bezrámečkové okno (vyžaduje restart)",
     "github-connect": "Přihlásit se přes Github",
@@ -177,12 +195,10 @@
     "shuffle-when-going-back": "Zamíchat při přechodu na předchozí skladbu",
     "shuffle-when-going-back-description": "Přehrát náhodnou skladbu pokud je aktivováno zamíchání skladeb a je stisknuto tlačítko předchozí skladby",
     "social": "Sociální sítě",
+    "track-duration": "Zobrazit dobu trvání skladby na liště vyhledávání",
     "user": "Uživatel:",
     "youtube": "Youtube",
-    "yt-api-key": "Youtube API Key",
-    "downloads": "Stažené",
-    "downloads-dir": "Složka stažené",
-    "downloads-dir-button": "Vyberte složku..."
+    "yt-api-key": "Youtube API Key"
   },
   "tags": {
     "albums": "Nejlepší alba",
