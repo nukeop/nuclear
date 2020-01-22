@@ -1,20 +1,20 @@
 {
   "album": {
-    "queue": "Album zur Warteschlange hinzufügen",
-	  "download": "Heruntergeladen",
+    "download": "Heruntergeladen",
+    "download-toast-content": "{{artist}} - {{title}} wurde zu Downloads hinzugefügt.",
     "download-toast-title": "Album zu Downloads hinzugefügt",
-    "download-toast-content": "{{artist}} - {{title}} wurde zu Downloads hinzugefügt."
+    "queue": "Album zur Warteschlange hinzufügen"
   },
   "app": {
     "collection": "Sammlung",
     "dashboard": "Dashboard",
     "downloads": "Downloads",
     "equalizer": "Equalizer",
-	"favorite-albums": "Lieblingsalben",
+    "favorite-albums": "Lieblingsalben",
     "favorite-tracks": "Lieblingslieder",
     "library": "Lokale Bibliothek",
     "lyrics": "Liedtext",
-	"main": "Haupt",
+    "main": "Haupt",
     "playlists": "Wiedergabelisten",
     "plugins": "Plugins",
     "search": "Suchergebnisse",
@@ -48,17 +48,17 @@
     "name": "Name",
     "status": "Status"
   },
+  "favorite-albums": {
+    "empty": "Keine Lieblingsalben vorhanden",
+    "empty-help": "Favorisierte Alben werden hier erscheinen!",
+    "header": "Lieblingsalben"
+  },
   "favorites": {
     "artist": "Künstler",
     "empty": "Keine Favoriten hinzugefügt.",
     "empty-help": "\"Favorit\" einige Lieden und sie werden hier erscheinen!",
     "header": "Deine Lieblingslieder",
     "title": "Titel"
-  },
-  "favorite-albums": {
-    "header": "Lieblingsalben",
-    "empty": "Keine Lieblingsalben vorhanden",
-    "empty-help": "Favorisierte Alben werden hier erscheinen!"
   },
   "help": {
     "about": "Über Nuclear Music Player",
@@ -73,13 +73,13 @@
     "add": "Ordner hinzufügen",
     "album": "Album",
     "artist": "Künstler",
+    "empty": "Die Bibliothek ist leer",
+    "empty-help": "Wenn du die Schaltfläche darüber benutzt, kannst du Musik hinzufügen.",
     "filter-placeholder": "Filter...",
     "header": "Lokale Bibliothek",
-    "title": "Titel",
-	"empty": "Die Bibliothek ist leer",
-    "empty-help": "Wenn du die Schaltfläche darüber benutzt, kannst du Musik hinzufügen.",
     "no-search-results": "Die Suche lieferte keine Ergebnise",
-    "no-search-results-help": "Keine Lieder gefunden anhand des Namens, Albums oder Künstlers"
+    "no-search-results-help": "Keine Lieder gefunden anhand des Namens, Albums oder Künstlers",
+    "title": "Titel"
   },
   "lyrics": {
     "by-artist": "by {{artist}}",
@@ -100,26 +100,26 @@
   "playlists": {
     "artist": "Künstler",
     "delete": "Diese Wiedergabeliste löschen",
-	"queue": "Playlist zur Warteschlange hinzufügen",
     "dialog-placeholder": "Wiedergabelistenname...",
     "empty": "Keine Wiedergabelisten.",
+    "queue": "Playlist zur Warteschlange hinzufügen",
     "rename": "Diese Wiedergabeliste umbenennen",
     "songs": "{{total}} Lied",
     "songs_plural": "{{total}} Lieder",
     "title": "Titel"
   },
   "plugins": {
+    "add-a-plugin": "Plugin hinzufügen",
     "header": "Plugins",
+    "lyrics-providers": "Liedtexte Quellen",
+    "meta-providers": "Meta-Daten Quellen",
     "placeholder": "Wählen Sie eine Standardmusikquelle:",
     "select-lyrics-provider": "Wählen Sie eine Standardquelle für Liedtexte:",
     "select-meta-provider": "Wählen Sie eine Standardquelle für Meta-Daten:",
-    "meta-providers": "Meta-Daten Quellen",
     "stream-providers": "Stream Quellen",
-    "lyrics-providers": "Liedtexte Quellen",
     "user-plugins": "Benutzer plugins",
-    "user-plugins-warning-title": "Gefährlicher Bereich!",
-	"user-plugins-warning-desc": "Plugins arbeiten durch das Ausführen von Code auf Ihrem Computer. Laden Sie Plugins nur von vertrauenswürdigen Quellen",
-    "add-a-plugin": "Plugin hinzufügen"
+    "user-plugins-warning-desc": "Plugins arbeiten durch das Ausführen von Code auf Ihrem Computer. Laden Sie Plugins nur von vertrauenswürdigen Quellen",
+    "user-plugins-warning-title": "Gefährlicher Bereich!"
   },
   "queue": {
     "clear": "Warteschlange löschen",
@@ -154,15 +154,18 @@
   },
   "settings": {
     "api-port": "Port wird von der API verwendet",
-	"api-url": "",
+    "api-url": "",
     "autoradio": "Autoradio",
     "autoradio-craziness": "Autoradio-Verrücktheit",
-	"autoradio-craziness-description": "Autoradio wählt Lieder aus die anders sind, als die Lieder, die bereits in der Warteschlange sind.",
+    "autoradio-craziness-description": "Autoradio wählt Lieder aus die anders sind, als die Lieder, die bereits in der Warteschlange sind.",
     "autoradio-description": "Fügt gleiche Lieder automatisch hinzu, falls die Warteschlange leer wird",
     "compact-menu-bar": "Verwenden Sie einen kompakten Stil für die Menüleiste",
     "compact-queue-bar": "Verwenden Sie einen kompakten Stil für die Warteschlangenleiste",
     "disable-gpu": "Hardware-Rendering deaktivieren (könnte Probleme mit ziehenden Elementen und blinkenden Bildschirmen beheben)",
     "display": "Anzeige",
+    "downloads": "Downloads",
+    "downloads-dir": "Downloadordner",
+    "downloads-dir-button": "Ordner festlegen...",
     "enable-api": "Aktiviere die API",
     "frameless-window": "Rahmenloses Fenster (erfordert Neustart)",
     "github-connect": "Mit Github einloggen",
@@ -182,17 +185,15 @@
     "notlogged": "Nicht eingeloggt",
     "playback": "Playback",
     "program-settings": "Programmeinstellungen",
-	"seek-iteration": "Zeit in Sekunden zum Vor- oder Zurückspulen bei Betätigung der Pfeiltasten",
+    "seek-iteration": "Zeit in Sekunden zum Vor- oder Zurückspulen bei Betätigung der Pfeiltasten",
     "shuffle-queue": "Shuffle Lieder",
-	"shuffle-when-going-back": "Shuffle von vorherigen Liedern",
+    "shuffle-when-going-back": "Shuffle von vorherigen Liedern",
     "shuffle-when-going-back-description": "Spiele zufällige Lieder wenn Shuffle aktiviert und der Button 'vorherige Lieder' ausgewählt ist",
     "social": "Sozial",
+    "track-duration": "Display track duration over the seekbar",
     "user": "Benutzer:",
-	"youtube": "Youtube",
-    "yt-api-key": "Youtube API Key",
-    "downloads": "Downloads",
-    "downloads-dir": "Downloadordner",
-    "downloads-dir-button": "Ordner festlegen..."
+    "youtube": "Youtube",
+    "yt-api-key": "Youtube API Key"
   },
   "tags": {
     "albums": "Beliebte Alben",

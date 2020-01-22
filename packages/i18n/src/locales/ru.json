@@ -1,5 +1,8 @@
 {
   "album": {
+    "download": "Download",
+    "download-toast-content": "{{artist}} - {{title}} has been added to downloads.",
+    "download-toast-title": "Album added to downloads",
     "queue": "Добавить Альбом в Очередь"
   },
   "app": {
@@ -7,9 +10,11 @@
     "dashboard": "Панель Управления",
     "downloads": "Загрузки",
     "equalizer": "Эквалайзер",
+    "favorite-albums": "Favorite Albums",
     "favorite-tracks": "Избранные Композиции",
     "library": "Локальная Библиотека",
     "lyrics": "Текст",
+    "main": "Main",
     "playlists": "Плейлист",
     "plugins": "Плагины",
     "search": "Результаты Поиска",
@@ -43,6 +48,11 @@
     "name": "Имя",
     "status": "Статус"
   },
+  "favorite-albums": {
+    "empty": "No favorite albums",
+    "empty-help": "Try adding some albums to favorites and they will appear here!",
+    "header": "Your favorite albums"
+  },
   "favorites": {
     "artist": "Исполнитель",
     "empty": "Тут Ничего Нет",
@@ -63,8 +73,12 @@
     "add": "Добавить Папки",
     "album": "Альбом",
     "artist": "Исполнитель",
+    "empty": "The library is empty",
+    "empty-help": "Try adding some music using the button above.",
     "filter-placeholder": "Фильтр...",
     "header": "Локальная Библиотека",
+    "no-search-results": "No search results",
+    "no-search-results-help": "No tracks found with the given name, album, or artist.",
     "title": "Название"
   },
   "lyrics": {
@@ -88,15 +102,25 @@
     "delete": "Удалить Этот Плейлист",
     "dialog-placeholder": "Название...",
     "empty": "Тут Ничего Нет...",
+    "queue": "Add playlist to queue",
     "rename": "Переименовать Этот Плейлист",
-    "songs": "{{total}} композиция",
-    "songs_plural": "{{total}} композиций",
+    "songs_0": "{{total}} songs",
+    "songs_1": "{{total}} songs",
+    "songs_2": "{{total}} songs",
     "title": "Название"
   },
   "plugins": {
+    "add-a-plugin": "Add a plugin",
     "header": "Плагины",
+    "lyrics-providers": "Lyrics providers",
+    "meta-providers": "Metadata providers",
     "placeholder": "Выберите музыкальный канал по умолчанию:",
-    "stream-providers": "Музыкальные каналы"
+    "select-lyrics-provider": "Select the default lyrics provider:",
+    "select-meta-provider": "Select the default metadata provider:",
+    "stream-providers": "Музыкальные каналы",
+    "user-plugins": "User plugins",
+    "user-plugins-warning-desc": "Plugins work by running code on your computer. Load plugins only from sources you trust!",
+    "user-plugins-warning-title": "Danger zone!"
   },
   "queue": {
     "clear": "Очистить очередь",
@@ -117,26 +141,36 @@
     "title": "Название:"
   },
   "search": {
-    "album": "Альбом",
-    "album_plural": "Альбомы",
-    "artist": "Исполнитель",
-    "artist_plural": "Исполнители",
+    "album_0": "Albums",
+    "album_1": "Albums",
+    "album_2": "Albums",
+    "artist_0": "Artists",
+    "artist_1": "Artists",
+    "artist_2": "Artists",
     "empty": "Ничего не найдено.",
     "placeholder": "Поиск...",
-    "playlist": "Плейлист",
-    "playlist_plural": "Плейлисты",
+    "playlist_0": "Playlists",
+    "playlist_1": "Playlists",
+    "playlist_2": "Playlists",
     "queue-add": "Добавить все композиции в очередь",
-    "track": "Композиция",
-    "track_plural": "Композиции"
+    "track_0": "Tracks",
+    "track_1": "Tracks",
+    "track_2": "Tracks"
   },
   "settings": {
     "api-port": "Порт для API",
+    "api-url": "",
     "autoradio": "Авто подборка",
     "autoradio-craziness": "Сумасшествие авто подборки",
+    "autoradio-craziness-description": "Autoradio will select songs that are less similar to the ones already in the queue the crazier it is",
+    "autoradio-description": "Add similar tracks automatically when the queue is ending",
     "compact-menu-bar": "Использовать минималистичный стиль для меню",
     "compact-queue-bar": "Использовать минималистичный стиль для очереди",
     "disable-gpu": "Отключить аппаратный рендеринг (может решить проблемы с перетаскиванием элементов и миганием экрана)",
     "display": "Отображение",
+    "downloads": "Downloads",
+    "downloads-dir": "Downloads directory",
+    "downloads-dir-button": "Choose a directory...",
     "enable-api": "Включить API",
     "frameless-window": "Безрамочный Режим (требуется перезапуск)",
     "github-connect": "Войти через Github",
@@ -156,9 +190,15 @@
     "notlogged": "Не вошли",
     "playback": "Проигрывание",
     "program-settings": "Программные Настройки",
+    "seek-iteration": "Number of seconds to seek forward/backwards when pressing arrow keys",
     "shuffle-queue": "Перемешать Композиции",
+    "shuffle-when-going-back": "Shuffle on previous track",
+    "shuffle-when-going-back-description": "Play a random track when shuffle is active and the previous track button is clicked",
     "social": "Социальные Сети",
-    "user": "Пользователь:"
+    "track-duration": "Display track duration over the seekbar",
+    "user": "Пользователь:",
+    "youtube": "Youtube",
+    "yt-api-key": "Youtube API Key"
   },
   "tags": {
     "albums": "Лучшие Альбомы",

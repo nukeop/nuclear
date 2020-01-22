@@ -1,9 +1,9 @@
 {
   "album": {
-    "queue": "Idagdag ang album sa pila",
     "download": "Download",
+    "download-toast-content": "{{artist}} - {{title}} ay naidagdag sa mga download.",
     "download-toast-title": "Idinagdag ang album sa mga download",
-    "download-toast-content": "{{artist}} - {{title}} ay naidagdag sa mga download."
+    "queue": "Idagdag ang album sa pila"
   },
   "app": {
     "collection": "Koleksyon",
@@ -48,17 +48,17 @@
     "name": "Pangalan",
     "status": "Kalagayan"
   },
+  "favorite-albums": {
+    "empty": "Walang paboritong album",
+    "empty-help": "Subukan magdagdag ng mga paboritong album at makikita mo rito!",
+    "header": "Ang iyong paboritong mga album"
+  },
   "favorites": {
     "artist": "Artist",
     "empty": "Wala pang naidadagdag na mga paboritong kanta",
     "empty-help": "Subukan magdagdag ng mga paboritong kanta at makikita mo rito!",
     "header": "Ang iyong mga pabirotong kanta",
     "title": "Title"
-  },
-  "favorite-albums": {
-    "header": "Ang iyong paboritong mga album",
-    "empty": "Walang paboritong album",
-    "empty-help": "Subukan magdagdag ng mga paboritong album at makikita mo rito!"
   },
   "help": {
     "about": "Tungkol sa Nuclear Music Player",
@@ -73,11 +73,13 @@
     "add": "Magdagdag ng folders",
     "album": "Album",
     "artist": "Artist",
+    "empty": "Walang laman ang library",
+    "empty-help": "Subukan magdagdag ng kanta gamit ang pindutan sa taas.",
     "filter-placeholder": "Salaan...",
     "header": "Lokal na Library",
-    "title": "Title",
-    "empty": "Walang laman ang library",
-    "empty-help": "Subukan magdagdag ng kanta gamit ang pindutan sa taas."
+    "no-search-results": "No search results",
+    "no-search-results-help": "No tracks found with the given name, album, or artist.",
+    "title": "Title"
   },
   "lyrics": {
     "by-artist": "by {{artist}}",
@@ -100,15 +102,22 @@
     "delete": "Alisin itong playlist",
     "dialog-placeholder": "Pangalan ng playlist...",
     "empty": "Walang playlists.",
+    "queue": "Add playlist to queue",
     "rename": "Palitan ang pangalan nitong playlist",
-    "songs": "{{total}} na kanta",
-    "songs_plural": "{{total}} na mga kanta",
     "title": "Title"
   },
   "plugins": {
+    "add-a-plugin": "Add a plugin",
     "header": "Plugins",
+    "lyrics-providers": "Lyrics providers",
+    "meta-providers": "Metadata providers",
     "placeholder": "Piliin ang pangunahing panggalingan ng musika:",
-    "subtitle": "Mga pinanggalingan ng musika"
+    "select-lyrics-provider": "Select the default lyrics provider:",
+    "select-meta-provider": "Select the default metadata provider:",
+    "stream-providers": "Stream providers",
+    "user-plugins": "User plugins",
+    "user-plugins-warning-desc": "Plugins work by running code on your computer. Load plugins only from sources you trust!",
+    "user-plugins-warning-title": "Danger zone!"
   },
   "queue": {
     "clear": "Alisin lahat ng nakapilang kanta",
@@ -129,17 +138,9 @@
     "title": "Title:"
   },
   "search": {
-    "album": "Album",
-    "album_plural": "Mga Album",
-    "artist": "Artist",
-    "artist_plural": "Mga Artist",
     "empty": "Walang nahanap.",
     "placeholder": "Hinahanap...",
-    "playlist": "Playlist",
-    "playlist_plural": "Mga Playlist",
-    "queue-add": "Idagdag lahat ng kanta sa pila",
-    "track": "Kanta",
-    "track_plural": "Mga Kanta"
+    "queue-add": "Idagdag lahat ng kanta sa pila"
   },
   "settings": {
     "api-port": "Port na gamit ng API",
@@ -150,9 +151,11 @@
     "autoradio-description": "Kusang magdagdag ng katulad na kanta pag paubos na ang nasa pila",
     "compact-menu-bar": "Gamitin ang compact style para sa menu bar",
     "compact-queue-bar": "Gamitin ang compact style para sa bar ng mga nakapilang kanta",
-    "track-duration": "Ipakita ang track duration sa ibabaw ng seekbar",
     "disable-gpu": "Huwag paganahin ang hardware rendering (maaaring maayos ang isyu sa pag-drag ng mga bagay at pag-flash ng screen)",
     "display": "Display",
+    "downloads": "Downloads",
+    "downloads-dir": "Downloads directory",
+    "downloads-dir-button": "Mamili ng directory...",
     "enable-api": "I-enable ang API",
     "frameless-window": "Frameless window (Nangangailangan ng restart)",
     "github-connect": "Log in gamit ang Github",
@@ -177,12 +180,10 @@
     "shuffle-when-going-back": "I-shuffle pag punta sa nakaraang kanta",
     "shuffle-when-going-back-description": "Magplay ng random na kanta pag aktiba ang shuffle at nakapindot ang pindutan ng nakaraang kanta",
     "social": "Social",
+    "track-duration": "Ipakita ang track duration sa ibabaw ng seekbar",
     "user": "User:",
     "youtube": "Youtube",
-    "yt-api-key": "Youtube API Key",
-    "downloads": "Downloads",
-    "downloads-dir": "Downloads directory",
-    "downloads-dir-button": "Mamili ng directory..."
+    "yt-api-key": "Youtube API Key"
   },
   "tags": {
     "albums": "Nangungunang mga Album",

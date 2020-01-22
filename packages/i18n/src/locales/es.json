@@ -1,5 +1,8 @@
 {
   "album": {
+    "download": "Download",
+    "download-toast-content": "{{artist}} - {{title}} has been added to downloads.",
+    "download-toast-title": "Album added to downloads",
     "queue": "Añadir a la cola"
   },
   "app": {
@@ -45,17 +48,17 @@
     "name": "Nombre",
     "status": "Estado"
   },
+  "favorite-albums": {
+    "empty": "No hay álbumes favoritos",
+    "empty-help": "¡Añade álbumes a favoritos para visualizar!",
+    "header": "Tus álbumes favoritos"
+  },
   "favorites": {
     "artist": "Artista",
     "empty": "No hay favoritos",
     "empty-help": "¡Añade tus canciones a favoritos para visualizar!",
     "header": "Tus canciones favoritas",
     "title": "Título"
-  },
-  "favorite-albums": {
-    "header": "Tus álbumes favoritos",
-    "empty": "No hay álbumes favoritos",
-    "empty-help": "¡Añade álbumes a favoritos para visualizar!"
   },
   "help": {
     "about": "Acerca de Nuclear Music Player",
@@ -70,11 +73,13 @@
     "add": "Añadir carpetas",
     "album": "Álbum",
     "artist": "Artista",
+    "empty": "¡Libreria Vacia!",
+    "empty-help": "Prueba añadir canciones con el botón de arriba",
     "filter-placeholder": "Filtro...",
     "header": "Librería local",
-    "title": "Título",
-    "empty": "¡Libreria Vacia!",
-    "empty-help": "Prueba añadir canciones con el botón de arriba"
+    "no-search-results": "No search results",
+    "no-search-results-help": "No tracks found with the given name, album, or artist.",
+    "title": "Título"
   },
   "lyrics": {
     "by-artist": "por {{artist}}",
@@ -97,15 +102,24 @@
     "delete": "Eliminar esta Lista de reproducción",
     "dialog-placeholder": "Nombre de la lista de reproducción...",
     "empty": "No hay lista",
+    "queue": "Add playlist to queue",
     "rename": "Renombrar lista de reproducción",
     "songs": "{{total}} canción",
     "songs_plural": "{{total}} canciones",
     "title": "Título"
   },
   "plugins": {
+    "add-a-plugin": "Add a plugin",
     "header": "Plugins",
+    "lyrics-providers": "Lyrics providers",
+    "meta-providers": "Metadata providers",
     "placeholder": "Seleccione la fuente de música predeterminada:",
-    "stream-providers": "Fuentes de música"
+    "select-lyrics-provider": "Select the default lyrics provider:",
+    "select-meta-provider": "Select the default metadata provider:",
+    "stream-providers": "Fuentes de música",
+    "user-plugins": "User plugins",
+    "user-plugins-warning-desc": "Plugins work by running code on your computer. Load plugins only from sources you trust!",
+    "user-plugins-warning-title": "Danger zone!"
   },
   "queue": {
     "clear": "Vaciar cola",
@@ -149,6 +163,9 @@
     "compact-queue-bar": "Usar estilo compacto en la cola de reproducción",
     "disable-gpu": "Deshabilitar renderizado por hardware (puede arreglar ciertos bugs de visualización)",
     "display": "Visualización",
+    "downloads": "Downloads",
+    "downloads-dir": "Downloads directory",
+    "downloads-dir-button": "Choose a directory...",
     "enable-api": "Habilitar API",
     "frameless-window": "Ventana sin marco (requiere reiniciar)",
     "github-connect": "Iniciar sesión con GitHub",
@@ -173,6 +190,7 @@
     "shuffle-when-going-back": "Aleatorizar pista previa",
     "shuffle-when-going-back-description": "Reproduce una pista aleatoria cuando está activado el 'orden aleatorio' y se reproduce la pista previa",
     "social": "Social",
+    "track-duration": "Display track duration over the seekbar",
     "user": "Usuario:",
     "youtube": "YouTube",
     "yt-api-key": "Clave de la API de YouTube"

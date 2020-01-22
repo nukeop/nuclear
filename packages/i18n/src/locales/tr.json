@@ -1,5 +1,8 @@
 {
   "album": {
+    "download": "Download",
+    "download-toast-content": "{{artist}} - {{title}} has been added to downloads.",
+    "download-toast-title": "Album added to downloads",
     "queue": "Albümü sıraya ekle"
   },
   "app": {
@@ -7,6 +10,7 @@
     "dashboard": "Anamenü",
     "downloads": "İndirilenler",
     "equalizer": "Ses dengesi",
+    "favorite-albums": "Favorite Albums",
     "favorite-tracks": "Favori müzikler",
     "library": "Kütüphane",
     "lyrics": "Şarkının sözleri",
@@ -44,6 +48,11 @@
     "name": "İsmi",
     "status": "Durumu"
   },
+  "favorite-albums": {
+    "empty": "No favorite albums",
+    "empty-help": "Try adding some albums to favorites and they will appear here!",
+    "header": "Your favorite albums"
+  },
   "favorites": {
     "artist": "Şarkıcı",
     "empty": "Hiçbir favori şarkın yok.",
@@ -64,11 +73,13 @@
     "add": "Dosyadan Ekle",
     "album": "Albüm",
     "artist": "Şarkıcı",
+    "empty": "Kütüphane Boş",
+    "empty-help": "Yukarıdaki butonu kullanarak birkaç müzik ekle",
     "filter-placeholder": "Filtrele...",
     "header": "Kütüphane",
-    "title": "Başlık",
-    "empty": "Kütüphane Boş",
-    "empty-help": "Yukarıdaki butonu kullanarak birkaç müzik ekle"
+    "no-search-results": "No search results",
+    "no-search-results-help": "No tracks found with the given name, album, or artist.",
+    "title": "Başlık"
   },
   "lyrics": {
     "by-artist": "By {{artist}}",
@@ -91,15 +102,24 @@
     "delete": "Oynatma listesini sil",
     "dialog-placeholder": "Oynatma listesi adı...",
     "empty": "Oynatma listesi yok",
+    "queue": "Add playlist to queue",
     "rename": "Oynatma listesini yeniden adlandır.",
     "songs": "{{total}} müzik",
     "songs_plural": "{{total}} müzik",
     "title": "Başlık"
   },
   "plugins": {
+    "add-a-plugin": "Add a plugin",
     "header": "Eklentiler",
+    "lyrics-providers": "Lyrics providers",
+    "meta-providers": "Metadata providers",
     "placeholder": "Varsayılan müzik kaynağı:",
-    "stream-providers": "Müzik kaynağı"
+    "select-lyrics-provider": "Select the default lyrics provider:",
+    "select-meta-provider": "Select the default metadata provider:",
+    "stream-providers": "Müzik kaynağı",
+    "user-plugins": "User plugins",
+    "user-plugins-warning-desc": "Plugins work by running code on your computer. Load plugins only from sources you trust!",
+    "user-plugins-warning-title": "Danger zone!"
   },
   "queue": {
     "clear": "Sırayı temizle",
@@ -141,9 +161,11 @@
     "autoradio-description": "Sıralama bittiğinde benzer şarkıları otomatik listeye ekle",
     "compact-menu-bar": "Menu bar için küçük stili kulllan",
     "compact-queue-bar": "Sıralama için küçük stili kulllan",
-    "track-duration": "Şarkı süresini göster.",
     "disable-gpu": "Ekran kartı hizmetini devre dışı bırak. (sürüklenen ekranları ve bazı hataları giderebilir)",
     "display": "Görüntü",
+    "downloads": "Downloads",
+    "downloads-dir": "Downloads directory",
+    "downloads-dir-button": "Choose a directory...",
     "enable-api": "Api'yi etkinleştir",
     "frameless-window": "Çerçevesiz ekran (Tekrardan başlatma gerekli)",
     "github-connect": "Github'ile giriş yap",
@@ -168,6 +190,7 @@
     "shuffle-when-going-back": "Önceki Şarkıyla karıştır.",
     "shuffle-when-going-back-description": "Karıştırma aktif ve önceki şarkı butonu aktifse random şarkı çal",
     "social": "Sosyal Medya",
+    "track-duration": "Şarkı süresini göster.",
     "user": "Kullanıcı:",
     "youtube": "Youtube",
     "yt-api-key": "Youtube API Key"
@@ -181,4 +204,3 @@
     "title": "Başlık"
   }
 }
-  

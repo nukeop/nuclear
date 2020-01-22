@@ -1,5 +1,8 @@
 {
   "album": {
+    "download": "Download",
+    "download-toast-content": "{{artist}} - {{title}} has been added to downloads.",
+    "download-toast-title": "Album added to downloads",
     "queue": "Album toevoegen aan wachtrij"
   },
   "app": {
@@ -7,9 +10,11 @@
     "dashboard": "Overzicht",
     "downloads": "Downloads",
     "equalizer": "Equalizer",
+    "favorite-albums": "Favorite Albums",
     "favorite-tracks": "Favoriete nummers",
     "library": "Lokale verzameling",
     "lyrics": "Songteksten",
+    "main": "Main",
     "playlists": "Afspeellijsten",
     "plugins": "Plug-ins",
     "search": "Zoekresultaten",
@@ -23,9 +28,15 @@
     "tour": "Aan het touren"
   },
   "dashboard": {
+    "artist": "Artist",
     "best": "Beste nieuwe muziek",
+    "best-new-albums": "Best new albums",
+    "best-new-tracks": "Best new tracks",
     "genres": "Genres",
+    "lastfm-title": "Top Tracks from LastFm.",
     "news": "Nieuws",
+    "playcounts": "Playcounts",
+    "title": "Title",
     "top": "Topnummers"
   },
   "downloads": {
@@ -36,6 +47,11 @@
     "header": "Downloads",
     "name": "Naam",
     "status": "Status"
+  },
+  "favorite-albums": {
+    "empty": "No favorite albums",
+    "empty-help": "Try adding some albums to favorites and they will appear here!",
+    "header": "Your favorite albums"
   },
   "favorites": {
     "artist": "Artiest",
@@ -57,11 +73,16 @@
     "add": "Mappen toevoegen",
     "album": "Album",
     "artist": "Artiest",
+    "empty": "The library is empty",
+    "empty-help": "Try adding some music using the button above.",
     "filter-placeholder": "Filteren...",
     "header": "Lokale verzameling",
+    "no-search-results": "No search results",
+    "no-search-results-help": "No tracks found with the given name, album, or artist.",
     "title": "Titel"
   },
   "lyrics": {
+    "by-artist": "by {{artist}}",
     "empty": "Er wordt niks afgespeeld.",
     "empty-help": "Voeg muziek toe aan de wachtrij om de songtekst hier te tonen!",
     "not-found": "Geen songtekst gevonden bij dit nummer."
@@ -81,15 +102,24 @@
     "delete": "Verwijderen",
     "dialog-placeholder": "Naam van afspeellijst...",
     "empty": "Geen afspeellijsten.",
+    "queue": "Add playlist to queue",
     "rename": "Naam wijzigen",
     "songs": "{{total}} nummer",
     "songs_plural": "{{total}} nummers",
     "title": "Titel"
   },
   "plugins": {
+    "add-a-plugin": "Add a plugin",
     "header": "Plug-ins",
+    "lyrics-providers": "Lyrics providers",
+    "meta-providers": "Metadata providers",
     "placeholder": "Kies de standaard muziekbron:",
-    "stream-providers": "Muziekbronnen"
+    "select-lyrics-provider": "Select the default lyrics provider:",
+    "select-meta-provider": "Select the default metadata provider:",
+    "stream-providers": "Muziekbronnen",
+    "user-plugins": "User plugins",
+    "user-plugins-warning-desc": "Plugins work by running code on your computer. Load plugins only from sources you trust!",
+    "user-plugins-warning-title": "Danger zone!"
   },
   "queue": {
     "clear": "Wachtrij legen",
@@ -124,12 +154,18 @@
   },
   "settings": {
     "api-port": "Door de API gebruikte poort",
+    "api-url": "",
     "autoradio": "Automatische radio",
     "autoradio-craziness": "Automatische radio - gekte",
+    "autoradio-craziness-description": "Autoradio will select songs that are less similar to the ones already in the queue the crazier it is",
+    "autoradio-description": "Add similar tracks automatically when the queue is ending",
     "compact-menu-bar": "Compacte menubalk",
     "compact-queue-bar": "Compacte wachtrijbalk",
     "disable-gpu": "Hardwareversnelling uitschakelen (lost mogelijk problemen op met verslepen en flitsende schermen)",
     "display": "Weergave",
+    "downloads": "Downloads",
+    "downloads-dir": "Downloads directory",
+    "downloads-dir-button": "Choose a directory...",
     "enable-api": "API inschakelen",
     "frameless-window": "Naadloos venster (herstart vereist)",
     "github-connect": "Inloggen via GitHub",
@@ -149,9 +185,15 @@
     "notlogged": "Niet ingelogd",
     "playback": "Afspelen",
     "program-settings": "Toepassingsinstellingen",
+    "seek-iteration": "Number of seconds to seek forward/backwards when pressing arrow keys",
     "shuffle-queue": "Nummers willekeurig afspelen",
+    "shuffle-when-going-back": "Shuffle on previous track",
+    "shuffle-when-going-back-description": "Play a random track when shuffle is active and the previous track button is clicked",
     "social": "Sociaal",
-    "user": "Gebruiker:"
+    "track-duration": "Display track duration over the seekbar",
+    "user": "Gebruiker:",
+    "youtube": "Youtube",
+    "yt-api-key": "Youtube API Key"
   },
   "tags": {
     "albums": "Topalbums",
