@@ -2,7 +2,6 @@ import logger from 'electron-timber';
 
 import StreamProviderPlugin from '../streamProvider';
 import * as Invidious from '../../rest/Invidious';
-import YoutubePlugin from './YoutubePlugin';
 
 class InvidiousPlugin extends StreamProviderPlugin {
   constructor() {
@@ -10,7 +9,6 @@ class InvidiousPlugin extends StreamProviderPlugin {
     this.name = 'Invidious Plugin';
     this.sourceName = 'Invidious';
     this.description = 'A plugin allowing Nuclear to search for music and play it from invidious';
-    this.youtubePlugin = new YoutubePlugin();
   }
 
   async search(query) {
@@ -35,7 +33,6 @@ class InvidiousPlugin extends StreamProviderPlugin {
     } catch (error) {
       logger.error(`Error while searching  for ${terms} on Invidious, try on Youtube`);
       logger.error(error);
-      return this.youtubePlugin.search(query);
     }
   }
 
@@ -61,7 +58,6 @@ class InvidiousPlugin extends StreamProviderPlugin {
     } catch (error) {
       logger.error(`Error while searching  for ${terms} on Invidious`);
       logger.error(error);
-      return this.youtubePlugin.search(query);
     }
   }
 }

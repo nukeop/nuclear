@@ -13,6 +13,7 @@ export const NEXT_SONG = 'NEXT_SONG';
 export const PREVIOUS_SONG = 'PREVIOUS_SONG';
 export const SELECT_SONG = 'SELECT_SONG';
 export const REPOSITION_SONG = 'REPOSITION_SONG';
+export const STREAM_FAILED = 'STREAM_FAILED';
 
 function addTrackToQueue (streamProviders, item) {  
   return (dispatch, getState) => {
@@ -152,5 +153,11 @@ export function previousSong() {
 export function nextSong() {
   return (dispatch, getState) => {
     dispatchWithShuffle(dispatch, getState, nextSongAction);
+  };
+}
+
+export function streamFailed() {
+  return {
+    type: STREAM_FAILED
   };
 }

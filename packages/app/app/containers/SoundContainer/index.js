@@ -3,6 +3,7 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Sound, { Volume, Equalizer, AnalyserByFrequency } from 'react-hifi';
+import _ from 'lodash';
 
 import * as Actions from '../../actions';
 import * as PlayerActions from '../../actions/player';
@@ -10,9 +11,8 @@ import * as EqualizerActions from '../../actions/equalizer';
 import * as QueueActions from '../../actions/queue';
 import * as ScrobblingActions from '../../actions/scrobbling';
 import * as LyricsActions from '../../actions/lyrics';
-import * as PluginActions from '../../actions/plugins';
 import { filterFrequencies } from '../../components/Equalizer/chart';
-import { getSelectedStream } from '../../utils';
+import { getSelectedStream  } from '../../utils';
 import * as Autoradio from './autoradio';
 import globals from '../../globals';
 import { LastFmApi } from '@nuclear/core';
@@ -138,22 +138,18 @@ class SoundContainer extends React.Component {
   }
 
   handleError() {
-    const { plugins, actions } = this.props;
-
-    if (plugins.selected.streamProviders === 'Invidious') {
-      actions.selectStreamProvider('Youtube');
-    }
+    this.props.actions.streamFailed();
   }
 
   shouldComponentUpdate (nextProps) {
     const currentSong = nextProps.queue.queueItems[nextProps.queue.currentSong];
+    const previousSong = this.props.queue.queueItems[this.props.queue.currentSong];
 
     return (
       this.props.equalizer !== nextProps.equalizer ||
       this.props.queue.currentSong !== nextProps.queue.currentSong ||
       this.props.player.playbackStatus !== nextProps.player.playbackStatus ||
-      this.props.player.seek !== nextProps.player.seek ||
-      (!!currentSong && !!currentSong.streams && currentSong.streams.length > 0)
+      (!!currentSong && !!currentSong.streams && currentSong.streams.length > 0 && !_.isEqual(currentSong, previousSong))
     );
   }
 
@@ -164,8 +160,21 @@ class SoundContainer extends React.Component {
     if (queue.queueItems.length > 0) {
       const currentSong = queue.queueItems[queue.currentSong];
 
+      let fallbackStreamProvider;
+      if (currentSong.failed) {
+        const defaultStreamProvider = plugins.plugins.streamProviders.find(({ sourceName }) => {
+          return sourceName === plugins.selected.streamProviders;
+        });
+        fallbackStreamProvider = plugins.plugins.streamProviders.find(({ sourceName }) => {
+          return sourceName === defaultStreamProvider.fallback;
+        });
+      }
+
       streamUrl = (
-        getSelectedStream(currentSong.streams, plugins.selected.streamProviders) || {}
+        getSelectedStream(
+          currentSong.streams,
+          currentSong.failed ? fallbackStreamProvider.sourceName : plugins.selected.streamProviders
+        ) || {}
       ).stream;
     }
     return !!streamUrl && (
@@ -218,8 +227,7 @@ function mapDispatchToProps (dispatch) {
         QueueActions,
         ScrobblingActions,
         LyricsActions,
-        EqualizerActions,
-        PluginActions
+        EqualizerActions
       ),
       dispatch
     )
