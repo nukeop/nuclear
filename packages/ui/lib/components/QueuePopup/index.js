@@ -17,6 +17,7 @@ export const QueuePopup = ({
   isOpen,
   handleClose,
   handleRerollTrack,
+  handleSelectStream,
   imageReady,
   selectedStream,
   setImageReady,
@@ -85,6 +86,7 @@ export const QueuePopup = ({
                 _.find(dropdownOptions, o => o.value === selectedStream.source),
                 'value'
               )}
+              onChange={handleSelectStream}
             />
           </div>
           <div className={styles.stream_title}>
@@ -117,6 +119,9 @@ export default compose(
     handleRerollTrack: ({ onRerollTrack, track }) => (event) => {
       event.preventDefault();
       onRerollTrack(track);
+    },
+    handleSelectStream: ({ onSelectStream, track }) => (evt, { value }) => {
+      onSelectStream({ track, stream: value });
     }
   })
 )(QueuePopup);

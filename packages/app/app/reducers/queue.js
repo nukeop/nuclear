@@ -8,7 +8,8 @@ import {
   PREVIOUS_SONG,
   SELECT_SONG,
   REPOSITION_SONG,
-  STREAM_FAILED
+  STREAM_FAILED,
+  CHANGE_TRACK_STREAM
 } from '../actions/queue';
 import { SELECT_STREAM_PROVIDER } from '../actions/plugins';
 
@@ -148,6 +149,25 @@ function reduceSelectStreamProviders(state) {
   };
 }
 
+function reduceChangeTrackStream(state, action) {
+  const { track, stream } = action.payload;
+
+  return {
+    ...state,
+    queueItems: state.queueItems.map((item) => {
+      if (item.uuid === track.uuid) {
+        return {
+          ...item,
+          failed: false,
+          selectedStream: stream
+        };
+      }
+
+      return item;
+    })
+  };
+}
+
 export default function QueueReducer(state = initialState, action) {
   switch (action.type) {
   case ADD_TO_QUEUE:
@@ -172,6 +192,8 @@ export default function QueueReducer(state = initialState, action) {
     return reduceStreamFailed(state);
   case SELECT_STREAM_PROVIDER:
     return reduceSelectStreamProviders(state);
+  case CHANGE_TRACK_STREAM:
+    return reduceChangeTrackStream(state, action);
   default:
     return state;
   }

@@ -3,7 +3,6 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Sound, { Volume, Equalizer, AnalyserByFrequency } from 'react-hifi';
-import _ from 'lodash';
 
 import * as Actions from '../../actions';
 import * as PlayerActions from '../../actions/player';
@@ -143,13 +142,13 @@ class SoundContainer extends React.Component {
 
   shouldComponentUpdate (nextProps) {
     const currentSong = nextProps.queue.queueItems[nextProps.queue.currentSong];
-    const previousSong = this.props.queue.queueItems[this.props.queue.currentSong];
 
     return (
       this.props.equalizer !== nextProps.equalizer ||
       this.props.queue.currentSong !== nextProps.queue.currentSong ||
       this.props.player.playbackStatus !== nextProps.player.playbackStatus ||
-      (!!currentSong && !!currentSong.streams && currentSong.streams.length > 0 && !_.isEqual(currentSong, previousSong))
+      this.props.player.seek !== nextProps.player.seek ||
+      (!!currentSong && !!currentSong.streams && currentSong.streams.length > 0)
     );
   }
 
@@ -163,7 +162,7 @@ class SoundContainer extends React.Component {
       let fallbackStreamProvider;
       if (currentSong.failed) {
         const defaultStreamProvider = plugins.plugins.streamProviders.find(({ sourceName }) => {
-          return sourceName === plugins.selected.streamProviders;
+          return sourceName === currentSong.selectedStream || plugins.selected.streamProviders;
         });
         fallbackStreamProvider = plugins.plugins.streamProviders.find(({ sourceName }) => {
           return sourceName === defaultStreamProvider.fallback;
@@ -173,7 +172,9 @@ class SoundContainer extends React.Component {
       streamUrl = (
         getSelectedStream(
           currentSong.streams,
-          currentSong.failed ? fallbackStreamProvider.sourceName : plugins.selected.streamProviders
+          currentSong.failed
+            ? fallbackStreamProvider.sourceName
+            : currentSong.selectedStream || plugins.selected.streamProviders
         ) || {}
       ).stream;
     }

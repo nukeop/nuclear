@@ -14,6 +14,7 @@ export const PREVIOUS_SONG = 'PREVIOUS_SONG';
 export const SELECT_SONG = 'SELECT_SONG';
 export const REPOSITION_SONG = 'REPOSITION_SONG';
 export const STREAM_FAILED = 'STREAM_FAILED';
+export const CHANGE_TRACK_STREAM = 'CHANGE_TRACK_STREAM';
 
 function addTrackToQueue (streamProviders, item) {  
   return (dispatch, getState) => {
@@ -159,5 +160,15 @@ export function nextSong() {
 export function streamFailed() {
   return {
     type: STREAM_FAILED
+  };
+}
+
+export function changeTrackStream(track, stream) {
+  return {
+    type: CHANGE_TRACK_STREAM,
+    payload: {
+      track,
+      stream
+    }
   };
 }
