@@ -1,4 +1,4 @@
-const _ = require('lodash');
+import _ from 'lodash';
 
 import { safeAddUuid } from './helpers';
 import { startPlayback } from './player.js';
