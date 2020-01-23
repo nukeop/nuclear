@@ -2,14 +2,18 @@ import { getOption } from '../persistence/store';
 
 const baseUrl = getOption('invidious.url');
 
-export const trackSearch = async (query, alternate) => {
+export const trackSearch = async (query, currentStream) => {
   const response =  await fetch(`${baseUrl}/api/v1/search?q=${query}&sortBy=relevance&page=1`);
   if (!response.ok) {
     throw new Error('invidious search failed');
   }
   const result = await response.json();
 
-  const trackInfo = await getTrackInfo(result[alternate ? 1 : 0].videoId);
+  const track = currentStream
+    ? result.find(({ videoId }) => currentStream.id !== videoId)
+    : result[0];
+
+  const trackInfo = await getTrackInfo(track.videoId);
 
   return trackInfo;
 };

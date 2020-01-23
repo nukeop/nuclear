@@ -36,7 +36,7 @@ class InvidiousPlugin extends StreamProviderPlugin {
     }
   }
 
-  async getAlternateStream(query) {
+  async getAlternateStream(query, currentStream) {
     const terms = query.artist + ' ' + query.track;
     try {
       const {
@@ -45,7 +45,7 @@ class InvidiousPlugin extends StreamProviderPlugin {
         title,
         videoId,
         videoThumbnails
-      } = await Invidious.trackSearch(terms, true);
+      } = await Invidious.trackSearch(terms, currentStream);
 
       return {
         source: this.sourceName,
