@@ -18,7 +18,11 @@ function searchQuery(terms, count = 15) {
 }
 
 function search(terms, type, count = 15) {
-  return fetch(searchQuery(terms, count) + '&type=' + type);
+  let query = searchQuery(terms, count);
+  if (!_.isNil(type)) {
+    query += `&type=${type}`;
+  }
+  return fetch(query);
 }
 
 function releaseInfo(releaseId, releaseType, release) {

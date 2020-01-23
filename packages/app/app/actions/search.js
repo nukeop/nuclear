@@ -89,9 +89,15 @@ export function albumSearch (terms) {
   return discogsSearch(terms, SEARCH_TYPE.MASTER, 'ALBUM_SEARCH_SUCCESS');
 }
 
-export function artistSearch (terms) {
-  return discogsSearch(terms, SEARCH_TYPE.ARTIST, 'ARTIST_SEARCH_SUCCESS');
-}
+export const artistSearch = terms => (dispatch, getState) => {
+  const { 
+    plugin: { 
+      plugins: { metaProviders }, selected} 
+  } = getState();
+  const selectedProvider = _.find(metaProviders, { sourceName: selected.metaProviders });
+  console.log(selectedProvider);
+  dispatch(discogsSearch(terms, SEARCH_TYPE.ARTIST, 'ARTIST_SEARCH_SUCCESS'));
+};
 
 export function lastFmTrackSearchStart (terms) {
   return {

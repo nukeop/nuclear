@@ -3,7 +3,7 @@ import _ from 'lodash';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { compose, withHandlers, withProps, withState } from 'recompose';
+import { compose, withHandlers, withProps } from 'recompose';
 import { SearchBox } from '@nuclear/ui';
 
 import * as SearchActions from '../../actions/search';
@@ -13,22 +13,18 @@ const MIN_SEARCH_LENGTH = 3;
 const SearchBoxContainer = ({
   handleSearch,
   unifiedSearchStarted,
-  searchProviders,
-  selectedSearchProvider,
-  setSelectedSearchProvider,
+  searchProvidersOptions,
+  selectedSearchProviderOption,
+  handleSelectSearchProvider,
   isConnected
 }) => (
   <SearchBox
     loading={unifiedSearchStarted}
     disabled={!isConnected}
     onChange={_.debounce(handleSearch, 500)}
-    searchProviders={searchProviders}
-    selectedSearchProvider={
-      _.isNil(selectedSearchProvider)
-        ? _.head(searchProviders)
-        : selectedSearchProvider
-    }
-    onSearchProviderSelect={setSelectedSearchProvider}
+    searchProviders={searchProvidersOptions}
+    selectedSearchProvider={selectedSearchProviderOption}
+    onSearchProviderSelect={handleSelectSearchProvider}
   />
 );
 
@@ -36,12 +32,18 @@ const mapStateToProps = state => ({
   unifiedSearchStarted: state.search.unifiedSearchStarted,
   isConnected: state.connectivity,
   searchProviders: state.plugin.plugins.metaProviders,
-  selectedSearchProvider: state.plugin.selected
+  selectedSearchProvider: state.plugin.selected.metaProviders
 });
 
 const mapDispatchToProps = dispatch => ({
   searchActions: bindActionCreators(SearchActions, dispatch),
   pluginActions: bindActionCreators(PluginActions, dispatch)
+});
+
+const providerToOption = provider => ({
+  key: _.lowerCase(_.get(provider, 'sourceName')),
+  text: _.get(provider, 'searchName'),
+  value: _.get(provider, 'sourceName')
 });
 
 export default compose(
@@ -53,19 +55,12 @@ export default compose(
       value.length >= MIN_SEARCH_LENGTH ? searchActions.unifiedSearch(value, history) : null,
     handleSelectSearchProvider:  
       ({ pluginActions }) => provider => 
-        pluginActions.selectMetaProvider(provider.sourceName)
+        pluginActions.selectMetaProvider(provider.value)
   }),
-  withProps(({searchProviders}) => ({
-    searchProviders: _.map(searchProviders, provider => ({
-      key: _.lowerCase(provider.sourceName),
-      text: provider.searchName,
-      value: _.lowerCase(provider.sourceName),
-      sourceName: provider.sourceName
-    }))
-  })),
-  withState(
-    'selectedSearchProvider', 
-    'setSelectedSearchProvider',
-    undefined
-  )
+  withProps(({searchProviders, selectedSearchProvider}) => ({
+    searchProvidersOptions: _.map(searchProviders, providerToOption),
+    selectedSearchProviderOption: providerToOption(
+      _.find(searchProviders, { sourceName: selectedSearchProvider })
+    )
+  }))
 )(SearchBoxContainer);
