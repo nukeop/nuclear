@@ -10,6 +10,23 @@
     @include emptyState;
   }
 
+  .button_container {
+    padding-top: 1rem;
+    margin-left: 1rem;
+    a {
+      padding: 0.375rem 2.5rem;
+    }
+  }
+
+  .play_button {
+    background: $pink;
+    color: $white;
+    border-radius: 1.5rem;
+    text-transform: uppercase;
+    display: inline-block;
+    margin: auto;
+  }
+
   .favorite_tracks_table {
     background: transparent !important;
 

@@ -28,6 +28,15 @@ const FavoriteTracksView = ({
   removeFavoriteTrack
 }) => {
   const { t } = useTranslation('favorites');
+
+  const renderPlayAllButton = () => {
+    return (
+      <a href='#' className={styles.play_button}>
+        <Icon name='play'/> Play
+      </a>
+    );
+  };
+
   
   return (
     <div className={styles.favorite_tracks_view}>
@@ -41,12 +50,15 @@ const FavoriteTracksView = ({
           <Header>
             {t('header')}
           </Header>
+          <div className={styles.button_container}>
+            {renderPlayAllButton()}
+          </div>
           <Segment className={trackRowStyles.tracks_container}>
             <Table
               className={cx(
                 styles.favorite_tracks_table,
                 styles.table
-                )}
+              )}
             >
               <Table.Header className={styles.thead}>
                 <Table.Row>
