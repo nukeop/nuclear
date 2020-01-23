@@ -44,7 +44,7 @@ export default function PluginsReducer(state=initialState, action) {
       ...state,
       selected: {
         ...state.selected,
-        metaProvider: action.payload
+        metaProviders: action.payload
       }
     };
   case LOAD_USER_PLUGIN_START:
