@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, Switch, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as Actions from '../../actions';
+import * as SearchActions from '../../actions/search';
 
 import MainLayout from '../../components/MainLayout';
 
@@ -66,7 +66,7 @@ function mapStateToProps () {
 
 function mapDispatchToProps (dispatch) {
   return {
-    actions: bindActionCreators(Actions, dispatch)
+    searchActions: bindActionCreators(SearchActions, dispatch)
   };
 }
 

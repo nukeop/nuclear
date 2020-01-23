@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Sound, { Volume, Equalizer, AnalyserByFrequency } from 'react-hifi';
 
-import * as Actions from '../../actions';
+import * as SearchActions from '../../actions/search';
 import * as PlayerActions from '../../actions/player';
 import * as EqualizerActions from '../../actions/equalizer';
 import * as QueueActions from '../../actions/queue';
@@ -197,7 +197,7 @@ function mapDispatchToProps (dispatch) {
     actions: bindActionCreators(
       Object.assign(
         {},
-        Actions,
+        SearchActions,
         PlayerActions,
         QueueActions,
         ScrobblingActions,

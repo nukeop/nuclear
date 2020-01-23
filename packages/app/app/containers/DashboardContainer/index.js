@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as Actions from '../../actions';
+import * as SearchActions from '../../actions/search';
 import * as DashboardActions from '../../actions/dashboard';
 import * as FavoritesActions from '../../actions/favorites';
 import * as QueueActions from '../../actions/queue';
@@ -56,7 +56,7 @@ function mapDispatchToProps(dispatch) {
     actions: bindActionCreators(
       Object.assign(
         {},
-        Actions,
+        SearchActions,
         DashboardActions,
         FavoritesActions,
         QueueActions,

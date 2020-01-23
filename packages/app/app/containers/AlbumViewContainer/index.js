@@ -2,7 +2,7 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as Actions from '../../actions';
+import * as SearchActions from '../../actions/search';
 import * as DownloadsActions from '../../actions/downloads';
 import * as QueueActions from '../../actions/queue';
 import * as PlayerActions from '../../actions/player';
@@ -23,7 +23,7 @@ class AlbumViewContainer extends React.Component {
 
   render() {
     const {
-      actions,
+      searchActions,
       queueActions,
       playerActions,
       favoritesActions,
@@ -40,7 +40,7 @@ class AlbumViewContainer extends React.Component {
     return (
       <AlbumView
         album={albumDetails[match.params.albumId]}
-        artistInfoSearch={actions.artistInfoSearch}
+        artistInfoSearch={searchActions.artistInfoSearch}
         addToQueue={queueActions.addToQueue}
         streamProviders={streamProviders}
         selectSong={queueActions.selectSong}
@@ -69,7 +69,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators(Actions, dispatch),
+    searchActions: bindActionCreators(SearchActions, dispatch),
     queueActions: bindActionCreators(QueueActions, dispatch),
     playerActions: bindActionCreators(PlayerActions, dispatch),
     favoritesActions: bindActionCreators(FavoritesActions, dispatch),

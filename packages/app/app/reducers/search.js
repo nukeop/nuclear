@@ -15,7 +15,7 @@ import {
   LASTFM_TRACK_SEARCH_SUCCESS,
   YOUTUBE_PLAYLIST_SEARCH_START,
   YOUTUBE_PLAYLIST_SEARCH_SUCCESS
-} from '../actions';
+} from '../actions/search';
 import Artist from '../structs/artist';
 
 const initialState = {

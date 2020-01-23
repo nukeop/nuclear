@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as Actions from '../../actions';
+import * as SearchActions from '../../actions/search';
 import * as QueueActions from '../../actions/queue';
 import * as PlayerActions from '../../actions/player';
 
@@ -51,7 +51,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     actions: bindActionCreators(
-      Object.assign({}, Actions, QueueActions, PlayerActions),
+      Object.assign({}, SearchActions, QueueActions, PlayerActions),
       dispatch
     )
   };
