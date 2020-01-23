@@ -34,15 +34,17 @@ export const QueuePopup = ({
     event.preventDefault();
     triggerElement.current.click();
     const { left, top } = triggerElement.current.getBoundingClientRect();
-    setTarget({ itemX: left, itemY: top, itemHeight: triggerElement.current.offsetHeight });
+    setTarget({ ...target, itemX: left, itemY: top, itemHeight: triggerElement.current.offsetHeight });
     setOpen(true);
-  }, [triggerElement, setOpen, setTarget]);
+  }, [triggerElement, setOpen, setTarget, target]);
 
   const handleImageLoaded = useCallback(() => {
     setImageReady(true);
     const popupWrapper = popupElement.current.parentElement;
     const { width: popupWidth } = popupWrapper.getBoundingClientRect();
+
     setTarget({
+      ...target,
       x: target.itemX - popupWidth - POPUP_MARGIN,
       y: target.itemY - popupWrapper.offsetHeight / 2 + target.itemHeight / 2
     });

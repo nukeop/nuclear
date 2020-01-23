@@ -31,7 +31,7 @@ class InvidiousPlugin extends StreamProviderPlugin {
         thumbnail: videoThumbnails[3].url
       };
     } catch (error) {
-      logger.error(`Error while searching  for ${terms} on Invidious, try on Youtube`);
+      logger.error(`Error while searching  for ${terms} on Invidious`);
       logger.error(error);
     }
   }
