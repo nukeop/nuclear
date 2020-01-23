@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import _ from 'lodash';
 
-import * as SearchActions from '../../actions';
+import * as SearchActions from '../../actions/search';
 import * as FavoritesActions from '../../actions/favorites';
 
 import FavoriteAlbumsView from '../../components/FavoriteAlbumsView';

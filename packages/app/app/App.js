@@ -9,7 +9,7 @@ import Sound from 'react-hifi';
 import { withTranslation } from 'react-i18next';
 import { Cover, formatDuration } from '@nuclear/ui';
 
-import * as Actions from './actions';
+import * as SearchActions from './actions/search';
 import * as PlayerActions from './actions/player';
 import * as PlaylistsActions from './actions/playlists';
 import * as PluginsActions from './actions/plugins';
@@ -403,7 +403,7 @@ function mapDispatchToProps (dispatch) {
         PlaylistsActions,
         PluginsActions,
         ConnectivityActions,
-        Actions,
+        SearchActions,
         GithubContribActions
       ),
       dispatch

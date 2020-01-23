@@ -3,7 +3,7 @@ import { LastFmApi } from '@nuclear/core';
 import { getBestNewAlbums, getBestNewTracks } from 'pitchfork-bnm';
 
 import globals from '../globals';
-import {mapLastFMTrackToInternal} from './index';
+import {mapLastFMTrackToInternal} from './search';
 
 const lastfm = new LastFmApi(
   globals.lastfmApiKey,

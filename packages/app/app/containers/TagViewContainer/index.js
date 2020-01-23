@@ -2,7 +2,7 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as Actions from '../../actions';
+import * as SearchActions from '../../actions/search';
 import * as TagActions from '../../actions/tag';
 import * as QueueActions from '../../actions/queue';
 import * as PlayerActions from '../../actions/player';
@@ -32,7 +32,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     actions: bindActionCreators(
-      Object.assign({}, Actions, TagActions, QueueActions, PlayerActions),
+      Object.assign({}, SearchActions, TagActions, QueueActions, PlayerActions),
       dispatch
     )
   };

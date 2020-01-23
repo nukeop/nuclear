@@ -6,7 +6,7 @@ import { bindActionCreators } from 'redux';
 import { compose, withHandlers, withProps, withState } from 'recompose';
 import { SearchBox } from '@nuclear/ui';
 
-import * as Actions from '../../actions';
+import * as SearchActions from '../../actions/search';
 import * as PluginActions from '../../actions/plugins';
 
 const MIN_SEARCH_LENGTH = 3;
@@ -40,7 +40,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  actions: bindActionCreators(Actions, dispatch),
+  searchActions: bindActionCreators(SearchActions, dispatch),
   pluginActions: bindActionCreators(PluginActions, dispatch)
 });
 
@@ -49,8 +49,8 @@ export default compose(
   connect(mapStateToProps, mapDispatchToProps),
   withHandlers({
     handleSearch: 
-    ({ actions, history }) => value => 
-      value.length >= MIN_SEARCH_LENGTH ? actions.unifiedSearch(value, history) : null,
+    ({ searchActions, history }) => value => 
+      value.length >= MIN_SEARCH_LENGTH ? searchActions.unifiedSearch(value, history) : null,
     handleSelectSearchProvider:  
       ({ pluginActions }) => provider => 
         pluginActions.selectMetaProvider(provider.sourceName)
