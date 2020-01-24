@@ -1,6 +1,5 @@
 import logger from 'electron-timber';
-
-import Plugin from './plugin';
+import { Plugin } from '@nuclear/core';
 
 class MetaProvider extends Plugin {
   constructor() {

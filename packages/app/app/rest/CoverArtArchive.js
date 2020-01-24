@@ -1,6 +1,6 @@
-const apiUrl = 'https://coverartarchive.org/';
+const apiUrl = 'https://coverartarchive.org';
 
-function releaseGroupFront(group, size=250) {
+function releaseGroupFront(group, size = 250) {
   return new Promise(fulfill => {
     fetch(apiUrl + 'release-group/' + group.id + '/' + 'front-' + size)
       .then(cover => {
@@ -19,6 +19,11 @@ function releaseGroupFront(group, size=250) {
   });
 }
 
+const getCoverForRelease = releaseId => {
+  return fetch(`${apiUrl}/release-group/${releaseId}/front`);
+};
+
 module.exports = {
-  releaseGroupFront
+  releaseGroupFront,
+  getCoverForRelease
 };

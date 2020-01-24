@@ -23,7 +23,13 @@ class AllResults extends React.Component {
         <Card
           small
           header={el.title||el.name}
-          image={_.defaultTo(_.defaultTo(el.thumb, el.thumbnail), artPlaceholder)}
+          image={ 
+            el.cover_image || 
+            el.coverImage || 
+            el.thumb || 
+            el.thumbnail || 
+            artPlaceholder
+          }
           onClick={() => onClick(id, el.type)}
           key={'item-' + i}
         />

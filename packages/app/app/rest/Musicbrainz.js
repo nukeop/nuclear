@@ -1,6 +1,6 @@
-const NB = require('nodebrainz');
+import NB from 'nodebrainz';
+import CoverArtArchive from './CoverArtArchive';
 const nb = new NB({userAgent: 'Mozilla/5.0 (Windows NT 6.3; WOW64; rv:37.0) Gecko/20100101 Firefox/37.0'});
-const covers = require('./CoverArtArchive');
 
 function artistSearch(terms) {
   return new Promise((fulfill, reject) => {
@@ -16,10 +16,14 @@ function artistSearch(terms) {
 
 function addCoversToReleases(searchResults) {
   let coverPromises = searchResults['release-groups'].map(group => {
-    return covers.releaseGroupFront(group);
+    return CoverArtArchive.releaseGroupFront(group);
   });
 
   return Promise.all(coverPromises);
+}
+
+function getCoverForRelease(releaseId) {
+  return CoverArtArchive.getCoverForRelease(releaseId);
 }
 
 function releaseSearch(terms) {
@@ -48,9 +52,10 @@ function trackSearch(terms) {
   });
 }
 
-module.exports = {
+export {
   artistSearch,
   releaseSearch,
   trackSearch,
-  addCoversToReleases
+  addCoversToReleases,
+  getCoverForRelease
 };
