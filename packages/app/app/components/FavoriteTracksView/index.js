@@ -104,11 +104,13 @@ FavoriteTracksView.propTypes = {
     }),
     name: PropTypes.string
   })),
-  removeFavoriteTrack: PropTypes.func
+  removeFavoriteTrack: PropTypes.func,
+  streamProviders: PropTypes.array
 };
 
 FavoriteTracksView.defaultProps = {
   tracks: [],
+  streamProviders: [],
   removeFavoriteTrack: () => {}
 };
 

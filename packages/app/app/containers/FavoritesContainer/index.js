@@ -6,6 +6,7 @@ import _ from 'lodash';
 
 import * as SearchActions from '../../actions';
 import * as FavoritesActions from '../../actions/favorites';
+import * as QueueActions from '../../actions/queue';
 
 import FavoriteAlbumsView from '../../components/FavoriteAlbumsView';
 import FavoriteTracksView from '../../components/FavoriteTracksView';
@@ -27,7 +28,9 @@ class FavoritesContainer extends React.Component {
       favorites,
       favoritesActions,
       searchActions,
-      match
+      match,
+      queueActions,
+      streamProviders
     } = this.props;
 
     if (match.path.endsWith(ALBUMS_PATH)) {
@@ -40,6 +43,8 @@ class FavoritesContainer extends React.Component {
     
     if (match.path.endsWith(TRACKS_PATH)) {
       return <FavoriteTracksView
+        addToQueue={queueActions.addToQueue}
+        streamProviders={streamProviders}
         tracks={_.get(favorites, 'tracks')}
         removeFavoriteTrack={favoritesActions.removeFavoriteTrack}
       />;
@@ -72,14 +77,16 @@ FavoritesContainer.defaultProps = {
 
 function mapStateToProps (state) {
   return {
-    favorites: state.favorites
+    favorites: state.favorites,
+    streamProviders: state.plugin.plugins.streamProviders
   };
 }
 
 function mapDispatchToProps (dispatch) {
   return {
     favoritesActions: bindActionCreators(FavoritesActions, dispatch),
-    searchActions: bindActionCreators(SearchActions, dispatch)
+    searchActions: bindActionCreators(SearchActions, dispatch),
+    queueActions: bindActionCreators(QueueActions, dispatch)
   };
 }
 
