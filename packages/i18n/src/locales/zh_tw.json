@@ -167,6 +167,7 @@
     "github-description": "登入 GitHub 並將歌曲清單分享到網路 (即將期待).",
     "github-title": "Github",
     "http": "HTTP API",
+    "invidious-url": "Invidious instance url",
     "language": "語言",
     "language-placeholder": "設定語言",
     "lastfm-connect": "連接到 Last.fm",

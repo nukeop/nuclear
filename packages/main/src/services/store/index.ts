@@ -23,6 +23,10 @@ class Store extends ElectronStore {
       this.setOption('yt.apiKey', this.config.defaultYoutubeApiKey);
     }
 
+    if (!this.getOption('invidious.url')) {
+      this.setOption('invidious.url', this.config.defaultInvidiousUrl);
+    }
+
     this.logger.log(`Initialized settings store at ${this.path}`);
   }
 

@@ -25,6 +25,7 @@ class Config {
   icon: string;
   macIcon: string;
   discordClientId: string;
+  defaultInvidiousUrl: string;
 
   constructor(
     @inject($mainLogger) logger: Logger
@@ -55,6 +56,7 @@ class Config {
 
     this.defaultYoutubeApiKey = process.env.YOUTUBE_API_KEY;
     this.discordClientId = process.env.DISCORD_CLIENT_ID;
+    this.defaultInvidiousUrl = process.env.INVIDIOUS_URL;
   }
 
   private validateEnv(): void {

@@ -3,5 +3,6 @@ declare namespace NodeJS {
     ACOUSTIC_ID_KEY: string;
     YOUTUBE_API_KEY: string;
     DISCORD_CLIENT_ID: string;
+    INVIDIOUS_URL: string;
   }
 }

@@ -167,6 +167,7 @@
     "github-description": "Gitub을 통해 로그인하여 온라인으로 재생 목록을 만들고 공유할 수 있음(추가될 기능)",
     "github-title": "Github",
     "http": "HTTP API",
+    "invidious-url": "Invidious instance url",
     "language": "언어",
     "language-placeholder": "언어 선택",
     "lastfm-connect": "Last.fm에 연결",
