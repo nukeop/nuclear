@@ -85,18 +85,34 @@ function discogsSearch (terms, searchType, dispatchType) {
   };
 }
 
-export function albumSearch (terms) {
-  return discogsSearch(terms, SEARCH_TYPE.MASTER, 'ALBUM_SEARCH_SUCCESS');
-}
+export const artistSearchSuccess = data => ({
+  type: ARTIST_SEARCH_SUCCESS,
+  payload: data
+});
 
-export const artistSearch = terms => (dispatch, getState) => {
+export const albumSearchSuccess = data => ({
+  type: ALBUM_SEARCH_SUCCESS,
+  payload: data
+});
+
+const getSelectedMetaProvider = getState => {
   const { 
     plugin: { 
       plugins: { metaProviders }, selected} 
   } = getState();
-  const selectedProvider = _.find(metaProviders, { sourceName: selected.metaProviders });
-  console.log(selectedProvider);
-  dispatch(discogsSearch(terms, SEARCH_TYPE.ARTIST, 'ARTIST_SEARCH_SUCCESS'));
+  return _.find(metaProviders, { sourceName: selected.metaProviders });
+};
+
+export const artistSearch = terms => async (dispatch, getState) => {
+  const selectedProvider = getSelectedMetaProvider(getState);
+  const results = await selectedProvider.searchForArtists(terms);
+  dispatch(artistSearchSuccess(results));
+};
+
+export const albumSearch = terms => async (dispatch, getState) => {
+  const selectedProvider = getSelectedMetaProvider(getState);
+  const results = await selectedProvider.searchForReleases(terms);
+  dispatch(albumSearchSuccess(results));
 };
 
 export function lastFmTrackSearchStart (terms) {

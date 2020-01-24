@@ -1,4 +1,11 @@
 import MetaProvider from '../metaProvider';
+import discogs from '../../rest/Discogs';
+
+const SEARCH_TYPE = Object.freeze({
+  ARTIST: 'artist',
+  MASTER: 'master',
+  RELEASE: 'release'
+});
 
 class DiscogsMetaProvider extends MetaProvider {
   constructor() {
@@ -10,16 +17,22 @@ class DiscogsMetaProvider extends MetaProvider {
     this.image = null;
   }
 
-  searchForArtists() {
-    return new Promise();
+  searchForArtists(query) {
+    return discogs.search(query, SEARCH_TYPE.ARTIST)
+      .then(response => response.json())
+      .then(json => json.results);
   }
 
-  searchForReleases() {
-    return new Promise();
+  searchForReleases(query) {
+    return discogs.search(query, SEARCH_TYPE.MASTER)
+      .then(response => response.json())
+      .then(json => json.results);
   }
 
-  searchAll() {
-    return new Promise();
+  searchAll(query) {
+    return discogs.search(query)
+      .then(response => response.json())
+      .then(json => json.results);
   }
 }
 

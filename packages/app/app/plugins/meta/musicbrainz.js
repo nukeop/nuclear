@@ -1,11 +1,10 @@
 import MetaProvider from '../metaProvider';
-import discogs from '../../rest/Discogs';
-
-const SEARCH_TYPE = Object.freeze({
-  ARTIST: 'artist',
-  MASTER: 'master',
-  RELEASE: 'release'
-});
+import {
+  artistSearch,
+  releaseSearch,
+  trackSearch,
+  getCoverForRelease
+} from '../../rest/Musicbrainz';
 
 class MusicbrainzMetaProvider extends MetaProvider {
   constructor() {
@@ -17,22 +16,37 @@ class MusicbrainzMetaProvider extends MetaProvider {
   }
 
   searchForArtists(query) {
-    return discogs.search(query, SEARCH_TYPE.ARTIST)
-      .then(response => response.json())
-      .then(json => json.results);
+    return artistSearch(query)
+      .then(response => response.artists.map(artist => ({
+        id: artist.id,
+        coverImage: '',
+        thumb: '',
+        title: artist.name
+      })));
   }
 
-  searchForReleases(query) {
-    return discogs.search(query, SEARCH_TYPE.MASTER)
-      .then(response => response.json())
-      .then(json => json.results);
+  async searchForReleases(query) {
+    const releaseGroups = await releaseSearch(query)
+      .then(response => response['release-groups']);
+
+    return Promise.all(releaseGroups.map(
+      async group => {
+        const cover = await getCoverForRelease(group.id);
+
+        return {
+          id: group.id,
+          coverImage: cover.ok ? cover.url : null,
+          thumb: cover.ok ? cover.url : null,
+          title: group.title
+        };
+      }
+    ));
   }
 
   searchAll(query) {
-    return discogs.search(query)
-      .then(response => response.json())
-      .then(json => json.results);
+    return new Promise();
   }
 }
+
 
 export default MusicbrainzMetaProvider;
