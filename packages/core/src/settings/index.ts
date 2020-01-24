@@ -144,7 +144,12 @@ export const settingsConfig: Array<Setting> = [
     category: 'youtube',
     type: SettingType.STRING,
     prettyName: 'yt-api-key'
-    // default: globals.ytApiKey
+  },
+  {
+    name: 'invidious.url',
+    category: 'youtube',
+    type: SettingType.STRING,
+    prettyName: 'invidious-url'
   },
   {
     name: 'language',

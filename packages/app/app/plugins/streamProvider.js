@@ -9,6 +9,7 @@ class StreamProviderPlugin extends Plugin {
     this.sourceName = 'Generic Stream Provider';
     this.description = 'A generic stream provider plugin. Should never be instantiated directly';
     this.image = null;
+    this.fallback = 'Youtube';
   }
 
   search(query) {
