@@ -20,7 +20,7 @@ class LocalLibraryDb extends ElectronStore {
     return this.get('localFolders') || [];
   }
 
-  removeLocalFolder(folder: string) {
+  removeLocalFolder(folder: string): LocalMeta {
     const folders = this.getLocalFolders();
     this.set('localFolders', folders.filter(path => path !== folder));
 
