@@ -10,6 +10,7 @@ import uuid from 'uuid/v4';
 import url, { URL } from 'url';
 import fs from 'fs';
 import crypto from 'crypto';
+import { app } from 'electron';
 
 import LocalLibraryDb, { LocalMeta } from './db';
 import AcousticId from '../acoustic-id';
@@ -18,8 +19,6 @@ import Logger, { $mainLogger } from '../logger';
 import Window from '../window';
 
 export type ProgressHandler = (progress: number, total: number) => void
-
-const THUMBNAILS_DIR = 'thumbnails';
 
 /**
  * Manage local files, extract metadata directly from files, or get it from acousticId api
@@ -36,9 +35,7 @@ class LocalLibrary {
     @inject($mainLogger) private logger: Logger,
     @inject(Window) private window: Window
   ) {
-    this.mediaDir = this.config.isProd()
-      ? path.resolve(__dirname, '../../', 'media', THUMBNAILS_DIR)
-      : path.resolve(__dirname, THUMBNAILS_DIR);
+    this.mediaDir = path.join(app.getPath('userData'), 'thumbnails');
     this.createThumbnailsDirectory();
   }
 
