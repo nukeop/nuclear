@@ -10,6 +10,7 @@ import TrackRow from '../TrackRow';
 
 import trackRowStyles from '../TrackRow/styles.scss';
 import styles from './styles.scss';
+import artPlaceholder from '../../../resources/media/art_placeholder.png';
 
 export const EmptyState = () => {
   const { t } = useTranslation('favorites');
@@ -25,9 +26,52 @@ export const EmptyState = () => {
 
 const FavoriteTracksView = ({
   tracks,
-  removeFavoriteTrack
+  removeFavoriteTrack,
+  clearQueue,
+  selectSong,
+  startPlayback,
+  addToQueue,
+  streamProviders
 }) => {
   const { t } = useTranslation('favorites');
+
+
+  const getTrackimage = (track) => {
+    let image = artPlaceholder;
+    if (track.image && track.image.length > 0) {
+      image = track.image[0]['#text'];
+    }
+    return image;
+  };
+
+  const addTracksToQueue = () => {
+
+    tracks.map(track => {
+      const trackImage = getTrackimage(track);
+      addToQueue(streamProviders, {
+        artist: track.artist.name,
+        name: track.name,
+        thumbnail: trackImage
+      });
+    });
+  };
+
+  const playAll = (tracks) => {
+    clearQueue();
+    addTracksToQueue(tracks);
+    selectSong(0);
+    startPlayback();
+  };
+
+
+  const renderPlayAllButton = () => {
+    return (
+      <a href='#' className={styles.play_button} onClick={playAll}>
+        <Icon name='play'/> Play
+      </a>
+    );
+  };
+
   
   return (
     <div className={styles.favorite_tracks_view}>
@@ -41,12 +85,15 @@ const FavoriteTracksView = ({
           <Header>
             {t('header')}
           </Header>
+          <div className={styles.button_container}>
+            {renderPlayAllButton()}
+          </div>
           <Segment className={trackRowStyles.tracks_container}>
             <Table
               className={cx(
                 styles.favorite_tracks_table,
                 styles.table
-                )}
+              )}
             >
               <Table.Header className={styles.thead}>
                 <Table.Row>
@@ -92,11 +139,13 @@ FavoriteTracksView.propTypes = {
     }),
     name: PropTypes.string
   })),
-  removeFavoriteTrack: PropTypes.func
+  removeFavoriteTrack: PropTypes.func,
+  streamProviders: PropTypes.array
 };
 
 FavoriteTracksView.defaultProps = {
   tracks: [],
+  streamProviders: [],
   removeFavoriteTrack: () => {}
 };
 
