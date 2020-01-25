@@ -15,7 +15,7 @@ class MusicbrainzMetaProvider extends MetaProvider {
     this.searchName = 'Musicbrainz';
   }
 
-  searchForArtists(query) {
+  searchForArtists(query: string): Promise<Array<SearchResultsArtist>> {
     return artistSearch(query)
       .then(response => response.artists.map(artist => ({
         id: artist.id,
@@ -25,7 +25,7 @@ class MusicbrainzMetaProvider extends MetaProvider {
       })));
   }
 
-  async searchForReleases(query) {
+  async searchForReleases(query): Promise<Array<SearchResultsAlbum>> {
     const releaseGroups = await releaseSearch(query)
       .then(response => response['release-groups']);
 
@@ -43,8 +43,22 @@ class MusicbrainzMetaProvider extends MetaProvider {
     ));
   }
 
-  searchAll(query) {
-    return new Promise();
+  searchForTracks(query: string): Promise<Array<SearchResultsTrack>> {
+    return trackSearch(query)
+      .then(response => response.tracks.map(track => ({
+        id: track.id
+      })));
+  }
+
+  async searchAll(query): Promise<{
+    artists: Array<SearchResultsArtist>;
+    releases: Array<SearchResultsAlbum>;
+    tracks: Array<SearchResultsTrack>;
+  }> {
+    const artists = await this.searchForArtists(query);
+    const releases = await this.searchForReleases(query);
+    const tracks = await this.searchForTracks(query);
+    return Promise.resolve({ artists, releases, tracks });
   }
 }
 

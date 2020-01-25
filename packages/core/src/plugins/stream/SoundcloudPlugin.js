@@ -1,9 +1,9 @@
 import logger from 'electron-timber';
 import _ from 'lodash';
 
-import globals from '../../globals';
+import globals from '../../../../app/app/globals';
 import StreamProviderPlugin from '../streamProvider';
-import * as Soundcloud from '../../rest/Soundcloud';
+import * as Soundcloud from '../../../../app/app/rest/Soundcloud';
 
 class SoundcloudPlugin extends StreamProviderPlugin {
   constructor() {
