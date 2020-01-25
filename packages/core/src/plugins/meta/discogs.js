@@ -1,5 +1,5 @@
 import MetaProvider from '../metaProvider';
-import discogs from '../../rest/Discogs';
+import discogs from '../../../../app/app/rest/Discogs';
 
 const SEARCH_TYPE = Object.freeze({
   ARTIST: 'artist',

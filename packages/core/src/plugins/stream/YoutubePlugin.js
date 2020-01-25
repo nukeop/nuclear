@@ -3,7 +3,7 @@ import _ from 'lodash';
 import ytdl from 'ytdl-core';
 
 import StreamProviderPlugin from '../streamProvider';
-import * as Youtube from '../../rest/Youtube';
+import * as Youtube from '../../../../app/app/rest/Youtube';
 
 class YoutubePlugin extends StreamProviderPlugin {
   constructor() {

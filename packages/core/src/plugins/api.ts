@@ -5,6 +5,6 @@ import electron from 'electron';
 
 export default () => ({
   app: electron.remote.app,
-  store: window.store,
+  store: (window as any).store,
   React, ReactDOM
 });

@@ -1,18 +1,17 @@
 import Plugin from './plugin';
-import { 
-  SearchResultsArtist, 
-  SearchResultsAlbum, 
-  SearchResultsTrack 
-} from '../interfaces/data';
 
 abstract class MetaProvider extends Plugin {
   sourceName: string;
   searchName: string;
 
-  abstract searchForArtists(query): Promise<Array<SearchResultsArtist>>;
-  abstract searchForReleases(query): Promise<Array<SearchResultsAlbum>>;
-  abstract searchForTracks(query): Promise<Array<SearchResultsTrack>>;
-  abstract searchAll(query): Promise<Array<SearchResultsArtist | SearchResultsAlbum>>;
+  abstract searchForArtists(query: string): Promise<Array<SearchResultsArtist>>;
+  abstract searchForReleases(query: string): Promise<Array<SearchResultsAlbum>>;
+  abstract searchForTracks(query: string): Promise<Array<SearchResultsTrack>>;
+  abstract searchAll(query: string): Promise<{
+    artists: Array<SearchResultsArtist>;
+    releases: Array<SearchResultsAlbum>;
+    tracks: Array<SearchResultsTrack>;
+  }>;
 }
 
 export default MetaProvider;
