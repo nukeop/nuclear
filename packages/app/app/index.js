@@ -17,10 +17,6 @@ import App from './App';
 import configureStore from './store/configureStore';
 import { getOption, setOption } from './persistence/store';
 
-logger.hookConsole({
-  renderer: true
-});
-
 setConfig({
   showReactDomPatchNotification: false
 });
