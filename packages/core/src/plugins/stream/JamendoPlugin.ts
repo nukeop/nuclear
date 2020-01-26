@@ -4,15 +4,13 @@ import _ from 'lodash';
 import StreamProviderPlugin from '../streamProvider';
 import * as Jamendo from '../../../../app/app/rest/Jamendo';
 
-class JamendoPlugin extends StreamProviderPlugin {
-  constructor() {
-    super();
-    this.name = 'Jamendo Plugin';
-    this.sourceName = 'Jamendo';
-    this.description = 'Allows Nuclear to find music streams on Jamendo';
-  }
+class JamendoPlugin implements StreamProviderPlugin {
+  name: 'Jamendo Plugin';
+  sourceName: 'Jamendo';
+  description: 'Allows Nuclear to find music streams on Jamendo';
+  image: null;
 
-  search (query) {
+  search(query) {
     return this.getSearchResults(query).then(responseJson => {
       if (responseJson.results.length === 0) {
         return null;
@@ -31,7 +29,7 @@ class JamendoPlugin extends StreamProviderPlugin {
     });
   }
 
-  getSearchResults (query) {
+  getSearchResults(query) {
     return Jamendo.search(query)
       .then(response => response.json())
       .catch(err => {
@@ -40,10 +38,10 @@ class JamendoPlugin extends StreamProviderPlugin {
       });
   }
 
-  getAlternateStream (query, currentStream) {
+  getAlternateStream(query, currentStream) {
     return this.getSearchResults(query).then(results => {
       let info = _.find(results, result => result && result.id !== currentStream.id);
-      return info ? this.resultToStream(info) : null;
+      return info;
     });
   }
 }

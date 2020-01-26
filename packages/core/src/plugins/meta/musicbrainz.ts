@@ -6,14 +6,12 @@ import {
   getCoverForRelease
 } from '../../rest/Musicbrainz';
 
-class MusicbrainzMetaProvider extends MetaProvider {
-  constructor() {
-    super();
-    this.name = 'Musicbrainz Meta Provider';
-    this.sourceName = 'Musicbrainz Meta Provider';
-    this.description = 'Metadata provider that uses Musicbrainz as a source.';
-    this.searchName = 'Musicbrainz';
-  }
+class MusicbrainzMetaProvider implements MetaProvider {
+  name: 'Musicbrainz Meta Provider';
+  sourceName: 'Musicbrainz Meta Provider';
+   description: 'Metadata provider that uses Musicbrainz as a source.';
+  searchName: 'Musicbrainz';
+  image: null;
 
   searchForArtists(query: string): Promise<Array<SearchResultsArtist>> {
     return artistSearch(query)

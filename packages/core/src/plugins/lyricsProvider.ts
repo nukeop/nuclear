@@ -1,9 +1,9 @@
 import Plugin from './plugin';
 
-abstract class LyricsProvider extends Plugin {
+interface LyricsProvider extends Plugin {
   sourceName: string;
 
-  abstract search(artistName: string, trackName: string): string;
+  search(artistName: string, trackName: string): string;
 }
 
 export default LyricsProvider;

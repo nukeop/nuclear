@@ -1,10 +1,9 @@
 import Plugin from './plugin';
-
-abstract class StreamProviderPlugin extends Plugin {
+interface StreamProviderPlugin extends Plugin {
   sourceName: string;
 
-  abstract search(query: StreamQuery): Promise<Response>;
-  abstract getAlternateStream(query: StreamQuery, currentStream: { id: string }): Promise<Response>;
+  search(query: StreamQuery): Promise<StreamData>;
+  getAlternateStream(query: StreamQuery, currentStream: { id: string }): Promise<StreamData>;
 }
 
 export default StreamProviderPlugin;

@@ -4,16 +4,15 @@ import ytdl from 'ytdl-core';
 
 import StreamProviderPlugin from '../streamProvider';
 import * as Youtube from '../../../../app/app/rest/Youtube';
+import { promises } from 'dns';
 
-class YoutubePlugin extends StreamProviderPlugin {
-  constructor() {
-    super();
-    this.name = 'Youtube Plugin';
-    this.sourceName = 'Youtube';
-    this.description = 'A plugin allowing Nuclear to search for music and play it from youtube';
-  }
+class YoutubePlugin implements StreamProviderPlugin {
+  name: 'Youtube Plugin';
+  sourceName: 'Youtube';
+  description: 'A plugin allowing Nuclear to search for music and play it from youtube';
+  image: null;
 
-  search(query) {
+  search(query: StreamQuery): Promise<StreamData> {
     let terms = query.artist + ' ' + query.track;
     return Youtube.trackSearch(terms)
       .then(results => results.json())
@@ -42,7 +41,7 @@ class YoutubePlugin extends StreamProviderPlugin {
       });
   }
 
-  getAlternateStream(query, currentStream) {
+  getAlternateStream(query: StreamQuery, currentStream: { id: string }): Promise<StreamData> {
     let terms = query.artist + ' ' + query.track;
     return Youtube.trackSearch(terms)
       .then(results => results.json())
@@ -56,7 +55,7 @@ class YoutubePlugin extends StreamProviderPlugin {
       .then(videoInfo => {
         let formatInfo = _.head(videoInfo.formats.filter(e => e.itag === 140));
         return {
-          source: 'Youtube',
+          source: this.sourceName,
           id: videoInfo.video_id,
           stream: formatInfo.url,
           duration: videoInfo.length_seconds,

@@ -1,4 +1,4 @@
-import { LastFmApi } from '@nuclear/core';
+import { LastFmApi } from '';
 import ytdl from 'ytdl-core';
 
 import globals from '../globals';
