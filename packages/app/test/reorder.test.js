@@ -1,9 +1,19 @@
-import QueueReducer from '../app/reducers/queue';
-import { REPOSITION_SONG } from '../app/actions/queue';
 import { expect } from 'chai';
 import { describe, it } from 'mocha';
+import mock from 'mock-require';
+
+import MockStore from '../../../__mocks__/electron-store';
+import MockLogger from '../../../__mocks__/electron-timber';
+import * as electron from '../../../__mocks__/electron';
+
+mock('electron-store', MockStore);
+mock('electron-timber', MockLogger);
+mock('electron', electron);
 
 describe('Reorder Reducer Test', () => {
+  const QueueReducer = require('../app/reducers/queue').default;
+  const { REPOSITION_SONG } = require('../app/actions/queue');
+
   it('should not change anything for a queue of length 1', () => {
     const initialState = { currentSong: 0, queueItems: [{ uuid: 'first'}]};
     const action = {

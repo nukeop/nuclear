@@ -162,6 +162,7 @@
     "github-description": "Log ind via Github for at kunne oprette og dele dine afspilningslister online (Kommende feature).",
     "github-title": "Github",
     "http": "HTTP API",
+    "invidious-url": "Invidious instance url",
     "language": "Sprog",
     "language-placeholder": "Vælg et sprog",
     "lastfm-connect": "Forbind med Last.fm",

@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-var-requires */
 const path = require('path');
 const CopyPlugin = require('copy-webpack-plugin');
 const { NormalModuleReplacementPlugin } = require('webpack');
@@ -12,11 +14,11 @@ const osMapper: Record<string, BuildEnv['TARGET']> = {
   linux: 'linux',
   darwin: 'mac',
   win32: 'windows'
-}
+};
 
 module.exports = (env: BuildEnv): import('webpack').Configuration => {
   if (!env.TARGET) {
-    env.TARGET = osMapper[os.platform() as string]
+    env.TARGET = osMapper[os.platform() as string];
   }
 
   const IS_PROD = env.NODE_ENV === 'production';
@@ -27,7 +29,7 @@ module.exports = (env: BuildEnv): import('webpack').Configuration => {
     loader: 'ts-loader',
     exclude: /node_modules\/(?!@nuclear).*/,
     options: {
-      configFile: path.join(__dirname, `/config/tsconfig.${env.TARGET}.json`),
+      configFile: path.join(__dirname, `/config/tsconfig.${env.TARGET}.json`)
     }
   };
 
@@ -68,7 +70,7 @@ module.exports = (env: BuildEnv): import('webpack').Configuration => {
     plugins: [
       new CopyPlugin([
         { from: 'preload.js' },
-        { from: path.resolve(__dirname, '.env') }
+        { from: path.resolve(__dirname, '../../.env') }
       ]),
       new NormalModuleReplacementPlugin(/(.*)system-api(\.*)/, (resource: any) =>  {
         resource.request = resource.request.replace(/system-api/, `@${env.TARGET}/system-api`);

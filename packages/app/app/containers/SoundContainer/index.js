@@ -11,7 +11,7 @@ import * as QueueActions from '../../actions/queue';
 import * as ScrobblingActions from '../../actions/scrobbling';
 import * as LyricsActions from '../../actions/lyrics';
 import { filterFrequencies } from '../../components/Equalizer/chart';
-import { getSelectedStream } from '../../utils';
+import { getSelectedStream  } from '../../utils';
 import * as Autoradio from './autoradio';
 import globals from '../../globals';
 import { LastFmApi } from '@nuclear/core';
@@ -22,6 +22,12 @@ let lastfm = new LastFmApi(globals.lastfmApiKey, globals.lastfmApiSecret);
 class SoundContainer extends React.Component {
   constructor(props) {
     super(props);
+
+    this.handlePlaying = this.handlePlaying.bind(this);
+    this.handleFinishedPlaying = this.handleFinishedPlaying.bind(this);
+    this.handleLoading = this.handleLoading.bind(this);
+    this.handleLoaded = this.handleLoaded.bind(this);
+    this.handleError = this.handleError.bind(this);
   }
 
   handlePlaying (update) {
@@ -130,6 +136,10 @@ class SoundContainer extends React.Component {
     });
   }
 
+  handleError() {
+    this.props.actions.streamFailed();
+  }
+
   shouldComponentUpdate (nextProps) {
     const currentSong = nextProps.queue.queueItems[nextProps.queue.currentSong];
 
@@ -149,19 +159,35 @@ class SoundContainer extends React.Component {
     if (queue.queueItems.length > 0) {
       const currentSong = queue.queueItems[queue.currentSong];
 
+      let fallbackStreamProvider;
+      if (currentSong.failed) {
+        const defaultStreamProvider = plugins.plugins.streamProviders.find(({ sourceName }) => {
+          return sourceName === currentSong.selectedStream || plugins.selected.streamProviders;
+        });
+        fallbackStreamProvider = plugins.plugins.streamProviders.find(({ sourceName }) => {
+          return sourceName === defaultStreamProvider.fallback;
+        });
+      }
+
       streamUrl = (
-        getSelectedStream(currentSong.streams, plugins.selected.streamProviders) || {}
+        getSelectedStream(
+          currentSong.streams,
+          currentSong.failed
+            ? fallbackStreamProvider.sourceName
+            : currentSong.selectedStream || plugins.selected.streamProviders
+        ) || {}
       ).stream;
     }
     return !!streamUrl && (
       <Sound
         url={streamUrl}
         playStatus={player.playbackStatus}
-        onPlaying={this.handlePlaying.bind(this)}
-        onFinishedPlaying={this.handleFinishedPlaying.bind(this)}
-        onLoading={this.handleLoading.bind(this)}
-        onLoad={this.handleLoaded.bind(this)}
+        onPlaying={this.handlePlaying}
+        onFinishedPlaying={this.handleFinishedPlaying}
+        onLoading={this.handleLoading}
+        onLoad={this.handleLoaded}
         position={player.seek}
+        onError={this.handleError}
       >
         <Volume value={player.muted ? 0 : player.volume} />
         <Equalizer

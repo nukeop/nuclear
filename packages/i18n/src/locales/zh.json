@@ -167,6 +167,7 @@
     "github-description": "Log in via Github to be able to create and share your playlists online (upcoming feature).",
     "github-title": "Github",
     "http": "HTTP API",
+    "invidious-url": "Invidious instance url",
     "language": "语言",
     "language-placeholder": "选择一个语言",
     "lastfm-connect": "Connect with Last.fm",

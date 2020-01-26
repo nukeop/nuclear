@@ -1,11 +1,9 @@
-import globals from '../globals';
-
 export function search (query) {
   const limit = 10;
   const url =
     'https://api.jamendo.com/v3.0/artists/tracks/' +
     '?client_id=' +
-    globals.jamendoClientId +
+    process.env.JAMENDO_CLIENT_ID +
     '&format=jsonpretty' +
     '&limit=' +
     limit +
