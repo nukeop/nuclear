@@ -167,6 +167,7 @@
     "github-description": "Log masuk melalui Github agar dapat membuat dan berbagi daftar putar secara daring (fitur yang akan datang).",
     "github-title": "Github",
     "http": "HTTP API",
+    "invidious-url": "Invidious instance url",
     "language": "Bahasa",
     "language-placeholder": "Pilih bahasa",
     "lastfm-connect": "Sambungkan dengan Last.fm",

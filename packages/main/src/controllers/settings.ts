@@ -8,12 +8,14 @@ import Store from '../services/store';
 import SystemApi from '../services/system-api';
 import Window from '../services/window';
 import { ipcEvent, ipcController } from '../utils/decorators';
+import LocalLibrary from '../services/local-library';
 
 @ipcController()
 class SettingsIpcCtrl {
   constructor(
     @inject(Config) private config: Config,
     @inject(HttpApi) private httpApi: HttpApi,
+    @inject(LocalLibrary) private localLibrary: LocalLibrary,
     @inject(SystemApi) private systemApi: NuclearApi,
     @inject(Store) private store: Store,
     @inject(Window) private window: Window
@@ -22,13 +24,16 @@ class SettingsIpcCtrl {
   @ipcEvent('started', { once: true })
   onStart() {
     this.store.getOption('api.enabled') && this.httpApi.listen();
-
     this.systemApi.listen();
   }
 
   @ipcEvent('close')
   async onClose() {
-    await this.httpApi.close();
+    await Promise.all([
+      this.httpApi.close(),
+      this.localLibrary.cleanUnusedLocalThumbnails()
+    ]);
+  
     app.quit();
   }
 

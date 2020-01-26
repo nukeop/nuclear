@@ -1,6 +1,6 @@
 {
   "name": "nuclear",
-  "version": "0.6.1",
+  "version": "0.6.2",
   "description": "Streaming music player that finds music sources automatically.",
   "repository": {
     "type": "git",
@@ -58,7 +58,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged && lerna run i18n-sync && git add docs/i18n.md"
+      "pre-commit": "lint-staged && lerna run i18n-sync && git add -A"
     }
   },
   "lint-staged": {

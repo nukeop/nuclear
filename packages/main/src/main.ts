@@ -7,12 +7,12 @@ import logger from 'electron-timber';
 import { controllers, services } from './ioc';
 import Config from './services/config';
 import Discord from './services/discord';
-import HttpApi from './services/http';
 import Store from './services/store';
 import TrayMenu from './services/trayMenu';
 import Window from './services/window';
 import Container from './utils/container';
 import LocalLibrary from './services/local-library';
+import HttpApi from './services/http';
 
 app.commandLine.appendSwitch('autoplay-policy', 'no-user-gesture-required');
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -78,13 +78,16 @@ app.on('window-all-closed', async () => {
   try {
     logger.log('All windows closed, quitting');
     const store = container.get<Store>(Store);
+    const localLibrary = container.get<LocalLibrary>(LocalLibrary);
+
+    await localLibrary.cleanUnusedLocalThumbnails();
 
     if (store.getOption('api.enabled')) {
       const httpApi = container.get<HttpApi>(HttpApi);
       await httpApi.close();
     }
 
-    app.quit();
+    // app.quit();
   } catch (err) {
     logger.error('something fail during app close');
     logger.error(err);

@@ -172,6 +172,7 @@
     "github-description": "Melden Sie sich über Github an, um Ihre Playlists online erstellen und freigeben zu können (kommende Funktion).",
     "github-title": "Github",
     "http": "HTTP API",
+    "invidious-url": "Invidious instance url",
     "language": "Sprache",
     "language-placeholder": "Wähle eine Sprache",
     "lastfm-connect": "Verbinden mit Last.fm",

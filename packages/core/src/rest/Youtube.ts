@@ -1,15 +1,14 @@
-import { LastFmApi } from '';
+import LastFmApi from './lastfm';
 import ytdl from 'ytdl-core';
 
-import globals from '../globals';
 import ytlist from 'youtube-playlist';
 import getArtistTitle from 'get-artist-title';
 
 import { trackSearch } from './youtube-search';
 
 const lastfm = new LastFmApi(
-  globals.lastfmApiKey,
-  globals.lastfmApiSecret
+ process.env.LAST_FM_API_KEY,
+ process.env.LAST_FM_API_SECRET
 );
 
 export { trackSearch };

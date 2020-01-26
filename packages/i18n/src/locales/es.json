@@ -172,6 +172,7 @@
     "github-description": "Inicia sesión en GitHub para crear y compartir tus playlist en linea (proximamente disponible)",
     "github-title": "GitHub",
     "http": "HTTP API",
+    "invidious-url": "Invidious instance url",
     "language": "Idioma",
     "language-placeholder": "Elige un idioma",
     "lastfm-connect": "Conectar con Last.fm",

@@ -50,8 +50,8 @@ class LocalIpcCtrl {
    * Remove a local folder and all metadata attached to it 
    */
   @ipcEvent('remove-localfolder')
-  removeLocalFolder(event: IpcMessageEvent, localFolder: string) {
-    const metas = this.localLibraryDb.removeLocalFolder(localFolder);
+  async removeLocalFolder(event: IpcMessageEvent, localFolder: string) {
+    const metas = await this.localLibrary.removeLocalFolder(localFolder);
 
     this.window.send('local-files', metas);
   }

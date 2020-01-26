@@ -75,16 +75,46 @@ class PlayQueue extends React.PureComponent {
   }
 
   handleRerollTrack = (track) => {
+    let musicSource = this.props.plugins.plugins.streamProviders.find(
+      s => s.sourceName === (track.selectedStream || this.props.plugins.selected.streamProviders)
+    );
+  
+    if (track.failed) {
+      musicSource = this.props.plugins.plugins.streamProviders.find(
+        s => s.sourceName === musicSource.fallback
+      );
+    }
+
     const selectedStream = getSelectedStream(
       track.streams,
-      this.props.plugins.selected.streamProviders
-    );
-    const musicSource = _.find(
-      this.props.plugins.plugins.streamProviders,
-      s => s.sourceName === selectedStream.source
+      musicSource.sourceName
     );
 
     this.props.actions.rerollTrack(musicSource, selectedStream, track);
+  }
+
+  getSelectedStream(track) {
+    const { plugins } = this.props;
+    let fallbackStreamProvider;
+  
+    if (track.failed) {
+      const defaultStreamProvider = plugins.plugins.streamProviders.find(({ sourceName }) => {
+        return sourceName === plugins.selected.streamProviders;
+      });
+      fallbackStreamProvider = plugins.plugins.streamProviders.find(({ sourceName }) => {
+        return sourceName === defaultStreamProvider.fallback;
+      });
+    }
+    return getSelectedStream(
+      track.streams,
+      track.failed
+        ? fallbackStreamProvider.sourceName
+        : track.selectedStream || this.props.plugins.selected.streamProviders
+    );
+  }
+
+  handleSelectStream = ({ track, stream }) => {
+    this.props.actions.changeTrackStream(track, stream);
   }
 
   renderQueueItems() {
@@ -131,11 +161,9 @@ class PlayQueue extends React.PureComponent {
                   />
                 }
                 onRerollTrack={this.handleRerollTrack}
+                onSelectStream={this.handleSelectStream}
                 track={el}
-                selectedStream={getSelectedStream(
-                  el.streams,
-                  this.props.plugins.selected.streamProviders
-                )}
+                selectedStream={this.getSelectedStream(el)}
                 dropdownOptions={dropdownOptions}
                 titleLabel={this.props.t('title')}
                 idLabel={this.props.t('id')}
