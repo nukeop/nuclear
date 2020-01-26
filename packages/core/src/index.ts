@@ -11,3 +11,4 @@ export { default as LyricsProvider } from './plugins/lyricsProvider';
 export { default as MetaProvider } from './plugins/metaProvider';
 export { default as StreamProvider } from './plugins/streamProvider';
 export { config as PluginConfig } from './plugins/config';
+export { default as createApi } from './plugins/api';

@@ -8,6 +8,7 @@ import _ from 'lodash';
 import Sound from 'react-hifi';
 import { withTranslation } from 'react-i18next';
 import { Cover, formatDuration } from '@nuclear/ui';
+import { PluginConfig } from '@nuclear/core';
 
 import * as SearchActions from './actions/search';
 import * as PlayerActions from './actions/player';
@@ -28,7 +29,6 @@ import logoImg from '../resources/media/logo_full_light.png';
 import logoIcon from '../resources/media/512x512.png';
 import artPlaceholder from '../resources/media/art_placeholder.png';
 
-import { config as PluginConfig } from './plugins/config';
 import settingsConst from './constants/settings';
 
 import PlaylistsSubMenu from './components/PlaylistsSubMenu';

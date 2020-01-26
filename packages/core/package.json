@@ -23,12 +23,14 @@
     "@babel/core": "^7.7.7",
     "@babel/preset-env": "^7.7.7",
     "@babel/preset-react": "^7.7.4",
+    "electron-timber": "^0.5.1",
     "isomorphic-fetch": "^2.2.1",
     "md5": "^2.2.1",
     "nodebrainz": "^2.1.1",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
-    "redux": "^4.0.5"
+    "redux": "^4.0.5",
+    "simple-get-lyrics": "0.0.4"
   },
   "devDependencies": {
     "@types/isomorphic-fetch": "0.0.35",
@@ -39,7 +41,8 @@
     "ava": "^2.4.0",
     "eslint": "^6.8.0",
     "ts-node": "^8.5.4",
-    "typescript": "^3.7.3"
+    "typescript": "^3.7.3",
+    "ytdl-core": "^1.0.7"
   },
   "ava": {
     "files": [

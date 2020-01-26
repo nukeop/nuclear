@@ -5,13 +5,11 @@ import globals from '../../../../app/app/globals';
 import StreamProviderPlugin from '../streamProvider';
 import * as Soundcloud from '../../../../app/app/rest/Soundcloud';
 
-class SoundcloudPlugin extends StreamProviderPlugin {
-  constructor() {
-    super();
-    this.name = 'Soundcloud Plugin';
-    this.sourceName = 'Soundcloud';
-    this.description = 'Allows Nuclear to find music streams on Soundcloud';
-  }
+class SoundcloudPlugin implements StreamProviderPlugin {
+  name: 'Soundcloud Plugin';
+  sourceName: 'Soundcloud';
+  description: 'Allows Nuclear to find music streams on Soundcloud';
+  image: null;
 
   resultToStream(result) {
     return {
@@ -24,7 +22,7 @@ class SoundcloudPlugin extends StreamProviderPlugin {
     };
   }
 
-  search(query) {
+  search(query: StreamQuery) {
     let terms = query.artist + ' ' + query.track;
     return Soundcloud.soundcloudSearch(terms)
       .then(data => data.json())
@@ -38,7 +36,7 @@ class SoundcloudPlugin extends StreamProviderPlugin {
       });
   }
 
-  getAlternateStream(query, currentStream) {
+  getAlternateStream(query: StreamQuery, currentStream: { id: string }) {
     let terms = query.artist + ' ' + query.track;
     return Soundcloud.soundcloudSearch(terms)
       .then(data => data.json())
