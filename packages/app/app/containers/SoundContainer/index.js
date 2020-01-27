@@ -14,9 +14,9 @@ import { filterFrequencies } from '../../components/Equalizer/chart';
 import { getSelectedStream  } from '../../utils';
 import * as Autoradio from './autoradio';
 import globals from '../../globals';
-import { LastFmApi, mpris } from '@nuclear/core';
+import { rest, mpris } from '@nuclear/core';
 
-let lastfm = new LastFmApi(globals.lastfmApiKey, globals.lastfmApiSecret);
+let lastfm = new rest.LastFmApi(globals.lastfmApiKey, globals.lastfmApiSecret);
 
 class SoundContainer extends React.Component {
   constructor(props) {

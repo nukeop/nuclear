@@ -1,8 +1,8 @@
 import test from 'ava';
-import { LastFmApi } from '../src';
+import { rest } from '../src';
 
-const setupLastFmApi = (key: string, secret: string): LastFmApi => {
-  return new LastFmApi(key, secret);
+const setupLastFmApi = (key: string, secret: string): rest.LastFmApi => {
+  return new rest.LastFmApi(key, secret);
 };
 
 test('add api key to url', t => {

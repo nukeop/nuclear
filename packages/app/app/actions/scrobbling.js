@@ -1,10 +1,10 @@
 import electron from 'electron';
 import { store } from '@nuclear/core';
-import { LastFmApi } from '@nuclear/core';
+import { rest } from '@nuclear/core';
 
 import globals from '../globals';
 
-const lastfm = new LastFmApi(globals.lastfmApiKey, globals.lastfmApiSecret);
+const lastfm = new rest.LastFmApi(globals.lastfmApiKey, globals.lastfmApiSecret);
 
 export const LASTFM_CONNECT = 'LASTFM_CONNECT';
 export const LASTFM_LOGIN = 'LASTFM_LOGIN';

@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 const apiUrl = 'https://api.discogs.com/';
 const userToken = 'QDUeFOZNwIwOePlxpVziEHzamhbIHUdfENAJTnLR';
 // const key = 'EZaGPpKGBbTkjwmpjmNY';
@@ -17,7 +19,7 @@ function searchQuery(terms, count = 15) {
   );
 }
 
-function search(terms, type, count = 15) {
+function search(terms, type?, count = 15) {
   let query = searchQuery(terms, count);
   if (!_.isNil(type)) {
     query += `&type=${type}`;
@@ -55,7 +57,7 @@ function artistReleases(artistId) {
   );
 }
 
-module.exports = {
+export {
   search,
   releaseInfo,
   artistInfo,

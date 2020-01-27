@@ -1,5 +1,5 @@
 import MetaProvider from '../metaProvider';
-import discogs from '../../rest/Discogs';
+import * as Discogs from '../../rest/Discogs';
 
 const SEARCH_TYPE = Object.freeze({
   ARTIST: 'artist',
@@ -15,13 +15,13 @@ class DiscogsMetaProvider implements MetaProvider {
   image: null;
 
   searchForArtists(query: string): Promise<Array<SearchResultsArtist>> {
-    return discogs.search(query, SEARCH_TYPE.ARTIST)
+    return Discogs.search(query, SEARCH_TYPE.ARTIST)
       .then(response => response.json())
       .then(json => json.results);
   }
 
   searchForReleases(query: string): Promise<Array<SearchResultsAlbum>> {
-    return discogs.search(query, SEARCH_TYPE.MASTER)
+    return Discogs.search(query, SEARCH_TYPE.MASTER)
       .then(response => response.json())
       .then(json => json.results);
   }
@@ -35,7 +35,7 @@ class DiscogsMetaProvider implements MetaProvider {
     releases: Array<SearchResultsAlbum>;
     tracks: Array<SearchResultsTrack>;
   }> {
-    return discogs.search(query)
+    return Discogs.search(query)
       .then(response => response.json())
       .then(json => json.results);
   }
