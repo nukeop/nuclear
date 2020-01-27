@@ -37,7 +37,7 @@ const PRIMARY_LANGUAGE = 'en';
       newKeysEmpty: false
     });
 
-    const data = {};
+    const data: Record<string, Record<string, string[]>> = {};
 
     const enJson = await promisify(fs.readFile)(path.resolve(__dirname, `../src/locales/${PRIMARY_LANGUAGE}.json`), 'utf-8');
     const files = (await promisify(glob)(localesPath)).filter(filePath => !filePath.includes('en.json'));
