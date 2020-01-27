@@ -67,7 +67,7 @@ class LocalLibrary {
     if (common.picture && common.album) {
       imagePath = await this.persistCover(
         common.picture[0].data,
-        common.album || crypto.createHash('md5').update(path.basename(filePath)).digest('hex'),
+        crypto.createHash('md5').update(path.basename(common.album || filePath)).digest('hex'),
         common.picture[0].format
       );
     }
