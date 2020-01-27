@@ -1,9 +1,8 @@
 import logger from 'electron-timber';
 import _ from 'lodash';
 
-import globals from '../../../../app/app/globals';
 import StreamProviderPlugin from '../streamProvider';
-import * as Soundcloud from '../../../../app/app/rest/Soundcloud';
+import * as Soundcloud from '../../rest/Soundcloud';
 
 class SoundcloudPlugin implements StreamProviderPlugin {
   name: 'Soundcloud Plugin';
@@ -15,14 +14,14 @@ class SoundcloudPlugin implements StreamProviderPlugin {
     return {
       source: this.sourceName,
       id: result.id,
-      stream: result.stream_url + `?client_id=${globals.soundcloudApiKey}`,
+      stream: result.stream_url + `?client_id=${process.env.SOUNDCLOUD_API_KEY}`,
       duration: result.duration,
       title: result.title,
       thumbnail: result.user.avatar_url
     };
   }
 
-  search(query: StreamQuery) {
+  search(query: StreamQuery): Promise<StreamData|void> {
     let terms = query.artist + ' ' + query.track;
     return Soundcloud.soundcloudSearch(terms)
       .then(data => data.json())
@@ -36,7 +35,7 @@ class SoundcloudPlugin implements StreamProviderPlugin {
       });
   }
 
-  getAlternateStream(query: StreamQuery, currentStream: { id: string }) {
+  getAlternateStream(query: StreamQuery, currentStream: { id: string }): Promise<StreamData|void> {
     let terms = query.artist + ' ' + query.track;
     return Soundcloud.soundcloudSearch(terms)
       .then(data => data.json())

@@ -9,18 +9,18 @@ import {
   UPDATE_LIBRARY_LIST_TYPE,
   UPDATE_LOCAL_FOLDERS
 } from '../actions/local';
-import { getLocalFolders, getLocalMetas } from '../mpris';
+import { mpris } from '@nuclear/core';
 
 const initialState = {
   pending: false,
   error: false,
-  folders: getLocalFolders(),
+  folders: mpris.getLocalFolders(),
   page: 0,
   sortBy: 'artist',
   direction: 'ascending',
   filter: '',
   listType: LIST_TYPE.SIMPLE_LIST,
-  tracks: getLocalMetas()
+  tracks: mpris.getLocalMetas()
 };
 
 export default function LocalReducer(state = initialState, action) {

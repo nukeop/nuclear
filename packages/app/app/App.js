@@ -19,7 +19,7 @@ import * as SettingsActions from './actions/settings';
 import * as ScrobblingActions from './actions/scrobbling';
 import * as ConnectivityActions from './actions/connectivity';
 import * as GithubContribActions from './actions/githubContrib';
-import { sendPaused } from './mpris';
+import { mpris } from '@nuclear/core';
 
 import './app.global.scss';
 import styles from './styles.scss';
@@ -59,8 +59,6 @@ import TrackInfo from './components/TrackInfo';
 import WindowControls from './components/WindowControls';
 import VolumeControls from './components/VolumeControls';
 
-import * as mpris from './mpris';
-
 @withTranslation('app')
 class App extends React.PureComponent {
   constructor(props) {
@@ -89,7 +87,7 @@ class App extends React.PureComponent {
     if (this.props.player.playbackStatus === Sound.status.PAUSED) {
       this.scrobbleLastFmIfAble();
     }
-    this.props.actions.togglePlayback(this.props.player.playbackStatus, sendPaused);
+    this.props.actions.togglePlayback(this.props.player.playbackStatus, mpris.sendPaused);
   }
 
   nextSong () {

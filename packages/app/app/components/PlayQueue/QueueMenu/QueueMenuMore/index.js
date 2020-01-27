@@ -5,7 +5,7 @@ import _ from 'lodash';
 import { Dropdown, Icon } from 'semantic-ui-react';
 import { useTranslation } from 'react-i18next';
 import { compose, withHandlers, defaultProps } from 'recompose';
-import { sendPaused } from '../../../../mpris';
+import { mpris } from '@nuclear/core';
 import styles from './styles.scss';
 
 const addTrackToPlaylist = (updatePlaylist, playlist, track) => {
@@ -98,7 +98,7 @@ QueueMenuMore.defaultProps = {
 };
 
 export const enhance = compose(
-  defaultProps({ sendPaused }),
+  defaultProps({ sendPaused: mpris.sendPaused }),
   withHandlers({
     handleAddToDownloads: ({addToDownloads, currentItem}) => () => addToDownloads(currentItem),
     handleAddFavoriteTrack: ({addFavoriteTrack, currentItem}) => () => {

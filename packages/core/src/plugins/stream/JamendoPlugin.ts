@@ -2,7 +2,7 @@ import logger from 'electron-timber';
 import _ from 'lodash';
 
 import StreamProviderPlugin from '../streamProvider';
-import * as Jamendo from '../../../../app/app/rest/Jamendo';
+import * as Jamendo from '../../rest/Jamendo';
 
 class JamendoPlugin implements StreamProviderPlugin {
   name: 'Jamendo Plugin';

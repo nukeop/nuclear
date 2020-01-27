@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import electronStore from 'electron-store';
 
-import { settingsConfig } from '@nuclear/core';
+import { settingsConfig } from '../settings';
 import { restartApi, stopApi } from '../mpris';
 
 const store = new electronStore();

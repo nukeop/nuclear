@@ -5,17 +5,17 @@ import 'semantic-ui-css/semantic.min.css';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
+import logger from 'electron-timber';
 import { MemoryRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { AppContainer, setConfig } from 'react-hot-loader';
 import { I18nextProvider } from 'react-i18next';
-import logger from 'electron-timber';
-import i18n, { setupI18n } from '@nuclear/i18n';
 import { remote } from 'electron';
+import { getOption, setOption } from '@nuclear/core';
+import i18n, { setupI18n } from '@nuclear/i18n';
 
 import App from './App';
 import configureStore from './store/configureStore';
-import { getOption, setOption } from './persistence/store';
 
 logger.hookConsole({
   renderer: true

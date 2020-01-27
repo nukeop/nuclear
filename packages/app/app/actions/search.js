@@ -1,13 +1,10 @@
 import logger from 'electron-timber';
-import { LastFmApi } from '@nuclear/core';
+import { rest } from '@nuclear/core';
 import _ from 'lodash';
 import artPlaceholder from '../../resources/media/art_placeholder.png';
 import globals from '../globals';
 
-const discogs = require('../rest/Discogs');
-const youtube = require('../rest/Youtube');
-
-const lastfm = new LastFmApi(globals.lastfmApiKey, globals.lastfmApiSecret);
+const lastfm = new rest.LastFmApi(globals.lastfmApiKey, globals.lastfmApiSecret);
 
 export const UNIFIED_SEARCH_START = 'UNIFIED_SEARCH_START';
 export const UNIFIED_SEARCH_SUCCESS = 'UNIFIED_SEARCH_SUCCESS';
@@ -35,11 +32,6 @@ export const LASTFM_TRACK_SEARCH_SUCCESS = 'LASTFM_TRACK_SEARCH_SUCCESS';
 
 export const YOUTUBE_PLAYLIST_SEARCH_START = 'YOUTUBE_PLAYLIST_SEARCH_START';
 export const YOUTUBE_PLAYLIST_SEARCH_SUCCESS = 'YOUTUBE_PLAYLIST_SEARCH_SUCCESS';
-
-const SEARCH_TYPE = Object.freeze({
-  ARTIST: 'artist',
-  MASTER: 'master'
-});
 
 export function sourcesSearch (terms, plugins) {
   let searchResults = {};
@@ -71,7 +63,7 @@ export function unifiedSearchError () {
 
 function discogsSearch (terms, searchType, dispatchType) {
   return dispatch => {
-    return discogs.search(terms, searchType)
+    return rest.Discogs.search(terms, searchType)
       .then(searchResults => searchResults.json())
       .then(searchResultsJson => {
         dispatch({
@@ -190,7 +182,7 @@ export function youtubePlaylistSearchSuccess (terms, results) {
 export function youtubePlaylistSearch (terms) {
   return dispatch => {
     dispatch(youtubePlaylistSearchStart(terms));
-    youtube.urlSearch(terms)
+    rest.Youtube.urlSearch(terms)
       .then(results => {
         dispatch(
           youtubePlaylistSearchSuccess(terms, results)
@@ -245,7 +237,7 @@ export function albumInfoSuccess (albumId, info) {
 export function albumInfoSearch (albumId, releaseType='master', release) {
   return dispatch => {
     dispatch(albumInfoStart(albumId));
-    discogs
+    rest.Discogs
       .releaseInfo(albumId, releaseType, release)
       .then(info => {
         if (info.ok) {
@@ -283,7 +275,7 @@ export function artistInfoSuccess (artistId, info) {
 export function artistInfoSearch (artistId) {
   return dispatch => {
     dispatch(artistInfoStart(artistId));
-    discogs
+    rest.Discogs
       .artistInfo(artistId)
       .then(info => info.json())
       .then(artistInfo => {
@@ -316,7 +308,7 @@ export function artistReleasesSuccess (artistId, releases) {
 export function artistReleasesSearch (artistId) {
   return dispatch => {
     dispatch(artistReleasesStart(artistId));
-    discogs
+    rest.Discogs
       .artistReleases(artistId)
       .then(releases => releases.json())
       .then(releases => {
@@ -349,7 +341,7 @@ export function artistInfoSearchByName (artistName, history) {
 
 export function albumInfoSearchByName (albumName, history) {
   return dispatch => {
-    discogs
+    rest.Discogs
       .search(albumName, 'albums')
       .then(searchResults => searchResults.json())
       .then(searchResultsJson => {

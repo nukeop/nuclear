@@ -3,8 +3,7 @@ import _ from 'lodash';
 import ytdl from 'ytdl-core';
 
 import StreamProviderPlugin from '../streamProvider';
-import * as Youtube from '../../../../app/app/rest/Youtube';
-import { promises } from 'dns';
+import * as Youtube from '../../rest/Youtube';
 
 class YoutubePlugin implements StreamProviderPlugin {
   name: 'Youtube Plugin';
@@ -12,7 +11,7 @@ class YoutubePlugin implements StreamProviderPlugin {
   description: 'A plugin allowing Nuclear to search for music and play it from youtube';
   image: null;
 
-  search(query: StreamQuery): Promise<StreamData> {
+  search(query: StreamQuery): Promise<StreamData|void> {
     let terms = query.artist + ' ' + query.track;
     return Youtube.trackSearch(terms)
       .then(results => results.json())
@@ -30,7 +29,7 @@ class YoutubePlugin implements StreamProviderPlugin {
           source: this.sourceName,
           id: videoInfo.video_id,
           stream: formatInfo.url,
-          duration: videoInfo.length_seconds,
+          duration: parseInt(videoInfo.length_seconds),
           title: videoInfo.title,
           thumbnail
         };
@@ -41,7 +40,7 @@ class YoutubePlugin implements StreamProviderPlugin {
       });
   }
 
-  getAlternateStream(query: StreamQuery, currentStream: { id: string }): Promise<StreamData> {
+  getAlternateStream(query: StreamQuery, currentStream: { id: string }): Promise<StreamData|void> {
     let terms = query.artist + ' ' + query.track;
     return Youtube.trackSearch(terms)
       .then(results => results.json())
@@ -58,7 +57,7 @@ class YoutubePlugin implements StreamProviderPlugin {
           source: this.sourceName,
           id: videoInfo.video_id,
           stream: formatInfo.url,
-          duration: videoInfo.length_seconds,
+          duration: parseInt(videoInfo.length_seconds),
           title: videoInfo.title,
           thumbnail: videoInfo.thumbnail_url
         };

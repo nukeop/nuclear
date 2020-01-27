@@ -8,9 +8,9 @@ import _ from 'lodash';
 import { withState, compose } from 'recompose';
 
 import { QueueItem, QueuePopup, formatDuration } from '@nuclear/ui';
+import { mpris } from '@nuclear/core';
 
 import { getTrackDuration, getSelectedStream } from '../../utils';
-import { sendPaused } from '../../mpris';
 import { safeAddUuid } from '../../actions/helpers';
 import styles from './styles.scss';
 
@@ -157,7 +157,7 @@ class PlayQueue extends React.PureComponent {
                       )
                     }
                     resetPlayer={this.props.items.length === 1 ? this.props.actions.resetPlayer : undefined}
-                    sendPaused={sendPaused}
+                    sendPaused={mpris.sendPaused}
                   />
                 }
                 onRerollTrack={this.handleRerollTrack}
