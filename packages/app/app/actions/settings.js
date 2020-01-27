@@ -1,5 +1,5 @@
-import { store, setOption } from '../persistence/store';
-import { sendShuffle, sendLoop } from '../mpris';
+import { store, setOption } from '@nuclear/core';
+import { mpris } from '@nuclear/core';
 
 export const READ_SETTINGS = 'READ_SETTINGS';
 export const SET_BOOLEAN_OPTION = 'SET_BOOLEAN_OPTION';
@@ -19,10 +19,10 @@ export function setBooleanOption(option, state) {
 
   switch (option) {
   case 'shuffleQueue':
-    sendShuffle(state);
+    mpris.sendShuffle(state);
     break;
   case 'loopAfterQueueEnd':
-    sendLoop(state);
+    mpris.sendLoop(state);
     break;
   }
 

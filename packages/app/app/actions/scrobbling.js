@@ -1,7 +1,9 @@
-import { store } from '../persistence/store';
+import electron from 'electron';
+import { store } from '@nuclear/core';
 import { LastFmApi } from '@nuclear/core';
+
 import globals from '../globals';
-const electron = window.require('electron');
+
 const lastfm = new LastFmApi(globals.lastfmApiKey, globals.lastfmApiSecret);
 
 export const LASTFM_CONNECT = 'LASTFM_CONNECT';

@@ -2,7 +2,7 @@ import _ from 'lodash';
 
 import { safeAddUuid } from './helpers';
 import { startPlayback } from './player.js';
-import * as mpris from '../mpris';
+import { mpris } from '@nuclear/core';
 
 export const ADD_TO_QUEUE = 'ADD_TO_QUEUE';
 export const REMOVE_FROM_QUEUE = 'REMOVE_FROM_QUEUE';
