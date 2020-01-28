@@ -20,14 +20,14 @@ type SearchResultsTrack = {
 
 type StreamQuery = {
     artist: string;
-     track: string;
-  }
+    track: string;
+}
 
-  type StreamData = {
-      source: string;
-      id: string;
-      stream: string;
-      duration: number;
-      title: string;
-      thumbnail: string;
-  }
+type StreamData = {
+    source: string;
+    id: string;
+    stream: string;
+    duration: number;
+    title: string;
+    thumbnail: string;
+}
