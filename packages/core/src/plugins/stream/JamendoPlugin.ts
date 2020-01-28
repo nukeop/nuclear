@@ -4,11 +4,14 @@ import _ from 'lodash';
 import StreamProviderPlugin from '../streamProvider';
 import * as Jamendo from '../../rest/Jamendo';
 
-class JamendoPlugin implements StreamProviderPlugin {
-  name: 'Jamendo Plugin';
-  sourceName: 'Jamendo';
-  description: 'Allows Nuclear to find music streams on Jamendo';
-  image: null;
+class JamendoPlugin extends StreamProviderPlugin {
+  constructor(){
+  super();
+    this.name = 'Jamendo Plugin';
+    this.sourceName = 'Jamendo';
+    this.description = 'Allows Nuclear to find music streams on Jamendo';
+    this.image = null;
+  }
 
   search(query) {
     return this.getSearchResults(query).then(responseJson => {
