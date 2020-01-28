@@ -14,7 +14,7 @@ class YoutubePlugin extends StreamProviderPlugin {
     this.image = null;
   }
 
-  search(query: StreamQuery): Promise<StreamData|void> {
+  search(query: StreamQuery): Promise<StreamData | void> {
     let terms = query.artist + ' ' + query.track;
     return Youtube.trackSearch(terms)
       .then(results => results.json())
@@ -43,7 +43,7 @@ class YoutubePlugin extends StreamProviderPlugin {
       });
   }
 
-  getAlternateStream(query: StreamQuery, currentStream: { id: string }): Promise<StreamData|void> {
+  getAlternateStream(query: StreamQuery, currentStream: { id: string }): Promise<StreamData | void> {
     let terms = query.artist + ' ' + query.track;
     return Youtube.trackSearch(terms)
       .then(results => results.json())

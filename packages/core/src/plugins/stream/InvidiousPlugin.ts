@@ -3,11 +3,14 @@ import logger from 'electron-timber';
 import StreamProviderPlugin from '../streamProvider';
 import * as Invidious from '../../rest/Invidious';
 
-class InvidiousPlugin implements StreamProviderPlugin {
-  name: 'Invidious Plugin';
-  sourceName: 'Invidious';
-  description: 'A plugin allowing Nuclear to search for music and play it from invidious';
-  image: null;
+class InvidiousPlugin extends StreamProviderPlugin {
+  constructor() {
+    super();
+    this.name = 'Invidious Plugin';
+    this.sourceName = 'Invidious';
+    this.description = 'A plugin allowing Nuclear to search for music and play it from invidious';
+    this.image = null;
+  }
 
   async search(query) {
     const terms = query.artist + ' ' + query.track;

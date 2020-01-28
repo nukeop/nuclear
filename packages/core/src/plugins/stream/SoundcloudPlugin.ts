@@ -4,11 +4,14 @@ import _ from 'lodash';
 import StreamProviderPlugin from '../streamProvider';
 import * as Soundcloud from '../../rest/Soundcloud';
 
-class SoundcloudPlugin implements StreamProviderPlugin {
-  name: 'Soundcloud Plugin';
-  sourceName: 'Soundcloud';
-  description: 'Allows Nuclear to find music streams on Soundcloud';
-  image: null;
+class SoundcloudPlugin extends StreamProviderPlugin {
+  constructor() {
+    super();
+    this.name = 'Soundcloud Plugin';
+    this.sourceName = 'Soundcloud';
+    this.description = 'Allows Nuclear to find music streams on Soundcloud';
+    this.image = null;
+  }
 
   resultToStream(result) {
     return {
@@ -21,7 +24,7 @@ class SoundcloudPlugin implements StreamProviderPlugin {
     };
   }
 
-  search(query: StreamQuery): Promise<StreamData|void> {
+  search(query: StreamQuery): Promise<StreamData | void> {
     let terms = query.artist + ' ' + query.track;
     return Soundcloud.soundcloudSearch(terms)
       .then(data => data.json())
@@ -35,7 +38,7 @@ class SoundcloudPlugin implements StreamProviderPlugin {
       });
   }
 
-  getAlternateStream(query: StreamQuery, currentStream: { id: string }): Promise<StreamData|void> {
+  getAlternateStream(query: StreamQuery, currentStream: { id: string }): Promise<StreamData | void> {
     let terms = query.artist + ' ' + query.track;
     return Soundcloud.soundcloudSearch(terms)
       .then(data => data.json())
