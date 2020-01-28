@@ -5,11 +5,14 @@ import ytdl from 'ytdl-core';
 import StreamProviderPlugin from '../streamProvider';
 import * as Youtube from '../../rest/Youtube';
 
-class YoutubePlugin implements StreamProviderPlugin {
-  name: 'Youtube Plugin';
-  sourceName: 'Youtube';
-  description: 'A plugin allowing Nuclear to search for music and play it from youtube';
-  image: null;
+class YoutubePlugin extends StreamProviderPlugin {
+  constructor() {
+    super();
+    this.name = 'Youtube Plugin';
+    this.sourceName = 'Youtube';
+    this.description = 'A plugin allowing Nuclear to search for music and play it from youtube';
+    this.image = null;
+  }
 
   search(query: StreamQuery): Promise<StreamData|void> {
     let terms = query.artist + ' ' + query.track;

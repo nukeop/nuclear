@@ -7,12 +7,15 @@ const SEARCH_TYPE = Object.freeze({
   RELEASE: 'release'
 });
 
-class DiscogsMetaProvider implements MetaProvider {
-  name: 'Discogs Meta Provider';
-  sourceName: 'Discogs Metadata Provider';
-  description: 'Metadata provider that uses Discogs as a source.';
-  searchName: 'Discogs';
-  image: null;
+class DiscogsMetaProvider extends MetaProvider {
+  constructor() {
+    super();
+    this.name = 'Discogs Meta Provider';
+    this.searchName = 'Discogs';
+    this.sourceName = 'Discogs Metadata Provider';
+    this.description = 'Metadata provider that uses Discogs as a source.';
+    this.image = null;
+  }
 
   searchForArtists(query: string): Promise<Array<SearchResultsArtist>> {
     return Discogs.search(query, SEARCH_TYPE.ARTIST)
