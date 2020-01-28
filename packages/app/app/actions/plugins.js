@@ -22,6 +22,8 @@ export const SERIALIZE_PLUGINS = 'SERIALIZE_PLUGINS';
 export const DESERIALIZE_PLUGINS = 'DESERIALIZE_PLUGINS';
 
 export function createPlugins (pluginClasses) {
+
+  console.log(pluginClasses)
   let plugins = {};
 
   for (let i = 0; i < Object.keys(pluginClasses).length; i++) {
@@ -37,6 +39,8 @@ export function createPlugins (pluginClasses) {
       plugins[category].push(plugin);
     }
   }
+
+console.log(plugins)
 
   const categories = Object.keys(pluginClasses);
   let selected = {};

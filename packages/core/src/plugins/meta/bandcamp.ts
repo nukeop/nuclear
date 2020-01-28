@@ -1,20 +1,23 @@
 import MetaProvider from '../metaProvider';
 
-class BandcampMetaProvider implements MetaProvider {
-  image: string;
-  name: 'Bandcamp Meta Provider';
-  sourceName: 'Bandcamp Meta Provider';
-  description: 'Metadata provider that uses Bandcamp as a source.';
-  searchName: 'Bandcamp';
-  
+class BandcampMetaProvider extends MetaProvider {
+  constructor() {
+    super();
+    this.name = 'Bandcamp Meta Provider';
+    this.sourceName = 'Bandcamp Meta Provider';
+    this.description = 'Metadata provider that uses Bandcamp as a source.';
+    this.searchName = 'Bandcamp';
+    this.image = null;
+  }
+
   searchForArtists(query): Promise<Array<SearchResultsArtist>> {
     throw new Error("Method not implemented.");
   }
-  
+
   searchForReleases(query): Promise<Array<SearchResultsAlbum>> {
     throw new Error("Method not implemented.");
   }
-  
+
   searchForTracks(query): Promise<SearchResultsTrack[]> {
     throw new Error("Method not implemented.");
   }
