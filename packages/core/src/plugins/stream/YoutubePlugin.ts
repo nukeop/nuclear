@@ -2,6 +2,7 @@ import logger from 'electron-timber';
 import _ from 'lodash';
 import ytdl from 'ytdl-core';
 
+import { StreamData, StreamQuery } from '../plugins.types';
 import StreamProviderPlugin from '../streamProvider';
 import * as Youtube from '../../rest/Youtube';
 

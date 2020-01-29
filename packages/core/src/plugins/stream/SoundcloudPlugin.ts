@@ -1,6 +1,7 @@
 import logger from 'electron-timber';
 import _ from 'lodash';
 
+import { StreamData, StreamQuery } from '../plugins.types';
 import StreamProviderPlugin from '../streamProvider';
 import * as Soundcloud from '../../rest/Soundcloud';
 
