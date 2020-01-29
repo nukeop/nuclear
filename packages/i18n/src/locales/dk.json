@@ -157,6 +157,8 @@
     "downloads-dir": "Downloads directory",
     "downloads-dir-button": "Choose a directory...",
     "enable-api": "Aktiver api'en",
+    "fmfav-btn": "Import",
+    "fmfav-msg": "Import your Last.fm Favorites",
     "frameless-window": "Frameless window (En genstart er påkrævet)",
     "github-connect": "Log ind med Github",
     "github-description": "Log ind via Github for at kunne oprette og dele dine afspilningslister online (Kommende feature).",

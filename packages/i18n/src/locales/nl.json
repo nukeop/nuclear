@@ -167,6 +167,8 @@
     "downloads-dir": "Downloads directory",
     "downloads-dir-button": "Choose a directory...",
     "enable-api": "API inschakelen",
+    "fmfav-btn": "Import",
+    "fmfav-msg": "Import your Last.fm Favorites",
     "frameless-window": "Naadloos venster (herstart vereist)",
     "github-connect": "Inloggen via GitHub",
     "github-description": "Log in met je GitHub-account om online-afspeellijsten te creëren en delen (binnenkort).",

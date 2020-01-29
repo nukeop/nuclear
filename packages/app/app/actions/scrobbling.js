@@ -15,6 +15,10 @@ export const LASTFM_DISABLE_SCROBBLING = 'LASTFM_DISABLE_SCROBBLING';
 export const LASTFM_SCROBBLE = 'LASTFM_SCROBBLE';
 export const LASTFM_UPDATE_NOW_PLAYING = 'LASTFM_UPDATE_NOW_PLAYING';
 
+export const LASTFM_ENABLE_IMPORT = 'LASTFM_ENABLE_IMPORT';
+export const LASTFM_DISABLE_IMPORT = 'LASTFM_DISABLE_IMPORT';
+export const LASTFM_UPDATE_IMPORT_MESSAGE = 'LASTFM_UPDATE_IMPORT_MESSAGE';
+
 export function lastFmReadSettings() {
   return dispatch => {
     let settings = store.get('lastFm') || {};
@@ -25,7 +29,9 @@ export function lastFmReadSettings() {
           lastFmName: settings.lastFmName,
           lastFmAuthToken: settings.lastFmAuthToken,
           lastFmSessionKey: settings.lastFmSessionKey,
-          lastFmScrobblingEnabled: settings.lastFmScrobblingEnabled
+          lastFmScrobblingEnabled: settings.lastFmScrobblingEnabled,
+          lastFmFavImportStatus: settings.lastFmFavImportStatus,
+          lastFmFavImportMessage: settings.lastFmFavImportMessage
         }
       });
     } else {
@@ -65,15 +71,18 @@ export function lastFmLoginAction(authToken) {
 
         let sessionKey = response.session.key;
         let sessionName = response.session.name;
-
+        let importStatus = sessionKey ? true : false;
         store.set('lastFm.lastFmName', sessionName);
         store.set('lastFm.lastFmSessionKey', sessionKey);
-
+        store.set('lastFm.lastFmFavImportStatus', importStatus);
+        store.set('lastFm.lastFmFavImportMessage', '');
         dispatch({
           type: LASTFM_LOGIN,
           payload: {
             sessionKey,
-            name: sessionName
+            name: sessionName,
+            lastFmFavImportStatus: importStatus,
+            lastFmFavImportMessage: ''
           }
         });
       });
@@ -125,5 +134,40 @@ export function updateNowPlayingAction(artist, track, session) {
           payload: null
         });
       });
+  };
+}
+
+export function FmFavImport(){
+  let importStatus = store.get('lastFm.lastFmFavImportStatus');
+  if (importStatus){
+    store.set('lastFm.lastFmFavImportStatus', false);
+    return dispatch => {
+      dispatch({
+        type: LASTFM_DISABLE_IMPORT,
+        payload: null
+      });
+    };
+  } else {
+    store.set('lastFm.lastFmFavImportStatus', true);
+    return dispatch => {
+      dispatch({
+        type: LASTFM_ENABLE_IMPORT,
+        payload: null
+      });
+    };
+  }
+
+}
+
+export function FmFavUpdateMsg(msg) {
+  let updateMsg = msg;
+  store.set('lastFm.lastFmFavImportMessage', updateMsg);
+  return dispatch => {
+    dispatch({
+      type: LASTFM_UPDATE_IMPORT_MESSAGE,
+      payload: {
+        lastFmFavImportMessage: updateMsg
+      }
+    });
   };
 }

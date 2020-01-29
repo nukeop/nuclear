@@ -157,6 +157,8 @@
     "downloads-dir": "Downloads directory",
     "downloads-dir-button": "Mamili ng directory...",
     "enable-api": "I-enable ang API",
+    "fmfav-btn": "Import",
+    "fmfav-msg": "Import your Last.fm Favorites",
     "frameless-window": "Frameless window (Nangangailangan ng restart)",
     "github-connect": "Log in gamit ang Github",
     "github-description": "Log in gamit ang Github para makagawa at makabahagi ng iyong mga playlist online (upcoming feature).",

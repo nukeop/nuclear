@@ -158,6 +158,21 @@ class LastFmApi {
     ));
   }
 
+  getNumberOfLovedTracks(user: string, limit = 1): Promise<Response> {
+
+    return fetch(scrobblingApiUrl +
+      '?method=user.getlovedtracks&user=' +
+      user +
+      '&api_key=' +
+      this.key +
+      '&format=json&limit=' +
+      limit,
+    {
+      method: 'POST'
+    }
+    );
+  }
+
 }
 
 export default LastFmApi;

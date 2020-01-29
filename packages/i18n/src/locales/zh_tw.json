@@ -162,6 +162,8 @@
     "downloads-dir": "Downloads directory",
     "downloads-dir-button": "Choose a directory...",
     "enable-api": "啟用 api",
+    "fmfav-btn": "Import",
+    "fmfav-msg": "Import your Last.fm Favorites",
     "frameless-window": "Frameless window (需要重新啟動)",
     "github-connect": "用GitHub登入",
     "github-description": "登入 GitHub 並將歌曲清單分享到網路 (即將期待).",
