@@ -1,4 +1,9 @@
 import Plugin from './plugin';
+import {
+  SearchResultsArtist,
+  SearchResultsAlbum,
+  SearchResultsTrack
+} from './plugins.types';
 
 abstract class MetaProvider extends Plugin {
   sourceName: string;

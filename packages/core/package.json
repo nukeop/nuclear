@@ -23,6 +23,7 @@
     "@babel/core": "^7.7.7",
     "@babel/preset-env": "^7.7.7",
     "@babel/preset-react": "^7.7.4",
+    "bandcamp-scraper": "^1.2.4",
     "electron-store": "^5.1.0",
     "electron-timber": "^0.5.1",
     "get-artist-title": "^1.2.0",

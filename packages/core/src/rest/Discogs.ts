@@ -6,7 +6,7 @@ const userToken = 'QDUeFOZNwIwOePlxpVziEHzamhbIHUdfENAJTnLR';
 // const secret = 'uluhDSPtelRtLUvjrvQhRBnNwpZMtkZq';
 
 function addToken(query, first = false) {
-  let newQuery = query + '&token=' + userToken;
+  const newQuery = query + '&token=' + userToken;
   return first ? newQuery.replace('&', '?') : newQuery;
 }
 
@@ -28,6 +28,7 @@ function search(terms, type?, count = 15) {
 }
 
 function releaseInfo(releaseId, releaseType, release) {
+  /* eslint-disable @typescript-eslint/camelcase */
   const resource_url = _.get(release, 'resource_url');
   if (resource_url) {
     return fetch(addToken(resource_url, true));
@@ -38,6 +39,7 @@ function releaseInfo(releaseId, releaseType, release) {
   } else if (releaseType === 'release') {
     return fetch(addToken(apiUrl + 'releases/' + releaseId, true));
   }
+  /* eslint-enable @typescript-eslint/camelcase */
 }
 
 function artistInfo(artistId) {

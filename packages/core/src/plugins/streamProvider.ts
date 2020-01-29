@@ -1,4 +1,9 @@
 import Plugin from './plugin';
+import {
+  StreamQuery,
+  StreamData
+} from './plugins.types';
+
 abstract class StreamProviderPlugin extends Plugin {
   sourceName: string;
 

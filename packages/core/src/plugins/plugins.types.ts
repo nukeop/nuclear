@@ -1,4 +1,4 @@
-type SearchResultsArtist = {
+export type SearchResultsArtist = {
     id: number | string;
     coverImage: string;
     thumb: string;
@@ -6,7 +6,7 @@ type SearchResultsArtist = {
     resourceUrl?: string;
 }
 
-type SearchResultsAlbum = {
+export type SearchResultsAlbum = {
     id: number | string;
     coverImage: string;
     thumb: string;
@@ -14,16 +14,16 @@ type SearchResultsAlbum = {
     resourceUrl?: string;
 }
 
-type SearchResultsTrack = {
+export type SearchResultsTrack = {
     id: number | string;
 }
 
-type StreamQuery = {
+export type StreamQuery = {
     artist: string;
     track: string;
 }
 
-type StreamData = {
+export type StreamData = {
     source: string;
     id: string;
     stream: string;
