@@ -12,6 +12,10 @@ mock('electron', electron);
 import { rest } from '../src';
 import { Bandcamp } from '../src/rest';
 
-test('search', t => {
-  Bandcamp.search('swans');
+test.cb('search', t => {
+  Bandcamp.search('swans', (err, result) => {
+    t.log(err);
+    t.log(result);
+    t.end();
+  });
 });
