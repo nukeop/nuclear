@@ -5,6 +5,11 @@ import {
   trackSearch,
   getCoverForRelease
 } from '../../rest/Musicbrainz';
+import {
+  SearchResultsArtist,
+  SearchResultsAlbum,
+  SearchResultsTrack
+} from '../plugins.types';
 
 class MusicbrainzMetaProvider extends MetaProvider {
   constructor() {

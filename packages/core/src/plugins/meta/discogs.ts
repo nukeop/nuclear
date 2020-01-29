@@ -1,5 +1,10 @@
 import MetaProvider from '../metaProvider';
 import * as Discogs from '../../rest/Discogs';
+import {
+  SearchResultsArtist,
+  SearchResultsAlbum,
+  SearchResultsTrack
+} from '../plugins.types';
 
 const SEARCH_TYPE = Object.freeze({
   ARTIST: 'artist',

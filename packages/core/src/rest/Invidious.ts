@@ -2,6 +2,15 @@ import { getOption } from '../persistence/store';
 
 const baseUrl = getOption('invidious.url');
 
+const getTrackInfo = async (videoId) => {
+  const response = await fetch(`${baseUrl}/api/v1/videos/${videoId}`);
+  if (!response.ok) {
+    throw new Error('invidious track info failed');
+  }
+
+  return response.json();
+};
+
 export const trackSearch = async (query: string, currentStream?: StreamData) => {
   const response =  await fetch(`${baseUrl}/api/v1/search?q=${query}&sortBy=relevance&page=1`);
   if (!response.ok) {
@@ -16,13 +25,4 @@ export const trackSearch = async (query: string, currentStream?: StreamData) => 
   const trackInfo = await getTrackInfo(track.videoId);
 
   return trackInfo;
-};
-
-const getTrackInfo = async (videoId) => {
-  const response = await fetch(`${baseUrl}/api/v1/videos/${videoId}`);
-  if (!response.ok) {
-    throw new Error('invidious track info failed');
-  }
-
-  return response.json();
 };

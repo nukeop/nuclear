@@ -1,4 +1,9 @@
 import MetaProvider from '../metaProvider';
+import {
+  SearchResultsArtist,
+  SearchResultsAlbum,
+  SearchResultsTrack
+} from '../plugins.types';
 
 class BandcampMetaProvider extends MetaProvider {
   constructor() {

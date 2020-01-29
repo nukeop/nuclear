@@ -7,14 +7,14 @@ import getArtistTitle from 'get-artist-title';
 import { trackSearch } from './youtube-search';
 
 const lastfm = new LastFmApi(
- process.env.LAST_FM_API_KEY,
- process.env.LAST_FM_API_SECRET
+  process.env.LAST_FM_API_KEY,
+  process.env.LAST_FM_API_SECRET
 );
 
 export { trackSearch };
 
 function isValidURL (str) {
-  let pattern = new RegExp('^(https?:\\/\\/)' + // protocol
+  const pattern = new RegExp('^(https?:\\/\\/)' + // protocol
     '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' + // domain name and extension
     '((\\d{1,3}\\.){3}\\d{1,3}))' + // OR ip (v4) address
     '(\\:\\d+)?' + // port
@@ -25,7 +25,7 @@ function isValidURL (str) {
 }
 
 function analyseUrlType (url) {
-  let analysisResult = {
+  const analysisResult = {
     url,
     isValid: false,
     isYoutube: false,
@@ -33,9 +33,9 @@ function analyseUrlType (url) {
     isYoutubeVideo: false
   };
   analysisResult.isValid = isValidURL(url);
-  let isYoutubeRegex = /https:\/\/www.youtube.com\/*./g;
-  let isYoutubePlaylistRegex = /[?&]list=([a-zA-Z0-9-_]*)/g;
-  let isYoutubeVideoRegex = /[?&]v=([a-zA-Z0-9-_]{11})[^0-9a-zA-Z_-]{0,1}/g;
+  const isYoutubeRegex = /https:\/\/www.youtube.com\/*./g;
+  const isYoutubePlaylistRegex = /[?&]list=([a-zA-Z0-9-_]*)/g;
+  const isYoutubeVideoRegex = /[?&]v=([a-zA-Z0-9-_]{11})[^0-9a-zA-Z_-]{0,1}/g;
   analysisResult.isYoutube = url.match(isYoutubeRegex);
   analysisResult.isYoutubePlaylist = analysisResult.isValid && analysisResult.isYoutube && url.match(isYoutubePlaylistRegex);
   analysisResult.isYoutubeVideo = analysisResult.isValid && analysisResult.isYoutube && url.match(isYoutubeVideoRegex);
@@ -43,7 +43,7 @@ function analyseUrlType (url) {
 }
 
 function getTrackFromTitle (title) {
-  let result = getArtistTitle(title);
+  const result = getArtistTitle(title);
   if (result) {
     return lastfm.searchTracks(result[0] + ' ' + result[1], 1)
       .then(tracks => tracks.json())
@@ -62,7 +62,7 @@ function getTrackFromTitle (title) {
 function handleYoutubePlaylist (url) {
   return ytlist(url, 'name')
     .then(res => {
-      let allTracks = res.data.playlist.map((elt) => {
+      const allTracks = res.data.playlist.map((elt) => {
         return getTrackFromTitle(elt);
       });
       return Promise.all(allTracks);
@@ -88,7 +88,7 @@ function handleYoutubeVideo (url) {
 }
 
 export function urlSearch (url) {
-  let urlAnalysis = analyseUrlType(url);
+  const urlAnalysis = analyseUrlType(url);
   if (urlAnalysis.isYoutubePlaylist) {
     return handleYoutubePlaylist(url);
   } else if (urlAnalysis.isYoutubeVideo) {
