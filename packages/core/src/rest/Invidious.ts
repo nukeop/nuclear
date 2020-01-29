@@ -1,4 +1,5 @@
 import { getOption } from '../persistence/store';
+import { StreamData } from '../plugins/plugins.types';
 
 const baseUrl = getOption('invidious.url');
 
