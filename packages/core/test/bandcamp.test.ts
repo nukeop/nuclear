@@ -1,3 +1,7 @@
+/*
+eslint-disable
+*/
+import 'isomorphic-fetch';
 import test from 'ava';
 import mock from 'mock-require';
 
@@ -12,10 +16,30 @@ mock('electron', electron);
 import { rest } from '../src';
 import { Bandcamp } from '../src/rest';
 
-test.cb('search', t => {
-  Bandcamp.search('swans', (err, result) => {
-    t.log(err);
-    t.log(result);
-    t.end();
-  });
+test('search', async t => {
+  const result = await Bandcamp.search('swans')
+  t.true(result.length > 0)
 });
+
+test('get albums', async t => {
+  const artists = await Bandcamp.search('swans');
+  const albums = await Bandcamp.getAlbumsForArtist(artists[0].url);
+  t.true(albums.length > 0)
+});
+
+test('get album info', async t => {
+  const result = await Bandcamp.getAlbumInfo('https://swans.bandcamp.com/album/the-seer')
+  t.true(result.tracks.length === 11);
+  t.is(result.artist, 'SWANS')
+  t.is(result.title, 'The Seer')
+  t.is(result.imageUrl, 'https://f4.bcbits.com/img/a3233794906_2.jpg')
+  t.is(result.url, 'https://swans.bandcamp.com/album/the-seer')
+})
+
+test('get track stream', async t => {
+  Bandcamp.getTrackStream('https://swans.bandcamp.com/track/apostate')
+  .then(result => {
+    console.log(result)
+  })
+  t.pass()
+})
