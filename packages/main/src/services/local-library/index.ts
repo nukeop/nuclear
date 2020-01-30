@@ -88,7 +88,7 @@ class LocalLibrary {
       image: [
         imagePath
           ? {
-            '#text': this.getImageUrl(imagePath)
+            '#text': this.getUrl(imagePath)
           }
           : undefined
       ],
@@ -98,11 +98,7 @@ class LocalLibrary {
           title: common.title,
           duration: format.duration,
           source: 'Local',
-          stream: url.format({
-            pathname: filePath,
-            protocol: 'file',
-            slashes: true
-          })
+          stream: this.getUrl(filePath)
         }
       ]
     };
@@ -149,7 +145,7 @@ class LocalLibrary {
     return formattedMetas;
   }
 
-  private getImageUrl(imagePath: string) {
+  private getUrl(imagePath: string) {
     return this.platform.isWindows()
       ? imagePath
       : url.format({
@@ -159,7 +155,7 @@ class LocalLibrary {
       });
   }
 
-  private getImagePath(imageUrl: string) {
+  private getPath(imageUrl: string) {
     return this.platform.isWindows()
       ? imageUrl
       : decodeURIComponent(new URL(imageUrl).pathname);
@@ -172,7 +168,7 @@ class LocalLibrary {
     const storedThumbPaths = _.uniq(
       Object.values(metas)
         .map(({ image }) => image[0]
-          ? this.getImagePath(image[0]['#text'])
+          ? this.getPath(image[0]['#text'])
           : null
         )
         .filter(Boolean)
@@ -194,7 +190,7 @@ class LocalLibrary {
       for (const { path, image } of Object.values(oldMetas)) {
         if (path.includes(folder) && image[0] && !removedImages.includes(image[0]['#text'])) {
           removedImages.push(image[0]['#text']);
-          await promisify(fs.unlink)(image[0]['#text'].split('://')[1]);
+          await promisify(fs.unlink)(this.getPath(image[0]['#text']));
         }
       }
     } catch (err) {
