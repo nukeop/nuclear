@@ -17,7 +17,6 @@ export const LASTFM_UPDATE_NOW_PLAYING = 'LASTFM_UPDATE_NOW_PLAYING';
 
 export const LASTFM_ENABLE_IMPORT = 'LASTFM_ENABLE_IMPORT';
 export const LASTFM_DISABLE_IMPORT = 'LASTFM_DISABLE_IMPORT';
-export const LASTFM_UPDATE_IMPORT_MESSAGE = 'LASTFM_UPDATE_IMPORT_MESSAGE';
 
 export function lastFmReadSettings() {
   return dispatch => {
@@ -30,8 +29,7 @@ export function lastFmReadSettings() {
           lastFmAuthToken: settings.lastFmAuthToken,
           lastFmSessionKey: settings.lastFmSessionKey,
           lastFmScrobblingEnabled: settings.lastFmScrobblingEnabled,
-          lastFmFavImportStatus: settings.lastFmFavImportStatus,
-          lastFmFavImportMessage: settings.lastFmFavImportMessage
+          lastFmFavImportStatus: settings.lastFmFavImportStatus
         }
       });
     } else {
@@ -75,14 +73,12 @@ export function lastFmLoginAction(authToken) {
         store.set('lastFm.lastFmName', sessionName);
         store.set('lastFm.lastFmSessionKey', sessionKey);
         store.set('lastFm.lastFmFavImportStatus', importStatus);
-        store.set('lastFm.lastFmFavImportMessage', '');
         dispatch({
           type: LASTFM_LOGIN,
           payload: {
             sessionKey,
             name: sessionName,
-            lastFmFavImportStatus: importStatus,
-            lastFmFavImportMessage: ''
+            lastFmFavImportStatus: importStatus
           }
         });
       });
@@ -156,18 +152,4 @@ export function FmFavImport(){
       });
     };
   }
-
-}
-
-export function FmFavUpdateMsg(msg) {
-  let updateMsg = msg;
-  store.set('lastFm.lastFmFavImportMessage', updateMsg);
-  return dispatch => {
-    dispatch({
-      type: LASTFM_UPDATE_IMPORT_MESSAGE,
-      payload: {
-        lastFmFavImportMessage: updateMsg
-      }
-    });
-  };
 }

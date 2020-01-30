@@ -19,7 +19,7 @@ import GithubSettings from './GithubSettings';
 
 import styles from './styles.scss';
 import { withTranslation } from 'react-i18next';
-import { ImportFmFavorites, fetchAllFmFavorites } from '../../actions/importfavs';
+import { fetchAllFmFavorites } from '../../actions/importfavs';
 import * as FavoritesActions from '../../../app/actions/favorites';
 
 const volumeSliderColors = {
@@ -29,6 +29,9 @@ const volumeSliderColors = {
 };
 @withTranslation('settings')
 class Settings extends React.Component {
+  state = {
+    lastFmFavImportMessage: ''
+  }
   toggleScrobbling (
     lastFmScrobblingEnabled,
     enableScrobbling,
@@ -82,19 +85,21 @@ class Settings extends React.Component {
       </SocialIntegration>
     );
   }
+  UpdateImportMsg(msg) {
+    this.setState({
+      lastFmFavImportMessage: msg
+    });
+  }
   renderLastFmImportFavButton(){
     let {
       lastFmName,
       lastFmSessionKey,
-      lastFmFavImportStatus,
-      lastFmFavImportMessage
+      lastFmFavImportStatus
     } = this.props.scrobbling;
 
     let {
-      FmFavImport,
-      FmFavUpdateMsg
+      FmFavImport
     } = this.props.actions;
-
     return ( lastFmName && lastFmSessionKey && (
       <div className={styles.settings_social_item}>
         <span>
@@ -102,16 +107,16 @@ class Settings extends React.Component {
         </span>
         <Spacer />
         <span>
-          <strong>{lastFmFavImportMessage}</strong>
+          <strong>{this.state.lastFmFavImportMessage}</strong>
         </span>
         <Spacer />
         {(
           <Button disabled={!lastFmFavImportStatus} loading={!lastFmFavImportStatus} onClick={() => {
             FmFavImport();
-            ImportFmFavorites()
+            fetchAllFmFavorites(1)
               .then((resp) => {
                 if (!resp.ok){
-                  FmFavUpdateMsg('Error Fetching Tracks from Last.fm');
+                  this.UpdateImportMsg('Error Fetching Tracks from Last.fm');
                   FmFavImport();
                   throw new Error('Error Fetching Tracks from Last.fm: ' + resp.statusText);
                 }
@@ -119,11 +124,11 @@ class Settings extends React.Component {
               })
               .then(req => {
                 let totalLovedTracks = req.lovedtracks['@attr'].total;
-                FmFavUpdateMsg('Found: ' + totalLovedTracks + ' tracks. Importing...');
+                this.UpdateImportMsg('Found: ' + totalLovedTracks + ' tracks. Importing...');
                 fetchAllFmFavorites(totalLovedTracks)
                   .then((resp) => {
                     if (!resp.ok){
-                      FmFavUpdateMsg('Error fetching ALL favorites from Last.fm');
+                      this.UpdateImportMsg('Error fetching ALL favorites from Last.fm');
                       FmFavImport();
                       throw new Error('Error fetching ALL favorites from Last.fm: ' + resp.statusText);
                     }
@@ -135,17 +140,17 @@ class Settings extends React.Component {
                       FavoritesActions.addFavoriteTrack(favtrack);
                       counter += 1;
                     });
-                    FmFavUpdateMsg('Imported ' + counter + '/' + req.lovedtracks['@attr'].total);
+                    this.UpdateImportMsg('Imported ' + counter + '/' + req.lovedtracks['@attr'].total);
                     FmFavImport();
                   })
                   .catch((error) => {
-                    FmFavUpdateMsg('Error fetching all favorites');
+                    this.UpdateImportMsg('Error fetching all favorites');
                     FmFavImport();
                     throw new Error('Error fetching all favorites: ' + error);
                   });
               })
               .catch((error) => {
-                FmFavUpdateMsg('Error Fetching number of favorites');
+                this.UpdateImportMsg('Error Fetching number of favorites');
                 FmFavImport();
                 throw new Error('Error Fetching number of favorites: ' + error);
               });

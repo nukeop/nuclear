@@ -6,8 +6,7 @@ import {
   LASTFM_ENABLE_SCROBBLING,
   LASTFM_DISABLE_SCROBBLING,
   LASTFM_ENABLE_IMPORT,
-  LASTFM_DISABLE_IMPORT,
-  LASTFM_UPDATE_IMPORT_MESSAGE
+  LASTFM_DISABLE_IMPORT
 } from '../actions/scrobbling';
 
 const initialState = {
@@ -15,8 +14,7 @@ const initialState = {
   lastFmAuthToken: null,
   lastFmSessionKey: null,
   lastFmScrobblingEnabled: false,
-  lastFmFavImportStatus: false,
-  lastFmFavImportMessage: ''
+  lastFmFavImportStatus: false
 };
 
 export default function ScrobblingReducer(state=initialState, action) {
@@ -29,16 +27,14 @@ export default function ScrobblingReducer(state=initialState, action) {
     return Object.assign({}, state, {
       lastFmName: action.payload.name,
       lastFmSessionKey: action.payload.sessionKey,
-      lastFmFavImportStatus: action.payload.lastFmFavImportStatus,
-      lastFmFavImportMessage: action.payload.lastFmFavImportMessage
+      lastFmFavImportStatus: action.payload.lastFmFavImportStatus
     });
   case LASTFM_LOGOUT:
     return Object.assign({}, state, {
       lastFmAuthToken: null,
       lastFmName: null,
       lastFmSessionKey: null,
-      lastFmFavImportStatus: false,
-      lastFmFavImportMessage: ''
+      lastFmFavImportStatus: false
     });
   case LASTFM_READ_SETTINGS:
     if (action.payload) {
@@ -47,8 +43,7 @@ export default function ScrobblingReducer(state=initialState, action) {
         lastFmAuthToken: action.payload.lastFmAuthToken,
         lastFmSessionKey: action.payload.lastFmSessionKey,
         lastFmScrobblingEnabled: action.payload.lastFmScrobblingEnabled,
-        lastFmFavImportStatus: action.payload.lastFmFavImportStatus,
-        lastFmFavImportMessage: action.payload.lastFmFavImportMessage
+        lastFmFavImportStatus: action.payload.lastFmFavImportStatus
       });
     } else {
       return state;
@@ -68,10 +63,6 @@ export default function ScrobblingReducer(state=initialState, action) {
   case LASTFM_DISABLE_IMPORT:
     return Object.assign({}, state, {
       lastFmFavImportStatus: false
-    });
-  case LASTFM_UPDATE_IMPORT_MESSAGE:
-    return Object.assign({}, state, {
-      lastFmFavImportMessage: action.payload.lastFmFavImportMessage
     });
   default:
     return state;
