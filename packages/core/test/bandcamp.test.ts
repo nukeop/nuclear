@@ -37,9 +37,9 @@ test('get album info', async t => {
 })
 
 test('get track stream', async t => {
-  Bandcamp.getTrackStream('https://swans.bandcamp.com/track/apostate')
-  .then(result => {
-    console.log(result)
-  })
-  t.pass()
+  const stream = await Bandcamp.getTrackStream('https://swans.bandcamp.com/track/apostate');
+  t.true(stream.length > 0);
+  t.true(stream.includes('https'));
+  t.true(stream.includes('stream'));
+  t.true(stream.includes('mp3-128'));
 })

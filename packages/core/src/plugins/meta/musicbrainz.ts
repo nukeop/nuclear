@@ -43,7 +43,8 @@ class MusicbrainzMetaProvider extends MetaProvider {
           id: group.id,
           coverImage: cover.ok ? cover.url : null,
           thumb: cover.ok ? cover.url : null,
-          title: group.title
+          title: group.title,
+          artist: group.artist
         };
       }
     ));

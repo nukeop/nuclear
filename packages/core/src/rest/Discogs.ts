@@ -5,12 +5,16 @@ const userToken = 'QDUeFOZNwIwOePlxpVziEHzamhbIHUdfENAJTnLR';
 // const key = 'EZaGPpKGBbTkjwmpjmNY';
 // const secret = 'uluhDSPtelRtLUvjrvQhRBnNwpZMtkZq';
 
-function addToken(query, first = false) {
-  const newQuery = query + '&token=' + userToken;
+type DiscogsRelease = {
+  resource_url?: string;
+}
+
+function addToken(query: string, first = false): string {
+  const newQuery: string = query + '&token=' + userToken;
   return first ? newQuery.replace('&', '?') : newQuery;
 }
 
-function searchQuery(terms, count = 15) {
+function searchQuery(terms: string, count = 15): string {
   // Strip # manually to prevent it being interpreted as anchor separator
   terms = terms.replace('#', '');
 
@@ -19,7 +23,7 @@ function searchQuery(terms, count = 15) {
   );
 }
 
-function search(terms, type?, count = 15) {
+function search(terms: string, type?: string, count = 15): Promise<Response> {
   let query = searchQuery(terms, count);
   if (!_.isNil(type)) {
     query += `&type=${type}`;
@@ -27,7 +31,7 @@ function search(terms, type?, count = 15) {
   return fetch(query);
 }
 
-function releaseInfo(releaseId, releaseType, release) {
+function releaseInfo(releaseId: string, releaseType: 'master' | 'release', release: DiscogsRelease): Promise<Response> {
   /* eslint-disable @typescript-eslint/camelcase */
   const resource_url = _.get(release, 'resource_url');
   if (resource_url) {
@@ -42,11 +46,11 @@ function releaseInfo(releaseId, releaseType, release) {
   /* eslint-enable @typescript-eslint/camelcase */
 }
 
-function artistInfo(artistId) {
+function artistInfo(artistId: string): Promise<Response> {
   return fetch(addToken(apiUrl + 'artists/' + artistId, true));
 }
 
-function artistReleases(artistId) {
+function artistReleases(artistId: string): Promise<Response> {
   return fetch(
     addToken(
       apiUrl +
