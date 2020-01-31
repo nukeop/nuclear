@@ -1,9 +1,12 @@
+import _ from 'lodash';
 import MetaProvider from '../metaProvider';
 import {
   SearchResultsArtist,
   SearchResultsAlbum,
   SearchResultsTrack
 } from '../plugins.types';
+import * as Bandcap from '../../rest/Bandcamp';
+import { Bandcamp } from '../../rest';
 
 class BandcampMetaProvider extends MetaProvider {
   constructor() {
@@ -16,11 +19,26 @@ class BandcampMetaProvider extends MetaProvider {
   }
 
   searchForArtists(query): Promise<Array<SearchResultsArtist>> {
-    throw new Error("Method not implemented.");
+    return Bandcamp.search(query)
+      .then(results => _(results).filter({ type: 'artist' }).map(artist => ({
+        id: artist.url,
+        coverImage: artist.imageUrl,
+        thumb: artist.imageUrl,
+        title: artist.name
+      }))
+        .value())
   }
 
   searchForReleases(query): Promise<Array<SearchResultsAlbum>> {
-    throw new Error("Method not implemented.");
+    return Bandcamp.search(query)
+      .then(results => _(results).filter({ type: 'album' }).map(album => ({
+        id: album.url,
+        coverImage: album.imageUrl,
+        thumb: album.imageUrl,
+        title: album.name,
+        artist: album.artist
+      }))
+        .value())
   }
 
   searchForTracks(query): Promise<SearchResultsTrack[]> {

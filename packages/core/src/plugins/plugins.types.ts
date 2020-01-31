@@ -11,6 +11,7 @@ export type SearchResultsAlbum = {
     coverImage: string;
     thumb: string;
     title: string;
+    artist: string;
     resourceUrl?: string;
 }
 

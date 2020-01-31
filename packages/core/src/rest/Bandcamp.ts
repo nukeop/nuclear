@@ -2,6 +2,7 @@
 eslint-disable
 */
 import bandcamp from 'bandcamp-scraper';
+import _ from 'lodash';
 
 type BandcampAlbumInfo = {
   artist: string;
@@ -44,9 +45,9 @@ export const search = (query: string): Promise<BandcampSearchResult[]> => promis
 export const getAlbumsForArtist = (artistUrl: string): Promise<string[]> => promisify(bandcamp.getAlbumUrls, artistUrl)
 export const getAlbumInfo = (albumUrl: string): Promise<BandcampAlbumInfo> => promisify(bandcamp.getAlbumInfo, albumUrl)
 
-
-//TODO: extract the stream url
 export const getTrackStream = async (trackUrl: string) => {
-  const html = await fetch(trackUrl)
-  return await html.text()
+  const page = await fetch(trackUrl);
+  const html = await page.text();
+  const regex = /https:\/\/.*mp3-128.*?"/g;
+  return _.head(html.match(regex));
 }
