@@ -1,7 +1,18 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { app } from 'electron';
 import timber from 'electron-timber';
+import path from 'path';
+import * as rts from 'rotating-file-stream';
 
 timber.hookConsole();
+
+const errorLogStream = rts.createStream(
+  path.join(app.getPath('userData'), 'logs', 'nuclear-error.log'),
+  {
+    size: '5M',
+    compress: 'gzip'
+  }
+);
 
 /**
  * @see {@link https://github.com/sindresorhus/electron-timber}
@@ -16,9 +27,34 @@ interface EventMessage {
 
 class Logger {
   private logger: typeof timber;
+  private name: string;
 
   constructor(name?: string) {
+    this.name = name || 'main';
     this.logger = name ? timber.create({ name }) : timber;
+  }
+
+  private getDate() {
+    const now = new Date();
+    let month = (now.getMonth() + 1).toString();
+
+    if (month.length === 1) {
+      month = `0${month}`;
+    }
+    
+    return `[${now.getDate()}/${month}/${now.getFullYear()}-${now.getHours()}:${now.getMinutes()}:${now.getSeconds()}]`;
+  }
+
+  writeToFile(name: string, ...args: any[]) {
+    args.forEach((log) => {
+      if (log.stack) {
+        errorLogStream.write(`${this.getDate()}${name} > ${log.stack}`);
+      } else if (log.message) {
+        errorLogStream.write(`${this.getDate()}${name} > ${log.message}\n`);
+      } else if (log.toString) {
+        errorLogStream.write(`${this.getDate()}${name} > ${log.toString()}\n`);
+      }
+    });
   }
 
   log(...args: any[]): void {
@@ -46,7 +82,7 @@ class Logger {
       }
     }
 
-    this.log(message, data ? `: ${dataMessage}` : '');
+    this.log(message + (data ? `: ${dataMessage}` : ''));
   }
   
   warn(...args: any[]): void {
@@ -55,6 +91,7 @@ class Logger {
 
   error(...args: any[]): void {
     this.logger.error(...args);
+    this.writeToFile(this.name, ...args);
   }
 }
 
