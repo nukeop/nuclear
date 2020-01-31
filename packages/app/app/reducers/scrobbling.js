@@ -4,17 +4,14 @@ import {
   LASTFM_LOGOUT,
   LASTFM_READ_SETTINGS,
   LASTFM_ENABLE_SCROBBLING,
-  LASTFM_DISABLE_SCROBBLING,
-  LASTFM_ENABLE_IMPORT,
-  LASTFM_DISABLE_IMPORT
+  LASTFM_DISABLE_SCROBBLING
 } from '../actions/scrobbling';
 
 const initialState = {
   lastFmName: null,
   lastFmAuthToken: null,
   lastFmSessionKey: null,
-  lastFmScrobblingEnabled: false,
-  lastFmFavImportStatus: false
+  lastFmScrobblingEnabled: false
 };
 
 export default function ScrobblingReducer(state=initialState, action) {
@@ -26,15 +23,13 @@ export default function ScrobblingReducer(state=initialState, action) {
   case LASTFM_LOGIN:
     return Object.assign({}, state, {
       lastFmName: action.payload.name,
-      lastFmSessionKey: action.payload.sessionKey,
-      lastFmFavImportStatus: action.payload.lastFmFavImportStatus
+      lastFmSessionKey: action.payload.sessionKey
     });
   case LASTFM_LOGOUT:
     return Object.assign({}, state, {
       lastFmAuthToken: null,
       lastFmName: null,
-      lastFmSessionKey: null,
-      lastFmFavImportStatus: false
+      lastFmSessionKey: null
     });
   case LASTFM_READ_SETTINGS:
     if (action.payload) {
@@ -42,8 +37,7 @@ export default function ScrobblingReducer(state=initialState, action) {
         lastFmName: action.payload.lastFmName,
         lastFmAuthToken: action.payload.lastFmAuthToken,
         lastFmSessionKey: action.payload.lastFmSessionKey,
-        lastFmScrobblingEnabled: action.payload.lastFmScrobblingEnabled,
-        lastFmFavImportStatus: action.payload.lastFmFavImportStatus
+        lastFmScrobblingEnabled: action.payload.lastFmScrobblingEnabled
       });
     } else {
       return state;
@@ -55,14 +49,6 @@ export default function ScrobblingReducer(state=initialState, action) {
   case LASTFM_DISABLE_SCROBBLING:
     return Object.assign({}, state, {
       lastFmScrobblingEnabled: false
-    });
-  case LASTFM_ENABLE_IMPORT:
-    return Object.assign({}, state, {
-      lastFmFavImportStatus: true
-    });
-  case LASTFM_DISABLE_IMPORT:
-    return Object.assign({}, state, {
-      lastFmFavImportStatus: false
     });
   default:
     return state;

@@ -15,8 +15,6 @@ export const LASTFM_DISABLE_SCROBBLING = 'LASTFM_DISABLE_SCROBBLING';
 export const LASTFM_SCROBBLE = 'LASTFM_SCROBBLE';
 export const LASTFM_UPDATE_NOW_PLAYING = 'LASTFM_UPDATE_NOW_PLAYING';
 
-export const LASTFM_ENABLE_IMPORT = 'LASTFM_ENABLE_IMPORT';
-export const LASTFM_DISABLE_IMPORT = 'LASTFM_DISABLE_IMPORT';
 
 export function lastFmReadSettings() {
   return dispatch => {
@@ -63,22 +61,27 @@ export function lastFmConnectAction() {
 
 export function lastFmLoginAction(authToken) {
   return dispatch => {
+    dispatch({
+      type: 'FAV_IMPORT_INIT',
+      payload: {
+        lastFmFavImportStatus: true,
+        lastFmFavImportMessage: ''
+      }
+    });
     lastfm.lastFmLogin(authToken)
       .then(response => response.json())
       .then(response => {
 
         let sessionKey = response.session.key;
         let sessionName = response.session.name;
-        let importStatus = sessionKey ? true : false;
         store.set('lastFm.lastFmName', sessionName);
         store.set('lastFm.lastFmSessionKey', sessionKey);
-        store.set('lastFm.lastFmFavImportStatus', importStatus);
+        
         dispatch({
           type: LASTFM_LOGIN,
           payload: {
             sessionKey,
-            name: sessionName,
-            lastFmFavImportStatus: importStatus
+            name: sessionName
           }
         });
       });
@@ -131,25 +134,4 @@ export function updateNowPlayingAction(artist, track, session) {
         });
       });
   };
-}
-
-export function FmFavImport(){
-  let importStatus = store.get('lastFm.lastFmFavImportStatus');
-  if (importStatus){
-    store.set('lastFm.lastFmFavImportStatus', false);
-    return dispatch => {
-      dispatch({
-        type: LASTFM_DISABLE_IMPORT,
-        payload: null
-      });
-    };
-  } else {
-    store.set('lastFm.lastFmFavImportStatus', true);
-    return dispatch => {
-      dispatch({
-        type: LASTFM_ENABLE_IMPORT,
-        payload: null
-      });
-    };
-  }
 }

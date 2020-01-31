@@ -16,6 +16,7 @@ import * as PluginsActions from './actions/plugins';
 import * as QueueActions from './actions/queue';
 import * as SettingsActions from './actions/settings';
 import * as ScrobblingActions from './actions/scrobbling';
+import * as ImportFavActions from './actions/importfavs';
 import * as ConnectivityActions from './actions/connectivity';
 import * as GithubContribActions from './actions/githubContrib';
 import { sendPaused } from './mpris';
@@ -70,6 +71,7 @@ class App extends React.PureComponent {
   componentDidMount() {
     this.props.actions.readSettings();
     this.props.actions.lastFmReadSettings();
+    this.props.actions.FavImportInit();
     this.props.actions.createPlugins(PluginConfig.plugins);
     this.props.actions.loadPlaylists();
     this.props.actions.deserializePlugins();
@@ -397,6 +399,7 @@ function mapDispatchToProps (dispatch) {
       Object.assign(
         {},
         ScrobblingActions,
+        ImportFavActions,
         SettingsActions,
         QueueActions,
         PlayerActions,
