@@ -1,8 +1,12 @@
-/*
-eslint-disable
-*/
-import bandcamp from 'bandcamp-scraper';
+// Import disabled due to bundling issues
+// import bandcamp from 'bandcamp-scraper';
 import _ from 'lodash';
+
+const bandcamp = {
+  search: () => ({ }),
+  getAlbumUrls: () => ({ }),
+  getAlbumInfo: () => ({ })
+};
 
 type BandcampAlbumInfo = {
   artist: string;
@@ -38,16 +42,16 @@ const promisify = <T>(func: Function, arg: any): Promise<T> => new Promise((reso
     } else {
       resolve(result);
     }
-  }])
-})
+  }]);
+});
 
-export const search = (query: string): Promise<BandcampSearchResult[]> => promisify(bandcamp.search, { query, page: 1 })
-export const getAlbumsForArtist = (artistUrl: string): Promise<string[]> => promisify(bandcamp.getAlbumUrls, artistUrl)
-export const getAlbumInfo = (albumUrl: string): Promise<BandcampAlbumInfo> => promisify(bandcamp.getAlbumInfo, albumUrl)
+export const search = (query: string): Promise<BandcampSearchResult[]> => promisify(bandcamp.search, { query, page: 1 });
+export const getAlbumsForArtist = (artistUrl: string): Promise<string[]> => promisify(bandcamp.getAlbumUrls, artistUrl);
+export const getAlbumInfo = (albumUrl: string): Promise<BandcampAlbumInfo> => promisify(bandcamp.getAlbumInfo, albumUrl);
 
 export const getTrackStream = async (trackUrl: string) => {
   const page = await fetch(trackUrl);
   const html = await page.text();
   const regex = /https:\/\/.*mp3-128.*?"/g;
   return _.head(html.match(regex));
-}
+};
