@@ -13,23 +13,17 @@ export const LASTFM_FAV_IMPORT_SUCCESS_FINAL = 'LASTFM_FAV_IMPORT_SUCCESS_FINAL'
 export const LASTFM_FAV_IMPORT_ERROR = 'LASTFM_FAV_IMPORT_ERROR';
 
 export function FavImportInit() {
-  return dispatch => {
-    dispatch({
-      type: FAV_IMPORT_INIT,
-      payload: {
-        lastFmFavImportStatus: true,
-        lastFmFavImportMessage: ''
-      }
-    });
+  return {
+    type: FAV_IMPORT_INIT,
+    payload: {
+      lastFmFavImportStatus: true,
+      lastFmFavImportMessage: ''
+    }
   };
 }
 
-function FmFavError() {
-  return {
-    type: LASTFM_FAV_IMPORT_ERROR,
-    payload: null
-  };
-}
+const FmFavError = () => ({ type: LASTFM_FAV_IMPORT_ERROR });
+
 function FmSuccess1(count) {
   return {
     type: LASTFM_FAV_IMPORT_SUCCESS_1,
@@ -51,37 +45,22 @@ export function fetchAllFmFavorites() {
   let storage = store.get('lastFm');
   if (storage) {
     return dispatch => {
-      dispatch({
-        type: LASTFM_FAV_IMPORT_START,
-        payload: null
-      });
+      dispatch({ type: LASTFM_FAV_IMPORT_START });
       lastfm.getNumberOfLovedTracks(storage.lastFmName, 1)
         .then((resp) => resp.json())
         .then(req => {
-          if (!req.lovedtracks) {
-            dispatch(FmFavError());
-            return;
-          }
           let totalLovedTracks = req.lovedtracks['@attr'].total;
           dispatch(FmSuccess1(totalLovedTracks));
-          lastfm.getNumberOfLovedTracks(storage.lastFmName, totalLovedTracks)
-            .then((resp) => resp.json())
-            .then((req) => {
-              if (!req.lovedtracks) {
-                dispatch(FmFavError());
-                return;
-              }
-              let counter = 0;
-              req.lovedtracks.track.forEach(favtrack => {
-                FavoritesActions.addFavoriteTrack(favtrack);
-                counter += 1;
-              });
-              dispatch(FmSuccessFinal(counter));
-            })
-            .catch((error) => {
-              dispatch(FmFavError());
-              logger.error(error);
-            });
+          return lastfm.getNumberOfLovedTracks(storage.lastFmName, totalLovedTracks);
+        })
+        .then((resp) => resp.json())
+        .then((req) => {
+          let counter = 0;
+          req.lovedtracks.track.forEach(favtrack => {
+            FavoritesActions.addFavoriteTrack(favtrack);
+            counter += 1;
+          });
+          dispatch(FmSuccessFinal(counter));
         })
         .catch((error) => {
           dispatch(FmFavError());
@@ -89,11 +68,6 @@ export function fetchAllFmFavorites() {
         });
     };
   } else {
-    return dispatch => {
-      dispatch({
-        type: LASTFM_FAV_IMPORT_ERROR,
-        payload: null
-      });
-    }; 
+    return FmFavError();
   }
 }
