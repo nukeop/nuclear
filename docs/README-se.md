@@ -1,69 +1,69 @@
 # ![nuclear](https://i.imgur.com/oT1006i.png) 
 [![Maintainability](https://api.codeclimate.com/v1/badges/a15c4888a63c900f6cc1/maintainability)](https://codeclimate.com/github/nukeop/nuclear/maintainability) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/30750586202742279fa8958a12e519ed)](https://www.codacy.com/app/nukeop/nuclear?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=nukeop/nuclear&amp;utm_campaign=Badge_Grade) [![nuclear](https://snapcraft.io//nuclear/badge.svg)](https://snapcraft.io/nuclear) ![Travis](https://api.travis-ci.org/nukeop/nuclear.svg?branch=master)
 
-Desktop music player focused on streaming from free sources
+Skrivbordsapp som fokuserar på att streama musik från avgiftsfria källor
 
 ![Showcase](https://i.imgur.com/G9BqIHl.png)
 
-# Links
+# Länkar
 
-[Official website](https://nuclear.js.org)
+[Officiell hemsida](https://nuclear.js.org)
 
 [Mastodon](https://mstdn.io/@nuclear)
 
 [Twitter](https://twitter.com/nuclear_player)
 
-Support channel (Matrix): `#nuclear:matrix.org`
+Supportkanal (Matrix): `#nuclear:matrix.org`
 
-Discord channel: https://discord.gg/JqPjKxE
+Discordkanal: https://discord.gg/JqPjKxE
 
-Readme translations: 
-* [Brazilian Portuguese](docs/README-ptbr.md)
-* [Swedish](docs/README-se.md)
+Readmeöversättningar: 
+* [Brasiliansk Portugisiska](README-ptbr.md)
+* [Engelska](../README.md)
 
-## What is this?
-nuclear is a free music streaming program that pulls content from free sources all over the internet.
+## Vad är detta?
+nuclear är ett gratis musikstreamingprogram som hämtar innehåll från avgifstfria källor överallt på internet.
 
-If you know [mps-youtube](https://github.com/mps-youtube/mps-youtube), this is a similar music player but with a GUI.
-It's also focusing more on audio. Imagine Spotify which you don't have to pay for and with a bigger library.
+Om du är bekant med [mps-youtube](https://github.com/mps-youtube/mps-youtube), så är detta ett liknande program fast med ett GUI.
+Som dessutom fokuserar mer på musk. Föreställ dig  ett Spotify som du inte behöver betala för och med ett större utbud.
 
-## What if I am religiously opposed to Electron?
-See [this](docs/electron.md).
+## Men om jag är en principiell motståndare till Electron?
+Kolla in [det här](docs/electron.md).
 
-## Features
+## Funktioner
 
-- Searching for and playing music from YouTube (including integration with playlists), Jamendo, and SoundCloud
-- Searching for albums (powered by Last.fm and MusicBrainz), album view, automatic song lookup based on artist and track name (in progress, can be dodgy sometimes)
-- Song queue, which can be exported as a playlist
-- Loading saved playlists (stored in json files)
-- Scrobbling to last.fm (along with updating the 'now playing' status)
-- Newest releases with reviews - tracks and albums
-- Browsing by genre
-- Radio mode (automatically queue similar tracks)
-- Unlimited downloads (powered by youtube)
-- Realtime lyrics
-- Browsing by popularity
-- List of favorite tracks
-- Listening from local library
+- Sökande och uppspelning av musik från YouTube (inklusive spellisteintegration), jamendo och SoundCloud
+- Albumsökning (med hjälp av Last.fm och MusicBrainz), albumvy, automatiskt uppletande av låtar baserat på artist och spårets namn (pågående arbete, inte riktigt där än)
+- Låtkö som kan exporteras till spellistor
+- Inläsning av sparade spellistor (sparas som JSON filer)
+- Skrobblande till last.fm (inklusive uppdaterande av "nu spelas"-status  )
+- Senaste släppen med recensioner - spår och album
+- Bläddrande baserat på genre
+- Radioläge (köar automatiskt liknande låtar)
+- Obegränsade nedladdningar (genom youtube)
+- Låttexter i realtid
+- Bläddra baserat på popularitet
+- Lista över dina favoritlåtar
+- Lyssnande från lokalt musikbibliotek
 
-## Manual and docs
+## Manual och dokumentation
 https://nuclearmusic.rtfd.io/
 
-## Community-maintained packages
+## Community-underhållna paket
 
-Here's a list of packages for various managers, most of which are maintained by third parties. We would like to thank the maintainers for their work.
+Här är en lista över programvarupaket i diverse pakethanterare, varav de flesta underhålls av tredje parter. Vi skulle vilja tacka alla dem för deras arbete.
 
-| Package type   | Link                                                   | Maintainer                                    |
+| Pakettyp   | Länk                                                   | Underhållare                                    |
 |:--------------:|:------------------------------------------------------:|:---------------------------------------------:|
 | AUR (Arch)     | https://aur.archlinux.org/packages/nuclear-player-bin/ | [mikelpint](https://github.com/mikelpint)     |
 | Choco (Win)    | https://chocolatey.org/packages/nuclear/               | [JourneyOver](https://github.com/JourneyOver) |
 | Homebrew (Mac) | https://formulae.brew.sh/cask/nuclear                  | Homebrew                                      |
 | Snap           | https://snapcraft.io/nuclear                           | [nukeop](https://github.com/nukeop)           | 
 
-## Community translations
-Nuclear has already been translated to several languages, and we're always looking for contributors who would like to add more. Below is a list of currently available languages, along with contributors who helped to translate Nuclear to that language.
+## Communityöversättningar 
+Nuclear har redan översatts till ett flertal språk, och vi är alltid på jakt efter folk som vill bidra med ännu fler. Nedan följer en lista över de språk som redan finns översatta tillsammans med personerna som har kommit med bidragen.
 
-| Language             | Contributor                                                                                          |
+| Språk             | Den som bidrog                                                                                          |
 |:--------------------:|:----------------------------------------------------------------------------------------------------:|
 | English              | N/A                                                                                                  |
 | French               | [charjac](https://github.com/charjac), [Zalax](https://github.com/Zalaxx)                            |
@@ -82,54 +82,54 @@ Nuclear has already been translated to several languages, and we're always looki
 | Traditional Chinese         | [oxygen-TW](https://github.com/oxygen-TW)                                                     |
 | Swedish                             | [PalleKarlsson](https://github.com/PalleKarlsson)                                             |
 
-## Development process
-Use lerna:
+## Utvecklingsprocess
+Använd lerna:
 ```shell
 $ npm i -g lerna #installs lerna globally
 $ lerna bootstrap
 $ npm start
 ```
 
-A new window should open that will load the web app and run Nuclear.
+Ett nytt fönster borde öppnas som kommer att ladda webbappen och köra Nuclear.
 
 ---
-To build for current operating system:
+För att bygga för det nuvarande operativsystemet:
 ```bash
 $ lerna bootstrap
 $ npm run build
 ```
 
-Instead of `build` you can use `build:all` to build for all operating systems. The binaries will be in `packages/app/release`
+Istället för `build` kan du använda ``build:all` om du vill bygga för alla operativsystem. Binärfilerna komme attr läggas i `packages/app/release`
 
 ---
-It's also possible to run the development environment using docker containers.
+Det är också möjligt att få upp utvecklingsmiljön med hjälp av docker-containers.
 
-You will need docker and docker-compose. You need to allow the root user to connect to X11 display, and then you can run docker-compose:
+Du behöver ha docker och docker-compose installerade, samt ha gett root-användaren rättigheter att ansluta till X11-displayen. Sen kan du köra docker-compose:
 
 ```shell
 $ xhost SI:localuser:root
 $ sudo docker-compose up dev
 ```
 
-## Screenshots
-This will be updated as the program evolves.
+## Skärmdumpar
+Den här sektionen kommer uppdateras allt eftersom programmet utvecklas.
 
-![Album Search](https://i.imgur.com/idFVnAF.png)
+![Albumsök](https://i.imgur.com/idFVnAF.png)
 
-![Album Display](https://i.imgur.com/Kvzo3q7.png)
+![Albumvy](https://i.imgur.com/Kvzo3q7.png)
 
-![Artist View](https://i.imgur.com/imBLYl3.png)
+![Artistvy](https://i.imgur.com/imBLYl3.png)
 
-![Dashboard Best New Music](https://i.imgur.com/bMDrR4M.png)
+![Överblick Bästa Nya Musiken](https://i.imgur.com/bMDrR4M.png)
 
-![Dashboard Genres](https://i.imgur.com/g0aCmKx.png)
+![Överblick Genrer](https://i.imgur.com/g0aCmKx.png)
 
-![Playlist View](https://i.imgur.com/2VMXHDC.png)
+![Spellistevy](https://i.imgur.com/2VMXHDC.png)
 
-![Lyrics View](https://i.imgur.com/7e3DJKJ.png)
+![Låttextvy](https://i.imgur.com/7e3DJKJ.png)
 
-![Equalizer View](https://i.imgur.com/WreRL0w.png)
+![Equalizervy](https://i.imgur.com/WreRL0w.png)
 
-## License
+## Licens
 
-This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+Det här programmet är gratis mjukvara: du kan återdistribuera det och/eller modifiera det under GNU Affero General Public License vilkor, så som de publicerades av Free Software Foundation. Antingen version 3 av licensen, eller (om du föredrar) en senare version.
