@@ -18,7 +18,7 @@ class BandcampMetaProvider extends MetaProvider {
     this.image = null;
   }
 
-  searchForArtists(query): Promise<Array<SearchResultsArtist>> {
+  searchForArtists(query: string): Promise<Array<SearchResultsArtist>> {
     return Bandcamp.search(query)
       .then(results => _(results).filter({ type: 'artist' }).map(artist => ({
         id: artist.url,
@@ -29,7 +29,7 @@ class BandcampMetaProvider extends MetaProvider {
         .value())
   }
 
-  searchForReleases(query): Promise<Array<SearchResultsAlbum>> {
+  searchForReleases(query: string): Promise<Array<SearchResultsAlbum>> {
     return Bandcamp.search(query)
       .then(results => _(results).filter({ type: 'album' }).map(album => ({
         id: album.url,
@@ -41,11 +41,11 @@ class BandcampMetaProvider extends MetaProvider {
         .value())
   }
 
-  searchForTracks(query): Promise<SearchResultsTrack[]> {
+  searchForTracks(query: string): Promise<SearchResultsTrack[]> {
     throw new Error("Method not implemented.");
   }
 
-  searchAll(query): Promise<{
+  searchAll(query: string): Promise<{
     artists: Array<SearchResultsArtist>;
     releases: Array<SearchResultsAlbum>;
     tracks: Array<SearchResultsTrack>;
