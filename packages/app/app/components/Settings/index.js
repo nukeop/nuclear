@@ -107,11 +107,9 @@ class Settings extends React.Component {
         ))}
         </span>
         <Spacer />
-        {(
-          <Button disabled={!lastFmFavImportStatus} loading={!lastFmFavImportStatus} onClick={fetchAllFmFavorites} color='green'>
-            {this.props.t('fmfav-btn')}
-          </Button>
-        )}
+        <Button disabled={!lastFmFavImportStatus} loading={!lastFmFavImportStatus} onClick={fetchAllFmFavorites} color='green'>
+          {this.props.t('fmfav-btn')}
+        </Button>
       </div>
     )
     );

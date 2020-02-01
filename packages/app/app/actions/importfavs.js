@@ -55,12 +55,10 @@ export function fetchAllFmFavorites() {
         })
         .then((resp) => resp.json())
         .then((req) => {
-          let counter = 0;
           req.lovedtracks.track.forEach(favtrack => {
             FavoritesActions.addFavoriteTrack(favtrack);
-            counter += 1;
           });
-          dispatch(FmSuccessFinal(counter));
+          dispatch(FmSuccessFinal(req.lovedtracks.track.length));
         })
         .catch((error) => {
           dispatch(FmFavError());
