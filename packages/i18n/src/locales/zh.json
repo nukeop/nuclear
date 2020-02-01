@@ -1,9 +1,17 @@
 {
   "album": {
+    "by": "by",
+    "discogs-returned-invalid-data": "Discogs returned invalid data.",
     "download": "Download",
     "download-toast-content": "{{artist}} - {{title}} has been added to downloads.",
     "download-toast-title": "Album added to downloads",
-    "queue": "将专辑添加到播放列表"
+    "genre": "Genre:",
+    "play": "Play",
+    "queue": "将专辑添加到播放列表",
+    "song": "Song",
+    "tracks": "Tracks:",
+    "try-going-back-to-search": "Try going back to search.",
+    "year": "Year:"
   },
   "app": {
     "collection": "收藏",
@@ -21,7 +29,9 @@
     "settings": "设置"
   },
   "artist": {
+    "add-all": "Add all",
     "count": "播放次数",
+    "popular-tracks": "Popular tracks",
     "queue": "将全部歌曲添加到播放列表",
     "similar": "相似歌手",
     "title": "音乐标题",
@@ -47,6 +57,18 @@
     "header": "下载",
     "name": "名字",
     "status": "状态"
+  },
+  "equalizer": {
+    "classical": "Classical",
+    "club": "Club",
+    "custom": "Custom",
+    "default": "Default",
+    "full-bass": "Full Bass",
+    "full-treble": "Full Treble",
+    "pop": "Pop",
+    "presets": "Presets",
+    "reggae": "Reggae",
+    "rock": "Rock"
   },
   "favorite-albums": {
     "empty": "No favorite albums",
@@ -140,6 +162,7 @@
   },
   "search": {
     "album": "专辑",
+    "all": "All",
     "artist": "艺人",
     "empty": "Nothing found.",
     "placeholder": "搜索...",
@@ -174,13 +197,16 @@
     "lastfm-description": "In order to enable scrobbling, you first have to connect and authorize Nuclear on Last.fm, then click log in.",
     "lastfm-enable": "Enable scrobbling to Last.fm",
     "lastfm-title": "Last.fm",
+    "less": "Less",
     "login": "登录",
     "logout": "推出",
     "loop-after-queue-end": "Loop after playing the last queue item",
+    "more": "More",
     "notification-timeout": "Notification timeout",
     "notlogged": "没有登陆",
     "playback": "Playback",
     "program-settings": "Program设置",
+    "saving-in": "Saving in:",
     "seek-iteration": "Number of seconds to seek forward/backwards when pressing arrow keys",
     "shuffle-queue": "Shuffle songs",
     "shuffle-when-going-back": "Shuffle on previous track",
@@ -198,5 +224,19 @@
     "duration": "Duration",
     "queue-add": "Add all tracks to queue",
     "title": "音乐标题"
+  },
+  "track": {
+    "add-this-track-to-favorites": "Add this track to favorites",
+    "add-to-favorites": "Add to favorites",
+    "add-to-queue": "Add to queue",
+    "add-track-to-queue": "Add track to queue",
+    "download": "Download",
+    "download-this-track": "Download this track",
+    "favorite-track-title": "Favorite track added",
+    "favorite-track-toast": "{{artist}} - {{title}} has been added to favorites",
+    "play-now": "Play now",
+    "play-this-track-now": "Play this track now",
+    "track-added-to-downloads-title": "Track added to downloads",
+    "track-added-to-downloads-toast": "{{artist}} - {{title}} has been added to downloads"
   }
 }

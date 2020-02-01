@@ -19,7 +19,7 @@ const DownloadsHeader = ({
 }) => (
   <Segment className={styles.downloads_header}>
     <span className={styles.label}>
-        Saving in:
+      {t('saving-in')}
       <span className={styles.directory}>
         { _.isEmpty(directory) ? remote.app.getPath('downloads') : directory}
       </span>

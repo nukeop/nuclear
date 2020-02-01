@@ -5,9 +5,12 @@ import classNames from 'classnames';
 
 import styles from './styles.scss';
 
-const EqualizerPresetList = ({ presets, onClickItem, selected }) => (
+import { withTranslation } from 'react-i18next';
+import { compose } from 'recompose';
+
+const EqualizerPresetList = ({ presets, onClickItem, selected, t }) => (
   <div className={styles.preset_list_container}>
-    <h3>Presets</h3>
+    <h3>{t('presets')}</h3>
     <List divided verticalAlign='middle' className={styles.equalizer_list}>
       {presets.map((preset, index) => (
         <List.Item
@@ -24,7 +27,7 @@ const EqualizerPresetList = ({ presets, onClickItem, selected }) => (
           <List.Content floated='right'>
             {preset.id === selected && <Icon name='check' />}
           </List.Content>
-          <List.Content>{preset.label}</List.Content>
+          <List.Content>{t(preset.id)}</List.Content>
         </List.Item>
       ))}
     </List>
@@ -37,4 +40,6 @@ EqualizerPresetList.propTypes = {
   selected: PropTypes.string
 };
 
-export default EqualizerPresetList;
+export default compose(
+  withTranslation('equalizer')
+)(EqualizerPresetList);

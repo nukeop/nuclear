@@ -1,9 +1,17 @@
 {
   "album": {
+    "by": "by",
+    "discogs-returned-invalid-data": "Discogs returned invalid data.",
     "download": "Download",
     "download-toast-content": "{{artist}} - {{title}} has been added to downloads.",
     "download-toast-title": "Album added to downloads",
-    "queue": "Albümü sıraya ekle"
+    "genre": "Genre:",
+    "play": "Play",
+    "queue": "Albümü sıraya ekle",
+    "song": "Song",
+    "tracks": "Tracks:",
+    "try-going-back-to-search": "Try going back to search.",
+    "year": "Year:"
   },
   "app": {
     "collection": "Koleksiyon",
@@ -21,7 +29,9 @@
     "settings": "Ayarlar"
   },
   "artist": {
+    "add-all": "Add all",
     "count": "Oynatma sayısı",
+    "popular-tracks": "Popular tracks",
     "queue": "Tüm müzikleri sıraya Ekle",
     "similar": "Benzer şarkıcılar",
     "title": "Başlık",
@@ -47,6 +57,18 @@
     "header": "İndirilenler",
     "name": "İsmi",
     "status": "Durumu"
+  },
+  "equalizer": {
+    "classical": "Classical",
+    "club": "Club",
+    "custom": "Custom",
+    "default": "Default",
+    "full-bass": "Full Bass",
+    "full-treble": "Full Treble",
+    "pop": "Pop",
+    "presets": "Presets",
+    "reggae": "Reggae",
+    "rock": "Rock"
   },
   "favorite-albums": {
     "empty": "No favorite albums",
@@ -142,6 +164,7 @@
   "search": {
     "album": "Albüm",
     "album_plural": "Albümler",
+    "all": "All",
     "artist": "Şarkıcı",
     "artist_plural": "Şarkıcılar",
     "empty": "Birşey bulunamadı.",
@@ -179,13 +202,16 @@
     "lastfm-description": "Scrobbling aktif etmek için ilk önce Nuclearden last.fm'e bağlanmanız lazım sonra login'e tıklayın",
     "lastfm-enable": "Last.fm'de Scrobbling aktifleştir",
     "lastfm-title": "Last.fm",
+    "less": "Less",
     "login": "Giriş yap",
     "logout": "Çıkış yap",
     "loop-after-queue-end": "Liste bitince baştan başlat.",
+    "more": "More",
     "notification-timeout": "Bildirim zaman aşımı",
     "notlogged": "Oturum kapalı",
     "playback": "Oynatma",
     "program-settings": "Program Ayarları",
+    "saving-in": "Saving in:",
     "seek-iteration": "Number of seconds to seek forward/backwards when pressing arrow keys",
     "shuffle-queue": "Şarkıları karıştır",
     "shuffle-when-going-back": "Önceki Şarkıyla karıştır.",
@@ -203,5 +229,19 @@
     "duration": "Süre",
     "queue-add": "Tüm şarkıları sıraya ekle",
     "title": "Başlık"
+  },
+  "track": {
+    "add-this-track-to-favorites": "Add this track to favorites",
+    "add-to-favorites": "Add to favorites",
+    "add-to-queue": "Add to queue",
+    "add-track-to-queue": "Add track to queue",
+    "download": "Download",
+    "download-this-track": "Download this track",
+    "favorite-track-title": "Favorite track added",
+    "favorite-track-toast": "{{artist}} - {{title}} has been added to favorites",
+    "play-now": "Play now",
+    "play-this-track-now": "Play this track now",
+    "track-added-to-downloads-title": "Track added to downloads",
+    "track-added-to-downloads-toast": "{{artist}} - {{title}} has been added to downloads"
   }
 }

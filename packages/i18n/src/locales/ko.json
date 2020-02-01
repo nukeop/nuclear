@@ -1,9 +1,17 @@
 {
   "album": {
+    "by": "by",
+    "discogs-returned-invalid-data": "Discogs returned invalid data.",
     "download": "다운로드",
     "download-toast-content": "{{artist}} - {{title}} 가 다운로드에 추가 되었습니다.",
     "download-toast-title": "다운로드에 추가된 앨범",
-    "queue": "재생목록에 앨범 추가"
+    "genre": "Genre:",
+    "play": "Play",
+    "queue": "재생목록에 앨범 추가",
+    "song": "Song",
+    "tracks": "Tracks:",
+    "try-going-back-to-search": "Try going back to search.",
+    "year": "Year:"
   },
   "app": {
     "collection": "컬렉션",
@@ -21,7 +29,9 @@
     "settings": "설정"
   },
   "artist": {
+    "add-all": "Add all",
     "count": "총 재생 횟수",
+    "popular-tracks": "Popular tracks",
     "queue": "모든 트랙을 재생목록에 추가",
     "similar": "비슷한 아티스트",
     "title": "제목",
@@ -47,6 +57,18 @@
     "header": "다운로드",
     "name": "이름",
     "status": "상태"
+  },
+  "equalizer": {
+    "classical": "Classical",
+    "club": "Club",
+    "custom": "Custom",
+    "default": "Default",
+    "full-bass": "Full Bass",
+    "full-treble": "Full Treble",
+    "pop": "Pop",
+    "presets": "Presets",
+    "reggae": "Reggae",
+    "rock": "Rock"
   },
   "favorite-albums": {
     "empty": "즐겨찾는 앨범이 없습니다.",
@@ -140,6 +162,7 @@
   },
   "search": {
     "album": "앨범",
+    "all": "All",
     "artist": "아티스트",
     "empty": "찾을수 없습니다.",
     "placeholder": "검색...",
@@ -174,13 +197,16 @@
     "lastfm-description": "Scrobbling을 활성화하려면 먼저 Last.fm에 Nuclear를 연결 및 인증한 후 로그인을 클릭하십시오.",
     "lastfm-enable": "Last.fm에서 Scrobbling 활성화 ",
     "lastfm-title": "Last.fm",
+    "less": "Less",
     "login": "로그인",
     "logout": "로그아웃",
     "loop-after-queue-end": "마지막 재생목록을 재생한 후 반복",
+    "more": "More",
     "notification-timeout": "알림 시간 초과",
     "notlogged": "로그인 되지 않았습니다.",
     "playback": "재생",
     "program-settings": "프로그램 설정",
+    "saving-in": "Saving in:",
     "seek-iteration": "앞/뒤 버튼을 누를때 탐색할 시간(초)",
     "shuffle-queue": "음악 셔플",
     "shuffle-when-going-back": "이전 트랙에서 셔플",
@@ -198,5 +224,19 @@
     "duration": "시간",
     "queue-add": "모든 트랙을 재생목록에 추가",
     "title": "제목"
+  },
+  "track": {
+    "add-this-track-to-favorites": "Add this track to favorites",
+    "add-to-favorites": "Add to favorites",
+    "add-to-queue": "Add to queue",
+    "add-track-to-queue": "Add track to queue",
+    "download": "Download",
+    "download-this-track": "Download this track",
+    "favorite-track-title": "Favorite track added",
+    "favorite-track-toast": "{{artist}} - {{title}} has been added to favorites",
+    "play-now": "Play now",
+    "play-this-track-now": "Play this track now",
+    "track-added-to-downloads-title": "Track added to downloads",
+    "track-added-to-downloads-toast": "{{artist}} - {{title}} has been added to downloads"
   }
 }

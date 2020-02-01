@@ -1,9 +1,17 @@
 {
   "album": {
+    "by": "by",
+    "discogs-returned-invalid-data": "Discogs returned invalid data.",
     "download": "Stáhnout",
     "download-toast-content": "{{artist}} - {{title}} byl přidán do stažených.",
     "download-toast-title": "Album přidáno do stažených",
-    "queue": "Přidat album do fronty"
+    "genre": "Genre:",
+    "play": "Play",
+    "queue": "Přidat album do fronty",
+    "song": "Song",
+    "tracks": "Tracks:",
+    "try-going-back-to-search": "Try going back to search.",
+    "year": "Year:"
   },
   "app": {
     "collection": "Kolekce",
@@ -21,7 +29,9 @@
     "settings": "Nastavení"
   },
   "artist": {
+    "add-all": "Add all",
     "count": "Počet přehrání",
+    "popular-tracks": "Popular tracks",
     "queue": "Přidat všechny skladby do fronty",
     "similar": "Podobní umělci",
     "title": "Název",
@@ -47,6 +57,18 @@
     "header": "Stažené",
     "name": "Název",
     "status": "Stav"
+  },
+  "equalizer": {
+    "classical": "Classical",
+    "club": "Club",
+    "custom": "Custom",
+    "default": "Default",
+    "full-bass": "Full Bass",
+    "full-treble": "Full Treble",
+    "pop": "Pop",
+    "presets": "Presets",
+    "reggae": "Reggae",
+    "rock": "Rock"
   },
   "favorite-albums": {
     "empty": "Žádná oblíbená alba",
@@ -144,6 +166,7 @@
     "album_0": "Albums",
     "album_1": "Albums",
     "album_2": "Albums",
+    "all": "All",
     "artist_0": "Artists",
     "artist_1": "Artists",
     "artist_2": "Artists",
@@ -184,13 +207,16 @@
     "lastfm-description": "Pro automatické přidání poslouchaných skladeb do profilu se musíte nejprve připojit a autorizovat Nuclear k Last.fm, poté kliknout na přihlásit se.",
     "lastfm-enable": "Povolit automatické přidání poslouchaných skladeb do profilu na Last.fm",
     "lastfm-title": "Last.fm",
+    "less": "Less",
     "login": "Přihlásit",
     "logout": "Odhlásit",
     "loop-after-queue-end": "Smyčka po přehrání poslední položky ve frontě",
+    "more": "More",
     "notification-timeout": "Časový limit notifikace",
     "notlogged": "Nepřihlášen",
     "playback": "Playback",
     "program-settings": "Nastavení programu",
+    "saving-in": "Saving in:",
     "seek-iteration": "Počet vteřin posunu vpřed/zpět po stisknutí kláves šipek",
     "shuffle-queue": "Zamíchat skladby",
     "shuffle-when-going-back": "Zamíchat při přechodu na předchozí skladbu",
@@ -208,5 +234,19 @@
     "duration": "Doba trvání",
     "queue-add": "Přidat všechny skladby do fronty",
     "title": "Název"
+  },
+  "track": {
+    "add-this-track-to-favorites": "Add this track to favorites",
+    "add-to-favorites": "Add to favorites",
+    "add-to-queue": "Add to queue",
+    "add-track-to-queue": "Add track to queue",
+    "download": "Download",
+    "download-this-track": "Download this track",
+    "favorite-track-title": "Favorite track added",
+    "favorite-track-toast": "{{artist}} - {{title}} has been added to favorites",
+    "play-now": "Play now",
+    "play-this-track-now": "Play this track now",
+    "track-added-to-downloads-title": "Track added to downloads",
+    "track-added-to-downloads-toast": "{{artist}} - {{title}} has been added to downloads"
   }
 }

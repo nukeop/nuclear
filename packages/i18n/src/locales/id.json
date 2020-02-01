@@ -1,9 +1,17 @@
 {
   "album": {
+    "by": "by",
+    "discogs-returned-invalid-data": "Discogs returned invalid data.",
     "download": "Unduh",
     "download-toast-content": "{{artist}} - {{title}} telah ditambahkan ke unduhan.",
     "download-toast-title": "Album ditambahkan ke unduhan",
-    "queue": "Tambahkan album ke antrian"
+    "genre": "Genre:",
+    "play": "Play",
+    "queue": "Tambahkan album ke antrian",
+    "song": "Song",
+    "tracks": "Tracks:",
+    "try-going-back-to-search": "Try going back to search.",
+    "year": "Year:"
   },
   "app": {
     "collection": "Koleksi",
@@ -21,7 +29,9 @@
     "settings": "Pengaturan"
   },
   "artist": {
+    "add-all": "Add all",
     "count": "Jumlah pemutaran",
+    "popular-tracks": "Popular tracks",
     "queue": "Tambahkan semua lagu ke antrian",
     "similar": "Musisi yang senada",
     "title": "Judul",
@@ -47,6 +57,18 @@
     "header": "Unduhan",
     "name": "Nama",
     "status": "Status"
+  },
+  "equalizer": {
+    "classical": "Classical",
+    "club": "Club",
+    "custom": "Custom",
+    "default": "Default",
+    "full-bass": "Full Bass",
+    "full-treble": "Full Treble",
+    "pop": "Pop",
+    "presets": "Presets",
+    "reggae": "Reggae",
+    "rock": "Rock"
   },
   "favorite-albums": {
     "empty": "Belum ada album favorit",
@@ -140,6 +162,7 @@
   },
   "search": {
     "album": "Album",
+    "all": "All",
     "artist": "Musisi",
     "empty": "Tak ada hasil temuan.",
     "placeholder": "Cari...",
@@ -174,13 +197,16 @@
     "lastfm-description": "Agar dapat menggunakan fitur scrobbling, kamu harus sambungkan dan otorisasi Nuclear di Last.fm, kemudian klik log masuk.",
     "lastfm-enable": "Aktifkan scrobbling di Last.fm",
     "lastfm-title": "Last.fm",
+    "less": "Less",
     "login": "Log masuk",
     "logout": "Log keluar",
     "loop-after-queue-end": "Ulang pemutaran dari awal setelah item terakhir di daftar antrian",
+    "more": "More",
     "notification-timeout": "Lama waktu-habis pada notifikasi",
     "notlogged": "Kamu belum log masuk",
     "playback": "Pemutaran",
     "program-settings": "Pengaturan program",
+    "saving-in": "Saving in:",
     "seek-iteration": "Rentang detik yang dilewatkan/dikembalikan ketika menekan tombol arah",
     "shuffle-queue": "Acak lagu",
     "shuffle-when-going-back": "Acak lagu sebelumnya",
@@ -198,5 +224,19 @@
     "duration": "Durasi",
     "queue-add": "Tambahkan semua lagu ke antrian",
     "title": "Judul"
+  },
+  "track": {
+    "add-this-track-to-favorites": "Add this track to favorites",
+    "add-to-favorites": "Add to favorites",
+    "add-to-queue": "Add to queue",
+    "add-track-to-queue": "Add track to queue",
+    "download": "Download",
+    "download-this-track": "Download this track",
+    "favorite-track-title": "Favorite track added",
+    "favorite-track-toast": "{{artist}} - {{title}} has been added to favorites",
+    "play-now": "Play now",
+    "play-this-track-now": "Play this track now",
+    "track-added-to-downloads-title": "Track added to downloads",
+    "track-added-to-downloads-toast": "{{artist}} - {{title}} has been added to downloads"
   }
 }

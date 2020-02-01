@@ -1,9 +1,17 @@
 {
   "album": {
+    "by": "by",
+    "discogs-returned-invalid-data": "Discogs returned invalid data.",
     "download": "Download",
     "download-toast-content": "{{artist}} - {{title}} ay naidagdag sa mga download.",
     "download-toast-title": "Idinagdag ang album sa mga download",
-    "queue": "Idagdag ang album sa pila"
+    "genre": "Genre:",
+    "play": "Play",
+    "queue": "Idagdag ang album sa pila",
+    "song": "Song",
+    "tracks": "Tracks:",
+    "try-going-back-to-search": "Try going back to search.",
+    "year": "Year:"
   },
   "app": {
     "collection": "Koleksyon",
@@ -21,7 +29,9 @@
     "settings": "Settings"
   },
   "artist": {
+    "add-all": "Add all",
     "count": "Bilang ng pagtugtog",
+    "popular-tracks": "Popular tracks",
     "queue": "Idagdag lahat sa pila",
     "similar": "Katulad na artist",
     "title": "Title",
@@ -47,6 +57,18 @@
     "header": "Mga Download",
     "name": "Pangalan",
     "status": "Kalagayan"
+  },
+  "equalizer": {
+    "classical": "Classical",
+    "club": "Club",
+    "custom": "Custom",
+    "default": "Default",
+    "full-bass": "Full Bass",
+    "full-treble": "Full Treble",
+    "pop": "Pop",
+    "presets": "Presets",
+    "reggae": "Reggae",
+    "rock": "Rock"
   },
   "favorite-albums": {
     "empty": "Walang paboritong album",
@@ -138,6 +160,7 @@
     "title": "Title:"
   },
   "search": {
+    "all": "All",
     "empty": "Walang nahanap.",
     "placeholder": "Hinahanap...",
     "queue-add": "Idagdag lahat ng kanta sa pila"
@@ -169,13 +192,16 @@
     "lastfm-description": "Para i-enable ang scrobbling, kailangan mo muna i-connect at i-authorize ang Nuclear sa Last.fm, tapos pindutin ang log in.",
     "lastfm-enable": "I-enable ang scrobbling sa Last.fm",
     "lastfm-title": "Last.fm",
+    "less": "Less",
     "login": "Log in",
     "logout": "Log out",
     "loop-after-queue-end": "i-loop pagkatapos patugtugin ang huling nasa pila",
+    "more": "More",
     "notification-timeout": "Notification timeout",
     "notlogged": "Hindi naka log in",
     "playback": "Playback",
     "program-settings": "Program settings",
+    "saving-in": "Saving in:",
     "seek-iteration": "Bilang ng segunda sa pag-seek forward/backward pag nakapindot ang arrow keys",
     "shuffle-queue": "I-shuffle ang mga kanta",
     "shuffle-when-going-back": "I-shuffle pag punta sa nakaraang kanta",
@@ -193,5 +219,19 @@
     "duration": "Durasyon",
     "queue-add": "Idagdag lahat ng kanta sa pila",
     "title": "Title"
+  },
+  "track": {
+    "add-this-track-to-favorites": "Add this track to favorites",
+    "add-to-favorites": "Add to favorites",
+    "add-to-queue": "Add to queue",
+    "add-track-to-queue": "Add track to queue",
+    "download": "Download",
+    "download-this-track": "Download this track",
+    "favorite-track-title": "Favorite track added",
+    "favorite-track-toast": "{{artist}} - {{title}} has been added to favorites",
+    "play-now": "Play now",
+    "play-this-track-now": "Play this track now",
+    "track-added-to-downloads-title": "Track added to downloads",
+    "track-added-to-downloads-toast": "{{artist}} - {{title}} has been added to downloads"
   }
 }

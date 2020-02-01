@@ -85,7 +85,7 @@ class SearchResults extends React.Component {
     } else {
       return (
         <Tab.Pane loading={this.props.unifiedSearchStarted} attached={false}>
-          <div className={styles.pane_container}>Nothing found.</div>
+          <div className={styles.pane_container}>{this.props.t('empty')}</div>
         </Tab.Pane>
       );
     }
@@ -109,13 +109,14 @@ class SearchResults extends React.Component {
   }
 
   panes () {
+
     let panes = [
       {
-        menuItem: 'All',
+        menuItem: this.props.t('all'),
         render: () => this.renderAllResultsPane()
       },
       {
-        menuItem: 'Artists',
+        menuItem: this.props.t('artist_plural'),
         render: () =>
           this.renderPane(
             this.props.artistSearchResults,
@@ -123,7 +124,7 @@ class SearchResults extends React.Component {
           )
       },
       {
-        menuItem: 'Albums',
+        menuItem: this.props.t('album_plural'),
         render: () =>
           this.renderPane(
             this.props.albumSearchResults,
@@ -131,11 +132,11 @@ class SearchResults extends React.Component {
           )
       },
       {
-        menuItem: 'Tracks',
+        menuItem: this.props.t('track_plural'),
         render: () => this.renderLastFmPane(this.props.trackSearchResults.info)
       },
       {
-        menuItem: 'Playlist',
+        menuItem: this.props.t('playlist_plural'),
         render: () => this.renderPlaylistPane(this.props.playlistSearchResults)
       }
     ];

@@ -87,8 +87,8 @@ class AlbumView extends React.Component {
   renderInvalidData () {
     return (
       <div>
-        <h3>Discogs returned invalid data.</h3>
-        <h4>Try going back to search.</h4>
+        <h3>{this.props.t('discogs-returned-invalid-data')}</h3>
+        <h4>{this.props.t('try-going-back-to-search')}</h4>
       </div>
     );
   }
@@ -106,7 +106,7 @@ class AlbumView extends React.Component {
   renderAlbumArtistName (album) {
     return (
       <div className={styles.album_artist}>
-        by{' '}
+        {this.props.t('by')}{' '}
         <a
           href='#'
           onClick={() => {
@@ -122,7 +122,7 @@ class AlbumView extends React.Component {
   renderAlbumGenre (album) {
     return (
       <div className={styles.album_genre}>
-        <label>Genre:</label>
+        <label>{this.props.t('genre')}</label>
         {album.genres[0]}
       </div>
     );
@@ -135,7 +135,7 @@ class AlbumView extends React.Component {
         href='#'
         className={styles.play_button}
       >
-        <Icon name='play' /> Play
+        <Icon name='play' /> {this.props.t('play')}
       </a>
     );
   }
@@ -143,7 +143,7 @@ class AlbumView extends React.Component {
   renderAlbumYear (album) {
     return (
       <div className={styles.album_year}>
-        <label>Year:</label>
+        <label>{this.props.t('year')}</label>
         {album.year}
       </div>
     );
@@ -152,7 +152,7 @@ class AlbumView extends React.Component {
   renderAlbumTracksCount (album) {
     return (
       <div className={styles.album_tracks}>
-        <label>Tracks:</label>
+        <label>{this.props.t('tracks')}</label>
         {album.tracklist.length}
       </div>
     );
@@ -233,7 +233,7 @@ class AlbumView extends React.Component {
         <th className={styles.center}>
           <Icon name='hashtag' />
         </th>
-        <th className={styles.left}>Song</th>
+        <th className={styles.left}>{this.props.t('song')}</th>
         <th className={styles.center}>
           <Icon name='clock outline' />
         </th>

@@ -17,6 +17,7 @@ const TrackPopupContainer = props => {
     trigger,
     track,
     artist,
+    t,
     title,
     thumb,
     actions,
@@ -46,9 +47,9 @@ const TrackPopupContainer = props => {
         withAddToQueue &&
           <PopupButton
             onClick={() => actions.addToQueue(streamProviders, trackItem)}
-            ariaLabel='Add track to queue'
+            ariaLabel={t('add-track-to-queue')}
             icon='plus'
-            label='Add to queue'
+            label={t('add-to-queue')}
           />
       }
 
@@ -56,9 +57,9 @@ const TrackPopupContainer = props => {
         withPlayNow &&
         <PopupButton
           onClick={() => actions.playTrack(streamProviders, trackItem)}
-          ariaLabel='Play this track now'
+          ariaLabel={t('play-this-track-now')}
           icon='play'
-          label='Play now'
+          label={t('play-now')}
         />
       }
 
@@ -68,15 +69,15 @@ const TrackPopupContainer = props => {
           onClick={() => {
             actions.addFavoriteTrack(track);
             actions.info(
-              'Favorite track added',
-              `${artist} - ${title} has been added to favorites.`,
+              t('favorite-track-title'),
+              t('favorite-track-toast', {artist, title}),
               <img src={thumb} />,
               settings
             );
           }}
-          ariaLabel='Add this track to favorites'
+          ariaLabel={t('add-this-track-to-favorites')}
           icon='star'
-          label='Add to favorites'
+          label={t('add-to-favorites')}
         />
       }
 
@@ -88,15 +89,15 @@ const TrackPopupContainer = props => {
             ipcRenderer.send('start-download', clonedTrack);
             actions.addToDownloads(streamProviders, clonedTrack);
             actions.info(
-              'Track added to downloads',
-              `${artist} - ${title} has been added to downloads.`,
+              t('track-added-to-downloads-title'),
+              t('track-added-to-downloads-toast', { artist, title }),
               <img src={thumb} />,
               settings
             );
           }}
-          ariaLabel='Download this track'
+          ariaLabel={t('download-this-track')}
           icon='download'
-          label='Download'
+          label={t('download')}
         />
       }
 
@@ -108,6 +109,7 @@ TrackPopupContainer.propTypes = {
   trigger: PropTypes.node,
   track: PropTypes.object,
   artist: PropTypes.string,
+  t: PropTypes.func,
   title: PropTypes.string,
   thumb: PropTypes.string,
   actions: PropTypes.shape({

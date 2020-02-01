@@ -9,55 +9,46 @@ import { store } from '../persistence/store';
 
 const getPresets = (custom) => [
   {
-    label: 'Default',
     id: 'default',
     values: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     preAmp: 0
   },
   {
-    label: 'Classical',
     id: 'classical',
     values: [0, 0, 0, 0, 0, 0, 0, -4, -4, -4, -6],
     preAmp: 0
   },
   {
-    label: 'Club',
     id: 'club',
     values: [0, 0, 0, 2, 4, 4, 4, 2, 0, 0, 0],
     preAmp: 0
   },
   {
-    label: 'Pop',
     id: 'pop',
     values: [-2, -1, 2, 3, 4, 3, 0, -1, -1, -1, -1],
     preAmp: 0
   },
   {
-    label: 'Reggae',
     id: 'reggae',
     values: [0, 0, 0, 0, -2, 0, 2, 2, 0, 0, 0],
     preAmp: 0
   },
   {
-    label: 'Rock',
     id: 'rock',
     values: [5, 4, 3, -2, -3, -2, 2, 5, 6, 6, 6],
     preAmp: 0
   },
   {
-    label: 'Full bass',
     id: 'full-bass',
     values: [6, 6, 6, 6, 4, 0, -2, -4, -6, -6, -6],
     preAmp: 0
   },
   {
-    label: 'Full trebble',
     id: 'full-treble',
     values: [-6, -6, -6, -6, -2, 2, 6, 8, 8, 9, 9],
     preAmp: 0
   },
   {
-    label: 'Custom',
     id: 'custom',
     ...custom
   }
@@ -72,7 +63,7 @@ const getSelected = (selected, presets) => {
   if (selected.toLowerCase() === selected) {
     return selected;
   } 
-  const legacySelected = presets.find(preset => preset.label === selected);  
+  const legacySelected = presets.find(preset => preset.id === selected);  
   return legacySelected ? legacySelected.id : presets[0].id;
 };
 

@@ -1,9 +1,17 @@
 {
   "album": {
+    "by": "by",
+    "discogs-returned-invalid-data": "Discogs returned invalid data.",
     "download": "Heruntergeladen",
     "download-toast-content": "{{artist}} - {{title}} wurde zu Downloads hinzugefügt.",
     "download-toast-title": "Album zu Downloads hinzugefügt",
-    "queue": "Album zur Warteschlange hinzufügen"
+    "genre": "Genre:",
+    "play": "Play",
+    "queue": "Album zur Warteschlange hinzufügen",
+    "song": "Song",
+    "tracks": "Tracks:",
+    "try-going-back-to-search": "Try going back to search.",
+    "year": "Year:"
   },
   "app": {
     "collection": "Sammlung",
@@ -21,7 +29,9 @@
     "settings": "Einstellungen"
   },
   "artist": {
+    "add-all": "Add all",
     "count": "Spielen Zählt",
+    "popular-tracks": "Popular tracks",
     "queue": "Alle Lieder zur Warteschlange hinzufügen",
     "similar": "Ähnliche Künstler",
     "title": "Titel",
@@ -47,6 +57,18 @@
     "header": "Downloads",
     "name": "Name",
     "status": "Status"
+  },
+  "equalizer": {
+    "classical": "Classical",
+    "club": "Club",
+    "custom": "Custom",
+    "default": "Default",
+    "full-bass": "Full Bass",
+    "full-treble": "Full Treble",
+    "pop": "Pop",
+    "presets": "Presets",
+    "reggae": "Reggae",
+    "rock": "Rock"
   },
   "favorite-albums": {
     "empty": "Keine Lieblingsalben vorhanden",
@@ -142,6 +164,7 @@
   "search": {
     "album": "Album",
     "album_plural": "Alben",
+    "all": "All",
     "artist": "Künstler",
     "artist_plural": "Künstler",
     "empty": "Nichts gefunden.",
@@ -179,13 +202,16 @@
     "lastfm-description": "Um das Scrobbeln zu ermöglichen, müssen Sie sich zuerst mit Nuclear auf Last.fm verbinden und Nuclear autorisieren. Dann loggen Sie sich ein.",
     "lastfm-enable": "Scrobbeln nach Last.fm aktivieren",
     "lastfm-title": "Last.fm",
+    "less": "Less",
     "login": "Log-in",
     "logout": "Log-out",
     "loop-after-queue-end": "Loop nach dem Ende der Warteschlange",
+    "more": "More",
     "notification-timeout": "Benachrichtigungs-Timeout",
     "notlogged": "Nicht eingeloggt",
     "playback": "Playback",
     "program-settings": "Programmeinstellungen",
+    "saving-in": "Saving in:",
     "seek-iteration": "Zeit in Sekunden zum Vor- oder Zurückspulen bei Betätigung der Pfeiltasten",
     "shuffle-queue": "Shuffle Lieder",
     "shuffle-when-going-back": "Shuffle von vorherigen Liedern",
@@ -203,5 +229,19 @@
     "duration": "Dauer",
     "queue-add": "Alle Lieder zur Warteschlange hinzufügen",
     "title": "Titel"
+  },
+  "track": {
+    "add-this-track-to-favorites": "Add this track to favorites",
+    "add-to-favorites": "Add to favorites",
+    "add-to-queue": "Add to queue",
+    "add-track-to-queue": "Add track to queue",
+    "download": "Download",
+    "download-this-track": "Download this track",
+    "favorite-track-title": "Favorite track added",
+    "favorite-track-toast": "{{artist}} - {{title}} has been added to favorites",
+    "play-now": "Play now",
+    "play-this-track-now": "Play this track now",
+    "track-added-to-downloads-title": "Track added to downloads",
+    "track-added-to-downloads-toast": "{{artist}} - {{title}} has been added to downloads"
   }
 }

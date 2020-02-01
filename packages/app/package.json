@@ -7,7 +7,7 @@
     "build": "webpack --colors --env.NODE_ENV=production",
     "test": "mocha --require ./test/testHelper.js --require regenerator-runtime --timeout 10000 --prof --recursive",
     "lint": "eslint app test --fix",
-    "i18n": "sync-i18n --files 'app/locales/*.json' --primary en --languages fr tl nl de dk es pl zh ru tr id sk ko zh_tw --space 2"
+    "i18n": "sync-i18n --files 'app/locales/*.json' --primary en --languages fr tl nl de dk es pl zh ru tr id sk ko zh_tw se --space 2"
   },
   "repository": {
     "type": "git",

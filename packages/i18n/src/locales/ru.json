@@ -1,9 +1,17 @@
 {
   "album": {
+    "by": "by",
+    "discogs-returned-invalid-data": "Discogs returned invalid data.",
     "download": "Download",
     "download-toast-content": "{{artist}} - {{title}} has been added to downloads.",
     "download-toast-title": "Album added to downloads",
-    "queue": "Добавить Альбом в Очередь"
+    "genre": "Genre:",
+    "play": "Play",
+    "queue": "Добавить Альбом в Очередь",
+    "song": "Song",
+    "tracks": "Tracks:",
+    "try-going-back-to-search": "Try going back to search.",
+    "year": "Year:"
   },
   "app": {
     "collection": "Коллекция",
@@ -21,7 +29,9 @@
     "settings": "Настройки"
   },
   "artist": {
+    "add-all": "Add all",
     "count": "Счетчик проигрываний",
+    "popular-tracks": "Popular tracks",
     "queue": "Добавить Все Композиции в Очередь",
     "similar": "Похожие Исполнители",
     "title": "Название",
@@ -47,6 +57,18 @@
     "header": "Загрузки",
     "name": "Имя",
     "status": "Статус"
+  },
+  "equalizer": {
+    "classical": "Classical",
+    "club": "Club",
+    "custom": "Custom",
+    "default": "Default",
+    "full-bass": "Full Bass",
+    "full-treble": "Full Treble",
+    "pop": "Pop",
+    "presets": "Presets",
+    "reggae": "Reggae",
+    "rock": "Rock"
   },
   "favorite-albums": {
     "empty": "No favorite albums",
@@ -144,6 +166,7 @@
     "album_0": "Albums",
     "album_1": "Albums",
     "album_2": "Albums",
+    "all": "All",
     "artist_0": "Artists",
     "artist_1": "Artists",
     "artist_2": "Artists",
@@ -184,13 +207,16 @@
     "lastfm-description": "Чтобы включить скробблинг, необходимо подключиться и авторизовать Nuclear на Last.fm, а затем нажать «Войти».",
     "lastfm-enable": "Включить скробблинг на Last.fm",
     "lastfm-title": "Last.fm",
+    "less": "Less",
     "login": "Войти",
     "logout": "Выйти",
     "loop-after-queue-end": "Повторить после проигрывания последней композиции в очереди",
+    "more": "More",
     "notification-timeout": "Таймер уведомлений",
     "notlogged": "Не вошли",
     "playback": "Проигрывание",
     "program-settings": "Программные Настройки",
+    "saving-in": "Saving in:",
     "seek-iteration": "Number of seconds to seek forward/backwards when pressing arrow keys",
     "shuffle-queue": "Перемешать Композиции",
     "shuffle-when-going-back": "Shuffle on previous track",
@@ -208,5 +234,19 @@
     "duration": "Продолжительность",
     "queue-add": "Добавить все композиции в очередь",
     "title": "Название"
+  },
+  "track": {
+    "add-this-track-to-favorites": "Add this track to favorites",
+    "add-to-favorites": "Add to favorites",
+    "add-to-queue": "Add to queue",
+    "add-track-to-queue": "Add track to queue",
+    "download": "Download",
+    "download-this-track": "Download this track",
+    "favorite-track-title": "Favorite track added",
+    "favorite-track-toast": "{{artist}} - {{title}} has been added to favorites",
+    "play-now": "Play now",
+    "play-this-track-now": "Play this track now",
+    "track-added-to-downloads-title": "Track added to downloads",
+    "track-added-to-downloads-toast": "{{artist}} - {{title}} has been added to downloads"
   }
 }

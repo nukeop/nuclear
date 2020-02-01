@@ -1,9 +1,17 @@
 {
   "album": {
+    "by": "by",
+    "discogs-returned-invalid-data": "Discogs returned invalid data.",
     "download": "Download",
     "download-toast-content": "{{artist}} - {{title}} has been added to downloads.",
     "download-toast-title": "Album added to downloads",
-    "queue": "將專輯新增到播放清單"
+    "genre": "Genre:",
+    "play": "Play",
+    "queue": "將專輯新增到播放清單",
+    "song": "Song",
+    "tracks": "Tracks:",
+    "try-going-back-to-search": "Try going back to search.",
+    "year": "Year:"
   },
   "app": {
     "collection": "收藏",
@@ -21,7 +29,9 @@
     "settings": "設定"
   },
   "artist": {
+    "add-all": "Add all",
     "count": "播放次數",
+    "popular-tracks": "Popular tracks",
     "queue": "將所有歌曲新增到播放清單",
     "similar": "相關歌手",
     "title": "音樂標題",
@@ -47,6 +57,18 @@
     "header": "下載",
     "name": "名字",
     "status": "狀態"
+  },
+  "equalizer": {
+    "classical": "Classical",
+    "club": "Club",
+    "custom": "Custom",
+    "default": "Default",
+    "full-bass": "Full Bass",
+    "full-treble": "Full Treble",
+    "pop": "Pop",
+    "presets": "Presets",
+    "reggae": "Reggae",
+    "rock": "Rock"
   },
   "favorite-albums": {
     "empty": "No favorite albums",
@@ -140,6 +162,7 @@
   },
   "search": {
     "album": "專輯",
+    "all": "All",
     "artist": "演出者",
     "empty": "找不到資料",
     "placeholder": "搜尋...",
@@ -174,13 +197,16 @@
     "lastfm-description": "為了要啟用連接，您必須先到 Last.fm 連接與認證再登入",
     "lastfm-enable": "啟用連接到 Last.fm",
     "lastfm-title": "Last.fm",
+    "less": "Less",
     "login": "登入",
     "logout": "登出",
     "loop-after-queue-end": "到達最後曲目後自動循環",
+    "more": "More",
     "notification-timeout": "超時提醒",
     "notlogged": "未登入",
     "playback": "播放",
     "program-settings": "程式設定",
+    "saving-in": "Saving in:",
     "seek-iteration": "Number of seconds to seek forward/backwards when pressing arrow keys",
     "shuffle-queue": "隨機曲目",
     "shuffle-when-going-back": "Shuffle on previous track",
@@ -198,5 +224,19 @@
     "duration": "期間",
     "queue-add": "新增所有曲目到播放佇列",
     "title": "音樂標題"
+  },
+  "track": {
+    "add-this-track-to-favorites": "Add this track to favorites",
+    "add-to-favorites": "Add to favorites",
+    "add-to-queue": "Add to queue",
+    "add-track-to-queue": "Add track to queue",
+    "download": "Download",
+    "download-this-track": "Download this track",
+    "favorite-track-title": "Favorite track added",
+    "favorite-track-toast": "{{artist}} - {{title}} has been added to favorites",
+    "play-now": "Play now",
+    "play-this-track-now": "Play this track now",
+    "track-added-to-downloads-title": "Track added to downloads",
+    "track-added-to-downloads-toast": "{{artist}} - {{title}} has been added to downloads"
   }
 }

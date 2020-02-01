@@ -44,7 +44,7 @@ class PopularTracks extends React.Component {
         className={styles.add_button}
         aria-label={this.props.t('queue')}
       >
-        <FontAwesome name='plus' /> Add all
+        <FontAwesome name='plus' /> {this.props.t('add-all')}
       </a>
     );
   }
@@ -57,7 +57,7 @@ class PopularTracks extends React.Component {
         styles.popular_tracks_container,
         trackRowStyles.tracks_container
       )}>
-        <div className={styles.header}>Popular tracks </div>
+        <div className={styles.header}>{t('popular-tracks')} </div>
         {this.renderAddAllButton(artist, tracks)}
         <table>
           <thead>

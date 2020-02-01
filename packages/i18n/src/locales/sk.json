@@ -1,9 +1,17 @@
 {
   "album": {
+    "by": "by",
+    "discogs-returned-invalid-data": "Discogs returned invalid data.",
     "download": "Stiahnuť",
     "download-toast-content": "{{artist}} - {{title}} bol pridaný do stiahnutých.",
     "download-toast-title": "Album pridaný medzi stiahnuté",
-    "queue": "Pridať album do poradia"
+    "genre": "Genre:",
+    "play": "Play",
+    "queue": "Pridať album do poradia",
+    "song": "Song",
+    "tracks": "Tracks:",
+    "try-going-back-to-search": "Try going back to search.",
+    "year": "Year:"
   },
   "app": {
     "collection": "Zbierka",
@@ -21,7 +29,9 @@
     "settings": "Nastavenia"
   },
   "artist": {
+    "add-all": "Add all",
     "count": "Počet prehratí",
+    "popular-tracks": "Popular tracks",
     "queue": "Pridať všetky skladby do poradia",
     "similar": "Podobný umelci",
     "title": "Názov",
@@ -47,6 +57,18 @@
     "header": "Stiahnuté",
     "name": "Meno",
     "status": "Stav"
+  },
+  "equalizer": {
+    "classical": "Classical",
+    "club": "Club",
+    "custom": "Custom",
+    "default": "Default",
+    "full-bass": "Full Bass",
+    "full-treble": "Full Treble",
+    "pop": "Pop",
+    "presets": "Presets",
+    "reggae": "Reggae",
+    "rock": "Rock"
   },
   "favorite-albums": {
     "empty": "Žiadne obľúbené albumy",
@@ -144,6 +166,7 @@
     "album_0": "Albums",
     "album_1": "Albums",
     "album_2": "Albums",
+    "all": "All",
     "artist_0": "Artists",
     "artist_1": "Artists",
     "artist_2": "Artists",
@@ -184,13 +207,16 @@
     "lastfm-description": "Aby Ste mohli odosielať dáta o skladbách a tak dostávať relevantnejšie tipy, musíte pripojiť a autorizovať Nuclear na Last.fm, potom kliknite na prihlásenie",
     "lastfm-enable": "Povoliť odosielanie dát do Last.fm",
     "lastfm-title": "Last.fm",
+    "less": "Less",
     "login": "Prihlásiť sa",
     "logout": "Odhlásiť sa",
     "loop-after-queue-end": "Slučka po prehratí poslednej skladby z poradia",
+    "more": "More",
     "notification-timeout": "Oznámenie o vypršaní času",
     "notlogged": "Neprihlásený",
     "playback": "Prehrávanie",
     "program-settings": "Programové nastavenia",
+    "saving-in": "Saving in:",
     "seek-iteration": "Počet sekúnd, ktoré majú ubehnúť pri pretáčaní vpred-vzad pri stláčaní šipiek",
     "shuffle-queue": "Poprehadzovať skladby",
     "shuffle-when-going-back": "Poprehadzovať na predošlej skladbe",
@@ -208,5 +234,19 @@
     "duration": "Trvanie",
     "queue-add": "Pridať všetky skladby do poradia",
     "title": "Názov"
+  },
+  "track": {
+    "add-this-track-to-favorites": "Add this track to favorites",
+    "add-to-favorites": "Add to favorites",
+    "add-to-queue": "Add to queue",
+    "add-track-to-queue": "Add track to queue",
+    "download": "Download",
+    "download-this-track": "Download this track",
+    "favorite-track-title": "Favorite track added",
+    "favorite-track-toast": "{{artist}} - {{title}} has been added to favorites",
+    "play-now": "Play now",
+    "play-this-track-now": "Play this track now",
+    "track-added-to-downloads-title": "Track added to downloads",
+    "track-added-to-downloads-toast": "{{artist}} - {{title}} has been added to downloads"
   }
 }

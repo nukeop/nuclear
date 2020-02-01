@@ -14,7 +14,9 @@ import artPlaceholder from '../../../resources/media/art_placeholder.png';
 
 import styles from './styles.scss';
 
+import { withTranslation } from 'react-i18next';
 
+@withTranslation('track')
 class TrackRow extends React.Component {
   // this function should be moved onto interface for 'track'
   renderAlbum (track) {
@@ -101,6 +103,7 @@ class TrackRow extends React.Component {
   render () {
 
     let {
+      t,
       track,
       withAddToQueue,
       withPlayNow,
@@ -112,6 +115,7 @@ class TrackRow extends React.Component {
         trigger={this.renderTrigger(track)}
         track={track}
         artist={track.artist.name}
+        t={t}
         title={track.name}
         thumb={this.getTrackThumbnail()}
 

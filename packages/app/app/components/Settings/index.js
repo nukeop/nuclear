@@ -248,7 +248,7 @@ class Settings extends React.Component {
   renderSliderOption (option) {
     return (
       <div className={styles.slider_container}>
-        <label>Less</label>
+        <label>{this.props.t('less')}</label>
         <Range
           value={this.getOptionValue(option) || option.default}
           min={option.min}
@@ -261,7 +261,7 @@ class Settings extends React.Component {
           onChange={(e) => this.handleSliderChange(e, option)}
           thumbSize={21}
         />
-        <label>More</label>
+        <label>{this.props.t('more')}</label>
       </div>
     );
   }

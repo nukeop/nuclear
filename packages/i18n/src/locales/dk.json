@@ -1,9 +1,17 @@
 {
   "album": {
+    "by": "by",
+    "discogs-returned-invalid-data": "Discogs returned invalid data.",
     "download": "Download",
     "download-toast-content": "{{artist}} - {{title}} has been added to downloads.",
     "download-toast-title": "Album added to downloads",
-    "queue": "Tiløj album til kø"
+    "genre": "Genre:",
+    "play": "Play",
+    "queue": "Tiløj album til kø",
+    "song": "Song",
+    "tracks": "Tracks:",
+    "try-going-back-to-search": "Try going back to search.",
+    "year": "Year:"
   },
   "app": {
     "collection": "Samling",
@@ -21,7 +29,9 @@
     "settings": "Indstillinger"
   },
   "artist": {
+    "add-all": "Add all",
     "count": "Antal afspilninger",
+    "popular-tracks": "Popular tracks",
     "queue": "Tilføj alle sange til kø",
     "similar": "Lignende artister",
     "title": "Titel",
@@ -47,6 +57,18 @@
     "header": "Downloads",
     "name": "Navn",
     "status": "Status"
+  },
+  "equalizer": {
+    "classical": "Classical",
+    "club": "Club",
+    "custom": "Custom",
+    "default": "Default",
+    "full-bass": "Full Bass",
+    "full-treble": "Full Treble",
+    "pop": "Pop",
+    "presets": "Presets",
+    "reggae": "Reggae",
+    "rock": "Rock"
   },
   "favorite-albums": {
     "empty": "No favorite albums",
@@ -138,6 +160,7 @@
     "title": "Titel:"
   },
   "search": {
+    "all": "All",
     "empty": "Intet fundet.",
     "placeholder": "Søg...",
     "queue-add": "Tilføj alle sange til kø"
@@ -169,13 +192,16 @@
     "lastfm-description": " For at aktivere scrobbling, skal du først forbinde og have bemyndigelsesadgang til Nuclear på Last.fm. Derefter skal du klikke på log ind.",
     "lastfm-enable": "Aktiver scrobbling til Last.fm",
     "lastfm-title": "Last.fm",
+    "less": "Less",
     "login": "Log ind",
     "logout": "Log ud",
     "loop-after-queue-end": "Loop efter afspilning af den sidste sang i køen",
+    "more": "More",
     "notification-timeout": "Notifikation timeout",
     "notlogged": "Ikke logget ind",
     "playback": "Playback",
     "program-settings": "Programindstillinger",
+    "saving-in": "Saving in:",
     "seek-iteration": "Number of seconds to seek forward/backwards when pressing arrow keys",
     "shuffle-queue": "Shuffle sange",
     "shuffle-when-going-back": "Shuffle on previous track",
@@ -193,5 +219,19 @@
     "duration": "Længde",
     "queue-add": "Tilføj alle sange til kø",
     "title": "Titel"
+  },
+  "track": {
+    "add-this-track-to-favorites": "Add this track to favorites",
+    "add-to-favorites": "Add to favorites",
+    "add-to-queue": "Add to queue",
+    "add-track-to-queue": "Add track to queue",
+    "download": "Download",
+    "download-this-track": "Download this track",
+    "favorite-track-title": "Favorite track added",
+    "favorite-track-toast": "{{artist}} - {{title}} has been added to favorites",
+    "play-now": "Play now",
+    "play-this-track-now": "Play this track now",
+    "track-added-to-downloads-title": "Track added to downloads",
+    "track-added-to-downloads-toast": "{{artist}} - {{title}} has been added to downloads"
   }
 }

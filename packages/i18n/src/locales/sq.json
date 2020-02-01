@@ -1,9 +1,17 @@
 {
   "album": {
+    "by": "by",
+    "discogs-returned-invalid-data": "Discogs returned invalid data.",
     "download": "Shkarko",
     "download-toast-content": "{{artist}} - {{title}} është shtuar tek shkarkimet.",
     "download-toast-title": "Albumi u shtua tek shkarkimet",
-    "queue": "Shto album në radhë"
+    "genre": "Genre:",
+    "play": "Play",
+    "queue": "Shto album në radhë",
+    "song": "Song",
+    "tracks": "Tracks:",
+    "try-going-back-to-search": "Try going back to search.",
+    "year": "Year:"
   },
   "app": {
     "collection": "Koleksion",
@@ -21,7 +29,9 @@
     "settings": "Përcaktimet"
   },
   "artist": {
+    "add-all": "Add all",
     "count": "Numërimi i këngëve",
+    "popular-tracks": "Popular tracks",
     "queue": "Shto të gjitha këngët në radhë",
     "similar": "Artistë të ngjashëm",
     "title": "Titulli",
@@ -47,6 +57,18 @@
     "header": "Shkarkimet",
     "name": "Emri",
     "status": "Statusi"
+  },
+  "equalizer": {
+    "classical": "Classical",
+    "club": "Club",
+    "custom": "Custom",
+    "default": "Default",
+    "full-bass": "Full Bass",
+    "full-treble": "Full Treble",
+    "pop": "Pop",
+    "presets": "Presets",
+    "reggae": "Reggae",
+    "rock": "Rock"
   },
   "favorite-albums": {
     "empty": "Nuk ka albume të preferuara",
@@ -142,6 +164,7 @@
   "search": {
     "album": "Albumi",
     "album_plural": "Albumet",
+    "all": "All",
     "artist": "Artisti",
     "artist_plural": "Artistët",
     "empty": "Nuk u gjet asgjë.",
@@ -179,13 +202,16 @@
     "lastfm-description": "Në mënyrë që të aktivizoni dërgimin automatik të këngëve të dëgjuara, në fillim ju duhet të lidheni dhe të autorizoni Nuclear në Last.fm, dhe pastaj klikoni kyçuni.",
     "lastfm-enable": "Aktivizoni dërgimin automatik të këngëve të dëgjuara në Last.fm",
     "lastfm-title": "Last.fm",
+    "less": "Less",
     "login": "Kyçuni",
     "logout": "Dilni",
     "loop-after-queue-end": "Rifilloni pasi të luani këngët e fundit në listë",
+    "more": "More",
     "notification-timeout": "Njoftim për mbarimt ë kohës",
     "notlogged": "Nuk jeni kyçur",
     "playback": "Playback",
     "program-settings": "Cilësimet e programit",
+    "saving-in": "Saving in:",
     "seek-iteration": "Numri i sekondave për të parë përpara/pas kur shtypni butonat e shigjetave",
     "shuffle-queue": "Përzieni këngët",
     "shuffle-when-going-back": "Përzieni në këngën e mëparshme",
@@ -203,5 +229,19 @@
     "duration": "Kohëzgjatja",
     "queue-add": "Shto të gjitha këngët në radhë",
     "title": "Titulli"
+  },
+  "track": {
+    "add-this-track-to-favorites": "Add this track to favorites",
+    "add-to-favorites": "Add to favorites",
+    "add-to-queue": "Add to queue",
+    "add-track-to-queue": "Add track to queue",
+    "download": "Download",
+    "download-this-track": "Download this track",
+    "favorite-track-title": "Favorite track added",
+    "favorite-track-toast": "{{artist}} - {{title}} has been added to favorites",
+    "play-now": "Play now",
+    "play-this-track-now": "Play this track now",
+    "track-added-to-downloads-title": "Track added to downloads",
+    "track-added-to-downloads-toast": "{{artist}} - {{title}} has been added to downloads"
   }
 }

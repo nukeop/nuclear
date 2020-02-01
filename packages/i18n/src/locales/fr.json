@@ -1,9 +1,17 @@
 {
   "album": {
+    "by": "by",
+    "discogs-returned-invalid-data": "Discogs returned invalid data.",
     "download": "Télécharger",
     "download-toast-content": "{{artist}} - {{title}} a été ajouté aux téléchargements.",
     "download-toast-title": "L'album a été ajouté aux téléchargements",
-    "queue": "Ajouter l'album à la liste de lecture"
+    "genre": "Genre:",
+    "play": "Play",
+    "queue": "Ajouter l'album à la liste de lecture",
+    "song": "Song",
+    "tracks": "Tracks:",
+    "try-going-back-to-search": "Try going back to search.",
+    "year": "Year:"
   },
   "app": {
     "collection": "Collection",
@@ -21,7 +29,9 @@
     "settings": "Réglages"
   },
   "artist": {
+    "add-all": "Add all",
     "count": "Nombre d'écoutes",
+    "popular-tracks": "Popular tracks",
     "queue": "Ajouter tous les morceaux à la file de lecture",
     "similar": "Artistes similaires",
     "title": "Titre",
@@ -47,6 +57,18 @@
     "header": "Téléchargements",
     "name": "Nom",
     "status": "Status"
+  },
+  "equalizer": {
+    "classical": "Classical",
+    "club": "Club",
+    "custom": "Custom",
+    "default": "Default",
+    "full-bass": "Full Bass",
+    "full-treble": "Full Treble",
+    "pop": "Pop",
+    "presets": "Presets",
+    "reggae": "Reggae",
+    "rock": "Rock"
   },
   "favorite-albums": {
     "empty": "Aucun album favoris",
@@ -142,6 +164,7 @@
   "search": {
     "album": "Album",
     "album_plural": "Albums",
+    "all": "All",
     "artist": "Artiste",
     "artist_plural": "Artistes",
     "empty": "Aucun résultat.",
@@ -179,13 +202,16 @@
     "lastfm-description": "Afin d'activer le scrobbler, vous devez vous connecter et authoriser Nuclear sur lastfm.",
     "lastfm-enable": "Activer le scrobbler de Last.fm",
     "lastfm-title": "Last.fm",
+    "less": "Less",
     "login": "Se connecter",
     "logout": "Se déconnecter",
     "loop-after-queue-end": "Lecture en boucle à la fin de la liste de lecture",
+    "more": "More",
     "notification-timeout": "Temps d'affichage des notifications",
     "notlogged": "Non connecté",
     "playback": "Playback",
     "program-settings": "Application",
+    "saving-in": "Saving in:",
     "seek-iteration": "Nombre de seconde à avancer/reculer en appuyant sur les flèches",
     "shuffle-queue": "Ordre aléatoire",
     "shuffle-when-going-back": "Mélanger les morceaux précédents",
@@ -203,5 +229,19 @@
     "duration": "Durée",
     "queue-add": "Ajouter tous les morceaux dans la file",
     "title": "Titre"
+  },
+  "track": {
+    "add-this-track-to-favorites": "Add this track to favorites",
+    "add-to-favorites": "Add to favorites",
+    "add-to-queue": "Add to queue",
+    "add-track-to-queue": "Add track to queue",
+    "download": "Download",
+    "download-this-track": "Download this track",
+    "favorite-track-title": "Favorite track added",
+    "favorite-track-toast": "{{artist}} - {{title}} has been added to favorites",
+    "play-now": "Play now",
+    "play-this-track-now": "Play this track now",
+    "track-added-to-downloads-title": "Track added to downloads",
+    "track-added-to-downloads-toast": "{{artist}} - {{title}} has been added to downloads"
   }
 }
