@@ -8,7 +8,8 @@ import {
 import {
   SearchResultsArtist,
   SearchResultsAlbum,
-  SearchResultsTrack
+  SearchResultsTrack,
+  SearchResultsSource
 } from '../plugins.types';
 
 class MusicbrainzMetaProvider extends MetaProvider {
@@ -27,7 +28,8 @@ class MusicbrainzMetaProvider extends MetaProvider {
         id: artist.id,
         coverImage: '',
         thumb: '',
-        title: artist.name
+        name: artist.name,
+        source: SearchResultsSource.Musicbrainz
       })));
   }
 
@@ -44,7 +46,8 @@ class MusicbrainzMetaProvider extends MetaProvider {
           coverImage: cover.ok ? cover.url : null,
           thumb: cover.ok ? cover.url : null,
           title: group.title,
-          artist: group.artist
+          artist: group.artist,
+          source: SearchResultsSource.Musicbrainz
         };
       }
     ));
@@ -53,7 +56,10 @@ class MusicbrainzMetaProvider extends MetaProvider {
   searchForTracks(query: string): Promise<Array<SearchResultsTrack>> {
     return trackSearch(query)
       .then(response => response.tracks.map(track => ({
-        id: track.id
+        id: track.id,
+        title: '',
+        artist: '',
+        source: SearchResultsSource.Musicbrainz
       })));
   }
 
