@@ -61,22 +61,6 @@ export function unifiedSearchError () {
   };
 }
 
-function discogsSearch (terms, searchType, dispatchType) {
-  return dispatch => {
-    return rest.Discogs.search(terms, searchType)
-      .then(searchResults => searchResults.json())
-      .then(searchResultsJson => {
-        dispatch({
-          type: dispatchType,
-          payload: searchResultsJson.results
-        });
-      })
-      .catch(error => {
-        logger.error(error);
-      });
-  };
-}
-
 export const artistSearchSuccess = data => ({
   type: ARTIST_SEARCH_SUCCESS,
   payload: data
@@ -322,7 +306,7 @@ export function artistReleasesSearch (artistId) {
 
 export function artistInfoSearchByName (artistName, history) {
   return dispatch => {
-    discogs
+    rest.Discogs
       .search(artistName, 'artists')
       .then(searchResults => searchResults.json())
       .then(searchResultsJson => {
