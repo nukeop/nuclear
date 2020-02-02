@@ -41,13 +41,14 @@
     "music-metadata": "^5.1.1",
     "node-fetch": "^2.6.0",
     "reflect-metadata": "^0.1.13",
+    "rotating-file-stream": "^2.0.2",
     "stream-filter": "^2.1.0",
     "stream-reduce": "^1.0.3",
     "swagger-spec-express": "^2.0.20",
     "tiny-async-pool": "^1.1.0",
     "url": "^0.11.0",
     "uuid": "^3.3.3",
-    "ytdl-core": "^1.0.6"
+    "ytdl-core": "^1.0.7"
   },
   "devDependencies": {
     "@types/body-parser": "^1.17.1",
