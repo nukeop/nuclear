@@ -54,6 +54,7 @@ class Container extends InversifyContainer {
           if (result instanceof Promise) {
             result.catch((err: any) => {
               logger.error(`error in event ${eventName} => ${err.message}`);
+              logger.error(err.stack);
             });
           }
         });

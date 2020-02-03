@@ -1,3 +1,4 @@
+import { IpcEvents } from '@nuclear/core';
 import { app, IpcMessageEvent } from 'electron';
 import { inject } from 'inversify';
 
@@ -8,15 +9,12 @@ import Store from '../services/store';
 import SystemApi from '../services/system-api';
 import Window from '../services/window';
 import { ipcEvent, ipcController } from '../utils/decorators';
-import LocalLibrary from '../services/local-library';
-import { IpcEvents } from '@nuclear/core';
 
 @ipcController()
 class SettingsIpcCtrl {
   constructor(
     @inject(Config) private config: Config,
     @inject(HttpApi) private httpApi: HttpApi,
-    @inject(LocalLibrary) private localLibrary: LocalLibrary,
     @inject(SystemApi) private systemApi: NuclearApi,
     @inject(Store) private store: Store,
     @inject(Window) private window: Window
@@ -30,10 +28,7 @@ class SettingsIpcCtrl {
 
   @ipcEvent(IpcEvents.WINDOW_CLOSE)
   async onClose() {
-    await Promise.all([
-      this.httpApi.close(),
-      this.localLibrary.cleanUnusedLocalThumbnails()
-    ]);
+    await this.httpApi.close();
   
     app.quit();
   }

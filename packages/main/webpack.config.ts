@@ -45,6 +45,9 @@ module.exports = (env: BuildEnv): import('webpack').Configuration => {
         jsbi: __dirname + '/node_modules/jsbi/dist/jsbi-cjs.js'
       }
     },
+    externals: {
+      sqlite3: 'commonjs sqlite3'
+    },  
     output: {
       path: path.resolve(__dirname, outputDir),
       filename: 'main.js'

@@ -21,7 +21,8 @@
   },
   "homepage": "https://github.com/nukeop/nuclear#readme",
   "scripts": {
-    "postinstall": "lerna bootstrap --no-ci",
+    "postinstall": "lerna bootstrap --no-ci && npm run buildnative",
+    "buildnative": "cd packages/main && electron-builder install-app-deps",
     "start": "lerna run start --stream",
     "build": "shx rm -rf dist && lerna run build && npm run pack",
     "test": "lerna run build && lerna run test",

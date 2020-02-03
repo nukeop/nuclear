@@ -23,7 +23,7 @@ export default compose(
           .thru(_.head)
           .value(),
         thumb: _(group)
-          .map('image[0][\'#text\']')
+          .map('thumbnail')
           .uniq()
           .filter(el => !_.isNil(el))
           .thru(result => _.isEmpty(result) ? null : result)
