@@ -70,9 +70,9 @@ const UserPluginsItem = ({
       <div className={styles.error_footer}>
         {
           error &&
-          <div className={styles.error_message}>
-          This plugin could not be loaded correctly.
-          </div>
+            <div className={styles.error_message}>
+              This plugin could not be loaded correctly.
+            </div>
         }
       </div>
     </div>
