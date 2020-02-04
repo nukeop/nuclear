@@ -162,6 +162,8 @@
     "downloads-dir": "록폴더",
     "downloads-dir-button": "폴더를 선택하세요...",
     "enable-api": "가능한 API",
+    "fmfav-btn": "Import",
+    "fmfav-msg": "Import your Last.fm Favorites",
     "frameless-window": "프레임 낮추기 (다시 실행시 적용)",
     "github-connect": "Github로 로그인",
     "github-description": "Gitub을 통해 로그인하여 온라인으로 재생 목록을 만들고 공유할 수 있음(추가될 기능)",

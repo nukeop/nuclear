@@ -172,6 +172,8 @@
     "downloads-dir": "Složka stažené",
     "downloads-dir-button": "Vyberte složku...",
     "enable-api": "Povolit api",
+    "fmfav-btn": "Import",
+    "fmfav-msg": "Import your Last.fm Favorites",
     "frameless-window": "Bezrámečkové okno (vyžaduje restart)",
     "github-connect": "Přihlásit se přes Github",
     "github-description": "Přihlaste se přes Github, abyste mohli vytvářet a sdílet vaše seznamy skladeb online (chystaná funkce).",

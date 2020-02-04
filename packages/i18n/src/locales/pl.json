@@ -172,6 +172,8 @@
     "downloads-dir": "Downloads directory",
     "downloads-dir-button": "Choose a directory...",
     "enable-api": "Włącz obsługę API",
+    "fmfav-btn": "Import",
+    "fmfav-msg": "Import your Last.fm Favorites",
     "frameless-window": "Bezramkowe okno (wymagany restart)",
     "github-connect": "Zaloguj się za pomocą Github",
     "github-description": "Zaloguj się za pomocą Github, aby móc tworzyć i dzielić się twoimi playlistami online (planowana funkcja).",

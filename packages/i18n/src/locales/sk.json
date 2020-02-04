@@ -172,6 +172,8 @@
     "downloads-dir": "Stiahnuté položky",
     "downloads-dir-button": "Zvoliť priečinok...",
     "enable-api": "Povoliť api",
+    "fmfav-btn": "Import",
+    "fmfav-msg": "Import your Last.fm Favorites",
     "frameless-window": "Bezrámové okno (vyžaduje reštart)",
     "github-connect": "Prihlásiť sa cez Github",
     "github-description": "Prihláste sa cez Github aby Ste mohli vytvárať a zdieľať playlisty online (nadchádzajúca funkcia).",

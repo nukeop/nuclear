@@ -167,6 +167,8 @@
     "downloads-dir": "Downloads directory",
     "downloads-dir-button": "Choose a directory...",
     "enable-api": "Api'yi etkinleştir",
+    "fmfav-btn": "Import",
+    "fmfav-msg": "Import your Last.fm Favorites",
     "frameless-window": "Çerçevesiz ekran (Tekrardan başlatma gerekli)",
     "github-connect": "Github'ile giriş yap",
     "github-description": "Github'ile giriş yaparak online şekilde oynatma listesi yapıp paylaşabilirsin.!! (Gelecek Özellik).",

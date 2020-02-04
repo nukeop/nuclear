@@ -167,6 +167,8 @@
     "downloads-dir": "Direktoria e shkarkimeve",
     "downloads-dir-button": "Zgjidhni një direktori...",
     "enable-api": "Aktivizo api",
+    "fmfav-btn": "Import",
+    "fmfav-msg": "Import your Last.fm Favorites",
     "frameless-window": "Dritare e pakufizuar (kërkon restart)",
     "github-connect": "Kyçuni me Github",
     "github-description": "Kyçuni nëpërmjet Github në mënyrë që të krijoni dhe të ndani listat tuaja online (veçori e ardshme).",
