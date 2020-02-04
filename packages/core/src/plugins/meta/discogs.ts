@@ -1,6 +1,6 @@
 import MetaProvider from '../metaProvider';
 import * as Discogs from '../../rest/Discogs';
-import LastFmApi from '../../rest/lastfm';
+import LastFmApi from '../../rest/Lastfm';
 import {
   SearchResultsArtist,
   SearchResultsAlbum,
@@ -9,6 +9,9 @@ import {
   ArtistDetails,
   AlbumDetails
 } from '../plugins.types';
+import {
+  DiscogsArtistInfo
+} from '../../rest/Discogs.types';
 
 const SEARCH_TYPE = Object.freeze({
   ARTIST: 'artist',
@@ -64,8 +67,8 @@ class DiscogsMetaProvider extends MetaProvider {
   }
 
   async fetchArtistDetails(artistId: string): Promise<ArtistDetails> {
-    const discogsInfo = await (await Discogs.artistInfo(artistId)).json();
-const lastfmInfo = await Promise.all([]);
+    const discogsInfo: DiscogsArtistInfo = await (await Discogs.artistInfo(artistId)).json();
+    const lastfmInfo = await Promise.all([]);
   }
 
   fetchArtistDetailsByName(artistName: string): Promise<ArtistDetails> {
