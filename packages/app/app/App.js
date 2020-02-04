@@ -160,7 +160,7 @@ class App extends React.PureComponent {
               src={this.props.settings.compactMenuBar ? logoIcon : logoImg}
             />
             <div className={styles.version_string}>
-              {this.props.settings.compactMenuBar ? '0.6.2' : 'Version 0.6.2'}
+              {this.props.settings.compactMenuBar ? '0.6.3' : 'Version 0.6.3'}
             </div>
           </div>
           <div className={styles.sidebar_menus}>

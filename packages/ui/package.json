@@ -1,6 +1,6 @@
 {
   "name": "@nuclear/ui",
-  "version": "0.6.2",
+  "version": "0.6.3",
   "description": "Nuclear - UI components",
   "author": "nukeop <nukeop@gumblert.tech>",
   "homepage": "https://github.com/nukeop/nuclear/tree/master/packages/ui#readme",
@@ -63,7 +63,7 @@
     "webpack-dev-server": "^3.1.5"
   },
   "dependencies": {
-    "@nuclear/core": "^0.6.2",
+    "@nuclear/core": "^0.6.3",
     "classnames": "^2.2.6",
     "lodash": "^4.17.15",
     "numeral": "^2.0.6",

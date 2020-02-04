@@ -1,8 +1,9 @@
+/* eslint-disable no-process-exit */
 /* eslint-disable no-console */
 import fs from 'fs';
 import path from 'path';
 
-const FILE_PATH = path.resolve(__dirname, '../../../../docs/i18n.md');
+const FILE_PATH = path.resolve(__dirname, '../../../../', 'docs', 'i18n.md');
 
 export const generateMdFile = (data: Record<string, Record<string, string[]>>) => {
   const stream = fs.createWriteStream(FILE_PATH, {
@@ -11,6 +12,7 @@ export const generateMdFile = (data: Record<string, Record<string, string[]>>) =
 
   stream.on('close', () => {
     console.log('i18n missing translation doc updated');
+    process.exit(0);
   });
 
   const now = new Date();

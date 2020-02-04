@@ -1,13 +1,13 @@
 {
   "name": "@nuclear/app",
-  "version": "0.6.2",
+  "version": "0.6.3",
   "description": "Nuclear - Renderer process",
   "scripts": {
     "start": "webpack-dev-server --inline --env.NODE_ENV=development",
     "build": "webpack --colors --env.NODE_ENV=production",
     "test": "mocha --require ./test/testHelper.js --require regenerator-runtime --timeout 10000 --prof --recursive",
     "lint": "eslint app test --fix",
-    "i18n": "sync-i18n --files 'app/locales/*.json' --primary en --languages fr tl nl de dk es pl zh ru tr id sk ko zh_tw --space 2"
+    "i18n": "sync-i18n --files 'app/locales/*.json' --primary en --languages fr tl nl de dk es pl zh ru tr id sk ko zh_tw se --space 2"
   },
   "repository": {
     "type": "git",
@@ -32,9 +32,9 @@
   },
   "homepage": "https://github.com/nukeop/nuclear#readme",
   "dependencies": {
-    "@nuclear/core": "^0.6.2",
-    "@nuclear/i18n": "^0.6.2",
-    "@nuclear/ui": "^0.6.2",
+    "@nuclear/core": "^0.6.3",
+    "@nuclear/i18n": "^0.6.3",
+    "@nuclear/ui": "^0.6.3",
     "billboard-top-100": "^2.0.8",
     "bluebird": "3.5.3",
     "chart.js": "^2.8.0",
@@ -59,7 +59,7 @@
     "react-debounce-input": "^3.2.0",
     "react-dom": "^16.8.6",
     "react-fontawesome": "^1.6.1",
-    "react-hifi": "^2.2.0",
+    "react-hifi": "^2.2.1",
     "react-i18next": "^10.11.0",
     "react-image": "^2.1.1",
     "react-list": "^0.8.13",
@@ -77,7 +77,7 @@
     "semantic-ui-react": "^0.88.2",
     "simple-get-lyrics": "0.0.4",
     "youtube-playlist": "^1.0.2",
-    "ytdl-core": "^1.0.6"
+    "ytdl-core": "^1.0.7"
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",
