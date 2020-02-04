@@ -37,7 +37,7 @@ export default function ImportFavsReducer(state=initialState, action) {
   case LASTFM_FAV_IMPORT_ERROR:
     return Object.assign({}, state, {
       lastFmFavImportStatus: true,
-      lastFmFavImportMessage: 'Error occured, failed to import favorites.'
+      lastFmFavImportMessage: 'Error: ' + action.payload.lastFmFavImportErrorMsg
     });
   default:
     return state;

@@ -22,7 +22,11 @@ export function FavImportInit() {
   };
 }
 
-const FmFavError = () => ({ type: LASTFM_FAV_IMPORT_ERROR });
+const FmFavError = (msg = 'Failed to import favorites.') => ({
+  type: LASTFM_FAV_IMPORT_ERROR,
+  payload: {
+    lastFmFavImportErrorMsg: msg
+  } });
 
 function FmSuccess1(count) {
   return {
@@ -49,20 +53,33 @@ export function fetchAllFmFavorites() {
       lastfm.getNumberOfLovedTracks(storage.lastFmName, 1)
         .then((resp) => resp.json())
         .then(req => {
+          if (!req.lovedtracks) {
+            throw new Error;
+          }
           let totalLovedTracks = req.lovedtracks['@attr'].total;
+          if (totalLovedTracks <= 0 || totalLovedTracks > 1000) {
+            throw totalLovedTracks;
+          }
           dispatch(FmSuccess1(totalLovedTracks));
           return lastfm.getNumberOfLovedTracks(storage.lastFmName, totalLovedTracks);
         })
         .then((resp) => resp.json())
         .then((req) => {
+          if (!req.lovedtracks || !req.lovedtracks.track) {
+            throw new Error;
+          }
           req.lovedtracks.track.forEach(favtrack => {
             FavoritesActions.addFavoriteTrack(favtrack);
           });
           dispatch(FmSuccessFinal(req.lovedtracks.track.length));
         })
         .catch((error) => {
-          dispatch(FmFavError());
-          logger.error(error);
+          if (error <= 0 || error > 1000) {
+            dispatch(FmFavError(' Invalid number of favorites [' + error + ']'));
+          } else {
+            dispatch(FmFavError());
+            logger.error(error);
+          }
         });
     };
   } else {
