@@ -4,7 +4,7 @@ export { Discogs };
 import * as Youtube from './Youtube';
 export { Youtube };
 
-export { default as LastFmApi } from './lastfm';
+export { default as LastFmApi } from './Lastfm';
 
 import * as Bandcamp from './Bandcamp';
 export { Bandcamp };

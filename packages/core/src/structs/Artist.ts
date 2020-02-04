@@ -2,12 +2,12 @@ import uuidv4 from 'uuid/v4';
 
 import Album from './Album';
 import Track from './Track';
-import { 
+import {
   SearchResultsArtist,
   SearchResultsSource
- } from '../plugins/plugins.types';
+} from '../plugins/plugins.types';
 
-const artistQuantifierRegex: RegExp = /\s\([0-9]*\)$/;
+const artistQuantifierRegex = /\s\([0-9]*\)$/;
 
 export default class Artist {
   uuid: string;
@@ -34,7 +34,7 @@ export default class Artist {
     this.description = data.description;
     this.tags = data.tags;
     this.onTour = data.onTour;
-    
+
     this.coverImage = data.coverImage;
     this.thumbnail = data.thumbnail;
     this.images = data.images;
@@ -46,11 +46,11 @@ export default class Artist {
     this.cleanName();
   }
 
-  cleanName() {
+  cleanName(): void {
     this.name = this.name && this.name.replace(artistQuantifierRegex, '');
   }
 
-  addSearchResultData(data: SearchResultsArtist) {
+  addSearchResultData(data: SearchResultsArtist): void {
     this.ids = { ...this.ids, [data.source]: data.id };
     this.name = data.name;
     this.coverImage = data.coverImage;
@@ -58,8 +58,8 @@ export default class Artist {
     this.cleanName();
   }
 
-  static fromSearchResultData(data: SearchResultsArtist) {
-    let artist = new Artist();
+  static fromSearchResultData(data: SearchResultsArtist): Artist {
+    const artist = new Artist();
     artist.addSearchResultData(data);
     artist.cleanName();
     return artist;
