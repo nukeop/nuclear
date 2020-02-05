@@ -12,7 +12,10 @@ import {
   AlbumDetails
 } from '../plugins.types';
 import {
-  DiscogsArtistInfo, DiscogsImage
+  DiscogsReleaseSearchResponse,
+  DiscogsArtistSearchResponse,
+  DiscogsArtistInfo,
+  DiscogsImage
 } from '../../rest/Discogs.types';
 import { LastFmArtistInfo, LastfmTopTracks, LastfmTrack } from '../../rest/Lastfm.types';
 
@@ -31,8 +34,12 @@ class DiscogsMetaProvider extends MetaProvider {
   searchForArtists(query: string): Promise<Array<SearchResultsArtist>> {
     return Discogs.search(query, 'artist')
       .then(response => response.json())
-      .then(json => json.map(artist => ({
-        ...artist,
+      .then((json: DiscogsArtistSearchResponse) => json.results.map(artist => ({
+        id: `${artist.id}`,
+        coverImage: artist.cover_image,
+        thumb: artist.thumb,
+        name: artist.title,
+        resourceUrl: artist.resource_url,
         source: SearchResultsSource.Discogs
       })));
   }
@@ -40,10 +47,20 @@ class DiscogsMetaProvider extends MetaProvider {
   searchForReleases(query: string): Promise<Array<SearchResultsAlbum>> {
     return Discogs.search(query, 'master')
       .then(response => response.json())
-      .then(json => json.map(album => ({
-        ...album,
-        source: SearchResultsSource.Discogs
-      })));
+      .then((json: DiscogsReleaseSearchResponse) => json.results.map(album => {
+        const albumNameRegex = /(?<artist>.*) - (?<album>.*)/g;
+        const match = albumNameRegex.exec(album.title);
+
+        return {
+          id: `${album.id}`,
+          coverImage: album.cover_image,
+          thumb: album.cover_image,
+          title: match.groups.album,
+          artist: match.groups.artist,
+          resourceUrl: album.resource_url,
+          source: SearchResultsSource.Discogs
+        };
+      }));
   }
 
   searchForTracks(query: string): Promise<Array<SearchResultsTrack>> {
@@ -96,11 +113,11 @@ class DiscogsMetaProvider extends MetaProvider {
   }
 
   fetchArtistAlbums(artistId: string): Promise<SearchResultsAlbum[]> {
-    throw new Error("Method not implemented.");
+    throw new Error('Method not implemented.');
   }
 
   fetchAlbumDetailsByName(albumName: string): Promise<AlbumDetails> {
-    throw new Error("Method not implemented.");
+    throw new Error('Method not implemented.');
   }
 }
 

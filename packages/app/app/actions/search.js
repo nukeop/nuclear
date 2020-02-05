@@ -41,25 +41,9 @@ export function sourcesSearch (terms, plugins) {
   return {};
 }
 
-export function unifiedSearchStart () {
-  return {
-    type: UNIFIED_SEARCH_START,
-    payload: true
-  };
-}
-
-export function unifiedSearchSuccess () {
-  return {
-    type: UNIFIED_SEARCH_SUCCESS,
-    payload: false
-  };
-}
-
-export function unifiedSearchError () {
-  return {
-    type: UNIFIED_SEARCH_ERROR
-  };
-}
+const unifiedSearchStart = () => ({type: UNIFIED_SEARCH_START});
+const unifiedSearchSuccess = () => ({type: UNIFIED_SEARCH_SUCCESS});
+const unifiedSearchError = () => ({type: UNIFIED_SEARCH_ERROR});
 
 export const artistSearchSuccess = data => ({
   type: ARTIST_SEARCH_SUCCESS,

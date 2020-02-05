@@ -16,7 +16,7 @@ import {
   YOUTUBE_PLAYLIST_SEARCH_START,
   YOUTUBE_PLAYLIST_SEARCH_SUCCESS
 } from '../actions/search';
-import Artist from '../structs/artist';
+import { Artist } from '@nuclear/core';
 
 const initialState = {
   plugins: [],
@@ -30,34 +30,22 @@ const initialState = {
   playlistSearchStarted: false
 };
 
-function reduceUnifiedSearchStart (state, action) {
+function reduceAlbumSearchSuccess(state, action) {
   return {
-    ...state,
-    unifiedSearchStarted: action.payload
-  };
-}
-function reduceAlbumSearchSuccess (state, action) {
-  return {...
-  state,
-  albumSearchResults: action.payload
+    ...
+    state,
+    albumSearchResults: action.payload
   };
 }
 
-function reduceArtistSearchSuccess (state, action) {
+function reduceArtistSearchSuccess(state, action) {
   return {
     ...state,
-    artistSearchResults: action.payload.map(artist => Artist.fromDiscogsSearchData(artist))
+    artistSearchResults: action.payload.map(artist => Artist.fromSearchResultData(artist))
   };
 }
 
-function reduceUnifiedSearchSuccess (state, action) {
-  return {
-    ...state,
-    unifiedSearchStarted: action.payload
-  };
-}
-
-function reduceAlbumInfoSearchStart (state, action) {
+function reduceAlbumInfoSearchStart(state, action) {
   return {
     ...state,
     albumDetails: {
@@ -67,7 +55,7 @@ function reduceAlbumInfoSearchStart (state, action) {
   };
 }
 
-function reduceAlbumInfoSearchSuccess (state, action) {
+function reduceAlbumInfoSearchSuccess(state, action) {
   return {
     ...state,
     albumDetails: {
@@ -80,7 +68,7 @@ function reduceAlbumInfoSearchSuccess (state, action) {
   };
 }
 
-function reduceArtistInfoSearchStart (state, action) {
+function reduceArtistInfoSearchStart(state, action) {
   return {
     ...state,
     artistDetails: {
@@ -92,7 +80,7 @@ function reduceArtistInfoSearchStart (state, action) {
   };
 }
 
-function reduceArtistInfoSearchSuccess (state, action) {
+function reduceArtistInfoSearchSuccess(state, action) {
   return {
     ...state,
     artistDetails: {
@@ -106,7 +94,7 @@ function reduceArtistInfoSearchSuccess (state, action) {
   };
 }
 
-function reduceArtistReleasesSearchStart (state, action) {
+function reduceArtistReleasesSearchStart(state, action) {
   return {
     ...state,
     artistDetails: {
@@ -120,7 +108,7 @@ function reduceArtistReleasesSearchStart (state, action) {
   };
 }
 
-function reduceArtistReleasesSearchSuccess (state, action) {
+function reduceArtistReleasesSearchSuccess(state, action) {
   return {
     ...state,
     artistDetails: {
@@ -134,7 +122,7 @@ function reduceArtistReleasesSearchSuccess (state, action) {
   };
 }
 
-function reduceLastfmArtistInfoSearchStart (state, action) {
+function reduceLastfmArtistInfoSearchStart(state, action) {
   return {
     ...state,
     artistDetails: {
@@ -147,7 +135,7 @@ function reduceLastfmArtistInfoSearchStart (state, action) {
   };
 }
 
-function reduceLastfmArtistInfoSearchSuccess (state, action) {
+function reduceLastfmArtistInfoSearchSuccess(state, action) {
   return {
     ...state,
     artistDetails: {
@@ -155,7 +143,7 @@ function reduceLastfmArtistInfoSearchSuccess (state, action) {
       [action.payload.id]: {
         ...state.artistDetails[action.payload.id],
         lastfm: {
-          ... action.payload.info,
+          ...action.payload.info,
           loading: false
         }
       }
@@ -163,21 +151,21 @@ function reduceLastfmArtistInfoSearchSuccess (state, action) {
   };
 }
 
-function reduceLastfmTrackSearchStart (state, action) {
+function reduceLastfmTrackSearchStart(state, action) {
   return {
     ...state,
     trackSearchResults: action.payload
   };
 }
 
-function reduceLastfmTrackSearchSuccess (state, action) {
+function reduceLastfmTrackSearchSuccess(state, action) {
   return {
     ...state,
     trackSearchResults: action.payload
   };
 }
 
-function reduceYoutubePlaylistSearchStart (state, action) {
+function reduceYoutubePlaylistSearchStart(state, action) {
   return {
     ...state,
     playlistSearchStarted: action.payload,
@@ -185,23 +173,29 @@ function reduceYoutubePlaylistSearchStart (state, action) {
   };
 }
 
-function reduceYoutubePlaylistSearchSuccess (state, action) {
+function reduceYoutubePlaylistSearchSuccess(state, action) {
   return {
     ...state,
     playlistSearchResults: action.payload
   };
 }
 
-export default function SearchReducer (state = initialState, action) {
+export default function SearchReducer(state = initialState, action) {
   switch (action.type) {
   case UNIFIED_SEARCH_START:
-    return reduceUnifiedSearchStart(state, action);
+    return {
+      ...state,
+      unifiedSearchStarted: true
+    };
+  case UNIFIED_SEARCH_SUCCESS:
+    return {
+      ...state,
+      unifiedSearchStarted: false
+    };
   case ALBUM_SEARCH_SUCCESS:
     return reduceAlbumSearchSuccess(state, action);
   case ARTIST_SEARCH_SUCCESS:
     return reduceArtistSearchSuccess(state, action);
-  case UNIFIED_SEARCH_SUCCESS:
-    return reduceUnifiedSearchSuccess(state, action);
   case ALBUM_INFO_SEARCH_START:
     return reduceAlbumInfoSearchStart(state, action);
   case ALBUM_INFO_SEARCH_SUCCESS:

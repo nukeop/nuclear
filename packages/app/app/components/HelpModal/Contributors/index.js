@@ -23,8 +23,8 @@ const Contributors = ({
         className={styles.contributors_card}
         key={contributor.author.id}
         onClick={() => handleGithubClick(contributor.author.html_url)}
-        >
-          <Card.Content>
+      >
+        <Card.Content>
           <Image
             floated='right'
             size='mini'
@@ -34,7 +34,7 @@ const Contributors = ({
           <Card.Meta className={styles.meta_text}>{contributor.author.html_url}</Card.Meta>
           <Card.Description>
             <strong>{contributor.total}</strong> contributions.
-            </Card.Description>
+          </Card.Description>
         </Card.Content>
       </Card>
     );
@@ -45,7 +45,7 @@ const Contributors = ({
       {top10}
     </Card.Group>
   );
-}
+};
 
 Contributors.defaultProps = {
   contributors: []
