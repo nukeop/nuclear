@@ -1,4 +1,4 @@
-import LastFmApi from './lastfm';
+import LastFmApi from './Lastfm';
 import ytdl from 'ytdl-core';
 
 import ytlist from 'youtube-playlist';

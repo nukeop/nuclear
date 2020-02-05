@@ -35,6 +35,14 @@ export type SearchResultsTrack = {
     source: SearchResultsSource;
 }
 
+export type ArtistTopTrack = {
+    artist: string;
+    title: string;
+    thumb?: string;
+    playcount?: number;
+    listeners?: number;
+}
+
 export type ArtistDetails = {
     id: string;
     name: string;
@@ -44,6 +52,7 @@ export type ArtistDetails = {
     coverImage?: string;
     thumb?: string;
     images?: string[];
+    topTracks: ArtistTopTrack[];
     source: SearchResultsSource;
 }
 
