@@ -12,7 +12,9 @@ export default class Track {
   };
   artist: string;
   title: string;
-
+  duration: string | number;
+  
+  position?: string | number;
   thumbnail?: string;
 
   constructor(data: Partial<Track> = {}) {

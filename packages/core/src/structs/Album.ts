@@ -5,6 +5,8 @@ import {
   SearchResultsSource
 } from '../plugins/plugins.types';
 
+import Track from './Track';
+
 export default class Album {
   uuid: string;
   ids?: {
@@ -16,6 +18,8 @@ export default class Album {
 
   coverImage?: string;
   thumbnail?: string;
+
+  tracklist?: Track[];
 
   constructor(data: Partial<Album> = {}) {
     this.uuid = uuidv4();

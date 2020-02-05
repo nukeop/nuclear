@@ -15,7 +15,9 @@ import {
   DiscogsReleaseSearchResponse,
   DiscogsArtistSearchResponse,
   DiscogsArtistInfo,
-  DiscogsImage
+  DiscogsImage,
+  DiscogsReleaseSearchResult,
+  DiscogsReleaseInfo
 } from '../../rest/Discogs.types';
 import { LastFmArtistInfo, LastfmTopTracks, LastfmTrack } from '../../rest/Lastfm.types';
 
@@ -29,6 +31,21 @@ class DiscogsMetaProvider extends MetaProvider {
     this.description = 'Metadata provider that uses Discogs as a source.';
     this.image = null;
     this.lastfm = new LastFmApi(process.env.LAST_FM_API_KEY, process.env.LASTFM_API_SECRET);
+  }
+
+  discogsReleaseSearchResultToGeneric(release: DiscogsReleaseSearchResult): SearchResultsAlbum {
+    const albumNameRegex = /(?<artist>.*) - (?<album>.*)/g;
+    const match = albumNameRegex.exec(release.title);
+
+    return {
+      id: `${release.id}`,
+      coverImage: release.cover_image,
+      thumb: release.cover_image,
+      title: match.groups.album,
+      artist: match.groups.artist,
+      resourceUrl: release.resource_url,
+      source: SearchResultsSource.Discogs
+    };
   }
 
   searchForArtists(query: string): Promise<Array<SearchResultsArtist>> {
@@ -47,20 +64,7 @@ class DiscogsMetaProvider extends MetaProvider {
   searchForReleases(query: string): Promise<Array<SearchResultsAlbum>> {
     return Discogs.search(query, 'master')
       .then(response => response.json())
-      .then((json: DiscogsReleaseSearchResponse) => json.results.map(album => {
-        const albumNameRegex = /(?<artist>.*) - (?<album>.*)/g;
-        const match = albumNameRegex.exec(album.title);
-
-        return {
-          id: `${album.id}`,
-          coverImage: album.cover_image,
-          thumb: album.cover_image,
-          title: match.groups.album,
-          artist: match.groups.artist,
-          resourceUrl: album.resource_url,
-          source: SearchResultsSource.Discogs
-        };
-      }));
+      .then((json: DiscogsReleaseSearchResponse) => json.results.map(this.discogsReleaseSearchResultToGeneric));
   }
 
   searchForTracks(query: string): Promise<Array<SearchResultsTrack>> {
@@ -107,17 +111,36 @@ class DiscogsMetaProvider extends MetaProvider {
   }
 
   async fetchArtistDetailsByName(artistName: string): Promise<ArtistDetails> {
-    const discogsSearch = await (await Discogs.search(artistName, 'artist')).json();
-    const artist = _.head(discogsSearch.results);
+    const artistSearch = await (await Discogs.search(artistName, 'artist')).json();
+    const artist = _.head(artistSearch.results);
     return this.fetchArtistDetails(artist.id);
   }
 
-  fetchArtistAlbums(artistId: string): Promise<SearchResultsAlbum[]> {
-    throw new Error('Method not implemented.');
+  async fetchArtistAlbums(artistId: string): Promise<SearchResultsAlbum[]> {
+    const releases: DiscogsReleaseSearchResponse = await (await Discogs.artistReleases(artistId)).json();
+
+    return Promise.resolve(releases.results.map(this.discogsReleaseSearchResultToGeneric));
   }
 
-  fetchAlbumDetailsByName(albumName: string): Promise<AlbumDetails> {
-    throw new Error('Method not implemented.');
+  async fetchAlbumDetailsByName(
+    albumName: string,
+    albumType: 'master' | 'release' = 'master'
+  ): Promise<AlbumDetails> {
+    const albumSearch: DiscogsReleaseSearchResponse = await (await Discogs.search(albumName, albumType)).json();
+    const matchingAlbum: DiscogsReleaseSearchResult = _.head(albumSearch.results);
+    const albumData: DiscogsReleaseInfo = await (await Discogs.releaseInfo(
+      `${matchingAlbum.id}`,
+      albumType,
+      { resource_url: matchingAlbum.resource_url }
+    )).json();
+    return Promise.resolve({
+      ...albumData,
+      id: `${albumData.id}`,
+      artist: _.head(albumData.artists).name,
+      images: _.map(albumData.images, 'resource_url'),
+      year: `${albumData.year}`,
+      source: SearchResultsSource.Discogs
+    });
   }
 }
 

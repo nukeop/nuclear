@@ -1,6 +1,6 @@
 import _ from 'lodash';
 
-import { DiscogsSearchType, DiscogsRelease } from './Discogs.types'; 
+import { DiscogsSearchType, DiscogsRelease } from './Discogs.types';
 
 const apiUrl = 'https://api.discogs.com/';
 const userToken = 'QDUeFOZNwIwOePlxpVziEHzamhbIHUdfENAJTnLR';
@@ -29,7 +29,11 @@ function search(terms: string, type?: DiscogsSearchType, count = 15): Promise<Re
   return fetch(query);
 }
 
-function releaseInfo(releaseId: string, releaseType: 'master' | 'release', release: DiscogsRelease): Promise<Response> {
+function releaseInfo(
+  releaseId: string,
+  releaseType: DiscogsSearchType,
+  release: DiscogsRelease
+): Promise<Response> {
   /* eslint-disable @typescript-eslint/camelcase */
   const resource_url = _.get(release, 'resource_url');
   if (resource_url) {
