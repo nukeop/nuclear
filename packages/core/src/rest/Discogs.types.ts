@@ -61,3 +61,27 @@ export type DiscogsArtistInfo = {
   resource_url: string;
   images: DiscogsImage[];
 }
+
+export type DiscogsReleaseInfo = {
+  id: number;
+  title: string;
+  styles: string[];
+  genre: string[];
+  year: number;
+  artists: {
+    name: string;
+    id: number;
+  }[];
+  images: DiscogsImage[];
+  resource_url: string;
+  tracklist: DiscogsTrack[];
+}
+
+export type DiscogsTrack = {
+  duration: string;
+  position: string;
+  title: string;
+  extraartists?: {
+    name: string;
+  }[];
+}
