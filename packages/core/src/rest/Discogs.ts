@@ -1,13 +1,11 @@
 import _ from 'lodash';
 
+import { DiscogsSearchType, DiscogsRelease } from './Discogs.types'; 
+
 const apiUrl = 'https://api.discogs.com/';
 const userToken = 'QDUeFOZNwIwOePlxpVziEHzamhbIHUdfENAJTnLR';
 // const key = 'EZaGPpKGBbTkjwmpjmNY';
 // const secret = 'uluhDSPtelRtLUvjrvQhRBnNwpZMtkZq';
-
-type DiscogsRelease = {
-  resource_url?: string;
-}
 
 function addToken(query: string, first = false): string {
   const newQuery: string = query + '&token=' + userToken;
@@ -23,7 +21,7 @@ function searchQuery(terms: string, count = 15): string {
   );
 }
 
-function search(terms: string, type?: string, count = 15): Promise<Response> {
+function search(terms: string, type?: DiscogsSearchType, count = 15): Promise<Response> {
   let query = searchQuery(terms, count);
   if (!_.isNil(type)) {
     query += `&type=${type}`;
