@@ -23,13 +23,13 @@ class AllResults extends React.Component {
         <Card
           small
           header={el.title||el.name}
-          image={ 
-            el.cover_image || 
+          image={
             el.coverImage || 
-            el.thumb || 
-            el.thumbnail || 
+            el.thumb ||
+            el.thumbnail ||
             artPlaceholder
           }
+          content={el.artist}
           onClick={() => onClick(id, el.type)}
           key={'item-' + i}
         />

@@ -18,3 +18,7 @@ export { mpris };
 
 import * as rest from './rest';
 export { rest };
+
+export { default as Artist } from './structs/Artist';
+export { default as Album } from './structs/Album';
+export { default as Track } from './structs/Track';

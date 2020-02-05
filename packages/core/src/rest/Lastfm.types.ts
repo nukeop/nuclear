@@ -21,15 +21,15 @@ export type LastFmArtistInfo = {
   stats: {
     listeners: number;
     playcount: number;
-  },
+  };
   similar: { artist: LastfmArtistShort[] };
   tags: { tag: LastfmTag[] };
-  ontour: "0" | "1";
-  streamable: "0" | "1";
+  ontour: '0' | '1';
+  streamable: '0' | '1';
   bio: {
     summary: string;
     content: string;
-  }
+  };
 }
 
 export type LastfmTrack = {
@@ -37,12 +37,12 @@ export type LastfmTrack = {
   playcount: number;
   listeners: number;
   artist: LastfmArtistShort;
-  '@attr': { rank: string; }
+  '@attr': { rank: string };
 }
 
 export type LastfmTopTracks = {
   track: LastfmTrack[];
   '@attr': {
     artist: 'string';
-  }
+  };
 }

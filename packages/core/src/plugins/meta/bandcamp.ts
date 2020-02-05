@@ -3,7 +3,9 @@ import MetaProvider from '../metaProvider';
 import {
   SearchResultsArtist,
   SearchResultsAlbum,
-  SearchResultsTrack
+  SearchResultsTrack,
+  ArtistDetails,
+  AlbumDetails
 } from '../plugins.types';
 import * as Bandcap from '../../rest/Bandcamp';
 import { Bandcamp } from '../../rest';
@@ -26,7 +28,7 @@ class BandcampMetaProvider extends MetaProvider {
         thumb: artist.imageUrl,
         title: artist.name
       }))
-        .value())
+        .value());
   }
 
   searchForReleases(query: string): Promise<Array<SearchResultsAlbum>> {
@@ -38,11 +40,11 @@ class BandcampMetaProvider extends MetaProvider {
         title: album.name,
         artist: album.artist
       }))
-        .value())
+        .value());
   }
 
   searchForTracks(query: string): Promise<SearchResultsTrack[]> {
-    throw new Error("Method not implemented.");
+    throw new Error('Method not implemented.');
   }
 
   searchAll(query: string): Promise<{
@@ -50,7 +52,20 @@ class BandcampMetaProvider extends MetaProvider {
     releases: Array<SearchResultsAlbum>;
     tracks: Array<SearchResultsTrack>;
   }> {
-    throw new Error("Method not implemented.");
+    throw new Error('Method not implemented.');
+  }
+
+  fetchArtistDetails(artistId: string): Promise<ArtistDetails> {
+    throw new Error('Method not implemented.');
+  }
+  fetchArtistDetailsByName(artistName: string): Promise<ArtistDetails> {
+    throw new Error('Method not implemented.');
+  }
+  fetchArtistAlbums(artistId: string): Promise<SearchResultsAlbum[]> {
+    throw new Error('Method not implemented.');
+  }
+  fetchAlbumDetailsByName(albumName: string): Promise<AlbumDetails> {
+    throw new Error('Method not implemented.');
   }
 }
 
