@@ -1,7 +1,7 @@
 import React from 'react';
 import { Tab } from 'semantic-ui-react';
 import { withTranslation } from 'react-i18next';
-import {Card} from '@nuclear/ui';
+import { Card } from '@nuclear/ui';
 
 import AllResults from './AllResults';
 import TracksResults from './TracksResults';
@@ -17,18 +17,9 @@ class SearchResults extends React.Component {
         <div className={styles.pane_container}>
           <div className={styles.row}>
             <AllResults
-              artistSearchResults={this.props.artistSearchResults}
-              albumSearchResults={this.props.albumSearchResults}
-              trackSearchResults={this.props.trackSearchResults}
-              playlistSearchResults={this.props.playlistSearchResults}
-              playlistSearchStarted={this.props.playlistSearchStarted}
+              {...this.props}
               albumInfoSearch={this.albumInfoSearch.bind(this)}
               artistInfoSearch={this.artistInfoSearch.bind(this)}
-              addToQueue={this.props.addToQueue}
-              streamProviders={this.props.streamProviders}
-              clearQueue={this.props.clearQueue}
-              startPlayback={this.props.startPlayback}
-              selectSong={this.props.selectSong}
             />
           </div>
         </div>

@@ -7,6 +7,7 @@ import {
   ALBUM_INFO_SEARCH_SUCCESS,
   ARTIST_INFO_SEARCH_START,
   ARTIST_INFO_SEARCH_SUCCESS,
+  ARTIST_INFO_SEARCH_ERROR,
   ARTIST_RELEASES_SEARCH_START,
   ARTIST_RELEASES_SEARCH_SUCCESS,
   LASTFM_ARTIST_INFO_SEARCH_START,
@@ -14,7 +15,8 @@ import {
   LASTFM_TRACK_SEARCH_START,
   LASTFM_TRACK_SEARCH_SUCCESS,
   YOUTUBE_PLAYLIST_SEARCH_START,
-  YOUTUBE_PLAYLIST_SEARCH_SUCCESS
+  YOUTUBE_PLAYLIST_SEARCH_SUCCESS,
+  ALBUM_INFO_SEARCH_ERROR
 } from '../actions/search';
 import { Artist } from '@nuclear/core';
 
@@ -42,55 +44,6 @@ function reduceArtistSearchSuccess(state, action) {
   return {
     ...state,
     artistSearchResults: action.payload.map(artist => Artist.fromSearchResultData(artist))
-  };
-}
-
-function reduceAlbumInfoSearchStart(state, action) {
-  return {
-    ...state,
-    albumDetails: {
-      ...state.albumDetails,
-      [`${action.payload}`]: { loading: true }
-    }
-  };
-}
-
-function reduceAlbumInfoSearchSuccess(state, action) {
-  return {
-    ...state,
-    albumDetails: {
-      ...state.albumDetails,
-      [action.payload.id]: {
-        ...action.payload.info,
-        loading: false
-      }
-    }
-  };
-}
-
-function reduceArtistInfoSearchStart(state, action) {
-  return {
-    ...state,
-    artistDetails: {
-      ...state.artistDetails,
-      [action.payload]: {
-        loading: true
-      }
-    }
-  };
-}
-
-function reduceArtistInfoSearchSuccess(state, action) {
-  return {
-    ...state,
-    artistDetails: {
-      ...state.artistDetails,
-      [action.payload.id]: {
-        ...state.artistDetails[action.payload.id],
-        ...action.payload.info,
-        loading: false
-      }
-    }
   };
 }
 
@@ -196,14 +149,70 @@ export default function SearchReducer(state = initialState, action) {
     return reduceAlbumSearchSuccess(state, action);
   case ARTIST_SEARCH_SUCCESS:
     return reduceArtistSearchSuccess(state, action);
+
   case ALBUM_INFO_SEARCH_START:
-    return reduceAlbumInfoSearchStart(state, action);
+    return {
+      ...state,
+      albumDetails: {
+        ...state.albumDetails,
+        [`${action.payload.albumId}`]: { loading: true }
+      }
+    };
   case ALBUM_INFO_SEARCH_SUCCESS:
-    return reduceAlbumInfoSearchSuccess(state, action);
+    return {
+      ...state,
+      albumDetails: {
+        ...state.albumDetails,
+        [action.payload.albumId]: {
+          ...action.payload.info,
+          loading: false
+        }
+      }
+    };
+  case ALBUM_INFO_SEARCH_ERROR:
+    return {
+      ...state,
+      albumDetails: {
+        ...state.albumDetails,
+        [action.payload.albumId]: {
+          loading: false,
+          error: true
+        }
+      }
+    };
   case ARTIST_INFO_SEARCH_START:
-    return reduceArtistInfoSearchStart(state, action);
+    return {
+      ...state,
+      artistDetails: {
+        ...state.artistDetails,
+        [action.payload.artistId]: {
+          loading: true
+        }
+      }
+    };
   case ARTIST_INFO_SEARCH_SUCCESS:
-    return reduceArtistInfoSearchSuccess(state, action);
+    return {
+      ...state,
+      artistDetails: {
+        ...state.artistDetails,
+        [action.payload.artistId]: {
+          ...state.artistDetails[action.payload.artistId],
+          ...action.payload.info,
+          loading: false
+        }
+      }
+    };
+  case ARTIST_INFO_SEARCH_ERROR:
+    return {
+      ...state,
+      artistDetails: {
+        ...state.artistDetails,
+        [action.payload.artistId]: {
+          loading: false,
+          error: true
+        }
+      }
+    };
   case ARTIST_RELEASES_SEARCH_START:
     return reduceArtistReleasesSearchStart(state, action);
   case ARTIST_RELEASES_SEARCH_SUCCESS:

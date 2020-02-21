@@ -4,6 +4,7 @@ export type DiscogsImage = {
   height: number;
   width: number;
   resource_url: string;
+  uri: string;
   type: string;
 }
 
@@ -26,7 +27,7 @@ export type DiscogsPagination = {
 
 export type DiscogsReleaseSearchResult = {
   id: number;
-  cover_image: string;
+  cover_image: DiscogsImage;
   genre: string[];
   style: string[];
   resource_url: string;
@@ -36,7 +37,7 @@ export type DiscogsReleaseSearchResult = {
 
 export type DiscogsArtistSearchResult = {
   id: number;
-  cover_image: string;
+  cover_image: DiscogsImage;
   resource_url: string;
   thumb: string;
   title: string;
@@ -72,6 +73,8 @@ export type DiscogsReleaseInfo = {
     name: string;
     id: number;
   }[];
+  cover_image: DiscogsImage;
+  thumb: DiscogsImage;
   images: DiscogsImage[];
   resource_url: string;
   tracklist: DiscogsTrack[];

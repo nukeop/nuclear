@@ -46,6 +46,11 @@ export type ArtistTopTrack = {
     listeners?: number;
 }
 
+export type SimilarArtist = {
+    name: string;
+    thumbnail: string;
+}
+
 export type ArtistDetails = {
     id: string;
     name: string;
@@ -56,6 +61,7 @@ export type ArtistDetails = {
     thumb?: string;
     images?: string[];
     topTracks: ArtistTopTrack[];
+    similar: SimilarArtist[];
     source: SearchResultsSource;
 }
 
