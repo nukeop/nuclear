@@ -1,3 +1,5 @@
+import Track from '../structs/Track';
+
 export enum SearchResultsSource {
     Discogs = 'Discogs',
     Musicbrainz = 'Musicbrainz',
@@ -6,7 +8,8 @@ export enum SearchResultsSource {
 
 export enum AlbumType {
     master = 'master',
-    release = 'release'
+    release = 'release',
+    unknown = 'unknown'
 }
 
 export type SearchResultsArtist = {
@@ -66,6 +69,7 @@ export type AlbumDetails = {
     genres?: string[];
     year?: string;
     type?: AlbumType;
+    tracklist: Track[];
 };
 
 export type StreamQuery = {

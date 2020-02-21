@@ -24,6 +24,10 @@ abstract class MetaProvider extends Plugin {
   abstract fetchArtistDetailsByName(artistName: string): Promise<ArtistDetails>;
   abstract fetchArtistAlbums(artistId: string): Promise<Array<SearchResultsAlbum>>;
 
+  abstract fetchAlbumDetails(
+    albumId: string, 
+    albumType: ('master' | 'release'),
+    resourceUrl: string): Promise<AlbumDetails>;
   abstract fetchAlbumDetailsByName(
     albumName: string,
     albumType?: ('master' | 'release')

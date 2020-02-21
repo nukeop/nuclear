@@ -19,34 +19,34 @@ class BandcampMetaProvider extends MetaProvider {
     this.searchName = 'Bandcamp';
     this.image = null;
   }
-
+  
   searchForArtists(query: string): Promise<Array<SearchResultsArtist>> {
     return Bandcamp.search(query)
-      .then(results => _(results).filter({ type: 'artist' }).map(artist => ({
-        id: artist.url,
-        coverImage: artist.imageUrl,
-        thumb: artist.imageUrl,
-        title: artist.name
-      }))
-        .value());
+    .then(results => _(results).filter({ type: 'artist' }).map(artist => ({
+      id: artist.url,
+      coverImage: artist.imageUrl,
+      thumb: artist.imageUrl,
+      title: artist.name
+    }))
+    .value());
   }
-
+  
   searchForReleases(query: string): Promise<Array<SearchResultsAlbum>> {
     return Bandcamp.search(query)
-      .then(results => _(results).filter({ type: 'album' }).map(album => ({
-        id: album.url,
-        coverImage: album.imageUrl,
-        thumb: album.imageUrl,
-        title: album.name,
-        artist: album.artist
-      }))
-        .value());
+    .then(results => _(results).filter({ type: 'album' }).map(album => ({
+      id: album.url,
+      coverImage: album.imageUrl,
+      thumb: album.imageUrl,
+      title: album.name,
+      artist: album.artist
+    }))
+    .value());
   }
-
+  
   searchForTracks(query: string): Promise<SearchResultsTrack[]> {
     throw new Error('Method not implemented.');
   }
-
+  
   searchAll(query: string): Promise<{
     artists: Array<SearchResultsArtist>;
     releases: Array<SearchResultsAlbum>;
@@ -54,7 +54,7 @@ class BandcampMetaProvider extends MetaProvider {
   }> {
     throw new Error('Method not implemented.');
   }
-
+  
   fetchArtistDetails(artistId: string): Promise<ArtistDetails> {
     throw new Error('Method not implemented.');
   }
@@ -63,6 +63,9 @@ class BandcampMetaProvider extends MetaProvider {
   }
   fetchArtistAlbums(artistId: string): Promise<SearchResultsAlbum[]> {
     throw new Error('Method not implemented.');
+  }
+  fetchAlbumDetails(albumId: string, resourceUrl: string): Promise<AlbumDetails> {
+    throw new Error("Method not implemented.");
   }
   fetchAlbumDetailsByName(albumName: string): Promise<AlbumDetails> {
     throw new Error('Method not implemented.');

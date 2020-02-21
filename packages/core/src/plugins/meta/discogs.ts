@@ -3,13 +3,15 @@ import _ from 'lodash';
 import MetaProvider from '../metaProvider';
 import * as Discogs from '../../rest/Discogs';
 import LastFmApi from '../../rest/Lastfm';
+import Track from '../../structs/Track';
 import {
   SearchResultsArtist,
   SearchResultsAlbum,
   SearchResultsTrack,
   SearchResultsSource,
   ArtistDetails,
-  AlbumDetails
+  AlbumDetails,
+  AlbumType
 } from '../plugins.types';
 import {
   DiscogsReleaseSearchResponse,
@@ -17,7 +19,9 @@ import {
   DiscogsArtistInfo,
   DiscogsImage,
   DiscogsReleaseSearchResult,
-  DiscogsReleaseInfo
+  DiscogsReleaseInfo,
+  DiscogsSearchType,
+  DiscogsTrack
 } from '../../rest/Discogs.types';
 import { LastFmArtistInfo, LastfmTopTracks, LastfmTrack } from '../../rest/Lastfm.types';
 
@@ -46,6 +50,33 @@ class DiscogsMetaProvider extends MetaProvider {
       resourceUrl: release.resource_url,
       source: SearchResultsSource.Discogs
     };
+  }
+
+  discogsReleaseInfoToGeneric(release: DiscogsReleaseInfo, releaseType: AlbumType): AlbumDetails {
+    const primaryImage = _.find(release.images, { type: 'primary' });
+    const artist = _.head(release.artists).name;
+    return {
+      ...release,
+      id: `${release.id}`,
+      artist: _.head(release.artists).name,
+      thumb: primaryImage,
+      coverImage: primaryImage,
+      images: _.map(release.images, 'resource_url'),
+      genres: [...release.genres, ...release.styles],
+      type: releaseType,
+      year: `${release.year}`,
+      tracklist: _.map(release.tracklist, track => this.discogsTrackToGeneric(track, artist))
+    };
+  }
+
+  discogsTrackToGeneric(discogsTrack: DiscogsTrack, artist: string): Track {
+    const track = new Track();
+    track.artist = artist;
+    track.title = discogsTrack.title;
+    track.duration = discogsTrack.duration;
+    track.position =  discogsTrack.position;
+    track.extraArtists = _.map(discogsTrack.extraartists, 'name');
+    return track;
   }
 
   searchForArtists(query: string): Promise<Array<SearchResultsArtist>> {
@@ -118,8 +149,24 @@ class DiscogsMetaProvider extends MetaProvider {
 
   async fetchArtistAlbums(artistId: string): Promise<SearchResultsAlbum[]> {
     const releases: DiscogsReleaseSearchResponse = await (await Discogs.artistReleases(artistId)).json();
-
     return Promise.resolve(releases.results.map(this.discogsReleaseSearchResultToGeneric));
+  }
+
+  async fetchAlbumDetails(
+    albumId: string, 
+    albumType: 'master' | 'release' = 'master',
+    resourceUrl: string): Promise<AlbumDetails> {
+    const albumData: DiscogsReleaseInfo = await (await Discogs.releaseInfo(
+      albumId,
+      albumType,
+      { resource_url: resourceUrl }
+    )).json();
+    return Promise.resolve(
+      this.discogsReleaseInfoToGeneric(
+        albumData,
+        AlbumType.unknown
+      )
+    );
   }
 
   async fetchAlbumDetailsByName(
@@ -133,14 +180,12 @@ class DiscogsMetaProvider extends MetaProvider {
       albumType,
       { resource_url: matchingAlbum.resource_url }
     )).json();
-    return Promise.resolve({
-      ...albumData,
-      id: `${albumData.id}`,
-      artist: _.head(albumData.artists).name,
-      images: _.map(albumData.images, 'resource_url'),
-      year: `${albumData.year}`,
-      source: SearchResultsSource.Discogs
-    });
+    return Promise.resolve(
+      this.discogsReleaseInfoToGeneric(
+        albumData,
+        albumType === 'master' ? AlbumType.master : AlbumType.release
+      )
+    );
   }
 }
 
