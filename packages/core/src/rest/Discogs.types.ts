@@ -66,7 +66,7 @@ export type DiscogsReleaseInfo = {
   id: number;
   title: string;
   styles: string[];
-  genre: string[];
+  genres: string[];
   year: number;
   artists: {
     name: string;

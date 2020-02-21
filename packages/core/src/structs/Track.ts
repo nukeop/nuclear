@@ -16,6 +16,7 @@ export default class Track {
   
   position?: string | number;
   thumbnail?: string;
+  extraArtists?: string[];
 
   constructor(data: Partial<Track> = {}) {
     this.uuid = uuidv4();

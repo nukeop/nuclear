@@ -202,26 +202,28 @@ export function albumInfoSuccess (albumId, info) {
   };
 }
 
-export function albumInfoSearch (albumId, releaseType='master', release) {
-  return dispatch => {
-    dispatch(albumInfoStart(albumId));
-    rest.Discogs
-      .releaseInfo(albumId, releaseType, release)
-      .then(info => {
-        if (info.ok) {
-          return info.json();
-        } else {
-          throw `Error fetching album data from Discogs for id ${albumId}`;
-        }
-      })
-      .then(albumInfo => {
-        dispatch(albumInfoSuccess(albumId, albumInfo));
-      })
-      .catch(error => {
-        logger.error(error);
-      });
-  };
-}
+export const albumInfoSearch= (albumId, releaseType='master', release) => async (dispatch, getState) => {
+  dispatch(albumInfoStart(albumId));
+  const selectedProvider = getSelectedMetaProvider(getState);
+  const albumDetails = await selectedProvider.fetchAlbumDetails(albumId, _.get(release, 'resource_url'));
+  console.log(albumDetails);
+
+  rest.Discogs
+    .releaseInfo(albumId, releaseType, release)
+    .then(info => {
+      if (info.ok) {
+        return info.json();
+      } else {
+        throw `Error fetching album data from Discogs for id ${albumId}`;
+      }
+    })
+    .then(albumInfo => {
+      dispatch(albumInfoSuccess(albumId, albumInfo));
+    })
+    .catch(error => {
+      logger.error(error);
+    });
+};
 
 export function artistInfoStart (artistId) {
   return {
