@@ -16,8 +16,10 @@ class AllResults extends React.Component {
     super(props);
   }
   renderResults (collection, onClick) {
+    const selectedProvider = _.find(this.props.metaProviders, { sourceName: this.props.selectedPlugins.metaProviders });
+
     return collection.slice(0, 5).map((el, i) => {
-      let id = _.get(el, 'ids.discogs', el.id);
+      let id = _.get(el, `ids.${selectedProvider.searchName}`, el.id);
 
       return (
         <Card

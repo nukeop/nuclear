@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/camelcase */
 import _ from 'lodash';
 
 import MetaProvider from '../metaProvider';
@@ -43,8 +44,8 @@ class DiscogsMetaProvider extends MetaProvider {
 
     return {
       id: `${release.id}`,
-      coverImage: release.cover_image,
-      thumb: release.cover_image,
+      coverImage: release.cover_image.resource_url,
+      thumb: release.cover_image.resource_url,
       title: match.groups.album,
       artist: match.groups.artist,
       resourceUrl: release.resource_url,
@@ -59,8 +60,8 @@ class DiscogsMetaProvider extends MetaProvider {
       ...release,
       id: `${release.id}`,
       artist: _.head(release.artists).name,
-      thumb: primaryImage,
-      coverImage: primaryImage,
+      thumb: release.cover_image.resource_url,
+      coverImage: release.cover_image.resource_url,
       images: _.map(release.images, 'resource_url'),
       genres: [...release.genres, ...release.styles],
       type: releaseType,
@@ -74,7 +75,7 @@ class DiscogsMetaProvider extends MetaProvider {
     track.artist = artist;
     track.title = discogsTrack.title;
     track.duration = discogsTrack.duration;
-    track.position =  discogsTrack.position;
+    track.position = discogsTrack.position;
     track.extraArtists = _.map(discogsTrack.extraartists, 'name');
     return track;
   }
@@ -84,7 +85,7 @@ class DiscogsMetaProvider extends MetaProvider {
       .then(response => response.json())
       .then((json: DiscogsArtistSearchResponse) => json.results.map(artist => ({
         id: `${artist.id}`,
-        coverImage: artist.cover_image,
+        coverImage: artist.cover_image.resource_url,
         thumb: artist.thumb,
         name: artist.title,
         resourceUrl: artist.resource_url,
@@ -118,15 +119,15 @@ class DiscogsMetaProvider extends MetaProvider {
   async fetchArtistDetails(artistId: string): Promise<ArtistDetails> {
     const discogsInfo: DiscogsArtistInfo = await (await Discogs.artistInfo(artistId)).json();
 
-    const lastfmInfo: LastFmArtistInfo = await (await this.lastfm.getArtistInfo(discogsInfo.name)).json();
-    const lastFmTopTracks: LastfmTopTracks = await (await this.lastfm.getArtistTopTracks(discogsInfo.name)).json();
+    const lastFmInfo: LastFmArtistInfo = (await (await this.lastfm.getArtistInfo(discogsInfo.name)).json()).artist;
+    const lastFmTopTracks: LastfmTopTracks = (await (await this.lastfm.getArtistTopTracks(discogsInfo.name)).json()).toptracks;
 
     return Promise.resolve({
       id: discogsInfo.id,
       name: discogsInfo.name,
-      description: lastfmInfo.bio.summary,
-      tags: _.map(lastfmInfo.tags, 'name'),
-      onTour: lastfmInfo.ontour === '1',
+      description: lastFmInfo.bio.summary,
+      tags: _.map(lastFmInfo.tags.tag, 'name'),
+      onTour: lastFmInfo.ontour === '1',
       coverImage: (_.head(discogsInfo.images) as DiscogsImage).resource_url,
       thumb: (_.get(discogsInfo.images, 1) as DiscogsImage).resource_url,
       images: _.map(discogsInfo.images, 'resource_url'),
@@ -136,6 +137,10 @@ class DiscogsMetaProvider extends MetaProvider {
         thumb: (_.get(discogsInfo.images, 1) as DiscogsImage).resource_url,
         playcount: track.playcount,
         listeners: track.listeners
+      })),
+      similar: _.map(lastFmInfo.similar.artist, artist => ({
+        name: artist.name,
+        thumbnail: _.find(artist.image, { size: 'large' })
       })),
       source: SearchResultsSource.Discogs
     });
@@ -152,8 +157,9 @@ class DiscogsMetaProvider extends MetaProvider {
     return Promise.resolve(releases.results.map(this.discogsReleaseSearchResultToGeneric));
   }
 
+
   async fetchAlbumDetails(
-    albumId: string, 
+    albumId: string,
     albumType: 'master' | 'release' = 'master',
     resourceUrl: string): Promise<AlbumDetails> {
     const albumData: DiscogsReleaseInfo = await (await Discogs.releaseInfo(
@@ -168,6 +174,7 @@ class DiscogsMetaProvider extends MetaProvider {
       )
     );
   }
+  
 
   async fetchAlbumDetailsByName(
     albumName: string,

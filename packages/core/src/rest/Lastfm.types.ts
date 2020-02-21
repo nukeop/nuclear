@@ -1,11 +1,12 @@
 export type LastfmImage = {
   '#text': string;
-  size: string;
+  size: '' | 'small' | 'medium' | 'large' | 'extralarge' | 'mega';
 }
 
 export type LastfmArtistShort = {
   name: string;
   url: string;
+  image: LastfmImage[];
 }
 
 export type LastfmTag = {

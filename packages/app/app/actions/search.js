@@ -15,9 +15,11 @@ export const ALBUM_SEARCH_SUCCESS = 'ALBUM_SEARCH_SUCCESS';
 
 export const ALBUM_INFO_SEARCH_START = 'ALBUM_INFO_SEARCH_START';
 export const ALBUM_INFO_SEARCH_SUCCESS = 'ALBUM_INFO_SEARCH_SUCCESS';
+export const ALBUM_INFO_SEARCH_ERROR = 'ALBUM_INFO_SEARCH_ERROR';
 
 export const ARTIST_INFO_SEARCH_START = 'ARTIST_INFO_SEARCH_START';
 export const ARTIST_INFO_SEARCH_SUCCESS = 'ARTIST_INFO_SEARCH_SUCCESS';
+export const ARTIST_INFO_SEARCH_ERROR = 'ARTIST_INFO_SEARCH_ERROR';
 
 export const ARTIST_RELEASES_SEARCH_START = 'ARTIST_RELEASES_SEARCH_START';
 export const ARTIST_RELEASES_SEARCH_SUCCESS = 'ARTIST_RELEASES_SEARCH_SUCCESS';
@@ -33,7 +35,7 @@ export const LASTFM_TRACK_SEARCH_SUCCESS = 'LASTFM_TRACK_SEARCH_SUCCESS';
 export const YOUTUBE_PLAYLIST_SEARCH_START = 'YOUTUBE_PLAYLIST_SEARCH_START';
 export const YOUTUBE_PLAYLIST_SEARCH_SUCCESS = 'YOUTUBE_PLAYLIST_SEARCH_SUCCESS';
 
-export function sourcesSearch (terms, plugins) {
+export function sourcesSearch(terms, plugins) {
   let searchResults = {};
   for (let i = 0; i < plugins.streamProviders.length; i++) {
     Object.assign(searchResults, plugins.streamProviders[i].search(terms));
@@ -41,9 +43,9 @@ export function sourcesSearch (terms, plugins) {
   return {};
 }
 
-const unifiedSearchStart = () => ({type: UNIFIED_SEARCH_START});
-const unifiedSearchSuccess = () => ({type: UNIFIED_SEARCH_SUCCESS});
-const unifiedSearchError = () => ({type: UNIFIED_SEARCH_ERROR});
+const unifiedSearchStart = () => ({ type: UNIFIED_SEARCH_START });
+const unifiedSearchSuccess = () => ({ type: UNIFIED_SEARCH_SUCCESS });
+const unifiedSearchError = () => ({ type: UNIFIED_SEARCH_ERROR });
 
 export const artistSearchSuccess = data => ({
   type: ARTIST_SEARCH_SUCCESS,
@@ -56,9 +58,9 @@ export const albumSearchSuccess = data => ({
 });
 
 const getSelectedMetaProvider = getState => {
-  const { 
-    plugin: { 
-      plugins: { metaProviders }, selected} 
+  const {
+    plugin: {
+      plugins: { metaProviders }, selected }
   } = getState();
   return _.find(metaProviders, { sourceName: selected.metaProviders });
 };
@@ -75,14 +77,14 @@ export const albumSearch = terms => async (dispatch, getState) => {
   dispatch(albumSearchSuccess(results));
 };
 
-export function lastFmTrackSearchStart (terms) {
+export function lastFmTrackSearchStart(terms) {
   return {
     type: LASTFM_TRACK_SEARCH_START,
     payload: terms
   };
 }
 
-export function lastFmTrackSearchSuccess (terms, searchResults) {
+export function lastFmTrackSearchSuccess(terms, searchResults) {
   return {
     type: LASTFM_TRACK_SEARCH_SUCCESS,
     payload: {
@@ -97,15 +99,15 @@ const isAcceptableLastFMThumbnail = thumbnail =>
 
 const getTrackThumbnail = track => {
   const image =
-  _.get(
-    track,
-    ['image', 1, '#text'],
     _.get(
       track,
-      ['image', 0, '#text'],
-      artPlaceholder
-    )
-  );
+      ['image', 1, '#text'],
+      _.get(
+        track,
+        ['image', 0, '#text'],
+        artPlaceholder
+      )
+    );
   return isAcceptableLastFMThumbnail(image) ? image : artPlaceholder;
 };
 
@@ -114,7 +116,7 @@ export const mapLastFMTrackToInternal = track => ({
   thumbnail: getTrackThumbnail(track)
 });
 
-export function lastFmTrackSearch (terms) {
+export function lastFmTrackSearch(terms) {
   return dispatch => {
     dispatch(lastFmTrackSearchStart(terms));
     Promise.all([lastfm.searchTracks(terms)])
@@ -130,14 +132,14 @@ export function lastFmTrackSearch (terms) {
   };
 }
 
-export function youtubePlaylistSearchStart (terms) {
+export function youtubePlaylistSearchStart(terms) {
   return {
     type: YOUTUBE_PLAYLIST_SEARCH_START,
     payload: terms
   };
 }
 
-export function youtubePlaylistSearchSuccess (terms, results) {
+export function youtubePlaylistSearchSuccess(terms, results) {
   return {
     type: YOUTUBE_PLAYLIST_SEARCH_SUCCESS,
     payload: {
@@ -147,7 +149,7 @@ export function youtubePlaylistSearchSuccess (terms, results) {
   };
 }
 
-export function youtubePlaylistSearch (terms) {
+export function youtubePlaylistSearch(terms) {
   return dispatch => {
     dispatch(youtubePlaylistSearchStart(terms));
     rest.Youtube.urlSearch(terms)
@@ -162,7 +164,7 @@ export function youtubePlaylistSearch (terms) {
   };
 }
 
-export function unifiedSearch (terms, history) {
+export function unifiedSearch(terms, history) {
   return dispatch => {
     dispatch(unifiedSearchStart());
 
@@ -185,87 +187,68 @@ export function unifiedSearch (terms, history) {
   };
 }
 
-export function albumInfoStart (albumId) {
-  return {
-    type: ALBUM_INFO_SEARCH_START,
-    payload: albumId
-  };
-}
+const albumInfoStart = albumId => ({
+  type: ALBUM_INFO_SEARCH_START,
+  payload: { albumId }
+});
 
-export function albumInfoSuccess (albumId, info) {
-  return {
-    type: ALBUM_INFO_SEARCH_SUCCESS,
-    payload: {
-      id: albumId,
-      info
-    }
-  };
-}
+const albumInfoSuccess = (albumId, info) => ({
+  type: ALBUM_INFO_SEARCH_SUCCESS,
+  payload: { albumId, info }
+});
 
-export const albumInfoSearch= (albumId, releaseType='master', release) => async (dispatch, getState) => {
+const albumInfoError = (albumId, error) => ({
+  type: ALBUM_INFO_SEARCH_ERROR,
+  payload: { albumId, error }
+});
+
+export const albumInfoSearch = (albumId, releaseType = 'master', release) => async (dispatch, getState) => {
   dispatch(albumInfoStart(albumId));
-  const selectedProvider = getSelectedMetaProvider(getState);
-  const albumDetails = await selectedProvider.fetchAlbumDetails(albumId, _.get(release, 'resource_url'));
-  console.log(albumDetails);
-
-  rest.Discogs
-    .releaseInfo(albumId, releaseType, release)
-    .then(info => {
-      if (info.ok) {
-        return info.json();
-      } else {
-        throw `Error fetching album data from Discogs for id ${albumId}`;
-      }
-    })
-    .then(albumInfo => {
-      dispatch(albumInfoSuccess(albumId, albumInfo));
-    })
-    .catch(error => {
-      logger.error(error);
-    });
+  try {
+    const selectedProvider = getSelectedMetaProvider(getState);
+    const albumDetails = await selectedProvider.fetchAlbumDetails(albumId, releaseType, _.get(release, 'resource_url'));
+    dispatch(albumInfoSuccess(albumId, albumDetails));
+  } catch (e) {
+    logger.error(e);
+    dispatch(albumInfoError(albumId, e));
+  }
 };
 
-export function artistInfoStart (artistId) {
-  return {
-    type: ARTIST_INFO_SEARCH_START,
-    payload: artistId
-  };
-}
+const artistInfoStart = artistId => ({
+  type: ARTIST_INFO_SEARCH_START,
+  payload: { artistId }
+});
 
-export function artistInfoSuccess (artistId, info) {
-  return {
-    type: ARTIST_INFO_SEARCH_SUCCESS,
-    payload: {
-      id: artistId,
-      info
-    }
-  };
-}
+const artistInfoSuccess = (artistId, info) => ({
+  type: ARTIST_INFO_SEARCH_SUCCESS,
+  payload: { artistId, info }
+});
 
-export function artistInfoSearch (artistId) {
-  return dispatch => {
-    dispatch(artistInfoStart(artistId));
-    rest.Discogs
-      .artistInfo(artistId)
-      .then(info => info.json())
-      .then(artistInfo => {
-        dispatch(artistInfoSuccess(artistId, artistInfo));
-        dispatch(lastFmArtistInfoSearch(artistInfo.name, artistId));
-      })
-      .catch(error => {
-        logger.error(error);
-      });
-  };
-}
+const artistInfoError = (artistId, error) => ({
+  type: ARTIST_INFO_SEARCH_ERROR,
+  payload: { artistId, error }
+});
 
-export function artistReleasesStart (artistId) {
+export const artistInfoSearch = artistId => async (dispatch, getState) => {
+  dispatch(artistInfoStart(artistId));
+  try {
+    const selectedProvider = getSelectedMetaProvider(getState);
+    const artistDetails = await selectedProvider.fetchArtistDetails(artistId);
+    dispatch(artistInfoSuccess(artistId, artistDetails));
+  } catch (e) {
+    logger.error(e);
+    dispatch(artistInfoError(artistId, e));
+  }
+};
+
+export function artistReleasesStart(artistId) {
   return {
     type: ARTIST_RELEASES_SEARCH_START,
     payload: artistId
   };
 }
 
-export function artistReleasesSuccess (artistId, releases) {
+export function artistReleasesSuccess(artistId, releases) {
   return {
     type: ARTIST_RELEASES_SEARCH_SUCCESS,
     payload: {
@@ -275,7 +258,7 @@ export function artistReleasesSuccess (artistId, releases) {
   };
 }
 
-export function artistReleasesSearch (artistId) {
+export function artistReleasesSearch(artistId) {
   return dispatch => {
     dispatch(artistReleasesStart(artistId));
     rest.Discogs
@@ -290,26 +273,18 @@ export function artistReleasesSearch (artistId) {
   };
 }
 
-export function artistInfoSearchByName (artistName, history) {
-  return dispatch => {
-    rest.Discogs
-      .search(artistName, 'artists')
-      .then(searchResults => searchResults.json())
-      .then(searchResultsJson => {
-        let artist = searchResultsJson.results[0];
-        if (history) {
-          history.push('/artist/' + artist.id);
-        }
+export const artistInfoSearchByName = (artistName, history) => async (dispatch, getState) => {
+  try {
+    const selectedProvider = getSelectedMetaProvider(getState);
+    const artistDetails = await selectedProvider.fetchArtistDetailsByName(artistName);
+    dispatch(artistInfoSearch(artistDetails.id));
+    _.invoke(history, 'push', `/artist/${artistDetails.id}`);
+  } catch (e) {
+    logger.error(e);
+  }
+};
 
-        dispatch(artistInfoSearch(artist.id));
-      })
-      .catch(error => {
-        logger.error(error);
-      });
-  };
-}
-
-export function albumInfoSearchByName (albumName, history) {
+export function albumInfoSearchByName(albumName, history) {
   return dispatch => {
     rest.Discogs
       .search(albumName, 'albums')
@@ -335,14 +310,14 @@ export function albumInfoSearchByName (albumName, history) {
   };
 }
 
-export function lastFmArtistInfoStart (artistId) {
+export function lastFmArtistInfoStart(artistId) {
   return {
     type: LASTFM_ARTIST_INFO_SEARCH_START,
     payload: artistId
   };
 }
 
-export function lastFmArtistInfoSuccess (artistId, info) {
+export function lastFmArtistInfoSuccess(artistId, info) {
   return {
     type: LASTFM_ARTIST_INFO_SEARCH_SUCCESS,
     payload: {
@@ -352,7 +327,7 @@ export function lastFmArtistInfoSuccess (artistId, info) {
   };
 }
 
-export function lastFmArtistInfoSearch (artist, artistId) {
+export function lastFmArtistInfoSearch(artist, artistId) {
   return dispatch => {
     dispatch(lastFmArtistInfoStart(artistId));
     Promise.all([

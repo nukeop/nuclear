@@ -20,15 +20,11 @@ class ArtistView extends React.Component {
   }
 
   isLoading () {
-    return (
-      _.get(this.props, 'artist.loading') ||
-      _.isEmpty(_.get(this.props, 'artist.lastfm')) ||
-      _.get(this.props, 'artist.lastfm.loading')
-    );
+    return _.get(this.props, 'artist.loading');
   }
 
   isOnTour() {
-    return _.get(this.props, 'artist.lastfm.artist.ontour') === '1';
+    return _.get(this.props, 'artist.ontour');
   }
 
   renderArtistHeader (artist, history) {
@@ -61,7 +57,7 @@ class ArtistView extends React.Component {
             </div>
 
             <ArtistTags
-              tags={_.get(artist, 'lastfm.artist.tags.tag')}
+              tags={artist.tags}
               history={history}
             />
           </div>
@@ -79,9 +75,9 @@ class ArtistView extends React.Component {
 
     return (
       !this.isLoading() &&
-      artist.lastfm.toptracks && (
+      artist.topTracks && (
         <PopularTracks
-          tracks={_.get(artist, 'lastfm.toptracks')}
+          tracks={artist.topTracks}
           artist={artist}
           addToQueue={addToQueue}
           streamProviders={streamProviders}

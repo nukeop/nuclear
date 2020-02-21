@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Img from 'react-image';
 import _ from 'lodash';
 import { Dimmer, Icon, Loader } from 'semantic-ui-react';
 import { ipcRenderer } from 'electron';
 import { withTranslation } from 'react-i18next';
-import { ContextPopup, PopupButton } from '@nuclear/ui';
+import { Loader as NuclearLoader, ContextPopup, PopupButton } from '@nuclear/ui';
 
 import TrackRow from '../TrackRow';
 import * as Utils from '../../utils';
@@ -67,7 +68,11 @@ class AlbumView extends React.Component {
         artist: _.head(album.artists).name,
         title: album.title
       }),
-      <img src={this.getAlbumImage(album)}/>,
+      <Img
+        src={this.getAlbumImage(album)}
+        loader={<NuclearLoader />}
+        unloader={<img src={artPlaceholder} />}
+      />,
       settings
     );
   }
@@ -94,13 +99,7 @@ class AlbumView extends React.Component {
   }
 
   getAlbumImage (album) {
-    let albumImage = _.find(album.images, { type: 'primary' });
-    if (!albumImage) {
-      albumImage = album.images ? album.images[0].uri : artPlaceholder;
-    } else {
-      albumImage = albumImage.uri;
-    }
-    return albumImage;
+    return _.get(album, 'coverImage.uri');
   }
 
   renderAlbumArtistName (album) {
@@ -161,7 +160,11 @@ class AlbumView extends React.Component {
   renderAlbumInfoBox (album, albumImage) {
     return (
       <div className={styles.album_info_box}>
-        <img src={albumImage} />
+        <Img
+          src={albumImage}
+          loader={<NuclearLoader />}
+          unloader={<img src={artPlaceholder} />}
+        />
         <div className={styles.album_details}>
           <div className={styles.album_title}>{album.title}</div>
           {this.renderAlbumArtistName(album)}
