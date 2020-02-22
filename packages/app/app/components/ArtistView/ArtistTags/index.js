@@ -1,35 +1,38 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
+import { compose, withHandlers } from 'recompose';
 
 import styles from './styles.scss';
 
-class ArtistTags extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+const ArtistTags = ({
+  tags,
+  onTagClick
+}) => (
+  <div className={styles.tags_container}>
+    {
+      tags && tags.length > 0 &&
+        tags.map((tag, i) => {
+          return (
+            <a
+              href='#'
+              onClick={() => onTagClick(tag)}
+              key={i}
+              className={styles.tag}
+            >#{tag}</a>
+          );
+        })
+    }
+  </div>
+);
 
-  onTagClick(tag) {
-    this.props.history.push('/tag/' + tag);
-  }
+ArtistTags.propTypes = {
+  tags: PropTypes.arrayOf(PropTypes.string)
+};
 
-  render() {
-    return (
-      <div className={styles.tags_container}>
-        {
-          this.props.tags && this.props.tags.length > 0 &&
-          this.props.tags.map((el, i) => {
-            return (
-              <a
-                href='#'
-                onClick={() => this.onTagClick.bind(this)(el.name)}
-                key={i}
-                className={styles.tag}
-              >#{el.name}</a>
-            );
-          })
-        }
-      </div>
-    );
-  }
-}
-
-export default ArtistTags;
+export default compose(
+  withRouter,
+  withHandlers({
+    onTagClick: ({ history }) => tag => history.push(`/tag/${tag}`)
+  })
+)(ArtistTags);

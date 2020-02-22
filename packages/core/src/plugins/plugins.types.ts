@@ -39,7 +39,7 @@ export type SearchResultsTrack = {
 }
 
 export type ArtistTopTrack = {
-    artist: string;
+    artist: { name: string };
     title: string;
     thumb?: string;
     playcount?: number;

@@ -99,7 +99,7 @@ class AlbumView extends React.Component {
   }
 
   getAlbumImage (album) {
-    return _.get(album, 'coverImage.uri');
+    return _.get(album, 'coverImage');
   }
 
   renderAlbumArtistName (album) {

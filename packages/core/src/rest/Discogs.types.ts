@@ -27,7 +27,7 @@ export type DiscogsPagination = {
 
 export type DiscogsReleaseSearchResult = {
   id: number;
-  cover_image: DiscogsImage;
+  cover_image: string;
   genre: string[];
   style: string[];
   resource_url: string;
@@ -37,7 +37,7 @@ export type DiscogsReleaseSearchResult = {
 
 export type DiscogsArtistSearchResult = {
   id: number;
-  cover_image: DiscogsImage;
+  cover_image: string;
   resource_url: string;
   thumb: string;
   title: string;
