@@ -25,6 +25,7 @@ const SearchBox = ({
   >
     <Icon name='search' disabled={disabled}/>
     <input
+      autoFocus
       placeholder={placeholder}
       onChange={onChange}
       disabled={disabled}

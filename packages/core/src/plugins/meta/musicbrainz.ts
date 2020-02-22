@@ -110,7 +110,7 @@ class MusicbrainzMetaProvider extends MetaProvider {
       })),
       similar: _.map(lastFmInfo.similar.artist, artist => ({
         name: artist.name,
-        thumbnail: _.find(artist.image, { size: 'large' })
+        thumbnail: _.get(_.find(artist.image, { size: 'large' }), '#text')
       })),
       source: SearchResultsSource.Musicbrainz
     });

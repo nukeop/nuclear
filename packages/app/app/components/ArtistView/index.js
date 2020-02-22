@@ -35,7 +35,7 @@ class ArtistView extends React.Component {
             className={styles.artist_avatar}
             style={{
               background: `url('${
-                _.get(artist, 'images[1].resource_url', artPlaceholder)
+                _.get(artist, 'images[1]', artPlaceholder)
               }')`,
               backgroundRepeat: 'noRepeat',
               backgroundPosition: 'center',
@@ -92,7 +92,7 @@ class ArtistView extends React.Component {
     return (
       !this.isLoading() &&
         <SimilarArtists
-          artists={_.get(artist, 'lastfm.artist.similar.artist', [])}
+          artists={_.get(artist, 'similar', [])}
           artistInfoSearchByName={artistInfoSearchByName}
           history={history}
         />
@@ -106,7 +106,7 @@ class ArtistView extends React.Component {
       <div
         style={{
           background: `url('${
-            _.get(artist, 'images[0].resource_url', artPlaceholder)
+            _.get(artist, 'coverImage', artPlaceholder)
           }')`,
           backgroundRepeat: 'noRepeat',
           backgroundPosition: 'center',

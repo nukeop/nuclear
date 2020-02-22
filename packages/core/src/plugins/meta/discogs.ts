@@ -44,8 +44,8 @@ class DiscogsMetaProvider extends MetaProvider {
 
     return {
       id: `${release.id}`,
-      coverImage: release.cover_image.resource_url,
-      thumb: release.cover_image.resource_url,
+      coverImage: release.cover_image,
+      thumb: release.cover_image,
       title: match.groups.album,
       artist: match.groups.artist,
       resourceUrl: release.resource_url,
@@ -54,14 +54,15 @@ class DiscogsMetaProvider extends MetaProvider {
   }
 
   discogsReleaseInfoToGeneric(release: DiscogsReleaseInfo, releaseType: AlbumType): AlbumDetails {
-    const primaryImage = _.find(release.images, { type: 'primary' });
     const artist = _.head(release.artists).name;
+    const coverImage = _.get(_.find(release.images, { type: 'primary' }), 'resource_url');
+
     return {
       ...release,
       id: `${release.id}`,
       artist: _.head(release.artists).name,
-      thumb: release.cover_image.resource_url,
-      coverImage: release.cover_image.resource_url,
+      thumb: coverImage,
+      coverImage: coverImage,
       images: _.map(release.images, 'resource_url'),
       genres: [...release.genres, ...release.styles],
       type: releaseType,
@@ -85,7 +86,7 @@ class DiscogsMetaProvider extends MetaProvider {
       .then(response => response.json())
       .then((json: DiscogsArtistSearchResponse) => json.results.map(artist => ({
         id: `${artist.id}`,
-        coverImage: artist.cover_image.resource_url,
+        coverImage: artist.cover_image,
         thumb: artist.thumb,
         name: artist.title,
         resourceUrl: artist.resource_url,
@@ -136,11 +137,12 @@ class DiscogsMetaProvider extends MetaProvider {
         title: track.name,
         thumb: (_.get(discogsInfo.images, 1) as DiscogsImage).resource_url,
         playcount: track.playcount,
-        listeners: track.listeners
+        listeners: track.listeners,
+        artist: track.artist
       })),
       similar: _.map(lastFmInfo.similar.artist, artist => ({
         name: artist.name,
-        thumbnail: _.find(artist.image, { size: 'large' })
+        thumbnail: _.get(_.find(artist.image, { size: 'large' }), '#text')
       })),
       source: SearchResultsSource.Discogs
     });

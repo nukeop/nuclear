@@ -37,7 +37,7 @@ class PopularTracks extends React.Component {
               this.props.addToQueue(this.props.streamProviders, {
                 artist: artist.name,
                 name: track.name,
-                thumbnail: track.thumbnail || track.image[0]['#text'] || artPlaceholder
+                thumbnail: track.thumb || artPlaceholder
               });
             });
         }}
@@ -71,7 +71,7 @@ class PopularTracks extends React.Component {
           </thead>
           <tbody>
             {
-              _.get(tracks, 'track', [])
+              tracks
                 .slice(0, this.state.expanded ? 15 : 5)
                 .map((track, index) => {
                   return (
