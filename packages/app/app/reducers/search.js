@@ -10,6 +10,7 @@ import {
   ARTIST_INFO_SEARCH_ERROR,
   ARTIST_RELEASES_SEARCH_START,
   ARTIST_RELEASES_SEARCH_SUCCESS,
+  ARTIST_RELEASES_SEARCH_ERROR,
   LASTFM_ARTIST_INFO_SEARCH_START,
   LASTFM_ARTIST_INFO_SEARCH_SUCCESS,
   LASTFM_TRACK_SEARCH_START,
@@ -44,34 +45,6 @@ function reduceArtistSearchSuccess(state, action) {
   return {
     ...state,
     artistSearchResults: action.payload.map(artist => Artist.fromSearchResultData(artist))
-  };
-}
-
-function reduceArtistReleasesSearchStart(state, action) {
-  return {
-    ...state,
-    artistDetails: {
-      ...state.artistDetails,
-      [action.payload]: {
-        ...state.artistDetails[action.payload],
-        releases: [],
-        releasesLoading: true
-      }
-    }
-  };
-}
-
-function reduceArtistReleasesSearchSuccess(state, action) {
-  return {
-    ...state,
-    artistDetails: {
-      ...state.artistDetails,
-      [action.payload.id]: {
-        ...state.artistDetails[action.payload.id],
-        releases: action.payload.releases.releases,
-        releasesLoading: false
-      }
-    }
   };
 }
 
@@ -214,9 +187,42 @@ export default function SearchReducer(state = initialState, action) {
       }
     };
   case ARTIST_RELEASES_SEARCH_START:
-    return reduceArtistReleasesSearchStart(state, action);
+    return {
+      ...state,
+      artistDetails: {
+        ...state.artistDetails,
+        [action.payload.artistId]: {
+          ...state.artistDetails[action.payload.artistId],
+          releases: [],
+          releasesLoading: true
+        }
+      }
+    };
   case ARTIST_RELEASES_SEARCH_SUCCESS:
-    return reduceArtistReleasesSearchSuccess(state, action);
+    return {
+      ...state,
+      artistDetails: {
+        ...state.artistDetails,
+        [action.payload.artistId]: {
+          ...state.artistDetails[action.payload.artistId],
+          releases: action.payload.releases,
+          releasesLoading: false
+        }
+      }
+    };
+  case ARTIST_RELEASES_SEARCH_ERROR:
+    return {
+      ...state,
+      artistDetails: {
+        ...state.artistDetails,
+        [action.payload.artistId]: {
+          ...state.artistDetails[action.payload.artistId],
+          releases: [],
+          releasesLoading: false,
+          releasesError: true
+        }
+      }
+    };
   case LASTFM_ARTIST_INFO_SEARCH_START:
     return reduceLastfmArtistInfoSearchStart(state, action);
   case LASTFM_ARTIST_INFO_SEARCH_SUCCESS:

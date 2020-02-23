@@ -28,6 +28,8 @@ class SearchResults extends React.Component {
   }
 
   renderPane (collection, onClick) {
+    const selectedProvider = _.find(this.props.metaProviders, { sourceName: this.props.selectedPlugins.metaProviders });
+
     return (
       <Tab.Pane loading={this.props.unifiedSearchStarted} attached={false}>
         <div className={styles.pane_container}>
@@ -35,6 +37,7 @@ class SearchResults extends React.Component {
             ? this.props.unifiedSearchStarted
               ? null
               : collection.map((el, i) => {
+                let id = _.get(el, `ids.${selectedProvider.searchName}`, el.id);
                 return (
                   <Card
                     key={'title-card-' + i}
@@ -44,7 +47,7 @@ class SearchResults extends React.Component {
                       el.coverImage || 
                       el.thumb
                     }
-                    onClick={() => onClick(el.id, el.type)}
+                    onClick={() => onClick(id, el.type)}
                   />
                 );
               })

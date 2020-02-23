@@ -28,6 +28,7 @@ export type SearchResultsAlbum = {
     title: string;
     artist: string;
     resourceUrl?: string;
+    type?: string;
     source: SearchResultsSource;
 }
 

@@ -23,6 +23,7 @@ export const ARTIST_INFO_SEARCH_ERROR = 'ARTIST_INFO_SEARCH_ERROR';
 
 export const ARTIST_RELEASES_SEARCH_START = 'ARTIST_RELEASES_SEARCH_START';
 export const ARTIST_RELEASES_SEARCH_SUCCESS = 'ARTIST_RELEASES_SEARCH_SUCCESS';
+export const ARTIST_RELEASES_SEARCH_ERROR = 'ARTIST_RELEASES_SEARCH_ERROR';
 
 export const LASTFM_ARTIST_INFO_SEARCH_START =
   'LASTFM_ARTIST_INFO_SEARCH_START';
@@ -241,37 +242,32 @@ export const artistInfoSearch = artistId => async (dispatch, getState) => {
   }
 };
 
-export function artistReleasesStart(artistId) {
-  return {
-    type: ARTIST_RELEASES_SEARCH_START,
-    payload: artistId
-  };
-}
+const artistReleasesStart = artistId => ({
+  type: ARTIST_RELEASES_SEARCH_START,
+  payload: { artistId }
+});
 
-export function artistReleasesSuccess(artistId, releases) {
-  return {
-    type: ARTIST_RELEASES_SEARCH_SUCCESS,
-    payload: {
-      id: artistId,
-      releases
-    }
-  };
-}
+const artistReleasesSuccess = (artistId, releases) => ({
+  type: ARTIST_RELEASES_SEARCH_SUCCESS,
+  payload: { artistId, releases }
+});
 
-export function artistReleasesSearch(artistId) {
-  return dispatch => {
-    dispatch(artistReleasesStart(artistId));
-    rest.Discogs
-      .artistReleases(artistId)
-      .then(releases => releases.json())
-      .then(releases => {
-        dispatch(artistReleasesSuccess(artistId, releases));
-      })
-      .catch(error => {
-        logger.error(error);
-      });
-  };
-}
+const artistReleasesError = (artistId, error) => ({
+  type: ARTIST_RELEASES_SEARCH_ERROR,
+  payload: { artistId, error }
+});
+
+export const artistReleasesSearch = artistId => async (dispatch, getState) => {
+  dispatch(artistReleasesStart(artistId));
+  try {
+    const selectedProvider = getSelectedMetaProvider(getState);
+    const artistAlbums = await selectedProvider.fetchArtistAlbums(artistId);
+    dispatch(artistReleasesSuccess(artistId, artistAlbums));
+  } catch (e) {
+    logger.error(e);
+    dispatch(artistReleasesError(artistId, e));
+  }
+};
 
 export const artistInfoSearchByName = (artistName, history) => async (dispatch, getState) => {
   try {

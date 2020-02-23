@@ -162,7 +162,7 @@ class AlbumView extends React.Component {
       <div className={styles.album_info_box}>
         <Img
           src={albumImage}
-          loader={<NuclearLoader />}
+          loader={<NuclearLoader type='small' />}
           unloader={<img src={artPlaceholder} />}
         />
         <div className={styles.album_details}>
