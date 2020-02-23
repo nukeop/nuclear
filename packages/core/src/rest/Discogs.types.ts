@@ -35,6 +35,16 @@ export type DiscogsReleaseSearchResult = {
   year: string;
 }
 
+export type DiscogsArtistReleaseSearchResult = {
+  id: number;
+  artist: string;
+  title: string;
+  thumb: string;
+  resource_url: string;
+  type: string;
+  year: number;
+}
+
 export type DiscogsArtistSearchResult = {
   id: number;
   cover_image: string;
@@ -46,6 +56,11 @@ export type DiscogsArtistSearchResult = {
 export type DiscogsReleaseSearchResponse = {
   pagination: DiscogsPagination;
   results: DiscogsReleaseSearchResult[];
+}
+
+export type DiscogsArtistReleasesSearchResponse = {
+  pagination: DiscogsPagination;
+  releases: DiscogsArtistReleaseSearchResult[];
 }
 
 export type DiscogsArtistSearchResponse = {
