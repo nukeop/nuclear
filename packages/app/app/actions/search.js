@@ -25,11 +25,6 @@ export const ARTIST_RELEASES_SEARCH_START = 'ARTIST_RELEASES_SEARCH_START';
 export const ARTIST_RELEASES_SEARCH_SUCCESS = 'ARTIST_RELEASES_SEARCH_SUCCESS';
 export const ARTIST_RELEASES_SEARCH_ERROR = 'ARTIST_RELEASES_SEARCH_ERROR';
 
-export const LASTFM_ARTIST_INFO_SEARCH_START =
-  'LASTFM_ARTIST_INFO_SEARCH_START';
-export const LASTFM_ARTIST_INFO_SEARCH_SUCCESS =
-  'LASTFM_ARTIST_INFO_SEARCH_SUCCESS';
-
 export const LASTFM_TRACK_SEARCH_START = 'LASTFM_TRACK_SEARCH_START';
 export const LASTFM_TRACK_SEARCH_SUCCESS = 'LASTFM_TRACK_SEARCH_SUCCESS';
 
@@ -273,87 +268,20 @@ export const artistInfoSearchByName = (artistName, history) => async (dispatch, 
   try {
     const selectedProvider = getSelectedMetaProvider(getState);
     const artistDetails = await selectedProvider.fetchArtistDetailsByName(artistName);
-    dispatch(artistInfoSearch(artistDetails.id));
+    dispatch(artistInfoSuccess(artistDetails.id, artistDetails));
     _.invoke(history, 'push', `/artist/${artistDetails.id}`);
   } catch (e) {
     logger.error(e);
   }
 };
 
-export function albumInfoSearchByName(albumName, history) {
-  return dispatch => {
-    rest.Discogs
-      .search(albumName, 'albums')
-      .then(searchResults => searchResults.json())
-      .then(searchResultsJson => {
-        let album = searchResultsJson.results[0];
-        if (album.type === 'artist') {
-          dispatch(lastFmArtistInfoSearch(album.title, album.id));
-          if (history) {
-            history.push('/artist/' + album.id);
-          }
-        } else {
-          dispatch(albumInfoSearch(album.id, album.type));
-          if (history) {
-            history.push('/album/' + album.id);
-          }
-        }
-
-      })
-      .catch(error => {
-        logger.error(error);
-      });
-  };
-}
-
-export function lastFmArtistInfoStart(artistId) {
-  return {
-    type: LASTFM_ARTIST_INFO_SEARCH_START,
-    payload: artistId
-  };
-}
-
-export function lastFmArtistInfoSuccess(artistId, info) {
-  return {
-    type: LASTFM_ARTIST_INFO_SEARCH_SUCCESS,
-    payload: {
-      id: artistId,
-      info
-    }
-  };
-}
-
-export function lastFmArtistInfoSearch(artist, artistId) {
-  return dispatch => {
-    dispatch(lastFmArtistInfoStart(artistId));
-    Promise.all([
-      lastfm.getArtistInfo(artist),
-      lastfm.getArtistTopTracks(artist)
-    ])
-      .then(results => Promise.all(results.map(info => info.json())))
-      .then(results => {
-        let info = {};
-        results.forEach(result => {
-          info = Object.assign(info, result);
-        });
-
-        const mappedInfo = {
-          ...info,
-          artist: {
-            ...info.artist,
-            similar: {
-              artist: _.invoke(info, 'artist.similar.artist.map', mapLastFMTrackToInternal)
-            }
-          },
-          toptracks: {
-            ...info.toptracks,
-            track: _.invoke(info, 'toptracks.track.map', mapLastFMTrackToInternal)
-          }
-        };
-        dispatch(lastFmArtistInfoSuccess(artistId, mappedInfo));
-      })
-      .catch(error => {
-        logger.error(error);
-      });
-  };
-}
+export const albumInfoSearchByName = (albumName, history) => async (dispatch, getState) => {
+  try {
+    const selectedProvider = getSelectedMetaProvider(getState);
+    const albumDetails = await selectedProvider.fetchAlbumDetailsByName(albumName);
+    dispatch(albumInfoSuccess(albumDetails.id, albumDetails));
+    _.invoke(history, 'push', `/album/${albumDetails.id}`);
+  } catch (e) {
+    logger.error(e);
+  }
+};
