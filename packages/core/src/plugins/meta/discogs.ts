@@ -184,7 +184,6 @@ class DiscogsMetaProvider extends MetaProvider {
     return Promise.resolve(releases.releases.map(this.discogsArtistReleaseSearchResultToGeneric));
   }
 
-
   async fetchAlbumDetails(
     albumId: string,
     albumType: 'master' | 'release' = 'master',

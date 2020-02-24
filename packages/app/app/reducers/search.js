@@ -11,8 +11,6 @@ import {
   ARTIST_RELEASES_SEARCH_START,
   ARTIST_RELEASES_SEARCH_SUCCESS,
   ARTIST_RELEASES_SEARCH_ERROR,
-  LASTFM_ARTIST_INFO_SEARCH_START,
-  LASTFM_ARTIST_INFO_SEARCH_SUCCESS,
   LASTFM_TRACK_SEARCH_START,
   LASTFM_TRACK_SEARCH_SUCCESS,
   YOUTUBE_PLAYLIST_SEARCH_START,
@@ -45,35 +43,6 @@ function reduceArtistSearchSuccess(state, action) {
   return {
     ...state,
     artistSearchResults: action.payload.map(artist => Artist.fromSearchResultData(artist))
-  };
-}
-
-function reduceLastfmArtistInfoSearchStart(state, action) {
-  return {
-    ...state,
-    artistDetails: {
-      ...state.artistDetails,
-      [action.payload]: {
-        ...state.artistDetails[action.payload],
-        lastfm: { loading: true }
-      }
-    }
-  };
-}
-
-function reduceLastfmArtistInfoSearchSuccess(state, action) {
-  return {
-    ...state,
-    artistDetails: {
-      ...state.artistDetails,
-      [action.payload.id]: {
-        ...state.artistDetails[action.payload.id],
-        lastfm: {
-          ...action.payload.info,
-          loading: false
-        }
-      }
-    }
   };
 }
 
@@ -223,10 +192,6 @@ export default function SearchReducer(state = initialState, action) {
         }
       }
     };
-  case LASTFM_ARTIST_INFO_SEARCH_START:
-    return reduceLastfmArtistInfoSearchStart(state, action);
-  case LASTFM_ARTIST_INFO_SEARCH_SUCCESS:
-    return reduceLastfmArtistInfoSearchSuccess(state, action);
   case LASTFM_TRACK_SEARCH_START:
     return reduceLastfmTrackSearchStart(state, action);
   case LASTFM_TRACK_SEARCH_SUCCESS:
