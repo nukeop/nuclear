@@ -8,6 +8,7 @@ import {
 } from '../plugins/plugins.types';
 
 const artistQuantifierRegex = /\s\([0-9]*\)$/;
+export const cleanName = name => name && name.replace(artistQuantifierRegex, '');
 
 export default class Artist {
   uuid: string;
@@ -47,7 +48,7 @@ export default class Artist {
   }
 
   cleanName(): void {
-    this.name = this.name && this.name.replace(artistQuantifierRegex, '');
+    this.name = cleanName(this.name);
   }
 
   addSearchResultData(data: SearchResultsArtist): void {

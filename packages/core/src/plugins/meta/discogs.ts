@@ -25,6 +25,7 @@ import {
   DiscogsTrack
 } from '../../rest/Discogs.types';
 import { LastFmArtistInfo, LastfmTopTracks, LastfmTrack } from '../../rest/Lastfm.types';
+import { cleanName } from '../../structs/Artist';
 
 class DiscogsMetaProvider extends MetaProvider {
   lastfm: LastFmApi;
@@ -140,6 +141,7 @@ class DiscogsMetaProvider extends MetaProvider {
 
   async fetchArtistDetails(artistId: string): Promise<ArtistDetails> {
     const discogsInfo: DiscogsArtistInfo = await (await Discogs.artistInfo(artistId)).json();
+    discogsInfo.name = cleanName(discogsInfo.name);
 
     const lastFmInfo: LastFmArtistInfo = (await (await this.lastfm.getArtistInfo(discogsInfo.name)).json()).artist;
     const lastFmTopTracks: LastfmTopTracks = (await (await this.lastfm.getArtistTopTracks(discogsInfo.name)).json()).toptracks;
@@ -149,8 +151,8 @@ class DiscogsMetaProvider extends MetaProvider {
     return Promise.resolve({
       id: discogsInfo.id,
       name: discogsInfo.name,
-      description: lastFmInfo.bio.summary,
-      tags: _.map(lastFmInfo.tags.tag, 'name'),
+      description: _.get(lastFmInfo, 'bio.summary'),
+      tags: _.map(_.get(lastFmInfo, 'tags.tag'), 'name'),
       onTour: lastFmInfo.ontour === '1',
       coverImage: coverImage,
       thumb: coverImage,
