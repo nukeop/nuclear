@@ -3,14 +3,38 @@ export type MusicbrainzArtist = {
   name: string;
 }
 
-export type MusicbrainzRelease = {
+export type MusicbrainzReleaseGroup = {
   id: string;
   title: string;
-  artist: string;
+  releases: MusicbrainzRelease;
 }
 
 export type MusicbrainzTrack = {
   id: string;
+  length: number;
+  number: string;
+  position: number;
+  title: string;
+};
+
+export type MusicbrainzMedia = {
+  position: number;
+  'track-count': number;
+  tracks: MusicbrainzTrack[];
+}
+
+export type MusicbrainzGenre = {
+  name: string;
+  count: number;
+};
+
+export type MusicbrainzRelease = {
+  id: string;
+  title: string;
+  date: string;
+  status: string;
+  media?: MusicbrainzMedia[];
+  genres?: MusicbrainzGenre[];
 }
 
 export type MusicbrainzArtistResponse = {

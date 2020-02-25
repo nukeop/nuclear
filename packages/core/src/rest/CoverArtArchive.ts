@@ -5,10 +5,15 @@ export type CoverArtArchiveResult = {
   url: string;
 }
 
+const getCoverForReleaseGroup = (releaseGroupId: string): Promise<CoverArtArchiveResult> => {
+  return fetch(`${apiUrl}/release-group/${releaseGroupId}/front`);
+};
+
 const getCoverForRelease = (releaseId: string): Promise<CoverArtArchiveResult> => {
-  return fetch(`${apiUrl}/release-group/${releaseId}/front`);
+  return fetch(`${apiUrl}/release/${releaseId}/front`);
 };
 
 export default {
+  getCoverForReleaseGroup,
   getCoverForRelease
 };
