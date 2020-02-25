@@ -5,17 +5,22 @@ import {
   artistSearch,
   releaseSearch,
   trackSearch,
+  getCoverForReleaseGroup,
   getCoverForRelease,
-  getArtist
+  getArtist,
+  getReleaseGroupDetails,
+  getReleaseDetails
 } from '../../rest/Musicbrainz';
 import LastFmApi from '../../rest/Lastfm';
+import Track from '../../structs/Track';
 import {
   SearchResultsArtist,
   SearchResultsAlbum,
   SearchResultsTrack,
   SearchResultsSource,
   ArtistDetails,
-  AlbumDetails
+  AlbumDetails,
+  AlbumType
 } from '../plugins.types';
 import {
   LastFmArtistInfo,
@@ -25,7 +30,7 @@ import {
 import {
   MusicbrainzArtist
 } from '../../rest/Musicbrainz.types';
-
+import { release } from 'os';
 
 class MusicbrainzMetaProvider extends MetaProvider {
   lastfm: LastFmApi;
@@ -53,17 +58,17 @@ class MusicbrainzMetaProvider extends MetaProvider {
   async searchForReleases(query): Promise<Array<SearchResultsAlbum>> {
     const releaseGroups = await releaseSearch(query)
       .then(response => response['release-groups']);
-    
+
     return Promise.all(releaseGroups.map(
       async group => {
-        const cover = await getCoverForRelease(group.id);
+        const cover = await getCoverForReleaseGroup(group.id);
         
         return {
           id: group.id,
           coverImage: cover.ok ? cover.url : null,
           thumb: cover.ok ? cover.url : null,
           title: group.title,
-          artist: group.artist,
+          artist: _.get(group, 'artist-credit[0].name'),
           source: SearchResultsSource.Musicbrainz
         };
       }
@@ -121,9 +126,36 @@ class MusicbrainzMetaProvider extends MetaProvider {
   fetchArtistAlbums(artistId: string): Promise<SearchResultsAlbum[]> {
     throw new Error('Method not implemented.');
   }
-  fetchAlbumDetails(albumId: string, resourceUrl: string): Promise<AlbumDetails> {
-    throw new Error('Method not implemented.');
+
+  async fetchAlbumDetails(albumId: string, resourceUrl: string): Promise<AlbumDetails> {
+    const releaseGroupDetails = await getReleaseGroupDetails(albumId);
+    const headRelease = _.head(releaseGroupDetails.releases);
+    const releaseDetails = await getReleaseDetails(headRelease.id);
+    const cover = await getCoverForRelease(releaseDetails.id);
+    const artistName = _.get(releaseDetails, 'artist-credit[0].name');
+
+    return Promise.resolve({
+      id: releaseDetails.id, 
+      artist: artistName,
+      title: releaseDetails.title,
+      thumb: cover.url,
+      coverImage: cover.url,
+      year: releaseDetails.date,
+      genres: _.map(releaseDetails.genres, 'name'),
+      type: AlbumType.release,
+      tracklist: _.flatMap(releaseDetails.media, medium => _.map(medium.tracks, track => {
+        let newtrack = new Track();
+        newtrack.ids[SearchResultsSource.Musicbrainz] = track.id;
+        newtrack.artist = artistName;
+        newtrack.title = track.title;
+        newtrack.duration = track.length/1000;
+        newtrack.position = track.position;
+        newtrack.thumbnail = cover.url;
+        return newtrack;
+      }))
+    });
   }
+
   fetchAlbumDetailsByName(albumName: string): Promise<AlbumDetails> {
     throw new Error('Method not implemented.');
   }
