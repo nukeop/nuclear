@@ -167,6 +167,8 @@
     "downloads-dir": "Neddladningsmapp",
     "downloads-dir-button": "Välj mapp...",
     "enable-api": "Aktivera API:et",
+    "fmfav-btn": "Import",
+    "fmfav-msg": "Import your Last.fm Favorites",
     "frameless-window": "Ramlöst fönster (kräver omstart)",
     "github-connect": "Logga in via Github",
     "github-description": "Logga in via GitHub för att kunna skapa och dela spellistor på nätet (framtida funktion).",

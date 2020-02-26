@@ -9,7 +9,6 @@ import { MemoryRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { AppContainer, setConfig } from 'react-hot-loader';
 import { I18nextProvider } from 'react-i18next';
-import logger from 'electron-timber';
 import i18n, { setupI18n } from '@nuclear/i18n';
 import { remote } from 'electron';
 
