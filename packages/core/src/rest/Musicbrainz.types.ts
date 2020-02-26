@@ -41,8 +41,8 @@ export type MusicbrainzArtistResponse = {
   artists: Array<MusicbrainzArtist>;
 };
 
-export type MusicbrainzReleaseResponse = {
-  ['release-groups']: Array<MusicbrainzRelease>;
+export type MusicbrainzReleaseGroupResponse = {
+  ['release-groups']: Array<MusicbrainzReleaseGroup>;
 };
 
 export type MusicbrainzTrackResponse = {
