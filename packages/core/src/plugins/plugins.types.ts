@@ -23,8 +23,8 @@ export type SearchResultsArtist = {
 
 export type SearchResultsAlbum = {
     id: string;
-    coverImage: string;
-    thumb: string;
+    coverImage?: string;
+    thumb?: string;
     title: string;
     artist: string;
     resourceUrl?: string;

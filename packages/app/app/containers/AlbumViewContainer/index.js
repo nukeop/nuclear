@@ -40,7 +40,7 @@ class AlbumViewContainer extends React.Component {
     return (
       <AlbumView
         album={albumDetails[match.params.albumId]}
-        artistInfoSearch={searchActions.artistInfoSearch}
+        artistInfoSearchByName={searchActions.artistInfoSearchByName}
         addToQueue={queueActions.addToQueue}
         streamProviders={streamProviders}
         selectSong={queueActions.selectSong}
