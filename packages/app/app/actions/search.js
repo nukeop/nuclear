@@ -203,7 +203,6 @@ export const albumInfoSearch = (albumId, releaseType = 'master', release) => asy
   try {
     const selectedProvider = getSelectedMetaProvider(getState);
     const albumDetails = await selectedProvider.fetchAlbumDetails(albumId, releaseType, _.get(release, 'resource_url'));
-    console.log('album details', albumDetails);
     dispatch(albumInfoSuccess(albumId, albumDetails));
   } catch (e) {
     logger.error(e);

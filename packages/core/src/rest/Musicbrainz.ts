@@ -3,7 +3,7 @@ import CoverArtArchive from './CoverArtArchive';
 import { CoverArtArchiveResult } from './CoverArtArchive';
 import {
   MusicbrainzArtistResponse,
-  MusicbrainzReleaseResponse,
+  MusicbrainzReleaseGroupResponse,
   MusicbrainzTrackResponse,
   MusicbrainzArtist,
   MusicbrainzReleaseGroup,
@@ -19,7 +19,7 @@ const artistSearch = (terms: string): Promise<MusicbrainzArtistResponse> =>
     });
   });
 
-const releaseSearch = (terms: string): Promise<MusicbrainzReleaseResponse> =>
+const releaseSearch = (terms: string): Promise<MusicbrainzReleaseGroupResponse> =>
   new Promise((resolve, reject) => {
     nb.search('release-group', { release: terms }, (err, response) => {
       err ? reject(err) : resolve(response);
@@ -46,6 +46,13 @@ const getArtist = (id: string): Promise<MusicbrainzArtist> =>
     });
   });
 
+  const getArtistReleases = (id: string): Promise<MusicbrainzArtist> => 
+  new Promise((resolve, reject) => {
+    nb.artist(id, { inc: 'releases+release-groups' }, (err, response) => {
+      err ? reject(err) : resolve(response);
+    })
+  })
+
 const getReleaseGroupDetails = (releaseGroupId: string): Promise<MusicbrainzReleaseGroup> =>
   new Promise((resolve, reject) => {
     nb.releaseGroup(releaseGroupId, { inc: 'releases' }, (err, response) => {
@@ -67,6 +74,7 @@ export {
   getCoverForReleaseGroup,
   getCoverForRelease,
   getArtist,
+  getArtistReleases,
   getReleaseGroupDetails,
   getReleaseDetails
 };

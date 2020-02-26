@@ -2,8 +2,8 @@ import React from 'react';
 import FontAwesome from 'react-fontawesome';
 import cx from 'classnames';
 import { withTranslation } from 'react-i18next';
+import { TrackRow } from '@nuclear/ui';
 
-import TrackRow from '../../TrackRow';
 import artPlaceholder from '../../../../resources/media/art_placeholder.png';
 
 import trackRowStyles from '../../TrackRow/styles.scss';
@@ -53,6 +53,7 @@ class PopularTracks extends React.Component {
     let { artist, tracks, t } = this.props;
 
     return (
+      !_.isEmpty(tracks) &&
       <div className={cx(
         styles.popular_tracks_container,
         trackRowStyles.tracks_container
@@ -77,9 +78,8 @@ class PopularTracks extends React.Component {
                   return (
                     <TrackRow
                       key={'popular-track-row-' + index}
-                      track={track}
                       index={'popular-track-' + index}
-                      artist={artist}
+                      track={track}
                       displayCover
                       displayPlayCount
                     />

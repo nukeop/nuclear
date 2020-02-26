@@ -8,6 +8,7 @@ import {
   getCoverForReleaseGroup,
   getCoverForRelease,
   getArtist,
+  getArtistReleases,
   getReleaseGroupDetails,
   getReleaseDetails
 } from '../../rest/Musicbrainz';
@@ -28,7 +29,7 @@ import {
   LastfmTrack
 } from '../../rest/Lastfm.types';
 import {
-  MusicbrainzArtist
+  MusicbrainzArtist, MusicbrainzReleaseGroup
 } from '../../rest/Musicbrainz.types';
 import { release } from 'os';
 
@@ -42,6 +43,18 @@ class MusicbrainzMetaProvider extends MetaProvider {
     this.searchName = 'Musicbrainz';
     this.image = null;
     this.lastfm = new LastFmApi(process.env.LAST_FM_API_KEY, process.env.LASTFM_API_SECRET);
+  }
+
+  async releaseGroupToSearchResult(group: MusicbrainzReleaseGroup): Promise<SearchResultsAlbum> {
+    const cover = await getCoverForReleaseGroup(group.id);
+    return {
+      id: group.id,
+      coverImage: cover.ok ? cover.url : null,
+      thumb: cover.ok ? cover.url : null,
+      title: group.title,
+      artist: _.get(group, 'artist-credit[0].name'),
+      source: SearchResultsSource.Musicbrainz
+    };
   }
   
   searchForArtists(query: string): Promise<Array<SearchResultsArtist>> {
@@ -59,20 +72,7 @@ class MusicbrainzMetaProvider extends MetaProvider {
     const releaseGroups = await releaseSearch(query)
       .then(response => response['release-groups']);
 
-    return Promise.all(releaseGroups.map(
-      async group => {
-        const cover = await getCoverForReleaseGroup(group.id);
-        
-        return {
-          id: group.id,
-          coverImage: cover.ok ? cover.url : null,
-          thumb: cover.ok ? cover.url : null,
-          title: group.title,
-          artist: _.get(group, 'artist-credit[0].name'),
-          source: SearchResultsSource.Musicbrainz
-        };
-      }
-    ));
+    return Promise.all(releaseGroups.map(this.releaseGroupToSearchResult));
   }
     
   searchForTracks(query: string): Promise<Array<SearchResultsTrack>> {
@@ -120,11 +120,15 @@ class MusicbrainzMetaProvider extends MetaProvider {
       source: SearchResultsSource.Musicbrainz
     });
   }
-  fetchArtistDetailsByName(artistName: string): Promise<ArtistDetails> {
+
+  async fetchArtistDetailsByName(artistName: string): Promise<ArtistDetails> {
     throw new Error('Method not implemented.');
   }
-  fetchArtistAlbums(artistId: string): Promise<SearchResultsAlbum[]> {
-    throw new Error('Method not implemented.');
+
+  async fetchArtistAlbums(artistId: string): Promise<SearchResultsAlbum[]> {
+    const artist = await getArtistReleases(artistId);
+
+    return Promise.all(artist['release-groups'].map(this.releaseGroupToSearchResult))
   }
 
   async fetchAlbumDetails(albumId: string, resourceUrl: string): Promise<AlbumDetails> {

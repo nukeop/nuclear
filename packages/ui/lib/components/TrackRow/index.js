@@ -61,7 +61,7 @@ const TrackRow = ({
     {
       displayArtist &&
       <td className={styles.track_row_artist}>
-        { track.artist.name }
+        { track.artist }
       </td>
     }
     <td className={styles.track_row_name}>
@@ -92,9 +92,7 @@ TrackRow.propTypes = {
   track: PropTypes.shape({
     local: PropTypes.bool,
     album: PropTypes.string,
-    artist: PropTypes.shape({
-      name: PropTypes.string
-    }),
+    artist: PropTypes.string,
     duration: PropTypes.number,
     position: PropTypes.number,
     playcount: PropTypes.number
