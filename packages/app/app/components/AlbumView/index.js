@@ -20,28 +20,11 @@ class AlbumView extends React.Component {
     super(props);
   }
 
-  getArtistName (track, album) {
-    if (!track.artists) {
-      return album.artists[0].name;
-    } else {
-      let firstArtist = _.find(track.artists, artist => artist.join === '')
-        .name;
-      let artistName = firstArtist;
-      _(track.artists)
-        .filter(artist => artist.name !== firstArtist)
-        .forEach(artist => {
-          artistName += ' ' + artist.join + ' ' + artist.name;
-        });
-
-      return artistName;
-    }
-  }
-
   addAlbumToQueue (album) {
     const albumThumbnail = this.getAlbumImage(album);
     album.tracklist.map(track => {
       this.props.addToQueue(this.props.streamProviders, {
-        artist: album.artists[0].name,
+        artist: album.artist,
         name: track.title,
         thumbnail: albumThumbnail
       });
@@ -65,7 +48,7 @@ class AlbumView extends React.Component {
     info(
       t('download-toast-title'),
       t('download-toast-content', {
-        artist: _.head(album.artists).name,
+        artist: album.artist,
         title: album.title
       }),
       <Img
@@ -75,11 +58,6 @@ class AlbumView extends React.Component {
       />,
       settings
     );
-  }
-
-  artistInfoSearch (artistId) {
-    this.props.artistInfoSearch(artistId);
-    this.props.history.push('/artist/' + artistId);
   }
 
   playAll (album) {
@@ -109,10 +87,10 @@ class AlbumView extends React.Component {
         <a
           href='#'
           onClick={() => {
-            this.artistInfoSearch.bind(this)(album.artists[0].id);
+            this.props.artistInfoSearchByName(album.artist, this.props.history);
           }}
         >
-          {album.artists[0].name}
+          {album.artist}
         </a>
       </div>
     );
@@ -120,9 +98,10 @@ class AlbumView extends React.Component {
 
   renderAlbumGenre (album) {
     return (
+      !_.isEmpty(album.genres) &&
       <div className={styles.album_genre}>
         <label>Genre:</label>
-        {album.genres[0]}
+        {album.genres.join(', ')}
       </div>
     );
   }
@@ -220,7 +199,7 @@ class AlbumView extends React.Component {
     }
     _.set(track, 'name', track.title);
     _.set(track, 'thumbnail', this.getAlbumImage(album));
-    _.set(track, 'artist.name', this.getArtistName(track, album));
+    _.set(track, 'artist.name', album.artist);
     return (<TrackRow
       key={'album-track-row-' + index}
       track={track}
@@ -263,7 +242,7 @@ class AlbumView extends React.Component {
             <Icon name='ellipsis horizontal' />
           </a>
         }
-        artist={album.artists[0].name}
+        artist={album.artist}
         title={album.title}
         thumb={this.getAlbumImage(album)}
       >

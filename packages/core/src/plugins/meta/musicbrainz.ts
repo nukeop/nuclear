@@ -55,7 +55,7 @@ class MusicbrainzMetaProvider extends MetaProvider {
       })));
   }
   
-  async searchForReleases(query): Promise<Array<SearchResultsAlbum>> {
+  async searchForReleases(query: string): Promise<Array<SearchResultsAlbum>> {
     const releaseGroups = await releaseSearch(query)
       .then(response => response['release-groups']);
 
