@@ -7,7 +7,7 @@ import { Icon } from 'semantic-ui-react';
 import _ from 'lodash';
 import { withState, compose } from 'recompose';
 
-import { QueueItem, QueuePopup, formatDuration } from '@nuclear/ui';
+import { QueueItem, formatDuration } from '@nuclear/ui';
 
 import { getTrackDuration, getSelectedStream } from '../../utils';
 import { sendPaused } from '../../mpris';
@@ -15,48 +15,52 @@ import { safeAddUuid } from '../../actions/helpers';
 import styles from './styles.scss';
 
 import QueueMenu from './QueueMenu';
+import QueuePopup from './QueuePopup';
 
 @withTranslation('queue')
 class PlayQueue extends React.PureComponent {
-  onDropFile = (event) => {
+  onDropFile = event => {
     event.preventDefault();
     event.stopPropagation();
     const paths = [];
-  
+
     for (let f of event.dataTransfer.files) {
       paths.push(f.path);
     }
 
     this.props.setFileHovered(false);
-  
-    ipcRenderer.send('queue-drop', paths);
-  }
 
-  onDragOverFile = (event) => {
+    ipcRenderer.send('queue-drop', paths);
+  };
+
+  onDragOverFile = event => {
     event.preventDefault();
     event.stopPropagation();
 
     this.props.setFileHovered(true);
-  }
+  };
 
-  onDragEndFile = (event) => {
+  onDragEndFile = event => {
     event.preventDefault();
     event.stopPropagation();
 
     this.props.setFileHovered(false);
-  }
+  };
 
-  onDragEnd = (result) => {
+  onDragEnd = result => {
     const { source, destination } = result;
     // when dragging to non droppable area or back to same position
     if (!destination || source.index === destination.index) {
       return;
     }
 
-    this.props.actions.repositionSong(result.source.index, result.destination.index);
-  }
+    this.props.actions.repositionSong(
+      result.source.index,
+      result.destination.index
+    );
+  };
 
-  onAddToDownloads = (track) => {
+  onAddToDownloads = track => {
     const { actions, plugins, settings, t } = this.props;
     const { addToDownloads, info } = actions;
 
@@ -69,16 +73,18 @@ class PlayQueue extends React.PureComponent {
     info(
       t('download-toast-title'),
       t('download-toast-content', { artist: artistName, title: track.name }),
-      <img src={track.thumbnail}/>,
+      <img src={track.thumbnail} />,
       settings
     );
-  }
+  };
 
-  handleRerollTrack = (track) => {
+  handleRerollTrack = track => {
     let musicSource = this.props.plugins.plugins.streamProviders.find(
-      s => s.sourceName === (track.selectedStream || this.props.plugins.selected.streamProviders)
+      s =>
+        s.sourceName ===
+        (track.selectedStream || this.props.plugins.selected.streamProviders)
     );
-  
+
     if (track.failed) {
       musicSource = this.props.plugins.plugins.streamProviders.find(
         s => s.sourceName === musicSource.fallback
@@ -91,19 +97,23 @@ class PlayQueue extends React.PureComponent {
     );
 
     this.props.actions.rerollTrack(musicSource, selectedStream, track);
-  }
+  };
 
   getSelectedStream(track) {
     const { plugins } = this.props;
     let fallbackStreamProvider;
-  
+
     if (track.failed) {
-      const defaultStreamProvider = plugins.plugins.streamProviders.find(({ sourceName }) => {
-        return sourceName === plugins.selected.streamProviders;
-      });
-      fallbackStreamProvider = plugins.plugins.streamProviders.find(({ sourceName }) => {
-        return sourceName === defaultStreamProvider.fallback;
-      });
+      const defaultStreamProvider = plugins.plugins.streamProviders.find(
+        ({ sourceName }) => {
+          return sourceName === plugins.selected.streamProviders;
+        }
+      );
+      fallbackStreamProvider = plugins.plugins.streamProviders.find(
+        ({ sourceName }) => {
+          return sourceName === defaultStreamProvider.fallback;
+        }
+      );
     }
     return getSelectedStream(
       track.streams,
@@ -115,24 +125,31 @@ class PlayQueue extends React.PureComponent {
 
   handleSelectStream = ({ track, stream }) => {
     this.props.actions.changeTrackStream(track, stream);
-  }
+  };
 
   renderQueueItems() {
     if (!this.props.items) {
       return null;
     }
 
-    const dropdownOptions = _.map(this.props.plugins.plugins.streamProviders, s => ({
-      key: s.sourceName,
-      text: s.sourceName,
-      value: s.sourceName,
-      content: s.sourceName
-    }));
+    const dropdownOptions = _.map(
+      this.props.plugins.plugins.streamProviders,
+      s => ({
+        key: s.sourceName,
+        text: s.sourceName,
+        value: s.sourceName,
+        content: s.sourceName
+      })
+    );
 
     return this.props.items.map((el, i) => {
       return (
-        <Draggable key={`${el.uuid}+${i}`} index={i} draggableId={`${el.uuid}+${i}`}>
-          {(provided) => (
+        <Draggable
+          key={`${el.uuid}+${i}`}
+          index={i}
+          draggableId={`${el.uuid}+${i}`}
+        >
+          {provided => (
             <div
               ref={provided.innerRef}
               {...provided.draggableProps}
@@ -148,15 +165,17 @@ class PlayQueue extends React.PureComponent {
                     isCurrent={this.props.currentSong === i}
                     selectSong={this.props.actions.selectSong}
                     removeFromQueue={this.props.actions.removeFromQueue}
-                    duration={
-                      formatDuration(
-                        getTrackDuration(
-                          el,
-                          this.props.plugins.selected.streamProviders
-                        )
+                    duration={formatDuration(
+                      getTrackDuration(
+                        el,
+                        this.props.plugins.selected.streamProviders
                       )
+                    )}
+                    resetPlayer={
+                      this.props.items.length === 1
+                        ? this.props.actions.resetPlayer
+                        : undefined
                     }
-                    resetPlayer={this.props.items.length === 1 ? this.props.actions.resetPlayer : undefined}
                     sendPaused={sendPaused}
                   />
                 }
@@ -201,10 +220,7 @@ class PlayQueue extends React.PureComponent {
           onDragOver={this.onDragOverFile}
           onDrop={this.onDropFile}
           onDragLeave={this.onDragEndFile}
-          className={classnames(
-            styles.play_queue_container,
-            {compact}
-          )}
+          className={classnames(styles.play_queue_container, { compact })}
         >
           <QueueMenu
             clearQueue={clearQueue}
@@ -226,16 +242,10 @@ class PlayQueue extends React.PureComponent {
             {(provided, snapshot) => (
               <div
                 ref={provided.innerRef}
-                className={
-                  classnames(
-                    styles.play_queue_items,
-                    styles.fade_in,
-                    {
-                      [styles.file_dragged_over]: isFileHovered,
-                      [styles.track_dragged_over]: snapshot.isDraggingOver
-                    }
-                  )
-                }
+                className={classnames(styles.play_queue_items, styles.fade_in, {
+                  [styles.file_dragged_over]: isFileHovered,
+                  [styles.track_dragged_over]: snapshot.isDraggingOver
+                })}
                 {...provided.droppableProps}
               >
                 {this.renderQueueItems()}
@@ -252,6 +262,6 @@ class PlayQueue extends React.PureComponent {
   }
 }
 
-export default compose(
-  withState('isFileHovered', 'setFileHovered', false)
-)(PlayQueue);
+export default compose(withState('isFileHovered', 'setFileHovered', false))(
+  PlayQueue
+);
