@@ -17,6 +17,12 @@
   &.hidden {
     opacity: 0;
   }
+
+  .menu.transition.visible {
+    height: max-content;
+    background-color: $background2;
+    padding: 0;
+  }
 }
 
 .queue_popup_buttons_container {
