@@ -56,6 +56,7 @@ export const QueuePopup = ({
       onClose={handleClose}
       hideOnScroll
       position='right center'
+      size='small'
       on={null}
       style={
         target && {
