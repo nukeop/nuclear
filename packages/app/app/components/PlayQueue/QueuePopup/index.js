@@ -5,6 +5,7 @@ import { Popup } from 'semantic-ui-react';
 import { StreamInfo } from '@nuclear/ui';
 
 import styles from './styles.scss';
+import TrackPopupButtons from '../../../containers/TrackPopupButtons';
 
 export const QueuePopup = ({
   trigger,
@@ -76,6 +77,10 @@ export const QueuePopup = ({
         onRerollTrack={onRerollTrack}
         onSelectStream={onSelectStream}
       />
+      <hr />
+      <div className={styles.queue_popup_buttons_container}>
+        <TrackPopupButtons track={track} withAddToQueue={false} />
+      </div>
     </Popup>
   );
 };
