@@ -67,3 +67,17 @@ export function createLastFMLink(artist, track) {
 
   return `https://www.last.fm/music/${linkSuffix}`;
 }
+
+export function normalizeTrack(track){
+  return {
+    artist: {
+      name: track.artist
+    },
+    name: track.name,
+    image: [
+      {
+        '#text': track.thumbnail
+      }
+    ]
+  };
+}

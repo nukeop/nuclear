@@ -19,7 +19,7 @@ import QueuePopupContainer from '../../containers/QueuePopupContainer';
 
 @withTranslation('queue')
 class PlayQueue extends React.PureComponent {
-  onDropFile = event => {
+  onDropFile = (event) => {
     event.preventDefault();
     event.stopPropagation();
     const paths = [];
@@ -31,23 +31,23 @@ class PlayQueue extends React.PureComponent {
     this.props.setFileHovered(false);
 
     ipcRenderer.send('queue-drop', paths);
-  };
+  }
 
-  onDragOverFile = event => {
+  onDragOverFile = (event) => {
     event.preventDefault();
     event.stopPropagation();
 
     this.props.setFileHovered(true);
-  };
+  }
 
-  onDragEndFile = event => {
+  onDragEndFile = (event) => {
     event.preventDefault();
     event.stopPropagation();
 
     this.props.setFileHovered(false);
-  };
+  }
 
-  onDragEnd = result => {
+  onDragEnd = (result) => {
     const { source, destination } = result;
     // when dragging to non droppable area or back to same position
     if (!destination || source.index === destination.index) {
@@ -58,9 +58,9 @@ class PlayQueue extends React.PureComponent {
       result.source.index,
       result.destination.index
     );
-  };
+  }
 
-  onAddToDownloads = track => {
+  onAddToDownloads = (track) => {
     const { actions, plugins, settings, t } = this.props;
     const { addToDownloads, info } = actions;
 
@@ -76,7 +76,7 @@ class PlayQueue extends React.PureComponent {
       <img src={track.thumbnail} />,
       settings
     );
-  };
+  }
 
   renderQueueItems() {
     if (!this.props.items) {
@@ -120,6 +120,7 @@ class PlayQueue extends React.PureComponent {
                     sendPaused={sendPaused}
                   />
                 }
+                index={i}
                 track={el}
                 titleLabel={this.props.t('title')}
                 idLabel={this.props.t('id')}

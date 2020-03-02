@@ -5,8 +5,8 @@ import { Popup } from 'semantic-ui-react';
 import { StreamInfo } from '@nuclear/ui';
 
 import styles from './styles.scss';
-import TrackPopupButtons from '../../../containers/TrackPopupButtons';
 import { getSelectedStream } from '../../../utils';
+import QueuePopupButtons from '../../../containers/QueuePopupButtons';
 
 const POPUP_MARGIN = 15;
 
@@ -22,6 +22,7 @@ export const QueuePopup = ({
   target,
   titleLabel,
   track,
+  index,
   actions,
   plugins
 }) => {
@@ -148,7 +149,7 @@ export const QueuePopup = ({
       />
       <hr />
       <div className={styles.queue_popup_buttons_container}>
-        <TrackPopupButtons track={track} withAddToQueue={false} />
+        <QueuePopupButtons track={track} index={index} />
       </div>
     </Popup>
   );
