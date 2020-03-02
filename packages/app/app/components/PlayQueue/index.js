@@ -9,13 +9,13 @@ import { withState, compose } from 'recompose';
 
 import { QueueItem, formatDuration } from '@nuclear/ui';
 
-import { getTrackDuration, getSelectedStream } from '../../utils';
+import { getTrackDuration } from '../../utils';
 import { sendPaused } from '../../mpris';
 import { safeAddUuid } from '../../actions/helpers';
 import styles from './styles.scss';
 
 import QueueMenu from './QueueMenu';
-import QueuePopup from './QueuePopup';
+import QueuePopupContainer from '../../containers/QueuePopupContainer';
 
 @withTranslation('queue')
 class PlayQueue extends React.PureComponent {
@@ -78,69 +78,10 @@ class PlayQueue extends React.PureComponent {
     );
   };
 
-  handleRerollTrack = track => {
-    let musicSource = this.props.plugins.plugins.streamProviders.find(
-      s =>
-        s.sourceName ===
-        (track.selectedStream || this.props.plugins.selected.streamProviders)
-    );
-
-    if (track.failed) {
-      musicSource = this.props.plugins.plugins.streamProviders.find(
-        s => s.sourceName === musicSource.fallback
-      );
-    }
-
-    const selectedStream = getSelectedStream(
-      track.streams,
-      musicSource.sourceName
-    );
-
-    this.props.actions.rerollTrack(musicSource, selectedStream, track);
-  };
-
-  getSelectedStream(track) {
-    const { plugins } = this.props;
-    let fallbackStreamProvider;
-
-    if (track.failed) {
-      const defaultStreamProvider = plugins.plugins.streamProviders.find(
-        ({ sourceName }) => {
-          return sourceName === plugins.selected.streamProviders;
-        }
-      );
-      fallbackStreamProvider = plugins.plugins.streamProviders.find(
-        ({ sourceName }) => {
-          return sourceName === defaultStreamProvider.fallback;
-        }
-      );
-    }
-    return getSelectedStream(
-      track.streams,
-      track.failed
-        ? fallbackStreamProvider.sourceName
-        : track.selectedStream || this.props.plugins.selected.streamProviders
-    );
-  }
-
-  handleSelectStream = ({ track, stream }) => {
-    this.props.actions.changeTrackStream(track, stream);
-  };
-
   renderQueueItems() {
     if (!this.props.items) {
       return null;
     }
-
-    const dropdownOptions = _.map(
-      this.props.plugins.plugins.streamProviders,
-      s => ({
-        key: s.sourceName,
-        text: s.sourceName,
-        value: s.sourceName,
-        content: s.sourceName
-      })
-    );
 
     return this.props.items.map((el, i) => {
       return (
@@ -155,7 +96,7 @@ class PlayQueue extends React.PureComponent {
               {...provided.draggableProps}
               {...provided.dragHandleProps}
             >
-              <QueuePopup
+              <QueuePopupContainer
                 trigger={
                   <QueueItem
                     index={i}
@@ -179,11 +120,7 @@ class PlayQueue extends React.PureComponent {
                     sendPaused={sendPaused}
                   />
                 }
-                onRerollTrack={this.handleRerollTrack}
-                onSelectStream={this.handleSelectStream}
                 track={el}
-                selectedStream={this.getSelectedStream(el)}
-                dropdownOptions={dropdownOptions}
                 titleLabel={this.props.t('title')}
                 idLabel={this.props.t('id')}
               />
