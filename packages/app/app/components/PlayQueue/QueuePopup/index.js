@@ -29,9 +29,37 @@ export const QueuePopup = ({
   const triggerElement = useRef(null);
   const popupElement = useRef(null);
 
+  const getSelectedStreamForQueueItem = track => {
+    let fallbackStreamProvider;
+
+    if (track.failed) {
+      const defaultStreamProvider = plugins.plugins.streamProviders.find(
+        ({ sourceName }) => {
+          return sourceName === plugins.selected.streamProviders;
+        }
+      );
+      fallbackStreamProvider = plugins.plugins.streamProviders.find(
+        ({ sourceName }) => {
+          return sourceName === defaultStreamProvider.fallback;
+        }
+      );
+    }
+    return getSelectedStream(
+      track.streams,
+      track.failed
+        ? fallbackStreamProvider.sourceName
+        : track.selectedStream || plugins.selected.streamProviders
+    );
+  };
+
+  const selectedStream = getSelectedStreamForQueueItem(track);
+
   const handleOpen = useCallback(
     event => {
       event.preventDefault();
+      if (!selectedStream) {
+        return;
+      }
       triggerElement.current.click();
       const { left, top } = triggerElement.current.getBoundingClientRect();
       setTarget({
@@ -42,7 +70,7 @@ export const QueuePopup = ({
       });
       setOpen(true);
     },
-    [triggerElement, setOpen, setTarget, target]
+    [selectedStream, setTarget, target, setOpen]
   );
 
   const handleImageLoaded = useCallback(() => {
@@ -77,30 +105,7 @@ export const QueuePopup = ({
 
     actions.rerollTrack(musicSource, selectedStream, track);
   };
-
-  const getSelectedStreamForQueueItem = track => {
-    let fallbackStreamProvider;
-
-    if (track.failed) {
-      const defaultStreamProvider = plugins.plugins.streamProviders.find(
-        ({ sourceName }) => {
-          return sourceName === plugins.selected.streamProviders;
-        }
-      );
-      fallbackStreamProvider = plugins.plugins.streamProviders.find(
-        ({ sourceName }) => {
-          return sourceName === defaultStreamProvider.fallback;
-        }
-      );
-    }
-    return getSelectedStream(
-      track.streams,
-      track.failed
-        ? fallbackStreamProvider.sourceName
-        : track.selectedStream || plugins.selected.streamProviders
-    );
-  };
-
+  
   const handleSelectStream = ({ track, stream }) => {
     actions.changeTrackStream(track, stream);
   };
@@ -140,7 +145,7 @@ export const QueuePopup = ({
         dropdownOptions={dropdownOptions}
         idLabel={idLabel}
         titleLabel={titleLabel}
-        selectedStream={getSelectedStreamForQueueItem(track)}
+        selectedStream={selectedStream}
         track={track}
         onRerollTrack={handleRerollTrack}
         onSelectStream={handleSelectStream}
