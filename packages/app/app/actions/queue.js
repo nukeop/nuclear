@@ -33,7 +33,7 @@ function addTrackToQueue (streamProviders, item) {
     const fail = 'fail';
     if (!item.local && isAbleToAdd) {
       const promises = _.map(streamProviders, provider => provider.search({ artist: item.artist, track: item.name }));
-      Promise.all(_.map(promises, promise => promise.catch(e => fail)))
+      Promise.all(_.map(promises, promise => promise.catch(() => fail)))
         .then(results => _.filter(results, result => result !== fail))
         .then(results => {
           _.pull(results, null);
