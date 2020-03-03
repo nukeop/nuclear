@@ -5,23 +5,29 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { compose, withHandlers } from 'recompose';
 import { ipcRenderer } from 'electron';
-import { PopupButton, getThumbnail } from '@nuclear/ui';
+import { PopupButton, PopupDropdown, getThumbnail } from '@nuclear/ui';
 
 import * as DownloadsActions from '../../actions/downloads';
 import * as QueueActions from '../../actions/queue';
 import * as FavoritesActions from '../../actions/favorites';
 import * as ToastActions from '../../actions/toasts';
+import * as PlaylistsActions from '../../actions/playlists';
 import { safeAddUuid } from '../../actions/helpers';
 import { normalizeTrack } from '../../utils';
+import { Icon, Dropdown } from '@nuclear/ui/node_modules/semantic-ui-react';
+import { addTrackToPlaylist } from '../../components/PlayQueue/QueueMenu/QueueMenuMore';
 
 const QueuePopupButtons = ({
   // track,
+  playlists,
   withPlayNow,
   withAddToFavorites,
   withAddToDownloads,
+  withAddToPlaylist,
   handlePlayNow,
   handleAddFavorite,
-  handleAddToDownloads
+  handleAddToDownloads,
+  handleAddToPlaylist
 }) => (
   <>
     {withPlayNow && (
@@ -31,6 +37,21 @@ const QueuePopupButtons = ({
         icon='play'
         label='Play now'
       />
+    )}
+    {withAddToPlaylist && (
+      <PopupDropdown text='Add to playlist' pointing='right'>
+        {_.map(playlists, (playlist, i) => {
+          return (
+            <Dropdown.Item
+              key={i}
+              onClick={() => handleAddToPlaylist(playlist)}
+            >
+              <Icon name='music' />
+              {playlist.name}
+            </Dropdown.Item>
+          );
+        })}
+      </PopupDropdown>
     )}
     {withAddToFavorites && (
       <PopupButton
@@ -55,13 +76,15 @@ const mapStateToProps = (state, { track }) => ({
   streamProviders: track.local
     ? _.filter(state.plugin.plugins.streamProviders, { sourceName: 'Local' })
     : state.plugin.plugins.streamProviders,
-  settings: state.settings
+  settings: state.settings,
+  playlists: state.playlists.playlists
 });
 
 const mapDispatchToProps = dispatch => ({
   downloadsActions: bindActionCreators(DownloadsActions, dispatch),
   queueActions: bindActionCreators(QueueActions, dispatch),
   favoritesActions: bindActionCreators(FavoritesActions, dispatch),
+  playlistsActions: bindActionCreators(PlaylistsActions, dispatch),
   toastActions: bindActionCreators(ToastActions, dispatch)
 });
 
@@ -71,19 +94,23 @@ QueuePopupButtons.propTypes = {
   queueActions: PropTypes.shape({
     selectSong: PropTypes.func
   }),
+  playlistsActions: PropTypes.shape({
+    updatePlaylist: PropTypes.func
+  }),
   streamProviders: PropTypes.array,
 
-  withAddToQueue: PropTypes.bool,
   withPlayNow: PropTypes.bool,
   withAddToFavorites: PropTypes.bool,
-  withAddToDownloads: PropTypes.bool
+  withAddToDownloads: PropTypes.bool,
+  withAddToPlaylist: PropTypes.bool
 };
 
 QueuePopupButtons.defaultProps = {
   queueActions: {},
+  playlistsActions: {},
   streamProviders: [],
 
-  withAddToQueue: true,
+  withAddToPlaylist: true,
   withPlayNow: true,
   withAddToFavorites: true,
   withAddToDownloads: true
@@ -127,6 +154,20 @@ export default compose(
         'Track added to downloads',
         `${track.artist} - ${track.name} has been added to downloads.`,
         <img src={getThumbnail(normalizedTrack)} />,
+        settings
+      );
+    },
+    handleAddToPlaylist: ({
+      playlistsActions: { updatePlaylist},
+      toastActions,
+      settings,
+      track
+    }) => (playlist) => {
+      addTrackToPlaylist(updatePlaylist, playlist, track);
+      toastActions.info(
+        'Track added to playlist',
+        `${track.artist} - ${track.name} has been added to playlist ${playlist.name}.`,
+        <img src={getThumbnail(normalizeTrack(track))} />,
         settings
       );
     }

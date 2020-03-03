@@ -8,8 +8,8 @@ import { compose, withHandlers, defaultProps } from 'recompose';
 import { sendPaused } from '../../../../mpris';
 import styles from './styles.scss';
 
-const addTrackToPlaylist = (updatePlaylist, playlist, track) => {
-  if (track.name) {
+export const addTrackToPlaylist = (updatePlaylist, playlist, track) => {
+  if (track && track.name) {
     playlist.tracks.push(track);
     updatePlaylist(playlist);
   }

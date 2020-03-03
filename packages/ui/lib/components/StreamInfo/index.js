@@ -81,7 +81,7 @@ export default withHandlers({
   handleSelectStream: ({ onSelectStream, track }) => (evt, { value }) => {
     onSelectStream({ track, stream: value });
   },
-  handleImageLoaded: ({ onImageLoaded }) => {
+  handleImageLoaded: ({ onImageLoaded }) => () => {
     onImageLoaded();
   }
 })(StreamInfo);

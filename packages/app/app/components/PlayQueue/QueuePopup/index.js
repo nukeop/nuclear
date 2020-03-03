@@ -135,9 +135,7 @@ export const QueuePopup = ({
       on={null}
       style={
         target && {
-          transform: `translate3d(${Math.round(target.x)}px, ${Math.round(
-            target.y
-          )}px, 0px)`
+          transform: `translate3d(${Math.round(target.x)}px, ${Math.round(target.y)}px, 0px)`
         }
       }
     >
