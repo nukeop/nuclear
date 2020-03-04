@@ -8,8 +8,6 @@ import styles from './styles.scss';
 import { getSelectedStream } from '../../../utils';
 import QueuePopupButtons from '../../../containers/QueuePopupButtons';
 
-const POPUP_MARGIN = 15;
-
 export const QueuePopup = ({
   trigger,
   idLabel,
@@ -18,8 +16,6 @@ export const QueuePopup = ({
   imageReady,
   setImageReady,
   setOpen,
-  setTarget,
-  target,
   titleLabel,
   track,
   index,
@@ -61,29 +57,12 @@ export const QueuePopup = ({
         return;
       }
       triggerElement.current.click();
-      const { left, top } = triggerElement.current.getBoundingClientRect();
-      setTarget({
-        ...target,
-        itemX: left,
-        itemY: top,
-        itemHeight: triggerElement.current.offsetHeight
-      });
       setOpen(true);
     },
-    [selectedStream, setTarget, target, setOpen]
+    [selectedStream, setOpen]
   );
 
-  const handleImageLoaded = useCallback(() => {
-    setImageReady(true);
-    const popupWrapper = popupElement.current.parentElement;
-    const { width: popupWidth } = popupWrapper.getBoundingClientRect();
-
-    setTarget({
-      ...target,
-      x: target.itemX - popupWidth - POPUP_MARGIN,
-      y: target.itemY - popupWrapper.offsetHeight / 2 + target.itemHeight / 2
-    });
-  }, [popupElement, setImageReady, setTarget, target]);
+  const handleImageLoaded = useCallback(() => setImageReady(true), [setImageReady]);
 
   const handleRerollTrack = track => {
     let musicSource = plugins.plugins.streamProviders.find(
@@ -130,14 +109,8 @@ export const QueuePopup = ({
       open={isOpen}
       onClose={handleClose}
       hideOnScroll
-      position='right center'
-      size='small'
       on={null}
-      style={
-        target && {
-          transform: `translate3d(${Math.round(target.x)}px, ${Math.round(target.y)}px, 0px)`
-        }
-      }
+      popperModifiers={{ preventOverflow: { boundariesElement: 'window' } }}
     >
       <StreamInfo
         dropdownOptions={dropdownOptions}
@@ -159,13 +132,6 @@ export const QueuePopup = ({
 };
 
 export default compose(
-  withState('target', 'setTarget', {
-    x: 0,
-    y: 0,
-    itemX: 0,
-    itemY: 0,
-    itemHeight: 0
-  }),
   withState('isOpen', 'setOpen', false),
   withState('imageReady', 'setImageReady', false),
   withHandlers({

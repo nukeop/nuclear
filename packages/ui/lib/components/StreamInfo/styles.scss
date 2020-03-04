@@ -4,7 +4,7 @@
   position: relative;
   display: block;
   min-width: 124px;
-  max-width: 165px;
+  max-width: 210px;
 }
 
 .stream_text_info {
@@ -14,7 +14,7 @@
   width: 100%;
   display: flex;
   flex-flow: column;
-  padding: 0.75rem;
+  padding: 0.5rem;
   background: rgba($black, 0.85);
   border-radius: 0.25rem;
 }
@@ -72,6 +72,7 @@ img {
 
   a {
     background: rgba($black, 0.5);
+    padding: 0.5rem 0.75rem;
     pointer-events: all;
   }
 }
