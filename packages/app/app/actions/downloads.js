@@ -1,5 +1,9 @@
-import { safeAddUuid } from './helpers';
+import _ from 'lodash';
 
+import { safeAddUuid } from './helpers';
+import { store } from '../persistence/store';
+
+export const READ_DOWNLOADS = 'READ_DOWNLOADS';
 export const ADD_TO_DOWNLOADS = 'ADD_TO_DOWNLOADS';
 export const DOWNLOAD_STARTED = 'DOWNLOAD_STARTED';
 export const DOWNLOAD_PROGRESS = 'DOWNLOAD_PROGRESS';
@@ -7,47 +11,105 @@ export const DOWNLOAD_FINISHED = 'DOWNLOAD_FINISHED';
 export const DOWNLOAD_ERROR = 'DOWNLOAD_ERROR';
 export const CLEAR_FINISHED_DOWNLOADS = 'CLEAR_FINISHED_DOWNLOADS';
 
-export function addToDownloads(streamProviders, track) {  
+const changePropertyForItem = ({downloads, uuid, propertyName='status', value}) => {
+  let changedItem = _.find(downloads, (item) => item.track.uuid === uuid);
+  _.set(changedItem, propertyName, value);
+  return downloads;
+};
+
+export function readDownloads() {
+  const downloads = store.get('downloads');
   return {
-    type: ADD_TO_DOWNLOADS,
-    payload: { item: {
+    type: READ_DOWNLOADS,
+    payload: downloads
+  };
+}
+
+export function addToDownloads(streamProviders, track) {  
+  const clonedTrack = safeAddUuid(track);
+  let downloads = store.get('downloads');
+  const existingTrack = downloads.find(({track}) => {
+    const {name, artist} = track;
+    return artist.name === clonedTrack.artist.name && name === clonedTrack.name;
+  });
+  if (!existingTrack ){
+    const newDownload = {
       status: 'Waiting',
       completion: 0,
-      track: safeAddUuid(track)
-    } }
+      track: clonedTrack
+    };
+  
+    downloads = _.concat(downloads, newDownload);
+  }
+  
+  return {
+    type: ADD_TO_DOWNLOADS,
+    payload: downloads
   };
 }
 
 export function onDownloadStarted(uuid) {
+  const downloads = store.get('downloads');
+  const payload = changePropertyForItem({
+    downloads,
+    uuid,
+    value: 'Started'
+  });
   return {
     type: DOWNLOAD_STARTED,
-    payload: {
-      uuid
-    }
+    payload
   };
 }
 
 export function onDownloadProgress(uuid, progress) {
+  const downloads = store.get('downloads');
+  const payload = changePropertyForItem({
+    downloads,
+    uuid,
+    propertyName: 'completion',
+    value: progress
+  });
   return {
     type: DOWNLOAD_PROGRESS,
-    payload: {
-      uuid,
-      progress
-    }
+    payload
+  };
+}
+
+export function onDownloadError(uuid){
+  const downloads = store.get('downloads');
+  const payload = changePropertyForItem({
+    downloads,
+    uuid,
+    value: 'Error'
+  });
+  return {
+    type: DOWNLOAD_ERROR,
+    payload
   };
 }
 
 export function onDownloadFinished(uuid) {
+  const downloads = store.get('downloads');
+  const payload = changePropertyForItem({
+    downloads,
+    uuid,
+    value: 'Finished'
+  });
   return {
-    type: DOWNLOAD_FINISHED,
-    payload: {
-      uuid
-    }
+    type: DOWNLOAD_ERROR,
+    payload
   };
 }
 
 export function clearFinishedDownloads() {
+  const downloads = store.get('downloads');
+  
+  const filteredTracks = downloads.filter(( item ) => 
+    item.status !== 'Finished' && item.status !== 'Error'
+  );
+
   return {
-    type: CLEAR_FINISHED_DOWNLOADS
+    type: CLEAR_FINISHED_DOWNLOADS,
+    payload: filteredTracks
   };
 }
