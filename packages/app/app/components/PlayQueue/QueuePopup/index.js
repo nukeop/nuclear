@@ -1,4 +1,5 @@
 import React, { useRef, useCallback } from 'react';
+import PropTypes from 'prop-types';
 import cs from 'classnames';
 import { withState, withHandlers, compose } from 'recompose';
 import { Popup } from 'semantic-ui-react';
@@ -129,6 +130,17 @@ export const QueuePopup = ({
       </div>
     </Popup>
   );
+};
+
+QueuePopup.propTypes = {
+  trigger: PropTypes.node.isRequired,
+  isQueueItemCompact: PropTypes.bool,
+  idLabel: PropTypes.string,
+  titleLabel: PropTypes.string,
+  track: PropTypes.object,
+  index: PropTypes.number,
+  actions: PropTypes.object,
+  plugins: PropTypes.object
 };
 
 export default compose(
