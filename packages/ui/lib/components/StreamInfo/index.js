@@ -62,9 +62,6 @@ const StreamInfo = ({
 
 StreamInfo.propTypes = {
   selectedStream: PropTypes.object.isRequired,
-  handleRerollTrack: PropTypes.func,
-  handleSelectStream: PropTypes.func,
-  handleImageLoaded: PropTypes.func,
   track: PropTypes.object.isRequired,
   dropdownOptions: PropTypes.array,
   idLabel: PropTypes.string,
