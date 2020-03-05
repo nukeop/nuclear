@@ -3,8 +3,6 @@
 .stream_info {
   position: relative;
   display: block;
-  min-width: 124px;
-  max-width: 210px;
   color: $white !important;
 
   .menu.transition.visible {
@@ -61,6 +59,8 @@
     width: 100%;
     border-radius: 0.25rem;
     overflow: hidden;
+    height: 155px;
+    width: 205px;
   }
   
   img {

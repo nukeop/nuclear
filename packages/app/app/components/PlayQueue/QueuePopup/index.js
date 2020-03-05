@@ -10,6 +10,7 @@ import QueuePopupButtons from '../../../containers/QueuePopupButtons';
 
 export const QueuePopup = ({
   trigger,
+  isQueueItemCompact,
   idLabel,
   isOpen,
   handleClose,
@@ -23,7 +24,6 @@ export const QueuePopup = ({
   plugins
 }) => {
   const triggerElement = useRef(null);
-  const popupElement = useRef(null);
 
   const getSelectedStreamForQueueItem = track => {
     let fallbackStreamProvider;
@@ -108,6 +108,7 @@ export const QueuePopup = ({
       }
       open={isOpen}
       onClose={handleClose}
+      position={isQueueItemCompact ? 'bottom right' : 'bottom center'}
       hideOnScroll
       on={null}
       popperModifiers={{ preventOverflow: { boundariesElement: 'window' } }}
@@ -121,7 +122,6 @@ export const QueuePopup = ({
         onRerollTrack={handleRerollTrack}
         onSelectStream={handleSelectStream}
         onImageLoaded={handleImageLoaded}
-        popupElement={popupElement}
       />
       <hr />
       <div className={styles.queue_popup_buttons_container}>

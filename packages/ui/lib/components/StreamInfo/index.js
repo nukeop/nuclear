@@ -15,11 +15,10 @@ const StreamInfo = ({
   track,
   dropdownOptions,
   idLabel,
-  titleLabel,
-  popupElement
+  titleLabel
 }) => {
   return (
-    <div className={styles.stream_info} ref={popupElement}>
+    <div className={styles.stream_info}>
       <div className={styles.stream_thumbnail}>
         <Img
           alt=''

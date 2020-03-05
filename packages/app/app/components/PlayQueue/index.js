@@ -82,7 +82,8 @@ class PlayQueue extends React.PureComponent {
     if (!this.props.items) {
       return null;
     }
-
+    const {compact, currentSong, actions, t, plugins, items} = this.props;
+    
     return this.props.items.map((el, i) => {
       return (
         <Draggable
@@ -102,28 +103,27 @@ class PlayQueue extends React.PureComponent {
                     index={i}
                     track={el}
                     isLoading={el.loading}
-                    isCompact={this.props.compact}
-                    isCurrent={this.props.currentSong === i}
-                    selectSong={this.props.actions.selectSong}
-                    removeFromQueue={this.props.actions.removeFromQueue}
+                    isCompact={compact}
+                    isCurrent={currentSong === i}
+                    selectSong={actions.selectSong}
+                    removeFromQueue={actions.removeFromQueue}
                     duration={formatDuration(
                       getTrackDuration(
                         el,
-                        this.props.plugins.selected.streamProviders
+                        plugins.selected.streamProviders
                       )
                     )}
                     resetPlayer={
-                      this.props.items.length === 1
-                        ? this.props.actions.resetPlayer
-                        : undefined
+                      items.length === 1 ? actions.resetPlayer : undefined
                     }
                     sendPaused={sendPaused}
                   />
                 }
+                isQueueItemCompact={compact}
                 index={i}
                 track={el}
-                titleLabel={this.props.t('title')}
-                idLabel={this.props.t('id')}
+                titleLabel={t('title')}
+                idLabel={t('id')}
               />
             </div>
           )}
