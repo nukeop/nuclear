@@ -5,74 +5,86 @@
   display: block;
   min-width: 124px;
   max-width: 210px;
-}
+  color: $white !important;
 
-.stream_text_info {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 100%;
-  display: flex;
-  flex-flow: column;
-  padding: 0.5rem;
-  background: rgba($black, 0.85);
-  border-radius: 0.25rem;
-}
-
-label {
-  color: rgba($white, 0.25);
-  font-size: 12px;
-}
-
-.stream_source {
-  display: flex;
-  flex-flow: column;
-}
-
-.stream_title {
-  display: flex;
-  flex-flow: column;
-
-  span {
-    @include ellipsis;
+  .menu.transition.visible {
+    height: max-content;
+    background-color: $background2;
+    padding: 0;
   }
-}
 
-.stream_id {
-  display: flex;
-  flex-flow: column;
-}
+  .text {
+    color: $white;
+  }
 
-.stream_thumbnail {
-  display: flex;
-  flex-flow: row;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  border-radius: 0.25rem;
-  overflow: hidden;
-}
-
-img {
-  width: 100%;
-  height: auto;
-}
-
-.stream_buttons {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 100%;
-  display: flex;
-  flex-flow: column;
-  justify-content: flex-end;
-  align-items: flex-end;
-  padding: 0.5rem;
-  pointer-events: none;
-
-  a {
-    background: rgba($black, 0.5);
-    padding: 0.5rem 0.75rem;
-    pointer-events: all;
+  .stream_text_info {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    flex-flow: column;
+    padding: 0.5rem;
+    background: rgba($black, 0.85);
+    border-radius: 0.25rem;
+  }
+  
+  label {
+    color: rgba($white, 0.25);
+    font-size: 12px;
+  }
+  
+  .stream_source {
+    display: flex;
+    flex-flow: column;
+  }
+  
+  .stream_title {
+    display: flex;
+    flex-flow: column;
+  
+    span {
+      @include ellipsis;
+    }
+  }
+  
+  .stream_id {
+    display: flex;
+    flex-flow: column;
+  }
+  
+  .stream_thumbnail {
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    border-radius: 0.25rem;
+    overflow: hidden;
+  }
+  
+  img {
+    width: 100%;
+    height: auto;
+  }
+  
+  .stream_buttons {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    flex-flow: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+    padding: 0.5rem;
+    pointer-events: none;
+  
+    a {
+      background: rgba($black, 0.5);
+      padding: 0.5rem 0.75rem;
+      pointer-events: all;
+      color: inherit;
+    }
   }
 }
