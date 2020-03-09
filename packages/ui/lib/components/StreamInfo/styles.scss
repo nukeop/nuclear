@@ -1,27 +1,18 @@
 @import '../../common.scss';
 
-.queue_popup {
-  background-color: $background !important;
+.stream_info {
+  position: relative;
+  display: block;
   color: $white !important;
-  border-color: $background2 !important;
-  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.18),
-    0px 0px 20px 0px rgba(0, 0, 0, 0.09) !important;
-  height: auto !important;
-  transition: opacity $very-short-duration;
 
-  &:before {
-    background-color: $background !important;
-    box-shadow: 1px -1px 0 0 $background2 !important;
+  .menu.transition.visible {
+    height: max-content;
+    background-color: $background2;
+    padding: 0;
   }
 
-  &.hidden {
-    opacity: 0;
-  }
-
-  .stream_info {
-    position: relative;
-    display: block;
-    min-width: 124px;
+  .text {
+    color: $white;
   }
 
   .stream_text_info {
@@ -35,41 +26,31 @@
     background: rgba($black, 0.85);
     border-radius: 0.25rem;
   }
-
-  .menu.transition.visible {
-    height: max-content;
-    background-color: $background2;
-    padding: 0;
-  }
-
-  .text {
-    color: $white;
-  }
-
+  
   label {
     color: rgba($white, 0.25);
     font-size: 12px;
   }
-
+  
   .stream_source {
     display: flex;
     flex-flow: column;
   }
-
+  
   .stream_title {
     display: flex;
     flex-flow: column;
-
+  
     span {
       @include ellipsis;
     }
   }
-
+  
   .stream_id {
     display: flex;
     flex-flow: column;
   }
-
+  
   .stream_thumbnail {
     display: flex;
     flex-flow: row;
@@ -78,13 +59,15 @@
     width: 100%;
     border-radius: 0.25rem;
     overflow: hidden;
+    height: 155px;
+    width: 205px;
   }
-
+  
   img {
     width: 100%;
     height: auto;
   }
-
+  
   .stream_buttons {
     position: absolute;
     top: 0;
@@ -96,11 +79,12 @@
     align-items: flex-end;
     padding: 0.5rem;
     pointer-events: none;
-
+  
     a {
       background: rgba($black, 0.5);
       padding: 0.5rem 0.75rem;
       pointer-events: all;
+      color: inherit;
     }
   }
 }
