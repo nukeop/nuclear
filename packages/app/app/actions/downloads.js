@@ -1,11 +1,14 @@
 import _ from 'lodash';
+import {ipcRenderer} from 'electron';
 
 import { safeAddUuid } from './helpers';
-import { store } from '../persistence/store';
+import { store, getOption } from '../persistence/store';
 
 export const READ_DOWNLOADS = 'READ_DOWNLOADS';
 export const ADD_TO_DOWNLOADS = 'ADD_TO_DOWNLOADS';
 export const DOWNLOAD_STARTED = 'DOWNLOAD_STARTED';
+export const DOWNLOAD_PAUSED = 'DOWNLOAD_PAUSED';
+export const DOWNLOAD_RESUMED = 'DOWNLOAD_RESUMED';
 export const DOWNLOAD_PROGRESS = 'DOWNLOAD_PROGRESS';
 export const DOWNLOAD_FINISHED = 'DOWNLOAD_FINISHED';
 export const DOWNLOAD_ERROR = 'DOWNLOAD_ERROR';
@@ -15,6 +18,35 @@ const changePropertyForItem = ({downloads, uuid, propertyName='status', value}) 
   let changedItem = _.find(downloads, (item) => item.track.uuid === uuid);
   _.set(changedItem, propertyName, value);
   return downloads;
+};
+
+const sendIPC = (uuid, actionType, downloads) => {
+  const {track} =_.find(downloads, (item) => item.track.uuid === uuid);
+  let maxDownloads;
+  try {
+    maxDownloads=parseInt(getOption('max.downloads'));
+  } catch (err){
+    maxDownloads=1;
+  }
+  switch (actionType){
+  case ADD_TO_DOWNLOADS:
+  case DOWNLOAD_RESUMED:{
+    if (downloads.filter(({status}) => status==='Started' || status==='Waiting').length>maxDownloads) {
+      return;
+    }
+    return ipcRenderer.send('start-download', track);
+  }
+  case DOWNLOAD_PAUSED:
+    ipcRenderer.send('pause-download', track);
+    // eslint-disable-next-line no-fallthrough
+  case DOWNLOAD_FINISHED:
+  case DOWNLOAD_ERROR:{
+    const nextDownload = downloads.find((download) =>
+      download.status==='Waiting'
+    );
+    return nextDownload?ipcRenderer.send('start-download', nextDownload.track):null;
+  }
+  }
 };
 
 export function readDownloads() {
@@ -41,7 +73,7 @@ export function addToDownloads(streamProviders, track) {
   
     downloads = _.concat(downloads, newDownload);
   }
-  
+  sendIPC(track.uuid, ADD_TO_DOWNLOADS, downloads);
   return {
     type: ADD_TO_DOWNLOADS,
     payload: downloads
@@ -57,6 +89,34 @@ export function onDownloadStarted(uuid) {
   });
   return {
     type: DOWNLOAD_STARTED,
+    payload
+  };
+}
+
+export function onDownloadPause(uuid) {
+  const downloads = store.get('downloads');
+  const payload = changePropertyForItem({
+    downloads,
+    uuid,
+    value: 'Paused'
+  });
+  sendIPC(uuid, DOWNLOAD_PAUSED, downloads);
+  return {
+    type: DOWNLOAD_PAUSED,
+    payload
+  };
+}
+
+export function onDownloadResume(uuid) {
+  const downloads = store.get('downloads');
+  const payload = changePropertyForItem({
+    downloads,
+    uuid,
+    value: 'Waiting'
+  });
+  sendIPC(uuid, DOWNLOAD_RESUMED, downloads);
+  return {
+    type: DOWNLOAD_RESUMED,
     payload
   };
 }
@@ -82,6 +142,7 @@ export function onDownloadError(uuid){
     uuid,
     value: 'Error'
   });
+  sendIPC(uuid, DOWNLOAD_ERROR, downloads);
   return {
     type: DOWNLOAD_ERROR,
     payload
@@ -95,8 +156,9 @@ export function onDownloadFinished(uuid) {
     uuid,
     value: 'Finished'
   });
+  sendIPC(uuid, DOWNLOAD_FINISHED, downloads);
   return {
-    type: DOWNLOAD_ERROR,
+    type: DOWNLOAD_FINISHED,
     payload
   };
 }

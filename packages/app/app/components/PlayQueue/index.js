@@ -68,7 +68,6 @@ class PlayQueue extends React.PureComponent {
     const artistName = _.isString(_.get(track, 'artist'))
       ? _.get(track, 'artist')
       : _.get(track, 'artist.name');
-    ipcRenderer.send('start-download', clonedTrack);
     addToDownloads(plugins.plugins.streamProviders, clonedTrack);
     info(
       t('download-toast-title'),

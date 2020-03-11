@@ -8,11 +8,12 @@ import ytdl from 'ytdl-core';
 import Store from '../store';
 import Config from '../config';
 import Window from '../window';
+import { DownloadItem } from 'electron';
 
 interface DownloadParams {
   query: any;
   filename: string;
-  onStart: () => void;
+  onStart: (item: DownloadItem) => void;
   onProgress: (progress: Progress) => any;
 }
 
@@ -25,7 +26,7 @@ class Download {
   constructor(
     @inject(Window) private window: Window,
     @inject(Store) private store: Store,
-    @inject(Config) private config: Config,
+    @inject(Config) private config: Config
   ) {
     registerDownloader();
   }

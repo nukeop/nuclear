@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
 import { Dimmer, Icon, Loader } from 'semantic-ui-react';
-import { ipcRenderer } from 'electron';
 import { withTranslation } from 'react-i18next';
 import { ContextPopup, PopupButton } from '@nuclear/ui';
 
@@ -57,7 +56,6 @@ class AlbumView extends React.Component {
     } = this.props;
     _.forEach(album.tracklist, track => {
       const clonedTrack = safeAddUuid(track);
-      ipcRenderer.send('start-download', clonedTrack);
       addToDownloads(streamProviders, clonedTrack);
     });
 

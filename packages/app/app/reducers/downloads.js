@@ -1,6 +1,8 @@
 import {
   ADD_TO_DOWNLOADS,
   DOWNLOAD_STARTED,
+  DOWNLOAD_PAUSED,
+  DOWNLOAD_RESUMED,
   DOWNLOAD_PROGRESS,
   DOWNLOAD_FINISHED,
   DOWNLOAD_ERROR,
@@ -16,6 +18,8 @@ export default function DownloadsReducer(state=initialState, action) {
   case ADD_TO_DOWNLOADS:
   case READ_DOWNLOADS:
   case DOWNLOAD_STARTED:
+  case DOWNLOAD_PAUSED:
+  case DOWNLOAD_RESUMED:
   case DOWNLOAD_PROGRESS:
   case DOWNLOAD_FINISHED:
   case DOWNLOAD_ERROR:
