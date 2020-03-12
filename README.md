@@ -87,6 +87,13 @@ Use lerna:
 ```shell
 $ npm i -g lerna #installs lerna globally
 $ lerna bootstrap
+$ cd packages/app/
+$ npm start
+```
+This will start the server. Wait for webpack to finish compiling. Then in a second terminal, 
+
+```shell
+$ cd packages/main/ 
 $ npm start
 ```
 
