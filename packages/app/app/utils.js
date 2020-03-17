@@ -29,7 +29,7 @@ export function stringDurationToSeconds(duration) {
     if (parts.length === 2) {
       parts.unshift(0);
     }
-    return parseInt(parts[0]) * 3600 + parseInt(parts[1]) * 60 + parseInt(parts[1]);
+    return parseInt(parts[0]) * 3600 + parseInt(parts[1]) * 60 + parseInt(parts[2]);
   }
   return 0;
 }
