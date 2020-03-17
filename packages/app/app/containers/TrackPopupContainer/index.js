@@ -32,7 +32,9 @@ const TrackPopupContainer = props => {
   const trackItem = {
     artist,
     name: title,
-    thumbnail: props.thumb
+    thumbnail: props.thumb,
+    local: track.local,
+    streams: track.streams
   };
 
   return (
