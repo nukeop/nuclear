@@ -30,6 +30,8 @@ class DownloadsContainer extends React.Component {
         downloads={downloads}
         downloadsDir={_.get(settings, 'downloads.dir')}
         clearFinishedTracks={downloadActions.clearFinishedDownloads}
+        pauseDownload={downloadActions.onDownloadPause}
+        resumeDownload={downloadActions.onDownloadResume}
         setStringOption={settingsActions.setStringOption}
       />
     );
@@ -39,7 +41,9 @@ class DownloadsContainer extends React.Component {
 DownloadsContainer.propTypes = {
   downloads: PropTypes.array,
   downloadActions: PropTypes.shape({
-    clearFinishedDownloads: PropTypes.func
+    clearFinishedDownloads: PropTypes.func,
+    onDownloadPause: PropTypes.func,
+    onDownloadResume: PropTypes.func
   }),
   settingsActions: PropTypes.shape({
     setStringOption: PropTypes.func

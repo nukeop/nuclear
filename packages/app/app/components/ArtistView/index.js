@@ -148,8 +148,8 @@ class ArtistView extends React.Component {
             cx(
               styles.artist_related_container,
               { [styles.loading]: this.isLoading() }
-              )
-            }>
+            )
+          }>
             {this.renderPopularTracks()}
 
             {this.renderSimilarArtists()}

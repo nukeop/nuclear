@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { ipcRenderer } from 'electron';
 import { ContextPopup, PopupButton } from '@nuclear/ui';
 
 import * as DownloadsActions from '../../actions/downloads';
@@ -87,7 +86,6 @@ const TrackPopupContainer = props => {
         <PopupButton
           onClick={() => {
             const clonedTrack = safeAddUuid(track);
-            ipcRenderer.send('start-download', clonedTrack);
             actions.addToDownloads(streamProviders, clonedTrack);
             actions.info(
               'Track added to downloads',

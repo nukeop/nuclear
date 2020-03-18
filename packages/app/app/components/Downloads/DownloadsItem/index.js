@@ -7,6 +7,8 @@ const StatusIcon = props => {
   switch (props.status) {
   case 'Waiting':
     return <Icon name='hourglass start'/>;
+  case 'Paused':
+    return <Icon name='pause circle'/>;
   case 'Finished':
     return <Icon name='checkmark' color='green'/>;
   case 'Started':
@@ -17,18 +19,58 @@ const StatusIcon = props => {
   }
 };
 
+const renderAction = (name, callback, uuid) => (
+  <a
+    onClick={() => callback(uuid)}
+    href='#'
+  >
+    <Icon name={name} />
+  </a>
+);
+
+const ActionIcon = props => {
+  const {item, pauseDownload, resumeDownload} = props;
+  switch (item.status){
+  case 'Waiting':
+  case 'Started':
+    return renderAction('pause', pauseDownload, item.track.uuid);
+  case 'Paused':
+    return renderAction('play', resumeDownload, item.track.uuid);
+  case 'Error':
+  default:
+    return renderAction('redo', resumeDownload, item.track.uuid);
+  }
+};
+
 StatusIcon.propTypes = {
   status: PropTypes.string.isRequired
 };
 
-const DownloadsItem = ({
-  item
-}) => {
+ActionIcon.propTypes = {
+  item: PropTypes.PropTypes.shape({
+    status: PropTypes.string.isRequired,
+    track: PropTypes.PropTypes.shape({
+      uuid: PropTypes.string.isRequired
+    })
+  }),
+  resumeDownload: PropTypes.func.isRequired,
+  pauseDownload: PropTypes.func.isRequired
+};
 
+const DownloadsItem = ({
+  item,
+  resumeDownload,
+  pauseDownload
+}) => {
   const artistName = _.isString(_.get(item, 'track.artist'))
     ? _.get(item, 'track.artist')
     : _.get(item, 'track.artist.name');
-  
+  const onResumeClick=(uuid) => {
+    resumeDownload(uuid);
+  };
+  const onPauseClick=(uuid) => {
+    pauseDownload(uuid);
+  };
   return (
     <Table.Row>
       <Table.Cell>
@@ -41,6 +83,10 @@ const DownloadsItem = ({
       <Table.Cell>
         { _.round(item.completion*100, 0)  + '%' }
       </Table.Cell>
+      <Table.Cell>
+        <ActionIcon resumeDownload={onResumeClick} pauseDownload={onPauseClick} item={item}/>
+      </Table.Cell>
+      
     </Table.Row>
   );
 };
@@ -48,11 +94,15 @@ const DownloadsItem = ({
 DownloadsItem.propTypes = {
   item: PropTypes.shape({
     
-  })
+  }),
+  resumeDownload: PropTypes.func.isRequired,
+  pauseDownload: PropTypes.func.isRequired
 };
 
 DownloadsItem.defaultProps = {
-  item: {}
+  item: {},
+  pauseDownload: () => {},
+  resumeDownload: () => {}
 };
 
 export default DownloadsItem;
