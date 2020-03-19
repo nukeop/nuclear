@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 
 import * as GithubActions from '../../actions/github';
 import * as ScrobblingActions from '../../actions/scrobbling';
+import * as ImportFavActions from '../../actions/importfavs';
 import * as SettingsActions from '../../actions/settings';
 import options from '../../constants/settings';
 import Settings from '../../components/Settings';
@@ -11,6 +12,7 @@ import Settings from '../../components/Settings';
 const SettingsContainer = ({
   actions,
   scrobbling,
+  importfavs,
   settings,
   github
 }) => (
@@ -18,6 +20,7 @@ const SettingsContainer = ({
     actions={actions}
     github={github}
     scrobbling={scrobbling}
+    importfavs={importfavs}
     settings={settings}
     options={options}
   />
@@ -27,6 +30,7 @@ function mapStateToProps(state) {
   return {
     github: state.github,
     scrobbling: state.scrobbling,
+    importfavs: state.importfavs,
     settings: state.settings
   };
 }
@@ -38,6 +42,7 @@ function mapDispatchToProps(dispatch) {
         {},
         GithubActions,
         ScrobblingActions,
+        ImportFavActions,
         SettingsActions
       ),
       dispatch

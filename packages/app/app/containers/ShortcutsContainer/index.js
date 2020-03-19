@@ -1,4 +1,5 @@
 import React from 'react';
+import {withRouter} from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as Mousetrap from 'mousetrap';
@@ -98,6 +99,21 @@ class Shortcuts extends React.Component {
     return false;
   }
 
+  goToPreviousPage = () => {
+    const {history} = this.props;
+    if (history.index > 1 ) {
+      history.goBack();
+    }
+  }
+
+  goToNextPage = () => {
+    const {history} = this.props;
+    if (history.index < history.length - 1) {
+      history.goForward();
+    }
+  }
+
+
   componentDidMount() {
     Mousetrap.bind('space', this.handleSpaceBar);
     Mousetrap.bind('enter', this.playCurrentSong);
@@ -105,6 +121,8 @@ class Shortcuts extends React.Component {
     Mousetrap.bind('down', this.decreaseVolume);
     Mousetrap.bind('left', this.decreaseSeek);
     Mousetrap.bind('right', this.increaseSeek);
+    Mousetrap.bind('alt+left', this.goToPreviousPage);
+    Mousetrap.bind('alt+right', this.goToNextPage);
     Mousetrap.bind(['ctrl+right', 'command+right'], this.props.actions.nextSong);
     Mousetrap.bind(['ctrl+left', 'command+left'], this.props.actions.previousSong);
     Mousetrap.bind(['ctrl+top', 'command+top'], this.props.actions.unmute);
@@ -119,6 +137,8 @@ class Shortcuts extends React.Component {
       'right',
       'up',
       'down',
+      'alt+left',
+      'alt+right',
       'ctrl+right',
       'command+right',
       'ctrl+left',
@@ -153,4 +173,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Shortcuts);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Shortcuts));

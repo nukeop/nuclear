@@ -100,7 +100,7 @@ class PlaylistView extends React.Component {
         <div>
           <img
             className={styles.playlist_thumbnail}
-            src={_.get(playlist, 'tracks[0].thumbnail', '')}
+            src={_.get(playlist, 'tracks[0].thumbnail', artPlaceholder)}
           />
         </div>
         <div className={styles.playlist_header}>

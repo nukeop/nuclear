@@ -3,6 +3,7 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Sound, { Volume, Equalizer, AnalyserByFrequency } from 'react-hifi';
+import logger from 'electron-timber';
 
 import * as SearchActions from '../../actions/search';
 import * as PlayerActions from '../../actions/player';
@@ -135,7 +136,8 @@ class SoundContainer extends React.Component {
     });
   }
 
-  handleError() {
+  handleError(err) {
+    logger.error(err.message);
     this.props.actions.streamFailed();
   }
 

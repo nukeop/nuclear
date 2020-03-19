@@ -19,7 +19,7 @@ class Discord {
   private async sendActivity(track: NuclearMeta) {
     try {
       await this.rpc.setActivity({
-        details: `listening to ${track.artist} ${track.name}`,
+        details: `${track.artist} - ${track.name}`,
         startTimestamp: Date.now(),
         largeImageKey: 'logo'
       });

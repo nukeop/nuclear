@@ -176,7 +176,8 @@ export const settingsConfig: Array<Setting> = [
       { key: 'id', text: 'Bahasa Indonesia', value: 'id' },
       { key: 'sk', text: 'Slovenčina', value: 'sk' },
       { key: 'ko', text: '한국어', value: 'ko' },
-      { key: 'tl', text: 'Tagalog (Filipino)', value: 'tl' }
+      { key: 'tl', text: 'Tagalog (Filipino)', value: 'tl' },
+      { key: 'se', text: 'Svenska', value: 'se' }
     ],
     default: undefined
   }, {
@@ -191,6 +192,14 @@ export const settingsConfig: Array<Setting> = [
       : remote
         ? remote.app.getPath('downloads')
         : ''
+  },
+  {
+    name: 'max.downloads',
+    category: 'downloads',
+    type: SettingType.NUMBER,
+    prettyName: 'downloads-count',
+    default: 1,
+    min: 1
   }
 
   // TODO: Enable when MPD integration is ready

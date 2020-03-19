@@ -17,7 +17,7 @@ export const STREAM_FAILED = 'STREAM_FAILED';
 export const CHANGE_TRACK_STREAM = 'CHANGE_TRACK_STREAM';
 
 function addTrackToQueue (streamProviders, item) {  
-  return (dispatch, getState) => {
+  return async (dispatch, getState) => {
     item.loading = !item.local;
     item = safeAddUuid(item);
     mpris.addTrack(item);
@@ -30,15 +30,19 @@ function addTrackToQueue (streamProviders, item) {
       payload: item
     });
 
-    !item.local && isAbleToAdd && Promise.all(_.map(streamProviders, m => m.search({ artist: item.artist, track: item.name })))
-      .then(results => Promise.all(results))
-      .then(results => {
-        _.pull(results, null);
-        dispatch({
-          type: ADD_STREAMS_TO_QUEUE_ITEM,
-          payload: Object.assign({}, item, { streams: results, loading: false })
+    const fail = 'fail';
+    if (!item.local && isAbleToAdd) {
+      const promises = _.map(streamProviders, provider => provider.search({ artist: item.artist, track: item.name }));
+      Promise.all(_.map(promises, promise => promise.catch(() => fail)))
+        .then(results => _.filter(results, result => result !== fail))
+        .then(results => {
+          _.pull(results, null);
+          dispatch({
+            type: ADD_STREAMS_TO_QUEUE_ITEM,
+            payload: Object.assign({}, item, { streams: results, loading: false })
+          });
         });
-      });
+    }
   };
 }
 

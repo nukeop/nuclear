@@ -10,16 +10,16 @@ import uuid from 'uuid/v4';
 import url, { URL } from 'url';
 import fs from 'fs';
 import crypto from 'crypto';
+import { app } from 'electron';
 
 import LocalLibraryDb, { LocalMeta } from './db';
 import AcousticId from '../acoustic-id';
 import Config from '../config';
 import Logger, { $mainLogger } from '../logger';
+import Platform from '../platform';
 import Window from '../window';
 
 export type ProgressHandler = (progress: number, total: number) => void
-
-const THUMBNAILS_DIR = 'thumbnails';
 
 /**
  * Manage local files, extract metadata directly from files, or get it from acousticId api
@@ -34,11 +34,10 @@ class LocalLibrary {
     @inject(LocalLibraryDb) private store: LocalLibraryDb,
     @inject(AcousticId) private acousticId: AcousticId,
     @inject($mainLogger) private logger: Logger,
+    @inject(Platform) private platform: Platform,
     @inject(Window) private window: Window
   ) {
-    this.mediaDir = this.config.isProd()
-      ? path.resolve(__dirname, '../../', 'media', THUMBNAILS_DIR)
-      : path.resolve(__dirname, THUMBNAILS_DIR);
+    this.mediaDir = path.join(app.getPath('userData'), 'thumbnails');
     this.createThumbnailsDirectory();
   }
 
@@ -67,7 +66,7 @@ class LocalLibrary {
     if (common.picture && common.album) {
       imagePath = await this.persistCover(
         common.picture[0].data,
-        common.album || crypto.createHash('md5').update(path.basename(filePath)).digest('hex'),
+        crypto.createHash('md5').update(path.basename(common.album || filePath)).digest('hex'),
         common.picture[0].format
       );
     }
@@ -89,11 +88,7 @@ class LocalLibrary {
       image: [
         imagePath
           ? {
-            '#text': url.format({
-              pathname: imagePath,
-              protocol: 'file:',
-              slashes: true
-            })
+            '#text': this.getUrl(imagePath)
           }
           : undefined
       ],
@@ -103,11 +98,7 @@ class LocalLibrary {
           title: common.title,
           duration: format.duration,
           source: 'Local',
-          stream: url.format({
-            pathname: filePath,
-            protocol: 'file',
-            slashes: true
-          })
+          stream: this.getUrl(filePath)
         }
       ]
     };
@@ -154,6 +145,22 @@ class LocalLibrary {
     return formattedMetas;
   }
 
+  private getUrl(imagePath: string) {
+    return this.platform.isWindows()
+      ? imagePath
+      : url.format({
+        pathname: imagePath,
+        protocol: 'file:',
+        slashes: true
+      });
+  }
+
+  private getPath(imageUrl: string) {
+    return this.platform.isWindows()
+      ? imageUrl
+      : decodeURIComponent(new URL(imageUrl).pathname);
+  }
+
   async cleanUnusedLocalThumbnails() {
     const metas = this.store.getCache();
 
@@ -161,7 +168,7 @@ class LocalLibrary {
     const storedThumbPaths = _.uniq(
       Object.values(metas)
         .map(({ image }) => image[0]
-          ? decodeURIComponent(new URL(image[0]['#text']).pathname)
+          ? this.getPath(image[0]['#text'])
           : null
         )
         .filter(Boolean)
@@ -183,7 +190,7 @@ class LocalLibrary {
       for (const { path, image } of Object.values(oldMetas)) {
         if (path.includes(folder) && image[0] && !removedImages.includes(image[0]['#text'])) {
           removedImages.push(image[0]['#text']);
-          await promisify(fs.unlink)(image[0]['#text'].split('://')[1]);
+          await promisify(fs.unlink)(this.getPath(image[0]['#text']));
         }
       }
     } catch (err) {

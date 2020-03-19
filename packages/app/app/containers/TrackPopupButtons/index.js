@@ -4,7 +4,6 @@ import _ from 'lodash';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { compose, withHandlers } from 'recompose';
-import { ipcRenderer } from 'electron';
 import { PopupButton, getThumbnail, getTrackItem } from '@nuclear/ui';
 
 import * as DownloadsActions from '../../actions/downloads';
@@ -123,7 +122,6 @@ export default compose(
     },
     handleAddToDownloads: ({ track, settings, downloadsActions, toastActions, streamProviders }) => () => {
       const clonedTrack = safeAddUuid(track);
-      ipcRenderer.send('start-download', clonedTrack);
       downloadsActions.addToDownloads(streamProviders, clonedTrack);
       toastActions.info(
         'Track added to downloads',

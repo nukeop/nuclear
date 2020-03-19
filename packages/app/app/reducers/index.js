@@ -12,6 +12,7 @@ import PlaylistsReducer from './playlists';
 import PluginsReducer from './plugins';
 import QueueReducer from './queue';
 import ScrobblingReducer from './scrobbling';
+import ImportFavsReducer from './importfavs';
 import SearchReducer from './search';
 import SettingsReducer from './settings';
 import TagReducer from './tag';
@@ -32,6 +33,7 @@ const rootReducer = combineReducers({
   plugin: PluginsReducer,
   queue: QueueReducer,
   scrobbling: ScrobblingReducer,
+  importfavs: ImportFavsReducer,
   search: SearchReducer,
   settings: SettingsReducer,
   tags: TagReducer,
