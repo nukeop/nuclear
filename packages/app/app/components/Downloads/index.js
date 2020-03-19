@@ -25,7 +25,9 @@ const Downloads = ({
   downloads,
   downloadsDir,
   clearFinishedTracks,
-  setStringOption
+  setStringOption,
+  resumeDownload,
+  pauseDownload
 }) => {
   const { t } = useTranslation('downloads');
 
@@ -42,6 +44,8 @@ const Downloads = ({
           <DownloadsList
             items={downloads}
             clearFinishedTracks={clearFinishedTracks}
+            resumeDownload={resumeDownload}
+            pauseDownload={pauseDownload}
           />
         </React.Fragment>
       )}
@@ -53,14 +57,18 @@ Downloads.propTypes = {
   downloads: PropTypes.array,
   downloadsDir: PropTypes.string,
   clearFinishedTracks: PropTypes.func,
-  setStringOption: PropTypes.func
+  setStringOption: PropTypes.func,
+  resumeDownload: PropTypes.func.isRequired,
+  pauseDownload: PropTypes.func.isRequired
 };
 
 Downloads.defaultProps = {
   downloads: [],
   downloadsDir: '',
   clearFinishedTracks: () => {},
-  setStringOption: () => {}
+  setStringOption: () => {},
+  pauseDownload: () => {},
+  resumeDownload: () => {}
 };
 
 export default Downloads;

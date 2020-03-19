@@ -9,7 +9,9 @@ import styles from './styles.scss';
 
 const DownloadsList = ({
   items,
-  clearFinishedTracks
+  clearFinishedTracks,
+  pauseDownload,
+  resumeDownload
 }) => {
   const [sortAsc, setSort] = useState(true);
   const { t } = useTranslation('downloads');
@@ -41,6 +43,7 @@ const DownloadsList = ({
               }
             </Table.HeaderCell>
             <Table.HeaderCell>{t('completion')}</Table.HeaderCell>
+            <Table.HeaderCell></Table.HeaderCell>
           </Table.Row>
         </Table.Header>
         <Table.Body>
@@ -50,6 +53,8 @@ const DownloadsList = ({
                 <DownloadsItem
                   key={item.track.uuid}
                   item={item}
+                  resumeDownload={resumeDownload}
+                  pauseDownload={pauseDownload}
                 />
               );
             })
@@ -62,12 +67,16 @@ const DownloadsList = ({
 
 DownloadsList.propTypes = {
   items: PropTypes.array,
-  clearFinishedTracks: PropTypes.func
+  clearFinishedTracks: PropTypes.func,
+  pauseDownload: PropTypes.func.isRequired,
+  resumeDownload: PropTypes.func.isRequired
 };
 
 DownloadsList.defaultProps = {
   items: [],
-  clearFinishedTracks: () => {}
+  clearFinishedTracks: () => {},
+  pauseDownload: () => {},
+  resumeDownload: () => {}
 };
 
 export default DownloadsList;

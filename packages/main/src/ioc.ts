@@ -3,6 +3,7 @@ import { Class } from 'type-fest';
 
 import DownloadCtrl from './controllers/download';
 import LocalLibraryCtrl from './controllers/local-library';
+import LoggerCtrl from './controllers/logger';
 import PlayerCtrl from './controllers/player';
 import SettingsCtrl from './controllers/settings';
 
@@ -44,6 +45,12 @@ const services: ServiceProvider[] = [
   { provide: $systemApiLogger, useValue: new Logger('system api') }
 ];
 
-const controllers: Class[] = [DownloadCtrl, LocalLibraryCtrl, PlayerCtrl, SettingsCtrl];
+const controllers: Class[] = [
+  DownloadCtrl,
+  LocalLibraryCtrl,
+  LoggerCtrl,
+  PlayerCtrl,
+  SettingsCtrl
+];
 
 export { services, controllers };

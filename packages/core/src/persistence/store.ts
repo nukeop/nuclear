@@ -1,10 +1,36 @@
 import _ from 'lodash';
-import electronStore from 'electron-store';
+import ElectronStore from 'electron-store';
 
 import { settingsConfig } from '../settings';
 import { restartApi, stopApi } from '../mpris';
 
-const store = new electronStore();
+/**
+ * return multiple items from store
+ * @param {String[]} items array of keys
+ * @return {Object} key,value pair of items
+ */
+ElectronStore.prototype.getItems = function(items){
+  items = Array.isArray(items)?items:[items];
+  const data ={};
+  for (let item of items){
+    data[item] = this.get(item);
+  }
+  return data;
+};
+
+/**
+ * sets multiple items
+ * @param {Object} items key value pairs to set
+ * @return {void}
+ */
+ElectronStore.prototype.setItems = function(items){
+  const keys = Object.keys(items);
+  for (let key of keys){
+    this.set(key, items[key]);
+  }
+};
+
+const store = new ElectronStore();
 
 function setIfUnset(key, value) {
   if (!store.get(key)) {
@@ -22,6 +48,8 @@ function initStore() {
     artists: [],
     albums: []
   });
+
+  setIfUnset('downloads', []);
 
   setIfUnset('equalizer', {
     selected: 'Default'

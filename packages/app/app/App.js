@@ -17,6 +17,7 @@ import * as PluginsActions from './actions/plugins';
 import * as QueueActions from './actions/queue';
 import * as SettingsActions from './actions/settings';
 import * as ScrobblingActions from './actions/scrobbling';
+import * as ImportFavActions from './actions/importfavs';
 import * as ConnectivityActions from './actions/connectivity';
 import * as GithubContribActions from './actions/githubContrib';
 import { mpris } from '@nuclear/core';
@@ -68,6 +69,7 @@ class App extends React.PureComponent {
   componentDidMount() {
     this.props.actions.readSettings();
     this.props.actions.lastFmReadSettings();
+    this.props.actions.FavImportInit();
     this.props.actions.createPlugins(PluginConfig.plugins);
     this.props.actions.loadPlaylists();
     this.props.actions.deserializePlugins();
@@ -156,7 +158,7 @@ class App extends React.PureComponent {
               src={this.props.settings.compactMenuBar ? logoIcon : logoImg}
             />
             <div className={styles.version_string}>
-              {this.props.settings.compactMenuBar ? '0.6.2' : 'Version 0.6.2'}
+              {this.props.settings.compactMenuBar ? '0.6.3' : 'Version 0.6.3'}
             </div>
           </div>
           <div className={styles.sidebar_menus}>
@@ -395,6 +397,7 @@ function mapDispatchToProps (dispatch) {
       Object.assign(
         {},
         ScrobblingActions,
+        ImportFavActions,
         SettingsActions,
         QueueActions,
         PlayerActions,

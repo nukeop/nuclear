@@ -16,6 +16,17 @@ const PRIMARY_LANGUAGE = 'en';
 
   try {
     sync({
+      check: true,
+      files: localesPath,
+      primary: PRIMARY_LANGUAGE,
+      createResources: [],
+      space: 2,
+      lineEndings: 'LF',
+      finalNewline: true,
+      newKeysEmpty: false
+    });
+  } catch (err) {
+    sync({
       check: false,
       files: localesPath,
       primary: PRIMARY_LANGUAGE,
@@ -25,7 +36,8 @@ const PRIMARY_LANGUAGE = 'en';
       finalNewline: true,
       newKeysEmpty: false
     });
-    const data = {};
+
+    const data: Record<string, Record<string, string[]>> = {};
 
     const enJson = await promisify(fs.readFile)(path.resolve(__dirname, `../src/locales/${PRIMARY_LANGUAGE}.json`), 'utf-8');
     const files = (await promisify(glob)(localesPath)).filter(filePath => !filePath.includes('en.json'));
@@ -41,10 +53,8 @@ const PRIMARY_LANGUAGE = 'en';
 
     generateMdFile(data)
       .on('error', () => {
-        throw new Error('error writing i18n.md');
+        console.error('something fail while trying to generate i18n doc md file');
+        process.exit(1);
       });
-  } catch (err) {
-    console.error(err);
-    process.exit(1);
   }
 })();

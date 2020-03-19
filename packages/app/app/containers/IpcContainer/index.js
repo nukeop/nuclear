@@ -91,6 +91,7 @@ class IpcContainer extends React.Component {
       this.props.actions.onDownloadFinished(data);
     });
     ipcRenderer.on('download-error', (event, data) => {
+      this.props.actions.onDownloadError(data.uuid);
       logger.error(data);
     });
   }
