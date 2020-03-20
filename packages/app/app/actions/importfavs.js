@@ -1,9 +1,10 @@
 import logger from 'electron-timber';
-import { LastFmApi } from '@nuclear/core';
-import { store } from '../persistence/store';
+import { rest, store } from '@nuclear/core';
+
 import globals from '../globals';
 import * as FavoritesActions from './favorites';
-const lastfm = new LastFmApi(globals.lastfmApiKey, globals.lastfmApiSecret);
+
+const lastfm = new rest.LastFmApi(globals.lastfmApiKey, globals.lastfmApiSecret);
 
 export const FAV_IMPORT_INIT = 'FAV_IMPORT_INIT';
 
