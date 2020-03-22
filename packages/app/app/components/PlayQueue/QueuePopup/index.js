@@ -6,7 +6,6 @@ import { Popup } from 'semantic-ui-react';
 import { StreamInfo } from '@nuclear/ui';
 
 import styles from './styles.scss';
-import { getSelectedStream } from '../../../utils';
 import QueuePopupButtons from '../../../containers/QueuePopupButtons';
 
 export const QueuePopup = ({
@@ -27,26 +26,7 @@ export const QueuePopup = ({
   const triggerElement = useRef(null);
 
   const getSelectedStreamForQueueItem = track => {
-    let fallbackStreamProvider;
-
-    if (track.failed) {
-      const defaultStreamProvider = plugins.plugins.streamProviders.find(
-        ({ sourceName }) => {
-          return sourceName === plugins.selected.streamProviders;
-        }
-      );
-      fallbackStreamProvider = plugins.plugins.streamProviders.find(
-        ({ sourceName }) => {
-          return sourceName === defaultStreamProvider.fallback;
-        }
-      );
-    }
-    return getSelectedStream(
-      track.streams,
-      track.failed
-        ? fallbackStreamProvider.sourceName
-        : track.selectedStream || plugins.selected.streamProviders
-    );
+    _.find(track.streams, { source: plugins.selected.streamProviders });
   };
 
   const selectedStream = getSelectedStreamForQueueItem(track);
@@ -66,24 +46,8 @@ export const QueuePopup = ({
   const handleImageLoaded = useCallback(() => setImageReady(true), [setImageReady]);
 
   const handleRerollTrack = track => {
-    let musicSource = plugins.plugins.streamProviders.find(
-      s =>
-        s.sourceName ===
-        (track.selectedStream || plugins.selected.streamProviders)
-    );
-
-    if (track.failed) {
-      musicSource = plugins.plugins.streamProviders.find(
-        s => s.sourceName === musicSource.fallback
-      );
-    }
-
-    const selectedStream = getSelectedStreamForQueueItem(
-      track.streams,
-      musicSource.sourceName
-    );
-
-    actions.rerollTrack(musicSource, selectedStream, track);
+    const selectedStreamProvider = _.find(plugins.streamProviders, { source: plugins.selected.streamProviders });
+    actions.rerollTrack(selectedStreamProvider, selectedStream, track);
   };
   
   const handleSelectStream = ({ track, stream }) => {

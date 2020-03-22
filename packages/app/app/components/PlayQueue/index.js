@@ -106,6 +106,7 @@ class PlayQueue extends React.PureComponent {
                     isLoading={el.loading}
                     isCompact={compact}
                     isCurrent={currentSong === i}
+                    error={el.error}
                     selectSong={actions.selectSong}
                     removeFromQueue={actions.removeFromQueue}
                     duration={formatDuration(
