@@ -1,6 +1,7 @@
 import {
-  ADD_TO_QUEUE,
-  REMOVE_FROM_QUEUE,
+  ADD_QUEUE_ITEM,
+  REMOVE_QUEUE_ITEM,
+  UPDATE_QUEUE_ITEM,
   CLEAR_QUEUE,
   ADD_STREAMS_TO_QUEUE_ITEM,
   REPLACE_STREAMS_IN_QUEUE_ITEM,
@@ -24,12 +25,6 @@ function findQueueItemIndex(queueItems, item) {
   return _.findIndex(queueItems, i => i.uuid === item.uuid);
 }
 
-function reduceAddToQueue(state, action) {
-  return Object.assign({}, state, {
-    queueItems: _.union(state.queueItems, [action.payload])
-  });
-}
-
 function reduceRemoveFromQueue(state, action) {
   let removeIx, newQueue;
   let newCurrent = state.currentSong;
@@ -39,16 +34,11 @@ function reduceRemoveFromQueue(state, action) {
   if (removeIx < state.currentSong) {
     newCurrent--;
   }
-  return Object.assign({}, state, {
+  return { 
+    ...state,
     queueItems: newQueue,
     currentSong: newCurrent
-  });
-}
-
-function reduceClearQueue(state) {
-  return Object.assign({}, state, {
-    queueItems: []
-  });
+  };
 }
 
 function reduceAddStreamsToQueueItem(state, action) {
@@ -131,7 +121,10 @@ function reduceStreamFailed(state) {
       if (idx === state.currentSong) {
         return {
           ...item,
-          failed: true
+          error: {
+            message: 'Could not find a working stream using this source.',
+            details: 'Try re-rolling.'
+          }
         };
       }
       return item;
@@ -168,14 +161,31 @@ function reduceChangeTrackStream(state, action) {
   };
 }
 
+const reduceUpdateQueueItem = (state, action) => {
+  const { item } = action.payload;
+  const itemIndex = _.findIndex(state.queueItems, { uuid: item.uuid });
+  const queueClone = _.cloneDeep(state.queueItems);
+  queueClone[itemIndex] = item;
+
+  return {
+    ...state,
+    queueItems: queueClone
+  };
+};
+
 export default function QueueReducer(state = initialState, action) {
   switch (action.type) {
-  case ADD_TO_QUEUE:
-    return reduceAddToQueue(state, action);
-  case REMOVE_FROM_QUEUE:
+  case ADD_QUEUE_ITEM:
+    return {
+      ...state,
+      queueItems: _.union(state.queueItems, [action.payload.item])
+    };
+  case REMOVE_QUEUE_ITEM:
     return reduceRemoveFromQueue(state, action);
+  case UPDATE_QUEUE_ITEM:
+    return reduceUpdateQueueItem(state, action);
   case CLEAR_QUEUE:
-    return reduceClearQueue(state);
+    return { ...state, queueItems: [] };
   case ADD_STREAMS_TO_QUEUE_ITEM:
     return reduceAddStreamsToQueueItem(state, action);
   case REPLACE_STREAMS_IN_QUEUE_ITEM:

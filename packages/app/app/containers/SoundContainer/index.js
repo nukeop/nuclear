@@ -2,6 +2,7 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { compose, withProps } from 'recompose';
 import Sound, { Volume, Equalizer, AnalyserByFrequency } from 'react-hifi';
 import logger from 'electron-timber';
 
@@ -12,7 +13,6 @@ import * as QueueActions from '../../actions/queue';
 import * as ScrobblingActions from '../../actions/scrobbling';
 import * as LyricsActions from '../../actions/lyrics';
 import { filterFrequencies } from '../../components/Equalizer/chart';
-import { getSelectedStream  } from '../../utils';
 import * as Autoradio from './autoradio';
 import globals from '../../globals';
 import { rest, mpris } from '@nuclear/core';
@@ -154,34 +154,11 @@ class SoundContainer extends React.Component {
   }
 
   render () {
-    let { player, queue, plugins, equalizer, actions, enableSpectrum } = this.props;
-    let streamUrl = '';
+    let { player, equalizer, actions, enableSpectrum, currentStream } = this.props;
 
-    if (queue.queueItems.length > 0) {
-      const currentSong = queue.queueItems[queue.currentSong];
-
-      let fallbackStreamProvider;
-      if (currentSong.failed) {
-        const defaultStreamProvider = plugins.plugins.streamProviders.find(({ sourceName }) => {
-          return sourceName === currentSong.selectedStream || plugins.selected.streamProviders;
-        });
-        fallbackStreamProvider = plugins.plugins.streamProviders.find(({ sourceName }) => {
-          return sourceName === defaultStreamProvider.fallback;
-        });
-      }
-
-      streamUrl = (
-        getSelectedStream(
-          currentSong.streams,
-          currentSong.failed
-            ? fallbackStreamProvider.sourceName
-            : currentSong.selectedStream || plugins.selected.streamProviders
-        ) || {}
-      ).stream;
-    }
-    return !!streamUrl && (
+    return Boolean(currentStream) && (
       <Sound
-        url={streamUrl}
+        url={currentStream.stream}
         playStatus={player.playbackStatus}
         onPlaying={this.handlePlaying}
         onFinishedPlaying={this.handleFinishedPlaying}
@@ -236,9 +213,16 @@ function mapDispatchToProps (dispatch) {
   };
 }
 
-export default withRouter(
+export default compose(
+  withRouter,
   connect(
     mapStateToProps,
     mapDispatchToProps
-  )(SoundContainer)
-);
+  ),
+  withProps(({ queue }) => ({
+    currentTrack: queue.queueItems[queue.currentSong]
+  })),
+  withProps(({ currentTrack, plugins }) => ({
+    currentStream: Boolean(currentTrack) && _.find(currentTrack.streams, { source: plugins.selected.streamProviders }) 
+  }))
+)(SoundContainer);

@@ -85,4 +85,14 @@ storiesOf('Queue item', module)
         />
       </div>
     </div>
+  ))
+  .add('Error', () => (
+    <div className='bg'>
+      <QueueItem {...commonProps}
+        error={{
+          message: 'An error has occurred.',
+          details: 'Error details are available here.'
+        }}
+      />
+    </div>
   ));

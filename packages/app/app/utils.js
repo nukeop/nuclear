@@ -34,14 +34,6 @@ export function stringDurationToSeconds(duration) {
   return 0;
 }
 
-export function getSelectedStream(streams, selectedStreamProvider) {
-  let selectedStream = _.find(streams, { source: selectedStreamProvider });
-
-  return _.isNil(selectedStream)
-    ? _.filter(streams, 'source')[0] || null
-    : selectedStream;
-}
-
 export function getTrackDuration(track, selectedStreamProvider) {
   let trackStreams = _.get(track, 'streams');
   let selectedStream = _.find(trackStreams, { source: selectedStreamProvider });

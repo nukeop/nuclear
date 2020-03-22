@@ -18,6 +18,7 @@ export const QueueItem = props => {
     isCompact,
     track,
     duration,
+    error,
 
     handleRemoveFromQueue,
     handleSelectSong
@@ -62,6 +63,14 @@ export const QueueItem = props => {
           { duration }
         </div>
       </div>
+
+      {
+        Boolean(error) &&
+        <div className={styles.error_overlay}>
+          <div className={styles.error_message}>{error.message}</div>
+          <div className={styles.error_details}>{error.details}</div>
+        </div>
+      }
     </div>
   );
 };
@@ -80,7 +89,14 @@ QueueItem.propTypes = {
   selectSong: PropTypes.func, //eslint-disable-line
   removeFromQueue: PropTypes.func, //eslint-disable-line
   resetPlayer: PropTypes.func, //eslint-disable-line
-  sendPaused: PropTypes.func //eslint-disable-line
+  sendPaused: PropTypes.func, //eslint-disable-line
+  error: PropTypes.oneOf([
+    PropTypes.bool,
+    PropTypes.shape({
+      message: PropTypes.string,
+      details: PropTypes.string
+    })
+  ])
 };
 
 export const enhance = compose(
