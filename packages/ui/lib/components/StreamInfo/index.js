@@ -22,7 +22,7 @@ const StreamInfo = ({
       <div className={styles.stream_thumbnail}>
         <Img
           alt=''
-          src={selectedStream.thumbnail || track.thumbnail}
+          src={_.get(selectedStream, 'thumbnail') || _.get(track, 'thumbnail')}
           unloader={<img src={artPlaceholder} />}
           onLoad={handleImageLoaded}
         />
