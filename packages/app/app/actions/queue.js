@@ -113,6 +113,8 @@ export function addPlaylistTracksToQueue(streamProviders, tracks) {
 
 export function rerollTrack(streamProvider, selectedStream, track) {
   return dispatch => {
+    dispatch(updateQueueItem({ ...track, loading: true, error: false }));
+
     streamProvider.getAlternateStream({ artist: track.artist, track: track.name }, selectedStream)
       .then(newStream => {
         let streams = _.map(track.streams, stream => {
