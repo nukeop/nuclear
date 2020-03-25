@@ -61,7 +61,11 @@ const TrackRow = ({
     {
       displayArtist &&
       <td className={styles.track_row_artist}>
-        { track.artist }
+        { 
+          _.isString(track.artist) 
+            ? track.artist
+            : track.artist.name 
+        }
       </td>
     }
     <td className={styles.track_row_name}>

@@ -15,6 +15,7 @@ export { default as StreamInfo } from './components/StreamInfo';
 export { default as Range } from './components/Range';
 export { default as Seekbar } from './components/Seekbar';
 export { default as ToastContainer } from './components/ToastContainer';
+export { default as TrackPopup } from './components/TrackPopup';
 export { default as TrackRow } from './components/TrackRow';
 export { default as UserPluginsItem } from './components/UserPluginsItem';
 export { default as SearchBox } from './components/SearchBox';
