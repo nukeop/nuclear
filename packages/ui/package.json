@@ -7,14 +7,16 @@
   "license": "AGPL-3.0",
   "scripts": {
     "storybook": "start-storybook -p 9001 -c .storybook",
-    "start": "tsc",
-    "build": "tsc",
+    "start": "tsc && copyfiles -u 1 ./lib/**/*.scss ./dist",
+    "build": "tsc && ",
     "lint": "eslint lib stories --fix",
     "test": "eslint lib && ava"
   },
   "files": [
     "lib"
   ],
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/nukeop/nuclear.git"
@@ -47,6 +49,7 @@
     "babel-loader": "^8.0.6",
     "chai": "^4.2.0",
     "chai-spies": "^1.0.0",
+    "copyfiles": "^2.2.0",
     "css-loader": "^1.0.0",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.1.1",
@@ -94,9 +97,11 @@
         ]
       }
     },
+    "compileEnhancements": false,
     "require": [
       "@babel/register",
       "@babel/polyfill",
+      "ts-node/register",
       "ignore-styles"
     ],
     "files": [
