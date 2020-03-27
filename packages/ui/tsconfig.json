@@ -8,13 +8,13 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
     "strict": false,
+    "allowJs": true,
     "typeRoots": [
       "node_modules/@types"
     ],
     "jsx": "react"
   },
   "include": [
-    "lib",
-    "stories"
+    "lib"
   ]
 }
