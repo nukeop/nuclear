@@ -3,6 +3,7 @@ import { rest } from '@nuclear/core';
 import _ from 'lodash';
 import artPlaceholder from '../../resources/media/art_placeholder.png';
 import globals from '../globals';
+import { error } from './toasts';
 
 const lastfm = new rest.LastFmApi(globals.lastfmApiKey, globals.lastfmApiSecret);
 
@@ -265,23 +266,35 @@ export const artistReleasesSearch = artistId => async (dispatch, getState) => {
 };
 
 export const artistInfoSearchByName = (artistName, history) => async (dispatch, getState) => {
+  const selectedProvider = getSelectedMetaProvider(getState);
+  const { settings } = getState();
   try {
-    const selectedProvider = getSelectedMetaProvider(getState);
     const artistDetails = await selectedProvider.fetchArtistDetailsByName(artistName);
     dispatch(artistInfoSuccess(artistDetails.id, artistDetails));
     _.invoke(history, 'push', `/artist/${artistDetails.id}`);
   } catch (e) {
     logger.error(e);
+    dispatch(error(
+      `Failed to find artist ${artistName}`,
+      `Using ${selectedProvider.sourceName}`,
+      null, null, settings
+    ));
   }
 };
 
 export const albumInfoSearchByName = (albumName, history) => async (dispatch, getState) => {
+  const selectedProvider = getSelectedMetaProvider(getState);
+  const { settings } = getState();
   try {
-    const selectedProvider = getSelectedMetaProvider(getState);
     const albumDetails = await selectedProvider.fetchAlbumDetailsByName(albumName);
     dispatch(albumInfoSuccess(albumDetails.id, albumDetails));
     _.invoke(history, 'push', `/album/${albumDetails.id}`);
   } catch (e) {
     logger.error(e);
+    dispatch(error(
+      `Failed to find album ${albumName}`,
+      `Using ${selectedProvider.sourceName}`,
+      null, settings
+    ));
   }
 };
