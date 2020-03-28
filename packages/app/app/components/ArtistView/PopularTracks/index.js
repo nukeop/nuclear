@@ -4,6 +4,7 @@ import cx from 'classnames';
 import { withTranslation } from 'react-i18next';
 import { TrackRow } from '@nuclear/ui';
 
+import TrackPopupContainer from '../../../containers/TrackPopupContainer';
 import artPlaceholder from '../../../../resources/media/art_placeholder.png';
 
 import trackRowStyles from '../../TrackRow/styles.scss';
@@ -60,7 +61,7 @@ class PopularTracks extends React.Component {
       )}>
         <div className={styles.header}>Popular tracks </div>
         {this.renderAddAllButton(artist, tracks)}
-        <table>
+        <table className={styles.popular_tracks_table}>
           <thead>
             <tr>
               <th>
@@ -74,17 +75,21 @@ class PopularTracks extends React.Component {
             {
               tracks
                 .slice(0, this.state.expanded ? 15 : 5)
-                .map((track, index) => {
-                  return (
-                    <TrackRow
-                      key={'popular-track-row-' + index}
-                      index={'popular-track-' + index}
-                      track={track}
-                      displayCover
-                      displayPlayCount
-                    />
-                  );
-                })
+                .map((track, index) => (
+                  <TrackPopupContainer
+                    key={'popular-track-row-' + index}
+                    trigger={
+                      <TrackRow
+                        index={'popular-track-' + index}
+                        track={track}
+                        displayCover
+                        displayPlayCount
+                      />
+                    }
+                    {...track}
+                    artist={track.artist.name}
+                  />
+                ))
             }
           </tbody>
         </table>
