@@ -4,6 +4,7 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { compose, withHandlers, withProps } from 'recompose';
+import { withTranslation } from 'react-i18next';
 import { SearchBox } from '@nuclear/ui';
 
 import * as SearchActions from '../../actions/search';
@@ -16,12 +17,15 @@ const SearchBoxContainer = ({
   searchProvidersOptions,
   selectedSearchProviderOption,
   handleSelectSearchProvider,
-  isConnected
+  isConnected,
+  t
 }) => (
   <SearchBox
     loading={unifiedSearchStarted}
     disabled={!isConnected}
+    placeholder={t('placeholder')}
     onChange={_.debounce(handleSearch, 500)}
+    onSearch={handleSearch}
     searchProviders={searchProvidersOptions}
     selectedSearchProvider={selectedSearchProviderOption}
     onSearchProviderSelect={handleSelectSearchProvider}
@@ -49,6 +53,7 @@ const providerToOption = provider => ({
 export default compose(
   withRouter,
   connect(mapStateToProps, mapDispatchToProps),
+  withTranslation('search'),
   withHandlers({
     handleSearch: 
     ({ searchActions, history }) => value => 
