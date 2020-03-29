@@ -56,7 +56,6 @@
     "pitchfork-bnm": "^1.0.3",
     "react": "^16.8.6",
     "react-beautiful-dnd": "^11.0.0",
-    "react-debounce-input": "^3.2.0",
     "react-dom": "^16.8.6",
     "react-fontawesome": "^1.6.1",
     "react-hifi": "^2.2.1",
