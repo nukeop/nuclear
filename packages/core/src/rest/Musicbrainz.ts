@@ -46,25 +46,25 @@ const getArtist = (id: string): Promise<MusicbrainzArtist> =>
     });
   });
 
-  const getArtistReleases = (id: string): Promise<MusicbrainzArtist> => 
+const getArtistReleases = (id: string): Promise<MusicbrainzArtist> =>
   new Promise((resolve, reject) => {
     nb.artist(id, { inc: 'releases+release-groups' }, (err, response) => {
       err ? reject(err) : resolve(response);
-    })
-  })
+    });
+  });
 
 const getReleaseGroupDetails = (releaseGroupId: string): Promise<MusicbrainzReleaseGroup> =>
   new Promise((resolve, reject) => {
     nb.releaseGroup(releaseGroupId, { inc: 'releases' }, (err, response) => {
       err ? reject(err) : resolve(response);
-    })
+    });
   });
 
 const getReleaseDetails = (releaseId: string): Promise<MusicbrainzRelease> =>
   new Promise((resolve, reject) => {
     nb.release(releaseId, { inc: 'artists+recordings+genres' }, (err, response) => {
       err ? reject(err) : resolve(response);
-    })
+    });
   });
 
 export {
