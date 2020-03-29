@@ -18,33 +18,33 @@ const SearchBox = ({
   onChange,
   onKeyDown
 }) => (
-    <div
-      className={cx(
-        common.nuclear,
-        styles.search_box_container
-      )}
-    >
-      <Icon name='search' disabled={disabled} />
-      <input
-        autoFocus
-        placeholder={placeholder}
-        onChange={onChange}
-        onKeyDown={onKeyDown}
-        disabled={disabled}
-        className={cx({ [styles.disabled]: disabled })}
-      />
-      {loading && <Icon name='spinner' loading />}
-      {
-        !_.isNil(searchProviders) && !_.isEmpty(searchProviders) &&
+  <div
+    className={cx(
+      common.nuclear,
+      styles.search_box_container
+    )}
+  >
+    <Icon name='search' disabled={disabled} />
+    <input
+      autoFocus
+      placeholder={placeholder}
+      onChange={onChange}
+      onKeyDown={onKeyDown}
+      disabled={disabled}
+      className={cx({ [styles.disabled]: disabled })}
+    />
+    {loading && <Icon name='spinner' loading />}
+    {
+      !_.isNil(searchProviders) && !_.isEmpty(searchProviders) &&
         <Dropdown
           value={selectedSearchProvider.value}
           onChange={onSearchProviderSelect}
           options={searchProviders}
           disabled={disabled}
         />
-      }
-    </div>
-  );
+    }
+  </div>
+);
 
 const optionShape = PropTypes.shape({
   key: PropTypes.string,
@@ -60,24 +60,26 @@ SearchBox.propTypes = {
   selectedSearchProvider: optionShape,
   onSearchProviderSelect: PropTypes.func,
   onChange: PropTypes.func,
-  onSearch: PropTypes.func,
 
+  /* eslint-disable react/no-unused-prop-types */
+  onSearch: PropTypes.func,
   setTerms: PropTypes.func,
   terms: PropTypes.string
+  /* eslint-enable react/no-unused-prop-types */
 };
 
 const RETURN_KEYCODE = 13;
 export default compose(
   withState('terms', 'setTerms', ''),
   withHandlers({
-  onSearchProviderSelect:
+    onSearchProviderSelect:
     ({ searchProviders, onSearchProviderSelect }) =>
       (e, { value }) =>
         onSearchProviderSelect(_.find(searchProviders, { value })),
-  onChange: ({ onChange, setTerms }) => e => {
-    setTerms(e.target.value);
-    onChange(e.target.value);
-  },
-  onKeyDown: ({ onSearch, terms }) => e => e.which === RETURN_KEYCODE && onSearch(terms)
-})
+    onChange: ({ onChange, setTerms }) => e => {
+      setTerms(e.target.value);
+      onChange(e.target.value);
+    },
+    onKeyDown: ({ onSearch, terms }) => e => e.which === RETURN_KEYCODE && onSearch(terms)
+  })
 )(SearchBox);

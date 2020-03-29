@@ -22,54 +22,54 @@ export const QueueItem = ({
   handleRemoveFromQueue,
   handleSelectSong
 }) => (
-    <div
-      className={cx(
-        common.nuclear,
-        styles.queue_item,
-        { [`${styles.current_song}`]: isCurrent },
-        { [`${styles.compact}`]: isCompact }
-      )}
-      onDoubleClick={handleSelectSong}
-    >
-      <div className={styles.thumbnail}>
-        {
-          isLoading
-            ? <Loader type='small' />
-            : <img src={_.defaultTo(track.thumbnail, artPlaceholder)} />
-        }
-
-        <div
-          className={styles.thumbnail_overlay}
-          onClick={handleRemoveFromQueue}
-        >
-          <Icon name='trash alternate outline' size={isCompact ? 'large' : 'big'} />
-        </div>
-      </div>
-
-      <div className={styles.item_info_container}>
-        <div className={styles.name_container}>
-          {track.name}
-        </div>
-        <div className={styles.artist_container}>
-          {track.artist}
-        </div>
-      </div>
-
-      <div className={styles.item_duration_container}>
-        <div className={styles.item_duration}>
-          {duration}
-        </div>
-      </div>
-
+  <div
+    className={cx(
+      common.nuclear,
+      styles.queue_item,
+      { [`${styles.current_song}`]: isCurrent },
+      { [`${styles.compact}`]: isCompact }
+    )}
+    onDoubleClick={handleSelectSong}
+  >
+    <div className={styles.thumbnail}>
       {
-        Boolean(error) &&
+        isLoading
+          ? <Loader type='small' />
+          : <img src={_.defaultTo(track.thumbnail, artPlaceholder)} />
+      }
+
+      <div
+        className={styles.thumbnail_overlay}
+        onClick={handleRemoveFromQueue}
+      >
+        <Icon name='trash alternate outline' size={isCompact ? 'large' : 'big'} />
+      </div>
+    </div>
+
+    <div className={styles.item_info_container}>
+      <div className={styles.name_container}>
+        {track.name}
+      </div>
+      <div className={styles.artist_container}>
+        {track.artist}
+      </div>
+    </div>
+
+    <div className={styles.item_duration_container}>
+      <div className={styles.item_duration}>
+        {duration}
+      </div>
+    </div>
+
+    {
+      Boolean(error) &&
         <div className={styles.error_overlay}>
           <div className={styles.error_message}>{error.message}</div>
           <div className={styles.error_details}>{error.details}</div>
         </div>
-      }
-    </div>
-  );
+    }
+  </div>
+);
 
 QueueItem.propTypes = {
   isLoading: PropTypes.bool,
