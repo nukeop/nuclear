@@ -15,7 +15,7 @@ const commonProps = {
 
 storiesOf('Search box', module)
   .add('Basic', () => {
-    let [selectedSearchProvider, onSearchProviderSelect] = useState(searchProviders[0]);
+    const [selectedSearchProvider, onSearchProviderSelect] = useState(searchProviders[0]);
     return <div className='bg'>
       <SearchBox 
         {...commonProps} 
@@ -25,7 +25,7 @@ storiesOf('Search box', module)
     </div>;
   })
   .add('Loading', () => {
-    let [selectedSearchProvider, onSearchProviderSelect] = useState(searchProviders[0]);
+    const [selectedSearchProvider, onSearchProviderSelect] = useState(searchProviders[0]);
     return <div className='bg'><SearchBox 
       {...commonProps} 
       selectedSearchProvider={selectedSearchProvider}
@@ -35,7 +35,7 @@ storiesOf('Search box', module)
     </div>;
   })
   .add('Disabled', () => {
-    let [selectedSearchProvider, onSearchProviderSelect] = useState(searchProviders[0]);
+    const [selectedSearchProvider, onSearchProviderSelect] = useState(searchProviders[0]);
     return <div className='bg'><SearchBox 
       {...commonProps} 
       selectedSearchProvider={selectedSearchProvider}
