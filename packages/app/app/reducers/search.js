@@ -14,7 +14,8 @@ import {
   LASTFM_TRACK_SEARCH_START,
   LASTFM_TRACK_SEARCH_SUCCESS,
   YOUTUBE_PLAYLIST_SEARCH_START,
-  YOUTUBE_PLAYLIST_SEARCH_SUCCESS
+  YOUTUBE_PLAYLIST_SEARCH_SUCCESS,
+  SEARCH_DROPDOWN_DISPLAY_CHANGE
 } from '../actions';
 import Artist from '../structs/artist';
 
@@ -27,7 +28,8 @@ const initialState = {
   albumDetails: {},
   artistDetails: {},
   unifiedSearchStarted: false,
-  playlistSearchStarted: false
+  playlistSearchStarted: false,
+  isFocused: false
 };
 
 function reduceUnifiedSearchStart (state, action) {
@@ -192,6 +194,14 @@ function reduceYoutubePlaylistSearchSuccess (state, action) {
   };
 }
 
+function reduceSearchDropdownDisplay (state, action) {
+  return {
+    ...state,
+    isFocused: action.payload
+  };
+}
+
+
 export default function SearchReducer (state = initialState, action) {
   switch (action.type) {
   case UNIFIED_SEARCH_START:
@@ -226,6 +236,8 @@ export default function SearchReducer (state = initialState, action) {
     return reduceYoutubePlaylistSearchStart(state, action);
   case YOUTUBE_PLAYLIST_SEARCH_SUCCESS:
     return reduceYoutubePlaylistSearchSuccess(state, action);
+  case SEARCH_DROPDOWN_DISPLAY_CHANGE:
+    return reduceSearchDropdownDisplay(state, action);
   default:
     return state;
   }

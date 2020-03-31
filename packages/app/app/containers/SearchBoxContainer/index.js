@@ -12,13 +12,16 @@ const SearchBoxContainer = props => (
     handleSearch={props.handleSearch}
     loading={props.unifiedSearchStarted}
     isConnected={props.isConnected}
+    isFocused={props.isFocused}
+    handleFocus={props.handleFocus}
   />
 );
 
 function mapStateToProps(state) {
   return {
     unifiedSearchStarted: state.search.unifiedSearchStarted,
-    isConnected: state.connectivity
+    isConnected: state.connectivity,
+    isFocused: state.search.isFocused
   };
 }
 
@@ -34,6 +37,9 @@ export default compose(
   withHandlers({
     handleSearch: props => event => {
       props.actions.unifiedSearch(event.target.value, props.history);
+    },
+    handleFocus: props => bool => {
+      props.actions.setSearchDropdownVisibility(bool);
     }
   })
 )(SearchBoxContainer);

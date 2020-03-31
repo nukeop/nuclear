@@ -35,6 +35,7 @@ export const LASTFM_TRACK_SEARCH_SUCCESS = 'LASTFM_TRACK_SEARCH_SUCCESS';
 
 export const YOUTUBE_PLAYLIST_SEARCH_START = 'YOUTUBE_PLAYLIST_SEARCH_START';
 export const YOUTUBE_PLAYLIST_SEARCH_SUCCESS = 'YOUTUBE_PLAYLIST_SEARCH_SUCCESS';
+export const SEARCH_DROPDOWN_DISPLAY_CHANGE = 'SEARCH_DROPDOWN_DISPLAY_CHANGE';
 
 const SEARCH_TYPE = Object.freeze({
   ARTIST: 'artist',
@@ -402,3 +403,11 @@ export function lastFmArtistInfoSearch (artist, artistId) {
       });
   };
 }
+
+export function setSearchDropdownVisibility(payload) {
+  return {
+    type: SEARCH_DROPDOWN_DISPLAY_CHANGE,
+    payload
+  };
+}
+
