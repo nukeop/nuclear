@@ -19,6 +19,7 @@ import {
   DiscogsArtistSearchResponse,
   DiscogsArtistReleasesSearchResponse,
   DiscogsArtistInfo,
+  DiscogsArtistSearchResult,
   DiscogsReleaseSearchResult,
   DiscogsArtistReleaseSearchResult,
   DiscogsReleaseInfo,
@@ -175,8 +176,8 @@ class DiscogsMetaProvider extends MetaProvider {
 
   async fetchArtistDetailsByName(artistName: string): Promise<ArtistDetails> {
     const artistSearch = await (await Discogs.search(artistName, 'artist')).json();
-    const artist = _.head(artistSearch.results);
-    return this.fetchArtistDetails(artist.id);
+    const artist: DiscogsArtistSearchResult = _.head(artistSearch.results);
+    return this.fetchArtistDetails(`${artist.id}`);
   }
 
   async fetchArtistAlbums(artistId: string): Promise<SearchResultsAlbum[]> {

@@ -6,7 +6,7 @@ export type MusicbrainzArtist = {
 export type MusicbrainzReleaseGroup = {
   id: string;
   title: string;
-  releases: MusicbrainzRelease;
+  releases: MusicbrainzRelease[];
 }
 
 export type MusicbrainzTrack = {

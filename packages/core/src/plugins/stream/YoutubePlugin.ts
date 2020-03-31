@@ -20,7 +20,7 @@ class YoutubePlugin extends StreamProviderPlugin {
     return Youtube.trackSearch(terms)
       .then(results => results.json())
       .then(results => {
-        let song = _.head(results.items);
+        let song: { id: { videoId: string }} = _.head(results.items);
         let id = song.id.videoId;
         return ytdl.getInfo(`https://www.youtube.com/watch?v=${id}`);
       })
