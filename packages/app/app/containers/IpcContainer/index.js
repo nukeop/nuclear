@@ -4,6 +4,8 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { ipcRenderer } from 'electron';
+import { mpris } from '@nuclear/core';
+
 import * as PlayerActions from '../../actions/player';
 import * as QueueActions from '../../actions/queue';
 import * as SettingsActions from '../../actions/settings';
@@ -12,7 +14,7 @@ import * as EqualizerActions from '../../actions/equalizer';
 import * as DownloadsActions from '../../actions/downloads';
 import * as LocalFileActions from '../../actions/local';
 
-import {
+const {
   onNext,
   onPrevious,
   onPause,
@@ -36,7 +38,7 @@ import {
   onLocalFilesError,
   onSelectTrack,
   onActivatePlaylist
-} from '../../mpris';
+} = mpris;
 
 class IpcContainer extends React.Component {
   componentDidMount() {
@@ -89,6 +91,7 @@ class IpcContainer extends React.Component {
       this.props.actions.onDownloadFinished(data);
     });
     ipcRenderer.on('download-error', (event, data) => {
+      this.props.actions.onDownloadError(data.uuid);
       logger.error(data);
     });
   }

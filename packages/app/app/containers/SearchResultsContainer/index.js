@@ -1,40 +1,12 @@
-import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as Actions from '../../actions';
+import { withRouter } from 'react-router-dom';
+import { compose } from 'recompose';
+import * as SearchActions from '../../actions/search';
 import * as QueueActions from '../../actions/queue';
 import * as PlayerActions from '../../actions/player';
 
 import SearchResults from '../../components/SearchResults';
-
-const SearchResultsContainer = ({
-  artistSearchResults,
-  albumSearchResults,
-  trackSearchResults,
-  playlistSearchResults,
-  unifiedSearchStarted,
-  playlistSearchStarted,
-  actions,
-  streamProviders,
-  history
-}) => (
-  <SearchResults
-    artistSearchResults={artistSearchResults}
-    albumSearchResults={albumSearchResults}
-    trackSearchResults={trackSearchResults}
-    playlistSearchResults={playlistSearchResults}
-    unifiedSearchStarted={unifiedSearchStarted}
-    playlistSearchStarted={playlistSearchStarted}
-    albumInfoSearch={actions.albumInfoSearch}
-    artistInfoSearch={actions.artistInfoSearch}
-    history={history}
-    addToQueue={actions.addToQueue}
-    clearQueue={actions.clearQueue}
-    startPlayback={actions.startPlayback}
-    selectSong={actions.selectSong}
-    streamProviders={streamProviders}
-  />
-);
 
 function mapStateToProps(state) {
   return {
@@ -44,20 +16,22 @@ function mapStateToProps(state) {
     playlistSearchResults: state.search.playlistSearchResults,
     unifiedSearchStarted: state.search.unifiedSearchStarted,
     playlistSearchStarted: state.search.playlistSearchStarted,
-    streamProviders: state.plugin.plugins.streamProviders
+    streamProviders: state.plugin.plugins.streamProviders,
+    metaProviders: state.plugin.plugins.metaProviders,
+    selectedPlugins: state.plugin.selected
   };
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    actions: bindActionCreators(
-      Object.assign({}, Actions, QueueActions, PlayerActions),
-      dispatch
-    )
-  };
-}
+const mapDispatchToProps = dispatch => bindActionCreators({
+  albumInfoSearch: SearchActions.albumInfoSearch,
+  artistInfoSearch: SearchActions.artistInfoSearch,
+  addToQueue: QueueActions.addToQueue,
+  clearQueue: QueueActions.clearQueue,
+  startPlayback: PlayerActions.startPlayback,
+  selectSong: QueueActions.selectSong
+}, dispatch);
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(SearchResultsContainer);
+export default compose(
+  withRouter,
+  connect(mapStateToProps, mapDispatchToProps)
+)(SearchResults);

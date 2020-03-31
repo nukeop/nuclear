@@ -22,7 +22,7 @@ const {
   }
 });
 
-describe('<FavoriteTracksView />', () => {
+describe.skip('<FavoriteTracksView />', () => {
   it('Should render <EmptyState /> when there is no track', () => {
     const wrapper = shallow(<FavoriteTracksView />);
 

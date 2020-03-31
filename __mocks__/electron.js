@@ -1,4 +1,5 @@
 const app = {
+  getPath: () => {},
   remote: {
     transformSource: () => {}
   }

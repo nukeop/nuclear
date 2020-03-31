@@ -1,6 +1,16 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import test from 'ava';
 import path from 'path';
+import mock from 'mock-require';
+
+import MockStore from '../../../__mocks__/electron-store';
+import MockLogger from '../../../__mocks__/electron-timber';
+import * as electron from '../../../__mocks__/electron';
+
+mock('electron-store', MockStore);
+mock('electron-timber', MockLogger);
+mock('electron', electron);
+
 import { transformSource, transformPluginFile } from '../src';
 
 test('transform a simple plugin', async t => {

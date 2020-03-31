@@ -192,6 +192,14 @@ export const settingsConfig: Array<Setting> = [
       : remote
         ? remote.app.getPath('downloads')
         : ''
+  },
+  {
+    name: 'max.downloads',
+    category: 'downloads',
+    type: SettingType.NUMBER,
+    prettyName: 'downloads-count',
+    default: 1,
+    min: 1
   }
 
   // TODO: Enable when MPD integration is ready

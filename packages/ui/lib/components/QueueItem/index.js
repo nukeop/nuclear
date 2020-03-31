@@ -11,60 +11,65 @@ import styles from './styles.scss';
 
 import artPlaceholder from '../../../resources/media/art_placeholder.png';
 
-export const QueueItem = props => {
-  let {
-    isLoading,
-    isCurrent,
-    isCompact,
-    track,
-    duration,
+export const QueueItem = ({
+  isLoading,
+  isCurrent,
+  isCompact,
+  track,
+  duration,
+  error,
 
-    handleRemoveFromQueue,
-    handleSelectSong
-  } = props;
+  handleRemoveFromQueue,
+  handleSelectSong
+}) => (
+  <div
+    className={cx(
+      common.nuclear,
+      styles.queue_item,
+      { [`${styles.current_song}`]: isCurrent },
+      { [`${styles.compact}`]: isCompact }
+    )}
+    onDoubleClick={handleSelectSong}
+  >
+    <div className={styles.thumbnail}>
+      {
+        isLoading
+          ? <Loader type='small' />
+          : <img src={_.defaultTo(track.thumbnail, artPlaceholder)} />
+      }
 
-  return (
-    <div
-      className={cx(
-        common.nuclear,
-        styles.queue_item,
-        {[`${styles.current_song}`]: isCurrent},
-        {[`${styles.compact}`]: isCompact}
-      )}
-      onDoubleClick={handleSelectSong}
-    >
-      <div className={styles.thumbnail}>
-        {
-          isLoading
-            ? <Loader type='small' />
-            : <img src={_.defaultTo(track.thumbnail, artPlaceholder)} />
-        }
-
-        <div
-          className={styles.thumbnail_overlay}
-          onClick={handleRemoveFromQueue}
-        >
-          <Icon name='trash alternate outline' size={isCompact?'large':'big'} />
-        </div>
-      </div>
-
-      <div className={styles.item_info_container}>
-        <div className={styles.name_container}>
-          {track.name}
-        </div>
-        <div className={styles.artist_container}>
-          {track.artist}
-        </div>
-      </div>
-
-      <div className={styles.item_duration_container}>
-        <div className={styles.item_duration}>
-          { duration }
-        </div>
+      <div
+        className={styles.thumbnail_overlay}
+        onClick={handleRemoveFromQueue}
+      >
+        <Icon name='trash alternate outline' size={isCompact ? 'large' : 'big'} />
       </div>
     </div>
-  );
-};
+
+    <div className={styles.item_info_container}>
+      <div className={styles.name_container}>
+        {track.name}
+      </div>
+      <div className={styles.artist_container}>
+        {track.artist}
+      </div>
+    </div>
+
+    <div className={styles.item_duration_container}>
+      <div className={styles.item_duration}>
+        {duration}
+      </div>
+    </div>
+
+    {
+      Boolean(error) &&
+        <div className={styles.error_overlay}>
+          <div className={styles.error_message}>{error.message}</div>
+          <div className={styles.error_details}>{error.details}</div>
+        </div>
+    }
+  </div>
+);
 
 QueueItem.propTypes = {
   isLoading: PropTypes.bool,
@@ -80,18 +85,25 @@ QueueItem.propTypes = {
   selectSong: PropTypes.func, //eslint-disable-line
   removeFromQueue: PropTypes.func, //eslint-disable-line
   resetPlayer: PropTypes.func, //eslint-disable-line
-  sendPaused: PropTypes.func //eslint-disable-line
+  sendPaused: PropTypes.func, //eslint-disable-line
+  error: PropTypes.oneOf([
+    PropTypes.bool,
+    PropTypes.shape({
+      message: PropTypes.string,
+      details: PropTypes.string
+    })
+  ])
 };
 
 export const enhance = compose(
   withHandlers({
-    handleRemoveFromQueue: ({removeFromQueue, track, resetPlayer, sendPaused}) => () => {
+    handleRemoveFromQueue: ({ removeFromQueue, track, resetPlayer, sendPaused }) => () => {
       removeFromQueue(track);
-      if (resetPlayer) { 
-        resetPlayer(sendPaused); 
+      if (resetPlayer) {
+        resetPlayer(sendPaused);
       }
     },
-    handleSelectSong: ({selectSong, index}) => () => selectSong(index)
+    handleSelectSong: ({ selectSong, index }) => () => selectSong(index)
   })
 );
 

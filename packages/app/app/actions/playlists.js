@@ -1,12 +1,12 @@
 import uuidv4 from 'uuid/v4';
 import _ from 'lodash';
+import { store } from '@nuclear/core';
 
 import {
   deletePlaylistInjectable,
   updatePlaylistInjectable
 } from './playlists.injectable';
 
-import { store } from '../persistence/store';
 
 export const LOAD_PLAYLISTS = 'LOAD_PLAYLISTS';
 export const ADD_PLAYLIST = 'ADD_PLAYLIST';

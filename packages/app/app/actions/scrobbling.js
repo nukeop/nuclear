@@ -1,8 +1,10 @@
-import { store } from '../persistence/store';
-import { LastFmApi } from '@nuclear/core';
+import electron from 'electron';
+import { store } from '@nuclear/core';
+import { rest } from '@nuclear/core';
+
 import globals from '../globals';
-const electron = window.require('electron');
-const lastfm = new LastFmApi(globals.lastfmApiKey, globals.lastfmApiSecret);
+
+const lastfm = new rest.LastFmApi(globals.lastfmApiKey, globals.lastfmApiSecret);
 
 export const LASTFM_CONNECT = 'LASTFM_CONNECT';
 export const LASTFM_LOGIN = 'LASTFM_LOGIN';
@@ -15,6 +17,7 @@ export const LASTFM_DISABLE_SCROBBLING = 'LASTFM_DISABLE_SCROBBLING';
 export const LASTFM_SCROBBLE = 'LASTFM_SCROBBLE';
 export const LASTFM_UPDATE_NOW_PLAYING = 'LASTFM_UPDATE_NOW_PLAYING';
 
+
 export function lastFmReadSettings() {
   return dispatch => {
     let settings = store.get('lastFm') || {};
@@ -25,7 +28,8 @@ export function lastFmReadSettings() {
           lastFmName: settings.lastFmName,
           lastFmAuthToken: settings.lastFmAuthToken,
           lastFmSessionKey: settings.lastFmSessionKey,
-          lastFmScrobblingEnabled: settings.lastFmScrobblingEnabled
+          lastFmScrobblingEnabled: settings.lastFmScrobblingEnabled,
+          lastFmFavImportStatus: settings.lastFmFavImportStatus
         }
       });
     } else {
@@ -59,16 +63,22 @@ export function lastFmConnectAction() {
 
 export function lastFmLoginAction(authToken) {
   return dispatch => {
+    dispatch({
+      type: 'FAV_IMPORT_INIT',
+      payload: {
+        lastFmFavImportStatus: true,
+        lastFmFavImportMessage: ''
+      }
+    });
     lastfm.lastFmLogin(authToken)
       .then(response => response.json())
       .then(response => {
 
         let sessionKey = response.session.key;
         let sessionName = response.session.name;
-
         store.set('lastFm.lastFmName', sessionName);
         store.set('lastFm.lastFmSessionKey', sessionKey);
-
+        
         dispatch({
           type: LASTFM_LOGIN,
           payload: {

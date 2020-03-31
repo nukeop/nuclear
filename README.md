@@ -33,7 +33,7 @@ See [this](docs/electron.md).
 ## Features
 
 - Searching for and playing music from YouTube (including integration with playlists), Jamendo, and SoundCloud
-- Searching for albums (powered by Last.fm and MusicBrainz), album view, automatic song lookup based on artist and track name (in progress, can be dodgy sometimes)
+- Searching for albums (powered by Last.fm and Discogs), album view, automatic song lookup based on artist and track name (in progress, can be dodgy sometimes)
 - Song queue, which can be exported as a playlist
 - Loading saved playlists (stored in json files)
 - Scrobbling to last.fm (along with updating the 'now playing' status)

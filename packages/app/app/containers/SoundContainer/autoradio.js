@@ -2,9 +2,9 @@ import _ from 'lodash';
 import logger from 'electron-timber';
 
 import globals from '../../globals';
-import { LastFmApi } from '@nuclear/core';
+import { rest } from '@nuclear/core';
 
-let lastfm = new LastFmApi(globals.lastfmApiKey, globals.lastfmApiSecret);
+let lastfm = new rest.LastFmApi(globals.lastfmApiKey, globals.lastfmApiSecret);
 
 /*
  * The following const will determine how random will be the next track compared to

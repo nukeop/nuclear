@@ -1,0 +1,66 @@
+@import "../../common.scss";
+
+$input_height: 30px;
+
+.search_box_container {
+  display: flex;
+  flex: 1 1 auto;
+
+  i.icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: $white;
+
+    width: $input_height;
+    height: $input_height;
+    margin: 0;
+  }
+
+  i.search.icon {
+    border-radius: 0;
+    background-color: $blue;
+  }
+
+  i.spinner.icon {
+    margin-left: -$input_height;
+  }
+
+  input {
+    flex: 1 1 auto;
+    height: $input_height;
+    border-radius: 0;
+    border: none;
+    padding: 0 1em;
+
+    color: $grey;
+    outline: none;
+    background-color: $background3;
+
+    font-family: inherit;
+    font-size: 16px;
+
+    &::selection {
+      background: rgba($lightbg, 0.85);
+    }
+
+    &.disabled {
+      opacity: .45;
+    }
+  }
+
+  .ui.dropdown {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 12px;
+
+    color: $white;
+    background: $blue;
+
+    .item,
+    .text {
+      color: $white !important;
+    }
+  }
+}

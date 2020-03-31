@@ -40,15 +40,25 @@ class TrackRow extends React.Component {
     this.props.actions.playTrack(this.props.streamProviders, {
       artist: this.props.track.artist.name,
       name: this.props.track.name,
-      thumbnail: this.getTrackThumbnail()
+      thumbnail: this.getTrackThumbnail(),
+	  local: this.props.track.local,
+	  streams: this.props.track.streams
     });
   }
 
   getTrackThumbnail() {
     const thumb = _.get(
       this.props.track,
-      'thumbnail',
-      _.get(this.props.track, 'image[0][#text]', artPlaceholder)
+      'thumb',
+      _.get(
+        this.props.track,
+        'thumbnail',
+        _.get(
+          this.props.track, 
+          'image[0][#text]', 
+          artPlaceholder
+        )
+      )
     );
 
     return thumb === '' ? artPlaceholder : thumb;

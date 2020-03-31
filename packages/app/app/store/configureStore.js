@@ -3,6 +3,7 @@ import thunk from 'redux-thunk';
 import ReduxPromise from 'redux-promise';
 
 import rootReducer from '../reducers';
+import syncStore from './enhancers/syncStorage';
 
 export default function configureStore(initialState) {
   const composeEnhancers = process.env.NODE_ENV === 'production'
@@ -13,7 +14,8 @@ export default function configureStore(initialState) {
     rootReducer,
     initialState,
     composeEnhancers(
-      applyMiddleware(ReduxPromise, thunk)
+      applyMiddleware(ReduxPromise, thunk),
+      syncStore(['downloads'])
     )
   );
 

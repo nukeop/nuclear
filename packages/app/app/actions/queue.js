@@ -1,14 +1,15 @@
+import logger from 'electron-timber';
 import _ from 'lodash';
 
 import { safeAddUuid } from './helpers';
 import { startPlayback } from './player.js';
-import * as mpris from '../mpris';
+import { mpris } from '@nuclear/core';
 
-export const ADD_TO_QUEUE = 'ADD_TO_QUEUE';
-export const REMOVE_FROM_QUEUE = 'REMOVE_FROM_QUEUE';
+export const ADD_QUEUE_ITEM = 'ADD_QUEUE_ITEM';
+export const REMOVE_QUEUE_ITEM = 'REMOVE_QUEUE_ITEM';
+export const UPDATE_QUEUE_ITEM = 'UPDATE_QUEUE_ITEM';
 export const CLEAR_QUEUE = 'CLEAR_QUEUE';
 export const ADD_STREAMS_TO_QUEUE_ITEM = 'ADD_STREAMS_TO_QUEUE_ITEM';
-export const REPLACE_STREAMS_IN_QUEUE_ITEM = 'REPLACE_STREAMS_IN_QUEUE_ITEM';
 export const NEXT_SONG = 'NEXT_SONG';
 export const PREVIOUS_SONG = 'PREVIOUS_SONG';
 export const SELECT_SONG = 'SELECT_SONG';
@@ -16,7 +17,27 @@ export const REPOSITION_SONG = 'REPOSITION_SONG';
 export const STREAM_FAILED = 'STREAM_FAILED';
 export const CHANGE_TRACK_STREAM = 'CHANGE_TRACK_STREAM';
 
-function addTrackToQueue (streamProviders, item) {  
+const getSelectedStreamProvider = getState => {
+  const {
+    plugin: {
+      plugins: { streamProviders }, selected
+    }
+  } = getState();
+
+  return _.find(streamProviders, { sourceName: selected.streamProviders });
+};
+
+const addQueueItem = item => ({
+  type: ADD_QUEUE_ITEM,
+  payload: { item }
+});
+
+const updateQueueItem = item => ({
+  type: UPDATE_QUEUE_ITEM,
+  payload: { item }
+});
+
+function addTrackToQueue(streamProviders, item) {
   return async (dispatch, getState) => {
     item.loading = !item.local;
     item = safeAddUuid(item);
@@ -25,28 +46,42 @@ function addTrackToQueue (streamProviders, item) {
     const { connectivity } = getState();
     const isAbleToAdd = (!connectivity && item.local) || connectivity;
 
-    isAbleToAdd && dispatch({
-      type: ADD_TO_QUEUE,
-      payload: item
-    });
+    isAbleToAdd && dispatch(addQueueItem(item));
 
-    const fail = 'fail';
     if (!item.local && isAbleToAdd) {
-      const promises = _.map(streamProviders, provider => provider.search({ artist: item.artist, track: item.name }));
-      Promise.all(_.map(promises, promise => promise.catch(e => fail)))
-        .then(results => _.filter(results, result => result !== fail))
-        .then(results => {
-          _.pull(results, null);
-          dispatch({
-            type: ADD_STREAMS_TO_QUEUE_ITEM,
-            payload: Object.assign({}, item, { streams: results, loading: false })
-          });
+      const selectedStreamProvider = getSelectedStreamProvider(getState);
+      selectedStreamProvider.search({
+        artist: item.artist,
+        track: item.name
+      })
+        .then(streamData => {
+          dispatch(updateQueueItem({
+            ...item,
+            loading: false,
+            error: false,
+            streams: [
+              ..._.map(item.streams),
+              streamData
+            ]
+          }));
+        })
+        .catch(e => {
+          logger.error(`An error has occurred when searching for a stream with ${selectedStreamProvider.sourceName} for "${item.artist} - ${item.name}."`);
+          logger.error(e);
+          dispatch(updateQueueItem({
+            ...item,
+            loading: false,
+            error: {
+              message: `An error has occurred when searching for a stream with ${selectedStreamProvider.sourceName}.`,
+              details: e.message
+            }
+          }));
         });
     }
   };
 }
 
-export function playTrack (streamProviders, item) {
+export function playTrack(streamProviders, item) {
   mpris.clearTrackList();
   return dispatch => {
     dispatch(clearQueue());
@@ -56,19 +91,19 @@ export function playTrack (streamProviders, item) {
   };
 }
 
-export function addToQueue (streamProviders, item) {
+export function addToQueue(streamProviders, item) {
   return addTrackToQueue(streamProviders, item);
 }
 
-export function removeFromQueue (item) {
+export function removeFromQueue(item) {
   mpris.removeTrack(item);
   return {
-    type: REMOVE_FROM_QUEUE,
+    type: REMOVE_QUEUE_ITEM,
     payload: item
   };
 }
 
-export function addPlaylistTracksToQueue (streamProviders, tracks) {
+export function addPlaylistTracksToQueue(streamProviders, tracks) {
   return dispatch => {
     tracks.map(item => {
       dispatch(addTrackToQueue(streamProviders, item));
@@ -76,21 +111,27 @@ export function addPlaylistTracksToQueue (streamProviders, tracks) {
   };
 }
 
-export function rerollTrack (streamProvider, selectedStream, track) {
+export function rerollTrack(streamProvider, selectedStream, track) {
   return dispatch => {
-    streamProvider.getAlternateStream({ artist: track.artist, track: track.name }, selectedStream).then(newStream => {
-      let streams = _.map(track.streams, stream => {
-        return stream.source === newStream.source ? newStream : stream;
+    dispatch(updateQueueItem({ ...track, loading: true, error: false }));
+
+    streamProvider.getAlternateStream({ artist: track.artist, track: track.name }, selectedStream)
+      .then(newStream => {
+        let streams = _.map(track.streams, stream => {
+          return stream.source === newStream.source ? newStream : stream;
+        });
+
+        dispatch(updateQueueItem({ 
+          ...track, 
+          loading: false,
+          error: false,
+          streams
+        }));
       });
-      dispatch({
-        type: REPLACE_STREAMS_IN_QUEUE_ITEM,
-        payload: Object.assign({}, track, { streams })
-      });
-    });
   };
 }
 
-export function clearQueue () {
+export function clearQueue() {
   mpris.clearTrackList();
   return {
     type: CLEAR_QUEUE,
@@ -112,14 +153,14 @@ function previousSongAction() {
   };
 }
 
-export function selectSong (index) {
+export function selectSong(index) {
   return {
     type: SELECT_SONG,
     payload: index
   };
 }
 
-export function repositionSong (itemFrom, itemTo) {
+export function repositionSong(itemFrom, itemTo) {
   return {
     type: REPOSITION_SONG,
     payload: {
@@ -161,11 +202,9 @@ export function nextSong() {
   };
 }
 
-export function streamFailed() {
-  return {
-    type: STREAM_FAILED
-  };
-}
+export const streamFailed = () => ({
+  type: STREAM_FAILED
+});
 
 export function changeTrackStream(track, stream) {
   return {

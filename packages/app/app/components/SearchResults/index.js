@@ -1,7 +1,7 @@
 import React from 'react';
 import { Tab } from 'semantic-ui-react';
 import { withTranslation } from 'react-i18next';
-import {Card} from '@nuclear/ui';
+import { Card } from '@nuclear/ui';
 
 import AllResults from './AllResults';
 import TracksResults from './TracksResults';
@@ -17,18 +17,9 @@ class SearchResults extends React.Component {
         <div className={styles.pane_container}>
           <div className={styles.row}>
             <AllResults
-              artistSearchResults={this.props.artistSearchResults}
-              albumSearchResults={this.props.albumSearchResults}
-              trackSearchResults={this.props.trackSearchResults}
-              playlistSearchResults={this.props.playlistSearchResults}
-              playlistSearchStarted={this.props.playlistSearchStarted}
+              {...this.props}
               albumInfoSearch={this.albumInfoSearch.bind(this)}
               artistInfoSearch={this.artistInfoSearch.bind(this)}
-              addToQueue={this.props.addToQueue}
-              streamProviders={this.props.streamProviders}
-              clearQueue={this.props.clearQueue}
-              startPlayback={this.props.startPlayback}
-              selectSong={this.props.selectSong}
             />
           </div>
         </div>
@@ -37,6 +28,8 @@ class SearchResults extends React.Component {
   }
 
   renderPane (collection, onClick) {
+    const selectedProvider = _.find(this.props.metaProviders, { sourceName: this.props.selectedPlugins.metaProviders });
+
     return (
       <Tab.Pane loading={this.props.unifiedSearchStarted} attached={false}>
         <div className={styles.pane_container}>
@@ -44,18 +37,17 @@ class SearchResults extends React.Component {
             ? this.props.unifiedSearchStarted
               ? null
               : collection.map((el, i) => {
-                let artist = null;
-                let title = el.title && el.title.split(' - ');
-                if (_.isArray(title)) {
-                  [artist, title] = title;
-                }
+                let id = _.get(el, `ids.${selectedProvider.searchName}`, el.id);
                 return (
                   <Card
                     key={'title-card-' + i}
-                    header={el.name || title}
-                    content={artist}
-                    image={el.thumb || el.thumbnail}
-                    onClick={() => onClick(el.id, el.type)}
+                    header={el.title || el.name}
+                    content={el.artist}
+                    image={
+                      el.coverImage || 
+                      el.thumb
+                    }
+                    onClick={() => onClick(id, el.type)}
                   />
                 );
               })

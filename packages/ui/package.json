@@ -7,12 +7,16 @@
   "license": "AGPL-3.0",
   "scripts": {
     "storybook": "start-storybook -p 9001 -c .storybook",
+    "start": "tsc && copyfiles -u 1 ./lib/**/*.scss ./dist",
+    "build": "tsc && copyfiles -u 1 ./lib/**/*.scss ./dist",
     "lint": "eslint lib stories --fix",
     "test": "eslint lib && ava"
   },
   "files": [
     "lib"
   ],
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/nukeop/nuclear.git"
@@ -32,15 +36,20 @@
     "@babel/preset-react": "^7.0.0",
     "@babel/register": "^7.6.2",
     "@storybook/addon-actions": "^3.4.12",
+    "@storybook/addon-info": "^5.3.17",
     "@storybook/addon-knobs": "^3.4.12",
-    "@storybook/addon-links": "^3.4.10",
-    "@storybook/cli": "^5.2.1",
-    "@storybook/react": "^5.2.1",
+    "@storybook/addon-links": "^3.4.12",
+    "@storybook/cli": "^5.3.17",
+    "@storybook/preset-typescript": "^2.1.0",
+    "@storybook/react": "^5.3.17",
+    "@typescript-eslint/eslint-plugin": "^2.25.0",
+    "@typescript-eslint/parser": "^2.25.0",
     "ava": "^2.4.0",
     "babel-eslint": "^7.2.3",
     "babel-loader": "^8.0.6",
     "chai": "^4.2.0",
     "chai-spies": "^1.0.0",
+    "copyfiles": "^2.2.0",
     "css-loader": "^1.0.0",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.1.1",
@@ -57,6 +66,9 @@
     "react-hot-loader": "^4.3.4",
     "sass-loader": "^6.0.7",
     "style-loader": "^0.21.0",
+    "ts-loader": "^6.2.2",
+    "ts-node": "^8.8.1",
+    "typescript": "^3.8.3",
     "uglifyjs-webpack-plugin": "^1.2.7",
     "webpack": "^4.16.3",
     "webpack-cli": "^3.1.0",
@@ -86,9 +98,11 @@
         ]
       }
     },
+    "compileEnhancements": false,
     "require": [
       "@babel/register",
       "@babel/polyfill",
+      "ts-node/register",
       "ignore-styles"
     ],
     "files": [

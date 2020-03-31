@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
+import _ from 'lodash';
 import { Icon, Segment, Table } from 'semantic-ui-react';
 import { useTranslation } from 'react-i18next';
-import _ from 'lodash';
+import { TrackRow } from '@nuclear/ui';
 
 import Header from '../Header';
-import TrackRow from '../TrackRow';
 
 import trackRowStyles from '../TrackRow/styles.scss';
 import styles from './styles.scss';

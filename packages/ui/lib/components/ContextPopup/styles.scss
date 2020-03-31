@@ -44,12 +44,12 @@
     flex: 0 0 auto;
     width: 5em;
     height: 5em;
-    object-fit: contain;
     margin-right: 1em;
 
     img {
       width: 5em;
       height: 5em;
+      object-fit: cover;
     }
   }
 

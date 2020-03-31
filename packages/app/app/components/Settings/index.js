@@ -25,7 +25,6 @@ const volumeSliderColors = {
   trackColor: { r: 68, g: 71, b: 90, a: 1 },
   thumbColor: { r: 248, g: 248, b: 242, a: 1 }
 };
-
 @withTranslation('settings')
 class Settings extends React.Component {
   toggleScrobbling (
@@ -77,10 +76,44 @@ class Settings extends React.Component {
       >
         {this.renderLastFmLoginButtons()}
         {this.renderLastFmOptionRadio()}
+        {this.renderLastFmImportFavButton()}
       </SocialIntegration>
     );
   }
+  renderLastFmImportFavButton(){
 
+    let {
+      lastFmName,
+      lastFmSessionKey
+    } = this.props.scrobbling;
+
+    let {
+      lastFmFavImportStatus,
+      lastFmFavImportMessage
+    } = this.props.importfavs;
+
+    let {
+      fetchAllFmFavorites
+    } = this.props.actions;
+    
+    return ( lastFmName && lastFmSessionKey && (
+      <div className={styles.settings_social_item}>
+        <span>
+          {this.props.t('fmfav-msg')}
+        </span>
+        <Spacer />
+        <span> {(lastFmFavImportMessage && (
+          <strong>{lastFmFavImportMessage}</strong>
+        ))}
+        </span>
+        <Spacer />
+        <Button disabled={!lastFmFavImportStatus} loading={!lastFmFavImportStatus} onClick={fetchAllFmFavorites} color='green'>
+          {this.props.t('fmfav-btn')}
+        </Button>
+      </div>
+    )
+    );
+  }
   renderLastFmLoginButtons () {
     let {
       lastFmAuthToken,

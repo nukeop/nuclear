@@ -101,14 +101,14 @@ storiesOf('Toasts', module)
                 className='toast-button'
                 onClick={this.addToast.bind(this)}
               >
-              Add toast
+                Add toast
               </a>
               <a
                 href='javascript:void(0)'
                 className='toast-button'
                 onClick={this.removeToast.bind(this)}
               >
-              Remove toast
+                Remove toast
               </a>
             </div>
 

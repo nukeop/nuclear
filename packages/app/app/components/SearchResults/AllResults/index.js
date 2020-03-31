@@ -16,14 +16,22 @@ class AllResults extends React.Component {
     super(props);
   }
   renderResults (collection, onClick) {
+    const selectedProvider = _.find(this.props.metaProviders, { sourceName: this.props.selectedPlugins.metaProviders });
+
     return collection.slice(0, 5).map((el, i) => {
-      let id = _.get(el, 'ids.discogs', el.id);
+      let id = _.get(el, `ids.${selectedProvider.searchName}`, el.id);
 
       return (
         <Card
           small
           header={el.title||el.name}
-          image={_.defaultTo(_.defaultTo(el.thumb, el.thumbnail), artPlaceholder)}
+          image={
+            el.coverImage || 
+            el.thumb ||
+            el.thumbnail ||
+            artPlaceholder
+          }
+          content={el.artist}
           onClick={() => onClick(id, el.type)}
           key={'item-' + i}
         />
