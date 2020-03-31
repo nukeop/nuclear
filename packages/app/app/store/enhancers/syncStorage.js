@@ -1,4 +1,4 @@
-import { store as electronStore } from '../../persistence/store';
+import { store as electronStore } from '@nuclear/core';
 
 export default function(paths) {
 

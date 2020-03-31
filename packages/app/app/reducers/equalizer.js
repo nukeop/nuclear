@@ -1,3 +1,4 @@
+import { store } from '@nuclear/core';
 import {
   TOGGLE_SPECTRUM,
   SET_SPECTRUM,
@@ -5,7 +6,6 @@ import {
   SELECT_PRESET,
   SET_PREAMP
 } from '../actions/equalizer';
-import { store } from '../persistence/store';
 
 const getPresets = (custom) => [
   {

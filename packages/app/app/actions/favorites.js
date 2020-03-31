@@ -1,7 +1,7 @@
 import _ from 'lodash';
+import { store } from '@nuclear/core';
 
 import { safeAddUuid } from './helpers';
-import { store } from '../persistence/store';
 
 export const READ_FAVORITES = 'READ_FAVORITES';
 export const ADD_FAVORITE_TRACK = 'ADD_FAVORITE_TRACK';

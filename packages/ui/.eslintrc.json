@@ -1,5 +1,8 @@
 {
-  "extends": "../../.eslintrc.json",
+  "extends": [
+    "../../.eslintrc.json",
+    "plugin:@typescript-eslint/recommended"
+  ],
   "env": {
     "browser": true,
     "commonjs": true,
@@ -9,12 +12,15 @@
     "_": true,
     "process": true
   },
-  "parser": "babel-eslint",
+  "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaFeatures": {
       "jsx": true
     },
-    "ecmaVersion": 2018,
+    "ecmaVersion": 2020,
     "sourceType": "module"
+  },
+  "rules": {
+    "@typescript-eslint/no-empty-function": 0
   }
 }

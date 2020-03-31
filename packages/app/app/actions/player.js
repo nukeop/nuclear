@@ -1,5 +1,5 @@
 import Sound from 'react-hifi';
-import { sendPlay, sendVolume } from '../mpris';
+import { mpris } from '@nuclear/core';
 
 export const START_PLAYBACK = 'START_PLAYBACK';
 export const PAUSE_PLAYBACK = 'PAUSE_PLAYBACK';
@@ -11,7 +11,7 @@ export const UNMUTE = 'UNMUTE';
 export const UPDATE_PLAYBACK_STREAM_LOADING = 'UPDATE_PLAYBACK_STREAM_LOADING';
 
 export function startPlayback() {
-  sendPlay();
+  mpris.sendPlay();
   return {
     type: START_PLAYBACK,
     payload: null
@@ -62,7 +62,7 @@ export function updateSeek(seek) {
 }
 
 export function updateVolume(volume) {
-  sendVolume(volume);
+  mpris.sendVolume(volume);
   return {
     type: UPDATE_VOLUME,
     payload: volume

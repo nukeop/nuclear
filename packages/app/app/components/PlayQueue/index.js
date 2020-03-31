@@ -1,17 +1,18 @@
 import React from 'react';
 import classnames from 'classnames';
+import _ from 'lodash';
 import { ipcRenderer } from 'electron';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { withTranslation } from 'react-i18next';
 import { Icon } from 'semantic-ui-react';
-import _ from 'lodash';
 import { withState, compose } from 'recompose';
 
 import { QueueItem, formatDuration } from '@nuclear/ui';
+import { mpris } from '@nuclear/core';
 
 import { getTrackDuration } from '../../utils';
-import { sendPaused } from '../../mpris';
 import { safeAddUuid } from '../../actions/helpers';
+
 import styles from './styles.scss';
 
 import QueueMenu from './QueueMenu';
@@ -78,12 +79,13 @@ class PlayQueue extends React.PureComponent {
   }
 
   renderQueueItems() {
-    if (!this.props.items) {
-      return null;
-    }
     const {compact, currentSong, actions, t, plugins, items} = this.props;
     
-    return this.props.items.map((el, i) => {
+    if (!items) {
+      return null;
+    }
+
+    return items.map((el, i) => {
       return (
         <Draggable
           key={`${el.uuid}+${i}`}
@@ -104,6 +106,7 @@ class PlayQueue extends React.PureComponent {
                     isLoading={el.loading}
                     isCompact={compact}
                     isCurrent={currentSong === i}
+                    error={el.error}
                     selectSong={actions.selectSong}
                     removeFromQueue={actions.removeFromQueue}
                     duration={formatDuration(
@@ -112,10 +115,8 @@ class PlayQueue extends React.PureComponent {
                         plugins.selected.streamProviders
                       )
                     )}
-                    resetPlayer={
-                      items.length === 1 ? actions.resetPlayer : undefined
-                    }
-                    sendPaused={sendPaused}
+                    resetPlayer={this.props.items.length === 1 ? this.props.actions.resetPlayer : undefined}
+                    sendPaused={mpris.sendPaused}
                   />
                 }
                 isQueueItemCompact={compact}

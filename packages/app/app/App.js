@@ -8,8 +8,9 @@ import _ from 'lodash';
 import Sound from 'react-hifi';
 import { withTranslation } from 'react-i18next';
 import { Cover, formatDuration } from '@nuclear/ui';
+import { PluginConfig } from '@nuclear/core';
 
-import * as Actions from './actions';
+import * as SearchActions from './actions/search';
 import * as PlayerActions from './actions/player';
 import * as PlaylistsActions from './actions/playlists';
 import * as PluginsActions from './actions/plugins';
@@ -19,7 +20,7 @@ import * as ScrobblingActions from './actions/scrobbling';
 import * as ImportFavActions from './actions/importfavs';
 import * as ConnectivityActions from './actions/connectivity';
 import * as GithubContribActions from './actions/githubContrib';
-import { sendPaused } from './mpris';
+import { mpris } from '@nuclear/core';
 
 import './app.global.scss';
 import styles from './styles.scss';
@@ -29,7 +30,6 @@ import logoImg from '../resources/media/logo_full_light.png';
 import logoIcon from '../resources/media/512x512.png';
 import artPlaceholder from '../resources/media/art_placeholder.png';
 
-import { config as PluginConfig } from './plugins/config';
 import settingsConst from './constants/settings';
 
 import PlaylistsSubMenu from './components/PlaylistsSubMenu';
@@ -60,8 +60,6 @@ import TrackInfo from './components/TrackInfo';
 import WindowControls from './components/WindowControls';
 import VolumeControls from './components/VolumeControls';
 
-import * as mpris from './mpris';
-
 @withTranslation('app')
 class App extends React.PureComponent {
   constructor(props) {
@@ -91,7 +89,7 @@ class App extends React.PureComponent {
     if (this.props.player.playbackStatus === Sound.status.PAUSED) {
       this.scrobbleLastFmIfAble();
     }
-    this.props.actions.togglePlayback(this.props.player.playbackStatus, sendPaused);
+    this.props.actions.togglePlayback(this.props.player.playbackStatus, mpris.sendPaused);
   }
 
   nextSong () {
@@ -406,7 +404,7 @@ function mapDispatchToProps (dispatch) {
         PlaylistsActions,
         PluginsActions,
         ConnectivityActions,
-        Actions,
+        SearchActions,
         GithubContribActions
       ),
       dispatch

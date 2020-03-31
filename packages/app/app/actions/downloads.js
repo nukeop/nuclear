@@ -1,8 +1,8 @@
 import _ from 'lodash';
 import {ipcRenderer} from 'electron';
+import { store, getOption } from '@nuclear/core';
 
 import { safeAddUuid } from './helpers';
-import { store, getOption } from '../persistence/store';
 
 export const READ_DOWNLOADS = 'READ_DOWNLOADS';
 export const ADD_TO_DOWNLOADS = 'ADD_TO_DOWNLOADS';

@@ -4,12 +4,12 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as Mousetrap from 'mousetrap';
 import Sound from 'react-hifi';
-
+import { mpris } from '@nuclear/core';
 import _ from 'lodash';
+
 
 import * as PlayerActions from '../../actions/player';
 import * as QueueActions from '../../actions/queue';
-import { sendPaused } from '../../mpris';
 
 
 const VOLUME_ITERATION = 1;
@@ -39,7 +39,7 @@ class Shortcuts extends React.Component {
 
     if (queue.queueItems.length > 0) {
       if (player.playbackStatus === Sound.status.PLAYING) {
-        actions.pausePlayback(sendPaused);
+        actions.pausePlayback(mpris.sendPaused);
       } else {
         actions.startPlayback();
       }

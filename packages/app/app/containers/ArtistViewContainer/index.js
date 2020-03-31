@@ -1,56 +1,36 @@
-import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as Actions from '../../actions';
+import { compose, lifecycle, withProps } from 'recompose';
+import * as SearchActions from '../../actions/search';
 import * as QueueActions from '../../actions/queue';
-import * as PlayerActions from '../../actions/player';
 
 import ArtistView from '../../components/ArtistView';
 
-class ArtistViewContainer extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+const mapStateToProps = state => ({
+  artistDetails: state.search.artistDetails,
+  streamProviders: state.plugin.plugins.streamProviders
+});
 
-  componentDidMount() {
-    this.props.actions.artistReleasesSearch(this.props.match.params.artistId);
-  }
+const mapDispatchToProps = dispatch => bindActionCreators({
+  albumInfoSearch: SearchActions.albumInfoSearch,
+  artistInfoSearchByName: SearchActions.artistInfoSearchByName,
+  artistReleasesSearch: SearchActions.artistReleasesSearch,
+  addToQueue: QueueActions.addToQueue
+}, dispatch);
 
-  render() {
-    let { actions, match, history, artistDetails, streamProviders } = this.props;
-    return (
-      <ArtistView
-        artist={artistDetails[match.params.artistId]}
-        albumInfoSearch={actions.albumInfoSearch}
-        artistInfoSearchByName={actions.artistInfoSearchByName}
-        addToQueue={actions.addToQueue}
-        streamProviders={streamProviders}
-        history={history}
-      />
-    );
-  }
-}
-
-function mapStateToProps(state) {
-  return {
-    artistDetails: state.search.artistDetails,
-    streamProviders: state.plugin.plugins.streamProviders
-  };
-}
-
-function mapDispatchToProps(dispatch) {
-  return {
-    actions: bindActionCreators(
-      Object.assign({}, Actions, QueueActions, PlayerActions),
-      dispatch
-    )
-  };
-}
-
-export default withRouter(
+export default compose(
+  withRouter,
   connect(
     mapStateToProps,
     mapDispatchToProps
-  )(ArtistViewContainer)
-);
+  ),
+  withProps(({ artistDetails, match }) => ({
+    artist: artistDetails[match.params.artistId]
+  })),
+  lifecycle({
+    componentDidMount() {
+      this.props.artistReleasesSearch(this.props.match.params.artistId);
+    }
+  })
+)(ArtistView);

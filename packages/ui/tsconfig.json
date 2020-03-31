@@ -1,0 +1,20 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "module": "commonjs",
+    "lib": ["DOM"],
+    "declaration": true,
+    "outDir": "dist",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "strict": false,
+    "allowJs": true,
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "jsx": "react"
+  },
+  "include": [
+    "lib"
+  ]
+}

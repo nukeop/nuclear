@@ -1,11 +1,11 @@
 import fs from 'fs';
 import logger from 'electron-timber';
 import { remote } from 'electron';
+import { store } from '@nuclear/core';
 
-import { store } from '../persistence/store';
 import UserPlugin from '../structs/userPlugin';
 import { error } from './toasts';
-import createApi from '../plugins/api';
+import { createApi } from '@nuclear/core';
 
 export const CREATE_PLUGINS = 'CREATE_PLUGINS';
 export const SELECT_STREAM_PROVIDER = 'SELECT_STREAM_PROVIDER';

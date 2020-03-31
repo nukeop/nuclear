@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Img from 'react-image';
 import _ from 'lodash';
 import { Dimmer, Icon, Loader } from 'semantic-ui-react';
 import { withTranslation } from 'react-i18next';
-import { ContextPopup, PopupButton } from '@nuclear/ui';
+import { Loader as NuclearLoader, ContextPopup, PopupButton } from '@nuclear/ui';
 
 import TrackRow from '../TrackRow';
 import * as Utils from '../../utils';
@@ -18,28 +19,11 @@ class AlbumView extends React.Component {
     super(props);
   }
 
-  getArtistName (track, album) {
-    if (!track.artists) {
-      return album.artists[0].name;
-    } else {
-      let firstArtist = _.find(track.artists, artist => artist.join === '')
-        .name;
-      let artistName = firstArtist;
-      _(track.artists)
-        .filter(artist => artist.name !== firstArtist)
-        .forEach(artist => {
-          artistName += ' ' + artist.join + ' ' + artist.name;
-        });
-
-      return artistName;
-    }
-  }
-
   addAlbumToQueue (album) {
     const albumThumbnail = this.getAlbumImage(album);
     album.tracklist.map(track => {
       this.props.addToQueue(this.props.streamProviders, {
-        artist: album.artists[0].name,
+        artist: album.artist,
         name: track.title,
         thumbnail: albumThumbnail
       });
@@ -62,17 +46,16 @@ class AlbumView extends React.Component {
     info(
       t('download-toast-title'),
       t('download-toast-content', {
-        artist: _.head(album.artists).name,
+        artist: album.artist,
         title: album.title
       }),
-      <img src={this.getAlbumImage(album)}/>,
+      <Img
+        src={this.getAlbumImage(album)}
+        loader={<NuclearLoader />}
+        unloader={<img src={artPlaceholder} />}
+      />,
       settings
     );
-  }
-
-  artistInfoSearch (artistId) {
-    this.props.artistInfoSearch(artistId);
-    this.props.history.push('/artist/' + artistId);
   }
 
   playAll (album) {
@@ -92,13 +75,7 @@ class AlbumView extends React.Component {
   }
 
   getAlbumImage (album) {
-    let albumImage = _.find(album.images, { type: 'primary' });
-    if (!albumImage) {
-      albumImage = album.images ? album.images[0].uri : artPlaceholder;
-    } else {
-      albumImage = albumImage.uri;
-    }
-    return albumImage;
+    return _.get(album, 'coverImage');
   }
 
   renderAlbumArtistName (album) {
@@ -108,10 +85,10 @@ class AlbumView extends React.Component {
         <a
           href='#'
           onClick={() => {
-            this.artistInfoSearch.bind(this)(album.artists[0].id);
+            this.props.artistInfoSearchByName(album.artist, this.props.history);
           }}
         >
-          {album.artists[0].name}
+          {album.artist}
         </a>
       </div>
     );
@@ -119,9 +96,10 @@ class AlbumView extends React.Component {
 
   renderAlbumGenre (album) {
     return (
+      !_.isEmpty(album.genres) &&
       <div className={styles.album_genre}>
         <label>Genre:</label>
-        {album.genres[0]}
+        {album.genres.join(', ')}
       </div>
     );
   }
@@ -159,7 +137,11 @@ class AlbumView extends React.Component {
   renderAlbumInfoBox (album, albumImage) {
     return (
       <div className={styles.album_info_box}>
-        <img src={albumImage} />
+        <Img
+          src={albumImage}
+          loader={<NuclearLoader type='small' />}
+          unloader={<img src={artPlaceholder} />}
+        />
         <div className={styles.album_details}>
           <div className={styles.album_title}>{album.title}</div>
           {this.renderAlbumArtistName(album)}
@@ -215,7 +197,7 @@ class AlbumView extends React.Component {
     }
     _.set(track, 'name', track.title);
     _.set(track, 'thumbnail', this.getAlbumImage(album));
-    _.set(track, 'artist.name', this.getArtistName(track, album));
+    _.set(track, 'artist.name', album.artist);
     return (<TrackRow
       key={'album-track-row-' + index}
       track={track}
@@ -258,7 +240,7 @@ class AlbumView extends React.Component {
             <Icon name='ellipsis horizontal' />
           </a>
         }
-        artist={album.artists[0].name}
+        artist={album.artist}
         title={album.title}
         thumb={this.getAlbumImage(album)}
       >
@@ -283,13 +265,6 @@ class AlbumView extends React.Component {
 
   render () {
     let { album } = this.props;
-
-    if (
-      _.some(_.map([album.images, album.artists, album.genres], _.isEmpty)) &&
-      album.loading !== true
-    ) {
-      return this.renderInvalidData();
-    }
 
     let albumImage = this.getAlbumImage(album);
     return this.renderAlbumLoading(album, albumImage);
