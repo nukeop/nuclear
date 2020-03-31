@@ -10,6 +10,7 @@ import {
 import * as Bandcap from '../../rest/Bandcamp';
 import { Bandcamp } from '../../rest';
 
+/*
 class BandcampMetaProvider extends MetaProvider {
   constructor() {
     super();
@@ -73,3 +74,4 @@ class BandcampMetaProvider extends MetaProvider {
 }
 
 export default BandcampMetaProvider;
+*/
