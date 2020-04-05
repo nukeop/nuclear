@@ -1,4 +1,3 @@
-import { NuclearStream } from '@nuclear/core';
 import {Entity, PrimaryColumn, Column, ManyToOne, BeforeInsert, AfterLoad, AfterInsert, AfterRemove} from 'typeorm';
 import fs from 'fs';
 import { promisify } from 'util';
@@ -8,13 +7,12 @@ import crypto from 'crypto';
 import url from 'url';
 import uuid from 'uuid/v4';
 
-import { NuclearLocalMeta } from '../interfaces';
 import LocalFolder from './LocalFolder';
 
 const THUMBNAILS_DIR = path.join(app.getPath('userData'), 'thumbnails');
 
 @Entity()
-class LocalTrack implements NuclearLocalMeta {
+class LocalTrack {
   @PrimaryColumn()
   uuid: string;
 
@@ -37,10 +35,7 @@ class LocalTrack implements NuclearLocalMeta {
   path: string;
 
   @Column({ nullable: true })
-  pos?: number;
-
-  @Column({ nullable: true })
-  genrestr?: string;
+  position?: number;
 
   @Column({ nullable: true })
   year?: string;
@@ -49,9 +44,19 @@ class LocalTrack implements NuclearLocalMeta {
   folder: LocalFolder;
 
   imageData?: { data: Buffer; format: string };
-  genre?: string[];
+  streams?: {
+    id: string;
+    title?: string;
+    duration?: number;
+    thumbnail?: string;
+    source: string;
+    stream: string;
+  }[];
   local?: boolean;
-  streams?: NuclearStream[];
+
+  get thumbnailPath() {
+    return this.thumbnail ? this.thumbnail.replace('file://', '') : null;
+  }
 
   private async existCover(coverPath: string): Promise<string | undefined> {
     try {
@@ -72,24 +77,19 @@ class LocalTrack implements NuclearLocalMeta {
   @AfterLoad()
   nuclearMapper() {
     this.local = true;
-    this.genre = this.genrestr && this.genrestr.split(',') || [];
-    delete this.genrestr;
+    this.streams = [{
+      id: uuid(),
+      title: this.name,
+      duration: this.duration,
+      thumbnail: this.thumbnail,
+      source: 'Local',
+      stream: url.format({
+        pathname: this.path,
+        protocol: 'file:',
+        slashes: true
+      })
+    }];
 
-    this.streams = [
-      {
-        uuid: uuid(),
-        title: this.name,
-        duration: this.duration,
-        source: 'Local',
-        stream: url.format({
-          pathname: this.path,
-          protocol: 'file:',
-          slashes: true
-        })
-      }
-    ];
-
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (this as any).artist = {
       name: this.artist
     };
@@ -97,8 +97,6 @@ class LocalTrack implements NuclearLocalMeta {
 
   @BeforeInsert()
   async createThumbail() {
-    this.genrestr = this.genre ? this.genre.join(',') : '';
-    delete this.genre;
     if (this.imageData) {
       const thumbPath = path.resolve(
         THUMBNAILS_DIR,
@@ -123,12 +121,13 @@ class LocalTrack implements NuclearLocalMeta {
 
   @AfterRemove() 
   async removeThumbnail() {
-    try {
-      if (this.thumbnail && await promisify(fs.access)(this.thumbnail, fs.constants.W_OK)) {
-        await promisify(fs.unlink)(this.thumbnail);
+    if (this.thumbnailPath) {
+      try {
+        await promisify(fs.access)(this.thumbnailPath, fs.constants.F_OK | fs.constants.W_OK);
+        await promisify(fs.unlink)(this.thumbnailPath);
+      } catch (err) {
+        // do nothing
       }
-    } catch (err) {
-      // do nothing
     }
   }
 }

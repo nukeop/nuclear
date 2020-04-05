@@ -61,7 +61,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged && lerna run i18n-sync && git add -A"
+      "pre-commit": "lint-staged && lerna run i18n-sync && git add docs/i18n.md"
     }
   },
   "lint-staged": {

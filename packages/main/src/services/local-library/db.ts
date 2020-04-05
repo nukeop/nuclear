@@ -1,10 +1,10 @@
+import { NuclearMeta } from '@nuclear/core';
 import { app } from 'electron';
 import { injectable, inject } from 'inversify';
 import { createConnection, Connection, Repository } from 'typeorm';
 import path from 'path';
 
 import Logger, { $mainLogger } from '../logger';
-import { NuclearLocalMeta } from './interfaces';
 import LocalFolder from './model/LocalFolder';
 import LocalTrack from './model/LocalTrack';
 
@@ -93,14 +93,13 @@ class LocalLibraryDb {
     return this.folderRepository.save(newFolder);
   }
 
-  async updateTracks(formattedMetas: NuclearLocalMeta[]): Promise<Partial<LocalTrack>[]> {
+  async updateTracks(formattedMetas: NuclearMeta[]): Promise<Partial<LocalTrack>[]> {
     try {
       try {
         const metas = await Promise.all(
           formattedMetas.map(track => {
             const newTrack = this.trackRepository.create(track);
             newTrack.imageData = track.imageData;
-            newTrack.genre = track.genre;
             return this.trackRepository.save(newTrack);
           })
         );

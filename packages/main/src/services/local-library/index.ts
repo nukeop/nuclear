@@ -1,4 +1,4 @@
-import { IpcEvents } from '@nuclear/core';
+import { IpcEvents, NuclearMeta } from '@nuclear/core';
 import glob from 'glob';
 import { inject, injectable } from 'inversify';
 import _ from 'lodash';
@@ -16,7 +16,6 @@ import Config from '../config';
 import Logger, { $mainLogger } from '../logger';
 import Window from '../window';
 import LocalTrack from './model/LocalTrack';
-import { NuclearLocalMeta } from './interfaces';
 import LocalFolder from './model/LocalFolder';
 
 export type ProgressHandler = (progress: number, total: number) => void
@@ -57,7 +56,7 @@ class LocalLibrary {
   /**
    * Format metadata from files to nuclear format
    */
-  private async formatMeta({ common, format }: IAudioMetadata, { file, folder }: { file: string; folder?: LocalFolder }): Promise<NuclearLocalMeta> {    
+  private async formatMeta({ common, format }: IAudioMetadata, { file, folder }: { file: string; folder?: LocalFolder }): Promise<NuclearMeta> {    
     return {
       uuid: uuid(),
       path: file,
@@ -67,13 +66,11 @@ class LocalLibrary {
       position: common.track.no,
       album: common.album,
       artist: common.artist || 'unknown',
-      genre: common.genre,
-      year: common.year ? common.year.toString() : undefined,
       imageData: common.picture && common.picture[0]
     };
   }
 
-  private async parseMeta(filesPath: Array<{ file: string; folder?: LocalFolder }>, onProgress?: ProgressHandler): Promise<NuclearLocalMeta[]> {
+  private async parseMeta(filesPath: Array<{ file: string; folder?: LocalFolder }>, onProgress?: ProgressHandler): Promise<NuclearMeta[]> {
     const metas = await Promise.all(filesPath.map(({ file }) => parseFile(file)));
 
     const formattedMetas = await Promise.all(filesPath.map((file, i) => this.formatMeta(metas[i], file)));
@@ -89,26 +86,14 @@ class LocalLibrary {
     return formattedMetas;
   }
 
-  async getMetas(filesPath: string[], onProgress?: ProgressHandler): Promise<{
-    image: undefined;
-    artist: string;
-    thumbnail: string;
-  }[]> {
-    const formattedMetas = await this.parseMeta(filesPath.map((file) => ({ file })), onProgress);
-
-    return formattedMetas
-      .map(meta => ({
-        ...meta,
-        image: undefined,
-        artist: _.get(meta, ['artist', 'name']),
-        thumbnail: _.get(meta, ['image', 0, '#text'])
-      }));
+  async getMetas(filesPath: string[], onProgress?: ProgressHandler): Promise<NuclearMeta[]> {
+    return this.parseMeta(filesPath.map((file) => ({ file })), onProgress);
   }
 
   /**
    * fetch acousticId metadata 10 by 10
    */
-  fetchAcousticIdBatch(metas: NuclearLocalMeta[], onProgress?: ProgressHandler): Promise<void[]> {
+  fetchAcousticIdBatch(metas: NuclearMeta[], onProgress?: ProgressHandler): Promise<void[]> {
     let scanProgress = 0;
     const scanTotal = metas.length;
 
@@ -117,7 +102,7 @@ class LocalLibrary {
     return asyncPool(10, metas, async meta => {
       let data;
       try {
-        const {results, error} = await this.acousticId.getMetadata(meta.path);
+        const {results, error} = await this.acousticId.getMetadata(meta.path as string);
         if (results) {
           data = results[0];
         } else if (error) {
@@ -129,10 +114,12 @@ class LocalLibrary {
       }
 
       if (data && data.recordings && data.recordings.length) {
-        meta.name = data.recordings[0].title;
+        meta.name = data.recordings[0].name;
         meta.artist = data.recordings[0].artists[0].name || 'unknown';
-      } else {
-        meta.name = path.basename(meta.path.split('.').shift() as string);
+      }
+
+      if (!meta.name) {
+        meta.name = path.basename(meta.path as string).split('.').shift() as string;
       }
       
       scanProgress++;

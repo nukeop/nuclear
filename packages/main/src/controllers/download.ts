@@ -1,4 +1,4 @@
-import { NuclearBrutMeta, IpcEvents } from '@nuclear/core';
+import { NuclearMeta, IpcEvents } from '@nuclear/core';
 import { IpcMessageEvent, DownloadItem } from 'electron';
 import { inject } from 'inversify';
 import _ from 'lodash';
@@ -26,7 +26,7 @@ class DownloadIpcCtrl {
    * Start a download using the download service
    */
   @ipcEvent(IpcEvents.DOWNLOAD_START)
-  async onStartDownload(event: IpcMessageEvent, data: NuclearBrutMeta) {
+  async onStartDownload(event: IpcMessageEvent, data: NuclearMeta) {
     try {
       const {uuid} = data;
       const downloadRef = this.downloadItems.find((item => item.uuid===uuid));
@@ -72,7 +72,7 @@ class DownloadIpcCtrl {
   }
   
   @ipcEvent(IpcEvents.DOWNLOAD_PAUSE)
-  async onPauseDownload(event: IpcMessageEvent, data: NuclearBrutMeta) {
+  async onPauseDownload(event: IpcMessageEvent, data: NuclearMeta) {
     try {
       const {uuid} = data;
       const downloadRef = this.downloadItems.find((item => item.uuid===uuid));
