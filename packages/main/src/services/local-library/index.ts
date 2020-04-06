@@ -97,7 +97,7 @@ class LocalLibrary {
     let scanProgress = 0;
     const scanTotal = metas.length;
 
-    this.logger.log('start fetching metadata from acoustic-id api');
+    this.logger.log(`start fetching metadata from acoustic-id api for ${scanTotal} tracks`);
     // Limit acoustic-id fetching to a max of X at a time
     return asyncPool(10, metas, async meta => {
       let data;

@@ -53,6 +53,7 @@ class LocalTrack {
     stream: string;
   }[];
   local?: boolean;
+  thumb?: string;
 
   get thumbnailPath() {
     return this.thumbnail ? this.thumbnail.replace('file://', '') : null;
@@ -93,6 +94,8 @@ class LocalTrack {
     (this as any).artist = {
       name: this.artist
     };
+
+    this.thumb = this.thumbnail;
   }
 
   @BeforeInsert()
