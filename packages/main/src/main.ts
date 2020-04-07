@@ -83,7 +83,6 @@ app.on('window-all-closed', async () => {
     const store = container.get<Store>(Store);
     const discord = container.get<Discord>(Discord);
 
-
     if (store.getOption('api.enabled')) {
       const httpApi = container.get<HttpApi>(HttpApi);
       await httpApi.close();
