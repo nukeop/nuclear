@@ -3,7 +3,7 @@
   "version": "0.6.3",
   "description": "Nuclear main process",
   "scripts": {
-    "start": "rm -rf build && webpack --env.NODE_ENV=development && electron build/main.js",
+    "start": "shx rm -rf build && webpack --env.NODE_ENV=development && electron build/main.js",
     "build": "webpack --colors --env.NODE_ENV=production",
     "lint": "eslint src/**/*.ts --fix"
   },
