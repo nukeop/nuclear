@@ -23,7 +23,7 @@
   "scripts": {
     "postinstall": "lerna bootstrap --no-ci",
     "start": "lerna run start --stream",
-    "build": "rm -rf dist && lerna run build && npm run pack",
+    "build": "shx rm -rf dist && lerna run build && npm run pack",
     "test": "lerna run build && lerna run test",
     "lint": "lerna run lint",
     "storybook": "lerna run storybook",
@@ -47,6 +47,7 @@
     "husky": "^3.1.0",
     "lerna": "^3.16.4",
     "lint-staged": "^10.0.0-beta.14",
+    "shx": "^0.3.2",
     "typescript": "^3.7.4"
   },
   "optionalDependencies": {
