@@ -87,7 +87,7 @@ app.on('window-all-closed', async () => {
       await httpApi.close();
     }
 
-    // app.quit();
+    app.quit();
   } catch (err) {
     logger.error('something fail during app close');
     logger.error(err);
