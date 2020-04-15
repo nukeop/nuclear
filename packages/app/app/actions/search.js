@@ -301,24 +301,7 @@ export const albumInfoSearchByName = (albumName, history) => async (dispatch, ge
   }
 };
 
-function searchDropdownVisible() {
-  return {
-    type: SEARCH_DROPDOWN_DISPLAY_CHANGE,
-    payload: true
-  };
-}
-
-function searchDropdownHidden() {
-  return {
-    type: SEARCH_DROPDOWN_DISPLAY_CHANGE,
-    payload: false
-  };
-}
-
-export const setSearchDropdownVisibility = (bool) => async (dispatch) => {
-  if (bool) {
-    dispatch(searchDropdownVisible());
-  } else {
-    dispatch(searchDropdownHidden());
-  }
-};
+export const setSearchDropdownVisibility = displayState => ({
+  type: SEARCH_DROPDOWN_DISPLAY_CHANGE,
+  payload: displayState
+});

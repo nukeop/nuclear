@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 import _ from 'lodash';
-import { Icon, Dropdown } from 'semantic-ui-react';
+import { Dropdown, Icon } from 'semantic-ui-react';
 import { compose, withHandlers, withState } from 'recompose';
 import SearchBoxDropdown from '../SearchBoxDropbown';
 
@@ -66,7 +66,7 @@ const SearchBox = ({
             disabled={disabled}
           />
         }
-        {isFocused ? <SearchBoxDropdown display={isFocused}>HELLO THERE</SearchBoxDropdown> : null}
+        {isFocused ? <SearchBoxDropdown display={isFocused}/> : null}
       </div>
     </div>
   );
