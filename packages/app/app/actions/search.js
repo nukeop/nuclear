@@ -32,6 +32,8 @@ export const LASTFM_TRACK_SEARCH_SUCCESS = 'LASTFM_TRACK_SEARCH_SUCCESS';
 export const YOUTUBE_PLAYLIST_SEARCH_START = 'YOUTUBE_PLAYLIST_SEARCH_START';
 export const YOUTUBE_PLAYLIST_SEARCH_SUCCESS = 'YOUTUBE_PLAYLIST_SEARCH_SUCCESS';
 
+export const SEARCH_DROPDOWN_DISPLAY_CHANGE = 'SEARCH_DROPDOWN_DISPLAY_CHANGE';
+
 export function sourcesSearch(terms, plugins) {
   let searchResults = {};
   for (let i = 0; i < plugins.streamProviders.length; i++) {
@@ -296,5 +298,27 @@ export const albumInfoSearchByName = (albumName, history) => async (dispatch, ge
       `Using ${selectedProvider.sourceName}`,
       null, settings
     ));
+  }
+};
+
+function searchDropdownVisible() {
+  return {
+    type: SEARCH_DROPDOWN_DISPLAY_CHANGE,
+    payload: true
+  };
+}
+
+function searchDropdownHidden() {
+  return {
+    type: SEARCH_DROPDOWN_DISPLAY_CHANGE,
+    payload: false
+  };
+}
+
+export const setSearchDropdownVisibility = (bool) => async (dispatch) => {
+  if (bool) {
+    dispatch(searchDropdownVisible());
+  } else {
+    dispatch(searchDropdownHidden());
   }
 };
