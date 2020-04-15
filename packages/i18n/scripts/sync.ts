@@ -16,17 +16,6 @@ const PRIMARY_LANGUAGE = 'en';
 
   try {
     sync({
-      check: true,
-      files: localesPath,
-      primary: PRIMARY_LANGUAGE,
-      createResources: [],
-      space: 2,
-      lineEndings: 'LF',
-      finalNewline: true,
-      newKeysEmpty: false
-    });
-  } catch (err) {
-    sync({
       check: false,
       files: localesPath,
       primary: PRIMARY_LANGUAGE,
@@ -56,5 +45,8 @@ const PRIMARY_LANGUAGE = 'en';
         console.error('something fail while trying to generate i18n doc md file');
         process.exit(1);
       });
+  } catch (err) {
+    console.log('something fail during 18n sync');
+    console.error(err);
   }
 })();
