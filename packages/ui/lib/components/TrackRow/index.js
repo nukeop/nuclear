@@ -96,7 +96,7 @@ TrackRow.propTypes = {
   track: PropTypes.shape({
     local: PropTypes.bool,
     album: PropTypes.string,
-    artist: PropTypes.string,
+    // artist: PropTypes.string,
     duration: PropTypes.number,
     position: PropTypes.number,
     playcount: PropTypes.number

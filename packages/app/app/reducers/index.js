@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
+import { Reducers as gridReducers } from 'react-redux-grid';
 
 import DashboardReducer from './dashboard';
 import DownloadsReducer from './downloads';
@@ -21,6 +22,7 @@ import LocalReducer from './local';
 import ConnectivityReducer from './connectivity';
 
 const rootReducer = combineReducers({
+  ...gridReducers,
   dashboard: DashboardReducer,
   downloads: DownloadsReducer,
   equalizer: EqualizerReducer,

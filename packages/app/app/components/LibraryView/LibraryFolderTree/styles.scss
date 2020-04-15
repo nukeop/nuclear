@@ -1,0 +1,25 @@
+.react-grid-table-container {
+  background: transparent !important;
+}
+
+.react-grid-header {
+  background: transparent !important;
+  border: none !important;
+  color: hsla(0, 0%, 100%, 0.5) !important;
+
+  .react-grid-resizable {
+    border: none !important;
+
+    .react-grid-drag-handle::after {
+      border-right: 1px solid hsla(0, 0%, 97%, 0.1) !important;
+    }
+  }
+}
+
+.react-grid-row {
+  background: transparent !important;
+}
+
+.react-grid-cell {
+  border: none !important;
+}

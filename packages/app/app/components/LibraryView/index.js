@@ -12,6 +12,7 @@ import trackRowStyles from '../TrackRow/styles.scss';
 import styles from './index.scss';
 import NoSearchResults from './NoSearchResults';
 import LibrarySimpleList from './LibrarySimpleList';
+import LibraryFolderTree from './LibraryFolderTree';
 import LibraryAlbumGrid from './LibraryAlbumGrid';
 import LibraryHeader from './LibraryHeader';
 
@@ -88,6 +89,10 @@ const LibraryView = ({
                   withArtistNames
                   withAlbumPreview
                 />
+              )}
+
+              {!pending && listType === LIST_TYPE.FOLDER_TREE && (
+                <LibraryFolderTree tracks={tracks} sortBy={sortBy} direction={direction} handleSort={handleSort} />
               )}
             </Segment>
           )}

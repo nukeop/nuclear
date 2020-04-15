@@ -63,6 +63,7 @@
     "react-image": "^2.1.1",
     "react-list": "^0.8.13",
     "react-redux": "^7.1.0",
+    "react-redux-grid": "^5.7.0",
     "react-router": "^5.1.2",
     "react-router-dom": "^5.1.2",
     "react-router-redux": "^4.0.8",
