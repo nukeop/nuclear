@@ -3,6 +3,8 @@ import {Grid} from 'react-redux-grid';
 import {compose} from 'recompose';
 import {withTranslation} from 'react-i18next';
 import PropTypes from 'prop-types';
+import { ContextPopup, getThumbnail } from '@nuclear/ui';
+import TrackPopupButtons from '../../../containers/TrackPopupButtons';
 import './styles.scss';
 
 const LibraryFolderTree = ({
@@ -16,7 +18,10 @@ const LibraryFolderTree = ({
 }) => {
   const pathToEntryMap = {};
   let lastID = 0;
-  function getEntryForPath(path) {
+  function getEntryByID(id) {
+    return Object.values(pathToEntryMap).find(entry => entry.id === id);
+  }
+  function getEntryForFolder(path) {
     if (pathToEntryMap[path] === undefined) {
       const newEntry = {
         id: ++lastID,
@@ -32,7 +37,7 @@ const LibraryFolderTree = ({
         if (parentPath.length === 0) {
           throw new Error('Parent path cannot be empty; the folder/file path-separators must not be normalized.');
         }
-        const parent = getEntryForPath(parentPath);
+        const parent = getEntryForFolder(parentPath);
         newEntry.parentId = parent.id;
         parent.children.push(newEntry);
       }
@@ -44,15 +49,17 @@ const LibraryFolderTree = ({
 
   for (const track of tracks) {
     const folderPath = track.path.split('/').slice(0, -1).join('/');
-    const folderEntry = getEntryForPath(folderPath);
+    const folderEntry = getEntryForFolder(folderPath);
     const newEntry = {
       id: ++lastID,
       parentId: folderEntry.id,
+      track,
       path: track.path,
       name: track.name,
       album: track.album,
       artist: _.isString(track.artist) ? track.artist : track.artist.name
     };
+    pathToEntryMap[track.path] = newEntry;
     folderEntry.children.push(newEntry);
   }
 
@@ -106,6 +113,31 @@ const LibraryFolderTree = ({
       GRID_ACTIONS: null,
       BULK_ACTIONS: {
         enabled: false
+      },
+      ROW: {
+        enabled: true,
+        renderer: ({rowProps, cells}) => {
+          const entry = getEntryByID(cells[0].props.treeData.id);
+          const rowUI = (
+            <tr {...rowProps}>
+              {cells}
+            </tr>
+          );
+          if (entry.track) {
+            return (
+              <ContextPopup
+                trigger={rowUI}
+                key={'library-track-' + tracks.indexOf(entry.track)}
+                thumb={getThumbnail(entry.track)}
+                title={_.get(entry.track, ['name'])}
+                artist={_.get(entry.track, ['artist', 'name'])}
+              >
+                <TrackPopupButtons track={entry.track} withAddToDownloads={false}/>
+              </ContextPopup>
+            );
+          }
+          return rowUI;
+        }
       }
     },
     columns: [
