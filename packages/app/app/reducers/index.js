@@ -22,7 +22,7 @@ import LocalReducer from './local';
 import ConnectivityReducer from './connectivity';
 
 const rootReducer = combineReducers({
-  ...gridReducers,
+  reactReduxGrid: combineReducers(gridReducers),
   dashboard: DashboardReducer,
   downloads: DownloadsReducer,
   equalizer: EqualizerReducer,

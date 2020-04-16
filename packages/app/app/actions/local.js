@@ -84,6 +84,9 @@ export function scanLocalFoldersFailed(payload) {
 export function openLocalFolderPicker() {
   return dispatch => {
     remote.dialog.showOpenDialog({ properties: ['openDirectory', 'multiSelections'] }, folders => {
+      // normalize path-seps (gets normalized on save to disk, but must happen from start for some UI code)
+      folders = folders.map(path => path.replace(/\\/g, '/'));
+      
       if (folders) {
         dispatch(addLocalFolders(folders));
       }

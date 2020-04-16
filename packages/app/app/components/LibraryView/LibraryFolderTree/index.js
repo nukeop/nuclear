@@ -5,117 +5,77 @@ import {withTranslation} from 'react-i18next';
 import PropTypes from 'prop-types';
 import './styles.scss';
 
-const data = {
-  'root': {
-    'id': -1,
-    'Name': 'Root',
-    'children': [
-      {
-        'id': 1,
-        'parentId': -1,
-        'Name': 'Category 1',
-        'GUID': '8f7152dc-fed7-4a65-afcf-527fceb99865',
-        'Email': 'hgardnero6@ed.gov',
-        'Gender': 'Male',
-        'Address': '605 Manley Park',
-        'Phone Number': '31-(678)495-4134',
-        'children': [
-          {
-            'id': 11,
-            'parentId': 1,
-            'Name': 'Category 11',
-            'GUID': '8f7152dc-fed7-4a65-afcf-527fceb991865',
-            'Email': 'hgardneross6@ed.gov',
-            'Gender': 'Male',
-            'Address': '12 Manley Park',
-            'Phone Number': '31-(678)495-4134'
-          },
-          {
-            'id': 12,
-            'parentId': 1,
-            'Name': 'Category 12',
-            'GUID': '8f7152dc-fed7-4acf-527fceb991865',
-            'Email': 'hgardneross6@ed.gov',
-            'Gender': 'Male',
-            'Address': '12 Manley Park',
-            'Phone Number': '31-(678)495-4134',
-            'children': [
-              {
-                'id': 121,
-                'parentId': 12,
-                'Name': 'Category 121',
-                'GUID': '8f7q2dc-fedsss7-4acf-527fceb991865',
-                'Email': 'hgoss6@eds.gov',
-                'Gender': 'Male',
-                'Address': '21 fake Park',
-                'Phone Number': '31-(678)495-4134'
-              },
-              {
-                'id': 122,
-                'parentId': 12,
-                'Name': 'Category 122',
-                'GUID': '8f7q2dc-fed7-4acf-527fceb991865',
-                'Email': 'hgoss6@ed.gov',
-                'Gender': 'Male',
-                'Address': '21 fake Park',
-                'Phone Number': '31-(678)495-4134',
-                'children': [
-                  {
-                    'id': 1221,
-                    'parentId': 122,
-                    'Name': 'Category 1211',
-                    'GUID': '8f7q2dc-facf-527fceb991865',
-                    'Email': 'hgossjdjdjdj6@ed.gov',
-                    'Gender': 'Male',
-                    'Address': '21 fdjdjake Park',
-                    'Phone Number': '31-(678)495-4134'
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        'id': 2,
-        'parentId': -1,
-        'Name': 'Category 2',
-        'GUID': '8f7q2dc-facf-527fcebdk=-jdjd991865',
-        'Email': 'hehehe@ed.gov',
-        'Gender': 'Male',
-        'Address': '212 Park',
-        'Phone Number': '31-(678)495-4134',
-        'children': [
-          {
-            'id': 21,
-            'parentId': 2,
-            'Name': 'Category 21',
-            'GUID': '8f7q2dc-facf-527fcsw-jdjd991865',
-            'Email': 'hehehe@ed.gov',
-            'Gender': 'Male',
-            'Address': '21112 Park',
-            'Phone Number': '31-(678)495-4134',
-            'leaf': false
-          }
-        ]
-      }
-    ]
-  }
-};
-
-const LibraryFolderTree = (/* {
+const LibraryFolderTree = ({
   tracks,
-  sortBy,
+  localFolders
+  /* sortBy,
   direction,
   handleSort,
   // estimateItemSize,
-  t
-}*/) => {
+  t*/
+}) => {
+  const pathToEntryMap = {};
+  let lastID = 0;
+  function getEntryForPath(path) {
+    if (pathToEntryMap[path] === undefined) {
+      const newEntry = {
+        id: ++lastID,
+        path,
+        name: path.split('/').slice(-1)[0],
+        children: []
+      };
+
+      if (localFolders.includes(path)) {
+        newEntry.parentId = -1;
+      } else {
+        const parentPath = path.split('/').slice(0, -1).join('/');
+        if (parentPath.length === 0) {
+          throw new Error('Parent path cannot be empty; the folder/file path-separators must not be normalized.');
+        }
+        const parent = getEntryForPath(parentPath);
+        newEntry.parentId = parent.id;
+        parent.children.push(newEntry);
+      }
+
+      pathToEntryMap[path] = newEntry;
+    }
+    return pathToEntryMap[path];
+  }
+
+  for (const track of tracks) {
+    const folderPath = track.path.split('/').slice(0, -1).join('/');
+    const folderEntry = getEntryForPath(folderPath);
+    const newEntry = {
+      id: ++lastID,
+      parentId: folderEntry.id,
+      path: track.path,
+      name: track.name,
+      album: track.album,
+      artist: _.isString(track.artist) ? track.artist : track.artist.name
+    };
+    folderEntry.children.push(newEntry);
+  }
+
+  const data = {
+    root: {
+      id: -1,
+      name: 'Root',
+      children: Object.values(pathToEntryMap).filter(entry => localFolders.includes(entry.path))
+    }
+  };
+
   const treeConfig = {
-    store: window.store,
+    store: {
+      getState: () => window.store.getState().reactReduxGrid,
+      subscribe: window.store.subscribe,
+      dispatch: window.store.dispatch
+    },
     stateKey: 'local-library-folder-tree',
     gridType: 'tree', // either `tree` or `grid`,
     showTreeRootNode: false, // dont display root node of tree
+    // pageSize: Object.values(pathToEntryMap).length,
+    infinite: true,
+
     plugins: {
       COLUMN_MANAGER: {
         resizable: true,
@@ -153,26 +113,20 @@ const LibraryFolderTree = (/* {
         name: 'Name',
         width: '30%',
         className: 'additional-class',
-        dataIndex: 'Name',
+        dataIndex: 'name',
         sortable: false,
         expandable: true
       },
       {
-        name: 'Phone Number',
-        dataIndex: 'Phone Number',
-        sortable: false,
-        className: 'additional-class'
-      },
-      {
-        name: 'Email',
-        dataIndex: 'Email',
+        name: 'Album',
+        dataIndex: 'album',
         sortable: false,
         className: 'additional-class',
         defaultSortDirection: 'descend'
       },
       {
-        name: 'Address',
-        dataIndex: 'Address',
+        name: 'Artist',
+        dataIndex: 'artist',
         sortable: false,
         className: 'additional-class'
       }
@@ -184,6 +138,7 @@ const LibraryFolderTree = (/* {
 
 LibraryFolderTree.propTypes = {
   tracks: PropTypes.array,
+  localFolders: PropTypes.arrayOf(PropTypes.string),
   sortBy: PropTypes.string,
   direction: PropTypes.string,
   handleSort: PropTypes.func

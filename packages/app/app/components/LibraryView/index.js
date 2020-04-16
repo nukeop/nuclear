@@ -92,7 +92,7 @@ const LibraryView = ({
               )}
 
               {!pending && listType === LIST_TYPE.FOLDER_TREE && (
-                <LibraryFolderTree tracks={tracks} sortBy={sortBy} direction={direction} handleSort={handleSort} />
+                <LibraryFolderTree tracks={tracks} localFolders={localFolders} sortBy={sortBy} direction={direction} handleSort={handleSort} />
               )}
             </Segment>
           )}

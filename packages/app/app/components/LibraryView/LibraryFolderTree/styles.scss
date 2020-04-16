@@ -1,4 +1,11 @@
+.react-grid-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
 .react-grid-table-container {
+  flex: 1;
   background: transparent !important;
 }
 
