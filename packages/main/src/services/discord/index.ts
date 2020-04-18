@@ -98,6 +98,7 @@ class Discord {
   }
 
   clear() {
+    clearInterval(this.interval);
     if (this.isReady) {
       this.rpc.clearActivity();
     }
