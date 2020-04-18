@@ -1,10 +1,11 @@
-import React, { useCallback } from 'react';
-import PropTypes from 'prop-types';
+import React, { useCallback, useMemo } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { Dimmer, Input, Segment } from 'semantic-ui-react';
 import { useTranslation } from 'react-i18next';
 import { LibraryListTypeToggle } from '@nuclear/ui';
 import { LIST_TYPE } from '@nuclear/ui/lib/components/LibraryListTypeToggle';
 import _ from 'lodash';
+import { bindActionCreators } from 'redux';
 
 import EmptyState from './EmptyState';
 
@@ -15,22 +16,45 @@ import LibrarySimpleList from './LibrarySimpleList';
 import LibraryFolderTree from './LibraryFolderTree';
 import LibraryAlbumGrid from './LibraryAlbumGrid';
 import LibraryHeader from './LibraryHeader';
+import * as LocalActions from '../../actions/local';
+import * as QueueActions from '../../actions/queue';
+import * as PlayerActions from '../../actions/player';
+import * as SettingsActions from '../../actions/settings';
+import { sortTracks } from './utils';
 
-const LibraryView = ({
-  tracks,
-  filterApplied,
-  streamProviders,
-  actions,
-  queueActions,
-  playerActions,
-  pending,
-  scanProgress,
-  scanTotal,
-  localFolders,
-  sortBy,
-  direction,
-  listType
-}) => {
+const LibraryView = () => {
+  const sortBy = useSelector(state => state.local.sortBy, []);
+  const direction = useSelector(state => state.local.direction, []);
+  const pending = useSelector(state => state.local.pending, []);
+  const scanProgress = useSelector(state => state.local.scanProgress, []);
+  const scanTotal = useSelector(state => state.local.scanTotal, []);
+  const localFolders = useSelector(state => state.local.folders, []);
+  const listType = useSelector(state => state.local.listType, []);
+  const filter = useSelector(state => state.local.filter, []);
+  const tracks_map = useSelector(state => state.local.tracks, []);
+  const streamProviders = useSelector(state => _.filter(state.plugin.plugins.streamProviders, { sourceName: 'Local' }), []);
+
+  const unfilteredTracks = useMemo(() => _.values(tracks_map), [tracks_map]);
+  const tracks = useMemo(() => {
+    const checkFilter = string => _.includes(_.lowerCase(string), lowercaseFilter);
+    const lowercaseFilter = _.lowerCase(filter);
+    const filteredTracks = _.filter(unfilteredTracks, track => {
+      return _.some([
+        checkFilter(track.name),
+        checkFilter(track.album),
+        checkFilter(_.get(track, 'artist.name'))
+      ]);
+    });
+    const tracks_preDirection = sortTracks(filteredTracks, sortBy);
+    return direction === 'ascending' ? tracks_preDirection : tracks_preDirection.reverse();
+  }, [unfilteredTracks, filter, sortBy, direction]);
+  const filterApplied = useMemo(() => tracks.length < unfilteredTracks.length, [tracks, unfilteredTracks]);
+
+  const dispatch = useDispatch();
+  const actions = bindActionCreators({ ...LocalActions, ...SettingsActions }, dispatch);
+  const queueActions = bindActionCreators(QueueActions, dispatch);
+  const playerActions = bindActionCreators(PlayerActions, dispatch);
+
   const handleSort = useCallback(
     columnName => () => {
       actions.updateLocalSort(columnName, sortBy, direction);
@@ -103,25 +127,6 @@ const LibraryView = ({
 };
 
 LibraryView.propTypes = {
-  tracks: PropTypes.array,
-  filterApplied: PropTypes.bool,
-  pending: PropTypes.bool,
-  scanProgress: PropTypes.number,
-  scanTotal: PropTypes.number,
-  localFolders: PropTypes.arrayOf(PropTypes.string),
-  streamProviders: PropTypes.array,
-  actions: PropTypes.object,
-  queueActions: PropTypes.shape({
-    addToQueue: PropTypes.func,
-    clearQueue: PropTypes.func,
-    selectSong: PropTypes.func,
-    playTrack: PropTypes.func
-  }),
-  playerActions: PropTypes.shape({
-    startPlayback: PropTypes.func
-  }),
-  sortBy: PropTypes.string,
-  direction: PropTypes.string
 };
 
 export default LibraryView;
