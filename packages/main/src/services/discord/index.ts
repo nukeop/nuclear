@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { NuclearMeta } from '@nuclear/core';
 import DiscordRPC from 'discord-rpc';
 import { injectable, inject } from 'inversify';
@@ -10,25 +9,59 @@ import Logger, { $mainLogger } from '../logger';
 class Discord {
   private rpc: DiscordRPC.Client;
   private isReady = false;
+  private baseStart: number;
+  private pauseStart: number;
+  private pausedTotal = 0;
+  private activity: {
+    details: string;
+    startTimestamp: number;
+    largeImageKey: string;
+  };
+  private interval: NodeJS.Timeout;
+
+  private get pausedStartTime() {
+    return this.baseStart + (this.pausedTotal + Date.now() - this.pauseStart);
+  }
 
   constructor(
     @inject(Config) private config: Config,
     @inject($mainLogger) private logger: Logger
   ) {}
 
-  private async sendActivity(track: NuclearMeta) {
+  private async sendActivity() {
     try {
-      await this.rpc.setActivity({
-        details: `${track.artist} - ${track.name}`,
-        startTimestamp: Date.now(),
-        largeImageKey: 'logo'
-      });
+      await this.rpc.setActivity(this.activity);
     } catch (err) {
       this.logger.error('error trying to set discord activity');
     }
   }
 
-  async init(cb?: () => any) {
+  async pause() {
+    if (this.isReady) {
+      this.pauseStart = Date.now();
+  
+      this.activity.details += '\nPaused';
+      this.interval = setInterval(() => {
+        this.activity.startTimestamp = this.pausedStartTime;
+        this.sendActivity();
+      }, 500);
+      this.activity.startTimestamp = this.pausedStartTime;
+      return this.sendActivity();
+    }
+  }
+
+  async play() {
+    if (this.isReady) {
+      this.pausedTotal += Date.now() - this.pauseStart;
+      clearInterval(this.interval);
+      if (this.activity) {
+        this.activity.details = this.activity.details.substr(0, this.activity.details.length - 8);
+        return this.sendActivity();
+      }
+    }
+  }
+
+  async init(cb?: () => void) {
     DiscordRPC.register(this.config.discordClientId);
     this.rpc = new DiscordRPC.Client({ transport: 'ipc' });
 
@@ -44,16 +77,30 @@ class Discord {
     }
   }
 
-  async setActivity(track: NuclearMeta) {
+  async trackChange(track: NuclearMeta) {
+    clearInterval(this.interval);
+    this.baseStart = Date.now();
+    this.pausedTotal = 0;
+    this.activity = {
+      details: `${track.artist} - ${track.name}`,
+      startTimestamp: this.baseStart,
+      largeImageKey: 'logo'
+    };
     if (!this.rpc) {
       return null;
     } else if (!this.isReady) {
       return this.init(() => {
-        this.sendActivity(track);
+        this.sendActivity();
       });
+    } else {
+      this.sendActivity();
     }
+  }
 
-    this.sendActivity(track);
+  clear() {
+    if (this.isReady) {
+      this.rpc.clearActivity();
+    }
   }
 }
 
