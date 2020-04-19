@@ -1,5 +1,5 @@
 import React, {useMemo} from 'react';
-import {Grid} from 'react-redux-grid';
+import {Grid } from 'react-redux-grid';
 import {compose} from 'recompose';
 import {withTranslation} from 'react-i18next';
 import PropTypes from 'prop-types';
@@ -9,6 +9,9 @@ import './styles.scss';
 
 // const GridPure = React.memo(Grid);
 // let lastState = {};
+
+// create separate store, for max performance (there was slowdown in main store)
+// const storeForGrid = createStore(combineReducers(gridReducers), {});
 
 const LibraryFolderTree = ({
   tracks,
@@ -43,9 +46,6 @@ const LibraryFolderTree = ({
 
     const pathToEntryMap = {};
     let lastID = 0;
-    function getEntryByID(id) {
-      return Object.values(pathToEntryMap).find(entry => entry.id === id);
-    }
     function getEntryForFolder(path) {
       if (pathToEntryMap[path] === undefined) {
         const newEntry = {
@@ -86,6 +86,14 @@ const LibraryFolderTree = ({
       };
       pathToEntryMap[track.path] = newEntry;
       folderEntry.children.push(newEntry);
+    }
+
+    /* function getEntryByID(id) {
+      return Object.values(pathToEntryMap).find(entry => entry.id === id);
+    }*/
+    const idToEntryMap = {};
+    for (const entry of Object.values(pathToEntryMap)) {
+      idToEntryMap[entry.id] = entry;
     }
   
     const data = {
@@ -138,7 +146,8 @@ const LibraryFolderTree = ({
         ROW: {
           enabled: true,
           renderer: ({rowProps, cells}) => {
-            const entry = getEntryByID(cells[0].props.treeData.id);
+            // const entry = getEntryByID(cells[0].props.treeData.id);
+            const entry = idToEntryMap[cells[0].props.treeData.id];
             // can be undefined when navigating back to panel
             if (entry === undefined) {
               return null;
