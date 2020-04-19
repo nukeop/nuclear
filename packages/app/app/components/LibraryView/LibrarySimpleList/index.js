@@ -23,6 +23,10 @@ const LibrarySimpleList = ({
   t
 }) => (
   <ReactList
+    ref={comp => {
+      // needed to fix "height" style being ignored (thus breaking scrolling)
+      comp.el.style.display = 'table';
+    }}
     type='uniform'
     useStaticSize
     length={tracks.length}

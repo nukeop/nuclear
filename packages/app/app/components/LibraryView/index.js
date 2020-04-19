@@ -23,16 +23,17 @@ import * as SettingsActions from '../../actions/settings';
 import { sortTracks } from './utils';
 
 const LibraryView = () => {
-  const sortBy = useSelector(state => state.local.sortBy, []);
-  const direction = useSelector(state => state.local.direction, []);
-  const pending = useSelector(state => state.local.pending, []);
-  const scanProgress = useSelector(state => state.local.scanProgress, []);
-  const scanTotal = useSelector(state => state.local.scanTotal, []);
-  const localFolders = useSelector(state => state.local.folders, []);
-  const listType = useSelector(state => state.local.listType, []);
-  const filter = useSelector(state => state.local.filter, []);
-  const tracks_map = useSelector(state => state.local.tracks, []);
-  const streamProviders = useSelector(state => _.filter(state.plugin.plugins.streamProviders, { sourceName: 'Local' }), []);
+  const sortBy = useSelector(state => state.local.sortBy);
+  const direction = useSelector(state => state.local.direction);
+  const pending = useSelector(state => state.local.pending);
+  const scanProgress = useSelector(state => state.local.scanProgress);
+  const scanTotal = useSelector(state => state.local.scanTotal);
+  const localFolders = useSelector(state => state.local.folders);
+  const listType = useSelector(state => state.local.listType);
+  const filter = useSelector(state => state.local.filter);
+  const tracks_map = useSelector(state => state.local.tracks);
+  const streamProviders = useSelector(state => state.plugin.plugins.streamProviders);
+  const localStreamProviders = useMemo(() => _.filter(streamProviders, { sourceName: 'Local' }), [streamProviders]);
 
   const unfilteredTracks = useMemo(() => _.values(tracks_map), [tracks_map]);
   const tracks = useMemo(() => {
@@ -105,7 +106,7 @@ const LibraryView = () => {
               {!pending && !_.isEmpty(localFolders) && listType === LIST_TYPE.ALBUM_GRID && (
                 <LibraryAlbumGrid
                   tracks={tracks}
-                  streamProviders={streamProviders}
+                  streamProviders={localStreamProviders}
                   addToQueue={queueActions.addToQueue}
                   clearQueue={queueActions.clearQueue}
                   selectSong={queueActions.selectSong}
