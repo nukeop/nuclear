@@ -7,7 +7,8 @@ import {
   UPDATE_LOCAL_FILTER,
   UPDATE_LOCAL_SORT,
   UPDATE_LIBRARY_LIST_TYPE,
-  UPDATE_LOCAL_FOLDERS
+  UPDATE_LOCAL_FOLDERS,
+  REMOVE_LOCAL_FOLDER
 } from '../actions/local';
 import { mpris } from '@nuclear/core';
 
@@ -29,6 +30,11 @@ export default function LocalReducer(state = initialState, action) {
     return {
       ...state,
       folders: action.payload.folders
+    };
+  case REMOVE_LOCAL_FOLDER:
+    return {
+      ...state,
+      folders: _.filter(state.folders, f => f !== action.payload)
     };
   case SCAN_LOCAL_FOLDER:
     return {

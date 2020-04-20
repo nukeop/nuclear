@@ -1,5 +1,4 @@
 import Sound from 'react-hifi';
-import { mpris } from '@nuclear/core';
 import { setOption } from '@nuclear/core';
 
 export const START_PLAYBACK = 'START_PLAYBACK';
@@ -12,35 +11,33 @@ export const UNMUTE = 'UNMUTE';
 export const UPDATE_PLAYBACK_STREAM_LOADING = 'UPDATE_PLAYBACK_STREAM_LOADING';
 
 export function startPlayback() {
-  mpris.sendPlay();
   return {
     type: START_PLAYBACK,
     payload: null
   };
 }
 
-export function pausePlayback(sendPaused) {
-  sendPaused();
+export function pausePlayback() {
   return {
     type: PAUSE_PLAYBACK,
     payload: null
   };
 }
 
-export function togglePlayback(currentState, sendPaused) {
+export function togglePlayback(currentState) {
   return dispatch => {
     if (currentState === Sound.status.PLAYING) {
-      dispatch(pausePlayback(sendPaused));
+      dispatch(pausePlayback());
     } else {
       dispatch(startPlayback());
     }
   };
 }
 
-export function resetPlayer(sendPaused) {
+export function resetPlayer() {
   return dispatch => {
     dispatch(updatePlaybackProgress(0, 0));
-    dispatch(pausePlayback(sendPaused));
+    dispatch(pausePlayback());
     dispatch(updateStreamLoading(false));
   };
 }
@@ -62,12 +59,13 @@ export function updateSeek(seek) {
   };
 }
 
-export function updateVolume(volume) {
+export function updateVolume(volume, fromMain) {
   setOption('volume', volume);
-  mpris.sendVolume(volume);
+
   return {
     type: UPDATE_VOLUME,
-    payload: volume
+    payload: volume,
+    meta: { fromMain }
   };
 }
 
