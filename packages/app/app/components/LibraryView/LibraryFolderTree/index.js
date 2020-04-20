@@ -52,7 +52,8 @@ const LibraryFolderTree = ({
           id: ++lastID,
           path,
           name: path.split('/').slice(-1)[0],
-          children: []
+          children: [],
+          _hideChildren: true
         };
   
         if (localFolders.includes(path)) {
