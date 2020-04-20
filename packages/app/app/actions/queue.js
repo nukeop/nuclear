@@ -82,7 +82,6 @@ function addTrackToQueue(streamProviders, item) {
 }
 
 export function playTrack(streamProviders, item) {
-  mpris.clearTrackList();
   return dispatch => {
     dispatch(clearQueue());
     dispatch(addToQueue(streamProviders, item));
@@ -96,10 +95,18 @@ export function addToQueue(streamProviders, item) {
 }
 
 export function removeFromQueue(item) {
-  mpris.removeTrack(item);
-  return {
-    type: REMOVE_QUEUE_ITEM,
-    payload: item
+  return (dispatch, getState) => {
+    const { queue } = getState();
+
+    if (queue.queueItems.length === 1) {
+      mpris.clearTrackList();
+    } else {
+      mpris.removeTrack(item);
+    }
+    dispatch({
+      type: REMOVE_QUEUE_ITEM,
+      payload: item
+    });
   };
 }
 
