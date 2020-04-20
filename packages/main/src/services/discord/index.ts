@@ -17,11 +17,6 @@ class Discord {
     startTimestamp: number;
     largeImageKey: string;
   };
-  private interval: NodeJS.Timeout;
-
-  private get pausedStartTime() {
-    return this.baseStart + (this.pausedTotal + Date.now() - this.pauseStart);
-  }
 
   constructor(
     @inject(Config) private config: Config,
@@ -31,6 +26,7 @@ class Discord {
   private async sendActivity() {
     try {
       await this.rpc.setActivity(this.activity);
+      this.logger.log('discord > update activity');
     } catch (err) {
       this.logger.error('error trying to set discord activity');
     }
@@ -41,11 +37,7 @@ class Discord {
       this.pauseStart = Date.now();
   
       this.activity.details += '\nPaused';
-      this.interval = setInterval(() => {
-        this.activity.startTimestamp = this.pausedStartTime;
-        this.sendActivity();
-      }, 500);
-      this.activity.startTimestamp = this.pausedStartTime;
+      this.activity.startTimestamp = this.pauseStart;
       return this.sendActivity();
     }
   }
@@ -53,9 +45,9 @@ class Discord {
   async play() {
     if (this.isReady) {
       this.pausedTotal += Date.now() - this.pauseStart;
-      clearInterval(this.interval);
       if (this.activity) {
         this.activity.details = this.activity.details.substr(0, this.activity.details.length - 8);
+        this.activity.startTimestamp = this.baseStart + this.pausedTotal;
         return this.sendActivity();
       }
     }
@@ -66,6 +58,7 @@ class Discord {
     this.rpc = new DiscordRPC.Client({ transport: 'ipc' });
 
     this.rpc.once('ready', () => {
+      this.logger.log('discord > connected');
       this.isReady = true;
       cb && cb();
     });
@@ -78,7 +71,6 @@ class Discord {
   }
 
   async trackChange(track: NuclearMeta) {
-    clearInterval(this.interval);
     this.baseStart = Date.now();
     this.pausedTotal = 0;
     this.activity = {
@@ -98,8 +90,8 @@ class Discord {
   }
 
   clear() {
-    clearInterval(this.interval);
     if (this.isReady) {
+      this.logger.log('discord > clear activity');
       this.rpc.clearActivity();
     }
   }
