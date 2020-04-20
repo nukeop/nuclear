@@ -83,6 +83,9 @@ Nuclear has already been translated to several languages, and we're always looki
 | Swedish                             | [PalleKarlsson](https://github.com/PalleKarlsson)                                             |
 
 ## Development process
+
+First of all, be sure to check out the [Contribution Wiki Page](https://github.com/nukeop/nuclear/wiki/Contributing).
+
 Use lerna:
 ```shell
 $ npm i -g lerna #installs lerna globally
