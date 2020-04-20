@@ -79,6 +79,7 @@ app.on('window-all-closed', async () => {
     logger.log('All windows closed, quitting');
     const store = container.get<Store>(Store);
     const localLibrary = container.get<LocalLibrary>(LocalLibrary);
+    const discord = container.get<Discord>(Discord);
 
     await localLibrary.cleanUnusedLocalThumbnails();
 
@@ -87,7 +88,8 @@ app.on('window-all-closed', async () => {
       await httpApi.close();
     }
 
-    // app.quit();
+    discord.clear();
+    app.quit();
   } catch (err) {
     logger.error('something fail during app close');
     logger.error(err);

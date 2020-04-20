@@ -19,11 +19,13 @@ class IpcPlayer {
   @ipcEvent('play')
   onPlay() {
     this.systemApi.play();
+    return this.discord.play();
   }
 
   @ipcEvent('paused')
   onPause() {
     this.systemApi.pause();
+    return this.discord.pause();
   }
 
   @ipcEvent('volume')
@@ -54,6 +56,7 @@ class IpcPlayer {
   @ipcEvent('clear-tracklist')
   onClearTrackList() {
     this.systemApi.clearTrackList && this.systemApi.clearTrackList();
+    this.discord.clear();
   }
 
   @ipcEvent('songChange')
@@ -64,7 +67,7 @@ class IpcPlayer {
 
     this.window.setTitle(`${arg.artist} - ${arg.name} - Nuclear Music Player`);
     this.systemApi.sendMetadata && this.systemApi.sendMetadata(arg);
-    this.discord.setActivity(arg);
+    this.discord.trackChange(arg);
   }
 }
 

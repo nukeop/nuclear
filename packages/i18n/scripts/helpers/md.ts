@@ -15,7 +15,6 @@ export const generateMdFile = (data: Record<string, Record<string, string[]>>) =
     process.exit(0);
   });
 
-  const now = new Date();
   const entries = Object.entries(data);
   
   if (entries.length) {
@@ -41,8 +40,6 @@ export const generateMdFile = (data: Record<string, Record<string, string[]>>) =
   } else {
     stream.write('\n## No missing translation !!! Well done folks\n');
   }
-
-  stream.write(`\n\n\ngenerated the ${now.getDate()}/${now.getMonth() + 1}/${now.getFullYear()}`);
 
   stream.end();
 
