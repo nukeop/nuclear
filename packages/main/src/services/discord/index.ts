@@ -26,14 +26,14 @@ class Discord {
   private async sendActivity() {
     try {
       await this.rpc.setActivity(this.activity);
-      this.logger.log('discord > update activity');
+      this.logger.log('update discord activity');
     } catch (err) {
       this.logger.error('error trying to set discord activity');
     }
   }
 
   async pause() {
-    if (this.isReady) {
+    if (this.isReady && this.activity) {
       this.pauseStart = Date.now();
   
       this.activity.details += '\nPaused';
@@ -43,7 +43,7 @@ class Discord {
   }
 
   async play() {
-    if (this.isReady) {
+    if (this.isReady && this.activity) {
       this.pausedTotal += Date.now() - this.pauseStart;
       if (this.activity) {
         this.activity.details = this.activity.details.substr(0, this.activity.details.length - 8);
@@ -58,7 +58,7 @@ class Discord {
     this.rpc = new DiscordRPC.Client({ transport: 'ipc' });
 
     this.rpc.once('ready', () => {
-      this.logger.log('discord > connected');
+      this.logger.log('connected to discord');
       this.isReady = true;
       cb && cb();
     });
@@ -90,8 +90,9 @@ class Discord {
   }
 
   clear() {
+    delete this.activity;
     if (this.isReady) {
-      this.logger.log('discord > clear activity');
+      this.logger.log('clear discord activity');
       this.rpc.clearActivity();
     }
   }
