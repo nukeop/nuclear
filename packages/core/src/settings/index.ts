@@ -34,6 +34,14 @@ type Setting = {
 
 export const settingsConfig: Array<Setting> = [
   {
+    name: 'volume',
+    category: 'audio',
+    description: 'volume-description',
+    type: SettingType.NUMBER,
+    prettyName: 'volume',
+    default: 50
+  },
+  {
     name: 'loopAfterQueueEnd',
     category: 'playback',
     type: SettingType.BOOLEAN,

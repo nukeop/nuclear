@@ -1,5 +1,6 @@
 import Sound from 'react-hifi';
 import { mpris } from '@nuclear/core';
+import { setOption } from '@nuclear/core';
 
 export const START_PLAYBACK = 'START_PLAYBACK';
 export const PAUSE_PLAYBACK = 'PAUSE_PLAYBACK';
@@ -62,6 +63,7 @@ export function updateSeek(seek) {
 }
 
 export function updateVolume(volume) {
+  setOption('volume', volume);
   mpris.sendVolume(volume);
   return {
     type: UPDATE_VOLUME,
