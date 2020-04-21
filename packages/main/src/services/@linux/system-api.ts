@@ -9,6 +9,7 @@ import NuclearApi from '../../interfaces/nuclear-api';
 import { systemMediaController, systemMediaEvent, SYSTEM_MEDIA_EVENT_KEY } from '../../utils/decorators';
 import { ControllerMeta } from '../../utils/types';
 import Config from '../config';
+import Discord from '../discord';
 import $ipc from '../ipc';
 import Logger, { $systemApiLogger } from '../logger';
 import Store from '../store';
@@ -40,6 +41,7 @@ class LinuxMediaService extends MprisService implements NuclearApi {
 
   constructor(
     @inject(Config) config: Config,
+    @inject(Discord) private discord: Discord,
     @inject($ipc) private ipc: IpcMain,
     @inject($systemApiLogger) private logger: Logger,
     @inject(Store) private store: Store,
@@ -123,26 +125,33 @@ class LinuxMediaService extends MprisService implements NuclearApi {
   @systemMediaEvent('play')
   onPlay() {
     this.playbackStatus = MprisService.PLAYBACK_STATUS_PLAYING;
+    this.discord.play();
     this.window.send('play');
   }
 
   @systemMediaEvent('pause')
   onPause() {
     this.playbackStatus = MprisService.PLAYBACK_STATUS_PAUSED;
+    this.discord.pause();
     this.window.send('pause');
   }
 
   @systemMediaEvent('stop')
   onStop() {
     this.playbackStatus = MprisService.PLAYBACK_STATUS_STOPED;
+    this.discord.clear();
     this.window.send('stop');
   }
 
   @systemMediaEvent('playpause')
   onPlayPause() {
-    this.playbackStatus = this.playbackStatus === MprisService.PLAYBACK_STATUS_PLAYING
-      ? MprisService.PLAYBACK_STATUS_PAUSED
-      : MprisService.PLAYBACK_STATUS_PLAYING;
+    if (this.playbackStatus === MprisService.PLAYBACK_STATUS_PLAYING) {
+      this.playbackStatus = MprisService.PLAYBACK_STATUS_PAUSED;
+      this.discord.pause();
+    } else {
+      this.playbackStatus = MprisService.PLAYBACK_STATUS_PLAYING;
+      this.discord.play();
+    }
 
     this.window.send('playpause');
   }
