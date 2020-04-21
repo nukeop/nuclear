@@ -82,7 +82,7 @@ class SoundContainer extends React.Component {
     }
 
     if (
-      this.props.queue.currentSong < this.props.queue.queueItems.length - 1 ||
+      this.props.queue.queueItems.length !== 0 ||
       this.props.settings.loopAfterQueueEnd
     ) {
       this.props.actions.nextSong();
