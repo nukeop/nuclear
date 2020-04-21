@@ -4,7 +4,6 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { ipcRenderer } from 'electron';
-import { mpris } from '@nuclear/core';
 
 import * as PlayerActions from '../../actions/player';
 import * as QueueActions from '../../actions/queue';
@@ -14,58 +13,45 @@ import * as EqualizerActions from '../../actions/equalizer';
 import * as DownloadsActions from '../../actions/downloads';
 import * as LocalFileActions from '../../actions/local';
 
-const {
-  onNext,
-  onPrevious,
-  onPause,
-  onPlayPause,
-  onStop,
-  onPlay,
-  onSongChange,
-  onSettings,
-  onVolume,
-  onSeek,
-  sendPlayingStatus,
-  sendQueueItems,
-  onMute,
-  onEmptyQueue,
-  onCreatePlaylist,
-  onRefreshPlaylists,
-  onUpdateEqualizer,
-  onSetEqualizer,
-  onLocalFilesProgress,
-  onLocalFiles,
-  onLocalFilesError,
-  onSelectTrack,
-  onActivatePlaylist
-} = mpris;
-
 class IpcContainer extends React.Component {
   componentDidMount() {
+    const { actions } = this.props;
+
     ipcRenderer.send('started');
 
-    ipcRenderer.on('next', event => onNext(event, this.props.actions));
-    ipcRenderer.on('previous', event => onPrevious(event, this.props.actions));
-    ipcRenderer.on('pause', event => onPause(event, this.props.actions));
-    ipcRenderer.on('playpause', event => onPlayPause(event, this.props.actions, this.props.player));
-    ipcRenderer.on('stop', event => onStop(event, this.props.actions));
-    ipcRenderer.on('play', event => onPlay(event, this.props.actions));
-    ipcRenderer.on('settings', (event, data) => onSettings(event, data, this.props.actions));
-    ipcRenderer.on('mute', event => onMute(event, this.props.actions, this.props.player));
-    ipcRenderer.on('volume', (event, data) => onVolume(event, data, this.props.actions));
-    ipcRenderer.on('seek', (event, data) => onSeek(event, data, this.props.actions));
-    ipcRenderer.on('playing-status', event => sendPlayingStatus(event, this.props.player, this.props.queue, this.props.settings));
-    ipcRenderer.on('empty-queue', event => onEmptyQueue(event, this.props.actions));
-    ipcRenderer.on('queue', () => sendQueueItems(this.props.queue.queueItems));
-    ipcRenderer.on('select-track', (event, index) => onSelectTrack(index, this.props.actions));
-    ipcRenderer.on('create-playlist', (event, name) => onCreatePlaylist(event, { name, tracks: this.props.queue.queueItems }, this.props.actions));
-    ipcRenderer.on('refresh-playlists', (event) => onRefreshPlaylists(event, this.props.actions));
-    ipcRenderer.on('activate-playlist', (event, name) => onActivatePlaylist(this.props.playlists, name, this.props.streamProviders, this.props.actions));
-    ipcRenderer.on('update-equalizer', (event, data) =>  onUpdateEqualizer(event, this.props.actions, data));
-    ipcRenderer.on('set-equalizer', (event, data) => onSetEqualizer(event, this.props.actions, data));
-    ipcRenderer.on('local-files-progress', (event, data) => onLocalFilesProgress(event, this.props.actions, data));
-    ipcRenderer.on('local-files', (event, data) => onLocalFiles(event, this.props.actions, data));
-    ipcRenderer.on('local-files-error', (event, err) => onLocalFilesError(event, this.props.actions, err));
+    ipcRenderer.on('next', () => actions.nextSong());
+    ipcRenderer.on('previous', () => actions.previousSong());
+    ipcRenderer.on('pause', () => actions.pausePlayback());
+    ipcRenderer.on('playpause', () => actions.togglePlayback(this.props.player.playbackStatus));
+    ipcRenderer.on('stop', () => actions.pausePlayback());
+    ipcRenderer.on('play', () => actions.startPlayback());
+  
+    ipcRenderer.on('mute', () => {
+      if (this.props.player.muted) {
+        actions.unMute();
+      } else {
+        actions.mute();
+      }
+    });
+    ipcRenderer.on('volume', (event, data) => actions.updateVolume(data));
+    ipcRenderer.on('seek', (event, data) => actions.updateSeek(data));
+
+    ipcRenderer.on('empty-queue', () => actions.clearQueue());
+    ipcRenderer.on('queue', () => ipcRenderer.send('queue', this.props.queue.queueItems));
+    ipcRenderer.on('select-track', (event, index) => actions.selectSong(index));
+    ipcRenderer.on('create-playlist', (event, name) => actions.addPlaylist(name, this.props.queue.queueItems));
+    ipcRenderer.on('refresh-playlists', () => actions.loadPlaylists());
+    ipcRenderer.on('activate-playlist', (event, playlistName) => {
+      const tracks = this.props.playlists.find(({ name }) => playlistName === name).tracks;
+
+      actions.clearQueue();
+      actions.addPlaylistTracksToQueue(this.props.streamProviders, tracks);
+    });
+    ipcRenderer.on('update-equalizer', (event, data) => actions.updateEqualizer(data));
+    ipcRenderer.on('set-equalizer', (event, data) => actions.setEqualizer(data));
+    ipcRenderer.on('local-files-progress', (event, { scanProgress, scanTotal }) => actions.scanLocalFoldersProgress(scanProgress, scanTotal));
+    ipcRenderer.on('local-files', (event, data) => actions.scanLocalFoldersSuccess(data));
+    ipcRenderer.on('local-files-error', (event, err) => actions.scanLocalFoldersFailed(err));
     ipcRenderer.on('play-startup-track', (event, meta) => {
       this.props.actions.playTrack(
         this.props.streamProviders.filter(({ sourceName }) => sourceName === 'Local'),
@@ -94,6 +80,36 @@ class IpcContainer extends React.Component {
       this.props.actions.onDownloadError(data.uuid);
       logger.error(data);
     });
+
+    ipcRenderer.on('settings', (event, data) => {
+      const key = Object.keys(data).pop();
+      const value = Object.values(data).pop();
+    
+      switch (typeof value) {
+      case 'boolean':
+        actions.setBooleanOption(key, value);
+        break;
+      case 'number':
+        actions.setNumberOption(key, value);
+        break;
+      case 'string':
+      default:
+        actions.setStringOption(key, value);
+        break;
+      }
+    });
+    ipcRenderer.on('playing-status', () => {
+      const { shuffleQueue, loopAfterQueueEnd } = this.props.settings;
+
+      try {
+        const { artist, name, thumbnail } = this.props.queue.queueItems[this.props.queue.currentSong];
+
+        ipcRenderer.send('playing-status', { ...this.props.player, artist, name, thumbnail, loopAfterQueueEnd, shuffleQueue });
+      } catch (err) {
+        ipcRenderer.send('playing-status', { ...this.props.player, loopAfterQueueEnd, shuffleQueue });
+      }
+    });
+
   }
 
   componentDidUpdate({ queue: prevQueue }) {
@@ -105,7 +121,7 @@ class IpcContainer extends React.Component {
       (!previousSong && currentSong) ||
       (previousSong && currentSong && currentSong.name !== previousSong.name)
     ){
-      onSongChange(currentSong);
+      ipcRenderer.send('songChange', currentSong);
     }
   }
 

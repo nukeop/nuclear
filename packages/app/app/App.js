@@ -20,7 +20,6 @@ import * as ScrobblingActions from './actions/scrobbling';
 import * as ImportFavActions from './actions/importfavs';
 import * as ConnectivityActions from './actions/connectivity';
 import * as GithubContribActions from './actions/githubContrib';
-import { mpris } from '@nuclear/core';
 
 import './app.global.scss';
 import styles from './styles.scss';
@@ -81,7 +80,6 @@ class App extends React.PureComponent {
   }
 
   updateConnectivityStatus = (isConnected) => {
-    mpris.sendConnectivity(isConnected);
     this.props.actions.changeConnectivity(isConnected);
   }
 

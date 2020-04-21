@@ -13,9 +13,6 @@ export { config as PluginConfig } from './plugins/config';
 export { default as createApi } from './plugins/api';
 export * from './persistence/store';
 
-import * as mpris from './mpris';
-export { mpris };
-
 import * as rest from './rest';
 export { rest };
 

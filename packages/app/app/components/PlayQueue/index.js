@@ -8,7 +8,6 @@ import { Icon } from 'semantic-ui-react';
 import { withState, compose } from 'recompose';
 
 import { QueueItem, formatDuration } from '@nuclear/ui';
-import { mpris } from '@nuclear/core';
 
 import { getTrackDuration } from '../../utils';
 import { safeAddUuid } from '../../actions/helpers';
@@ -116,7 +115,6 @@ class PlayQueue extends React.PureComponent {
                       )
                     )}
                     resetPlayer={this.props.items.length === 1 ? this.props.actions.resetPlayer : undefined}
-                    sendPaused={mpris.sendPaused}
                   />
                 }
                 isQueueItemCompact={compact}
