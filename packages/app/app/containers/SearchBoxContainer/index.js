@@ -18,7 +18,9 @@ const SearchBoxContainer = ({
   selectedSearchProviderOption,
   handleSelectSearchProvider,
   isConnected,
-  t
+  t,
+  isFocused,
+  handleFocus
 }) => (
   <SearchBox
     loading={unifiedSearchStarted}
@@ -29,6 +31,8 @@ const SearchBoxContainer = ({
     searchProviders={searchProvidersOptions}
     selectedSearchProvider={selectedSearchProviderOption}
     onSearchProviderSelect={handleSelectSearchProvider}
+    isFocused={isFocused}
+    handleFocus={handleFocus}
   />
 );
 
@@ -36,7 +40,8 @@ const mapStateToProps = state => ({
   unifiedSearchStarted: state.search.unifiedSearchStarted,
   isConnected: state.connectivity,
   searchProviders: state.plugin.plugins.metaProviders,
-  selectedSearchProvider: state.plugin.selected.metaProviders
+  selectedSearchProvider: state.plugin.selected.metaProviders,
+  isFocused: state.search.isFocused
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -55,14 +60,15 @@ export default compose(
   connect(mapStateToProps, mapDispatchToProps),
   withTranslation('search'),
   withHandlers({
-    handleSearch: 
-    ({ searchActions, history }) => value => 
-      value.length >= MIN_SEARCH_LENGTH ? searchActions.unifiedSearch(value, history) : null,
-    handleSelectSearchProvider:  
-      ({ pluginActions }) => provider => 
-        pluginActions.selectMetaProvider(provider.value)
+    handleSearch:
+      ({ searchActions, history }) => value =>
+        value.length >= MIN_SEARCH_LENGTH ? searchActions.unifiedSearch(value, history) : null,
+    handleSelectSearchProvider:
+      ({ pluginActions }) => provider =>
+        pluginActions.selectMetaProvider(provider.value),
+    handleFocus: ({ searchActions }) => bool => searchActions.setSearchDropdownVisibility(bool)
   }),
-  withProps(({searchProviders, selectedSearchProvider}) => ({
+  withProps(({ searchProviders, selectedSearchProvider }) => ({
     searchProvidersOptions: _.map(searchProviders, providerToOption),
     selectedSearchProviderOption: providerToOption(
       _.find(searchProviders, { sourceName: selectedSearchProvider })

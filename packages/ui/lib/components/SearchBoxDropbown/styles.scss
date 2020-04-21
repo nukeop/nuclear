@@ -1,0 +1,11 @@
+@import "../../common.scss";
+
+.search_box_dropdown {
+  display: flex;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: $grey;
+  color: $background2;
+}

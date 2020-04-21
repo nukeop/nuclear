@@ -15,7 +15,8 @@ import {
   LASTFM_TRACK_SEARCH_SUCCESS,
   YOUTUBE_PLAYLIST_SEARCH_START,
   YOUTUBE_PLAYLIST_SEARCH_SUCCESS,
-  ALBUM_INFO_SEARCH_ERROR
+  ALBUM_INFO_SEARCH_ERROR,
+  SEARCH_DROPDOWN_DISPLAY_CHANGE
 } from '../actions/search';
 import { Artist } from '@nuclear/core';
 
@@ -28,13 +29,13 @@ const initialState = {
   albumDetails: {},
   artistDetails: {},
   unifiedSearchStarted: false,
-  playlistSearchStarted: false
+  playlistSearchStarted: false,
+  isFocused: false
 };
 
 function reduceAlbumSearchSuccess(state, action) {
   return {
-    ...
-    state,
+    ...state,
     albumSearchResults: action.payload
   };
 }
@@ -72,6 +73,13 @@ function reduceYoutubePlaylistSearchSuccess(state, action) {
   return {
     ...state,
     playlistSearchResults: action.payload
+  };
+}
+
+function reduceSearchDropdownDisplay(state, action) {
+  return {
+    ...state,
+    isFocused: action.payload
   };
 }
 
@@ -200,6 +208,8 @@ export default function SearchReducer(state = initialState, action) {
     return reduceYoutubePlaylistSearchStart(state, action);
   case YOUTUBE_PLAYLIST_SEARCH_SUCCESS:
     return reduceYoutubePlaylistSearchSuccess(state, action);
+  case SEARCH_DROPDOWN_DISPLAY_CHANGE:
+    return reduceSearchDropdownDisplay(state, action);
   default:
     return state;
   }
