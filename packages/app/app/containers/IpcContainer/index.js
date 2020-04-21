@@ -21,10 +21,10 @@ class IpcContainer extends React.Component {
 
     ipcRenderer.on('next', () => actions.nextSong());
     ipcRenderer.on('previous', () => actions.previousSong());
-    ipcRenderer.on('pause', () => actions.pausePlayback());
-    ipcRenderer.on('playpause', () => actions.togglePlayback(this.props.player.playbackStatus));
-    ipcRenderer.on('stop', () => actions.pausePlayback());
-    ipcRenderer.on('play', () => actions.startPlayback());
+    ipcRenderer.on('pause', () => actions.pausePlayback(true));
+    ipcRenderer.on('playpause', () => actions.togglePlayback(this.props.player.playbackStatus, true));
+    ipcRenderer.on('stop', () => actions.pausePlayback(true));
+    ipcRenderer.on('play', () => actions.startPlayback(true));
   
     ipcRenderer.on('mute', () => {
       if (this.props.player.muted) {
@@ -33,7 +33,7 @@ class IpcContainer extends React.Component {
         actions.mute();
       }
     });
-    ipcRenderer.on('volume', (event, data) => actions.updateVolume(data));
+    ipcRenderer.on('volume', (event, data) => actions.updateVolume(data, true));
     ipcRenderer.on('seek', (event, data) => actions.updateSeek(data));
 
     ipcRenderer.on('empty-queue', () => actions.clearQueue());
@@ -54,7 +54,7 @@ class IpcContainer extends React.Component {
     ipcRenderer.on('local-files-error', (event, err) => actions.scanLocalFoldersFailed(err));
     ipcRenderer.on('play-startup-track', (event, meta) => {
       this.props.actions.playTrack(
-        this.props.streamProviders.filter(({ sourceName }) => sourceName === 'Local'),
+        [],
         meta
       );
       this.props.history.push('/library');
@@ -62,7 +62,7 @@ class IpcContainer extends React.Component {
 
     ipcRenderer.on('queue-add', (event, metas) => {
       this.props.actions.addPlaylistTracksToQueue(
-        this.props.streamProviders.filter(({ sourceName }) => sourceName === 'Local'),
+        [],
         metas
       );
     });
@@ -87,14 +87,14 @@ class IpcContainer extends React.Component {
     
       switch (typeof value) {
       case 'boolean':
-        actions.setBooleanOption(key, value);
+        actions.setBooleanOption(key, value, true);
         break;
       case 'number':
-        actions.setNumberOption(key, value);
+        actions.setNumberOption(key, value, true);
         break;
       case 'string':
       default:
-        actions.setStringOption(key, value);
+        actions.setStringOption(key, value, true);
         break;
       }
     });

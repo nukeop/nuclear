@@ -10,26 +10,28 @@ export const MUTE = 'MUTE';
 export const UNMUTE = 'UNMUTE';
 export const UPDATE_PLAYBACK_STREAM_LOADING = 'UPDATE_PLAYBACK_STREAM_LOADING';
 
-export function startPlayback() {
+export function startPlayback(fromMain) {
   return {
     type: START_PLAYBACK,
-    payload: null
+    payload: null,
+    meta: { fromMain }
   };
 }
 
-export function pausePlayback() {
+export function pausePlayback(fromMain) {
   return {
     type: PAUSE_PLAYBACK,
-    payload: null
+    payload: null,
+    meta: { fromMain }
   };
 }
 
-export function togglePlayback(currentState) {
+export function togglePlayback(currentState, fromMain) {
   return dispatch => {
     if (currentState === Sound.status.PLAYING) {
-      dispatch(pausePlayback());
+      dispatch(pausePlayback(fromMain));
     } else {
-      dispatch(startPlayback());
+      dispatch(startPlayback(fromMain));
     }
   };
 }

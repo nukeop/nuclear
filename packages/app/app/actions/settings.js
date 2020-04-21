@@ -13,30 +13,33 @@ export function readSettings() {
   };
 }
 
-export function setBooleanOption(option, state) {
+export function setBooleanOption(option, state, fromMain) {
   setOption(option, state);
 
   return {
     type: SET_BOOLEAN_OPTION,
-    payload: {option, state}
+    payload: {option, state},
+    meta: { fromMain }
   };
 }
 
-export function setStringOption(option, state) {
+export function setStringOption(option, state, fromMain) {
   setOption(option, state);
 
   return {
     type: SET_STRING_OPTION,
-    payload: {option, state}
+    payload: {option, state},
+    meta: { fromMain }
   };
 }
 
-export function setNumberOption(option, state) {
+export function setNumberOption(option, state, fromMain) {
   setOption(option, state);
 
   return {
     type: SET_NUMBER_OPTION,
-    payload: {option, state}
+    payload: {option, state},
+    meta: { fromMain }
   };
 }
 

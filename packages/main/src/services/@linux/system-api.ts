@@ -142,8 +142,8 @@ class LinuxMediaService extends MprisService implements NuclearApi {
   onPlayPause() {
     this.playbackStatus = this.playbackStatus === MprisService.PLAYBACK_STATUS_PLAYING
       ? MprisService.PLAYBACK_STATUS_PAUSED
-      : MprisService.PLAYBACK_STATUS_STOPED;
-    
+      : MprisService.PLAYBACK_STATUS_PLAYING;
+
     this.window.send('playpause');
   }
 
