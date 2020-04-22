@@ -145,6 +145,10 @@ class LinuxMediaService extends MprisService implements NuclearApi {
 
   @systemMediaEvent('playpause')
   onPlayPause() {
+    if (!this.metadata['xesam:title']) {
+      return;
+    }
+
     if (this.playbackStatus === MprisService.PLAYBACK_STATUS_PLAYING) {
       this.playbackStatus = MprisService.PLAYBACK_STATUS_PAUSED;
       this.discord.pause();
