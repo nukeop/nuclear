@@ -8,6 +8,7 @@ import { ADD_QUEUE_ITEM, CLEAR_QUEUE, REMOVE_QUEUE_ITEM, QUEUE_DROP } from '../.
 import { SET_BOOLEAN_OPTION, SET_NUMBER_OPTION } from '../../actions/settings';
 import { CHANGE_CONNECTIVITY } from '../../actions/connectivity';
 import { ADD_TO_DOWNLOADS, DOWNLOAD_RESUMED, DOWNLOAD_PAUSED, DOWNLOAD_FINISHED, DOWNLOAD_ERROR } from '../../actions/downloads';
+import { CLOSE_WINDOW, MINIMIZE_WINDOW, MAXIMIZE_WINDOW } from '../../actions/window';
 
 const ipcConnect = () => next => {
   next({
@@ -57,8 +58,7 @@ const ipcConnect = () => next => {
       ipcRenderer.send(IpcEvents.TRACK_REMOVE, payload);
       break;
     case QUEUE_DROP:
-      ipcRenderer.send(IpcEvents.QUEUE_DROP, payload);
-      break;
+      return ipcRenderer.send(IpcEvents.QUEUE_DROP, payload);
   
     case SET_BOOLEAN_OPTION:
       switch (payload.option) {
@@ -113,6 +113,13 @@ const ipcConnect = () => next => {
       nextDownload ? ipcRenderer.send(IpcEvents.DOWNLOAD_START, nextDownload.track) : null;
       break;
     }
+
+    case CLOSE_WINDOW:
+      return ipcRenderer.send(IpcEvents.WINDOW_CLOSE);
+    case MAXIMIZE_WINDOW:
+      return ipcRenderer.send(IpcEvents.WINDOW_MAXIMIZE);
+    case MINIMIZE_WINDOW:
+      return ipcRenderer.send(IpcEvents.WINDOW_MINIMIZE);
     }
   
     next({ type, payload });

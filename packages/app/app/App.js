@@ -20,6 +20,7 @@ import * as ScrobblingActions from './actions/scrobbling';
 import * as ImportFavActions from './actions/importfavs';
 import * as ConnectivityActions from './actions/connectivity';
 import * as GithubContribActions from './actions/githubContrib';
+import * as WindowActions from './actions/window';
 
 import './app.global.scss';
 import styles from './styles.scss';
@@ -124,7 +125,13 @@ class App extends React.PureComponent {
         <SearchBoxContainer />
         <Spacer className={styles.navbar_spacer}/>
         <HelpModalContainer />
-        {this.props.settings.framelessWindow && <WindowControls />}
+        {this.props.settings.framelessWindow && (
+          <WindowControls
+            onCloseClick={this.props.actions.closeWindow}
+            onMaxClick={this.props.actions.maximizeWindow}
+            onMinClick={this.props.actions.minimizeWindow}
+          />
+        )}
       </Navbar>
     );
   }
@@ -403,7 +410,8 @@ function mapDispatchToProps (dispatch) {
         PluginsActions,
         ConnectivityActions,
         SearchActions,
-        GithubContribActions
+        GithubContribActions,
+        WindowActions
       ),
       dispatch
     )
