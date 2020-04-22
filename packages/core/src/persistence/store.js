@@ -1,8 +1,8 @@
 import _ from 'lodash';
 import ElectronStore from 'electron-store';
+import { ipcRenderer } from 'electron';
 
 import { settingsConfig } from '../settings';
-import { restartApi, stopApi } from '../mpris';
 
 /**
  * return multiple items from store
@@ -83,9 +83,9 @@ function setOption(key, value) {
     (key === 'api.port' && isValidPort(value) && getOption('api.enabled')) ||
     (key === 'api.enabled' && value)
   ) {
-    restartApi();
+    ipcRenderer.send('restart-api');
   } else if (key === 'api.enabled' && !value) {
-    stopApi();
+    ipcRenderer.send('stop-api');
   }
 }
 
