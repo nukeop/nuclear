@@ -2,7 +2,7 @@ import 'isomorphic-fetch';
 
 export * from './settings';
 export * from './interfaces';
-export { isElectron } from './util';
+export { isElectron, isValidPort } from './util';
 export { transformSource, transformPluginFile } from './plugins/transform';
 
 export { default as Plugin } from './plugins/plugin';
@@ -19,3 +19,5 @@ export { rest };
 export { default as Artist } from './structs/Artist';
 export { default as Album } from './structs/Album';
 export { default as Track } from './structs/Track';
+
+export { default as IpcEvents } from './ipc/events';

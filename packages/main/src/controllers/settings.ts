@@ -9,6 +9,7 @@ import SystemApi from '../services/system-api';
 import Window from '../services/window';
 import { ipcEvent, ipcController } from '../utils/decorators';
 import LocalLibrary from '../services/local-library';
+import { IpcEvents } from '@nuclear/core';
 
 @ipcController()
 class SettingsIpcCtrl {
@@ -21,13 +22,13 @@ class SettingsIpcCtrl {
     @inject(Window) private window: Window
   ) {}
 
-  @ipcEvent('started', { once: true })
+  @ipcEvent(IpcEvents.STARTED, { once: true })
   onStart() {
     this.store.getOption('api.enabled') && this.httpApi.listen();
     this.systemApi.listen();
   }
 
-  @ipcEvent('close')
+  @ipcEvent(IpcEvents.WINDOW_CLOSE)
   async onClose() {
     await Promise.all([
       this.httpApi.close(),
@@ -37,29 +38,29 @@ class SettingsIpcCtrl {
     app.quit();
   }
 
-  @ipcEvent('minimize')
+  @ipcEvent(IpcEvents.WINDOW_MINIMIZE)
   onMinimize() {
     this.window.minimize();
   }
 
-  @ipcEvent('maximize')
+  @ipcEvent(IpcEvents.WINDOW_MAXIMIZE)
   onMaximize() {
     this.window.maximize();
   }
 
-  @ipcEvent('restart-api')
+  @ipcEvent(IpcEvents.API_RESTART)
   async restartHttpApi() {
     await this.httpApi.close();
 
     this.httpApi.listen();
   }
 
-  @ipcEvent('stop-api')
+  @ipcEvent(IpcEvents.API_STOP)
   closeHttpServer() {
     return this.httpApi.close();
   }
 
-  @ipcEvent('connectivity')
+  @ipcEvent(IpcEvents.CONNECTIVITY)
   toggleConnectivity(event: IpcMessageEvent, isConnected: boolean) {
     this.config.setConnectivity(isConnected);
   }

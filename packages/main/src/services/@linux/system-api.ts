@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { NuclearStatus, NuclearMeta, NuclearPlaylist, PlaybackStatus } from '@nuclear/core';
+import { NuclearStatus, NuclearMeta, NuclearPlaylist, PlaybackStatus, IpcEvents } from '@nuclear/core';
 import autobind from 'autobind-decorator';
 import { app, IpcMain, Event } from 'electron';
 import { inject } from 'inversify';
@@ -62,8 +62,8 @@ class LinuxMediaService extends MprisService implements NuclearApi {
 
   private getPlayingStatus(): Promise<NuclearStatus> {
     return new Promise(resolve => {
-      this.window.send('playing-status');
-      this.ipc.once('playing-status', (evt: Event, data: NuclearStatus) => {
+      this.window.send(IpcEvents.PLAYING_STATUS);
+      this.ipc.once(IpcEvents.PLAYING_STATUS, (evt: Event, data: NuclearStatus) => {
         resolve(data);
       });
     });
@@ -94,7 +94,7 @@ class LinuxMediaService extends MprisService implements NuclearApi {
   @systemMediaEvent('activatePlaylist')
   onActivatePlaylist(playlistId: string) {
     this.setActivePlaylist(playlistId);
-    this.window.send('activate-playlist', this.playlists[this.getPlaylistIndex(playlistId)].Name);
+    this.window.send(IpcEvents.PLAYLIST_ACTIVATE, this.playlists[this.getPlaylistIndex(playlistId)].Name);
   }
 
   @systemMediaEvent('raise')
@@ -110,7 +110,7 @@ class LinuxMediaService extends MprisService implements NuclearApi {
   @systemMediaEvent('shuffle')
   onShuffle() {
     this.shuffle = !this.shuffle;
-    this.window.send('settings', { shuffleQueue: this.shuffle });
+    this.window.send(IpcEvents.SETTINGS, { shuffleQueue: this.shuffle });
   }
 
   @systemMediaEvent('loopStatus')
@@ -119,28 +119,28 @@ class LinuxMediaService extends MprisService implements NuclearApi {
       ? MprisService.LOOP_STATUS_NONE
       : MprisService.LOOP_STATUS_PLAYLIST;
   
-    this.window.send('settings', { loopAfterQueueEnd: this.loopStatus === MprisService.LOOP_STATUS_PLAYLIST });
+    this.window.send(IpcEvents.SETTINGS, { loopAfterQueueEnd: this.loopStatus === MprisService.LOOP_STATUS_PLAYLIST });
   }
 
   @systemMediaEvent('play')
   onPlay() {
     this.playbackStatus = MprisService.PLAYBACK_STATUS_PLAYING;
     this.discord.play();
-    this.window.send('play');
+    this.window.send(IpcEvents.PLAY);
   }
 
   @systemMediaEvent('pause')
   onPause() {
     this.playbackStatus = MprisService.PLAYBACK_STATUS_PAUSED;
     this.discord.pause();
-    this.window.send('pause');
+    this.window.send(IpcEvents.PAUSE);
   }
 
   @systemMediaEvent('stop')
   onStop() {
     this.playbackStatus = MprisService.PLAYBACK_STATUS_STOPED;
     this.discord.clear();
-    this.window.send('stop');
+    this.window.send(IpcEvents.STOP);
   }
 
   @systemMediaEvent('playpause')
@@ -157,28 +157,28 @@ class LinuxMediaService extends MprisService implements NuclearApi {
       this.discord.play();
     }
 
-    this.window.send('playpause');
+    this.window.send(IpcEvents.PLAYPAUSE);
   }
 
   @systemMediaEvent('volume')
   onVolume(data: number) {
     this.volume = data;
-    this.window.send('volume', data * 100);
+    this.window.send(IpcEvents.VOLUME, data * 100);
   }
 
   @systemMediaEvent('next')
   onNext() {
-    this.window.send('next');
+    this.window.send(IpcEvents.NEXT);
   }
 
   @systemMediaEvent('previous')
   onPrevious() {
-    this.window.send('previous');
+    this.window.send(IpcEvents.PREVIOUS);
   }
 
   @systemMediaEvent('goTo')
   onSelectTrack(trackId: string) {
-    this.window.send('select-track', this.getTrackIndex(trackId));
+    this.window.send(IpcEvents.TRACK_SELECT, this.getTrackIndex(trackId));
   }
 
   sendMetadata(track: NuclearMeta) {

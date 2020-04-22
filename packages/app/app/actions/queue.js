@@ -4,6 +4,7 @@ import _ from 'lodash';
 import { safeAddUuid } from './helpers';
 import { startPlayback } from './player.js';
 
+export const QUEUE_DROP = 'QUEUE_DROP';
 export const ADD_QUEUE_ITEM = 'ADD_QUEUE_ITEM';
 export const REMOVE_QUEUE_ITEM = 'REMOVE_QUEUE_ITEM';
 export const UPDATE_QUEUE_ITEM = 'UPDATE_QUEUE_ITEM';
@@ -210,3 +211,8 @@ export function changeTrackStream(track, stream) {
     }
   };
 }
+
+export const queueDrop = (paths) => ({
+  type: QUEUE_DROP,
+  payload: paths
+});

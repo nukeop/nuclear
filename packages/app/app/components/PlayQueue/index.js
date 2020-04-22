@@ -1,7 +1,7 @@
 import React from 'react';
 import classnames from 'classnames';
 import _ from 'lodash';
-import { ipcRenderer } from 'electron';
+
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { withTranslation } from 'react-i18next';
 import { Icon } from 'semantic-ui-react';
@@ -29,8 +29,7 @@ class PlayQueue extends React.PureComponent {
     }
 
     this.props.setFileHovered(false);
-
-    ipcRenderer.send('queue-drop', paths);
+    this.props.actions.queueDrop(paths);
   }
 
   onDragOverFile = (event) => {

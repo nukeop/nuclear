@@ -1,3 +1,4 @@
+import { IpcEvents } from '@nuclear/core';
 import React from 'react';
 
 import styles from './styles.scss';
@@ -5,9 +6,10 @@ import styles from './styles.scss';
 import WindowButton from './WindowButton';
 import { ipcRenderer } from 'electron';
 
-const handleMinimize = () => ipcRenderer.send('minimize');
-const handleMaximize = () => ipcRenderer.send('maximize');
-const handleClose = () => ipcRenderer.send('close');
+// TODO move this elsewhere (redux middleware ?)
+const handleMinimize = () => ipcRenderer.send(IpcEvents.WINDOW_MINIMIZE);
+const handleMaximize = () => ipcRenderer.send(IpcEvents.WINDOW_MAXIMIZE);
+const handleClose = () => ipcRenderer.send(IpcEvents.WINDOW_CLOSE);
 
 const WindowControls = () => (
   <div className={styles.window_controls_container}>

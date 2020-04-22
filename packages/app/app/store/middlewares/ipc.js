@@ -1,23 +1,23 @@
-import { getOption } from '@nuclear/core';
+import { getOption, IpcEvents, isValidPort } from '@nuclear/core';
 import { ipcRenderer } from 'electron';
 import _ from 'lodash';
 
 import { PAUSE_PLAYBACK, START_PLAYBACK, UPDATE_VOLUME } from '../../actions/player';
 import { SCAN_LOCAL_FOLDER, REMOVE_LOCAL_FOLDER, UPDATE_LOCAL_FOLDERS, SCAN_LOCAL_FOLDER_SUCCESS } from '../../actions/local';
-import { ADD_QUEUE_ITEM, CLEAR_QUEUE, REMOVE_QUEUE_ITEM } from '../../actions/queue';
-import { SET_BOOLEAN_OPTION } from '../../actions/settings';
+import { ADD_QUEUE_ITEM, CLEAR_QUEUE, REMOVE_QUEUE_ITEM, QUEUE_DROP } from '../../actions/queue';
+import { SET_BOOLEAN_OPTION, SET_NUMBER_OPTION } from '../../actions/settings';
 import { CHANGE_CONNECTIVITY } from '../../actions/connectivity';
 import { ADD_TO_DOWNLOADS, DOWNLOAD_RESUMED, DOWNLOAD_PAUSED, DOWNLOAD_FINISHED, DOWNLOAD_ERROR } from '../../actions/downloads';
 
 const ipcConnect = () => next => {
   next({
     type: UPDATE_LOCAL_FOLDERS,
-    payload: { folders: ipcRenderer.sendSync('get-localfolders') }
+    payload: { folders: ipcRenderer.sendSync(IpcEvents.LOCALFOLDERS_GET) }
   });
 
   next({
     type: SCAN_LOCAL_FOLDER_SUCCESS,
-    payload: ipcRenderer.sendSync('get-metas')
+    payload: ipcRenderer.sendSync(IpcEvents.LOCAL_METAS)
   });
 
   return ({ meta = {}, payload, type }) => {
@@ -28,48 +28,59 @@ const ipcConnect = () => next => {
   
     switch (type) {
     case START_PLAYBACK:
-      ipcRenderer.send('play');
+      ipcRenderer.send(IpcEvents.PLAY);
       break;
     case UPDATE_VOLUME:
-      ipcRenderer.send('volume', payload);
+      ipcRenderer.send(IpcEvents.VOLUME, payload);
       break;
     case PAUSE_PLAYBACK:
-      ipcRenderer.send('paused');
+      ipcRenderer.send(IpcEvents.PAUSE);
       break;
     
     case SCAN_LOCAL_FOLDER:
-      ipcRenderer.send('refresh-localfolders');
+      ipcRenderer.send(IpcEvents.LOCALFOLDERS_REFRESH);
       break;
     case REMOVE_LOCAL_FOLDER:
-      ipcRenderer.send('remove-localfolder', payload);
+      ipcRenderer.send(IpcEvents.LOCALFOLDER_REMOVE, payload);
       break;
     case UPDATE_LOCAL_FOLDERS:
-      ipcRenderer.send('set-localfolders', payload.folders);
+      ipcRenderer.send(IpcEvents.LOCALFOLDERS_SET, payload.folders);
       break;
   
     case ADD_QUEUE_ITEM:
-      ipcRenderer.send('addTrack', payload.item);
+      ipcRenderer.send(IpcEvents.TRACK_ADD, payload.item);
       break;
     case CLEAR_QUEUE:
-      ipcRenderer.send('clear-tracklist');
+      ipcRenderer.send(IpcEvents.QUEUE_CLEAR);
       break;
     case REMOVE_QUEUE_ITEM:
-      ipcRenderer.send('removeTrack', payload);
+      ipcRenderer.send(IpcEvents.TRACK_REMOVE, payload);
+      break;
+    case QUEUE_DROP:
+      ipcRenderer.send(IpcEvents.QUEUE_DROP, payload);
       break;
   
     case SET_BOOLEAN_OPTION:
       switch (payload.option) {
+      case 'api.enabled':
+        ipcRenderer.send(payload.state ? IpcEvents.API_RESTART : IpcEvents.API_STOP);
+        break;
       case 'shuffleQueue':
-        ipcRenderer.send('shuffle', payload.state);
+        ipcRenderer.send(IpcEvents.SHUFFLE, payload.state);
         break;
       case 'loopAfterQueueEnd':
-        ipcRenderer.send('loopStatus', payload.state);
+        ipcRenderer.send(IpcEvents.LOOP, payload.state);
         break;
+      }
+      break;
+    case SET_NUMBER_OPTION:
+      if (payload.option === 'api.port' && isValidPort(payload.state) && getOption('api.enabled')) {
+        ipcRenderer.send(IpcEvents.API_RESTART);
       }
       break;
       
     case CHANGE_CONNECTIVITY:
-      ipcRenderer.send('connectivity', payload);
+      ipcRenderer.send(IpcEvents.CONNECTIVITY, payload);
       break;
 
     case ADD_TO_DOWNLOADS:
@@ -82,16 +93,16 @@ const ipcConnect = () => next => {
       } catch (err){
         maxDownloads=1;
       }
-      if (payload.downloads.filter(({status}) => status==='Started' || status === 'Waiting').length > maxDownloads) {
+      if (payload.downloads.filter(({status}) => status === 'Started' || status === 'Waiting').length > maxDownloads) {
         break;
       }
-      ipcRenderer.send('start-download', track);
+      ipcRenderer.send(IpcEvents.DOWNLOAD_START, track);
       break;
     }
     case DOWNLOAD_PAUSED: {
       const {track} =_.find(payload.downloads, (item) => item.track.uuid === payload.track);
 
-      ipcRenderer.send('pause-download', track);
+      ipcRenderer.send(IpcEvents.DOWNLOAD_PAUSE, track);
       break;
     }
     case DOWNLOAD_FINISHED:
@@ -99,7 +110,7 @@ const ipcConnect = () => next => {
       const nextDownload = payload.find((download) =>
         download.status==='Waiting'
       );
-      nextDownload ? ipcRenderer.send('start-download', nextDownload.track) : null;
+      nextDownload ? ipcRenderer.send(IpcEvents.DOWNLOAD_START, nextDownload.track) : null;
       break;
     }
     }

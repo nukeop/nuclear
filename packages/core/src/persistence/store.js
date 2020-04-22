@@ -1,6 +1,5 @@
 import _ from 'lodash';
 import ElectronStore from 'electron-store';
-import { ipcRenderer } from 'electron';
 
 import { settingsConfig } from '../settings';
 
@@ -70,23 +69,10 @@ function getOption(key) {
   return value;
 }
 
-function isValidPort(value) {
-  return typeof value === 'number' && value > 1024 && value < 49151;
-}
-
 function setOption(key, value) {
   const settings = store.get('settings') || {};
 
   store.set('settings', Object.assign({}, settings, { [`${key}`]: value }));
-
-  if (
-    (key === 'api.port' && isValidPort(value) && getOption('api.enabled')) ||
-    (key === 'api.enabled' && value)
-  ) {
-    ipcRenderer.send('restart-api');
-  } else if (key === 'api.enabled' && !value) {
-    ipcRenderer.send('stop-api');
-  }
 }
 
 export { store, getOption, setOption };
