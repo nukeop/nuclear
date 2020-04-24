@@ -61,7 +61,7 @@ const LibraryFolderTree = ({
         } else {
           const parentPath = path.split('/').slice(0, -1).join('/');
           if (parentPath.length === 0) {
-            throw new Error('Parent path cannot be empty; the folder/file path-separators must not be normalized.');
+            throw new Error('Parent path cannot be empty. (the folder/file path-separators must not be normalized)');
           }
           const parent = getEntryForFolder(parentPath);
           newEntry.parentId = parent.id;
