@@ -2,7 +2,6 @@ import _ from 'lodash';
 import ElectronStore from 'electron-store';
 
 import { settingsConfig } from '../settings';
-import { restartApi, stopApi } from '../mpris';
 
 /**
  * return multiple items from store
@@ -70,23 +69,10 @@ function getOption(key) {
   return value;
 }
 
-function isValidPort(value) {
-  return typeof value === 'number' && value > 1024 && value < 49151;
-}
-
 function setOption(key, value) {
   const settings = store.get('settings') || {};
 
   store.set('settings', Object.assign({}, settings, { [`${key}`]: value }));
-
-  if (
-    (key === 'api.port' && isValidPort(value) && getOption('api.enabled')) ||
-    (key === 'api.enabled' && value)
-  ) {
-    restartApi();
-  } else if (key === 'api.enabled' && !value) {
-    stopApi();
-  }
 }
 
 export { store, getOption, setOption };

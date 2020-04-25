@@ -48,4 +48,4 @@ export interface ControllerMeta<E = string> {
 
 export type ClassDecorator<Target = any, Return = void> = (...args: any[]) => (target: Class<Target>) => Return;
 
-export type MethodDecorator<Return = void> = (...args: any[]) => (target: Class['prototype'], name: string) => Return;
+export type MethodDecorator<T = any, O = any, Return = void> = (arg1: T, arg2?: O) => (target: Class['prototype'], name: string) => Return;

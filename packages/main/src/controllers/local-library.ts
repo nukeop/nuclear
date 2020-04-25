@@ -6,6 +6,7 @@ import { ipcController, ipcEvent } from '../utils/decorators';
 import LocalLibraryDb from '../services/local-library/db';
 import Platform from '../services/platform';
 import Window from '../services/window';
+import { IpcEvents } from '@nuclear/core';
 
 @ipcController()
 class LocalIpcCtrl {
@@ -27,7 +28,7 @@ class LocalIpcCtrl {
   /**
    * get local files metas
    */
-  @ipcEvent('get-metas')
+  @ipcEvent(IpcEvents.LOCAL_METAS)
   getLocalMetas(event: IpcMessageEvent) {
     event.returnValue = this.localLibraryDb.getCache();
   }
@@ -35,7 +36,7 @@ class LocalIpcCtrl {
   /**
    * get local libray folder from store
    */
-  @ipcEvent('get-localfolders')
+  @ipcEvent(IpcEvents.LOCALFOLDERS_GET)
   getLocalFolders(event: IpcMessageEvent) {
     event.returnValue = this.localLibraryDb.get('localFolders');
   }
@@ -43,7 +44,7 @@ class LocalIpcCtrl {
   /**
    * store local library folders
    */
-  @ipcEvent('set-localfolders')
+  @ipcEvent(IpcEvents.LOCALFOLDERS_SET)
   async setLocalFolders(event: IpcMessageEvent, localFolders: string[]) {
     localFolders
       .map(folder => this.normalizeFolderPath(folder))
@@ -52,45 +53,45 @@ class LocalIpcCtrl {
       });
 
     const cache = await this.localLibrary.scanFoldersAndGetMeta((scanProgress, scanTotal) => {
-      this.window.send('local-files-progress', {scanProgress, scanTotal});
+      this.window.send(IpcEvents.LOCAL_FILES_PROGRESS, {scanProgress, scanTotal});
     });
 
-    this.window.send('local-files', cache);
+    this.window.send(IpcEvents.LOCAL_FILES, cache);
   }
 
   /**
    * Remove a local folder and all metadata attached to it 
    */
-  @ipcEvent('remove-localfolder')
+  @ipcEvent(IpcEvents.LOCALFOLDER_REMOVE)
   async removeLocalFolder(event: IpcMessageEvent, localFolder: string) {
     const metas = await this.localLibrary.removeLocalFolder(
       this.normalizeFolderPath(localFolder)
     );
 
-    this.window.send('local-files', metas);
+    this.window.send(IpcEvents.LOCAL_FILES, metas);
   }
 
   /**
    * scan local library for audio files, format and store all the metadata
    */
-  @ipcEvent('refresh-localfolders')
+  @ipcEvent(IpcEvents.LOCALFOLDERS_REFRESH)
   async onRefreshLocalFolders() {
     try {
       const cache = await this.localLibrary.scanFoldersAndGetMeta((scanProgress, scanTotal) => {
-        this.window.send('local-files-progress', {scanProgress, scanTotal});
+        this.window.send(IpcEvents.LOCAL_FILES_PROGRESS, {scanProgress, scanTotal});
       });
 
-      this.window.send('local-files', cache);
+      this.window.send(IpcEvents.LOCAL_FILES, cache);
     } catch (err) {
-      this.window.send('local-files-error', err);
+      this.window.send(IpcEvents.LOCAL_FILES_ERROR, err);
     }
   }
 
-  @ipcEvent('queue-drop')
+  @ipcEvent(IpcEvents.QUEUE_DROP)
   async addTracks(event: IpcMessageEvent, filesPath: string[]) {
     const metas = await this.localLibrary.getMetas(filesPath);
 
-    this.window.send('queue-add', metas);
+    this.window.send(IpcEvents.PLAYLIST_ADD_QUEUE, metas);
   }
 }
 

@@ -1,4 +1,4 @@
-import { NuclearBrutMeta } from '@nuclear/core';
+import { NuclearBrutMeta, IpcEvents } from '@nuclear/core';
 import glob from 'glob';
 import { inject, injectable } from 'inversify';
 import _ from 'lodash';
@@ -286,7 +286,7 @@ class LocalLibrary {
         path.isAbsolute(filePath) ? filePath : path.resolve(process.cwd(), filePath)
       ]);
 
-      this.window.send('play-startup-track', metas[0]);
+      this.window.send(IpcEvents.PLAY_STARTUP_TRACK, metas[0]);
     } catch (err) {
       this.logger.error('Error trying to play audio file');
       this.logger.error(err);

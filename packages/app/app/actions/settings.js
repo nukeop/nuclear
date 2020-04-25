@@ -1,5 +1,4 @@
 import { store, setOption } from '@nuclear/core';
-import { mpris } from '@nuclear/core';
 
 export const READ_SETTINGS = 'READ_SETTINGS';
 export const SET_BOOLEAN_OPTION = 'SET_BOOLEAN_OPTION';
@@ -14,39 +13,33 @@ export function readSettings() {
   };
 }
 
-export function setBooleanOption(option, state) {
+export function setBooleanOption(option, state, fromMain) {
   setOption(option, state);
-
-  switch (option) {
-  case 'shuffleQueue':
-    mpris.sendShuffle(state);
-    break;
-  case 'loopAfterQueueEnd':
-    mpris.sendLoop(state);
-    break;
-  }
 
   return {
     type: SET_BOOLEAN_OPTION,
-    payload: {option, state}
+    payload: {option, state},
+    meta: { fromMain }
   };
 }
 
-export function setStringOption(option, state) {
+export function setStringOption(option, state, fromMain) {
   setOption(option, state);
 
   return {
     type: SET_STRING_OPTION,
-    payload: {option, state}
+    payload: {option, state},
+    meta: { fromMain }
   };
 }
 
-export function setNumberOption(option, state) {
+export function setNumberOption(option, state, fromMain) {
   setOption(option, state);
 
   return {
     type: SET_NUMBER_OPTION,
-    payload: {option, state}
+    payload: {option, state},
+    meta: { fromMain }
   };
 }
 

@@ -1,6 +1,5 @@
 import _ from 'lodash';
-import {ipcRenderer} from 'electron';
-import { store, getOption } from '@nuclear/core';
+import { store } from '@nuclear/core';
 
 import { safeAddUuid } from './helpers';
 
@@ -18,35 +17,6 @@ const changePropertyForItem = ({downloads, uuid, propertyName='status', value}) 
   let changedItem = _.find(downloads, (item) => item.track.uuid === uuid);
   _.set(changedItem, propertyName, value);
   return downloads;
-};
-
-const sendIPC = (uuid, actionType, downloads) => {
-  const {track} =_.find(downloads, (item) => item.track.uuid === uuid);
-  let maxDownloads;
-  try {
-    maxDownloads=parseInt(getOption('max.downloads'));
-  } catch (err){
-    maxDownloads=1;
-  }
-  switch (actionType){
-  case ADD_TO_DOWNLOADS:
-  case DOWNLOAD_RESUMED:{
-    if (downloads.filter(({status}) => status==='Started' || status==='Waiting').length>maxDownloads) {
-      return;
-    }
-    return ipcRenderer.send('start-download', track);
-  }
-  case DOWNLOAD_PAUSED:
-    ipcRenderer.send('pause-download', track);
-    // eslint-disable-next-line no-fallthrough
-  case DOWNLOAD_FINISHED:
-  case DOWNLOAD_ERROR:{
-    const nextDownload = downloads.find((download) =>
-      download.status==='Waiting'
-    );
-    return nextDownload?ipcRenderer.send('start-download', nextDownload.track):null;
-  }
-  }
 };
 
 export function readDownloads() {
@@ -73,10 +43,10 @@ export function addToDownloads(streamProviders, track) {
   
     downloads = _.concat(downloads, newDownload);
   }
-  sendIPC(track.uuid, ADD_TO_DOWNLOADS, downloads);
+
   return {
     type: ADD_TO_DOWNLOADS,
-    payload: downloads
+    payload: { downloads, track: track.uuid }
   };
 }
 
@@ -100,10 +70,9 @@ export function onDownloadPause(uuid) {
     uuid,
     value: 'Paused'
   });
-  sendIPC(uuid, DOWNLOAD_PAUSED, downloads);
   return {
     type: DOWNLOAD_PAUSED,
-    payload
+    payload: { downloads: payload, track: uuid }
   };
 }
 
@@ -114,10 +83,10 @@ export function onDownloadResume(uuid) {
     uuid,
     value: 'Waiting'
   });
-  sendIPC(uuid, DOWNLOAD_RESUMED, downloads);
+
   return {
     type: DOWNLOAD_RESUMED,
-    payload
+    payload: { downloads: payload, track: uuid }
   };
 }
 
@@ -142,7 +111,7 @@ export function onDownloadError(uuid){
     uuid,
     value: 'Error'
   });
-  sendIPC(uuid, DOWNLOAD_ERROR, downloads);
+
   return {
     type: DOWNLOAD_ERROR,
     payload
@@ -156,7 +125,7 @@ export function onDownloadFinished(uuid) {
     uuid,
     value: 'Finished'
   });
-  sendIPC(uuid, DOWNLOAD_FINISHED, downloads);
+
   return {
     type: DOWNLOAD_FINISHED,
     payload

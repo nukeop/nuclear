@@ -1,14 +1,13 @@
 import React from 'react';
 import classnames from 'classnames';
 import _ from 'lodash';
-import { ipcRenderer } from 'electron';
+
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { withTranslation } from 'react-i18next';
 import { Icon } from 'semantic-ui-react';
 import { withState, compose } from 'recompose';
 
 import { QueueItem, formatDuration } from '@nuclear/ui';
-import { mpris } from '@nuclear/core';
 
 import { getTrackDuration } from '../../utils';
 import { safeAddUuid } from '../../actions/helpers';
@@ -30,8 +29,7 @@ class PlayQueue extends React.PureComponent {
     }
 
     this.props.setFileHovered(false);
-
-    ipcRenderer.send('queue-drop', paths);
+    this.props.actions.queueDrop(paths);
   }
 
   onDragOverFile = (event) => {
@@ -116,7 +114,6 @@ class PlayQueue extends React.PureComponent {
                       )
                     )}
                     resetPlayer={this.props.items.length === 1 ? this.props.actions.resetPlayer : undefined}
-                    sendPaused={mpris.sendPaused}
                   />
                 }
                 isQueueItemCompact={compact}
