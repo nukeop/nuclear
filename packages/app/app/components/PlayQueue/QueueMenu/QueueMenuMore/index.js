@@ -4,8 +4,7 @@ import cx from 'classnames';
 import _ from 'lodash';
 import { Dropdown, Icon } from 'semantic-ui-react';
 import { useTranslation } from 'react-i18next';
-import { compose, withHandlers, defaultProps } from 'recompose';
-import { mpris } from '@nuclear/core';
+import { compose, withHandlers } from 'recompose';
 import styles from './styles.scss';
 
 export const addTrackToPlaylist = (updatePlaylist, playlist, track) => {
@@ -98,7 +97,6 @@ QueueMenuMore.defaultProps = {
 };
 
 export const enhance = compose(
-  defaultProps({ sendPaused: mpris.sendPaused }),
   withHandlers({
     handleAddToDownloads: ({addToDownloads, currentItem}) => () => addToDownloads(currentItem),
     handleAddFavoriteTrack: ({addFavoriteTrack, currentItem}) => () => {
@@ -116,9 +114,9 @@ export const enhance = compose(
         });
       }
     },
-    handleClearClick: ({clearQueue, resetPlayer, sendPaused}) => () => {
+    handleClearClick: ({clearQueue, resetPlayer}) => () => {
       clearQueue();
-      resetPlayer(sendPaused);
+      resetPlayer();
     }
   })
 );

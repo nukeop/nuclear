@@ -1,4 +1,4 @@
-import { NuclearStatus } from '@nuclear/core';
+import { NuclearStatus, IpcEvents } from '@nuclear/core';
 import express from 'express';
 import { ipcMain, Event, BrowserWindow } from 'electron';
 import { Validator } from 'express-json-validator-middleware';
@@ -18,8 +18,8 @@ export function playerRouter(rendererWindow: BrowserWindow['webContents']): ISwa
 
   router
     .get('/now-playing', (req, res) => {
-      rendererWindow.send('playing-status');
-      ipcMain.once('playing-status', (evt: Event, data: NuclearStatus) => {
+      rendererWindow.send(IpcEvents.PLAYING_STATUS);
+      ipcMain.once(IpcEvents.PLAYING_STATUS, (evt: Event, data: NuclearStatus) => {
         res.json(data);
       });
     })
@@ -32,56 +32,56 @@ export function playerRouter(rendererWindow: BrowserWindow['webContents']): ISwa
 
   router
     .post('/next', (req, res) => {
-      rendererWindow.send('next');
+      rendererWindow.send(IpcEvents.NEXT);
       res.send();
     })
     .describe(getStandardDescription({ tags: ['Player'] }));
 
   router
     .post('/previous', (req, res) => {
-      rendererWindow.send('previous');
+      rendererWindow.send(IpcEvents.PREVIOUS);
       res.send();
     })
     .describe(getStandardDescription({ tags: ['Player'] }));
 
   router
     .post('/pause', (req, res) => {
-      rendererWindow.send('pause');
+      rendererWindow.send(IpcEvents.PAUSE);
       res.send();
     })
     .describe(getStandardDescription({ tags: ['Player'] }));
 
   router
     .post('/play-pause', (req, res) => {
-      rendererWindow.send('playpause');
+      rendererWindow.send(IpcEvents.PLAYPAUSE);
       res.send();
     })
     .describe(getStandardDescription({ tags: ['Player'] }));
 
   router
     .post('/stop', (req, res) => {
-      rendererWindow.send('stop');
+      rendererWindow.send(IpcEvents.STOP);
       res.send();
     })
     .describe(getStandardDescription({ tags: ['Player'] }));
 
   router
     .post('/play', (req, res) => {
-      rendererWindow.send('play');
+      rendererWindow.send(IpcEvents.PLAY);
       res.send();
     })
     .describe(getStandardDescription({ tags: ['Player'] }));
 
   router
     .post('/mute', (req, res) => {
-      rendererWindow.send('mute');
+      rendererWindow.send(IpcEvents.MUTE);
       res.send();
     })
     .describe(getStandardDescription({ tags: ['Player'] }));
 
   router
     .post('/volume', validate(volumeSchema), (req, res) => {
-      rendererWindow.send('volume', req.body.value);
+      rendererWindow.send(IpcEvents.VOLUME, req.body.value);
       res.send();
     })
     .describe(
@@ -93,7 +93,7 @@ export function playerRouter(rendererWindow: BrowserWindow['webContents']): ISwa
 
   router
     .post('/seek', validate(seekSchema), (req, res) => {
-      rendererWindow.send('send', req.body.value);
+      rendererWindow.send(IpcEvents.SEEK, req.body.value);
       res.send();
     })
     .describe(

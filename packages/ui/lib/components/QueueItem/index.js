@@ -85,7 +85,6 @@ QueueItem.propTypes = {
   selectSong: PropTypes.func, //eslint-disable-line
   removeFromQueue: PropTypes.func, //eslint-disable-line
   resetPlayer: PropTypes.func, //eslint-disable-line
-  sendPaused: PropTypes.func, //eslint-disable-line
   error: PropTypes.oneOf([
     PropTypes.bool,
     PropTypes.shape({
@@ -97,10 +96,10 @@ QueueItem.propTypes = {
 
 export const enhance = compose(
   withHandlers({
-    handleRemoveFromQueue: ({ removeFromQueue, track, resetPlayer, sendPaused }) => () => {
+    handleRemoveFromQueue: ({ removeFromQueue, track, resetPlayer }) => () => {
       removeFromQueue(track);
       if (resetPlayer) {
-        resetPlayer(sendPaused);
+        resetPlayer();
       }
     },
     handleSelectSong: ({ selectSong, index }) => () => selectSong(index)

@@ -1,4 +1,4 @@
-import { NuclearPlaylist } from '@nuclear/core';
+import { NuclearPlaylist, IpcEvents } from '@nuclear/core';
 import { BrowserWindow } from 'electron';
 import express from 'express';
 import { Validator } from 'express-json-validator-middleware';
@@ -18,7 +18,7 @@ export function playlistRouter(store: Store, rendererWindow: BrowserWindow['webC
 
   router
     .post('/', validate(addPlaylistSchema), (req, res) => {
-      rendererWindow.send('create-playlist', req.body.name);
+      rendererWindow.send(IpcEvents.PLAYLIST_CREATE, req.body.name);
       res.send();
     })
     .describe(
@@ -54,7 +54,7 @@ export function playlistRouter(store: Store, rendererWindow: BrowserWindow['webC
         const playlists: NuclearPlaylist[] = store.get('playlists');
 
         store.set('playlists', playlists.filter(({ name }) => name !== req.params.name));
-        rendererWindow.send('refresh-playlists');
+        rendererWindow.send(IpcEvents.PLAYLIST_REFRESH);
         res.send();
       } catch (err) {
         next(err);

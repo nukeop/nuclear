@@ -7,20 +7,20 @@ import {
   UPDATE_LOCAL_FILTER,
   UPDATE_LOCAL_SORT,
   UPDATE_LIBRARY_LIST_TYPE,
-  UPDATE_LOCAL_FOLDERS
+  UPDATE_LOCAL_FOLDERS,
+  REMOVE_LOCAL_FOLDER
 } from '../actions/local';
-import { mpris } from '@nuclear/core';
 
 const initialState = {
   pending: false,
   error: false,
-  folders: mpris.getLocalFolders(),
+  folders: [],
   page: 0,
   sortBy: 'artist',
   direction: 'ascending',
   filter: '',
   listType: LIST_TYPE.SIMPLE_LIST,
-  tracks: mpris.getLocalMetas()
+  tracks: {}
 };
 
 export default function LocalReducer(state = initialState, action) {
@@ -29,6 +29,11 @@ export default function LocalReducer(state = initialState, action) {
     return {
       ...state,
       folders: action.payload.folders
+    };
+  case REMOVE_LOCAL_FOLDER:
+    return {
+      ...state,
+      folders: _.filter(state.folders, f => f !== action.payload)
     };
   case SCAN_LOCAL_FOLDER:
     return {

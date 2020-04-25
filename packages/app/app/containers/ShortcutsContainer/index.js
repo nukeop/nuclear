@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as Mousetrap from 'mousetrap';
 import Sound from 'react-hifi';
-import { mpris } from '@nuclear/core';
 import _ from 'lodash';
 
 
@@ -39,7 +38,7 @@ class Shortcuts extends React.Component {
 
     if (queue.queueItems.length > 0) {
       if (player.playbackStatus === Sound.status.PLAYING) {
-        actions.pausePlayback(mpris.sendPaused);
+        actions.pausePlayback();
       } else {
         actions.startPlayback();
       }

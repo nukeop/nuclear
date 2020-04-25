@@ -1,4 +1,4 @@
-import {NuclearBrutMeta } from '@nuclear/core';
+import { NuclearBrutMeta, IpcEvents } from '@nuclear/core';
 import { IpcMessageEvent, DownloadItem } from 'electron';
 import { inject } from 'inversify';
 import _ from 'lodash';
@@ -25,7 +25,7 @@ class DownloadIpcCtrl {
   /**
    * Start a download using the download service
    */
-  @ipcEvent('start-download')
+  @ipcEvent(IpcEvents.DOWNLOAD_START)
   async onStartDownload(event: IpcMessageEvent, data: NuclearBrutMeta) {
     try {
       const {uuid} = data;
@@ -55,10 +55,10 @@ class DownloadIpcCtrl {
         },
         onProgress: (progress) => {
           if (progress.transferredBytes===progress.totalBytes){
-            this.window.send('download-finished', uuid);
+            this.window.send(IpcEvents.DOWNLOAD_FINISHED, uuid);
             this.downloadItems = this.downloadItems.filter((item) => item.uuid!==uuid);
           }
-          this.window.send('download-progress', {
+          this.window.send(IpcEvents.DOWNLOAD_PROGRESS, {
             uuid,
             progress: progress.percent
           });
@@ -66,12 +66,12 @@ class DownloadIpcCtrl {
       });
       this.logger.log(`Download success: ${artistName} - ${_.get(data, 'name')}`);
     } catch (error) {
-      this.window.send('download-error', { uuid: data.uuid, error });
+      this.window.send(IpcEvents.DOWNLOAD_ERROR, { uuid: data.uuid, error });
       throw error;
     }
   }
   
-  @ipcEvent('pause-download')
+  @ipcEvent(IpcEvents.DOWNLOAD_PAUSE)
   async onPauseDownload(event: IpcMessageEvent, data: NuclearBrutMeta) {
     try {
       const {uuid} = data;
@@ -80,7 +80,7 @@ class DownloadIpcCtrl {
         downloadRef.ref.pause();
       }
     } catch (error) {
-      this.window.send('download-error', { uuid: data.uuid, error });
+      this.window.send(IpcEvents.DOWNLOAD_ERROR, { uuid: data.uuid, error });
       throw error;
     }
   }

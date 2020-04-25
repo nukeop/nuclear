@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { IpcEvents } from '@nuclear/core';
 import { ipcMain, Event, BrowserWindow } from 'electron';
 import express from 'express';
 import swagger, { ISwaggerizedRouter } from 'swagger-spec-express';
@@ -12,7 +13,7 @@ export function queueRouter(rendererWindow: BrowserWindow['webContents']): ISwag
   swagger.swaggerize(router);
 
   router.get('/', (req, res) => {
-    rendererWindow.send('queue');
+    rendererWindow.send(IpcEvents.QUEUE);
     ipcMain.once('queue', (evt: Event, data: any) => {
       res.json(data);
     });
@@ -24,7 +25,7 @@ export function queueRouter(rendererWindow: BrowserWindow['webContents']): ISwag
 
   router
     .post('/empty', (req, res) => {
-      rendererWindow.send('empty-queue');
+      rendererWindow.send(IpcEvents.QUEUE_CLEAR);
       res.send();
     })
     .describe(getStandardDescription({

@@ -1,4 +1,4 @@
-import { settingsConfig } from '@nuclear/core';
+import { settingsConfig, IpcEvents } from '@nuclear/core';
 import { BrowserWindow } from 'electron';
 import express from 'express';
 import { Validator } from 'express-json-validator-middleware';
@@ -56,7 +56,7 @@ export function settingsRouter(store: Store, rendererWindow: BrowserWindow['webC
       '/:option',
       validate(updateSettingsSchema),
       (req, res) => {
-        rendererWindow.send('settings', { [req.params.option]: req.body.value });
+        rendererWindow.send(IpcEvents.SETTINGS, { [req.params.option]: req.body.value });
         res.send();
       }
     )

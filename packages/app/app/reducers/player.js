@@ -1,4 +1,5 @@
 import Sound from 'react-hifi';
+import { getOption } from '@nuclear/core';
 
 import {
   START_PLAYBACK,
@@ -22,7 +23,7 @@ const initialState = {
   playbackStreamLoading: false,
   playbackProgress: 0,
   seek: 0,
-  volume: 100,
+  volume: getOption('volume'),
   muted: false
 };
 

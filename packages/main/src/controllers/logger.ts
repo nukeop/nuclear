@@ -4,8 +4,7 @@ import { inject } from 'inversify';
 
 import { ipcEvent, ipcController } from '../utils/decorators';
 import Logger, { $mainLogger } from '../services/logger';
-
-const ELECTRON_TIMBER_ERROR_EVENT = '__ELECTRON_TIMBER_ERROR__';
+import { IpcEvents } from '@nuclear/core';
 
 @ipcController()
 class LoggerIpcCtrl {
@@ -13,7 +12,7 @@ class LoggerIpcCtrl {
     @inject($mainLogger) private logger: Logger
   ) {}
 
-  @ipcEvent(ELECTRON_TIMBER_ERROR_EVENT)
+  @ipcEvent(IpcEvents.ELECTRON_TIMBER_ERROR_EVENT)
   logRendererError(event: IpcMessageEvent, ...args: any[]) {
     this.logger.writeToFile('renderer', ...args);
   }

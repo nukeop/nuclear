@@ -6,6 +6,7 @@ import swagger, { ISwaggerizedRouter } from 'swagger-spec-express';
 import { updateEqualizerSchema } from '../schema';
 import { getStandardDescription } from '../swagger';
 import Store from '../../../store';
+import { IpcEvents } from '@nuclear/core';
 
 const { validate } = new Validator({ allErrors: true });
 
@@ -23,7 +24,7 @@ export function equalizerRouter(store: Store, rendererWindow: BrowserWindow['web
     }));
 
   router.post('/', validate(updateEqualizerSchema), (req, res) => {
-    rendererWindow.send('update-equalizer', req.body.values);
+    rendererWindow.send(IpcEvents.EQUALIZER_UPDATE, req.body.values);
     res.send();
   })
     .describe(getStandardDescription({
@@ -37,7 +38,7 @@ export function equalizerRouter(store: Store, rendererWindow: BrowserWindow['web
     if (!equalizerNames.includes(req.params.eqName)) {
       res.status(400).send(`name should be one of ${equalizerNames.toString()}`);
     } else {
-      rendererWindow.send('set-equalizer', req.params.eqName);
+      rendererWindow.send(IpcEvents.EQUALIZER_SET, req.params.eqName);
       res.send();
     }
   })
