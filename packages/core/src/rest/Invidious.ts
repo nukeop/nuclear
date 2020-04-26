@@ -19,6 +19,8 @@ export const trackSearch = async (query: string, currentStream?: StreamData) => 
   }
   const result = await response.json();
 
+  result.shift();
+
   const track = currentStream
     ? result.find(({ videoId }) => currentStream.id !== videoId)
     : result[0];
