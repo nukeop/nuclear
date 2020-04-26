@@ -1,5 +1,5 @@
 import { IpcEvents } from '@nuclear/core';
-import { app, IpcMessageEvent } from 'electron';
+import { IpcMessageEvent } from 'electron';
 import { inject } from 'inversify';
 
 import Config from '../services/config';
@@ -29,8 +29,7 @@ class SettingsIpcCtrl {
   @ipcEvent(IpcEvents.WINDOW_CLOSE)
   async onClose() {
     await this.httpApi.close();
-  
-    app.quit();
+    this.window.close();
   }
 
   @ipcEvent(IpcEvents.WINDOW_MINIMIZE)

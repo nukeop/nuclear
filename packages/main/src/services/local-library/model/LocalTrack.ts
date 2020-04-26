@@ -10,10 +10,10 @@ import sharp from 'sharp';
 
 import LocalFolder from './LocalFolder';
 
-const THUMBNAILS_DIR = path.join(app.getPath('userData'), 'thumbnails');
-
 @Entity()
 class LocalTrack {
+  static THUMBNAILS_DIR = path.join(app.getPath('userData'), 'thumbnails');
+
   @PrimaryColumn()
   uuid: string;
 
@@ -92,6 +92,7 @@ class LocalTrack {
       })
     }];
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (this as any).artist = {
       name: this.artist
     };
@@ -103,7 +104,7 @@ class LocalTrack {
   async createThumbail() {
     if (this.imageData) {
       const thumbPath = path.resolve(
-        THUMBNAILS_DIR,
+        LocalTrack.THUMBNAILS_DIR,
         this.hashThumbFilename()
       );
       const existingThumb = await this.existCover(thumbPath);

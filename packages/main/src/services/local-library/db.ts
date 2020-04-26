@@ -1,14 +1,19 @@
 import { NuclearMeta } from '@nuclear/core';
+import { differenceInCalendarDays } from 'date-fns';
 import { app } from 'electron';
+import fs from 'fs';
+import glob from 'glob';
 import { injectable, inject } from 'inversify';
-import { createConnection, Connection, Repository } from 'typeorm';
+import _ from 'lodash';
 import path from 'path';
+import { createConnection, Connection, Repository } from 'typeorm';
+import { promisify } from 'util';
 
 import Logger, { $mainLogger } from '../logger';
 import LocalFolder from './model/LocalFolder';
 import LocalTrack from './model/LocalTrack';
-
-const DB_NAME = 'nuclear-local-db.sqlite';
+import Config from '../config';
+import Store from '../store';
 
 @injectable()
 class LocalLibraryDb {
@@ -17,12 +22,14 @@ class LocalLibraryDb {
   private folderRepository: Repository<LocalFolder>;
 
   constructor(
-    @inject($mainLogger) private logger: Logger
+    @inject($mainLogger) private logger: Logger,
+    @inject(Config) private config: Config,
+    @inject(Store) private store: Store
   ) {}
 
   async connect() {
     try {
-      const location = path.join(app.getPath('userData'), DB_NAME);
+      const location = path.join(app.getPath('userData'), this.config.sqliteDbName);
       this.connection = await createConnection({
         type: 'sqljs',
         location,
@@ -134,6 +141,31 @@ class LocalLibraryDb {
     );
 
     return tracks.flat();
+  }
+
+  async cleanUnusedThumbnail() {
+    const lastClean = this.store.getLastThumbCleanDate();
+    const now = new Date();
+
+    if (
+      lastClean &&
+      differenceInCalendarDays(
+        lastClean,
+        now
+      ) >= this.config.thumbCleanInterval
+    ) {
+      const tracksThumbPaths = await this.trackRepository
+        .find({ select: ['thumbnail'] })
+        .then((tracks) => _.uniq(tracks.map(({ thumbnailPath }) => thumbnailPath)));
+
+      const thumbnailPaths = await promisify(glob)(`${LocalTrack.THUMBNAILS_DIR}/*.webp`);
+
+      await Promise.all(
+        thumbnailPaths.filter((thumb) => !tracksThumbPaths.includes(thumb)).map(thumb => promisify(fs.unlink)(thumb))
+      );
+
+      this.store.setLastThumbCleanDate(now);
+    }
   }
 
   async close(): Promise<void> {

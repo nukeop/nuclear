@@ -82,6 +82,7 @@ app.on('window-all-closed', async () => {
     logger.log('All windows closed, quitting');
     const store = container.get<Store>(Store);
     const discord = container.get<Discord>(Discord);
+    const localDb = container.get<LocalLibraryDb>(LocalLibraryDb);
 
     if (store.getOption('api.enabled')) {
       const httpApi = container.get<HttpApi>(HttpApi);
@@ -89,9 +90,11 @@ app.on('window-all-closed', async () => {
     }
 
     discord.clear();
-    app.quit();
+    await localDb.cleanUnusedThumbnail();
   } catch (err) {
     logger.error('something fail during app close');
     logger.error(err);
   }
+
+  app.quit();
 });
