@@ -89,7 +89,7 @@ class PlaylistView extends React.Component {
   }
 
   renderPlaylistInfo (playlist) {
-    let popupTrigger = (
+    const popupTrigger = (
       <a href='#' className={styles.more_button}>
         <Icon name='ellipsis horizontal' />
       </a>

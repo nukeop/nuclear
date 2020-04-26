@@ -14,7 +14,7 @@ export const DOWNLOAD_ERROR = 'DOWNLOAD_ERROR';
 export const CLEAR_FINISHED_DOWNLOADS = 'CLEAR_FINISHED_DOWNLOADS';
 
 const changePropertyForItem = ({downloads, uuid, propertyName='status', value}) => {
-  let changedItem = _.find(downloads, (item) => item.track.uuid === uuid);
+  const changedItem = _.find(downloads, (item) => item.track.uuid === uuid);
   _.set(changedItem, propertyName, value);
   return downloads;
 };

@@ -22,24 +22,24 @@ export const SERIALIZE_PLUGINS = 'SERIALIZE_PLUGINS';
 export const DESERIALIZE_PLUGINS = 'DESERIALIZE_PLUGINS';
 
 export function createPlugins (pluginClasses) {
-  let plugins = {};
+  const plugins = {};
 
   for (let i = 0; i < Object.keys(pluginClasses).length; i++) {
-    let category = Object.keys(pluginClasses)[i];
+    const category = Object.keys(pluginClasses)[i];
 
     if (typeof plugins[category] === 'undefined') {
       plugins[category] = [];
     }
 
     for (let j = 0; j < Object.keys(pluginClasses[category]).length; j++) {
-      let pluginName = Object.keys(pluginClasses[category])[j];
-      let plugin = new pluginClasses[category][pluginName]();
+      const pluginName = Object.keys(pluginClasses[category])[j];
+      const plugin = new pluginClasses[category][pluginName]();
       plugins[category].push(plugin);
     }
   }
 
   const categories = Object.keys(pluginClasses);
-  let selected = {};
+  const selected = {};
   _.forEach(categories, category => {
     selected[category] = _.head(plugins[category]).sourceName;
   });

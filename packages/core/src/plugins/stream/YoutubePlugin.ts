@@ -16,18 +16,18 @@ class YoutubePlugin extends StreamProviderPlugin {
   }
 
   search(query: StreamQuery): Promise<StreamData | void> {
-    let terms = query.artist + ' ' + query.track;
+    const terms = query.artist + ' ' + query.track;
     return Youtube.trackSearch(terms)
       .then(results => results.json())
       .then(results => {
-        let song: { id: { videoId: string }} = _.head(results.items);
-        let id = song.id.videoId;
+        const song: { id: { videoId: string }} = _.head(results.items);
+        const id = song.id.videoId;
         return ytdl.getInfo(`https://www.youtube.com/watch?v=${id}`);
       })
       .then(videoInfo => {
         let thumbnail = _.get(videoInfo, 'player_response.videoDetails.thumbnail.thumbnails');
         thumbnail = _.find(thumbnail, { width: 246 }).url;
-        let formatInfo = _.head(videoInfo.formats.filter(e => e.itag === 140));
+        const formatInfo = _.head(videoInfo.formats.filter(e => e.itag === 140));
 
         return {
           source: this.sourceName,
@@ -45,18 +45,18 @@ class YoutubePlugin extends StreamProviderPlugin {
   }
 
   getAlternateStream(query: StreamQuery, currentStream: { id: string }): Promise<StreamData | void> {
-    let terms = query.artist + ' ' + query.track;
+    const terms = query.artist + ' ' + query.track;
     return Youtube.trackSearch(terms)
       .then(results => results.json())
       .then(results => {
-        let song = _(results.items).find(item => {
+        const song = _(results.items).find(item => {
           return item && item.id.videoId !== currentStream.id;
         });
-        let id = song.id.videoId;
+        const id = song.id.videoId;
         return ytdl.getInfo(`https://www.youtube.com/watch?v=${id}`);
       })
       .then(videoInfo => {
-        let formatInfo = _.head(videoInfo.formats.filter(e => e.itag === 140));
+        const formatInfo = _.head(videoInfo.formats.filter(e => e.itag === 140));
         return {
           source: this.sourceName,
           id: videoInfo.video_id,

@@ -4,7 +4,7 @@ import logger from 'electron-timber';
 import globals from '../../globals';
 import { rest } from '@nuclear/core';
 
-let lastfm = new rest.LastFmApi(globals.lastfmApiKey, globals.lastfmApiSecret);
+const lastfm = new rest.LastFmApi(globals.lastfmApiKey, globals.lastfmApiSecret);
 
 /*
  * The following const will determine how random will be the next track compared to
@@ -68,7 +68,7 @@ let props;
  */
 export function addAutoradioTrackToQueue (callProps) {
   props = callProps;
-  let currentSong = props.queue.queueItems[props.queue.currentSong];
+  const currentSong = props.queue.queueItems[props.queue.currentSong];
   computeParameters(props.settings.autoradioCraziness);
 
   return getSimilarTracksToQueue(autoradioImpactingTrackNumber)
@@ -90,18 +90,18 @@ export function addAutoradioTrackToQueue (callProps) {
 }
 
 function getSimilarTracksToQueue (number) {
-  let similarTracksPromises = [];
+  const similarTracksPromises = [];
 
   for (let i = props.queue.currentSong; i >= Math.max(0, props.queue.currentSong - number); i--) {
     similarTracksPromises.push(getSimilarTracks(props.queue.queueItems[i], similarTracksResultsLimit));
   }
   return Promise.all(similarTracksPromises)
     .then(results => {
-      let flattenResults = _.flatten(results);
+      const flattenResults = _.flatten(results);
       _.flatten(results).sort((a, b) => {
         return b.match - a.match;
       });
-      let notInQueueResults = flattenResults.filter((track) => !isTrackInQueue(track));
+      const notInQueueResults = flattenResults.filter((track) => !isTrackInQueue(track));
       if (notInQueueResults.length > 0) {
         return getScoredRandomTrack(getArraySlice(notInQueueResults, autoradioTracksDeviation));
       } else {
@@ -112,10 +112,10 @@ function getSimilarTracksToQueue (number) {
 
 function getScoredRandomTrack (tracks) {
   let sum = 0;
-  let cumulativeBias = tracks.map(function (track) {
+  const cumulativeBias = tracks.map(function (track) {
     sum += track.match; return sum;
   });
-  let choice = Math.random() * sum;
+  const choice = Math.random() * sum;
   let chosenIndex = null;
   cumulativeBias.some(function (el, i) {
     return el >= choice ? ((chosenIndex = i), true) : false;
@@ -124,7 +124,7 @@ function getScoredRandomTrack (tracks) {
 }
 
 function getTrackNotInQueue (tracks, deviation) {
-  let newtracks = tracks.filter((track) => !isTrackInQueue(track));
+  const newtracks = tracks.filter((track) => !isTrackInQueue(track));
   return getRandomElement(getArraySlice(newtracks, deviation));
 }
 
@@ -146,8 +146,8 @@ function getNewTrack (getter, track) {
 }
 
 function isTrackInQueue (track) {
-  let queue = props.queue.queueItems;
-  for (let i in queue) {
+  const queue = props.queue.queueItems;
+  for (const i in queue) {
     if (queue[i].artist === track.artist.name && queue[i].name === track.name) {
       return true;
     }
@@ -169,7 +169,7 @@ function getTracksFromSimilarArtist (artist) {
     .then(artist => artist.json())
     .then(artistJson => getSimilarArtists(artistJson))
     .then(similarArtists => {
-      let similarArtist = getRandomElement(getArraySlice(similarArtists, autoradioArtistDeviation));
+      const similarArtist = getRandomElement(getArraySlice(similarArtists, autoradioArtistDeviation));
       return similarArtist;
     })
     .then(selectedArtist => getArtistTopTracks(selectedArtist))
@@ -195,7 +195,7 @@ function getArtistTopTracks (artist) {
 
 function addToQueue (artist, track) {
   return new Promise((resolve) => {
-    let streamProviders = props.plugins.plugins.streamProviders;
+    const streamProviders = props.plugins.plugins.streamProviders;
     props.actions.addToQueue(streamProviders, {
       artist: artist.name,
       name: track.name,

@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 import {
   ADD_QUEUE_ITEM,
   REMOVE_QUEUE_ITEM,
@@ -14,7 +16,6 @@ import {
 } from '../actions/queue';
 import { SELECT_STREAM_PROVIDER } from '../actions/plugins';
 
-let _ = require('lodash');
 
 const initialState = {
   queueItems: [],
@@ -26,9 +27,9 @@ function findQueueItemIndex(queueItems, item) {
 }
 
 function reduceRemoveFromQueue(state, action) {
-  let removeIx, newQueue;
+  let newQueue;
   let newCurrent = state.currentSong;
-  removeIx = findQueueItemIndex(state.queueItems, action.payload);
+  const removeIx = findQueueItemIndex(state.queueItems, action.payload);
   newQueue = _.cloneDeep(state.queueItems);
   newQueue = _.filter(newQueue, item => action.payload.uuid !== item.uuid);
   if (removeIx < state.currentSong) {
@@ -42,9 +43,8 @@ function reduceRemoveFromQueue(state, action) {
 }
 
 function reduceAddStreamsToQueueItem(state, action) {
-  let replaceIx, newQueue;
-  replaceIx = findQueueItemIndex(state.queueItems, action.payload);
-  newQueue = _.cloneDeep(state.queueItems);
+  const replaceIx = findQueueItemIndex(state.queueItems, action.payload);
+  const newQueue = _.cloneDeep(state.queueItems);
   newQueue[replaceIx] = Object.assign({}, newQueue[replaceIx], action.payload);
 
   return Object.assign({}, state, {
@@ -53,9 +53,8 @@ function reduceAddStreamsToQueueItem(state, action) {
 }
 
 function reduceReplaceStreamsInQueueItem(state, action) {
-  let replaceIx, newQueue;
-  replaceIx = findQueueItemIndex(state.queueItems, action.payload);
-  newQueue = _.cloneDeep(state.queueItems);
+  const replaceIx = findQueueItemIndex(state.queueItems, action.payload);
+  const newQueue = _.cloneDeep(state.queueItems);
   newQueue[replaceIx] = action.payload;
   return Object.assign({}, state, {
     queueItems: newQueue
@@ -69,8 +68,7 @@ function reduceSelectSong(state, action) {
 }
 
 function reduceRepositionSong(state, action) {
-  let newQueue;
-  newQueue = _.cloneDeep(state.queueItems);
+  const newQueue = _.cloneDeep(state.queueItems);
   const [removed] = newQueue.splice(action.payload.itemFrom, 1);
   newQueue.splice(action.payload.itemTo, 0, removed);
 

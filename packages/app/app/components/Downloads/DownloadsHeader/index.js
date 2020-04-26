@@ -52,7 +52,7 @@ export default compose(
   withTranslation('settings'),
   withHandlers({
     setDirectory: ({ setStringOption }) => () => {
-      let dialogResult = remote.dialog.showOpenDialog({
+      const dialogResult = remote.dialog.showOpenDialog({
         properties: ['openDirectory']
       });
       if (!_.isNil(dialogResult)) {

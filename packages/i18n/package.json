@@ -23,8 +23,6 @@
     "i18next": "^19.0.3"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^2.11.0",
-    "@typescript-eslint/parser": "^2.11.0",
     "eslint": "^6.8.0",
     "i18next-json-sync": "^2.3.1",
     "ts-node": "^8.5.4",

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 declare module 'electron-media-service' {
   export type MediaState = 'playing' | 'paused' | 'stopped';
 

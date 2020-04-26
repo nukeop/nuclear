@@ -16,7 +16,7 @@ export const UPDATE_PLAYLIST = 'UPDATE_PLAYLIST';
 export function addPlaylist(tracks, name) {
   return dispatch => {
     let playlists = store.get('playlists') || [];
-    let playlist = { name, tracks, id: uuidv4() };
+    const playlist = { name, tracks, id: uuidv4() };
 
     if (_.isEmpty(tracks)) {
       dispatch({
@@ -52,7 +52,7 @@ export function deletePlaylist(id) {
 
 export function loadPlaylists() {
   return dispatch => {
-    let playlists = store.get('playlists');
+    const playlists = store.get('playlists');
 
     dispatch({
       type: LOAD_PLAYLISTS,

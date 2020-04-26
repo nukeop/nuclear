@@ -20,7 +20,7 @@ export const LASTFM_UPDATE_NOW_PLAYING = 'LASTFM_UPDATE_NOW_PLAYING';
 
 export function lastFmReadSettings() {
   return dispatch => {
-    let settings = store.get('lastFm') || {};
+    const settings = store.get('lastFm') || {};
     if (settings) {
       dispatch({
         type: LASTFM_READ_SETTINGS,
@@ -46,7 +46,7 @@ export function lastFmConnectAction() {
     lastfm.lastFmLoginConnect()
       .then(response => response.json())
       .then(response => {
-        let authToken = response.token;
+        const authToken = response.token;
         electron.shell.openExternal(
           'https://www.last.fm/api/auth/?api_key=' + globals.lastfmApiKey + '&token=' + authToken
         );
@@ -74,8 +74,8 @@ export function lastFmLoginAction(authToken) {
       .then(response => response.json())
       .then(response => {
 
-        let sessionKey = response.session.key;
-        let sessionName = response.session.name;
+        const sessionKey = response.session.key;
+        const sessionName = response.session.name;
         store.set('lastFm.lastFmName', sessionName);
         store.set('lastFm.lastFmSessionKey', sessionKey);
         
