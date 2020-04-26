@@ -47,7 +47,7 @@ function FmSuccessFinal(count) {
 }
 
 export function fetchAllFmFavorites() {
-  let storage = store.get('lastFm');
+  const storage = store.get('lastFm');
   if (storage) {
     return dispatch => {
       dispatch({ type: LASTFM_FAV_IMPORT_START });
@@ -57,7 +57,7 @@ export function fetchAllFmFavorites() {
           if (!req.lovedtracks) {
             throw new Error;
           }
-          let totalLovedTracks = req.lovedtracks['@attr'].total;
+          const totalLovedTracks = req.lovedtracks['@attr'].total;
           if (totalLovedTracks <= 0 || totalLovedTracks > 1000) {
             throw totalLovedTracks;
           }

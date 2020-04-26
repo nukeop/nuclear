@@ -20,7 +20,7 @@ class GenresTab extends React.Component {
   }
 
   render () {
-    let {
+    const {
       genres
     } = this.props;
 

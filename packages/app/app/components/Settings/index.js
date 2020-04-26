@@ -51,7 +51,7 @@ class Settings extends React.Component {
   }
 
   setDirectoryOption(option) {
-    let dialogResult = remote.dialog.showOpenDialog({
+    const dialogResult = remote.dialog.showOpenDialog({
       properties: ['openDirectory']
     });
     if (!_.isNil(dialogResult)) {
@@ -82,17 +82,17 @@ class Settings extends React.Component {
   }
   renderLastFmImportFavButton(){
 
-    let {
+    const {
       lastFmName,
       lastFmSessionKey
     } = this.props.scrobbling;
 
-    let {
+    const {
       lastFmFavImportStatus,
       lastFmFavImportMessage
     } = this.props.importfavs;
 
-    let {
+    const {
       fetchAllFmFavorites
     } = this.props.actions;
     
@@ -115,7 +115,7 @@ class Settings extends React.Component {
     );
   }
   renderLastFmLoginButtons () {
-    let {
+    const {
       lastFmAuthToken,
       lastFmName,
       lastFmSessionKey
@@ -156,7 +156,7 @@ class Settings extends React.Component {
   }
 
   renderLastFmOptionRadio() {
-    let { lastFmScrobblingEnabled } = this.props.scrobbling;
+    const { lastFmScrobblingEnabled } = this.props.scrobbling;
     const { enableScrobbling, disableScrobbling } = this.props.actions;
     return (
       <div className={styles.settings_item}>
@@ -370,8 +370,8 @@ class Settings extends React.Component {
   }
 
   render () {
-    let { options, settings, t } = this.props;
-    let optionsGroups = _.groupBy(options, 'category');
+    const { options, settings, t } = this.props;
+    const optionsGroups = _.groupBy(options, 'category');
 
     return (
       <div className={styles.settings_container}>

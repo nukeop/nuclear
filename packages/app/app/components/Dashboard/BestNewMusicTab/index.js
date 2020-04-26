@@ -39,7 +39,7 @@ class BestNewMusicTab extends React.Component {
   }
 
   render () {
-    let {
+    const {
       dashboardData,
       artistInfoSearchByName,
       albumInfoSearchByName,

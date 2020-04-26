@@ -43,7 +43,7 @@ const DownloadsList = ({
               }
             </Table.HeaderCell>
             <Table.HeaderCell>{t('completion')}</Table.HeaderCell>
-            <Table.HeaderCell></Table.HeaderCell>
+            <Table.HeaderCell />
           </Table.Row>
         </Table.Header>
         <Table.Body>

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 // Import disabled due to bundling issues
 // import bandcamp from 'bandcamp-scraper';
 import _ from 'lodash';

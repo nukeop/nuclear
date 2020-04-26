@@ -264,9 +264,9 @@ class AlbumView extends React.Component {
   }
 
   render () {
-    let { album } = this.props;
+    const { album } = this.props;
 
-    let albumImage = this.getAlbumImage(album);
+    const albumImage = this.getAlbumImage(album);
     return this.renderAlbumLoading(album, albumImage);
   }
 }

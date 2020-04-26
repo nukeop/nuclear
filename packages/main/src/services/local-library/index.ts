@@ -1,4 +1,4 @@
-import { NuclearBrutMeta, IpcEvents } from '@nuclear/core';
+import { NuclearBrutMeta,  IpcEvents } from '@nuclear/core';
 import glob from 'glob';
 import { inject, injectable } from 'inversify';
 import _ from 'lodash';

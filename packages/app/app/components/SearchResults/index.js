@@ -37,7 +37,7 @@ class SearchResults extends React.Component {
             ? this.props.unifiedSearchStarted
               ? null
               : collection.map((el, i) => {
-                let id = _.get(el, `ids.${selectedProvider.searchName}`, el.id);
+                const id = _.get(el, `ids.${selectedProvider.searchName}`, el.id);
                 return (
                   <Card
                     key={'title-card-' + i}
@@ -101,7 +101,7 @@ class SearchResults extends React.Component {
   }
 
   panes () {
-    let panes = [
+    const panes = [
       {
         menuItem: 'All',
         render: () => this.renderAllResultsPane()

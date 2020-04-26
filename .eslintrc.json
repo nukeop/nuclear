@@ -2,7 +2,19 @@
   "globals": {
     "process": true
   },
-  "extends": ["eslint:recommended", "plugin:node/recommended"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:node/recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 2020,
+    "sourceType": "module"
+  },
   "plugins": [
     "node",
     "react",
@@ -30,6 +42,8 @@
       "error",
       "always"
     ],
+
+    "no-undef": 0,
 
     // Best practice
     "eqeqeq": 2,
@@ -88,6 +102,11 @@
     "react-hooks/exhaustive-deps": "warn",
 
     // Node
-    "node/no-unpublished-import": 0
+    "node/no-unpublished-import": 0,
+
+    // Typescript
+    "@typescript-eslint/explicit-function-return-type": 0,
+    "@typescript-eslint/no-empty-function": 0,
+    "@typescript-eslint/no-use-before-define": 0
   }
 }

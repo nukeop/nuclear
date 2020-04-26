@@ -6,7 +6,7 @@ export const SET_STRING_OPTION = 'SET_STRING_OPTION';
 export const SET_NUMBER_OPTION = 'SET_NUMBER_OPTION';
 
 export function readSettings() {
-  let settings = store.get('settings');
+  const settings = store.get('settings');
   return {
     type: READ_SETTINGS,
     payload: settings
@@ -44,7 +44,7 @@ export function setNumberOption(option, state, fromMain) {
 }
 
 export function toggleOption(option, state) {
-  let optionState = state[option.name];
+  const optionState = state[option.name];
   return optionState !== undefined
     ? setBooleanOption(option.name, !optionState)
     : setBooleanOption(option.name, !option.default);

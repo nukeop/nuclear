@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 import { expect } from 'chai';
 import { describe, it } from 'mocha';
 import mock from 'mock-require';
