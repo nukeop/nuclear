@@ -73,7 +73,7 @@ class DiscogsMetaProvider extends MetaProvider {
       resourceUrl: release.resource_url,
       type: release.type,
       source: SearchResultsSource.Discogs
-    }
+    };
   }
 
   discogsReleaseInfoToGeneric(release: DiscogsReleaseInfo, releaseType: AlbumType): AlbumDetails {
@@ -85,7 +85,7 @@ class DiscogsMetaProvider extends MetaProvider {
       id: `${release.id}`,
       artist: _.head(release.artists).name,
       thumb: coverImage,
-      coverImage: coverImage,
+      coverImage,
       images: _.map(release.images, 'resource_url'),
       genres: [..._.map(release.genres), ..._.map(release.styles)],
       type: releaseType,
@@ -123,7 +123,7 @@ class DiscogsMetaProvider extends MetaProvider {
       .then((json: DiscogsReleaseSearchResponse) => json.results.map(this.discogsReleaseSearchResultToGeneric));
   }
 
-  searchForTracks(query: string): Promise<Array<SearchResultsTrack>> {
+  searchForTracks(): Promise<Array<SearchResultsTrack>> {
     return Promise.resolve([]);
   }
 
@@ -155,7 +155,7 @@ class DiscogsMetaProvider extends MetaProvider {
       description: _.get(lastFmInfo, 'bio.summary'),
       tags: _.map(_.get(lastFmInfo, 'tags.tag'), 'name'),
       onTour: lastFmInfo.ontour === '1',
-      coverImage: coverImage,
+      coverImage,
       thumb: coverImage,
       images: _.map(discogsInfo.images, 'resource_url'),
       topTracks: _.map(lastFmTopTracks.track, (track: LastfmTrack) => ({

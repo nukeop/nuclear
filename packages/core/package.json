@@ -38,6 +38,7 @@
   },
   "devDependencies": {
     "@types/isomorphic-fetch": "0.0.35",
+    "@types/lodash": "^4.14.150",
     "@types/md5": "^2.1.33",
     "@types/react": "^16.9.17",
     "ava": "^2.4.0",
