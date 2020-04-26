@@ -23,7 +23,7 @@ export interface NuclearMeta {
   album?: string;
   folder?: any;
 
-  imageData?: { format: string; data: Buffer };
+  imageData?: Buffer;
 }
 
 export interface NuclearPlaylist {

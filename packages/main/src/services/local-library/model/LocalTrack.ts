@@ -6,6 +6,7 @@ import { app } from 'electron';
 import crypto from 'crypto';
 import url from 'url';
 import uuid from 'uuid/v4';
+import sharp from 'sharp';
 
 import LocalFolder from './LocalFolder';
 
@@ -43,7 +44,7 @@ class LocalTrack {
   @ManyToOne(() => LocalFolder, folder => folder.path)
   folder: LocalFolder;
 
-  imageData?: { data: Buffer; format: string };
+  imageData?: Buffer;
   streams?: {
     id: string;
     title?: string;
@@ -68,10 +69,10 @@ class LocalTrack {
     }
   }
 
-  private hashThumbFilename(imageData: { format: string }) {
+  private hashThumbFilename() {
     return `${
       crypto.createHash('md5').update(path.basename(this.album || this.path)).digest('hex')
-    }.${imageData.format.split('/')[1]}`;
+    }.webp`;
   }
 
   @AfterInsert()
@@ -103,14 +104,17 @@ class LocalTrack {
     if (this.imageData) {
       const thumbPath = path.resolve(
         THUMBNAILS_DIR,
-        this.hashThumbFilename(this.imageData)
+        this.hashThumbFilename()
       );
       const existingThumb = await this.existCover(thumbPath);
   
       if (existingThumb) {
         this.thumbnail = existingThumb;
       } else {
-        await promisify(fs.writeFile)(thumbPath, this.imageData.data);
+        await sharp(this.imageData)
+          .resize(77, 77)
+          .webp({ quality: 1 })
+          .toFile(thumbPath);
       }
   
       delete this.imageData;

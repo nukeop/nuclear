@@ -66,7 +66,7 @@ class LocalLibrary {
       position: common.track.no,
       album: common.album,
       artist: common.artist || 'unknown',
-      imageData: common.picture && common.picture[0]
+      imageData: common.picture && common.picture[0].data
     };
   }
 
