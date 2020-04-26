@@ -91,15 +91,6 @@
         "filter": [
           "**/*"
         ]
-      },
-      {
-        "from": "packages/main/node_modules/sql.js",
-        "to": "resources/node_modules/sql.js",
-        "filter": [
-          "package.json",
-          "dist/sql-wasm.js",
-          "dist/sql-wasm.wasm"
-        ]
       }
     ],
     "releaseInfo": {
@@ -163,6 +154,15 @@
           "filter": [
             "**/*"
           ]
+        },
+        {
+          "from": "packages/main/node_modules/sql.js",
+          "to": "resources/node_modules/sql.js",
+          "filter": [
+            "package.json",
+            "dist/sql-wasm.js",
+            "dist/sql-wasm.wasm"
+          ]
         }
       ]
     },
@@ -180,6 +180,15 @@
           "filter": [
             "**/*"
           ]
+        },
+        {
+          "from": "packages/main/node_modules/sql.js",
+          "to": "Resources/node_modules/sql.js",
+          "filter": [
+            "package.json",
+            "dist/sql-wasm.js",
+            "dist/sql-wasm.wasm"
+          ]
         }
       ]
     },
@@ -194,6 +203,15 @@
           "to": "resources/bin",
           "filter": [
             "**/*"
+          ]
+        },
+        {
+          "from": "packages/main/node_modules/sql.js",
+          "to": "resources/node_modules/sql.js",
+          "filter": [
+            "package.json",
+            "dist/sql-wasm.js",
+            "dist/sql-wasm.wasm"
           ]
         }
       ]

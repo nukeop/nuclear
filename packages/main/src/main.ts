@@ -73,7 +73,7 @@ app.on('ready', async () => {
     logger.error('something fail during app bootstrap');
     logger.error(err);
 
-    return app.quit();
+    app.quit();
   }
 });
 

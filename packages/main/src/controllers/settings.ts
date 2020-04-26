@@ -28,7 +28,6 @@ class SettingsIpcCtrl {
 
   @ipcEvent(IpcEvents.WINDOW_CLOSE)
   async onClose() {
-    await this.httpApi.close();
     this.window.close();
   }
 
