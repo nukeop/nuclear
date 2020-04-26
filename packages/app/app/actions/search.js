@@ -35,7 +35,7 @@ export const YOUTUBE_PLAYLIST_SEARCH_SUCCESS = 'YOUTUBE_PLAYLIST_SEARCH_SUCCESS'
 export const SEARCH_DROPDOWN_DISPLAY_CHANGE = 'SEARCH_DROPDOWN_DISPLAY_CHANGE';
 
 export function sourcesSearch(terms, plugins) {
-  let searchResults = {};
+  const searchResults = {};
   for (let i = 0; i < plugins.streamProviders.length; i++) {
     Object.assign(searchResults, plugins.streamProviders[i].search(terms));
   }

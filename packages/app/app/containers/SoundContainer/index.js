@@ -17,7 +17,7 @@ import * as Autoradio from './autoradio';
 import globals from '../../globals';
 import { rest } from '@nuclear/core';
 
-let lastfm = new rest.LastFmApi(globals.lastfmApiKey, globals.lastfmApiSecret);
+const lastfm = new rest.LastFmApi(globals.lastfmApiKey, globals.lastfmApiSecret);
 
 class SoundContainer extends React.Component {
   constructor(props) {
@@ -31,8 +31,8 @@ class SoundContainer extends React.Component {
   }
 
   handlePlaying (update) {
-    let seek = update.position;
-    let progress = (update.position / update.duration) * 100;
+    const seek = update.position;
+    const progress = (update.position / update.duration) * 100;
     this.props.actions.updatePlaybackProgress(progress, seek);
     this.props.actions.updateStreamLoading(false);
   }
@@ -48,7 +48,7 @@ class SoundContainer extends React.Component {
   }
 
   handleLoadLyrics () {
-    let currentSong = this.props.queue.queueItems[
+    const currentSong = this.props.queue.queueItems[
       this.props.queue.currentSong
     ];
 
@@ -71,7 +71,7 @@ class SoundContainer extends React.Component {
       this.props.scrobbling.lastFmScrobblingEnabled &&
       this.props.scrobbling.lastFmSessionKey
     ) {
-      let currentSong = this.props.queue.queueItems[
+      const currentSong = this.props.queue.queueItems[
         this.props.queue.currentSong
       ];
       this.props.actions.scrobbleAction(
@@ -93,7 +93,7 @@ class SoundContainer extends React.Component {
   }
 
   addAutoradioTrackToQueue () {
-    let currentSong = this.props.queue.queueItems[this.props.queue.currentSong];
+    const currentSong = this.props.queue.queueItems[this.props.queue.currentSong];
     return lastfm
       .getArtistInfo(currentSong.artist)
       .then(artist => artist.json())
@@ -113,8 +113,8 @@ class SoundContainer extends React.Component {
   }
 
   getRandomElement (arr) {
-    let devianceParameter = 0.2; // We will select one of the 20% most similar artists
-    let randomElement =
+    const devianceParameter = 0.2; // We will select one of the 20% most similar artists
+    const randomElement =
       arr[Math.round(Math.random() * (devianceParameter * (arr.length - 1)))];
     return new Promise((resolve) => resolve(randomElement));
   }
@@ -127,7 +127,7 @@ class SoundContainer extends React.Component {
 
   addToQueue (artist, track) {
     return new Promise((resolve) => {
-      let streamProviders = this.props.plugins.plugins.streamProviders;
+      const streamProviders = this.props.plugins.plugins.streamProviders;
       this.props.actions.addToQueue(streamProviders, {
         artist: artist.name,
         name: track.name,
@@ -155,7 +155,7 @@ class SoundContainer extends React.Component {
   }
 
   render () {
-    let { player, equalizer, actions, enableSpectrum, currentStream } = this.props;
+    const { player, equalizer, actions, enableSpectrum, currentStream } = this.props;
 
     return Boolean(currentStream) && (
       <Sound

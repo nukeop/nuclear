@@ -21,7 +21,7 @@ function mapStateToProps(state) {
     ]);
   });
 
-  let tracks = sortTracks(filteredTracks, state.local.sortBy);
+  const tracks = sortTracks(filteredTracks, state.local.sortBy);
 
   return {
     tracks: state.local.direction === 'ascending' ? tracks : tracks.reverse(),

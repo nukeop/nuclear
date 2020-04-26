@@ -41,8 +41,8 @@ class TrackRow extends React.Component {
       artist: this.props.track.artist.name,
       name: this.props.track.name,
       thumbnail: this.getTrackThumbnail(),
-	  local: this.props.track.local,
-	  streams: this.props.track.streams
+      local: this.props.track.local,
+      streams: this.props.track.streams
     });
   }
 
@@ -110,7 +110,7 @@ class TrackRow extends React.Component {
 
   render () {
 
-    let {
+    const {
       track,
       withAddToQueue,
       withPlayNow,

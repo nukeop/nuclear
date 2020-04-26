@@ -26,11 +26,11 @@ class SoundcloudPlugin extends StreamProviderPlugin {
   }
 
   search(query: StreamQuery): Promise<StreamData | void> {
-    let terms = query.artist + ' ' + query.track;
+    const terms = query.artist + ' ' + query.track;
     return Soundcloud.soundcloudSearch(terms)
       .then(data => data.json())
       .then(results => {
-        let info = results[0];
+        const info = results[0];
         return info ? this.resultToStream(info) : null;
       })
       .catch(err => {
@@ -40,11 +40,11 @@ class SoundcloudPlugin extends StreamProviderPlugin {
   }
 
   getAlternateStream(query: StreamQuery, currentStream: { id: string }): Promise<StreamData | void> {
-    let terms = query.artist + ' ' + query.track;
+    const terms = query.artist + ' ' + query.track;
     return Soundcloud.soundcloudSearch(terms)
       .then(data => data.json())
       .then(results => {
-        let info = _.find(results, result => result && result.id !== currentStream.id);
+        const info = _.find(results, result => result && result.id !== currentStream.id);
         return info ? this.resultToStream(info) : null;
       })
       .catch(err => {

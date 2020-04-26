@@ -40,7 +40,7 @@ export function info(title, details, icon, settings) {
 
 function generateNotification(title, details, icon, type, settings) {
   return dispatch => {
-    let id = uuidv4();
+    const id = uuidv4();
     dispatch(addNotification(Object.assign({}, {
       onClick: () => {
         dispatch(removeNotification(id));

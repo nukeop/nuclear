@@ -13,7 +13,7 @@ export class LyricsView extends React.Component {
   }
 
   renderLyrics () {
-    let lyrics = this.props.lyrics;
+    const lyrics = this.props.lyrics;
     let lyricsStr = _.get(lyrics, 'lyricsSearchResults', '');
     lyricsStr = _.get(lyricsStr, 'type', '');
     if (lyricsStr === '') {
@@ -26,7 +26,7 @@ export class LyricsView extends React.Component {
   }
 
   renderLyricsHeader () {
-    let track = this.props.track;
+    const track = this.props.track;
     return (
       <LyricsHeader
         name={track.name}
@@ -46,7 +46,7 @@ export class LyricsView extends React.Component {
   }
 
   render () {
-    let track = this.props.track;
+    const track = this.props.track;
     
     return (
       <div className={styles.lyrics_view}>

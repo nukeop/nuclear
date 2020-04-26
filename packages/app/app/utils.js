@@ -1,7 +1,7 @@
 import _ from 'lodash';
 
 export function formatDuration(duration) {
-  let secNum = parseInt(duration, 10);
+  const secNum = parseInt(duration, 10);
   let hours = Math.floor(secNum / 3600);
   let minutes = Math.floor((secNum - (hours * 3600)) / 60);
   let seconds = secNum - (hours * 3600) - (minutes * 60);
@@ -35,9 +35,9 @@ export function stringDurationToSeconds(duration) {
 }
 
 export function getTrackDuration(track, selectedStreamProvider) {
-  let trackStreams = _.get(track, 'streams');
-  let selectedStream = _.find(trackStreams, { source: selectedStreamProvider });
-  let localStream = _.find(trackStreams, { source: 'Local' });
+  const trackStreams = _.get(track, 'streams');
+  const selectedStream = _.find(trackStreams, { source: selectedStreamProvider });
+  const localStream = _.find(trackStreams, { source: 'Local' });
 
   return _.isNil(localStream)
     ? _.get(selectedStream, 'duration')

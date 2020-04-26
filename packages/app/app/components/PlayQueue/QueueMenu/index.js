@@ -32,7 +32,7 @@ class QueueMenu extends React.Component {
   }
 
   render() {
-    let {
+    const {
       addPlaylist,
       updatePlaylist,
       clearQueue,

@@ -24,7 +24,7 @@ class PlayQueue extends React.PureComponent {
     event.stopPropagation();
     const paths = [];
 
-    for (let f of event.dataTransfer.files) {
+    for (const f of event.dataTransfer.files) {
       paths.push(f.path);
     }
 
@@ -130,7 +130,7 @@ class PlayQueue extends React.PureComponent {
   }
 
   render() {
-    let {
+    const {
       compact,
       items,
       settings,
@@ -139,7 +139,7 @@ class PlayQueue extends React.PureComponent {
       isFileHovered
     } = this.props;
 
-    let {
+    const {
       clearQueue,
       resetPlayer,
       addPlaylist,

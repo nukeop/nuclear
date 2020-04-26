@@ -103,7 +103,7 @@ class App extends React.PureComponent {
   }
 
   scrobbleLastFm () {
-    let currentSong = this.props.queue.queueItems[
+    const currentSong = this.props.queue.queueItems[
       this.props.queue.currentSong
     ];
     this.props.actions.updateNowPlayingAction(

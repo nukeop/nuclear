@@ -67,7 +67,7 @@ class ArtistView extends React.Component {
   }
 
   renderPopularTracks () {
-    let {
+    const {
       artist,
       addToQueue,
       streamProviders
@@ -87,7 +87,7 @@ class ArtistView extends React.Component {
   }
 
   renderSimilarArtists () {
-    let { artist, history, artistInfoSearchByName } = this.props;
+    const { artist, history, artistInfoSearchByName } = this.props;
 
     return (
       !this.isLoading() &&
@@ -100,7 +100,7 @@ class ArtistView extends React.Component {
   }
 
   renderHeaderBanner () {
-    let { artist, history } = this.props;
+    const { artist, history } = this.props;
 
     return (
       <div
@@ -120,7 +120,7 @@ class ArtistView extends React.Component {
   }
 
   render () {
-    let { artist, history, albumInfoSearch } = this.props;
+    const { artist, history, albumInfoSearch } = this.props;
 
     return (
       <div className={styles.artist_view_container}>

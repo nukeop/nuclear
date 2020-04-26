@@ -15,7 +15,7 @@ describe('LibraryViewContainer utils tests', () => {
   });
 
   it('sorts by artist name', () => {
-    let sorted = sortTracks(tracks, 'artist');
+    const sorted = sortTracks(tracks, 'artist');
     expect(sorted).to.be.an('array');
     expect(sorted).to.deep.equal([
       {artist: {name: 'asd'}, name: 'asd', album: 'zxc'},
@@ -26,7 +26,7 @@ describe('LibraryViewContainer utils tests', () => {
   });
 
   it('sorts by track name', () => {
-    let sorted = sortTracks(tracks, 'name');
+    const sorted = sortTracks(tracks, 'name');
     expect(sorted).to.be.an('array');
     expect(sorted).to.deep.equal([
       {artist: {name: 'asd'}, name: 'asd', album: 'zxc'},
@@ -37,7 +37,7 @@ describe('LibraryViewContainer utils tests', () => {
   });
 
   it('sorts by album name', () => {
-    let sorted = sortTracks(tracks, 'album');
+    const sorted = sortTracks(tracks, 'album');
     expect(sorted).to.be.an('array');
     expect(sorted).to.deep.equal([
       {artist: {name: 'qaz'}, name: 'wsx', album: 'edc'},

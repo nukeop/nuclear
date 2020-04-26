@@ -114,7 +114,7 @@ export function rerollTrack(streamProvider, selectedStream, track) {
 
     streamProvider.getAlternateStream({ artist: track.artist, track: track.name }, selectedStream)
       .then(newStream => {
-        let streams = _.map(track.streams, stream => {
+        const streams = _.map(track.streams, stream => {
           return stream.source === newStream.source ? newStream : stream;
         });
 
