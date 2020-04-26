@@ -108,7 +108,10 @@ You will need docker and docker-compose. You need to allow the root user to conn
 
 ```shell
 $ xhost SI:localuser:root
-$ sudo docker-compose up dev
+# this is for installing the npm packages and running lerna bootstrap
+# if you have done this already it is not necessary
+$ docker-compose -f docker-compose.builder.yml run --rm install
+$ docker-compose up
 ```
 
 ## Screenshots

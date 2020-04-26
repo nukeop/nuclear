@@ -1,0 +1,12 @@
+# inspired from https://hackernoon.com/a-better-way-to-develop-node-js-with-docker-cd29d3a0093
+version: '3.7'
+
+services:
+  install:
+    image: node:14
+    volumes:
+      - .:/nuclear/
+    working_dir: /nuclear/
+    command: bash -xc "
+        npm install;
+        npx lerna bootstrap"
