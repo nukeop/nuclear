@@ -51,7 +51,7 @@ class InvidiousPlugin extends StreamProviderPlugin {
       return {
         source: this.sourceName,
         id: videoId,
-        stream: adaptiveFormats.find(({ type }) => type.includes('audio')).url,
+        stream: adaptiveFormats.find(({ container, type }) => type.includes('audio') && container === 'webm').url,
         duration: lengthSeconds,
         title,
         thumbnail: videoThumbnails[3].url
