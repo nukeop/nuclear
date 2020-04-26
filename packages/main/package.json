@@ -13,12 +13,12 @@
 	},
 	"homepage": "https://github.com/nukeop/nuclear#readme",
 	"scripts": {
-    "start": "shx rm -rf build && webpack --env.NODE_ENV=development && electron build/main.js",
-    "build": "webpack --colors --env.NODE_ENV=production",
-    "lint": "eslint src/**/*.ts --fix"
-  },
+		"start": "shx rm -rf build && webpack --env.NODE_ENV=development && electron build/main.js",
+		"build": "webpack --colors --env.NODE_ENV=production",
+		"lint": "eslint src/**/**/**/**/**/*.ts --fix"
+	},
 	"dependencies": {
-    "@nuclear/core": "0.6.3",
+		"@nuclear/core": "0.6.3",
 		"autobind-decorator": "^2.4.0",
 		"body-parser": "^1.19.0",
 		"concat-stream": "^2.0.0",
@@ -66,6 +66,7 @@
 		"@types/uuid": "^3.4.6",
 		"@types/webpack": "^4.41.0",
 		"copy-webpack-plugin": "^5.1.1",
+		"eslint": "^6.8.0",
 		"node-loader": "^0.6.0",
 		"ts-loader": "^6.2.1",
 		"ts-node": "^8.5.4",

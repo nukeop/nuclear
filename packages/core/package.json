@@ -16,8 +16,8 @@
   "scripts": {
     "start": "tsc",
     "build": "tsc",
-    "lint": "eslint src/**/*.ts test/**/*.ts --fix",
-    "test": "eslint src/**/*.ts test/**/*.ts && ava -v"
+    "lint": "eslint src/**/*.ts --fix",
+    "test": "eslint src/**/**/**/**/*.ts test/**/*.ts && ava -v"
   },
   "dependencies": {
     "@babel/core": "^7.7.7",

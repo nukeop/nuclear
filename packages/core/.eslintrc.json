@@ -5,8 +5,5 @@
   "env": {
     "node": true,
     "browser": true
-  },
-  "ignorePatterns": [
-    "*.js"
-  ]
+  }
 }
