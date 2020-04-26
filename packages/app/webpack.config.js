@@ -32,7 +32,7 @@ module.exports = (env) => {
     namedModules: true
   };
   const jsxRule = {
-    test: /.jsx?$/,
+    test: /\.(js|jsx|tsx|ts)$/,
     loader: 'babel-loader',
     options: {
       cacheDirectory: true,
@@ -42,7 +42,8 @@ module.exports = (env) => {
             electron: '4.2'
           }
         }],
-        '@babel/preset-react'
+        '@babel/preset-react',
+        '@babel/preset-typescript'
       ],
       plugins: [
         ['@babel/plugin-proposal-decorators', { 'legacy': true }],
@@ -93,6 +94,8 @@ module.exports = (env) => {
   ];
 
   if (IS_PROD) {
+    jsxRule.loader = 'ts-loader';
+    jsxRule.options = {};
     jsxRule.include = [
       APP_DIR,
       UI_DIR
@@ -124,6 +127,7 @@ module.exports = (env) => {
     mode: IS_PROD ? 'production' : 'development',
     optimization,
     resolve: {
+      extensions: ['*', '.js', '.ts', '.jsx', '.tsx', '.json'],
       alias: {
         react: path.resolve(__dirname, 'node_modules/react'),
         'styled-component': path.resolve(__dirname, 'node_modules/styled-component')
