@@ -48,6 +48,11 @@ class SettingsIpcCtrl {
     this.window.maximize();
   }
 
+  @ipcEvent(IpcEvents.WINDOW_OPEN_DEVTOOLS)
+  openDevtools() {
+    this.window.openDevTools();
+  }
+
   @ipcEvent(IpcEvents.API_RESTART)
   async restartHttpApi() {
     await this.httpApi.close();

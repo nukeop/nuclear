@@ -208,6 +208,13 @@ export const settingsConfig: Array<Setting> = [
     prettyName: 'downloads-count',
     default: 1,
     min: 1
+  },
+  {
+    name: 'devtools',
+    category: 'developer',
+    type: SettingType.BOOLEAN,
+    prettyName: 'devtools',
+    default: false
   }
 
   // TODO: Enable when MPD integration is ready
