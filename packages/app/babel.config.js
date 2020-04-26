@@ -5,7 +5,8 @@ module.exports = {
         electron: '4.2'
       }
     }],
-    '@babel/preset-react'
+    '@babel/preset-react',
+    '@babel/preset-typescript'
   ],
   plugins: [
     ['@babel/plugin-proposal-decorators', { 'legacy': true }],
