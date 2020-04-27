@@ -146,24 +146,22 @@ class Shortcuts extends React.Component {
       'ctrl+top',
       'command+top',
       'ctrl+down',
-      'command+down'
+      'command+down',
+      'f12',
+      'command+i'
     ]);
   }
 
-  componentWillUpdate() {
-
+  componentDidUpdate() {
+    if (this.props.settings.devtools) {
+      Mousetrap.bind(['f12', 'command+i'], this.props.actions.openDevtools);
+    } else {
+      Mousetrap.unbind(['f12', 'command+i']);
+    }
   }
 
   shouldComponentUpdate(nextProps) {
-    if (nextProps.settings.devmode !== this.props.settings.devmode) {
-      if (nextProps.settings.devmode) {
-        Mousetrap.bind(['f12', 'command+i'], this.props.actions.openDevtools);
-      } else {
-        Mousetrap.unbind(['f12', 'command+i']);
-      }
-    }
-
-    return false;
+    return nextProps.settings.devtools !== this.props.settings.devtools;
   }
 
   render() {
