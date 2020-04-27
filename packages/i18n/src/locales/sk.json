@@ -166,6 +166,8 @@
     "autoradio-description": "Pridať podobné skladby automaticky, keď sa poradie končí",
     "compact-menu-bar": "Stlačíť miesto pre menu",
     "compact-queue-bar": "Stlačiť miesto pre poradie",
+    "developer": "Developer settings",
+    "devtools": "Developer tools",
     "disable-gpu": "Zakázať hardvérové zobrazovanie (môže vyriešiť problémy s ťahaním elementov a blikajúcou obrazovkou)",
     "display": "Displej",
     "downloads": "Stiahnuté",

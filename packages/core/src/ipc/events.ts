@@ -44,6 +44,7 @@ enum IpcEvents {
   WINDOW_MINIMIZE = 'minimize',
   WINDOW_MAXIMIZE = 'maximize',
   WINDOW_CLOSE = 'close',
+  WINDOW_OPEN_DEVTOOLS = 'open-devtools',
 
   API_RESTART = 'restart-api',
   API_STOP = 'stop-api',
