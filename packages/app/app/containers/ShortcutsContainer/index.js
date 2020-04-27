@@ -5,11 +5,12 @@ import { bindActionCreators } from 'redux';
 import * as Mousetrap from 'mousetrap';
 import Sound from 'react-hifi';
 import _ from 'lodash';
+import { compose } from 'recompose';
 
 
 import * as PlayerActions from '../../actions/player';
 import * as QueueActions from '../../actions/queue';
-
+import * as WindowActions from '../../actions/window';
 
 const VOLUME_ITERATION = 1;
 const SEEK_ITERATION = 10;
@@ -145,12 +146,22 @@ class Shortcuts extends React.Component {
       'ctrl+top',
       'command+top',
       'ctrl+down',
-      'command+down'
+      'command+down',
+      'f12',
+      'command+i'
     ]);
   }
 
-  shouldComponentUpdate() {
-    return false;
+  componentDidUpdate() {
+    if (this.props.settings.devtools) {
+      Mousetrap.bind(['f12', 'command+i'], this.props.actions.openDevtools);
+    } else {
+      Mousetrap.unbind(['f12', 'command+i']);
+    }
+  }
+
+  shouldComponentUpdate(nextProps) {
+    return nextProps.settings.devtools !== this.props.settings.devtools;
   }
 
   render() {
@@ -168,8 +179,11 @@ function mapStateToProps({ player, queue, settings }) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators(Object.assign({}, PlayerActions, QueueActions), dispatch)
+    actions: bindActionCreators(Object.assign({}, PlayerActions, QueueActions, WindowActions), dispatch)
   };
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Shortcuts));
+export default compose(
+  withRouter,
+  connect(mapStateToProps, mapDispatchToProps)
+)(Shortcuts);

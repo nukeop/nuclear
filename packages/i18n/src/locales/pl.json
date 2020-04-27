@@ -166,6 +166,8 @@
     "autoradio-description": "Dodaj automatycznie podobne utwory, kiedy kolejka odtwarzania się kończy",
     "compact-menu-bar": "Włącz uproszczony pasek menu",
     "compact-queue-bar": "Włącz uproszczony pasek kolejki",
+    "developer": "Developer settings",
+    "devtools": "Developer tools",
     "disable-gpu": "Wyłącz renderowanie sprzętowe (może naprawić problemy z przeciąganiem elementów i migotaniem ekranu)",
     "display": "Wyświetlanie",
     "downloads": "Downloads",

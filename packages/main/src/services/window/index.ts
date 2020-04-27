@@ -124,6 +124,14 @@ class Window {
     this.browserWindow.setTitle(title);
   }
 
+  openDevTools() {
+    if (this.browserWindow.webContents.isDevToolsOpened()) {
+      this.browserWindow.webContents.closeDevTools();
+    } else {
+      this.browserWindow.webContents.openDevTools();
+    }
+  }
+
   async installDevTools() {
     try {
       const { REACT_DEVELOPER_TOOLS, REDUX_DEVTOOLS, default: installExtension } = await import('electron-devtools-installer');

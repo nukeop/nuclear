@@ -161,6 +161,8 @@
     "autoradio-description": "Shto këngë të ngjashme automatikisht kur radha është në përfundim",
     "compact-menu-bar": "Përdor stilin kompakt për shiritin e menusë",
     "compact-queue-bar": "Përdor stilin kompakt për shiritin e radhës",
+    "developer": "Developer settings",
+    "devtools": "Developer tools",
     "disable-gpu": "Çaktivizoni intepretimin nga hardware (mund të zgjidhë problematikat me elementët lëvizës dhe ekranin e ndezur)",
     "display": "Shfaq",
     "downloads": "Shkarkimet",

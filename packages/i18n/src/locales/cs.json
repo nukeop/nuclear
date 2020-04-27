@@ -166,6 +166,8 @@
     "autoradio-description": "Přidat automaticky podobné skladby po dokončení přehrávání fronty",
     "compact-menu-bar": "Použít kompaktní styl lišty menu",
     "compact-queue-bar": "Použít kompaktní styl lišty fronta",
+    "developer": "Developer settings",
+    "devtools": "Developer tools",
     "disable-gpu": "Zakázat hardwarové vykreslování (může odstranit potíže s přetahováním prvků a blikající obrazovkou)",
     "display": "Zobrazení",
     "downloads": "Stažené",
