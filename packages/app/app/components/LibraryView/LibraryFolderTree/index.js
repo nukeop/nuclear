@@ -8,7 +8,8 @@ import './styles.scss';
 import BaseTable, { AutoResizer } from 'react-base-table';
 // import 'react-base-table/styles.css';
 
-const useTreeData = (tracks, localFolders, width) => {
+//  const useTreeData = (tracks, localFolders, width) => {
+const useTreeData = (tracks, localFolders) => {
   return useMemo(() => {
     // console.log('Recalculating treeConfig.');
 
@@ -73,34 +74,29 @@ const useTreeData = (tracks, localFolders, width) => {
       columns: [
         {
           title: 'Name',
-          // width: '30%',
-          width: width / 3,
-          className: 'additional-class',
+          // width: width / 3,
+          width: 0, // required, but flex-grow actually drives the sizing
+          flexGrow: 2,
           key: 'name',
-          dataKey: 'name',
-          sortable: false,
-          expandable: true
+          dataKey: 'name'
         },
         {
           title: 'Album',
-          width: width / 3,
+          width: 0,
+          flexGrow: 1,
           key: 'album',
-          dataKey: 'album',
-          sortable: false,
-          className: 'additional-class',
-          defaultSortDirection: 'descend'
+          dataKey: 'album'
         },
         {
           title: 'Artist',
-          width: width / 3,
+          width: 0,
+          flexGrow: 1,
           key: 'artist',
-          dataKey: 'artist',
-          sortable: false,
-          className: 'additional-class'
+          dataKey: 'artist'
         }
       ]
     };
-  }, [width, localFolders, tracks]);
+  }, [localFolders, tracks]);
 };
 
 const LibraryFolderTree = ({
@@ -112,11 +108,41 @@ const LibraryFolderTree = ({
   // estimateItemSize,
   t*/
 }) => {
+  const {rootEntries, columns} = useTreeData(tracks, localFolders);
   return (
     <AutoResizer>
-      {({ width, height }) => {
-        return <LibraryFolderTreeWithSize {...{tracks, localFolders, width, height}}/>;
-      }}
+      {({ width, height }) => (
+        <BaseTable
+          columns={columns} data={rootEntries}
+          rowHeight={23}
+          expandColumnKey='name'
+          width={width} height={height}
+          rowRenderer={rowProps => {
+            const {cells, rowData: entry} = rowProps;
+            const rowUI = <>
+              {cells}
+            </>;
+            if (entry.track) {
+              return (
+                <ContextPopup
+                  // trigger={rowUI}
+                  trigger={<div style={{flex: 1, display: 'flex'}}>{cells}</div>}
+                  key={'library-track-' + tracks.indexOf(entry.track)}
+                  thumb={getThumbnail(entry.track)}
+                  title={_.get(entry.track, ['name'])}
+                  artist={_.get(entry.track, ['artist', 'name'])}
+                >
+                  <TrackPopupButtons track={entry.track} withAddToDownloads={false}/>
+                </ContextPopup>
+              );
+            }
+            return rowUI;
+          }}>
+          {/* <Column key='name' dataKey='name' width={width / 3}/>
+          <Column key='album' dataKey='album' width={width / 3}/>
+          <Column key='artist' dataKey='artist' width={width / 3}/> */}
+        </BaseTable>
+      )}
     </AutoResizer>
   );
 };
@@ -132,39 +158,3 @@ LibraryFolderTree.propTypes = {
 export default compose(
   withTranslation('library')
 )(LibraryFolderTree);
-
-const LibraryFolderTreeWithSize = ({tracks, localFolders, width, height}) => {
-  const {rootEntries, columns} = useTreeData(tracks, localFolders, width);
-  return (
-    <BaseTable
-      columns={columns} data={rootEntries}
-      rowHeight={23}
-      expandColumnKey='name'
-      width={width} height={height}
-      rowRenderer={rowProps => {
-        const {cells, rowData: entry} = rowProps;
-        const rowUI = <>
-          {cells}
-        </>;
-        if (entry.track) {
-          return (
-            <ContextPopup
-              // trigger={rowUI}
-              trigger={<div style={{display: 'flex'}}>{cells}</div>}
-              key={'library-track-' + tracks.indexOf(entry.track)}
-              thumb={getThumbnail(entry.track)}
-              title={_.get(entry.track, ['name'])}
-              artist={_.get(entry.track, ['artist', 'name'])}
-            >
-              <TrackPopupButtons track={entry.track} withAddToDownloads={false}/>
-            </ContextPopup>
-          );
-        }
-        return rowUI;
-      }}>
-      {/* <Column key='name' dataKey='name' width={width / 3}/>
-      <Column key='album' dataKey='album' width={width / 3}/>
-      <Column key='artist' dataKey='artist' width={width / 3}/> */}
-    </BaseTable>
-  );
-};
