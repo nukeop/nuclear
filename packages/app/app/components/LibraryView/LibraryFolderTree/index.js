@@ -138,7 +138,7 @@ const LibraryFolderTreeWithSize = ({tracks, localFolders, width, height}) => {
   return (
     <BaseTable
       columns={columns} data={rootEntries}
-      rowHeight={20}
+      rowHeight={25}
       expandColumnKey='name'
       width={width} height={height}
       rowRenderer={rowProps => {
