@@ -1,32 +1,8 @@
-.react-grid-container {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
+$header-background-color: transparent;
+$background-color: transparent;
+//$table-prefix: BaseTable !default;
 
-.react-grid-table-container {
-  flex: 1;
-  background: transparent !important;
-}
+$border: none;
+$row-hovered-background-color: hsla(0, 0%, 100%, .2);
 
-.react-grid-header {
-  background: transparent !important;
-  border: none !important;
-  color: hsla(0, 0%, 100%, 0.5) !important;
-
-  .react-grid-resizable {
-    border: none !important;
-
-    .react-grid-drag-handle::after {
-      border-right: 1px solid hsla(0, 0%, 97%, 0.1) !important;
-    }
-  }
-}
-
-.react-grid-row {
-  background: transparent !important;
-}
-
-.react-grid-cell {
-  border: none !important;
-}
+@import '~react-base-table/es/_BaseTable.scss';
