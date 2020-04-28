@@ -266,6 +266,8 @@ class LocalLibrary {
         )
       )
     ).then(result => result.flat());
+    // normalize path-seps (gets normalized on save to disk, but must happen from start for some UI code)
+    // baseFiles = baseFiles.map(path => path.replace(/\\/g, '/'));
   
     const cache = this.store.getCache() || {};
 

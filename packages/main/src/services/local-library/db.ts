@@ -97,6 +97,14 @@ class LocalLibraryDb extends ElectronStore {
 
     return Object.values(cache).filter(({ path }) => filePaths.includes(path));
   }
+
+  /* getExpandedFolders(): string[] {
+    return this.get('expandedFolders') || [];
+  }
+
+  setExpandedFolders(expandedFolders: string[]) {
+    this.set('expandedFolders', expandedFolders);
+  }*/
 }
 
 export default LocalLibraryDb;

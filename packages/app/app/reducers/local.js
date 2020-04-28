@@ -12,18 +12,21 @@ import {
 } from '../actions/local';
 import { mpris } from '@nuclear/core';
 
-const initialState = {
-  pending: false,
-  error: false,
-  folders: mpris.getLocalFolders(),
-  page: 0,
-  sortBy: 'artist',
-  direction: 'ascending',
-  filter: '',
-  listType: LIST_TYPE.SIMPLE_LIST,
-  tracks: mpris.getLocalMetas(),
-  expandedFolders: []
-};
+export function local_getInitialState() {
+  return {
+    pending: false,
+    error: false,
+    folders: mpris.getLocalFolders(),
+    page: 0,
+    sortBy: 'artist',
+    direction: 'ascending',
+    filter: '',
+    listType: LIST_TYPE.SIMPLE_LIST,
+    tracks: mpris.getLocalMetas(),
+    expandedFolders: []
+  };
+}
+const initialState = local_getInitialState();
 
 export default function LocalReducer(state = initialState, action) {
   switch (action.type) {

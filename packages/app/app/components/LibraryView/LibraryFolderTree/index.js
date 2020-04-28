@@ -30,14 +30,20 @@ const useTreeData = (tracks, localFolders) => {
   
         if (localFolders.includes(path)) {
           newEntry.parentId = -1;
-        } else {
+        } else if (path.includes('/')) {
+          /* if (!localFolders.find(folderPath => path.startsWith(folderPath))) {
+            throw new Error(`Track at path "${path}" is not contained in any of the root library folders! (ensure path-separators match)`);
+          }*/
+
           const parentPath = path.split('/').slice(0, -1).join('/');
-          if (parentPath.length === 0) {
-            throw new Error('Parent path cannot be empty. (the folder/file path-separators must not be normalized)');
-          }
           const parent = getEntryForFolder(parentPath);
           newEntry.parentId = parent.id;
           parent.children.push(newEntry);
+        } else {
+          // We've reached a root directory/drive, meaning we couldn't find a local-folder containing this track.
+          // This can happen if main storage (with local-folder list) is cleared, but not the separately-persisted tracks.
+          // (Can also happen if the path-separators are not normalized consistently; check this if making code changes.)
+          newEntry.parentId = -1;
         }
   
         pathToEntryMap[path] = newEntry;
@@ -109,15 +115,18 @@ const LibraryFolderTree = ({
   expandedFolders
 }) => {
   const {rootEntries, columns} = useTreeData(tracks, localFolders);
+
   const tableRef = useRef();
   const dispatch = useDispatch();
+  const dispatchUpdateExpandedFolders = () => {
+    if (tableRef.current) {
+      dispatch(updateExpandedFolders(tableRef.current.getExpandedRowKeys()));
+    }
+  };
   useEffect(() => {
-    return () => {
-      // ignore warning; the other (suggested) way doesn't work 
-      const tableComp = tableRef.current; // eslint-disable-line
-      dispatch(updateExpandedFolders(tableComp.getExpandedRowKeys()));
-    };
+    return dispatchUpdateExpandedFolders;
   });
+
   return (
     <AutoResizer>
       {({ width, height }) => (
@@ -127,7 +136,9 @@ const LibraryFolderTree = ({
           rowHeight={23}
           expandColumnKey='name'
           defaultExpandedRowKeys={expandedFolders}
-          width={width} height={height}
+          onExpandedRowsChange={_.debounce(dispatchUpdateExpandedFolders, 1000)}
+          width={width}
+          height={height}
           rowRenderer={rowProps => {
             const {cells, rowData: entry} = rowProps;
             const rowUI = <>

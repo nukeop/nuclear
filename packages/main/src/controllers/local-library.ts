@@ -33,7 +33,7 @@ class LocalIpcCtrl {
   }
 
   /**
-   * get local libray folder from store
+   * get local library folders from store
    */
   @ipcEvent('get-localfolders')
   getLocalFolders(event: IpcMessageEvent) {
@@ -92,6 +92,22 @@ class LocalIpcCtrl {
 
     this.window.send('queue-add', metas);
   }
+
+  /**
+   * get expanded library folders from store
+   */
+  /* @ipcEvent('get-expandedfolders')
+  getExpandedFolders(event: IpcMessageEvent) {
+    event.returnValue = this.localLibraryDb.get('expandedFolders');
+  }
+
+  /**
+   * store expanded library folders
+   *#/
+  @ipcEvent('set-expandedfolders')
+  async setExpandedFolders(event: IpcMessageEvent, expandedFolders: string[]) {
+    this.localLibraryDb.setExpandedFolders(expandedFolders);
+  } */
 }
 
 export default LocalIpcCtrl;

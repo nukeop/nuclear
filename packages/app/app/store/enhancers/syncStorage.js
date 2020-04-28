@@ -1,4 +1,5 @@
 import { store as electronStore } from '@nuclear/core';
+import { local_getInitialState } from '../../reducers/local';
 
 export default function(paths) {
 
@@ -8,11 +9,22 @@ export default function(paths) {
       initialState = undefined;
     }
 
-    let persistedState, finalInitialState;
+    let reducerInitialPlusMprisStates, persistedState, finalInitialState;
 
     try {
-      persistedState = electronStore.getItems(paths);
-      finalInitialState = Object.assign({}, initialState, persistedState);
+      // persistedState = electronStore.getItems(paths);
+      // finalInitialState = Object.assign({}, initialState, persistedState);
+
+      // For each store path which uses electron-store persistence for some fields, call/include its getInitialState() below.
+      // This allows the for-reducer initial-state (+mpris) data to be merged with the electron-store persisted data.
+      reducerInitialPlusMprisStates = {
+        local: local_getInitialState()
+      };
+
+      // for each path, read its data as a root-field object, since that's what _.merge expects
+      persistedState = electronStore.getItems(paths.map(path => path.split('.')[0]));
+
+      finalInitialState = _.merge({}, initialState, reducerInitialPlusMprisStates, persistedState);
     } catch (e) {
       console.warn(
         'Failed to retrieve initialize state from electron store:',
