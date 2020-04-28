@@ -141,19 +141,16 @@ const LibraryFolderTreeWithSize = ({tracks, localFolders, width, height}) => {
       rowHeight={20}
       expandColumnKey='name'
       width={width} height={height}
-      rowRenderer_={rowProps => {
+      rowRenderer={rowProps => {
         const {cells, rowData: entry} = rowProps;
-        // debugger;
-
-        const rowUI = (
-          <tr {...rowProps}>
-            {cells}
-          </tr>
-        );
+        const rowUI = <>
+          {cells}
+        </>;
         if (entry.track) {
           return (
             <ContextPopup
-              trigger={rowUI}
+              // trigger={rowUI}
+              trigger={<div style={{display: 'flex'}}>{cells}</div>}
               key={'library-track-' + tracks.indexOf(entry.track)}
               thumb={getThumbnail(entry.track)}
               title={_.get(entry.track, ['name'])}
