@@ -1,4 +1,5 @@
-import React, {useMemo} from 'react';
+import React, {useMemo, useEffect, useRef} from 'react';
+import {useDispatch} from 'react-redux';
 import {compose} from 'recompose';
 import {withTranslation} from 'react-i18next';
 import PropTypes from 'prop-types';
@@ -6,6 +7,7 @@ import { ContextPopup, getThumbnail } from '@nuclear/ui';
 import TrackPopupButtons from '../../../containers/TrackPopupButtons';
 import './styles.scss';
 import BaseTable, { AutoResizer } from 'react-base-table';
+import {updateExpandedFolders} from '../../../actions/local';
 // import 'react-base-table/styles.css';
 
 //  const useTreeData = (tracks, localFolders, width) => {
@@ -14,11 +16,12 @@ const useTreeData = (tracks, localFolders) => {
     // console.log('Recalculating treeConfig.');
 
     const pathToEntryMap = {};
-    let lastID = 0;
+    // let lastID = 0;
     function getEntryForFolder(path) {
       if (pathToEntryMap[path] === undefined) {
         const newEntry = {
-          id: ++lastID,
+          // id: ++lastID,
+          id: path,
           path,
           name: path.split('/').slice(-1)[0],
           children: []
@@ -46,7 +49,8 @@ const useTreeData = (tracks, localFolders) => {
       const folderPath = track.path.split('/').slice(0, -1).join('/');
       const folderEntry = getEntryForFolder(folderPath);
       const newEntry = {
-        id: ++lastID,
+        // id: ++lastID,
+        id: track.path,
         parentId: folderEntry.id,
         track,
         path: track.path,
@@ -101,21 +105,28 @@ const useTreeData = (tracks, localFolders) => {
 
 const LibraryFolderTree = ({
   tracks,
-  localFolders
-  /* sortBy,
-  direction,
-  handleSort,
-  // estimateItemSize,
-  t*/
+  localFolders,
+  expandedFolders
 }) => {
   const {rootEntries, columns} = useTreeData(tracks, localFolders);
+  const tableRef = useRef();
+  const dispatch = useDispatch();
+  useEffect(() => {
+    return () => {
+      // ignore warning; the other (suggested) way doesn't work 
+      const tableComp = tableRef.current; // eslint-disable-line
+      dispatch(updateExpandedFolders(tableComp.getExpandedRowKeys()));
+    };
+  });
   return (
     <AutoResizer>
       {({ width, height }) => (
         <BaseTable
+          ref={tableRef}
           columns={columns} data={rootEntries}
           rowHeight={23}
           expandColumnKey='name'
+          defaultExpandedRowKeys={expandedFolders}
           width={width} height={height}
           rowRenderer={rowProps => {
             const {cells, rowData: entry} = rowProps;

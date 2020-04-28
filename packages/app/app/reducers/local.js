@@ -7,7 +7,8 @@ import {
   UPDATE_LOCAL_FILTER,
   UPDATE_LOCAL_SORT,
   UPDATE_LIBRARY_LIST_TYPE,
-  UPDATE_LOCAL_FOLDERS
+  UPDATE_LOCAL_FOLDERS,
+  UPDATE_EXPANDED_FOLDERS
 } from '../actions/local';
 import { mpris } from '@nuclear/core';
 
@@ -20,7 +21,8 @@ const initialState = {
   direction: 'ascending',
   filter: '',
   listType: LIST_TYPE.SIMPLE_LIST,
-  tracks: mpris.getLocalMetas()
+  tracks: mpris.getLocalMetas(),
+  expandedFolders: []
 };
 
 export default function LocalReducer(state = initialState, action) {
@@ -61,6 +63,7 @@ export default function LocalReducer(state = initialState, action) {
   case UPDATE_LOCAL_FILTER:
   case UPDATE_LOCAL_SORT:
   case UPDATE_LIBRARY_LIST_TYPE:
+  case UPDATE_EXPANDED_FOLDERS:
     return {
       ...state,
       ...action.payload

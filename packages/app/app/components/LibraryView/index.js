@@ -32,6 +32,7 @@ const LibraryView = () => {
   const listType = useSelector(state => state.local.listType);
   const filter = useSelector(state => state.local.filter);
   const tracks_map = useSelector(state => state.local.tracks);
+  const expandedFolders = useSelector(state => state.local.expandedFolders);
   const streamProviders = useSelector(state => state.plugin.plugins.streamProviders);
   const localStreamProviders = useMemo(() => _.filter(streamProviders, { sourceName: 'Local' }), [streamProviders]);
 
@@ -117,7 +118,7 @@ const LibraryView = () => {
               )}
 
               {!pending && listType === LIST_TYPE.FOLDER_TREE && (
-                <LibraryFolderTree tracks={tracks} localFolders={localFolders} sortBy={sortBy} direction={direction} handleSort={handleSort} />
+                <LibraryFolderTree tracks={tracks} localFolders={localFolders} expandedFolders={expandedFolders} />
               )}
             </Segment>
           )}
