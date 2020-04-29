@@ -20,7 +20,7 @@ import * as ScrobblingActions from './actions/scrobbling';
 import * as ImportFavActions from './actions/importfavs';
 import * as ConnectivityActions from './actions/connectivity';
 import * as GithubContribActions from './actions/githubContrib';
-import { mpris } from '@nuclear/core';
+import * as WindowActions from './actions/window';
 
 import './app.global.scss';
 import styles from './styles.scss';
@@ -81,7 +81,6 @@ class App extends React.PureComponent {
   }
 
   updateConnectivityStatus = (isConnected) => {
-    mpris.sendConnectivity(isConnected);
     this.props.actions.changeConnectivity(isConnected);
   }
 
@@ -89,7 +88,7 @@ class App extends React.PureComponent {
     if (this.props.player.playbackStatus === Sound.status.PAUSED) {
       this.scrobbleLastFmIfAble();
     }
-    this.props.actions.togglePlayback(this.props.player.playbackStatus, mpris.sendPaused);
+    this.props.actions.togglePlayback(this.props.player.playbackStatus);
   }
 
   nextSong () {
@@ -104,7 +103,7 @@ class App extends React.PureComponent {
   }
 
   scrobbleLastFm () {
-    let currentSong = this.props.queue.queueItems[
+    const currentSong = this.props.queue.queueItems[
       this.props.queue.currentSong
     ];
     this.props.actions.updateNowPlayingAction(
@@ -126,7 +125,13 @@ class App extends React.PureComponent {
         <SearchBoxContainer />
         <Spacer className={styles.navbar_spacer}/>
         <HelpModalContainer />
-        {this.props.settings.framelessWindow && <WindowControls />}
+        {this.props.settings.framelessWindow && (
+          <WindowControls
+            onCloseClick={this.props.actions.closeWindow}
+            onMaxClick={this.props.actions.maximizeWindow}
+            onMinClick={this.props.actions.minimizeWindow}
+          />
+        )}
       </Navbar>
     );
   }
@@ -405,7 +410,8 @@ function mapDispatchToProps (dispatch) {
         PluginsActions,
         ConnectivityActions,
         SearchActions,
-        GithubContribActions
+        GithubContribActions,
+        WindowActions
       ),
       dispatch
     )

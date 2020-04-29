@@ -1,5 +1,3 @@
-import { string } from 'prop-types';
-
 export type DiscogsImage = {
   height: number;
   width: number;

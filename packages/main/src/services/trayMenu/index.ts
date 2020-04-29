@@ -1,8 +1,8 @@
-import { injectable, inject } from "inversify";
-import { Menu, app, Tray, nativeImage } from "electron";
-import HttpApi from "../http";
-import Config from "../config";
-import Platform from "../platform";
+import { injectable, inject } from 'inversify';
+import { Menu, app, Tray, nativeImage } from 'electron';
+import HttpApi from '../http';
+import Config from '../config';
+import Platform from '../platform';
 
 @injectable()
 class TrayMenu {

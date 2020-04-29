@@ -2,6 +2,7 @@ import { injectable } from 'inversify';
 import { Class } from 'type-fest';
 
 import { ClassDecorator, MethodDecorator, ControllerMeta, MediaEventName } from './types';
+import { IpcEvents } from '@nuclear/core';
 
 /**
  * the key of the ipc metadata
@@ -52,9 +53,9 @@ interface IpcEventOptions {
  * (for js user) if no params id provided, it will trigger an error
  * @param eventName - a string representing the event to be handled by the decorated method
  */
-const eventListenerFactory = (metadataKey: symbol): MethodDecorator => (
-  eventName: MediaEventName,
-  options?: IpcEventOptions
+const eventListenerFactory = <T>(metadataKey: symbol): MethodDecorator<T, IpcEventOptions> => (
+  eventName,
+  options
 ) => {
   /**
    * Define metadata for this method, store the eventName and the handler name
@@ -67,7 +68,7 @@ const eventListenerFactory = (metadataKey: symbol): MethodDecorator => (
       throw new Error(`You must specify an event name for method ${name} of class ${target.constructor.name}`);
     }
     const meta = Reflect.getMetadata(metadataKey, target) || [];
-    const eventMeta: ControllerMeta = { eventName, name };
+    const eventMeta: ControllerMeta<T> = { eventName, name };
 
     if (options && options.once) {
       eventMeta.once = options.once;
@@ -79,7 +80,7 @@ const eventListenerFactory = (metadataKey: symbol): MethodDecorator => (
 };
 
 export const ipcController = eventEmitterControllerFactory(IPC_EVENT_KEY);
-export const ipcEvent = eventListenerFactory(IPC_EVENT_KEY);
+export const ipcEvent = eventListenerFactory<IpcEvents>(IPC_EVENT_KEY);
 
 export const systemMediaController = eventEmitterControllerFactory(SYSTEM_MEDIA_EVENT_KEY);
-export const systemMediaEvent = eventListenerFactory(SYSTEM_MEDIA_EVENT_KEY);
+export const systemMediaEvent = eventListenerFactory<MediaEventName>(SYSTEM_MEDIA_EVENT_KEY);

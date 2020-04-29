@@ -151,6 +151,8 @@
     "autoradio-description": "Kusang magdagdag ng katulad na kanta pag paubos na ang nasa pila",
     "compact-menu-bar": "Gamitin ang compact style para sa menu bar",
     "compact-queue-bar": "Gamitin ang compact style para sa bar ng mga nakapilang kanta",
+    "developer": "Developer settings",
+    "devtools": "Developer tools",
     "disable-gpu": "Huwag paganahin ang hardware rendering (maaaring maayos ang isyu sa pag-drag ng mga bagay at pag-flash ng screen)",
     "display": "Display",
     "downloads": "Downloads",

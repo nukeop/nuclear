@@ -32,8 +32,10 @@ export const LASTFM_TRACK_SEARCH_SUCCESS = 'LASTFM_TRACK_SEARCH_SUCCESS';
 export const YOUTUBE_PLAYLIST_SEARCH_START = 'YOUTUBE_PLAYLIST_SEARCH_START';
 export const YOUTUBE_PLAYLIST_SEARCH_SUCCESS = 'YOUTUBE_PLAYLIST_SEARCH_SUCCESS';
 
+export const SEARCH_DROPDOWN_DISPLAY_CHANGE = 'SEARCH_DROPDOWN_DISPLAY_CHANGE';
+
 export function sourcesSearch(terms, plugins) {
-  let searchResults = {};
+  const searchResults = {};
   for (let i = 0; i < plugins.streamProviders.length; i++) {
     Object.assign(searchResults, plugins.streamProviders[i].search(terms));
   }
@@ -298,3 +300,8 @@ export const albumInfoSearchByName = (albumName, history) => async (dispatch, ge
     ));
   }
 };
+
+export const setSearchDropdownVisibility = displayState => ({
+  type: SEARCH_DROPDOWN_DISPLAY_CHANGE,
+  payload: displayState
+});

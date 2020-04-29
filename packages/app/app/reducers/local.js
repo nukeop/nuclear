@@ -8,25 +8,22 @@ import {
   UPDATE_LOCAL_SORT,
   UPDATE_LIBRARY_LIST_TYPE,
   UPDATE_LOCAL_FOLDERS,
+  REMOVE_LOCAL_FOLDER,
   UPDATE_EXPANDED_FOLDERS
 } from '../actions/local';
-import { mpris } from '@nuclear/core';
 
-export function local_getInitialState() {
-  return {
-    pending: false,
-    error: false,
-    folders: mpris.getLocalFolders(),
-    page: 0,
-    sortBy: 'artist',
-    direction: 'ascending',
-    filter: '',
-    listType: LIST_TYPE.SIMPLE_LIST,
-    tracks: mpris.getLocalMetas(),
-    expandedFolders: []
-  };
-}
-const initialState = local_getInitialState();
+const initialState = {
+  pending: false,
+  error: false,
+  folders: [],
+  page: 0,
+  sortBy: 'artist',
+  direction: 'ascending',
+  filter: '',
+  listType: LIST_TYPE.SIMPLE_LIST,
+  tracks: {},
+  expandedFolders: []
+};
 
 export default function LocalReducer(state = initialState, action) {
   switch (action.type) {
@@ -34,6 +31,11 @@ export default function LocalReducer(state = initialState, action) {
     return {
       ...state,
       folders: action.payload.folders
+    };
+  case REMOVE_LOCAL_FOLDER:
+    return {
+      ...state,
+      folders: _.filter(state.folders, f => f !== action.payload)
     };
   case SCAN_LOCAL_FOLDER:
     return {

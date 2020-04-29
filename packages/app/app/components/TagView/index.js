@@ -28,7 +28,7 @@ class TagView extends React.Component {
   }
 
   renderTagHeader (tagInfo, topArtists) {
-    let { tag } = this.props;
+    const { tag } = this.props;
     return <TagHeader tag={tag} tagInfo={tagInfo} topArtists={topArtists} />;
   }
 
@@ -74,7 +74,7 @@ class TagView extends React.Component {
   }
 
   renderDimmer () {
-    let { tag, tags } = this.props;
+    const { tag, tags } = this.props;
     return (
       <Dimmer active={typeof tags[tag] === 'undefined' || tags[tag].loading}>
         <Loader />
@@ -83,7 +83,7 @@ class TagView extends React.Component {
   }
 
   render () {
-    let { addToQueue, tag, tags, streamProviders } = this.props;
+    const { addToQueue, tag, tags, streamProviders } = this.props;
     let tagInfo, topTracks, topAlbums, topArtists;
     if (tags[tag] && tags[tag].loading !== true) {
       tagInfo = tags[tag][0].tag;

@@ -65,6 +65,9 @@ package-lock.json
 .vscode/
 jsconfig.json
 
+# jetbrains
+.idea
+
 #nvm
 .nvmrc
 

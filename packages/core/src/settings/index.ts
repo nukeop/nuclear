@@ -34,6 +34,14 @@ type Setting = {
 
 export const settingsConfig: Array<Setting> = [
   {
+    name: 'volume',
+    category: 'audio',
+    description: 'volume-description',
+    type: SettingType.NUMBER,
+    prettyName: 'volume',
+    default: 50
+  },
+  {
     name: 'loopAfterQueueEnd',
     category: 'playback',
     type: SettingType.BOOLEAN,
@@ -200,6 +208,13 @@ export const settingsConfig: Array<Setting> = [
     prettyName: 'downloads-count',
     default: 1,
     min: 1
+  },
+  {
+    name: 'devtools',
+    category: 'developer',
+    type: SettingType.BOOLEAN,
+    prettyName: 'devtools',
+    default: false
   }
 
   // TODO: Enable when MPD integration is ready

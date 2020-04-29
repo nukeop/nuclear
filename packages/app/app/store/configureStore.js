@@ -4,6 +4,7 @@ import ReduxPromise from 'redux-promise';
 
 import rootReducer from '../reducers';
 import syncStore from './enhancers/syncStorage';
+import ipcConnect from './middlewares/ipc';
 
 export default function configureStore(initialState) {
   const composeEnhancers = process.env.NODE_ENV === 'production'
@@ -14,7 +15,7 @@ export default function configureStore(initialState) {
     rootReducer,
     initialState,
     composeEnhancers(
-      applyMiddleware(ReduxPromise, thunk),
+      applyMiddleware(ReduxPromise, thunk, ipcConnect),
       syncStore(['downloads', 'local.expandedFolders'])
     )
   );

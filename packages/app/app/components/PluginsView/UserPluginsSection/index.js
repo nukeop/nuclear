@@ -64,7 +64,7 @@ UserPluginsSectionComponent.propTypes = {
 export default compose(
   withHandlers({
     handleAddPlugin: ({loadUserPlugin}) => () => {
-      let dialogResult = remote.dialog.showOpenDialog({
+      const dialogResult = remote.dialog.showOpenDialog({
         filters: [{name: 'Javascript files', extensions: ['js', 'jsx']}]
       });
       if (!_.isNil(dialogResult)) {

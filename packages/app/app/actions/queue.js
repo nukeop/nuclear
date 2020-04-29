@@ -3,8 +3,8 @@ import _ from 'lodash';
 
 import { safeAddUuid } from './helpers';
 import { startPlayback } from './player.js';
-import { mpris } from '@nuclear/core';
 
+export const QUEUE_DROP = 'QUEUE_DROP';
 export const ADD_QUEUE_ITEM = 'ADD_QUEUE_ITEM';
 export const REMOVE_QUEUE_ITEM = 'REMOVE_QUEUE_ITEM';
 export const UPDATE_QUEUE_ITEM = 'UPDATE_QUEUE_ITEM';
@@ -41,7 +41,6 @@ function addTrackToQueue(streamProviders, item) {
   return async (dispatch, getState) => {
     item.loading = !item.local;
     item = safeAddUuid(item);
-    mpris.addTrack(item);
 
     const { connectivity } = getState();
     const isAbleToAdd = (!connectivity && item.local) || connectivity;
@@ -82,7 +81,6 @@ function addTrackToQueue(streamProviders, item) {
 }
 
 export function playTrack(streamProviders, item) {
-  mpris.clearTrackList();
   return dispatch => {
     dispatch(clearQueue());
     dispatch(addToQueue(streamProviders, item));
@@ -96,7 +94,6 @@ export function addToQueue(streamProviders, item) {
 }
 
 export function removeFromQueue(item) {
-  mpris.removeTrack(item);
   return {
     type: REMOVE_QUEUE_ITEM,
     payload: item
@@ -117,7 +114,7 @@ export function rerollTrack(streamProvider, selectedStream, track) {
 
     streamProvider.getAlternateStream({ artist: track.artist, track: track.name }, selectedStream)
       .then(newStream => {
-        let streams = _.map(track.streams, stream => {
+        const streams = _.map(track.streams, stream => {
           return stream.source === newStream.source ? newStream : stream;
         });
 
@@ -132,7 +129,6 @@ export function rerollTrack(streamProvider, selectedStream, track) {
 }
 
 export function clearQueue() {
-  mpris.clearTrackList();
   return {
     type: CLEAR_QUEUE,
     payload: null
@@ -215,3 +211,8 @@ export function changeTrackStream(track, stream) {
     }
   };
 }
+
+export const queueDrop = (paths) => ({
+  type: QUEUE_DROP,
+  payload: paths
+});

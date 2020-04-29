@@ -1,22 +1,15 @@
 {
   "extends": [
-    "../../.eslintrc.json",
-    "plugin:@typescript-eslint/recommended"
+    "../../.eslintrc.json"
   ],
   "env": {
     "node": true,
     "browser": true
   },
-  "parser": "@typescript-eslint/parser",
-  "parserOptions": {
-    "ecmaVersion": 2020,
-    "sourceType": "module"
-  },
   "ignorePatterns": [
     "*.js"
   ],
   "rules": {
-    "@typescript-eslint/explicit-function-return-type": 0,
     "@typescript-eslint/camelcase": 0
   }
 }

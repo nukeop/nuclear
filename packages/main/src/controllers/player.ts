@@ -1,4 +1,4 @@
-import { NuclearMeta } from '@nuclear/core';
+import { NuclearMeta, IpcEvents } from '@nuclear/core';
 import { IpcMessageEvent } from 'electron';
 import { inject } from 'inversify';
 
@@ -16,47 +16,50 @@ class IpcPlayer {
     @inject(Window) private window: Window
   ) {}
 
-  @ipcEvent('play')
+  @ipcEvent(IpcEvents.PLAY)
   onPlay() {
     this.systemApi.play();
+    return this.discord.play();
   }
 
-  @ipcEvent('paused')
+  @ipcEvent(IpcEvents.PAUSE)
   onPause() {
     this.systemApi.pause();
+    return this.discord.pause();
   }
 
-  @ipcEvent('volume')
+  @ipcEvent(IpcEvents.VOLUME)
   onVolume(evt: IpcMessageEvent, data: number) {
     this.systemApi.setVolume && this.systemApi.setVolume(data);
   }
 
-  @ipcEvent('loopStatus')
+  @ipcEvent(IpcEvents.LOOP)
   onLoop(evt: IpcMessageEvent, data: boolean) {
     this.systemApi.setLoopStatus && this.systemApi.setLoopStatus(data);
   }
 
-  @ipcEvent('shuffle')
+  @ipcEvent(IpcEvents.SHUFFLE)
   onShuffle(evt: IpcMessageEvent, data: boolean) {
     this.systemApi.shuffle = data;
   }
 
-  @ipcEvent('addTrack')
+  @ipcEvent(IpcEvents.TRACK_ADD)
   onAddTrack(evt: IpcMessageEvent, track: NuclearMeta) {
     this.systemApi.addTrack && this.systemApi.addTrack(track);
   }
 
-  @ipcEvent('removeTrack')
+  @ipcEvent(IpcEvents.TRACK_REMOVE)
   onRemoveTrack(evt: IpcMessageEvent, { uuid }: NuclearMeta) {
     this.systemApi.removeTrack && this.systemApi.removeTrack(uuid);
   }
 
-  @ipcEvent('clear-tracklist')
+  @ipcEvent(IpcEvents.QUEUE_CLEAR)
   onClearTrackList() {
     this.systemApi.clearTrackList && this.systemApi.clearTrackList();
+    this.discord.clear();
   }
 
-  @ipcEvent('songChange')
+  @ipcEvent(IpcEvents.SONG_CHANGE)
   onSongChange(evt: IpcMessageEvent, arg: NuclearMeta) {
     if (arg === null) {
       return;
@@ -64,7 +67,7 @@ class IpcPlayer {
 
     this.window.setTitle(`${arg.artist} - ${arg.name} - Nuclear Music Player`);
     this.systemApi.sendMetadata && this.systemApi.sendMetadata(arg);
-    this.discord.setActivity(arg);
+    this.discord.trackChange(arg);
   }
 }
 

@@ -156,6 +156,8 @@
     "autoradio-description": "재생목록이 끝나면 자동으로 비슷한 트랙을 추가",
     "compact-menu-bar": "컴팩트 스타일의 메뉴바 사용",
     "compact-queue-bar": "컴팩트 스타일의 재생목록 바 사용",
+    "developer": "Developer settings",
+    "devtools": "Developer tools",
     "disable-gpu": "하드웨어 렌더링 사용 안 함(끌기 요소 및 깜박임 화면 문제 해결 가능)",
     "display": "디스플레이",
     "downloads": "다운로드",

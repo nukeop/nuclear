@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useCallback} from 'react';
 
 import styles from './styles.scss';
 
@@ -9,7 +9,7 @@ import { useTranslation } from 'react-i18next';
 const PlayerControls = ({ back, togglePlay, playing, loading, forward }) => {
   const { t } = useTranslation('player');
 
-  const handleMediaKeys = event => {
+  const handleMediaKeys = useCallback(event => {
     switch (event.key) {
     case 'MediaPlayPause': {
       if (togglePlay) {
@@ -32,7 +32,7 @@ const PlayerControls = ({ back, togglePlay, playing, loading, forward }) => {
       return;
     }
     }
-  };
+  }, [back, forward, togglePlay]);
 
   useEffect(() => {
     document.addEventListener('keydown', handleMediaKeys);

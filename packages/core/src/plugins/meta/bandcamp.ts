@@ -1,14 +1,14 @@
-import _ from 'lodash';
-import MetaProvider from '../metaProvider';
-import {
-  SearchResultsArtist,
-  SearchResultsAlbum,
-  SearchResultsTrack,
-  ArtistDetails,
-  AlbumDetails
-} from '../plugins.types';
-import * as Bandcap from '../../rest/Bandcamp';
-import { Bandcamp } from '../../rest';
+// import _ from 'lodash';
+// import MetaProvider from '../metaProvider';
+// import {
+//   SearchResultsArtist,
+//   SearchResultsAlbum,
+//   SearchResultsTrack,
+//   ArtistDetails,
+//   AlbumDetails
+// } from '../plugins.types';
+// import * as Bandcap from '../../rest/Bandcamp';
+// import { Bandcamp } from '../../rest';
 
 /*
 class BandcampMetaProvider extends MetaProvider {

@@ -161,6 +161,8 @@
     "autoradio-description": "Add similar tracks automatically when the queue is ending",
     "compact-menu-bar": "Use estilo compacto para barra de menu",
     "compact-queue-bar": "Use estilo compacto para a barra de fila",
+    "developer": "Developer settings",
+    "devtools": "Developer tools",
     "disable-gpu": "Desativar a renderização de hardware (pode corrigir problemas com elementos de arrastamento e tela piscando)",
     "display": "Exibição",
     "downloads": "Downloads",

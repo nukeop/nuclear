@@ -6,7 +6,7 @@ import * as Jamendo from '../../rest/Jamendo';
 
 class JamendoPlugin extends StreamProviderPlugin {
   constructor(){
-  super();
+    super();
     this.name = 'Jamendo Plugin';
     this.sourceName = 'Jamendo';
     this.description = 'Allows Nuclear to find music streams on Jamendo';
@@ -43,8 +43,7 @@ class JamendoPlugin extends StreamProviderPlugin {
 
   getAlternateStream(query, currentStream) {
     return this.getSearchResults(query).then(results => {
-      let info = _.find(results, result => result && result.id !== currentStream.id);
-      return info;
+      return _.find(results, result => result && result.id !== currentStream.id);
     });
   }
 }
