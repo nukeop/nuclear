@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/nukeop/nuclear#readme",
   "scripts": {
-    "postinstall": "lerna bootstrap --no-ci",
+    "postinstall": "lerna bootstrap --no-ci && electron-builder install-app-deps",
     "start": "lerna run start --stream",
     "build": "shx rm -rf dist && lerna run build && npm run pack",
     "test": "lerna run build && lerna run test",
@@ -156,12 +156,11 @@
           ]
         },
         {
-          "from": "packages/main/node_modules/sql.js",
-          "to": "resources/node_modules/sql.js",
+          "from": "node_modules/sqlite3",
+          "to": "resources/node_modules/sqlite3",
           "filter": [
             "package.json",
-            "dist/sql-wasm.js",
-            "dist/sql-wasm.wasm"
+            "lib/*"
           ]
         }
       ]
@@ -182,12 +181,11 @@
           ]
         },
         {
-          "from": "packages/main/node_modules/sql.js",
-          "to": "Resources/node_modules/sql.js",
+          "from": "node_modules/sqlite3",
+          "to": "Resources/node_modules/sqlite3",
           "filter": [
             "package.json",
-            "dist/sql-wasm.js",
-            "dist/sql-wasm.wasm"
+            "lib/*"
           ]
         }
       ]
@@ -206,12 +204,11 @@
           ]
         },
         {
-          "from": "packages/main/node_modules/sql.js",
-          "to": "resources/node_modules/sql.js",
+          "from": "node_modules/sqlite3",
+          "to": "resources/node_modules/sqlite3",
           "filter": [
             "package.json",
-            "dist/sql-wasm.js",
-            "dist/sql-wasm.wasm"
+            "lib/*"
           ]
         }
       ]
@@ -219,5 +216,8 @@
     "nsis": {
       "artifactName": "${productName} Setup ${env.GITHASH}.${ext}"
     }
+  },
+  "dependencies": {
+    "sqlite3": "^4.2.0"
   }
 }

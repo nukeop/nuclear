@@ -44,7 +44,6 @@
     "reflect-metadata": "^0.1.13",
     "rotating-file-stream": "^2.0.2",
     "sharp": "^0.25.2",
-    "sql.js": "^1.2.2",
     "stream-filter": "^2.1.0",
     "stream-reduce": "^1.0.3",
     "swagger-spec-express": "^2.0.20",

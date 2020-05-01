@@ -46,7 +46,7 @@ module.exports = (env: BuildEnv): import('webpack').Configuration => {
       }
     },
     externals: {
-      'sql.js': 'commonjs sql.js'
+      'sqlite3': 'commonjs sqlite3'
     },  
     output: {
       path: path.resolve(__dirname, outputDir),
