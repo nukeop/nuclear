@@ -27,15 +27,10 @@ module.exports = (env: BuildEnv): import('webpack').Configuration => {
   const tsRule = {
     test: /.ts?$/,
     loader: 'ts-loader',
-    exclude: /node_modules\/(?!@nuclear).*/,
     options: {
       configFile: path.join(__dirname, `/config/tsconfig.${env.TARGET}.json`)
     }
   };
-
-  if (IS_PROD) {
-    delete tsRule.exclude;
-  }
 
   return {
     entry: './src/main.ts',
