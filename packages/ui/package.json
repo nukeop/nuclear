@@ -19,8 +19,6 @@
 	},
 	"scripts": {
     "storybook": "start-storybook -p 9001 -c .storybook",
-    "start": "tsc && copyfiles -u 1 ./lib/**/*.scss ./dist",
-    "build": "tsc && copyfiles -u 1 ./lib/**/*.scss ./dist",
     "lint": "eslint lib stories --fix",
     "test": "eslint lib && ava"
   },
