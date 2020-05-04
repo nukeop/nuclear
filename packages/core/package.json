@@ -14,8 +14,6 @@
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
   "scripts": {
-    "start": "tsc",
-    "build": "tsc",
     "lint": "eslint src/**/*.ts --fix",
     "test": "eslint src/**/**/**/**/*.ts test/**/*.ts && ava -v"
   },
