@@ -12,7 +12,7 @@ import DashboardContainer from '../DashboardContainer';
 import DownloadsContainer from '../DownloadsContainer';
 import EqualizerViewContainer from '../EqualizerViewContainer';
 import FavoritesContainer from '../FavoritesContainer';
-import LibraryView from '../../components/LibraryView';
+import LibraryViewContainer from '../LibraryViewContainer';
 import LyricsContainer from '../LyricsContainer';
 import PlaylistViewContainer from '../PlaylistViewContainer';
 import PlaylistsContainer from '../PlaylistsContainer';
@@ -50,7 +50,7 @@ class MainContentContainer extends React.Component {
               <Route path='/search' component={SearchResultsContainer} />
               <Route path='/lyrics' component={LyricsContainer} />
               <Route path='/equalizer' component={EqualizerViewContainer} />
-              <Route path='/library' component={LibraryView} />
+              <Route path='/library' component={LibraryViewContainer} />
             </Switch>
           </MainLayout>
         );

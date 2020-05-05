@@ -6,6 +6,7 @@ import { LibraryListTypeToggle } from '@nuclear/ui';
 import { LIST_TYPE } from '@nuclear/ui/lib/components/LibraryListTypeToggle';
 import _ from 'lodash';
 import { bindActionCreators } from 'redux';
+import PropTypes from 'prop-types';
 
 import EmptyState from './EmptyState';
 
@@ -22,21 +23,14 @@ import * as PlayerActions from '../../actions/player';
 import * as SettingsActions from '../../actions/settings';
 import { sortTracks } from './utils';
 
-const LibraryView = () => {
-  const sortBy = useSelector(state => state.local.sortBy);
-  const direction = useSelector(state => state.local.direction);
-  const pending = useSelector(state => state.local.pending);
-  const scanProgress = useSelector(state => state.local.scanProgress);
-  const scanTotal = useSelector(state => state.local.scanTotal);
-  const localFolders = useSelector(state => state.local.folders);
-  const listType = useSelector(state => state.local.listType);
+const LibraryView = ({pending, scanProgress, scanTotal, localFolders, sortBy, direction, listType}) => {
   const filter = useSelector(state => state.local.filter);
-  const tracks_map = useSelector(state => state.local.tracks);
+  const tracksMap = useSelector(state => state.local.tracks);
   const expandedFolders = useSelector(state => state.local.expandedFolders);
   const streamProviders = useSelector(state => state.plugin.plugins.streamProviders);
   const localStreamProviders = useMemo(() => _.filter(streamProviders, { sourceName: 'Local' }), [streamProviders]);
 
-  const unfilteredTracks = useMemo(() => _.values(tracks_map), [tracks_map]);
+  const unfilteredTracks = useMemo(() => _.values(tracksMap), [tracksMap]);
   const tracks = useMemo(() => {
     const checkFilter = string => _.includes(_.lowerCase(string), lowercaseFilter);
     const lowercaseFilter = _.lowerCase(filter);
@@ -47,8 +41,8 @@ const LibraryView = () => {
         checkFilter(_.get(track, 'artist.name'))
       ]);
     });
-    const tracks_preDirection = sortTracks(filteredTracks, sortBy);
-    return direction === 'ascending' ? tracks_preDirection : tracks_preDirection.reverse();
+    const tracksPreDirection = sortTracks(filteredTracks, sortBy);
+    return direction === 'ascending' ? tracksPreDirection : tracksPreDirection.reverse();
   }, [unfilteredTracks, filter, sortBy, direction]);
   const filterApplied = useMemo(() => tracks.length < unfilteredTracks.length, [tracks, unfilteredTracks]);
 
@@ -129,6 +123,13 @@ const LibraryView = () => {
 };
 
 LibraryView.propTypes = {
+  pending: PropTypes.bool,
+  scanProgress: PropTypes.number,
+  scanTotal: PropTypes.number,
+  localFolders: PropTypes.arrayOf(PropTypes.string),
+  sortBy: PropTypes.string,
+  direction: PropTypes.string,
+  listType: PropTypes.string
 };
 
 export default LibraryView;

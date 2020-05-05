@@ -76,7 +76,7 @@ class LocalLibrary {
       path: filePath,
       duration: format.duration,
       name: common.title,
-      pos: common.track.no,
+      position: common.track.no,
       album: common.album,
       artist: {
         name: common.artist || 'unknown'
