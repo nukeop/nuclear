@@ -8,24 +8,16 @@ export default function(paths) {
       initialState = undefined;
     }
 
-    // let reducerInitialPlusMprisStates, persistedState, finalInitialState;
-    let persistedState, finalInitialState;
+    // retrieve initial states from reducers, to apply prior to merging electron-store persisted-data
+    const reducerInitialStates = reducer(undefined, {});
+
+    let finalInitialState = _.merge({}, reducerInitialStates, initialState);
 
     try {
-      // persistedState = electronStore.getItems(paths);
-      // finalInitialState = Object.assign({}, initialState, persistedState);
-
-      // For each store path which uses electron-store persistence for some fields, call/include its getInitialState() below.
-      // This allows the for-reducer initial-state (+mpris) data to be merged with the electron-store persisted data.
-      /* reducerInitialPlusMprisStates = {
-        local: local_getInitialState()
-      };*/
-
-      // for each path, read its data as a root-field object, since that's what _.merge expects
-      persistedState = electronStore.getItems(paths.map(path => path.split('.')[0]));
-
-      // finalInitialState = _.merge({}, initialState, reducerInitialPlusMprisStates, persistedState);
-      finalInitialState = _.merge({}, initialState, persistedState);
+      // for each persisted-path, read its data as a root-field object, since that's what _.merge expects
+      const pathRoots = paths.map(path => path.split('.')[0]);
+      const persistedState = electronStore.getItems(pathRoots);
+      finalInitialState = _.merge({}, finalInitialState, persistedState);
     } catch (e) {
       console.warn(
         'Failed to retrieve initialize state from electron store:',

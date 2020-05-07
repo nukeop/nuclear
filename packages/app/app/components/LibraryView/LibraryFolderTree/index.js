@@ -8,24 +8,17 @@ import TrackPopupButtons from '../../../containers/TrackPopupButtons';
 import './styles.scss';
 import BaseTable, { AutoResizer } from 'react-base-table';
 import {updateExpandedFolders} from '../../../actions/local';
-// import 'react-base-table/styles.css';
 
-//  const useTreeData = (tracks, localFolders, width) => {
 const useTreeData = (tracks, localFolders) => {
   return useMemo(() => {
-    // console.log('Recalculating treeConfig.');
-
     const pathToEntryMap = {};
-    // let lastID = 0;
     function getEntryForFolder(path) {
       if (pathToEntryMap[path] === undefined) {
         const newEntry = {
-          // id: ++lastID,
           id: path,
           path,
           name: path.split('/').slice(-1)[0],
           children: []
-          // _hideChildren: true
         };
   
         if (localFolders.includes(path)) {
@@ -55,7 +48,6 @@ const useTreeData = (tracks, localFolders) => {
       const folderPath = track.path.split('/').slice(0, -1).join('/');
       const folderEntry = getEntryForFolder(folderPath);
       const newEntry = {
-        // id: ++lastID,
         id: track.path,
         parentId: folderEntry.id,
         track,
@@ -68,9 +60,6 @@ const useTreeData = (tracks, localFolders) => {
       folderEntry.children.push(newEntry);
     }
 
-    /* function getEntryByID(id) {
-      return Object.values(pathToEntryMap).find(entry => entry.id === id);
-    }*/
     const rowEntries = Object.values(pathToEntryMap);
     const rootEntries = rowEntries.filter(entry => entry.parentId === -1);
     const idToEntryMap = {};
@@ -79,7 +68,6 @@ const useTreeData = (tracks, localFolders) => {
     }
   
     return {
-      // idToEntryMap,
       rootEntries,
       columns: [
         {
@@ -132,7 +120,8 @@ const LibraryFolderTree = ({
       {({ width, height }) => (
         <BaseTable
           ref={tableRef}
-          columns={columns} data={rootEntries}
+          columns={columns}
+          data={rootEntries}
           rowHeight={23}
           expandColumnKey='name'
           defaultExpandedRowKeys={expandedFolders}
@@ -141,15 +130,12 @@ const LibraryFolderTree = ({
           height={height}
           rowRenderer={rowProps => {
             const {cells, rowData: entry} = rowProps;
-            const rowUI = <>
-              {cells}
-            </>;
+            const key = 'library-track-' + tracks.indexOf(entry.track);
             if (entry.track) {
               return (
                 <ContextPopup
-                  // trigger={rowUI}
+                  key={key}
                   trigger={<div style={{flex: 1, display: 'flex'}}>{cells}</div>}
-                  key={'library-track-' + tracks.indexOf(entry.track)}
                   thumb={getThumbnail(entry.track)}
                   title={_.get(entry.track, ['name'])}
                   artist={_.get(entry.track, ['artist', 'name'])}
@@ -158,12 +144,12 @@ const LibraryFolderTree = ({
                 </ContextPopup>
               );
             }
-            return rowUI;
-          }}>
-          {/* <Column key='name' dataKey='name' width={width / 3}/>
-          <Column key='album' dataKey='album' width={width / 3}/>
-          <Column key='artist' dataKey='artist' width={width / 3}/> */}
-        </BaseTable>
+            return (
+              <React.Fragment key={key}>
+                {cells}
+              </React.Fragment>
+            );
+          }}/>
       )}
     </AutoResizer>
   );
@@ -172,9 +158,7 @@ const LibraryFolderTree = ({
 LibraryFolderTree.propTypes = {
   tracks: PropTypes.array,
   localFolders: PropTypes.arrayOf(PropTypes.string),
-  sortBy: PropTypes.string,
-  direction: PropTypes.string,
-  handleSort: PropTypes.func
+  expandedFolders: PropTypes.arrayOf(PropTypes.string)
 };
 
 export default compose(
