@@ -1,7 +1,10 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
+    "lib": ["DOM"],
     "outDir": "dist",
+    "strict": false,
+    "allowJs": true,
     "typeRoots": [
       "./typings",
       "node_modules/@types"
