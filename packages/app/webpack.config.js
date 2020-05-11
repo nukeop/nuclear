@@ -50,7 +50,7 @@ module.exports = (env) => {
         '@babel/plugin-proposal-class-properties',
         '@babel/plugin-proposal-object-rest-spread'
       ],
-      ignore: [/node_modules/]
+      ignore: [/node_modules\/(?!@nuclear).*/]
     }
   };
   const contentSecurity = 'connect-src *; style-src \'unsafe-inline\' https:; font-src https: data:; img-src https: data: file:;';
@@ -98,9 +98,12 @@ module.exports = (env) => {
     jsxRule.options = {};
     jsxRule.include = [
       APP_DIR,
-      UI_DIR
+      path.resolve('..')
     ];
-    jsxRule.exclude = /node_modules\/electron-timber\/preload\.js/;
+    jsxRule.exclude = [
+      /node_modules\/electron-timber\/preload\.js/,
+      /node_modules\/(?!@nuclear).*/
+    ];
     optimization.splitChunks = {
       chunks: 'all',
       cacheGroups: {
@@ -198,6 +201,7 @@ module.exports = (env) => {
       publicPath: '/'
     };
   }
+
 
   return config;
 };
