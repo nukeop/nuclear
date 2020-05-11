@@ -9,6 +9,8 @@ const BUILD_DIR = path.resolve(__dirname, '../../dist');
 const APP_DIR = path.resolve(__dirname, 'app');
 const RESOURCES_DIR = path.resolve(__dirname, 'resources');
 
+const CORE_DIR = path.resolve(__dirname, '..', 'core');
+const I18N_DIR = path.resolve(__dirname, '..', 'i18n');
 const UI_DIR = path.resolve(__dirname, '..', 'ui');
 const VENDOR_DIR = path.resolve(__dirname, 'node_modules');
 
@@ -98,7 +100,9 @@ module.exports = (env) => {
     jsxRule.options = {};
     jsxRule.include = [
       APP_DIR,
-      path.resolve('..')
+      CORE_DIR,
+      I18N_DIR,
+      UI_DIR
     ];
     jsxRule.exclude = [
       /node_modules\/electron-timber\/preload\.js/,
