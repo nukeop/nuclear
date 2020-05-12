@@ -11,8 +11,7 @@
     "url": "https://github.com/nukeop/nuclear/issues"
   },
   "homepage": "https://github.com/nukeop/nuclear#readme",
-  "main": "lib/index.js",
-  "typings": "lib/index.d.ts",
+  "main": "src/index.js",
   "scripts": {
     "lint": "eslint src/**/*.ts",
     "i18n-sync": "ts-node scripts/sync"
