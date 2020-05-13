@@ -9,6 +9,11 @@ import * as SettingsActions from '../../actions/settings';
 
 function mapStateToProps(state) {
   return {
+    tracksMap: state.local.tracks,
+    filter: state.local.filter,
+    expandedFolders: state.local.expandedFolders,
+    streamProviders: state.plugin.plugins.streamProviders,
+
     pending: state.local.pending,
     scanProgress: state.local.scanProgress,
     scanTotal: state.local.scanTotal,

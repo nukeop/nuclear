@@ -1,7 +1,5 @@
 import React, {useMemo, useEffect, useRef} from 'react';
 import {useDispatch} from 'react-redux';
-import {compose} from 'recompose';
-import {withTranslation} from 'react-i18next';
 import PropTypes from 'prop-types';
 import { ContextPopup, getThumbnail } from '@nuclear/ui';
 import TrackPopupButtons from '../../../containers/TrackPopupButtons';
@@ -161,6 +159,4 @@ LibraryFolderTree.propTypes = {
   expandedFolders: PropTypes.arrayOf(PropTypes.string)
 };
 
-export default compose(
-  withTranslation('library')
-)(LibraryFolderTree);
+export default LibraryFolderTree;
