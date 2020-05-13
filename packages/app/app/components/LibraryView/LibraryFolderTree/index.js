@@ -22,10 +22,6 @@ const useTreeData = (tracks, localFolders) => {
         if (localFolders.includes(path)) {
           newEntry.parentId = -1;
         } else if (path.includes('/')) {
-          /* if (!localFolders.find(folderPath => path.startsWith(folderPath))) {
-            throw new Error(`Track at path "${path}" is not contained in any of the root library folders! (ensure path-separators match)`);
-          }*/
-
           const parentPath = path.split('/').slice(0, -1).join('/');
           const parent = getEntryForFolder(parentPath);
           newEntry.parentId = parent.id;
