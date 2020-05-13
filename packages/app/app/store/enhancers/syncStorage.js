@@ -14,10 +14,10 @@ export default function(paths) {
     let finalInitialState = _.merge({}, reducerInitialStates, initialState);
 
     try {
-      // for each persisted-path, read its data as a root-field object, since that's what _.merge expects
-      const pathRoots = paths.map(path => path.split('.')[0]);
-      const persistedState = electronStore.getItems(pathRoots);
-      finalInitialState = _.merge({}, finalInitialState, persistedState);
+      for (const path of paths) {
+        const persistedValue = electronStore.get(path);
+        finalInitialState = _.setWith(_.clone(finalInitialState), path, persistedValue, _.clone); // deep, immutable set
+      }
     } catch (e) {
       console.warn(
         'Failed to retrieve initialize state from electron store:',
@@ -27,9 +27,10 @@ export default function(paths) {
     const store = next(reducer, finalInitialState, enhancer);
     store.subscribe(() => {
       const state = store.getState();
-      const subset = _.pick(state, paths);
       try {
-        electronStore.setItems(subset);
+        for (const path of paths) {
+          electronStore.set(path, _.get(state, path));
+        }
       } catch (e) {
         console.warn('Unable to persist state to electron store:', e);
       }
