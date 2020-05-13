@@ -5,7 +5,7 @@
   "scripts": {
     "start": "webpack-dev-server --inline --env.NODE_ENV=development",
     "build": "webpack --colors --env.NODE_ENV=production",
-    "test": "mocha --require @babel/register --require ignore-styles --require regenerator-runtime --timeout 10000 --prof --recursive",
+    "test": "mocha --require ts-node/register --require @babel/register --require ignore-styles --require regenerator-runtime --timeout 10000 --prof --recursive",
     "lint": "eslint app test --fix",
     "i18n": "sync-i18n --files 'app/locales/*.json' --primary en --languages fr tl nl de dk es pl zh ru tr id sk ko zh_tw se --space 2"
   },
@@ -88,6 +88,7 @@
     "@babel/preset-react": "^7.9.4",
     "@babel/preset-typescript": "^7.9.0",
     "@babel/register": "^7.9.0",
+    "@types/mocha": "^7.0.2",
     "ava": "^2.4.0",
     "babel-loader": "^8.1.0",
     "chai": "^4.1.2",
@@ -112,6 +113,7 @@
     "style-loader": "^0.23.0",
     "svg-inline-loader": "^0.8.0",
     "ts-loader": "^7.0.1",
+    "ts-node": "^8.10.1",
     "url-loader": "^1.0.1",
     "utf-8-validate": "^5.0.2",
     "webpack": "^4.41.2",
