@@ -8,16 +8,26 @@ import styles from './styles.scss';
 export const LIST_TYPE = Object.freeze({
   SIMPLE_LIST: 'simple-list',
   ALBUM_GRID: 'album-grid',
-  ALBUM_LIST: 'album-list'
+  ALBUM_LIST: 'album-list',
+  FOLDER_TREE: 'folder-tree'
 });
 
 const LibraryListTypeToggle = ({
   toggleSimpleList,
   toggleAlbumGrid,
   // toggleAlbumList,
+  toggleFolderTree,
   listType
 }) => (
   <Button.Group className={styles.library_list_type_toggle}>
+    <Button
+      inverted icon='unordered list' onClick={toggleSimpleList}
+      active={listType === LIST_TYPE.SIMPLE_LIST}
+    />
+    <Button
+      inverted icon='th' onClick={toggleAlbumGrid}
+      active={listType === LIST_TYPE.ALBUM_GRID}
+    />
     {
     // TODO: To be developed and re-enabled later
     // <Button
@@ -27,12 +37,8 @@ const LibraryListTypeToggle = ({
     // />
     }
     <Button
-      inverted icon='th' onClick={toggleAlbumGrid}
-      active={listType === LIST_TYPE.ALBUM_GRID}
-    />
-    <Button
-      inverted icon='table' onClick={toggleSimpleList}
-      active={listType === LIST_TYPE.SIMPLE_LIST}
+      inverted icon='folder' onClick={toggleFolderTree}
+      active={listType === LIST_TYPE.FOLDER_TREE}
     />
   </Button.Group>
 );
@@ -47,5 +53,6 @@ LibraryListTypeToggle.propTypes = {
 export default withHandlers({
   toggleSimpleList: ({toggleListType}) => () => toggleListType(LIST_TYPE.SIMPLE_LIST),
   toggleAlbumGrid: ({toggleListType}) => () => toggleListType(LIST_TYPE.ALBUM_GRID),
-  toggleAlbumList: ({toggleListType}) => () => toggleListType(LIST_TYPE.ALBUM_LIST)
+  toggleAlbumList: ({toggleListType}) => () => toggleListType(LIST_TYPE.ALBUM_LIST),
+  toggleFolderTree: ({toggleListType}) => () => toggleListType(LIST_TYPE.FOLDER_TREE)
 })(LibraryListTypeToggle);

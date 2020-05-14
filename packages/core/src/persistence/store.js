@@ -11,7 +11,7 @@ import { settingsConfig } from '../settings';
 ElectronStore.prototype.getItems = function(items){
   items = Array.isArray(items)?items:[items];
   const data ={};
-  for (let item of items){
+  for (const item of items){
     data[item] = this.get(item);
   }
   return data;
@@ -24,7 +24,7 @@ ElectronStore.prototype.getItems = function(items){
  */
 ElectronStore.prototype.setItems = function(items){
   const keys = Object.keys(items);
-  for (let key of keys){
+  for (const key of keys){
     this.set(key, items[key]);
   }
 };
