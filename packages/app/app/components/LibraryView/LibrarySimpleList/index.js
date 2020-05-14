@@ -24,9 +24,9 @@ const LibrarySimpleList = ({
 }) => (
   <ReactList
     ref={comp => {
-      // needed to fix "height" style being ignored (thus breaking scrolling)
       if (comp) {
-        comp.el.style.display = 'table';
+        // enables css styling of the container element
+        comp.el.className = styles.library_simple_list_container;
       }
     }}
     type='uniform'

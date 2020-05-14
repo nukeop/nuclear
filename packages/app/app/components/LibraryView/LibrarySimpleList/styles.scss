@@ -1,6 +1,11 @@
 @import '../../../mixin';
 @import '../../../vars';
 
+.library_simple_list_container {
+  // needed to fix "height" style being ignored (thus breaking scrolling)
+  display: table;
+}
+
 .library_simple_list {
   background: transparent !important;
   margin-top: 0;
