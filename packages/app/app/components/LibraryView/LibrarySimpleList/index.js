@@ -23,6 +23,12 @@ const LibrarySimpleList = ({
   t
 }) => (
   <ReactList
+    ref={comp => {
+      if (comp) {
+        // enables css styling of the container element
+        comp.el.className = styles.library_simple_list_container;
+      }
+    }}
     type='uniform'
     useStaticSize
     length={tracks.length}

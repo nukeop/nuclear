@@ -1,10 +1,10 @@
 import { expect } from 'chai';
 import { describe, it, beforeEach } from 'mocha';
 
-import { sortTracks } from '../app/containers/LibraryViewContainer/utils';
+import { sortTracks } from '../app/components/LibraryView/utils';
 
 let tracks;
-describe('LibraryViewContainer utils tests', () => {
+describe('LibraryView utils tests', () => {
   beforeEach(() => {
     tracks = [
       {artist: {name: 'test'}, name: 'test', album: 'test'},

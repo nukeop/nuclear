@@ -10,6 +10,7 @@ export const OPEN_LOCAL_FOLDER_PICKER = 'OPEN_LOCAL_FOLDER_PICKER';
 export const UPDATE_LOCAL_FILTER = 'UPDATE_LOCAL_FILTER';
 export const UPDATE_LOCAL_SORT = 'UPDATE_LOCAL_SORT';
 export const UPDATE_LIBRARY_LIST_TYPE = 'UPDATE_LIBRARY_LIST_TYPE';
+export const UPDATE_EXPANDED_FOLDERS = 'UPDATE_EXPANDED_FOLDERS';
 
 function updateLocalFolders(folders) {
   return {
@@ -79,6 +80,9 @@ export function openLocalFolderPicker() {
   return dispatch => {
     remote.dialog.showOpenDialog({ properties: ['openDirectory', 'multiSelections'] }, folders => {
       if (folders) {
+        // normalize path-seps (gets normalized on save to disk, but must happen from start for some UI code)
+        folders = folders.map(path => path.replace(/\\/g, '/'));
+        
         dispatch(addLocalFolders(folders));
       }
     });
@@ -108,5 +112,12 @@ export function updateLibraryListType(listType) {
   return {
     type: UPDATE_LIBRARY_LIST_TYPE,
     payload: { listType }
+  };
+}
+
+export function updateExpandedFolders(expandedFolders) {
+  return {
+    type: UPDATE_EXPANDED_FOLDERS,
+    payload: { expandedFolders }
   };
 }

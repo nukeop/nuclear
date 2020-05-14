@@ -26,7 +26,9 @@ const TrackRow = ({
   displayPlayCount,
   displayTrackNumber,
   withDeleteButton,
-  // withAddToDownloads,
+  // don't comment these, despite no usage, otherwise `...other` includes them (causing React warning)
+  withAddToDownloads, // eslint-disable-line
+  withAddToFavorites, // eslint-disable-line
   onDelete,
   ...other
 }) => (
@@ -95,7 +97,12 @@ TrackRow.propTypes = {
   track: PropTypes.shape({
     local: PropTypes.bool,
     album: PropTypes.string,
-    artist: PropTypes.string,
+    artist: PropTypes.oneOfType([
+      PropTypes.shape({
+        name: PropTypes.string
+      }),
+      PropTypes.string
+    ]),
     duration: PropTypes.number,
     position: PropTypes.number,
     playcount: PropTypes.number

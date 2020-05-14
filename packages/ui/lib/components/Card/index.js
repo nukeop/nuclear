@@ -39,7 +39,7 @@ const Card = ({
 Card.propTypes = {
   header: PropTypes.string,
   content: PropTypes.string,
-  image: PropTypes.string,
+  image: PropTypes.arrayOf(PropTypes.string),
   onClick: PropTypes.func
 };
 

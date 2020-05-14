@@ -52,7 +52,7 @@ export interface NuclearBrutMeta {
   duration?: number;
   path: string;
   name?: string;
-  pos: number;
+  position: number;
   album?: string;
   artist: { name: string };
   genre?: string[];

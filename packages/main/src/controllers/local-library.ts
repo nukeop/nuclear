@@ -34,7 +34,7 @@ class LocalIpcCtrl {
   }
 
   /**
-   * get local libray folder from store
+   * get local library folders from store
    */
   @ipcEvent(IpcEvents.LOCALFOLDERS_GET)
   getLocalFolders(event: IpcMessageEvent) {

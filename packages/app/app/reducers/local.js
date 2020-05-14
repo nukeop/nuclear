@@ -8,7 +8,8 @@ import {
   UPDATE_LOCAL_SORT,
   UPDATE_LIBRARY_LIST_TYPE,
   UPDATE_LOCAL_FOLDERS,
-  REMOVE_LOCAL_FOLDER
+  REMOVE_LOCAL_FOLDER,
+  UPDATE_EXPANDED_FOLDERS
 } from '../actions/local';
 
 const initialState = {
@@ -20,7 +21,8 @@ const initialState = {
   direction: 'ascending',
   filter: '',
   listType: LIST_TYPE.SIMPLE_LIST,
-  tracks: {}
+  tracks: {},
+  expandedFolders: []
 };
 
 export default function LocalReducer(state = initialState, action) {
@@ -66,6 +68,7 @@ export default function LocalReducer(state = initialState, action) {
   case UPDATE_LOCAL_FILTER:
   case UPDATE_LOCAL_SORT:
   case UPDATE_LIBRARY_LIST_TYPE:
+  case UPDATE_EXPANDED_FOLDERS:
     return {
       ...state,
       ...action.payload

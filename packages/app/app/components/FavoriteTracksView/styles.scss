@@ -4,7 +4,7 @@
 .favorite_tracks_view {
   display: flex;
   flex-flow: column;
-  min-height: 100%;
+  height: 100%;
 
   .empty_state {
     @include emptyState;
@@ -25,6 +25,10 @@
     text-transform: uppercase;
     display: inline-block;
     margin: auto;
+  }
+
+  .tracks_container {
+    overflow: auto;
   }
 
   .favorite_tracks_table {

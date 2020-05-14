@@ -76,7 +76,7 @@ class LocalLibrary {
       path: filePath,
       duration: format.duration,
       name: common.title,
-      pos: common.track.no,
+      position: common.track.no,
       album: common.album,
       artist: {
         name: common.artist || 'unknown'
@@ -266,6 +266,8 @@ class LocalLibrary {
         )
       )
     ).then(result => result.flat());
+    // normalize path-seps (gets normalized on save to disk, but must happen from start for some UI code)
+    // baseFiles = baseFiles.map(path => path.replace(/\\/g, '/'));
   
     const cache = this.store.getCache() || {};
 
