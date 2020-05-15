@@ -91,7 +91,7 @@ class LocalLibrary {
   }
 
   /**
-   * fetch acousticId metadata 10 by 10
+   * fetch acousticId metadata 3 by 3 (api limit 3 request / second)
    */
   fetchAcousticIdBatch(metas: NuclearMeta[], onProgress?: ProgressHandler): Promise<void[]> {
     let scanProgress = 0;
@@ -99,7 +99,7 @@ class LocalLibrary {
 
     this.logger.log(`start fetching metadata from acoustic-id api for ${scanTotal} tracks`);
     // Limit acoustic-id fetching to a max of X at a time
-    return asyncPool(10, metas, async meta => {
+    return asyncPool(3, metas, async meta => {
       let data;
       try {
         const {results, error} = await this.acousticId.getMetadata(meta.path as string);
