@@ -86,10 +86,9 @@ Nuclear has already been translated to several languages, and we're always looki
 
 First of all, be sure to check out the [Contribution Wiki Page](https://github.com/nukeop/nuclear/wiki/Contributing).
 
-Use lerna:
+Use npm:
 ```shell
 $ npm install # installs dependencies
-$ npx lerna bootstrap # links the packages
 $ npm start
 ```
 
@@ -105,7 +104,7 @@ $ npm run build
 Instead of `build` you can use `build:all` to build for all operating systems. The binaries will be in `packages/app/release`
 
 ---
-It's also possible to run the development environment using docker containers.
+It's also possible to run the development environment using docker containers, but this should be considered experimental.
 
 You will need docker and docker-compose. You need to allow the root user to connect to X11 display, and then you can run docker-compose:
 
