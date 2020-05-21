@@ -1,8 +1,8 @@
 import 'isomorphic-fetch';
 
 export * from './settings';
-export * from './interfaces';
-export { isElectron, isValidPort } from './util';
+export * from './types';
+export { isElectron } from './util';
 export { transformSource, transformPluginFile } from './plugins/transform';
 
 export { default as Plugin } from './plugins/plugin';

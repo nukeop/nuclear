@@ -27,6 +27,10 @@ class Store extends ElectronStore {
       this.setOption('invidious.url', this.config.defaultInvidiousUrl);
     }
 
+    if (!this.getLastThumbCleanDate()) {
+      this.setLastThumbCleanDate(new Date());
+    }
+
     this.logger.log(`Initialized settings store at ${this.path}`);
   }
 
@@ -52,6 +56,18 @@ class Store extends ElectronStore {
     const availablePort = await getPort({ port: getPort.makeRange(startPort, endPort) });
   
     this.setOption('api.port', availablePort);
+  }
+
+  getLastThumbCleanDate(): Date | undefined {
+    const time = this.get('last-thumb-clean-date');
+
+    if (time) {
+      return new Date(time);
+    }
+  }
+
+  setLastThumbCleanDate(date: Date): void {
+    this.set('last-thumb-clean-date', date.getTime());
   }
 }
 

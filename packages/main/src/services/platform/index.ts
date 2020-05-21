@@ -35,11 +35,9 @@ class Platform {
     return process.platform === 'win32';
   }
   
-  getBinaryPath(): string {
-    const { isPackaged, getAppPath } = app;
-  
-    return process.env.NODE_ENV === 'production' && isPackaged
-      ? path.join(path.dirname(getAppPath()), '..', './resources', './bin')
+  getBinaryPath(): string {  
+    return process.env.NODE_ENV === 'production' && app.isPackaged
+      ? path.join(path.dirname(app.getAppPath()), '..', './resources', './bin')
       : path.join(__dirname, '../bin', this.getPlatform());
   }
   

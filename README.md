@@ -83,10 +83,13 @@ Nuclear has already been translated to several languages, and we're always looki
 | Swedish                             | [PalleKarlsson](https://github.com/PalleKarlsson)                                             |
 
 ## Development process
+
+First of all, be sure to check out the [Contribution Wiki Page](https://github.com/nukeop/nuclear/wiki/Contributing).
+
 Use lerna:
 ```shell
-$ npm i -g lerna #installs lerna globally
-$ lerna bootstrap
+$ npm install # installs dependencies
+$ npx lerna bootstrap # links the packages
 $ npm start
 ```
 
@@ -94,7 +97,7 @@ A new window should open that will load the web app and run Nuclear.
 
 ---
 To build for current operating system:
-```bash
+```shell
 $ lerna bootstrap
 $ npm run build
 ```
