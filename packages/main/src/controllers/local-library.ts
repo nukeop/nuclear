@@ -29,34 +29,40 @@ class LocalIpcCtrl {
    * get local files metas
    */
   @ipcEvent(IpcEvents.LOCAL_METAS)
-  getLocalMetas(event: IpcMessageEvent) {
-    event.returnValue = this.localLibraryDb.getCache();
+  async getLocalMetas(event: IpcMessageEvent) {
+    const tracks = await this.localLibraryDb.getTracks();
+    event.returnValue = tracks;
   }
 
   /**
    * get local library folders from store
    */
   @ipcEvent(IpcEvents.LOCALFOLDERS_GET)
-  getLocalFolders(event: IpcMessageEvent) {
-    event.returnValue = this.localLibraryDb.get('localFolders');
+  async getLocalFolders(event: IpcMessageEvent) {
+    const folders = await this.localLibraryDb.getLocalFolders();
+    event.returnValue = folders.map(({ path }) => path);
   }
 
   /**
    * store local library folders
    */
   @ipcEvent(IpcEvents.LOCALFOLDERS_SET)
-  async setLocalFolders(event: IpcMessageEvent, localFolders: string[]) {
-    localFolders
-      .map(folder => this.normalizeFolderPath(folder))
-      .forEach(folder => {
-        this.localLibraryDb.addLocalFolder(folder);
-      });
+  async setLocalFolders(event: IpcMessageEvent, directories: string[]) {
+    const localFolders = await Promise.all(
+      directories
+        .map(folder => this.localLibraryDb.addFolder(this.normalizeFolderPath(folder)))
+    );
 
-    const cache = await this.localLibrary.scanFoldersAndGetMeta((scanProgress, scanTotal) => {
+    const cache = await this.localLibrary.scanFoldersAndGetMeta(localFolders, (scanProgress, scanTotal) => {
       this.window.send(IpcEvents.LOCAL_FILES_PROGRESS, {scanProgress, scanTotal});
     });
 
-    this.window.send(IpcEvents.LOCAL_FILES, cache);
+    // console.log(cache);
+
+    this.window.send(IpcEvents.LOCAL_FILES, Object.values(cache).reduce((acc, track) => ({
+      ...acc,
+      [track.uuid as string]: track
+    }), {}));
   }
 
   /**
@@ -64,7 +70,7 @@ class LocalIpcCtrl {
    */
   @ipcEvent(IpcEvents.LOCALFOLDER_REMOVE)
   async removeLocalFolder(event: IpcMessageEvent, localFolder: string) {
-    const metas = await this.localLibrary.removeLocalFolder(
+    const metas = await this.localLibraryDb.removeLocalFolder(
       this.normalizeFolderPath(localFolder)
     );
 
@@ -77,9 +83,13 @@ class LocalIpcCtrl {
   @ipcEvent(IpcEvents.LOCALFOLDERS_REFRESH)
   async onRefreshLocalFolders() {
     try {
-      const cache = await this.localLibrary.scanFoldersAndGetMeta((scanProgress, scanTotal) => {
-        this.window.send(IpcEvents.LOCAL_FILES_PROGRESS, {scanProgress, scanTotal});
-      });
+      const folders = await this.localLibraryDb.getLocalFolders();
+      const cache = await this.localLibrary.scanFoldersAndGetMeta(
+        folders,
+        (scanProgress, scanTotal) => {
+          this.window.send(IpcEvents.LOCAL_FILES_PROGRESS, {scanProgress, scanTotal});
+        }
+      );
 
       this.window.send(IpcEvents.LOCAL_FILES, cache);
     } catch (err) {

@@ -145,6 +145,10 @@ class Window {
       this.logger.warn('something fails while trying to install devtools');
     }
   }
+
+  close() {
+    this.browserWindow.close();
+  }
 }
 
 export default Window;
