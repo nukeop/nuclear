@@ -161,6 +161,8 @@
     "autoradio-description": "Fügt gleiche Lieder automatisch hinzu, falls die Warteschlange leer wird",
     "compact-menu-bar": "Verwenden Sie einen kompakten Stil für die Menüleiste",
     "compact-queue-bar": "Verwenden Sie einen kompakten Stil für die Warteschlangenleiste",
+    "developer": "Developer settings",
+    "devtools": "Developer tools",
     "disable-gpu": "Hardware-Rendering deaktivieren (könnte Probleme mit ziehenden Elementen und blinkenden Bildschirmen beheben)",
     "display": "Anzeige",
     "downloads": "Downloads",

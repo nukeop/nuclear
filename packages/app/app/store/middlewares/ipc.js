@@ -8,7 +8,7 @@ import { ADD_QUEUE_ITEM, CLEAR_QUEUE, REMOVE_QUEUE_ITEM, QUEUE_DROP } from '../.
 import { SET_BOOLEAN_OPTION, SET_NUMBER_OPTION } from '../../actions/settings';
 import { CHANGE_CONNECTIVITY } from '../../actions/connectivity';
 import { ADD_TO_DOWNLOADS, DOWNLOAD_RESUMED, DOWNLOAD_PAUSED, DOWNLOAD_FINISHED, DOWNLOAD_ERROR } from '../../actions/downloads';
-import { CLOSE_WINDOW, MINIMIZE_WINDOW, MAXIMIZE_WINDOW } from '../../actions/window';
+import { CLOSE_WINDOW, MINIMIZE_WINDOW, MAXIMIZE_WINDOW, OPEN_DEVTOOLS } from '../../actions/window';
 
 const ipcConnect = () => next => {
   next({
@@ -120,6 +120,8 @@ const ipcConnect = () => next => {
       return ipcRenderer.send(IpcEvents.WINDOW_MAXIMIZE);
     case MINIMIZE_WINDOW:
       return ipcRenderer.send(IpcEvents.WINDOW_MINIMIZE);
+    case OPEN_DEVTOOLS:
+      return ipcRenderer.send(IpcEvents.WINDOW_OPEN_DEVTOOLS);
     }
   
     next({ type, payload });

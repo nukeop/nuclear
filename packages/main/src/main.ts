@@ -13,6 +13,7 @@ import Window from './services/window';
 import Container from './utils/container';
 import LocalLibrary from './services/local-library';
 import HttpApi from './services/http';
+import LocalLibraryDb from './services/local-library/db';
 
 app.commandLine.appendSwitch('autoplay-policy', 'no-user-gesture-required');
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -49,6 +50,7 @@ app.on('ready', async () => {
     const trayMenu = container.get<TrayMenu>(TrayMenu);
     const window = container.get<Window>(Window);
     const discord = container.get<Discord>(Discord);
+    const localLibraryDb = container.get<LocalLibraryDb>(LocalLibraryDb);
 
     if (config.isDev()) {
       await Promise.all([
@@ -57,6 +59,7 @@ app.on('ready', async () => {
       ]);
     }
 
+    await localLibraryDb.connect();
     container.listen();
     await window.load(),
     trayMenu.init();
@@ -70,7 +73,7 @@ app.on('ready', async () => {
     logger.error('something fail during app bootstrap');
     logger.error(err);
 
-    return app.quit();
+    app.quit();
   }
 });
 
@@ -78,10 +81,8 @@ app.on('window-all-closed', async () => {
   try {
     logger.log('All windows closed, quitting');
     const store = container.get<Store>(Store);
-    const localLibrary = container.get<LocalLibrary>(LocalLibrary);
     const discord = container.get<Discord>(Discord);
-
-    await localLibrary.cleanUnusedLocalThumbnails();
+    const localDb = container.get<LocalLibraryDb>(LocalLibraryDb);
 
     if (store.getOption('api.enabled')) {
       const httpApi = container.get<HttpApi>(HttpApi);
@@ -89,9 +90,11 @@ app.on('window-all-closed', async () => {
     }
 
     discord.clear();
-    app.quit();
+    await localDb.cleanUnusedThumbnail();
   } catch (err) {
     logger.error('something fail during app close');
     logger.error(err);
   }
+
+  app.quit();
 });

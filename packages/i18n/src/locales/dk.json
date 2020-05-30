@@ -151,6 +151,8 @@
     "autoradio-description": "Add similar tracks automatically when the queue is ending",
     "compact-menu-bar": "Benyt kompakt stil til menu",
     "compact-queue-bar": "Benyt kompakt stil til kø",
+    "developer": "Developer settings",
+    "devtools": "Developer tools",
     "disable-gpu": "Deaktiver hardware-generering (Dette vil måske hjælpe på problemer med elementer, der skal trækkes samt, hvis skærmen flimrer)",
     "display": "Vis",
     "downloads": "Downloads",

@@ -161,6 +161,8 @@
     "autoradio-description": "Aggiungi brani simili quando la coda sta per finire",
     "compact-menu-bar": "Usa lo stile compatto per il menu principale",
     "compact-queue-bar": "Usa lo stile compatto per la coda principale",
+    "developer": "Developer settings",
+    "devtools": "Developer tools",
     "disable-gpu": "Disabilita il rendering dell'hardware (potrebbe correggere alcuni bug di visualizzazione)",
     "display": "Display",
     "downloads": "Downloads",

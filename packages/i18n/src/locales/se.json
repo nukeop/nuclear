@@ -161,6 +161,8 @@
     "autoradio-description": "Lägg till liknande spår automatiskt när kön är färdigspelad",
     "compact-menu-bar": "Använd en kompakt stil för menyfältet",
     "compact-queue-bar": "Använd en kompakt stil för köfältet",
+    "developer": "Developer settings",
+    "devtools": "Developer tools",
     "disable-gpu": "Stäng av hårdvarurendering (detta kan lösa problem med laggande element och blinkande skärmar)",
     "display": "Display",
     "downloads": "Nedladdningar",

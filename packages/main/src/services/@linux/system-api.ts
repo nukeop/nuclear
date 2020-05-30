@@ -87,7 +87,7 @@ class LinuxMediaService extends MprisService implements NuclearApi {
     return {
       Id: this.objectPath(`playlist/${index}`),
       Name: playlist.name,
-      Icon: playlist.tracks[0].thumbnail
+      Icon: playlist.tracks[0].thumbnail || ''
     };
   }
 

@@ -26,6 +26,8 @@ class Config {
   macIcon: string;
   discordClientId: string;
   defaultInvidiousUrl: string;
+  thumbCleanInterval: number;
+  sqliteDbName: string;
 
   constructor(
     @inject($mainLogger) logger: Logger
@@ -40,6 +42,9 @@ class Config {
 
     this.icon = path.resolve(iconPath, 'icon.png');
     this.macIcon = path.resolve(iconPath, 'icon_apple.png');
+
+    this.thumbCleanInterval = 30;
+    this.sqliteDbName = 'nuclear-local-db.sqlite';
 
     dotenv.config({
       path: path.resolve(__dirname, '.env')

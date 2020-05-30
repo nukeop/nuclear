@@ -161,6 +161,8 @@
     "autoradio-description": "Sıralama bittiğinde benzer şarkıları otomatik listeye ekle",
     "compact-menu-bar": "Menu bar için küçük stili kulllan",
     "compact-queue-bar": "Sıralama için küçük stili kulllan",
+    "developer": "Developer settings",
+    "devtools": "Developer tools",
     "disable-gpu": "Ekran kartı hizmetini devre dışı bırak. (sürüklenen ekranları ve bazı hataları giderebilir)",
     "display": "Görüntü",
     "downloads": "Downloads",
