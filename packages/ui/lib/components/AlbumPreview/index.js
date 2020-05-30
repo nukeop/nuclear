@@ -54,11 +54,11 @@ const AlbumPreview = ({
         <table>
           <tbody>
             {
-              album.tracks.map(track => (
+              album.tracks.map((track, index) => (
                 <ContextPopup
                   trigger={
                     <TrackRow
-                      key={track.position}
+                      key={index}
                       track={track}
                       mini
                       displayArtist
@@ -67,7 +67,7 @@ const AlbumPreview = ({
                       displayDuration
                     />
                   }
-                  key={track.position}
+                  key={index}
                   thumb={thumb}
                   title={track.name}
                   artist={_.get(album, 'artist.name')}

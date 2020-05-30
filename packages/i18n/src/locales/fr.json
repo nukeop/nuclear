@@ -161,6 +161,8 @@
     "autoradio-description": "Ajouter des morceaux similaires automatiquement lorsque la file de lecture se termine",
     "compact-menu-bar": "Utiliser le style compacte pour la barre de menu",
     "compact-queue-bar": "Utiliser le style compacte pour la barre de file de lecture",
+    "developer": "Options pour développeur",
+    "devtools": "Outils de développement",
     "disable-gpu": "Désactiver l'accélération matérielle (peut résoudre certains bugs d'affichage)",
     "display": "Affichage",
     "downloads": "Téléchargements",

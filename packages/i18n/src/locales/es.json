@@ -161,6 +161,8 @@
     "autoradio-description": "Añadir pistas similares cuando la cola esté cerca de terminar",
     "compact-menu-bar": "Usar estilo compacto en la barra de menú",
     "compact-queue-bar": "Usar estilo compacto en la cola de reproducción",
+    "developer": "Developer settings",
+    "devtools": "Developer tools",
     "disable-gpu": "Deshabilitar renderizado por hardware (puede arreglar ciertos bugs de visualización)",
     "display": "Visualización",
     "downloads": "Downloads",

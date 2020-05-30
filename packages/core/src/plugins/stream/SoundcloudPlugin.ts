@@ -14,12 +14,12 @@ class SoundcloudPlugin extends StreamProviderPlugin {
     this.image = null;
   }
 
-  resultToStream(result) {
+  resultToStream(result): StreamData {
     return {
       source: this.sourceName,
       id: result.id,
       stream: result.stream_url + `?client_id=${process.env.SOUNDCLOUD_API_KEY}`,
-      duration: result.duration,
+      duration: result.duration/1000,
       title: result.title,
       thumbnail: result.user.avatar_url
     };
