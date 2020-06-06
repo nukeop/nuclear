@@ -224,6 +224,6 @@ export default compose(
     currentTrack: queue.queueItems[queue.currentSong]
   })),
   withProps(({ currentTrack, plugins }) => ({
-    currentStream: Boolean(currentTrack) && (_.find(currentTrack.streams, { source: plugins.selected.streamProviders }) || currentTrack.streams[0])
+    currentStream: Boolean(currentTrack) && (_.find(currentTrack.streams, { source: plugins.selected.streamProviders }) || _.head(currentTrack.streams))
   }))
 )(SoundContainer);
