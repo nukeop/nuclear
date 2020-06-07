@@ -9,6 +9,7 @@ import { SearchBox } from '@nuclear/ui';
 
 import * as SearchActions from '../../actions/search';
 import * as PluginActions from '../../actions/plugins';
+import { pluginsSelectors } from '../../selectors/plugins';
 
 const MIN_SEARCH_LENGTH = 3;
 const SearchBoxContainer = ({
@@ -39,8 +40,8 @@ const SearchBoxContainer = ({
 const mapStateToProps = state => ({
   unifiedSearchStarted: state.search.unifiedSearchStarted,
   isConnected: state.connectivity,
-  searchProviders: state.plugin.plugins.metaProviders,
-  selectedSearchProvider: state.plugin.selected.metaProviders,
+  searchProviders: _.get(pluginsSelectors.plugins(state), 'metaProviders'),
+  selectedSearchProvider: _.get(pluginsSelectors.selected(state), 'metaProviders'),
   isFocused: state.search.isFocused
 });
 
