@@ -1,6 +1,6 @@
 import { store as electronStore } from '@nuclear/core';
 
-export default function(paths) {
+export default function (paths) {
 
   return next => (reducer, initialState, enhancer) => {
     if (typeof initialState === 'function' && typeof enhancer === 'undefined') {
@@ -24,12 +24,16 @@ export default function(paths) {
         e
       );
     }
+    
     const store = next(reducer, finalInitialState, enhancer);
     store.subscribe(() => {
       const state = store.getState();
       try {
         for (const path of paths) {
-          electronStore.set(path, _.get(state, path));
+          const localState = _.get(state, path);
+          if (localState) {
+            electronStore.set(path, localState);
+          }
         }
       } catch (e) {
         console.warn('Unable to persist state to electron store:', e);

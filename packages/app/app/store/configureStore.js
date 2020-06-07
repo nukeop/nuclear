@@ -16,7 +16,7 @@ export default function configureStore(initialState) {
     initialState,
     composeEnhancers(
       applyMiddleware(ReduxPromise, thunk, ipcConnect),
-      syncStore(['downloads', 'local.expandedFolders'])
+      syncStore(['downloads', 'local.expandedFolders', 'plugin.selected'])
     )
   );
 
