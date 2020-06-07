@@ -4,6 +4,7 @@ import {
   SearchResultsSource,
   SearchResultsTrack
 } from '../plugins/plugins.types';
+import { PartialExcept } from '../types';
 
 export default class Track {
   uuid: string;
@@ -18,7 +19,10 @@ export default class Track {
   thumbnail?: string;
   extraArtists?: string[];
 
-  constructor(data: Partial<Track> = {}) {
+  constructor(data: PartialExcept<Track, 'artist' | 'title'> = {
+    artist: '',
+    title: ''
+  }) {
     this.uuid = uuidv4();
     
     this.ids = data.ids || {};
