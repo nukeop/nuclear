@@ -2,6 +2,8 @@
   "extends": "../../tsconfig.json",
   "compilerOptions": {
     "outDir": "dist",
+    "lib": ["DOM"],
+    "strict": false,
     "typeRoots": [
       "./typings",
       "node_modules/@types"
