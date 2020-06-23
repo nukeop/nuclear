@@ -89,9 +89,9 @@ const ipcConnect = () => next => {
 
       let maxDownloads;
       try {
-        maxDownloads=parseInt(getOption('max.downloads'));
+        maxDownloads = Number(getOption('max.downloads'));
       } catch (err){
-        maxDownloads=1;
+        maxDownloads = 1;
       }
       if (payload.downloads.filter(({status}) => status === 'Started' || status === 'Waiting').length > maxDownloads) {
         break;
