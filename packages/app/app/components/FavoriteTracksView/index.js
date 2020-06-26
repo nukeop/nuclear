@@ -16,8 +16,8 @@ export const EmptyState = () => {
   const { t } = useTranslation('favorites');
 
   return (
-    <div className={styles.empty_state} >
-      <Icon name='star'/>
+    <div className={styles.empty_state}>
+      <Icon name='star' />
       <h2>{t('empty')}</h2>
       <div>{t('empty-help')}</div>
     </div>
@@ -27,6 +27,9 @@ export const EmptyState = () => {
 const FavoriteTracksView = ({
   tracks,
   removeFavoriteTrack,
+  replaceFavoriteTrack,
+  sortFavoriteTracksByArtistNames,
+  sortFavoriteTracksByTitels,
   clearQueue,
   selectSong,
   startPlayback,
@@ -35,8 +38,7 @@ const FavoriteTracksView = ({
 }) => {
   const { t } = useTranslation('favorites');
 
-
-  const getTrackimage = (track) => {
+  const getTrackimage = track => {
     let image = artPlaceholder;
     if (track.image && track.image.length > 0) {
       image = track.image[0]['#text'];
@@ -45,7 +47,6 @@ const FavoriteTracksView = ({
   };
 
   const addTracksToQueue = () => {
-
     tracks.map(track => {
       const trackImage = getTrackimage(track);
       addToQueue(streamProviders, {
@@ -56,90 +57,98 @@ const FavoriteTracksView = ({
     });
   };
 
-  const playAll = (tracks) => {
+  const playAll = tracks => {
     clearQueue();
     addTracksToQueue(tracks);
     selectSong(0);
     startPlayback();
   };
 
-
   const renderPlayAllButton = () => {
     return (
       <a href='#' className={styles.play_button} onClick={playAll}>
-        <Icon name='play'/> Play
+        <Icon name='play' /> Play
       </a>
     );
   };
 
-  
   return (
     <div className={styles.favorite_tracks_view}>
-      {
-        _.isEmpty(tracks) &&
-          <EmptyState />
-      }
-      {
-        !_.isEmpty(tracks) &&
+      {_.isEmpty(tracks) && <EmptyState />}
+      {!_.isEmpty(tracks) && (
         <React.Fragment>
-          <Header>
-            {t('header')}
-          </Header>
-          <div className={styles.button_container}>
-            {renderPlayAllButton()}
-          </div>
+          <Header>{t('header')}</Header>
+          <div className={styles.button_container}>{renderPlayAllButton()}</div>
           <Segment className={trackRowStyles.tracks_container}>
-            <Table
-              className={cx(
-                styles.favorite_tracks_table,
-                styles.table
-              )}
-            >
+            <Table className={cx(styles.favorite_tracks_table, styles.table)}>
               <Table.Header className={styles.thead}>
                 <Table.Row>
                   <Table.HeaderCell />
-                  <Table.HeaderCell><Icon name='image' /></Table.HeaderCell>
-                  <Table.HeaderCell>{t('artist')}</Table.HeaderCell>
-                  <Table.HeaderCell>{t('title')}</Table.HeaderCell>
+                  <Table.HeaderCell />
+                  <Table.HeaderCell>
+                    <Icon name='image' />
+                  </Table.HeaderCell>
+                  <Table.HeaderCell
+                    onClick={() => sortFavoriteTracksByArtistNames()}
+                  >
+                    {t('artist')}
+                  </Table.HeaderCell>
+                  <Table.HeaderCell
+                    onClick={() => sortFavoriteTracksByTitels()}
+                  >
+                    {t('title')}
+                  </Table.HeaderCell>
                 </Table.Row>
               </Table.Header>
               <Table.Body className={styles.tbody}>
-                {
-                  tracks.map((track, i) => {
-                    return (
-                      <TrackRow
-                        key={'favorite-track-' + i}
-                        track={track}
-                        index={i}
-                        displayCover
-                        displayArtist
-                        withDeleteButton
-                        withAddToFavorites={false}
-                        onDelete={e => {
-                          e.stopPropagation();
-                          removeFavoriteTrack(track);
-                        }}
-                      />
-                    );
-                  })
-                }
+                {tracks.map((track, i) => {
+                  return (
+                    <TrackRow
+                      key={'favorite-track-' + i}
+                      track={track}
+                      index={i}
+                      displayCover
+                      displayArtist
+                      withDeleteButton
+                      withReplaceButtons
+                      withAddToFavorites={false}
+                      onDelete={e => {
+                        e.stopPropagation();
+                        removeFavoriteTrack(track);
+                      }}
+                      onMoveUp={e => {
+                        e.stopPropagation();
+                        replaceFavoriteTrack(i, true, tracks.length);
+                      }}
+                      onMoveDown={e => {
+                        e.stopPropagation();
+                        replaceFavoriteTrack(i, false, tracks.length);
+                      }}
+                    />
+                  );
+                })}
               </Table.Body>
             </Table>
           </Segment>
         </React.Fragment>
-      }
+      )}
     </div>
   );
 };
 
 FavoriteTracksView.propTypes = {
-  tracks: PropTypes.arrayOf(PropTypes.shape({
-    artist: PropTypes.shape({
+  tracks: PropTypes.arrayOf(
+    PropTypes.shape({
+      artist: PropTypes.shape({
+        name: PropTypes.string
+      }),
       name: PropTypes.string
-    }),
-    name: PropTypes.string
-  })),
+    })
+  ),
   removeFavoriteTrack: PropTypes.func,
+  replaceFavoriteTrack: PropTypes.func,
+  sortFavoriteTracksByArtistNames: PropTypes.func,
+  sortFavoriteTracksByTitels: PropTypes.func,
   streamProviders: PropTypes.array
 };
 

@@ -26,70 +26,58 @@ const TrackRow = ({
   displayPlayCount,
   displayTrackNumber,
   withDeleteButton,
+  withReplaceButtons,
   // don't comment these, despite no usage, otherwise `...other` includes them (causing React warning)
   withAddToDownloads, // eslint-disable-line
   withAddToFavorites, // eslint-disable-line
   onDelete,
+  onMoveUp,
+  onMoveDown,
   ...other
 }) => (
-  <tr
-    className={cx(
-      styles.track_row,
-      {[styles.mini]: mini}
-    )}
-    {...other}
-  >
-    {
-      withDeleteButton &&
+  <tr className={cx(styles.track_row, { [styles.mini]: mini })} {...other}>
+    {withDeleteButton && (
       <td className={styles.track_row_buttons}>
         <a onClick={onDelete}>
           <Icon name='close' />
         </a>
       </td>
-    }
-    {
-      displayCover &&
+    )}
+    {withReplaceButtons && (
+      <td className={styles.track_row_buttons}>
+        <a onClick={onMoveUp}>
+          <Icon name='angle up' />
+        </a>
+        <a onClick={onMoveDown}>
+          <Icon name='angle down' />
+        </a>
+      </td>
+    )}
+    {displayCover && (
       <td className={styles.track_row_thumbnail}>
-        <img src={getTrackThumbnail(track)}/>
+        <img src={getTrackThumbnail(track)} />
       </td>
-    }
-    {
-      displayTrackNumber &&
-      <td className={styles.track_row_position}>
-        { track.position }
-      </td>
-    }
-    {
-      displayArtist &&
+    )}
+    {displayTrackNumber && (
+      <td className={styles.track_row_position}>{track.position}</td>
+    )}
+    {displayArtist && (
       <td className={styles.track_row_artist}>
-        { 
-          _.isString(track.artist) 
-            ? track.artist
-            : track.artist.name 
-        }
+        {_.isString(track.artist) ? track.artist : track.artist.name}
       </td>
-    }
-    <td className={styles.track_row_name}>
-      { track.name }
-    </td>
-    {
-      displayAlbum &&
-      <td className={styles.track_row_album}>
-        { track.album }
-      </td>
-    }
-    {
-      displayDuration &&
+    )}
+    <td className={styles.track_row_name}>{track.name}</td>
+    {displayAlbum && <td className={styles.track_row_album}>{track.album}</td>}
+    {displayDuration && (
       <td className={styles.track_row_duration}>
-        { formatDuration(track.duration) }
+        {formatDuration(track.duration)}
       </td>
-    }
-    {
-      displayPlayCount &&
+    )}
+    {displayPlayCount && (
       <td className={styles.track_row_playcount}>
-        { numeral(track.playcount).format('0,0') }
+        {numeral(track.playcount).format('0,0')}
       </td>
-    }
+    )}
   </tr>
 );
 
@@ -121,9 +109,12 @@ TrackRow.propTypes = {
   withAddToFavorites: PropTypes.bool,
   withAddToQueue: PropTypes.bool,
   withDeleteButton: PropTypes.bool,
+  withReplaceButtons: PropTypes.bool,
   withPlayNow: PropTypes.bool,
 
-  onDelete: PropTypes.func
+  onDelete: PropTypes.func,
+  onMoveUp: PropTypes.func,
+  onMoveDown: PropTypes.func
 };
 
 export default TrackRow;

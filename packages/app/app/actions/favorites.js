@@ -18,6 +18,65 @@ export function readFavorites() {
   };
 }
 
+export function replaceFavoriteTrack(i, moveUp, length) {
+  const favorites = store.get('favorites');
+
+  if (moveUp && i) {
+    const deleted = favorites.tracks.splice(i - 1, 1, favorites.tracks[i]);
+    favorites.tracks.splice(i, 1, ...deleted);
+    store.set('favorites', favorites);
+  } else if (!moveUp && i + 1 !== length) {
+    const deleted = favorites.tracks.splice(i + 1, 1, favorites.tracks[i]);
+    favorites.tracks.splice(i, 1, ...deleted);
+    store.set('favorites', favorites);
+  }
+
+  return {
+    type: READ_FAVORITES,
+    payload: favorites
+  };
+}
+
+export function sortFavoriteTracksByTitels() {
+  const favorites = store.get('favorites');
+
+  favorites.tracks.sort((a, b) => {
+    if (a.name < b.name) {
+      return -1;
+    }
+    if (a.name > b.name) {
+      return 1;
+    }
+    return 0;
+  });
+
+  store.set('favorites', favorites);
+  return {
+    type: READ_FAVORITES,
+    payload: favorites
+  };
+}
+
+export function sortFavoriteTracksByArtistNames() {
+  const favorites = store.get('favorites');
+
+  favorites.tracks.sort((a, b) => {
+    if (a.artist.name < b.artist.name) {
+      return -1;
+    }
+    if (a.artist.name > b.artist.name) {
+      return 1;
+    }
+    return 0;
+  });
+
+  store.set('favorites', favorites);
+  return {
+    type: READ_FAVORITES,
+    payload: favorites
+  };
+}
+
 export function addFavoriteTrack(track) {
   const clonedTrack = safeAddUuid(track);
 

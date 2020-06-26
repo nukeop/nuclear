@@ -33,29 +33,39 @@ class FavoritesContainer extends React.Component {
       queueActions,
       streamProviders,
       playerActions
-      
     } = this.props;
 
     if (match.path.endsWith(ALBUMS_PATH)) {
-      return <FavoriteAlbumsView
-        albums={_.get(favorites, 'albums')}
-        removeFavoriteAlbum={favoritesActions.removeFavoriteAlbum}
-        albumInfoSearch={searchActions.albumInfoSearch}
-      />;
+      return (
+        <FavoriteAlbumsView
+          albums={_.get(favorites, 'albums')}
+          removeFavoriteAlbum={favoritesActions.removeFavoriteAlbum}
+          albumInfoSearch={searchActions.albumInfoSearch}
+        />
+      );
     }
-    
+
     if (match.path.endsWith(TRACKS_PATH)) {
-      return <FavoriteTracksView
-        addToQueue={queueActions.addToQueue}
-        streamProviders={streamProviders}
-        tracks={_.get(favorites, 'tracks')}
-        clearQueue={queueActions.clearQueue}
-        selectSong={queueActions.selectSong}
-        startPlayback={playerActions.startPlayback}
-        removeFavoriteTrack={favoritesActions.removeFavoriteTrack}
-      />;
+      return (
+        <FavoriteTracksView
+          addToQueue={queueActions.addToQueue}
+          streamProviders={streamProviders}
+          tracks={_.get(favorites, 'tracks')}
+          clearQueue={queueActions.clearQueue}
+          selectSong={queueActions.selectSong}
+          startPlayback={playerActions.startPlayback}
+          removeFavoriteTrack={favoritesActions.removeFavoriteTrack}
+          replaceFavoriteTrack={favoritesActions.replaceFavoriteTrack}
+          sortFavoriteTracksByArtistNames={
+            favoritesActions.sortFavoriteTracksByArtistNames
+          }
+          sortFavoriteTracksByTitels={
+            favoritesActions.sortFavoriteTracksByTitels
+          }
+        />
+      );
     }
-    
+
     return null;
   }
 }
@@ -81,14 +91,14 @@ FavoritesContainer.defaultProps = {
   searchActions: {}
 };
 
-function mapStateToProps (state) {
+function mapStateToProps(state) {
   return {
     favorites: state.favorites,
     streamProviders: state.plugin.plugins.streamProviders
   };
 }
 
-function mapDispatchToProps (dispatch) {
+function mapDispatchToProps(dispatch) {
   return {
     favoritesActions: bindActionCreators(FavoritesActions, dispatch),
     searchActions: bindActionCreators(SearchActions, dispatch),
@@ -97,7 +107,4 @@ function mapDispatchToProps (dispatch) {
   };
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(FavoritesContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(FavoritesContainer);
