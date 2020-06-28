@@ -377,17 +377,24 @@ class Settings extends React.Component {
       <div className={styles.settings_container}>
         {this.renderSocialSettings()}
         {_.map(optionsGroups, (group, i) => {
-          return (
-            <div key={i} className={styles.settings_section}>
-              <Header>{t(i)}</Header>
-              <hr />
-              <Segment>
-                {_.map(group, (option, j) =>
-                  this.renderOption(settings, option, j)
-                )}
-              </Segment>
-            </div>
-          );
+          const show = option => {
+            return !option.hide;
+          };
+          if (group.some(show)) {
+            return (
+              <div key={i} className={styles.settings_section}>
+                <Header>{t(i)}</Header>
+                <hr />
+                <Segment>
+                  {_.map(group, (option, j) => {
+                    if (show(option)) {
+                      return this.renderOption(settings, option, j);
+                    }
+                  })}
+                </Segment>
+              </div>
+            );
+          }
         })}
       </div>
     );
