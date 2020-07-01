@@ -1,42 +1,53 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import cx from 'classnames';
 
 import common from '../../common.scss';
 import styles from './styles.scss';
 
+type QueueItem = {
+  streams: { duration: number }[];
+};
+
+export type SeekbarProps = {
+  children: React.ReactNode;
+  fill: number;
+  seek: (arg0: number) => void;
+  queue: { queueItems: QueueItem[] };
+};
+
 const handleClick = (seek, queue) => {
   return event => {
-    const percent = (event.pageX - event.target.offsetLeft)/document.body.clientWidth;
+    const percent = (event.pageX - event.target.offsetLeft) / document.body.clientWidth;
     const duration = queue.queueItems[queue.currentSong].streams[0].duration;
     seek(percent * duration * 1000);
   };
 };
 
-const Seekbar = props => {
+const Seekbar: React.FC<SeekbarProps> = ({
+  children,
+  fill,
+  seek,
+  queue
+}) => {
   return (
     <div
       className={cx(
         common.nuclear,
         styles.seekbar_container
       )}
-      onClick={handleClick(props.seek, props.queue)}
+      onClick={handleClick(seek, queue)}
     >
       <div
-        style={{width: props.fill}}
+        style={{ width: `${fill}%` }}
         className={cx(
           common.nuclear,
           styles.seekbar_fill
         )}
-      />
+      >
+        {children}
+      </div>
     </div>
   );
-};
-
-Seekbar.propTypes = {
-  fill: PropTypes.string,
-  seek: PropTypes.func,
-  queue: PropTypes.object
 };
 
 export default Seekbar;

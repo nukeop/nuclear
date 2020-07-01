@@ -1,0 +1,87 @@
+import React from 'react';
+import cx from 'classnames';
+
+import Seekbar, { SeekbarProps } from '../Seekbar';
+import PlayerControls, { PlayerControlsProps } from '../PlayerControls';
+import TrackInfo, { TrackInfoProps } from '../TrackInfo';
+import VolumeControls, { VolumeControlsProps } from '../VolumeControls';
+
+import common from '../../common.scss';
+import styles from './styles.scss';
+
+export type PlayerBarProps = PlayerControlsProps &
+  Omit<SeekbarProps, 'children'> &
+  TrackInfoProps &
+  VolumeControlsProps & {
+    renderTrackDuration?: boolean;
+  };
+
+const PlayerBar: React.FC<PlayerBarProps> = ({
+  cover,
+  track,
+  artist,
+  onTrackClick,
+  onArtistClick,
+  addToFavorites,
+  isFavorite,
+  
+  volume,
+  setVolume,
+  toggleMute,
+  isMuted,
+  playOptions,
+
+  goForward,
+  goBack,
+  togglePlay,
+  isPlaying = false,
+  isLoading = false,
+
+  queue,
+  fill = 0,
+  renderTrackDuration = false,
+  seek
+}) => (
+    <div className={cx(
+      common.nuclear,
+      styles.player_bar
+    )}>
+      <Seekbar
+        fill={fill}
+        seek={seek}
+        queue={queue}
+      >
+        {
+          renderTrackDuration && 'trackDuration'
+
+        }
+      </Seekbar>
+      <div className={styles.player_bar_bottom}>
+        <TrackInfo
+          cover={cover}
+          track={track}
+          artist={artist}
+          onTrackClick={onTrackClick}
+          onArtistClick={onArtistClick}
+          addToFavorites={addToFavorites}
+          isFavorite={isFavorite}
+        />
+        <PlayerControls
+          goForward={goForward}
+          goBack={goBack}
+          togglePlay={togglePlay}
+          isPlaying={isPlaying}
+          isLoading={isLoading}
+        />
+        <VolumeControls
+          volume={volume}
+          setVolume={setVolume}
+          toggleMute={toggleMute}
+          isMuted={isMuted}
+          playOptions={playOptions}
+        />
+      </div>
+    </div>
+  );
+
+export default PlayerBar;

@@ -13,6 +13,14 @@ export const DOWNLOAD_FINISHED = 'DOWNLOAD_FINISHED';
 export const DOWNLOAD_ERROR = 'DOWNLOAD_ERROR';
 export const CLEAR_FINISHED_DOWNLOADS = 'CLEAR_FINISHED_DOWNLOADS';
 
+export const DownloadStatus = {
+  WAITING: 'Waiting',
+  STARTED: 'Started',
+  PAUSED: 'Paused',
+  FINISHED: 'Finished',
+  ERROR: 'Error'
+};
+
 const changePropertyForItem = ({downloads, uuid, propertyName='status', value}) => {
   const changedItem = _.find(downloads, (item) => item.track.uuid === uuid);
   _.set(changedItem, propertyName, value);
@@ -36,7 +44,7 @@ export function addToDownloads(streamProviders, track) {
   });
   if (!existingTrack ){
     const newDownload = {
-      status: 'Waiting',
+      status: DownloadStatus.WAITING,
       completion: 0,
       track: clonedTrack
     };
@@ -68,7 +76,7 @@ export function onDownloadPause(uuid) {
   const payload = changePropertyForItem({
     downloads,
     uuid,
-    value: 'Paused'
+    value: DownloadStatus.PAUSED
   });
   return {
     type: DOWNLOAD_PAUSED,
@@ -81,7 +89,7 @@ export function onDownloadResume(uuid) {
   const payload = changePropertyForItem({
     downloads,
     uuid,
-    value: 'Waiting'
+    value: DownloadStatus.WAITING
   });
 
   return {
@@ -92,11 +100,16 @@ export function onDownloadResume(uuid) {
 
 export function onDownloadProgress(uuid, progress) {
   const downloads = store.get('downloads');
-  const payload = changePropertyForItem({
+  let payload = changePropertyForItem({
     downloads,
     uuid,
     propertyName: 'completion',
     value: progress
+  });
+  payload = changePropertyForItem({
+    payload,
+    uuid,
+    value: DownloadStatus.STARTED
   });
   return {
     type: DOWNLOAD_PROGRESS,
@@ -109,7 +122,7 @@ export function onDownloadError(uuid){
   const payload = changePropertyForItem({
     downloads,
     uuid,
-    value: 'Error'
+    value: DownloadStatus.ERROR
   });
 
   return {
@@ -123,7 +136,7 @@ export function onDownloadFinished(uuid) {
   const payload = changePropertyForItem({
     downloads,
     uuid,
-    value: 'Finished'
+    value: DownloadStatus.FINISHED
   });
 
   return {
@@ -136,7 +149,7 @@ export function clearFinishedDownloads() {
   const downloads = store.get('downloads');
   
   const filteredTracks = downloads.filter(( item ) => 
-    item.status !== 'Finished' && item.status !== 'Error'
+    item.status !== DownloadStatus.FINISHED && item.status !== DownloadStatus.ERROR
   );
 
   return {
