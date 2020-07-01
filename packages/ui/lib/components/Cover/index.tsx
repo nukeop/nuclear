@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import cx from 'classnames';
 
 import artPlaceholder from '../../../resources/media/art_placeholder.png';
@@ -7,7 +6,11 @@ import artPlaceholder from '../../../resources/media/art_placeholder.png';
 import common from '../../common.scss';
 import styles from './styles.scss';
 
-const Cover = ({ cover }) => (
+type CoverProps = {
+  cover?: string
+}
+
+const Cover: React.FC<CoverProps> = ({ cover = String(artPlaceholder) }) => (
   <div className={cx(
     common.nuclear,
     styles.cover_container
@@ -15,13 +18,5 @@ const Cover = ({ cover }) => (
     <img src={cover} />
   </div>
 );
-
-Cover.propTypes = {
-  cover: PropTypes.string
-};
-
-Cover.defaultProps = {
-  cover: artPlaceholder
-};
 
 export default Cover;

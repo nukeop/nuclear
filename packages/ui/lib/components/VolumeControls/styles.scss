@@ -1,0 +1,11 @@
+.volume_controls {
+  display: flex;
+  justify-content: flex-end;
+
+  padding-right: 1em;
+  flex: 1 1 50%;
+
+  .volume_icon {
+    cursor: pointer;
+  }
+}
