@@ -112,7 +112,19 @@ You will need docker and docker-compose. You need to allow the root user to conn
 $ xhost SI:localuser:root
 $ sudo docker-compose up dev
 ```
-
+as of now you can build a flatpak version. you will need to install gobject-introspection, and flatpak-builder. after this you will need to install the runtimes and depedencies required by flatapk-builder for the compile process. when this was written you will need the 19.08 version of these flatpaks.
+```shell
+$ flatpak install flathub org.freedesktop.Platform
+$ flatpak install flathub org.freedesktop.Sdk
+$ flatpak install flathub org.freedesktop.Sdk
+```
+next copy the package-lock.json(you will get this after installing the node depedencies) into the flatpak directory. then run this command
+```shell
+$ python3 flatpak-node-generator.py npm package-lock.json
+```
+and finally to build the project
+```shell
+```
 ## Screenshots
 This will be updated as the program evolves.
 

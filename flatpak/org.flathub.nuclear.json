@@ -1,0 +1,73 @@
+{
+    "app-id": "org.flathub.nuclear",
+    "runtime": "org.freedesktop.Platform",
+    "runtime-version": "19.08",
+    "branch": "19.08",
+    "sdk": "org.freedesktop.Sdk",
+    "base": "io.atom.electron.BaseApp",
+    "command": "nuclear",
+    "finish-args": [
+        "--share=network",
+        "--share=x11",
+        "--share=ipc",
+        "--filesystem=host"
+    ],
+    "build-options" : {
+        "cflags": "-O2 -g",
+        "cxxflags": "-O2 -g",
+        "env": {
+            "NPM_CONFIG_LOGLEVEL": "info"
+        }
+    },
+    "modules": [
+        {
+            "name": "nodejs",
+            "cleanup": [
+                "/include",
+                "/share",
+                "/app/lib/node_modules/npm/changelogs",
+                "/app/lib/node_modules/npm/doc",
+                "/app/lib/node_modules/npm/html",
+                "/app/lib/node_modules/npm/man",
+                "/app/lib/node_modules/npm/scripts"
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://github.com/nodejs/node/archive/v14.5.0.zip",
+                    "sha256": "b7e6ec14abc67879460d3693d95d6b0e8cc0beedbb6b946d61989575f7b544a7"
+                }
+            ]
+        },
+        {
+            "name": "nuclear",
+            "build-options" : {
+                "env": {
+                   "electron_config_cache": "/run/build/nuclear/npm-cache"
+               }
+           },
+           "buildsystem": "simple",
+           "sources": [
+               {
+                   "type": "archive",
+                   "url": "https://github.com/nukeop/nuclear/archive/v0.6.3.zip",
+                   "sha256": "88101d4cacce0b9e9e7389656a8bd7a039e77fa16214a75c5c960f4052a3ed74",
+                    "dest":"main"
+                },
+                "generated-sources.json",
+                {
+                    "type": "script",
+                    "dest-filename": "run.sh",
+                    "commands": [ "npm start" ]
+                }
+
+            ],
+        "build-commands": [
+                "npm install --prefix=main --offline --cache=/run/build/nuclear/npm-cache/",
+                "mkdir -p /app/main /app/bin",
+                "cp -ra main/* /app/main/",
+                "install run.sh /app/bin/"
+            ]
+        }
+    ]
+}
