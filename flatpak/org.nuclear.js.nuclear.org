@@ -1,5 +1,5 @@
 {
-    "app-id": "org.nuclear.js.nuclear",
+    "app-id": "org.flathub.nuclear",
     "runtime": "org.freedesktop.Platform",
     "runtime-version": "19.08",
     "branch": "19.08",
