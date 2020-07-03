@@ -63,7 +63,7 @@
 
             ],
         "build-commands": [
-                "npm install --prefix=main --offline --cache=/run/build/nuclear/npm-cache",
+                "npm install --prefix=main --offline --cache=.flatpak-builder/downloads",
                 "mkdir -p /app/main /app/bin",
                 "cp -ra main/* /app/main/",
                 "install run.sh /app/bin/"
