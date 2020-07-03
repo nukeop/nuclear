@@ -13,6 +13,7 @@
         "--filesystem=host"
     ],
     "build-options" : {
+	"build-args": [ "--share=network" ],
         "cflags": "-O2 -g",
         "cxxflags": "-O2 -g",
         "env": {
@@ -63,7 +64,7 @@
 
             ],
         "build-commands": [
-                "npm install --prefix=main --offline --cache=/run/build/nuclear/npm-cache/",
+                "npm install --prefix=main --offline --cache=downloads/  --cache-min 9999999",
                 "mkdir -p /app/main /app/bin",
                 "cp -ra main/* /app/main/",
                 "install run.sh /app/bin/"
