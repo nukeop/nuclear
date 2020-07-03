@@ -64,6 +64,7 @@
             ],
         "build-commands": [
                 "npm install --prefix=main",
+                "npm install -g lerna",
                 "cd main",
                 "lerna bootstrap",
                 "cd ..",
