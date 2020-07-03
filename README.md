@@ -58,7 +58,8 @@ Here's a list of packages for various managers, most of which are maintained by 
 | AUR (Arch)     | https://aur.archlinux.org/packages/nuclear-player-bin/ | [mikelpint](https://github.com/mikelpint)     |
 | Choco (Win)    | https://chocolatey.org/packages/nuclear/               | [JourneyOver](https://github.com/JourneyOver) |
 | Homebrew (Mac) | https://formulae.brew.sh/cask/nuclear                  | Homebrew                                      |
-| Snap           | https://snapcraft.io/nuclear                           | [nukeop](https://github.com/nukeop)           | 
+| Snap           | https://snapcraft.io/nuclear                           | [nukeop](https://github.com/nukeop)           |
+|flatpak         |(to be publised)                                        | [advaithm](https://github.com/advaithm) 
 
 ## Community translations
 Nuclear has already been translated to several languages, and we're always looking for contributors who would like to add more. Below is a list of currently available languages, along with contributors who helped to translate Nuclear to that language.
@@ -118,14 +119,16 @@ $ flatpak install flathub org.freedesktop.Platform
 $ flatpak install flathub org.freedesktop.Sdk
 $ flatpak install flathub io.atom.electron.BaseApp
 ```
-next copy the package-lock.json(you will get this after installing the node depedencies) into the flatpak directory. then run this command
+next to build the project use the `--verbose` to get more out put
+```shell
+$ flatpak-builder build-dir org.flathub.nuclear.json
+```
+to run the built app 
+```shell
+$ flatpak-builder --run build-dir org.flathub.nuclear.json run.sh
+```
+you can turn the app to a local repo. currently the file builds the latest release.
 
-```shell
-$ python3 flatpak-node-generator.py npm package-lock.json
-```
-and finally to build the project
-```shell
-```
 ## Screenshots
 This will be updated as the program evolves.
 
