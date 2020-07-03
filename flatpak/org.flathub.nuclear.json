@@ -55,7 +55,6 @@
                    "sha256": "88101d4cacce0b9e9e7389656a8bd7a039e77fa16214a75c5c960f4052a3ed74",
                     "dest":"main"
                 },
-                "generated-sources.json",
                 {
                     "type": "script",
                     "dest-filename": "run.sh",
