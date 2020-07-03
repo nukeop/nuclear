@@ -69,7 +69,7 @@
                 "cd ..",
 		        "npm run build --prefix=main",
 		        "mkdir -p /app/main /app/bin",
-                "cp -ra main/packages/app/release/linux-unpacked/*  /app/main/",
+                "cp -ra main/release/linux-unpacked/*  /app/main/",
                 "install run.sh /app/bin/"
             ]
         }
