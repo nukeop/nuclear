@@ -58,14 +58,16 @@
                 {
                     "type": "script",
                     "dest-filename": "run.sh",
-                    "commands": [ "npm start --prefix=/app/main" ]
+                    "commands": [ '/app/main/nuclear" ]
                 }
 
             ],
         "build-commands": [
                 "npm install --prefix=main",
-                "mkdir -p /app/main /app/bin",
-                "cp -ra main/* /app/main/",
+                "lerna  bootstrap",
+		"npm run build",
+		"mkdir -p /app/main /app/bin",
+                "cp -ra mainpackages/app/release/linux-unpacked/*  /app/main/",
                 "install run.sh /app/bin/"
             ]
         }
