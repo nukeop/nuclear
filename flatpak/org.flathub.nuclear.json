@@ -64,7 +64,9 @@
             ],
         "build-commands": [
                 "npm install --prefix=main",
-                "lerna  bootstrap",
+                "cd main",
+                "lerna bootstrap",
+                "cd ..",
 		        "npm run build",
 		        "mkdir -p /app/main /app/bin",
                 "cp -ra mainpackages/app/release/linux-unpacked/*  /app/main/",
