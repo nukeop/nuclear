@@ -5,11 +5,11 @@
     "branch": "19.08",
     "sdk": "org.freedesktop.Sdk",
     "base": "io.atom.electron.BaseApp",
-    "command": "nuclear",
+    "command": "run.sh",
     "finish-args": [
         "--share=network",
-        "--share=x11",
         "--share=ipc",
+        "--socket=x11",
         "--filesystem=host"
     ],
     "build-options" : {
