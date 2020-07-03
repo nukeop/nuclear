@@ -116,9 +116,10 @@ as of now you can build a flatpak version. you will need to install gobject-intr
 ```shell
 $ flatpak install flathub org.freedesktop.Platform
 $ flatpak install flathub org.freedesktop.Sdk
-$ flatpak install flathub org.freedesktop.Sdk
+$ flatpak install flathub io.atom.electron.BaseApp
 ```
 next copy the package-lock.json(you will get this after installing the node depedencies) into the flatpak directory. then run this command
+
 ```shell
 $ python3 flatpak-node-generator.py npm package-lock.json
 ```
