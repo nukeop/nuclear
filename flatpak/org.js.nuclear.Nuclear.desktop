@@ -2,12 +2,8 @@
 Name=Nuclear
 Comment=Streaming music player that finds music sources automatically.
 Comment[es]=Reproductor que retransmite música desde fuentes encontradas automáticamente.
-Exec="/opt/nuclear/nuclear" %U
+Exec="/app/bin/run.sh" %U
 Terminal=false
 Type=Application
-<<<<<<< HEAD
 Icon=org.js.nuclear.Nuclear
-=======
-Icon=/app/share/icons/hicolor/512x512/apps/org.js.nuclear.Nuclear.png
->>>>>>> b8e09a9a05a4ef1f1fbbff17c3c1049c25a78ea0
 Categories=Audio;AudioVideo;Network;Player;Music;
