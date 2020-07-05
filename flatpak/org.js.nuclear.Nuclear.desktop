@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Nuclear
+Comment=Streaming music player that finds music sources automatically.
+Comment[es]=Reproductor que retransmite música desde fuentes encontradas automáticamente.
+Exec="/opt/nuclear/nuclear" %U
+Terminal=false
+Type=Application
+Icon=/usr/share/icons/hicolor/0x0/apps/nuclear.png
+Categories=Audio;AudioVideo;Network;Player;Music;
