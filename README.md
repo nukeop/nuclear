@@ -59,7 +59,10 @@ Here's a list of packages for various managers, most of which are maintained by 
 | Choco (Win)    | https://chocolatey.org/packages/nuclear/               | [JourneyOver](https://github.com/JourneyOver) |
 | Homebrew (Mac) | https://formulae.brew.sh/cask/nuclear                  | Homebrew                                      |
 | Snap           | https://snapcraft.io/nuclear                           | [nukeop](https://github.com/nukeop)           |
-|flatpak         |(to be publised)                                        | [advaithm](https://github.com/advaithm) 
+|
+
+
+|(to be publised)                                        | [advaithm](https://github.com/advaithm) 
 big thanks to [ayyeve](https://github.com/ayyEve) for letting me (advaithm) use her server as a compile machince.
 ## Community translations
 Nuclear has already been translated to several languages, and we're always looking for contributors who would like to add more. Below is a list of currently available languages, along with contributors who helped to translate Nuclear to that language.
@@ -113,21 +116,21 @@ You will need docker and docker-compose. You need to allow the root user to conn
 $ xhost SI:localuser:root
 $ sudo docker-compose up dev
 ```
-as of now you can build a flatpak version. you will need to install gobject-introspection, and flatpak-builder. after this you will need to install the runtimes and depedencies required by flatapk-builder for the compile process. when this was written you will need the 19.08 version of these flatpaks.
+As of now you can also build a flatpak version. You will need to install gobject-introspection, and flatpak-builder. After this you will need to install the runtimes and depedencies required by flatapk-builder for the compile process. You will need the 19.08 version of these flatpaks.
 ```shell
 $ flatpak install flathub org.freedesktop.Platform
 $ flatpak install flathub org.freedesktop.Sdk
 $ flatpak install flathub io.atom.electron.BaseApp
 ```
-next to build the project use the `--verbose` to get more out put
+Next, to build the project (use the `--verbose` flag to get more output):
 ```shell
-$ flatpak-builder build-dir org.flathub.nuclear.json
+$ flatpak-builder build-dir org.js.nuclear.Nuclear.json
 ```
-to run the built app 
+To run the built app: 
 ```shell
-$ flatpak-builder --run build-dir org.flathub.nuclear.json run.sh
+$ flatpak-builder --run build-dir org.js.nuclear.Nuclear.json run.sh
 ```
-you can turn the app to a local repo. currently the file builds the latest release.
+You can turn the app to a local repo. currently the file builds the latest release.
 
 ## Screenshots
 This will be updated as the program evolves.
