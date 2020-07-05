@@ -5,5 +5,5 @@ Comment[es]=Reproductor que retransmite m√∫sica desde fuentes encontradas autom√
 Exec="/opt/nuclear/nuclear" %U
 Terminal=false
 Type=Application
-Icon=/usr/share/icons/hicolor/0x0/apps/nuclear.png
+Icon=/share/icons/hicolor/512x512/apps/org.js.nuclear.Nuclear.png
 Categories=Audio;AudioVideo;Network;Player;Music;
