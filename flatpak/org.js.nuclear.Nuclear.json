@@ -1,0 +1,71 @@
+{
+    "app-id": "org.js.nuclear.Nuclear",
+    "runtime": "org.freedesktop.Platform",
+    "runtime-version": "19.08",
+    "branch": "19.08",
+    "sdk": "org.freedesktop.Sdk",
+    "base": "io.atom.electron.BaseApp",
+    "separate-locales": "false",
+    "command": "run.sh",
+    "finish-args": [
+        "--share=network",
+        "--share=ipc",
+        "--socket=x11",
+        "--filesystem=host",
+	"--socket=pulseaudio"
+    ],
+    "build-options" : {
+        "env": {
+            "NPM_CONFIG_LOGLEVEL": "info"
+        }
+    },
+    "modules": [
+        {
+            "name": "nuclear",
+            "buildsystem": "simple",
+            "sources": [
+               {
+                   "type": "archive",
+                   "url": "https://github.com/nukeop/nuclear/releases/download/v0.6.3/nuclear-fca030.tar.gz",
+                   "sha256": "5b90a1064736c158f62ea74c5814dffdd25f8b6a3877dfeed065377e744cdd2e"
+                },
+                {
+                    "type":"file",
+                    "url":"https://raw.githubusercontent.com/advaithm/nuclear/master/flatpak/org.js.nuclear.Nuclear.metainfo.xml",
+                    "sha256":"17f2d8221f3cfec579457c05a4a56b85dcff2dd44bc86d5a2bca85e088af7c39",
+                    "dest-filename":"org.js.nuclear.Nuclear.metainfo.xml"
+                },
+                {
+                  "type":"file",
+                  "url":"https://raw.githubusercontent.com/advaithm/nuclear/master/flatpak/org.js.nuclear.Nuclear.desktop",
+                  "sha256":"61256cb50cbfa54d93b9c344f4795f42f7dc73cd195be17915403d0ac281ce88",
+                  "dest-filename":"org.js.nuclear.Nuclear.desktop"
+                },
+                {
+                    "type":"file",
+                    "url":"https://github.com/nukeop/nuclear/raw/master/build/512.png",
+                    "sha1":"f7568bc736304246d054faa7cf528c3e8bc0a6d5",
+                    "dest-filename":"org.js.nuclear.Nuclear.png"
+                },
+                {
+                    "type": "script",
+                    "dest-filename": "run.sh",
+                    "commands": [ "/app/main/nuclear" ]
+                }
+
+            ],
+        "build-commands": [
+                "mkdir -p /app/main /app/bin",
+                "cp -ra  * /app/main/",
+                "mkdir -p /app/share/metainfo/",
+                "mkdir -p /app/share/icons/hicolor/512x512/apps/",
+                "mkdir -p /app/share/applications/",
+                "cp -r org.js.nuclear.Nuclear.png /app/share/icons/hicolor/512x512/apps/",
+                "ls /app/share/icons/hicolor/512x512/apps/",
+                "cp -r org.js.nuclear.Nuclear.metainfo.xml /app/share/metainfo/",
+                "cp -r org.js.nuclear.Nuclear.desktop /app/share/applications/",
+                "install run.sh /app/bin/"
+            ]
+        }
+    ]
+}
