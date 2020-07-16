@@ -21,4 +21,16 @@
     width: 100%;
     max-width: 100%;
   }
+
+  .track_duration {
+    position: absolute;
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 0 .5em;
+    height: 100%;
+    width: 100%;
+  }
 }

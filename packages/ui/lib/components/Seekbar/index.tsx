@@ -33,7 +33,7 @@ const Seekbar: React.FC<SeekbarProps> = ({
     <div
       className={cx(
         common.nuclear,
-        styles.seekbar_container
+        styles.seekbar
       )}
       onClick={handleClick(seek, queue)}
     >
@@ -41,7 +41,7 @@ const Seekbar: React.FC<SeekbarProps> = ({
         style={{ width: `${fill}%` }}
         className={cx(
           common.nuclear,
-          styles.seekbar_fill
+          styles.seekbar_progress
         )}
       >
         {children}

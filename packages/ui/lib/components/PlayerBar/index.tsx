@@ -14,6 +14,8 @@ export type PlayerBarProps = PlayerControlsProps &
   TrackInfoProps &
   VolumeControlsProps & {
     renderTrackDuration?: boolean;
+    timePlayed?: string;
+    timeToEnd?: string;
   };
 
 const PlayerBar: React.FC<PlayerBarProps> = ({
@@ -24,7 +26,7 @@ const PlayerBar: React.FC<PlayerBarProps> = ({
   onArtistClick,
   addToFavorites,
   isFavorite,
-  
+
   volume,
   setVolume,
   toggleMute,
@@ -40,6 +42,8 @@ const PlayerBar: React.FC<PlayerBarProps> = ({
   queue,
   fill = 0,
   renderTrackDuration = false,
+  timePlayed,
+  timeToEnd,
   seek
 }) => (
     <div className={cx(
@@ -52,8 +56,10 @@ const PlayerBar: React.FC<PlayerBarProps> = ({
         queue={queue}
       >
         {
-          renderTrackDuration && 'trackDuration'
-
+          renderTrackDuration && <div className={styles.track_duration}>
+            <div>{timePlayed}</div>
+            <div>{timeToEnd}</div>
+          </div>
         }
       </Seekbar>
       <div className={styles.player_bar_bottom}>
