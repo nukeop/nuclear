@@ -42,6 +42,7 @@ import HelpModalContainer from './containers/HelpModalContainer';
 import MainContentContainer from './containers/MainContentContainer';
 import PlayQueueContainer from './containers/PlayQueueContainer';
 import SearchBoxContainer from './containers/SearchBoxContainer';
+import PlayerBarContainer from './containers/PlayerBarContainer';
 
 import IpcContainer from './containers/IpcContainer';
 import SoundContainer from './containers/SoundContainer';
@@ -250,27 +251,30 @@ class App extends React.PureComponent {
 
   renderFooter () {
     return (
-      <Footer className={styles.footer}>
-        <Seekbar
-          fill={this.props.player.playbackProgress + '%'}
-          seek={this.props.actions.updateSeek}
-          queue={this.props.queue}
-        >
-          {
-            this.props.settings.trackDuration &&
+      <>
+        <PlayerBarContainer />
+        <Footer className={styles.footer}>
+          <Seekbar
+            fill={this.props.player.playbackProgress + '%'}
+            seek={this.props.actions.updateSeek}
+            queue={this.props.queue}
+          >
+            {
+              this.props.settings.trackDuration &&
             !_.isNil(this.props.queue.queueItems[this.props.queue.currentSong]) &&
             this.renderTrackDuration()
-          }
-        </Seekbar>
-        <div className={styles.footer_horizontal}>
-          <div className={styles.track_info_wrapper}>
-            {this.renderCover()}
-            {this.renderTrackInfo()}
+            }
+          </Seekbar>
+          <div className={styles.footer_horizontal}>
+            <div className={styles.track_info_wrapper}>
+              {this.renderCover()}
+              {this.renderTrackInfo()}
+            </div>
+            {this.renderPlayerControls()}
+            {this.renderVolumeControl()}
           </div>
-          {this.renderPlayerControls()}
-          {this.renderVolumeControl()}
-        </div>
-      </Footer>
+        </Footer>
+      </>
     );
   }
 
