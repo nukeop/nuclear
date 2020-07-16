@@ -26,12 +26,17 @@ class PlaylistView extends React.Component {
     this.props.startPlayback();
   }
 
+  removeTrack(playlist, trackToRemove) {
+    const newPlaylist = _.cloneDeep(playlist);
+    newPlaylist.tracks = _.filter(newPlaylist.tracks, track => track.uuid !== trackToRemove.uuid);
+    this.props.updatePlaylist(newPlaylist);
+  }
+
   deletePlaylist(playlist) {
     const {
       history,
       deletePlaylist
     } = this.props;
-
     deletePlaylist(playlist.id);
     history.push('/playlists');
   }
@@ -74,7 +79,6 @@ class PlaylistView extends React.Component {
   }
 
   renderPlayButton (playlist) {
-
     return (
       <a
         href='#'
@@ -144,6 +148,7 @@ class PlaylistView extends React.Component {
           <th>
             <Icon name='image' />
           </th>
+          <th>{this.props.t('')}</th>
           <th>{this.props.t('artist')}</th>
           <th>{this.props.t('title')}</th>
         </tr>
@@ -155,13 +160,19 @@ class PlaylistView extends React.Component {
     _.set(newTrack, 'artist.name', newTrack.artist);
     _.set(newTrack, 'image[0][\'#text\']', newTrack.thumbnail);
 
-    return (< TrackRow
-      key={'playlist-track-row-' + index}
-      track={newTrack}
-      index={'playlist-track-' + index}
-      displayCover
-      displayArtist
-    />
+    return (
+      < TrackRow
+        key={'playlist-track-row-' + index}
+        track={newTrack}
+        index={'playlist-track-' + index}
+        displayCover
+        displayArtist
+        withDeleteButton
+        onDelete={e => {
+          e.stopPropagation();
+          this.removeTrack(this.props.playlist, track);
+        }}
+      />
     );
   }
 
