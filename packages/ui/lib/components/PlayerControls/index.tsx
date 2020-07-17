@@ -10,6 +10,10 @@ export type PlayerControlsProps = {
   togglePlay?: () => void;
   isPlaying?: boolean;
   isLoading?: boolean;
+
+  goBackDisabled?: boolean;
+  goForwardDisabled?: boolean;
+  playDisabled?: boolean;
 };
 
 const PlayerControls: React.FC<PlayerControlsProps> = ({
@@ -17,13 +21,17 @@ const PlayerControls: React.FC<PlayerControlsProps> = ({
   goBack,
   togglePlay,
   isPlaying,
-  isLoading
+  isLoading,
+  goBackDisabled=false,
+  goForwardDisabled=false,
+  playDisabled=false
 }) => (
     <div className={styles.player_controls}>
       <PlayerButton
         icon='step backward'
         size='large'
         onClick={goBack}
+        disabled={goBackDisabled}
       />
       <PlayerButton
       loading={isLoading}
@@ -35,11 +43,13 @@ const PlayerControls: React.FC<PlayerControlsProps> = ({
           : 'play'
         }
         onClick={togglePlay}
+        disabled={playDisabled}
       />
       <PlayerButton
         icon='step forward'
         size='large'
         onClick={goForward}
+        disabled={goForwardDisabled}
       />
     </div>
   )

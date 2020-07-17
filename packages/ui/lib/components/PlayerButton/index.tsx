@@ -1,4 +1,5 @@
 import React from 'react';
+import cx from 'classnames';
 import { Icon, SemanticICONS, SemanticSIZES } from 'semantic-ui-react';
 
 import styles from './styles.scss';
@@ -8,6 +9,7 @@ export type PlayerButtonProps = {
   size?: Exclude<SemanticSIZES, 'medium'>;
   ariaLabel?: string;
   onClick?: (e: React.MouseEvent) => void;
+  disabled?: boolean;
   loading?: boolean;
 };
 
@@ -16,12 +18,16 @@ const PlayerButton: React.FC<PlayerButtonProps> = ({
   size = 'big',
   ariaLabel,
   onClick,
+  disabled = false,
   loading = false
 }) => (
     <button
-      className={styles.player_button}
+      className={cx(
+        styles.player_button, 
+        { [styles.disabled]: disabled }
+        )}
       aria-label={ariaLabel}
-      onClick={onClick}
+      onClick={!disabled && onClick}
     >
       <Icon inverted loading={loading} name={icon} size={size} />
     </button>

@@ -36,6 +36,9 @@ const PlayerBar: React.FC<PlayerBarProps> = ({
   goForward,
   goBack,
   togglePlay,
+  goBackDisabled,
+  goForwardDisabled,
+  playDisabled,
   isPlaying = false,
   isLoading = false,
 
@@ -78,6 +81,9 @@ const PlayerBar: React.FC<PlayerBarProps> = ({
           togglePlay={togglePlay}
           isPlaying={isPlaying}
           isLoading={isLoading}
+          goBackDisabled={goBackDisabled}
+          goForwardDisabled={goForwardDisabled}
+          playDisabled={playDisabled}
         />
         <VolumeControls
           volume={volume}
