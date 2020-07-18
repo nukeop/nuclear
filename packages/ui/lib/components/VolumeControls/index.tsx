@@ -17,12 +17,13 @@ const VolumeControls: React.FC<VolumeControlsProps> = ({
   isMuted,
   playOptions
 }) => (
-    <div className={styles.volume_controls}>
+    <div className={styles.volume_controls_container}>
       <PlayOptions playOptions={playOptions} />
+      <div className={styles.volume_controls}>
+        <div className={styles.volume_icon}>
       <Icon
-      className={styles.volume_icon}
         onClick={toggleMute}
-        size='big'
+        size='large'
         name={
           isMuted
             ? 'volume off'
@@ -31,11 +32,13 @@ const VolumeControls: React.FC<VolumeControlsProps> = ({
               : 'volume down'
         }
       />
+      </div>
       <VolumeSlider
         setVolume={setVolume}
         toggleMute={toggleMute}
         isMuted={isMuted}
       />
+      </div>
     </div>
   );
 
