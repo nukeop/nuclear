@@ -26,6 +26,7 @@ const PlayerBar: React.FC<PlayerBarProps> = ({
   onArtistClick,
   addToFavorites,
   isFavorite,
+  hasTracks,
 
   volume,
   setVolume,
@@ -59,7 +60,9 @@ const PlayerBar: React.FC<PlayerBarProps> = ({
         queue={queue}
       >
         {
-          renderTrackDuration && <div className={styles.track_duration}>
+          hasTracks &&
+          renderTrackDuration &&
+          <div className={styles.track_duration}>
             <div>{timePlayed}</div>
             <div>{timeToEnd}</div>
           </div>
@@ -74,6 +77,7 @@ const PlayerBar: React.FC<PlayerBarProps> = ({
           onArtistClick={onArtistClick}
           addToFavorites={addToFavorites}
           isFavorite={isFavorite}
+          hasTracks={hasTracks}
         />
         <PlayerControls
           goForward={goForward}

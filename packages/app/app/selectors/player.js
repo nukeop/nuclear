@@ -6,6 +6,8 @@ export const playerSelectors = createStateSelectors(
     'playbackProgress',
     'playbackStatus',
     'playbackStreamLoading',
-    'seek'
+    'seek',
+    'volume',
+    'muted'
   ]
 );

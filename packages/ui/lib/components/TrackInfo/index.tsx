@@ -12,6 +12,7 @@ export type TrackInfoProps = {
   onArtistClick: () => void;
   addToFavorites: () => void;
   isFavorite?: boolean;
+  hasTracks?: boolean;
 };
 
 const TrackInfo: React.FC<TrackInfoProps> = ({
@@ -21,25 +22,31 @@ const TrackInfo: React.FC<TrackInfoProps> = ({
   onTrackClick,
   onArtistClick,
   addToFavorites,
-  isFavorite
+  isFavorite = false,
+  hasTracks = false
 }) => (
     <div className={styles.track_info}>
       <Cover cover={cover} />
-      <div className={styles.artist_part}>
-        <div className={styles.track_name} onClick={onTrackClick}>
-          {track}
-        </div>
-        <div className={styles.artist_name} onClick={onArtistClick}>
-          {artist}
-        </div>
-      </div>
-      <div className={styles.favorite_part}>
-        <Icon name={
-          isFavorite ? 'heart' : 'heart outline'
-        } 
-        size='large' 
-        />
-      </div>
+      {
+        hasTracks &&
+        <>
+          <div className={styles.artist_part}>
+            <div className={styles.track_name} onClick={onTrackClick}>
+              {track}
+            </div>
+            <div className={styles.artist_name} onClick={onArtistClick}>
+              {artist}
+            </div>
+          </div>
+          <div className={styles.favorite_part}>
+            <Icon name={
+              isFavorite ? 'heart' : 'heart outline'
+            }
+              size='large'
+            />
+          </div>
+        </>
+      }
     </div>
   );
 

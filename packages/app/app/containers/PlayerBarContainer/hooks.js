@@ -1,12 +1,16 @@
 import Sound from 'react-hifi';
+import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import _ from 'lodash';
 import { formatDuration } from '@nuclear/ui';
 
+import settingsConst from '../../constants/settings';
 import * as playerActions from '../../actions/player';
 import * as queueActions from '../../actions/queue';
+import * as settingsActions from '../../actions/settings';
 import { playerSelectors } from '../../selectors/player';
 import { queue as queueSelector } from '../../selectors/queue';
+import { settingsSelector } from '../../selectors/settings';
 import { useCallback } from 'react';
 
 export const useSeekbarProps = () => {
@@ -79,6 +83,7 @@ export const usePlayerControlsProps = () => {
 
 export const useTrackInfoProps = () => {
   const queue = useSelector(queueSelector);
+  const hasTracks = queue.queueItems.length > 0;
   const currentSong = _.get(queue.queueItems, queue.currentSong);
 
   const track = _.get(currentSong, 'name');
@@ -88,6 +93,58 @@ export const useTrackInfoProps = () => {
   return {
     track,
     artist,
-    cover
+    cover,
+    hasTracks
+  };
+};
+
+export const useToggleOptionCallback = (
+  toggleOption,
+  name,
+  settings
+) => useCallback(
+  () => toggleOption(
+    _.find(settingsConst, { name }),
+    settings
+  ),
+  [name, settings, toggleOption]
+);
+
+export const useVolumeControlsProps = () => {
+  const { t } = useTranslation('option-control');
+  const dispatch = useDispatch();
+  const volume = useSelector(playerSelectors.volume);
+  const muted = useSelector(playerSelectors.muted);
+  const settings = useSelector(settingsSelector);
+
+  const toggleOption = useCallback(
+    (option, state) => dispatch(settingsActions.toggleOption(option, state)), [dispatch]
+  );
+
+  const playOptions = [
+    {
+      name: t('loop'),
+      icon: 'repeat',
+      enabled: _.get(settings, 'loopAfterQueueEnd'),
+      onToggle: useToggleOptionCallback(toggleOption, 'loopAfterQueueEnd', settings)
+    },
+    {
+      name: t('shuffle'),
+      icon: 'random',
+      enabled: _.get(settings, 'shuffleQueue'),
+      onToggle: useToggleOptionCallback(toggleOption, 'shuffleQueue', settings)
+    },
+    {
+      name: t('autoradio'),
+      icon: 'magic',
+      enabled: _.get(settings, 'autoradio'),
+      onToggle: useToggleOptionCallback(toggleOption, 'autoradio', settings)
+    }
+  ];
+
+  return {
+    volume,
+    isMuted: muted,
+    playOptions
   };
 };

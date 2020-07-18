@@ -1,5 +1,10 @@
 .play_options {
   .play_option_icon {
     margin-right: 1em;
+    cursor: pointer;
+
+    &.disabled {
+      opacity: 0.2;
+    }
   }
 }
