@@ -1,5 +1,6 @@
-import React, { useState, useCallback } from 'react';
+import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
+import _ from 'lodash';
 
 import styles from './index.scss';
 
@@ -24,19 +25,17 @@ const Range = ({
   readOnly,
   onChange
 }) => {
-  const [state, setValue] = useState(0);
   const handleChange = useCallback(
     e => {
       if (!readOnly) {
         const newVal = parseInt(e.nativeEvent ? e.nativeEvent.target.value : e, 10);
-        setValue(newVal);
         onChange && onChange(newVal);
       }
     },
-    [setValue, onChange, readOnly]
+    [onChange, readOnly]
   );
 
-  const val = Math.min(max, state || value);
+  const val = Math.min(max, _.defaultTo(value, 0));
   const percentProgress = val / (max - min);
   const componentHeight = Math.max(height, thumbSize);
   const trackPosition = getTrackPosition({ thumbSize, height });
@@ -107,7 +106,7 @@ Range.defaultProps = {
   max: 100,
   width: 300,
   value: 0,
-  onChange: () => {}
+  onChange: () => { }
 };
 
 const colorWithAlpha = {

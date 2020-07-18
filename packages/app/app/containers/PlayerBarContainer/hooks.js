@@ -114,7 +114,7 @@ export const useVolumeControlsProps = () => {
   const { t } = useTranslation('option-control');
   const dispatch = useDispatch();
   const volume = useSelector(playerSelectors.volume);
-  const muted = useSelector(playerSelectors.muted);
+  const isMuted = useSelector(playerSelectors.muted);
   const settings = useSelector(settingsSelector);
 
   const toggleOption = useCallback(
@@ -142,9 +142,21 @@ export const useVolumeControlsProps = () => {
     }
   ];
 
+  const updateVolume = useCallback(
+    (value) => dispatch(playerActions.updateVolume(value)),
+    [dispatch]
+  );
+
+  const toggleMute = useCallback(
+    () => dispatch(playerActions.toggleMute(!isMuted)),
+    [dispatch, isMuted]
+  );
+
   return {
     volume,
-    isMuted: muted,
+    updateVolume,
+    isMuted,
+    toggleMute,
     playOptions
   };
 };
