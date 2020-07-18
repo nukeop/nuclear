@@ -1,9 +1,11 @@
 import React from 'react';
+import cx from 'classnames';
 import { Icon, SemanticICONS } from 'semantic-ui-react';
 
 import styles from './styles.scss';
 
 export type PlayOptionControlProps = {
+  name: string;
   icon: SemanticICONS;
   enabled?: boolean;
   onToggle?: () => void;
@@ -15,9 +17,11 @@ const PlayOptionControl: React.FC<PlayOptionControlProps> = ({
   onToggle
 }) => (
     <Icon
-      className={styles.play_option_icon}
+      className={cx(
+        styles.play_option_icon,
+        { disabled: !enabled }
+        )}
       name={icon}
-      disabled={!enabled}
       onClick={onToggle}
       size='big'
     />
