@@ -23,7 +23,7 @@ const PlayOptionControl: React.FC<PlayOptionControlProps> = ({
         )}
       name={icon}
       onClick={onToggle}
-      size='big'
+      size='large'
     />
   );
 
