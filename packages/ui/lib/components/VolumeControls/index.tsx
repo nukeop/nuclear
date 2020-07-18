@@ -6,13 +6,11 @@ import PlayOptions, { PlayOptionsProps } from './PlayOptions';
 
 import styles from './styles.scss';
 
-export type VolumeControlsProps = VolumeSliderProps & PlayOptionsProps & {
-  volume: number;
-};
+export type VolumeControlsProps = VolumeSliderProps & PlayOptionsProps;
 
 const VolumeControls: React.FC<VolumeControlsProps> = ({
   volume,
-  setVolume,
+  updateVolume,
   toggleMute,
   isMuted,
   playOptions
@@ -21,23 +19,24 @@ const VolumeControls: React.FC<VolumeControlsProps> = ({
       <PlayOptions playOptions={playOptions} />
       <div className={styles.volume_controls}>
         <div className={styles.volume_icon}>
-      <Icon
-        onClick={toggleMute}
-        size='large'
-        name={
-          isMuted
-            ? 'volume off'
-            : volume > 40
-              ? 'volume up'
-              : 'volume down'
-        }
-      />
-      </div>
-      <VolumeSlider
-        setVolume={setVolume}
-        toggleMute={toggleMute}
-        isMuted={isMuted}
-      />
+          <Icon
+            onClick={toggleMute}
+            size='large'
+            name={
+              isMuted
+                ? 'volume off'
+                : volume > 40
+                  ? 'volume up'
+                  : 'volume down'
+            }
+          />
+        </div>
+        <VolumeSlider
+          volume={isMuted ? 0 : volume}
+          updateVolume={updateVolume}
+          toggleMute={toggleMute}
+          isMuted={isMuted}
+        />
       </div>
     </div>
   );

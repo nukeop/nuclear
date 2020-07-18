@@ -29,7 +29,7 @@ const PlayerBar: React.FC<PlayerBarProps> = ({
   hasTracks,
 
   volume,
-  setVolume,
+  updateVolume,
   toggleMute,
   isMuted,
   playOptions,
@@ -91,7 +91,7 @@ const PlayerBar: React.FC<PlayerBarProps> = ({
         />
         <VolumeControls
           volume={volume}
-          setVolume={setVolume}
+          updateVolume={updateVolume}
           toggleMute={toggleMute}
           isMuted={isMuted}
           playOptions={playOptions}
