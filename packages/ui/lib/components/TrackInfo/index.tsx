@@ -11,6 +11,7 @@ export type TrackInfoProps = {
   onTrackClick: () => void;
   onArtistClick: () => void;
   addToFavorites: () => void;
+  removeFromFavorites: () => void;
   isFavorite?: boolean;
   hasTracks?: boolean;
 };
@@ -22,6 +23,7 @@ const TrackInfo: React.FC<TrackInfoProps> = ({
   onTrackClick,
   onArtistClick,
   addToFavorites,
+  removeFromFavorites,
   isFavorite = false,
   hasTracks = false
 }) => (
@@ -43,6 +45,11 @@ const TrackInfo: React.FC<TrackInfoProps> = ({
               isFavorite ? 'heart' : 'heart outline'
             }
               size='large'
+              onClick={
+                isFavorite
+                ? removeFromFavorites
+                : addToFavorites
+              }
             />
           </div>
         </>

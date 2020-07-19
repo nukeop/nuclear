@@ -25,6 +25,7 @@ const PlayerBar: React.FC<PlayerBarProps> = ({
   onTrackClick,
   onArtistClick,
   addToFavorites,
+  removeFromFavorites,
   isFavorite,
   hasTracks,
 
@@ -64,7 +65,7 @@ const PlayerBar: React.FC<PlayerBarProps> = ({
           renderTrackDuration &&
           <div className={styles.track_duration}>
             <div>{timePlayed}</div>
-            <div>{timeToEnd}</div>
+            <div>-{timeToEnd}</div>
           </div>
         }
       </Seekbar>
@@ -76,6 +77,7 @@ const PlayerBar: React.FC<PlayerBarProps> = ({
           onTrackClick={onTrackClick}
           onArtistClick={onArtistClick}
           addToFavorites={addToFavorites}
+          removeFromFavorites={removeFromFavorites}
           isFavorite={isFavorite}
           hasTracks={hasTracks}
         />
