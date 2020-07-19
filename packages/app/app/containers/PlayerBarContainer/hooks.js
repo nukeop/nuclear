@@ -8,9 +8,11 @@ import settingsConst from '../../constants/settings';
 import * as playerActions from '../../actions/player';
 import * as queueActions from '../../actions/queue';
 import * as settingsActions from '../../actions/settings';
+import * as favoritesActions from '../../actions/favorites';
 import { playerSelectors } from '../../selectors/player';
 import { queue as queueSelector } from '../../selectors/queue';
 import { settingsSelector } from '../../selectors/settings';
+import { getFavoriteTrack } from '../../selectors/favorites';
 import { useCallback } from 'react';
 
 export const useSeekbarProps = () => {
@@ -82,6 +84,7 @@ export const usePlayerControlsProps = () => {
 };
 
 export const useTrackInfoProps = () => {
+  const dispatch = useDispatch();
   const queue = useSelector(queueSelector);
   const hasTracks = queue.queueItems.length > 0;
   const currentSong = _.get(queue.queueItems, queue.currentSong);
@@ -90,11 +93,25 @@ export const useTrackInfoProps = () => {
   const artist = _.get(currentSong, 'artist');
   const cover = _.get(currentSong, 'thumbnail');
 
+  const favorite = useSelector(s => getFavoriteTrack(s, artist, track));
+  const isFavorite = !_.isNil(favorite);
+  const addToFavorites = useCallback(
+    () => dispatch(favoritesActions.addFavoriteTrack(currentSong)),
+    [dispatch, currentSong]
+  );
+  const removeFromFavorites = useCallback(
+    () => dispatch(favoritesActions.removeFavoriteTrack(favorite)),
+    [dispatch, favorite]
+  );
+
   return {
     track,
     artist,
     cover,
-    hasTracks
+    hasTracks,
+    isFavorite,
+    addToFavorites,
+    removeFromFavorites
   };
 };
 

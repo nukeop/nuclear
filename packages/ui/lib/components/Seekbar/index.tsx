@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import cx from 'classnames';
 
 import common from '../../common.scss';
@@ -15,13 +15,7 @@ export type SeekbarProps = {
   queue: { queueItems: QueueItem[] };
 };
 
-const handleClick = (seek, queue) => {
-  return event => {
-    const percent = (event.pageX - event.target.offsetLeft) / document.body.clientWidth;
-    const duration = queue.queueItems[queue.currentSong].streams[0].duration;
-    seek(percent * duration * 1000);
-  };
-};
+
 
 const Seekbar: React.FC<SeekbarProps> = ({
   children,
@@ -29,6 +23,15 @@ const Seekbar: React.FC<SeekbarProps> = ({
   seek,
   queue
 }) => {
+
+  const handleClick = useCallback((seek, queue) => {
+    return event => {
+      const percent = (event.pageX - event.target.offsetLeft) / document.body.clientWidth;
+      const duration = queue.queueItems[queue.currentSong].streams[0].duration;
+      seek(percent * duration);
+    };
+  }, []);
+
   return (
     <div
       className={cx(

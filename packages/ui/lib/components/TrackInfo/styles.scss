@@ -29,5 +29,9 @@
     display: flex;
     flex-flow: column;
     justify-content: center;
+
+    .icon {
+      cursor: pointer;
+    }
   }
 }
