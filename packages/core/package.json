@@ -43,7 +43,7 @@
     "mock-require": "^3.0.3",
     "ts-node": "^8.5.4",
     "typescript": "^3.7.3",
-    "ytdl-core": "^1.0.7"
+    "ytdl-core": "^1.0.9"
   },
   "ava": {
     "files": [

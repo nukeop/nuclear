@@ -78,7 +78,7 @@
     "semantic-ui-react": "^0.88.2",
     "simple-get-lyrics": "0.0.4",
     "youtube-playlist": "^1.0.2",
-    "ytdl-core": "^1.0.7"
+    "ytdl-core": "^1.0.9"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",
