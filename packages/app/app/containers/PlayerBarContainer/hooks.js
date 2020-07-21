@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import _ from 'lodash';
 import { formatDuration } from '@nuclear/ui';
 
+import { normalizeTrack } from '../../utils';
 import settingsConst from '../../constants/settings';
 import * as playerActions from '../../actions/player';
 import * as queueActions from '../../actions/queue';
@@ -96,7 +97,7 @@ export const useTrackInfoProps = () => {
   const favorite = useSelector(s => getFavoriteTrack(s, artist, track));
   const isFavorite = !_.isNil(favorite);
   const addToFavorites = useCallback(
-    () => dispatch(favoritesActions.addFavoriteTrack(currentSong)),
+    () => dispatch(favoritesActions.addFavoriteTrack(normalizeTrack(currentSong))),
     [dispatch, currentSong]
   );
   const removeFromFavorites = useCallback(

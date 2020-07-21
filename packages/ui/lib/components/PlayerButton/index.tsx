@@ -27,7 +27,7 @@ const PlayerButton: React.FC<PlayerButtonProps> = ({
         { [styles.disabled]: disabled }
         )}
       aria-label={ariaLabel}
-      onClick={!disabled && onClick}
+      onClick={disabled ? undefined : onClick}
     >
       <Icon inverted loading={loading} name={icon} size={size} />
     </button>
