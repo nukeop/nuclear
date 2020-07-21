@@ -1,0 +1,12 @@
+.player_controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+
+  &>* {
+    flex: 1 1 33.3%;
+    width: 33.3%;
+    min-width: 33.3%;
+  }
+}

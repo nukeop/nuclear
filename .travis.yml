@@ -22,7 +22,7 @@ env:
      - GITHASH=${TRAVIS_COMMIT::6}
 
 before_install:
-  - if [ $TRAVIS_OS_NAME = linux ]; then sudo apt-get install libdbus-1-dev -y; fi
+  - if [ $TRAVIS_OS_NAME = linux ]; then sudo apt-get install libdbus-1-dev rpm -y; fi
 
 script:
   - if [ "$TRAVIS_OS_NAME" == "linux" ]; then npm test && npm run build:linux; fi

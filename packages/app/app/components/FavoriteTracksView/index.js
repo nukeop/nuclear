@@ -150,3 +150,4 @@ FavoriteTracksView.defaultProps = {
 };
 
 export default FavoriteTracksView;
+
