@@ -51,7 +51,7 @@
     "typeorm": "^0.2.22",
     "url": "^0.11.0",
     "uuid": "^3.3.3",
-    "ytdl-core": "^1.0.7"
+    "ytdl-core": "^1.0.9"
   },
   "devDependencies": {
     "@types/body-parser": "^1.17.1",
