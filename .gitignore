@@ -73,3 +73,7 @@ jsconfig.json
 
 #lerna
 lerna-debug.log
+
+#flatpak
+.flatpak-builder
+build-dir

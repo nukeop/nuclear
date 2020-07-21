@@ -19,8 +19,7 @@ module.exports = {
         test: /\.(ttf|eot|woff|woff2|svg)$/,
         loader: 'url-loader',
         include: [
-          path.resolve(__dirname, '../resources'),
-          path.resolve(__dirname, '../node_modules/boxicons')
+          path.resolve(__dirname, '../resources')
         ]
       },
       {
@@ -30,8 +29,7 @@ module.exports = {
           'css-loader?importLoaders=1&modules=true&localIdentName=[local]'
         ],
         include: [
-          path.resolve(__dirname, '../resources'),
-          path.resolve(__dirname, '../node_modules/boxicons')
+          path.resolve(__dirname, '../resources')
         ]
       },
       {

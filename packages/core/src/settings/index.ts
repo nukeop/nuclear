@@ -22,6 +22,7 @@ type Setting = {
   type: SettingType;
   prettyName: string;
   default?: boolean | number | string;
+  hide?: boolean;
 
   options?: Array<SettingOption>;
   placeholder?: string;
@@ -39,7 +40,8 @@ export const settingsConfig: Array<Setting> = [
     description: 'volume-description',
     type: SettingType.NUMBER,
     prettyName: 'volume',
-    default: 50
+    default: 50,
+    hide: true
   },
   {
     name: 'loopAfterQueueEnd',

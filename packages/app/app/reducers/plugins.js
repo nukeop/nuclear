@@ -21,7 +21,11 @@ export default function PluginsReducer(state=initialState, action) {
   case CREATE_PLUGINS:
     return {
       ...state,
-      ...action.payload
+      plugins: action.payload.plugins,
+      selected: {
+        ...action.payload.selected,
+        ...state.selected
+      } 
     };
   case SELECT_STREAM_PROVIDER:
     return {

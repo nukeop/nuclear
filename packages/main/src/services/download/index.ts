@@ -1,9 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import registerDownloader, { download, Progress } from 'electron-dl';
 import { inject, injectable } from 'inversify';
-import fetch from 'node-fetch';
 import _ from 'lodash';
-import ytdl from 'ytdl-core';
+import * as Invidious from '@nuclear/core/src/rest/Invidious';
 
 import Store from '../store';
 import Config from '../config';
@@ -31,21 +30,8 @@ class Download {
     registerDownloader();
   }
 
-  async youtubeSearch(query: any): Promise<any> {
-    const response = await fetch(
-      `${this.config.youtubeSearch}${encodeURIComponent(query)}&key=${ this.store.getOption('yt.apiKey')}`
-    );
-
-    if (!response.ok) {
-      const { error } = await response.json();
-      throw new Error(error.errors[0].reason);
-    }
-
-    return response.json();
-  }
-
   /**
-   * Download a soud using the youtube api
+   * Download a soud using the Invidious api
    */
   async start({
     query,
@@ -53,14 +39,16 @@ class Download {
     onStart,
     onProgress
   }: DownloadParams): Promise<any> {
-    const ytData = await this.youtubeSearch(query);
-    const trackId = _.get(_.head(ytData.items), 'id.videoId');
-    const videoInfo = await ytdl.getInfo(`${this.config.youtubeUrl}?v=${trackId}`);
-    const formatInfo = _.head(videoInfo.formats.filter(e => (e.itag as unknown) === 140)) as ytdl.videoFormat;
-    const streamUrl = formatInfo.url;
+    const {
+      adaptiveFormats
+    } = await Invidious.trackSearch(query);
+    const streams = adaptiveFormats.filter(
+      ({ type }: { type: string }) => type.includes('audio')
+    );
+    const bestStream = _.maxBy(streams, (stream: { bitrate: string }) => Number(stream.bitrate));
 
-    return download(this.window.getBrowserWindow(), streamUrl, {
-      filename: filename + `.${_.get(formatInfo, 'container')}`,
+    return download(this.window.getBrowserWindow(), _.get(bestStream, 'url'), {
+      filename: filename + `.${_.get(bestStream, 'container')}`,
       directory: this.store.getOption('downloads.dir'),
       onStarted: onStart,
       onProgress: _.throttle(onProgress, 1000)

@@ -12,7 +12,7 @@ import * as ToastActions from '../../actions/toasts';
 import AlbumView from '../../components/AlbumView';
 
 const isFavorite = (albumId, favoriteAlbums) => {
-  const album = _.find(favoriteAlbums, { id: parseInt(albumId) });
+  const album = _.find(favoriteAlbums, { id: albumId });
   return !_.isNil(album);
 };
 
