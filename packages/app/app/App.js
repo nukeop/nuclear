@@ -7,7 +7,6 @@ import classnames from 'classnames';
 import _ from 'lodash';
 import Sound from 'react-hifi';
 import { withTranslation } from 'react-i18next';
-import { Cover, formatDuration } from '@nuclear/ui';
 import { PluginConfig } from '@nuclear/core';
 
 import * as SearchActions from './actions/search';
@@ -28,12 +27,10 @@ import compact from './compact.scss';
 
 import logoImg from '../resources/media/logo_full_light.png';
 import logoIcon from '../resources/media/512x512.png';
-import artPlaceholder from '../resources/media/art_placeholder.png';
 
 import settingsConst from './constants/settings';
 
 import PlaylistsSubMenu from './components/PlaylistsSubMenu';
-import Footer from './components/Footer';
 import Navbar from './components/Navbar';
 import VerticalPanel from './components/VerticalPanel';
 import Spacer from './components/Spacer';
@@ -51,15 +48,10 @@ import ShortcutsContainer from './containers/ShortcutsContainer';
 import ErrorBoundary from './containers/ErrorBoundary';
 
 import NavButtons from './components/NavButtons';
-import PlayerControls from './components/PlayerControls';
-import Seekbar from './components/Seekbar';
 import SidebarMenu from './components/SidebarMenu';
 import SidebarMenuItem from './components/SidebarMenu/SidebarMenuItem';
 import SidebarMenuCategoryHeader from './components/SidebarMenu/SidebarMenuCategoryHeader';
-import TrackDuration from './components/TrackDuration';
-import TrackInfo from './components/TrackInfo';
 import WindowControls from './components/WindowControls';
-import VolumeControls from './components/VolumeControls';
 
 @withTranslation('app')
 class App extends React.PureComponent {
@@ -249,119 +241,10 @@ class App extends React.PureComponent {
     );
   }
 
-  renderFooter () {
-    return (
-      <>
-        <PlayerBarContainer />
-        <Footer className={styles.footer}>
-          <Seekbar
-            fill={this.props.player.playbackProgress + '%'}
-            seek={this.props.actions.updateSeek}
-            queue={this.props.queue}
-          >
-            {
-              this.props.settings.trackDuration &&
-            !_.isNil(this.props.queue.queueItems[this.props.queue.currentSong]) &&
-            this.renderTrackDuration()
-            }
-          </Seekbar>
-          <div className={styles.footer_horizontal}>
-            <div className={styles.track_info_wrapper}>
-              {this.renderCover()}
-              {this.renderTrackInfo()}
-            </div>
-            {this.renderPlayerControls()}
-            {this.renderVolumeControl()}
-          </div>
-        </Footer>
-      </>
-    );
-  }
-
-  renderTrackDuration() {
-    const currentTrackStream = _.head(
-      _.get(
-        this.props.queue.queueItems[this.props.queue.currentSong],
-        'streams'
-      )
-    );
-
-    const currentTrackDuration = _.get(
-      currentTrackStream,
-      'duration'
-    );
-
-    const timeToEnd = currentTrackDuration - this.props.player.seek;
-
-    return (
-      <TrackDuration
-        timePlayed={formatDuration(this.props.player.seek)}
-        timeToEnd={
-          (!_.isNil(currentTrackDuration) && ('-' + formatDuration(timeToEnd)))
-          || '0'
-        }
-      />
-    );
-  }
-
-  renderCover () {
-    return (
-      <Cover
-        cover={
-          this.props.queue.queueItems[this.props.queue.currentSong]
-            ? this.props.queue.queueItems[this.props.queue.currentSong]
-              .thumbnail
-            : artPlaceholder
-        }
-      />
-    );
-  }
-
   getCurrentSongParameter (parameter) {
     return this.props.queue.queueItems[this.props.queue.currentSong]
       ? this.props.queue.queueItems[this.props.queue.currentSong][parameter]
       : null;
-  }
-
-  renderTrackInfo () {
-    return (
-      <TrackInfo
-        track={this.getCurrentSongParameter('name')}
-        artist={this.getCurrentSongParameter('artist')}
-        artistInfoSearchByName={this.props.actions.artistInfoSearchByName}
-        history={this.props.history}
-      />
-    );
-  }
-
-  renderPlayerControls () {
-    const { player, queue } = this.props;
-    const couldPlay = queue.queueItems.length > 0;
-    const couldForward = couldPlay && queue.currentSong + 1 < queue.queueItems.length;
-    const couldBack = couldPlay && queue.currentSong > 0;
-
-    return (
-      <PlayerControls
-        togglePlay={couldPlay ? this.togglePlayback.bind(this) : undefined}
-        playing={player.playbackStatus === Sound.status.PLAYING}
-        loading={player.playbackStreamLoading}
-        forward={couldForward ? this.nextSong.bind(this) : undefined}
-        back={couldBack ? this.props.actions.previousSong : undefined}
-      />
-    );
-  }
-
-  renderVolumeControl () {
-    return (
-      <VolumeControls
-        fill={this.props.player.volume}
-        updateVolume={this.props.actions.updateVolume}
-        muted={this.props.player.muted}
-        toggleMute={this.props.actions.toggleMute}
-        toggleOption={this.props.actions.toggleOption}
-        settings={this.props.settings}
-      />
-    );
   }
 
   render () {
@@ -377,7 +260,7 @@ class App extends React.PureComponent {
               </VerticalPanel>
               {this.renderRightPanel()}
             </div>
-            {this.renderFooter()}
+            <PlayerBarContainer />
             <SoundContainer />
             <IpcContainer />
           </div>

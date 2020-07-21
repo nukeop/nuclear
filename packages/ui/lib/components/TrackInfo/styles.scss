@@ -23,6 +23,11 @@
   .artist_name {
     font-size: 14px;
     color: rgba($white, 0.6);
+    cursor: pointer;
+
+    &:hover {
+      color: rgba($white, 0.8);
+    }
   }
 
   .favorite_part {

@@ -1,11 +1,13 @@
 import Sound from 'react-hifi';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import _ from 'lodash';
 import { formatDuration } from '@nuclear/ui';
 
 import { normalizeTrack } from '../../utils';
 import settingsConst from '../../constants/settings';
+import * as searchActions from '../../actions/search';
 import * as playerActions from '../../actions/player';
 import * as queueActions from '../../actions/queue';
 import * as settingsActions from '../../actions/settings';
@@ -86,6 +88,7 @@ export const usePlayerControlsProps = () => {
 
 export const useTrackInfoProps = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const queue = useSelector(queueSelector);
   const hasTracks = queue.queueItems.length > 0;
   const currentSong = _.get(queue.queueItems, queue.currentSong);
@@ -105,9 +108,21 @@ export const useTrackInfoProps = () => {
     [dispatch, favorite]
   );
 
+  const onTrackClick = useCallback(
+    () => {},
+    []
+  );
+
+  const onArtistClick = useCallback(
+    () => dispatch(searchActions.artistInfoSearchByName(artist, history)),
+    [dispatch, artist, history]
+  );
+
   return {
     track,
     artist,
+    onTrackClick,
+    onArtistClick,
     cover,
     hasTracks,
     isFavorite,
