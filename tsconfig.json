@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "jsx": "react",
     "moduleResolution": "node",
     "target": "ESNext",
     "module":"ESNext",
@@ -12,7 +13,8 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "esModuleInterop": true,
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "noImplicitAny": false
   },
   "exclude": [
     "dist"

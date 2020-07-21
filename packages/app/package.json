@@ -73,6 +73,7 @@
     "redux-promise": "^0.6.0",
     "redux-thunk": "^2.2.0",
     "regenerator-runtime": "^0.13.2",
+    "reselect": "^4.0.0",
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^0.88.2",
     "simple-get-lyrics": "0.0.4",

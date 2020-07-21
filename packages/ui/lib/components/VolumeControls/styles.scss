@@ -1,0 +1,27 @@
+.volume_controls_container {
+  display: flex;
+  justify-content: flex-end;
+
+  padding-right: 1em;
+  flex: 1 0 50%;
+
+  .volume_controls {
+    display: flex;
+    flex-flow: row;
+    justify-content: flex-end;
+    width: 175px;
+  }
+
+  .volume_icon {
+    display: flex;
+    justify-content: flex-start;
+    width: 2em;
+    cursor: pointer;
+    flex: 0 0 auto;
+
+    .icon {
+      display: flex;
+      justify-content: flex-start;
+    }
+  }
+}

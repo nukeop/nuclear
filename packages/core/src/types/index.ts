@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export enum PlaybackStatus {
   PAUSED = 'PAUSED',
   PLAYING = 'PLAYING',
@@ -30,3 +31,5 @@ export interface NuclearPlaylist {
   name: string;
   tracks: NuclearMeta[];
 }
+
+export type PartialExcept<T, TRequired extends keyof T> = Partial<T> & Pick<T, TRequired>;

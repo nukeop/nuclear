@@ -1,4 +1,4 @@
-@import '../../common';
+@import "../../common";
 
 .card_container {
   width: 100%;
@@ -15,7 +15,7 @@
     transition: $short-duration ease-in-out;
     cursor: pointer;
 
-    &:hover {
+    &.animated:hover {
       box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.2);
       transform: scale(1.1);
     }
@@ -42,7 +42,11 @@
         color: rgba($white, 0.6);
       }
     }
-
-
+    .menu_button {
+      position: absolute;
+      z-index: 10;
+      margin: 1em;
+      align-self: flex-end;
+    }
   }
 }
