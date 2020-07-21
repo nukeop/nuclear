@@ -37,7 +37,7 @@ const PlayerControls: React.FC<PlayerControlsProps> = ({
       loading={isLoading}
         icon={
           isLoading
-          ? 'spinner'
+          ? 'circle notch'
           : isPlaying
           ? 'pause'
           : 'play'
