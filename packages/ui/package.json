@@ -32,6 +32,7 @@
 		"@babel/polyfill": "^7.6.0",
 		"@babel/preset-env": "^7.6.2",
 		"@babel/preset-react": "^7.0.0",
+		"@babel/preset-typescript": "^7.10.4",
 		"@babel/register": "^7.6.2",
 		"@storybook/addon-actions": "^3.4.12",
 		"@storybook/addon-info": "^5.3.17",
@@ -87,7 +88,8 @@
 		"babel": {
 			"testOptions": {
 				"presets": [
-					"@babel/preset-react"
+					"@babel/preset-react",
+					"@babel/preset-typescript"
 				],
 				"plugins": [
 					"@babel/plugin-syntax-jsx",
@@ -99,8 +101,8 @@
 		"require": [
 			"@babel/register",
 			"@babel/polyfill",
-			"ts-node/register",
-			"ignore-styles"
+			"ignore-styles",
+			"ts-node/register"
 		],
 		"files": [
 			"!test/helpers"
