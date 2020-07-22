@@ -18,12 +18,12 @@
 		"url": "https://github.com/nukeop/nuclear/issues"
 	},
 	"scripts": {
-    "storybook": "start-storybook -p 9001 -c .storybook",
-    "start": "tsc && copyfiles -u 1 ./lib/**/*.scss ./dist",
-    "build": "tsc && copyfiles -u 1 ./lib/**/*.scss ./dist",
-    "lint": "eslint lib stories --fix",
-    "test": "eslint lib && ava"
-  },
+		"storybook": "start-storybook -p 9001 -c .storybook",
+		"start": "tsc && copyfiles -u 1 ./lib/**/*.scss ./dist",
+		"build": "tsc && copyfiles -u 1 ./lib/**/*.scss ./dist",
+		"lint": "eslint lib stories --fix",
+		"test": "eslint lib && ava"
+	},
 	"peerDependencies": {
 		"react": "^16.4.1",
 		"react-dom": "^16.4.1"
@@ -34,6 +34,7 @@
 		"@babel/polyfill": "^7.6.0",
 		"@babel/preset-env": "^7.6.2",
 		"@babel/preset-react": "^7.0.0",
+		"@babel/preset-typescript": "^7.10.4",
 		"@babel/register": "^7.6.2",
 		"@storybook/addon-actions": "^3.4.12",
 		"@storybook/addon-info": "^5.3.17",
@@ -89,7 +90,8 @@
 		"babel": {
 			"testOptions": {
 				"presets": [
-					"@babel/preset-react"
+					"@babel/preset-react",
+					"@babel/preset-typescript"
 				],
 				"plugins": [
 					"@babel/plugin-syntax-jsx",
@@ -101,8 +103,8 @@
 		"require": [
 			"@babel/register",
 			"@babel/polyfill",
-			"ts-node/register",
-			"ignore-styles"
+			"ignore-styles",
+			"ts-node/register"
 		],
 		"files": [
 			"!test/helpers"
