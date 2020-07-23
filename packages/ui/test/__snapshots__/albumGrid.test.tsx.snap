@@ -1,0 +1,114 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`(Snapshot) AlbumGrid (basic) should render correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="nuclear album_grid"
+  >
+    <div
+      class="album_cards"
+    >
+      <div
+        class="nuclear card_container"
+      >
+        <div
+          class="card animated"
+        >
+          <div
+            class="thumbnail"
+            style="background-image: url(test-file-stub);"
+          />
+          <div
+            class="card_content"
+          >
+            <h4>
+              test
+            </h4>
+          </div>
+        </div>
+      </div>
+      <div
+        class="nuclear card_container"
+      >
+        <div
+          class="card animated"
+        >
+          <div
+            class="thumbnail"
+            style="background-image: url(test-file-stub);"
+          />
+          <div
+            class="card_content"
+          >
+            <h4>
+              test
+            </h4>
+          </div>
+        </div>
+      </div>
+      <div
+        class="nuclear card_container"
+      >
+        <div
+          class="card animated"
+        >
+          <div
+            class="thumbnail"
+            style="background-image: url(test-file-stub);"
+          />
+          <div
+            class="card_content"
+          >
+            <h4>
+              test
+            </h4>
+          </div>
+        </div>
+      </div>
+      <div
+        class="nuclear card_container"
+      >
+        <div
+          class="card animated"
+        >
+          <div
+            class="thumbnail"
+            style="background-image: url(test-file-stub);"
+          />
+          <div
+            class="card_content"
+          >
+            <h4>
+              test
+            </h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`(Snapshot) AlbumGrid (loading) should render correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="nuclear album_grid loading"
+  >
+    <div
+      class="album_cards"
+    />
+    <div
+      class="ui active transition visible dimmer"
+      style="display: flex;"
+    >
+      <div
+        class="content"
+      >
+        <div
+          class="ui loader"
+        />
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
