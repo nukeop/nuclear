@@ -18,10 +18,10 @@
 		"url": "https://github.com/nukeop/nuclear/issues"
 	},
 	"scripts": {
-    "storybook": "start-storybook -p 9001 -c .storybook",
-    "lint": "eslint lib stories --fix",
-    "test": "eslint lib && ava"
-  },
+		"storybook": "start-storybook -p 9001 -c .storybook",
+		"lint": "eslint lib stories --fix",
+		"test": "eslint lib && jest"
+	},
 	"peerDependencies": {
 		"react": "^16.4.1",
 		"react-dom": "^16.4.1"
@@ -41,23 +41,24 @@
 		"@storybook/cli": "^5.3.17",
 		"@storybook/preset-typescript": "^2.1.0",
 		"@storybook/react": "^5.3.17",
+		"@testing-library/react": "^10.4.7",
+		"@types/jest": "^26.0.5",
 		"@typescript-eslint/eslint-plugin": "^2.25.0",
 		"@typescript-eslint/parser": "^2.25.0",
-		"ava": "^2.4.0",
 		"babel-eslint": "^7.2.3",
 		"babel-loader": "^8.0.6",
 		"chai": "^4.2.0",
 		"chai-spies": "^1.0.0",
 		"copyfiles": "^2.2.0",
 		"css-loader": "^1.0.0",
-		"enzyme": "^3.10.0",
-		"enzyme-adapter-react-16": "^1.1.1",
 		"eslint": "^6.7.2",
 		"eslint-plugin-import": "^2.14.0",
 		"eslint-plugin-node": "^10.0.0",
 		"eslint-plugin-react": "^7.11.0",
 		"eslint-plugin-react-hooks": "^2.1.1",
+		"identity-obj-proxy": "^3.0.0",
 		"ignore-styles": "^5.0.1",
+		"jest": "^26.1.0",
 		"jsdom": "^11.12.0",
 		"mini-css-extract-plugin": "^0.4.1",
 		"node-sass": "^4.9.2",
@@ -84,28 +85,10 @@
 		"semantic-ui-react": "^0.88.1",
 		"styled-components": "^4.4.1"
 	},
-	"ava": {
-		"babel": {
-			"testOptions": {
-				"presets": [
-					"@babel/preset-react",
-					"@babel/preset-typescript"
-				],
-				"plugins": [
-					"@babel/plugin-syntax-jsx",
-					"@babel/plugin-proposal-object-rest-spread"
-				]
-			}
-		},
-		"compileEnhancements": false,
-		"require": [
-			"@babel/register",
-			"@babel/polyfill",
-			"ignore-styles",
-			"ts-node/register"
-		],
-		"files": [
-			"!test/helpers"
-		]
+	"jest": {
+		"moduleNameMapper": {
+			"\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.ts",
+			"\\.(css|scss)$": "identity-obj-proxy"
+		}
 	}
 }
