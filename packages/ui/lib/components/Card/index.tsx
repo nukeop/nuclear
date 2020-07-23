@@ -16,7 +16,7 @@ type CardProps = {
   header: string;
   content: string;
   image: string;
-  onClick: (event: React.MouseEvent) => void;
+  onClick: React.DOMAttributes<HTMLDivElement>['onClick'];
   withMenu?: boolean;
   animated?: boolean;
   menuEntries?: CardMenuEntry[];
