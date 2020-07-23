@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Cover snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="nuclear cover_container"
+  >
+    <img
+      src="https://i.imgur.com/4euOws2.jpg"
+    />
+  </div>
+</DocumentFragment>
+`;
