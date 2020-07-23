@@ -8,7 +8,7 @@ export type PlayerButtonProps = {
   icon: SemanticICONS;
   size?: Exclude<SemanticSIZES, 'medium'>;
   ariaLabel?: string;
-  onClick?: (e: React.MouseEvent) => void;
+  onClick?: React.DOMAttributes<HTMLButtonElement>['onClick'];
   disabled?: boolean;
   loading?: boolean;
 };
