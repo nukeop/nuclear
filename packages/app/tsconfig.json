@@ -17,6 +17,7 @@
   "include": [
     "app",
     "resources",
-    "typings"
+    "typings",
+    "node_modules/@nuclear"
   ]
 }
