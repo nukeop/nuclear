@@ -16,6 +16,9 @@ const osMapper: Record<string, BuildEnv['TARGET']> = {
   win32: 'windows'
 };
 
+const MAIN_DIR = path.resolve(__dirname, 'src');
+const CORE_DIR = path.resolve(__dirname, '..', 'core');
+
 module.exports = (env: BuildEnv): import('webpack').Configuration => {
   if (!env.TARGET) {
     env.TARGET = osMapper[os.platform() as string];
@@ -29,7 +32,8 @@ module.exports = (env: BuildEnv): import('webpack').Configuration => {
     loader: 'ts-loader',
     options: {
       configFile: path.join(__dirname, `/config/tsconfig.${env.TARGET}.json`)
-    }
+    },
+    include: [MAIN_DIR, CORE_DIR]
   };
 
   return {
