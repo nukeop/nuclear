@@ -19,10 +19,8 @@
 	},
 	"scripts": {
 		"storybook": "start-storybook -p 9001 -c .storybook",
-		"start": "tsc && copyfiles -u 1 ./lib/**/*.scss ./dist",
-		"build": "tsc && copyfiles -u 1 ./lib/**/*.scss ./dist",
 		"lint": "eslint lib stories --fix",
-		"test": "eslint lib && ava"
+		"test": "eslint lib && jest"
 	},
 	"peerDependencies": {
 		"react": "^16.4.1",
@@ -43,37 +41,27 @@
 		"@storybook/cli": "^5.3.17",
 		"@storybook/preset-typescript": "^2.1.0",
 		"@storybook/react": "^5.3.17",
+		"@testing-library/react": "^10.4.7",
+		"@types/jest": "^26.0.5",
+		"@types/lodash": "^4.14.158",
+		"@types/react": "^16.9.43",
 		"@typescript-eslint/eslint-plugin": "^2.25.0",
 		"@typescript-eslint/parser": "^2.25.0",
-		"ava": "^2.4.0",
 		"babel-eslint": "^7.2.3",
-		"babel-loader": "^8.0.6",
-		"chai": "^4.2.0",
-		"chai-spies": "^1.0.0",
 		"copyfiles": "^2.2.0",
-		"css-loader": "^1.0.0",
-		"enzyme": "^3.10.0",
-		"enzyme-adapter-react-16": "^1.1.1",
 		"eslint": "^6.7.2",
 		"eslint-plugin-import": "^2.14.0",
 		"eslint-plugin-node": "^10.0.0",
 		"eslint-plugin-react": "^7.11.0",
 		"eslint-plugin-react-hooks": "^2.1.1",
+		"identity-obj-proxy": "^3.0.0",
 		"ignore-styles": "^5.0.1",
-		"jsdom": "^11.12.0",
-		"mini-css-extract-plugin": "^0.4.1",
-		"node-sass": "^4.9.2",
-		"optimize-css-assets-webpack-plugin": "^5.0.0",
+		"jest": "^26.1.0",
 		"react-hot-loader": "^4.3.4",
 		"sass-loader": "^6.0.7",
 		"style-loader": "^0.21.0",
-		"ts-loader": "^6.2.2",
 		"ts-node": "^8.8.1",
-		"typescript": "^3.8.3",
-		"uglifyjs-webpack-plugin": "^1.2.7",
-		"webpack": "^4.16.3",
-		"webpack-cli": "^3.1.0",
-		"webpack-dev-server": "^3.1.5"
+		"typescript": "^3.8.3"
 	},
 	"dependencies": {
 		"classnames": "^2.2.6",
@@ -86,28 +74,10 @@
 		"semantic-ui-react": "^0.88.1",
 		"styled-components": "^4.4.1"
 	},
-	"ava": {
-		"babel": {
-			"testOptions": {
-				"presets": [
-					"@babel/preset-react",
-					"@babel/preset-typescript"
-				],
-				"plugins": [
-					"@babel/plugin-syntax-jsx",
-					"@babel/plugin-proposal-object-rest-spread"
-				]
-			}
-		},
-		"compileEnhancements": false,
-		"require": [
-			"@babel/register",
-			"@babel/polyfill",
-			"ignore-styles",
-			"ts-node/register"
-		],
-		"files": [
-			"!test/helpers"
-		]
+	"jest": {
+		"moduleNameMapper": {
+			"\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.ts",
+			"\\.(css|scss)$": "identity-obj-proxy"
+		}
 	}
 }

@@ -1,11 +1,12 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "outDir": "dist",
     "lib": ["DOM"],
+    "outDir": "dist",
+    "allowJs": true,
     "strict": false,
     "typeRoots": [
-      "./typings",
+      "typings",
       "node_modules/@types"
     ]
   },
