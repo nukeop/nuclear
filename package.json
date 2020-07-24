@@ -135,6 +135,7 @@
       }
     ],
     "linux": {
+      "icon": "./build/",
       "desktop": {
         "Name": "Nuclear",
         "Name[es]": "Reproductor de música Nuclear",
