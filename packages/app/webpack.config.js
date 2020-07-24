@@ -9,6 +9,8 @@ const BUILD_DIR = path.resolve(__dirname, '../../dist');
 const APP_DIR = path.resolve(__dirname, 'app');
 const RESOURCES_DIR = path.resolve(__dirname, 'resources');
 
+const CORE_DIR = path.resolve(__dirname, '..', 'core');
+const I18N_DIR = path.resolve(__dirname, '..', 'i18n');
 const UI_DIR = path.resolve(__dirname, '..', 'ui');
 const VENDOR_DIR = path.resolve(__dirname, 'node_modules');
 
@@ -32,7 +34,7 @@ module.exports = (env) => {
     namedModules: true
   };
   const jsxRule = {
-    test: /.jsx?$/,
+    test: /\.(js|jsx|tsx|ts)$/,
     loader: 'babel-loader',
     options: {
       cacheDirectory: true,
@@ -42,14 +44,15 @@ module.exports = (env) => {
             electron: '4.2'
           }
         }],
-        '@babel/preset-react'
+        '@babel/preset-react',
+        '@babel/preset-typescript'
       ],
       plugins: [
         ['@babel/plugin-proposal-decorators', { 'legacy': true }],
         '@babel/plugin-proposal-class-properties',
         '@babel/plugin-proposal-object-rest-spread'
       ],
-      ignore: [/node_modules/]
+      ignore: [/node_modules\/(?!@nuclear).*/]
     }
   };
   const contentSecurity = 'connect-src *; style-src \'unsafe-inline\' https:; font-src https: data:; img-src https: data: file:;';
@@ -93,11 +96,18 @@ module.exports = (env) => {
   ];
 
   if (IS_PROD) {
+    jsxRule.loader = 'ts-loader';
+    jsxRule.options = {};
     jsxRule.include = [
       APP_DIR,
+      CORE_DIR,
+      I18N_DIR,
       UI_DIR
     ];
-    jsxRule.exclude = /node_modules\/electron-timber\/preload\.js/;
+    jsxRule.exclude = [
+      /node_modules\/electron-timber\/preload\.js/,
+      /node_modules\/(?!@nuclear).*/
+    ];
     optimization.splitChunks = {
       chunks: 'all',
       cacheGroups: {
@@ -124,6 +134,7 @@ module.exports = (env) => {
     mode: IS_PROD ? 'production' : 'development',
     optimization,
     resolve: {
+      extensions: ['*', '.js', '.ts', '.jsx', '.tsx', '.json'],
       alias: {
         react: path.resolve(__dirname, 'node_modules/react'),
         'styled-component': path.resolve(__dirname, 'node_modules/styled-component')
@@ -194,6 +205,7 @@ module.exports = (env) => {
       publicPath: '/'
     };
   }
+
 
   return config;
 };

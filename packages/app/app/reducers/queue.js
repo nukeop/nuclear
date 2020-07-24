@@ -6,7 +6,6 @@ import {
   UPDATE_QUEUE_ITEM,
   CLEAR_QUEUE,
   ADD_STREAMS_TO_QUEUE_ITEM,
-  REPLACE_STREAMS_IN_QUEUE_ITEM,
   NEXT_SONG,
   PREVIOUS_SONG,
   SELECT_SONG,
@@ -47,15 +46,6 @@ function reduceAddStreamsToQueueItem(state, action) {
   const newQueue = _.cloneDeep(state.queueItems);
   newQueue[replaceIx] = Object.assign({}, newQueue[replaceIx], action.payload);
 
-  return Object.assign({}, state, {
-    queueItems: newQueue
-  });
-}
-
-function reduceReplaceStreamsInQueueItem(state, action) {
-  const replaceIx = findQueueItemIndex(state.queueItems, action.payload);
-  const newQueue = _.cloneDeep(state.queueItems);
-  newQueue[replaceIx] = action.payload;
   return Object.assign({}, state, {
     queueItems: newQueue
   });
@@ -186,8 +176,6 @@ export default function QueueReducer(state = initialState, action) {
     return { ...state, queueItems: [] };
   case ADD_STREAMS_TO_QUEUE_ITEM:
     return reduceAddStreamsToQueueItem(state, action);
-  case REPLACE_STREAMS_IN_QUEUE_ITEM:
-    return reduceReplaceStreamsInQueueItem(state, action);
   case NEXT_SONG:
     return reduceNextSong(state);
   case PREVIOUS_SONG:

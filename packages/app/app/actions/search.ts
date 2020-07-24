@@ -279,7 +279,7 @@ export const artistInfoSearchByName = (artistName, history) => async (dispatch, 
     dispatch(error(
       `Failed to find artist ${artistName}`,
       `Using ${selectedProvider.sourceName}`,
-      null, null, settings
+      null, settings
     ));
   }
 };

@@ -28,6 +28,7 @@ const initialState = {
   playlistSearchResults: [],
   albumDetails: {},
   artistDetails: {},
+  searchHistory: [],
   unifiedSearchStarted: false,
   playlistSearchStarted: false,
   isFocused: false
