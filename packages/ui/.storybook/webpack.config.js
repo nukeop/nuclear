@@ -7,7 +7,15 @@ module.exports = {
         test: /\.s?css$/,
         use: [
           'style-loader',
-          'css-loader?importLoaders=1&modules=true&localIdentName=[local]',
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 1,
+              modules: {
+                localIdentName: '[local]'
+              }
+            }
+          },
           'sass-loader'
         ],
         include: [
@@ -26,7 +34,15 @@ module.exports = {
         test: /\.css$/,
         use: [
           'style-loader',
-          'css-loader?importLoaders=1&modules=true&localIdentName=[local]'
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 1,
+              modules: {
+                localIdentName: '[local]'
+              }
+            }
+          }
         ],
         include: [
           path.resolve(__dirname, '../resources')
