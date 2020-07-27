@@ -1,0 +1,126 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`(Snapshot) Player bar should render correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="nuclear player_bar"
+  >
+    <div
+      class="nuclear seekbar"
+    >
+      <div
+        class="nuclear seekbar_progress"
+        style="width: 66%;"
+      />
+    </div>
+    <div
+      class="player_bar_bottom"
+    >
+      <div
+        class="track_info"
+      >
+        <div
+          class="nuclear cover_container"
+        >
+          <img
+            src="https://i.imgur.com/4euOws2.jpg"
+          />
+        </div>
+      </div>
+      <div
+        class="player_controls"
+      >
+        <button
+          class="player_button"
+        >
+          <i
+            aria-hidden="true"
+            class="step backward large inverted icon"
+          />
+        </button>
+        <button
+          class="player_button"
+        >
+          <i
+            aria-hidden="true"
+            class="play big inverted icon"
+          />
+        </button>
+        <button
+          class="player_button"
+        >
+          <i
+            aria-hidden="true"
+            class="step forward large inverted icon"
+          />
+        </button>
+      </div>
+      <div
+        class="volume_controls_container"
+      >
+        <div
+          class="play_options"
+        >
+          <i
+            aria-hidden="true"
+            class="repeat large icon play_option_icon disabled"
+          />
+          <i
+            aria-hidden="true"
+            class="magic large icon play_option_icon"
+          />
+          <i
+            aria-hidden="true"
+            class="random large icon play_option_icon disabled"
+          />
+        </div>
+        <div
+          class="volume_controls"
+        >
+          <div
+            class="volume_icon"
+          >
+            <i
+              aria-hidden="true"
+              class="volume up large icon"
+            />
+          </div>
+          <div
+            class="volume_slider"
+          >
+            <div
+              class="range"
+              style="width: 100%;"
+            >
+              <div
+                class="baseDiv"
+                style="height: 12px;"
+              >
+                <div
+                  class="track"
+                  style="border-radius: 4px; background: rgb(68, 71, 90); top: 4px; height: 4px;"
+                />
+                <div
+                  class="fill"
+                  style="border-radius: 4px; background: rgb(248, 248, 242); width: calc(100% * 0.6 + 4.800000000000001px); top: 4px; height: 4px;"
+                />
+                <div
+                  class="thumb"
+                  style="width: 12px; height: 12px; border-radius: 12px; background: rgb(248, 248, 242);"
+                />
+                <input
+                  class="input"
+                  max="100"
+                  min="0"
+                  style="top: 4px; height: 12px; width: calc(100% - 12px); margin-left: 6px; margin-right: 6px;"
+                  type="range"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

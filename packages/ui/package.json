@@ -46,7 +46,7 @@
 		"@types/lodash": "^4.14.158",
 		"@types/react": "^16.9.43",
 		"@typescript-eslint/eslint-plugin": "^2.25.0",
-		"@typescript-eslint/parser": "^2.25.0",
+		"@typescript-eslint/parser": "^2.34.0",
 		"babel-eslint": "^7.2.3",
 		"babel-loader": "^8.1.0",
 		"copyfiles": "^2.2.0",

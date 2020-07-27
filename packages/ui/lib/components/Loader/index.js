@@ -6,8 +6,6 @@ import common from '../../common.scss';
 import styles from './styles.scss';
 
 const Loader = props => {
-
-  console.log({common, styles})
   return (
     <span className={cx(
       common.nuclear,
