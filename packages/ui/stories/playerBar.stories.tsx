@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { PlayerBar } from '..';
+import { SemanticICONS } from 'semantic-ui-react/dist/commonjs/generic';
 
 export default {
   title: 'Player bar'
@@ -25,9 +26,16 @@ export const DefaultStyle = () => <div
     seek={() => { }}
     queue={{ queueItems: [] }}
     playOptions={[
-      { icon: 'repeat', enabled: false },
-      { icon: 'magic' },
-      { icon: 'random', enabled: false }
+      { icon: ('repeat' as SemanticICONS), enabled: false, name: 'Repeat' },
+      { icon: ('magic' as SemanticICONS), name: 'Autoradio' },
+      { icon: ('random' as SemanticICONS), enabled: false, name: 'Shuffle' }
     ]}
+    onTrackClick={() => {}}
+    onArtistClick={() => {}}
+    addToFavorites={() => {}}
+    removeFromFavorites={() => {}}
+    updateVolume={() => {}}
+    toggleMute={() => {}}
+    isMuted={false}
   />
 </div>;
