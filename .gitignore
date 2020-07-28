@@ -58,9 +58,6 @@ nuclear.json
 # Prettier configuration file
 .prettierrc
 
-# npm
-package-lock.json
-
 # vscode
 .vscode/
 jsconfig.json
