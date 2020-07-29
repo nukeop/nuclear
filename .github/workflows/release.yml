@@ -1,0 +1,44 @@
+name: Release job
+
+on: 
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'tag to build'
+        required: true
+      release_name:
+        description: 'release name'
+        required: true
+
+jobs:
+  manual_release:
+    runs-on: ${{ matrix.os }}
+    continue-on-error: ${{ matrix.experimental }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macOS-latest]
+        experimental: [false]
+        include:
+          - os: windows-latest
+            experimental: true
+    timeout-minutes: 12
+
+    steps:
+    - uses: actions/checkout@master
+    - name: Use Node.js 11.x
+      uses: actions/setup-node@v1
+      with:
+        version: 11.x
+    - name: npm install, build, and test
+      run: |
+        npm install
+        cd packages/app
+        npm run build
+        cd ../main
+        npm run build
+        cd ../..
+        npx electron-builder -c.extraMetadata.main=dist/main.js
+      shell: bash
+      env:
+        GITHASH: ${GITHUB_SHA}
+
