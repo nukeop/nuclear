@@ -11,17 +11,9 @@ on:
         required: true
 
 jobs:
-  manual_release:
-    runs-on: ${{ matrix.os }}
-    continue-on-error: ${{ matrix.experimental }}
-    strategy:
-      matrix:
-        os: [ubuntu-latest, macOS-latest]
-        experimental: [false]
-        include:
-          - os: windows-latest
-            experimental: true
-    timeout-minutes: 12
+  linux_release:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
 
     steps:
     - uses: actions/checkout@master
@@ -29,16 +21,15 @@ jobs:
       uses: actions/setup-node@v1
       with:
         version: 11.x
-    - name: npm install, build, and test
+    - name: npm install and build
       run: |
         npm install
-        cd packages/app
         npm run build
-        cd ../main
-        npm run build
-        cd ../..
-        npx electron-builder -c.extraMetadata.main=dist/main.js
       shell: bash
       env:
         GITHASH: ${GITHUB_SHA}
-
+    - name: Upload binaries
+      uses: actions/upload-artifact@v2
+      with:
+        name: nuclear-binaries
+        path: release/*.{AppImage,dev,rpm,tar\.gz,snap}
