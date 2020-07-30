@@ -91,7 +91,9 @@ export default compose(
     toggleExpand: ({ expanded, setExpanded }) => () => setExpanded(!expanded),
     handleAddAll: ({ artist, tracks, expanded, streamProviders, addToQueue }) => () => 
       tracks
-        .slice(0, expanded ? 15 : 5)
+		//Change of WildLeons
+	    //Old version : .slice(0, expanded ? 15 : 5)
+        .slice(0, tracks.length > 15 ? 15 : tracks.length)
         .map(track => {
           addToQueue(streamProviders, {
             artist: artist.name,
