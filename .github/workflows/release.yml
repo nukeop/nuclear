@@ -27,7 +27,7 @@ jobs:
         npm run build:linux
       shell: bash
       env:
-        GITHASH: ${GITHUB_SHA}
+        GITHASH: ${{github.event.inputs.tag}}
     - name: Upload binaries
       uses: actions/upload-artifact@v2
       with:
