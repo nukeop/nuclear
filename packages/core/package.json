@@ -1,6 +1,6 @@
 {
   "name": "@nuclear/core",
-  "version": "0.6.3",
+  "version": "0.6.4",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/nukeop/nuclear.git"
@@ -11,11 +11,8 @@
     "url": "https://github.com/nukeop/nuclear/issues"
   },
   "homepage": "https://github.com/nukeop/nuclear#readme",
-  "main": "lib/index.js",
-  "typings": "lib/index.d.ts",
+  "main": "src/index.ts",
   "scripts": {
-    "start": "tsc",
-    "build": "tsc",
     "lint": "eslint src/**/*.ts --fix",
     "test": "eslint src/**/**/**/**/*.ts test/**/*.ts && ava -v"
   },
@@ -46,7 +43,7 @@
     "mock-require": "^3.0.3",
     "ts-node": "^8.5.4",
     "typescript": "^3.7.3",
-    "ytdl-core": "^1.0.7"
+    "ytdl-core": "^1.0.9"
   },
   "ava": {
     "files": [

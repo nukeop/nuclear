@@ -1,6 +1,6 @@
 {
   "name": "@nuclear/main",
-  "version": "0.6.3",
+  "version": "0.6.4",
   "description": "Nuclear main process",
   "scripts": {
     "start": "shx rm -rf build && webpack --env.NODE_ENV=development && electron build/main.js",
@@ -18,7 +18,7 @@
   },
   "homepage": "https://github.com/nukeop/nuclear#readme",
   "dependencies": {
-    "@nuclear/core": "^0.6.3",
+    "@nuclear/core": "^0.6.4",
     "autobind-decorator": "^2.4.0",
     "body-parser": "^1.19.0",
     "concat-stream": "^2.0.0",
@@ -51,7 +51,7 @@
     "typeorm": "^0.2.22",
     "url": "^0.11.0",
     "uuid": "^3.3.3",
-    "ytdl-core": "^1.0.7"
+    "ytdl-core": "^1.0.9"
   },
   "devDependencies": {
     "@types/body-parser": "^1.17.1",
@@ -71,21 +71,18 @@
     "@types/webpack": "^4.41.0",
     "copy-webpack-plugin": "^5.1.1",
     "electron-builder": "^22.2.0",
+    "node-gyp": "^7.0.0",
     "node-loader": "^0.6.0",
-    "ts-loader": "^6.2.1",
-    "ts-node": "^8.5.4",
+    "ts-loader": "^6.2.2",
+    "ts-node": "^8.10.2",
     "type-fest": "^0.8.1",
     "typescript": "^3.7.3",
+    "utf-8-validate": "^5.0.2",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.10"
   },
   "optionalDependencies": {
     "7zip-bin-mac": "^1.0.1",
-    "@nodert-win10/windows.foundation": "^0.2.96",
-    "@nodert-win10/windows.media": "^0.2.96",
-    "@nodert-win10/windows.media.playback": "^0.2.96",
-    "@nodert-win10/windows.storage.streams": "^0.2.96",
-    "electron-media-service": "^0.2.2",
     "jsbi": "^2.0.5",
     "mpris-service": "2.1.0",
     "x11": "^2.3.0"

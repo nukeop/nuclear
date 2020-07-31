@@ -1,0 +1,38 @@
+@import "../../common.scss";
+
+.player_bar {
+  display: flex;
+  flex: 0 0 auto;
+  flex-flow: column;
+
+  width: 100%;
+  max-width: 100%;
+
+  background: $background3;
+  user-select: none;
+
+  .player_bar_bottom {
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex: 1 1 auto;
+    flex-flow: row;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .track_duration {
+    position: absolute;
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 0 .5em;
+    height: 100%;
+    width: 100%;
+
+    pointer-events: none;
+  }
+}

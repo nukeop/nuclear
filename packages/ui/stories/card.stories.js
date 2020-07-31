@@ -24,7 +24,7 @@ storiesOf('Cards', module)
   .add('With rectangular album cover', () => (
     <div
       className='bg'
-      style={{display: 'flex', flexFlow: 'row wrap', width: '100%'}}
+      style={{ display: 'flex', flexFlow: 'row wrap', width: '100%' }}
     >
       <Card
         header='Title'
@@ -41,7 +41,7 @@ storiesOf('Cards', module)
   .add('Row of cards', () => (
     <div
       className='bg'
-      style={{display: 'flex', flexFlow: 'row wrap', width: '100%'}}
+      style={{ display: 'flex', flexFlow: 'row wrap', width: '100%' }}
     >
       {
         _.map(_.range(5), () => <Card
@@ -54,7 +54,7 @@ storiesOf('Cards', module)
   .add('Row of small cards', () => (
     <div
       className='bg'
-      style={{display: 'flex', flexFlow: 'row wrap', width: '100%'}}
+      style={{ display: 'flex', flexFlow: 'row wrap', width: '100%' }}
     >
       {
         _.map(_.range(5), () => <Card
@@ -67,7 +67,7 @@ storiesOf('Cards', module)
   )).add('Row of cards with long content', () => (
     <div
       className='bg'
-      style={{display: 'flex', flexFlow: 'row wrap', width: '100%'}}
+      style={{ display: 'flex', flexFlow: 'row wrap', width: '100%' }}
     >
       {
         _.map(_.range(5), () => <Card
@@ -76,5 +76,32 @@ storiesOf('Cards', module)
           small
         />)
       }
+    </div>
+  ))
+  .add('Card with a menu', () => (
+    <div
+      className='bg'
+      style={{ display: 'flex', flexFlow: 'row wrap', width: '100%' }}
+    >
+      <Card
+        header='Card with a menu'
+        content='Test'
+        withMenu
+        animated={false}
+        menuEntries={[
+          {
+            type: 'header', props: {
+              children: 'Test header'
+            }
+          },
+          { type: 'divider' },
+          {
+            type: 'item', props: {
+              children: 'test item',
+              onClick: () => alert('item clicked')
+            }
+          }
+        ]}
+      />
     </div>
   ));

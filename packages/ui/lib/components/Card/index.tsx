@@ -1,0 +1,85 @@
+import React from 'react';
+import cx from 'classnames';
+import _ from 'lodash';
+import { Dropdown, DropdownItemProps, DropdownHeaderProps, DropdownDividerProps } from 'semantic-ui-react';
+
+import artPlaceholder from '../../../resources/media/art_placeholder.png';
+import common from '../../common.scss';
+import styles from './styles.scss';
+
+export type CardMenuEntry = {
+  type: 'header' | 'item' | 'divider';
+  props: DropdownItemProps | DropdownHeaderProps | DropdownDividerProps
+};
+
+type CardProps = {
+  header: string;
+  content: string;
+  image: string;
+  onClick: React.DOMAttributes<HTMLDivElement>['onClick'];
+  withMenu?: boolean;
+  animated?: boolean;
+  menuEntries?: CardMenuEntry[];
+};
+
+const Card: React.FC<CardProps> = ({
+  header,
+  content,
+  image,
+  onClick,
+  withMenu = false,
+  animated = true,
+  menuEntries
+}) => (
+    <div className={cx(
+      common.nuclear,
+      styles.card_container
+    )}>
+      <div
+        className={cx(
+          styles.card,
+          { [styles.animated]: animated }
+        )}
+        onClick={onClick}
+      >
+        {
+          withMenu &&
+          <Dropdown
+            basic
+            icon='ellipsis vertical'
+            className={styles.menu_button}
+          >
+            {
+              _.isArray(menuEntries) && !_.isEmpty(menuEntries) &&
+              <Dropdown.Menu basic inverted>
+                {
+                  menuEntries.map(entry => {
+                    switch (entry.type) {
+                      case 'header':
+                        return <Dropdown.Header {...entry.props} />;
+                      case 'item':
+                        return <Dropdown.Item {...entry.props} />;
+                      case 'divider':
+                        return <Dropdown.Divider {...entry.props} />;
+                    }
+                  })
+                }
+              </Dropdown.Menu>
+            }
+          </Dropdown>
+        }
+        <div className={styles.thumbnail}
+          style={{ backgroundImage: `url('${(_.isNil(image) || _.isEmpty(image)) ? artPlaceholder : image}')` }}
+        />
+        <div className={styles.card_content}>
+          <h4>{header}</h4>
+          {
+            _.isNil(content)
+              ? null
+              : <p>{content}</p>
+          }
+        </div>
+      </div>
+    </div>
+  );
+export default Card;

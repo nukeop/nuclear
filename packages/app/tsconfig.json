@@ -1,0 +1,27 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "module": "commonjs",
+    "lib": ["DOM"],
+    "outDir": "dist",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "strict": false,
+    "allowJs": true,
+    "typeRoots": [
+      "node_modules/@types",
+      "typings"
+    ],
+    "jsx": "react"
+  },
+  "include": [
+    "app",
+    "resources",
+    "typings",
+    "node_modules/@nuclear"
+  ],
+  "exclude": [
+    "node_modules/@nuclear/*/test",
+    "node_modules/@nuclear/ui/stories"
+  ]
+}

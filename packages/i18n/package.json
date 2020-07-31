@@ -1,6 +1,6 @@
 {
   "name": "@nuclear/i18n",
-  "version": "0.6.3",
+  "version": "0.6.4",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/nukeop/nuclear.git"
@@ -11,11 +11,8 @@
     "url": "https://github.com/nukeop/nuclear/issues"
   },
   "homepage": "https://github.com/nukeop/nuclear#readme",
-  "main": "lib/index.js",
-  "typings": "lib/index.d.ts",
+  "main": "src/index.ts",
   "scripts": {
-    "start": "tsc",
-    "build": "tsc",
     "lint": "eslint src/**/*.ts",
     "i18n-sync": "ts-node scripts/sync"
   },

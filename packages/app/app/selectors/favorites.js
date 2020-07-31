@@ -9,7 +9,7 @@ export function getFavoriteTrack(state, artist, title) {
   const normalizedTitle = _.deburr(title.toLowerCase());
 
   return _.find(state.favorites.tracks, track => {
-    const normalizedStoreArtist = _.deburr(track.artist.name.toLowerCase());
+    const normalizedStoreArtist = _.deburr(_.defaultTo(track.artist.name, track.artist).toLowerCase());
     const normalizedStoreTitle = _.deburr(track.name.toLowerCase());
 
     return normalizedStoreArtist === normalizedArtist && normalizedStoreTitle === normalizedTitle;

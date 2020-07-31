@@ -27,14 +27,13 @@ import trending from '../../../../resources/musicgenresicons/outline/trending.sv
 import vocal from '../../../../resources/musicgenresicons/outline/vocal.svg';
 
 export default genre => {
-  switch (genre) {
+  switch (genre.toLowerCase()) {
   case 'blues':
     return blues;
   case 'rock':
   case 'classic rock':
   case 'post-rock':
   case 'progressive rock':
-  case 'Progressive rock':
     return rock;
   case 'country':
     return country;
@@ -82,12 +81,11 @@ export default genre => {
   case 'punk rock':
   case 'hardcore':
     return punk;
-  case 'Hip-Hop':
+  case 'hip-hop':
   case 'hip hop':
   case 'rap':
     return hiphop;
   case 'classical':
-  case 'Classical':
   case 'instrumental':
   case 'soundtrack':
     return classical;
