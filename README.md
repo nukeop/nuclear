@@ -59,7 +59,7 @@ Here's a list of packages for various managers, most of which are maintained by 
 | Choco (Win)    | https://chocolatey.org/packages/nuclear/               | [JourneyOver](https://github.com/JourneyOver) |
 | Homebrew (Mac) | https://formulae.brew.sh/cask/nuclear                  | Homebrew                                      |
 | Snap           | https://snapcraft.io/nuclear                           | [nukeop](https://github.com/nukeop)           |
-|Flatpak         |(to be approved)                                       | [advaithm](https://github.com/advaithm)       |
+|Flatpak         |https://github.com/nukeop/nuclear                       | [advaithm](https://github.com/advaithm)       |
 
 big thanks to [ayyeve](https://github.com/ayyEve) for letting me (advaithm) use her server as a compile machine.
 ## Community translations
