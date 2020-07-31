@@ -13,7 +13,8 @@
   "include": [
     "src",
     "typings",
-    "node_modules/@nuclear"
+    "node_modules/@nuclear",
+    ".."
   ],
   "exclude": [
     "node_modules/@nuclear/*/test",
