@@ -22,6 +22,7 @@
     min-width: 3em;
     height: 3em;
     margin: 0.5em;
+    z-index: 10;
 
     img {
       @include circle;
@@ -94,6 +95,7 @@
     background: rgba($red, 0.8);
     text-align: center;
     font-size: 12px;
+    pointer-events: none;
 
     .error_message {
       font-weight: bold;
