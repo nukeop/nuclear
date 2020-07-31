@@ -48,6 +48,7 @@ jobs:
       run: |
         npm install
         cd packages/app
+        npx electron-rebuild
         npm run build
         cd ../main
         npm run build
