@@ -47,8 +47,8 @@ jobs:
     - name: npm install and build
       run: |
         npm install
+        npx lerna exec npm rebuild
         cd packages/app
-        npm rebuild
         npm run build
         cd ../main
         npm run build
