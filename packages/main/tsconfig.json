@@ -12,6 +12,11 @@
   },
   "include": [
     "src",
-    "typings"
+    "typings",
+    "node_modules/@nuclear"
+  ],
+  "exclude": [
+    "node_modules/@nuclear/*/test",
+    "node_modules/@nuclear/ui/stories"
   ]
 }
