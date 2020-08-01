@@ -6,6 +6,7 @@
   flex-flow: column;
   align-items: center;
   margin: 4em 2em 2em;
+  max-width: 33%;
 
   .mini_cover {
     position: relative;
@@ -13,7 +14,7 @@
     border-radius: 1em;
     background: transparent;
     box-shadow: 15px 15px 45px darken($background, 5%), -15px -15px 45px lighten($background, 5%);
-    max-width: 33%;
+    max-width: 100%;
     margin-bottom: 4em;
     padding: 0.5em;
 
@@ -29,10 +30,12 @@
     font-weight: bold;
     font-size: 2em;
     margin-bottom: 1em;
+    text-align: center;
   }
-
+  
   .mini_artist {
     font-size: 1.5em;
     color: rgba($white, 0.6);
+    text-align: center;
   }
 }
