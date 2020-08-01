@@ -5,7 +5,7 @@ import Seekbar, { SeekbarProps } from '../Seekbar';
 
 import styles from './styles.scss';
 import MiniTrackInfo, { MiniTrackInfoProps } from './MiniTrackInfo';
-import { Icon } from 'semantic-ui-react';
+import { PlayerButton } from '../..';
 
 export type MiniPlayerProps = MiniTrackInfoProps &
   Omit<SeekbarProps, 'children'> & {
@@ -34,18 +34,27 @@ const MiniPlayer: React.FC<MiniPlayerProps> = ({
     />
     <div className={styles.seekbar_wrapper}>
       <div className={styles.row}>
-       <span>{timePlayed}</span>
-       <span>{timeToEnd}</span>
+        <span>{timePlayed}</span>
+        <span>{timeToEnd}</span>
       </div>
       <Seekbar
         fill={fill}
         seek={seek}
         queue={queue}
+        height='0.5em'
       />
     </div>
-    <NeumorphicBox>
-      <Icon name='play' />
-    </NeumorphicBox>
+    <div className={styles.buttons_row}>
+      <NeumorphicBox small borderRadius='5px'>
+        <PlayerButton size='large' icon='step backward' />
+      </NeumorphicBox>
+      <NeumorphicBox small pressed borderRadius='5px'>
+        <PlayerButton size='large' icon='play' />
+      </NeumorphicBox>
+      <NeumorphicBox small borderRadius='5px'>
+        <PlayerButton size='large' icon='step forward' />
+      </NeumorphicBox>
+    </div>
   </div>;
 
 export default MiniPlayer;
