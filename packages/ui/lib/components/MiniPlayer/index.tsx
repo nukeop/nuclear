@@ -6,9 +6,12 @@ import Seekbar, { SeekbarProps } from '../Seekbar';
 import styles from './styles.scss';
 import MiniTrackInfo, { MiniTrackInfoProps } from './MiniTrackInfo';
 import { PlayerButton } from '../..';
+import { PlayerControlsProps } from '../PlayerControls';
+import MiniPlayerControls from './MiniPlayerControls';
 
 export type MiniPlayerProps = MiniTrackInfoProps &
-  Omit<SeekbarProps, 'children'> & {
+  Omit<SeekbarProps, 'children'> &
+  PlayerControlsProps & {
     timePlayed?: string;
     timeToEnd?: string;
   };
@@ -25,6 +28,15 @@ const MiniPlayer: React.FC<MiniPlayerProps> = ({
 
   timePlayed,
   timeToEnd,
+
+  goForward,
+  goBack,
+  togglePlay,
+  goBackDisabled,
+  goForwardDisabled,
+  playDisabled,
+  isPlaying = false,
+  isLoading = false
 }) => <div className={styles.mini_player}>
     <MiniTrackInfo
       cover={cover}
@@ -44,17 +56,16 @@ const MiniPlayer: React.FC<MiniPlayerProps> = ({
         height='0.5em'
       />
     </div>
-    <div className={styles.buttons_row}>
-      <NeumorphicBox small borderRadius='5px'>
-        <PlayerButton size='large' icon='step backward' />
-      </NeumorphicBox>
-      <NeumorphicBox small pressed borderRadius='5px'>
-        <PlayerButton size='large' icon='play' />
-      </NeumorphicBox>
-      <NeumorphicBox small borderRadius='5px'>
-        <PlayerButton size='large' icon='step forward' />
-      </NeumorphicBox>
-    </div>
+    <MiniPlayerControls
+      goForward={goForward}
+      goBack={goBack}
+      togglePlay={togglePlay}
+      isPlaying={isPlaying}
+      isLoading={isLoading}
+      goBackDisabled={goBackDisabled}
+      goForwardDisabled={goForwardDisabled}
+      playDisabled={playDisabled}
+    />
   </div>;
 
 export default MiniPlayer;
