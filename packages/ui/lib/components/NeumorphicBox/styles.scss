@@ -1,10 +1,32 @@
 @import "../../common.scss";
 
+$smallDisplacement: 10px;
+$smallBlur: 30px;
+$bigDisplacement: 20px;
+$bigBlur: 60px;
+$contrast: 5%;
+
 .neumorphic_box {
-  border-radius: 50px;
+  border-radius: 25px;
   background: transparent;
-  box-shadow: 20px 20px 60px darken($background, 3%), -20px -20px 60px lighten($background, 3%);
+  box-shadow: $bigDisplacement $bigDisplacement $bigBlur darken($background, $contrast), 
+  (-$bigDisplacement) (-$bigDisplacement) $bigBlur lighten($background, $contrast);
   color: $white;
   padding: 1em;
   margin: 1em;
+
+  &.small {
+    box-shadow: $smallDisplacement $smallDisplacement $smallBlur darken($background, $contrast), 
+  (-$smallDisplacement) (-$smallDisplacement) $smallBlur lighten($background, $contrast);
+  }
+
+  &.pressed {
+    box-shadow: inset $bigDisplacement $bigDisplacement $bigBlur darken($background, $contrast), 
+    inset (-$bigDisplacement) (-$bigDisplacement) $bigBlur lighten($background, $contrast);
+  }
+
+  &.small.pressed {
+    box-shadow: inset $smallDisplacement $smallDisplacement $smallBlur darken($background, $contrast), 
+    inset (-$smallDisplacement) (-$smallDisplacement) $smallBlur lighten($background, $contrast);
+  }
 }

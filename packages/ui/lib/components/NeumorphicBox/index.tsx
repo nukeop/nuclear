@@ -1,10 +1,27 @@
 import React from 'react';
+import cx from 'classnames';
 
 import styles from './styles.scss';
 
-const NeumorphicBox: React.FC = ({
-  children
-}) => <div className={styles.neumorphic_box}>
+export type NeumorphicBoxProps = {
+  borderRadius?: string;
+  small?: boolean;
+  pressed?: boolean;
+};
+
+const NeumorphicBox: React.FC<NeumorphicBoxProps> = ({
+  children,
+  borderRadius,
+  small,
+  pressed
+}) => <div
+  className={cx(
+    styles.neumorphic_box,
+    { [styles.small]: small },
+    { [styles.pressed]: pressed }
+  )}
+  style={{ borderRadius }}
+>
     {children}
   </div>;
 

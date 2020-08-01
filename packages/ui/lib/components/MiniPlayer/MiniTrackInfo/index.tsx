@@ -20,6 +20,8 @@ const MiniTrackInfo: React.FC<MiniTrackInfoProps> = ({
       <div className={styles.mini_cover}>
         <img src={cover} />
       </div>
+      <div className={styles.mini_track}>{track}</div>
+      <div className={styles.mini_artist}>{artist}</div>
     </div>
   );
 

@@ -3,21 +3,36 @@
 .mini_track_info {
   position: relative;
   display: flex;
-  justify-content: center;
-  margin: 4em 2em;
+  flex-flow: column;
+  align-items: center;
+  margin: 4em 2em 2em;
 
   .mini_cover {
     position: relative;
     overflow: hidden;
-    border-radius: 2em;
+    border-radius: 1em;
     background: transparent;
-    box-shadow: 20px 20px 60px darken($background, 3%), -20px -20px 60px lighten($background, 3%);
+    box-shadow: 15px 15px 45px darken($background, 5%), -15px -15px 45px lighten($background, 5%);
     max-width: 33%;
+    margin-bottom: 4em;
+    padding: 0.5em;
 
     img {
+      border-radius: 1em;
       position: relative;
       width: 100%;
       height: 100%;
     }
+  }
+
+  .mini_track {
+    font-weight: bold;
+    font-size: 2em;
+    margin-bottom: 1em;
+  }
+
+  .mini_artist {
+    font-size: 1.5em;
+    color: rgba($white, 0.6);
   }
 }
