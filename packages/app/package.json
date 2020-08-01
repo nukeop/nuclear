@@ -4,7 +4,7 @@
   "description": "Nuclear - Renderer process",
   "scripts": {
     "start": "webpack-dev-server --inline --env.NODE_ENV=development",
-    "build": "webpack --colors --env.NODE_ENV=production",
+    "build": "webpack --colors --env.NODE_ENV=production --progress",
     "test": "TS_NODE_FILES=true mocha --require ignore-styles --require ts-node/register --require @babel/register --require regenerator-runtime --timeout 10000 --prof --recursive",
     "lint": "eslint app test --fix",
     "i18n": "sync-i18n --files 'app/locales/*.json' --primary en --languages fr tl nl de dk es pl zh ru tr id sk ko zh_tw se --space 2"
@@ -42,7 +42,7 @@
     "d3-drag": "^1.2.3",
     "d3-selection": "^1.4.0",
     "dotenv": "^8.2.0",
-    "electron": "^4.2.11",
+    "electron": "^9.1.2",
     "electron-store": "^2.0.0",
     "electron-timber": "^0.5.1",
     "font-awesome": "^4.7.0",
@@ -96,6 +96,7 @@
     "chai": "^4.1.2",
     "chai-spies": "^1.0.0",
     "css-loader": "^1.0.0",
+    "electron-rebuild": "^1.11.0",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.3.1",
     "eslint": "^6.7.2",
