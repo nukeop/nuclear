@@ -1,0 +1,10 @@
+@import "../../common.scss";
+
+.neumorphic_box {
+  border-radius: 50px;
+  background: transparent;
+  box-shadow: 20px 20px 60px darken($background, 3%), -20px -20px 60px lighten($background, 3%);
+  color: $white;
+  padding: 1em;
+  margin: 1em;
+}

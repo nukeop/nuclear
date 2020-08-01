@@ -9,13 +9,11 @@ type QueueItem = {
 };
 
 export type SeekbarProps = {
-  children: React.ReactNode;
+  children?: React.ReactNode;
   fill: number;
   seek: (arg0: number) => void;
   queue: { queueItems: QueueItem[] };
 };
-
-
 
 const Seekbar: React.FC<SeekbarProps> = ({
   children,

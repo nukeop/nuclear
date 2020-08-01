@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`(Snapshot) Mini player should render correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="mini_player"
+  >
+    <div
+      class="mini_track_info"
+    >
+      <div
+        class="mini_cover"
+      >
+        <img
+          src="test-file-stub"
+        />
+      </div>
+    </div>
+    <div
+      class="seekbar_wrapper"
+    >
+      <div
+        class="row"
+      >
+        <span />
+        <span />
+      </div>
+      <div
+        class="nuclear seekbar"
+      >
+        <div
+          class="nuclear seekbar_progress"
+        />
+      </div>
+    </div>
+    <div
+      class="neumorphic_box"
+    >
+      <i
+        aria-hidden="true"
+        class="play icon"
+      />
+    </div>
+  </div>
+</DocumentFragment>
+`;
