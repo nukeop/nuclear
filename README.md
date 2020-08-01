@@ -124,12 +124,20 @@ Next, to build the project (use the `--verbose` flag to get more output):
 ```shell
 $ flatpak-builder build-dir org.js.nuclear.Nuclear.json
 ```
-To run the built app: 
+To insall and run the built app: 
 ```shell
-$ flatpak-builder --run build-dir org.js.nuclear.Nuclear.json run.sh
+$ flatpak-builder --user --install build-dir  org.js.nuclear.Nuclear.jsonl
+$ flatpak run  org.js.nuclear.Nuclear.json
 ```
 You can turn the app to a local repo. currently the file builds the latest release.
-
+You can install the flatpak if you don't want to build it from source with the following command
+```shell
+$ flatpak install flathub org.js.nuclear.Nuclear
+```
+and run it with this
+```shell
+$ flatpak run org.js.nuclear.Nuclear
+```
 ## Screenshots
 This will be updated as the program evolves.
 
