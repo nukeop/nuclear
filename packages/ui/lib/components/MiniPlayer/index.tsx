@@ -3,19 +3,18 @@ import React from 'react';
 
 import styles from './styles.scss';
 import Seekbar, { SeekbarProps } from '../Seekbar';
-import MiniTrackInfo from './MiniTrackInfo';
+import MiniTrackInfo, { MiniTrackInfoProps } from './MiniTrackInfo';
 import MiniPlayerControls from './MiniPlayerControls';
-import MiniPlayOptions from './MiniPlayOptions';
+import MiniPlayOptions, { MiniPlayOptionsProps } from './MiniPlayOptions';
 import { PlayerControlsProps } from '../PlayerControls';
-import { TrackInfoProps } from '../TrackInfo';
-import { VolumeControlsProps } from '../VolumeControls';
 
 export type MiniPlayerProps = Omit<SeekbarProps, 'children'> &
   PlayerControlsProps &
-  Pick<TrackInfoProps, 'cover' | 'track' | 'artist' | 'isFavorite' | 'addToFavorites' | 'removeFromFavorites'> &
-  Pick<VolumeControlsProps, 'playOptions'> & {
+  MiniTrackInfoProps &
+  MiniPlayOptionsProps & {
     timePlayed?: string;
     timeToEnd?: string;
+    style: React.HTMLAttributes<HTMLDivElement>['style']
   };
 
 const MiniPlayer: React.FC<MiniPlayerProps> = ({
@@ -28,6 +27,7 @@ const MiniPlayer: React.FC<MiniPlayerProps> = ({
   isFavorite,
 
   playOptions,
+  onDisableMiniPlayer,
 
   fill,
   seek,
@@ -43,10 +43,14 @@ const MiniPlayer: React.FC<MiniPlayerProps> = ({
   goForwardDisabled,
   playDisabled,
   isPlaying = false,
-  isLoading = false
-}) => <div className={styles.mini_player}>
+  isLoading = false,
+  hasTracks = false,
+
+  style
+}) => <div className={styles.mini_player} style={style}>
     <MiniPlayOptions
       playOptions={playOptions}
+      onDisableMiniPlayer={onDisableMiniPlayer}
     />
     <MiniTrackInfo
       cover={cover}
@@ -55,6 +59,7 @@ const MiniPlayer: React.FC<MiniPlayerProps> = ({
       isFavorite={isFavorite}
       addToFavorites={addToFavorites}
       removeFromFavorites={removeFromFavorites}
+      hasTracks={hasTracks}
     />
     <div className={styles.seekbar_wrapper}>
       <div className={styles.row}>
