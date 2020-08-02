@@ -62,6 +62,7 @@ storiesOf('Queue item', module)
         <QueueItem {...commonProps} isCompact />
         <QueueItem {...commonProps} isCompact isLoading />
         <QueueItem {...commonProps} isCompact isCurrent />
+        <QueueItem {...commonProps} isCompact error />
       </div>
     </div>
   ))

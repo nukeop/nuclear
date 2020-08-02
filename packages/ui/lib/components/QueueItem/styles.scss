@@ -59,6 +59,14 @@
 
   }
 
+  &.current_song {
+    background: rgba($green, 0.3);
+  }
+
+  &.error {
+    background: rgba($red, 0.8);
+  }
+
   &.compact {
     width: auto;
     height: auto;
@@ -92,7 +100,6 @@
     align-items: center;
     width: 100%;
     height: 100%;
-    background: rgba($red, 0.8);
     text-align: center;
     font-size: 12px;
     pointer-events: none;
@@ -137,6 +144,3 @@
   }
 }
 
-.current_song {
-  background: rgba($green, 0.3);
-}
