@@ -1,4 +1,5 @@
 import React from 'react';
+import { SemanticICONS } from 'semantic-ui-react';
 
 import { MiniPlayer } from '..';
 
@@ -17,4 +18,12 @@ export const Example = () => <MiniPlayer
 
   timePlayed='-3:14'
   timeToEnd='2:43'
+
+  addToFavorites={() => {}}
+  removeFromFavorites={() => {}}
+  playOptions={[
+    { icon: ('repeat' as SemanticICONS), enabled: false, name: 'Repeat' },
+    { icon: ('magic' as SemanticICONS), name: 'Autoradio' },
+    { icon: ('random' as SemanticICONS), enabled: false, name: 'Shuffle' }
+  ]}
 />;
