@@ -188,6 +188,7 @@
     "logout": "Cerrar sesión",
     "loop-after-queue-end": "Repetir al completar la cola",
     "max.downloads": "Download control",
+    "mini-player": "Use mini player style",
     "notification-timeout": "Notificar tiempo de espera",
     "notlogged": "Sesión no iniciada",
     "playback": "Playback",

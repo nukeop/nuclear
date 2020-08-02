@@ -183,6 +183,7 @@
     "logout": "登出",
     "loop-after-queue-end": "到達最後曲目後自動循環",
     "max.downloads": "Download control",
+    "mini-player": "Use mini player style",
     "notification-timeout": "超時提醒",
     "notlogged": "未登入",
     "playback": "播放",

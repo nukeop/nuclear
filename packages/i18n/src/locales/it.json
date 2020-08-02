@@ -188,6 +188,7 @@
     "logout": "Log out",
     "loop-after-queue-end": "Riproduci di nuovo dopo aver riprodotto l'ultimo brano in coda",
     "max.downloads": "Download control",
+    "mini-player": "Use mini player style",
     "notification-timeout": "Notifica timeout",
     "notlogged": "Non loggato",
     "playback": "Playback",

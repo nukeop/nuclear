@@ -183,6 +183,7 @@
     "logout": "로그아웃",
     "loop-after-queue-end": "마지막 재생목록을 재생한 후 반복",
     "max.downloads": "Download control",
+    "mini-player": "Use mini player style",
     "notification-timeout": "알림 시간 초과",
     "notlogged": "로그인 되지 않았습니다.",
     "playback": "재생",
