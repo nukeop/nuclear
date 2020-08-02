@@ -14,7 +14,7 @@ export type MiniPlayerProps = Omit<SeekbarProps, 'children'> &
   MiniPlayOptionsProps & {
     timePlayed?: string;
     timeToEnd?: string;
-    style: React.HTMLAttributes<HTMLDivElement>['style']
+    style?: React.HTMLAttributes<HTMLDivElement>['style']
   };
 
 const MiniPlayer: React.FC<MiniPlayerProps> = ({
