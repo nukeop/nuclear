@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`(Snapshot) Neumorphic Box should render correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="neumorphic_box"
+  >
+    test
+  </div>
+</DocumentFragment>
+`;

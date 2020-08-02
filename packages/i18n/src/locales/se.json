@@ -188,6 +188,7 @@
     "logout": "Logga ut",
     "loop-after-queue-end": "Upprepa kön efter att sista låten i kön spelats",
     "max.downloads": "Download control",
+    "mini-player": "Use mini player style",
     "notification-timeout": "Timeout på notifikationer",
     "notlogged": "Inte inloggad",
     "playback": "Uppspelning",

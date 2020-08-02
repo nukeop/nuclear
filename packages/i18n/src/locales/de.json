@@ -188,6 +188,7 @@
     "logout": "Log-out",
     "loop-after-queue-end": "Loop nach dem Ende der Warteschlange",
     "max.downloads": "Download control",
+    "mini-player": "Use mini player style",
     "notification-timeout": "Benachrichtigungs-Timeout",
     "notlogged": "Nicht eingeloggt",
     "playback": "Playback",

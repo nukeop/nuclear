@@ -19,6 +19,9 @@ $short-duration: 0.3s;
 $medium-duration: 0.5s;
 $long-duration: 1s;
 
+$mid_screen: 800px;
+$small_screen: 600px;
+
 @mixin roundCorners {
   border-radius: 0.25em;
 }

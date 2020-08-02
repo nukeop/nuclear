@@ -113,6 +113,13 @@ export const settingsConfig: Array<Setting> = [
     default: true
   },
   {
+    name: 'miniPlayer',
+    category: 'display',
+    type: SettingType.BOOLEAN,
+    prettyName: 'mini-player',
+    default: false
+  },
+  {
     name: 'compactMenuBar',
     category: 'display',
     type: SettingType.BOOLEAN,

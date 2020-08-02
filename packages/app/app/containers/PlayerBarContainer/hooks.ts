@@ -17,6 +17,7 @@ import { queue as queueSelector } from '../../selectors/queue';
 import { settingsSelector } from '../../selectors/settings';
 import { getFavoriteTrack } from '../../selectors/favorites';
 import { useCallback } from 'react';
+import { SemanticICONS } from 'semantic-ui-react/dist/commonjs/generic';
 
 export const useSeekbarProps = () => {
   const dispatch = useDispatch();
@@ -157,21 +158,27 @@ export const useVolumeControlsProps = () => {
   const playOptions = [
     {
       name: t('loop'),
-      icon: 'repeat',
+      icon: 'repeat' as SemanticICONS,
       enabled: _.get(settings, 'loopAfterQueueEnd'),
       onToggle: useToggleOptionCallback(toggleOption, 'loopAfterQueueEnd', settings)
     },
     {
       name: t('shuffle'),
-      icon: 'random',
+      icon: 'random' as SemanticICONS,
       enabled: _.get(settings, 'shuffleQueue'),
       onToggle: useToggleOptionCallback(toggleOption, 'shuffleQueue', settings)
     },
     {
       name: t('autoradio'),
-      icon: 'magic',
+      icon: 'magic' as SemanticICONS,
       enabled: _.get(settings, 'autoradio'),
       onToggle: useToggleOptionCallback(toggleOption, 'autoradio', settings)
+    },
+    {
+      name: t('mini-player'),
+      icon: 'compress' as SemanticICONS,
+      enabled: _.get(settings, 'miniPlayer'),
+      onToggle: useToggleOptionCallback(toggleOption, 'miniPlayer', settings)
     }
   ];
 

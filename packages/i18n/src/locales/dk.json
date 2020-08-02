@@ -178,6 +178,7 @@
     "logout": "Log ud",
     "loop-after-queue-end": "Loop efter afspilning af den sidste sang i køen",
     "max.downloads": "Download control",
+    "mini-player": "Use mini player style",
     "notification-timeout": "Notifikation timeout",
     "notlogged": "Ikke logget ind",
     "playback": "Playback",

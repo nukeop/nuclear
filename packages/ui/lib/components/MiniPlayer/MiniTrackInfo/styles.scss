@@ -1,0 +1,80 @@
+@import "../.../../../../common.scss";
+
+.mini_track_info {
+  position: relative;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  margin: 4em 2em 2em;
+  max-width: 33%;
+
+  @media screen and (max-width: $mid_screen) {
+    max-width: 50%;
+  }
+
+  @media screen and (max-width: $small_screen) {
+    max-width: 80%;
+  }
+
+  .mini_cover {
+    position: relative;
+    overflow: hidden;
+    border-radius: 1em;
+    background: transparent;
+    box-shadow: 15px 15px 45px darken($background, 5%), -15px -15px 45px lighten($background, 5%);
+    max-width: 100%;
+    margin-bottom: 4em;
+    padding: 0.5em;
+
+    @media screen and (max-width: $mid_screen) {
+      width: 350px;
+    }
+
+    @media screen and (max-width: $small_screen) {
+      width: 350px;
+    }
+
+    img {
+      border-radius: 1em;
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .mini_track_info_text {
+    display: flex;
+    flex-flow: row;
+    width: 100%;
+
+    .left {
+      flex: 1 1 auto;
+    }
+
+    .right {
+      display: flex;
+      align-items: center;
+      flex: 0 0 auto;
+
+      i {
+        cursor: pointer;
+        color: $pink;
+      }
+    }
+  }
+
+  .mini_track {
+    font-weight: bold;
+    font-size: 2em;
+    margin-bottom: 1em;
+    text-align: left;
+    line-height: 1em;
+  }
+  
+  .mini_artist {
+    font-size: 1.5em;
+    color: rgba($white, 0.6);
+    text-align: left;
+    line-height: 1em;
+  }
+}
