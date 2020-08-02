@@ -6,13 +6,39 @@ exports[`(Snapshot) Mini player should render correctly 1`] = `
     class="mini_player"
   >
     <div
+      class="mini_play_options"
+    >
+      <div
+        class="neumorphic_box small"
+        style="border-radius: 5px;"
+      >
+        <button>
+          <i
+            aria-hidden="true"
+            class="chevron left large icon"
+          />
+        </button>
+      </div>
+      <div
+        class="neumorphic_box small"
+        style="border-radius: 5px;"
+      >
+        <button>
+          <i
+            aria-hidden="true"
+            class="ellipsis horizontal large icon"
+          />
+        </button>
+      </div>
+    </div>
+    <div
       class="mini_track_info"
     >
       <div
         class="mini_cover"
       >
         <img
-          src="test-file-stub"
+          src="https://i.imgur.com/4euOws2.jpg"
         />
       </div>
     </div>
@@ -22,24 +48,65 @@ exports[`(Snapshot) Mini player should render correctly 1`] = `
       <div
         class="row"
       >
-        <span />
-        <span />
+        <span>
+          -3:14
+        </span>
+        <span>
+          2:43
+        </span>
       </div>
       <div
         class="nuclear seekbar"
+        style="height: 0.5em;"
       >
         <div
           class="nuclear seekbar_progress"
+          style="width: 66%;"
         />
       </div>
     </div>
     <div
-      class="neumorphic_box"
+      class="mini_player_controls"
     >
-      <i
-        aria-hidden="true"
-        class="play icon"
-      />
+      <div
+        class="neumorphic_box small"
+        style="border-radius: 5px;"
+      >
+        <button
+          class="player_button"
+        >
+          <i
+            aria-hidden="true"
+            class="step backward large inverted icon"
+          />
+        </button>
+      </div>
+      <div
+        class="neumorphic_box small"
+        style="border-radius: 5px;"
+      >
+        <button
+          class="player_button"
+        >
+          <i
+            aria-hidden="true"
+            class="play large inverted icon"
+          />
+        </button>
+      </div>
+      <div
+        class="neumorphic_box small"
+        style="border-radius: 5px;"
+      >
+        <button
+          class="player_button"
+        >
+          <i
+            aria-hidden="true"
+            class="step forward large inverted icon"
+          />
+        </button>
+      </div>
     </div>
   </div>
 </DocumentFragment>

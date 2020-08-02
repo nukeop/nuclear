@@ -31,6 +31,7 @@ const MiniPlayerControls: React.FC<PlayerControlsProps> = ({
     >
       <PlayerButton
         size='large'
+        loading={isLoading}
         icon={
           isLoading
             ? 'circle notch'

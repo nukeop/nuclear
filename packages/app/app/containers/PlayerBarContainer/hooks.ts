@@ -172,6 +172,12 @@ export const useVolumeControlsProps = () => {
       icon: 'magic',
       enabled: _.get(settings, 'autoradio'),
       onToggle: useToggleOptionCallback(toggleOption, 'autoradio', settings)
+    },
+    {
+      name: t('mini-player'),
+      icon: 'compress',
+      enabled: _.get(settings, 'miniPlayer'),
+      onToggle: useToggleOptionCallback(toggleOption, 'miniPlayer', settings)
     }
   ];
 

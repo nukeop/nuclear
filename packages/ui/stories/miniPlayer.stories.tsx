@@ -19,6 +19,7 @@ export const Example = () => <MiniPlayer
   timePlayed='-3:14'
   timeToEnd='2:43'
 
+  onDisableMiniPlayer={() => {}}
   addToFavorites={() => {}}
   removeFromFavorites={() => {}}
   playOptions={[

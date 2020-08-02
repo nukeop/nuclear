@@ -20,8 +20,6 @@ const MiniPlayerContainer: React.FC = () => {
     toggleMiniPlayer
   } = useMiniPlayerSettings();
 
-  console.log({isMiniPlayerEnabled})
-
   return <MiniPlayer
     {...seekbarProps}
     {...playerControlsProps}
