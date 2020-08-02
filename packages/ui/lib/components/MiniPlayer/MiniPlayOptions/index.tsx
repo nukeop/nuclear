@@ -8,7 +8,9 @@ import { PlayOptionControlProps } from '../../VolumeControls/PlayOptions';
 
 import styles from './styles.scss';
 
-export type MiniPlayOptionsProps = Pick<VolumeControlsProps, 'playOptions'>;
+export type MiniPlayOptionsProps = Pick<VolumeControlsProps, 'playOptions'> & {
+  onDisableMiniPlayer: () => void;
+};
 
 const MiniPlayOptionControl: React.FC<PlayOptionControlProps> = ({
   icon,
@@ -25,6 +27,7 @@ const MiniPlayOptionControl: React.FC<PlayOptionControlProps> = ({
   </button>
 
 const MiniPlayOptions: React.FC<MiniPlayOptionsProps> = ({
+  onDisableMiniPlayer,
   playOptions
 }) => {
   const [isExpanded, setExpanded] = useState(false);
@@ -32,6 +35,16 @@ const MiniPlayOptions: React.FC<MiniPlayOptionsProps> = ({
   const contract = useCallback(() => setExpanded(false), [setExpanded]);
 
   return <div className={styles.mini_play_options}>
+    <NeumorphicBox small borderRadius='5px'>
+      <button
+        onClick={onDisableMiniPlayer}
+      >
+        <Icon
+          size='large'
+          name='chevron left'
+        />
+      </button>
+    </NeumorphicBox>
     <NeumorphicBox small borderRadius='5px'>
       <button
         onClick={isExpanded ? contract : expand}

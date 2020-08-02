@@ -26,6 +26,14 @@
     margin-bottom: 4em;
     padding: 0.5em;
 
+    @media screen and (max-width: $mid_screen) {
+      width: 350px;
+    }
+
+    @media screen and (max-width: $small_screen) {
+      width: 350px;
+    }
+
     img {
       border-radius: 1em;
       position: relative;
@@ -60,11 +68,13 @@
     font-size: 2em;
     margin-bottom: 1em;
     text-align: left;
+    line-height: 1em;
   }
-
+  
   .mini_artist {
     font-size: 1.5em;
     color: rgba($white, 0.6);
     text-align: left;
+    line-height: 1em;
   }
 }
