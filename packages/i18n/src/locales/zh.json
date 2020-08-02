@@ -183,6 +183,7 @@
     "logout": "推出",
     "loop-after-queue-end": "Loop after playing the last queue item",
     "max.downloads": "Download control",
+    "mini-player": "Use mini player style",
     "notification-timeout": "Notification timeout",
     "notlogged": "没有登陆",
     "playback": "Playback",

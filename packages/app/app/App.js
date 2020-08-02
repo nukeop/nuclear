@@ -40,6 +40,7 @@ import MainContentContainer from './containers/MainContentContainer';
 import PlayQueueContainer from './containers/PlayQueueContainer';
 import SearchBoxContainer from './containers/SearchBoxContainer';
 import PlayerBarContainer from './containers/PlayerBarContainer';
+import MiniPlayerContainer from './containers/MiniPlayerContainer';
 
 import IpcContainer from './containers/IpcContainer';
 import SoundContainer from './containers/SoundContainer';
@@ -252,6 +253,7 @@ class App extends React.PureComponent {
       <React.Fragment>
         <ErrorBoundary>
           <div className={styles.app_container}>
+            <MiniPlayerContainer />
             {this.renderNavBar()}
             <div className={styles.panel_container}>
               {this.renderSidebarMenu()}

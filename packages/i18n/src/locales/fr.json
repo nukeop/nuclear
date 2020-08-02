@@ -188,6 +188,7 @@
     "logout": "Se déconnecter",
     "loop-after-queue-end": "Lecture en boucle à la fin de la liste de lecture",
     "max.downloads": "Download control",
+    "mini-player": "Use mini player style",
     "notification-timeout": "Temps d'affichage des notifications",
     "notlogged": "Non connecté",
     "playback": "Playback",

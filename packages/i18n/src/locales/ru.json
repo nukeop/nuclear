@@ -193,6 +193,7 @@
     "logout": "Выйти",
     "loop-after-queue-end": "Повторить после проигрывания последней композиции в очереди",
     "max.downloads": "Download control",
+    "mini-player": "Use mini player style",
     "notification-timeout": "Таймер уведомлений",
     "notlogged": "Не вошли",
     "playback": "Проигрывание",

@@ -9,19 +9,19 @@ type QueueItem = {
 };
 
 export type SeekbarProps = {
-  children: React.ReactNode;
+  children?: React.ReactNode;
   fill: number;
   seek: (arg0: number) => void;
   queue: { queueItems: QueueItem[] };
+  height?: string
 };
-
-
 
 const Seekbar: React.FC<SeekbarProps> = ({
   children,
   fill,
   seek,
-  queue
+  queue,
+  height
 }) => {
 
   const handleClick = useCallback((seek, queue) => {
@@ -39,6 +39,7 @@ const Seekbar: React.FC<SeekbarProps> = ({
         styles.seekbar
       )}
       onClick={handleClick(seek, queue)}
+      style={{ height }}
     >
       <div
         style={{ width: `${fill}%` }}
