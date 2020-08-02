@@ -27,6 +27,7 @@ export const QueueItem = ({
       common.nuclear,
       styles.queue_item,
       { [`${styles.current_song}`]: isCurrent },
+      { [`${styles.error}`]: Boolean(error) },
       { [`${styles.compact}`]: isCompact }
     )}
     onDoubleClick={handleSelectSong}
@@ -46,20 +47,25 @@ export const QueueItem = ({
       </div>
     </div>
 
-    <div className={styles.item_info_container}>
-      <div className={styles.name_container}>
-        {track.name}
-      </div>
-      <div className={styles.artist_container}>
-        {track.artist}
-      </div>
-    </div>
+    {
+      !error && 
+      <>
+        <div className={styles.item_info_container}>
+          <div className={styles.name_container}>
+            {track.name}
+          </div>
+          <div className={styles.artist_container}>
+            {track.artist}
+          </div>
+        </div>
 
-    <div className={styles.item_duration_container}>
-      <div className={styles.item_duration}>
-        {duration}
-      </div>
-    </div>
+        <div className={styles.item_duration_container}>
+          <div className={styles.item_duration}>
+            {duration}
+          </div>
+        </div>
+      </>
+    }
 
     {
       Boolean(error) &&
