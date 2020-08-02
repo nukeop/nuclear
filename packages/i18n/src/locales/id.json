@@ -183,6 +183,7 @@
     "logout": "Log keluar",
     "loop-after-queue-end": "Ulang pemutaran dari awal setelah item terakhir di daftar antrian",
     "max.downloads": "Download control",
+    "mini-player": "Use mini player style",
     "notification-timeout": "Lama waktu-habis pada notifikasi",
     "notlogged": "Kamu belum log masuk",
     "playback": "Pemutaran",
