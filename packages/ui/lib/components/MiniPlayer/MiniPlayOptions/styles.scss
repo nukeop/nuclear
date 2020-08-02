@@ -1,0 +1,31 @@
+@import '../../../common.scss';
+
+.mini_play_options {
+  position: absolute;
+  right: 0;
+  top: 0;
+
+  display: flex;
+  flex-flow: column;
+
+ button {
+   @include center;
+   display: flex;
+
+   background: transparent;
+   border: none;
+   width: 2em;
+   height: 2em;
+
+   padding: 0;
+   margin: 0;
+
+   &:not(:first-child) {
+     margin-top: 1em;
+   }
+
+   i {
+     margin: 0;
+   }
+ }
+}
