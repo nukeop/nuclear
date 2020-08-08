@@ -21,7 +21,7 @@ const BestNewMusicMenu = ({ albums, setActiveItem, tracks }) => {
           {t('best-new-albums')}
         </Menu.Item>
         {
-          albums.map(album => {
+          albums && albums.map(album => {
             return (
               <Menu.Item link key={album.title}>
                 <BestNewMusicCard
@@ -40,7 +40,7 @@ const BestNewMusicMenu = ({ albums, setActiveItem, tracks }) => {
           {t('best-new-tracks')}
         </Menu.Item>
         {
-          tracks.map(track => {
+          tracks && tracks.map(track => {
             return (
               <Menu.Item link key={track.title}>
                 <BestNewMusicCardContainer

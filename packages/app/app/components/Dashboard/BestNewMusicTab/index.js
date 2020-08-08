@@ -30,7 +30,7 @@ class BestNewMusicTab extends React.Component {
   }
 
   isLoading () {
-    return this.props.dashboardData.bestNewAlbums.length < 1 || this.props.dashboardData.bestNewTracks.length < 1;
+    return (this.props.dashboardData.bestNewAlbums && this.props.dashboardData.bestNewTracks) ? this.props.dashboardData.bestNewAlbums.length < 1  || this.props.dashboardData.bestNewTracks.length < 1 : true;
   }
 
   setActiveItem(activeItem) {
