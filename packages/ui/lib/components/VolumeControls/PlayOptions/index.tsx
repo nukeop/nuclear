@@ -36,7 +36,7 @@ const PlayOptions: React.FC<PlayOptionsProps> = ({
 }) => (
     <div className={styles.play_options}>
       {
-        playOptions.map(playOption => <PlayOptionControl {...playOption} />)
+        playOptions.map((playOption, i) => <PlayOptionControl {...playOption} key={i} />)
       }
     </div>
   )
