@@ -27,15 +27,14 @@ module.exports = (env: BuildEnv): import('webpack').Configuration => {
   const IS_PROD = env.NODE_ENV === 'production';
   const outputDir = IS_PROD ? '../../dist' : './build';
 
-  console.log({MAIN_DIR, CORE_DIR})
-
   return {
     entry: './src/main.ts',
     resolve: {
       extensions: ['.ts', '.js', '.json'],
       alias: {
         jsbi: __dirname + '/node_modules/jsbi/dist/jsbi-cjs.js'
-      }
+      },
+      symlinks: true
     },
     externals: {
       'sqlite3': 'commonjs sqlite3'
