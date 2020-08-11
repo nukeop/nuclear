@@ -14,7 +14,7 @@
     "src",
     "typings",
     "node_modules/@nuclear",
-    ".."
+    "../core/src"
   ],
   "exclude": [
     "node_modules/@nuclear/*/test",
