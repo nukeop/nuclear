@@ -2,6 +2,8 @@
   "extends": "../tsconfig.json",
   "exclude": [
     "../src/services/@linux",
-    "../src/services/@mac"
+    "../src/services/@mac",
+    "node_modules/@nuclear/*/test",
+    "node_modules/@nuclear/ui/stories"
   ]
 }
