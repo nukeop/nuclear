@@ -17,7 +17,7 @@ const osMapper: Record<string, BuildEnv['TARGET']> = {
 };
 
 const MAIN_DIR = path.resolve(__dirname, 'src');
-const CORE_DIR = path.resolve(__dirname, '..', 'core');
+const CORE_DIR = path.resolve(__dirname, '..', 'core', 'src');
 
 module.exports = (env: BuildEnv): import('webpack').Configuration => {
   if (!env.TARGET) {
@@ -26,6 +26,8 @@ module.exports = (env: BuildEnv): import('webpack').Configuration => {
 
   const IS_PROD = env.NODE_ENV === 'production';
   const outputDir = IS_PROD ? '../../dist' : './build';
+
+  console.log({MAIN_DIR, CORE_DIR})
 
   return {
     entry: './src/main.ts',
