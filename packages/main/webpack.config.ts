@@ -27,6 +27,8 @@ module.exports = (env: BuildEnv): import('webpack').Configuration => {
   const IS_PROD = env.NODE_ENV === 'production';
   const outputDir = IS_PROD ? '../../dist' : './build';
 
+  console.log({IS_PROD})
+
   const tsRule = {
     test: /.ts?$/,
     loader: 'ts-loader',
