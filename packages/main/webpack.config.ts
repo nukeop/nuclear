@@ -50,9 +50,6 @@ module.exports = (env: BuildEnv): import('webpack').Configuration => {
         {
           test: /.ts?$/,
           loader: 'ts-loader',
-          options: {
-            configFile: path.join(__dirname, `/config/tsconfig.${env.TARGET}.json`)
-          },
           include: [MAIN_DIR, CORE_DIR]
         },
         {
