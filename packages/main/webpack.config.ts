@@ -27,17 +27,6 @@ module.exports = (env: BuildEnv): import('webpack').Configuration => {
   const IS_PROD = env.NODE_ENV === 'production';
   const outputDir = IS_PROD ? '../../dist' : './build';
 
-  console.log({IS_PROD})
-
-  const tsRule = {
-    test: /.ts?$/,
-    loader: 'ts-loader',
-    options: {
-      configFile: path.join(__dirname, `/config/tsconfig.${env.TARGET}.json`)
-    },
-    include: [MAIN_DIR, CORE_DIR]
-  };
-
   return {
     entry: './src/main.ts',
     resolve: {
@@ -58,7 +47,14 @@ module.exports = (env: BuildEnv): import('webpack').Configuration => {
     optimization: { namedModules: true },
     module: {
       rules: [
-        tsRule,
+        {
+          test: /.ts?$/,
+          loader: 'ts-loader',
+          options: {
+            configFile: path.join(__dirname, `/config/tsconfig.${env.TARGET}.json`)
+          },
+          include: [MAIN_DIR, CORE_DIR]
+        },
         {
           test: /\.node$/,
           use: 'node-loader'

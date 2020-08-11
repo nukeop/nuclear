@@ -1,8 +1,5 @@
 {
   "extends": "../tsconfig.json",
-  "include": [
-    "../"
-  ],
   "exclude": [
     "../src/services/@linux",
     "../src/services/@mac"
