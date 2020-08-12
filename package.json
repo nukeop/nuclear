@@ -220,6 +220,7 @@
     }
   },
   "dependencies": {
+    "sharp": "^0.25.4",
     "sqlite3": "^4.2.0"
   }
 }
