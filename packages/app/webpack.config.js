@@ -9,11 +9,9 @@ const BUILD_DIR = path.resolve(__dirname, '../../dist');
 const APP_DIR = path.resolve(__dirname, 'app');
 const RESOURCES_DIR = path.resolve(__dirname, 'resources');
 
-const CORE_DIR = path.resolve(__dirname, '..', 'core');
-const I18N_DIR = path.resolve(__dirname, '..', 'i18n');
 const UI_DIR = path.resolve(__dirname, '..', 'ui');
 const VENDOR_DIR = path.resolve(__dirname, 'node_modules');
-const NUCLEAR_DIR_SYMLINKED = path.resolve(__dirname, 'node_modules', '@nuclear');
+const NUCLEAR_MODULES = /node_modules\/@nuclear\/(core|i18n|ui)\/(src|lib|index\.js|index\.ts)/;
 
 module.exports = (env) => {
   const IS_PROD = env.NODE_ENV === 'production';
@@ -101,10 +99,7 @@ module.exports = (env) => {
     jsxRule.options = {};
     jsxRule.include = [
       APP_DIR,
-      CORE_DIR,
-      I18N_DIR,
-      UI_DIR,
-      NUCLEAR_DIR_SYMLINKED
+      NUCLEAR_MODULES
     ];
     jsxRule.exclude = [
       /node_modules\/electron-timber\/preload\.js/,
