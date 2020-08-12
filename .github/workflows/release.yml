@@ -13,7 +13,7 @@ on:
 jobs:
   linux_release:
     runs-on: ubuntu-latest
-    timeout-minutes: 45
+    timeout-minutes: 20
 
     steps:
     - uses: actions/checkout@master
@@ -25,6 +25,29 @@ jobs:
       run: |
         npm install
         npm run build:linux
+      shell: bash
+      env:
+        GITHASH: ${{github.event.inputs.tag}}
+    - name: Upload binaries
+      uses: actions/upload-artifact@v2
+      with:
+        name: nuclear-binaries
+        path: release/*.*
+
+  mac_release:
+    runs-on: macOS-latest
+    timeout-minutes: 20
+
+    steps:
+    - uses: actions/checkout@master
+    - name: Use Node.js 12.x
+      uses: actions/setup-node@v1
+      with:
+        version: 12.x
+    - name: npm install and build
+      run: |
+        npm install
+        npm run build:macos
       shell: bash
       env:
         GITHASH: ${{github.event.inputs.tag}}
@@ -52,7 +75,7 @@ jobs:
         cd ../app
         npm run build
         cd ../..
-        npm run pack
+        npm run pack -- --windows
       shell: bash
       env:
         GITHASH: ${{github.event.inputs.tag}}
