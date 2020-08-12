@@ -18,6 +18,7 @@ const osMapper: Record<string, BuildEnv['TARGET']> = {
 
 const MAIN_DIR = path.resolve(__dirname, 'src');
 const CORE_DIR = path.resolve(__dirname, '..', 'core', 'src');
+const CORE_DIR_SYMLINKED = path.resolve(__dirname, 'node_modules', '@nuclear', 'core', 'src');
 
 module.exports = (env: BuildEnv): import('webpack').Configuration => {
   if (!env.TARGET) {
@@ -34,7 +35,7 @@ module.exports = (env: BuildEnv): import('webpack').Configuration => {
       alias: {
         jsbi: __dirname + '/node_modules/jsbi/dist/jsbi-cjs.js'
       },
-      symlinks: true
+      symlinks: false
     },
     externals: {
       'sqlite3': 'commonjs sqlite3'
@@ -51,7 +52,7 @@ module.exports = (env: BuildEnv): import('webpack').Configuration => {
         {
           test: /.ts?$/,
           loader: 'ts-loader',
-          include: [MAIN_DIR, CORE_DIR]
+          include: [MAIN_DIR, CORE_DIR, CORE_DIR_SYMLINKED]
         },
         {
           test: /\.node$/,
