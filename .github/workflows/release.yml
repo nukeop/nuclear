@@ -31,7 +31,7 @@ jobs:
     - name: Upload binaries
       uses: actions/upload-artifact@v2
       with:
-        name: nuclear-binaries
+        name: nuclear-binaries-linux
         path: release/*.*
 
   mac_release:
@@ -54,7 +54,7 @@ jobs:
     - name: Upload binaries
       uses: actions/upload-artifact@v2
       with:
-        name: nuclear-binaries
+        name: nuclear-binaries-mac
         path: release/*.*
 
   windows_release:
@@ -70,17 +70,12 @@ jobs:
     - name: npm install and build
       run: |
         npm install
-        cd packages/main
-        npm run build
-        cd ../app
-        npm run build
-        cd ../..
-        npm run pack -- --windows
+        npm run build:windows
       shell: bash
       env:
         GITHASH: ${{github.event.inputs.tag}}
     - name: Upload binaries
       uses: actions/upload-artifact@v2
       with:
-        name: nuclear-binaries
+        name: nuclear-binaries-windows
         path: release/*.*
