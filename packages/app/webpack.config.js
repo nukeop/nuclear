@@ -2,7 +2,7 @@
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
-const dotenv = require ('dotenv');
+const dotenv = require('dotenv');
 const fs = require('fs');
 
 const BUILD_DIR = path.resolve(__dirname, '../../dist');
@@ -11,7 +11,19 @@ const RESOURCES_DIR = path.resolve(__dirname, 'resources');
 
 const UI_DIR = path.resolve(__dirname, '..', 'ui');
 const VENDOR_DIR = path.resolve(__dirname, 'node_modules');
-const NUCLEAR_MODULES = /node_modules\/@nuclear\/(core|i18n|ui)\/(src|lib|index\.js|index\.ts)/;
+
+const buildIncludedPaths = () => {
+  const paths = [];
+  const modules = ['core', 'i18n', 'ui'];
+  const srcs = ['src', 'lib', 'index.js', 'index.ts'];
+  modules.forEach(module => {
+    srcs.forEach(src => {
+      paths.push(path.resolve(__dirname, 'node_modules', '@nuclear', module, src));
+    });
+  });
+  return paths;
+};
+const NUCLEAR_MODULES = buildIncludedPaths();
 
 module.exports = (env) => {
   const IS_PROD = env.NODE_ENV === 'production';
@@ -99,7 +111,7 @@ module.exports = (env) => {
     jsxRule.options = {};
     jsxRule.include = [
       APP_DIR,
-      NUCLEAR_MODULES
+      ...NUCLEAR_MODULES
     ];
     jsxRule.exclude = [
       /node_modules\/electron-timber\/preload\.js/,
@@ -197,7 +209,7 @@ module.exports = (env) => {
   };
 
   if (IS_DEV) {
-    config.devServer =  {
+    config.devServer = {
       hot: true,
       contentBase: '/',
       publicPath: '/'
