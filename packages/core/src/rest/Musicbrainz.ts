@@ -41,7 +41,7 @@ const getCoverForRelease = (releaseId: string): Promise<CoverArtArchiveResult> =
 
 const getArtist = (id: string): Promise<MusicbrainzArtist> =>
   new Promise((resolve, reject) => {
-    nb.artist(id, (err, response) => {
+    nb.artist(id, {}, (err, response) => {
       err ? reject(err) : resolve(response);
     });
   });
