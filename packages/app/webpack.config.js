@@ -13,6 +13,7 @@ const CORE_DIR = path.resolve(__dirname, '..', 'core');
 const I18N_DIR = path.resolve(__dirname, '..', 'i18n');
 const UI_DIR = path.resolve(__dirname, '..', 'ui');
 const VENDOR_DIR = path.resolve(__dirname, 'node_modules');
+const NUCLEAR_DIR_SYMLINKED = path.resolve(__dirname, 'node_modules', '@nuclear');
 
 module.exports = (env) => {
   const IS_PROD = env.NODE_ENV === 'production';
@@ -102,7 +103,8 @@ module.exports = (env) => {
       APP_DIR,
       CORE_DIR,
       I18N_DIR,
-      UI_DIR
+      UI_DIR,
+      NUCLEAR_DIR_SYMLINKED
     ];
     jsxRule.exclude = [
       /node_modules\/electron-timber\/preload\.js/,
@@ -138,7 +140,8 @@ module.exports = (env) => {
       alias: {
         react: path.resolve(__dirname, 'node_modules/react'),
         'styled-component': path.resolve(__dirname, 'node_modules/styled-component')
-      }
+      },
+      symlinks: false
     },
     stats: 'errors-only',
     node: {
