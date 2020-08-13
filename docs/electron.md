@@ -12,3 +12,4 @@ On an unrelated note, highly polarized opinions about languages and frameworks a
 * It lets us easily build and deploy to all major desktop platforms (various Linux distros, MacOS, Windows)
 * It lets us use React for managing the GUI
 * There is no good alternative that would provide all these benefits (don't get me started on qt)
+* The users don't care the technology you use to build the app
