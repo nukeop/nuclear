@@ -85,6 +85,7 @@
     "by-artist": "av {{artist}}",
     "empty": "Inget spelas.",
     "empty-help": "Lägg till några spår i kön för att se låttexterna här!",
+	"export-lyrics": "Eksporter tekst i PDF",
     "not-found": "Ingen låttext hittades för detta spår."
   },
   "option-control": {

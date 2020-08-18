@@ -85,6 +85,7 @@
     "by-artist": "od {{artist}}",
     "empty": "Nic nehraje.",
     "empty-help": "Přidejte nějakou hudbu do fronty, aby se zde zobrazily texty!",
+	"export-lyrics": "Exportovat texty v PDF",
     "not-found": "Pro tuto skladbu nebyly nalezeny žádné texty."
   },
   "option-control": {

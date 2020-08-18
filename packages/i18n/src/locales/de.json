@@ -85,6 +85,7 @@
     "by-artist": "by {{artist}}",
     "empty": "Es spielt nichts.",
     "empty-help": "Füge etwas Musik in die Warteschlange ein, um den Liedtext hier anzuzeigen!",
+	"export-lyrics": "Texte in PDF exportieren",
     "not-found": "Es wurden keine Liedtexte für diesen Song gefunden."
   },
   "option-control": {

@@ -85,6 +85,7 @@
     "by-artist": "by {{artist}}",
     "empty": "Walang tumutugtog.",
     "empty-help": "Magdagdag ng tugtugin sa pila para makita ang liriko dito!",
+	"export-lyrics": "I-export ang lyrics sa PDF",
     "not-found": "Walang liriko nahanap para sa kantang ito."
   },
   "option-control": {

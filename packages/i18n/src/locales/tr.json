@@ -85,6 +85,7 @@
     "by-artist": "By {{artist}}",
     "empty": "Çalan müzik yok.",
     "empty-help": "Sözlerin gözükmesi için sıraya birkaç müzik ekle!",
+	"export-lyrics": "Şarkı sözlerini PDF olarak dışa aktar",
     "not-found": "Bu müzik için hiç söz bulunmadı."
   },
   "option-control": {

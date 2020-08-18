@@ -85,6 +85,7 @@
     "by-artist": "by {{artist}}",
     "empty": "Er wordt niks afgespeeld.",
     "empty-help": "Voeg muziek toe aan de wachtrij om de songtekst hier te tonen!",
+	"export-lyrics": "Exporteer songteksten in pdf",
     "not-found": "Geen songtekst gevonden bij dit nummer."
   },
   "option-control": {

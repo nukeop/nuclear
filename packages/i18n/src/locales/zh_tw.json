@@ -85,6 +85,7 @@
     "by-artist": "{{artist}}",
     "empty": "沒有播放中的曲目",
     "empty-help": "把歌曲加到播放佇列後,會顯示在這裡。",
+	"export-lyrics": "導出PDF歌詞",
     "not-found": "這首歌沒有歌詞資料"
   },
   "option-control": {

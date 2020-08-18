@@ -85,6 +85,7 @@
     "by-artist": "przez {{artist}}",
     "empty": "Nic nie jest odtwarzane.",
     "empty-help": "Dodaj utwór do kolejki, aby wyświetlić tutaj tekst!",
+	"export-lyrics": "Eksportuj teksty do PDF",
     "not-found": "Nie znaleziono tekstu dla tego utworu."
   },
   "option-control": {

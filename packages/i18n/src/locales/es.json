@@ -85,6 +85,7 @@
     "by-artist": "por {{artist}}",
     "empty": "No hay reproducción",
     "empty-help": "¡Añade algo de música a la cola de reproducción para visualizar!",
+	"export-lyrics": "Exportar letras en PDF",
     "not-found": "Letra no Encontrada"
   },
   "option-control": {

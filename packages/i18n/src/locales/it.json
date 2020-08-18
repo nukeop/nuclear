@@ -85,6 +85,7 @@
     "by-artist": "by {{artist}}",
     "empty": "Nessun brano in riproduzione.",
     "empty-help": "Aggiungi qualche brano alla coda per vederne qui il testo!",
+	"export-lyrics": "Esporta testi in PDF",
     "not-found": "Nessun testo trovato su questa canzone."
   },
   "option-control": {

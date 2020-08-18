@@ -85,6 +85,7 @@
     "by-artist": "nga {{artist}}",
     "empty": "Nuk po luhet asgjë.",
     "empty-help": "Shto muzikë në radhë që të shfaqet teksti i këngës këtu!",
+	"export-lyrics": "Eksportoni tekste në PDF",
     "not-found": "Nuk u gjet teksti për këtë këngë."
   },
   "option-control": {

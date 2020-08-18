@@ -85,6 +85,7 @@
     "by-artist": "de {{artist}}",
     "empty": "Aucun morceau n'est en cours de lecture",
     "empty-help": "Ajoutez un morceau dans la file de lecture et vous verrez les paroles s'afficher ici !",
+	"export-lyrics": "Exporter les paroles en PDF",
     "not-found": "Aucune paroles n'ont été trouvées pour ce morceau."
   },
   "option-control": {

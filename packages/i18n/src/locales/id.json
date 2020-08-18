@@ -85,6 +85,7 @@
     "by-artist": "oleh {{artist}}",
     "empty": "Tidak ada lagu sedang diputar.",
     "empty-help": "Tambahkan lagu ke antrian agar liriknya ditampilkan di sini!",
+	"export-lyrics": "Ekspor lirik dalam PDF",
     "not-found": "Lirik untuk lagu ini tidak ditemukan"
   },
   "option-control": {

@@ -85,6 +85,7 @@
     "by-artist": "by {{artist}}",
     "empty": "아무것도 재생되고 있지 않습니다.",
     "empty-help": "재생목록에 추가된 음악의 가사가 이곳에 표시됩니다!",
+	"export-lyrics": "PDF로 가사 내보내기",
     "not-found": "가사가 없는 음악입니다."
   },
   "option-control": {

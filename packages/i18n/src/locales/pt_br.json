@@ -85,6 +85,7 @@
     "by-artist": "por {{artist}}",
     "empty": "Nada esta tocando",
     "empty-help": "Adicione algumas músicas à fila para exibir as letras aqui!",
+	"export-lyrics": "Exportar letras em PDF",
     "not-found": "Nenhuma letra foi encontrada para esta música."
   },
   "option-control": {

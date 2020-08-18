@@ -85,6 +85,7 @@
     "by-artist": "od {{artist}}",
     "empty": "Nič sa neprehráva.",
     "empty-help": "Pridajte hudbu do poradia a uvidíte tu titulky!",
+	"export-lyrics": "Export textov vo formáte PDF",
     "not-found": "Pre túto pieseň neboli nájdené žiadne titulky."
   },
   "option-control": {

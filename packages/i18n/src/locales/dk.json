@@ -85,6 +85,7 @@
     "by-artist": "af {{artist}}",
     "empty": "Intet spiller.",
     "empty-help": "Tilføj noget musik til køen for at vise sangteksten her!",
+	"export-lyrics": "Eksporter tekst i PDF",
     "not-found": "Ingen sangtekst blev fundet til denne sang."
   },
   "option-control": {

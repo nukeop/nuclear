@@ -85,6 +85,7 @@
     "by-artist": "by {{artist}}",
     "empty": "Nothing is playing.",
     "empty-help": "Add some music to the queue to display the lyrics here!",
+	"export-lyrics": "导出PDF歌词",
     "not-found": "这首歌未找到歌词"
   },
   "option-control": {
