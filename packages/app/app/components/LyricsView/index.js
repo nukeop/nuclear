@@ -92,12 +92,12 @@ export class LyricsView extends React.Component {
 	  let lyrics = _.get(this.props.lyrics, 'lyricsSearchResults', '');
 	  lyrics = _.get(lyrics, 'type', '');
 	  
-	  //Cut lyrics so it can fit the pages, it add 40 lines maximum
+	  //Add variables to store the lyrics that will be on a page
+	  //and count the number of lines already passed before going to a next page
 	  let nbrLineBreak = 0;
 	  let lyricsOfThePage = "";
-	  let i = 0;
 	  
-	  while(i < lyrics.length){
+	  for(let i = 0; i < lyrics.length; i++){
 		  lyricsOfThePage += lyrics[i];
 		  
 		  //At the end of each line, increase the number of line passed
@@ -113,8 +113,6 @@ export class LyricsView extends React.Component {
 			  nbrLineBreak = 0;
 			  lyricsOfThePage = "";
 		  }
-		  
-		  i++;
 	  }
 	  
 	  //Add the last part of the lyrics when there is less than 40 END_OF_LINE characters before the end of the lyrics
