@@ -37,14 +37,14 @@ export class LyricsView extends React.Component {
 	else{
 		return(
 		<>
-		<div className={styles.lyrics_text}>
-			{lyricsStr}
+		<div className={styles.button_container}>
+		<p><a href='#' className={styles.export_button} onClick={this.pdfToHTML}>
+			{this.props.t('export-lyrics')}
+		</a></p>
 		</div>
 		
-		<div className={styles.button_container}>
-		<a href='#' className={styles.export_button} onClick={this.pdfToHTML}>
-			{this.props.t('export-lyrics')}
-		</a>
+		<div className={styles.lyrics_text}>
+			{lyricsStr}
 		</div>
 		</>
 		);
@@ -75,30 +75,52 @@ export class LyricsView extends React.Component {
   
   pdfToHTML () {
 	  //Creation of a PDF file with portrait orientation and a measurement unit of millimeter
-	  let pdf = new jsPDF('p', 'mm');
+	  let pdf = new jsPDF();
+	  
+	  //Margins for shaping
+	  let margins = {
+		  top: 10,
+		  left: 10
+	  };
+	  
+	  //Get the name of the song and its artist and add them at the beginnig of the file
+	  let name = this.props.track.name;
+	  let artist = this.props.track.artist;
+	  pdf.text(name + " - " + artist, margins.left, margins.top);
 	  
 	  //Retrieve the lyrics only from the props.lyrics like in renderLyrics()
 	  let lyrics = _.get(this.props.lyrics, 'lyricsSearchResults', '');
 	  lyrics = _.get(lyrics, 'type', '');
 	  
-	  //Get the name of the song and its artist
-	  let name = this.props.track.name;
-	  let artist = this.props.track.artist;
+	  //Cut lyrics so it can fit the pages, it add 40 lines maximum
+	  let nbrLineBreak = 0;
+	  let lyricsOfThePage = "";
+	  let i = 0;
 	  
-	  //Margins for shaping
-	  let margins = {
-		  top: 50,
-		  left: 50
-	  };
+	  while(i < lyrics.length){
+		  lyricsOfThePage += lyrics[i];
+		  
+		  //At the end of each line, increase the number of line passed
+		  if(lyrics[i] == '\n')
+			  nbrLineBreak++;
+		  
+		  //When 40 lines are passed
+		  //Add the lyrics en the current page, add a new page and continue the lyrics on it
+		  //Set back the nbrLineBreak and lyricsOfThePage
+		  if(nbrLineBreak == 40){
+			  pdf.text(lyricsOfThePage, margins.left, margins.top+10);
+			  pdf.addPage();
+			  nbrLineBreak = 0;
+			  lyricsOfThePage = "";
+		  }
+		  
+		  i++;
+	  }
 	  
-	  //Coordinates for the positions from the top left of the document
-	  let x = 10;
-	  let y = 10;
+	  //Add the last part of the lyrics when there is less than 40 END_OF_LINE characters before the end of the lyrics
+	  pdf.text(lyricsOfThePage, margins.left, margins.top+10);
 	  
-	  //Add the name, artist and lyrics to the file and save the file.
-	  pdf.text(name, x, y);
-	  pdf.text(artist, x, y+20);
-	  pdf.text(lyrics, x, y+50);
+	  //Save the file.
 	  pdf.save(name + "_" + artist +"_Lyrics.pdf");
   }
 
