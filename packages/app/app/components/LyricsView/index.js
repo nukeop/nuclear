@@ -38,11 +38,11 @@ export class LyricsView extends React.Component {
 		return(
 		<>
 		<div className={styles.button_container}>
-		<p><a href='#' className={styles.export_button} onClick={this.pdfToHTML}>
+		<a href='#' className={styles.export_button} onClick={this.pdfToHTML}>
 			{this.props.t('export-lyrics')}
-		</a></p>
+		</a>
 		</div>
-		
+		<br />
 		<div className={styles.lyrics_text}>
 			{lyricsStr}
 		</div>
@@ -72,9 +72,8 @@ export class LyricsView extends React.Component {
   }
   
   //Addition of WildLeons
-  
   pdfToHTML () {
-	  //Creation of a PDF file with portrait orientation and a measurement unit of millimeter
+	  //Creation of a PDF file
 	  let pdf = new jsPDF();
 	  
 	  //Margins for shaping
@@ -94,19 +93,20 @@ export class LyricsView extends React.Component {
 	  
 	  //Add variables to store the lyrics that will be on a page
 	  //and count the number of lines already passed before going to a next page
-	  let nbrLineBreak = 0;
 	  let lyricsOfThePage = "";
+	  let nbrLineBreak = 0;
 	  
 	  for(let i = 0; i < lyrics.length; i++){
 		  lyricsOfThePage += lyrics[i];
 		  
 		  //At the end of each line, increase the number of line passed
-		  if(lyrics[i] == '\n')
+		  if(lyrics[i] == '\n'){
 			  nbrLineBreak++;
+		  }
 		  
 		  //When 40 lines are passed
 		  //Add the lyrics en the current page, add a new page and continue the lyrics on it
-		  //Set back the nbrLineBreak and lyricsOfThePage
+		  //Resets to default values of nbrLineBreak and lyricsOfThePage
 		  if(nbrLineBreak == 40){
 			  pdf.text(lyricsOfThePage, margins.left, margins.top+10);
 			  pdf.addPage();
@@ -115,8 +115,14 @@ export class LyricsView extends React.Component {
 		  }
 	  }
 	  
-	  //Add the last part of the lyrics when there is less than 40 END_OF_LINE characters before the end of the lyrics
-	  pdf.text(lyricsOfThePage, margins.left, margins.top+10);
+	  //If after the loop, lyricsOfThePage is empty, delete the last page added which is empty
+	  //Else add the last part of the lyrics
+	  if(lyricsOfThePage == ""){
+		  pdf.deletePage(pdf.internal.getNumberOfPages());
+	  }
+	  else{
+		  pdf.text(lyricsOfThePage, margins.left, margins.top+10);
+	  }
 	  
 	  //Save the file.
 	  pdf.save(name + "_" + artist +"_Lyrics.pdf");
