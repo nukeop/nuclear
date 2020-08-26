@@ -38,7 +38,8 @@ module.exports = (env: BuildEnv): import('webpack').Configuration => {
       symlinks: false
     },
     externals: {
-      'sqlite3': 'commonjs sqlite3'
+      'sqlite3': 'commonjs sqlite3',
+      'sharp': 'commonjs sharp'
     },  
     output: {
       path: path.resolve(__dirname, outputDir),
