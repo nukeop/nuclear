@@ -70,7 +70,7 @@ app.on('ready', async () => {
       localLibrary.playStartupFile(process.argv[1]);
     }
   } catch (err) {
-    logger.error('something fail during app bootstrap');
+    logger.error('Something failed during app bootstrap');
     logger.error(err);
 
     app.quit();
@@ -92,9 +92,9 @@ app.on('window-all-closed', async () => {
     discord.clear();
     await localDb.cleanUnusedThumbnail();
   } catch (err) {
-    logger.error('something fail during app close');
+    logger.error('Something failed during app close');
     logger.error(err);
+  } finally {
+    app.quit();
   }
-
-  app.quit();
 });

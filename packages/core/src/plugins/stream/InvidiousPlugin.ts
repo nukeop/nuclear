@@ -54,7 +54,7 @@ class InvidiousPlugin extends StreamProviderPlugin {
         stream: adaptiveFormats.find(({ container, type }) => type.includes('audio') && container === 'webm').url,
         duration: lengthSeconds,
         title,
-        thumbnail: videoThumbnails[3].url
+        thumbnail: videoThumbnails.find(({ quality }) => quality === 'maxresdefault')?.url
       };
     } catch (error) {
       logger.error(`Error while searching  for ${terms} on Invidious`);
