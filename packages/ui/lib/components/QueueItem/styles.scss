@@ -93,16 +93,15 @@
   }
 
   .error_overlay {
-    position: absolute;
     display: flex;
     flex-flow: column;
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 100%;
     text-align: center;
     font-size: 12px;
     pointer-events: none;
+    margin: 0.5em;
 
     .error_message {
       font-weight: bold;
