@@ -37,10 +37,14 @@ module.exports = (env: BuildEnv): import('webpack').Configuration => {
       },
       symlinks: false
     },
-    externals: {
-      'sqlite3': 'commonjs sqlite3',
-      'sharp': 'commonjs sharp'
-    },  
+    externals: [{
+      'sqlite3': 'commonjs sqlite3'
+    },
+    (context, request, callback) => {
+      if (env.TARGET === 'windows' && request === 'sharp') {
+        return callback(null, 'commonjs sharp');
+      }
+    }],
     output: {
       path: path.resolve(__dirname, outputDir),
       filename: 'main.js'
@@ -72,7 +76,7 @@ module.exports = (env: BuildEnv): import('webpack').Configuration => {
         { from: 'preload.js' },
         { from: path.resolve(__dirname, '../../.env') }
       ]),
-      new NormalModuleReplacementPlugin(/(.*)system-api(\.*)/, (resource: any) =>  {
+      new NormalModuleReplacementPlugin(/(.*)system-api(\.*)/, (resource: any) => {
         resource.request = resource.request.replace(/system-api/, `@${env.TARGET}/system-api`);
       })
     ]
