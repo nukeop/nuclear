@@ -41,8 +41,8 @@
     "ava": "^2.4.0",
     "eslint": "^6.8.0",
     "mock-require": "^3.0.3",
-    "ts-node": "^8.5.4",
-    "typescript": "^3.7.3",
+    "ts-node": "^8.10.2",
+    "typescript": "^3.9.7",
     "ytdl-core": "^1.0.9"
   },
   "ava": {
