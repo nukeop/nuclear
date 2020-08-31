@@ -43,6 +43,8 @@ module.exports = (env: BuildEnv): import('webpack').Configuration => {
     (context, request, callback) => {
       if (env.TARGET === 'windows' && request === 'sharp') {
         return callback(null, 'commonjs sharp');
+      } else {
+        callback();
       }
     }],
     output: {
