@@ -47,6 +47,7 @@
     "eslint-plugin-react-hooks": "^1.6.1",
     "husky": "^3.1.0",
     "lerna": "^3.22.1",
+    "libvips": "0.0.2",
     "lint-staged": "^10.0.0-beta.14",
     "shx": "^0.3.2",
     "typescript": "^3.9.7"
