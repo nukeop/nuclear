@@ -19,6 +19,7 @@ import ko from './locales/ko.json';
 import tl from './locales/tl.json';
 import zh_tw from './locales/zh_tw.json';
 import se from './locales/se.json';
+import gr from './locales/gr.json';
 
 interface I18nOptions {
   languageDetector: LanguageDetectorModule;
@@ -49,7 +50,8 @@ export const setupI18n = ({ languageDetector, debug, react }: I18nOptions) => {
       ko,
       tl,
       zh_tw,
-      se
+      se,
+      gr
     },
     interpolation: {
       escapeValue: false
