@@ -45,6 +45,10 @@ See [this](docs/electron.md).
 - Browsing by popularity
 - List of favorite tracks
 - Listening from local library
+- No accounts
+- No ads
+- No CoC
+- No CLA
 
 ## Manual and docs
 https://nuclearmusic.rtfd.io/
