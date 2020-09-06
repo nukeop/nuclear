@@ -37,16 +37,10 @@ module.exports = (env: BuildEnv): import('webpack').Configuration => {
       },
       symlinks: false
     },
-    externals: [{
-      'sqlite3': 'commonjs sqlite3'
+    externals: {
+      'sqlite3': 'commonjs sqlite3',
+      'sharp': 'commonjs sharp'
     },
-    (context, request, callback) => {
-      if (env.TARGET === 'windows' && request === 'sharp') {
-        return callback(null, 'commonjs sharp');
-      } else {
-        callback();
-      }
-    }],
     output: {
       path: path.resolve(__dirname, outputDir),
       filename: 'main.js'

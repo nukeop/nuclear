@@ -169,7 +169,7 @@
         {
         "from": "packages/main/node_modules/sharp/vendor/lib",
         "to": ".",
-        "filter": ["libvips*.so*"]
+        "filter": ["libvips*.so*", "libgsf*.so*"]
         }
       ]
     },
