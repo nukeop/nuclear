@@ -1,0 +1,136 @@
+/* eslint-disable @typescript-eslint/camelcase */
+import _ from 'lodash';
+
+import MetaProvider from '../metaProvider';
+import * as Audius from '../../rest/Audius';
+import LastFmApi from '../../rest/Lastfm';
+import {
+  SearchResultsArtist,
+  SearchResultsAlbum,
+  SearchResultsTrack,
+  SearchResultsSource,
+  ArtistDetails,
+  AlbumDetails,
+} from '../plugins.types';
+import {
+  AudiusArtistSearchResponse,
+  AudiusArtistInfo,
+  AudiusArtistSearchResult,
+} from '../../rest/Audius.types';
+import { LastFmArtistInfo } from '../../rest/Lastfm.types';
+import { cleanName } from '../../structs/Artist';
+
+class AudiusMetaProvider extends MetaProvider {
+  lastfm: LastFmApi;
+  constructor() {
+    super();
+    this.name = 'Audius Meta Provider';
+    this.searchName = 'Audius';
+    this.sourceName = 'Audius Metadata Provider';
+    this.description = 'Metadata provider that uses Audius as a source.';
+    this.image = null;
+    this.lastfm = new LastFmApi(process.env.LAST_FM_API_KEY, process.env.LASTFM_API_SECRET);
+  }
+
+  searchForArtists(query: string): Promise<Array<SearchResultsArtist>> {
+    return Audius.artistSearch(query)
+      .then(response => response.json())
+      .then((json: AudiusArtistSearchResponse) => json.data.map(artist => ({
+        id: `${artist.id}`,
+        coverImage: artist.cover_photo ? artist.cover_photo["600x"] : '',
+        thumb: artist.profile_picture ? artist.profile_picture["480x480"] : '',
+        name: artist.name,
+        resourceUrl: Audius.ENDPOINT + '/' + artist.handle,
+        source: SearchResultsSource.Audius
+      })));
+  }
+
+  searchForReleases(query: string): Promise<Array<SearchResultsAlbum>> {
+    return Promise.resolve([]);
+  }
+
+  searchForTracks(query: string): Promise<Array<SearchResultsTrack>> {
+    return Audius.trackSearch(query)
+      .then(response => response.json())
+      .then((json) => json.data.map(track => ({
+        id: track.id,
+        title: track.title,
+        artist: track.user.name,
+        source: SearchResultsSource.Audius
+      })));
+  }
+
+  async searchAll(query): Promise<{
+    artists: Array<SearchResultsArtist>;
+    releases: Array<SearchResultsAlbum>;
+    tracks: Array<SearchResultsTrack>;
+  }> {
+    const artists = await this.searchForArtists(query);
+    const tracks = await this.searchForTracks(query);
+    return Promise.resolve({ artists, releases: [], tracks });
+  }
+
+  async fetchArtistDetails(artistId: string): Promise<ArtistDetails> {
+    const AudiusInfo: AudiusArtistInfo = (await ((await Audius.getArtist(artistId)).json())).data;
+    AudiusInfo.name = cleanName(AudiusInfo.name);
+
+    const lastFmInfo: LastFmArtistInfo = (await (await this.lastfm.getArtistInfo(AudiusInfo.name)).json()).artist;
+    const hasLastFmArtist = typeof(lastFmInfo) !== 'undefined';
+    const ArtistTracks = (await ((await Audius.getArtistTracks(artistId)).json())).data;
+
+    const coverImage = AudiusInfo.cover_photo ? AudiusInfo.cover_photo['640x'] : '';
+    const profileImage = AudiusInfo.profile_picture ? AudiusInfo.profile_picture['480x480'] : '';
+
+    return Promise.resolve({
+      id: AudiusInfo.id,
+      name: AudiusInfo.name,
+      description: AudiusInfo.bio,
+      tags: hasLastFmArtist ? _.map(_.get(lastFmInfo, 'tags.tag'), 'name') : [],
+      onTour: hasLastFmArtist ? lastFmInfo.ontour === '1' : false,
+      coverImage: coverImage,
+      thumb: profileImage,
+      images: [],
+      topTracks: _.map(ArtistTracks, (track) => ({
+        name: track.title,
+        title: track.title,
+        thumb: track.artwork ? track.artwork['480x480'] : '',
+        playcount: 0,
+        listeners: track.listeners,
+        artist: { name: AudiusInfo.name }
+      })),
+      similar: hasLastFmArtist ? _.map(lastFmInfo.similar.artist, artist => ({
+        name: artist.name,
+        thumbnail: _.get(_.find(artist.image, { size: 'large' }), '#text')
+      })) : [],
+      source: SearchResultsSource.Audius
+    });
+  }
+
+  async fetchArtistDetailsByName(artistName: string): Promise<ArtistDetails> {
+    const artistSearch = (await (await Audius.artistSearch(artistName)).json());
+    const artist: AudiusArtistSearchResult = _.head(artistSearch.data);
+    return this.fetchArtistDetails(`${artist.id}`);
+  }
+
+  async fetchArtistAlbums(artistId: string): Promise<SearchResultsAlbum[]> {
+    await Audius.getArtist(artistId)
+    return Promise.resolve([]);
+  }
+
+  async fetchAlbumDetails(
+    albumId: string,
+    albumType: 'master' | 'release' = 'master',
+    resourceUrl: string): Promise<AlbumDetails> {
+      throw new Error('Method not implemented.');
+  }
+
+
+  async fetchAlbumDetailsByName(
+    albumName: string,
+    albumType: 'master' | 'release' = 'master'
+  ): Promise<AlbumDetails> {
+    throw new Error('Method not implemented.');
+  }
+}
+
+export default AudiusMetaProvider;

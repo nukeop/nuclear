@@ -49,7 +49,7 @@ class AudiusPlugin extends StreamProviderPlugin {
       stream: Audius.ENDPOINT + `/tracks/${result.id}/stream`,
       duration: result.duration,
       title: result.title,
-      thumbnail: result.artwork['480x480']
+      thumbnail: result.artwork ? result.artwork['480x480'] : ''
     };
   }
 }

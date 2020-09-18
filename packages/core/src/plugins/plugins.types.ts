@@ -1,6 +1,7 @@
 import Track from '../structs/Track';
 
 export enum SearchResultsSource {
+    Audius = 'Audius',
     Discogs = 'Discogs',
     Musicbrainz = 'Musicbrainz',
     Bandcamp = 'Bandcamp'
