@@ -1,18 +1,29 @@
-export const ENDPOINT = 'https://discoveryprovider.audius.co/v1';
-
-
-export function artistSearch(query: string): Promise<Response> {
-  return fetch(ENDPOINT + '/users/search?query=' + query);
+export async function _findHost(): Promise<string> {
+  return new Promise((resolve, reject) => {
+    const random = (arr) => arr[Math.floor(Math.random() * arr.length)];
+    try {
+      fetch('https://api.audius.co')
+        .then(r => r.json())
+        .then(j => j.data)
+        .then(d => resolve(`${random(d)}/v1`));
+    } catch (error) {
+      reject(error);
+    }
+  });
 }
 
-export function getArtist(id: string): Promise<Response> {
-  return fetch(ENDPOINT + '/users/' + id);
+export function artistSearch(endpoint: string, query: string): Promise<Response> {
+  return fetch(`${endpoint}/users/search?query=${query}&app_name=Nuclear`);
 }
 
-export function getArtistTracks(id: string): Promise<Response> {
-  return fetch(ENDPOINT + '/users/' + id + '/tracks');
+export function getArtist(endpoint: string, id: string): Promise<Response> {
+  return fetch(`${endpoint}/users/${id}?app_name=Nuclear`);
 }
 
-export function trackSearch(query: string): Promise<Response> {
-  return fetch(ENDPOINT + '/tracks/search?query=' + query);
+export function getArtistTracks(endpoint: string, id: string): Promise<Response> {
+  return fetch(`${endpoint}/users/${id}/tracks?app_name=Nuclear`);
+}
+
+export function trackSearch(endpoint: string, query: string): Promise<Response> {
+  return fetch(`${endpoint}/tracks/search?query=${query}&app_name=Nuclear`);
 }

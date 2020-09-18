@@ -1,5 +1,5 @@
-export { default as AudiusMetaProvider } from './audius'
-export { default as DiscogsMetaProvider } from './discogs'
+export { default as AudiusMetaProvider } from './audius';
+export { default as DiscogsMetaProvider } from './discogs';
 export { default as MusicbrainzMetaProvider } from './musicbrainz';
 
 // Bandcamp plugin has to be disabled due to bundling errors caused by the scraper.

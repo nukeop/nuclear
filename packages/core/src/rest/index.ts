@@ -8,3 +8,6 @@ export { default as LastFmApi } from './Lastfm';
 
 import * as Bandcamp from './Bandcamp';
 export { Bandcamp };
+
+import * as Audius from './Audius';
+export { Audius };

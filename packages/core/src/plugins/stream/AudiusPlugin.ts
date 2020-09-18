@@ -12,11 +12,16 @@ class AudiusPlugin extends StreamProviderPlugin {
     this.sourceName = 'Audius';
     this.description = 'A plugin that adds Audius search and streaming support to Nuclear.';
     this.image = null;
+    this.init()
+  }
+
+  async init(){
+    this.apiEndpoint = await Audius._findHost()
   }
 
   search(query: StreamQuery): Promise<StreamData | void> {
     const terms = query.artist + ' ' + query.track;
-    return Audius.trackSearch(terms)
+    return Audius.trackSearch(this.apiEndpoint, terms)
       .then(data => data.json())
       .then(results => {
         const info = results.data[0];
@@ -29,8 +34,8 @@ class AudiusPlugin extends StreamProviderPlugin {
   }
 
   getAlternateStream(query: StreamQuery, currentStream: { id: string }): Promise<StreamData | void> {
-    const terms = query.artist + ' ' + query.track;
-    return Audius.trackSearch(terms)
+    const terms = query.track;
+    return Audius.trackSearch(this.apiEndpoint, terms)
       .then(data => data.json())
       .then(results => {
         const info = _.find(results.data, result => result && result.id !== currentStream.id);
@@ -46,7 +51,7 @@ class AudiusPlugin extends StreamProviderPlugin {
     return {
       source: this.sourceName,
       id: result.id,
-      stream: Audius.ENDPOINT + `/tracks/${result.id}/stream`,
+      stream: `${this.apiEndpoint}/tracks/${result.id}/stream`,
       duration: result.duration,
       title: result.title,
       thumbnail: result.artwork ? result.artwork['480x480'] : ''
