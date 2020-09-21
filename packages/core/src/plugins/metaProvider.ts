@@ -10,6 +10,7 @@ import {
 abstract class MetaProvider extends Plugin {
   sourceName: string;
   searchName: string;
+  apiEndpoint?: string;
 
   abstract searchForArtists(query: string): Promise<Array<SearchResultsArtist>>;
   abstract searchForReleases(query: string): Promise<Array<SearchResultsAlbum>>;
