@@ -35,33 +35,25 @@ const DisplayFavouriteTracks = ({
   removeFavoriteTrack,
   sortOrder
 }) => {
-
-  const sortArtist = (list, asc = true) => {
-    const output = list.sort((a, b) => {
-      if (a.artist.name.toLowerCase() < b.artist.name.toLowerCase()) {
-        return -1;
-      }
-      if (a.artist.name.toLowerCase() > b.artist.name.toLowerCase()) {
-        return 1;
-      }
-      return 0;
-    });
-
-    return asc ? output : output.reverse();
+  
+  const sortTrackAscending = (a, b) => {
+    if (a.toLowerCase() < b.toLowerCase()) {
+      return -1;
+    }
+    if (a.toLowerCase() > b.toLowerCase()) {
+      return 1;
+    }
+    return 0;
   };
 
-  const sortTitle = (list, asc = true) => {
-    const output = list.sort((a, b) => {
-      if (a.name.toLowerCase() < b.name.toLowerCase()) {
-        return -1;
-      }
-      if (a.name.toLowerCase() > b.name.toLowerCase()) {
-        return 1;
-      }
-      return 0;
-    });
+  const sortArtist = (list, isAscending = true) => {
+    const output = [...list].sort((a, b) => sortTrackAscending(a.artist.name, b.artist.name));
+    return isAscending ? output : output.reverse();
+  };
 
-    return asc ? output : output.reverse();
+  const sortTitle = (list, isAscending = true) => {
+    const output = [...list].sort((a, b) => sortTrackAscending(a.name, b.name));
+    return isAscending ? output : output.reverse();
   };
 
 
@@ -78,6 +70,7 @@ const DisplayFavouriteTracks = ({
 
   return (
     tracks.map((track, i) => {
+
       return (
         <TrackRow
           key={'favorite-track-' + i}
@@ -104,7 +97,9 @@ DisplayFavouriteTracks.propTypes = {
     artist: PropTypes.shape({
       name: PropTypes.string
     }),
-    name: PropTypes.string
+    name: PropTypes.string,
+    duration: PropTypes.number
+
   })),
   removeFavoriteTrack: PropTypes.func,
   sortOrder: PropTypes.shape({
@@ -202,8 +197,24 @@ const FavoriteTracksView = ({
                 <Table.Row>
                   <Table.HeaderCell />
                   <Table.HeaderCell><Icon name='image' /></Table.HeaderCell>
-                  <Table.HeaderCell onClick={() => updateSortOrder(SORT_TYPE.ARTIST)} >{t('artist')}</Table.HeaderCell>
-                  <Table.HeaderCell onClick={() => updateSortOrder(SORT_TYPE.TITLE)} >{t('title')}</Table.HeaderCell>
+                  <Table.HeaderCell onClick={() => updateSortOrder(SORT_TYPE.ARTIST)} >
+                    <div className={styles.theader_icon}> 
+                      {t('artist')}
+                      {
+                        sortOrder.current === SORT_TYPE.ARTIST &&
+                        (sortOrder.isAscending  ? <Icon name='caret up' /> : <Icon name='caret down' />)
+                      }
+                    </div>
+                  </Table.HeaderCell>
+                  <Table.HeaderCell onClick={() => updateSortOrder(SORT_TYPE.TITLE)} >
+                    <div className={styles.theader_icon}>
+                      {t('title')}
+                      {
+                        sortOrder.current === SORT_TYPE.TITLE &&
+                        (sortOrder.isAscending ? <Icon name='caret up' /> : <Icon name='caret down' />)
+                      }
+                    </div>
+                  </Table.HeaderCell>
                 </Table.Row>
               </Table.Header>
               <Table.Body className={styles.tbody}>

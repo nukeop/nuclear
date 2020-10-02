@@ -33,14 +33,13 @@
 
   .favorite_tracks_table {
     background: transparent !important;
-
     .thead {
       th {
         position: relative;
         color: rgba($white, 0.5) !important;
         font-size: 20px !important;
         background: transparent !important;
-        border-bottom: 0.5px solid rgba($white, 0.2) !important;
+        // border-bottom: 0.5px solid rgba($white, 0.2) !important;
       }
 
       i {
@@ -52,6 +51,13 @@
       }
 
       th:nth-child(2) { width: 42px; }
+    }
+
+    .theader_icon{
+      display: flex;
+      &:hover{
+        color: rgba($white, 0.8) !important;
+      }
     }
 
     .tbody {
