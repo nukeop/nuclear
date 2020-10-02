@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 import _ from 'lodash';
@@ -24,6 +24,101 @@ export const EmptyState = () => {
   );
 };
 
+const SORT_TYPE = {
+  NONE: 'none',
+  ARTIST: 'artist',
+  TITLE: 'title'
+};
+
+const DisplayFavouriteTracks = ({
+  tracks,
+  removeFavoriteTrack,
+  sortOrder
+}) => {
+
+  const sortArtist = (list, asc = true) => {
+    const output = list.sort((a, b) => {
+      if (a.artist.name.toLowerCase() < b.artist.name.toLowerCase()) {
+        return -1;
+      }
+      if (a.artist.name.toLowerCase() > b.artist.name.toLowerCase()) {
+        return 1;
+      }
+      return 0;
+    });
+
+    return asc ? output : output.reverse();
+  };
+
+  const sortTitle = (list, asc = true) => {
+    const output = list.sort((a, b) => {
+      if (a.name.toLowerCase() < b.name.toLowerCase()) {
+        return -1;
+      }
+      if (a.name.toLowerCase() > b.name.toLowerCase()) {
+        return 1;
+      }
+      return 0;
+    });
+
+    return asc ? output : output.reverse();
+  };
+
+
+  switch (sortOrder.current) {
+  case SORT_TYPE.ARTIST:
+    tracks = sortArtist(tracks, sortOrder.isAscending);
+    break;
+  case SORT_TYPE.TITLE:
+    tracks = sortTitle(tracks, sortOrder.isAscending);
+    break;
+  default:
+    break;
+  }
+
+  return (
+    tracks.map((track, i) => {
+      return (
+        <TrackRow
+          key={'favorite-track-' + i}
+          track={track}
+          index={i}
+          displayCover
+          displayArtist
+          withDeleteButton
+          withAddToFavorites={false}
+          onDelete={e => {
+            e.stopPropagation();
+            removeFavoriteTrack(track);
+          }}
+        />
+      );
+    })
+  );
+
+
+};
+
+DisplayFavouriteTracks.propTypes = {
+  tracks: PropTypes.arrayOf(PropTypes.shape({
+    artist: PropTypes.shape({
+      name: PropTypes.string
+    }),
+    name: PropTypes.string
+  })),
+  removeFavoriteTrack: PropTypes.func,
+  sortOrder: PropTypes.shape({
+    current: PropTypes.string,
+    isAscending: PropTypes.bool
+  })
+};
+
+DisplayFavouriteTracks.defaultProps = {
+  tracks: [],
+  removeFavoriteTrack: () => {},
+  sortOrder: SORT_TYPE.NONE
+};
+
 const FavoriteTracksView = ({
   tracks,
   removeFavoriteTrack,
@@ -35,6 +130,7 @@ const FavoriteTracksView = ({
 }) => {
   const { t } = useTranslation('favorites');
 
+  const [sortOrder, setSortOrder] = useState({current: SORT_TYPE.NONE, isAscending: true});
 
   const getTrackimage = (track) => {
     let image = artPlaceholder;
@@ -72,6 +168,13 @@ const FavoriteTracksView = ({
     );
   };
 
+  const updateSortOrder = (currentOrder) => {
+    setSortOrder({
+      current: currentOrder,
+      isAscending: !sortOrder.isAscending
+    });
+  };
+
   
   return (
     <div className={styles.favorite_tracks_view}>
@@ -99,30 +202,12 @@ const FavoriteTracksView = ({
                 <Table.Row>
                   <Table.HeaderCell />
                   <Table.HeaderCell><Icon name='image' /></Table.HeaderCell>
-                  <Table.HeaderCell>{t('artist')}</Table.HeaderCell>
-                  <Table.HeaderCell>{t('title')}</Table.HeaderCell>
+                  <Table.HeaderCell onClick={() => updateSortOrder(SORT_TYPE.ARTIST)} >{t('artist')}</Table.HeaderCell>
+                  <Table.HeaderCell onClick={() => updateSortOrder(SORT_TYPE.TITLE)} >{t('title')}</Table.HeaderCell>
                 </Table.Row>
               </Table.Header>
               <Table.Body className={styles.tbody}>
-                {
-                  tracks.map((track, i) => {
-                    return (
-                      <TrackRow
-                        key={'favorite-track-' + i}
-                        track={track}
-                        index={i}
-                        displayCover
-                        displayArtist
-                        withDeleteButton
-                        withAddToFavorites={false}
-                        onDelete={e => {
-                          e.stopPropagation();
-                          removeFavoriteTrack(track);
-                        }}
-                      />
-                    );
-                  })
-                }
+                <DisplayFavouriteTracks tracks={tracks} removeFavoriteTrack={removeFavoriteTrack} sortOrder={sortOrder} />
               </Table.Body>
             </Table>
           </Segment>
