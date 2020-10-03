@@ -2,7 +2,7 @@
   "album": {
     "download": "Download",
     "download-toast-content": "{{artist}} - {{title}} e' stato aggiunto nei downloads.",
-    "download-toast-title": "Album messo in download",
+    "download-toast-title": "Album messo nei downloads",
     "queue": "Aggiungi album alla coda"
   },
   "app": {
