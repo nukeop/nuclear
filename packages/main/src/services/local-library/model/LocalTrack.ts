@@ -6,7 +6,7 @@ import { app } from 'electron';
 import crypto from 'crypto';
 import url from 'url';
 import uuid from 'uuid/v4';
-import sharp from 'sharp';
+import Jimp from 'jimp/es';
 
 import LocalFolder from './LocalFolder';
 
@@ -112,10 +112,9 @@ class LocalTrack {
       if (existingThumb) {
         this.thumbnail = existingThumb;
       } else {
-        await sharp(this.imageData)
-          .resize(77, 77)
-          .webp({ quality: 1 })
-          .toFile(thumbPath);
+        (await Jimp.read(this.imageData))
+          .resize(192, 192)
+          .write(thumbPath);
       }
   
       delete this.imageData;

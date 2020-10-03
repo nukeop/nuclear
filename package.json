@@ -165,14 +165,6 @@
             "package.json",
             "lib/*"
           ]
-        },
-        {
-          "from": "packages/main/node_modules/sharp/vendor/lib",
-          "to": ".",
-          "filter": [
-            "libvips*.so*",
-            "libgsf*.so*"
-          ]
         }
       ]
     },
@@ -229,7 +221,6 @@
     }
   },
   "dependencies": {
-    "sharp": "^0.25.4",
     "sqlite3": "^4.2.0"
   }
 }
