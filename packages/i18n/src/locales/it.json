@@ -1,8 +1,8 @@
 {
   "album": {
     "download": "Download",
-    "download-toast-content": "{{artist}} - {{title}} has been added to downloads.",
-    "download-toast-title": "Album added to downloads",
+    "download-toast-content": "{{artist}} - {{title}} e' stato aggiunto nei downloads.",
+    "download-toast-title": "Album messo in download",
     "queue": "Aggiungi album alla coda"
   },
   "app": {
@@ -10,7 +10,7 @@
     "dashboard": "Dashboard",
     "downloads": "Downloads",
     "equalizer": "Equalizzatore",
-    "favorite-albums": "Favorite Albums",
+    "favorite-albums": "Album Preferiti",
     "favorite-tracks": "Brani Preferiti",
     "library": "Libreria Locale",
     "lyrics": "Testi",
@@ -31,13 +31,13 @@
     "artist": "Artista",
     "best": "Novita'",
     "best-new-albums": "Nuovi album migliori",
-    "best-new-tracks": "Migliori nuovi brani",
+    "best-new-tracks": "Nuovi brani migliori",
     "genres": "Generi",
     "lastfm-title": "Migliori brani da LastFm.",
     "news": "Novita'",
     "playcounts": "Numero di riproduzioni",
     "title": "Titoli",
-    "top": "Miglior Brani"
+    "top": "Migliori Brani"
   },
   "downloads": {
     "clear": "Elimina i download completati",
@@ -49,14 +49,14 @@
     "status": "Stato"
   },
   "favorite-albums": {
-    "empty": "No favorite albums",
-    "empty-help": "Try adding some albums to favorites and they will appear here!",
-    "header": "Your favorite albums"
+    "empty": "Nessun album preferito.",
+    "empty-help": "Prova ad aggiungere degli album nei preferiti e li vedrai apparire qui!",
+    "header": "I tuoi album preferiti"
   },
   "favorites": {
     "artist": "Artisti",
-    "empty": "Nessun favorito aggiunto.",
-    "empty-help": "Aggiungi i tuoi brani ai preferiti e li vedrai qui!",
+    "empty": "Nessun brano preferito.",
+    "empty-help": "Aggiungi i tuoi brani nei preferiti e li vedrai qui!",
     "header": "I tuoi brani preferiti",
     "title": "Titolo"
   },
@@ -77,8 +77,8 @@
     "empty-help": "Prova ad aggiungere qualche brano usando il pulsante qui sopra",
     "filter-placeholder": "Filtra...",
     "header": "Libreria Locale",
-    "no-search-results": "No search results",
-    "no-search-results-help": "No tracks found with the given name, album, or artist.",
+    "no-search-results": "Nessun risultato trovato",
+    "no-search-results-help": "Nessun brano trovato con il nome, album o artista dato.",
     "title": "Titolo"
   },
   "lyrics": {
@@ -102,14 +102,14 @@
     "delete": "Cancella questa playlist",
     "dialog-placeholder": "Nome della playlist...",
     "empty": "Nessuna playlist.",
-    "queue": "Add playlist to queue",
+    "queue": "Aggiungi playlist alla coda",
     "rename": "Rinomina questa playlist",
     "songs": "{{total}} brano",
     "songs_plural": "{{total}} brani",
     "title": "Titolo"
   },
   "plugins": {
-    "add-a-plugin": "Add a plugin",
+    "add-a-plugin": "Aggiungi un plugin",
     "header": "Plugins",
     "lyrics-providers": "Lyrics providers",
     "meta-providers": "Metadata providers",
@@ -118,8 +118,8 @@
     "select-meta-provider": "Select the default metadata provider:",
     "stream-providers": "Fonte musicale",
     "user-plugins": "User plugins",
-    "user-plugins-warning-desc": "Plugins work by running code on your computer. Load plugins only from sources you trust!",
-    "user-plugins-warning-title": "Danger zone!"
+    "user-plugins-warning-desc": "I plugin funzionano eseguendo del codice sul tuo computer. Carica i plugin solo da fonti di cui ti fidi!",
+    "user-plugins-warning-title": "Zona pericolosa!"
   },
   "queue": {
     "clear": "Elimina coda",
@@ -167,8 +167,8 @@
     "display": "Display",
     "downloads": "Downloads",
     "downloads-count": "Max simultaneous downloads",
-    "downloads-dir": "Downloads directory",
-    "downloads-dir-button": "Choose a directory...",
+    "downloads-dir": "Cartella Downloads",
+    "downloads-dir-button": "Scegli una cartella...",
     "enable-api": "Abilita l'api",
     "fmfav-btn": "Import",
     "fmfav-msg": "Import your Last.fm Favorites",
@@ -188,7 +188,7 @@
     "logout": "Log out",
     "loop-after-queue-end": "Riproduci di nuovo dopo aver riprodotto l'ultimo brano in coda",
     "max.downloads": "Download control",
-    "mini-player": "Use mini player style",
+    "mini-player": "Usa lo stile mini player",
     "notification-timeout": "Notifica timeout",
     "notlogged": "Non loggato",
     "playback": "Playback",
