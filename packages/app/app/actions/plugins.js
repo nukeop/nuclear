@@ -41,7 +41,8 @@ export function createPlugins (pluginClasses) {
   const categories = Object.keys(pluginClasses);
   const selected = {};
   _.forEach(categories, category => {
-    selected[category] = _.head(plugins[category]).sourceName;
+    const selectedForCategory = _.find(plugins[category], { isDefault: true });
+    selected[category] = selectedForCategory.sourceName;
   });
 
   return {
