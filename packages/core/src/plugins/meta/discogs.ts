@@ -37,6 +37,7 @@ class DiscogsMetaProvider extends MetaProvider {
     this.sourceName = 'Discogs Metadata Provider';
     this.description = 'Metadata provider that uses Discogs as a source.';
     this.image = null;
+    this.isDefault = true;
     this.lastfm = new LastFmApi(process.env.LAST_FM_API_KEY, process.env.LASTFM_API_SECRET);
   }
 
