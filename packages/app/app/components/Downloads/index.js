@@ -27,7 +27,8 @@ const Downloads = ({
   clearFinishedTracks,
   setStringOption,
   resumeDownload,
-  pauseDownload
+  pauseDownload,
+  removeDownload
 }) => {
   const { t } = useTranslation('downloads');
 
@@ -46,6 +47,7 @@ const Downloads = ({
             clearFinishedTracks={clearFinishedTracks}
             resumeDownload={resumeDownload}
             pauseDownload={pauseDownload}
+            removeDownload={removeDownload}
           />
         </React.Fragment>
       )}

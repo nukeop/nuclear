@@ -5,6 +5,7 @@ import {
   DOWNLOAD_RESUMED,
   DOWNLOAD_PROGRESS,
   DOWNLOAD_FINISHED,
+  DOWNLOAD_REMOVED,
   DOWNLOAD_ERROR,
   CLEAR_FINISHED_DOWNLOADS,
   READ_DOWNLOADS
@@ -24,6 +25,7 @@ export default function DownloadsReducer(state=initialState, action) {
   case DOWNLOAD_PROGRESS:
   case DOWNLOAD_FINISHED:
   case DOWNLOAD_ERROR:
+  case DOWNLOAD_REMOVED:
   case CLEAR_FINISHED_DOWNLOADS:
     return [...action.payload];
   default:

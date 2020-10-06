@@ -11,7 +11,8 @@ const DownloadsList = ({
   items,
   clearFinishedTracks,
   pauseDownload,
-  resumeDownload
+  resumeDownload,
+  removeDownload
 }) => {
   const [sortAsc, setSort] = useState(true);
   const { t } = useTranslation('downloads');
@@ -55,6 +56,7 @@ const DownloadsList = ({
                   item={item}
                   resumeDownload={resumeDownload}
                   pauseDownload={pauseDownload}
+                  removeDownload={removeDownload}
                 />
               );
             })

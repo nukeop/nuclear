@@ -32,6 +32,7 @@ class DownloadsContainer extends React.Component {
         clearFinishedTracks={downloadActions.clearFinishedDownloads}
         pauseDownload={downloadActions.onDownloadPause}
         resumeDownload={downloadActions.onDownloadResume}
+        removeDownload={downloadActions.onDownloadRemoved}
         setStringOption={settingsActions.setStringOption}
       />
     );
