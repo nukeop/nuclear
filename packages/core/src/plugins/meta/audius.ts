@@ -30,11 +30,11 @@ class AudiusMetaProvider extends MetaProvider {
     this.description = 'Metadata provider that uses Audius as a source.';
     this.image = null;
     this.lastfm = new LastFmApi(process.env.LAST_FM_API_KEY, process.env.LASTFM_API_SECRET);
-    this.init()
+    this.init();
   }
 
   async init(){
-    this.apiEndpoint = await Audius._findHost()
+    this.apiEndpoint = await Audius._findHost();
   }
 
   searchForArtists(query: string): Promise<Array<SearchResultsArtist>> {
@@ -123,12 +123,12 @@ class AudiusMetaProvider extends MetaProvider {
     return Promise.resolve([]);
   }
 
-  async fetchAlbumDetails(albumId: string, albumType: 'master' | 'release' = 'master', resourceUrl: string): Promise<AlbumDetails> {
+  async fetchAlbumDetails(): Promise<AlbumDetails> {
     throw new Error('Method not implemented.');
   }
 
 
-  async fetchAlbumDetailsByName( albumName: string, albumType: 'master' | 'release' = 'master' ): Promise<AlbumDetails> {
+  async fetchAlbumDetailsByName(): Promise<AlbumDetails> {
     throw new Error('Method not implemented.');
   }
 }
