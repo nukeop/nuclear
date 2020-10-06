@@ -11,6 +11,7 @@ export const DOWNLOAD_RESUMED = 'DOWNLOAD_RESUMED';
 export const DOWNLOAD_PROGRESS = 'DOWNLOAD_PROGRESS';
 export const DOWNLOAD_FINISHED = 'DOWNLOAD_FINISHED';
 export const DOWNLOAD_ERROR = 'DOWNLOAD_ERROR';
+export const DOWNLOAD_REMOVED = 'DOWNLOAD_REMOVED';
 export const CLEAR_FINISHED_DOWNLOADS = 'CLEAR_FINISHED_DOWNLOADS';
 
 export const DownloadStatus = {
@@ -24,6 +25,7 @@ export const DownloadStatus = {
 const changePropertyForItem = ({downloads, uuid, propertyName='status', value}) => {
   const changedItem = _.find(downloads, (item) => item.track.uuid === uuid);
   _.set(changedItem, propertyName, value);
+
   return downloads;
 };
 
@@ -106,11 +108,13 @@ export function onDownloadProgress(uuid, progress) {
     propertyName: 'completion',
     value: progress
   });
+  
   payload = changePropertyForItem({
-    payload,
+    downloads: payload,
     uuid,
     value: DownloadStatus.STARTED
   });
+  
   return {
     type: DOWNLOAD_PROGRESS,
     payload
@@ -128,6 +132,15 @@ export function onDownloadError(uuid){
   return {
     type: DOWNLOAD_ERROR,
     payload
+  };
+}
+
+export function onDownloadRemoved(uuid) {
+  const downloads = store.get('downloads');
+  const filteredTracks = downloads.filter(item => item.track.uuid !== uuid);
+  return {
+    type: DOWNLOAD_REMOVED,
+    payload: filteredTracks
   };
 }
 

@@ -39,7 +39,7 @@ enum IpcEvents {
   DOWNLOAD_PROGRESS = 'download-progress',
   DOWNLOAD_FINISHED = 'download-finished',
   DOWNLOAD_ERROR = 'download-error',
-
+  DOWNLOAD_REMOVED = 'download-removed',
 
   WINDOW_MINIMIZE = 'minimize',
   WINDOW_MAXIMIZE = 'maximize',
