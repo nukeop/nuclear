@@ -87,7 +87,7 @@ Nuclear has already been translated to several languages, and we're always looki
 | Tagalog              | [giftofgrub](https://github.com/giftofgrub)                                                          |
 | Traditional Chinese  | [oxygen-TW](https://github.com/oxygen-TW)                                                            |
 | Swedish              | [PalleKarlsson](https://github.com/PalleKarlsson)                                                    |
-| Greek                | [Shuin-San](https://https://github.com/Shuin-San)                                                    |
+| Greek                | [Shuin-San](https://github.com/Shuin-San)                                                            |
 
 ## Development process
 
