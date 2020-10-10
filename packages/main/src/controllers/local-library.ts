@@ -31,7 +31,8 @@ class LocalIpcCtrl {
   @ipcEvent(IpcEvents.LOCAL_METAS)
   async getLocalMetas(event: IpcMessageEvent) {
     const tracks = await this.localLibraryDb.getTracks();
-    event.returnValue = tracks;
+    event.returnValue = true;
+    return tracks;
   }
 
   /**
@@ -40,7 +41,8 @@ class LocalIpcCtrl {
   @ipcEvent(IpcEvents.LOCALFOLDERS_GET)
   async getLocalFolders(event: IpcMessageEvent) {
     const folders = await this.localLibraryDb.getLocalFolders();
-    event.returnValue = folders.map(({ path }) => path);
+    event.returnValue = true;
+    return folders.map(({ path }) => path);
   }
 
   /**

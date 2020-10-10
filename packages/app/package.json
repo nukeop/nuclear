@@ -42,7 +42,7 @@
     "d3-drag": "^1.2.3",
     "d3-selection": "^1.4.0",
     "dotenv": "^8.2.0",
-    "electron": "^9.1.2",
+    "electron": "^10.1.3",
     "electron-store": "^2.0.0",
     "electron-timber": "^0.5.1",
     "font-awesome": "^4.7.0",

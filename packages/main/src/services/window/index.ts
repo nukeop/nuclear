@@ -52,6 +52,7 @@ class Window {
       webPreferences: {
         nodeIntegration: true,
         webSecurity: config.isProd(),
+        enableRemoteModule: true,
         additionalArguments: [
           store.getOption('disableGPU') && '--disable-gpu'
         ]
