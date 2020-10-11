@@ -1,43 +1,94 @@
-name: Node CI
+name: CI job
 
 on: [push]
 
 jobs:
-  build:
-
-    runs-on: ${{ matrix.os }}
-    continue-on-error: ${{ matrix.experimental }}
-    strategy:
-      matrix:
-        os: [ubuntu-latest, macOS-latest]
-        experimental: [false]
-        include:
-          - os: windows-latest
-            experimental: true
-    timeout-minutes: 15
+  linux_build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
 
     steps:
     - uses: actions/checkout@master
+    - name: Use Node.js 12.x
+      uses: actions/setup-node@v1
+      with:
+        version: 12.x
     - name: Cache node modules
       uses: actions/cache@v2
       env:
         cache-name: cache-node-modules
       with:
         path: ~/.npm
-        key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+        key: linux-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
         restore-keys: |
-          ${{ runner.os }}-build-${{ env.cache-name }}-
-          ${{ runner.os }}-build-
-          ${{ runner.os }}-
-    - name: Use Node.js 11.x
-      uses: actions/setup-node@v1
-      with:
-        version: 11.x
+          linux-build-${{ env.cache-name }}-
+          linux-build-
+          linux-
     - name: npm install, build, and test
       run: |
         npm install
         npm test
-        npm run build
+        npm run build:linux
+      shell: bash
+      env:
+        GITHASH: ${GITHUB_SHA}
+  
+  mac_build:
+   runs-on: macOS-latest
+    timeout-minutes: 20
+
+    steps:
+    - uses: actions/checkout@master
+    - name: Use Node.js 12.x
+      uses: actions/setup-node@v1
+      with:
+        version: 12.x
+    - name: Cache node modules
+      uses: actions/cache@v2
+      env:
+        cache-name: cache-node-modules
+      with:
+        path: ~/.npm
+        key: mac-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          mac-build-${{ env.cache-name }}-
+          mac-build-
+          mac-
+    - name: npm install, build, and test
+      run: |
+        npm install
+        npm test
+        npm run build:macos
+      shell: bash
+      env:
+        GITHASH: ${GITHUB_SHA}
+  
+  windows_build:
+   runs-on: windows-latest
+    timeout-minutes: 20
+
+    steps:
+    - uses: actions/checkout@master
+    - name: Use Node.js 12.x
+      uses: actions/setup-node@v1
+      with:
+        version: 12.x
+    - name: Cache node modules
+      uses: actions/cache@v2
+      env:
+        cache-name: cache-node-modules
+      with:
+        path: ~/.npm
+        key: windows-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          windows-build-${{ env.cache-name }}-
+          windows-build-
+          windows-
+    - name: npm install, build, and test
+      run: |
+        npm install
+        npm test
+        npm run build:windows
       shell: bash
       env:
         GITHASH: ${GITHUB_SHA}
