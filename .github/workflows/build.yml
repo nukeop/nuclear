@@ -43,17 +43,6 @@ jobs:
       uses: actions/setup-node@v1
       with:
         version: 12.x
-    - name: Cache node modules
-      uses: actions/cache@v2
-      env:
-        cache-name: cache-node-modules
-      with:
-        path: ~/.npm
-        key: mac-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
-        restore-keys: |
-          mac-build-${{ env.cache-name }}-
-          mac-build-
-          mac-
     - name: npm install, build, and test
       run: |
         npm install
