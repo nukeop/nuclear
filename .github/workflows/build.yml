@@ -34,7 +34,7 @@ jobs:
         GITHASH: ${GITHUB_SHA}
   
   mac_build:
-   runs-on: macOS-latest
+    runs-on: macOS-latest
     timeout-minutes: 20
 
     steps:
@@ -64,7 +64,7 @@ jobs:
         GITHASH: ${GITHUB_SHA}
   
   windows_build:
-   runs-on: windows-latest
+    runs-on: windows-latest
     timeout-minutes: 20
 
     steps:
