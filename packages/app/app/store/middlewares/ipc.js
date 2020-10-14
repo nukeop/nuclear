@@ -3,7 +3,7 @@ import { ipcRenderer } from 'electron';
 import _ from 'lodash';
 
 import { PAUSE_PLAYBACK, START_PLAYBACK, UPDATE_VOLUME } from '../../actions/player';
-import { SCAN_LOCAL_FOLDER, REMOVE_LOCAL_FOLDER, UPDATE_LOCAL_FOLDERS, SCAN_LOCAL_FOLDER_SUCCESS } from '../../actions/local';
+import { LocalLibrary } from '../../actions/actionTypes';
 import { ADD_QUEUE_ITEM, CLEAR_QUEUE, REMOVE_QUEUE_ITEM, QUEUE_DROP } from '../../actions/queue';
 import { SET_BOOLEAN_OPTION, SET_NUMBER_OPTION } from '../../actions/settings';
 import { CHANGE_CONNECTIVITY } from '../../actions/connectivity';
@@ -12,12 +12,12 @@ import { CLOSE_WINDOW, MINIMIZE_WINDOW, MAXIMIZE_WINDOW, OPEN_DEVTOOLS } from '.
 
 const ipcConnect = () => next => {
   next({
-    type: UPDATE_LOCAL_FOLDERS,
-    payload: { folders: ipcRenderer.sendSync(IpcEvents.LOCALFOLDERS_GET) }
+    type: LocalLibrary.UPDATE_LOCAL_FOLDERS,
+    payload: ipcRenderer.sendSync(IpcEvents.LOCALFOLDERS_GET)
   });
 
   next({
-    type: SCAN_LOCAL_FOLDER_SUCCESS,
+    type: LocalLibrary.SCAN_LOCAL_FOLDERS_SUCCESS,
     payload: ipcRenderer.sendSync(IpcEvents.LOCAL_METAS)
   });
 
@@ -38,14 +38,14 @@ const ipcConnect = () => next => {
       ipcRenderer.send(IpcEvents.PAUSE);
       break;
     
-    case SCAN_LOCAL_FOLDER:
+    case LocalLibrary.SCAN_LOCAL_FOLDERS:
       ipcRenderer.send(IpcEvents.LOCALFOLDERS_REFRESH);
       break;
-    case REMOVE_LOCAL_FOLDER:
+    case LocalLibrary.REMOVE_LOCAL_FOLDER:
       ipcRenderer.send(IpcEvents.LOCALFOLDER_REMOVE, payload);
       break;
-    case UPDATE_LOCAL_FOLDERS:
-      ipcRenderer.send(IpcEvents.LOCALFOLDERS_SET, payload.folders);
+    case LocalLibrary.UPDATE_LOCAL_FOLDERS:
+      ipcRenderer.send(IpcEvents.LOCALFOLDERS_SET, payload);
       break;
   
     case ADD_QUEUE_ITEM:
