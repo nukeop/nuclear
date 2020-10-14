@@ -1,4 +1,5 @@
 import { app, nativeImage, BrowserWindow } from 'electron';
+import installExtension, {REDUX_DEVTOOLS, REACT_DEVELOPER_TOOLS} from 'electron-devtools-installer';
 import { inject, injectable } from 'inversify';
 import path from 'path';
 import url from 'url';
@@ -51,7 +52,7 @@ class Window {
       show: false,
       webPreferences: {
         nodeIntegration: true,
-        webSecurity: config.isProd(),
+        webSecurity: false,
         enableRemoteModule: true,
         additionalArguments: [
           store.getOption('disableGPU') && '--disable-gpu'
@@ -135,8 +136,6 @@ class Window {
 
   async installDevTools() {
     try {
-      const { REACT_DEVELOPER_TOOLS, REDUX_DEVTOOLS, default: installExtension } = await import('electron-devtools-installer');
-
       await Promise.all([
         installExtension(REACT_DEVELOPER_TOOLS),
         installExtension(REDUX_DEVTOOLS)

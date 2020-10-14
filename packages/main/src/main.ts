@@ -1,7 +1,7 @@
 import 'reflect-metadata';
 
 import { transformSource } from '@nuclear/core';
-import { app } from 'electron';
+import { app, protocol } from 'electron';
 import logger from 'electron-timber';
 
 import { controllers, services } from './ioc';
@@ -51,6 +51,11 @@ app.on('ready', async () => {
     const window = container.get<Window>(Window);
     const discord = container.get<Discord>(Discord);
     const localLibraryDb = container.get<LocalLibraryDb>(LocalLibraryDb);
+
+    protocol.registerFileProtocol('file', (request, callback) => {
+      const pathname = decodeURI(request.url.replace('file:///', ''));
+      callback(pathname);
+    });
 
     if (config.isDev()) {
       await Promise.all([

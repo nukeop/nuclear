@@ -12,7 +12,7 @@ import * as SettingsActions from '../../actions/settings';
 import * as PlaylistActions from '../../actions/playlists';
 import * as EqualizerActions from '../../actions/equalizer';
 import * as DownloadsActions from '../../actions/downloads';
-import * as LocalFileActions from '../../actions/local';
+import { localLibraryActions } from '../../actions/local';
 
 class IpcContainer extends React.Component {
   componentDidMount() {
@@ -138,16 +138,15 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     actions: bindActionCreators(
-      Object.assign(
-        {},
-        PlayerActions,
-        QueueActions,
-        SettingsActions,
-        PlaylistActions,
-        EqualizerActions,
-        DownloadsActions,
-        LocalFileActions
-      ),
+      {
+        ...PlayerActions,
+        ...QueueActions,
+        ...SettingsActions,
+        ...PlaylistActions,
+        ...EqualizerActions,
+        ...DownloadsActions,
+        ...localLibraryActions
+      },
       dispatch
     )
   };

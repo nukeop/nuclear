@@ -17,7 +17,7 @@ import SearchReducer from './search';
 import SettingsReducer from './settings';
 import TagReducer from './tag';
 import ToastsReducer from './toasts';
-import LocalReducer from './local';
+import { reducer as LocalLibraryReducer } from './local';
 import ConnectivityReducer from './connectivity';
 
 const rootReducer = combineReducers({
@@ -38,7 +38,7 @@ const rootReducer = combineReducers({
   settings: SettingsReducer,
   tags: TagReducer,
   toasts: ToastsReducer,
-  local: LocalReducer,
+  local: LocalLibraryReducer,
   connectivity: ConnectivityReducer
 });
 

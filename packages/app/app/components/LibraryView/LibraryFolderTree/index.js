@@ -5,7 +5,7 @@ import { ContextPopup, getThumbnail } from '@nuclear/ui';
 import TrackPopupButtons from '../../../containers/TrackPopupButtons';
 import './styles.scss';
 import BaseTable, { AutoResizer } from 'react-base-table';
-import {updateExpandedFolders} from '../../../actions/local';
+import { localLibraryActions } from '../../../actions/local';
 
 const useTreeData = (tracks, localFolders) => {
   return useMemo(() => {
@@ -102,7 +102,7 @@ const LibraryFolderTree = ({
   const dispatch = useDispatch();
   const dispatchUpdateExpandedFolders = () => {
     if (tableRef.current) {
-      dispatch(updateExpandedFolders(tableRef.current.getExpandedRowKeys()));
+      dispatch(localLibraryActions.updateExpandedFolders(tableRef.current.getExpandedRowKeys()));
     }
   };
   useEffect(() => {
