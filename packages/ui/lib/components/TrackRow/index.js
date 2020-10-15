@@ -12,7 +12,7 @@ const getTrackThumbnail = track => {
   return _.get(
     track,
     'thumbnail',
-    _.get(track, 'image[0][#text]', artPlaceholder)
+    _.get(track, 'image[0][#text]')
   );
 };
 
@@ -50,7 +50,7 @@ const TrackRow = ({
     {
       displayCover &&
       <td className={styles.track_row_thumbnail}>
-        <img src={getTrackThumbnail(track)}/>
+        <img src={getTrackThumbnail(track) || artPlaceholder}/>
       </td>
     }
     {

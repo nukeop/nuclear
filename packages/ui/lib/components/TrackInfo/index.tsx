@@ -27,10 +27,10 @@ const TrackInfo: React.FC<TrackInfoProps> = ({
   isFavorite = false,
   hasTracks = false
 }) => (
-    <div className={styles.track_info}>
-      <Cover cover={cover} />
-      {
-        hasTracks &&
+  <div className={styles.track_info}>
+    <Cover cover={cover} />
+    {
+      hasTracks &&
         <>
           <div className={styles.artist_part}>
             <div className={styles.track_name} onClick={onTrackClick}>
@@ -46,15 +46,15 @@ const TrackInfo: React.FC<TrackInfoProps> = ({
             }
               size='large'
               onClick={
-                isFavorite
+              isFavorite
                 ? removeFromFavorites
                 : addToFavorites
-              }
+            }
             />
           </div>
         </>
-      }
-    </div>
-  );
+    }
+  </div>
+);
 
 export default TrackInfo;
