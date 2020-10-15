@@ -51,55 +51,55 @@ const PlayerBar: React.FC<PlayerBarProps> = ({
   timeToEnd,
   seek
 }) => (
-    <div className={cx(
-      common.nuclear,
-      styles.player_bar
-    )}>
-      <Seekbar
-        fill={fill}
-        seek={seek}
-        queue={queue}
-      >
-        {
-          hasTracks &&
+  <div className={cx(
+    common.nuclear,
+    styles.player_bar
+  )}>
+    <Seekbar
+      fill={fill}
+      seek={seek}
+      queue={queue}
+    >
+      {
+        hasTracks &&
           renderTrackDuration &&
           <div className={styles.track_duration}>
             <div>{timePlayed}</div>
             <div>-{timeToEnd}</div>
           </div>
-        }
-      </Seekbar>
-      <div className={styles.player_bar_bottom}>
-        <TrackInfo
-          cover={cover}
-          track={track}
-          artist={artist}
-          onTrackClick={onTrackClick}
-          onArtistClick={onArtistClick}
-          addToFavorites={addToFavorites}
-          removeFromFavorites={removeFromFavorites}
-          isFavorite={isFavorite}
-          hasTracks={hasTracks}
-        />
-        <PlayerControls
-          goForward={goForward}
-          goBack={goBack}
-          togglePlay={togglePlay}
-          isPlaying={isPlaying}
-          isLoading={isLoading}
-          goBackDisabled={goBackDisabled}
-          goForwardDisabled={goForwardDisabled}
-          playDisabled={playDisabled}
-        />
-        <VolumeControls
-          volume={volume}
-          updateVolume={updateVolume}
-          toggleMute={toggleMute}
-          isMuted={isMuted}
-          playOptions={playOptions}
-        />
-      </div>
+      }
+    </Seekbar>
+    <div className={styles.player_bar_bottom}>
+      <TrackInfo
+        cover={cover}
+        track={track}
+        artist={artist}
+        onTrackClick={onTrackClick}
+        onArtistClick={onArtistClick}
+        addToFavorites={addToFavorites}
+        removeFromFavorites={removeFromFavorites}
+        isFavorite={isFavorite}
+        hasTracks={hasTracks}
+      />
+      <PlayerControls
+        goForward={goForward}
+        goBack={goBack}
+        togglePlay={togglePlay}
+        isPlaying={isPlaying}
+        isLoading={isLoading}
+        goBackDisabled={goBackDisabled}
+        goForwardDisabled={goForwardDisabled}
+        playDisabled={playDisabled}
+      />
+      <VolumeControls
+        volume={volume}
+        updateVolume={updateVolume}
+        toggleMute={toggleMute}
+        isMuted={isMuted}
+        playOptions={playOptions}
+      />
     </div>
-  );
+  </div>
+);
 
 export default PlayerBar;

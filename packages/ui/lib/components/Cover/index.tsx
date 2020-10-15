@@ -7,7 +7,7 @@ import common from '../../common.scss';
 import styles from './styles.scss';
 
 type CoverProps = {
-  cover?: string
+  cover?: string;
 }
 
 const Cover: React.FC<CoverProps> = ({ cover = String(artPlaceholder) }) => (
@@ -15,7 +15,7 @@ const Cover: React.FC<CoverProps> = ({ cover = String(artPlaceholder) }) => (
     common.nuclear,
     styles.cover_container
   )}>
-    <img src={cover} />
+    <img src={cover || String(artPlaceholder)} />
   </div>
 );
 
