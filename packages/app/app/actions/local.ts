@@ -74,13 +74,11 @@ export function addLocalFolders(folders) {
   };
 }
 
-export function openLocalFolderPicker() {
-  return async dispatch => {
-    let folders = await (await remote.dialog.showOpenDialog(remote.getCurrentWindow(), { properties: ['openDirectory', 'multiSelections'] })).filePaths;
-    if (folders) {
-      // normalize path-seps (gets normalized on save to disk, but must happen from start for some UI code)
-      folders = folders.map(path => path.replace(/\\/g, '/'));
-      dispatch(addLocalFolders(folders));
-    }
-  };
-}
+export const openLocalFolderPicker = () => async dispatch => {
+  let folders = await (await remote.dialog.showOpenDialog(remote.getCurrentWindow(), { properties: ['openDirectory', 'multiSelections'] })).filePaths;
+  if (folders) {
+    // normalize path-seps (gets normalized on save to disk, but must happen from start for some UI code)
+    folders = folders.map(path => path.replace(/\\/g, '/'));
+    dispatch(addLocalFolders(folders));
+  }
+};

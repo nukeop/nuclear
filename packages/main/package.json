@@ -71,6 +71,7 @@
     "@types/webpack": "^4.41.0",
     "copy-webpack-plugin": "^5.1.1",
     "electron-builder": "^22.2.0",
+    "eslint": "^7.11.0",
     "node-gyp": "^7.0.0",
     "node-loader": "^0.6.0",
     "ts-loader": "^6.2.2",

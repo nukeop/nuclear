@@ -13,6 +13,7 @@
     flex: 1 1 auto;
     overflow: auto;
     transition: $short-duration;
+    height: 0;
 
     div {
       &:hover,

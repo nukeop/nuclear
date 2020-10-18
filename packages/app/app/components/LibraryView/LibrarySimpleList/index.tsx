@@ -1,4 +1,5 @@
 import React from 'react';
+import _ from 'lodash';
 import ReactList from 'react-list';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
@@ -19,7 +20,6 @@ const LibrarySimpleList = ({
   sortBy,
   direction,
   handleSort,
-  // estimateItemSize,
   t
 }) => (
   <ReactList
@@ -72,29 +72,35 @@ const LibrarySimpleList = ({
         </Ref>
       </Table>
     )}
-    itemRenderer={index => (
-      <ContextPopup
-        trigger={
-          <TrackRow
-            key={'library-track-'+index}
-            track={tracks[index]}
-            displayCover
-            displayArtist
-            displayAlbum
+    itemRenderer={index => {
+      const track = _.get(tracks, index);
+      const title = track?.name;
+      const artist = _.isString(track?.artist) ? track?.artist : track?.artist?.name;
+
+      return (
+        <ContextPopup
+          trigger={
+            <TrackRow
+              key={'library-track-' + index}
+              track={track}
+              displayCover
+              displayArtist
+              displayAlbum
+              withAddToDownloads={false}
+            />
+          }
+          key={'library-track-' + index}
+          thumb={getThumbnail(track)}
+          title={title}
+          artist={artist}
+        >
+          <TrackPopupButtons
+            track={track}
             withAddToDownloads={false}
           />
-        }
-        key={'library-track-'+index}
-        thumb={getThumbnail(_.get(tracks, index))}
-        title={_.get(tracks, [index, 'name'])}
-        artist={_.get(tracks, [index, 'artist', 'name'])}
-      >
-        <TrackPopupButtons
-          track={tracks[index]}
-          withAddToDownloads={false}
-        />
-      </ContextPopup>
-    )}
+        </ContextPopup>
+      );
+    }}
   />
 );
 

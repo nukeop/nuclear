@@ -10,6 +10,8 @@
     "_": true
   },
   "rules": {
-    "react/no-unused-prop-types": "off"
+    "react/no-unused-prop-types": 0,
+    "node/no-missing-import": 0,
+    "node/no-extraneous-import": 0
   }
 }

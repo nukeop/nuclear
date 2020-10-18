@@ -20,7 +20,7 @@
     "i18next": "^19.0.3"
   },
   "devDependencies": {
-    "eslint": "^6.8.0",
+    "eslint": "^7.11.0",
     "i18next-json-sync": "^2.3.1",
     "ts-node": "^8.10.2",
     "typescript": "^3.9.7"

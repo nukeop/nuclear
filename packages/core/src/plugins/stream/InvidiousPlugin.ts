@@ -11,7 +11,6 @@ class InvidiousPlugin extends StreamProviderPlugin {
     this.sourceName = 'Invidious';
     this.description = 'A plugin allowing Nuclear to search for music and play it from invidious';
     this.image = null;
-    this.isDefault = true;
   }
 
   async search(query) {

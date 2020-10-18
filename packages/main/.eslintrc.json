@@ -4,5 +4,9 @@
   ],
   "env": {
     "node": true
+  },
+  "rules": {
+    "node/no-missing-import": 0,
+    "node/no-extraneous-import": 0
   }
 }
