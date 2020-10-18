@@ -66,13 +66,13 @@ class LocalLibrary {
       position: common.track.no,
       album: common.album,
       artist: common.artist || 'unknown',
-      imageData: common.picture && common.picture[0].data
+      imageData: common.picture && common.picture[0].data,
+      lastScanned: +Date.now()
     };
   }
 
   private async parseMeta(filesPath: Array<{ file: string; folder?: LocalFolder }>, onProgress?: ProgressHandler): Promise<NuclearMeta[]> {
     const metas = await Promise.all(filesPath.map(({ file }) => parseFile(file)));
-
     const formattedMetas = await Promise.all(filesPath.map((file, i) => this.formatMeta(metas[i], file)));
 
     if (this.config.isConnected) {

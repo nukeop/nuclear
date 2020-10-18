@@ -104,16 +104,17 @@ class LocalLibraryDb {
     try {
       try {
         const metas = await Promise.all(
-          formattedMetas.map(async track => {
+          formattedMetas.map(async (track: NuclearMeta) => {
             const existingTrack = await this.trackRepository.findOne({ where: { path: track.path } });
-
+            const newTrack = this.trackRepository.create(track);
+            newTrack.imageData = track.imageData;
+            
             if (!existingTrack) {
-              const newTrack = this.trackRepository.create(track);
-              newTrack.imageData = track.imageData;
+              return this.trackRepository.save(newTrack);
+            } else {
+              newTrack.uuid = existingTrack.uuid;
               return this.trackRepository.save(newTrack);
             }
-
-            return existingTrack;
           })
         );
   

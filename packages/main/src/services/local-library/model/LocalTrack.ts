@@ -1,4 +1,4 @@
-import {Entity, PrimaryColumn, Column, ManyToOne, BeforeInsert, AfterLoad, AfterInsert, AfterRemove} from 'typeorm';
+import {Entity, PrimaryColumn, Column, ManyToOne, BeforeInsert, AfterLoad, AfterInsert, AfterRemove, BeforeUpdate} from 'typeorm';
 import fs from 'fs';
 import { promisify } from 'util';
 import path from 'path';
@@ -40,6 +40,9 @@ class LocalTrack {
 
   @Column({ nullable: true })
   year?: string;
+
+  @Column()
+  lastScanned: number;
 
   @ManyToOne(() => LocalFolder, folder => folder.path)
   folder: LocalFolder;
@@ -92,15 +95,11 @@ class LocalTrack {
       })
     }];
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    (this as any).artist = {
-      name: this.artist
-    };
-
     this.thumb = this.thumbnail;
   }
 
   @BeforeInsert()
+  @BeforeUpdate()
   async createThumbail() {
     if (this.imageData) {
       const thumbPath = path.resolve(

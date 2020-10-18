@@ -2,7 +2,10 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import LibraryView from '../../components/LibraryView';
-import { localLibraryActions } from '../../actions/local';
+import { 
+  localLibraryActions,
+  openLocalFolderPicker
+} from '../../actions/local';
 import * as QueueActions from '../../actions/queue';
 import * as PlayerActions from '../../actions/player';
 import * as SettingsActions from '../../actions/settings';
@@ -27,7 +30,11 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators({ ...localLibraryActions, ...SettingsActions }, dispatch),
+    actions: bindActionCreators({ 
+      ...localLibraryActions, 
+      ...SettingsActions,
+      openLocalFolderPicker
+    }, dispatch),
     queueActions: bindActionCreators(QueueActions, dispatch),
     playerActions: bindActionCreators(PlayerActions, dispatch)
   };

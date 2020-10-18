@@ -23,6 +23,7 @@ export interface NuclearMeta {
   path?: string;
   album?: string;
   folder?: any;
+  lastScanned?: number;
 
   imageData?: Buffer;
 }
