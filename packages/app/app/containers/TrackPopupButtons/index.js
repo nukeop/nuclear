@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import _ from 'lodash';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { compose, withHandlers } from 'recompose';
 import { PopupButton, getThumbnail, getTrackItem } from '@nuclear/ui';
 import { getTrackTitle, getTrackArtist } from '@nuclear/ui/lib/utils';
 
@@ -13,8 +12,7 @@ import * as FavoritesActions from '../../actions/favorites';
 import * as ToastActions from '../../actions/toasts';
 import { safeAddUuid } from '../../actions/helpers';
 
-
-const TrackPopupButtons: React.FC = ({
+const TrackPopupButtons = ({
   track,
   queueActions,
   favoritesActions,
