@@ -3,8 +3,10 @@ import PropTypes from 'prop-types';
 import numeral from 'numeral';
 import cx from 'classnames';
 import { Icon } from 'semantic-ui-react';
+import _ from 'lodash';
 
 import artPlaceholder from '../../../resources/media/art_placeholder.png';
+// eslint-disable-next-line node/no-missing-import
 import { formatDuration } from '../../utils';
 import styles from './styles.scss';
 
