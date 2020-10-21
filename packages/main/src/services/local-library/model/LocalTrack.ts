@@ -41,8 +41,8 @@ class LocalTrack {
   @Column({ nullable: true })
   year?: string;
 
-  @Column()
-  lastScanned: number;
+  @Column({ nullable: true })
+  lastScanned?: number;
 
   @ManyToOne(() => LocalFolder, folder => folder.path)
   folder: LocalFolder;
