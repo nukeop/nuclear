@@ -37,3 +37,11 @@
     pointer-events: none;
   }
 }
+
+@media (max-width: 767px) {
+  .player_bar {
+    .player_bar_bottom {
+      font-size: 0.7em;
+    }
+  }
+}

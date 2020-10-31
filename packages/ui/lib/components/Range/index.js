@@ -23,7 +23,8 @@ const Range = ({
   hideThumb,
   thumbColor,
   readOnly,
-  onChange
+  onChange,
+  rangeRef
 }) => {
   const handleChange = useCallback(
     e => {
@@ -41,7 +42,7 @@ const Range = ({
   const trackPosition = getTrackPosition({ thumbSize, height });
 
   return (
-    <div className={styles.range} style={{ width }}>
+    <div className={styles.range} style={{ width }} ref={rangeRef}>
       <div
         className={styles.baseDiv}
         style={{
@@ -106,7 +107,8 @@ Range.defaultProps = {
   max: 100,
   width: 300,
   value: 0,
-  onChange: () => { }
+  onChange: () => { },
+  rangeRef: null
 };
 
 const colorWithAlpha = {

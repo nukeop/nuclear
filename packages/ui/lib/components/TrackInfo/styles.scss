@@ -40,3 +40,15 @@
     }
   }
 }
+
+@media (max-width: 767px) {
+  .track_info {
+    .track_name {
+      font-size: 16px;
+      overflow: hidden;
+    }
+    .artist_name {
+      font-size: 12px;
+    }
+  }
+}

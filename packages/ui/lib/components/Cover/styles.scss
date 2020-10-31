@@ -11,3 +11,11 @@
   width: 76px;
   height: 76px;
 }
+
+@media (max-width: 767px) {
+  .nuclear.cover_container,
+  .nuclear.cover_container img {
+    width: 50px;
+    height: 50px;
+  }
+}
