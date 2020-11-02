@@ -119,7 +119,7 @@ You will need docker and docker-compose. You need to allow the root user to conn
 $ xhost SI:localuser:root
 $ sudo docker-compose up dev
 ```
-As of now you can also build a flatpak version. You will need to install gobject-introspection, and flatpak-builder. After this you will need to install the runtimes and depedencies required by flatapk-builder for the compile process. You will need the 19.08 version of these flatpaks.
+As of now you can also build a flatpak version. You will need to install gobject-introspection, and flatpak-builder. After this you will need to install the runtimes and depedencies required by flatpak-builder for the compile process. You will need the 19.08 version of these flatpaks.
 ```shell
 $ flatpak install flathub org.freedesktop.Platform
 $ flatpak install flathub org.freedesktop.Sdk
