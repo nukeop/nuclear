@@ -49,3 +49,42 @@
     }
   }
 }
+
+/* Override Semantic UI small screen styles */
+@media only screen and (max-width: 767px) {
+  .library_simple_list {
+    .thead {
+      display: table-header-group !important;
+    }
+  }
+  .ui.table:not(.unstackable) .tbody {
+    display: table-row-group !important;
+  }
+  .ui.table:not(.unstackable) tr {
+    display: table-row !important;
+  }
+  .ui.table:not(.unstackable) tr>td,
+  .ui.table:not(.unstackable) tr>th {
+    display: table-cell !important;
+    padding: 0 !important;
+  }
+  .ui.table:not(.unstackable) tr>td {
+    border-bottom: 2px solid $background3 !important;
+  }
+  /* table header */
+  .ui.table:not(.unstackable) tr>th {
+    max-width: 42px !important;
+    padding-top: 0.928571em !important;
+    padding-bottom: 0.928571em !important;
+    border-bottom: 0.5px solid rgba($white, 0.2) !important;
+  }
+  /* picture icon header thing */
+  .ui.table:not(.unstackable) tr>th:nth-child(1) {
+    width: 42px !important;
+  }
+  /* artist column */
+  .ui.table:not(.unstackable) tr>th:nth-child(2),
+  .ui.table:not(.unstackable) tr>td:nth-child(2) {
+    padding-left: 0.785714em !important;
+  }
+}
