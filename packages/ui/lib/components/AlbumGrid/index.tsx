@@ -14,6 +14,7 @@ import styles from './styles.scss';
 const AlbumGrid = ({
   albums,
   onAlbumClick,
+  removeFavoriteAlbum,
   selectedAlbum,
   loading,
   trackButtons,
@@ -40,6 +41,15 @@ const AlbumGrid = ({
               content={withArtistNames && _.get(album, 'artist.name')}
               image={getThumbnail(album)}
               onClick={() => onAlbumClick(album)}
+              withMenu={removeFavoriteAlbum ? true : false}
+              menuEntries={[
+                {
+                  type: 'item', props: {
+                    children: 'Remove',
+                    onClick: () => removeFavoriteAlbum(album)
+                  }
+                }
+              ]}
             />
           ))
       }
@@ -65,6 +75,7 @@ AlbumGrid.propTypes = {
   albums: PropTypes.array,
   streamProviders: PropTypes.array, // eslint-disable-line react/no-unused-prop-types
   onAlbumClick: PropTypes.func,
+  removeFavoriteAlbum: PropTypes.func,
   loading: PropTypes.bool,
   addToQueue: PropTypes.func, // eslint-disable-line react/no-unused-prop-types
   clearQueue: PropTypes.func, // eslint-disable-line react/no-unused-prop-types

@@ -7,6 +7,7 @@
 
   .card {
     @include roundCorners;
+    position: relative;
     display: flex;
     flex-flow: column;
 
@@ -17,7 +18,23 @@
 
     &.animated:hover {
       box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.2);
-      transform: scale(1.1);
+      
+      .overlay {
+        opacity: 1;
+      }
+    }
+
+    .overlay {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 100%;
+      width: 100%;
+      opacity: 0;
+      transition: .5s ease;
+      background-color: rgba(0, 0, 0, 0.4);
     }
 
     .thumbnail {
