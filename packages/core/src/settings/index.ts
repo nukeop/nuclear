@@ -196,7 +196,8 @@ export const settingsConfig: Array<Setting> = [
       { key: 'tl', text: 'Tagalog (Filipino)', value: 'tl' },
       { key: 'se', text: 'Svenska', value: 'se' },
       { key: 'gr', text: 'Greek', value: 'gr'},
-      { key: 'hr', text: 'Hrvatski', value: 'hr'}
+      { key: 'hr', text: 'Hrvatski', value: 'hr'},
+      { key: 'is', text: 'Íslenska', value: 'is' }
     ],
     default: undefined
   }, {
