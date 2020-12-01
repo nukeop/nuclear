@@ -76,10 +76,14 @@ class LocalLibrary {
     const formattedMetas = await Promise.all(filesPath.map((file, i) => this.formatMeta(metas[i], file)));
 
     if (this.config.isConnected) {
-      const formattedMetasWithoutName = formattedMetas.filter(meta => !meta.name);
-  
-      if (formattedMetasWithoutName.length) {
-        await this.fetchAcousticIdBatch(formattedMetasWithoutName, onProgress);
+      try {
+        const formattedMetasWithoutName = formattedMetas.filter(meta => !meta.name);
+
+        if (formattedMetasWithoutName.length) {
+          await this.fetchAcousticIdBatch(formattedMetasWithoutName, onProgress);
+        }
+      } catch (er) {
+        // simply catch the error (already console-logged); track recognition should not break whole local-library scan
       }
     }
 
