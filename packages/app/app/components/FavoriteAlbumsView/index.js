@@ -22,7 +22,7 @@ const EmptyState = () => {
 
 const FavoriteAlbumsView = ({
   albums,
-  // removeFavoriteAlbum,
+  removeFavoriteAlbum,
   albumInfoSearch,
   history
 }) => {
@@ -45,6 +45,7 @@ const FavoriteAlbumsView = ({
                 albums={albums}
                 albumInfoSearch={albumInfoSearch}
                 history={history}
+                removeFavoriteAlbum={removeFavoriteAlbum}
               />
             </Segment>
           </>
