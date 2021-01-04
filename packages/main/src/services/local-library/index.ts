@@ -115,7 +115,7 @@ class LocalLibrary {
 
       if (data && data.recordings && data.recordings.length) {
         meta.name = data.recordings[0].name;
-        meta.artist = data.recordings[0].artists[0].name || 'unknown';
+        meta.artist = data.recordings[0].artists?.[0].name || 'unknown';
       }
 
       if (!meta.name) {
