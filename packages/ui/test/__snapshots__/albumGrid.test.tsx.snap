@@ -17,7 +17,11 @@ exports[`(Snapshot) AlbumGrid (basic) should render correctly 1`] = `
           <div
             class="thumbnail"
             style="background-image: url(test-file-stub);"
-          />
+          >
+            <div
+              class="overlay"
+            />
+          </div>
           <div
             class="card_content"
           >
@@ -36,7 +40,11 @@ exports[`(Snapshot) AlbumGrid (basic) should render correctly 1`] = `
           <div
             class="thumbnail"
             style="background-image: url(test-file-stub);"
-          />
+          >
+            <div
+              class="overlay"
+            />
+          </div>
           <div
             class="card_content"
           >
@@ -55,7 +63,11 @@ exports[`(Snapshot) AlbumGrid (basic) should render correctly 1`] = `
           <div
             class="thumbnail"
             style="background-image: url(test-file-stub);"
-          />
+          >
+            <div
+              class="overlay"
+            />
+          </div>
           <div
             class="card_content"
           >
@@ -74,7 +86,11 @@ exports[`(Snapshot) AlbumGrid (basic) should render correctly 1`] = `
           <div
             class="thumbnail"
             style="background-image: url(test-file-stub);"
-          />
+          >
+            <div
+              class="overlay"
+            />
+          </div>
           <div
             class="card_content"
           >
