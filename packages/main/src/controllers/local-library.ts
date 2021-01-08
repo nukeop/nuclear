@@ -57,8 +57,6 @@ class LocalIpcCtrl {
       this.window.send(IpcEvents.LOCAL_FILES_PROGRESS, {scanProgress, scanTotal});
     });
 
-    // console.log(cache);
-
     this.window.send(IpcEvents.LOCAL_FILES, Object.values(cache).reduce((acc, track) => ({
       ...acc,
       [track.uuid as string]: track

@@ -19,10 +19,6 @@ class Store extends ElectronStore {
   ) {
     super();
 
-    if (!this.getOption('yt.apiKey')) {
-      this.setOption('yt.apiKey', this.config.defaultYoutubeApiKey);
-    }
-
     if (!this.getOption('invidious.url')) {
       this.setOption('invidious.url', this.config.defaultInvidiousUrl);
     }

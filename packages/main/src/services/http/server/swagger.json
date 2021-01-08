@@ -328,7 +328,6 @@
               "trackDuration",
               "api.enabled",
               "api.port",
-              "yt.apiKey",
               "language",
               "downloads.dir"
             ],
@@ -388,7 +387,6 @@
               "trackDuration",
               "api.enabled",
               "api.port",
-              "yt.apiKey",
               "language",
               "downloads.dir"
             ],

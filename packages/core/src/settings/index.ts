@@ -157,14 +157,8 @@ export const settingsConfig: Array<Setting> = [
     max: 49151
   },
   {
-    name: 'yt.apiKey',
-    category: 'youtube',
-    type: SettingType.STRING,
-    prettyName: 'yt-api-key'
-  },
-  {
     name: 'invidious.url',
-    category: 'youtube',
+    category: 'Streaming',
     type: SettingType.STRING,
     prettyName: 'invidious-url'
   },

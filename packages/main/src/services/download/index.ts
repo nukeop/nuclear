@@ -2,7 +2,7 @@
 import registerDownloader, { download, Progress } from 'electron-dl';
 import { inject, injectable } from 'inversify';
 import _ from 'lodash';
-import * as Invidious from '@nuclear/core/src/rest/Invidious';
+import * as Youtube from '@nuclear/core/src/rest/Youtube';
 
 import Store from '../store';
 import Config from '../config';
@@ -10,7 +10,7 @@ import Window from '../window';
 import { DownloadItem } from 'electron';
 
 interface DownloadParams {
-  query: any;
+  query: string;
   filename: string;
   onStart: (item: DownloadItem) => void;
   onProgress: (progress: Progress) => any;
@@ -31,7 +31,7 @@ class Download {
   }
 
   /**
-   * Download a soud using the Invidious api
+   * Download a soud using Youtube
    */
   async start({
     query,
@@ -39,16 +39,10 @@ class Download {
     onStart,
     onProgress
   }: DownloadParams): Promise<any> {
-    const {
-      adaptiveFormats
-    } = await Invidious.trackSearch(query);
-    const streams = adaptiveFormats.filter(
-      ({ type }: { type: string }) => type.includes('audio')
-    );
-    const bestStream = _.maxBy(streams, (stream: { bitrate: string }) => Number(stream.bitrate));
+    const track = await Youtube.trackSearchByString(query);
 
-    return download(this.window.getBrowserWindow(), _.get(bestStream, 'url'), {
-      filename: filename + `.${_.get(bestStream, 'container')}`,
+    return download(this.window.getBrowserWindow(), track.stream, {
+      filename: `${filename}.${track.format}`,
       directory: this.store.getOption('downloads.dir'),
       onStarted: onStart,
       onProgress: _.throttle(onProgress, 1000)
