@@ -1,19 +1,18 @@
-import LastFmApi from './Lastfm';
-import ytdl from 'ytdl-core';
-
-import ytlist from 'youtube-playlist';
+import _ from 'lodash';
 import getArtistTitle from 'get-artist-title';
+import ytdl from 'ytdl-core';
+import ytlist from 'youtube-playlist';
+import ytsr from 'ytsr';
 
-import { trackSearch } from './youtube-search';
+import LastFmApi from './Lastfm';
+import { StreamQuery } from '../plugins/plugins.types';
 
 const lastfm = new LastFmApi(
   process.env.LAST_FM_API_KEY,
   process.env.LAST_FM_API_SECRET
 );
 
-export { trackSearch };
-
-function isValidURL (str) {
+function isValidURL(str) {
   const pattern = new RegExp('^(https?:\\/\\/)' + // protocol
     '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' + // domain name and extension
     '((\\d{1,3}\\.){3}\\d{1,3}))' + // OR ip (v4) address
@@ -24,7 +23,7 @@ function isValidURL (str) {
   return pattern.test(str);
 }
 
-function analyseUrlType (url) {
+function analyseUrlType(url) {
   const analysisResult = {
     url,
     isValid: false,
@@ -42,7 +41,7 @@ function analyseUrlType (url) {
   return analysisResult;
 }
 
-function getTrackFromTitle (title) {
+function getTrackFromTitle(title) {
   const result = getArtistTitle(title);
   if (result) {
     return lastfm.searchTracks(result[0] + ' ' + result[1], 1)
@@ -59,7 +58,7 @@ function getTrackFromTitle (title) {
   }
 }
 
-function handleYoutubePlaylist (url) {
+function handleYoutubePlaylist(url) {
   return ytlist(url, 'name')
     .then(res => {
       const allTracks = res.data.playlist.map((elt) => {
@@ -74,10 +73,10 @@ function handleYoutubePlaylist (url) {
     });
 }
 
-function handleYoutubeVideo (url) {
+function handleYoutubeVideo(url) {
   return ytdl.getInfo(url)
     .then(info => {
-      return getTrackFromTitle(info.title)
+      return getTrackFromTitle(info.videoDetails.title)
         .then(track => {
           return [track];
         });
@@ -87,7 +86,7 @@ function handleYoutubeVideo (url) {
     });
 }
 
-export function urlSearch (url) {
+export function urlSearch(url) {
   const urlAnalysis = analyseUrlType(url);
   if (urlAnalysis.isYoutubePlaylist) {
     return handleYoutubePlaylist(url);
@@ -98,4 +97,29 @@ export function urlSearch (url) {
       resolve([]);
     });
   }
+}
+
+export async function trackSearch(query: StreamQuery, omitStreamId?: string, sourceName?: string) {
+  const terms = query.artist + ' ' + query.track;
+  return trackSearchByString(terms, omitStreamId, sourceName);
+}
+
+export async function trackSearchByString(query: string, omitStreamId?: string, sourceName?: string) {
+  const results = await ytsr(query);
+  const topTrack: ytsr.Video = _.find(
+    results.items,
+    item => item.type === 'video' && (!omitStreamId || item.id !== omitStreamId)
+  ) as ytsr.Video;
+  const topTrackInfo = await ytdl.getInfo(topTrack.url);
+  const formatInfo = ytdl.chooseFormat(topTrackInfo.formats, { quality: 'highestaudio' });
+  
+  return {
+    source: sourceName,
+    id: topTrack.id,
+    stream: formatInfo.url,
+    duration: parseInt(topTrackInfo.videoDetails.lengthSeconds),
+    title: topTrackInfo.videoDetails.title,
+    thumbnail: topTrack.bestThumbnail.url,
+    format: formatInfo.container
+  };
 }

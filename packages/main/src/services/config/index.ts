@@ -7,7 +7,7 @@ import pkg from '../../../../../package.json';
 import { Env } from '../../utils/env';
 import Logger, { $mainLogger } from '../logger';
 
-const MANDATORY_ENV = ['ACOUSTIC_ID_KEY', 'YOUTUBE_API_KEY', 'DISCORD_CLIENT_ID'];
+const MANDATORY_ENV = ['ACOUSTIC_ID_KEY', 'DISCORD_CLIENT_ID'];
 
 @injectable()
 class Config {
@@ -17,7 +17,6 @@ class Config {
   };
   isConnected: boolean;
   youtubeUrl: string;
-  defaultYoutubeApiKey: string;
   youtubeSearch: string;
   title: string;
   supportedFormats: string[];
@@ -59,7 +58,6 @@ class Config {
       url: 'https://api.acoustid.org/v2/lookup'
     };
 
-    this.defaultYoutubeApiKey = process.env.YOUTUBE_API_KEY;
     this.discordClientId = process.env.DISCORD_CLIENT_ID;
     this.defaultInvidiousUrl = process.env.INVIDIOUS_URL;
   }
