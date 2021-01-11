@@ -1,6 +1,6 @@
 {
   "name": "@nuclear/app",
-  "version": "0.6.6",
+  "version": "0.6.7",
   "description": "Nuclear - Renderer process",
   "scripts": {
     "start": "webpack-dev-server --inline --env.NODE_ENV=development",
@@ -32,9 +32,9 @@
   },
   "homepage": "https://github.com/nukeop/nuclear#readme",
   "dependencies": {
-    "@nuclear/core": "^0.6.6",
-    "@nuclear/i18n": "^0.6.6",
-    "@nuclear/ui": "^0.6.6",
+    "@nuclear/core": "^0.6.7",
+    "@nuclear/i18n": "^0.6.7",
+    "@nuclear/ui": "^0.6.7",
     "billboard-top-100": "^2.0.8",
     "bluebird": "3.5.3",
     "chart.js": "^2.8.0",
