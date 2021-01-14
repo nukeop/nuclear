@@ -16,7 +16,8 @@ import {
   YOUTUBE_PLAYLIST_SEARCH_START,
   YOUTUBE_PLAYLIST_SEARCH_SUCCESS,
   ALBUM_INFO_SEARCH_ERROR,
-  SEARCH_DROPDOWN_DISPLAY_CHANGE
+  SEARCH_DROPDOWN_DISPLAY_CHANGE,
+  UPDATE_SEARCH_HISTORY
 } from '../actions/search';
 import { Artist } from '@nuclear/core';
 
@@ -89,6 +90,10 @@ export default function SearchReducer(state = initialState, action) {
   case UNIFIED_SEARCH_START:
     return {
       ...state,
+      searchHistory: [
+        action.payload.terms,
+        ...state.searchHistory
+      ],
       unifiedSearchStarted: true
     };
   case UNIFIED_SEARCH_SUCCESS:
@@ -211,6 +216,11 @@ export default function SearchReducer(state = initialState, action) {
     return reduceYoutubePlaylistSearchSuccess(state, action);
   case SEARCH_DROPDOWN_DISPLAY_CHANGE:
     return reduceSearchDropdownDisplay(state, action);
+  case UPDATE_SEARCH_HISTORY:
+    return {
+      ...state,
+      searchHistory: action.payload
+    };
   default:
     return state;
   }

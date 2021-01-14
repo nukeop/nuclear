@@ -144,13 +144,16 @@
     "album_plural": "Álbuns",
     "artist": "Artista",
     "artist_plural": "Artistas",
+    "clear-history": "Clear history",
     "empty": "Nada Encontrado.",
+    "last-searches": "Last searches",
     "placeholder": "Procurando...",
     "playlist": "Lista de Reprodução",
     "playlist_plural": "Listas de Reprodução",
     "queue-add": "Adicione todas as faixas à fila",
     "track": "Faixa",
-    "track_plural": "Faixas"
+    "track_plural": "Faixas",
+    "you-can-search-for": "You can search for:"
   },
   "settings": {
     "api-port": "Porta usada pela api",

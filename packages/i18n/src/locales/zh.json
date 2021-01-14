@@ -141,11 +141,14 @@
   "search": {
     "album": "专辑",
     "artist": "艺人",
+    "clear-history": "Clear history",
     "empty": "Nothing found.",
+    "last-searches": "Last searches",
     "placeholder": "搜索...",
     "playlist": "播放列表",
     "queue-add": "Add all tracks to queue",
-    "track": "音乐标题"
+    "track": "音乐标题",
+    "you-can-search-for": "You can search for:"
   },
   "settings": {
     "api-port": "Port used by the api",

@@ -144,13 +144,16 @@
     "album_plural": "Albümler",
     "artist": "Şarkıcı",
     "artist_plural": "Şarkıcılar",
+    "clear-history": "Clear history",
     "empty": "Birşey bulunamadı.",
+    "last-searches": "Last searches",
     "placeholder": "Arama...",
     "playlist": "Oynatma Listesi",
     "playlist_plural": "Oynatma Listeleri",
     "queue-add": "Tüm şarkıları sıraya ekle",
     "track": "Şarkı",
-    "track_plural": "Şarkılar"
+    "track_plural": "Şarkılar",
+    "you-can-search-for": "You can search for:"
   },
   "settings": {
     "api-port": "Api tarafından kullanılan port.",

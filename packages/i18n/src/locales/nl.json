@@ -144,13 +144,16 @@
     "album_plural": "Albums",
     "artist": "Artiest",
     "artist_plural": "Artiesten",
+    "clear-history": "Clear history",
     "empty": "Niks gevonden.",
+    "last-searches": "Last searches",
     "placeholder": "Zoeken...",
     "playlist": "Afspeellijst",
     "playlist_plural": "Afspeellijsten",
     "queue-add": "Alle nummers toevoegen aan wachtrij",
     "track": "Nummer",
-    "track_plural": "Nummers"
+    "track_plural": "Nummers",
+    "you-can-search-for": "You can search for:"
   },
   "settings": {
     "api-port": "Door de API gebruikte poort",

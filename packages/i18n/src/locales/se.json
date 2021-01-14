@@ -144,13 +144,16 @@
     "album_plural": "Album",
     "artist": "Artist",
     "artist_plural": "Artister",
+    "clear-history": "Clear history",
     "empty": "Hittade inget.",
+    "last-searches": "Last searches",
     "placeholder": "Sök...",
     "playlist": "Spellista",
     "playlist_plural": "Spellistor",
     "queue-add": "Lägg till alla spår i kön",
     "track": "Spår",
-    "track_plural": "Spår"
+    "track_plural": "Spår",
+    "you-can-search-for": "You can search for:"
   },
   "settings": {
     "api-port": "API:ets port",

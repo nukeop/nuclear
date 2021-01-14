@@ -147,7 +147,9 @@
     "artist_0": "Artists",
     "artist_1": "Artists",
     "artist_2": "Artists",
+    "clear-history": "Clear history",
     "empty": "Nic nenalezeno.",
+    "last-searches": "Last searches",
     "placeholder": "Vyhledat...",
     "playlist_0": "Playlists",
     "playlist_1": "Playlists",
@@ -155,7 +157,8 @@
     "queue-add": "Přidat všechny skladby do fronty",
     "track_0": "Tracks",
     "track_1": "Tracks",
-    "track_2": "Tracks"
+    "track_2": "Tracks",
+    "you-can-search-for": "You can search for:"
   },
   "settings": {
     "api-port": "Port, který používá api",
