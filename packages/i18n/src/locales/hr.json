@@ -147,7 +147,9 @@
     "artist_0": "Izvođača",
     "artist_1": "Izvođač",
     "artist_2": "Izvođača",
+    "clear-history": "Clear history",
     "empty": "Ništa nije pronađeno.",
+    "last-searches": "Last searches",
     "placeholder": "Traži...",
     "playlist_0": "Popisa za reprodukciju",
     "playlist_1": "Popis za reprodukciju",
@@ -155,7 +157,8 @@
     "queue-add": "Dodaj sve pjesme u red za reproduckiju",
     "track_0": "Pjesama",
     "track_1": "Pjesma",
-    "track_2": "Pjesama"
+    "track_2": "Pjesama",
+    "you-can-search-for": "You can search for:"
   },
   "settings": {
     "api-port": "Port korišten od API'a",

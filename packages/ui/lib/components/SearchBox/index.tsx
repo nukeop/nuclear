@@ -14,6 +14,12 @@ const SearchBox = ({
   disabled,
   placeholder,
   searchProviders,
+  searchHistory,
+  lastSearchesLabel,
+  clearHistoryLabel,
+  footerLabel,
+  onClearHistory,
+  onSearch,
   selectedSearchProvider,
   onSearchProviderSelect,
   onChange,
@@ -46,7 +52,7 @@ const SearchBox = ({
         )}
         ref={searchRef}
       >
-        <Icon name='search' disabled={disabled}/>
+        <Icon name='search' disabled={disabled} />
         <input
           autoFocus
           placeholder={placeholder}
@@ -56,7 +62,7 @@ const SearchBox = ({
           className={cx({ [styles.disabled]: disabled })}
           onClick={onClick}
         />
-        {loading && <Icon name='spinner' loading/>}
+        {loading && <Icon name='spinner' loading />}
         {
           !_.isNil(searchProviders) && !_.isEmpty(searchProviders) &&
           <Dropdown
@@ -66,7 +72,17 @@ const SearchBox = ({
             disabled={disabled}
           />
         }
-        {isFocused ? <SearchBoxDropdown display={isFocused}/> : null}
+        {
+          isFocused && <SearchBoxDropdown
+            display={isFocused}
+            searchHistory={searchHistory}
+            lastSearchesLabel={lastSearchesLabel}
+            clearHistoryLabel={clearHistoryLabel}
+            footerLabel={footerLabel}
+            onClearHistory={onClearHistory}
+            onClickHistoryEntry={onSearch}
+          />
+        }
       </div>
     </div>
   );
