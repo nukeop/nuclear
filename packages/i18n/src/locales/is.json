@@ -144,13 +144,16 @@
     "album_plural": "Albúm",
     "artist": "Tónlistamaður",
     "artist_plural": "Tónlistamenn",
+    "clear-history": "Clear history",
     "empty": "Ekkert fannst.",
+    "last-searches": "Last searches",
     "placeholder": "Leita...",
     "playlist": "Lagalisti",
     "playlist_plural": "Lagalistar",
     "queue-add": "Bæta öllum lögum í biðröðina",
     "track": "Lag",
-    "track_plural": "Lög"
+    "track_plural": "Lög",
+    "you-can-search-for": "You can search for:"
   },
   "settings": {
     "api-port": "Port notað af api",

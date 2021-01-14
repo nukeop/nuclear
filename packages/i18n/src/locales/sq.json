@@ -144,13 +144,16 @@
     "album_plural": "Albumet",
     "artist": "Artisti",
     "artist_plural": "Artistët",
+    "clear-history": "Clear history",
     "empty": "Nuk u gjet asgjë.",
+    "last-searches": "Last searches",
     "placeholder": "Kërko...",
     "playlist": "Lista e këngëve",
     "playlist_plural": "Listat e këngëve",
     "queue-add": "Shto të gjitha këngët në radhë",
     "track": "Kënga",
-    "track_plural": "Këngët"
+    "track_plural": "Këngët",
+    "you-can-search-for": "You can search for:"
   },
   "settings": {
     "api-port": "Porta është përdorur nga api",

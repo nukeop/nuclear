@@ -141,11 +141,14 @@
   "search": {
     "album": "專輯",
     "artist": "演出者",
+    "clear-history": "Clear history",
     "empty": "找不到資料",
+    "last-searches": "Last searches",
     "placeholder": "搜尋...",
     "playlist": "播放清單",
     "queue-add": "將所有曲目新增到播放佇列",
-    "track": "音樂標題"
+    "track": "音樂標題",
+    "you-can-search-for": "You can search for:"
   },
   "settings": {
     "api-port": "API 網路埠",

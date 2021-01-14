@@ -138,9 +138,12 @@
     "title": "Titel:"
   },
   "search": {
+    "clear-history": "Clear history",
     "empty": "Intet fundet.",
+    "last-searches": "Last searches",
     "placeholder": "Søg...",
-    "queue-add": "Tilføj alle sange til kø"
+    "queue-add": "Tilføj alle sange til kø",
+    "you-can-search-for": "You can search for:"
   },
   "settings": {
     "api-port": "Port benyttet af api'en",
