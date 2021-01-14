@@ -16,6 +16,8 @@ const SearchBoxContainer = ({
   handleSearch,
   unifiedSearchStarted,
   searchProvidersOptions,
+  searchHistory,
+  handleClearSearchHistory,
   selectedSearchProviderOption,
   handleSelectSearchProvider,
   isConnected,
@@ -27,9 +29,14 @@ const SearchBoxContainer = ({
     loading={unifiedSearchStarted}
     disabled={!isConnected}
     placeholder={t('placeholder')}
+    lastSearchesLabel={t('last-searches')}
+    clearHistoryLabel={t('clear-history')}
+    footerLabel={t('you-can-search-for')}
     onChange={_.debounce(handleSearch, 500)}
     onSearch={handleSearch}
     searchProviders={searchProvidersOptions}
+    searchHistory={searchHistory}
+    onClearHistory={handleClearSearchHistory}
     selectedSearchProvider={selectedSearchProviderOption}
     onSearchProviderSelect={handleSelectSearchProvider}
     isFocused={isFocused}
@@ -39,6 +46,7 @@ const SearchBoxContainer = ({
 
 const mapStateToProps = state => ({
   unifiedSearchStarted: state.search.unifiedSearchStarted,
+  searchHistory: state.search.searchHistory,
   isConnected: state.connectivity,
   searchProviders: _.get(pluginsSelectors.plugins(state), 'metaProviders'),
   selectedSearchProvider: _.get(pluginsSelectors.selected(state), 'metaProviders'),
@@ -67,7 +75,8 @@ export default compose(
     handleSelectSearchProvider:
       ({ pluginActions }) => provider =>
         pluginActions.selectMetaProvider(provider.value),
-    handleFocus: ({ searchActions }) => bool => searchActions.setSearchDropdownVisibility(bool)
+    handleFocus: ({ searchActions }) => bool => searchActions.setSearchDropdownVisibility(bool),
+    handleClearSearchHistory: ({ searchActions }) => () => searchActions.updateSearchHistory([])
   }),
   withProps(({ searchProviders, selectedSearchProvider }) => ({
     searchProvidersOptions: _.map(searchProviders, providerToOption),

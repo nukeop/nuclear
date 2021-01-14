@@ -141,11 +141,14 @@
   "search": {
     "album": "Album",
     "artist": "Musisi",
+    "clear-history": "Clear history",
     "empty": "Tak ada hasil temuan.",
+    "last-searches": "Last searches",
     "placeholder": "Cari...",
     "playlist": "Daftar putar",
     "queue-add": "Tambahkan semua lagu ke antrian",
-    "track": "Lagu"
+    "track": "Lagu",
+    "you-can-search-for": "You can search for:"
   },
   "settings": {
     "api-port": "Port yang digunakan oleh api",

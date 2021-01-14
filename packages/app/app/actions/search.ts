@@ -34,6 +34,8 @@ export const YOUTUBE_PLAYLIST_SEARCH_SUCCESS = 'YOUTUBE_PLAYLIST_SEARCH_SUCCESS'
 
 export const SEARCH_DROPDOWN_DISPLAY_CHANGE = 'SEARCH_DROPDOWN_DISPLAY_CHANGE';
 
+export const UPDATE_SEARCH_HISTORY = 'UPDATE_SEARCH_HISTORY';
+
 export function sourcesSearch(terms, plugins) {
   const searchResults = {};
   for (let i = 0; i < plugins.streamProviders.length; i++) {
@@ -42,7 +44,10 @@ export function sourcesSearch(terms, plugins) {
   return {};
 }
 
-const unifiedSearchStart = () => ({ type: UNIFIED_SEARCH_START });
+const unifiedSearchStart = (terms: string) => ({ 
+  type: UNIFIED_SEARCH_START,
+  payload: { terms }
+});
 const unifiedSearchSuccess = () => ({ type: UNIFIED_SEARCH_SUCCESS });
 const unifiedSearchError = () => ({ type: UNIFIED_SEARCH_ERROR });
 
@@ -165,7 +170,7 @@ export function youtubePlaylistSearch(terms) {
 
 export function unifiedSearch(terms, history) {
   return dispatch => {
-    dispatch(unifiedSearchStart());
+    dispatch(unifiedSearchStart(terms));
 
     Promise.all([
       dispatch(albumSearch(terms)),
@@ -304,4 +309,9 @@ export const albumInfoSearchByName = (albumName, history) => async (dispatch, ge
 export const setSearchDropdownVisibility = displayState => ({
   type: SEARCH_DROPDOWN_DISPLAY_CHANGE,
   payload: displayState
+});
+
+export const updateSearchHistory = searchHistory => ({
+  type: UPDATE_SEARCH_HISTORY,
+  payload: searchHistory
 });

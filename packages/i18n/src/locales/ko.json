@@ -141,11 +141,14 @@
   "search": {
     "album": "앨범",
     "artist": "아티스트",
+    "clear-history": "Clear history",
     "empty": "찾을수 없습니다.",
+    "last-searches": "Last searches",
     "placeholder": "검색...",
     "playlist": "재생목록",
     "queue-add": "재생목록에 모든 트랙을 추가",
-    "track": "트랙"
+    "track": "트랙",
+    "you-can-search-for": "You can search for:"
   },
   "settings": {
     "api-port": "API에서 사용하는 포트",
