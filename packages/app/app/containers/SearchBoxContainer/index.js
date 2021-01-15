@@ -54,7 +54,10 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  searchActions: bindActionCreators(SearchActions, dispatch),
+  searchActions: bindActionCreators({
+    ...SearchActions,
+    ...SearchActions.SearchActions
+  }, dispatch),
   pluginActions: bindActionCreators(PluginActions, dispatch)
 });
 
