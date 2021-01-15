@@ -1,25 +1,5 @@
-import {
-  UNIFIED_SEARCH_START,
-  UNIFIED_SEARCH_SUCCESS,
-  ARTIST_SEARCH_SUCCESS,
-  ALBUM_SEARCH_SUCCESS,
-  ALBUM_INFO_SEARCH_START,
-  ALBUM_INFO_SEARCH_SUCCESS,
-  ARTIST_INFO_SEARCH_START,
-  ARTIST_INFO_SEARCH_SUCCESS,
-  ARTIST_INFO_SEARCH_ERROR,
-  ARTIST_RELEASES_SEARCH_START,
-  ARTIST_RELEASES_SEARCH_SUCCESS,
-  ARTIST_RELEASES_SEARCH_ERROR,
-  LASTFM_TRACK_SEARCH_START,
-  LASTFM_TRACK_SEARCH_SUCCESS,
-  YOUTUBE_PLAYLIST_SEARCH_START,
-  YOUTUBE_PLAYLIST_SEARCH_SUCCESS,
-  ALBUM_INFO_SEARCH_ERROR,
-  SEARCH_DROPDOWN_DISPLAY_CHANGE,
-  UPDATE_SEARCH_HISTORY
-} from '../actions/search';
 import { Artist } from '@nuclear/core';
+import { Search } from '../actions/actionTypes';
 
 const initialState = {
   plugins: [],
@@ -66,7 +46,7 @@ function reduceLastfmTrackSearchSuccess(state, action) {
 function reduceYoutubePlaylistSearchStart(state, action) {
   return {
     ...state,
-    playlistSearchStarted: action.payload,
+    playlistSearchStarted: action.payload.terms,
     playlistSearchResults: []
   };
 }
@@ -87,7 +67,7 @@ function reduceSearchDropdownDisplay(state, action) {
 
 export default function SearchReducer(state = initialState, action) {
   switch (action.type) {
-  case UNIFIED_SEARCH_START:
+  case Search.UNIFIED_SEARCH_START:
     return {
       ...state,
       searchHistory: [
@@ -96,17 +76,17 @@ export default function SearchReducer(state = initialState, action) {
       ],
       unifiedSearchStarted: true
     };
-  case UNIFIED_SEARCH_SUCCESS:
+  case Search.UNIFIED_SEARCH_SUCCESS:
     return {
       ...state,
       unifiedSearchStarted: false
     };
-  case ALBUM_SEARCH_SUCCESS:
+  case Search.ALBUM_SEARCH_SUCCESS:
     return reduceAlbumSearchSuccess(state, action);
-  case ARTIST_SEARCH_SUCCESS:
+  case Search.ARTIST_SEARCH_SUCCESS:
     return reduceArtistSearchSuccess(state, action);
 
-  case ALBUM_INFO_SEARCH_START:
+  case Search.ALBUM_INFO_SEARCH_START:
     return {
       ...state,
       albumDetails: {
@@ -114,7 +94,7 @@ export default function SearchReducer(state = initialState, action) {
         [`${action.payload.albumId}`]: { loading: true }
       }
     };
-  case ALBUM_INFO_SEARCH_SUCCESS:
+  case Search.ALBUM_INFO_SEARCH_SUCCESS:
     return {
       ...state,
       albumDetails: {
@@ -125,7 +105,7 @@ export default function SearchReducer(state = initialState, action) {
         }
       }
     };
-  case ALBUM_INFO_SEARCH_ERROR:
+  case Search.ALBUM_INFO_SEARCH_ERROR:
     return {
       ...state,
       albumDetails: {
@@ -136,7 +116,7 @@ export default function SearchReducer(state = initialState, action) {
         }
       }
     };
-  case ARTIST_INFO_SEARCH_START:
+  case Search.ARTIST_INFO_SEARCH_START:
     return {
       ...state,
       artistDetails: {
@@ -146,7 +126,7 @@ export default function SearchReducer(state = initialState, action) {
         }
       }
     };
-  case ARTIST_INFO_SEARCH_SUCCESS:
+  case Search.ARTIST_INFO_SEARCH_SUCCESS:
     return {
       ...state,
       artistDetails: {
@@ -158,7 +138,7 @@ export default function SearchReducer(state = initialState, action) {
         }
       }
     };
-  case ARTIST_INFO_SEARCH_ERROR:
+  case Search.ARTIST_INFO_SEARCH_ERROR:
     return {
       ...state,
       artistDetails: {
@@ -169,7 +149,7 @@ export default function SearchReducer(state = initialState, action) {
         }
       }
     };
-  case ARTIST_RELEASES_SEARCH_START:
+  case Search.ARTIST_RELEASES_SEARCH_START:
     return {
       ...state,
       artistDetails: {
@@ -181,7 +161,7 @@ export default function SearchReducer(state = initialState, action) {
         }
       }
     };
-  case ARTIST_RELEASES_SEARCH_SUCCESS:
+  case Search.ARTIST_RELEASES_SEARCH_SUCCESS:
     return {
       ...state,
       artistDetails: {
@@ -193,7 +173,7 @@ export default function SearchReducer(state = initialState, action) {
         }
       }
     };
-  case ARTIST_RELEASES_SEARCH_ERROR:
+  case Search.ARTIST_RELEASES_SEARCH_ERROR:
     return {
       ...state,
       artistDetails: {
@@ -206,17 +186,17 @@ export default function SearchReducer(state = initialState, action) {
         }
       }
     };
-  case LASTFM_TRACK_SEARCH_START:
+  case Search.LASTFM_TRACK_SEARCH_START:
     return reduceLastfmTrackSearchStart(state, action);
-  case LASTFM_TRACK_SEARCH_SUCCESS:
+  case Search.LASTFM_TRACK_SEARCH_SUCCESS:
     return reduceLastfmTrackSearchSuccess(state, action);
-  case YOUTUBE_PLAYLIST_SEARCH_START:
+  case Search.YOUTUBE_PLAYLIST_SEARCH_START:
     return reduceYoutubePlaylistSearchStart(state, action);
-  case YOUTUBE_PLAYLIST_SEARCH_SUCCESS:
+  case Search.YOUTUBE_PLAYLIST_SEARCH_SUCCESS:
     return reduceYoutubePlaylistSearchSuccess(state, action);
-  case SEARCH_DROPDOWN_DISPLAY_CHANGE:
+  case Search.SEARCH_DROPDOWN_DISPLAY_CHANGE:
     return reduceSearchDropdownDisplay(state, action);
-  case UPDATE_SEARCH_HISTORY:
+  case Search.UPDATE_SEARCH_HISTORY:
     return {
       ...state,
       searchHistory: action.payload
