@@ -16,7 +16,7 @@
     "lyrics": "Låttexter",
     "main": "Huvudmeny",
     "playlists": "Spellistor",
-    "plugins": "Insticksmoduler",
+    "plugins": "Tillägg",
     "search": "Sökresultat",
     "settings": "Inställningar"
   },
@@ -110,15 +110,15 @@
   },
   "plugins": {
     "add-a-plugin": "Lägg till ett plugin",
-    "header": "Insticksmodul",
+    "header": "Tillägg",
     "lyrics-providers": "Låttextsleverantör",
     "meta-providers": "Metadataleverantör",
     "placeholder": "Välj prioriterad musikkälla:",
     "select-lyrics-provider": "Välj prioriterad låttextleverantör:",
     "select-meta-provider": "Välj prioriterad metadataleverantör:",
     "stream-providers": "Strömleverantör",
-    "user-plugins": "Användarinsticksmodul",
-    "user-plugins-warning-desc": "Insticksmoduler fungerar genom att köra kod på din dator. Använd bara insticksmoduler från källor du litar på!",
+    "user-plugins": "Användartillägg",
+    "user-plugins-warning-desc": "Tillägg fungerar genom att köra kod på din dator. Använd bara tillägg från källor du litar på!",
     "user-plugins-warning-title": "Farligt!"
   },
   "queue": {
