@@ -135,8 +135,8 @@ class SearchResults extends React.Component {
     return panes;
   }
 
-  albumInfoSearch (albumId, releaseType) {
-    this.props.albumInfoSearch(albumId, releaseType);
+  albumInfoSearch (albumId, releaseType, release) {
+    this.props.albumInfoSearch(albumId, releaseType, release);
     this.props.history.push('/album/' + albumId);
   }
 

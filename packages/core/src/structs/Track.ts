@@ -24,11 +24,11 @@ export default class Track {
     title: ''
   }) {
     this.uuid = uuidv4();
-    
     this.ids = data.ids || {};
     this.artist = data.artist;
     this.title = data.title;
-
+    this.duration = data.duration;
+    this.position = data.position;
     this.thumbnail = data.thumbnail;
   }
 

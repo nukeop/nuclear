@@ -8,7 +8,7 @@ class YoutubePlugin extends StreamProviderPlugin {
     super();
     this.name = 'Youtube Plugin';
     this.sourceName = 'Youtube';
-    this.description = 'A plugin allowing Nuclear to search for music and play it from youtube';
+    this.description = 'A plugin allowing Nuclear to search for music and play it from Youtube';
     this.image = null;
     this.isDefault = true;
   }

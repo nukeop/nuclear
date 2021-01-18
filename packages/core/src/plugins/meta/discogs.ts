@@ -203,7 +203,6 @@ class DiscogsMetaProvider extends MetaProvider {
     );
   }
 
-
   async fetchAlbumDetailsByName(
     albumName: string,
     albumType: 'master' | 'release' = 'master'

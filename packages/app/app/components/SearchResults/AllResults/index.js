@@ -32,7 +32,7 @@ class AllResults extends React.Component {
             artPlaceholder
           }
           content={el.artist}
-          onClick={() => onClick(id, el.type)}
+          onClick={() => onClick(id, el.type, el)}
           key={'item-' + i}
         />
       );

@@ -1,13 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-// Import disabled due to bundling issues
-// import bandcamp from 'bandcamp-scraper';
+import cheerio from 'cheerio';
+import * as bandcamp from 'bandcamp-scraper';
 import _ from 'lodash';
-
-const bandcamp = {
-  search: () => ({ }),
-  getAlbumUrls: () => ({ }),
-  getAlbumInfo: () => ({ })
-};
 
 type BandcampAlbumInfo = {
   artist: string;
@@ -17,14 +11,36 @@ type BandcampAlbumInfo = {
   tracks: Array<BandcampTrack>;
 }
 
+type BandcampArtistInfo = {
+  name: string;
+  location: string;
+  coverImage: string;
+  description: string;
+  albums: {
+    url: string;
+    coverImage?: string;
+    title: string;
+  }[];
+  shows: {
+    date: string;
+    venue: string;
+    venueUrl: string;
+    location: string;
+  }[];
+  bandLinks: {
+    name: string;
+    url: string;
+  }[];
+}
+
 type BandcampTrack = {
   name: string;
   url: string;
   duration: string;
 }
 
-type BandcampSearchResult = {
-  type: 'artist' | 'album';
+export type BandcampSearchResult = {
+  type: 'artist' | 'album' | 'track';
   name: string;
   url: string;
   imageUrl: string;
@@ -46,13 +62,27 @@ const promisify = <T>(func: Function, arg: any): Promise<T> => new Promise((reso
   }]);
 });
 
-export const search = (query: string): Promise<BandcampSearchResult[]> => promisify(bandcamp.search, { query, page: 1 });
-export const getAlbumsForArtist = (artistUrl: string): Promise<string[]> => promisify(bandcamp.getAlbumUrls, artistUrl);
+export const search = (query: string, page = 1): Promise<BandcampSearchResult[]> => promisify(bandcamp.search, { query, page });
 export const getAlbumInfo = (albumUrl: string): Promise<BandcampAlbumInfo> => promisify(bandcamp.getAlbumInfo, albumUrl);
+export const getArtistInfo = (artistUrl: string): Promise<BandcampArtistInfo> => promisify(bandcamp.getArtistInfo, artistUrl);
 
-export const getTrackStream = async (trackUrl: string) => {
+export const getTrackData = async (trackUrl: string) => {
   const page = await fetch(trackUrl);
   const html = await page.text();
-  const regex = /https:\/\/.*mp3-128.*?"/g;
-  return _.head(html.match(regex));
+
+  const $ = cheerio.load(html);
+  const scriptWithRaw = $('script[data-tralbum]');
+
+  let meta;
+  if (scriptWithRaw.length > 0) {
+    meta = scriptWithRaw.data('tralbum');
+  }
+
+  const duration = _.get(meta, 'trackinfo[0].duration', 0);
+  const stream = _.get(meta, 'trackinfo[0].file[\'mp3-128\']');
+
+  return {
+    stream,
+    duration
+  };
 };
