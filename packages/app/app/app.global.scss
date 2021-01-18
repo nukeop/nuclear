@@ -117,6 +117,10 @@ table {
   }
 }
 
+.ui.dimmer.visible {
+  z-index: 15;
+}
+
 .ui.tab.loading.segment,
 .ui.tab.loading,
 .ui.loader,

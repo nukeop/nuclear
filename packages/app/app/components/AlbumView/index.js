@@ -8,7 +8,7 @@ import { Loader as NuclearLoader, ContextPopup, PopupButton } from '@nuclear/ui'
 
 import TrackRow from '../TrackRow';
 import * as Utils from '../../utils';
-import {safeAddUuid} from '../../actions/helpers';
+import { safeAddUuid } from '../../actions/helpers';
 
 import styles from './styles.scss';
 import artPlaceholder from '../../../resources/media/art_placeholder.png';
@@ -19,7 +19,7 @@ class AlbumView extends React.Component {
     super(props);
   }
 
-  addAlbumToQueue (album) {
+  addAlbumToQueue(album) {
     const albumThumbnail = this.getAlbumImage(album);
     album.tracklist.map(track => {
       this.props.addToQueue(this.props.streamProviders, {
@@ -58,14 +58,14 @@ class AlbumView extends React.Component {
     );
   }
 
-  playAll (album) {
+  playAll(album) {
     this.props.clearQueue();
     this.addAlbumToQueue(album);
     this.props.selectSong(0);
     this.props.startPlayback();
   }
 
-  renderInvalidData () {
+  renderInvalidData() {
     return (
       <div>
         <h3>Discogs returned invalid data.</h3>
@@ -74,11 +74,11 @@ class AlbumView extends React.Component {
     );
   }
 
-  getAlbumImage (album) {
+  getAlbumImage(album) {
     return _.get(album, 'coverImage');
   }
 
-  renderAlbumArtistName (album) {
+  renderAlbumArtistName(album) {
     return (
       <div className={styles.album_artist}>
         by{' '}
@@ -94,7 +94,7 @@ class AlbumView extends React.Component {
     );
   }
 
-  renderAlbumGenre (album) {
+  renderAlbumGenre(album) {
     return (
       !_.isEmpty(album.genres) &&
       <div className={styles.album_genre}>
@@ -104,7 +104,7 @@ class AlbumView extends React.Component {
     );
   }
 
-  renderPlayAllButton (album) {
+  renderPlayAllButton(album) {
     return (
       <a
         onClick={() => this.playAll(album)}
@@ -116,7 +116,7 @@ class AlbumView extends React.Component {
     );
   }
 
-  renderAlbumYear (album) {
+  renderAlbumYear(album) {
     return (
       <div className={styles.album_year}>
         <label>Year:</label>
@@ -125,7 +125,7 @@ class AlbumView extends React.Component {
     );
   }
 
-  renderAlbumTracksCount (album) {
+  renderAlbumTracksCount(album) {
     return (
       <div className={styles.album_tracks}>
         <label>Tracks:</label>
@@ -134,7 +134,7 @@ class AlbumView extends React.Component {
     );
   }
 
-  renderAlbumInfoBox (album, albumImage) {
+  renderAlbumInfoBox(album, albumImage) {
     return (
       <div className={styles.album_info_box}>
         <Img
@@ -146,7 +146,10 @@ class AlbumView extends React.Component {
           <div className={styles.album_title}>{album.title}</div>
           {this.renderAlbumArtistName(album)}
           {this.renderAlbumGenre(album)}
-          {this.renderAlbumYear(album)}
+          {
+            album.year &&
+            this.renderAlbumYear(album)
+          }
           {this.renderAlbumTracksCount(album)}
           <div className={styles.album_buttons}>
             {this.renderPlayAllButton(album)}
@@ -171,15 +174,15 @@ class AlbumView extends React.Component {
     );
   }
 
-  renderAlbumLoading (album, albumImage) {
+  renderAlbumLoading(album, albumImage) {
     return (
       <div className={styles.album_view_container}>
         <Dimmer.Dimmable>
-          <Dimmer active={album.loading}>
+          <Dimmer active={album?.loading}>
             <Loader />
           </Dimmer>
           {
-            album.loading !== true && (
+            album?.loading !== true && (
               <div className={styles.album}>
                 {this.renderAlbumInfoBox(album, albumImage)}
                 {this.renderAlbumTracksList(album)}
@@ -191,7 +194,7 @@ class AlbumView extends React.Component {
     );
   }
 
-  renderTrack (track, album, index) {
+  renderTrack(track, album, index) {
     if (parseInt(track.duration) !== track.duration) {
       track.duration = Utils.stringDurationToSeconds(track.duration);
     }
@@ -207,7 +210,7 @@ class AlbumView extends React.Component {
     />);
   }
 
-  renderTrackTableHeader () {
+  renderTrackTableHeader() {
     return (<thead>
       <tr>
         <th className={styles.center}>
@@ -221,7 +224,7 @@ class AlbumView extends React.Component {
     </thead>);
   }
 
-  renderAlbumTracksList (album) {
+  renderAlbumTracksList(album) {
     return (
       <table className={styles.album_tracklist}>
         {this.renderTrackTableHeader()}
@@ -232,7 +235,7 @@ class AlbumView extends React.Component {
     );
   }
 
-  renderOptionsButtons (album) {
+  renderOptionsButtons(album) {
     return (
       <ContextPopup
         trigger={
@@ -263,7 +266,7 @@ class AlbumView extends React.Component {
     );
   }
 
-  render () {
+  render() {
     const { album } = this.props;
 
     const albumImage = this.getAlbumImage(album);
@@ -280,9 +283,9 @@ AlbumView.propTypes = {
 };
 
 AlbumView.defaultProps = {
-  addFavoriteAlbum: () => {},
-  isFavorite: () => {},
-  addToDownloads: () => {},
+  addFavoriteAlbum: () => { },
+  isFavorite: () => { },
+  addToDownloads: () => { },
   streamProviders: [],
   settings: {}
 };

@@ -149,7 +149,7 @@ export const albumInfoSearch = (albumId, releaseType = 'master', release) => asy
   dispatch(SearchActions.albumInfoStart(albumId));
   try {
     const selectedProvider = getSelectedMetaProvider(getState);
-    const albumDetails = await selectedProvider.fetchAlbumDetails(albumId, releaseType, _.get(release, 'resource_url'));
+    const albumDetails = await selectedProvider.fetchAlbumDetails(albumId, releaseType, release?.resourceUrl);
     dispatch(SearchActions.albumInfoSuccess(albumId, albumDetails));
   } catch (e) {
     logger.error(e);
@@ -172,11 +172,11 @@ const artistInfoError = (artistId, error) => ({
   payload: { artistId, error }
 });
 
-export const artistInfoSearch = artistId => async (dispatch, getState) => {
+export const artistInfoSearch = (artistId, artist) => async (dispatch, getState) => {
   dispatch(artistInfoStart(artistId));
   try {
     const selectedProvider = getSelectedMetaProvider(getState);
-    const artistDetails = await selectedProvider.fetchArtistDetails(artistId);
+    const artistDetails = await selectedProvider.fetchArtistDetails(artistId, artist);
     dispatch(artistInfoSuccess(artistId, artistDetails));
   } catch (e) {
     logger.error(e);

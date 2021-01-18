@@ -201,6 +201,12 @@ module.exports = (env) => {
         {
           test: /\.svg$/,
           loader: 'svg-inline-loader'
+        },
+        {
+          test: /node_modules[/\\](iconv-lite)[/\\].+/,
+          resolve: {
+            aliasFields: ['main']
+          }
         }
       ]
     },

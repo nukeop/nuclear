@@ -49,6 +49,10 @@
   .stream_id {
     display: flex;
     flex-flow: column;
+
+    &>* {
+      @include ellipsis;
+    }
   }
   
   .stream_thumbnail {

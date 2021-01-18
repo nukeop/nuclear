@@ -19,7 +19,7 @@ class ArtistView extends React.Component {
     this.isLoading = this.isLoading.bind(this);
   }
 
-  isLoading () {
+  isLoading() {
     return _.get(this.props, 'artist.loading');
   }
 
@@ -27,32 +27,34 @@ class ArtistView extends React.Component {
     return _.get(this.props, 'artist.ontour');
   }
 
-  renderArtistHeader (artist, history) {
+  renderArtistHeader(artist, history) {
     return (
       <div className={styles.artist_header_overlay}>
         <div className={styles.artist_header_container}>
-          <div
-            className={styles.artist_avatar}
-            style={{
-              background: `url('${
-                _.get(artist, 'images[1]', artPlaceholder)
-              }')`,
-              backgroundRepeat: 'noRepeat',
-              backgroundPosition: 'center',
-              backgroundSize: 'cover'
-            }}
-          />
+          {
+            artist.images &&
+            <div
+              className={styles.artist_avatar}
+              style={{
+                background: `url('${_.get(artist, 'images[1]', artPlaceholder)
+                }')`,
+                backgroundRepeat: 'noRepeat',
+                backgroundPosition: 'center',
+                backgroundSize: 'cover'
+              }}
+            />
+          }
 
           <div className={styles.artist_name_container}>
             <div className={styles.artist_name_line}>
               <h1>{artist.name}</h1>
               {
                 this.isOnTour() &&
-                  <span
-                    className={styles.on_tour}
-                  >
-                    {this.props.t('tour')}
-                  </span>
+                <span
+                  className={styles.on_tour}
+                >
+                  {this.props.t('tour')}
+                </span>
               }
             </div>
 
@@ -66,7 +68,7 @@ class ArtistView extends React.Component {
     );
   }
 
-  renderPopularTracks () {
+  renderPopularTracks() {
     const {
       artist,
       addToQueue,
@@ -86,27 +88,26 @@ class ArtistView extends React.Component {
     );
   }
 
-  renderSimilarArtists () {
+  renderSimilarArtists() {
     const { artist, history, artistInfoSearchByName } = this.props;
 
     return (
       !this.isLoading() &&
-        <SimilarArtists
-          artists={_.get(artist, 'similar', [])}
-          artistInfoSearchByName={artistInfoSearchByName}
-          history={history}
-        />
+      <SimilarArtists
+        artists={_.get(artist, 'similar', [])}
+        artistInfoSearchByName={artistInfoSearchByName}
+        history={history}
+      />
     );
   }
 
-  renderHeaderBanner () {
+  renderHeaderBanner() {
     const { artist, history } = this.props;
 
     return (
       <div
         style={{
-          background: `url('${
-            _.get(artist, 'coverImage', artPlaceholder)
+          background: `url('${_.get(artist, 'coverImage', artPlaceholder)
           }')`,
           backgroundRepeat: 'noRepeat',
           backgroundPosition: 'center',
@@ -119,7 +120,7 @@ class ArtistView extends React.Component {
     );
   }
 
-  render () {
+  render() {
     const { artist, history, albumInfoSearch } = this.props;
 
     return (
@@ -157,7 +158,7 @@ class ArtistView extends React.Component {
             })}
             albumInfoSearch={albumInfoSearch}
             history={history}
-            loading={_.get(artist, 'releasesLoading')}
+            loading
           />
         </Dimmer.Dimmable>
       </div>
