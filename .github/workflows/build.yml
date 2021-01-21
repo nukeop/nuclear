@@ -73,6 +73,8 @@ jobs:
           windows-build-${{ env.cache-name }}-
           windows-build-
           windows-
+    - name: add git binaries to PATH
+      run: set PATH=%PATH%;C:\Program Files\Git\usr\bin;C:\Program Files\Git\mingw64\libexec\git-core
     - name: npm install, build, and test
       run: |
         npm install
