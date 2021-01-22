@@ -51,14 +51,14 @@ DownloadsHeader.defaultProps = {
 export default compose(
   withTranslation('settings'),
   withHandlers({
-    setDirectory: ({ setStringOption }) => () => {
-      const dialogResult = remote.dialog.showOpenDialog({
+    setDirectory: ({ setStringOption }) => async () => {
+      const dialogResult = await remote.dialog.showOpenDialog({
         properties: ['openDirectory']
       });
-      if (!_.isNil(dialogResult)) {
+      if (!dialogResult.canceled && !_.isEmpty(dialogResult.filePaths)) {
         setStringOption(
           'downloads.dir',
-          _.head(dialogResult)
+          _.head(dialogResult.filePaths)
         );
       }
     }
