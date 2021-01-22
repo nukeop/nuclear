@@ -11,7 +11,7 @@ import * as SearchActions from '../../actions/search';
 import * as PluginActions from '../../actions/plugins';
 import { pluginsSelectors } from '../../selectors/plugins';
 
-const MIN_SEARCH_LENGTH = 3;
+const MIN_SEARCH_LENGTH = 2;
 const SearchBoxContainer = ({
   handleSearch,
   unifiedSearchStarted,
