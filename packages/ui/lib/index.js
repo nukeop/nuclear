@@ -24,5 +24,6 @@ export { default as TrackRow } from './components/TrackRow';
 export { default as UserPluginsItem } from './components/UserPluginsItem';
 export { default as SearchBox } from './components/SearchBox';
 export { default as MiniPlayer } from './components/MiniPlayer';
+export { default as Visualizer } from './components/Visualizer';
 
 export * from './utils';

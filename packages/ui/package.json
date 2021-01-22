@@ -63,6 +63,8 @@
 		"typescript": "^3.9.7"
 	},
 	"dependencies": {
+		"butterchurn": "^2.6.7",
+		"butterchurn-presets": "^2.4.7",
 		"classnames": "^2.2.6",
 		"lodash": "^4.17.15",
 		"numeral": "^2.0.6",
