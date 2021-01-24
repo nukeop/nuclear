@@ -18,10 +18,12 @@ export const Static = () => {
         audio: true,
         video: false
       });
-      console.log({mic})
       const micNode = audioContext.createMediaStreamSource(mic);
-      console.log({micNode})
-      setAudioNode(micNode);
+      audioContext.resume();
+      const gain = audioContext.createGain();
+      gain.gain.value = 1.25;
+      micNode.connect(gain);
+      setAudioNode(gain);
     };
     getMic();
   }, [audioContext]);
@@ -29,7 +31,6 @@ export const Static = () => {
   useEffect(() => {
     setAudioContext(new window.AudioContext());
   }, []);
-
 
   return <>
     <Visualizer
