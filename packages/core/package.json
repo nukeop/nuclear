@@ -33,7 +33,7 @@
     "redux": "^4.0.5",
     "simple-get-lyrics": "0.0.4",
     "youtube-playlist": "^1.0.2",
-    "ytsr": "^3.2.1"
+    "ytsr": "^3.2.3"
   },
   "devDependencies": {
     "@types/isomorphic-fetch": "0.0.35",
@@ -45,7 +45,7 @@
     "mock-require": "^3.0.3",
     "ts-node": "^8.10.2",
     "typescript": "^3.9.7",
-    "ytdl-core": "^4.4.1"
+    "ytdl-core": "^4.4.5"
   },
   "ava": {
     "files": [
