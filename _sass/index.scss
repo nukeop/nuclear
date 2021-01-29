@@ -307,24 +307,26 @@ form {
   display: flex;
   flex-flow: column;
   justify-content: space-evenly;
-  align-items: center;
   width: 100%;
-  padding: 4rem 0 6rem;
+  padding: 0 6rem;
+  max-width: 60%;
+  margin: auto;
 }
 
 .testimonial {
   display: flex;
   flex-flow: column;
-  align-items: center;
   justify-content: center;
-  padding: 2rem;
+  background-color: #ddd;
+  padding: 32px;
+  margin: 20px;
+  border-left: 10px solid;
+  border-radius: 5px;
 
   q {
     font-style: italic;
     font-size: 2.5rem;
     font-weight: lighter;
-    margin-bottom: 1rem;
-    text-align: center;
   }
 
   .rating {
@@ -333,7 +335,7 @@ form {
 
   .author {
     font-size: 1.6rem;
-    text-align: center;
+    text-align: right;
   }
 }
 
