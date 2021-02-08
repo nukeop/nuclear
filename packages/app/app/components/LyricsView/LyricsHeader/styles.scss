@@ -3,6 +3,8 @@
 .lyrics_header {
   margin-left: 1rem;
   margin-bottom: 1rem;
+  cursor: text;
+  user-select: text;
 
   .lyrics_header_name {
     font-size: 48px;
