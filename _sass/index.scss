@@ -323,6 +323,11 @@ form {
   border-left: 10px solid;
   border-radius: 5px;
 
+  a {
+    text-decoration: none;
+    color: $bg;
+  }
+
   q {
     font-style: italic;
     font-size: 2.5rem;

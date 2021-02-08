@@ -1,9 +1,0 @@
-{
-    "title": "Genres added to dashboard",
-    "timestamp": 1517351620,
-    "body": "Genres tab has been added to the dashboard. It displays the most popular genres in the form of clickable tiles, which redirect to a page with a description of given genre along with a list of the most popular artists, albums, and tracks.",
-    "tags": [
-	"announcement",
-	"feature"
-    ]
-}
