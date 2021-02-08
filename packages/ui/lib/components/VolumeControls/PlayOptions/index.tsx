@@ -1,6 +1,6 @@
 import React from 'react';
 import cx from 'classnames';
-import { Icon, SemanticICONS } from 'semantic-ui-react';
+import { Icon, SemanticICONS, Popup } from 'semantic-ui-react';
 
 import styles from './styles.scss';
 
@@ -12,19 +12,20 @@ export type PlayOptionControlProps = {
 };
 
 const PlayOptionControl: React.FC<PlayOptionControlProps> = ({
+  name,
   icon,
   enabled = true,
   onToggle
 }) => (
-    <Icon
-      className={cx(
-        styles.play_option_icon,
-        { disabled: !enabled }
-        )}
-      name={icon}
-      onClick={onToggle}
-      size='large'
-    />
+  <Popup content={name} className={styles.play_option_popup} trigger={<Icon
+    className={cx(
+      styles.play_option_icon,
+      { disabled: !enabled }
+      )}
+    name={icon}
+    onClick={onToggle}
+    size='large'
+  />}/>
   );
 
 export type PlayOptionsProps = {
