@@ -17,16 +17,20 @@ const PlayOptionControl: React.FC<PlayOptionControlProps> = ({
   enabled = true,
   onToggle
 }) => (
-  <Popup content={name} className={styles.play_option_popup} trigger={<Icon
-    className={cx(
-      styles.play_option_icon,
-      { disabled: !enabled }
-      )}
-    name={icon}
-    onClick={onToggle}
-    size='large'
-  />}/>
-  );
+  <Popup content={name}
+    inverted 
+    basic
+    trigger={
+    <Icon
+      className={cx(
+        styles.play_option_icon,
+        { disabled: !enabled }
+        )}
+      name={icon}
+      onClick={onToggle}
+      size='large'
+    />}
+  />);
 
 export type PlayOptionsProps = {
   playOptions: PlayOptionControlProps[]
