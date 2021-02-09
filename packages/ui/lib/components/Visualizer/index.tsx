@@ -1,55 +1,86 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 import butterchurn from 'butterchurn';
 import butterchurnPresets from 'butterchurn-presets';
+import Measure from 'react-measure';
 
 export type VisualizerProps = {
   audioContext: AudioContext;
-  audioNode?: AudioNode;
+  previousNode?: AudioNode;
+  location?: Location;
+  presetName: string;
+}
+
+type Size = {
+  x: number;
+  y: number;
 }
 
 const Visualizer: React.FC<VisualizerProps> = ({
   audioContext,
-  audioNode
+  previousNode,
+  location,
+  presetName
 }) => {
   const canvasRef = useRef();
+  const [canvasSize, setCanvasSize] = useState<Size>({ x: 0, y: 0 });
+  const [visualizerNode, setVisualizerNode] = useState<HTMLElement>();
   const [visualizer, setVisualizer] = useState();
-
   const startRendering = useCallback(() => {
     requestAnimationFrame(() => startRendering());
-    visualizer.render();
+    visualizer?.render();
   }, [visualizer]);
 
   useEffect(() => {
     if (canvasRef.current) {
       setVisualizer(butterchurn.createVisualizer(audioContext, canvasRef.current, {
-        width: 300,
-        height: 300,
+        width: canvasSize.x,
+        height: canvasSize.y,
         textureRatio: 1
       }));
     }
-  }, [canvasRef, audioNode, audioContext]);
+  }, [canvasRef, canvasSize, visualizerNode, previousNode, audioContext]);
 
   useEffect(() => {
-    if (!audioNode || !visualizer) {
+    visualizer?.setRendererSize(canvasSize.x, canvasSize.y);
+  }, [visualizer, canvasSize]);
+
+  useLayoutEffect(() => {
+    setVisualizerNode(document.getElementById('visualizer_node'));
+  }, [location]);
+
+  useEffect(() => {
+    if (!previousNode || !visualizer) {
       return;
     }
+    visualizer?.connectAudio(previousNode);
 
-    visualizer.connectAudio(audioNode);
     const presets = butterchurnPresets.getPresets();
-    const preset = presets['Flexi, martin + geiss - dedicated to the sherwin maxawow'];
+    const preset = presets[presetName];
+    visualizer?.loadPreset(preset, 0.0);
 
-    visualizer.loadPreset(preset, 0.0);
-
-    visualizer.setRendererSize(300, 300);
+    visualizer?.setRendererSize(canvasSize.x, canvasSize.y);
     startRendering();
-  }, [audioNode, visualizer, startRendering]);
+  }, [previousNode, visualizerNode, visualizer, canvasSize, startRendering, presetName]);
 
-  return <div>
-    {
-      audioNode &&
-      <canvas ref={canvasRef} width={300} height={300} />
-    }
-  </div>;
+  return visualizerNode
+    ? createPortal(
+      previousNode && visualizerNode &&
+      <Measure
+        bounds
+        onResize={_.debounce((contentRect) => setCanvasSize({x: contentRect.bounds.width, y: contentRect.bounds.height}), 2000)}
+      >
+        {
+          ({ measureRef }) => (
+            <div ref={measureRef}>
+              <canvas ref={canvasRef} width={canvasSize.x} height={canvasSize.y} />
+            </div>
+          )
+        }
+      </Measure>,
+      visualizerNode
+    )
+    : null;
 };
 
 export default Visualizer;
