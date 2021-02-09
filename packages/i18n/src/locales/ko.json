@@ -18,7 +18,8 @@
     "playlists": "플레이 리스트",
     "plugins": "플러그인",
     "search": "검색 결과",
-    "settings": "설정"
+    "settings": "설정",
+    "visualizer": "Visualizer"
   },
   "artist": {
     "count": "총 재생 횟수",

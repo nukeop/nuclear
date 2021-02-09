@@ -18,7 +18,8 @@
     "playlists": "Spellistor",
     "plugins": "Insticksmoduler",
     "search": "Sökresultat",
-    "settings": "Inställningar"
+    "settings": "Inställningar",
+    "visualizer": "Visualizer"
   },
   "artist": {
     "count": "Antal spelningar",

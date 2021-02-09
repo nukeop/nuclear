@@ -18,7 +18,8 @@
     "playlists": "Lista de Reprodução",
     "plugins": "Plugins",
     "search": "Busca",
-    "settings": "Configurações"
+    "settings": "Configurações",
+    "visualizer": "Visualizer"
   },
   "artist": {
     "count": "Play counts",

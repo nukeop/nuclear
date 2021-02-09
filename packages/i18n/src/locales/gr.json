@@ -18,7 +18,8 @@
     "playlists": "Λίστες αναπαραγωγής",
     "plugins": "Πρόσθετα",
     "search": "Αναζήτηση",
-    "settings": "Ρυθμίσεις"
+    "settings": "Ρυθμίσεις",
+    "visualizer": "Visualizer"
   },
   "artist": {
     "count": "Συνολικός αριθμός αναπαραγωγών",

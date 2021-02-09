@@ -18,7 +18,8 @@
     "playlists": "播放清單",
     "plugins": "插件",
     "search": "搜尋",
-    "settings": "設定"
+    "settings": "設定",
+    "visualizer": "Visualizer"
   },
   "artist": {
     "count": "播放次數",
