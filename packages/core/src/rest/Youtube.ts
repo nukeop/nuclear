@@ -112,7 +112,7 @@ export async function trackSearchByString(query: string, omitStreamId?: string, 
   ) as ytsr.Video;
   const topTrackInfo = await ytdl.getInfo(topTrack.url);
   const formatInfo = ytdl.chooseFormat(topTrackInfo.formats, { quality: 'highestaudio' });
-  
+
   return {
     source: sourceName,
     id: topTrack.id,

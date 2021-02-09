@@ -169,7 +169,8 @@ class App extends React.PureComponent {
                 { name: 'plugins', path: 'plugins', icon: 'flask' },
                 { name: 'search', path: 'search', icon: 'search' },
                 { name: 'settings', path: 'settings', icon: 'cogs' },
-                { name: 'equalizer', path: 'equalizer', icon: 'sliders' }
+                { name: 'equalizer', path: 'equalizer', icon: 'sliders' },
+                { name: 'visualizer', path: 'visualizer', icon: 'tint' }
               ])
             }
 
