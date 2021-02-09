@@ -11,6 +11,7 @@ import PopularTracks from './PopularTracks';
 
 import styles from './styles.scss';
 import artPlaceholder from '../../../resources/media/art_placeholder.png';
+import ArtistLink from './ArtistLink';
 
 @withTranslation('artist')
 class ArtistView extends React.Component {
@@ -104,6 +105,7 @@ class ArtistView extends React.Component {
   renderHeaderBanner() {
     const { artist, history } = this.props;
 
+
     return (
       <div
         style={{
@@ -122,6 +124,7 @@ class ArtistView extends React.Component {
 
   render() {
     const { artist, history, albumInfoSearch } = this.props;
+    const artistUrl=artist?.topTracks[0]?.artist?.url;
 
     return (
       <div className={styles.artist_view_container}>
@@ -141,6 +144,7 @@ class ArtistView extends React.Component {
             </>
           )}
 
+          <ArtistLink artistLink={artistUrl} size={'small'}  />
           <div className={
             cx(
               styles.artist_related_container,
