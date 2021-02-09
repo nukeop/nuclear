@@ -18,7 +18,8 @@
     "playlists": "Afspeellijsten",
     "plugins": "Plug-ins",
     "search": "Zoekresultaten",
-    "settings": "Instellingen"
+    "settings": "Instellingen",
+    "visualizer": "Visualizer"
   },
   "artist": {
     "count": "Aantal keer beluisterd",

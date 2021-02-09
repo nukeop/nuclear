@@ -18,7 +18,8 @@
     "playlists": "Плейлист",
     "plugins": "Плагины",
     "search": "Результаты Поиска",
-    "settings": "Настройки"
+    "settings": "Настройки",
+    "visualizer": "Visualizer"
   },
   "artist": {
     "count": "Счетчик проигрываний",

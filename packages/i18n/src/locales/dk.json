@@ -18,7 +18,8 @@
     "playlists": "Afspilningslister",
     "plugins": "Udvidelser",
     "search": "Søgeresultater",
-    "settings": "Indstillinger"
+    "settings": "Indstillinger",
+    "visualizer": "Visualizer"
   },
   "artist": {
     "count": "Antal afspilninger",

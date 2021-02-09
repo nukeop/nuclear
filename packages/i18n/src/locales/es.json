@@ -18,7 +18,8 @@
     "playlists": "Listas de reproducción",
     "plugins": "Plugins",
     "search": "Búsqueda",
-    "settings": "Ajustes"
+    "settings": "Ajustes",
+    "visualizer": "Visualizer"
   },
   "artist": {
     "count": "Contador",
