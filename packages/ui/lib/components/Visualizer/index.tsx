@@ -1,8 +1,9 @@
 import React, { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
-import { createPortal } from 'react-dom';
+import ReactDOM from 'react-dom';
 import butterchurn from 'butterchurn';
 import butterchurnPresets from 'butterchurn-presets';
 import Measure from 'react-measure';
+import _ from 'lodash';
 
 export type VisualizerProps = {
   audioContext: AudioContext;
@@ -16,6 +17,13 @@ type Size = {
   y: number;
 }
 
+type ButterchurnVisualizer = {
+  render: () => void;
+  setRendererSize: (x: number, y: number) => void;
+  connectAudio: (audioNode: AudioNode) => void;
+  loadPreset: (preset, blendTime: number) => void;
+}
+
 const Visualizer: React.FC<VisualizerProps> = ({
   audioContext,
   previousNode,
@@ -25,7 +33,7 @@ const Visualizer: React.FC<VisualizerProps> = ({
   const canvasRef = useRef();
   const [canvasSize, setCanvasSize] = useState<Size>({ x: 0, y: 0 });
   const [visualizerNode, setVisualizerNode] = useState<HTMLElement>();
-  const [visualizer, setVisualizer] = useState();
+  const [visualizer, setVisualizer] = useState<ButterchurnVisualizer>();
   const startRendering = useCallback(() => {
     requestAnimationFrame(() => startRendering());
     visualizer?.render();
@@ -64,7 +72,7 @@ const Visualizer: React.FC<VisualizerProps> = ({
   }, [previousNode, visualizerNode, visualizer, canvasSize, startRendering, presetName]);
 
   return visualizerNode
-    ? createPortal(
+    ? ReactDOM.createPortal(
       previousNode && visualizerNode &&
       <Measure
         bounds
