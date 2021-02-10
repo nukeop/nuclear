@@ -1,14 +1,17 @@
-import React, { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
+import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import ReactDOM from 'react-dom';
 import butterchurn from 'butterchurn';
 import butterchurnPresets from 'butterchurn-presets';
 import Measure from 'react-measure';
 import _ from 'lodash';
 
+import styles from './styles.scss';
+
 export type VisualizerProps = {
   audioContext: AudioContext;
   previousNode?: AudioNode;
   location?: Location;
+  trackName?: string;
   presetName: string;
 }
 
@@ -21,66 +24,92 @@ type ButterchurnVisualizer = {
   render: () => void;
   setRendererSize: (x: number, y: number) => void;
   connectAudio: (audioNode: AudioNode) => void;
-  loadPreset: (preset, blendTime: number) => void;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  loadPreset: (preset: Record<string, any>, blendTime: number) => void;
+  launchSongTitleAnim: (title: string) => void;
 }
 
 const Visualizer: React.FC<VisualizerProps> = ({
   audioContext,
   previousNode,
   location,
+  trackName,
   presetName
 }) => {
   const canvasRef = useRef();
   const [canvasSize, setCanvasSize] = useState<Size>({ x: 0, y: 0 });
   const [visualizerNode, setVisualizerNode] = useState<HTMLElement>();
   const [visualizer, setVisualizer] = useState<ButterchurnVisualizer>();
-  const startRendering = useCallback(() => {
-    requestAnimationFrame(() => startRendering());
-    visualizer?.render();
-  }, [visualizer]);
 
   useEffect(() => {
     if (canvasRef.current) {
-      setVisualizer(butterchurn.createVisualizer(audioContext, canvasRef.current, {
-        width: canvasSize.x,
-        height: canvasSize.y,
-        textureRatio: 1
-      }));
+      const _visualizer = butterchurn.createVisualizer(
+        audioContext,
+        canvasRef.current,
+        {
+          width: canvasSize.x,
+          height: canvasSize.y,
+          textureRatio: 1
+        }
+      );
+      _visualizer.connectAudio(previousNode);
+      setVisualizer(_visualizer);
     }
-  }, [canvasRef, canvasSize, visualizerNode, previousNode, audioContext]);
+  }, [canvasRef, canvasSize, audioContext, previousNode]);
 
   useEffect(() => {
-    visualizer?.setRendererSize(canvasSize.x, canvasSize.y);
+    if (visualizer) {
+      visualizer.setRendererSize(canvasSize.x, canvasSize.y);
+    }
   }, [visualizer, canvasSize]);
 
   useLayoutEffect(() => {
-    setVisualizerNode(document.getElementById('visualizer_node'));
+    const visualizerNodeElement = document.getElementById('visualizer_node');
+    setVisualizerNode(visualizerNodeElement);
   }, [location]);
 
   useEffect(() => {
     if (!previousNode || !visualizer) {
       return;
     }
-    visualizer?.connectAudio(previousNode);
 
     const presets = butterchurnPresets.getPresets();
     const preset = presets[presetName];
     visualizer?.loadPreset(preset, 0.0);
 
-    visualizer?.setRendererSize(canvasSize.x, canvasSize.y);
-    startRendering();
-  }, [previousNode, visualizerNode, visualizer, canvasSize, startRendering, presetName]);
+    let animationFrameRequest: number | null = null;
+    const renderingLoop = () => {
+      visualizer?.render();
+      animationFrameRequest = requestAnimationFrame(renderingLoop);
+    };
+    renderingLoop();
+
+    return () => {
+      if (animationFrameRequest !== null) {
+        cancelAnimationFrame(animationFrameRequest);
+      }
+    };
+  }, [previousNode, visualizerNode, visualizer, presetName]);
+
+  useEffect(() => {
+    if (!visualizer || !trackName) {
+      return;
+    }
+    visualizer.launchSongTitleAnim(trackName);
+  }, [visualizer, trackName]);
+
+  const onResize = _.debounce(contentRect => setCanvasSize({ x: contentRect.bounds.width, y: contentRect.bounds.height }), 2000);
 
   return visualizerNode
     ? ReactDOM.createPortal(
       previousNode && visualizerNode &&
       <Measure
         bounds
-        onResize={_.debounce((contentRect) => setCanvasSize({x: contentRect.bounds.width, y: contentRect.bounds.height}), 2000)}
+        onResize={onResize}
       >
         {
           ({ measureRef }) => (
-            <div ref={measureRef}>
+            <div className={styles.visualizer} ref={measureRef}>
               <canvas ref={canvasRef} width={canvasSize.x} height={canvasSize.y} />
             </div>
           )
