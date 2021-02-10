@@ -156,7 +156,8 @@ class SoundContainer extends React.Component {
   }
 
   render() {
-    const { player, equalizer, actions, enableSpectrum, currentStream, location } = this.props;
+    const { queue, player, equalizer, actions, enableSpectrum, currentStream, location } = this.props;
+    const currentTrack = queue.queueItems[queue.currentSong];
 
     return Boolean(currentStream) && (
       <Sound
@@ -184,6 +185,7 @@ class SoundContainer extends React.Component {
         <Visualizer
           presetName='martin - angel flight'
           location={location}
+          trackName={currentTrack ? `${currentTrack.artist} - ${currentTrack.name}` : undefined}
         />
       </Sound>
     );

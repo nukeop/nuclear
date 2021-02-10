@@ -45,6 +45,7 @@ export const Mic = () => {
       audioContext={audioContext}
       previousNode={audioNode}
       presetName={preset}
+      trackName='Test track'
     />
   </>;
 };
