@@ -4,15 +4,15 @@ import FontAwesome from 'react-fontawesome';
 
 const shell = require('electron').shell;
 
-const ArtistLink = ({ artistLink, size }) => (
+const ArtistLink = ({ artistLink, size, label='Visit', circular=false}) => (
   <Button
     primary
     onClick={() => shell.openExternal(artistLink)}
     size={size}
-    // className={styles.add_button}
+    circular={circular}
     aria-label={'Visit Artist Profile'}
   >
-    <FontAwesome name='link' /> Visit
+    <FontAwesome name='link' /> {label}
   </Button>
 );
 

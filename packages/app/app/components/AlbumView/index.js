@@ -12,6 +12,7 @@ import { safeAddUuid } from '../../actions/helpers';
 
 import styles from './styles.scss';
 import artPlaceholder from '../../../resources/media/art_placeholder.png';
+import ArtistLink from '../ArtistView/ArtistLink';
 
 @withTranslation('album')
 class AlbumView extends React.Component {
@@ -154,6 +155,7 @@ class AlbumView extends React.Component {
           <div className={styles.album_buttons}>
             {this.renderPlayAllButton(album)}
             {this.renderOptionsButtons(album)}
+            <ArtistLink artistLink={this.props.album.uri} circular={true} size={'small'} />
           </div>
         </div>
         <a
