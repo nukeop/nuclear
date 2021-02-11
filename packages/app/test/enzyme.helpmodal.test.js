@@ -11,12 +11,13 @@ import HelpModal from '../app/components/HelpModal';
 
 describe('<HelpModal />', () => {
   before(() => {
+    global.requestAnimationFrame = () => {};
     return i18n.use(initReactI18next).init({ lng: 'en' });
   });
 
   it('Test handleOpen', () => {
     const wrapper = mount(<HelpModal />);
-
+    
     wrapper.find(HelpButton).simulate('click');
     expect(wrapper.find(Modal).prop('open')).to.be.true;
   });
