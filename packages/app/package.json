@@ -5,7 +5,7 @@
   "scripts": {
     "start": "webpack-dev-server --inline --env.NODE_ENV=development",
     "build": "webpack --colors --progress --env.NODE_ENV=production",
-    "test": "cross-env TS_NODE_FILES=true mocha --require ignore-styles --require ts-node/register --require @babel/register --require regenerator-runtime --timeout 10000 --prof --recursive",
+    "test": "cross-env TS_NODE_FILES=true mocha --require ignore-styles --require ts-node/register --require @babel/register  --require jsdom-global/register --require regenerator-runtime --timeout 10000 --prof --recursive",
     "lint": "eslint app test --fix",
     "i18n": "sync-i18n --files 'app/locales/*.json' --primary en --languages fr tl nl de dk es pl zh ru tr id sk ko zh_tw se gr hr is --space 2"
   },
@@ -111,6 +111,7 @@
     "i18next-json-sync": "^2.3.1",
     "ignore-styles": "^5.0.1",
     "jsdom": "^12.0.0",
+    "jsdom-global": "^3.0.2",
     "mocha": "^5.0.0",
     "mock-require": "^3.0.3",
     "node-sass": "^4.13.0",
