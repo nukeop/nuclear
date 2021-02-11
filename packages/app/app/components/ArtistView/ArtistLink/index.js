@@ -7,11 +7,12 @@ const ArtistLink = ({ artistLink, size, circular=false}) => {
 
   const shell = require('electron').shell;
   const { t } = useTranslation('artist');
+  const openExternal = React.useCallback(() => shell.openExternal(artistLink), [artistLink, shell]);
 
 
   return (<Button
     primary
-    onClick={() => shell.openExternal(artistLink)}
+    onClick={openExternal}
     size={size}
     circular={circular}
     aria-label={'Visit Artist Profile'}
