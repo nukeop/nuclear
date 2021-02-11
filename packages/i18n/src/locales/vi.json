@@ -1,0 +1,212 @@
+{
+  "album": {
+    "download": "Tải xuống",
+    "download-toast-content": "{{artist}} - {{title}} đã được thêm vào mục tải xuống.",
+    "download-toast-title": "Album đã thêm vào mục tải xuống",
+    "queue": "Thêm album vào playlist"
+  },
+  "app": {
+    "collection": "Bộ sưu tập",
+    "dashboard": "Trang chính",
+    "downloads": "Tải xuống",
+    "equalizer": "Bộ chỉnh âm",
+    "favorite-albums": "Albums yêu thích",
+    "favorite-tracks": "Bản nhạc yêu thích",
+    "library": "Thư viện trên máy",
+    "lyrics": "Lời bài hát",
+    "main": "Main",
+    "playlists": "playlist",
+    "plugins": "Plugins",
+    "search": "Kết quả tìm kím",
+    "settings": "Cài đặt"
+  },
+  "artist": {
+    "count": "Play counts",
+    "queue": "Thêm tất cả bài hát vào playlist",
+    "similar": "Nghệ sỹ tương tự",
+    "title": "Tên bài hát",
+    "tour": "On tour"
+  },
+  "dashboard": {
+    "artist": "Nghệ sỹ",
+    "best": "Best new music",
+    "best-new-albums": "Best new albums",
+    "best-new-tracks": "Best new tracks",
+    "genres": "Thể loại",
+    "lastfm-title": "Top bài hát từ LastFm.",
+    "news": "Tin mới",
+    "playcounts": "Số lượt nghe",
+    "title": "Tên bài hát",
+    "top": "Top bài hát"
+  },
+  "downloads": {
+    "clear": " Xóa các bản nhạc đã xong",
+    "completion": "Hoàn tất",
+    "empty": "Không có bản nhạc nào.",
+    "empty-help": "Các bản nhạc được tải về sẽ hiện thị ở đây.",
+    "header": "Tải xuống",
+    "name": "Tên",
+    "status": "Trạng thái"
+  },
+  "favorite-albums": {
+    "empty": "Không có album ưa thích",
+    "empty-help": "Album được đánh dấu ưa thích sẽ xuất hiện ở đây.",
+    "header": "Album ưa thích của bạn"
+  },
+  "favorites": {
+    "artist": "Nghệ sỹ",
+    "empty": "Không có bản nhạc ưa thích",
+    "empty-help": "Bản nhạc được đánh dấu ưa thích sẽ xuất hiện ở đây.",
+    "header": "Bản nhạc ưa thích của bạn",
+    "title": "Tên bài hát"
+  },
+  "help": {
+    "about": "Giới thiệu về Nuclear Music Player",
+    "header": "Trình phát nhạc miễn phí cho việc streaming trên máy tính.",
+    "released": "Phát hành dựa trên tiêu chuẩn AGPL-3.0",
+    "thanks": "Cám ơn những đóng góp của các bạn trên nền tảng Github, sự giúp đỡ của bạn rất quan trọng trong việc tạo nên chương trình này."
+  },
+  "input-dialog": {
+    "cancel": "Huỷ"
+  },
+  "library": {
+    "add": "Thêm thư mục",
+    "album": "Album",
+    "artist": "Nghệ sỹ",
+    "empty": "Không có bản nhạc nào trong thư viện",
+    "empty-help": "Thêm bản nhạc vào thư viện bằng nút ở trên.",
+    "filter-placeholder": "Bộ lọc...",
+    "header": "Thư viện trên máy",
+    "no-search-results": "Không có kết quả",
+    "no-search-results-help": "Không có bài hát nào theo từ khoá về tên, album hay nghệ sỹ.",
+    "title": "Tên bài hát"
+  },
+  "lyrics": {
+    "by-artist": "trình bày {{artist}}",
+    "empty": "Không có bản nhạc nào đang phát.",
+    "empty-help": "Lời của các bản nhạc trong playlist sẽ hiện thị ở đây.",
+    "not-found": "Không tìm thấy lời bài hát."
+  },
+  "option-control": {
+    "autoradio": "Autoradio",
+    "loop": "Phát lặp lại",
+    "shuffle": "Phát ngẫu nhiên"
+  },
+  "player": {
+    "next-button": "Bài nhạc kế tiếp",
+    "play-pause-button": "Phát/Dừng",
+    "previous-button": "Bài nhạc trước"
+  },
+  "playlists": {
+    "artist": "Nghệ sỹ",
+    "delete": "Xóa playlist này",
+    "dialog-placeholder": "Tên playlist...",
+    "empty": "Không có playlist nào.",
+    "queue": "Thêm playlist vào hàng chờ",
+    "rename": "Đổi tên playlist",
+    "songs": "{{total}} bài hát",
+    "title": "Tên bài hát"
+  },
+  "plugins": {
+    "add-a-plugin": "Thêm plugin",
+    "header": "Plugins",
+    "lyrics-providers": "Nguồn cung cấp lời bài hát",
+    "meta-providers": "Nguồn cung cấp metadata",
+    "placeholder": "Chọn nguồn cung cấp nhạc mặc định:",
+    "select-lyrics-provider": "Chọn nguồn cung cấp lời bài hát mặc định:",
+    "select-meta-provider": "Chọn nguồn cung cấp metadata mặc định:",
+    "stream-providers": "Nguồn cung cấp nhạc",
+    "user-plugins": "Plugins của người dùng",
+    "user-plugins-warning-desc": "Plugin vận hành thông qua việc thực thi các đoạn mã trong máy tính của bạn. Chỉ nên thêm plugin từ các nguồn đáng tin cậy!",
+    "user-plugins-warning-title": "Cảnh báo!"
+  },
+  "queue": {
+    "clear": "Làm trống danh sách đang phát",
+    "dialog-accept": "Lưu",
+    "dialog-placeholder": "Tên playlist...",
+    "dialog-trigger": "Lưu playlist",
+    "download": "Tải về",
+    "download-toast-content": "{{artist}} - {{title}} đã được thêm vào mục tải về.",
+    "download-toast-title": "Bài hát đã được thêm vào mục tải về",
+    "favorite-add": "Thêm vào mục ưa thích",
+    "header": "Danh sách đang phát",
+    "header-track": "Bản nhạc đang phát",
+    "id": "Stream ID:",
+    "loading": "Stream đang tải.",
+    "playlist-add": "Thêm vào playlist",
+    "playlist-toast-content": "Playlist {{name}} đã được tạo.",
+    "playlist-toast-title": "Playlist đã được tạo",
+    "title": "Tên bài hát:"
+  },
+  "search": {
+    "album": "Album",
+    "artist": "Nghệ sỹ",
+    "clear-history": "Xoá lịch sử",
+    "empty": "Không tìm thấy.",
+    "last-searches": "Lần tìm kiếm cuối",
+    "placeholder": "Tìm kiếm...",
+    "playlist": "Playlist",
+    "queue-add": "Thêm tất cả vào danh sách đang ",
+    "track": "Bài hát",
+    "you-can-search-for": "Bạn có thể tìm cho:"
+  },
+  "settings": {
+    "api-port": "Port cho api",
+    "api-url": "Đường dẫn cho api",
+    "autoradio": "Autoradio",
+    "autoradio-craziness": "Autoradio craziness",
+    "autoradio-craziness-description": "Autoradio sẽ chọn các bài khác không tương tự với các bài hát trong danh sách đang phát",
+    "autoradio-description": "Tự động thêm các bài hát tương tự khi danh sách phát kết thúc",
+    "compact-menu-bar": "Sử dụng thanh menu dạng nhỏ",
+    "compact-queue-bar": "Sử dụng danh sách phát dạng nhỏ",
+    "developer": "Cài đặt cho nhà phát triển",
+    "devtools": "Bật công cụ nhà phát triển",
+    "disable-gpu": "Tắt chế độ xử bằng phần cứng (có thể sửa lỗi liên quan đến việc kéo cái giao diện của ứng dụng và hiển thị chớp tắt)",
+    "display": "Hiển thị",
+    "downloads": "Tải về",
+    "downloads-count": "Số lượng tải về cùng lúc tối đa",
+    "downloads-dir": "Thư mục tải về",
+    "downloads-dir-button": "Chọn thư mục...",
+    "enable-api": "Bật api",
+    "fmfav-btn": "Thêm",
+    "fmfav-msg": "Thêm danh sách ưa thích của bạn từ Last.fm",
+    "frameless-window": "Chế độ không viền (yêu cầu khởi động lại ứng dụng)",
+    "github-connect": "Đăng nhập bằng Github",
+    "github-description": "Đăng nhập bằng Github cho phép tạo vào chia playlists của bạn trực tuyến (sắp mở).",
+    "github-title": "Github",
+    "http": "HTTP API",
+    "invidious-url": "Invidious instance url",
+    "language": "Ngôn ngữ",
+    "language-placeholder": "Chọn ngôn ngữ",
+    "lastfm-connect": "Kết nối với Last.fm",
+    "lastfm-description": "Để bật chế độ scrobbling, bạn phải kết nối nuclear với Last.fm bằng cách đăng nhập.",
+    "lastfm-enable": "Để bật chế độ scrobbling cho Last.fm",
+    "lastfm-title": "Last.fm",
+    "login": "Đăng nhập",
+    "logout": "Đăng xuất",
+    "loop-after-queue-end": "Lặp lại sau khi kết thúc bài hát cuối trong danh sách phát",
+    "max.downloads": "Quản lý tải về",
+    "mini-player": "Dùng chế độ mini cho trình phát",
+    "notification-timeout": "Thời gian hiển thị thông báo",
+    "notlogged": "Chưa đăng nhập",
+    "playback": "Lặp lại",
+    "program-settings": "Cài đặt chương trình",
+    "seek-iteration": "Số giây sẽ tua tới/lui khi nhấn phím mũi tên qua phải/ qua trái",
+    "shuffle-queue": "Phát ngẫu nhiên",
+    "shuffle-when-going-back": "Phát ngẫu nhiên cả bài hát trước đó",
+    "shuffle-when-going-back-description": "Phát một bài hát ngẫu nhiên khi bật chức năng trộn bài và nhấp vào nút bài hát trước đó",
+    "social": "Mạng xã hội",
+    "track-duration": "Hiển thị thời lượng bản nhạc trên thanh điều kiển",
+    "user": "User:",
+    "youtube": "Youtube",
+    "yt-api-key": "Youtube API Key"
+  },
+  "tags": {
+    "albums": "Top Albums",
+    "artist": "Nghệ sỹ",
+    "artists": "Top nghệ sỹ",
+    "duration": "Thời gian",
+    "queue-add": "Thêm tất cả vào danh sách đang phát",
+    "title": "Tên bài hát"
+  }
+}
