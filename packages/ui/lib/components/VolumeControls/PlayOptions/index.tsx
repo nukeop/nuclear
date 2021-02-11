@@ -1,6 +1,6 @@
 import React from 'react';
 import cx from 'classnames';
-import { Icon, SemanticICONS } from 'semantic-ui-react';
+import { Icon, SemanticICONS, Popup } from 'semantic-ui-react';
 
 import styles from './styles.scss';
 
@@ -12,10 +12,15 @@ export type PlayOptionControlProps = {
 };
 
 const PlayOptionControl: React.FC<PlayOptionControlProps> = ({
+  name,
   icon,
   enabled = true,
   onToggle
 }) => (
+  <Popup content={name}
+    inverted 
+    basic
+    trigger={
     <Icon
       className={cx(
         styles.play_option_icon,
@@ -24,8 +29,8 @@ const PlayOptionControl: React.FC<PlayOptionControlProps> = ({
       name={icon}
       onClick={onToggle}
       size='large'
-    />
-  );
+    />}
+  />);
 
 export type PlayOptionsProps = {
   playOptions: PlayOptionControlProps[]
