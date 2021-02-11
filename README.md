@@ -89,6 +89,7 @@ Nuclear has already been translated to several languages, and we're always looki
 | Traditional Chinese  | [oxygen-TW](https://github.com/oxygen-TW)                                                            |
 | Swedish              | [PalleKarlsson](https://github.com/PalleKarlsson)                                                    |
 | Greek                | [Shuin-San](https://github.com/Shuin-San)                                                            |
+| Vietnamese           | [HaiDang666](https://github.com/HaiDang666)                                                            |
 
 ## Development process
 
