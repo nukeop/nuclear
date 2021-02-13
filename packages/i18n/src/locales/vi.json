@@ -64,6 +64,7 @@
     "about": "Giới thiệu về Nuclear Music Player",
     "header": "Trình phát nhạc miễn phí cho việc streaming trên máy tính.",
     "released": "Phát hành dựa trên tiêu chuẩn AGPL-3.0",
+    "report": "Báo cáo lỗi hoặc cải tiến chức năng",
     "thanks": "Cám ơn những đóng góp của các bạn trên nền tảng Github, sự giúp đỡ của bạn rất quan trọng trong việc tạo nên chương trình này."
   },
   "input-dialog": {
