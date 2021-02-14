@@ -1,7 +1,7 @@
 $background: #282a36;
 $background2: #44475a;
 $background3: #21222c;
-$lightbg: #7E83A6;
+$lightbg: #7e83a6;
 $grey: #f8f8f2;
 $blue: #6272a4;
 $cyan: #8be9fd;
@@ -11,7 +11,7 @@ $pink: #ff79c6;
 $purple: #bd93f9;
 $red: #ff5555;
 $yellow: #f1fa8c;
-$white: #FAFAFA;
+$white: #fafafa;
 $black: #202020;
 
 $very-short-duration: 0.1s;
@@ -47,19 +47,28 @@ $small_screen: 600px;
 }
 
 @mixin shadow {
-  box-shadow: 0 0 38px rgba(0,0,0,0.30), 0 0 12px rgba(0,0,0,0.22);
+  box-shadow: 0 0 38px rgba(0, 0, 0, 0.3), 0 0 12px rgba(0, 0, 0, 0.22);
 }
 
 .nuclear {
-  font-family: 'Lato';
+  font-family: "Lato";
   color: $white;
 }
 
 @keyframes fade-in {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
 }

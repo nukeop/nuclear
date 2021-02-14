@@ -21,7 +21,7 @@
     height: 100% !important;
   }
 
-  .text {
+  .text, input {
     color: $white !important;
   }
 
@@ -47,6 +47,10 @@
     .message {
       background: rgba($lightbg, 0.2);
       color: $white !important;
+    }
+
+    &.visible {
+      animation: fade-in $short-duration normal forwards ease-in-out;
     }
   }
 }

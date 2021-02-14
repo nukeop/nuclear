@@ -1,16 +1,18 @@
-import React, { useState } from 'react';
+import React from 'react';
 import butterchurnPresets from 'butterchurn-presets';
 import { FullScreen, useFullScreenHandle } from 'react-full-screen';
 import { VisualizerOverlay } from '@nuclear/ui';
 import { useTranslation } from 'react-i18next';
 
 import styles from './styles.scss';
+import { useVisualizerOverlayProps, useVisualizerProps } from '../hooks';
 
 const VisualizerNode: React.FC = () => {
-  const [presetName, setPresetName] = useState('$$$ Royal - Mashup (431)');
   const handle = useFullScreenHandle();
   const presets = butterchurnPresets.getPresets();
   const { t } = useTranslation('visualizer');
+  const { presetName } = useVisualizerProps();
+  const { onPresetChange } = useVisualizerOverlayProps();
 
   // The id is a hack to allow the visualizer to render in a portal in the correct place
   return <FullScreen
@@ -24,7 +26,7 @@ const VisualizerNode: React.FC = () => {
       <VisualizerOverlay
         presets={Object.keys(presets)}
         selectedPreset={presetName}
-        onPresetChange={(e, { value }) => setPresetName(value)}
+        onPresetChange={onPresetChange}
         onEnterFullscreen={handle.enter}
         exitFullscreenLabel={t('exit-fullscreen')}
         isFullscreen={handle.active}

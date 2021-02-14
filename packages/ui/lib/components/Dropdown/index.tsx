@@ -9,5 +9,6 @@ const Dropdown: React.FC<DropdownProps> = ({ className, ...props }) => <Semantic
   {...props}
   className={cx(common.nuclear, styles.dropdown, className)}
 />;
+Dropdown.displayName = 'Dropdown';
 
 export default Dropdown;
