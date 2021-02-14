@@ -8,7 +8,7 @@ import _ from 'lodash';
 import styles from './styles.scss';
 
 export type VisualizerProps = {
-  audioContext: AudioContext;
+  audioContext?: AudioContext;
   previousNode?: AudioNode;
   location?: Location;
   trackName?: string;
