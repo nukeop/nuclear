@@ -1,5 +1,5 @@
-import { VisualizerOverlay } from "../lib";
-import { makeSnapshotTest } from "./helpers";
+import { VisualizerOverlay } from '../lib';
+import { makeSnapshotTest } from './helpers';
 
 makeSnapshotTest(VisualizerOverlay, {
   presets: ['preset 1', 'preset 2', 'preset 3'],

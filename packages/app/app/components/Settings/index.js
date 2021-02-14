@@ -1,9 +1,9 @@
 import { SettingType } from '@nuclear/core';
-import { Range } from '@nuclear/ui';
+import { Dropdown, Range } from '@nuclear/ui';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { remote } from 'electron';
-import { Button, Input, Radio, Segment, Dropdown } from 'semantic-ui-react';
+import { Button, Input, Radio, Segment } from 'semantic-ui-react';
 import cx from 'classnames';
 import _ from 'lodash';
 import {
@@ -230,7 +230,6 @@ class Settings extends React.Component {
   renderListOption({ placeholder, options }) {
     return (
       <Dropdown
-        basic
         search
         selection
         className={styles.list_option}
