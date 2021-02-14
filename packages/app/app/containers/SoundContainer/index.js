@@ -14,6 +14,7 @@ import * as ScrobblingActions from '../../actions/scrobbling';
 import * as LyricsActions from '../../actions/lyrics';
 import { filterFrequencies } from '../../components/Equalizer/chart';
 import * as Autoradio from './autoradio';
+import VisualizerContainer from '../../containers/VisualizerContainer';
 import globals from '../../globals';
 import { rest } from '@nuclear/core';
 
@@ -30,24 +31,24 @@ class SoundContainer extends React.Component {
     this.handleError = this.handleError.bind(this);
   }
 
-  handlePlaying (update) {
+  handlePlaying(update) {
     const seek = update.position;
     const progress = (update.position / update.duration) * 100;
     this.props.actions.updatePlaybackProgress(progress, seek);
     this.props.actions.updateStreamLoading(false);
   }
 
-  handleLoading () {
+  handleLoading() {
     this.props.actions.updateStreamLoading(true);
   }
 
-  handleLoaded () {
+  handleLoaded() {
     this.handleLoadLyrics();
     this.handleAutoRadio();
     this.props.actions.updateStreamLoading(false);
   }
 
-  handleLoadLyrics () {
+  handleLoadLyrics() {
     const currentSong = this.props.queue.queueItems[
       this.props.queue.currentSong
     ];
@@ -57,7 +58,7 @@ class SoundContainer extends React.Component {
     }
   }
 
-  handleAutoRadio () {
+  handleAutoRadio() {
     if (
       this.props.settings.autoradio &&
       this.props.queue.currentSong === this.props.queue.queueItems.length - 1
@@ -66,7 +67,7 @@ class SoundContainer extends React.Component {
     }
   }
 
-  handleFinishedPlaying () {
+  handleFinishedPlaying() {
     if (
       this.props.scrobbling.lastFmScrobblingEnabled &&
       this.props.scrobbling.lastFmSessionKey
@@ -92,7 +93,7 @@ class SoundContainer extends React.Component {
     }
   }
 
-  addAutoradioTrackToQueue () {
+  addAutoradioTrackToQueue() {
     const currentSong = this.props.queue.queueItems[this.props.queue.currentSong];
     return lastfm
       .getArtistInfo(currentSong.artist)
@@ -106,26 +107,26 @@ class SoundContainer extends React.Component {
       });
   }
 
-  getSimilarArtists (artistJson) {
+  getSimilarArtists(artistJson) {
     return new Promise((resolve) => {
       resolve(artistJson.similar.artist);
     });
   }
 
-  getRandomElement (arr) {
+  getRandomElement(arr) {
     const devianceParameter = 0.2; // We will select one of the 20% most similar artists
     const randomElement =
       arr[Math.round(Math.random() * (devianceParameter * (arr.length - 1)))];
     return new Promise((resolve) => resolve(randomElement));
   }
 
-  getArtistTopTracks (artist) {
+  getArtistTopTracks(artist) {
     return lastfm
       .getArtistTopTracks(artist.name)
       .then(topTracks => topTracks.json());
   }
 
-  addToQueue (artist, track) {
+  addToQueue(artist, track) {
     return new Promise((resolve) => {
       const streamProviders = this.props.plugins.plugins.streamProviders;
       this.props.actions.addToQueue(streamProviders, {
@@ -142,7 +143,7 @@ class SoundContainer extends React.Component {
     this.props.actions.streamFailed();
   }
 
-  shouldComponentUpdate (nextProps) {
+  shouldComponentUpdate(nextProps) {
     const currentSong = nextProps.queue.queueItems[nextProps.queue.currentSong];
 
     return (
@@ -154,8 +155,9 @@ class SoundContainer extends React.Component {
     );
   }
 
-  render () {
-    const { player, equalizer, actions, enableSpectrum, currentStream } = this.props;
+  render() {
+    const { queue, player, equalizer, actions, enableSpectrum, currentStream, location } = this.props;
+    const currentTrack = queue.queueItems[queue.currentSong];
 
     return Boolean(currentStream) && (
       <Sound
@@ -180,12 +182,16 @@ class SoundContainer extends React.Component {
           frequencies={filterFrequencies}
           onVisualisationData={enableSpectrum && actions.setSpectrum}
         />
+        <VisualizerContainer
+          location={location}
+          trackName={currentTrack ? `${currentTrack.artist} - ${currentTrack.name}` : undefined}
+        />
       </Sound>
     );
   }
 }
 
-function mapStateToProps (state) {
+function mapStateToProps(state) {
   return {
     queue: state.queue,
     plugins: state.plugin,
@@ -197,7 +203,7 @@ function mapStateToProps (state) {
   };
 }
 
-function mapDispatchToProps (dispatch) {
+function mapDispatchToProps(dispatch) {
   return {
     actions: bindActionCreators(
       Object.assign(

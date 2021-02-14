@@ -18,7 +18,8 @@
     "playlists": "播放列表",
     "plugins": "插件",
     "search": "搜索",
-    "settings": "设置"
+    "settings": "设置",
+    "visualizer": "Visualizer"
   },
   "artist": {
     "count": "播放次数",
@@ -209,5 +210,8 @@
     "duration": "Duration",
     "queue-add": "Add all tracks to queue",
     "title": "音乐标题"
+  },
+  "visualizer": {
+    "exit-fullscreen": "Press ESC to exit full screen"
   }
 }

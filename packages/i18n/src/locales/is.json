@@ -18,7 +18,8 @@
     "playlists": "Lagalistar",
     "plugins": "Viðbætur",
     "search": "Leitarniðurstöður",
-    "settings": "Stillingar"
+    "settings": "Stillingar",
+    "visualizer": "Visualizer"
   },
   "artist": {
     "count": "Spilateljari",
@@ -214,5 +215,8 @@
     "duration": "Lengd",
     "queue-add": "Bæta öllum lögum í biðröðina",
     "title": "Titill"
+  },
+  "visualizer": {
+    "exit-fullscreen": "Press ESC to exit full screen"
   }
 }

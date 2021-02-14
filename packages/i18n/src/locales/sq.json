@@ -18,7 +18,8 @@
     "playlists": "Listat e këngëve",
     "plugins": "Shtojcat",
     "search": "Rezultatet e kërkimit",
-    "settings": "Përcaktimet"
+    "settings": "Përcaktimet",
+    "visualizer": "Visualizer"
   },
   "artist": {
     "count": "Numërimi i këngëve",
@@ -214,5 +215,8 @@
     "duration": "Kohëzgjatja",
     "queue-add": "Shto të gjitha këngët në radhë",
     "title": "Titulli"
+  },
+  "visualizer": {
+    "exit-fullscreen": "Press ESC to exit full screen"
   }
 }

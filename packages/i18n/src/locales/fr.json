@@ -18,7 +18,8 @@
     "playlists": "Playlists",
     "plugins": "Plugins",
     "search": "Recherches",
-    "settings": "Réglages"
+    "settings": "Réglages",
+    "visualizer": "Visualizer"
   },
   "artist": {
     "count": "Nombre d'écoutes",
@@ -214,5 +215,8 @@
     "duration": "Durée",
     "queue-add": "Ajouter tous les morceaux dans la file",
     "title": "Titre"
+  },
+  "visualizer": {
+    "exit-fullscreen": "Press ESC to exit full screen"
   }
 }

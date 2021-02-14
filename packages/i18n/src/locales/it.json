@@ -18,7 +18,8 @@
     "playlists": "Playlist",
     "plugins": "Plugins",
     "search": "Cerca",
-    "settings": "Impostazioni"
+    "settings": "Impostazioni",
+    "visualizer": "Visualizer"
   },
   "artist": {
     "count": "Play counts",
@@ -214,5 +215,8 @@
     "duration": "Durata",
     "queue-add": "Aggiungi tutti i brani alla coda",
     "title": "Titolo"
+  },
+  "visualizer": {
+    "exit-fullscreen": "Press ESC to exit full screen"
   }
 }

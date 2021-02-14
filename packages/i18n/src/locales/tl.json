@@ -18,7 +18,8 @@
     "playlists": "Mga Playlist",
     "plugins": "Mga Plugin",
     "search": "Resulta ng Paghahanap",
-    "settings": "Settings"
+    "settings": "Settings",
+    "visualizer": "Visualizer"
   },
   "artist": {
     "count": "Bilang ng pagtugtog",
@@ -204,5 +205,8 @@
     "duration": "Durasyon",
     "queue-add": "Idagdag lahat ng kanta sa pila",
     "title": "Title"
+  },
+  "visualizer": {
+    "exit-fullscreen": "Press ESC to exit full screen"
   }
 }

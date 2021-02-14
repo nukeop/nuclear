@@ -218,7 +218,8 @@ module.exports = (env) => {
     config.devServer = {
       hot: true,
       contentBase: '/',
-      publicPath: '/'
+      publicPath: '/',
+      disableHostCheck: true
     };
   }
 

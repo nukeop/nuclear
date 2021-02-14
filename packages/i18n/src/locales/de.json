@@ -18,7 +18,8 @@
     "playlists": "Wiedergabelisten",
     "plugins": "Plugins",
     "search": "Suchergebnisse",
-    "settings": "Einstellungen"
+    "settings": "Einstellungen",
+    "visualizer": "Visualizer"
   },
   "artist": {
     "count": "Spielen Zählt",
@@ -214,5 +215,8 @@
     "duration": "Dauer",
     "queue-add": "Alle Lieder zur Warteschlange hinzufügen",
     "title": "Titel"
+  },
+  "visualizer": {
+    "exit-fullscreen": "Press ESC to exit full screen"
   }
 }

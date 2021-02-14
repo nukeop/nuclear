@@ -35,7 +35,7 @@ const HelpModal = ({
       basic
       centered
       dimmer='blurring'
-      trigger={<HelpButton onClick={() => handleOpen()} />}
+      trigger={<HelpButton onClick={handleOpen} />}
       className={styles.help_modal}
     >
       <Modal.Header>{t('about')}</Modal.Header>
