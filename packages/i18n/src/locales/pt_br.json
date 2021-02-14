@@ -214,5 +214,8 @@
     "duration": "Duração",
     "queue-add": "Adicione todas as faixas à fila",
     "title": "Título"
+  },
+  "visualizer": {
+    "exit-fullscreen": "Press ESC to exit full screen"
   }
 }

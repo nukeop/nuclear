@@ -204,5 +204,8 @@
     "duration": "Διάρκεια",
     "queue-add": "Προσθήκη όλων στην σειρά",
     "title": "Τίτλος"
+  },
+  "visualizer": {
+    "exit-fullscreen": "Press ESC to exit full screen"
   }
 }

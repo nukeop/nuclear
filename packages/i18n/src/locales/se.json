@@ -214,5 +214,8 @@
     "duration": "Längd",
     "queue-add": "Lägg till alla spår i kön",
     "title": "Titel"
+  },
+  "visualizer": {
+    "exit-fullscreen": "Press ESC to exit full screen"
   }
 }

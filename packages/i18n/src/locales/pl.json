@@ -219,5 +219,8 @@
     "duration": "Czas trwania",
     "queue-add": "Dodaj wszystkie utwory do kolejki",
     "title": "Tytuł"
+  },
+  "visualizer": {
+    "exit-fullscreen": "Press ESC to exit full screen"
   }
 }
