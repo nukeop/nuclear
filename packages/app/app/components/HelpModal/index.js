@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import electron from 'electron';
 import cx from 'classnames';
-import { Header, Image, Modal, Icon } from 'semantic-ui-react';
+import { Button, Header, Image, Modal, Icon } from 'semantic-ui-react';
 import { useTranslation } from 'react-i18next';
 
 import { withHandlers, compose } from 'recompose';
@@ -21,13 +21,13 @@ const HelpModal = ({
   handleTwitterClick,
   handleMastodonClick,
   handleDiscordClick,
+  handleReportIssueClick,
   githubContrib
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const handleOpen = useCallback(() => setIsOpen(true), []);
   const handleClose = useCallback(() => setIsOpen(false), []);
   const { t } = useTranslation('help');
-
   return (
     <Modal
       open={isOpen}
@@ -53,6 +53,11 @@ const HelpModal = ({
           <p>
             {t('thanks')}
           </p>
+          <Button
+            inverted
+            onClick={handleReportIssueClick}
+            content={t('report')}
+          />
         </Modal.Description>
       </Modal.Content>
       <Modal.Content>
@@ -86,6 +91,7 @@ export default compose(
     handleGithubClick: () => link => electron.shell.openExternal(_.defaultTo(link, 'https://github.com/nukeop/nuclear')),
     handleTwitterClick: () => () => electron.shell.openExternal('https://twitter.com/nuclear_player'),
     handleAuthorClick: () => () => electron.shell.openExternal('https://github.com/nukeop'),
-    handleDiscordClick: () => () => electron.shell.openExternal('https://discord.gg/JqPjKxE')
+    handleDiscordClick: () => () => electron.shell.openExternal('https://discord.gg/JqPjKxE'),
+    handleReportIssueClick: () => () => electron.shell.openExternal('https://github.com/nukeop/nuclear/issues/new?assignees=&labels=bug&template=bug_report.md&title=')
   })
 )(HelpModal);

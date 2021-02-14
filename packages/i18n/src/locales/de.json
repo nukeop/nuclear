@@ -64,6 +64,7 @@
     "about": "Über Nuclear Music Player",
     "header": "Desktop-Musikplayer für das Streaming aus freien Quellen",
     "released": "veröffentlicht unter AGPL-3.0",
+    "report": "Submit issues or new features",
     "thanks": "Vielen Dank an unsere Mitwirkenden bei Github, Ihre Hilfe war entscheidend für die Entwicklung dieses Programms."
   },
   "input-dialog": {

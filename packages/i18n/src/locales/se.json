@@ -64,6 +64,7 @@
     "about": "Om Nuclear Music Player",
     "header": "Musikspelare som streamar från avgiftsfria källor",
     "released": "släppt under AGPL-3.0",
+    "report": "Submit issues or new features",
     "thanks": "Stort tack till alla som bidragit på GitHub, er hjälp har varit ovärderlig i skapandet av detta program."
   },
   "input-dialog": {
