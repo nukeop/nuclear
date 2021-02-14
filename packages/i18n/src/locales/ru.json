@@ -64,6 +64,7 @@
     "about": "О программе Nuclear Music Player",
     "header": "Проигрыватель музыки из безплатных интернет источников",
     "released": "выпущен под лицензией AGPL-3.0",
+    "report": "Submit issues or new features",
     "thanks": "Большое спасибо нашим участникам на Github, ваша помощь была жизненно важна в создании этой программы."
   },
   "input-dialog": {

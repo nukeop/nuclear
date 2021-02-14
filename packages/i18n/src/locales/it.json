@@ -64,6 +64,7 @@
     "about": "A riguardo di Nuclear Music Player",
     "header": "Riproduttore musicale desktop che riproduce musica da fonti gratuite",
     "released": "rilasciata sotto AGPL-3.0",
+    "report": "Submit issues or new features",
     "thanks": "Grazie mille ai contributori su GitHub, il vostro aiuto e' stato vitale nel creare questo programma."
   },
   "input-dialog": {
