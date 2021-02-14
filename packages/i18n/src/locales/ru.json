@@ -219,5 +219,8 @@
     "duration": "Продолжительность",
     "queue-add": "Добавить все композиции в очередь",
     "title": "Название"
+  },
+  "visualizer": {
+    "exit-fullscreen": "Press ESC to exit full screen"
   }
 }

@@ -219,5 +219,8 @@
     "duration": "Doba trvání",
     "queue-add": "Přidat všechny skladby do fronty",
     "title": "Název"
+  },
+  "visualizer": {
+    "exit-fullscreen": "Press ESC to exit full screen"
   }
 }

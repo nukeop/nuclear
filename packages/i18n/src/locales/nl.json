@@ -214,5 +214,8 @@
     "duration": "Duur",
     "queue-add": "Alle nummers toevoegen aan wachtrij",
     "title": "Titel"
+  },
+  "visualizer": {
+    "exit-fullscreen": "Press ESC to exit full screen"
   }
 }

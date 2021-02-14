@@ -209,5 +209,8 @@
     "duration": "시간",
     "queue-add": "모든 트랙을 재생목록에 추가",
     "title": "제목"
+  },
+  "visualizer": {
+    "exit-fullscreen": "Press ESC to exit full screen"
   }
 }

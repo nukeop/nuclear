@@ -209,5 +209,8 @@
     "duration": "Durasi",
     "queue-add": "Tambahkan semua lagu ke antrian",
     "title": "Judul"
+  },
+  "visualizer": {
+    "exit-fullscreen": "Press ESC to exit full screen"
   }
 }

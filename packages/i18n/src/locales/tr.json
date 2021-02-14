@@ -214,5 +214,8 @@
     "duration": "Süre",
     "queue-add": "Tüm şarkıları sıraya ekle",
     "title": "Başlık"
+  },
+  "visualizer": {
+    "exit-fullscreen": "Press ESC to exit full screen"
   }
 }

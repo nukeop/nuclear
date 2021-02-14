@@ -214,5 +214,8 @@
     "duration": "Kohëzgjatja",
     "queue-add": "Shto të gjitha këngët në radhë",
     "title": "Titulli"
+  },
+  "visualizer": {
+    "exit-fullscreen": "Press ESC to exit full screen"
   }
 }

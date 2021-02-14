@@ -214,5 +214,8 @@
     "duration": "Durata",
     "queue-add": "Aggiungi tutti i brani alla coda",
     "title": "Titolo"
+  },
+  "visualizer": {
+    "exit-fullscreen": "Press ESC to exit full screen"
   }
 }

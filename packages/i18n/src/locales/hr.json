@@ -219,5 +219,8 @@
     "duration": "Trajanje",
     "queue-add": "Dodaj sve pjesme u red reproduciranja",
     "title": "Naslov"
+  },
+  "visualizer": {
+    "exit-fullscreen": "Press ESC to exit full screen"
   }
 }

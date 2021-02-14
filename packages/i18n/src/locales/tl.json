@@ -204,5 +204,8 @@
     "duration": "Durasyon",
     "queue-add": "Idagdag lahat ng kanta sa pila",
     "title": "Title"
+  },
+  "visualizer": {
+    "exit-fullscreen": "Press ESC to exit full screen"
   }
 }

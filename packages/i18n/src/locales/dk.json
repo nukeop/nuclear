@@ -204,5 +204,8 @@
     "duration": "Længde",
     "queue-add": "Tilføj alle sange til kø",
     "title": "Titel"
+  },
+  "visualizer": {
+    "exit-fullscreen": "Press ESC to exit full screen"
   }
 }

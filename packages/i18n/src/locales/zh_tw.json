@@ -209,5 +209,8 @@
     "duration": "期間",
     "queue-add": "新增所有曲目到播放佇列",
     "title": "音樂標題"
+  },
+  "visualizer": {
+    "exit-fullscreen": "Press ESC to exit full screen"
   }
 }
