@@ -18,7 +18,8 @@
     "playlists": "Λίστες αναπαραγωγής",
     "plugins": "Πρόσθετα",
     "search": "Αναζήτηση",
-    "settings": "Ρυθμίσεις"
+    "settings": "Ρυθμίσεις",
+    "visualizer": "Visualizer"
   },
   "artist": {
     "count": "Συνολικός αριθμός αναπαραγωγών",
@@ -204,5 +205,8 @@
     "duration": "Διάρκεια",
     "queue-add": "Προσθήκη όλων στην σειρά",
     "title": "Τίτλος"
+  },
+  "visualizer": {
+    "exit-fullscreen": "Press ESC to exit full screen"
   }
 }

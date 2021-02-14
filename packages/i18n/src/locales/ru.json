@@ -18,7 +18,8 @@
     "playlists": "Плейлист",
     "plugins": "Плагины",
     "search": "Результаты Поиска",
-    "settings": "Настройки"
+    "settings": "Настройки",
+    "visualizer": "Visualizer"
   },
   "artist": {
     "count": "Счетчик проигрываний",
@@ -219,5 +220,8 @@
     "duration": "Продолжительность",
     "queue-add": "Добавить все композиции в очередь",
     "title": "Название"
+  },
+  "visualizer": {
+    "exit-fullscreen": "Press ESC to exit full screen"
   }
 }

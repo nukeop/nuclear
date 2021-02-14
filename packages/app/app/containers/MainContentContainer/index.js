@@ -20,6 +20,7 @@ import PluginsContainer from '../PluginsContainer';
 import SearchResultsContainer from '../SearchResultsContainer';
 import SettingsContainer from '../SettingsContainer';
 import TagViewContainer from '../TagViewContainer';
+import VisualizerNode from '../VisualizerContainer/VisualizerNode';
 
 class MainContentContainer extends React.Component {
   componentDidMount () {
@@ -50,6 +51,7 @@ class MainContentContainer extends React.Component {
               <Route path='/search' component={SearchResultsContainer} />
               <Route path='/lyrics' component={LyricsContainer} />
               <Route path='/equalizer' component={EqualizerViewContainer} />
+              <Route path='/visualizer' component={VisualizerNode} />
               <Route path='/library' component={LibraryViewContainer} />
             </Switch>
           </MainLayout>

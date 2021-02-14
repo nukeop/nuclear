@@ -18,7 +18,8 @@
     "playlists": "Daftar Putar",
     "plugins": "Plugins",
     "search": "Hasil Pencarian",
-    "settings": "Pengaturan"
+    "settings": "Pengaturan",
+    "visualizer": "Visualizer"
   },
   "artist": {
     "count": "Jumlah pemutaran",
@@ -209,5 +210,8 @@
     "duration": "Durasi",
     "queue-add": "Tambahkan semua lagu ke antrian",
     "title": "Judul"
+  },
+  "visualizer": {
+    "exit-fullscreen": "Press ESC to exit full screen"
   }
 }

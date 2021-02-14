@@ -18,7 +18,8 @@
     "playlists": "Playlists",
     "plugins": "Plugins",
     "search": "Search Results",
-    "settings": "Settings"
+    "settings": "Settings",
+    "visualizer": "Visualizer"
   },
   "artist": {
     "count": "Play counts",
@@ -214,5 +215,8 @@
     "duration": "Duration",
     "queue-add": "Add all tracks to queue",
     "title": "Title"
+  },
+  "visualizer": {
+    "exit-fullscreen": "Press ESC to exit full screen"
   }
 }

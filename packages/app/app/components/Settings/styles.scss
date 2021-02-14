@@ -1,5 +1,5 @@
-@import '../../mixin';
-@import '../../vars';
+@import "../../mixin";
+@import "../../vars";
 
 .settings_container {
   display: flex;
@@ -30,7 +30,8 @@
     flex-flow: column;
     line-height: 1rem;
 
-    .settings_item_name { }
+    .settings_item_name {
+    }
 
     .settings_item_description {
       color: rgba($white, 0.4);
@@ -60,7 +61,7 @@
     &.directory {
       flex-flow: column;
 
-      .settings_item_text>label:only-child {
+      .settings_item_text > label:only-child {
         margin-bottom: 1em;
       }
     }
@@ -109,7 +110,7 @@
     width: 100%;
   }
 
-  .slider_container{
+  .slider_container {
     display: flex;
     flex-flow: row;
     width: 100%;
@@ -150,9 +151,5 @@
     .directory_content {
       font-weight: bold;
     }
-  }
-
-  .list_option {
-    @include dropdownOverride;
   }
 }

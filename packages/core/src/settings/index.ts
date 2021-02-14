@@ -9,6 +9,16 @@ export enum SettingType {
   DIRECTORY = 'directory'
 }
 
+type SettingCategory = 'audio' |
+  'playback' |
+  'program-settings' |
+  'display' |
+  'http' |
+  'streaming' |
+  'downloads' |
+  'developer' |
+  'visualizer';
+
 type SettingOption = {
   key: string;
   text: string;
@@ -17,7 +27,7 @@ type SettingOption = {
 
 type Setting = {
   name: string;
-  category: string;
+  category: SettingCategory;
   description?: string;
   type: SettingType;
   prettyName: string;
@@ -158,7 +168,7 @@ export const settingsConfig: Array<Setting> = [
   },
   {
     name: 'invidious.url',
-    category: 'Streaming',
+    category: 'streaming',
     type: SettingType.STRING,
     prettyName: 'invidious-url'
   },
@@ -189,10 +199,9 @@ export const settingsConfig: Array<Setting> = [
       { key: 'ko', text: '한국어', value: 'ko' },
       { key: 'tl', text: 'Tagalog (Filipino)', value: 'tl' },
       { key: 'se', text: 'Svenska', value: 'se' },
-      { key: 'gr', text: 'Greek', value: 'gr'},
-      { key: 'hr', text: 'Hrvatski', value: 'hr'},
-      { key: 'is', text: 'Íslenska', value: 'is' },
-      { key: 'vi', text: 'Tiếng Việt', value: 'vi'}
+      { key: 'gr', text: 'Greek', value: 'gr' },
+      { key: 'hr', text: 'Hrvatski', value: 'hr' },
+      { key: 'is', text: 'Íslenska', value: 'is' }
     ],
     default: undefined
   }, {
@@ -222,21 +231,13 @@ export const settingsConfig: Array<Setting> = [
     type: SettingType.BOOLEAN,
     prettyName: 'devtools',
     default: false
+  },
+  {
+    name: 'visualizer.preset',
+    category: 'visualizer',
+    type: SettingType.STRING,
+    prettyName: 'visualizer-preset',
+    default: '$$$ Royal - Mashup (431)',
+    hide: true
   }
-
-  // TODO: Enable when MPD integration is ready
-  // {
-  //   name: 'mpd.host',
-  //   category: 'MPD',
-  //   type: SettingType.STRING,
-  //   prettyName: 'MPD host address',
-  //   default: 'localhost:6600'
-  // },
-  // {
-  //   name: 'mpd.httpstream',
-  //   category: 'MPD',
-  //   type: SettingType.STRING,
-  //   prettyName: 'MPD HTTP stream address',
-  //   default: 'localhost:8888'
-  // },
 ];

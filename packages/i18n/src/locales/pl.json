@@ -18,7 +18,8 @@
     "playlists": "Playlisty",
     "plugins": "Pluginy",
     "search": "Wyniki wyszukiwania",
-    "settings": "Ustawienia"
+    "settings": "Ustawienia",
+    "visualizer": "Visualizer"
   },
   "artist": {
     "count": "Liczba odtworzeń",
@@ -219,5 +220,8 @@
     "duration": "Czas trwania",
     "queue-add": "Dodaj wszystkie utwory do kolejki",
     "title": "Tytuł"
+  },
+  "visualizer": {
+    "exit-fullscreen": "Press ESC to exit full screen"
   }
 }

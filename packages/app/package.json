@@ -5,7 +5,7 @@
   "scripts": {
     "start": "webpack-dev-server --inline --env.NODE_ENV=development",
     "build": "webpack --colors --progress --env.NODE_ENV=production",
-    "test": "cross-env TS_NODE_FILES=true mocha --require ignore-styles --require ts-node/register --require @babel/register --require regenerator-runtime --timeout 10000 --prof --recursive",
+    "test": "cross-env TS_NODE_FILES=true mocha --require ignore-styles --require ts-node/register --require @babel/register  --require jsdom-global/register --require regenerator-runtime --timeout 10000 --prof --recursive",
     "lint": "eslint app test --fix",
     "i18n": "sync-i18n --files 'app/locales/*.json' --primary en --languages fr tl nl de dk es pl zh ru tr id sk ko zh_tw se gr hr is --space 2"
   },
@@ -37,6 +37,7 @@
     "@nuclear/ui": "^0.6.8",
     "billboard-top-100": "^2.0.8",
     "bluebird": "3.5.3",
+    "butterchurn-presets": "^2.4.7",
     "chart.js": "^2.8.0",
     "classnames": "^2.2.5",
     "d3-drag": "^1.2.3",
@@ -60,6 +61,7 @@
     "react-beautiful-dnd": "^11.0.0",
     "react-dom": "^16.8.6",
     "react-fontawesome": "^1.6.1",
+    "react-full-screen": "^1.0.1",
     "react-hifi": "^2.2.1",
     "react-i18next": "^10.11.0",
     "react-image": "^2.1.1",
@@ -111,6 +113,7 @@
     "i18next-json-sync": "^2.3.1",
     "ignore-styles": "^5.0.1",
     "jsdom": "^12.0.0",
+    "jsdom-global": "^3.0.2",
     "mocha": "^5.0.0",
     "mock-require": "^3.0.3",
     "node-sass": "^4.13.0",

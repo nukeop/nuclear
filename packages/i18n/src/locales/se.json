@@ -18,7 +18,8 @@
     "playlists": "Spellistor",
     "plugins": "Insticksmoduler",
     "search": "Sökresultat",
-    "settings": "Inställningar"
+    "settings": "Inställningar",
+    "visualizer": "Visualizer"
   },
   "artist": {
     "count": "Antal spelningar",
@@ -214,5 +215,8 @@
     "duration": "Längd",
     "queue-add": "Lägg till alla spår i kön",
     "title": "Titel"
+  },
+  "visualizer": {
+    "exit-fullscreen": "Press ESC to exit full screen"
   }
 }

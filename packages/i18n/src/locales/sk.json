@@ -18,7 +18,8 @@
     "playlists": "Playlisty",
     "plugins": "Doplnky",
     "search": "Výsledky vyhľadávania",
-    "settings": "Nastavenia"
+    "settings": "Nastavenia",
+    "visualizer": "Visualizer"
   },
   "artist": {
     "count": "Počet prehratí",
@@ -219,5 +220,8 @@
     "duration": "Trvanie",
     "queue-add": "Pridať všetky skladby do poradia",
     "title": "Názov"
+  },
+  "visualizer": {
+    "exit-fullscreen": "Press ESC to exit full screen"
   }
 }

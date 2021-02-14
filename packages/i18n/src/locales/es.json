@@ -18,7 +18,8 @@
     "playlists": "Listas de reproducción",
     "plugins": "Plugins",
     "search": "Búsqueda",
-    "settings": "Ajustes"
+    "settings": "Ajustes",
+    "visualizer": "Visualizer"
   },
   "artist": {
     "count": "Contador",
@@ -214,5 +215,8 @@
     "duration": "Duración",
     "queue-add": "Añadir todas las canciones a la cola de reproducción",
     "title": "Título"
+  },
+  "visualizer": {
+    "exit-fullscreen": "Press ESC to exit full screen"
   }
 }

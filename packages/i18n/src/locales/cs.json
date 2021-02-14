@@ -18,7 +18,8 @@
     "playlists": "Seznamy skladeb",
     "plugins": "Zásuvné moduly",
     "search": "Výsledky vyhledávání",
-    "settings": "Nastavení"
+    "settings": "Nastavení",
+    "visualizer": "Visualizer"
   },
   "artist": {
     "count": "Počet přehrání",
@@ -219,5 +220,8 @@
     "duration": "Doba trvání",
     "queue-add": "Přidat všechny skladby do fronty",
     "title": "Název"
+  },
+  "visualizer": {
+    "exit-fullscreen": "Press ESC to exit full screen"
   }
 }
