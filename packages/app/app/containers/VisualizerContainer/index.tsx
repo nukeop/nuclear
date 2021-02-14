@@ -1,10 +1,21 @@
 import React from 'react';
+import { Visualizer } from '@nuclear/ui';
+import { useLocation } from 'react-router-dom';
 
-const VisualizerContainer: React.FC = () => {
-  // The id is a hack to allow the visualizer to render in a portal in the correct place
-  return <div
-    id='visualizer_node'
-    style={{height: '100%', width: '100%'}}
+export type VisualizerContainerProps = {
+  trackName?: string;
+}
+
+const VisualizerContainer: React.FC<VisualizerContainerProps> = ({
+  trackName,
+  ...rest
+}) => {
+  const location = useLocation();
+  return <Visualizer
+    location={location}
+    trackName={trackName}
+    presetName={'$$$ Royal - Mashup (431)'}
+    {...rest}
   />;
 };
 

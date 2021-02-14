@@ -4,9 +4,11 @@ import '../resources/Lato.scss';
 
 export { default as AlbumGrid } from './components/AlbumGrid';
 export { default as AlbumPreview } from './components/AlbumPreview';
+export { default as BasicButton } from './components/BasicButton';
 export { default as Card } from './components/Card';
 export { default as ContextPopup } from './components/ContextPopup';
 export { default as Cover } from './components/Cover';
+export { default as Dropdown } from './components/Dropdown';
 export { default as SmoothImage } from './components/SmoothImage';
 export { default as LibraryListTypeToggle } from './components/LibraryListTypeToggle';
 export { default as Loader } from './components/Loader';
@@ -25,5 +27,6 @@ export { default as UserPluginsItem } from './components/UserPluginsItem';
 export { default as SearchBox } from './components/SearchBox';
 export { default as MiniPlayer } from './components/MiniPlayer';
 export { default as Visualizer } from './components/Visualizer';
+export { default as VisualizerOverlay } from './components/VisualizerOverlay';
 
 export * from './utils';

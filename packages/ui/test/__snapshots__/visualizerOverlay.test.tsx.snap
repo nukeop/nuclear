@@ -1,0 +1,170 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`(Snapshot) Visualizer overlay - full screen should render correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="visualizer_overlay"
+  >
+    <div
+      aria-expanded="false"
+      class="ui search selection dropdown nuclear dropdown"
+      role="combobox"
+    >
+      <input
+        aria-autocomplete="list"
+        autocomplete="off"
+        class="search"
+        tabindex="0"
+        type="text"
+        value=""
+      />
+      <div
+        aria-atomic="true"
+        aria-live="polite"
+        class="text"
+        role="alert"
+      >
+        preset 2
+      </div>
+      <i
+        aria-hidden="true"
+        class="dropdown icon"
+      />
+      <div
+        class="menu transition"
+        role="listbox"
+      >
+        <div
+          aria-checked="false"
+          aria-selected="false"
+          class="item"
+          role="option"
+          style="pointer-events: all;"
+        >
+          <span
+            class="text"
+          >
+            preset 1
+          </span>
+        </div>
+        <div
+          aria-checked="true"
+          aria-selected="true"
+          class="active selected item"
+          role="option"
+          style="pointer-events: all;"
+        >
+          <span
+            class="text"
+          >
+            preset 2
+          </span>
+        </div>
+        <div
+          aria-checked="false"
+          aria-selected="false"
+          class="item"
+          role="option"
+          style="pointer-events: all;"
+        >
+          <span
+            class="text"
+          >
+            preset 3
+          </span>
+        </div>
+      </div>
+    </div>
+    <p>
+      Press ESC to exit full screen
+    </p>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`(Snapshot) Visualizer overlay should render correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="visualizer_overlay"
+  >
+    <div
+      aria-expanded="false"
+      class="ui search selection dropdown nuclear dropdown"
+      role="combobox"
+    >
+      <input
+        aria-autocomplete="list"
+        autocomplete="off"
+        class="search"
+        tabindex="0"
+        type="text"
+        value=""
+      />
+      <div
+        aria-atomic="true"
+        aria-live="polite"
+        class="text"
+        role="alert"
+      >
+        preset 2
+      </div>
+      <i
+        aria-hidden="true"
+        class="dropdown icon"
+      />
+      <div
+        class="menu transition"
+        role="listbox"
+      >
+        <div
+          aria-checked="false"
+          aria-selected="false"
+          class="item"
+          role="option"
+          style="pointer-events: all;"
+        >
+          <span
+            class="text"
+          >
+            preset 1
+          </span>
+        </div>
+        <div
+          aria-checked="true"
+          aria-selected="true"
+          class="active selected item"
+          role="option"
+          style="pointer-events: all;"
+        >
+          <span
+            class="text"
+          >
+            preset 2
+          </span>
+        </div>
+        <div
+          aria-checked="false"
+          aria-selected="false"
+          class="item"
+          role="option"
+          style="pointer-events: all;"
+        >
+          <span
+            class="text"
+          >
+            preset 3
+          </span>
+        </div>
+      </div>
+    </div>
+    <button
+      class="ui basic icon button nuclear basic_button"
+    >
+      <i
+        aria-hidden="true"
+        class="expand icon"
+      />
+    </button>
+  </div>
+</DocumentFragment>
+`;
