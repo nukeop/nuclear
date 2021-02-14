@@ -5,14 +5,14 @@ type AnyProps = {
   [key: string]: any;
 }
 
-export const makeSnapshotTest = (
-  Component: React.FC,
-  props: AnyProps,
+export const makeSnapshotTest = <ComponentProps extends {}>(
+  Component: React.ComponentType<ComponentProps>,
+  props: Partial<ComponentProps>,
   snapshotName?: string
 ) => {
   describe(snapshotName || `(Snapshot) ${Component.displayName}`, () => {
     it('should render correctly', () => {
-      const { asFragment } = render(<Component {...props} />);
+      const { asFragment } = render(<Component {...props as ComponentProps} />);
       expect(asFragment()).toMatchSnapshot();
     })
   });

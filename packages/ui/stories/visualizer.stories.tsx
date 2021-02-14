@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import { FullScreen, useFullScreenHandle } from 'react-full-screen';
 import butterchurnPresets from 'butterchurn-presets';
 
-import { Visualizer } from '..';
+import { Visualizer, VisualizerOverlay } from '..';
 
 export default {
   title: 'Visualizer'
@@ -38,14 +39,34 @@ export const Mic = () => {
     setAudioContext(new window.AudioContext());
   }, []);
 
+  const handle = useFullScreenHandle();
 
   return <>
-    <div id='visualizer_node' />
-    <Visualizer
-      audioContext={audioContext}
-      previousNode={audioNode}
-      presetName={preset}
-      trackName='Test track'
-    />
+    <FullScreen handle={handle}>
+      <div
+        id='visualizer_node'
+        style={{ height: '100%', width: '100%' }}
+      >
+        <VisualizerOverlay
+          presets={['preset 1', 'preset 2', 'preset 3']}
+          selectedPreset='preset 2'
+          onPresetChange={() => { }}
+          onEnterFullscreen={handle.enter}
+        />
+      </div>
+      <Visualizer
+        audioContext={audioContext}
+        previousNode={audioNode}
+        presetName={preset}
+        trackName='Test track'
+      />
+    </FullScreen>
   </>;
 };
+
+export const VisualizerControls = () => <VisualizerOverlay
+  presets={['preset 1', 'preset 2', 'preset 3']}
+  selectedPreset='preset 2'
+  onPresetChange={() => { }}
+  onEnterFullscreen={() => alert('Entered fullscreen')}
+/>;

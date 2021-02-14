@@ -1,0 +1,40 @@
+@import "../../common.scss";
+
+.visualizer_overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 2em;
+
+  display: flex;
+  flex-flow: row;
+  justify-content: flex-end;
+  align-items: flex-end;
+
+  transition: background $short-duration;
+  color: $white;
+
+  & > * {
+    color: $white;
+    transition: opacity $short-duration ease-in !important;
+    opacity: 0;
+    margin: 0;
+
+    &:not(:last-child) {
+      margin-right: 1em;
+    }
+  }
+
+  &:hover {
+    background: rgba($background3, 0.75);
+    & > * {
+      opacity: 1;
+    }
+  }
+
+  p {
+    line-height: 2.71428571em;
+  }
+}

@@ -37,7 +37,7 @@ const Visualizer: React.FC<VisualizerProps> = ({
   presetName
 }) => {
   const canvasRef = useRef();
-  const [canvasSize, setCanvasSize] = useState<Size>({ x: 0, y: 0 });
+  const [canvasSize, setCanvasSize] = useState<Size>({ x: 1, y: 1 });
   const [visualizerNode, setVisualizerNode] = useState<HTMLElement>();
   const [visualizer, setVisualizer] = useState<ButterchurnVisualizer>();
 

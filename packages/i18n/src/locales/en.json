@@ -214,5 +214,8 @@
     "duration": "Duration",
     "queue-add": "Add all tracks to queue",
     "title": "Title"
+  },
+  "visualizer": {
+    "exit-fullscreen": "Press ESC to exit full screen"
   }
 }

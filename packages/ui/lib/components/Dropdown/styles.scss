@@ -1,0 +1,52 @@
+@import "../../common.scss";
+
+.nuclear.dropdown {
+  color: $white !important;
+  background: $background3 !important;
+  border: 1px solid rgba($background2, 0.6);
+  transition: box-shadow $short-duration ease-in;
+
+  &:hover,
+  &:active,
+  &:focus,
+  &.ui.selection.active.dropdown {
+    @include shadow;
+    color: $white !important;
+    border: 1px solid transparent;
+  }
+
+  .dropdown.icon {
+    display: flex;
+    align-items: center;
+    height: 100% !important;
+  }
+
+  .text {
+    color: $white !important;
+  }
+
+  .menu {
+    box-shadow: 0 0 38px rgba(0,0,0,0.30), 0 0 12px rgba(0,0,0,0.22) !important;
+    background: $background;
+    border-color: transparent !important;
+    color: $white !important;
+    border: 0;
+
+    .item {
+      color: $white !important;
+      border-color: transparent !important;
+
+      &:hover,
+      &:active,
+      &:focus {
+        background: rgba($lightbg, 0.4) !important;
+      }
+    }
+
+    .active.selected.item,
+    .message {
+      background: rgba($lightbg, 0.2);
+      color: $white !important;
+    }
+  }
+}
