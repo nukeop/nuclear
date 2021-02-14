@@ -18,7 +18,8 @@
     "playlists": "playlist",
     "plugins": "Plugins",
     "search": "Kết quả tìm kím",
-    "settings": "Cài đặt"
+    "settings": "Cài đặt",
+    "visualizer": "Visualizer"
   },
   "artist": {
     "count": "Play counts",
@@ -209,5 +210,8 @@
     "duration": "Thời gian",
     "queue-add": "Thêm tất cả vào danh sách đang phát",
     "title": "Tên bài hát"
+  },
+  "visualizer": {
+    "exit-fullscreen": "Press ESC to exit full screen"
   }
 }
