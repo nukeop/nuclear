@@ -1,0 +1,222 @@
+{
+  "album": {
+    "download": "Lataa",
+    "download-toast-content": "{{artist}} - {{title}} on lisätty latauksiin.",
+    "download-toast-title": "Albumi lisätty latauksiin",
+    "queue": "Lisää albumi jonoon"
+  },
+  "app": {
+    "collection": "Kokoelma",
+    "dashboard": "Ohjauspaneeli",
+    "downloads": "Lataukset",
+    "equalizer": "Taajuuskorjain",
+    "favorite-albums": "Suosikki albumit",
+    "favorite-tracks": "Suosikki kappaleet",
+    "library": "Paikallinen kirjasto",
+    "lyrics": "Sanoitukset",
+    "main": "Main",
+    "playlists": "Soittolistat",
+    "plugins": "Pluginit",
+    "search": "Hakutulokset",
+    "settings": "Asetukset",
+    "visualizer": "Visualisoija"
+  },
+  "artist": {
+    "count": "Soittokerrat",
+    "queue": "Lisää kaikki kappaleet jonoon",
+    "similar": "Samankaltaisia artisteja",
+    "title": "Nimi",
+    "tour": "Kiertueella"
+  },
+  "dashboard": {
+    "artist": "Artisti",
+    "best": "Parasta uutta musiikkia",
+    "best-new-albums": "Parhaat uudet albumit",
+    "best-new-tracks": "Parhaat uudet kappaleet",
+    "genres": "Genret",
+    "lastfm-title": "LastFm parhaat kappaleet.",
+    "news": "Uutiset",
+    "playcounts": "Soittokerrat",
+    "title": "Nimi",
+    "top": "Parhaat kappaleet"
+  },
+  "downloads": {
+    "clear": "Tyhjennä jo soidetut kappaleet",
+    "completion": "Completion",
+    "empty": "Latausjono on tyhjä.",
+    "empty-help": "Lisää jotain latausjonoon ja näet sen tässä!",
+    "header": "Lataukset",
+    "name": "Nimi",
+    "status": "Tila"
+  },
+  "favorite-albums": {
+    "empty": "Ei suosikki albumeita",
+    "empty-help": "Lisää albumeita suosikkeihin ja ne näkyvät tässä!",
+    "header": "Suosikki albumisi"
+  },
+  "favorites": {
+    "artist": "Artisti",
+    "empty": "Ei suosikkeja lisätty",
+    "empty-help": "Lisää kappaleita suosikkeihin ja ne näkyvät tässä!",
+    "header": "Suosikki kappaleesi",
+    "title": "Nimi"
+  },
+  "help": {
+    "about": "Tietoa Nuclear Musiikki soittimesta",
+    "header": "Työpöytäsovellus musiikin streamaamiseen ilmaisista lähteistä",
+    "released": "Lisenssi: AGPL-3.0",
+    "report": "Ilmoita ongelmasta tai ehdota uusia ominaisuuksia",
+    "thanks": "Iso kiitos auttajille Githubissa. Apunne oli tärkeää tämän sovelluksen luomisessa."
+  },
+  "input-dialog": {
+    "cancel": "Peruuta"
+  },
+  "library": {
+    "add": "Lisää kansioita",
+    "album": "Albumi",
+    "artist": "Artisti",
+    "empty": "Kirjasto on tyhjä",
+    "empty-help": "Lisää musiikkia ylhäällä olevan napin avulla.",
+    "filter-placeholder": "Suodata...",
+    "header": "Paikallinen Kirjasto",
+    "no-search-results": "Ei hakutuloksia",
+    "no-search-results-help": "Kappaleita ei löytynyt antamallasi nimellä, kappaleella tai artistilla",
+    "title": "Nimi"
+  },
+  "lyrics": {
+    "by-artist": "{{artist}}",
+    "empty": "Mitään ei soi.",
+    "empty-help": "Lisää musiikkia jonoon nähdäksesi sanoitukset tässä!",
+    "not-found": "Sanoituksia ei löytynyt tähän kappaleeseen."
+  },
+  "option-control": {
+    "autoradio": "Autoradio",
+    "loop": "Loop",
+    "shuffle": "Sekoita"
+  },
+  "player": {
+    "next-button": "Seuraava kappale",
+    "play-pause-button": "Play/Pause nappi",
+    "previous-button": "Edellinen kappale"
+  },
+  "playlists": {
+    "artist": "Artisti",
+    "delete": "Poista tämä soittolista",
+    "dialog-placeholder": "Soittolistan nimi...",
+    "empty": "Ei soittolistoja.",
+    "queue": "Lisää soittolista jonoon",
+    "rename": "Nimeä tämä soittolista uudelleen",
+    "songs": "{{total}} kappaleita",
+    "songs_plural": "{{total}} kappaleita",
+    "title": "nimi"
+  },
+  "plugins": {
+    "add-a-plugin": "Lisää plugin",
+    "header": "Pluginit",
+    "lyrics-providers": "Sanoitusten tarjoajat",
+    "meta-providers": "Metadatan tarjoajat",
+    "placeholder": "Valitse musiikin oletus lähde:",
+    "select-lyrics-provider": "Valitse oletus sanoitusten tarjoaja:",
+    "select-meta-provider": "Valitse oletus metadatan tarjoaja:",
+    "stream-providers": "Striimin tarjoajat",
+    "user-plugins": "Käyttäjän pluginit",
+    "user-plugins-warning-desc": "Pluginit ovat koodia joka pyörii koneeltasi. Lataa plugineita vain lähteistä joihin luotat!",
+    "user-plugins-warning-title": "Vaaravyöhyke"
+  },
+  "queue": {
+    "clear": "Tyhjennä jono",
+    "dialog-accept": "Tallenna",
+    "dialog-placeholder": "Soittolistan nimi...",
+    "dialog-trigger": "Tallenna soittolistana",
+    "download": "Lataa",
+    "download-toast-content": "{{artist}} - {{title}} on lisätty latauksiin.",
+    "download-toast-title": "Kappale lisätty latauksiin",
+    "favorite-add": "Lisää suosikkeihin",
+    "header": "Jono",
+    "header-track": "Tämänhetkinen kappale",
+    "id": "Stream ID:",
+    "loading": "Streami lataa vieläkin.",
+    "playlist-add": "Lisää soittolistaan",
+    "playlist-toast-content": "Soittolista {{name}} on luotu",
+    "playlist-toast-title": "Soittolista luotu",
+    "title": "Nimi:"
+  },
+  "search": {
+    "album": "Albumi",
+    "album_plural": "Albumit",
+    "artist": "Artisti",
+    "artist_plural": "Artistit",
+    "clear-history": "Tyhjennä historia",
+    "empty": "Mitään ei löytynyt.",
+    "last-searches": "Viimeisimmät haut",
+    "placeholder": "Etsi...",
+    "playlist": "Soittolista",
+    "playlist_plural": "Soittolistat",
+    "queue-add": "Lisää kaikki kappaleet jonoon",
+    "track": "Kappale",
+    "track_plural": "Kappaleet",
+    "you-can-search-for": "Voit etsiä hakusanalla:"
+  },
+  "settings": {
+    "api-port": "Apin käyttämä portti",
+    "api-url": "",
+    "autoradio": "Autoradio",
+    "autoradio-craziness": "Autoradio hulluus",
+    "autoradio-craziness-description": "Autoradio valitsee kappaleet jotka ovat vähemmän samanlaisia kuin ne jotka on jo jonossa",
+    "autoradio-description": "Lisää samankaltaisia kappaleita automaattisesti kun jono on loppumassa",
+    "compact-menu-bar": "Käytä kompaktia valikon palkkia",
+    "compact-queue-bar": "Käytä kompaktia jonon palkkia",
+    "developer": "Kehittäjän asetukset",
+    "devtools": "Kehittäjän työkalut",
+    "disable-gpu": "Poista hardware renderöinti käytöstä (voi korjata elementtien raahauksen ongelmat ja välkkyvän ruudun)",
+    "display": "Näyttö",
+    "downloads": "Lataukset",
+    "downloads-count": "Samanaikaisten latausten maksimi määrä",
+    "downloads-dir": "Lataus kansio",
+    "downloads-dir-button": "Valitse kansio...",
+    "enable-api": "Kytke api päälle",
+    "fmfav-btn": "Tuo",
+    "fmfav-msg": "Tuo omat Last.fm suosikit",
+    "frameless-window": "Reunaton ikkuna (vaatii sovelluksen uudelleen käynnistyksen)",
+    "github-connect": "Kirjaudu sisään Githubilla",
+    "github-description": "Kirjaudu sisään Githubilla jotta voit luoda ja jakaa soittolistoja (ominaisuus tulossa).",
+    "github-title": "Github",
+    "http": "HTTP API",
+    "invidious-url": "Invidious instance url",
+    "language": "Kieli",
+    "language-placeholder": "Valitse kieli",
+    "lastfm-connect": "Kirjaudu käyttäen Last.fm tiliäsi",
+    "lastfm-description": "In order to enable scrobbling, you first have to connect and authorize Nuclear on Last.fm, then click log in.",
+    "lastfm-enable": "Enable scrobbling to Last.fm",
+    "lastfm-title": "Last.fm",
+    "login": "Kirjaudu sisään",
+    "logout": "Kirjaudu ulos",
+    "loop-after-queue-end": "Looppaa jonon viimeisen kappaleen jälkeen",
+    "max.downloads": "Latausten hallinta",
+    "mini-player": "Käytä minisoitinta",
+    "notification-timeout": "Notification timeout",
+    "notlogged": "Ei kirjautunut sisään",
+    "playback": "Toisto",
+    "program-settings": "Sovelluksen asetukset",
+    "seek-iteration": "Number of seconds to seek forward/backwards when pressing arrow keys",
+    "shuffle-queue": "Sekoita kappaleet",
+    "shuffle-when-going-back": "Sekoita edellinen kappale napilla",
+    "shuffle-when-going-back-description": "Soita satunnainen kappale kun sekoitus on päällä ja edellinen kappale nappia on painettu",
+    "social": "Social",
+    "track-duration": "Näytä kappaleen pituus edistymispalkissa",
+    "user": "Käyttäjä:",
+    "youtube": "Youtube",
+    "yt-api-key": "Youtube API Avain"
+  },
+  "tags": {
+    "albums": "Parhaat Albumit",
+    "artist": "Artisti",
+    "artists": "Parhaat Artistit",
+    "duration": "Pituus",
+    "queue-add": "Lisää kaikki kappaleet jonoon",
+    "title": "Nimi"
+  },
+  "visualizer": {
+    "exit-fullscreen": "Paina ESC poistuaksesi koko näytön tilasta"
+  }
+}
