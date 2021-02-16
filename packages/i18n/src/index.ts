@@ -23,6 +23,7 @@ import gr from './locales/gr.json';
 import hr from './locales/hr.json';
 import is from './locales/is.json';
 import vi from './locales/vi.json';
+import fi from './locales/fi.json';
 
 interface I18nOptions {
   languageDetector: LanguageDetectorModule;
@@ -57,7 +58,8 @@ export const setupI18n = ({ languageDetector, debug, react }: I18nOptions) => {
       gr,
       hr,
       is,
-      vi
+      vi,
+      fi
     },
     interpolation: {
       escapeValue: false
