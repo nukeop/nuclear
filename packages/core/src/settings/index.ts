@@ -201,7 +201,8 @@ export const settingsConfig: Array<Setting> = [
       { key: 'se', text: 'Svenska', value: 'se' },
       { key: 'gr', text: 'Greek', value: 'gr' },
       { key: 'hr', text: 'Hrvatski', value: 'hr' },
-      { key: 'is', text: 'Íslenska', value: 'is' }
+      { key: 'is', text: 'Íslenska', value: 'is' },
+      { key: 'fi', text: 'Suomi', value: 'fi' }
     ],
     default: undefined
   }, {

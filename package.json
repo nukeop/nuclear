@@ -226,6 +226,7 @@
     }
   },
   "dependencies": {
+    "7zip-bin-mac": "^1.0.1",
     "sqlite3": "^4.2.0"
   }
 }
