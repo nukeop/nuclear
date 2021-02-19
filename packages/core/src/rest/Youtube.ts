@@ -6,6 +6,7 @@ import ytsr from 'ytsr';
 
 import LastFmApi from './Lastfm';
 import { StreamQuery } from '../plugins/plugins.types';
+import * as SponsorBlock from './SponsorBlock';
 
 const lastfm = new LastFmApi(
   process.env.LAST_FM_API_KEY,
@@ -114,7 +115,9 @@ export async function trackSearchByString(query: string, omitStreamId?: string, 
   ) as ytsr.Video;
   const topTrackInfo = await ytdl.getInfo(topTrack.url);
   const formatInfo = ytdl.chooseFormat(topTrackInfo.formats, { quality: 'highestaudio' });
-
+  // console.log('-----topTrack-----\n', topTrack.id);
+  const segments = await SponsorBlock.getSegments(topTrack.id);
+  // console.log('-----skip segment-----\n', segments);
   return {
     source: sourceName,
     id: topTrack.id,
@@ -122,6 +125,7 @@ export async function trackSearchByString(query: string, omitStreamId?: string, 
     duration: parseInt(topTrackInfo.videoDetails.lengthSeconds),
     title: topTrackInfo.videoDetails.title,
     thumbnail: topTrack.bestThumbnail.url,
-    format: formatInfo.container
+    format: formatInfo.container,
+    skipSegment: segments
   };
 }

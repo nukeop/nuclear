@@ -8,14 +8,15 @@ import VolumeControls, { VolumeControlsProps } from '../VolumeControls';
 
 import common from '../../common.scss';
 import styles from './styles.scss';
+import { formatDuration } from '../../utils';
 
 export type PlayerBarProps = PlayerControlsProps &
   Omit<SeekbarProps, 'children'> &
   TrackInfoProps &
   VolumeControlsProps & {
     renderTrackDuration?: boolean;
-    timePlayed?: string;
-    timeToEnd?: string;
+    timePlayed?: number;
+    timeToEnd?: number;
   };
 
 const PlayerBar: React.FC<PlayerBarProps> = ({
@@ -49,7 +50,8 @@ const PlayerBar: React.FC<PlayerBarProps> = ({
   renderTrackDuration = false,
   timePlayed,
   timeToEnd,
-  seek
+  seek,
+  skipSegment
 }) => (
   <div className={cx(
     common.nuclear,
@@ -59,13 +61,15 @@ const PlayerBar: React.FC<PlayerBarProps> = ({
       fill={fill}
       seek={seek}
       queue={queue}
+      timePlayed={timePlayed}
+      skipSegment={skipSegment}
     >
       {
         hasTracks &&
           renderTrackDuration &&
           <div className={styles.track_duration}>
-            <div>{timePlayed}</div>
-            <div>-{timeToEnd}</div>
+            <div>{formatDuration(timePlayed)}</div>
+            <div>-{formatDuration(timeToEnd)}</div>
           </div>
       }
     </Seekbar>

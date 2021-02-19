@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import _ from 'lodash';
-import { formatDuration } from '@nuclear/ui';
+// import { formatDuration } from '@nuclear/ui';
 
 import { normalizeTrack } from '../../utils';
 import settingsConst from '../../constants/settings';
@@ -40,11 +40,36 @@ export const useSeekbarProps = () => {
     (place) => dispatch(playerActions.updateSeek(place)),
     [dispatch]
   );
+  
+  let skipSegment = [];
+  const streamName = _.get(
+    currentTrackStream,
+    'source'
+  );
+ 
+  if (streamName === 'Youtube') {
+    skipSegment = _.get(
+      currentTrackStream,
+      'skipSegment'
+    );
+    // console.log('okok', skipSegment)
+    // if (skipSegment && skipSegment.length) {
+    //   for (const segment of skipSegment) {
+    //     if (seek >= segment.startTime && seek <= segment.endTime) {
+    //       dispatch(playerActions.updateSeek(segment.endTime));
+    //       seek = segment.endTime;
+    //       timeToEnd = currentTrackDuration - seek;
+    //       break;
+    //     }
+    //   }
+    // }
+  }
 
   return {
     queue,
-    timePlayed: formatDuration(seek),
-    timeToEnd: formatDuration(timeToEnd),
+    skipSegment,
+    timePlayed: seek,
+    timeToEnd,
     fill: playbackProgress,
     seek: seekCallback
   };
