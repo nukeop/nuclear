@@ -25,8 +25,16 @@ export async function getSegments (videoID: VideoID, categories?: Category[]): P
           return r.json();
         })
         .then(j => {
+          if (!j) {
+            return resolve([]);
+          }
+
           let segments = j.map(({category, segment}) => {
-            return {startTime: Math.round(segment[0]), endTime: Math.round(segment[1]), category};
+            return {
+              category,
+              startTime: Math.round(segment[0]), 
+              endTime: Math.round(segment[1])
+            };
           });
 
           segments = _.sortBy(segments, ['startTime']);

@@ -115,9 +115,8 @@ export async function trackSearchByString(query: string, omitStreamId?: string, 
   ) as ytsr.Video;
   const topTrackInfo = await ytdl.getInfo(topTrack.url);
   const formatInfo = ytdl.chooseFormat(topTrackInfo.formats, { quality: 'highestaudio' });
-  // console.log('-----topTrack-----\n', topTrack.id);
   const segments = await SponsorBlock.getSegments(topTrack.id);
-  // console.log('-----skip segment-----\n', segments);
+  
   return {
     source: sourceName,
     id: topTrack.id,

@@ -40,12 +40,12 @@ const Seekbar: React.FC<SeekbarProps> = ({
       if (skipSegment && skipSegment.length && timePlayed) {
         for (const segment of skipSegment) {
           if (timePlayed >= segment.startTime && timePlayed <= segment.endTime) {
-            seek(segment.endTime)
+            seek(segment.endTime);
           }
         }
       }
     }
-  })
+  }, [timePlayed])
 
   const handleClick = useCallback((seek, queue) => {
     return event => {
