@@ -1,5 +1,5 @@
 import logger from 'electron-timber';
-import lyrics from 'simple-get-lyrics';
+import lyrics from 'get-lyrics-hd';
 
 import LyricsProvider from '../lyricsProvider';
 
