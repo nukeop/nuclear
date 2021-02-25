@@ -20,6 +20,7 @@ Discord channel: https://discord.gg/JqPjKxE
 Readme translations: 
 * [Brazilian Portuguese](docs/README-ptbr.md)
 * [Swedish](docs/README-se.md)
+* [Hebrew](docs/README-he.md)
 
 ## What is this?
 nuclear is a free music streaming program that pulls content from free sources all over the internet.
