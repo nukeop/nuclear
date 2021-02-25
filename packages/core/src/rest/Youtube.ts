@@ -105,10 +105,12 @@ export async function trackSearch(query: StreamQuery, omitStreamId?: string, sou
 }
 
 export async function trackSearchByString(query: string, omitStreamId?: string, sourceName?: string) {
-  const results = await ytsr(query);
+  const filterOptions = await ytsr.getFilters(query);
+  const filterVideoOnly = filterOptions.get('Type').get('Video'); 
+  const results = await ytsr(filterVideoOnly.url, { limit: omitStreamId ? 15 : 1 });
   const topTrack: ytsr.Video = _.find(
-    results.items,
-    item => item.type === 'video' && (!omitStreamId || item.id !== omitStreamId)
+    results.items as ytsr.Video[],
+    item => (!omitStreamId || item.id !== omitStreamId)
   ) as ytsr.Video;
   const topTrackInfo = await ytdl.getInfo(topTrack.url);
   const formatInfo = ytdl.chooseFormat(topTrackInfo.formats, { quality: 'highestaudio' });
