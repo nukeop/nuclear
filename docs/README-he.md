@@ -19,9 +19,12 @@
 ערוץ הדיסקורד: https://discord.gg/JqPjKxE
 
 תרגומים נוספים לדף:
-* [ברזילאית פורטוגזית](docs/README-ptbr.md)
-* [שוודית](docs/README-se.md)
-* [אנגלית](README.md)
+
+<kbd>[<img title="Português" alt="Português" src="https://cdn.staticaly.com/gh/hjnilsson/country-flags/master/svg/br.svg" width="22">](README-ptbr.md)</kbd>
+<kbd>[<img title="Svenska" alt="Svenska" src="https://cdn.staticaly.com/gh/hjnilsson/country-flags/master/svg/se.svg" width="22">](README-se.md)</kbd>
+<kbd>[<img title="English" alt="English" src="https://cdn.staticaly.com/gh/hjnilsson/country-flags/master/svg/us.svg" width="22">](README.md)</kbd>
+<kbd>[<img title="Hebrew" alt="Hebrew" src="https://cdn.staticaly.com/gh/hjnilsson/country-flags/master/svg/il.svg" width="22">](README-he.md)</kbd>
+<kbd>[<img title="Italiano" alt="Italiano" src="https://cdn.staticaly.com/gh/hjnilsson/country-flags/master/svg/it.svg" width="22">](README-it.md)</kbd>
 
 ## מה זה בכלל Nuclear?
 Nuclear זוהי תוכנה חינמית להזרמת תכנים ממקורות חינמיים ברחבי האינטרנט.
@@ -29,7 +32,7 @@ Nuclear זוהי תוכנה חינמית להזרמת תכנים ממקורות 
 מבינכם שמכירים את [mps-youtube](https://github.com/mps-youtube/mps-youtube), זו תוכנה דומה אך עם תוספת של ממשק משתמש גרפי. אנחנו מתמקדים בעיקר על השמע. דמיינו על ספוטיפיי אבל אתם לא צריכים לשלם עבורו ועם ספרייה גדולה יותר.
 
 ## אנחנו משתמשים בElectron, אם אתם נגד
-קראו [כאן](docs/electron.md).
+קראו [כאן](electron.md).
 
 ## פיצ׳רים
 
@@ -38,8 +41,8 @@ Nuclear זוהי תוכנה חינמית להזרמת תכנים ממקורות 
 - אפשרות ליצירת תור שמיעת שירים, שגם יכולה לייצא כפלייליסט
 - אפשרות טעינת פלייליסטים שמורים (שמורים כקובץ JSON)
 - אפשרות לקשר את החשבון שלך בLast.fm (בנוסף גם מאפשר להצגת סטטוס ׳מושמע כרגע...׳)
-- התוכנה מתעדכנת להכי חדשים וביקורות - גם שירים וגם אלבומים
-- אפשרות לחיפוש לפי סוגה
+- העדכונים הכי חדשים כולל ביקורת - שירים ואלבומים
+- אפשרות חיפוש לפי סגנון מוזיקה
 - אפשרות למצב רדיו (דומה לתור שירים אך עם שירים דומים למה שמושמע)
 - אפשרות לאינסוף הורדות (מופעל על ידי YouTube)
 - אפשרות לתצוגת מילות השירים בזמן אמת
@@ -144,7 +147,7 @@ $ flatpak install flathub io.atom.electron.BaseApp
 ```
 </div>
 
-כעת, על מנת לבנות את הפרוייקט (כתבו בנוסף את הפקודה `--verbose` כדי לקבל פלט מפורט יותר ):
+כעת, על מנת לבנות את הפרוייקט (כתבו בנוסף את הפקודה  <span dir="ltr">`--verbose`</span> כדי לקבל פלט מפורט יותר):
 <div dir="ltr">
 
 ```shell
