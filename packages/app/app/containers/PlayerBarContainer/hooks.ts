@@ -39,23 +39,16 @@ export const useSeekbarProps = () => {
     (place) => dispatch(playerActions.updateSeek(place)),
     [dispatch]
   );
-  
-  let skipSegment = [];
-  const streamName = _.get(
-    currentTrackStream,
-    'source'
-  );
  
-  if (streamName === 'Youtube') {
-    skipSegment = _.get(
-      currentTrackStream,
-      'skipSegment'
-    );
-  }
+  const skipSegments = _.get(
+    currentTrackStream,
+    'skipSegments',
+    []
+  );
 
   return {
     queue,
-    skipSegment,
+    skipSegments,
     timeToEnd,
     timePlayed: seek,
     fill: playbackProgress,

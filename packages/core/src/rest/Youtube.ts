@@ -116,7 +116,6 @@ export async function trackSearchByString(query: string, omitStreamId?: string, 
   const topTrackInfo = await ytdl.getInfo(topTrack.url);
   const formatInfo = ytdl.chooseFormat(topTrackInfo.formats, { quality: 'highestaudio' });
   const segments = await SponsorBlock.getSegments(topTrack.id);
-  
   return {
     source: sourceName,
     id: topTrack.id,
@@ -125,6 +124,6 @@ export async function trackSearchByString(query: string, omitStreamId?: string, 
     title: topTrackInfo.videoDetails.title,
     thumbnail: topTrack.bestThumbnail.url,
     format: formatInfo.container,
-    skipSegment: segments
+    skipSegments: segments
   };
 }

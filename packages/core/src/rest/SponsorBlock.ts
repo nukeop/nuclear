@@ -1,5 +1,6 @@
 import { VideoID, Category, Segment } from './SponsorBlock.types';
 import _ from 'lodash';
+import logger from 'electron-timber';
 
 const BASE_URL = 'https://sponsor.ajay.app';
 export const ALL_CATEGORIES = ['sponsor', 'intro', 'outro', 'interaction', 'selfpromo', 'music_offtopic'];
@@ -9,11 +10,9 @@ export async function getSegments (videoID: VideoID, categories?: Category[]): P
 
   if (!categories) {
     query += `&categories=${JSON.stringify(ALL_CATEGORIES)}`;
-  } else if (categories.length > 1) {
+  } else if (categories.length) {
     query += `&categories=${JSON.stringify(categories)}`;
-  } else if (categories.length === 1) {
-    query += `&category=${categories[0]}`;
-  } 
+  }
 
   return new Promise((resolve) => {
     try {
@@ -38,9 +37,8 @@ export async function getSegments (videoID: VideoID, categories?: Category[]): P
           });
 
           segments = _.sortBy(segments, ['startTime']);
-          const temp = _.concat(segments);
-          segments = _.filter(_.uniq(segments), (v: Segment) => {
-            for (const s of temp) {
+          segments = _.filter(segments, (v: Segment) => {
+            for (const s of segments) {
               if (s === v) {
                 continue;
               }
@@ -54,7 +52,9 @@ export async function getSegments (videoID: VideoID, categories?: Category[]): P
           resolve(segments);
         });
     } catch (error) {
-      resolve([]);
+      logger.error(`An error when getting skipsegment from SponsorBlock, videoID: ${videoID}`);
+      logger.error(error);
+      return [];
     }
   });
 }
