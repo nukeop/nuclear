@@ -13,8 +13,8 @@
   "homepage": "https://github.com/nukeop/nuclear#readme",
   "main": "src/index.ts",
   "scripts": {
-    "lint": "eslint src/**/*.ts --fix",
-    "test": "eslint src/**/**/**/**/*.ts test/**/*.ts && ava -v"
+    "lint": "eslint \"{test,src}/**/**.{js,ts}\" --fix",
+    "test": "eslint \"{test,src}/**/**.{js,ts}\" && ava -v"
   },
   "dependencies": {
     "@babel/core": "^7.7.7",
