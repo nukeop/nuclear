@@ -5,7 +5,7 @@
   "scripts": {
     "start": "shx rm -rf build && webpack --env.NODE_ENV=development && electron build/main.js",
     "build": "webpack --colors --env.NODE_ENV=production",
-    "lint": "eslint src/**/*.ts --fix"
+    "lint": "eslint src/**/**.ts --fix"
   },
   "repository": {
     "type": "git",
