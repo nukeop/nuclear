@@ -19,8 +19,8 @@
 	},
 	"scripts": {
 		"storybook": "start-storybook -p 9001 -c .storybook",
-		"lint": "eslint lib stories --fix",
-		"test": "eslint lib && jest"
+		"lint": "eslint \"{lib,stories}/**.{ts,tsx,js,jsx}\" --fix",
+		"test": "eslint \"lib/**.{ts,tsx,js,jsx}\" && jest"
 	},
 	"peerDependencies": {
 		"react": "^16.4.1",

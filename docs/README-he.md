@@ -186,5 +186,3 @@ $ flatpak-builder --run build-dir org.js.nuclear.Nuclear.json run.sh
 ## רישיון
 
 התוכנה הזו היא תוכנה חינמית: אתם יכולים להפיץ את זה מחדש ו/או לשנות את זה תחת תנאי רישיון ה GNU Affero General Public License כמופץ על ידי העמותה לתוכנה חינמית, או גרסה 3 של הרישיון, או (לפי בחירתך) כל גרסא אחרת.
-
-</div>
