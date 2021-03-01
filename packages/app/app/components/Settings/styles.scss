@@ -64,6 +64,10 @@
       .settings_item_text > label:only-child {
         margin-bottom: 1em;
       }
+
+      .input {
+        z-index: auto;
+      }
     }
 
     p {
