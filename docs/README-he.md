@@ -19,17 +19,20 @@
 ערוץ הדיסקורד: https://discord.gg/JqPjKxE
 
 תרגומים נוספים לדף:
-* [ברזילאית פורטוגזית](docs/README-ptbr.md)
-* [שוודית](docs/README-se.md)
-* [אנגלית](../README.md)
+
+<kbd>[<img title="Português" alt="Português" src="https://cdn.staticaly.com/gh/hjnilsson/country-flags/master/svg/br.svg" width="22">](README-ptbr.md)</kbd>
+<kbd>[<img title="Svenska" alt="Svenska" src="https://cdn.staticaly.com/gh/hjnilsson/country-flags/master/svg/se.svg" width="22">](README-se.md)</kbd>
+<kbd>[<img title="English" alt="English" src="https://cdn.staticaly.com/gh/hjnilsson/country-flags/master/svg/us.svg" width="22">](README.md)</kbd>
+<kbd>[<img title="Hebrew" alt="Hebrew" src="https://cdn.staticaly.com/gh/hjnilsson/country-flags/master/svg/il.svg" width="22">](README-he.md)</kbd>
+<kbd>[<img title="Italiano" alt="Italiano" src="https://cdn.staticaly.com/gh/hjnilsson/country-flags/master/svg/it.svg" width="22">](README-it.md)</kbd>
 
 ## מה זה בכלל Nuclear?
-Nuclear זוהי תוכנה חינמית להזרמת תכנים ממקורות חינמיים ברחבי האינטרנט.
+Nuclear היא תוכנה חינמית להזרמת תכנים ממקורות חינמיים ברחבי האינטרנט.
 
-מבינכם שמכירים את [mps-youtube](https://github.com/mps-youtube/mps-youtube), זו תוכנה דומה אך עם תוספת של ממשק משתמש גרפי. אנחנו מתמקדים בעיקר על השמע. דמיינו על ספוטיפיי אבל אתם לא צריכים לשלם עבורו ועם ספרייה גדולה יותר.
+מבינכם שמכירים את [mps-youtube](https://github.com/mps-youtube/mps-youtube), זו תוכנה דומה אך עם תוספת של ממשק משתמש גרפי. אנחנו מתמקדים בעיקר באודיו. דמיינו את ספוטיפיי אבל ללא תשלום ועם ספרייה גדולה יותר.
 
 ## אנחנו משתמשים בElectron, אם אתם נגד
-קראו [כאן](docs/electron.md).
+קראו [כאן](electron.md).
 
 ## פיצ׳רים
 
@@ -38,8 +41,8 @@ Nuclear זוהי תוכנה חינמית להזרמת תכנים ממקורות 
 - אפשרות ליצירת תור שמיעת שירים, שגם יכולה לייצא כפלייליסט
 - אפשרות טעינת פלייליסטים שמורים (שמורים כקובץ JSON)
 - אפשרות לקשר את החשבון שלך בLast.fm (בנוסף גם מאפשר להצגת סטטוס ׳מושמע כרגע...׳)
-- התוכנה מתעדכנת להכי חדשים וביקורות - גם שירים וגם אלבומים
-- אפשרות לחיפוש לפי סוגה
+- העדכונים הכי חדשים כולל ביקורת - שירים ואלבומים
+- אפשרות חיפוש לפי סגנון מוזיקה
 - אפשרות למצב רדיו (דומה לתור שירים אך עם שירים דומים למה שמושמע)
 - אפשרות לאינסוף הורדות (מופעל על ידי YouTube)
 - אפשרות לתצוגת מילות השירים בזמן אמת
@@ -55,7 +58,7 @@ https://nuclearmusic.rtfd.io/
 
 ## חבילות שנתמכות על ידי הקהילה
 
-לפניכם רשימה של חבילות בשביל שימוש שונים, רובם נתמכות על ידי אדם צד שלישי. אנחנו רוצים להודות לתומכים על עבודתם.
+לפניכם רשימה של החבילות עבור מנהלי החבילות השונים, רובן מתוחזקות על ידי תומכי צד שלישי.
 
 | סוג חבילה   |    קישור                                                    | נתמך על ידי                                    |
 |:--------------:|:-------------------------------------------------------:|:---------------------------------------------:|
@@ -144,7 +147,7 @@ $ flatpak install flathub io.atom.electron.BaseApp
 ```
 </div>
 
-כעת, על מנת לבנות את הפרוייקט (כתבו בנוסף את הפקודה `--verbose` כדי לקבל פלט מפורט יותר ):
+כעת, על מנת לבנות את הפרוייקט (כתבו בנוסף את הפקודה  <span dir="ltr">`--verbose`</span> כדי לקבל פלט מפורט יותר):
 <div dir="ltr">
 
 ```shell
@@ -183,5 +186,3 @@ $ flatpak-builder --run build-dir org.js.nuclear.Nuclear.json run.sh
 ## רישיון
 
 התוכנה הזו היא תוכנה חינמית: אתם יכולים להפיץ את זה מחדש ו/או לשנות את זה תחת תנאי רישיון ה GNU Affero General Public License כמופץ על ידי העמותה לתוכנה חינמית, או גרסה 3 של הרישיון, או (לפי בחירתך) כל גרסא אחרת.
-
-</div>

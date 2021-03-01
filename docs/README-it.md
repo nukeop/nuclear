@@ -18,9 +18,12 @@ Canale di supporto (Matrix): `#nuclear:matrix.org`
 Canale Discord: https://discord.gg/JqPjKxE
 
 Traduzione Documentazione: 
-* [Brazilian Portuguese](docs/README-ptbr.md)
-* [Swedish](docs/README-se.md)
-* [Italiano](docs/README-it.md)
+
+<kbd>[<img title="Português" alt="Português" src="https://cdn.staticaly.com/gh/hjnilsson/country-flags/master/svg/br.svg" width="22">](README-ptbr.md)</kbd>
+<kbd>[<img title="Svenska" alt="Svenska" src="https://cdn.staticaly.com/gh/hjnilsson/country-flags/master/svg/se.svg" width="22">](README-se.md)</kbd>
+<kbd>[<img title="English" alt="English" src="https://cdn.staticaly.com/gh/hjnilsson/country-flags/master/svg/us.svg" width="22">](README.md)</kbd>
+<kbd>[<img title="Hebrew" alt="Hebrew" src="https://cdn.staticaly.com/gh/hjnilsson/country-flags/master/svg/il.svg" width="22">](README-he.md)</kbd>
+<kbd>[<img title="Italiano" alt="Italiano" src="https://cdn.staticaly.com/gh/hjnilsson/country-flags/master/svg/it.svg" width="22">](README-it.md)</kbd>
 
 ## Cos'è Nuclear?
 Nuclear è un programma di streaming musicale gratuito che estrae contenuti da fonti gratuite su Internet.
