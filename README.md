@@ -18,9 +18,12 @@ Support channel (Matrix): `#nuclear:matrix.org`
 Discord channel: https://discord.gg/JqPjKxE
 
 Readme translations: 
-* [Brazilian Portuguese](docs/README-ptbr.md)
-* [Swedish](docs/README-se.md)
-* [Hebrew](docs/README-he.md)
+
+<kbd>[<img title="Português" alt="Português" src="https://cdn.staticaly.com/gh/hjnilsson/country-flags/master/svg/br.svg" width="22">](docs/README-ptbr.md)</kbd>
+<kbd>[<img title="Svenska" alt="Svenska" src="https://cdn.staticaly.com/gh/hjnilsson/country-flags/master/svg/se.svg" width="22">](docs/README-se.md)</kbd>
+<kbd>[<img title="English" alt="English" src="https://cdn.staticaly.com/gh/hjnilsson/country-flags/master/svg/us.svg" width="22">](README.md)</kbd>
+<kbd>[<img title="Hebrew" alt="Hebrew" src="https://cdn.staticaly.com/gh/hjnilsson/country-flags/master/svg/il.svg" width="22">](docs/README-he.md)</kbd>
+<kbd>[<img title="Italiano" alt="Italiano" src="https://cdn.staticaly.com/gh/hjnilsson/country-flags/master/svg/it.svg" width="22">](docs/README-it.md)</kbd>
 
 ## What is this?
 nuclear is a free music streaming program that pulls content from free sources all over the internet.
