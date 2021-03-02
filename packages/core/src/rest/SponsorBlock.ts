@@ -1,4 +1,4 @@
-import { VideoID, Category, Segment } from './SponsorBlock.types';
+import { VideoID, Category, Segment, OriginalSegment } from './SponsorBlock.types';
 import _ from 'lodash';
 import logger from 'electron-timber';
 
@@ -28,26 +28,7 @@ export async function getSegments (videoID: VideoID, categories?: Category[]): P
             return resolve([]);
           }
 
-          let segments = j.map(({category, segment}) => {
-            return {
-              category,
-              startTime: Math.round(segment[0]), 
-              endTime: Math.round(segment[1])
-            };
-          });
-
-          segments = _.sortBy(segments, ['startTime']);
-          segments = _.filter(segments, (v: Segment) => {
-            for (const s of segments) {
-              if (s === v) {
-                continue;
-              }
-              if (v.startTime >= s.startTime && v.endTime <= s.endTime) {
-                return false;
-              }
-            }
-            return true;
-          });
+          const segments = formatResponse(j);
 
           resolve(segments);
         });
@@ -58,3 +39,29 @@ export async function getSegments (videoID: VideoID, categories?: Category[]): P
     }
   });
 }
+
+function formatResponse(jsonRes: OriginalSegment[]): Segment[] {
+  let segments = jsonRes.map(({category, segment}) => {
+    return {
+      category,
+      startTime: Math.round(segment[0]), 
+      endTime: Math.round(segment[1])
+    };
+  });
+
+  segments = _.sortBy(segments, ['startTime']);
+  segments = _.filter(segments, (v: Segment) => {
+    for (const s of segments) {
+      if (s === v) {
+        continue;
+      }
+      if (v.startTime >= s.startTime && v.endTime <= s.endTime) {
+        return false;
+      }
+    }
+    return true;
+  });
+
+  return segments;
+}
+export { formatResponse };

@@ -5,3 +5,9 @@ export type Segment = {
   endTime: number;
   category: Category;
 };
+
+export type OriginalSegment = {
+  segment: [number, number];
+  category: Category;
+  UUID: string;
+}
