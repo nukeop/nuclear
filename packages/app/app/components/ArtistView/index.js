@@ -158,7 +158,7 @@ class ArtistView extends React.Component {
             })}
             albumInfoSearch={albumInfoSearch}
             history={history}
-            loading
+            loading={this.isLoading()}
           />
         </Dimmer.Dimmable>
       </div>
