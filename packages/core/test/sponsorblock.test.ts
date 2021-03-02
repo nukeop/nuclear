@@ -9,31 +9,30 @@ import { MockServer, VIDEO_ID } from '../../../__mocks__/sponsor-block-server';
 mock('electron-store', MockStore);
 mock('electron-timber', MockLogger);
 mock('electron', electron);
-mock('MockServer', MockServer);
-mock('VIDEO_ID', VIDEO_ID);
 
 import { rest } from '../src';
+import { OriginalSegment } from '../src/rest/SponsorBlock.types';
 
-test('has empty result', async (t) => {
-  const segments = rest.SponsorBlock.formatResponse(MockServer.request(VIDEO_ID.HAS_NO_SEGMENT));
+test('has empty result', t => {
+  const segments = rest.SponsorBlock.formatResponse(MockServer.request(VIDEO_ID.HAS_NO_SEGMENT) as OriginalSegment[]);
   t.true(segments.length === 0);
 });
 
-test('has result', async (t) => {
-  const segments = rest.SponsorBlock.formatResponse(MockServer.request(VIDEO_ID.HAS_SEGMENT));
+test('has result', t => {
+  const segments = rest.SponsorBlock.formatResponse(MockServer.request(VIDEO_ID.HAS_SEGMENT) as OriginalSegment[]);
   t.true(segments instanceof Array);
   t.true(segments.length > 0);
 });
 
-test('result is ascendingly ordered by startTime', async (t) => {
-  const segments = rest.SponsorBlock.formatResponse(MockServer.request(VIDEO_ID.HAS_SEGMENT_NOT_ORDER));
+test('result is ascendingly ordered by startTime', t => {
+  const segments = rest.SponsorBlock.formatResponse(MockServer.request(VIDEO_ID.HAS_SEGMENT_NOT_ORDER) as OriginalSegment[]);
   t.true(segments instanceof Array);
   t.true(segments.every(
     (segment, i, arr) => !i || (segment.startTime > arr[i-1].startTime)));
 });
 
-test('result has no segment contained in other segment ', async (t) => {
-  const segments = rest.SponsorBlock.formatResponse(MockServer.request(VIDEO_ID.HAS_SEGMENT_CONTAIN_OTHER_SEGMENT));
+test('result has no segment contained in other segment ', t => {
+  const segments = rest.SponsorBlock.formatResponse(MockServer.request(VIDEO_ID.HAS_SEGMENT_CONTAIN_OTHER_SEGMENT) as OriginalSegment[]);
   t.true(segments instanceof Array);
   t.true(segments.every(
     (segment, i, arr) => {
