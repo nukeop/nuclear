@@ -14,8 +14,8 @@ makeSnapshotTest(
     seek: () => { },
     queue: { queueItems: [] },
 
-    timePlayed: '-3:14',
-    timeToEnd: '2:43',
+    timePlayed: 194,
+    timeToEnd: 163,
 
     onDisableMiniPlayer: () => { },
     addToFavorites: () => { },

@@ -49,10 +49,10 @@ exports[`(Snapshot) Mini player should render correctly 1`] = `
         class="row"
       >
         <span>
-          -3:14
+          03:14
         </span>
         <span>
-          2:43
+          -02:43
         </span>
       </div>
       <div
