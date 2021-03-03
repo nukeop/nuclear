@@ -65,7 +65,7 @@ const MiniPlayer: React.FC<MiniPlayerProps> = ({
   <div className={styles.seekbar_wrapper}>
     <div className={styles.row}>
       <span>{formatDuration(timePlayed)}</span>
-      <span>{formatDuration(timeToEnd)}</span>
+      <span>-{formatDuration(timeToEnd)}</span>
     </div>
     <Seekbar
       fill={fill}
