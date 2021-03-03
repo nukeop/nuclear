@@ -17,15 +17,15 @@ class IpcPlayer {
   ) {}
 
   @ipcEvent(IpcEvents.PLAY)
-  onPlay() {
+  async onPlay() {
     this.systemApi.play();
-    return this.discord.play();
+    await this.discord.play();
   }
 
   @ipcEvent(IpcEvents.PAUSE)
-  onPause() {
+  async onPause() {
     this.systemApi.pause();
-    return this.discord.pause();
+    await this.discord.pause();
   }
 
   @ipcEvent(IpcEvents.VOLUME)
@@ -60,14 +60,14 @@ class IpcPlayer {
   }
 
   @ipcEvent(IpcEvents.SONG_CHANGE)
-  onSongChange(evt: IpcMessageEvent, arg: NuclearMeta) {
+  async onSongChange(evt: IpcMessageEvent, arg: NuclearMeta) {
     if (arg === null) {
       return;
     }
 
     this.window.setTitle(`${arg.artist} - ${arg.name} - Nuclear Music Player`);
     this.systemApi.sendMetadata && this.systemApi.sendMetadata(arg);
-    this.discord.trackChange(arg);
+    await this.discord.trackChange(arg);
   }
 }
 

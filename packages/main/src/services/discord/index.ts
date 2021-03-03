@@ -9,88 +9,85 @@ import Logger, { $mainLogger } from '../logger';
 class Discord {
   private rpc: DiscordRPC.Client;
   private isReady = false;
-  private baseStart: number;
-  private pauseStart: number;
-  private pausedTotal = 0;
-  private activity: {
-    details: string;
-    startTimestamp: number;
-    largeImageKey: string;
-  };
+
+  private currentTrack: NuclearMeta;
+  private paused: boolean;
 
   constructor(
     @inject(Config) private config: Config,
     @inject($mainLogger) private logger: Logger
   ) {}
 
-  private async sendActivity() {
-    try {
-      await this.rpc.setActivity(this.activity);
-      this.logger.log('update discord activity');
-    } catch (err) {
-      this.logger.error('error trying to set discord activity');
-    }
-  }
-
   async pause() {
-    if (this.isReady && this.activity) {
-      this.pauseStart = Date.now();
-  
-      this.activity.details += '\nPaused';
-      this.activity.startTimestamp = this.pauseStart;
-      return this.sendActivity();
+    if (!this.isReady) {
+      await this.init();
     }
+    this.paused = true;
+    await this.updatePresence();
   }
 
   async play() {
-    if (this.isReady && this.activity) {
-      this.pausedTotal += Date.now() - this.pauseStart;
-      if (this.activity) {
-        this.activity.details = this.activity.details.substr(0, this.activity.details.length - 8);
-        this.activity.startTimestamp = this.baseStart + this.pausedTotal;
-        return this.sendActivity();
-      }
+    if (!this.isReady) {
+      await this.init();
     }
+    this.paused = false;
+    await this.updatePresence();
   }
 
-  async init(cb?: () => void) {
+  async init() {
     DiscordRPC.register(this.config.discordClientId);
     this.rpc = new DiscordRPC.Client({ transport: 'ipc' });
-
-    this.rpc.once('ready', () => {
-      this.logger.log('connected to discord');
-      this.isReady = true;
-      cb && cb();
-    });
 
     try {
       await this.rpc.login({ clientId: this.config.discordClientId });
     } catch (err) {
       this.logger.log('error trying to connect discord');
+      return;
     }
+
+    await new Promise<void>(res => this.rpc.once('ready', res));
+    
+    this.logger.log('connected to discord');
+    this.isReady = true;
   }
 
   async trackChange(track: NuclearMeta) {
-    this.baseStart = Date.now();
-    this.pausedTotal = 0;
-    this.activity = {
-      details: `${track.artist} - ${track.name}`,
-      startTimestamp: this.baseStart,
-      largeImageKey: 'logo'
-    };
     if (!this.rpc) {
       return null;
-    } else if (!this.isReady) {
-      return this.init(() => {
-        this.sendActivity();
-      });
-    } else {
-      this.sendActivity();
+    }
+    if (!this.isReady) {
+      await this.init();
+    }
+    this.currentTrack = track;
+    await this.updatePresence();
+  }
+
+  async updatePresence() {
+    try {
+      const activity: DiscordRPC.Presence = {
+        details: 'Idle',
+        startTimestamp: null,
+        largeImageKey: 'logo'
+      };
+      
+      if (this.currentTrack) {
+        activity.details = `${this.currentTrack.artist} - ${this.currentTrack.name}`;
+        if (this.paused) {
+          activity.details += '\nPaused';
+        } else {
+          activity.startTimestamp = Date.now() - this.currentTrack.position;
+        }
+      }
+
+      await this.rpc.setActivity(activity);
+      this.logger.log('updated discord activity');
+    } catch (err) {
+      this.logger.log(err);
+      this.logger.error('error trying to set discord activity');
     }
   }
 
   clear() {
-    delete this.activity;
     if (this.isReady) {
       this.logger.log('clear discord activity');
       this.rpc.clearActivity();
