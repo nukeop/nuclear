@@ -1,6 +1,7 @@
 import React from 'react';
 import { Visualizer } from '@nuclear/ui';
 import { useLocation } from 'react-router-dom';
+
 import { useVisualizerProps } from './hooks';
 
 export type VisualizerContainerProps = {
