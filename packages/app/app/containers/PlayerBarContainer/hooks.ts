@@ -3,7 +3,6 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import _ from 'lodash';
-import { formatDuration } from '@nuclear/ui';
 
 import { normalizeTrack } from '../../utils';
 import settingsConst from '../../constants/settings';
@@ -40,11 +39,18 @@ export const useSeekbarProps = () => {
     (place) => dispatch(playerActions.updateSeek(place)),
     [dispatch]
   );
+ 
+  const skipSegments = _.get(
+    currentTrackStream,
+    'skipSegments',
+    []
+  );
 
   return {
     queue,
-    timePlayed: formatDuration(seek),
-    timeToEnd: formatDuration(timeToEnd),
+    skipSegments,
+    timeToEnd,
+    timePlayed: seek,
     fill: playbackProgress,
     seek: seekCallback
   };

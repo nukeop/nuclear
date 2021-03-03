@@ -11,3 +11,6 @@ export { Bandcamp };
 
 import * as Audius from './Audius';
 export { Audius };
+
+import * as SponsorBlock from './SponsorBlock';
+export { SponsorBlock };

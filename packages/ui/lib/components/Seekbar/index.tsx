@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import cx from 'classnames';
 
 import common from '../../common.scss';
@@ -7,13 +7,20 @@ import styles from './styles.scss';
 type QueueItem = {
   streams: { duration: number }[];
 };
+type Segment = {
+	startTime: number;
+	endTime: number;
+	category: string;
+};
 
 export type SeekbarProps = {
   children?: React.ReactNode;
   fill: number;
   seek: (arg0: number) => void;
   queue: { queueItems: QueueItem[] };
-  height?: string
+  height?: string,
+  skipSegments?: Segment[],
+  timePlayed?: number
 };
 
 const Seekbar: React.FC<SeekbarProps> = ({
@@ -21,8 +28,24 @@ const Seekbar: React.FC<SeekbarProps> = ({
   fill,
   seek,
   queue,
-  height
+  height,
+  skipSegments,
+  timePlayed
 }) => {
+  const [hasMounted, setHasMounted] = useState(false);
+  useEffect(() => {
+    if (!hasMounted) {
+      setHasMounted(true);
+    } else {
+      if (skipSegments && skipSegments.length && timePlayed) {
+        for (const segment of skipSegments) {
+          if (timePlayed >= segment.startTime && timePlayed <= segment.endTime) {
+            seek(segment.endTime);
+          }
+        }
+      }
+    }
+  }, [timePlayed]);
 
   const handleClick = useCallback((seek, queue) => {
     return event => {
