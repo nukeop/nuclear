@@ -1,4 +1,5 @@
 import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { Location } from 'history';
 import ReactDOM from 'react-dom';
 import butterchurn from 'butterchurn';
 import butterchurnPresets from 'butterchurn-presets';
@@ -10,7 +11,8 @@ import styles from './styles.scss';
 export type VisualizerProps = {
   audioContext?: AudioContext;
   previousNode?: AudioNode;
-  location?: Location;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  location?: Location<any>;
   trackName?: string;
   presetName: string;
 }
