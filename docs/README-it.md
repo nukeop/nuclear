@@ -36,7 +36,7 @@ Leggi [questo](docs/electron.md).
 
 ## Caratteristiche
 
-- Ricerca e riproduzione di musica da YouTube (inclusa l'integrazione con le playlist), Jamendo, Audius e SoundCloud
+- Ricerca e riproduzione di musica da YouTube (inclusa l'integrazione con le playlist e [SponsorBlock](https://sponsor.ajay.app/)), Jamendo, Audius e SoundCloud
 - Ricerca di album (alimentato da Last.fm e Discogs), visualizzazione album, ricerca automatica dei brani in base all'artista e al nome della traccia (in corso, a volte può causare problemi)
 - Coda di brani, che può essere esportata come playlist
 - Caricamento di playlist salvate (memorizzate in file json)

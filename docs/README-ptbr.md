@@ -28,7 +28,7 @@ Veja [isto](electron-ptbr.md).
 
 ## Features
 
-- Procurar e tocar músicas a partir do YouTube (incluindo integração com playlists), Jamendo e SoundCloud.
+- Procurar e tocar músicas a partir do YouTube (incluindo integração com playlists e [SponsorBlock](https://sponsor.ajay.app/)), Jamendo e SoundCloud.
 - Procura por álbuns (alimentado pelo Last.fm e MusicBrainz), visualização do álbum, procura automática de música baseada no artista e nome da faixa (em progresso, pode ser incorreta e/ou imprecisa às vezes).
 - Fila de músicas, podem ser exportadas como uma playlist.
 - Carregamento de playlists salvas (salvas como arquivos .json).

@@ -36,7 +36,7 @@ Kolla in [det här](docs/electron.md).
 
 ## Funktioner
 
-- Sökande och uppspelning av musik från YouTube (inklusive spellisteintegration), jamendo och SoundCloud
+- Sökande och uppspelning av musik från YouTube (inklusive spellisteintegration och [SponsorBlock](https://sponsor.ajay.app/)), jamendo och SoundCloud
 - Albumsökning (med hjälp av Last.fm och MusicBrainz), albumvy, automatiskt uppletande av låtar baserat på artist och spårets namn (pågående arbete, inte riktigt där än)
 - Låtkö som kan exporteras till spellistor
 - Inläsning av sparade spellistor (sparas som JSON filer)
