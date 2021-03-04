@@ -3,8 +3,8 @@
     "download": "Download",
     "download-toast-content": "{{artist}} - {{title}} has been added to downloads.",
     "download-toast-title": "Album added to downloads",
-    "queue": "Add album to queue",
-    "error-load": "Ops, could not load this album. Try later :("
+    "error-load": "Ops, could not load this album. Try later :(",
+    "queue": "Add album to queue"
   },
   "app": {
     "collection": "Collection",

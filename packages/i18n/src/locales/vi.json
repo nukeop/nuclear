@@ -3,6 +3,7 @@
     "download": "Tải xuống",
     "download-toast-content": "{{artist}} - {{title}} đã được thêm vào mục tải xuống.",
     "download-toast-title": "Album đã thêm vào mục tải xuống",
+    "error-load": "Ops, could not load this album. Try later :(",
     "queue": "Thêm album vào playlist"
   },
   "app": {

@@ -3,6 +3,7 @@
     "download": "Hlaða niður",
     "download-toast-content": "{{artist}} - {{title}} hefur verið bætt í niðurhöl.",
     "download-toast-title": "Albúmi bætt í niðurhöl",
+    "error-load": "Ops, could not load this album. Try later :(",
     "queue": "Setja albúm i biðröðina"
   },
   "app": {

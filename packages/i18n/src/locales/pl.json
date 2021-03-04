@@ -3,6 +3,7 @@
     "download": "Pobierz",
     "download-toast-content": "{{artist}} - {{title}} został dodany do pobranych.",
     "download-toast-title": "Album dodany do pobranych",
+    "error-load": "Ops, could not load this album. Try later :(",
     "queue": "Dodaj album do kolejki"
   },
   "app": {

@@ -3,6 +3,7 @@
     "download": "Stáhnout",
     "download-toast-content": "{{artist}} - {{title}} byl přidán do stažených.",
     "download-toast-title": "Album přidáno do stažených",
+    "error-load": "Ops, could not load this album. Try later :(",
     "queue": "Přidat album do fronty"
   },
   "app": {

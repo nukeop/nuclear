@@ -3,6 +3,7 @@
     "download": "Μεταφόρτωση",
     "download-toast-content": "{{artist}} - {{title}} προστέθηκε στην λίστα μεταφορτώσεων.",
     "download-toast-title": "Το άλμπουμ προστέθηκε στην λίστα μεταφορτώσεων",
+    "error-load": "Ops, could not load this album. Try later :(",
     "queue": "Προσθήκη του άλμπουμ στην λίστα αναπαραγωγής"
   },
   "app": {

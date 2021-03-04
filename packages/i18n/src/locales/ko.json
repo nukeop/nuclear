@@ -3,6 +3,7 @@
     "download": "다운로드",
     "download-toast-content": "{{artist}} - {{title}} 가 다운로드에 추가 되었습니다.",
     "download-toast-title": "다운로드에 추가된 앨범",
+    "error-load": "Ops, could not load this album. Try later :(",
     "queue": "재생목록에 앨범 추가"
   },
   "app": {

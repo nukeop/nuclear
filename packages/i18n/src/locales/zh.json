@@ -3,6 +3,7 @@
     "download": "Download",
     "download-toast-content": "{{artist}} - {{title}} has been added to downloads.",
     "download-toast-title": "Album added to downloads",
+    "error-load": "Ops, could not load this album. Try later :(",
     "queue": "将专辑添加到播放列表"
   },
   "app": {

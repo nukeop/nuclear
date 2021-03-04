@@ -3,6 +3,7 @@
     "download": "Download",
     "download-toast-content": "{{artist}} - {{title}} ay naidagdag sa mga download.",
     "download-toast-title": "Idinagdag ang album sa mga download",
+    "error-load": "Ops, could not load this album. Try later :(",
     "queue": "Idagdag ang album sa pila"
   },
   "app": {

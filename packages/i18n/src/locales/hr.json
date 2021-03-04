@@ -3,6 +3,7 @@
     "download": "Preuzmi",
     "download-toast-content": "{{artist}} - {{title}} je dodano u listu preuzimanja.",
     "download-toast-title": "Album dodan u listu preuzimanja",
+    "error-load": "Ops, could not load this album. Try later :(",
     "queue": "Dodaj album u red za preuzimanje"
   },
   "app": {

@@ -3,6 +3,7 @@
     "download": "Hämta",
     "download-toast-content": "{{artist}} - {{title}} har lagts till i hämtningar.",
     "download-toast-title": "Albumet tillagt i hämtningar",
+    "error-load": "Ops, could not load this album. Try later :(",
     "queue": "Lägg till albumet i kön"
   },
   "app": {
