@@ -190,11 +190,14 @@ class DiscogsMetaProvider extends MetaProvider {
     albumId: string,
     albumType: 'master' | 'release' = 'master',
     resourceUrl: string): Promise<AlbumDetails> {
+    // console.log('I call you');
+    
     const albumData: DiscogsReleaseInfo = await (await Discogs.releaseInfo(
       albumId,
       albumType,
       { resource_url: resourceUrl }
     )).json();
+
     return Promise.resolve(
       this.discogsReleaseInfoToGeneric(
         albumData,

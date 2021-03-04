@@ -148,6 +148,8 @@ export function unifiedSearch(terms, history) {
 export const albumInfoSearch = (albumId, releaseType = 'master', release) => async (dispatch, getState) => {
   dispatch(SearchActions.albumInfoStart(albumId));
   try {
+    // console.log('albumInfoSearch ');
+    // console.log(release);
     const selectedProvider = getSelectedMetaProvider(getState);
     const albumDetails = await selectedProvider.fetchAlbumDetails(albumId, releaseType, release?.resourceUrl);
     dispatch(SearchActions.albumInfoSuccess(albumId, albumDetails));

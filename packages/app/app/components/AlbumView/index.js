@@ -183,12 +183,12 @@ class AlbumView extends React.Component {
             <Loader />
           </Dimmer>
           {
-            album?.loading !== true && album?.error !== true ? (
+            album?.loading !== true && album?.title ? (
               <div className={styles.album}>
                 {this.renderAlbumInfoBox(album, albumImage)}
                 {this.renderAlbumTracksList(album)}
               </div>
-            ) : (
+            ) : album?.error === true && (
               <div className={styles.error}>
                 <Icon name='stop circle' size='huge' />
                 <div className={styles.message}>{t('error-load')}</div>
