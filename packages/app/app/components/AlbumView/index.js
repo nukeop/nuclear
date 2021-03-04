@@ -175,6 +175,7 @@ class AlbumView extends React.Component {
   }
 
   renderAlbumLoading(album, albumImage) {
+    const { t } = this.props;
     return (
       <div className={styles.album_view_container}>
         <Dimmer.Dimmable>
@@ -188,8 +189,9 @@ class AlbumView extends React.Component {
                 {this.renderAlbumTracksList(album)}
               </div>
             ) : (
-              <div>
-                There is something wrong, try later. :(
+              <div className={styles.error}>
+                <Icon name='stop circle' size='huge' />
+                <div className={styles.message}>{t('error-load')}</div>
               </div>
             )
           }
