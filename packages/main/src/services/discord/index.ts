@@ -67,6 +67,7 @@ class Discord {
       await this.rpc.login({ clientId: this.config.discordClientId });
     } catch (err) {
       this.logger.log('error trying to connect discord');
+      this.isReady = true;
     }
   }
 
