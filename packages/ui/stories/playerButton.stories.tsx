@@ -4,7 +4,7 @@ import { PlayerButton } from '..';
 
 export default {
   title: 'Player button'
-}
+};
 
 export const PlayButton = () => {
   const [icon, setIcon] = useState('play');
@@ -14,7 +14,7 @@ export const PlayButton = () => {
     } else {
       setIcon('play');
     }
-  }
+  };
 
   return <div
     className='bg'
@@ -29,18 +29,18 @@ export const PlayButton = () => {
       onClick={onClick}
     />
   </div>;
-}
+};
 
 export const PlayerControls = () => <div className='bg'>
-   <PlayerButton
-      icon='step backward'
-      size='large'
-    />
   <PlayerButton
-      icon='play'
-    />
-     <PlayerButton
-      icon='step forward'
-      size='large'
-    />
-</div>
+    icon='step backward'
+    size='large'
+  />
+  <PlayerButton
+    icon='play'
+  />
+  <PlayerButton
+    icon='step forward'
+    size='large'
+  />
+</div>;

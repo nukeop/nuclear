@@ -251,7 +251,7 @@ class App extends React.PureComponent {
 
   render () {
     return (
-      <React.Fragment>
+      <>
         <ErrorBoundary>
           <div className={styles.app_container}>
             <MiniPlayerContainer />
@@ -270,7 +270,7 @@ class App extends React.PureComponent {
         </ErrorBoundary>
         <ShortcutsContainer />
         <ToastContainer />
-      </React.Fragment>
+      </>
     );
   }
 }
