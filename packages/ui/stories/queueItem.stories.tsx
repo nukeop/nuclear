@@ -3,6 +3,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 
 import { QueueItem } from '..';
+// eslint-disable-next-line node/no-missing-import
 import { formatDuration } from '../lib/utils';
 
 const commonProps = {

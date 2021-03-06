@@ -5,7 +5,7 @@ import { TrackPopup } from '..';
 
 export default {
   title: 'Track popup'
-}
+};
 
 const track = {
   artist: 'Test',

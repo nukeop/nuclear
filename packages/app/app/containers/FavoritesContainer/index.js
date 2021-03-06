@@ -33,7 +33,6 @@ class FavoritesContainer extends React.Component {
       queueActions,
       streamProviders,
       playerActions
-      
     } = this.props;
 
     if (match.path.endsWith(ALBUMS_PATH)) {

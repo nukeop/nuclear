@@ -49,7 +49,7 @@ function generateNotification(title, details, icon, type, settings) {
     },
     type)));
 
-    const timeout = _.get(settings, 'notificationTimeout');
+    const timeout = _.get(settings, 'notificationTimeout') ?? 3;
     setTimeout(() => dispatch(removeNotification(id)), timeout * 1000);
   };
 }

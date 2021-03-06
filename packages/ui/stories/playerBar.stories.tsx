@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { PlayerBar } from '..';
+// eslint-disable-next-line node/no-missing-import
 import { SemanticICONS } from 'semantic-ui-react/dist/commonjs/generic';
 
 export default {
@@ -17,8 +18,8 @@ export const DefaultStyle = () => <div
   <span style={{ flex: '1 1 auto' }} />
   <PlayerBar
     renderTrackDuration
-    timePlayed='-3:14'
-    timeToEnd='2:43'
+    timePlayed={194}
+    timeToEnd={163}
     fill={66}
     track='Test song'
     artist='Test artist'
