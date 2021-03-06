@@ -1,7 +1,6 @@
 import logger from 'electron-timber';
 import React from 'react';
 import { withRouter } from 'react-router';
-import { History } from 'history';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -10,7 +9,9 @@ import * as ToastActions from '../../actions/toasts';
 type ErrorBoundaryProps = {
   onError: typeof ToastActions.error;
   settings: { [key: string]: unknown };
-  history: History;
+  history: {
+    goBack: () => void;
+  };
 }
 
 class ErrorBoundary extends React.Component<ErrorBoundaryProps> {
