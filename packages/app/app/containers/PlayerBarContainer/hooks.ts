@@ -21,15 +21,15 @@ import { SemanticICONS } from 'semantic-ui-react/dist/commonjs/generic';
 export const useSeekbarProps = () => {
   const dispatch = useDispatch();
   const queue = useSelector(queueSelector);
-  const seek = useSelector(playerSelectors.seek);
-  const playbackProgress = useSelector(playerSelectors.playbackProgress);
+  const seek: number = useSelector(playerSelectors.seek);
+  const playbackProgress: number = useSelector(playerSelectors.playbackProgress);
   const currentTrackStream = _.head(
     _.get(
       queue.queueItems[queue.currentSong],
       'streams'
     )
   );
-  const currentTrackDuration = _.get(
+  const currentTrackDuration: number = _.get(
     currentTrackStream,
     'duration'
   );
@@ -60,7 +60,7 @@ export const usePlayerControlsProps = () => {
   const dispatch = useDispatch();
   const queue = useSelector(queueSelector);
   const playbackStatus = useSelector(playerSelectors.playbackStatus);
-  const playbackStreamLoading = useSelector(playerSelectors.playbackStreamLoading);
+  const playbackStreamLoading: boolean = useSelector(playerSelectors.playbackStreamLoading);
 
   const couldPlay = queue.queueItems.length > 0;
   const couldForward = couldPlay && queue.currentSong + 1 < queue.queueItems.length;
