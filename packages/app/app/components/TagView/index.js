@@ -53,13 +53,12 @@ class TagView extends React.Component {
     );
   }
 
-  renderTagTopTracks (topTracks, addToQueue, streamProviders) {
+  renderTagTopTracks (topTracks, addToQueue) {
 
     return (
       <TagTopTracks
         tracks={topTracks}
         addToQueue={addToQueue}
-        streamProviders={streamProviders}
       />
     );
   }
@@ -83,7 +82,7 @@ class TagView extends React.Component {
   }
 
   render () {
-    const { addToQueue, tag, tags, streamProviders } = this.props;
+    const { addToQueue, tag, tags } = this.props;
     let tagInfo, topTracks, topAlbums, topArtists;
     if (tags[tag] && tags[tag].loading !== true) {
       tagInfo = tags[tag][0].tag;
@@ -100,7 +99,7 @@ class TagView extends React.Component {
               {this.renderTagHeader(tagInfo, topArtists)}
               <TagDescription tagInfo={tagInfo} />
               {this.renderTopArtistsAndTopAlbums(topArtists, topAlbums)}
-              {this.renderTagTopTracks(topTracks, addToQueue, streamProviders)}
+              {this.renderTagTopTracks(topTracks, addToQueue)}
             </div>
           )}
         </Dimmer.Dimmable>

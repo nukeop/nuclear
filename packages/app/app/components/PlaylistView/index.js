@@ -19,9 +19,9 @@ class PlaylistView extends React.Component {
     super(props);
   }
 
-  playAll (playlist) {
+  async playAll (playlist) {
     this.props.clearQueue();
-    this.props.addTracks(this.props.streamProviders, playlist.tracks);
+    await this.props.addTracks(playlist.tracks);
     this.props.selectSong(0);
     this.props.startPlayback();
   }
@@ -83,8 +83,8 @@ class PlaylistView extends React.Component {
       <a
         href='#'
         className={styles.play_button}
-        onClick={() =>
-          this.playAll(playlist, this.props.streamProviders)
+        onClick={async () =>
+          await this.playAll(playlist, this.props.streamProviders)
         }
       >
         <Icon name='play' /> Play

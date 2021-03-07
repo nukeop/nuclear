@@ -46,9 +46,9 @@ class IpcContainer extends React.Component {
       const tracks = this.props.playlists.find(({ name }) => playlistName === name).tracks;
 
       actions.clearQueue();
-      actions.addPlaylistTracksToQueue(this.props.streamProviders, tracks);
+      actions.addPlaylistTracksToQueue(tracks);
     });
-    ipcRenderer.on(IpcEvents.PLAYLIST_ADD_QUEUE, (event, metas) => actions.addPlaylistTracksToQueue([], metas));
+    ipcRenderer.on(IpcEvents.PLAYLIST_ADD_QUEUE, (event, metas) => actions.addPlaylistTracksToQueue(metas));
 
     ipcRenderer.on(IpcEvents.EQUALIZER_UPDATE, (event, data) => actions.updateEqualizer(data));
     ipcRenderer.on(IpcEvents.EQUALIZER_SET, (event, data) => actions.setEqualizer(data));
