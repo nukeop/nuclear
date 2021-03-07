@@ -5,7 +5,7 @@ import styles from './styles.scss';
 import TrackRow from '../../TrackRow';
 import { useTranslation } from 'react-i18next';
 
-const TagTopTracks = ({ tracks, addToQueue, musicSources }) => {
+const TagTopTracks = ({ tracks, addToQueue }) => {
   const { t } = useTranslation('tags');
 
   return (
@@ -16,7 +16,7 @@ const TagTopTracks = ({ tracks, addToQueue, musicSources }) => {
         className='add_all_button'
         onClick={() => {
           tracks.map((track) => {
-            addToQueue(musicSources, {
+            addToQueue({
               artist: track.artist.name,
               name: track.name,
               thumbnail: track.image[1]['#text']

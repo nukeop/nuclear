@@ -13,6 +13,8 @@ const lastfm = new LastFmApi(
   process.env.LAST_FM_API_SECRET
 );
 
+const baseUrl = 'http://www.youtube.com/watch?v=';
+
 function isValidURL(str) {
   const pattern = new RegExp('^(https?:\\/\\/)' + // protocol
     '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' + // domain name and extension
@@ -127,3 +129,10 @@ export async function trackSearchByString(query: string, omitStreamId?: string, 
     skipSegments: segments
   };
 }
+
+export const getStreamForId = async (id: string) => {
+  const videoUrl = baseUrl + id;
+  const trackInfo = await ytdl.getInfo(videoUrl);
+  const formatInfo = ytdl.chooseFormat(trackInfo.formats, { quality: 'highestaudio' });
+  return formatInfo.url;
+};

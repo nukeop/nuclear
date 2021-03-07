@@ -30,8 +30,7 @@ const FavoriteTracksView = ({
   clearQueue,
   selectSong,
   startPlayback,
-  addToQueue,
-  streamProviders
+  addToQueue
 }) => {
   const { t } = useTranslation('favorites');
 
@@ -48,7 +47,7 @@ const FavoriteTracksView = ({
 
     tracks.map(track => {
       const trackImage = getTrackimage(track);
-      addToQueue(streamProviders, {
+      addToQueue({
         artist: track.artist.name,
         name: track.name,
         thumbnail: trackImage

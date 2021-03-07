@@ -53,7 +53,7 @@ const TrackPopupContainer = compose(
     }
   })),
   withHandlers({
-    onAddToQueue: ({ actions, streamProviders, trackItem }) => () => actions.addToQueue(streamProviders, trackItem),
+    onAddToQueue: ({ actions, trackItem }) => () => actions.addToQueue(trackItem),
     onPlayNow: ({ actions, streamProviders, trackItem }) => () => actions.playTrack(streamProviders, trackItem),
     onAddToFavorites: ({ actions, track, artist, title, thumb, settings }) => () => {
       actions.addFavoriteTrack(track);

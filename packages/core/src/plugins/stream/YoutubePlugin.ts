@@ -32,6 +32,10 @@ class YoutubePlugin extends StreamProviderPlugin {
       logger.error(e);
     }
   }
+
+  async getStreamForId(id: string) {
+    return Youtube.getStreamForId(id);
+  }
 }
 
 export default YoutubePlugin;

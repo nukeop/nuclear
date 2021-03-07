@@ -22,7 +22,7 @@ class AlbumView extends React.Component {
   addAlbumToQueue(album) {
     const albumThumbnail = this.getAlbumImage(album);
     album.tracklist.map(track => {
-      this.props.addToQueue(this.props.streamProviders, {
+      this.props.addToQueue({
         artist: album.artist,
         name: track.title,
         thumbnail: albumThumbnail

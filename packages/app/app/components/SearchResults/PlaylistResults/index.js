@@ -16,7 +16,7 @@ class PlaylistResults extends React.Component {
 
   addTrack (track) {
     if (typeof track !== 'undefined') {
-      this.props.addToQueue(this.props.streamProviders, {
+      this.props.addToQueue({
         artist: track.artist,
         name: track.name,
         thumbnail: _.get(track, 'image[1][\'#text\']', artPlaceholder)

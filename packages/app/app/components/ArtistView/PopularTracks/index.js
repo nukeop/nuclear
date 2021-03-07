@@ -89,13 +89,13 @@ export default compose(
   withState('expanded', 'setExpanded', false),
   withHandlers({
     toggleExpand: ({ expanded, setExpanded }) => () => setExpanded(!expanded),
-    handleAddAll: ({ artist, tracks, streamProviders, addToQueue }) => () => 
+    handleAddAll: ({ artist, tracks, addToQueue }) => () => 
       tracks
       // Change of WildLeons
       // Old version : .slice(0, expanded ? 15 : 5)
         .slice(0, tracks.length > 15 ? 15 : tracks.length)
         .map(track => {
-          addToQueue(streamProviders, {
+          addToQueue({
             artist: artist.name,
             name: track.name,
             thumbnail: track.thumb || artPlaceholder

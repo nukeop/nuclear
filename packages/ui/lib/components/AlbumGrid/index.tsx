@@ -99,11 +99,8 @@ export default compose(
   ),
   withHandlers({
     onAlbumClick: ({ onAlbumClick, selectAlbum }) => album => _.isNil(onAlbumClick) ? selectAlbum(album) : onAlbumClick(album),
-    onAddToQueue: ({ addToQueue, selectedAlbum, streamProviders }) => () => {
-      selectedAlbum.tracks.map(track => addToQueue(
-        streamProviders, 
-        getTrackItem(track)
-      ));
+    onAddToQueue: ({ addToQueue, selectedAlbum }) => () => {
+      selectedAlbum.tracks.map(track => addToQueue(getTrackItem(track)));
     }
   }),
   withHandlers({
