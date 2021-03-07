@@ -7,9 +7,9 @@ import WindowButton from './WindowButton';
 
 const WindowControls = ({ onCloseClick, onMaxClick, onMinClick }) => (
   <div className={styles.window_controls_container}>
-    <WindowButton icon='window-minimize' onClick={onMinClick} />
-    <WindowButton icon='window-maximize' onClick={onMaxClick} />
-    <WindowButton icon='close' onClick={onCloseClick} />
+    <WindowButton data-testid='minimize-button' icon='window-minimize' onClick={onMinClick} />
+    <WindowButton data-testid='maximize-button' icon='window-maximize' onClick={onMaxClick} />
+    <WindowButton data-testid='close-button' icon='close' onClick={onCloseClick} />
   </div>
 );
 
