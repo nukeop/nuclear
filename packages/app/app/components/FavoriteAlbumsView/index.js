@@ -13,7 +13,10 @@ const EmptyState = () => {
   const { t } = useTranslation('favorite-albums');
   return (
     <div className={styles.empty_state}>
-      <Icon name='star'/>
+      <Icon.Group>
+        <Icon name='star' />
+        <Icon corner name='dot circle' />
+      </Icon.Group>
       <h2>{t('empty')}</h2>
       <div>{t('empty-help')}</div>
     </div>
