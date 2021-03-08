@@ -192,7 +192,6 @@ class App extends React.PureComponent {
             />
           </div>
 
-          <Spacer />
           {this.renderSidebarFooter()}
         </SidebarMenu>
       </VerticalPanel>
@@ -225,7 +224,7 @@ class App extends React.PureComponent {
 
   renderSidebarFooter () {
     return (
-      <div className='sidebar_footer'>
+      <div className={styles.sidebar_footer}>
         <a
           onClick={() => {
             this.props.actions.toggleOption(
