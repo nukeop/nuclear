@@ -3,7 +3,7 @@
     "download": "Unduh",
     "download-toast-content": "{{artist}} - {{title}} telah ditambahkan ke unduhan.",
     "download-toast-title": "Album ditambahkan ke unduhan",
-    "error-load": "Ops, could not load this album. Try later :(",
+    "error-load": "Sorry, this album could not be loaded. Try again later or open a new issue on Github",
     "queue": "Tambahkan album ke antrian"
   },
   "app": {

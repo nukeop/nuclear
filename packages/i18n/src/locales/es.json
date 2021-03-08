@@ -3,7 +3,7 @@
     "download": "Download",
     "download-toast-content": "{{artist}} - {{title}} has been added to downloads.",
     "download-toast-title": "Album added to downloads",
-    "error-load": "Ops, could not load this album. Try later :(",
+    "error-load": "Sorry, this album could not be loaded. Try again later or open a new issue on Github",
     "queue": "Añadir a la cola"
   },
   "app": {
