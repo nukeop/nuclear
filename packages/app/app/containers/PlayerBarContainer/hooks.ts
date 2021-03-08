@@ -61,6 +61,7 @@ export const usePlayerControlsProps = () => {
   const queue = useSelector(queueSelector);
   const playbackStatus = useSelector(playerSelectors.playbackStatus);
   const playbackStreamLoading = useSelector(playerSelectors.playbackStreamLoading);
+  const seek = useSelector(playerSelectors.seek);
 
   const couldPlay = queue.queueItems.length > 0;
   const couldForward = couldPlay && queue.currentSong + 1 < queue.queueItems.length;
@@ -76,10 +77,18 @@ export const usePlayerControlsProps = () => {
     [dispatch]
   );
 
+
   const goBack = useCallback(
-    () => dispatch(queueActions.previousSong()),
-    [dispatch]
+    () => {
+      if (seek > 3){
+        dispatch(playerActions.updateSeek(0));
+      } else {
+        dispatch(queueActions.previousSong());
+      }
+    },
+    [dispatch, seek]
   );
+
 
   return {
     goBackDisabled: !couldBack,
