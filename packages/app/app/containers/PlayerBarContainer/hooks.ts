@@ -153,8 +153,8 @@ export const useToggleOptionCallback = (
 export const useVolumeControlsProps = () => {
   const { t } = useTranslation('option-control');
   const dispatch = useDispatch();
-  const volume = useSelector(playerSelectors.volume);
-  const isMuted = useSelector(playerSelectors.muted);
+  const volume: number = useSelector(playerSelectors.volume);
+  const isMuted: boolean = useSelector(playerSelectors.muted);
   const settings = useSelector(settingsSelector);
 
   const toggleOption = useCallback(
