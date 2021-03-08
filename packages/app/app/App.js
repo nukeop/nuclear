@@ -1,5 +1,6 @@
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
+import { Icon } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { NavLink, withRouter } from 'react-router-dom';
@@ -176,9 +177,9 @@ class App extends React.PureComponent {
 
             {
               this.renderMenuCategory('collection', [
-                { name: 'favorite-albums', path: 'favorites/albums', icon: 'star' },
-                { name: 'favorite-tracks', path: 'favorites/tracks', icon: 'star' },
-                { name: 'library', path: 'library', icon: 'file-sound-o' }
+                { name: 'favorite-albums', path: 'favorites/albums', icon: 'dot circle'},
+                { name: 'favorite-tracks', path: 'favorites/tracks', icon: 'music'},
+                { name: 'library', path: 'library', icon: 'file audio outline' }
               ])
             }
 
@@ -217,7 +218,7 @@ class App extends React.PureComponent {
     return (
       <NavLink key={path} to={'/' + path} activeClassName={styles.active_nav_link}>
         <SidebarMenuItem>
-          <FontAwesome name={icon} /> {!this.props.settings.compactMenuBar && this.props.t(name)}
+          <Icon name={icon} />{!this.props.settings.compactMenuBar && this.props.t(name)}
         </SidebarMenuItem>
       </NavLink>
     );
