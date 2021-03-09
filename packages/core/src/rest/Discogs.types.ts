@@ -100,4 +100,5 @@ export type DiscogsTrack = {
   extraartists?: {
     name: string;
   }[];
+  sub_tracks?: DiscogsTrack[];
 }
