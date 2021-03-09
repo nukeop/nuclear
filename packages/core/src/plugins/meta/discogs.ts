@@ -83,6 +83,7 @@ class DiscogsMetaProvider extends MetaProvider {
 
     return {
       ...release,
+      resourceUrl: release.resource_url,
       id: `${release.id}`,
       artist: _.head(release.artists).name,
       thumb: coverImage,
@@ -195,10 +196,11 @@ class DiscogsMetaProvider extends MetaProvider {
       albumType,
       { resource_url: resourceUrl }
     )).json();
+    
     return Promise.resolve(
       this.discogsReleaseInfoToGeneric(
         albumData,
-        AlbumType.unknown
+        albumType as AlbumType
       )
     );
   }

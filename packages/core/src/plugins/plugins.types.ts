@@ -78,6 +78,7 @@ export type AlbumDetails = {
     year?: string;
     type?: AlbumType;
     tracklist: Track[];
+    resourceUrl?: string;
 };
 
 export type StreamQuery = {

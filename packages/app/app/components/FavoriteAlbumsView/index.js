@@ -30,7 +30,6 @@ const FavoriteAlbumsView = ({
   history
 }) => {
   const { t } = useTranslation('favorite-albums');
-
   return (
     <div className={styles.favorite_albums_view}>
       {
