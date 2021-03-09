@@ -145,10 +145,10 @@ class PlaylistView extends React.Component {
     return (
       <thead>
         <tr>
+          <th/>
           <th>
-            <Icon name='image' />
+            <Icon name='image outline' />
           </th>
-          <th>{this.props.t('')}</th>
           <th>{this.props.t('artist')}</th>
           <th>{this.props.t('title')}</th>
         </tr>
