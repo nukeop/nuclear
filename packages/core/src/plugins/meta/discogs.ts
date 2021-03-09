@@ -80,9 +80,19 @@ class DiscogsMetaProvider extends MetaProvider {
   discogsReleaseInfoToGeneric(release: DiscogsReleaseInfo, releaseType: AlbumType): AlbumDetails {
     const artist = _.head(release.artists).name;
     const coverImage = this.getCoverImage(release);
+    const tracklist: Track[] = [];
+
+    release.tracklist.forEach(track => {
+      if (track.sub_tracks) {
+        track.sub_tracks.forEach(subTrack => tracklist.push(this.discogsTrackToGeneric(subTrack, artist)));
+      } else {
+        tracklist.push(this.discogsTrackToGeneric(track, artist));
+      }
+    });
 
     return {
       ...release,
+      tracklist,
       resourceUrl: release.resource_url,
       id: `${release.id}`,
       artist: _.head(release.artists).name,
@@ -91,8 +101,7 @@ class DiscogsMetaProvider extends MetaProvider {
       images: _.map(release.images, 'resource_url'),
       genres: [..._.map(release.genres), ..._.map(release.styles)],
       type: releaseType,
-      year: `${release.year}`,
-      tracklist: _.map(release.tracklist, track => this.discogsTrackToGeneric(track, artist))
+      year: `${release.year}`
     };
   }
 
