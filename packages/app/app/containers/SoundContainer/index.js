@@ -156,9 +156,9 @@ class SoundContainer extends React.Component {
   }
 
   render() {
-    const { queue, player, equalizer, actions, enableSpectrum, currentStream, location } = this.props;
+    const { queue, player, equalizer, actions, enableSpectrum, currentStream, location, defaultEqualizer } = this.props;
     const currentTrack = queue.queueItems[queue.currentSong];
-
+    const usedEqualizer = enableSpectrum ? equalizer : defaultEqualizer;
     return Boolean(currentStream) && (
       <Sound
         url={currentStream.stream}
@@ -174,9 +174,9 @@ class SoundContainer extends React.Component {
         <Equalizer
           data={filterFrequencies.reduce((acc, freq, idx) => ({
             ...acc,
-            [freq]: equalizer.values[idx] || 0
+            [freq]: usedEqualizer.values[idx] || 0
           }), {})}
-          preAmp={equalizer.preAmp}
+          preAmp={usedEqualizer.preAmp}
         />
         <AnalyserByFrequency
           frequencies={filterFrequencies}
@@ -199,6 +199,7 @@ function mapStateToProps(state) {
     scrobbling: state.scrobbling,
     settings: state.settings,
     equalizer: state.equalizer.presets[state.equalizer.selected],
+    defaultEqualizer: state.equalizer.presets.default,
     enableSpectrum: state.equalizer.enableSpectrum
   };
 }
