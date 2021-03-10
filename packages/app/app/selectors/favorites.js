@@ -1,4 +1,5 @@
 import _ from 'lodash';
+import { createStateSelectors } from './helpers';
 
 export function getFavoriteTrack(state, artist, title) {
   if (!artist || !title) {
@@ -15,3 +16,11 @@ export function getFavoriteTrack(state, artist, title) {
     return normalizedStoreArtist === normalizedArtist && normalizedStoreTitle === normalizedTitle;
   });
 }
+
+export const favoritesSelectors = createStateSelectors(
+  'favorites',
+  [
+    'tracks',
+    'albums'
+  ]
+);
