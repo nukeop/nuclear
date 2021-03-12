@@ -42,7 +42,8 @@ class TrackRow extends React.Component {
       name: this.props.track.name,
       thumbnail: this.getTrackThumbnail(),
       local: this.props.track.local,
-      streams: this.props.track.streams
+      streams: this.props.track.streams,
+      album: this.props.track.album
     });
   }
 

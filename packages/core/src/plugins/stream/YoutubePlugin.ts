@@ -14,27 +14,29 @@ class YoutubePlugin extends StreamProviderPlugin {
   }
 
   async search(query: StreamQuery) {
-    const terms = query.artist + ' ' + query.track;
     try {
       return await Youtube.trackSearch(query, undefined, this.sourceName);
     } catch (e) {
-      logger.error(`Error while searching  for ${terms} on Youtube`);
+      logger.error(`Error while searching for ${this.getSearchTermString(query)} on Youtube`);
       logger.error(e);
     }
   }
 
   async getAlternateStream(query: StreamQuery, currentStream: { id: string }) {
-    const terms = query.artist + ' ' + query.track;
     try {
       return await Youtube.trackSearch(query, currentStream.id, this.sourceName);
     } catch (e) {
-      logger.error(`Error while looking up streams for ${terms} on Youtube`);
+      logger.error(`Error while looking up streams for ${this.getSearchTermString(query)} on Youtube`);
       logger.error(e);
     }
   }
 
   async getStreamForId(id: string) {
     return Youtube.getStreamForId(id);
+  }
+
+  getSearchTermString(query: StreamQuery) {
+    return query.artist + ' ' + query.track + (query.album ? (' ' + query.album) : '');
   }
 }
 

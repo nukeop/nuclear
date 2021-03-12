@@ -103,7 +103,7 @@ export function urlSearch(url) {
 }
 
 export async function trackSearch(query: StreamQuery, omitStreamId?: string, sourceName?: string) {
-  const terms = query.artist + ' ' + query.track;
+  const terms = query.artist + ' ' + query.track + (query.album ? (' ' + query.album) : '');
   return trackSearchByString(terms, omitStreamId, sourceName);
 }
 

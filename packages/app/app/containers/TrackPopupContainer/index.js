@@ -49,7 +49,8 @@ const TrackPopupContainer = compose(
       name: title,
       thumbnail: thumb,
       local: track.local,
-      streams: track.streams
+      streams: track.streams,
+      album: track.album
     }
   })),
   withHandlers({

@@ -37,6 +37,7 @@ type Track = {
   artist: string | { name: string };
   local?: boolean;
   streams: any[];
+  album?: string;
 }
 
 export const getTrackTitle = (track: Track) => track?.name;
@@ -50,5 +51,6 @@ export const getTrackItem = track => ({
   name: getTrackTitle(track),
   thumbnail: getThumbnail(track),
   local: track.local,
-  streams: track.streams
+  streams: track.streams, 
+  album: track.album
 });

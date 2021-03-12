@@ -51,7 +51,8 @@ export const addToQueue = (item) => {
       try {
         const streamData = await selectedStreamProvider.search({
           artist: item.artist,
-          track: item.name
+          track: item.name,
+          album: item.album
         });
         dispatch(updateQueueItem({
           ...item,

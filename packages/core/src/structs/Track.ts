@@ -14,7 +14,7 @@ export default class Track {
   artist: string;
   title: string;
   duration: string | number;
-  
+  album?: string;
   position?: string | number;
   thumbnail?: string;
   extraArtists?: string[];

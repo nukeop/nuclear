@@ -84,9 +84,9 @@ class DiscogsMetaProvider extends MetaProvider {
 
     release.tracklist.forEach(track => {
       if (track.sub_tracks) {
-        track.sub_tracks.forEach(subTrack => tracklist.push(this.discogsTrackToGeneric(subTrack, artist)));
+        track.sub_tracks.forEach(subTrack => tracklist.push(this.discogsTrackToGeneric(subTrack, artist, release.title)));
       } else {
-        tracklist.push(this.discogsTrackToGeneric(track, artist));
+        tracklist.push(this.discogsTrackToGeneric(track, artist, release.title));
       }
     });
 
@@ -105,13 +105,14 @@ class DiscogsMetaProvider extends MetaProvider {
     };
   }
 
-  discogsTrackToGeneric(discogsTrack: DiscogsTrack, artist: string): Track {
+  discogsTrackToGeneric(discogsTrack: DiscogsTrack, artist: string, album: string): Track {
     const track = new Track();
     track.artist = artist;
     track.title = discogsTrack.title;
     track.duration = discogsTrack.duration;
     track.position = discogsTrack.position;
     track.extraArtists = _.map(discogsTrack.extraartists, 'name');
+    track.album = album;
     return track;
   }
 

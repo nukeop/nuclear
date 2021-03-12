@@ -84,6 +84,7 @@ export type AlbumDetails = {
 export type StreamQuery = {
     artist: string;
     track: string;
+    album?: string;
 }
 
 export type StreamData = {
