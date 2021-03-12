@@ -3,20 +3,17 @@ import Img from 'react-image';
 import _ from 'lodash';
 import { Dimmer, Icon, Loader } from 'semantic-ui-react';
 import { useTranslation } from 'react-i18next';
-import { Loader as NuclearLoader, ContextPopup, PopupButton } from '@nuclear/ui';
+import { Loader as NuclearLoader, ContextPopup, PopupButton, TrackRow } from '@nuclear/ui';
 import { AlbumDetails } from '@nuclear/core/src/plugins/plugins.types';
-
-import TrackRow from '../TrackRow';
 
 import styles from './styles.scss';
 import artPlaceholder from '../../../resources/media/art_placeholder.png';
 
 type AlbumViewProps = {
-  isFavorite: boolean;
   album?: AlbumDetails & {
     loading?: boolean;
   };
-  albumThumbnail: string;
+  isFavorite: boolean;
   searchAlbumArtist: React.MouseEventHandler;
   addAlbumToDownloads: React.MouseEventHandler;
   addAlbumToQueue: React.MouseEventHandler;
@@ -43,11 +40,11 @@ export const AlbumView: React.FC<AlbumViewProps> = ({
         <Loader />
       </Dimmer>
       {
-        !album?.loading && (
+        Boolean(album) && !album.loading && (
           <div className={styles.album}>
             <div className={styles.album_info_box}>
               <Img
-                src={album?.coverImage}
+                src={album.coverImage}
                 loader={<NuclearLoader type='small' />}
                 unloader={<img src={String(artPlaceholder)} />}
               />
@@ -59,7 +56,7 @@ export const AlbumView: React.FC<AlbumViewProps> = ({
                     href='#'
                     onClick={searchAlbumArtist}
                   >
-                    {album.artist}
+                    {album?.artist}
                   </a>
                 </div>
                 {
@@ -96,7 +93,7 @@ export const AlbumView: React.FC<AlbumViewProps> = ({
                     }
                     artist={album.artist}
                     title={album.title}
-                    thumb={album?.coverImage}
+                    thumb={album.coverImage}
                   >
                     <PopupButton
                       onClick={addAlbumToQueue}

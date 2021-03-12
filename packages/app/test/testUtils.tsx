@@ -3,9 +3,11 @@ import configureStore from 'redux-mock-store';
 import { Provider } from 'react-redux';
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
+import { createMemoryHistory } from 'history';
 
 import en from '@nuclear/i18n/src/locales/en.json';
-import { MemoryRouter } from 'react-router';
+import { Router } from 'react-router';
+import thunk from 'redux-thunk';
 
 export type AnyProps = {
   [k: string]: any;
@@ -13,21 +15,31 @@ export type AnyProps = {
 
 type TestRouteProviderProps = {
   children: React.ReactNode;
-  initialEntries?: Array<any>;
+  history: ReturnType<typeof createMemoryHistory>;
 }
 
-export const TestStoreProvider: React.FC<{ initialStore?: AnyProps }> = ({ initialStore = {}, children }) => {
-  const mockStore = configureStore();
-  return <Provider store={mockStore(initialStore)}>
+export const configureMockStore = () => configureStore([thunk]);
+
+export const TestStoreProvider: React.FC<{
+  initialState?: AnyProps;
+  store?: ReturnType<ReturnType<typeof configureMockStore>>;
+}> = ({ initialState = {}, store, children }) => {
+  const mockStore = configureMockStore();
+  return <Provider store={store || mockStore(initialState)}>
     {children}
   </Provider>;
 };
 
-export const TestRouterProvider = ({ children, initialEntries }: TestRouteProviderProps) => {
+export const TestRouterProvider = ({
+  children,
+  history
+}: TestRouteProviderProps) => {
   return (
-    <MemoryRouter initialEntries={initialEntries}>
+    <Router
+      history={history}
+    >
       {children}
-    </MemoryRouter>
+    </Router>
   );
 };
 

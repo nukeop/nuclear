@@ -1,7 +1,10 @@
-import { render } from '@testing-library/react';
+import { render, waitFor } from '@testing-library/react';
 import React from 'react';
-import AlbumViewContainer from '.';
-import { AnyProps, setupI18Next, TestRouterProvider, TestStoreProvider } from '../../../test/testUtils';
+import { createMemoryHistory } from 'history';
+
+import { AnyProps, configureMockStore, setupI18Next, TestRouterProvider, TestStoreProvider } from '../../../test/testUtils';
+import MainContentContainer from '../MainContentContainer';
+import { buildStoreState } from '../../../test/storeBuilders';
 
 describe('Album view container', () => {
   beforeAll(() => {
@@ -9,65 +12,51 @@ describe('Album view container', () => {
   });
 
   it('should display an album', () => {
-    const component = mountComponent();
+    const { component } = mountComponent();
     expect(component.asFragment()).toMatchSnapshot();
   });
 
   it('should show that an album is still loading', () => {
+    const { component } = mountComponent(
+      buildStoreState()
+        .withPlugins()
+        .withAlbumDetails({ loading: true })
+        .build()
+    );
 
+    expect(component.asFragment()).toMatchSnapshot();
+  });
+
+  it('should search for artist after clicking his name', async () => {
+    const { component, history } = mountComponent();
+    expect(history.location.pathname).toBe('/album/test-album-id');
+    await waitFor(() => component.getByText(/test artist/i).click());
+    expect(history.location.pathname).toBe('/artist/test-artist-id');
   });
 
   const mountComponent = (initialStore?: AnyProps) => {
+    const initialState = initialStore ||
+      buildStoreState()
+        .withAlbumDetails()
+        .withArtistDetails()
+        .withPlugins()
+        .build();
+    const history = createMemoryHistory({
+      initialEntries: ['/album/test-album-id']
+    });
+    const mockStore = configureMockStore();
+    const store = mockStore(initialState);
     const component = render(
-      <TestStoreProvider
-        initialStore={initialStore || {
-          search: {
-            albumDetails: {
-              ['test-album-id']: {
-                loading: false,
-                artist: 'test artist',
-                title: 'test album',
-                thumb: 'test thumbnail',
-                coverImage: 'test cover',
-                images: ['first image', 'second image'],
-                genres: ['genre 1', 'genre 2'],
-                year: '2001',
-                type: 'master',
-                tracklist: [
-                  {
-                    uuid: 'track-1-id',
-                    ids: [],
-                    artist: 'test artist',
-                    title: 'test track 1',
-                    duration: 120
-                  },
-                  {
-                    uuid: 'track-2-id',
-                    ids: [],
-                    artist: 'test artist',
-                    title: 'test track 2',
-                    duration: 63
-                  },
-                  {
-                    uuid: 'track-3-id',
-                    ids: [],
-                    artist: 'test artist',
-                    title: 'test track 3',
-                    duration: 7
-                  }
-                ]
-              }
-            }
-          }
-        }}
+      <TestRouterProvider
+        history={history}
       >
-        <TestRouterProvider
-          initialEntries={['/album/test-album-id']}
+        <TestStoreProvider
+          store={store}
         >
-          <AlbumViewContainer />
-        </TestRouterProvider>
-      </TestStoreProvider>
+          <MainContentContainer />
+        </TestStoreProvider>
+      </TestRouterProvider >
     );
-    return component;
+    return { component, history, store };
   };
 });
