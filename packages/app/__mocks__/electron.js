@@ -1,10 +1,11 @@
-const app = {
-  getPath: () => {},
-  remote: {
-    transformSource: () => {}
-  }
-};
-
 module.exports = {
-  app
+  app: {
+    getPath: () => { }
+  },
+  remote: {
+    transformSource: () => { },
+    app: {
+      getPath: () => { }
+    }
+  }
 };

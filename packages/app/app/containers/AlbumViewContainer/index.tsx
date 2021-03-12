@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 import _ from 'lodash';
-import { useHistory, useRouteMatch, withRouter } from 'react-router-dom';
+import { useHistory, useLocation, useParams, useRouteMatch, withRouter } from 'react-router-dom';
 import { connect, useDispatch, useSelector } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { AlbumDetails } from '@nuclear/core/src/plugins/plugins.types';
@@ -26,33 +26,39 @@ const getIsFavorite = (albumId, favoriteAlbums) => {
 const AlbumViewContainer: React.FC = () => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const match = useRouteMatch<{ albumId: string }>();
+  const { albumId } = useParams<{ albumId: string }>();
+  const location = useLocation();
 
   const albumDetails = useSelector(searchSelectors.albumDetails);
   // TODO replace this any with a proper type
   const plugins: any = useSelector(pluginsSelectors.plugins);
   const favoriteAlbums = useSelector(favoritesSelectors.albums);
-  const album: AlbumDetails = albumDetails[match.params.albumId];
-  const isFavorite = getIsFavorite(match.params.albumId, favoriteAlbums);
+  const album: AlbumDetails = albumDetails[albumId];
+  const isFavorite = getIsFavorite(albumId, favoriteAlbums);
 
   const searchAlbumArtist = useCallback(() => dispatch(
     SearchActions.artistInfoSearchByName(
-      album.artist,
+      album?.artist,
       history
-    )), [album.artist, dispatch, history]);
+    )), [album, dispatch, history]);
 
   const addAlbumToDownloads = useCallback(async () => {
-    await album.tracklist.forEach(async track => {
+    await album?.tracklist.forEach(async track => {
       const clonedTrack = safeAddUuid(track);
       DownloadsActions.addToDownloads(plugins.streamProviders, clonedTrack);
     });
-  }, [album.tracklist, plugins.streamProviders]);
+  }, [album, plugins]);
 
   return <AlbumView
     album={album}
     isFavorite={isFavorite}
     searchAlbumArtist={searchAlbumArtist}
     addAlbumToDownloads={addAlbumToDownloads}
+    addAlbumToQueue={() => { }}
+    playAll={() => { }}
+    removeFavoriteAlbum={() => { }}
+    addFavoriteAlbum={() => { }}
+
   />;
 };
 
