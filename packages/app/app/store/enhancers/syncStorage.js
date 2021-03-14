@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import { store as electronStore } from '@nuclear/core';
 
 export default function (paths) {

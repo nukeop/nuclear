@@ -3,7 +3,8 @@ type StoreStateBuilder = ReturnType<typeof buildStoreState>;
 export const buildStoreState = () => {
   let state = {
     search: {},
-    plugin: {}
+    plugin: {},
+    connectivity: false
   };
 
   return {
@@ -68,7 +69,15 @@ export const buildStoreState = () => {
         ...state,
         plugin: {
           plugins: {
-            streamProviders: {},
+            streamProviders: [
+              {
+                name: 'Test Stream Provider',
+                sourceName: 'Test Stream Provider',
+                search: () => ({
+                  data: 'test-stream-data'
+                })
+              }
+            ],
             metaProviders: [
               {
                 name: 'Test Meta Provider',
@@ -84,9 +93,17 @@ export const buildStoreState = () => {
             ]
           },
           selected: {
+            streamProviders: 'Test Stream Provider',
             metaProviders: 'Test Metadata Provider'
           }
         }
+      };
+      return this as StoreStateBuilder;
+    },
+    withConnectivity() {
+      state = {
+        ...state,
+        connectivity: true
       };
       return this as StoreStateBuilder;
     },

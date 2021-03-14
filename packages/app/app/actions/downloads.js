@@ -41,8 +41,8 @@ export function addToDownloads(streamProviders, track) {
   const clonedTrack = safeAddUuid(track);
   let downloads = store.get('downloads');
   const existingTrack = downloads.find(({track}) => {
-    const {name, artist} = track;
-    return artist.name === clonedTrack.artist.name && name === clonedTrack.name;
+    const {title, artist} = track;
+    return artist.name === clonedTrack.artist && title === clonedTrack.title;
   });
   if (!existingTrack ){
     const newDownload = {

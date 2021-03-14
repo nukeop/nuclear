@@ -87,7 +87,11 @@ export const AlbumView: React.FC<AlbumViewProps> = ({
                   </a>
                   <ContextPopup
                     trigger={
-                      <a href='#' className={styles.more_button}>
+                      <a
+                        href='#'
+                        className={styles.more_button}
+                        data-testid='more-button'
+                      >
                         <Icon name='ellipsis horizontal' />
                       </a>
                     }
@@ -113,6 +117,7 @@ export const AlbumView: React.FC<AlbumViewProps> = ({
               <a
                 href='#'
                 className={styles.album_favorites_button_wrap}
+                data-testid='add-remove-favorite'
                 onClick={
                   isFavorite
                     ? removeFavoriteAlbum
