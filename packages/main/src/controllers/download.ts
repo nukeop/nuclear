@@ -41,10 +41,10 @@ class DownloadIpcCtrl {
         ? _.get(data, 'artist')
         : _.get(data, 'artist.name');
 
-      const query = `${artistName} ${_.get(data, 'name')}`;
-      const filename = `${artistName} - ${_.get(data, 'name')}`;
+      const query = `${artistName} ${_.get(data, 'title')}`;
+      const filename = `${artistName} - ${_.get(data, 'title')}`;
 
-      this.logger.log(`Start Download: ${artistName} - ${_.get(data, 'name')}`);
+      this.logger.log(`Start Download: ${artistName} - ${_.get(data, 'title')}`);
 
       await this.download.start({
         query,
@@ -64,7 +64,7 @@ class DownloadIpcCtrl {
           });
         }
       });
-      this.logger.log(`Download success: ${artistName} - ${_.get(data, 'name')}`);
+      this.logger.log(`Download success: ${artistName} - ${_.get(data, 'title')}`);
     } catch (error) {
       this.window.send(IpcEvents.DOWNLOAD_ERROR, { uuid: data.uuid, error });
       throw error;

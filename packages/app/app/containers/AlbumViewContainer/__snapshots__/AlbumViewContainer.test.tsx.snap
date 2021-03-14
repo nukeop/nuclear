@@ -93,6 +93,7 @@ exports[`Album view container should display an album 1`] = `
                 </a>
                 <a
                   class="more_button"
+                  data-testid="more-button"
                   href="#"
                 >
                   <i
@@ -104,6 +105,7 @@ exports[`Album view container should display an album 1`] = `
             </div>
             <a
               class="album_favorites_button_wrap"
+              data-testid="add-remove-favorite"
               href="#"
             >
               <i

@@ -1,13 +1,15 @@
 import React from 'react';
-import configureStore from 'redux-mock-store';
+import { applyMiddleware, compose, createStore } from 'redux';
 import { Provider } from 'react-redux';
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import { createMemoryHistory } from 'history';
-
 import en from '@nuclear/i18n/src/locales/en.json';
-import { Router } from 'react-router';
 import thunk from 'redux-thunk';
+import { Router } from 'react-router';
+
+import rootReducer from '../app/reducers';
+import syncStore from '../app/store/enhancers/syncStorage';
 
 export type AnyProps = {
   [k: string]: any;
@@ -18,14 +20,20 @@ type TestRouteProviderProps = {
   history: ReturnType<typeof createMemoryHistory>;
 }
 
-export const configureMockStore = () => configureStore([thunk]);
+export const configureMockStore = (initialState?: AnyProps) => createStore(
+  rootReducer,
+  initialState,
+  compose(
+    applyMiddleware(thunk),
+    syncStore(['downloads'])
+  )
+);
 
 export const TestStoreProvider: React.FC<{
   initialState?: AnyProps;
-  store?: ReturnType<ReturnType<typeof configureMockStore>>;
+  store?: ReturnType<typeof configureMockStore>;
 }> = ({ initialState = {}, store, children }) => {
-  const mockStore = configureMockStore();
-  return <Provider store={store || mockStore(initialState)}>
+  return <Provider store={store || configureMockStore(initialState)}>
     {children}
   </Provider>;
 };
