@@ -42,7 +42,7 @@ describe('Lyrics container', () => {
 
   const mountComponent = (initialStore?: AnyProps) => {
     const component = render(<TestStoreProvider
-      initialStore={initialStore ?? {
+      initialState={initialStore ?? {
         lyrics: {
           lyricsSearchResults: {
             type: 'test song lyrics'
