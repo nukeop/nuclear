@@ -60,7 +60,7 @@ export const usePlayerControlsProps = () => {
   const dispatch = useDispatch();
   const queue = useSelector(queueSelector);
   const playbackStatus = useSelector(playerSelectors.playbackStatus);
-  const playbackStreamLoading = useSelector(playerSelectors.playbackStreamLoading);
+  const playbackStreamLoading: boolean = useSelector(playerSelectors.playbackStreamLoading);
   const seek = useSelector(playerSelectors.seek);
 
   const couldPlay = queue.queueItems.length > 0;
