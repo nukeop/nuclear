@@ -4,9 +4,9 @@ import { Provider } from 'react-redux';
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import { createMemoryHistory } from 'history';
-import en from '@nuclear/i18n/src/locales/en.json';
 import thunk from 'redux-thunk';
 import { Router } from 'react-router';
+import en from '@nuclear/i18n/src/locales/en.json';
 
 import rootReducer from '../app/reducers';
 import syncStore from '../app/store/enhancers/syncStorage';
