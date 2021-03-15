@@ -2,7 +2,7 @@ import _ from 'lodash';
 
 export function formatDuration(duration) {
   if (!_.isFinite(parseInt(duration)) || duration <= 0) {
-    return '';
+    return '00:00';
   }
 
   const secNum = parseInt(duration, 10);
