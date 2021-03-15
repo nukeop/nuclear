@@ -5,11 +5,12 @@ import _ from 'lodash';
 import { Dropdown, Icon } from 'semantic-ui-react';
 import { useTranslation } from 'react-i18next';
 import { compose, withHandlers } from 'recompose';
+import { PlaylistHelper } from '@nuclear/core';
 import styles from './styles.scss';
 
 export const addTrackToPlaylist = (updatePlaylist, playlist, track) => {
   if (track && track.name) {
-    playlist.tracks.push(track);
+    playlist.tracks.push(PlaylistHelper.extractTrackData(track));
     updatePlaylist(playlist);
   }
 };
