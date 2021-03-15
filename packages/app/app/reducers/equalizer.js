@@ -83,6 +83,11 @@ const getLegacyCustom = ({presets}) => {
     preAmp: _.get(presets, 'Custom.preAmp', 0)
   };
 };
+
+const getSpectrumStatus = (otherConfig) => {
+  return _.get(otherConfig, 'enableSpectrum', false);
+}; 
+
 const getInitialState = () => {
   const {custom, selected, ...other} = store.get('equalizer');
   const customPreset = custom ? custom : getLegacyCustom(other);
@@ -92,15 +97,15 @@ const getInitialState = () => {
     presets: map,
     presetIDs: ids,
     selected: getSelected(selected, presets, map),
-
-    enableSpectrum: false,
+    enableSpectrum: getSpectrumStatus(other),
     spectrum: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
   };
 };
 
 const persist = state => store.set('equalizer', {
   custom: state.presets.custom,
-  selected: state.selected  
+  selected: state.selected,
+  enableSpectrum: state.enableSpectrum
 });
 
 export default function EqualizerReducer(state = getInitialState(), action) {
