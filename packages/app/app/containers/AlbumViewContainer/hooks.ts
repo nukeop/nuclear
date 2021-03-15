@@ -28,6 +28,7 @@ export const useAlbumViewProps = () => {
   album.tracklist = album?.tracklist?.map(track => ({
     ...track,
     name: track.title,
+    album: album.title,
     thumbnail: album.coverImage,
     duration: parseInt(track.duration) !== track.duration
       ? stringDurationToSeconds(track.duration)
@@ -68,6 +69,7 @@ export const useAlbumViewProps = () => {
       dispatch(QueueActions.addToQueue({
         artist: album?.artist,
         name: track.title,
+        album: album.title,
         thumbnail: album.coverImage
       }));
     });
