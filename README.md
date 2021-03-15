@@ -19,6 +19,7 @@ Discord channel: https://discord.gg/JqPjKxE
 
 Readme translations: 
 
+<kbd>[<img title="Deutsch" alt="Deutsch" src="https://cdn.staticaly.com/gh/hjnilsson/country-flags/master/svg/de.svg" width="22">](docs/README-de.md)</kbd>
 <kbd>[<img title="Português" alt="Português" src="https://cdn.staticaly.com/gh/hjnilsson/country-flags/master/svg/br.svg" width="22">](docs/README-ptbr.md)</kbd>
 <kbd>[<img title="Svenska" alt="Svenska" src="https://cdn.staticaly.com/gh/hjnilsson/country-flags/master/svg/se.svg" width="22">](docs/README-se.md)</kbd>
 <kbd>[<img title="English" alt="English" src="https://cdn.staticaly.com/gh/hjnilsson/country-flags/master/svg/us.svg" width="22">](README.md)</kbd>
@@ -82,7 +83,7 @@ Nuclear has already been translated to several languages, and we're always looki
 | Danish               | [Hansen1992](https://github.com/Hansen1992)                                                          |
 | Spanish              | [mlucas94](https://github.com/mlucas94), [emlautarom1](https://github.com/emlautarom1)               |
 | Polish               | [kazimierczak-robert](https://github.com/kazimierczak-robert), [gradzka](https://github.com/gradzka) |
-| German               | [schippas](https://github.com/schippas)                                                              |
+| German               | [nuclear](https://github.com/nuclear), [schippas](https://github.com/schippas)                                                              |
 | Russian              | [ramstore07](https://github.com/ramstore07), [dmtrshat](https://github.com/dmtrshat)                 |
 | Brazilian Portuguese | [JoaoPedroMoraes](https://github.com/JoaoPedroMoraes)                                                |
 | Turkish              | [3DShark](https://github.com/3DShark)                                                                |

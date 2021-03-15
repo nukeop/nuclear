@@ -137,11 +137,11 @@
 }
 
 .sidebar_menus {
-  flex-grow: 1;
-  overflow: auto;
   display: flex;
-  flex-direction: column;
-  flex-grow: 1;
+  flex-flow: column;
+  flex: 1 1 auto;
+  overflow: auto;
+  height: 0;
 }
 
 .sidebar_brand {

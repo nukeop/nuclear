@@ -157,5 +157,15 @@
         width: 64px;
       }      
     }
+
+    .error {
+      margin-top: 10rem;
+      text-align: center;
+      font-size: 1.2rem;
+
+      .message {
+        margin-top: 1.5rem;
+      }
+    }
   }
 }

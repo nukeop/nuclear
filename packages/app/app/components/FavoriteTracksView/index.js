@@ -17,7 +17,10 @@ export const EmptyState = () => {
 
   return (
     <div className={styles.empty_state} >
-      <Icon name='star'/>
+      <Icon.Group>
+        <Icon name='star' />
+        <Icon corner name='music' />
+      </Icon.Group>
       <h2>{t('empty')}</h2>
       <div>{t('empty-help')}</div>
     </div>

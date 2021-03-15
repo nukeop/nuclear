@@ -3,6 +3,7 @@
     "download": "Shkarko",
     "download-toast-content": "{{artist}} - {{title}} është shtuar tek shkarkimet.",
     "download-toast-title": "Albumi u shtua tek shkarkimet",
+    "error-load": "Sorry, this album could not be loaded. Try again later or open a new issue on Github",
     "queue": "Shto album në radhë"
   },
   "app": {
