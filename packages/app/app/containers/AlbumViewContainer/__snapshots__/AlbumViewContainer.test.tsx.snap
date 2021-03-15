@@ -120,7 +120,7 @@ exports[`Album view container should display an album 1`] = `
             <thead>
               <tr>
                 <th
-                  class="center"
+                  class="center position"
                 >
                   <i
                     aria-hidden="true"
@@ -133,7 +133,7 @@ exports[`Album view container should display an album 1`] = `
                   Song
                 </th>
                 <th
-                  class="center"
+                  class="center duration"
                 >
                   <i
                     aria-hidden="true"
@@ -144,49 +144,52 @@ exports[`Album view container should display an album 1`] = `
             </thead>
             <tbody>
               <tr
-                class="track_row"
-                index="album-track-0"
+                class="track"
               >
                 <td
-                  class="track_row_position"
+                  class="track_number"
                 />
                 <td
-                  class="track_row_name"
-                />
+                  class="track_name"
+                >
+                  test track 1
+                </td>
                 <td
-                  class="track_row_duration"
+                  class="track_duration"
                 >
                   02:00
                 </td>
               </tr>
               <tr
-                class="track_row"
-                index="album-track-1"
+                class="track"
               >
                 <td
-                  class="track_row_position"
+                  class="track_number"
                 />
                 <td
-                  class="track_row_name"
-                />
+                  class="track_name"
+                >
+                  test track 2
+                </td>
                 <td
-                  class="track_row_duration"
+                  class="track_duration"
                 >
                   01:03
                 </td>
               </tr>
               <tr
-                class="track_row"
-                index="album-track-2"
+                class="track"
               >
                 <td
-                  class="track_row_position"
+                  class="track_number"
                 />
                 <td
-                  class="track_row_name"
-                />
+                  class="track_name"
+                >
+                  test track 3
+                </td>
                 <td
-                  class="track_row_duration"
+                  class="track_duration"
                 >
                   00:07
                 </td>
@@ -212,7 +215,8 @@ exports[`Album view container should show that an album is still loading 1`] = `
         class="dimmable"
       >
         <div
-          class="ui dimmer"
+          class="ui active transition visible dimmer"
+          style="display: flex;"
         >
           <div
             class="content"

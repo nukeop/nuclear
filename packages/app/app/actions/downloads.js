@@ -51,7 +51,7 @@ export function addToDownloads(streamProviders, track) {
       track: clonedTrack
     };
   
-    downloads = _.concat(downloads, newDownload);
+    downloads = [...downloads, newDownload];
   }
 
   return {

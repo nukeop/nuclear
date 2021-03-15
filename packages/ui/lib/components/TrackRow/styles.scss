@@ -26,10 +26,6 @@
   td {
     padding: $padding;
     border-bottom: 1px solid $background2;
-
-    &:last-child {
-      text-align: right;
-    }
   }
 
   &.mini td {
@@ -40,7 +36,7 @@
     width: 1px;
   }
 
-  .track_row_number,
+  .track_row_position,
   .track_row_duration {
     text-align: center;
   }
