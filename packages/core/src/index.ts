@@ -21,3 +21,5 @@ export { default as Album } from './structs/Album';
 export { default as Track } from './structs/Track';
 
 export { default as IpcEvents } from './ipc/events';
+
+export * from './helpers';

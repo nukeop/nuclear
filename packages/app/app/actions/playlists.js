@@ -1,6 +1,6 @@
 import uuidv4 from 'uuid/v4';
 import _ from 'lodash';
-import { store } from '@nuclear/core';
+import { store, PlaylistHelper } from '@nuclear/core';
 
 import {
   deletePlaylistInjectable,
@@ -16,7 +16,7 @@ export const UPDATE_PLAYLIST = 'UPDATE_PLAYLIST';
 export function addPlaylist(tracks, name) {
   return dispatch => {
     let playlists = store.get('playlists') || [];
-    const playlist = { name, tracks, id: uuidv4() };
+    const playlist = PlaylistHelper.formatPlaylistForStored(name, tracks, uuidv4());
 
     if (_.isEmpty(tracks)) {
       dispatch({
