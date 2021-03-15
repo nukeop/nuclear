@@ -31,8 +31,8 @@ const TrackPopupButtons = ({
   const artist = getTrackArtist(track);
 
   const handleAddToQueue = useCallback(() => 
-    queueActions.addToQueue(streamProviders, getTrackItem(track)),
-  [queueActions, streamProviders, track]
+    queueActions.addToQueue(getTrackItem(track)),
+  [queueActions, track]
   );
   const handlePlayNow = useCallback(() => 
     queueActions.playTrack(streamProviders, getTrackItem(track)),
