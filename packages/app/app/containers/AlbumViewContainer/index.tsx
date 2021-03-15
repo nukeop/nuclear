@@ -2,7 +2,6 @@ import React, { useCallback } from 'react';
 import _ from 'lodash';
 import { useHistory, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { AlbumDetails } from '@nuclear/core/src/plugins/plugins.types';
 
 import * as SearchActions from '../../actions/search';
 import * as DownloadsActions from '../../actions/downloads';
@@ -15,6 +14,7 @@ import { searchSelectors } from '../../selectors/search';
 import { favoritesSelectors } from '../../selectors/favorites';
 import { safeAddUuid } from '../../actions/helpers';
 import { pluginsSelectors } from '../../selectors/plugins';
+import { stringDurationToSeconds } from '../../utils';
 
 const getIsFavorite = (currentAlbum, favoriteAlbums) => {
   const album = _.find(favoriteAlbums, {
@@ -33,7 +33,20 @@ const AlbumViewContainer: React.FC = () => {
   // TODO replace this any with a proper type
   const plugins: any = useSelector(pluginsSelectors.plugins);
   const favoriteAlbums = useSelector(favoritesSelectors.albums);
-  const album: AlbumDetails = albumDetails[albumId];
+  const album = albumDetails[albumId];
+  
+  album.tracklist = album?.tracklist?.map(track => ({
+    ...track,
+    name: track.title,
+    thumbnail: album.coverImage,
+    duration: parseInt(track.duration) !== track.duration
+      ? stringDurationToSeconds(track.duration)
+      : track.duration,
+    artist: {
+      name: album.artist
+    }
+  }));
+
   const isFavorite = getIsFavorite(album, favoriteAlbums);
 
   const searchAlbumArtist = useCallback(() => dispatch(
@@ -44,7 +57,11 @@ const AlbumViewContainer: React.FC = () => {
 
   const addAlbumToDownloads = useCallback(async () => {
     await album?.tracklist.forEach(async track => {
-      const clonedTrack = safeAddUuid(track);
+      const clonedTrack = {
+        ...safeAddUuid(track),
+        artist: track.artist.name,
+        title: track.name
+      };
       dispatch(DownloadsActions.addToDownloads(plugins.streamProviders, clonedTrack));
     });
   }, [album, dispatch, plugins]);
@@ -83,77 +100,7 @@ const AlbumViewContainer: React.FC = () => {
     playAll={playAll}
     removeFavoriteAlbum={removeFavoriteAlbum}
     addFavoriteAlbum={addFavoriteAlbum}
-
   />;
 };
 
 export default AlbumViewContainer;
-
-// class AlbumViewContainer extends React.Component {
-//   componentDidMount() {
-//     this.props.favoritesActions.readFavorites();
-//   }
-
-//   render() {
-//     const {
-//       searchActions,
-//       queueActions,
-//       playerActions,
-//       favoritesActions,
-//       downloadsActions,
-//       toastActions,
-//       match,
-//       history,
-//       albumDetails,
-//       streamProviders,
-//       favoriteAlbums,
-//       settings
-//     } = this.props;
-
-//     return (
-//       <AlbumView
-//         album={albumDetails[match.params.albumId]}
-//         artistInfoSearchByName={searchActions.artistInfoSearchByName}
-//         addToQueue={queueActions.addToQueue}
-//         streamProviders={streamProviders}
-//         selectSong={queueActions.selectSong}
-//         startPlayback={playerActions.startPlayback}
-//         clearQueue={queueActions.clearQueue}
-//         addFavoriteAlbum={favoritesActions.addFavoriteAlbum}
-//         removeFavoriteAlbum={favoritesActions.removeFavoriteAlbum}
-//         isFavorite={() => isFavorite(match.params.albumId, favoriteAlbums)}
-//         addToDownloads={downloadsActions.addToDownloads}
-//         info={toastActions.info}
-//         settings={settings}
-//         history={history}
-//       />
-//     );
-//   }
-// }
-
-// function mapStateToProps(state) {
-//   return {
-//     albumDetails: state.search.albumDetails,
-//     streamProviders: state.plugin.plugins.streamProviders,
-//     favoriteAlbums: state.favorites.albums,
-//     settings: state.settings
-//   };
-// }
-
-// function mapDispatchToProps(dispatch) {
-//   return {
-//     searchActions: bindActionCreators(SearchActions, dispatch),
-//     queueActions: bindActionCreators(QueueActions, dispatch),
-//     playerActions: bindActionCreators(PlayerActions, dispatch),
-//     favoritesActions: bindActionCreators(FavoritesActions, dispatch),
-//     downloadsActions: bindActionCreators(DownloadsActions, dispatch),
-//     toastActions: bindActionCreators(ToastActions, dispatch)
-//   };
-// }
-
-// export default withRouter(
-//   connect(
-//     mapStateToProps,
-//     mapDispatchToProps
-//   )(AlbumViewContainer)
-// );

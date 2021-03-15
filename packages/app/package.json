@@ -99,6 +99,7 @@
     "@types/jest": "^26.0.20",
     "@types/mocha": "^7.0.2",
     "@types/react-redux": "^7.1.16",
+    "@types/react-router-dom": "^5.1.7",
     "@types/redux-actions": "^2.6.1",
     "ava": "^2.4.0",
     "babel-jest": "^26.6.3",

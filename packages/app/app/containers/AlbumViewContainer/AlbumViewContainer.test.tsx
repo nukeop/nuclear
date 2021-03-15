@@ -27,7 +27,7 @@ describe('Album view container', () => {
     const { component } = mountComponent(
       buildStoreState()
         .withPlugins()
-        .withAlbumDetails({ loading: true })
+        .withAlbumDetails({ ['test-album-id']: { loading: true } })
         .build()
     );
 
@@ -39,6 +39,56 @@ describe('Album view container', () => {
     expect(history.location.pathname).toBe('/album/test-album-id');
     await waitFor(() => component.getByText(/test artist/i).click());
     expect(history.location.pathname).toBe('/artist/test-artist-id');
+  });
+
+  it('should add a single track to queue after clicking the button in the popup', async () => {
+    const { component, store } = mountComponent();
+
+    await waitFor(() => component.getByText(/test track 1/i).click());
+    await waitFor(() => component.getByText(/add to queue/i).click());
+
+    const state = store.getState();
+    expect(state.queue.queueItems).toEqual([
+      expect.objectContaining({
+        artist: 'test artist',
+        name: 'test track 1'
+      })
+    ]);
+  });
+
+  it('should start playing a single track after clicking the button in the popup', async () => {
+    const { component, store } = mountComponent();
+
+    await waitFor(() => component.getByText(/test track 1/i).click());
+    await waitFor(() => component.getByText(/play now/i).click());
+
+    const state = store.getState();
+    expect(state.queue.queueItems).toEqual([
+      expect.objectContaining({
+        artist: 'test artist',
+        name: 'test track 1'
+      })
+    ]);
+    expect(state.player.playbackStatus).toEqual('PLAYING');
+  });
+
+  it('should add a single track to downloads after clicking the button in the popup', async () => {
+    const { component, store } = mountComponent();
+
+    await waitFor(() => component.getByText(/test track 1/i).click());
+    await waitFor(() => component.getByText(/download/i).click());
+
+    const state = store.getState();
+    expect(state.downloads).toEqual([
+      {
+        completion: 0,
+        status: 'Waiting',
+        track: expect.objectContaining({
+          artist: 'test artist',
+          name: 'test track 1'
+        })
+      }
+    ]);
   });
 
   it('should add album to favorites after clicking the star', async () => {
@@ -128,35 +178,35 @@ describe('Album view container', () => {
       {
         completion: 0,
         status: 'Waiting',
-        track: {
+        track: expect.objectContaining({
           artist: 'test artist',
           duration: 120,
           ids: [],
           title: 'test track 1',
           uuid: 'track-1-id'
-        }
+        })
       },
       {
         completion: 0,
         status: 'Waiting',
-        track: {
+        track: expect.objectContaining({
           uuid: 'track-2-id',
           ids: [],
           artist: 'test artist',
           title: 'test track 2',
           duration: 63
-        }
+        })
       },
       {
         completion: 0,
         status: 'Waiting',
-        track: {
+        track: expect.objectContaining({
           uuid: 'track-3-id',
           ids: [],
           artist: 'test artist',
           title: 'test track 3',
           duration: 7
-        }
+        })
       }
     ]);
   });
