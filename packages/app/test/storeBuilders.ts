@@ -4,6 +4,7 @@ export const buildStoreState = () => {
   let state = {
     search: {},
     plugin: {},
+    playlists: {},
     connectivity: false
   };
 
@@ -104,6 +105,31 @@ export const buildStoreState = () => {
       state = {
         ...state,
         connectivity: true
+      };
+      return this as StoreStateBuilder;
+    },
+    withPlaylists() {
+      state = {
+        ...state,
+        playlists: {
+          playlists: [
+            {
+              id: 'test-playlist-id',
+              name: 'test playlist',
+              tracks: [{
+                artist: 'test artist 1',
+                name: 'test track',
+                thumbnail: 'test thumbnail',
+                streams: [{
+                  source: 'Test source',
+                  stream: 'test stream 1',
+                  title: 'stream title 1',
+                  duration: 100
+                }]
+              }]
+            }
+          ]
+        }
       };
       return this as StoreStateBuilder;
     },

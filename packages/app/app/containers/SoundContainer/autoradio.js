@@ -195,8 +195,7 @@ function getArtistTopTracks (artist) {
 
 function addToQueue (artist, track) {
   return new Promise((resolve) => {
-    const streamProviders = props.plugins.plugins.streamProviders;
-    props.actions.addToQueue(streamProviders, {
+    props.actions.addToQueue({
       artist: artist.name,
       name: track.name,
       thumbnail: track.thumbnail || track.image[0]['#text']
