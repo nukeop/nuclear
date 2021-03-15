@@ -1,6 +1,6 @@
 @import '../../vars.scss';
 
-.help_button {
+.ui.help_button {
   position: relative;
   display: inline-flex !important;
   justify-content: center;
@@ -9,6 +9,7 @@
   height: 36px;
   width: 36px;
   padding: 0;
+  margin-right: 12px;
   transition: $short-duration !important;
 
   i {
