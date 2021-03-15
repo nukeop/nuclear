@@ -1,0 +1,233 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Album view container should display an album 1`] = `
+<DocumentFragment>
+  <div
+    class="main_layout_container"
+  >
+    <div
+      class="album_view_container"
+    >
+      <div
+        class="dimmable"
+      >
+        <div
+          class="ui dimmer"
+        >
+          <div
+            class="content"
+          >
+            <div
+              class="ui loader"
+            />
+          </div>
+        </div>
+        <div
+          class="album"
+        >
+          <div
+            class="album_info_box"
+          >
+            <span
+              class="nuclear small loader"
+            >
+              <span />
+              <span />
+              <span />
+              <span />
+            </span>
+            <div
+              class="album_details"
+            >
+              <div
+                class="album_title"
+              >
+                test album
+              </div>
+              <div
+                class="album_artist"
+              >
+                by 
+                <a
+                  href="#"
+                >
+                  test artist
+                </a>
+              </div>
+              <div
+                class="album_genre"
+              >
+                <label>
+                  Genre:
+                </label>
+                genre 1, genre 2
+              </div>
+              <div
+                class="album_year"
+              >
+                <label>
+                  Year:
+                </label>
+                2001
+              </div>
+              <div
+                class="album_tracks"
+              >
+                <label>
+                  Tracks:
+                </label>
+                3
+              </div>
+              <div
+                class="album_buttons"
+              >
+                <a
+                  class="play_button"
+                  href="#"
+                >
+                  <i
+                    aria-hidden="true"
+                    class="play icon"
+                  />
+                   Play
+                </a>
+                <a
+                  class="more_button"
+                  data-testid="more-button"
+                  href="#"
+                >
+                  <i
+                    aria-hidden="true"
+                    class="ellipsis horizontal icon"
+                  />
+                </a>
+              </div>
+            </div>
+            <a
+              class="album_favorites_button_wrap"
+              data-testid="add-remove-favorite"
+              href="#"
+            >
+              <i
+                aria-hidden="true"
+                class="star outline big icon"
+              />
+            </a>
+          </div>
+          <table
+            class="album_tracklist"
+          >
+            <thead>
+              <tr>
+                <th
+                  class="center position"
+                >
+                  <i
+                    aria-hidden="true"
+                    class="hashtag icon"
+                  />
+                </th>
+                <th
+                  class="left"
+                >
+                  Song
+                </th>
+                <th
+                  class="center duration"
+                >
+                  <i
+                    aria-hidden="true"
+                    class="clock outline icon"
+                  />
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                class="track"
+              >
+                <td
+                  class="track_number"
+                />
+                <td
+                  class="track_name"
+                >
+                  test track 1
+                </td>
+                <td
+                  class="track_duration"
+                >
+                  02:00
+                </td>
+              </tr>
+              <tr
+                class="track"
+              >
+                <td
+                  class="track_number"
+                />
+                <td
+                  class="track_name"
+                >
+                  test track 2
+                </td>
+                <td
+                  class="track_duration"
+                >
+                  01:03
+                </td>
+              </tr>
+              <tr
+                class="track"
+              >
+                <td
+                  class="track_number"
+                />
+                <td
+                  class="track_name"
+                >
+                  test track 3
+                </td>
+                <td
+                  class="track_duration"
+                >
+                  00:07
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Album view container should show that an album is still loading 1`] = `
+<DocumentFragment>
+  <div
+    class="main_layout_container"
+  >
+    <div
+      class="album_view_container"
+    >
+      <div
+        class="dimmable"
+      >
+        <div
+          class="ui active transition visible dimmer"
+          style="display: flex;"
+        >
+          <div
+            class="content"
+          >
+            <div
+              class="ui loader"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
