@@ -5,7 +5,6 @@ import { createMemoryHistory } from 'history';
 import { AnyProps, configureMockStore, setupI18Next, TestRouterProvider, TestStoreProvider } from '../../../test/testUtils';
 import MainContentContainer from '../MainContentContainer';
 import { buildStoreState } from '../../../test/storeBuilders';
-import rootReducer from '../../reducers';
 
 describe('Album view container', () => {
   beforeAll(() => {
@@ -223,7 +222,6 @@ describe('Album view container', () => {
       initialEntries: ['/album/test-album-id']
     });
     const store = configureMockStore(initialState);
-    store.replaceReducer(rootReducer);
     const component = render(
       <TestRouterProvider
         history={history}

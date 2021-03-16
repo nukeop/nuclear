@@ -19,7 +19,7 @@ class PlaylistView extends React.Component {
     super(props);
   }
 
-  async playAll (playlist) {
+  async playAll(playlist) {
     this.props.clearQueue();
     await this.props.addTracks(playlist.tracks);
     this.props.selectSong(0);
@@ -47,7 +47,7 @@ class PlaylistView extends React.Component {
     this.props.updatePlaylist(updatedPlaylist);
   }
 
-  renderOptions (
+  renderOptions(
     trigger,
     playlist
   ) {
@@ -60,7 +60,7 @@ class PlaylistView extends React.Component {
       >
         <PopupButton
           onClick={() =>
-            this.props.addTracks(this.props.streamProviders, playlist.tracks)
+            this.props.addTracks(playlist.tracks)
           }
           ariaLabel={this.props.t('queue')}
           icon='plus'
@@ -78,13 +78,13 @@ class PlaylistView extends React.Component {
     );
   }
 
-  renderPlayButton (playlist) {
+  renderPlayButton(playlist) {
     return (
       <a
         href='#'
         className={styles.play_button}
         onClick={async () =>
-          await this.playAll(playlist, this.props.streamProviders)
+          await this.playAll(playlist)
         }
       >
         <Icon name='play' /> Play
@@ -92,9 +92,13 @@ class PlaylistView extends React.Component {
     );
   }
 
-  renderPlaylistInfo (playlist) {
+  renderPlaylistInfo(playlist) {
     const popupTrigger = (
-      <a href='#' className={styles.more_button}>
+      <a
+        href='#'
+        className={styles.more_button}
+        data-testid='more-button'
+      >
         <Icon name='ellipsis horizontal' />
       </a>
     );
@@ -110,7 +114,7 @@ class PlaylistView extends React.Component {
         <div className={styles.playlist_header}>
           <label className={styles.playlist_header_label}>Playlist</label>
           <div className={styles.playlist_name}>
-            { playlist.name }
+            {playlist.name}
             <InputDialog
               header={<h4>Input new playlist name:</h4>}
               placeholder={this.props.t('dialog-placeholder')}
@@ -124,13 +128,14 @@ class PlaylistView extends React.Component {
                   basic
                   aria-label={this.props.t('rename')}
                   icon='pencil'
+                  data-testid='rename-button'
                 />
               }
             />
           </div>
           <div className={styles.playlist_buttons}>
-            { this.renderPlayButton(playlist) }
-            { this.renderOptions(
+            {this.renderPlayButton(playlist)}
+            {this.renderOptions(
               popupTrigger,
               playlist
             )
@@ -141,11 +146,11 @@ class PlaylistView extends React.Component {
     );
   }
 
-  renderPlaylistTracksHeader () {
+  renderPlaylistTracksHeader() {
     return (
       <thead>
         <tr>
-          <th/>
+          <th />
           <th>
             <Icon name='image outline' />
           </th>
@@ -155,7 +160,7 @@ class PlaylistView extends React.Component {
       </thead>);
   }
 
-  renderTrack (track, index) {
+  renderTrack(track, index) {
     const newTrack = _.cloneDeep(track);
     _.set(newTrack, 'artist.name', newTrack.artist);
     _.set(newTrack, 'image[0][\'#text\']', newTrack.thumbnail);
@@ -176,7 +181,7 @@ class PlaylistView extends React.Component {
     );
   }
 
-  render () {
+  render() {
     const { playlist } = this.props;
     return (
       <div className={styles.playlist_view_container}>

@@ -1,0 +1,163 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Playlist view container should display a playlist 1`] = `
+<DocumentFragment>
+  <div
+    class="main_layout_container"
+  >
+    <div
+      class="playlist_view_container"
+    >
+      <div
+        class="playlist"
+      >
+        <div
+          class="playlist_info"
+        >
+          <div>
+            <img
+              class="playlist_thumbnail"
+              src="test thumbnail"
+            />
+          </div>
+          <div
+            class="playlist_header"
+          >
+            <label
+              class="playlist_header_label"
+            >
+              Playlist
+            </label>
+            <div
+              class="playlist_name"
+            >
+              test playlist
+              <button
+                aria-label="Rename this playlist"
+                class="ui basic icon button"
+                data-testid="rename-button"
+              >
+                <i
+                  aria-hidden="true"
+                  class="pencil icon"
+                />
+              </button>
+            </div>
+            <div
+              class="playlist_buttons"
+            >
+              <a
+                class="play_button"
+                href="#"
+              >
+                <i
+                  aria-hidden="true"
+                  class="play icon"
+                />
+                 Play
+              </a>
+              <a
+                class="more_button"
+                data-testid="more-button"
+                href="#"
+              >
+                <i
+                  aria-hidden="true"
+                  class="ellipsis horizontal icon"
+                />
+              </a>
+            </div>
+          </div>
+        </div>
+        <div
+          class="playlist_tracks"
+        >
+          <table>
+            <thead>
+              <tr>
+                <th />
+                <th>
+                  <i
+                    aria-hidden="true"
+                    class="image outline icon"
+                  />
+                </th>
+                <th>
+                  Artist
+                </th>
+                <th>
+                  Title
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                class="track"
+              >
+                <td
+                  class="track_row_buttons"
+                >
+                  <a>
+                    <i
+                      aria-hidden="true"
+                      class="close icon"
+                    />
+                  </a>
+                </td>
+                <td
+                  class="track_thumbnail"
+                >
+                  <img
+                    src="test thumbnail"
+                  />
+                </td>
+                <td
+                  class="track_artist"
+                >
+                  test artist 1
+                </td>
+                <td
+                  class="track_name"
+                >
+                  test track
+                </td>
+              </tr>
+              <tr
+                class="track"
+              >
+                <td
+                  class="track_row_buttons"
+                >
+                  <a>
+                    <i
+                      aria-hidden="true"
+                      class="close icon"
+                    />
+                  </a>
+                </td>
+                <td
+                  class="track_thumbnail"
+                >
+                  <img
+                    src="test thumbnail 2"
+                  />
+                </td>
+                <td
+                  class="track_artist"
+                >
+                  test artist 2
+                </td>
+                <td
+                  class="track_name"
+                >
+                  test track 22
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

@@ -74,18 +74,18 @@ export const useAlbumViewProps = () => {
   }, [album, dispatch]);
 
   const playAll = useCallback(async () => {
-    await dispatch(QueueActions.clearQueue());
+    dispatch(QueueActions.clearQueue());
     await addAlbumToQueue();
-    await dispatch(QueueActions.selectSong(0));
-    await dispatch(PlayerActions.startPlayback());
+    dispatch(QueueActions.selectSong(0));
+    dispatch(PlayerActions.startPlayback());
   }, [addAlbumToQueue, dispatch]);
 
   const addFavoriteAlbum = useCallback(async () => {
-    await dispatch(FavoritesActions.addFavoriteAlbum(album));
+    dispatch(FavoritesActions.addFavoriteAlbum(album));
   }, [album, dispatch]);
 
   const removeFavoriteAlbum = useCallback(async () => {
-    await dispatch(FavoritesActions.removeFavoriteAlbum(album));
+    dispatch(FavoritesActions.removeFavoriteAlbum(album));
   }, [album, dispatch]);
 
   return {
