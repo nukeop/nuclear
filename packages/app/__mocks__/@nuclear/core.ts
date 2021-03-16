@@ -4,7 +4,8 @@ const initialStoreState = () => ({
   },
   downloads: [],
   favorites: {
-    albums: []
+    albums: [],
+    tracks: []
   },
   playlists: []
 });

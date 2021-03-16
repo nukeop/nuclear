@@ -102,6 +102,40 @@ describe('Playlist view container', () => {
     expect(state.player.playbackStatus).toEqual('PLAYING');
   });
 
+  it('should add a single track to favorites', async () => {
+    const { component, store } = mountComponent();
+    await waitFor(() => component.getByText(/test track 22/i).click());
+    await waitFor(() => component.getByText(/add to favorites/i).click());
+
+    const state = store.getState();
+    expect(state.favorites.tracks).toEqual([
+      expect.objectContaining({
+        artist: {
+          name: 'test artist 2'
+        },
+        name: 'test track 22'
+      })
+    ]);
+  });
+
+  it('should add a single track to downloads', async () => {
+    const { component, store } = mountComponent();
+    await waitFor(() => component.getByText(/test track 22/i).click());
+    await waitFor(() => component.getByText(/download/i).click());
+
+    const state = store.getState();
+    expect(state.downloads).toEqual([
+      expect.objectContaining({
+        completion: 0,
+        status: 'Waiting',
+        track: expect.objectContaining({
+          artist: 'test artist 2',
+          name: 'test track 22'
+        })
+      })
+    ]);
+  });
+
   const mountComponent = (initialStore?: AnyProps) => {
     const initialState = initialStore ||
       buildStoreState()
