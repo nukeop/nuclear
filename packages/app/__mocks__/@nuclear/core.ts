@@ -5,7 +5,8 @@ const initialStoreState = () => ({
   downloads: [],
   favorites: {
     albums: []
-  }
+  },
+  playlists: []
 });
 
 let mockStore = initialStoreState();

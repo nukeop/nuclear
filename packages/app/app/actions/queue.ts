@@ -96,7 +96,7 @@ export function removeFromQueue(item) {
 export function addPlaylistTracksToQueue(tracks) {
   return async (dispatch) => {
     await tracks.forEach(async item => {
-      dispatch(addToQueue(item));
+      await dispatch(addToQueue(item));
     });
   };
 }
