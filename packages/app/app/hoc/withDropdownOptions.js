@@ -1,4 +1,5 @@
 import React from 'react';
+import _ from 'lodash';
 
 export const withDropdownOptions = ({options, defaultValue, mappings}) => BaseComponent => {
   return props => {

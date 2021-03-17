@@ -77,12 +77,19 @@ export const buildStoreState = () => {
                 search: () => ({
                   data: 'test-stream-data'
                 })
+              },
+              {
+                name: 'Different Stream Provider',
+                sourceName: 'Different Stream Provider',
+                search: () => ({
+                  data: 'different-test-stream-data'
+                })
               }
             ],
             metaProviders: [
               {
                 name: 'Test Meta Provider',
-                description: 'Metadata providerfor testing.',
+                description: 'Metadata provider for testing.',
                 image: null,
                 isDefault: true,
                 sourceName: 'Test Metadata Provider',
@@ -90,12 +97,36 @@ export const buildStoreState = () => {
                 fetchArtistDetailsByName: () => ({
                   id: 'test-artist-id'
                 })
+              },
+              {
+                name: 'Another Meta Provider',
+                description: 'Another metadata provider for testing.',
+                image: null,
+                isDefault: true,
+                sourceName: 'Another Metadata Provider',
+                searchName: 'Test',
+                fetchArtistDetailsByName: () => ({
+                  id: 'test-artist-id'
+                })
+              }
+            ],
+            lyricsProviders: [
+              {
+                name: 'Test Lyrics Provider',
+                description: 'Lyrics provider for testing.',
+                sourceName: 'Test Lyrics Provider'
+              },
+              {
+                name: 'Different Lyrics Provider',
+                description: 'A different lyrics provider for testing.',
+                sourceName: 'Different Lyrics Provider'
               }
             ]
           },
           selected: {
             streamProviders: 'Test Stream Provider',
-            metaProviders: 'Test Metadata Provider'
+            metaProviders: 'Test Metadata Provider',
+            lyricsProviders: 'Test Lyrics Provider'
           }
         }
       };
