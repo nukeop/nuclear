@@ -131,10 +131,6 @@
           transition: $short-duration;
         }
 
-        tr:hover {
-          background: rgba($background2, 0.25);
-        }
-
         td {
           padding: 1rem 1rem;
           border-bottom: 1px solid $background2;

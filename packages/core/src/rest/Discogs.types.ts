@@ -93,6 +93,8 @@ export type DiscogsReleaseInfo = {
   tracklist: DiscogsTrack[];
 }
 
+export type DiscogsTrackType = 'track' | 'heading' | 'index';
+
 export type DiscogsTrack = {
   duration: string;
   position: string;
@@ -101,4 +103,5 @@ export type DiscogsTrack = {
     name: string;
   }[];
   sub_tracks?: DiscogsTrack[];
+  type_: DiscogsTrackType;
 }
