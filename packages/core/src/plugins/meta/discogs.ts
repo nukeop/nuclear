@@ -112,6 +112,7 @@ class DiscogsMetaProvider extends MetaProvider {
     track.duration = discogsTrack.duration;
     track.position = discogsTrack.position;
     track.extraArtists = _.map(discogsTrack.extraartists, 'name');
+    track.type = discogsTrack.type_;
     return track;
   }
 

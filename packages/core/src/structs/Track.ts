@@ -18,6 +18,7 @@ export default class Track {
   position?: string | number;
   thumbnail?: string;
   extraArtists?: string[];
+  type?: string;
 
   constructor(data: PartialExcept<Track, 'artist' | 'title'> = {
     artist: '',
