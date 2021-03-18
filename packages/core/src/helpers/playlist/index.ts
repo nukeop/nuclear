@@ -24,7 +24,7 @@ const formatTrackList = (tracks): PlaylistTrack[] => {
 };
 
 const extractTrackData = (track): PlaylistTrack => {
-  return track && track.name ? 
+  return track && track.name && (!track.type || track.type === 'track') ? 
     {
       artist: track.artist,
       name: track.name,

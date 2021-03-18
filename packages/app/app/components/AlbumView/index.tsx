@@ -8,6 +8,7 @@ import { Loader as NuclearLoader, ContextPopup, PopupButton } from '@nuclear/ui'
 import { AlbumDetails } from '@nuclear/core/src/plugins/plugins.types';
 
 import TrackRow from '../TrackRow';
+import TrackRowHeading from '../TrackRowHeading/index';
 import styles from './styles.scss';
 import artPlaceholder from '../../../resources/media/art_placeholder.png';
 
@@ -144,13 +145,15 @@ export const AlbumView: React.FC<AlbumViewProps> = ({
                 </tr>
               </thead>
               <tbody>
-                {album.tracklist.map((track, index) => <TrackRow
-                  key={'album-track-row-' + index}
-                  track={track}
-                  index={'album-track-' + index}
-                  displayTrackNumber
-                  displayDuration
-                />)}
+                {album.tracklist.map((track, index) => {
+                  return (!track.type || track.type === 'track') ? <TrackRow
+                    key={'album-track-row-' + index}
+                    track={track}
+                    index={'album-track-' + index}
+                    displayTrackNumber
+                    displayDuration
+                  /> : <TrackRowHeading title={track.title} />;
+                })}
               </tbody>
             </table>
           </div>
