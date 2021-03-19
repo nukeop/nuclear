@@ -6,6 +6,12 @@ module.exports = {
     transformSource: () => { },
     app: {
       getPath: () => { }
+    },
+    dialog: {
+      showOpenDialog: jest.fn(async () => Promise.resolve({
+        canceled: false,
+        filePaths: ['test file.txt']
+      }))
     }
   }
 };
