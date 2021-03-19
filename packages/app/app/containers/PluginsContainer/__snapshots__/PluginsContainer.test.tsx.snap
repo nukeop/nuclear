@@ -1,5 +1,310 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Plugins container should display loaded user plugins 1`] = `
+<DocumentFragment>
+  <div
+    class="main_layout_container"
+  >
+    <div
+      class="plugins_view_container"
+    >
+      <section
+        class="plugin_settings_section"
+      >
+        <div
+          class="header_container"
+        >
+          Stream providers
+        </div>
+        <hr />
+        <div
+          class="ui segment"
+        >
+          <label>
+            Select the default music source:
+          </label>
+          <div
+            aria-expanded="false"
+            class="ui selection dropdown"
+            role="listbox"
+            tabindex="0"
+          >
+            <div
+              aria-atomic="true"
+              aria-live="polite"
+              class="text"
+              role="alert"
+            >
+              Test Stream Provider
+            </div>
+            <i
+              aria-hidden="true"
+              class="dropdown icon"
+            />
+            <div
+              class="menu transition"
+            >
+              <div
+                aria-checked="true"
+                aria-selected="true"
+                class="active selected item"
+                role="option"
+                style="pointer-events: all;"
+              >
+                <span
+                  class="text"
+                >
+                  Test Stream Provider
+                </span>
+              </div>
+              <div
+                aria-checked="false"
+                aria-selected="false"
+                class="item"
+                role="option"
+                style="pointer-events: all;"
+              >
+                <span
+                  class="text"
+                >
+                  Different Stream Provider
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section
+        class="plugin_settings_section"
+      >
+        <div
+          class="header_container"
+        >
+          Metadata providers
+        </div>
+        <hr />
+        <div
+          class="ui segment"
+        >
+          <label>
+            Select the default metadata provider:
+          </label>
+          <div
+            aria-expanded="false"
+            class="ui selection dropdown"
+            role="listbox"
+            tabindex="0"
+          >
+            <div
+              aria-atomic="true"
+              aria-live="polite"
+              class="text"
+              role="alert"
+            >
+              Test Meta Provider
+            </div>
+            <i
+              aria-hidden="true"
+              class="dropdown icon"
+            />
+            <div
+              class="menu transition"
+            >
+              <div
+                aria-checked="true"
+                aria-selected="true"
+                class="active selected item"
+                role="option"
+                style="pointer-events: all;"
+              >
+                <span
+                  class="text"
+                >
+                  Test Meta Provider
+                </span>
+              </div>
+              <div
+                aria-checked="false"
+                aria-selected="false"
+                class="item"
+                role="option"
+                style="pointer-events: all;"
+              >
+                <span
+                  class="text"
+                >
+                  Another Meta Provider
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section
+        class="plugin_settings_section"
+      >
+        <div
+          class="header_container"
+        >
+          Lyrics providers
+        </div>
+        <hr />
+        <div
+          class="ui segment"
+        >
+          <label>
+            Select the default lyrics provider:
+          </label>
+          <div
+            aria-expanded="false"
+            class="ui selection dropdown"
+            role="listbox"
+            tabindex="0"
+          >
+            <div
+              aria-atomic="true"
+              aria-live="polite"
+              class="text"
+              role="alert"
+            >
+              Test Lyrics Provider
+            </div>
+            <i
+              aria-hidden="true"
+              class="dropdown icon"
+            />
+            <div
+              class="menu transition"
+            >
+              <div
+                aria-checked="true"
+                aria-selected="true"
+                class="active selected item"
+                role="option"
+                style="pointer-events: all;"
+              >
+                <span
+                  class="text"
+                >
+                  Test Lyrics Provider
+                </span>
+              </div>
+              <div
+                aria-checked="false"
+                aria-selected="false"
+                class="item"
+                role="option"
+                style="pointer-events: all;"
+              >
+                <span
+                  class="text"
+                >
+                  Different Lyrics Provider
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section
+        class="plugin_settings_section"
+      >
+        <div
+          class="header_container"
+        >
+          User plugins
+        </div>
+        <hr />
+        <div
+          class="ui segment user_plugins_section"
+        >
+          <div
+            class="ui warning message plugins_warning"
+          >
+            <div
+              class="header"
+            >
+              <i
+                aria-hidden="true"
+                class="warning sign icon"
+              />
+              Danger zone!
+            </div>
+            <p>
+              Plugins work by running code on your computer. Load plugins only from sources you trust!
+            </p>
+          </div>
+          <hr />
+          <button
+            class="ui icon inverted button"
+          >
+            <i
+              aria-hidden="true"
+              class="plus icon"
+            />
+            Add a plugin
+          </button>
+          <div
+            class="nuclear user_plugins_item"
+          >
+            <div
+              class="plugin_info"
+            >
+              <div
+                class="plugin_name"
+              >
+                test plugin
+              </div>
+              <div
+                class="plugin_path"
+              >
+                <label>
+                  Installed from:
+                </label>
+                <span>
+                  test file.txt
+                </span>
+              </div>
+              <div
+                class="plugin_description"
+              >
+                test plugin description
+              </div>
+              <div
+                class="plugin_footer"
+              >
+                <div
+                  class="plugin_author"
+                >
+                  <label>
+                    Author:
+                  </label>
+                  <span
+                    class="link"
+                  />
+                </div>
+                <button
+                  class="ui basic icon inverted button delete_button"
+                >
+                  <i
+                    aria-hidden="true"
+                    class="trash alternate outline icon"
+                  />
+                  Uninstall
+                </button>
+              </div>
+              <div
+                class="error_footer"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
 exports[`Plugins container should display plugins 1`] = `
 <DocumentFragment>
   <div
