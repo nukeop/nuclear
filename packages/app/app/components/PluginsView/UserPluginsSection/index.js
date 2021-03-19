@@ -16,35 +16,30 @@ const UserPluginsSectionComponent = ({
   handleAuthorClick,
   userPlugins,
   t
-}) => {
-  return (
-    <Segment className={styles.user_plugins_section}>
-      <Warning />
-      <hr />
-      <Button icon inverted onClick={handleAddPlugin}>
-        <Icon name='plus' />
-        {t('add-a-plugin')}
-      </Button>
-      {
-        userPlugins &&
-        _.map(Object.values(userPlugins), (plugin, idx) => (
-          <UserPluginsItem
-            key={idx}
-            path={plugin.path}
-            name={plugin.name}
-            description={plugin.description}
-            image={plugin.image}
-            author={plugin.author}
-            loading={plugin.loading}
-            error={plugin.error}
-            deleteUserPlugin={deleteUserPlugin}
-            onAuthorClick={handleAuthorClick}
-          />
-        ))
-      }
-    </Segment>
-  );
-};
+}) => (
+  <Segment className={styles.user_plugins_section}>
+    <Warning />
+    <hr />
+    <Button icon inverted onClick={handleAddPlugin}>
+      <Icon name='plus' />
+      {t('add-a-plugin')}
+    </Button>
+    {userPlugins &&
+      _.map(Object.values(userPlugins), (plugin, idx) => (
+        <UserPluginsItem
+          key={idx}
+          path={plugin.path}
+          name={plugin.name}
+          description={plugin.description}
+          image={plugin.image}
+          author={plugin.author}
+          loading={plugin.loading}
+          error={plugin.error}
+          deleteUserPlugin={deleteUserPlugin}
+          onAuthorClick={handleAuthorClick} />
+      ))}
+  </Segment>
+);
 
 UserPluginsSectionComponent.propTypes = {
   /* eslint-disable react/no-unused-prop-types */
@@ -64,12 +59,13 @@ UserPluginsSectionComponent.propTypes = {
 
 export default compose(
   withHandlers({
-    handleAddPlugin: ({loadUserPlugin}) => () => {
-      const dialogResult = remote.dialog.showOpenDialog({
-        filters: [{name: 'Javascript files', extensions: ['js', 'jsx']}]
+    handleAddPlugin: ({ loadUserPlugin }) => async () => {
+      const dialogResult = await remote.dialog.showOpenDialog({
+        filters: [{ name: 'Javascript files', extensions: ['js', 'jsx'] }]
       });
-      if (!_.isNil(dialogResult)) {
-        loadUserPlugin(_.head(dialogResult));
+
+      if (!dialogResult.canceled && !_.isEmpty(dialogResult.filePaths)) {
+        loadUserPlugin(_.head(dialogResult.filePaths));
       }
     },
     handleAuthorClick: () => author => {

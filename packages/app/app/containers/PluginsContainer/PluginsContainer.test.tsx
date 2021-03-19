@@ -6,6 +6,8 @@ import { buildStoreState } from '../../../test/storeBuilders';
 import { AnyProps, configureMockStore, setupI18Next, TestRouterProvider, TestStoreProvider } from '../../../test/testUtils';
 import MainContentContainer from '../MainContentContainer';
 
+jest.mock('fs');
+
 describe('Plugins container', () => {
   beforeAll(() => {
     setupI18Next();
@@ -41,6 +43,48 @@ describe('Plugins container', () => {
 
     const state = store.getState();
     expect(state.plugin.selected.lyricsProviders).toEqual('Different Lyrics Provider');
+  });
+
+  it('should be able to load a user plugin', async () => {
+    const { component, store } = mountComponent();
+    await waitFor(() => component.getAllByText(/Add a plugin/i)[0].click());
+
+    const state = store.getState();
+
+    const remote = require('electron').remote;
+    expect(remote.dialog.showOpenDialog).toHaveBeenCalledWith({
+      filters: [{
+        name: 'Javascript files',
+        extensions: ['js', 'jsx']
+      }]
+    });
+    expect(state.plugin.userPlugins['test file.txt']).toEqual(
+      expect.objectContaining({
+        path: 'test file.txt'
+      })
+    );
+  });
+
+  it('should display loaded user plugins', async () => {
+    const state = buildStoreState()
+      .withPlugins()
+      .build();
+
+    state.plugin = {
+      ...state.plugin,
+      userPlugins: {
+        'test file.txt': {
+          path: 'test file.txt',
+          name: 'test plugin',
+          description: 'test plugin description',
+          image: null
+        }
+      }
+    };
+
+    const { component } = mountComponent(state);
+
+    expect(component.asFragment()).toMatchSnapshot();
   });
 
   const mountComponent = (initialStore?: AnyProps) => {
