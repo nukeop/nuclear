@@ -47,7 +47,6 @@ const FavoriteTracksView = ({
   };
 
   const addTracksToQueue = () => {
-
     tracks.map(track => {
       const trackImage = getTrackimage(track);
       addToQueue({
@@ -58,13 +57,12 @@ const FavoriteTracksView = ({
     });
   };
 
-  const playAll = (tracks) => {
+  const playAll = () => {
     clearQueue();
-    addTracksToQueue(tracks);
+    addTracksToQueue();
     selectSong(0);
     startPlayback();
   };
-
 
   const renderPlayAllButton = () => {
     return (
@@ -74,7 +72,6 @@ const FavoriteTracksView = ({
     );
   };
 
-  
   return (
     <div className={styles.favorite_tracks_view}>
       {

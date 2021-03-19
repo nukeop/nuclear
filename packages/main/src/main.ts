@@ -66,7 +66,7 @@ app.on('ready', async () => {
 
     await localLibraryDb.connect();
     container.listen();
-    await window.load(),
+    await window.load();
     trayMenu.init();
     discord.init();
 
