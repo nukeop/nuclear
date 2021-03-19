@@ -55,7 +55,7 @@ export function loadTopTags() {
         dispatch(loadTopTagsSuccess(results.toptags.tag));
       })
       .catch(error => {
-        dispatch(loadTopTagsError(error));
+        dispatch(loadTopTagsError());
         logger.error(error);
       });
   };

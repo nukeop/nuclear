@@ -110,7 +110,9 @@ const ipcConnect = () => next => {
       const nextDownload = payload.find((download) =>
         download.status==='Waiting'
       );
-      nextDownload ? ipcRenderer.send(IpcEvents.DOWNLOAD_START, nextDownload.track) : null;
+      if (nextDownload) {
+        ipcRenderer.send(IpcEvents.DOWNLOAD_START, nextDownload.track); 
+      }
       break;
     }
 

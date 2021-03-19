@@ -16,7 +16,7 @@ export function formatDuration(duration) {
     seconds = '0' + seconds;
   }
 
-  if (hours === '00') {
+  if (String(hours) === '00') {
     return minutes + ':' + seconds;
   } else {
     return hours + ':' + minutes + ':' + seconds;
