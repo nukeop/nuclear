@@ -96,7 +96,7 @@ const getInitialState = () => {
   return {
     presets: map,
     presetIDs: ids,
-    selected: getSelected(selected, presets, map),
+    selected: getSelected(selected, presets),
     enableSpectrum: getSpectrumStatus(other),
     spectrum: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
   };
