@@ -108,6 +108,23 @@ export const settingsConfig: Array<Setting> = [
     max: 100,
     unit: ''
   },
+
+  {
+    name: 'sleeptimerSwitch',
+    category: 'playback',
+    type: SettingType.BOOLEAN,
+    prettyName: 'Turn on Sleeptimer',
+    default: false
+  },
+  {
+    name: 'sleeptime',
+    category: 'playback',
+    description: 'sleeptimer-description',
+    type: SettingType.NUMBER,
+    prettyName: 'sleeptimer',
+    default: 0
+  },
+
   {
     name: 'disableGPU',
     category: 'program-settings',
