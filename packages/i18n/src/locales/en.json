@@ -165,11 +165,6 @@
     "autoradio-craziness": "Autoradio craziness",
     "autoradio-craziness-description": "Autoradio will select songs that are less similar to the ones already in the queue the crazier it is",
     "autoradio-description": "Add similar tracks automatically when the queue is ending",
-
-    "sleeptimerswitch": "Sleeptimer switch",
-    "sleeptimer": "Sleeptimer",
-    "sleeptimer-description": "Number of minutes until music will stop playing",
-
     "compact-menu-bar": "Use compact style for menu bar",
     "compact-queue-bar": "Use compact style for queue bar",
     "developer": "Developer settings",
@@ -208,6 +203,9 @@
     "shuffle-queue": "Shuffle songs",
     "shuffle-when-going-back": "Shuffle on previous track",
     "shuffle-when-going-back-description": "Play a random track when shuffle is active and the previous track button is clicked",
+    "sleeptimer": "Sleeptimer",
+    "sleeptimer-description": "Number of minutes until music will stop playing",
+    "sleeptimerswitch": "Sleeptimer switch",
     "social": "Social",
     "track-duration": "Display track duration over the seekbar",
     "user": "User:",
