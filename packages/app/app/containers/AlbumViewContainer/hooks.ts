@@ -22,8 +22,10 @@ export const useAlbumViewProps = () => {
   const albumDetails = useSelector(searchSelectors.albumDetails);
   // TODO replace this any with a proper type
   const plugins: any = useSelector(pluginsSelectors.plugins);
-  const favoriteAlbums = useSelector(favoritesSelectors.albums);
-  const album = albumDetails[albumId];
+  const favoriteAlbums: { id: string }[] = useSelector(favoritesSelectors.albums);
+
+  const albumFromFavorites = favoriteAlbums.find(album => album.id === albumId);
+  const album = albumFromFavorites || albumDetails[albumId];
   
   album.tracklist = album?.tracklist?.map(track => ({
     ...track,
@@ -39,8 +41,7 @@ export const useAlbumViewProps = () => {
 
   const getIsFavorite = (currentAlbum, favoriteAlbums) => {
     const album = _.find(favoriteAlbums, {
-      artist: currentAlbum?.artist,
-      title: currentAlbum?.title
+      id: currentAlbum?.id
     });
     return !!album;
   };

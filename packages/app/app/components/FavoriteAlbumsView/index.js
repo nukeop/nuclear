@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import _ from 'lodash';
 import { withRouter } from 'react-router';
 import { Icon, Segment } from 'semantic-ui-react';
 import { useTranslation } from 'react-i18next';

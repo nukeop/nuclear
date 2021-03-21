@@ -5,6 +5,11 @@ export const buildStoreState = () => {
     search: {},
     plugin: {},
     playlists: {},
+    favorites: {
+      tracks: [],
+      artists: [],
+      albums: []
+    },
     connectivity: false
   };
 
@@ -175,6 +180,42 @@ export const buildStoreState = () => {
               }]
             }
           ]
+        }
+      };
+      return this as StoreStateBuilder;
+    },
+    withFavorites() {
+      state = {
+        ...state,
+        favorites: {
+          tracks: [],
+          artists: [],
+          albums: [{
+            id: 'test-album-1',
+            title: ' Test album 1',
+            artists: [{
+              name: 'test artist 1'
+            }],
+            genres: ['genre 1', 'genre 2'],
+            images: ['image 1'],
+            thumb: 'image 1',
+            coverImage: 'image 1',
+            tracklist: [{
+              uuid: 'track-1',
+              artist: {
+                name: 'test artist 1'
+              },
+              title: 'test track 1',
+              duration: 10
+            }, {
+              uuid: 'track-2',
+              artist: {
+                name: 'test artist 2'
+              },
+              title: 'test track 2',
+              duration: 45
+            }]
+          }]
         }
       };
       return this as StoreStateBuilder;

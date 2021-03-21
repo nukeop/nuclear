@@ -64,12 +64,6 @@ class Dashboard extends React.Component {
           />
         )
       }
-      /* {
-        menuItem: 'Events',
-        render: () => {
-          return null;
-        },
-      },*/
     ];
   }
 
