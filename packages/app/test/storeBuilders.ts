@@ -19,6 +19,7 @@ export const buildStoreState = () => {
         ...state.search,
         albumDetails: data || {
           ['test-album-id']: {
+            id: 'test-album-id',
             loading: false,
             artist: 'test artist',
             title: 'test album',
