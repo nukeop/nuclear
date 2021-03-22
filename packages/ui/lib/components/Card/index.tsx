@@ -9,7 +9,7 @@ import styles from './styles.scss';
 
 export type CardMenuEntry = {
   type: 'header' | 'item' | 'divider';
-  props: DropdownItemProps | DropdownHeaderProps | DropdownDividerProps
+  props: DropdownItemProps | DropdownHeaderProps | DropdownDividerProps;
 };
 
 type CardProps = {
@@ -31,19 +31,19 @@ const Card: React.FC<CardProps> = ({
   animated = true,
   menuEntries
 }) => (
-    <div className={cx(
-      common.nuclear,
-      styles.card_container
-    )}>
-      <div
-        className={cx(
-          styles.card,
-          { [styles.animated]: animated }
-        )}
-        onClick={onClick}
-      >
-        {
-          withMenu &&
+  <div className={cx(
+    common.nuclear,
+    styles.card_container
+  )}>
+    <div
+      className={cx(
+        styles.card,
+        { [styles.animated]: animated }
+      )}
+      onClick={onClick}
+    >
+      {
+        withMenu &&
           <Dropdown
             basic
             icon='ellipsis vertical'
@@ -51,37 +51,37 @@ const Card: React.FC<CardProps> = ({
           >
             {
               _.isArray(menuEntries) && !_.isEmpty(menuEntries) &&
-              <Dropdown.Menu basic inverted>
+              <Dropdown.Menu basic={true} inverted={true}>
                 {
-                  menuEntries.map(entry => {
+                  menuEntries.map((entry, i) => {
                     switch (entry.type) {
-                      case 'header':
-                        return <Dropdown.Header {...entry.props} />;
-                      case 'item':
-                        return <Dropdown.Item {...entry.props} />;
-                      case 'divider':
-                        return <Dropdown.Divider {...entry.props} />;
+                    case 'header':
+                      return <Dropdown.Header {...entry.props} />;
+                    case 'item':
+                      return <Dropdown.Item key={`item-${i}`} {...entry.props} />;
+                    case 'divider':
+                      return <Dropdown.Divider {...entry.props} />;
                     }
                   })
                 }
               </Dropdown.Menu>
             }
           </Dropdown>
+      }
+      <div className={styles.thumbnail}
+        style={{ backgroundImage: `url('${(_.isNil(image) || _.isEmpty(image)) ? artPlaceholder : image}')` }}
+      >
+        <div className={styles.overlay} />
+      </div>
+      <div className={styles.card_content}>
+        <h4>{header}</h4>
+        {
+          _.isNil(content)
+            ? null
+            : <p>{content}</p>
         }
-        <div className={styles.thumbnail}
-          style={{ backgroundImage: `url('${(_.isNil(image) || _.isEmpty(image)) ? artPlaceholder : image}')` }}
-        >
-          <div className={styles.overlay} />
-        </div>
-        <div className={styles.card_content}>
-          <h4>{header}</h4>
-          {
-            _.isNil(content)
-              ? null
-              : <p>{content}</p>
-          }
-        </div>
       </div>
     </div>
-  );
+  </div>
+);
 export default Card;

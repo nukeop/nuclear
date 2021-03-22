@@ -152,7 +152,7 @@ export const AlbumView: React.FC<AlbumViewProps> = ({
                     index={'album-track-' + index}
                     displayTrackNumber
                     displayDuration
-                  /> : <TrackRowHeading title={track.title} />;
+                  /> : <TrackRowHeading title={track.title} key={'album-track-heading-' + index} />;
                 })}
               </tbody>
             </table>
