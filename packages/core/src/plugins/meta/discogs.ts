@@ -91,17 +91,17 @@ class DiscogsMetaProvider extends MetaProvider {
     });
 
     return {
-      ...release,
-      tracklist,
-      resourceUrl: release.resource_url,
       id: `${release.id}`,
       artist: _.head(release.artists).name,
+      title: release.title,
       thumb: coverImage,
       coverImage,
       images: _.map(release.images, 'resource_url'),
       genres: [..._.map(release.genres), ..._.map(release.styles)],
+      year: `${release.year}`,
       type: releaseType,
-      year: `${release.year}`
+      tracklist,
+      resourceUrl: release.resource_url
     };
   }
 
@@ -116,17 +116,21 @@ class DiscogsMetaProvider extends MetaProvider {
     return track;
   }
 
+  discogsArtistSearchResultToGeneric(artist: DiscogsArtistSearchResult): SearchResultsArtist {
+    return {
+      id: `${artist.id}`,
+      coverImage: artist.cover_image,
+      thumb: artist.thumb,
+      name: artist.title,
+      resourceUrl: artist.resource_url,
+      source: SearchResultsSource.Discogs
+    };
+  }
+
   searchForArtists(query: string): Promise<Array<SearchResultsArtist>> {
     return Discogs.search(query, 'artist')
       .then(response => response.json())
-      .then((json: DiscogsArtistSearchResponse) => json.results.map(artist => ({
-        id: `${artist.id}`,
-        coverImage: artist.cover_image,
-        thumb: artist.thumb,
-        name: artist.title,
-        resourceUrl: artist.resource_url,
-        source: SearchResultsSource.Discogs
-      })));
+      .then((json: DiscogsArtistSearchResponse) => json.results.map(this.discogsArtistSearchResultToGeneric));
   }
 
   searchForReleases(query: string): Promise<Array<SearchResultsAlbum>> {
@@ -146,10 +150,22 @@ class DiscogsMetaProvider extends MetaProvider {
   }> {
     return Discogs.search(query)
       .then(response => response.json())
-      .then(json => json.map(result => ({
-        ...result,
-        source: SearchResultsSource.Discogs
-      })));
+      .then(json => {
+        const artists = [];
+        const releases = [];
+
+        if (json.results) {
+          json.results.map(item => {
+            if (item.type === 'artist') {
+              artists.push(this.discogsArtistSearchResultToGeneric(item));
+            } else if (item.type === 'master' || item.type === 'release' ) {
+              releases.push(this.discogsReleaseSearchResultToGeneric(item));
+            }
+          });
+        }
+
+        return Promise.resolve({ artists, releases, tracks: [] });
+      });
   }
 
   async fetchArtistDetails(artistId: string): Promise<ArtistDetails> {
