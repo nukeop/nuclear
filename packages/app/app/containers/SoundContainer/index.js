@@ -18,12 +18,13 @@ import VisualizerContainer from '../../containers/VisualizerContainer';
 import globals from '../../globals';
 import { rest } from '@nuclear/core';
 
+import * as Sleeptimer from './sleeptimer';
+
 const lastfm = new rest.LastFmApi(globals.lastfmApiKey, globals.lastfmApiSecret);
 
 class SoundContainer extends React.Component {
   constructor(props) {
     super(props);
-
     this.handlePlaying = this.handlePlaying.bind(this);
     this.handleFinishedPlaying = this.handleFinishedPlaying.bind(this);
     this.handleLoading = this.handleLoading.bind(this);
@@ -41,14 +42,16 @@ class SoundContainer extends React.Component {
   handleLoading() {
     this.props.actions.updateStreamLoading(true);
   }
-
+  
   handleLoaded() {
+
     this.handleLoadLyrics();
     this.handleAutoRadio();
     this.props.actions.updateStreamLoading(false);
   }
 
   handleLoadLyrics() {
+
     const currentSong = this.props.queue.queueItems[
       this.props.queue.currentSong
     ];
@@ -87,9 +90,16 @@ class SoundContainer extends React.Component {
       this.props.queue.currentSong < this.props.queue.queueItems.length - 1 ||
       this.props.settings.loopAfterQueueEnd
     ) {
+      this.handleSleep();
       this.props.actions.nextSong();
     } else {
       this.props.actions.pausePlayback();
+    }
+  }
+  handleSleep(){
+
+    if (this.props.settings.sleeptimerSwitch){
+      Sleeptimer.putToSleep(this.props);
     }
   }
 
