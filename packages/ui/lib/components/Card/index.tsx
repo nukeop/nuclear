@@ -51,7 +51,7 @@ const Card: React.FC<CardProps> = ({
           >
             {
               _.isArray(menuEntries) && !_.isEmpty(menuEntries) &&
-              <Dropdown.Menu basic={true} inverted={true}>
+              <Dropdown.Menu basic='true' inverted='true'>
                 {
                   menuEntries.map((entry, i) => {
                     switch (entry.type) {
