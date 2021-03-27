@@ -96,7 +96,7 @@ Nuclear has already been translated to several languages, and we're always looki
 | Greek                | [Shuin-San](https://github.com/Shuin-San)                                                            |
 | Vietnamese           | [HaiDang666](https://github.com/HaiDang666)                                                          |
 | Finnish              | [cjola002-xamk](https://github.com/cjola002-xamk)                                                    |
-| Korean              | [dexterastin](https://github.com/dexterastin), [teamzamong](https://github.com/teamzamong/)                                                    |
+| Korean               | [dexterastin](https://github.com/dexterastin), [teamzamong](https://github.com/teamzamong/)                                                    |
 
 
 
