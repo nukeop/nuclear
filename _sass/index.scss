@@ -163,6 +163,17 @@ form {
   z-index: 10;
 }
 
+.join-beta {
+  margin-bottom: 0.5rem;
+}
+
+.lastest-release {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  font-style: oblique;
+  display: none;
+}
+
 .dark-overlay {
   position: absolute;
   bottom: 0;

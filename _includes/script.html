@@ -1,0 +1,22 @@
+<script>  
+  fetch("https://api.github.com/repos/nukeop/nuclear/releases")
+  .then(res => res.json())
+  .then(data => {
+    const date = new Date(data[0].published_at);
+    let month = date.getUTCMonth() + 1;
+    let day = date.getUTCDate();
+    const year = date.getUTCFullYear();
+
+    if (day < 10) {
+      day = "0" + day.toString();
+    }
+
+    if (month < 10) {
+      month = "0" + month.toString();
+    } 
+
+    document.getElementById("lastest-release").innerHTML = `Latest releases: ${day}/${month}/${year}`;
+    document.getElementById("lastest-release").style.display = "block";
+  });
+
+</script>
