@@ -7,8 +7,9 @@ export class Playlist {
 export class PlaylistTrack {
   artist: string;
   name: string;
-  album: string;
-  thumbnail: string;
+  album?: string;
+  thumbnail?: string;
+  duration: number;
   uuid: string;
   streams: PlaylistTrackStream[];
 }
@@ -18,5 +19,5 @@ export class PlaylistTrackStream {
   id: string;
   duration: number;
   title: string;
-  thumbnail: string;
+  thumbnail?: string;
 }
