@@ -73,3 +73,23 @@ test('search tracks', async t => {
 //   t.true(data.results.trackmatches.track instanceof Array);
 //   t.true(data.results.trackmatches.track.length > 0);
 // });
+
+test('get user favorite tracks', async t => {
+  const api = setupLastFmApi('2b75dcb291e2b0c9a2c994aca522ac14',
+    '2ee49e35f08b837d43b2824198171fc8');
+  const testUser = 'jaysou37'; // test user with 1000+ loved tracks
+
+  let response = await api.getNumberOfLovedTracks(testUser, 1000, 1); // limit 1000, page 1
+  let data = await response.json();
+
+  t.is(typeof data.lovedtracks, 'object');
+  t.true(data.lovedtracks.track instanceof Array);
+  t.true(data.lovedtracks.track.length === 1000);
+
+  response = await api.getNumberOfLovedTracks(testUser, 1, 2); // limit 1, page 2
+  data = await response.json();
+
+  t.is(typeof data.lovedtracks, 'object');
+  t.true(data.lovedtracks.track instanceof Array);
+  t.true(data.lovedtracks.track.length === 1);
+});

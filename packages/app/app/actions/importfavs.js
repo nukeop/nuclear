@@ -51,31 +51,27 @@ export function fetchAllFmFavorites() {
   if (storage) {
     return dispatch => {
       dispatch({ type: LASTFM_FAV_IMPORT_START });
-      lastfm.getNumberOfLovedTracks(storage.lastFmName, 1)
+      lastfm.getNumberOfLovedTracks(storage.lastFmName)
         .then((resp) => resp.json())
-        .then(req => {
+        .then((req) => {
           if (!req.lovedtracks) {
             throw new Error;
           }
           const totalLovedTracks = req.lovedtracks['@attr'].total;
-          if (totalLovedTracks <= 0 || totalLovedTracks > 1000) {
+          if (totalLovedTracks <= 0) {
             throw totalLovedTracks;
           }
           dispatch(FmSuccess1(totalLovedTracks));
-          return lastfm.getNumberOfLovedTracks(storage.lastFmName, totalLovedTracks);
+          return fetchPaginatedFmFavorites(storage.lastFmName, totalLovedTracks);
         })
-        .then((resp) => resp.json())
-        .then((req) => {
-          if (!req.lovedtracks || !req.lovedtracks.track) {
-            throw new Error;
-          }
-          req.lovedtracks.track.forEach(favtrack => {
+        .then((lovedTracks) => {
+          lovedTracks.forEach(favtrack => {
             FavoritesActions.addFavoriteTrack(favtrack);
           });
-          dispatch(FmSuccessFinal(req.lovedtracks.track.length));
+          dispatch(FmSuccessFinal(lovedTracks.length));
         })
         .catch((error) => {
-          if (error <= 0 || error > 1000) {
+          if (error <= 0) {
             dispatch(FmFavError(' Invalid number of favorites [' + error + ']'));
           } else {
             dispatch(FmFavError());
@@ -86,4 +82,21 @@ export function fetchAllFmFavorites() {
   } else {
     return FmFavError();
   }
+}
+
+function fetchPaginatedFmFavorites(lastFmName, totalLovedTracks, page = 1, prevLovedTracks = []) {
+  const numTracksToFetch = totalLovedTracks - ((page - 1) * 1000);
+  return lastfm.getNumberOfLovedTracks(lastFmName, Math.min(1000, numTracksToFetch), page)
+    .then((resp) => resp.json())
+    .then((req) => {
+      if (!req.lovedtracks || !req.lovedtracks.track) {
+        throw new Error;
+      }
+      const lovedTracks = [...prevLovedTracks, ...req.lovedtracks.track];
+      page++;
+      if ((page - 1) * 1000 <= totalLovedTracks) {
+        return fetchPaginatedFmFavorites(lastFmName, totalLovedTracks, page, lovedTracks);
+      }
+      return lovedTracks;
+    });
 }

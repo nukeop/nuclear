@@ -158,7 +158,7 @@ class LastFmApi {
     ));
   }
 
-  getNumberOfLovedTracks(user: string, limit = 1): Promise<Response> {
+  getNumberOfLovedTracks(user: string, limit = 1, page = 1): Promise<Response> {
     // Note: add page value(see lastfm api) in future to allow import of
     // more than 1000 songs
     return fetch(scrobblingApiUrl +
@@ -167,7 +167,9 @@ class LastFmApi {
       '&api_key=' +
       this.key +
       '&format=json&limit=' +
-      limit,
+      limit +
+      '&page=' +
+      page,
     {
       method: 'POST'
     }
