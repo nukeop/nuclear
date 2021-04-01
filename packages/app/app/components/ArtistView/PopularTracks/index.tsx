@@ -12,6 +12,7 @@ import artPlaceholder from '../../../../resources/media/art_placeholder.png';
 
 import trackRowStyles from '../../TrackRow/styles.scss';
 import styles from './styles.scss';
+import { Track } from '@nuclear/core';
 
 type AddAllButtonProps = {
   handleAddAll: React.MouseEventHandler;
@@ -39,13 +40,7 @@ type PopularTracksProps = {
   artist: {
     name: string;
   };
-  tracks: {
-    name: string;
-    thumb: string;
-    artist: {
-      name: string;
-    };
-  }[];
+  tracks: Track[];
   addToQueue: React.VoidFunctionComponent;
 }
 
@@ -65,8 +60,8 @@ const PopularTracks: React.FC<PopularTracksProps> = ({
       .map(track => {
         addToQueue({
           artist: artist.name,
-          name: track.name,
-          thumbnail: track.thumb || artPlaceholder
+          name: track.title,
+          thumbnail: track.thumbnail || artPlaceholder
         });
       });
   };
@@ -107,9 +102,9 @@ const PopularTracks: React.FC<PopularTracksProps> = ({
                         displayPlayCount
                       />
                     }
-                    title={track.name}
+                    title={track.title}
                     track={track}
-                    artist={track.artist.name}
+                    artist={artist.name}
                   />
                 ))
             }
