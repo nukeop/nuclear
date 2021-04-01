@@ -67,7 +67,9 @@
   },
   "lint-staged": {
     "*.js": "eslint --fix",
-    "*.ts": "eslint --fix"
+    "*.jsx": "eslint --fix",
+    "*.ts": "eslint --fix",
+    "*.tsx": "eslint --fix"
   },
   "build": {
     "appId": "nuclear",
