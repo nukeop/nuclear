@@ -5,7 +5,7 @@ import _ from 'lodash';
 import { Icon, Segment, Table } from 'semantic-ui-react';
 import { useTranslation } from 'react-i18next';
 import { TrackRow } from '@nuclear/ui';
-
+import TrackPopupContainer from '../../containers/TrackPopupContainer';
 import Header from '../Header';
 
 import trackRowStyles from '../TrackRow/styles.scss';
@@ -104,23 +104,30 @@ const FavoriteTracksView = ({
               </Table.Header>
               <Table.Body className={styles.tbody}>
                 {
-                  tracks.map((track, i) => {
-                    return (
-                      <TrackRow
-                        key={'favorite-track-' + i}
-                        track={track}
-                        index={i}
-                        displayCover
-                        displayArtist
-                        withDeleteButton
-                        withAddToFavorites={false}
-                        onDelete={e => {
-                          e.stopPropagation();
-                          removeFavoriteTrack(track);
-                        }}
-                      />
-                    );
-                  })
+                  tracks.map((track, index) => 
+                    <TrackPopupContainer
+                      key={'popular-track-row-' + index}
+                      trigger={
+                        <TrackRow
+                          key={'favorite-track-' + index}
+                          index={index}
+                          track={track}
+                          displayCover
+                          displayArtist
+                          withDeleteButton
+                          onDelete={e => {
+                            e.stopPropagation();
+                            removeFavoriteTrack(track);
+                          }}
+                        />
+                      }
+                      track={track}
+                      artist={track.artist.name}
+                      title={track.name}
+                      thumb={track.thumbnail}
+                      withAddToFavorites={false}
+                    />
+                  )
                 }
               </Table.Body>
             </Table>
