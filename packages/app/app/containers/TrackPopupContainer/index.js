@@ -10,7 +10,9 @@ import * as FavoritesActions from '../../actions/favorites';
 import * as PlayerActions from '../../actions/player';
 import * as QueueActions from '../../actions/queue';
 import * as ToastActions from '../../actions/toasts';
+import * as PlaylistsActions from '../../actions/playlists';
 import { safeAddUuid } from '../../actions/helpers';
+import { addTrackToPlaylist } from '../../components/PlayQueue/QueueMenu/QueueMenuMore';
 
 function mapStateToProps (state, { track }) {
   return {
@@ -19,7 +21,8 @@ function mapStateToProps (state, { track }) {
         return sourceName === 'Local';
       })
       : state.plugin.plugins.streamProviders,
-    settings: state.settings
+    settings: state.settings,
+    playlists: state.playlists.playlists
   };
 }
 
@@ -31,7 +34,8 @@ function mapDispatchToProps (dispatch) {
         ...FavoritesActions,
         ...QueueActions,
         ...PlayerActions,
-        ...ToastActions
+        ...ToastActions,
+        ...PlaylistsActions
       },
       dispatch
     )
@@ -77,6 +81,20 @@ const TrackPopupContainer = compose(
         <img src={thumb} />,
         settings
       );
+    },
+    onAddToPlaylist: ({ actions, settings, track, artist, title, thumb}) => (playlist) => {
+      const clonedTrack = {
+        ...safeAddUuid(track),
+        artist: track.artist.name,
+        title: track.name
+      };
+      addTrackToPlaylist(actions.updatePlaylist, playlist, clonedTrack);
+      actions.info(
+        'Track added to playlist',
+        `${artist} - ${title} has been added to playlist ${playlist.name}.`,
+        <img src={thumb} />,
+        settings
+      );
     }
   })
 )(TrackPopup);
@@ -87,11 +105,13 @@ TrackPopupContainer.propTypes = {
   artist: PropTypes.string,
   title: PropTypes.string,
   thumb: PropTypes.string,
+  playlists: PropTypes.array,
   actions: PropTypes.shape({
     addToQueue: PropTypes.func,
     clearQueue: PropTypes.func,
     selectSong: PropTypes.func,
     startPlayback: PropTypes.func,
+    updatePlaylist: PropTypes.func,
     addToDownloads: PropTypes.func
   }),
   streamProviders: PropTypes.array,
@@ -100,6 +120,7 @@ TrackPopupContainer.propTypes = {
   withAddToQueue: PropTypes.bool,
   withPlayNow: PropTypes.bool,
   withAddToFavorites: PropTypes.bool,
+  withAddToPlaylist: PropTypes.bool,
   withAddToDownloads: PropTypes.bool
 };
 
@@ -109,6 +130,7 @@ TrackPopupContainer.defaultProps = {
   artist: '',
   title: '',
   thumb: '',
+  playlists: [],
   actions: {},
   streamProviders: [],
   settings: {},
@@ -116,6 +138,7 @@ TrackPopupContainer.defaultProps = {
   withAddToQueue: true,
   withPlayNow: true,
   withAddToFavorites: true,
+  withAddToPlaylist: true,
   withAddToDownloads: true
 };
 

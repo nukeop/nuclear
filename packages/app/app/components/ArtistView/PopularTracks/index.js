@@ -69,7 +69,8 @@ const PopularTracks = ({
                       displayPlayCount
                     />
                   }
-                  {...track}
+                  title={track.name}
+                  track={track}
                   artist={track.artist.name}
                 />
               ))
