@@ -30,6 +30,7 @@ const extractTrackData = (track): PlaylistTrack => {
       name: track.name,
       album: track.album,
       thumbnail: track.thumbnail,
+      duration: track.duration,
       uuid: track.uuid, 
       streams: formatTrackStreamList(track.streams)
     } : 

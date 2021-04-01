@@ -10,6 +10,10 @@ import styles from './styles.scss';
 
 export const addTrackToPlaylist = (updatePlaylist, playlist, track) => {
   if (track && track.name) {
+    if (track.artist.name) {
+      _.set(track, 'artist', track.artist.name);
+    }
+    
     playlist.tracks.push(PlaylistHelper.extractTrackData(track));
     updatePlaylist(playlist);
   }

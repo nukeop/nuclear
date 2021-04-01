@@ -81,7 +81,6 @@ class TrackRow extends React.Component {
       withDeleteButton,
       onDelete
     } = this.props;
-
     return (
       <tr className={styles.track} onDoubleClick={this.playTrack.bind(this)}>
         {
@@ -115,6 +114,7 @@ class TrackRow extends React.Component {
       withAddToQueue,
       withPlayNow,
       withAddToFavorites,
+      withAddToPlaylist,
       withAddToDownloads
     } = this.props;
     return (
@@ -128,6 +128,7 @@ class TrackRow extends React.Component {
         withAddToQueue={withAddToQueue}
         withPlayNow={withPlayNow}
         withAddToFavorites={withAddToFavorites && this.canAddToFavorites()}
+        withAddToPlaylist={withAddToPlaylist}
         withAddToDownloads={withAddToDownloads}
       />
     );
@@ -147,6 +148,7 @@ TrackRow.propTypes = {
   withAddToQueue: PropTypes.bool,
   withPlayNow: PropTypes.bool,
   withAddToFavorites: PropTypes.bool,
+  withAddToPlaylist: PropTypes.bool,
   withAddToDownloads: PropTypes.bool,
   withDeleteButton: PropTypes.bool,
 
