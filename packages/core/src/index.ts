@@ -2,7 +2,7 @@ import 'isomorphic-fetch';
 
 export * from './settings';
 export * from './types';
-export { isElectron } from './util';
+export * from './util';
 export { transformSource, transformPluginFile } from './plugins/transform';
 
 export { default as Plugin } from './plugins/plugin';
