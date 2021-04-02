@@ -118,8 +118,10 @@ class AudiusMetaProvider extends MetaProvider {
     return this.fetchArtistDetails(`${artist.id}`);
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   async fetchArtistAlbums(artistId: string): Promise<SearchResultsAlbum[]> {
-    await Audius.getArtist(this.apiEndpoint, artistId);
+    // audius doesn't support album feature
+    // await Audius.getArtist(this.apiEndpoint, artistId);
     return Promise.resolve([]);
   }
 

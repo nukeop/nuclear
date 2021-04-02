@@ -6,6 +6,7 @@ import {
   SearchResultsTrack,
   ArtistDetails,
   AlbumDetails,
+  AlbumType,
   SearchResultsSource
 } from '../plugins.types';
 import { Bandcamp, LastFmApi } from '../../rest';
@@ -133,6 +134,7 @@ class BandcampMetaProvider extends MetaProvider {
       title: album.title,
       thumb: album.imageUrl,
       coverImage: album.imageUrl,
+      type: albumType as AlbumType,
       tracklist: album.tracks.map((track, index) => new Track({
         artist: album.artist,
         title: track.name,

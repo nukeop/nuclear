@@ -45,6 +45,7 @@ export type DiscogsArtistReleaseSearchResult = {
 
 export type DiscogsArtistSearchResult = {
   id: number;
+  name: string;
   cover_image: string;
   resource_url: string;
   thumb: string;

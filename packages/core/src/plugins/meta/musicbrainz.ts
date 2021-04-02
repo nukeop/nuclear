@@ -151,7 +151,7 @@ class MusicbrainzMetaProvider extends MetaProvider {
         newtrack.ids[SearchResultsSource.Musicbrainz] = track.id;
         newtrack.artist = artistName;
         newtrack.title = track.title;
-        newtrack.duration = track.length/1000;
+        newtrack.duration = Math.ceil(track.length/1000);
         newtrack.position = track.position;
         newtrack.thumbnail = cover.url;
         return newtrack;
