@@ -5,7 +5,7 @@ on: [push, pull_request]
 jobs:
   linux_build:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 25
 
     steps:
     - uses: actions/checkout@master
