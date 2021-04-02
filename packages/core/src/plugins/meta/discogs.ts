@@ -151,20 +151,21 @@ class DiscogsMetaProvider extends MetaProvider {
     return Discogs.search(query)
       .then(response => response.json())
       .then(json => {
-        const artists = [];
-        const releases = [];
-
         if (json.results) {
-          json.results.map(item => {
-            if (item.type === 'artist') {
-              artists.push(this.discogsArtistSearchResultToGeneric(item));
-            } else if (item.type === 'master' || item.type === 'release' ) {
-              releases.push(this.discogsReleaseSearchResultToGeneric(item));
-            }
-          });
+          const artists = json.results.flatMap(item => 
+            (item.type === 'artist') ?
+              [this.discogsArtistSearchResultToGeneric(item)] : []
+          );
+      
+          const releases = json.results.flatMap(item =>
+            (item.type === 'master' || item.type === 'release' ) ?
+              [this.discogsReleaseSearchResultToGeneric(item)] : []
+          );
+      
+          return Promise.resolve({ artists, releases, tracks: [] });
         }
-
-        return Promise.resolve({ artists, releases, tracks: [] });
+      
+        return Promise.resolve({ artists: [], releases: [], tracks: [] });
       });
   }
 
