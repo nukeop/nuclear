@@ -1,6 +1,6 @@
 {
   "name": "nuclear",
-  "version": "0.6.10",
+  "version": "0.6.11",
   "description": "Streaming music player that finds music sources automatically.",
   "repository": {
     "type": "git",
