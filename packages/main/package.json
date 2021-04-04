@@ -3,7 +3,7 @@
   "version": "0.6.10",
   "description": "Nuclear main process",
   "scripts": {
-    "start": "shx rm -rf build && webpack --env.NODE_ENV=development && electron build/main.js",
+    "start": "shx rm -rf build && webpack --env.NODE_ENV=development && electron build/main.js --inspect=9001",
     "build": "webpack --colors --env.NODE_ENV=production",
     "lint": "eslint src/**/**.ts --fix"
   },
@@ -52,6 +52,7 @@
     "typeorm": "^0.2.22",
     "url": "^0.11.0",
     "uuid": "^3.3.3",
+    "v8-compile-cache": "^2.3.0",
     "ytdl-core": "^4.4.5"
   },
   "devDependencies": {
@@ -74,6 +75,7 @@
     "eslint": "^7.18.0",
     "node-gyp": "^7.0.0",
     "node-loader": "^0.6.0",
+    "shx": "^0.3.3",
     "ts-loader": "^6.2.2",
     "ts-node": "^8.10.2",
     "type-fest": "^0.8.1",
