@@ -18,14 +18,14 @@ type ArtistViewProps = {
   artist: Artist & {
     loading?: boolean;
   };
-  addToQueue: React.VoidFunctionComponent;
-  artistInfoSearchByName: React.VoidFunctionComponent;
-  albumInfoSearch: React.VoidFunctionComponent;
+  addTrackToQueue: (item: any) => Promise<void>;
+  artistInfoSearchByName: (artistName: any) => Promise<void>;
+  albumInfoSearch: (albumId: any, releaseType: any, release: any) => Promise<void>;
 }
 
 const ArtistView: React.FC<ArtistViewProps> = ({
   artist,
-  addToQueue,
+  addTrackToQueue,
   artistInfoSearchByName,
   albumInfoSearch
 }) => {
@@ -83,7 +83,7 @@ const ArtistView: React.FC<ArtistViewProps> = ({
         <PopularTracks
           tracks={artist.topTracks}
           artist={{name: artist.name}}
-          addToQueue={addToQueue}
+          addToQueue={addTrackToQueue}
         />
       )
     );

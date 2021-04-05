@@ -105,7 +105,7 @@ TrackRow.propTypes = {
       }),
       PropTypes.string
     ]),
-    duration: PropTypes.number,
+    duration: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     position: PropTypes.number,
     playcount: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
   }),

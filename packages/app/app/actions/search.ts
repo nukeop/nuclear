@@ -215,6 +215,8 @@ export const artistInfoSearchByName = (artistName, history) => async (dispatch, 
   const selectedProvider = getSelectedMetaProvider(getState);
   const { settings } = getState();
   try {
+    _.invoke(history, 'push', '/artist/loading');
+    dispatch(artistInfoStart('loading'));
     const artistDetails = await selectedProvider.fetchArtistDetailsByName(artistName);
     dispatch(artistInfoSuccess(artistDetails.id, artistDetails));
     _.invoke(history, 'push', `/artist/${artistDetails.id}`);

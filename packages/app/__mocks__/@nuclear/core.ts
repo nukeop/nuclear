@@ -30,9 +30,12 @@ module.exports = {
   getOption: () => '',
   rest: {
     LastFmApi: class {
-      constructor() {
+      constructor() {}
 
-      }
+      getTagInfo() {}
+      getTagTracks() {}
+      getTagAlbums() {}
+      getTagArtists() {}
     }
   },
   settingsConfig: [],

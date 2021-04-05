@@ -41,7 +41,7 @@ type PopularTracksProps = {
     name: string;
   };
   tracks: Track[];
-  addToQueue: React.VoidFunctionComponent;
+  addToQueue: (track) => Promise<void> ;
 }
 
 const PopularTracks: React.FC<PopularTracksProps> = ({

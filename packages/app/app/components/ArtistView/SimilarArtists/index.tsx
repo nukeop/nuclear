@@ -1,6 +1,5 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { useHistory } from 'react-router';
 
 import styles from './styles.scss';
 
@@ -10,16 +9,16 @@ type SimilarArtistsProps = {
     thumbnail: string;
   }[];
 
-  artistInfoSearchByName: React.VoidFunctionComponent;
+  artistInfoSearchByName: (artistName: any) => Promise<void>;
 }
 
 const SimilarArtists: React.FC<SimilarArtistsProps> = ({
   artists,
   artistInfoSearchByName
 }) => {
-  const history = useHistory();
+
   const handleClickOnArtist = (artistName) => {
-    artistInfoSearchByName(artistName, history);
+    artistInfoSearchByName(artistName);
   };
  
   const { t } = useTranslation('artist');

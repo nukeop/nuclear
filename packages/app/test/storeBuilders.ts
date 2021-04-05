@@ -57,14 +57,107 @@ export const buildStoreState = () => {
       };
       return this as StoreStateBuilder;
     },
-    withArtistDetails() {
+    withArtistDetails(data?: object) {
       state = {
         ...state,
         search: {
           ...state.search,
-          artistDetails: {
-            'test-artist-id': {
-              loading: false
+          artistDetails: data || {
+            ['test-artist-id']: {
+              name: 'test artist',
+              loading: false,
+              coverImage: 'test cover',
+              description: 'test description',
+              id: 'test-artist-id',
+              images: ['first image', 'second image'],
+              onTour: false,
+              releases: [
+                {
+                  id: 'test-album-1',
+                  title: ' Test album 1',
+                  artists: [{
+                    name: 'test artist 1'
+                  }],
+                  genres: ['genre 1', 'genre 2'],
+                  images: ['image 1'],
+                  thumb: 'image 1',
+                  coverImage: 'image 1',
+                  tracklist: [{
+                    uuid: 'track-1',
+                    artist: {
+                      name: 'test artist 1'
+                    },
+                    title: 'test track 1',
+                    duration: 10
+                  }],
+                  year: 2019
+                },
+                {
+                  id: 'test-album-2',
+                  title: ' Test album 2',
+                  artists: [{
+                    name: 'test artist 2'
+                  }],
+                  genres: ['genre 2', 'genre 3'],
+                  images: ['image 2'],
+                  thumb: 'image 2',
+                  coverImage: 'image 2',
+                  tracklist: [{
+                    uuid: 'track-2',
+                    artist: {
+                      name: 'test artist 2'
+                    },
+                    title: 'test track 2',
+                    duration: 40
+                  }],
+                  year: 2021
+                }
+              ],
+              releasesLoading: false,
+              similar: [
+                {name: 'artist-similar-1', thumbnail: 'artist-similar-1 thumb'},
+                {name: 'artist-similar-2', thumbnail: 'artist-similar-2 thumb'}
+              ],
+              tags: ['tag1', 'tag2', 'tag3'],
+              thumb: 'test thumb',
+              topTracks: [
+                {
+                  artist: {
+                    mbid: 'test mbid',
+                    name: 'test artist',
+                    url: 'test artist url'
+                  },
+                  listeners: '771858',
+                  name: 'test artist top track 1',
+                  playcount: '6900237',
+                  thumb: '',
+                  title: 'test artist top track 1'
+                },
+                {
+                  artist: {
+                    mbid: 'test mbid',
+                    name: 'test artist',
+                    url: 'test artist url'
+                  },
+                  listeners: '123',
+                  name: 'test artist top track 2',
+                  playcount: '6969',
+                  thumb: '',
+                  title: 'test artist top track 2'
+                },
+                {
+                  artist: {
+                    mbid: 'test mbid',
+                    name: 'test artist',
+                    url: 'test artist url'
+                  },
+                  listeners: '9',
+                  name: 'test artist top track 3',
+                  playcount: '1',
+                  thumb: '',
+                  title: 'test artist top track 3'
+                }
+              ]
             }
           }
         }
