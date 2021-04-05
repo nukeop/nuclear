@@ -16,7 +16,8 @@
   },
   "include": [
     "src",
-    "typings"
+    "typings",
+    "test"
   ],
   "exclude": [
     "lib"
