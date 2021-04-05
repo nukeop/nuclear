@@ -9,7 +9,7 @@ describe('Plugin tests', () => {
   });
 
   it('throw an error when a nonexistent path is provided', async () => {
-    expect(transformPluginFile('test'));
+    expect(transformPluginFile('test')).rejects.toThrow();
   });
 
   it('transform some code', async () => {
