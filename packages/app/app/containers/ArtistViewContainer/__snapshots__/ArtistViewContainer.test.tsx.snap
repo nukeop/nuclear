@@ -122,7 +122,6 @@ exports[`Artist view container should display an artist 1`] = `
               <tbody>
                 <tr
                   class="track_row"
-                  index="popular-track-0"
                 >
                   <td
                     class="track_row_thumbnail"
@@ -144,7 +143,6 @@ exports[`Artist view container should display an artist 1`] = `
                 </tr>
                 <tr
                   class="track_row"
-                  index="popular-track-1"
                 >
                   <td
                     class="track_row_thumbnail"
@@ -166,7 +164,6 @@ exports[`Artist view container should display an artist 1`] = `
                 </tr>
                 <tr
                   class="track_row"
-                  index="popular-track-2"
                 >
                   <td
                     class="track_row_thumbnail"
