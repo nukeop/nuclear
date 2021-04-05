@@ -18,6 +18,7 @@ describe('Audius tests', () => {
   });
 
   it('audius host is selected', async () => {
+    mockFetch(['1', '2', '3']);
     const endpoint = await rest.Audius._findHost();
     expect(endpoint.length > 0).toBe(true);
   });
