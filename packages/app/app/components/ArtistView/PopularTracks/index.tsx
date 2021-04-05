@@ -96,8 +96,11 @@ const PopularTracks: React.FC<PopularTracksProps> = ({
                     key={'popular-track-row-' + index}
                     trigger={
                       <TrackRow
-                        index={'popular-track-' + index}
-                        track={track}
+                        track={{
+                          playcount: _.get(track, 'playcount'),
+                          name: track.title,
+                          thumbnail: track.thumbnail
+                        }}
                         displayCover
                         displayPlayCount
                       />

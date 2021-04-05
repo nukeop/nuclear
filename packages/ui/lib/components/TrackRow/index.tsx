@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import numeral from 'numeral';
 import cx from 'classnames';
 import { Icon } from 'semantic-ui-react';
@@ -18,7 +17,37 @@ const getTrackThumbnail = track => {
   );
 };
 
-const TrackRow = ({
+type TrackRowProps = {
+  track: {
+    local?: boolean;
+    album?: string;
+    artist?: {name: string} | string;
+    duration?: number | string;
+    position?: number;
+    playcount?: number | string;
+    name: string;
+    thumbnail?: any;
+  };
+
+  mini?: boolean;
+
+  displayAlbum?: boolean;
+  displayArtist?: boolean;
+  displayCover?: boolean;
+  displayDuration?: boolean;
+  displayPlayCount?: boolean;
+  displayTrackNumber?: boolean;
+
+  withAddToDownloads?: boolean;
+  withAddToFavorites?: boolean;
+  withAddToQueue?: boolean;
+  withDeleteButton?: boolean;
+  withPlayNow?: boolean;
+
+  onDelete?: React.MouseEventHandler;
+}
+
+const TrackRow: React.FC<TrackRowProps> = ({
   track,
   mini,
   displayAlbum,
@@ -94,56 +123,5 @@ const TrackRow = ({
     }
   </tr>
 );
-
-TrackRow.propTypes = {
-  track: PropTypes.shape({
-    local: PropTypes.bool,
-    album: PropTypes.string,
-    artist: PropTypes.oneOfType([
-      PropTypes.shape({
-        name: PropTypes.string
-      }),
-      PropTypes.string
-    ]),
-    duration: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-    position: PropTypes.number,
-    playcount: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
-  }),
-
-  mini: PropTypes.bool,
-
-  displayAlbum: PropTypes.bool,
-  displayArtist: PropTypes.bool,
-  displayCover: PropTypes.bool,
-  displayDuration: PropTypes.bool,
-  displayPlayCount: PropTypes.bool,
-  displayTrackNumber: PropTypes.bool,
-
-  withAddToDownloads: PropTypes.bool,
-  withAddToFavorites: PropTypes.bool,
-  withAddToQueue: PropTypes.bool,
-  withDeleteButton: PropTypes.bool,
-  withPlayNow: PropTypes.bool,
-
-  onDelete: PropTypes.func
-};
-
-TrackRow.defaultProps = {
-  withAddToDownloads: true,
-  withAddToFavorites: true,
-  withAddToQueue: true,
-  withDeleteButton: false,
-  withPlayNow: true,
-  onDelete: () => {},
-
-  displayAlbum: false,
-  displayArtist: false,
-  displayCover: false,
-  displayDuration: false,
-  displayPlayCount: false,
-  displayTrackNumber: false,
-
-  mini: false
-};
 
 export default TrackRow;
