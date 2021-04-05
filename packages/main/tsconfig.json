@@ -18,6 +18,7 @@
   ],
   "exclude": [
     "node_modules/@nuclear/*/test",
+    "node_modules/@nuclear/**/*.test*",
     "node_modules/@nuclear/ui/stories",
     "../ui/stories",
     "../*/test"
