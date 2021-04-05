@@ -128,4 +128,22 @@ TrackRow.propTypes = {
   onDelete: PropTypes.func
 };
 
+TrackRow.defaultProps = {
+  withAddToDownloads: true,
+  withAddToFavorites: true,
+  withAddToQueue: true,
+  withDeleteButton: false,
+  withPlayNow: true,
+  onDelete: () => {},
+
+  displayAlbum: false,
+  displayArtist: false,
+  displayCover: false,
+  displayDuration: false,
+  displayPlayCount: false,
+  displayTrackNumber: false,
+
+  mini: false
+};
+
 export default TrackRow;
