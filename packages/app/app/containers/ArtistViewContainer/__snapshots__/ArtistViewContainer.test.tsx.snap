@@ -1,0 +1,291 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Artist view container should display an artist 1`] = `
+<DocumentFragment>
+  <div
+    class="main_layout_container"
+  >
+    <div
+      class="artist_view_container"
+    >
+      <div
+        class="dimmable"
+      >
+        <div
+          class="ui dimmer"
+        >
+          <div
+            class="content"
+          >
+            <div
+              class="ui loader"
+            />
+          </div>
+        </div>
+        <div
+          class="artist"
+        >
+          <div
+            class="artist_header"
+            style="background-position: center; background-size: cover;"
+          >
+            <div
+              class="artist_header_overlay"
+            >
+              <div
+                class="artist_header_container"
+              >
+                <div
+                  class="artist_avatar"
+                  style="background-position: center; background-size: cover;"
+                />
+                <div
+                  class="artist_name_container"
+                >
+                  <div
+                    class="artist_name_line"
+                  >
+                    <h1>
+                      test artist
+                    </h1>
+                  </div>
+                  <div
+                    class="tags_container"
+                  >
+                    <a
+                      class="tag"
+                      href="#"
+                    >
+                      #tag1
+                    </a>
+                    <a
+                      class="tag"
+                      href="#"
+                    >
+                      #tag2
+                    </a>
+                    <a
+                      class="tag"
+                      href="#"
+                    >
+                      #tag3
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr />
+        <div
+          class="artist_related_container"
+        >
+          <div
+            class="popular_tracks_container tracks_container"
+          >
+            <div
+              class="header"
+            >
+              Popular tracks 
+            </div>
+            <a
+              aria-label="Add all tracks to queue"
+              class="ui primary button add_button"
+              href="#"
+              role="button"
+            >
+              <span
+                aria-hidden="true"
+                class="fa fa-plus"
+              />
+               Add all
+            </a>
+            <table
+              class="popular_tracks_table"
+            >
+              <thead>
+                <tr>
+                  <th>
+                    <span
+                      aria-hidden="true"
+                      class="fa fa-photo"
+                    />
+                  </th>
+                  <th>
+                    Title
+                  </th>
+                  <th>
+                    Play counts
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr
+                  class="track_row"
+                >
+                  <td
+                    class="track_row_thumbnail"
+                  >
+                    <img
+                      src="test-file-stub"
+                    />
+                  </td>
+                  <td
+                    class="track_row_name"
+                  >
+                    test artist top track 1
+                  </td>
+                  <td
+                    class="track_row_playcount"
+                  >
+                    6,900,237
+                  </td>
+                </tr>
+                <tr
+                  class="track_row"
+                >
+                  <td
+                    class="track_row_thumbnail"
+                  >
+                    <img
+                      src="test-file-stub"
+                    />
+                  </td>
+                  <td
+                    class="track_row_name"
+                  >
+                    test artist top track 2
+                  </td>
+                  <td
+                    class="track_row_playcount"
+                  >
+                    6,969
+                  </td>
+                </tr>
+                <tr
+                  class="track_row"
+                >
+                  <td
+                    class="track_row_thumbnail"
+                  >
+                    <img
+                      src="test-file-stub"
+                    />
+                  </td>
+                  <td
+                    class="track_row_name"
+                  >
+                    test artist top track 3
+                  </td>
+                  <td
+                    class="track_row_playcount"
+                  >
+                    1
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <div
+              class="expand_button"
+            >
+              <span
+                aria-hidden="true"
+                class="fa fa-angle-double-down"
+              />
+            </div>
+          </div>
+          <div
+            class="similar_artists_container"
+          >
+            <div
+              class="header"
+            >
+              Similar artists
+            </div>
+            <div
+              class="artist_row"
+            >
+              <img
+                src="artist-similar-1 thumb"
+              />
+              <div>
+                artist-similar-1
+              </div>
+            </div>
+            <div
+              class="artist_row"
+            >
+              <img
+                src="artist-similar-2 thumb"
+              />
+              <div>
+                artist-similar-2
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr />
+        <div
+          class="nuclear album_grid auto_size"
+        >
+          <div
+            class="album_cards"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Artist view container should show that an artist is still loading 1`] = `
+<DocumentFragment>
+  <div
+    class="main_layout_container"
+  >
+    <div
+      class="artist_view_container"
+    >
+      <div
+        class="dimmable loading"
+      >
+        <div
+          class="ui active transition visible dimmer"
+          style="display: flex;"
+        >
+          <div
+            class="content"
+          >
+            <div
+              class="ui loader"
+            />
+          </div>
+        </div>
+        <div
+          class="artist_related_container loading"
+        />
+        <hr />
+        <div
+          class="nuclear album_grid loading"
+        >
+          <div
+            class="album_cards"
+          />
+          <div
+            class="ui active transition visible dimmer"
+            style="display: flex;"
+          >
+            <div
+              class="content"
+            >
+              <div
+                class="ui loader"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
