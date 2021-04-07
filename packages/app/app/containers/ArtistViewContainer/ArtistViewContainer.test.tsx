@@ -41,13 +41,10 @@ describe('Artist view container', () => {
   });
 
   it('should search for similar artist after clicking his name', async () => {
-    const { component, history, store } = mountComponent();
+    const { component, history } = mountComponent();
     expect(history.location.pathname).toBe('/artist/test-artist-id');
     await waitFor(() => component.getByText(/artist-similar-1/i).click());
-    const state = store.getState();
-    expect(state.search.artistDetails).toEqual(expect.objectContaining({
-      loading: expect.objectContaining({loading: true})
-    }));
+    expect(history.location.pathname).toBe('/artist/artist-similar-id');
   });
 
   it('should add a single track to queue after clicking the button in the popup', async () => {

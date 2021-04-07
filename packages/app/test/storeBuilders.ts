@@ -193,9 +193,15 @@ export const buildStoreState = () => {
                 isDefault: true,
                 sourceName: 'Test Metadata Provider',
                 searchName: 'Test',
-                fetchArtistDetailsByName: () => ({
-                  id: 'test-artist-id'
-                })
+                fetchArtistDetailsByName: (artistName) => {
+                  switch (artistName) {
+                  case 'artist-similar-1':
+                    return {id: 'artist-similar-id'};
+                  
+                  default:
+                    return {id: 'test-artist-id'};
+                  }
+                }
               },
               {
                 name: 'Another Meta Provider',
