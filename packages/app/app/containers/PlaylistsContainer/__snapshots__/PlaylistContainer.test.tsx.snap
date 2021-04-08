@@ -1,0 +1,83 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Playlist container should display all playlists 1`] = `
+<DocumentFragment>
+  <div
+    class="main_layout_container"
+  >
+    <div
+      class="playlists_container"
+    >
+      <div
+        class="header_container"
+      >
+        Your playlists
+      </div>
+      <div
+        class="ui segment playlists_segment"
+      >
+        <div
+          class="playlist_outside_container"
+        >
+          <div
+            class="playlist_container"
+          >
+            <div>
+              <img
+                class="playlist_thumbnail"
+                src="test thumbnail"
+              />
+            </div>
+            <div
+              class="playlist_info"
+            >
+              <h4
+                class="playlist_title"
+              >
+                test playlist
+              </h4>
+              <p>
+                2 song
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Playlist container should display empty playlists view 1`] = `
+<DocumentFragment>
+  <div
+    class="main_layout_container"
+  >
+    <div
+      class="playlists_container"
+    >
+      <div
+        class="header_container"
+      />
+      <div
+        class="empty_state"
+      >
+        <i
+          class="icons"
+        >
+          <i
+            aria-hidden="true"
+            class="list alternate outline icon"
+          />
+        </i>
+        <h2>
+          No playlists.
+        </h2>
+        <div>
+          Try create some playlists or import by url and they will appear here!
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
