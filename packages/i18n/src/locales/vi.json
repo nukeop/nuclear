@@ -101,10 +101,12 @@
     "previous-button": "Bài nhạc trước"
   },
   "playlists": {
+    "header": "Playlist của bạn",
     "artist": "Nghệ sỹ",
     "delete": "Xóa playlist này",
     "dialog-placeholder": "Tên playlist...",
     "empty": "Không có playlist nào.",
+    "empty-help":"Tạo hoặc nhập playlist bằng link!",
     "queue": "Thêm playlist vào hàng chờ",
     "rename": "Đổi tên playlist",
     "songs": "{{total}} bài hát",
