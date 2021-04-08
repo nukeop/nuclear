@@ -105,6 +105,8 @@
     "delete": "Obriši ovaj popis za reprodukciju",
     "dialog-placeholder": "Ime popisa za reprodukciju...",
     "empty": "Nema popisa za reprodukciju.",
+    "empty-help": "Try create some playlists or import by url and they will appear here!",
+    "header": "Your playlists",
     "queue": "Dodaj popis za reprodukciju u red za reprodukciju",
     "rename": "Preimenuj ovaj popis za reprodukciju",
     "songs_0": "{{total}} pjesama",

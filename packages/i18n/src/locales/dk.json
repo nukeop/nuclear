@@ -105,6 +105,8 @@
     "delete": "Slet denne afspilningsliste",
     "dialog-placeholder": "Afspilningslistens navn...",
     "empty": "Ingen afspilningsliste.",
+    "empty-help": "Try create some playlists or import by url and they will appear here!",
+    "header": "Your playlists",
     "queue": "Tilføj afspilningsliste til kø",
     "rename": "Omdøb denne afspilningsliste",
     "title": "Titel"

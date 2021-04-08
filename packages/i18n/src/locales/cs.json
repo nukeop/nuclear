@@ -105,6 +105,8 @@
     "delete": "Odstranit tento seznam skladeb",
     "dialog-placeholder": "Název seznamu skladeb...",
     "empty": "Žádné seznamy skladeb.",
+    "empty-help": "Try create some playlists or import by url and they will appear here!",
+    "header": "Your playlists",
     "queue": "Add playlist to queue",
     "rename": "Přejmenovat tento seznam skladeb",
     "songs_0": "{{total}} songs",

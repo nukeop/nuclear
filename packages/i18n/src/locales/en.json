@@ -101,12 +101,12 @@
     "previous-button": "Previous track button"
   },
   "playlists": {
-    "header": "Your playlists",
     "artist": "Artist",
     "delete": "Delete this playlist",
     "dialog-placeholder": "Playlist name...",
     "empty": "No playlists.",
-    "empty-help":"Try create some playlists or import by url and they will appear here!",
+    "empty-help": "Try create some playlists or import by url and they will appear here!",
+    "header": "Your playlists",
     "queue": "Add playlist to queue",
     "rename": "Rename this playlist",
     "songs": "{{total}} song",

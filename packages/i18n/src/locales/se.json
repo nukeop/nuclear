@@ -105,6 +105,8 @@
     "delete": "Ta bort spellistan",
     "dialog-placeholder": "Namn på spellistan...",
     "empty": "Inga spellistor.",
+    "empty-help": "Try create some playlists or import by url and they will appear here!",
+    "header": "Your playlists",
     "queue": "Lägg till spellistan i kön",
     "rename": "Byt namn på spellistan",
     "songs": "{{total}} spår",

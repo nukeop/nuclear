@@ -105,6 +105,8 @@
     "delete": "Usuń tę playlistę",
     "dialog-placeholder": "Nazwa playlisty...",
     "empty": "Brak playlist.",
+    "empty-help": "Try create some playlists or import by url and they will appear here!",
+    "header": "Your playlists",
     "queue": "Add playlist to queue",
     "rename": "Zmień nazwę tej playlisty",
     "songs_0": "{{total}} songs",
