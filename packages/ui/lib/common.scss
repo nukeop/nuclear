@@ -1,13 +1,20 @@
-$background: #282a36;
-$background2: #44475a;
-$background3: #21222c;
-$lightbg: #7e83a6;
+$bgdarker: #1F212D;
+$bgdark: #2C2E3A;
+$bgdefault: #424557;
+$bglight: #555977;
+$bglighter: #6A6F95;
+
+$background: $bgdark;
+$background2: $bgdefault;
+$background3: $bgdarker;
+$lightbg: $bglighter;
+
 $grey: #f8f8f2;
 $blue: #6272a4;
 $cyan: #8be9fd;
-$green: #50fa7b;
+$green: #3CDD65;
 $orange: #ffb86c;
-$pink: #ff79c6;
+$pink: #FC83D3;
 $purple: #bd93f9;
 $red: #ff5555;
 $yellow: #f1fa8c;
