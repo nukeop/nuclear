@@ -62,7 +62,12 @@ class LocalLibrary {
       path: file,
       folder,
       duration: format.duration,
-      name: common.title,
+      name: function() {
+        if (!_.isNil(common.title)) {
+          return common.title;
+        }
+        return path.basename(file, path.extname(file));
+      }(),
       position: common.track.no,
       album: common.album,
       artist: common.artist || 'unknown',
