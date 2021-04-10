@@ -105,6 +105,8 @@
     "delete": "Excluir Esta Lista de Reprodução",
     "dialog-placeholder": "Nome da Lista de Reprodução...",
     "empty": "Nenhuma Lista de Reprodução encontrada.",
+    "empty-help": "Try create some playlists or import by url and they will appear here!",
+    "header": "Your playlists",
     "queue": "Add playlist to queue",
     "rename": "Renomear Lista de Reprodução",
     "songs": "{{total}} Música",

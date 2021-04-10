@@ -105,6 +105,8 @@
     "delete": "Diese Wiedergabeliste löschen",
     "dialog-placeholder": "Wiedergabelistenname...",
     "empty": "Keine Wiedergabelisten.",
+    "empty-help": "Try create some playlists or import by url and they will appear here!",
+    "header": "Your playlists",
     "queue": "Playlist zur Warteschlange hinzufügen",
     "rename": "Diese Wiedergabeliste umbenennen",
     "songs": "{{total}} Lied",

@@ -105,6 +105,8 @@
     "delete": "删除播放列表",
     "dialog-placeholder": "Playlist name...",
     "empty": "没有任何播放列表。",
+    "empty-help": "Try create some playlists or import by url and they will appear here!",
+    "header": "Your playlists",
     "queue": "Add playlist to queue",
     "rename": "重命名播放列表",
     "songs": "{{total}} 首歌",

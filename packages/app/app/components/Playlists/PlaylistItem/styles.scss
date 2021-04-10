@@ -8,13 +8,23 @@
 	display:  flex;
 	flex-flow: row;
 	margin:  0.5rem;
-	padding: 0.5rem;
 	background: rgba($background2, 0.5);
 	cursor: pointer;
+	height: 6rem;
+	border-radius: 0.25rem;
+	justify-content: flex-start;
+	align-items: center;
+	padding-left: 0.5rem;
 }
 
 .playlist_thumbnail {
-	width:  7.5rem;
+	width: 64px;
+  height: 64px;
+}
+
+.playlist_title {
+	font-size: 1.3rem;
+	margin-bottom: 0.5rem;
 }
 
 .playlist_info {

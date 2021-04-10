@@ -105,6 +105,8 @@
     "delete": "Cancella questa playlist",
     "dialog-placeholder": "Nome della playlist...",
     "empty": "Nessuna playlist.",
+    "empty-help": "Try create some playlists or import by url and they will appear here!",
+    "header": "Your playlists",
     "queue": "Aggiungi playlist alla coda",
     "rename": "Rinomina questa playlist",
     "songs": "{{total}} brano",

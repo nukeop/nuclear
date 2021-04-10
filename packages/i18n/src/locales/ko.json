@@ -105,10 +105,11 @@
     "delete": "플레이리스트 삭제",
     "dialog-placeholder": "플레이리스트 제목...",
     "empty": "플레이리스트 없음.",
+    "empty-help": "Try create some playlists or import by url and they will appear here!",
+    "header": "Your playlists",
     "queue": "재생 목록에 플레이리스트 추가",
     "rename": "플레이리스트 제목 수정",
     "songs": "{{total}} 곡",
-    "songs_plural": "{{total}} 곡",
     "title": "제목"
   },
   "plugins": {
@@ -144,18 +145,14 @@
   },
   "search": {
     "album": "앨범",
-    "album_plural": "앨범",
     "artist": "아티스트",
-    "artist_plural": "아티스트",
     "clear-history": "재생 기록 삭제",
     "empty": "검색 결과가 없습니다.",
     "last-searches": "최근 검색",
     "placeholder": "검색...",
     "playlist": "플레이리스트",
-    "playlist_plural": "플레이리스트",
     "queue-add": "재생 목록에 모든 음악 추가",
     "track": "음악",
-    "track_plural": "음악",
     "you-can-search-for": "다음 항목을 검색할 수 있습니다:"
   },
   "settings": {

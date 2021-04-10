@@ -105,6 +105,8 @@
     "delete": "Poista tämä soittolista",
     "dialog-placeholder": "Soittolistan nimi...",
     "empty": "Ei soittolistoja.",
+    "empty-help": "Try create some playlists or import by url and they will appear here!",
+    "header": "Your playlists",
     "queue": "Lisää soittolista jonoon",
     "rename": "Nimeä tämä soittolista uudelleen",
     "songs": "{{total}} kappaleita",

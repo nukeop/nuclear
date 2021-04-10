@@ -1,5 +1,19 @@
+@import '../../mixin.scss';
+
 .playlists_container {
 	display: flex;
-	width: 100%;
-	flex-flow: row wrap;
+	height: 100%;
+	flex-flow: column;
+
+	.empty_state {
+    @include emptyState;
+  }
+
+	.playlists_segment {
+		display: flex;
+    flex-flow: row wrap;
+		width: 100%;
+		flex: 1 1 auto;
+		align-content: flex-start;
+  }
 }

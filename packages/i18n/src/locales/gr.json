@@ -105,6 +105,8 @@
     "delete": "Διαγραφή λίστας",
     "dialog-placeholder": "Όνομα λίστας...",
     "empty": "Καμία λίστα.",
+    "empty-help": "Try create some playlists or import by url and they will appear here!",
+    "header": "Your playlists",
     "queue": "Προσθέστε την λίστα στην λίστα αναπαραγωγής",
     "rename": "Μετονομασία λίστας",
     "title": "Τίτλος"
