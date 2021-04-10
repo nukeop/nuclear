@@ -30,7 +30,7 @@ class Container extends InversifyContainer {
     const logger = this.get<Logger>($mainLogger);
 
     logger.log(`Async service loaded => ${service.name}`);
-    
+
     this.bind(provide).to(service).inSingletonScope();
   }
 
@@ -39,26 +39,32 @@ class Container extends InversifyContainer {
     const logger = this.get<Logger>($ipcLogger);
 
     this.controllers.forEach((Controller) => {
-      this.bind(Controller).to(Controller).inSingletonScope();
-      const meta: ControllerMeta[] = Reflect.getMetadata(IPC_EVENT_KEY, Controller.prototype);
 
-      const controller = this.get(Controller);
-      meta.forEach(({ eventName, name, once }) => {
-        const on = once ? ipc.once : ipc.on;
+      try {
+        this.bind(Controller).to(Controller).inSingletonScope();
+        const meta: ControllerMeta[] = Reflect.getMetadata(IPC_EVENT_KEY, Controller.prototype);
 
-        on.bind(ipc)(eventName, (event: Event, data: any) => {
-          logger.logEvent({ once, direction: 'in', event: eventName, data });
+        const controller = this.get(Controller);
+        meta.forEach(({ eventName, name, once }) => {
+          const on = once ? ipc.once : ipc.on;
 
-          const result = controller[name](event, data);
+          on.bind(ipc)(eventName, (event: Event, data: any) => {
+            logger.logEvent({ once, direction: 'in', event: eventName, data });
 
-          if (result instanceof Promise) {
-            result.catch((err: any) => {
-              logger.error(`error in event ${eventName} => ${err.message}`);
-              logger.error(err.stack);
-            });
-          }
+            const result = controller[name](event, data);
+
+            if (result instanceof Promise) {
+              result.catch((err: any) => {
+                logger.error(`error in event ${eventName} => ${err.message}`);
+                logger.error(err.stack);
+              });
+            }
+          });
         });
-      });
+      } catch (e) {
+        logger.error('Service failed to initialize');
+        logger.error(e);
+      }
     });
   }
 }
