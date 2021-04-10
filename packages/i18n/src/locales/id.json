@@ -105,6 +105,8 @@
     "delete": "Hapus daftar putar ini",
     "dialog-placeholder": "Nama daftar putar...",
     "empty": "Daftar putar tidak ditemukan.",
+    "empty-help": "Try create some playlists or import by url and they will appear here!",
+    "header": "Your playlists",
     "queue": "Add playlist to queue",
     "rename": "Ubah nama daftar putar",
     "songs": "{{total}} lagu",

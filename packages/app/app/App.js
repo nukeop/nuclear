@@ -31,7 +31,6 @@ import logoIcon from '../resources/media/512x512.png';
 
 import settingsConst from './constants/settings';
 
-import PlaylistsSubMenu from './components/PlaylistsSubMenu';
 import Navbar from './components/Navbar';
 import VerticalPanel from './components/VerticalPanel';
 import Spacer from './components/Spacer';
@@ -179,18 +178,10 @@ class App extends React.PureComponent {
               this.renderMenuCategory('collection', [
                 { name: 'favorite-albums', path: 'favorites/albums', icon: 'dot circle'},
                 { name: 'favorite-tracks', path: 'favorites/tracks', icon: 'music'},
-                { name: 'library', path: 'library', icon: 'file audio outline' }
+                { name: 'library', path: 'library', icon: 'file audio outline' },
+                { name: 'playlists', path: 'playlists', icon: 'list alternate outline'}
               ])
             }
-
-            {
-              !_.isEmpty(this.props.playlists) &&
-              <SidebarMenuCategoryHeader compact={this.props.settings.compactMenuBar} headerText={'playlists'}/>
-            }
-            <PlaylistsSubMenu
-              playlists={this.props.playlists}
-              compact={this.props.settings.compactMenuBar}
-            />
           </div>
 
           {this.renderSidebarFooter()}

@@ -105,6 +105,8 @@
     "delete": "Fshi këtë listë këngësh",
     "dialog-placeholder": "Emri i listës...",
     "empty": "Nuk ka lista këngësh.",
+    "empty-help": "Try create some playlists or import by url and they will appear here!",
+    "header": "Your playlists",
     "queue": "Shto këtë listë në radhë",
     "rename": "Riemërtoje këtë listë",
     "songs": "{{total}} këngë",

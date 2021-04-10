@@ -244,11 +244,11 @@ export const buildStoreState = () => {
       };
       return this as StoreStateBuilder;
     },
-    withPlaylists() {
+    withPlaylists(data?: object) {
       state = {
         ...state,
         playlists: {
-          playlists: [
+          playlists: data || [
             {
               id: 'test-playlist-id',
               name: 'test playlist',

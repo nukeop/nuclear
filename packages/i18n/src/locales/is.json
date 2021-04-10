@@ -105,6 +105,8 @@
     "delete": "Fjarlægja þennan lagalista",
     "dialog-placeholder": "Nafn lagalista...",
     "empty": "Engir lagalistar.",
+    "empty-help": "Try create some playlists or import by url and they will appear here!",
+    "header": "Your playlists",
     "queue": "Bæta lagalista í biðröðina",
     "rename": "Endurnefna lagalista",
     "songs": "{{total}} lag",

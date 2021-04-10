@@ -105,6 +105,8 @@
     "delete": "Verwijderen",
     "dialog-placeholder": "Naam van afspeellijst...",
     "empty": "Geen afspeellijsten.",
+    "empty-help": "Try create some playlists or import by url and they will appear here!",
+    "header": "Your playlists",
     "queue": "Add playlist to queue",
     "rename": "Naam wijzigen",
     "songs": "{{total}} nummer",

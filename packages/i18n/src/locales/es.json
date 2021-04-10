@@ -105,6 +105,8 @@
     "delete": "Eliminar esta Lista de reproducción",
     "dialog-placeholder": "Nombre de la lista de reproducción...",
     "empty": "No hay lista",
+    "empty-help": "Try create some playlists or import by url and they will appear here!",
+    "header": "Your playlists",
     "queue": "Add playlist to queue",
     "rename": "Renombrar lista de reproducción",
     "songs": "{{total}} canción",
