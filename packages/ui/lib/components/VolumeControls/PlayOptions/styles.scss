@@ -1,3 +1,5 @@
+@import '../../../common.scss';
+
 .play_options {
   display: flex;
   .play_option_icon {
@@ -8,4 +10,9 @@
       opacity: 0.2;
     }
   }
+}
+
+.nuclear.play_option_popup {
+  background: $bgdark !important;
+  box-shadow: 0rem 0rem 0.5rem 0.25rem rgba($black, 0.2) !important;
 }

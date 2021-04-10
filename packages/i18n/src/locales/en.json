@@ -93,7 +93,8 @@
   "option-control": {
     "autoradio": "Autoradio",
     "loop": "Loop",
-    "shuffle": "Shuffle"
+    "shuffle": "Shuffle",
+    "mini-player": "Miniplayer"
   },
   "player": {
     "next-button": "Next track button",

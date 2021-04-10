@@ -3,6 +3,7 @@ import cx from 'classnames';
 import { Icon, SemanticICONS, Popup } from 'semantic-ui-react';
 
 import styles from './styles.scss';
+import common from '../../../common.scss';
 
 export type PlayOptionControlProps = {
   name: string;
@@ -17,33 +18,35 @@ const PlayOptionControl: React.FC<PlayOptionControlProps> = ({
   enabled = true,
   onToggle
 }) => (
-  <Popup content={name}
-    inverted 
+  <Popup
+    className={cx(common.nuclear, styles.play_option_popup)}
+    content={name}
+    inverted
     basic
     trigger={
-    <Icon
-      className={cx(
-        styles.play_option_icon,
-        { disabled: !enabled }
+      <Icon
+        className={cx(
+          styles.play_option_icon,
+          { disabled: !enabled }
         )}
-      name={icon}
-      onClick={onToggle}
-      size='large'
-    />}
+        name={icon}
+        onClick={onToggle}
+        size='large'
+      />}
   />);
 
 export type PlayOptionsProps = {
-  playOptions: PlayOptionControlProps[]
+  playOptions: PlayOptionControlProps[];
 };
 
 const PlayOptions: React.FC<PlayOptionsProps> = ({
   playOptions
 }) => (
-    <div className={styles.play_options}>
-      {
-        playOptions.map((playOption, i) => <PlayOptionControl {...playOption} key={i} />)
-      }
-    </div>
-  )
+  <div className={styles.play_options}>
+    {
+      playOptions.map((playOption, i) => <PlayOptionControl {...playOption} key={i} />)
+    }
+  </div>
+);
 
 export default PlayOptions;
