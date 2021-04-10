@@ -93,6 +93,7 @@
   "option-control": {
     "autoradio": "Autoradio",
     "loop": "Döndür",
+    "mini-player": "Miniplayer",
     "shuffle": "Karıştır"
   },
   "player": {

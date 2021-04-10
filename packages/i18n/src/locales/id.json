@@ -93,6 +93,7 @@
   "option-control": {
     "autoradio": "Autoradio",
     "loop": "Ulang",
+    "mini-player": "Miniplayer",
     "shuffle": "Acak"
   },
   "player": {

@@ -93,6 +93,7 @@
   "option-control": {
     "autoradio": "Autoradio",
     "loop": "Smyčka",
+    "mini-player": "Miniplayer",
     "shuffle": "Náhodně"
   },
   "player": {

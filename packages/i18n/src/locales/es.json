@@ -93,6 +93,7 @@
   "option-control": {
     "autoradio": "Autoradio",
     "loop": "Bucle",
+    "mini-player": "Miniplayer",
     "shuffle": "Aleatorio"
   },
   "player": {

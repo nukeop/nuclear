@@ -93,6 +93,7 @@
   "option-control": {
     "autoradio": "자동 재생",
     "loop": "반복",
+    "mini-player": "Miniplayer",
     "shuffle": "셔플"
   },
   "player": {

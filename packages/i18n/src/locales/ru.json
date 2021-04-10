@@ -93,6 +93,7 @@
   "option-control": {
     "autoradio": "Авто подборка",
     "loop": "Повторить",
+    "mini-player": "Miniplayer",
     "shuffle": "Перемешать"
   },
   "player": {
