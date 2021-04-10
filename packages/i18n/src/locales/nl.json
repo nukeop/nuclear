@@ -93,6 +93,7 @@
   "option-control": {
     "autoradio": "Automatische radio",
     "loop": "Herhalen",
+    "mini-player": "Miniplayer",
     "shuffle": "Willekeurig"
   },
   "player": {

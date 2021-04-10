@@ -93,6 +93,7 @@
   "option-control": {
     "autoradio": "自動播放",
     "loop": "循環播放",
+    "mini-player": "Miniplayer",
     "shuffle": "隨機播放"
   },
   "player": {
