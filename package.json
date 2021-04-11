@@ -114,6 +114,10 @@
         "mimeType": "audio/ogg"
       },
       {
+        "ext": "opus",
+        "mimeType": "audio/ogg"
+      },
+      {
         "ext": "aac",
         "mimeType": "audio/aac"
       },
