@@ -36,6 +36,8 @@ module.exports = {
       getTagTracks() {}
       getTagAlbums() {}
       getTagArtists() {}
+      getTopTags = () => Promise.resolve()
+      getTopTracks = () => Promise.resolve()
     }
   },
   settingsConfig: [],

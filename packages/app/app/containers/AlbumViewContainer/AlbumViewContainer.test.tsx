@@ -1,9 +1,5 @@
-import { render, waitFor } from '@testing-library/react';
-import React from 'react';
-import { createMemoryHistory } from 'history';
-
-import { AnyProps, configureMockStore, setupI18Next, TestRouterProvider, TestStoreProvider } from '../../../test/testUtils';
-import MainContentContainer from '../MainContentContainer';
+import { waitFor } from '@testing-library/react';
+import { mountedComponentFactory, setupI18Next } from '../../../test/testUtils';
 import { buildStoreState } from '../../../test/storeBuilders';
 
 describe('Album view container', () => {
@@ -210,29 +206,13 @@ describe('Album view container', () => {
     ]);
   });
 
-  const mountComponent = (initialStore?: AnyProps) => {
-    const initialState = initialStore ||
-      buildStoreState()
-        .withAlbumDetails()
-        .withArtistDetails()
-        .withPlugins()
-        .withConnectivity()
-        .build();
-    const history = createMemoryHistory({
-      initialEntries: ['/album/test-album-id']
-    });
-    const store = configureMockStore(initialState);
-    const component = render(
-      <TestRouterProvider
-        history={history}
-      >
-        <TestStoreProvider
-          store={store}
-        >
-          <MainContentContainer />
-        </TestStoreProvider>
-      </TestRouterProvider >
-    );
-    return { component, history, store };
-  };
+  const mountComponent = mountedComponentFactory(
+    ['/album/test-album-id'],
+    buildStoreState()
+      .withAlbumDetails()
+      .withArtistDetails()
+      .withPlugins()
+      .withConnectivity()
+      .build()
+  );
 });

@@ -23,8 +23,8 @@
 		"test": "eslint \"lib/**.{ts,tsx,js,jsx}\" && jest"
 	},
 	"peerDependencies": {
-		"react": "^16.4.1",
-		"react-dom": "^16.4.1"
+		"react": "16.14.0",
+		"react-dom": "16.14.0"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.6.2",

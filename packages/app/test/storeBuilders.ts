@@ -5,6 +5,7 @@ export const buildStoreState = () => {
     search: {},
     plugin: {},
     playlists: {},
+    dashboard: {},
     favorites: {
       tracks: [],
       artists: [],
@@ -115,8 +116,8 @@ export const buildStoreState = () => {
               ],
               releasesLoading: false,
               similar: [
-                {name: 'artist-similar-1', thumbnail: 'artist-similar-1 thumb'},
-                {name: 'artist-similar-2', thumbnail: 'artist-similar-2 thumb'}
+                { name: 'artist-similar-1', thumbnail: 'artist-similar-1 thumb' },
+                { name: 'artist-similar-2', thumbnail: 'artist-similar-2 thumb' }
               ],
               tags: ['tag1', 'tag2', 'tag3'],
               thumb: 'test thumb',
@@ -196,10 +197,10 @@ export const buildStoreState = () => {
                 fetchArtistDetailsByName: (artistName) => {
                   switch (artistName) {
                   case 'artist-similar-1':
-                    return {id: 'artist-similar-id'};
-                  
+                    return { id: 'artist-similar-id' };
+
                   default:
-                    return {id: 'test-artist-id'};
+                    return { id: 'test-artist-id' };
                   }
                 }
               },
@@ -315,6 +316,70 @@ export const buildStoreState = () => {
               title: 'test track 2',
               duration: 45
             }]
+          }]
+        }
+      };
+      return this as StoreStateBuilder;
+    },
+    withDashboard() {
+      state = {
+        ...state,
+        dashboard: {
+          bestNewAlbums: [{
+            thumbnail: 'test thumbnail 1',
+            artist: 'test artist 1',
+            title: 'test title 1',
+            reviewUrl: 'test review url 1',
+            score: '5.0',
+            abstract: 'test abstract 1',
+            review: 'test review 1',
+            genres: ['Rock']
+          }, {
+            thumbnail: 'test thumbnail 2',
+            artist: 'test artist 2',
+            title: 'test title 2',
+            reviewUrl: 'test review url 2',
+            score: '8.0',
+            abstract: 'test abstract 2',
+            review: 'test review 2',
+            genres: ['Pop']
+          }],
+          bestNewTracks: [{
+            thumbnail: 'test track thumbnail 1',
+            artist: 'test track artist 1',
+            title: 'test track title 1',
+            reviewUrl: 'test track review url 1',
+            review: 'track review 1'
+          }, {
+            thumbnail: 'test track thumbnail 2',
+            artist: 'test track artist 2',
+            title: 'test track title 2',
+            reviewUrl: 'test track review url 2',
+            review: 'track review 2'
+          }],
+          topTracks: [{
+            name: 'top track 1',
+            artist: {
+              name: 'top track artist 1'
+            },
+            playcount: '1000000',
+            thumbnail: 'top track thumbnail 1'
+          }, {
+            name: 'top track 2',
+            artist: {
+              name: 'top track artist 2'
+            },
+            playcount: '7899543',
+            thumbnail: 'top track thumbnail 2'
+          }],
+          topTags: [{
+            name: 'rock',
+            count: 123456,
+            reach: 1234
+          }, {
+            name: 'pop',
+            count: 2345,
+            reach: 899
           }]
         }
       };

@@ -1,0 +1,938 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Dashboard container should display the best new music page of the dashboard 1`] = `
+<DocumentFragment>
+  <div
+    class="main_layout_container"
+  >
+    <div
+      class="dashboard"
+    >
+      <div
+        class="dashboard_tabs"
+      >
+        <div
+          class="ui pointing secondary menu"
+        >
+          <a
+            class="active item"
+          >
+            Best new music
+          </a>
+          <a
+            class="item"
+          >
+            Top Tracks
+          </a>
+          <a
+            class="item"
+          >
+            Genres
+          </a>
+        </div>
+        <div
+          class="ui segment active tab best_new_music_tab_pane"
+        >
+          <div
+            class="best_new_music_menu"
+          >
+            <div
+              class="ui large vertical menu"
+            >
+              <div
+                class="link item best_new_music_menu_header"
+              >
+                Best new albums
+              </div>
+              <div
+                class="link item"
+              >
+                <div
+                  class="best_new_music_card"
+                >
+                  <div
+                    class="card_thumbnail"
+                  >
+                    <img
+                      alt="test title 1"
+                      src="test thumbnail 1"
+                    />
+                  </div>
+                  <div
+                    class="card_info"
+                  >
+                    <div
+                      class="card_title_row"
+                    >
+                      <div
+                        class="card_title"
+                      >
+                        test title 1
+                      </div>
+                    </div>
+                    <div
+                      class="card_artist"
+                    >
+                      test artist 1
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="link item"
+              >
+                <div
+                  class="best_new_music_card"
+                >
+                  <div
+                    class="card_thumbnail"
+                  >
+                    <img
+                      alt="test title 2"
+                      src="test thumbnail 2"
+                    />
+                  </div>
+                  <div
+                    class="card_info"
+                  >
+                    <div
+                      class="card_title_row"
+                    >
+                      <div
+                        class="card_title"
+                      >
+                        test title 2
+                      </div>
+                    </div>
+                    <div
+                      class="card_artist"
+                    >
+                      test artist 2
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="link item best_new_music_menu_header"
+              >
+                Best new tracks
+              </div>
+              <div
+                class="link item"
+              >
+                <div
+                  class="best_new_music_card"
+                >
+                  <div
+                    class="card_thumbnail"
+                  >
+                    <img
+                      alt="test track title 1"
+                      src="test track thumbnail 1"
+                    />
+                  </div>
+                  <div
+                    class="card_info"
+                  >
+                    <div
+                      class="card_title_row"
+                    >
+                      <div
+                        class="card_title"
+                      >
+                        test track title 1
+                      </div>
+                      <i
+                        aria-hidden="true"
+                        class="star outline large icon card_favorite"
+                        data-testid="favorite-icon-test track artist 1-test track title 1"
+                      />
+                    </div>
+                    <div
+                      class="card_artist"
+                    >
+                      test track artist 1
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="link item"
+              >
+                <div
+                  class="best_new_music_card"
+                >
+                  <div
+                    class="card_thumbnail"
+                  >
+                    <img
+                      alt="test track title 2"
+                      src="test track thumbnail 2"
+                    />
+                  </div>
+                  <div
+                    class="card_info"
+                  >
+                    <div
+                      class="card_title_row"
+                    >
+                      <div
+                        class="card_title"
+                      >
+                        test track title 2
+                      </div>
+                      <i
+                        aria-hidden="true"
+                        class="star outline large icon card_favorite"
+                        data-testid="favorite-icon-test track artist 2-test track title 2"
+                      />
+                    </div>
+                    <div
+                      class="card_artist"
+                    >
+                      test track artist 2
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Dashboard container should go to best new album review after clicking it 1`] = `
+<DocumentFragment>
+  <div
+    class="main_layout_container"
+  >
+    <div
+      class="dashboard"
+    >
+      <div
+        class="dashboard_tabs"
+      >
+        <div
+          class="ui pointing secondary menu"
+        >
+          <a
+            class="active item"
+          >
+            Best new music
+          </a>
+          <a
+            class="item"
+          >
+            Top Tracks
+          </a>
+          <a
+            class="item"
+          >
+            Genres
+          </a>
+        </div>
+        <div
+          class="ui segment active tab best_new_music_tab_pane"
+        >
+          <div
+            class="best_new_music_menu"
+          >
+            <div
+              class="ui large vertical menu"
+            >
+              <div
+                class="link item best_new_music_menu_header"
+              >
+                Best new albums
+              </div>
+              <div
+                class="link item"
+              >
+                <div
+                  class="best_new_music_card"
+                >
+                  <div
+                    class="card_thumbnail"
+                  >
+                    <img
+                      alt="test title 1"
+                      src="test thumbnail 1"
+                    />
+                  </div>
+                  <div
+                    class="card_info"
+                  >
+                    <div
+                      class="card_title_row"
+                    >
+                      <div
+                        class="card_title"
+                      >
+                        test title 1
+                      </div>
+                    </div>
+                    <div
+                      class="card_artist"
+                    >
+                      test artist 1
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="link item"
+              >
+                <div
+                  class="best_new_music_card"
+                >
+                  <div
+                    class="card_thumbnail"
+                  >
+                    <img
+                      alt="test title 2"
+                      src="test thumbnail 2"
+                    />
+                  </div>
+                  <div
+                    class="card_info"
+                  >
+                    <div
+                      class="card_title_row"
+                    >
+                      <div
+                        class="card_title"
+                      >
+                        test title 2
+                      </div>
+                    </div>
+                    <div
+                      class="card_artist"
+                    >
+                      test artist 2
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="link item best_new_music_menu_header"
+              >
+                Best new tracks
+              </div>
+              <div
+                class="link item"
+              >
+                <div
+                  class="best_new_music_card"
+                >
+                  <div
+                    class="card_thumbnail"
+                  >
+                    <img
+                      alt="test track title 1"
+                      src="test track thumbnail 1"
+                    />
+                  </div>
+                  <div
+                    class="card_info"
+                  >
+                    <div
+                      class="card_title_row"
+                    >
+                      <div
+                        class="card_title"
+                      >
+                        test track title 1
+                      </div>
+                      <i
+                        aria-hidden="true"
+                        class="star outline large icon card_favorite"
+                        data-testid="favorite-icon-test track artist 1-test track title 1"
+                      />
+                    </div>
+                    <div
+                      class="card_artist"
+                    >
+                      test track artist 1
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="link item"
+              >
+                <div
+                  class="best_new_music_card"
+                >
+                  <div
+                    class="card_thumbnail"
+                  >
+                    <img
+                      alt="test track title 2"
+                      src="test track thumbnail 2"
+                    />
+                  </div>
+                  <div
+                    class="card_info"
+                  >
+                    <div
+                      class="card_title_row"
+                    >
+                      <div
+                        class="card_title"
+                      >
+                        test track title 2
+                      </div>
+                      <i
+                        aria-hidden="true"
+                        class="star outline large icon card_favorite"
+                        data-testid="favorite-icon-test track artist 2-test track title 2"
+                      />
+                    </div>
+                    <div
+                      class="card_artist"
+                    >
+                      test track artist 2
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="best_new_music_content"
+          >
+            <div
+              class="review_header"
+            >
+              <div
+                class="thumbnail"
+              >
+                <img
+                  alt="test title 2"
+                  src="test thumbnail 2"
+                />
+              </div>
+              <div
+                class="review_headings"
+              >
+                <div
+                  class="artist"
+                >
+                  test artist 2
+                </div>
+                <div
+                  class="title"
+                >
+                  test title 2
+                </div>
+              </div>
+              <div
+                class="score"
+              >
+                <div
+                  class="score_box"
+                >
+                  8.0
+                </div>
+              </div>
+            </div>
+            <p
+              class="paragraph"
+            >
+              test review 2
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Dashboard container should go to best new track review after clicking it 1`] = `
+<DocumentFragment>
+  <div
+    class="main_layout_container"
+  >
+    <div
+      class="dashboard"
+    >
+      <div
+        class="dashboard_tabs"
+      >
+        <div
+          class="ui pointing secondary menu"
+        >
+          <a
+            class="active item"
+          >
+            Best new music
+          </a>
+          <a
+            class="item"
+          >
+            Top Tracks
+          </a>
+          <a
+            class="item"
+          >
+            Genres
+          </a>
+        </div>
+        <div
+          class="ui segment active tab best_new_music_tab_pane"
+        >
+          <div
+            class="best_new_music_menu"
+          >
+            <div
+              class="ui large vertical menu"
+            >
+              <div
+                class="link item best_new_music_menu_header"
+              >
+                Best new albums
+              </div>
+              <div
+                class="link item"
+              >
+                <div
+                  class="best_new_music_card"
+                >
+                  <div
+                    class="card_thumbnail"
+                  >
+                    <img
+                      alt="test title 1"
+                      src="test thumbnail 1"
+                    />
+                  </div>
+                  <div
+                    class="card_info"
+                  >
+                    <div
+                      class="card_title_row"
+                    >
+                      <div
+                        class="card_title"
+                      >
+                        test title 1
+                      </div>
+                    </div>
+                    <div
+                      class="card_artist"
+                    >
+                      test artist 1
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="link item"
+              >
+                <div
+                  class="best_new_music_card"
+                >
+                  <div
+                    class="card_thumbnail"
+                  >
+                    <img
+                      alt="test title 2"
+                      src="test thumbnail 2"
+                    />
+                  </div>
+                  <div
+                    class="card_info"
+                  >
+                    <div
+                      class="card_title_row"
+                    >
+                      <div
+                        class="card_title"
+                      >
+                        test title 2
+                      </div>
+                    </div>
+                    <div
+                      class="card_artist"
+                    >
+                      test artist 2
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="link item best_new_music_menu_header"
+              >
+                Best new tracks
+              </div>
+              <div
+                class="link item"
+              >
+                <div
+                  class="best_new_music_card"
+                >
+                  <div
+                    class="card_thumbnail"
+                  >
+                    <img
+                      alt="test track title 1"
+                      src="test track thumbnail 1"
+                    />
+                  </div>
+                  <div
+                    class="card_info"
+                  >
+                    <div
+                      class="card_title_row"
+                    >
+                      <div
+                        class="card_title"
+                      >
+                        test track title 1
+                      </div>
+                      <i
+                        aria-hidden="true"
+                        class="star outline large icon card_favorite"
+                        data-testid="favorite-icon-test track artist 1-test track title 1"
+                      />
+                    </div>
+                    <div
+                      class="card_artist"
+                    >
+                      test track artist 1
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="link item"
+              >
+                <div
+                  class="best_new_music_card"
+                >
+                  <div
+                    class="card_thumbnail"
+                  >
+                    <img
+                      alt="test track title 2"
+                      src="test track thumbnail 2"
+                    />
+                  </div>
+                  <div
+                    class="card_info"
+                  >
+                    <div
+                      class="card_title_row"
+                    >
+                      <div
+                        class="card_title"
+                      >
+                        test track title 2
+                      </div>
+                      <i
+                        aria-hidden="true"
+                        class="star outline large icon card_favorite"
+                        data-testid="favorite-icon-test track artist 2-test track title 2"
+                      />
+                    </div>
+                    <div
+                      class="card_artist"
+                    >
+                      test track artist 2
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="best_new_music_content"
+          >
+            <div
+              class="review_header"
+            >
+              <div
+                class="thumbnail"
+              >
+                <img
+                  alt="test track title 2"
+                  src="test track thumbnail 2"
+                />
+              </div>
+              <div
+                class="review_headings"
+              >
+                <div
+                  class="artist"
+                >
+                  test track artist 2
+                </div>
+                <div
+                  class="title"
+                >
+                  test track title 2
+                </div>
+              </div>
+            </div>
+            <p
+              class="paragraph"
+            >
+              track review 2
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Dashboard container should, display genres after going to genres tab 1`] = `
+<DocumentFragment>
+  <div
+    class="main_layout_container"
+  >
+    <div
+      class="dashboard"
+    >
+      <div
+        class="dashboard_tabs"
+      >
+        <div
+          class="ui pointing secondary menu"
+        >
+          <a
+            class="item"
+          >
+            Best new music
+          </a>
+          <a
+            class="active item"
+          >
+            Top Tracks
+          </a>
+          <a
+            class="item"
+          >
+            Genres
+          </a>
+        </div>
+        <div
+          class="ui segment active tab"
+        >
+          <div
+            class="popular_tracks_container tracks_container"
+          >
+            <h3>
+              Top Tracks from LastFm
+            </h3>
+            <table>
+              <thead>
+                <tr>
+                  <th>
+                    <span
+                      aria-hidden="true"
+                      class="fa fa-image"
+                    />
+                  </th>
+                  <th>
+                    Artist
+                  </th>
+                  <th>
+                    Title
+                  </th>
+                  <th>
+                    Playcounts
+                  </th>
+                </tr>
+                <tr />
+              </thead>
+              <tbody>
+                <tr
+                  class="track"
+                >
+                  <td
+                    class="track_thumbnail"
+                  >
+                    <img
+                      src="top track thumbnail 1"
+                    />
+                  </td>
+                  <td
+                    class="track_artist"
+                  >
+                    top track artist 1
+                  </td>
+                  <td
+                    class="track_name"
+                  >
+                    top track 1
+                  </td>
+                  <td
+                    class="playcount"
+                  >
+                    1,000,000
+                  </td>
+                </tr>
+                <tr
+                  class="track"
+                >
+                  <td
+                    class="track_thumbnail"
+                  >
+                    <img
+                      src="top track thumbnail 2"
+                    />
+                  </td>
+                  <td
+                    class="track_artist"
+                  >
+                    top track artist 2
+                  </td>
+                  <td
+                    class="track_name"
+                  >
+                    top track 2
+                  </td>
+                  <td
+                    class="playcount"
+                  >
+                    7,899,543
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Dashboard container should, display top tracks after going to top tracks tab 1`] = `
+<DocumentFragment>
+  <div
+    class="main_layout_container"
+  >
+    <div
+      class="dashboard"
+    >
+      <div
+        class="dashboard_tabs"
+      >
+        <div
+          class="ui pointing secondary menu"
+        >
+          <a
+            class="item"
+          >
+            Best new music
+          </a>
+          <a
+            class="active item"
+          >
+            Top Tracks
+          </a>
+          <a
+            class="item"
+          >
+            Genres
+          </a>
+        </div>
+        <div
+          class="ui segment active tab"
+        >
+          <div
+            class="popular_tracks_container tracks_container"
+          >
+            <h3>
+              Top Tracks from LastFm
+            </h3>
+            <table>
+              <thead>
+                <tr>
+                  <th>
+                    <span
+                      aria-hidden="true"
+                      class="fa fa-image"
+                    />
+                  </th>
+                  <th>
+                    Artist
+                  </th>
+                  <th>
+                    Title
+                  </th>
+                  <th>
+                    Playcounts
+                  </th>
+                </tr>
+                <tr />
+              </thead>
+              <tbody>
+                <tr
+                  class="track"
+                >
+                  <td
+                    class="track_thumbnail"
+                  >
+                    <img
+                      src="top track thumbnail 1"
+                    />
+                  </td>
+                  <td
+                    class="track_artist"
+                  >
+                    top track artist 1
+                  </td>
+                  <td
+                    class="track_name"
+                  >
+                    top track 1
+                  </td>
+                  <td
+                    class="playcount"
+                  >
+                    1,000,000
+                  </td>
+                </tr>
+                <tr
+                  class="track"
+                >
+                  <td
+                    class="track_thumbnail"
+                  >
+                    <img
+                      src="top track thumbnail 2"
+                    />
+                  </td>
+                  <td
+                    class="track_artist"
+                  >
+                    top track artist 2
+                  </td>
+                  <td
+                    class="track_name"
+                  >
+                    top track 2
+                  </td>
+                  <td
+                    class="playcount"
+                  >
+                    7,899,543
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
