@@ -33,7 +33,7 @@ module.exports = (env: BuildEnv): import('webpack').Configuration => {
     resolve: {
       extensions: ['.ts', '.js', '.json'],
       alias: {
-        jsbi: __dirname + '/node_modules/jsbi/dist/jsbi-cjs.js'
+        jsbi: __dirname + '../../node_modules/jsbi/dist/jsbi-cjs.js'
       },
       symlinks: false
     },

@@ -711,12 +711,12 @@ exports[`Dashboard container should, display genres after going to genres tab 1`
             Best new music
           </a>
           <a
-            class="active item"
+            class="item"
           >
             Top Tracks
           </a>
           <a
-            class="item"
+            class="active item"
           >
             Genres
           </a>
@@ -725,87 +725,70 @@ exports[`Dashboard container should, display genres after going to genres tab 1`
           class="ui segment active tab"
         >
           <div
-            class="popular_tracks_container tracks_container"
+            class="genre_tab_container"
           >
-            <h3>
-              Top Tracks from LastFm
-            </h3>
-            <table>
-              <thead>
-                <tr>
-                  <th>
-                    <span
-                      aria-hidden="true"
-                      class="fa fa-image"
-                    />
-                  </th>
-                  <th>
-                    Artist
-                  </th>
-                  <th>
-                    Title
-                  </th>
-                  <th>
-                    Playcounts
-                  </th>
-                </tr>
-                <tr />
-              </thead>
-              <tbody>
-                <tr
-                  class="track"
+            <div
+              class="genre_container"
+            >
+              <div
+                class="genre_overlay"
+              >
+                <div
+                  class="wrapper"
                 >
-                  <td
-                    class="track_thumbnail"
-                  >
-                    <img
-                      src="top track thumbnail 1"
-                    />
-                  </td>
-                  <td
-                    class="track_artist"
-                  >
-                    top track artist 1
-                  </td>
-                  <td
-                    class="track_name"
-                  >
-                    top track 1
-                  </td>
-                  <td
-                    class="playcount"
-                  >
-                    1,000,000
-                  </td>
-                </tr>
-                <tr
-                  class="track"
+                  <img
+                    class="image"
+                    src="https://picsum.photos/256?random=0"
+                  />
+                  <img
+                    class="placeholder"
+                    src="test-file-stub"
+                    style="opacity: 1;"
+                  />
+                </div>
+              </div>
+              <div
+                class="genre_name"
+              >
+                <div
+                  class="svg_icon"
                 >
-                  <td
-                    class="track_thumbnail"
-                  >
-                    <img
-                      src="top track thumbnail 2"
-                    />
-                  </td>
-                  <td
-                    class="track_artist"
-                  >
-                    top track artist 2
-                  </td>
-                  <td
-                    class="track_name"
-                  >
-                    top track 2
-                  </td>
-                  <td
-                    class="playcount"
-                  >
-                    7,899,543
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+                  test-file-stub
+                </div>
+                rock
+              </div>
+            </div>
+            <div
+              class="genre_container"
+            >
+              <div
+                class="genre_overlay"
+              >
+                <div
+                  class="wrapper"
+                >
+                  <img
+                    class="image"
+                    src="https://picsum.photos/256?random=1"
+                  />
+                  <img
+                    class="placeholder"
+                    src="test-file-stub"
+                    style="opacity: 1;"
+                  />
+                </div>
+              </div>
+              <div
+                class="genre_name"
+              >
+                <div
+                  class="svg_icon"
+                >
+                  test-file-stub
+                </div>
+                pop
+              </div>
+            </div>
           </div>
         </div>
       </div>

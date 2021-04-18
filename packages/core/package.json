@@ -21,7 +21,7 @@
     "@babel/preset-env": "^7.7.7",
     "@babel/preset-react": "^7.7.4",
     "babel-jest": "^26.6.3",
-    "bandcamp-scraper": "git://github.com/nukeop/bandcamp-scraper.git",
+    "bandcamp-scraper": "1.4.1",
     "cheerio": "^1.0.0-rc.5",
     "electron-store": "^5.1.0",
     "electron-timber": "^0.5.1",
