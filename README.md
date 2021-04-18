@@ -63,41 +63,42 @@ https://nuclearmusic.rtfd.io/
 
 Here's a list of packages for various managers, some of which are maintained by third parties. We would like to thank the maintainers for their work.
 
-| Package type   | Link                                                    | Maintainer                                    |
-|:--------------:|:-------------------------------------------------------:|:---------------------------------------------:|
-| AUR (Arch)     | https://aur.archlinux.org/packages/nuclear-player-bin/  | [nukeop](https://github.com/nukeop)       |
-| AUR (Arch)     | https://aur.archlinux.org/packages/nuclear-player-git   | [nukeop](https://github.com/nukeop)       |
-| Choco (Win)    | https://chocolatey.org/packages/nuclear/                | [JourneyOver](https://github.com/JourneyOver) |
-| Homebrew (Mac) | https://formulae.brew.sh/cask/nuclear                   | Homebrew                                      |
-| Snap           | https://snapcraft.io/nuclear                            | [nukeop](https://github.com/nukeop)           |
-| Flatpak        | https://flathub.org/apps/details/org.js.nuclear.Nuclear  | [nukeop](https://github.com/nukeop)       |
+| Package type   | Link                                                               | Maintainer                                   |
+|:--------------:|:------------------------------------------------------------------:|:--------------------------------------------:|
+| AUR (Arch)     | https://aur.archlinux.org/packages/nuclear-player-bin/             | [nukeop](https://github.com/nukeop)          |
+| AUR (Arch)     | https://aur.archlinux.org/packages/nuclear-player-git              | [nukeop](https://github.com/nukeop)          |
+| Choco (Win)    | https://chocolatey.org/packages/nuclear/                           | [JourneyOver](https://github.com/JourneyOver)|
+| GURU (Gentoo)  | https://github.com/gentoo/guru/tree/master/media-sound/nuclear-bin | [scardracs](https://github.com/scardracs)    |
+| Homebrew (Mac) | https://formulae.brew.sh/cask/nuclear                              | Homebrew                                     |
+| Snap           | https://snapcraft.io/nuclear                                       | [nukeop](https://github.com/nukeop)          |
+| Flatpak        | https://flathub.org/apps/details/org.js.nuclear.Nuclear            | [nukeop](https://github.com/nukeop)          |
 
 
 ## Community translations
 Nuclear has already been translated to several languages, and we're always looking for contributors who would like to add more. Below is a list of currently available languages, along with contributors who helped to translate Nuclear to that language.
 
-| Language             | Contributor                                                                                          |
-|:--------------------:|:----------------------------------------------------------------------------------------------------:|
-| English              | N/A                                                                                                  |
-| French               | [charjac](https://github.com/charjac), [Zalax](https://github.com/Zalaxx)                            |
-| Dutch                | [Vistaus](https://github.com/Vistaus)                                                                |
-| Danish               | [Hansen1992](https://github.com/Hansen1992)                                                          |
-| Spanish              | [mlucas94](https://github.com/mlucas94), [emlautarom1](https://github.com/emlautarom1)               |
-| Polish               | [kazimierczak-robert](https://github.com/kazimierczak-robert), [gradzka](https://github.com/gradzka) |
-| German               | [nuclear](https://github.com/nuclear), [schippas](https://github.com/schippas)                                                              |
-| Russian              | [ramstore07](https://github.com/ramstore07), [dmtrshat](https://github.com/dmtrshat)                 |
-| Brazilian Portuguese | [JoaoPedroMoraes](https://github.com/JoaoPedroMoraes)                                                |
-| Turkish              | [3DShark](https://github.com/3DShark)                                                                |
-| Italian              | [gello94](https://github.com/gello94)                                                                |
-| Slovak               | [MartinT](https://github.com/MartinTuroci)                                                           |
-| Czech                | [PetrTodorov](https://github.com/PetrTodorov)                                                        |
-| Tagalog              | [giftofgrub](https://github.com/giftofgrub)                                                          |
-| Traditional Chinese  | [oxygen-TW](https://github.com/oxygen-TW)                                                            |
-| Swedish              | [PalleKarlsson](https://github.com/PalleKarlsson)                                                    |
-| Greek                | [Shuin-San](https://github.com/Shuin-San)                                                            |
-| Vietnamese           | [HaiDang666](https://github.com/HaiDang666)                                                          |
-| Finnish              | [cjola002-xamk](https://github.com/cjola002-xamk)                                                    |
-| Korean               | [dexterastin](https://github.com/dexterastin), [teamzamong](https://github.com/teamzamong/)                                                    |
+| Language             | Contributor                                                                                                 |
+|:--------------------:|:-----------------------------------------------------------------------------------------------------------:|
+| English              | N/A                                                                                                         |
+| French               | [charjac](https://github.com/charjac), [Zalax](https://github.com/Zalaxx)                                   |
+| Dutch                | [Vistaus](https://github.com/Vistaus)                                                                       |
+| Danish               | [Hansen1992](https://github.com/Hansen1992)                                                                 |
+| Spanish              | [mlucas94](https://github.com/mlucas94), [emlautarom1](https://github.com/emlautarom1)                      |
+| Polish               | [kazimierczak-robert](https://github.com/kazimierczak-robert), [gradzka](https://github.com/gradzka)        |
+| German               | [nuclear](https://github.com/nuclear), [schippas](https://github.com/schippas)                              |
+| Russian              | [ramstore07](https://github.com/ramstore07), [dmtrshat](https://github.com/dmtrshat)                        |
+| Brazilian Portuguese | [JoaoPedroMoraes](https://github.com/JoaoPedroMoraes)                                                       |
+| Turkish              | [3DShark](https://github.com/3DShark)                                                                       |
+| Italian              | [gello94](https://github.com/gello94)                                                                       |
+| Slovak               | [MartinT](https://github.com/MartinTuroci)                                                                  |
+| Czech                | [PetrTodorov](https://github.com/PetrTodorov)                                                               |
+| Tagalog              | [giftofgrub](https://github.com/giftofgrub)                                                                 |
+| Traditional Chinese  | [oxygen-TW](https://github.com/oxygen-TW)                                                                   |
+| Swedish              | [PalleKarlsson](https://github.com/PalleKarlsson)                                                           |
+| Greek                | [Shuin-San](https://github.com/Shuin-San)                                                                   |
+| Vietnamese           | [HaiDang666](https://github.com/HaiDang666)                                                                 |
+| Finnish              | [cjola002-xamk](https://github.com/cjola002-xamk)                                                           |
+| Korean               | [dexterastin](https://github.com/dexterastin), [teamzamong](https://github.com/teamzamong/)                 |
 
 
 
