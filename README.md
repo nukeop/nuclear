@@ -63,14 +63,15 @@ https://nuclearmusic.rtfd.io/
 
 Here's a list of packages for various managers, some of which are maintained by third parties. We would like to thank the maintainers for their work.
 
-| Package type   | Link                                                    | Maintainer                                    |
-|:--------------:|:-------------------------------------------------------:|:---------------------------------------------:|
-| AUR (Arch)     | https://aur.archlinux.org/packages/nuclear-player-bin/  | [nukeop](https://github.com/nukeop)       |
-| AUR (Arch)     | https://aur.archlinux.org/packages/nuclear-player-git   | [nukeop](https://github.com/nukeop)       |
-| Choco (Win)    | https://chocolatey.org/packages/nuclear/                | [JourneyOver](https://github.com/JourneyOver) |
-| Homebrew (Mac) | https://formulae.brew.sh/cask/nuclear                   | Homebrew                                      |
-| Snap           | https://snapcraft.io/nuclear                            | [nukeop](https://github.com/nukeop)           |
-| Flatpak        | https://flathub.org/apps/details/org.js.nuclear.Nuclear  | [nukeop](https://github.com/nukeop)       |
+| Package type   | Link                                                     | Maintainer                                    |
+|:--------------:|:--------------------------------------------------------:|:---------------------------------------------:|
+| AUR (Arch)     | https://aur.archlinux.org/packages/nuclear-player-bin/   | [nukeop](https://github.com/nukeop)           |
+| AUR (Arch)     | https://aur.archlinux.org/packages/nuclear-player-git    | [nukeop](https://github.com/nukeop)           |
+| Choco (Win)    | https://chocolatey.org/packages/nuclear/                 | [JourneyOver](https://github.com/JourneyOver) |
+| GURU (Gentoo)  | https://github.com/gentoo/guru                           | [scardracs](https://github.com/scardracs)     |
+| Homebrew (Mac) | https://formulae.brew.sh/cask/nuclear                    | Homebrew                                      |
+| Snap           | https://snapcraft.io/nuclear                             | [nukeop](https://github.com/nukeop)           |
+| Flatpak        | https://flathub.org/apps/details/org.js.nuclear.Nuclear  | [nukeop](https://github.com/nukeop)           |
 
 
 ## Community translations
