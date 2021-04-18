@@ -9,8 +9,8 @@ const BUILD_DIR = path.resolve(__dirname, '../../dist');
 const APP_DIR = path.resolve(__dirname, 'app');
 const RESOURCES_DIR = path.resolve(__dirname, 'resources');
 
-const UI_DIR = path.resolve(__dirname, '..', 'ui');
-const VENDOR_DIR = path.resolve(__dirname, 'node_modules');
+const UI_DIR = path.resolve(__dirname, 'node_modules', '@nuclear', 'ui');
+const VENDOR_DIR = path.resolve(__dirname, '..', '..', 'node_modules');
 
 const buildIncludedPaths = () => {
   const paths = [];
@@ -145,7 +145,7 @@ module.exports = (env) => {
     resolve: {
       extensions: ['*', '.js', '.ts', '.jsx', '.tsx', '.json'],
       alias: {
-        react: path.resolve(__dirname, 'node_modules/react'),
+        react: path.resolve(__dirname, '..', '..', 'node_modules', 'react'),
         'styled-component': path.resolve(__dirname, 'node_modules/styled-component')
       },
       symlinks: false

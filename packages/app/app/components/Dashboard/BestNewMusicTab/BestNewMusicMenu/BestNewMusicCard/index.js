@@ -24,12 +24,13 @@ function toFavoriteTrack({ artist, title, thumbnail }) {
   };
 }
 
-const FavoriteIcon = ({ isFavorite, onClick }) =>
+const FavoriteIcon = ({ isFavorite, onClick, dataTestid }) =>
   <Icon
+    data-testid={dataTestid}
     className={styles.card_favorite}
-    name='star'
-    size='large' onClick={onClick}
-    disabled={!isFavorite}
+    name={isFavorite ? 'star' : 'star outline'}
+    size='large'
+    onClick={onClick}
   />;
 
 const BestNewMusicCard = ({
@@ -55,21 +56,24 @@ const BestNewMusicCard = ({
           <div className={styles.card_title}>
             {title}
           </div>
-          {withFavoriteButton && <FavoriteIcon isFavorite={!!favoriteTrack} onClick={e => {
-            e.stopPropagation();
+          {withFavoriteButton && <FavoriteIcon
+            dataTestid={`favorite-icon-${artist}-${title}`}
+            isFavorite={!!favoriteTrack}
+            onClick={e => {
+              e.stopPropagation();
 
-            if (favoriteTrack) {
-              actions.removeFavoriteTrack(favoriteTrack);
-            } else {
-              actions.addFavoriteTrack(toFavoriteTrack(item));
-              actions.info(
-                'Favorite track added',
-                `${artist} - ${title} has been added to favorites.`,
-                <img src={thumbnail} />,
-                settings
-              );
-            }
-          }} />}
+              if (favoriteTrack) {
+                actions.removeFavoriteTrack(favoriteTrack);
+              } else {
+                actions.addFavoriteTrack(toFavoriteTrack(item));
+                actions.info(
+                  'Favorite track added',
+                  `${artist} - ${title} has been added to favorites.`,
+                  <img src={thumbnail} />,
+                  settings
+                );
+              }
+            }} />}
         </div>
         <div className={styles.card_artist}>
           {item.artist}

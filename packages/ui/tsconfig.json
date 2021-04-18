@@ -9,8 +9,8 @@
     "strict": false,
     "allowJs": true,
     "typeRoots": [
-      "node_modules/@types",
-      "lib/typings"
+      "../../node_modules/@types",
+      "./lib/typings"
     ],
     "jsx": "react"
   },

@@ -34,7 +34,7 @@ class HttpApi {
     @inject($httpApiLogger) private logger: Logger,
     @inject(Store) private store: Store,
     @inject(Window) private window: Window
-  ){}
+  ) { }
 
   /**
    * start the http api
@@ -44,7 +44,7 @@ class HttpApi {
     const app = express();
 
     initSwagger(app);
-  
+
     this.app = app
       .use(cors())
       .use(bodyParser.urlencoded({ extended: false }))
@@ -58,14 +58,9 @@ class HttpApi {
       .use(`${PREFIX}/equalizer`, equalizerRouter(this.store, this.window.getBrowserWindow().webContents))
       .use(notFoundMiddleware())
       .use(errorMiddleware(this.logger))
-      .listen(port, '0.0.0.0', err => {
-        if (err) {
-          this.logger.error('Something fail during http api initialisation');
-          this.logger.error(err);
-        } else {
-          swagger.compile();
-          this.logger.log(`nuclear http api available on port ${port}`);
-        }
+      .listen(port, '0.0.0.0', () => {
+        swagger.compile();
+        this.logger.log(`nuclear http api available on port ${port}`);
       });
 
     return this.app;
