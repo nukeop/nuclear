@@ -42,7 +42,7 @@
 		"@storybook/preset-typescript": "^2.1.0",
 		"@storybook/react": "^5.3.17",
 		"@testing-library/react": "^10.4.7",
-		"@types/jest": "^26.0.5",
+		"@types/jest": "^26.0.22",
 		"@types/lodash": "^4.14.158",
 		"@types/numeral": "0.0.28",
 		"@types/react": "^16.9.43",
@@ -59,6 +59,7 @@
 		"react-hot-loader": "^4.3.4",
 		"sass-loader": "^6.0.7",
 		"style-loader": "^0.21.0",
+		"ts-jest": "^26.5.5",
 		"ts-loader": "^8.0.3",
 		"ts-node": "^8.10.2",
 		"typescript": "^3.9.7"
@@ -81,7 +82,8 @@
 	"jest": {
 		"moduleNameMapper": {
 			"\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.ts",
-			"\\.(css|scss)$": "identity-obj-proxy"
+			"\\.(css|scss)$": "identity-obj-proxy",
+			"^react$": "<rootDir>/../../node_modules/react"
 		}
 	}
 }
