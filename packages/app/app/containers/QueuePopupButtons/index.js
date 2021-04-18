@@ -4,6 +4,7 @@ import _ from 'lodash';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { compose, withHandlers } from 'recompose';
+import { Icon, Dropdown } from 'semantic-ui-react';
 import { PopupButton, PopupDropdown, getThumbnail } from '@nuclear/ui';
 
 import * as DownloadsActions from '../../actions/downloads';
@@ -13,7 +14,6 @@ import * as ToastActions from '../../actions/toasts';
 import * as PlaylistsActions from '../../actions/playlists';
 import { safeAddUuid } from '../../actions/helpers';
 import { normalizeTrack } from '../../utils';
-import { Icon, Dropdown } from '@nuclear/ui/node_modules/semantic-ui-react';
 import { addTrackToPlaylist } from '../../components/PlayQueue/QueueMenu/QueueMenuMore';
 
 const QueuePopupButtons = ({
