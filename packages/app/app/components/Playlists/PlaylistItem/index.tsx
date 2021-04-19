@@ -28,7 +28,7 @@ const PlaylistItem: React.FC<PlaylistProps> = ({ playlist, index }) => {
         <div>
           <img
             className={styles.playlist_thumbnail}
-            src={playlist.tracks[0].thumbnail || String(artPlaceholder)}
+            src={playlist.tracks[0] ? playlist.tracks[0].thumbnail || String(artPlaceholder) : String(artPlaceholder)}
           />
         </div>
         <div className={styles.playlist_info}>

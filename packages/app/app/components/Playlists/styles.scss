@@ -6,14 +6,15 @@
 	flex-flow: column;
 
 	.empty_state {
-    @include emptyState;
+		@include emptyState;
   }
 
 	.playlists_segment {
 		display: flex;
-    flex-flow: row wrap;
+		flex-flow: row wrap;
 		width: 100%;
 		flex: 1 1 auto;
 		align-content: flex-start;
+		margin-top: 0;
   }
 }

@@ -82,3 +82,16 @@ export const openLocalFolderPicker = () => async dispatch => {
     dispatch(addLocalFolders(folders));
   }
 };
+
+export const openLocalFilePicker = async () => {
+  let filePaths = await (await remote.dialog.showOpenDialog(remote.getCurrentWindow(), {
+    filters: [
+      {name: 'json', extensions: ['json']}
+    ],
+    properties: ['openFile']
+  })).filePaths;
+  if (filePaths) {
+    filePaths = filePaths.map(path => path.replace(/\\/g, '/'));
+    return filePaths;
+  }
+};
