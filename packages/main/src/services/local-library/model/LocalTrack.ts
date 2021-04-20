@@ -5,7 +5,7 @@ import path from 'path';
 import { app } from 'electron';
 import crypto from 'crypto';
 import url from 'url';
-import uuid from 'uuid/v4';
+import { v4 } from 'uuid';
 import Jimp from 'jimp/es';
 
 import LocalFolder from './LocalFolder';
@@ -83,7 +83,7 @@ class LocalTrack {
   nuclearMapper() {
     this.local = true;
     this.streams = [{
-      id: uuid(),
+      id: v4(),
       title: this.name,
       duration: this.duration,
       thumbnail: this.thumbnail,

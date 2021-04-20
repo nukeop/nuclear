@@ -1,4 +1,4 @@
-import uuidv4 from 'uuid/v4';
+import { v4 } from 'uuid';
 import _ from 'lodash';
 import { createAction } from 'redux-actions';
 
@@ -17,7 +17,7 @@ export const VoidAction = (actionName: string) => createAction(actionName, () =>
 export const safeAddUuid = track => {
   const clonedTrack = _.cloneDeep(track);
   if (!_.has(track, 'uuid')) {
-    clonedTrack.uuid = uuidv4();
+    clonedTrack.uuid = v4();
   }
   return clonedTrack;
 };

@@ -1,4 +1,4 @@
-import uuidv4 from 'uuid/v4';
+import { v4 } from 'uuid';
 import _ from 'lodash';
 
 export const ADD_NOTIFICATION = 'ADD_NOTIFICATION';
@@ -40,7 +40,7 @@ export function info(title, details, icon, settings) {
 
 function generateNotification(title, details, icon, type, settings) {
   return dispatch => {
-    const id = uuidv4();
+    const id = v4();
     dispatch(addNotification(Object.assign({}, {
       onClick: () => {
         dispatch(removeNotification(id));
