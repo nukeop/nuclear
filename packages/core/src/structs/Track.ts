@@ -17,6 +17,7 @@ export default class Track {
   
   position?: string | number;
   thumbnail?: string;
+  thumb?: string;
   extraArtists?: string[];
   type?: string;
 

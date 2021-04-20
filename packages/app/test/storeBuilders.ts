@@ -2,7 +2,10 @@
 type StoreStateBuilder = ReturnType<typeof buildStoreState>;
 export const buildStoreState = () => {
   let state = {
-    search: {},
+    search: { 
+      albumDetails: {},
+      artistDetails: {} 
+    },
     plugin: {},
     playlists: {},
     dashboard: {},

@@ -8,7 +8,6 @@ import { TFunction } from 'i18next';
 import { TrackRow } from '@nuclear/ui';
 
 import TrackPopupContainer from '../../../containers/TrackPopupContainer';
-import artPlaceholder from '../../../../resources/media/art_placeholder.png';
 
 import trackRowStyles from '../../TrackRow/styles.scss';
 import styles from './styles.scss';
@@ -54,14 +53,12 @@ const PopularTracks: React.FC<PopularTracksProps> = ({
   const toggleExpand = () => setExpanded(!expanded);
   const handleAddAll = () => {
     tracks
-      // Change of WildLeons
-      // Old version : .slice(0, expanded ? 15 : 5)
       .slice(0, tracks.length > 15 ? 15 : tracks.length)
-      .map(track => {
+      .forEach(track => {
         addToQueue({
           artist: artist.name,
           name: track.title,
-          thumbnail: track.thumbnail || artPlaceholder
+          thumbnail: track.thumbnail ?? track.thumb
         });
       });
   };
@@ -99,7 +96,7 @@ const PopularTracks: React.FC<PopularTracksProps> = ({
                         track={{
                           playcount: _.get(track, 'playcount'),
                           name: track.title,
-                          thumbnail: track.thumbnail
+                          thumbnail: track.thumbnail ?? track.thumb
                         }}
                         displayCover
                         displayPlayCount
@@ -108,6 +105,7 @@ const PopularTracks: React.FC<PopularTracksProps> = ({
                     title={track.title}
                     track={track}
                     artist={artist.name}
+                    thumb={track.thumbnail ?? track.thumb}
                   />
                 ))
             }

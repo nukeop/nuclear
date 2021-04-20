@@ -129,7 +129,7 @@ TrackPopupContainer.defaultProps = {
   track: {},
   artist: '',
   title: '',
-  thumb: '',
+  thumb: null,
   playlists: [],
   actions: {},
   streamProviders: [],

@@ -155,7 +155,10 @@ export default function QueueReducer(state = initialState, action) {
   case ADD_QUEUE_ITEM:
     return {
       ...state,
-      queueItems: _.union(state.queueItems, [action.payload.item])
+      queueItems: [
+        ...state.queueItems, 
+        action.payload.item
+      ]
     };
   case REMOVE_QUEUE_ITEM:
     return reduceRemoveFromQueue(state, action);
