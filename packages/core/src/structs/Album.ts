@@ -1,4 +1,4 @@
-import uuidv4 from 'uuid/v4';
+import { v4 } from 'uuid';
 
 import {
   SearchResultsAlbum,
@@ -22,7 +22,7 @@ export default class Album {
   tracklist?: Track[];
 
   constructor(data: Partial<Album> = {}) {
-    this.uuid = uuidv4();
+    this.uuid = v4();
 
     this.ids = data.ids || {};
     this.artist = data.artist;

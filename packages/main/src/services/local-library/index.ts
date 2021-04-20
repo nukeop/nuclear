@@ -6,7 +6,7 @@ import { parseFile, IAudioMetadata } from 'music-metadata';
 import path from 'path';
 import asyncPool from 'tiny-async-pool';
 import { promisify } from 'util';
-import uuid from 'uuid/v4';
+import { v4 } from 'uuid';
 import fs from 'fs';
 import { app } from 'electron';
 
@@ -58,7 +58,7 @@ class LocalLibrary {
    */
   private async formatMeta({ common, format }: IAudioMetadata, { file, folder }: { file: string; folder?: LocalFolder }): Promise<NuclearMeta> {    
     return {
-      uuid: uuid(),
+      uuid: v4(),
       path: file,
       folder,
       duration: format.duration,

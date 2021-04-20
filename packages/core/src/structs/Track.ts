@@ -1,4 +1,4 @@
-import uuidv4 from 'uuid/v4';
+import { v4 } from 'uuid';
 
 import {
   SearchResultsSource,
@@ -25,7 +25,7 @@ export default class Track {
     artist: '',
     title: ''
   }) {
-    this.uuid = uuidv4();
+    this.uuid = v4();
     this.ids = data.ids || {};
     this.artist = data.artist;
     this.title = data.title;

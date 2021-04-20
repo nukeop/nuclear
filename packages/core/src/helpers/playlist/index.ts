@@ -1,7 +1,7 @@
-import uuidv4 from 'uuid/v4';
+import { v4 } from 'uuid';
 import {Playlist, PlaylistTrack, PlaylistTrackStream} from './types';
 
-const formatPlaylistForStored = (name: string, tracks: Array<any>, id: string = uuidv4()): Playlist => {
+const formatPlaylistForStored = (name: string, tracks: Array<any>, id: string = v4()): Playlist => {
   return {
     name,
     id,

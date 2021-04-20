@@ -1,4 +1,4 @@
-import uuidv4 from 'uuid/v4';
+import { v4 } from 'uuid';
 
 import Album from './Album';
 import Track from './Track';
@@ -29,7 +29,7 @@ export default class Artist {
   similarArtists?: Artist[];
 
   constructor(data: Partial<Artist> = {}) {
-    this.uuid = uuidv4();
+    this.uuid = v4();
     this.ids = data.ids || {};
     this.name = data.name;
     this.description = data.description;
