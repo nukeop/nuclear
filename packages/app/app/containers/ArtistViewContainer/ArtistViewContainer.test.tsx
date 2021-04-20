@@ -54,10 +54,41 @@ describe('Artist view container', () => {
     await waitFor(() => component.getByText(/add to queue/i).click());
 
     const state = store.getState();
-    expect(state.queue.queueItems).toEqual([ 
+    expect(state.queue.queueItems).toEqual([
       expect.objectContaining({
         artist: 'test artist',
         name: 'test artist top track 1'
+      })
+    ]);
+  });
+
+  it('tracks without thumbnails should have null', async () => {
+    const initialState = buildStoreState()
+      .withArtistDetails()
+      .withPlugins()
+      .withConnectivity()
+      .build();
+
+    initialState.search.artistDetails['test-artist-id'].topTracks = [{
+      artist: {
+        mbid: 'test mbid',
+        name: 'test artist',
+        url: 'test artist url'
+      },
+      name: 'test artist top track 1',
+      title: 'test artist top track 1'
+    }];
+    const { component, store } = mountComponent(initialState);
+
+    await waitFor(() => component.getByText(/test artist top track 1/i).click());
+    await waitFor(() => component.getByText(/add to queue/i).click());
+
+    const state = store.getState();
+    expect(state.queue.queueItems).toEqual([
+      expect.objectContaining({
+        artist: 'test artist',
+        name: 'test artist top track 1',
+        thumbnail: null
       })
     ]);
   });

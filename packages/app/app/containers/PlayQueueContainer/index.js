@@ -41,7 +41,7 @@ function mapStateToProps(state) {
   return {
     queue: state.queue,
     plugins: state.plugin,
-    playlists: state.playlists.playlists,
+    playlists: state.playlists.playlists, 
     settings: state.settings
   };
 }
