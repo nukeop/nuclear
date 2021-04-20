@@ -26,13 +26,16 @@ export default function (paths) {
       );
     }
     
+    const storeCache = {};
+
     const store = next(reducer, finalInitialState, enhancer);
     store.subscribe(() => {
       const state = store.getState();
       try {
         for (const path of paths) {
           const localState = _.get(state, path);
-          if (localState) {
+          if (localState && !_.isEqual(_.get(storeCache, path), localState) ) {
+            _.set(storeCache, path, localState);
             electronStore.set(path, localState);
           }
         }
