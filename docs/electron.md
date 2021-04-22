@@ -14,4 +14,4 @@ It's clear that highly polarized opinions about languages and frameworks are cha
 * There is no good alternative that would provide all these benefits (don't get me started on qt - try using their designer)
 * The users don't care about the technology you use to build your app
 
-With experience comes a certain appreciation of tradeoffs you take when buidling software and while Electron is not the perfect solution for every use case, it's certainly good enough for what I was trying to achieve with Nuclear.
+With experience comes a certain appreciation of tradeoffs you take when building software and while Electron is not the perfect solution for every use case, it's certainly good enough for what I was trying to achieve with Nuclear.
