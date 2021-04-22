@@ -11,7 +11,7 @@ import styles from './styles.scss';
 
 @withTranslation('search')
 class SearchResults extends React.Component {
-  renderAllResultsPane () {
+  renderAllResultsPane() {
     return (
       <Tab.Pane loading={this.props.unifiedSearchStarted} attached={false}>
         <div className={styles.pane_container}>
@@ -27,7 +27,7 @@ class SearchResults extends React.Component {
     );
   }
 
-  renderPane (collection, onClick) {
+  renderPane(collection, onClick) {
     const selectedProvider = _.find(this.props.metaProviders, { sourceName: this.props.selectedPlugins.metaProviders });
 
     return (
@@ -44,7 +44,7 @@ class SearchResults extends React.Component {
                     header={el.title || el.name}
                     content={el.artist}
                     image={
-                      el.coverImage || 
+                      el.coverImage ||
                       el.thumb
                     }
                     onClick={() => onClick(id, el.type)}
@@ -57,7 +57,7 @@ class SearchResults extends React.Component {
     );
   }
 
-  renderLastFmPane (collection) {
+  renderLastFmPane(collection) {
     if (typeof collection !== 'undefined') {
 
       return (
@@ -66,10 +66,7 @@ class SearchResults extends React.Component {
             {collection.length > 0
               ? this.props.unifiedSearchStarted
                 ? null
-                : <TracksResults
-                  tracks={collection}
-                  limit='15'
-                />
+                : <TracksResults tracks={collection} limit='15' />
               : this.props.t('empty')}
           </div>
         </Tab.Pane>
@@ -84,7 +81,7 @@ class SearchResults extends React.Component {
   }
 
 
-  renderPlaylistPane () {
+  renderPlaylistPane() {
     return (
       <Tab.Pane attached={false}>
         <PlaylistResults
@@ -100,7 +97,7 @@ class SearchResults extends React.Component {
     );
   }
 
-  panes () {
+  panes() {
     const panes = [
       {
         menuItem: 'All',
@@ -135,17 +132,17 @@ class SearchResults extends React.Component {
     return panes;
   }
 
-  albumInfoSearch (albumId, releaseType, release) {
+  albumInfoSearch(albumId, releaseType, release) {
     this.props.albumInfoSearch(albumId, releaseType, release);
     this.props.history.push('/album/' + albumId);
   }
 
-  artistInfoSearch (artistId) {
+  artistInfoSearch(artistId) {
     this.props.artistInfoSearch(artistId);
     this.props.history.push('/artist/' + artistId);
   }
 
-  render () {
+  render() {
     return (
       <div>
         <Tab menu={{ secondary: true, pointing: true }} panes={this.panes()} />

@@ -14,3 +14,6 @@ export { Audius };
 
 import * as SponsorBlock from './SponsorBlock';
 export { SponsorBlock };
+
+import * as Deezer from './Deezer';
+export { Deezer };

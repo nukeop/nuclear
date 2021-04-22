@@ -29,7 +29,6 @@ const ChartsTab = ({ topTracks }) => {
               </th>
               <th>{t('artist')}</th>
               <th>{t('title')}</th>
-              <th>{t('playcounts')}</th>
             </tr>
             <tr />
           </thead>
@@ -42,7 +41,6 @@ const ChartsTab = ({ topTracks }) => {
                   index={'popular-track-' + index}
                   displayCover
                   displayArtist
-                  displayPlayCount
                   withFavorites
                 />
               );

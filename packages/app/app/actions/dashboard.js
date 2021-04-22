@@ -3,7 +3,7 @@ import { rest } from '@nuclear/core';
 import { getBestNewAlbums, getBestNewTracks } from 'pitchfork-bnm';
 
 import globals from '../globals';
-import {mapLastFMTrackToInternal} from './search';
+import { Deezer } from '@nuclear/core/src/rest';
 
 const lastfm = new rest.LastFmApi(
   globals.lastfmApiKey,
@@ -147,17 +147,15 @@ export function loadTopTracksError() {
 }
 
 export function loadTopTracks() {
-  return dispatch => {
+  return async dispatch => {
     dispatch(loadTopTracksStart());
-    lastfm
-      .getTopTracks()
-      .then(tracks => tracks.json())
-      .then(tracksJson => {
-        dispatch(loadTopTracksSuccess(tracksJson.tracks.track.map(mapLastFMTrackToInternal)));
-      })
-      .catch(error => {
-        dispatch(loadTopTracksError());
-        logger.error(error);
-      });
+
+    try {
+      const tracks = await Deezer.getTopTracks();
+      dispatch(loadTopTracksSuccess(tracks.data.map(Deezer.mapDeezerTrackToInternal)));
+    } catch (error) {
+      dispatch(loadTopTracksError());
+      logger.error(error);
+    }
   };
 }
