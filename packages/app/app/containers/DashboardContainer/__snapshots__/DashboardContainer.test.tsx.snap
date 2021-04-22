@@ -834,7 +834,7 @@ exports[`Dashboard container should, display top tracks after going to top track
             class="popular_tracks_container tracks_container"
           >
             <h3>
-              Top Tracks from LastFm
+              Top Tracks from Deezer
             </h3>
             <table>
               <thead>
@@ -850,9 +850,6 @@ exports[`Dashboard container should, display top tracks after going to top track
                   </th>
                   <th>
                     Title
-                  </th>
-                  <th>
-                    Playcounts
                   </th>
                 </tr>
                 <tr />
@@ -878,11 +875,6 @@ exports[`Dashboard container should, display top tracks after going to top track
                   >
                     top track 1
                   </td>
-                  <td
-                    class="playcount"
-                  >
-                    1,000,000
-                  </td>
                 </tr>
                 <tr
                   class="track"
@@ -903,11 +895,6 @@ exports[`Dashboard container should, display top tracks after going to top track
                     class="track_name"
                   >
                     top track 2
-                  </td>
-                  <td
-                    class="playcount"
-                  >
-                    7,899,543
                   </td>
                 </tr>
               </tbody>

@@ -23,6 +23,7 @@
     "babel-jest": "^26.6.3",
     "bandcamp-scraper": "1.4.1",
     "cheerio": "^1.0.0-rc.5",
+    "deezer-public-api": "^1.0.4",
     "electron-store": "^5.1.0",
     "electron-timber": "^0.5.1",
     "get-artist-title": "^1.2.0",
