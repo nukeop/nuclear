@@ -13,7 +13,7 @@ const VolumePopUp: React.FC<VolumeControlsProps> = ({
   isMuted,
   playOptions
 }) => (
-  <Popup trigger={<Button>More</Button>} flowing hoverable basic>
+  <Popup trigger={<Button>More</Button>} flowing hoverable basic inverted>
     <VolumeControls
       volume={volume}
       updateVolume={updateVolume}
