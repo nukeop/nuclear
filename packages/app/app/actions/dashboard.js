@@ -146,16 +146,14 @@ export function loadTopTracksError() {
   };
 }
 
-export function loadTopTracks() {
-  return async dispatch => {
-    dispatch(loadTopTracksStart());
+export const loadTopTracks = () => async (dispatch) => {
+  dispatch(loadTopTracksStart());
 
-    try {
-      const tracks = await Deezer.getTopTracks();
-      dispatch(loadTopTracksSuccess(tracks.data.map(Deezer.mapDeezerTrackToInternal)));
-    } catch (error) {
-      dispatch(loadTopTracksError());
-      logger.error(error);
-    }
-  };
-}
+  try {
+    const tracks = await Deezer.getTopTracks();
+    dispatch(loadTopTracksSuccess(tracks.data.map(Deezer.mapDeezerTrackToInternal)));
+  } catch (error) {
+    dispatch(loadTopTracksError());
+    logger.error(error);
+  }
+};

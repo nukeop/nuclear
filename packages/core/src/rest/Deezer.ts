@@ -2,7 +2,7 @@ import DeezerPublicApi from 'deezer-public-api';
 
 const deezer = new DeezerPublicApi();
 
-type DeezerTopTrack = {
+export type DeezerTopTrack = {
   id: number;
   title: string;
   position: number;
@@ -14,7 +14,9 @@ type DeezerTopTrack = {
   };
 }
 
-export const getTopTracks = (limit = 50): { data: DeezerTopTrack[] } => {
+export const getChart = (): Promise<any> => deezer.chart();
+
+export const getTopTracks = (limit = 50): Promise<{ data: DeezerTopTrack[] }> => {
   return deezer.chart.tracks(limit);
 };
 

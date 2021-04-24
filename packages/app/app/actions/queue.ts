@@ -36,45 +36,43 @@ const updateQueueItem = item => ({
   payload: { item }
 });
 
-export const addToQueue = (item) => {
-  return async (dispatch, getState) => {
-    item.loading = !item.local;
-    item = safeAddUuid(item);
+export const addToQueue = (item) => async (dispatch, getState) => {
+  item.loading = !item.local;
+  item = safeAddUuid(item);
 
-    const { connectivity } = getState();
-    const isAbleToAdd = (!connectivity && item.local) || connectivity;
+  const { connectivity } = getState();
+  const isAbleToAdd = (!connectivity && item.local) || connectivity;
 
-    isAbleToAdd && dispatch(addQueueItem(item));
+  isAbleToAdd && dispatch(addQueueItem(item));
 
-    if (!item.local && isAbleToAdd) {
-      const selectedStreamProvider = getSelectedStreamProvider(getState);
-      try {
-        const streamData = await selectedStreamProvider.search({
-          artist: item.artist,
-          track: item.name
-        });
-        dispatch(updateQueueItem({
-          ...item,
-          loading: false,
-          error: false,
-          streams: [
-            streamData
-          ]
-        }));
-      } catch (e) {
-        logger.error(`An error has occurred when searching for a stream with ${selectedStreamProvider.sourceName} for "${item.artist} - ${item.name}."`);
-        logger.error(e);
-        dispatch(updateQueueItem({
-          ...item,
-          loading: false,
-          error: {
-            message: `An error has occurred when searching for a stream with ${selectedStreamProvider.sourceName}.`,
-            details: e.message
-          }
-        }));
-      }
+  if (!item.local && isAbleToAdd) {
+    const selectedStreamProvider = getSelectedStreamProvider(getState);
+    try {
+      const streamData = await selectedStreamProvider.search({
+        artist: item.artist,
+        track: item.name
+      });
+      dispatch(updateQueueItem({
+        ...item,
+        loading: false,
+        error: false,
+        streams: [
+          streamData
+        ]
+      }));
+    } catch (e) {
+      logger.error(`An error has occurred when searching for a stream with ${selectedStreamProvider.sourceName} for "${item.artist} - ${item.name}."`);
+      logger.error(e);
+      dispatch(updateQueueItem({
+        ...item,
+        loading: false,
+        error: {
+          message: `An error has occurred when searching for a stream with ${selectedStreamProvider.sourceName}.`,
+          details: e.message
+        }
+      }));
     }
-  };
+  }
 };
 
 export function playTrack(streamProviders, item) {

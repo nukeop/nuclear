@@ -52,6 +52,7 @@ class Dashboard extends React.Component {
         render: () => (
           <ChartsTab
             topTracks={dashboardData.topTracks}
+            addToQueue={actions.addToQueue}
           />
         )
       },
