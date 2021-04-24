@@ -3,7 +3,7 @@ import { Dropdown, Range } from '@nuclear/ui';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { remote } from 'electron';
-import { Button, Input, Radio, Segment, Divider, Icon } from 'semantic-ui-react';
+import { Button, Input, Radio, Segment, Icon } from 'semantic-ui-react';
 import cx from 'classnames';
 import _ from 'lodash';
 import i18n from '@nuclear/i18n';
@@ -208,8 +208,6 @@ class Settings extends React.Component {
         <hr />
         <Segment>
           { this.renderLastFmSocialIntegration() }
-          <Divider />
-          { this.renderGithubSocialIntegration() }
         </Segment>
       </div>
     );
