@@ -1,16 +1,34 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { Tab } from 'semantic-ui-react';
 import FontAwesome from 'react-fontawesome';
 import cx from 'classnames';
 
 import TrackRow from '../../TrackRow';
+import { AddAllButton } from '../../ArtistView/PopularTracks';
 
 import trackRowStyles from '../../TrackRow/styles.scss';
 import styles from './styles.scss';
 import { useTranslation } from 'react-i18next';
+import { useDispatch } from 'react-redux';
 
-const ChartsTab = ({ topTracks }) => {
+type ChartsTabProps = {
+  topTracks: any[];
+  addToQueue: (item) => void;
+}
+
+const ChartsTab: React.FC<ChartsTabProps> = ({
+  topTracks,
+  addToQueue
+}) => {
   const { t } = useTranslation('dashboard');
+  const dispatch = useDispatch();
+  const addAllToQueue = useCallback(() => topTracks.forEach(track =>
+    dispatch(addToQueue({
+      artist: (track.artist as any).name,
+      name: track.title ?? track.name,
+      thumbnail: track.thumbnail
+    }))
+  ), [addToQueue, dispatch, topTracks]);
 
   return (
     <Tab.Pane attached={false}>
@@ -20,7 +38,13 @@ const ChartsTab = ({ topTracks }) => {
           trackRowStyles.tracks_container
         )}
       >
-        <h3>{t('lastfm-title')}</h3>
+        <div className='popular_tracks_header'>
+          <h3>{t('lastfm-title')}</h3>
+          <AddAllButton
+            t={t}
+            handleAddAll={addAllToQueue}
+          />
+        </div>
         <table>
           <thead>
             <tr>

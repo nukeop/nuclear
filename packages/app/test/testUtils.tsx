@@ -5,6 +5,7 @@ import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import { createMemoryHistory } from 'history';
 import thunk from 'redux-thunk';
+import ReduxPromise from 'redux-promise';
 import { Router } from 'react-router';
 import en from '@nuclear/i18n/src/locales/en.json';
 
@@ -26,7 +27,7 @@ export const configureMockStore = (initialState?: AnyProps) => createStore(
   rootReducer,
   initialState,
   compose(
-    applyMiddleware(thunk),
+    applyMiddleware(ReduxPromise, thunk),
     syncStore(['downloads'])
   )
 );

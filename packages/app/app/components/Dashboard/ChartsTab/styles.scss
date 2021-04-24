@@ -1,6 +1,18 @@
-@import '../../../vars';
+@import "../../../vars";
 
 .popular_tracks_container {
+  .popular_tracks_header {
+    display: flex;
+    flex-flow: row;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+
+    h3 {
+      margin: 0;
+    }
+  }
+
   .track_row {
     img {
       flex: 0 0 auto;

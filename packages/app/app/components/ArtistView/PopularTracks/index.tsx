@@ -18,7 +18,7 @@ type AddAllButtonProps = {
   t: TFunction;
 }
 
-const AddAllButton: React.FC<AddAllButtonProps> = ({
+export const AddAllButton: React.FC<AddAllButtonProps> = ({
   handleAddAll,
   t
 }) => {
