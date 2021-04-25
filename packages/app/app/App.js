@@ -70,33 +70,33 @@ class App extends React.PureComponent {
     this.props.actions.githubContribInfo();
 
     this.updateConnectivityStatus(navigator.onLine);
-    window.addEventListener('online',  () => this.updateConnectivityStatus(true));
-    window.addEventListener('offline',  () => this.updateConnectivityStatus(false));
+    window.addEventListener('online', () => this.updateConnectivityStatus(true));
+    window.addEventListener('offline', () => this.updateConnectivityStatus(false));
   }
 
   updateConnectivityStatus = (isConnected) => {
     this.props.actions.changeConnectivity(isConnected);
   }
 
-  togglePlayback () {
+  togglePlayback() {
     if (this.props.player.playbackStatus === Sound.status.PAUSED) {
       this.scrobbleLastFmIfAble();
     }
     this.props.actions.togglePlayback(this.props.player.playbackStatus);
   }
 
-  nextSong () {
+  nextSong() {
     this.props.actions.nextSong();
     this.scrobbleLastFmIfAble();
   }
 
-  scrobbleLastFmIfAble () {
+  scrobbleLastFmIfAble() {
     if (this.canScrobbleLastFm()) {
       this.scrobbleLastFm();
     }
   }
 
-  scrobbleLastFm () {
+  scrobbleLastFm() {
     const currentSong = this.props.queue.queueItems[
       this.props.queue.currentSong
     ];
@@ -107,17 +107,17 @@ class App extends React.PureComponent {
     );
   }
 
-  canScrobbleLastFm () {
+  canScrobbleLastFm() {
     return this.props.scrobbling.lastFmScrobblingEnabled &&
       this.props.scrobbling.lastFmSessionKey;
   }
 
-  renderNavBar () {
+  renderNavBar() {
     return (
       <Navbar>
-        <NavButtons/>
+        <NavButtons />
         <SearchBoxContainer />
-        <Spacer className={styles.navbar_spacer}/>
+        <Spacer className={styles.navbar_spacer} />
         <HelpModalContainer />
         {this.props.settings.framelessWindow && (
           <WindowControls
@@ -130,7 +130,7 @@ class App extends React.PureComponent {
     );
   }
 
-  renderRightPanel () {
+  renderRightPanel() {
     return (
       <VerticalPanel
         className={classnames(styles.right_panel, {
@@ -142,8 +142,8 @@ class App extends React.PureComponent {
     );
   }
 
-  renderSidebarMenu () {
-    
+  renderSidebarMenu() {
+
     return (
       <VerticalPanel
         className={classnames(styles.left_panel, {
@@ -176,10 +176,10 @@ class App extends React.PureComponent {
 
             {
               this.renderMenuCategory('collection', [
-                { name: 'favorite-albums', path: 'favorites/albums', icon: 'dot circle'},
-                { name: 'favorite-tracks', path: 'favorites/tracks', icon: 'music'},
+                { name: 'favorite-albums', path: 'favorites/albums', icon: 'dot circle' },
+                { name: 'favorite-tracks', path: 'favorites/tracks', icon: 'music' },
                 { name: 'library', path: 'library', icon: 'file audio outline' },
-                { name: 'playlists', path: 'playlists', icon: 'list alternate outline'}
+                { name: 'playlists', path: 'playlists', icon: 'list alternate outline' }
               ])
             }
           </div>
@@ -190,7 +190,7 @@ class App extends React.PureComponent {
     );
   }
 
-  renderMenuCategory (headerText, links) {
+  renderMenuCategory(headerText, links) {
     return <React.Fragment>
       <SidebarMenuCategoryHeader
         compact={this.props.settings.compactMenuBar}
@@ -204,17 +204,20 @@ class App extends React.PureComponent {
     </React.Fragment>;
   }
 
-  renderNavLink (name, path, icon) {
+  renderNavLink(name, path, icon) {
     return (
       <NavLink key={path} to={'/' + path} activeClassName={styles.active_nav_link}>
-        <SidebarMenuItem>
+        <SidebarMenuItem
+          name={this.props.t(name)}
+          compact={this.props.settings.compactMenuBar}
+        >
           <Icon name={icon} />{!this.props.settings.compactMenuBar && this.props.t(name)}
         </SidebarMenuItem>
       </NavLink>
     );
   }
 
-  renderSidebarFooter () {
+  renderSidebarFooter() {
     return (
       <div className={styles.sidebar_footer}>
         <a
@@ -234,13 +237,13 @@ class App extends React.PureComponent {
     );
   }
 
-  getCurrentSongParameter (parameter) {
+  getCurrentSongParameter(parameter) {
     return this.props.queue.queueItems[this.props.queue.currentSong]
       ? this.props.queue.queueItems[this.props.queue.currentSong][parameter]
       : null;
   }
 
-  render () {
+  render() {
     return (
       <>
         <ErrorBoundary>
@@ -266,7 +269,7 @@ class App extends React.PureComponent {
   }
 }
 
-function mapStateToProps (state) {
+function mapStateToProps(state) {
   return {
     queue: state.queue,
     player: state.player,
@@ -277,7 +280,7 @@ function mapStateToProps (state) {
   };
 }
 
-function mapDispatchToProps (dispatch) {
+function mapDispatchToProps(dispatch) {
   return {
     actions: bindActionCreators(
       Object.assign(
