@@ -21,7 +21,7 @@ exports[`(Snapshot) Visualizer overlay - full screen should render correctly 1`]
       <div
         aria-atomic="true"
         aria-live="polite"
-        class="text"
+        class="divider text"
         role="alert"
       >
         preset 2
@@ -103,7 +103,7 @@ exports[`(Snapshot) Visualizer overlay should render correctly 1`] = `
       <div
         aria-atomic="true"
         aria-live="polite"
-        class="text"
+        class="divider text"
         role="alert"
       >
         preset 2
