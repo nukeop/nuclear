@@ -26,24 +26,26 @@ export const useAlbumViewProps = () => {
 
   const albumFromFavorites = favoriteAlbums.find(album => album.id === albumId);
   const album = albumFromFavorites || albumDetails[albumId];
-  
-  album.tracklist = album?.tracklist?.map(track => ({
-    ...track,
-    name: track.title,
-    thumbnail: album.coverImage,
-    duration: parseInt(track.duration) !== track.duration
-      ? stringDurationToSeconds(track.duration)
-      : track.duration,
-    artist: {
-      name: album.artist
-    }
-  }));
+
+  if (album) {
+    album.tracklist = album?.tracklist?.map(track => ({
+      ...track,
+      name: track.title,
+      thumbnail: album.coverImage,
+      duration: parseInt(track.duration) !== track.duration
+        ? stringDurationToSeconds(track.duration)
+        : track.duration,
+      artist: {
+        name: album.artist
+      }
+    }));
+  }
 
   const getIsFavorite = (currentAlbum, favoriteAlbums) => {
-    const album = _.find(favoriteAlbums, {
+    const favoriteAlbum = _.find(favoriteAlbums, {
       id: currentAlbum?.id
     });
-    return !!album;
+    return Boolean(favoriteAlbum);
   };
   const isFavorite = getIsFavorite(album, favoriteAlbums);
 
