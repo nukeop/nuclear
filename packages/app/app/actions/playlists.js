@@ -18,7 +18,7 @@ export const UPDATE_PLAYLIST = 'UPDATE_PLAYLIST';
 export function addPlaylist(tracks, name) {
   return dispatch => {
     let playlists = store.get('playlists') || [];
-    const playlist = PlaylistHelper.formatPlaylistForStored(name, tracks, v4());
+    const playlist = PlaylistHelper.formatPlaylistForStorage(name, tracks, v4());
 
     if (_.isEmpty(tracks)) {
       dispatch({
@@ -27,11 +27,7 @@ export function addPlaylist(tracks, name) {
       return;
     }
 
-    if (playlists) {
-      playlists.push(playlist);
-    } else {
-      playlists = [playlist];
-    }
+    playlists = [...playlists, playlist];
 
     store.set('playlists', playlists);
     dispatch({
@@ -101,11 +97,7 @@ export function addPlaylistFromFile(filePath) {
           return;
         }
 
-        if (playlists) {
-          playlists.push(playlist);
-        } else {
-          playlists = [playlist];
-        }
+        playlists = [...playlists, playlist];
 
         store.set('playlists', playlists);
         dispatch(success('Playlist imported successfully', `${name} created`, null, null));
