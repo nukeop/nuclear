@@ -21,8 +21,7 @@ const PlayOptionControl: React.FC<PlayOptionControlProps> = ({
   <Popup
     className={cx(common.nuclear, styles.play_option_popup)}
     content={name}
-    inverted
-    basic
+    position='top center'
     trigger={
       <Icon
         className={cx(
@@ -32,7 +31,8 @@ const PlayOptionControl: React.FC<PlayOptionControlProps> = ({
         name={icon}
         onClick={onToggle}
         size='large'
-      />}
+      />
+    }
   />);
 
 export type PlayOptionsProps = {

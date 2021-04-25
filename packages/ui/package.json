@@ -76,7 +76,7 @@
 		"react-image": "^2.2.2",
 		"react-measure": "^2.5.2",
 		"recompose": "^0.30.0",
-		"semantic-ui-react": "^0.88.1",
+		"semantic-ui-react": "^2.0.3",
 		"styled-components": "^4.4.1"
 	},
 	"jest": {

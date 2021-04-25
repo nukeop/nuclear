@@ -1,4 +1,4 @@
-@import '../../../common.scss';
+@import "../../../common.scss";
 
 .play_options {
   display: flex;
@@ -13,6 +13,21 @@
 }
 
 .nuclear.play_option_popup {
-  background: $bgdark !important;
+  background: $bgdarker !important;
+  color: $white !important;
+  border-color: $bgdefault !important;
   box-shadow: 0rem 0rem 0.5rem 0.25rem rgba($black, 0.2) !important;
+  user-select: none;
+
+  &:before {
+    background-color: $bgdarker !important;
+  }
+
+  &.bottom:before {
+    box-shadow: -1px -1px 0 0 $background2 !important;
+  }
+
+  &.top:before {
+    box-shadow: 1px 1px 0 0 $background2 !important;
+  }
 }

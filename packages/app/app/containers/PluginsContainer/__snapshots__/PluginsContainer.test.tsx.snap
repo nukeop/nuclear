@@ -32,7 +32,7 @@ exports[`Plugins container should display loaded user plugins 1`] = `
             <div
               aria-atomic="true"
               aria-live="polite"
-              class="text"
+              class="divider text"
               role="alert"
             >
               Test Stream Provider
@@ -98,7 +98,7 @@ exports[`Plugins container should display loaded user plugins 1`] = `
             <div
               aria-atomic="true"
               aria-live="polite"
-              class="text"
+              class="divider text"
               role="alert"
             >
               Test Meta Provider
@@ -164,7 +164,7 @@ exports[`Plugins container should display loaded user plugins 1`] = `
             <div
               aria-atomic="true"
               aria-live="polite"
-              class="text"
+              class="divider text"
               role="alert"
             >
               Test Lyrics Provider
@@ -337,7 +337,7 @@ exports[`Plugins container should display plugins 1`] = `
             <div
               aria-atomic="true"
               aria-live="polite"
-              class="text"
+              class="divider text"
               role="alert"
             >
               Test Stream Provider
@@ -403,7 +403,7 @@ exports[`Plugins container should display plugins 1`] = `
             <div
               aria-atomic="true"
               aria-live="polite"
-              class="text"
+              class="divider text"
               role="alert"
             >
               Test Meta Provider
@@ -469,7 +469,7 @@ exports[`Plugins container should display plugins 1`] = `
             <div
               aria-atomic="true"
               aria-live="polite"
-              class="text"
+              class="divider text"
               role="alert"
             >
               Test Lyrics Provider
