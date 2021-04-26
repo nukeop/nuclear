@@ -51,7 +51,8 @@ const PlayerBar: React.FC<PlayerBarProps> = ({
   timePlayed,
   timeToEnd,
   seek,
-  skipSegments
+  skipSegments,
+  segmentPopupMessage
 }) => (
   <div className={cx(
     common.nuclear,
@@ -63,6 +64,7 @@ const PlayerBar: React.FC<PlayerBarProps> = ({
       queue={queue}
       timePlayed={timePlayed}
       skipSegments={skipSegments}
+      segmentPopupMessage={segmentPopupMessage}
     >
       {
         hasTracks &&

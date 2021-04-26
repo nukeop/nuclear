@@ -1,5 +1,3 @@
-/* eslint-disable node/no-missing-import */
-
 import '../resources/Lato.scss';
 
 export { default as AlbumGrid } from './components/AlbumGrid';

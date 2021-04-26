@@ -52,6 +52,7 @@
 		"copyfiles": "^2.2.0",
 		"css-loader": "^3.6.0",
 		"eslint": "^7.18.0",
+		"fork-ts-checker-webpack-plugin": "^6.2.5",
 		"identity-obj-proxy": "^3.0.0",
 		"ignore-styles": "^5.0.1",
 		"jest": "^26.1.0",

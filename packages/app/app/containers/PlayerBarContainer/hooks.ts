@@ -20,6 +20,7 @@ import { SemanticICONS } from 'semantic-ui-react/dist/commonjs/generic';
 
 export const useSeekbarProps = () => {
   const dispatch = useDispatch();
+  const {t} = useTranslation('seekbar');
   const queue = useSelector(queueSelector);
   const seek: number = useSelector(playerSelectors.seek);
   const playbackProgress: number = useSelector(playerSelectors.playbackProgress);
@@ -52,7 +53,8 @@ export const useSeekbarProps = () => {
     timeToEnd,
     timePlayed: seek,
     fill: playbackProgress,
-    seek: seekCallback
+    seek: seekCallback,
+    segmentPopupMessage: t('segment-popup')
   };
 };
 

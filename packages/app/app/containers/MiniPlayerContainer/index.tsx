@@ -21,16 +21,18 @@ const MiniPlayerContainer: React.FC = () => {
   } = useMiniPlayerSettings();
 
   return isMiniPlayerEnabled
-    ? <MiniPlayer
-      {...seekbarProps}
-      {...playerControlsProps}
-      {...trackInfoProps}
-      {...volumeControlsProps}
-      onDisableMiniPlayer={toggleMiniPlayer}
-      style={{
-        zIndex: isMiniPlayerEnabled && 1000
-      }}
-    />
+    ? (
+      <MiniPlayer
+        {...seekbarProps}
+        {...playerControlsProps}
+        {...trackInfoProps}
+        {...volumeControlsProps}
+        onDisableMiniPlayer={toggleMiniPlayer}
+        style={{
+          zIndex: isMiniPlayerEnabled && 1000
+        }}
+      />
+    )
     : null;
 };
 

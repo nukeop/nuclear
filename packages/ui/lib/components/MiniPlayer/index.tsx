@@ -36,6 +36,7 @@ const MiniPlayer: React.FC<MiniPlayerProps> = ({
 
   timePlayed,
   timeToEnd,
+  segmentPopupMessage,
 
   goForward,
   goBack,
@@ -72,6 +73,7 @@ const MiniPlayer: React.FC<MiniPlayerProps> = ({
       seek={seek}
       queue={queue}
       height='0.5em'
+      segmentPopupMessage={segmentPopupMessage}
     />
   </div>
   <MiniPlayerControls
