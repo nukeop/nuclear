@@ -3,24 +3,29 @@ import cx from 'classnames';
 
 import common from '../../common.scss';
 import styles from './styles.scss';
+import { Popup } from 'semantic-ui-react';
 
 type QueueItem = {
   streams: { duration: number }[];
 };
 type Segment = {
-	startTime: number;
-	endTime: number;
-	category: string;
+  startTime: number;
+  endTime: number;
+  category: string;
 };
 
 export type SeekbarProps = {
   children?: React.ReactNode;
   fill: number;
   seek: (arg0: number) => void;
-  queue: { queueItems: QueueItem[] };
-  height?: string,
-  skipSegments?: Segment[],
-  timePlayed?: number
+  queue: {
+    queueItems: QueueItem[];
+    currentSong?: number;
+  };
+  height?: string;
+  skipSegments?: Segment[];
+  timePlayed?: number;
+  segmentPopupMessage: string;
 };
 
 const Seekbar: React.FC<SeekbarProps> = ({
@@ -29,31 +34,30 @@ const Seekbar: React.FC<SeekbarProps> = ({
   seek,
   queue,
   height,
-  skipSegments,
-  timePlayed
+  skipSegments=[],
+  timePlayed,
+  segmentPopupMessage
 }) => {
   const [hasMounted, setHasMounted] = useState(false);
   useEffect(() => {
     if (!hasMounted) {
       setHasMounted(true);
-    } else {
-      if (skipSegments && skipSegments.length && timePlayed) {
-        for (const segment of skipSegments) {
-          if (timePlayed >= segment.startTime && timePlayed <= segment.endTime) {
-            seek(segment.endTime);
-          }
+    } else if (skipSegments && skipSegments.length && timePlayed) {
+      for (const segment of skipSegments) {
+        if (timePlayed >= segment.startTime && timePlayed <= segment.endTime) {
+          seek(segment.endTime);
         }
       }
     }
-  }, [timePlayed]);
+  }, [hasMounted, seek, skipSegments, timePlayed]);
+  const duration = queue?.queueItems[queue.currentSong]?.streams?.[0]?.duration;
 
-  const handleClick = useCallback((seek, queue) => {
+  const handleClick = useCallback((seek) => {
     return event => {
       const percent = (event.pageX - event.target.offsetLeft) / document.body.clientWidth;
-      const duration = queue.queueItems[queue.currentSong].streams[0].duration;
       seek(percent * duration);
     };
-  }, []);
+  }, [duration]);
 
   return (
     <div
@@ -61,7 +65,7 @@ const Seekbar: React.FC<SeekbarProps> = ({
         common.nuclear,
         styles.seekbar
       )}
-      onClick={handleClick(seek, queue)}
+      onClick={handleClick(seek)}
       style={{ height }}
     >
       <div
@@ -72,6 +76,23 @@ const Seekbar: React.FC<SeekbarProps> = ({
         )}
       >
         {children}
+        {skipSegments.map((segment, index) => <Popup
+          key={index}
+          className={styles.seekbar_popup}
+          trigger={
+            <div
+              className={styles.seekbar_segment}
+              style={{
+                width: `${(segment.endTime - segment.startTime) / duration * 100}%`,
+                left: `${segment.startTime / duration * 100}%`
+              }}
+            />
+          }
+          content={segmentPopupMessage}
+          position='top center'
+          on='hover'
+        />)
+        }
       </div>
     </div>
   );

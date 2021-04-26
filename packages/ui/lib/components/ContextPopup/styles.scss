@@ -15,17 +15,17 @@
   }
 
   &.bottom:before {
-    box-shadow: -1px -1px 0 0 $background2 !important;
+    box-shadow: -1px -1px 0 0 $bgdefault !important;
   }
 
   &.top:before {
-    box-shadow: 1px 1px 0 0 $background2 !important;
+    box-shadow: 1px 1px 0 0 $bgdefault !important;
   }
 
   hr {
     margin: 0.5em 0 0 0;
     border: none;
-    border-bottom: 1px solid $background2;
+    border-bottom: 1px solid $bgdefault;
   }
 
   .popup_content > .content {
