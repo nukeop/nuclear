@@ -156,6 +156,9 @@
     "track": "音樂標題",
     "you-can-search-for": "You can search for:"
   },
+  "seekbar": {
+    "segment-popup": "Non-music"
+  },
   "settings": {
     "api-port": "API 網路埠",
     "api-url": "",

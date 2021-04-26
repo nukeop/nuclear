@@ -156,6 +156,9 @@
     "track": "음악",
     "you-can-search-for": "다음 항목을 검색할 수 있습니다:"
   },
+  "seekbar": {
+    "segment-popup": "Non-music"
+  },
   "settings": {
     "api-port": "API 사용 포트",
     "api-url": "",

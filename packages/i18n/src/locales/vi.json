@@ -156,6 +156,9 @@
     "track": "Bài hát",
     "you-can-search-for": "Bạn có thể tìm cho:"
   },
+  "seekbar": {
+    "segment-popup": "Non-music"
+  },
   "settings": {
     "api-port": "Port cho api",
     "api-url": "Đường dẫn cho api",

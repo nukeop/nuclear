@@ -161,6 +161,9 @@
     "track_plural": "Şarkılar",
     "you-can-search-for": "You can search for:"
   },
+  "seekbar": {
+    "segment-popup": "Non-music"
+  },
   "settings": {
     "api-port": "Api tarafından kullanılan port.",
     "api-url": "",

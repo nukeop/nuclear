@@ -161,6 +161,9 @@
     "track_plural": "Këngët",
     "you-can-search-for": "You can search for:"
   },
+  "seekbar": {
+    "segment-popup": "Non-music"
+  },
   "settings": {
     "api-port": "Porta është përdorur nga api",
     "api-url": "",

@@ -166,6 +166,9 @@
     "track_2": "Pjesama",
     "you-can-search-for": "You can search for:"
   },
+  "seekbar": {
+    "segment-popup": "Non-music"
+  },
   "settings": {
     "api-port": "Port korišten od API'a",
     "api-url": "URL apija",
