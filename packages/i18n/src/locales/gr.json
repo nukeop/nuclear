@@ -151,6 +151,9 @@
     "queue-add": "Προσθήκη όλων στην λίστα αναπαραγωγής",
     "you-can-search-for": "You can search for:"
   },
+  "seekbar": {
+    "segment-popup": "Non-music"
+  },
   "settings": {
     "api-port": "Θύρα που χρησιμοποιεί το ΑΡΙ",
     "api-url": "Διεύθυνση ΑΡΙ",

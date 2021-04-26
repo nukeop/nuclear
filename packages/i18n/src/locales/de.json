@@ -161,6 +161,9 @@
     "track_plural": "Lieder",
     "you-can-search-for": "You can search for:"
   },
+  "seekbar": {
+    "segment-popup": "Non-music"
+  },
   "settings": {
     "api-port": "Port wird von der API verwendet",
     "api-url": "",

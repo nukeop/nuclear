@@ -90,9 +90,6 @@
     "empty-help": "Add some music to the queue to display the lyrics here!",
     "not-found": "No lyrics were found for this song."
   },
-  "seekbar": {
-    "segment-popup": "Non-music"
-  },
   "option-control": {
     "autoradio": "Autoradio",
     "loop": "Loop",
@@ -163,6 +160,9 @@
     "track": "Track",
     "track_plural": "Tracks",
     "you-can-search-for": "You can search for:"
+  },
+  "seekbar": {
+    "segment-popup": "Non-music"
   },
   "settings": {
     "api-port": "Port used by the api",

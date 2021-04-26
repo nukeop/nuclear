@@ -161,6 +161,9 @@
     "track_plural": "Faixas",
     "you-can-search-for": "You can search for:"
   },
+  "seekbar": {
+    "segment-popup": "Non-music"
+  },
   "settings": {
     "api-port": "Porta usada pela api",
     "api-url": "",

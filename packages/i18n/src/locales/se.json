@@ -161,6 +161,9 @@
     "track_plural": "Spår",
     "you-can-search-for": "You can search for:"
   },
+  "seekbar": {
+    "segment-popup": "Non-music"
+  },
   "settings": {
     "api-port": "API:ets port",
     "api-url": "",

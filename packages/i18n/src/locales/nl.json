@@ -161,6 +161,9 @@
     "track_plural": "Nummers",
     "you-can-search-for": "You can search for:"
   },
+  "seekbar": {
+    "segment-popup": "Non-music"
+  },
   "settings": {
     "api-port": "Door de API gebruikte poort",
     "api-url": "",

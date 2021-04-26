@@ -161,6 +161,9 @@
     "track_plural": "Kappaleet",
     "you-can-search-for": "Voit etsiä hakusanalla:"
   },
+  "seekbar": {
+    "segment-popup": "Non-music"
+  },
   "settings": {
     "api-port": "Apin käyttämä portti",
     "api-url": "",

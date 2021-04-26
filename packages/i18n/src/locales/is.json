@@ -161,6 +161,9 @@
     "track_plural": "Lög",
     "you-can-search-for": "You can search for:"
   },
+  "seekbar": {
+    "segment-popup": "Non-music"
+  },
   "settings": {
     "api-port": "Port notað af api",
     "api-url": "",
