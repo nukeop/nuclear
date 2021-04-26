@@ -5,6 +5,7 @@ import Seekbar, { SeekbarProps } from '../Seekbar';
 import PlayerControls, { PlayerControlsProps } from '../PlayerControls';
 import TrackInfo, { TrackInfoProps } from '../TrackInfo';
 import VolumeControls, { VolumeControlsProps } from '../VolumeControls';
+import VolumePopUp, { VolumePopUpProps } from './VolumePopUp';
 
 import common from '../../common.scss';
 import styles from './styles.scss';
@@ -13,7 +14,8 @@ import { formatDuration } from '../../utils';
 export type PlayerBarProps = PlayerControlsProps &
   Omit<SeekbarProps, 'children'> &
   TrackInfoProps &
-  VolumeControlsProps & {
+  VolumeControlsProps &
+  VolumePopUpProps & {
     renderTrackDuration?: boolean;
     timePlayed?: number;
     timeToEnd?: number;
@@ -97,13 +99,24 @@ const PlayerBar: React.FC<PlayerBarProps> = ({
         goForwardDisabled={goForwardDisabled}
         playDisabled={playDisabled}
       />
-      <VolumeControls
-        volume={volume}
-        updateVolume={updateVolume}
-        toggleMute={toggleMute}
-        isMuted={isMuted}
-        playOptions={playOptions}
-      />
+      { window.innerWidth < 570 &&
+        <VolumePopUp 
+          volume={volume}
+          updateVolume={updateVolume}
+          toggleMute={toggleMute}
+          isMuted={isMuted}
+          playOptions={playOptions}
+        />
+      }
+      { window.innerWidth > 570 &&
+        <VolumeControls
+          volume={volume}
+          updateVolume={updateVolume}
+          toggleMute={toggleMute}
+          isMuted={isMuted}
+          playOptions={playOptions}
+        />
+      }
     </div>
   </div>
 );
