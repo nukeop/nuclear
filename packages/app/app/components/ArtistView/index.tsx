@@ -29,7 +29,7 @@ const ArtistView: React.FC<ArtistViewProps> = ({
   artistInfoSearchByName,
   albumInfoSearch
 }) => {
-  const t = useTranslation('artist').t;
+  const { t }= useTranslation('artist');
   const history = useHistory();
   
   const isLoading = () => artist.loading || false;

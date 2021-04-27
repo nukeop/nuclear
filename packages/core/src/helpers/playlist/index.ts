@@ -1,7 +1,7 @@
 import { v4 } from 'uuid';
 import {Playlist, PlaylistTrack, PlaylistTrackStream} from './types';
 
-const formatPlaylistForStored = (name: string, tracks: Array<any>, id: string = v4()): Playlist => {
+const formatPlaylistForStorage = (name: string, tracks: Array<any>, id: string = v4()): Playlist => {
   return {
     name,
     id,
@@ -24,10 +24,10 @@ const formatTrackList = (tracks): PlaylistTrack[] => {
 };
 
 const extractTrackData = (track): PlaylistTrack => {
-  return track && track.name && (!track.type || track.type === 'track') ? 
+  return track && (track.name || track.title) && (!track.type || track.type === 'track') ? 
     {
       artist: track.artist,
-      name: track.name,
+      name: track.name || track.title,
       album: track.album,
       thumbnail: track.thumbnail,
       duration: track.duration,
@@ -64,7 +64,7 @@ const extractStreamData = (stream): PlaylistTrackStream => {
 };
 
 export default {
-  formatPlaylistForStored, 
+  formatPlaylistForStorage, 
   formatTrackList,
   extractTrackData,
   formatTrackStreamList,

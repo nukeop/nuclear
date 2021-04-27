@@ -11,7 +11,20 @@ exports[`Playlist container should display all playlists 1`] = `
       <div
         class="header_container"
       >
-        Your playlists
+        <div
+          class="header_container"
+        >
+          Your playlists
+        </div>
+        <button
+          class="ui basic icon button"
+          data-testid="import-from-file"
+        >
+          <i
+            aria-hidden="true"
+            class="file text icon"
+          />
+        </button>
       </div>
       <div
         class="ui segment playlists_segment"
@@ -37,7 +50,7 @@ exports[`Playlist container should display all playlists 1`] = `
                 test playlist
               </h4>
               <p>
-                2 song
+                2 songs
               </p>
             </div>
           </div>
@@ -58,7 +71,18 @@ exports[`Playlist container should display empty playlists view 1`] = `
     >
       <div
         class="header_container"
-      />
+      >
+        <span />
+        <button
+          class="ui basic icon button"
+          data-testid="import-from-file"
+        >
+          <i
+            aria-hidden="true"
+            class="file text icon"
+          />
+        </button>
+      </div>
       <div
         class="empty_state"
       >

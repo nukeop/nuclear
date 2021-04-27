@@ -28,12 +28,12 @@ const PlaylistItem: React.FC<PlaylistProps> = ({ playlist, index }) => {
         <div>
           <img
             className={styles.playlist_thumbnail}
-            src={playlist.tracks[0].thumbnail || String(artPlaceholder)}
+            src={playlist.tracks[0] ? playlist.tracks[0].thumbnail || String(artPlaceholder) : String(artPlaceholder)}
           />
         </div>
         <div className={styles.playlist_info}>
           <h4 className={styles.playlist_title}>{playlist.name}</h4>
-          <p>{t('songs', {total: playlist.tracks.length})}</p>
+          <p>{t(playlist.tracks.length < 2 ? 'songs': 'songs_plural', {total: playlist.tracks.length})}</p>
         </div>
         
       </div>
