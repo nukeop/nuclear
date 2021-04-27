@@ -69,11 +69,11 @@ export function updatePlaylist(playlist) {
   };
 }
 
-export function addPlaylistFromFile(filePath) {
+export function addPlaylistFromFile(filePath, t) {
   return async dispatch => {
     fs.readFile(filePath, (err, data) => {
       if (err) {
-        dispatch(error('Playlist import fail', 'Can not open file', null, null));
+        dispatch(error(t('import-fail-title'), t('error-open-file'), null, null));
         return;
       }
 
@@ -87,27 +87,24 @@ export function addPlaylistFromFile(filePath) {
         }
 
         let playlists = store.get('playlists') || [];
-        const playlist = PlaylistHelper.formatPlaylistForStorage(name, tracks, uuidv4());
+        const playlist = PlaylistHelper.formatPlaylistForStorage(name, tracks, v4());
 
         if (_.isEmpty(tracks)) {
-          dispatch(error('Playlist import fail', 'Empty data', null, null));
-          dispatch({
-            type: null
-          });
+          dispatch(error(t('import-fail-title'), t('error-empty-data'), null, null));
           return;
         }
 
         playlists = [...playlists, playlist];
 
         store.set('playlists', playlists);
-        dispatch(success('Playlist imported successfully', `${name} created`, null, null));
+        dispatch(success(t('import-success-title'), t('playlist-created', { name }), null, null));
         dispatch({
           type: ADD_PLAYLIST,
           payload: { playlists }
         });
 
       } catch (e) {
-        dispatch(error('Playlist import fail', 'Invalid data', null, null));
+        dispatch(error(t('import-fail-title'), t('error-invalid-data'), null, null));
       }
     });
   };

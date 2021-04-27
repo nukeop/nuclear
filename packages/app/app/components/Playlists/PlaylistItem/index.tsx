@@ -33,7 +33,7 @@ const PlaylistItem: React.FC<PlaylistProps> = ({ playlist, index }) => {
         </div>
         <div className={styles.playlist_info}>
           <h4 className={styles.playlist_title}>{playlist.name}</h4>
-          <p>{t('songs', {total: playlist.tracks.length})}</p>
+          <p>{t(playlist.tracks.length < 2 ? 'songs': 'songs_plural', {total: playlist.tracks.length})}</p>
         </div>
         
       </div>
