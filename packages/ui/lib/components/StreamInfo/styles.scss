@@ -4,6 +4,7 @@
   position: relative;
   display: block;
   color: $white !important;
+  height: auto !important;
 
   .menu.transition.visible {
     height: max-content;
