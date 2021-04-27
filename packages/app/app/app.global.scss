@@ -221,8 +221,8 @@ table {
 
 .ui.dropdown {
   .menu {
-    background: $background3;
-    border: 1px solid rgba($background2, 0.6);
+    background: $bgdarker;
+    border: 1px solid rgba($bgdefault, 0.6);
     box-shadow: 0rem 0.125rem 0.5rem 0.25rem rgba($black, 0.1);
 
     .header,
@@ -232,13 +232,13 @@ table {
     }
 
     .item:hover {
-      background: $background2;
+      background: $bgdefault;
     }
   }
 }
 
 hr {
-  border: 1px solid $background2;
+  border: 1px solid $bgdefault;
 }
 
 .item.fade.visible.transition {
