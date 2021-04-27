@@ -50,7 +50,7 @@ exports[`Playlist container should display all playlists 1`] = `
                 test playlist
               </h4>
               <p>
-                2 song
+                2 songs
               </p>
             </div>
           </div>
