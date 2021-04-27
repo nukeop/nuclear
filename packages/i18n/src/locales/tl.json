@@ -107,7 +107,13 @@
     "dialog-placeholder": "Pangalan ng playlist...",
     "empty": "Walang playlists.",
     "empty-help": "Try create some playlists or import by url and they will appear here!",
+    "error-empty-data": "Empty data",
+    "error-invalid-data": "Invalid data",
+    "error-open-file": "Can not open file",
     "header": "Your playlists",
+    "import-fail-title": "Playlist import fail",
+    "import-success-title": "Playlist imported successfully",
+    "playlist-created": "{{name}} created",
     "queue": "Add playlist to queue",
     "rename": "Palitan ang pangalan nitong playlist",
     "title": "Title"

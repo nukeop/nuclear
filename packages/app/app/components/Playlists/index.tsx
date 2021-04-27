@@ -22,9 +22,10 @@ const EmptyState = () => {
 
 type PlaylistsProps = {
   playlists: Playlist[];
+  handleImportFromFile: React.MouseEventHandler;
 }
 
-const Playlists: React.FC<PlaylistsProps> = ({ playlists }) => {
+const Playlists: React.FC<PlaylistsProps> = ({ playlists, handleImportFromFile }) => {
   
   function isPlaylistsReallyEmpty() {
     return (
@@ -40,6 +41,7 @@ const Playlists: React.FC<PlaylistsProps> = ({ playlists }) => {
     <div className={styles.playlists_container}>
       <PlaylistsHeader 
         showText={isPlaylistsReallyNotEmpty()}
+        handleImportFromFile={handleImportFromFile}
       />
       {
         isPlaylistsReallyEmpty() && 
