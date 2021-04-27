@@ -89,7 +89,7 @@ Nuclear has already been translated to several languages, and we're always looki
 | Russian              | [ramstore07](https://github.com/ramstore07), [dmtrshat](https://github.com/dmtrshat)                        |
 | Brazilian Portuguese | [JoaoPedroMoraes](https://github.com/JoaoPedroMoraes)                                                       |
 | Turkish              | [3DShark](https://github.com/3DShark)                                                                       |
-| Italian              | [gello94](https://github.com/gello94)                                                                       |
+| Italian              | [gello94](https://github.com/gello94), [scardracs](https://github.com/scardracs)                            |
 | Slovak               | [MartinT](https://github.com/MartinTuroci)                                                                  |
 | Czech                | [PetrTodorov](https://github.com/PetrTodorov)                                                               |
 | Tagalog              | [giftofgrub](https://github.com/giftofgrub)                                                                 |
