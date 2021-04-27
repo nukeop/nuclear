@@ -1,9 +1,9 @@
 {
   "album": {
     "download": "Download",
-    "download-toast-content": "{{artist}} - {{title}} e' stato aggiunto nei download.",
+    "download-toast-content": "{{artist}} - {{title}} è stato aggiunto nei download.",
     "download-toast-title": "Album messo nei download.",
-    "error-load": "Scusa, questo album non puo' essere caricato. Riprova piu' tardi o apri un nuovo bug su GitHub.",
+    "error-load": "Scusa, questo album non può essere caricato. Riprova più tardi o apri un nuovo bug su GitHub.",
     "queue": "Aggiungi album alla coda"
   },
   "app": {
@@ -36,7 +36,7 @@
     "best-new-tracks": "Nuovi brani migliori",
     "genres": "Generi",
     "lastfm-title": "Migliori brani da LastFm",
-    "news": "Novita'",
+    "news": "Novità",
     "playcounts": "Numero di riproduzioni",
     "title": "Titoli",
     "top": "Top"
@@ -44,7 +44,7 @@
   "downloads": {
     "clear": "Elimina i download completati.",
     "completion": "Completato",
-    "empty": "La cartella download e' vuota.",
+    "empty": "La cartella download è vuota.",
     "empty-help": "Aggiungi qualcosa al tuo elenco di download e lo vedrai qui!",
     "header": "Scaricato",
     "name": "Nome",
@@ -67,7 +67,7 @@
     "header": "Riproduttore musicale desktop che riproduce musica da fonti gratuite",
     "released": "Rilasciata sotto AGPL-3.0",
     "report": "Invia bug o nuove feature.",
-    "thanks": "Grazie mille ai contributori su GitHub, il vostro aiuto e' stato vitale nel creare questo programma."
+    "thanks": "Grazie mille ai contributori su GitHub, il vostro aiuto è stato vitale nel creare questo programma."
   },
   "input-dialog": {
     "cancel": "Cancella"
@@ -76,7 +76,7 @@
     "add": "Aggiungi cartella",
     "album": "Album",
     "artist": "Artista",
-    "empty": "La libreria e' vuota",
+    "empty": "La libreria è vuota",
     "empty-help": "Prova ad aggiungere qualche brano usando il pulsante qui sopra.",
     "filter-placeholder": "Filtra...",
     "header": "Libreria Locale",
@@ -109,7 +109,7 @@
     "empty-help": "Prova a creare qualche playlist o importane l'url e le vedrai apparire qui!",
     "error-empty-data": "Dati vuoti",
     "error-invalid-data": "Dati invalidi",
-    "error-open-file": "Non e' possibile aprire il file",
+    "error-open-file": "Non è possibile aprire il file",
     "header": "Le tue playlist",
     "import-fail-title": "Importazione della playlist fallita",
     "import-success-title": "Importazione della playlist riuscita",
@@ -139,7 +139,7 @@
     "dialog-placeholder": "Nome della playlist...",
     "dialog-trigger": "Salva come playlist",
     "download": "Download",
-    "download-toast-content": "{{artist}} - {{title}} e' stato aggiunto alla coda.",
+    "download-toast-content": "{{artist}} - {{title}} è stato aggiunto alla coda.",
     "download-toast-title": "Brano aggiunto ai download",
     "favorite-add": "Aggiungi ai favoriti",
     "header": "Coda",
@@ -147,7 +147,7 @@
     "id": "ID di stream:",
     "loading": "Caricando",
     "playlist-add": "Aggiungi alla playlist",
-    "playlist-toast-content": "La playlist {{name}} e' stata creata.",
+    "playlist-toast-content": "La playlist {{name}} è stata creata.",
     "playlist-toast-title": "Playlist creata",
     "title": "Titolo:"
   },
@@ -175,7 +175,7 @@
     "api-url": "",
     "autoradio": "Autoradio",
     "autoradio-craziness": "Livello di follia dell'Autoradio",
-    "autoradio-craziness-description": "L'Autoradio selezionera' i brani meno simili tra loro in coda",
+    "autoradio-craziness-description": "L'Autoradio selezionerà i brani meno simili tra loro in coda",
     "autoradio-description": "Aggiungi brani simili quando la coda sta per finire",
     "compact-menu-bar": "Usa lo stile compatto per il menu principale",
     "compact-queue-bar": "Usa lo stile compatto per la coda principale",
@@ -192,7 +192,7 @@
     "fmfav-msg": "Importa i tui favoriti da Last.fm",
     "frameless-window": "Schermata senza cornici (richiede il riavvio)",
     "github-connect": "Login con GitHub",
-    "github-description": "Login via GitHub per creare e condividere le tue playlist on line (novita' in arrivo).",
+    "github-description": "Login via GitHub per creare e condividere le tue playlist on line (novità in arrivo).",
     "github-title": "GitHub",
     "http": "HTTP API",
     "invidious-url": "URL per la stanza invidious",
@@ -214,7 +214,7 @@
     "seek-iteration": "Numero di secondi richiesti per mandare avanti/indietro quando si premono le frecce",
     "shuffle-queue": "Mescola i brani",
     "shuffle-when-going-back": "Mescola sul brano precedente",
-    "shuffle-when-going-back-description": "Riproduci un brano casuale quando la funzione mescola e' abilitata e il pulsante brano precedente viene cliccato",
+    "shuffle-when-going-back-description": "Riproduci un brano casuale quando la funzione mescola è abilitata e il pulsante brano precedente viene cliccato",
     "social": "Social",
     "track-duration": "Mostra la durata del brano sulla SeekBar",
     "user": "Utente:",
