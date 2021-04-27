@@ -10,6 +10,7 @@ import VolumePopUp, { VolumePopUpProps } from './VolumePopUp';
 import common from '../../common.scss';
 import styles from './styles.scss';
 import { formatDuration } from '../../utils';
+import useWindowSize from '../../hooks/useWindowSize';
 
 export type PlayerBarProps = PlayerControlsProps &
   Omit<SeekbarProps, 'children'> &
@@ -21,6 +22,7 @@ export type PlayerBarProps = PlayerControlsProps &
     timeToEnd?: number;
   };
 
+const VOLUME_POPUP_BREAKPOINT = 570;
 const PlayerBar: React.FC<PlayerBarProps> = ({
   cover,
   track,
@@ -55,70 +57,65 @@ const PlayerBar: React.FC<PlayerBarProps> = ({
   seek,
   skipSegments,
   segmentPopupMessage
-}) => (
-  <div className={cx(
-    common.nuclear,
-    styles.player_bar
-  )}>
-    <Seekbar
-      fill={fill}
-      seek={seek}
-      queue={queue}
-      timePlayed={timePlayed}
-      skipSegments={skipSegments}
-      segmentPopupMessage={segmentPopupMessage}
-    >
-      {
-        hasTracks &&
+}) => {
+  const { width: windowWidth } = useWindowSize();
+  return (
+    <div className={cx(
+      common.nuclear,
+      styles.player_bar
+    )}>
+      <Seekbar
+        fill={fill}
+        seek={seek}
+        queue={queue}
+        timePlayed={timePlayed}
+        skipSegments={skipSegments}
+        segmentPopupMessage={segmentPopupMessage}
+      >
+        {hasTracks &&
           renderTrackDuration &&
           <div className={styles.track_duration}>
             <div>{formatDuration(timePlayed)}</div>
             <div>-{formatDuration(timeToEnd)}</div>
-          </div>
-      }
-    </Seekbar>
-    <div className={styles.player_bar_bottom}>
-      <TrackInfo
-        cover={cover}
-        track={track}
-        artist={artist}
-        onTrackClick={onTrackClick}
-        onArtistClick={onArtistClick}
-        addToFavorites={addToFavorites}
-        removeFromFavorites={removeFromFavorites}
-        isFavorite={isFavorite}
-        hasTracks={hasTracks}
-      />
-      <PlayerControls
-        goForward={goForward}
-        goBack={goBack}
-        togglePlay={togglePlay}
-        isPlaying={isPlaying}
-        isLoading={isLoading}
-        goBackDisabled={goBackDisabled}
-        goForwardDisabled={goForwardDisabled}
-        playDisabled={playDisabled}
-      />
-      { window.innerWidth < 570 &&
-        <VolumePopUp 
-          volume={volume}
-          updateVolume={updateVolume}
-          toggleMute={toggleMute}
-          isMuted={isMuted}
-          playOptions={playOptions}
-        />
-      }
-      { window.innerWidth > 570 &&
-        <VolumeControls
-          volume={volume}
-          updateVolume={updateVolume}
-          toggleMute={toggleMute}
-          isMuted={isMuted}
-          playOptions={playOptions}
-        />
-      }
+          </div>}
+      </Seekbar>
+      <div className={styles.player_bar_bottom}>
+        <TrackInfo
+          cover={cover}
+          track={track}
+          artist={artist}
+          onTrackClick={onTrackClick}
+          onArtistClick={onArtistClick}
+          addToFavorites={addToFavorites}
+          removeFromFavorites={removeFromFavorites}
+          isFavorite={isFavorite}
+          hasTracks={hasTracks} />
+        <PlayerControls
+          goForward={goForward}
+          goBack={goBack}
+          togglePlay={togglePlay}
+          isPlaying={isPlaying}
+          isLoading={isLoading}
+          goBackDisabled={goBackDisabled}
+          goForwardDisabled={goForwardDisabled}
+          playDisabled={playDisabled} />
+        {windowWidth < VOLUME_POPUP_BREAKPOINT &&
+          <VolumePopUp
+            volume={volume}
+            updateVolume={updateVolume}
+            toggleMute={toggleMute}
+            isMuted={isMuted}
+            playOptions={playOptions} />}
+        {windowWidth > VOLUME_POPUP_BREAKPOINT &&
+          <VolumeControls
+            volume={volume}
+            updateVolume={updateVolume}
+            toggleMute={toggleMute}
+            isMuted={isMuted}
+            playOptions={playOptions} />}
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 export default PlayerBar;

@@ -30,11 +30,37 @@
     justify-content: space-between;
     align-items: center;
 
-    padding: 0 .5em;
+    padding: 0 0.5em;
     height: 100%;
     width: 100%;
     z-index: 10;
 
     pointer-events: none;
+  }
+}
+
+.volume_popup_container {
+  display: flex;
+  justify-content: flex-end;
+  flex: 1 1 50%;
+  padding-right: 1em;
+
+  .volume_popup_button {
+    background: transparent !important;
+    color: $white !important;
+
+  }
+}
+
+.volume_popup {
+  position: relative !important;
+  right: 1em !important;
+  
+  background: $bgdarker !important;
+  border: 1px solid rgba($bgdefault, 0.6) !important;
+  box-shadow: 0rem 0.125rem 0.5rem 0.25rem rgba($black, 0.1) !important;
+
+  .volume_controls_container {
+    padding: 0;
   }
 }
