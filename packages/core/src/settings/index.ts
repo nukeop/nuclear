@@ -25,7 +25,7 @@ type SettingOption = {
   value: string;
 }
 
-type Setting = {
+export type Setting = {
   name: string;
   category: SettingCategory;
   description?: string;

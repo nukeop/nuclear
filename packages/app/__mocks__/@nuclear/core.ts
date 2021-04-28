@@ -1,4 +1,3 @@
-
 const initialStoreState = () => ({
   equalizer: {
     selected: 'Default'
@@ -40,7 +39,7 @@ module.exports = {
       getTopTracks = () => Promise.resolve()
     }
   },
-  settingsConfig: [],
+  settingsConfig: jest.requireActual('@nuclear/core/src/settings').settingsConfig,
   SettingType: {
     BOOLEAN: 'boolean',
     LIST: 'list',

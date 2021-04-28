@@ -1,11 +1,4 @@
-import {
-  LASTFM_CONNECT,
-  LASTFM_LOGIN,
-  LASTFM_LOGOUT,
-  LASTFM_READ_SETTINGS,
-  LASTFM_ENABLE_SCROBBLING,
-  LASTFM_DISABLE_SCROBBLING
-} from '../actions/scrobbling';
+import { Scrobbling } from '../actions/actionTypes';
 
 const initialState = {
   lastFmName: null,
@@ -16,22 +9,22 @@ const initialState = {
 
 export default function ScrobblingReducer(state=initialState, action) {
   switch (action.type) {
-  case LASTFM_CONNECT:
+  case Scrobbling.LASTFM_CONNECT:
     return Object.assign({}, state, {
       lastFmAuthToken: action.payload
     });
-  case LASTFM_LOGIN:
+  case Scrobbling.LASTFM_LOGIN:
     return Object.assign({}, state, {
       lastFmName: action.payload.name,
       lastFmSessionKey: action.payload.sessionKey
     });
-  case LASTFM_LOGOUT:
+  case Scrobbling.LASTFM_LOGOUT:
     return Object.assign({}, state, {
       lastFmAuthToken: null,
       lastFmName: null,
       lastFmSessionKey: null
     });
-  case LASTFM_READ_SETTINGS:
+  case Scrobbling.LASTFM_READ_SETTINGS:
     if (action.payload) {
       return Object.assign({}, state, {
         lastFmName: action.payload.lastFmName,
@@ -42,11 +35,11 @@ export default function ScrobblingReducer(state=initialState, action) {
     } else {
       return state;
     }
-  case LASTFM_ENABLE_SCROBBLING:
+  case Scrobbling.LASTFM_ENABLE_SCROBBLING:
     return Object.assign({}, state, {
       lastFmScrobblingEnabled: true
     });
-  case LASTFM_DISABLE_SCROBBLING:
+  case Scrobbling.LASTFM_DISABLE_SCROBBLING:
     return Object.assign({}, state, {
       lastFmScrobblingEnabled: false
     });
