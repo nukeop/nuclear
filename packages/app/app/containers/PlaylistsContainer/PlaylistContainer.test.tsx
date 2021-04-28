@@ -35,8 +35,8 @@ describe('Playlist container', () => {
   it('should go to playlist after click on it', async () => {
     const { component, history } = mountComponent();
     expect(history.location.pathname).toBe('/playlists');
-    await waitFor(() => component.getByText(/test playlist/i).click());
-    expect(history.location.pathname).toBe('/playlist/0');
+    await waitFor(() => component.getByText(/test playlist 2/i).click());
+    expect(history.location.pathname).toBe('/playlist/1');
   });
 
   const mountComponent = (initialStore?: AnyProps) => {
