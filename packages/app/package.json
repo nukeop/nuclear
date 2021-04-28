@@ -102,6 +102,7 @@
     "i18next-json-sync": "^2.3.1",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^26.6.3",
+    "megalodon": "^3.6.1",
     "mock-require": "^3.0.3",
     "node-sass": "^4.13.0",
     "react-hot-loader": "4.12",

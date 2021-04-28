@@ -1,0 +1,1176 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Settings view container should render settings 1`] = `
+<DocumentFragment>
+  <div
+    class="main_layout_container"
+  >
+    <div
+      class="settings_container"
+    >
+      <div
+        class="settings_section"
+      >
+        <div
+          class="header_container"
+        >
+          social
+        </div>
+        <hr />
+        <div
+          class="ui segment"
+        >
+          <div
+            class="ui grid social_integration"
+          >
+            <div
+              class="column"
+            >
+              <div
+                class="row"
+              >
+                <span>
+                  <i
+                    class="big icons"
+                  >
+                    <i
+                      aria-hidden="true"
+                      class="square icon social_icon_bg"
+                    />
+                    <i
+                      aria-hidden="true"
+                      class="lastfm square icon lastfm_icon"
+                    />
+                  </i>
+                </span>
+                <span>
+                  lastfm-title
+                </span>
+              </div>
+              <div
+                class="row"
+              >
+                <p>
+                  lastfm-description
+                </p>
+              </div>
+            </div>
+          </div>
+          <div
+            class="settings_social_item"
+          >
+            <span>
+              user 
+              <strong>
+                notlogged
+              </strong>
+            </span>
+            <div
+              class="spacer"
+            />
+            <button
+              class="ui red button"
+            >
+              lastfm-connect
+            </button>
+            <button
+              class="ui red button"
+            >
+              login
+            </button>
+          </div>
+          <div
+            class="settings_item"
+          >
+            <label>
+              lastfm-enable
+            </label>
+            <div
+              class="spacer"
+            />
+            <div
+              class="ui fitted toggle checkbox"
+            >
+              <input
+                class="hidden"
+                readonly=""
+                tabindex="0"
+                type="radio"
+                value=""
+              />
+              <label />
+            </div>
+          </div>
+          <div
+            class="settings_social_item"
+          >
+            <span>
+              fmfav-msg
+            </span>
+            <div
+              class="spacer"
+            />
+            <span>
+               
+            </span>
+            <div
+              class="spacer"
+            />
+            <button
+              class="ui green button"
+            >
+              fmfav-btn
+            </button>
+          </div>
+        </div>
+      </div>
+      <div
+        class="settings_section"
+      >
+        <div
+          class="header_container"
+        >
+          http
+        </div>
+        <hr />
+        <div
+          class="ui segment"
+        >
+          <div
+            class="settings_item node"
+          >
+            <span
+              class="settings_item_text"
+            >
+              <label
+                class="settings_item_name"
+              >
+                api-url
+              </label>
+            </span>
+            <div
+              class="spacer"
+            />
+            <a
+              class="http_api_url"
+            >
+              <i
+                aria-hidden="true"
+                class="linkify icon"
+              />
+              API Docs
+            </a>
+          </div>
+          <div
+            class="settings_item boolean"
+          >
+            <span
+              class="settings_item_text"
+            >
+              <label
+                class="settings_item_name"
+              >
+                enable-api
+              </label>
+            </span>
+            <div
+              class="spacer"
+            />
+            <div
+              class="ui fitted toggle checkbox"
+            >
+              <input
+                class="hidden"
+                readonly=""
+                tabindex="0"
+                type="radio"
+                value=""
+              />
+              <label />
+            </div>
+          </div>
+          <div
+            class="settings_item number"
+          >
+            <span
+              class="settings_item_text"
+            >
+              <label
+                class="settings_item_name"
+              >
+                api-port
+              </label>
+            </span>
+            <div
+              class="spacer"
+            />
+            <div
+              class="ui error fluid input"
+            >
+              <input
+                max="49151"
+                min="1024"
+                type="number"
+                value="3100"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="settings_section"
+      >
+        <div
+          class="header_container"
+        >
+          playback
+        </div>
+        <hr />
+        <div
+          class="ui segment"
+        >
+          <div
+            class="settings_item boolean"
+          >
+            <span
+              class="settings_item_text"
+            >
+              <label
+                class="settings_item_name"
+              >
+                loop-after-queue-end
+              </label>
+            </span>
+            <div
+              class="spacer"
+            />
+            <div
+              class="ui fitted toggle checkbox"
+            >
+              <input
+                class="hidden"
+                readonly=""
+                tabindex="0"
+                type="radio"
+                value=""
+              />
+              <label />
+            </div>
+          </div>
+          <div
+            class="settings_item boolean"
+          >
+            <span
+              class="settings_item_text"
+            >
+              <label
+                class="settings_item_name"
+              >
+                shuffle-queue
+              </label>
+            </span>
+            <div
+              class="spacer"
+            />
+            <div
+              class="ui fitted toggle checkbox"
+            >
+              <input
+                class="hidden"
+                readonly=""
+                tabindex="0"
+                type="radio"
+                value=""
+              />
+              <label />
+            </div>
+          </div>
+          <div
+            class="settings_item boolean"
+          >
+            <span
+              class="settings_item_text"
+            >
+              <label
+                class="settings_item_name"
+              >
+                shuffle-when-going-back
+              </label>
+              <p
+                class="settings_item_description"
+              >
+                shuffle-when-going-back-description
+              </p>
+            </span>
+            <div
+              class="spacer"
+            />
+            <div
+              class="ui fitted toggle checkbox"
+            >
+              <input
+                class="hidden"
+                readonly=""
+                tabindex="0"
+                type="radio"
+                value=""
+              />
+              <label />
+            </div>
+          </div>
+          <div
+            class="settings_item boolean"
+          >
+            <span
+              class="settings_item_text"
+            >
+              <label
+                class="settings_item_name"
+              >
+                autoradio
+              </label>
+              <p
+                class="settings_item_description"
+              >
+                autoradio-description
+              </p>
+            </span>
+            <div
+              class="spacer"
+            />
+            <div
+              class="ui checked fitted toggle checkbox"
+            >
+              <input
+                checked=""
+                class="hidden"
+                readonly=""
+                tabindex="0"
+                type="radio"
+                value=""
+              />
+              <label />
+            </div>
+          </div>
+          <div
+            class="settings_item number"
+          >
+            <span
+              class="settings_item_text"
+            >
+              <label
+                class="settings_item_name"
+              >
+                seek-iteration
+              </label>
+            </span>
+            <div
+              class="spacer"
+            />
+            <div
+              class="ui error fluid input"
+            >
+              <input
+                type="text"
+                value="10"
+              />
+            </div>
+          </div>
+          <div
+            class="settings_item number"
+          >
+            <span
+              class="settings_item_text"
+            >
+              <label
+                class="settings_item_name"
+              >
+                autoradio-craziness
+              </label>
+              <p
+                class="settings_item_description"
+              >
+                autoradio-craziness-description
+              </p>
+            </span>
+            <div
+              class="spacer"
+            />
+            <div
+              class="slider_container"
+            >
+              <label>
+                Less
+              </label>
+              <div
+                class="range"
+                style="width: auto;"
+              >
+                <div
+                  class="baseDiv"
+                  style="height: 21px;"
+                >
+                  <div
+                    class="track"
+                    style="border-radius: 4px; background: rgb(68, 71, 90); top: 8.5px; height: 4px;"
+                  />
+                  <div
+                    class="fill"
+                    style="border-radius: 4px; background: rgb(248, 248, 242); width: calc(100% * 0.10101010101010101 + 18.87878787878788px); top: 8.5px; height: 4px;"
+                  />
+                  <div
+                    class="thumb"
+                    style="width: 21px; height: 21px; border-radius: 21px; background: rgb(248, 248, 242);"
+                  />
+                  <input
+                    class="input"
+                    max="100"
+                    min="1"
+                    style="top: 8.5px; height: 21px; width: calc(100% - 21px); margin-left: 10.5px; margin-right: 10.5px;"
+                    type="range"
+                  />
+                </div>
+              </div>
+              <label>
+                More
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="settings_section"
+      >
+        <div
+          class="header_container"
+        >
+          program-settings
+        </div>
+        <hr />
+        <div
+          class="ui segment"
+        >
+          <div
+            class="settings_item number"
+          >
+            <span
+              class="settings_item_text"
+            >
+              <label
+                class="settings_item_name"
+              >
+                notification-timeout
+              </label>
+            </span>
+            <div
+              class="spacer"
+            />
+            <div
+              class="ui error fluid input"
+            >
+              <input
+                type="text"
+                value="3"
+              />
+            </div>
+          </div>
+          <div
+            class="settings_item boolean"
+          >
+            <span
+              class="settings_item_text"
+            >
+              <label
+                class="settings_item_name"
+              >
+                disable-gpu
+              </label>
+            </span>
+            <div
+              class="spacer"
+            />
+            <div
+              class="ui fitted toggle checkbox"
+            >
+              <input
+                class="hidden"
+                readonly=""
+                tabindex="0"
+                type="radio"
+                value=""
+              />
+              <label />
+            </div>
+          </div>
+          <div
+            class="settings_item boolean"
+          >
+            <span
+              class="settings_item_text"
+            >
+              <label
+                class="settings_item_name"
+              >
+                frameless-window
+              </label>
+            </span>
+            <div
+              class="spacer"
+            />
+            <div
+              class="ui checked fitted toggle checkbox"
+            >
+              <input
+                checked=""
+                class="hidden"
+                readonly=""
+                tabindex="0"
+                type="radio"
+                value=""
+              />
+              <label />
+            </div>
+          </div>
+          <div
+            class="settings_item list"
+          >
+            <span
+              class="settings_item_text"
+            >
+              <label
+                class="settings_item_name"
+              >
+                language
+              </label>
+            </span>
+            <div
+              class="spacer"
+            />
+            <div
+              aria-expanded="false"
+              class="ui search selection dropdown nuclear dropdown list_option"
+              role="combobox"
+            >
+              <input
+                aria-autocomplete="list"
+                autocomplete="off"
+                class="search"
+                tabindex="0"
+                type="text"
+                value=""
+              />
+              <div
+                aria-atomic="true"
+                aria-live="polite"
+                class="divider default text"
+                role="alert"
+              >
+                language-placeholder
+              </div>
+              <i
+                aria-hidden="true"
+                class="dropdown icon"
+              />
+              <div
+                class="menu transition"
+                role="listbox"
+              >
+                <div
+                  aria-checked="false"
+                  aria-selected="true"
+                  class="selected item"
+                  role="option"
+                  style="pointer-events: all;"
+                >
+                  <span
+                    class="text"
+                  >
+                    Česky
+                  </span>
+                </div>
+                <div
+                  aria-checked="false"
+                  aria-selected="false"
+                  class="item"
+                  role="option"
+                  style="pointer-events: all;"
+                >
+                  <span
+                    class="text"
+                  >
+                    Deutsch
+                  </span>
+                </div>
+                <div
+                  aria-checked="false"
+                  aria-selected="false"
+                  class="item"
+                  role="option"
+                  style="pointer-events: all;"
+                >
+                  <span
+                    class="text"
+                  >
+                    Dansk
+                  </span>
+                </div>
+                <div
+                  aria-checked="false"
+                  aria-selected="false"
+                  class="item"
+                  role="option"
+                  style="pointer-events: all;"
+                >
+                  <span
+                    class="text"
+                  >
+                    English
+                  </span>
+                </div>
+                <div
+                  aria-checked="false"
+                  aria-selected="false"
+                  class="item"
+                  role="option"
+                  style="pointer-events: all;"
+                >
+                  <span
+                    class="text"
+                  >
+                    English (US)
+                  </span>
+                </div>
+                <div
+                  aria-checked="false"
+                  aria-selected="false"
+                  class="item"
+                  role="option"
+                  style="pointer-events: all;"
+                >
+                  <span
+                    class="text"
+                  >
+                    Español
+                  </span>
+                </div>
+                <div
+                  aria-checked="false"
+                  aria-selected="false"
+                  class="item"
+                  role="option"
+                  style="pointer-events: all;"
+                >
+                  <span
+                    class="text"
+                  >
+                    Français
+                  </span>
+                </div>
+                <div
+                  aria-checked="false"
+                  aria-selected="false"
+                  class="item"
+                  role="option"
+                  style="pointer-events: all;"
+                >
+                  <span
+                    class="text"
+                  >
+                    Italiano
+                  </span>
+                </div>
+                <div
+                  aria-checked="false"
+                  aria-selected="false"
+                  class="item"
+                  role="option"
+                  style="pointer-events: all;"
+                >
+                  <span
+                    class="text"
+                  >
+                    Nederlands
+                  </span>
+                </div>
+                <div
+                  aria-checked="false"
+                  aria-selected="false"
+                  class="item"
+                  role="option"
+                  style="pointer-events: all;"
+                >
+                  <span
+                    class="text"
+                  >
+                    Polski
+                  </span>
+                </div>
+                <div
+                  aria-checked="false"
+                  aria-selected="false"
+                  class="item"
+                  role="option"
+                  style="pointer-events: all;"
+                >
+                  <span
+                    class="text"
+                  >
+                    Português (Brasil)
+                  </span>
+                </div>
+                <div
+                  aria-checked="false"
+                  aria-selected="false"
+                  class="item"
+                  role="option"
+                  style="pointer-events: all;"
+                >
+                  <span
+                    class="text"
+                  >
+                    Русский
+                  </span>
+                </div>
+                <div
+                  aria-checked="false"
+                  aria-selected="false"
+                  class="item"
+                  role="option"
+                  style="pointer-events: all;"
+                >
+                  <span
+                    class="text"
+                  >
+                    Türkçe
+                  </span>
+                </div>
+                <div
+                  aria-checked="false"
+                  aria-selected="false"
+                  class="item"
+                  role="option"
+                  style="pointer-events: all;"
+                >
+                  <span
+                    class="text"
+                  >
+                    简体中文
+                  </span>
+                </div>
+                <div
+                  aria-checked="false"
+                  aria-selected="false"
+                  class="item"
+                  role="option"
+                  style="pointer-events: all;"
+                >
+                  <span
+                    class="text"
+                  >
+                    繁體中文
+                  </span>
+                </div>
+                <div
+                  aria-checked="false"
+                  aria-selected="false"
+                  class="item"
+                  role="option"
+                  style="pointer-events: all;"
+                >
+                  <span
+                    class="text"
+                  >
+                    Bahasa Indonesia
+                  </span>
+                </div>
+                <div
+                  aria-checked="false"
+                  aria-selected="false"
+                  class="item"
+                  role="option"
+                  style="pointer-events: all;"
+                >
+                  <span
+                    class="text"
+                  >
+                    Slovenčina
+                  </span>
+                </div>
+                <div
+                  aria-checked="false"
+                  aria-selected="false"
+                  class="item"
+                  role="option"
+                  style="pointer-events: all;"
+                >
+                  <span
+                    class="text"
+                  >
+                    한국어
+                  </span>
+                </div>
+                <div
+                  aria-checked="false"
+                  aria-selected="false"
+                  class="item"
+                  role="option"
+                  style="pointer-events: all;"
+                >
+                  <span
+                    class="text"
+                  >
+                    Tagalog (Filipino)
+                  </span>
+                </div>
+                <div
+                  aria-checked="false"
+                  aria-selected="false"
+                  class="item"
+                  role="option"
+                  style="pointer-events: all;"
+                >
+                  <span
+                    class="text"
+                  >
+                    Svenska
+                  </span>
+                </div>
+                <div
+                  aria-checked="false"
+                  aria-selected="false"
+                  class="item"
+                  role="option"
+                  style="pointer-events: all;"
+                >
+                  <span
+                    class="text"
+                  >
+                    Greek
+                  </span>
+                </div>
+                <div
+                  aria-checked="false"
+                  aria-selected="false"
+                  class="item"
+                  role="option"
+                  style="pointer-events: all;"
+                >
+                  <span
+                    class="text"
+                  >
+                    Hrvatski
+                  </span>
+                </div>
+                <div
+                  aria-checked="false"
+                  aria-selected="false"
+                  class="item"
+                  role="option"
+                  style="pointer-events: all;"
+                >
+                  <span
+                    class="text"
+                  >
+                    Íslenska
+                  </span>
+                </div>
+                <div
+                  aria-checked="false"
+                  aria-selected="false"
+                  class="item"
+                  role="option"
+                  style="pointer-events: all;"
+                >
+                  <span
+                    class="text"
+                  >
+                    Suomi
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="settings_section"
+      >
+        <div
+          class="header_container"
+        >
+          display
+        </div>
+        <hr />
+        <div
+          class="ui segment"
+        >
+          <div
+            class="settings_item boolean"
+          >
+            <span
+              class="settings_item_text"
+            >
+              <label
+                class="settings_item_name"
+              >
+                mini-player
+              </label>
+            </span>
+            <div
+              class="spacer"
+            />
+            <div
+              class="ui fitted toggle checkbox"
+            >
+              <input
+                class="hidden"
+                readonly=""
+                tabindex="0"
+                type="radio"
+                value=""
+              />
+              <label />
+            </div>
+          </div>
+          <div
+            class="settings_item boolean"
+          >
+            <span
+              class="settings_item_text"
+            >
+              <label
+                class="settings_item_name"
+              >
+                compact-menu-bar
+              </label>
+            </span>
+            <div
+              class="spacer"
+            />
+            <div
+              class="ui fitted toggle checkbox"
+            >
+              <input
+                class="hidden"
+                readonly=""
+                tabindex="0"
+                type="radio"
+                value=""
+              />
+              <label />
+            </div>
+          </div>
+          <div
+            class="settings_item boolean"
+          >
+            <span
+              class="settings_item_text"
+            >
+              <label
+                class="settings_item_name"
+              >
+                compact-queue-bar
+              </label>
+            </span>
+            <div
+              class="spacer"
+            />
+            <div
+              class="ui fitted toggle checkbox"
+            >
+              <input
+                class="hidden"
+                readonly=""
+                tabindex="0"
+                type="radio"
+                value=""
+              />
+              <label />
+            </div>
+          </div>
+          <div
+            class="settings_item boolean"
+          >
+            <span
+              class="settings_item_text"
+            >
+              <label
+                class="settings_item_name"
+              >
+                track-duration
+              </label>
+            </span>
+            <div
+              class="spacer"
+            />
+            <div
+              class="ui checked fitted toggle checkbox"
+            >
+              <input
+                checked=""
+                class="hidden"
+                readonly=""
+                tabindex="0"
+                type="radio"
+                value=""
+              />
+              <label />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="settings_section"
+      >
+        <div
+          class="header_container"
+        >
+          streaming
+        </div>
+        <hr />
+        <div
+          class="ui segment"
+        >
+          <div
+            class="settings_item string"
+          >
+            <span
+              class="settings_item_text"
+            >
+              <label
+                class="settings_item_name"
+              >
+                invidious-url
+              </label>
+            </span>
+            <div
+              class="spacer"
+            />
+            <div
+              class="ui fluid input"
+            >
+              <input
+                type="text"
+                value=""
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="settings_section"
+      >
+        <div
+          class="header_container"
+        >
+          downloads
+        </div>
+        <hr />
+        <div
+          class="ui segment"
+        >
+          <div
+            class="settings_item directory"
+          >
+            <span
+              class="settings_item_text"
+            >
+              <label
+                class="settings_item_name"
+              >
+                downloads-dir
+              </label>
+            </span>
+            <div
+              class="spacer"
+            />
+            <span
+              class="directory_option"
+            >
+              <span
+                class="directory_content"
+              />
+              <button
+                class="ui icon inverted left labeled button"
+              >
+                <i
+                  aria-hidden="true"
+                  class="folder open icon"
+                />
+                downloads-dir-button
+              </button>
+            </span>
+          </div>
+          <div
+            class="settings_item number"
+          >
+            <span
+              class="settings_item_text"
+            >
+              <label
+                class="settings_item_name"
+              >
+                downloads-count
+              </label>
+            </span>
+            <div
+              class="spacer"
+            />
+            <div
+              class="ui error fluid input"
+            >
+              <input
+                min="1"
+                type="text"
+                value="1"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="settings_section"
+      >
+        <div
+          class="header_container"
+        >
+          developer
+        </div>
+        <hr />
+        <div
+          class="ui segment"
+        >
+          <div
+            class="settings_item boolean"
+          >
+            <span
+              class="settings_item_text"
+            >
+              <label
+                class="settings_item_name"
+              >
+                devtools
+              </label>
+            </span>
+            <div
+              class="spacer"
+            />
+            <div
+              class="ui fitted toggle checkbox"
+            >
+              <input
+                class="hidden"
+                readonly=""
+                tabindex="0"
+                type="radio"
+                value=""
+              />
+              <label />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

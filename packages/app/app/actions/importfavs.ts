@@ -3,19 +3,13 @@ import { rest, store } from '@nuclear/core';
 
 import globals from '../globals';
 import * as FavoritesActions from './favorites';
+import { ImportFavs } from './actionTypes';
 
 const lastfm = new rest.LastFmApi(globals.lastfmApiKey, globals.lastfmApiSecret);
 
-export const FAV_IMPORT_INIT = 'FAV_IMPORT_INIT';
-
-export const LASTFM_FAV_IMPORT_START = 'LASTFM_FAV_IMPORT_START';
-export const LASTFM_FAV_IMPORT_SUCCESS_1 = 'LASTFM_FAV_IMPORT_SUCCESS_1';
-export const LASTFM_FAV_IMPORT_SUCCESS_FINAL = 'LASTFM_FAV_IMPORT_SUCCESS_FINAL';
-export const LASTFM_FAV_IMPORT_ERROR = 'LASTFM_FAV_IMPORT_ERROR';
-
 export function FavImportInit() {
   return {
-    type: FAV_IMPORT_INIT,
+    type: ImportFavs.FAV_IMPORT_INIT,
     payload: {
       lastFmFavImportStatus: true,
       lastFmFavImportMessage: ''
@@ -24,14 +18,14 @@ export function FavImportInit() {
 }
 
 const FmFavError = (msg = 'Failed to import favorites.') => ({
-  type: LASTFM_FAV_IMPORT_ERROR,
+  type: ImportFavs.LASTFM_FAV_IMPORT_ERROR,
   payload: {
     lastFmFavImportErrorMsg: msg
   } });
 
 function FmSuccess1(count) {
   return {
-    type: LASTFM_FAV_IMPORT_SUCCESS_1,
+    type: ImportFavs.LASTFM_FAV_IMPORT_SUCCESS_1,
     payload: {
       lastFmFavImportCount: count
     }
@@ -39,7 +33,7 @@ function FmSuccess1(count) {
 }
 function FmSuccessFinal(count) {
   return {
-    type: LASTFM_FAV_IMPORT_SUCCESS_FINAL,
+    type: ImportFavs.LASTFM_FAV_IMPORT_SUCCESS_FINAL,
     payload: {
       lastFmFavImportTotal: count
     }
@@ -50,7 +44,7 @@ export function fetchAllFmFavorites() {
   const storage = store.get('lastFm');
   if (storage) {
     return dispatch => {
-      dispatch({ type: LASTFM_FAV_IMPORT_START });
+      dispatch({ type: ImportFavs.LASTFM_FAV_IMPORT_START });
       lastfm.getNumberOfLovedTracks(storage.lastFmName, 1)
         .then((resp) => resp.json())
         .then(req => {

@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import * as GithubActions from '../../actions/github';
 import * as ScrobblingActions from '../../actions/scrobbling';
 import * as ImportFavActions from '../../actions/importfavs';
 import * as SettingsActions from '../../actions/settings';
@@ -13,12 +12,10 @@ const SettingsContainer = ({
   actions,
   scrobbling,
   importfavs,
-  settings,
-  github
+  settings
 }) => (
   <Settings
     actions={actions}
-    github={github}
     scrobbling={scrobbling}
     importfavs={importfavs}
     settings={settings}
@@ -28,7 +25,6 @@ const SettingsContainer = ({
 
 function mapStateToProps(state) {
   return {
-    github: state.github,
     scrobbling: state.scrobbling,
     importfavs: state.importfavs,
     settings: state.settings
@@ -38,13 +34,11 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     actions: bindActionCreators(
-      Object.assign(
-        {},
-        GithubActions,
-        ScrobblingActions,
-        ImportFavActions,
-        SettingsActions
-      ),
+      {
+        ...ScrobblingActions,
+        ...ImportFavActions,
+        ...SettingsActions
+      },
       dispatch
     )
   };

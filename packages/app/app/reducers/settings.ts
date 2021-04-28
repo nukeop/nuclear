@@ -1,9 +1,4 @@
-import {
-  READ_SETTINGS,
-  SET_BOOLEAN_OPTION,
-  SET_STRING_OPTION,
-  SET_NUMBER_OPTION
-} from '../actions/settings';
+import { Settings } from '../actions/actionTypes';
 import settingsOptions from '../constants/settings';
 
 const initialState = {};
@@ -14,11 +9,11 @@ const defaultSettings = settingsOptions.reduce((acc, option) => ({
 
 export default function SettingsReducer(state=initialState, action) {
   switch (action.type) {
-  case READ_SETTINGS:
+  case Settings.READ_SETTINGS:
     return Object.assign(defaultSettings, action.payload);
-  case SET_BOOLEAN_OPTION:
-  case SET_STRING_OPTION:
-  case SET_NUMBER_OPTION:
+  case Settings.SET_BOOLEAN_OPTION:
+  case Settings.SET_STRING_OPTION:
+  case Settings.SET_NUMBER_OPTION:
     return Object.assign({}, state, {
       [`${action.payload.option}`]: action.payload.state
     });
