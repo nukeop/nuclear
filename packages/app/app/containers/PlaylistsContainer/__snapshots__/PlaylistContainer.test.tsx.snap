@@ -55,6 +55,32 @@ exports[`Playlist container should display all playlists 1`] = `
             </div>
           </div>
         </div>
+        <div
+          class="playlist_outside_container"
+        >
+          <div
+            class="playlist_container"
+          >
+            <div>
+              <img
+                class="playlist_thumbnail"
+                src="test thumbnail"
+              />
+            </div>
+            <div
+              class="playlist_info"
+            >
+              <h4
+                class="playlist_title"
+              >
+                test playlist 2
+              </h4>
+              <p>
+                2 songs
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
