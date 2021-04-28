@@ -9,8 +9,12 @@ export const deletePlaylistInjectable = store => id => {
 
 export const updatePlaylistInjectable = store => playlist => {
   const playlists = store.get('playlists');
-  _.remove(playlists, { id: playlist.id });
-  playlists.push(playlist);
+  const index = _.findIndex(playlists, {id: playlist.id});
+  if (index !== -1) {
+    playlists.splice(index, 1, playlist);
+  } else {
+    playlists.push(playlist);
+  }
   store.set('playlists', playlists);
   return playlists;
 };

@@ -282,6 +282,36 @@ export const buildStoreState = () => {
                   duration: 20
                 }]
               }]
+            },
+            {
+              id: 'test-playlist-id-2',
+              name: 'test playlist 2',
+              tracks: [{
+                artist: 'test artist 1',
+                name: 'test track',
+                thumbnail: 'test thumbnail',
+                streams: [{
+                  source: 'Test source',
+                  stream: 'test stream 1',
+                  title: 'stream title 1',
+                  duration: 100
+                }, {
+                  source: 'Another test source',
+                  stream: 'another test stream 2',
+                  title: 'another stream title 2',
+                  duration: 200
+                }]
+              }, {
+                artist: 'test artist 2',
+                name: 'test track 22',
+                thumbnail: 'test thumbnail 2',
+                streams: [{
+                  source: 'Test source',
+                  stream: 'test stream 3',
+                  title: 'stream title 3',
+                  duration: 20
+                }]
+              }]
             }
           ]
         }
