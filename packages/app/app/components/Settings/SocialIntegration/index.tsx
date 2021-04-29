@@ -1,11 +1,21 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Grid } from 'semantic-ui-react';
 
 import styles from './styles.scss';
 
-const SocialIntegration = ({ logo, title, description, children }) => (
-  <React.Fragment>
+type SocialIntegrationProps = {
+  logo: React.ReactElement;
+  title: string;
+  description: string;
+};
+
+const SocialIntegration: React.FC<SocialIntegrationProps> = ({
+  logo,
+  title,
+  description,
+  children
+}) => (
+  <>
     <Grid className={styles.social_integration}>
       <Grid.Column>
         <Grid.Row>
@@ -18,21 +28,7 @@ const SocialIntegration = ({ logo, title, description, children }) => (
       </Grid.Column>
     </Grid>
     {children}
-  </React.Fragment>
+  </>
 );
-
-SocialIntegration.propTypes = {
-  logo: PropTypes.node,
-  title: PropTypes.string,
-  description: PropTypes.string,
-  children: PropTypes.node
-};
-
-SocialIntegration.defaultProps = {
-  logo: null,
-  title: '',
-  description: '',
-  children: null
-};
 
 export default SocialIntegration;
