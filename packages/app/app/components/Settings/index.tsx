@@ -10,11 +10,11 @@ import i18n from '@nuclear/i18n';
 
 import Header from '../Header';
 import Spacer from '../Spacer';
-import SocialIntegration from './SocialIntegration';
 
 import styles from './styles.scss';
 import ScrobblingReducer from '../../reducers/scrobbling';
 import ImportFavsReducer from '../../reducers/importfavs';
+import { LastFmSocialIntegration } from './Integrations/LastFmSocialIntegration';
 
 const volumeSliderColors = {
   fillColor: { r: 248, g: 248, b: 242, a: 1 },
@@ -47,35 +47,6 @@ const Settings: React.FC<SettingsProps> = ({
   settings,
   options
 }) => {
-  const {
-    lastFmName,
-    lastFmAuthToken,
-    lastFmSessionKey,
-    lastFmScrobblingEnabled
-  } = scrobbling;
-
-  const {
-    lastFmFavImportMessage,
-    lastFmFavImportStatus
-  } = importfavs;
-
-  const {
-    lastFmConnectAction,
-    lastFmLoginAction,
-    lastFmLogOut,
-    enableScrobbling,
-    disableScrobbling,
-    fetchAllFmFavorites
-  } = actions;
-
-  const toggleScrobbling = (
-    lastFmScrobblingEnabled,
-    enableScrobbling,
-    disableScrobbling
-  ) => {
-    lastFmScrobblingEnabled ? disableScrobbling() : enableScrobbling();
-  };
-
   const isChecked = (option) => {
     return typeof settings[option.name] !== 'undefined'
       ? settings[option.name]
@@ -233,73 +204,11 @@ const Settings: React.FC<SettingsProps> = ({
       <div className={styles.settings_section}>
         <Header>{t('social')}</Header>
         <hr />
-        <Segment>
-          <SocialIntegration
-            logo={
-              <Icon.Group size='big'>
-                <Icon name='square' className={styles.social_icon_bg} />
-                <Icon name='lastfm square' className={styles.lastfm_icon} />
-              </Icon.Group>
-            }
-            title={t('lastfm-title')}
-            description={t('lastfm-description')}
-          >
-            <div className={styles.settings_social_item}>
-              <span>
-                {t('user')} <strong>{lastFmName ? lastFmName : t('notlogged')}</strong>
-              </span>
-              <Spacer />
-              {!lastFmSessionKey && (
-                <Button onClick={lastFmConnectAction} color='red'>
-                  {t('lastfm-connect')}
-                </Button>
-              )}
-              {!lastFmSessionKey && (
-                <Button
-                  onClick={() => lastFmLoginAction(lastFmAuthToken)}
-                  color='red'
-                >
-                  {t('login')}
-                </Button>
-              )}
-              {
-                lastFmSessionKey &&
-                <Button onClick={lastFmLogOut} inverted>
-                  {t('logout')}
-                </Button>
-              }
-            </div>
-            <div className={styles.settings_item}>
-              <label>{t('lastfm-enable')}</label>
-              <Spacer />
-              <Radio
-                toggle
-                checked={lastFmScrobblingEnabled}
-                onChange={() =>
-                  toggleScrobbling(
-                    lastFmScrobblingEnabled,
-                    enableScrobbling,
-                    disableScrobbling
-                  )
-                }
-              />
-            </div>
-            <div className={styles.settings_social_item}>
-              <span>
-                {t('fmfav-msg')}
-              </span>
-              <Spacer />
-              <span> {(lastFmFavImportMessage && (
-                <strong>{lastFmFavImportMessage}</strong>
-              ))}
-              </span>
-              <Spacer />
-              <Button disabled={!lastFmFavImportStatus} loading={!lastFmFavImportStatus} onClick={fetchAllFmFavorites} color='green'>
-                {t('fmfav-btn')}
-              </Button>
-            </div>
-          </SocialIntegration>
-        </Segment>
+        <LastFmSocialIntegration
+          actions={actions}
+          scrobbling={scrobbling}
+          importfavs={importfavs}
+        />
       </div>
       {_.map(optionsGroups, (group, i) => {
         const show = option => {
