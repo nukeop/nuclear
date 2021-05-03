@@ -265,5 +265,13 @@ export const settingsConfig: Array<Setting> = [
     type: SettingType.STRING,
     default: '',
     hide: true
+  },
+  {
+    name: 'mastodonPostFormat',
+    prettyName: 'mastodon-post-format',
+    category: 'social',
+    type: SettingType.STRING,
+    default: '#nowplaying {{artist}} - {{title}} #nuclear https://nuclear.js.org',
+    hide: true
   }
 ];
