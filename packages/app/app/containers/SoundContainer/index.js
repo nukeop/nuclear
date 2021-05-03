@@ -5,6 +5,8 @@ import { bindActionCreators } from 'redux';
 import { compose, withProps } from 'recompose';
 import Sound, { Volume, Equalizer, AnalyserByFrequency } from 'react-hifi';
 import logger from 'electron-timber';
+import { rest } from '@nuclear/core';
+import { post as mastodonPost } from '@nuclear/core/src/rest/Mastodon';
 
 import * as SearchActions from '../../actions/search';
 import * as PlayerActions from '../../actions/player';
@@ -16,7 +18,6 @@ import { filterFrequencies } from '../../components/Equalizer/chart';
 import * as Autoradio from './autoradio';
 import VisualizerContainer from '../../containers/VisualizerContainer';
 import globals from '../../globals';
-import { rest } from '@nuclear/core';
 
 const lastfm = new rest.LastFmApi(globals.lastfmApiKey, globals.lastfmApiSecret);
 
@@ -68,13 +69,13 @@ class SoundContainer extends React.Component {
   }
 
   handleFinishedPlaying() {
+    const currentSong = this.props.queue.queueItems[
+      this.props.queue.currentSong
+    ];
     if (
       this.props.scrobbling.lastFmScrobblingEnabled &&
       this.props.scrobbling.lastFmSessionKey
     ) {
-      const currentSong = this.props.queue.queueItems[
-        this.props.queue.currentSong
-      ];
       this.props.actions.scrobbleAction(
         currentSong.artist,
         currentSong.name,
@@ -90,6 +91,18 @@ class SoundContainer extends React.Component {
       this.props.actions.nextSong();
     } else {
       this.props.actions.pausePlayback();
+    }
+
+    if (this.props.settings.mastodonAccessToken &&
+      this.props.settings.mastodonInstance) {
+      let content = this.props.settings.mastodonPostFormat + '';
+      content = content.replaceAll('{{artist}}', currentSong.artist);
+      content = content.replaceAll('{{title}}', currentSong.name);
+      mastodonPost(
+        this.props.settings.mastodonInstance,
+        this.props.settings.mastodonAccessToken,
+        content
+      );
     }
   }
 

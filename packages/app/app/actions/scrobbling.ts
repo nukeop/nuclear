@@ -2,28 +2,17 @@ import electron from 'electron';
 import { store } from '@nuclear/core';
 import { rest } from '@nuclear/core';
 
+import { Scrobbling } from './actionTypes';
 import globals from '../globals';
 
 const lastfm = new rest.LastFmApi(globals.lastfmApiKey, globals.lastfmApiSecret);
-
-export const LASTFM_CONNECT = 'LASTFM_CONNECT';
-export const LASTFM_LOGIN = 'LASTFM_LOGIN';
-export const LASTFM_LOGOUT = 'LASTFM_LOGOUT';
-
-export const LASTFM_READ_SETTINGS = 'LASTFM_READ_SETTINGS';
-export const LASTFM_ENABLE_SCROBBLING = 'LASTFM_ENABLE_SCROBBLING';
-export const LASTFM_DISABLE_SCROBBLING = 'LASTFM_DISABLE_SCROBBLING';
-
-export const LASTFM_SCROBBLE = 'LASTFM_SCROBBLE';
-export const LASTFM_UPDATE_NOW_PLAYING = 'LASTFM_UPDATE_NOW_PLAYING';
-
 
 export function lastFmReadSettings() {
   return dispatch => {
     const settings = store.get('lastFm') || {};
     if (settings) {
       dispatch({
-        type: LASTFM_READ_SETTINGS,
+        type: Scrobbling.LASTFM_READ_SETTINGS,
         payload: {
           lastFmName: settings.lastFmName,
           lastFmAuthToken: settings.lastFmAuthToken,
@@ -34,7 +23,7 @@ export function lastFmReadSettings() {
       });
     } else {
       dispatch({
-        type: LASTFM_READ_SETTINGS,
+        type: Scrobbling.LASTFM_READ_SETTINGS,
         payload: null
       });
     }
@@ -54,7 +43,7 @@ export function lastFmConnectAction() {
         store.set('lastFm.lastFmAuthToken', authToken);
 
         dispatch({
-          type: LASTFM_CONNECT,
+          type: Scrobbling.LASTFM_CONNECT,
           payload: authToken
         });
       });
@@ -80,7 +69,7 @@ export function lastFmLoginAction(authToken) {
         store.set('lastFm.lastFmSessionKey', sessionKey);
         
         dispatch({
-          type: LASTFM_LOGIN,
+          type: Scrobbling.LASTFM_LOGIN,
           payload: {
             sessionKey,
             name: sessionName
@@ -92,7 +81,7 @@ export function lastFmLoginAction(authToken) {
 
 export function lastFmLogOut() {
   return {
-    type: LASTFM_LOGOUT
+    type: Scrobbling.LASTFM_LOGOUT
   };
 }
 
@@ -100,7 +89,7 @@ export function enableScrobbling() {
   store.set('lastFm.lastFmScrobblingEnabled', true);
 
   return {
-    type: LASTFM_ENABLE_SCROBBLING,
+    type: Scrobbling.LASTFM_ENABLE_SCROBBLING,
     payload: null
   };
 }
@@ -109,7 +98,7 @@ export function disableScrobbling() {
   store.set('lastFm.lastFmScrobblingEnabled', false);
 
   return {
-    type: LASTFM_DISABLE_SCROBBLING,
+    type: Scrobbling.LASTFM_DISABLE_SCROBBLING,
     payload: null
   };
 }
@@ -119,7 +108,7 @@ export function scrobbleAction(artist, track, session) {
     lastfm.scrobble(artist, track, session)
       .then(() => {
         dispatch({
-          type: LASTFM_SCROBBLE,
+          type: Scrobbling.LASTFM_SCROBBLE,
           payload: null
         });
       });
@@ -131,7 +120,7 @@ export function updateNowPlayingAction(artist, track, session) {
     lastfm.updateNowPlaying(artist, track, session)
       .then(() => {
         dispatch({
-          type: LASTFM_UPDATE_NOW_PLAYING,
+          type: Scrobbling.LASTFM_UPDATE_NOW_PLAYING,
           payload: null
         });
       });
