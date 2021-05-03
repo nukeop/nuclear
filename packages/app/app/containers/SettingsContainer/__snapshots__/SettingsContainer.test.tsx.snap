@@ -69,18 +69,18 @@ exports[`Settings view container should render settings 1`] = `
               class="spacer"
             />
             <button
-              class="ui red button"
+              class="ui red button nuclear button"
             >
               lastfm-connect
             </button>
             <button
-              class="ui red button"
+              class="ui red button nuclear button"
             >
               login
             </button>
           </div>
           <div
-            class="settings_item"
+            class="settings_social_item"
           >
             <label>
               lastfm-enable
@@ -117,9 +117,71 @@ exports[`Settings view container should render settings 1`] = `
               class="spacer"
             />
             <button
-              class="ui green button"
+              class="ui green button nuclear button"
             >
               fmfav-btn
+            </button>
+          </div>
+        </div>
+        <div
+          class="ui segment"
+        >
+          <div
+            class="ui grid social_integration"
+          >
+            <div
+              class="column"
+            >
+              <div
+                class="row"
+              >
+                <span>
+                  <span
+                    class="mastodon_logo"
+                  >
+                    test-file-stub
+                  </span>
+                </span>
+                <span>
+                  mastodon-title
+                </span>
+              </div>
+              <div
+                class="row"
+              >
+                <p>
+                  mastodon-description
+                </p>
+              </div>
+            </div>
+          </div>
+          <div
+            class="settings_social_item"
+          >
+            <span
+              class="settings_item_text"
+            >
+              <label
+                class="settings_item_name"
+              >
+                mastodon-instance-label
+              </label>
+            </span>
+            <div
+              class="spacer"
+            />
+            <div
+              class="ui input"
+            >
+              <input
+                type="text"
+                value=""
+              />
+            </div>
+            <button
+              class="ui button nuclear button"
+            >
+              mastodon-authorize
             </button>
           </div>
         </div>

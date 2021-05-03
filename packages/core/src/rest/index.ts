@@ -17,3 +17,6 @@ export { SponsorBlock };
 
 import * as Deezer from './Deezer';
 export { Deezer };
+
+import * as Mastodon from './Mastodon';
+export { Mastodon };

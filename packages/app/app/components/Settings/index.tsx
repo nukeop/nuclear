@@ -12,9 +12,9 @@ import Header from '../Header';
 import Spacer from '../Spacer';
 
 import styles from './styles.scss';
-import ScrobblingReducer from '../../reducers/scrobbling';
-import ImportFavsReducer from '../../reducers/importfavs';
 import { LastFmSocialIntegration } from './Integrations/LastFmSocialIntegration';
+import { MastodonSocialIntegration } from './Integrations/MastodonSocialIntegration';
+import { RootState } from '../../reducers';
 
 const volumeSliderColors = {
   fillColor: { r: 248, g: 248, b: 242, a: 1 },
@@ -34,16 +34,25 @@ export type SettingsProps = {
     lastFmLoginAction: React.MouseEventHandler;
     lastFmLogOut: React.MouseEventHandler;
   };
-  scrobbling: ReturnType<typeof ScrobblingReducer>;
-  importfavs: ReturnType<typeof ImportFavsReducer>;
-  settings: object;
+  mastodonActions: {
+    registerNuclear: (instanceUrl: string) => void;
+    getAccessToken: (authorizationCode: string) => void;
+    logOut: React.MouseEventHandler;
+    mastodonPost: (content: string) => void;
+  };
+  scrobbling: RootState['scrobbling'];
+  importfavs: RootState['importfavs'];
+  mastodon: RootState['mastodon'];
+  settings: RootState['settings'];
   options: object;
 }
 
 const Settings: React.FC<SettingsProps> = ({
   actions,
+  mastodonActions,
   scrobbling,
   importfavs,
+  mastodon,
   settings,
   options
 }) => {
@@ -208,6 +217,14 @@ const Settings: React.FC<SettingsProps> = ({
           actions={actions}
           scrobbling={scrobbling}
           importfavs={importfavs}
+        />
+        <MastodonSocialIntegration 
+          registerNuclear={mastodonActions.registerNuclear}
+          getAccessToken={mastodonActions.getAccessToken}
+          setStringOption={actions.setStringOption}
+          logOut={mastodonActions.logOut}
+          settings={settings}
+          mastodon={mastodon}
         />
       </div>
       {_.map(optionsGroups, (group, i) => {
