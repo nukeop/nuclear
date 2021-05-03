@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
+import { StateType } from 'typesafe-actions';
 
 import DashboardReducer from './dashboard';
 import DownloadsReducer from './downloads';
@@ -17,8 +18,9 @@ import SearchReducer from './search';
 import SettingsReducer from './settings';
 import TagReducer from './tag';
 import ToastsReducer from './toasts';
-import { reducer as LocalLibraryReducer } from './local';
 import ConnectivityReducer from './connectivity';
+import { reducer as LocalLibraryReducer } from './local';
+import { reducer as MastodonReducer } from './mastodon';
 
 const rootReducer = combineReducers({
   dashboard: DashboardReducer,
@@ -38,8 +40,11 @@ const rootReducer = combineReducers({
   settings: SettingsReducer,
   tags: TagReducer,
   toasts: ToastsReducer,
+  connectivity: ConnectivityReducer,
   local: LocalLibraryReducer,
-  connectivity: ConnectivityReducer
+  mastodon: MastodonReducer
 });
+
+export type RootState = StateType<typeof rootReducer>;
 
 export default rootReducer;

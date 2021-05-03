@@ -29,3 +29,14 @@ body,
 .padding_xl {
   padding: 300px;
 }
+
+.row {
+  display: flex;
+  flex-flow: row;
+  margin-bottom: 1em;
+}
+
+.column {
+  display: flex;
+  flex-flow: column;
+}

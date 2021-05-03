@@ -1,6 +1,6 @@
 import React, { SyntheticEvent } from 'react';
 
-import { BasicButton, Dropdown } from '../..';
+import { Button, Dropdown } from '../..';
 
 import styles from './styles.scss';
 
@@ -37,7 +37,8 @@ const VisualizerOverlay: React.FC<VisualizerOverlayProps> = ({
     {
       isFullscreen
         ? <p>{exitFullscreenLabel}</p>
-        : <BasicButton
+        : <Button
+          basic
           icon='expand'
           onClick={onEnterFullscreen}
         />

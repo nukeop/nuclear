@@ -2,7 +2,7 @@ import '../resources/Lato.scss';
 
 export { default as AlbumGrid } from './components/AlbumGrid';
 export { default as AlbumPreview } from './components/AlbumPreview';
-export { default as BasicButton } from './components/BasicButton';
+export { default as Button } from './components/Button';
 export { default as Card } from './components/Card';
 export { default as ContextPopup } from './components/ContextPopup';
 export { default as Cover } from './components/Cover';

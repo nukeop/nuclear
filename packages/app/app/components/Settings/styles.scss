@@ -32,10 +32,10 @@
 
     .settings_item_name {
     }
+  }
 
-    .settings_item_description {
-      color: rgba($white, 0.4);
-    }
+  .settings_item_description {
+    color: rgba($white, 0.5);
   }
 
   .settings_item,
@@ -80,8 +80,10 @@
       flex: 0 0 auto;
     }
 
-    .ui.fluid.input {
-      width: 100%;
+    .ui.input {
+      &.fluid {
+        width: 100%;
+      }
 
       input {
         color: $grey;
@@ -92,6 +94,17 @@
 
   .settings_social_item {
     margin: 0;
+
+    &:not(:last-child) {
+      margin-bottom: 1em;
+    }
+
+    .ui.input {
+      &:not(:last-child) {
+        margin-right: 1em;
+      }
+      flex: 1 1 auto;
+    }
   }
 
   .lastfm_icon {
@@ -154,6 +167,12 @@
 
     .directory_content {
       font-weight: bold;
+    }
+  }
+
+  .mastodon_logo {
+    svg {
+      height: 1.75em;
     }
   }
 }
