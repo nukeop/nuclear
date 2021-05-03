@@ -17,7 +17,8 @@ type SettingCategory = 'audio' |
   'streaming' |
   'downloads' |
   'developer' |
-  'visualizer';
+  'visualizer' |
+  'social';
 
 type SettingOption = {
   key: string;
@@ -239,6 +240,30 @@ export const settingsConfig: Array<Setting> = [
     type: SettingType.STRING,
     prettyName: 'visualizer-preset',
     default: '$$$ Royal - Mashup (431)',
+    hide: true
+  },
+  {
+    name: 'mastodonInstance',
+    prettyName: 'mastodon-instance',
+    category: 'social',
+    type: SettingType.STRING,
+    default: 'https://mastodon.social',
+    hide: true
+  },
+  {
+    name: 'mastodonAuthorizationCode',
+    prettyName: 'mastodon-authorization-code',
+    category: 'social',
+    type: SettingType.STRING,
+    default: '',
+    hide: true
+  },
+  {
+    name: 'mastodonAccessToken',
+    prettyName: 'mastodon-access-token',
+    category: 'social',
+    type: SettingType.STRING,
+    default: '',
     hide: true
   }
 ];

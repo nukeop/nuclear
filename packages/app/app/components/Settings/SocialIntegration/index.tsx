@@ -22,9 +22,12 @@ const SocialIntegration: React.FC<SocialIntegrationProps> = ({
           <span>{logo}</span>
           <span>{title}</span>
         </Grid.Row>
-        <Grid.Row>
-          <p>{description}</p>
-        </Grid.Row>
+        {
+          description &&
+          <Grid.Row>
+            <p>{description}</p>
+          </Grid.Row>
+        }
       </Grid.Column>
     </Grid>
     {children}

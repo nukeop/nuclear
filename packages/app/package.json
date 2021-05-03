@@ -73,7 +73,8 @@
     "redux-thunk": "^2.2.0",
     "regenerator-runtime": "^0.13.2",
     "semantic-ui-css": "^2.4.1",
-    "semantic-ui-react": "^2.0.3"
+    "semantic-ui-react": "^2.0.3",
+    "typesafe-actions": "^4.4.2"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",

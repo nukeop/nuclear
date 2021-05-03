@@ -98,7 +98,7 @@ exports[`Playlist container should display empty playlists view 1`] = `
           No playlists.
         </h2>
         <div>
-          Try create some playlists or import by url and they will appear here!
+          Try to create some playlists or import by url and they will appear here!
         </div>
       </div>
     </div>

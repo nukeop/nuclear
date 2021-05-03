@@ -1,6 +1,8 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Button, Icon, Radio, Segment } from 'semantic-ui-react';
+import { Icon, Radio, Segment } from 'semantic-ui-react';
+import { Button } from '@nuclear/ui';
+
 import ImportFavsReducer from '../../../reducers/importfavs';
 import ScrobblingReducer from '../../../reducers/scrobbling';
 import Spacer from '../../Spacer';
@@ -64,7 +66,9 @@ export const LastFmSocialIntegration: React.FC<LastFmSocialIntegrationProps> = (
         </span>
         <Spacer />
         {!lastFmSessionKey && (
-          <Button onClick={lastFmConnectAction} color='red'>
+          <Button 
+            onClick={lastFmConnectAction} 
+            color='red'>
             {t('lastfm-connect')}
           </Button>
         )}
@@ -77,11 +81,11 @@ export const LastFmSocialIntegration: React.FC<LastFmSocialIntegrationProps> = (
           </Button>
         )}
         {lastFmSessionKey &&
-          <Button onClick={lastFmLogOut} inverted>
+          <Button onClick={lastFmLogOut}>
             {t('logout')}
           </Button>}
       </div>
-      <div className={styles.settings_item}>
+      <div className={styles.settings_social_item}>
         <label>{t('lastfm-enable')}</label>
         <Spacer />
         <Radio
@@ -103,7 +107,11 @@ export const LastFmSocialIntegration: React.FC<LastFmSocialIntegrationProps> = (
         ))}
         </span>
         <Spacer />
-        <Button disabled={!lastFmFavImportStatus} loading={!lastFmFavImportStatus} onClick={fetchAllFmFavorites} color='green'>
+        <Button 
+          disabled={!lastFmFavImportStatus} 
+          loading={!lastFmFavImportStatus} 
+          onClick={fetchAllFmFavorites} 
+          color='green'>
           {t('fmfav-btn')}
         </Button>
       </div>

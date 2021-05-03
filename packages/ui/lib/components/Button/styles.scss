@@ -1,0 +1,71 @@
+@import "../../common.scss";
+
+button.nuclear.ui.button {
+  background: $bglight;
+  color: $white;
+
+  &:hover {
+    background: mix($bglight, $bgdark, 90%);
+  }
+
+  &:focus {
+    background: darken(mix($bglight, $bgdark, 90%), 5%);
+  }
+
+  &:active {
+    background: darken(mix($bglight, $bgdark, 90%), 7.5%);
+  }
+
+  &.basic {
+    color: $white !important;
+    background: transparent !important;
+    border: 1px solid rgba($white, 0.75);
+    box-shadow: none;
+
+    &:hover {
+      background: rgba($white, 0.2) !important;
+    }
+
+    &:focus {
+      background: rgba($white, 0.3) !important;
+    }
+
+    &:active {
+      background: rgba($white, 0.4) !important;
+    }
+
+    i {
+      color: rgba($white, 0.8);
+    }
+  }
+
+  $colors: ("green", "blue", "pink", "red");
+  $colorvars: (
+    "green": $green,
+    "blue": $blue,
+    "pink": $pink,
+    "red": $red,
+  );
+  @each $color in $colors {
+    $button-color: map-get($colorvars, $color);
+    &.#{$color} {
+      background: $button-color;
+
+      &:hover {
+        background: mix($button-color, $bglight, 90%);
+      }
+
+      &:focus {
+        background: darken(mix($button-color, $bglight, 90%), 5%);
+      }
+
+      &:active {
+        background: darken(mix($button-color, $bglight, 90%), 7.5%);
+      }
+    }
+  }
+
+  &.rounded {
+    border-radius: 9999px;
+  }
+}
