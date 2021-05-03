@@ -36,6 +36,10 @@ export const MastodonSocialIntegration: React.FC<MastodonSocialIntegrationProps>
     (_, data: InputOnChangeData) => setStringOption('mastodonAuthorizationCode', data.value),
     [setStringOption]
   );
+  const onUpdatePostFormat = useCallback(
+    (_, data: InputOnChangeData) => setStringOption('mastodonPostFormat', data.value),
+    [setStringOption]
+  );
   return <Segment>
     <SocialIntegration
       logo={<span
@@ -97,15 +101,32 @@ export const MastodonSocialIntegration: React.FC<MastodonSocialIntegrationProps>
       }
       {
         settings.mastodonAccessToken &&
-        <div className={styles.settings_social_item}>
-          <span>
-            {t('mastodon-authorized')} <strong>{settings.mastodonInstance}</strong>
-          </span>
-          <Spacer />
-          <Button onClick={logOut}>
-            {t('logout')}
-          </Button>
-        </div>
+        <>
+          <div className={styles.settings_social_item}>
+            <span>
+              {t('mastodon-authorized')} <strong>{settings.mastodonInstance}</strong>
+            </span>
+            <Spacer />
+            <Button onClick={logOut}>
+              {t('logout')}
+            </Button>
+          </div>
+          <div className={styles.settings_social_item}>
+            <span className={styles.settings_item_text}>
+              <label className={styles.settings_item_name}>
+                {t('mastodon-post-format-label')}
+              </label>
+            </span>
+            <Spacer />
+            <Input
+              value={settings.mastodonPostFormat}
+              onChange={onUpdatePostFormat}
+            />
+          </div>
+          <div className={styles.settings_item_description}>
+            {t('mastodon-post-format-description')}
+          </div>
+        </>
       }
     </SocialIntegration>
   </Segment >;
