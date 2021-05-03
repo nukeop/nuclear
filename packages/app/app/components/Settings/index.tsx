@@ -99,7 +99,8 @@ const Settings: React.FC<SettingsProps> = ({
       placeholder={placeholder}
       value={i18n.language}
       options={options}
-      onChange={(e, { value }) => i18n.changeLanguage(value)} />
+      onChange={(e, { value }) => i18n.changeLanguage(value as string)}
+    />
   );
 
   const renderRadioOption = (option, settings) => (
@@ -218,7 +219,7 @@ const Settings: React.FC<SettingsProps> = ({
           scrobbling={scrobbling}
           importfavs={importfavs}
         />
-        <MastodonSocialIntegration 
+        <MastodonSocialIntegration
           registerNuclear={mastodonActions.registerNuclear}
           getAccessToken={mastodonActions.getAccessToken}
           setStringOption={actions.setStringOption}

@@ -15,7 +15,8 @@ export const useVisualizerOverlayProps = () => {
   const dispatch = useDispatch();
   const onPresetChange = useCallback((e, { value }) => dispatch(setStringOption(
     'visualizer.preset',
-    value
+    value,
+    false
   )), [dispatch]);
   return { onPresetChange };
 };
