@@ -158,7 +158,7 @@ exports[`(Snapshot) Visualizer overlay should render correctly 1`] = `
       </div>
     </div>
     <button
-      class="ui basic icon button nuclear basic_button"
+      class="ui basic icon button nuclear button"
     >
       <i
         aria-hidden="true"
