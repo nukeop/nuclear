@@ -124,7 +124,10 @@ export const MastodonSocialIntegration: React.FC<MastodonSocialIntegrationProps>
             />
           </div>
           <div className={styles.settings_item_description}>
-            {t('mastodon-post-format-description')}
+            {t('mastodon-post-format-description', {
+              artist: '{{artist}}',
+              title: '{{title}}'
+            })}
           </div>
         </>
       }
