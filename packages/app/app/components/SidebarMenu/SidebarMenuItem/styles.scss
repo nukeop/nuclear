@@ -29,23 +29,6 @@
   }
 }
 
-.sidebar_menu_item_popup {
-  background: $bgdarker !important;
-  color: $white !important;
-  border-color: $bgdefault !important;
-  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.18),
-  0px 0px 20px 0px rgba(0, 0, 0, 0.09) !important;
-  user-select: none;
-  
-  &:before {
-    background-color: $bgdarker !important;
-  }
-
-  &.right:before {
-    box-shadow: -1px 1px 0 0 $bgdefault !important;
-  }
-}
-
 .left_panel:not(.compact_panel) .sidebar_menu_item_container .fa {
     width: 20px;
 }

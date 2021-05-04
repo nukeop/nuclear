@@ -1,5 +1,5 @@
 import React from 'react';
-import { Popup } from 'semantic-ui-react';
+import { Tooltip } from '@nuclear/ui';
 
 import styles from './styles.scss';
 
@@ -15,8 +15,7 @@ const SidebarMenuItem: React.FC<SidebarMenuItemProps> = ({
 }) => !compact
   ? <div className={styles.sidebar_menu_item_container}>{children}</div>
   : (
-    <Popup
-      className={styles.sidebar_menu_item_popup}
+    <Tooltip
       on='hover'
       content={name}
       trigger={<div className={styles.sidebar_menu_item_container}>{children}</div>}

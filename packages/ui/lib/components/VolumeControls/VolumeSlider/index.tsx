@@ -23,20 +23,20 @@ const VolumeSlider: React.FC<VolumeSliderProps> = ({
   toggleMute,
   isMuted
 }) => (
-    <div
-      className={styles.volume_slider}
-      onClick={isMuted ? toggleMute : () => { }}
-    >
-      <Range
-        value={volume}
-        height={4}
-        width='100%'
-        onChange={updateVolume}
-        fillColor={volumeSliderColors.fillColor}
-        trackColor={volumeSliderColors.trackColor}
-        thumbColor={volumeSliderColors.thumbColor}
-      />
-    </div>
-  )
+  <div
+    className={styles.volume_slider}
+    onClick={isMuted ? toggleMute : () => { }}
+  >
+    <Range
+      value={volume}
+      height={4}
+      width='100%'
+      onChange={updateVolume}
+      fillColor={volumeSliderColors.fillColor}
+      trackColor={volumeSliderColors.trackColor}
+      thumbColor={volumeSliderColors.thumbColor}
+    />
+  </div>
+);
 
 export default VolumeSlider;
