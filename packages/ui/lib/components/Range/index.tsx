@@ -35,6 +35,15 @@ const Range = ({
     [onChange, readOnly]
   );
 
+  const handleWheel: React.WheelEventHandler = useCallback((e) => {
+    if (!readOnly) {
+      const newVal = e.deltaY > 0
+        ? (value - 5)
+        : (value + 5);
+      onChange && onChange(Math.min(max, Math.max(min, newVal)));
+    }
+  }, [max, min, onChange, readOnly, value]);
+
   const val = Math.min(max, _.defaultTo(value, 0));
   const percentProgress = val / (max - min);
   const componentHeight = Math.max(height, thumbSize);
@@ -88,6 +97,7 @@ const Range = ({
           }}
           type='range'
           onChange={handleChange}
+          onWheel={handleWheel}
           min={min}
           max={max}
         />
