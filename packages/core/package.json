@@ -36,6 +36,7 @@
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
     "redux": "^4.0.5",
+    "search-azlyrics": "0.0.3",
     "ts-jest": "^26.5.4",
     "youtube-playlist": "^1.0.2",
     "ytsr": "^3.5.0"
