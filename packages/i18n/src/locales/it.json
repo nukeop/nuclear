@@ -111,6 +111,7 @@
     "error-invalid-data": "Dati invalidi",
     "error-open-file": "Non è possibile aprire il file",
     "header": "Le tue playlist",
+    "import-button": "Import from file (JSON)",
     "import-fail-title": "Importazione della playlist fallita",
     "import-success-title": "Importazione della playlist riuscita",
     "playlist-created": "{{name}} creata",
