@@ -8,7 +8,7 @@ import {
 import common from '../../common.scss';
 import styles from './styles.scss';
 
-type ButtonProps = SUIButtonProps & {
+export type ButtonProps = SUIButtonProps & {
   rounded?: boolean;
 }
 const Button: React.FC<ButtonProps> = ({
