@@ -1,3 +1,5 @@
+@import '../lib/common.scss';
+ 
 html,
 body,
 .sb-main {
@@ -39,4 +41,8 @@ body,
 .column {
   display: flex;
   flex-flow: column;
+}
+
+h3 {
+  color: $white;
 }

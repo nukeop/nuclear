@@ -168,8 +168,8 @@ class App extends React.PureComponent {
                 { name: 'lyrics', path: 'lyrics', icon: 'microphone' },
                 { name: 'plugins', path: 'plugins', icon: 'flask' },
                 { name: 'search', path: 'search', icon: 'search' },
-                { name: 'settings', path: 'settings', icon: 'cogs' },
-                { name: 'equalizer', path: 'equalizer', icon: 'sliders' },
+                { name: 'settings', path: 'settings', icon: 'cog' },
+                { name: 'equalizer', path: 'equalizer', icon: 'align right rotated' },
                 { name: 'visualizer', path: 'visualizer', icon: 'tint' }
               ])
             }

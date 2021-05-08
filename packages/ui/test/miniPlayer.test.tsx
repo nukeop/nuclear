@@ -24,8 +24,7 @@ makeSnapshotTest(
       { icon: ('repeat' as SemanticICONS), enabled: false, name: 'Repeat' },
       { icon: ('magic' as SemanticICONS), name: 'Autoradio' },
       { icon: ('random' as SemanticICONS), enabled: false, name: 'Shuffle' }
-    ],
-
+    ]
   },
   '(Snapshot) Mini player'
 );

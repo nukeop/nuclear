@@ -16,10 +16,8 @@ module.exports = {
       module: {
         ...config.module,
         rules: [
-          ...[
-            config.module.rules[0],
-            config.module.rules[2]
-          ],
+          config.module.rules[0],
+          config.module.rules[2],
           {
             test: /\.s?css$/,
             use: [

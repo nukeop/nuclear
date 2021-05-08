@@ -1,8 +1,15 @@
 @import "../../common.scss";
 
 button.nuclear.ui.button {
+  position: relative;
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  justify-content: center;
+  
   background: $bglight;
   color: $white;
+  white-space: nowrap;
 
   &:hover {
     background: mix($bglight, $bgdark, 90%);
@@ -39,11 +46,13 @@ button.nuclear.ui.button {
     }
   }
 
-  $colors: ("green", "blue", "pink", "red");
+  $colors: ("green", "blue", "purple", "pink", "orange", "red");
   $colorvars: (
     "green": $green,
     "blue": $blue,
+    "purple": $purple,
     "pink": $pink,
+    "orange": $orange,
     "red": $red,
   );
   @each $color in $colors {
@@ -62,6 +71,27 @@ button.nuclear.ui.button {
       &:active {
         background: darken(mix($button-color, $bglight, 90%), 7.5%);
       }
+    }
+  }
+
+  &:not(.icon) {
+    i {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    }
+  }
+
+  &.icon {
+    width: 3em;
+    height: 3em;
+
+    i {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 3em;
+      height: 3em;
     }
   }
 
