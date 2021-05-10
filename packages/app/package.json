@@ -60,6 +60,7 @@
     "react-fontawesome": "^1.6.1",
     "react-full-screen": "^1.0.1",
     "react-hifi": "^2.2.1",
+    "react-hls-player": "^3.0.1",
     "react-i18next": "^10.11.0",
     "react-image": "^2.1.1",
     "react-list": "^0.8.13",

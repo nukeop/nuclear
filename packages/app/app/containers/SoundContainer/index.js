@@ -18,6 +18,7 @@ import { filterFrequencies } from '../../components/Equalizer/chart';
 import * as Autoradio from './autoradio';
 import VisualizerContainer from '../../containers/VisualizerContainer';
 import globals from '../../globals';
+import HlsPlayer from './HlsPlayer';
 
 const lastfm = new rest.LastFmApi(globals.lastfmApiKey, globals.lastfmApiSecret);
 
@@ -171,7 +172,7 @@ class SoundContainer extends React.Component {
     const { queue, player, equalizer, actions, enableSpectrum, currentStream, location, defaultEqualizer } = this.props;
     const currentTrack = queue.queueItems[queue.currentSong];
     const usedEqualizer = enableSpectrum ? equalizer : defaultEqualizer;
-    return Boolean(currentStream) && (
+    return currentStream ? (
       <Sound
         url={currentStream.stream}
         playStatus={player.playbackStatus}
@@ -199,6 +200,12 @@ class SoundContainer extends React.Component {
           trackName={currentTrack ? `${currentTrack.artist} - ${currentTrack.name}` : undefined}
         />
       </Sound>
+    ) : (
+      <HlsPlayer 
+        source={'https://manifest.googlevideo.com/api/manifest/hls_playlist/expire/1620654078/ei/nuOYYPKzBcvbqQGb-7aAAw/ip/115.79.195.10/id/21X5lGlDOfg.3/itag/94/source/yt_live_broadcast/requiressl/yes/ratebypass/yes/live/1/sgoap/gir%3Dyes%3Bitag%3D140/sgovp/gir%3Dyes%3Bitag%3D135/hls_chunk_host/r7---sn-8pxuuxa-nbosz.googlevideo.com/playlist_duration/30/manifest_duration/30/vprv/1/playlist_type/DVR/mh/N8/mm/44/mn/sn-8pxuuxa-nbosz/ms/lva/mv/u/mvi/7/pl/21/dover/11/keepalive/yes/fexp/24001373,24007246/mt/1620631469/sparams/expire,ei,ip,id,itag,source,requiressl,ratebypass,live,sgoap,sgovp,playlist_duration,manifest_duration,vprv,playlist_type/sig/AOq0QJ8wRAIgRuEuLgZbrjoPjHQQzJD6JxDLeAt90bgdvxbKXLgMvVYCIFmVga-0IeG-tMzIplulMakG6-JskSYgDQ2940QyNvDO/lsparams/hls_chunk_host,mh,mm,mn,ms,mv,mvi,pl/lsig/AG3C_xAwRAIgHQzgklZzQcoPddLnJP_tmRe8LFRSs2gyjl0r5Z-IrB8CIBxtkOp1Qek06RnjcN-q4MgEQCSkU_art9EMbSDTJ44r/playlist/index.m3u8'}
+        onError={this.handleError}
+        playStatus={player.playbackStatus}
+      />
     );
   }
 }
