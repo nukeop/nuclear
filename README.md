@@ -58,9 +58,6 @@ See [this](docs/electron.md).
 - No CoC
 - No CLA
 
-## Manual and docs
-https://nuclearmusic.rtfd.io/
-
 ## Community-maintained packages
 
 Here's a list of packages for various managers, some of which are maintained by third parties. We would like to thank the maintainers for their work.
