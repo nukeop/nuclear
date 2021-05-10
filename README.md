@@ -9,6 +9,8 @@ Desktop music player focused on streaming from free sources
 
 [Official website](https://nuclear.js.org)
 
+[Documentation](https://nukeop.gitbook.io/nuclear/)
+
 [Mastodon](https://mstdn.io/@nuclear)
 
 [Twitter](https://twitter.com/nuclear_player)
