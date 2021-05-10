@@ -16,6 +16,7 @@ import styles from './styles.scss';
 
 import QueueMenu from './QueueMenu';
 import QueuePopupContainer from '../../containers/QueuePopupContainer';
+import { QueueBottomBar } from './QueueBottomBar';
 
 @withTranslation('queue')
 class PlayQueue extends React.PureComponent {
@@ -30,21 +31,21 @@ class PlayQueue extends React.PureComponent {
 
     this.props.setFileHovered(false);
     this.props.actions.queueDrop(paths);
-  }
+  };
 
   onDragOverFile = (event) => {
     event.preventDefault();
     event.stopPropagation();
 
     this.props.setFileHovered(true);
-  }
+  };
 
   onDragEndFile = (event) => {
     event.preventDefault();
     event.stopPropagation();
 
     this.props.setFileHovered(false);
-  }
+  };
 
   onDragEnd = (result) => {
     const { source, destination } = result;
@@ -57,7 +58,7 @@ class PlayQueue extends React.PureComponent {
       result.source.index,
       result.destination.index
     );
-  }
+  };
 
   onAddToDownloads = (track) => {
     const { actions, plugins, settings, t } = this.props;
@@ -74,11 +75,11 @@ class PlayQueue extends React.PureComponent {
       <img src={track.thumbnail} />,
       settings
     );
-  }
+  };
 
   renderQueueItems() {
-    const {compact, currentSong, actions, t, plugins, items} = this.props;
-    
+    const { compact, currentSong, actions, t, plugins, items } = this.props;
+
     if (!items) {
       return null;
     }
@@ -90,7 +91,7 @@ class PlayQueue extends React.PureComponent {
           index={i}
           draggableId={`${el.uuid}+${i}`}
         >
-          {provided => (
+          {(provided) => (
             <div
               ref={provided.innerRef}
               {...provided.draggableProps}
@@ -108,12 +109,13 @@ class PlayQueue extends React.PureComponent {
                     selectSong={actions.selectSong}
                     removeFromQueue={actions.removeFromQueue}
                     duration={formatDuration(
-                      getTrackDuration(
-                        el,
-                        plugins.selected.streamProviders
-                      )
+                      getTrackDuration(el, plugins.selected.streamProviders)
                     )}
-                    resetPlayer={this.props.items.length === 1 ? this.props.actions.resetPlayer : undefined}
+                    resetPlayer={
+                      this.props.items.length === 1
+                        ? this.props.actions.resetPlayer
+                        : undefined
+                    }
                   />
                 }
                 isQueueItemCompact={compact}
@@ -188,6 +190,9 @@ class PlayQueue extends React.PureComponent {
                 {isFileHovered && (
                   <Icon name='plus' className={styles.file_icon} />
                 )}
+                <QueueBottomBar addToDownloads={this.onAddToDownloads}
+                  items={items}
+                  currentSong={currentSong} />
               </div>
             )}
           </Droppable>

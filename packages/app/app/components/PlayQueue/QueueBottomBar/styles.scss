@@ -1,0 +1,22 @@
+@import '../../../vars';
+
+  .queue_bottom_bar {
+    position: sticky;
+    top: 90%;
+    font-size: 120%;
+    font-variant: all-small-caps;
+    background-color: $background;
+    box-shadow: -5px 0px 5px 0px rgba(0, 0, 0, 0.18),
+    -5px 0px 20px 0px rgba(0, 0, 0, 0.09);
+  }
+
+  .bottom_options_container {
+    display: flex;
+    align-items: center; 
+    justify-content: center;
+  }
+
+  .bottom_option_item {
+    display: inline-block;
+    padding-right: 20%;
+  }
