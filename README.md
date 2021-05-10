@@ -103,7 +103,7 @@ Nuclear has already been translated to several languages, and we're always looki
 
 ## Development process
 
-First of all, be sure to check out the [Contribution Wiki Page](https://github.com/nukeop/nuclear/wiki/Contributing).
+First of all, be sure to check out the [Contribution Guidelines](https://nukeop.gitbook.io/nuclear/contributing/contribution-guidelines).
 
 Use npm:
 ```shell
