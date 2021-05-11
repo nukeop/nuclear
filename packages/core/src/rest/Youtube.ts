@@ -103,6 +103,26 @@ export function urlSearch(url) {
   }
 }
 
+export async function liveStreamSearch(query: string) {
+  const filters1 = await ytsr.getFilters(query);
+  const filter1 = filters1.get('Type').get('Video');
+  const filters2 = await ytsr.getFilters(filter1.url);
+  const filter2 = filters2.get('Features').get('Live');
+  const options = {
+    limit: 10
+  };
+  const searchResults = await ytsr(filter2.url, options);
+
+  return searchResults.items.map((video: ytsr.Video) => {
+    return {
+      streams: [{source: 'youtube', id: video.id}],
+      name: video.title,
+      thumbnail: video.bestThumbnail.url,
+      artist: {name: video.author.name}
+    };
+  });
+}
+
 export async function trackSearch(query: StreamQuery, omitStreamId?: string, sourceName?: string) {
   const terms = query.artist + ' ' + query.track;
   return trackSearchByString(terms, omitStreamId, sourceName);

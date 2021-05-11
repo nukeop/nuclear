@@ -80,7 +80,6 @@ class SearchResults extends React.Component {
     }
   }
 
-
   renderPlaylistPane() {
     return (
       <Tab.Pane attached={false}>
@@ -95,6 +94,29 @@ class SearchResults extends React.Component {
         />
       </Tab.Pane>
     );
+  }
+
+  renderLiveStreamPane(collection) {
+    if (typeof collection !== 'undefined') {
+
+      return (
+        <Tab.Pane loading={this.props.unifiedSearchStarted} attached={false}>
+          <div className={styles.pane_container}>
+            {collection.length > 0
+              ? this.props.unifiedSearchStarted
+                ? null
+                : <TracksResults tracks={collection} limit='15' />
+              : this.props.t('empty')}
+          </div>
+        </Tab.Pane>
+      );
+    } else {
+      return (
+        <Tab.Pane loading={this.props.unifiedSearchStarted} attached={false}>
+          <div className={styles.pane_container}>Nothing found.</div>
+        </Tab.Pane>
+      );
+    }
   }
 
   panes() {
@@ -125,7 +147,11 @@ class SearchResults extends React.Component {
       },
       {
         menuItem: 'Playlist',
-        render: () => this.renderPlaylistPane(this.props.playlistSearchResults)
+        render: () => this.renderPlaylistPane()
+      },
+      {
+        menuItem: 'LiveStream',
+        render: () => this.renderLiveStreamPane(this.props.liveStreamSearchResults.info)
       }
     ];
 

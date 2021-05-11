@@ -7,11 +7,13 @@ const initialState = {
   albumSearchResults: [],
   trackSearchResults: [],
   playlistSearchResults: [],
+  liveStreamSearchResults: [],
   albumDetails: {},
   artistDetails: {},
   searchHistory: [],
   unifiedSearchStarted: false,
   playlistSearchStarted: false,
+  liveStreamSearchStarted: false,
   isFocused: false
 };
 
@@ -55,6 +57,21 @@ function reduceYoutubePlaylistSearchSuccess(state, action) {
   return {
     ...state,
     playlistSearchResults: action.payload
+  };
+}
+
+function reduceYoutubeLiveStreamSearchStart(state, action) {
+  return {
+    ...state,
+    liveStreamSearchStarted: action.payload.terms,
+    liveStreamSearchResults: []
+  };
+}
+
+function reduceYoutubeLiveStreamSearchSuccess(state, action) {
+  return {
+    ...state,
+    liveStreamSearchResults: action.payload
   };
 }
 
@@ -194,6 +211,10 @@ export default function SearchReducer(state = initialState, action) {
     return reduceYoutubePlaylistSearchStart(state, action);
   case Search.YOUTUBE_PLAYLIST_SEARCH_SUCCESS:
     return reduceYoutubePlaylistSearchSuccess(state, action);
+  case Search.YOUTUBE_LIVESTREAM_SEARCH_START:
+    return reduceYoutubeLiveStreamSearchStart(state, action);
+  case Search.YOUTUBE_LIVESTREAM_SEARCH_SUCCESS:
+    return reduceYoutubeLiveStreamSearchSuccess(state, action);
   case Search.SEARCH_DROPDOWN_DISPLAY_CHANGE:
     return reduceSearchDropdownDisplay(state, action);
   case Search.UPDATE_SEARCH_HISTORY:
