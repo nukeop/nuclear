@@ -57,7 +57,7 @@ class SearchResults extends React.Component {
     );
   }
 
-  renderLastFmPane(collection) {
+  renderTrackListPane(collection) {
     if (typeof collection !== 'undefined') {
 
       return (
@@ -96,29 +96,6 @@ class SearchResults extends React.Component {
     );
   }
 
-  renderLiveStreamPane(collection) {
-    if (typeof collection !== 'undefined') {
-
-      return (
-        <Tab.Pane loading={this.props.unifiedSearchStarted} attached={false}>
-          <div className={styles.pane_container}>
-            {collection.length > 0
-              ? this.props.unifiedSearchStarted
-                ? null
-                : <TracksResults tracks={collection} limit='15' />
-              : this.props.t('empty')}
-          </div>
-        </Tab.Pane>
-      );
-    } else {
-      return (
-        <Tab.Pane loading={this.props.unifiedSearchStarted} attached={false}>
-          <div className={styles.pane_container}>Nothing found.</div>
-        </Tab.Pane>
-      );
-    }
-  }
-
   panes() {
     const panes = [
       {
@@ -143,7 +120,7 @@ class SearchResults extends React.Component {
       },
       {
         menuItem: 'Tracks',
-        render: () => this.renderLastFmPane(this.props.trackSearchResults.info)
+        render: () => this.renderTrackListPane(this.props.trackSearchResults.info)
       },
       {
         menuItem: 'Playlist',
@@ -151,7 +128,7 @@ class SearchResults extends React.Component {
       },
       {
         menuItem: 'LiveStream',
-        render: () => this.renderLiveStreamPane(this.props.liveStreamSearchResults.info)
+        render: () => this.renderTrackListPane(this.props.liveStreamSearchResults.info)
       }
     ];
 
