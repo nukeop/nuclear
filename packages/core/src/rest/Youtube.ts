@@ -134,7 +134,7 @@ export async function trackSearchByString(query: string, omitStreamId?: string, 
     };
   }
     catch (e){
-      logger.error(`Warning: topTrack.url is undefined, removing song`);
+      throw new Error(`Warning: topTrack.url is undefined, removing song`);
       return undefined;
       
   }
