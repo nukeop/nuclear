@@ -22,6 +22,10 @@ export interface SoundProps {
   playStatus?: SoundStatus;
   /** the position in second */
   position?: number;
+  /** the default setting of the audio contained */
+  muted?: boolean;
+  /** the audio volume */
+  volume?: number;
   /** onTimeUpdate handler */
   onFinishedPlaying?: (event: any) => void;
   /** trigger when the load start */
@@ -62,6 +66,14 @@ class HlsPlayer extends React.Component<SoundProps, SoundState>  {
     this.playerRef.current.controls = !this.playerRef.current.controls;
   }
 
+  setAudioMuted = (muted: boolean) => {
+    this.playerRef.current.muted = muted;
+  }
+
+  setAudioVolumn = (volume: number) => {
+    this.playerRef.current.volume = volume/100;
+  }
+
   private setPlayerState(status?: SoundStatus): void {
     switch (status) {
     case HlsPlayer.status.PAUSED:
@@ -78,27 +90,30 @@ class HlsPlayer extends React.Component<SoundProps, SoundState>  {
   }
 
   componentDidUpdate(prevProps: SoundProps) {
-    const { playStatus, source } = this.props;
+    const { playStatus, source, muted, volume } = this.props;
 
     if ((playStatus && prevProps.playStatus !== playStatus) || source !== prevProps.source) {
       this.setPlayerState(playStatus);
     }
+
+    if (muted !== undefined && prevProps.muted !== muted) {
+      this.setAudioMuted(muted);
+    }
+
+    if (volume && prevProps.volume !== volume) {
+      this.setAudioVolumn(volume);
+    }
   }
 
   componentDidMount() {
-    // this.source = this.state.audioContext.createMediaElementSource(this.audio);
-
-    // if (!this.props.children) {
-    //   this.source.connect(this.state.audioContext.destination);
-    // } else {
-    //   this.setState({
-    //     audioNodes: [this.source],
-    //   });
+    // function fireOnVideoStart() {
+    //   // Do some stuff when the video starts/resumes playing
     // }
+    // this.playerRef.current.addEventListener('play', fireOnVideoStart);
 
-    this.setPlayerState(this.props.playStatus);
-
-    // this.props.position && this.setPosition(this.props.position);
+    if (this.props.onFinishedPlaying) {
+      this.playerRef.current.addEventListener('ended', this.props.onFinishedPlaying);
+    }
   }
 
   componentWillUnmount() {
