@@ -1,3 +1,4 @@
+import logger from 'electron-timber';
 import _ from 'lodash';
 import getArtistTitle from 'get-artist-title';
 import ytdl from 'ytdl-core';
@@ -115,19 +116,28 @@ export async function trackSearchByString(query: string, omitStreamId?: string, 
     results.items as ytsr.Video[],
     item => (!omitStreamId || item.id !== omitStreamId)
   ) as ytsr.Video;
-  const topTrackInfo = await ytdl.getInfo(topTrack.url);
-  const formatInfo = ytdl.chooseFormat(topTrackInfo.formats, { quality: 'highestaudio' });
-  const segments = await SponsorBlock.getSegments(topTrack.id);
-  return {
-    source: sourceName,
-    id: topTrack.id,
-    stream: formatInfo.url,
-    duration: parseInt(topTrackInfo.videoDetails.lengthSeconds),
-    title: topTrackInfo.videoDetails.title,
-    thumbnail: topTrack.bestThumbnail.url,
-    format: formatInfo.container,
-    skipSegments: segments
-  };
+
+  try{
+    const topTrackInfo = await ytdl.getInfo(topTrack.url);
+    const formatInfo = ytdl.chooseFormat(topTrackInfo.formats, { quality: 'highestaudio' });
+    const segments = await SponsorBlock.getSegments(topTrack.id);
+  
+    return {
+      source: sourceName,
+      id: topTrack.id,
+      stream: formatInfo.url,
+      duration: parseInt(topTrackInfo.videoDetails.lengthSeconds),
+      title: topTrackInfo.videoDetails.title,
+      thumbnail: topTrack.bestThumbnail.url,
+      format: formatInfo.container,
+      skipSegments: segments
+    };
+  }
+    catch (e){
+      logger.error(`Warning: topTrack.url is undefined, skipped to next song`);
+      return undefined;
+      
+  }
 }
 
 export const getStreamForId = async (id: string) => {
