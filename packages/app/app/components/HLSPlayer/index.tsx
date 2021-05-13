@@ -70,7 +70,7 @@ class HlsPlayer extends React.Component<SoundProps, SoundState>  {
     this.playerRef.current.muted = muted;
   }
 
-  setAudioVolumn = (volume: number) => {
+  setAudioVolume = (volume: number) => {
     this.playerRef.current.volume = volume/100;
   }
 
@@ -101,7 +101,7 @@ class HlsPlayer extends React.Component<SoundProps, SoundState>  {
     }
 
     if (volume && prevProps.volume !== volume) {
-      this.setAudioVolumn(volume);
+      this.setAudioVolume(volume);
     }
   }
 
@@ -128,6 +128,7 @@ class HlsPlayer extends React.Component<SoundProps, SoundState>  {
     }
     this.props.onError && this.props.onError(err);
   }
+
   private handleError(evt: any) {
     let error: Error;
     switch (evt.target.error.code) {
@@ -149,6 +150,7 @@ class HlsPlayer extends React.Component<SoundProps, SoundState>  {
     }
     this.props.onError && this.props.onError(error);
   }
+
   render() {
     const {
       source

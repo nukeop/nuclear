@@ -104,14 +104,12 @@ export function urlSearch(url) {
 }
 
 export async function liveStreamSearch(query: string) {
-  const filters1 = await ytsr.getFilters(query);
-  const filter1 = filters1.get('Type').get('Video');
-  const filters2 = await ytsr.getFilters(filter1.url);
-  const filter2 = filters2.get('Features').get('Live');
+  const videoFilter = (await ytsr.getFilters(query)).get('Type').get('Video');
+  const liveFilter = (await ytsr.getFilters(videoFilter.url)).get('Features').get('Live');
   const options = {
     limit: 10
   };
-  const searchResults = await ytsr(filter2.url, options);
+  const searchResults = await ytsr(liveFilter.url, options);
 
   return searchResults.items.map((video: ytsr.Video) => {
     return {
