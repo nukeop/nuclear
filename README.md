@@ -3,7 +3,7 @@
 
 Desktop music player focused on streaming from free sources
 
-![Showcase](https://i.imgur.com/G9BqIHl.png)
+![Showcase](https://i.imgur.com/8qHu66J.png)
 
 # Links
 
