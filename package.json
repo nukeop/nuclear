@@ -1,6 +1,6 @@
 {
   "name": "nuclear",
-  "version": "0.6.13",
+  "version": "0.6.11",
   "description": "Streaming music player that finds music sources automatically.",
   "repository": {
     "type": "git",
@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/nukeop/nuclear#readme",
   "scripts": {
-    "postinstall": "lerna bootstrap --hoist --no-ci && electron-builder install-app-deps && electron-rebuild",
+    "postinstall": "lerna bootstrap --no-ci && electron-builder install-app-deps && electron-rebuild",
     "start": "lerna run start --stream",
     "build": "shx rm -rf dist && lerna run build && npm run pack",
     "test": "lerna run build && lerna run test",
@@ -38,12 +38,13 @@
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^2.13.0",
     "@typescript-eslint/parser": "^2.34.0",
+    "add": "^2.0.6",
     "babel-eslint": "^10.0.3",
     "cross-env": "^7.0.2",
-    "electron": "^12.0.5",
+    "electron": "^10.4.2",
     "electron-builder": "^22.8.1",
     "electron-rebuild": "^2.0.1",
-    "eslint": "^7.18.0",
+    "eslint": "^7.24.0",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-react": "^7.12.4",
     "eslint-plugin-react-hooks": "^1.6.1",
@@ -51,7 +52,8 @@
     "lerna": "^3.22.1",
     "lint-staged": "^10.0.0-beta.14",
     "shx": "^0.3.2",
-    "typescript": "^3.9.7"
+    "typescript": "^3.9.7",
+    "yarn": "^1.22.10"
   },
   "optionalDependencies": {
     "7zip-bin-mac": "^1.0.1"
@@ -111,10 +113,6 @@
       },
       {
         "ext": "ogg",
-        "mimeType": "audio/ogg"
-      },
-      {
-        "ext": "opus",
         "mimeType": "audio/ogg"
       },
       {
@@ -232,6 +230,10 @@
     }
   },
   "dependencies": {
+    "7zip-bin-mac": "^1.0.1",
+    "devextreme-react": "20.2.6",
+    "jspdf": "^2.3.1",
+    "jspdf-autotable": "^3.5.14",
     "sqlite3": "^4.2.0"
   }
 }
