@@ -134,9 +134,10 @@ export async function trackSearchByString(query: string, omitStreamId?: string, 
     };
   }
     catch (e){
+      logger.error('youtube track search error');
+      logger.error(e);
       throw new Error(`Warning: topTrack.url is undefined, removing song`);
-      return undefined;
-      
+             
   }
 }
 
