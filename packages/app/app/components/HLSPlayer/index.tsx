@@ -43,7 +43,9 @@ export interface SoundState {
 }
 
 class HlsPlayer extends React.Component<SoundProps, SoundState>  {
-  playerRef: RefObject<HTMLVideoElement>;
+  private playerRef: RefObject<HTMLVideoElement>;
+  private source: MediaElementAudioSourceNode;
+
   public state: SoundState = {
     audioContext: new AudioContext(),
     audioNodes: []
@@ -71,7 +73,8 @@ class HlsPlayer extends React.Component<SoundProps, SoundState>  {
   }
 
   setAudioVolume = (volume: number) => {
-    this.playerRef.current.volume = volume/100;
+    const newVolume =  volume/100;
+    this.playerRef.current.volume = newVolume < 0.01 ? 0 : newVolume;
   }
 
   private setPlayerState(status?: SoundStatus): void {
@@ -110,6 +113,16 @@ class HlsPlayer extends React.Component<SoundProps, SoundState>  {
     //   // Do some stuff when the video starts/resumes playing
     // }
     // this.playerRef.current.addEventListener('play', fireOnVideoStart);
+
+    // this.source = this.state.audioContext.createMediaElementSource(this.playerRef.current);
+
+    // if (!this.props.children) {
+    //   this.source.connect(this.state.audioContext.destination);
+    // } else {
+    //   this.setState({
+    //     audioNodes: [this.source]
+    //   });
+    // }
 
     if (this.props.onFinishedPlaying) {
       this.playerRef.current.addEventListener('ended', this.props.onFinishedPlaying);
@@ -151,21 +164,62 @@ class HlsPlayer extends React.Component<SoundProps, SoundState>  {
     this.props.onError && this.props.onError(error);
   }
 
+  private handleRegisterPlugin(plugin: AudioNode) {
+    this.setState({
+      audioNodes: [...this.state.audioNodes, plugin]
+    });
+  }
+
+  private renderPlugins() {
+    const { children } = this.props;
+
+    if (Array.isArray(children)) {
+      const flatChildren = children.flat() as ReactElement[];
+
+      return [
+        ...flatChildren.map((plugin, idx) => (
+          <plugin.type
+            {...plugin.props}
+            key={idx}
+            audioContext={this.state.audioContext}
+            previousNode={this.state.audioNodes[idx]}
+            onRegister={this.handleRegisterPlugin}
+          />
+        ))
+      ];
+    } else if (children) {
+      return [
+        <children.type
+          {...children.props}
+          key={1}
+          audioContext={this.state.audioContext}
+          previousNode={this.state.audioNodes[0]}
+          onRegister={this.handleRegisterPlugin}
+        />
+      ];
+    } else {
+      return null;
+    }
+  }
+
   render() {
     const {
       source
     } = this.props;
 
     return (
-      <ReactHlsPlayer
-        autoPlay
-        height={0}
-        width={0}
-        style={{ display: 'none' }}
-        playerRef={this.playerRef}
-        src={source}
-        onError={this.handleError}
-      />
+      <React.Fragment>
+        <ReactHlsPlayer
+          autoPlay
+          height={0}
+          width={0}
+          style={{ display: 'none' }}
+          playerRef={this.playerRef}
+          src={source}
+          onError={this.handleError}
+        />
+        {this.renderPlugins()}
+      </React.Fragment>
     );
   }
 }

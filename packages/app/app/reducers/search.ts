@@ -215,6 +215,11 @@ export default function SearchReducer(state = initialState, action) {
     return reduceYoutubeLiveStreamSearchStart(state, action);
   case Search.YOUTUBE_LIVESTREAM_SEARCH_SUCCESS:
     return reduceYoutubeLiveStreamSearchSuccess(state, action);
+  case Search.YOUTUBE_LIVESTREAM_SEARCH_ERROR:
+    return {
+      ...state,
+      liveStreamSearchResults: []
+    };
   case Search.SEARCH_DROPDOWN_DISPLAY_CHANGE:
     return reduceSearchDropdownDisplay(state, action);
   case Search.UPDATE_SEARCH_HISTORY:

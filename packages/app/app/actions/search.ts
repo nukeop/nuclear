@@ -19,6 +19,7 @@ export const SearchActions = {
   youtubePlaylistSearchSuccess: createAction(Search.YOUTUBE_PLAYLIST_SEARCH_SUCCESS, (id: string, info: any) => ({ id, info })),
   youtubeLiveStreamSearchStart: createAction(Search.YOUTUBE_LIVESTREAM_SEARCH_START, (terms: string) => ({ terms })),
   youtubeLiveStreamSearchSuccess: createAction(Search.YOUTUBE_LIVESTREAM_SEARCH_SUCCESS, (id: string, info: any) => ({ id, info })),
+  youtubeLiveStreamSearchError: createAction(Search.YOUTUBE_LIVESTREAM_SEARCH_ERROR, (terms: string, error: string) => ({ terms, error })),
   albumInfoStart: createAction(Search.ALBUM_INFO_SEARCH_START, (albumId: string) => ({ albumId })),
   albumInfoSuccess: createAction(Search.ALBUM_INFO_SEARCH_SUCCESS, (albumId: string, info: any) => ({ albumId, info })),
   albumInfoError: createAction(Search.ALBUM_INFO_SEARCH_ERROR, (albumId: string, error: string) => ({ albumId, error })),
@@ -124,20 +125,16 @@ export function youtubePlaylistSearch(terms) {
   };
 }
 
-export function youtubeLiveStreamSearch(terms) {
-  return dispatch => {
-    dispatch(SearchActions.youtubeLiveStreamSearchStart(terms));
-    rest.Youtube.liveStreamSearch(terms)
-      .then(results => {
-        dispatch(
-          SearchActions.youtubeLiveStreamSearchSuccess(terms, results)
-        );
-      })
-      .catch(error => {
-        logger.error(error);
-      });
-  };
-}
+export const youtubeLiveStreamSearch = (terms) => async (dispatch) => {
+  dispatch(SearchActions.youtubeLiveStreamSearchStart(terms));
+  try {
+    const results = await rest.Youtube.liveStreamSearch(terms);
+    dispatch(SearchActions.youtubeLiveStreamSearchSuccess(terms, results));
+  } catch (e) {
+    logger.error(e);
+    dispatch(SearchActions.youtubeLiveStreamSearchError(terms, e));
+  }
+};
 
 export function unifiedSearch(terms, history) {
   return dispatch => {
