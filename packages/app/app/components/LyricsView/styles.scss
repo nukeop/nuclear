@@ -7,7 +7,7 @@
   .empty_state {
     @include emptyState;
   }
-  
+
   .lyrics_text{
     white-space: pre-line;
     font-size: 1.3em;
@@ -15,4 +15,37 @@
     cursor: text;
     user-select: text;
   }
+  .empty_state {
+    @include emptyState;
+  }
+  
+  .lyrics_text{
+    white-space: pre-line;
+    font-size: 1.3em;
+    margin-left: 1rem;
+  }
+
+  .button:hover {
+    background: lightsalmon;
+  }
+  .export_button {
+    display: flex;
+  justify-content: center;
+  align-items: center;
+    color: white;
+    background: transparent;
+    padding: 0.375rem 2.5rem;
+    border-radius: 1.5rem;
+    display: inline-block;
+    margin-left: 10rem;
+    box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.18),
+    0px 5px 20px 0px rgba(0, 0, 0, 0.09);
+
+    &:hover {
+      
+      background: plum;
+    }
+  }
+	
+  
 }
