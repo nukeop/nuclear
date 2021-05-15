@@ -45,15 +45,16 @@ export const LyricsView: React.FC<LyricsViewProps> = ({
           name={track.name}
           artist={track.artist}
         />
-        <button onClick={createPDF} className=".export_button"> Download PDF</button> 
+        
         <div className={styles.lyrics_text}>
           {lyricsStr}
         </div>
-        <button onClick={createPDF} className=".export_button"> Download PDF</button> 
+        <button onClick={createPDF} className="export_button"> Export Lyrics</button> 
       </>
     }
   </div>;
 
+// Beginning of Code by jtmobs
   function createPDF () {
     let pdf = new jsPDF();
 
@@ -62,17 +63,20 @@ export const LyricsView: React.FC<LyricsViewProps> = ({
       left: 10
     };
     
-
-    pdf.setFont("Calibri", "Bold");
-    pdf.setFontSize(16);
+    // Print Headers
     let name = track.name
     let artist = track.artist
+    pdf.setFontSize(25);
+    pdf.setFont('times', 'bold')
+  
     pdf.text(name + " - " + artist, margins.left, margins.top);
-
-
+    
+    // To Export the Lyrics
     let lyrics = lyricsStr;
     let lyricsOfThePage = "";
 	  let nbrLineBreak = 0;
+    pdf.setFont("Calibri", "Bold");
+    pdf.setFontSize(16);
 	  
 	  for(let i = 0; i < lyrics.length; i++){
 		  lyricsOfThePage += lyrics[i];
@@ -92,15 +96,17 @@ export const LyricsView: React.FC<LyricsViewProps> = ({
 			  lyricsOfThePage = "";
 		  }
 	  }
+    //If after the loop, lyricsOfThePage is empty, delete the last page added which is empty
+	  //Else add the last part of the lyrics
+	  if(lyricsOfThePage == ""){
+		  pdf.deletePage(pdf.internal.getNumberOfPages());
+	  }
+	  else{
+		  pdf.text(lyricsOfThePage, margins.left, margins.top+10);
+	  }
 
-    
-    return  pdf.save('datauristring.pdf');
-    {lyricsStr}
-    {this.createPDF}
-    
-
-
+    return  pdf.save(name + "_" + artist +"_Lyrics.pdf");
+  
   }
 };
-
 export default LyricsView;
