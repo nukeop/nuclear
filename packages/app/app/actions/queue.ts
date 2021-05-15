@@ -52,15 +52,23 @@ export const addToQueue = (item) => async (dispatch, getState) => {
         artist: item.artist,
         track: item.name
       });
-      dispatch(updateQueueItem({
-        ...item,
-        loading: false,
-        error: false,
-        streams: [
-          streamData
-        ]
-      }));
-    } catch (e) {
+
+      if(streamData === undefined){
+        dispatch(removeFromQueue(item));
+      }
+      else{
+        dispatch(updateQueueItem({
+          ...item,
+          loading: false,
+          error: false,
+          streams: [
+            streamData
+          ]
+        }
+      ));
+    } 
+  }
+    catch (e) {
       logger.error(`An error has occurred when searching for a stream with ${selectedStreamProvider.sourceName} for "${item.artist} - ${item.name}."`);
       logger.error(e);
       dispatch(updateQueueItem({
