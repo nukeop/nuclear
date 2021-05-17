@@ -109,21 +109,7 @@ class HlsPlayer extends React.Component<SoundProps, SoundState>  {
   }
 
   componentDidMount() {
-    // function fireOnVideoStart() {
-    //   // Do some stuff when the video starts/resumes playing
-    // }
-    // this.playerRef.current.addEventListener('play', fireOnVideoStart);
-
-    // this.source = this.state.audioContext.createMediaElementSource(this.playerRef.current);
-
-    // if (!this.props.children) {
-    //   this.source.connect(this.state.audioContext.destination);
-    // } else {
-    //   this.setState({
-    //     audioNodes: [this.source]
-    //   });
-    // }
-
+    // https://github.com/devcshort/react-hls#using-playerref
     if (this.props.onFinishedPlaying) {
       this.playerRef.current.addEventListener('ended', this.props.onFinishedPlaying);
     }
