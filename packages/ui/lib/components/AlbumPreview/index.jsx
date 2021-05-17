@@ -12,7 +12,6 @@ import styles from './styles.scss';
 const AlbumPreview = ({
   album,
   trackButtons,
-  handleListClick,
 
   handleAddToQueue,
   handlePlayAll
@@ -43,7 +42,6 @@ const AlbumPreview = ({
       </div>
       <div
         className={styles.track_list}
-        onClick={handleListClick}
       >
         <table>
           <tbody>
