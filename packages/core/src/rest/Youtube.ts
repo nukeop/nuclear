@@ -135,7 +135,7 @@ export async function trackSearchByString(query: string, omitStreamId?: string, 
     item => (!omitStreamId || item.id !== omitStreamId)
   ) as ytsr.Video;
 
-  try{
+  try {
     const topTrackInfo = await ytdl.getInfo(topTrack.url);
     const formatInfo = ytdl.chooseFormat(topTrackInfo.formats, { quality: 'highestaudio' });
     const segments = await SponsorBlock.getSegments(topTrack.id);
@@ -150,12 +150,10 @@ export async function trackSearchByString(query: string, omitStreamId?: string, 
       format: formatInfo.container,
       skipSegments: segments
     };
-  }
-    catch (e){
-      logger.error('youtube track search error');
-      logger.error(e);
-      throw new Error(`Warning: topTrack.url is undefined, removing song`);
-             
+  } catch (e){
+    logger.error('youtube track search error');
+    logger.error(e);
+    throw new Error('Warning: topTrack.url is undefined, removing song');    
   }
 }
 
