@@ -14,8 +14,10 @@ function mapStateToProps(state) {
     albumSearchResults: state.search.albumSearchResults,
     trackSearchResults: state.search.trackSearchResults,
     playlistSearchResults: state.search.playlistSearchResults,
+    liveStreamSearchResults: state.search.liveStreamSearchResults,
     unifiedSearchStarted: state.search.unifiedSearchStarted,
     playlistSearchStarted: state.search.playlistSearchStarted,
+    liveStreamSearchStarted: state.search.liveStreamSearchStarted,
     streamProviders: state.plugin.plugins.streamProviders,
     metaProviders: state.plugin.plugins.metaProviders,
     selectedPlugins: state.plugin.selected

@@ -17,6 +17,9 @@ export const SearchActions = {
   albumSearchSuccess: createAction(Search.ALBUM_SEARCH_SUCCESS, (data: any) => data),
   youtubePlaylistSearchStart: createAction(Search.YOUTUBE_PLAYLIST_SEARCH_START, (terms: string) => ({ terms })),
   youtubePlaylistSearchSuccess: createAction(Search.YOUTUBE_PLAYLIST_SEARCH_SUCCESS, (id: string, info: any) => ({ id, info })),
+  youtubeLiveStreamSearchStart: createAction(Search.YOUTUBE_LIVESTREAM_SEARCH_START, (terms: string) => ({ terms })),
+  youtubeLiveStreamSearchSuccess: createAction(Search.YOUTUBE_LIVESTREAM_SEARCH_SUCCESS, (id: string, info: any) => ({ id, info })),
+  youtubeLiveStreamSearchError: createAction(Search.YOUTUBE_LIVESTREAM_SEARCH_ERROR, (terms: string, error: string) => ({ terms, error })),
   albumInfoStart: createAction(Search.ALBUM_INFO_SEARCH_START, (albumId: string) => ({ albumId })),
   albumInfoSuccess: createAction(Search.ALBUM_INFO_SEARCH_SUCCESS, (albumId: string, info: any) => ({ albumId, info })),
   albumInfoError: createAction(Search.ALBUM_INFO_SEARCH_ERROR, (albumId: string, error: string) => ({ albumId, error })),
@@ -122,6 +125,17 @@ export function youtubePlaylistSearch(terms) {
   };
 }
 
+export const youtubeLiveStreamSearch = (terms) => async (dispatch) => {
+  dispatch(SearchActions.youtubeLiveStreamSearchStart(terms));
+  try {
+    const results = await rest.Youtube.liveStreamSearch(terms);
+    dispatch(SearchActions.youtubeLiveStreamSearchSuccess(terms, results));
+  } catch (e) {
+    logger.error(e);
+    dispatch(SearchActions.youtubeLiveStreamSearchError(terms, e));
+  }
+};
+
 export function unifiedSearch(terms, history) {
   return dispatch => {
     dispatch(SearchActions.unifiedSearchStart(terms));
@@ -130,7 +144,8 @@ export function unifiedSearch(terms, history) {
       dispatch(albumSearch(terms)),
       dispatch(artistSearch(terms)),
       dispatch(lastFmTrackSearch(terms)),
-      dispatch(youtubePlaylistSearch(terms))
+      dispatch(youtubePlaylistSearch(terms)),
+      dispatch(youtubeLiveStreamSearch(terms))
     ])
       .then(() => {
         dispatch(SearchActions.unifiedSearchSuccess());
