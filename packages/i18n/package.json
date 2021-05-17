@@ -13,7 +13,8 @@
   "homepage": "https://github.com/nukeop/nuclear#readme",
   "main": "src/index.ts",
   "scripts": {
-    "lint": "eslint src/**/**.ts --fix",
+    "lint": "eslint src/**/**.ts",
+    "lint:fix": "eslint src/**/**.ts --fix",
     "i18n-sync": "ts-node scripts/sync"
   },
   "dependencies": {

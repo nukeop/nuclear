@@ -18,6 +18,7 @@ import { filterFrequencies } from '../../components/Equalizer/chart';
 import * as Autoradio from './autoradio';
 import VisualizerContainer from '../../containers/VisualizerContainer';
 import globals from '../../globals';
+import HlsPlayer from '../../components/HLSPlayer';
 
 const lastfm = new rest.LastFmApi(globals.lastfmApiKey, globals.lastfmApiSecret);
 
@@ -167,11 +168,24 @@ class SoundContainer extends React.Component {
     );
   }
 
+  isHlsStream(url) {
+    return /http.*?\.m3u8/g.test(url);
+  }
+
   render() {
     const { queue, player, equalizer, actions, enableSpectrum, currentStream, location, defaultEqualizer } = this.props;
     const currentTrack = queue.queueItems[queue.currentSong];
     const usedEqualizer = enableSpectrum ? equalizer : defaultEqualizer;
-    return Boolean(currentStream) && (
+    return Boolean(currentStream) && (this.isHlsStream(currentStream.stream) ? (
+      <HlsPlayer 
+        source={currentStream.stream}
+        onError={this.handleError}
+        playStatus={player.playbackStatus}
+        onFinishedPlaying={this.handleFinishedPlaying}
+        muted={player.muted}
+        volume={player.volume}
+      />
+    ) : (
       <Sound
         url={currentStream.stream}
         playStatus={player.playbackStatus}
@@ -199,7 +213,7 @@ class SoundContainer extends React.Component {
           trackName={currentTrack ? `${currentTrack.artist} - ${currentTrack.name}` : undefined}
         />
       </Sound>
-    );
+    ));
   }
 }
 

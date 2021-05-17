@@ -21,7 +21,7 @@ const TracksResults = ({ tracks, limit }) => {
             {_.take(collection, limit).map((track, index) => {
               if (
                 track &&
-                _.hasIn(track, 'name') && _.hasIn(track, 'image') &&
+                _.hasIn(track, 'name') && (_.hasIn(track, 'image') || _.hasIn(track, 'thumbnail')) &&
                 _.hasIn(track, 'artist')
               ) {
                 const newTrack = _.cloneDeep(track);

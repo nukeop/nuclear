@@ -13,8 +13,9 @@
   "homepage": "https://github.com/nukeop/nuclear#readme",
   "main": "src/index.ts",
   "scripts": {
-    "lint": "eslint \"{test,src}/**/**.{js,ts}\" --fix",
-    "test": "eslint \"{test,src}/**/**.{js,ts}\" && jest"
+    "lint": "eslint \"{test,src}/**/**.{js,ts}\"",
+    "lint:fix": "eslint \"{test,src}/**/**.{js,ts}\" --fix",
+    "test": "jest"
   },
   "dependencies": {
     "@babel/core": "^7.7.7",

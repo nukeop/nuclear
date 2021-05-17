@@ -6,7 +6,8 @@
     "start": "webpack-dev-server --inline --env.NODE_ENV=development",
     "build": "webpack --colors --progress --env.NODE_ENV=production",
     "test": "jest",
-    "lint": "eslint \"{app,test}/**/**.{js,jsx,ts,tsx}\" --fix",
+    "lint": "eslint \"{app,test}/**/**.{js,jsx,ts,tsx}\"",
+    "lint:fix": "eslint \"{app,test}/**/**.{js,jsx,ts,tsx}\" --fix",
     "i18n": "sync-i18n --files 'app/locales/*.json' --primary en --languages fr tl nl de dk es pl zh ru tr id sk ko zh_tw se gr hr is --space 2"
   },
   "repository": {
@@ -60,6 +61,7 @@
     "react-fontawesome": "^1.6.1",
     "react-full-screen": "^1.0.1",
     "react-hifi": "^2.2.1",
+    "react-hls-player": "^3.0.1",
     "react-i18next": "^10.11.0",
     "react-image": "^2.1.1",
     "react-list": "^0.8.13",

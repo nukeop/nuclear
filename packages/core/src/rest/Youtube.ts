@@ -103,6 +103,24 @@ export function urlSearch(url) {
   }
 }
 
+export async function liveStreamSearch(query: string) {
+  const videoFilter = (await ytsr.getFilters(query)).get('Type').get('Video');
+  const liveFilter = (await ytsr.getFilters(videoFilter.url)).get('Features').get('Live');
+  const options = {
+    limit: 10
+  };
+  const searchResults = await ytsr(liveFilter.url, options);
+
+  return searchResults.items.map((video: ytsr.Video) => {
+    return {
+      streams: [{source: 'youtube', id: video.id}],
+      name: video.title,
+      thumbnail: video.bestThumbnail.url,
+      artist: {name: video.author.name}
+    };
+  });
+}
+
 export async function trackSearch(query: StreamQuery, omitStreamId?: string, sourceName?: string) {
   const terms = query.artist + ' ' + query.track;
   return trackSearchByString(terms, omitStreamId, sourceName);
@@ -117,7 +135,7 @@ export async function trackSearchByString(query: string, omitStreamId?: string, 
     item => (!omitStreamId || item.id !== omitStreamId)
   ) as ytsr.Video;
 
-  try{
+  try {
     const topTrackInfo = await ytdl.getInfo(topTrack.url);
     const formatInfo = ytdl.chooseFormat(topTrackInfo.formats, { quality: 'highestaudio' });
     const segments = await SponsorBlock.getSegments(topTrack.id);
@@ -132,12 +150,10 @@ export async function trackSearchByString(query: string, omitStreamId?: string, 
       format: formatInfo.container,
       skipSegments: segments
     };
-  }
-    catch (e){
-      logger.error('youtube track search error');
-      logger.error(e);
-      throw new Error(`Warning: topTrack.url is undefined, removing song`);
-             
+  } catch (e){
+    logger.error('youtube track search error');
+    logger.error(e);
+    throw new Error('Warning: topTrack.url is undefined, removing song');    
   }
 }
 

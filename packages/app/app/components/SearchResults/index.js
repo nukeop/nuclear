@@ -57,7 +57,7 @@ class SearchResults extends React.Component {
     );
   }
 
-  renderLastFmPane(collection) {
+  renderTrackListPane(collection) {
     if (typeof collection !== 'undefined') {
 
       return (
@@ -79,7 +79,6 @@ class SearchResults extends React.Component {
       );
     }
   }
-
 
   renderPlaylistPane() {
     return (
@@ -121,11 +120,15 @@ class SearchResults extends React.Component {
       },
       {
         menuItem: 'Tracks',
-        render: () => this.renderLastFmPane(this.props.trackSearchResults.info)
+        render: () => this.renderTrackListPane(this.props.trackSearchResults.info)
       },
       {
         menuItem: 'Playlist',
-        render: () => this.renderPlaylistPane(this.props.playlistSearchResults)
+        render: () => this.renderPlaylistPane()
+      },
+      {
+        menuItem: 'LiveStream',
+        render: () => this.renderTrackListPane(this.props.liveStreamSearchResults.info)
       }
     ];
 
