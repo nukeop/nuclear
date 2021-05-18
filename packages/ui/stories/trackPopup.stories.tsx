@@ -16,6 +16,11 @@ const track = {
 export const WithNoButtons = () => <div className='bg'>
   <TrackPopup
     trigger={<Button>Click here</Button>}
+    withAddToDownloads={false}
+    withAddToFavorites={false}
+    withAddToPlaylist={false}
+    withAddToQueue={false}
+    withPlayNow={false}
     {...track}
   />
 </div>;
@@ -23,10 +28,11 @@ export const WithNoButtons = () => <div className='bg'>
 export const WithAllButtons = () => <div className='bg'>
   <TrackPopup
     trigger={<Button>Click here</Button>}
+    playlists={[
+      { name: 'playlist 1'},
+      { name: 'playlist 2'},
+      { name: 'another playlist'}
+    ]}
     {...track}
-    withAddToQueue
-    withPlayNow
-    withAddToFavorites
-    withAddToDownloads
   />
 </div>;

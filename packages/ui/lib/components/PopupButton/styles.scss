@@ -1,4 +1,4 @@
-@import '../../common.scss';
+@import "../../common.scss";
 
 .popup_button {
   width: 100%;
@@ -8,9 +8,20 @@
   transition: $short-duration;
   user-select: none;
 
+  &.nuclear.dropdown {
+    background: none;
+    border: none;
+    transition: $short-duration;
+  }
+
+  &.nuclear.dropdown:hover,
+  &.nuclear.dropdown:active,
+  &.nuclear.dropdown:focus,
   &:hover {
     background: $pink;
     text-decoration: none;
     color: $white;
+    border: none;
+    box-shadow: none;
   }
 }

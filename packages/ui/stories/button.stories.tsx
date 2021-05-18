@@ -6,7 +6,7 @@ export default {
   title: 'Button'
 };
 
-export const propsList: ButtonProps[] = [
+const propsList: ButtonProps[] = [
   { basic: true },
   {},
   { color: 'green' },

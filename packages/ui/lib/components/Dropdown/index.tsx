@@ -7,7 +7,11 @@ import styles from './styles.scss';
 
 const Dropdown: React.FC<DropdownProps> = ({ className, ...props }) => <SemanticDropdown
   {...props}
-  className={cx(common.nuclear, styles.dropdown, className)}
+  className={cx(
+    common.nuclear,
+    styles.dropdown,
+    className
+  )}
 />;
 Dropdown.displayName = 'Dropdown';
 
