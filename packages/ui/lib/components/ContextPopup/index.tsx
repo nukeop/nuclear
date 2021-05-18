@@ -1,12 +1,22 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import _ from 'lodash';
-import { Popup } from 'semantic-ui-react';
+import { Popup, PopupProps } from 'semantic-ui-react';
 import { withState, withHandlers, compose } from 'recompose';
 
 import styles from './styles.scss';
 
-const ContextPopup = ({
+export type ContextPopupProps = {
+  trigger: PopupProps['trigger'];
+  isOpen: PopupProps['open'];
+  handleOpen: PopupProps['onOpen'];
+  handleClose: React.MouseEventHandler;
+
+  thumb?: string;
+  title: string;
+  artist?: string;
+  target?: { x: number; y: number };
+};
+
+const ContextPopup: React.FC<ContextPopupProps> = ({
   children,
   trigger,
   isOpen,
@@ -41,7 +51,7 @@ const ContextPopup = ({
           {title}
         </div>
         {
-          !_.isNil(artist) &&
+          artist &&
           <div className={styles.popup_artist}>
             by {artist}
           </div>
@@ -60,22 +70,10 @@ const ContextPopup = ({
   </Popup>
 );
 
-ContextPopup.propTypes = {
-  children: PropTypes.node,
-  trigger: PropTypes.node,
-  thumb: PropTypes.string,
-  title: PropTypes.string,
-  artist: PropTypes.string,
-  target: PropTypes.shape({
-    x: PropTypes.number,
-    y: PropTypes.number
-  })
-};
-
 export default compose(
   withState('isOpen', 'setOpen', false),
   withHandlers({
-    handleOpen: ({setOpen}) => () => setOpen(true),
-    handleClose: ({setOpen}) => () => setOpen(false)
+    handleOpen: ({ setOpen }) => () => setOpen(true),
+    handleClose: ({ setOpen }) => () => setOpen(false)
   })
 )(ContextPopup);

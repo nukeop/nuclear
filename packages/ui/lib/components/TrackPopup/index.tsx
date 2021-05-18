@@ -3,41 +3,45 @@ import React from 'react';
 import _ from 'lodash';
 import { Icon, Dropdown } from 'semantic-ui-react';
 
-import ContextPopup from '../ContextPopup';
+import ContextPopup, { ContextPopupProps } from '../ContextPopup';
 import PopupButton from '../PopupButton';
 import PopupDropdown from '../PopupDropdown';
 
-const TrackPopup: React.FC<{
-  trigger: React.ReactNode;
-  artist: string;
-  title: string;
-  thumb: string;
-  playlists: Array<{
+export type TrackPopupProps = {
+  trigger: ContextPopupProps['trigger'];
+  artist?: ContextPopupProps['artist'];
+  title: ContextPopupProps['title'];
+  thumb?: ContextPopupProps['thumb'];
+
+  playlists?: Array<{
     name: string;
   }>;
 
-  withAddToQueue: boolean;
-  withPlayNow: boolean;
-  withAddToFavorites: boolean;
-  withAddToPlaylist: boolean;
-  withAddToDownloads: boolean;
+  withAddToQueue?: boolean;
+  withPlayNow?: boolean;
+  withAddToFavorites?: boolean;
+  withAddToPlaylist?: boolean;
+  withAddToDownloads?: boolean;
 
-  onAddToQueue: () => void;
-  onPlayNow: () => void;
-  onAddToFavorites: () => void;
-  onAddToPlaylist: ({name: string}) => void;
-  onAddToDownloads: () => void;
-}> = ({
+  onAddToQueue?: () => void;
+  onPlayNow?: () => void;
+  onAddToFavorites?: () => void;
+  onAddToPlaylist?: ({name: string}) => void;
+  onAddToDownloads?: () => void;
+};
+
+const TrackPopup: React.FC<TrackPopupProps> = ({
   trigger,
   artist,
   title,
   thumb,
   playlists,
-  withAddToQueue,
-  withPlayNow,
-  withAddToFavorites,
-  withAddToPlaylist,
-  withAddToDownloads,
+
+  withAddToQueue=true,
+  withPlayNow=true,
+  withAddToFavorites=true,
+  withAddToPlaylist=true,
+  withAddToDownloads=true,
   onAddToQueue,
   onPlayNow,
   onAddToFavorites,
@@ -81,19 +85,17 @@ const TrackPopup: React.FC<{
     }
 
     {
-      withAddToPlaylist && Boolean(playlists.length) && 
+      withAddToPlaylist && Boolean(playlists) && 
       <PopupDropdown text='Add to playlist'>
-        {_.map(playlists, (playlist, i) => {
-          return (
-            <Dropdown.Item
-              key={i}
-              onClick={() => onAddToPlaylist(playlist)}
-            >
-              <Icon name='music' />
-              {playlist.name}
-            </Dropdown.Item>
-          );
-        })}
+        {_.map(playlists, (playlist, i) => (
+          <Dropdown.Item
+            key={i}
+            onClick={() => onAddToPlaylist(playlist)}
+          >
+            <Icon name='music' />
+            {playlist.name}
+          </Dropdown.Item>
+        ))}
       </PopupDropdown>
     }
 

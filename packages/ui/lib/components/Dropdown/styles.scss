@@ -1,8 +1,8 @@
 @import "../../common.scss";
 
-.nuclear.dropdown {
-  color: $white !important;
-  background: $background3 !important;
+.nuclear.ui.dropdown {
+  color: $white;
+  background: $background3;
   border: 1px solid rgba($background2, 0.6);
   transition: box-shadow $short-duration ease-in;
 
@@ -11,18 +11,19 @@
   &:focus,
   &.ui.selection.active.dropdown {
     @include shadow;
-    color: $white !important;
+    color: $white;
     border: 1px solid transparent;
   }
 
   .dropdown.icon {
     display: flex;
     align-items: center;
-    height: 100% !important;
+    height: 100%;
+    color: $white;
   }
 
   .text, input {
-    color: $white !important;
+    color: $white;
   }
 
   .menu {
