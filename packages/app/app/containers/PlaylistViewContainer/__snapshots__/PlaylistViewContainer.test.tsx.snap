@@ -91,7 +91,6 @@ exports[`Playlist view container should display a playlist 1`] = `
             <tbody>
               <tr
                 class="track_row"
-                index="playlist-track-0"
               >
                 <td
                   class="track_row_buttons"
@@ -123,7 +122,6 @@ exports[`Playlist view container should display a playlist 1`] = `
               </tr>
               <tr
                 class="track_row"
-                index="playlist-track-1"
               >
                 <td
                   class="track_row_buttons"
