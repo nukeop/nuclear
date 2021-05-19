@@ -20,6 +20,9 @@ export function readFavorites() {
 
 export function addFavoriteTrack(track) {
   const clonedTrack = safeAddUuid(track);
+  if (_.isString(clonedTrack.artist)) {
+    clonedTrack.artist = { name: clonedTrack.artist };
+  }
 
   const favorites = store.get('favorites');
   const filteredTracks = favorites.tracks.filter(({ name, artist }) => {

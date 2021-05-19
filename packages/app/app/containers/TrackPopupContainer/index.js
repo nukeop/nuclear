@@ -71,7 +71,7 @@ const TrackPopupContainer = compose(
     onAddToDownloads: ({ actions, streamProviders, track, artist, title, thumb, settings}) => () => {
       const clonedTrack = {
         ...safeAddUuid(track),
-        artist: track.artist.name,
+        artist: track.artist.name ?? track.artist,
         title: track.name
       };
       actions.addToDownloads(streamProviders, clonedTrack);

@@ -13,6 +13,7 @@ export type ButtonProps = SUIButtonProps & {
 }
 const Button: React.FC<ButtonProps> = ({
   rounded = false,
+  className,
   ...rest
 }) => <SUIButton
   className={cx(
@@ -20,7 +21,8 @@ const Button: React.FC<ButtonProps> = ({
     styles.button,
     {
       [styles.rounded]: rounded
-    }
+    },
+    className
   )}
   {...rest}
 />;

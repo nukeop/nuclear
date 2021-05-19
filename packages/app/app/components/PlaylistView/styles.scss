@@ -67,16 +67,17 @@
     flex-flow: row;
     padding-bottom: 1rem;
     
-    a {
-      padding: 0.375rem 2.5rem;
-    }
-    
     .play_button {
-      background: $pink;
-      color: $white;
-      border-radius: 1.5rem;
       text-transform: uppercase;
       margin-right: 2rem;
+      padding-left: 2em;
+      padding-right: 2em;
+    }
+
+    .more_button {
+      i {
+        margin: 0 !important;
+      }
     }
 
     .delete_button {
@@ -85,11 +86,6 @@
       border-radius: 1.5rem;
       text-transform: uppercase;
       margin-right: 2rem;
-    }
-
-    .more_button {
-      border: 1px solid white;
-      border-radius: 1.5rem;
     }
   }
 

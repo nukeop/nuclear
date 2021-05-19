@@ -61,6 +61,14 @@ storiesOf('Queue item', module)
         style={{ width: '3rem' }}
       >
         <QueueItem {...commonProps} isCompact />
+        <QueueItem {...commonProps}
+          track={{
+            thumbnail: 'https://i.imgur.com/koC6Otx.jpg',
+            name: 'Test track name',
+            artist: 'Test artist'
+          }}
+          isCompact
+        />
         <QueueItem {...commonProps} isCompact isLoading />
         <QueueItem {...commonProps} isCompact isCurrent />
         <QueueItem {...commonProps} isCompact error />
@@ -69,7 +77,7 @@ storiesOf('Queue item', module)
   ))
   .add('With no art', () => (
     <div className='bg'>
-      <QueueItem {...commonProps} 
+      <QueueItem {...commonProps}
         track={{
           name: 'Test track name',
           artist: 'Test artist'
