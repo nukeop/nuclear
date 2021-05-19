@@ -13,6 +13,7 @@ export default class Track {
   };
   artist: string;
   title: string;
+  name?: string;
   duration: string | number;
   
   position?: string | number;
@@ -29,6 +30,7 @@ export default class Track {
     this.ids = data.ids || {};
     this.artist = data.artist;
     this.title = data.title;
+    this.name = data.title;
     this.duration = data.duration;
     this.position = data.position;
     this.thumbnail = data.thumbnail;
@@ -38,6 +40,7 @@ export default class Track {
     this.ids = { ...this.ids, [data.source]: data.id };
     this.artist = data.artist;
     this.title = data.title;
+    this.name = data.title;
   }
 
   static fromSearchResultData(data: SearchResultsTrack): Track {

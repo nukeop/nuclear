@@ -34,7 +34,7 @@ exports[`Playlist view container should display a playlist 1`] = `
               test playlist
               <button
                 aria-label="Rename this playlist"
-                class="ui basic icon button"
+                class="ui basic icon button nuclear button"
                 data-testid="rename-button"
               >
                 <i
@@ -46,26 +46,24 @@ exports[`Playlist view container should display a playlist 1`] = `
             <div
               class="playlist_buttons"
             >
-              <a
-                class="play_button"
-                href="#"
+              <button
+                class="ui pink button nuclear button rounded play_button"
               >
                 <i
                   aria-hidden="true"
                   class="play icon"
                 />
                  Play
-              </a>
-              <a
-                class="more_button"
+              </button>
+              <button
+                class="ui basic button nuclear button rounded more_button"
                 data-testid="more-button"
-                href="#"
               >
                 <i
                   aria-hidden="true"
                   class="ellipsis horizontal icon"
                 />
-              </a>
+              </button>
             </div>
           </div>
         </div>
@@ -92,7 +90,8 @@ exports[`Playlist view container should display a playlist 1`] = `
             </thead>
             <tbody>
               <tr
-                class="track"
+                class="track_row"
+                index="playlist-track-0"
               >
                 <td
                   class="track_row_buttons"
@@ -105,25 +104,26 @@ exports[`Playlist view container should display a playlist 1`] = `
                   </a>
                 </td>
                 <td
-                  class="track_thumbnail"
+                  class="track_row_thumbnail"
                 >
                   <img
                     src="test thumbnail"
                   />
                 </td>
                 <td
-                  class="track_artist"
+                  class="track_row_artist"
                 >
                   test artist 1
                 </td>
                 <td
-                  class="track_name"
+                  class="track_row_name"
                 >
                   test track
                 </td>
               </tr>
               <tr
-                class="track"
+                class="track_row"
+                index="playlist-track-1"
               >
                 <td
                   class="track_row_buttons"
@@ -136,19 +136,19 @@ exports[`Playlist view container should display a playlist 1`] = `
                   </a>
                 </td>
                 <td
-                  class="track_thumbnail"
+                  class="track_row_thumbnail"
                 >
                   <img
                     src="test thumbnail 2"
                   />
                 </td>
                 <td
-                  class="track_artist"
+                  class="track_row_artist"
                 >
                   test artist 2
                 </td>
                 <td
-                  class="track_name"
+                  class="track_row_name"
                 >
                   test track 22
                 </td>

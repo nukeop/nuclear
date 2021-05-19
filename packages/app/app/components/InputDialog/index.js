@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { Button, Input, Modal } from 'semantic-ui-react';
 import { useTranslation } from 'react-i18next';
 
@@ -15,6 +15,10 @@ const InputDialog = ({ initialString, trigger, header, placeholder, accept, onAc
     onAccept(inputString);
     handleClose();
   }, [handleClose, inputString, onAccept]);
+
+  useEffect(() => {
+    setInputString(initialString);
+  }, [initialString]);
 
   return (
     <Modal
