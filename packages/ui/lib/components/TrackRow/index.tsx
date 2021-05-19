@@ -17,7 +17,7 @@ const getTrackThumbnail = track => {
   );
 };
 
-type TrackRowProps = {
+export type TrackRowProps = {
   track: {
     local?: boolean;
     album?: string;

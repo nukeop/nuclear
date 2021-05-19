@@ -3,6 +3,7 @@ import _ from 'lodash';
 import { useTranslation } from 'react-i18next';
 import { Icon } from 'semantic-ui-react';
 import { Button, ContextPopup, PopupButton, TrackRow } from '@nuclear/ui';
+import { TrackRowProps } from '@nuclear/ui/lib/components/TrackRow';
 
 import InputDialog from '../InputDialog';
 import artPlaceholder from '../../../resources/media/art_placeholder.png';
@@ -159,8 +160,7 @@ const PlaylistView: React.FC<PlaylistViewProps> = ({
                 track={track}
                 trigger={
                   <TrackRow
-                    track={track}
-                    index={'playlist-track-' + index}
+                    track={track as TrackRowProps['track']}
                     displayCover
                     displayArtist
                     withDeleteButton
