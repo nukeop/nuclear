@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import _ from 'lodash';
 import { useTranslation } from 'react-i18next';
 import { Icon } from 'semantic-ui-react';
@@ -41,28 +41,36 @@ const PlaylistView: React.FC<PlaylistViewProps> = ({
   const { t } = useTranslation('playlists');
   const history = useHistory();
 
-  const renamePlaylist = (name: string) => {
+  const onRenamePlaylist = useCallback((name: string) => {
     const updatedPlaylist = {
       ...playlist,
       name
     };
     updatePlaylist(updatedPlaylist);
-  };
+  }, [playlist, updatePlaylist]);
 
-  const playAll = () => {
+  const onAddAll = useCallback(() => addTracks(playlist.tracks),
+    [addTracks, playlist]);
+
+  const onPlayAll = useCallback(() => {
     clearQueue();
     addTracks(playlist.tracks);
     selectSong(0);
     startPlayback();
-  };
+  }, [addTracks, clearQueue, playlist, selectSong, startPlayback]);
 
-  const removeTrack = (trackToRemove: Track) => {
+  const onRemoveTrack = useCallback((trackToRemove: Track) => {
     const newPlaylist = {
       ...playlist,
       tracks: playlist.tracks.filter(track => track.uuid !== trackToRemove.uuid)
     };
     updatePlaylist(newPlaylist);
-  };
+  }, [playlist, updatePlaylist]);
+
+  const onDelete = useCallback(() => {
+    deletePlaylist(playlist.id);
+    history.push('/playlists');
+  }, [playlist, history, deletePlaylist]);
 
   return (
     <div className={styles.playlist_view_container}>
@@ -83,7 +91,7 @@ const PlaylistView: React.FC<PlaylistViewProps> = ({
                 placeholder={t('dialog-placeholder')}
                 accept='Rename'
                 initialString={playlist.name}
-                onAccept={renamePlaylist}
+                onAccept={onRenamePlaylist}
                 trigger={
                   <Button
                     basic
@@ -96,7 +104,7 @@ const PlaylistView: React.FC<PlaylistViewProps> = ({
             </div>
             <div className={styles.playlist_buttons}>
               <Button
-                onClick={playAll}
+                onClick={onPlayAll}
                 color='pink'
                 rounded
                 className={styles.play_button}
@@ -120,16 +128,13 @@ const PlaylistView: React.FC<PlaylistViewProps> = ({
                 thumb={_.get(playlist, 'tracks[0].thumbnail', artPlaceholder)}
               >
                 <PopupButton
-                  onClick={() => addTracks(playlist.tracks)}
+                  onClick={onAddAll}
                   ariaLabel={t('queue')}
                   icon='plus'
                   label={t('queue')}
                 />
                 <PopupButton
-                  onClick={() => {
-                    deletePlaylist(playlist.id);
-                    history.push('/playlists');
-                  }}
+                  onClick={onDelete}
                   ariaLabel={t('delete')}
                   icon='trash'
                   label={t('delete')}
@@ -164,7 +169,7 @@ const PlaylistView: React.FC<PlaylistViewProps> = ({
                     displayCover
                     displayArtist
                     withDeleteButton
-                    onDelete={() => removeTrack(track)}
+                    onDelete={() => onRemoveTrack(track)}
                   />
                 }
               />)

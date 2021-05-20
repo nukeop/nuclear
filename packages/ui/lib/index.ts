@@ -22,6 +22,7 @@ export { default as ToastContainer } from './components/ToastContainer';
 export { default as Tooltip } from './components/Tooltip';
 export { default as TrackPopup } from './components/TrackPopup';
 export { default as TrackRow } from './components/TrackRow';
+export { default as TrackTable } from './components/TrackTable';
 export { default as UserPluginsItem } from './components/UserPluginsItem';
 export { default as SearchBox } from './components/SearchBox';
 export { default as MiniPlayer } from './components/MiniPlayer';
