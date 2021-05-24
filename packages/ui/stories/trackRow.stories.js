@@ -49,7 +49,7 @@ storiesOf('Track row', module)
                   artist: { name: 'Test artist' },
                   name: `Test track ${i}`,
                   duration: 100,
-                  position: 0,
+                  position: i+1,
                   playcount: Math.random() * 100000000
                 }}
                 displayArtist

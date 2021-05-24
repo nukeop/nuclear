@@ -7,5 +7,5 @@ export type Track = {
   playcount?: number | string;
   title: string;
   name?: string;
-  thumbnail?: any;
+  thumbnail?: string;
 };

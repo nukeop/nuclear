@@ -16,7 +16,7 @@ const SmoothImage = ({
   }, [setLoaded]);
 
   return (
-    <div {...props} className={styles.wrapper}>
+    <div {...props} className={styles.smooth_image_wrapper}>
       <img
         src={src}
         alt={alt}
