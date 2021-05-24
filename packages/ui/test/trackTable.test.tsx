@@ -1,32 +1,28 @@
-// tslint:disable: jsx-no-plain-text-elements
 import React from 'react';
 import { Icon } from 'semantic-ui-react';
 
-import { TrackTable } from '..';
+import { TrackTable } from '../lib';
 import { Track } from '../lib/types';
+import { makeSnapshotTest } from './helpers';
 
+makeSnapshotTest(
+  TrackTable,
+  {
+    tracks: [],
+    positionHeader: 'Position',
+    thumbnailHeader: 'Thumbnail',
+    artistHeader: 'Artist',
+    albumHeader: 'Album',
+    titleHeader: 'Title',
+    durationHeader: 'Length'
+  },
+  '(Snapshot) Track table - empty'
+);
 
-export default {
-  title: 'Track table',
-  component: TrackTable
-};
-
-export const Empty = () =>  <div className='bg'>
-  <TrackTable
-    tracks={[]}
-    positionHeader='Position'
-    thumbnailHeader='Thumbnail'
-    artistHeader='Artist'
-    albumHeader='Album'
-    titleHeader='Title'
-    durationHeader='Length'
-    isTrackFavorite={() => false}
-  />
-</div>;
-
-export const ExampleData = () =>  <div className='bg'>
-  <TrackTable
-    tracks={[
+makeSnapshotTest(
+  TrackTable,
+  {
+    tracks: [
       {
         position: 1, 
         thumbnail: 'https://i.imgur.com/4euOws2.jpg', 
@@ -50,15 +46,15 @@ export const ExampleData = () =>  <div className='bg'>
         album: 'Test Album',
         duration: '1:00'
       } as Track
-    ]}
-    positionHeader='#'
-    thumbnailHeader={<Icon name='image' />}
-    artistHeader='Artist'
-    titleHeader='Title'
-    albumHeader='Album'
-    durationHeader='Length'
-    isTrackFavorite={
+    ],
+    positionHeader: 'Position',
+    thumbnailHeader: <Icon name='image' />,
+    artistHeader: 'Artist',
+    albumHeader: 'Album',
+    titleHeader: 'Title',
+    durationHeader: 'Length',
+    isTrackFavorite:
       (track: Track) => track.artist === 'Test Artist 2'
-    }
-  />
-</div>;
+  },
+  '(Snapshot) Track table - example data with all rows'
+);

@@ -10,9 +10,11 @@ import styles from './styles.scss';
 
 export type ButtonProps = SUIButtonProps & {
   rounded?: boolean;
+  borderless?: boolean;
 }
 const Button: React.FC<ButtonProps> = ({
   rounded = false,
+  borderless = false,
   className,
   ...rest
 }) => <SUIButton
@@ -20,7 +22,8 @@ const Button: React.FC<ButtonProps> = ({
     common.nuclear,
     styles.button,
     {
-      [styles.rounded]: rounded
+      [styles.rounded]: rounded,
+      [styles.borderless]: borderless
     },
     className
   )}

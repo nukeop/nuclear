@@ -1,34 +1,116 @@
-import React from 'react';
-import { useTable, Column } from 'react-table';
+/* eslint-disable react/jsx-key */
+import React, { useMemo } from 'react';
+import { useTable, Column, useRowSelect } from 'react-table';
+import _ from 'lodash';
 
 import { Track } from '../../types';
+import { getTrackThumbnail } from '../TrackRow';
+import TrackTableCell from './Cells/TrackTableCell';
+import PositionCell from './Cells/PositionCell';
+import ThumbnailCell from './Cells/ThumbnailCell';
+import TitleCell from './Cells/TitleCell';
+
+import styles from './styles.scss';
+import artPlaceholder from '../../../resources/media/art_placeholder.png';
+import FavoriteCell from './Cells/FavoriteCell';
+import SelectionHeader from './Headers/SelectionHeader';
+import SelectionCell from './Cells/SelectionCell';
 
 export type TrackTableProps = {
   tracks: Track[];
+  isTrackFavorite: (track: Track) => boolean;
 
   positionHeader: string;
-  thumbnailHeader: string;
+  thumbnailHeader: React.ReactNode;
   artistHeader: string;
   titleHeader: string;
-}
+  albumHeader: string;
+  durationHeader: string;
 
+  displayPosition?: boolean;
+  displayThumbnail?: boolean;
+  displayFavorite?: boolean;
+  displayArtist?: boolean;
+  displayAlbum?: boolean;
+  displayDuration?: boolean;
+  selectable?: boolean;
+  
+}
 
 const TrackTable: React.FC<TrackTableProps> = ({
   tracks,
+  isTrackFavorite,
 
   positionHeader,
   thumbnailHeader,
   artistHeader,
-  titleHeader
-}) => {
-  const columns =  [
-    { Header: positionHeader, accessor: 'position' },
-    { Header: thumbnailHeader, accessor: 'thumbnail' },
-    { Header: artistHeader, accessor: 'artist' },
-    { Header: titleHeader, accessor: 'title' }
-  ] as Column<Track>[];
+  titleHeader,
+  albumHeader,
+  durationHeader,
 
-  const table = useTable({columns, data: tracks});
+  displayPosition=true,
+  displayThumbnail=true,
+  displayFavorite=true,
+  displayArtist=true,
+  displayAlbum=true,
+  displayDuration=true,
+  selectable=true
+}) => {
+  const columns = useMemo(() => [
+    displayPosition && {
+      id: 'position',
+      Header: () => <span className={styles.center_aligned}>{positionHeader}</span>,
+      accessor: 'position',
+      Cell: PositionCell
+    },
+    displayThumbnail && {
+      id: 'thumbnail',
+      Header: () => <span className={styles.center_aligned}>{thumbnailHeader}</span>,
+      accessor: (track) => getTrackThumbnail(track) || artPlaceholder,
+      Cell: ThumbnailCell
+    },
+    displayFavorite && {
+      id: 'favorite',
+      Header: '',
+      accessor: isTrackFavorite,
+      Cell: FavoriteCell
+    },
+    {
+      id: 'title',
+      Header: titleHeader,
+      accessor: (track) => track.title ?? track.name,
+      Cell: TitleCell
+    },
+    displayArtist && {
+      id: 'artist',
+      Header: artistHeader,
+      accessor: (track) => _.isString(track.artist)
+        ? track.artist
+        : track.artist.name,
+      Cell: TrackTableCell
+    },
+    displayAlbum && {
+      id: 'album',
+      Header: albumHeader,
+      accessor: 'album',
+      Cell: TrackTableCell
+    },
+    displayDuration && {
+      id: 'duration',
+      Header: durationHeader,
+      accessor: 'duration',
+      Cell: TrackTableCell
+    },
+    selectable && {
+      id: 'selection',
+      Header: SelectionHeader,
+      Cell: SelectionCell
+    }
+  ].filter(Boolean) as Column<Track>[], [displayPosition, displayThumbnail, displayFavorite, isTrackFavorite, titleHeader, displayArtist, artistHeader, displayAlbum, albumHeader, displayDuration, durationHeader, selectable, positionHeader, thumbnailHeader]);
+
+  const data = useMemo(() => tracks, [tracks]);
+
+  const table = useTable<Track>({ columns, data }, useRowSelect);
 
   const {
     getTableProps,
@@ -38,7 +120,7 @@ const TrackTable: React.FC<TrackTableProps> = ({
     prepareRow
   } = table;
 
-  return <table {...getTableProps()}>
+  return <table {...getTableProps()} className={styles.track_table}>
     <thead>
       {
         headerGroups.map(headerGroup => (
@@ -60,13 +142,7 @@ const TrackTable: React.FC<TrackTableProps> = ({
           prepareRow(row);
           return (
             <tr {...row.getRowProps()}>
-              {
-                row.cells.map(cell => (
-                  <td {...cell.getCellProps()}>
-                    {cell.render('Cell')}
-                  </td>
-                ))
-              }
+              {row.cells.map(cell => (cell.render('Cell')))}
             </tr>
           );
         })

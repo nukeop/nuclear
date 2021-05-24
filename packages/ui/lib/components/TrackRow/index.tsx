@@ -10,7 +10,7 @@ import { formatDuration } from '../../utils';
 import styles from './styles.scss';
 import { Track } from '../../types';
 
-const getTrackThumbnail = track => {
+export const getTrackThumbnail = track => {
   return _.get(
     track,
     'thumbnail',
