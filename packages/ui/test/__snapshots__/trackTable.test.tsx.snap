@@ -187,15 +187,15 @@ exports[`(Snapshot) Track table - example data with all rows should render corre
           role="cell"
         >
           <button
-            class="add_button"
+            class="ui mini circular icon button nuclear button add_button"
           >
             <i
               aria-hidden="true"
-              class="play circle big icon"
+              class="play icon"
             />
           </button>
           <span
-            class="value"
+            class="position_cell_value"
           >
             1
           </span>
@@ -233,7 +233,15 @@ exports[`(Snapshot) Track table - example data with all rows should render corre
               class="title_cell_buttons"
             >
               <button
-                class="ui basic button nuclear button rounded borderless title_cell_more"
+                class="ui mini basic circular icon button nuclear button borderless"
+              >
+                <i
+                  aria-hidden="true"
+                  class="plus icon"
+                />
+              </button>
+              <button
+                class="ui mini basic circular icon button nuclear button borderless"
               >
                 <i
                   aria-hidden="true"
@@ -286,15 +294,15 @@ exports[`(Snapshot) Track table - example data with all rows should render corre
           role="cell"
         >
           <button
-            class="add_button"
+            class="ui mini circular icon button nuclear button add_button"
           >
             <i
               aria-hidden="true"
-              class="play circle big icon"
+              class="play icon"
             />
           </button>
           <span
-            class="value"
+            class="position_cell_value"
           >
             2
           </span>
@@ -332,7 +340,15 @@ exports[`(Snapshot) Track table - example data with all rows should render corre
               class="title_cell_buttons"
             >
               <button
-                class="ui basic button nuclear button rounded borderless title_cell_more"
+                class="ui mini basic circular icon button nuclear button borderless"
+              >
+                <i
+                  aria-hidden="true"
+                  class="plus icon"
+                />
+              </button>
+              <button
+                class="ui mini basic circular icon button nuclear button borderless"
               >
                 <i
                   aria-hidden="true"
@@ -385,15 +401,15 @@ exports[`(Snapshot) Track table - example data with all rows should render corre
           role="cell"
         >
           <button
-            class="add_button"
+            class="ui mini circular icon button nuclear button add_button"
           >
             <i
               aria-hidden="true"
-              class="play circle big icon"
+              class="play icon"
             />
           </button>
           <span
-            class="value"
+            class="position_cell_value"
           >
             3
           </span>
@@ -431,7 +447,15 @@ exports[`(Snapshot) Track table - example data with all rows should render corre
               class="title_cell_buttons"
             >
               <button
-                class="ui basic button nuclear button rounded borderless title_cell_more"
+                class="ui mini basic circular icon button nuclear button borderless"
+              >
+                <i
+                  aria-hidden="true"
+                  class="plus icon"
+                />
+              </button>
+              <button
+                class="ui mini basic circular icon button nuclear button borderless"
               >
                 <i
                   aria-hidden="true"

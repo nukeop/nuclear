@@ -34,11 +34,12 @@
 
     &:hover {
       .position_cell {
-        .value {
+        .position_cell_value {
           display: none;
         }
+        
         .add_button {
-          display: block;
+          display: inline-block;
         }
       }
 
@@ -63,25 +64,14 @@
     position: relative;
     text-align: center;
 
-    .add_button {
-      position: absolute;
-      background: none;
-      border: none;
-      padding: 0;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      width: 100%;
-      display: none;
+    .position_cell_value {
+      display: inline-block;
+      width: 2em;
+    }
 
-      i {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-        margin: 0;
-      }
+    .add_button {
+      display: none;
+      margin: 0;
     }
   }
 
@@ -99,7 +89,7 @@
 
   .title_cell {
     .title_cell_content {
-      display: flex;
+      display: inline-flex;
       flex-flow: row;
       align-items: center;
       width: 100%;
@@ -110,11 +100,13 @@
     }
 
     .title_cell_buttons {
+      display: inline-flex;
+      flex-flow: row;
       visibility: hidden;
       flex: 0 0 auto;
     }
 
-    .title_cell_more {
+    .title_cell_button {
       display: flex;
       justify-content: center;
       align-items: center;
@@ -150,18 +142,6 @@
     .select_header_buttons {
       position: absolute;
       left: -52px;
-
-      .button {
-        display: flex;
-        justify-content: center;
-        padding: 0;
-        width: 2em;
-        height: 2em;
-        i {
-          margin: 0 !important;
-        }
-      }
-
     }
   }
 

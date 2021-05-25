@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/ban-ts-ignore */
 import React from 'react';
 import { HeaderProps, UseRowSelectInstanceProps } from 'react-table';
-import { Checkbox, Icon } from 'semantic-ui-react';
+import { Checkbox } from 'semantic-ui-react';
 import { Button } from '../../..';
 
 import { Track } from '../../../types';
@@ -15,9 +15,7 @@ const SelectionHeader: React.FC<HeaderProps<Track> & UseRowSelectInstanceProps<T
     {
       (checkboxProps.checked || checkboxProps.indeterminate) &&
       <span className={styles.select_header_buttons}>
-        <Button basic rounded>
-          <Icon name='ellipsis horizontal' />
-        </Button>
+        <Button basic circular size='mini' icon='ellipsis horizontal' />
       </span>
     }
     {/* @ts-ignore */}
