@@ -1,5 +1,4 @@
 import React from 'react';
-import { Icon } from 'semantic-ui-react';
 import { Button } from '../../..';
 
 import styles from '../styles.scss';
@@ -15,9 +14,8 @@ const TitleCell: React.FC<TitleCellProps> = ({
       {value}
     </span>
     <span className={styles.title_cell_buttons}>
-      <Button basic borderless rounded className={styles.title_cell_more}>
-        <Icon name='ellipsis horizontal' />
-      </Button>
+      <Button basic borderless circular size='mini' icon='plus' />
+      <Button basic borderless circular size='mini' icon='ellipsis horizontal' />
     </span>
   </span>
 </td>;

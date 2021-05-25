@@ -3,10 +3,6 @@
 
 button.nuclear.ui.button {
   position: relative;
-  display: flex;
-  flex-flow: row;
-  align-items: center;
-  justify-content: center;
   
   background: $bglight;
   color: $white;
@@ -27,8 +23,7 @@ button.nuclear.ui.button {
   &.basic {
     color: $white !important;
     background: transparent !important;
-    border: 1px solid rgba($white, 0.75);
-    box-shadow: none;
+    box-shadow: 0 0 0 1px rgba($white, 0.75) inset;
 
     &:hover {
       background: rgba($white, 0.2) !important;
@@ -75,32 +70,7 @@ button.nuclear.ui.button {
     }
   }
 
-  &:not(.icon) {
-    i {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    }
-  }
-
-  &.icon {
-    width: 3em;
-    height: 3em;
-
-    i {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 3em;
-      height: 3em;
-    }
-  }
-
-  &.rounded {
-    border-radius: 9999px;
-  }
-
   &.borderless {
-    border: none;
+    box-shadow: none;
   }
 }
