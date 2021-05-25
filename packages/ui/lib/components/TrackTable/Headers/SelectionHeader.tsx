@@ -1,9 +1,8 @@
 /* eslint-disable @typescript-eslint/ban-ts-ignore */
 import React from 'react';
 import { HeaderProps, UseRowSelectInstanceProps } from 'react-table';
-import { Checkbox } from 'semantic-ui-react';
-import { Button } from '../../..';
 
+import { Button, Checkbox } from '../../..';
 import { Track } from '../../../types';
 import styles from '../styles.scss';
 
