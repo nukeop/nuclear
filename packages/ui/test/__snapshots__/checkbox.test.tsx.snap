@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`(Snapshot) Checkbox - checked should render correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="ui checked fitted checkbox nuclear checkbox"
+  >
+    <input
+      checked=""
+      class="hidden"
+      readonly=""
+      tabindex="0"
+      type="checkbox"
+      value=""
+    />
+    <label />
+  </div>
+</DocumentFragment>
+`;
+
+exports[`(Snapshot) Checkbox - indeterminate should render correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="ui indeterminate fitted checkbox nuclear checkbox"
+  >
+    <input
+      class="hidden"
+      readonly=""
+      tabindex="0"
+      type="checkbox"
+      value=""
+    />
+    <label />
+  </div>
+</DocumentFragment>
+`;
+
+exports[`(Snapshot) Checkbox - unchecked should render correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="ui fitted checkbox nuclear checkbox"
+  >
+    <input
+      class="hidden"
+      readonly=""
+      tabindex="0"
+      type="checkbox"
+      value=""
+    />
+    <label />
+  </div>
+</DocumentFragment>
+`;

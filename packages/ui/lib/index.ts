@@ -4,6 +4,7 @@ export { default as AlbumGrid } from './components/AlbumGrid';
 export { default as AlbumPreview } from './components/AlbumPreview';
 export { default as Button } from './components/Button';
 export { default as Card } from './components/Card';
+export { default as Checkbox } from './components/Checkbox';
 export { default as ContextPopup } from './components/ContextPopup';
 export { default as Cover } from './components/Cover';
 export { default as Dropdown } from './components/Dropdown';

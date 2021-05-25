@@ -2,8 +2,8 @@
 import React from 'react';
 import cx from 'classnames';
 import { CellProps, UseRowSelectRowProps } from 'react-table';
-import { Checkbox } from 'semantic-ui-react';
 
+import { Checkbox } from '../../..';
 import { Track } from '../../../types';
 import styles from '../styles.scss';
 
