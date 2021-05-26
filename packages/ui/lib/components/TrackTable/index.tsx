@@ -15,6 +15,7 @@ import artPlaceholder from '../../../resources/media/art_placeholder.png';
 import FavoriteCell from './Cells/FavoriteCell';
 import SelectionHeader from './Headers/SelectionHeader';
 import SelectionCell from './Cells/SelectionCell';
+import { TrackTableColumn } from './types';
 
 export type TrackTableProps = {
   tracks: Track[];
@@ -58,31 +59,31 @@ const TrackTable: React.FC<TrackTableProps> = ({
 }) => {
   const columns = useMemo(() => [
     displayPosition && {
-      id: 'position',
+      id: TrackTableColumn.Position,
       Header: () => <span className={styles.center_aligned}>{positionHeader}</span>,
       accessor: 'position',
       Cell: PositionCell
     },
     displayThumbnail && {
-      id: 'thumbnail',
+      id: TrackTableColumn.Thumbnail,
       Header: () => <span className={styles.center_aligned}>{thumbnailHeader}</span>,
       accessor: (track) => getTrackThumbnail(track) || artPlaceholder,
       Cell: ThumbnailCell
     },
     displayFavorite && {
-      id: 'favorite',
+      id: TrackTableColumn.Favorite,
       Header: '',
       accessor: isTrackFavorite,
       Cell: FavoriteCell
     },
     {
-      id: 'title',
+      id: TrackTableColumn.Title,
       Header: titleHeader,
       accessor: (track) => track.title ?? track.name,
       Cell: TitleCell
     },
     displayArtist && {
-      id: 'artist',
+      id: TrackTableColumn.Artist,
       Header: artistHeader,
       accessor: (track) => _.isString(track.artist)
         ? track.artist
@@ -90,19 +91,19 @@ const TrackTable: React.FC<TrackTableProps> = ({
       Cell: TrackTableCell
     },
     displayAlbum && {
-      id: 'album',
+      id: TrackTableColumn.Album,
       Header: albumHeader,
       accessor: 'album',
       Cell: TrackTableCell
     },
     displayDuration && {
-      id: 'duration',
+      id: TrackTableColumn.Duration,
       Header: durationHeader,
       accessor: 'duration',
       Cell: TrackTableCell
     },
     selectable && {
-      id: 'selection',
+      id: TrackTableColumn.Selection,
       Header: SelectionHeader,
       Cell: SelectionCell
     }
