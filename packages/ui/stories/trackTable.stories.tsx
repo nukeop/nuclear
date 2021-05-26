@@ -63,6 +63,7 @@ export const ExampleData = () =>  <div className='bg'>
     }
 
     onPlay={(track: Track) => console.log('Started playing', track)}
+    onPlayAll={(tracks: Track[]) => console.log('Started playing all', tracks)}
     onAddToQueue={(track: Track) => console.log('Added to queue', track)}
     onAddToFavorites={(track: Track) => console.log('Added to favorites', track)}
     onAddToDownloads={(track: Track) => console.log('Added to downloads', track)}
@@ -72,5 +73,12 @@ export const ExampleData = () =>  <div className='bg'>
       {name: 'Another Playlist'},
       {name: 'Last Playlist'}
     ]}
+
+    strings={{
+      addSelectedTracksToQueue: 'Add selected to queue',
+      addSelectedTracksToDownloads: 'Add selected to downloads',
+      addSelectedTracksToFavorites: 'Add selected to favorites',
+      playSelectedTracksNow: 'Play selected now'
+    }}
   />
 </div>;

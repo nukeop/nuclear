@@ -13,6 +13,7 @@ export enum TrackTableColumn {
 
 export type TrackTableExtraProps = {
   onPlay?: (track: Track) => void;
+  onPlayAll?: (tracks: Track[]) => void;
   onAddToQueue?: (track: Track) => void;
   onAddToFavorites?: (track: Track) => void;
   onAddToPlaylist?: (track: Track, { name: string }) => void;
@@ -20,4 +21,11 @@ export type TrackTableExtraProps = {
   playlists?: Array<{
     name: string;
   }>;
+}
+
+export type TrackTableStrings = {
+  addSelectedTracksToQueue: string;
+  playSelectedTracksNow: string;
+  addSelectedTracksToFavorites: string;
+  addSelectedTracksToDownloads: string;
 }

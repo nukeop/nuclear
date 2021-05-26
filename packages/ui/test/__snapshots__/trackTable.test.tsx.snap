@@ -33,7 +33,9 @@ exports[`(Snapshot) Track table - empty should render correctly 1`] = `
         <th
           colspan="1"
           role="columnheader"
-        />
+        >
+           
+        </th>
         <th
           colspan="1"
           role="columnheader"
@@ -126,7 +128,9 @@ exports[`(Snapshot) Track table - example data with all rows should render corre
         <th
           colspan="1"
           role="columnheader"
-        />
+        >
+           
+        </th>
         <th
           colspan="1"
           role="columnheader"
@@ -224,6 +228,7 @@ exports[`(Snapshot) Track table - example data with all rows should render corre
         </td>
         <td
           class="title_cell"
+          role="cell"
         >
           <span
             class="title_cell_content"
@@ -335,6 +340,7 @@ exports[`(Snapshot) Track table - example data with all rows should render corre
         </td>
         <td
           class="title_cell"
+          role="cell"
         >
           <span
             class="title_cell_content"
@@ -446,6 +452,7 @@ exports[`(Snapshot) Track table - example data with all rows should render corre
         </td>
         <td
           class="title_cell"
+          role="cell"
         >
           <span
             class="title_cell_content"

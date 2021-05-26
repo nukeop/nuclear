@@ -15,7 +15,7 @@ import artPlaceholder from '../../../resources/media/art_placeholder.png';
 import FavoriteCell from './Cells/FavoriteCell';
 import SelectionHeader from './Headers/SelectionHeader';
 import SelectionCell from './Cells/SelectionCell';
-import { TrackTableColumn, TrackTableExtraProps } from './types';
+import { TrackTableColumn, TrackTableExtraProps, TrackTableStrings } from './types';
 
 export type TrackTableProps = TrackTableExtraProps & {
   tracks: Track[];
@@ -35,6 +35,8 @@ export type TrackTableProps = TrackTableExtraProps & {
   displayAlbum?: boolean;
   displayDuration?: boolean;
   selectable?: boolean;
+
+  strings: TrackTableStrings;
 }
 
 const TrackTable: React.FC<TrackTableProps> = ({
@@ -129,7 +131,7 @@ const TrackTable: React.FC<TrackTableProps> = ({
             {
               headerGroup.headers.map(column => (
                 <th {...column.getHeaderProps()}>
-                  {column.render('Header')}
+                  {column.render('Header', extraProps)}
                 </th>
               ))
             }

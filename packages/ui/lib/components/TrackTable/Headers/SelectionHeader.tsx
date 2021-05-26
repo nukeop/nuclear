@@ -2,20 +2,65 @@
 import React from 'react';
 import { HeaderProps, UseRowSelectInstanceProps } from 'react-table';
 
-import { Button, Checkbox } from '../../..';
+import { Button, Checkbox, ContextPopup, PopupButton } from '../../..';
 import { Track } from '../../../types';
 import styles from '../styles.scss';
+import { TrackTableExtraProps, TrackTableStrings } from '../types';
 
-const SelectionHeader: React.FC<HeaderProps<Track> & UseRowSelectInstanceProps<Track>> = ({
-  getToggleAllRowsSelectedProps
+const SelectionHeader: React.FC<
+  HeaderProps<Track> &
+  UseRowSelectInstanceProps<Track> &
+  TrackTableExtraProps &
+  { strings: TrackTableStrings }
+> = ({
+  getToggleAllRowsSelectedProps,
+  selectedFlatRows,
+  onAddToQueue,
+  onPlayAll,
+  onAddToFavorites,
+  onAddToDownloads,
+  strings
 }) => {
   const checkboxProps = getToggleAllRowsSelectedProps();
+  const selectedTracks = selectedFlatRows.map(row => row.original);
+
+
   return <span className={styles.select_header}>
     {
       (checkboxProps.checked || checkboxProps.indeterminate) &&
-      <span className={styles.select_header_buttons}>
-        <Button basic circular size='mini' icon='ellipsis horizontal' />
-      </span>
+        <span className={styles.select_header_buttons}>
+          <ContextPopup
+            trigger={
+              <Button basic circular size='mini' icon='ellipsis horizontal' />
+            }
+            title={`${selectedTracks.length} tracks selected`}
+          >
+            <PopupButton
+              ariaLabel={strings.addSelectedTracksToQueue}
+              label={strings.addSelectedTracksToQueue}
+              icon='plus'
+              onClick={() => selectedTracks.forEach((track) => onAddToQueue(track))}
+            />
+            <PopupButton
+              ariaLabel={strings.playSelectedTracksNow}
+              label={strings.playSelectedTracksNow}
+              icon='play'
+              onClick={() => onPlayAll(selectedTracks)}
+            />
+            <PopupButton
+              ariaLabel={strings.addSelectedTracksToFavorites}
+              label={strings.addSelectedTracksToFavorites}
+              icon='heart'
+              onClick={() => selectedTracks.forEach((track) => onAddToFavorites(track))}
+            />
+            <PopupButton
+              ariaLabel={strings.addSelectedTracksToDownloads}
+              label={strings.addSelectedTracksToDownloads}
+              icon='download'
+              onClick={() => selectedTracks.forEach((track) => onAddToDownloads(track))}
+            />
+          </ContextPopup>
+        </span>
     }
     {/* @ts-ignore */}
     <Checkbox {...checkboxProps} />

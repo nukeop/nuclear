@@ -16,7 +16,6 @@
 
   tr {
     color: $white;
-    cursor: pointer;
     user-select: none;
 
     &:hover {
@@ -140,12 +139,16 @@
     align-items: center;
 
     .select_header_buttons {
-      position: absolute;
-      left: -52px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      margin-right: 1em;
+      height: 0;
     }
   }
 
   .select_cell {
+    text-align: end;
     .checkbox {
       margin-top: 5px;
     }
