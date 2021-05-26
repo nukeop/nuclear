@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 // tslint:disable: jsx-no-plain-text-elements
 import React from 'react';
 import { Icon } from 'semantic-ui-react';
@@ -60,5 +61,16 @@ export const ExampleData = () =>  <div className='bg'>
     isTrackFavorite={
       (track: Track) => track.artist === 'Test Artist 2'
     }
+
+    onPlay={(track: Track) => console.log('Started playing', track)}
+    onAddToQueue={(track: Track) => console.log('Added to queue', track)}
+    onAddToFavorites={(track: Track) => console.log('Added to favorites', track)}
+    onAddToDownloads={(track: Track) => console.log('Added to downloads', track)}
+    onAddToPlaylist={(track: Track, playlist) => console.log('Added to playlist', track, playlist)}
+    playlists={[
+      {name: 'Playlist 1'},
+      {name: 'Another Playlist'},
+      {name: 'Last Playlist'}
+    ]}
   />
 </div>;

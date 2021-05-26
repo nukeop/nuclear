@@ -15,9 +15,9 @@ import artPlaceholder from '../../../resources/media/art_placeholder.png';
 import FavoriteCell from './Cells/FavoriteCell';
 import SelectionHeader from './Headers/SelectionHeader';
 import SelectionCell from './Cells/SelectionCell';
-import { TrackTableColumn } from './types';
+import { TrackTableColumn, TrackTableExtraProps } from './types';
 
-export type TrackTableProps = {
+export type TrackTableProps = TrackTableExtraProps & {
   tracks: Track[];
   isTrackFavorite: (track: Track) => boolean;
 
@@ -35,7 +35,6 @@ export type TrackTableProps = {
   displayAlbum?: boolean;
   displayDuration?: boolean;
   selectable?: boolean;
-  
 }
 
 const TrackTable: React.FC<TrackTableProps> = ({
@@ -55,7 +54,9 @@ const TrackTable: React.FC<TrackTableProps> = ({
   displayArtist=true,
   displayAlbum=true,
   displayDuration=true,
-  selectable=true
+  selectable=true,
+
+  ...extraProps
 }) => {
   const columns = useMemo(() => [
     displayPosition && {
@@ -72,7 +73,6 @@ const TrackTable: React.FC<TrackTableProps> = ({
     },
     displayFavorite && {
       id: TrackTableColumn.Favorite,
-      Header: '',
       accessor: isTrackFavorite,
       Cell: FavoriteCell
     },
@@ -143,7 +143,7 @@ const TrackTable: React.FC<TrackTableProps> = ({
           prepareRow(row);
           return (
             <tr {...row.getRowProps()}>
-              {row.cells.map(cell => (cell.render('Cell')))}
+              {row.cells.map(cell => (cell.render('Cell', extraProps)))}
             </tr>
           );
         })
