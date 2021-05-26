@@ -54,7 +54,7 @@ $small_screen: 600px;
 }
 
 @mixin shadow {
-  box-shadow: 0 0 38px rgba(0, 0, 0, 0.3), 0 0 12px rgba(0, 0, 0, 0.22);
+  box-shadow: 0 0 38px rgba(0, 0, 0, 0.3), 0 0 12px rgba(0, 0, 0, 0.22) !important;
 }
 
 .nuclear {

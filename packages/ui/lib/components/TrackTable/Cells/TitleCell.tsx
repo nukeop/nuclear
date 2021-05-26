@@ -1,12 +1,13 @@
 import React from 'react';
-import { Button } from '../../..';
+import { CellProps } from 'react-table';
 
+import { Button, ContextPopup } from '../../..';
+import { Track } from '../../../types';
 import styles from '../styles.scss';
+import { TrackTableColumn } from '../types';
 
-type TitleCellProps = {
-  value: string;
-}
-const TitleCell: React.FC<TitleCellProps> = ({
+const TitleCell: React.FC<CellProps<Track>> = ({
+  row,
   value
 }) => <td className={styles.title_cell}>
   <span className={styles.title_cell_content}>
@@ -15,7 +16,15 @@ const TitleCell: React.FC<TitleCellProps> = ({
     </span>
     <span className={styles.title_cell_buttons}>
       <Button basic borderless circular size='mini' icon='plus' />
-      <Button basic borderless circular size='mini' icon='ellipsis horizontal' />
+
+      <ContextPopup
+        trigger={
+          <Button basic borderless circular size='mini' icon='ellipsis horizontal' />
+        }
+        thumb={row.values[TrackTableColumn.Thumbnail]}
+        title={row.values[TrackTableColumn.Title]}
+        artist={row.values[TrackTableColumn.Artist]}
+      />
     </span>
   </span>
 </td>;
