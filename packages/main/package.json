@@ -78,7 +78,7 @@
     "node-gyp": "^7.0.0",
     "node-loader": "^0.6.0",
     "shx": "^0.3.3",
-    "ts-loader": "^6.2.2",
+    "ts-loader": "^8.0.3",
     "ts-node": "^8.10.2",
     "type-fest": "^0.8.1",
     "typescript": "^4.2.4",
