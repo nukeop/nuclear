@@ -73,7 +73,7 @@
     "@types/uuid": "^3.4.6",
     "@types/webpack": "^4.41.0",
     "copy-webpack-plugin": "^5.1.1",
-    "electron-builder": "^22.2.0",
+    "electron-builder": "^22.8.1",
     "eslint": "^7.18.0",
     "node-gyp": "^7.0.0",
     "node-loader": "^0.6.0",
