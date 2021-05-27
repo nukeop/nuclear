@@ -65,7 +65,7 @@
     "@types/electron-devtools-installer": "^2.2.0",
     "@types/express": "^4.17.2",
     "@types/glob": "^7.1.1",
-    "@types/lodash": "^4.14.149",
+    "@types/lodash": "^4.14.158",
     "@types/node": "^12.12.17",
     "@types/node-fetch": "^2.5.4",
     "@types/split2": "^2.1.6",
