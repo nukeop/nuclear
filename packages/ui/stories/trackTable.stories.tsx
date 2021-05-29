@@ -78,7 +78,9 @@ export const ExampleData = () =>  <div className='bg'>
       addSelectedTracksToQueue: 'Add selected to queue',
       addSelectedTracksToDownloads: 'Add selected to downloads',
       addSelectedTracksToFavorites: 'Add selected to favorites',
-      playSelectedTracksNow: 'Play selected now'
+      playSelectedTracksNow: 'Play selected now',
+      tracksSelectedLabelSingular: 'track selected',
+      tracksSelectedLabelPlural: 'tracks selected'
     }}
   />
 </div>;

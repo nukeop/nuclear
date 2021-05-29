@@ -21,6 +21,10 @@
     box-shadow: 1px 1px 0 0 $bgdefault !important;
   }
 
+  &.visible {
+    animation: fade-in $short-duration normal forwards ease-in-out;
+  }
+
   hr {
     margin: 0.5em 0 0 0;
     border: none;
