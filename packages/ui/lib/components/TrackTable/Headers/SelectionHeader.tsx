@@ -33,7 +33,7 @@ const SelectionHeader: React.FC<
             trigger={
               <Button basic circular size='mini' icon='ellipsis horizontal' />
             }
-            title={`${selectedTracks.length} tracks selected`}
+            title={`${selectedTracks.length} ${selectedTracks.length > 1 ? strings.tracksSelectedLabelPlural : strings.tracksSelectedLabelSingular}`}
           >
             <PopupButton
               ariaLabel={strings.addSelectedTracksToQueue}

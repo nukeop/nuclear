@@ -28,4 +28,6 @@ export type TrackTableStrings = {
   playSelectedTracksNow: string;
   addSelectedTracksToFavorites: string;
   addSelectedTracksToDownloads: string;
+  tracksSelectedLabelSingular: string;
+  tracksSelectedLabelPlural: string;
 }
