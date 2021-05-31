@@ -178,6 +178,7 @@ class App extends React.PureComponent {
               this.renderMenuCategory('collection', [
                 { name: 'favorite-albums', path: 'favorites/albums', icon: 'dot circle' },
                 { name: 'favorite-tracks', path: 'favorites/tracks', icon: 'music' },
+                { name: 'favorite-artists', path: 'favorites/artists', icon: 'user' },
                 { name: 'library', path: 'library', icon: 'file audio outline' },
                 { name: 'playlists', path: 'playlists', icon: 'list alternate outline' }
               ])
