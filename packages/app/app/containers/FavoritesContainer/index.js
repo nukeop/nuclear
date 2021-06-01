@@ -14,6 +14,7 @@ import FavoriteTracksView from '../../components/FavoriteTracksView';
 
 const ALBUMS_PATH = 'albums';
 const TRACKS_PATH = 'tracks';
+const ARTISTS_PATH = 'artists';
 
 class FavoritesContainer extends React.Component {
   constructor(props) {
@@ -52,6 +53,14 @@ class FavoritesContainer extends React.Component {
         selectSong={queueActions.selectSong}
         startPlayback={playerActions.startPlayback}
         removeFavoriteTrack={favoritesActions.removeFavoriteTrack}
+      />;
+    }
+
+    if (match.path.endsWith(ARTISTS_PATH)) {
+      return <FavoriteAlbumsView
+        albums={_.get(favorites, 'albums')}
+        removeFavoriteAlbum={favoritesActions.removeFavoriteAlbum}
+        albumInfoSearch={searchActions.albumInfoSearch}
       />;
     }
     
