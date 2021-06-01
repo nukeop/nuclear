@@ -60,6 +60,11 @@
     "empty-help": "Prófaðu að bæta við nokkrum albúmum í uppáhalds og þeir munu birtast hér!",
     "header": "Þín uppáhalds albúm"
   },
+  "favorite-artists": {
+    "empty": "No favorite artists",
+    "empty-help": "Try adding some artists to favorites and they will appear here!",
+    "header": "Your favorite artists"
+  },
   "favorites": {
     "artist": "Tónlistamaður",
     "empty": "Engin uppáhalds lög",

@@ -60,6 +60,11 @@
     "empty-help": "Prøv at tilføje albums til favoritter for at vise dem her!",
     "header": "Dine favoritalbums"
   },
+  "favorite-artists": {
+    "empty": "No favorite artists",
+    "empty-help": "Try adding some artists to favorites and they will appear here!",
+    "header": "Your favorite artists"
+  },
   "favorites": {
     "artist": "Artist",
     "empty": "Ingen farvoritter er tilføjet.",

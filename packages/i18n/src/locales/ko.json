@@ -60,6 +60,11 @@
     "empty-help": "'좋아요'한 앨범이 여기에 표시됩니다!",
     "header": "즐겨찾는 앨범"
   },
+  "favorite-artists": {
+    "empty": "No favorite artists",
+    "empty-help": "Try adding some artists to favorites and they will appear here!",
+    "header": "Your favorite artists"
+  },
   "favorites": {
     "artist": "아티스트",
     "empty": "좋아하는 음악 없음.",

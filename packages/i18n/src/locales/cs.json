@@ -60,6 +60,11 @@
     "empty-help": "Zkuste některá alba přidat mezi oblíbená a objeví se zde!",
     "header": "Vaše oblíbená alba"
   },
+  "favorite-artists": {
+    "empty": "No favorite artists",
+    "empty-help": "Try adding some artists to favorites and they will appear here!",
+    "header": "Your favorite artists"
+  },
   "favorites": {
     "artist": "Umělec",
     "empty": "Nebyly přidány žádné oblíbené skladby",

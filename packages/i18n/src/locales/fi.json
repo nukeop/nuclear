@@ -60,6 +60,11 @@
     "empty-help": "Lisää albumeita suosikkeihin ja ne näkyvät tässä!",
     "header": "Suosikki albumisi"
   },
+  "favorite-artists": {
+    "empty": "No favorite artists",
+    "empty-help": "Try adding some artists to favorites and they will appear here!",
+    "header": "Your favorite artists"
+  },
   "favorites": {
     "artist": "Artisti",
     "empty": "Ei suosikkeja lisätty",

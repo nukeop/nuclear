@@ -60,6 +60,11 @@
     "empty-help": "Subukan magdagdag ng mga paboritong album at makikita mo rito!",
     "header": "Ang iyong paboritong mga album"
   },
+  "favorite-artists": {
+    "empty": "No favorite artists",
+    "empty-help": "Try adding some artists to favorites and they will appear here!",
+    "header": "Your favorite artists"
+  },
   "favorites": {
     "artist": "Artist",
     "empty": "Wala pang naidadagdag na mga paboritong kanta",

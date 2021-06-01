@@ -60,6 +60,11 @@
     "empty-help": "Προσθέστε άλμπουμ στην λίστα αγαπημένων και θα εμφανίζονται εδώ !",
     "header": "Τα αγαπημένα σας άλμπουμ"
   },
+  "favorite-artists": {
+    "empty": "No favorite artists",
+    "empty-help": "Try adding some artists to favorites and they will appear here!",
+    "header": "Your favorite artists"
+  },
   "favorites": {
     "artist": "Καλλιτέχνης",
     "empty": "Λιστα αγαπημένων άδεια.",

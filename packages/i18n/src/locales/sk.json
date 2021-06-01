@@ -60,6 +60,11 @@
     "empty-help": "Skúste pridať album medzi obľubené a objaví sa tu!",
     "header": "Vaše obľúbené albumy"
   },
+  "favorite-artists": {
+    "empty": "No favorite artists",
+    "empty-help": "Try adding some artists to favorites and they will appear here!",
+    "header": "Your favorite artists"
+  },
   "favorites": {
     "artist": "Umelec",
     "empty": "Žiadne obľubené",

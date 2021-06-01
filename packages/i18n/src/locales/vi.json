@@ -60,6 +60,11 @@
     "empty-help": "Album được đánh dấu ưa thích sẽ xuất hiện ở đây.",
     "header": "Album ưa thích của bạn"
   },
+  "favorite-artists": {
+    "empty": "No favorite artists",
+    "empty-help": "Try adding some artists to favorites and they will appear here!",
+    "header": "Your favorite artists"
+  },
   "favorites": {
     "artist": "Nghệ sỹ",
     "empty": "Không có bản nhạc ưa thích",

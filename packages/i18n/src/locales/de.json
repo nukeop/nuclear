@@ -60,6 +60,11 @@
     "empty-help": "Favorisierte Alben werden hier erscheinen!",
     "header": "Lieblingsalben"
   },
+  "favorite-artists": {
+    "empty": "No favorite artists",
+    "empty-help": "Try adding some artists to favorites and they will appear here!",
+    "header": "Your favorite artists"
+  },
   "favorites": {
     "artist": "Künstler",
     "empty": "Keine Favoriten hinzugefügt.",

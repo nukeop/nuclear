@@ -60,6 +60,11 @@
     "empty-help": "嘗試添加一些專輯到最喜歡的中，它們會在這裡出現",
     "header": "你最喜歡的專輯"
   },
+  "favorite-artists": {
+    "empty": "No favorite artists",
+    "empty-help": "Try adding some artists to favorites and they will appear here!",
+    "header": "Your favorite artists"
+  },
   "favorites": {
     "artist": "演出者",
     "empty": "我的最愛為空",

@@ -60,6 +60,11 @@
     "empty-help": "Try adding some albums to favorites and they will appear here!",
     "header": "Your favorite albums"
   },
+  "favorite-artists": {
+    "empty": "No favorite artists",
+    "empty-help": "Try adding some artists to favorites and they will appear here!",
+    "header": "Your favorite artists"
+  },
   "favorites": {
     "artist": "Исполнитель",
     "empty": "Тут Ничего Нет",
