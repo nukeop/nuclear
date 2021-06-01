@@ -14,6 +14,12 @@ exports[`(Snapshot) Track table - empty should render correctly 1`] = `
           colspan="1"
           role="columnheader"
         >
+           
+        </th>
+        <th
+          colspan="1"
+          role="columnheader"
+        >
           <span
             class="center_aligned"
           >
@@ -106,6 +112,12 @@ exports[`(Snapshot) Track table - example data with all rows should render corre
           colspan="1"
           role="columnheader"
         >
+           
+        </th>
+        <th
+          colspan="1"
+          role="columnheader"
+        >
           <span
             class="center_aligned"
           >
@@ -187,11 +199,24 @@ exports[`(Snapshot) Track table - example data with all rows should render corre
         role="row"
       >
         <td
+          class="narrow delete_cell"
+          role="cell"
+        >
+          <button
+            class="ui tiny basic circular icon button nuclear button borderless"
+          >
+            <i
+              aria-hidden="true"
+              class="times icon"
+            />
+          </button>
+        </td>
+        <td
           class="position_cell narrow"
           role="cell"
         >
           <button
-            class="ui mini circular icon button nuclear button add_button"
+            class="ui pink tiny circular icon button nuclear button add_button"
           >
             <i
               aria-hidden="true"
@@ -218,7 +243,7 @@ exports[`(Snapshot) Track table - example data with all rows should render corre
           role="cell"
         >
           <button
-            class="ui mini basic circular icon button nuclear button borderless"
+            class="ui tiny basic circular icon button nuclear button borderless"
           >
             <i
               aria-hidden="true"
@@ -242,7 +267,7 @@ exports[`(Snapshot) Track table - example data with all rows should render corre
               class="title_cell_buttons"
             >
               <button
-                class="ui mini basic circular icon button nuclear button borderless"
+                class="ui tiny basic circular icon button nuclear button borderless"
               >
                 <i
                   aria-hidden="true"
@@ -250,7 +275,7 @@ exports[`(Snapshot) Track table - example data with all rows should render corre
                 />
               </button>
               <button
-                class="ui mini basic circular icon button nuclear button borderless"
+                class="ui tiny basic circular icon button nuclear button borderless"
               >
                 <i
                   aria-hidden="true"
@@ -299,11 +324,24 @@ exports[`(Snapshot) Track table - example data with all rows should render corre
         role="row"
       >
         <td
+          class="narrow delete_cell"
+          role="cell"
+        >
+          <button
+            class="ui tiny basic circular icon button nuclear button borderless"
+          >
+            <i
+              aria-hidden="true"
+              class="times icon"
+            />
+          </button>
+        </td>
+        <td
           class="position_cell narrow"
           role="cell"
         >
           <button
-            class="ui mini circular icon button nuclear button add_button"
+            class="ui pink tiny circular icon button nuclear button add_button"
           >
             <i
               aria-hidden="true"
@@ -330,7 +368,7 @@ exports[`(Snapshot) Track table - example data with all rows should render corre
           role="cell"
         >
           <button
-            class="ui mini basic circular icon button nuclear button borderless"
+            class="ui tiny basic circular icon button nuclear button borderless"
           >
             <i
               aria-hidden="true"
@@ -354,7 +392,7 @@ exports[`(Snapshot) Track table - example data with all rows should render corre
               class="title_cell_buttons"
             >
               <button
-                class="ui mini basic circular icon button nuclear button borderless"
+                class="ui tiny basic circular icon button nuclear button borderless"
               >
                 <i
                   aria-hidden="true"
@@ -362,7 +400,7 @@ exports[`(Snapshot) Track table - example data with all rows should render corre
                 />
               </button>
               <button
-                class="ui mini basic circular icon button nuclear button borderless"
+                class="ui tiny basic circular icon button nuclear button borderless"
               >
                 <i
                   aria-hidden="true"
@@ -411,11 +449,24 @@ exports[`(Snapshot) Track table - example data with all rows should render corre
         role="row"
       >
         <td
+          class="narrow delete_cell"
+          role="cell"
+        >
+          <button
+            class="ui tiny basic circular icon button nuclear button borderless"
+          >
+            <i
+              aria-hidden="true"
+              class="times icon"
+            />
+          </button>
+        </td>
+        <td
           class="position_cell narrow"
           role="cell"
         >
           <button
-            class="ui mini circular icon button nuclear button add_button"
+            class="ui pink tiny circular icon button nuclear button add_button"
           >
             <i
               aria-hidden="true"
@@ -442,7 +493,7 @@ exports[`(Snapshot) Track table - example data with all rows should render corre
           role="cell"
         >
           <button
-            class="ui mini basic circular icon button nuclear button borderless"
+            class="ui tiny basic circular icon button nuclear button borderless"
           >
             <i
               aria-hidden="true"
@@ -466,7 +517,7 @@ exports[`(Snapshot) Track table - example data with all rows should render corre
               class="title_cell_buttons"
             >
               <button
-                class="ui mini basic circular icon button nuclear button borderless"
+                class="ui tiny basic circular icon button nuclear button borderless"
               >
                 <i
                   aria-hidden="true"
@@ -474,7 +525,7 @@ exports[`(Snapshot) Track table - example data with all rows should render corre
                 />
               </button>
               <button
-                class="ui mini basic circular icon button nuclear button borderless"
+                class="ui tiny basic circular icon button nuclear button borderless"
               >
                 <i
                   aria-hidden="true"

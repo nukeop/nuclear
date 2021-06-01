@@ -2,10 +2,10 @@
 import React from 'react';
 import { HeaderProps, UseRowSelectInstanceProps } from 'react-table';
 
+import { TrackTableExtraProps, TrackTableStrings } from '../types';
 import { Button, Checkbox, ContextPopup, PopupButton } from '../../..';
 import { Track } from '../../../types';
 import styles from '../styles.scss';
-import { TrackTableExtraProps, TrackTableStrings } from '../types';
 
 const SelectionHeader: React.FC<
   HeaderProps<Track> &
@@ -31,7 +31,7 @@ const SelectionHeader: React.FC<
         <span className={styles.select_header_buttons}>
           <ContextPopup
             trigger={
-              <Button basic circular size='mini' icon='ellipsis horizontal' />
+              <Button basic circular size='tiny' icon='ellipsis horizontal' />
             }
             title={`${selectedTracks.length} ${selectedTracks.length > 1 ? strings.tracksSelectedLabelPlural : strings.tracksSelectedLabelSingular}`}
           >
