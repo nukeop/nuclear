@@ -102,10 +102,14 @@
     "previous-button": "Previous track button"
   },
   "playlists": {
-    "artist": "Artist",
+    "add-selected-tracks-to-downloads": "Add selected to downloads",
+    "add-selected-tracks-to-favorites": "Add selected to favorites",
+    "add-selected-tracks-to-queue": "Add selected to queue",
     "album": "Album",
+    "artist": "Artist",
     "delete": "Delete this playlist",
     "dialog-placeholder": "Playlist name...",
+    "duration": "Length",
     "empty": "No playlists.",
     "empty-help": "Try to create some playlists or import by url and they will appear here!",
     "error-empty-data": "Empty data",
@@ -115,20 +119,15 @@
     "import-button": "Import from file (JSON)",
     "import-fail-title": "Playlist import fail",
     "import-success-title": "Playlist imported successfully",
+    "play-selected-tracks-now": "Play selected now",
     "playlist-created": "{{name}} created",
     "queue": "Add playlist to queue",
     "rename": "Rename this playlist",
     "songs": "{{total}} song",
     "songs_plural": "{{total}} songs",
     "title": "Title",
-    "duration": "Length",
-
-    "add-selected-tracks-to-queue": "Add selected to queue",
-    "add-selected-tracks-to-downloads": "Add selected to downloads",
-    "add-selected-tracks-to-favorites": "Add selected to favorites",
-    "play-selected-tracks-now": "Play selected now",
-    "tracks-selected-singular": "track selected",
-    "tracks-selected-plural": "tracks selected"
+    "tracks-selected-plural": "tracks selected",
+    "tracks-selected-singular": "track selected"
   },
   "plugins": {
     "add-a-plugin": "Add a plugin",
