@@ -1,7 +1,6 @@
 @import "../../common.scss";
 
 .track_table {
-  transition: $short-duration;
   width: 100%;
 
   thead {
@@ -44,7 +43,7 @@
 
       .title_cell {
         .title_cell_buttons {
-          visibility: visible;
+          opacity: 1;
         }
       }
     }
@@ -53,10 +52,18 @@
   .center_aligned {
     display: block;
     text-align: center;
+
+    i {
+      margin: 0;
+    }
   }
 
   .narrow {
     width: 3em;
+  }
+
+  .no_padding {
+    padding: 0;
   }
 
   .position_cell {
@@ -65,7 +72,7 @@
 
     .position_cell_value {
       display: inline-block;
-      width: 2em;
+      width: 2.25em;
     }
 
     .add_button {
@@ -101,7 +108,7 @@
     .title_cell_buttons {
       display: inline-flex;
       flex-flow: row;
-      visibility: hidden;
+      opacity: 0;
       flex: 0 0 auto;
     }
 
@@ -123,12 +130,18 @@
   }
 
   .favorite_cell {
-    height: 3em;
-    padding: 0;
     text-align: center;
 
     .button {
       margin: 0;
+    }
+  }
+
+  .delete_cell {
+    padding-right: 0;
+
+    i.icon {
+      margin: 0 !important;
     }
   }
 

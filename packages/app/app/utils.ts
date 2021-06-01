@@ -2,9 +2,9 @@ import _ from 'lodash';
 
 export function formatDuration(duration) {
   const secNum = parseInt(duration, 10);
-  let hours = Math.floor(secNum / 3600);
-  let minutes = Math.floor((secNum - (hours * 3600)) / 60);
-  let seconds = secNum - (hours * 3600) - (minutes * 60);
+  let hours: number | string = Math.floor(secNum / 3600);
+  let minutes: number | string = Math.floor((secNum - (hours * 3600)) / 60);
+  let seconds: number | string = secNum - (hours * 3600) - (minutes * 60);
 
   if (hours < 10) {
     hours = '0' + hours;

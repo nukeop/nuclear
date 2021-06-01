@@ -2,9 +2,9 @@ import React from 'react';
 import { CellProps } from 'react-table';
 
 import { Button, TrackPopup } from '../../..';
+import { TrackTableColumn, TrackTableExtraProps } from '../types';
 import { Track } from '../../../types';
 import styles from '../styles.scss';
-import { TrackTableColumn, TrackTableExtraProps } from '../types';
 
 const TitleCell: React.FC<CellProps<Track> & TrackTableExtraProps> = ({
   cell,
@@ -27,14 +27,14 @@ const TitleCell: React.FC<CellProps<Track> & TrackTableExtraProps> = ({
         basic 
         borderless 
         circular 
-        size='mini' 
+        size='tiny' 
         icon='plus' 
         onClick={() => onAddToQueue(row.original)}
       />
 
       <TrackPopup
         trigger={
-          <Button basic borderless circular size='mini' icon='ellipsis horizontal' />
+          <Button basic borderless circular size='tiny' icon='ellipsis horizontal' />
         }
         thumb={row.values[TrackTableColumn.Thumbnail]}
         title={row.values[TrackTableColumn.Title]}
@@ -44,7 +44,7 @@ const TitleCell: React.FC<CellProps<Track> & TrackTableExtraProps> = ({
         onPlayNow={() => onPlay(row.original)}
         onAddToQueue={() => onAddToQueue(row.original)}
         onAddToFavorites={() => onAddToFavorites(row.original)}
-        onAddToPlaylist={(playlist) => onAddToPlaylist(row.original, playlist)}
+        onAddToPlaylist={(playlist: {name: string}) => onAddToPlaylist(row.original, playlist)}
         onAddToDownloads={() => onAddToDownloads(row.original)}
 
         withPlayNow={Boolean(onPlay)}

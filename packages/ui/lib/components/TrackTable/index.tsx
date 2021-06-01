@@ -3,38 +3,25 @@ import React, { useMemo } from 'react';
 import { useTable, Column, useRowSelect } from 'react-table';
 import _ from 'lodash';
 
-import { Track } from '../../types';
-import { getTrackThumbnail } from '../TrackRow';
-import TrackTableCell from './Cells/TrackTableCell';
+import DeleteCell from './Cells/DeleteCell';
+import FavoriteCell from './Cells/FavoriteCell';
 import PositionCell from './Cells/PositionCell';
+import SelectionCell from './Cells/SelectionCell';
 import ThumbnailCell from './Cells/ThumbnailCell';
 import TitleCell from './Cells/TitleCell';
-
+import TrackTableCell from './Cells/TrackTableCell';
+import SelectionHeader from './Headers/SelectionHeader';
+import { getTrackThumbnail } from '../TrackRow';
+import { TrackTableColumn, TrackTableExtraProps, TrackTableHeaders, TrackTableSettings, TrackTableStrings } from './types';
 import styles from './styles.scss';
 import artPlaceholder from '../../../resources/media/art_placeholder.png';
-import FavoriteCell from './Cells/FavoriteCell';
-import SelectionHeader from './Headers/SelectionHeader';
-import SelectionCell from './Cells/SelectionCell';
-import { TrackTableColumn, TrackTableExtraProps, TrackTableStrings } from './types';
+import { Track } from '../../types';
 
-export type TrackTableProps = TrackTableExtraProps & {
+export type TrackTableProps = TrackTableExtraProps & 
+TrackTableHeaders &
+TrackTableSettings & {
   tracks: Track[];
   isTrackFavorite: (track: Track) => boolean;
-
-  positionHeader: string;
-  thumbnailHeader: React.ReactNode;
-  artistHeader: string;
-  titleHeader: string;
-  albumHeader: string;
-  durationHeader: string;
-
-  displayPosition?: boolean;
-  displayThumbnail?: boolean;
-  displayFavorite?: boolean;
-  displayArtist?: boolean;
-  displayAlbum?: boolean;
-  displayDuration?: boolean;
-  selectable?: boolean;
 
   strings: TrackTableStrings;
 }
@@ -50,6 +37,7 @@ const TrackTable: React.FC<TrackTableProps> = ({
   albumHeader,
   durationHeader,
 
+  displayDeleteButton=true,
   displayPosition=true,
   displayThumbnail=true,
   displayFavorite=true,
@@ -61,6 +49,10 @@ const TrackTable: React.FC<TrackTableProps> = ({
   ...extraProps
 }) => {
   const columns = useMemo(() => [
+    displayDeleteButton && {
+      id: TrackTableColumn.Delete,
+      Cell: DeleteCell
+    },
     displayPosition && {
       id: TrackTableColumn.Position,
       Header: () => <span className={styles.center_aligned}>{positionHeader}</span>,
@@ -109,7 +101,7 @@ const TrackTable: React.FC<TrackTableProps> = ({
       Header: SelectionHeader,
       Cell: SelectionCell
     }
-  ].filter(Boolean) as Column<Track>[], [displayPosition, displayThumbnail, displayFavorite, isTrackFavorite, titleHeader, displayArtist, artistHeader, displayAlbum, albumHeader, displayDuration, durationHeader, selectable, positionHeader, thumbnailHeader]);
+  ].filter(Boolean) as Column<Track>[], [displayDeleteButton, displayPosition, displayThumbnail, displayFavorite, isTrackFavorite, titleHeader, displayArtist, artistHeader, displayAlbum, albumHeader, displayDuration, durationHeader, selectable, positionHeader, thumbnailHeader]);
 
   const data = useMemo(() => tracks, [tracks]);
 

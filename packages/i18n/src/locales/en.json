@@ -103,6 +103,7 @@
   },
   "playlists": {
     "artist": "Artist",
+    "album": "Album",
     "delete": "Delete this playlist",
     "dialog-placeholder": "Playlist name...",
     "empty": "No playlists.",
@@ -119,7 +120,15 @@
     "rename": "Rename this playlist",
     "songs": "{{total}} song",
     "songs_plural": "{{total}} songs",
-    "title": "Title"
+    "title": "Title",
+    "duration": "Length",
+
+    "add-selected-tracks-to-queue": "Add selected to queue",
+    "add-selected-tracks-to-downloads": "Add selected to downloads",
+    "add-selected-tracks-to-favorites": "Add selected to favorites",
+    "play-selected-tracks-now": "Play selected now",
+    "tracks-selected-singular": "track selected",
+    "tracks-selected-plural": "tracks selected"
   },
   "plugins": {
     "add-a-plugin": "Add a plugin",

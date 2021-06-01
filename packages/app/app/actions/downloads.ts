@@ -1,5 +1,6 @@
 import _ from 'lodash';
 import { store } from '@nuclear/core';
+import { getTrackItem } from '@nuclear/ui';
 
 import { safeAddUuid } from './helpers';
 
@@ -37,13 +38,15 @@ export function readDownloads() {
   };
 }
 
-export function addToDownloads(streamProviders, track) {  
-  const clonedTrack = safeAddUuid(track);
+export function addToDownloads(streamProviders, track) {
+  const clonedTrack = safeAddUuid(getTrackItem(track));
   let downloads = store.get('downloads');
+
   const existingTrack = downloads.find(({track}) => {
     const {title, artist} = track;
     return artist.name === clonedTrack.artist && title === clonedTrack.title;
   });
+
   if (!existingTrack ){
     const newDownload = {
       status: DownloadStatus.WAITING,
@@ -56,7 +59,7 @@ export function addToDownloads(streamProviders, track) {
 
   return {
     type: ADD_TO_DOWNLOADS,
-    payload: { downloads, track: track.uuid }
+    payload: { downloads, track: clonedTrack.uuid }
   };
 }
 

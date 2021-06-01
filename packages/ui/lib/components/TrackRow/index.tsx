@@ -7,8 +7,8 @@ import _ from 'lodash';
 import artPlaceholder from '../../../resources/media/art_placeholder.png';
 // eslint-disable-next-line node/no-missing-import
 import { formatDuration } from '../../utils';
-import styles from './styles.scss';
 import { Track } from '../../types';
+import styles from './styles.scss';
 
 export const getTrackThumbnail = track => {
   return _.get(

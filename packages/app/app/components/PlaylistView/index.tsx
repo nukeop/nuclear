@@ -2,16 +2,15 @@ import React, { useCallback } from 'react';
 import _ from 'lodash';
 import { useTranslation } from 'react-i18next';
 import { Icon } from 'semantic-ui-react';
-import { Button, ContextPopup, PopupButton, TrackRow } from '@nuclear/ui';
-import { TrackRowProps } from '@nuclear/ui/lib/components/TrackRow';
+import { Button, ContextPopup, PopupButton } from '@nuclear/ui';
+import { Track, TrackType } from '@nuclear/core';
 
 import InputDialog from '../InputDialog';
 import artPlaceholder from '../../../resources/media/art_placeholder.png';
 
 import styles from './styles.scss';
-import { Track } from '@nuclear/core';
-import TrackPopupContainer from '../../containers/TrackPopupContainer';
 import { useHistory } from 'react-router';
+import TrackTableContainer from '../../containers/TrackTableContainer';
 
 export type Playlist = {
   tracks: Track[];
@@ -59,7 +58,7 @@ const PlaylistView: React.FC<PlaylistViewProps> = ({
     startPlayback();
   }, [addTracks, clearQueue, playlist, selectSong, startPlayback]);
 
-  const onRemoveTrack = useCallback((trackToRemove: Track) => {
+  const onDeleteTrack = useCallback((trackToRemove: Track) => {
     const newPlaylist = {
       ...playlist,
       tracks: playlist.tracks.filter(track => track.uuid !== trackToRemove.uuid)
@@ -67,7 +66,7 @@ const PlaylistView: React.FC<PlaylistViewProps> = ({
     updatePlaylist(newPlaylist);
   }, [playlist, updatePlaylist]);
 
-  const onDelete = useCallback(() => {
+  const onDeletePlaylist = useCallback(() => {
     deletePlaylist(playlist.id);
     history.push('/playlists');
   }, [playlist, history, deletePlaylist]);
@@ -75,7 +74,7 @@ const PlaylistView: React.FC<PlaylistViewProps> = ({
   return (
     <div className={styles.playlist_view_container}>
       <div className={styles.playlist}>
-        <div className={styles.playlist_info}>
+        <div className={styles.playlist_view_info}>
           <div>
             <img
               className={styles.playlist_thumbnail}
@@ -106,7 +105,7 @@ const PlaylistView: React.FC<PlaylistViewProps> = ({
               <Button
                 onClick={onPlayAll}
                 color='pink'
-                rounded
+                circular
                 className={styles.play_button}
               >
                 <Icon name='play' /> Play
@@ -116,7 +115,7 @@ const PlaylistView: React.FC<PlaylistViewProps> = ({
                 trigger={
                   <Button
                     basic
-                    rounded
+                    circular
                     data-testid='more-button'
                     className={styles.more_button}
                   >
@@ -134,7 +133,7 @@ const PlaylistView: React.FC<PlaylistViewProps> = ({
                   label={t('queue')}
                 />
                 <PopupButton
-                  onClick={onDelete}
+                  onClick={onDeletePlaylist}
                   ariaLabel={t('delete')}
                   icon='trash'
                   label={t('delete')}
@@ -143,40 +142,11 @@ const PlaylistView: React.FC<PlaylistViewProps> = ({
             </div>
           </div>
         </div>
-        <div className={styles.playlist_tracks}>
-          <table>
-            <thead>
-              <tr>
-                <th />
-                <th>
-                  <Icon name='image outline' />
-                </th>
-                <th>{t('artist')}</th>
-                <th>{t('title')}</th>
-              </tr>
-            </thead>
-            <tbody>
-              {playlist.tracks.map((track, index) => <TrackPopupContainer
-                key={'playlist-track-row-' + index}
-                title={track.name}
-                artist={track.artist}
-                thumb={track.thumbnail ?? track.thumb}
-                withAddToPlaylist={false}
-                track={track}
-                trigger={
-                  <TrackRow
-                    track={track as TrackRowProps['track']}
-                    displayCover
-                    displayArtist
-                    withDeleteButton
-                    onDelete={() => onRemoveTrack(track)}
-                  />
-                }
-              />)
-              }
-            </tbody>
-          </table>
-        </div>
+        <TrackTableContainer 
+          tracks={playlist.tracks as TrackType[]}
+          onDelete={onDeleteTrack}
+          displayAlbum={false}
+        />
       </div>
     </div>
   );

@@ -3,8 +3,7 @@ import PropTypes from 'prop-types';
 import _ from 'lodash';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { PopupButton, getThumbnail, getTrackItem } from '@nuclear/ui';
-import { getTrackTitle, getTrackArtist } from '@nuclear/ui/lib/utils';
+import { PopupButton, getThumbnail, getTrackItem, getTrackTitle, getTrackArtist } from '@nuclear/ui';
 
 import * as DownloadsActions from '../../actions/downloads';
 import * as QueueActions from '../../actions/queue';

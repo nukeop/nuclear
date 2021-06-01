@@ -2,6 +2,7 @@
 // tslint:disable: jsx-no-plain-text-elements
 import React from 'react';
 import { Icon } from 'semantic-ui-react';
+import { action } from '@storybook/addon-actions';
 
 import { TrackTable } from '..';
 import { Track } from '../lib/types';
@@ -52,7 +53,7 @@ export const ExampleData = () =>  <div className='bg'>
         duration: '1:00'
       } as Track
     ]}
-    positionHeader='#'
+    positionHeader={<Icon name='hashtag' />}
     thumbnailHeader={<Icon name='image' />}
     artistHeader='Artist'
     titleHeader='Title'
@@ -62,12 +63,14 @@ export const ExampleData = () =>  <div className='bg'>
       (track: Track) => track.artist === 'Test Artist 2'
     }
 
-    onPlay={(track: Track) => console.log('Started playing', track)}
-    onPlayAll={(tracks: Track[]) => console.log('Started playing all', tracks)}
-    onAddToQueue={(track: Track) => console.log('Added to queue', track)}
-    onAddToFavorites={(track: Track) => console.log('Added to favorites', track)}
-    onAddToDownloads={(track: Track) => console.log('Added to downloads', track)}
-    onAddToPlaylist={(track: Track, playlist) => console.log('Added to playlist', track, playlist)}
+    onPlay={action('Started playing')}
+    onPlayAll={action('Started playing all')}
+    onAddToQueue={action('Added to queue')}
+    onAddToFavorites={action('Added to favorites')}
+    onRemoveFromFavorites={action('Removed from favorites')}
+    onAddToDownloads={action('Added to downloads')}
+    onAddToPlaylist={action('Added to playlist')}
+    onDelete={action('Deleted')}
     playlists={[
       {name: 'Playlist 1'},
       {name: 'Another Playlist'},
