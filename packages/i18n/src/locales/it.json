@@ -102,9 +102,14 @@
     "previous-button": "Pulsante Brano Precedente"
   },
   "playlists": {
+    "add-selected-tracks-to-downloads": "Add selected to downloads",
+    "add-selected-tracks-to-favorites": "Add selected to favorites",
+    "add-selected-tracks-to-queue": "Add selected to queue",
+    "album": "Album",
     "artist": "Artista",
     "delete": "Cancella questa playlist",
     "dialog-placeholder": "Nome della playlist...",
+    "duration": "Length",
     "empty": "Nessuna playlist.",
     "empty-help": "Prova a creare qualche playlist o importane l'url e le vedrai apparire qui!",
     "error-empty-data": "Dati vuoti",
@@ -114,12 +119,15 @@
     "import-button": "Import from file (JSON)",
     "import-fail-title": "Importazione della playlist fallita",
     "import-success-title": "Importazione della playlist riuscita",
+    "play-selected-tracks-now": "Play selected now",
     "playlist-created": "{{name}} creata",
     "queue": "Aggiungi playlist alla coda",
     "rename": "Rinomina questa playlist",
     "songs": "{{total}} brano",
     "songs_plural": "{{total}} brani",
-    "title": "Titolo"
+    "title": "Titolo",
+    "tracks-selected-plural": "tracks selected",
+    "tracks-selected-singular": "track selected"
   },
   "plugins": {
     "add-a-plugin": "Aggiungi un plugin",
