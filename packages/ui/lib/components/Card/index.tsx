@@ -14,7 +14,7 @@ export type CardMenuEntry = {
 
 type CardProps = {
   header: string;
-  content: string;
+  content?: string;
   image: string;
   onClick: React.DOMAttributes<HTMLDivElement>['onClick'];
   withMenu?: boolean;

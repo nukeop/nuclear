@@ -9,16 +9,17 @@ import { useArtistViewProps } from './hooks';
 const ArtistViewContainer: React.FC = () => {
   const props = useArtistViewProps();
   const { artistId } = useParams<{ artistId: string }>();
+  const source = props.artist?.source;
   const dispatch = useDispatch();
-  const artistReleasesSearch = useCallback(async (artistId) => {
-    dispatch(SearchActions.artistReleasesSearch(artistId));
+  const artistReleasesSearch = useCallback(async (artistId, source) => {
+    dispatch(SearchActions.artistReleasesSearch(artistId, source));
   }, [dispatch]);
 
   useEffect(() => {
     if (artistId !== 'loading') {
-      artistReleasesSearch(artistId);
+      artistReleasesSearch(artistId, source);
     }
-  }, [artistId, artistReleasesSearch]);
+  }, [artistId, source, artistReleasesSearch]);
 
   return <ArtistView
     {...props}
