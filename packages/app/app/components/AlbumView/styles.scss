@@ -1,4 +1,6 @@
-@import '../../vars';
+@import "../../vars";
+
+@import "../../../../ui/lib/common.scss";
 
 .album_view_container {
   width: 100%;
@@ -58,11 +60,15 @@
       .album_details {
         display: flex;
 
+        flex: 1;
+
         margin: 0rem 1rem;
 
         font-size: 16px;
 
         flex-flow: column;
+
+        min-width: 300px;
 
         label {
           margin: 0 0.5rem 0 0;
@@ -71,8 +77,15 @@
         }
 
         .album_title {
-          font-size: 32px;
-          line-height: 32px;
+          display: flex;
+          flex-direction: row;
+
+          .album_text {
+            font-size: 32px;
+            line-height: 32px;
+            flex: 1;
+            @include ellipsis;
+          }
         }
 
         .album_artist {
@@ -105,11 +118,7 @@
       }
 
       .album_favorites_button_wrap {
-        position: absolute;
         display: flex;
-        top: 0;
-        right: 0;
-        margin:  0rem 2rem;
       }
     }
 
@@ -152,7 +161,7 @@
 
       .duration {
         width: 64px;
-      }      
+      }
     }
 
     .error {
