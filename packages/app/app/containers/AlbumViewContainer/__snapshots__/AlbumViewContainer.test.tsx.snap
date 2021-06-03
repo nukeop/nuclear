@@ -42,7 +42,21 @@ exports[`Album view container should display an album 1`] = `
               <div
                 class="album_title"
               >
-                test album
+                <div
+                  class="album_text"
+                >
+                  test album
+                </div>
+                <a
+                  class="album_favorites_button_wrap"
+                  data-testid="add-remove-favorite"
+                  href="#"
+                >
+                  <i
+                    aria-hidden="true"
+                    class="star outline big icon"
+                  />
+                </a>
               </div>
               <div
                 class="album_artist"
@@ -103,16 +117,6 @@ exports[`Album view container should display an album 1`] = `
                 </a>
               </div>
             </div>
-            <a
-              class="album_favorites_button_wrap"
-              data-testid="add-remove-favorite"
-              href="#"
-            >
-              <i
-                aria-hidden="true"
-                class="star outline big icon"
-              />
-            </a>
           </div>
           <table
             class="album_tracklist"
