@@ -75,6 +75,7 @@ export function removeFavoriteAlbum(album) {
 }
 
 export function addFavoriteArtist(artist) {
+  
   const favorites = store.get('favorites');
   const savedArtist = {
     id: artist.id,
@@ -84,9 +85,9 @@ export function addFavoriteArtist(artist) {
     thumb: artist.thumb
   };
 
-  favorites.artists = _.concat(favorites.artists, savedArtist);
+  favorites.artists = _.concat(favorites.artists || [], savedArtist);
   store.set('favorites', favorites);
-
+  
   return {
     type: ADD_FAVORITE_ARTIST,
     payload: favorites

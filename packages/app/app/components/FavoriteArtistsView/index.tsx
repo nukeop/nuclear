@@ -14,7 +14,7 @@ const EmptyState = () => {
     <div className={styles.empty_state}>
       <Icon.Group>
         <Icon name='star' />
-        <Icon corner name='dot circle' />
+        <Icon corner name='user' />
       </Icon.Group>
       <h2>{t('empty')}</h2>
       <div>{t('empty-help')}</div>
