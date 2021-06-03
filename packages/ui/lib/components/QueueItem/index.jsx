@@ -10,6 +10,7 @@ import common from '../../common.scss';
 import styles from './styles.scss';
 
 import artPlaceholder from '../../../resources/media/art_placeholder.png';
+import { getTrackArtist, getTrackTitle } from '../../utils';
 
 export const QueueItem = ({
   isLoading,
@@ -52,10 +53,10 @@ export const QueueItem = ({
       <>
         <div className={styles.item_info_container}>
           <div className={styles.name_container}>
-            {track.name}
+            {getTrackTitle(track)}
           </div>
           <div className={styles.artist_container}>
-            {track.artist}
+            {getTrackArtist(track)}
           </div>
         </div>
 

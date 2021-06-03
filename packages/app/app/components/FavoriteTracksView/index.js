@@ -4,13 +4,12 @@ import cx from 'classnames';
 import _ from 'lodash';
 import { Icon, Segment, Table } from 'semantic-ui-react';
 import { useTranslation } from 'react-i18next';
-import { TrackRow } from '@nuclear/ui';
+import { TrackRow, getTrackItem } from '@nuclear/ui';
 import TrackPopupContainer from '../../containers/TrackPopupContainer';
 import Header from '../Header';
 
 import trackRowStyles from '../TrackRow/styles.scss';
 import styles from './styles.scss';
-import artPlaceholder from '../../../resources/media/art_placeholder.png';
 
 export const EmptyState = () => {
   const { t } = useTranslation('favorites');
@@ -37,23 +36,9 @@ const FavoriteTracksView = ({
 }) => {
   const { t } = useTranslation('favorites');
 
-
-  const getTrackimage = (track) => {
-    let image = artPlaceholder;
-    if (track.image && track.image.length > 0) {
-      image = track.image[0]['#text'];
-    }
-    return image;
-  };
-
   const addTracksToQueue = () => {
     tracks.map(track => {
-      const trackImage = getTrackimage(track);
-      addToQueue({
-        artist: track.artist.name,
-        name: track.name,
-        thumbnail: trackImage
-      });
+      addToQueue(getTrackItem(track));
     });
   };
 

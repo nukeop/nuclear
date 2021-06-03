@@ -62,7 +62,7 @@ describe('Artist view container', () => {
     ]);
   });
 
-  it('tracks without thumbnails should have null', async () => {
+  it('tracks without thumbnails should have undefined', async () => {
     const initialState = buildStoreState()
       .withArtistDetails()
       .withPlugins()
@@ -88,7 +88,7 @@ describe('Artist view container', () => {
       expect.objectContaining({
         artist: 'test artist',
         name: 'test artist top track 1',
-        thumbnail: null
+        thumbnail: undefined
       })
     ]);
   });
@@ -139,10 +139,8 @@ describe('Artist view container', () => {
     state = store.getState();
     expect(state.favorites.tracks).toEqual([
       expect.objectContaining({
-        artist: expect.objectContaining({
-          name: 'test artist'
-        }),
-        title: 'test artist top track 1'
+        artist: 'test artist',
+        name: 'test artist top track 1'
       })
     ]);
   });

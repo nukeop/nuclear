@@ -30,11 +30,19 @@ const TitleCell: React.FC<CellProps<Track> & TrackTableExtraProps> = ({
         size='tiny' 
         icon='plus' 
         onClick={() => onAddToQueue(row.original)}
+        data-testid='add-to-queue'
       />
 
       <TrackPopup
         trigger={
-          <Button basic borderless circular size='tiny' icon='ellipsis horizontal' />
+          <Button
+            basic
+            borderless
+            circular
+            size='tiny'
+            icon='ellipsis horizontal'
+            data-testid='track-popup-trigger'
+          />
         }
         thumb={row.values[TrackTableColumn.Thumbnail]}
         title={row.values[TrackTableColumn.Title]}
