@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { compose, withHandlers, withProps } from 'recompose';
-import { TrackPopup } from '@nuclear/ui';
+import { TrackPopup, getTrackItem } from '@nuclear/ui';
 
 import * as DownloadsActions from '../../actions/downloads';
 import * as FavoritesActions from '../../actions/favorites';
@@ -47,14 +47,8 @@ const TrackPopupContainer = compose(
     mapStateToProps,
     mapDispatchToProps
   ),
-  withProps(({ artist, track, title, thumb }) => ({
-    trackItem: {
-      artist,
-      name: title,
-      thumbnail: thumb,
-      local: track.local,
-      streams: track.streams
-    }
+  withProps(({ track }) => ({
+    trackItem: getTrackItem(track)
   })),
   withHandlers({
     onAddToQueue: ({ actions, trackItem }) => () => actions.addToQueue(trackItem),
@@ -68,12 +62,8 @@ const TrackPopupContainer = compose(
         settings
       );
     },
-    onAddToDownloads: ({ actions, streamProviders, track, artist, title, thumb, settings}) => () => {
-      const clonedTrack = {
-        ...safeAddUuid(track),
-        artist: track.artist.name ?? track.artist,
-        title: track.name
-      };
+    onAddToDownloads: ({ actions, streamProviders, trackItem, thumb, artist, title, settings}) => () => {
+      const clonedTrack = {...safeAddUuid(trackItem)};
       actions.addToDownloads(streamProviders, clonedTrack);
       actions.info(
         'Track added to downloads',

@@ -20,6 +20,7 @@ const PositionCell: React.FC<CellProps<Track> & TrackTableExtraProps> = ({
     color='pink'
     className={styles.add_button}
     onClick={() => onPlay(row.original)}
+    data-testid='play-now'
   />
   <span className={styles.position_cell_value}>
     {value ?? row.index+1}

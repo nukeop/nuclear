@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import numeral from 'numeral';
 import { Icon } from 'semantic-ui-react';
-import { formatDuration } from '@nuclear/ui';
+import { formatDuration, getTrackArtist, getTrackTitle } from '@nuclear/ui';
 
 import * as QueueActions from '../../actions/queue';
 
@@ -13,7 +13,6 @@ import TrackPopupContainer from '../../containers/TrackPopupContainer';
 import artPlaceholder from '../../../resources/media/art_placeholder.png';
 
 import styles from './styles.scss';
-
 
 class TrackRow extends React.Component {
   // this function should be moved onto interface for 'track'
@@ -121,8 +120,8 @@ class TrackRow extends React.Component {
       <TrackPopupContainer
         trigger={this.renderTrigger(track)}
         track={track}
-        artist={track.artist.name}
-        title={track.name}
+        artist={getTrackArtist(track)}
+        title={getTrackTitle(track)}
         thumb={this.getTrackThumbnail()}
 
         withAddToQueue={withAddToQueue}
