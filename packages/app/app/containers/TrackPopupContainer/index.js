@@ -13,6 +13,7 @@ import * as ToastActions from '../../actions/toasts';
 import * as PlaylistsActions from '../../actions/playlists';
 import { safeAddUuid } from '../../actions/helpers';
 import { addTrackToPlaylist } from '../../components/PlayQueue/QueueMenu/QueueMenuMore';
+import { getTrackArtist } from '@nuclear/ui/lib';
 
 function mapStateToProps (state, { track }) {
   return {
@@ -53,35 +54,31 @@ const TrackPopupContainer = compose(
   withHandlers({
     onAddToQueue: ({ actions, trackItem }) => () => actions.addToQueue(trackItem),
     onPlayNow: ({ actions, streamProviders, trackItem }) => () => actions.playTrack(streamProviders, trackItem),
-    onAddToFavorites: ({ actions, track, artist, title, thumb, settings }) => () => {
+    onAddToFavorites: ({ actions, track, thumb, settings }) => () => {
       actions.addFavoriteTrack(track);
       actions.info(
         'Favorite track added',
-        `${artist} - ${title} has been added to favorites.`,
+        `${getTrackArtist(track)} - ${track.name} has been added to favorites.`,
         <img src={thumb} />,
         settings
       );
     },
-    onAddToDownloads: ({ actions, streamProviders, trackItem, thumb, artist, title, settings}) => () => {
+    onAddToDownloads: ({ actions, streamProviders, trackItem, thumb, settings}) => () => {
       const clonedTrack = {...safeAddUuid(trackItem)};
       actions.addToDownloads(streamProviders, clonedTrack);
       actions.info(
         'Track added to downloads',
-        `${artist} - ${title} has been added to downloads.`,
+        `${getTrackArtist(clonedTrack)} - ${clonedTrack.name} has been added to downloads.`,
         <img src={thumb} />,
         settings
       );
     },
-    onAddToPlaylist: ({ actions, settings, track, artist, title, thumb}) => (playlist) => {
-      const clonedTrack = {
-        ...safeAddUuid(track),
-        artist: track.artist.name,
-        title: track.name
-      };
+    onAddToPlaylist: ({ actions, settings, track, thumb}) => (playlist) => {
+      const clonedTrack = {...safeAddUuid(track)};
       addTrackToPlaylist(actions.updatePlaylist, playlist, clonedTrack);
       actions.info(
         'Track added to playlist',
-        `${artist} - ${title} has been added to playlist ${playlist.name}.`,
+        `${getTrackArtist(clonedTrack)} - ${clonedTrack.name} has been added to playlist ${playlist.name}.`,
         <img src={thumb} />,
         settings
       );
