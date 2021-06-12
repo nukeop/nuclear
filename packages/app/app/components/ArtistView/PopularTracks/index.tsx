@@ -35,11 +35,13 @@ export const AddAllButton: React.FC<AddAllButtonProps> = ({
   );
 };
 
+type PopularTrack = Track & { thumb?: string };
+
 type PopularTracksProps = {
   artist: {
     name: string;
   };
-  tracks: Track[];
+  tracks: PopularTrack[];
   addToQueue: (track) => Promise<void> ;
 }
 

@@ -102,9 +102,14 @@
     "previous-button": "Bài nhạc trước"
   },
   "playlists": {
+    "add-selected-tracks-to-downloads": "Add selected to downloads",
+    "add-selected-tracks-to-favorites": "Add selected to favorites",
+    "add-selected-tracks-to-queue": "Add selected to queue",
+    "album": "Album",
     "artist": "Nghệ sỹ",
     "delete": "Xóa playlist này",
     "dialog-placeholder": "Tên playlist...",
+    "duration": "Length",
     "empty": "Không có playlist nào.",
     "empty-help": "Tạo hoặc nhập playlist bằng link!",
     "error-empty-data": "Không có dữ liệu",
@@ -114,11 +119,14 @@
     "import-button": "Import from file (JSON)",
     "import-fail-title": "Thêm Playlist thất bại",
     "import-success-title": "Thêm Playlist thành công",
+    "play-selected-tracks-now": "Play selected now",
     "playlist-created": "{{name}} đã được tạo",
     "queue": "Thêm playlist vào hàng chờ",
     "rename": "Đổi tên playlist",
     "songs": "{{total}} bài hát",
-    "title": "Tên bài hát"
+    "title": "Tên bài hát",
+    "tracks-selected-plural": "tracks selected",
+    "tracks-selected-singular": "track selected"
   },
   "plugins": {
     "add-a-plugin": "Thêm plugin",

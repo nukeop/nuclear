@@ -5,11 +5,11 @@ import _ from 'lodash';
 import { Dimmer, Loader } from 'semantic-ui-react';
 import { compose, withState, withHandlers } from 'recompose';
 
-import { getThumbnail, getTrackItem } from '../../utils';
 import AlbumPreview from '../AlbumPreview';
 import Card from '../Card';
 import common from '../../common.scss';
 import styles from './styles.scss';
+import { getThumbnail, getTrackItem } from '../..';
 
 const AlbumGrid = ({
   albums,

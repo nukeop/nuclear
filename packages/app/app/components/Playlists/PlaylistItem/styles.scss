@@ -1,25 +1,29 @@
-@import '../../../vars';
+@import "../../../vars";
 
 .playlist_outside_container {
-	width:  50%;
+	width: 50%;
 }
 
 .playlist_container {
-	display:  flex;
+	display: flex;
 	flex-flow: row;
-	margin:  0.5rem;
+	margin: 0.5rem;
 	background: rgba($background2, 0.5);
 	cursor: pointer;
-	height: 6rem;
 	border-radius: 0.25rem;
 	justify-content: flex-start;
 	align-items: center;
-	padding-left: 0.5rem;
-}
+	padding: 0.5em;
 
-.playlist_thumbnail {
-	width: 64px;
-  height: 64px;
+	.playlist_thumbnail_container {
+		display: flex;
+		align-items: center;
+	}
+
+	.playlist_thumbnail {
+		width: 64px;
+		height: 64px;
+	}
 }
 
 .playlist_title {
@@ -28,13 +32,15 @@
 }
 
 .playlist_info {
-	display:  flex;
+	display: flex;
 	flex-flow: column;
-	flex:  1 1 auto;
+	flex: 1 1 auto;
 	padding-left: 1rem;
 
-	h1, h2, h3 {
-		margin:  0;
+	h1,
+	h2,
+	h3 {
+		margin: 0;
 	}
 }
 

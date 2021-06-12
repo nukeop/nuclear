@@ -51,7 +51,22 @@ export const AlbumView: React.FC<AlbumViewProps> = ({
                 unloader={<img src={String(artPlaceholder)} />}
               />
               <div className={styles.album_details}>
-                <div className={styles.album_title}>{album.title}</div>
+                <div className={styles.album_title}>
+                  <div className={styles.album_text}>{album.title}</div>
+                  <a
+                    href='#'
+                    className={styles.album_favorites_button_wrap}
+                    data-testid='add-remove-favorite'
+                    onClick={
+                      isFavorite ? removeFavoriteAlbum : addFavoriteAlbum
+                    }
+                  >
+                    <Icon
+                      name={isFavorite ? 'star' : 'star outline'}
+                      size='big'
+                    />
+                  </a>
+                </div>
                 <div className={styles.album_artist}>
                   by{' '}
                   <a
@@ -116,21 +131,6 @@ export const AlbumView: React.FC<AlbumViewProps> = ({
                   </ContextPopup>
                 </div>
               </div>
-              <a
-                href='#'
-                className={styles.album_favorites_button_wrap}
-                data-testid='add-remove-favorite'
-                onClick={
-                  isFavorite
-                    ? removeFavoriteAlbum
-                    : addFavoriteAlbum
-                }
-              >
-                <Icon
-                  name={isFavorite ? 'star' : 'star outline'}
-                  size='big'
-                />
-              </a>
             </div>
             <table className={styles.album_tracklist}>
               <thead>
