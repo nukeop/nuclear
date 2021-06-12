@@ -21,11 +21,13 @@ import { Playlist } from '../../reducers/playlists';
 export type TrackTableContainerProps = TrackTableSettings & {
   tracks: TrackTableProps['tracks'];
   onDelete?: TrackTableProps['onDelete'];
+  onReorder?: (indexSource: number, indexDest: number) => void;
 };
 
 const TrackTableContainer: React.FC<TrackTableContainerProps> = ({
   tracks,
   onDelete,
+  onReorder,
   ...settings
 }) => {
   const { t } = useTranslation('playlists');
@@ -79,6 +81,11 @@ const TrackTableContainer: React.FC<TrackTableContainerProps> = ({
     dispatch(playlistActions.updatePlaylist(newPlaylist));
   }, [dispatch, playlists]);
 
+  const onDragEnd = useCallback<TrackTableProps['onDragEnd']>((result) => {
+    const { source, destination } = result;
+    onReorder(source.index, destination.index);
+  }, [onReorder]);
+
   return <TrackTable
     {...settings}
     tracks={tracks}
@@ -105,6 +112,7 @@ const TrackTableContainer: React.FC<TrackTableContainerProps> = ({
     onAddToDownloads={onAddToDownloads}
     onAddToPlaylist={onAddToPlaylist}
     onDelete={onDelete}
+    onDragEnd={Boolean(onReorder) && onDragEnd}
 
     isTrackFavorite={isTrackFavorite}
   />;
