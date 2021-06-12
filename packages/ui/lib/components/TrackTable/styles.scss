@@ -8,6 +8,12 @@
     color: $white;
   }
 
+  tbody {
+    &.body_dragged_over {
+      background: $bgdark;
+    }
+  }
+
   th {
     padding: 1em;
     text-align: left;
@@ -23,6 +29,12 @@
 
     &:not(:last-child) {
       border-bottom: 1px solid $bgdefault;
+    }
+
+    &.is_dragging {
+      display: table;
+      border: none;
+      background: rgba($bgdefault, 0.5);
     }
 
     td {

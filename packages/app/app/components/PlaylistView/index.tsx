@@ -66,6 +66,22 @@ const PlaylistView: React.FC<PlaylistViewProps> = ({
     updatePlaylist(newPlaylist);
   }, [playlist, updatePlaylist]);
 
+  const onReorderTracks = useCallback((indexSource: number, indexDest: number) => {
+    const newPlaylist = {
+      ...playlist,
+      tracks: playlist.tracks.map((track, idx) => {
+        if (idx === indexSource) {
+          return playlist.tracks[indexDest];
+        }
+        if (idx === indexDest) {
+          return playlist.tracks[indexSource];
+        }
+        return track;
+      })
+    };
+    updatePlaylist(newPlaylist);
+  }, [playlist, updatePlaylist]);
+
   const onDeletePlaylist = useCallback(() => {
     deletePlaylist(playlist.id);
     history.push('/playlists');
@@ -142,9 +158,10 @@ const PlaylistView: React.FC<PlaylistViewProps> = ({
             </div>
           </div>
         </div>
-        <TrackTableContainer 
+        <TrackTableContainer
           tracks={playlist.tracks as TrackType[]}
           onDelete={onDeleteTrack}
+          onReorder={onReorderTracks}
           displayAlbum={false}
         />
       </div>
