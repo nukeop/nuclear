@@ -7,9 +7,10 @@ import _ from 'lodash';
 import artPlaceholder from '../../../resources/media/art_placeholder.png';
 // eslint-disable-next-line node/no-missing-import
 import { formatDuration } from '../../utils';
+import { Track } from '../../types';
 import styles from './styles.scss';
 
-const getTrackThumbnail = track => {
+export const getTrackThumbnail = track => {
   return _.get(
     track,
     'thumbnail',
@@ -18,16 +19,7 @@ const getTrackThumbnail = track => {
 };
 
 export type TrackRowProps = {
-  track: {
-    local?: boolean;
-    album?: string;
-    artist?: {name: string} | string;
-    duration?: number | string;
-    position?: number;
-    playcount?: number | string;
-    name: string;
-    thumbnail?: any;
-  };
+  track: Track;
 
   mini?: boolean;
 
@@ -101,7 +93,7 @@ const TrackRow: React.FC<TrackRowProps> = ({
       </td>
     }
     <td className={styles.track_row_name}>
-      { track.name }
+      { track.title ?? track.name }
     </td>
     {
       displayAlbum &&

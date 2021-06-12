@@ -57,11 +57,7 @@ export const useAlbumViewProps = () => {
 
   const addAlbumToDownloads = useCallback(async () => {
     await album?.tracklist.forEach(async track => {
-      const clonedTrack = {
-        ...safeAddUuid(track),
-        artist: track.artist.name,
-        title: track.name
-      };
+      const clonedTrack = { ...safeAddUuid(track) };
       dispatch(DownloadsActions.addToDownloads(plugins.streamProviders, clonedTrack));
     });
   }, [album, dispatch, plugins]);

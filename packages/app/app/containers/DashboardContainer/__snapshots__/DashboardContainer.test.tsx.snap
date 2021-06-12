@@ -43,7 +43,7 @@ exports[`Dashboard container should display genres after going to genres tab 1`]
                 class="genre_overlay"
               >
                 <div
-                  class="wrapper"
+                  class="smooth_image_wrapper"
                 >
                   <img
                     class="image"
@@ -74,7 +74,7 @@ exports[`Dashboard container should display genres after going to genres tab 1`]
                 class="genre_overlay"
               >
                 <div
-                  class="wrapper"
+                  class="smooth_image_wrapper"
                 >
                   <img
                     class="image"

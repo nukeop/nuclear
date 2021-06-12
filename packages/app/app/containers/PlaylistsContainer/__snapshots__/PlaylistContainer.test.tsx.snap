@@ -36,7 +36,9 @@ exports[`Playlist container should display all playlists 1`] = `
           <div
             class="playlist_container"
           >
-            <div>
+            <div
+              class="playlist_thumbnail_container"
+            >
               <img
                 class="playlist_thumbnail"
                 src="test thumbnail"
@@ -62,7 +64,9 @@ exports[`Playlist container should display all playlists 1`] = `
           <div
             class="playlist_container"
           >
-            <div>
+            <div
+              class="playlist_thumbnail_container"
+            >
               <img
                 class="playlist_thumbnail"
                 src="test thumbnail"

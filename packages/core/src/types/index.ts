@@ -34,3 +34,15 @@ export interface NuclearPlaylist {
 }
 
 export type PartialExcept<T, TRequired extends keyof T> = Partial<T> & Pick<T, TRequired>;
+
+export type TrackType = {
+  local?: boolean;
+  album?: string;
+  artist?: { name: string } | string;
+  duration?: number | string;
+  position?: number;
+  playcount?: number | string;
+  title?: string;
+  name?: string;
+  thumbnail?: string;
+};

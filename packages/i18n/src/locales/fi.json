@@ -102,9 +102,14 @@
     "previous-button": "Edellinen kappale"
   },
   "playlists": {
+    "add-selected-tracks-to-downloads": "Add selected to downloads",
+    "add-selected-tracks-to-favorites": "Add selected to favorites",
+    "add-selected-tracks-to-queue": "Add selected to queue",
+    "album": "Album",
     "artist": "Artisti",
     "delete": "Poista tämä soittolista",
     "dialog-placeholder": "Soittolistan nimi...",
+    "duration": "Length",
     "empty": "Ei soittolistoja.",
     "empty-help": "Try create some playlists or import by url and they will appear here!",
     "error-empty-data": "Empty data",
@@ -114,12 +119,15 @@
     "import-button": "Import from file (JSON)",
     "import-fail-title": "Playlist import fail",
     "import-success-title": "Playlist imported successfully",
+    "play-selected-tracks-now": "Play selected now",
     "playlist-created": "{{name}} created",
     "queue": "Lisää soittolista jonoon",
     "rename": "Nimeä tämä soittolista uudelleen",
     "songs": "{{total}} kappaleita",
     "songs_plural": "{{total}} kappaleita",
-    "title": "nimi"
+    "title": "nimi",
+    "tracks-selected-plural": "tracks selected",
+    "tracks-selected-singular": "track selected"
   },
   "plugins": {
     "add-a-plugin": "Lisää plugin",

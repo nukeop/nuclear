@@ -75,8 +75,7 @@ describe('Playlist view container', () => {
 
   it('should add a single track to the queue', async () => {
     const { component, store } = mountComponent();
-    await waitFor(() => component.getByText(/test track 22/i).click());
-    await waitFor(() => component.getByText(/add to queue/i).click());
+    await waitFor(() => component.getAllByTestId('add-to-queue')[1].click());
 
     const state = store.getState();
     expect(state.queue.queueItems).toEqual([
@@ -89,8 +88,7 @@ describe('Playlist view container', () => {
 
   it('should play a single track', async () => {
     const { component, store } = mountComponent();
-    await waitFor(() => component.getByText(/test track 22/i).click());
-    await waitFor(() => component.getByText(/play now/i).click());
+    await waitFor(() => component.getAllByTestId('play-now')[1].click());
 
     const state = store.getState();
     expect(state.queue.queueItems).toEqual([
@@ -104,15 +102,13 @@ describe('Playlist view container', () => {
 
   it('should add a single track to favorites', async () => {
     const { component, store } = mountComponent();
-    await waitFor(() => component.getByText(/test track 22/i).click());
+    await waitFor(() => component.getAllByTestId('track-popup-trigger')[1].click());
     await waitFor(() => component.getByText(/add to favorites/i).click());
 
     const state = store.getState();
     expect(state.favorites.tracks).toEqual([
       expect.objectContaining({
-        artist: {
-          name: 'test artist 2'
-        },
+        artist: 'test artist 2',
         name: 'test track 22'
       })
     ]);
@@ -120,7 +116,7 @@ describe('Playlist view container', () => {
 
   it('should add a single track to downloads', async () => {
     const { component, store } = mountComponent();
-    await waitFor(() => component.getByText(/test track 22/i).click());
+    await waitFor(() => component.getAllByTestId('track-popup-trigger')[1].click());
     await waitFor(() => component.getByText(/download/i).click());
 
     const state = store.getState();
