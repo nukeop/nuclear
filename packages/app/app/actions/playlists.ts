@@ -9,7 +9,6 @@ import {
 } from './playlists.injectable';
 import { success, error } from './toasts';
 
-
 export const LOAD_PLAYLISTS = 'LOAD_PLAYLISTS';
 export const ADD_PLAYLIST = 'ADD_PLAYLIST';
 export const DELETE_PLAYLIST = 'DELETE_PLAYLIST';

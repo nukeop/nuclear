@@ -102,9 +102,14 @@
     "previous-button": "Musique précédente"
   },
   "playlists": {
+    "add-selected-tracks-to-downloads": "Add selected to downloads",
+    "add-selected-tracks-to-favorites": "Add selected to favorites",
+    "add-selected-tracks-to-queue": "Add selected to queue",
+    "album": "Album",
     "artist": "Artiste",
     "delete": "Supprimer cette playlist",
     "dialog-placeholder": "Nom de la playlist...",
+    "duration": "Length",
     "empty": "Aucune playlist.",
     "empty-help": "Try create some playlists or import by url and they will appear here!",
     "error-empty-data": "Empty data",
@@ -114,12 +119,15 @@
     "import-button": "Import from file (JSON)",
     "import-fail-title": "Playlist import fail",
     "import-success-title": "Playlist imported successfully",
+    "play-selected-tracks-now": "Play selected now",
     "playlist-created": "{{name}} created",
     "queue": "Ajouter la playlist à la file de lecture",
     "rename": "Renommer cette playlist",
     "songs": "{{total}} morceau",
     "songs_plural": "{{total}} morceaux",
-    "title": "Titre"
+    "title": "Titre",
+    "tracks-selected-plural": "tracks selected",
+    "tracks-selected-singular": "track selected"
   },
   "plugins": {
     "add-a-plugin": "Ajouter un plugin",

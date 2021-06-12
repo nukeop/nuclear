@@ -102,9 +102,14 @@
     "previous-button": "Предыдущий трек"
   },
   "playlists": {
+    "add-selected-tracks-to-downloads": "Add selected to downloads",
+    "add-selected-tracks-to-favorites": "Add selected to favorites",
+    "add-selected-tracks-to-queue": "Add selected to queue",
+    "album": "Album",
     "artist": "Исполнитель",
     "delete": "Удалить Этот Плейлист",
     "dialog-placeholder": "Название...",
+    "duration": "Length",
     "empty": "Тут Ничего Нет...",
     "empty-help": "Try create some playlists or import by url and they will appear here!",
     "error-empty-data": "Empty data",
@@ -114,13 +119,16 @@
     "import-button": "Import from file (JSON)",
     "import-fail-title": "Playlist import fail",
     "import-success-title": "Playlist imported successfully",
+    "play-selected-tracks-now": "Play selected now",
     "playlist-created": "{{name}} created",
     "queue": "Add playlist to queue",
     "rename": "Переименовать Этот Плейлист",
     "songs_0": "{{total}} songs",
     "songs_1": "{{total}} songs",
     "songs_2": "{{total}} songs",
-    "title": "Название"
+    "title": "Название",
+    "tracks-selected-plural": "tracks selected",
+    "tracks-selected-singular": "track selected"
   },
   "plugins": {
     "add-a-plugin": "Add a plugin",

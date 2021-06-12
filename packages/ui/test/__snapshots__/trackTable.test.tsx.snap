@@ -1,0 +1,598 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`(Snapshot) Track table - empty should render correctly 1`] = `
+<DocumentFragment>
+  <table
+    class="track_table"
+    role="table"
+  >
+    <thead>
+      <tr
+        role="row"
+      >
+        <th
+          colspan="1"
+          role="columnheader"
+        >
+           
+        </th>
+        <th
+          colspan="1"
+          role="columnheader"
+        >
+          <span
+            class="center_aligned"
+          >
+            Position
+          </span>
+        </th>
+        <th
+          colspan="1"
+          role="columnheader"
+        >
+          <span
+            class="center_aligned"
+          >
+            Thumbnail
+          </span>
+        </th>
+        <th
+          colspan="1"
+          role="columnheader"
+        >
+           
+        </th>
+        <th
+          colspan="1"
+          role="columnheader"
+        >
+          Title
+        </th>
+        <th
+          colspan="1"
+          role="columnheader"
+        >
+          Artist
+        </th>
+        <th
+          colspan="1"
+          role="columnheader"
+        >
+          Album
+        </th>
+        <th
+          colspan="1"
+          role="columnheader"
+        >
+          Length
+        </th>
+        <th
+          colspan="1"
+          role="columnheader"
+        >
+          <span
+            class="select_header"
+          >
+            <div
+              class="ui fitted checkbox nuclear checkbox"
+              style="cursor: pointer;"
+            >
+              <input
+                class="hidden"
+                readonly=""
+                tabindex="0"
+                title="Toggle All Rows Selected"
+                type="checkbox"
+                value=""
+              />
+              <label />
+            </div>
+          </span>
+        </th>
+      </tr>
+    </thead>
+    <tbody
+      data-rbd-droppable-context-id="0"
+      data-rbd-droppable-id="track_table"
+      role="rowgroup"
+    />
+  </table>
+</DocumentFragment>
+`;
+
+exports[`(Snapshot) Track table - example data with all rows should render correctly 1`] = `
+<DocumentFragment>
+  <table
+    class="track_table"
+    role="table"
+  >
+    <thead>
+      <tr
+        role="row"
+      >
+        <th
+          colspan="1"
+          role="columnheader"
+        >
+           
+        </th>
+        <th
+          colspan="1"
+          role="columnheader"
+        >
+          <span
+            class="center_aligned"
+          >
+            Position
+          </span>
+        </th>
+        <th
+          colspan="1"
+          role="columnheader"
+        >
+          <span
+            class="center_aligned"
+          >
+            <i
+              aria-hidden="true"
+              class="image icon"
+            />
+          </span>
+        </th>
+        <th
+          colspan="1"
+          role="columnheader"
+        >
+           
+        </th>
+        <th
+          colspan="1"
+          role="columnheader"
+        >
+          Title
+        </th>
+        <th
+          colspan="1"
+          role="columnheader"
+        >
+          Artist
+        </th>
+        <th
+          colspan="1"
+          role="columnheader"
+        >
+          Album
+        </th>
+        <th
+          colspan="1"
+          role="columnheader"
+        >
+          Length
+        </th>
+        <th
+          colspan="1"
+          role="columnheader"
+        >
+          <span
+            class="select_header"
+          >
+            <div
+              class="ui fitted checkbox nuclear checkbox"
+              style="cursor: pointer;"
+            >
+              <input
+                class="hidden"
+                readonly=""
+                tabindex="0"
+                title="Toggle All Rows Selected"
+                type="checkbox"
+                value=""
+              />
+              <label />
+            </div>
+          </span>
+        </th>
+      </tr>
+    </thead>
+    <tbody
+      data-rbd-droppable-context-id="1"
+      data-rbd-droppable-id="track_table"
+      role="rowgroup"
+    >
+      <tr
+        class=""
+        data-rbd-draggable-context-id="1"
+        data-rbd-draggable-id="Test Title 0"
+        role="row"
+      >
+        <td
+          class="narrow delete_cell"
+          role="cell"
+        >
+          <button
+            class="ui tiny basic circular icon button nuclear button borderless"
+          >
+            <i
+              aria-hidden="true"
+              class="times icon"
+            />
+          </button>
+        </td>
+        <td
+          class="position_cell narrow"
+          role="cell"
+        >
+          <button
+            class="ui pink tiny circular icon button nuclear button add_button"
+            data-testid="play-now"
+          >
+            <i
+              aria-hidden="true"
+              class="play icon"
+            />
+          </button>
+          <span
+            class="position_cell_value"
+          >
+            1
+          </span>
+        </td>
+        <td
+          class="thumbnail_cell narrow"
+          role="cell"
+        >
+          <img
+            class="thumbnail"
+            src="https://i.imgur.com/4euOws2.jpg"
+          />
+        </td>
+        <td
+          class="favorite_cell narrow"
+          role="cell"
+        >
+          <button
+            class="ui tiny basic circular icon button nuclear button borderless"
+          >
+            <i
+              aria-hidden="true"
+              class="heart outline icon"
+            />
+          </button>
+        </td>
+        <td
+          class="title_cell"
+          role="cell"
+        >
+          <span
+            class="title_cell_content"
+          >
+            <span
+              class="title_cell_value"
+            >
+              Test Title
+            </span>
+            <span
+              class="title_cell_buttons"
+            >
+              <button
+                class="ui tiny basic circular icon button nuclear button borderless"
+                data-testid="add-to-queue"
+              >
+                <i
+                  aria-hidden="true"
+                  class="plus icon"
+                />
+              </button>
+              <button
+                class="ui tiny basic circular icon button nuclear button borderless"
+                data-testid="track-popup-trigger"
+              >
+                <i
+                  aria-hidden="true"
+                  class="ellipsis horizontal icon"
+                />
+              </button>
+            </span>
+          </span>
+        </td>
+        <td
+          role="cell"
+        >
+          Test Artist
+        </td>
+        <td
+          role="cell"
+        >
+          Test Album
+        </td>
+        <td
+          role="cell"
+        >
+          1:00
+        </td>
+        <td
+          class="select_cell narrow"
+          role="cell"
+        >
+          <div
+            class="ui fitted checkbox nuclear checkbox"
+            style="cursor: pointer;"
+          >
+            <input
+              class="hidden"
+              readonly=""
+              tabindex="0"
+              title="Toggle Row Selected"
+              type="checkbox"
+              value=""
+            />
+            <label />
+          </div>
+        </td>
+      </tr>
+      <tr
+        class=""
+        data-rbd-draggable-context-id="1"
+        data-rbd-draggable-id="Test Title 2 1"
+        role="row"
+      >
+        <td
+          class="narrow delete_cell"
+          role="cell"
+        >
+          <button
+            class="ui tiny basic circular icon button nuclear button borderless"
+          >
+            <i
+              aria-hidden="true"
+              class="times icon"
+            />
+          </button>
+        </td>
+        <td
+          class="position_cell narrow"
+          role="cell"
+        >
+          <button
+            class="ui pink tiny circular icon button nuclear button add_button"
+            data-testid="play-now"
+          >
+            <i
+              aria-hidden="true"
+              class="play icon"
+            />
+          </button>
+          <span
+            class="position_cell_value"
+          >
+            2
+          </span>
+        </td>
+        <td
+          class="thumbnail_cell narrow"
+          role="cell"
+        >
+          <img
+            class="thumbnail"
+            src="https://i.imgur.com/4euOws2.jpg"
+          />
+        </td>
+        <td
+          class="favorite_cell narrow"
+          role="cell"
+        >
+          <button
+            class="ui tiny basic circular icon button nuclear button borderless"
+          >
+            <i
+              aria-hidden="true"
+              class="heart icon"
+            />
+          </button>
+        </td>
+        <td
+          class="title_cell"
+          role="cell"
+        >
+          <span
+            class="title_cell_content"
+          >
+            <span
+              class="title_cell_value"
+            >
+              Test Title 2
+            </span>
+            <span
+              class="title_cell_buttons"
+            >
+              <button
+                class="ui tiny basic circular icon button nuclear button borderless"
+                data-testid="add-to-queue"
+              >
+                <i
+                  aria-hidden="true"
+                  class="plus icon"
+                />
+              </button>
+              <button
+                class="ui tiny basic circular icon button nuclear button borderless"
+                data-testid="track-popup-trigger"
+              >
+                <i
+                  aria-hidden="true"
+                  class="ellipsis horizontal icon"
+                />
+              </button>
+            </span>
+          </span>
+        </td>
+        <td
+          role="cell"
+        >
+          Test Artist 2
+        </td>
+        <td
+          role="cell"
+        >
+          Test Album
+        </td>
+        <td
+          role="cell"
+        >
+          1:00
+        </td>
+        <td
+          class="select_cell narrow"
+          role="cell"
+        >
+          <div
+            class="ui fitted checkbox nuclear checkbox"
+            style="cursor: pointer;"
+          >
+            <input
+              class="hidden"
+              readonly=""
+              tabindex="0"
+              title="Toggle Row Selected"
+              type="checkbox"
+              value=""
+            />
+            <label />
+          </div>
+        </td>
+      </tr>
+      <tr
+        class=""
+        data-rbd-draggable-context-id="1"
+        data-rbd-draggable-id="Test Title 3 2"
+        role="row"
+      >
+        <td
+          class="narrow delete_cell"
+          role="cell"
+        >
+          <button
+            class="ui tiny basic circular icon button nuclear button borderless"
+          >
+            <i
+              aria-hidden="true"
+              class="times icon"
+            />
+          </button>
+        </td>
+        <td
+          class="position_cell narrow"
+          role="cell"
+        >
+          <button
+            class="ui pink tiny circular icon button nuclear button add_button"
+            data-testid="play-now"
+          >
+            <i
+              aria-hidden="true"
+              class="play icon"
+            />
+          </button>
+          <span
+            class="position_cell_value"
+          >
+            3
+          </span>
+        </td>
+        <td
+          class="thumbnail_cell narrow"
+          role="cell"
+        >
+          <img
+            class="thumbnail"
+            src="https://i.imgur.com/4euOws2.jpg"
+          />
+        </td>
+        <td
+          class="favorite_cell narrow"
+          role="cell"
+        >
+          <button
+            class="ui tiny basic circular icon button nuclear button borderless"
+          >
+            <i
+              aria-hidden="true"
+              class="heart outline icon"
+            />
+          </button>
+        </td>
+        <td
+          class="title_cell"
+          role="cell"
+        >
+          <span
+            class="title_cell_content"
+          >
+            <span
+              class="title_cell_value"
+            >
+              Test Title 3
+            </span>
+            <span
+              class="title_cell_buttons"
+            >
+              <button
+                class="ui tiny basic circular icon button nuclear button borderless"
+                data-testid="add-to-queue"
+              >
+                <i
+                  aria-hidden="true"
+                  class="plus icon"
+                />
+              </button>
+              <button
+                class="ui tiny basic circular icon button nuclear button borderless"
+                data-testid="track-popup-trigger"
+              >
+                <i
+                  aria-hidden="true"
+                  class="ellipsis horizontal icon"
+                />
+              </button>
+            </span>
+          </span>
+        </td>
+        <td
+          role="cell"
+        >
+          Test Artist 3
+        </td>
+        <td
+          role="cell"
+        >
+          Test Album
+        </td>
+        <td
+          role="cell"
+        >
+          1:00
+        </td>
+        <td
+          class="select_cell narrow"
+          role="cell"
+        >
+          <div
+            class="ui fitted checkbox nuclear checkbox"
+            style="cursor: pointer;"
+          >
+            <input
+              class="hidden"
+              readonly=""
+              tabindex="0"
+              title="Toggle Row Selected"
+              type="checkbox"
+              value=""
+            />
+            <label />
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</DocumentFragment>
+`;

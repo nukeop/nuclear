@@ -175,9 +175,7 @@ describe('Album view container', () => {
         status: 'Waiting',
         track: expect.objectContaining({
           artist: 'test artist',
-          duration: 120,
-          ids: [],
-          title: 'test track 1',
+          name: 'test track 1',
           uuid: 'track-1-id'
         })
       },
@@ -186,10 +184,8 @@ describe('Album view container', () => {
         status: 'Waiting',
         track: expect.objectContaining({
           uuid: 'track-2-id',
-          ids: [],
           artist: 'test artist',
-          title: 'test track 2',
-          duration: 63
+          name: 'test track 2'
         })
       },
       {
@@ -197,10 +193,8 @@ describe('Album view container', () => {
         status: 'Waiting',
         track: expect.objectContaining({
           uuid: 'track-3-id',
-          ids: [],
           artist: 'test artist',
-          title: 'test track 3',
-          duration: 7
+          name: 'test track 3'
         })
       }
     ]);

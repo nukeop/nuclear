@@ -17,10 +17,11 @@ export default class Track {
   duration: string | number;
   
   position?: string | number;
+  playcount?: string | number;
   thumbnail?: string;
-  thumb?: string;
   extraArtists?: string[];
   type?: string;
+  local?: boolean;
 
   constructor(data: PartialExcept<Track, 'artist' | 'title'> = {
     artist: '',

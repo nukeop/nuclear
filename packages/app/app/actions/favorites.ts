@@ -1,5 +1,6 @@
 import _ from 'lodash';
 import { store } from '@nuclear/core';
+import { areTracksEqualByName, getTrackItem } from '@nuclear/ui';
 
 import { safeAddUuid } from './helpers';
 
@@ -19,16 +20,11 @@ export function readFavorites() {
 }
 
 export function addFavoriteTrack(track) {
-  const clonedTrack = safeAddUuid(track);
-  if (_.isString(clonedTrack.artist)) {
-    clonedTrack.artist = { name: clonedTrack.artist };
-  }
+  const clonedTrack = safeAddUuid(getTrackItem(track));
 
   const favorites = store.get('favorites');
-  const filteredTracks = favorites.tracks.filter(({ name, artist }) => {
-    return artist.name !== clonedTrack.artist.name || name !== clonedTrack.name;
-  });
-  favorites.tracks = _.concat(filteredTracks, clonedTrack);
+  const filteredTracks = favorites.tracks.filter(t => !areTracksEqualByName(t, track));
+  favorites.tracks = [...filteredTracks, clonedTrack];
 
   store.set('favorites', favorites);
 
@@ -40,7 +36,8 @@ export function addFavoriteTrack(track) {
 
 export function removeFavoriteTrack(track) {
   const favorites = store.get('favorites');
-  _.remove(favorites.tracks, { uuid: track.uuid });
+  favorites.tracks = favorites.tracks.filter(t => !areTracksEqualByName(t, track));
+
   store.set('favorites', favorites);
 
   return {

@@ -1,0 +1,369 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`(Snapshot) Button - {"basic":true} should render correctly 1`] = `
+<DocumentFragment>
+  <button
+    class="ui basic button nuclear button"
+  >
+    Test button
+  </button>
+</DocumentFragment>
+`;
+
+exports[`(Snapshot) Button - {"color":"blue"} should render correctly 1`] = `
+<DocumentFragment>
+  <button
+    class="ui blue button nuclear button"
+  >
+    Test button
+  </button>
+</DocumentFragment>
+`;
+
+exports[`(Snapshot) Button - {"color":"green"} should render correctly 1`] = `
+<DocumentFragment>
+  <button
+    class="ui green button nuclear button"
+  >
+    Test button
+  </button>
+</DocumentFragment>
+`;
+
+exports[`(Snapshot) Button - {"color":"orange"} should render correctly 1`] = `
+<DocumentFragment>
+  <button
+    class="ui orange button nuclear button"
+  >
+    Test button
+  </button>
+</DocumentFragment>
+`;
+
+exports[`(Snapshot) Button - {"color":"pink"} should render correctly 1`] = `
+<DocumentFragment>
+  <button
+    class="ui pink button nuclear button"
+  >
+    Test button
+  </button>
+</DocumentFragment>
+`;
+
+exports[`(Snapshot) Button - {"color":"purple"} should render correctly 1`] = `
+<DocumentFragment>
+  <button
+    class="ui purple button nuclear button"
+  >
+    Test button
+  </button>
+</DocumentFragment>
+`;
+
+exports[`(Snapshot) Button - {"color":"red"} should render correctly 1`] = `
+<DocumentFragment>
+  <button
+    class="ui red button nuclear button"
+  >
+    Test button
+  </button>
+</DocumentFragment>
+`;
+
+exports[`(Snapshot) Button - {} should render correctly 1`] = `
+<DocumentFragment>
+  <button
+    class="ui button nuclear button"
+  >
+    Test button
+  </button>
+</DocumentFragment>
+`;
+
+exports[`(Snapshot) Button - circular - {"basic":true} should render correctly 1`] = `
+<DocumentFragment>
+  <button
+    class="ui basic circular button nuclear button"
+  >
+    Test button
+  </button>
+</DocumentFragment>
+`;
+
+exports[`(Snapshot) Button - circular - {"color":"blue"} should render correctly 1`] = `
+<DocumentFragment>
+  <button
+    class="ui blue circular button nuclear button"
+  >
+    Test button
+  </button>
+</DocumentFragment>
+`;
+
+exports[`(Snapshot) Button - circular - {"color":"green"} should render correctly 1`] = `
+<DocumentFragment>
+  <button
+    class="ui green circular button nuclear button"
+  >
+    Test button
+  </button>
+</DocumentFragment>
+`;
+
+exports[`(Snapshot) Button - circular - {"color":"orange"} should render correctly 1`] = `
+<DocumentFragment>
+  <button
+    class="ui orange circular button nuclear button"
+  >
+    Test button
+  </button>
+</DocumentFragment>
+`;
+
+exports[`(Snapshot) Button - circular - {"color":"pink"} should render correctly 1`] = `
+<DocumentFragment>
+  <button
+    class="ui pink circular button nuclear button"
+  >
+    Test button
+  </button>
+</DocumentFragment>
+`;
+
+exports[`(Snapshot) Button - circular - {"color":"purple"} should render correctly 1`] = `
+<DocumentFragment>
+  <button
+    class="ui purple circular button nuclear button"
+  >
+    Test button
+  </button>
+</DocumentFragment>
+`;
+
+exports[`(Snapshot) Button - circular - {"color":"red"} should render correctly 1`] = `
+<DocumentFragment>
+  <button
+    class="ui red circular button nuclear button"
+  >
+    Test button
+  </button>
+</DocumentFragment>
+`;
+
+exports[`(Snapshot) Button - circular - {} should render correctly 1`] = `
+<DocumentFragment>
+  <button
+    class="ui circular button nuclear button"
+  >
+    Test button
+  </button>
+</DocumentFragment>
+`;
+
+exports[`(Snapshot) Button - circular icon - {"basic":true} should render correctly 1`] = `
+<DocumentFragment>
+  <button
+    class="ui basic circular icon button nuclear button"
+  >
+    <i
+      aria-hidden="true"
+      class="play icon"
+    />
+  </button>
+</DocumentFragment>
+`;
+
+exports[`(Snapshot) Button - circular icon - {"color":"blue"} should render correctly 1`] = `
+<DocumentFragment>
+  <button
+    class="ui blue circular icon button nuclear button"
+  >
+    <i
+      aria-hidden="true"
+      class="play icon"
+    />
+  </button>
+</DocumentFragment>
+`;
+
+exports[`(Snapshot) Button - circular icon - {"color":"green"} should render correctly 1`] = `
+<DocumentFragment>
+  <button
+    class="ui green circular icon button nuclear button"
+  >
+    <i
+      aria-hidden="true"
+      class="play icon"
+    />
+  </button>
+</DocumentFragment>
+`;
+
+exports[`(Snapshot) Button - circular icon - {"color":"orange"} should render correctly 1`] = `
+<DocumentFragment>
+  <button
+    class="ui orange circular icon button nuclear button"
+  >
+    <i
+      aria-hidden="true"
+      class="play icon"
+    />
+  </button>
+</DocumentFragment>
+`;
+
+exports[`(Snapshot) Button - circular icon - {"color":"pink"} should render correctly 1`] = `
+<DocumentFragment>
+  <button
+    class="ui pink circular icon button nuclear button"
+  >
+    <i
+      aria-hidden="true"
+      class="play icon"
+    />
+  </button>
+</DocumentFragment>
+`;
+
+exports[`(Snapshot) Button - circular icon - {"color":"purple"} should render correctly 1`] = `
+<DocumentFragment>
+  <button
+    class="ui purple circular icon button nuclear button"
+  >
+    <i
+      aria-hidden="true"
+      class="play icon"
+    />
+  </button>
+</DocumentFragment>
+`;
+
+exports[`(Snapshot) Button - circular icon - {"color":"red"} should render correctly 1`] = `
+<DocumentFragment>
+  <button
+    class="ui red circular icon button nuclear button"
+  >
+    <i
+      aria-hidden="true"
+      class="play icon"
+    />
+  </button>
+</DocumentFragment>
+`;
+
+exports[`(Snapshot) Button - circular icon - {} should render correctly 1`] = `
+<DocumentFragment>
+  <button
+    class="ui circular icon button nuclear button"
+  >
+    <i
+      aria-hidden="true"
+      class="play icon"
+    />
+  </button>
+</DocumentFragment>
+`;
+
+exports[`(Snapshot) Button - icon - {"basic":true} should render correctly 1`] = `
+<DocumentFragment>
+  <button
+    class="ui basic icon button nuclear button"
+  >
+    <i
+      aria-hidden="true"
+      class="play icon"
+    />
+  </button>
+</DocumentFragment>
+`;
+
+exports[`(Snapshot) Button - icon - {"color":"blue"} should render correctly 1`] = `
+<DocumentFragment>
+  <button
+    class="ui blue icon button nuclear button"
+  >
+    <i
+      aria-hidden="true"
+      class="play icon"
+    />
+  </button>
+</DocumentFragment>
+`;
+
+exports[`(Snapshot) Button - icon - {"color":"green"} should render correctly 1`] = `
+<DocumentFragment>
+  <button
+    class="ui green icon button nuclear button"
+  >
+    <i
+      aria-hidden="true"
+      class="play icon"
+    />
+  </button>
+</DocumentFragment>
+`;
+
+exports[`(Snapshot) Button - icon - {"color":"orange"} should render correctly 1`] = `
+<DocumentFragment>
+  <button
+    class="ui orange icon button nuclear button"
+  >
+    <i
+      aria-hidden="true"
+      class="play icon"
+    />
+  </button>
+</DocumentFragment>
+`;
+
+exports[`(Snapshot) Button - icon - {"color":"pink"} should render correctly 1`] = `
+<DocumentFragment>
+  <button
+    class="ui pink icon button nuclear button"
+  >
+    <i
+      aria-hidden="true"
+      class="play icon"
+    />
+  </button>
+</DocumentFragment>
+`;
+
+exports[`(Snapshot) Button - icon - {"color":"purple"} should render correctly 1`] = `
+<DocumentFragment>
+  <button
+    class="ui purple icon button nuclear button"
+  >
+    <i
+      aria-hidden="true"
+      class="play icon"
+    />
+  </button>
+</DocumentFragment>
+`;
+
+exports[`(Snapshot) Button - icon - {"color":"red"} should render correctly 1`] = `
+<DocumentFragment>
+  <button
+    class="ui red icon button nuclear button"
+  >
+    <i
+      aria-hidden="true"
+      class="play icon"
+    />
+  </button>
+</DocumentFragment>
+`;
+
+exports[`(Snapshot) Button - icon - {} should render correctly 1`] = `
+<DocumentFragment>
+  <button
+    class="ui icon button nuclear button"
+  >
+    <i
+      aria-hidden="true"
+      class="play icon"
+    />
+  </button>
+</DocumentFragment>
+`;

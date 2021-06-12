@@ -1,9 +1,10 @@
 import { NuclearMeta, IpcEvents } from '@nuclear/core';
+
 import { IpcMessageEvent, DownloadItem } from 'electron';
 import { inject } from 'inversify';
-import _ from 'lodash';
 
 import { ipcController, ipcEvent } from '../utils/decorators';
+import { getTrackArtist, getTrackTitle } from '../utils/tracks';
 import Download from '../services/download';
 import Logger, { $mainLogger } from '../services/logger';
 import Window from '../services/window';
@@ -37,14 +38,13 @@ class DownloadIpcCtrl {
         }
         this.downloadItems = this.downloadItems.filter((item => item.uuid === uuid));
       }
-      const artistName = _.isString(_.get(data, 'artist'))
-        ? _.get(data, 'artist')
-        : _.get(data, 'artist.name');
+      const artistName = getTrackArtist(data);
+      const title = getTrackTitle(data);
 
-      const query = `${artistName} ${_.get(data, 'title')}`;
-      const filename = `${artistName} - ${_.get(data, 'title')}`;
+      const query = `${artistName} ${title}`;
+      const filename = `${artistName} - ${title}`;
 
-      this.logger.log(`Start Download: ${artistName} - ${_.get(data, 'title')}`);
+      this.logger.log(`Start Download: ${artistName} - ${title}`);
 
       await this.download.start({
         query,
@@ -64,7 +64,7 @@ class DownloadIpcCtrl {
           });
         }
       });
-      this.logger.log(`Download success: ${artistName} - ${_.get(data, 'title')}`);
+      this.logger.log(`Download success: ${artistName} - ${title}`);
     } catch (error) {
       this.window.send(IpcEvents.DOWNLOAD_ERROR, { uuid: data.uuid, error });
       throw error;
