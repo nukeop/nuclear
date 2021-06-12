@@ -5,6 +5,7 @@ import { createMemoryHistory } from 'history';
 import { buildStoreState } from '../../../test/storeBuilders';
 import { AnyProps, configureMockStore, setupI18Next, TestRouterProvider, TestStoreProvider } from '../../../test/testUtils';
 import MainContentContainer from '../MainContentContainer';
+import { onReorder } from '.';
 
 describe('Playlist view container', () => {
   beforeAll(() => {
@@ -160,4 +161,45 @@ describe('Playlist view container', () => {
 
     return { component, history, store };
   };
+});
+
+describe('Playlist view container - utils', () => {
+  let playlist = {
+    tracks: [1, 2, 3, 4]
+  };
+
+  let newPlaylist = {};
+  const updatePlaylist = playlistState => {
+    newPlaylist = playlistState;
+  };
+
+  let reorder;
+  
+  beforeEach(() => {
+    newPlaylist = {};
+    playlist = {
+      tracks: [1, 2, 3, 4]
+    };
+    reorder = onReorder(playlist, updatePlaylist);
+  });
+  it('should reorder tracks correctly (1)', () => {
+    reorder(0, 2);
+    expect(newPlaylist).toEqual({
+      tracks: [2, 3, 1, 4]
+    });
+  });
+
+  it('should reorder tracks correctly (2)', () => {
+    reorder(1, 3);
+    expect(newPlaylist).toEqual({
+      tracks: [1, 3, 4, 2]
+    });
+  });
+
+  it('should reorder tracks correctly (3)', () => {
+    reorder(0, 1);
+    expect(newPlaylist).toEqual({
+      tracks: [2, 1, 3, 4]
+    });
+  });
 });
