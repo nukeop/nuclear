@@ -8,6 +8,7 @@ import { AnyProps, configureMockStore, setupI18Next, TestRouterProvider, TestSto
 import MainContentContainer from '../MainContentContainer';
 
 const updateStore = (favorites: object) => {
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
   const store = require('@nuclear/core').store;
   store.set('favorites', favorites);
 };

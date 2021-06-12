@@ -51,6 +51,7 @@ describe('Plugins container', () => {
 
     const state = store.getState();
 
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
     const remote = require('electron').remote;
     expect(remote.dialog.showOpenDialog).toHaveBeenCalledWith({
       filters: [{

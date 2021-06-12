@@ -34,7 +34,6 @@ function releaseInfo(
   releaseType: DiscogsSearchType,
   release: DiscogsRelease
 ): Promise<Response> {
-  /* eslint-disable @typescript-eslint/camelcase */
   const resource_url = _.get(release, 'resource_url');
   if (resource_url) {
     return fetch(addToken(resource_url, true));
@@ -45,7 +44,6 @@ function releaseInfo(
   } else if (releaseType === 'release') {
     return fetch(addToken(apiUrl + 'releases/' + releaseId, true));
   }
-  /* eslint-enable @typescript-eslint/camelcase */
 }
 
 function artistInfo(artistId: string): Promise<Response> {
