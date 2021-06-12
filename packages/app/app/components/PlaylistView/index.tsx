@@ -26,6 +26,7 @@ export type PlaylistViewProps = {
   startPlayback: () => void;
   selectSong: (i: number) => void;
   addTracks: (tracks: Track[]) => void;
+  onReorderTracks: (isource: number, idest: number) => void;
 }
 
 const PlaylistView: React.FC<PlaylistViewProps> = ({
@@ -34,6 +35,7 @@ const PlaylistView: React.FC<PlaylistViewProps> = ({
   deletePlaylist,
   clearQueue,
   addTracks,
+  onReorderTracks,
   selectSong,
   startPlayback
 }) => {
@@ -62,22 +64,6 @@ const PlaylistView: React.FC<PlaylistViewProps> = ({
     const newPlaylist = {
       ...playlist,
       tracks: playlist.tracks.filter(track => track.uuid !== trackToRemove.uuid)
-    };
-    updatePlaylist(newPlaylist);
-  }, [playlist, updatePlaylist]);
-
-  const onReorderTracks = useCallback((indexSource: number, indexDest: number) => {
-    const newPlaylist = {
-      ...playlist,
-      tracks: playlist.tracks.map((track, idx) => {
-        if (idx === indexSource) {
-          return playlist.tracks[indexDest];
-        }
-        if (idx === indexDest) {
-          return playlist.tracks[indexSource];
-        }
-        return track;
-      })
     };
     updatePlaylist(newPlaylist);
   }, [playlist, updatePlaylist]);
