@@ -79,7 +79,7 @@ const TrackPopup: React.FC<TrackPopupProps> = ({
       <PopupButton
         onClick={onAddToFavorites}
         ariaLabel='Add this track to favorites'
-        icon='star'
+        icon='heart'
         label='Add to favorites'
       />
     }

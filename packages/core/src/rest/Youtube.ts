@@ -45,7 +45,7 @@ function analyseUrlType(url) {
   return analysisResult;
 }
 
-function getTrackFromTitle(title) {
+function getTrackFromTitle(title): Promise<Record<string, any>> {
   const result = getArtistTitle(title);
   if (result) {
     return lastfm.searchTracks(result[0] + ' ' + result[1], 1)
@@ -80,10 +80,17 @@ function handleYoutubePlaylist(url) {
 function handleYoutubeVideo(url) {
   return ytdl.getInfo(url)
     .then(info => {
-      return getTrackFromTitle(info.videoDetails.title)
-        .then(track => {
-          return [track];
-        });
+      if (info.videoDetails) {
+        const videoDetails = info.videoDetails;
+
+        return [{
+          streams: [{source: 'youtube', id: videoDetails.videoId}],
+          name: videoDetails.title,
+          thumbnail: videoDetails.thumbnails[0].url,
+          artist: {name: videoDetails.ownerChannelName}
+        }];
+      } 
+      return [];
     })
     .catch(function () {
       return Promise.resolve([]);
@@ -104,6 +111,10 @@ export function urlSearch(url) {
 }
 
 export async function liveStreamSearch(query: string) {
+  if (isValidURL(query)) {
+    return [];
+  }
+
   const videoFilter = (await ytsr.getFilters(query)).get('Type').get('Video');
   const liveFilter = (await ytsr.getFilters(videoFilter.url)).get('Features').get('Live');
   const options = {

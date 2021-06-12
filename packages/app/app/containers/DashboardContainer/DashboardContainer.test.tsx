@@ -33,7 +33,7 @@ describe('Dashboard container', () => {
   it('should add/remove a best new track to favorites after clicking its star', async () => {
     const { component, store } = mountComponent();
 
-    const addOrRemove = () => waitFor(
+    const addOrRemove = async () => waitFor(
       () => component
         .getByTestId('favorite-icon-test track artist 1-test track title 1')
         .click()
@@ -41,17 +41,16 @@ describe('Dashboard container', () => {
 
     await addOrRemove();
 
-    const state = store.getState();
+    let state = store.getState();
     expect(state.favorites.tracks).toEqual([
       expect.objectContaining({
-        artist: {
-          name: 'test track artist 1'
-        },
+        artist: 'test track artist 1',
         name: 'test track title 1'
       })
     ]);
 
     await addOrRemove();
+    state = store.getState();
 
     expect(state.favorites.tracks).toEqual([]);
   });

@@ -25,7 +25,7 @@ const PlaylistItem: React.FC<PlaylistProps> = ({ playlist, index }) => {
         onClick={goToPlaylist}
         className={styles.playlist_container}
       >
-        <div>
+        <div className={styles.playlist_thumbnail_container}>
           <img
             className={styles.playlist_thumbnail}
             src={playlist.tracks[0] ? playlist.tracks[0].thumbnail || String(artPlaceholder) : String(artPlaceholder)}

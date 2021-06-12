@@ -1,0 +1,181 @@
+@import "../../common.scss";
+
+.track_table {
+  width: 100%;
+
+  thead {
+    background: $bgdefault;
+    color: $white;
+  }
+
+  tbody {
+    &.body_dragged_over {
+      background: $bgdark;
+    }
+  }
+
+  th {
+    padding: 1em;
+    text-align: left;
+  }
+
+  tr {
+    color: $white;
+    user-select: none;
+
+    &:hover {
+      background: rgba($bgdefault, 0.25);
+    }
+
+    &:not(:last-child) {
+      border-bottom: 1px solid $bgdefault;
+    }
+
+    &.is_dragging {
+      display: table;
+      border: none;
+      background: rgba($bgdefault, 0.5);
+    }
+
+    td {
+      @include ellipsis;
+      padding: 0 1em;
+    }
+
+    &:hover {
+      .position_cell {
+        .position_cell_value {
+          display: none;
+        }
+        
+        .add_button {
+          display: inline-block;
+        }
+      }
+
+      .title_cell {
+        .title_cell_buttons {
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  .center_aligned {
+    display: block;
+    text-align: center;
+
+    i {
+      margin: 0;
+    }
+  }
+
+  .narrow {
+    width: 3em;
+  }
+
+  .no_padding {
+    padding: 0;
+  }
+
+  .position_cell {
+    position: relative;
+    text-align: center;
+
+    .position_cell_value {
+      display: inline-block;
+      width: 2.25em;
+    }
+
+    .add_button {
+      display: none;
+      margin: 0;
+    }
+  }
+
+  .thumbnail_cell {
+    height: 3em;
+    padding: 0;
+  }
+
+  .thumbnail {
+    display: block;
+    width: 3em;
+    height: 3em;
+    object-fit: contain;
+  }
+
+  .title_cell {
+    .title_cell_content {
+      display: inline-flex;
+      flex-flow: row;
+      align-items: center;
+      width: 100%;
+    }
+
+    .title_cell_value {
+      flex: 1 1 auto;
+    }
+
+    .title_cell_buttons {
+      display: inline-flex;
+      flex-flow: row;
+      opacity: 0;
+      flex: 0 0 auto;
+    }
+
+    .title_cell_button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0;
+      width: 2em;
+      height: 2em;
+      margin: 0;
+      border: none;
+      background: none;
+
+      i.icon {
+        margin: 0 !important;
+      }
+    }
+  }
+
+  .favorite_cell {
+    text-align: center;
+
+    .button {
+      margin: 0;
+    }
+  }
+
+  .delete_cell {
+    padding-right: 0;
+
+    i.icon {
+      margin: 0 !important;
+    }
+  }
+
+  .select_header {
+    position: relative;
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+
+    .select_header_buttons {
+      position: relative;
+      display: flex;
+      align-items: center;
+      margin-right: 1em;
+      height: 0;
+    }
+  }
+
+  .select_cell {
+    text-align: end;
+    .checkbox {
+      margin-top: 5px;
+    }
+  }
+}

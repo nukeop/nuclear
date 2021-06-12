@@ -47,7 +47,7 @@ const HelpModal = ({
           </Header>
           <p>
             Copyright © <a href='#' onClick={handleAuthorClick}>nukeop</a>
-            {' 2019, '}
+            {` ${new Date().getFullYear()}, `}
             {t('released')}
           </p>
           <p>

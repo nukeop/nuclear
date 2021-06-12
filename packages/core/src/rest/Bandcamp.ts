@@ -52,6 +52,7 @@ export type BandcampSearchResult = {
   artist?: string;
 }
 
+/* eslint-disable @typescript-eslint/ban-types */
 const promisify = <T>(func: Function, arg: any): Promise<T> => new Promise((resolve, reject) => {
   func.apply(null, [arg, (err, result) => {
     if (err) {
