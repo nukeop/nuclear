@@ -92,6 +92,8 @@ exports[`(Snapshot) Track table - empty should render correctly 1`] = `
       </tr>
     </thead>
     <tbody
+      data-rbd-droppable-context-id="0"
+      data-rbd-droppable-id="track_table"
       role="rowgroup"
     />
   </table>
@@ -193,9 +195,14 @@ exports[`(Snapshot) Track table - example data with all rows should render corre
       </tr>
     </thead>
     <tbody
+      data-rbd-droppable-context-id="1"
+      data-rbd-droppable-id="track_table"
       role="rowgroup"
     >
       <tr
+        class=""
+        data-rbd-draggable-context-id="1"
+        data-rbd-draggable-id="Test Title 0"
         role="row"
       >
         <td
@@ -324,6 +331,9 @@ exports[`(Snapshot) Track table - example data with all rows should render corre
         </td>
       </tr>
       <tr
+        class=""
+        data-rbd-draggable-context-id="1"
+        data-rbd-draggable-id="Test Title 2 1"
         role="row"
       >
         <td
@@ -452,6 +462,9 @@ exports[`(Snapshot) Track table - example data with all rows should render corre
         </td>
       </tr>
       <tr
+        class=""
+        data-rbd-draggable-context-id="1"
+        data-rbd-draggable-id="Test Title 3 2"
         role="row"
       >
         <td
