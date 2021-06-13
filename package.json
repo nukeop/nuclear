@@ -31,7 +31,7 @@
     "docker": "docker run --rm --net=host --env=\"DISPLAY\" --volume=\"$HOME/.Xauthority:/root/.Xauthority:rw\" --device /dev/snd nuclear",
     "build:docker": "docker build -t nuclear .",
     "pack": "cross-env NODE_OPTIONS='--max-old-space-size=8192' electron-builder --dir -c.extraMetadata.main=dist/main.js",
-    "build:linux": "lerna run build && cross-env NODE_OPTIONS='--max-old-space-size=8192' electron-builder -c.extraMetadata.main=dist/main.js --linux --publish onTag",
+    "build:linux": "lerna run build && electron-builder -c.extraMetadata.main=dist/main.js --linux --publish onTag",
     "build:windows": "lerna run build && cross-env NODE_OPTIONS='--max-old-space-size=8192' electron-builder -c.extraMetadata.main=dist/main.js --windows --publish onTag",
     "build:macos": "lerna run build && cross-env NODE_OPTIONS='--max-old-space-size=8192' electron-builder -c.extraMetadata.main=dist/main.js --macos --publish onTag",
     "build:all": "lerna run build && cross-env NODE_OPTIONS='--max-old-space-size=8192' electron-builder -c.extraMetadata.main=dist/main.js -mwl"
@@ -42,7 +42,7 @@
     "babel-eslint": "^10.0.3",
     "cross-env": "^7.0.2",
     "electron": "^12.0.5",
-    "electron-builder": "^22.8.1",
+    "electron-builder": "^21.2.0",
     "electron-rebuild": "^2.0.1",
     "eslint": "^7.18.0",
     "eslint-plugin-node": "^11.1.0",
