@@ -80,13 +80,14 @@ export function addPlaylistFromFile(filePath, t) {
         const parsed = JSON.parse(data.toString());
         const name = _.get(parsed, 'name', null);
         const tracks = _.get(parsed, 'tracks', null);
+        const source = _.get(parsed, 'source', null);
 
         if (!name || !tracks) {
           throw new Error('missing tracks or name');
         }
 
         let playlists = store.get('playlists') || [];
-        const playlist = PlaylistHelper.formatPlaylistForStorage(name, tracks, v4());
+        const playlist = PlaylistHelper.formatPlaylistForStorage(name, tracks, v4(), source);
 
         if (_.isEmpty(tracks)) {
           dispatch(error(t('import-fail-title'), t('error-empty-data'), null, null));
