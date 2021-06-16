@@ -4,7 +4,8 @@ export enum SearchResultsSource {
     Audius = 'Audius',
     Discogs = 'Discogs',
     Musicbrainz = 'Musicbrainz',
-    Bandcamp = 'Bandcamp'
+    Bandcamp = 'Bandcamp',
+    iTunesPodcast = 'Itunespodcast'
 }
 
 export enum AlbumType {
