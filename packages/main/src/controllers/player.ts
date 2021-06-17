@@ -7,11 +7,13 @@ import SystemApi from '../services/system-api';
 import Window from '../services/window';
 import { ipcEvent, ipcController } from '../utils/decorators';
 import Discord from '../services/discord';
+import TrayMenu from '../services/trayMenu';
 
 @ipcController()
 class IpcPlayer {
   constructor(
     @inject(Discord) private discord: Discord,
+    @inject(TrayMenu) private trayMenu: TrayMenu,
     @inject(SystemApi) private systemApi: NuclearApi,
     @inject(Window) private window: Window
   ) {}
