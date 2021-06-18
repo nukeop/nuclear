@@ -5,7 +5,7 @@ import { StreamData, StreamQuery } from '../plugins.types';
 import StreamProviderPlugin from '../streamProvider';
 import * as iTunes from '../../rest/iTunesPodcast';
 
-class iTunesPlugin extends StreamProviderPlugin {
+class iTunesPodcastPlugin extends StreamProviderPlugin {
   constructor() {
     super();
     this.name = 'iTunes Podcast Plugin';
@@ -25,33 +25,46 @@ class iTunesPlugin extends StreamProviderPlugin {
     };
   }
 
-  search(query: StreamQuery): Promise<void | StreamData> {
-    const terms = query.artist + ' ' + query.track;
-    return iTunes.episodesSearch(terms, '1')
+  async findPodcastId(podcast: string): Promise<string> {
+    return iTunes.podcastSearch(podcast, '50')
       .then(data => data.json())
       .then(results => {
-        const info = results.results[0];
-        return info ? this.resultToStream(info) : null;
-      })
-      .catch(err => {
-        logger.error(`Error while looking up streams for ${terms} on Soundcloud`);
+        const infoPodcast = _.find(results.results, result => result && result.collectionName === podcast);
+        return infoPodcast.collectionId;
+      }).catch(err => {
+        logger.error(`Error while looking up podcast for ${podcast} on iTunes`);
         logger.error(err);
       });
   }
 
-  getAlternateStream(query: StreamQuery, currentStream: { id: string; }): Promise<void | StreamData> {
-    const terms = query.track;
-    return iTunes.episodesSearch(terms, '50')
+  async search(query: StreamQuery): Promise<void | StreamData> {
+    const podcast = query.artist;
+    const episode = query.track;
+    const podcastId = await this.findPodcastId(podcast);
+    return iTunes.getPodcastEpisodes(podcastId, '50')
       .then(data => data.json())
       .then(results => {
-        const info = _.find(results.results, result => result && result.trackId !== currentStream.id);
-        return info ? this.resultToStream(info) : null;
-      })
-      .catch(err => {
-        logger.error(`Error while looking up alternate streams for ${terms} on iTunes`);
+        const infoEpisode = _.find(results.results, result => result && result.trackName === episode);
+        return infoEpisode ? this.resultToStream(infoEpisode) : null;
+      }).catch(err => {
+        logger.error(`Error while looking up podcast for ${podcast} on iTunes`);
+        logger.error(err);
+      });
+  }
+
+  async getAlternateStream(query: StreamQuery, currentStream: { id: string; }): Promise<void | StreamData> {
+    const podcast = query.artist;
+    const podcastId = await this.findPodcastId(podcast);
+    return iTunes.getPodcastEpisodes(podcastId, '50')
+      .then(data => data.json())
+      .then(results => {
+        const infoEpisode = _.find(results.results, result => result && result.trackId !== currentStream.id);
+        return infoEpisode ? this.resultToStream(infoEpisode) : null;
+      }).catch(err => {
+        logger.error(`Error while looking up podcast for ${podcast} on iTunes`);
         logger.error(err);
       });
   }
 }
 
-export default iTunesPlugin;
+export default iTunesPodcastPlugin;
