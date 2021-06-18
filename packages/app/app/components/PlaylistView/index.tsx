@@ -140,6 +140,11 @@ const PlaylistView: React.FC<PlaylistViewProps> = ({
                   icon='trash'
                   label={t('delete')}
                 />
+                <PopupButton
+                  ariaLabel={t('export-button')}
+                  icon='download'
+                  label={t('export-button')}
+                />
               </ContextPopup>
             </div>
           </div>
