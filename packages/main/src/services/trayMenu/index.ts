@@ -1,15 +1,15 @@
 import { injectable, inject } from 'inversify';
 import { Menu, app, Tray, nativeImage } from 'electron';
+import { NuclearMeta, IpcEvents} from '@nuclear/core';
 import HttpApi from '../http';
 import Config from '../config';
 import Platform from '../platform';
+import Window from '../window';
+
 
 type PlayerContext = {
-  isPlaying: boolean;
-  track: {
-    artist: string;
-    name: string;
-  }
+  isPlaying?: boolean;
+  track?: NuclearMeta
 }
 
 @injectable()
@@ -21,7 +21,8 @@ class TrayMenu {
   constructor(
     @inject(Config) private config: Config,
     @inject(HttpApi) private httpApi: HttpApi,
-    @inject(Platform) private platform: Platform
+    @inject(Platform) private platform: Platform,
+    @inject(Window) private window: Window
   ) { }
 
   init() {
@@ -48,7 +49,7 @@ class TrayMenu {
     // Playing status
     if (this.playerContext.track) {
       template.push({
-        label: this.playerContext.track.name,
+        label: `${this.playerContext.isPlaying ? 'Playing' : ''} - ${this.playerContext.track.name}`,
         enabled: false
       });
       template.push({
@@ -73,9 +74,8 @@ class TrayMenu {
           label: 'Pause',
           type: 'normal',
           click: async () => {
-            await this.httpApi.close();
-
-            app.quit();
+            this.window.send(IpcEvents.PAUSE);
+            this.update({isPlaying: false});
           }
         });
       } else {
@@ -83,9 +83,8 @@ class TrayMenu {
           label: 'Play',
           type: 'normal',
           click: async () => {
-            await this.httpApi.close();
-
-            app.quit();
+            this.window.send(IpcEvents.PLAY);
+            this.update({isPlaying: true});
           }
         });
       }
@@ -94,9 +93,7 @@ class TrayMenu {
         label: 'Next',
         type: 'normal',
         click: async () => {
-          await this.httpApi.close();
-
-          app.quit();
+          this.window.send(IpcEvents.NEXT);
         }
       });
 
@@ -104,9 +101,7 @@ class TrayMenu {
         label: 'Previous',
         type: 'normal',
         click: async () => {
-          await this.httpApi.close();
-
-          app.quit();
+          this.window.send(IpcEvents.PREVIOUS);
         }
       });
 
@@ -130,7 +125,9 @@ class TrayMenu {
   }
 
   getToolTipString() {
-    return this.config.title;
+    return this.playerContext.track ? 
+      `${this.playerContext.isPlaying ? 'Playing: ' : ''} ${this.playerContext.track.name} - ${this.playerContext.track.artist}` :
+      this.config.title ;
   }
 
   setPlayerContext(playerContext: PlayerContext) {
@@ -144,7 +141,7 @@ class TrayMenu {
     if (newPlayerContext) {
       this.setPlayerContext(newPlayerContext);
     }
-    
+
     this.tray.setContextMenu(this.getMenu());
     this.tray.setToolTip(this.getToolTipString());
   }

@@ -21,12 +21,14 @@ class IpcPlayer {
   @ipcEvent(IpcEvents.PLAY)
   onPlay() {
     this.systemApi.play();
+    this.trayMenu.update({isPlaying: true});
     return this.discord.play();
   }
 
   @ipcEvent(IpcEvents.PAUSE)
   onPause() {
     this.systemApi.pause();
+    this.trayMenu.update({isPlaying: false});
     return this.discord.pause();
   }
 
@@ -59,6 +61,7 @@ class IpcPlayer {
   onClearTrackList() {
     this.systemApi.clearTrackList && this.systemApi.clearTrackList();
     this.discord.clear();
+    this.trayMenu.update({isPlaying: false, track: null});
   }
 
   @ipcEvent(IpcEvents.SONG_CHANGE)
@@ -70,6 +73,7 @@ class IpcPlayer {
     this.window.setTitle(`${arg.artist} - ${arg.name} - Nuclear Music Player`);
     this.systemApi.sendMetadata && this.systemApi.sendMetadata(arg);
     this.discord.trackChange(arg);
+    this.trayMenu.update({track: arg});
   }
 }
 
