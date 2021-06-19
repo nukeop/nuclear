@@ -49,7 +49,7 @@ class TrayMenu {
     // Playing status
     if (this.playerContext.track) {
       template.push({
-        label: `${this.playerContext.isPlaying ? 'Playing' : ''} - ${this.playerContext.track.name}`,
+        label: `${this.playerContext.isPlaying ? 'Playing - ' : ''}${this.playerContext.track.name}`,
         enabled: false
       });
       template.push({
