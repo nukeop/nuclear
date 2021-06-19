@@ -91,7 +91,7 @@ export const AlbumView: React.FC<AlbumViewProps> = ({
                   </div>
                 }
                 <div className={styles.album_tracks}>
-                  <label>Tracks:</label>
+                  <label>Song:</label>
                   {album.tracklist.length}
                 </div>
                 <div className={styles.album_buttons}>
