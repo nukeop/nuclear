@@ -91,7 +91,7 @@ Nuclear è già stato tradotto in diverse lingue e siamo sempre alla ricerca di 
 | Czech                | [PetrTodorov](https://github.com/PetrTodorov)                                                        |
 | Tagalog              | [giftofgrub](https://github.com/giftofgrub)                                                          |
 | Traditional Chinese  | [oxygen-TW](https://github.com/oxygen-TW)                                                            |
-| Swedish              | [PalleKarlsson](https://github.com/PalleKarlsson)                                                    |
+| Swedish              | [PalleKarlsson](https://github.com/PalleKarlsson), [nonew-star](https://github.com/nonew-star)                                                    |
 | Greek                | [Shuin-San](https://github.com/Shuin-San)                                                            |
 
 ## Processo di sviluppo
