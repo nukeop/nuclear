@@ -7,7 +7,8 @@ import {
   ArtistDetails,
   AlbumDetails,
   AlbumType,
-  SearchResultsSource
+  SearchResultsSource,
+  SearchResultsPodcast
 } from '../plugins.types';
 import { Bandcamp, LastFmApi } from '../../rest';
 import { Track } from '../..';
@@ -143,6 +144,10 @@ class BandcampMetaProvider extends MetaProvider {
         position: index + 1
       }))
     }));
+  }
+
+  searchForPodcast(): Promise<SearchResultsPodcast[]> {
+    return Promise.resolve([]);
   }
 }
 

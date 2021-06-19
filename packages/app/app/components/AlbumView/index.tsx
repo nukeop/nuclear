@@ -138,7 +138,7 @@ export const AlbumView: React.FC<AlbumViewProps> = ({
                   <th className={cx(styles.center, styles.position)}>
                     <Icon name='hashtag' />
                   </th>
-                  <th className={styles.left}>Song</th>
+                  <th className={styles.left}>Tracks</th>
                   <th className={cx(styles.center, styles.duration)}>
                     <Icon name='clock outline' />
                   </th>

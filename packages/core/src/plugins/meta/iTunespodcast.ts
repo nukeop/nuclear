@@ -6,6 +6,7 @@ import {
   SearchResultsArtist, 
   SearchResultsAlbum, 
   SearchResultsTrack, 
+  SearchResultsPodcast,
   ArtistDetails, 
   AlbumDetails,
   SearchResultsSource, 
@@ -26,62 +27,19 @@ class iTunesPodcastMetaProvider extends MetaProvider {
     this.lastfm = new LastFmApi(process.env.LAST_FM_API_KEY, process.env.LASTFM_API_SECRET);
   }
 
-  searchForArtists(query: string): Promise<Array<SearchResultsArtist>> {
-    return iTunes.podcastSearch(query, '50')
-      .then(response => response.json())
-      .then(response => response.results.map(podcast => ({
-        id: `${podcast.collectionId}`,
-        coverImage: podcast.artworkUrl600,
-        thumb: podcast.artworkUrl600,
-        name: podcast.trackName,
-        source: SearchResultsSource.iTunesPodcast
-      })));
-  }
-
-  async searchForReleases(query: string): Promise<SearchResultsAlbum[]> {
-    await this.searchForTracks(query);
+  async searchForReleases(): Promise<SearchResultsAlbum[]> {
     return Promise.resolve([]);
   }
 
-  searchForTracks(query: string): Promise<SearchResultsTrack[]> {
-    return iTunes.podcastSearch(query, '50')
-      .then(response => response.json())
-      .then((json) => json.results.map(podcast => ({
-        id: podcast.collectionId,
-        title: podcast.collectionName,
-        artist: podcast.collectionName,
-        source: SearchResultsSource.iTunesPodcast
-      })));
-  }
-
-  async searchAll(query: string): Promise<{ 
-    artists: SearchResultsArtist[]; 
-    releases: SearchResultsAlbum[]; 
-    tracks: SearchResultsTrack[]; 
-  }> {
-    const artists = await this.searchForArtists(query);
-    const releases = await this.searchForReleases(query);
-    const tracks = await this.searchForTracks(query);
-    return Promise.resolve({ artists, releases, tracks });
-  }
-
-  async fetchArtistDetails(): Promise<ArtistDetails> {
-    throw new Error('Method not implemented.');
-  }
-
-  async fetchArtistDetailsByName(): Promise<ArtistDetails> {
-    throw new Error('Method not implemented.');
-  }
-
-  async fetchArtistAlbums(podcastId: string): Promise<SearchResultsAlbum[]> {
-    const podcastInfo = (await ((await iTunes.getPodcast(podcastId)).json()));
+  async searchForPodcast(query: string): Promise<SearchResultsPodcast[]> {
+    const podcastInfo = (await ((await iTunes.podcastSearch(query, '50')).json()));
     return podcastInfo.results.map(podcast => ({
       id: podcast.collectionId,
       coverImage: podcast.artworkUrl600,
       thumb: podcast.artworkUrl600,
       title: podcast.collectionName,
-      artist: podcast.artistName,
-      type: 'master',
+      author: podcast.artistName,
+      type: 'podcast',
       source: SearchResultsSource.iTunesPodcast
     }));
   }
@@ -105,6 +63,30 @@ class iTunesPodcastMetaProvider extends MetaProvider {
         position: index + 1
       }))
     });    
+  }
+
+  searchForArtists(): Promise<Array<SearchResultsArtist>> {
+    return Promise.resolve([]);
+  }
+
+  searchForTracks(): Promise<SearchResultsTrack[]> {
+    throw new Error('Method not implemented.');
+  }
+
+  searchAll(): Promise<{artists: SearchResultsArtist[]; releases: SearchResultsAlbum[]; tracks: SearchResultsTrack[];}> {
+    throw new Error('Method not implemented.');
+  }
+
+  fetchArtistDetails(): Promise<ArtistDetails> {
+    throw new Error('Method not implemented.');
+  }
+
+  fetchArtistDetailsByName(): Promise<ArtistDetails> {
+    throw new Error('Method not implemented.');
+  }
+
+  fetchArtistAlbums(): Promise<SearchResultsAlbum[]> {
+    throw new Error('Method not implemented.');
   }
 
   fetchAlbumDetailsByName(): Promise<AlbumDetails> {

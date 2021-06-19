@@ -44,7 +44,10 @@ class iTunesPodcastPlugin extends StreamProviderPlugin {
     return iTunes.getPodcastEpisodes(podcastId, '50')
       .then(data => data.json())
       .then(results => {
-        const infoEpisode = _.find(results.results, result => result && result.trackName === episode);
+        const infoEpisode = _.find(results.results, result => 
+          result && 
+          result.trackName === episode && 
+          result.wrapperType === 'podcastEpisode');
         return infoEpisode ? this.resultToStream(infoEpisode) : null;
       }).catch(err => {
         logger.error(`Error while looking up podcast for ${podcast} on iTunes`);
@@ -58,7 +61,10 @@ class iTunesPodcastPlugin extends StreamProviderPlugin {
     return iTunes.getPodcastEpisodes(podcastId, '50')
       .then(data => data.json())
       .then(results => {
-        const infoEpisode = _.find(results.results, result => result && result.trackId !== currentStream.id);
+        const infoEpisode = _.find(results.results, result => 
+          result && 
+          result.trackId !== currentStream.id && 
+          result.wrapperType === 'podcastEpisode');
         return infoEpisode ? this.resultToStream(infoEpisode) : null;
       }).catch(err => {
         logger.error(`Error while looking up podcast for ${podcast} on iTunes`);
