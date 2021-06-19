@@ -93,7 +93,7 @@ Nuclear כבר תורגמה למספר שפות, ואנחנו כל הזמן מח
 | Czech                | [PetrTodorov](https://github.com/PetrTodorov)                                                        |
 | Tagalog              | [giftofgrub](https://github.com/giftofgrub)                                                          |
 | Traditional Chinese  | [oxygen-TW](https://github.com/oxygen-TW)                                                            |
-| Swedish              | [PalleKarlsson](https://github.com/PalleKarlsson)                                                    |
+| Swedish              | [PalleKarlsson](https://github.com/PalleKarlsson), [nonew-star](https://github.com/nonew-star)                                                    |
 | Greek                | [Shuin-San](https://github.com/Shuin-San)                                                            |
 | Vietnamese           | [HaiDang666](https://github.com/HaiDang666)                                                          |
 | Finnish              | [cjola002-xamk](https://github.com/cjola002-xamk)                                                    |
