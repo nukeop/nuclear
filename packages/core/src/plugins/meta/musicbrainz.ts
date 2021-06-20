@@ -21,8 +21,7 @@ import {
   SearchResultsSource,
   ArtistDetails,
   AlbumDetails,
-  AlbumType,
-  SearchResultsPodcast
+  AlbumType
 } from '../plugins.types';
 import {
   LastFmArtistInfo,
@@ -162,10 +161,6 @@ class MusicbrainzMetaProvider extends MetaProvider {
 
   fetchAlbumDetailsByName(): Promise<AlbumDetails> {
     throw new Error('Method not implemented.');
-  }
-
-  searchForPodcast(): Promise<SearchResultsPodcast[]> {
-    return Promise.resolve([]);
   }
 }
   

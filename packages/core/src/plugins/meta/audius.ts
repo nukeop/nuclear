@@ -9,8 +9,7 @@ import {
   SearchResultsTrack,
   SearchResultsSource,
   ArtistDetails,
-  AlbumDetails,
-  SearchResultsPodcast
+  AlbumDetails
 } from '../plugins.types';
 import {
   AudiusArtistSearchResponse,
@@ -131,10 +130,6 @@ class AudiusMetaProvider extends MetaProvider {
 
   async fetchAlbumDetailsByName(): Promise<AlbumDetails> {
     throw new Error('Method not implemented.');
-  }
-
-  searchForPodcast(): Promise<SearchResultsPodcast[]> {
-    return Promise.resolve([]);
   }
 }
 

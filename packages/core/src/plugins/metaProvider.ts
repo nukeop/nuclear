@@ -35,7 +35,10 @@ abstract class MetaProvider extends Plugin {
     albumType?: ('master' | 'release')
   ): Promise<AlbumDetails>;
 
-  abstract searchForPodcast(query: string): Promise<Array<SearchResultsPodcast>>;
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  searchForPodcast(query: string): Promise<Array<SearchResultsPodcast>> {
+    return Promise.resolve([]);
+  }
 }
 
 export default MetaProvider;

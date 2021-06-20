@@ -11,8 +11,7 @@ import {
   SearchResultsSource,
   ArtistDetails,
   AlbumDetails,
-  AlbumType,
-  SearchResultsPodcast
+  AlbumType
 } from '../plugins.types';
 import {
   DiscogsReleaseSearchResponse,
@@ -249,10 +248,6 @@ class DiscogsMetaProvider extends MetaProvider {
         albumType === 'master' ? AlbumType.master : AlbumType.release
       )
     );
-  }
-
-  searchForPodcast(): Promise<SearchResultsPodcast[]> {
-    return Promise.resolve([]);
   }
 }
 

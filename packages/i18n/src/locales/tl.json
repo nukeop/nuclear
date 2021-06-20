@@ -4,7 +4,11 @@
     "download-toast-content": "{{artist}} - {{title}} ay naidagdag sa mga download.",
     "download-toast-title": "Idinagdag ang album sa mga download",
     "error-load": "Sorry, this album could not be loaded. Try again later or open a new issue on Github",
-    "queue": "Idagdag ang album sa pila"
+    "queue": "Idagdag ang album sa pila",
+    "play": "Play",
+    "genre": "Genre:",
+    "year": "Year:",
+    "tracks": "Tracks:"
   },
   "app": {
     "collection": "Koleksyon",
