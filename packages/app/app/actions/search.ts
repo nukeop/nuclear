@@ -23,6 +23,7 @@ export const SearchActions = {
   albumInfoStart: createAction(Search.ALBUM_INFO_SEARCH_START, (albumId: string) => ({ albumId })),
   albumInfoSuccess: createAction(Search.ALBUM_INFO_SEARCH_SUCCESS, (albumId: string, info: any) => ({ albumId, info })),
   albumInfoError: createAction(Search.ALBUM_INFO_SEARCH_ERROR, (albumId: string, error: string) => ({ albumId, error })),
+  podcastSearchSuccess: createAction(Search.PODCAST_SEARCH_SUCCESS, (data: any) => data),
   setSearchDropdownVisibility: createAction(Search.SEARCH_DROPDOWN_DISPLAY_CHANGE, (displayState: boolean) => displayState),
   updateSearchHistory: createAction(Search.UPDATE_SEARCH_HISTORY, (searchHistory: string[]) => searchHistory)
 };
@@ -53,6 +54,12 @@ export const albumSearch = terms => async (dispatch, getState) => {
   const selectedProvider = getSelectedMetaProvider(getState);
   const results = await selectedProvider.searchForReleases(terms);
   dispatch(SearchActions.albumSearchSuccess(results));
+};
+
+export const podcastSearch = terms => async (dispatch, getState) => {
+  const selectedProvider = getSelectedMetaProvider(getState);
+  const results = await selectedProvider.searchForPodcast(terms);
+  dispatch(SearchActions.podcastSearchSuccess(results));
 };
 
 export function lastFmTrackSearchStart(terms) {
@@ -143,6 +150,7 @@ export function unifiedSearch(terms, history) {
     Promise.all([
       dispatch(albumSearch(terms)),
       dispatch(artistSearch(terms)),
+      dispatch(podcastSearch(terms)),
       dispatch(lastFmTrackSearch(terms)),
       dispatch(youtubePlaylistSearch(terms)),
       dispatch(youtubeLiveStreamSearch(terms))
