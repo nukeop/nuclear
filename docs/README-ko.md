@@ -95,7 +95,7 @@ Nuclear는 이미 여러 언어로 번역되었고, 현재도 새로운 언어�
 | 체코어                | [PetrTodorov](https://github.com/PetrTodorov)                                                        |
 | 타갈로그어              | [giftofgrub](https://github.com/giftofgrub)                                                          |
 | 중국어 (번체)  | [oxygen-TW](https://github.com/oxygen-TW)                                                            |
-| 스웨덴어              | [PalleKarlsson](https://github.com/PalleKarlsson)                                                    |
+| 스웨덴어              | [PalleKarlsson](https://github.com/PalleKarlsson), [nonew-star](https://github.com/nonew-star)                                                    |
 | 그리스어                | [Shuin-San](https://github.com/Shuin-San)                                                            |
 | 베트남어           | [HaiDang666](https://github.com/HaiDang666)                                                          |
 | 핀란드어              | [cjola002-xamk](https://github.com/cjola002-xamk)                                                    |

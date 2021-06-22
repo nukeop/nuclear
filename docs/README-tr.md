@@ -92,7 +92,7 @@ Nuclearr zaten birkaç dile çevrildi ve her zaman daha fazlasını eklemek iste
 | Çekçe                | [PetrTodorov](https://github.com/PetrTodorov)                                                        |
 | Tagalogça            | [giftofgrub](https://github.com/giftofgrub)                                                          |
 | Geleneksel Çince     | [oxygen-TW](https://github.com/oxygen-TW)                                                            |
-| İsveççe              | [PalleKarlsson](https://github.com/PalleKarlsson)                                                    |
+| İsveççe              | [PalleKarlsson](https://github.com/PalleKarlsson), [nonew-star](https://github.com/nonew-star)                                                    |
 | Yunanca              | [Shuin-San](https://github.com/Shuin-San)                                                            |
 | Vietnam ca           | [HaiDang666](https://github.com/HaiDang666)                                                          |
 | Fince                | [cjola002-xamk](https://github.com/cjola002-xamk)                                                    |

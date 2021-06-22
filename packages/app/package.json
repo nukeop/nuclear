@@ -6,6 +6,7 @@
     "start": "webpack-dev-server --inline --env.NODE_ENV=development",
     "build": "webpack --colors --progress --env.NODE_ENV=production",
     "test": "jest",
+    "coverage": "jest --coverage",
     "lint": "eslint \"{app,test}/**/**.{js,jsx,ts,tsx}\"",
     "lint:fix": "eslint \"{app,test}/**/**.{js,jsx,ts,tsx}\" --fix",
     "i18n": "sync-i18n --files 'app/locales/*.json' --primary en --languages fr tl nl de dk es pl zh ru tr id sk ko zh_tw se gr hr is --space 2"
