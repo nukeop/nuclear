@@ -166,7 +166,7 @@ describe('Artist view container', () => {
     ]);
   });
 
-  it('should add artist to favorites after clicking the star', async () => {
+  it('should add artist to favorites after clicking the heart', async () => {
     const { component, store } = mountComponent();
     let state = store.getState();
     expect(state.favorites.artists).toEqual([]);

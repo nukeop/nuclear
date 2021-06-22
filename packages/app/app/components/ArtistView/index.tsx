@@ -83,7 +83,7 @@ const ArtistView: React.FC<ArtistViewProps> = ({
                 }
               >
                 <Icon
-                  name={isFavorite ? 'star' : 'star outline'}
+                  name={isFavorite ? 'heart' : 'heart outline'}
                   size='big'
                 />
               </a>
