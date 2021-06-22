@@ -128,7 +128,6 @@ class AudiusMetaProvider extends MetaProvider {
     throw new Error('Method not implemented.');
   }
 
-
   async fetchAlbumDetailsByName(): Promise<AlbumDetails> {
     throw new Error('Method not implemented.');
   }

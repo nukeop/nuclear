@@ -4,7 +4,11 @@
     "download-toast-content": "{{artist}} - {{title}} telah ditambahkan ke unduhan.",
     "download-toast-title": "Album ditambahkan ke unduhan",
     "error-load": "Sorry, this album could not be loaded. Try again later or open a new issue on Github",
-    "queue": "Tambahkan album ke antrian"
+    "queue": "Tambahkan album ke antrian",
+    "play": "Play",
+    "genre": "Genre:",
+    "year": "Year:",
+    "tracks": "Tracks:"
   },
   "app": {
     "collection": "Koleksi",
