@@ -23,4 +23,4 @@ jobs:
       uses: codecov/codecov-action@v1
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
-        files: ./packages/app/coverage/clover.xml
+        files: ./packages/app/coverage/clover.xml,./packages/core/coverage/clover.xml,./packages/ui/coverage/clover.xml
