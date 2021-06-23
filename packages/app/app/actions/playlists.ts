@@ -7,6 +7,7 @@ import {
   deletePlaylistInjectable,
   updatePlaylistInjectable
 } from './playlists.injectable';
+import { saveLocalFilePicker } from './local';
 import { success, error } from './toasts';
 
 export const LOAD_PLAYLISTS = 'LOAD_PLAYLISTS';
@@ -64,6 +65,27 @@ export function updatePlaylist(playlist) {
     dispatch({
       type: UPDATE_PLAYLIST,
       payload: { playlists }
+    });
+  };
+}
+
+
+export function exportPlaylist(playlist) {
+  return async dispatch => {
+    const filePath = await saveLocalFilePicker();
+    
+    // aqui van muchas cosas wuuu
+    const data = JSON.stringify(playlist, null, 2);
+    fs.writeFile(filePath, data, (err) => {
+      if (err) {
+        dispatch(error('Playlist export failed', 'Could not export', null, null));
+        return;
+      }
+      try {
+        dispatch(success('Playlist imported successfully', '__ saved', null, null));
+      } catch (e) {
+        dispatch(error('Playlist export failed', 'Could not export', null, null));
+      }
     });
   };
 }

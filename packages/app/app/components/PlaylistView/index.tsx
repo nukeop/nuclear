@@ -22,6 +22,7 @@ export type PlaylistViewProps = {
   playlist: Playlist;
   updatePlaylist: (playlist: Playlist) => void;
   deletePlaylist: (id: string) => void;
+  exportPlaylist: (playlist: Playlist) => void;
   clearQueue: () => void;
   startPlayback: () => void;
   selectSong: (i: number) => void;
@@ -33,6 +34,7 @@ const PlaylistView: React.FC<PlaylistViewProps> = ({
   playlist,
   updatePlaylist,
   deletePlaylist,
+  exportPlaylist,
   clearQueue,
   addTracks,
   onReorderTracks,
@@ -72,6 +74,10 @@ const PlaylistView: React.FC<PlaylistViewProps> = ({
     deletePlaylist(playlist.id);
     history.push('/playlists');
   }, [playlist, history, deletePlaylist]);
+
+  const onExportPlaylist = useCallback(() => {
+    exportPlaylist(playlist);
+  }, [playlist, exportPlaylist]);
 
   return (
     <div className={styles.playlist_view_container}>
@@ -141,6 +147,7 @@ const PlaylistView: React.FC<PlaylistViewProps> = ({
                   label={t('delete')}
                 />
                 <PopupButton
+                  onClick={onExportPlaylist}
                   ariaLabel={t('export-button')}
                   icon='download'
                   label={t('export-button')}
