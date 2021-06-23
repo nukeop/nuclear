@@ -10,7 +10,7 @@ import styles from './styles.scss';
 
 type ArtistGridProps = {
   artists: {
-    name: string
+    name?: string
   } [];
   removeFavoriteArtist: (artist) => void;
   onArtistClick: (artist) => void
