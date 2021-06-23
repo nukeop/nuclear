@@ -14,8 +14,8 @@ type ArtistGridProps = {
   } [];
   removeFavoriteArtist: (artist) => void;
   onArtistClick: (artist) => void
-  loading: boolean;
-  autoSize: boolean;
+  loading?: boolean;
+  autoSize?: boolean;
 }
 
 export const ArtistGrid: React.FC<ArtistGridProps> = ({
