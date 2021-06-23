@@ -55,7 +55,7 @@ exports[`Artist view container should display an artist 1`] = `
                     >
                       <i
                         aria-hidden="true"
-                        class="star outline big icon"
+                        class="heart outline big icon"
                       />
                     </a>
                   </div>
