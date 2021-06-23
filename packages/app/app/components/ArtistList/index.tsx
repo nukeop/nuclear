@@ -4,7 +4,7 @@ import { useHistory } from 'react-router';
 import { ArtistGrid } from '@nuclear/ui';
 
 type ArtistListComponentProps = {
-  artists: { id: string } [];
+  artists: { id: string, name: string } [];
   artistInfoSearch: (artistId: any, artist: any) => Promise<void>;
   removeFavoriteArtist: React.MouseEventHandler;
 }

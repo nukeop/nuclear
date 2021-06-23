@@ -23,7 +23,7 @@ const EmptyState = () => {
 };
 
 type FavoriteArtistsViewProps = {
-  artists: { id: string } [];
+  artists: { id: string, name: string } [];
   artistInfoSearch: (artistId: any, artist: any) => Promise<void>;
   removeFavoriteArtist: React.MouseEventHandler;
 }
