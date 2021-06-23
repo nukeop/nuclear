@@ -115,6 +115,7 @@
     "error-empty-data": "Dati vuoti",
     "error-invalid-data": "Dati invalidi",
     "error-open-file": "Non è possibile aprire il file",
+    "export-button": "Export playlist (JSON)",
     "header": "Le tue playlist",
     "import-button": "Import from file (JSON)",
     "import-fail-title": "Importazione della playlist fallita",
