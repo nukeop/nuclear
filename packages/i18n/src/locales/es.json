@@ -117,6 +117,7 @@
     "error-open-file": "Can not open file",
     "error-save-file": "Can not save file",
     "export-button": "Export playlist (JSON)",
+    "export-fail-title": "Playlist export fail",
     "header": "Your playlists",
     "import-button": "Import from file (JSON)",
     "import-fail-title": "Playlist import fail",
