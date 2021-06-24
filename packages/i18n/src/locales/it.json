@@ -118,6 +118,7 @@
     "error-save-file": "Can not save file",
     "export-button": "Export playlist (JSON)",
     "export-fail-title": "Playlist export fail",
+    "export-success-title": "Playlist exported successfully",
     "header": "Le tue playlist",
     "import-button": "Import from file (JSON)",
     "import-fail-title": "Importazione della playlist fallita",
