@@ -74,20 +74,22 @@ export function exportPlaylist(playlist, t) {
   return async dispatch => {
     const name = playlist.name;
     const filePath = await saveLocalFilePicker(name);
-    const data = JSON.stringify(playlist, null, 2);
-    fs.writeFile(filePath, data, (err) => {
-      if (err) {
-        dispatch(error(t('export-fail-title'), t('error-save-file'), null, null));
-        return;
-      }
+    if (filePath) {
+      const data = JSON.stringify(playlist, null, 2);
+      fs.writeFile(filePath, data, (err) => {
+        if (err) {
+          dispatch(error(t('export-fail-title'), t('error-save-file'), null, null));
+          return;
+        }
 
-      try {
-        dispatch(success(t('export-success-title'), t('playlist-exported', { name }), null, null));
+        try {
+          dispatch(success(t('export-success-title'), t('playlist-exported', { name }), null, null));
       
-      } catch (e) {
-        dispatch(error(t('export-fail-title'), t('error-save-file'), null, null));
-      }
-    });
+        } catch (e) {
+          dispatch(error(t('export-fail-title'), t('error-save-file'), null, null));
+        }
+      });
+    }
   };
 }
 
