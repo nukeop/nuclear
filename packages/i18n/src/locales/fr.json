@@ -116,6 +116,7 @@
     "error-invalid-data": "Invalid data",
     "error-open-file": "Can not open file",
     "export-button": "Export playlist (JSON)",
+    "error-save-file": "Can not save file",
     "header": "Your playlists",
     "import-button": "Import from file (JSON)",
     "import-fail-title": "Playlist import fail",

@@ -115,6 +115,7 @@
     "error-empty-data": "Không có dữ liệu",
     "error-invalid-data": "Dữ liệu lỗi",
     "error-open-file": "Không thể mở file",
+    "error-save-file": "Can not save file",
     "export-button": "Export playlist (JSON)",
     "header": "Playlist của bạn",
     "import-button": "Import from file (JSON)",
