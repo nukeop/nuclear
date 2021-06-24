@@ -125,6 +125,7 @@
     "import-success-title": "Playlist imported successfully",
     "play-selected-tracks-now": "Play selected now",
     "playlist-created": "{{name}} created",
+    "playlist-exported": "{{name}} saved to local file",
     "queue": "Shto këtë listë në radhë",
     "rename": "Riemërtoje këtë listë",
     "songs": "{{total}} këngë",

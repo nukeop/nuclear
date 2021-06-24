@@ -125,6 +125,7 @@
     "import-success-title": "Thêm Playlist thành công",
     "play-selected-tracks-now": "Play selected now",
     "playlist-created": "{{name}} đã được tạo",
+    "playlist-exported": "{{name}} saved to local file",
     "queue": "Thêm playlist vào hàng chờ",
     "rename": "Đổi tên playlist",
     "songs": "{{total}} bài hát",

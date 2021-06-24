@@ -125,6 +125,7 @@
     "import-success-title": "Playlist imported successfully",
     "play-selected-tracks-now": "Play selected now",
     "playlist-created": "{{name}} created",
+    "playlist-exported": "{{name}} saved to local file",
     "queue": "Dodaj popis za reprodukciju u red za reprodukciju",
     "rename": "Preimenuj ovaj popis za reprodukciju",
     "songs_0": "{{total}} pjesama",

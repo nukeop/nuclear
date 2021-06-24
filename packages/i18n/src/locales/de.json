@@ -125,6 +125,7 @@
     "import-success-title": "Playlist imported successfully",
     "play-selected-tracks-now": "Play selected now",
     "playlist-created": "{{name}} created",
+    "playlist-exported": "{{name}} saved to local file",
     "queue": "Playlist zur Warteschlange hinzufügen",
     "rename": "Diese Wiedergabeliste umbenennen",
     "songs": "{{total}} Lied",

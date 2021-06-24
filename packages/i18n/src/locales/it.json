@@ -125,6 +125,7 @@
     "import-success-title": "Importazione della playlist riuscita",
     "play-selected-tracks-now": "Play selected now",
     "playlist-created": "{{name}} creata",
+    "playlist-exported": "{{name}} saved to local file",
     "queue": "Aggiungi playlist alla coda",
     "rename": "Rinomina questa playlist",
     "songs": "{{total}} brano",
