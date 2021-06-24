@@ -73,7 +73,7 @@ export function updatePlaylist(playlist) {
 export function exportPlaylist(playlist, t) {
   return async dispatch => {
     const name = playlist.name;
-    const filePath = await saveLocalFilePicker();
+    const filePath = await saveLocalFilePicker(name);
     const data = JSON.stringify(playlist, null, 2);
     fs.writeFile(filePath, data, (err) => {
       if (err) {

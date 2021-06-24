@@ -96,8 +96,9 @@ export const openLocalFilePicker = async () => {
   }
 };
 
-export const saveLocalFilePicker = async () => {
+export const saveLocalFilePicker = async (defaultFileName) => {
   let filePath = await (await remote.dialog.showSaveDialog(remote.getCurrentWindow(), {
+    defaultPath: defaultFileName,
     filters: [
       { name: 'file', extensions: ['json'] }
     ],
