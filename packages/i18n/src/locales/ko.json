@@ -4,11 +4,11 @@
     "download-toast-content": "{{artist}} - {{title}}(이)가 다운로드 목록에 추가되었습니다.",
     "download-toast-title": "다운로드 목록에 추가된 앨범",
     "error-load": "죄송합니다. 이 앨범을 불러올 수 없습니다. 다음에 다시 시도하거나 Github에 새로운 이슈를 열어 문의하십시오.",
-    "queue": "재생 목록에 앨범 추가",
-    "play": "Play",
     "genre": "Genre:",
-    "year": "Year:",
-    "tracks": "Tracks:"
+    "play": "Play",
+    "queue": "재생 목록에 앨범 추가",
+    "tracks": "Tracks:",
+    "year": "Year:"
   },
   "app": {
     "collection": "보관함",

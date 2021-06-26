@@ -4,11 +4,11 @@
     "download-toast-content": "{{artist}} - {{title}} hefur verið bætt í niðurhöl.",
     "download-toast-title": "Albúmi bætt í niðurhöl",
     "error-load": "Sorry, this album could not be loaded. Try again later or open a new issue on Github",
-    "queue": "Setja albúm i biðröðina",
-    "play": "Play",
     "genre": "Genre:",
-    "year": "Year:",
-    "tracks": "Tracks:"
+    "play": "Play",
+    "queue": "Setja albúm i biðröðina",
+    "tracks": "Tracks:",
+    "year": "Year:"
   },
   "app": {
     "collection": "Lagasöfn",

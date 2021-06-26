@@ -4,11 +4,11 @@
     "download-toast-content": "{{artist}} - {{title}} blev tilføjet til downloads.",
     "download-toast-title": "Album tilføjet til downloads",
     "error-load": "Sorry, this album could not be loaded. Try again later or open a new issue on Github",
-    "queue": "Tilføj album til kø",
-    "play": "Play",
     "genre": "Genre:",
-    "year": "Year:",
-    "tracks": "Tracks:"
+    "play": "Play",
+    "queue": "Tilføj album til kø",
+    "tracks": "Tracks:",
+    "year": "Year:"
   },
   "app": {
     "collection": "Samling",
