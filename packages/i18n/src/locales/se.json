@@ -4,7 +4,11 @@
     "download-toast-content": "{{artist}} - {{title}} har lagts till i hämtningar.",
     "download-toast-title": "Albumet tillagt i hämtningar",
     "error-load": "Sorry, this album could not be loaded. Try again later or open a new issue on Github",
-    "queue": "Lägg till albumet i kön"
+    "queue": "Lägg till albumet i kön",
+    "play": "Play",
+    "genre": "Genre:",
+    "year": "Year:",
+    "tracks": "Tracks:"
   },
   "app": {
     "collection": "Samlingar",
@@ -20,11 +24,11 @@
     "plugins": "Insticksmoduler",
     "search": "Sökresultat",
     "settings": "Inställningar",
-    "visualizer": "Visualizer"
+    "visualizer": "Visualiserare"
   },
   "artist": {
     "count": "Antal spelningar",
-    "queue": "Lägg till alla spår i kön",
+    "queue": "Lägg till alla spår i kö",
     "similar": "Liknande artister",
     "title": "Titel",
     "tour": "På turné"
@@ -63,10 +67,10 @@
     "title": "Titel"
   },
   "help": {
-    "about": "Om Nuclear Music Player",
+    "about": "Om Nuclear-musikspelare",
     "header": "Musikspelare som streamar från avgiftsfria källor",
     "released": "släppt under AGPL-3.0",
-    "report": "Submit issues or new features",
+    "report": "Skicka in problem eller nya funktioner",
     "thanks": "Stort tack till alla som bidragit på GitHub, er hjälp har varit ovärderlig i skapandet av detta program."
   },
   "input-dialog": {
@@ -93,7 +97,7 @@
   "option-control": {
     "autoradio": "Autoradio",
     "loop": "Slinga",
-    "mini-player": "Miniplayer",
+    "mini-player": "Minispelare",
     "shuffle": "Blanda"
   },
   "player": {
@@ -102,15 +106,16 @@
     "previous-button": "Föregående spår-knapp"
   },
   "playlists": {
-    "add-selected-tracks-to-downloads": "Add selected to downloads",
-    "add-selected-tracks-to-favorites": "Add selected to favorites",
-    "add-selected-tracks-to-queue": "Add selected to queue",
+    "add-selected-tracks-to-downloads": "Lägg till valda för hämtningar",
+    "add-selected-tracks-to-favorites": "Lägg till valda i favoriter",
+    "add-selected-tracks-to-queue": "Lägg till valda i kö",
     "album": "Album",
     "artist": "Artist",
-    "delete": "Ta bort spellistan",
+    "delete": "Ta bort spellista",
     "dialog-placeholder": "Namn på spellistan...",
-    "duration": "Length",
+    "duration": "Längd",
     "empty": "Inga spellistor.",
+<<<<<<< HEAD
     "empty-help": "Try create some playlists or import by url and they will appear here!",
     "error-empty-data": "Empty data",
     "error-invalid-data": "Invalid data",
@@ -124,11 +129,25 @@
     "playlist-created": "{{name}} created",
     "queue": "Lägg till spellistan i kön",
     "rename": "Byt namn på spellistan",
+=======
+    "empty-help": "Försök skapa några spellistor eller importera med URL och de kommer att visas här!",
+    "error-empty-data": "Tomma data",
+    "error-invalid-data": "Ogiltiga data",
+    "error-open-file": "Kan inte öppna filen",
+    "header": "Dina spellistor",
+    "import-button": "Importera från fil (JSON)",
+    "import-fail-title": "Importering av spellista misslyckades",
+    "import-success-title": "Spellistan importerades",
+    "play-selected-tracks-now": "Spela valda nu",
+    "playlist-created": "{{name}} skapad",
+    "queue": "Lägg till spellistan i kö",
+    "rename": "Byt namn på spellista",
+>>>>>>> 41ee4dcaab8adedd17cd5c55b0dd16522c1fedd5
     "songs": "{{total}} spår",
     "songs_plural": "{{total}} spår",
     "title": "Titel",
-    "tracks-selected-plural": "tracks selected",
-    "tracks-selected-singular": "track selected"
+    "tracks-selected-plural": "spår valda",
+    "tracks-selected-singular": "spår vald"
   },
   "plugins": {
     "add-a-plugin": "Lägg till ett plugin",
@@ -144,7 +163,7 @@
     "user-plugins-warning-title": "Farligt!"
   },
   "queue": {
-    "clear": "Rensa kön",
+    "clear": "Rensa kö",
     "dialog-accept": "Spara",
     "dialog-placeholder": "Namn på spellistan...",
     "dialog-trigger": "Spara som spellista",
@@ -166,19 +185,19 @@
     "album_plural": "Album",
     "artist": "Artist",
     "artist_plural": "Artister",
-    "clear-history": "Clear history",
+    "clear-history": "Rensa historik",
     "empty": "Hittade inget.",
-    "last-searches": "Last searches",
+    "last-searches": "Senaste sökningar",
     "placeholder": "Sök...",
     "playlist": "Spellista",
     "playlist_plural": "Spellistor",
-    "queue-add": "Lägg till alla spår i kön",
+    "queue-add": "Lägg till alla spår i kö",
     "track": "Spår",
     "track_plural": "Spår",
-    "you-can-search-for": "You can search for:"
+    "you-can-search-for": "Du kan söka efter:"
   },
   "seekbar": {
-    "segment-popup": "Non-music"
+    "segment-popup": "Inte music"
   },
   "settings": {
     "api-port": "API:ets port",
@@ -192,7 +211,7 @@
     "developer": "Inställningar för utvecklare",
     "devtools": "Verktyg för utvecklare",
     "disable-gpu": "Stäng av hårdvarurendering (detta kan lösa problem med laggande element och blinkande skärmar)",
-    "display": "Display",
+    "display": "Skärm",
     "downloads": "Hämtningar",
     "downloads-count": "Högsta antalet hämtningar åt gången",
     "downloads-dir": "Hämtningsmapp",
@@ -215,18 +234,18 @@
     "login": "Logga in",
     "logout": "Logga ut",
     "loop-after-queue-end": "Upprepa kön efter att sista låten i kön spelats",
-    "mastodon-authorization-token-label": "Authorization token",
-    "mastodon-authorize": "Authorize",
-    "mastodon-authorized": "Nuclear is authorized to post on ",
-    "mastodon-awaiting-authorization": "Nuclear is registered on {{instanceUrl}}. Awaiting authorization.",
+    "mastodon-authorization-token-label": "Auktorisationstoken",
+    "mastodon-authorize": "Auktorisera",
+    "mastodon-authorized": "Nuclear är auktoriserad att posta på ",
+    "mastodon-awaiting-authorization": "Nuclear är registrerad på {{instanceUrl}}. Väntar på auktorisation.",
     "mastodon-description": "",
-    "mastodon-instance-label": "Mastodon instance URL",
-    "mastodon-post-format-description": "Nuclear will post a status on Mastodon after each track completes playing. The above string will be the template for each post, with {{artist}} and {{title}} replaced with the artist and title of the track.",
-    "mastodon-post-format-label": "Post format",
+    "mastodon-instance-label": "Mastodon instans-URL",
+    "mastodon-post-format-description": "Nuclear kommer att lägga upp en status på Mastodon efter varje spår som slutar spela. Ovanstående sträng kommer att vara mallen för varje inlägg, med {{artist}} och {{title}} ersatt med artisten och titeln för spåret.",
+    "mastodon-post-format-label": "Postformat",
     "mastodon-title": "",
-    "max.downloads": "Download control",
-    "mini-player": "Use mini player style",
-    "notification-timeout": "Timeout på notifikationer",
+    "max.downloads": "Hämtningskontroll",
+    "mini-player": "Använd minispelarstil",
+    "notification-timeout": "Tidsgräns för notifikationer",
     "notlogged": "Inte inloggad",
     "playback": "Uppspelning",
     "program-settings": "Programinställningar",
@@ -235,7 +254,7 @@
     "shuffle-when-going-back": "Blanda på föregående låt",
     "shuffle-when-going-back-description": "Spela ett slumpmässigt spår när blanda är aktivt och du klickar på knappen Föregående låt",
     "social": "Socialt",
-    "streaming": "Streaming",
+    "streaming": "Strömning",
     "track-duration": "Visa spårets längd över sökfältet",
     "user": "Användare:",
     "youtube": "YouTube",
@@ -246,10 +265,10 @@
     "artist": "Artist",
     "artists": "Toppartister",
     "duration": "Längd",
-    "queue-add": "Lägg till alla spår i kön",
+    "queue-add": "Lägg till alla spår i kö",
     "title": "Titel"
   },
   "visualizer": {
-    "exit-fullscreen": "Press ESC to exit full screen"
+    "exit-fullscreen": "Tryck på Esc för att avsluta helskärmsläge"
   }
 }

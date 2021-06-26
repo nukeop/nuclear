@@ -21,7 +21,8 @@
 		"storybook": "start-storybook -p 9001 -c .storybook",
 		"lint": "eslint \"{lib,stories}/**.{ts,tsx,js,jsx}\"",
 		"lint:fix": "eslint \"{lib,stories}/**.{ts,tsx,js,jsx}\" --fix",
-		"test": "jest"
+		"test": "jest",
+		"coverage": "jest --coverage"
 	},
 	"peerDependencies": {
 		"react": "16.14.0",

@@ -1,10 +1,14 @@
 {
   "album": {
-    "download": "Download",
-    "download-toast-content": "{{artist}} - {{title}} has been added to downloads.",
-    "download-toast-title": "Album added to downloads",
-    "error-load": "Sorry, this album could not be loaded. Try again later or open a new issue on Github",
-    "queue": "Añadir a la cola"
+    "download": "Descargas",
+    "download-toast-content": "{{artist}} - {{title}} ha sido añadido a descargas.",
+    "download-toast-title": "Album añadido a descargas",
+    "error-load": "Disculpa, este album no pudo ser cargado. Intenta de nuevo o abre un nuevo issue en Github Sorry",
+    "queue": "Añadir a la cola",
+    "play": "Play",
+    "genre": "Genero:",
+    "year": "Año:",
+    "tracks": "Pistas:"
   },
   "app": {
     "collection": "Colección",

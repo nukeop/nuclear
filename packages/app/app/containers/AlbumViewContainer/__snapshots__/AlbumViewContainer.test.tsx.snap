@@ -134,7 +134,7 @@ exports[`Album view container should display an album 1`] = `
                 <th
                   class="left"
                 >
-                  Song
+                  Tracks:
                 </th>
                 <th
                   class="center duration"

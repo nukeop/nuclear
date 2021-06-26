@@ -20,6 +20,7 @@ class SearchResults extends React.Component {
               {...this.props}
               albumInfoSearch={this.albumInfoSearch.bind(this)}
               artistInfoSearch={this.artistInfoSearch.bind(this)}
+              podcastInfoSearch={this.podcastInfoSearch.bind(this)}
             />
           </div>
         </div>
@@ -129,6 +130,14 @@ class SearchResults extends React.Component {
       {
         menuItem: 'LiveStream',
         render: () => this.renderTrackListPane(this.props.liveStreamSearchResults.info)
+      },
+      {
+        menuItem: 'Podcast',
+        render: () =>
+          this.renderPane(
+            this.props.podcastSearchResults,
+            this.podcastInfoSearch.bind(this)
+          )
       }
     ];
 
@@ -143,6 +152,11 @@ class SearchResults extends React.Component {
   artistInfoSearch(artistId) {
     this.props.artistInfoSearch(artistId);
     this.props.history.push('/artist/' + artistId);
+  }
+
+  podcastInfoSearch(podcastId, releaseType, release) {
+    this.props.albumInfoSearch(podcastId, releaseType, release);
+    this.props.history.push('/album/' + podcastId);
   }
 
   render() {
