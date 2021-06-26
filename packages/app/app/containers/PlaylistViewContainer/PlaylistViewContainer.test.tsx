@@ -7,6 +7,8 @@ import { AnyProps, configureMockStore, setupI18Next, TestRouterProvider, TestSto
 import MainContentContainer from '../MainContentContainer';
 import { onReorder } from '.';
 
+jest.mock('fs');
+
 describe('Playlist view container', () => {
   beforeAll(() => {
     setupI18Next();
@@ -61,6 +63,33 @@ describe('Playlist view container', () => {
 
     const state = store.getState();
     expect(state.playlists.playlists).toEqual([]);
+  });
+
+  it('should export the playlist', async () => {
+    const { component, store } = mountComponent();
+    await waitFor(() => component.getByTestId('more-button').click());
+    await waitFor(() => component.getByText(/export/i).click());
+    const state = store.getState();
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    const remote = require('electron').remote;
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    const fs = require('fs');
+    const [playlist] = state.playlists.playlists;
+    // check if the dialog was open
+    expect(remote.dialog.showSaveDialog).toHaveBeenCalledWith({
+      defaultPath: playlist.name,
+      filters: [
+        { name: 'file', extensions: ['json'] }
+      ],
+      properties: ['createDirectory', 'showOverwriteConfirmation']
+    });
+    expect(remote.dialog.showSaveDialog).toHaveBeenCalledTimes(1);
+    // check if the playlist was properly exported 
+    expect(fs.writeFile).toHaveBeenCalledWith(
+      'downloaded_playlist',
+      JSON.stringify(playlist, null, 2),
+      expect.any(Function)
+    );
   });
 
   it('should rename the playlist', async () => {

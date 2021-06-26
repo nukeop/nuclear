@@ -1,5 +1,6 @@
 import { v4 } from 'uuid';
 import _ from 'lodash';
+import { remote } from 'electron';
 import { store, PlaylistHelper } from '@nuclear/core';
 import fs from 'fs';
 
@@ -7,7 +8,6 @@ import {
   deletePlaylistInjectable,
   updatePlaylistInjectable
 } from './playlists.injectable';
-import { saveLocalFilePicker } from './local';
 import { success, error } from './toasts';
 
 export const LOAD_PLAYLISTS = 'LOAD_PLAYLISTS';
@@ -73,22 +73,29 @@ export function updatePlaylist(playlist) {
 export function exportPlaylist(playlist, t) {
   return async dispatch => {
     const name = playlist.name;
-    const filePath = await saveLocalFilePicker(name);
-    if (filePath) {
-      const data = JSON.stringify(playlist, null, 2);
-      fs.writeFile(filePath, data, (err) => {
-        if (err) {
-          dispatch(error(t('export-fail-title'), t('error-save-file'), null, null));
-          return;
-        }
+    const dialogResult = await remote.dialog.showSaveDialog({
+      defaultPath: name,
+      filters: [
+        { name: 'file', extensions: ['json'] }
+      ],
+      properties: ['createDirectory', 'showOverwriteConfirmation']
+    });
+    const filePath = dialogResult?.filePath?.replace(/\\/g, '/');
 
-        try {
+    if (filePath) {
+      try {
+        const data = JSON.stringify(playlist, null, 2);
+        fs.writeFile(filePath, data, (err) => {
+          if (err) {
+            dispatch(error(t('export-fail-title'), t('error-save-file'), null, null));
+            return;
+          }
           dispatch(success(t('export-success-title'), t('playlist-exported', { name }), null, null));
+        });
+      } catch (e) {
+        dispatch(error(t('export-fail-title'), t('error-save-file'), null, null));
+      }
       
-        } catch (e) {
-          dispatch(error(t('export-fail-title'), t('error-save-file'), null, null));
-        }
-      });
     }
   };
 }
