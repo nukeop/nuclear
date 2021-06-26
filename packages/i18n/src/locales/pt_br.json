@@ -4,7 +4,11 @@
     "download-toast-content": "{{artist}} - {{title}} has been added to downloads.",
     "download-toast-title": "Album added to downloads",
     "error-load": "Sorry, this album could not be loaded. Try again later or open a new issue on Github",
-    "queue": "Adicionar à Fila"
+    "queue": "Adicionar à Fila",
+    "play": "Play",
+    "genre": "Genre:",
+    "year": "Year:",
+    "tracks": "Tracks:"
   },
   "app": {
     "collection": "Coleção",
