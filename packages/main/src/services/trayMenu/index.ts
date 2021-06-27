@@ -13,7 +13,7 @@ class TrayMenu {
     @inject(Config) private config: Config,
     @inject(HttpApi) private httpApi: HttpApi,
     @inject(Platform) private platform: Platform
-  ) {}
+  ) { }
 
   init() {
     this.menu = Menu.buildFromTemplate([
@@ -32,7 +32,7 @@ class TrayMenu {
       this.platform.isMac() ? this.config.macIcon : this.config.icon
     );
     this.tray = new Tray(icon);
-    this.tray.setTitle(this.config.title);
+    !this.platform.isMac() && this.tray.setTitle(this.config.title);
     this.tray.setToolTip(this.config.title);
     this.tray.setContextMenu(this.menu);
   }
