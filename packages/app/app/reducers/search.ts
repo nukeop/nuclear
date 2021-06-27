@@ -5,6 +5,7 @@ const initialState = {
   plugins: [],
   artistSearchResults: [],
   albumSearchResults: [],
+  podcastSearchResults: [],
   trackSearchResults: [],
   playlistSearchResults: [],
   liveStreamSearchResults: [],
@@ -21,6 +22,13 @@ function reduceAlbumSearchSuccess(state, action) {
   return {
     ...state,
     albumSearchResults: action.payload
+  };
+}
+
+function reducePodcastSearchSuccess(state, action) {
+  return {
+    ...state,
+    podcastSearchResults: action.payload
   };
 }
 
@@ -102,7 +110,8 @@ export default function SearchReducer(state = initialState, action) {
     return reduceAlbumSearchSuccess(state, action);
   case Search.ARTIST_SEARCH_SUCCESS:
     return reduceArtistSearchSuccess(state, action);
-
+  case Search.PODCAST_SEARCH_SUCCESS:
+    return reducePodcastSearchSuccess(state, action);
   case Search.ALBUM_INFO_SEARCH_START:
     return {
       ...state,

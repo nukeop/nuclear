@@ -144,6 +144,11 @@ class TrayMenu {
 
     this.tray.setContextMenu(this.getMenu());
     this.tray.setToolTip(this.getToolTipString());
+    const icon = nativeImage.createFromPath(
+      this.platform.isMac() ? this.config.macIcon : this.config.icon
+    );
+    this.tray = new Tray(icon);
+    !this.platform.isMac() && this.tray.setTitle(this.config.title);
   }
 }
 

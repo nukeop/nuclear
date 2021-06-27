@@ -1,11 +1,12 @@
 {
   "name": "@nuclear/app",
-  "version": "0.6.14",
+  "version": "0.6.15",
   "description": "Nuclear - Renderer process",
   "scripts": {
     "start": "webpack-dev-server --inline --env.NODE_ENV=development",
     "build": "webpack --colors --progress --env.NODE_ENV=production",
     "test": "jest",
+    "coverage": "jest --coverage",
     "lint": "eslint \"{app,test}/**/**.{js,jsx,ts,tsx}\"",
     "lint:fix": "eslint \"{app,test}/**/**.{js,jsx,ts,tsx}\" --fix",
     "i18n": "sync-i18n --files 'app/locales/*.json' --primary en --languages fr tl nl de dk es pl zh ru tr id sk ko zh_tw se gr hr is --space 2"
@@ -33,9 +34,9 @@
   },
   "homepage": "https://github.com/nukeop/nuclear#readme",
   "dependencies": {
-    "@nuclear/core": "^0.6.14",
-    "@nuclear/i18n": "^0.6.14",
-    "@nuclear/ui": "^0.6.14",
+    "@nuclear/core": "^0.6.15",
+    "@nuclear/i18n": "^0.6.15",
+    "@nuclear/ui": "^0.6.15",
     "billboard-top-100": "^2.0.8",
     "bluebird": "3.5.3",
     "butterchurn-presets": "^2.4.7",
