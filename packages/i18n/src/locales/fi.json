@@ -4,11 +4,11 @@
     "download-toast-content": "{{artist}} - {{title}} on lisätty latauksiin.",
     "download-toast-title": "Albumi lisätty latauksiin",
     "error-load": "Sorry, this album could not be loaded. Try again later or open a new issue on Github",
-    "queue": "Lisää albumi jonoon",
-    "play": "Play",
     "genre": "Genre:",
-    "year": "Year:",
-    "tracks": "Tracks:"
+    "play": "Play",
+    "queue": "Lisää albumi jonoon",
+    "tracks": "Tracks:",
+    "year": "Year:"
   },
   "app": {
     "collection": "Kokoelma",
