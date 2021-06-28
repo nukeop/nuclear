@@ -16,8 +16,9 @@ export const VoidAction = (actionName: string) => createAction(actionName, () =>
 
 export const safeAddUuid = track => {
   const clonedTrack = _.cloneDeep(track);
-  if (!_.has(track, 'uuid')) {
+  if (_.isNil(track.uuid) || track.uuid.length === 0) {
     clonedTrack.uuid = v4();
   }
+
   return clonedTrack;
 };
