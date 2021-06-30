@@ -128,6 +128,7 @@
     "queue": "Add playlist to queue",
     "rename": "重命名播放列表",
     "songs": "{{total}} 首歌",
+    "songs_plural": "{{total}} songs",
     "title": "音樂標題",
     "tracks-selected-plural": "tracks selected",
     "tracks-selected-singular": "track selected"
@@ -165,14 +166,18 @@
   },
   "search": {
     "album": "專輯",
+    "album_plural": "Albums",
     "artist": "演出者",
+    "artist_plural": "Artists",
     "clear-history": "Clear history",
     "empty": "找不到資料",
     "last-searches": "Last searches",
     "placeholder": "搜尋...",
     "playlist": "播放清單",
+    "playlist_plural": "Playlists",
     "queue-add": "將所有曲目新增到播放佇列",
     "track": "音樂標題",
+    "track_plural": "Tracks",
     "you-can-search-for": "You can search for:"
   },
   "seekbar": {
