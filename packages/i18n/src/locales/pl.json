@@ -3,12 +3,12 @@
     "download": "Pobierz",
     "download-toast-content": "{{artist}} - {{title}} został dodany do pobranych.",
     "download-toast-title": "Album dodany do pobranych",
-    "error-load": "Sorry, this album could not be loaded. Try again later or open a new issue on Github",
-    "genre": "Genre:",
-    "play": "Play",
+    "error-load": "Przepraszamy, nie można załadować tego albumu. Spróbuj ponownie później lub otwórz nowy problem na Githubie",
+    "genre": "Gatunek:",
+    "play": "Odtwórz",
     "queue": "Dodaj album do kolejki",
-    "tracks": "Tracks:",
-    "year": "Year:"
+    "tracks": "Utwory:",
+    "year": "Rok:"
   },
   "app": {
     "collection": "Kolekcja",
@@ -24,7 +24,7 @@
     "plugins": "Pluginy",
     "search": "Wyniki wyszukiwania",
     "settings": "Ustawienia",
-    "visualizer": "Visualizer"
+    "visualizer": "Wizualizator"
   },
   "artist": {
     "count": "Liczba odtworzeń",
@@ -39,7 +39,7 @@
     "best-new-albums": "Najlepsze nowe albumy",
     "best-new-tracks": "Najlepsze nowe utwory",
     "genres": "Gatunki",
-    "lastfm-title": "Top utwory LastFm.",
+    "lastfm-title": "Top utwory z Deezera",
     "news": "Aktualności",
     "playcounts": "Liczba odtworzeń",
     "title": "Tytuł",
@@ -56,7 +56,7 @@
   },
   "favorite-albums": {
     "empty": "Brak ulubionych albumów",
-    "empty-help": "Dodaj album do ulubionych, a pojawi się tutaj!!",
+    "empty-help": "Dodaj album do ulubionych, a pojawi się tutaj!",
     "header": "Twoje ulubione albumy"
   },
   "favorites": {
@@ -70,7 +70,7 @@
     "about": "O Nuclear Music Player",
     "header": "Desktopowy odtwarzacz muzyki do strumieniowania z darmowych źródeł",
     "released": "wydany na licencji AGPL-3.0",
-    "report": "Submit issues or new features",
+    "report": "Zgłoś problemy lub nowe funkcje",
     "thanks": "Podziękowania dla współtwórców z serwisu Github, Wasza pomoc była nieoceniona w tworzeniu tego programu."
   },
   "input-dialog": {
@@ -84,7 +84,7 @@
     "empty-help": "Dodaj muzykę, używając przycisku powyżej.",
     "filter-placeholder": "Filtruj...",
     "header": "Biblioteka lokalna",
-    "no-search-results": "No search results",
+    "no-search-results": "Brak wyników wyszukiwania",
     "no-search-results-help": "No tracks found with the given name, album, or artist.",
     "title": "Tytuł"
   },
@@ -97,7 +97,7 @@
   "option-control": {
     "autoradio": "Autoradio",
     "loop": "Powtarzaj",
-    "mini-player": "Miniplayer",
+    "mini-player": "Miniodtwarzacz",
     "shuffle": "Mieszaj utwory"
   },
   "player": {
@@ -106,46 +106,45 @@
     "previous-button": "Poprzedni utwór"
   },
   "playlists": {
-    "add-selected-tracks-to-downloads": "Add selected to downloads",
-    "add-selected-tracks-to-favorites": "Add selected to favorites",
-    "add-selected-tracks-to-queue": "Add selected to queue",
+    "add-selected-tracks-to-downloads": "Dodaj zaznaczone do pobrania",
+    "add-selected-tracks-to-favorites": "Dodaj zaznaczone do ulubionych",
+    "add-selected-tracks-to-queue": "Dodaj zaznaczone do kolejki",
     "album": "Album",
     "artist": "Artysta",
     "delete": "Usuń tę playlistę",
     "dialog-placeholder": "Nazwa playlisty...",
-    "duration": "Length",
+    "duration": "Długość",
     "empty": "Brak playlist.",
-    "empty-help": "Try create some playlists or import by url and they will appear here!",
-    "error-empty-data": "Empty data",
-    "error-invalid-data": "Invalid data",
-    "error-open-file": "Can not open file",
-    "header": "Your playlists",
-    "import-button": "Import from file (JSON)",
-    "import-fail-title": "Playlist import fail",
-    "import-success-title": "Playlist imported successfully",
-    "play-selected-tracks-now": "Play selected now",
-    "playlist-created": "{{name}} created",
-    "queue": "Add playlist to queue",
+    "empty-help": "Spróbuj utworzyć playlisty lub zaimportować je i pojawią się tutaj!",
+    "error-empty-data": "Brak danych",
+    "error-invalid-data": "Błędne dane",
+    "error-open-file": "Nie można otworzyć pliku",
+    "header": "Twoje playlisty",
+    "import-button": "Importuj z pliku (JSON)",
+    "import-fail-title": "Import listy odtwarzania nie powiódł się",
+    "import-success-title": "Lista odtwarzania zaimportowana pomyślnie",
+    "play-selected-tracks-now": "Odtwórz zaznaczone",
+    "playlist-created": "Utworzono {{name}}",
+    "queue": "Dodaj playlistę do kolejki",
     "rename": "Zmień nazwę tej playlisty",
-    "songs_0": "{{total}} songs",
-    "songs_1": "{{total}} songs",
-    "songs_2": "{{total}} songs",
+    "songs": "{{total}} utwór",
+    "songs_plural": "{{total}} utworów",
     "title": "Tytuł",
-    "tracks-selected-plural": "tracks selected",
-    "tracks-selected-singular": "track selected"
+    "tracks-selected-plural": "zaznaczone utwory",
+    "tracks-selected-singular": "zaznaczony utwór"
   },
   "plugins": {
-    "add-a-plugin": "Add a plugin",
+    "add-a-plugin": "Dodaj plugin",
     "header": "Pluginy",
-    "lyrics-providers": "Lyrics providers",
-    "meta-providers": "Metadata providers",
+    "lyrics-providers": "Źródła tekstów",
+    "meta-providers": "Źródła metadanych",
     "placeholder": "Wybierz domyślne źródło muzyki:",
-    "select-lyrics-provider": "Select the default lyrics provider:",
-    "select-meta-provider": "Select the default metadata provider:",
-    "stream-providers": "Żródła muzyki",
-    "user-plugins": "User plugins",
-    "user-plugins-warning-desc": "Plugins work by running code on your computer. Load plugins only from sources you trust!",
-    "user-plugins-warning-title": "Danger zone!"
+    "select-lyrics-provider": "Wybierz domyślne źródło tekstów:",
+    "select-meta-provider": "Wybierz domyślne źródło metadanych:",
+    "stream-providers": "Źródła muzyki",
+    "user-plugins": "Pluginy użytkownika",
+    "user-plugins-warning-desc": "Pluginy uruchamiają kod na Twoim komputerze. Dodawaj pluginy tylko z zaufanych źródeł!",
+    "user-plugins-warning-title": "Strefa zagrożenia!"
   },
   "queue": {
     "clear": "Wyczyść kolejkę",
@@ -166,27 +165,23 @@
     "title": "Tytuł:"
   },
   "search": {
-    "album_0": "Albums",
-    "album_1": "Albums",
-    "album_2": "Albums",
-    "artist_0": "Artists",
-    "artist_1": "Artists",
-    "artist_2": "Artists",
-    "clear-history": "Clear history",
+    "album": "Album",
+    "album_plural": "Albumy",
+    "artist": "Wykonawca",
+    "artist_plural": "Wykonawcy",
+    "clear-history": "Wyczyść historię",
     "empty": "Brak wyników.",
-    "last-searches": "Last searches",
+    "last-searches": "Ostatnio wyszukiwane",
     "placeholder": "Wyszukaj...",
-    "playlist_0": "Playlists",
-    "playlist_1": "Playlists",
-    "playlist_2": "Playlists",
+    "playlist": "Playlista",
+    "playlist_plural": "Playlisty",
     "queue-add": "Dodaj wszystkie utwory do kolejki",
-    "track_0": "Tracks",
-    "track_1": "Tracks",
-    "track_2": "Tracks",
-    "you-can-search-for": "You can search for:"
+    "track": "Utwór",
+    "track_plural": "Utwory",
+    "you-can-search-for": "Możesz wyszukiwać:"
   },
   "seekbar": {
-    "segment-popup": "Non-music"
+    "segment-popup": "Brak muzyki"
   },
   "settings": {
     "api-port": "Port używany przez API",
@@ -197,38 +192,38 @@
     "autoradio-description": "Dodaj automatycznie podobne utwory, kiedy kolejka odtwarzania się kończy",
     "compact-menu-bar": "Włącz uproszczony pasek menu",
     "compact-queue-bar": "Włącz uproszczony pasek kolejki",
-    "developer": "Developer settings",
-    "devtools": "Developer tools",
+    "developer": "Ustawienia deweloperskie",
+    "devtools": "Narzędzia deweloperskie",
     "disable-gpu": "Wyłącz renderowanie sprzętowe (może naprawić problemy z przeciąganiem elementów i migotaniem ekranu)",
     "display": "Wyświetlanie",
-    "downloads": "Downloads",
-    "downloads-count": "Max simultaneous downloads",
-    "downloads-dir": "Downloads directory",
-    "downloads-dir-button": "Choose a directory...",
+    "downloads": "Pobieranie",
+    "downloads-count": "Maksymalna ilość jednoczesnych pobierań",
+    "downloads-dir": "Folder pobierania",
+    "downloads-dir-button": "Wybierz folder...",
     "enable-api": "Włącz obsługę API",
     "fmfav-btn": "Import",
-    "fmfav-msg": "Import your Last.fm Favorites",
+    "fmfav-msg": "Importuj ulubione z Last.fm",
     "frameless-window": "Bezramkowe okno (wymagany restart)",
     "github-connect": "Zaloguj się za pomocą Github",
     "github-description": "Zaloguj się za pomocą Github, aby móc tworzyć i dzielić się twoimi playlistami online (planowana funkcja).",
     "github-title": "Github",
     "http": "HTTP API",
-    "invidious-url": "Invidious instance url",
+    "invidious-url": "URL instancji Invidious",
     "language": "Język",
     "language-placeholder": "Wybierz język",
     "lastfm-connect": "Połącz z Last.fm",
     "lastfm-description": "Aby włączyć scrobblowanie, musisz najpierw połączyć się i autoryzować Nuclear na Last.fm, a następnie kliknąć Zaloguj.",
-    "lastfm-enable": "Włącz scrobblowanie do Last.fm",
+    "lastfm-enable": "Włącz scrobbling do Last.fm",
     "lastfm-title": "Last.fm",
     "login": "Zaloguj",
     "logout": "Wyloguj",
     "loop-after-queue-end": "Zapętl po odtworzeniu ostatniego utworu w kolejce",
-    "mastodon-authorization-token-label": "Authorization token",
-    "mastodon-authorize": "Authorize",
+    "mastodon-authorization-token-label": "Token autoryzacyjny",
+    "mastodon-authorize": "Autoryzuj",
     "mastodon-authorized": "Nuclear is authorized to post on ",
     "mastodon-awaiting-authorization": "Nuclear is registered on {{instanceUrl}}. Awaiting authorization.",
     "mastodon-description": "",
-    "mastodon-instance-label": "Mastodon instance URL",
+    "mastodon-instance-label": "URL instancji Mastodon",
     "mastodon-post-format-description": "Nuclear will post a status on Mastodon after each track completes playing. The above string will be the template for each post, with {{artist}} and {{title}} replaced with the artist and title of the track.",
     "mastodon-post-format-label": "Post format",
     "mastodon-title": "",
@@ -247,7 +242,7 @@
     "track-duration": "Wyświetl czas trwania utworu na pasku postępu odtwarzania",
     "user": "Użytkownik:",
     "youtube": "Youtube",
-    "yt-api-key": "Youtube API Key"
+    "yt-api-key": "Klucz API Youtube"
   },
   "tags": {
     "albums": "Top albumy",
@@ -258,6 +253,6 @@
     "title": "Tytuł"
   },
   "visualizer": {
-    "exit-fullscreen": "Press ESC to exit full screen"
+    "exit-fullscreen": "Naciśnij ESC, aby wyjść z trybu pełnoekranowego"
   }
 }
