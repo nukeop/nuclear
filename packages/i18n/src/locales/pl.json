@@ -3,12 +3,12 @@
     "download": "Pobierz",
     "download-toast-content": "{{artist}} - {{title}} został dodany do pobranych.",
     "download-toast-title": "Album dodany do pobranych",
-    "error-load": "Sorry, this album could not be loaded. Try again later or open a new issue on Github",
-    "genre": "Genre:",
-    "play": "Play",
+    "error-load": "Przepraszamy, nie można załadować tego albumu. Spróbuj ponownie później lub otwórz nowy problem na Githubie",
+    "genre": "Gatunek:",
+    "play": "Odtwórz",
     "queue": "Dodaj album do kolejki",
-    "tracks": "Tracks:",
-    "year": "Year:"
+    "tracks": "Utwory:",
+    "year": "Rok:"
   },
   "app": {
     "collection": "Kolekcja",
@@ -24,7 +24,7 @@
     "plugins": "Pluginy",
     "search": "Wyniki wyszukiwania",
     "settings": "Ustawienia",
-    "visualizer": "Visualizer"
+    "visualizer": "Wizualizator"
   },
   "artist": {
     "count": "Liczba odtworzeń",
@@ -39,7 +39,7 @@
     "best-new-albums": "Najlepsze nowe albumy",
     "best-new-tracks": "Najlepsze nowe utwory",
     "genres": "Gatunki",
-    "lastfm-title": "Top utwory LastFm.",
+    "lastfm-title": "Top utwory z Deezera",
     "news": "Aktualności",
     "playcounts": "Liczba odtworzeń",
     "title": "Tytuł",
@@ -56,7 +56,7 @@
   },
   "favorite-albums": {
     "empty": "Brak ulubionych albumów",
-    "empty-help": "Dodaj album do ulubionych, a pojawi się tutaj!!",
+    "empty-help": "Dodaj album do ulubionych, a pojawi się tutaj!",
     "header": "Twoje ulubione albumy"
   },
   "favorites": {
@@ -70,7 +70,7 @@
     "about": "O Nuclear Music Player",
     "header": "Desktopowy odtwarzacz muzyki do strumieniowania z darmowych źródeł",
     "released": "wydany na licencji AGPL-3.0",
-    "report": "Submit issues or new features",
+    "report": "Zgłoś problemy lub nowe funkcje",
     "thanks": "Podziękowania dla współtwórców z serwisu Github, Wasza pomoc była nieoceniona w tworzeniu tego programu."
   },
   "input-dialog": {
@@ -84,7 +84,7 @@
     "empty-help": "Dodaj muzykę, używając przycisku powyżej.",
     "filter-placeholder": "Filtruj...",
     "header": "Biblioteka lokalna",
-    "no-search-results": "No search results",
+    "no-search-results": "Brak wyników wyszukiwania",
     "no-search-results-help": "No tracks found with the given name, album, or artist.",
     "title": "Tytuł"
   },
@@ -113,15 +113,15 @@
     "artist": "Artysta",
     "delete": "Usuń tę playlistę",
     "dialog-placeholder": "Nazwa playlisty...",
-    "duration": "Length",
+    "duration": "Długość",
     "empty": "Brak playlist.",
-    "empty-help": "Try create some playlists or import by url and they will appear here!",
+    "empty-help": "Spróbuj utworzyć playlisty lub zaimportować je i pojawią się tutaj!",
     "error-empty-data": "Empty data",
     "error-invalid-data": "Invalid data",
     "error-open-file": "Can not open file",
     "header": "Your playlists",
-    "import-button": "Import from file (JSON)",
-    "import-fail-title": "Playlist import fail",
+    "import-button": "Importuj z pliku (JSON)",
+    "import-fail-title": "Import listy odtwarzania nie powiódł się",
     "import-success-title": "Playlist imported successfully",
     "play-selected-tracks-now": "Play selected now",
     "playlist-created": "{{name}} created",
@@ -141,7 +141,7 @@
     "placeholder": "Wybierz domyślne źródło muzyki:",
     "select-lyrics-provider": "Select the default lyrics provider:",
     "select-meta-provider": "Select the default metadata provider:",
-    "stream-providers": "Żródła muzyki",
+    "stream-providers": "Źródła muzyki",
     "user-plugins": "User plugins",
     "user-plugins-warning-desc": "Plugins work by running code on your computer. Load plugins only from sources you trust!",
     "user-plugins-warning-title": "Danger zone!"
@@ -213,7 +213,7 @@
     "language-placeholder": "Wybierz język",
     "lastfm-connect": "Połącz z Last.fm",
     "lastfm-description": "Aby włączyć scrobblowanie, musisz najpierw połączyć się i autoryzować Nuclear na Last.fm, a następnie kliknąć Zaloguj.",
-    "lastfm-enable": "Włącz scrobblowanie do Last.fm",
+    "lastfm-enable": "Włącz scrobbling do Last.fm",
     "lastfm-title": "Last.fm",
     "login": "Zaloguj",
     "logout": "Wyloguj",
