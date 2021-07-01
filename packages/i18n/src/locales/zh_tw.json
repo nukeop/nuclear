@@ -133,6 +133,7 @@
     "queue": "將播放列表新增到播放清單",
     "rename": "重命名播放列表",
     "songs": "{{total}} 首歌",
+    "songs_plural": "{{total}} 首歌",
     "title": "音樂標題",
     "tracks-selected-plural": "音軌已選中",
     "tracks-selected-singular": "音軌已選中"
@@ -170,14 +171,18 @@
   },
   "search": {
     "album": "專輯",
+    "album_plural": "專輯",
     "artist": "演出者",
+    "artist_plural": "藝術家",
     "clear-history": "清除歷史紀錄",
     "empty": "找不到資料",
     "last-searches": "上次搜尋",
     "placeholder": "搜尋...",
     "playlist": "播放清單",
+    "playlist_plural": "播放列表",
     "queue-add": "將所有曲目新增到播放佇列",
     "track": "音樂標題",
+    "track_plural": "音軌",
     "you-can-search-for": "你可以搜索："
   },
   "seekbar": {
@@ -235,8 +240,8 @@
     "program-settings": "程式設定",
     "seek-iteration": "按下方向鍵時前進/後退的秒數",
     "shuffle-queue": "隨機曲目",
-    "shuffle-when-going-back": "Shuffle on previous track",
-    "shuffle-when-going-back-description": "Play a random track when shuffle is active and the previous track button is clicked",
+    "shuffle-when-going-back": "播放先前的曲目",
+    "shuffle-when-going-back-description": "當隨機播放處於激活狀態且點擊上一曲目按鈕時，播放一個隨機曲目",
     "social": "社交",
     "streaming": "串流",
     "track-duration": "在進度條上顯示音軌長度",
