@@ -132,8 +132,6 @@
     "playlist-exported": "{{name}} saved to local file",
     "queue": "Προσθέστε την λίστα στην λίστα αναπαραγωγής",
     "rename": "Μετονομασία λίστας",
-    "songs": "{{total}} song",
-    "songs_plural": "{{total}} songs",
     "title": "Τίτλος",
     "tracks-selected-plural": "tracks selected",
     "tracks-selected-singular": "track selected"
@@ -170,19 +168,11 @@
     "title": "Τίτλος :"
   },
   "search": {
-    "album": "Album",
-    "album_plural": "Albums",
-    "artist": "Artist",
-    "artist_plural": "Artists",
     "clear-history": "Clear history",
     "empty": "Κανένα αποτέλεσμα.",
     "last-searches": "Last searches",
     "placeholder": "Αναζήτηση...",
-    "playlist": "Playlist",
-    "playlist_plural": "Playlists",
     "queue-add": "Προσθήκη όλων στην λίστα αναπαραγωγής",
-    "track": "Track",
-    "track_plural": "Tracks",
     "you-can-search-for": "You can search for:"
   },
   "seekbar": {
