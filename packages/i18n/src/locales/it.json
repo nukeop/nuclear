@@ -1,18 +1,18 @@
 {
   "album": {
-    "download": "Download",
+    "download": "Scaricati",
     "download-toast-content": "{{artist}} - {{title}} è stato aggiunto nei download.",
     "download-toast-title": "Album messo nei download.",
     "error-load": "Scusa, questo album non può essere caricato. Riprova più tardi o apri un nuovo bug su GitHub.",
-    "genre": "Genre:",
+    "genre": "Genere:",
     "play": "Play",
     "queue": "Aggiungi album alla coda",
-    "tracks": "Tracks:",
-    "year": "Year:"
+    "tracks": "Traccia:",
+    "year": "Anno:"
   },
   "app": {
     "collection": "Collezione",
-    "dashboard": "Dashboard",
+    "dashboard": "Pannello di controllo",
     "downloads": "Download",
     "equalizer": "Equalizzatore",
     "favorite-albums": "Album Preferiti",
@@ -24,7 +24,7 @@
     "plugins": "Plugin",
     "search": "Cerca",
     "settings": "Impostazioni",
-    "visualizer": "Visualizer"
+    "visualizer": "Visualizzatore"
   },
   "artist": {
     "count": "Conteggio delle riproduzioni",
@@ -97,7 +97,7 @@
   "option-control": {
     "autoradio": "Riproduzione automatica",
     "loop": "Ripeti",
-    "mini-player": "Miniplayer",
+    "mini-player": "Mini riproduttore",
     "shuffle": "Riproduzione casuale"
   },
   "player": {
@@ -106,32 +106,32 @@
     "previous-button": "Pulsante Brano Precedente"
   },
   "playlists": {
-    "add-selected-tracks-to-downloads": "Add selected to downloads",
-    "add-selected-tracks-to-favorites": "Add selected to favorites",
-    "add-selected-tracks-to-queue": "Add selected to queue",
+    "add-selected-tracks-to-downloads": "Aggiungi selezionati ai downloads",
+    "add-selected-tracks-to-favorites": "Aggiungi selezionati ai preferiti",
+    "add-selected-tracks-to-queue": "Aggiungi selezionati alla coda",
     "album": "Album",
     "artist": "Artista",
     "delete": "Cancella questa playlist",
     "dialog-placeholder": "Nome della playlist...",
-    "duration": "Length",
+    "duration": "Durata",
     "empty": "Nessuna playlist.",
     "empty-help": "Prova a creare qualche playlist o importane l'url e le vedrai apparire qui!",
     "error-empty-data": "Dati vuoti",
     "error-invalid-data": "Dati invalidi",
     "error-open-file": "Non è possibile aprire il file",
     "header": "Le tue playlist",
-    "import-button": "Import from file (JSON)",
+    "import-button": "Importa da file (JSON)",
     "import-fail-title": "Importazione della playlist fallita",
     "import-success-title": "Importazione della playlist riuscita",
-    "play-selected-tracks-now": "Play selected now",
+    "play-selected-tracks-now": "Avvia selezionato ora",
     "playlist-created": "{{name}} creata",
     "queue": "Aggiungi playlist alla coda",
     "rename": "Rinomina questa playlist",
     "songs": "{{total}} brano",
     "songs_plural": "{{total}} brani",
     "title": "Titolo",
-    "tracks-selected-plural": "tracks selected",
-    "tracks-selected-singular": "track selected"
+    "tracks-selected-plural": "tracce selezionate",
+    "tracks-selected-singular": "traccia selezionata"
   },
   "plugins": {
     "add-a-plugin": "Aggiungi un plugin",
@@ -151,7 +151,7 @@
     "dialog-accept": "Salva",
     "dialog-placeholder": "Nome della playlist...",
     "dialog-trigger": "Salva come playlist",
-    "download": "Download",
+    "download": "Scaricato",
     "download-toast-content": "{{artist}} - {{title}} è stato aggiunto alla coda.",
     "download-toast-title": "Brano aggiunto ai download",
     "favorite-add": "Aggiungi ai favoriti",
@@ -218,14 +218,14 @@
     "login": "Login",
     "logout": "Logout",
     "loop-after-queue-end": "Riproduci di nuovo dopo aver riprodotto l'ultimo brano in coda",
-    "mastodon-authorization-token-label": "Authorization token",
-    "mastodon-authorize": "Authorize",
-    "mastodon-authorized": "Nuclear is authorized to post on ",
-    "mastodon-awaiting-authorization": "Nuclear is registered on {{instanceUrl}}. Awaiting authorization.",
+    "mastodon-authorization-token-label": "Token di autorizzazione",
+    "mastodon-authorize": "Autorizza",
+    "mastodon-authorized": "Nuclear è autorizzato a postare in ",
+    "mastodon-awaiting-authorization": "Nuclear è registrato in {{instanceUrl}}. Aspettando autorizzazione.",
     "mastodon-description": "",
-    "mastodon-instance-label": "Mastodon instance URL",
-    "mastodon-post-format-description": "Nuclear will post a status on Mastodon after each track completes playing. The above string will be the template for each post, with {{artist}} and {{title}} replaced with the artist and title of the track.",
-    "mastodon-post-format-label": "Post format",
+    "mastodon-instance-label": "URL della stanza di Mastodon",
+    "mastodon-post-format-description": "Nuclear posterà uno stato dopo ogni traccia riprodotta. La stringa seguente sarà il template per ogni post, con {{artist}} e {{title}} sostituiti dall'artista e dal titolo della traccia.",
+    "mastodon-post-format-label": "Formato post",
     "mastodon-title": "",
     "max.downloads": "Controllo download",
     "mini-player": "Usa lo stile mini player",
@@ -242,7 +242,7 @@
     "track-duration": "Mostra la durata del brano sulla SeekBar",
     "user": "Utente:",
     "youtube": "Youtube",
-    "yt-api-key": "Youtube API Key"
+    "yt-api-key": "YouTube API Key"
   },
   "tags": {
     "albums": "Migliori Album",
