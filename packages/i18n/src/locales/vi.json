@@ -133,6 +133,7 @@
     "queue": "Thêm playlist vào hàng chờ",
     "rename": "Đổi tên playlist",
     "songs": "{{total}} bài hát",
+    "songs_plural": "{{total}} songs",
     "title": "Tên bài hát",
     "tracks-selected-plural": "tracks selected",
     "tracks-selected-singular": "track selected"
@@ -170,14 +171,18 @@
   },
   "search": {
     "album": "Album",
+    "album_plural": "Albums",
     "artist": "Nghệ sỹ",
+    "artist_plural": "Artists",
     "clear-history": "Xoá lịch sử",
     "empty": "Không tìm thấy.",
     "last-searches": "Lần tìm kiếm cuối",
     "placeholder": "Tìm kiếm...",
     "playlist": "Playlist",
+    "playlist_plural": "Playlists",
     "queue-add": "Thêm tất cả vào danh sách đang ",
     "track": "Bài hát",
+    "track_plural": "Tracks",
     "you-can-search-for": "Bạn có thể tìm cho:"
   },
   "seekbar": {
@@ -185,7 +190,7 @@
   },
   "settings": {
     "api-port": "Port cho api",
-    "api-url": "Đường dẫn cho api",
+    "api-url": "",
     "autoradio": "Autoradio",
     "autoradio-craziness": "Autoradio craziness",
     "autoradio-craziness-description": "Autoradio sẽ chọn các bài khác không tương tự với các bài hát trong danh sách đang phát",
