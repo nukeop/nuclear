@@ -16,6 +16,7 @@
     "downloads": "Niðurhalað",
     "equalizer": "Tónjafnari",
     "favorite-albums": "Uppáhalds albúm",
+    "favorite-artists": "Favorite Artists",
     "favorite-tracks": "Uppáhalds lög",
     "library": "Þitt lagasafn",
     "lyrics": "Lagatexti",
@@ -39,9 +40,9 @@
     "best-new-albums": "Nýjustu og vinsælustu albúmin",
     "best-new-tracks": "Nýjustu og vinsælustu lögin",
     "genres": "Lagategund",
-    "lastfm-title": "Vinsælustu lögin frá LastFm.",
     "news": "Fréttir",
     "playcounts": "Spilateljari",
+    "popular-track-title": "Vinsælustu lögin frá Deezer",
     "title": "Titill",
     "top": "Vinsælast"
   },
@@ -58,6 +59,11 @@
     "empty": "Engin uppáhalds albúm",
     "empty-help": "Prófaðu að bæta við nokkrum albúmum í uppáhalds og þeir munu birtast hér!",
     "header": "Þín uppáhalds albúm"
+  },
+  "favorite-artists": {
+    "empty": "No favorite artists",
+    "empty-help": "Try adding some artists to favorites and they will appear here!",
+    "header": "Your favorite artists"
   },
   "favorites": {
     "artist": "Tónlistamaður",

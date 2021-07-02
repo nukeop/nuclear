@@ -1,0 +1,66 @@
+@import '../../common.scss';
+
+.artist_grid {
+  display: flex;
+  flex-flow: column;
+  justify-content: flex-start;
+
+  width: 100%;
+  height: 100%;
+
+  &.loading {
+    justify-content: center;
+    align-items: center;
+  }
+
+  &.auto_size {
+    height: auto;
+  }
+
+  hr {
+    border: 1px solid rgba($background2, 0.6);
+    margin: 1em 0;
+  }
+
+  .artist_preview {
+    flex: 0 0 auto;
+  }
+
+  .artist_cards {
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    grid-template-columns: 11% 11% 11% 11% 11% 11% 11% 11% 11%;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    @media screen and (max-width: 2500px) {
+      grid-template-columns: 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5%;
+    }
+
+    @media screen and (max-width: 2250px) {
+      grid-template-columns: 14% 14% 14% 14% 14% 14% 14%;
+    }
+
+    @media screen and (max-width: 2000px) {
+      grid-template-columns: 16.6% 16.6% 16.6% 16.6% 16.6% 16.6%;
+    }
+
+    @media screen and(max-width: 1750px) {
+      grid-template-columns: 20% 20% 20% 20% 20%;
+    }
+
+    @media screen and (max-width: 1500px) {
+      grid-template-columns: 25% 25% 25% 25%;
+    }
+
+    @media screen and (max-width: 1250px) {
+      grid-template-columns: 33% 33% 33%;
+    }
+
+    @media screen and (max-width: 1000px) {
+      grid-template-columns: 50% 50%;
+    }
+  }
+}

@@ -1,0 +1,16 @@
+@import '../../mixin.scss';
+
+.favorite_artists_view {
+  display: flex;
+  flex-flow: column;
+  height: 100%;
+  
+  .empty_state {
+    @include emptyState;
+  }
+
+  .favorite_artists_segment {
+    display: flex;
+    flex-flow: row wrap;
+  }
+}

@@ -16,6 +16,7 @@
     "downloads": "Shkarkimet",
     "equalizer": "Barazues",
     "favorite-albums": "Albumet e Perferuara",
+    "favorite-artists": "Favorite Artists",
     "favorite-tracks": "Këngët e Preferuara",
     "library": "Libraria Lokale",
     "lyrics": "Teskti i këngës",
@@ -39,9 +40,9 @@
     "best-new-albums": "Albumet e reja më të mira",
     "best-new-tracks": "Këngët e reja më të mira",
     "genres": "Zhanri",
-    "lastfm-title": "Këngët më të kërkuara nga LastFm.",
     "news": "Të reja",
     "playcounts": "Numërimet",
+    "popular-track-title": "Këngët më të kërkuara nga Deezer",
     "title": "Titulli",
     "top": "Këngët më të kërkuara"
   },
@@ -58,6 +59,11 @@
     "empty": "Nuk ka albume të preferuara",
     "empty-help": "Shtoni disa albume tek të preferuarit dhe ato do shfaqen këtu!",
     "header": "Albumet tuaja të preferuara"
+  },
+  "favorite-artists": {
+    "empty": "No favorite artists",
+    "empty-help": "Try adding some artists to favorites and they will appear here!",
+    "header": "Your favorite artists"
   },
   "favorites": {
     "artist": "Artisti",

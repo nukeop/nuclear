@@ -16,6 +16,7 @@
     "downloads": "Downloads",
     "equalizer": "Equalizer",
     "favorite-albums": "Favorite Albums",
+    "favorite-artists": "Favorite Artists",
     "favorite-tracks": "Favoriete nummers",
     "library": "Lokale verzameling",
     "lyrics": "Songteksten",
@@ -39,9 +40,9 @@
     "best-new-albums": "Best new albums",
     "best-new-tracks": "Best new tracks",
     "genres": "Genres",
-    "lastfm-title": "Top Tracks from Deezer",
     "news": "Nieuws",
     "playcounts": "Playcounts",
+    "popular-track-title": "Top Tracks from Deezer",
     "title": "Title",
     "top": "Topnummers"
   },
@@ -58,6 +59,11 @@
     "empty": "No favorite albums",
     "empty-help": "Try adding some albums to favorites and they will appear here!",
     "header": "Your favorite albums"
+  },
+  "favorite-artists": {
+    "empty": "No favorite artists",
+    "empty-help": "Try adding some artists to favorites and they will appear here!",
+    "header": "Your favorite artists"
   },
   "favorites": {
     "artist": "Artiest",

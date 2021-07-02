@@ -16,6 +16,7 @@
     "downloads": "下载",
     "equalizer": "均衡器",
     "favorite-albums": "收藏的专辑",
+    "favorite-artists": "最喜欢的艺术家",
     "favorite-tracks": "喜欢的音乐",
     "library": "本地音乐",
     "lyrics": "歌词",
@@ -39,9 +40,9 @@
     "best-new-albums": "最棒新专辑",
     "best-new-tracks": "最棒新单曲",
     "genres": "流派",
-    "lastfm-title": "LastFm. 的最新单曲 ",
     "news": "消息",
     "playcounts": "播放次数",
+    "popular-track-title": "Deezer 的最新单曲 ",
     "title": "音乐标题",
     "top": "排行榜"
   },
@@ -58,6 +59,11 @@
     "empty": "不喜欢的专辑",
     "empty-help": "试着添加一些专辑到收藏夹里，它们会出现在这里！",
     "header": "你喜欢的专辑"
+  },
+  "favorite-artists": {
+    "empty": "No favorite artists",
+    "empty-help": "Try adding some artists to favorites and they will appear here!",
+    "header": "Your favorite artists"
   },
   "favorites": {
     "artist": "艺人",

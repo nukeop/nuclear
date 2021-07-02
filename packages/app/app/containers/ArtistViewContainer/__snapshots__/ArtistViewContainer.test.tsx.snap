@@ -48,6 +48,16 @@ exports[`Artist view container should display an artist 1`] = `
                     <h1>
                       test artist
                     </h1>
+                    <a
+                      class="artist_favorites_button_wrap"
+                      data-testid="add-remove-favorite"
+                      href="#"
+                    >
+                      <i
+                        aria-hidden="true"
+                        class="heart outline big icon"
+                      />
+                    </a>
                   </div>
                   <div
                     class="tags_container"

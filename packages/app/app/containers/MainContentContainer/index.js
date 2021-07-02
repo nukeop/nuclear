@@ -43,6 +43,7 @@ class MainContentContainer extends React.Component {
               <Route path='/downloads' component={DownloadsContainer} />
               <Route path='/favorites/albums' component={FavoritesContainer} />
               <Route path='/favorites/tracks' component={FavoritesContainer} />
+              <Route path='/favorites/artists' component={FavoritesContainer} />
               <Route path='/playlists' component={PlaylistsContainer} />
               <Route path='/playlist/:playlistId' component={PlaylistViewContainer} />
               <Route path='/plugins' component={PluginsContainer} />

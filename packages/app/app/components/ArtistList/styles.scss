@@ -1,0 +1,12 @@
+.album_list_container {
+  display: flex;
+  width: 100%;
+}
+
+.album_list_cards {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+}

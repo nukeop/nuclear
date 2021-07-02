@@ -14,7 +14,7 @@ export type CardMenuEntry = {
 
 type CardProps = {
   header: string;
-  content: string;
+  content?: string;
   image: string;
   onClick: React.DOMAttributes<HTMLDivElement>['onClick'];
   withMenu?: boolean;
@@ -51,7 +51,7 @@ const Card: React.FC<CardProps> = ({
           >
             {
               _.isArray(menuEntries) && !_.isEmpty(menuEntries) &&
-              <Dropdown.Menu basic inverted>
+              <Dropdown.Menu>
                 {
                   menuEntries.map((entry, i) => {
                     switch (entry.type) {
