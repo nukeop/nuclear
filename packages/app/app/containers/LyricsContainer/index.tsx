@@ -14,11 +14,11 @@ const LyricsContainer = () => {
     queue.currentSong
   );
   // eslint-disable-next-line no-console
-  console.log(track.name);
+  console.log(track?.name);
 
   return <LyricsView
-    trackName={track.name}
-    trackArtist={track.artist}
+    trackName={track?.name}
+    trackArtist={track?.artist}
     lyricsSearchResults={lyricsSearchResults as { type: string }}
   />;
 };
