@@ -11,6 +11,7 @@ import artPlaceholder from '../../../resources/media/art_placeholder.png';
 import styles from './styles.scss';
 import { useHistory } from 'react-router';
 import TrackTableContainer from '../../containers/TrackTableContainer';
+import { TFunction } from 'i18next';
 
 export type Playlist = {
   tracks: Track[];
@@ -22,6 +23,7 @@ export type PlaylistViewProps = {
   playlist: Playlist;
   updatePlaylist: (playlist: Playlist) => void;
   deletePlaylist: (id: string) => void;
+  exportPlaylist: (playlist: Playlist, t: TFunction) => void;
   clearQueue: () => void;
   startPlayback: () => void;
   selectSong: (i: number) => void;
@@ -33,6 +35,7 @@ const PlaylistView: React.FC<PlaylistViewProps> = ({
   playlist,
   updatePlaylist,
   deletePlaylist,
+  exportPlaylist,
   clearQueue,
   addTracks,
   onReorderTracks,
@@ -72,6 +75,10 @@ const PlaylistView: React.FC<PlaylistViewProps> = ({
     deletePlaylist(playlist.id);
     history.push('/playlists');
   }, [playlist, history, deletePlaylist]);
+
+  const onExportPlaylist = useCallback(() => {
+    exportPlaylist(playlist, t);
+  }, [exportPlaylist, playlist, t]);
 
   return (
     <div className={styles.playlist_view_container}>
@@ -139,6 +146,12 @@ const PlaylistView: React.FC<PlaylistViewProps> = ({
                   ariaLabel={t('delete')}
                   icon='trash'
                   label={t('delete')}
+                />
+                <PopupButton
+                  onClick={onExportPlaylist}
+                  ariaLabel={t('export-button')}
+                  icon='download'
+                  label={t('export-button')}
                 />
               </ContextPopup>
             </div>

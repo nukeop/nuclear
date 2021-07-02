@@ -18,7 +18,6 @@ const PopupDropdown: React.FC<PopupDropdownProps> = ({
 }) => {
   return (
     <Dropdown
-      applyTriggerStyles={false}
       text={text}
       className={cx(
         popupButtonStyles.popup_button,

@@ -16,6 +16,7 @@
     "downloads": "Hämtningar",
     "equalizer": "Frekvenskorrigerare",
     "favorite-albums": "Favoritalbum",
+    "favorite-artists": "Favorite Artists",
     "favorite-tracks": "Favoritspår",
     "library": "Lokalt bibliotek",
     "lyrics": "Låttexter",
@@ -39,9 +40,9 @@
     "best-new-albums": "Bästa nya albumen",
     "best-new-tracks": "Bästa nya spåren",
     "genres": "Genrer",
-    "lastfm-title": "Toppspår från LastFm.",
     "news": "Nyheter",
     "playcounts": "Antal spelningar",
+    "popular-track-title": "Toppspår från Deezer",
     "title": "Titel",
     "top": "Toppspår"
   },
@@ -58,6 +59,11 @@
     "empty": "Inga favoritalbum",
     "empty-help": "Testa att favoritmarkera några album så kommer de dyka upp här!",
     "header": "Dina favoritalbum"
+  },
+  "favorite-artists": {
+    "empty": "No favorite artists",
+    "empty-help": "Try adding some artists to favorites and they will appear here!",
+    "header": "Your favorite artists"
   },
   "favorites": {
     "artist": "Artist",
@@ -119,12 +125,17 @@
     "error-empty-data": "Tomma data",
     "error-invalid-data": "Ogiltiga data",
     "error-open-file": "Kan inte öppna filen",
+    "error-save-file": "Can not save file",
+    "export-button": "Export playlist (JSON)",
+    "export-fail-title": "Playlist export fail",
+    "export-success-title": "Playlist exported successfully",
     "header": "Dina spellistor",
     "import-button": "Importera från fil (JSON)",
     "import-fail-title": "Importering av spellista misslyckades",
     "import-success-title": "Spellistan importerades",
     "play-selected-tracks-now": "Spela valda nu",
     "playlist-created": "{{name}} skapad",
+    "playlist-exported": "{{name}} saved to local file",
     "queue": "Lägg till spellistan i kö",
     "rename": "Byt namn på spellista",
     "songs": "{{total}} spår",

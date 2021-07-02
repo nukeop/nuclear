@@ -16,6 +16,7 @@
     "downloads": "Téléchargements",
     "equalizer": "Égalisateur",
     "favorite-albums": "Albums favoris",
+    "favorite-artists": "Favorite Artists",
     "favorite-tracks": "Favoris",
     "library": "Bibliothèque locale",
     "lyrics": "Paroles",
@@ -39,9 +40,9 @@
     "best-new-albums": "Meilleurs albums",
     "best-new-tracks": "Meilleurs morceaux",
     "genres": "Genres",
-    "lastfm-title": "Meilleurs morceaux de LastFm.",
     "news": "Actualités",
     "playcounts": "Nombre d'écoute",
+    "popular-track-title": "Meilleurs morceaux de Deezer",
     "title": "Titre",
     "top": "Meilleurs morceaux"
   },
@@ -58,6 +59,11 @@
     "empty": "Aucun album favoris",
     "empty-help": "Essayez d'ajouter des albums à vos favoris, ils apparaîtront ici !",
     "header": "Vos albums favoris"
+  },
+  "favorite-artists": {
+    "empty": "No favorite artists",
+    "empty-help": "Try adding some artists to favorites and they will appear here!",
+    "header": "Your favorite artists"
   },
   "favorites": {
     "artist": "Artiste",
@@ -119,12 +125,17 @@
     "error-empty-data": "Empty data",
     "error-invalid-data": "Invalid data",
     "error-open-file": "Can not open file",
+    "error-save-file": "Can not save file",
+    "export-button": "Export playlist (JSON)",
+    "export-fail-title": "Playlist export fail",
+    "export-success-title": "Playlist exported successfully",
     "header": "Your playlists",
     "import-button": "Import from file (JSON)",
     "import-fail-title": "Playlist import fail",
     "import-success-title": "Playlist imported successfully",
     "play-selected-tracks-now": "Play selected now",
     "playlist-created": "{{name}} created",
+    "playlist-exported": "{{name}} saved to local file",
     "queue": "Ajouter la playlist à la file de lecture",
     "rename": "Renommer cette playlist",
     "songs": "{{total}} morceau",

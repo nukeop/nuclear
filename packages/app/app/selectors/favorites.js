@@ -21,6 +21,7 @@ export const favoritesSelectors = createStateSelectors(
   'favorites',
   [
     'tracks',
-    'albums'
+    'albums',
+    'artists'
   ]
 );

@@ -16,6 +16,7 @@
     "downloads": "Pobrane",
     "equalizer": "Korektor graficzny",
     "favorite-albums": "Ulubione albumy",
+    "favorite-artists": "Favorite Artists",
     "favorite-tracks": "Ulubione utwory",
     "library": "Biblioteka lokalna",
     "lyrics": "Teksty",
@@ -39,9 +40,9 @@
     "best-new-albums": "Najlepsze nowe albumy",
     "best-new-tracks": "Najlepsze nowe utwory",
     "genres": "Gatunki",
-    "lastfm-title": "Top utwory z Deezera",
     "news": "Aktualności",
     "playcounts": "Liczba odtworzeń",
+    "popular-track-title": "Top utwory z Deezera",
     "title": "Tytuł",
     "top": "Top utwory"
   },
@@ -58,6 +59,11 @@
     "empty": "Brak ulubionych albumów",
     "empty-help": "Dodaj album do ulubionych, a pojawi się tutaj!",
     "header": "Twoje ulubione albumy"
+  },
+  "favorite-artists": {
+    "empty": "No favorite artists",
+    "empty-help": "Try adding some artists to favorites and they will appear here!",
+    "header": "Your favorite artists"
   },
   "favorites": {
     "artist": "Artysta",
@@ -119,12 +125,17 @@
     "error-empty-data": "Brak danych",
     "error-invalid-data": "Błędne dane",
     "error-open-file": "Nie można otworzyć pliku",
+    "error-save-file": "Can not save file",
+    "export-button": "Export playlist (JSON)",
+    "export-fail-title": "Playlist export fail",
+    "export-success-title": "Playlist exported successfully",
     "header": "Twoje playlisty",
     "import-button": "Importuj z pliku (JSON)",
     "import-fail-title": "Import listy odtwarzania nie powiódł się",
     "import-success-title": "Lista odtwarzania zaimportowana pomyślnie",
     "play-selected-tracks-now": "Odtwórz zaznaczone",
     "playlist-created": "Utworzono {{name}}",
+    "playlist-exported": "{{name}} saved to local file",
     "queue": "Dodaj playlistę do kolejki",
     "rename": "Zmień nazwę tej playlisty",
     "songs": "{{total}} utwór",

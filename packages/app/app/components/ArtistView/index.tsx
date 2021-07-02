@@ -1,7 +1,7 @@
 import React from 'react';
 import cx from 'classnames';
 import _ from 'lodash';
-import { Dimmer, Loader } from 'semantic-ui-react';
+import { Dimmer, Loader, Icon } from 'semantic-ui-react';
 import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router';
 
@@ -18,16 +18,22 @@ type ArtistViewProps = {
   artist: Artist & {
     loading?: boolean;
   };
+  isFavorite: boolean;
   addTrackToQueue: (item: any) => Promise<void>;
   artistInfoSearchByName: (artistName: any) => Promise<void>;
   albumInfoSearch: (albumId: any, releaseType: any, release: any) => Promise<void>;
+  removeFavoriteArtist: React.MouseEventHandler;
+  addFavoriteArtist: React.MouseEventHandler;
 }
 
 const ArtistView: React.FC<ArtistViewProps> = ({
   artist,
+  isFavorite,
   addTrackToQueue,
   artistInfoSearchByName,
-  albumInfoSearch
+  albumInfoSearch,
+  removeFavoriteArtist,
+  addFavoriteArtist
 }) => {
   const { t }= useTranslation('artist');
   const history = useHistory();
@@ -65,6 +71,22 @@ const ArtistView: React.FC<ArtistViewProps> = ({
                   { t('tour') }
                 </span>
               }
+
+              <a
+                href='#'
+                className={styles.artist_favorites_button_wrap}
+                data-testid='add-remove-favorite'
+                onClick={
+                  isFavorite
+                    ? removeFavoriteArtist
+                    : addFavoriteArtist
+                }
+              >
+                <Icon
+                  name={isFavorite ? 'heart' : 'heart outline'}
+                  size='big'
+                />
+              </a>
             </div>
 
             <ArtistTags

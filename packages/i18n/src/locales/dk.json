@@ -16,6 +16,7 @@
     "downloads": "Downloads",
     "equalizer": "Equalizer",
     "favorite-albums": "Favoritalbums",
+    "favorite-artists": "Favorite Artists",
     "favorite-tracks": "Favoritsange",
     "library": "Lokalt bibliotek",
     "lyrics": "Sangtekster",
@@ -39,9 +40,9 @@
     "best-new-albums": "Bedste nylige albums",
     "best-new-tracks": "Bedste nylige sange",
     "genres": "Genrer",
-    "lastfm-title": "Bedste sange fra LastFm.",
     "news": "Nyheder",
     "playcounts": "Antal afspilninger",
+    "popular-track-title": "Bedste sange fra Deezer",
     "title": "Titel",
     "top": "Populære sange"
   },
@@ -58,6 +59,11 @@
     "empty": "Ingen favoritalbums",
     "empty-help": "Prøv at tilføje albums til favoritter for at vise dem her!",
     "header": "Dine favoritalbums"
+  },
+  "favorite-artists": {
+    "empty": "No favorite artists",
+    "empty-help": "Try adding some artists to favorites and they will appear here!",
+    "header": "Your favorite artists"
   },
   "favorites": {
     "artist": "Artist",
@@ -119,12 +125,17 @@
     "error-empty-data": "Empty data",
     "error-invalid-data": "Invalid data",
     "error-open-file": "Can not open file",
+    "error-save-file": "Can not save file",
+    "export-button": "Export playlist (JSON)",
+    "export-fail-title": "Playlist export fail",
+    "export-success-title": "Playlist exported successfully",
     "header": "Your playlists",
     "import-button": "Import from file (JSON)",
     "import-fail-title": "Playlist import fail",
     "import-success-title": "Playlist imported successfully",
     "play-selected-tracks-now": "Play selected now",
     "playlist-created": "{{name}} created",
+    "playlist-exported": "{{name}} saved to local file",
     "queue": "Tilføj afspilningsliste til kø",
     "rename": "Omdøb denne afspilningsliste",
     "songs": "{{total}} song",

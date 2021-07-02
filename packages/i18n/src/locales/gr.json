@@ -16,6 +16,7 @@
     "downloads": "Μεταφορτώσεις",
     "equalizer": "Ισοσταθμιστής",
     "favorite-albums": "Αγαπημένα άλμπουμ",
+    "favorite-artists": "Favorite Artists",
     "favorite-tracks": "Αγαπημένα κομμάτια",
     "library": "Τοπική βιβλιοθήκη",
     "lyrics": "Στίχοι",
@@ -39,9 +40,9 @@
     "best-new-albums": "Τα καλύτερα άλμπουμ",
     "best-new-tracks": "Τα καλύτερα κομμάτια",
     "genres": "Είδη",
-    "lastfm-title": "Τα καλύτερα του LastFm.",
     "news": "Νέα",
     "playcounts": "Αριθμός αναπαραγωγών",
+    "popular-track-title": "Τα καλύτερα του Deezer",
     "title": "Τίτλος",
     "top": "Τα τοπ τραγούδια"
   },
@@ -58,6 +59,11 @@
     "empty": "Κανένα αγαπημένο άλμπουμ.",
     "empty-help": "Προσθέστε άλμπουμ στην λίστα αγαπημένων και θα εμφανίζονται εδώ !",
     "header": "Τα αγαπημένα σας άλμπουμ"
+  },
+  "favorite-artists": {
+    "empty": "No favorite artists",
+    "empty-help": "Try adding some artists to favorites and they will appear here!",
+    "header": "Your favorite artists"
   },
   "favorites": {
     "artist": "Καλλιτέχνης",
@@ -119,12 +125,17 @@
     "error-empty-data": "Empty data",
     "error-invalid-data": "Invalid data",
     "error-open-file": "Can not open file",
+    "error-save-file": "Can not save file",
+    "export-button": "Export playlist (JSON)",
+    "export-fail-title": "Playlist export fail",
+    "export-success-title": "Playlist exported successfully",
     "header": "Your playlists",
     "import-button": "Import from file (JSON)",
     "import-fail-title": "Playlist import fail",
     "import-success-title": "Playlist imported successfully",
     "play-selected-tracks-now": "Play selected now",
     "playlist-created": "{{name}} created",
+    "playlist-exported": "{{name}} saved to local file",
     "queue": "Προσθέστε την λίστα στην λίστα αναπαραγωγής",
     "rename": "Μετονομασία λίστας",
     "songs": "{{total}} song",

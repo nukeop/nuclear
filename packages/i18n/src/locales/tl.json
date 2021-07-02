@@ -16,6 +16,7 @@
     "downloads": "Mga Download",
     "equalizer": "Equalizer",
     "favorite-albums": "Paboritong mga Album",
+    "favorite-artists": "Favorite Artists",
     "favorite-tracks": "Paboritong mga Kanta",
     "library": "Lokal na Library",
     "lyrics": "Liriko",
@@ -39,9 +40,9 @@
     "best-new-albums": "Nangungunang bagong mga album",
     "best-new-tracks": "Nangungunang bagong kanta",
     "genres": "Mga Genre",
-    "lastfm-title": "Nangungunang kanta mula sa LastFm.",
     "news": "Balita",
     "playcounts": "Bilang ng pagtugtog",
+    "popular-track-title": "Nangungunang kanta mula sa Deezer",
     "title": "Title",
     "top": "Nangungunang mga kanta"
   },
@@ -58,6 +59,11 @@
     "empty": "Walang paboritong album",
     "empty-help": "Subukan magdagdag ng mga paboritong album at makikita mo rito!",
     "header": "Ang iyong paboritong mga album"
+  },
+  "favorite-artists": {
+    "empty": "No favorite artists",
+    "empty-help": "Try adding some artists to favorites and they will appear here!",
+    "header": "Your favorite artists"
   },
   "favorites": {
     "artist": "Artist",
@@ -119,12 +125,17 @@
     "error-empty-data": "Empty data",
     "error-invalid-data": "Invalid data",
     "error-open-file": "Can not open file",
+    "error-save-file": "Can not save file",
+    "export-button": "Export playlist (JSON)",
+    "export-fail-title": "Playlist export fail",
+    "export-success-title": "Playlist exported successfully",
     "header": "Your playlists",
     "import-button": "Import from file (JSON)",
     "import-fail-title": "Playlist import fail",
     "import-success-title": "Playlist imported successfully",
     "play-selected-tracks-now": "Play selected now",
     "playlist-created": "{{name}} created",
+    "playlist-exported": "{{name}} saved to local file",
     "queue": "Add playlist to queue",
     "rename": "Palitan ang pangalan nitong playlist",
     "songs": "{{total}} song",
