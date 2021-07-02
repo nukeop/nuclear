@@ -16,7 +16,8 @@
     "downloads": "下载",
     "equalizer": "均衡器",
     "favorite-albums": "收藏的专辑",
-    "favorite-tracks": "收藏的曲目",
+    "favorite-artists": "最喜欢的艺术家",
+    "favorite-tracks": "喜欢的音乐",
     "library": "本地音乐",
     "lyrics": "歌词",
     "main": "主界面",
@@ -43,6 +44,8 @@
     "news": "消息",
     "playcounts": "播放次数",
     "title": "标题",
+    "news": "消息",
+    "popular-track-title": "Deezer 的最新单曲 ",
     "top": "排行榜"
   },
   "downloads": {
@@ -58,6 +61,11 @@
     "empty": "没有收藏的专辑",
     "empty-help": "添加至收藏的专辑将显示在这里！",
     "header": "收藏的专辑"
+  },
+  "favorite-artists": {
+    "empty": "No favorite artists",
+    "empty-help": "Try adding some artists to favorites and they will appear here!",
+    "header": "Your favorite artists"
   },
   "favorites": {
     "artist": "艺术家",

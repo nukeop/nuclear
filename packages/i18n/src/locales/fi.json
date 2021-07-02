@@ -16,6 +16,7 @@
     "downloads": "Lataukset",
     "equalizer": "Taajuuskorjain",
     "favorite-albums": "Suosikki albumit",
+    "favorite-artists": "Favorite Artists",
     "favorite-tracks": "Suosikki kappaleet",
     "library": "Paikallinen kirjasto",
     "lyrics": "Sanoitukset",
@@ -39,9 +40,9 @@
     "best-new-albums": "Parhaat uudet albumit",
     "best-new-tracks": "Parhaat uudet kappaleet",
     "genres": "Genret",
-    "lastfm-title": "LastFm parhaat kappaleet.",
     "news": "Uutiset",
     "playcounts": "Soittokerrat",
+    "popular-track-title": "LastFm parhaat kappaleet.",
     "title": "Nimi",
     "top": "Parhaat kappaleet"
   },
@@ -58,6 +59,11 @@
     "empty": "Ei suosikki albumeita",
     "empty-help": "Lisää albumeita suosikkeihin ja ne näkyvät tässä!",
     "header": "Suosikki albumisi"
+  },
+  "favorite-artists": {
+    "empty": "No favorite artists",
+    "empty-help": "Try adding some artists to favorites and they will appear here!",
+    "header": "Your favorite artists"
   },
   "favorites": {
     "artist": "Artisti",

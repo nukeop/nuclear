@@ -16,6 +16,7 @@
     "downloads": "Descargas",
     "equalizer": "Ecualizador",
     "favorite-albums": "Álbumes favoritos",
+    "favorite-artists": "Favorite Artists",
     "favorite-tracks": "Canciones favoritas",
     "library": "Librería Local",
     "lyrics": "Letras",
@@ -39,9 +40,9 @@
     "best-new-albums": "Mejores nuevos álbumes",
     "best-new-tracks": "Mejores nuevas canciones",
     "genres": "Géneros",
-    "lastfm-title": "Lo mejor en Last.fm",
     "news": "Noticias",
     "playcounts": "Número de reproducciones",
+    "popular-track-title": "Lo mejor en Last.fm",
     "title": "Título",
     "top": "Mejores canciones"
   },
@@ -58,6 +59,11 @@
     "empty": "No hay álbumes favoritos",
     "empty-help": "¡Añade álbumes a favoritos para visualizar!",
     "header": "Tus álbumes favoritos"
+  },
+  "favorite-artists": {
+    "empty": "No favorite artists",
+    "empty-help": "Try adding some artists to favorites and they will appear here!",
+    "header": "Your favorite artists"
   },
   "favorites": {
     "artist": "Artista",

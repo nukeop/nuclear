@@ -11,9 +11,11 @@ import * as PlayerActions from '../../actions/player';
 
 import FavoriteAlbumsView from '../../components/FavoriteAlbumsView';
 import FavoriteTracksView from '../../components/FavoriteTracksView';
+import FavoriteArtistsView from '../../components/FavoriteArtistsView';
 
 const ALBUMS_PATH = 'albums';
 const TRACKS_PATH = 'tracks';
+const ARTISTS_PATH = 'artists';
 
 class FavoritesContainer extends React.Component {
   constructor(props) {
@@ -54,6 +56,14 @@ class FavoritesContainer extends React.Component {
         removeFavoriteTrack={favoritesActions.removeFavoriteTrack}
       />;
     }
+
+    if (match.path.endsWith(ARTISTS_PATH)) {
+      return <FavoriteArtistsView
+        artists={_.get(favorites, 'artists')}
+        removeFavoriteArtist={favoritesActions.removeFavoriteArtist}
+        artistInfoSearch={searchActions.artistInfoSearch}
+      />;
+    }
     
     return null;
   }
@@ -67,10 +77,12 @@ FavoritesContainer.propTypes = {
   }),
   favoritesActions: PropTypes.shape({
     readFavorites: PropTypes.func,
-    removeFavoriteTrack: PropTypes.func
+    removeFavoriteTrack: PropTypes.func,
+    removeFavoriteArtist: PropTypes.func
   }),
   searchActions: PropTypes.shape({
-    albumInfoSearch: PropTypes.func
+    albumInfoSearch: PropTypes.func,
+    artistInfoSearch: PropTypes.func
   })
 };
 

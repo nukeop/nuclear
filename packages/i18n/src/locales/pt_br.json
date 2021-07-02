@@ -16,6 +16,7 @@
     "downloads": "Downloads",
     "equalizer": "Equalizador",
     "favorite-albums": "Favorite Albums",
+    "favorite-artists": "Favorite Artists",
     "favorite-tracks": "Favoritas",
     "library": "Biblioteca",
     "lyrics": "Letras",
@@ -39,9 +40,9 @@
     "best-new-albums": "Melhores novos álbuns",
     "best-new-tracks": "Melhores novas faixas",
     "genres": "Gêneros",
-    "lastfm-title": "Mais tocadas no LastFm.",
     "news": "Novidades",
     "playcounts": "Playcounts",
+    "popular-track-title": "Mais tocadas no Deezer",
     "title": "Título",
     "top": "Mais tocadas"
   },
@@ -58,6 +59,11 @@
     "empty": "No favorite albums",
     "empty-help": "Try adding some albums to favorites and they will appear here!",
     "header": "Your favorite albums"
+  },
+  "favorite-artists": {
+    "empty": "No favorite artists",
+    "empty-help": "Try adding some artists to favorites and they will appear here!",
+    "header": "Your favorite artists"
   },
   "favorites": {
     "artist": "Artista",

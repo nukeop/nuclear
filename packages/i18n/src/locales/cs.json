@@ -16,6 +16,7 @@
     "downloads": "Stažené",
     "equalizer": "Ekvalizér",
     "favorite-albums": "Oblíbená alba",
+    "favorite-artists": "Favorite Artists",
     "favorite-tracks": "Oblíbené skladby",
     "library": "Lokální knihovna",
     "lyrics": "Texty",
@@ -39,9 +40,9 @@
     "best-new-albums": "Nejlepší nová alba",
     "best-new-tracks": "Nejlepší nové skladby",
     "genres": "Žánry",
-    "lastfm-title": "Nejlepší skladby z LastFm.",
     "news": "Novinky",
     "playcounts": "Počty přehrání",
+    "popular-track-title": "Nejlepší skladby z Deezer",
     "title": "Název",
     "top": "Nejlepší skladby"
   },
@@ -58,6 +59,11 @@
     "empty": "Žádná oblíbená alba",
     "empty-help": "Zkuste některá alba přidat mezi oblíbená a objeví se zde!",
     "header": "Vaše oblíbená alba"
+  },
+  "favorite-artists": {
+    "empty": "No favorite artists",
+    "empty-help": "Try adding some artists to favorites and they will appear here!",
+    "header": "Your favorite artists"
   },
   "favorites": {
     "artist": "Umělec",
