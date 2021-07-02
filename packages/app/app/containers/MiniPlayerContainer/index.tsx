@@ -31,6 +31,11 @@ const MiniPlayerContainer: React.FC = () => {
         style={{
           zIndex: isMiniPlayerEnabled && 1000
         }}
+        lyricsComponent={
+          <div>
+            lyrics go here
+          </div>
+        }
       />
     )
     : null;

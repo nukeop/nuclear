@@ -23,6 +23,8 @@ const MiniPlayer: React.FC<MiniPlayerProps> = ({
   track,
   artist,
 
+  lyricsComponent,
+
   addToFavorites,
   removeFromFavorites,
   isFavorite,
@@ -62,6 +64,7 @@ const MiniPlayer: React.FC<MiniPlayerProps> = ({
     addToFavorites={addToFavorites}
     removeFromFavorites={removeFromFavorites}
     hasTracks={hasTracks}
+    lyricsComponent={lyricsComponent}
   />
   <div className={styles.seekbar_wrapper}>
     <div className={styles.row}>
