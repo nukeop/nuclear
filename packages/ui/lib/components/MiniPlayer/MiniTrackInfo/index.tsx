@@ -46,7 +46,7 @@ const MiniTrackInfo: React.FC<MiniTrackInfoProps> = ({
         </div>
       }
     </div>
-    <div className={styles.lyrics_text}>
+    <div className={styles.lyrics_box}>
       {lyricsComponent}
     </div>
   </div>

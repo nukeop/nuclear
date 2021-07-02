@@ -23,8 +23,6 @@ const MiniPlayerContainer: React.FC = () => {
     queue.queueItems,
     queue.currentSong
   );
-  // eslint-disable-next-line no-console
-  console.log(track?.name);
 
   const seekbarProps = useSeekbarProps();
   const playerControlsProps = usePlayerControlsProps();
@@ -49,6 +47,7 @@ const MiniPlayerContainer: React.FC = () => {
         }}
         lyricsComponent={
           <LyricsView
+            showHeader={false}
             trackName={track?.name}
             trackArtist={track?.artist}
             lyricsSearchResults={lyricsSearchResults as { type: string }}

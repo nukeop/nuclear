@@ -13,10 +13,9 @@ const LyricsContainer = () => {
     queue.queueItems,
     queue.currentSong
   );
-  // eslint-disable-next-line no-console
-  console.log(track?.name);
 
   return <LyricsView
+    showHeader={true}
     trackName={track?.name}
     trackArtist={track?.artist}
     lyricsSearchResults={lyricsSearchResults as { type: string }}

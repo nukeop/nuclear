@@ -1,16 +1,13 @@
 @import "../.../../../../common.scss";
 
 .mini_track_all {
+  max-height: 80%;
   display: flex;
   flex-flow: row;
 
-  .lyrics_text {
-  white-space: pre-line;
-  font-size: 1.3em;
-  margin-left: 1rem;
-  max-width: 50%;
-  cursor: text;
-  user-select: text;
+  .lyrics_box {
+  overflow-y: auto;
+
 }
 
 
@@ -20,7 +17,7 @@
   flex-flow: column;
   align-items: center;
   margin: 4em 2em 2em;
-  max-width: 50%;
+  max-width: 80%;
 
   @media screen and (max-width: $mid_screen) {
     max-width: 50%;
@@ -83,6 +80,8 @@
     margin-bottom: 1em;
     text-align: left;
     line-height: 1em;
+    width: 100%;
+
   }
   
   .mini_artist {
@@ -90,6 +89,8 @@
     color: rgba($white, 0.6);
     text-align: left;
     line-height: 1em;
+    width: 100%;
+
   }
 }
 }

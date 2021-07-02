@@ -8,6 +8,7 @@ import LyricsHeader from './LyricsHeader';
 import styles from './styles.scss';
 
 export type LyricsViewProps = {
+  showHeader: boolean;
   lyricsSearchResults: {
     type: string;
   };
@@ -16,6 +17,7 @@ export type LyricsViewProps = {
 }
 
 export const LyricsView: React.FC<LyricsViewProps> = ({
+  showHeader,
   lyricsSearchResults,
   trackName,
   trackArtist
@@ -37,11 +39,14 @@ export const LyricsView: React.FC<LyricsViewProps> = ({
     }
     {
       Boolean(trackName) &&
-      <>
-        <LyricsHeader
-          name={trackName}
-          artist={trackArtist}
-        />
+      <> 
+        {
+          showHeader &&
+          <LyricsHeader
+            name={trackName}
+            artist={trackArtist}
+          />
+        }
         <div className={styles.lyrics_text}>
           {lyricsStr}
         </div>
