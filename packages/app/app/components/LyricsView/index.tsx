@@ -7,19 +7,18 @@ import LyricsHeader from './LyricsHeader';
 
 import styles from './styles.scss';
 
-type LyricsViewProps = {
+export type LyricsViewProps = {
   lyricsSearchResults: {
     type: string;
   };
-  track?: {
-    name: string;
-    artist: string;
-  };
+  trackName: string;
+  trackArtist: string;
 }
 
 export const LyricsView: React.FC<LyricsViewProps> = ({
   lyricsSearchResults,
-  track
+  trackName,
+  trackArtist
 }) => {
   const { t } = useTranslation('lyrics');
   let lyricsStr = _.get(lyricsSearchResults, 'type', '');
@@ -29,7 +28,7 @@ export const LyricsView: React.FC<LyricsViewProps> = ({
 
   return <div className={styles.lyrics_view}>
     {
-      !track &&
+      !trackName &&
       <div className={styles.empty_state}>
         <Icon name='music' />
         <h2>{t('empty')}</h2>
@@ -37,11 +36,11 @@ export const LyricsView: React.FC<LyricsViewProps> = ({
       </div>
     }
     {
-      Boolean(track) &&
+      Boolean(trackName) &&
       <>
         <LyricsHeader
-          name={track.name}
-          artist={track.artist}
+          name={trackName}
+          artist={trackArtist}
         />
         <div className={styles.lyrics_text}>
           {lyricsStr}

@@ -1,12 +1,26 @@
 @import "../.../../../../common.scss";
 
+.mini_track_all {
+  display: flex;
+  flex-flow: row;
+
+  .lyrics_text {
+  white-space: pre-line;
+  font-size: 1.3em;
+  margin-left: 1rem;
+  max-width: 50%;
+  cursor: text;
+  user-select: text;
+}
+
+
 .mini_track_info {
   position: relative;
   display: flex;
   flex-flow: column;
   align-items: center;
   margin: 4em 2em 2em;
-  max-width: 33%;
+  max-width: 50%;
 
   @media screen and (max-width: $mid_screen) {
     max-width: 50%;
@@ -77,4 +91,5 @@
     text-align: left;
     line-height: 1em;
   }
+}
 }

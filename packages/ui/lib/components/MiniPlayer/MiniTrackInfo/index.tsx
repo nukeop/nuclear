@@ -17,6 +17,7 @@ const MiniTrackInfo: React.FC<MiniTrackInfoProps> = ({
   isFavorite = false,
   hasTracks = false
 }) => (
+  <div className={styles.mini_track_all}>
     <div className={styles.mini_track_info}>
       <div className={styles.mini_cover}>
         <img src={cover} />
@@ -44,6 +45,30 @@ const MiniTrackInfo: React.FC<MiniTrackInfoProps> = ({
         </div>
       }
     </div>
-  );
+    <div className={styles.lyrics_text}>
+      lyrics<br/>
+      lyrics<br/>
+      lyrics<br/>
+      lyrics<br/>
+      lyrics<br/>
+      lyrics<br/>
+      lyrics<br/>
+      lyrics<br/>
+      lyrics<br/>
+      lyrics<br/>
+      lyrics<br/>
+      lyrics<br/>
+      lyrics<br/>
+      lyrics<br/>
+      lyrics<br/>
+      lyrics<br/>
+      lyrics<br/>
+      lyrics<br/>
+      lyrics<br/>
+      lyrics<br/>
+      lyrics<br/>
+    </div>
+  </div>
+);
 
 export default MiniTrackInfo;

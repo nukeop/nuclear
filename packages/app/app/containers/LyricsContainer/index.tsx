@@ -9,12 +9,16 @@ import { queue as queueSelector } from '../../selectors/queue';
 const LyricsContainer = () => {
   const lyricsSearchResults = useSelector(lyricsSelectors.lyricsSearchResults);
   const queue = useSelector(queueSelector);
+  const track = _.get(
+    queue.queueItems,
+    queue.currentSong
+  );
+  // eslint-disable-next-line no-console
+  console.log(track.name);
 
   return <LyricsView
-    track={_.get(
-      queue.queueItems,
-      queue.currentSong
-    )}
+    trackName={track.name}
+    trackArtist={track.artist}
     lyricsSearchResults={lyricsSearchResults as { type: string }}
   />;
 };
