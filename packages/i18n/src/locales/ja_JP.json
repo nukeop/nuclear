@@ -2,8 +2,8 @@
   "album": {
     "download": "Download",
     "download-toast-content": "{{artist}} - {{title}} has been added to downloads.",
-    "download-toast-title": "Album added to downloads",
-    "error-load": "Sorry, this album could not be loaded. Try again later or open a new issue on Github",
+    "download-toast-title": "アルバムをダウンロードに追加しました",
+    "error-load": "申し訳ありませんが、このアルバムを読み込むことができませんでした。後でもう一度試すか、Github で新しい問題を開いてください。",
     "genre": "Genre:",
     "play": "Play",
     "queue": "Add album to queue",
