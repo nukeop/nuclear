@@ -44,7 +44,7 @@
     "playcounts": "播放次数",
     "popular-track-title": "Deezer 的最新单曲 ",
     "title": "标题",
-    "top": "热门曲目"
+    "top": "排行榜"
   },
   "downloads": {
     "clear": "清除已完成的曲目",
@@ -61,9 +61,9 @@
     "header": "收藏的专辑"
   },
   "favorite-artists": {
-    "empty": "No favorite artists",
-    "empty-help": "Try adding some artists to favorites and they will appear here!",
-    "header": "Your favorite artists"
+    "empty": "没有最喜欢的艺术家",
+    "empty-help": "尝试添加一些艺术家到收藏列表，然后他们将在这里显示！",
+    "header": "你最喜欢的艺术家"
   },
   "favorites": {
     "artist": "艺术家",
