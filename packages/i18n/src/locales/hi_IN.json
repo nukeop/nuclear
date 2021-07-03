@@ -16,7 +16,7 @@
     "downloads": "डाउनलोड",
     "equalizer": "इक्वलाइज़र",
     "favorite-albums": "पसंदीदा एल्बम",
-    "favorite-artists": "Favorite Artists",
+    "favorite-artists": "पसंदीदा कलाकार",
     "favorite-tracks": "पसंदीदा ट्रैक",
     "library": "स्थानीय संग्रह",
     "lyrics": "गीतिकाव्य",
@@ -42,7 +42,7 @@
     "genres": "शैलियाँ",
     "news": "समाचार",
     "playcounts": "प्लेकाउंट्स",
-    "popular-track-title": "Top Tracks from Deezer",
+    "popular-track-title": "डीज़र के शीर्ष ट्रैक",
     "title": "शीर्षक",
     "top": "शीर्ष ट्रैक्स"
   },
@@ -61,9 +61,9 @@
     "header": "आपके पसंदीदा एल्बम"
   },
   "favorite-artists": {
-    "empty": "No favorite artists",
-    "empty-help": "Try adding some artists to favorites and they will appear here!",
-    "header": "Your favorite artists"
+    "empty": "कोई पसंदीदा कलाकार नहीं",
+    "empty-help": "पसंदीदा में कुछ कलाकार जोड़ने का प्रयास करें और वे यहां दिखाई देंगे!",
+    "header": "आपके पसंदीदा कलाकार"
   },
   "favorites": {
     "artist": "कलाकार",
