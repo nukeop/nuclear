@@ -62,15 +62,14 @@ class SearchResults extends React.Component {
     if (typeof collection !== 'undefined') {
 
       return (
-        <Tab.Pane loading={this.props.unifiedSearchStarted} attached={false}>
-          <div className={styles.pane_container}>
-            {collection.length > 0
-              ? this.props.unifiedSearchStarted
+        collection.length > 0 && (
+          <Tab.Pane loading={this.props.unifiedSearchStarted} attached={false}>
+            <div className={styles.pane_container}>
+              {this.props.unifiedSearchStarted
                 ? null
-                : <TracksResults tracks={collection} limit='15' />
-              : this.props.t('empty')}
-          </div>
-        </Tab.Pane>
+                : <TracksResults tracks={collection} limit='15' />}
+            </div>
+          </Tab.Pane>)
       );
     } else {
       return (
