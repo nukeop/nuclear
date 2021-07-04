@@ -1,6 +1,6 @@
 import React from 'react';
 import { Tab } from 'semantic-ui-react';
-import { withTranslation } from 'react-i18next';
+import { withTranslation, useTranslation } from 'react-i18next';
 import { Card } from '@nuclear/ui';
 
 import AllResults from './AllResults';
@@ -8,6 +8,20 @@ import TracksResults from './TracksResults';
 import PlaylistResults from './PlaylistResults';
 
 import styles from './styles.scss';
+
+const EmptyState = () => {
+  const { t } = useTranslation('no-search-results');
+  return (
+    <div className={styles.empty_state}>
+      <Icon.Group>
+        <Icon name='star' />
+        <Icon corner name='dot circle' />
+      </Icon.Group>
+      <h2>{t('empty')}</h2>
+      <div>{t('empty-help')}</div>
+    </div>
+  );
+};
 
 @withTranslation('search')
 class SearchResults extends React.Component {
@@ -62,14 +76,14 @@ class SearchResults extends React.Component {
     if (typeof collection !== 'undefined') {
 
       return (
-        collection.length > 0 && (
+        collection.length > 0 ? (
           <Tab.Pane loading={this.props.unifiedSearchStarted} attached={false}>
             <div className={styles.pane_container}>
               {this.props.unifiedSearchStarted
                 ? null
                 : <TracksResults tracks={collection} limit='15' />}
             </div>
-          </Tab.Pane>)
+          </Tab.Pane>) : (<EmptyState />)
       );
     } else {
       return (
