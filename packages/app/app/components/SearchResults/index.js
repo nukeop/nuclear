@@ -1,5 +1,5 @@
 import React from 'react';
-import { Tab } from 'semantic-ui-react';
+import { Tab, Icon } from 'semantic-ui-react';
 import { withTranslation, useTranslation } from 'react-i18next';
 import { Card } from '@nuclear/ui';
 
