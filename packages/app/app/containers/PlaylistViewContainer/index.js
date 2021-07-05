@@ -30,6 +30,7 @@ const PlaylistViewContainer = props => {
       clearQueue={props.actions.clearQueue}
       deletePlaylist={props.actions.deletePlaylist}
       updatePlaylist={props.actions.updatePlaylist}
+      exportPlaylist={props.actions.exportPlaylist}
       onReorderTracks={onReorderTracks}
       history={props.history}
     />

@@ -36,12 +36,15 @@ export function sourcesSearch(terms, plugins) {
   return {};
 }
 
-const getSelectedMetaProvider = getState => {
+const getSelectedMetaProvider = (getState, wantedProvider = null) => {
   const {
     plugin: {
       plugins: { metaProviders }, selected }
   } = getState();
-  return _.find(metaProviders, { sourceName: selected.metaProviders });
+
+  return wantedProvider ?
+    _.find(metaProviders, { searchName: wantedProvider }) :
+    _.find(metaProviders, { sourceName: selected.metaProviders });
 };
 
 export const artistSearch = terms => async (dispatch, getState) => {
@@ -198,7 +201,7 @@ const artistInfoError = (artistId, error) => ({
 export const artistInfoSearch = (artistId, artist) => async (dispatch, getState) => {
   dispatch(artistInfoStart(artistId));
   try {
-    const selectedProvider = getSelectedMetaProvider(getState);
+    const selectedProvider = getSelectedMetaProvider(getState, artist?.source);
     const artistDetails = await selectedProvider.fetchArtistDetails(artistId, artist);
     dispatch(artistInfoSuccess(artistId, artistDetails));
   } catch (e) {
@@ -222,10 +225,10 @@ const artistReleasesError = (artistId, error) => ({
   payload: { artistId, error }
 });
 
-export const artistReleasesSearch = artistId => async (dispatch, getState) => {
+export const artistReleasesSearch = (artistId, metaProvider = null) => async (dispatch, getState) => {
   dispatch(artistReleasesStart(artistId));
   try {
-    const selectedProvider = getSelectedMetaProvider(getState);
+    const selectedProvider = getSelectedMetaProvider(getState, metaProvider);
     const artistAlbums = await selectedProvider.fetchArtistAlbums(artistId);
     dispatch(artistReleasesSuccess(artistId, artistAlbums));
   } catch (e) {

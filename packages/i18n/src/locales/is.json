@@ -16,6 +16,7 @@
     "downloads": "Niðurhalað",
     "equalizer": "Tónjafnari",
     "favorite-albums": "Uppáhalds albúm",
+    "favorite-artists": "Favorite Artists",
     "favorite-tracks": "Uppáhalds lög",
     "library": "Þitt lagasafn",
     "lyrics": "Lagatexti",
@@ -39,9 +40,9 @@
     "best-new-albums": "Nýjustu og vinsælustu albúmin",
     "best-new-tracks": "Nýjustu og vinsælustu lögin",
     "genres": "Lagategund",
-    "lastfm-title": "Vinsælustu lögin frá LastFm.",
     "news": "Fréttir",
     "playcounts": "Spilateljari",
+    "popular-track-title": "Vinsælustu lögin frá Deezer",
     "title": "Titill",
     "top": "Vinsælast"
   },
@@ -58,6 +59,11 @@
     "empty": "Engin uppáhalds albúm",
     "empty-help": "Prófaðu að bæta við nokkrum albúmum í uppáhalds og þeir munu birtast hér!",
     "header": "Þín uppáhalds albúm"
+  },
+  "favorite-artists": {
+    "empty": "No favorite artists",
+    "empty-help": "Try adding some artists to favorites and they will appear here!",
+    "header": "Your favorite artists"
   },
   "favorites": {
     "artist": "Tónlistamaður",
@@ -119,12 +125,17 @@
     "error-empty-data": "Empty data",
     "error-invalid-data": "Invalid data",
     "error-open-file": "Can not open file",
+    "error-save-file": "Can not save file",
+    "export-button": "Export playlist (JSON)",
+    "export-fail-title": "Playlist export fail",
+    "export-success-title": "Playlist exported successfully",
     "header": "Your playlists",
     "import-button": "Import from file (JSON)",
     "import-fail-title": "Playlist import fail",
     "import-success-title": "Playlist imported successfully",
     "play-selected-tracks-now": "Play selected now",
     "playlist-created": "{{name}} created",
+    "playlist-exported": "{{name}} saved to local file",
     "queue": "Bæta lagalista í biðröðina",
     "rename": "Endurnefna lagalista",
     "songs": "{{total}} lag",

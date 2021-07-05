@@ -16,6 +16,7 @@
     "downloads": "Unduhan",
     "equalizer": "Penyelaras Suara",
     "favorite-albums": "Album Favorit",
+    "favorite-artists": "Favorite Artists",
     "favorite-tracks": "Lagu Favorit",
     "library": "Pustaka Lokal",
     "lyrics": "Lirik",
@@ -39,9 +40,9 @@
     "best-new-albums": "Album baru terbaik",
     "best-new-tracks": "Lagu baru terbaik",
     "genres": "Genre",
-    "lastfm-title": "Lagu Teratas dari LastFm.",
     "news": "Berita",
     "playcounts": "Jumlah pemutaran",
+    "popular-track-title": "Lagu Teratas dari Deezer",
     "title": "Judul",
     "top": "Lagu Teratas"
   },
@@ -58,6 +59,11 @@
     "empty": "Belum ada album favorit",
     "empty-help": "Album yang kamu favoritkan akan muncul di sini!",
     "header": "Album favorit kamu"
+  },
+  "favorite-artists": {
+    "empty": "No favorite artists",
+    "empty-help": "Try adding some artists to favorites and they will appear here!",
+    "header": "Your favorite artists"
   },
   "favorites": {
     "artist": "Musisi",
@@ -119,12 +125,17 @@
     "error-empty-data": "Empty data",
     "error-invalid-data": "Invalid data",
     "error-open-file": "Can not open file",
+    "error-save-file": "Can not save file",
+    "export-button": "Export playlist (JSON)",
+    "export-fail-title": "Playlist export fail",
+    "export-success-title": "Playlist exported successfully",
     "header": "Your playlists",
     "import-button": "Import from file (JSON)",
     "import-fail-title": "Playlist import fail",
     "import-success-title": "Playlist imported successfully",
     "play-selected-tracks-now": "Play selected now",
     "playlist-created": "{{name}} created",
+    "playlist-exported": "{{name}} saved to local file",
     "queue": "Add playlist to queue",
     "rename": "Ubah nama daftar putar",
     "songs": "{{total}} lagu",

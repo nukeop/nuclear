@@ -166,6 +166,41 @@ describe('Artist view container', () => {
     ]);
   });
 
+  it('should add artist to favorites after clicking the heart', async () => {
+    const { component, store } = mountComponent();
+    let state = store.getState();
+    expect(state.favorites.artists).toEqual([]);
+
+    await waitFor(() => component.getByTestId(/add-remove-favorite/i).click());
+    state = store.getState();
+
+    expect(state.favorites.artists).toEqual([
+      expect.objectContaining({
+        id: 'test-artist-id',
+        name: 'test artist'
+      })
+    ]);
+  });
+
+  it('should remove artist from favorites after clicking the star if already in favorites', async () => {
+    const { component, store } = mountComponent();
+    let state = store.getState();
+    expect(state.favorites.artists).toEqual([]);
+
+    await waitFor(() => component.getByTestId(/add-remove-favorite/i).click());
+    state = store.getState();
+    expect(state.favorites.artists).toEqual([
+      expect.objectContaining({
+        id: 'test-artist-id',
+        name: 'test artist'
+      })
+    ]);
+
+    await waitFor(() => component.getByTestId(/add-remove-favorite/i).click());
+    state = store.getState();
+    expect(state.favorites.artists).toEqual([]);
+  });
+
   const mountComponent = (initialStore?: AnyProps) => {
     const initialState = initialStore ||
       buildStoreState()

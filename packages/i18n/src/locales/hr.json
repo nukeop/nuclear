@@ -16,6 +16,7 @@
     "downloads": "Preuzimanja",
     "equalizer": "Ekvalizator",
     "favorite-albums": "Omiljeni albumi",
+    "favorite-artists": "Favorite Artists",
     "favorite-tracks": "Omiljene pjesme",
     "library": "Lokalna knjižnica",
     "lyrics": "Tekstovi pjesama",
@@ -39,9 +40,9 @@
     "best-new-albums": "Najbolji novi albumi",
     "best-new-tracks": "Najbolje nove pjesme",
     "genres": "Žanrovi",
-    "lastfm-title": "Top pjesme sa LastFm-a.",
     "news": "Novosti",
     "playcounts": "Broj sviranja",
+    "popular-track-title": "Top pjesme sa LastFm-a.",
     "title": "Naslov",
     "top": "Top pjesme"
   },
@@ -58,6 +59,11 @@
     "empty": "Nema omiljenih albuma",
     "empty-help": "Dodaj neke albume u omiljene i oni će se pojaviti ovdje!",
     "header": "Tvoji omiljeni albumi"
+  },
+  "favorite-artists": {
+    "empty": "No favorite artists",
+    "empty-help": "Try adding some artists to favorites and they will appear here!",
+    "header": "Your favorite artists"
   },
   "favorites": {
     "artist": "Izvođač",
@@ -119,12 +125,17 @@
     "error-empty-data": "Empty data",
     "error-invalid-data": "Invalid data",
     "error-open-file": "Can not open file",
+    "error-save-file": "Can not save file",
+    "export-button": "Export playlist (JSON)",
+    "export-fail-title": "Playlist export fail",
+    "export-success-title": "Playlist exported successfully",
     "header": "Your playlists",
     "import-button": "Import from file (JSON)",
     "import-fail-title": "Playlist import fail",
     "import-success-title": "Playlist imported successfully",
     "play-selected-tracks-now": "Play selected now",
     "playlist-created": "{{name}} created",
+    "playlist-exported": "{{name}} saved to local file",
     "queue": "Dodaj popis za reprodukciju u red za reprodukciju",
     "rename": "Preimenuj ovaj popis za reprodukciju",
     "songs_0": "{{total}} songs",

@@ -157,7 +157,7 @@ class App extends React.PureComponent {
               src={this.props.settings.compactMenuBar ? logoIcon : logoImg}
             />
             <div className={styles.version_string}>
-              {this.props.settings.compactMenuBar ? '0.6.15' : 'Version 0.6.15'}
+              {this.props.settings.compactMenuBar ? '0.6.16' : 'Version 0.6.16'}
             </div>
           </div>
           <div className={styles.sidebar_menus}>
@@ -178,6 +178,7 @@ class App extends React.PureComponent {
               this.renderMenuCategory('collection', [
                 { name: 'favorite-albums', path: 'favorites/albums', icon: 'dot circle' },
                 { name: 'favorite-tracks', path: 'favorites/tracks', icon: 'music' },
+                { name: 'favorite-artists', path: 'favorites/artists', icon: 'user' },
                 { name: 'library', path: 'library', icon: 'file audio outline' },
                 { name: 'playlists', path: 'playlists', icon: 'list alternate outline' }
               ])

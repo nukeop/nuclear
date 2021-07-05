@@ -39,7 +39,7 @@ const ChartsTab: React.FC<ChartsTabProps> = ({
         )}
       >
         <div className='popular_tracks_header'>
-          <h3>{t('lastfm-title')}</h3>
+          <h3>{t('popular-track-title')}</h3>
           <AddAllButton
             t={t}
             handleAddAll={addAllToQueue}
