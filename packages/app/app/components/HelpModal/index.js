@@ -88,7 +88,7 @@ const HelpModal = ({
 export default compose(
   withHandlers({
     handleMastodonClick: () => () => electron.shell.openExternal('https://mstdn.io/@nuclear'),
-    handleGithubClick: () => link => electron.shell.openExternal(_.defaultTo(link, 'https://github.com/nukeop/nuclear')),
+    handleGithubClick: () => () => electron.shell.openExternal('https://github.com/nukeop/nuclear'),
     handleTwitterClick: () => () => electron.shell.openExternal('https://twitter.com/nuclear_player'),
     handleAuthorClick: () => () => electron.shell.openExternal('https://github.com/nukeop'),
     handleDiscordClick: () => () => electron.shell.openExternal('https://discord.gg/JqPjKxE'),
