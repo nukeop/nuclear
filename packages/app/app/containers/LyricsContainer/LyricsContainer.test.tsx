@@ -33,7 +33,12 @@ describe('Lyrics container', () => {
       },
       queue: {
         currentSong: 0,
-        queueItems: [{}]
+        queueItems: [
+          {
+            name: 'test track',
+            artist: 'test artist'
+          }
+        ]
       }
     });
 

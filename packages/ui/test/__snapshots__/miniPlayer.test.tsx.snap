@@ -32,15 +32,22 @@ exports[`(Snapshot) Mini player should render correctly 1`] = `
       </div>
     </div>
     <div
-      class="mini_track_info"
+      class="mini_track_all"
     >
       <div
-        class="mini_cover"
+        class="mini_track_info"
       >
-        <img
-          src="https://i.imgur.com/4euOws2.jpg"
-        />
+        <div
+          class="mini_cover"
+        >
+          <img
+            src="https://i.imgur.com/4euOws2.jpg"
+          />
+        </div>
       </div>
+      <div
+        class="lyrics_box"
+      />
     </div>
     <div
       class="seekbar_wrapper"
