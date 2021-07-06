@@ -138,9 +138,8 @@
     "playlist-exported": "{{name}} saved to local file",
     "queue": "Add playlist to queue",
     "rename": "Premenovať tento playlist",
-    "songs_0": "{{total}} songs",
-    "songs_1": "{{total}} songs",
-    "songs_2": "{{total}} songs",
+    "songs": "{{total}} song",
+    "songs_plural": "{{total}} songs",
     "title": "Názov",
     "tracks-selected-plural": "tracks selected",
     "tracks-selected-singular": "track selected"

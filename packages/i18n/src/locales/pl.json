@@ -138,9 +138,8 @@
     "playlist-exported": "{{name}} saved to local file",
     "queue": "Dodaj playlistę do kolejki",
     "rename": "Zmień nazwę tej playlisty",
-    "songs_0": "{{total}} songs",
-    "songs_1": "{{total}} songs",
-    "songs_2": "{{total}} songs",
+    "songs": "{{total}} song",
+    "songs_plural": "{{total}} songs",
     "title": "Tytuł",
     "tracks-selected-plural": "zaznaczone utwory",
     "tracks-selected-singular": "zaznaczony utwór"
