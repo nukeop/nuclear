@@ -6,13 +6,13 @@ import artPlaceholder from '../../../../resources/media/art_placeholder.png';
 
 import { TrackInfoProps } from '../../TrackInfo';
 
-export type MiniTrackInfoProps = Omit<TrackInfoProps, 'onTrackClick' | 'onArtistClick'> & {lyricsComponent: any};
+export type MiniTrackInfoProps = Omit<TrackInfoProps, 'onTrackClick' | 'onArtistClick'> & {lyricsElement: any};
 
 const MiniTrackInfo: React.FC<MiniTrackInfoProps> = ({
   cover = artPlaceholder as unknown as string,
   track,
   artist,
-  lyricsComponent,
+  lyricsElement,
   addToFavorites,
   removeFromFavorites,
   isFavorite = false,
@@ -47,7 +47,7 @@ const MiniTrackInfo: React.FC<MiniTrackInfoProps> = ({
       }
     </div>
     <div className={styles.lyrics_box}>
-      {lyricsComponent}
+      {lyricsElement}
     </div>
   </div>
 );

@@ -45,7 +45,7 @@ const MiniPlayerContainer: React.FC = () => {
         style={{
           zIndex: isMiniPlayerEnabled && 1000
         }}
-        lyricsComponent={
+        lyricsElement={
           <LyricsView
             showHeader={false}
             trackName={track?.name}
