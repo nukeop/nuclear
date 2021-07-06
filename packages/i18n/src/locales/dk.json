@@ -138,6 +138,8 @@
     "playlist-exported": "{{name}} saved to local file",
     "queue": "Tilføj afspilningsliste til kø",
     "rename": "Omdøb denne afspilningsliste",
+    "songs": "{{total}} song",
+    "songs_plural": "{{total}} songs",
     "title": "Titel",
     "tracks-selected-plural": "tracks selected",
     "tracks-selected-singular": "track selected"

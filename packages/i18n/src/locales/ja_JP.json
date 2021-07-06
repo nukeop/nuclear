@@ -139,6 +139,7 @@
     "queue": "Add playlist to queue",
     "rename": "Rename this playlist",
     "songs": "{{total}} song",
+    "songs_plural": "{{total}} songs",
     "title": "Title",
     "tracks-selected-plural": "tracks selected",
     "tracks-selected-singular": "track selected"

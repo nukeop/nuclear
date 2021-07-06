@@ -139,6 +139,7 @@
     "queue": "Add playlist to queue",
     "rename": "Ubah nama daftar putar",
     "songs": "{{total}} lagu",
+    "songs_plural": "{{total}} songs",
     "title": "Judul",
     "tracks-selected-plural": "tracks selected",
     "tracks-selected-singular": "track selected"

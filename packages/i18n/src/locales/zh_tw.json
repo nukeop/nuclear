@@ -139,6 +139,7 @@
     "queue": "將播放列表新增到播放清單",
     "rename": "重命名播放列表",
     "songs": "{{total}} 首歌",
+    "songs_plural": "{{total}} songs",
     "title": "音樂標題",
     "tracks-selected-plural": "音軌已選中",
     "tracks-selected-singular": "音軌已選中"

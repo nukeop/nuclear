@@ -139,6 +139,7 @@
     "queue": "Thêm playlist vào hàng chờ",
     "rename": "Đổi tên playlist",
     "songs": "{{total}} bài hát",
+    "songs_plural": "{{total}} songs",
     "title": "Tên bài hát",
     "tracks-selected-plural": "bài hát đã chọn",
     "tracks-selected-singular": "bài hát đã chọn"

@@ -138,6 +138,8 @@
     "playlist-exported": "{{name}} saved to local file",
     "queue": "Προσθέστε την λίστα στην λίστα αναπαραγωγής",
     "rename": "Μετονομασία λίστας",
+    "songs": "{{total}} song",
+    "songs_plural": "{{total}} songs",
     "title": "Τίτλος",
     "tracks-selected-plural": "tracks selected",
     "tracks-selected-singular": "track selected"

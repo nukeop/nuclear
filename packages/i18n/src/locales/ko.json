@@ -139,6 +139,7 @@
     "queue": "재생 목록에 플레이리스트 추가",
     "rename": "플레이리스트 제목 수정",
     "songs": "{{total}} 곡",
+    "songs_plural": "{{total}} songs",
     "title": "제목",
     "tracks-selected-plural": "tracks selected",
     "tracks-selected-singular": "track selected"
