@@ -5,7 +5,7 @@
     "download-toast-title": "Album añadido a descargas",
     "error-load": "Disculpa, este album no pudo ser cargado. Intenta de nuevo o abre un nuevo issue en Github Sorry",
     "genre": "Genero:",
-    "play": "Play",
+    "play": "Jugar",
     "queue": "Añadir a la cola",
     "tracks": "Pistas:",
     "year": "Año:"
@@ -16,16 +16,16 @@
     "downloads": "Descargas",
     "equalizer": "Ecualizador",
     "favorite-albums": "Álbumes favoritos",
-    "favorite-artists": "Favorite Artists",
+    "favorite-artists": "Artista favorito",
     "favorite-tracks": "Canciones favoritas",
     "library": "Librería Local",
     "lyrics": "Letras",
     "main": "Principal",
     "playlists": "Listas de reproducción",
-    "plugins": "Plugins",
+    "plugins": "Complementos",
     "search": "Búsqueda",
     "settings": "Ajustes",
-    "visualizer": "Visualizer"
+    "visualizer": "Visualizador"
   },
   "artist": {
     "count": "Contador",
@@ -61,9 +61,9 @@
     "header": "Tus álbumes favoritos"
   },
   "favorite-artists": {
-    "empty": "No favorite artists",
-    "empty-help": "Try adding some artists to favorites and they will appear here!",
-    "header": "Your favorite artists"
+    "empty": "No favorito",
+    "empty-help": "¡Intenta añadir algunos artistas favoritos y apareceran aqui!",
+    "header": "Tus artistas favoritos"
   },
   "favorites": {
     "artist": "Artista",
@@ -76,7 +76,7 @@
     "about": "Acerca de Nuclear Music Player",
     "header": "Reproductor de música de escritorio de fuentes libres",
     "released": "Distribuido bajo licencia AGPL-3.0",
-    "report": "Submit issues or new features",
+    "report": "Enviar problemas o nuevas caracteristicas",
     "thanks": "Agradecemos a todos nuestros contribuyentes en GitHub, su ayuda ha sido vital en la creación de este programa"
   },
   "input-dialog": {
@@ -90,8 +90,8 @@
     "empty-help": "Prueba añadir canciones con el botón de arriba",
     "filter-placeholder": "Filtro...",
     "header": "Librería local",
-    "no-search-results": "No search results",
-    "no-search-results-help": "No tracks found with the given name, album, or artist.",
+    "no-search-results": "No resultados de busqueda",
+    "no-search-results-help": "No se han encontrado pistas con el nombre, el álbum o el artista.",
     "title": "Título"
   },
   "lyrics": {
@@ -103,7 +103,7 @@
   "option-control": {
     "autoradio": "Autoradio",
     "loop": "Bucle",
-    "mini-player": "Miniplayer",
+    "mini-player": "Minireproductor",
     "shuffle": "Aleatorio"
   },
   "player": {
@@ -112,28 +112,28 @@
     "previous-button": "Botón de pista previa"
   },
   "playlists": {
-    "add-selected-tracks-to-downloads": "Add selected to downloads",
-    "add-selected-tracks-to-favorites": "Add selected to favorites",
-    "add-selected-tracks-to-queue": "Add selected to queue",
+    "add-selected-tracks-to-downloads": "Añadir seleccionado a descargas",
+    "add-selected-tracks-to-favorites": "Añadir seleccionado a favoritos",
+    "add-selected-tracks-to-queue": "Añadir seleccionado a la cola",
     "album": "Álbum",
     "artist": "Artista",
     "delete": "Eliminar esta Lista de reproducción",
     "dialog-placeholder": "Nombre de la lista de reproducción...",
-    "duration": "Length",
+    "duration": "Longitud",
     "empty": "No hay lista",
     "empty-help": "Try create some playlists or import by url and they will appear here!",
-    "error-empty-data": "Empty data",
-    "error-invalid-data": "Invalid data",
-    "error-open-file": "Can not open file",
-    "error-save-file": "Can not save file",
-    "export-button": "Export playlist (JSON)",
-    "export-fail-title": "Playlist export fail",
-    "export-success-title": "Playlist exported successfully",
-    "header": "Your playlists",
-    "import-button": "Import from file (JSON)",
-    "import-fail-title": "Playlist import fail",
-    "import-success-title": "Playlist imported successfully",
-    "play-selected-tracks-now": "Play selected now",
+    "error-empty-data": "Datos vacíos",
+    "error-invalid-data": "Datos inválidos",
+    "error-open-file": "No se puede abrir el archivo",
+    "error-save-file": "No se pudo guardar el archivo",
+    "export-button": "Exportar lista de reproducción (JSON",
+    "export-fail-title": "Error al exportar la lista de reproducción",
+    "export-success-title": "Lista de reproducción creada con éxito",
+    "header": "Tus listas de reproducción",
+    "import-button": "Importar desde el archivo (JSON)",
+    "import-fail-title": "Importe de lista de reproduccion fallida",
+    "import-success-title": "Lista de reproducción importada con éxito",
+    "play-selected-tracks-now": "Reproducir seleccionado ahora",
     "playlist-created": "{{name}} creada",
     "playlist-exported": "{{name}} guardada a un archivo local",
     "queue": "Añadir la lista a la cola",
@@ -145,8 +145,8 @@
     "tracks-selected-singular": "pista seleccionada"
   },
   "plugins": {
-    "add-a-plugin": "Add a plugin",
-    "header": "Plugins",
+    "add-a-plugin": "Añadir un plugin",
+    "header": "Complementos",
     "lyrics-providers": "Lyrics providers",
     "meta-providers": "Metadata providers",
     "placeholder": "Seleccione la fuente de música predeterminada:",
