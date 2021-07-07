@@ -46,7 +46,7 @@ const HelpModal = ({
             {t('header')}
           </Header>
           <p>
-            Copyright © <a href='#' onClick={handleAuthorClick}>nukeop</a>
+            Copyright © <a href='#' data-testid='author-link' onClick={handleAuthorClick}>nukeop</a>
             {` ${new Date().getFullYear()}, `}
             {t('released')}
           </p>
@@ -54,6 +54,7 @@ const HelpModal = ({
             {t('thanks')}
           </p>
           <Button
+            data-testid='issue-link'
             inverted
             onClick={handleReportIssueClick}
             content={t('report')}
@@ -65,14 +66,15 @@ const HelpModal = ({
       </Modal.Content>
       <Modal.Content>
         <div className={styles.social_icons}>
-          <Icon link size='big' name='twitter' onClick={handleTwitterClick} />
+          <Icon data-testid='twitter-link' link size='big' name='twitter' onClick={handleTwitterClick} />
           <div
+            data-testid='mastodon-link'
             className={cx(styles.mastodon, styles.icon)} 
             onClick={handleMastodonClick}
             dangerouslySetInnerHTML={{ __html: mastodonImg }}
           />
-          <Icon link size='big' name='discord' onClick={handleDiscordClick} />
-          <Icon link size='big' name='github' onClick={handleGithubClick} />
+          <Icon data-testid='discord-link' link size='big' name='discord' onClick={handleDiscordClick} />
+          <Icon data-testid='github-link'link size='big' name='github' onClick={handleGithubClick} />
         </div>
       </Modal.Content>
       <Modal.Content>
