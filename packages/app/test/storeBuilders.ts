@@ -14,6 +14,11 @@ export const buildStoreState = () => {
       artists: [],
       albums: []
     },
+    githubContrib: {
+      contributors: [],
+      loading: false,
+      error: false
+    },
     connectivity: false
   };
 
@@ -416,6 +421,18 @@ export const buildStoreState = () => {
           }]
         }
       };
+      return this as StoreStateBuilder;
+    },
+    withGithubContrib() {
+      state = {
+        ...state,
+        githubContrib: {
+          contributors: [],
+          loading: false,
+          error: false
+        }
+      };
+
       return this as StoreStateBuilder;
     },
     build() {
