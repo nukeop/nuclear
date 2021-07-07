@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Album view container should show help modal 1`] = `
+<DocumentFragment>
+  <div
+    class="navbar"
+  >
+    <div
+      class="nav_buttons"
+    >
+      <a
+        class="disable"
+        href="#"
+      >
+        <span
+          aria-hidden="true"
+          class="fa fa-chevron-left"
+        />
+      </a>
+      <a
+        class="disable"
+        href="#"
+      >
+        <span
+          aria-hidden="true"
+          class="fa fa-chevron-right"
+        />
+      </a>
+    </div>
+    <button
+      class="ui icon button help_button"
+      data-testid="help-button"
+    >
+      <i
+        aria-hidden="true"
+        class="question circle outline icon"
+      />
+    </button>
+  </div>
+</DocumentFragment>
+`;

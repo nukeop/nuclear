@@ -17,5 +17,10 @@ module.exports = {
         filePath: 'downloaded_playlist'
       }))
     }
+  },
+  shell: {
+    openExternal: jest.fn(async (link) => Promise.resolve({
+      link
+    }))
   }
 };
