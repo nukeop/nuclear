@@ -17,8 +17,8 @@
     "equalizer": "均衡器",
     "favorite-albums": "收藏的专辑",
     "favorite-artists": "最喜欢的艺术家",
-    "favorite-tracks": "喜欢的音乐",
-    "library": "本地音乐",
+    "favorite-tracks": "收藏的曲目",
+    "library": "本地曲库",
     "lyrics": "歌词",
     "main": "主界面",
     "playlists": "播放列表",
@@ -29,7 +29,7 @@
   },
   "artist": {
     "count": "播放次数",
-    "queue": "添加所有曲目至播放列表",
+    "queue": "将全部歌曲添加到播放列表",
     "similar": "相似的艺术家",
     "title": "标题",
     "tour": "巡回演出"
@@ -40,19 +40,17 @@
     "best-new-albums": "最佳新专辑",
     "best-new-tracks": "最佳新曲目",
     "genres": "流派",
-    "lastfm-title": "来自 Deezer 的热门曲目",
     "news": "消息",
     "playcounts": "播放次数",
-    "title": "标题",
-    "news": "消息",
     "popular-track-title": "Deezer 的最新单曲 ",
+    "title": "标题",
     "top": "排行榜"
   },
   "downloads": {
     "clear": "清除已完成的曲目",
     "completion": "完成",
     "empty": "下载列表为空",
-    "empty-help": "把歌曲添加到你的下载列表中,然后你就会在这里看到!",
+    "empty-help": "把歌曲添加到你的下载列表中，然后你就会在这里看到！",
     "header": "下载",
     "name": "名字",
     "status": "状态"
@@ -63,15 +61,15 @@
     "header": "收藏的专辑"
   },
   "favorite-artists": {
-    "empty": "No favorite artists",
-    "empty-help": "Try adding some artists to favorites and they will appear here!",
-    "header": "Your favorite artists"
+    "empty": "没有最喜欢的艺术家",
+    "empty-help": "尝试添加一些艺术家到收藏列表，然后他们将在这里显示！",
+    "header": "你最喜欢的艺术家"
   },
   "favorites": {
     "artist": "艺术家",
     "empty": "还没有收藏",
     "empty-help": "收藏的曲目将出现在这里，试试看！",
-    "header": "你喜欢的曲目",
+    "header": "您收藏的歌曲",
     "title": "标题"
   },
   "help": {
@@ -97,7 +95,7 @@
     "title": "音乐标题"
   },
   "lyrics": {
-    "by-artist": "由 {{artist}}",
+    "by-artist": "作者 {{artist}}",
     "empty": "没有正在播放的音乐。",
     "empty-help": "请添加一些音乐到播放列表中使这里能够显示歌词！",
     "not-found": "这首歌未找到歌词"
@@ -131,7 +129,7 @@
     "export-button": "导出播放列表 (JSON)",
     "export-fail-title": "导出播放列表失败",
     "export-success-title": "成功导出播放列表",
-    "header": "播放列表",
+    "header": "您的播放列表",
     "import-button": "从文件 (JSON) 导入",
     "import-fail-title": "导入播放列表失败",
     "import-success-title": "成功导入播放列表",
