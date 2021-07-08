@@ -47,7 +47,11 @@ exports[`(Snapshot) Mini player should render correctly 1`] = `
       </div>
       <div
         class="lyrics_box"
-      />
+      >
+        <div>
+          test lyrics
+        </div>
+      </div>
     </div>
     <div
       class="seekbar_wrapper"
