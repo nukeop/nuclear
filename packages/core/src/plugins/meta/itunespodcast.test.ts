@@ -1,5 +1,5 @@
 import iTunesPodcastMetaProvider from './itunespodcast';
-import * as iTunesMocks from '../../__mocks__/iTunesPodcastMocks';
+import * as iTunesMocks from './metaMocks/iTunesPodcastMocks';
 import { Track } from '../..';
 
 describe('iTunes podcast metaprovider tests', () => {

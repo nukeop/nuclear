@@ -1,5 +1,5 @@
 import iTunesMusicMetaProvider from './itunesmusic';
-import * as iTunesMocks from '../../__mocks__/iTunesMusicMocks';
+import * as iTunesMocks from './metaMocks/iTunesMusicMocks';
 import Track from '../../structs/Track';
 
 describe('iTunes music metaprovider tests', () => {
