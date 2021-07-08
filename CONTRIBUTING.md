@@ -44,10 +44,12 @@ Please include the following with each issue:
   * **Note:** Because the developers need to copy and paste the code snippet, including a code snippet as a media file (i.e. .gif) is not sufficient.
 
 
-## Contributing Fixes
+## Contributing Code
 
 If you are interested in writing code to fix issues or add features, 
-please see How to [Contribute](https://github.com/nukeop/nuclear/wiki/Contributing) in the wiki.
+please see How to [Contribute](https://nukeop.gitbook.io/nuclear/contributing/contribution-guidelines) in the docs.
+
+We also appreciate [converting existing JS code to Typescript](https://nukeop.gitbook.io/nuclear/contributing/converting-to-typescript), and raising test coverage.
 
 # Thank You!
 
