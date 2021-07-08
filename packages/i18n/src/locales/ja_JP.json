@@ -2,8 +2,8 @@
   "album": {
     "download": "Download",
     "download-toast-content": "{{artist}} - {{title}} has been added to downloads.",
-    "download-toast-title": "Album added to downloads",
-    "error-load": "Sorry, this album could not be loaded. Try again later or open a new issue on Github",
+    "download-toast-title": "アルバムをダウンロードに追加しました",
+    "error-load": "申し訳ありませんが、このアルバムを読み込むことができませんでした。後でもう一度試すか、Github で新しい問題を開いてください。",
     "genre": "Genre:",
     "play": "Play",
     "queue": "Add album to queue",
@@ -16,6 +16,7 @@
     "downloads": "Downloads",
     "equalizer": "Equalizer",
     "favorite-albums": "Favorite Albums",
+    "favorite-artists": "Favorite Artists",
     "favorite-tracks": "Favorite Tracks",
     "library": "Local Library",
     "lyrics": "Lyrics",
@@ -39,9 +40,9 @@
     "best-new-albums": "Best new albums",
     "best-new-tracks": "Best new tracks",
     "genres": "Genres",
-    "lastfm-title": "Top Tracks from Deezer",
     "news": "News",
     "playcounts": "Playcounts",
+    "popular-track-title": "Top Tracks from Deezer",
     "title": "Title",
     "top": "Top Tracks"
   },
@@ -58,6 +59,11 @@
     "empty": "No favorite albums",
     "empty-help": "Try adding some albums to favorites and they will appear here!",
     "header": "Your favorite albums"
+  },
+  "favorite-artists": {
+    "empty": "No favorite artists",
+    "empty-help": "Try adding some artists to favorites and they will appear here!",
+    "header": "Your favorite artists"
   },
   "favorites": {
     "artist": "Artist",
