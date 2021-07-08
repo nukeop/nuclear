@@ -3,7 +3,7 @@ import _ from 'lodash';
 
 import { StreamData, StreamQuery } from '../plugins.types';
 import StreamProviderPlugin from '../streamProvider';
-import * as iTunes from '../../rest/iTunesPodcast';
+import * as iTunes from '../../rest/iTunes';
 
 class iTunesPodcastPlugin extends StreamProviderPlugin {
   constructor() {

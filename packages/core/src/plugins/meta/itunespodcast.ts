@@ -1,7 +1,7 @@
 import _ from 'lodash';
 
 import MetaProvider from '../metaProvider';
-import * as iTunes from '../../rest/iTunesPodcast';
+import * as iTunes from '../../rest/iTunes';
 import { 
   SearchResultsArtist, 
   SearchResultsAlbum, 
