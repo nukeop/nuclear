@@ -21,5 +21,5 @@ export { Deezer };
 import * as Mastodon from './Mastodon';
 export { Mastodon };
 
-import * as iTunesPodcast from './iTunesPodcast';
-export { iTunesPodcast };
+import * as iTunes from './iTunes';
+export { iTunes };
