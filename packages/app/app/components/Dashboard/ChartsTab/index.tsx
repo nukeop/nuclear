@@ -62,10 +62,9 @@ const ChartsTab: React.FC<ChartsTabProps> = ({
                 <TrackRow
                   key={'popular-track-row-' + index}
                   track={track}
-                  index={'popular-track-' + index}
                   displayCover
                   displayArtist
-                  withFavorites
+                  withAddToFavorites
                 />
               );
             })}

@@ -149,7 +149,6 @@ export const AlbumView: React.FC<AlbumViewProps> = ({
                   return (!track.type || track.type === 'track') ? <TrackRow
                     key={'album-track-row-' + index}
                     track={track}
-                    index={'album-track-' + index}
                     displayTrackNumber
                     displayDuration
                   /> : <TrackRowHeading title={track.title} key={'album-track-heading-' + index} />;
