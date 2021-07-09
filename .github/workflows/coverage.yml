@@ -6,7 +6,7 @@ on:
       - crowdin
   pull_request:
     branches-ignore:
-    - crowdin
+      - crowdin
 
 jobs:
   coverage:
