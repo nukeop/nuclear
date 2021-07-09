@@ -1,6 +1,12 @@
 name: Generate coverage
 
-on: [push, pull_request]
+on: 
+  push:
+    branches-ignore:
+      - crowdin
+  pull_request:
+    branches-ignore:
+    - crowdin
 
 jobs:
   coverage:
