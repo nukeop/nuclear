@@ -1,75 +1,75 @@
 {
   "album": {
-    "download": "Download",
-    "download-toast-content": "{{artist}} - {{title}} has been added to downloads.",
+    "download": "ダウンロード",
+    "download-toast-content": "{{artist}} - {{title}} がダウンロードに追加されました。",
     "download-toast-title": "アルバムをダウンロードに追加しました",
-    "error-load": "申し訳ありませんが、このアルバムを読み込むことができませんでした。後でもう一度試すか、Github で新しい問題を開いてください。",
-    "genre": "Genre:",
-    "play": "Play",
-    "queue": "Add album to queue",
-    "tracks": "Tracks:",
-    "year": "Year:"
+    "error-load": "申し訳ありませんが、このアルバムを読み込むことができませんでした。後でもう一度試すか、Github に新しいissueを立ててください。",
+    "genre": "ジャンル:",
+    "play": "再生",
+    "queue": "アルバムをキューに追加",
+    "tracks": "トラック:",
+    "year": "年:"
   },
   "app": {
-    "collection": "Collection",
-    "dashboard": "Dashboard",
-    "downloads": "Downloads",
-    "equalizer": "Equalizer",
-    "favorite-albums": "Favorite Albums",
-    "favorite-artists": "Favorite Artists",
-    "favorite-tracks": "Favorite Tracks",
-    "library": "Local Library",
-    "lyrics": "Lyrics",
-    "main": "Main",
-    "playlists": "Playlists",
-    "plugins": "Plugins",
-    "search": "Search Results",
-    "settings": "Settings",
-    "visualizer": "Visualizer"
+    "collection": "コレクション",
+    "dashboard": "ダッシュボード",
+    "downloads": "ダウンロード",
+    "equalizer": "イコライザー",
+    "favorite-albums": "お気に入りのアルバム",
+    "favorite-artists": "お気に入りのアーティスト",
+    "favorite-tracks": "お気に入りのトラック",
+    "library": "ローカルライブラリ",
+    "lyrics": "歌詞",
+    "main": "メイン",
+    "playlists": "プレイリスト",
+    "plugins": "プラグイン",
+    "search": "検索結果",
+    "settings": "設定",
+    "visualizer": "ビジュアライザー"
   },
   "artist": {
-    "count": "Play counts",
-    "queue": "Add all tracks to queue",
-    "similar": "Similar artists",
-    "title": "Title",
+    "count": "再生回数",
+    "queue": "すべてのトラックをキューに追加",
+    "similar": "類似のアーティスト",
+    "title": "タイトル",
     "tour": "On tour"
   },
   "dashboard": {
-    "artist": "Artist",
+    "artist": "アーティスト",
     "best": "Best new music",
     "best-new-albums": "Best new albums",
     "best-new-tracks": "Best new tracks",
-    "genres": "Genres",
-    "news": "News",
-    "playcounts": "Playcounts",
-    "popular-track-title": "Top Tracks from Deezer",
-    "title": "Title",
-    "top": "Top Tracks"
+    "genres": "ジャンル",
+    "news": "お知らせ",
+    "playcounts": "再生回数",
+    "popular-track-title": "Deezerの人気の曲",
+    "title": "タイトル",
+    "top": "人気の曲"
   },
   "downloads": {
-    "clear": "Clear finished tracks",
+    "clear": "終了したトラックを消去",
     "completion": "Completion",
-    "empty": "Downloads are empty.",
-    "empty-help": "Add something to your download queue and you'll see it here!",
-    "header": "Downloads",
-    "name": "Name",
-    "status": "Status"
+    "empty": "ダウンロードは空です。",
+    "empty-help": "ダウンロードキューに何かを追加すると、ここに表示されます！",
+    "header": "ダウンロード",
+    "name": "名前",
+    "status": "ステータス"
   },
   "favorite-albums": {
-    "empty": "No favorite albums",
-    "empty-help": "Try adding some albums to favorites and they will appear here!",
-    "header": "Your favorite albums"
+    "empty": "お気に入りのアルバムがありません",
+    "empty-help": "お気に入りにアルバムを追加すると、ここに表示されます！",
+    "header": "お気に入りのアルバム"
   },
   "favorite-artists": {
-    "empty": "No favorite artists",
-    "empty-help": "Try adding some artists to favorites and they will appear here!",
-    "header": "Your favorite artists"
+    "empty": "お気に入りのアーティストがありません",
+    "empty-help": "お気に入りにアーティストを追加すると、ここに表示されます！",
+    "header": "お気に入りのアーティスト"
   },
   "favorites": {
-    "artist": "Artist",
-    "empty": "No favorites added",
-    "empty-help": "Try favoriting some tracks and they will appear here!",
-    "header": "Your favorite tracks",
+    "artist": "アーティスト",
+    "empty": "お気に入りはありません",
+    "empty-help": "曲をお気に入りにすると、ここに表示されます！",
+    "header": "お気に入りの曲",
     "title": "Title"
   },
   "help": {
