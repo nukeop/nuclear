@@ -4,6 +4,7 @@ import {
   ADD_QUEUE_ITEM,
   REMOVE_QUEUE_ITEM,
   UPDATE_QUEUE_ITEM,
+  PLAY_NEXT_ITEM,
   CLEAR_QUEUE,
   NEXT_SONG,
   PREVIOUS_SONG,
@@ -150,6 +151,17 @@ const reduceUpdateQueueItem = (state, action) => {
   };
 };
 
+const reduceAddPlayNextItem = (state, action) => {
+  return {
+    ...state,
+    queueItems: [
+      ...state.queueItems.slice(0, 1), 
+      action.payload.item,
+      ...state.queueItems.slice(1)
+    ]
+  };
+};
+
 export default function QueueReducer(state = initialState, action) {
   switch (action.type) {
   case ADD_QUEUE_ITEM:
@@ -164,6 +176,8 @@ export default function QueueReducer(state = initialState, action) {
     return reduceRemoveFromQueue(state, action);
   case UPDATE_QUEUE_ITEM:
     return reduceUpdateQueueItem(state, action);
+  case PLAY_NEXT_ITEM:
+    return reduceAddPlayNextItem(state, action);
   case CLEAR_QUEUE:
     return { ...state, queueItems: [] };
   case NEXT_SONG:

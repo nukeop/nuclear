@@ -28,9 +28,9 @@ export const AddAllButton: React.FC<AddAllButtonProps> = ({
       href='#'
       onClick={handleAddAll}
       className={styles.add_button}
-      aria-label={t('queue')}
+      aria-label={t('add-all')}
     >
-      <FontAwesome name='plus' /> Add all
+      <FontAwesome name='plus' /> {t('add-all')}
     </Button>
   );
 };

@@ -99,7 +99,7 @@ exports[`Artist view container should display an artist 1`] = `
               Popular tracks 
             </div>
             <a
-              aria-label="Add all tracks to queue"
+              aria-label="add-all"
               class="ui primary button add_button"
               href="#"
               role="button"
@@ -108,7 +108,7 @@ exports[`Artist view container should display an artist 1`] = `
                 aria-hidden="true"
                 class="fa fa-plus"
               />
-               Add all
+               add-all
             </a>
             <table
               class="popular_tracks_table"
