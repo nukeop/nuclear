@@ -16,7 +16,6 @@
     "downloads": "Downloads",
     "equalizer": "Equalizer",
     "favorite-albums": "Favorite Albums",
-    "favorite-artists": "Favorite Artists",
     "favorite-tracks": "Favorite Tracks",
     "library": "Local Library",
     "lyrics": "Lyrics",
@@ -40,9 +39,9 @@
     "best-new-albums": "Best new albums",
     "best-new-tracks": "Best new tracks",
     "genres": "Genres",
+    "lastfm-title": "Top Tracks from Deezer",
     "news": "News",
     "playcounts": "Playcounts",
-    "popular-track-title": "Top Tracks from Deezer",
     "title": "Title",
     "top": "Top Tracks"
   },
@@ -59,11 +58,6 @@
     "empty": "No favorite albums",
     "empty-help": "Try adding some albums to favorites and they will appear here!",
     "header": "Your favorite albums"
-  },
-  "favorite-artists": {
-    "empty": "No favorite artists",
-    "empty-help": "Try adding some artists to favorites and they will appear here!",
-    "header": "Your favorite artists"
   },
   "favorites": {
     "artist": "Artist",
@@ -177,14 +171,18 @@
   },
   "search": {
     "album": "Album",
+    "album_plural": "Albums",
     "artist": "Artist",
+    "artist_plural": "Artists",
     "clear-history": "Clear history",
     "empty": "Nothing found.",
     "last-searches": "Last searches",
     "placeholder": "Search...",
     "playlist": "Playlist",
+    "playlist_plural": "Playlists",
     "queue-add": "Add all tracks to queue",
     "track": "Track",
+    "track_plural": "Tracks",
     "you-can-search-for": "You can search for:"
   },
   "seekbar": {
