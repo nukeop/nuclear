@@ -17,18 +17,31 @@ export type TrackPopupProps = {
     name: string;
   }>;
 
+  strings?: TrackPopupStrings;
+
   withAddToQueue?: boolean;
   withPlayNow?: boolean;
+  withPlayNext?: boolean;
   withAddToFavorites?: boolean;
   withAddToPlaylist?: boolean;
   withAddToDownloads?: boolean;
 
   onAddToQueue?: () => void;
+  onPlayNext?: () => void;
   onPlayNow?: () => void;
   onAddToFavorites?: () => void;
-  onAddToPlaylist?: ({name: string}) => void;
+  onAddToPlaylist?: ({ name: string }) => void;
   onAddToDownloads?: () => void;
 };
+
+export type TrackPopupStrings = {
+  textAddToQueue: string;
+  textPlayNow: string;
+  textPlayNext: string;
+  textAddToFavorites: string;
+  textAddToPlaylist: string;
+  textAddToDownloads: string;
+}
 
 const TrackPopup: React.FC<TrackPopupProps> = ({
   trigger,
@@ -39,54 +52,69 @@ const TrackPopup: React.FC<TrackPopupProps> = ({
 
   withAddToQueue=true,
   withPlayNow=true,
+  withPlayNext=true,
   withAddToFavorites=true,
   withAddToPlaylist=true,
   withAddToDownloads=true,
+  strings={
+    textAddToQueue: 'Add to queue',
+    textPlayNow: 'Play now',
+    textPlayNext: 'Play next',
+    textAddToFavorites: 'Add to favorites',
+    textAddToPlaylist: 'Add to playlist',
+    textAddToDownloads: 'Download'
+  },
   onAddToQueue,
+  onPlayNext,
   onPlayNow,
   onAddToFavorites,
   onAddToPlaylist,
   onAddToDownloads
-}) => (
+}) => 
   <ContextPopup
     trigger={trigger}
     artist={artist}
     title={title}
     thumb={thumb}
   >
-    {
-      withAddToQueue &&
+    {withAddToQueue && (
       <PopupButton
         onClick={onAddToQueue}
         ariaLabel='Add track to queue'
         icon='plus'
-        label='Add to queue'
+        label={strings.textAddToQueue}
       />
-    }
+    )}
 
-    {
-      withPlayNow &&
+    {withPlayNext && (
+      <PopupButton
+        onClick={onPlayNext}
+        ariaLabel='Add track to play next'
+        icon='play'
+        label={strings.textPlayNext}
+      />
+    )}
+
+    {withPlayNow && (
       <PopupButton
         onClick={onPlayNow}
         ariaLabel='Play this track now'
         icon='play'
-        label='Play now'
+        label={strings.textPlayNow}
       />
-    }
+    )}
 
-    {
-      withAddToFavorites &&
+    {withAddToFavorites && (
       <PopupButton
         onClick={onAddToFavorites}
         ariaLabel='Add this track to favorites'
         icon='heart'
-        label='Add to favorites'
+        label={strings.textAddToFavorites}
       />
-    }
+    )}
 
-    {
-      withAddToPlaylist && Boolean(playlists) && 
-      <PopupDropdown text='Add to playlist'>
+    {withAddToPlaylist && Boolean(playlists) && (
+      <PopupDropdown text={strings.textAddToPlaylist}>
         {_.map(playlists, (playlist, i) => (
           <Dropdown.Item
             key={i}
@@ -97,18 +125,16 @@ const TrackPopup: React.FC<TrackPopupProps> = ({
           </Dropdown.Item>
         ))}
       </PopupDropdown>
-    }
+    )}
 
-    {
-      withAddToDownloads &&
+    {withAddToDownloads && (
       <PopupButton
         onClick={onAddToDownloads}
         ariaLabel='Download this track'
         icon='download'
-        label='Download'
+        label={strings.textAddToDownloads}
       />
-    }
-  </ContextPopup>
-);
+    )}
+  </ContextPopup>;
 
 export default TrackPopup;

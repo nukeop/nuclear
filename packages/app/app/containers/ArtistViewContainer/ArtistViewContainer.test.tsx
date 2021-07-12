@@ -147,7 +147,7 @@ describe('Artist view container', () => {
 
   it('should add all top to queue tracks after clicking add all', async () => {
     const { component, store } = mountComponent();
-    await waitFor(() => component.getByText(/add all/i).click());
+    await waitFor(() => component.getByText(/add-all/i).click());
 
     const state = store.getState();
     expect(state?.queue?.queueItems).toEqual([

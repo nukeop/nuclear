@@ -74,8 +74,11 @@ class SearchResults extends React.Component {
       );
     } else {
       return (
-        <Tab.Pane loading={this.props.unifiedSearchStarted} attached={false}>
-          <div className={styles.pane_container}>Nothing found.</div>
+        <Tab.Pane
+          loading={this.props.unifiedSearchStarted}
+          attached={false}
+        >
+          <div className={styles.pane_container}>{this.props.t('empty')}</div>
         </Tab.Pane>
       );
     }

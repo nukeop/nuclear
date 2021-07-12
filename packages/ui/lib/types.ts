@@ -9,3 +9,5 @@ export type Track = {
   name?: string;
   thumbnail?: string;
 };
+
+export { ContextPopupProps } from './components/ContextPopup';

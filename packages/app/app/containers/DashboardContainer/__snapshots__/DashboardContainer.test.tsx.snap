@@ -353,7 +353,7 @@ exports[`Dashboard container should display top tracks after going to top tracks
                 Top Tracks from Deezer
               </h3>
               <a
-                aria-label="queue"
+                aria-label="Add all"
                 class="ui primary button add_button"
                 href="#"
                 role="button"

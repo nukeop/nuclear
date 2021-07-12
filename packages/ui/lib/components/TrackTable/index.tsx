@@ -163,7 +163,7 @@ const TrackTable: React.FC<TrackTableProps> = ({
                         {...provided.draggableProps}
                         {...provided.dragHandleProps}
                       >
-                        {row.cells.map(cell => (cell.render('Cell', extraProps)))}
+                        {row.cells.map((cell, i) => (cell.render('Cell', {...extraProps, key: i})))}
                       </tr>
                     )}
                   </Draggable>
