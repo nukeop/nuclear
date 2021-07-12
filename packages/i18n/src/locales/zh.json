@@ -40,10 +40,12 @@
     "best-new-albums": "最佳新专辑",
     "best-new-tracks": "最佳新曲目",
     "genres": "流派",
+    "lastfm-title": "来自 Deezer 的热门曲目",
     "news": "消息",
     "playcounts": "播放次数",
-    "popular-track-title": "Deezer 的最新单曲 ",
     "title": "标题",
+    "news": "消息",
+    "popular-track-title": "Deezer 的最新单曲 ",
     "top": "排行榜"
   },
   "downloads": {
@@ -139,7 +141,7 @@
     "queue": "添加播放列表到播放队列",
     "rename": "重命名播放列表",
     "songs": "{{total}} 首歌",
-    "songs_plural": "{{total}} songs",
+    "songs_plural": "{{total}} 首歌曲",
     "title": "音乐标题",
     "tracks-selected-plural": "曲目已选中",
     "tracks-selected-singular": "曲目已选中"
@@ -177,14 +179,18 @@
   },
   "search": {
     "album": "专辑",
+    "album_plural": "专辑",
     "artist": "艺人",
+    "artist_plural": "艺术家",
     "clear-history": "清除历史记录",
     "empty": "未找到任何内容。",
     "last-searches": "最近搜索记录",
     "placeholder": "搜索...",
     "playlist": "播放列表",
+    "playlist_plural": "播放列表",
     "queue-add": "将全部歌曲添加到播放列表",
     "track": "音乐标题",
+    "track_plural": "曲目",
     "you-can-search-for": "你可以搜索："
   },
   "seekbar": {
