@@ -2,15 +2,16 @@ import React from 'react';
 import { render } from '@testing-library/react';
 
 import { AnyProps, setupI18Next, TestStoreProvider } from '../../../test/testUtils';
-import LyricsContainer from '.';
+import MiniPlayerContainer from '.';
 
-describe('Lyrics container', () => {
+describe('miniplayer container', () => {
   beforeAll(() => {
     setupI18Next();
   });
 
   it('should say nothing is playing if there are no tracks in the queue', () => {
     const component = mountComponent({
+      settings: {miniPlayer: true},
       queue: {}
     });
 
@@ -22,12 +23,13 @@ describe('Lyrics container', () => {
     const component = mountComponent();
 
     expect(component.getByText('test track')).toBeTruthy();
-    expect(component.getByText('by test artist')).toBeTruthy();
+    expect(component.getByText('test artist')).toBeTruthy();
     expect(component.getByText('test song lyrics')).toBeTruthy();
   });
 
   it('should say lyrics could not be found if they are not downloaded', () => {
     const component = mountComponent({
+      settings: {miniPlayer: true},
       lyrics: {
         lyricsSearchResults: {}
       },
@@ -41,31 +43,33 @@ describe('Lyrics container', () => {
         ]
       }
     });
-
     expect(component.getByText('No lyrics were found for this song.')).toBeTruthy();
   });
 
   const mountComponent = (initialStore?: AnyProps) => {
-    const component = render(<TestStoreProvider
-      initialState={initialStore ?? {
-        lyrics: {
-          lyricsSearchResults: {
-            type: 'test song lyrics'
-          }
-        },
-        queue: {
-          currentSong: 0,
-          queueItems: [
-            {
-              name: 'test track',
-              artist: 'test artist'
+    
+    const component = render(
+      <TestStoreProvider
+        initialState={initialStore ?? {
+          settings: {miniPlayer: true},
+          lyrics: {
+            lyricsSearchResults: {
+              type: 'test song lyrics'
             }
-          ]
-        }
-      }}
-    >
-      <LyricsContainer />
-    </TestStoreProvider>);
+          },
+          queue: {
+            currentSong: 0,
+            queueItems: [
+              {
+                name: 'test track',
+                artist: 'test artist'
+              }
+            ]
+          }
+        }}
+      >)
+        <MiniPlayerContainer/>
+      </TestStoreProvider>);
     return component;
   };
 });

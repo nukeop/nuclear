@@ -1,5 +1,11 @@
 import React from 'react';
 import { MiniPlayer } from '@nuclear/ui';
+import _ from 'lodash';
+import { useSelector } from 'react-redux';
+
+import LyricsView from '../../components/LyricsView';
+import { lyricsSelectors } from '../../selectors/lyrics';
+import { queue as queueSelector } from '../../selectors/queue';
 
 import {
   usePlayerControlsProps,
@@ -10,6 +16,14 @@ import {
 import { useMiniPlayerSettings } from './hooks';
 
 const MiniPlayerContainer: React.FC = () => {
+
+  const lyricsSearchResults = useSelector(lyricsSelectors.lyricsSearchResults);
+  const queue = useSelector(queueSelector);
+  const track = _.get(
+    queue.queueItems,
+    queue.currentSong
+  );
+
   const seekbarProps = useSeekbarProps();
   const playerControlsProps = usePlayerControlsProps();
   const trackInfoProps = useTrackInfoProps();
@@ -31,6 +45,14 @@ const MiniPlayerContainer: React.FC = () => {
         style={{
           zIndex: isMiniPlayerEnabled && 1000
         }}
+        lyricsElement={
+          <LyricsView
+            showHeader={false}
+            trackName={track?.name}
+            trackArtist={track?.artist}
+            lyricsSearchResults={lyricsSearchResults as { type: string }}
+          />
+        }
       />
     )
     : null;
