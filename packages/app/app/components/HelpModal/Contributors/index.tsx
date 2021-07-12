@@ -1,12 +1,27 @@
 import React from 'react';
+import electron from 'electron';
 import { Loader, Card, Image } from 'semantic-ui-react';
 import styles from './styles.scss';
 
-const Contributors = ({
+export type GithubContributorData = {
+  total: number;
+  author: {
+    id: string;
+    html_url: string;
+    avatar_url: string;
+    login: string;
+  };
+};
+export type ContributorProps = {
+  loading: boolean;
+  error: boolean;
+  contributors: Array<GithubContributorData>;
+};
+
+const Contributors: React.FC<ContributorProps> = ({
   loading,
   error,
-  contributors,
-  handleGithubClick
+  contributors = []
 }) => {
   if (loading) {
     return <Loader className={styles.contributors_loader} />;
@@ -15,6 +30,8 @@ const Contributors = ({
   if (error) {
     return <div className={styles.contributors_error}>There was an error loading contributors from Github</div>;
   }
+
+  const handleGithubClick = (link: string) => link && electron.shell.openExternal(link);
 
   const top10 = contributors.sort((a, b) => b.total - a.total).slice(0, 10).map((contributor) => {
     return (
@@ -45,10 +62,6 @@ const Contributors = ({
       {top10}
     </Card.Group>
   );
-};
-
-Contributors.defaultProps = {
-  contributors: []
 };
 
 export default Contributors;
