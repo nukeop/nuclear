@@ -62,13 +62,14 @@ https://nuclearmusic.rtfd.io/
 
 Di seguito è riportato un elenco di pacchetti dei vari gestori, la maggior parte dei quali sono gestiti da parti terze. Vorremmo ringraziare i manutentori per il loro lavoro.
 
-| Package type   | Link                                                    | Maintainer                                    |
-|:--------------:|:-------------------------------------------------------:|:---------------------------------------------:|
-| AUR (Arch)     | https://aur.archlinux.org/packages/nuclear-player-bin/  | [mikelpint](https://github.com/mikelpint)     |
-| Choco (Win)    | https://chocolatey.org/packages/nuclear/                | [JourneyOver](https://github.com/JourneyOver) |
-| Homebrew (Mac) | https://formulae.brew.sh/cask/nuclear                   | Homebrew                                      |
-| Snap           | https://snapcraft.io/nuclear                            | [nukeop](https://github.com/nukeop)           |
-| Flatpak        | https://flathub.org/apps/details/org.js.nuclear.Nuclear | [advaithm](https://github.com/advaithm)       |
+| Package type   | Link                                                               | Maintainer                                    |
+|:--------------:|:------------------------------------------------------------------:|:---------------------------------------------:|
+| AUR (Arch)     | https://aur.archlinux.org/packages/nuclear-player-bin/             | [mikelpint](https://github.com/mikelpint)     |
+| Choco (Win)    | https://chocolatey.org/packages/nuclear/                           | [JourneyOver](https://github.com/JourneyOver) |
+| GURU (Gentoo)  | https://github.com/gentoo/guru/tree/master/media-sound/nuclear-bin | [scardracs](https://github.com/scardracs)     |
+| Homebrew (Mac) | https://formulae.brew.sh/cask/nuclear                              | Homebrew                                      |
+| Snap           | https://snapcraft.io/nuclear                                       | [nukeop](https://github.com/nukeop)           |
+| Flatpak        | https://flathub.org/apps/details/org.js.nuclear.Nuclear            | [advaithm](https://github.com/advaithm)       |
 
 Grazie mille a [ayyeve](https://github.com/ayyEve) per avermi (advaithm) permesso di usare il suo server come macchina di compilazione.
 ## Traduzioni
@@ -86,12 +87,12 @@ Nuclear è già stato tradotto in diverse lingue e siamo sempre alla ricerca di 
 | Russian              | [ramstore07](https://github.com/ramstore07), [dmtrshat](https://github.com/dmtrshat)                 |
 | Brazilian Portuguese | [JoaoPedroMoraes](https://github.com/JoaoPedroMoraes)                                                |
 | Turkish              | [3DShark](https://github.com/3DShark)                                                                |
-| Italian              | [gello94](https://github.com/gello94)                                                                |
+| Italian              | [gello94](https://github.com/gello94), [scardracs](https://github.com/scardracs)                     |
 | Slovak               | [MartinT](https://github.com/MartinTuroci)                                                           |
 | Czech                | [PetrTodorov](https://github.com/PetrTodorov)                                                        |
 | Tagalog              | [giftofgrub](https://github.com/giftofgrub)                                                          |
 | Traditional Chinese  | [oxygen-TW](https://github.com/oxygen-TW)                                                            |
-| Swedish              | [PalleKarlsson](https://github.com/PalleKarlsson), [nonew-star](https://github.com/nonew-star)                                                    |
+| Swedish              | [PalleKarlsson](https://github.com/PalleKarlsson), [nonew-star](https://github.com/nonew-star)       |
 | Greek                | [Shuin-San](https://github.com/Shuin-San)                                                            |
 
 ## Processo di sviluppo
