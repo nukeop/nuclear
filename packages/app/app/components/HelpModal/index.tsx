@@ -1,10 +1,9 @@
 import React, { useState, useCallback } from 'react';
-import electron from 'electron';
 import cx from 'classnames';
 import { Button, Header, Image, Modal, Icon } from 'semantic-ui-react';
 import { useTranslation } from 'react-i18next';
 
-import Contributors, { ContributorProps } from './Contributors';
+import Contributors, { ContributorState } from './Contributors';
 
 import HelpButton from '../HelpButton';
 import { agplDisclaimer } from './const';
@@ -14,25 +13,30 @@ import mastodonImg from '../../../resources/media/mastodon.svg';
 import styles from './styles.scss';
 
 export type HelpModalProps = {
-  githubContrib: ContributorProps;
+  githubContrib: ContributorState;
+  handleOpenExternalLink: (link:string) => void;
+  handleMastodonClick: () => void;
+  handleGithubClick: () => void;
+  handleTwitterClick: () => void;
+  handleAuthorClick: () => void;
+  handleDiscordClick: () => void;
+  handleReportIssueClick: () => void;
 }
 
 const HelpModal: React.FC<HelpModalProps> = ({
-  githubContrib
+  githubContrib,
+  handleOpenExternalLink,
+  handleMastodonClick,
+  handleGithubClick,
+  handleTwitterClick,
+  handleAuthorClick,
+  handleDiscordClick,
+  handleReportIssueClick
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const handleOpen = useCallback(() => setIsOpen(true), []);
   const handleClose = useCallback(() => setIsOpen(false), []);
   const { t } = useTranslation('help');
-
-  const handleMastodonClick = () => electron.shell.openExternal('https://mstdn.io/@nuclear');
-  const handleGithubClick = () => electron.shell.openExternal('https://github.com/nukeop/nuclear');
-  const handleTwitterClick = () => electron.shell.openExternal('https://twitter.com/nuclear_player');
-  const handleAuthorClick = () => electron.shell.openExternal('https://github.com/nukeop');
-  const handleDiscordClick = () => electron.shell.openExternal('https://discord.gg/JqPjKxE');
-  const handleReportIssueClick = () => electron.shell.openExternal(
-    'https://github.com/nukeop/nuclear/issues/new?assignees=&labels=bug&template=bug_report.md&title='
-  );
 
   return (
     <Modal
@@ -111,6 +115,7 @@ const HelpModal: React.FC<HelpModalProps> = ({
           </Header>
           <Contributors
             {...githubContrib}
+            handleOpenExternalLink={handleOpenExternalLink}
           />
         </div>
       </Modal.Content>
