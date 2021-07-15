@@ -57,7 +57,7 @@
     "pitchfork-bnm": "^1.0.3",
     "react": "^16.14.0",
     "react-base-table": "^1.9.2",
-    "react-beautiful-dnd": "^11.0.0",
+    "react-beautiful-dnd": "^13.1.0",
     "react-dom": "^16.14.0",
     "react-fontawesome": "^1.6.1",
     "react-full-screen": "^1.0.1",
