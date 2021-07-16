@@ -35,7 +35,7 @@
     "tour": "On tour"
   },
   "dashboard": {
-    "add-all": "Add all",
+    "add-all": "添加所有",
     "artist": "音乐家",
     "best": "最佳新曲",
     "best-new-albums": "最佳新专辑",
@@ -63,14 +63,14 @@
   },
   "favorite-artists": {
     "empty": "冇收藏艺术家",
-    "empty-help": "Try adding some artists to favorites and they will appear here!",
-    "header": "Your favorite artists"
+    "empty-help": "试下将一啲艺术家加到收藏入面啦！",
+    "header": "钟意嘅艺术家"
   },
   "favorites": {
     "artist": "Artist",
     "empty": "No favorites added",
     "empty-help": "Try favoriting some tracks and they will appear here!",
-    "header": "Your favorite tracks",
+    "header": "钟意嘅单曲",
     "title": "Title"
   },
   "help": {
@@ -78,7 +78,7 @@
     "header": "Desktop music player for streaming from free sources",
     "released": "released under AGPL-3.0",
     "report": "Submit issues or new features",
-    "thanks": "Many thanks to our contributors on Github, your help was vital in creating this program."
+    "thanks": "多谢我哋喺Github嘅贡献者，你哋嘅帮助对呢个项目非常重要。"
   },
   "input-dialog": {
     "cancel": "Cancel"
