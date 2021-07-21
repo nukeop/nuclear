@@ -74,7 +74,6 @@ Here's a list of packages for various managers, some of which are maintained by 
 |:--------------:|:------------------------------------------------------------------:|:--------------------------------------------:|:---------------------------------------------:|
 | AUR (Arch)     | https://aur.archlinux.org/packages/nuclear-player-bin/             | [nukeop](https://github.com/nukeop)          | yay -s nuclear-player-bin                     |
 | AUR (Arch)     | https://aur.archlinux.org/packages/nuclear-player-git              | [nukeop](https://github.com/nukeop)          | yay -s nuclear-player-git                     |
-| GURU (Gentoo)  | https://github.com/gentoo/guru/tree/master/media-sound/nuclear-bin | [scardracs](https://github.com/scardracs)    | add guru repo and emerge --ask nuclear-bin    |
 | Choco (Win)    | https://chocolatey.org/packages/nuclear/                           | [JourneyOver](https://github.com/JourneyOver)| choco install nuclear                         |
 | GURU (Gentoo)  | https://github.com/gentoo/guru/tree/master/media-sound/nuclear-bin | [scardracs](https://github.com/scardracs)    | emerge nuclear-bin                            |
 | Homebrew (Mac) | https://formulae.brew.sh/cask/nuclear                              | Homebrew                                     | brew install --cask nuclear                   |
