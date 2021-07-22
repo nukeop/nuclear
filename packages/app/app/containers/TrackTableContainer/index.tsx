@@ -49,6 +49,10 @@ const TrackTableContainer: React.FC<TrackTableContainerProps> = ({
     dispatch(queueActions.playTrack(null, track));
   }, [dispatch]);
 
+  const onPlayNext = useCallback((track: Track) => {
+    dispatch(queueActions.playNext(track));
+  }, [dispatch]);
+
   const onPlayAll = useCallback((tracks: Track[]) => {
     dispatch(queueActions.clearQueue());
     dispatch(queueActions.addPlaylistTracksToQueue(tracks));
@@ -86,6 +90,26 @@ const TrackTableContainer: React.FC<TrackTableContainerProps> = ({
     onReorder(source.index, destination.index);
   }, [onReorder]);
 
+  const popupTranstation = useTranslation('track-popup').t;
+  const popupStrings = {
+    textAddToQueue: popupTranstation('add-to-queue'),
+    textPlayNow: popupTranstation('play-now'),
+    textPlayNext: popupTranstation('play-next'),
+    textAddToFavorites: popupTranstation('add-to-favorite'),
+    textAddToPlaylist: popupTranstation('add-to-playlist'),
+    textAddToDownloads: popupTranstation('download')
+  };
+
+  const trackTableTranslation = useTranslation('track-table').t;
+  const trackTableStrings = {
+    addSelectedTracksToQueue: trackTableTranslation('add-selected-tracks-to-queue'),
+    addSelectedTracksToDownloads: trackTableTranslation('add-selected-tracks-to-downloads'),
+    addSelectedTracksToFavorites: trackTableTranslation('add-selected-tracks-to-favorites'),
+    playSelectedTracksNow: trackTableTranslation('play-selected-tracks-now'),
+    tracksSelectedLabelSingular: trackTableTranslation('tracks-selected-label-singular'),
+    tracksSelectedLabelPlural: trackTableTranslation('tracks-selected-label-plural')
+  };
+
   return <TrackTable
     {...settings}
     tracks={tracks}
@@ -95,17 +119,11 @@ const TrackTableContainer: React.FC<TrackTableContainerProps> = ({
     titleHeader={t('title')}
     albumHeader={t('album')}
     durationHeader={t('duration')}
-    strings={{
-      addSelectedTracksToQueue: 'Add selected to queue',
-      addSelectedTracksToDownloads: 'Add selected to downloads',
-      addSelectedTracksToFavorites: 'Add selected to favorites',
-      playSelectedTracksNow: 'Play selected now',
-      tracksSelectedLabelSingular: 'track selected',
-      tracksSelectedLabelPlural: 'tracks selected'
-    }}
+    strings={trackTableStrings}
     playlists={playlists}
     onAddToQueue={onAddToQueue}
     onPlay={onPlayNow}
+    onPlayNext={onPlayNext}
     onPlayAll={onPlayAll}
     onAddToFavorites={onAddToFavorites}
     onRemoveFromFavorites={onRemoveFromFavorites}
@@ -113,6 +131,7 @@ const TrackTableContainer: React.FC<TrackTableContainerProps> = ({
     onAddToPlaylist={onAddToPlaylist}
     onDelete={onDelete}
     onDragEnd={Boolean(onReorder) && onDragEnd}
+    popupActionStrings={popupStrings}
 
     isTrackFavorite={isTrackFavorite}
   />;

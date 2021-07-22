@@ -1,4 +1,5 @@
 import { Track } from '../../types';
+import { TrackPopupStrings } from '../TrackPopup';
 
 export enum TrackTableColumn {
   Delete = 'delete',
@@ -14,6 +15,7 @@ export enum TrackTableColumn {
 
 export type TrackTableExtraProps = {
   onPlay?: (track: Track) => void;
+  onPlayNext?: (track: Track) => void;
   onPlayAll?: (tracks: Track[]) => void;
   onAddToQueue?: (track: Track) => void;
   onAddToFavorites?: (track: Track) => void;
@@ -24,6 +26,7 @@ export type TrackTableExtraProps = {
   playlists?: Array<{
     name: string;
   }>;
+  popupActionStrings?: TrackPopupStrings
 }
 
 export type TrackTableStrings = {

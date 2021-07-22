@@ -3,9 +3,12 @@ import PropTypes from 'prop-types';
 export const trackShape = PropTypes.shape({
   name: PropTypes.string.isRequired,
   mbid: PropTypes.string,
-  artist: PropTypes.shape({
-    name: PropTypes.string
-  }).isRequired,
+  artist: PropTypes.oneOfType([
+    PropTypes.shape({
+      name: PropTypes.string
+    }),
+    PropTypes.string
+  ]).isRequired,
   url: PropTypes.string,
   image: PropTypes.arrayOf(PropTypes.shape({
     '#text': PropTypes.string,
