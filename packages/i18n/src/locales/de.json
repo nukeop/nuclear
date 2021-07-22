@@ -5,7 +5,7 @@
     "download-toast-title": "Album zu Downloads hinzugefügt",
     "error-load": "Leider konnte dieses Album nicht geladen werden. Versuchen Sie es später erneut oder öffnen Sie ein neues Problem auf Github",
     "genre": "Genre:",
-    "play": "Play",
+    "play": "Abspielen",
     "queue": "Album zur Warteschlange hinzufügen",
     "tracks": "Lieder:",
     "year": "Jahr:"
@@ -20,12 +20,12 @@
     "favorite-tracks": "Lieblingslieder",
     "library": "Lokale Bibliothek",
     "lyrics": "Liedtext",
-    "main": "Haupt",
+    "main": "Start",
     "playlists": "Wiedergabelisten",
     "plugins": "Plugins",
     "search": "Suchergebnisse",
     "settings": "Einstellungen",
-    "visualizer": "Visualizer"
+    "visualizer": "Visualisierung"
   },
   "artist": {
     "count": "Spielen Zählt",
@@ -35,7 +35,7 @@
     "tour": "Auf Tour"
   },
   "dashboard": {
-    "add-all": "Add all",
+    "add-all": "Alle hinzufügen",
     "artist": "Künstler",
     "best": "Beste neue Musik",
     "best-new-albums": "Beste neue Alben",
@@ -103,8 +103,8 @@
   },
   "option-control": {
     "autoradio": "Autoradio",
-    "loop": "Loop",
-    "mini-player": "Miniplayer",
+    "loop": "Wiederholen",
+    "mini-player": "Mini-Player",
     "shuffle": "Zufallswiedergabe"
   },
   "player": {
@@ -169,7 +169,7 @@
     "favorite-add": "Zu den Favoriten hinzufügen",
     "header": "Warteschlange",
     "header-track": "Aktueller Lied",
-    "id": "Stream ID:",
+    "id": "Stream-ID:",
     "loading": "Stream wird noch geladen.",
     "playlist-add": "Zur Wiedergabeliste hinzufügen",
     "playlist-toast-content": "Wiedergabeliste {{name}} wurde erstellt",
@@ -183,14 +183,14 @@
     "artist_plural": "Künstler",
     "clear-history": "Verlauf löschen",
     "empty": "Nichts gefunden.",
-    "last-searches": "Last searches",
+    "last-searches": "Vorherige Suchanfragen",
     "placeholder": "Suchen...",
     "playlist": "Wiedergabeliste",
     "playlist_plural": "Wiedergabelisten",
     "queue-add": "Alle Lieder zur Warteschlange hinzufügen",
     "track": "Lied",
     "track_plural": "Lieder",
-    "you-can-search-for": "You can search for:"
+    "you-can-search-for": "Du kannst suchen nach:"
   },
   "seekbar": {
     "segment-popup": "Musikvideoteile ohne Musik"
@@ -204,8 +204,8 @@
     "autoradio-description": "Fügt gleiche Lieder automatisch hinzu, falls die Warteschlange leer wird",
     "compact-menu-bar": "Verwenden Sie einen kompakten Stil für die Menüleiste",
     "compact-queue-bar": "Verwenden Sie einen kompakten Stil für die Warteschlangenleiste",
-    "developer": "Developer settings",
-    "devtools": "Developer tools",
+    "developer": "Entwicklereinstellungen",
+    "devtools": "Entwickler-Tools",
     "disable-gpu": "Hardware-Rendering deaktivieren (könnte Probleme mit ziehenden Elementen und blinkenden Bildschirmen beheben)",
     "display": "Anzeige",
     "downloads": "Downloads",
@@ -213,12 +213,12 @@
     "downloads-dir": "Downloadordner",
     "downloads-dir-button": "Ordner festlegen...",
     "enable-api": "Aktiviere die API",
-    "fmfav-btn": "Import",
+    "fmfav-btn": "Importieren",
     "fmfav-msg": "Importiere deine Last.fm Favoriten",
     "frameless-window": "Rahmenloses Fenster (erfordert Neustart)",
     "github-connect": "Mit Github einloggen",
     "github-description": "Melden Sie sich über Github an, um Ihre Playlists online erstellen und freigeben zu können (kommende Funktion).",
-    "github-title": "Github",
+    "github-title": "GitHub",
     "http": "HTTP API",
     "invidious-url": "Invidious Instanz Url",
     "language": "Sprache",
@@ -230,14 +230,14 @@
     "login": "Log-in",
     "logout": "Log-out",
     "loop-after-queue-end": "Loop nach dem Ende der Warteschlange",
-    "mastodon-authorization-token-label": "Authorization token",
+    "mastodon-authorization-token-label": "Authentifizierungstoken",
     "mastodon-authorize": "Autorisieren",
     "mastodon-authorized": "Nuclear is authorized to post on ",
-    "mastodon-awaiting-authorization": "Nuclear is registered on {{instanceUrl}}. Awaiting authorization.",
+    "mastodon-awaiting-authorization": "Nuclear ist auf {{instanceUrl}} registriert. Warte auf Autorisierung.",
     "mastodon-description": "",
-    "mastodon-instance-label": "Mastodon instance URL",
-    "mastodon-post-format-description": "Nuclear will post a status on Mastodon after each track completes playing. The above string will be the template for each post, with {{artist}} and {{title}} replaced with the artist and title of the track.",
-    "mastodon-post-format-label": "Post format",
+    "mastodon-instance-label": "Mastodon-Instanz-URL",
+    "mastodon-post-format-description": "Nuclear wird nach jedem abgespielten Lied einen Status auf Mastodon posten. Der obere Text dient als Vorlage für diese Posts. {{artist}} und {{title}} werden durch den Interpreten und Titel des Liedes ersetzt.",
+    "mastodon-post-format-label": "Post-Vorlage",
     "mastodon-title": "",
     "max.downloads": "Download control",
     "mini-player": "Mini-Player-Stil verwenden",
@@ -253,8 +253,8 @@
     "streaming": "Streamen",
     "track-duration": "Laufzeit über der Suchleiste anzeigen",
     "user": "Benutzer:",
-    "youtube": "Youtube",
-    "yt-api-key": "Youtube API Key"
+    "youtube": "YouTube",
+    "yt-api-key": "YouTube API-Schlüssel"
   },
   "tags": {
     "albums": "Beliebte Alben",
@@ -265,26 +265,26 @@
     "title": "Titel"
   },
   "track-popup": {
-    "add-to-favorite": "Add to favorites",
-    "add-to-playlist": "Add to playlist",
-    "add-to-queue": "Add to queue",
-    "download": "Download",
-    "download-toast-body": "{{artist}} - {{track}} has been added to downloads.",
-    "download-toast-title": "Track added to downloads",
-    "favorite-toast-body": "{{artist}} - {{track}} has been added to favorites.",
-    "favorite-toast-title": "Favorite track added",
-    "play-next": "Play next",
-    "play-now": "Play now",
-    "playlist-toast-body": "{{artist}} - {{track}} has been added to playlist.",
-    "playlist-toast-title": "Track added to playlist"
+    "add-to-favorite": "Zu den Favoriten hinzufügen",
+    "add-to-playlist": "Zur Playlist hinzufügen",
+    "add-to-queue": "Zur Warteschlange hinzufügen",
+    "download": "Herunterladen",
+    "download-toast-body": "{{artist}} - {{track}} wurde zu den Downloads hinzugefügt.",
+    "download-toast-title": "Lied zu den Downloads hinzugefügt",
+    "favorite-toast-body": "{{artist}} - {{track}} wurde zu den Favoriten hinzugefügt.",
+    "favorite-toast-title": "Lieblingslied hinzugefügt",
+    "play-next": "Als Nächstes abspielen",
+    "play-now": "Jetzt abspielen",
+    "playlist-toast-body": "{{artist}} - {{track}} wurde zur Playlist hinzugefügt.",
+    "playlist-toast-title": "Lied zur Playlist hinzugefügt"
   },
   "track-table": {
-    "add-selected-tracks-to-queue": "Add selected to queue",
-    "add-selected-tracks-to-downloads": "Add selected to downloads",
-    "add-selected-tracks-to-favorites": "Add selected to favorites",
-    "play-selected-tracks-now": "Play selected now",
-    "tracks-selected-label-singular": "track selected",
-    "tracks-selected-label-plural": "tracks selected"
+    "add-selected-tracks-to-queue": "Auswahl zur Warteschlange hinzufügen",
+    "add-selected-tracks-to-downloads": "Auswahl zu den Downloads hinzufügen",
+    "add-selected-tracks-to-favorites": "Auswahl zu den Favoriten hinzufügen",
+    "play-selected-tracks-now": "Auswahl jetzt abspielen",
+    "tracks-selected-label-singular": "Lied ausgewählt",
+    "tracks-selected-label-plural": "Lieder ausgewählt"
   },
   "visualizer": {
     "exit-fullscreen": "Drücken Sie ESC, um den Vollbildmodus zu beenden"
