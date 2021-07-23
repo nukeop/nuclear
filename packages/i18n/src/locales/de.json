@@ -51,7 +51,7 @@
     "clear": "Entferne fertige Lieder",
     "completion": "Fertig",
     "empty": "Downloads sind leer.",
-    "empty-help": "Füge etwas zu deiner Download-Warteschlange hinzu und du wirst es hier sehen!",
+    "empty-help": "Füge etwas zu deiner heruntergeladenen Warteschlange hinzu und du wirst es hier sehen!",
     "header": "Downloads",
     "name": "Name",
     "status": "Status"
@@ -232,7 +232,7 @@
     "loop-after-queue-end": "Loop nach dem Ende der Warteschlange",
     "mastodon-authorization-token-label": "Authentifizierungstoken",
     "mastodon-authorize": "Autorisieren",
-    "mastodon-authorized": "Nuclear is authorized to post on ",
+    "mastodon-authorized": "Nuclear besitzt nicht die erforderlichen Rechte um etwas hinzuzufügen ",
     "mastodon-awaiting-authorization": "Nuclear ist auf {{instanceUrl}} registriert. Warte auf Autorisierung.",
     "mastodon-description": "",
     "mastodon-instance-label": "Mastodon-Instanz-URL",
