@@ -3,12 +3,12 @@
     "download": "Hämta",
     "download-toast-content": "{{artist}} - {{title}} har lagts till i hämtningar.",
     "download-toast-title": "Albumet tillagt i hämtningar",
-    "error-load": "Sorry, this album could not be loaded. Try again later or open a new issue on Github",
+    "error-load": "Tyvärr, det här albumet kunde inte läsas in. Försök igen senare eller öppna en ny rapport på GitHub",
     "genre": "Genre:",
-    "play": "Play",
+    "play": "Spela",
     "queue": "Lägg till albumet i kön",
     "tracks": "Spår:",
-    "year": "Year:"
+    "year": "År:"
   },
   "app": {
     "collection": "Samlingar",
@@ -61,9 +61,9 @@
     "header": "Dina favoritalbum"
   },
   "favorite-artists": {
-    "empty": "No favorite artists",
-    "empty-help": "Try adding some artists to favorites and they will appear here!",
-    "header": "Your favorite artists"
+    "empty": "Inga favoritartister",
+    "empty-help": "Försök lägga till några artister till favoriter och de kommer att visas här!",
+    "header": "Dina favoritartister"
   },
   "favorites": {
     "artist": "Artist",
@@ -125,27 +125,27 @@
     "error-empty-data": "Tomma data",
     "error-invalid-data": "Ogiltiga data",
     "error-open-file": "Kan inte öppna filen",
-    "error-save-file": "Can not save file",
-    "export-button": "Export playlist (JSON)",
-    "export-fail-title": "Playlist export fail",
-    "export-success-title": "Playlist exported successfully",
+    "error-save-file": "Kan inte spara fil",
+    "export-button": "Exportera spellista (JSON)",
+    "export-fail-title": "Export av spellista misslyckades",
+    "export-success-title": "Export av spellista lyckades",
     "header": "Dina spellistor",
     "import-button": "Importera från fil (JSON)",
-    "import-fail-title": "Importering av spellista misslyckades",
-    "import-success-title": "Spellistan importerades",
+    "import-fail-title": "Import av spellista misslyckades",
+    "import-success-title": "Import av spellistan lyckades",
     "play-selected-tracks-now": "Spela valda nu",
     "playlist-created": "{{name}} skapad",
-    "playlist-exported": "{{name}} saved to local file",
+    "playlist-exported": "{{name}} sparad till lokal fil",
     "queue": "Lägg till spellistan i kö",
     "rename": "Byt namn på spellista",
     "songs": "{{total}} spår",
     "songs_plural": "{{total}} spår",
     "title": "Titel",
     "tracks-selected-plural": "spår valda",
-    "tracks-selected-singular": "spår vald"
+    "tracks-selected-singular": "spår valt"
   },
   "plugins": {
-    "add-a-plugin": "Lägg till ett plugin",
+    "add-a-plugin": "Lägg till en insticksmodul",
     "header": "Insticksmodul",
     "lyrics-providers": "Låttextsleverantör",
     "meta-providers": "Metadataleverantör",
