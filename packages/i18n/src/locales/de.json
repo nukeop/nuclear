@@ -3,7 +3,7 @@
     "download": "Heruntergeladen",
     "download-toast-content": "{{artist}} - {{title}} wurde zu Downloads hinzugefügt.",
     "download-toast-title": "Album zu Downloads hinzugefügt",
-    "error-load": "Leider wird dieses Album nicht angezeigt. Versuchen Sie es später erneut oder öffnen Sie bei erneutem Aufritt, ein neues Problem auf Github",
+    "error-load": "Leider konnte dieses Album nicht geladen werden. Versuchen Sie es später erneut oder öffnen Sie ein neues Problem auf Github",
     "genre": "Art:",
     "play": "Abspielen",
     "queue": "Album zur Warteschlange hinzufügen",
