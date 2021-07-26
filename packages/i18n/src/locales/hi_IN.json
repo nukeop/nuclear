@@ -35,6 +35,7 @@
     "tour": "दौरे पर"
   },
   "dashboard": {
+    "add-all": "सभी जोड़ें",
     "artist": "कलाकार",
     "best": "सर्वश्रेष्ठ नए संगीत",
     "best-new-albums": "सर्वश्रेष्ठ नए एल्बम",
@@ -262,6 +263,28 @@
     "duration": "अवधि",
     "queue-add": "सभी ट्रैक कतार में जोड़ें",
     "title": "शीर्षक"
+  },
+  "track-popup": {
+    "add-to-favorite": "पसंदीदा में जोड़े",
+    "add-to-playlist": "प्‍लेलिस्‍ट में जोड़ें",
+    "add-to-queue": "सूची में जोड़े",
+    "download": "डाउनलोड",
+    "download-toast-body": "{{artist}} - {{track}} को डाउनलोड में जोड़ा गया है |",
+    "download-toast-title": "ट्रैक डाउनलोड में जोड़ा गया",
+    "favorite-toast-body": "{{artist}} - {{track}} को पसंदीदा में जोड़ा गया है |",
+    "favorite-toast-title": "पसंदीदा ट्रैक जोड़ा गया |",
+    "play-next": "अगला चलाएँ",
+    "play-now": "अभी चलायें",
+    "playlist-toast-body": "{{artist}} - {{track}} को प्लेलिस्ट में जोड़ा गया है |",
+    "playlist-toast-title": "ट्रैक प्लेलिस्ट में जोड़ा गया"
+  },
+  "track-table": {
+    "add-selected-tracks-to-queue": "चयनित को कतार में जोड़ें",
+    "add-selected-tracks-to-downloads": "चयनित को डाउनलोड में जोड़ें",
+    "add-selected-tracks-to-favorites": "चयनित को प्रिय में जोड़ें",
+    "play-selected-tracks-now": "चयनितो को अभी प्ले करें",
+    "tracks-selected-label-singular": "चयनित ट्रैक",
+    "tracks-selected-label-plural": "चयनित ट्रैक"
   },
   "visualizer": {
     "exit-fullscreen": "फुलस्क्रीन मोड से बाहर निकलने के लिए Esc दबाएं।"
