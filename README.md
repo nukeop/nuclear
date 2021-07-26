@@ -75,37 +75,16 @@ Here's a list of packages for various managers, some of which are maintained by 
 | AUR (Arch)     | https://aur.archlinux.org/packages/nuclear-player-bin/             | [nukeop](https://github.com/nukeop)          | yay -s nuclear-player-bin                     |
 | AUR (Arch)     | https://aur.archlinux.org/packages/nuclear-player-git              | [nukeop](https://github.com/nukeop)          | yay -s nuclear-player-git                     |
 | Choco (Win)    | https://chocolatey.org/packages/nuclear/                           | [JourneyOver](https://github.com/JourneyOver)| choco install nuclear                         |
-| GURU (Gentoo)  | https://github.com/gentoo/guru/tree/master/media-sound/nuclear-bin | [scardracs](https://github.com/scardracs)    | emerge nuclear-bin                            |
+| GURU (Gentoo)  | https://github.com/gentoo/guru/tree/master/media-sound/nuclear-bin | Orphaned    | emerge nuclear-bin                            |
 | Homebrew (Mac) | https://formulae.brew.sh/cask/nuclear                              | Homebrew                                     | brew install --cask nuclear                   |
 | Snap           | https://snapcraft.io/nuclear                                       | [nukeop](https://github.com/nukeop)          | sudo snap install nuclear                     |
 | Flatpak        | https://flathub.org/apps/details/org.js.nuclear.Nuclear            | [nukeop](https://github.com/nukeop)          | flatpak install flathub org.js.nuclear.Nuclear|
 
 
 ## Community translations
-Nuclear has already been translated to several languages, and we're always looking for contributors who would like to add more. Below is a list of currently available languages, along with contributors who helped to translate Nuclear to that language.
+Nuclear has already been translated to several languages, and we're always looking for contributors who would like to add more.
 
-| Language             | Contributor                                                                                                 |
-|:--------------------:|:-----------------------------------------------------------------------------------------------------------:|
-| English              | N/A                                                                                                         |
-| French               | [charjac](https://github.com/charjac), [Zalax](https://github.com/Zalaxx)                                   |
-| Dutch                | [Vistaus](https://github.com/Vistaus)                                                                       |
-| Danish               | [Hansen1992](https://github.com/Hansen1992)                                                                 |
-| Spanish              | [mlucas94](https://github.com/mlucas94), [emlautarom1](https://github.com/emlautarom1)                      |
-| Polish               | [kazimierczak-robert](https://github.com/kazimierczak-robert), [gradzka](https://github.com/gradzka)        |
-| German               | [nuclear](https://github.com/nuclear), [schippas](https://github.com/schippas)                              |
-| Russian              | [ramstore07](https://github.com/ramstore07), [dmtrshat](https://github.com/dmtrshat)                        |
-| Brazilian Portuguese | [JoaoPedroMoraes](https://github.com/JoaoPedroMoraes)                                                       |
-| Turkish              | [3DShark](https://github.com/3DShark)                                                                       |
-| Italian              | [gello94](https://github.com/gello94), [scardracs](https://github.com/scardracs)                            |
-| Slovak               | [MartinT](https://github.com/MartinTuroci)                                                                  |
-| Czech                | [PetrTodorov](https://github.com/PetrTodorov)                                                               |
-| Tagalog              | [giftofgrub](https://github.com/giftofgrub)                                                                 |
-| Traditional Chinese  | [oxygen-TW](https://github.com/oxygen-TW)                                                                   |
-| Swedish              | [PalleKarlsson](https://github.com/PalleKarlsson), [nonew-star](https://github.com/nonew-star)                                                           |
-| Greek                | [Shuin-San](https://github.com/Shuin-San)                                                                   |
-| Vietnamese           | [HaiDang666](https://github.com/HaiDang666)                                                                 |
-| Finnish              | [cjola002-xamk](https://github.com/cjola002-xamk)                                                           |
-| Korean               | [dexterastin](https://github.com/dexterastin), [teamzamong](https://github.com/teamzamong/)                 |
+We're using [Crowdin](https://crowdin.com/project/nuclear) to manage localization. You can check if your language is supported, track localization progress, and help us translate Nuclear there.
 
 ## Screenshots
 This will be updated as the program evolves.
