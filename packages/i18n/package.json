@@ -14,8 +14,7 @@
   "main": "src/index.ts",
   "scripts": {
     "lint": "eslint src/**/**.ts",
-    "lint:fix": "eslint src/**/**.ts --fix",
-    "i18n-sync": "ts-node scripts/sync"
+    "lint:fix": "eslint src/**/**.ts --fix"
   },
   "dependencies": {
     "i18next": "^19.0.3"
