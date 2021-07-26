@@ -23,9 +23,9 @@ export function formatDuration(duration) {
   }
 }
 
-export function stringDurationToSeconds(duration) {
-  if (duration.length > 0) {
-    const parts = duration.split(':');
+export function stringDurationToSeconds(duration?) {
+  if (duration?.length > 0) {
+    const parts = duration?.split(':');
     if (parts.length === 2) {
       parts.unshift(0);
     }
