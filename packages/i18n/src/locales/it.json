@@ -265,24 +265,24 @@
     "title": "Titolo"
   },
   "track-popup": {
-    "add-to-favorite": "Add to favorites",
-    "add-to-playlist": "Add to playlist",
-    "add-to-queue": "Add to queue",
-    "download": "Download",
-    "download-toast-body": "{{artist}} - {{track}} has been added to downloads.",
-    "download-toast-title": "Track added to downloads",
-    "favorite-toast-body": "{{artist}} - {{track}} has been added to favorites.",
-    "favorite-toast-title": "Favorite track added",
+    "add-to-favorite": "Aggiungi ai preferiti",
+    "add-to-playlist": "Aggiungi alla playlist",
+    "add-to-queue": "Aggiungi alla coda",
+    "download": "Scarica",
+    "download-toast-body": "{{artist}} - {{track}} è stato aggiunto ai download.",
+    "download-toast-title": "Traccia aggiunta ai download",
+    "favorite-toast-body": "{{artist}} - {{track}} è stato aggiunto ai preferiti.",
+    "favorite-toast-title": "Traccia preferita aggiunta",
     "play-next": "Play next",
-    "play-now": "Play now",
+    "play-now": "Riproduci",
     "playlist-toast-body": "{{artist}} - {{track}} has been added to playlist.",
-    "playlist-toast-title": "Track added to playlist"
+    "playlist-toast-title": "Traccia aggiunta alla playlist"
   },
   "track-table": {
-    "add-selected-tracks-to-queue": "Add selected to queue",
-    "add-selected-tracks-to-downloads": "Add selected to downloads",
-    "add-selected-tracks-to-favorites": "Add selected to favorites",
-    "play-selected-tracks-now": "Play selected now",
+    "add-selected-tracks-to-queue": "Aggiungi selezionati alla coda",
+    "add-selected-tracks-to-downloads": "Aggiungi selezionati ai download",
+    "add-selected-tracks-to-favorites": "Aggiungi selezionati ai preferiti",
+    "play-selected-tracks-now": "Riproduci selezionati ora",
     "tracks-selected-label-singular": "track selected",
     "tracks-selected-label-plural": "tracks selected"
   },
