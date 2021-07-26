@@ -69,7 +69,7 @@
   "favorites": {
     "artist": "Artist",
     "empty": "No favorites added",
-    "empty-help": "Try favoriting some tracks and they will appear here!",
+    "empty-help": "Try adding some tracks to favorites and they will appear here!",
     "header": "Your favorite tracks",
     "title": "Title"
   },
