@@ -35,6 +35,7 @@
     "tour": "Na turné"
   },
   "dashboard": {
+    "add-all": "Add all",
     "artist": "Umělec",
     "best": "Nejlepší nová hudba",
     "best-new-albums": "Nejlepší nová alba",
@@ -262,6 +263,28 @@
     "duration": "Doba trvání",
     "queue-add": "Přidat všechny skladby do fronty",
     "title": "Název"
+  },
+  "track-popup": {
+    "add-to-favorite": "Add to favorites",
+    "add-to-playlist": "Add to playlist",
+    "add-to-queue": "Add to queue",
+    "download": "Download",
+    "download-toast-body": "{{artist}} - {{track}} has been added to downloads.",
+    "download-toast-title": "Track added to downloads",
+    "favorite-toast-body": "{{artist}} - {{track}} has been added to favorites.",
+    "favorite-toast-title": "Favorite track added",
+    "play-next": "Play next",
+    "play-now": "Play now",
+    "playlist-toast-body": "{{artist}} - {{track}} has been added to playlist.",
+    "playlist-toast-title": "Track added to playlist"
+  },
+  "track-table": {
+    "add-selected-tracks-to-queue": "Add selected to queue",
+    "add-selected-tracks-to-downloads": "Add selected to downloads",
+    "add-selected-tracks-to-favorites": "Add selected to favorites",
+    "play-selected-tracks-now": "Play selected now",
+    "tracks-selected-label-singular": "track selected",
+    "tracks-selected-label-plural": "tracks selected"
   },
   "visualizer": {
     "exit-fullscreen": "Press ESC to exit full screen"
