@@ -69,7 +69,7 @@
   "favorites": {
     "artist": "Nghệ sỹ",
     "empty": "Không có bản nhạc ưa thích",
-    "empty-help": "Bản nhạc được đánh dấu ưa thích sẽ xuất hiện ở đây.",
+    "empty-help": "Try adding some tracks to favorites and they will appear here!",
     "header": "Bản nhạc ưa thích của bạn",
     "title": "Tên bài hát"
   },
@@ -239,7 +239,6 @@
     "mastodon-post-format-description": "Nuclear will post a status on Mastodon after each track completes playing. The above string will be the template for each post, with {{artist}} and {{title}} replaced with the artist and title of the track.",
     "mastodon-post-format-label": "Post format",
     "mastodon-title": "",
-    "max.downloads": "Quản lý tải về",
     "mini-player": "Dùng chế độ mini cho trình phát",
     "notification-timeout": "Thời gian hiển thị thông báo",
     "notlogged": "Chưa đăng nhập",
