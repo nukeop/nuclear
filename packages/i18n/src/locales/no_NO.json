@@ -69,7 +69,7 @@
   "favorites": {
     "artist": "Kunstner",
     "empty": "Ingen favoritter lagt til",
-    "empty-help": "Prøv å favorisere noen spor og de vil vises her!",
+    "empty-help": "Try adding some tracks to favorites and they will appear here!",
     "header": "Dine favorittspor",
     "title": "Tittel"
   },
@@ -239,7 +239,6 @@
     "mastodon-post-format-description": "Kjerneprøver vil poste statusen på Mastodon etter hver enkelt sang er ferdig. Teksten over vil være malen for hvert innlegg, med {{artist}} og {{title}} erstattet med artisten og tittelen på sporet.",
     "mastodon-post-format-label": "Post format",
     "mastodon-title": "",
-    "max.downloads": "Last ned kontroll",
     "mini-player": "Bruk mini spiller stil",
     "notification-timeout": "Tidsavbrudd for varsel",
     "notlogged": "Ikke logget inn",
