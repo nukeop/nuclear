@@ -69,7 +69,7 @@
   "favorites": {
     "artist": "Künstler",
     "empty": "Keine Favoriten hinzugefügt.",
-    "empty-help": "Markiere Lieder als \"Favorit\", damit sie hier erscheinen werden!",
+    "empty-help": "Try adding some tracks to favorites and they will appear here!",
     "header": "Deine Lieblingslieder",
     "title": "Titel"
   },
@@ -239,7 +239,6 @@
     "mastodon-post-format-description": "Nuclear wird nach jedem abgespielten Lied einen Status auf Mastodon posten. Der obere Text dient als Vorlage für diese Posts. {{artist}} und {{title}} werden durch den Interpreten und Titel des Liedes ersetzt.",
     "mastodon-post-format-label": "Post-Vorlage",
     "mastodon-title": "",
-    "max.downloads": "Steuerung für Downloads",
     "mini-player": "Mini Player verwenden",
     "notification-timeout": "Benachrichtigungs Auszeit",
     "notlogged": "Nicht eingeloggt",
