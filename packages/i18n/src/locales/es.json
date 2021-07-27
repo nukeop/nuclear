@@ -58,18 +58,18 @@
   },
   "favorite-albums": {
     "empty": "No hay álbumes favoritos",
-    "empty-help": "¡Prueba añadir a algunos álbumes a favoritos y aparecerán aquí!",
+    "empty-help": "¡Prueba añadir algunos álbumes a favoritos y aparecerán aquí!",
     "header": "Tus álbumes favoritos"
   },
   "favorite-artists": {
     "empty": "No hay artistas favoritos",
-    "empty-help": "¡Prueba añadir a algunos artistas a favoritos y aparecerán aquí!",
+    "empty-help": "¡Prueba añadir algunos artistas a favoritos y aparecerán aquí!",
     "header": "Tus artistas favoritos"
   },
   "favorites": {
     "artist": "Artista",
     "empty": "No hay favoritos añadidos",
-    "empty-help": "¡Prueba dándole a favoritos a algunas pistas y aparecerán aquí!",
+    "empty-help": "¡Prueba añadir algunas pistas a favoritos y aparecerán aquí!",
     "header": "Tus pistas favoritas",
     "title": "Título"
   },
@@ -239,7 +239,6 @@
     "mastodon-post-format-description": "Nuclear publicará un estado en Mastodon después de que cada pista termine de reproducirse. La cadena anterior será la plantilla para cada publicación, siendo {{artist}} y {{title}} reemplazados por el artista y título de la pista.",
     "mastodon-post-format-label": "Formato de la publicación",
     "mastodon-title": "",
-    "max.downloads": "Control de descargas",
     "mini-player": "Usar estilo de minireproductor",
     "notification-timeout": "Tiempo de espera de notificaciones",
     "notlogged": "Sesión no iniciada",
