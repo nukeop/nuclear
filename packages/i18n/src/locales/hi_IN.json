@@ -69,7 +69,7 @@
   "favorites": {
     "artist": "कलाकार",
     "empty": "कोई पसंदीदा नहीं जोड़ा गया",
-    "empty-help": "कुछ ट्रैक पसंद करने का प्रयास करें और वे यहां दिखाई देंगे!",
+    "empty-help": "Try adding some tracks to favorites and they will appear here!",
     "header": "आपके पसंदीदा ट्रैक",
     "title": "शीर्षक"
   },
@@ -239,7 +239,6 @@
     "mastodon-post-format-description": "प्रत्येक ट्रैक के चलने के बाद न्यूक्लियर मास्टोडन पर एक स्टेटस पोस्ट करेगा। उपरोक्त स्ट्रिंग प्रत्येक पोस्ट के लिए टेम्प्लेट होगी, जिसमें {{artist}} और {{title}} को कलाकार और ट्रैक के शीर्षक से बदल दिया जाएगा।",
     "mastodon-post-format-label": "पोस्ट फॉर्मेट",
     "mastodon-title": "",
-    "max.downloads": "डाउनलोड नियंत्रण",
     "mini-player": "मिनी प्लेयर शैली का प्रयोग करें",
     "notification-timeout": "सूचना समयबाह्य",
     "notlogged": "लॉगिन नहीं हैं",
