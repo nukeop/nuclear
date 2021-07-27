@@ -69,7 +69,7 @@
   "favorites": {
     "artist": "아티스트",
     "empty": "좋아하는 음악 없음.",
-    "empty-help": "'좋아요'한 음악이 여기에 표시됩니다!",
+    "empty-help": "Try adding some tracks to favorites and they will appear here!",
     "header": "좋아하는 음악",
     "title": "제목"
   },
@@ -239,7 +239,6 @@
     "mastodon-post-format-description": "Nuclear가 각 트랙 재생이 완료된 후 Mastodon에 상태를 게시합니다. 위의 문자열은 각 게시물의 템플릿이 되고, {{artist}} 및 {{title}}은 아티스트 및 트랙 제목으로 대체됩니다.",
     "mastodon-post-format-label": "게시 형식",
     "mastodon-title": "",
-    "max.downloads": "다운로드 설정",
     "mini-player": "미니 플레이어 모드 사용",
     "notification-timeout": "알림 시간 초과",
     "notlogged": "로그인하지 않았습니다.",
