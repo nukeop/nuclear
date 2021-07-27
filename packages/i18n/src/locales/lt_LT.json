@@ -69,7 +69,7 @@
   "favorites": {
     "artist": "Atlikėjas",
     "empty": "Jokių mėgstamiausių nėra pridėta",
-    "empty-help": "Pabandykite pridėti dainų ir jos atsiras čia!",
+    "empty-help": "Try adding some tracks to favorites and they will appear here!",
     "header": "Jūsų mėgstamiausios dainos",
     "title": "Pavadinimas"
   },
@@ -239,7 +239,6 @@
     "mastodon-post-format-description": "„Nuclear“ paskelbs būseną „Mastodon“, kai kiekvienas kūrinys bus baigtas. Aukščiau pateikta eilutė bus kiekvieno įrašo šablonas, o {{artist}} ir {{title}} bus pakeistas atlikėjo ir takelio pavadinimu.",
     "mastodon-post-format-label": "Skelbimo formatas",
     "mastodon-title": "",
-    "max.downloads": "Atsisiuntimo kontrolė",
     "mini-player": "Naudoti Mini grotuvo stilių",
     "notification-timeout": "Pranešimų laikas",
     "notlogged": "Esate neprisijunges",
