@@ -69,7 +69,7 @@
   "favorites": {
     "artist": "艺术家",
     "empty": "还没有收藏",
-    "empty-help": "收藏的曲目将出现在这里，试试看！",
+    "empty-help": "Try adding some tracks to favorites and they will appear here!",
     "header": "您收藏的歌曲",
     "title": "标题"
   },
@@ -239,7 +239,6 @@
     "mastodon-post-format-description": "当每首曲目播放完毕时，Nuclear 会在 Mastodon 上发布一条动态。上面的字符串会被作为帖子的模板，{{artist}} 和 {{title}} 会被作曲家和曲目名称替代。",
     "mastodon-post-format-label": "文章格式",
     "mastodon-title": "",
-    "max.downloads": "控制下载",
     "mini-player": "使用迷你播放器风格",
     "notification-timeout": "通知超时",
     "notlogged": "没有登陆",
