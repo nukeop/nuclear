@@ -69,7 +69,7 @@
   "favorites": {
     "artist": "Artist",
     "empty": "Inga favoritspår",
-    "empty-help": "Testa att favoritmarkera några spår så kommer de dyka upp här!",
+    "empty-help": "Try adding some tracks to favorites and they will appear here!",
     "header": "Dina favoritspår",
     "title": "Titel"
   },
@@ -239,7 +239,6 @@
     "mastodon-post-format-description": "Nuclear kommer att lägga upp en status på Mastodon efter varje spår som slutar spela. Ovanstående sträng kommer att vara mallen för varje inlägg, med {{artist}} och {{title}} ersatt med artisten och titeln för spåret.",
     "mastodon-post-format-label": "Postformat",
     "mastodon-title": "",
-    "max.downloads": "Hämtningskontroll",
     "mini-player": "Använd minispelarstil",
     "notification-timeout": "Tidsgräns för notifikationer",
     "notlogged": "Inte inloggad",
