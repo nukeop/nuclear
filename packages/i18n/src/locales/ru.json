@@ -69,7 +69,7 @@
   "favorites": {
     "artist": "Исполнитель",
     "empty": "Тут Ничего Нет",
-    "empty-help": "Добавьте что-нибудь в Избранное и оно тут появится!",
+    "empty-help": "Try adding some tracks to favorites and they will appear here!",
     "header": "Избранное",
     "title": "Название"
   },
@@ -239,7 +239,6 @@
     "mastodon-post-format-description": "Nuclear will post a status on Mastodon after each track completes playing. The above string will be the template for each post, with {{artist}} and {{title}} replaced with the artist and title of the track.",
     "mastodon-post-format-label": "Post format",
     "mastodon-title": "",
-    "max.downloads": "Download control",
     "mini-player": "Use mini player style",
     "notification-timeout": "Таймер уведомлений",
     "notlogged": "Не вошли",
