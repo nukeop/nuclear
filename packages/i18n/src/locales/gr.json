@@ -69,7 +69,7 @@
   "favorites": {
     "artist": "Καλλιτέχνης",
     "empty": "Λιστα αγαπημένων άδεια.",
-    "empty-help": "Προσθέστε τραγούδια στα αγαπημένα σας και θα εμφανίζονται εδώ !",
+    "empty-help": "Try adding some tracks to favorites and they will appear here!",
     "header": "Τα τραγούδια που αγαπάτε",
     "title": "Τίτλος"
   },
@@ -239,7 +239,6 @@
     "mastodon-post-format-description": "Nuclear will post a status on Mastodon after each track completes playing. The above string will be the template for each post, with {{artist}} and {{title}} replaced with the artist and title of the track.",
     "mastodon-post-format-label": "Post format",
     "mastodon-title": "",
-    "max.downloads": "Έλεγχος μεταφορτώσεων",
     "mini-player": "Χρησιμοποιείστε τον μινι Player",
     "notification-timeout": "Χρόνος παραμονής των ειδοποιήσεων",
     "notlogged": "Αποσυνδεμένος/η",
