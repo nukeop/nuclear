@@ -69,7 +69,7 @@
   "favorites": {
     "artist": "Artist",
     "empty": "Ingen farvoritter er tilføjet.",
-    "empty-help": "Dine farvoritsange vil blive vist her!",
+    "empty-help": "Try adding some tracks to favorites and they will appear here!",
     "header": "Dine farvoritsange",
     "title": "Titel"
   },
@@ -239,7 +239,6 @@
     "mastodon-post-format-description": "Nuclear will post a status on Mastodon after each track completes playing. The above string will be the template for each post, with {{artist}} and {{title}} replaced with the artist and title of the track.",
     "mastodon-post-format-label": "Post format",
     "mastodon-title": "",
-    "max.downloads": "Download control",
     "mini-player": "Brug mini afspiller stil",
     "notification-timeout": "Notifikation timeout",
     "notlogged": "Ikke logget ind",
