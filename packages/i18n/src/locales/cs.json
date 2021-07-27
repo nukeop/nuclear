@@ -69,7 +69,7 @@
   "favorites": {
     "artist": "Umělec",
     "empty": "Nebyly přidány žádné oblíbené skladby",
-    "empty-help": "Zkuste dát některým skladbám to se mi líbí a objeví se zde!",
+    "empty-help": "Try adding some tracks to favorites and they will appear here!",
     "header": "Vaše oblíbené skladby",
     "title": "Název"
   },
@@ -239,7 +239,6 @@
     "mastodon-post-format-description": "Nuclear will post a status on Mastodon after each track completes playing. The above string will be the template for each post, with {{artist}} and {{title}} replaced with the artist and title of the track.",
     "mastodon-post-format-label": "Post format",
     "mastodon-title": "",
-    "max.downloads": "Download control",
     "mini-player": "Use mini player style",
     "notification-timeout": "Časový limit notifikace",
     "notlogged": "Nepřihlášen",
