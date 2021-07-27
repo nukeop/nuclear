@@ -69,7 +69,7 @@
   "favorites": {
     "artist": "אומן/ית",
     "empty": "לא נוספו מועדפים",
-    "empty-help": "אפשר להוסיף כמה רצועות למועדפים ואז הן יופיעו כאן!",
+    "empty-help": "Try adding some tracks to favorites and they will appear here!",
     "header": "הרצועות המועדפות שלך",
     "title": "כותרת"
   },
@@ -239,7 +239,6 @@
     "mastodon-post-format-description": "Nuclear will post a status on Mastodon after each track completes playing. The above string will be the template for each post, with {{artist}} and {{title}} replaced with the artist and title of the track.",
     "mastodon-post-format-label": "Post format",
     "mastodon-title": "",
-    "max.downloads": "בקרת הורדה",
     "mini-player": "שימוש בסגנון הנגן הממוזער",
     "notification-timeout": "זמן קצוב להתראה",
     "notlogged": "לא מחובר",
