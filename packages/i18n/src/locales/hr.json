@@ -69,7 +69,7 @@
   "favorites": {
     "artist": "Izvođač",
     "empty": "Nemaš omiljenih izvođača",
-    "empty-help": "Dodaj neke pjesme u omiljene i one će se pojaviti ovdje!",
+    "empty-help": "Try adding some tracks to favorites and they will appear here!",
     "header": "Tvoje omiljene pjesme",
     "title": "Naslov"
   },
@@ -239,7 +239,6 @@
     "mastodon-post-format-description": "Nuclear will post a status on Mastodon after each track completes playing. The above string will be the template for each post, with {{artist}} and {{title}} replaced with the artist and title of the track.",
     "mastodon-post-format-label": "Post format",
     "mastodon-title": "",
-    "max.downloads": "Kontrola preuzimanja",
     "mini-player": "Koristi mini player stil",
     "notification-timeout": "Čekanje na obavijest",
     "notlogged": "Niste prijavljeni",
