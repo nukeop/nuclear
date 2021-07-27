@@ -69,7 +69,7 @@
   "favorites": {
     "artist": "Artysta",
     "empty": "Brak ulubionych utworów",
-    "empty-help": "Dodaj utwór do ulubionych, a pojawi się tutaj!",
+    "empty-help": "Try adding some tracks to favorites and they will appear here!",
     "header": "Twoje ulubione utwory",
     "title": "Tytuł"
   },
@@ -239,7 +239,6 @@
     "mastodon-post-format-description": "Nuclear zaktualizuje status na Mastodonie po zakończeniu odtwarzania każdego utworu. Powyższy ciąg znaków będzie wzorem dla każdego wpisu, który będzie zawierał {{artist}} oraz {{title}} zastąpione artystą oraz tytułem utworu.",
     "mastodon-post-format-label": "Format wpisu",
     "mastodon-title": "",
-    "max.downloads": "Kontrolowanie pobierań",
     "mini-player": "Miniodtwarzacz",
     "notification-timeout": "Limit czasu powiadomienia",
     "notlogged": "Niezalogowany",
