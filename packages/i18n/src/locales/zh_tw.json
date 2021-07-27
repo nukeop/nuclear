@@ -69,7 +69,7 @@
   "favorites": {
     "artist": "演出者",
     "empty": "我的最愛為空",
-    "empty-help": "加入我的最愛後的歌曲會顯示在這裡",
+    "empty-help": "Try adding some tracks to favorites and they will appear here!",
     "header": "我的最愛",
     "title": "音樂標題"
   },
@@ -239,7 +239,6 @@
     "mastodon-post-format-description": "Nuclear將會在每條音軌結束播放後於Mastodon發布狀態。上述的畫線部分將會是發布狀態的模板，其中{{artist}} 和{{title}} 會被替換為具體的藝術家和音軌的標題。",
     "mastodon-post-format-label": "帖子格式",
     "mastodon-title": "",
-    "max.downloads": "下載控制",
     "mini-player": "使用迷你樣式播放器",
     "notification-timeout": "超時提醒",
     "notlogged": "未登入",
