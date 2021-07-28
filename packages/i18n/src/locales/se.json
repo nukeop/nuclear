@@ -3,12 +3,12 @@
     "download": "Hämta",
     "download-toast-content": "{{artist}} - {{title}} har lagts till i hämtningar.",
     "download-toast-title": "Albumet tillagt i hämtningar",
-    "error-load": "Sorry, this album could not be loaded. Try again later or open a new issue on Github",
+    "error-load": "Tyvärr, det här albumet kunde inte läsas in. Försök igen senare eller öppna en ny rapport på GitHub",
     "genre": "Genre:",
-    "play": "Play",
+    "play": "Spela",
     "queue": "Lägg till albumet i kön",
     "tracks": "Spår:",
-    "year": "Year:"
+    "year": "År:"
   },
   "app": {
     "collection": "Samlingar",
@@ -16,7 +16,7 @@
     "downloads": "Hämtningar",
     "equalizer": "Frekvenskorrigerare",
     "favorite-albums": "Favoritalbum",
-    "favorite-artists": "Favorite Artists",
+    "favorite-artists": "Favoritartister",
     "favorite-tracks": "Favoritspår",
     "library": "Lokalt bibliotek",
     "lyrics": "Låttexter",
@@ -35,7 +35,7 @@
     "tour": "På turné"
   },
   "dashboard": {
-    "add-all": "Add all",
+    "add-all": "Lägg till alla",
     "artist": "Artist",
     "best": "Bästa nya musiken",
     "best-new-albums": "Bästa nya albumen",
@@ -62,14 +62,14 @@
     "header": "Dina favoritalbum"
   },
   "favorite-artists": {
-    "empty": "No favorite artists",
-    "empty-help": "Try adding some artists to favorites and they will appear here!",
-    "header": "Your favorite artists"
+    "empty": "Inga favoritartister",
+    "empty-help": "Försök lägga till några artister till favoriter och de kommer att visas här!",
+    "header": "Dina favoritartister"
   },
   "favorites": {
     "artist": "Artist",
     "empty": "Inga favoritspår",
-    "empty-help": "Try adding some tracks to favorites and they will appear here!",
+    "empty-help": "Försök lägga till några spår till favoriter och de kommer att visas här!",
     "header": "Dina favoritspår",
     "title": "Titel"
   },
@@ -118,7 +118,7 @@
     "add-selected-tracks-to-queue": "Lägg till valda i kö",
     "album": "Album",
     "artist": "Artist",
-    "delete": "Ta bort spellista",
+    "delete": "Ta bort denna spellista",
     "dialog-placeholder": "Namn på spellistan...",
     "duration": "Längd",
     "empty": "Inga spellistor.",
@@ -126,17 +126,17 @@
     "error-empty-data": "Tomma data",
     "error-invalid-data": "Ogiltiga data",
     "error-open-file": "Kan inte öppna filen",
-    "error-save-file": "Can not save file",
-    "export-button": "Export playlist (JSON)",
-    "export-fail-title": "Playlist export fail",
-    "export-success-title": "Playlist exported successfully",
+    "error-save-file": "Kan inte spara fil",
+    "export-button": "Exportera spellista (JSON)",
+    "export-fail-title": "Export av spellista misslyckades",
+    "export-success-title": "Export av spellista lyckades",
     "header": "Dina spellistor",
     "import-button": "Importera från fil (JSON)",
     "import-fail-title": "Importering av spellista misslyckades",
     "import-success-title": "Spellistan importerades",
     "play-selected-tracks-now": "Spela valda nu",
     "playlist-created": "{{name}} skapad",
-    "playlist-exported": "{{name}} saved to local file",
+    "playlist-exported": "{{name}} sparad till lokal fil",
     "queue": "Lägg till spellistan i kö",
     "rename": "Byt namn på spellista",
     "songs": "{{total}} spår",
@@ -264,18 +264,18 @@
     "title": "Titel"
   },
   "track-popup": {
-    "add-to-favorite": "Add to favorites",
-    "add-to-playlist": "Add to playlist",
-    "add-to-queue": "Add to queue",
-    "download": "Download",
-    "download-toast-body": "{{artist}} - {{track}} has been added to downloads.",
-    "download-toast-title": "Track added to downloads",
-    "favorite-toast-body": "{{artist}} - {{track}} has been added to favorites.",
-    "favorite-toast-title": "Favorite track added",
-    "play-next": "Play next",
-    "play-now": "Play now",
-    "playlist-toast-body": "{{artist}} - {{track}} has been added to playlist.",
-    "playlist-toast-title": "Track added to playlist"
+    "add-to-favorite": "Lägg till i favoriter",
+    "add-to-playlist": "Lägg till i spellista",
+    "add-to-queue": "Lägg till i kö",
+    "download": "Hämta",
+    "download-toast-body": "{{artist}} - {{track}} har lagts till hämtningar.",
+    "download-toast-title": "Spår lades till hämtningar",
+    "favorite-toast-body": "{{artist}} - {{track}} har lagts till i favoriter.",
+    "favorite-toast-title": "Favoritspår tillagt",
+    "play-next": "Spela nästa",
+    "play-now": "Spela nu",
+    "playlist-toast-body": "{{artist}} - {{track}} har lagts till i spellista.",
+    "playlist-toast-title": "Spår tillagt i spellista"
   },
   "track-table": {
     "add-selected-tracks-to-queue": "Add selected to queue",
