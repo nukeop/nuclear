@@ -16,16 +16,28 @@ exports[`Playlist container should display all playlists 1`] = `
         >
           Your playlists
         </div>
-        <button
-          class="ui basic button nuclear button"
-          data-testid="import-from-file"
-        >
-          <i
-            aria-hidden="true"
-            class="file text icon"
-          />
-          Import from file (JSON)
-        </button>
+        <div>
+          <button
+            class="ui basic button nuclear button"
+            data-testid="create-new"
+          >
+            <i
+              aria-hidden="true"
+              class="plus icon"
+            />
+            Create new playlist
+          </button>
+          <button
+            class="ui basic button nuclear button"
+            data-testid="import-from-file"
+          >
+            <i
+              aria-hidden="true"
+              class="file text icon"
+            />
+            Import from file (JSON)
+          </button>
+        </div>
       </div>
       <div
         class="ui segment playlists_segment"
@@ -104,16 +116,28 @@ exports[`Playlist container should display empty playlists view 1`] = `
         class="header_container"
       >
         <span />
-        <button
-          class="ui basic button nuclear button"
-          data-testid="import-from-file"
-        >
-          <i
-            aria-hidden="true"
-            class="file text icon"
-          />
-          Import from file (JSON)
-        </button>
+        <div>
+          <button
+            class="ui basic button nuclear button"
+            data-testid="create-new"
+          >
+            <i
+              aria-hidden="true"
+              class="plus icon"
+            />
+            Create new playlist
+          </button>
+          <button
+            class="ui basic button nuclear button"
+            data-testid="import-from-file"
+          >
+            <i
+              aria-hidden="true"
+              class="file text icon"
+            />
+            Import from file (JSON)
+          </button>
+        </div>
       </div>
       <div
         class="empty_state"

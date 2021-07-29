@@ -17,8 +17,13 @@ export const usePlaylistsProps = () => {
     dispatch(PlaylistActions.addPlaylistFromFile(filePath[0], t));
   }, [dispatch, t]);
 
+  const createNew = useCallback((name: string) => {
+    dispatch(PlaylistActions.addPlaylist([], name));
+  }, [dispatch]);
+
   return {
     playlists,
-    handleImportFromFile
+    handleImportFromFile,
+    createNew
   };
 };

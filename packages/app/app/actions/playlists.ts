@@ -15,17 +15,13 @@ export const ADD_PLAYLIST = 'ADD_PLAYLIST';
 export const DELETE_PLAYLIST = 'DELETE_PLAYLIST';
 export const UPDATE_PLAYLIST = 'UPDATE_PLAYLIST';
 
-export function addPlaylist(tracks, name) {
+export function addPlaylist(tracks: Array<any>, name: string) {
   return dispatch => {
-    let playlists = store.get('playlists') || [];
-    const playlist = PlaylistHelper.formatPlaylistForStorage(name, tracks, v4());
-
-    if (_.isEmpty(tracks)) {
-      dispatch({
-        type: null
-      });
+    if (name?.length === 0) {
       return;
     }
+    let playlists = store.get('playlists') || [];
+    const playlist = PlaylistHelper.formatPlaylistForStorage(name, tracks, v4());
 
     playlists = [...playlists, playlist];
 
