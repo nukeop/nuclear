@@ -12,6 +12,7 @@ const StreamInfo = ({
   handleRerollTrack,
   handleSelectStream,
   handleImageLoaded,
+  handleCopyStreamUrl,
   track,
   dropdownOptions,
   idLabel,
@@ -52,6 +53,11 @@ const StreamInfo = ({
         )}
       </div>
       <div className={styles.stream_buttons}>
+        {selectedStream.originalUrl && (
+          <a href='#' data-testid='copy-orignal-url' onClick={handleCopyStreamUrl}>
+            <Icon name='copy' />
+          </a>
+        )}
         <a href='#' onClick={handleRerollTrack}>
           <Icon name='refresh' />
         </a>
@@ -79,5 +85,8 @@ export default withHandlers({
   },
   handleImageLoaded: ({ onImageLoaded }) => () => {
     onImageLoaded();
+  },
+  handleCopyStreamUrl: ({ onCopyStreamUrl }) => () => {
+    onCopyStreamUrl();
   }
 })(StreamInfo);

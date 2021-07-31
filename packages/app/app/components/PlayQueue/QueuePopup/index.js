@@ -1,6 +1,8 @@
 import React, { useRef, useCallback } from 'react';
 import PropTypes from 'prop-types';
+import { clipboard } from 'electron';
 import cs from 'classnames';
+import _ from 'lodash';
 import { withState, withHandlers, withProps, compose } from 'recompose';
 import { Popup } from 'semantic-ui-react';
 import { StreamInfo } from '@nuclear/ui';
@@ -49,6 +51,11 @@ export const QueuePopup = ({
     actions.changeTrackStream(track, stream);
   };
 
+  const handleCopyStreamUrl = useCallback(() => {
+    clipboard.writeText(selectedStream?.originalUrl?.length ? selectedStream.originalUrl : '');
+    handleClose();
+  }, [selectedStream, handleClose]);
+
   const dropdownOptions = _.map(plugins.plugins.streamProviders, s => ({
     key: s.sourceName,
     text: s.sourceName,
@@ -82,6 +89,7 @@ export const QueuePopup = ({
         onRerollTrack={handleRerollTrack}
         onSelectStream={handleSelectStream}
         onImageLoaded={handleImageLoaded}
+        onCopyStreamUrl={handleCopyStreamUrl}
       />
       <hr />
       <div className={styles.queue_popup_buttons_container}>

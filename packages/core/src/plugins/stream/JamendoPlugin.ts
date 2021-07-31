@@ -1,6 +1,7 @@
 import logger from 'electron-timber';
 import _ from 'lodash';
 
+import { StreamQuery, StreamData } from '../plugins.types';
 import StreamProviderPlugin from '../streamProvider';
 import * as Jamendo from '../../rest/Jamendo';
 
@@ -13,21 +14,21 @@ class JamendoPlugin extends StreamProviderPlugin {
     this.image = null;
   }
 
-  search(query) {
+  search(query: StreamQuery): Promise<void | StreamData>  {
     return this.getSearchResults(query).then(responseJson => {
       if (responseJson.results.length === 0) {
         return null;
       }
 
       const track = responseJson.results[0].tracks[0];
-
       return {
         source: this.sourceName,
         id: track.id,
         stream: track.audio,
         duration: track.duration,
         title: track.name,
-        thumbnail: track.image
+        thumbnail: track.image,
+        originalUrl: track.audio
       };
     });
   }

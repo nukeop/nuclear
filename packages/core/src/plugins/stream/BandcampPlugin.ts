@@ -1,6 +1,7 @@
 import { Bandcamp } from '../../rest';
 import { BandcampSearchResult } from '../../rest/Bandcamp';
 import { StreamQuery, StreamData } from '../plugins.types';
+import logger from 'electron-timber';
 import StreamProviderPlugin from '../streamProvider';
 
 class BandcampPlugin extends StreamProviderPlugin {
@@ -37,14 +38,21 @@ class BandcampPlugin extends StreamProviderPlugin {
       stream,
       duration,
       title: result.name,
-      thumbnail: result.imageUrl
+      thumbnail: result.imageUrl,
+      originalUrl: result.url
     };
   }
 
   async search(query: StreamQuery): Promise<void | StreamData> {
-    const track = await this.findTrackUrl(query);
-    const { stream, duration } = await Bandcamp.getTrackData(track.url);
-    return this.resultToStream(track, stream, duration);
+    try {
+      const track = await this.findTrackUrl(query);
+      const { stream, duration } = await Bandcamp.getTrackData(track.url);
+      return this.resultToStream(track, stream, duration);
+      
+    } catch (error) {
+      logger.error(`Error while searching  for ${query.artist + ' ' + query.track} on Bandcamp`);
+      logger.error(error);
+    }
   }
 
   async getAlternateStream(query: StreamQuery): Promise<void | StreamData> {
