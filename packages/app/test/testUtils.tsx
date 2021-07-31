@@ -15,6 +15,7 @@ import { render } from '@testing-library/react';
 
 import MainContentContainer from '../app/containers/MainContentContainer';
 import HelpModalContainer from '../app/containers/HelpModalContainer';
+import PlayQueueContainer from '../app/containers/PlayQueueContainer';
 import Navbar from '../app/components/Navbar';
 import NavButtons from '../app/components/NavButtons';
 
@@ -120,6 +121,19 @@ export const mountedNavbarFactory= (
         <NavButtons />
         <HelpModalContainer />
       </Navbar>, 
+      initialHistoryEntries, 
+      initialStore, 
+      defaultInitialStore
+    );
+  };
+
+export const mountedPlayQueueFactory= (
+  initialHistoryEntries: string[],
+  defaultInitialStore?: AnyProps
+) =>
+  (initialStore?: AnyProps) => {
+    return mountComponent(
+      <PlayQueueContainer />, 
       initialHistoryEntries, 
       initialStore, 
       defaultInitialStore

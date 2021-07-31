@@ -69,7 +69,7 @@ export const QueuePopup = ({
         [styles.hidden]: !imageReady
       })}
       trigger={
-        <div ref={triggerElement} onContextMenu={handleOpen}>
+        <div ref={triggerElement} data-testid={`queue-popup-${track.uuid}`} onContextMenu={handleOpen}>
           {trigger}
         </div>
       }
