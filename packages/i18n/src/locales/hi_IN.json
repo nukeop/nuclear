@@ -69,7 +69,7 @@
   "favorites": {
     "artist": "कलाकार",
     "empty": "कोई पसंदीदा नहीं जोड़ा गया",
-    "empty-help": "Try adding some tracks to favorites and they will appear here!",
+    "empty-help": "पसंदीदा में कुछ ट्रैक जोड़ने का प्रयास करें और वे यहां दिखाई देंगे!",
     "header": "आपके पसंदीदा ट्रैक",
     "title": "शीर्षक"
   },
