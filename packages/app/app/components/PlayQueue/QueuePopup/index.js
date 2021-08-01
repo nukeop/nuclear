@@ -20,6 +20,8 @@ export const QueuePopup = ({
   setImageReady,
   setOpen,
   titleLabel,
+  copyTrackUrlLabel,
+  sourceLabel,
   track,
   index,
   actions,
@@ -84,6 +86,8 @@ export const QueuePopup = ({
         dropdownOptions={dropdownOptions}
         idLabel={idLabel}
         titleLabel={titleLabel}
+        copyTrackUrlLabel={copyTrackUrlLabel}
+        sourceLabel={sourceLabel}
         selectedStream={selectedStream}
         track={track}
         onRerollTrack={handleRerollTrack}
@@ -104,6 +108,8 @@ QueuePopup.propTypes = {
   isQueueItemCompact: PropTypes.bool,
   idLabel: PropTypes.string,
   titleLabel: PropTypes.string,
+  copyTrackUrlLabel: PropTypes.string,
+  sourceLabel: PropTypes.string,
   track: PropTypes.object,
   index: PropTypes.number,
   actions: PropTypes.object,

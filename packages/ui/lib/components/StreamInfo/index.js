@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import styles from './styles.scss';
 import artPlaceholder from '../../../resources/media/art_placeholder.png';
 import { withHandlers } from 'recompose';
+import Tooltip from '../Tooltip';
 
 const StreamInfo = ({
   selectedStream,
@@ -16,7 +17,9 @@ const StreamInfo = ({
   track,
   dropdownOptions,
   idLabel,
-  titleLabel
+  titleLabel,
+  copyTrackUrlLabel,
+  sourceLabel
 }) => {
   return (
     <div className={styles.stream_info}>
@@ -30,7 +33,7 @@ const StreamInfo = ({
       </div>
       <div className={styles.stream_text_info}>
         <div className={styles.stream_source}>
-          <label>Source:</label>{' '}
+          <label>{sourceLabel}</label>{' '}
           <Dropdown
             inline
             options={dropdownOptions}
@@ -54,9 +57,14 @@ const StreamInfo = ({
       </div>
       <div className={styles.stream_buttons}>
         {selectedStream.originalUrl && (
-          <a href='#' data-testid='copy-orignal-url' onClick={handleCopyStreamUrl}>
-            <Icon name='copy' />
-          </a>
+          <Tooltip
+            on='hover'
+            content={copyTrackUrlLabel}
+            trigger={<a href='#' data-testid='copy-orignal-url' onClick={handleCopyStreamUrl}>
+              <Icon name='linkify' />
+            </a>}
+          />
+          
         )}
         <a href='#' onClick={handleRerollTrack}>
           <Icon name='refresh' />
@@ -71,7 +79,9 @@ StreamInfo.propTypes = {
   track: PropTypes.object.isRequired,
   dropdownOptions: PropTypes.array,
   idLabel: PropTypes.string,
-  titleLabel: PropTypes.string
+  titleLabel: PropTypes.string,
+  copyTrackUrlLabel: PropTypes.string,
+  sourceLabel: PropTypes.string
 };
 
 export default withHandlers({
