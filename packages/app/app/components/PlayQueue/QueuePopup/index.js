@@ -1,6 +1,5 @@
 import React, { useRef, useCallback } from 'react';
 import PropTypes from 'prop-types';
-import { clipboard } from 'electron';
 import cs from 'classnames';
 import _ from 'lodash';
 import { withState, withHandlers, withProps, compose } from 'recompose';
@@ -26,7 +25,8 @@ export const QueuePopup = ({
   index,
   actions,
   plugins,
-  selectedStream
+  selectedStream,
+  copyToClipboard
 }) => {
   const triggerElement = useRef(null);
 
@@ -53,10 +53,12 @@ export const QueuePopup = ({
     actions.changeTrackStream(track, stream);
   };
 
-  const handleCopyStreamUrl = useCallback(() => {
-    clipboard.writeText(selectedStream?.originalUrl?.length ? selectedStream.originalUrl : '');
+  const handleCopyTrackUrl = useCallback(() => {
+    if (selectedStream?.originalUrl?.length) {
+      copyToClipboard(selectedStream.originalUrl);
+    }
     handleClose();
-  }, [selectedStream, handleClose]);
+  }, [selectedStream, handleClose, copyToClipboard]);
 
   const dropdownOptions = _.map(plugins.plugins.streamProviders, s => ({
     key: s.sourceName,
@@ -93,7 +95,7 @@ export const QueuePopup = ({
         onRerollTrack={handleRerollTrack}
         onSelectStream={handleSelectStream}
         onImageLoaded={handleImageLoaded}
-        onCopyStreamUrl={handleCopyStreamUrl}
+        onCopyTrackUrl={handleCopyTrackUrl}
       />
       <hr />
       <div className={styles.queue_popup_buttons_container}>
@@ -113,7 +115,8 @@ QueuePopup.propTypes = {
   track: PropTypes.object,
   index: PropTypes.number,
   actions: PropTypes.object,
-  plugins: PropTypes.object
+  plugins: PropTypes.object,
+  copyToClipboard: PropTypes.func
 };
 
 export default compose(

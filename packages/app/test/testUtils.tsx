@@ -133,7 +133,9 @@ export const mountedPlayQueueFactory= (
 ) =>
   (initialStore?: AnyProps) => {
     return mountComponent(
-      <PlayQueueContainer />, 
+      <body>
+        <PlayQueueContainer />
+      </body>, 
       initialHistoryEntries, 
       initialStore, 
       defaultInitialStore

@@ -13,7 +13,7 @@ const StreamInfo = ({
   handleRerollTrack,
   handleSelectStream,
   handleImageLoaded,
-  handleCopyStreamUrl,
+  handleCopyTrackUrl,
   track,
   dropdownOptions,
   idLabel,
@@ -60,7 +60,7 @@ const StreamInfo = ({
           <Tooltip
             on='hover'
             content={copyTrackUrlLabel}
-            trigger={<a href='#' data-testid='copy-orignal-url' onClick={handleCopyStreamUrl}>
+            trigger={<a href='#' data-testid='copy-orignal-url' onClick={handleCopyTrackUrl}>
               <Icon name='linkify' />
             </a>}
           />
@@ -96,7 +96,7 @@ export default withHandlers({
   handleImageLoaded: ({ onImageLoaded }) => () => {
     onImageLoaded();
   },
-  handleCopyStreamUrl: ({ onCopyStreamUrl }) => () => {
-    onCopyStreamUrl();
+  handleCopyTrackUrl: ({ onCopyTrackUrl }) => () => {
+    onCopyTrackUrl();
   }
 })(StreamInfo);

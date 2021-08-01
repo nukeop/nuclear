@@ -1,4 +1,4 @@
-// import { fireEvent, waitFor, createEvent } from '@testing-library/react';
+// import { fireEvent, waitFor } from '@testing-library/react';
 import { mountedPlayQueueFactory, setupI18Next } from '../../../test/testUtils';
 import { buildStoreState } from '../../../test/storeBuilders';
 
@@ -13,7 +13,7 @@ describe('Play Queue container', () => {
     store.clear();
   });
 
-  it('should display with track in queue', () => {
+  it('should display with track in queue', async () => {
     const { component } = mountComponent();
     expect(component.asFragment()).toMatchSnapshot();
   });
