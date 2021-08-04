@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import { v4 } from 'uuid';
 import { Playlist, PlaylistTrack, PlaylistTrackStream } from './types';
 
@@ -5,7 +6,7 @@ const formatPlaylistForStorage = (name: string, tracks: Array<any>, id: string =
   return {
     name,
     id,
-    tracks: formatTrackList(tracks, streamSource)
+    tracks: !_.isEmpty(tracks) ? formatTrackList(tracks, streamSource) : []
   };
 };
 

@@ -47,5 +47,6 @@ module.exports = {
     NUMBER: 'number',
     STRING: 'string',
     DIRECTORY: 'directory'
-  }
+  },
+  PlaylistHelper: jest.requireActual('@nuclear/core/src/helpers').PlaylistHelper
 };
