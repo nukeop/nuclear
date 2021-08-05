@@ -1,7 +1,6 @@
-// import { fireEvent, waitFor } from '@testing-library/react';
+import { fireEvent, waitFor } from '@testing-library/react';
 import { mountedPlayQueueFactory, setupI18Next } from '../../../test/testUtils';
 import { buildStoreState } from '../../../test/storeBuilders';
-import { fireEvent, waitFor } from '@testing-library/react';
 
 describe('Play Queue container', () => {
   beforeAll(() => {
@@ -23,7 +22,7 @@ describe('Play Queue container', () => {
     const { component } = mountComponent();
     const track = component.getByTestId('queue-popup-uuid1');
     await waitFor(() => fireEvent.contextMenu(track));
-    expect(component.asFragment()).toMatchSnapshot();
+    expect(component.baseElement).toMatchSnapshot();
   });
 
   it('should copy original track url to clipboard', async () => {
