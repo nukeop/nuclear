@@ -1,6 +1,6 @@
 {
   "album": {
-    "download": "Heruntergeladen",
+    "download": "Herunterladen",
     "download-toast-content": "{{artist}} - {{title}} wurde zu Downloads hinzugefügt.",
     "download-toast-title": "Album zu Downloads hinzugefügt",
     "error-load": "Leider konnte dieses Album nicht geladen werden. Versuchen Sie es später erneut oder öffnen Sie ein neues Problem auf Github",
@@ -28,7 +28,7 @@
     "visualizer": "Visualisierung"
   },
   "artist": {
-    "count": "Anzahl an Wiedergabe",
+    "count": "Anzahl der Wiedergabe",
     "queue": "Alle angezeigten Lieder zur Warteschlange hinzufügen",
     "similar": "Ähnliche Künstler",
     "title": "Titel",
