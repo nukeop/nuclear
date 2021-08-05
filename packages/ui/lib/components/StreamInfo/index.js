@@ -2,6 +2,7 @@ import React from 'react';
 import Img from 'react-image';
 import { Dropdown, Icon } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
+import _ from 'lodash';
 
 import styles from './styles.scss';
 import artPlaceholder from '../../../resources/media/art_placeholder.png';
@@ -60,7 +61,7 @@ const StreamInfo = ({
           <Tooltip
             on='hover'
             content={copyTrackUrlLabel}
-            trigger={<a href='#' data-testid='copy-orignal-url' onClick={handleCopyTrackUrl}>
+            trigger={<a href='#' data-testid='copy-original-url' onClick={handleCopyTrackUrl}>
               <Icon name='linkify' />
             </a>}
           />

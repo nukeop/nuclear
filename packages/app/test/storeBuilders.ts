@@ -450,7 +450,7 @@ export const buildStoreState = () => {
               'thumbnail': 'https://test-track-thumb-url',
               'streams': [
                 {
-                  'source': 'Youtube',
+                  'source': 'Test Stream Provider',
                   'id': 'CuklIb9d3fI',
                   'stream': 'https://test-track-stream-url',
                   'duration': 300,

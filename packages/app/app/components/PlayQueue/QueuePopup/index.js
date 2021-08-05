@@ -29,7 +29,7 @@ export const QueuePopup = ({
   copyToClipboard
 }) => {
   const triggerElement = useRef(null);
-
+  
   const handleOpen = useCallback(
     event => {
       event.preventDefault();
@@ -48,7 +48,7 @@ export const QueuePopup = ({
     const selectedStreamProvider = _.find(plugins.plugins.streamProviders, { sourceName: plugins.selected.streamProviders });
     actions.rerollTrack(selectedStreamProvider, selectedStream, track);
   };
-  
+
   const handleSelectStream = ({ track, stream }) => {
     actions.changeTrackStream(track, stream);
   };
@@ -73,7 +73,11 @@ export const QueuePopup = ({
         [styles.hidden]: !imageReady
       })}
       trigger={
-        <div ref={triggerElement} data-testid={`queue-popup-${track.uuid}`} onContextMenu={handleOpen}>
+        <div
+          ref={triggerElement}
+          data-testid={`queue-popup-${track.uuid}`}
+          onContextMenu={handleOpen}
+        >
           {trigger}
         </div>
       }

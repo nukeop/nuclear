@@ -74,7 +74,7 @@ export const setupI18Next = () => {
 };
 
 export const mountComponent = (
-  willMountComponent: React.ReactElement, 
+  componentToMount: React.ReactElement, 
   initialHistoryEntries: string[],
   initialStore?: AnyProps, 
   defaultInitialStore?: AnyProps) => {
@@ -91,7 +91,7 @@ export const mountComponent = (
       <TestStoreProvider
         store={store}
       >
-        {willMountComponent}
+        {componentToMount}
       </TestStoreProvider>
     </TestRouterProvider>
   );
@@ -133,9 +133,7 @@ export const mountedPlayQueueFactory= (
 ) =>
   (initialStore?: AnyProps) => {
     return mountComponent(
-      <body>
-        <PlayQueueContainer />
-      </body>, 
+      <PlayQueueContainer />, 
       initialHistoryEntries, 
       initialStore, 
       defaultInitialStore
