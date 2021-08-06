@@ -48,7 +48,7 @@ class LinuxMediaService extends MprisService implements NuclearApi {
     @inject(Window) private window: Window
   ) {
     super({
-      name: config.title.replace(/ /g, '_'),
+      name: config.appid,
       identity: config.title,
       supportedMimeTypes: config.supportedFormats.map(format => `audio/${format}`),
       supportedUriSchemes: ['file', 'uri'],

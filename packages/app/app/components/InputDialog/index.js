@@ -2,7 +2,7 @@ import React, { useState, useCallback, useEffect } from 'react';
 import { Button, Input, Modal } from 'semantic-ui-react';
 import { useTranslation } from 'react-i18next';
 
-const InputDialog = ({ initialString, trigger, header, placeholder, accept, onAccept }) => {
+const InputDialog = ({ initialString, trigger, header, placeholder, accept, onAccept, testIdPrefix = null }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [inputString, setInputString] = useState(initialString);
   const { t } = useTranslation('input-dialog');
@@ -41,13 +41,19 @@ const InputDialog = ({ initialString, trigger, header, placeholder, accept, onAc
           placeholder={placeholder}
           onChange={handleChange}
           value={inputString}
+          data-testid={testIdPrefix && `${testIdPrefix}-input`}
         />
       </Modal.Content>
       <Modal.Actions>
-        <Button onClick={handleClose} basic color='red' inverted>
+        <Button 
+          basic color='red' inverted
+          onClick={handleClose}
+          data-testid={testIdPrefix && `${testIdPrefix}-cancel`}>
           {t('cancel')}
         </Button>
-        <Button color='green' inverted onClick={onClick}>
+        <Button color='green' inverted 
+          onClick={onClick}
+          data-testid={testIdPrefix && `${testIdPrefix}-accept`}>
           {accept}
         </Button>
       </Modal.Actions>
