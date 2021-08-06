@@ -11,6 +11,14 @@ import { ADD_TO_DOWNLOADS, DOWNLOAD_RESUMED, DOWNLOAD_PAUSED, DOWNLOAD_FINISHED,
 import { CLOSE_WINDOW, MINIMIZE_WINDOW, MAXIMIZE_WINDOW, OPEN_DEVTOOLS } from '../../actions/window';
 import { getType } from 'typesafe-actions';
 
+type IpcActionType = {
+  type: string;
+  payload: any;
+  meta: {
+    fromMain?: boolean;
+  };
+}
+
 const ipcConnect = () => next => {
   next({
     type: LocalLibrary.UPDATE_LOCAL_FOLDERS,
@@ -22,7 +30,7 @@ const ipcConnect = () => next => {
     payload: ipcRenderer.sendSync(IpcEvents.LOCAL_METAS)
   });
 
-  return ({ meta = {}, payload, type }) => {
+  return ({ meta = {}, payload, type }: IpcActionType) => {
     if (meta.fromMain) {
       next({ type, payload });
       return;
