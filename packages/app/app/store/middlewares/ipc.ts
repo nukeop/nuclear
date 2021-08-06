@@ -5,10 +5,11 @@ import _ from 'lodash';
 import { PAUSE_PLAYBACK, START_PLAYBACK, UPDATE_VOLUME } from '../../actions/player';
 import { LocalLibrary } from '../../actions/actionTypes';
 import { ADD_QUEUE_ITEM, CLEAR_QUEUE, REMOVE_QUEUE_ITEM, QUEUE_DROP } from '../../actions/queue';
-import { SET_BOOLEAN_OPTION, SET_NUMBER_OPTION } from '../../actions/settings';
-import { CHANGE_CONNECTIVITY } from '../../actions/connectivity';
+import { Settings } from '../../actions/actionTypes';
+import { changeConnectivity } from '../../actions/connectivity';
 import { ADD_TO_DOWNLOADS, DOWNLOAD_RESUMED, DOWNLOAD_PAUSED, DOWNLOAD_FINISHED, DOWNLOAD_ERROR } from '../../actions/downloads';
 import { CLOSE_WINDOW, MINIMIZE_WINDOW, MAXIMIZE_WINDOW, OPEN_DEVTOOLS } from '../../actions/window';
+import { getType } from 'typesafe-actions';
 
 const ipcConnect = () => next => {
   next({
@@ -60,7 +61,7 @@ const ipcConnect = () => next => {
     case QUEUE_DROP:
       return ipcRenderer.send(IpcEvents.QUEUE_DROP, payload);
   
-    case SET_BOOLEAN_OPTION:
+    case Settings.SET_BOOLEAN_OPTION:
       switch (payload.option) {
       case 'api.enabled':
         ipcRenderer.send(payload.state ? IpcEvents.API_RESTART : IpcEvents.API_STOP);
@@ -73,13 +74,13 @@ const ipcConnect = () => next => {
         break;
       }
       break;
-    case SET_NUMBER_OPTION:
+    case Settings.SET_NUMBER_OPTION:
       if (payload.option === 'api.port' && isValidPort(payload.state) && getOption('api.enabled')) {
         ipcRenderer.send(IpcEvents.API_RESTART);
       }
       break;
       
-    case CHANGE_CONNECTIVITY:
+    case getType(changeConnectivity):
       ipcRenderer.send(IpcEvents.CONNECTIVITY, payload);
       break;
 

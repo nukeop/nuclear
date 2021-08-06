@@ -1,9 +1,5 @@
-import {
-  LOAD_BEST_NEW_ALBUMS_SUCCESS,
-  LOAD_BEST_NEW_TRACKS_SUCCESS,
-  LOAD_TOP_TAGS_SUCCESS,
-  LOAD_TOP_TRACKS_SUCCESS
-} from '../actions/dashboard';
+import { getType } from 'typesafe-actions';
+import {loadBestNewAlbumsAction, loadBestNewTracksAction, loadTopTagsAction, loadTopTracksAction} from '../actions/dashboard';
 
 const initialState = {
   bestNewAlbums: [],
@@ -13,19 +9,19 @@ const initialState = {
 
 export default function DashboardReducer(state = initialState, action) {
   switch (action.type) {
-  case LOAD_BEST_NEW_ALBUMS_SUCCESS:
+  case getType(loadBestNewAlbumsAction.success):
     return Object.assign({}, state, {
       bestNewAlbums: action.payload
     });
-  case LOAD_BEST_NEW_TRACKS_SUCCESS:
+  case getType(loadBestNewTracksAction.success):
     return Object.assign({}, state, {
       bestNewTracks: action.payload
     });
-  case LOAD_TOP_TAGS_SUCCESS:
+  case getType(loadTopTagsAction.success):
     return Object.assign({}, state, {
       topTags: action.payload
     });
-  case LOAD_TOP_TRACKS_SUCCESS:
+  case getType(loadTopTracksAction.success):
     return Object.assign({}, state, {
       topTracks: action.payload
     });

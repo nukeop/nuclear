@@ -1,8 +1,9 @@
-import { CHANGE_CONNECTIVITY } from '../actions/connectivity';
+import { getType } from 'typesafe-actions';
+import { changeConnectivity } from '../actions/connectivity';
 
 function ConnectivityReducer(state = navigator.onLine, action) {
   switch (action.type) {
-  case CHANGE_CONNECTIVITY:
+  case getType(changeConnectivity):
     return action.payload;
   default:
     return state;
