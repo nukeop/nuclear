@@ -1,48 +1,48 @@
 {
   "album": {
-    "download": "Download",
-    "download-toast-content": "{{artist}} - {{title}} has been added to downloads.",
-    "download-toast-title": "Album added to downloads",
-    "error-load": "Sorry, this album could not be loaded. Try again later or open a new issue on Github",
-    "genre": "Genre:",
-    "play": "Play",
+    "download": "Baixar",
+    "download-toast-content": "{{artist}} - {{title}} foi adicionado aos downloads.",
+    "download-toast-title": "Álbum adicionado aos downloads",
+    "error-load": "Desculpe, este álbum não pôde ser carregado. Tente novamente mais tarde ou abra uma nova issue no Github",
+    "genre": "Gênero:",
+    "play": "Reproduzir",
     "queue": "Adicionar à Fila",
-    "tracks": "Tracks:",
-    "year": "Year:"
+    "tracks": "Faixas:",
+    "year": "Ano:"
   },
   "app": {
     "collection": "Coleção",
-    "dashboard": "Dashboard",
+    "dashboard": "Painel",
     "downloads": "Downloads",
     "equalizer": "Equalizador",
-    "favorite-albums": "Favorite Albums",
-    "favorite-artists": "Favorite Artists",
+    "favorite-albums": "Álbuns Favoritos",
+    "favorite-artists": "Artistas Favoritos",
     "favorite-tracks": "Favoritas",
     "library": "Biblioteca",
     "lyrics": "Letras",
-    "main": "Main",
+    "main": "Principal",
     "playlists": "Lista de Reprodução",
     "plugins": "Plugins",
     "search": "Busca",
     "settings": "Configurações",
-    "visualizer": "Visualizer"
+    "visualizer": "Visualizador"
   },
   "artist": {
-    "count": "Play counts",
+    "count": "Reproduções",
     "queue": "Adicione todas as faixas à fila",
-    "similar": "Similar artists",
+    "similar": "Artistas similares",
     "title": "Título",
     "tour": "Turnê"
   },
   "dashboard": {
-    "add-all": "Add all",
+    "add-all": "Adicionar tudo",
     "artist": "Artista",
     "best": "Melhor nova musica",
     "best-new-albums": "Melhores novos álbuns",
     "best-new-tracks": "Melhores novas faixas",
     "genres": "Gêneros",
     "news": "Novidades",
-    "playcounts": "Playcounts",
+    "playcounts": "Número de reproduções",
     "popular-track-title": "Mais tocadas no Deezer",
     "title": "Título",
     "top": "Mais tocadas"
@@ -57,14 +57,14 @@
     "status": "Status"
   },
   "favorite-albums": {
-    "empty": "No favorite albums",
-    "empty-help": "Try adding some albums to favorites and they will appear here!",
-    "header": "Your favorite albums"
+    "empty": "Nenhum álbum favorito",
+    "empty-help": "Tente adicionar alguns álbuns aos favoritos e eles aparecerão aqui!",
+    "header": "Seus álbuns favoritos"
   },
   "favorite-artists": {
-    "empty": "No favorite artists",
-    "empty-help": "Try adding some artists to favorites and they will appear here!",
-    "header": "Your favorite artists"
+    "empty": "Nenhum artista favorito",
+    "empty-help": "Tente adicionar alguns artistas aos favoritos e eles aparecerão aqui!",
+    "header": "Seus artistas favoritos"
   },
   "favorites": {
     "artist": "Artista",
