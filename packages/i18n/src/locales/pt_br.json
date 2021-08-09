@@ -69,12 +69,12 @@
   "favorites": {
     "artist": "Artista",
     "empty": "Nenhum favorito adicionado.",
-    "empty-help": "Try adding some tracks to favorites and they will appear here!",
+    "empty-help": "Tente adicionar algumas faixas aos favoritos e elas aparecerão aqui!",
     "header": "Suas faixas favoritas",
     "title": "Título"
   },
   "help": {
-    "about": "About Nuclear Music Player",
+    "about": "Sobre o Player de Música Nuclear",
     "header": "Desktop music player for streaming from free sources",
     "released": "released under AGPL-3.0",
     "report": "Submit issues or new features",
