@@ -22,7 +22,7 @@ describe('Play Queue container', () => {
     const { component } = mountComponent();
     const track = component.getByTestId('queue-popup-uuid1');
     await waitFor(() => fireEvent.contextMenu(track));
-    expect(component.baseElement).toMatchSnapshot();
+    expect(component.asFragment()).toMatchSnapshot();
   });
 
   it('should copy original track url to clipboard', async () => {

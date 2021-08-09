@@ -77,7 +77,8 @@ export const mountComponent = (
   componentToMount: React.ReactElement, 
   initialHistoryEntries: string[],
   initialStore?: AnyProps, 
-  defaultInitialStore?: AnyProps) => {
+  defaultInitialStore?: AnyProps,
+  renderOptions?: {}) => {
   const initialState = initialStore || defaultInitialStore;
 
   const history = createMemoryHistory({
@@ -93,7 +94,7 @@ export const mountComponent = (
       >
         {componentToMount}
       </TestStoreProvider>
-    </TestRouterProvider>
+    </TestRouterProvider>, renderOptions
   );
   return { component, history, store };
 };
@@ -126,7 +127,7 @@ export const mountedNavbarFactory= (
       defaultInitialStore
     );
   };
-
+// { container: document.body }
 export const mountedPlayQueueFactory= (
   initialHistoryEntries: string[],
   defaultInitialStore?: AnyProps
@@ -136,6 +137,7 @@ export const mountedPlayQueueFactory= (
       <PlayQueueContainer />, 
       initialHistoryEntries, 
       initialStore, 
-      defaultInitialStore
+      defaultInitialStore,
+      { container: document.body }
     );
   };
