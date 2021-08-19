@@ -35,7 +35,7 @@
     "tour": "巡迴演出"
   },
   "dashboard": {
-    "add-all": "Add all",
+    "add-all": "新增所有",
     "artist": "演出者",
     "best": "熱門新音樂",
     "best-new-albums": "熱門新專輯",
@@ -69,7 +69,7 @@
   "favorites": {
     "artist": "演出者",
     "empty": "我的最愛為空",
-    "empty-help": "Try adding some tracks to favorites and they will appear here!",
+    "empty-help": "嘗試將一些藝術家添加到收藏夾，他們會出現在這裡！",
     "header": "我的最愛",
     "title": "音樂標題"
   },
@@ -131,9 +131,9 @@
     "export-fail-title": "導出播放列表失敗",
     "export-success-title": "播放列表導出成功",
     "header": "你的播放列表",
-    "dialog-accept": "Save",
-    "create-button": "Create new playlist",
-    "new-playlist": "New playlist",
+    "dialog-accept": "保存",
+    "create-button": "建立新的播放清單",
+    "new-playlist": "新增播放清單",
     "import-button": "從文件導入(JSON)",
     "import-fail-title": "導入播放列表失敗",
     "import-success-title": "播放列表導入成功",
@@ -267,8 +267,8 @@
     "title": "音樂標題"
   },
   "track-popup": {
-    "add-to-favorite": "Add to favorites",
-    "add-to-playlist": "Add to playlist",
+    "add-to-favorite": "加到我的最愛",
+    "add-to-playlist": "加到播放清單",
     "add-to-queue": "Add to queue",
     "download": "Download",
     "download-toast-body": "{{artist}} - {{track}} has been added to downloads.",
