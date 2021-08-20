@@ -173,6 +173,8 @@
     "header": "Λίστα αναπαραγωγής",
     "header-track": "Παρόν κομμάτι",
     "id": "Αναγνωριστικό ροής :",
+    "source": "Source:",
+    "copy-track-url": "Copy track url to clipboard",
     "loading": "Φόρτωση ροής.",
     "playlist-add": "Προσθήκη σε λίστα",
     "playlist-toast-content": "Η λίστα {{name}} δημιουργήθηκε.",
