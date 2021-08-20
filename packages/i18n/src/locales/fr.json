@@ -173,6 +173,8 @@
     "header": "File de lecture",
     "header-track": "Morceau actuel",
     "id": "Id du flux :",
+    "source": "Source:",
+    "copy-track-url": "Copy track url to clipboard",
     "loading": "Chargement du flux.",
     "playlist-add": "Ajouter à la playlist",
     "playlist-toast-content": "La playlist {{name}} a été créé.",
