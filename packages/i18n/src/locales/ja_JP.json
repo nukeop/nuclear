@@ -173,6 +173,8 @@
     "header": "キュー",
     "header-track": "現在の曲",
     "id": "ストリーム ID:",
+    "source": "Source:",
+    "copy-track-url": "Copy track url to clipboard",
     "loading": "ストリームが読み込み中です",
     "playlist-add": "プレイリストに追加",
     "playlist-toast-content": "プレイリスト {{name}} を作成しました。",
