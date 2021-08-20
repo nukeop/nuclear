@@ -173,6 +173,8 @@
     "header": "Kø",
     "header-track": "Gjeldende spor",
     "id": "Strøm ID:",
+    "source": "Source:",
+    "copy-track-url": "Copy track url to clipboard",
     "loading": "Strømming lastes fortsatt.",
     "playlist-add": "Legg til i spilleliste",
     "playlist-toast-content": "Spilleliste {{name}} er opprettet.",
