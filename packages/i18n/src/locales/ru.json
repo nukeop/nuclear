@@ -173,6 +173,8 @@
     "header": "Очередь",
     "header-track": "Сейчас играет",
     "id": "ID потока:",
+    "source": "Source:",
+    "copy-track-url": "Copy track url to clipboard",
     "loading": "Поток загружается.",
     "playlist-add": "Добавить в Плейлист",
     "playlist-toast-content": "Плейлист {{name}} успешно создан .",
