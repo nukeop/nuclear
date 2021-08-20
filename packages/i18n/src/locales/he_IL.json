@@ -173,6 +173,8 @@
     "header": "תור",
     "header-track": "הרצועה הנוכחית",
     "id": "מזהה הזרמה:",
+    "source": "Source:",
+    "copy-track-url": "Copy track url to clipboard",
     "loading": "ההזרמה עדיין נטענת.",
     "playlist-add": "הוספה לפלייליסט",
     "playlist-toast-content": "נוצר הפלייליסט {{name}}.",
