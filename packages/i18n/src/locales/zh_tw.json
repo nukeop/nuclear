@@ -173,6 +173,8 @@
     "header": "播放佇列",
     "header-track": "目前曲目",
     "id": "串流 ID:",
+    "source": "Source:",
+    "copy-track-url": "Copy track url to clipboard",
     "loading": "串流處理中",
     "playlist-add": "加到播放清單",
     "playlist-toast-content": "{{name}} 已建立",
