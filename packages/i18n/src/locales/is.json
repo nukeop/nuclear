@@ -173,6 +173,8 @@
     "header": "Biðröð",
     "header-track": "Núverandi lag",
     "id": "ID Streymis:",
+    "source": "Source:",
+    "copy-track-url": "Copy track url to clipboard",
     "loading": "Streymi er ennþá að hlaða.",
     "playlist-add": "Bæta í lagalista",
     "playlist-toast-content": "Lagalisti {{name}} hefur verið stofnaður.",
