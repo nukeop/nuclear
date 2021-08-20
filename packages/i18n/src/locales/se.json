@@ -173,6 +173,8 @@
     "header": "Kö",
     "header-track": "Spelas just nu",
     "id": "StreamID:",
+    "source": "Source:",
+    "copy-track-url": "Copy track url to clipboard",
     "loading": "Strömmen läses fortfarande.",
     "playlist-add": "Lägg till i spellista",
     "playlist-toast-content": "Spellistan {{name}} har skapats.",
