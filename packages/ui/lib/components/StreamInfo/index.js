@@ -2,20 +2,25 @@ import React from 'react';
 import Img from 'react-image';
 import { Dropdown, Icon } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
+import _ from 'lodash';
 
 import styles from './styles.scss';
 import artPlaceholder from '../../../resources/media/art_placeholder.png';
 import { withHandlers } from 'recompose';
+import Tooltip from '../Tooltip';
 
 const StreamInfo = ({
   selectedStream,
   handleRerollTrack,
   handleSelectStream,
   handleImageLoaded,
+  handleCopyTrackUrl,
   track,
   dropdownOptions,
   idLabel,
-  titleLabel
+  titleLabel,
+  copyTrackUrlLabel,
+  sourceLabel
 }) => {
   return (
     <div className={styles.stream_info}>
@@ -29,7 +34,7 @@ const StreamInfo = ({
       </div>
       <div className={styles.stream_text_info}>
         <div className={styles.stream_source}>
-          <label>Source:</label>{' '}
+          <label>{sourceLabel}</label>{' '}
           <Dropdown
             inline
             options={dropdownOptions}
@@ -52,6 +57,16 @@ const StreamInfo = ({
         )}
       </div>
       <div className={styles.stream_buttons}>
+        {selectedStream.originalUrl && (
+          <Tooltip
+            on='hover'
+            content={copyTrackUrlLabel}
+            trigger={<a href='#' data-testid='copy-original-url' onClick={handleCopyTrackUrl}>
+              <Icon name='linkify' />
+            </a>}
+          />
+          
+        )}
         <a href='#' onClick={handleRerollTrack}>
           <Icon name='refresh' />
         </a>
@@ -65,7 +80,9 @@ StreamInfo.propTypes = {
   track: PropTypes.object.isRequired,
   dropdownOptions: PropTypes.array,
   idLabel: PropTypes.string,
-  titleLabel: PropTypes.string
+  titleLabel: PropTypes.string,
+  copyTrackUrlLabel: PropTypes.string,
+  sourceLabel: PropTypes.string
 };
 
 export default withHandlers({
@@ -79,5 +96,8 @@ export default withHandlers({
   },
   handleImageLoaded: ({ onImageLoaded }) => () => {
     onImageLoaded();
+  },
+  handleCopyTrackUrl: ({ onCopyTrackUrl }) => () => {
+    onCopyTrackUrl();
   }
 })(StreamInfo);

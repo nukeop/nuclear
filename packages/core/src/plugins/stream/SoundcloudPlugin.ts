@@ -21,7 +21,8 @@ class SoundcloudPlugin extends StreamProviderPlugin {
       stream: result.stream_url + `?client_id=${process.env.SOUNDCLOUD_API_KEY}`,
       duration: result.duration/1000,
       title: result.title,
-      thumbnail: result.user.avatar_url
+      thumbnail: result.user.avatar_url,
+      originalUrl: result.permalink_url
     };
   }
 

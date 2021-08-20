@@ -21,7 +21,8 @@ class iTunesPodcastPlugin extends StreamProviderPlugin {
       stream: result.episodeUrl,
       duration: result.trackTimeMillis / 1000,
       title: result.trackName,
-      thumbnail: result.artworkUrl600
+      thumbnail: result.artworkUrl600,
+      originalUrl: result.trackViewUrl
     };
   }
 
@@ -41,6 +42,7 @@ class iTunesPodcastPlugin extends StreamProviderPlugin {
     const podcast = query.artist;
     const episode = query.track;
     const podcastId = await this.findPodcastId(podcast);
+
     return iTunes.getPodcastEpisodes(podcastId, '50')
       .then(data => data.json())
       .then(results => {
@@ -58,6 +60,7 @@ class iTunesPodcastPlugin extends StreamProviderPlugin {
   async getAlternateStream(query: StreamQuery, currentStream: { id: string; }): Promise<void | StreamData> {
     const podcast = query.artist;
     const podcastId = await this.findPodcastId(podcast);
+
     return iTunes.getPodcastEpisodes(podcastId, '50')
       .then(data => data.json())
       .then(results => {
