@@ -173,6 +173,8 @@
     "header": "Jono",
     "header-track": "Tämänhetkinen kappale",
     "id": "Stream ID:",
+    "source": "Source:",
+    "copy-track-url": "Copy track url to clipboard",
     "loading": "Streami lataa vieläkin.",
     "playlist-add": "Lisää soittolistaan",
     "playlist-toast-content": "Soittolista {{name}} on luotu",
