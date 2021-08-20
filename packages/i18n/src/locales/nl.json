@@ -173,6 +173,8 @@
     "header": "Wachtrij",
     "header-track": "Huidige nummer",
     "id": "Stream-id:",
+    "source": "Source:",
+    "copy-track-url": "Copy track url to clipboard",
     "loading": "Bezig met laden van stream...",
     "playlist-add": "Toevoegen aan afspeellijst",
     "playlist-toast-content": "De afspeellijst, '{{name}}', is gecreëerd.",
