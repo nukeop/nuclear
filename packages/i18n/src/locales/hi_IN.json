@@ -173,6 +173,8 @@
     "header": "कतार",
     "header-track": "वर्तमान ट्रैक",
     "id": "स्ट्रीम आईडी",
+    "source": "Source:",
+    "copy-track-url": "Copy track url to clipboard",
     "loading": "स्ट्रीम अभी भी लोड हो रही है.",
     "playlist-add": "प्‍लेलिस्‍ट में जोड़ें",
     "playlist-toast-content": "प्लेलिस्ट {{name}} बन गई है।",
