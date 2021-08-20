@@ -173,6 +173,8 @@
     "header": "Lista",
     "header-track": "Faixa Atual",
     "id": "ID de Transmissão:",
+    "source": "Source:",
+    "copy-track-url": "Copy track url to clipboard",
     "loading": "Transmissão ainda carregando.",
     "playlist-add": "Adicionar à Lista de Reprodução",
     "playlist-toast-content": "A Lista de Reprodução {{name}} Foi criada.",
