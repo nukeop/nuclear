@@ -173,6 +173,8 @@
     "header": "Kolejka",
     "header-track": "Odtwarzane",
     "id": "ID strumienia:",
+    "source": "Source:",
+    "copy-track-url": "Copy track url to clipboard",
     "loading": "Strumień wciąż ładowany.",
     "playlist-add": "Dodaj do listy odtwarzania",
     "playlist-toast-content": "Lista odtwarzania {{name}} została utworzona.",
