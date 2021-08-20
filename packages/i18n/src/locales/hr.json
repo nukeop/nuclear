@@ -173,6 +173,8 @@
     "header": "Red za reprodukciju",
     "header-track": "Trenutna pjesma",
     "id": "ID streama:",
+    "source": "Source:",
+    "copy-track-url": "Copy track url to clipboard",
     "loading": "Stream se još učitava.",
     "playlist-add": "Dodaj u popis za reprodukciju",
     "playlist-toast-content": "Popis za reprodukiju {{name}} je kreiran.",
