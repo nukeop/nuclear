@@ -173,6 +173,8 @@
     "header": "Pila",
     "header-track": "Kasalukuyang kanta",
     "id": "Stream ID:",
+    "source": "Source:",
+    "copy-track-url": "Copy track url to clipboard",
     "loading": "Stream ay inaabangan.",
     "playlist-add": "Idagdag sa playlist",
     "playlist-toast-content": "Nagawa ang playlist {{name}}.",
