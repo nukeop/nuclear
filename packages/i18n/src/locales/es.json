@@ -173,6 +173,8 @@
     "header": "Cola de reproducción",
     "header-track": "Pista actual",
     "id": "ID de Transmisión:",
+    "source": "Source:",
+    "copy-track-url": "Copy track url to clipboard",
     "loading": "La transmisión sigue cargando.",
     "playlist-add": "Añadir a lista de reproducción",
     "playlist-toast-content": "La lista de reproducción '{{name}}' ha sido creada.",
