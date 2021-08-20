@@ -173,6 +173,8 @@
     "header": "Coda",
     "header-track": "Traccia corrente",
     "id": "ID Stream:",
+    "source": "Source:",
+    "copy-track-url": "Copy track url to clipboard",
     "loading": "La stream sta ancora caricando.",
     "playlist-add": "Aggiungi alla playlist",
     "playlist-toast-content": "La playlist {{name}} è stata creata.",
