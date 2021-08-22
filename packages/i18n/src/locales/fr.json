@@ -3,12 +3,12 @@
     "download": "Télécharger",
     "download-toast-content": "{{artist}} - {{title}} a été ajouté aux téléchargements.",
     "download-toast-title": "L'album a été ajouté aux téléchargements",
-    "error-load": "Sorry, this album could not be loaded. Try again later or open a new issue on Github",
-    "genre": "Genre:",
-    "play": "Play",
+    "error-load": "Désolé, cet album n'a pas pu être chargé. Réessayez plus tard ou ouvrez une nouvelle Issue sur Github",
+    "genre": "Genre :",
+    "play": "Lire",
     "queue": "Ajouter l'album à la liste de lecture",
-    "tracks": "Tracks:",
-    "year": "Year:"
+    "tracks": "Morceaux :",
+    "year": "Année :"
   },
   "app": {
     "collection": "Collection",
