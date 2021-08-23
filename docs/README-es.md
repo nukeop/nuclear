@@ -31,13 +31,13 @@ Traducciones de la documentación:
 <kbd>[<img title="Italiano" alt="Italiano" src="https://cdn.staticaly.com/gh/hjnilsson/country-flags/master/svg/it.svg" width="22">](docs/README-it.md)</kbd>
 <kbd>[<img title="Türkçe" alt="Türkçe" src="https://cdn.staticaly.com/gh/hjnilsson/country-flags/master/svg/tr.svg" width="22">](docs/README-tr.md)</kbd>
 
-## Qué es?
+## ¿Qué es?
 Nuclear es un programa gratuito de transmisión de música que extrae contenido de fuentes gratuitas en Internet.
 
-Si conoces [mps-youtube](https://github.com/mps-youtube/mps-youtube), este es un reproductor de música similar pero con una GUI.
+Si conoces [mps-youtube](https://github.com/mps-youtube/mps-youtube), este es un reproductor de música similar pero con una interfase gráfica.
 También se enfoca más en el audio. Imagina Spotify por el que no tienes que pagar y con una biblioteca más grande.
 
-## Qué pasa si soy religiosamente opuesto a Electron?
+## ¿Qué pasa si soy religiosamente opuesto a Electron?
 Mira [esto](docs/electron.md).
 
 ## Características
@@ -52,7 +52,7 @@ Mira [esto](docs/electron.md).
 - Modo de radio (pone automáticamente en cola pistas similares)
 - Descargas ilimitadas (con tecnología de youtube)
 - Letras en tiempo real
-- Navegación por pupularidad
+- Navegación por popularidad
 - Lista de canciones favoritas
 - Escuchar de la biblioteca local
 - Sin cuentas
