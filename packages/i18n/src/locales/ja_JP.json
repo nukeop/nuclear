@@ -265,7 +265,7 @@
     "artist": "アーティスト",
     "artists": "トップアーティスト",
     "duration": "継続期間",
-    "queue-add": "Add all tracks to queue",
+    "queue-add": "すべての曲をキューに追加",
     "title": "タイトル"
   },
   "track-popup": {
@@ -276,7 +276,7 @@
     "download-toast-body": "{{artist}} - {{track}} has been added to downloads.",
     "download-toast-title": "曲をダウンロードリストに追加しました",
     "favorite-toast-body": "{{artist}} - {{track}} has been added to favorites.",
-    "favorite-toast-title": "Favorite track added",
+    "favorite-toast-title": "お気に入りのリストに追加しました",
     "play-next": "次に再生する",
     "play-now": "今すぐ再生",
     "playlist-toast-body": "{{artist}} - {{track}} をプレイリストに追加しました",
