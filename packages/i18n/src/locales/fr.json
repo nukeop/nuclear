@@ -198,7 +198,7 @@
     "you-can-search-for": "Vous pouvez rechercher :"
   },
   "seekbar": {
-    "segment-popup": "Non-music"
+    "segment-popup": "Hors musique"
   },
   "settings": {
     "api-port": "Port utilisé par l'api",
@@ -254,7 +254,7 @@
     "shuffle-when-going-back": "Mélanger les morceaux précédents",
     "shuffle-when-going-back-description": "Joue un morceau aléatoire lorsque le bouton de morceau précédent est cliqué",
     "social": "Social",
-    "streaming": "Streaming",
+    "streaming": "Diffusion",
     "track-duration": "Afficher la durée du morceau sur la barre d'avancement de lecture",
     "user": "Utilisateur :",
     "youtube": "YouTube",
