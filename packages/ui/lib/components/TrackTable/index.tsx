@@ -1,11 +1,9 @@
-/* eslint-disable react/jsx-key */
 import React, { useMemo } from 'react';
 import cx from 'classnames';
-import { useTable, Column, useRowSelect } from 'react-table';
+import { useTable, Column, useRowSelect, useGlobalFilter, useAsyncDebounce } from 'react-table';
 import _ from 'lodash';
 import { DragDropContext, Droppable, Draggable, DragDropContextProps } from 'react-beautiful-dnd';
-
-
+import {Icon} from 'semantic-ui-react';
 import DeleteCell from './Cells/DeleteCell';
 import FavoriteCell from './Cells/FavoriteCell';
 import PositionCell from './Cells/PositionCell';
@@ -17,6 +15,8 @@ import SelectionHeader from './Headers/SelectionHeader';
 import { getTrackThumbnail } from '../TrackRow';
 import { TrackTableColumn, TrackTableExtraProps, TrackTableHeaders, TrackTableSettings, TrackTableStrings } from './types';
 import styles from './styles.scss';
+import SearchBoxStyle from '../SearchBox/styles.scss';
+import common from '../../common.scss';
 import artPlaceholder from '../../../resources/media/art_placeholder.png';
 import { Track } from '../../types';
 
@@ -29,6 +29,38 @@ export type TrackTableProps = TrackTableExtraProps &
 
     strings: TrackTableStrings;
   }
+
+function GlobalFilter({
+  globalFilter,
+  setGlobalFilter
+}) {
+
+  const [value, setValue] = React.useState(globalFilter);
+  const onChange = useAsyncDebounce(value => {
+    setGlobalFilter(value || undefined);
+  }, 200);
+
+  return (
+    <div className={cx(common.nuclear, SearchBoxStyle.search_box_container)}>
+      <div
+        className={cx(
+          common.nuclear,
+          SearchBoxStyle.search_box
+        )}>
+        <Icon name='search' disabled={false} />
+        
+        <input
+          value={value||''}
+          onChange={e => {
+            setValue(e.target.value);
+            onChange(e.target.value);
+          }}
+          placeholder='Search...'
+        />
+      </div>
+    </div>
+  );
+}
 
 const TrackTable: React.FC<TrackTableProps> = ({
   tracks,
@@ -50,10 +82,11 @@ const TrackTable: React.FC<TrackTableProps> = ({
   displayAlbum = true,
   displayDuration = true,
   selectable = true,
-
+ 
   ...extraProps
 }) => {
   const columns = useMemo(() => [
+   
     displayDeleteButton && {
       id: TrackTableColumn.Delete,
       Cell: DeleteCell
@@ -108,45 +141,41 @@ const TrackTable: React.FC<TrackTableProps> = ({
     }
   ].filter(Boolean) as Column<Track>[], [displayDeleteButton, displayPosition, displayThumbnail, displayFavorite, isTrackFavorite, titleHeader, displayArtist, artistHeader, displayAlbum, albumHeader, displayDuration, durationHeader, selectable, positionHeader, thumbnailHeader]);
 
+  
   const data = useMemo(() => tracks, [tracks]);
-
-  const table = useTable<Track>({ columns, data }, useRowSelect);
-
+  
   const {
     getTableProps,
     getTableBodyProps,
-    headerGroups,
+    state,
     rows,
-    prepareRow
-  } = table;
+    visibleColumns,
+    prepareRow,
+    setGlobalFilter    
+  }  = useTable<Track>({ columns, data }, useRowSelect, useGlobalFilter);
 
-  return <table {...getTableProps()} className={styles.track_table}>
-    <thead>
-      {
-        headerGroups.map(headerGroup => (
-          <tr {...headerGroup.getHeaderGroupProps()}>
-            {
-              headerGroup.headers.map(column => (
-                <th {...column.getHeaderProps()}>
-                  {column.render('Header', extraProps)}
-                </th>
-              ))
-            }
-          </tr>
-        ))
-      }
-    </thead>
-    <DragDropContext onDragEnd={onDragEnd}>
-      <Droppable droppableId='track_table'>
-        {(provided) => (
 
-          <tbody
-            ref={provided.innerRef}
-            {...getTableBodyProps()}
-            {...provided.droppableProps}
-          >
-            {
-              rows.map(row => {
+  return (  
+    <table {...getTableProps()} className={styles.track_table}>
+      <thead>
+        <tr>
+          <th colSpan={visibleColumns.length}>
+            <GlobalFilter
+              globalFilter={state.globalFilter}
+              setGlobalFilter={setGlobalFilter} />
+          </th>
+        </tr>
+      </thead>
+      <DragDropContext onDragEnd={onDragEnd}>
+        <Droppable droppableId='track_table'>
+          {(provided) => (
+          
+            <tbody
+              ref={provided.innerRef}
+              {...getTableBodyProps()}
+              {...provided.droppableProps}
+            >
+              {rows.map(row => {
                 prepareRow(row);
                 return (
                   <Draggable
@@ -163,19 +192,19 @@ const TrackTable: React.FC<TrackTableProps> = ({
                         {...provided.draggableProps}
                         {...provided.dragHandleProps}
                       >
-                        {row.cells.map((cell, i) => (cell.render('Cell', {...extraProps, key: i})))}
+                        {row.cells.map((cell, i) => (cell.render('Cell', { ...extraProps, key: i })))}
                       </tr>
                     )}
                   </Draggable>
                 );
-              })
-            }
-            {provided.placeholder}
-          </tbody>
-        )}
-      </Droppable>
-    </DragDropContext>
-  </table>;
+              })}
+              {provided.placeholder}
+            </tbody>
+          )}
+        </Droppable>
+      </DragDropContext>
+    </table>
+  );
 };
 
 export default TrackTable;
