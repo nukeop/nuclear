@@ -1,18 +1,18 @@
 {
   "album": {
-    "download": "Baixar",
-    "download-toast-content": "{{artist}} - {{title}} foi adicionado aos downloads.",
-    "download-toast-title": "Álbum adicionado aos downloads",
-    "error-load": "Desculpe, este álbum não pôde ser carregado. Tente novamente mais tarde ou abra uma nova issue no Github",
-    "genre": "Gênero:",
-    "play": "Reproduzir",
-    "queue": "Adicionar à Fila",
-    "tracks": "Faixas:",
-    "year": "Ano:"
+    "download": "Download",
+    "download-toast-content": "{{artist}} - {{title}} has been added to downloads.",
+    "download-toast-title": "Album added to downloads",
+    "error-load": "Sorry, this album could not be loaded. Try again later or open a new issue on Github",
+    "genre": "Genre:",
+    "play": "Play",
+    "queue": "Add album to queue",
+    "tracks": "Tracks:",
+    "year": "Year:"
   },
   "app": {
-    "collection": "Coleção",
-    "dashboard": "Painel",
+    "collection": "Collection",
+    "dashboard": "Dashboard",
     "downloads": "Downloads",
     "equalizer": "Equalizador",
     "favorite-albums": "Álbuns Favoritos",
