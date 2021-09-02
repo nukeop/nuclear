@@ -45,7 +45,7 @@
     "d3-drag": "^1.2.3",
     "d3-selection": "^1.4.0",
     "dotenv": "^8.2.0",
-    "electron": "^12.0.5",
+    "electron": "^12.1.0",
     "electron-timber": "^0.5.1",
     "font-awesome": "^4.7.0",
     "get-artist-title": "^1.2.0",

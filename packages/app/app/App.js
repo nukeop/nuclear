@@ -26,7 +26,6 @@ import './app.global.scss';
 import styles from './styles.scss';
 import compact from './compact.scss';
 
-import logoImg from '../resources/media/logo_full_light.png';
 import logoIcon from '../resources/media/512x512.png';
 
 import settingsConst from './constants/settings';
@@ -112,24 +111,6 @@ class App extends React.PureComponent {
       this.props.scrobbling.lastFmSessionKey;
   }
 
-  renderNavBar() {
-    return (
-      <Navbar>
-        <NavButtons />
-        <SearchBoxContainer />
-        <Spacer className={styles.navbar_spacer} />
-        <HelpModalContainer />
-        {this.props.settings.framelessWindow && (
-          <WindowControls
-            onCloseClick={this.props.actions.closeWindow}
-            onMaxClick={this.props.actions.maximizeWindow}
-            onMinClick={this.props.actions.minimizeWindow}
-          />
-        )}
-      </Navbar>
-    );
-  }
-
   renderRightPanel() {
     return (
       <VerticalPanel
@@ -151,15 +132,6 @@ class App extends React.PureComponent {
         })}
       >
         <SidebarMenu>
-          <div className={styles.sidebar_brand}>
-            <img
-              width='50%'
-              src={this.props.settings.compactMenuBar ? logoIcon : logoImg}
-            />
-            <div className={styles.version_string}>
-              {this.props.settings.compactMenuBar ? '0.6.16' : 'Version 0.6.16'}
-            </div>
-          </div>
           <div className={styles.sidebar_menus}>
             {
               this.renderMenuCategory('main', [
@@ -221,6 +193,12 @@ class App extends React.PureComponent {
   renderSidebarFooter() {
     return (
       <div className={styles.sidebar_footer}>
+        {
+          !this.props.settings.compactMenuBar &&
+          <span className={styles.version_string}>
+            v0.6.16
+          </span>
+        }
         <a
           onClick={() => {
             this.props.actions.toggleOption(
@@ -250,7 +228,22 @@ class App extends React.PureComponent {
         <ErrorBoundary>
           <div className={styles.app_container}>
             <MiniPlayerContainer />
-            {this.renderNavBar()}
+            <Navbar>
+              <div className={styles.sidebar_brand}>
+                <img src={logoIcon} />
+              </div>
+              <NavButtons />
+              <SearchBoxContainer />
+              <Spacer className={styles.navbar_spacer} />
+              <HelpModalContainer />
+              {this.props.settings.framelessWindow && (
+                <WindowControls
+                  onCloseClick={this.props.actions.closeWindow}
+                  onMaxClick={this.props.actions.maximizeWindow}
+                  onMinClick={this.props.actions.minimizeWindow}
+                />
+              )}
+            </Navbar>
             <div className={styles.panel_container}>
               {this.renderSidebarMenu()}
               <VerticalPanel className={styles.center_panel}>

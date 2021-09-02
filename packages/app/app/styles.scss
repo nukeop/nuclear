@@ -124,11 +124,8 @@
 }
 
 .version_string {
-  margin: 0.5rem 0;
-
   text-align: center;
-
-  color: $lightbg;
+  color: $bglight;
 }
 
 .active_nav_link {
@@ -145,15 +142,23 @@
 }
 
 .sidebar_brand {
-  text-align: center;
-  padding: 1rem;
+  display: flex;
+  height: 100%;
+  align-items: center;
+  margin-left: 1em;
+
+  img {
+    width: 30px;
+    height: 30px;
+  }
 }
 
 .sidebar_footer {
   display: flex;
   flex-flow: row;
-  justify-content: flex-end;
-  margin: 0.5rem;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5em;
 
   a {
     display: flex;
