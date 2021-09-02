@@ -238,7 +238,7 @@
     "mastodon-authorization-token-label": "授权令牌",
     "mastodon-authorize": "授权",
     "mastodon-authorized": "Nuclear 已被授权发布动态至 ",
-    "mastodon-awaiting-authorization": "Nuclear 已经在 {{instanceUrl}} 上注册，正在等待批准。",
+    "mastodon-awaiting-authorization": "Nuclear 已经在 {{instanceUrl}} 上注册，正在等待批准。{{instanceUrl}}",
     "mastodon-description": "",
     "mastodon-instance-label": "Mastodon 实例 URL",
     "mastodon-post-format-description": "当每首曲目播放完毕时，Nuclear 会在 Mastodon 上发布一条动态。上面的字符串会被作为帖子的模板，{{artist}} 和 {{title}} 会被作曲家和曲目名称替代。",
