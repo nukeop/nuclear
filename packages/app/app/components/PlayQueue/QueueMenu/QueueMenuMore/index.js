@@ -115,7 +115,8 @@ export const enhance = compose(
             {
               '#text': currentItem.thumbnail
             }
-          ]
+          ],
+          streams: currentItem.streams
         });
       }
     },
