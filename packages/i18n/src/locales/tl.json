@@ -16,7 +16,7 @@
     "downloads": "Mga Download",
     "equalizer": "Equalizer",
     "favorite-albums": "Paboritong mga Album",
-    "favorite-artists": "Favorite Artists",
+    "favorite-artists": "Mga Paboritong Artista",
     "favorite-tracks": "Paboritong mga Kanta",
     "library": "Lokal na Library",
     "lyrics": "Liriko",
@@ -31,12 +31,12 @@
     "count": "Bilang ng pagtugtog",
     "queue": "Idagdag lahat sa pila",
     "similar": "Katulad na artist",
-    "title": "Title",
+    "title": "Titulado",
     "tour": "Nasa tour"
   },
   "dashboard": {
     "add-all": "Add all",
-    "artist": "Artist",
+    "artist": "Artista",
     "best": "Nangungunang bagong musika",
     "best-new-albums": "Nangungunang bagong mga album",
     "best-new-tracks": "Nangungunang bagong kanta",
@@ -44,7 +44,7 @@
     "news": "Balita",
     "playcounts": "Bilang ng pagtugtog",
     "popular-track-title": "Nangungunang kanta mula sa Deezer",
-    "title": "Title",
+    "title": "Titulado",
     "top": "Nangungunang mga kanta"
   },
   "downloads": {
@@ -103,7 +103,7 @@
   },
   "option-control": {
     "autoradio": "Autoradio",
-    "loop": "Loop",
+    "loop": "Paulit",
     "mini-player": "Miniplayer",
     "shuffle": "Shuffle"
   },
