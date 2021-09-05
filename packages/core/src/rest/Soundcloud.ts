@@ -7,3 +7,7 @@ function prepareUrl(url: string): string {
 export function soundcloudSearch(terms: string): Promise<Response> {
   return fetch(prepareUrl(apiUrl + '/tracks?limit=50&q=' + terms));
 }
+
+export function getTrackById(id: string): Promise<Response> {
+  return fetch(prepareUrl(`${apiUrl}/tracks/${id}`));
+}

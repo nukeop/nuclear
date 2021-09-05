@@ -53,6 +53,18 @@ class SoundcloudPlugin extends StreamProviderPlugin {
         logger.error(err);
       });
   }
+
+  async getStreamForId(id: string): Promise<void | StreamData> {
+    return Soundcloud.getTrackById(id)
+      .then(data => data.json())
+      .then(result => {
+        return result.id ? this.resultToStream(result) : null;
+      })
+      .catch(err => {
+        logger.error(`Error while looking up streams id: ${id} on Soundcloud`);
+        logger.error(err);
+      });
+  }
 }
 
 export default SoundcloudPlugin;

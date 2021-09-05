@@ -20,23 +20,7 @@ class InvidiousPlugin extends StreamProviderPlugin {
     try {
       const res = await Invidious.trackSearch(terms);
 
-      const {
-        adaptiveFormats,
-        lengthSeconds,
-        title,
-        videoId,
-        videoThumbnails
-      } = res;
-
-      return {
-        source: this.sourceName,
-        id: videoId,
-        stream: adaptiveFormats.find(({ container, type }) => type.includes('audio') && container === 'webm').url,
-        duration: lengthSeconds,
-        title,
-        thumbnail: videoThumbnails[3].url,
-        originalUrl: `${this.baseUrl}/watch?v=${videoId}`
-      };
+      return this.resultToStream(res);
     } catch (error) {
       logger.error(`Error while searching  for ${terms} on Invidious`);
       logger.error(error);
@@ -67,6 +51,37 @@ class InvidiousPlugin extends StreamProviderPlugin {
       logger.error(`Error while searching  for ${terms} on Invidious`);
       logger.error(error);
     }
+  }
+
+  async getStreamForId(id: string): Promise<void | StreamData> {
+    try {
+      const res = await Invidious.getTrackInfo(id);
+
+      return this.resultToStream(res);
+    } catch (error) {
+      logger.error(`Error while searching id ${id} on Invidious`);
+      logger.error(error);
+    }
+  }
+
+  resultToStream(result): StreamData {
+    const {
+      adaptiveFormats,
+      lengthSeconds,
+      title,
+      videoId,
+      videoThumbnails
+    } = result;
+
+    return {
+      source: this.sourceName,
+      id: videoId,
+      stream: adaptiveFormats.find(({ container, type }) => type.includes('audio') && container === 'webm').url,
+      duration: lengthSeconds,
+      title,
+      thumbnail: videoThumbnails[3].url,
+      originalUrl: `${this.baseUrl}/watch?v=${videoId}`
+    };
   }
 }
 
