@@ -4,7 +4,7 @@ node_js:
 - 14.17.6
 
 install:
-- npm ci
+- npm install
 
 script:
 - npm test
