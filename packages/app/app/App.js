@@ -1,14 +1,13 @@
 import React from 'react';
-import FontAwesome from 'react-fontawesome';
 import { Icon } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { NavLink, withRouter } from 'react-router-dom';
 import classnames from 'classnames';
-import _ from 'lodash';
 import Sound from 'react-hifi';
 import { withTranslation } from 'react-i18next';
 import { PluginConfig } from '@nuclear/core';
+import { UserPanel } from '@nuclear/ui';
 
 import * as SearchActions from './actions/search';
 import * as PlayerActions from './actions/player';
@@ -27,8 +26,6 @@ import styles from './styles.scss';
 import compact from './compact.scss';
 
 import logoIcon from '../resources/media/512x512.png';
-
-import settingsConst from './constants/settings';
 
 import Navbar from './components/Navbar';
 import VerticalPanel from './components/VerticalPanel';
@@ -156,9 +153,13 @@ class App extends React.PureComponent {
               ])
             }
           </div>
-
-          {this.renderSidebarFooter()}
         </SidebarMenu>
+        {
+          !this.props.settings.compactMenuBar &&
+          <UserPanel
+            actionsTooltipContent={this.props.t('user-panel-actions-tooltip"')}
+          />
+        }
       </VerticalPanel>
     );
   }
@@ -187,32 +188,6 @@ class App extends React.PureComponent {
           <Icon name={icon} />{!this.props.settings.compactMenuBar && this.props.t(name)}
         </SidebarMenuItem>
       </NavLink>
-    );
-  }
-
-  renderSidebarFooter() {
-    return (
-      <div className={styles.sidebar_footer}>
-        {
-          !this.props.settings.compactMenuBar &&
-          <span className={styles.version_string}>
-            v0.6.16
-          </span>
-        }
-        <a
-          onClick={() => {
-            this.props.actions.toggleOption(
-              _.find(settingsConst, ['name', 'compactMenuBar']),
-              this.props.settings
-            );
-          }}
-          href='#'
-        >
-          <FontAwesome
-            name={this.props.settings.compactMenuBar ? 'angle-right' : 'angle-left'}
-          />
-        </a>
-      </div>
     );
   }
 

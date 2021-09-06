@@ -46,3 +46,16 @@ body,
 h3 {
   color: $white;
 }
+
+.sidebar {
+  display: flex;
+  flex-flow: column;
+
+  background-color: $bgdark;
+  width: 300px;
+  height: 300px;
+
+  .spacer {
+    flex: 1 1 auto;
+  }
+}

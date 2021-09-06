@@ -25,7 +25,8 @@
     "plugins": "Plugins",
     "search": "Search Results",
     "settings": "Settings",
-    "visualizer": "Visualizer"
+    "visualizer": "Visualizer",
+    "user-panel-actions-tooltip": "User actions"
   },
   "artist": {
     "count": "Play counts",

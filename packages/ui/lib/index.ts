@@ -30,5 +30,6 @@ export { default as TrackTable } from './components/TrackTable';
 export { default as UserPluginsItem } from './components/UserPluginsItem';
 export { default as Visualizer } from './components/Visualizer';
 export { default as VisualizerOverlay } from './components/VisualizerOverlay';
+export { default as UserPanel } from './components/UserPanel';
 
 export * from './utils';
