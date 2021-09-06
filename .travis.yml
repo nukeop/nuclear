@@ -9,7 +9,6 @@ install:
 
 script:
 - npm test
-- npm start
 
 deploy:
  provider: pages
