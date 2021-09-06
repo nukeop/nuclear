@@ -5,5 +5,14 @@ cache: npm
 
 install:
 - npm ci
+
+script:
 - npm test
 - npm start
+
+deploy:
+ provider: pages
+ skip-cleanup: true
+ github-token: $GITHUB-TOKEN
+ on: 
+   branch: gh-pages
