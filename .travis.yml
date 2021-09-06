@@ -1,1 +1,9 @@
-language: typescript
+language: node_js
+node_js:
+- 14.17.6
+cache: npm
+
+install:
+- npm ci
+- npm test
+- npm start
