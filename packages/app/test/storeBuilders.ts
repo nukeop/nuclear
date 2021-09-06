@@ -445,7 +445,7 @@ export const buildStoreState = () => {
         queue: {
           queueItems: [
             {
-              'artist': 'BTS',
+              'artist': 'test artist 1',
               'name': 'test track 1',
               'thumbnail': 'https://test-track-thumb-url',
               'streams': [
@@ -482,13 +482,13 @@ export const buildStoreState = () => {
               'error': false
             },
             {
-              'artist': 'BTS',
+              'artist': 'test artist 2',
               'name': 'test track 2',
               'thumbnail': 'https://test-track-thumb-url',
               'streams': [
                 {
-                  'source': 'Youtube',
-                  'id': 'CuklIb9d3fI',
+                  'source': 'Different Stream Provider',
+                  'id': '_CuklIb9d3fI',
                   'stream': 'https://test-track-stream-url',
                   'duration': 300,
                   'title': 'test track 2',
