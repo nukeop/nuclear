@@ -7,7 +7,7 @@ before_script:
  export NODE_OPTIONS=–max_old_space_size=8192
 
 deploy:
- provider: releases
+ provider: pages
  github-token: $GITHUB-TOKEN
  on: 
    branch: master
