@@ -3,6 +3,9 @@ language: node_js
 node_js:
 - 12
 
+before_script:
+ export NODE_OPTIONS=–max_old_space_size=8192
+
 deploy:
  provider: releases
  github-token: $GITHUB-TOKEN
