@@ -1,11 +1,10 @@
-os: windows
+os: linux
 language: node_js
 node_js:
 - 12
 
 deploy:
  provider: pages
- skip-cleanup: true
  github-token: $GITHUB-TOKEN
  on: 
    branch: master
