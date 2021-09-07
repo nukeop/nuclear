@@ -4,7 +4,7 @@ node_js:
 - 12
 
 deploy:
- provider: pages
+ provider: releases
  github-token: $GITHUB-TOKEN
  on: 
    branch: master
