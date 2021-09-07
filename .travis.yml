@@ -1,5 +1,5 @@
 os: linux
-language: node_js
+language: javascript
 node_js:
 - 12
 
