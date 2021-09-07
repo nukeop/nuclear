@@ -4,6 +4,7 @@ node_js:
 - 12.14.1
 
 install:
+- cd nuclear
 - npm install
 - npm test
 
