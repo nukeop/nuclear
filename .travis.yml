@@ -4,7 +4,11 @@ language: node_js
 node_js:
 - 12
 
+cache:
+ - npm
 
+script:
+ - npm test
 
 deploy:
  provider: pages
