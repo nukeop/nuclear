@@ -1,11 +1,7 @@
 os: windows
 language: node_js
 node_js:
-- 12.14.1
-
-install:
-- npm install
-- npm test
+- 12
 
 deploy:
  provider: pages
