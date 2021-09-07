@@ -1,7 +1,7 @@
-os: windows
+os: linux
 language: node_js
 node_js:
-- 14.17.6
+- 12.14.1
 
 install:
 - npm install
