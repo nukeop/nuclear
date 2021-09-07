@@ -1,5 +1,4 @@
 os: linux
-sudo: required
 language: node_js
 node_js:
 - 12
@@ -13,5 +12,6 @@ script:
 deploy:
  provider: pages
  github-token: $GITHUB-TOKEN
+ local_dir: build
  on: 
    branch: master
