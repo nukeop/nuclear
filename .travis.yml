@@ -3,11 +3,9 @@ language: node_js
 node_js:
 - 12
 
-install: travis_wait 30 npm test
-
 before_script:
  NODE_OPTIONS=--max_old_space_size=8192
-
+ travis_wait 30 npm test
 
 deploy:
  provider: pages
