@@ -56,6 +56,7 @@ const PlayerBar: React.FC<PlayerBarProps> = ({
   timeToEnd,
   seek,
   skipSegments,
+  allowSkipSegment,
   segmentPopupMessage
 }) => {
   const { width: windowWidth } = useWindowSize();
@@ -70,6 +71,7 @@ const PlayerBar: React.FC<PlayerBarProps> = ({
         queue={queue}
         timePlayed={timePlayed}
         skipSegments={skipSegments}
+        allowSkipSegment={allowSkipSegment}
         segmentPopupMessage={segmentPopupMessage}
       >
         {hasTracks &&
