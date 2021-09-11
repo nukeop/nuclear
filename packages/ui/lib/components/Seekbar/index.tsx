@@ -24,6 +24,7 @@ export type SeekbarProps = {
   };
   height?: string;
   skipSegments?: Segment[];
+  allowSkipSegment?: boolean;
   timePlayed?: number;
   segmentPopupMessage: string;
 };
@@ -35,6 +36,7 @@ const Seekbar: React.FC<SeekbarProps> = ({
   queue,
   height,
   skipSegments=[],
+  allowSkipSegment,
   timePlayed,
   segmentPopupMessage
 }) => {
@@ -42,14 +44,14 @@ const Seekbar: React.FC<SeekbarProps> = ({
   useEffect(() => {
     if (!hasMounted) {
       setHasMounted(true);
-    } else if (skipSegments && skipSegments.length && timePlayed) {
+    } else if (allowSkipSegment && skipSegments && skipSegments.length && timePlayed) {
       for (const segment of skipSegments) {
         if (timePlayed >= segment.startTime && timePlayed <= segment.endTime) {
           seek(segment.endTime);
         }
       }
     }
-  }, [hasMounted, seek, skipSegments, timePlayed]);
+  }, [hasMounted, seek, skipSegments, timePlayed, allowSkipSegment]);
   const duration = queue?.queueItems[queue.currentSong]?.streams?.[0]?.duration;
 
   const handleClick = useCallback((seek) => {

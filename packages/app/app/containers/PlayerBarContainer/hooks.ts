@@ -40,7 +40,10 @@ export const useSeekbarProps = () => {
     (place) => dispatch(playerActions.updateSeek(place)),
     [dispatch]
   );
- 
+
+  const settings = useSelector(settingsSelector);
+  const allowSkipSegment = _.get(settings, 'skipSponsorblock', true);
+
   const skipSegments = _.get(
     currentTrackStream,
     'skipSegments',
@@ -50,6 +53,7 @@ export const useSeekbarProps = () => {
   return {
     queue,
     skipSegments,
+    allowSkipSegment,
     timeToEnd,
     timePlayed: seek,
     fill: playbackProgress,
