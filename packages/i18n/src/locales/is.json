@@ -254,6 +254,8 @@
     "shuffle-when-going-back": "Stokka á síðasta lagi",
     "shuffle-when-going-back-description": "Spila handahófskennt lag þegar stokkun er í gangi og síðasta lag takkin er smelltur",
     "social": "Félags",
+    "skip-sponsorblock": "Skip non-music segment",
+    "skip-sponsorblock-description": "Playback skips non-music segment from SponsorBlock (https://sponsor.ajay.app/)",
     "streaming": "Streaming",
     "track-duration": "Sýna lagalengd yfir leitarrimli",
     "user": "Notandi:",
