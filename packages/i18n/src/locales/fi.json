@@ -254,6 +254,8 @@
     "shuffle-when-going-back": "Sekoita edellinen kappale napilla",
     "shuffle-when-going-back-description": "Soita satunnainen kappale kun sekoitus on päällä ja edellinen kappale nappia on painettu",
     "social": "Social",
+    "skip-sponsorblock": "Skip non-music segment",
+    "skip-sponsorblock-description": "Playback skips non-music segment from SponsorBlock (https://sponsor.ajay.app/)",
     "streaming": "Streaming",
     "track-duration": "Näytä kappaleen pituus edistymispalkissa",
     "user": "Käyttäjä:",
