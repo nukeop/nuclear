@@ -254,6 +254,8 @@
     "shuffle-when-going-back": "Shuffle on previous track",
     "shuffle-when-going-back-description": "Play a random track when shuffle is active and the previous track button is clicked",
     "social": "ソーシャル",
+    "skip-sponsorblock": "Skip non-music segment",
+    "skip-sponsorblock-description": "Playback skips non-music segment from SponsorBlock (https://sponsor.ajay.app/)",
     "streaming": "配信",
     "track-duration": "Display track duration over the seekbar",
     "user": "ユーザー:",
