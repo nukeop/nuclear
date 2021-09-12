@@ -254,6 +254,8 @@
     "shuffle-when-going-back": "Shuffle ved tidligere nummer",
     "shuffle-when-going-back-description": "Afspil et tilfældigt nummer når shuffle er aktivt og det tidligere nummer er valgt",
     "social": "Social",
+    "skip-sponsorblock": "Skip non-music segment",
+    "skip-sponsorblock-description": "Playback skips non-music segment from SponsorBlock (https://sponsor.ajay.app/)",
     "streaming": "Streaming",
     "track-duration": "Vis nummerets længde over afspilningsbjælken",
     "user": "Bruger:",
