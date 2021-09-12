@@ -254,6 +254,8 @@
     "shuffle-when-going-back": "Zamíchat při přechodu na předchozí skladbu",
     "shuffle-when-going-back-description": "Přehrát náhodnou skladbu pokud je aktivováno zamíchání skladeb a je stisknuto tlačítko předchozí skladby",
     "social": "Sociální sítě",
+    "skip-sponsorblock": "Skip non-music segment",
+    "skip-sponsorblock-description": "Playback skips non-music segment from SponsorBlock (https://sponsor.ajay.app/)",
     "streaming": "Streaming",
     "track-duration": "Zobrazit dobu trvání skladby na liště vyhledávání",
     "user": "Uživatel:",
