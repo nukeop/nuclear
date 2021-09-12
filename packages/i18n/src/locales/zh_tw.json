@@ -254,6 +254,8 @@
     "shuffle-when-going-back": "播放先前的曲目",
     "shuffle-when-going-back-description": "當隨機播放處於激活狀態且點擊上一曲目按鈕時，播放一個隨機曲目",
     "social": "社交",
+    "skip-sponsorblock": "Skip non-music segment",
+    "skip-sponsorblock-description": "Playback skips non-music segment from SponsorBlock (https://sponsor.ajay.app/)",
     "streaming": "串流",
     "track-duration": "在進度條上顯示音軌長度",
     "user": "帳號:",
