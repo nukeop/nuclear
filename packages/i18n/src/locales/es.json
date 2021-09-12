@@ -254,6 +254,8 @@
     "shuffle-when-going-back": "Aleatorizar en pista previa",
     "shuffle-when-going-back-description": "Reproduce una pista aleatoria cuando está activada la reproducción aleatoria y se presiona el botón de pista previa",
     "social": "Social",
+    "skip-sponsorblock": "Skip non-music segment",
+    "skip-sponsorblock-description": "Playback skips non-music segment from SponsorBlock (https://sponsor.ajay.app/)",
     "streaming": "Transmisión",
     "track-duration": "Mostrar duración de la pista sobre la barra de búsqueda",
     "user": "Usuario:",
