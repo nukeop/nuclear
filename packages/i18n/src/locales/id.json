@@ -254,6 +254,8 @@
     "shuffle-when-going-back": "Acak lagu sebelumnya",
     "shuffle-when-going-back-description": "Putar lagu sembarang saat mode acak aktif dan tombol lagu sebelumnya diklik",
     "social": "Sosial",
+    "skip-sponsorblock": "Skip non-music segment",
+    "skip-sponsorblock-description": "Playback skips non-music segment from SponsorBlock (https://sponsor.ajay.app/)",
     "streaming": "Streaming",
     "track-duration": "Tampilkan durasi lagu di atas seekbar",
     "user": "Pengguna:",
