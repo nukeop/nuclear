@@ -254,6 +254,8 @@
     "shuffle-when-going-back": "Riproduci casualmente sulla traccia precedente",
     "shuffle-when-going-back-description": "Riproduci una traccia casuale quando la riproduzione casuale è attiva e il pulsante traccia precedente è cliccato",
     "social": "Social",
+    "skip-sponsorblock": "Skip non-music segment",
+    "skip-sponsorblock-description": "Playback skips non-music segment from SponsorBlock (https://sponsor.ajay.app/)",
     "streaming": "Streaming",
     "track-duration": "Mostra la durata della traccia sulla barra di ricerca",
     "user": "Utente:",
