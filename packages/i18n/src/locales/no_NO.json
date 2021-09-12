@@ -254,6 +254,8 @@
     "shuffle-when-going-back": "Bland på forrige spor",
     "shuffle-when-going-back-description": "Spill av et tilfeldig spor når shuffle er aktiv og knappen forrige sang blir klikket",
     "social": "Sosial",
+    "skip-sponsorblock": "Skip non-music segment",
+    "skip-sponsorblock-description": "Playback skips non-music segment from SponsorBlock (https://sponsor.ajay.app/)",
     "streaming": "Strømming",
     "track-duration": "Vis sporets varighet over søkefeltet",
     "user": "Bruker:",
