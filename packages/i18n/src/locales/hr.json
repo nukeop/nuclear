@@ -254,6 +254,8 @@
     "shuffle-when-going-back": "Izmješaj kada ideš na prethodnu pjesmu",
     "shuffle-when-going-back-description": "Sviraj nasumičnu pjesmu kada je aktivno mješanje i kada klikneš na gumb za prethodnu pjesmu",
     "social": "Društvene mreže",
+    "skip-sponsorblock": "Skip non-music segment",
+    "skip-sponsorblock-description": "Playback skips non-music segment from SponsorBlock (https://sponsor.ajay.app/)",
     "streaming": "Streaming",
     "track-duration": "Prikaži trajanje pjesme preko vremenske trake",
     "user": "Korisnik:",
