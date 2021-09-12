@@ -254,6 +254,8 @@
     "shuffle-when-going-back": "Τυχαία αναπαραγωγή όταν πατάτε \"προηγούμενο\"",
     "shuffle-when-going-back-description": "Αναπαραγωγή ενός τυχαίου τραγουδιου που περάσατε, όταν το κουμπί \"προηγούμενο\" πατιέται",
     "social": "Κοινωνικά μέσα",
+    "skip-sponsorblock": "Skip non-music segment",
+    "skip-sponsorblock-description": "Playback skips non-music segment from SponsorBlock (https://sponsor.ajay.app/)",
     "streaming": "Streaming",
     "track-duration": "Εμφανιση συνολικού χρόνου τραγουδιου στην μπάρα αναπαραγωγής",
     "user": "Χρήστης :",
