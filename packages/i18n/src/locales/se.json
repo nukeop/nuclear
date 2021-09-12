@@ -254,6 +254,8 @@
     "shuffle-when-going-back": "Blanda på föregående låt",
     "shuffle-when-going-back-description": "Spela ett slumpmässigt spår när blanda är aktivt och du klickar på knappen Föregående låt",
     "social": "Socialt",
+    "skip-sponsorblock": "Skip non-music segment",
+    "skip-sponsorblock-description": "Playback skips non-music segment from SponsorBlock (https://sponsor.ajay.app/)",
     "streaming": "Strömning",
     "track-duration": "Visa spårets längd över sökfältet",
     "user": "Användare:",
