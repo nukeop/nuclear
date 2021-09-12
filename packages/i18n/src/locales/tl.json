@@ -254,6 +254,8 @@
     "shuffle-when-going-back": "I-shuffle pag punta sa nakaraang kanta",
     "shuffle-when-going-back-description": "Magplay ng random na kanta pag aktiba ang shuffle at nakapindot ang pindutan ng nakaraang kanta",
     "social": "Social",
+    "skip-sponsorblock": "Skip non-music segment",
+    "skip-sponsorblock-description": "Playback skips non-music segment from SponsorBlock (https://sponsor.ajay.app/)",
     "streaming": "Streaming",
     "track-duration": "Ipakita ang track duration sa ibabaw ng seekbar",
     "user": "User:",
