@@ -254,6 +254,8 @@
     "shuffle-when-going-back": "Përzieni në këngën e mëparshme",
     "shuffle-when-going-back-description": "Luani një këngë rastësore kur përzierja është aktive dhe butoni i këngës së mëpashme është klikuar",
     "social": "Sociale",
+    "skip-sponsorblock": "Skip non-music segment",
+    "skip-sponsorblock-description": "Playback skips non-music segment from SponsorBlock (https://sponsor.ajay.app/)",
     "streaming": "Streaming",
     "track-duration": "Shfaq kohëzgjatjen e këngës mbi seekbar",
     "user": "Përdoruesi:",
