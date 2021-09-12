@@ -254,6 +254,8 @@
     "shuffle-when-going-back": "Shuffle von vorherigen Liedern",
     "shuffle-when-going-back-description": "Spiele zufällige Lieder wenn Shuffle aktiviert und der Button 'vorherige Lieder' ausgewählt ist",
     "social": "Sozial",
+    "skip-sponsorblock": "Skip non-music segment",
+    "skip-sponsorblock-description": "Playback skips non-music segment from SponsorBlock (https://sponsor.ajay.app/)",
     "streaming": "Streamen",
     "track-duration": "Laufzeit über der Suchleiste anzeigen",
     "user": "Benutzer:",
