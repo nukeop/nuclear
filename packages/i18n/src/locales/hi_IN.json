@@ -254,6 +254,8 @@
     "shuffle-when-going-back": "पिछले ट्रैक पर शफल करें",
     "shuffle-when-going-back-description": "जब शफल सक्रिय हो और पिछला ट्रैक बटन क्लिक किया गया हो तो एक यादृच्छिक ट्रैक चलाएं",
     "social": "सोशल",
+    "skip-sponsorblock": "Skip non-music segment",
+    "skip-sponsorblock-description": "Playback skips non-music segment from SponsorBlock (https://sponsor.ajay.app/)",
     "streaming": "स्ट्रीमिंग",
     "track-duration": "सीकबार पर ट्रैक की अवधि प्रदर्शित करें",
     "user": "उपयोगकर्ता:",
