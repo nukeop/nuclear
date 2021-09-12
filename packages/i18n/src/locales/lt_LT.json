@@ -254,6 +254,8 @@
     "shuffle-when-going-back": "Maišyti praėjusią dainą",
     "shuffle-when-going-back-description": "Paleiskite atsitiktinį dainą, kai aktyvus maišymas ir spustelėjus ankstesnį dainos mygtuką",
     "social": "Social",
+    "skip-sponsorblock": "Skip non-music segment",
+    "skip-sponsorblock-description": "Playback skips non-music segment from SponsorBlock (https://sponsor.ajay.app/)",
     "streaming": "Grojama",
     "track-duration": "Rodyti dainos trukmę ieškojimo juostoje",
     "user": "Vartotojas:",
