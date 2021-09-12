@@ -254,6 +254,8 @@
     "shuffle-when-going-back": "Mieszaj utwory wstecz",
     "shuffle-when-going-back-description": "Odtwarzaj losowy utwór, kiedy mieszanie utworów jest włączone i kliknięto przycisk Poprzedni utwór",
     "social": "Społeczność",
+    "skip-sponsorblock": "Skip non-music segment",
+    "skip-sponsorblock-description": "Playback skips non-music segment from SponsorBlock (https://sponsor.ajay.app/)",
     "streaming": "Streaming",
     "track-duration": "Wyświetl czas trwania utworu na pasku postępu odtwarzania",
     "user": "Użytkownik:",
