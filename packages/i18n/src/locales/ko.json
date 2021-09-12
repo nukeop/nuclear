@@ -254,6 +254,8 @@
     "shuffle-when-going-back": "이전 음악 재생 시 셔플",
     "shuffle-when-going-back-description": "셔플 활성화 시, 이전 재생 버튼 누르면 임의로 음악 재생",
     "social": "소셜 네트워크",
+    "skip-sponsorblock": "Skip non-music segment",
+    "skip-sponsorblock-description": "Playback skips non-music segment from SponsorBlock (https://sponsor.ajay.app/)",
     "streaming": "스트리밍",
     "track-duration": "화면에 남은 재생 시간 표시",
     "user": "유저:",
