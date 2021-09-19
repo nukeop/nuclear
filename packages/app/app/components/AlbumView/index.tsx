@@ -87,7 +87,7 @@ export const AlbumView: React.FC<AlbumViewProps> = ({
                   album.year &&
                   <div className={styles.album_year}>
                     <label>{t('year')}</label>
-                    {album.year}
+                    {album.year.slice(0, 4)}
                   </div>
                 }
                 <div className={styles.album_tracks}>
