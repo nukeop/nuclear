@@ -234,6 +234,7 @@
     }
   },
   "dependencies": {
+    "coverage": "^0.4.1",
     "sqlite3": "^4.2.0"
   }
 }
