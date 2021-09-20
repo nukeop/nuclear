@@ -1,0 +1,34 @@
+@import "../../common.scss";
+
+.nuclear.field.input {
+    .input input {
+        background: rgba($bglighter, 0.25);
+        color: $white;
+        caret-color: $white;
+        border: none;
+        
+        &::placeholder {
+            color: rgba($white, 0.6);
+        }
+
+        &::selection {
+            background-color: $blue;
+            color: $white;
+        }
+
+        &:active, &:focus {
+            background: rgba($bglighter, 0.25);
+            color: $white;
+            border: none;
+
+            &::placeholder {
+                color: rgba($white, 0.2);
+            }
+        }
+    }
+
+    label {
+        color: white;
+        font-variant: small-caps;
+    }
+}

@@ -1,0 +1,16 @@
+@import '../../common.scss';
+
+.nuclear.box {
+    position: relative;
+    display: flex;
+    flex-flow: column;
+    
+    padding: 2em;
+
+    border-radius: 0.5em;
+    background: $bgdefault;
+
+    &.shadow {
+        @include high-shadow;
+    }
+}

@@ -7,4 +7,8 @@
     background: rgba($bgdarker, 0.7);
     padding: 0 1em;
     height: 4em;
+
+    &.signed_out {
+        justify-content: flex-end;
+    }
 }

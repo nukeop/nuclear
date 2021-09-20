@@ -26,7 +26,8 @@
     "search": "Search Results",
     "settings": "Settings",
     "visualizer": "Visualizer",
-    "user-panel-actions-tooltip": "User actions"
+    "user-panel-actions-tooltip": "User actions",
+    "user-panel-sign-up": "Sign up / Sign in"
   },
   "artist": {
     "count": "Play counts",
@@ -293,5 +294,11 @@
   },
   "visualizer": {
     "exit-fullscreen": "Press ESC to exit full screen"
+  },
+  "forms": {
+    "nuclear-sign-up": {
+      "username-label": "Username",
+      "password-label": "Password"
+    }
   }
 }

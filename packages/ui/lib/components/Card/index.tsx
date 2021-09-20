@@ -9,14 +9,14 @@ import styles from './styles.scss';
 
 export type CardMenuEntry = {
   type: 'header' | 'item' | 'divider';
-  props: DropdownItemProps | DropdownHeaderProps | DropdownDividerProps;
+  props?: DropdownItemProps | DropdownHeaderProps | DropdownDividerProps;
 };
 
 type CardProps = {
   header: string;
   content?: string;
-  image: string;
-  onClick: React.DOMAttributes<HTMLDivElement>['onClick'];
+  image?: string;
+  onClick?: React.MouseEventHandler;
   withMenu?: boolean;
   animated?: boolean;
   menuEntries?: CardMenuEntry[];

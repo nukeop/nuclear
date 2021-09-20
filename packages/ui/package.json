@@ -73,6 +73,7 @@
 		"butterchurn": "^2.6.7",
 		"butterchurn-presets": "^2.4.7",
 		"classnames": "^2.2.6",
+		"formik": "^2.2.9",
 		"history": "^4.10.1",
 		"lodash": "^4.17.15",
 		"numeral": "^2.0.6",
@@ -84,7 +85,8 @@
 		"react-table": "^7.7.0",
 		"recompose": "^0.30.0",
 		"semantic-ui-react": "^2.0.3",
-		"styled-components": "^4.4.1"
+		"styled-components": "^4.4.1",
+		"yup": "^0.32.9"
 	},
 	"jest": {
 		"moduleNameMapper": {

@@ -1,0 +1,21 @@
+@import "../../common.scss";
+
+.fullscreen_form_container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    height: 100%;
+    width: 100%;
+
+    .fullscreen_form_box {
+        display: flex;
+        flex-flow: row;
+    }
+
+    .fullscreen_form {
+        flex: 0 0 50%;
+        min-width: 28em;
+    }
+}

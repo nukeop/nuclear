@@ -54,7 +54,20 @@ $small_screen: 600px;
 }
 
 @mixin shadow {
-  box-shadow: 0 0 38px rgba(0, 0, 0, 0.3), 0 0 12px rgba(0, 0, 0, 0.22) !important;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.12), 
+              0 2px 2px rgba(0, 0, 0, 0.12), 
+              0 4px 4px rgba(0, 0, 0, 0.12), 
+              0 8px 8px rgba(0, 0, 0, 0.12), 
+              0 16px 16px rgba(0, 0, 0, 0.12) !important;
+}
+
+@mixin high-shadow {
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.10), 
+              0 2px 2px rgba(0, 0, 0, 0.10), 
+              0 4px 4px rgba(0, 0, 0, 0.10), 
+              0 8px 8px rgba(0, 0, 0, 0.10), 
+              0 16px 16px rgba(0, 0, 0, 0.10),
+              0 32px 32px rgba(0, 0, 0, 0.10) !important;
 }
 
 .nuclear {
@@ -76,6 +89,30 @@ $small_screen: 600px;
     opacity: 1;
   }
   to {
+    opacity: 0;
+  }
+}
+
+@keyframes zoom-in {
+  from {
+    transform: scale(1.1);
+    opacity: 0;
+  }
+
+  to {
+    transform: scale(1.0);
+    opacity: 1;
+  }
+}
+
+@keyframes zoom-out {
+  from {
+    transform: scale(1.0);
+    opacity: 1;
+  }
+
+  to {
+    transform: scale(1.1);
     opacity: 0;
   }
 }

@@ -7,7 +7,6 @@ import classnames from 'classnames';
 import Sound from 'react-hifi';
 import { withTranslation } from 'react-i18next';
 import { PluginConfig } from '@nuclear/core';
-import { UserPanel } from '@nuclear/ui';
 
 import * as SearchActions from './actions/search';
 import * as PlayerActions from './actions/player';
@@ -49,6 +48,7 @@ import SidebarMenu from './components/SidebarMenu';
 import SidebarMenuItem from './components/SidebarMenu/SidebarMenuItem';
 import SidebarMenuCategoryHeader from './components/SidebarMenu/SidebarMenuCategoryHeader';
 import WindowControls from './components/WindowControls';
+import { UserPanelContainer } from './containers/UserPanelContainer';
 
 @withTranslation('app')
 class App extends React.PureComponent {
@@ -156,9 +156,7 @@ class App extends React.PureComponent {
         </SidebarMenu>
         {
           !this.props.settings.compactMenuBar &&
-          <UserPanel
-            actionsTooltipContent={this.props.t('user-panel-actions-tooltip"')}
-          />
+          <UserPanelContainer />
         }
       </VerticalPanel>
     );
