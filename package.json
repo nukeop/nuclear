@@ -41,6 +41,7 @@
     "@typescript-eslint/eslint-plugin": "^4.23.0",
     "@typescript-eslint/parser": "^4.23.0",
     "babel-eslint": "^10.0.3",
+    "copy-webpack-plugin": "^9.0.1",
     "cross-env": "^7.0.2",
     "electron": "^12.0.5",
     "electron-builder": "^21.2.0",
@@ -234,6 +235,7 @@
     }
   },
   "dependencies": {
+    "coverage": "^0.4.1",
     "sqlite3": "^4.2.0"
   }
 }

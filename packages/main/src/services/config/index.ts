@@ -39,7 +39,8 @@ class Config {
     this.youtubeSearch = 'https://www.googleapis.com/youtube/v3/search?part=id,snippet&type=video&maxResults=50&q=';
     this.supportedFormats = _.uniq(pkg.build.fileAssociations.map(({ ext }) => ext));
 
-    const iconPath = path.resolve(__dirname, this.isProd() ? 'resources' : '../resources/media');
+    // const iconPath = path.resolve(__dirname, this.isProd() ? 'resources' : '../resources/media');
+    const iconPath = path.resolve(__dirname, this.isProd() ? '../../../resources/media' : '../resources/media');
 
     this.icon = path.resolve(iconPath, 'icon.png');
     this.macIcon = path.resolve(iconPath, 'icon_apple.png');
