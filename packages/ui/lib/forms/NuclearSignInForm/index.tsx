@@ -3,9 +3,9 @@ import { Header } from 'semantic-ui-react';
 
 import Button from '../../components/Button';
 import { FormInput, FullscreenForm } from '../..';
-import styles from './styles.scss';
 import { FullscreenFormProps } from '../../components/FullscreenForm';
 import { FieldsPropsType } from '../../hooks/types';
+import styles from '../styles.scss';
 
 type NuclearSignInFormContentProps = {
   signInButtonLabel: string;
@@ -25,7 +25,13 @@ export const NuclearSignInFormContent: React.FC<NuclearSignInFormProps> = ({
   noAccountLinkLabel,
   fieldsProps
 }) => <>
-  <Header as='h1' inverted>Sign in</Header>
+  <Header 
+    as='h1' 
+    inverted 
+    className={styles.form_header}
+  >
+    Sign in
+  </Header>
   <FormInput
     {...fieldsProps.username}
   />

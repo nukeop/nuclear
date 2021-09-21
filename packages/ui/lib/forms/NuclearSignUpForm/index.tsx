@@ -3,11 +3,15 @@ import { Header } from 'semantic-ui-react';
 
 import FullscreenForm, { FullscreenFormProps } from '../../components/FullscreenForm';
 import { FormSideContent } from '../FormSideContent';
-import common from '../../common.scss';
+import { FieldsPropsType } from '../../hooks/types';
+import { Button, FormInput } from '../..';
 import nuclearLogo from '../../../resources/media/logo_full_light.png';
+import styles from '../styles.scss';
+import common from '../../common.scss';
 
 type NuclearSignUpFormContentProps = {
-
+  fieldsProps: FieldsPropsType;
+  signUpButtonLabel: string;
 }
 
 type NuclearSignUpFormSideContentProps = {
@@ -37,8 +41,35 @@ export const NuclearSignUpFormSideContent: React.FC<NuclearSignUpFormSideContent
   </p>
 </FormSideContent>;
 
-export const NuclearSignUpFormContent: React.FC<NuclearSignUpFormProps> = () => <>
-  <Header as='h1' inverted>Sign up</Header>
+export const NuclearSignUpFormContent: React.FC<NuclearSignUpFormProps> = ({
+  fieldsProps,
+  signUpButtonLabel
+}) => <>
+  <Header 
+    as='h1' 
+    inverted
+    className={styles.form_header}
+  >
+    Sign up
+  </Header>
+  <FormInput 
+    {...fieldsProps.username}
+  />
+  <FormInput 
+    {...fieldsProps.email}
+  />
+  <FormInput 
+    {...fieldsProps.password}
+  />
+  <div className={styles.buttons_row}>
+    <span />
+    <Button 
+      color='pink' 
+      type='submit'
+    >
+      {signUpButtonLabel}
+    </Button>
+  </div>
 </>;
 
 export const NuclearSignUpForm: React.FC<NuclearSignUpFormProps> = (props) => <FullscreenForm {...props}
