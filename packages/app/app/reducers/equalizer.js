@@ -52,7 +52,7 @@ const getPresets = (custom) => [
     preAmp: 0
   },
   {
-    label: 'Full trebble',
+    label: 'Full treble',
     id: 'full-treble',
     values: [-6, -6, -6, -6, -2, 2, 6, 8, 8, 9, 9],
     preAmp: 0
@@ -72,8 +72,8 @@ const normalize = list => list.reduce(({ids, map}, item) => ({
 const getSelected = (selected, presets) => {
   if (selected.toLowerCase() === selected) {
     return selected;
-  } 
-  const legacySelected = presets.find(preset => preset.label === selected);  
+  }
+  const legacySelected = presets.find(preset => preset.label === selected);
   return legacySelected ? legacySelected.id : presets[0].id;
 };
 
@@ -86,7 +86,7 @@ const getLegacyCustom = ({presets}) => {
 
 const getSpectrumStatus = (otherConfig) => {
   return _.get(otherConfig, 'enableSpectrum', false);
-}; 
+};
 
 const getInitialState = () => {
   const {custom, selected, ...other} = store.get('equalizer');
