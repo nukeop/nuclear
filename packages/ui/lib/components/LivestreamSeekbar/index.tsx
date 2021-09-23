@@ -2,7 +2,7 @@
 * Just like a regular Seekbar, but with "Live" instead of timestamps
 * and the progress is always 100%
 */
-
+/*
 import React, { useCallback, useEffect, useState } from 'react';
 import cx from 'classnames';
 
@@ -107,3 +107,4 @@ const LivestreamSeekbar: React.FC<LivestreamSeekbarProps> = ({
 };
 
 export default LivestreamSeekbar;
+*/

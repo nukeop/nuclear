@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+/* import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 
 import styles from './styles.scss';
@@ -37,3 +37,4 @@ Seekbar.defaultProps = {
 };
 
 export default Seekbar;
+*/
