@@ -1,15 +1,22 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import cx from 'classnames';
 
 import common from '../../common.scss';
 import styles from './styles.scss';
 
-const Loader = props => {
+LoaderProps.defaultProps = {
+  type: 'default'
+};
+
+type LoaderProps = {
+  type: string;
+}
+
+const Loader: React.FC<LoaderProps> = ({type}) => {
   return (
     <span className={cx(
       common.nuclear,
-      props.type,
+      type,
       styles.loader
     )}>
       <span />
@@ -18,14 +25,6 @@ const Loader = props => {
       <span />
     </span>
   );
-};
-
-Loader.propTypes = {
-  type: PropTypes.string
-};
-
-Loader.defaultProps = {
-  type: 'default'
 };
 
 export default Loader;
