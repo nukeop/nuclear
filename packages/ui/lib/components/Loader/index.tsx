@@ -8,7 +8,9 @@ type LoaderProps = {
   type: string;
 }
 
-const Loader: React.FC<LoaderProps> = ({type}) => {
+const Loader: React.FC<LoaderProps> = ({
+  type='default'
+}) => {
   return (
     <span className={cx(
       common.nuclear,
@@ -21,10 +23,6 @@ const Loader: React.FC<LoaderProps> = ({type}) => {
       <span />
     </span>
   );
-};
-
-Loader.defaultProps = {
-  type: 'default'
 };
 
 export default Loader;
