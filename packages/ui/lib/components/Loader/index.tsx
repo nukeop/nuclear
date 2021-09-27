@@ -4,10 +4,6 @@ import cx from 'classnames';
 import common from '../../common.scss';
 import styles from './styles.scss';
 
-LoaderProps.defaultProps = {
-  type: 'default'
-};
-
 type LoaderProps = {
   type: string;
 }
@@ -25,6 +21,10 @@ const Loader: React.FC<LoaderProps> = ({type}) => {
       <span />
     </span>
   );
+};
+
+Loader.defaultProps = {
+  type: 'default'
 };
 
 export default Loader;
