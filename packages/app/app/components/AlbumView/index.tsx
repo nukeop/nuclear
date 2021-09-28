@@ -36,6 +36,7 @@ export const AlbumView: React.FC<AlbumViewProps> = ({
   addFavoriteAlbum
 }) => {
   const { t } = useTranslation('album');
+  const release_date: Date = new Date(album.year);
   return <div className={styles.album_view_container}>
     <Dimmer.Dimmable>
       <Dimmer active={album?.loading}>
@@ -87,7 +88,7 @@ export const AlbumView: React.FC<AlbumViewProps> = ({
                   album.year &&
                   <div className={styles.album_year}>
                     <label>{t('year')}</label>
-                    {album.year.slice(0, 4)}
+                    {release_date.getFullYear()}
                   </div>
                 }
                 <div className={styles.album_tracks}>
