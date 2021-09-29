@@ -1,0 +1,12 @@
+<div class="testimonial">
+  <q>
+    {% if include.testimonial.url %}
+    <a href="{{ include.testimonial.url }}">
+      {% endif %}
+      {{ include.testimonial.content }}
+      {% if include.testimonial.url %}
+    </a>
+    {% endif %}
+  </q>
+  <div class="author">{{ include.testimonial.author }}</div>
+</div>

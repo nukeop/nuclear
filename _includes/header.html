@@ -1,8 +1,14 @@
 <header>
-  <img src="{{ "/assets/images/logo_full_light.png" | relative_url }}">
-  <span class="buttons">
-    <a href="https://github.com/nukeop/nuclear/">{% include icons/github.svg %}</a>
-    <a href="https://mstdn.io/@nuclear">{% include icons/mastodon.svg %}</a>
-    <a href="https://discord.gg/JqPjKxE">{% include icons/discord.svg %}</a>
-  </span>
+  <div class='header-container'>
+
+    <img src="{{ "/assets/images/logo_full_light.png" | relative_url }}">
+    <span class='spacer'></span>
+    <span class="buttons">
+      {% for button in site.data.header-buttons %}
+      <a href="{{ button.url }}">
+        {% include {{ button.svg }} %}
+      </a>
+      {% endfor %}
+    </span>
+  </div>
 </header>
