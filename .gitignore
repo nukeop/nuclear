@@ -78,8 +78,3 @@ build-dir
 #Travis/IDE stuff
 .travis.yml
 .vs/
-
-#package-lock
-package-lock.json
-packages/main/package-lock.json
-package.json
