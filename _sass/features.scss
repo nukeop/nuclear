@@ -1,0 +1,40 @@
+section.feature {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 768px;
+
+    .container {
+        display: flex;
+        flex-flow: row;
+        max-width: 1680px;
+
+        svg {
+            flex: 1 1 50%;
+        }
+
+        .description {
+            display: flex;
+            flex-flow: column;
+            justify-content: center;
+            flex: 1 1 50%;
+            margin-left: 50px;
+
+            h2 {
+                font-size: 64px;
+                margin-top: 0;
+                margin-bottom: 18px;
+            }
+
+            p {
+                font-size: 32px;
+
+                em {
+                    font-weight: bold;
+                    font-style: normal;
+                }
+            }
+        }
+    }
+}

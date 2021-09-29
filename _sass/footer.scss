@@ -1,0 +1,18 @@
+section.footer {
+    position: relative;
+    padding: 0.5em 0;
+    background: $blue;
+
+    .container {
+        display: flex;
+        flex-flow: row;
+        justify-content: center;
+        font-variant: all-small-caps;
+        font-size: 22px;
+
+        a {
+            margin-left: 0.5em;
+            color: $white;
+        }
+    }
+}

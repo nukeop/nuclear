@@ -1,4 +1,4 @@
-.intro {
+section.intro {
     position: relative;
     height: 1200px;
     background: url("/assets/images/background1.png");
@@ -6,16 +6,6 @@
 
     .container {
         overflow-x: hidden;
-    }
-
-    .fade-out {
-        position: absolute;
-        top: 900px;
-        bottom: 0;
-        left: 0;
-        right: 0;
-
-        background: linear-gradient(360deg, $bgverydark 0%, rgba($bgverydark, 0) 100%);
     }
 
     .intro-content {

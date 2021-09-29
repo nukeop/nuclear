@@ -17,3 +17,47 @@ body {
   color: $white;
   background-color: $bgdark;
 }
+
+body > svg {
+  display: none;
+}
+
+.fade-out {
+  position: absolute;
+  top: 900px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  background: linear-gradient(360deg, $bgverydark 0%, rgba($bgverydark, 0) 100%);
+}
+
+.fade-in {
+  position: absolute;
+  top: 0;
+  bottom: 900px;
+  left: 0;
+  right: 0;
+
+  background: linear-gradient(180deg, $bgverydark 0%, rgba($bgverydark, 0) 100%);
+}
+
+.fade-out-small {
+  position: absolute;
+  top: 500px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  background: linear-gradient(360deg, $bgverydark 0%, rgba($bgverydark, 0) 100%);
+}
+
+.fade-in-small {
+  position: absolute;
+  top: 0;
+  bottom: 500px;
+  left: 0;
+  right: 0;
+
+  background: linear-gradient(180deg, $bgverydark 0%, rgba($bgverydark, 0) 100%);
+}

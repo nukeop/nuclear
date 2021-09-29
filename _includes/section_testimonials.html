@@ -1,12 +1,12 @@
-<section class='light'>
+<section class='dark testimonials-section'>
   <div class="container">
-    <h1>Testimonials</h1>
-  </div>
-  <div class="testimonials">
+    <h2>Testimonials</h2>
+    <div class="testimonials">
 
-    {% for testimonial in site.data.testimonials %}
-    {% include testimonial.html testimonial=testimonial %}
-    {% endfor %}
+      {% for testimonial in site.data.testimonials %}
+      {% include testimonial.html testimonial=testimonial %}
+      {% endfor %}
 
+    </div>
   </div>
 </section>
