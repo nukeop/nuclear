@@ -5,13 +5,42 @@ section.feature {
     align-items: center;
     height: 768px;
 
+    .fade-in, .fade-out {
+        display: none;
+    }
+
+    @media screen and (max-width: $md) {
+        height: 1080px;
+
+        .fade-in-small, .fade-out-small {
+            display: none;
+        }
+
+        .fade-in, .fade-out {
+            display: block;
+        }
+    }
+
     .container {
         display: flex;
         flex-flow: row;
-        max-width: 1680px;
+        align-items: center;
+        justify-content: center;
+        max-width: 100%;
+        margin: 0 96px;
+
+        @media screen and (max-width: $md) {
+            margin: 0 32px;
+            flex-flow: column-reverse;
+
+            &.reverse-md {
+                flex-flow: column;
+            }
+        }
 
         svg {
             flex: 1 1 50%;
+            max-width: 100%;
         }
 
         .description {
@@ -21,14 +50,26 @@ section.feature {
             flex: 1 1 50%;
             margin-left: 50px;
 
+            @media screen and (max-width: $md) {
+                margin-left: 0;
+            }
+
             h2 {
                 font-size: 64px;
                 margin-top: 0;
                 margin-bottom: 18px;
+
+                @media screen and (max-width: $sm) {
+                    font-size: 48px;
+                }
             }
 
             p {
                 font-size: 32px;
+
+                @media screen and (max-width: $sm) {
+                    font-size: 28px;
+                }
 
                 em {
                     font-weight: bold;

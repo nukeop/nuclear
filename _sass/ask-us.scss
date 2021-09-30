@@ -1,12 +1,20 @@
 section.ask-us {
     position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     padding: 150px 0;
+
     .container {
         position: relative;
         display: flex;
         flex-flow: column;
         max-width: 1680px;
         z-index: 10;
+
+        @media screen and (max-width: $md) {
+            max-width: 100%;
+        }
 
         h2 {
             font-size: 64px;
@@ -20,6 +28,10 @@ section.ask-us {
             align-items: center;
             padding: 32px;
             padding-top: 0;
+
+            @media screen and (max-width: $md-sm) {
+                flex-flow: column;
+            }
         }
 
         .soc-button {

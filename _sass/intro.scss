@@ -4,6 +4,14 @@ section.intro {
     background: url("/assets/images/background1.png");
     background-size: cover;
 
+    @media screen and (max-width: $md) {
+        height: auto;
+
+        .fade-out {
+            top: 1500px;
+        }
+    }
+
     .container {
         overflow-x: hidden;
     }
@@ -16,6 +24,13 @@ section.intro {
         padding-top: 122px;
         margin-left: auto;
         margin-right: auto;
+
+        @media screen and (max-width: $md) {
+            flex-flow: column;
+            width: auto;
+            margin: 0 48px;
+            padding-top: 64px;
+        }
     }
 
     .intro-left {
@@ -25,6 +40,11 @@ section.intro {
             font-size: 96px;
             font-weight: 800;
             margin: 0;
+
+            @media screen and (max-width: $md) {
+                font-size: 64px;
+                text-align: center;
+            }
 
             em {
                 color: $pink;
@@ -39,6 +59,11 @@ section.intro {
         p {
             font-size: 32px;
 
+            @media screen and (max-width: $md) {
+                font-size: 24px;
+                text-align: center;
+            }
+
             em {
                 font-style: normal;
                 font-weight: bold;
@@ -47,10 +72,21 @@ section.intro {
     }
 
     .mockup {
+        position: relative;
         display: flex;
         justify-content: flex-end;
         flex: 1 1 auto;
         height: 645px;
+
+        @media screen and (max-width: $md) {
+            height: auto;
+            justify-content: center;
+            padding: 96px 0;
+
+            img {
+                max-width: 100%;
+            }
+        }
     }
 
     .cta *,
@@ -64,6 +100,18 @@ section.intro {
     .cta {
         padding-top: 48px;
         width: 85%;
+
+        @media screen and (max-width: $md) {
+            width: 600px;
+
+            margin-left: auto;
+            margin-right: auto;
+            padding-bottom: 48px;
+        }
+
+        @media screen and (max-width: $sm) {
+            width: auto;
+        }
     }
 
     .social-proof {
@@ -73,6 +121,11 @@ section.intro {
         margin-top: 30px;
         margin-bottom: 24px;
 
+        @media screen and (max-width: $md) {
+            margin-top: 0;
+            justify-content: center;
+        }
+
         svg {
             margin-right: 8px;
         }
@@ -81,6 +134,11 @@ section.intro {
     form {
         display: flex;
         margin-bottom: 24px;
+
+        @media screen and (max-width: $sm) {
+            flex-flow: column;
+        }
+
         input {
             font-family: inherit;
             background: $white;
@@ -89,6 +147,14 @@ section.intro {
             border-radius: 4px 0 0 4px;
             border: none;
             flex: 1 1 auto;
+
+            @media screen and (max-width: $sm) {
+                border-radius: 4px;
+
+                &:not(:nth-child(2)) {
+                    margin-bottom: 24px;
+                }
+            }
         }
 
         .submit-button {
@@ -96,6 +162,10 @@ section.intro {
             color: $white;
             border-radius: 0 4px 4px 0;
             padding: 12px 50px;
+
+            @media screen and (max-width: $sm) {
+                border-radius: 4px;
+            }
         }
 
         .input-hidden {
@@ -135,9 +205,14 @@ section.intro {
         flex-flow: column;
         z-index: 10;
 
-        &>span {
+        @media screen and (max-width: $md) {
+            margin-top: 0;
+            align-items: center;
+        }
+
+        & > span {
             margin-bottom: 16px;
-            
+
             &:first-child {
                 opacity: 0.6;
             }
@@ -150,7 +225,6 @@ section.intro {
 
             color: $white;
             text-decoration: none;
-
 
             svg {
                 margin-right: 8px;
