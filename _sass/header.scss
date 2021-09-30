@@ -17,6 +17,11 @@ header {
     flex-flow: row;
     width: 100%;
     max-width: 1366px;
+    align-items: center;
+
+    img {
+      height: 100%;
+    }
   
     .spacer {
       flex: 1 1 auto;
