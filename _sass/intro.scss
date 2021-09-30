@@ -87,6 +87,10 @@ section.intro {
                 max-width: 100%;
             }
         }
+
+        img {
+            object-fit: contain;
+        }
     }
 
     .cta *,
