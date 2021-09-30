@@ -1,34 +1,47 @@
-<section class='light'>
+<section class='feature dark'>
   <div class="container">
-    <h1>Listen to music on your terms</h1>
-    <h3>There's no need to be subjected to tracking and profiling just to listen to your favourite artists. <strong>Nuclear</strong> empowers you to listen to what you want, where you want, and how you want, for free.</h3>
-    <div class="feature">
-      <div class="logo">
-        <div style="background-image: url({{ "/assets/images/sources.svg" | relative_url }});"></div>
-      </div>
-      <div class="spacer"></div>
-      <div class="description">
-        <h3>Stream from any free source on the internet. <strong>Nuclear</strong> supports Youtube and Soundcloud out of the box, with a plugin system allowing for easy addition of more.</h3>
-      </div>
+    {% include svg/feature_streaming.svg %}
+    <div class="description">
+      <h2>
+        Stream from any free source on the internet
+      </h2>
+      <p>
+        <em>Nuclear</em> supports Youtube, Soundcloud, Bandcamp, and your local library. A flexible plugin system allows for easy addition of more.
+      </p>
     </div>
-    <div class="feature">
-      <div class="logo small">
-        <div style="background-image: url({{ "/assets/images/lastfm.svg" | relative_url }});"></div>
-      </div>
-      <div class="spacer"></div>
-      <div class="description">
-        <h3><strong>Nuclear</strong> supports scrobbling to last.fm and updating the now playing status.</h3>
-      </div>
+  </div>
+</section>
+
+<section class='feature background2'>
+  <div class="fade-in-small"></div>
+  <div class="fade-in"></div>
+  <div class="fade-out-small"></div>
+  <div class="fade-out"></div>
+  <div class="container reverse-md">
+    <div class="description">
+      <h2>
+        Social integrations
+      </h2>
+      <p>
+        <em>Nuclear</em> integrates with Last.fm and Mastodon, and lets you import favorites and share what you’re listening to.
+      </p>
     </div>
-    <div class="feature">
-      <div class="logo">
-        <div style="background-image: url({{ "/assets/images/ganoo.svg" | relative_url }})"></div>
-      </div>
-      <div class="spacer"></div>
-      <div class="description">
-        <h3><strong>Nuclear</strong> is developed on Github under Affero GPL, with the "GNU/Linux first" mindset. This means it respects your freedom, and we're giving you full access to source code, so you can modify it and contribute to the project.
-        </h3>
-      </div>
+    {% include svg/feature_social.svg %}
+  </div>
+</section>
+
+<section class='feature dark'>
+  <div class="container">
+    {% include svg/ganoo.svg %}
+    <div class="description">
+      <h2>
+        Free as in freedom
+      </h2>
+      <p>
+        <em>Nuclear</em> respects your freedom and it’s developed under the Affero GPL license.<br /><br />
+
+        We collect no data and have no telemetry, no Code of Conduct, no Contributor License Agreement and absolutely no ads.
+      </p>
     </div>
   </div>
 </section>

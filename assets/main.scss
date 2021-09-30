@@ -1,12 +1,25 @@
 ---
 ---
 
-$bg: #2f3542;
-$white: #f1f2f6;
-$black: #000;
-$lightgrey: #ced6e0;
-$darkgrey: #57606f;
+$bgverydark: #1F212D;
+$bgdark: #2C2E3A;
+$bglight: #6E7291;
+$bgdefault: #424557;
+
+$white: #fafafa;
+$black: #202020;
+
+$pink: #FC83D3;
 $purple: #9b59b6;
 $blue: #3498db;
 
 @import 'index';
+@import 'breakpoints';
+
+@import 'header';
+@import 'intro';
+@import 'features';
+@import 'sections';
+@import 'testimonials';
+@import 'ask-us';
+@import 'footer';

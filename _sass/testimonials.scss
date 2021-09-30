@@ -1,0 +1,90 @@
+section.testimonials-section {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .container {
+        display: flex;
+        flex-flow: column;
+        max-width: 1680px;
+        margin-top: 96px;
+
+        @media screen and (max-width: $sm) {
+            max-width: 100%;
+        }
+
+        h2 {
+            font-size: 64px;
+            margin-top: 0;
+            margin-bottom: 64px;
+            text-align: center;
+        }
+
+        .testimonials {
+            position: relative;
+            column-count: 2;
+            column-gap: 64px;
+
+            @media screen and (max-width: $md) {
+                column-count: 1;
+            }
+
+            .testimonial {
+                background: $bgdefault;
+                border-left: 12px solid $bglight;
+                border-radius: 16px;
+                padding: 32px;
+                margin-bottom: 64px;
+                width: 600px;
+                box-sizing: border-box;
+                font-size: 24px;
+
+                box-shadow: 0 0 76px 0 rgba($black, 0.3) 0 0 24px 0 rgba($black, 0.22);
+
+                @media screen and (max-width: $lg) {
+                    width: 400px;
+                }
+
+                @media screen and (max-width: $md) {
+                    width: 600px;
+                }
+
+                @media screen and (max-width: $sm) {
+                    width: auto;
+                    margin-left: 32px;
+                    margin-right: 32px;
+                }
+
+                a {
+                    color: $white;
+                    text-decoration: none;
+                }
+
+                q {
+                    display: flex;
+                    flex-flow: column;
+                    margin-bottom: 24px;
+
+                    svg {
+                        margin-bottom: 24px;
+                    }
+
+                    &::before,
+                    &::after {
+                        display: none;
+                    }
+                }
+
+                .author {
+                    text-align: right;
+                    font-style: italic;
+                }
+
+                .forum {
+                    font-style: normal;
+                }
+            }
+        }
+    }
+}

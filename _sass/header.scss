@@ -1,0 +1,44 @@
+header {
+    position: relative;
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+    height: 96px;
+    padding: 24px;
+    box-sizing: border-box;
+  
+    background: rgba($bgdark, 0.5);
+    border-bottom: 1px solid $bglight;
+  }
+  
+  .header-container {
+    position: relative;
+    display: flex;
+    flex-flow: row;
+    width: 100%;
+    max-width: 1366px;
+  
+    .spacer {
+      flex: 1 1 auto;
+    }
+  
+    .buttons {
+      display: flex;
+      flex-flow: row;
+      flex: 0 0 auto;
+  
+      &>*:not(:last-child) {
+        margin-right: 24px;
+      }
+  
+      a {
+        width: 48px;
+        height: 48px;
+  
+        svg {
+          width: 100%;
+          height: auto;
+        }
+      }
+    }
+  }

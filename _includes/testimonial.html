@@ -1,0 +1,19 @@
+<div class="testimonial">
+  <q>
+    {% include svg/quote-left.svg %}
+    {% if include.testimonial.url %}
+    <a href="{{ include.testimonial.url }}">
+      {% endif %}
+      {{ include.testimonial.content }}
+      {% if include.testimonial.url %}
+    </a>
+    {% endif %}
+  </q>
+  <div class="author">
+    {{ include.testimonial.author }}{% if include.testimonial.author-forum %},
+    <span class="forum">
+      {{ include.testimonial.author-forum }}
+    </span>
+    {% endif %}
+  </div>
+</div>
