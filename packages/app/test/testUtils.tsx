@@ -15,6 +15,7 @@ import { render } from '@testing-library/react';
 
 import MainContentContainer from '../app/containers/MainContentContainer';
 import HelpModalContainer from '../app/containers/HelpModalContainer';
+import PlayQueueContainer from '../app/containers/PlayQueueContainer';
 import Navbar from '../app/components/Navbar';
 import NavButtons from '../app/components/NavButtons';
 
@@ -73,10 +74,11 @@ export const setupI18Next = () => {
 };
 
 export const mountComponent = (
-  willMountComponent: React.ReactElement, 
+  componentToMount: React.ReactElement, 
   initialHistoryEntries: string[],
   initialStore?: AnyProps, 
-  defaultInitialStore?: AnyProps) => {
+  defaultInitialStore?: AnyProps,
+  renderOptions?: {}) => {
   const initialState = initialStore || defaultInitialStore;
 
   const history = createMemoryHistory({
@@ -90,9 +92,9 @@ export const mountComponent = (
       <TestStoreProvider
         store={store}
       >
-        {willMountComponent}
+        {componentToMount}
       </TestStoreProvider>
-    </TestRouterProvider>
+    </TestRouterProvider>, renderOptions
   );
   return { component, history, store };
 };
@@ -123,5 +125,19 @@ export const mountedNavbarFactory= (
       initialHistoryEntries, 
       initialStore, 
       defaultInitialStore
+    );
+  };
+// { container: document.body }
+export const mountedPlayQueueFactory= (
+  initialHistoryEntries: string[],
+  defaultInitialStore?: AnyProps
+) =>
+  (initialStore?: AnyProps) => {
+    return mountComponent(
+      <PlayQueueContainer />, 
+      initialHistoryEntries, 
+      initialStore, 
+      defaultInitialStore,
+      { container: document.body }
     );
   };

@@ -11,6 +11,7 @@ class AudiusPlugin extends StreamProviderPlugin {
     this.name = 'Audius Plugin';
     this.sourceName = 'Audius';
     this.description = 'A plugin that adds Audius search and streaming support to Nuclear.';
+    this.baseUrl = 'https://audius.co';
     this.image = null;
     this.init();
   }
@@ -54,7 +55,8 @@ class AudiusPlugin extends StreamProviderPlugin {
       stream: `${this.apiEndpoint}/tracks/${result.id}/stream?app_name=Nuclear`,
       duration: result.duration,
       title: result.title,
-      thumbnail: result.artwork ? result.artwork['480x480'] : ''
+      thumbnail: result.artwork ? result.artwork['480x480'] : '',
+      originalUrl: `${this.baseUrl}${result.permalink}`
     };
   }
 }

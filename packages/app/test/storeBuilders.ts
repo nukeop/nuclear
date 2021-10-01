@@ -19,7 +19,11 @@ export const buildStoreState = () => {
       loading: false,
       error: false
     },
-    connectivity: false
+    connectivity: false,
+    queue: {
+      queueItems: [],
+      currentSong: 0
+    }
   };
 
   return {
@@ -431,6 +435,76 @@ export const buildStoreState = () => {
           loading: false,
           error: false
         }
+      };
+
+      return this as StoreStateBuilder;
+    },
+    withTrackInPlayQueue() {
+      state = {
+        ...state,
+        queue: {
+          queueItems: [
+            {
+              'artist': 'BTS',
+              'name': 'test track 1',
+              'thumbnail': 'https://test-track-thumb-url',
+              'streams': [
+                {
+                  'source': 'Test Stream Provider',
+                  'id': 'CuklIb9d3fI',
+                  'stream': 'https://test-track-stream-url',
+                  'duration': 300,
+                  'title': 'test track 1',
+                  'thumbnail': 'https://test-track-thumb-url',
+                  'format': 'webm',
+                  'skipSegments': [
+                    {
+                      'category': 'intro',
+                      'startTime': 0,
+                      'endTime': 5
+                    },
+                    {
+                      'category': 'music_offtopic',
+                      'startTime': 5,
+                      'endTime': 22
+                    },
+                    {
+                      'category': 'music_offtopic',
+                      'startTime': 239,
+                      'endTime': 299
+                    }
+                  ],
+                  'originalUrl': 'https://test-track-original-url'
+                }
+              ],
+              'uuid': 'uuid1',
+              'loading': false,
+              'error': false
+            },
+            {
+              'artist': 'BTS',
+              'name': 'test track 2',
+              'thumbnail': 'https://test-track-thumb-url',
+              'streams': [
+                {
+                  'source': 'Youtube',
+                  'id': 'CuklIb9d3fI',
+                  'stream': 'https://test-track-stream-url',
+                  'duration': 300,
+                  'title': 'test track 2',
+                  'thumbnail': 'https://test-track-thumb-url',
+                  'format': 'webm',
+                  'skipSegments': []
+                }
+              ],
+              'uuid': 'uuid2',
+              'loading': false,
+              'error': false
+            }
+          ],
+          currentSong: 0
+        }
+        
       };
 
       return this as StoreStateBuilder;

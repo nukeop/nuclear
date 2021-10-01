@@ -1,6 +1,7 @@
 import React, { useRef, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import cs from 'classnames';
+import _ from 'lodash';
 import { withState, withHandlers, withProps, compose } from 'recompose';
 import { Popup } from 'semantic-ui-react';
 import { StreamInfo } from '@nuclear/ui';
@@ -18,14 +19,17 @@ export const QueuePopup = ({
   setImageReady,
   setOpen,
   titleLabel,
+  copyTrackUrlLabel,
+  sourceLabel,
   track,
   index,
   actions,
   plugins,
-  selectedStream
+  selectedStream,
+  copyToClipboard
 }) => {
   const triggerElement = useRef(null);
-
+  
   const handleOpen = useCallback(
     event => {
       event.preventDefault();
@@ -44,10 +48,17 @@ export const QueuePopup = ({
     const selectedStreamProvider = _.find(plugins.plugins.streamProviders, { sourceName: plugins.selected.streamProviders });
     actions.rerollTrack(selectedStreamProvider, selectedStream, track);
   };
-  
+
   const handleSelectStream = ({ track, stream }) => {
     actions.changeTrackStream(track, stream);
   };
+
+  const handleCopyTrackUrl = useCallback(() => {
+    if (selectedStream?.originalUrl?.length) {
+      copyToClipboard(selectedStream.originalUrl);
+    }
+    handleClose();
+  }, [selectedStream, handleClose, copyToClipboard]);
 
   const dropdownOptions = _.map(plugins.plugins.streamProviders, s => ({
     key: s.sourceName,
@@ -62,7 +73,11 @@ export const QueuePopup = ({
         [styles.hidden]: !imageReady
       })}
       trigger={
-        <div ref={triggerElement} onContextMenu={handleOpen}>
+        <div
+          ref={triggerElement}
+          data-testid={`queue-popup-${track.uuid}`}
+          onContextMenu={handleOpen}
+        >
           {trigger}
         </div>
       }
@@ -77,11 +92,14 @@ export const QueuePopup = ({
         dropdownOptions={dropdownOptions}
         idLabel={idLabel}
         titleLabel={titleLabel}
+        copyTrackUrlLabel={copyTrackUrlLabel}
+        sourceLabel={sourceLabel}
         selectedStream={selectedStream}
         track={track}
         onRerollTrack={handleRerollTrack}
         onSelectStream={handleSelectStream}
         onImageLoaded={handleImageLoaded}
+        onCopyTrackUrl={handleCopyTrackUrl}
       />
       <hr />
       <div className={styles.queue_popup_buttons_container}>
@@ -96,10 +114,13 @@ QueuePopup.propTypes = {
   isQueueItemCompact: PropTypes.bool,
   idLabel: PropTypes.string,
   titleLabel: PropTypes.string,
+  copyTrackUrlLabel: PropTypes.string,
+  sourceLabel: PropTypes.string,
   track: PropTypes.object,
   index: PropTypes.number,
   actions: PropTypes.object,
-  plugins: PropTypes.object
+  plugins: PropTypes.object,
+  copyToClipboard: PropTypes.func
 };
 
 export default compose(

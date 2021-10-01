@@ -121,6 +121,8 @@ class PlayQueue extends React.PureComponent {
                 track={el}
                 titleLabel={t('title')}
                 idLabel={t('id')}
+                copyTrackUrlLabel={t('copy-track-url')}
+                sourceLabel={t('source')}
               />
             </div>
           )}

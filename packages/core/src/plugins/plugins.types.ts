@@ -106,4 +106,7 @@ export type StreamData = {
     duration: number;
     title: string;
     thumbnail: string;
+    originalUrl?: string;
+    format?: string;
+    skipSegments?: Array<any>
 }

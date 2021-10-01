@@ -1,6 +1,6 @@
 import logger from 'electron-timber';
 
-import { StreamQuery } from '../plugins.types';
+import { StreamQuery, StreamData } from '../plugins.types';
 import StreamProviderPlugin from '../streamProvider';
 import * as Youtube from '../../rest/Youtube';
 class YoutubePlugin extends StreamProviderPlugin {
@@ -13,7 +13,7 @@ class YoutubePlugin extends StreamProviderPlugin {
     this.isDefault = true;
   }
 
-  async search(query: StreamQuery) {
+  async search(query: StreamQuery): Promise<void | StreamData> {
     const terms = query.artist + ' ' + query.track;
     try {
       return await Youtube.trackSearch(query, undefined, this.sourceName);
@@ -23,7 +23,7 @@ class YoutubePlugin extends StreamProviderPlugin {
     }
   }
 
-  async getAlternateStream(query: StreamQuery, currentStream: { id: string }) {
+  async getAlternateStream(query: StreamQuery, currentStream: { id: string }): Promise<void | StreamData> {
     const terms = query.artist + ' ' + query.track;
     try {
       return await Youtube.trackSearch(query, currentStream.id, this.sourceName);

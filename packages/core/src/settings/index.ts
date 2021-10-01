@@ -110,6 +110,14 @@ export const settingsConfig: Array<Setting> = [
     unit: ''
   },
   {
+    name: 'skipSponsorblock',
+    category: 'playback',
+    description: 'skip-sponsorblock-description',
+    type: SettingType.BOOLEAN,
+    prettyName: 'skip-sponsorblock',
+    default: true
+  },
+  {
     name: 'disableGPU',
     category: 'program-settings',
     type: SettingType.BOOLEAN,
@@ -129,6 +137,13 @@ export const settingsConfig: Array<Setting> = [
     type: SettingType.BOOLEAN,
     prettyName: 'mini-player',
     default: false
+  },
+  {
+    name: 'discordRichPresence',
+    category: 'display',
+    type: SettingType.BOOLEAN,
+    prettyName: 'discord-rich-presence',
+    default: true
   },
   {
     name: 'compactMenuBar',

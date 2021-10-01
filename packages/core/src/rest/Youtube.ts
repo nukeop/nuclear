@@ -6,7 +6,7 @@ import ytlist from 'youtube-playlist';
 import ytsr from 'ytsr';
 
 import LastFmApi from './Lastfm';
-import { StreamQuery } from '../plugins/plugins.types';
+import { StreamData, StreamQuery } from '../plugins/plugins.types';
 import * as SponsorBlock from './SponsorBlock';
 
 const lastfm = new LastFmApi(
@@ -137,7 +137,7 @@ export async function trackSearch(query: StreamQuery, omitStreamId?: string, sou
   return trackSearchByString(terms, omitStreamId, sourceName);
 }
 
-export async function trackSearchByString(query: string, omitStreamId?: string, sourceName?: string) {
+export async function trackSearchByString(query: string, omitStreamId?: string, sourceName?: string): Promise<StreamData> {
   const filterOptions = await ytsr.getFilters(query);
   const filterVideoOnly = filterOptions.get('Type').get('Video'); 
   const results = await ytsr(filterVideoOnly.url, { limit: omitStreamId ? 15 : 1 });
@@ -159,7 +159,8 @@ export async function trackSearchByString(query: string, omitStreamId?: string, 
       title: topTrackInfo.videoDetails.title,
       thumbnail: topTrack.bestThumbnail.url,
       format: formatInfo.container,
-      skipSegments: segments
+      skipSegments: segments,
+      originalUrl: topTrack.url
     };
   } catch (e){
     logger.error('youtube track search error');
