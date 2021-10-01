@@ -245,6 +245,7 @@
     "mastodon-post-format-label": "पोस्ट फॉर्मेट",
     "mastodon-title": "",
     "mini-player": "मिनी प्लेयर शैली का प्रयोग करें",
+    "discord-rich-presence": "Toggle discord rich presence (requires restart)",
     "notification-timeout": "सूचना समयबाह्य",
     "notlogged": "लॉगिन नहीं हैं",
     "playback": "प्लेबैक",
