@@ -245,6 +245,7 @@
     "mastodon-post-format-label": "Post-Vorlage",
     "mastodon-title": "",
     "mini-player": "Mini Player verwenden",
+    "discord-rich-presence": "Toggle discord rich presence (requires restart)",
     "notification-timeout": "Benachrichtigungs Auszeit",
     "notlogged": "Nicht eingeloggt",
     "playback": "Wiedergabe",
