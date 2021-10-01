@@ -245,6 +245,7 @@
     "mastodon-post-format-label": "Postformat",
     "mastodon-title": "",
     "mini-player": "Använd minispelarstil",
+    "discord-rich-presence": "Toggle discord rich presence (requires restart)",
     "notification-timeout": "Tidsgräns för notifikationer",
     "notlogged": "Inte inloggad",
     "playback": "Uppspelning",
