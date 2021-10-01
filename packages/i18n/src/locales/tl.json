@@ -16,7 +16,7 @@
     "downloads": "Mga Download",
     "equalizer": "Equalizer",
     "favorite-albums": "Paboritong mga Album",
-    "favorite-artists": "Favorite Artists",
+    "favorite-artists": "Mga Paboritong Artista",
     "favorite-tracks": "Paboritong mga Kanta",
     "library": "Lokal na Library",
     "lyrics": "Liriko",
@@ -31,12 +31,12 @@
     "count": "Bilang ng pagtugtog",
     "queue": "Idagdag lahat sa pila",
     "similar": "Katulad na artist",
-    "title": "Title",
+    "title": "Titulado",
     "tour": "Nasa tour"
   },
   "dashboard": {
     "add-all": "Add all",
-    "artist": "Artist",
+    "artist": "Artista",
     "best": "Nangungunang bagong musika",
     "best-new-albums": "Nangungunang bagong mga album",
     "best-new-tracks": "Nangungunang bagong kanta",
@@ -44,7 +44,7 @@
     "news": "Balita",
     "playcounts": "Bilang ng pagtugtog",
     "popular-track-title": "Nangungunang kanta mula sa Deezer",
-    "title": "Title",
+    "title": "Titulado",
     "top": "Nangungunang mga kanta"
   },
   "downloads": {
@@ -69,7 +69,7 @@
   "favorites": {
     "artist": "Artist",
     "empty": "Wala pang naidadagdag na mga paboritong kanta",
-    "empty-help": "Subukan magdagdag ng mga paboritong kanta at makikita mo rito!",
+    "empty-help": "Try adding some tracks to favorites and they will appear here!",
     "header": "Ang iyong mga pabirotong kanta",
     "title": "Title"
   },
@@ -103,7 +103,7 @@
   },
   "option-control": {
     "autoradio": "Autoradio",
-    "loop": "Loop",
+    "loop": "Paulit",
     "mini-player": "Miniplayer",
     "shuffle": "Shuffle"
   },
@@ -131,6 +131,9 @@
     "export-fail-title": "Playlist export fail",
     "export-success-title": "Playlist exported successfully",
     "header": "Your playlists",
+    "dialog-accept": "Save",
+    "create-button": "Create new playlist",
+    "new-playlist": "New playlist",
     "import-button": "Import from file (JSON)",
     "import-fail-title": "Playlist import fail",
     "import-success-title": "Playlist imported successfully",
@@ -170,6 +173,8 @@
     "header": "Pila",
     "header-track": "Kasalukuyang kanta",
     "id": "Stream ID:",
+    "source": "Source:",
+    "copy-track-url": "Copy track url to clipboard",
     "loading": "Stream ay inaabangan.",
     "playlist-add": "Idagdag sa playlist",
     "playlist-toast-content": "Nagawa ang playlist {{name}}.",
@@ -239,7 +244,6 @@
     "mastodon-post-format-description": "Nuclear will post a status on Mastodon after each track completes playing. The above string will be the template for each post, with {{artist}} and {{title}} replaced with the artist and title of the track.",
     "mastodon-post-format-label": "Post format",
     "mastodon-title": "",
-    "max.downloads": "Download control",
     "mini-player": "Use mini player style",
     "notification-timeout": "Notification timeout",
     "notlogged": "Hindi naka log in",
@@ -250,6 +254,8 @@
     "shuffle-when-going-back": "I-shuffle pag punta sa nakaraang kanta",
     "shuffle-when-going-back-description": "Magplay ng random na kanta pag aktiba ang shuffle at nakapindot ang pindutan ng nakaraang kanta",
     "social": "Social",
+    "skip-sponsorblock": "Skip non-music segment",
+    "skip-sponsorblock-description": "Playback skips non-music segment from SponsorBlock (https://sponsor.ajay.app/)",
     "streaming": "Streaming",
     "track-duration": "Ipakita ang track duration sa ibabaw ng seekbar",
     "user": "User:",

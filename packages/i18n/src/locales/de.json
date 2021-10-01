@@ -1,6 +1,6 @@
 {
   "album": {
-    "download": "Heruntergeladen",
+    "download": "Herunterladen",
     "download-toast-content": "{{artist}} - {{title}} wurde zu Downloads hinzugefügt.",
     "download-toast-title": "Album zu Downloads hinzugefügt",
     "error-load": "Leider konnte dieses Album nicht geladen werden. Versuchen Sie es später erneut oder öffnen Sie ein neues Problem auf Github",
@@ -28,7 +28,7 @@
     "visualizer": "Visualisierung"
   },
   "artist": {
-    "count": "Anzahl an Wiedergabe",
+    "count": "Anzahl der Wiedergabe",
     "queue": "Alle angezeigten Lieder zur Warteschlange hinzufügen",
     "similar": "Ähnliche Künstler",
     "title": "Titel",
@@ -69,7 +69,7 @@
   "favorites": {
     "artist": "Künstler",
     "empty": "Keine Favoriten hinzugefügt.",
-    "empty-help": "Markiere Lieder als \"Favorit\", damit sie hier erscheinen werden!",
+    "empty-help": "Try adding some tracks to favorites and they will appear here!",
     "header": "Deine Lieblingslieder",
     "title": "Titel"
   },
@@ -131,6 +131,9 @@
     "export-fail-title": "Wiedergabelisten-Export fehlgeschlagen",
     "export-success-title": "Wiedergabeliste erfolgreich exportiert",
     "header": "Deine Wiedergabelisten",
+    "dialog-accept": "Save",
+    "create-button": "Create new playlist",
+    "new-playlist": "New playlist",
     "import-button": "Aus Datei importieren (JSON)",
     "import-fail-title": "Wiedergabeliste importiert",
     "import-success-title": "Wiedergabeliste erfolgreich exportiert",
@@ -170,6 +173,8 @@
     "header": "Warteschlange",
     "header-track": "Aktueller Lied",
     "id": "Stream-ID:",
+    "source": "Source:",
+    "copy-track-url": "Copy track url to clipboard",
     "loading": "Stream lädt.",
     "playlist-add": "Zur Wiedergabeliste hinzufügen",
     "playlist-toast-content": "Wiedergabeliste {{name}} wurde erstellt",
@@ -239,7 +244,6 @@
     "mastodon-post-format-description": "Nuclear wird nach jedem abgespielten Lied einen Status auf Mastodon posten. Der obere Text dient als Vorlage für diese Posts. {{artist}} und {{title}} werden durch den Interpreten und Titel des Liedes ersetzt.",
     "mastodon-post-format-label": "Post-Vorlage",
     "mastodon-title": "",
-    "max.downloads": "Steuerung für Downloads",
     "mini-player": "Mini Player verwenden",
     "notification-timeout": "Benachrichtigungs Auszeit",
     "notlogged": "Nicht eingeloggt",
@@ -250,6 +254,8 @@
     "shuffle-when-going-back": "Shuffle von vorherigen Liedern",
     "shuffle-when-going-back-description": "Spiele zufällige Lieder wenn Shuffle aktiviert und der Button 'vorherige Lieder' ausgewählt ist",
     "social": "Sozial",
+    "skip-sponsorblock": "Skip non-music segment",
+    "skip-sponsorblock-description": "Playback skips non-music segment from SponsorBlock (https://sponsor.ajay.app/)",
     "streaming": "Streamen",
     "track-duration": "Laufzeit über der Suchleiste anzeigen",
     "user": "Benutzer:",
