@@ -68,7 +68,9 @@ app.on('ready', async () => {
     container.listen();
     await window.load();
     trayMenu.init();
-    discord.init();
+    if (store.getOption('discordRichPresence')) {
+      discord.init();
+    }
 
     // if args is pass to  nuclear command and its a path to a supported file, just play it.
     if (config.isProd() && process.argv[1] && config.isFileSupported(process.argv[1])) {

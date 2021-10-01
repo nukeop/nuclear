@@ -139,6 +139,13 @@ export const settingsConfig: Array<Setting> = [
     default: false
   },
   {
+    name: 'discordRichPresence',
+    category: 'display',
+    type: SettingType.BOOLEAN,
+    prettyName: 'discord-rich-presence',
+    default: true
+  },
+  {
     name: 'compactMenuBar',
     category: 'display',
     type: SettingType.BOOLEAN,
