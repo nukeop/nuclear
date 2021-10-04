@@ -23,6 +23,9 @@ export type PlayerBarProps = PlayerControlsProps &
   };
 
 const VOLUME_POPUP_BREAKPOINT = 570;
+
+let livestream = false;
+
 const PlayerBar: React.FC<PlayerBarProps> = ({
   cover,
   track,
@@ -60,6 +63,9 @@ const PlayerBar: React.FC<PlayerBarProps> = ({
   segmentPopupMessage
 }) => {
   const { width: windowWidth } = useWindowSize();
+  if (timePlayed === 0 && timeToEnd === 0) {
+    livestream = true;
+  }
   return (
     <div className={cx(
       common.nuclear,
@@ -77,8 +83,8 @@ const PlayerBar: React.FC<PlayerBarProps> = ({
         {hasTracks &&
           renderTrackDuration &&
           <div className={styles.track_duration}>
-            <div>{formatDuration(timePlayed)}</div>
-            <div>-{formatDuration(timeToEnd)}</div>
+            <div>{formatDuration(timePlayed, livestream)}</div>
+            <div>-{formatDuration(timeToEnd, livestream)}</div>
           </div>}
       </Seekbar>
       <div className={styles.player_bar_bottom}>
