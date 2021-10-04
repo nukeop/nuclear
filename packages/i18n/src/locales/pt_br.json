@@ -6,43 +6,43 @@
     "error-load": "Sorry, this album could not be loaded. Try again later or open a new issue on Github",
     "genre": "Genre:",
     "play": "Play",
-    "queue": "Adicionar à Fila",
+    "queue": "Add album to queue",
     "tracks": "Tracks:",
     "year": "Year:"
   },
   "app": {
-    "collection": "Coleção",
+    "collection": "Collection",
     "dashboard": "Dashboard",
     "downloads": "Downloads",
     "equalizer": "Equalizador",
-    "favorite-albums": "Favorite Albums",
-    "favorite-artists": "Favorite Artists",
+    "favorite-albums": "Álbuns Favoritos",
+    "favorite-artists": "Artistas Favoritos",
     "favorite-tracks": "Favoritas",
     "library": "Biblioteca",
     "lyrics": "Letras",
-    "main": "Main",
+    "main": "Principal",
     "playlists": "Lista de Reprodução",
     "plugins": "Plugins",
     "search": "Busca",
     "settings": "Configurações",
-    "visualizer": "Visualizer"
+    "visualizer": "Visualizador"
   },
   "artist": {
-    "count": "Play counts",
+    "count": "Reproduções",
     "queue": "Adicione todas as faixas à fila",
-    "similar": "Similar artists",
+    "similar": "Artistas similares",
     "title": "Título",
     "tour": "Turnê"
   },
   "dashboard": {
-    "add-all": "Add all",
+    "add-all": "Adicionar tudo",
     "artist": "Artista",
     "best": "Melhor nova musica",
     "best-new-albums": "Melhores novos álbuns",
     "best-new-tracks": "Melhores novas faixas",
     "genres": "Gêneros",
     "news": "Novidades",
-    "playcounts": "Playcounts",
+    "playcounts": "Número de reproduções",
     "popular-track-title": "Mais tocadas no Deezer",
     "title": "Título",
     "top": "Mais tocadas"
@@ -57,24 +57,24 @@
     "status": "Status"
   },
   "favorite-albums": {
-    "empty": "No favorite albums",
-    "empty-help": "Try adding some albums to favorites and they will appear here!",
-    "header": "Your favorite albums"
+    "empty": "Nenhum álbum favorito",
+    "empty-help": "Tente adicionar alguns álbuns aos favoritos e eles aparecerão aqui!",
+    "header": "Seus álbuns favoritos"
   },
   "favorite-artists": {
-    "empty": "No favorite artists",
-    "empty-help": "Try adding some artists to favorites and they will appear here!",
-    "header": "Your favorite artists"
+    "empty": "Nenhum artista favorito",
+    "empty-help": "Tente adicionar alguns artistas aos favoritos e eles aparecerão aqui!",
+    "header": "Seus artistas favoritos"
   },
   "favorites": {
     "artist": "Artista",
     "empty": "Nenhum favorito adicionado.",
-    "empty-help": "Tente favoritar algumas faixas e elas aparecerão aqui!",
+    "empty-help": "Tente adicionar algumas faixas aos favoritos e elas aparecerão aqui!",
     "header": "Suas faixas favoritas",
     "title": "Título"
   },
   "help": {
-    "about": "About Nuclear Music Player",
+    "about": "Sobre o Player de Música Nuclear",
     "header": "Desktop music player for streaming from free sources",
     "released": "released under AGPL-3.0",
     "report": "Submit issues or new features",
@@ -131,6 +131,9 @@
     "export-fail-title": "Playlist export fail",
     "export-success-title": "Playlist exported successfully",
     "header": "Your playlists",
+    "dialog-accept": "Save",
+    "create-button": "Create new playlist",
+    "new-playlist": "New playlist",
     "import-button": "Import from file (JSON)",
     "import-fail-title": "Playlist import fail",
     "import-success-title": "Playlist imported successfully",
@@ -170,6 +173,8 @@
     "header": "Lista",
     "header-track": "Faixa Atual",
     "id": "ID de Transmissão:",
+    "source": "Source:",
+    "copy-track-url": "Copy track url to clipboard",
     "loading": "Transmissão ainda carregando.",
     "playlist-add": "Adicionar à Lista de Reprodução",
     "playlist-toast-content": "A Lista de Reprodução {{name}} Foi criada.",
@@ -239,7 +244,6 @@
     "mastodon-post-format-description": "Nuclear will post a status on Mastodon after each track completes playing. The above string will be the template for each post, with {{artist}} and {{title}} replaced with the artist and title of the track.",
     "mastodon-post-format-label": "Post format",
     "mastodon-title": "",
-    "max.downloads": "Download control",
     "mini-player": "Use mini player style",
     "notification-timeout": "Tempo limite de notificação",
     "notlogged": "Não logado",
@@ -250,6 +254,8 @@
     "shuffle-when-going-back": "Shuffle on previous track",
     "shuffle-when-going-back-description": "Play a random track when shuffle is active and the previous track button is clicked",
     "social": "Social",
+    "skip-sponsorblock": "Skip non-music segment",
+    "skip-sponsorblock-description": "Playback skips non-music segment from SponsorBlock (https://sponsor.ajay.app/)",
     "streaming": "Streaming",
     "track-duration": "Display track duration over the seekbar",
     "user": "Usuário:",

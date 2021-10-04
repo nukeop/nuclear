@@ -35,7 +35,7 @@
     "tour": "In tour"
   },
   "dashboard": {
-    "add-all": "Add all",
+    "add-all": "Aggiungi tutto",
     "artist": "Artista",
     "best": "Migliore nuova musica",
     "best-new-albums": "Migliori nuovi album",
@@ -69,7 +69,7 @@
   "favorites": {
     "artist": "Artista",
     "empty": "Nessun preferito aggiunto",
-    "empty-help": "Prova a mettere alcune tracce nei preferiti e compariranno qui!",
+    "empty-help": "Try adding some tracks to favorites and they will appear here!",
     "header": "Le tue tracce preferite",
     "title": "Titolo"
   },
@@ -131,6 +131,9 @@
     "export-fail-title": "Esportazione playlist fallita",
     "export-success-title": "Playlist esportata correttamente",
     "header": "Le tue playlist",
+    "dialog-accept": "Save",
+    "create-button": "Create new playlist",
+    "new-playlist": "New playlist",
     "import-button": "Importa da file (JSON)",
     "import-fail-title": "Importazione della playlist fallita",
     "import-success-title": "Playlist importata correttamente",
@@ -170,6 +173,8 @@
     "header": "Coda",
     "header-track": "Traccia corrente",
     "id": "ID Stream:",
+    "source": "Source:",
+    "copy-track-url": "Copy track url to clipboard",
     "loading": "La stream sta ancora caricando.",
     "playlist-add": "Aggiungi alla playlist",
     "playlist-toast-content": "La playlist {{name}} è stata creata.",
@@ -239,7 +244,6 @@
     "mastodon-post-format-description": "Nuclear pubblicherà uno stato su Mastodon dopo il completamento della riproduzione di ogni traccia. La stringa sopra sarà il modello per ogni post, con {{artist}} e {{title}} sostituiti dall'artista e il titolo della traccia.",
     "mastodon-post-format-label": "Formato del post",
     "mastodon-title": "",
-    "max.downloads": "Controllo del download",
     "mini-player": "Usa lo stile del mini lettore",
     "notification-timeout": "Timeout di notifica",
     "notlogged": "Non connesso",
@@ -250,6 +254,8 @@
     "shuffle-when-going-back": "Riproduci casualmente sulla traccia precedente",
     "shuffle-when-going-back-description": "Riproduci una traccia casuale quando la riproduzione casuale è attiva e il pulsante traccia precedente è cliccato",
     "social": "Social",
+    "skip-sponsorblock": "Skip non-music segment",
+    "skip-sponsorblock-description": "Playback skips non-music segment from SponsorBlock (https://sponsor.ajay.app/)",
     "streaming": "Streaming",
     "track-duration": "Mostra la durata della traccia sulla barra di ricerca",
     "user": "Utente:",
@@ -273,9 +279,9 @@
     "download-toast-title": "Traccia aggiunta ai download",
     "favorite-toast-body": "{{artist}} - {{track}} è stato aggiunto ai preferiti.",
     "favorite-toast-title": "Traccia preferita aggiunta",
-    "play-next": "Play next",
-    "play-now": "Riproduci",
-    "playlist-toast-body": "{{artist}} - {{track}} has been added to playlist.",
+    "play-next": "Riproduci prossimo",
+    "play-now": "Riproduci ora",
+    "playlist-toast-body": "{{artist}} - {{track}} è stato aggiunto alla playlist.",
     "playlist-toast-title": "Traccia aggiunta alla playlist"
   },
   "track-table": {
@@ -283,8 +289,8 @@
     "add-selected-tracks-to-downloads": "Aggiungi selezionati ai download",
     "add-selected-tracks-to-favorites": "Aggiungi selezionati ai preferiti",
     "play-selected-tracks-now": "Riproduci selezionati ora",
-    "tracks-selected-label-singular": "track selected",
-    "tracks-selected-label-plural": "tracks selected"
+    "tracks-selected-label-singular": "traccia selezionata",
+    "tracks-selected-label-plural": "tracce selezionate"
   },
   "visualizer": {
     "exit-fullscreen": "Premi ESC per uscire dallo schermo intero"

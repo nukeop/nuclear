@@ -3,12 +3,12 @@
     "download": "Télécharger",
     "download-toast-content": "{{artist}} - {{title}} a été ajouté aux téléchargements.",
     "download-toast-title": "L'album a été ajouté aux téléchargements",
-    "error-load": "Sorry, this album could not be loaded. Try again later or open a new issue on Github",
-    "genre": "Genre:",
-    "play": "Play",
+    "error-load": "Désolé, cet album n'a pas pu être chargé. Réessayez plus tard ou ouvrez une nouvelle issue sur Github",
+    "genre": "Genre :",
+    "play": "Lire",
     "queue": "Ajouter l'album à la liste de lecture",
-    "tracks": "Tracks:",
-    "year": "Year:"
+    "tracks": "Morceaux :",
+    "year": "Année :"
   },
   "app": {
     "collection": "Collection",
@@ -16,16 +16,16 @@
     "downloads": "Téléchargements",
     "equalizer": "Égalisateur",
     "favorite-albums": "Albums favoris",
-    "favorite-artists": "Favorite Artists",
+    "favorite-artists": "Artistes favoris",
     "favorite-tracks": "Favoris",
     "library": "Bibliothèque locale",
     "lyrics": "Paroles",
-    "main": "Main",
+    "main": "Accueil",
     "playlists": "Playlists",
     "plugins": "Plugins",
     "search": "Recherches",
     "settings": "Réglages",
-    "visualizer": "Visualizer"
+    "visualizer": "Visualiseur"
   },
   "artist": {
     "count": "Nombre d'écoutes",
@@ -35,7 +35,7 @@
     "tour": "En tournée"
   },
   "dashboard": {
-    "add-all": "Add all",
+    "add-all": "Ajouter tout",
     "artist": "Artiste",
     "best": "Nouveautés",
     "best-new-albums": "Meilleurs albums",
@@ -54,7 +54,7 @@
     "empty-help": "Ajoutez quelque chose à télécharger et vous le verrez apparaître ici !",
     "header": "Téléchargements",
     "name": "Nom",
-    "status": "Status"
+    "status": "État"
   },
   "favorite-albums": {
     "empty": "Aucun album favoris",
@@ -62,22 +62,22 @@
     "header": "Vos albums favoris"
   },
   "favorite-artists": {
-    "empty": "No favorite artists",
-    "empty-help": "Try adding some artists to favorites and they will appear here!",
-    "header": "Your favorite artists"
+    "empty": "Aucun artiste favori",
+    "empty-help": "Essayez d'ajouter quelques artistes à vos favoris et ils apparaîtront ici !",
+    "header": "Vos artistes favoris"
   },
   "favorites": {
     "artist": "Artiste",
     "empty": "Aucun favoris",
-    "empty-help": "Essayez d'ajouter des morceaux en favoris, ils apparaîtront ici !",
+    "empty-help": "Essayez d'ajouter quelques morceaux à vos favoris et ils apparaîtront ici !",
     "header": "Vos morceaux favoris",
     "title": "Titre"
   },
   "help": {
     "about": "À propos de \"Nuclear Music Player\"",
-    "header": "Application de bureau jouant de la musique à partir de sources libres.",
+    "header": "Application de bureau jouant de la musique à partir de sources libres",
     "released": "distribué sous licence AGPL-3.0",
-    "report": "Submit issues or new features",
+    "report": "Soumettre un problème ou une nouvelle fonctionnalité",
     "thanks": "Un grand merci à tous nos contributeurs sur Github."
   },
   "input-dialog": {
@@ -102,9 +102,9 @@
     "not-found": "Aucune paroles n'ont été trouvées pour ce morceau."
   },
   "option-control": {
-    "autoradio": "Autoradio",
+    "autoradio": "Auto-radio",
     "loop": "Boucle",
-    "mini-player": "Miniplayer",
+    "mini-player": "Mini-lecteur",
     "shuffle": "Aléatoire"
   },
   "player": {
@@ -113,37 +113,40 @@
     "previous-button": "Musique précédente"
   },
   "playlists": {
-    "add-selected-tracks-to-downloads": "Add selected to downloads",
-    "add-selected-tracks-to-favorites": "Add selected to favorites",
-    "add-selected-tracks-to-queue": "Add selected to queue",
+    "add-selected-tracks-to-downloads": "Ajouter la sélection aux téléchargements",
+    "add-selected-tracks-to-favorites": "Ajouter la sélection aux favoris",
+    "add-selected-tracks-to-queue": "Ajouter la sélection à la file d'attente",
     "album": "Album",
     "artist": "Artiste",
     "delete": "Supprimer cette playlist",
     "dialog-placeholder": "Nom de la playlist...",
-    "duration": "Length",
+    "duration": "Durée",
     "empty": "Aucune playlist.",
     "empty-help": "Try create some playlists or import by url and they will appear here!",
-    "error-empty-data": "Empty data",
-    "error-invalid-data": "Invalid data",
-    "error-open-file": "Can not open file",
-    "error-save-file": "Can not save file",
-    "export-button": "Export playlist (JSON)",
-    "export-fail-title": "Playlist export fail",
-    "export-success-title": "Playlist exported successfully",
-    "header": "Your playlists",
-    "import-button": "Import from file (JSON)",
-    "import-fail-title": "Playlist import fail",
-    "import-success-title": "Playlist imported successfully",
-    "play-selected-tracks-now": "Play selected now",
-    "playlist-created": "{{name}} created",
-    "playlist-exported": "{{name}} saved to local file",
+    "error-empty-data": "Aucune donnée",
+    "error-invalid-data": "Données invalides",
+    "error-open-file": "Impossible d'ouvrir le fichier",
+    "error-save-file": "Impossible d'enregistrer le fichier",
+    "export-button": "Exporter la playlist (JSON)",
+    "export-fail-title": "L'exportation de la playlist a échoué",
+    "export-success-title": "Playlist exportée avec succès",
+    "header": "Vos playlists",
+    "dialog-accept": "Enregistrer",
+    "create-button": "Créer une nouvelle playlist",
+    "new-playlist": "Nouvelle playlist",
+    "import-button": "Importer depuis un fichier (JSON)",
+    "import-fail-title": "L'importation de la playlist a échoué",
+    "import-success-title": "Playlist importée avec succès",
+    "play-selected-tracks-now": "Lire la sélection",
+    "playlist-created": "{{name}} a été créée",
+    "playlist-exported": "{{name}} a été enregistré dans un fichier local",
     "queue": "Ajouter la playlist à la file de lecture",
     "rename": "Renommer cette playlist",
     "songs": "{{total}} morceau",
     "songs_plural": "{{total}} morceaux",
     "title": "Titre",
-    "tracks-selected-plural": "tracks selected",
-    "tracks-selected-singular": "track selected"
+    "tracks-selected-plural": "morceaux sélectionnés",
+    "tracks-selected-singular": "morceau sélectionné"
   },
   "plugins": {
     "add-a-plugin": "Ajouter un plugin",
@@ -170,6 +173,8 @@
     "header": "File de lecture",
     "header-track": "Morceau actuel",
     "id": "Id du flux :",
+    "source": "Source :",
+    "copy-track-url": "Copier l'URL du morceau dans le presse-papiers",
     "loading": "Chargement du flux.",
     "playlist-add": "Ajouter à la playlist",
     "playlist-toast-content": "La playlist {{name}} a été créé.",
@@ -181,24 +186,24 @@
     "album_plural": "Albums",
     "artist": "Artiste",
     "artist_plural": "Artistes",
-    "clear-history": "Clear history",
+    "clear-history": "Effacer l’historique",
     "empty": "Aucun résultat.",
-    "last-searches": "Last searches",
+    "last-searches": "Dernières recherches",
     "placeholder": "Rechercher...",
     "playlist": "Playlist",
     "playlist_plural": "Playlists",
     "queue-add": "Ajouter tous les morceaux à la file de lecture",
     "track": "Morceau",
     "track_plural": "Morceaux",
-    "you-can-search-for": "You can search for:"
+    "you-can-search-for": "Vous pouvez rechercher :"
   },
   "seekbar": {
-    "segment-popup": "Non-music"
+    "segment-popup": "Hors musique"
   },
   "settings": {
     "api-port": "Port utilisé par l'api",
     "api-url": "",
-    "autoradio": "Autoradio",
+    "autoradio": "Auto-radio",
     "autoradio-craziness": "Niveau de folie de l'autoradio",
     "autoradio-craziness-description": "Plus le niveau de folie de l'autoradio est élevé, moins les morceaux choisis seront cohérent avec ceux déjà dans la file de lecture",
     "autoradio-description": "Ajouter des morceaux similaires automatiquement lorsque la file de lecture se termine",
@@ -230,34 +235,35 @@
     "login": "Se connecter",
     "logout": "Se déconnecter",
     "loop-after-queue-end": "Lecture en boucle à la fin de la liste de lecture",
-    "mastodon-authorization-token-label": "Authorization token",
-    "mastodon-authorize": "Authorize",
-    "mastodon-authorized": "Nuclear is authorized to post on ",
-    "mastodon-awaiting-authorization": "Nuclear is registered on {{instanceUrl}}. Awaiting authorization.",
+    "mastodon-authorization-token-label": "Token d'autorisation",
+    "mastodon-authorize": "Autoriser",
+    "mastodon-authorized": "Nuclear est autorisé à publier sur ",
+    "mastodon-awaiting-authorization": "Nuclear est enregistré sur {{instanceUrl}}. En attente de l'autorisation.",
     "mastodon-description": "",
-    "mastodon-instance-label": "Mastodon instance URL",
-    "mastodon-post-format-description": "Nuclear will post a status on Mastodon after each track completes playing. The above string will be the template for each post, with {{artist}} and {{title}} replaced with the artist and title of the track.",
-    "mastodon-post-format-label": "Post format",
+    "mastodon-instance-label": "URL de l'instance Mastodon",
+    "mastodon-post-format-description": "Nuclear va poster un statut sur Mastodon après chaque fin de morceau. Le phrase ci-dessus sera un modèle pour chaque message, avec {{artist}} et {{title}} remplacé par l'artiste et le titre du morceau.",
+    "mastodon-post-format-label": "Format de publication",
     "mastodon-title": "",
-    "max.downloads": "Download control",
-    "mini-player": "Use mini player style",
+    "mini-player": "Utiliser le style de mini-lecteur",
     "notification-timeout": "Temps d'affichage des notifications",
     "notlogged": "Non connecté",
-    "playback": "Playback",
+    "playback": "Relire",
     "program-settings": "Application",
     "seek-iteration": "Nombre de seconde à avancer/reculer en appuyant sur les flèches",
     "shuffle-queue": "Ordre aléatoire",
     "shuffle-when-going-back": "Mélanger les morceaux précédents",
     "shuffle-when-going-back-description": "Joue un morceau aléatoire lorsque le bouton de morceau précédent est cliqué",
     "social": "Social",
-    "streaming": "Streaming",
+    "skip-sponsorblock": "Ignorer le segment non-musical",
+    "skip-sponsorblock-description": "La lecture ignore le segment non-musical de SponsorBlock (https://sponsor.ajay.app/)",
+    "streaming": "Diffusion",
     "track-duration": "Afficher la durée du morceau sur la barre d'avancement de lecture",
     "user": "Utilisateur :",
     "youtube": "YouTube",
     "yt-api-key": "Clé d'API YouTube"
   },
   "tags": {
-    "albums": "Top Albums",
+    "albums": "Meilleurs albums",
     "artist": "Artiste",
     "artists": "Top Artistes",
     "duration": "Durée",
@@ -265,28 +271,28 @@
     "title": "Titre"
   },
   "track-popup": {
-    "add-to-favorite": "Add to favorites",
-    "add-to-playlist": "Add to playlist",
-    "add-to-queue": "Add to queue",
-    "download": "Download",
-    "download-toast-body": "{{artist}} - {{track}} has been added to downloads.",
-    "download-toast-title": "Track added to downloads",
-    "favorite-toast-body": "{{artist}} - {{track}} has been added to favorites.",
-    "favorite-toast-title": "Favorite track added",
-    "play-next": "Play next",
-    "play-now": "Play now",
-    "playlist-toast-body": "{{artist}} - {{track}} has been added to playlist.",
-    "playlist-toast-title": "Track added to playlist"
+    "add-to-favorite": "Ajouter aux favoris",
+    "add-to-playlist": "Ajouter à la playlist",
+    "add-to-queue": "Ajouter à la file d'attente",
+    "download": "Télécharger",
+    "download-toast-body": "{{artist}} - {{track}} a été ajouté aux téléchargements.",
+    "download-toast-title": "Morceau ajouté aux téléchargements",
+    "favorite-toast-body": "{{artist}} - {{track}} a été ajouté aux favoris.",
+    "favorite-toast-title": "Morceau favori ajouté",
+    "play-next": "Lire le suivant",
+    "play-now": "Lire maintenant",
+    "playlist-toast-body": "{{artist}} - {{track}} a été ajouté à la playlist.",
+    "playlist-toast-title": "Morceau ajouté à la playlist"
   },
   "track-table": {
-    "add-selected-tracks-to-queue": "Add selected to queue",
-    "add-selected-tracks-to-downloads": "Add selected to downloads",
-    "add-selected-tracks-to-favorites": "Add selected to favorites",
-    "play-selected-tracks-now": "Play selected now",
-    "tracks-selected-label-singular": "track selected",
-    "tracks-selected-label-plural": "tracks selected"
+    "add-selected-tracks-to-queue": "Ajouter la sélection à la file d'attente",
+    "add-selected-tracks-to-downloads": "Ajouter la sélection aux téléchargements",
+    "add-selected-tracks-to-favorites": "Ajouter la sélection aux favoris",
+    "play-selected-tracks-now": "Lire la sélection maintenant",
+    "tracks-selected-label-singular": "morceau sélectionné",
+    "tracks-selected-label-plural": "morceaux sélectionnés"
   },
   "visualizer": {
-    "exit-fullscreen": "Press ESC to exit full screen"
+    "exit-fullscreen": "Appuyez sur ÉCHAP pour quitter le mode plein écran"
   }
 }

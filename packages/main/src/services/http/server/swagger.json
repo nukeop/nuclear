@@ -329,7 +329,8 @@
               "api.enabled",
               "api.port",
               "language",
-              "downloads.dir"
+              "downloads.dir",
+              "discordRichPresence"
             ],
             "in": "path"
           }
@@ -388,7 +389,8 @@
               "api.enabled",
               "api.port",
               "language",
-              "downloads.dir"
+              "downloads.dir",
+              "discordRichPresence"
             ],
             "in": "path"
           }
