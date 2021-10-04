@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import { Track } from './types';
 
-export function formatDuration(duration, livestream) {
+export function formatDuration(duration, livestream?) {
   if (livestream) {
     return 'LIVE';
   } else if (!_.isFinite(parseInt(duration)) || duration <= 0) {

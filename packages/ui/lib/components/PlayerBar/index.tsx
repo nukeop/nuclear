@@ -65,6 +65,8 @@ const PlayerBar: React.FC<PlayerBarProps> = ({
   const { width: windowWidth } = useWindowSize();
   if (timePlayed === 0 && timeToEnd === 0) {
     livestream = true;
+  } else {
+    livestream = false;
   }
   return (
     <div className={cx(
