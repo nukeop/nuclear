@@ -63,8 +63,10 @@ const PlayerBar: React.FC<PlayerBarProps> = ({
   segmentPopupMessage
 }) => {
   const { width: windowWidth } = useWindowSize();
-  if (timePlayed === 0 && timeToEnd === 0) {
+  const livestreamCheck = timeToEnd;
+  if (livestreamCheck <= 0) {
     livestream = true;
+    fill = '100';
   } else {
     livestream = false;
   }
