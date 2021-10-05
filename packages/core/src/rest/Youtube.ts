@@ -169,9 +169,27 @@ export async function trackSearchByString(query: string, omitStreamId?: string, 
   }
 }
 
-export const getStreamForId = async (id: string) => {
-  const videoUrl = baseUrl + id;
-  const trackInfo = await ytdl.getInfo(videoUrl);
-  const formatInfo = ytdl.chooseFormat(trackInfo.formats, { quality: 'highestaudio' });
-  return formatInfo.url;
+export const getStreamForId = async (id: string, sourceName: string): Promise<StreamData> => {
+  try {
+    const videoUrl = baseUrl + id;
+    const trackInfo = await ytdl.getInfo(videoUrl);
+    const formatInfo = ytdl.chooseFormat(trackInfo.formats, { quality: 'highestaudio' });
+    const segments = await SponsorBlock.getSegments(id);
+  
+    return {
+      id,
+      source: sourceName,
+      stream: formatInfo.url,
+      duration: parseInt(trackInfo.videoDetails.lengthSeconds),
+      title: trackInfo.videoDetails.title,
+      thumbnail: trackInfo.thumbnail_url,
+      format: formatInfo.container,
+      skipSegments: segments,
+      originalUrl: videoUrl
+    };
+  } catch (e) {
+    logger.error('youtube track get by id');
+    logger.error(e);
+    throw new Error(`Can not find youtube track with ${id}`);
+  }
 };

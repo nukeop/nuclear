@@ -47,6 +47,35 @@ class JamendoPlugin extends StreamProviderPlugin {
       return _.find(results, result => result && result.id !== currentStream.id);
     });
   }
+
+  async getStreamForId(id: string): Promise<void | StreamData> {
+    return this.getTrackById(id).then(responseJson => {
+      if (responseJson.results.length === 0) {
+        return null;
+      }
+
+      const track = responseJson.results[0].tracks[0];
+      return {
+        source: this.sourceName,
+        id: track.id,
+        stream: track.audio,
+        duration: track.duration,
+        title: track.name,
+        thumbnail: track.image,
+        originalUrl: track.audio
+      };
+    });
+  }
+
+  getTrackById(id: string) {
+    return Jamendo.getTrackById(id)
+      .then(response => response.json())
+      .catch(err => {
+        logger.error(`Error looking up streams for id: ${id} on Jamendo`);
+        logger.error(err);
+      });
+  }
+
 }
 
 export default JamendoPlugin;

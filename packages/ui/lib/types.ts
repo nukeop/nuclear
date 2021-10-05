@@ -8,6 +8,17 @@ export type Track = {
   title?: string;
   name?: string;
   thumbnail?: string;
+  streams?: TrackStream[];
+  uuid?: string;
 };
 
 export { ContextPopupProps } from './components/ContextPopup';
+
+export type TrackStream = {
+  source: string;
+  id: string;
+  duration?: number;
+  title?: string;
+  thumbnail?: string;
+  stream?: string;
+};

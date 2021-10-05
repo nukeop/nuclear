@@ -38,7 +38,7 @@ export const getThumbnail = albumOrTrack => _.get(albumOrTrack, 'coverImage')
   || _.get(albumOrTrack, 'thumb')
   || _.get(albumOrTrack, 'thumbnail');
 
-export const getTrackItem = track => ({
+export const getTrackItem = (track: Track) => ({
   artist: getTrackArtist(track),
   name: getTrackTitle(track),
   thumbnail: getThumbnail(track),
@@ -48,3 +48,16 @@ export const getTrackItem = track => ({
 });
 
 export const areTracksEqualByName = (trackA: Track, trackB: Track) => getTrackArtist(trackA) === getTrackArtist(trackB) && getTrackTitle(trackA) === getTrackTitle(trackB);
+
+export const removeTrackStreamUrl = (track: Track) => {
+  if (track.streams) {
+    track.streams = track.streams.map(s => {
+      delete s.stream;
+      return s;
+    });
+  } else {
+    track.streams = [];
+  }
+
+  return track;
+};

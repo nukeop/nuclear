@@ -59,6 +59,18 @@ class AudiusPlugin extends StreamProviderPlugin {
       originalUrl: `${this.baseUrl}${result.permalink}`
     };
   }
+
+  getStreamForId(id: string): Promise<void | StreamData> {
+    return Audius.getTrack(this.apiEndpoint, id)
+      .then(data => data.json())
+      .then(results => {
+        return results.data ? this.createStreamData(results.data) : null;
+      })
+      .catch(err => {
+        logger.error(`Error while looking up streams for id: ${id} on Audius`);
+        logger.error(err);
+      });
+  }
 }
 
 export default AudiusPlugin;

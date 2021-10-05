@@ -57,6 +57,7 @@ const QueuePopupButtons = ({
         onClick={handleAddFavorite}
         ariaLabel='Add this track to favorites'
         icon='star'
+        data-testid='queue-popup-favorite'
         label='Add to favorites'
       />
     )}

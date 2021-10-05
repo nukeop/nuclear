@@ -94,6 +94,7 @@ const FavoriteTracksView = ({
                       key={'popular-track-row-' + index}
                       trigger={
                         <TrackRow
+                          data-testid={`fav-track-${track.uuid}`}
                           key={'favorite-track-' + index}
                           index={index}
                           track={track}

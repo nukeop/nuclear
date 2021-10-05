@@ -27,3 +27,7 @@ export function getArtistTracks(endpoint: string, id: string): Promise<Response>
 export function trackSearch(endpoint: string, query: string): Promise<Response> {
   return fetch(`${endpoint}/tracks/search?query=${query}&app_name=Nuclear`);
 }
+
+export function getTrack(endpoint: string, id: string): Promise<Response> {
+  return fetch(`${endpoint}/tracks/${id}`);
+}
