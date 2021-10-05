@@ -2,21 +2,21 @@
   "album": {
     "download": "Загрузить",
     "download-toast-content": "{{artist}} - {{title}} Добавлен к загрузкам.",
-    "download-toast-title": "Album added to downloads",
-    "error-load": "Sorry, this album could not be loaded. Try again later or open a new issue on Github",
-    "genre": "Genre:",
+    "download-toast-title": "Альбом добавлен в загрузки",
+    "error-load": "К сожалению, не удалось загрузить этот альбом. Повторите попытку позже или расскажите о проблеме на GitHub",
+    "genre": "Жанр:",
     "play": "Play",
     "queue": "Добавить Альбом в Очередь",
-    "tracks": "Tracks:",
-    "year": "Year:"
+    "tracks": "Треки:",
+    "year": "Год:"
   },
   "app": {
     "collection": "Коллекция",
     "dashboard": "Панель Управления",
     "downloads": "Загрузки",
     "equalizer": "Эквалайзер",
-    "favorite-albums": "Favorite Albums",
-    "favorite-artists": "Favorite Artists",
+    "favorite-albums": "Избранные Альбомы",
+    "favorite-artists": "Избранные Исполнители",
     "favorite-tracks": "Избранные Композиции",
     "library": "Локальная Библиотека",
     "lyrics": "Текст",
@@ -25,7 +25,7 @@
     "plugins": "Плагины",
     "search": "Результаты Поиска",
     "settings": "Настройки",
-    "visualizer": "Visualizer"
+    "visualizer": "Визуализатор"
   },
   "artist": {
     "count": "Счетчик проигрываний",
@@ -57,19 +57,19 @@
     "status": "Статус"
   },
   "favorite-albums": {
-    "empty": "No favorite albums",
-    "empty-help": "Try adding some albums to favorites and they will appear here!",
-    "header": "Your favorite albums"
+    "empty": "Нет избранных альбомов",
+    "empty-help": "Добавьте пару альбомов в избранное, и они появятся здесь!",
+    "header": "Ваши любимые альбомы"
   },
   "favorite-artists": {
-    "empty": "No favorite artists",
-    "empty-help": "Try adding some artists to favorites and they will appear here!",
-    "header": "Your favorite artists"
+    "empty": "Нет избранных исполнителей",
+    "empty-help": "Добавьте пару исполнителей в избранное, и они появятся здесь!",
+    "header": "Ваши избранные исполнители"
   },
   "favorites": {
     "artist": "Исполнитель",
     "empty": "Тут Ничего Нет",
-    "empty-help": "Try adding some tracks to favorites and they will appear here!",
+    "empty-help": "Добавьте пару треков в избранное, и они появятся здесь!",
     "header": "Избранное",
     "title": "Название"
   },
@@ -77,7 +77,7 @@
     "about": "О программе Nuclear Music Player",
     "header": "Проигрыватель музыки из безплатных интернет источников",
     "released": "выпущен под лицензией AGPL-3.0",
-    "report": "Submit issues or new features",
+    "report": "Сообщить о проблеме или предложить улучшения",
     "thanks": "Большое спасибо нашим участникам на Github, ваша помощь была жизненно важна в создании этой программы."
   },
   "input-dialog": {
@@ -87,12 +87,12 @@
     "add": "Добавить Папки",
     "album": "Альбом",
     "artist": "Исполнитель",
-    "empty": "The library is empty",
-    "empty-help": "Try adding some music using the button above.",
+    "empty": "Библиотека пуста",
+    "empty-help": "Попробуйте добавить музыку, нажав кнопку выше.",
     "filter-placeholder": "Фильтр...",
     "header": "Локальная Библиотека",
-    "no-search-results": "No search results",
-    "no-search-results-help": "No tracks found with the given name, album, or artist.",
+    "no-search-results": "Ничего не найдено",
+    "no-search-results-help": "Не найдено треков с таким названием, альбомом или исполнителем.",
     "title": "Название"
   },
   "lyrics": {
@@ -104,7 +104,7 @@
   "option-control": {
     "autoradio": "Авто подборка",
     "loop": "Повторить",
-    "mini-player": "Miniplayer",
+    "mini-player": "Мини-плеер",
     "shuffle": "Перемешать"
   },
   "player": {
@@ -113,17 +113,17 @@
     "previous-button": "Предыдущий трек"
   },
   "playlists": {
-    "add-selected-tracks-to-downloads": "Add selected to downloads",
-    "add-selected-tracks-to-favorites": "Add selected to favorites",
-    "add-selected-tracks-to-queue": "Add selected to queue",
+    "add-selected-tracks-to-downloads": "Добавить выбранное в загрузки",
+    "add-selected-tracks-to-favorites": "Добавить выбранное в избранное",
+    "add-selected-tracks-to-queue": "Добавить выбранное в очередь",
     "album": "Альбом",
     "artist": "Исполнитель",
     "delete": "Удалить Этот Плейлист",
     "dialog-placeholder": "Название...",
-    "duration": "Length",
+    "duration": "Длительность",
     "empty": "Тут Ничего Нет...",
     "empty-help": "Try create some playlists or import by url and they will appear here!",
-    "error-empty-data": "Empty data",
+    "error-empty-data": "Данные отсутствуют",
     "error-invalid-data": "Invalid data",
     "error-open-file": "Can not open file",
     "error-save-file": "Can not save file",
