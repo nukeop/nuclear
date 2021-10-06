@@ -32,7 +32,7 @@ export const QueueMenuMore = ({
   const { t } = useTranslation('queue');
 
   return (
-    <Dropdown item icon='ellipsis vertical' className={styles.queue_menu_more} disabled={disabled}>
+    <Dropdown item icon='ellipsis vertical' data-testid='queue-more-container' className={styles.queue_menu_more} disabled={disabled}>
       <Dropdown.Menu>
         <Dropdown.Header>{t('header')}</Dropdown.Header>
         <Dropdown.Item onClick={handleClearClick}>
@@ -64,6 +64,7 @@ export const QueueMenuMore = ({
         </Dropdown.Item>
         <Dropdown.Item
           onClick={handleAddFavoriteTrack}
+          data-testid='queue-more-favorite'
         >
           <Icon name='star' />
           {t('favorite-add')}
@@ -115,7 +116,8 @@ export const enhance = compose(
             {
               '#text': currentItem.thumbnail
             }
-          ]
+          ],
+          streams: currentItem.streams
         });
       }
     },

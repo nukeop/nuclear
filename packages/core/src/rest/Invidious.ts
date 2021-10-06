@@ -3,7 +3,7 @@ import { StreamData } from '../plugins/plugins.types';
 
 export const baseUrl = getOption('invidious.url');
 
-const getTrackInfo = async (videoId) => {
+export const getTrackInfo = async (videoId) => {
   const response = await fetch(`${baseUrl}/api/v1/videos/${videoId}`);
   if (!response.ok) {
     throw new Error('invidious track info failed');
