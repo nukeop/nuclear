@@ -62,7 +62,7 @@ export const QueueItem = ({
 
         <div className={styles.item_duration_container}>
           <div className={styles.item_duration}>
-            {duration}
+            {duration === '00:00' && !isLoading ? 'LIVE' : duration}
           </div>
         </div>
       </>
