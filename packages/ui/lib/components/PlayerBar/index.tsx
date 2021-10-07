@@ -66,7 +66,7 @@ const PlayerBar: React.FC<PlayerBarProps> = ({
   const livestreamCheck = timeToEnd;
   if (livestreamCheck <= 0) {
     livestream = true;
-    fill = '100';
+    fill = 100;
   } else {
     livestream = false;
   }
