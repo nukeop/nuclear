@@ -54,7 +54,7 @@ Kolla in [det här](docs/electron.md).
 ## Manual och dokumentation
 https://nuclearmusic.rtfd.io/
 
-## Community-underhållna paket
+## Gemenskapsunderhållna paket
 
 Här är en lista över programvarupaket i diverse pakethanterare, varav de flesta underhålls av tredje parter. Vi skulle vilja tacka alla dem för deras arbete.
 
@@ -65,7 +65,7 @@ Här är en lista över programvarupaket i diverse pakethanterare, varav de fles
 | Homebrew (Mac) | https://formulae.brew.sh/cask/nuclear                  | Homebrew                                      |
 | Snap           | https://snapcraft.io/nuclear                           | [nukeop](https://github.com/nukeop)           | 
 
-## Communityöversättningar 
+## Gemenskapsöversättningar 
 Nuclear har redan översatts till ett flertal språk, och vi är alltid på jakt efter folk som vill bidra med ännu fler. Nedan följer en lista över de språk som redan finns översatta tillsammans med personerna som har kommit med bidragen.
 
 | Språk             | Den som bidrog                                                                                          |
