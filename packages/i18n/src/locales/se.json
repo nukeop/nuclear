@@ -149,17 +149,17 @@
     "tracks-selected-singular": "spår vald"
   },
   "plugins": {
-    "add-a-plugin": "Lägg till ett plugin",
-    "header": "Insticksmodul",
+    "add-a-plugin": "Lägg till en insticksmodul",
+    "header": "Insticksmoduler",
     "lyrics-providers": "Låttextsleverantör",
     "meta-providers": "Metadataleverantör",
     "placeholder": "Välj prioriterad musikkälla:",
     "select-lyrics-provider": "Välj prioriterad låttextleverantör:",
     "select-meta-provider": "Välj prioriterad metadataleverantör:",
     "stream-providers": "Strömleverantör",
-    "user-plugins": "Användarinsticksmodul",
+    "user-plugins": "Användarinsticksmoduler",
     "user-plugins-warning-desc": "Insticksmoduler fungerar genom att köra kod på din dator. Använd bara insticksmoduler från källor du litar på!",
-    "user-plugins-warning-title": "Farligt!"
+    "user-plugins-warning-title": "Farozon!"
   },
   "queue": {
     "clear": "Rensa kö",
@@ -229,7 +229,7 @@
     "language": "Språk",
     "language-placeholder": "Välj språk",
     "lastfm-connect": "Anslut till Last.fm",
-    "lastfm-description": "För att aktivera skrobbling måste du först ansluta och ge Nuclear rättigheter till Last.fm, klicka sedan på logga in.",
+    "lastfm-description": "För att aktivera skrobbling måste du först ansluta och auktorisera Nuclear på Last.fm, klicka sedan på logga in.",
     "lastfm-enable": "Aktivera skrobbling till Last.fm",
     "lastfm-title": "Last.fm",
     "login": "Logga in",
@@ -274,7 +274,7 @@
   "track-popup": {
     "add-to-favorite": "Lägg till i favoriter",
     "add-to-playlist": "Lägg till i spellista",
-    "add-to-queue": "Lägg till i kö",
+    "add-to-queue": "Lägg till kö",
     "download": "Hämta",
     "download-toast-body": "{{artist}} - {{track}} har lagts till hämtningar.",
     "download-toast-title": "Spår lades till hämtningar",
@@ -288,10 +288,10 @@
   "track-table": {
     "add-selected-tracks-to-queue": "Lägg till valda i kö",
     "add-selected-tracks-to-downloads": "Lägg till valda till hämtningar",
-    "add-selected-tracks-to-favorites": "Add selected to favorites",
-    "play-selected-tracks-now": "Play selected now",
-    "tracks-selected-label-singular": "track selected",
-    "tracks-selected-label-plural": "tracks selected"
+    "add-selected-tracks-to-favorites": "Lägg till valda i favoriter",
+    "play-selected-tracks-now": "Spela valda nu",
+    "tracks-selected-label-singular": "spår valt",
+    "tracks-selected-label-plural": "spår valda"
   },
   "visualizer": {
     "exit-fullscreen": "Tryck på Esc för att avsluta helskärmsläge"
