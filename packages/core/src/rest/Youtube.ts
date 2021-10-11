@@ -84,7 +84,7 @@ function handleYoutubeVideo(url) {
         const videoDetails = info.videoDetails;
 
         return [{
-          streams: [{source: 'youtube', id: videoDetails.videoId}],
+          streams: [{source: 'Youtube', id: videoDetails.videoId}],
           name: videoDetails.title,
           thumbnail: videoDetails.thumbnails[0].url,
           artist: {name: videoDetails.ownerChannelName}
@@ -124,7 +124,7 @@ export async function liveStreamSearch(query: string) {
 
   return searchResults.items.map((video: ytsr.Video) => {
     return {
-      streams: [{source: 'youtube', id: video.id}],
+      streams: [{source: 'Youtube', id: video.id}],
       name: video.title,
       thumbnail: video.bestThumbnail.url,
       artist: {name: video.author.name}
