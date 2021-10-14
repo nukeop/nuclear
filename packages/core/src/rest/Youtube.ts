@@ -84,7 +84,7 @@ function handleYoutubeVideo(url) {
         const videoDetails = info.videoDetails;
 
         return [{
-          streams: [{source: 'youtube', id: videoDetails.videoId}],
+          streams: [{source: 'Youtube', id: videoDetails.videoId}],
           name: videoDetails.title,
           thumbnail: videoDetails.thumbnails[0].url,
           artist: {name: videoDetails.ownerChannelName}
@@ -124,7 +124,7 @@ export async function liveStreamSearch(query: string) {
 
   return searchResults.items.map((video: ytsr.Video) => {
     return {
-      streams: [{source: 'youtube', id: video.id}],
+      streams: [{source: 'Youtube', id: video.id}],
       name: video.title,
       thumbnail: video.bestThumbnail.url,
       artist: {name: video.author.name}
@@ -137,7 +137,7 @@ export async function trackSearch(query: StreamQuery, omitStreamId?: string, sou
   return trackSearchByString(terms, omitStreamId, sourceName);
 }
 
-export async function trackSearchByString(query: string, omitStreamId?: string, sourceName?: string): Promise<StreamData> {
+export async function trackSearchByString(query: string, omitStreamId?: string, sourceName?: string, useSponsorBlock = true): Promise<StreamData> {
   const filterOptions = await ytsr.getFilters(query);
   const filterVideoOnly = filterOptions.get('Type').get('Video'); 
   const results = await ytsr(filterVideoOnly.url, { limit: omitStreamId ? 15 : 1 });
@@ -149,7 +149,7 @@ export async function trackSearchByString(query: string, omitStreamId?: string, 
   try {
     const topTrackInfo = await ytdl.getInfo(topTrack.url);
     const formatInfo = ytdl.chooseFormat(topTrackInfo.formats, { quality: 'highestaudio' });
-    const segments = await SponsorBlock.getSegments(topTrack.id);
+    const segments = useSponsorBlock ? await SponsorBlock.getSegments(topTrack.id) : [];
   
     return {
       source: sourceName,
@@ -169,9 +169,27 @@ export async function trackSearchByString(query: string, omitStreamId?: string, 
   }
 }
 
-export const getStreamForId = async (id: string) => {
-  const videoUrl = baseUrl + id;
-  const trackInfo = await ytdl.getInfo(videoUrl);
-  const formatInfo = ytdl.chooseFormat(trackInfo.formats, { quality: 'highestaudio' });
-  return formatInfo.url;
+export const getStreamForId = async (id: string, sourceName: string): Promise<StreamData> => {
+  try {
+    const videoUrl = baseUrl + id;
+    const trackInfo = await ytdl.getInfo(videoUrl);
+    const formatInfo = ytdl.chooseFormat(trackInfo.formats, { quality: 'highestaudio' });
+    const segments = await SponsorBlock.getSegments(id);
+  
+    return {
+      id,
+      source: sourceName,
+      stream: formatInfo.url,
+      duration: parseInt(trackInfo.videoDetails.lengthSeconds),
+      title: trackInfo.videoDetails.title,
+      thumbnail: trackInfo.thumbnail_url,
+      format: formatInfo.container,
+      skipSegments: segments,
+      originalUrl: videoUrl
+    };
+  } catch (e) {
+    logger.error('youtube track get by id');
+    logger.error(e);
+    throw new Error(`Can not find youtube track with ${id}`);
+  }
 };

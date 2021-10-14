@@ -33,8 +33,13 @@ class YoutubePlugin extends StreamProviderPlugin {
     }
   }
 
-  async getStreamForId(id: string) {
-    return Youtube.getStreamForId(id);
+  async getStreamForId(id: string): Promise<void | StreamData> {
+    try {
+      return await Youtube.getStreamForId(id, this.sourceName);
+    } catch (e) {
+      logger.error(`Error while looking up streams for id: ${id} on Youtube`);
+      logger.error(e);
+    }
   }
 }
 

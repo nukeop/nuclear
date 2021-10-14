@@ -74,6 +74,12 @@ class iTunesPodcastPlugin extends StreamProviderPlugin {
         logger.error(err);
       });
   }
+
+  async getStreamForId(id: string): Promise<void | StreamData> {
+    if (id) {
+      throw new Error('Method not implemented.');
+    }
+  }
 }
 
 export default iTunesPodcastPlugin;
