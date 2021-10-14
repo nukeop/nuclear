@@ -245,6 +245,7 @@
     "mastodon-post-format-label": "게시 형식",
     "mastodon-title": "",
     "mini-player": "미니 플레이어 모드 사용",
+    "discord-rich-presence": "Toggle discord rich presence (requires restart)",
     "notification-timeout": "알림 시간 초과",
     "notlogged": "로그인하지 않았습니다.",
     "playback": "재생",
