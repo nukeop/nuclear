@@ -1,5 +1,7 @@
 import _ from 'lodash';
 
+import { Track } from '@nuclear/ui/lib/types';
+
 export function formatDuration(duration) {
   const secNum = parseInt(duration, 10);
   let hours: number | string = Math.floor(secNum / 3600);
@@ -60,7 +62,7 @@ export function createLastFMLink(artist, track) {
   return `https://www.last.fm/music/${linkSuffix}`;
 }
 
-export function normalizeTrack(track){
+export function normalizeTrack(track: Track){
   return {
     artist: {
       name: track.artist
@@ -70,6 +72,7 @@ export function normalizeTrack(track){
       {
         '#text': track.thumbnail
       }
-    ]
+    ],
+    streams: track.streams
   };
 }

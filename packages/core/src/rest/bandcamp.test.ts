@@ -17,7 +17,11 @@ describe('Bandcamp tests', () => {
   });
   
   it('get track stream', async () => {
-    const { duration, stream } = await Bandcamp.getTrackData('https://swans.bandcamp.com/track/apostate');
+    const trackUrl = 'https://swans.bandcamp.com/track/apostate';
+    const { duration, stream, url, imageUrl, name } = await Bandcamp.getTrackData(trackUrl);
+    expect(url).toEqual(trackUrl);
+    expect(imageUrl.length).toBeGreaterThan(0);
+    expect(name.length).toBeGreaterThan(0);
     expect(stream.length).toBeGreaterThan(0);
     expect(stream.includes('https')).toBe(true);
     expect(stream.includes('stream')).toBe(true);

@@ -79,6 +79,7 @@ const TrackPopup: React.FC<TrackPopupProps> = ({
   >
     {withAddToQueue && (
       <PopupButton
+        data-testid='track-popup-add-queue'
         onClick={onAddToQueue}
         ariaLabel='Add track to queue'
         icon='plus'
@@ -97,6 +98,7 @@ const TrackPopup: React.FC<TrackPopupProps> = ({
 
     {withPlayNow && (
       <PopupButton
+        data-testid='track-popup-play-now'
         onClick={onPlayNow}
         ariaLabel='Play this track now'
         icon='play'
