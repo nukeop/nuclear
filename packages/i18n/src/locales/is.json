@@ -245,6 +245,7 @@
     "mastodon-post-format-label": "Post format",
     "mastodon-title": "",
     "mini-player": "Nota minni spilarastíl",
+    "discord-rich-presence": "Toggle discord rich presence (requires restart)",
     "notification-timeout": "Tímamörk tilkynninga",
     "notlogged": "Ekki skráður inn",
     "playback": "Afspilun",

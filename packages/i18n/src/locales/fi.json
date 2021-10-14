@@ -245,6 +245,7 @@
     "mastodon-post-format-label": "Post format",
     "mastodon-title": "",
     "mini-player": "Käytä minisoitinta",
+    "discord-rich-presence": "Toggle discord rich presence (requires restart)",
     "notification-timeout": "Notification timeout",
     "notlogged": "Ei kirjautunut sisään",
     "playback": "Toisto",

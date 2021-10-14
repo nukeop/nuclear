@@ -245,6 +245,7 @@
     "mastodon-post-format-label": "Post format",
     "mastodon-title": "",
     "mini-player": "Dùng chế độ mini cho trình phát",
+    "discord-rich-presence": "Toggle discord rich presence (requires restart)",
     "notification-timeout": "Thời gian hiển thị thông báo",
     "notlogged": "Chưa đăng nhập",
     "playback": "Lặp lại",
