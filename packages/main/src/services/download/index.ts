@@ -39,7 +39,7 @@ class Download {
     onStart,
     onProgress
   }: DownloadParams): Promise<any> {
-    const track = await Youtube.trackSearchByString(query);
+    const track = await Youtube.trackSearchByString(query, undefined, undefined, false);
 
     return download(this.window.getBrowserWindow(), track.stream, {
       filename: `${filename}.${track.format}`,
