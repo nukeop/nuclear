@@ -4,7 +4,7 @@
   "description": "Nuclear main process",
   "scripts": {
     "start": "shx rm -rf build && webpack --env.NODE_ENV=development && electron build/main.js --inspect=9001",
-    "build": "webpack --colors --env.NODE_ENV=production",
+    "build": "cross-env NODE_OPTIONS=--max-old-space-size=8192 webpack --colors --env.NODE_ENV=production",
     "lint": "eslint src/**/**.ts",
     "lint:fix": "eslint src/**/**.ts --fix"
   },
@@ -73,6 +73,7 @@
     "@types/uuid": "^3.4.6",
     "@types/webpack": "^4.41.0",
     "copy-webpack-plugin": "^5.1.1",
+    "cross-env": "^7.0.3",
     "electron-builder": "^21.2.0",
     "eslint": "^7.18.0",
     "node-gyp": "^7.0.0",
