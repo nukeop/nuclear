@@ -245,6 +245,7 @@
     "mastodon-post-format-label": "帖子格式",
     "mastodon-title": "",
     "mini-player": "使用迷你樣式播放器",
+    "discord-rich-presence": "Toggle discord rich presence (requires restart)",
     "notification-timeout": "超時提醒",
     "notlogged": "未登入",
     "playback": "播放",
