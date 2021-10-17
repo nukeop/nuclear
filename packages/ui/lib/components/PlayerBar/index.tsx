@@ -64,6 +64,11 @@ const PlayerBar: React.FC<PlayerBarProps> = ({
 }) => {
   const { width: windowWidth } = useWindowSize();
   const livestreamCheck = timeToEnd;
+  // console.log("isLoading, isPlaying: " + isLoading + ", " + isPlaying);
+  /* if (isNaN(livestreamCheck)) {
+      //livestreamCheck will be NaN before song has completely loaded
+      console.log("Song has not fully loaded yet");
+  }*/
   if (livestreamCheck <= 0) {
     livestream = true;
     fill = 100;
