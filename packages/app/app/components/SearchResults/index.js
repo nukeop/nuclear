@@ -1,4 +1,5 @@
 import React from 'react';
+import _ from 'lodash';
 import { Tab } from 'semantic-ui-react';
 import { withTranslation } from 'react-i18next';
 import { Card } from '@nuclear/ui';
@@ -101,13 +102,20 @@ class SearchResults extends React.Component {
   }
 
   panes() {
+    const artistsHasResults = _.get(this.props.artistSearchResults, ['length'], 0) > 0;
+    const albumsHasResults = _.get(this.props.albumSearchResults, ['length'], 0) > 0;
+    const tracksHasResults = _.get(this.props.trackSearchResults, ['info', 'length'], 0) > 0;
+    const playlistsHasResults = _.get(this.props.playlistSearchResults, ['info', 'length'], 0) > 0;
+    const liveStreamsHasResults = _.get(this.props.liveStreamSearchResults, ['info', 'length'], 0) > 0;
+    const podcastsHasResults = _.get(this.props.podcastSearchResults, ['length'], 0) > 0;
+
     const panes = [
       {
         menuItem: 'All',
         render: () => this.renderAllResultsPane()
       },
       {
-        menuItem: 'Artists',
+        menuItem: artistsHasResults && 'Artists',
         render: () =>
           this.renderPane(
             this.props.artistSearchResults,
@@ -115,7 +123,7 @@ class SearchResults extends React.Component {
           )
       },
       {
-        menuItem: 'Albums',
+        menuItem: albumsHasResults && 'Albums',
         render: () =>
           this.renderPane(
             this.props.albumSearchResults,
@@ -123,19 +131,19 @@ class SearchResults extends React.Component {
           )
       },
       {
-        menuItem: 'Tracks',
+        menuItem: tracksHasResults && 'Tracks',
         render: () => this.renderTrackListPane(this.props.trackSearchResults.info)
       },
       {
-        menuItem: 'Playlist',
+        menuItem: playlistsHasResults && 'Playlist',
         render: () => this.renderPlaylistPane()
       },
       {
-        menuItem: 'LiveStream',
+        menuItem: liveStreamsHasResults && 'LiveStream',
         render: () => this.renderTrackListPane(this.props.liveStreamSearchResults.info)
       },
       {
-        menuItem: 'Podcast',
+        menuItem: podcastsHasResults && 'Podcast',
         render: () =>
           this.renderPane(
             this.props.podcastSearchResults,
