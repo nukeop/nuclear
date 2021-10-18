@@ -114,43 +114,43 @@ class SearchResults extends React.Component {
         menuItem: 'All',
         render: () => this.renderAllResultsPane()
       },
-      {
-        menuItem: artistsHasResults && 'Artists',
+      artistsHasResults && {
+        menuItem: 'Artists',
         render: () =>
           this.renderPane(
             this.props.artistSearchResults,
             this.artistInfoSearch.bind(this)
           )
       },
-      {
-        menuItem: albumsHasResults && 'Albums',
+      albumsHasResults && {
+        menuItem: 'Albums',
         render: () =>
           this.renderPane(
             this.props.albumSearchResults,
             this.albumInfoSearch.bind(this)
           )
       },
-      {
-        menuItem: tracksHasResults && 'Tracks',
+      tracksHasResults && {
+        menuItem: 'Tracks',
         render: () => this.renderTrackListPane(this.props.trackSearchResults.info)
       },
-      {
-        menuItem: playlistsHasResults && 'Playlist',
+      playlistsHasResults && {
+        menuItem: 'Playlist',
         render: () => this.renderPlaylistPane()
       },
-      {
-        menuItem: liveStreamsHasResults && 'LiveStream',
+      liveStreamsHasResults && {
+        menuItem: 'LiveStream',
         render: () => this.renderTrackListPane(this.props.liveStreamSearchResults.info)
       },
-      {
-        menuItem: podcastsHasResults && 'Podcast',
+      podcastsHasResults && {
+        menuItem: 'Podcast',
         render: () =>
           this.renderPane(
             this.props.podcastSearchResults,
             this.podcastInfoSearch.bind(this)
           )
       }
-    ];
+    ].filter(pane => !!pane);
 
     return panes;
   }
