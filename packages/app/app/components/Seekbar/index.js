@@ -1,5 +1,6 @@
 import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
+import { useTranslation } from 'react-i18next';
 
 import styles from './styles.scss';
 
@@ -11,10 +12,12 @@ const Seekbar = ({ seek, queue, fill, children }) => {
     seek(percent * duration);
   }, [queue.queueItems, queue.currentSong, seek]);
 
+  const {t} = useTranslation('seekbar');
+
   return (
     <div onClick={handleClick} className={styles.seekbar_container}>
       <div style={{width: fill}} className={styles.seekbar_fill} />
-      { children || <div className={styles.seekbar_placeholder}>00:00</div> }
+      { children || <div className={styles.seekbar_placeholder}>{t('live')}</div> }
     </div>
   );
 };

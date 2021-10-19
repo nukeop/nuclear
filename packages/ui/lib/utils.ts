@@ -3,6 +3,7 @@ import { Track } from './types';
 
 export function formatDuration(duration, livestream?) {
   if (livestream) {
+    // TODO: possibly return nothing and let the placeholder remain
     return 'LIVE';
   } else if (!_.isFinite(parseInt(duration)) || duration <= 0) {
     return '00:00';
