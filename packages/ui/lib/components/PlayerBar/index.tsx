@@ -93,7 +93,7 @@ const PlayerBar: React.FC<PlayerBarProps> = ({
           renderTrackDuration &&
           <div className={styles.track_duration}>
             <div>{formatDuration(timePlayed, livestream)}</div>
-            <div>-{formatDuration(timeToEnd, livestream)}</div>
+            <div>{livestream ? 'LIVE' : '-'+formatDuration(timeToEnd, livestream)}</div>
           </div>}
       </Seekbar>
       <div className={styles.player_bar_bottom}>
