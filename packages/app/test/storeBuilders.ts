@@ -4,7 +4,9 @@ export const buildStoreState = () => {
   let state = {
     search: { 
       albumDetails: {},
-      artistDetails: {} 
+      artistDetails: {},
+      liveStreamSearchResults: {},
+      artistSearchResults: []
     },
     plugin: {},
     playlists: {},
@@ -555,6 +557,38 @@ export const buildStoreState = () => {
         
       };
 
+      return this as StoreStateBuilder;
+    },
+    withSearchResults() {
+      state.search = {
+        ...state.search,
+        artistSearchResults: [
+          {
+            'uuid': 'test-uuid',
+            'name': 'Test Artist',
+            'coverImage': 'https://test-cover-url',
+            'thumbnail': 'https://test-thumb-url'
+          }
+        ],
+        liveStreamSearchResults: {
+          'id': 'test',
+          'info': [
+            {
+              'streams': [
+                {
+                  'source': 'Test LiveStream Provider',
+                  'id': '_CuklIb9d3fI'
+                }
+              ],
+              'name': 'Test LiveStream',
+              'thumbnail': 'https://test-thumb-url',
+              'artist': {
+                'name': 'Test artist'
+              }
+            }
+          ]
+        }
+      };
       return this as StoreStateBuilder;
     },
     build() {
