@@ -195,7 +195,7 @@
     "queue-add": "Adicione todas as faixas à fila",
     "track": "Faixa",
     "track_plural": "Faixas",
-    "you-can-search-for": "You can search for:"
+    "you-can-search-for": "Pode procurar por:"
   },
   "seekbar": {
     "segment-popup": "Non-music"
@@ -209,11 +209,11 @@
     "autoradio-description": "Add similar tracks automatically when the queue is ending",
     "compact-menu-bar": "Use estilo compacto para barra de menu",
     "compact-queue-bar": "Use estilo compacto para a barra de fila",
-    "developer": "Developer settings",
-    "devtools": "Developer tools",
+    "developer": "Definições do desenvolvedor",
+    "devtools": "Ferramentas do desenvolvedor",
     "disable-gpu": "Desativar a renderização de hardware (pode corrigir problemas com elementos de arrastamento e tela piscando)",
     "display": "Exibição",
-    "downloads": "Downloads",
+    "downloads": "Transferências",
     "downloads-count": "Max simultaneous downloads",
     "downloads-dir": "Downloads directory",
     "downloads-dir-button": "Choose a directory...",
@@ -235,7 +235,7 @@
     "login": "Entrar",
     "logout": "Sair",
     "loop-after-queue-end": "Loop após jogar o último item da fila",
-    "mastodon-authorization-token-label": "Authorization token",
+    "mastodon-authorization-token-label": "Token de autorização",
     "mastodon-authorize": "Authorize",
     "mastodon-authorized": "Nuclear is authorized to post on ",
     "mastodon-awaiting-authorization": "Nuclear is registered on {{instanceUrl}}. Awaiting authorization.",
@@ -278,7 +278,7 @@
     "download": "Download",
     "download-toast-body": "{{artist}} - {{track}} has been added to downloads.",
     "download-toast-title": "Track added to downloads",
-    "favorite-toast-body": "{{artist}} - {{track}} has been added to favorites.",
+    "favorite-toast-body": "{{artist}} - {{track}} foi adicionado aos favoritos.",
     "favorite-toast-title": "Favorite track added",
     "play-next": "Play next",
     "play-now": "Play now",
