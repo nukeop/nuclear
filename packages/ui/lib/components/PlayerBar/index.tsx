@@ -6,11 +6,9 @@ import PlayerControls, { PlayerControlsProps } from '../PlayerControls';
 import TrackInfo, { TrackInfoProps } from '../TrackInfo';
 import VolumeControls, { VolumeControlsProps } from '../VolumeControls';
 import VolumePopUp, { VolumePopUpProps } from './VolumePopUp';
-
 import common from '../../common.scss';
 import styles from './styles.scss';
 import { formatDuration } from '../../utils';
-
 import useWindowSize from '../../hooks/useWindowSize';
 
 
@@ -25,8 +23,6 @@ export type PlayerBarProps = PlayerControlsProps &
   };
 
 const VOLUME_POPUP_BREAKPOINT = 570;
-
-let isLivestream = false;
 
 const PlayerBar: React.FC<PlayerBarProps> = ({
   cover,
@@ -65,20 +61,14 @@ const PlayerBar: React.FC<PlayerBarProps> = ({
   segmentPopupMessage
 }) => {
   const { width: windowWidth } = useWindowSize();
-  const livestreamCheck = timeToEnd;
-  if (livestreamCheck <= 0) {
-    isLivestream = true;
-    fill = 100;
-  } else {
-    isLivestream = false;
-  }
+  const isLivestream = (isNaN(timeToEnd) || typeof timeToEnd === 'string') && (queue.queueItems.length > 0);
   return (
     <div className={cx(
       common.nuclear,
       styles.player_bar
     )}>
       <Seekbar
-        fill={fill}
+        fill={isLivestream ? 100 : fill}
         seek={seek}
         queue={queue}
         timePlayed={timePlayed}
