@@ -64,6 +64,10 @@ const PlayerBar: React.FC<PlayerBarProps> = ({
 }) => {
   const { width: windowWidth } = useWindowSize();
   const livestreamCheck = timeToEnd;
+  // fixes small bug where seekbar will progress before song is fully loaded
+  if (isNaN(livestreamCheck)) {
+    livestream = true;
+  }
   if (livestreamCheck <= 0) {
     livestream = true;
     fill = 100;
