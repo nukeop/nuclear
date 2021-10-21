@@ -10,7 +10,9 @@ import VolumePopUp, { VolumePopUpProps } from './VolumePopUp';
 import common from '../../common.scss';
 import styles from './styles.scss';
 import { formatDuration } from '../../utils';
+
 import useWindowSize from '../../hooks/useWindowSize';
+
 
 export type PlayerBarProps = PlayerControlsProps &
   Omit<SeekbarProps, 'children'> &
@@ -24,7 +26,7 @@ export type PlayerBarProps = PlayerControlsProps &
 
 const VOLUME_POPUP_BREAKPOINT = 570;
 
-let livestream = false;
+let isLivestream = false;
 
 const PlayerBar: React.FC<PlayerBarProps> = ({
   cover,
@@ -64,15 +66,11 @@ const PlayerBar: React.FC<PlayerBarProps> = ({
 }) => {
   const { width: windowWidth } = useWindowSize();
   const livestreamCheck = timeToEnd;
-  // fixes small bug where seekbar will progress before song is fully loaded
-  if (isNaN(livestreamCheck)) {
-    livestream = true;
-  }
-  if (typeof timeToEnd === 'string') {
-    livestream = true;
+  if (livestreamCheck <= 0) {
+    isLivestream = true;
     fill = 100;
   } else {
-    livestream = false;
+    isLivestream = false;
   }
   return (
     <div className={cx(
@@ -91,8 +89,8 @@ const PlayerBar: React.FC<PlayerBarProps> = ({
         {hasTracks &&
           renderTrackDuration &&
           <div className={styles.track_duration}>
-            <div>{livestream ? timePlayed : formatDuration(timePlayed)}</div>
-            <div>{livestream ? timeToEnd : '-'+formatDuration(timeToEnd)}</div>
+            <div>{isLivestream ? timePlayed : formatDuration(timePlayed)}</div>
+            <div>{isLivestream ? timeToEnd : '-'+formatDuration(timeToEnd)}</div> 
           </div>}
       </Seekbar>
       <div className={styles.player_bar_bottom}>

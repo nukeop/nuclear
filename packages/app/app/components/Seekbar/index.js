@@ -11,7 +11,6 @@ const Seekbar = ({ seek, queue, fill, children }) => {
     seek(percent * duration);
   }, [queue.queueItems, queue.currentSong, seek]);
 
-
   return (
     <div onClick={handleClick} className={styles.seekbar_container}>
       <div style={{width: fill}} className={styles.seekbar_fill} />
