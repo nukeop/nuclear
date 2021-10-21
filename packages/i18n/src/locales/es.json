@@ -179,7 +179,8 @@
     "playlist-add": "Añadir a lista de reproducción",
     "playlist-toast-content": "La lista de reproducción '{{name}}' ha sido creada.",
     "playlist-toast-title": "Lista de reproducción creada",
-    "title": "Título:"
+    "title": "Título:",
+    "live": "En Vivo"
   },
   "search": {
     "album": "Álbum",

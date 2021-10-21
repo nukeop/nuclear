@@ -179,7 +179,8 @@
     "playlist-add": "Add to playlist",
     "playlist-toast-content": "Playlist {{name}} has been created.",
     "playlist-toast-title": "Playlist created",
-    "title": "Title:"
+    "title": "Title:",
+    "live": "Live"
   },
   "search": {
     "album": "Album",

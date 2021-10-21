@@ -107,12 +107,7 @@ class PlayQueue extends React.PureComponent {
                     error={el.error}
                     selectSong={actions.selectSong}
                     removeFromQueue={actions.removeFromQueue}
-                    duration={formatDuration(
-                      getTrackDuration(
-                        el,
-                        plugins.selected.streamProviders
-                      )
-                    )}
+                    duration={formatDuration(getTrackDuration(el, plugins.selected.streamProviders)) === '00:00' && !el.loading ? this.props.t('live') : formatDuration(getTrackDuration(el, plugins.selected.streamProviders))}
                     resetPlayer={this.props.items.length === 1 ? this.props.actions.resetPlayer : undefined}
                   />
                 }
