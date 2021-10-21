@@ -68,7 +68,7 @@ const PlayerBar: React.FC<PlayerBarProps> = ({
   if (isNaN(livestreamCheck)) {
     livestream = true;
   }
-  if (livestreamCheck <= 0) {
+  if (typeof timeToEnd === 'string') {
     livestream = true;
     fill = 100;
   } else {
@@ -91,8 +91,8 @@ const PlayerBar: React.FC<PlayerBarProps> = ({
         {hasTracks &&
           renderTrackDuration &&
           <div className={styles.track_duration}>
-            <div>{formatDuration(timePlayed, livestream)}</div>
-            <div>{livestream ? 'LIVE' : '-'+formatDuration(timeToEnd, livestream)}</div>
+            <div>{livestream ? timePlayed : formatDuration(timePlayed)}</div>
+            <div>{livestream ? timeToEnd : '-'+formatDuration(timeToEnd)}</div>
           </div>}
       </Seekbar>
       <div className={styles.player_bar_bottom}>

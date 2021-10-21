@@ -34,7 +34,7 @@ export const useSeekbarProps = () => {
     currentTrackStream,
     'duration'
   );
-  const timeToEnd = currentTrackDuration - seek;
+  let timeToEnd = currentTrackDuration - seek;
 
   const seekCallback = useCallback(
     (place) => dispatch(playerActions.updateSeek(place)),
@@ -50,12 +50,16 @@ export const useSeekbarProps = () => {
     []
   );
 
+  if (currentTrackDuration === 0) {
+    timeToEnd = t('live');
+  }
+
   return {
     queue,
     skipSegments,
     allowSkipSegment,
     timeToEnd,
-    timePlayed: seek,
+    timePlayed: (timeToEnd === t('live') ? t('live') : seek),
     fill: playbackProgress,
     seek: seekCallback,
     segmentPopupMessage: t('segment-popup')
