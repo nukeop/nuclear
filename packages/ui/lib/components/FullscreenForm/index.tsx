@@ -11,6 +11,7 @@ import styles from './styles.scss';
 
 export type FullscreenFormProps = FullscreenLayerProps & {
   onSubmit?: UseFormProps['onSubmit'];
+  isSubmitting?: UseFormProps['isSubmitting'];
   sideContent?: React.ReactNode;
 }
 
@@ -19,6 +20,7 @@ const FullscreenForm: React.FC<FullscreenFormProps> = ({
   isOpen = false,
   onClose,
   onSubmit,
+  isSubmitting,
   sideContent
 }) => <FullscreenLayer
   isOpen={isOpen}
@@ -34,8 +36,9 @@ const FullscreenForm: React.FC<FullscreenFormProps> = ({
       <Form 
         className={styles.fullscreen_form}
         onSubmit={onSubmit}
+        loading={isSubmitting}
       >
-        {children}
+        {!isSubmitting && children}
       </Form>
     </Box>
 

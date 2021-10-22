@@ -17,7 +17,7 @@
     "lint:fix": "eslint src/**/**.ts --fix"
   },
   "dependencies": {
-    "i18next": "^19.0.3"
+    "i18next": "^21.3.3"
   },
   "devDependencies": {
     "eslint": "^7.18.0",

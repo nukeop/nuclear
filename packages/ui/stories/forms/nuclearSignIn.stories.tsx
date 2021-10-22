@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { NuclearSignInForm } from '../..';
 import { useForm } from '../../lib';
 
@@ -10,8 +11,14 @@ export default {
 };
 
 export const Empty = ({ onSubmit }) => {
-  const {fieldsProps, onSubmit: onFormSubmit} = useForm({
-    onSubmit,
+  const {fieldsProps, onSubmit: onFormSubmit, isSubmitting} = useForm({
+    onSubmit: (values, {setSubmitting}) => {
+      setSubmitting(true);
+      setTimeout(() => {
+        setSubmitting(false);
+        onSubmit(values);
+      }, 2500);
+    },
     initialFields: {
       username: {
         name: 'username',
@@ -28,11 +35,13 @@ export const Empty = ({ onSubmit }) => {
 
   return <NuclearSignInForm
     isOpen
+    isSubmitting={isSubmitting}
+    fieldsProps={fieldsProps}
+    onSubmit={onFormSubmit}
+    
+    header='Sign in'
     signInButtonLabel='Sign in'
     noAccountLabel={'Don\'t have an account?'}
     noAccountLinkLabel='Sign up'
-
-    onSubmit={onFormSubmit}
-    fieldsProps={fieldsProps}
   />;
 };

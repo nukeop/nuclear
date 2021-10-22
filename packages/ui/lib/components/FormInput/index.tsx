@@ -16,6 +16,10 @@ const FormInput: React.FC<FormInputProps> = (props) => <SUIInput
   {...props}
   value={props.value as string}
   onChange={e => props.onChange(e.target.value)}
+  error={props.error && {
+    content: props.error,
+    pointing: 'below'
+  }}
 />;
 
 export default FormInput;

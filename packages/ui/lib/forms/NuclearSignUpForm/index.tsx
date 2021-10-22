@@ -15,22 +15,23 @@ type NuclearSignUpFormContentProps = {
 }
 
 type NuclearSignUpFormSideContentProps = {
-header: string;
-sideParagraph1: string;
-sideParagraph2: string;
+  header: string;
+  secondaryHeader: string;
+  sideParagraph1: string;
+  sideParagraph2: string;
 }
 
 export type NuclearSignUpFormProps = FullscreenFormProps & NuclearSignUpFormContentProps &
-NuclearSignUpFormSideContentProps;
+  NuclearSignUpFormSideContentProps;
 
 export const NuclearSignUpFormSideContent: React.FC<NuclearSignUpFormSideContentProps> = ({
-  header,
+  secondaryHeader,
   sideParagraph1,
   sideParagraph2
 }) => <FormSideContent>
-  <img src={nuclearLogo as unknown as string}/>
+  <img src={nuclearLogo as unknown as string} />
   <Header inverted className={common.nuclear}>
-    {header}
+    {secondaryHeader}
   </Header>
   <p>
     {sideParagraph1}
@@ -42,29 +43,30 @@ export const NuclearSignUpFormSideContent: React.FC<NuclearSignUpFormSideContent
 </FormSideContent>;
 
 export const NuclearSignUpFormContent: React.FC<NuclearSignUpFormProps> = ({
+  header,
   fieldsProps,
   signUpButtonLabel
 }) => <>
-  <Header 
-    as='h1' 
+  <Header
+    as='h1'
     inverted
     className={styles.form_header}
   >
-    Sign up
+    {header}
   </Header>
-  <FormInput 
+  <FormInput
     {...fieldsProps.username}
   />
-  <FormInput 
+  <FormInput
     {...fieldsProps.email}
   />
-  <FormInput 
+  <FormInput
     {...fieldsProps.password}
   />
   <div className={styles.buttons_row}>
     <span />
-    <Button 
-      color='pink' 
+    <Button
+      color='pink'
       type='submit'
     >
       {signUpButtonLabel}

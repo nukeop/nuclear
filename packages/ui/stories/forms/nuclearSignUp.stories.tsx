@@ -1,4 +1,6 @@
 import React from 'react';
+import * as Yup from 'yup';
+
 import { NuclearSignUpForm, useForm } from '../..';
 
 export default {
@@ -9,8 +11,14 @@ export default {
 };
 
 export const Empty = ({ onSubmit }) => {
-  const {fieldsProps, onSubmit: onFormSubmit} = useForm({
-    onSubmit,
+  const { fieldsProps, onSubmit: onFormSubmit, isSubmitting } = useForm({
+    onSubmit: (values, { setSubmitting }) => {
+      setSubmitting(true);
+      setTimeout(() => {
+        setSubmitting(false);
+        onSubmit(values);
+      }, 2500);
+    },
     initialFields: {
       username: {
         name: 'username',
@@ -27,15 +35,21 @@ export const Empty = ({ onSubmit }) => {
         label: 'Password',
         placeholder: 'Password'
       }
-    }
+    },
+    validationSchema: Yup.object({
+      email: Yup.string().email('Email must be a valid email')
+    })
   });
   return <NuclearSignUpForm
     isOpen
+    isSubmitting={isSubmitting}
     fieldsProps={fieldsProps}
     onSubmit={onFormSubmit}
     signUpButtonLabel='Sign up'
 
-    header='Sign up to Nuclear Web Services'
+    header='Sign up'
+    secondaryHeader='Sign up to Nuclear Web Services'
     sideParagraph1='NWS enables you to backup your playlists online and share them.'
-    sideParagraph2='Providing your email is optional; it will allow you to recover your account if you forget your password.' />;
+    sideParagraph2='Providing your email is optional; it will allow you to recover your account if you forget your password.'
+  />;
 };

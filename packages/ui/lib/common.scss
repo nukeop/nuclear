@@ -33,6 +33,10 @@ $small_screen: 600px;
   border-radius: 0.25em;
 }
 
+@mixin roundCorners-lg {
+  border-radius: 0.5em;
+}
+
 @mixin circle {
   border-radius: 9999px;
   overflow: hidden;

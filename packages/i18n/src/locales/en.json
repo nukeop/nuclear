@@ -297,8 +297,22 @@
   },
   "forms": {
     "nuclear-sign-up": {
+      "header": "Sign up",
+      "secondary-header": "Sign up to Nuclear Web Services",
+      "side-paragraph-1": "NWS enables you to backup your playlists online and share them.",
+      "side-paragraph-2": "Providing your email is optional; it will allow you to recover your account if you forget your password.",
       "username-label": "Username",
-      "password-label": "Password"
+      "email-label": "Email",
+      "password-label": "Password",
+      "sign-up-button": "Sign up"
+    },
+    "nuclear-sign-in": {
+      "header":" Sign in",
+      "username-label": "Username",
+      "password-label": "Password",
+      "no-account-label": "Don't have an account?",
+      "no-account-link": "Sign up",
+      "sign-in-button": "Sign in"
     }
   }
 }

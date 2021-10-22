@@ -8,6 +8,7 @@ import { FieldsPropsType } from '../../hooks/types';
 import styles from '../styles.scss';
 
 type NuclearSignInFormContentProps = {
+  header: string;
   signInButtonLabel: string;
   fieldsProps: FieldsPropsType;
   noAccountLabel: string;
@@ -20,6 +21,7 @@ export type NuclearSignInFormProps = FullscreenFormProps &
   NuclearSignInFormContentProps;
 
 export const NuclearSignInFormContent: React.FC<NuclearSignInFormProps> = ({
+  header,
   signInButtonLabel,
   noAccountLabel,
   noAccountLinkLabel,
@@ -30,13 +32,14 @@ export const NuclearSignInFormContent: React.FC<NuclearSignInFormProps> = ({
     inverted 
     className={styles.form_header}
   >
-    Sign in
+    {header}
   </Header>
   <FormInput
     {...fieldsProps.username}
   />
   <FormInput
     {...fieldsProps.password}
+    type='password'
   />
   <div className={styles.buttons_row}>
     <span>
