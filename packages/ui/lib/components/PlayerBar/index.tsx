@@ -11,7 +11,6 @@ import styles from './styles.scss';
 import { formatDuration } from '../../utils';
 import useWindowSize from '../../hooks/useWindowSize';
 
-
 export type PlayerBarProps = PlayerControlsProps &
   Omit<SeekbarProps, 'children'> &
   TrackInfoProps &
@@ -23,7 +22,6 @@ export type PlayerBarProps = PlayerControlsProps &
   };
 
 const VOLUME_POPUP_BREAKPOINT = 570;
-
 const PlayerBar: React.FC<PlayerBarProps> = ({
   cover,
   track,
