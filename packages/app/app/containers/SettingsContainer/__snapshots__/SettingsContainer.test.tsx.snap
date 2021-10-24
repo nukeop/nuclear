@@ -485,7 +485,7 @@ exports[`Settings view container should render settings 1`] = `
                     style="width: 21px; height: 21px; border-radius: 21px; background: rgb(248, 248, 242);"
                   />
                   <input
-                    class="input"
+                    class="range_input"
                     max="100"
                     min="1"
                     style="top: 8.5px; height: 21px; width: calc(100% - 21px); margin-left: 10.5px; margin-right: 10.5px;"
