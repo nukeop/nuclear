@@ -3,6 +3,8 @@ import _ from 'lodash';
 
 import { safeAddUuid } from './helpers';
 import { startPlayback } from './player.js';
+import { Track } from '@nuclear/ui/lib/types';
+import { StreamProvider } from '@nuclear/core';
 
 export const QUEUE_DROP = 'QUEUE_DROP';
 export const ADD_QUEUE_ITEM = 'ADD_QUEUE_ITEM';
@@ -27,6 +29,31 @@ const getSelectedStreamProvider = getState => {
   return _.find(streamProviders, { sourceName: selected.streamProviders });
 };
 
+const getTrackStream = async (track: Track, selectedStreamProvider: StreamProvider, streamProviders: StreamProvider[]) => {
+  let streamData;
+  if (track?.streams && track.streams.length) {
+    const matchSelectedProvider = track.streams.find(
+      s => s.source === selectedStreamProvider.sourceName);
+
+    if (matchSelectedProvider && matchSelectedProvider.id) {
+      streamData = await selectedStreamProvider.getStreamForId(matchSelectedProvider.id);
+    } else {
+      const firstKnownProvider = streamProviders.find(
+        s => s.sourceName === track.streams[0].source);
+      streamData = await firstKnownProvider.getStreamForId(track.streams[0].id);
+    }
+  }
+
+  if (!streamData) {
+    streamData = await selectedStreamProvider.search({
+      artist: typeof track.artist === 'string' ? track.artist : track.artist.name,
+      track: track.name
+    });
+  }
+
+  return streamData;
+};
+
 const addQueueItem = item => ({
   type: ADD_QUEUE_ITEM,
   payload: { item }
@@ -46,7 +73,12 @@ export const addToQueue = (item, asNextItem = false) => async (dispatch, getStat
   item.loading = !item.local;
   item = safeAddUuid(item);
 
-  const { connectivity } = getState();
+  const { 
+    connectivity, 
+    plugin: {
+      plugins: { streamProviders }
+    }
+  } = getState();
   const isAbleToAdd = (!connectivity && item.local) || connectivity;
 
   isAbleToAdd && dispatch(!asNextItem ? addQueueItem(item) : playNextItem(item));
@@ -54,10 +86,11 @@ export const addToQueue = (item, asNextItem = false) => async (dispatch, getStat
   if (!item.local && isAbleToAdd) {
     const selectedStreamProvider = getSelectedStreamProvider(getState);
     try {
-      const streamData = await selectedStreamProvider.search({
+      const streamData = await getTrackStream({
         artist: item.artist,
-        track: item.name
-      });
+        name: item.name,
+        streams: item.streams
+      }, selectedStreamProvider, streamProviders);
 
       if (streamData === undefined){
         dispatch(removeFromQueue(item));

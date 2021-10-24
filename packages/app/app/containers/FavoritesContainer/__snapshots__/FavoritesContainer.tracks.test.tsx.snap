@@ -1,0 +1,416 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Track view container should display empty state 1`] = `
+<DocumentFragment>
+  <div
+    class="main_layout_container"
+  >
+    <div
+      class="favorite_tracks_view"
+    >
+      <div
+        class="empty_state"
+      >
+        <i
+          class="icons"
+        >
+          <i
+            aria-hidden="true"
+            class="star icon"
+          />
+          <i
+            aria-hidden="true"
+            class="music corner icon"
+          />
+        </i>
+        <h2>
+          No favorites added
+        </h2>
+        <div>
+          Try adding some tracks to favorites and they will appear here!
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Track view container should display favorite tracks 1`] = `
+<DocumentFragment>
+  <div
+    class="main_layout_container"
+  >
+    <div
+      class="favorite_tracks_view"
+    >
+      <div
+        class="header_container"
+      >
+        Your favorite tracks
+      </div>
+      <div
+        class="button_container"
+      >
+        <a
+          class="play_button"
+          href="#"
+        >
+          <i
+            aria-hidden="true"
+            class="play icon"
+          />
+           Play
+        </a>
+      </div>
+      <div
+        class="ui segment tracks_container"
+      >
+        <table
+          class="ui table favorite_tracks_table table"
+        >
+          <thead
+            class="thead"
+          >
+            <tr
+              class=""
+            >
+              <th
+                class=""
+              />
+              <th
+                class=""
+              >
+                <i
+                  aria-hidden="true"
+                  class="image icon"
+                />
+              </th>
+              <th
+                class=""
+              >
+                Artist
+              </th>
+              <th
+                class=""
+              >
+                Title
+              </th>
+            </tr>
+          </thead>
+          <tbody
+            class="tbody"
+          >
+            <tr
+              class="track_row"
+              data-testid="fav-track-uuid1"
+              index="0"
+            >
+              <td
+                class="track_row_buttons"
+              >
+                <a>
+                  <i
+                    aria-hidden="true"
+                    class="close icon"
+                  />
+                </a>
+              </td>
+              <td
+                class="track_row_thumbnail"
+              >
+                <img
+                  src="https://test-track-thumb-url"
+                />
+              </td>
+              <td
+                class="track_row_artist"
+              >
+                test artist 1
+              </td>
+              <td
+                class="track_row_name"
+              >
+                test track 1
+              </td>
+            </tr>
+            <tr
+              class="track_row"
+              data-testid="fav-track-uuid2"
+              index="1"
+            >
+              <td
+                class="track_row_buttons"
+              >
+                <a>
+                  <i
+                    aria-hidden="true"
+                    class="close icon"
+                  />
+                </a>
+              </td>
+              <td
+                class="track_row_thumbnail"
+              >
+                <img
+                  src="https://test-track-thumb-url"
+                />
+              </td>
+              <td
+                class="track_row_artist"
+              >
+                test artist 2
+              </td>
+              <td
+                class="track_row_name"
+              >
+                test track 2
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Track view container should show popup when click on track 1`] = `
+<DocumentFragment>
+  <div
+    class="main_layout_container"
+  >
+    <div
+      class="favorite_tracks_view"
+    >
+      <div
+        class="header_container"
+      >
+        Your favorite tracks
+      </div>
+      <div
+        class="button_container"
+      >
+        <a
+          class="play_button"
+          href="#"
+        >
+          <i
+            aria-hidden="true"
+            class="play icon"
+          />
+           Play
+        </a>
+      </div>
+      <div
+        class="ui segment tracks_container"
+      >
+        <table
+          class="ui table favorite_tracks_table table"
+        >
+          <thead
+            class="thead"
+          >
+            <tr
+              class=""
+            >
+              <th
+                class=""
+              />
+              <th
+                class=""
+              >
+                <i
+                  aria-hidden="true"
+                  class="image icon"
+                />
+              </th>
+              <th
+                class=""
+              >
+                Artist
+              </th>
+              <th
+                class=""
+              >
+                Title
+              </th>
+            </tr>
+          </thead>
+          <tbody
+            class="tbody"
+          >
+            <tr
+              class="track_row"
+              data-testid="fav-track-uuid1"
+              index="0"
+            >
+              <td
+                class="track_row_buttons"
+              >
+                <a>
+                  <i
+                    aria-hidden="true"
+                    class="close icon"
+                  />
+                </a>
+              </td>
+              <td
+                class="track_row_thumbnail"
+              >
+                <img
+                  src="https://test-track-thumb-url"
+                />
+              </td>
+              <td
+                class="track_row_artist"
+              >
+                test artist 1
+              </td>
+              <td
+                class="track_row_name"
+              >
+                test track 1
+              </td>
+            </tr>
+            <tr
+              class="track_row"
+              data-testid="fav-track-uuid2"
+              index="1"
+            >
+              <td
+                class="track_row_buttons"
+              >
+                <a>
+                  <i
+                    aria-hidden="true"
+                    class="close icon"
+                  />
+                </a>
+              </td>
+              <td
+                class="track_row_thumbnail"
+              >
+                <img
+                  src="https://test-track-thumb-url"
+                />
+              </td>
+              <td
+                class="track_row_artist"
+              >
+                test artist 2
+              </td>
+              <td
+                class="track_row_name"
+              >
+                test track 2
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div
+    style="display: flex; position: absolute; left: 0px; top: 0px; bottom: 0px; transform: translate(0px, 0px);"
+  >
+    <div
+      class="ui top left popup transition visible context_popup"
+      style="position: initial;"
+    >
+      <div
+        class="popup_header"
+      >
+        <div
+          class="popup_thumb"
+        >
+          <img
+            src="https://test-track-thumb-url"
+          />
+        </div>
+        <div
+          class="popup_info"
+        >
+          <div
+            class="popup_title"
+          >
+            test track 1
+          </div>
+        </div>
+      </div>
+      <hr />
+      <div
+        class="popup_buttons"
+      >
+        <a
+          aria-label="Add track to queue"
+          class="popup_button"
+          data-testid="track-popup-add-queue"
+          href="#"
+        >
+          <i
+            aria-hidden="true"
+            class="plus icon"
+          />
+           Add to queue
+        </a>
+        <a
+          aria-label="Add track to play next"
+          class="popup_button"
+          href="#"
+        >
+          <i
+            aria-hidden="true"
+            class="play icon"
+          />
+           Play next
+        </a>
+        <a
+          aria-label="Play this track now"
+          class="popup_button"
+          data-testid="track-popup-play-now"
+          href="#"
+        >
+          <i
+            aria-hidden="true"
+            class="play icon"
+          />
+           Play now
+        </a>
+        <div
+          aria-expanded="false"
+          class="ui dropdown nuclear dropdown popup_button left"
+          role="listbox"
+          tabindex="0"
+        >
+          <div
+            aria-atomic="true"
+            aria-live="polite"
+            class="divider text"
+            role="alert"
+          >
+            Add to playlist
+          </div>
+          <i
+            aria-hidden="true"
+            class="dropdown icon"
+          />
+          <div
+            class="menu transition"
+          />
+        </div>
+        <a
+          aria-label="Download this track"
+          class="popup_button"
+          href="#"
+        >
+          <i
+            aria-hidden="true"
+            class="download icon"
+          />
+           Download
+        </a>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

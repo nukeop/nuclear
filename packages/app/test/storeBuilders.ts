@@ -4,7 +4,9 @@ export const buildStoreState = () => {
   let state = {
     search: { 
       albumDetails: {},
-      artistDetails: {} 
+      artistDetails: {},
+      liveStreamSearchResults: {},
+      artistSearchResults: []
     },
     plugin: {},
     playlists: {},
@@ -177,25 +179,31 @@ export const buildStoreState = () => {
       };
       return this as StoreStateBuilder;
     },
-    withPlugins() {
+    withPlugins(data?: {streamProviders: any[]}) {
       state = {
         ...state,
         plugin: {
           plugins: {
-            streamProviders: [
+            streamProviders: data?.streamProviders || [
               {
                 name: 'Test Stream Provider',
                 sourceName: 'Test Stream Provider',
-                search: () => ({
+                search: jest.fn(() => ({
                   data: 'test-stream-data'
-                })
+                })),
+                getStreamForId: jest.fn((id: string) => ({
+                  data: id
+                }))
               },
               {
                 name: 'Different Stream Provider',
                 sourceName: 'Different Stream Provider',
-                search: () => ({
+                search: jest.fn(() => ({
                   data: 'different-test-stream-data'
-                })
+                })),
+                getStreamForId: jest.fn((id: string) => ({
+                  data: id
+                }))
               }
             ],
             metaProviders: [
@@ -331,7 +339,49 @@ export const buildStoreState = () => {
       state = {
         ...state,
         favorites: {
-          tracks: [],
+          tracks: [
+            {
+              'artist': 'test artist 1',
+              'name': 'test track 1',
+              'thumbnail': 'https://test-track-thumb-url',
+              'streams': [
+                {
+                  'source': 'Test Stream Provider',
+                  'id': 'CuklIb9d3fI',
+                  'duration': 300,
+                  'title': 'test track 1',
+                  'thumbnail': 'https://test-track-thumb-url',
+                  'format': 'webm',
+                  'skipSegments': [
+                    {
+                      'category': 'intro',
+                      'startTime': 0,
+                      'endTime': 5
+                    },
+                    {
+                      'category': 'music_offtopic',
+                      'startTime': 5,
+                      'endTime': 22
+                    },
+                    {
+                      'category': 'music_offtopic',
+                      'startTime': 239,
+                      'endTime': 299
+                    }
+                  ],
+                  'originalUrl': 'https://test-track-original-url'
+                }
+              ],
+              'uuid': 'uuid1'
+            },
+            {
+              'artist': 'test artist 2',
+              'name': 'test track 2',
+              'thumbnail': 'https://test-track-thumb-url',
+              'streams': [],
+              'uuid': 'uuid2'
+            }
+          ],
           artists: [],
           albums: [{
             id: 'test-album-1',
@@ -445,7 +495,7 @@ export const buildStoreState = () => {
         queue: {
           queueItems: [
             {
-              'artist': 'BTS',
+              'artist': 'test artist 1',
               'name': 'test track 1',
               'thumbnail': 'https://test-track-thumb-url',
               'streams': [
@@ -482,13 +532,13 @@ export const buildStoreState = () => {
               'error': false
             },
             {
-              'artist': 'BTS',
+              'artist': 'test artist 2',
               'name': 'test track 2',
               'thumbnail': 'https://test-track-thumb-url',
               'streams': [
                 {
-                  'source': 'Youtube',
-                  'id': 'CuklIb9d3fI',
+                  'source': 'Different Stream Provider',
+                  'id': '_CuklIb9d3fI',
                   'stream': 'https://test-track-stream-url',
                   'duration': 300,
                   'title': 'test track 2',
@@ -507,6 +557,38 @@ export const buildStoreState = () => {
         
       };
 
+      return this as StoreStateBuilder;
+    },
+    withSearchResults() {
+      state.search = {
+        ...state.search,
+        artistSearchResults: [
+          {
+            'uuid': 'test-uuid',
+            'name': 'Test Artist',
+            'coverImage': 'https://test-cover-url',
+            'thumbnail': 'https://test-thumb-url'
+          }
+        ],
+        liveStreamSearchResults: {
+          'id': 'test',
+          'info': [
+            {
+              'streams': [
+                {
+                  'source': 'Test LiveStream Provider',
+                  'id': '_CuklIb9d3fI'
+                }
+              ],
+              'name': 'Test LiveStream',
+              'thumbnail': 'https://test-thumb-url',
+              'artist': {
+                'name': 'Test artist'
+              }
+            }
+          ]
+        }
+      };
       return this as StoreStateBuilder;
     },
     build() {

@@ -36,6 +36,8 @@ const MiniPlayer: React.FC<MiniPlayerProps> = ({
 
   timePlayed,
   timeToEnd,
+  skipSegments,
+  allowSkipSegment,
   segmentPopupMessage,
 
   goForward,
@@ -73,6 +75,9 @@ const MiniPlayer: React.FC<MiniPlayerProps> = ({
       seek={seek}
       queue={queue}
       height='0.5em'
+      timePlayed={timePlayed}
+      skipSegments={skipSegments}
+      allowSkipSegment={allowSkipSegment}
       segmentPopupMessage={segmentPopupMessage}
     />
   </div>

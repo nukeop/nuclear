@@ -1,10 +1,10 @@
 {
   "name": "@nuclear/main",
-  "version": "0.6.16",
+  "version": "0.6.17",
   "description": "Nuclear main process",
   "scripts": {
     "start": "shx rm -rf build && webpack --env.NODE_ENV=development && electron build/main.js --inspect=9001",
-    "build": "webpack --colors --env.NODE_ENV=production",
+    "build": "cross-env NODE_OPTIONS=--max-old-space-size=8192 webpack --colors --env.NODE_ENV=production",
     "lint": "eslint src/**/**.ts",
     "lint:fix": "eslint src/**/**.ts --fix"
   },
@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/nukeop/nuclear#readme",
   "dependencies": {
-    "@nuclear/core": "^0.6.16",
+    "@nuclear/core": "^0.6.17",
     "autobind-decorator": "^2.4.0",
     "body-parser": "^1.19.0",
     "concat-stream": "^2.0.0",
@@ -73,6 +73,7 @@
     "@types/uuid": "^3.4.6",
     "@types/webpack": "^4.41.0",
     "copy-webpack-plugin": "^5.1.1",
+    "cross-env": "^7.0.3",
     "electron-builder": "^21.2.0",
     "eslint": "^7.18.0",
     "node-gyp": "^7.0.0",

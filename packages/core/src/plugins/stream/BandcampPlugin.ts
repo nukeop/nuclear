@@ -47,8 +47,8 @@ class BandcampPlugin extends StreamProviderPlugin {
     try {
       const track = await this.findTrackUrl(query);
       const { stream, duration } = await Bandcamp.getTrackData(track.url);
+
       return this.resultToStream(track, stream, duration);
-      
     } catch (error) {
       logger.error(`Error while searching  for ${query.artist + ' ' + query.track} on Bandcamp`);
       logger.error(error);
@@ -57,6 +57,18 @@ class BandcampPlugin extends StreamProviderPlugin {
 
   async getAlternateStream(query: StreamQuery): Promise<void | StreamData> {
     return this.search(query);
+  }
+
+  async getStreamForId(id: string): Promise<void | StreamData> {
+    try {
+      const trackUrl = atob(id);
+      const track = await Bandcamp.getTrackData(trackUrl);
+
+      return this.resultToStream(track, track.stream, track.duration);
+    } catch (error) {
+      logger.error(`Error while searching id: ${id} on Bandcamp`);
+      logger.error(error);
+    }
   }
 }
 

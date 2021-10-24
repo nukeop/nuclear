@@ -24,6 +24,7 @@ exports[`Play Queue container should display a context popup on right click 1`] 
           aria-disabled="false"
           aria-expanded="false"
           class="ui item dropdown queue_menu_more"
+          data-testid="queue-more-container"
           role="listbox"
           tabindex="0"
         >
@@ -96,6 +97,7 @@ exports[`Play Queue container should display a context popup on right click 1`] 
             </div>
             <div
               class="item"
+              data-testid="queue-more-favorite"
               role="option"
             >
               <i
@@ -166,7 +168,7 @@ exports[`Play Queue container should display a context popup on right click 1`] 
               <div
                 class="artist_container"
               >
-                BTS
+                test artist 1
               </div>
             </div>
             <div
@@ -223,7 +225,7 @@ exports[`Play Queue container should display a context popup on right click 1`] 
               <div
                 class="artist_container"
               >
-                BTS
+                test artist 2
               </div>
             </div>
             <div
@@ -390,6 +392,7 @@ exports[`Play Queue container should display a context popup on right click 1`] 
         <a
           aria-label="Add this track to favorites"
           class="popup_button"
+          data-testid="queue-popup-favorite"
           href="#"
         >
           <i
@@ -439,6 +442,7 @@ exports[`Play Queue container should display with track in queue 1`] = `
           aria-disabled="false"
           aria-expanded="false"
           class="ui item dropdown queue_menu_more"
+          data-testid="queue-more-container"
           role="listbox"
           tabindex="0"
         >
@@ -511,6 +515,7 @@ exports[`Play Queue container should display with track in queue 1`] = `
             </div>
             <div
               class="item"
+              data-testid="queue-more-favorite"
               role="option"
             >
               <i
@@ -581,7 +586,7 @@ exports[`Play Queue container should display with track in queue 1`] = `
               <div
                 class="artist_container"
               >
-                BTS
+                test artist 1
               </div>
             </div>
             <div
@@ -638,7 +643,7 @@ exports[`Play Queue container should display with track in queue 1`] = `
               <div
                 class="artist_container"
               >
-                BTS
+                test artist 2
               </div>
             </div>
             <div
