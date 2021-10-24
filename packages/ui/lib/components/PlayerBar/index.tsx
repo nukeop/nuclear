@@ -17,8 +17,8 @@ export type PlayerBarProps = PlayerControlsProps &
   VolumeControlsProps &
   VolumePopUpProps & {
     renderTrackDuration?: boolean;
-    timePlayed?: number;
-    timeToEnd?: number;
+    timePlayed?: any;
+    timeToEnd?: any;
   };
 
 const VOLUME_POPUP_BREAKPOINT = 570;

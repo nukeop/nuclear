@@ -54,8 +54,8 @@ export const useSeekbarProps = () => {
     queue,
     skipSegments,
     allowSkipSegment,
-    timeToEnd: currentTrackDuration === 0 ? t('live') : currentTrackDuration - seek,
-    timePlayed: (typeof timeToEnd === 'string' || currentTrackDuration === 0 ? t('live') : seek),
+    timeToEnd: currentTrackDuration === 0 ? t('live') : timeToEnd,
+    timePlayed: currentTrackDuration === 0 ? t('live') : seek,
     fill: playbackProgress,
     seek: seekCallback,
     segmentPopupMessage: t('segment-popup')
