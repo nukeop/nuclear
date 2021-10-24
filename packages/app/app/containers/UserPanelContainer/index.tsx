@@ -23,6 +23,8 @@ export const UserPanelContainer: React.FC = () => {
       onSignUpClick={() => {
         setSignInFormOpen(false);
         setSignUpFormOpen(true);
+
+        // console.log({isSignInFormOpen, isSignUpFormOpen})
       }}
     />
     <NuclearSignUpFormContainer

@@ -25,11 +25,12 @@ export const NuclearSignInFormContent: React.FC<NuclearSignInFormProps> = ({
   signInButtonLabel,
   noAccountLabel,
   noAccountLinkLabel,
+  onSignUpClick,
   fieldsProps
 }) => <>
-  <Header 
-    as='h1' 
-    inverted 
+  <Header
+    as='h1'
+    inverted
     className={styles.form_header}
   >
     {header}
@@ -44,10 +45,14 @@ export const NuclearSignInFormContent: React.FC<NuclearSignInFormProps> = ({
   <div className={styles.buttons_row}>
     <span>
       {noAccountLabel}
-      <a>{noAccountLinkLabel}</a>
+      <Button
+        onClick={onSignUpClick}
+      >
+        {noAccountLinkLabel}
+      </Button>
     </span>
     <Button
-      type='submit' 
+      type='submit'
       color='pink'
     >
       {signInButtonLabel}

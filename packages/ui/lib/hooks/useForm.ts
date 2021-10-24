@@ -46,7 +46,7 @@ export const useForm = <Values extends FormikValues>({
       .map((field, key) => [
         key, {
           name: field.name,
-          dataTest: field.name,
+          dataTestId: field.name,
           label: field.label,
           placeholder: field.placeholder,
           value: formik.values[key],
