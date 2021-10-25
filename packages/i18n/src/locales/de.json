@@ -69,7 +69,7 @@
   "favorites": {
     "artist": "Künstler",
     "empty": "Keine Favoriten hinzugefügt",
-    "empty-help": "Versuche ein paar Lieder zu den Favoriten hinzuzufügen und sie werden hier erscheinen!",
+    "empty-help": "Versuche ein paar Lieder hinzuzufügen, dann werden sie hier auftauchen!",
     "header": "Deine Lieblingslieder",
     "title": "Titel"
   },
