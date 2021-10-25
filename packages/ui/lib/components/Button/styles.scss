@@ -56,6 +56,10 @@ button.nuclear.ui.button {
     &.#{$color} {
       background: $button-color;
 
+      &.text {
+        color: $button-color;
+      }
+
       &:hover {
         background: mix($button-color, $bglight, 90%);
       }
@@ -72,5 +76,20 @@ button.nuclear.ui.button {
 
   &.borderless {
     box-shadow: none;
+  }
+
+  &.text {
+    background: transparent;
+    font-weight: normal;
+    padding: 0;
+    margin: 0 0.5em;
+
+    &:hover, &:focus, &:active {
+      background: transparent;
+    }
+
+    &:hover {
+      color: $white;
+    }
   }
 }

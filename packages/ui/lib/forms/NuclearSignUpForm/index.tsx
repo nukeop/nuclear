@@ -12,10 +12,10 @@ import common from '../../common.scss';
 type NuclearSignUpFormContentProps = {
   fieldsProps: FieldsPropsType;
   signUpButtonLabel: string;
+  header: string;
 }
 
 type NuclearSignUpFormSideContentProps = {
-  header: string;
   secondaryHeader: string;
   sideParagraph1: string;
   sideParagraph2: string;
@@ -61,6 +61,7 @@ export const NuclearSignUpFormContent: React.FC<NuclearSignUpFormProps> = ({
     {...fieldsProps.email}
   />
   <FormInput
+    type='password'
     {...fieldsProps.password}
   />
   <div className={styles.buttons_row}>

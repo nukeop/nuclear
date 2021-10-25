@@ -1,25 +1,28 @@
-import React from 'react';
+import React, { forwardRef, PropsWithChildren } from 'react';
 import cx from 'classnames';
 
 import common from '../../common.scss';
 import styles from './styles.scss';
 
-export type BoxProps = {
-    className?: string;
-    shadow?: boolean;
-}
+export type BoxProps = PropsWithChildren<{
+  className?: string;
+  shadow?: boolean;
+}>;
 
-const Box: React.FC<BoxProps> = ({
+const Box = forwardRef<HTMLDivElement, BoxProps>(({
   className,
   children,
   shadow=false
-}) => <div className={cx(
-  common.nuclear, 
-  styles.box,
-  className,
-  { [styles.shadow]: shadow }
-)}>
+}, ref) => <div
+  ref={ref}
+  className={cx(
+    common.nuclear,
+    styles.box,
+    className,
+    { [styles.shadow]: shadow }
+  )}
+>
   {children}
-</div>;
+</div>);
 
 export default Box;

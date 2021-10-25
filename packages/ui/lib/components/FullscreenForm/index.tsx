@@ -1,6 +1,7 @@
 import React from 'react';
 import cx from 'classnames';
 import { Form } from 'semantic-ui-react';
+import useOutsideClick from 'react-cool-onclickoutside';
 
 import { Box } from '../..';
 import FullscreenLayer, { FullscreenLayerProps } from '../FullscreenLayer';
@@ -22,27 +23,31 @@ const FullscreenForm: React.FC<FullscreenFormProps> = ({
   onSubmit,
   isSubmitting,
   sideContent
-}) => <FullscreenLayer
-  isOpen={isOpen}
-  onClose={onClose}
->
-  <div className={cx(styles.fullscreen_form_container, common.nuclear)}>
+}) => {
+  const ref = useOutsideClick(onClose);
+  return <FullscreenLayer
+    isOpen={isOpen}
+    onClose={onClose}
+  >
+    <div className={cx(styles.fullscreen_form_container, common.nuclear)}>
 
-    <Box 
-      className={styles.fullscreen_form_box}
-      shadow
-    >
-      {sideContent}
-      <Form 
-        className={styles.fullscreen_form}
-        onSubmit={onSubmit}
-        loading={isSubmitting}
+      <Box
+        className={styles.fullscreen_form_box}
+        ref={ref}
+        shadow
       >
-        {!isSubmitting && children}
-      </Form>
-    </Box>
+        {sideContent}
+        <Form
+          className={styles.fullscreen_form}
+          onSubmit={onSubmit}
+          loading={isSubmitting}
+        >
+          {!isSubmitting && children}
+        </Form>
+      </Box>
 
-  </div>
-</FullscreenLayer>;
+    </div>
+  </FullscreenLayer>;
+};
 
 export default FullscreenForm;

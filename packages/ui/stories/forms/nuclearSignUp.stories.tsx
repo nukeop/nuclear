@@ -37,7 +37,9 @@ export const Empty = ({ onSubmit }) => {
       }
     },
     validationSchema: Yup.object({
-      email: Yup.string().email('Email must be a valid email')
+      username: Yup.string().required('Username is required'),
+      email: Yup.string().email('Email must be a valid email'),
+      password: Yup.string().required('Password is required')
     })
   });
   return <NuclearSignUpForm

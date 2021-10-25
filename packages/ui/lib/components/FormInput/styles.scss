@@ -48,7 +48,7 @@
             color: $red;
         }
 
-        div.prompt.label[role=alert] {
+        :global(.ui.pointing.below.prompt.label)[role=alert] {
             position: absolute;
             top: 0;
             right: 0;
@@ -59,8 +59,9 @@
             margin: 0;
             line-height: 20px;
             font-size: 13px;
+            font-weight: normal;
 
-            ::before {
+            &::before {
                 display: none;
             }
         }

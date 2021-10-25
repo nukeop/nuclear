@@ -79,6 +79,7 @@
 		"numeral": "^2.0.6",
 		"prop-types": "^15.6.2",
 		"react-beautiful-dnd": "^13.1.0",
+		"react-cool-onclickoutside": "^1.7.0",
 		"react-full-screen": "^1.0.1",
 		"react-image": "^2.2.2",
 		"react-measure": "^2.5.2",

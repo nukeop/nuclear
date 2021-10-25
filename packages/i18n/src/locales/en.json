@@ -307,7 +307,20 @@
       "username-label": "Username",
       "email-label": "Email",
       "password-label": "Password",
-      "sign-up-button": "Sign up"
+      "sign-up-button": "Sign up",
+      "validation": {
+        "username": {
+          "length": "Username must be 4 characters or more",
+          "required": "Username is required"
+        },
+        "email": {
+          "invalid": "Email must be a valid email"
+        },
+        "password": {
+          "length": "Password must be 6 characters or more",
+          "required": "Password is required"
+        }
+      }
     },
     "nuclear-sign-in": {
       "header":" Sign in",

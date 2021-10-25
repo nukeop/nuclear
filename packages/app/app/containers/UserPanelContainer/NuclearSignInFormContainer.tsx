@@ -25,12 +25,14 @@ export const NuclearSignInFormContainer: React.FC<NuclearSignInFormContainerProp
   onSignUpClick
 }) => {
   const { t } = useTranslation('forms', { keyPrefix: 'nuclear-sign-in' });
-  const { fieldsProps, onSubmit } = useForm({
+  const formProps = useForm({
     initialFields: initialFields(t),
     onSubmit: async (values, {setSubmitting}) => {
       setSubmitting(true);
       // console.log(values);
-      setSubmitting(false);
+      setTimeout(() => {
+        setSubmitting(false);
+      }, 1500);
     }
   });
 
@@ -38,8 +40,7 @@ export const NuclearSignInFormContainer: React.FC<NuclearSignInFormContainerProp
     isOpen={isOpen}
     onClose={onClose}
     onSignUpClick={onSignUpClick}
-    onSubmit={onSubmit}
-    fieldsProps={fieldsProps}
+    {...formProps}
 
     header={t('header')}
     signInButtonLabel={t('sign-in-button')}

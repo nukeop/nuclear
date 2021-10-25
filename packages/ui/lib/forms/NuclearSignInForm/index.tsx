@@ -46,6 +46,9 @@ export const NuclearSignInFormContent: React.FC<NuclearSignInFormProps> = ({
     <span>
       {noAccountLabel}
       <Button
+        text
+        type='button'
+        color='pink'
         onClick={onSignUpClick}
       >
         {noAccountLinkLabel}
