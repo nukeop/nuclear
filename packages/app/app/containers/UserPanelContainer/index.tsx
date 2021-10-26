@@ -9,7 +9,7 @@ export const UserPanelContainer: React.FC = () => {
 
   const [isSignUpFormOpen, setSignUpFormOpen] = useState(false);
   const [isSignInFormOpen, setSignInFormOpen] = useState(false);
-
+  
   return <>
     <UserPanel
       actionsTooltipContent={t('user-panel-actions-tooltip')}
@@ -23,8 +23,6 @@ export const UserPanelContainer: React.FC = () => {
       onSignUpClick={() => {
         setSignInFormOpen(false);
         setSignUpFormOpen(true);
-
-        // console.log({isSignInFormOpen, isSignUpFormOpen})
       }}
     />
     <NuclearSignUpFormContainer
