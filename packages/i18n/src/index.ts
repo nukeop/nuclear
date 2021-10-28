@@ -35,6 +35,7 @@ import tr from './locales/tr.json';
 import vi from './locales/vi.json';
 import zh from './locales/zh.json';
 import zh_tw from './locales/zh_tw.json';
+import lv from './locales/lv.json';
 
 interface I18nOptions {
   languageDetector: LanguageDetectorModule;
@@ -81,7 +82,8 @@ export const setupI18n = ({ languageDetector, debug, react }: I18nOptions) => {
       pa_IN,
       ro_RO,
       sq,
-      te_IN
+      te_IN,
+      lv
     },
     interpolation: {
       escapeValue: false

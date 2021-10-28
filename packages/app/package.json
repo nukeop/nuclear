@@ -9,7 +9,7 @@
     "coverage": "jest --coverage",
     "lint": "eslint \"{app,test}/**/**.{js,jsx,ts,tsx}\"",
     "lint:fix": "eslint \"{app,test}/**/**.{js,jsx,ts,tsx}\" --fix",
-    "i18n": "sync-i18n --files 'app/locales/*.json' --primary en --languages fr tl nl de dk es pl zh ru tr id sk ko zh_tw se gr hr is --space 2"
+    "i18n": "sync-i18n --files 'app/locales/*.json' --primary en --languages fr tl nl de dk es pl zh ru tr id sk ko zh_tw se gr hr is lv --space 2"
   },
   "repository": {
     "type": "git",

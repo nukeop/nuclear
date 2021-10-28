@@ -221,7 +221,8 @@ export const settingsConfig: Array<Setting> = [
       { key: 'fi', text: 'Suomi', value: 'fi' },
       { key: 'sq', text: 'Albanian', value: 'sq' },
       { key: 'hi_IN', text: 'Hindi', value: 'hi_IN' },
-      { key: 'vi', text: 'Vietnamese', value: 'vi' }
+      { key: 'vi', text: 'Vietnamese', value: 'vi' },
+      { key: 'lv', text: 'Latviešu', value: 'lv' }
     ],
     default: undefined
   }, {
