@@ -1,13 +1,18 @@
-# ![nuclear](https://i.imgur.com/oT1006i.png) 
-[![Sürdürülebilirlik](https://api.codeclimate.com/v1/badges/a15c4888a63c900f6cc1/maintainability)](https://codeclimate.com/github/nukeop/nuclear/maintainability) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/30750586202742279fa8958a12e519ed)](https://www.codacy.com/app/nukeop/nuclear?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=nukeop/nuclear&amp;utm_campaign=Badge_Grade) [![nuclear](https://snapcraft.io//nuclear/badge.svg)](https://snapcraft.io/nuclear) ![Travis](https://api.travis-ci.org/nukeop/nuclear.svg?branch=master)
+# ![nuclear](https://i.imgur.com/oT1006i.png)
 
-Ücretsiz kaynaklara odaklı masaüstü müzik oynatıcısı
+[![nuclear](https://snapcraft.io//nuclear/badge.svg)](https://snapcraft.io/nuclear) [![Discord](https://img.shields.io/badge/Discord-7289DA?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/JqPjKxE)
 
-![Vitrin](https://i.imgur.com/G9BqIHl.png)
+Ücretsiz kaynaklardan yayına odaklanan masaüstü müzik çalar
 
-# Linkler
+![Vitrin](https://i.imgur.com/8qHu66J.png)
 
-[Resmi site](https://nuclear.js.org)
+# Bağlantılar
+
+[Resmi Site](https://nuclear.js.org)
+
+[İndirmeler](https://github.com/nukeop/nuclear/releases)
+
+[Dokümantasyon](https://nukeop.gitbook.io/nuclear/)
 
 [Mastodon](https://mstdn.io/@nuclear)
 
@@ -15,154 +20,101 @@
 
 Destek kanalı (Matrix): `#nuclear:matrix.org`
 
-Discord kanalı: https://discord.gg/JqPjKxE
+Discord sohbeti: https://discord.gg/JqPjKxE
 
-Beni oku (Readme) çevirileri: 
+Readme (beni oku) çevirileri:
 
-<kbd>[<img title="Almanca" alt="Deutsch" src="https://cdn.staticaly.com/gh/hjnilsson/country-flags/master/svg/de.svg" width="22">](docs/README-de.md)</kbd>
-<kbd>[<img title="Portekizce" alt="Português" src="https://cdn.staticaly.com/gh/hjnilsson/country-flags/master/svg/br.svg" width="22">](docs/README-ptbr.md)</kbd>
-<kbd>[<img title="İsveççe" alt="Svenska" src="https://cdn.staticaly.com/gh/hjnilsson/country-flags/master/svg/se.svg" width="22">](docs/README-se.md)</kbd>
-<kbd>[<img title="İngilizce" alt="English" src="https://cdn.staticaly.com/gh/hjnilsson/country-flags/master/svg/us.svg" width="22">](README.md)</kbd>
-<kbd>[<img title="İbranice" alt="Hebrew" src="https://cdn.staticaly.com/gh/hjnilsson/country-flags/master/svg/il.svg" width="22">](docs/README-he.md)</kbd>
-<kbd>[<img title="İtalyanca" alt="Italiano" src="https://cdn.staticaly.com/gh/hjnilsson/country-flags/master/svg/it.svg" width="22">](docs/README-it.md)</kbd>
+<kbd>[<img title="Almanca" alt="Almanca" src="https://cdn.staticaly.com/gh/hjnilsson/country-flags/master/svg/de.svg" width="22">](docs/README-de.md)</kbd>
+<kbd>[<img title="Portekizce" alt="Portekizce" src="https://cdn.staticaly.com/gh/hjnilsson/country-flags/master/svg/br.svg" width="22">](docs/README-ptbr.md)</kbd>
+<kbd>[<img title="İsveççe" alt="İsveççe" src="https://cdn.staticaly.com/gh/hjnilsson/country-flags/master/svg/se.svg" width="22">](docs/README-se.md)</kbd>
+<kbd>[<img title="İngilizce" alt="İngilizce" src="https://cdn.staticaly.com/gh/hjnilsson/country-flags/master/svg/us.svg" width="22">](README.md)</kbd>
+<kbd>[<img title="İbranice" alt="İbranice" src="https://cdn.staticaly.com/gh/hjnilsson/country-flags/master/svg/il.svg" width="22">](docs/README-he.md)</kbd>
+<kbd>[<img title="İtalyanca" alt="İtalyanca" src="https://cdn.staticaly.com/gh/hjnilsson/country-flags/master/svg/it.svg" width="22">](docs/README-it.md)</kbd>
+<kbd>[<img title="Türkçe" alt="Türkçe" src="https://cdn.staticaly.com/gh/hjnilsson/country-flags/master/svg/tr.svg" width="22">](docs/README-tr.md)</kbd>
+<kbd>[<img title="İspanyolca" alt="İspanyolca" src="https://cdn.staticaly.com/gh/hjnilsson/country-flags/master/svg/es.svg" width="22">](docs/README-es.md)</kbd>
 
-## Bu ne tam olarak?
-Nuclear, internetin her yerindeki ücretsiz kaynaklardan içerik çeken ücretsiz bir müzik akışı programıdır.
+## Bu Nedir?
 
-Eğer biliyorsan [mps-youtube](https://github.com/mps-youtube/mps-youtube), bu da benzer bir müzik oynatıcısı ama GUI versiyonu.
-Aynı zamanda ses üzerine daha fazla odaklı. Ücret ödemeyeceğin ve daha büyük bir kütüphanesi olan bir Spotify hayal et.
+nuclear, tüm internet üzerinden ücretsiz kaynaklardan içerik çeken ücretsiz bir müzik yayını programıdır.
 
-## Ya Electron'a karşı dini olarak bir karşıtlığım varsa?
-Şuna [bakın](docs/electron.md).
+Eğer [mps-youtube](https://github.com/mps-youtube/mps-youtube)'u biliyorsanız, bu da benzeri bir müzik çalar fakat GUI'ye sahip.
+Ayrıca sese daha fazla odaklanıyor. Parasını ödemek zorunda olmadığınız ve daha büyük bir kütüphaneye sahip bir Spotify hayal edin.
+
+## Eğer Electron'a Dini Olarak Karşıysam?
+
+[Buna](docs/electron.md) bakın.
 
 ## Özellikler
 
-- YouTube (oynatma listesi entegrasyonu dahil ve [SponsorBlock](https://sponsor.ajay.app/)), Jamendo, Audius and SoundCloud gibi sitelerden müzik arama ve oynatma.
-- Albüm (Last.fm ve Discogs ile), album görüntülenmesi, sanatçı ve parça ismiyle arama yapma (geliştirme aşamasında, bazen düzgün olmayabilir.)
-- Şarkı kuyruğu,  aynı zamanda oynatma listesi olarak dışarı aktarılabir.
-- Kaydedilmiş oynatma listelerini yükleme (json dosyalarında saklanır)
-- last.fm'e scrobble yapmak ('şimdi oynatılıyor' durumunuzu güncellemekle birlikte)
-- Eleştiriler ile birlikte en yeni piyasaya sürülmüş - parçalar ve albümler
-- Türe göre arama
-- Radyo modu (benzer türdeki parçaları otomatik olarak kuyruğa alma)
-- Limitsiz indirmeler (youtube ile)
+- YouTube (oynatma listesi ve [SponsorBlock](https://sponsor.ajay.app/) entegrasyonu dahil), Jamendo, Audius and SoundCloud'dan müzik arama ve çalma.
+- Albüm arama (Last.fm ve Discogs tarafından desteklenmektedir), albüm görünümü, sanatçı ve parça adına göre otomatik şarkı arama (hâlâ geliştirilmekte, bazen tehlikeli olabilir)
+- Bir çalma listesi olarak dışa aktarılabilen şarkı kuyruğu
+- Kaydedilmiş çalma listelerini yükleme (json dosyalarında saklanır)
+- Last.fm'e skroplama ('şimdi oynatılıyor' durumunun güncellenmesiyle birlikte)
+- İncelemeleri olan en yeni sürümler - parçalar ve albümler
+- Türe göre tarama
+- Radyo modu (benzer parçaları otomatik olarak sıraya koyma)
+- Sınırsız indirme (YouTube tarafından desteklenmektedir)
 - Gerçek zamanlı şarkı sözleri
-- Popülariteye göre arama
+- Popülerliğe göre arama
 - Favori parçaların listesi
-- Yerel kütüphanenizden dinleme
+- Yerel kütüphaneden dinleme
 - Hesap yok
 - Reklam yok
 - CoC yok
 - CLA yok
 
-## Manuel and dokümanlar
-https://nuclearmusic.rtfd.io/
+## Geliştirme süreci
 
-## Toplulukla-sürdürülmüş paketler
+Her şeyden önce, [Katkıda Bulunma Yönergeleri](https://nukeop.gitbook.io/nuclear/contributing/contribution-guidelines)ni kontrol ettiğinizden emin olun.
 
-Burada, çoğu üçüncü taraflarca tutulan çeşitli yöneticiler için paketlerin bir listesi bulunmaktadır. Yapımcılara çalışmaları için teşekkür ederiz.
+Nuclear'ı geliştirme modunda çalıştırma talimatları [Geliştirme Süreci](https://nukeop.gitbook.io/nuclear/developer-resources/development-process) belgesinde bulunabilir.
 
-| Paket tipi     | Link                                                    | Sürdürücü                                     |
-|:--------------:|:-------------------------------------------------------:|:---------------------------------------------:|
-| AUR (Arch)     | https://aur.archlinux.org/packages/nuclear-player-bin/  | [advaithm](https://github.com/advaithm)       |
-| AUR (Arch)     | https://aur.archlinux.org/packages/nuclear-player-git   | [advaithm](https://github.com/advaithm)       |
-| Choco (Win)    | https://chocolatey.org/packages/nuclear/                | [JourneyOver](https://github.com/JourneyOver) |
-| Homebrew (Mac) | https://formulae.brew.sh/cask/nuclear                   | Homebrew                                      |
-| Snap           | https://snapcraft.io/nuclear                            | [nukeop](https://github.com/nukeop)           |
-| Flatpak        | https://flathub.org/apps/details/org.js.nuclear.Nuclear | [advaithm](https://github.com/advaithm)       |
+## Topluluk tarafından sağlanan paketler
 
- Bana derleme makinesi (advaithm) olarak kullanmama izin verdiği için [ayyeve](https://github.com/ayyEve)'e çok teşekkür ederim.
+Aşağıda, bazıları üçüncü taraflarca sağlanan çeşitli yöneticilere yönelik paketlerin bir listesi bulunmaktadır. Geliştirenlere çalışmalarından dolayı teşekkür ederiz.
+
+|   Paket tipi   |                              Bağlantı                              |                        Geliştirici                        |                Yükleme Yöntemi                 |
+| :------------: | :----------------------------------------------------------------: | :-------------------------------------------------------: | :--------------------------------------------: |
+|   AUR (Arch)   |       https://aur.archlinux.org/packages/nuclear-player-bin/       |            [nukeop](https://github.com/nukeop)            |           yay -s nuclear-player-bin            |
+|   AUR (Arch)   |       https://aur.archlinux.org/packages/nuclear-player-git        |            [nukeop](https://github.com/nukeop)            |           yay -s nuclear-player-git            |
+|  Choco (Win)   |              https://chocolatey.org/packages/nuclear/              |       [JourneyOver](https://github.com/JourneyOver)       |             choco install nuclear              |
+| GURU (Gentoo)  | https://github.com/gentoo/guru/tree/master/media-sound/nuclear-bin |                         Orphaned                          |               emerge nuclear-bin               |
+| Homebrew (Mac) |               https://formulae.brew.sh/cask/nuclear                |                         Homebrew                          |          brew install --cask nuclear           |
+|      Snap      |                    https://snapcraft.io/nuclear                    |            [nukeop](https://github.com/nukeop)            |           sudo snap install nuclear            |
+|    Flatpak     |      https://flathub.org/apps/details/org.js.nuclear.Nuclear       |            [nukeop](https://github.com/nukeop)            | flatpak install flathub org.js.nuclear.Nuclear |
+|   Void Linux   |       https://github.com/machadofguilherme/nuclear-template        | [machadofguilherme](https://github.com/machadofguilherme) |                   See readme                   |
+
 ## Topluluk çevirileri
-Nuclearr zaten birkaç dile çevrildi ve her zaman daha fazlasını eklemek isteyen katkıda bulunanlar arıyoruz. Aşağıda, Nuclear'ın o dile çevrilmesine yardımcı olan katılımcılarla birlikte şu anda mevcut olan dillerin bir listesi bulunmaktadır. 
 
-| Dil                  | Katkıda bulunan                                                                                      |
-|:--------------------:|:----------------------------------------------------------------------------------------------------:|
-| İngilizce            | N/A                                                                                                  |
-| Fransızca            | [charjac](https://github.com/charjac), [Zalax](https://github.com/Zalaxx)                            |
-| Hollandaca           | [Vistaus](https://github.com/Vistaus)                                                                |
-| Danca                | [Hansen1992](https://github.com/Hansen1992)                                                          |
-| İspanyolca           | [mlucas94](https://github.com/mlucas94), [emlautarom1](https://github.com/emlautarom1)               |
-| Polonyaca            | [kazimierczak-robert](https://github.com/kazimierczak-robert), [gradzka](https://github.com/gradzka) |
-| Almanca              | [nuclear](https://github.com/nuclear), [schippas](https://github.com/schippas)                                                              |
-| Rusça                | [ramstore07](https://github.com/ramstore07), [dmtrshat](https://github.com/dmtrshat)                 |
-| Brezilya Portekizcesi| [JoaoPedroMoraes](https://github.com/JoaoPedroMoraes)                                                |
-| Türkçe               | [3DShark](https://github.com/3DShark)                                                                |
-| İtalyanca            | [gello94](https://github.com/gello94)                                                                |
-| Slovakça             | [MartinT](https://github.com/MartinTuroci)                                                           |
-| Çekçe                | [PetrTodorov](https://github.com/PetrTodorov)                                                        |
-| Tagalogça            | [giftofgrub](https://github.com/giftofgrub)                                                          |
-| Geleneksel Çince     | [oxygen-TW](https://github.com/oxygen-TW)                                                            |
-| İsveççe              | [PalleKarlsson](https://github.com/PalleKarlsson), [nonew-star](https://github.com/nonew-star)                                                    |
-| Yunanca              | [Shuin-San](https://github.com/Shuin-San)                                                            |
-| Vietnam ca           | [HaiDang666](https://github.com/HaiDang666)                                                          |
-| Fince                | [cjola002-xamk](https://github.com/cjola002-xamk)                                                    |
+Nuclear zaten birçok dile çevrildi ve her zaman daha fazlasını eklemek isteyen katkıcı arıyoruz.
 
+Yerelleştirmeyi yönetmek için [Crowdin](https://crowdin.com/project/nuclear) kullanıyoruz. Dilinizin desteklenip desteklenmediğini kontrol edebilir, yerelleştirme ilerlemesini takip edebilir ve Nuclear'ı çevirmemize yardımcı olabilirsiniz.
 
-## Geliştirme aşaması
+## Ekran Fotoğrafları
 
-İlk olarak buraya göz attığına emin ol. [Katkıda bulunma Viki Sayfası](https://github.com/nukeop/nuclear/wiki/Contributing).
-
-npm kullan:
-```shell
-$ npm install # installs dependencies
-$ npm start
-```
-
-Web uygulaması ve Nuclear'ı çalıştıracak yeni bir pencere açılmış olmalı.
-
----
-İşletim sistemine inşa etmek için:
-```shell
-$ lerna bootstrap
-$ npm run build
-```
-
-Tüm işletim sistemlerine inşa etmek için `build` yerine `build:all` kullanabilirsiniz. Binary'ler burada olacak. `packages/app/release`
-
----
-Geliştirme ortamını docker container'ları kullanarak çalıştırmak da mümkündür, ancak bu deneysel olarak düşünülmelidir.
-
-Docker ve docker-compose'a ihtiyacınız olacak. Kök kullanıcının X11 ekranına bağlanmasına izin vermeniz gerekir ve ardından docker-compose çalıştırabilirsiniz:
-
-```shell
-$ xhost SI:localuser:root
-$ sudo docker-compose up dev
-```
-Şu andan itibaren bir flatpak versiyonu da oluşturabilirsiniz. Gobject-introspection ve flatpak-builder'ı kurmanız gerekecek. Bundan sonra, flatpak-builder tarafından derleme işlemi için gereken çalışma zamanlarını ve bağımlılıkları kurmanız gerekecektir. Bu flatpak'lerin 19.08 versiyonuna ihtiyacınız olacak. 
-```shell
-$ flatpak install flathub org.freedesktop.Platform
-$ flatpak install flathub org.freedesktop.Sdk
-$ flatpak install flathub io.atom.electron.BaseApp
-```
-Sonrasında, projeyi inşa etmek için ( `--verbose` ekini kullanarak daha fazla çıktı alabilirsin.):
-```shell
-$ flatpak-builder build-dir org.js.nuclear.Nuclear.json
-```
-İnşa edilmiş uygulamayı çalıştırmak için: 
-```shell
-$ flatpak-builder --run build-dir org.js.nuclear.Nuclear.json run.sh
-```
-Uygulamayı yerel bir repo'ya dönüştürebilirsin. şu anda dosya son sürümü inşa eder.
-
-## Ekran Görüntüleri
-Program geliştikçe güncellenecektir.
+Program geliştikçe bu kısım güncellenecektir.
 
 ![Albüm Arama](https://i.imgur.com/idFVnAF.png)
 
-![Album Görüntüsü](https://i.imgur.com/Kvzo3q7.png)
+![Albüm Görünümü](https://i.imgur.com/Kvzo3q7.png)
 
-![Artist Görünümü](https://i.imgur.com/imBLYl3.png)
+![Sanatçı Görünümü](https://i.imgur.com/imBLYl3.png)
 
-![En İyi ve Yeni Müzik Akışı](https://i.imgur.com/bMDrR4M.png)
+![En İyi Yeni Müzik Panosu](https://i.imgur.com/bMDrR4M.png)
 
-![Tür Akışı](https://i.imgur.com/g0aCmKx.png)
+![Türler Panosu](https://i.imgur.com/g0aCmKx.png)
 
 ![Oynatma Listesi Görünümü](https://i.imgur.com/2VMXHDC.png)
 
-![Şarkı Sözleri Görünümü](https://i.imgur.com/7e3DJKJ.png)
+![Şarkı Sözleri GÖrünümü](https://i.imgur.com/7e3DJKJ.png)
 
-![Ekolayzer Görünümü](https://i.imgur.com/WreRL0w.png)
+![Ekolayzır GÖrünümü](https://i.imgur.com/WreRL0w.png)
 
 ## Lisans
 
-Bu program özgür bir yazılımdır: Özgür Yazılım Vakfı tarafından yayınlanan GNU Affero Genel Kamu Lisansı, Lisansın 3. sürümü veya (sizin tercihinize bağlı olarak) daha sonraki herhangi bir sürümü tarafından yayınlanan koşulları altında yeniden dağıtabilir ve / veya değiştirebilirsiniz. 
+Bu program özgür bir yazılımdır: Özgür Yazılım Vakfı tarafından yayınlanan GNU Affero Genel Kamu Lisansı, Lisansın 3. sürümü veya (sizin tercihinize bağlı olarak) herhangi bir sonraki sürümü koşulları altında yeniden dağıtabilir ve/veya değiştirebilirsiniz.
+
+## Atıflar
+
+https://sponsor.ajay.app/ adresinden [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/) kapsamında kullanılan SponsorBlock verilerini kullanır.
