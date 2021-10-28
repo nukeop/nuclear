@@ -234,7 +234,7 @@ exports[`Play Queue container should display a context popup on right click 1`] 
               <div
                 class="item_duration"
               >
-                LIVE
+                Live
               </div>
             </div>
           </div>
@@ -652,7 +652,7 @@ exports[`Play Queue container should display with track in queue 1`] = `
               <div
                 class="item_duration"
               >
-                LIVE
+                Live
               </div>
             </div>
           </div>
