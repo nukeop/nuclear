@@ -291,5 +291,12 @@ export const settingsConfig: Array<Setting> = [
     type: SettingType.STRING,
     default: '#nowplaying {{artist}} - {{title}} #nuclear https://nuclear.js.org',
     hide: true
+  },
+  {
+    name: 'nuclearIdentityServiceUrl',
+    prettyName: 'nuclear-identity-service-url',
+    category: 'social',
+    type: SettingType.STRING,
+    default: 'http://localhost:3000'
   }
 ];

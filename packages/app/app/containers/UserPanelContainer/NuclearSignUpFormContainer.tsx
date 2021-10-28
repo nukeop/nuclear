@@ -1,8 +1,13 @@
 import React from 'react';
 import { TFunction, useTranslation } from 'react-i18next';
 import * as Yup from 'yup';
+import { SignUpRequestBody } from '@nuclear/core/src/rest/Nuclear/Identity.types';
 import { NuclearSignUpForm, useForm } from '@nuclear/ui';
 import { FullscreenLayerProps } from '@nuclear/ui/lib/components/FullscreenLayer';
+
+import { signUp } from '../../actions/nuclear/identity';
+import { useDispatch, useSelector } from 'react-redux';
+import { settingsSelector } from '../../selectors/settings';
 
 export type NuclearSignUpFormContainerProps = FullscreenLayerProps;
 
@@ -36,15 +41,19 @@ export const NuclearSignUpFormContainer: React.FC<NuclearSignUpFormContainerProp
 }) => {
   const { t } = useTranslation('forms', { keyPrefix: 'nuclear-sign-up' });
 
-  const formProps = useForm({
+  const dispatch = useDispatch();
+  const settings = useSelector(settingsSelector);
+  const onSignUp = async (body: SignUpRequestBody) => {
+    dispatch(signUp(settings.nuclearIdentityServiceUrl, body));
+  };
+
+  const formProps = useForm<SignUpRequestBody>({
     initialFields: initialFields(t),
     validationSchema: validationSchema(t),
     onSubmit: async (values, { setSubmitting }) => {
       setSubmitting(true);
-      // console.log(values);
-      setTimeout(() => {
-        setSubmitting(false);
-      }, 1500);
+      await onSignUp(values);
+      setSubmitting(false);
     }
   });
 

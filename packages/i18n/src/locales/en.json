@@ -246,6 +246,7 @@
     "mastodon-post-format-description": "Nuclear will post a status on Mastodon after each track completes playing. The above string will be the template for each post, with {{artist}} and {{title}} replaced with the artist and title of the track.",
     "mastodon-post-format-label": "Post format",
     "mastodon-title": "",
+    "nuclear-identity-service-url": "Nuclear identity service URL",
     "mini-player": "Use mini player style",
     "discord-rich-presence": "Toggle discord rich presence (requires restart)",
     "notification-timeout": "Notification timeout",
