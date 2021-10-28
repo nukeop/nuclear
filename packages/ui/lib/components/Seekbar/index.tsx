@@ -25,7 +25,7 @@ export type SeekbarProps = {
   height?: string;
   skipSegments?: Segment[];
   allowSkipSegment?: boolean;
-  timePlayed?: number;
+  timePlayed?: any;
   segmentPopupMessage: string;
 };
 
