@@ -1,0 +1,120 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Search results container should render empty search results 1`] = `
+<DocumentFragment>
+  <div
+    class="main_layout_container"
+  >
+    <div>
+      <div>
+        <div
+          class="ui pointing secondary menu"
+        >
+          <a
+            class="active item"
+          >
+            All
+          </a>
+        </div>
+        <div
+          class="ui segment active tab"
+        >
+          <div
+            class="pane_container"
+          >
+            <div
+              class="row"
+            >
+              <div>
+                Nothing found.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Search results container should render relevant panes for the search results 1`] = `
+<DocumentFragment>
+  <div
+    class="main_layout_container"
+  >
+    <div>
+      <div>
+        <div
+          class="ui pointing secondary menu"
+        >
+          <a
+            class="active item"
+          >
+            All
+          </a>
+          <a
+            class="item"
+          >
+            Artists
+          </a>
+          <a
+            class="item"
+          >
+            LiveStream
+          </a>
+        </div>
+        <div
+          class="ui segment active tab"
+        >
+          <div
+            class="pane_container"
+          >
+            <div
+              class="row"
+            >
+              <div
+                class="all_results_container"
+              >
+                <div
+                  class="column"
+                >
+                  <h3>
+                    Artist
+                  </h3>
+                  <div
+                    class="row"
+                  >
+                    <div
+                      class="nuclear card_container"
+                    >
+                      <div
+                        class="card animated"
+                      >
+                        <div
+                          class="thumbnail"
+                          style="background-image: url(https://test-cover-url);"
+                        >
+                          <div
+                            class="overlay"
+                          />
+                        </div>
+                        <div
+                          class="card_content"
+                        >
+                          <h4>
+                            Test Artist
+                          </h4>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
