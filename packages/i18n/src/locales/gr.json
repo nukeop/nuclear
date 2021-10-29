@@ -254,6 +254,7 @@
     "mastodon-title": "",
     "mini-player": "Χρησιμοποιείστε τον μινι Player",
     "more": "More",
+    "discord-rich-presence": "Toggle discord rich presence (requires restart)",
     "notification-timeout": "Χρόνος παραμονής των ειδοποιήσεων",
     "notlogged": "Αποσυνδεμένος/η",
     "playback": "Αναπαραγωγή",

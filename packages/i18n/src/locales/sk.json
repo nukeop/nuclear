@@ -254,6 +254,7 @@
     "mastodon-title": "",
     "mini-player": "Use mini player style",
     "more": "More",
+    "discord-rich-presence": "Toggle discord rich presence (requires restart)",
     "notification-timeout": "Oznámenie o vypršaní času",
     "notlogged": "Neprihlásený",
     "playback": "Prehrávanie",

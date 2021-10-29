@@ -254,6 +254,7 @@
     "mastodon-title": "",
     "mini-player": "Bruk mini spiller stil",
     "more": "More",
+    "discord-rich-presence": "Toggle discord rich presence (requires restart)",
     "notification-timeout": "Tidsavbrudd for varsel",
     "notlogged": "Ikke logget inn",
     "playback": "Avspilling",

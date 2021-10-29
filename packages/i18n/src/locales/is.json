@@ -254,6 +254,7 @@
     "mastodon-title": "",
     "mini-player": "Nota minni spilarastíl",
     "more": "More",
+    "discord-rich-presence": "Toggle discord rich presence (requires restart)",
     "notification-timeout": "Tímamörk tilkynninga",
     "notlogged": "Ekki skráður inn",
     "playback": "Afspilun",

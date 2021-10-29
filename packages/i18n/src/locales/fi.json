@@ -254,6 +254,7 @@
     "mastodon-title": "",
     "mini-player": "Käytä minisoitinta",
     "more": "More",
+    "discord-rich-presence": "Toggle discord rich presence (requires restart)",
     "notification-timeout": "Notification timeout",
     "notlogged": "Ei kirjautunut sisään",
     "playback": "Toisto",
