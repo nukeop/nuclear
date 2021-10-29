@@ -138,7 +138,7 @@ const Settings: React.FC<SettingsProps> = ({
 
   const renderSliderOption = (option) => (
     <div className={styles.slider_container}>
-      <label>Less</label>
+      <label>{t('less')}</label>
       <Range
         value={getOptionValue(option) || option.default}
         min={option.min}
@@ -150,7 +150,7 @@ const Settings: React.FC<SettingsProps> = ({
         width='auto'
         onChange={(e) => handleSliderChange(e, option)}
         thumbSize={21} />
-      <label>More</label>
+      <label>{t('more')}</label>
     </div>
   );
 

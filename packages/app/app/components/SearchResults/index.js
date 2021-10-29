@@ -103,11 +103,12 @@ class SearchResults extends React.Component {
   panes() {
     const panes = [
       {
-        menuItem: 'All',
+        // change
+        menuItem: this.props.t('all'),
         render: () => this.renderAllResultsPane()
       },
       {
-        menuItem: 'Artists',
+        menuItem: this.props.t('artist_plural'),
         render: () =>
           this.renderPane(
             this.props.artistSearchResults,
@@ -115,7 +116,7 @@ class SearchResults extends React.Component {
           )
       },
       {
-        menuItem: 'Albums',
+        menuItem: this.props.t('album_plural'),
         render: () =>
           this.renderPane(
             this.props.albumSearchResults,
@@ -123,19 +124,19 @@ class SearchResults extends React.Component {
           )
       },
       {
-        menuItem: 'Tracks',
+        menuItem: this.props.t('track_plural'),
         render: () => this.renderTrackListPane(this.props.trackSearchResults.info)
       },
       {
-        menuItem: 'Playlist',
+        menuItem: this.props.t('playlist'),
         render: () => this.renderPlaylistPane()
       },
       {
-        menuItem: 'LiveStream',
+        menuItem: this.props.t('live-stream'),
         render: () => this.renderTrackListPane(this.props.liveStreamSearchResults.info)
       },
       {
-        menuItem: 'Podcast',
+        menuItem: this.props.t('podcast'),
         render: () =>
           this.renderPane(
             this.props.podcastSearchResults,

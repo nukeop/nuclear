@@ -8,6 +8,7 @@ import {
   SET_PREAMP
 } from '../actions/equalizer';
 
+// hardcoded but couldn't hook
 const getPresets = (custom) => [
   {
     label: 'Default',
