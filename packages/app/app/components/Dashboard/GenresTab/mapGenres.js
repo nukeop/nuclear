@@ -26,7 +26,6 @@ import rnb from '../../../../resources/musicgenresicons/outline/R&B.svg';
 import trending from '../../../../resources/musicgenresicons/outline/trending.svg';
 import vocal from '../../../../resources/musicgenresicons/outline/vocal.svg';
 
-// hardcoded
 export default genre => {
   switch (genre.toLowerCase()) {
   case 'blues':

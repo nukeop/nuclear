@@ -111,7 +111,6 @@ class SearchResults extends React.Component {
 
     const panes = [
       {
-        // change
         menuItem: this.props.t('all'),
         render: () => this.renderAllResultsPane()
       },
