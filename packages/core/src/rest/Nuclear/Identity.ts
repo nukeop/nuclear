@@ -8,7 +8,7 @@ export class NuclearIdentityService extends NuclearService {
     return this.getJson<SignUpResponseBody, ErrorBody>(fetch(`${this.baseUrl}/signup`, {
       method: 'POST',
       headers: this.getHeaders(),
-      body: JSON.stringify(body)
+      body: JSON.stringify(this.prepareBody(body))
     }));
   }
 
@@ -16,7 +16,7 @@ export class NuclearIdentityService extends NuclearService {
     return this.getJson<SignInResponseBody, ErrorBody>(fetch(`${this.baseUrl}/signin`, {
       method: 'POST',
       headers: this.getHeaders(),
-      body: JSON.stringify(body)
+      body: JSON.stringify(this.prepareBody(body))
     }));
   }
 }

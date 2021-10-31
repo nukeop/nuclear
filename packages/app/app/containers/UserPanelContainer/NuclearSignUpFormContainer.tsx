@@ -1,13 +1,15 @@
 import React from 'react';
 import { TFunction, useTranslation } from 'react-i18next';
 import * as Yup from 'yup';
-import { SignUpRequestBody } from '@nuclear/core/src/rest/Nuclear/Identity.types';
+import { SignUpRequestBody, SignUpResponseBody } from '@nuclear/core/src/rest/Nuclear/Identity.types';
 import { NuclearSignUpForm, useForm } from '@nuclear/ui';
 import { FullscreenLayerProps } from '@nuclear/ui/lib/components/FullscreenLayer';
 
-import { signUp } from '../../actions/nuclear/identity';
+import { signUpAction } from '../../actions/nuclear/identity';
 import { useDispatch, useSelector } from 'react-redux';
 import { settingsSelector } from '../../selectors/settings';
+import { NuclearIdentityService } from '@nuclear/core/src/rest/Nuclear/Identity';
+import { ErrorBody, isErrorBody } from '@nuclear/core/src/rest/Nuclear/types';
 
 export type NuclearSignUpFormContainerProps = FullscreenLayerProps;
 
@@ -43,16 +45,23 @@ export const NuclearSignUpFormContainer: React.FC<NuclearSignUpFormContainerProp
 
   const dispatch = useDispatch();
   const settings = useSelector(settingsSelector);
-  const onSignUp = async (body: SignUpRequestBody) => {
-    dispatch(signUp(settings.nuclearIdentityServiceUrl, body));
-  };
 
   const formProps = useForm<SignUpRequestBody>({
     initialFields: initialFields(t),
     validationSchema: validationSchema(t),
-    onSubmit: async (values, { setSubmitting }) => {
+    onSubmit: async (values, { setSubmitting, setErrors }) => {
       setSubmitting(true);
-      await onSignUp(values);
+      dispatch(signUpAction.request());
+      const service = new NuclearIdentityService(settings.nuclearIdentityServiceUrl);
+      const result = await service.signUp(values);
+      if (result.ok) {
+        dispatch(signUpAction.success(result.body as SignUpResponseBody));
+      } else {
+        if (isErrorBody(result.body)) {
+          setErrors(Object.fromEntries(result.body.errors.map((error) => [error.path, error.message])));
+        }
+        dispatch(signUpAction.failure(result.body as ErrorBody));
+      }
       setSubmitting(false);
     }
   });
@@ -69,3 +78,4 @@ export const NuclearSignUpFormContainer: React.FC<NuclearSignUpFormContainerProp
     signUpButtonLabel={t('sign-up-button')}
   />;
 };
+

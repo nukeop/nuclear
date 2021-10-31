@@ -1,8 +1,15 @@
+/* eslint-disable no-empty */
 import React from 'react';
 import { TFunction, useTranslation } from 'react-i18next';
 import { NuclearSignInForm, useForm } from '@nuclear/ui';
 import { FullscreenLayerProps } from '@nuclear/ui/lib/components/FullscreenLayer';
 import { NuclearSignInFormProps } from '@nuclear/ui/lib/forms/NuclearSignInForm';
+import { useDispatch, useSelector } from 'react-redux';
+import { settingsSelector } from '../../selectors/settings';
+import { signInAction } from '../../actions/nuclear/identity';
+import { NuclearIdentityService } from '@nuclear/core/src/rest/Nuclear/Identity';
+import { SignInRequestBody } from '@nuclear/core/src/rest/Nuclear/Identity.types';
+import { ErrorBody, isErrorBody } from '@nuclear/core/src/rest/Nuclear/types';
 
 export type NuclearSignInFormContainerProps = FullscreenLayerProps & Pick<NuclearSignInFormProps, 'onSignUpClick'>;
 
@@ -25,14 +32,27 @@ export const NuclearSignInFormContainer: React.FC<NuclearSignInFormContainerProp
   onSignUpClick
 }) => {
   const { t } = useTranslation('forms', { keyPrefix: 'nuclear-sign-in' });
-  const formProps = useForm({
+
+  const dispatch = useDispatch();
+  const settings = useSelector(settingsSelector);
+
+  const formProps = useForm<SignInRequestBody>({
     initialFields: initialFields(t),
-    onSubmit: async (values, {setSubmitting}) => {
+    onSubmit: async (values, { setSubmitting }) => {
       setSubmitting(true);
-      // console.log(values);
-      setTimeout(() => {
-        setSubmitting(false);
-      }, 1500);
+      dispatch(signInAction.request());
+      const service = new NuclearIdentityService(settings.nuclearIdentityServiceUrl);
+
+      const result = await service.signIn(values);
+      if (result.ok) {
+
+      } else {
+        if (isErrorBody(result.body)) {
+
+        }
+        dispatch(signInAction.failure(result.body as ErrorBody));
+      }
+      setSubmitting(false);
     }
   });
 

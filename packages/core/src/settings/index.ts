@@ -298,5 +298,12 @@ export const settingsConfig: Array<Setting> = [
     category: 'social',
     type: SettingType.STRING,
     default: 'http://localhost:3000'
+  },
+  {
+    name: 'nuclearPlaylistsServiceUrl',
+    prettyName: 'nuclear-playlists-service-url',
+    category: 'social',
+    type: SettingType.STRING,
+    default: 'http://localhost:3010'
   }
 ];

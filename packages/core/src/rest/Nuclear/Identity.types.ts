@@ -1,10 +1,24 @@
+export enum UserAccountState {
+  UNCONFIRMED = 'UNCONFIRMED',
+  CONFIRMED = 'CONFIRMED',
+  DISABLED = 'DISABLED',
+}
+
 export type SignUpRequestBody = {
   username: string;
   email?: string;
   password: string;
 };
 
-export type SignUpResponseBody = {};
+export type SignUpResponseBody = {
+  id: string;
+  username: string;
+  displayName: string;
+  email: string | null;
+  accountState: UserAccountState;
+  createdAt: string;
+  updatedAt: string;
+};
 
 export type SignInRequestBody = {
   username: string;

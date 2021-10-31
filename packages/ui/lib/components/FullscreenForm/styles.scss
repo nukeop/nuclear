@@ -13,6 +13,28 @@
         position: relative;
         display: flex;
         flex-flow: row;
+
+        .ui.message {
+            position: absolute;
+            left: 0;
+            bottom: 100%;
+            width: 100%;
+            color: $white;
+            border: none;
+            box-shadow: none;
+
+            .icon {
+                font-size: 1.5em;
+            }
+
+            &.error {
+                background: $red;
+            }
+
+            &.success {
+                background: darken($green, 10%);
+            }
+        }
     }
 
     .fullscreen_form {

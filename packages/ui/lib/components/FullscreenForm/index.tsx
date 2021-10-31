@@ -1,6 +1,6 @@
 import React from 'react';
 import cx from 'classnames';
-import { Form } from 'semantic-ui-react';
+import { Form, Icon, Message, MessageContent } from 'semantic-ui-react';
 import useOutsideClick from 'react-cool-onclickoutside';
 
 import { Box } from '../..';
@@ -14,7 +14,14 @@ export type FullscreenFormProps = FullscreenLayerProps & {
   onSubmit?: UseFormProps['onSubmit'];
   isSubmitting?: UseFormProps['isSubmitting'];
   sideContent?: React.ReactNode;
+  message?: {
+    content: string;
+    type: 'success' | 'error';
+  };
 }
+
+const isError = (message?: FullscreenFormProps['message']) => message && message.type === 'error';
+const isSuccess = (message?: FullscreenFormProps['message']) => message && message.type === 'success';
 
 const FullscreenForm: React.FC<FullscreenFormProps> = ({
   children,
@@ -22,7 +29,8 @@ const FullscreenForm: React.FC<FullscreenFormProps> = ({
   onClose,
   onSubmit,
   isSubmitting,
-  sideContent
+  sideContent,
+  message
 }) => {
   const ref = useOutsideClick(onClose);
   return <FullscreenLayer
@@ -36,6 +44,20 @@ const FullscreenForm: React.FC<FullscreenFormProps> = ({
         ref={ref}
         shadow
       >
+        {
+          message &&
+          <Message
+            icon
+            error={isError(message)}
+            success={isSuccess(message)}
+          >
+            <Icon
+              name={isError(message) ? 'warning sign' : 'checkmark'} />
+            <MessageContent>
+              {message.content}
+            </MessageContent>
+          </Message>
+        }
         {sideContent}
         <Form
           className={styles.fullscreen_form}

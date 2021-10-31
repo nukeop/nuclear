@@ -33,18 +33,44 @@ export const Loading = () => {
     <FullscreenForm
       isSubmitting
       isOpen
+    />
+  </div>;
+};
+
+export const ErrorMessage = () => {
+  return <div
+    className='bg'
+  >
+    <FullscreenForm
+      isSubmitting={false}
+      isOpen
+      message={{
+        type: 'error',
+        content: 'Error message'
+      }}
     >
       <span style={{ color: '#fff' }}>
         Layer content
       </span>
+    </FullscreenForm>
+  </div>;
+};
 
-      <div style={{ background: '#a00', width: 200, height: 200, margin: 50 }} />
-      <Button
-        color='pink'
-        type='submit'
-      >
-        Test button
-      </Button>
+export const SuccessMessage = () => {
+  return <div
+    className='bg'
+  >
+    <FullscreenForm
+      isSubmitting={false}
+      isOpen
+      message={{
+        type: 'success',
+        content: 'Success message'
+      }}
+    >
+      <span style={{ color: '#fff' }}>
+        Layer content
+      </span>
     </FullscreenForm>
   </div>;
 };

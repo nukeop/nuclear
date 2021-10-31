@@ -1,3 +1,4 @@
+import { isEmpty, pickBy } from 'lodash';
 import { RequestResult } from './types';
 
 export abstract class NuclearService {
@@ -12,6 +13,10 @@ export abstract class NuclearService {
       return {
         'Content-type': 'application/json'
       };
+    }
+
+    prepareBody<TRequestBody extends object>(body: TRequestBody) {
+      return pickBy(body, value => !isEmpty(value));
     }
 
     async getJson<TResponseBody, TErrorBody>(
