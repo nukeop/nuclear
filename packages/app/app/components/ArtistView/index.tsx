@@ -97,7 +97,7 @@ const ArtistView: React.FC<ArtistViewProps> = ({
                   name='linkify'
                   size='big'
                 />
-                Artist Info
+                {t('info')}
               </a>
             </div>
 

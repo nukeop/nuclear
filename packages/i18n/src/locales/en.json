@@ -32,7 +32,8 @@
     "queue": "Add all tracks to queue",
     "similar": "Similar artists",
     "title": "Title",
-    "tour": "On tour"
+    "tour": "On tour",
+    "info": "Artist Info"
   },
   "dashboard": {
     "add-all": "Add all",
