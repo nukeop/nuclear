@@ -42,6 +42,10 @@ const ArtistView: React.FC<ArtistViewProps> = ({
 
   const isOnTour = () => artist.onTour || false;
 
+  // TODO: make this open in default browser, not within appplication
+  // TODO: pull link from artist info or somewhere like that
+  const handleInfoLink = () => window.open('www.bandcamp.com');
+
   function renderArtistHeader() {
     return (
       <div className={styles.artist_header_overlay}>
@@ -92,6 +96,7 @@ const ArtistView: React.FC<ArtistViewProps> = ({
                 href='#'
                 className={styles.artist_info_button}
                 data-testid='artist-info'
+                onClick={handleInfoLink}
               >
                 <Icon
                   name='linkify'
