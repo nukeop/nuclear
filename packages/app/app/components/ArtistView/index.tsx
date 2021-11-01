@@ -95,7 +95,7 @@ const ArtistView: React.FC<ArtistViewProps> = ({
               >
                 <Icon
                   name='linkify'
-                  size='big'
+                  size='large'
                 />
                 {t('info')}
               </a>
