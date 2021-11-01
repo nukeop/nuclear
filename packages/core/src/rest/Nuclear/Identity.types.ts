@@ -25,4 +25,8 @@ export type SignInRequestBody = {
   password: string;
 };
 
-export type SignInResponseBody = {};
+export type SignInResponseBody = {
+  expiresIn: number;
+  token: string;
+  user: SignUpResponseBody;
+};

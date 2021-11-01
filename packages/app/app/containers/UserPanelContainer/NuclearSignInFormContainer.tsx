@@ -8,8 +8,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { settingsSelector } from '../../selectors/settings';
 import { signInAction } from '../../actions/nuclear/identity';
 import { NuclearIdentityService } from '@nuclear/core/src/rest/Nuclear/Identity';
-import { SignInRequestBody } from '@nuclear/core/src/rest/Nuclear/Identity.types';
-import { ErrorBody, isErrorBody } from '@nuclear/core/src/rest/Nuclear/types';
+import { SignInRequestBody, SignInResponseBody } from '@nuclear/core/src/rest/Nuclear/Identity.types';
+import { ErrorBody } from '@nuclear/core/src/rest/Nuclear/types';
 
 export type NuclearSignInFormContainerProps = FullscreenLayerProps & Pick<NuclearSignInFormProps, 'onSignUpClick'>;
 
@@ -38,18 +38,21 @@ export const NuclearSignInFormContainer: React.FC<NuclearSignInFormContainerProp
 
   const formProps = useForm<SignInRequestBody>({
     initialFields: initialFields(t),
-    onSubmit: async (values, { setSubmitting }) => {
+    onSubmit: async (values, { setSubmitting, setStatus }) => {
       setSubmitting(true);
+      setStatus(undefined);
       dispatch(signInAction.request());
       const service = new NuclearIdentityService(settings.nuclearIdentityServiceUrl);
 
       const result = await service.signIn(values);
       if (result.ok) {
-
+        dispatch(signInAction.success(result.body as SignInResponseBody));
+        onClose();
       } else {
-        if (isErrorBody(result.body)) {
-
-        }
+        setStatus({
+          type: 'error',
+          content: (result.body as ErrorBody).message
+        });
         dispatch(signInAction.failure(result.body as ErrorBody));
       }
       setSubmitting(false);
@@ -60,6 +63,7 @@ export const NuclearSignInFormContainer: React.FC<NuclearSignInFormContainerProp
     isOpen={isOpen}
     onClose={onClose}
     onSignUpClick={onSignUpClick}
+    message={formProps.status}
     {...formProps}
 
     header={t('header')}

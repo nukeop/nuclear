@@ -1,11 +1,11 @@
 import React from 'react';
 import { TFunction, useTranslation } from 'react-i18next';
 import * as Yup from 'yup';
-import { SignUpRequestBody, SignUpResponseBody } from '@nuclear/core/src/rest/Nuclear/Identity.types';
+import { SignInResponseBody, SignUpRequestBody, SignUpResponseBody } from '@nuclear/core/src/rest/Nuclear/Identity.types';
 import { NuclearSignUpForm, useForm } from '@nuclear/ui';
 import { FullscreenLayerProps } from '@nuclear/ui/lib/components/FullscreenLayer';
 
-import { signUpAction } from '../../actions/nuclear/identity';
+import { signInAction, signUpAction } from '../../actions/nuclear/identity';
 import { useDispatch, useSelector } from 'react-redux';
 import { settingsSelector } from '../../selectors/settings';
 import { NuclearIdentityService } from '@nuclear/core/src/rest/Nuclear/Identity';
@@ -56,6 +56,9 @@ export const NuclearSignUpFormContainer: React.FC<NuclearSignUpFormContainerProp
       const result = await service.signUp(values);
       if (result.ok) {
         dispatch(signUpAction.success(result.body as SignUpResponseBody));
+        const signInResult = await service.signIn(values);
+        dispatch(signInAction.success(signInResult.body as SignInResponseBody));
+        onClose();
       } else {
         if (isErrorBody(result.body)) {
           setErrors(Object.fromEntries(result.body.errors.map((error) => [error.path, error.message])));

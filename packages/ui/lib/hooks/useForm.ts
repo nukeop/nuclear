@@ -42,6 +42,7 @@ export const useForm = <Values extends FormikValues>({
     isSubmitting: formik.isSubmitting,
     hasErrors: !formik.isValid,
     setFieldError: formik.setFieldError,
+    status: formik.status,
     fieldsProps: _.chain(initialFields)
       .map((field, key) => [
         key, {

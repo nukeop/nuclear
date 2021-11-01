@@ -2,8 +2,6 @@ import { combineReducers } from 'redux';
 
 import { reducer as identity } from './identity';
 
-const NuclearReducer = combineReducers({
+export const reducer = combineReducers({
   identity
 });
-
-export default NuclearReducer;
