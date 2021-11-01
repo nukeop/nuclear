@@ -108,4 +108,12 @@
       display: none;
     }
   }
+
+  .artist_info_button {
+    @include roundCorners;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    //float: right;
+  }
 }

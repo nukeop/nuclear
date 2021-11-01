@@ -37,9 +37,9 @@ const ArtistView: React.FC<ArtistViewProps> = ({
 }) => {
   const { t }= useTranslation('artist');
   const history = useHistory();
-  
+
   const isLoading = () => artist.loading || false;
-  
+
   const isOnTour = () => artist.onTour || false;
 
   function renderArtistHeader() {
@@ -86,6 +86,18 @@ const ArtistView: React.FC<ArtistViewProps> = ({
                   name={isFavorite ? 'heart' : 'heart outline'}
                   size='big'
                 />
+              </a>
+
+              <a
+                href='#'
+                className={styles.artist_info_button}
+                data-testid='artist-info'
+              >
+                <Icon
+                  name='linkify'
+                  size='big'
+                />
+                Artist Info
               </a>
             </div>
 
