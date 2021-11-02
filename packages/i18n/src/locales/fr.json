@@ -245,7 +245,7 @@
     "mastodon-post-format-label": "Format de publication",
     "mastodon-title": "",
     "mini-player": "Utiliser le style de mini-lecteur",
-    "discord-rich-presence": "Toggle discord rich presence (requires restart)",
+    "discord-rich-presence": "Activer/Désactiver la Rich Presence de Discord (nécessite un redémarrage)",
     "notification-timeout": "Temps d'affichage des notifications",
     "notlogged": "Non connecté",
     "playback": "Relire",
