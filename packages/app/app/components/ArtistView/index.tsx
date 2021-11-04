@@ -118,14 +118,6 @@ const ArtistView: React.FC<ArtistViewProps> = ({
   }
 
   function renderPopularTracks() {
-    try {
-      /* may be able to use a different index from the artist object to create
-         *album info links or something similar
-         */
-      resourceUrl = JSON.stringify(artist.releases[0].resourceUrl);
-    } catch (e: Exception) {
-      // resourceURL assignment won't work while artist is loading
-    }
     return (
       !isLoading() &&
       artist.topTracks && (
@@ -149,6 +141,14 @@ const ArtistView: React.FC<ArtistViewProps> = ({
   }
 
   function renderHeaderBanner() {
+    try {
+      /* may be able to use a different index from the artist object to create
+      *album info links or something similar
+      */
+      resourceUrl = JSON.stringify(artist.releases[0].resourceUrl);
+    } catch (e: Exception) {
+      // resourceURL assignment won't work while artist is loading
+    }
     return (
       <div
         style={{
