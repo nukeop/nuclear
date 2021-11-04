@@ -25,17 +25,17 @@
     "plugins": "תוספים",
     "search": "תוצאות החיפוש",
     "settings": "הגדרות",
-    "visualizer": "Visualizer"
+    "visualizer": "הנפשה"
   },
   "artist": {
     "count": "מספר השמעות",
     "queue": "הוספת כל הרצועות לתור",
     "similar": "אומנים דומים",
     "title": "כותרת",
-    "tour": "On tour"
+    "tour": "בסיור"
   },
   "dashboard": {
-    "add-all": "Add all",
+    "add-all": "הוסף הכל",
     "artist": "אומן/ית",
     "best": "מיטב המוזיקה החדשה",
     "best-new-albums": "מיטב האלבומים החדשים",
@@ -49,7 +49,7 @@
   },
   "downloads": {
     "clear": "ניקוי רצועות שניגונן הסתיים",
-    "completion": "Completion",
+    "completion": "סִיוּם",
     "empty": "רשימת ההורדות ריקה.",
     "empty-help": "אפשר להוסיף משהו לתור ההורדות שלך ואז לראות אותו כאן!",
     "header": "הורדות",
@@ -69,7 +69,7 @@
   "favorites": {
     "artist": "אומן/ית",
     "empty": "לא נוספו מועדפים",
-    "empty-help": "Try adding some tracks to favorites and they will appear here!",
+    "empty-help": "נסה להוסיף כמה רצועות למועדפים והם יופיעו כאן!",
     "header": "הרצועות המועדפות שלך",
     "title": "כותרת"
   },
@@ -102,7 +102,7 @@
     "not-found": "לא נמצאו מילות שיר לשיר הזה."
   },
   "option-control": {
-    "autoradio": "Autoradio",
+    "autoradio": "רדיו אוטומטי",
     "loop": "חזרה",
     "mini-player": "נגן ממוזער",
     "shuffle": "ערבוב"
@@ -131,9 +131,9 @@
     "export-fail-title": "ייצוא הפלייליסט נכשל",
     "export-success-title": "הפלייליסט יוצָא בהצלחה",
     "header": "הפלייליסטים שלך",
-    "dialog-accept": "Save",
-    "create-button": "Create new playlist",
-    "new-playlist": "New playlist",
+    "dialog-accept": "שמירה",
+    "create-button": "צור רשימת השמעה חדשה",
+    "new-playlist": "רשימת השמעה חדשה",
     "import-button": "ייבוא מקובץ (JSON)",
     "import-fail-title": "ייבוא הפלייליסט נכשל",
     "import-success-title": "הפלייליסט יובא בהצלחה",
@@ -145,8 +145,8 @@
     "songs": "שיר {{total}}",
     "songs_plural": "{{total}} שירים",
     "title": "כותרת",
-    "tracks-selected-plural": "tracks selected",
-    "tracks-selected-singular": "track selected"
+    "tracks-selected-plural": "רצועות שנבחרו",
+    "tracks-selected-singular": "רצועה שנבחרה"
   },
   "plugins": {
     "add-a-plugin": "הורדת תוסף",
@@ -173,8 +173,8 @@
     "header": "תור",
     "header-track": "הרצועה הנוכחית",
     "id": "מזהה הזרמה:",
-    "source": "Source:",
-    "copy-track-url": "Copy track url to clipboard",
+    "source": "מקור:",
+    "copy-track-url": "העתק את קישור הרצועה",
     "loading": "ההזרמה עדיין נטענת.",
     "playlist-add": "הוספה לפלייליסט",
     "playlist-toast-content": "נוצר הפלייליסט {{name}}.",
@@ -201,11 +201,11 @@
     "segment-popup": "לא מוזיקה"
   },
   "settings": {
-    "api-port": "Port used by the api",
+    "api-port": "הפורט המשמש את ה-Api",
     "api-url": "",
-    "autoradio": "Autoradio",
-    "autoradio-craziness": "Autoradio craziness",
-    "autoradio-craziness-description": "Autoradio will select songs that are less similar to the ones already in the queue the crazier it is",
+    "autoradio": "רדיו אוטומטי",
+    "autoradio-craziness": "טרוף רדיו אוטומטי",
+    "autoradio-craziness-description": "הרדיו האוטומטי יבחר שירים שפחות דומים לאלו שכבר נמצאים בתור ככל שזה מטורף יותר",
     "autoradio-description": "Add similar tracks automatically when the queue is ending",
     "compact-menu-bar": "שימוש בסגנון חסכוני לסרגל התפריט",
     "compact-queue-bar": "שימוש בסגנון חסכוני לסרגל התור",
