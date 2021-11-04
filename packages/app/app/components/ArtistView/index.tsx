@@ -43,8 +43,10 @@ const ArtistView: React.FC<ArtistViewProps> = ({
   const isOnTour = () => artist.onTour || false;
 
   // TODO: make this open in default browser, not within appplication
+  // use open npm package? https://www.npmjs.com/package/open
   // TODO: pull link from artist info or somewhere like that
-  const handleInfoLink = () => window.open('www.bandcamp.com');
+  let resourceUrl: string; // used for artist info button
+  const handleInfoLink = () => window.open(resourceUrl);
 
   function renderArtistHeader() {
     return (
@@ -116,6 +118,14 @@ const ArtistView: React.FC<ArtistViewProps> = ({
   }
 
   function renderPopularTracks() {
+    try {
+      /* may be able to use a different index from the artist object to create
+         *album info links or something similar
+         */
+      resourceUrl = JSON.stringify(artist.releases[0].resourceUrl);
+    } catch (e: Exception) {
+      // resourceURL assignment won't work while artist is loading
+    }
     return (
       !isLoading() &&
       artist.topTracks && (
