@@ -42,9 +42,7 @@ const ArtistView: React.FC<ArtistViewProps> = ({
 
   const isOnTour = () => artist.onTour || false;
 
-  // TODO: make this open in default browser, not within appplication
   // use open npm package? https://www.npmjs.com/package/open
-  // TODO: pull link from artist info or somewhere like that
   let resourceUrl: string; // used for artist info button
   const handleInfoLink = () => window.open(resourceUrl);
 
