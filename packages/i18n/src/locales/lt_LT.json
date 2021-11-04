@@ -23,7 +23,6 @@
     "main": "Pagrindinis",
     "playlists": "Grojaraščiai",
     "plugins": "Įskiepiai",
-    "presets": "Presets",
     "search": "Paieškos rezultatai",
     "settings": "Nustatymai",
     "visualizer": "Virtulizavimas",
@@ -57,6 +56,18 @@
     "header": "Atsisiuntimai",
     "name": "Pavadinimas",
     "status": "Būsena"
+  },
+  "equalizer": {
+    "classical": "Classical",
+    "club": "Club",
+    "custom": "Custom",
+    "default": "Default",
+    "full-bass": "Full Bass",
+    "full-treble": "Full Treble",
+    "pop": "Pop",
+    "presets": "Presets",
+    "reggae": "Reggae",
+    "rock": "Rock"
   },
   "favorite-albums": {
     "empty": "Nėra jokių mėgstamiausių albumų",

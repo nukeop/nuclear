@@ -23,7 +23,6 @@
     "main": "המסך הראשי",
     "playlists": "פלייליסטים",
     "plugins": "תוספים",
-    "presets": "Presets",
     "search": "תוצאות החיפוש",
     "settings": "הגדרות",
     "visualizer": "Visualizer",
@@ -57,6 +56,18 @@
     "header": "הורדות",
     "name": "שם",
     "status": "מצב"
+  },
+  "equalizer": {
+    "classical": "Classical",
+    "club": "Club",
+    "custom": "Custom",
+    "default": "Default",
+    "full-bass": "Full Bass",
+    "full-treble": "Full Treble",
+    "pop": "Pop",
+    "presets": "Presets",
+    "reggae": "Reggae",
+    "rock": "Rock"
   },
   "favorite-albums": {
     "empty": "אין אלבומים מועדפים",

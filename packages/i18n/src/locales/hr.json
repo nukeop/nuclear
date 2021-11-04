@@ -23,7 +23,6 @@
     "main": "Početna",
     "playlists": "Popis za reprodukciju",
     "plugins": "Dodaci",
-    "presets": "Presets",
     "search": "Rezultati pretraživanja",
     "settings": "Postavke",
     "visualizer": "Visualizer",
@@ -57,6 +56,18 @@
     "header": "Preuzimanja",
     "name": "Ime",
     "status": "Status"
+  },
+  "equalizer": {
+    "classical": "Classical",
+    "club": "Club",
+    "custom": "Custom",
+    "default": "Default",
+    "full-bass": "Full Bass",
+    "full-treble": "Full Treble",
+    "pop": "Pop",
+    "presets": "Presets",
+    "reggae": "Reggae",
+    "rock": "Rock"
   },
   "favorite-albums": {
     "empty": "Nema omiljenih albuma",

@@ -23,7 +23,6 @@
     "main": "Principal",
     "playlists": "Listas de reproducción",
     "plugins": "Plugins",
-    "presets": "Presets",
     "search": "Resultados de la Búsqueda",
     "settings": "Ajustes",
     "visualizer": "Visualizador",
@@ -57,6 +56,18 @@
     "header": "Descargas",
     "name": "Nombre",
     "status": "Estado"
+  },
+  "equalizer": {
+    "classical": "Classical",
+    "club": "Club",
+    "custom": "Custom",
+    "default": "Default",
+    "full-bass": "Full Bass",
+    "full-treble": "Full Treble",
+    "pop": "Pop",
+    "presets": "Presets",
+    "reggae": "Reggae",
+    "rock": "Rock"
   },
   "favorite-albums": {
     "empty": "No hay álbumes favoritos",

@@ -23,7 +23,6 @@
     "main": "Kreu",
     "playlists": "Listat e këngëve",
     "plugins": "Shtojcat",
-    "presets": "Presets",
     "search": "Rezultatet e kërkimit",
     "settings": "Përcaktimet",
     "visualizer": "Visualizer",
@@ -57,6 +56,18 @@
     "header": "Shkarkimet",
     "name": "Emri",
     "status": "Statusi"
+  },
+  "equalizer": {
+    "classical": "Classical",
+    "club": "Club",
+    "custom": "Custom",
+    "default": "Default",
+    "full-bass": "Full Bass",
+    "full-treble": "Full Treble",
+    "pop": "Pop",
+    "presets": "Presets",
+    "reggae": "Reggae",
+    "rock": "Rock"
   },
   "favorite-albums": {
     "empty": "Nuk ka albume të preferuara",

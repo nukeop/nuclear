@@ -23,7 +23,6 @@
     "main": "Huvudmeny",
     "playlists": "Spellistor",
     "plugins": "Insticksmoduler",
-    "presets": "Presets",
     "search": "Sökresultat",
     "settings": "Inställningar",
     "visualizer": "Visualiserare",
@@ -57,6 +56,18 @@
     "header": "Hämtningar",
     "name": "Namn",
     "status": "Status"
+  },
+  "equalizer": {
+    "classical": "Classical",
+    "club": "Club",
+    "custom": "Custom",
+    "default": "Default",
+    "full-bass": "Full Bass",
+    "full-treble": "Full Treble",
+    "pop": "Pop",
+    "presets": "Presets",
+    "reggae": "Reggae",
+    "rock": "Rock"
   },
   "favorite-albums": {
     "empty": "Inga favoritalbum",

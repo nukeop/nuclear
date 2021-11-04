@@ -23,7 +23,6 @@
     "main": "Hoved",
     "playlists": "Spillelister",
     "plugins": "Utvidelser",
-    "presets": "Presets",
     "search": "Resultat av søket",
     "settings": "Innstillinger",
     "visualizer": "Visualiser",
@@ -57,6 +56,18 @@
     "header": "Nedlastinger",
     "name": "Navn",
     "status": "Status:"
+  },
+  "equalizer": {
+    "classical": "Classical",
+    "club": "Club",
+    "custom": "Custom",
+    "default": "Default",
+    "full-bass": "Full Bass",
+    "full-treble": "Full Treble",
+    "pop": "Pop",
+    "presets": "Presets",
+    "reggae": "Reggae",
+    "rock": "Rock"
   },
   "favorite-albums": {
     "empty": "Ingen favoritt album",

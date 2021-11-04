@@ -23,7 +23,6 @@
     "main": "Anasayfa",
     "playlists": "Çalma listesi",
     "plugins": "Eklentiler",
-    "presets": "Presets",
     "search": "Arama",
     "settings": "Ayarlar",
     "visualizer": "Visualizer",
@@ -57,6 +56,18 @@
     "header": "İndirilenler",
     "name": "İsmi",
     "status": "Durumu"
+  },
+  "equalizer": {
+    "classical": "Classical",
+    "club": "Club",
+    "custom": "Custom",
+    "default": "Default",
+    "full-bass": "Full Bass",
+    "full-treble": "Full Treble",
+    "pop": "Pop",
+    "presets": "Presets",
+    "reggae": "Reggae",
+    "rock": "Rock"
   },
   "favorite-albums": {
     "empty": "No favorite albums",

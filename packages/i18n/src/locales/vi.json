@@ -23,7 +23,6 @@
     "main": "Main",
     "playlists": "playlist",
     "plugins": "Plugins",
-    "presets": "Presets",
     "search": "Kết quả tìm kím",
     "settings": "Cài đặt",
     "visualizer": "Visualizer",
@@ -57,6 +56,18 @@
     "header": "Tải xuống",
     "name": "Tên",
     "status": "Trạng thái"
+  },
+  "equalizer": {
+    "classical": "Classical",
+    "club": "Club",
+    "custom": "Custom",
+    "default": "Default",
+    "full-bass": "Full Bass",
+    "full-treble": "Full Treble",
+    "pop": "Pop",
+    "presets": "Presets",
+    "reggae": "Reggae",
+    "rock": "Rock"
   },
   "favorite-albums": {
     "empty": "Không có album ưa thích",

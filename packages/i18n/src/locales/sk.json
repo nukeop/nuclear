@@ -23,7 +23,6 @@
     "main": "Hlavné",
     "playlists": "Playlisty",
     "plugins": "Doplnky",
-    "presets": "Presets",
     "search": "Výsledky vyhľadávania",
     "settings": "Nastavenia",
     "visualizer": "Visualizer",
@@ -57,6 +56,18 @@
     "header": "Stiahnuté",
     "name": "Meno",
     "status": "Stav"
+  },
+  "equalizer": {
+    "classical": "Classical",
+    "club": "Club",
+    "custom": "Custom",
+    "default": "Default",
+    "full-bass": "Full Bass",
+    "full-treble": "Full Treble",
+    "pop": "Pop",
+    "presets": "Presets",
+    "reggae": "Reggae",
+    "rock": "Rock"
   },
   "favorite-albums": {
     "empty": "Žiadne obľúbené albumy",

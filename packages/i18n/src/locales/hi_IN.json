@@ -23,7 +23,6 @@
     "main": "प्रमुख",
     "playlists": "गानों की सूचीयाँ",
     "plugins": "प्लगइन्स",
-    "presets": "Presets",
     "search": "खोज परिणाम",
     "settings": "सेटिंग्स",
     "visualizer": "विजुआलाइज़र",
@@ -57,6 +56,18 @@
     "header": "डाउनलोड",
     "name": "नाम",
     "status": "स्थिति"
+  },
+  "equalizer": {
+    "classical": "Classical",
+    "club": "Club",
+    "custom": "Custom",
+    "default": "Default",
+    "full-bass": "Full Bass",
+    "full-treble": "Full Treble",
+    "pop": "Pop",
+    "presets": "Presets",
+    "reggae": "Reggae",
+    "rock": "Rock"
   },
   "favorite-albums": {
     "empty": "कोई पसंदीदा एल्बम नहीं",

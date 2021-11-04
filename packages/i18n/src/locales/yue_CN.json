@@ -23,7 +23,6 @@
     "main": "主頁",
     "playlists": "播放列表",
     "plugins": "插件",
-    "presets": "Presets",
     "search": "搜索結果",
     "settings": "設置",
     "visualizer": "可视器（？）",
@@ -57,6 +56,18 @@
     "header": "下载",
     "name": "名称",
     "status": "状态"
+  },
+  "equalizer": {
+    "classical": "Classical",
+    "club": "Club",
+    "custom": "Custom",
+    "default": "Default",
+    "full-bass": "Full Bass",
+    "full-treble": "Full Treble",
+    "pop": "Pop",
+    "presets": "Presets",
+    "reggae": "Reggae",
+    "rock": "Rock"
   },
   "favorite-albums": {
     "empty": "冇钟意嘅专辑",

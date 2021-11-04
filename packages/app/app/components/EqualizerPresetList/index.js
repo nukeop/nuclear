@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next';
 import styles from './styles.scss';
 
 const EqualizerPresetList = ({ presets, onClickItem, selected }) => {
-  const { t } = useTranslation('app');
+  const { t } = useTranslation('equalizer');
   return (
     <div className={styles.preset_list_container}>
       <h3>{t('presets')}</h3>
@@ -27,7 +27,7 @@ const EqualizerPresetList = ({ presets, onClickItem, selected }) => {
             <List.Content floated='right'>
               {preset.id === selected && <Icon name='check' />}
             </List.Content>
-            <List.Content>{preset.label}</List.Content>
+            <List.Content>{t(preset.label)}</List.Content>
           </List.Item>
         ))}
       </List>

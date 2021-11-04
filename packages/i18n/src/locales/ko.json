@@ -23,7 +23,6 @@
     "main": "주요 메뉴",
     "playlists": "플레이리스트",
     "plugins": "플러그인",
-    "presets": "Presets",
     "search": "검색 결과",
     "settings": "설정",
     "visualizer": "비주얼라이저",
@@ -57,6 +56,18 @@
     "header": "다운로드 목록",
     "name": "이름",
     "status": "상태"
+  },
+  "equalizer": {
+    "classical": "Classical",
+    "club": "Club",
+    "custom": "Custom",
+    "default": "Default",
+    "full-bass": "Full Bass",
+    "full-treble": "Full Treble",
+    "pop": "Pop",
+    "presets": "Presets",
+    "reggae": "Reggae",
+    "rock": "Rock"
   },
   "favorite-albums": {
     "empty": "좋아하는 앨범 없음.",

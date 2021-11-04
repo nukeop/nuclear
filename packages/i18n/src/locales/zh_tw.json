@@ -23,7 +23,6 @@
     "main": "主要設定",
     "playlists": "播放清單",
     "plugins": "插件",
-    "presets": "Presets",
     "search": "搜尋",
     "settings": "設定",
     "visualizer": "視覺化工具",
@@ -57,6 +56,18 @@
     "header": "下載",
     "name": "名字",
     "status": "狀態"
+  },
+  "equalizer": {
+    "classical": "Classical",
+    "club": "Club",
+    "custom": "Custom",
+    "default": "Default",
+    "full-bass": "Full Bass",
+    "full-treble": "Full Treble",
+    "pop": "Pop",
+    "presets": "Presets",
+    "reggae": "Reggae",
+    "rock": "Rock"
   },
   "favorite-albums": {
     "empty": "最喜歡的專輯為空",

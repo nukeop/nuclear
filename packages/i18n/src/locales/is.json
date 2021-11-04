@@ -23,7 +23,6 @@
     "main": "Aðalsíður",
     "playlists": "Lagalistar",
     "plugins": "Viðbætur",
-    "presets": "Presets",
     "search": "Leitarniðurstöður",
     "settings": "Stillingar",
     "visualizer": "Visualizer",
@@ -57,6 +56,18 @@
     "header": "Niðurhalað",
     "name": "Nafn",
     "status": "Staða"
+  },
+  "equalizer": {
+    "classical": "Classical",
+    "club": "Club",
+    "custom": "Custom",
+    "default": "Default",
+    "full-bass": "Full Bass",
+    "full-treble": "Full Treble",
+    "pop": "Pop",
+    "presets": "Presets",
+    "reggae": "Reggae",
+    "rock": "Rock"
   },
   "favorite-albums": {
     "empty": "Engin uppáhalds albúm",
