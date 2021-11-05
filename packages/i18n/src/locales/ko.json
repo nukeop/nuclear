@@ -88,7 +88,6 @@
   },
   "help": {
     "about": "Nuclear Music Player에 대하여",
-    "agpl-disclaimer": "This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. See the GNU Affero General Public License for more details.",
     "contributors": "Our top 10 Contributors",
     "header": "무료 음악 스트리밍을 위한 데스크탑 음악 재생 프로그램",
     "released": "AGPL-3.0 라이선스로 배포되었습니다.",

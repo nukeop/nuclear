@@ -88,7 +88,6 @@
   },
   "help": {
     "about": "על אודות נגן המוזיקה Nuclear",
-    "agpl-disclaimer": "This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. See the GNU Affero General Public License for more details.",
     "contributors": "Our top 10 Contributors",
     "header": "נגן מוזיקה עבור שולחן העבודה להזרמה ממקורות חופשיים",
     "released": "מופץ בכפוף לרישיון AGPL-3.0",

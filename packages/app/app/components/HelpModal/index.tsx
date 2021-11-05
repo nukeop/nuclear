@@ -6,6 +6,7 @@ import { useTranslation } from 'react-i18next';
 import Contributors, { ContributorState } from './Contributors';
 
 import HelpButton from '../HelpButton';
+import { agplDisclaimer } from './const';
 
 import logoImg from '../../../resources/media/logo_full_light.png';
 import mastodonImg from '../../../resources/media/mastodon.svg';
@@ -74,7 +75,7 @@ const HelpModal: React.FC<HelpModalProps> = ({
         </Modal.Description>
       </Modal.Content>
       <Modal.Content>
-        <Modal.Description>{t('agpl-disclaimer')}</Modal.Description>
+        <Modal.Description>{agplDisclaimer}</Modal.Description>
       </Modal.Content>
       <Modal.Content>
         <div className={styles.social_icons}>

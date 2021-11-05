@@ -88,7 +88,6 @@
   },
   "help": {
     "about": "Tietoa Nuclear Musiikki soittimesta",
-    "agpl-disclaimer": "This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. See the GNU Affero General Public License for more details.",
     "contributors": "Our top 10 Contributors",
     "header": "Työpöytäsovellus musiikin streamaamiseen ilmaisista lähteistä",
     "released": "Lisenssi: AGPL-3.0",
