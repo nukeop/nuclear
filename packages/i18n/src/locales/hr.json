@@ -25,7 +25,8 @@
     "plugins": "Dodaci",
     "search": "Rezultati pretraživanja",
     "settings": "Postavke",
-    "visualizer": "Visualizer"
+    "visualizer": "Visualizer",
+    "version": "Version"
   },
   "artist": {
     "count": "Broj sviranja",
@@ -56,6 +57,18 @@
     "name": "Ime",
     "status": "Status"
   },
+  "equalizer": {
+    "classical": "Classical",
+    "club": "Club",
+    "custom": "Custom",
+    "default": "Default",
+    "full-bass": "Full Bass",
+    "full-treble": "Full Treble",
+    "pop": "Pop",
+    "presets": "Presets",
+    "reggae": "Reggae",
+    "rock": "Rock"
+  },
   "favorite-albums": {
     "empty": "Nema omiljenih albuma",
     "empty-help": "Dodaj neke albume u omiljene i oni će se pojaviti ovdje!",
@@ -75,6 +88,7 @@
   },
   "help": {
     "about": "O Nuclear Music Playeru",
+    "contributors": "Our top 10 Contributors",
     "header": "Desktop glazbeni player za streamanje iz besplatnih izvora",
     "released": "objavljen pod licencom AGPL-3.0",
     "report": "Submit issues or new features",
@@ -184,14 +198,17 @@
   "search": {
     "album": "Album",
     "album_plural": "Albums",
+    "all": "All",
     "artist": "Artist",
     "artist_plural": "Artists",
     "clear-history": "Clear history",
     "empty": "Ništa nije pronađeno.",
     "last-searches": "Last searches",
+    "live-stream": "LiveStream",
     "placeholder": "Traži...",
     "playlist": "Playlist",
     "playlist_plural": "Playlists",
+    "podcast": "Podcast",
     "queue-add": "Dodaj sve pjesme u red za reproduckiju",
     "track": "Track",
     "track_plural": "Tracks",
@@ -232,6 +249,7 @@
     "lastfm-description": "Kako bi omogućili scrobbling, morate prvo povezati i autorizirati Nuclear na Last.fm-u, a zatim se prijaviti.",
     "lastfm-enable": "Omogući scrobbling za Last.fm",
     "lastfm-title": "Last.fm",
+    "less": "Less",
     "login": "Prijava",
     "logout": "Odjava",
     "loop-after-queue-end": "Petlja nakon sviranja zadnje pjesme u redu za reprodukciju",
@@ -245,11 +263,13 @@
     "mastodon-post-format-label": "Post format",
     "mastodon-title": "",
     "mini-player": "Koristi mini player stil",
+    "more": "More",
     "discord-rich-presence": "Toggle discord rich presence (requires restart)",
     "notification-timeout": "Čekanje na obavijest",
     "notlogged": "Niste prijavljeni",
     "playback": "Reprodukcija",
     "program-settings": "Postavke programa",
+    "saving-in": "Saving in:",
     "seek-iteration": "Broj preskočenih sekundi naprijed/nazad kada se koriste tipke sa strelicama.",
     "shuffle-queue": "Izmješaj redoslijed pjesama",
     "shuffle-when-going-back": "Izmješaj kada ideš na prethodnu pjesmu",

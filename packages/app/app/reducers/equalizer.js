@@ -10,55 +10,55 @@ import {
 
 const getPresets = (custom) => [
   {
-    label: 'Default',
+    label: 'default',
     id: 'default',
     values: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     preAmp: 0
   },
   {
-    label: 'Classical',
+    label: 'classical',
     id: 'classical',
     values: [0, 0, 0, 0, 0, 0, 0, -4, -4, -4, -6],
     preAmp: 0
   },
   {
-    label: 'Club',
+    label: 'club',
     id: 'club',
     values: [0, 0, 0, 2, 4, 4, 4, 2, 0, 0, 0],
     preAmp: 0
   },
   {
-    label: 'Pop',
+    label: 'pop',
     id: 'pop',
     values: [-2, -1, 2, 3, 4, 3, 0, -1, -1, -1, -1],
     preAmp: 0
   },
   {
-    label: 'Reggae',
+    label: 'reggae',
     id: 'reggae',
     values: [0, 0, 0, 0, -2, 0, 2, 2, 0, 0, 0],
     preAmp: 0
   },
   {
-    label: 'Rock',
+    label: 'rock',
     id: 'rock',
     values: [5, 4, 3, -2, -3, -2, 2, 5, 6, 6, 6],
     preAmp: 0
   },
   {
-    label: 'Full bass',
+    label: 'full-bass',
     id: 'full-bass',
     values: [6, 6, 6, 6, 4, 0, -2, -4, -6, -6, -6],
     preAmp: 0
   },
   {
-    label: 'Full treble',
+    label: 'full-treble',
     id: 'full-treble',
     values: [-6, -6, -6, -6, -2, 2, 6, 8, 8, 9, 9],
     preAmp: 0
   },
   {
-    label: 'Custom',
+    label: 'custom',
     id: 'custom',
     ...custom
   }

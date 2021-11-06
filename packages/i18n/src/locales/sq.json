@@ -25,7 +25,8 @@
     "plugins": "Shtojcat",
     "search": "Rezultatet e kërkimit",
     "settings": "Përcaktimet",
-    "visualizer": "Visualizer"
+    "visualizer": "Visualizer",
+    "version": "Version"
   },
   "artist": {
     "count": "Numërimi i këngëve",
@@ -56,6 +57,18 @@
     "name": "Emri",
     "status": "Statusi"
   },
+  "equalizer": {
+    "classical": "Classical",
+    "club": "Club",
+    "custom": "Custom",
+    "default": "Default",
+    "full-bass": "Full Bass",
+    "full-treble": "Full Treble",
+    "pop": "Pop",
+    "presets": "Presets",
+    "reggae": "Reggae",
+    "rock": "Rock"
+  },
   "favorite-albums": {
     "empty": "Nuk ka albume të preferuara",
     "empty-help": "Shtoni disa albume tek të preferuarit dhe ato do shfaqen këtu!",
@@ -75,6 +88,7 @@
   },
   "help": {
     "about": "Rreth Nuclear Music Player",
+    "contributors": "Our top 10 Contributors",
     "header": "Aplikacion desktop për të dëgjuar muzikë nga burime të hapura",
     "released": "publikuar nën licensën AGPL-3.0",
     "report": "Submit issues or new features",
@@ -184,14 +198,17 @@
   "search": {
     "album": "Albumi",
     "album_plural": "Albumet",
+    "all": "All",
     "artist": "Artisti",
     "artist_plural": "Artistët",
     "clear-history": "Clear history",
     "empty": "Nuk u gjet asgjë.",
     "last-searches": "Last searches",
+    "live-stream": "LiveStream",
     "placeholder": "Kërko...",
     "playlist": "Lista e këngëve",
     "playlist_plural": "Listat e këngëve",
+    "podcast": "Podcast",
     "queue-add": "Shto të gjitha këngët në radhë",
     "track": "Kënga",
     "track_plural": "Këngët",
@@ -232,6 +249,7 @@
     "lastfm-description": "Në mënyrë që të aktivizoni dërgimin automatik të këngëve të dëgjuara, në fillim ju duhet të lidheni dhe të autorizoni Nuclear në Last.fm, dhe pastaj klikoni kyçuni.",
     "lastfm-enable": "Aktivizoni dërgimin automatik të këngëve të dëgjuara në Last.fm",
     "lastfm-title": "Last.fm",
+    "less": "Less",
     "login": "Kyçuni",
     "logout": "Dilni",
     "loop-after-queue-end": "Rifilloni pasi të luani këngët e fundit në listë",
@@ -245,11 +263,13 @@
     "mastodon-post-format-label": "Post format",
     "mastodon-title": "",
     "mini-player": "Use mini player style",
+    "more": "More",
     "discord-rich-presence": "Toggle discord rich presence (requires restart)",
     "notification-timeout": "Njoftim për mbarimt ë kohës",
     "notlogged": "Nuk jeni kyçur",
     "playback": "Playback",
     "program-settings": "Cilësimet e programit",
+    "saving-in": "Saving in:",
     "seek-iteration": "Numri i sekondave për të parë përpara/pas kur shtypni butonat e shigjetave",
     "shuffle-queue": "Përzieni këngët",
     "shuffle-when-going-back": "Përzieni në këngën e mëparshme",

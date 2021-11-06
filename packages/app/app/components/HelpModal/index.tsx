@@ -111,7 +111,7 @@ const HelpModal: React.FC<HelpModalProps> = ({
       <Modal.Content>
         <div className={styles.contributors}>
           <Header className={styles.contributors_header}>
-            Our top 10 Contributors
+            {t('contributors')}
           </Header>
           <Contributors
             {...githubContrib}

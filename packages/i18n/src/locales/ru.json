@@ -25,7 +25,8 @@
     "plugins": "Плагины",
     "search": "Результаты Поиска",
     "settings": "Настройки",
-    "visualizer": "Визуализатор"
+    "visualizer": "Визуализатор",
+    "version": "Version"
   },
   "artist": {
     "count": "Счетчик проигрываний",
@@ -56,6 +57,18 @@
     "name": "Название",
     "status": "Статус"
   },
+  "equalizer": {
+    "classical": "Classical",
+    "club": "Club",
+    "custom": "Custom",
+    "default": "Default",
+    "full-bass": "Full Bass",
+    "full-treble": "Full Treble",
+    "pop": "Pop",
+    "presets": "Presets",
+    "reggae": "Reggae",
+    "rock": "Rock"
+  },
   "favorite-albums": {
     "empty": "Нет избранных альбомов",
     "empty-help": "Добавьте пару альбомов в избранные, и они появятся здесь.",
@@ -75,6 +88,7 @@
   },
   "help": {
     "about": "О программе Nuclear Music Player",
+    "contributors": "Our top 10 Contributors",
     "header": "Проигрыватель музыки из свободных источников",
     "released": "выпущен под лицензией AGPL-3.0",
     "report": "Сообщить о проблеме или предложить улучшения",
@@ -184,14 +198,17 @@
   "search": {
     "album": "Альбом",
     "album_plural": "Альбомы",
+    "all": "All",
     "artist": "Исполнитель",
     "artist_plural": "Исполнители",
     "clear-history": "Очистить историю",
     "empty": "Ничего не найдено.",
     "last-searches": "Последние запросы",
+    "live-stream": "LiveStream",
     "placeholder": "Поиск...",
     "playlist": "Плейлист",
     "playlist_plural": "Плейлисты",
+    "podcast": "Podcast",
     "queue-add": "Добавить все треки в очередь",
     "track": "Трек",
     "track_plural": "Треки",
@@ -232,6 +249,7 @@
     "lastfm-description": "Чтобы включить скробблинг, надо подключить и авторизовать Nuclear на Last.fm, а затем нажать \"Войти\".",
     "lastfm-enable": "Включить скробблинг на Last.fm",
     "lastfm-title": "Last.fm",
+    "less": "Less",
     "login": "Войти",
     "logout": "Выйти",
     "loop-after-queue-end": "Повторять очередь, когда она закончится",
@@ -245,6 +263,7 @@
     "mastodon-post-format-label": "Формат поста",
     "mastodon-title": "",
     "mini-player": "Режим мини-плеера",
+    "more": "More",
     "discord-rich-presence": "Интеграция с Discord (понадобится перезапуск)",
     "notification-timeout": "Время показа уведомлений",
     "notlogged": "Вход не выполнен",

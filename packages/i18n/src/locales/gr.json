@@ -25,7 +25,8 @@
     "plugins": "Πρόσθετα",
     "search": "Αναζήτηση",
     "settings": "Ρυθμίσεις",
-    "visualizer": "Visualizer"
+    "visualizer": "Visualizer",
+    "version": "Version"
   },
   "artist": {
     "count": "Συνολικός αριθμός αναπαραγωγών",
@@ -56,6 +57,18 @@
     "name": "Όνομα",
     "status": "Κατάσταση"
   },
+  "equalizer": {
+    "classical": "Classical",
+    "club": "Club",
+    "custom": "Custom",
+    "default": "Default",
+    "full-bass": "Full Bass",
+    "full-treble": "Full Treble",
+    "pop": "Pop",
+    "presets": "Presets",
+    "reggae": "Reggae",
+    "rock": "Rock"
+  },
   "favorite-albums": {
     "empty": "Κανένα αγαπημένο άλμπουμ.",
     "empty-help": "Προσθέστε άλμπουμ στην λίστα αγαπημένων και θα εμφανίζονται εδώ !",
@@ -75,6 +88,7 @@
   },
   "help": {
     "about": "Περισσότερα για τον \"Nuclear Music Player\"",
+    "contributors": "Our top 10 Contributors",
     "header": "Εφαρμογή αναπαραγωγής μουσικής από δωρεάν πηγές στο διαδίκτυο.",
     "released": "Διατίθεται βάσει του AGPL-3.0",
     "report": "Submit issues or new features",
@@ -184,14 +198,17 @@
   "search": {
     "album": "Album",
     "album_plural": "Albums",
+    "all": "All",
     "artist": "Artist",
     "artist_plural": "Artists",
     "clear-history": "Clear history",
     "empty": "Κανένα αποτέλεσμα.",
     "last-searches": "Last searches",
+    "live-stream": "LiveStream",
     "placeholder": "Αναζήτηση...",
     "playlist": "Playlist",
     "playlist_plural": "Playlists",
+    "podcast": "Podcast",
     "queue-add": "Προσθήκη όλων στην λίστα αναπαραγωγής",
     "track": "Track",
     "track_plural": "Tracks",
@@ -232,6 +249,7 @@
     "lastfm-description": "Για την ενεργοποίηση του scrobbler, πρέπει να συνδεθείτε στο Last.fm και να δώσετε άδεια για πρόσβαση στο Nuclear.",
     "lastfm-enable": "Ενεργοποίηση του scrobbler de Last.fm",
     "lastfm-title": "Last.fm",
+    "less": "Less",
     "login": "Σύνδεση",
     "logout": "Αποσύνδεση",
     "loop-after-queue-end": "Αναπαραγωγή σε επανάληψη μετα το τελευταίο τραγούδι της λίστας",
@@ -245,11 +263,13 @@
     "mastodon-post-format-label": "Post format",
     "mastodon-title": "",
     "mini-player": "Χρησιμοποιείστε τον μινι Player",
+    "more": "More",
     "discord-rich-presence": "Toggle discord rich presence (requires restart)",
     "notification-timeout": "Χρόνος παραμονής των ειδοποιήσεων",
     "notlogged": "Αποσυνδεμένος/η",
     "playback": "Αναπαραγωγή",
     "program-settings": "Εφαρμογή",
+    "saving-in": "Saving in:",
     "seek-iteration": "Αριθμός δευτερολέπτων που προχωρούν/επιστρέφουν τα βέλη",
     "shuffle-queue": "Τυχαία σειρά",
     "shuffle-when-going-back": "Τυχαία αναπαραγωγή όταν πατάτε \"προηγούμενο\"",

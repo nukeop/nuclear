@@ -25,7 +25,8 @@
     "plugins": "플러그인",
     "search": "검색 결과",
     "settings": "설정",
-    "visualizer": "비주얼라이저"
+    "visualizer": "비주얼라이저",
+    "version": "Version"
   },
   "artist": {
     "count": "총 재생 횟수",
@@ -56,6 +57,18 @@
     "name": "이름",
     "status": "상태"
   },
+  "equalizer": {
+    "classical": "Classical",
+    "club": "Club",
+    "custom": "Custom",
+    "default": "Default",
+    "full-bass": "Full Bass",
+    "full-treble": "Full Treble",
+    "pop": "Pop",
+    "presets": "Presets",
+    "reggae": "Reggae",
+    "rock": "Rock"
+  },
   "favorite-albums": {
     "empty": "좋아하는 앨범 없음.",
     "empty-help": "'좋아요'한 앨범이 여기에 표시됩니다!",
@@ -75,6 +88,7 @@
   },
   "help": {
     "about": "Nuclear Music Player에 대하여",
+    "contributors": "Our top 10 Contributors",
     "header": "무료 음악 스트리밍을 위한 데스크탑 음악 재생 프로그램",
     "released": "AGPL-3.0 라이선스로 배포되었습니다.",
     "report": "버그 신고/새로운 기능 제안",
@@ -184,14 +198,17 @@
   "search": {
     "album": "앨범",
     "album_plural": "앨범",
+    "all": "All",
     "artist": "아티스트",
     "artist_plural": "아티스트",
     "clear-history": "재생 기록 삭제",
     "empty": "검색 결과가 없습니다.",
     "last-searches": "최근 검색",
+    "live-stream": "LiveStream",
     "placeholder": "검색...",
     "playlist": "플레이리스트",
     "playlist_plural": "재생목록",
+    "podcast": "Podcast",
     "queue-add": "재생 목록에 모든 음악 추가",
     "track": "음악",
     "track_plural": "트랙",
@@ -232,6 +249,7 @@
     "lastfm-description": "Scrobbling을 활성화하려면 먼저 Last.fm에서 Nuclear를 연결 및 인증한 후 로그인을 누르십시오.",
     "lastfm-enable": "Last.fm에서 Scrobbling 활성화",
     "lastfm-title": "Last.fm",
+    "less": "Less",
     "login": "로그인",
     "logout": "로그아웃",
     "loop-after-queue-end": "재생 목록의 마지막 음악을 재생한 후 전체 반복",
@@ -245,11 +263,13 @@
     "mastodon-post-format-label": "게시 형식",
     "mastodon-title": "",
     "mini-player": "미니 플레이어 모드 사용",
+    "more": "More",
     "discord-rich-presence": "Toggle discord rich presence (requires restart)",
     "notification-timeout": "알림 시간 초과",
     "notlogged": "로그인하지 않았습니다.",
     "playback": "재생",
     "program-settings": "프로그램 설정",
+    "saving-in": "Saving in:",
     "seek-iteration": "화살표 키를 눌렀을 때 탐색할 시간 (초)",
     "shuffle-queue": "음악 셔플",
     "shuffle-when-going-back": "이전 음악 재생 시 셔플",

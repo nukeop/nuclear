@@ -25,7 +25,8 @@
     "plugins": "Pluginy",
     "search": "Wyniki wyszukiwania",
     "settings": "Ustawienia",
-    "visualizer": "Wizualizator"
+    "visualizer": "Wizualizator",
+    "version": "Version"
   },
   "artist": {
     "count": "Liczba odtworzeń",
@@ -56,6 +57,18 @@
     "name": "Nazwa",
     "status": "Status"
   },
+  "equalizer": {
+    "classical": "Classical",
+    "club": "Club",
+    "custom": "Custom",
+    "default": "Default",
+    "full-bass": "Full Bass",
+    "full-treble": "Full Treble",
+    "pop": "Pop",
+    "presets": "Presets",
+    "reggae": "Reggae",
+    "rock": "Rock"
+  },
   "favorite-albums": {
     "empty": "Brak ulubionych albumów",
     "empty-help": "Dodaj album do ulubionych, a pojawi się tutaj!",
@@ -75,6 +88,7 @@
   },
   "help": {
     "about": "O Nuclear Music Player",
+    "contributors": "Our top 10 Contributors",
     "header": "Desktopowy odtwarzacz muzyki do strumieniowania z darmowych źródeł",
     "released": "wydany na licencji AGPL-3.0",
     "report": "Zgłoś problemy lub nowe funkcje",
@@ -184,14 +198,17 @@
   "search": {
     "album": "Album",
     "album_plural": "Albumy",
+    "all": "All",
     "artist": "Wykonawca",
     "artist_plural": "Wykonawcy",
     "clear-history": "Wyczyść historię",
     "empty": "Brak wyników.",
     "last-searches": "Ostatnio wyszukiwane",
+    "live-stream": "LiveStream",
     "placeholder": "Wyszukaj...",
     "playlist": "Lista odtwarzania",
     "playlist_plural": "List odtwarzania",
+    "podcast": "Podcast",
     "queue-add": "Dodaj wszystkie utwory do kolejki",
     "track": "Utwór",
     "track_plural": "Utwory",
@@ -232,6 +249,7 @@
     "lastfm-description": "Aby włączyć scrobblowanie, musisz najpierw połączyć się i autoryzować Nuclear na Last.fm, a następnie kliknąć Zaloguj.",
     "lastfm-enable": "Włącz scrobbling do Last.fm",
     "lastfm-title": "Last.fm",
+    "less": "Less",
     "login": "Zaloguj",
     "logout": "Wyloguj",
     "loop-after-queue-end": "Zapętl po odtworzeniu ostatniego utworu w kolejce",
@@ -245,11 +263,13 @@
     "mastodon-post-format-label": "Format wpisu",
     "mastodon-title": "",
     "mini-player": "Miniodtwarzacz",
+    "more": "More",
     "discord-rich-presence": "Toggle discord rich presence (requires restart)",
     "notification-timeout": "Limit czasu powiadomienia",
     "notlogged": "Niezalogowany",
     "playback": "Odtwarzanie",
     "program-settings": "Ustawienia programu",
+    "saving-in": "Saving in:",
     "seek-iteration": "Liczba sekund, o którą będzie przewijany utwór do przodu/wstecz, kiedy przyciski strzałek będą wciśnięte",
     "shuffle-queue": "Mieszaj utwory",
     "shuffle-when-going-back": "Mieszaj utwory wstecz",

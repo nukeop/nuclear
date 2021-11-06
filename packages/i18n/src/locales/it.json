@@ -25,7 +25,8 @@
     "plugins": "Plugin",
     "search": "Risultati della Ricerca",
     "settings": "Impostazioni",
-    "visualizer": "Visualizzatore"
+    "visualizer": "Visualizzatore",
+    "version": "Version"
   },
   "artist": {
     "count": "Conteggio riproduzioni",
@@ -56,6 +57,18 @@
     "name": "Nome",
     "status": "Stato"
   },
+  "equalizer": {
+    "classical": "Classical",
+    "club": "Club",
+    "custom": "Custom",
+    "default": "Default",
+    "full-bass": "Full Bass",
+    "full-treble": "Full Treble",
+    "pop": "Pop",
+    "presets": "Presets",
+    "reggae": "Reggae",
+    "rock": "Rock"
+  },
   "favorite-albums": {
     "empty": "Nessun album preferito",
     "empty-help": "Prova ad aggiungere alcuni album ai preferiti e compariranno qui!",
@@ -75,6 +88,7 @@
   },
   "help": {
     "about": "Sul Lettore Musicale Nuclear",
+    "contributors": "Our top 10 Contributors",
     "header": "Il lettore musicale desktop per riprodurre musica da fonti gratuite",
     "released": "rilasciato sotto AGPL-3.0",
     "report": "Invia problemi o nuove funzionalità",
@@ -184,14 +198,17 @@
   "search": {
     "album": "Album",
     "album_plural": "Album",
+    "all": "All",
     "artist": "Artista",
     "artist_plural": "Artisti",
     "clear-history": "Pulisci la cronologia",
     "empty": "Nessun risultato.",
     "last-searches": "Ultime ricerche",
+    "live-stream": "LiveStream",
     "placeholder": "Cerca...",
     "playlist": "Playlist",
     "playlist_plural": "Playlist",
+    "podcast": "Podcast",
     "queue-add": "Aggiungi tutte le tracce alla coda",
     "track": "Traccia",
     "track_plural": "Tracce",
@@ -232,6 +249,7 @@
     "lastfm-description": "Per poter abilitare lo scrobbling, devi prima connetterti e autorizzare Nuclear su Last.fm, poi cliccare accedi.",
     "lastfm-enable": "Abilita lo scrobbling a Last.fm",
     "lastfm-title": "Last.fm",
+    "less": "Less",
     "login": "Accedi",
     "logout": "Disconnettiti",
     "loop-after-queue-end": "Ripeti dopo la riproduzione dell'ultimo elemento della coda",
@@ -245,11 +263,13 @@
     "mastodon-post-format-label": "Formato del post",
     "mastodon-title": "",
     "mini-player": "Usa lo stile del mini lettore",
+    "more": "More",
     "discord-rich-presence": "Toggle discord rich presence (requires restart)",
     "notification-timeout": "Timeout di notifica",
     "notlogged": "Non connesso",
     "playback": "Riproduzione",
     "program-settings": "Impostazioni del programma",
+    "saving-in": "Saving in:",
     "seek-iteration": "Numero di secondi per mandare avanti/indietro premendo i tasti freccia",
     "shuffle-queue": "Riproduci casualmente le canzoni",
     "shuffle-when-going-back": "Riproduci casualmente sulla traccia precedente",

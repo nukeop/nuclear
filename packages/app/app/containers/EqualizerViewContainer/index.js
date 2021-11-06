@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux';
 import * as EqualizerActions from '../../actions/equalizer';
 import Equalizer from '../../components/Equalizer';
 import EqualizerPresetList from '../../components/EqualizerPresetList';
+import { useTranslation } from 'react-i18next';
 
 import styles from './styles.scss';
 
@@ -22,9 +23,10 @@ const EqualizerViewContainer = () => {
   const dispatch = useDispatch();
   const actions = useMemo(() => bindActionCreators(EqualizerActions, dispatch), [dispatch]);
   const presets = usePresets();
+  const { t } = useTranslation('app');
   return (
     <div className={styles.equalizer_view}>
-      <h1>Equalizer</h1>
+      <h1>{t('equalizer')}</h1>
       <div className={styles.equalizer_components}>
         <Equalizer
           values={preset.values}

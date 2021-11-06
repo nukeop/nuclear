@@ -25,7 +25,8 @@
     "plugins": "Zásuvné moduly",
     "search": "Výsledky vyhledávání",
     "settings": "Nastavení",
-    "visualizer": "Visualizer"
+    "visualizer": "Visualizer",
+    "version": "Version"
   },
   "artist": {
     "count": "Počet přehrání",
@@ -56,6 +57,18 @@
     "name": "Název",
     "status": "Stav"
   },
+  "equalizer": {
+    "classical": "Classical",
+    "club": "Club",
+    "custom": "Custom",
+    "default": "Default",
+    "full-bass": "Full Bass",
+    "full-treble": "Full Treble",
+    "pop": "Pop",
+    "presets": "Presets",
+    "reggae": "Reggae",
+    "rock": "Rock"
+  },
   "favorite-albums": {
     "empty": "Žádná oblíbená alba",
     "empty-help": "Zkuste některá alba přidat mezi oblíbená a objeví se zde!",
@@ -75,6 +88,7 @@
   },
   "help": {
     "about": "O hudebním přehrávači Nuclear",
+    "contributors": "Our top 10 Contributors",
     "header": "Desktopový přehrávač hudby pro streamování z volně dostupných zdrojů",
     "released": "Vydán pod licencí AGPL-3.0",
     "report": "Submit issues or new features",
@@ -184,14 +198,17 @@
   "search": {
     "album": "Album",
     "album_plural": "Albums",
+    "all": "All",
     "artist": "Umělec",
     "artist_plural": "Artists",
     "clear-history": "Clear history",
     "empty": "Nic nenalezeno.",
     "last-searches": "Last searches",
+    "live-stream": "LiveStream",
     "placeholder": "Vyhledat...",
     "playlist": "Playlist",
     "playlist_plural": "Seznamy skladeb",
+    "podcast": "Podcast",
     "queue-add": "Přidat všechny skladby do fronty",
     "track": "Track",
     "track_plural": "Tracks",
@@ -232,6 +249,7 @@
     "lastfm-description": "Pro automatické přidání poslouchaných skladeb do profilu se musíte nejprve připojit a autorizovat Nuclear k Last.fm, poté kliknout na přihlásit se.",
     "lastfm-enable": "Povolit automatické přidání poslouchaných skladeb do profilu na Last.fm",
     "lastfm-title": "Last.fm",
+    "less": "Less",
     "login": "Přihlásit",
     "logout": "Odhlásit",
     "loop-after-queue-end": "Smyčka po přehrání poslední položky ve frontě",
@@ -245,11 +263,13 @@
     "mastodon-post-format-label": "Post format",
     "mastodon-title": "",
     "mini-player": "Use mini player style",
+    "more": "More",
     "discord-rich-presence": "Toggle discord rich presence (requires restart)",
     "notification-timeout": "Časový limit notifikace",
     "notlogged": "Nepřihlášen",
     "playback": "Playback",
     "program-settings": "Nastavení programu",
+    "saving-in": "Saving in:",
     "seek-iteration": "Počet vteřin posunu vpřed/zpět po stisknutí kláves šipek",
     "shuffle-queue": "Zamíchat skladby",
     "shuffle-when-going-back": "Zamíchat při přechodu na předchozí skladbu",
