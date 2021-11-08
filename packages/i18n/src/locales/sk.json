@@ -179,7 +179,8 @@
     "playlist-add": "Pridať do playlistu",
     "playlist-toast-content": "Playlist {{name}} bol vytvorený.",
     "playlist-toast-title": "Playlist vytvorený",
-    "title": "Názov:"
+    "title": "Názov:",
+    "live": "Live"
   },
   "search": {
     "album": "Album",
@@ -198,6 +199,7 @@
     "you-can-search-for": "You can search for:"
   },
   "seekbar": {
+    "live": "Live",
     "segment-popup": "Non-music"
   },
   "settings": {
