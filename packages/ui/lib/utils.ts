@@ -2,6 +2,10 @@ import _ from 'lodash';
 import { Track } from './types';
 
 export function formatDuration(duration) {
+  if (typeof duration === 'string') {
+    return duration;
+  }
+
   if (!_.isFinite(parseInt(duration)) || duration <= 0) {
     return '00:00';
   }
