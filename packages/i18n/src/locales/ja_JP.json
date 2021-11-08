@@ -179,7 +179,8 @@
     "playlist-add": "プレイリストに追加",
     "playlist-toast-content": "プレイリスト {{name}} を作成しました。",
     "playlist-toast-title": "プレイリストを作成しました",
-    "title": "タイトル:"
+    "title": "タイトル:",
+    "live": "Live"
   },
   "search": {
     "album": "アルバム",
@@ -198,6 +199,7 @@
     "you-can-search-for": "以下を検索できます:"
   },
   "seekbar": {
+    "live": "Live",
     "segment-popup": "Non-music"
   },
   "settings": {
