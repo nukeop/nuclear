@@ -179,7 +179,8 @@
     "playlist-add": "Idagdag sa playlist",
     "playlist-toast-content": "Nagawa ang playlist {{name}}.",
     "playlist-toast-title": "Nagawa ang playlist",
-    "title": "Title:"
+    "title": "Title:",
+    "live": "Live"
   },
   "search": {
     "album": "Album",
@@ -198,6 +199,7 @@
     "you-can-search-for": "You can search for:"
   },
   "seekbar": {
+    "live": "Live",
     "segment-popup": "Non-music"
   },
   "settings": {
