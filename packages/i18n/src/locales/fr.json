@@ -179,7 +179,8 @@
     "playlist-add": "Ajouter à la playlist",
     "playlist-toast-content": "La playlist {{name}} a été créé.",
     "playlist-toast-title": "Playliste créé",
-    "title": "Titre :"
+    "title": "Titre :",
+    "live": "Live"
   },
   "search": {
     "album": "Album",
@@ -198,6 +199,7 @@
     "you-can-search-for": "Vous pouvez rechercher :"
   },
   "seekbar": {
+    "live": "Live",
     "segment-popup": "Hors musique"
   },
   "settings": {
