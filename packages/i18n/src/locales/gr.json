@@ -179,7 +179,8 @@
     "playlist-add": "Προσθήκη σε λίστα",
     "playlist-toast-content": "Η λίστα {{name}} δημιουργήθηκε.",
     "playlist-toast-title": "Η λιστα δημιουργήθηκε",
-    "title": "Τίτλος :"
+    "title": "Τίτλος :",
+    "live": "Live"
   },
   "search": {
     "album": "Album",
@@ -198,6 +199,7 @@
     "you-can-search-for": "You can search for:"
   },
   "seekbar": {
+    "live": "Live",
     "segment-popup": "Non-music"
   },
   "settings": {
