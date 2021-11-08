@@ -179,7 +179,8 @@
     "playlist-add": "Tambahkan ke daftar putar",
     "playlist-toast-content": "Daftar putar {{name}} berhasil dibuat.",
     "playlist-toast-title": "Daftar putar dibuat",
-    "title": "JUdul:"
+    "title": "JUdul:",
+    "live": "Live"
   },
   "search": {
     "album": "Album",
@@ -198,6 +199,7 @@
     "you-can-search-for": "You can search for:"
   },
   "seekbar": {
+    "live": "Live",
     "segment-popup": "Non-music"
   },
   "settings": {
