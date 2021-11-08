@@ -179,7 +179,8 @@
     "playlist-add": "הוספה לפלייליסט",
     "playlist-toast-content": "נוצר הפלייליסט {{name}}.",
     "playlist-toast-title": "הפלייליסט נוצר",
-    "title": "כותרת:"
+    "title": "כותרת:",
+    "live": "Live"
   },
   "search": {
     "album": "אלבום",
@@ -198,6 +199,7 @@
     "you-can-search-for": "אפשר לחפש אחר:"
   },
   "seekbar": {
+    "live": "Live",
     "segment-popup": "לא מוזיקה"
   },
   "settings": {
