@@ -179,7 +179,8 @@
     "playlist-add": "Přidat do seznamu skladeb",
     "playlist-toast-content": "Seznam skladeb {{name}} byl vytvořen.",
     "playlist-toast-title": "Seznam skladeb vytvořen",
-    "title": "Název:"
+    "title": "Název:",
+    "live": "Live"
   },
   "search": {
     "album": "Album",
@@ -198,6 +199,7 @@
     "you-can-search-for": "You can search for:"
   },
   "seekbar": {
+    "live": "Live",
     "segment-popup": "Non-music"
   },
   "settings": {
