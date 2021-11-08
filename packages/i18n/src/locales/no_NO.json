@@ -179,7 +179,8 @@
     "playlist-add": "Legg til i spilleliste",
     "playlist-toast-content": "Spilleliste {{name}} er opprettet.",
     "playlist-toast-title": "Spilleliste opprettet",
-    "title": "Tittel:"
+    "title": "Tittel:",
+    "live": "Live"
   },
   "search": {
     "album": "album",
@@ -198,6 +199,7 @@
     "you-can-search-for": "Du kan søke etter:"
   },
   "seekbar": {
+    "live": "Live",
     "segment-popup": "Ikke-musikk"
   },
   "settings": {
