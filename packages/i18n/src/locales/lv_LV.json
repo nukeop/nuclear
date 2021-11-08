@@ -179,7 +179,8 @@
     "playlist-add": "Pievienot atskaņošanas sarakstam",
     "playlist-toast-content": "Atskaņošanas saraksts {{name}} izveidots.",
     "playlist-toast-title": "Atskaņošanas saraksts izveidots",
-    "title": "Nosaukums:"
+    "title": "Nosaukums:",
+    "live": "Live"
   },
   "search": {
     "album": "Albums",
@@ -198,6 +199,7 @@
     "you-can-search-for": "Jūs varat meklēt:"
   },
   "seekbar": {
+    "live": "Live",
     "segment-popup": "Ne-mūzika"
   },
   "settings": {
