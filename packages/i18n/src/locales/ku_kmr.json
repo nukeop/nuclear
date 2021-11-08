@@ -179,7 +179,8 @@
     "playlist-add": "Tevlî rêzoka lêdanan bike",
     "playlist-toast-content": "Rêzoka lêdanan {{name}} hate afirandin.",
     "playlist-toast-title": "Rêzoka lêdanan hate afirandin",
-    "title": "Sernav:"
+    "title": "Sernav:",
+    "live": "Live"
   },
   "search": {
     "album": "Album",
@@ -198,6 +199,7 @@
     "you-can-search-for": "Tu dikarî bigerî bo:"
   },
   "seekbar": {
+    "live": "Live",
     "segment-popup": "No-muzîkî"
   },
   "settings": {
