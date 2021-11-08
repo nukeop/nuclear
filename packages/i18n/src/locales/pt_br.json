@@ -179,7 +179,8 @@
     "playlist-add": "Adicionar à Lista de Reprodução",
     "playlist-toast-content": "A Lista de Reprodução {{name}} Foi criada.",
     "playlist-toast-title": "Lista de Reprodução Criada",
-    "title": "Título:"
+    "title": "Título:",
+    "live": "Live"
   },
   "search": {
     "album": "Álbum",
@@ -198,6 +199,7 @@
     "you-can-search-for": "Pode procurar por:"
   },
   "seekbar": {
+    "live": "Live",
     "segment-popup": "Non-music"
   },
   "settings": {
