@@ -179,7 +179,8 @@
     "playlist-add": "Добавить в плейлист",
     "playlist-toast-content": "Плейлист {{name}} создан.",
     "playlist-toast-title": "Плейлист создан",
-    "title": "Название:"
+    "title": "Название:",
+    "live": "Live"
   },
   "search": {
     "album": "Альбом",
@@ -198,6 +199,7 @@
     "you-can-search-for": "Вы можете искать:"
   },
   "seekbar": {
+    "live": "Live",
     "segment-popup": "Немузыка"
   },
   "settings": {
