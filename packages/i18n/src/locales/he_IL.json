@@ -25,8 +25,7 @@
     "plugins": "תוספים",
     "search": "תוצאות החיפוש",
     "settings": "הגדרות",
-    "visualizer": "Visualizer",
-    "version": "Version"
+    "visualizer": "Visualizer"
   },
   "artist": {
     "count": "מספר השמעות",
@@ -57,18 +56,6 @@
     "name": "שם",
     "status": "מצב"
   },
-  "equalizer": {
-    "classical": "Classical",
-    "club": "Club",
-    "custom": "Custom",
-    "default": "Default",
-    "full-bass": "Full Bass",
-    "full-treble": "Full Treble",
-    "pop": "Pop",
-    "presets": "Presets",
-    "reggae": "Reggae",
-    "rock": "Rock"
-  },
   "favorite-albums": {
     "empty": "אין אלבומים מועדפים",
     "empty-help": "אפשר להוסיף כמה אלבומים למועדפים ואז הם יופיעו כאן!",
@@ -88,7 +75,6 @@
   },
   "help": {
     "about": "על אודות נגן המוזיקה Nuclear",
-    "contributors": "Our top 10 Contributors",
     "header": "נגן מוזיקה עבור שולחן העבודה להזרמה ממקורות חופשיים",
     "released": "מופץ בכפוף לרישיון AGPL-3.0",
     "report": "דיווח על בעיות או בקשת תכונות חדשות",
@@ -198,17 +184,14 @@
   "search": {
     "album": "אלבום",
     "album_plural": "אלבומים",
-    "all": "All",
     "artist": "אומן/ית",
     "artist_plural": "אומנים",
     "clear-history": "ניקוי ההיסטוריה",
     "empty": "לא נמצא דבר.",
     "last-searches": "החיפושים האחרונים",
-    "live-stream": "LiveStream",
     "placeholder": "חיפוש...",
     "playlist": "פלייליסט",
     "playlist_plural": "פלייליסטים",
-    "podcast": "Podcast",
     "queue-add": "הוספת כל הרצועות לתור",
     "track": "רצועה",
     "track_plural": "רצועות",
@@ -249,7 +232,6 @@
     "lastfm-description": "In order to enable scrobbling, you first have to connect and authorize Nuclear on Last.fm, then click log in.",
     "lastfm-enable": "Enable scrobbling to Last.fm",
     "lastfm-title": "Last.fm",
-    "less": "Less",
     "login": "כניסה",
     "logout": "יציאה",
     "loop-after-queue-end": "Loop after playing the last queue item",
@@ -263,13 +245,11 @@
     "mastodon-post-format-label": "Post format",
     "mastodon-title": "",
     "mini-player": "שימוש בסגנון הנגן הממוזער",
-    "more": "More",
     "discord-rich-presence": "Toggle discord rich presence (requires restart)",
     "notification-timeout": "זמן קצוב להתראה",
     "notlogged": "לא מחובר",
     "playback": "Playback",
     "program-settings": "הגדרות התוכנית",
-    "saving-in": "Saving in:",
     "seek-iteration": "Number of seconds to seek forward/backwards when pressing arrow keys",
     "shuffle-queue": "ערבוב השירים",
     "shuffle-when-going-back": "Shuffle on previous track",

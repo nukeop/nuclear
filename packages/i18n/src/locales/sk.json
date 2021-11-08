@@ -25,8 +25,7 @@
     "plugins": "Doplnky",
     "search": "Výsledky vyhľadávania",
     "settings": "Nastavenia",
-    "visualizer": "Visualizer",
-    "version": "Version"
+    "visualizer": "Visualizer"
   },
   "artist": {
     "count": "Počet prehratí",
@@ -57,18 +56,6 @@
     "name": "Meno",
     "status": "Stav"
   },
-  "equalizer": {
-    "classical": "Classical",
-    "club": "Club",
-    "custom": "Custom",
-    "default": "Default",
-    "full-bass": "Full Bass",
-    "full-treble": "Full Treble",
-    "pop": "Pop",
-    "presets": "Presets",
-    "reggae": "Reggae",
-    "rock": "Rock"
-  },
   "favorite-albums": {
     "empty": "Žiadne obľúbené albumy",
     "empty-help": "Skúste pridať album medzi obľubené a objaví sa tu!",
@@ -88,7 +75,6 @@
   },
   "help": {
     "about": "O Nuclear Music Player",
-    "contributors": "Our top 10 Contributors",
     "header": "Desktopový prehrávač hudby na streamovanie hudby z voľne dostupnyých zdrojov",
     "released": "vydaný pod AGPL-3.0",
     "report": "Submit issues or new features",
@@ -198,17 +184,14 @@
   "search": {
     "album": "Album",
     "album_plural": "Albums",
-    "all": "All",
     "artist": "Umelec",
     "artist_plural": "Artists",
     "clear-history": "Clear history",
     "empty": "Nič sa nenašlo.",
     "last-searches": "Last searches",
-    "live-stream": "LiveStream",
     "placeholder": "Hľadať...",
     "playlist": "Playlist",
     "playlist_plural": "Playlisty",
-    "podcast": "Podcast",
     "queue-add": "Pridať všetky skladby do poradia",
     "track": "Track",
     "track_plural": "Tracks",
@@ -249,7 +232,6 @@
     "lastfm-description": "Aby Ste mohli odosielať dáta o skladbách a tak dostávať relevantnejšie tipy, musíte pripojiť a autorizovať Nuclear na Last.fm, potom kliknite na prihlásenie",
     "lastfm-enable": "Povoliť odosielanie dát do Last.fm",
     "lastfm-title": "Last.fm",
-    "less": "Less",
     "login": "Prihlásiť sa",
     "logout": "Odhlásiť sa",
     "loop-after-queue-end": "Slučka po prehratí poslednej skladby z poradia",
@@ -263,13 +245,11 @@
     "mastodon-post-format-label": "Post format",
     "mastodon-title": "",
     "mini-player": "Use mini player style",
-    "more": "More",
     "discord-rich-presence": "Toggle discord rich presence (requires restart)",
     "notification-timeout": "Oznámenie o vypršaní času",
     "notlogged": "Neprihlásený",
     "playback": "Prehrávanie",
     "program-settings": "Programové nastavenia",
-    "saving-in": "Saving in:",
     "seek-iteration": "Počet sekúnd, ktoré majú ubehnúť pri pretáčaní vpred-vzad pri stláčaní šipiek",
     "shuffle-queue": "Poprehadzovať skladby",
     "shuffle-when-going-back": "Poprehadzovať na predošlej skladbe",

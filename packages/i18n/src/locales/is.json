@@ -25,8 +25,7 @@
     "plugins": "Viðbætur",
     "search": "Leitarniðurstöður",
     "settings": "Stillingar",
-    "visualizer": "Visualizer",
-    "version": "Version"
+    "visualizer": "Visualizer"
   },
   "artist": {
     "count": "Spilateljari",
@@ -57,18 +56,6 @@
     "name": "Nafn",
     "status": "Staða"
   },
-  "equalizer": {
-    "classical": "Classical",
-    "club": "Club",
-    "custom": "Custom",
-    "default": "Default",
-    "full-bass": "Full Bass",
-    "full-treble": "Full Treble",
-    "pop": "Pop",
-    "presets": "Presets",
-    "reggae": "Reggae",
-    "rock": "Rock"
-  },
   "favorite-albums": {
     "empty": "Engin uppáhalds albúm",
     "empty-help": "Prófaðu að bæta við nokkrum albúmum í uppáhalds og þeir munu birtast hér!",
@@ -88,7 +75,6 @@
   },
   "help": {
     "about": "Um Nuclear Music Player",
-    "contributors": "Our top 10 Contributors",
     "header": "Tónlistaspilari sem streymir lög frá frium stöðum",
     "released": "Gefið út undir AGPL-3.0",
     "report": "Submit issues or new features",
@@ -198,17 +184,14 @@
   "search": {
     "album": "Albúm",
     "album_plural": "Albúm",
-    "all": "All",
     "artist": "Tónlistamaður",
     "artist_plural": "Tónlistamenn",
     "clear-history": "Clear history",
     "empty": "Ekkert fannst.",
     "last-searches": "Last searches",
-    "live-stream": "LiveStream",
     "placeholder": "Leita...",
     "playlist": "Lagalisti",
     "playlist_plural": "Lagalistar",
-    "podcast": "Podcast",
     "queue-add": "Bæta öllum lögum í biðröðina",
     "track": "Lag",
     "track_plural": "Lög",
@@ -249,7 +232,6 @@
     "lastfm-description": "Til þess að leyfa skriðlun, verður þú að tengast og heimila Nuclear á Last.fm, síðan smella á skrá inn.",
     "lastfm-enable": "Leyfa skriðlun á Last.fm",
     "lastfm-title": "Last.fm",
-    "less": "Less",
     "login": "Skrá inn",
     "logout": "Skrá út",
     "loop-after-queue-end": "Lykkja eftir að spila síðsta hlut í lykkju",
@@ -263,13 +245,11 @@
     "mastodon-post-format-label": "Post format",
     "mastodon-title": "",
     "mini-player": "Nota minni spilarastíl",
-    "more": "More",
     "discord-rich-presence": "Toggle discord rich presence (requires restart)",
     "notification-timeout": "Tímamörk tilkynninga",
     "notlogged": "Ekki skráður inn",
     "playback": "Afspilun",
     "program-settings": "Stillingar forrits",
-    "saving-in": "Saving in:",
     "seek-iteration": "Sekúndur sem leita áfram/afturábak þegar ýtt er á örvatakka",
     "shuffle-queue": "Stokka lögum",
     "shuffle-when-going-back": "Stokka á síðasta lagi",
