@@ -179,7 +179,8 @@
     "playlist-add": "Lägg till i spellista",
     "playlist-toast-content": "Spellistan {{name}} har skapats.",
     "playlist-toast-title": "Spellista skapad",
-    "title": "Titel:"
+    "title": "Titel:",
+    "live": "Live"
   },
   "search": {
     "album": "Album",
@@ -198,6 +199,7 @@
     "you-can-search-for": "Du kan söka efter:"
   },
   "seekbar": {
+    "live": "Live",
     "segment-popup": "Inte music"
   },
   "settings": {
