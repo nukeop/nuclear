@@ -179,7 +179,8 @@
     "playlist-add": "Lisää soittolistaan",
     "playlist-toast-content": "Soittolista {{name}} on luotu",
     "playlist-toast-title": "Soittolista luotu",
-    "title": "Nimi:"
+    "title": "Nimi:",
+    "live": "Live"
   },
   "search": {
     "album": "Albumi",
@@ -198,6 +199,7 @@
     "you-can-search-for": "Voit etsiä hakusanalla:"
   },
   "seekbar": {
+    "live": "Live",
     "segment-popup": "Non-music"
   },
   "settings": {
