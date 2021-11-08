@@ -179,7 +179,8 @@
     "playlist-add": "Zur Wiedergabeliste hinzufügen",
     "playlist-toast-content": "Wiedergabeliste {{name}} wurde erstellt.",
     "playlist-toast-title": "Wiedergabeliste erstellt",
-    "title": "Titel:"
+    "title": "Titel:",
+    "live": "Live"
   },
   "search": {
     "album": "Album",
@@ -198,6 +199,7 @@
     "you-can-search-for": "Du kannst suchen nach:"
   },
   "seekbar": {
+    "live": "Live",
     "segment-popup": "Nicht-Musik"
   },
   "settings": {
