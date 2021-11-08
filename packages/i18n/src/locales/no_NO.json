@@ -25,8 +25,7 @@
     "plugins": "Utvidelser",
     "search": "Resultat av søket",
     "settings": "Innstillinger",
-    "visualizer": "Visualiser",
-    "version": "Version"
+    "visualizer": "Visualiser"
   },
   "artist": {
     "count": "Spill teller",
@@ -57,18 +56,6 @@
     "name": "Navn",
     "status": "Status:"
   },
-  "equalizer": {
-    "classical": "Classical",
-    "club": "Club",
-    "custom": "Custom",
-    "default": "Default",
-    "full-bass": "Full Bass",
-    "full-treble": "Full Treble",
-    "pop": "Pop",
-    "presets": "Presets",
-    "reggae": "Reggae",
-    "rock": "Rock"
-  },
   "favorite-albums": {
     "empty": "Ingen favoritt album",
     "empty-help": "Prøv å legge til noen album i favoritter og de vil vises her!",
@@ -88,7 +75,6 @@
   },
   "help": {
     "about": "Om Nuclear Music Player",
-    "contributors": "Our top 10 Contributors",
     "header": "Skrivebord musikkspiller for å strømme fra gratis kilder",
     "released": "frigjort under AGPL-3,0",
     "report": "Send problemer eller nye funksjoner",
@@ -198,17 +184,14 @@
   "search": {
     "album": "album",
     "album_plural": "Album",
-    "all": "All",
     "artist": "Kunstner",
     "artist_plural": "Artister",
     "clear-history": "Tøm logg",
     "empty": "Fant ingenting.",
     "last-searches": "Siste søk",
-    "live-stream": "LiveStream",
     "placeholder": "Søk...",
     "playlist": "Spilleliste",
     "playlist_plural": "Spillelister",
-    "podcast": "Podcast",
     "queue-add": "Legg til alle spor i køen",
     "track": "Spor",
     "track_plural": "Spor",
@@ -249,7 +232,6 @@
     "lastfm-description": "For å aktivere scrobbling, må du først koble til og godkjenne Nuclear på Last.fm, og deretter klikke på Logg inn.",
     "lastfm-enable": "Aktiver scrobbling til Last.fm",
     "lastfm-title": "Last.fm",
-    "less": "Less",
     "login": "Logg inn",
     "logout": "Logg ut",
     "loop-after-queue-end": "Sløyfe etter siste kø-objekt",
@@ -263,13 +245,11 @@
     "mastodon-post-format-label": "Post format",
     "mastodon-title": "",
     "mini-player": "Bruk mini spiller stil",
-    "more": "More",
     "discord-rich-presence": "Toggle discord rich presence (requires restart)",
     "notification-timeout": "Tidsavbrudd for varsel",
     "notlogged": "Ikke logget inn",
     "playback": "Avspilling",
     "program-settings": "Programmets innstillinger",
-    "saving-in": "Saving in:",
     "seek-iteration": "Antall sekunder å søke fremover eller bakover når du trykker på piltastene",
     "shuffle-queue": "Shuffle sanger",
     "shuffle-when-going-back": "Bland på forrige spor",

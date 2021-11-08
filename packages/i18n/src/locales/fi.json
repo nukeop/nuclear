@@ -25,8 +25,7 @@
     "plugins": "Pluginit",
     "search": "Hakutulokset",
     "settings": "Asetukset",
-    "visualizer": "Visualisoija",
-    "version": "Version"
+    "visualizer": "Visualisoija"
   },
   "artist": {
     "count": "Soittokerrat",
@@ -57,18 +56,6 @@
     "name": "Nimi",
     "status": "Tila"
   },
-  "equalizer": {
-    "classical": "Classical",
-    "club": "Club",
-    "custom": "Custom",
-    "default": "Default",
-    "full-bass": "Full Bass",
-    "full-treble": "Full Treble",
-    "pop": "Pop",
-    "presets": "Presets",
-    "reggae": "Reggae",
-    "rock": "Rock"
-  },
   "favorite-albums": {
     "empty": "Ei suosikki albumeita",
     "empty-help": "Lisää albumeita suosikkeihin ja ne näkyvät tässä!",
@@ -88,7 +75,6 @@
   },
   "help": {
     "about": "Tietoa Nuclear Musiikki soittimesta",
-    "contributors": "Our top 10 Contributors",
     "header": "Työpöytäsovellus musiikin streamaamiseen ilmaisista lähteistä",
     "released": "Lisenssi: AGPL-3.0",
     "report": "Ilmoita ongelmasta tai ehdota uusia ominaisuuksia",
@@ -198,17 +184,14 @@
   "search": {
     "album": "Albumi",
     "album_plural": "Albumit",
-    "all": "All",
     "artist": "Artisti",
     "artist_plural": "Artistit",
     "clear-history": "Tyhjennä historia",
     "empty": "Mitään ei löytynyt.",
     "last-searches": "Viimeisimmät haut",
-    "live-stream": "LiveStream",
     "placeholder": "Etsi...",
     "playlist": "Soittolista",
     "playlist_plural": "Soittolistat",
-    "podcast": "Podcast",
     "queue-add": "Lisää kaikki kappaleet jonoon",
     "track": "Kappale",
     "track_plural": "Kappaleet",
@@ -249,7 +232,6 @@
     "lastfm-description": "In order to enable scrobbling, you first have to connect and authorize Nuclear on Last.fm, then click log in.",
     "lastfm-enable": "Enable scrobbling to Last.fm",
     "lastfm-title": "Last.fm",
-    "less": "Less",
     "login": "Kirjaudu sisään",
     "logout": "Kirjaudu ulos",
     "loop-after-queue-end": "Looppaa jonon viimeisen kappaleen jälkeen",
@@ -263,13 +245,11 @@
     "mastodon-post-format-label": "Post format",
     "mastodon-title": "",
     "mini-player": "Käytä minisoitinta",
-    "more": "More",
     "discord-rich-presence": "Toggle discord rich presence (requires restart)",
     "notification-timeout": "Notification timeout",
     "notlogged": "Ei kirjautunut sisään",
     "playback": "Toisto",
     "program-settings": "Sovelluksen asetukset",
-    "saving-in": "Saving in:",
     "seek-iteration": "Number of seconds to seek forward/backwards when pressing arrow keys",
     "shuffle-queue": "Sekoita kappaleet",
     "shuffle-when-going-back": "Sekoita edellinen kappale napilla",

@@ -25,8 +25,7 @@
     "plugins": "Plugins",
     "search": "Kết quả tìm kím",
     "settings": "Cài đặt",
-    "visualizer": "Visualizer",
-    "version": "Version"
+    "visualizer": "Visualizer"
   },
   "artist": {
     "count": "Số lượt nghe",
@@ -57,18 +56,6 @@
     "name": "Tên",
     "status": "Trạng thái"
   },
-  "equalizer": {
-    "classical": "Classical",
-    "club": "Club",
-    "custom": "Custom",
-    "default": "Default",
-    "full-bass": "Full Bass",
-    "full-treble": "Full Treble",
-    "pop": "Pop",
-    "presets": "Presets",
-    "reggae": "Reggae",
-    "rock": "Rock"
-  },
   "favorite-albums": {
     "empty": "Không có album ưa thích",
     "empty-help": "Album được đánh dấu ưa thích sẽ xuất hiện ở đây.",
@@ -88,7 +75,6 @@
   },
   "help": {
     "about": "Giới thiệu về Nuclear Music Player",
-    "contributors": "Our top 10 Contributors",
     "header": "Trình phát nhạc miễn phí cho việc streaming trên máy tính.",
     "released": "Phát hành dựa trên tiêu chuẩn AGPL-3.0",
     "report": "Báo cáo lỗi hoặc cải tiến chức năng",
@@ -198,17 +184,14 @@
   "search": {
     "album": "Album",
     "album_plural": "Albums",
-    "all": "All",
     "artist": "Nghệ sỹ",
     "artist_plural": "Artists",
     "clear-history": "Xoá lịch sử",
     "empty": "Không tìm thấy.",
     "last-searches": "Lần tìm kiếm cuối",
-    "live-stream": "LiveStream",
     "placeholder": "Tìm kiếm...",
     "playlist": "Playlist",
     "playlist_plural": "Playlists",
-    "podcast": "Podcast",
     "queue-add": "Thêm tất cả vào danh sách đang ",
     "track": "Bài hát",
     "track_plural": "Tracks",
@@ -249,7 +232,6 @@
     "lastfm-description": "Để bật chế độ scrobbling, bạn phải kết nối nuclear với Last.fm bằng cách đăng nhập.",
     "lastfm-enable": "Để bật chế độ scrobbling cho Last.fm",
     "lastfm-title": "Last.fm",
-    "less": "Less",
     "login": "Đăng nhập",
     "logout": "Đăng xuất",
     "loop-after-queue-end": "Lặp lại sau khi kết thúc bài hát cuối trong danh sách phát",
@@ -263,13 +245,11 @@
     "mastodon-post-format-label": "Post format",
     "mastodon-title": "",
     "mini-player": "Dùng chế độ mini cho trình phát",
-    "more": "More",
     "discord-rich-presence": "Toggle discord rich presence (requires restart)",
     "notification-timeout": "Thời gian hiển thị thông báo",
     "notlogged": "Chưa đăng nhập",
     "playback": "Lặp lại",
     "program-settings": "Cài đặt chương trình",
-    "saving-in": "Saving in:",
     "seek-iteration": "Số giây sẽ tua tới/lui khi nhấn phím mũi tên qua phải/ qua trái",
     "shuffle-queue": "Phát ngẫu nhiên",
     "shuffle-when-going-back": "Phát ngẫu nhiên cả bài hát trước đó",

@@ -25,8 +25,7 @@
     "plugins": "Plugins",
     "search": "Recherches",
     "settings": "Réglages",
-    "visualizer": "Visualiseur",
-    "version": "Version"
+    "visualizer": "Visualiseur"
   },
   "artist": {
     "count": "Nombre d'écoutes",
@@ -57,18 +56,6 @@
     "name": "Nom",
     "status": "État"
   },
-  "equalizer": {
-    "classical": "Classical",
-    "club": "Club",
-    "custom": "Custom",
-    "default": "Default",
-    "full-bass": "Full Bass",
-    "full-treble": "Full Treble",
-    "pop": "Pop",
-    "presets": "Presets",
-    "reggae": "Reggae",
-    "rock": "Rock"
-  },
   "favorite-albums": {
     "empty": "Aucun album favoris",
     "empty-help": "Essayez d'ajouter des albums à vos favoris, ils apparaîtront ici !",
@@ -88,7 +75,6 @@
   },
   "help": {
     "about": "À propos de \"Nuclear Music Player\"",
-    "contributors": "Our top 10 Contributors",
     "header": "Application de bureau jouant de la musique à partir de sources libres",
     "released": "distribué sous licence AGPL-3.0",
     "report": "Soumettre un problème ou une nouvelle fonctionnalité",
@@ -198,17 +184,14 @@
   "search": {
     "album": "Album",
     "album_plural": "Albums",
-    "all": "All",
     "artist": "Artiste",
     "artist_plural": "Artistes",
     "clear-history": "Effacer l’historique",
     "empty": "Aucun résultat.",
     "last-searches": "Dernières recherches",
-    "live-stream": "LiveStream",
     "placeholder": "Rechercher...",
     "playlist": "Playlist",
     "playlist_plural": "Playlists",
-    "podcast": "Podcast",
     "queue-add": "Ajouter tous les morceaux à la file de lecture",
     "track": "Morceau",
     "track_plural": "Morceaux",
@@ -249,7 +232,6 @@
     "lastfm-description": "Afin d'activer le scrobbler, vous devez vous connecter et authoriser Nuclear sur lastfm.",
     "lastfm-enable": "Activer le scrobbler de Last.fm",
     "lastfm-title": "Last.fm",
-    "less": "Less",
     "login": "Se connecter",
     "logout": "Se déconnecter",
     "loop-after-queue-end": "Lecture en boucle à la fin de la liste de lecture",
@@ -263,13 +245,11 @@
     "mastodon-post-format-label": "Format de publication",
     "mastodon-title": "",
     "mini-player": "Utiliser le style de mini-lecteur",
-    "more": "More",
     "discord-rich-presence": "Toggle discord rich presence (requires restart)",
     "notification-timeout": "Temps d'affichage des notifications",
     "notlogged": "Non connecté",
     "playback": "Relire",
     "program-settings": "Application",
-    "saving-in": "Saving in:",
     "seek-iteration": "Nombre de seconde à avancer/reculer en appuyant sur les flèches",
     "shuffle-queue": "Ordre aléatoire",
     "shuffle-when-going-back": "Mélanger les morceaux précédents",

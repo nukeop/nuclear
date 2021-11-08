@@ -25,8 +25,7 @@
     "plugins": "Udvidelser",
     "search": "Søgeresultater",
     "settings": "Indstillinger",
-    "visualizer": "Visualizer",
-    "version": "Version"
+    "visualizer": "Visualizer"
   },
   "artist": {
     "count": "Antal afspilninger",
@@ -57,18 +56,6 @@
     "name": "Navn",
     "status": "Status"
   },
-  "equalizer": {
-    "classical": "Classical",
-    "club": "Club",
-    "custom": "Custom",
-    "default": "Default",
-    "full-bass": "Full Bass",
-    "full-treble": "Full Treble",
-    "pop": "Pop",
-    "presets": "Presets",
-    "reggae": "Reggae",
-    "rock": "Rock"
-  },
   "favorite-albums": {
     "empty": "Ingen favoritalbums",
     "empty-help": "Prøv at tilføje albums til favoritter for at vise dem her!",
@@ -88,7 +75,6 @@
   },
   "help": {
     "about": "Om Nuclear Music Player",
-    "contributors": "Our top 10 Contributors",
     "header": "Desktop music player for streaming fra gratis kilder",
     "released": "Udgivet under AGPL-3.0",
     "report": "Submit issues or new features",
@@ -198,17 +184,14 @@
   "search": {
     "album": "Album",
     "album_plural": "Albums",
-    "all": "All",
     "artist": "Artist",
     "artist_plural": "Artists",
     "clear-history": "Clear history",
     "empty": "Intet fundet.",
     "last-searches": "Last searches",
-    "live-stream": "LiveStream",
     "placeholder": "Søg...",
     "playlist": "Playlist",
     "playlist_plural": "Afspilningslister",
-    "podcast": "Podcast",
     "queue-add": "Tilføj alle sange til kø",
     "track": "Track",
     "track_plural": "Tracks",
@@ -249,7 +232,6 @@
     "lastfm-description": " For at aktivere scrobbling, skal du først forbinde og have bemyndigelsesadgang til Nuclear på Last.fm. Derefter skal du klikke på log ind.",
     "lastfm-enable": "Aktiver scrobbling til Last.fm",
     "lastfm-title": "Last.fm",
-    "less": "Less",
     "login": "Log ind",
     "logout": "Log ud",
     "loop-after-queue-end": "Loop efter afspilning af den sidste sang i køen",
@@ -263,13 +245,11 @@
     "mastodon-post-format-label": "Post format",
     "mastodon-title": "",
     "mini-player": "Brug mini afspiller stil",
-    "more": "More",
     "discord-rich-presence": "Toggle discord rich presence (requires restart)",
     "notification-timeout": "Notifikation timeout",
     "notlogged": "Ikke logget ind",
     "playback": "Afspilning",
     "program-settings": "Programindstillinger",
-    "saving-in": "Saving in:",
     "seek-iteration": "Antal sekunder at søge fremad/baglæns når piletasterne trykkes.",
     "shuffle-queue": "Shuffle sange",
     "shuffle-when-going-back": "Shuffle ved tidligere nummer",

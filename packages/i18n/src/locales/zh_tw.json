@@ -25,8 +25,7 @@
     "plugins": "插件",
     "search": "搜尋",
     "settings": "設定",
-    "visualizer": "視覺化工具",
-    "version": "Version"
+    "visualizer": "視覺化工具"
   },
   "artist": {
     "count": "播放次數",
@@ -57,18 +56,6 @@
     "name": "名字",
     "status": "狀態"
   },
-  "equalizer": {
-    "classical": "Classical",
-    "club": "Club",
-    "custom": "Custom",
-    "default": "Default",
-    "full-bass": "Full Bass",
-    "full-treble": "Full Treble",
-    "pop": "Pop",
-    "presets": "Presets",
-    "reggae": "Reggae",
-    "rock": "Rock"
-  },
   "favorite-albums": {
     "empty": "最喜歡的專輯為空",
     "empty-help": "嘗試添加一些專輯到最喜歡的中，它們會在這裡出現",
@@ -88,7 +75,6 @@
   },
   "help": {
     "about": "關於",
-    "contributors": "Our top 10 Contributors",
     "header": "免費的串流播放軟體",
     "released": "遵循 AGPL-3.0 發行",
     "report": "提交issues或新的功能",
@@ -198,17 +184,14 @@
   "search": {
     "album": "專輯",
     "album_plural": "專輯",
-    "all": "All",
     "artist": "演出者",
     "artist_plural": "藝術家",
     "clear-history": "清除歷史紀錄",
     "empty": "找不到資料",
     "last-searches": "上次搜尋",
-    "live-stream": "LiveStream",
     "placeholder": "搜尋...",
     "playlist": "播放清單",
     "playlist_plural": "播放列表",
-    "podcast": "Podcast",
     "queue-add": "將所有曲目新增到播放佇列",
     "track": "音樂標題",
     "track_plural": "音軌",
@@ -249,7 +232,6 @@
     "lastfm-description": "為了要啟用連接，您必須先到 Last.fm 連接與認證再登入",
     "lastfm-enable": "啟用連接到 Last.fm",
     "lastfm-title": "Last.fm",
-    "less": "Less",
     "login": "登入",
     "logout": "登出",
     "loop-after-queue-end": "到達最後曲目後自動循環",
@@ -263,13 +245,11 @@
     "mastodon-post-format-label": "帖子格式",
     "mastodon-title": "",
     "mini-player": "使用迷你樣式播放器",
-    "more": "More",
     "discord-rich-presence": "Toggle discord rich presence (requires restart)",
     "notification-timeout": "超時提醒",
     "notlogged": "未登入",
     "playback": "播放",
     "program-settings": "程式設定",
-    "saving-in": "Saving in:",
     "seek-iteration": "按下方向鍵時前進/後退的秒數",
     "shuffle-queue": "隨機曲目",
     "shuffle-when-going-back": "播放先前的曲目",

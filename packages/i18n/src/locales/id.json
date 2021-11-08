@@ -25,8 +25,7 @@
     "plugins": "Plugin",
     "search": "Hasil Pencarian",
     "settings": "Pengaturan",
-    "visualizer": "Visualizer",
-    "version": "Version"
+    "visualizer": "Visualizer"
   },
   "artist": {
     "count": "Jumlah pemutaran",
@@ -57,18 +56,6 @@
     "name": "Nama",
     "status": "Status"
   },
-  "equalizer": {
-    "classical": "Classical",
-    "club": "Club",
-    "custom": "Custom",
-    "default": "Default",
-    "full-bass": "Full Bass",
-    "full-treble": "Full Treble",
-    "pop": "Pop",
-    "presets": "Presets",
-    "reggae": "Reggae",
-    "rock": "Rock"
-  },
   "favorite-albums": {
     "empty": "Belum ada album favorit",
     "empty-help": "Album yang kamu favoritkan akan muncul di sini!",
@@ -88,7 +75,6 @@
   },
   "help": {
     "about": "Tentang Nuclear Music Player",
-    "contributors": "Our top 10 Contributors",
     "header": "Pemutar musik desktop untuk streaming dari penyedia-penyedia bebas biaya",
     "released": "dirilis dengan lisensi AGPL-3.0",
     "report": "Submit issues or new features",
@@ -198,17 +184,14 @@
   "search": {
     "album": "Album",
     "album_plural": "Albums",
-    "all": "All",
     "artist": "Musisi",
     "artist_plural": "Artists",
     "clear-history": "Clear history",
     "empty": "Tak ada hasil temuan.",
     "last-searches": "Last searches",
-    "live-stream": "LiveStream",
     "placeholder": "Cari...",
     "playlist": "Daftar putar",
     "playlist_plural": "Daftar Putar",
-    "podcast": "Podcast",
     "queue-add": "Tambahkan semua lagu ke antrian",
     "track": "Lagu",
     "track_plural": "Tracks",
@@ -249,7 +232,6 @@
     "lastfm-description": "Agar dapat menggunakan fitur scrobbling, kamu harus sambungkan dan otorisasi Nuclear di Last.fm, kemudian klik log masuk.",
     "lastfm-enable": "Aktifkan scrobbling di Last.fm",
     "lastfm-title": "Last.fm",
-    "less": "Less",
     "login": "Log masuk",
     "logout": "Log keluar",
     "loop-after-queue-end": "Ulang pemutaran dari awal setelah item terakhir di daftar antrian",
@@ -263,13 +245,11 @@
     "mastodon-post-format-label": "Post format",
     "mastodon-title": "",
     "mini-player": "Use mini player style",
-    "more": "More",
     "discord-rich-presence": "Toggle discord rich presence (requires restart)",
     "notification-timeout": "Lama waktu-habis pada notifikasi",
     "notlogged": "Kamu belum log masuk",
     "playback": "Pemutaran",
     "program-settings": "Pengaturan program",
-    "saving-in": "Saving in:",
     "seek-iteration": "Rentang detik yang dilewatkan/dikembalikan ketika menekan tombol arah",
     "shuffle-queue": "Acak lagu",
     "shuffle-when-going-back": "Acak lagu sebelumnya",
