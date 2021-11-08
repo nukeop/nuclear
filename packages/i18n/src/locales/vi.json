@@ -179,7 +179,8 @@
     "playlist-add": "Thêm vào playlist",
     "playlist-toast-content": "Playlist {{name}} đã được tạo.",
     "playlist-toast-title": "Playlist đã được tạo",
-    "title": "Tên bài hát:"
+    "title": "Tên bài hát:",
+    "live": "Live"
   },
   "search": {
     "album": "Album",
@@ -198,6 +199,7 @@
     "you-can-search-for": "Bạn có thể tìm cho:"
   },
   "seekbar": {
+    "live": "Live",
     "segment-popup": "Phần không phải bài hát "
   },
   "settings": {
