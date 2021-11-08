@@ -179,7 +179,8 @@
     "playlist-add": "Pridėti į grojaraštį",
     "playlist-toast-content": "Grojaraštis {{name}} buvo sukurtas.",
     "playlist-toast-title": "Grojaraštis sukurtas",
-    "title": "Pavadinimas:"
+    "title": "Pavadinimas:",
+    "live": "Live"
   },
   "search": {
     "album": "Albumas",
@@ -198,6 +199,7 @@
     "you-can-search-for": "Jūs galite ieškoti:"
   },
   "seekbar": {
+    "live": "Live",
     "segment-popup": "Ne-muzika"
   },
   "settings": {
