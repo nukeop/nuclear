@@ -179,7 +179,8 @@
     "playlist-add": "加到播放清單",
     "playlist-toast-content": "{{name}} 已建立",
     "playlist-toast-title": "播放清單建立成功",
-    "title": "音樂標題"
+    "title": "音樂標題",
+    "live": "Live"
   },
   "search": {
     "album": "專輯",
@@ -198,6 +199,7 @@
     "you-can-search-for": "你可以搜索："
   },
   "seekbar": {
+    "live": "Live",
     "segment-popup": "非音樂"
   },
   "settings": {
