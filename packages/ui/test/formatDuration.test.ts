@@ -14,7 +14,7 @@ it('Should format non-number values as 00:00', () => {
   expect(formatDuration([])).toBe('00:00');
   expect(formatDuration(null)).toBe('00:00');
   expect(formatDuration({})).toBe('00:00');
-  expect(formatDuration('test')).toBe('00:00');
+  expect(formatDuration('test')).toBe('test');
 });
 
 it('Should format hours', () => {
