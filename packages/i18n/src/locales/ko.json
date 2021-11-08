@@ -179,7 +179,8 @@
     "playlist-add": "플레이리스트에 추가",
     "playlist-toast-content": "플레이리스트 \"{{name}}\"(이)가 생성되었습니다.",
     "playlist-toast-title": "플레이리스트 생성 완료",
-    "title": "제목:"
+    "title": "제목:",
+    "live": "Live"
   },
   "search": {
     "album": "앨범",
@@ -198,6 +199,7 @@
     "you-can-search-for": "다음 항목을 검색할 수 있습니다:"
   },
   "seekbar": {
+    "live": "Live",
     "segment-popup": "음악이 아님"
   },
   "settings": {
