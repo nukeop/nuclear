@@ -179,7 +179,8 @@
     "playlist-add": "Bæta í lagalista",
     "playlist-toast-content": "Lagalisti {{name}} hefur verið stofnaður.",
     "playlist-toast-title": "Lagalisti stofnaður",
-    "title": "Titill:"
+    "title": "Titill:",
+    "live": "Live"
   },
   "search": {
     "album": "Albúm",
@@ -198,6 +199,7 @@
     "you-can-search-for": "You can search for:"
   },
   "seekbar": {
+    "live": "Live",
     "segment-popup": "Non-music"
   },
   "settings": {
