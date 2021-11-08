@@ -179,7 +179,8 @@
     "playlist-add": "Dodaj u popis za reprodukciju",
     "playlist-toast-content": "Popis za reprodukiju {{name}} je kreiran.",
     "playlist-toast-title": "Popis za reprodukciju kreiran",
-    "title": "Naslov:"
+    "title": "Naslov:",
+    "live": "Live"
   },
   "search": {
     "album": "Album",
@@ -198,6 +199,7 @@
     "you-can-search-for": "You can search for:"
   },
   "seekbar": {
+    "live": "Live",
     "segment-popup": "Non-music"
   },
   "settings": {
