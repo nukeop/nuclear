@@ -44,10 +44,6 @@ const ArtistView: React.FC<ArtistViewProps> = ({
 
   const isOnTour = () => artist.onTour || false;
 
-  // TODO: remove these
-  // let resourceUrl: string; // used for artist info button
-  // const handleInfoLink = () => window.open(this.makeHref(resourceUrl));
-
   function renderArtistHeader() {
     return (
       <div className={styles.artist_header_overlay}>
@@ -141,14 +137,6 @@ const ArtistView: React.FC<ArtistViewProps> = ({
   }
 
   function renderHeaderBanner() {
-    /* try {
-      //may be able to use a different index from the artist object to create
-      //album info links or something similar
-      resourceUrl = JSON.stringify(artist.releases[0].resourceUrl);
-      console.log("resourceUrl assigned: " + resourceUrl);
-    } catch (e: Exception) {
-      // resourceURL assignment won't work while artist is loading
-    }*/
     return (
       <div
         style={{
