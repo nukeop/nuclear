@@ -24,6 +24,7 @@ type ArtistViewProps = {
   albumInfoSearch: (albumId: any, releaseType: any, release: any) => Promise<void>;
   removeFavoriteArtist: React.MouseEventHandler;
   addFavoriteArtist: React.MouseEventHandler;
+  handleArtistInfoClick: () => void;
 }
 
 const ArtistView: React.FC<ArtistViewProps> = ({
@@ -33,7 +34,8 @@ const ArtistView: React.FC<ArtistViewProps> = ({
   artistInfoSearchByName,
   albumInfoSearch,
   removeFavoriteArtist,
-  addFavoriteArtist
+  addFavoriteArtist,
+  handleArtistInfoClick
 }) => {
   const { t }= useTranslation('artist');
   const history = useHistory();
@@ -42,9 +44,9 @@ const ArtistView: React.FC<ArtistViewProps> = ({
 
   const isOnTour = () => artist.onTour || false;
 
-  // use open npm package? https://www.npmjs.com/package/open
-  let resourceUrl: string; // used for artist info button
-  const handleInfoLink = () => window.open(resourceUrl);
+  // TODO: remove these
+  // let resourceUrl: string; // used for artist info button
+  // const handleInfoLink = () => window.open(this.makeHref(resourceUrl));
 
   function renderArtistHeader() {
     return (
@@ -96,7 +98,7 @@ const ArtistView: React.FC<ArtistViewProps> = ({
                 href='#'
                 className={styles.artist_info_button}
                 data-testid='artist-info'
-                onClick={handleInfoLink}
+                onClick={handleArtistInfoClick}
               >
                 <Icon
                   name='linkify'
@@ -139,14 +141,14 @@ const ArtistView: React.FC<ArtistViewProps> = ({
   }
 
   function renderHeaderBanner() {
-    try {
-      /* may be able to use a different index from the artist object to create
-      *album info links or something similar
-      */
+    /* try {
+      //may be able to use a different index from the artist object to create
+      //album info links or something similar
       resourceUrl = JSON.stringify(artist.releases[0].resourceUrl);
+      console.log("resourceUrl assigned: " + resourceUrl);
     } catch (e: Exception) {
       // resourceURL assignment won't work while artist is loading
-    }
+    }*/
     return (
       <div
         style={{

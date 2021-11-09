@@ -2,6 +2,7 @@ import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router';
 import _ from 'lodash';
+import electron from 'electron';
 
 import * as QueueActions from '../../actions/queue';
 import * as SearchActions from '../../actions/search';
@@ -41,11 +42,20 @@ export const useArtistViewProps = () => {
 
   const addFavoriteArtist = useCallback(async () => {
     dispatch(FavoritesActions.addFavoriteArtist(artist));
+    // console.log("addFavoriteArtist called in ArtistViewContainer/hooks");
   }, [artist, dispatch]);
 
   const removeFavoriteArtist = useCallback(async () => {
     dispatch(FavoritesActions.removeFavoriteArtist(artist));
+    // console.log("removeFavoriteArtist called in ArtistViewContainer/hooks");
   }, [artist, dispatch]);
+
+  const handleExternal = (link: string) => {
+    // console.log("handleExternal in hooks");
+    link && link.length && electron.shell.openExternal(link);
+  };
+
+  const handleArtistInfoClick = () => handleExternal('https://google.com');
 
   return {
     artist,
@@ -54,6 +64,7 @@ export const useArtistViewProps = () => {
     artistInfoSearchByName,
     albumInfoSearch,
     removeFavoriteArtist,
-    addFavoriteArtist
+    addFavoriteArtist,
+    handleArtistInfoClick
   };
 };
