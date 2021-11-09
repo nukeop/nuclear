@@ -42,20 +42,18 @@ export const useArtistViewProps = () => {
 
   const addFavoriteArtist = useCallback(async () => {
     dispatch(FavoritesActions.addFavoriteArtist(artist));
-    // console.log("addFavoriteArtist called in ArtistViewContainer/hooks");
   }, [artist, dispatch]);
 
   const removeFavoriteArtist = useCallback(async () => {
     dispatch(FavoritesActions.removeFavoriteArtist(artist));
-    // console.log("removeFavoriteArtist called in ArtistViewContainer/hooks");
   }, [artist, dispatch]);
 
+  const handleArtistInfoClick = () => handleExternal(artist.releases[0].resourceUrl);
+  
   const handleExternal = (link: string) => {
-    // console.log("handleExternal in hooks");
     link && link.length && electron.shell.openExternal(link);
   };
 
-  const handleArtistInfoClick = () => handleExternal('https://google.com');
 
   return {
     artist,
