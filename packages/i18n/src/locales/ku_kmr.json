@@ -180,7 +180,7 @@
     "playlist-toast-content": "Rêzoka lêdanan {{name}} hate afirandin.",
     "playlist-toast-title": "Rêzoka lêdanan hate afirandin",
     "title": "Sernav:",
-    "live": "Live"
+    "live": "Zindî"
   },
   "search": {
     "album": "Album",
@@ -199,8 +199,8 @@
     "you-can-search-for": "Tu dikarî bigerî bo:"
   },
   "seekbar": {
-    "live": "Live",
-    "segment-popup": "No-muzîkî"
+    "live": "Zindî",
+    "segment-popup": "Ne-muzîkî"
   },
   "settings": {
     "api-port": "Dergeha ku ji alîyê Api ve tê bikaranîn",
