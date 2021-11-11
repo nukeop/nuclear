@@ -180,7 +180,7 @@
     "playlist-toast-content": "प्लेलिस्ट {{name}} बन गई है।",
     "playlist-toast-title": "प्लेलिस्ट बनाई गई!",
     "title": "शीर्षक:",
-    "live": "Live"
+    "live": "लाइव"
   },
   "search": {
     "album": "एल्बम",
@@ -199,7 +199,7 @@
     "you-can-search-for": "आप खोज सकते हैं:"
   },
   "seekbar": {
-    "live": "Live",
+    "live": "लाइव",
     "segment-popup": "गैर-संगीत"
   },
   "settings": {
