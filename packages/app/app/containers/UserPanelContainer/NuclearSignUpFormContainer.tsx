@@ -49,29 +49,40 @@ export const NuclearSignUpFormContainer: React.FC<NuclearSignUpFormContainerProp
   const formProps = useForm<SignUpRequestBody>({
     initialFields: initialFields(t),
     validationSchema: validationSchema(t),
-    onSubmit: async (values, { setSubmitting, setErrors }) => {
+    onSubmit: async (values, { setSubmitting, setStatus, setErrors }) => {
       setSubmitting(true);
       dispatch(signUpAction.request());
       const service = new NuclearIdentityService(settings.nuclearIdentityServiceUrl);
-      const result = await service.signUp(values);
-      if (result.ok) {
-        dispatch(signUpAction.success(result.body as SignUpResponseBody));
-        const signInResult = await service.signIn(values);
-        dispatch(signInAction.success(signInResult.body as SignInResponseBody));
-        onClose();
-      } else {
-        if (isErrorBody(result.body)) {
-          setErrors(Object.fromEntries(result.body.errors.map((error) => [error.path, error.message])));
+
+      try {
+        const result = await service.signUp(values);
+        if (result.ok) {
+          dispatch(signUpAction.success(result.body as SignUpResponseBody));
+          const signInResult = await service.signIn(values);
+          dispatch(signInAction.success(signInResult.body as SignInResponseBody));
+          onClose();
+        } else {
+          if (isErrorBody(result.body)) {
+            setErrors(Object.fromEntries(result.body.errors.map((error) => [error.path, error.message])));
+          }
+          dispatch(signUpAction.failure(result.body as ErrorBody));
         }
-        dispatch(signUpAction.failure(result.body as ErrorBody));
+      } catch (e) {
+        setStatus({
+          type: 'error',
+          content: e.message
+        });
+        dispatch(signUpAction.failure(e));
+      } finally {
+        setSubmitting(false);
       }
-      setSubmitting(false);
     }
   });
 
   return <NuclearSignUpForm
     isOpen={isOpen}
     onClose={onClose}
+    message={formProps.status}
     {...formProps}
 
     header={t('header')}

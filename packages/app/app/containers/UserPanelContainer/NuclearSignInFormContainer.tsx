@@ -44,18 +44,27 @@ export const NuclearSignInFormContainer: React.FC<NuclearSignInFormContainerProp
       dispatch(signInAction.request());
       const service = new NuclearIdentityService(settings.nuclearIdentityServiceUrl);
 
-      const result = await service.signIn(values);
-      if (result.ok) {
-        dispatch(signInAction.success(result.body as SignInResponseBody));
-        onClose();
-      } else {
+      try {
+        const result = await service.signIn(values);
+        if (result.ok) {
+          dispatch(signInAction.success(result.body as SignInResponseBody));
+          onClose();
+        } else {
+          setStatus({
+            type: 'error',
+            content: (result.body as ErrorBody).message
+          });
+          dispatch(signInAction.failure(result.body as ErrorBody));
+        }
+      } catch (e) {
         setStatus({
           type: 'error',
-          content: (result.body as ErrorBody).message
+          content: e.message
         });
-        dispatch(signInAction.failure(result.body as ErrorBody));
+        dispatch(signInAction.failure(e));
+      } finally {
+        setSubmitting(false);
       }
-      setSubmitting(false);
     }
   });
 
