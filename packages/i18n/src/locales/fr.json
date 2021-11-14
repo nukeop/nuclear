@@ -180,7 +180,7 @@
     "playlist-toast-content": "La playlist {{name}} a été créé.",
     "playlist-toast-title": "Playliste créé",
     "title": "Titre :",
-    "live": "Live"
+    "live": "En direct"
   },
   "search": {
     "album": "Album",
@@ -199,7 +199,7 @@
     "you-can-search-for": "Vous pouvez rechercher :"
   },
   "seekbar": {
-    "live": "Live",
+    "live": "En direct",
     "segment-popup": "Hors musique"
   },
   "settings": {
