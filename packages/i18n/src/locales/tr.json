@@ -256,21 +256,21 @@
     "shuffle-queue": "Şarkıları karıştır",
     "shuffle-when-going-back": "Önceki Şarkıyla karıştır.",
     "shuffle-when-going-back-description": "Karıştırma aktif ve önceki şarkı butonu aktifse random şarkı çal",
-    "social": "Sosyal Medya",
+    "social": "Sosyal",
     "skip-sponsorblock": "Skip non-music segment",
     "skip-sponsorblock-description": "Playback skips non-music segment from SponsorBlock (https://sponsor.ajay.app/)",
     "streaming": "Streaming",
-    "track-duration": "Şarkı süresini göster.",
+    "track-duration": "Oynatma çubuğu üzerinde şarkı süresini göster",
     "user": "Kullanıcı:",
     "youtube": "Youtube",
     "yt-api-key": "Youtube API Key"
   },
   "tags": {
-    "albums": "En iyi albümler",
+    "albums": "En İyi Albümler",
     "artist": "Şarkıcılar",
-    "artists": "En iyi şarkıcılar",
+    "artists": "En İyi Şarkıcılar",
     "duration": "Süre",
-    "queue-add": "Tüm şarkıları sıraya ekle",
+    "queue-add": "Tüm şarkıları oynatma sırasına ekle",
     "title": "Başlık"
   },
   "track-popup": {
