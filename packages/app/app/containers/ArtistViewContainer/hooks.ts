@@ -50,9 +50,14 @@ export const useArtistViewProps = () => {
 
   const handleArtistInfoClick = () => {
     let link = artist.releases[0].resourceUrl;
-    const discogs_re = /https:\/\/api.discogs.com\//gi;
+    const source = artist.releases[0].source;
 
-    if (link.search(discogs_re) !== -1) {
+    const discogs_re = /Discogs/i;
+    const musicbrainz_re = /Musicbrainz/i;
+
+    if (source.match(musicbrainz_re) !== null) {
+      link = 'https://musicbrainz.org/search?query=' + artist.name + '&type=artist&method=indexed';
+    } else if (source.match(discogs_re) !== null) {
       link = 'https://www.discogs.com/search/?q=' + artist.name + '&type=all';
     }
 
