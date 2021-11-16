@@ -48,8 +48,17 @@ export const useArtistViewProps = () => {
     dispatch(FavoritesActions.removeFavoriteArtist(artist));
   }, [artist, dispatch]);
 
-  const handleArtistInfoClick = () => handleExternal(artist.releases[0].resourceUrl);
-  
+  const handleArtistInfoClick = () => {
+    let link = artist.releases[0].resourceUrl;
+    const discogs_re = /https:\/\/api.discogs.com\//gi;
+
+    if (link.search(discogs_re) !== -1) {
+      link = 'https://www.discogs.com/search/?q=' + artist.name + '&type=all';
+    }
+
+    handleExternal(link);
+  };
+
   const handleExternal = (link: string) => {
     link && link.length && electron.shell.openExternal(link);
   };
