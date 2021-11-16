@@ -48,8 +48,28 @@ export const useArtistViewProps = () => {
     dispatch(FavoritesActions.removeFavoriteArtist(artist));
   }, [artist, dispatch]);
 
-  const handleArtistInfoClick = () => handleExternal(artist.releases[0].resourceUrl);
-  
+  const handleArtistInfoClick = () => {
+    let link = '', source = '';
+    if (artist.releases.length === 0) {
+      link = 'https://audius.co/search/' + artist.name;
+      source = '';
+    } else {
+      link = artist.releases[0].resourceUrl;
+      source = artist.releases[0].source;
+    }
+
+    const discogs_re = /Discogs/i;
+    const musicbrainz_re = /Musicbrainz/i;
+
+    if (source.match(musicbrainz_re) !== null) {
+      link = 'https://musicbrainz.org/search?query=' + artist.name + '&type=artist&method=indexed';
+    } else if (source.match(discogs_re) !== null) {
+      link = 'https://www.discogs.com/search/?q=' + artist.name + '&type=all';
+    }
+
+    handleExternal(link);
+  };
+
   const handleExternal = (link: string) => {
     link && link.length && electron.shell.openExternal(link);
   };
