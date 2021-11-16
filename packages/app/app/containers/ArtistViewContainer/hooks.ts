@@ -49,8 +49,14 @@ export const useArtistViewProps = () => {
   }, [artist, dispatch]);
 
   const handleArtistInfoClick = () => {
-    let link = artist.releases[0].resourceUrl;
-    const source = artist.releases[0].source;
+    let link = '', source = '';
+    if (artist.releases.length === 0) {
+      link = 'https://audius.co/search/' + artist.name;
+      source = '';
+    } else {
+      link = artist.releases[0].resourceUrl;
+      source = artist.releases[0].source;
+    }
 
     const discogs_re = /Discogs/i;
     const musicbrainz_re = /Musicbrainz/i;
