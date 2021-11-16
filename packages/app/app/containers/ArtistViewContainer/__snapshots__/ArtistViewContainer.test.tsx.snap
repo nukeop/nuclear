@@ -58,6 +58,17 @@ exports[`Artist view container should display an artist 1`] = `
                         class="heart outline big icon"
                       />
                     </a>
+                    <a
+                      class="artist_info_button"
+                      data-testid="artist-info"
+                      href="#"
+                    >
+                      <i
+                        aria-hidden="true"
+                        class="linkify large icon"
+                      />
+                      Artist Info
+                    </a>
                   </div>
                   <div
                     class="tags_container"
