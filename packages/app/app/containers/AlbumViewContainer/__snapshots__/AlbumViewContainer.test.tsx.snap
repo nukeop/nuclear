@@ -82,7 +82,7 @@ exports[`Album view container should display an album 1`] = `
                 <label>
                   Year:
                 </label>
-                2001
+                2000
               </div>
               <div
                 class="album_tracks"
