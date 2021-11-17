@@ -69,7 +69,7 @@
   "favorites": {
     "artist": "Artista",
     "empty": "Nessun preferito aggiunto",
-    "empty-help": "Try adding some tracks to favorites and they will appear here!",
+    "empty-help": "Prova ad aggiungere alcune tracce ai preferiti e appariranno qui!",
     "header": "Le tue tracce preferite",
     "title": "Titolo"
   },
@@ -131,9 +131,9 @@
     "export-fail-title": "Esportazione playlist fallita",
     "export-success-title": "Playlist esportata correttamente",
     "header": "Le tue playlist",
-    "dialog-accept": "Save",
-    "create-button": "Create new playlist",
-    "new-playlist": "New playlist",
+    "dialog-accept": "Salva",
+    "create-button": "Crea una nuova playlist",
+    "new-playlist": "Nuova playlist",
     "import-button": "Importa da file (JSON)",
     "import-fail-title": "Importazione della playlist fallita",
     "import-success-title": "Playlist importata correttamente",
@@ -173,14 +173,14 @@
     "header": "Coda",
     "header-track": "Traccia corrente",
     "id": "ID Stream:",
-    "source": "Source:",
-    "copy-track-url": "Copy track url to clipboard",
+    "source": "Fonte:",
+    "copy-track-url": "Copia l'url della traccia negli appunti",
     "loading": "La stream sta ancora caricando.",
     "playlist-add": "Aggiungi alla playlist",
     "playlist-toast-content": "La playlist {{name}} è stata creata.",
     "playlist-toast-title": "Playlist creata",
     "title": "Titolo:",
-    "live": "Live"
+    "live": "In Diretta"
   },
   "search": {
     "album": "Album",
@@ -199,7 +199,7 @@
     "you-can-search-for": "Puoi cercare:"
   },
   "seekbar": {
-    "live": "Live",
+    "live": "In Diretta",
     "segment-popup": "Non musica"
   },
   "settings": {
@@ -247,7 +247,7 @@
     "mastodon-post-format-label": "Formato del post",
     "mastodon-title": "",
     "mini-player": "Usa lo stile del mini lettore",
-    "discord-rich-presence": "Toggle discord rich presence (requires restart)",
+    "discord-rich-presence": "Attiva/Disattiva rich presence di discord (richiede riavvio)",
     "notification-timeout": "Timeout di notifica",
     "notlogged": "Non connesso",
     "playback": "Riproduzione",
@@ -257,8 +257,8 @@
     "shuffle-when-going-back": "Riproduci casualmente sulla traccia precedente",
     "shuffle-when-going-back-description": "Riproduci una traccia casuale quando la riproduzione casuale è attiva e il pulsante traccia precedente è cliccato",
     "social": "Social",
-    "skip-sponsorblock": "Skip non-music segment",
-    "skip-sponsorblock-description": "Playback skips non-music segment from SponsorBlock (https://sponsor.ajay.app/)",
+    "skip-sponsorblock": "Salta segmento non-musicale",
+    "skip-sponsorblock-description": "La riproduzione salta il segmento non-musicale da SponsorBlock (https://sponsor.ajay.app/)",
     "streaming": "Streaming",
     "track-duration": "Mostra la durata della traccia sulla barra di ricerca",
     "user": "Utente:",
