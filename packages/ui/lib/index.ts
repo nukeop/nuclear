@@ -15,6 +15,7 @@ export { default as Loader } from './components/Loader';
 export { default as MiniPlayer } from './components/MiniPlayer';
 export { default as PlayerBar } from './components/PlayerBar';
 export { default as PlayerButton } from './components/PlayerButton';
+export { default as Playlists } from './components/Playlists';
 export { default as PopupButton } from './components/PopupButton';
 export { default as PopupDropdown } from './components/PopupDropdown';
 export { default as QueueItem } from './components/QueueItem';

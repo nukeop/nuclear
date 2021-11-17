@@ -7,8 +7,8 @@ import { NuclearIdentity } from '../../actions/actionTypes';
 import * as actions from '../../actions/nuclear/identity';
 
 export class IdentityStore {
-  token: string;
-  signedInUser: {
+  token: null | string;
+  signedInUser: null | {
     id: string;
     username: string;
     displayName: string;
@@ -32,6 +32,11 @@ export const reducer = createReducer<IdentityStore, IdentityAction>(
           'displayName',
           'accountState'
         ]);
+      }),
+    [NuclearIdentity.SIGN_OUT]: (state) =>
+      produce(state, (draft) => {
+        draft.token = null;
+        draft.signedInUser = null;
       })
   }
 );

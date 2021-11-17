@@ -18,9 +18,9 @@ const UsernameContainer: React.FC<UsernameContainerProps> = ({
     <span className={styles.displayname}>
       {username ? displayName : 'Logged out'}
     </span>
-    <span className={styles.username}>
+    {/* <span className={styles.username}>
       {username ?? username}
-    </span>
+    </span> */}
   </div>
 </span>;
 

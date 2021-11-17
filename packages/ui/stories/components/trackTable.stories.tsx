@@ -5,6 +5,7 @@ import { Icon } from 'semantic-ui-react';
 import { action } from '@storybook/addon-actions';
 
 import { TrackTable } from '../..';
+import { swap } from '../storyUtils';
 import { Track } from '../../lib/types';
 
 export default {
@@ -63,16 +64,6 @@ const trackTableStrings = {
   tracksSelectedLabelSingular: 'track selected',
   tracksSelectedLabelPlural: 'tracks selected'
 };
-
-const swap = (arr, index1, index2) => arr.map((val, idx) => {
-  if (idx === index1) {
-    return arr[index2];
-  }
-  if (idx === index2) {
-    return arr[index1];
-  }
-  return val;
-});
 
 export const Empty = () => <div className='bg'>
   <TrackTable

@@ -1,27 +1,35 @@
 import React, { useState } from 'react';
 import { UserPanel } from '@nuclear/ui';
 import { useTranslation } from 'react-i18next';
+import { useDispatch, useSelector } from 'react-redux';
+
 import { NuclearSignInFormContainer } from './NuclearSignInFormContainer';
 import { NuclearSignUpFormContainer } from './NuclearSignUpFormContainer';
-import { useSelector } from 'react-redux';
 import { nuclearSelectors } from '../../selectors/nuclear';
 import { IdentityStore } from '../../reducers/nuclear/identity';
+import { signOutAction } from '../../actions/nuclear/identity';
 
 export const UserPanelContainer: React.FC = () => {
   const { t } = useTranslation('app');
+  const dispatch = useDispatch();
 
   const [isSignUpFormOpen, setSignUpFormOpen] = useState(false);
   const [isSignInFormOpen, setSignInFormOpen] = useState(false);
 
   const identity: IdentityStore = useSelector(nuclearSelectors.identity);
-  
+
   return <>
     <UserPanel
       user={identity.signedInUser}
-      actionsTooltipContent={t('user-panel-actions-tooltip')}
-      signUpButtonLabel={t('user-panel-sign-up')}
+      actionsTooltipContent={t('user-panel.actions-tooltip')}
+      signUpButtonLabel={t('user-panel.sign-up')}
       onSettingsClick={() => { }}
       onSignUpClick={() => setSignInFormOpen(true)}
+      options={[{
+        text: t('user-panel.sign-out'),
+        value: 'sign-out',
+        onClick: () => dispatch(signOutAction())
+      }]}
     />
     <NuclearSignInFormContainer
       isOpen={isSignInFormOpen}

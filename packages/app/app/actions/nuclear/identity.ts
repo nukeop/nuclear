@@ -1,4 +1,5 @@
-import { createAsyncAction } from 'typesafe-actions';
+import { createAsyncAction, createStandardAction } from 'typesafe-actions';
+
 import {
   SignInResponseBody,
   SignUpResponseBody
@@ -18,3 +19,5 @@ export const signInAction = createAsyncAction(
   NuclearIdentity.SIGN_IN_SUCCESS,
   NuclearIdentity.SIGN_IN_ERROR
 )<undefined, SignInResponseBody, ErrorBody>();
+
+export const signOutAction = createStandardAction(NuclearIdentity.SIGN_OUT)<undefined>();

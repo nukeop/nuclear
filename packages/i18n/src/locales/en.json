@@ -26,8 +26,11 @@
     "search": "Search Results",
     "settings": "Settings",
     "visualizer": "Visualizer",
-    "user-panel-actions-tooltip": "User actions",
-    "user-panel-sign-up": "Sign up / Sign in"
+    "user-panel": {
+      "actions-tooltip": "User actions",
+      "sign-up": "Sign up / Sign in",
+      "sign-out": "Sign out"
+    }
   },
   "artist": {
     "count": "Play counts",
@@ -247,6 +250,7 @@
     "mastodon-post-format-label": "Post format",
     "mastodon-title": "",
     "nuclear-identity-service-url": "Nuclear identity service URL",
+    "nuclear-playlists-service-url": "Nuclear playlists service URL",
     "mini-player": "Use mini player style",
     "discord-rich-presence": "Toggle discord rich presence (requires restart)",
     "notification-timeout": "Notification timeout",
