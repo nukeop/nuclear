@@ -1,42 +1,42 @@
 {
   "album": {
     "download": "İndir",
-    "download-toast-content": "{{artist}} - {{title}} has been added to downloads.",
-    "download-toast-title": "Album added to downloads",
-    "error-load": "Sorry, this album could not be loaded. Try again later or open a new issue on Github",
-    "genre": "Genre:",
-    "play": "Play",
+    "download-toast-content": "{{artist}} - {{title}} indirilenlere eklendi.",
+    "download-toast-title": "Albüm indirilenlere eklendi",
+    "error-load": "Üzgünüm, albüm yüklenemedi. Daha sonra tekrar deneyin veya Github'da yeni bir konu açın",
+    "genre": "Tür:",
+    "play": "Çal",
     "queue": "Albümü kuyruğa ekle",
-    "tracks": "Tracks:",
-    "year": "Year:"
+    "tracks": "Şarkılar:",
+    "year": "Yıl:"
   },
   "app": {
     "collection": "Koleksiyon",
-    "dashboard": "Anamenü",
+    "dashboard": "Keşfet",
     "downloads": "İndirilenler",
-    "equalizer": "Ses dengesi",
-    "favorite-albums": "Favorite Albums",
-    "favorite-artists": "Favorite Artists",
-    "favorite-tracks": "Favori müzikler",
-    "library": "Kütüphane",
-    "lyrics": "Şarkının sözleri",
-    "main": "Anasayfa",
-    "playlists": "Çalma listesi",
+    "equalizer": "Ekolayzer",
+    "favorite-albums": "Favori Albümler",
+    "favorite-artists": "Favori Şarkıcılar",
+    "favorite-tracks": "Favori Şarkılar",
+    "library": "Yerel Kütüphane",
+    "lyrics": "Şarkı sözleri",
+    "main": "Ana",
+    "playlists": "Çalma Listesi",
     "plugins": "Eklentiler",
-    "search": "Arama",
+    "search": "Arama Sonuçları",
     "settings": "Ayarlar",
-    "visualizer": "Visualizer"
+    "visualizer": "Görselleştirici"
   },
   "artist": {
-    "count": "Oynatma sayısı",
+    "count": "Çalma Sayısı",
     "queue": "Tüm müzikleri kuyruğa ekle",
     "similar": "Benzer şarkıcılar",
-    "title": "Başlık",
+    "title": "Şarkının Adı",
     "tour": "On tour"
   },
   "dashboard": {
     "add-all": "Add all",
-    "artist": "Sanatçı",
+    "artist": "Şarkıcı",
     "best": "En İyiler",
     "best-new-albums": "En iyi albümler",
     "best-new-tracks": "En iyi müzikler",
@@ -62,9 +62,9 @@
     "header": "Your favorite albums"
   },
   "favorite-artists": {
-    "empty": "No favorite artists",
-    "empty-help": "Try adding some artists to favorites and they will appear here!",
-    "header": "Your favorite artists"
+    "empty": "Hiç favori şarkıcı yok",
+    "empty-help": "Şarkıcıları favorilerine eklersen burada görebilirsin!",
+    "header": "Favori Şarkıcıların"
   },
   "favorites": {
     "artist": "Şarkıcı",
@@ -92,11 +92,11 @@
     "filter-placeholder": "Filtrele...",
     "header": "Kütüphane",
     "no-search-results": "No search results",
-    "no-search-results-help": "No tracks found with the given name, album, or artist.",
+    "no-search-results-help": "Aranan kelime ile ilgili herhangi bir şarkı, albüm veya şarkıcı bulunamadı.",
     "title": "Başlık"
   },
   "lyrics": {
-    "by-artist": "By {{artist}}",
+    "by-artist": "{{artist}} tarafından",
     "empty": "Çalan müzik yok.",
     "empty-help": "Şarkı sözlerinin gözükmesi için kuyruğa birkaç müzik ekle!",
     "not-found": "Bu müzik için hiç söz bulunmadı."
@@ -167,7 +167,7 @@
     "dialog-placeholder": "Çalma listesi adı...",
     "dialog-trigger": "Çalma listesi olarak kaydet",
     "download": "İndir",
-    "download-toast-content": "{{artist}} - {{title}} İndirilenlere eklendi.",
+    "download-toast-content": "{{artist}} - {{title}} indirilenlere eklendi.",
     "download-toast-title": "Şarkı indirilenlere eklendi.",
     "favorite-add": "Favorilere ekle.",
     "header": "Kuyruk",
@@ -227,7 +227,7 @@
     "github-description": "Github'ile giriş yaparak çevrimiçi çalma listeleri yapabilir ve paylaşabilirsin.!! (ileride gelecek özellik).",
     "github-title": "Github",
     "http": "HTTP API",
-    "invidious-url": "Invidious instance url",
+    "invidious-url": "Invidious bağlantı URL' niz",
     "language": "Dil",
     "language-placeholder": "Bir dil seç",
     "lastfm-connect": "Last.fm ile bağlan",
@@ -242,8 +242,8 @@
     "mastodon-authorized": "Nuclear buraya yazmaya yetkilendirildi ",
     "mastodon-awaiting-authorization": "Nuclear {{instanceUrl}} ile kaydedildi. Yetkilendirme bekleniyor.",
     "mastodon-description": "",
-    "mastodon-instance-label": "Mastodon instance URL",
-    "mastodon-post-format-description": "Nuclear her şarkı bittikten sonra Mastodon'da bir gönderi paylaşacak. Yukarıdaki dizi, her gönderi için {{artist}} ve {{title}}'in şarkıcı ve şarkı isminin yerini aldığı bir şablon olacak.",
+    "mastodon-instance-label": "Mastodon bağlantı URL' niz",
+    "mastodon-post-format-description": "Nuclear her şarkı bittikten sonra Mastodon'da bir gönderi paylaşacak. Yukarıdaki dizi, {{artist}} ve {{title}}'in şarkıcı ve şarkı ismiyle yer değiştirdiği bir şablon olacak.",
     "mastodon-post-format-label": "Gönderi biçimi",
     "mastodon-title": "",
     "mini-player": "Mini-oynatıcıyı kullan",
@@ -267,7 +267,7 @@
   },
   "tags": {
     "albums": "En İyi Albümler",
-    "artist": "Şarkıcılar",
+    "artist": "Şarkıcı",
     "artists": "En İyi Şarkıcılar",
     "duration": "Uzunluk",
     "queue-add": "Tüm şarkıları kuyruğa ekle",
@@ -277,25 +277,25 @@
     "add-to-favorite": "Favorilere ekle",
     "add-to-playlist": "Çalma listesine ekle",
     "add-to-queue": "Kuyruğa ekle",
-    "download": "Download",
-    "download-toast-body": "{{artist}} - {{track}} has been added to downloads.",
-    "download-toast-title": "Track added to downloads",
-    "favorite-toast-body": "{{artist}} - {{track}} has been added to favorites.",
-    "favorite-toast-title": "Favorite track added",
-    "play-next": "Play next",
-    "play-now": "Play now",
+    "download": "İndir",
+    "download-toast-body": "{{artist}} - {{track}} indirilenlere eklendi.",
+    "download-toast-title": "Şarkı indirilenlere eklendi",
+    "favorite-toast-body": "{{artist}} - {{track}} favorilere eklendi.",
+    "favorite-toast-title": "Favori şarkı eklendi",
+    "play-next": "Bir sonra çal",
+    "play-now": "Şimdi çal",
     "playlist-toast-body": "{{artist}} - {{track}} çalma listesine eklendi.",
     "playlist-toast-title": "Şarkı çalma listesine eklendi"
   },
   "track-table": {
     "add-selected-tracks-to-queue": "Seçilenleri kuyruğa ekle",
-    "add-selected-tracks-to-downloads": "Add selected to downloads",
-    "add-selected-tracks-to-favorites": "Add selected to favorites",
-    "play-selected-tracks-now": "Play selected now",
-    "tracks-selected-label-singular": "track selected",
-    "tracks-selected-label-plural": "tracks selected"
+    "add-selected-tracks-to-downloads": "Seçilenleri indirelenlere ekle",
+    "add-selected-tracks-to-favorites": "Seçilenleri favorilere ekle",
+    "play-selected-tracks-now": "Seçilenleri şimdi çal",
+    "tracks-selected-label-singular": "şarkı seçildi",
+    "tracks-selected-label-plural": "şarkı seçildi"
   },
   "visualizer": {
-    "exit-fullscreen": "Press ESC to exit full screen"
+    "exit-fullscreen": "Tam ekrandan çıkmak için ESC'ye basın"
   }
 }
