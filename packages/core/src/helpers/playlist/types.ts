@@ -1,6 +1,7 @@
 export class Playlist {
-  name: string;
   id: string;
+  name: string;
+  lastModified?: number;
   tracks: PlaylistTrack[];
 }
 

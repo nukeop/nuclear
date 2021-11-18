@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { useTable } from 'react-table';
+import { Column, useTable } from 'react-table';
 import { DragDropContext, DragDropContextProps, Draggable, Droppable } from 'react-beautiful-dnd';
 import cx from 'classnames';
 
@@ -11,21 +11,39 @@ import { PlaylistsColumn } from './types';
 import styles from './styles.scss';
 import artPlaceholder from '../../../resources/media/art_placeholder.png';
 import TracksCell from './Cells/TracksCell';
+import ModificationDateCell from './Cells/ModificationDateCell';
 
 export type PlaylistsStrings = {
   tracksSingular: string;
   tracksPlural: string;
+
+  modifiedAt: string;
+  neverModified: string;
+  serverModifiedAt: string;
+
+  uploadToServer: string;
+  downloadFromServer: string;
+
+  locale: string;
 }
 
-export type PlaylistsProps = PlaylistsStrings & {
+export type PlaylistsCallbacks = {
+  onPlaylistUpload: (playlist: Playlist) => void;
+  onPlaylistDownload: (id: string) => void;
+}
+
+export type PlaylistsProps = PlaylistsStrings & 
+PlaylistsCallbacks & {
   playlists: Playlist[];
   onDragEnd?: DragDropContextProps['onDragEnd'];
+  displayModificationDates?: boolean;
 };
 
 const Playlists: React.FC<PlaylistsProps> = ({
   playlists,
   onDragEnd,
-  ...strings
+  displayModificationDates=false,
+  ...extra
 }) => {
   const columns = useMemo(() => [
     {
@@ -42,8 +60,16 @@ const Playlists: React.FC<PlaylistsProps> = ({
       id: PlaylistsColumn.Tracks,
       accessor: playlist => playlist?.tracks?.length ?? 0,
       Cell: TracksCell
+    },
+    displayModificationDates && {
+      id: PlaylistsColumn.LastModified,
+      accessor: playlist => ({
+        lastModified: playlist?.lastModified,
+        serverModified: playlist?.serverModified
+      }),
+      Cell: ModificationDateCell
     }
-  ], []);
+  ].filter(Boolean) as Column<Playlist>[], [displayModificationDates]);
   const data = useMemo(() => playlists, [playlists]);
   const {
     getTableProps,
@@ -81,7 +107,10 @@ const Playlists: React.FC<PlaylistsProps> = ({
                         {...provided.draggableProps}
                         {...provided.dragHandleProps}
                       >
-                        {row.cells.map((cell, i) => (cell.render('Cell', { ...strings, key: i })))}
+                        {row.cells.map((cell, i) => (cell.render('Cell', { 
+                          ...extra, 
+                          key: i 
+                        })))}
                       </tr>
                     )}
                   </Draggable>

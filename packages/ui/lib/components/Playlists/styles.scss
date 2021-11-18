@@ -1,19 +1,18 @@
-@import '../../common.scss';
+@import "../../common.scss";
 
 .playlists_table {
     width: 100%;
 
-    tbody{
+    tbody {
         &.body_dragged_over {
-        background: $bgdark;
-      }
+            background: $bgdark;
+        }
     }
 
     tr {
         color: $white;
         user-select: none;
         background: rgba($background2, 0.5);
-        border-radius: 4em;
     }
 
     td {
@@ -22,15 +21,32 @@
     }
 
     .thumbnail_cell {
-        height: 3em;
+        height: 4em;
         width: 0;
         padding: 0;
     }
 
     .thumbnail {
         display: block;
-        width: 3em;
-        height: 3em;
+        width: 4em;
+        height: 4em;
         object-fit: contain;
-      }
+    }
+
+    .modification_date_cell_content {
+        display: flex;
+        flex-flow: row;
+
+        .modified_dates {
+            display: flex;
+            flex-flow: column;
+        }
+
+        .sync_buttons {
+            display: flex;
+            flex: 1 1 auto;
+            justify-content: flex-end;
+            align-items: center;
+        }
+    }
 }
