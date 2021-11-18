@@ -4,12 +4,12 @@ import { Icon } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { NavLink, withRouter } from 'react-router-dom';
+
 import classnames from 'classnames';
 import _ from 'lodash';
 import Sound from 'react-hifi';
 import { withTranslation } from 'react-i18next';
 import { PluginConfig } from '@nuclear/core';
-
 import * as SearchActions from './actions/search';
 import * as PlayerActions from './actions/player';
 import * as PlaylistsActions from './actions/playlists';
@@ -157,7 +157,7 @@ class App extends React.PureComponent {
               src={this.props.settings.compactMenuBar ? logoIcon : logoImg}
             />
             <div className={styles.version_string}>
-              {this.props.settings.compactMenuBar ? '0.6.17' : 'Version 0.6.17'}
+              {this.props.settings.compactMenuBar ? '0.6.17' : this.props.t('version') + ' 0.6.17'}
             </div>
           </div>
           <div className={styles.sidebar_menus}>
