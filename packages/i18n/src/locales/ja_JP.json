@@ -25,7 +25,8 @@
     "plugins": "プラグイン",
     "search": "検索結果",
     "settings": "設定",
-    "visualizer": "ビジュアライザー"
+    "visualizer": "ビジュアライザー",
+    "version": "Version"
   },
   "artist": {
     "count": "再生回数",
@@ -56,6 +57,18 @@
     "name": "名前",
     "status": "ステータス"
   },
+  "equalizer": {
+    "classical": "Classical",
+    "club": "Club",
+    "custom": "Custom",
+    "default": "Default",
+    "full-bass": "Full Bass",
+    "full-treble": "Full Treble",
+    "pop": "Pop",
+    "presets": "Presets",
+    "reggae": "Reggae",
+    "rock": "Rock"
+  },
   "favorite-albums": {
     "empty": "お気に入りのアルバムがありません",
     "empty-help": "お気に入りにアルバムを追加すると、ここに表示されます！",
@@ -75,6 +88,7 @@
   },
   "help": {
     "about": "Nuclear Music Playerについて",
+    "contributors": "Our top 10 Contributors",
     "header": "無料ソースから音楽再生するデスクトップ音楽プレイヤー",
     "released": "AGPL-3.0でリリースされました",
     "report": "問題や新機能の依頼を送信する",
@@ -185,14 +199,17 @@
   "search": {
     "album": "アルバム",
     "album_plural": "アルバム",
+    "all": "All",
     "artist": "アーティスト",
     "artist_plural": "アーティスト",
     "clear-history": "全履歴を削除",
     "empty": "何も見つかりませんでした",
     "last-searches": "最近検索",
+    "live-stream": "LiveStream",
     "placeholder": "検索...",
     "playlist": "プレイリスト",
     "playlist_plural": "プレイリスト",
+    "podcast": "Podcast",
     "queue-add": "すべての曲をキューに追加",
     "track": "曲",
     "track_plural": "曲",
@@ -234,6 +251,7 @@
     "lastfm-description": "Scrobblingを有効にするには、まずNuclear を Last.fm に接続して認証し、ログインをクリックする必要があります。",
     "lastfm-enable": "Enable scrobbling to Last.fm",
     "lastfm-title": "Last.fm",
+    "less": "Less",
     "login": "ログイン",
     "logout": "ログアウト",
     "loop-after-queue-end": "最後のキューアイテムを再生した後にループする",
@@ -247,11 +265,13 @@
     "mastodon-post-format-label": "ポストの形式",
     "mastodon-title": "",
     "mini-player": "ミニプレーヤーを使用",
+    "more": "More",
     "discord-rich-presence": "Toggle discord rich presence (requires restart)",
     "notification-timeout": "通知のタイムアウト",
     "notlogged": "ログインしていません",
     "playback": "再生",
     "program-settings": "設定",
+    "saving-in": "Saving in:",
     "seek-iteration": "Number of seconds to seek forward/backwards when pressing arrow keys",
     "shuffle-queue": "曲をシャッフル",
     "shuffle-when-going-back": "Shuffle on previous track",
