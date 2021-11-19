@@ -25,7 +25,8 @@
     "plugins": "Pêvek",
     "search": "Encamên lêgerînê",
     "settings": "Sazkarî",
-    "visualizer": "Dîtbarî"
+    "visualizer": "Dîtbarî",
+    "version": "Version"
   },
   "artist": {
     "count": "Hejmarê lêdanan",
@@ -56,6 +57,18 @@
     "name": "Nav",
     "status": "Rewş"
   },
+  "equalizer": {
+    "classical": "Classical",
+    "club": "Club",
+    "custom": "Custom",
+    "default": "Default",
+    "full-bass": "Full Bass",
+    "full-treble": "Full Treble",
+    "pop": "Pop",
+    "presets": "Presets",
+    "reggae": "Reggae",
+    "rock": "Rock"
+  },
   "favorite-albums": {
     "empty": "Albumên bijare tune ne",
     "empty-help": "Hinek albuman tevlî bijarteyên xwe bike û ew ê li vir xuya bibin!",
@@ -75,6 +88,7 @@
   },
   "help": {
     "about": "Derbarê Nuclear Music Player",
+    "contributors": "Our top 10 Contributors",
     "header": "Lêdera muzîkê ya sermaseyê ji bo weşanê ji çavkaniyên belaş",
     "released": "hatiye weşandin di bin AGPL-3.0 de",
     "report": "Pirsgirêkan ragihîne an jî taybetmendiyên nû bişîne",
@@ -185,14 +199,17 @@
   "search": {
     "album": "Album",
     "album_plural": "Album",
+    "all": "All",
     "artist": "Hunermend",
     "artist_plural": "Hunermend",
     "clear-history": "Dîrokê pak bike",
     "empty": "Tiştek nehate dîtin.",
     "last-searches": "Lêgerînên dawî",
+    "live-stream": "LiveStream",
     "placeholder": "Bigere...",
     "playlist": "Rêzoka lêdanan",
     "playlist_plural": "Rêzoka lêdanan",
+    "podcast": "Podcast",
     "queue-add": "Hemû herîkan tevlî rêzê bike",
     "track": "Herîk",
     "track_plural": "Herîk",
@@ -234,6 +251,7 @@
     "lastfm-description": "Ji bo ku tu barkirina bixweber çalak bikî, pêşî divê tu Nuclear-ê bi Last.fm ve girê bidî û mafê bidî, paşê jî têketinê bike.",
     "lastfm-enable": "Barkirina bixweber a stranên ku li Last.fm hatine guhdarîkirin çalak bike",
     "lastfm-title": "Last.fm",
+    "less": "Less",
     "login": "Têkeve",
     "logout": "Derkeve",
     "loop-after-queue-end": "Gilover piştî lêdana hêmana rêzê ya dawî",
@@ -247,11 +265,13 @@
     "mastodon-post-format-label": "Awayê şandinê",
     "mastodon-title": "",
     "mini-player": "Şêwazê lêdera piçûk bi kar bîne",
+    "more": "More",
     "discord-rich-presence": "Muzîka ku di dema heyî tê lêdan nîşan bide ( ji nû ve destpêkirin pêdivî dike)",
     "notification-timeout": "Bergeya agahdarkirinê",
     "notlogged": "Ne têketî",
     "playback": "Lêdan",
     "program-settings": "Sazkariyên bernameyê",
+    "saving-in": "Saving in:",
     "seek-iteration": "Dema pê li bişkokên tîrê tê kirin ji bo ku li pêş/paş biçe hejmara çirkeyan",
     "shuffle-queue": "Stranan tevlihev bike",
     "shuffle-when-going-back": "Li ser herîka paş tevlihev bike",
