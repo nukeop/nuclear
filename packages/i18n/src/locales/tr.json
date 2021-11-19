@@ -25,14 +25,15 @@
     "plugins": "Eklentiler",
     "search": "Arama Sonuçları",
     "settings": "Ayarlar",
-    "visualizer": "Görselleştirici"
+    "visualizer": "Görselleştirici",
+    "version": "Versiyon"
   },
   "artist": {
     "count": "Çalma Sayısı",
     "queue": "Tüm müzikleri kuyruğa ekle",
     "similar": "Benzer şarkıcılar",
     "title": "Şarkının Adı",
-    "tour": "On tour"
+    "tour": "Turnede"
   },
   "dashboard": {
     "add-all": "Add all",
@@ -56,6 +57,18 @@
     "name": "İsmi",
     "status": "Durumu"
   },
+  "equalizer": {
+    "classical": "Klasik",
+    "club": "Kulüp",
+    "custom": "Özel",
+    "default": "Varsayılan",
+    "full-bass": "Full Bass",
+    "full-treble": "Full Tiz",
+    "pop": "Pop",
+    "presets": "Hazır Ayarlar",
+    "reggae": "Reggae",
+    "rock": "Rock"
+  },
   "favorite-albums": {
     "empty": "No favorite albums",
     "empty-help": "Try adding some albums to favorites and they will appear here!",
@@ -75,6 +88,7 @@
   },
   "help": {
     "about": "Nuclear müzik  oynatıcısı hakkında",
+    "contributors": "En çok katkıda bulunan 10 kişi",
     "header": "Açık kaynaklı masaüstü müzik oynatıcısı",
     "released": "released under AGPL-3.0",
     "report": "Submit issues or new features",
@@ -185,14 +199,17 @@
   "search": {
     "album": "Albüm",
     "album_plural": "Albümler",
+    "all": "Tümü",
     "artist": "Şarkıcı",
     "artist_plural": "Şarkıcılar",
     "clear-history": "Geçmişi temizle",
     "empty": "Birşey bulunamadı.",
     "last-searches": "Son aramalar",
+    "live-stream": "Canlı Yayın",
     "placeholder": "Arama...",
     "playlist": "Çalma Listesi",
     "playlist_plural": "Çalma Listeleri",
+    "podcast": "Podcast",
     "queue-add": "Tüm şarkıları kuyruğa ekle",
     "track": "Şarkı",
     "track_plural": "Şarkılar",
@@ -234,6 +251,7 @@
     "lastfm-description": "Scrobbling'i aktifleştirmek için öncelikle Nuclear'den Last.fm'e bağlanmanız ve daha sonra giriş yapmanız gerekir.",
     "lastfm-enable": "Last.fm'de Scrobbling'i aktifleştir",
     "lastfm-title": "Last.fm",
+    "less": "Daha Az",
     "login": "Giriş yap",
     "logout": "Çıkış yap",
     "loop-after-queue-end": "Kuyruk bitince baştan başlat",
@@ -247,11 +265,13 @@
     "mastodon-post-format-label": "Gönderi biçimi",
     "mastodon-title": "",
     "mini-player": "Mini-oynatıcıyı kullan",
+    "more": "Daha Fazla",
     "discord-rich-presence": "Discord özel durumu aktifleştir (yeniden başlatma gerekir)",
     "notification-timeout": "Bildirim zaman aşımı",
     "notlogged": "Oturum kapalı",
     "playback": "Oynatma",
     "program-settings": "Program Ayarları",
+    "saving-in": "Kaydedildiği yer:",
     "seek-iteration": "Ok tuşlarına basıldığında ileri/geri oynayan saniye sayısı",
     "shuffle-queue": "Şarkıları karışık çal",
     "shuffle-when-going-back": "Önceki şarkıya dönerken de karışık çal",
