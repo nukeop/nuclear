@@ -25,7 +25,8 @@
     "plugins": "Plugins",
     "search": "Resultados de la Búsqueda",
     "settings": "Ajustes",
-    "visualizer": "Visualizador"
+    "visualizer": "Visualizador",
+    "version": "Version"
   },
   "artist": {
     "count": "Conteo de reproducciones",
@@ -56,6 +57,18 @@
     "name": "Nombre",
     "status": "Estado"
   },
+  "equalizer": {
+    "classical": "Classical",
+    "club": "Club",
+    "custom": "Custom",
+    "default": "Default",
+    "full-bass": "Full Bass",
+    "full-treble": "Full Treble",
+    "pop": "Pop",
+    "presets": "Presets",
+    "reggae": "Reggae",
+    "rock": "Rock"
+  },
   "favorite-albums": {
     "empty": "No hay álbumes favoritos",
     "empty-help": "¡Prueba añadir algunos álbumes a favoritos y aparecerán aquí!",
@@ -75,6 +88,7 @@
   },
   "help": {
     "about": "Acerca de Nuclear Music Player",
+    "contributors": "Our top 10 Contributors",
     "header": "Reproductor de música de escritorio para transmitir desde fuentes gratuitas",
     "released": "publicado bajo AGPL-3.0",
     "report": "Enviar incidencias o nuevas funcionalidades",
@@ -185,14 +199,17 @@
   "search": {
     "album": "Álbum",
     "album_plural": "Álbumes",
+    "all": "All",
     "artist": "Artista",
     "artist_plural": "Artistas",
     "clear-history": "Limpiar el historial",
     "empty": "No se ha encontrado nada.",
     "last-searches": "Últimas búsquedas",
+    "live-stream": "LiveStream",
     "placeholder": "Buscar...",
     "playlist": "Lista de reproducción",
     "playlist_plural": "Listas de reproducción",
+    "podcast": "Podcast",
     "queue-add": "Añadir todas las pistas a lista de reproducción",
     "track": "Pista",
     "track_plural": "Pistas",
@@ -234,6 +251,7 @@
     "lastfm-description": "Para habilitar el scrobbling, primero debes conectar y autorizar Nuclear en Last.fm, y luego hacer clic en iniciar sesión.",
     "lastfm-enable": "Habilitar scrobbling a Last.fm",
     "lastfm-title": "Last.fm",
+    "less": "Less",
     "login": "Iniciar sesión",
     "logout": "Cerrar sesión",
     "loop-after-queue-end": "Repetir al terminar el último elemento de la cola",
@@ -247,11 +265,13 @@
     "mastodon-post-format-label": "Formato de la publicación",
     "mastodon-title": "",
     "mini-player": "Usar estilo de minireproductor",
+    "more": "More",
     "discord-rich-presence": "Toggle discord rich presence (requires restart)",
     "notification-timeout": "Tiempo de espera de notificaciones",
     "notlogged": "Sesión no iniciada",
     "playback": "Reproducción",
     "program-settings": "Ajustes del programa",
+    "saving-in": "Saving in:",
     "seek-iteration": "Cantidad de segundos a desplazar al presionar las flechas direccionales",
     "shuffle-queue": "Reproducción aleatoria",
     "shuffle-when-going-back": "Aleatorizar en pista previa",
