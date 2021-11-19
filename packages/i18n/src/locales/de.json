@@ -25,7 +25,8 @@
     "plugins": "Plugins",
     "search": "Suchergebnisse",
     "settings": "Einstellungen",
-    "visualizer": "Visualisierung"
+    "visualizer": "Visualisierung",
+    "version": "Version"
   },
   "artist": {
     "count": "Wiedergabeanzahl",
@@ -56,6 +57,18 @@
     "name": "Name",
     "status": "Status, Stellenwert"
   },
+  "equalizer": {
+    "classical": "Classical",
+    "club": "Club",
+    "custom": "Custom",
+    "default": "Default",
+    "full-bass": "Full Bass",
+    "full-treble": "Full Treble",
+    "pop": "Pop",
+    "presets": "Presets",
+    "reggae": "Reggae",
+    "rock": "Rock"
+  },
   "favorite-albums": {
     "empty": "Keine Lieblingsalben vorhanden",
     "empty-help": "Favorisierte Alben werden hier erscheinen!",
@@ -75,6 +88,7 @@
   },
   "help": {
     "about": "Über Nuclear Music Player",
+    "contributors": "Our top 10 Contributors",
     "header": "Desktop Musikplayer für Streaming aus freien Quellen",
     "released": "veröffentlicht unter AGPL-3.0",
     "report": "Sende eine Fehlermeldung oder eine Idee für eine neue Funktion",
@@ -185,14 +199,17 @@
   "search": {
     "album": "Album",
     "album_plural": "Alben",
+    "all": "All",
     "artist": "Künstler",
     "artist_plural": "Künstler",
     "clear-history": "Verlauf leeren",
     "empty": "Nichts gefunden.",
     "last-searches": "Letzte Suchanfragen",
+    "live-stream": "LiveStream",
     "placeholder": "Suchen...",
     "playlist": "Wiedergabeliste",
     "playlist_plural": "Wiedergabelisten",
+    "podcast": "Podcast",
     "queue-add": "Alle Lieder zur Warteschlange hinzufügen",
     "track": "Lied",
     "track_plural": "Lieder",
@@ -234,6 +251,7 @@
     "lastfm-description": "Um das Scrobbeln zu aktivieren, musst Du Dich zuerst mit Nuclear auf Last.fm verbinden, Nuclear autorisieren und dann auf Anmeldung klicken.",
     "lastfm-enable": "Scrobbeln zu Last.fm aktivieren",
     "lastfm-title": "Last.fm",
+    "less": "Less",
     "login": "Anmelden",
     "logout": "Abmelden",
     "loop-after-queue-end": "Schleife nach Abspielen des letzten Warteschlangenelements",
@@ -247,11 +265,13 @@
     "mastodon-post-format-label": "Beitragsformat",
     "mastodon-title": "",
     "mini-player": "Mini-Player Stil verwenden",
+    "more": "More",
     "discord-rich-presence": "Umfangreiche Discord Präsenz umschalten (erfordert Neustart)",
     "notification-timeout": "Ablauf von Benachrichtigungen",
     "notlogged": "Nicht angemeldet",
     "playback": "Wiedergabe",
     "program-settings": "Programmeinstellungen",
+    "saving-in": "Saving in:",
     "seek-iteration": "Anzahl der Sekunden, die beim Drücken der Pfeiltasten vorwärts/rückwärts suchen",
     "shuffle-queue": "Titel mischen",
     "shuffle-when-going-back": "Shuffle von vorherigen Liedern",
