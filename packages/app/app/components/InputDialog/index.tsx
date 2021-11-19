@@ -1,12 +1,11 @@
 import React, { useState, useCallback, useEffect } from 'react';
-import { Button, Input, Modal } from 'semantic-ui-react';
+import { Button, Input, Modal, ModalProps } from 'semantic-ui-react';
 import { useTranslation } from 'react-i18next';
 
 type InputDialogProps = {
-  
 initialString:string;
-trigger:JSX.Element;
-header: JSX.Element;
+trigger:ModalProps['trigger'];
+header: React.ReactElement;
 placeholder:string;
 accept:string;
 onAccept: (inputString: string) => void;
