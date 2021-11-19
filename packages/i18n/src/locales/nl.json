@@ -25,7 +25,8 @@
     "plugins": "Plug-ins",
     "search": "Zoekresultaten",
     "settings": "Instellingen",
-    "visualizer": "Visualizer"
+    "visualizer": "Visualizer",
+    "version": "Version"
   },
   "artist": {
     "count": "Aantal keer beluisterd",
@@ -56,6 +57,18 @@
     "name": "Naam",
     "status": "Status"
   },
+  "equalizer": {
+    "classical": "Classical",
+    "club": "Club",
+    "custom": "Custom",
+    "default": "Default",
+    "full-bass": "Full Bass",
+    "full-treble": "Full Treble",
+    "pop": "Pop",
+    "presets": "Presets",
+    "reggae": "Reggae",
+    "rock": "Rock"
+  },
   "favorite-albums": {
     "empty": "No favorite albums",
     "empty-help": "Try adding some albums to favorites and they will appear here!",
@@ -75,6 +88,7 @@
   },
   "help": {
     "about": "Over Nuclear Music Player",
+    "contributors": "Our top 10 Contributors",
     "header": "Muziekspeler voor het streamen van vrije muziek",
     "released": "uitgebracht onder de AGPL-3.0-licentie",
     "report": "Submit issues or new features",
@@ -185,14 +199,17 @@
   "search": {
     "album": "Album",
     "album_plural": "Albums",
+    "all": "All",
     "artist": "Artiest",
     "artist_plural": "Artiesten",
     "clear-history": "Clear history",
     "empty": "Niks gevonden.",
     "last-searches": "Last searches",
+    "live-stream": "LiveStream",
     "placeholder": "Zoeken...",
     "playlist": "Afspeellijst",
     "playlist_plural": "Afspeellijsten",
+    "podcast": "Podcast",
     "queue-add": "Alle nummers toevoegen aan wachtrij",
     "track": "Nummer",
     "track_plural": "Nummers",
@@ -234,6 +251,7 @@
     "lastfm-description": "Om scrobblen in te schakelen, moet je Nuclear eerst koppelen en autoriseren op Last.fm, en dan klikken op 'Inloggen'.",
     "lastfm-enable": "Scrobblen naar Last.fm",
     "lastfm-title": "Last.fm",
+    "less": "Less",
     "login": "Inloggen",
     "logout": "Uitloggen",
     "loop-after-queue-end": "Herhalen na afspelen van laatste wachtrij-item",
@@ -247,11 +265,13 @@
     "mastodon-post-format-label": "Post format",
     "mastodon-title": "",
     "mini-player": "Use mini player style",
+    "more": "More",
     "discord-rich-presence": "Toggle discord rich presence (requires restart)",
     "notification-timeout": "Time-out van meldingen",
     "notlogged": "Niet ingelogd",
     "playback": "Afspelen",
     "program-settings": "Toepassingsinstellingen",
+    "saving-in": "Saving in:",
     "seek-iteration": "Number of seconds to seek forward/backwards when pressing arrow keys",
     "shuffle-queue": "Nummers willekeurig afspelen",
     "shuffle-when-going-back": "Shuffle on previous track",
