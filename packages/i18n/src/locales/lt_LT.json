@@ -25,7 +25,8 @@
     "plugins": "Įskiepiai",
     "search": "Paieškos rezultatai",
     "settings": "Nustatymai",
-    "visualizer": "Virtulizavimas"
+    "visualizer": "Virtulizavimas",
+    "version": "Version"
   },
   "artist": {
     "count": "Paleidimo kartai",
@@ -56,6 +57,18 @@
     "name": "Pavadinimas",
     "status": "Būsena"
   },
+  "equalizer": {
+    "classical": "Classical",
+    "club": "Club",
+    "custom": "Custom",
+    "default": "Default",
+    "full-bass": "Full Bass",
+    "full-treble": "Full Treble",
+    "pop": "Pop",
+    "presets": "Presets",
+    "reggae": "Reggae",
+    "rock": "Rock"
+  },
   "favorite-albums": {
     "empty": "Nėra jokių mėgstamiausių albumų",
     "empty-help": "Pabandykite įdėti mėgstamiausių albumų ir jie atsiras čia!",
@@ -75,6 +88,7 @@
   },
   "help": {
     "about": "Apie Nuclear Muzikos leidėją",
+    "contributors": "Our top 10 Contributors",
     "header": "Kompiuterinis muzikos grotuvas, skirtas srautiniam perdavimui iš nemokamų šaltinių",
     "released": "išleista ant AGPL-3.0",
     "report": "Praneškite klaidas arba sukurkite naujų galimybių",
@@ -185,14 +199,17 @@
   "search": {
     "album": "Albumas",
     "album_plural": "Albumai",
+    "all": "All",
     "artist": "Atlikėjas",
     "artist_plural": "Atlikėjai",
     "clear-history": "Išvalyti istoriją",
     "empty": "Nieko nerasta.",
     "last-searches": "Paskutinės paieškos",
+    "live-stream": "LiveStream",
     "placeholder": "Ieškoma...",
     "playlist": "Grojaraštis",
     "playlist_plural": "Grojaraščiai",
+    "podcast": "Podcast",
     "queue-add": "Pridėti visas dainas į eilę",
     "track": "Daina",
     "track_plural": "Dainos",
@@ -234,6 +251,7 @@
     "lastfm-description": "Kad galėtumėte naudotis scrobbling pirmiausia turite prisijungti ir autorizuoti Nuclear su Last.fm ir paspauskite prisijungti.",
     "lastfm-enable": "Įgalinti scrobbling į Last.fm",
     "lastfm-title": "Last.fm",
+    "less": "Less",
     "login": "Prisijungti",
     "logout": "Atsijungti",
     "loop-after-queue-end": "Įjungti ciklą kai eilė baigsis",
@@ -247,11 +265,13 @@
     "mastodon-post-format-label": "Skelbimo formatas",
     "mastodon-title": "",
     "mini-player": "Naudoti Mini grotuvo stilių",
+    "more": "More",
     "discord-rich-presence": "Toggle discord rich presence (requires restart)",
     "notification-timeout": "Pranešimų laikas",
     "notlogged": "Esate neprisijunges",
     "playback": "Grojimas",
     "program-settings": "Programos nustatymai",
+    "saving-in": "Saving in:",
     "seek-iteration": "Sekundžių, kurių reikia ieškoti paspaudus rodyklių klavišus, skaičius",
     "shuffle-queue": "Maišyti Dainas",
     "shuffle-when-going-back": "Maišyti praėjusią dainą",
