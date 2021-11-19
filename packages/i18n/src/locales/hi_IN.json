@@ -25,7 +25,8 @@
     "plugins": "प्लगइन्स",
     "search": "खोज परिणाम",
     "settings": "सेटिंग्स",
-    "visualizer": "विजुआलाइज़र"
+    "visualizer": "विजुआलाइज़र",
+    "version": "Version"
   },
   "artist": {
     "count": "प्ले काउंट",
@@ -56,6 +57,18 @@
     "name": "नाम",
     "status": "स्थिति"
   },
+  "equalizer": {
+    "classical": "Classical",
+    "club": "Club",
+    "custom": "Custom",
+    "default": "Default",
+    "full-bass": "Full Bass",
+    "full-treble": "Full Treble",
+    "pop": "Pop",
+    "presets": "Presets",
+    "reggae": "Reggae",
+    "rock": "Rock"
+  },
   "favorite-albums": {
     "empty": "कोई पसंदीदा एल्बम नहीं",
     "empty-help": "पसंदीदा में कुछ एल्बम जोड़ने का प्रयास करें और वे यहां दिखाई देंगे!",
@@ -75,6 +88,7 @@
   },
   "help": {
     "about": "न्यूक्लियर म्यूजिक प्लेयर के बारे में",
+    "contributors": "Our top 10 Contributors",
     "header": "मुफ्त स्रोतों से स्ट्रीमिंग के लिए डेस्कटॉप म्यूजिक प्लेयर",
     "released": "AGPL-3.0 के तहत जारी",
     "report": "समस्याएं या नई सुविधाएं सबमिट करें",
@@ -185,14 +199,17 @@
   "search": {
     "album": "एल्बम",
     "album_plural": "एल्बम्स",
+    "all": "All",
     "artist": "कलाकार",
     "artist_plural": "कलाकार",
     "clear-history": "इतिहास साफ करें",
     "empty": "कुछ भी नहीं मिला",
     "last-searches": "पिछली खोजें",
+    "live-stream": "LiveStream",
     "placeholder": "खोज़े...",
     "playlist": "प्लेलिस्ट",
     "playlist_plural": "प्लेलिस्ट",
+    "podcast": "Podcast",
     "queue-add": "सभी ट्रैक कतार में जोड़ें",
     "track": "ट्रैक",
     "track_plural": "ट्रैक",
@@ -234,6 +251,7 @@
     "lastfm-description": "स्क्रोब्लिंग को सक्षम करने के लिए, आपको पहले Last.fm पर न्यूक्लियर को कनेक्ट और अधिकृत करना होगा, फिर लॉग इन पर क्लिक करना होगा।",
     "lastfm-enable": "स्क्रोब्लिंग को Last.fm पे सक्षम करें",
     "lastfm-title": "Last.fm",
+    "less": "Less",
     "login": "लौग इन",
     "logout": "लॉग आउट",
     "loop-after-queue-end": "अंतिम कतार आइटम खेलने के बाद लूप करें",
@@ -247,11 +265,13 @@
     "mastodon-post-format-label": "पोस्ट फॉर्मेट",
     "mastodon-title": "",
     "mini-player": "मिनी प्लेयर शैली का प्रयोग करें",
+    "more": "More",
     "discord-rich-presence": "डिस्कॉर्ड रिच प्रजेंस टॉगल करें (पुनरारंभ करने की आवश्यकता है)",
     "notification-timeout": "सूचना समयबाह्य",
     "notlogged": "लॉगिन नहीं हैं",
     "playback": "प्लेबैक",
     "program-settings": "कार्यक्रम सेटिंग्‍स",
+    "saving-in": "Saving in:",
     "seek-iteration": "तीर कुंजियों को दबाते समय आगे/पीछे जाने के लिए सेकंड की संख्या",
     "shuffle-queue": "गीत शफल करे",
     "shuffle-when-going-back": "पिछले ट्रैक पर शफल करें",
