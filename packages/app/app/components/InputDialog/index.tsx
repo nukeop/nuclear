@@ -9,8 +9,7 @@ header: React.ReactElement;
 placeholder:string;
 accept:string;
 onAccept: (inputString: string) => void;
-testIdPrefix:string;
-
+testIdPrefix?:string;
 }
 
 const InputDialog:React.FC<InputDialogProps> = ({ 
