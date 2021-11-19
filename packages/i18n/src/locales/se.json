@@ -25,7 +25,8 @@
     "plugins": "Insticksmoduler",
     "search": "Sökresultat",
     "settings": "Inställningar",
-    "visualizer": "Visualiserare"
+    "visualizer": "Visualiserare",
+    "version": "Version"
   },
   "artist": {
     "count": "Antal spelningar",
@@ -56,6 +57,18 @@
     "name": "Namn",
     "status": "Status"
   },
+  "equalizer": {
+    "classical": "Classical",
+    "club": "Club",
+    "custom": "Custom",
+    "default": "Default",
+    "full-bass": "Full Bass",
+    "full-treble": "Full Treble",
+    "pop": "Pop",
+    "presets": "Presets",
+    "reggae": "Reggae",
+    "rock": "Rock"
+  },
   "favorite-albums": {
     "empty": "Inga favoritalbum",
     "empty-help": "Testa att favoritmarkera några album så kommer de dyka upp här!",
@@ -75,6 +88,7 @@
   },
   "help": {
     "about": "Om Nuclear-musikspelare",
+    "contributors": "Our top 10 Contributors",
     "header": "Musikspelare som streamar från avgiftsfria källor",
     "released": "släppt under AGPL-3.0",
     "report": "Skicka in problem eller nya funktioner",
@@ -185,14 +199,17 @@
   "search": {
     "album": "Album",
     "album_plural": "Album",
+    "all": "All",
     "artist": "Artist",
     "artist_plural": "Artister",
     "clear-history": "Rensa historik",
     "empty": "Hittade inget.",
     "last-searches": "Senaste sökningar",
+    "live-stream": "LiveStream",
     "placeholder": "Sök...",
     "playlist": "Spellista",
     "playlist_plural": "Spellistor",
+    "podcast": "Podcast",
     "queue-add": "Lägg till alla spår i kö",
     "track": "Spår",
     "track_plural": "Spår",
@@ -234,6 +251,7 @@
     "lastfm-description": "För att aktivera skrobbling måste du först ansluta och auktorisera Nuclear på Last.fm, klicka sedan på logga in.",
     "lastfm-enable": "Aktivera skrobbling till Last.fm",
     "lastfm-title": "Last.fm",
+    "less": "Less",
     "login": "Logga in",
     "logout": "Logga ut",
     "loop-after-queue-end": "Upprepa kön efter att sista låten i kön spelats",
@@ -247,11 +265,13 @@
     "mastodon-post-format-label": "Postformat",
     "mastodon-title": "",
     "mini-player": "Använd minispelarstil",
+    "more": "More",
     "discord-rich-presence": "Växla Discord rich närvaro (kräver omstart)",
     "notification-timeout": "Tidsgräns för notifikationer",
     "notlogged": "Inte inloggad",
     "playback": "Uppspelning",
     "program-settings": "Programinställningar",
+    "saving-in": "Saving in:",
     "seek-iteration": "Antal sekunder att hoppa framåt/bakåt när du trycker på piltangenterna",
     "shuffle-queue": "Blanda spår",
     "shuffle-when-going-back": "Blanda på föregående låt",
