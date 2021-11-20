@@ -1,7 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import _ from 'lodash';
-import { withRouter } from 'react-router';
+import { withRouter, RouteComponentProps } from 'react-router';
 import { Icon, Segment } from 'semantic-ui-react';
 import { useTranslation } from 'react-i18next';
 
@@ -9,6 +8,13 @@ import AlbumList from '../AlbumList';
 import Header from '../Header';
 
 import styles from './styles.scss';
+
+type FavoriteAlbumsViewProps = {
+  albums: Array<any>;
+  removeFavoriteAlbum: React.MouseEventHandler;
+  albumInfoSearch: React.MouseEventHandler;
+  history:RouteComponentProps['history']
+}
 
 const EmptyState = () => {
   const { t } = useTranslation('favorite-albums');
@@ -24,7 +30,7 @@ const EmptyState = () => {
   );
 };
 
-const FavoriteAlbumsView = ({
+const FavoriteAlbumsView:React.FC<FavoriteAlbumsViewProps & RouteComponentProps > = ({
   albums,
   removeFavoriteAlbum,
   albumInfoSearch,
@@ -57,20 +63,20 @@ const FavoriteAlbumsView = ({
   );
 };
 
-FavoriteAlbumsView.propTypes = {
-  albums: PropTypes.array,
-  removeFavoriteAlbum: PropTypes.func,
-  albumInfoSearch: PropTypes.func,
-  history: PropTypes.shape({
-    push: PropTypes.func
-  })
-};
+// FavoriteAlbumsView.propTypes = {
+//   albums: PropTypes.array,
+//   removeFavoriteAlbum: PropTypes.func,
+//   albumInfoSearch: PropTypes.func,
+//   history: PropTypes.shape({
+//     push: PropTypes.func
+//   })
+// };
 
-FavoriteAlbumsView.defaultProps = {
-  albums: [],
-  removeFavoriteAlbum: () => {},
-  albumInfoSearch: () => {},
-  history: {}
-};
+// FavoriteAlbumsView.defaultProps = {
+//   albums: [],
+//   removeFavoriteAlbum: () => {},
+//   albumInfoSearch: () => {},
+//   history: {}
+// };
 
 export default withRouter(FavoriteAlbumsView);
