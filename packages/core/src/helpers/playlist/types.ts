@@ -2,6 +2,7 @@ export class Playlist {
   id: string;
   name: string;
   lastModified?: number;
+  serverModified?: number;
   tracks: PlaylistTrack[];
 }
 
@@ -10,7 +11,6 @@ export class PlaylistTrack {
   name: string;
   album?: string;
   thumbnail?: string;
-  duration: number;
   uuid: string;
   streams: PlaylistTrackStream[];
 }

@@ -5,9 +5,6 @@ import { Playlist } from '@nuclear/core';
 
 import styles from '../styles.scss';
 import { PlaylistsCallbacks, PlaylistsStrings } from '..';
-import Button from '../../Button';
-import { Icon } from 'semantic-ui-react';
-import Tooltip from '../../Tooltip';
 
 const timestampToString = (timestamp: number, locale: string) => new Date(timestamp).toLocaleDateString(
   locale, {
@@ -19,18 +16,12 @@ const timestampToString = (timestamp: number, locale: string) => new Date(timest
 
 const ModificationDateCell: React.FC<CellProps<Playlist> & PlaylistsStrings & PlaylistsCallbacks> = ({
   cell,
-  row,
   value,
 
   locale = 'en-GB',
   modifiedAt,
   neverModified,
-  serverModifiedAt,
-  uploadToServer,
-  downloadFromServer,
-
-  onPlaylistDownload,
-  onPlaylistUpload
+  serverModifiedAt  
 }) => <td
   {...cell.getCellProps()}
   className={styles.modification_date_cell}
@@ -53,38 +44,6 @@ const ModificationDateCell: React.FC<CellProps<Playlist> & PlaylistsStrings & Pl
             : neverModified
         }
       </div>
-    </div>
-
-    <div className={styles.sync_buttons}>
-      <Tooltip
-        content={uploadToServer}
-        position='top center'
-        trigger={
-          <Button 
-            onClick={() => onPlaylistUpload(row.original)}
-            basic 
-            icon 
-            borderless
-          >
-            <Icon name='upload' />
-          </Button>
-        }
-      />
-
-      <Tooltip
-        content={downloadFromServer}
-        position='top center'
-        trigger={
-          <Button 
-            onClick={() => onPlaylistDownload(row.original.id)}
-            basic 
-            icon 
-            borderless
-          >
-            <Icon name='download' />
-          </Button>
-        }
-      />
     </div>
   </div>
 </td>;

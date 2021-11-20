@@ -1,6 +1,7 @@
 @import "../../common.scss";
 
 .playlists_table {
+    border-collapse: separate;
     width: 100%;
 
     tbody {
@@ -22,7 +23,7 @@
 
     .thumbnail_cell {
         height: 4em;
-        width: 0;
+        width: 4em;
         padding: 0;
     }
 
@@ -36,17 +37,23 @@
     .modification_date_cell_content {
         display: flex;
         flex-flow: row;
+        justify-content: flex-end;
+        text-align: right;
 
         .modified_dates {
             display: flex;
             flex-flow: column;
         }
+    }
 
-        .sync_buttons {
-            display: flex;
-            flex: 1 1 auto;
-            justify-content: flex-end;
-            align-items: center;
-        }
+    .sync_cell {
+        width: 0;
+    }
+
+    .sync_cell_content {
+        display: flex;
+        flex: 1 1 auto;
+        justify-content: center;
+        align-items: center;
     }
 }

@@ -1,11 +1,13 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Icon, Segment } from 'semantic-ui-react';
+import { Icon } from 'semantic-ui-react';
 
-import PlaylistItem from './PlaylistItem';
-import PlaylistsHeader from './PlaylistsHeader';
 import { Playlist } from '@nuclear/core/src/helpers/playlist/types';
+import { Playlists as PlaylistsTable } from '@nuclear/ui';
+
+import PlaylistsHeader from './PlaylistsHeader';
 import styles from './styles.scss';
+import { useHistory } from 'react-router-dom';
 
 const EmptyState = () => {
   const { t } = useTranslation('playlists');
@@ -26,7 +28,13 @@ type PlaylistsProps = {
   createNew: (name: string) => void;
 }
 
-const Playlists: React.FC<PlaylistsProps> = ({ playlists, handleImportFromFile, createNew }) => {
+const Playlists: React.FC<PlaylistsProps> = ({
+  playlists,
+  handleImportFromFile,
+  createNew
+}) => {
+  const history = useHistory();
+  const { t, i18n } = useTranslation('playlists');
   
   function isPlaylistsReallyEmpty() {
     return (
@@ -38,33 +46,47 @@ const Playlists: React.FC<PlaylistsProps> = ({ playlists, handleImportFromFile, 
     return playlists && playlists.length > 0;
   }
 
+  const strings = {
+    tracksSingular: t('tracks-singular'),
+    tracksPlural: t('tracks-plural'),
+    modifiedAt: t('modified-at'),
+    neverModified: t('never-modified'),
+    serverModifiedAt: t('server-modified-at'),
+    uploadToServer: t('upload-to-server'),
+    downloadFromServer: t('download-from-server'),
+    locale: i18n.language
+  };
+
+  const callbacks = {
+    onPlaylistDownload: () => {},
+    onPlaylistUpload: () => {},
+    onPlaylistClick: (id: string) => history.push(`/playlist/${id}`),
+    onDragEnd: () => {}
+  };
+
   return (
     <div className={styles.playlists_container}>
-      <PlaylistsHeader 
+      <PlaylistsHeader
         showText={isPlaylistsReallyNotEmpty()}
         handleImportFromFile={handleImportFromFile}
         createNew={createNew}
       />
       {
-        isPlaylistsReallyEmpty() && 
+        isPlaylistsReallyEmpty() &&
         <EmptyState />
       }
-      
+
       {
-        isPlaylistsReallyNotEmpty() &&  
-          <Segment className={styles.playlists_segment}>
-            {playlists.map((playlist, i) => {
-              return (
-                <PlaylistItem
-                  playlist={playlist}
-                  index={i}
-                  key={i}
-                />
-              );
-            })}
-          </Segment>
+        isPlaylistsReallyNotEmpty() &&
+        <PlaylistsTable
+          displayModificationDates
+          playlists={playlists}
+
+          {...strings}
+          {...callbacks}
+        />
       }
-      
+
     </div>
   );
 };

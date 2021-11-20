@@ -11,9 +11,11 @@ import * as PlaylistActions from '../../actions/playlists';
 import PlaylistView from '../../components/PlaylistView';
 
 const PlaylistViewContainer = props => {
+  const currentPlaylist = props.playlists.find(playlist => playlist.id === props.match.params.playlistId);
+
   const onReorderTracks = useCallback(
     onReorder(
-      props.playlists.playlists[props.match.params.playlistId],
+      currentPlaylist,
       props.actions.updatePlaylist
     ),
     [props.playlists]
@@ -21,18 +23,15 @@ const PlaylistViewContainer = props => {
 
   return (
     <PlaylistView
-      playlist={props.playlists.playlists[props.match.params.playlistId]}
-      streamProviders={props.streamProviders}
+      playlist={currentPlaylist}
       addTracks={props.actions.addPlaylistTracksToQueue}
       selectSong={props.actions.selectSong}
       startPlayback={props.actions.startPlayback}
-      addToQueue={props.actions.addToQueue}
       clearQueue={props.actions.clearQueue}
       deletePlaylist={props.actions.deletePlaylist}
       updatePlaylist={props.actions.updatePlaylist}
       exportPlaylist={props.actions.exportPlaylist}
       onReorderTracks={onReorderTracks}
-      history={props.history}
     />
   );
 };
@@ -46,8 +45,7 @@ export const onReorder = (playlist, updatePlaylist) => (indexSource, indexDest) 
 
 function mapStateToProps(state) {
   return {
-    playlists: state.playlists,
-    streamProviders: state.plugin.plugins.streamProviders
+    playlists: state.playlists.playlists
   };
 }
 

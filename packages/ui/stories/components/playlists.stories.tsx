@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import { action } from '@storybook/addon-actions';
 
-import { Playlist } from '@nuclear/core';
-
 import { Playlists } from '../..';
-import { Track } from '../../lib/types';
 import { swap } from '../storyUtils';
+import { PlaylistTrack } from '@nuclear/core/src/helpers/playlist/types';
+import { PlaylistsCallbacks, PlaylistsStrings, PlaylistWithLoadingState } from '../../lib/components/Playlists';
 
 export default {
   title: 'Components/Playlists',
@@ -18,39 +17,42 @@ const tracks = [
     thumbnail: 'https://i.imgur.com/4euOws2.jpg',
     artist: 'Test Artist',
     title: 'Test Title',
-    album: 'Test Album',
-    duration: '1:00'
-  } as Track, {
+    album: 'Test Album'
+  }, {
     position: 2,
     thumbnail: 'https://i.imgur.com/4euOws2.jpg',
     artist: 'Test Artist 2',
     name: 'Test Title 2',
-    album: 'Test Album',
-    duration: '1:00'
-  } as Track,
+    album: 'Test Album'
+  },
   {
     position: 3,
     thumbnail: 'https://i.imgur.com/4euOws2.jpg',
-    artist: { name: 'Test Artist 3' },
+    artist: 'Test Artist 3',
     name: 'Test Title 3',
-    album: 'Test Album',
-    duration: '1:00'
-  } as Track
-];
+    album: 'Test Album'
+  }
+] as unknown as PlaylistTrack[];
 
-const playlists: Playlist[] = [
-  { id: 'playlist-1', name: 'Playlist 1', tracks, lastModified: new Date().valueOf() },
+const playlists: PlaylistWithLoadingState[] = [
+  { 
+    id: 'playlist-1', name: 'Playlist 1', tracks,
+    lastModified: new Date().valueOf(),
+    serverModified: new Date().setDate(3).valueOf()
+  },
   { id: 'playlist-2', name: 'Another Playlist', tracks: [tracks[0], tracks[1]] },
   { id: 'playlist-3', name: 'Playlist with 1 track', tracks: [tracks[0]] },
-  { id: 'playlist-4', name: 'Last Playlist', tracks: [] }
+  { id: 'playlist-4', name: 'Last Playlist', tracks: [] },
+  { id: 'playlist-5', name: 'Loading Playlist', tracks: [], isLoading: true }
 ];
 
-const callbacks = {
+const callbacks: PlaylistsCallbacks = {
   onPlaylistDownload: action('Playlist download'),
-  onPlaylistUpload: action('Playlist upload')
+  onPlaylistUpload: action('Playlist upload'),
+  onPlaylistClick: action('Playlist click')
 };
 
-const strings = {
+const strings: PlaylistsStrings = {
   tracksSingular: 'track',
   tracksPlural: 'tracks',
   modifiedAt: 'Last modified: ',
@@ -64,8 +66,6 @@ const strings = {
 export const Empty = () => <div className='bg'>
   <Playlists
     playlists={[]}
-    tracksSingular='track'
-    tracksPlural='tracks'
     {...strings}
     {...callbacks}
   />

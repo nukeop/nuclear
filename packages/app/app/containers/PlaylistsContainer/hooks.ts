@@ -2,8 +2,9 @@ import { useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
-import { playlistsSelectors } from '../../selectors/playlists';
 import { Playlist } from '@nuclear/core/src/helpers/playlist/types';
+
+import { playlistsSelectors } from '../../selectors/playlists';
 import * as PlaylistActions from '../../actions/playlists';
 import { openLocalFilePicker } from '../../actions/local';
 
