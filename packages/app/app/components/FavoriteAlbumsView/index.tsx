@@ -12,7 +12,7 @@ import styles from './styles.scss';
 type FavoriteAlbumsViewProps = {
   albums: Array<any>;
   removeFavoriteAlbum: React.MouseEventHandler;
-  albumInfoSearch: React.MouseEventHandler;
+  albumInfoSearch: (albumId: any, releaseType: any, release: any) => Promise<void>;
   history:RouteComponentProps['history']
 }
 
@@ -62,21 +62,5 @@ const FavoriteAlbumsView:React.FC<FavoriteAlbumsViewProps & RouteComponentProps 
     </div>
   );
 };
-
-// FavoriteAlbumsView.propTypes = {
-//   albums: PropTypes.array,
-//   removeFavoriteAlbum: PropTypes.func,
-//   albumInfoSearch: PropTypes.func,
-//   history: PropTypes.shape({
-//     push: PropTypes.func
-//   })
-// };
-
-// FavoriteAlbumsView.defaultProps = {
-//   albums: [],
-//   removeFavoriteAlbum: () => {},
-//   albumInfoSearch: () => {},
-//   history: {}
-// };
 
 export default withRouter(FavoriteAlbumsView);
