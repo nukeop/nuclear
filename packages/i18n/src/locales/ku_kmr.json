@@ -26,14 +26,14 @@
     "search": "Encamên lêgerînê",
     "settings": "Sazkarî",
     "visualizer": "Dîtbarî",
-    "version": "Version"
+    "version": "Guherto"
   },
   "artist": {
     "count": "Hejmarê lêdanan",
     "queue": "Hemû herîkan tevlî rêzê bike",
     "similar": "Hunermendên wekhev",
     "title": "Sernav",
-    "tour": "Di geştê de"
+    "tour": "Di gerê de"
   },
   "dashboard": {
     "add-all": "Hemû tevlî bike",
@@ -58,14 +58,14 @@
     "status": "Rewş"
   },
   "equalizer": {
-    "classical": "Classical",
+    "classical": "Klasîk",
     "club": "Club",
-    "custom": "Custom",
-    "default": "Default",
+    "custom": "Kesanekirî",
+    "default": "Berdest",
     "full-bass": "Full Bass",
     "full-treble": "Full Treble",
     "pop": "Pop",
-    "presets": "Presets",
+    "presets": "Pêş sazkarî",
     "reggae": "Reggae",
     "rock": "Rock"
   },
@@ -88,7 +88,7 @@
   },
   "help": {
     "about": "Derbarê Nuclear Music Player",
-    "contributors": "Our top 10 Contributors",
+    "contributors": "10 beşdarên me yên herî baş",
     "header": "Lêdera muzîkê ya sermaseyê ji bo weşanê ji çavkaniyên belaş",
     "released": "hatiye weşandin di bin AGPL-3.0 de",
     "report": "Pirsgirêkan ragihîne an jî taybetmendiyên nû bişîne",
@@ -199,13 +199,13 @@
   "search": {
     "album": "Album",
     "album_plural": "Album",
-    "all": "All",
+    "all": "Hemû",
     "artist": "Hunermend",
     "artist_plural": "Hunermend",
     "clear-history": "Dîrokê pak bike",
     "empty": "Tiştek nehate dîtin.",
     "last-searches": "Lêgerînên dawî",
-    "live-stream": "LiveStream",
+    "live-stream": "Weşana zindî",
     "placeholder": "Bigere...",
     "playlist": "Rêzoka lêdanan",
     "playlist_plural": "Rêzoka lêdanan",
@@ -251,7 +251,7 @@
     "lastfm-description": "Ji bo ku tu barkirina bixweber çalak bikî, pêşî divê tu Nuclear-ê bi Last.fm ve girê bidî û mafê bidî, paşê jî têketinê bike.",
     "lastfm-enable": "Barkirina bixweber a stranên ku li Last.fm hatine guhdarîkirin çalak bike",
     "lastfm-title": "Last.fm",
-    "less": "Less",
+    "less": "Kêm",
     "login": "Têkeve",
     "logout": "Derkeve",
     "loop-after-queue-end": "Gilover piştî lêdana hêmana rêzê ya dawî",
@@ -265,13 +265,13 @@
     "mastodon-post-format-label": "Awayê şandinê",
     "mastodon-title": "",
     "mini-player": "Şêwazê lêdera piçûk bi kar bîne",
-    "more": "More",
+    "more": "Bêtir",
     "discord-rich-presence": "Muzîka ku di dema heyî tê lêdan nîşan bide ( ji nû ve destpêkirin pêdivî dike)",
     "notification-timeout": "Bergeya agahdarkirinê",
     "notlogged": "Ne têketî",
     "playback": "Lêdan",
     "program-settings": "Sazkariyên bernameyê",
-    "saving-in": "Saving in:",
+    "saving-in": "Cihê tomarkirinê:",
     "seek-iteration": "Dema pê li bişkokên tîrê tê kirin ji bo ku li pêş/paş biçe hejmara çirkeyan",
     "shuffle-queue": "Stranan tevlihev bike",
     "shuffle-when-going-back": "Li ser herîka paş tevlihev bike",
