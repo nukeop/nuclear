@@ -39,66 +39,177 @@ exports[`Playlist container should display all playlists 1`] = `
           </button>
         </div>
       </div>
-      <div
-        class="ui segment playlists_segment"
+      <table
+        class="playlists_table"
+        role="table"
       >
-        <div
-          class="playlist_outside_container"
+        <tbody
+          data-rbd-droppable-context-id="0"
+          data-rbd-droppable-id="playlists"
+          role="rowgroup"
         >
-          <div
-            class="playlist_container"
+          <tr
+            aria-describedby="rbd-hidden-text-0-hidden-text-0"
+            class=""
+            data-rbd-drag-handle-context-id="0"
+            data-rbd-drag-handle-draggable-id="test playlist  0"
+            data-rbd-draggable-context-id="0"
+            data-rbd-draggable-id="test playlist  0"
+            draggable="false"
+            role="button"
+            tabindex="0"
           >
-            <div
-              class="playlist_thumbnail_container"
+            <td
+              class="thumbnail_cell narrow"
+              role="cell"
             >
               <img
-                class="playlist_thumbnail"
+                class="thumbnail"
                 src="test thumbnail"
               />
-            </div>
-            <div
-              class="playlist_info"
+            </td>
+            <td
+              class="title_cell"
+              role="cell"
             >
-              <h4
-                class="playlist_title"
+              test playlist
+            </td>
+            <td
+              role="cell"
+            >
+              2 tracks
+            </td>
+            <td
+              class="modification_date_cell"
+              role="cell"
+            >
+              <div
+                class="modification_date_cell_content"
               >
-                test playlist
-              </h4>
-              <p>
-                2 songs
-              </p>
-            </div>
-          </div>
-        </div>
-        <div
-          class="playlist_outside_container"
-        >
-          <div
-            class="playlist_container"
+                <div
+                  class="modified_dates"
+                >
+                  <div
+                    class="modified_at_row"
+                  >
+                    Last modified: Unknown
+                  </div>
+                  <div
+                    class="modified_at_row"
+                  >
+                    Server modified: Unknown
+                  </div>
+                </div>
+              </div>
+            </td>
+            <td
+              class="sync_cell"
+              role="cell"
+            >
+              <div
+                class="sync_cell_content"
+              >
+                <button
+                  class="ui basic icon button nuclear button borderless"
+                >
+                  <i
+                    aria-hidden="true"
+                    class="upload icon"
+                  />
+                </button>
+                <button
+                  class="ui basic icon button nuclear button borderless"
+                >
+                  <i
+                    aria-hidden="true"
+                    class="download icon"
+                  />
+                </button>
+              </div>
+            </td>
+          </tr>
+          <tr
+            aria-describedby="rbd-hidden-text-0-hidden-text-0"
+            class=""
+            data-rbd-drag-handle-context-id="0"
+            data-rbd-drag-handle-draggable-id="test playlist 2  1"
+            data-rbd-draggable-context-id="0"
+            data-rbd-draggable-id="test playlist 2  1"
+            draggable="false"
+            role="button"
+            tabindex="0"
           >
-            <div
-              class="playlist_thumbnail_container"
+            <td
+              class="thumbnail_cell narrow"
+              role="cell"
             >
               <img
-                class="playlist_thumbnail"
+                class="thumbnail"
                 src="test thumbnail"
               />
-            </div>
-            <div
-              class="playlist_info"
+            </td>
+            <td
+              class="title_cell"
+              role="cell"
             >
-              <h4
-                class="playlist_title"
+              test playlist 2
+            </td>
+            <td
+              role="cell"
+            >
+              2 tracks
+            </td>
+            <td
+              class="modification_date_cell"
+              role="cell"
+            >
+              <div
+                class="modification_date_cell_content"
               >
-                test playlist 2
-              </h4>
-              <p>
-                2 songs
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
+                <div
+                  class="modified_dates"
+                >
+                  <div
+                    class="modified_at_row"
+                  >
+                    Last modified: Unknown
+                  </div>
+                  <div
+                    class="modified_at_row"
+                  >
+                    Server modified: Unknown
+                  </div>
+                </div>
+              </div>
+            </td>
+            <td
+              class="sync_cell"
+              role="cell"
+            >
+              <div
+                class="sync_cell_content"
+              >
+                <button
+                  class="ui basic icon button nuclear button borderless"
+                >
+                  <i
+                    aria-hidden="true"
+                    class="upload icon"
+                  />
+                </button>
+                <button
+                  class="ui basic icon button nuclear button borderless"
+                >
+                  <i
+                    aria-hidden="true"
+                    class="download icon"
+                  />
+                </button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </DocumentFragment>

@@ -1,69 +1,67 @@
 import { v4 } from 'uuid';
 import _ from 'lodash';
 import { remote } from 'electron';
-import { store, PlaylistHelper } from '@nuclear/core';
+import { store, PlaylistHelper, Playlist, PlaylistTrack } from '@nuclear/core';
 import fs from 'fs';
 
+import { Playlists } from './actionTypes';
+
 import {
-  deletePlaylistInjectable,
-  updatePlaylistInjectable
-} from './playlists.injectable';
+  deletePlaylistEffect,
+  updatePlaylistEffect,
+  updatePlaylistsOrderEffect
+} from './playlists.effects';
 import { success, error } from './toasts';
 
-export const LOAD_PLAYLISTS = 'LOAD_PLAYLISTS';
-export const ADD_PLAYLIST = 'ADD_PLAYLIST';
-export const DELETE_PLAYLIST = 'DELETE_PLAYLIST';
-export const UPDATE_PLAYLIST = 'UPDATE_PLAYLIST';
+export const addPlaylist = (tracks: Array<PlaylistTrack>, name: string) => dispatch => {
+  if (name?.length === 0) {
+    return;
+  }
+  let playlists = store.get('playlists') || [];
+  const playlist = PlaylistHelper.formatPlaylistForStorage(name, tracks, v4());
 
-export function addPlaylist(tracks: Array<any>, name: string) {
-  return dispatch => {
-    if (name?.length === 0) {
-      return;
-    }
-    let playlists = store.get('playlists') || [];
-    const playlist = PlaylistHelper.formatPlaylistForStorage(name, tracks, v4());
+  playlists = [...playlists, playlist];
 
-    playlists = [...playlists, playlist];
+  store.set('playlists', playlists);
+  dispatch({
+    type: Playlists.ADD_PLAYLIST,
+    payload: { playlists }
+  });
+};
 
-    store.set('playlists', playlists);
-    dispatch({
-      type: ADD_PLAYLIST,
-      payload: { playlists }
-    });
-  };
-}
+export const deletePlaylist = (id: string) => dispatch => {
+  const playlists = deletePlaylistEffect(store)(id);
 
-export function deletePlaylist(id) {
-  return dispatch => {
-    const playlists = deletePlaylistInjectable(store)(id);
-    
-    dispatch({
-      type: DELETE_PLAYLIST,
-      payload: { playlists }
-    });
-  };
-}
+  dispatch({
+    type: Playlists.DELETE_PLAYLIST,
+    payload: { playlists }
+  });
+};
 
-export function loadPlaylists() {
-  return dispatch => {
-    const playlists = store.get('playlists');
+export const loadPlaylists = () => dispatch => {
+  const playlists = store.get('playlists');
 
-    dispatch({
-      type: LOAD_PLAYLISTS,
-      payload: { playlists: _.defaultTo(playlists, []) }
-    });
-  };
-}
+  dispatch({
+    type: Playlists.LOAD_PLAYLISTS,
+    payload: { playlists: _.defaultTo(playlists, []) }
+  });
+};
 
-export function updatePlaylist(playlist) {
-  return dispatch => {
-    const playlists = updatePlaylistInjectable(store)(playlist);
-    dispatch({
-      type: UPDATE_PLAYLIST,
-      payload: { playlists }
-    });
-  };
-}
+export const updatePlaylist = (playlist: Playlist) => dispatch => {
+  const playlists = updatePlaylistEffect(store)(playlist);
+  dispatch({
+    type: Playlists.UPDATE_PLAYLIST,
+    payload: { playlists }
+  });
+};
+
+export const reorderPlaylists = (source: number, destination: number) => async (dispatch) => {
+  const playlists = updatePlaylistsOrderEffect(store)(source, destination);
+  dispatch({
+    type: Playlists.UPDATE_PLAYLIST,
+    payload: { playlists }
+  });
+};
 
 
 export function exportPlaylist(playlist, t) {
@@ -127,7 +125,7 @@ export function addPlaylistFromFile(filePath, t) {
         store.set('playlists', playlists);
         dispatch(success(t('import-success-title'), t('playlist-created', { name }), null, null));
         dispatch({
-          type: ADD_PLAYLIST,
+          type: Playlists.ADD_PLAYLIST,
           payload: { playlists }
         });
 

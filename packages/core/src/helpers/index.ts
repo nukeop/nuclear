@@ -1,2 +1,2 @@
 export { default as PlaylistHelper } from './playlist';
-export { Playlist } from './playlist/types';
+export { Playlist, PlaylistTrack } from './playlist/types';

@@ -7,11 +7,12 @@ export class Playlist {
 }
 
 export class PlaylistTrack {
+  uuid: string;
   artist: string;
   name: string;
   album?: string;
   thumbnail?: string;
-  uuid: string;
+  duration?: number | string;
   streams: PlaylistTrackStream[];
 }
 

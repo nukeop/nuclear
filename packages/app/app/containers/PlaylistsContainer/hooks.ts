@@ -13,18 +13,18 @@ export const usePlaylistsProps = () => {
   const { t } = useTranslation('playlists');
   const playlists = useSelector(playlistsSelectors.playlists) as Playlist[];
   
-  const handleImportFromFile = useCallback(async () => {
+  const onImportFromFile = useCallback(async () => {
     const filePath = await openLocalFilePicker();
     dispatch(PlaylistActions.addPlaylistFromFile(filePath[0], t));
   }, [dispatch, t]);
 
-  const createNew = useCallback((name: string) => {
+  const onCreate = useCallback((name: string) => {
     dispatch(PlaylistActions.addPlaylist([], name));
   }, [dispatch]);
 
   return {
     playlists,
-    handleImportFromFile,
-    createNew
+    onImportFromFile,
+    onCreate
   };
 };

@@ -14,6 +14,7 @@ let mockStore = initialStoreState();
 
 module.exports = {
   store: {
+    init: (store: typeof mockStore) => mockStore = store,
     get: (key: string) => mockStore[key] || {},
     set: (key: string, value: any) => {
       mockStore[key] = value;

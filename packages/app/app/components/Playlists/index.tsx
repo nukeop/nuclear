@@ -8,6 +8,9 @@ import { Playlists as PlaylistsTable } from '@nuclear/ui';
 import PlaylistsHeader from './PlaylistsHeader';
 import styles from './styles.scss';
 import { useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { reorderPlaylists } from '../../actions/playlists';
+import { DropResult } from 'react-beautiful-dnd';
 
 const EmptyState = () => {
   const { t } = useTranslation('playlists');
@@ -24,15 +27,16 @@ const EmptyState = () => {
 
 type PlaylistsProps = {
   playlists: Playlist[];
-  handleImportFromFile: React.MouseEventHandler;
-  createNew: (name: string) => void;
+  onImportFromFile: React.MouseEventHandler;
+  onCreate: (name: string) => void;
 }
 
 const Playlists: React.FC<PlaylistsProps> = ({
   playlists,
-  handleImportFromFile,
-  createNew
+  onImportFromFile,
+  onCreate
 }) => {
+  const dispatch = useDispatch();
   const history = useHistory();
   const { t, i18n } = useTranslation('playlists');
   
@@ -61,15 +65,15 @@ const Playlists: React.FC<PlaylistsProps> = ({
     onPlaylistDownload: () => {},
     onPlaylistUpload: () => {},
     onPlaylistClick: (id: string) => history.push(`/playlist/${id}`),
-    onDragEnd: () => {}
+    onDragEnd: ({ source, destination }: DropResult) => dispatch(reorderPlaylists(source.index, destination.index))
   };
 
   return (
     <div className={styles.playlists_container}>
       <PlaylistsHeader
         showText={isPlaylistsReallyNotEmpty()}
-        handleImportFromFile={handleImportFromFile}
-        createNew={createNew}
+        onImportFromFile={onImportFromFile}
+        onCreate={onCreate}
       />
       {
         isPlaylistsReallyEmpty() &&
