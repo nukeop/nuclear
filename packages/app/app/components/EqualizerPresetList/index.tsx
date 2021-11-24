@@ -6,12 +6,12 @@ import { useTranslation } from 'react-i18next';
 import styles from './styles.scss';
 
 type EqualizerPresetListProps ={
-  presets: Array<Presets>;
-  onClickItem: React.MouseEventHandler;
+  presets: Array<Preset>;
+  onClickItem: (x: string) => void;
   selected: string;
 }
 
-type Presets ={
+type Preset ={
   id : string;
   label : string;
   preAmp : number;
@@ -21,6 +21,7 @@ type Presets ={
 
 const EqualizerPresetList:React.FC<EqualizerPresetListProps> = ({ presets, onClickItem, selected }) => {
   const { t } = useTranslation('equalizer');
+  
   return (
     <div className={styles.preset_list_container}>
       <h3>{t('presets')}</h3>
@@ -28,7 +29,7 @@ const EqualizerPresetList:React.FC<EqualizerPresetListProps> = ({ presets, onCli
         {presets.map((preset, index) => (
           <List.Item
             key={index}
-            onClick={() => preset !== selected && onClickItem(preset.id)}
+            onClick={() => preset.id !== selected && onClickItem(preset.id)}
             className={
               classNames(
                 styles.equalizer_item,
