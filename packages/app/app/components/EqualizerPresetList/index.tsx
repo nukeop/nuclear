@@ -14,8 +14,8 @@ type EqualizerPresetListProps ={
 type Presets ={
   id : string;
   label : string;
-  preAmp : Number;
-  values : Array<Number>;
+  preAmp : number;
+  values : Array<number>;
 
 }
 

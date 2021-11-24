@@ -9,8 +9,26 @@ import Header from '../Header';
 
 import styles from './styles.scss';
 
+type Tracklist = { 
+  uuid:string;
+  artist: { name: string };
+  title: string;
+  duration: number;
+  }
+
+type Album = {
+  id: string;
+  title: string;
+  thumb: string;
+  coverImage: string;
+  artists: { name:string } [];
+  images: Array<string>;
+  genres: Array<string>;
+  tracklist: Array<Tracklist>
+}
+
 type FavoriteAlbumsViewProps = {
-  albums: Array<any>;
+  albums: Array<Album>;
   removeFavoriteAlbum: React.MouseEventHandler;
   albumInfoSearch: (albumId: any, releaseType: any, release: any) => Promise<void>;
   history:RouteComponentProps['history']
