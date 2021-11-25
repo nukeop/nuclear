@@ -26,7 +26,7 @@
     "search": "תוצאות החיפוש",
     "settings": "הגדרות",
     "visualizer": "הנפשה",
-    "version": "Version"
+    "version": "גרסה"
   },
   "artist": {
     "count": "מספר השמעות",
@@ -58,10 +58,10 @@
     "status": "מצב"
   },
   "equalizer": {
-    "classical": "Classical",
-    "club": "Club",
-    "custom": "Custom",
-    "default": "Default",
+    "classical": "קלאסי",
+    "club": "מועדון",
+    "custom": "מותאם אישית",
+    "default": "ברירת מחדל",
     "full-bass": "Full Bass",
     "full-treble": "Full Treble",
     "pop": "Pop",
@@ -265,7 +265,7 @@
     "mastodon-post-format-label": "מבנה פרסום",
     "mastodon-title": "",
     "mini-player": "שימוש בסגנון הנגן הממוזער",
-    "more": "More",
+    "more": "עוד",
     "discord-rich-presence": "סמן נוכחות גבוהה בדיסקורד (דורש הפעלה מחדש)",
     "notification-timeout": "זמן קצוב להתראה",
     "notlogged": "לא מחובר",
