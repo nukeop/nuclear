@@ -29,6 +29,7 @@
     "version": "Version"
   },
   "artist": {
+    "add-all": "Add all",
     "count": "Počet prehratí",
     "queue": "Pridať všetky skladby do poradia",
     "similar": "Podobný umelci",
