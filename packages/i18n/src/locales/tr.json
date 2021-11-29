@@ -29,6 +29,7 @@
     "version": "Versiyon"
   },
   "artist": {
+    "add-all": "Add all",
     "count": "Dinlenme Sayısı",
     "queue": "Tüm şarkıları kuyruğa ekle",
     "similar": "Benzer şarkıcılar",
