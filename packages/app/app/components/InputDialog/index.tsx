@@ -1,8 +1,25 @@
 import React, { useState, useCallback, useEffect } from 'react';
-import { Button, Input, Modal } from 'semantic-ui-react';
+import { Button, Input, Modal, ModalProps } from 'semantic-ui-react';
 import { useTranslation } from 'react-i18next';
 
-const InputDialog = ({ initialString, trigger, header, placeholder, accept, onAccept, testIdPrefix = null }) => {
+type InputDialogProps = {
+initialString:string;
+trigger:ModalProps['trigger'];
+header: React.ReactElement;
+placeholder:string;
+accept:string;
+onAccept: (inputString: string) => void;
+testIdPrefix?:string;
+}
+
+const InputDialog:React.FC<InputDialogProps> = ({ 
+  initialString,
+  trigger, 
+  header, 
+  placeholder, 
+  accept, 
+  onAccept, 
+  testIdPrefix = null }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [inputString, setInputString] = useState(initialString);
   const { t } = useTranslation('input-dialog');
