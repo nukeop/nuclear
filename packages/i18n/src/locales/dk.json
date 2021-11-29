@@ -29,6 +29,7 @@
     "version": "Version"
   },
   "artist": {
+    "add-all": "Add all",
     "count": "Antal afspilninger",
     "queue": "Tilføj alle sange til kø",
     "similar": "Lignende artister",
