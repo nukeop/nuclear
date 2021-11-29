@@ -29,6 +29,7 @@
     "version": "Version"
   },
   "artist": {
+    "add-all": "Add all",
     "count": "再生回数",
     "queue": "すべてのトラックをキューに追加",
     "similar": "類似のアーティスト",
