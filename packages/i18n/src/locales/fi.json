@@ -29,6 +29,7 @@
     "version": "Versio"
   },
   "artist": {
+    "add-all": "Add all",
     "count": "Soittokerrat",
     "queue": "Lisää kaikki kappaleet jonoon",
     "similar": "Samankaltaisia artisteja",
