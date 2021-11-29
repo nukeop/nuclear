@@ -29,6 +29,7 @@
     "version": "Version"
   },
   "artist": {
+    "add-all": "Add all",
     "count": "Spill teller",
     "queue": "Legg til alle spor i køen",
     "similar": "Lignende artister",
