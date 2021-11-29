@@ -29,6 +29,7 @@
     "version": "Version"
   },
   "artist": {
+    "add-all": "Add all",
     "count": "播放次數",
     "queue": "將所有歌曲新增到播放清單",
     "similar": "相關歌手",
