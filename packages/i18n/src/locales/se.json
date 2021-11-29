@@ -29,6 +29,7 @@
     "version": "Version"
   },
   "artist": {
+    "add-all": "Add all",
     "count": "Antal spelningar",
     "queue": "Lägg till alla spår i kö",
     "similar": "Liknande artister",
