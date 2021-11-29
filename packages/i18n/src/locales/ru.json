@@ -29,6 +29,7 @@
     "version": "Version"
   },
   "artist": {
+    "add-all": "Add all",
     "count": "Счетчик проигрываний",
     "queue": "Добавить все треки в очередь",
     "similar": "Похожие исполнители",
