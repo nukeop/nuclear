@@ -29,6 +29,7 @@
     "version": "Version"
   },
   "artist": {
+    "add-all": "Add all",
     "count": "Số lượt nghe",
     "queue": "Thêm tất cả bài hát vào playlist",
     "similar": "Nghệ sỹ tương tự",
