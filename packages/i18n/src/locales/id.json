@@ -29,6 +29,7 @@
     "version": "Version"
   },
   "artist": {
+    "add-all": "Add all",
     "count": "Jumlah pemutaran",
     "queue": "Tambahkan semua lagu ke antrian",
     "similar": "Musisi yang senada",
