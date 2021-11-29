@@ -29,6 +29,7 @@
     "version": "גרסה"
   },
   "artist": {
+    "add-all": "Add all",
     "count": "מספר השמעות",
     "queue": "הוספת כל הרצועות לתור",
     "similar": "אומנים דומים",
