@@ -29,6 +29,7 @@
     "version": "Version"
   },
   "artist": {
+    "add-all": "Add all",
     "count": "Spēļu skaits",
     "queue": "Pievienot atlasīto rindai",
     "similar": "Līdzīgi izpildītāji",
