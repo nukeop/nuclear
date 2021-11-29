@@ -29,6 +29,7 @@
     "version": "Version"
   },
   "artist": {
+    "add-all": "Add all",
     "count": "Počet přehrání",
     "queue": "Přidat všechny skladby do fronty",
     "similar": "Podobní umělci",
