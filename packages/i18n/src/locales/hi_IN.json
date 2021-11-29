@@ -29,6 +29,7 @@
     "version": "Version"
   },
   "artist": {
+    "add-all": "Add all",
     "count": "प्ले काउंट",
     "queue": "कतार में सभी ट्रैक जोड़ें",
     "similar": "समान कलाकार",
