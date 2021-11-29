@@ -29,6 +29,7 @@
     "version": "Versie"
   },
   "artist": {
+    "add-all": "Add all",
     "count": "Aantal keer beluisterd",
     "queue": "Alle nummers toevoegen aan wachtrij",
     "similar": "Vergelijkbare artiesten",
