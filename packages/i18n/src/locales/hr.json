@@ -29,6 +29,7 @@
     "version": "Verzija"
   },
   "artist": {
+    "add-all": "Add all",
     "count": "Broj sviranja",
     "queue": "Dodaj sve pjesme u red čekanja",
     "similar": "Slični izvođači",
