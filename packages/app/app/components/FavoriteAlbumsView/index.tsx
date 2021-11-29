@@ -27,10 +27,12 @@ type Album = {
   tracklist: Array<Tracklist>
 }
 
+type ReleaseTypeProps = 'master' | 'release'
+
 type FavoriteAlbumsViewProps = {
   albums: Array<Album>;
   removeFavoriteAlbum: React.MouseEventHandler;
-  albumInfoSearch: (albumId: any, releaseType: any, release: any) => Promise<void>;
+  albumInfoSearch: (albumId: string, releaseType: ReleaseTypeProps, release: string) => Promise<void>;
   history:RouteComponentProps['history']
 }
 
