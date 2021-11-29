@@ -29,6 +29,7 @@
     "version": "Version"
   },
   "artist": {
+    "add-all": "Add all",
     "count": "총 재생 횟수",
     "queue": "모든 음악을 재생 목록에 추가",
     "similar": "비슷한 아티스트",
