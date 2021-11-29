@@ -115,7 +115,7 @@ export function onDownloadProgress(uuid, progress) {
   payload = changePropertyForItem({
     downloads: payload,
     uuid,
-    value: DownloadStatus.STARTED
+    value: progress < 1 ? DownloadStatus.STARTED : DownloadStatus.FINISHED
   });
   
   return {
