@@ -29,6 +29,7 @@
     "version": "Version"
   },
   "artist": {
+    "add-all": "Add all",
     "count": "Bilang ng pagtugtog",
     "queue": "Idagdag lahat sa pila",
     "similar": "Katulad na artist",
