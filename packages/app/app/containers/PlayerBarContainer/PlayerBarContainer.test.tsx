@@ -14,7 +14,7 @@ describe('PlayerBar container', () => {
       renderTrackDuration: false
     });
 
-    expect(component.getByText('00:00')).toBeNull;
+    expect(component.queryByText('00:00')).toBeNull();
   });
 
   const mountComponent = (initialStore?: AnyProps) => {
