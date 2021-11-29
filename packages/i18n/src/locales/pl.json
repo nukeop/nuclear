@@ -29,6 +29,7 @@
     "version": "Version"
   },
   "artist": {
+    "add-all": "Add all",
     "count": "Liczba odtworzeń",
     "queue": "Dodaj wszystkie utwory do kolejki",
     "similar": "Podobni artyści",
