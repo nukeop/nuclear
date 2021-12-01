@@ -201,6 +201,13 @@ describe('Artist view container', () => {
     expect(state.favorites.artists).toEqual([]);
   });
 
+  it('should open a link to the artist page when the artist info button is clicked', async () => {
+    const { component, history } = mountComponent();
+    expect(history.location.pathname).toBe('/artist/test-artist-id');
+    await waitFor(() => component.getByText(/artist-info/i).click());
+    expect(history.location.pathname).toBe('/artist/artist-info');
+  });
+
   const mountComponent = (initialStore?: AnyProps) => {
     const initialState = initialStore ||
       buildStoreState()
