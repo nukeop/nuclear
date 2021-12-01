@@ -9,18 +9,9 @@
 
   flex-flow: column;
   align-items: center;
-  //top : 10%;
+  
   margin: 4em 2em 2em;
-  //max-height: 33%;
-/*
-  @media screen and (max-width: $mid_screen) {
-    max-width: 50%;
-  }
-
-  @media screen and (max-width: $small_screen) {
-    max-width: 80%;
-  }
-*/
+  
  
   .mini_cover {
     max-width: 300px;
@@ -36,19 +27,9 @@
     border-radius: 1em;
     background: transparent;
     box-shadow: 15px 15px 45px darken($background, 5%), -15px -15px 45px lighten($background, 5%);
-    //margin-bottom: 4em;
     padding: 0.5em;
 
-    
-    /*
-    @media screen and (max-width: $mid_screen) {
-      width: 350px;
-    }
 
-    @media screen and (max-width: $small_screen) {
-      width: 350px;
-    }
-    */
     img {
       top: 0;
       width: 100%;
