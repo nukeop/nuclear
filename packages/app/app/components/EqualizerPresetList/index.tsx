@@ -1,13 +1,27 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { List, Icon } from 'semantic-ui-react';
 import classNames from 'classnames';
 import { useTranslation } from 'react-i18next';
 
 import styles from './styles.scss';
 
-const EqualizerPresetList = ({ presets, onClickItem, selected }) => {
+type EqualizerPresetListProps ={
+  presets: Array<Preset>;
+  onClickItem: (x: string) => void;
+  selected: string;
+}
+
+type Preset ={
+  id : string;
+  label : string;
+  preAmp : number;
+  values : Array<number>;
+
+}
+
+const EqualizerPresetList:React.FC<EqualizerPresetListProps> = ({ presets, onClickItem, selected }) => {
   const { t } = useTranslation('equalizer');
+  
   return (
     <div className={styles.preset_list_container}>
       <h3>{t('presets')}</h3>
@@ -15,7 +29,7 @@ const EqualizerPresetList = ({ presets, onClickItem, selected }) => {
         {presets.map((preset, index) => (
           <List.Item
             key={index}
-            onClick={() => preset !== selected && onClickItem(preset.id)}
+            onClick={() => preset.id !== selected && onClickItem(preset.id)}
             className={
               classNames(
                 styles.equalizer_item,
@@ -33,11 +47,6 @@ const EqualizerPresetList = ({ presets, onClickItem, selected }) => {
       </List>
     </div>
   );
-};
-EqualizerPresetList.propTypes = {
-  presets: PropTypes.array.isRequired,
-  onClickItem: PropTypes.func,
-  selected: PropTypes.string
 };
 
 export default EqualizerPresetList;
