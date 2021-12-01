@@ -14,6 +14,8 @@ import { Artist } from '@nuclear/core';
 import styles from './styles.scss';
 import artPlaceholder from '../../../resources/media/art_placeholder.png';
 
+type ReleaseTypeProps = 'master' | 'release'
+
 type ArtistViewProps = {
   artist: Artist & {
     loading?: boolean;
@@ -21,7 +23,7 @@ type ArtistViewProps = {
   isFavorite: boolean;
   addTrackToQueue: (item: any) => Promise<void>;
   artistInfoSearchByName: (artistName: any) => Promise<void>;
-  albumInfoSearch: (albumId: any, releaseType: any, release: any) => Promise<void>;
+  albumInfoSearch: (albumId: string, releaseType: ReleaseTypeProps, release: string) => Promise<void>;
   removeFavoriteArtist: React.MouseEventHandler;
   addFavoriteArtist: React.MouseEventHandler;
   handleArtistInfoClick: () => void;
