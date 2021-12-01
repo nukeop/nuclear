@@ -24,6 +24,11 @@ export type SearchResultsArtist = {
     source: SearchResultsSource;
 }
 
+/* export type SearchResultsArtistInfo = {
+    id: string;
+    resourceUrl?: string;
+}*/
+
 export type SearchResultsAlbum = {
     id: string;
     coverImage?: string;
