@@ -41,7 +41,7 @@ jobs:
   
   mac_build:
     runs-on: macOS-latest
-    timeout-minutes: 20
+    timeout-minutes: 25
 
     steps:
     - uses: actions/checkout@master
@@ -60,7 +60,7 @@ jobs:
   
   windows_build:
     runs-on: windows-latest
-    timeout-minutes: 20
+    timeout-minutes: 25
 
     steps:
     - uses: actions/checkout@master
