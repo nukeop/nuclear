@@ -1,13 +1,18 @@
 @import "../.../../../../common.scss";
 
 .mini_track_info {
+
+  
+  flex: auto;
+
   position: relative;
-  display: flex;
+
   flex-flow: column;
   align-items: center;
+  //top : 10%;
   margin: 4em 2em 2em;
-  max-width: 33%;
-
+  //max-height: 33%;
+/*
   @media screen and (max-width: $mid_screen) {
     max-width: 50%;
   }
@@ -15,17 +20,27 @@
   @media screen and (max-width: $small_screen) {
     max-width: 80%;
   }
-
+*/
+ 
   .mini_cover {
-    position: relative;
+    max-width: 300px;
+    max-height: 300px;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    height: 100%;
+    aspect-ratio: 1;
+
+    
     overflow: hidden;
     border-radius: 1em;
     background: transparent;
     box-shadow: 15px 15px 45px darken($background, 5%), -15px -15px 45px lighten($background, 5%);
-    max-width: 100%;
-    margin-bottom: 4em;
+    //margin-bottom: 4em;
     padding: 0.5em;
 
+    
+    /*
     @media screen and (max-width: $mid_screen) {
       width: 350px;
     }
@@ -33,12 +48,15 @@
     @media screen and (max-width: $small_screen) {
       width: 350px;
     }
-
+    */
     img {
-      border-radius: 1em;
-      position: relative;
+      top: 0;
       width: 100%;
+      left: 0;
       height: 100%;
+      box-shadow: 15px 15px 45px #21232c, -15px -15px 45px #373a49;
+      border-radius: 1em;
+      position: absolute;
     }
   }
 
@@ -46,7 +64,7 @@
     display: flex;
     flex-flow: row;
     width: 100%;
-
+    
     .left {
       flex: 1 1 auto;
     }
