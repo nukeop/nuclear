@@ -1,15 +1,15 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
+import { useTranslation } from 'react-i18next';
 
 import Header from '../Header';
 import DownloadsList from './DownloadsList';
 import DownloadsHeader from './DownloadsHeader';
-
 import styles from './styles.scss';
-import { useTranslation } from 'react-i18next';
+import { DownloadsItemProps } from './DownloadsItem';
+import { setStringOption } from '../../actions/settings';
 
-const EmptyState = () => {
+const EmptyState: React.FC = () => {
   const { t } = useTranslation('downloads');
 
   return (
@@ -21,7 +21,17 @@ const EmptyState = () => {
   );
 };
 
-const Downloads = ({
+type DownloadsProps = {
+  downloads: DownloadsItemProps['item'][];
+  downloadsDir: string;
+  setStringOption: typeof setStringOption;
+  clearFinishedTracks: React.MouseEventHandler;
+  pauseDownload: (id: string) => void;
+  resumeDownload: (id: string) => void;
+  removeDownload: (id: string) => void;
+}
+
+const Downloads: React.FC<DownloadsProps> = ({
   downloads,
   downloadsDir,
   clearFinishedTracks,
@@ -53,24 +63,6 @@ const Downloads = ({
       )}
     </div>
   );
-};
-
-Downloads.propTypes = {
-  downloads: PropTypes.array,
-  downloadsDir: PropTypes.string,
-  clearFinishedTracks: PropTypes.func,
-  setStringOption: PropTypes.func,
-  resumeDownload: PropTypes.func.isRequired,
-  pauseDownload: PropTypes.func.isRequired
-};
-
-Downloads.defaultProps = {
-  downloads: [],
-  downloadsDir: '',
-  clearFinishedTracks: () => {},
-  setStringOption: () => {},
-  pauseDownload: () => {},
-  resumeDownload: () => {}
 };
 
 export default Downloads;

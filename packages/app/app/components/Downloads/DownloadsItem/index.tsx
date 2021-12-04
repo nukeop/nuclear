@@ -1,12 +1,32 @@
 import React, { useCallback } from 'react';
-import PropTypes from 'prop-types';
-import { Icon, Table } from 'semantic-ui-react';
+import { Icon, SemanticICONS, Table } from 'semantic-ui-react';
 import _ from 'lodash';
 
+import { DownloadStatus } from '../../../actions/downloads';
 import styles from './styles.scss';
 
-const StatusIcon = props => {
-  switch (props.status) {
+export type DownloadsItemProps = {
+  item: {
+    status: DownloadStatus;
+    completion: number;
+    track: {
+      uuid: string;
+      name: string;
+      artist: string | {
+        name: string;
+      };
+    }
+  };
+
+  resumeDownload: (id: string) => void;
+  pauseDownload: (id: string) => void;
+  removeDownload: (id: string) => void;
+}
+
+type StatusIconProps = Pick<DownloadsItemProps['item'], 'status'>;
+
+const StatusIcon: React.FC<StatusIconProps> = ({ status }) => {
+  switch (status) {
   case 'Waiting':
     return <Icon name='hourglass start' />;
   case 'Paused':
@@ -21,7 +41,7 @@ const StatusIcon = props => {
   }
 };
 
-const renderAction = (name, callback) => (
+const renderAction = (name: SemanticICONS, callback: React.MouseEventHandler) => (
   <a
     onClick={callback}
     href='#'
@@ -44,22 +64,8 @@ const ActionIcon = props => {
   }
 };
 
-StatusIcon.propTypes = {
-  status: PropTypes.string.isRequired
-};
 
-ActionIcon.propTypes = {
-  item: PropTypes.PropTypes.shape({
-    status: PropTypes.string.isRequired,
-    track: PropTypes.PropTypes.shape({
-      uuid: PropTypes.string.isRequired
-    })
-  }),
-  resumeDownload: PropTypes.func.isRequired,
-  pauseDownload: PropTypes.func.isRequired
-};
-
-const DownloadsItem = ({
+const DownloadsItem: React.FC<DownloadsItemProps> = ({
   item,
   resumeDownload,
   pauseDownload,
@@ -91,20 +97,6 @@ const DownloadsItem = ({
       </Table.Cell>
     </Table.Row>
   );
-};
-
-DownloadsItem.propTypes = {
-  item: PropTypes.shape({
-
-  }),
-  resumeDownload: PropTypes.func.isRequired,
-  pauseDownload: PropTypes.func.isRequired
-};
-
-DownloadsItem.defaultProps = {
-  item: {},
-  pauseDownload: () => { },
-  resumeDownload: () => { }
 };
 
 export default DownloadsItem;

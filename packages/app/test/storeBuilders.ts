@@ -1,3 +1,4 @@
+import { DownloadStatus } from '../app/actions/downloads';
 
 type StoreStateBuilder = ReturnType<typeof buildStoreState>;
 export const buildStoreState = () => {
@@ -11,6 +12,7 @@ export const buildStoreState = () => {
     plugin: {},
     playlists: {},
     dashboard: {},
+    downloads: [],
     favorites: {
       tracks: [],
       artists: [],
@@ -475,6 +477,59 @@ export const buildStoreState = () => {
           }]
         }
       };
+      return this as StoreStateBuilder;
+    },
+    withDownloads() {
+      state = {
+        ...state,
+        downloads: [{
+          status: DownloadStatus.FINISHED,
+          completion: 1,
+          track: {
+            artist: {
+              name: 'test artist 1'
+            },
+            title: 'finished track'
+          }
+        }, {
+          status: DownloadStatus.ERROR,
+          completion: 0.1,
+          track: {
+            artist: {
+              name: 'test artist 2'
+            },
+            title: 'track with errorx'
+          }
+        }, {
+          status: DownloadStatus.PAUSED,
+          completion: 0.3,
+          track: {
+            artist: {
+              name: 'test artist 3'
+            },
+            title: 'paused track'
+          }
+        }, {
+          status: DownloadStatus.STARTED,
+          completion: 0.5,
+          track: {
+            artist: {
+              name: 'test artist 4'
+            },
+            title: 'started track'
+          }
+        }, {
+          status: DownloadStatus.WAITING,
+          completion: 0,
+          track: {
+            artist: {
+              name: 'test artist 5'
+            },
+            title: 'waiting track'
+          }
+        }]
+      };
+
       return this as StoreStateBuilder;
     },
     withGithubContrib() {
