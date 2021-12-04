@@ -55,6 +55,7 @@ const MiniPlayer: React.FC<MiniPlayerProps> = ({
   <MiniPlayOptions
     playOptions={playOptions}
     onDisableMiniPlayer={onDisableMiniPlayer}
+    
   />
   <MiniTrackInfo
     cover={cover}
