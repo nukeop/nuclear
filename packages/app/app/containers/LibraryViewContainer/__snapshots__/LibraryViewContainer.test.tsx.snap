@@ -1,0 +1,120 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Library view container should display local library 1`] = `
+<DocumentFragment>
+  <div
+    class="main_layout_container"
+  >
+    <div
+      class="local_files_view"
+    >
+      <div
+        class="library_header_row"
+      >
+        <div
+          class="header_container"
+        >
+          Local Library
+        </div>
+        <button
+          class="ui basic icon button"
+        >
+          <i
+            aria-hidden="true"
+            class="chevron up icon"
+          />
+        </button>
+      </div>
+      <div
+        class="ui segment library_folders"
+      >
+        <div
+          class="ui segment control_bar"
+        >
+          <button
+            class="ui icon inverted left labeled button add_folder"
+          >
+            <i
+              aria-hidden="true"
+              class="folder open icon"
+            />
+            Add folders
+          </button>
+          <button
+            class="ui icon inverted disabled button refresh_icon"
+            disabled=""
+            tabindex="-1"
+          >
+            <i
+              aria-hidden="true"
+              class="refresh icon"
+            />
+          </button>
+        </div>
+      </div>
+      <div
+        class="ui segment library_contents"
+      >
+        <div
+          class="search_field_row"
+        >
+          <div
+            class="ui inverted transparent left icon input"
+          >
+            <input
+              placeholder="Filter..."
+              type="text"
+            />
+            <i
+              aria-hidden="true"
+              class="search icon"
+            />
+          </div>
+          <div
+            class="ui buttons library_list_type_toggle"
+          >
+            <button
+              class="ui active icon inverted button"
+            >
+              <i
+                aria-hidden="true"
+                class="unordered list icon"
+              />
+            </button>
+            <button
+              class="ui icon inverted button"
+            >
+              <i
+                aria-hidden="true"
+                class="th icon"
+              />
+            </button>
+            <button
+              class="ui icon inverted button"
+            >
+              <i
+                aria-hidden="true"
+                class="folder icon"
+              />
+            </button>
+          </div>
+        </div>
+        <div
+          class="library_empty_state"
+        >
+          <i
+            aria-hidden="true"
+            class="file audio outline icon"
+          />
+          <h2>
+            The library is empty
+          </h2>
+          <div>
+            Try adding some music using the button above.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

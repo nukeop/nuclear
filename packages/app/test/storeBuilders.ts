@@ -12,6 +12,7 @@ export const buildStoreState = () => {
     plugin: {},
     playlists: {},
     dashboard: {},
+    local: {},
     downloads: [],
     favorites: {
       tracks: [],
@@ -647,6 +648,25 @@ export const buildStoreState = () => {
               }
             }
           ]
+        }
+      };
+      return this as StoreStateBuilder;
+    },
+    withLocal() {
+      state = {
+        ...state,
+        local: {
+          pending: false,
+          error: false,
+          folders: [],
+          page: 0,
+          sortBy: 'artist',
+          direction: 'ascending',
+          filter: '',
+          listType: 'simple-list',
+          tracks: [],
+          scanProgress: null,
+          scanTotal: null
         }
       };
       return this as StoreStateBuilder;
