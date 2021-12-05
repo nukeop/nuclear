@@ -23,7 +23,7 @@ jobs:
         version: 12.x
     - name: npm install and build
       run: |
-        npm install
+        npm ci
         npm run build:linux
       shell: bash
       env:
@@ -46,7 +46,7 @@ jobs:
         version: 12.x
     - name: npm install and build
       run: |
-        npm install
+        npm ci
         npm run build:macos
       shell: bash
       env:
@@ -73,7 +73,7 @@ jobs:
         echo "C:\Program Files\Git\mingw64\libexec\git-core" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
     - name: npm install and build
       run: |
-        npm install
+        npm ci
         npm run build:windows
       shell: bash
       env:
