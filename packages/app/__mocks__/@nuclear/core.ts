@@ -26,6 +26,7 @@ module.exports = {
     React: jest.fn(),
     ReactDOM: jest.fn()
   }),
+  setOption: jest.fn(),
   getOption: () => '',
   rest: {
     LastFmApi: class {

@@ -15,13 +15,13 @@ export const DOWNLOAD_ERROR = 'DOWNLOAD_ERROR';
 export const DOWNLOAD_REMOVED = 'DOWNLOAD_REMOVED';
 export const CLEAR_FINISHED_DOWNLOADS = 'CLEAR_FINISHED_DOWNLOADS';
 
-export const DownloadStatus = {
-  WAITING: 'Waiting',
-  STARTED: 'Started',
-  PAUSED: 'Paused',
-  FINISHED: 'Finished',
-  ERROR: 'Error'
-};
+export enum DownloadStatus {
+  WAITING = 'Waiting',
+  STARTED = 'Started',
+  PAUSED = 'Paused',
+  FINISHED = 'Finished',
+  ERROR = 'Error'
+}
 
 const changePropertyForItem = ({downloads, uuid, propertyName='status', value}) => {
   const changedItem = _.find(downloads, (item) => item.track.uuid === uuid);
