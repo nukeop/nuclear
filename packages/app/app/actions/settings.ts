@@ -20,7 +20,7 @@ export function setBooleanOption(option, state, fromMain?) {
   };
 }
 
-export function setStringOption(option, state, fromMain) {
+export function setStringOption(option, state, fromMain?) {
   setOption(option, state);
 
   return {

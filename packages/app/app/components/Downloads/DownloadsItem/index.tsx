@@ -43,8 +43,9 @@ const StatusIcon: React.FC<StatusIconProps> = ({ status }) => {
 
 const renderAction = (name: SemanticICONS, callback: React.MouseEventHandler) => (
   <a
-    onClick={callback}
+    data-testid='download-action'
     href='#'
+    onClick={callback}
   >
     <Icon fitted name={name} />
   </a>
@@ -90,8 +91,16 @@ const DownloadsItem: React.FC<DownloadsItemProps> = ({
         {_.round(item.completion * 100, 0) + '%'}
       </Table.Cell>
       <Table.Cell className={styles.item_buttons}>
-        <ActionIcon resumeDownload={onResumeClick} pauseDownload={onPauseClick} item={item} />
-        <a href='#' onClick={onRemoveClick}>
+        <ActionIcon 
+          resumeDownload={onResumeClick} 
+          pauseDownload={onPauseClick} 
+          item={item} 
+        />
+        <a
+          data-testid='remove-download'
+          href='#' 
+          onClick={onRemoveClick}
+        >
           <Icon fitted name='times' />
         </a>
       </Table.Cell>
