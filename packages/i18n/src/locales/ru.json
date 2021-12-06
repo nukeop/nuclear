@@ -26,10 +26,10 @@
     "search": "Результаты Поиска",
     "settings": "Настройки",
     "visualizer": "Визуализатор",
-    "version": "Version"
+    "version": "Версия"
   },
   "artist": {
-    "add-all": "Add all",
+    "add-all": "Добавить все",
     "count": "Счетчик проигрываний",
     "queue": "Добавить все треки в очередь",
     "similar": "Похожие исполнители",
@@ -59,16 +59,16 @@
     "status": "Статус"
   },
   "equalizer": {
-    "classical": "Classical",
-    "club": "Club",
-    "custom": "Custom",
-    "default": "Default",
-    "full-bass": "Full Bass",
-    "full-treble": "Full Treble",
-    "pop": "Pop",
-    "presets": "Presets",
-    "reggae": "Reggae",
-    "rock": "Rock"
+    "classical": "Классика",
+    "club": "Клубная",
+    "custom": "Настраиваемые",
+    "default": "По умолчанию",
+    "full-bass": "Полный бас",
+    "full-treble": "Полные высокие",
+    "pop": "Поп",
+    "presets": "Предустановки",
+    "reggae": "Регги",
+    "rock": "Рок"
   },
   "favorite-albums": {
     "empty": "Нет избранных альбомов",
@@ -89,7 +89,7 @@
   },
   "help": {
     "about": "О программе Nuclear Music Player",
-    "contributors": "Our top 10 Contributors",
+    "contributors": "10 наших лучших участников",
     "header": "Проигрыватель музыки из свободных источников",
     "released": "выпущен под лицензией AGPL-3.0",
     "report": "Сообщить о проблеме или предложить улучшения",
@@ -195,29 +195,29 @@
     "playlist-toast-content": "Плейлист {{name}} создан.",
     "playlist-toast-title": "Плейлист создан",
     "title": "Название:",
-    "live": "Live"
+    "live": "Сейчас"
   },
   "search": {
     "album": "Альбом",
     "album_plural": "Альбомы",
-    "all": "All",
+    "all": "Все",
     "artist": "Исполнитель",
     "artist_plural": "Исполнители",
     "clear-history": "Очистить историю",
     "empty": "Ничего не найдено.",
     "last-searches": "Последние запросы",
-    "live-stream": "LiveStream",
+    "live-stream": "Трансляция",
     "placeholder": "Поиск...",
     "playlist": "Плейлист",
     "playlist_plural": "Плейлисты",
-    "podcast": "Podcast",
+    "podcast": "Подкаст",
     "queue-add": "Добавить все треки в очередь",
     "track": "Трек",
     "track_plural": "Треки",
     "you-can-search-for": "Вы можете искать:"
   },
   "seekbar": {
-    "live": "Live",
+    "live": "Сейчас",
     "segment-popup": "Немузыка"
   },
   "settings": {
@@ -252,7 +252,7 @@
     "lastfm-description": "Чтобы включить скробблинг, надо подключить и авторизовать Nuclear на Last.fm, а затем нажать \"Войти\".",
     "lastfm-enable": "Включить скробблинг на Last.fm",
     "lastfm-title": "Last.fm",
-    "less": "Less",
+    "less": "Меньше",
     "login": "Войти",
     "logout": "Выйти",
     "loop-after-queue-end": "Повторять очередь, когда она закончится",
@@ -266,7 +266,7 @@
     "mastodon-post-format-label": "Формат поста",
     "mastodon-title": "",
     "mini-player": "Режим мини-плеера",
-    "more": "More",
+    "more": "Больше",
     "discord-rich-presence": "Интеграция с Discord (понадобится перезапуск)",
     "notification-timeout": "Время показа уведомлений",
     "notlogged": "Вход не выполнен",
