@@ -26,10 +26,10 @@
     "search": "검색 결과",
     "settings": "설정",
     "visualizer": "비주얼라이저",
-    "version": "Version"
+    "version": "버전"
   },
   "artist": {
-    "add-all": "Add all",
+    "add-all": "모두 추가",
     "count": "총 재생 횟수",
     "queue": "모든 음악을 재생 목록에 추가",
     "similar": "비슷한 아티스트",
@@ -37,7 +37,7 @@
     "tour": "투어 중"
   },
   "dashboard": {
-    "add-all": "Add all",
+    "add-all": "모두 추가",
     "artist": "아티스트",
     "best": "새롭게 뜨는",
     "best-new-albums": "새롭게 뜨는 앨범",
@@ -59,16 +59,16 @@
     "status": "상태"
   },
   "equalizer": {
-    "classical": "Classical",
-    "club": "Club",
-    "custom": "Custom",
-    "default": "Default",
-    "full-bass": "Full Bass",
-    "full-treble": "Full Treble",
-    "pop": "Pop",
-    "presets": "Presets",
-    "reggae": "Reggae",
-    "rock": "Rock"
+    "classical": "클래식",
+    "club": "클럽",
+    "custom": "사용자 정의",
+    "default": "기본 설정",
+    "full-bass": "최저 음역",
+    "full-treble": "최고 음역",
+    "pop": "팝",
+    "presets": "사전설정",
+    "reggae": "레게",
+    "rock": "락"
   },
   "favorite-albums": {
     "empty": "좋아하는 앨범 없음.",
@@ -76,20 +76,20 @@
     "header": "즐겨찾는 앨범"
   },
   "favorite-artists": {
-    "empty": "좋아하는 아티스트",
+    "empty": "좋아하는 아티스트 없음",
     "empty-help": "'좋아요'한 아티스트가 여기에 표시됩니다!",
     "header": "내가 좋아하는 아티스트"
   },
   "favorites": {
     "artist": "아티스트",
     "empty": "좋아하는 음악 없음.",
-    "empty-help": "Try adding some tracks to favorites and they will appear here!",
+    "empty-help": "'좋아요'한 곡들이 여기에 표시됩니다!",
     "header": "좋아하는 음악",
     "title": "제목"
   },
   "help": {
     "about": "Nuclear Music Player에 대하여",
-    "contributors": "Our top 10 Contributors",
+    "contributors": "상위 10명의 기여자",
     "header": "무료 음악 스트리밍을 위한 데스크탑 음악 재생 프로그램",
     "released": "AGPL-3.0 라이선스로 배포되었습니다.",
     "report": "버그 신고/새로운 기능 제안",
@@ -146,9 +146,9 @@
     "export-fail-title": "재생목록 내보내기 실패",
     "export-success-title": "재생목록을 성공적으로 내보내었습니다",
     "header": "내 재생목록",
-    "dialog-accept": "Save",
-    "create-button": "Create new playlist",
-    "new-playlist": "New playlist",
+    "dialog-accept": "저장",
+    "create-button": "플레이리스트 생성",
+    "new-playlist": "새 플레이리스트",
     "import-button": "파일에서 가져오기 (JSON)",
     "import-fail-title": "재생목록 내보내기 실패",
     "import-success-title": "재생목록을 성공적으로 불러왔습니다",
@@ -188,8 +188,8 @@
     "header": "재생 목록",
     "header-track": "재생 중인 음악",
     "id": "스트림 ID:",
-    "source": "Source:",
-    "copy-track-url": "Copy track url to clipboard",
+    "source": "소스:",
+    "copy-track-url": "클립보드로 웹페이지주소 복사",
     "loading": "스트림 로딩 중.",
     "playlist-add": "플레이리스트에 추가",
     "playlist-toast-content": "플레이리스트 \"{{name}}\"(이)가 생성되었습니다.",
@@ -200,7 +200,7 @@
   "search": {
     "album": "앨범",
     "album_plural": "앨범",
-    "all": "All",
+    "all": "통합 검색",
     "artist": "아티스트",
     "artist_plural": "아티스트",
     "clear-history": "재생 기록 삭제",
@@ -252,7 +252,7 @@
     "lastfm-description": "Scrobbling을 활성화하려면 먼저 Last.fm에서 Nuclear를 연결 및 인증한 후 로그인을 누르십시오.",
     "lastfm-enable": "Last.fm에서 Scrobbling 활성화",
     "lastfm-title": "Last.fm",
-    "less": "Less",
+    "less": "덜",
     "login": "로그인",
     "logout": "로그아웃",
     "loop-after-queue-end": "재생 목록의 마지막 음악을 재생한 후 전체 반복",
@@ -266,7 +266,7 @@
     "mastodon-post-format-label": "게시 형식",
     "mastodon-title": "",
     "mini-player": "미니 플레이어 모드 사용",
-    "more": "More",
+    "more": "강하게",
     "discord-rich-presence": "Toggle discord rich presence (requires restart)",
     "notification-timeout": "알림 시간 초과",
     "notlogged": "로그인하지 않았습니다.",
@@ -295,26 +295,26 @@
     "title": "제목"
   },
   "track-popup": {
-    "add-to-favorite": "Add to favorites",
-    "add-to-playlist": "Add to playlist",
-    "add-to-queue": "Add to queue",
-    "download": "Download",
+    "add-to-favorite": "즐겨찾기에 추가",
+    "add-to-playlist": "플레이리스트에 추가",
+    "add-to-queue": "재생목록에 추가",
+    "download": "다운로드",
     "download-toast-body": "{{artist}} - {{track}} has been added to downloads.",
     "download-toast-title": "Track added to downloads",
-    "favorite-toast-body": "{{artist}} - {{track}} has been added to favorites.",
-    "favorite-toast-title": "Favorite track added",
-    "play-next": "Play next",
-    "play-now": "Play now",
+    "favorite-toast-body": "{{artist}} - {{track}}(이)가 즐겨찾기 목록에 추가되었습니다.",
+    "favorite-toast-title": "좋아하는 곡 추가",
+    "play-next": "다음 곡으로 재생",
+    "play-now": "지금 재생",
     "playlist-toast-body": "{{artist}} - {{track}} has been added to playlist.",
     "playlist-toast-title": "Track added to playlist"
   },
   "track-table": {
     "add-selected-tracks-to-queue": "Add selected to queue",
-    "add-selected-tracks-to-downloads": "Add selected to downloads",
-    "add-selected-tracks-to-favorites": "Add selected to favorites",
-    "play-selected-tracks-now": "Play selected now",
-    "tracks-selected-label-singular": "track selected",
-    "tracks-selected-label-plural": "tracks selected"
+    "add-selected-tracks-to-downloads": "선택한 항목을 다운로드에 추가",
+    "add-selected-tracks-to-favorites": "선택한 항목을 좋아하는 곡에 추가",
+    "play-selected-tracks-now": "선택한 항목을 지금 재생",
+    "tracks-selected-label-singular": "곡 선택됨",
+    "tracks-selected-label-plural": "곡 선택됨"
   },
   "visualizer": {
     "exit-fullscreen": "전체 화면 모드를 종료하려면 Esc 키를 누르십시오."
