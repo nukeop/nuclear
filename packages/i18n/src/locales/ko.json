@@ -62,7 +62,7 @@
     "classical": "클래식",
     "club": "클럽",
     "custom": "사용자 정의",
-    "default": "기본 설정",
+    "default": "기본값",
     "full-bass": "최저 음역",
     "full-treble": "최고 음역",
     "pop": "팝",
@@ -83,7 +83,7 @@
   "favorites": {
     "artist": "아티스트",
     "empty": "좋아하는 음악 없음.",
-    "empty-help": "'좋아요'한 곡들이 여기에 표시됩니다!",
+    "empty-help": "즐겨찾기에 추가한 곡들이 여기에 표시됩니다!",
     "header": "좋아하는 음악",
     "title": "제목"
   },
@@ -120,7 +120,7 @@
     "autoradio": "자동 재생",
     "loop": "반복",
     "mini-player": "미니 플레이어",
-    "shuffle": "셔플"
+    "shuffle": "랜덤 재생"
   },
   "player": {
     "next-button": "다음 재생 버튼",
@@ -195,7 +195,7 @@
     "playlist-toast-content": "플레이리스트 \"{{name}}\"(이)가 생성되었습니다.",
     "playlist-toast-title": "플레이리스트 생성 완료",
     "title": "제목:",
-    "live": "Live"
+    "live": "라이브"
   },
   "search": {
     "album": "앨범",
@@ -206,18 +206,18 @@
     "clear-history": "재생 기록 삭제",
     "empty": "검색 결과가 없습니다.",
     "last-searches": "최근 검색",
-    "live-stream": "LiveStream",
+    "live-stream": "라이브 스트림",
     "placeholder": "검색...",
     "playlist": "플레이리스트",
     "playlist_plural": "재생목록",
-    "podcast": "Podcast",
+    "podcast": "팟캐스트",
     "queue-add": "재생 목록에 모든 음악 추가",
     "track": "음악",
     "track_plural": "트랙",
     "you-can-search-for": "다음 항목을 검색할 수 있습니다:"
   },
   "seekbar": {
-    "live": "Live",
+    "live": "라이브",
     "segment-popup": "음악이 아님"
   },
   "settings": {
@@ -267,19 +267,19 @@
     "mastodon-title": "",
     "mini-player": "미니 플레이어 모드 사용",
     "more": "강하게",
-    "discord-rich-presence": "Toggle discord rich presence (requires restart)",
+    "discord-rich-presence": "디스코드 현재 재생 음악 보이기 (재시작 필요)",
     "notification-timeout": "알림 시간 초과",
     "notlogged": "로그인하지 않았습니다.",
     "playback": "재생",
     "program-settings": "프로그램 설정",
-    "saving-in": "Saving in:",
+    "saving-in": "저장 경로:",
     "seek-iteration": "화살표 키를 눌렀을 때 탐색할 시간 (초)",
     "shuffle-queue": "음악 셔플",
     "shuffle-when-going-back": "이전 음악 재생 시 셔플",
     "shuffle-when-going-back-description": "셔플 활성화 시, 이전 재생 버튼 누르면 임의로 음악 재생",
     "social": "소셜 네트워크",
-    "skip-sponsorblock": "Skip non-music segment",
-    "skip-sponsorblock-description": "Playback skips non-music segment from SponsorBlock (https://sponsor.ajay.app/)",
+    "skip-sponsorblock": "스폰서블럭 끄기",
+    "skip-sponsorblock-description": "SponsorBlock (https://sponsor.ajay.app/) 에서 음악이 아닌 곡은 재생 건너뛰기",
     "streaming": "스트리밍",
     "track-duration": "화면에 남은 재생 시간 표시",
     "user": "유저:",
@@ -299,17 +299,17 @@
     "add-to-playlist": "플레이리스트에 추가",
     "add-to-queue": "재생목록에 추가",
     "download": "다운로드",
-    "download-toast-body": "{{artist}} - {{track}} has been added to downloads.",
-    "download-toast-title": "Track added to downloads",
+    "download-toast-body": "{{artist}} - {{track}}(이)가 다운로드 목록에 추가되었습니다.",
+    "download-toast-title": "다운로드 목록에 추가된 곡",
     "favorite-toast-body": "{{artist}} - {{track}}(이)가 즐겨찾기 목록에 추가되었습니다.",
     "favorite-toast-title": "좋아하는 곡 추가",
     "play-next": "다음 곡으로 재생",
     "play-now": "지금 재생",
-    "playlist-toast-body": "{{artist}} - {{track}} has been added to playlist.",
-    "playlist-toast-title": "Track added to playlist"
+    "playlist-toast-body": "{{artist}} - {{track}}(이)가 재생목록에 추가되었습니다.",
+    "playlist-toast-title": "재생목록에 추가된 곡"
   },
   "track-table": {
-    "add-selected-tracks-to-queue": "Add selected to queue",
+    "add-selected-tracks-to-queue": "선택한 항목을 대기열에 추가",
     "add-selected-tracks-to-downloads": "선택한 항목을 다운로드에 추가",
     "add-selected-tracks-to-favorites": "선택한 항목을 좋아하는 곡에 추가",
     "play-selected-tracks-now": "선택한 항목을 지금 재생",
