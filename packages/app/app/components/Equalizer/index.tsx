@@ -1,10 +1,10 @@
 /* eslint no-empty: 0 */
 
-import React, {useRef, useEffect, useCallback, FormEvent} from 'react';
+import React, {useRef, useEffect, useCallback} from 'react';
 
 import { drag } from 'd3-drag';
 import * as d3 from 'd3-selection';
-import { CheckboxProps, Radio } from 'semantic-ui-react';
+import { Radio, RadioProps  } from 'semantic-ui-react';
 
 import PreAmp from './PreAmp';
 import { createChart} from './chart';
@@ -71,9 +71,9 @@ type EqualizerProps = {
   preAmp: number;
   enableSpectrum: boolean;
   spectrum: Array<number>;
-  onToggleSpectrum: (event: FormEvent<HTMLInputElement>, data: CheckboxProps) => void;
+  onToggleSpectrum: RadioProps['onChange'];
   onPreampChange: (n: number) => void;
-  onEqualizerChange: (n: number) => void; 
+  onEqualizerChange: () => void;  
 }
 
 const Equalizer: React.FC<EqualizerProps> = ({values, preAmp, enableSpectrum, spectrum, onEqualizerChange, onToggleSpectrum, onPreampChange}) => {
