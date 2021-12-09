@@ -2,15 +2,18 @@ import React, { useCallback, useState } from 'react';
 import cx from 'classnames';
 import { Icon } from 'semantic-ui-react';
 
+
 import NeumorphicBox from '../../NeumorphicBox';
 import { VolumeControlsProps } from '../../VolumeControls';
 import { PlayOptionControlProps } from '../../VolumeControls/PlayOptions';
 
 import styles from './styles.scss';
 
+
 export type MiniPlayOptionsProps = Pick<VolumeControlsProps, 'playOptions'> & {
   onDisableMiniPlayer: () => void;
 };
+
 
 const MiniPlayOptionControl: React.FC<PlayOptionControlProps> = ({
   icon,
@@ -19,12 +22,12 @@ const MiniPlayOptionControl: React.FC<PlayOptionControlProps> = ({
 }) => <button
   onClick={onToggle}
 >
-    <Icon
-      className={cx({ disabled: !enabled })}
-      name={icon}
-      size='large'
-    />
-  </button>
+  <Icon
+    className={cx({ disabled: !enabled })}
+    name={icon}
+    size='large'
+  />
+</button>;
 
 const MiniPlayOptions: React.FC<MiniPlayOptionsProps> = ({
   onDisableMiniPlayer,
@@ -38,6 +41,8 @@ const MiniPlayOptions: React.FC<MiniPlayOptionsProps> = ({
     <NeumorphicBox small borderRadius='5px'>
       <button
         onClick={onDisableMiniPlayer}
+        
+       
       >
         <Icon
           size='large'
@@ -58,7 +63,7 @@ const MiniPlayOptions: React.FC<MiniPlayOptionsProps> = ({
         isExpanded && playOptions.map(playOption => <MiniPlayOptionControl {...playOption} />)
       }
     </NeumorphicBox>
-  </div>
+  </div>;
 };
 
 export default MiniPlayOptions;

@@ -140,6 +140,7 @@ module.exports = (env) => {
   const config = {
     entry,
     output,
+    devtool: 'source-map',
     mode: IS_PROD ? 'production' : 'development',
     optimization,
     resolve: {

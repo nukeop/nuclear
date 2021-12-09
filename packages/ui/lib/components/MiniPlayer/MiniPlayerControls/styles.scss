@@ -2,6 +2,7 @@
 
 .mini_player_controls {
   @include center;
+  justify-content: center;
   display: flex;
   flex-flow: row;
 

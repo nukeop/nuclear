@@ -1,12 +1,19 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-
 import styles from './styles.scss';
 
 import AlbumInfo from './AlbumInfo';
 import AlbumOverlay from './AlbumOverlay';
 
-const AlbumCover = ({ artist, cover, nameOnly, handlePlay, title }) => {
+type AlbumCoverProps = {
+  nameOnly: boolean;
+  cover: string;
+  artist: string;
+  title: string;
+  handlePlay: React.MouseEventHandler;
+}
+
+const AlbumCover: React.FC<AlbumCoverProps> = ({ artist, cover, nameOnly, handlePlay, title }) => {
+  
   let style = {};
 
   if (nameOnly) {
@@ -29,14 +36,6 @@ const AlbumCover = ({ artist, cover, nameOnly, handlePlay, title }) => {
       />
     </div>
   );
-};
-
-AlbumCover.propTypes = {
-  nameOnly: PropTypes.bool,
-  cover: PropTypes.string,
-  artist: PropTypes.string,
-  title: PropTypes.string,
-  handlePlay: PropTypes.func
 };
 
 export default AlbumCover;

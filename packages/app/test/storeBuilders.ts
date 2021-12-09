@@ -1,3 +1,4 @@
+import { DownloadStatus } from '../app/actions/downloads';
 
 type StoreStateBuilder = ReturnType<typeof buildStoreState>;
 export const buildStoreState = () => {
@@ -11,6 +12,8 @@ export const buildStoreState = () => {
     plugin: {},
     playlists: {},
     dashboard: {},
+    local: {},
+    downloads: [],
     favorites: {
       tracks: [],
       artists: [],
@@ -477,6 +480,64 @@ export const buildStoreState = () => {
       };
       return this as StoreStateBuilder;
     },
+    withDownloads() {
+      state = {
+        ...state,
+        downloads: [{
+          status: DownloadStatus.FINISHED,
+          completion: 1,
+          track: {
+            uuid: '1',
+            artist: {
+              name: 'test artist 1'
+            },
+            name: 'finished track'
+          }
+        }, {
+          status: DownloadStatus.ERROR,
+          completion: 0.1,
+          track: {
+            uuid: '2',
+            artist: {
+              name: 'test artist 2'
+            },
+            name: 'track with errorx'
+          }
+        }, {
+          status: DownloadStatus.PAUSED,
+          completion: 0.3,
+          track: {
+            uuid: '3',
+            artist: {
+              name: 'test artist 3'
+            },
+            name: 'paused track'
+          }
+        }, {
+          status: DownloadStatus.STARTED,
+          completion: 0.5,
+          track: {
+            uuid: '4',
+            artist: {
+              name: 'test artist 4'
+            },
+            name: 'started track'
+          }
+        }, {
+          status: DownloadStatus.WAITING,
+          completion: 0,
+          track: {
+            uuid: '5',
+            artist: {
+              name: 'test artist 5'
+            },
+            name: 'waiting track'
+          }
+        }]
+      };
+
+      return this as StoreStateBuilder;
+    },
     withGithubContrib() {
       state = {
         ...state,
@@ -587,6 +648,25 @@ export const buildStoreState = () => {
               }
             }
           ]
+        }
+      };
+      return this as StoreStateBuilder;
+    },
+    withLocal() {
+      state = {
+        ...state,
+        local: {
+          pending: false,
+          error: false,
+          folders: [],
+          page: 0,
+          sortBy: 'artist',
+          direction: 'ascending',
+          filter: '',
+          listType: 'simple-list',
+          tracks: [],
+          scanProgress: null,
+          scanTotal: null
         }
       };
       return this as StoreStateBuilder;

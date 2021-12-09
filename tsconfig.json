@@ -7,7 +7,7 @@
     "lib": ["ESNext"],
     "skipLibCheck": true,
     "strict": true,
-    "sourceMap": false,
+    "sourceMap": true,
     "strictPropertyInitialization": false,
     "allowSyntheticDefaultImports": true,
     "experimentalDecorators": true,
