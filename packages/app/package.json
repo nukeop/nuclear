@@ -111,6 +111,7 @@
     "jest": "^26.6.3",
     "megalodon": "^3.6.1",
     "mock-require": "^3.0.3",
+    "nock": "^13.2.1",
     "node-sass": "^4.14.1",
     "react-beautiful-dnd-test-utils": "^4.1.0",
     "react-hot-loader": "^4.12",

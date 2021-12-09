@@ -1,15 +1,17 @@
 /* eslint-disable no-empty */
 import React from 'react';
 import { TFunction, useTranslation } from 'react-i18next';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { rest } from '@nuclear/core';
+import { SignInRequestBody, SignInResponseBody } from '@nuclear/core/src/rest/Nuclear/Identity.types';
+import { ErrorBody } from '@nuclear/core/src/rest/Nuclear/types';
 import { NuclearSignInForm, useForm } from '@nuclear/ui';
 import { FullscreenLayerProps } from '@nuclear/ui/lib/components/FullscreenLayer';
 import { NuclearSignInFormProps } from '@nuclear/ui/lib/forms/NuclearSignInForm';
-import { useDispatch, useSelector } from 'react-redux';
+
 import { settingsSelector } from '../../selectors/settings';
 import { signInAction } from '../../actions/nuclear/identity';
-import { NuclearIdentityService } from '@nuclear/core/src/rest/Nuclear/Identity';
-import { SignInRequestBody, SignInResponseBody } from '@nuclear/core/src/rest/Nuclear/Identity.types';
-import { ErrorBody } from '@nuclear/core/src/rest/Nuclear/types';
 
 export type NuclearSignInFormContainerProps = FullscreenLayerProps & Pick<NuclearSignInFormProps, 'onSignUpClick'>;
 
@@ -42,7 +44,7 @@ export const NuclearSignInFormContainer: React.FC<NuclearSignInFormContainerProp
       setSubmitting(true);
       setStatus(undefined);
       dispatch(signInAction.request());
-      const service = new NuclearIdentityService(settings.nuclearIdentityServiceUrl);
+      const service = new rest.NuclearIdentityService(settings.nuclearIdentityServiceUrl);
 
       try {
         const result = await service.signIn(values);

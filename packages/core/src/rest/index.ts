@@ -23,3 +23,9 @@ export { Mastodon };
 
 import * as iTunes from './iTunes';
 export { iTunes };
+
+import { NuclearPlaylistsService } from './Nuclear/Playlists';
+export { NuclearPlaylistsService };
+
+import { NuclearIdentityService } from './Nuclear/Identity';
+export { NuclearIdentityService };

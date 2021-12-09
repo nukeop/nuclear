@@ -1,7 +1,7 @@
 import { v4 } from 'uuid';
 import _ from 'lodash';
 import { remote } from 'electron';
-import { store, PlaylistHelper, Playlist, PlaylistTrack } from '@nuclear/core';
+import { store, PlaylistHelper, Playlist, PlaylistTrack, rest } from '@nuclear/core';
 import fs from 'fs';
 
 import { Playlists } from './actionTypes';
@@ -12,6 +12,7 @@ import {
   updatePlaylistsOrderEffect
 } from './playlists.effects';
 import { success, error } from './toasts';
+import { IdentityStore } from '../reducers/nuclear/identity';
 
 export const addPlaylist = (tracks: Array<PlaylistTrack>, name: string) => dispatch => {
   if (name?.length === 0) {
@@ -38,13 +39,28 @@ export const deletePlaylist = (id: string) => dispatch => {
   });
 };
 
-export const loadPlaylists = () => dispatch => {
+export const loadLocalPlaylists = () => dispatch => {
   const playlists = store.get('playlists');
 
   dispatch({
-    type: Playlists.LOAD_PLAYLISTS,
+    type: Playlists.LOAD_LOCAL_PLAYLISTS,
     payload: { playlists: _.defaultTo(playlists, []) }
   });
+};
+
+export const loadRemotePlaylists = ({ token, signedInUser }: IdentityStore) => async (dispatch, getState) => {
+  const { settings } = getState();
+  const service = new rest.NuclearPlaylistsService(
+    settings.nuclearPlaylistsServiceUrl
+  );
+
+  if (token) {
+    const playlists = await service.getPlaylistsByUserId(token, signedInUser.id);
+    dispatch({
+      type: Playlists.LOAD_REMOTE_PLAYLISTS,
+      payload: { playlists }
+    });
+  }
 };
 
 export const updatePlaylist = (playlist: Playlist) => dispatch => {
@@ -64,35 +80,33 @@ export const reorderPlaylists = (source: number, destination: number) => async (
 };
 
 
-export function exportPlaylist(playlist, t) {
-  return async dispatch => {
-    const name = playlist.name;
-    const dialogResult = await remote.dialog.showSaveDialog({
-      defaultPath: name,
-      filters: [
-        { name: 'file', extensions: ['json'] }
-      ],
-      properties: ['createDirectory', 'showOverwriteConfirmation']
-    });
-    const filePath = dialogResult?.filePath?.replace(/\\/g, '/');
+export const exportPlaylist = (playlist, t) => async (dispatch) => {
+  const name = playlist.name;
+  const dialogResult = await remote.dialog.showSaveDialog({
+    defaultPath: name,
+    filters: [
+      { name: 'file', extensions: ['json'] }
+    ],
+    properties: ['createDirectory', 'showOverwriteConfirmation']
+  });
+  const filePath = dialogResult?.filePath?.replace(/\\/g, '/');
 
-    if (filePath) {
-      try {
-        const data = JSON.stringify(playlist, null, 2);
-        fs.writeFile(filePath, data, (err) => {
-          if (err) {
-            dispatch(error(t('export-fail-title'), t('error-save-file'), null, null));
-            return;
-          }
-          dispatch(success(t('export-success-title'), t('playlist-exported', { name }), null, null));
-        });
-      } catch (e) {
-        dispatch(error(t('export-fail-title'), t('error-save-file'), null, null));
-      }
-      
+  if (filePath) {
+    try {
+      const data = JSON.stringify(playlist, null, 2);
+      fs.writeFile(filePath, data, (err) => {
+        if (err) {
+          dispatch(error(t('export-fail-title'), t('error-save-file'), null, null));
+          return;
+        }
+        dispatch(success(t('export-success-title'), t('playlist-exported', { name }), null, null));
+      });
+    } catch (e) {
+      dispatch(error(t('export-fail-title'), t('error-save-file'), null, null));
     }
-  };
-}
+
+  }
+};
 
 export function addPlaylistFromFile(filePath, t) {
   return async dispatch => {

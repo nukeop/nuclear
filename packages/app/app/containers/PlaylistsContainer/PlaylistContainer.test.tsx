@@ -1,12 +1,13 @@
 import { render, waitFor, fireEvent } from '@testing-library/react';
 import React from 'react';
 import { createMemoryHistory } from 'history';
-import { 
+import {
   mockDndSpacing,
   mockGetComputedStyle,
   makeDnd,
   DND_DIRECTION_DOWN
 } from 'react-beautiful-dnd-test-utils';
+import nock from 'nock';
 import { store as electronStore } from '@nuclear/core';
 
 import { AnyProps, configureMockStore, setupI18Next, TestRouterProvider, TestStoreProvider } from '../../../test/testUtils';
@@ -24,7 +25,6 @@ const initialStoreState = () => ({
   },
   playlists: []
 });
-
 describe('Playlist container', () => {
   beforeAll(() => {
     setupI18Next();
@@ -32,8 +32,9 @@ describe('Playlist container', () => {
 
   beforeEach(() => {
     // eslint-disable-next-line @typescript-eslint/no-var-requires
-    const { store } = require('@nuclear/core');
-    store.clear();
+    electronStore.clear();
+    nock.cleanAll();
+    nock.restore();
   });
 
   it('should display all playlists', () => {
@@ -62,7 +63,7 @@ describe('Playlist container', () => {
     const { component, store } = mountComponent();
     await waitFor(() => component.getByTestId('create-new').click());
     const input = component.getByTestId('create-playlist-input').firstChild;
-    fireEvent.change(input, {target: {value: 'new-empty-playlist'}});
+    fireEvent.change(input, { target: { value: 'new-empty-playlist' } });
     await waitFor(() => component.getByTestId('create-playlist-accept').click());
     const state = store.getState();
     expect(state.playlists.playlists).toEqual([
@@ -125,9 +126,46 @@ describe('Playlist container', () => {
     state = store.getState();
 
     expect(state.playlists.playlists).toEqual([
-      expect.objectContaining({name: 'test playlist 2'}),
-      expect.objectContaining({name: 'test playlist'})
+      expect.objectContaining({ name: 'test playlist 2' }),
+      expect.objectContaining({ name: 'test playlist' })
     ]);
+  });
+
+  it('should get the users playlists on mount if the user is logged in', async () => {
+    const initialState = buildStoreState()
+      .withPlaylists()
+      .withPlugins()
+      .withConnectivity()
+      .withLoggedInUser()
+      .build();
+    mountComponent(initialState);
+
+    electronStore.set('settings', {
+      nuclearPlaylistsServiceUrl: 'http://playlists.nuclear'
+    });
+
+    nock('http://playlists.nuclear', {
+      reqheaders: {
+        'Content-type': 'application/json',
+        Authorization: 'Bearer auth-token'
+      }
+    })
+      .get('/users/1/playlists')
+      .reply(200, {});
+
+    expect(nock.isDone()).toBe(true);
+  });
+
+  it('should not get the user\'s playlists on mount if the user is not logged in', async () => {
+    const initialState = buildStoreState()
+      .withPlaylists()
+      .withPlugins()
+      .withConnectivity()
+      .withLoggedInUser()
+      .build();
+    mountComponent(initialState);
+
+    expect(nock.isDone()).toBe(true);
   });
 
   const mountComponent = (initialStore?: AnyProps) => {

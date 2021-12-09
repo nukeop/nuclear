@@ -16,7 +16,7 @@ const defaultState = { ...new PlaylistsStore() };
 
 export default function PlaylistsReducer(state = defaultState, action) {
   switch (action.type) {
-  case Playlists.LOAD_PLAYLISTS:
+  case Playlists.LOAD_LOCAL_PLAYLISTS:
   case Playlists.ADD_PLAYLIST:
   case Playlists.DELETE_PLAYLIST:
   case Playlists.UPDATE_PLAYLIST:

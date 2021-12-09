@@ -25,6 +25,11 @@ export const buildStoreState = () => {
     queue: {
       queueItems: [],
       currentSong: 0
+    },
+    nuclear: {
+      identity: {
+
+      }
     }
   };
 
@@ -587,6 +592,19 @@ export const buildStoreState = () => {
               }
             }
           ]
+        }
+      };
+      return this as StoreStateBuilder;
+    },
+    withLoggedInUser() {
+      state.nuclear.identity = {
+        ...state.nuclear.identity,
+        token: 'auth-token',
+        signedInUser: {
+          id: '1',
+          username: 'nukeop',
+          displayName: 'nukeop',
+          accountState: 'UNCONFIRMED'
         }
       };
       return this as StoreStateBuilder;

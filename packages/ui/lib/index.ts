@@ -20,6 +20,7 @@ export { default as PopupButton } from './components/PopupButton';
 export { default as PopupDropdown } from './components/PopupDropdown';
 export { default as QueueItem } from './components/QueueItem';
 export { default as Range } from './components/Range';
+export { default as ResizeHandle } from './components/ResizeHandle';
 export { default as SearchBox } from './components/SearchBox';
 export { default as Seekbar } from './components/Seekbar';
 export { default as SmoothImage } from './components/SmoothImage';

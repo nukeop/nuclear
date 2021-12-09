@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
-import { UserPanel } from '@nuclear/ui';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
+import { noop } from 'lodash';
+
+import { UserPanel, FullscreenLayer  } from '@nuclear/ui';
 
 import { NuclearSignInFormContainer } from './NuclearSignInFormContainer';
 import { NuclearSignUpFormContainer } from './NuclearSignUpFormContainer';
@@ -30,6 +32,10 @@ export const UserPanelContainer: React.FC = () => {
         value: 'sign-out',
         onClick: () => dispatch(signOutAction())
       }]}
+    />
+    <FullscreenLayer 
+      isOpen={isSignInFormOpen || isSignUpFormOpen}
+      onClose={noop}
     />
     <NuclearSignInFormContainer
       isOpen={isSignInFormOpen}
