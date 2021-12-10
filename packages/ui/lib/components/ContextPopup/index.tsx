@@ -21,19 +21,29 @@ const ContextPopup: React.FC<ContextPopupProps> = ({
 }) => {
   const [isOpen, setOpen] = useState(false);
   const handleClose = () => setOpen(false);
-  const handleOpen = () => setOpen(true);
+  const handleSwitch = () => setOpen(!isOpen);
+
+  const ContextWrapper = ({children}) => (
+    <React.Fragment>
+      {React.Children.map(children, child => (
+        React.cloneElement(child, {
+          onContextMenu: handleSwitch
+        })
+      ))}
+    </React.Fragment>
+  );
   return (
     <Popup
       className={styles.context_popup}
-      trigger={trigger}
+      trigger={<ContextWrapper>{trigger}</ContextWrapper>}
       open={isOpen}
       onClose={handleClose}
-      onOpen={handleOpen}
-      on='click'
+      on={null}
       hideOnScroll
       style={target && {
         transform: `translate3d(${target.x}px, ${target.y}px, 0px)`
       }}
+      onMouseLeave={handleClose} 
     >
       <div className={styles.popup_header}>
         {thumb &&
