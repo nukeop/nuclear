@@ -7,12 +7,13 @@ import {
   makeDnd,
   DND_DIRECTION_DOWN
 } from 'react-beautiful-dnd-test-utils';
-import nock from 'nock';
 import { store as electronStore } from '@nuclear/core';
 
 import { AnyProps, configureMockStore, setupI18Next, TestRouterProvider, TestStoreProvider } from '../../../test/testUtils';
 import MainContentContainer from '../MainContentContainer';
 import { buildStoreState } from '../../../test/storeBuilders';
+import fetchMock from 'fetch-mock';
+
 
 const initialStoreState = () => ({
   equalizer: {
@@ -33,8 +34,7 @@ describe('Playlist container', () => {
   beforeEach(() => {
     // eslint-disable-next-line @typescript-eslint/no-var-requires
     electronStore.clear();
-    nock.cleanAll();
-    nock.restore();
+    fetchMock.reset();
   });
 
   it('should display all playlists', () => {
@@ -52,11 +52,29 @@ describe('Playlist container', () => {
     expect(component.asFragment()).toMatchSnapshot();
   });
 
-  it('should go to playlist after click on it', async () => {
+  it('should read playlists from store on mount', () => {
+    const stateWithPlaylists = buildStoreState()
+      .withPlaylists()
+      .build();
+    const initialState = buildStoreState()
+      .withPlugins()
+      .withConnectivity()
+      .build();
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    electronStore.init({
+      ...initialStoreState(),
+      playlists: stateWithPlaylists.playlists
+    });
+    const { component } = mountComponent(initialState);
+    expect(component.getByText(/test playlist 2/i)).toBeInTheDocument();
+  });
+
+  it('should go to playlist after clicking on it', async () => {
     const { component, history } = mountComponent();
     expect(history.location.pathname).toBe('/playlists');
     await waitFor(() => component.getByText(/test playlist 2/i).click());
-    expect(history.location.pathname).toBe('/playlist/1');
+    expect(history.location.pathname).toBe('/playlist/test-playlist-id-2');
   });
 
   it('should create an empty playlist custom name', async () => {
@@ -137,23 +155,18 @@ describe('Playlist container', () => {
       .withPlugins()
       .withConnectivity()
       .withLoggedInUser()
+      .withSettings({
+        nuclearPlaylistsServiceUrl: 'http://playlists.nuclear'
+      })
       .build();
-    mountComponent(initialState);
-
-    electronStore.set('settings', {
-      nuclearPlaylistsServiceUrl: 'http://playlists.nuclear'
-    });
-
-    nock('http://playlists.nuclear', {
-      reqheaders: {
+    fetchMock.get('http://playlists.nuclear/users/1/playlists', {}, {
+      headers: {
         'Content-type': 'application/json',
         Authorization: 'Bearer auth-token'
       }
-    })
-      .get('/users/1/playlists')
-      .reply(200, {});
-
-    expect(nock.isDone()).toBe(true);
+    });
+    mountComponent(initialState);
+    expect(fetchMock.done());
   });
 
   it('should not get the user\'s playlists on mount if the user is not logged in', async () => {
@@ -165,7 +178,7 @@ describe('Playlist container', () => {
       .build();
     mountComponent(initialState);
 
-    expect(nock.isDone()).toBe(true);
+    expect(fetchMock.done());
   });
 
   const mountComponent = (initialStore?: AnyProps) => {

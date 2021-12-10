@@ -1,8 +1,12 @@
+import fs from 'fs';
 import { v4 } from 'uuid';
 import _ from 'lodash';
 import { remote } from 'electron';
+import { createAsyncAction } from 'typesafe-actions';
+
 import { store, PlaylistHelper, Playlist, PlaylistTrack, rest } from '@nuclear/core';
-import fs from 'fs';
+import { GetPlaylistsByUserIdResponseBody } from '@nuclear/core/src/rest/Nuclear/Playlists.types';
+import { ErrorBody } from '@nuclear/core/src/rest/Nuclear/types';
 
 import { Playlists } from './actionTypes';
 
@@ -48,18 +52,30 @@ export const loadLocalPlaylists = () => dispatch => {
   });
 };
 
+export const loadRemotePlaylistsAction = createAsyncAction(
+  Playlists.LOAD_REMOTE_PLAYLISTS_START,
+  Playlists.LOAD_REMOTE_PLAYLISTS_SUCCESS,
+  Playlists.LOAD_REMOTE_PLAYLISTS_ERROR
+)<void, GetPlaylistsByUserIdResponseBody, ErrorBody>();
+
 export const loadRemotePlaylists = ({ token, signedInUser }: IdentityStore) => async (dispatch, getState) => {
+  dispatch(loadRemotePlaylistsAction.request());
   const { settings } = getState();
   const service = new rest.NuclearPlaylistsService(
     settings.nuclearPlaylistsServiceUrl
   );
 
-  if (token) {
-    const playlists = await service.getPlaylistsByUserId(token, signedInUser.id);
-    dispatch({
-      type: Playlists.LOAD_REMOTE_PLAYLISTS,
-      payload: { playlists }
-    });
+  try {
+    if (token) {
+      const playlists = await service.getPlaylistsByUserId(token, signedInUser.id);
+      if (playlists.ok) {
+        dispatch(loadRemotePlaylistsAction.success(playlists.body as GetPlaylistsByUserIdResponseBody));
+      } else {
+        dispatch(loadRemotePlaylistsAction.failure(playlists.body as ErrorBody));
+      }
+    }
+  } catch (e) {
+    dispatch(loadRemotePlaylistsAction.failure(e.message));
   }
 };
 

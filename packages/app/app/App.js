@@ -61,7 +61,6 @@ class App extends React.PureComponent {
     this.props.actions.lastFmReadSettings();
     this.props.actions.FavImportInit();
     this.props.actions.createPlugins(PluginConfig.plugins);
-    this.props.actions.loadLocalPlaylists();
     this.props.actions.deserializePlugins();
     this.props.actions.githubContribInfo();
 

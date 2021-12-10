@@ -38,7 +38,8 @@ module.exports = {
       getTagArtists() {}
       getTopTags = () => Promise.resolve()
       getTopTracks = () => Promise.resolve()
-    }
+    },
+    NuclearPlaylistsService: jest.requireActual('@nuclear/core/src/rest/Nuclear/Playlists').NuclearPlaylistsService
   },
   settingsConfig: jest.requireActual('@nuclear/core/src/settings').settingsConfig,
   SettingType: {

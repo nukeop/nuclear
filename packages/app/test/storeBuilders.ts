@@ -30,7 +30,8 @@ export const buildStoreState = () => {
       identity: {
 
       }
-    }
+    },
+    settings: {}
   };
 
   return {
@@ -606,6 +607,15 @@ export const buildStoreState = () => {
           displayName: 'nukeop',
           accountState: 'UNCONFIRMED'
         }
+      };
+      return this as StoreStateBuilder;
+    },
+    withSettings(settings: {
+      [key: string]: string | number
+    }) {
+      state.settings = {
+        ...state.settings,
+        ...settings
       };
       return this as StoreStateBuilder;
     },
