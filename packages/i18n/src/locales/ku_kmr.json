@@ -1,25 +1,25 @@
 {
   "album": {
     "download": "Daxe",
-    "download-toast-content": "{{artist}} - {{title}} li daxistinan hate tevlîkirin.",
-    "download-toast-title": "Album li daxistinan hate tevlîkirin",
-    "error-load": "Bibore, ev album nehate barkirin. Paşê dîsa biceribîne an jî li ser Github pirsgirêkekê nû veke",
+    "download-toast-content": "{{artist}} - {{title}} li daxistinan hate zêdekirin.",
+    "download-toast-title": "Album li daxistinan hate zêdekirin",
+    "error-load": "Bibore, ev album nehate barkirin. Paşê dîsa biceribîne an jî li ser Github pirsgirêkeke nû veke",
     "genre": "Cure:",
     "play": "Lêde",
     "queue": "Albumê tevlî rêzê bike",
-    "tracks": "Herîk:",
+    "tracks": "Stran:",
     "year": "Sal:"
   },
   "app": {
     "collection": "Berhevok",
     "dashboard": "Destgeh",
-    "downloads": "Daxistî",
+    "downloads": "Daxistin",
     "equalizer": "Yeksaneker",
-    "favorite-albums": "Albumên bijarte",
-    "favorite-artists": "Hunermendên bijarte",
-    "favorite-tracks": "Herîkên bijarte",
+    "favorite-albums": "Albumên Bijarte",
+    "favorite-artists": "Hunermendên Bijarte",
+    "favorite-tracks": "Stranên Bijarte",
     "library": "Pirtûxaneya herêmî",
-    "lyrics": "Peyvê stranan",
+    "lyrics": "Gotinên Stranan",
     "main": "Sereke",
     "playlists": "Rêzoka lêdanan",
     "plugins": "Pêvek",
@@ -31,7 +31,7 @@
   "artist": {
     "add-all": "Hemû tevlî bike",
     "count": "Hejmarê lêdanan",
-    "queue": "Hemû herîkan tevlî rêzê bike",
+    "queue": "Hemû stranan tevlî rêzê bike",
     "similar": "Hunermendên wekhev",
     "title": "Sernav",
     "tour": "Di gerê de"
@@ -54,7 +54,7 @@
     "completion": "Qedandin",
     "empty": "Daxistin vala ne.",
     "empty-help": "Tiştekî tevlî rêza xwe ya daxistinê bike û tu yê li vir bibînî!",
-    "header": "Daxistî",
+    "header": "Daxistin",
     "name": "Nav",
     "status": "Rewş"
   },
