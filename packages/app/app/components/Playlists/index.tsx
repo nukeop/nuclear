@@ -1,16 +1,16 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { DropResult } from 'react-beautiful-dnd';
+import { useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import { Icon } from 'semantic-ui-react';
 
-import { Playlist } from '@nuclear/core/src/helpers/playlist/types';
+import { Playlist } from '@nuclear/core';
 import { Playlists as PlaylistsTable } from '@nuclear/ui';
 
 import PlaylistsHeader from './PlaylistsHeader';
-import styles from './styles.scss';
-import { useHistory } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
 import { reorderPlaylists } from '../../actions/playlists';
-import { DropResult } from 'react-beautiful-dnd';
+import styles from './styles.scss';
 
 const EmptyState = () => {
   const { t } = useTranslation('playlists');

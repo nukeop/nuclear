@@ -2,13 +2,12 @@ import { useCallback, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
-import { Playlist } from '@nuclear/core/src/helpers/playlist/types';
-
 import { playlistsSelectors } from '../../selectors/playlists';
 import { nuclearSelectors } from '../../selectors/nuclear';
 import * as PlaylistActions from '../../actions/playlists';
 import { openLocalFilePicker } from '../../actions/local';
 import { IdentityStore } from '../../reducers/nuclear/identity';
+import { PlaylistsStore } from '../../reducers/playlists';
 
 export const useNuclearServicePlaylists = () => {
   const dispatch = useDispatch();
@@ -22,7 +21,7 @@ export const useNuclearServicePlaylists = () => {
 export const usePlaylistsProps = () => {
   const dispatch = useDispatch();
   const { t } = useTranslation('playlists');
-  const playlists = useSelector(playlistsSelectors.playlists) as Playlist[];
+  const playlists = useSelector(playlistsSelectors.playlists) as PlaylistsStore['playlists'];
 
   const onImportFromFile = useCallback(async () => {
     const filePath = await openLocalFilePicker();
@@ -37,6 +36,10 @@ export const usePlaylistsProps = () => {
   );
 
   useNuclearServicePlaylists();
+
+  useEffect(() => {
+    dispatch(PlaylistActions.loadLocalPlaylists());
+  }, [dispatch]);
 
   return {
     playlists,

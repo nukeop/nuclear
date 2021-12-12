@@ -1,12 +1,6 @@
-import { Track } from '@nuclear/core';
+import { Playlist } from '@nuclear/core';
 
 import { Playlists } from '../actions/actionTypes';
-
-export type Playlist = {
-  id: string;
-  name: string;
-  tracks: Track[];
-}
 
 export class PlaylistsStore {
   playlists: Playlist[] = []

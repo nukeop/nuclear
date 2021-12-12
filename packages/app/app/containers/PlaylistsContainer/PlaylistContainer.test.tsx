@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { render, waitFor, fireEvent } from '@testing-library/react';
 import React from 'react';
 import { createMemoryHistory } from 'history';
@@ -14,7 +15,6 @@ import MainContentContainer from '../MainContentContainer';
 import { buildStoreState } from '../../../test/storeBuilders';
 import fetchMock from 'fetch-mock';
 
-
 const initialStoreState = () => ({
   equalizer: {
     selected: 'Default'
@@ -26,6 +26,7 @@ const initialStoreState = () => ({
   },
   playlists: []
 });
+
 describe('Playlist container', () => {
   beforeAll(() => {
     setupI18Next();
@@ -60,13 +61,13 @@ describe('Playlist container', () => {
       .withPlugins()
       .withConnectivity()
       .build();
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     electronStore.init({
       ...initialStoreState(),
-      playlists: stateWithPlaylists.playlists
+      // @ts-ignore
+      playlists: stateWithPlaylists.playlists.playlists
     });
-    const { component } = mountComponent(initialState);
+    const { component } = mountComponent(initialState, false);
     expect(component.getByText(/test playlist 2/i)).toBeInTheDocument();
   });
 
@@ -77,18 +78,18 @@ describe('Playlist container', () => {
     expect(history.location.pathname).toBe('/playlist/test-playlist-id-2');
   });
 
-  it('should create an empty playlist custom name', async () => {
+  it('should create an empty playlist with a custom name', async () => {
     const { component, store } = mountComponent();
     await waitFor(() => component.getByTestId('create-new').click());
     const input = component.getByTestId('create-playlist-input').firstChild;
     fireEvent.change(input, { target: { value: 'new-empty-playlist' } });
     await waitFor(() => component.getByTestId('create-playlist-accept').click());
     const state = store.getState();
-    expect(state.playlists.playlists).toEqual([
-      expect.objectContaining({
-        name: 'new-empty-playlist'
-      })
-    ]);
+    expect(state.playlists.playlists).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          name: 'new-empty-playlist'
+        })]));
   });
 
   it('should create an empty playlist with default name', async () => {
@@ -98,11 +99,12 @@ describe('Playlist container', () => {
       component.getByTestId('create-playlist-accept').click()
     );
     const state = store.getState();
-    expect(state.playlists.playlists).toEqual([
-      expect.objectContaining({
-        name: 'New playlist'
-      })
-    ]);
+    expect(state.playlists.playlists).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          name: 'New playlist'
+        })
+      ]));
   });
 
   it('should not create an empty playlist with an empty name', async () => {
@@ -126,7 +128,6 @@ describe('Playlist container', () => {
     mockGetComputedStyle();
     const { component, store } = mountComponent();
     let state = store.getState();
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     electronStore.init({
       ...initialStoreState(),
@@ -181,13 +182,20 @@ describe('Playlist container', () => {
     expect(fetchMock.done());
   });
 
-  const mountComponent = (initialStore?: AnyProps) => {
+  const mountComponent = (initialStore?: AnyProps, initStore = true) => {
     const initialState = initialStore ||
       buildStoreState()
         .withPlaylists()
         .withPlugins()
         .withConnectivity()
         .build();
+
+    // @ts-ignore
+    initStore && electronStore.init({
+      ...initialStoreState(),
+      playlists: initialState.playlists.playlists
+    });
+
     const history = createMemoryHistory({
       initialEntries: ['/playlists']
     });

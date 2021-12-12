@@ -9,16 +9,18 @@ import * as ToastActions from '../../actions/toasts';
 import * as PlaylistActions from '../../actions/playlists';
 
 import PlaylistView from '../../components/PlaylistView';
+import { usePlaylistsProps } from '../PlaylistsContainer/hooks';
 
 const PlaylistViewContainer = props => {
-  const currentPlaylist = props.playlists.find(playlist => playlist.id === props.match.params.playlistId);
+  const { playlists } = usePlaylistsProps();
+  const currentPlaylist = playlists.find(playlist => playlist.id === props.match.params.playlistId);
 
   const onReorderTracks = useCallback(
     onReorder(
       currentPlaylist,
       props.actions.updatePlaylist
     ),
-    [props.playlists]
+    [playlists]
   );
 
   return (
@@ -43,16 +45,10 @@ export const onReorder = (playlist, updatePlaylist) => (indexSource, indexDest) 
   updatePlaylist(newPlaylist);
 };
 
-function mapStateToProps(state) {
-  return {
-    playlists: state.playlists.playlists
-  };
-}
-
 function mapDispatchToProps(dispatch) {
   return {
     actions: bindActionCreators(Object.assign({}, QueueActions, PlayerActions, ToastActions, PlaylistActions), dispatch)
   };
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(PlaylistViewContainer));
+export default withRouter(connect(null, mapDispatchToProps)(PlaylistViewContainer));

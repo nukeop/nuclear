@@ -17,12 +17,13 @@ import {
 } from './playlists.effects';
 import { success, error } from './toasts';
 import { IdentityStore } from '../reducers/nuclear/identity';
+import { PlaylistsStore } from '../reducers/playlists';
 
 export const addPlaylist = (tracks: Array<PlaylistTrack>, name: string) => dispatch => {
   if (name?.length === 0) {
     return;
   }
-  let playlists = store.get('playlists') || [];
+  let playlists: PlaylistsStore['playlists'] = store.get('playlists') || [];
   const playlist = PlaylistHelper.formatPlaylistForStorage(name, tracks, v4());
 
   playlists = [...playlists, playlist];
