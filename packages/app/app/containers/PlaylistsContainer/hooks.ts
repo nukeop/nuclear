@@ -6,22 +6,34 @@ import { playlistsSelectors } from '../../selectors/playlists';
 import { nuclearSelectors } from '../../selectors/nuclear';
 import * as PlaylistActions from '../../actions/playlists';
 import { openLocalFilePicker } from '../../actions/local';
-import { IdentityStore } from '../../reducers/nuclear/identity';
-import { PlaylistsStore } from '../../reducers/playlists';
 
-export const useNuclearServicePlaylists = () => {
+export const useRemotePlaylists = () => {
   const dispatch = useDispatch();
-  const identityStore: IdentityStore = useSelector(nuclearSelectors.identity);
+  const identityStore = useSelector(nuclearSelectors.identity);
 
   useEffect(() => {
     dispatch(PlaylistActions.loadRemotePlaylists(identityStore));
   }, [dispatch, identityStore]);
+
+  return {
+    remotePlaylists: useSelector(playlistsSelectors.remotePlaylists)
+  };
+};
+
+export const useLocalPlaylists = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(PlaylistActions.loadLocalPlaylists());
+  }, [dispatch]);
+
+  return {
+    localPlaylists: useSelector(playlistsSelectors.localPlaylists)
+  };
 };
 
 export const usePlaylistsProps = () => {
   const dispatch = useDispatch();
   const { t } = useTranslation('playlists');
-  const playlists = useSelector(playlistsSelectors.playlists) as PlaylistsStore['playlists'];
 
   const onImportFromFile = useCallback(async () => {
     const filePath = await openLocalFilePicker();
@@ -35,14 +47,14 @@ export const usePlaylistsProps = () => {
     [dispatch]
   );
 
-  useNuclearServicePlaylists();
-
-  useEffect(() => {
-    dispatch(PlaylistActions.loadLocalPlaylists());
-  }, [dispatch]);
+  const { localPlaylists } = useLocalPlaylists();
+  const { remotePlaylists } = useRemotePlaylists();
 
   return {
-    playlists,
+    isLoading: localPlaylists.isLoading,
+    hasError: localPlaylists.hasError,
+    playlists: localPlaylists.data,
+    remotePlaylists,
     onImportFromFile,
     onCreate
   };

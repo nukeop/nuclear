@@ -14,6 +14,7 @@ import { AnyProps, configureMockStore, setupI18Next, TestRouterProvider, TestSto
 import MainContentContainer from '../MainContentContainer';
 import { buildStoreState } from '../../../test/storeBuilders';
 import fetchMock from 'fetch-mock';
+import { loadLocalPlaylistsAction } from '../../actions/playlists';
 
 const initialStoreState = () => ({
   equalizer: {
@@ -27,6 +28,10 @@ const initialStoreState = () => ({
   playlists: []
 });
 
+const stateWithPlaylists = buildStoreState()
+  .withPlaylists()
+  .build();
+
 describe('Playlist container', () => {
   beforeAll(() => {
     setupI18Next();
@@ -36,9 +41,15 @@ describe('Playlist container', () => {
     // eslint-disable-next-line @typescript-eslint/no-var-requires
     electronStore.clear();
     fetchMock.reset();
+    fetchMock.get('http://playlists.nuclear/users/1/playlists', [], {
+      headers: {
+        'Content-type': 'application/json',
+        Authorization: 'Bearer auth-token'
+      }
+    });
   });
 
-  it('should display all playlists', () => {
+  it('should display all playlists', async () => {
     const { component } = mountComponent();
     expect(component.asFragment()).toMatchSnapshot();
   });
@@ -46,17 +57,21 @@ describe('Playlist container', () => {
   it('should display empty playlists view', () => {
     const { component } = mountComponent(
       buildStoreState()
-        .withPlaylists([])
+        .withPlaylists([], false)
         .build()
     );
 
     expect(component.asFragment()).toMatchSnapshot();
   });
 
+  it('should display that playlists are loading', () => {
+    const { component, store } = mountComponent();
+    store.dispatch(loadLocalPlaylistsAction.request());
+
+    expect(component.getByTestId('loader')).toBeInTheDocument();
+  });
+
   it('should read playlists from store on mount', () => {
-    const stateWithPlaylists = buildStoreState()
-      .withPlaylists()
-      .build();
     const initialState = buildStoreState()
       .withPlugins()
       .withConnectivity()
@@ -64,8 +79,7 @@ describe('Playlist container', () => {
     // @ts-ignore
     electronStore.init({
       ...initialStoreState(),
-      // @ts-ignore
-      playlists: stateWithPlaylists.playlists.playlists
+      playlists: stateWithPlaylists.playlists.localPlaylists.data
     });
     const { component } = mountComponent(initialState, false);
     expect(component.getByText(/test playlist 2/i)).toBeInTheDocument();
@@ -85,7 +99,7 @@ describe('Playlist container', () => {
     fireEvent.change(input, { target: { value: 'new-empty-playlist' } });
     await waitFor(() => component.getByTestId('create-playlist-accept').click());
     const state = store.getState();
-    expect(state.playlists.playlists).toEqual(
+    expect(state.playlists.localPlaylists.data).toEqual(
       expect.arrayContaining([
         expect.objectContaining({
           name: 'new-empty-playlist'
@@ -99,7 +113,7 @@ describe('Playlist container', () => {
       component.getByTestId('create-playlist-accept').click()
     );
     const state = store.getState();
-    expect(state.playlists.playlists).toEqual(
+    expect(state.playlists.localPlaylists.data).toEqual(
       expect.arrayContaining([
         expect.objectContaining({
           name: 'New playlist'
@@ -117,7 +131,7 @@ describe('Playlist container', () => {
     );
     const state = store.getState();
 
-    expect(state.playlists.playlists).not.toEqual([
+    expect(state.playlists.localPlaylists.data).not.toEqual([
       expect.objectContaining({
         name: ''
       })
@@ -128,11 +142,6 @@ describe('Playlist container', () => {
     mockGetComputedStyle();
     const { component, store } = mountComponent();
     let state = store.getState();
-    // @ts-ignore
-    electronStore.init({
-      ...initialStoreState(),
-      playlists: state.playlists.playlists
-    });
 
     mockDndSpacing(component.container);
 
@@ -144,7 +153,7 @@ describe('Playlist container', () => {
 
     state = store.getState();
 
-    expect(state.playlists.playlists).toEqual([
+    expect(state.playlists.localPlaylists.data).toEqual([
       expect.objectContaining({ name: 'test playlist 2' }),
       expect.objectContaining({ name: 'test playlist' })
     ]);
@@ -160,12 +169,6 @@ describe('Playlist container', () => {
         nuclearPlaylistsServiceUrl: 'http://playlists.nuclear'
       })
       .build();
-    fetchMock.get('http://playlists.nuclear/users/1/playlists', {}, {
-      headers: {
-        'Content-type': 'application/json',
-        Authorization: 'Bearer auth-token'
-      }
-    });
     mountComponent(initialState);
     expect(fetchMock.done());
   });
@@ -193,7 +196,7 @@ describe('Playlist container', () => {
     // @ts-ignore
     initStore && electronStore.init({
       ...initialStoreState(),
-      playlists: initialState.playlists.playlists
+      playlists: initialState.playlists.localPlaylists.data
     });
 
     const history = createMemoryHistory({

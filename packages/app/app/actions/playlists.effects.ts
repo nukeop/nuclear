@@ -1,4 +1,5 @@
 import _ from 'lodash';
+import { Playlist } from '@nuclear/core';
 
 export const deletePlaylistEffect = store => id => {
   const playlists = store.get('playlists');
@@ -8,7 +9,7 @@ export const deletePlaylistEffect = store => id => {
 };
 
 export const updatePlaylistEffect = store => playlist => {
-  const playlists = store.get('playlists');
+  const playlists = [...store.get('playlists')];
   const index = _.findIndex(playlists, {id: playlist.id});
   if (index !== -1) {
     playlists.splice(index, 1, playlist);
@@ -20,7 +21,7 @@ export const updatePlaylistEffect = store => playlist => {
 };
 
 export const updatePlaylistsOrderEffect = store => (source: number, destination: number) => {
-  const playlists = store.get('playlists');
+  const playlists: Playlist[] = [...store.get('playlists')];
   const [removed] = playlists.splice(source, 1);
   playlists.splice(destination, 0, removed);
   store.set('playlists', playlists);

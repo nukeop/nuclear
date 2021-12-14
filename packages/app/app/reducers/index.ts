@@ -9,7 +9,7 @@ import GithubReducer from './github';
 import GithubContribReducer from './githubContrib';
 import LyricsReducer from './lyrics';
 import PlayerReducer from './player';
-import PlaylistsReducer from './playlists';
+import {reducer as PlaylistsReducer} from './playlists';
 import PluginsReducer from './plugins';
 import QueueReducer from './queue';
 import ScrobblingReducer from './scrobbling';

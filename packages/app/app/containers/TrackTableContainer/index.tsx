@@ -3,6 +3,8 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { Icon } from 'semantic-ui-react';
 import _ from 'lodash';
+
+import { Playlist } from '@nuclear/core';
 import { TrackTable, areTracksEqualByName } from '@nuclear/ui';
 import { TrackTableProps } from '@nuclear/ui/lib/components/TrackTable';
 import { TrackTableSettings } from '@nuclear/ui/lib/components/TrackTable/types';
@@ -16,7 +18,6 @@ import * as playlistActions from '../../actions/playlists';
 import * as favoritesActions from '../../actions/favorites';
 import { favoritesSelectors } from '../../selectors/favorites';
 import { safeAddUuid } from '../../actions/helpers';
-import { Playlist } from '../../reducers/playlists';
 
 export type TrackTableContainerProps = TrackTableSettings & {
   tracks: TrackTableProps['tracks'];
@@ -32,7 +33,7 @@ const TrackTableContainer: React.FC<TrackTableContainerProps> = ({
 }) => {
   const { t } = useTranslation('playlists');
   const dispatch = useDispatch();
-  const playlists: Playlist[] = useSelector(playlistsSelectors.playlists);
+  const playlists = useSelector(playlistsSelectors.localPlaylists);
   const favoriteTracks: Track[] = useSelector(favoritesSelectors.tracks);
 
   useEffect(() => {
@@ -74,7 +75,7 @@ const TrackTableContainer: React.FC<TrackTableContainerProps> = ({
 
   const onAddToPlaylist = useCallback((track: Track, playlist: Playlist ) => {
     const clonedTrack = {...safeAddUuid(track)};
-    const foundPlaylist = playlists.find(p => p.name === playlist.name);
+    const foundPlaylist = playlists.data?.find(p => p.name === playlist.name);
     const newPlaylist = {
       ...foundPlaylist,
       tracks: [
@@ -120,7 +121,7 @@ const TrackTableContainer: React.FC<TrackTableContainerProps> = ({
     albumHeader={t('album')}
     durationHeader={t('duration')}
     strings={trackTableStrings}
-    playlists={playlists}
+    playlists={playlists.data}
     onAddToQueue={onAddToQueue}
     onPlay={onPlayNow}
     onPlayNext={onPlayNext}

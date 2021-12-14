@@ -62,7 +62,7 @@ describe('Playlist view container', () => {
     await waitFor(() => component.getByText(/delete/i).click());
 
     const state = store.getState();
-    expect(state.playlists.playlists).toEqual([]);
+    expect(state.playlists.localPlaylists.data).toEqual([]);
   });
 
   it('should export the playlist', async () => {
@@ -74,7 +74,7 @@ describe('Playlist view container', () => {
     const remote = require('electron').remote;
     // eslint-disable-next-line @typescript-eslint/no-var-requires
     const fs = require('fs');
-    const [playlist] = state.playlists.playlists;
+    const [playlist] = state.playlists.localPlaylists.data;
     // check if the dialog was open
     expect(remote.dialog.showSaveDialog).toHaveBeenCalledWith({
       defaultPath: playlist.name,
@@ -100,7 +100,7 @@ describe('Playlist view container', () => {
     await waitFor(() => component.getByText(/rename/i).click());
 
     const state = store.getState();
-    expect(state.playlists.playlists[0].name).toEqual('new name');
+    expect(state.playlists.localPlaylists.data[0].name).toEqual('new name');
   });
 
   it('should add a single track to the queue', async () => {

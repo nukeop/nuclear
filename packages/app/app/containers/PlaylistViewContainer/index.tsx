@@ -3,11 +3,12 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
+import { Playlist } from '@nuclear/core';
+
 import * as QueueActions from '../../actions/queue';
 import * as PlayerActions from '../../actions/player';
 import * as ToastActions from '../../actions/toasts';
 import * as PlaylistActions from '../../actions/playlists';
-
 import PlaylistView from '../../components/PlaylistView';
 import { usePlaylistsProps } from '../PlaylistsContainer/hooks';
 
@@ -38,8 +39,9 @@ const PlaylistViewContainer = props => {
   );
 };
 
-export const onReorder = (playlist, updatePlaylist) => (indexSource, indexDest) => {
+export const onReorder = (playlist: Playlist, updatePlaylist) => (indexSource, indexDest) => {
   const newPlaylist = {...playlist};
+  newPlaylist.tracks = [...newPlaylist.tracks];
   const [removed] = newPlaylist.tracks.splice(indexSource, 1);
   newPlaylist.tracks.splice(indexDest, 0, removed);
   updatePlaylist(newPlaylist);

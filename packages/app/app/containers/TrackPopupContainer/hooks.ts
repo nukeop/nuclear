@@ -3,6 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import _ from 'lodash';
 import { useTranslation } from 'react-i18next';
 
+import { PlaylistHelper } from '@nuclear/core';
+import { getTrackArtist, getTrackItem } from '@nuclear/ui/lib';
+import { TrackPopupStrings } from '@nuclear/ui/lib/components/TrackPopup';
+
 import { playlistsSelectors } from '../../selectors/playlists';
 import { settingsSelector } from '../../selectors/settings';
 import { pluginsSelectors } from '../../selectors/plugins';
@@ -11,12 +15,9 @@ import * as FavoritesActions from '../../actions/favorites';
 import * as QueueActions from '../../actions/queue';
 import * as ToastActions from '../../actions/toasts';
 import * as PlaylistsActions from '../../actions/playlists';
-import { getTrackArtist, getTrackItem } from '@nuclear/ui/lib';
 import { safeAddUuid } from '../../actions/helpers';
-import { PlaylistHelper } from '@nuclear/core';
-import { TrackPopupStrings } from '@nuclear/ui/lib/components/TrackPopup';
 export const useTrackPopupProps = (track, thumb) => {
-  const playlists: Array<{name: string}> = useSelector(playlistsSelectors.playlists);
+  const playlists = useSelector(playlistsSelectors.localPlaylists);
   const settings = useSelector(settingsSelector);
   const plugins: any = useSelector(pluginsSelectors.plugins);
 
@@ -105,7 +106,7 @@ export const useTrackPopupProps = (track, thumb) => {
   };
 
   return {
-    playlists,
+    playlists: playlists.data,
     strings,
     onAddToQueue,
     onPlayNext,

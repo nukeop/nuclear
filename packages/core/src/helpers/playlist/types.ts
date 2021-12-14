@@ -17,8 +17,8 @@ export class PlaylistTrack {
 }
 
 export class PlaylistTrackStream {
-  source: string;
   id: string;
+  source: string;
   duration?: number;
   title?: string;
   thumbnail?: string;

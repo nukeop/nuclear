@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { DropResult } from 'react-beautiful-dnd';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { Icon } from 'semantic-ui-react';
+import { Dimmer, Icon, Loader } from 'semantic-ui-react';
 
 import { Playlist } from '@nuclear/core';
 import { Playlists as PlaylistsTable } from '@nuclear/ui';
@@ -26,12 +26,14 @@ const EmptyState = () => {
 };
 
 type PlaylistsProps = {
+  isLoading: boolean;
   playlists: Playlist[];
   onImportFromFile: React.MouseEventHandler;
   onCreate: (name: string) => void;
 }
 
 const Playlists: React.FC<PlaylistsProps> = ({
+  isLoading = false,
   playlists,
   onImportFromFile,
   onCreate
@@ -39,7 +41,7 @@ const Playlists: React.FC<PlaylistsProps> = ({
   const dispatch = useDispatch();
   const history = useHistory();
   const { t, i18n } = useTranslation('playlists');
-  
+
   function isPlaylistsReallyEmpty() {
     return (
       !playlists || Object.keys(playlists).length === 0 || playlists.length === 0
@@ -62,33 +64,41 @@ const Playlists: React.FC<PlaylistsProps> = ({
   };
 
   const callbacks = {
-    onPlaylistDownload: () => {},
-    onPlaylistUpload: () => {},
+    onPlaylistDownload: () => { },
+    onPlaylistUpload: () => { },
     onPlaylistClick: (id: string) => history.push(`/playlist/${id}`),
     onDragEnd: ({ source, destination }: DropResult) => dispatch(reorderPlaylists(source.index, destination.index))
   };
 
   return (
     <div className={styles.playlists_container}>
-      <PlaylistsHeader
-        showText={isPlaylistsReallyNotEmpty()}
-        onImportFromFile={onImportFromFile}
-        onCreate={onCreate}
-      />
       {
-        isPlaylistsReallyEmpty() &&
-        <EmptyState />
-      }
+        isLoading
+          ? <Dimmer active={isLoading}>
+            <Loader data-testid='loader' />
+          </Dimmer>
+          : <>
+            <PlaylistsHeader
+              showText={isPlaylistsReallyNotEmpty()}
+              onImportFromFile={onImportFromFile}
+              onCreate={onCreate}
+            />
+            {
+              isPlaylistsReallyEmpty() &&
+              <EmptyState />
+            }
 
-      {
-        isPlaylistsReallyNotEmpty() &&
-        <PlaylistsTable
-          displayModificationDates
-          playlists={playlists}
+            {
+              isPlaylistsReallyNotEmpty() &&
+              <PlaylistsTable
+                displayModificationDates
+                playlists={playlists}
 
-          {...strings}
-          {...callbacks}
-        />
+                {...strings}
+                {...callbacks}
+              />
+            }
+          </>
       }
 
     </div>

@@ -8,7 +8,6 @@ import { UserPanel, FullscreenLayer  } from '@nuclear/ui';
 import { NuclearSignInFormContainer } from './NuclearSignInFormContainer';
 import { NuclearSignUpFormContainer } from './NuclearSignUpFormContainer';
 import { nuclearSelectors } from '../../selectors/nuclear';
-import { IdentityStore } from '../../reducers/nuclear/identity';
 import { signOutAction } from '../../actions/nuclear/identity';
 
 export const UserPanelContainer: React.FC = () => {
@@ -18,7 +17,7 @@ export const UserPanelContainer: React.FC = () => {
   const [isSignUpFormOpen, setSignUpFormOpen] = useState(false);
   const [isSignInFormOpen, setSignInFormOpen] = useState(false);
 
-  const identity: IdentityStore = useSelector(nuclearSelectors.identity);
+  const identity = useSelector(nuclearSelectors.identity);
 
   return <>
     <UserPanel
