@@ -2,8 +2,8 @@ import _ from 'lodash';
 import { Playlist } from '@nuclear/core';
 
 export const deletePlaylistEffect = store => id => {
-  const playlists = store.get('playlists');
-  _.remove(playlists, { id });
+  let playlists: Playlist[] = store.get('playlists');
+  playlists = playlists.filter(playlist => playlist.id !== id);
   store.set('playlists', playlists);
   return playlists;
 };

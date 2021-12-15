@@ -1,25 +1,30 @@
 import React, { useCallback } from 'react';
-import { withRouter } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-
-import { Playlist } from '@nuclear/core';
+import { useRouteMatch } from 'react-router-dom';
 
 import * as QueueActions from '../../actions/queue';
 import * as PlayerActions from '../../actions/player';
-import * as ToastActions from '../../actions/toasts';
 import * as PlaylistActions from '../../actions/playlists';
 import PlaylistView from '../../components/PlaylistView';
 import { usePlaylistsProps } from '../PlaylistsContainer/hooks';
+import { useDispatchedCallback } from '../../hooks/useDispatchedCallback';
 
-const PlaylistViewContainer = props => {
+const PlaylistViewContainer: React.FC = () => {
+  const match = useRouteMatch<{playlistId: string}>();
   const { playlists } = usePlaylistsProps();
-  const currentPlaylist = playlists.find(playlist => playlist.id === props.match.params.playlistId);
+  const currentPlaylist = playlists.find(playlist => playlist.id === match.params.playlistId);
+
+  const updatePlaylist = useDispatchedCallback(PlaylistActions.updatePlaylist);
+  const deletePlaylist = useDispatchedCallback(PlaylistActions.deletePlaylist);
+  const exportPlaylist = useDispatchedCallback(PlaylistActions.exportPlaylist);
+  const startPlayback = useDispatchedCallback(PlayerActions.startPlayback);
+  const clearQueue = useDispatchedCallback(QueueActions.clearQueue);
+  const selectSong = useDispatchedCallback(QueueActions.selectSong);
+  const addTracks = useDispatchedCallback(QueueActions.addPlaylistTracksToQueue);
 
   const onReorderTracks = useCallback(
     onReorder(
       currentPlaylist,
-      props.actions.updatePlaylist
+      updatePlaylist
     ),
     [playlists]
   );
@@ -27,19 +32,19 @@ const PlaylistViewContainer = props => {
   return (
     <PlaylistView
       playlist={currentPlaylist}
-      addTracks={props.actions.addPlaylistTracksToQueue}
-      selectSong={props.actions.selectSong}
-      startPlayback={props.actions.startPlayback}
-      clearQueue={props.actions.clearQueue}
-      deletePlaylist={props.actions.deletePlaylist}
-      updatePlaylist={props.actions.updatePlaylist}
-      exportPlaylist={props.actions.exportPlaylist}
+      addTracks={addTracks}
+      selectSong={selectSong}
+      startPlayback={startPlayback}
+      clearQueue={clearQueue}
+      deletePlaylist={deletePlaylist}
+      updatePlaylist={updatePlaylist}
+      exportPlaylist={exportPlaylist}
       onReorderTracks={onReorderTracks}
     />
   );
 };
 
-export const onReorder = (playlist: Playlist, updatePlaylist) => (indexSource, indexDest) => {
+export const onReorder = <T extends { tracks: Array<any> }>(playlist: T, updatePlaylist: (playlist: T) => void) => (indexSource: number, indexDest: number) => {
   const newPlaylist = {...playlist};
   newPlaylist.tracks = [...newPlaylist.tracks];
   const [removed] = newPlaylist.tracks.splice(indexSource, 1);
@@ -47,10 +52,4 @@ export const onReorder = (playlist: Playlist, updatePlaylist) => (indexSource, i
   updatePlaylist(newPlaylist);
 };
 
-function mapDispatchToProps(dispatch) {
-  return {
-    actions: bindActionCreators(Object.assign({}, QueueActions, PlayerActions, ToastActions, PlaylistActions), dispatch)
-  };
-}
-
-export default withRouter(connect(null, mapDispatchToProps)(PlaylistViewContainer));
+export default PlaylistViewContainer;

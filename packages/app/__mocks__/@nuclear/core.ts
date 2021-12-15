@@ -10,7 +10,7 @@ const initialStoreState = () => ({
   playlists: []
 });
 
-let mockStore = initialStoreState();
+let mockStore = {...initialStoreState()};
 
 module.exports = {
   store: {

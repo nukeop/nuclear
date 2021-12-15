@@ -702,3 +702,17 @@ export const buildStoreState = () => {
     }
   };
 };
+
+export const buildElectronStoreState = () => {
+  return ({
+    equalizer: {
+      selected: 'Default'
+    },
+    downloads: [],
+    favorites: {
+      albums: [],
+      tracks: []
+    },
+    playlists: []
+  });
+};

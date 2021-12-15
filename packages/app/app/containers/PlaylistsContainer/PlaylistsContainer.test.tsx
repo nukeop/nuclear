@@ -12,33 +12,20 @@ import { store as electronStore } from '@nuclear/core';
 
 import { AnyProps, configureMockStore, setupI18Next, TestRouterProvider, TestStoreProvider } from '../../../test/testUtils';
 import MainContentContainer from '../MainContentContainer';
-import { buildStoreState } from '../../../test/storeBuilders';
+import { buildElectronStoreState, buildStoreState } from '../../../test/storeBuilders';
 import fetchMock from 'fetch-mock';
 import { loadLocalPlaylistsAction } from '../../actions/playlists';
-
-const initialStoreState = () => ({
-  equalizer: {
-    selected: 'Default'
-  },
-  downloads: [],
-  favorites: {
-    albums: [],
-    tracks: []
-  },
-  playlists: []
-});
 
 const stateWithPlaylists = buildStoreState()
   .withPlaylists()
   .build();
 
-describe('Playlist container', () => {
+describe('Playlists container', () => {
   beforeAll(() => {
     setupI18Next();
   });
 
   beforeEach(() => {
-    // eslint-disable-next-line @typescript-eslint/no-var-requires
     electronStore.clear();
     fetchMock.reset();
     fetchMock.get('http://playlists.nuclear/users/1/playlists', [], {
@@ -78,7 +65,7 @@ describe('Playlist container', () => {
       .build();
     // @ts-ignore
     electronStore.init({
-      ...initialStoreState(),
+      ...buildElectronStoreState(),
       playlists: stateWithPlaylists.playlists.localPlaylists.data
     });
     const { component } = mountComponent(initialState, false);
@@ -195,7 +182,7 @@ describe('Playlist container', () => {
 
     // @ts-ignore
     initStore && electronStore.init({
-      ...initialStoreState(),
+      ...buildElectronStoreState(),
       playlists: initialState.playlists.localPlaylists.data
     });
 

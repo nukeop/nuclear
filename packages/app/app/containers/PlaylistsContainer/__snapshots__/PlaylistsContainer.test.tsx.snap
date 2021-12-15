@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Playlist container should display all playlists 1`] = `
+exports[`Playlists container should display all playlists 1`] = `
 <DocumentFragment>
   <div
     class="main_layout_container"
@@ -215,7 +215,7 @@ exports[`Playlist container should display all playlists 1`] = `
 </DocumentFragment>
 `;
 
-exports[`Playlist container should display empty playlists view 1`] = `
+exports[`Playlists container should display empty playlists view 1`] = `
 <DocumentFragment>
   <div
     class="main_layout_container"
@@ -266,31 +266,6 @@ exports[`Playlist container should display empty playlists view 1`] = `
         </h2>
         <div>
           Try to create some playlists or import by url and they will appear here!
-        </div>
-      </div>
-    </div>
-  </div>
-</DocumentFragment>
-`;
-
-exports[`Playlist container should display that playlists are loading 1`] = `
-<DocumentFragment>
-  <div
-    class="main_layout_container"
-  >
-    <div
-      class="playlists_container"
-    >
-      <div
-        class="ui active transition visible dimmer"
-        style="display: flex;"
-      >
-        <div
-          class="content"
-        >
-          <div
-            class="ui loader"
-          />
         </div>
       </div>
     </div>
