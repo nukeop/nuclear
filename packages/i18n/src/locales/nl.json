@@ -29,7 +29,7 @@
     "version": "Versie"
   },
   "artist": {
-    "add-all": "Add all",
+    "add-all": "Toon alles",
     "count": "Aantal keer beluisterd",
     "queue": "Alle nummers toevoegen aan wachtrij",
     "similar": "Vergelijkbare artiesten",
@@ -82,7 +82,7 @@
   },
   "favorites": {
     "artist": "Artiest",
-    "empty": "Geen favorieten.",
+    "empty": "Geen favorieten toegevoegd",
     "empty-help": "Probeer wat tracks aan je favorieten toe te voegen en ze zullen hier verschijnen!",
     "header": "Jouw favoriete nummers",
     "title": "Titel"
