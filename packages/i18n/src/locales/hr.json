@@ -29,7 +29,7 @@
     "version": "Verzija"
   },
   "artist": {
-    "add-all": "Add all",
+    "add-all": "Dodaj sve",
     "count": "Broj sviranja",
     "queue": "Dodaj sve pjesme u red čekanja",
     "similar": "Slični izvođači",
@@ -45,7 +45,7 @@
     "genres": "Žanrovi",
     "news": "Novosti",
     "playcounts": "Broj sviranja",
-    "popular-track-title": "Top pjesme sa LastFm-a.",
+    "popular-track-title": "Najbolji zapisi iz Deezera",
     "title": "Naslov",
     "top": "Top pjesme"
   },
@@ -166,8 +166,8 @@
   "plugins": {
     "add-a-plugin": "Dodaj dodatak",
     "header": "Dodaci",
-    "lyrics-providers": "Davatelji usluga tekstova pjesama:",
-    "meta-providers": "Davatelji usluga metapodataka:",
+    "lyrics-providers": "Davatelji usluga tekstova pjesama",
+    "meta-providers": "Davatelji usluga metapodataka",
     "placeholder": "Odaberi zadani izvor glazbe:",
     "select-lyrics-provider": "Odaberi zadanog davatelja usluga tesktova pjesama:",
     "select-meta-provider": "Odaberi zadanog davatelja usluga metapodataka:",
@@ -273,7 +273,7 @@
     "playback": "Reprodukcija",
     "program-settings": "Postavke programa",
     "saving-in": "Spremanje u:",
-    "seek-iteration": "Broj preskočenih sekundi naprijed/nazad kada se koriste tipke sa strelicama.",
+    "seek-iteration": "Broj preskočenih sekundi naprijed/nazad kada se koriste tipke sa strelicama",
     "shuffle-queue": "Izmješaj redoslijed pjesama",
     "shuffle-when-going-back": "Izmješaj kada ideš na prethodnu pjesmu",
     "shuffle-when-going-back-description": "Sviraj nasumičnu pjesmu kada je aktivno mješanje i kada klikneš na gumb za prethodnu pjesmu",
