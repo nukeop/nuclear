@@ -3,7 +3,8 @@ module.exports = {
     getPath: () => { }
   },
   remote: {
-    transformSource: () => { },
+    transformSource: jest.fn(),
+    getCurrentWindow: jest.fn(() => 'currentWindow'),
     app: {
       getPath: () => { }
     },

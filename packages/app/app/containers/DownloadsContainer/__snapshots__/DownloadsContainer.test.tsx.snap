@@ -1,0 +1,316 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Downloads container should display downloads 1`] = `
+<DocumentFragment>
+  <div
+    class="main_layout_container"
+  >
+    <div
+      class="downloads_container"
+    >
+      <div
+        class="ui segment downloads_header"
+      >
+        <span
+          class="label"
+        >
+          Saving in:
+          <span
+            class="directory"
+          />
+        </span>
+        <button
+          class="ui icon inverted left labeled button"
+        >
+          <i
+            aria-hidden="true"
+            class="folder open icon"
+          />
+          Choose a directory...
+        </button>
+      </div>
+      <div
+        class="header_container"
+      >
+        Downloads
+      </div>
+      <div
+        class="ui inverted segment"
+      >
+        <button
+          class="ui primary button"
+        >
+          <i
+            aria-hidden="true"
+            class="trash icon"
+          />
+          Clear finished tracks
+        </button>
+        <table
+          class="ui inverted table downloads_list"
+        >
+          <thead
+            class=""
+          >
+            <tr
+              class=""
+            >
+              <th
+                class=""
+              >
+                Status
+              </th>
+              <th
+                class=""
+              >
+                Name 
+                <i
+                  aria-hidden="true"
+                  class="caret up icon"
+                />
+              </th>
+              <th
+                class=""
+              >
+                Completion
+              </th>
+              <th
+                class=""
+              />
+            </tr>
+          </thead>
+          <tbody
+            class=""
+          >
+            <tr
+              class="downloads_item"
+            >
+              <td
+                class=""
+              >
+                <i
+                  aria-hidden="true"
+                  class="green checkmark icon"
+                />
+                Finished
+              </td>
+              <td
+                class=""
+              >
+                test artist 1 - finished track
+              </td>
+              <td
+                class=""
+              >
+                100%
+              </td>
+              <td
+                class="item_buttons"
+              >
+                <a
+                  data-testid="download-action"
+                  href="#"
+                >
+                  <i
+                    aria-hidden="true"
+                    class="redo fitted icon"
+                  />
+                </a>
+                <a
+                  data-testid="remove-download"
+                  href="#"
+                >
+                  <i
+                    aria-hidden="true"
+                    class="times fitted icon"
+                  />
+                </a>
+              </td>
+            </tr>
+            <tr
+              class="downloads_item"
+            >
+              <td
+                class=""
+              >
+                <i
+                  aria-hidden="true"
+                  class="red times icon"
+                />
+                Error
+              </td>
+              <td
+                class=""
+              >
+                test artist 2 - track with errorx
+              </td>
+              <td
+                class=""
+              >
+                10%
+              </td>
+              <td
+                class="item_buttons"
+              >
+                <a
+                  data-testid="download-action"
+                  href="#"
+                >
+                  <i
+                    aria-hidden="true"
+                    class="redo fitted icon"
+                  />
+                </a>
+                <a
+                  data-testid="remove-download"
+                  href="#"
+                >
+                  <i
+                    aria-hidden="true"
+                    class="times fitted icon"
+                  />
+                </a>
+              </td>
+            </tr>
+            <tr
+              class="downloads_item"
+            >
+              <td
+                class=""
+              >
+                <i
+                  aria-hidden="true"
+                  class="pause circle icon"
+                />
+                Paused
+              </td>
+              <td
+                class=""
+              >
+                test artist 3 - paused track
+              </td>
+              <td
+                class=""
+              >
+                30%
+              </td>
+              <td
+                class="item_buttons"
+              >
+                <a
+                  data-testid="download-action"
+                  href="#"
+                >
+                  <i
+                    aria-hidden="true"
+                    class="play fitted icon"
+                  />
+                </a>
+                <a
+                  data-testid="remove-download"
+                  href="#"
+                >
+                  <i
+                    aria-hidden="true"
+                    class="times fitted icon"
+                  />
+                </a>
+              </td>
+            </tr>
+            <tr
+              class="downloads_item"
+            >
+              <td
+                class=""
+              >
+                <i
+                  aria-hidden="true"
+                  class="cloud download icon"
+                />
+                Started
+              </td>
+              <td
+                class=""
+              >
+                test artist 4 - started track
+              </td>
+              <td
+                class=""
+              >
+                50%
+              </td>
+              <td
+                class="item_buttons"
+              >
+                <a
+                  data-testid="download-action"
+                  href="#"
+                >
+                  <i
+                    aria-hidden="true"
+                    class="pause fitted icon"
+                  />
+                </a>
+                <a
+                  data-testid="remove-download"
+                  href="#"
+                >
+                  <i
+                    aria-hidden="true"
+                    class="times fitted icon"
+                  />
+                </a>
+              </td>
+            </tr>
+            <tr
+              class="downloads_item"
+            >
+              <td
+                class=""
+              >
+                <i
+                  aria-hidden="true"
+                  class="hourglass start icon"
+                />
+                Waiting
+              </td>
+              <td
+                class=""
+              >
+                test artist 5 - waiting track
+              </td>
+              <td
+                class=""
+              >
+                0%
+              </td>
+              <td
+                class="item_buttons"
+              >
+                <a
+                  data-testid="download-action"
+                  href="#"
+                >
+                  <i
+                    aria-hidden="true"
+                    class="pause fitted icon"
+                  />
+                </a>
+                <a
+                  data-testid="remove-download"
+                  href="#"
+                >
+                  <i
+                    aria-hidden="true"
+                    class="times fitted icon"
+                  />
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

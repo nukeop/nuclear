@@ -5,7 +5,11 @@ import Spacer from '../../Spacer';
 
 import styles from './styles.scss';
 
-const AlbumOverlay = ({ handlePlay }) => (
+type AlbumOverlayProps = {
+  handlePlay: React.MouseEventHandler;
+}
+
+const AlbumOverlay : React.FC<AlbumOverlayProps>= ({ handlePlay }) => (
   <div className={styles.overlay_container}>
     <Spacer />
     <a

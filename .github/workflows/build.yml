@@ -32,7 +32,7 @@ jobs:
           linux-
     - name: npm install, build, and test
       run: |
-        npm install
+        npm ci
         npm test
         npm run build:linux
       shell: bash
@@ -41,7 +41,7 @@ jobs:
   
   mac_build:
     runs-on: macOS-latest
-    timeout-minutes: 20
+    timeout-minutes: 25
 
     steps:
     - uses: actions/checkout@master
@@ -51,7 +51,7 @@ jobs:
         version: 12.x
     - name: npm install, build, and test
       run: |
-        npm install
+        npm ci
         npm test
         npm run build:macos
       shell: bash
@@ -60,7 +60,7 @@ jobs:
   
   windows_build:
     runs-on: windows-latest
-    timeout-minutes: 20
+    timeout-minutes: 25
 
     steps:
     - uses: actions/checkout@master
@@ -85,7 +85,7 @@ jobs:
         echo "C:\Program Files\Git\mingw64\libexec\git-core" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
     - name: npm install, build, and test
       run: |
-        npm install
+        npm ci
         npm test
         npm run build:windows
       shell: bash

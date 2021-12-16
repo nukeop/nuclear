@@ -1,9 +1,13 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-
 import styles from './index.scss';
 
-const PreAmp = ({
+type PreAmpProps = {
+  value: number;
+  onChange: (n: number) => void;
+}
+
+
+const PreAmp: React.FC<PreAmpProps> = ({
   onChange,
   value
 }) => (
@@ -22,10 +26,6 @@ const PreAmp = ({
   </React.Fragment>
 );
 
-PreAmp.propTypes = {
-  onChange: PropTypes.func.isRequired,
-  value: PropTypes.number.isRequired
-};
 
 export default PreAmp;
 

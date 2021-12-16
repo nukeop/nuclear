@@ -54,8 +54,8 @@ export const useSeekbarProps = () => {
     queue,
     skipSegments,
     allowSkipSegment,
-    timeToEnd,
-    timePlayed: seek,
+    timeToEnd: currentTrackDuration === 0 ? t('live') : timeToEnd,
+    timePlayed: currentTrackDuration === 0 ? t('live') : seek,
     fill: playbackProgress,
     seek: seekCallback,
     segmentPopupMessage: t('segment-popup')
@@ -164,6 +164,14 @@ export const useToggleOptionCallback = (
   ),
   [name, settings, toggleOption]
 );
+
+export const useTrackDurationProp = () => { 
+  const settings = useSelector(settingsSelector);
+  const trackDurationSetting = _.get(settings, 'trackDuration', false);
+  return {
+    'renderTrackDuration': trackDurationSetting
+  };
+};
 
 export const useVolumeControlsProps = () => {
   const { t } = useTranslation('option-control');

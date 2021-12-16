@@ -6,7 +6,6 @@ import PlayerControls, { PlayerControlsProps } from '../PlayerControls';
 import TrackInfo, { TrackInfoProps } from '../TrackInfo';
 import VolumeControls, { VolumeControlsProps } from '../VolumeControls';
 import VolumePopUp, { VolumePopUpProps } from './VolumePopUp';
-
 import common from '../../common.scss';
 import styles from './styles.scss';
 import { formatDuration } from '../../utils';
@@ -18,8 +17,8 @@ export type PlayerBarProps = PlayerControlsProps &
   VolumeControlsProps &
   VolumePopUpProps & {
     renderTrackDuration?: boolean;
-    timePlayed?: number;
-    timeToEnd?: number;
+    timePlayed?: any;
+    timeToEnd?: any;
   };
 
 const VOLUME_POPUP_BREAKPOINT = 570;
@@ -60,13 +59,14 @@ const PlayerBar: React.FC<PlayerBarProps> = ({
   segmentPopupMessage
 }) => {
   const { width: windowWidth } = useWindowSize();
+  const isLivestream = (isNaN(timeToEnd) || typeof timeToEnd === 'string') && (queue.queueItems.length > 0);
   return (
     <div className={cx(
       common.nuclear,
       styles.player_bar
     )}>
       <Seekbar
-        fill={fill}
+        fill={isLivestream ? 100 : fill}
         seek={seek}
         queue={queue}
         timePlayed={timePlayed}
@@ -77,8 +77,8 @@ const PlayerBar: React.FC<PlayerBarProps> = ({
         {hasTracks &&
           renderTrackDuration &&
           <div className={styles.track_duration}>
-            <div>{formatDuration(timePlayed)}</div>
-            <div>-{formatDuration(timeToEnd)}</div>
+            <div>{isLivestream ? timePlayed : formatDuration(timePlayed)}</div>
+            <div>{isLivestream ? timeToEnd : '-'+formatDuration(timeToEnd)}</div> 
           </div>}
       </Seekbar>
       <div className={styles.player_bar_bottom}>

@@ -1,11 +1,10 @@
 /* eslint no-empty: 0 */
 
 import React, {useRef, useEffect, useCallback} from 'react';
-import PropTypes from 'prop-types';
 
 import { drag } from 'd3-drag';
 import * as d3 from 'd3-selection';
-import { Radio } from 'semantic-ui-react';
+import { Radio, RadioProps  } from 'semantic-ui-react';
 
 import PreAmp from './PreAmp';
 import { createChart} from './chart';
@@ -15,10 +14,12 @@ import styles from './styles.scss';
 const mapGraphValueToData = value => value - 10;
 const mapDataValueToGraph = value => value + 10;
 
+
 const useChart = ({values, onEqualizerChange, preAmp, spectrum}) => {
-  const canvasRef = useRef();
-  const chartRef = useRef();
-  const draggedRef = useRef();
+  // Proper usage of useRef with typescript https://github.com/typescript-cheatsheets/react/issues/187
+  const canvasRef = useRef(null);
+  const chartRef = useRef(null);
+  const draggedRef = useRef(null);
   const onDragStart = useCallback(() => {
     draggedRef.current = chartRef.current.getElementAtEvent(d3.event.sourceEvent)[0];
   }, []);
@@ -65,7 +66,17 @@ const useChart = ({values, onEqualizerChange, preAmp, spectrum}) => {
   return canvasRef;
 };
 
-const Equalizer = ({values, preAmp, enableSpectrum, spectrum, onEqualizerChange, onToggleSpectrum, onPreampChange}) => {
+type EqualizerProps = {
+  values: Array<number>;
+  preAmp: number;
+  enableSpectrum: boolean;
+  spectrum: Array<number>;
+  onToggleSpectrum: RadioProps['onChange'];
+  onPreampChange: (n: number) => void;
+  onEqualizerChange: () => void;  
+}
+
+const Equalizer: React.FC<EqualizerProps> = ({values, preAmp, enableSpectrum, spectrum, onEqualizerChange, onToggleSpectrum, onPreampChange}) => {
   const canvasRef = useChart({values, preAmp, spectrum: enableSpectrum ? spectrum : null, onEqualizerChange});
   return (
     <div className={styles.equalizer_container}>
@@ -88,14 +99,5 @@ const Equalizer = ({values, preAmp, enableSpectrum, spectrum, onEqualizerChange,
   );
 };
 
-
-Equalizer.propTypes = {
-  preAmp: PropTypes.number,
-  values: PropTypes.arrayOf(PropTypes.number),
-  onEqualizerChange: PropTypes.func,
-  enableSpectrum: PropTypes.bool,
-  onToggleSpectrum: PropTypes.func,
-  spectrum: PropTypes.arrayOf(PropTypes.number)
-};
 
 export default Equalizer;
