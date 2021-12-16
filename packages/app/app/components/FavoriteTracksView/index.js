@@ -57,6 +57,102 @@ const FavoriteTracksView = ({
     );
   };
 
+  // found this reducer in semantic-UI-react docs
+  // https://react.semantic-ui.com/collections/table/#variations-sortable
+  const tableReducer = (state, action) => {
+    switch (action.type) {
+    case 'CHANGE_SORT':
+      if (state.column === action.column) {
+        let dir = (state.direction === 'ascending' ? 'descending' : 'ascending');
+        if (state.column === 'artist') {
+          sortTracksArtist(dir);
+        } else if (state.column === 'title') {
+          sortTracksTitle(dir);
+        }
+        return {
+          ...state,
+          data: tracks,
+          direction: dir
+        };
+      }
+
+      if (action.column === 'artist') {
+        sortTracksArtist('ascending');
+      } else if (action.column === 'title') {
+        sortTracksTitle('ascending');
+      }
+      return {
+        column: action.column,
+        data: tracks.sort(),
+        direction: 'ascending'
+      };
+    default:
+      throw new Error();
+    }
+  };
+  const [state, dispatch] = React.useReducer(tableReducer, {
+    column: null,
+    data: tracks,
+    direction: null
+  });
+  const { column, data, direction } = state;
+
+  function sortTracksArtist(order) {
+    if (order === 'ascending') {
+      tracks.sort((a, b) => {
+        let fa = a.artist.toLowerCase(), fb = b.artist.toLowerCase();
+
+        if (fa < fb) {
+          return -1;
+        }
+        if (fa > fb) {
+          return 1;
+        }
+        return 0;
+      });
+    } else {
+      tracks.sort((a, b) => {
+        let fa = a.artist.toLowerCase(), fb = b.artist.toLowerCase();
+
+        if (fa > fb) {
+          return -1;
+        }
+        if (fa < fb) {
+          return 1;
+        }
+        return 0;
+      });
+    }
+  }
+
+  function sortTracksTitle(order) {
+    if (order === 'ascending') {
+      tracks.sort((a, b) => {
+        let fa = a.name.toLowerCase(), fb = b.name.toLowerCase();
+
+        if (fa < fb) {
+          return -1;
+        }
+        if (fa > fb) {
+          return 1;
+        }
+        return 0;
+      });
+    } else {
+      tracks.sort((a, b) => {
+        let fa = a.name.toLowerCase(), fb = b.name.toLowerCase();
+
+        if (fa > fb) {
+          return -1;
+        }
+        if (fa < fb) {
+          return 1;
+        }
+        return 0;
+      });
+    }
+  }
+
   return (
     <div className={styles.favorite_tracks_view}>
       {
@@ -73,7 +169,7 @@ const FavoriteTracksView = ({
             {renderPlayAllButton()}
           </div>
           <Segment className={trackRowStyles.tracks_container}>
-            <Table
+            <Table sortable
               className={cx(
                 styles.favorite_tracks_table,
                 styles.table
@@ -83,13 +179,23 @@ const FavoriteTracksView = ({
                 <Table.Row>
                   <Table.HeaderCell />
                   <Table.HeaderCell><Icon name='image' /></Table.HeaderCell>
-                  <Table.HeaderCell>{t('artist')}</Table.HeaderCell>
-                  <Table.HeaderCell>{t('title')}</Table.HeaderCell>
+                  <Table.HeaderCell
+                    sorted={column === 'artist' ? direction : null}
+                    onClick={() => dispatch({ type: 'CHANGE_SORT', column: 'artist'})}
+                  >
+                    {t('artist')}
+                  </Table.HeaderCell>
+                  <Table.HeaderCell
+                    sorted={column === 'title' ? direction : null}
+                    onClick={() => dispatch({ type: 'CHANGE_SORT', column: 'title'})}
+                  >
+                    {t('title')}
+                  </Table.HeaderCell>
                 </Table.Row>
               </Table.Header>
               <Table.Body className={styles.tbody}>
                 {
-                  tracks.map((track, index) => 
+                  data.map((track, index) =>
                     <TrackPopupContainer
                       key={'popular-track-row-' + index}
                       trigger={
@@ -142,4 +248,3 @@ FavoriteTracksView.defaultProps = {
 };
 
 export default FavoriteTracksView;
-
