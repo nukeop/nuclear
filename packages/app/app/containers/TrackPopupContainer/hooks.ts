@@ -7,7 +7,6 @@ import { PlaylistHelper } from '@nuclear/core';
 import { getTrackArtist, getTrackItem } from '@nuclear/ui/lib';
 import { TrackPopupStrings } from '@nuclear/ui/lib/components/TrackPopup';
 
-import { playlistsSelectors } from '../../selectors/playlists';
 import { settingsSelector } from '../../selectors/settings';
 import { pluginsSelectors } from '../../selectors/plugins';
 import * as DownloadsActions from '../../actions/downloads';
@@ -16,8 +15,9 @@ import * as QueueActions from '../../actions/queue';
 import * as ToastActions from '../../actions/toasts';
 import * as PlaylistsActions from '../../actions/playlists';
 import { safeAddUuid } from '../../actions/helpers';
+import { useLocalPlaylists } from '../PlaylistsContainer/hooks';
 export const useTrackPopupProps = (track, thumb) => {
-  const playlists = useSelector(playlistsSelectors.localPlaylists);
+  const { localPlaylists: playlists } = useLocalPlaylists();
   const settings = useSelector(settingsSelector);
   const plugins: any = useSelector(pluginsSelectors.plugins);
 

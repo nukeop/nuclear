@@ -14,7 +14,7 @@ exports[`Settings view container should render settings 1`] = `
         <div
           class="header_container"
         >
-          social
+          Social
         </div>
         <hr />
         <div
@@ -44,14 +44,14 @@ exports[`Settings view container should render settings 1`] = `
                   </i>
                 </span>
                 <span>
-                  lastfm-title
+                  Last.fm
                 </span>
               </div>
               <div
                 class="row"
               >
                 <p>
-                  lastfm-description
+                  In order to enable scrobbling, you first have to connect and authorize Nuclear on Last.fm, then click log in.
                 </p>
               </div>
             </div>
@@ -60,9 +60,9 @@ exports[`Settings view container should render settings 1`] = `
             class="settings_social_item"
           >
             <span>
-              user 
+              User: 
               <strong>
-                notlogged
+                Not logged in
               </strong>
             </span>
             <div
@@ -71,19 +71,19 @@ exports[`Settings view container should render settings 1`] = `
             <button
               class="ui red button nuclear button"
             >
-              lastfm-connect
+              Connect with Last.fm
             </button>
             <button
               class="ui red button nuclear button"
             >
-              login
+              Log in
             </button>
           </div>
           <div
             class="settings_social_item"
           >
             <label>
-              lastfm-enable
+              Enable scrobbling to Last.fm
             </label>
             <div
               class="spacer"
@@ -105,7 +105,7 @@ exports[`Settings view container should render settings 1`] = `
             class="settings_social_item"
           >
             <span>
-              fmfav-msg
+              Import your Last.fm Favorites
             </span>
             <div
               class="spacer"
@@ -119,7 +119,7 @@ exports[`Settings view container should render settings 1`] = `
             <button
               class="ui green button nuclear button"
             >
-              fmfav-btn
+              Import
             </button>
           </div>
         </div>
@@ -142,16 +142,7 @@ exports[`Settings view container should render settings 1`] = `
                     test-file-stub
                   </span>
                 </span>
-                <span>
-                  mastodon-title
-                </span>
-              </div>
-              <div
-                class="row"
-              >
-                <p>
-                  mastodon-description
-                </p>
+                <span />
               </div>
             </div>
           </div>
@@ -164,7 +155,7 @@ exports[`Settings view container should render settings 1`] = `
               <label
                 class="settings_item_name"
               >
-                mastodon-instance-label
+                Mastodon instance URL
               </label>
             </span>
             <div
@@ -181,7 +172,7 @@ exports[`Settings view container should render settings 1`] = `
             <button
               class="ui button nuclear button"
             >
-              mastodon-authorize
+              Authorize
             </button>
           </div>
         </div>
@@ -192,7 +183,7 @@ exports[`Settings view container should render settings 1`] = `
         <div
           class="header_container"
         >
-          http
+          HTTP API
         </div>
         <hr />
         <div
@@ -206,9 +197,7 @@ exports[`Settings view container should render settings 1`] = `
             >
               <label
                 class="settings_item_name"
-              >
-                api-url
-              </label>
+              />
             </span>
             <div
               class="spacer"
@@ -232,7 +221,7 @@ exports[`Settings view container should render settings 1`] = `
               <label
                 class="settings_item_name"
               >
-                enable-api
+                Enable the api
               </label>
             </span>
             <div
@@ -260,7 +249,7 @@ exports[`Settings view container should render settings 1`] = `
               <label
                 class="settings_item_name"
               >
-                api-port
+                Port used by the api
               </label>
             </span>
             <div
@@ -285,7 +274,7 @@ exports[`Settings view container should render settings 1`] = `
         <div
           class="header_container"
         >
-          playback
+          Playback
         </div>
         <hr />
         <div
@@ -300,7 +289,7 @@ exports[`Settings view container should render settings 1`] = `
               <label
                 class="settings_item_name"
               >
-                loop-after-queue-end
+                Loop after playing the last queue item
               </label>
             </span>
             <div
@@ -328,7 +317,7 @@ exports[`Settings view container should render settings 1`] = `
               <label
                 class="settings_item_name"
               >
-                shuffle-queue
+                Shuffle songs
               </label>
             </span>
             <div
@@ -356,12 +345,12 @@ exports[`Settings view container should render settings 1`] = `
               <label
                 class="settings_item_name"
               >
-                shuffle-when-going-back
+                Shuffle on previous track
               </label>
               <p
                 class="settings_item_description"
               >
-                shuffle-when-going-back-description
+                Play a random track when shuffle is active and the previous track button is clicked
               </p>
             </span>
             <div
@@ -389,12 +378,12 @@ exports[`Settings view container should render settings 1`] = `
               <label
                 class="settings_item_name"
               >
-                autoradio
+                Autoradio
               </label>
               <p
                 class="settings_item_description"
               >
-                autoradio-description
+                Add similar tracks automatically when the queue is ending
               </p>
             </span>
             <div
@@ -423,7 +412,7 @@ exports[`Settings view container should render settings 1`] = `
               <label
                 class="settings_item_name"
               >
-                seek-iteration
+                Number of seconds to seek forward/backwards when pressing arrow keys
               </label>
             </span>
             <div
@@ -447,12 +436,12 @@ exports[`Settings view container should render settings 1`] = `
               <label
                 class="settings_item_name"
               >
-                autoradio-craziness
+                Autoradio craziness
               </label>
               <p
                 class="settings_item_description"
               >
-                autoradio-craziness-description
+                Autoradio will select songs that are less similar to the ones already in the queue the crazier it is
               </p>
             </span>
             <div
@@ -507,12 +496,12 @@ exports[`Settings view container should render settings 1`] = `
               <label
                 class="settings_item_name"
               >
-                skip-sponsorblock
+                Skip non-music segment
               </label>
               <p
                 class="settings_item_description"
               >
-                skip-sponsorblock-description
+                Playback skips non-music segment from SponsorBlock (https://sponsor.ajay.app/)
               </p>
             </span>
             <div
@@ -540,7 +529,7 @@ exports[`Settings view container should render settings 1`] = `
         <div
           class="header_container"
         >
-          program-settings
+          Program settings
         </div>
         <hr />
         <div
@@ -555,7 +544,7 @@ exports[`Settings view container should render settings 1`] = `
               <label
                 class="settings_item_name"
               >
-                notification-timeout
+                Notification timeout
               </label>
             </span>
             <div
@@ -579,7 +568,7 @@ exports[`Settings view container should render settings 1`] = `
               <label
                 class="settings_item_name"
               >
-                disable-gpu
+                Disable hardware rendering (might fix issues with dragging elements and flashing screen)
               </label>
             </span>
             <div
@@ -607,7 +596,7 @@ exports[`Settings view container should render settings 1`] = `
               <label
                 class="settings_item_name"
               >
-                frameless-window
+                Frameless window (requires restart)
               </label>
             </span>
             <div
@@ -636,7 +625,7 @@ exports[`Settings view container should render settings 1`] = `
               <label
                 class="settings_item_name"
               >
-                language
+                Language
               </label>
             </span>
             <div
@@ -658,10 +647,10 @@ exports[`Settings view container should render settings 1`] = `
               <div
                 aria-atomic="true"
                 aria-live="polite"
-                class="divider default text"
+                class="divider text"
                 role="alert"
               >
-                language-placeholder
+                English
               </div>
               <i
                 aria-hidden="true"
@@ -673,8 +662,8 @@ exports[`Settings view container should render settings 1`] = `
               >
                 <div
                   aria-checked="false"
-                  aria-selected="true"
-                  class="selected item"
+                  aria-selected="false"
+                  class="item"
                   role="option"
                   style="pointer-events: all;"
                 >
@@ -711,9 +700,9 @@ exports[`Settings view container should render settings 1`] = `
                   </span>
                 </div>
                 <div
-                  aria-checked="false"
-                  aria-selected="false"
-                  class="item"
+                  aria-checked="true"
+                  aria-selected="true"
+                  class="active selected item"
                   role="option"
                   style="pointer-events: all;"
                 >
@@ -1033,7 +1022,7 @@ exports[`Settings view container should render settings 1`] = `
         <div
           class="header_container"
         >
-          display
+          Display
         </div>
         <hr />
         <div
@@ -1048,7 +1037,7 @@ exports[`Settings view container should render settings 1`] = `
               <label
                 class="settings_item_name"
               >
-                mini-player
+                Use mini player style
               </label>
             </span>
             <div
@@ -1076,7 +1065,7 @@ exports[`Settings view container should render settings 1`] = `
               <label
                 class="settings_item_name"
               >
-                discord-rich-presence
+                Toggle discord rich presence (requires restart)
               </label>
             </span>
             <div
@@ -1105,7 +1094,7 @@ exports[`Settings view container should render settings 1`] = `
               <label
                 class="settings_item_name"
               >
-                compact-menu-bar
+                Use compact style for menu bar
               </label>
             </span>
             <div
@@ -1133,7 +1122,7 @@ exports[`Settings view container should render settings 1`] = `
               <label
                 class="settings_item_name"
               >
-                compact-queue-bar
+                Use compact style for queue bar
               </label>
             </span>
             <div
@@ -1161,7 +1150,7 @@ exports[`Settings view container should render settings 1`] = `
               <label
                 class="settings_item_name"
               >
-                track-duration
+                Display track duration over the seekbar
               </label>
             </span>
             <div
@@ -1189,7 +1178,7 @@ exports[`Settings view container should render settings 1`] = `
         <div
           class="header_container"
         >
-          streaming
+          Streaming
         </div>
         <hr />
         <div
@@ -1204,7 +1193,7 @@ exports[`Settings view container should render settings 1`] = `
               <label
                 class="settings_item_name"
               >
-                invidious-url
+                Invidious instance url
               </label>
             </span>
             <div
@@ -1227,7 +1216,7 @@ exports[`Settings view container should render settings 1`] = `
         <div
           class="header_container"
         >
-          downloads
+          Downloads
         </div>
         <hr />
         <div
@@ -1242,7 +1231,7 @@ exports[`Settings view container should render settings 1`] = `
               <label
                 class="settings_item_name"
               >
-                downloads-dir
+                Downloads directory
               </label>
             </span>
             <div
@@ -1261,7 +1250,7 @@ exports[`Settings view container should render settings 1`] = `
                   aria-hidden="true"
                   class="folder open icon"
                 />
-                downloads-dir-button
+                Choose a directory...
               </button>
             </span>
           </div>
@@ -1274,7 +1263,7 @@ exports[`Settings view container should render settings 1`] = `
               <label
                 class="settings_item_name"
               >
-                downloads-count
+                Max simultaneous downloads
               </label>
             </span>
             <div
@@ -1298,7 +1287,7 @@ exports[`Settings view container should render settings 1`] = `
         <div
           class="header_container"
         >
-          developer
+          Developer settings
         </div>
         <hr />
         <div
@@ -1313,7 +1302,7 @@ exports[`Settings view container should render settings 1`] = `
               <label
                 class="settings_item_name"
               >
-                devtools
+                Developer tools
               </label>
             </span>
             <div
@@ -1330,6 +1319,68 @@ exports[`Settings view container should render settings 1`] = `
                 value=""
               />
               <label />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="settings_section"
+      >
+        <div
+          class="header_container"
+        >
+          Social
+        </div>
+        <hr />
+        <div
+          class="ui segment"
+        >
+          <div
+            class="settings_item string"
+          >
+            <span
+              class="settings_item_text"
+            >
+              <label
+                class="settings_item_name"
+              >
+                Nuclear identity service URL
+              </label>
+            </span>
+            <div
+              class="spacer"
+            />
+            <div
+              class="ui fluid input"
+            >
+              <input
+                type="text"
+                value=""
+              />
+            </div>
+          </div>
+          <div
+            class="settings_item string"
+          >
+            <span
+              class="settings_item_text"
+            >
+              <label
+                class="settings_item_name"
+              >
+                Nuclear playlists service URL
+              </label>
+            </span>
+            <div
+              class="spacer"
+            />
+            <div
+              class="ui fluid input"
+            >
+              <input
+                type="text"
+                value=""
+              />
             </div>
           </div>
         </div>

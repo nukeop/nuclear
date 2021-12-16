@@ -14,6 +14,10 @@ exports[`User panel container should render the sign in form 1`] = `
   <div
     class="fade fullscreen_layer animating in visible transition"
     style="animation-duration: 200ms;"
+  />
+  <div
+    class="fade fullscreen_layer animating in visible transition"
+    style="animation-duration: 200ms;"
   >
     <div
       class="fullscreen_form_container nuclear"
@@ -102,6 +106,10 @@ exports[`User panel container should render the sign up form 1`] = `
       Sign up / Sign in
     </button>
   </section>
+  <div
+    class="fade fullscreen_layer visible transition"
+    style=""
+  />
   <div
     class="fade fullscreen_layer hidden transition"
     style=""
@@ -312,6 +320,10 @@ exports[`User panel container should validate the sign up form 1`] = `
       Sign up / Sign in
     </button>
   </section>
+  <div
+    class="fade fullscreen_layer animating in visible transition"
+    style="animation-duration: 200ms;"
+  />
   <div
     class="fade fullscreen_layer animating out visible transition"
     style="animation-duration: 200ms;"

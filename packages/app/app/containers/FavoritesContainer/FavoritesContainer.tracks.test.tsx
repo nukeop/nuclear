@@ -40,7 +40,7 @@ describe('Track view container', () => {
     expect(component.asFragment()).toMatchSnapshot();
   });
 
-  it('should show popup when click on track', async () => {
+  it('should show popup when a track is clicked', async () => {
     const favorites = buildStoreState()
       .withFavorites()
       .build()
@@ -97,6 +97,7 @@ describe('Track view container', () => {
       buildStoreState()
         .withPlugins()
         .withConnectivity()
+        .withPlaylists()
         .build();
 
     const history = createMemoryHistory({

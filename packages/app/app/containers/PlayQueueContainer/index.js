@@ -3,6 +3,7 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
+import { useLocalPlaylists } from '../PlaylistsContainer/hooks';
 import * as DownloadsActions from '../../actions/downloads';
 import * as FavoritesActions from '../../actions/favorites';
 import * as QueueActions from '../../actions/queue';
@@ -20,10 +21,11 @@ const PlayQueueContainer = props => {
     queue,
     plugins,
     settings,
-    playlists,
     compact
   } = props;
   
+  const { localPlaylists: playlists } = useLocalPlaylists();
+
   return (
     <PlayQueue
       actions={actions}
@@ -31,7 +33,7 @@ const PlayQueueContainer = props => {
       currentSong={queue.currentSong}
       plugins={plugins}
       settings={settings}
-      playlists={playlists}
+      playlists={playlists.data}
       compact={compact}
     />
   );
@@ -41,7 +43,6 @@ function mapStateToProps(state) {
   return {
     queue: state.queue,
     plugins: state.plugin,
-    playlists: state.playlists.playlists, 
     settings: state.settings
   };
 }

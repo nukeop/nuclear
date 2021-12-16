@@ -239,7 +239,6 @@ function mapStateToProps(state) {
   return {
     queue: state.queue,
     player: state.player,
-    playlists: state.playlists.playlists,
     scrobbling: state.scrobbling,
     settings: state.settings,
     isConnected: state.connectivity

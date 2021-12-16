@@ -130,7 +130,7 @@ function mapStateToProps(state) {
     player: state.player,
     queue: state.queue,
     settings: state.settings,
-    playlists: state.playlists.playlists,
+    playlists: state.playlists.localPlaylists.data,
     streamProviders: state.plugin.plugins.streamProviders
   };
 }
