@@ -747,6 +747,7 @@ export const buildStoreState = () => {
           username: 'nukeop',
           displayName: 'nukeop',
           accountState: UserAccountState.UNCONFIRMED
+    },
     withLocal() {
       state = {
         ...state,
