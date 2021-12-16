@@ -777,7 +777,6 @@ export const buildStoreState = () => {
     build() {
       return state;
     }
-  };
 };
 
 export const buildElectronStoreState = () => {
