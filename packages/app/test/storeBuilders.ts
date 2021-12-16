@@ -30,7 +30,6 @@ export const buildStoreState = () => {
       topTracks: [],
       topTags: []
     },
-    local: {},
     downloads: [],
     favorites: {
       tracks: [],
@@ -300,7 +299,7 @@ export const buildStoreState = () => {
       };
       return this as StoreStateBuilder;
     },
-    withConnectivity(connectivity=true) {
+    withConnectivity(connectivity = true) {
       state = {
         ...state,
         connectivity
@@ -570,57 +569,63 @@ export const buildStoreState = () => {
     withDownloads() {
       state = {
         ...state,
-        downloads: [{
-          status: DownloadStatus.FINISHED,
-          completion: 1,
-          track: {
-            uuid: '1',
-            artist: {
-              name: 'test artist 1'
-            },
-            name: 'finished track'
+        downloads: [
+          {
+            status: DownloadStatus.FINISHED,
+            completion: 1,
+            track: {
+              uuid: '1',
+              artist: {
+                name: 'test artist 1'
+              },
+              name: 'finished track'
+            }
+          },
+          {
+            status: DownloadStatus.ERROR,
+            completion: 0.1,
+            track: {
+              uuid: '2',
+              artist: {
+                name: 'test artist 2'
+              },
+              name: 'track with errorx'
+            }
+          },
+          {
+            status: DownloadStatus.PAUSED,
+            completion: 0.3,
+            track: {
+              uuid: '3',
+              artist: {
+                name: 'test artist 3'
+              },
+              name: 'paused track'
+            }
+          },
+          {
+            status: DownloadStatus.STARTED,
+            completion: 0.5,
+            track: {
+              uuid: '4',
+              artist: {
+                name: 'test artist 4'
+              },
+              name: 'started track'
+            }
+          },
+          {
+            status: DownloadStatus.WAITING,
+            completion: 0,
+            track: {
+              uuid: '5',
+              artist: {
+                name: 'test artist 5'
+              },
+              name: 'waiting track'
+            }
           }
-        }, {
-          status: DownloadStatus.ERROR,
-          completion: 0.1,
-          track: {
-            uuid: '2',
-            artist: {
-              name: 'test artist 2'
-            },
-            name: 'track with errorx'
-          }
-        }, {
-          status: DownloadStatus.PAUSED,
-          completion: 0.3,
-          track: {
-            uuid: '3',
-            artist: {
-              name: 'test artist 3'
-            },
-            name: 'paused track'
-          }
-        }, {
-          status: DownloadStatus.STARTED,
-          completion: 0.5,
-          track: {
-            uuid: '4',
-            artist: {
-              name: 'test artist 4'
-            },
-            name: 'started track'
-          }
-        }, {
-          status: DownloadStatus.WAITING,
-          completion: 0,
-          track: {
-            uuid: '5',
-            artist: {
-              name: 'test artist 5'
-            },
-            name: 'waiting track'
-          }
-        }]
+        ]
       };
 
       return this as StoreStateBuilder;
@@ -747,6 +752,9 @@ export const buildStoreState = () => {
           username: 'nukeop',
           displayName: 'nukeop',
           accountState: UserAccountState.UNCONFIRMED
+        }
+      };
+      return this as StoreStateBuilder;
     },
     withLocal() {
       state = {
@@ -762,7 +770,8 @@ export const buildStoreState = () => {
           listType: 'simple-list',
           tracks: [],
           scanProgress: null,
-          scanTotal: null
+          scanTotal: null,
+          expandedFolders: []
         }
       };
       return this as StoreStateBuilder;
@@ -777,10 +786,11 @@ export const buildStoreState = () => {
     build() {
       return state;
     }
+  };
 };
 
 export const buildElectronStoreState = () => {
-  return ({
+  return {
     equalizer: {
       selected: 'Default'
     },
@@ -790,5 +800,5 @@ export const buildElectronStoreState = () => {
       tracks: []
     },
     playlists: []
-  });
+  };
 };
