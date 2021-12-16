@@ -205,7 +205,7 @@ describe('Artist view container', () => {
     const { component, history } = mountComponent();
     expect(history.location.pathname).toBe('/artist/test-artist-id');
     await waitFor(() => component.getByTestId(/artist-info/i).click());
-    expect(history.location.pathname).toBe('/artist/artist-info');
+    expect(history.location.pathname).toBe('/artist/test-artist-id');
   });
 
   const mountComponent = (initialStore?: AnyProps) => {
