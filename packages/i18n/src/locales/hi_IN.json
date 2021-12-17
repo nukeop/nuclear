@@ -26,6 +26,11 @@
     "search": "खोज परिणाम",
     "settings": "सेटिंग्स",
     "visualizer": "विजुआलाइज़र",
+    "user-panel": {
+      "actions-tooltip": "User actions",
+      "sign-up": "Sign up / Sign in",
+      "sign-out": "Sign out"
+    },
     "version": "Version"
   },
   "artist": {
@@ -161,7 +166,14 @@
     "songs_plural": "{{total}} गीत",
     "title": "शीर्षक",
     "tracks-selected-plural": "चयनित ट्रैक",
-    "tracks-selected-singular": "चयनित ट्रैक"
+    "tracks-selected-singular": "चयनित ट्रैक",
+    "tracks-singular": "track",
+    "tracks-plural": "tracks",
+    "modified-at": "Last modified: ",
+    "never-modified": "Unknown",
+    "server-modified-at": "Server modified: ",
+    "upload-to-server": "Upload to server",
+    "download-from-server": "Download from server"
   },
   "plugins": {
     "add-a-plugin": "प्लगइन जोड़ें",
@@ -265,6 +277,8 @@
     "mastodon-post-format-description": "प्रत्येक ट्रैक के चलने के बाद न्यूक्लियर मास्टोडन पर एक स्टेटस पोस्ट करेगा। उपरोक्त स्ट्रिंग प्रत्येक पोस्ट के लिए टेम्प्लेट होगी, जिसमें {{artist}} और {{title}} को कलाकार और ट्रैक के शीर्षक से बदल दिया जाएगा।",
     "mastodon-post-format-label": "पोस्ट फॉर्मेट",
     "mastodon-title": "",
+    "nuclear-identity-service-url": "Nuclear identity service URL",
+    "nuclear-playlists-service-url": "Nuclear playlists service URL",
     "mini-player": "मिनी प्लेयर शैली का प्रयोग करें",
     "more": "More",
     "discord-rich-presence": "डिस्कॉर्ड रिच प्रजेंस टॉगल करें (पुनरारंभ करने की आवश्यकता है)",
@@ -318,5 +332,38 @@
   },
   "visualizer": {
     "exit-fullscreen": "फुलस्क्रीन मोड से बाहर निकलने के लिए Esc दबाएं।"
+  },
+  "forms": {
+    "nuclear-sign-up": {
+      "header": "Sign up",
+      "secondary-header": "Sign up to Nuclear Web Services",
+      "side-paragraph-1": "NWS enables you to backup your playlists online and share them.",
+      "side-paragraph-2": "Providing your email is optional; it will allow you to recover your account if you forget your password.",
+      "username-label": "Username",
+      "email-label": "Email",
+      "password-label": "Password",
+      "sign-up-button": "Sign up",
+      "validation": {
+        "username": {
+          "length": "Username must be 4 characters or more",
+          "required": "Username is required"
+        },
+        "email": {
+          "invalid": "Email must be a valid email"
+        },
+        "password": {
+          "length": "Password must be 6 characters or more",
+          "required": "Password is required"
+        }
+      }
+    },
+    "nuclear-sign-in": {
+      "header": " Sign in",
+      "username-label": "Username",
+      "password-label": "Password",
+      "no-account-label": "Don't have an account?",
+      "no-account-link": "Sign up",
+      "sign-in-button": "Sign in"
+    }
   }
 }
