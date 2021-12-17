@@ -26,6 +26,11 @@
     "search": "Meklēšanas rezultāti",
     "settings": "Iestatijumi",
     "visualizer": "Vizualizētājs",
+    "user-panel": {
+      "actions-tooltip": "User actions",
+      "sign-up": "Sign up / Sign in",
+      "sign-out": "Sign out"
+    },
     "version": "Version"
   },
   "artist": {
@@ -161,7 +166,14 @@
     "songs_plural": "{{total}} dziesmas",
     "title": "Nosaukums",
     "tracks-selected-plural": "dziesmas atlasīti",
-    "tracks-selected-singular": "dziesma atlasīta"
+    "tracks-selected-singular": "dziesma atlasīta",
+    "tracks-singular": "track",
+    "tracks-plural": "tracks",
+    "modified-at": "Last modified: ",
+    "never-modified": "Unknown",
+    "server-modified-at": "Server modified: ",
+    "upload-to-server": "Upload to server",
+    "download-from-server": "Download from server"
   },
   "plugins": {
     "add-a-plugin": "Pievienot spraudni",
@@ -265,6 +277,8 @@
     "mastodon-post-format-description": "Pēc katra ieraksta atskaņošanas pabeigšanas Nuclear publicēs statusu uz Mastodon. Iepriekš minētā virkne būs katras ziņas veidne, un {{artist}} un {{title}} tiks aizstātas ar izpildītājs un dziesmas nosaukums.",
     "mastodon-post-format-label": "Ziņas formāts",
     "mastodon-title": "",
+    "nuclear-identity-service-url": "Nuclear identity service URL",
+    "nuclear-playlists-service-url": "Nuclear playlists service URL",
     "mini-player": "Izmantojiet mini atskaņotāja stilu",
     "more": "More",
     "discord-rich-presence": "Pārslēgt discord bagātīgo klātbūtni (nepieciešams restartēt)",
@@ -318,5 +332,38 @@
   },
   "visualizer": {
     "exit-fullscreen": "Nospiediet ESC, lai izietu no pilna ekrāna"
+  },
+  "forms": {
+    "nuclear-sign-up": {
+      "header": "Sign up",
+      "secondary-header": "Sign up to Nuclear Web Services",
+      "side-paragraph-1": "NWS enables you to backup your playlists online and share them.",
+      "side-paragraph-2": "Providing your email is optional; it will allow you to recover your account if you forget your password.",
+      "username-label": "Username",
+      "email-label": "Email",
+      "password-label": "Password",
+      "sign-up-button": "Sign up",
+      "validation": {
+        "username": {
+          "length": "Username must be 4 characters or more",
+          "required": "Username is required"
+        },
+        "email": {
+          "invalid": "Email must be a valid email"
+        },
+        "password": {
+          "length": "Password must be 6 characters or more",
+          "required": "Password is required"
+        }
+      }
+    },
+    "nuclear-sign-in": {
+      "header": " Sign in",
+      "username-label": "Username",
+      "password-label": "Password",
+      "no-account-label": "Don't have an account?",
+      "no-account-link": "Sign up",
+      "sign-in-button": "Sign in"
+    }
   }
 }
