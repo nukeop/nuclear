@@ -26,6 +26,11 @@
     "search": "Recherches",
     "settings": "Réglages",
     "visualizer": "Visualiseur",
+    "user-panel": {
+      "actions-tooltip": "User actions",
+      "sign-up": "Sign up / Sign in",
+      "sign-out": "Sign out"
+    },
     "version": "Version"
   },
   "artist": {
@@ -161,7 +166,14 @@
     "songs_plural": "{{total}} morceaux",
     "title": "Titre",
     "tracks-selected-plural": "morceaux sélectionnés",
-    "tracks-selected-singular": "morceau sélectionné"
+    "tracks-selected-singular": "morceau sélectionné",
+    "tracks-singular": "track",
+    "tracks-plural": "tracks",
+    "modified-at": "Last modified: ",
+    "never-modified": "Unknown",
+    "server-modified-at": "Server modified: ",
+    "upload-to-server": "Upload to server",
+    "download-from-server": "Download from server"
   },
   "plugins": {
     "add-a-plugin": "Ajouter un plugin",
@@ -265,6 +277,8 @@
     "mastodon-post-format-description": "Nuclear va poster un statut sur Mastodon après chaque fin de morceau. Le phrase ci-dessus sera un modèle pour chaque message, avec {{artist}} et {{title}} remplacé par l'artiste et le titre du morceau.",
     "mastodon-post-format-label": "Format de publication",
     "mastodon-title": "",
+    "nuclear-identity-service-url": "Nuclear identity service URL",
+    "nuclear-playlists-service-url": "Nuclear playlists service URL",
     "mini-player": "Utiliser le style de mini-lecteur",
     "more": "More",
     "discord-rich-presence": "Activer/Désactiver la Rich Presence de Discord (nécessite un redémarrage)",
@@ -318,5 +332,38 @@
   },
   "visualizer": {
     "exit-fullscreen": "Appuyez sur ÉCHAP pour quitter le mode plein écran"
+  },
+  "forms": {
+    "nuclear-sign-up": {
+      "header": "Sign up",
+      "secondary-header": "Sign up to Nuclear Web Services",
+      "side-paragraph-1": "NWS enables you to backup your playlists online and share them.",
+      "side-paragraph-2": "Providing your email is optional; it will allow you to recover your account if you forget your password.",
+      "username-label": "Username",
+      "email-label": "Email",
+      "password-label": "Password",
+      "sign-up-button": "Sign up",
+      "validation": {
+        "username": {
+          "length": "Username must be 4 characters or more",
+          "required": "Username is required"
+        },
+        "email": {
+          "invalid": "Email must be a valid email"
+        },
+        "password": {
+          "length": "Password must be 6 characters or more",
+          "required": "Password is required"
+        }
+      }
+    },
+    "nuclear-sign-in": {
+      "header": " Sign in",
+      "username-label": "Username",
+      "password-label": "Password",
+      "no-account-label": "Don't have an account?",
+      "no-account-link": "Sign up",
+      "sign-in-button": "Sign in"
+    }
   }
 }
