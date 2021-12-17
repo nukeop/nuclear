@@ -1,12 +1,10 @@
 import React from 'react';
-import FontAwesome from 'react-fontawesome';
 import { Icon } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { NavLink, withRouter } from 'react-router-dom';
 
 import classnames from 'classnames';
-import _ from 'lodash';
 import Sound from 'react-hifi';
 import { withTranslation } from 'react-i18next';
 import { PluginConfig } from '@nuclear/core';
@@ -26,10 +24,7 @@ import './app.global.scss';
 import styles from './styles.scss';
 import compact from './compact.scss';
 
-import logoImg from '../resources/media/logo_full_light.png';
 import logoIcon from '../resources/media/512x512.png';
-
-import settingsConst from './constants/settings';
 
 import Navbar from './components/Navbar';
 import VerticalPanel from './components/VerticalPanel';
@@ -53,6 +48,7 @@ import SidebarMenu from './components/SidebarMenu';
 import SidebarMenuItem from './components/SidebarMenu/SidebarMenuItem';
 import SidebarMenuCategoryHeader from './components/SidebarMenu/SidebarMenuCategoryHeader';
 import WindowControls from './components/WindowControls';
+import { UserPanelContainer } from './containers/UserPanelContainer';
 
 @withTranslation('app')
 class App extends React.PureComponent {
@@ -65,7 +61,6 @@ class App extends React.PureComponent {
     this.props.actions.lastFmReadSettings();
     this.props.actions.FavImportInit();
     this.props.actions.createPlugins(PluginConfig.plugins);
-    this.props.actions.loadPlaylists();
     this.props.actions.deserializePlugins();
     this.props.actions.githubContribInfo();
 
@@ -112,24 +107,6 @@ class App extends React.PureComponent {
       this.props.scrobbling.lastFmSessionKey;
   }
 
-  renderNavBar() {
-    return (
-      <Navbar>
-        <NavButtons />
-        <SearchBoxContainer />
-        <Spacer className={styles.navbar_spacer} />
-        <HelpModalContainer />
-        {this.props.settings.framelessWindow && (
-          <WindowControls
-            onCloseClick={this.props.actions.closeWindow}
-            onMaxClick={this.props.actions.maximizeWindow}
-            onMinClick={this.props.actions.minimizeWindow}
-          />
-        )}
-      </Navbar>
-    );
-  }
-
   renderRightPanel() {
     return (
       <VerticalPanel
@@ -151,15 +128,6 @@ class App extends React.PureComponent {
         })}
       >
         <SidebarMenu>
-          <div className={styles.sidebar_brand}>
-            <img
-              width='50%'
-              src={this.props.settings.compactMenuBar ? logoIcon : logoImg}
-            />
-            <div className={styles.version_string}>
-              {this.props.settings.compactMenuBar ? '0.6.17' : this.props.t('version') + ' 0.6.17'}
-            </div>
-          </div>
           <div className={styles.sidebar_menus}>
             {
               this.renderMenuCategory('main', [
@@ -184,9 +152,11 @@ class App extends React.PureComponent {
               ])
             }
           </div>
-
-          {this.renderSidebarFooter()}
         </SidebarMenu>
+        {
+          !this.props.settings.compactMenuBar &&
+          <UserPanelContainer />
+        }
       </VerticalPanel>
     );
   }
@@ -218,26 +188,6 @@ class App extends React.PureComponent {
     );
   }
 
-  renderSidebarFooter() {
-    return (
-      <div className={styles.sidebar_footer}>
-        <a
-          onClick={() => {
-            this.props.actions.toggleOption(
-              _.find(settingsConst, ['name', 'compactMenuBar']),
-              this.props.settings
-            );
-          }}
-          href='#'
-        >
-          <FontAwesome
-            name={this.props.settings.compactMenuBar ? 'angle-right' : 'angle-left'}
-          />
-        </a>
-      </div>
-    );
-  }
-
   getCurrentSongParameter(parameter) {
     return this.props.queue.queueItems[this.props.queue.currentSong]
       ? this.props.queue.queueItems[this.props.queue.currentSong][parameter]
@@ -250,7 +200,22 @@ class App extends React.PureComponent {
         <ErrorBoundary>
           <div className={styles.app_container}>
             <MiniPlayerContainer />
-            {this.renderNavBar()}
+            <Navbar>
+              <div className={styles.sidebar_brand}>
+                <img src={logoIcon} />
+              </div>
+              <NavButtons />
+              <SearchBoxContainer />
+              <Spacer className={styles.navbar_spacer} />
+              <HelpModalContainer />
+              {this.props.settings.framelessWindow && (
+                <WindowControls
+                  onCloseClick={this.props.actions.closeWindow}
+                  onMaxClick={this.props.actions.maximizeWindow}
+                  onMinClick={this.props.actions.minimizeWindow}
+                />
+              )}
+            </Navbar>
             <div className={styles.panel_container}>
               {this.renderSidebarMenu()}
               <VerticalPanel className={styles.center_panel}>
@@ -274,7 +239,6 @@ function mapStateToProps(state) {
   return {
     queue: state.queue,
     player: state.player,
-    playlists: state.playlists.playlists,
     scrobbling: state.scrobbling,
     settings: state.settings,
     isConnected: state.connectivity

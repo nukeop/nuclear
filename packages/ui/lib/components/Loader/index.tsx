@@ -5,7 +5,7 @@ import common from '../../common.scss';
 import styles from './styles.scss';
 
 type LoaderProps = {
-  type: string;
+  type: 'default' | 'circle' | 'small';
 }
 
 const Loader: React.FC<LoaderProps> = ({

@@ -1,0 +1,61 @@
+@import '../../lib/common.scss';
+ 
+html,
+body,
+.sb-main {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+#root {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.bg {
+  position: absolute;
+  background: #282a36;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  box-sizing: border-box;
+  padding: 1em;
+}
+
+.padding_xl {
+  padding: 300px;
+}
+
+.row {
+  display: flex;
+  flex-flow: row;
+  margin-bottom: 1em;
+}
+
+.column {
+  display: flex;
+  flex-flow: column;
+}
+
+h3 {
+  color: $white;
+}
+
+.sidebar {
+  display: flex;
+  flex-flow: column;
+
+  background-color: $bgdark;
+  width: 300px;
+  height: 300px;
+
+  .spacer {
+    flex: 1 1 auto;
+  }
+}

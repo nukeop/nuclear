@@ -5,6 +5,7 @@ describe('Settings view container', () => {
   beforeAll(() => {
     setupI18Next();
   });
+  
   it('should render settings', () => {
     const { component } = mountComponent();
     expect(component.asFragment()).toMatchSnapshot();

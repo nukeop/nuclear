@@ -72,13 +72,15 @@ const QueuePopupButtons = ({
   </>
 );
 
-const mapStateToProps = (state, { track }) => ({
-  streamProviders: track.local
-    ? _.filter(state.plugin.plugins.streamProviders, { sourceName: 'Local' })
-    : state.plugin.plugins.streamProviders,
-  settings: state.settings,
-  playlists: state.playlists.playlists
-});
+const mapStateToProps = (state, { track }) => {
+  return ({
+    streamProviders: track.local
+      ? _.filter(state.plugin.plugins.streamProviders, { sourceName: 'Local' })
+      : state.plugin.plugins.streamProviders,
+    settings: state.settings,
+    playlists: state.playlists.localPlaylists.data
+  });
+};
 
 const mapDispatchToProps = dispatch => ({
   downloadsActions: bindActionCreators(DownloadsActions, dispatch),

@@ -41,7 +41,7 @@ class IpcContainer extends React.Component {
     ipcRenderer.on(IpcEvents.TRACK_SELECT, (event, index) => actions.selectSong(index));
   
     ipcRenderer.on(IpcEvents.PLAYLIST_CREATE, (event, name) => actions.addPlaylist(name, this.props.queue.queueItems));
-    ipcRenderer.on(IpcEvents.PLAYLIST_REFRESH, () => actions.loadPlaylists());
+    ipcRenderer.on(IpcEvents.PLAYLIST_REFRESH, () => actions.loadLocalPlaylists());
     ipcRenderer.on(IpcEvents.PLAYLIST_ACTIVATE, (event, playlistName) => {
       const tracks = this.props.playlists.find(({ name }) => playlistName === name).tracks;
 
@@ -130,7 +130,7 @@ function mapStateToProps(state) {
     player: state.player,
     queue: state.queue,
     settings: state.settings,
-    playlists: state.playlists.playlists,
+    playlists: state.playlists.localPlaylists.data,
     streamProviders: state.plugin.plugins.streamProviders
   };
 }

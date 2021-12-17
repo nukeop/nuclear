@@ -1,34 +1,35 @@
-import { Track } from '@nuclear/core';
-import {
-  ADD_PLAYLIST,
-  LOAD_PLAYLISTS,
-  DELETE_PLAYLIST,
-  UPDATE_PLAYLIST
-} from '../actions/playlists';
+import { Playlist } from '@nuclear/core';
+import produce from 'immer';
+import { ActionType, createReducer } from 'typesafe-actions';
 
-export type Playlist = {
-  id: string;
-  name: string;
-  tracks: Track[];
-}
+import { Playlists } from '../actions/actionTypes';
+import * as actions from '../actions/playlists';
+import { loadingStateMeta, handleLoadableActionSuccess, handleLoadableActionError, startingStateMeta } from './helpers';
+import { Loadable } from './types';
 
 export class PlaylistsStore {
-  playlists: Playlist[] = []
+  localPlaylists: Loadable<Playlist[]> = {...startingStateMeta};
+  remotePlaylists: Loadable<Playlist[]> = {...startingStateMeta};
 }
 
 const defaultState = { ...new PlaylistsStore() };
 
-export default function PlaylistsReducer(state = defaultState, action) {
-  switch (action.type) {
-  case LOAD_PLAYLISTS:
-  case ADD_PLAYLIST:
-  case DELETE_PLAYLIST:
-  case UPDATE_PLAYLIST:
-    return {
-      ...state,
-      playlists: action.payload.playlists
-    };
-  default:
-    return state;
+export type PlaylistsAction = ActionType<typeof actions>;
+
+const localPlaylistsKeyCreator = () => 'localPlaylists';
+export const reducer = createReducer<PlaylistsStore, PlaylistsAction>(
+  defaultState,
+  {
+    [Playlists.LOAD_LOCAL_PLAYLISTS_START]: (state) => produce(state, draft => {
+      draft.localPlaylists = {...loadingStateMeta};
+    }),
+    [Playlists.LOAD_LOCAL_PLAYLISTS_SUCCESS]: handleLoadableActionSuccess(localPlaylistsKeyCreator),
+    [Playlists.LOAD_LOCAL_PLAYLISTS_ERROR]: handleLoadableActionError(localPlaylistsKeyCreator),
+    [Playlists.UPDATE_LOCAL_PLAYLISTS]: (state, action) => produce(state, draft => {
+      draft.localPlaylists = {
+        ...state.localPlaylists,
+        data: action.payload
+      };
+    })
   }
-}
+);

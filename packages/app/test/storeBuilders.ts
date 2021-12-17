@@ -1,18 +1,35 @@
+import { UserAccountState } from '@nuclear/core/src/rest/Nuclear/Identity.types';
+
+import { RootState } from '../app/reducers';
+import { startingStateMeta } from '../app/reducers/helpers';
+import { PlaylistsStore } from '../app/reducers/playlists';
 import { DownloadStatus } from '../app/actions/downloads';
 
 type StoreStateBuilder = ReturnType<typeof buildStoreState>;
 export const buildStoreState = () => {
-  let state = {
-    search: { 
+  let state: Partial<RootState> = {
+    connectivity: true,
+    search: {
       albumDetails: {},
       artistDetails: {},
       liveStreamSearchResults: {},
       artistSearchResults: []
     },
-    plugin: {},
-    playlists: {},
-    dashboard: {},
-    local: {},
+    plugin: {
+      plugins: [],
+      selected: [],
+      userPlugins: []
+    },
+    playlists: {
+      localPlaylists: { ...startingStateMeta },
+      remotePlaylists: { ...startingStateMeta }
+    },
+    dashboard: {
+      bestNewAlbums: [],
+      bestNewTracks: [],
+      topTracks: [],
+      topTags: []
+    },
     downloads: [],
     favorites: {
       tracks: [],
@@ -24,11 +41,17 @@ export const buildStoreState = () => {
       loading: false,
       error: false
     },
-    connectivity: false,
     queue: {
       queueItems: [],
       currentSong: 0
-    }
+    },
+    nuclear: {
+      identity: {
+        token: null,
+        signedInUser: null
+      }
+    },
+    settings: {}
   };
 
   return {
@@ -93,48 +116,62 @@ export const buildStoreState = () => {
                 {
                   id: 'test-album-1',
                   title: ' Test album 1',
-                  artists: [{
-                    name: 'test artist 1'
-                  }],
+                  artists: [
+                    {
+                      name: 'test artist 1'
+                    }
+                  ],
                   genres: ['genre 1', 'genre 2'],
                   images: ['image 1'],
                   thumb: 'image 1',
                   coverImage: 'image 1',
-                  tracklist: [{
-                    uuid: 'track-1',
-                    artist: {
-                      name: 'test artist 1'
-                    },
-                    title: 'test track 1',
-                    duration: 10
-                  }],
+                  tracklist: [
+                    {
+                      uuid: 'track-1',
+                      artist: {
+                        name: 'test artist 1'
+                      },
+                      title: 'test track 1',
+                      duration: 10
+                    }
+                  ],
                   year: 2019
                 },
                 {
                   id: 'test-album-2',
                   title: ' Test album 2',
-                  artists: [{
-                    name: 'test artist 2'
-                  }],
+                  artists: [
+                    {
+                      name: 'test artist 2'
+                    }
+                  ],
                   genres: ['genre 2', 'genre 3'],
                   images: ['image 2'],
                   thumb: 'image 2',
                   coverImage: 'image 2',
-                  tracklist: [{
-                    uuid: 'track-2',
-                    artist: {
-                      name: 'test artist 2'
-                    },
-                    title: 'test track 2',
-                    duration: 40
-                  }],
+                  tracklist: [
+                    {
+                      uuid: 'track-2',
+                      artist: {
+                        name: 'test artist 2'
+                      },
+                      title: 'test track 2',
+                      duration: 40
+                    }
+                  ],
                   year: 2021
                 }
               ],
               releasesLoading: false,
               similar: [
-                { name: 'artist-similar-1', thumbnail: 'artist-similar-1 thumb' },
-                { name: 'artist-similar-2', thumbnail: 'artist-similar-2 thumb' }
+                {
+                  name: 'artist-similar-1',
+                  thumbnail: 'artist-similar-1 thumb'
+                },
+                {
+                  name: 'artist-similar-2',
+                  thumbnail: 'artist-similar-2 thumb'
+                }
               ],
               tags: ['tag1', 'tag2', 'tag3'],
               thumb: 'test thumb',
@@ -182,10 +219,11 @@ export const buildStoreState = () => {
       };
       return this as StoreStateBuilder;
     },
-    withPlugins(data?: {streamProviders: any[]}) {
+    withPlugins(data?: { streamProviders: any[] }) {
       state = {
         ...state,
         plugin: {
+          userPlugins: {},
           plugins: {
             streamProviders: data?.streamProviders || [
               {
@@ -261,79 +299,108 @@ export const buildStoreState = () => {
       };
       return this as StoreStateBuilder;
     },
-    withConnectivity() {
+    withConnectivity(connectivity = true) {
       state = {
         ...state,
-        connectivity: true
+        connectivity
       };
       return this as StoreStateBuilder;
     },
-    withPlaylists(data?: object) {
+    withPlaylists(
+      data?: PlaylistsStore['localPlaylists']['data'],
+      isLoading?: boolean
+    ) {
       state = {
         ...state,
         playlists: {
-          playlists: data || [
-            {
-              id: 'test-playlist-id',
-              name: 'test playlist',
-              tracks: [{
-                artist: 'test artist 1',
-                name: 'test track',
-                thumbnail: 'test thumbnail',
-                streams: [{
-                  source: 'Test source',
-                  stream: 'test stream 1',
-                  title: 'stream title 1',
-                  duration: 100
-                }, {
-                  source: 'Another test source',
-                  stream: 'another test stream 2',
-                  title: 'another stream title 2',
-                  duration: 200
-                }]
-              }, {
-                artist: 'test artist 2',
-                name: 'test track 22',
-                thumbnail: 'test thumbnail 2',
-                streams: [{
-                  source: 'Test source',
-                  stream: 'test stream 3',
-                  title: 'stream title 3',
-                  duration: 20
-                }]
-              }]
-            },
-            {
-              id: 'test-playlist-id-2',
-              name: 'test playlist 2',
-              tracks: [{
-                artist: 'test artist 1',
-                name: 'test track',
-                thumbnail: 'test thumbnail',
-                streams: [{
-                  source: 'Test source',
-                  stream: 'test stream 1',
-                  title: 'stream title 1',
-                  duration: 100
-                }, {
-                  source: 'Another test source',
-                  stream: 'another test stream 2',
-                  title: 'another stream title 2',
-                  duration: 200
-                }]
-              }, {
-                artist: 'test artist 2',
-                name: 'test track 22',
-                thumbnail: 'test thumbnail 2',
-                streams: [{
-                  source: 'Test source',
-                  stream: 'test stream 3',
-                  title: 'stream title 3',
-                  duration: 20
-                }]
-              }]
-            }
-          ]
+          remotePlaylists: { ...startingStateMeta },
+          localPlaylists: {
+            isLoading: isLoading || false,
+            hasError: false,
+            isReady: !isLoading,
+            data: data ?? [
+              {
+                id: 'test-playlist-id',
+                name: 'test playlist',
+                tracks: [
+                  {
+                    uuid: 'test-track-1',
+                    artist: 'test artist 1',
+                    name: 'test track',
+                    thumbnail: 'test thumbnail',
+                    streams: [
+                      {
+                        id: 'test-stream-id',
+                        source: 'Test source',
+                        title: 'stream title 1',
+                        duration: 100
+                      },
+                      {
+                        id: 'test-stream-id-2',
+                        source: 'Another test source',
+                        title: 'another stream title 2',
+                        duration: 200
+                      }
+                    ]
+                  },
+                  {
+                    uuid: 'test-track-2',
+                    artist: 'test artist 2',
+                    name: 'test track 22',
+                    thumbnail: 'test thumbnail 2',
+                    streams: [
+                      {
+                        id: 'test-stream-id-3',
+                        source: 'Test source',
+                        title: 'stream title 3',
+                        duration: 20
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                id: 'test-playlist-id-2',
+                name: 'test playlist 2',
+                tracks: [
+                  {
+                    uuid: 'test-track-1',
+                    artist: 'test artist 1',
+                    name: 'test track',
+                    thumbnail: 'test thumbnail',
+                    streams: [
+                      {
+                        id: 'test-stream-id',
+                        source: 'Test source',
+                        title: 'stream title 1',
+                        duration: 100
+                      },
+                      {
+                        id: 'test-stream-id-2',
+                        source: 'Another test source',
+                        title: 'another stream title 2',
+                        duration: 200
+                      }
+                    ]
+                  },
+                  {
+                    uuid: 'test-track-22',
+                    artist: 'test artist 2',
+                    name: 'test track 22',
+                    thumbnail: 'test thumbnail 2',
+                    streams: [
+                      {
+                        id: 'test-stream-id-3',
+                        source: 'Test source',
+                        title: 'stream title 3',
+                        duration: 20
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
         }
       };
       return this as StoreStateBuilder;
@@ -344,74 +411,81 @@ export const buildStoreState = () => {
         favorites: {
           tracks: [
             {
-              'artist': 'test artist 1',
-              'name': 'test track 1',
-              'thumbnail': 'https://test-track-thumb-url',
-              'streams': [
+              artist: 'test artist 1',
+              name: 'test track 1',
+              thumbnail: 'https://test-track-thumb-url',
+              streams: [
                 {
-                  'source': 'Test Stream Provider',
-                  'id': 'CuklIb9d3fI',
-                  'duration': 300,
-                  'title': 'test track 1',
-                  'thumbnail': 'https://test-track-thumb-url',
-                  'format': 'webm',
-                  'skipSegments': [
+                  source: 'Test Stream Provider',
+                  id: 'CuklIb9d3fI',
+                  duration: 300,
+                  title: 'test track 1',
+                  thumbnail: 'https://test-track-thumb-url',
+                  format: 'webm',
+                  skipSegments: [
                     {
-                      'category': 'intro',
-                      'startTime': 0,
-                      'endTime': 5
+                      category: 'intro',
+                      startTime: 0,
+                      endTime: 5
                     },
                     {
-                      'category': 'music_offtopic',
-                      'startTime': 5,
-                      'endTime': 22
+                      category: 'music_offtopic',
+                      startTime: 5,
+                      endTime: 22
                     },
                     {
-                      'category': 'music_offtopic',
-                      'startTime': 239,
-                      'endTime': 299
+                      category: 'music_offtopic',
+                      startTime: 239,
+                      endTime: 299
                     }
                   ],
-                  'originalUrl': 'https://test-track-original-url'
+                  originalUrl: 'https://test-track-original-url'
                 }
               ],
-              'uuid': 'uuid1'
+              uuid: 'uuid1'
             },
             {
-              'artist': 'test artist 2',
-              'name': 'test track 2',
-              'thumbnail': 'https://test-track-thumb-url',
-              'streams': [],
-              'uuid': 'uuid2'
+              artist: 'test artist 2',
+              name: 'test track 2',
+              thumbnail: 'https://test-track-thumb-url',
+              streams: [],
+              uuid: 'uuid2'
             }
           ],
           artists: [],
-          albums: [{
-            id: 'test-album-1',
-            title: ' Test album 1',
-            artists: [{
-              name: 'test artist 1'
-            }],
-            genres: ['genre 1', 'genre 2'],
-            images: ['image 1'],
-            thumb: 'image 1',
-            coverImage: 'image 1',
-            tracklist: [{
-              uuid: 'track-1',
-              artist: {
-                name: 'test artist 1'
-              },
-              title: 'test track 1',
-              duration: 10
-            }, {
-              uuid: 'track-2',
-              artist: {
-                name: 'test artist 2'
-              },
-              title: 'test track 2',
-              duration: 45
-            }]
-          }]
+          albums: [
+            {
+              id: 'test-album-1',
+              title: ' Test album 1',
+              artists: [
+                {
+                  name: 'test artist 1'
+                }
+              ],
+              genres: ['genre 1', 'genre 2'],
+              images: ['image 1'],
+              thumb: 'image 1',
+              coverImage: 'image 1',
+              tracklist: [
+                {
+                  uuid: 'track-1',
+                  artist: {
+                    name: 'test artist 1'
+                  },
+                  title: 'test track 1',
+                  duration: 10
+                },
+                {
+                  uuid: 'track-2',
+                  artist: {
+                    name: 'test artist 2'
+                  },
+                  title: 'test track 2',
+                  duration: 45
+                }
+              ]
+            }
+          ]
         }
       };
       return this as StoreStateBuilder;
@@ -420,62 +494,74 @@ export const buildStoreState = () => {
       state = {
         ...state,
         dashboard: {
-          bestNewAlbums: [{
-            thumbnail: 'test thumbnail 1',
-            artist: 'test artist 1',
-            title: 'test title 1',
-            reviewUrl: 'test review url 1',
-            score: '5.0',
-            abstract: 'test abstract 1',
-            review: 'test review 1',
-            genres: ['Rock']
-          }, {
-            thumbnail: 'test thumbnail 2',
-            artist: 'test artist 2',
-            title: 'test title 2',
-            reviewUrl: 'test review url 2',
-            score: '8.0',
-            abstract: 'test abstract 2',
-            review: 'test review 2',
-            genres: ['Pop']
-          }],
-          bestNewTracks: [{
-            thumbnail: 'test track thumbnail 1',
-            artist: 'test track artist 1',
-            title: 'test track title 1',
-            reviewUrl: 'test track review url 1',
-            review: 'track review 1'
-          }, {
-            thumbnail: 'test track thumbnail 2',
-            artist: 'test track artist 2',
-            title: 'test track title 2',
-            reviewUrl: 'test track review url 2',
-            review: 'track review 2'
-          }],
-          topTracks: [{
-            name: 'top track 1',
-            artist: {
-              name: 'top track artist 1'
+          bestNewAlbums: [
+            {
+              thumbnail: 'test thumbnail 1',
+              artist: 'test artist 1',
+              title: 'test title 1',
+              reviewUrl: 'test review url 1',
+              score: '5.0',
+              abstract: 'test abstract 1',
+              review: 'test review 1',
+              genres: ['Rock']
             },
-            playcount: '1000000',
-            thumbnail: 'top track thumbnail 1'
-          }, {
-            name: 'top track 2',
-            artist: {
-              name: 'top track artist 2'
+            {
+              thumbnail: 'test thumbnail 2',
+              artist: 'test artist 2',
+              title: 'test title 2',
+              reviewUrl: 'test review url 2',
+              score: '8.0',
+              abstract: 'test abstract 2',
+              review: 'test review 2',
+              genres: ['Pop']
+            }
+          ],
+          bestNewTracks: [
+            {
+              thumbnail: 'test track thumbnail 1',
+              artist: 'test track artist 1',
+              title: 'test track title 1',
+              reviewUrl: 'test track review url 1',
+              review: 'track review 1'
             },
-            playcount: '7899543',
-            thumbnail: 'top track thumbnail 2'
-          }],
-          topTags: [{
-            name: 'rock',
-            count: 123456,
-            reach: 1234
-          }, {
-            name: 'pop',
-            count: 2345,
-            reach: 899
-          }]
+            {
+              thumbnail: 'test track thumbnail 2',
+              artist: 'test track artist 2',
+              title: 'test track title 2',
+              reviewUrl: 'test track review url 2',
+              review: 'track review 2'
+            }
+          ],
+          topTracks: [
+            {
+              name: 'top track 1',
+              artist: {
+                name: 'top track artist 1'
+              },
+              playcount: '1000000',
+              thumbnail: 'top track thumbnail 1'
+            },
+            {
+              name: 'top track 2',
+              artist: {
+                name: 'top track artist 2'
+              },
+              playcount: '7899543',
+              thumbnail: 'top track thumbnail 2'
+            }
+          ],
+          topTags: [
+            {
+              name: 'rock',
+              count: 123456,
+              reach: 1234
+            },
+            {
+              name: 'pop',
+              count: 2345,
+              reach: 899
+            }
+          ]
         }
       };
       return this as StoreStateBuilder;
@@ -483,57 +569,63 @@ export const buildStoreState = () => {
     withDownloads() {
       state = {
         ...state,
-        downloads: [{
-          status: DownloadStatus.FINISHED,
-          completion: 1,
-          track: {
-            uuid: '1',
-            artist: {
-              name: 'test artist 1'
-            },
-            name: 'finished track'
+        downloads: [
+          {
+            status: DownloadStatus.FINISHED,
+            completion: 1,
+            track: {
+              uuid: '1',
+              artist: {
+                name: 'test artist 1'
+              },
+              name: 'finished track'
+            }
+          },
+          {
+            status: DownloadStatus.ERROR,
+            completion: 0.1,
+            track: {
+              uuid: '2',
+              artist: {
+                name: 'test artist 2'
+              },
+              name: 'track with errorx'
+            }
+          },
+          {
+            status: DownloadStatus.PAUSED,
+            completion: 0.3,
+            track: {
+              uuid: '3',
+              artist: {
+                name: 'test artist 3'
+              },
+              name: 'paused track'
+            }
+          },
+          {
+            status: DownloadStatus.STARTED,
+            completion: 0.5,
+            track: {
+              uuid: '4',
+              artist: {
+                name: 'test artist 4'
+              },
+              name: 'started track'
+            }
+          },
+          {
+            status: DownloadStatus.WAITING,
+            completion: 0,
+            track: {
+              uuid: '5',
+              artist: {
+                name: 'test artist 5'
+              },
+              name: 'waiting track'
+            }
           }
-        }, {
-          status: DownloadStatus.ERROR,
-          completion: 0.1,
-          track: {
-            uuid: '2',
-            artist: {
-              name: 'test artist 2'
-            },
-            name: 'track with errorx'
-          }
-        }, {
-          status: DownloadStatus.PAUSED,
-          completion: 0.3,
-          track: {
-            uuid: '3',
-            artist: {
-              name: 'test artist 3'
-            },
-            name: 'paused track'
-          }
-        }, {
-          status: DownloadStatus.STARTED,
-          completion: 0.5,
-          track: {
-            uuid: '4',
-            artist: {
-              name: 'test artist 4'
-            },
-            name: 'started track'
-          }
-        }, {
-          status: DownloadStatus.WAITING,
-          completion: 0,
-          track: {
-            uuid: '5',
-            artist: {
-              name: 'test artist 5'
-            },
-            name: 'waiting track'
-          }
-        }]
+        ]
       };
 
       return this as StoreStateBuilder;
@@ -556,66 +648,65 @@ export const buildStoreState = () => {
         queue: {
           queueItems: [
             {
-              'artist': 'test artist 1',
-              'name': 'test track 1',
-              'thumbnail': 'https://test-track-thumb-url',
-              'streams': [
+              artist: 'test artist 1',
+              name: 'test track 1',
+              thumbnail: 'https://test-track-thumb-url',
+              streams: [
                 {
-                  'source': 'Test Stream Provider',
-                  'id': 'CuklIb9d3fI',
-                  'stream': 'https://test-track-stream-url',
-                  'duration': 300,
-                  'title': 'test track 1',
-                  'thumbnail': 'https://test-track-thumb-url',
-                  'format': 'webm',
-                  'skipSegments': [
+                  source: 'Test Stream Provider',
+                  id: 'CuklIb9d3fI',
+                  stream: 'https://test-track-stream-url',
+                  duration: 300,
+                  title: 'test track 1',
+                  thumbnail: 'https://test-track-thumb-url',
+                  format: 'webm',
+                  skipSegments: [
                     {
-                      'category': 'intro',
-                      'startTime': 0,
-                      'endTime': 5
+                      category: 'intro',
+                      startTime: 0,
+                      endTime: 5
                     },
                     {
-                      'category': 'music_offtopic',
-                      'startTime': 5,
-                      'endTime': 22
+                      category: 'music_offtopic',
+                      startTime: 5,
+                      endTime: 22
                     },
                     {
-                      'category': 'music_offtopic',
-                      'startTime': 239,
-                      'endTime': 299
+                      category: 'music_offtopic',
+                      startTime: 239,
+                      endTime: 299
                     }
                   ],
-                  'originalUrl': 'https://test-track-original-url'
+                  originalUrl: 'https://test-track-original-url'
                 }
               ],
-              'uuid': 'uuid1',
-              'loading': false,
-              'error': false
+              uuid: 'uuid1',
+              loading: false,
+              error: false
             },
             {
-              'artist': 'test artist 2',
-              'name': 'test track 2',
-              'thumbnail': 'https://test-track-thumb-url',
-              'streams': [
+              artist: 'test artist 2',
+              name: 'test track 2',
+              thumbnail: 'https://test-track-thumb-url',
+              streams: [
                 {
-                  'source': 'Different Stream Provider',
-                  'id': '_CuklIb9d3fI',
-                  'stream': 'https://test-track-stream-url',
-                  'duration': 300,
-                  'title': 'test track 2',
-                  'thumbnail': 'https://test-track-thumb-url',
-                  'format': 'webm',
-                  'skipSegments': []
+                  source: 'Different Stream Provider',
+                  id: '_CuklIb9d3fI',
+                  stream: 'https://test-track-stream-url',
+                  duration: 300,
+                  title: 'test track 2',
+                  thumbnail: 'https://test-track-thumb-url',
+                  format: 'webm',
+                  skipSegments: []
                 }
               ],
-              'uuid': 'uuid2',
-              'loading': false,
-              'error': false
+              uuid: 'uuid2',
+              loading: false,
+              error: false
             }
           ],
           currentSong: 0
         }
-        
       };
 
       return this as StoreStateBuilder;
@@ -625,29 +716,42 @@ export const buildStoreState = () => {
         ...state.search,
         artistSearchResults: [
           {
-            'uuid': 'test-uuid',
-            'name': 'Test Artist',
-            'coverImage': 'https://test-cover-url',
-            'thumbnail': 'https://test-thumb-url'
+            uuid: 'test-uuid',
+            name: 'Test Artist',
+            coverImage: 'https://test-cover-url',
+            thumbnail: 'https://test-thumb-url'
           }
         ],
         liveStreamSearchResults: {
-          'id': 'test',
-          'info': [
+          id: 'test',
+          info: [
             {
-              'streams': [
+              streams: [
                 {
-                  'source': 'Test LiveStream Provider',
-                  'id': '_CuklIb9d3fI'
+                  source: 'Test LiveStream Provider',
+                  id: '_CuklIb9d3fI'
                 }
               ],
-              'name': 'Test LiveStream',
-              'thumbnail': 'https://test-thumb-url',
-              'artist': {
-                'name': 'Test artist'
+              name: 'Test LiveStream',
+              thumbnail: 'https://test-thumb-url',
+              artist: {
+                name: 'Test artist'
               }
             }
           ]
+        }
+      };
+      return this as StoreStateBuilder;
+    },
+    withLoggedInUser() {
+      state.nuclear.identity = {
+        ...state.nuclear.identity,
+        token: 'auth-token',
+        signedInUser: {
+          id: '1',
+          username: 'nukeop',
+          displayName: 'nukeop',
+          accountState: UserAccountState.UNCONFIRMED
         }
       };
       return this as StoreStateBuilder;
@@ -666,13 +770,35 @@ export const buildStoreState = () => {
           listType: 'simple-list',
           tracks: [],
           scanProgress: null,
-          scanTotal: null
+          scanTotal: null,
+          expandedFolders: []
         }
+      };
+      return this as StoreStateBuilder;
+    },
+    withSettings(settings: { [key: string]: string | number }) {
+      state.settings = {
+        ...state.settings,
+        ...settings
       };
       return this as StoreStateBuilder;
     },
     build() {
       return state;
     }
+  };
+};
+
+export const buildElectronStoreState = () => {
+  return {
+    equalizer: {
+      selected: 'Default'
+    },
+    downloads: [],
+    favorites: {
+      albums: [],
+      tracks: []
+    },
+    playlists: []
   };
 };
