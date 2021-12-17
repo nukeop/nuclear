@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import _, { flow } from 'lodash';
 import { store } from '@nuclear/core';
 import { areTracksEqualByName, getTrackItem, removeTrackStreamUrl } from '@nuclear/ui';
 
@@ -23,7 +23,7 @@ export function readFavorites() {
 }
 
 export function addFavoriteTrack(track) {
-  const clonedTrack = safeAddUuid(getTrackItem(removeTrackStreamUrl(track)));
+  const clonedTrack = flow(safeAddUuid, getTrackItem, removeTrackStreamUrl)(track);
 
   const favorites = store.get('favorites');
   const filteredTracks = favorites.tracks.filter(t => !areTracksEqualByName(t, track));

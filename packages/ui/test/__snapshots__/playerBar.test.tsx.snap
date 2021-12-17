@@ -109,7 +109,7 @@ exports[`(Snapshot) Player bar should render correctly 1`] = `
                   style="width: 12px; height: 12px; border-radius: 12px; background: rgb(248, 248, 242);"
                 />
                 <input
-                  class="input"
+                  class="range_input"
                   max="100"
                   min="0"
                   style="top: 4px; height: 12px; width: calc(100% - 12px); margin-left: 6px; margin-right: 6px;"

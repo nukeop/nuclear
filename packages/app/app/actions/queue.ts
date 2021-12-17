@@ -70,8 +70,8 @@ const playNextItem = item => ({
 });
 
 export const addToQueue = (item, asNextItem = false) => async (dispatch, getState) => {
-  item.loading = !item.local;
   item = safeAddUuid(item);
+  item.loading = !item.local;
 
   const { 
     connectivity, 

@@ -97,7 +97,6 @@ describe('Dashboard container', () => {
     buildStoreState()
       .withDashboard()
       .withPlugins()
-      .withConnectivity()
       .build()
   );
 });

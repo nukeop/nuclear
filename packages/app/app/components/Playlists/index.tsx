@@ -1,10 +1,15 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Icon, Segment } from 'semantic-ui-react';
+import { DropResult } from 'react-beautiful-dnd';
+import { useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { Dimmer, Icon, Loader } from 'semantic-ui-react';
 
-import PlaylistItem from './PlaylistItem';
+import { Playlist } from '@nuclear/core';
+import { Playlists as PlaylistsTable } from '@nuclear/ui';
+
 import PlaylistsHeader from './PlaylistsHeader';
-import { Playlist } from '@nuclear/core/src/helpers/playlist/types';
+import { reorderPlaylists } from '../../actions/playlists';
 import styles from './styles.scss';
 
 const EmptyState = () => {
@@ -21,13 +26,22 @@ const EmptyState = () => {
 };
 
 type PlaylistsProps = {
+  isLoading: boolean;
   playlists: Playlist[];
-  handleImportFromFile: React.MouseEventHandler;
-  createNew: (name: string) => void;
+  onImportFromFile: React.MouseEventHandler;
+  onCreate: (name: string) => void;
 }
 
-const Playlists: React.FC<PlaylistsProps> = ({ playlists, handleImportFromFile, createNew }) => {
-  
+const Playlists: React.FC<PlaylistsProps> = ({
+  isLoading = false,
+  playlists,
+  onImportFromFile,
+  onCreate
+}) => {
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const { t, i18n } = useTranslation('playlists');
+
   function isPlaylistsReallyEmpty() {
     return (
       !playlists || Object.keys(playlists).length === 0 || playlists.length === 0
@@ -38,33 +52,55 @@ const Playlists: React.FC<PlaylistsProps> = ({ playlists, handleImportFromFile, 
     return playlists && playlists.length > 0;
   }
 
+  const strings = {
+    tracksSingular: t('tracks-singular'),
+    tracksPlural: t('tracks-plural'),
+    modifiedAt: t('modified-at'),
+    neverModified: t('never-modified'),
+    serverModifiedAt: t('server-modified-at'),
+    uploadToServer: t('upload-to-server'),
+    downloadFromServer: t('download-from-server'),
+    locale: i18n.language
+  };
+
+  const callbacks = {
+    onPlaylistDownload: () => { },
+    onPlaylistUpload: () => { },
+    onPlaylistClick: (id: string) => history.push(`/playlist/${id}`),
+    onDragEnd: ({ source, destination }: DropResult) => dispatch(reorderPlaylists(source.index, destination.index))
+  };
+
   return (
     <div className={styles.playlists_container}>
-      <PlaylistsHeader 
-        showText={isPlaylistsReallyNotEmpty()}
-        handleImportFromFile={handleImportFromFile}
-        createNew={createNew}
-      />
       {
-        isPlaylistsReallyEmpty() && 
-        <EmptyState />
+        isLoading
+          ? <Dimmer active={isLoading}>
+            <Loader data-testid='loader' />
+          </Dimmer>
+          : <>
+            <PlaylistsHeader
+              showText={isPlaylistsReallyNotEmpty()}
+              onImportFromFile={onImportFromFile}
+              onCreate={onCreate}
+            />
+            {
+              isPlaylistsReallyEmpty() &&
+              <EmptyState />
+            }
+
+            {
+              isPlaylistsReallyNotEmpty() &&
+              <PlaylistsTable
+                displayModificationDates
+                playlists={playlists}
+
+                {...strings}
+                {...callbacks}
+              />
+            }
+          </>
       }
-      
-      {
-        isPlaylistsReallyNotEmpty() &&  
-          <Segment className={styles.playlists_segment}>
-            {playlists.map((playlist, i) => {
-              return (
-                <PlaylistItem
-                  playlist={playlist}
-                  index={i}
-                  key={i}
-                />
-              );
-            })}
-          </Segment>
-      }
-      
+
     </div>
   );
 };

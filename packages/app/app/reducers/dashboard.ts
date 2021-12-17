@@ -4,7 +4,8 @@ import {loadBestNewAlbumsAction, loadBestNewTracksAction, loadTopTagsAction, loa
 const initialState = {
   bestNewAlbums: [],
   bestNewTracks: [],
-  topTracks: []
+  topTracks: [],
+  topTags: []
 };
 
 export default function DashboardReducer(state = initialState, action) {

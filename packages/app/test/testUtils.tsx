@@ -7,11 +7,11 @@ import { createMemoryHistory } from 'history';
 import thunk from 'redux-thunk';
 import ReduxPromise from 'redux-promise';
 import { Router } from 'react-router';
+import { render } from '@testing-library/react';
 import en from '@nuclear/i18n/src/locales/en.json';
 
 import rootReducer from '../app/reducers';
 import syncStore from '../app/store/enhancers/syncStorage';
-import { render } from '@testing-library/react';
 
 import MainContentContainer from '../app/containers/MainContentContainer';
 import HelpModalContainer from '../app/containers/HelpModalContainer';

@@ -5,7 +5,7 @@ import { usePlaylistsProps } from './hooks';
 
 const PlaylistsContainer: React.FC = () => {
   const props = usePlaylistsProps();
-  
+
   return <Playlists
     {...props}
   />;

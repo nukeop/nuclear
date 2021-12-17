@@ -3,7 +3,7 @@ import NeumorphicBox from '../lib/components/NeumorphicBox';
 
 makeSnapshotTest(
   NeumorphicBox, {
-  children: ['test']
-},
+    children: ['test']
+  },
   '(Snapshot) Neumorphic Box'
-)
+);

@@ -5,7 +5,6 @@ import { useTable, Column, useRowSelect } from 'react-table';
 import _ from 'lodash';
 import { DragDropContext, Droppable, Draggable, DragDropContextProps } from 'react-beautiful-dnd';
 
-
 import DeleteCell from './Cells/DeleteCell';
 import FavoriteCell from './Cells/FavoriteCell';
 import PositionCell from './Cells/PositionCell';
@@ -68,7 +67,7 @@ const TrackTable: React.FC<TrackTableProps> = ({
       id: TrackTableColumn.Thumbnail,
       Header: () => <span className={styles.center_aligned}>{thumbnailHeader}</span>,
       accessor: (track) => getTrackThumbnail(track) || artPlaceholder,
-      Cell: ThumbnailCell
+      Cell: ThumbnailCell()
     },
     displayFavorite && {
       id: TrackTableColumn.Favorite,
