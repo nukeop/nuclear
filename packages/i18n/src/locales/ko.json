@@ -26,6 +26,11 @@
     "search": "검색 결과",
     "settings": "설정",
     "visualizer": "비주얼라이저",
+    "user-panel": {
+      "actions-tooltip": "User actions",
+      "sign-up": "Sign up / Sign in",
+      "sign-out": "Sign out"
+    },
     "version": "버전"
   },
   "artist": {
@@ -161,7 +166,14 @@
     "songs_plural": "{{total}}곡",
     "title": "제목",
     "tracks-selected-plural": "트랙 선택됨",
-    "tracks-selected-singular": "트랙 선택됨"
+    "tracks-selected-singular": "트랙 선택됨",
+    "tracks-singular": "track",
+    "tracks-plural": "tracks",
+    "modified-at": "Last modified: ",
+    "never-modified": "Unknown",
+    "server-modified-at": "Server modified: ",
+    "upload-to-server": "Upload to server",
+    "download-from-server": "Download from server"
   },
   "plugins": {
     "add-a-plugin": "플러그인 추가",
@@ -265,6 +277,8 @@
     "mastodon-post-format-description": "Nuclear가 각 트랙 재생이 완료된 후 Mastodon에 상태를 게시합니다. 위의 문자열은 각 게시물의 템플릿이 되고, {{artist}} 및 {{title}}은 아티스트 및 트랙 제목으로 대체됩니다.",
     "mastodon-post-format-label": "게시 형식",
     "mastodon-title": "",
+    "nuclear-identity-service-url": "Nuclear identity service URL",
+    "nuclear-playlists-service-url": "Nuclear playlists service URL",
     "mini-player": "미니 플레이어 모드 사용",
     "more": "강하게",
     "discord-rich-presence": "디스코드 현재 재생 음악 보이기 (재시작 필요)",
@@ -318,5 +332,38 @@
   },
   "visualizer": {
     "exit-fullscreen": "전체 화면 모드를 종료하려면 Esc 키를 누르십시오."
+  },
+  "forms": {
+    "nuclear-sign-up": {
+      "header": "Sign up",
+      "secondary-header": "Sign up to Nuclear Web Services",
+      "side-paragraph-1": "NWS enables you to backup your playlists online and share them.",
+      "side-paragraph-2": "Providing your email is optional; it will allow you to recover your account if you forget your password.",
+      "username-label": "Username",
+      "email-label": "Email",
+      "password-label": "Password",
+      "sign-up-button": "Sign up",
+      "validation": {
+        "username": {
+          "length": "Username must be 4 characters or more",
+          "required": "Username is required"
+        },
+        "email": {
+          "invalid": "Email must be a valid email"
+        },
+        "password": {
+          "length": "Password must be 6 characters or more",
+          "required": "Password is required"
+        }
+      }
+    },
+    "nuclear-sign-in": {
+      "header": " Sign in",
+      "username-label": "Username",
+      "password-label": "Password",
+      "no-account-label": "Don't have an account?",
+      "no-account-link": "Sign up",
+      "sign-in-button": "Sign in"
+    }
   }
 }
