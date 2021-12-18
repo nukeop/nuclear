@@ -117,7 +117,7 @@ const FavoriteTracksView: React.FC<FavoriteTracksViewProps> = ({
                         />
                       }
                       track={track}
-                      artist={track.artist.name}
+                      artist={track?.artist.name}
                       title={track.name}
                       thumb={track.thumbnail}
                       withAddToFavorites={false}
@@ -133,23 +133,6 @@ const FavoriteTracksView: React.FC<FavoriteTracksViewProps> = ({
   );
 };
 
-// FavoriteTracksView.propTypes = {
-//   tracks: PropTypes.arrayOf(
-//     PropTypes.shape({
-//     artist: PropTypes.shape({
-//       name: PropTypes.string
-//     }),
-//     name: PropTypes.string
-//   })),
-//   removeFavoriteTrack: PropTypes.func,
-//   streamProviders: PropTypes.array
-// };
-
-// FavoriteTracksView.defaultProps = {
-//   tracks: [],
-//   streamProviders: [],
-//   removeFavoriteTrack: () => {}
-// };
 
 export default FavoriteTracksView;
 
