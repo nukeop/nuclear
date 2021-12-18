@@ -11,7 +11,7 @@ export default class Track {
   ids?: {
     [K in SearchResultsSource]?: string
   };
-  artist: string | { name: string };
+  artist: string;
   title: string;
   name?: string;
   duration: string | number;
