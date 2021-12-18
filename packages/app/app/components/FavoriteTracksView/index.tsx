@@ -10,6 +10,7 @@ import Header from '../Header';
 import trackRowStyles from '../TrackRow/styles.scss';
 import styles from './styles.scss';
 import { Track } from '@nuclear/core';
+import { getTrackArtist } from '@nuclear/ui/lib';
 
 export const EmptyState = () => {
   const { t } = useTranslation('favorites');
@@ -117,7 +118,7 @@ const FavoriteTracksView: React.FC<FavoriteTracksViewProps> = ({
                         />
                       }
                       track={track}
-                      artist={track.artist.name}
+                      artist={getTrackArtist(track)}
                       title={track.name}
                       thumb={track.thumbnail}
                       withAddToFavorites={false}
