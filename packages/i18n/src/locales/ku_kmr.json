@@ -27,9 +27,9 @@
     "settings": "Sazkarî",
     "visualizer": "Dîtbarî",
     "user-panel": {
-      "actions-tooltip": "User actions",
-      "sign-up": "Sign up / Sign in",
-      "sign-out": "Sign out"
+      "actions-tooltip": "Çalakiyên bikarhêner",
+      "sign-up": "Tomar bibe / Têkeve",
+      "sign-out": "Derkeve"
     },
     "version": "Guherto"
   },
@@ -167,13 +167,13 @@
     "title": "Sernav",
     "tracks-selected-plural": "stran hatin hilbijartin",
     "tracks-selected-singular": "stran hate hilbijartin",
-    "tracks-singular": "track",
-    "tracks-plural": "tracks",
-    "modified-at": "Last modified: ",
-    "never-modified": "Unknown",
-    "server-modified-at": "Server modified: ",
-    "upload-to-server": "Upload to server",
-    "download-from-server": "Download from server"
+    "tracks-singular": "stran",
+    "tracks-plural": "stran",
+    "modified-at": "Guhertina herî dawî: ",
+    "never-modified": "Nenas",
+    "server-modified-at": "Rajekar hate guhertin: ",
+    "upload-to-server": "Li rajekar bar bike",
+    "download-from-server": "Ji rajekar daxe"
   },
   "plugins": {
     "add-a-plugin": "Pêvekekê tevlî bike",
@@ -277,8 +277,8 @@
     "mastodon-post-format-description": "Nuclear piştî ku lêdana her herîk qediya ew ê li ser Mastodon rewşekê biweşîne. Rêza jorîn wê bibe kirasek ji bo her şandiyê, li şûna {{artist}} û {{title}} hunermend û sernavê stranê wê werin guhertin.",
     "mastodon-post-format-label": "Awayê şandinê",
     "mastodon-title": "",
-    "nuclear-identity-service-url": "Nuclear identity service URL",
-    "nuclear-playlists-service-url": "Nuclear playlists service URL",
+    "nuclear-identity-service-url": "Navnîşana girêdanê karûbarên nasnameya Nuclear",
+    "nuclear-playlists-service-url": "Navnîşana girêdanê karûbarên rêzoka lêdanan a Nuclear",
     "mini-player": "Şêwazê lêdera piçûk bi kar bîne",
     "more": "Bêtir",
     "discord-rich-presence": "Muzîka ku di dema heyî tê lêdan nîşan bide ( ji nû ve destpêkirin pêdivî dike)",
@@ -335,35 +335,35 @@
   },
   "forms": {
     "nuclear-sign-up": {
-      "header": "Sign up",
-      "secondary-header": "Sign up to Nuclear Web Services",
-      "side-paragraph-1": "NWS enables you to backup your playlists online and share them.",
-      "side-paragraph-2": "Providing your email is optional; it will allow you to recover your account if you forget your password.",
-      "username-label": "Username",
-      "email-label": "Email",
-      "password-label": "Password",
-      "sign-up-button": "Sign up",
+      "header": "Tomar bibe",
+      "secondary-header": "Tomar bibe bo karûbarên tevnê ya Nuclear",
+      "side-paragraph-1": "NWS dihêle ku tu rêzoka lêdanan xwe serhêl hilînî û wan parve bikiî.",
+      "side-paragraph-2": "Nivisandina e-nameya xwe vebijêrkî ye; heke tu pêborîna xwe ji bîr bikî ew ê bihêle ku tu ajimêra xwe vegerînî.",
+      "username-label": "Navê bikarhêner",
+      "email-label": "E-name",
+      "password-label": "Pêborîn",
+      "sign-up-button": "Tomar bibe",
       "validation": {
         "username": {
-          "length": "Username must be 4 characters or more",
-          "required": "Username is required"
+          "length": "Navê bikarhêner divê ji 4 tîpan an bêtir pêk bê",
+          "required": "Navê bikarhêner pêdivî ye"
         },
         "email": {
-          "invalid": "Email must be a valid email"
+          "invalid": "E-name divê e-nameyeke derbasdar be"
         },
         "password": {
-          "length": "Password must be 6 characters or more",
-          "required": "Password is required"
+          "length": "Pêborîn divê ji 6 tîpan an bêtir pêk bê",
+          "required": "Pêborîn pêdivî ye"
         }
       }
     },
     "nuclear-sign-in": {
-      "header": " Sign in",
-      "username-label": "Username",
-      "password-label": "Password",
-      "no-account-label": "Don't have an account?",
-      "no-account-link": "Sign up",
-      "sign-in-button": "Sign in"
+      "header": " Têkeve",
+      "username-label": "Navê bikarhêner",
+      "password-label": "Pêborîn",
+      "no-account-label": "Ajimêreke te tune ye?",
+      "no-account-link": "Tomar bibe",
+      "sign-in-button": "Têkeve"
     }
   }
 }
