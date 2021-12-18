@@ -117,7 +117,7 @@ const FavoriteTracksView: React.FC<FavoriteTracksViewProps> = ({
                         />
                       }
                       track={track}
-                      artist={track?.artist.name}
+                      artist={track.artist.name}
                       title={track.name}
                       thumb={track.thumbnail}
                       withAddToFavorites={false}
