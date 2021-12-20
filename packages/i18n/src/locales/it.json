@@ -173,7 +173,8 @@
     "never-modified": "Sconosciuto",
     "server-modified-at": "Server modificato: ",
     "upload-to-server": "Caricare sul server",
-    "download-from-server": "Scaricare dal server"
+    "download-from-server": "Scaricare dal server",
+    "number-of-tracks": "tracks"
   },
   "plugins": {
     "add-a-plugin": "Aggiungi un plugin",
