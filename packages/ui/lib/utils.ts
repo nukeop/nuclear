@@ -65,3 +65,22 @@ export const removeTrackStreamUrl = (track: Track) => {
 
   return track;
 };
+
+export const timestampToDateString = (timestamp: number, locale: string) => new Date(timestamp).toLocaleDateString(
+  locale, {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  }
+);
+
+export const timestampToTimeString = (timestamp: number, locale: string) => new Date(timestamp).toLocaleDateString(
+  locale, {
+    year: 'numeric',
+    month: 'numeric',
+    day: 'numeric',
+    hour: 'numeric',
+    minute: 'numeric',
+    second: 'numeric'
+  }
+);

@@ -5,14 +5,7 @@ import { Playlist } from '@nuclear/core';
 
 import styles from '../styles.scss';
 import { PlaylistsCallbacks, PlaylistsStrings } from '..';
-
-const timestampToString = (timestamp: number, locale: string) => new Date(timestamp).toLocaleDateString(
-  locale, {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric'
-  }
-);
+import { timestampToDateString } from '../../../utils';
 
 const ModificationDateCell: React.FC<CellProps<Playlist> & PlaylistsStrings & PlaylistsCallbacks> = ({
   cell,
@@ -32,7 +25,7 @@ const ModificationDateCell: React.FC<CellProps<Playlist> & PlaylistsStrings & Pl
         {modifiedAt}
         {
           value?.lastModified
-            ? timestampToString(value.lastModified, locale)
+            ? timestampToDateString(value.lastModified, locale)
             : neverModified
         }
       </div>
@@ -40,7 +33,7 @@ const ModificationDateCell: React.FC<CellProps<Playlist> & PlaylistsStrings & Pl
         {serverModifiedAt}
         {
           value?.serverModified
-            ? timestampToString(value.serverModified, locale)
+            ? timestampToDateString(value.serverModified, locale)
             : neverModified
         }
       </div>

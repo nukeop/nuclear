@@ -2,7 +2,7 @@ import React, { useCallback } from 'react';
 import _ from 'lodash';
 import { useTranslation } from 'react-i18next';
 import { Icon } from 'semantic-ui-react';
-import { Button, ContextPopup, PopupButton } from '@nuclear/ui';
+import { Button, ContextPopup, PopupButton, timestampToTimeString } from '@nuclear/ui';
 import { Playlist, Track, TrackType } from '@nuclear/core';
 
 import InputDialog from '../InputDialog';
@@ -36,7 +36,7 @@ const PlaylistView: React.FC<PlaylistViewProps> = ({
   selectSong,
   startPlayback
 }) => {
-  const { t } = useTranslation('playlists');
+  const { t, i18n } = useTranslation('playlists');
   const history = useHistory();
 
   const onRenamePlaylist = useCallback((name: string) => {
@@ -103,6 +103,23 @@ const PlaylistView: React.FC<PlaylistViewProps> = ({
                   />
                 }
               />
+            </div>
+            <div className={styles.playlist_details}>
+              <span>
+                {`${playlist.tracks.length} ${t('number-of-tracks')}`}
+              </span>
+              {
+                playlist.lastModified &&
+                  <>
+                    <span>
+                      ·
+                    </span>
+
+                    <span>
+                      {`${t('modified-at')}${timestampToTimeString(playlist.lastModified, i18n.language)}`}
+                    </span>
+                  </>
+              }
             </div>
             <div className={styles.playlist_buttons}>
               <Button

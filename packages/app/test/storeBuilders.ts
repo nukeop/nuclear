@@ -322,6 +322,7 @@ export const buildStoreState = () => {
               {
                 id: 'test-playlist-id',
                 name: 'test playlist',
+                lastModified: 1000198000000,
                 tracks: [
                   {
                     uuid: 'test-track-1',
