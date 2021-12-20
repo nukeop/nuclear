@@ -112,6 +112,18 @@ describe('Playlist view container', () => {
     expect(state.playlists.localPlaylists.data[0].name).toEqual('new name');
   });
 
+  it('should update the last modified date when the playlist is modified', async () => {
+    Date.now = jest.fn(() => (new Date('2021-01-01').valueOf()));
+    const { component, store } = mountComponent();
+    await waitFor(() => component.getByTestId('rename-button').click());
+    const input = component.getByPlaceholderText('Playlist name...');
+    fireEvent.change(input, { target: { value: 'new name' } });
+    await waitFor(() => component.getByText(/rename/i).click());
+
+    const state = store.getState();
+    expect(state.playlists.localPlaylists.data[0].lastModified).toEqual(new Date('2021-01-01').valueOf());
+  });
+
   it('should add a single track to the queue', async () => {
     const { component, store } = mountComponent();
     await waitFor(() => component.getAllByTestId('add-to-queue')[1].click());

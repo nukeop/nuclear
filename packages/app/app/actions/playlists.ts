@@ -121,7 +121,6 @@ export const exportPlaylist = (playlist, t) => async (dispatch) => {
     } catch (e) {
       dispatch(error(t('export-fail-title'), t('error-save-file'), null, null));
     }
-
   }
 };
 

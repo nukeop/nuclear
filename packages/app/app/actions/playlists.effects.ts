@@ -9,12 +9,16 @@ export const deletePlaylistEffect = store => id => {
 };
 
 export const updatePlaylistEffect = store => playlist => {
+  const updatedPlaylist = {
+    ...playlist,
+    lastModified: Date.now().valueOf()
+  };
   const playlists = [...store.get('playlists')];
   const index = _.findIndex(playlists, {id: playlist.id});
   if (index !== -1) {
-    playlists.splice(index, 1, playlist);
+    playlists.splice(index, 1, updatedPlaylist);
   } else {
-    playlists.push(playlist);
+    playlists.push(updatedPlaylist);
   }
   store.set('playlists', playlists);
   return playlists;
