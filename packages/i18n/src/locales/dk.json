@@ -173,7 +173,8 @@
     "never-modified": "Unknown",
     "server-modified-at": "Server modified: ",
     "upload-to-server": "Upload to server",
-    "download-from-server": "Download from server"
+    "download-from-server": "Download from server",
+    "number-of-tracks": "tracks"
   },
   "plugins": {
     "add-a-plugin": "tilføj udvidelse",
