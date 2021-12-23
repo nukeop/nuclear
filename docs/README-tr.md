@@ -32,6 +32,7 @@ Readme (beni oku) çevirileri:
 <kbd>[<img title="İtalyanca" alt="İtalyanca" src="https://cdn.staticaly.com/gh/hjnilsson/country-flags/master/svg/it.svg" width="22">](docs/README-it.md)</kbd>
 <kbd>[<img title="Türkçe" alt="Türkçe" src="https://cdn.staticaly.com/gh/hjnilsson/country-flags/master/svg/tr.svg" width="22">](docs/README-tr.md)</kbd>
 <kbd>[<img title="İspanyolca" alt="İspanyolca" src="https://cdn.staticaly.com/gh/hjnilsson/country-flags/master/svg/es.svg" width="22">](docs/README-es.md)</kbd>
+<kbd>[<img title="Indonesia" alt="Indonesia" src="https://cdn.staticaly.com/gh/hjnilsson/country-flags/master/svg/id.svg" width="22">](docs/README-id.md)</kbd>
 
 ## Bu Nedir?
 

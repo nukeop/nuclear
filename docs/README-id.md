@@ -1,27 +1,27 @@
 # ![nuclear](https://i.imgur.com/oT1006i.png) 
 [![nuclear](https://snapcraft.io//nuclear/badge.svg)](https://snapcraft.io/nuclear) [![Discord](https://img.shields.io/badge/Discord-7289DA?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/JqPjKxE)
 
-Desktop music player focused on streaming from free sources
+Pemutar musik desktop yang berfokus pada streaming dari sumber gratis
 
 ![Showcase](https://i.imgur.com/8qHu66J.png)
 
 # Links
 
-[Official website](https://nuclear.js.org)
+[Website Resmi](https://nuclear.js.org)
 
-[Downloads](https://github.com/nukeop/nuclear/releases)
+[Unduh](https://github.com/nukeop/nuclear/releases)
 
-[Documentation](https://nukeop.gitbook.io/nuclear/)
+[Dokumentasi](https://nukeop.gitbook.io/nuclear/)
 
 [Mastodon](https://mstdn.io/@nuclear)
 
 [Twitter](https://twitter.com/nuclear_player)
 
-Support channel (Matrix): `#nuclear:matrix.org`
+Dukungan channel (Matrix): `#nuclear:matrix.org`
 
-Discord chat: https://discord.gg/JqPjKxE
+Chat Discord : https://discord.gg/JqPjKxE
 
-Readme translations: 
+Terjemahan : 
 
 <kbd>[<img title="Deutsch" alt="Deutsch" src="https://cdn.staticaly.com/gh/hjnilsson/country-flags/master/svg/de.svg" width="22">](docs/README-de.md)</kbd>
 <kbd>[<img title="Português" alt="Português" src="https://cdn.staticaly.com/gh/hjnilsson/country-flags/master/svg/br.svg" width="22">](docs/README-ptbr.md)</kbd>
@@ -31,48 +31,47 @@ Readme translations:
 <kbd>[<img title="Italiano" alt="Italiano" src="https://cdn.staticaly.com/gh/hjnilsson/country-flags/master/svg/it.svg" width="22">](docs/README-it.md)</kbd>
 <kbd>[<img title="Türkçe" alt="Türkçe" src="https://cdn.staticaly.com/gh/hjnilsson/country-flags/master/svg/tr.svg" width="22">](docs/README-tr.md)</kbd>
 <kbd>[<img title="Español" alt="Español" src="https://cdn.staticaly.com/gh/hjnilsson/country-flags/master/svg/es.svg" width="22">](docs/README-es.md)</kbd>
-<kbd>[<img title="Indonesia" alt="Indonesia" src="https://cdn.staticaly.com/gh/hjnilsson/country-flags/master/svg/id.svg" width="22">](docs/README-id.md)</kbd>
 
-## What is this?
-nuclear is a free music streaming program that pulls content from free sources all over the internet.
+## Apa itu Nuclear?
+Nuclear adalah aplikasi pemutar musik gratis yang mengambil konten dari semua sumber yang ada di internet.
 
-If you know [mps-youtube](https://github.com/mps-youtube/mps-youtube), this is a similar music player but with a GUI.
-It's also focusing more on audio. Imagine Spotify which you don't have to pay for and with a bigger library.
+Jika Anda pernah mendengar pemutar [mps-youtube](https://github.com/mps-youtube/mps-youtube), Nuclear merupakan aplikasi yang sama, namun memiliki GUI.
+Nuclear juga lebih berfokus ke _audio_. Bayangkan saja bahwa Nuclear adalah aplikasi pemutar musik Spotify, namun bedanya Anda tidak perlu membayar dan jumlah koleksi musik di sini jauh lebih besar.
 
-## What if I am religiously opposed to Electron?
-See [this](docs/electron.md).
+## Bagaimana jika Saya "bersebrangan dengan elektron"?
+Lihat [ini](docs/electron.md).
 
-## Features
+## Fitur
 
-- Searching for and playing music from YouTube (including integration with playlists and [SponsorBlock](https://sponsor.ajay.app/)), Jamendo, Audius and SoundCloud
-- Searching for albums (powered by Last.fm and Discogs), album view, automatic song lookup based on artist and track name (in progress, can be dodgy sometimes)
-- Song queue, which can be exported as a playlist
-- Loading saved playlists (stored in json files)
-- Scrobbling to last.fm (along with updating the 'now playing' status)
-- Newest releases with reviews - tracks and albums
-- Browsing by genre
-- Radio mode (automatically queue similar tracks)
-- Unlimited downloads (powered by youtube)
-- Realtime lyrics
-- Browsing by popularity
-- List of favorite tracks
-- Listening from local library
-- No accounts
-- No ads
-- No CoC
-- No CLA
+- Pencarian dan memutar lagu dari YouTube (termasuk integrasi _playlist_ dan [SponsorBlock](https://sponsor.ajay.app/), Jamendo, Audius dan SoundCloud
+- Pencarian album (lewat Last.fm dan Discogs), melihat album, mencari lagu otomatis berdasarkan musisi dan judul lagu (sedang dalam tahap pengembangan, kadang tidak berjalan sesuai harapan)
+- _Queue_ lagu, yang bisa diekspor sebagai _playlist_
+- Memuat _playlist_ yang tersimpan (disimpan dalam json file)
+- _Scrobbling_ lewat last.fm (serta meng-_update_ status 'sedang memutar' lagu tertentu)
+- Rilisan terbaru, lengkap beserta _review_ lagu dan albumnya
+- Pencarian berdasarkan _genre_
+- Mode radio (otomatis melakukan _queue_ lagu yang mirip)
+- Unduh tak terhingga (lewat YouTube)
+- Timing lagu dan lirik yang tepat
+- Pencarian berdasarkan popularitas
+- _List_ lagu favorit
+- Dengarkan lewat daftar koleksi
+- Tanpa akun
+- Tanpa iklan
+- Tanpa CoC
+- Tanpa CLA
 
-## Development process
+## Proses Pengembangan
 
-First of all, be sure to check out the [Contribution Guidelines](https://nukeop.gitbook.io/nuclear/contributing/contribution-guidelines).
+Pertama, pastikan membaca [Petunjuk Berkontribusi](https://nukeop.gitbook.io/nuclear/contributing/contribution-guidelines).
 
-The instructions for running Nuclear in development mode can be found in the [Development Process](https://nukeop.gitbook.io/nuclear/developer-resources/development-process) document.
+Instruksi untuk menjalankan Nuclear dalam mode pengembangan dapat dibaca di [Proses Pengembangan](https://nukeop.gitbook.io/nuclear/developer-resources/development-process)
 
-## Community-maintained packages
+## Packages Yang Dikelola Komunitas
 
-Here's a list of packages for various managers, some of which are maintained by third parties. We would like to thank the maintainers for their work.
+Berikut adalah _list packages managers_, yang sebagian dikelola oleh pihak ketiga. Kami berterima kasih kepada para pengelola atas hasil kerjanya.
 
-| Package type   | Link                                                               | Maintainer                                   | Installation Method                           |
+| Tipe Packages   | Link                                                               | Pengelola                                   | Metode Instalasi                           |
 |:--------------:|:------------------------------------------------------------------:|:--------------------------------------------:|:---------------------------------------------:|
 | AUR (Arch)     | https://aur.archlinux.org/packages/nuclear-player-bin/             | [nukeop](https://github.com/nukeop)          | yay -s nuclear-player-bin                     |
 | AUR (Arch)     | https://aur.archlinux.org/packages/nuclear-player-git              | [nukeop](https://github.com/nukeop)          | yay -s nuclear-player-git                     |
@@ -83,14 +82,13 @@ Here's a list of packages for various managers, some of which are maintained by 
 | Flatpak        | https://flathub.org/apps/details/org.js.nuclear.Nuclear            | [nukeop](https://github.com/nukeop)          | flatpak install flathub org.js.nuclear.Nuclear|
 | Void Linux     | https://github.com/machadofguilherme/nuclear-template              | [machadofguilherme](https://github.com/machadofguilherme) | See readme
 
+## Alih Bahasa Dari Komunitas
+Nuclear telah diterjemahkan ke beberapa bahasa, dan kami akan terus mencari kontributor yang selalu ingin berkontribusi.
 
-## Community translations
-Nuclear has already been translated to several languages, and we're always looking for contributors who would like to add more.
+Kami menggunakan _platform_ [Crowdin](https://crowdin.com/project/nuclear) untuk mengelola alih bahasa. Anda bisa mengecek apakah bahasa yang Anda gunakan telah tersedia di sana, melihat proses alih bahasa, dan bahkan membantu kami menerjemahkan Nuclear.
 
-We're using [Crowdin](https://crowdin.com/project/nuclear) to manage localization. You can check if your language is supported, track localization progress, and help us translate Nuclear there.
-
-## Screenshots
-This will be updated as the program evolves.
+## Screenshot
+Screenshot akan di-_update_ seiring perkembangan aplikasi.
 
 ![Album Search](https://i.imgur.com/idFVnAF.png)
 
@@ -108,9 +106,9 @@ This will be updated as the program evolves.
 
 ![Equalizer View](https://i.imgur.com/WreRL0w.png)
 
-## License
+## Lisensi
 
-This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+Program ini merupakan perangkat lunak gratis: Anda dapat mendistribusikannya atau memodifikasi di bawah aturan GNU Affero General Public License yang dipublikasikan oleh Free Software Foundation, terlepas versi 3 lisensi, atau versi setelahnya sesuai pilihan anda.
 
-## Attributions
-Uses SponsorBlock data licensed used under [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/) from https://sponsor.ajay.app/.
+## Attribusi
+Menggunakan data SponsorBlock dibawah [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/) from https://sponsor.ajay.app/.
