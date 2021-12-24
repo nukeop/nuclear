@@ -21,6 +21,8 @@ Support channel (Matrix): `#nuclear:matrix.org`
 
 Discord chat: https://discord.gg/JqPjKxE
 
+Suggest and vote on new features here: https://nuclear.featureupvote.com/
+
 Readme translations: 
 
 <kbd>[<img title="Deutsch" alt="Deutsch" src="https://cdn.staticaly.com/gh/hjnilsson/country-flags/master/svg/de.svg" width="22">](docs/README-de.md)</kbd>
