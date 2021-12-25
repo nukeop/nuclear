@@ -1,10 +1,10 @@
 {
   "album": {
-    "download": "Download",
+    "download": "I-Download",
     "download-toast-content": "{{artist}} - {{title}} ay naidagdag sa mga download.",
     "download-toast-title": "Idinagdag ang album sa mga download",
-    "error-load": "Sorry, this album could not be loaded. Try again later or open a new issue on Github",
-    "genre": "Genre:",
+    "error-load": "Paumanhin, ang album na ito ay hindi tuluyang nabuksan. Subukan ulit mamaya o ipaalam ang bagong issue sa Github",
+    "genre": "Kabilang sa:",
     "play": "Play",
     "queue": "Idagdag ang album sa pila",
     "tracks": "Tracks:",
