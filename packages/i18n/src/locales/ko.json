@@ -28,8 +28,8 @@
     "visualizer": "비주얼라이저",
     "user-panel": {
       "actions-tooltip": "User actions",
-      "sign-up": "Sign up / Sign in",
-      "sign-out": "Sign out"
+      "sign-up": "로그인 / 회원가입",
+      "sign-out": "로그아웃"
     },
     "version": "버전"
   },
@@ -167,14 +167,14 @@
     "title": "제목",
     "tracks-selected-plural": "트랙 선택됨",
     "tracks-selected-singular": "트랙 선택됨",
-    "tracks-singular": "track",
-    "tracks-plural": "tracks",
+    "tracks-singular": "트랙",
+    "tracks-plural": "트랙",
     "modified-at": "Last modified: ",
-    "never-modified": "Unknown",
+    "never-modified": "알 수 없음",
     "server-modified-at": "Server modified: ",
     "upload-to-server": "Upload to server",
     "download-from-server": "Download from server",
-    "number-of-tracks": "tracks"
+    "number-of-tracks": "트랙"
   },
   "plugins": {
     "add-a-plugin": "플러그인 추가",
@@ -341,9 +341,9 @@
       "side-paragraph-1": "NWS enables you to backup your playlists online and share them.",
       "side-paragraph-2": "Providing your email is optional; it will allow you to recover your account if you forget your password.",
       "username-label": "Username",
-      "email-label": "Email",
-      "password-label": "Password",
-      "sign-up-button": "Sign up",
+      "email-label": "이메일",
+      "password-label": "비밀번호",
+      "sign-up-button": "회원가입",
       "validation": {
         "username": {
           "length": "Username must be 4 characters or more",
@@ -353,18 +353,18 @@
           "invalid": "Email must be a valid email"
         },
         "password": {
-          "length": "Password must be 6 characters or more",
-          "required": "Password is required"
+          "length": "비밀번호는 최소 6자 이상이어야 합니다",
+          "required": "비밀번호가 필요합니다."
         }
       }
     },
     "nuclear-sign-in": {
-      "header": " Sign in",
-      "username-label": "Username",
-      "password-label": "Password",
-      "no-account-label": "Don't have an account?",
-      "no-account-link": "Sign up",
-      "sign-in-button": "Sign in"
+      "header": " 로그인",
+      "username-label": "사용자 이름",
+      "password-label": "비밀번호",
+      "no-account-label": "계정이 없으신가요?",
+      "no-account-link": "회원가입",
+      "sign-in-button": "로그인"
     }
   }
 }
