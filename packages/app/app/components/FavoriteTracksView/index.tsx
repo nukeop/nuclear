@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import cx from 'classnames';
 import _ from 'lodash';
 import { Icon, Segment, Table } from 'semantic-ui-react';
@@ -10,6 +9,8 @@ import Header from '../Header';
 
 import trackRowStyles from '../TrackRow/styles.scss';
 import styles from './styles.scss';
+import { Track } from '@nuclear/core';
+import { getTrackArtist } from '@nuclear/ui/lib';
 
 export const EmptyState = () => {
   const { t } = useTranslation('favorites');
@@ -26,7 +27,16 @@ export const EmptyState = () => {
   );
 };
 
-const FavoriteTracksView = ({
+type FavoriteTracksViewProps = {
+  tracks: Track[];
+  removeFavoriteTrack: (track:Track) => void;
+  clearQueue: () => void;
+  selectSong: (x:number) =>void;
+  startPlayback: () => void;
+  addToQueue: React.MouseEventHandler;
+}
+
+const FavoriteTracksView: React.FC<FavoriteTracksViewProps> = ({
   tracks,
   removeFavoriteTrack,
   clearQueue,
@@ -108,7 +118,7 @@ const FavoriteTracksView = ({
                         />
                       }
                       track={track}
-                      artist={track.artist.name}
+                      artist={getTrackArtist(track)}
                       title={track.name}
                       thumb={track.thumbnail}
                       withAddToFavorites={false}
@@ -124,22 +134,6 @@ const FavoriteTracksView = ({
   );
 };
 
-FavoriteTracksView.propTypes = {
-  tracks: PropTypes.arrayOf(PropTypes.shape({
-    artist: PropTypes.shape({
-      name: PropTypes.string
-    }),
-    name: PropTypes.string
-  })),
-  removeFavoriteTrack: PropTypes.func,
-  streamProviders: PropTypes.array
-};
-
-FavoriteTracksView.defaultProps = {
-  tracks: [],
-  streamProviders: [],
-  removeFavoriteTrack: () => {}
-};
 
 export default FavoriteTracksView;
 
