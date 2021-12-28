@@ -9,16 +9,16 @@ import InputDialog from '../../InputDialog';
 
 type PlaylistsHeaderProps = {
   showText: boolean;
-  handleImportFromFile: React.MouseEventHandler;
-  createNew: (name: string) => void;
+  onImportFromFile: React.MouseEventHandler;
+  onCreate: (name: string) => void;
 }
 
-const PlaylistsHeader: React.FC<PlaylistsHeaderProps> = ({ showText, handleImportFromFile, createNew }) => {
+const PlaylistsHeader: React.FC<PlaylistsHeaderProps> = ({ 
+  showText, 
+  onImportFromFile, 
+  onCreate 
+}) => {
   const { t } = useTranslation('playlists');
-
-  const handleAddPlaylist = (name) => {
-    createNew(name);
-  };
 
   return (
     <div className={styles.header_container}>
@@ -30,7 +30,7 @@ const PlaylistsHeader: React.FC<PlaylistsHeaderProps> = ({ showText, handleImpor
           header={<h4>Input playlist name:</h4>}
           placeholder={t('dialog-placeholder')}
           accept={t('dialog-accept')}
-          onAccept={handleAddPlaylist}
+          onAccept={onCreate}
           testIdPrefix='create-playlist'
           trigger={
             <Button
@@ -45,7 +45,7 @@ const PlaylistsHeader: React.FC<PlaylistsHeaderProps> = ({ showText, handleImpor
         />
         <Button
           basic
-          onClick={handleImportFromFile}
+          onClick={onImportFromFile}
           data-testid='import-from-file'
         >
           <Icon name='file text' />

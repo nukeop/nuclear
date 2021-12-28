@@ -96,7 +96,7 @@ const Settings: React.FC<SettingsProps> = ({
       search
       selection
       className={styles.list_option}
-      placeholder={placeholder}
+      placeholder={t(placeholder)}
       value={i18n.language}
       options={options}
       onChange={(e, { value }) => i18n.changeLanguage(value as string)}

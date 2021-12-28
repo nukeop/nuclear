@@ -474,7 +474,7 @@ exports[`Settings view container should render settings 1`] = `
                     style="width: 21px; height: 21px; border-radius: 21px; background: rgb(248, 248, 242);"
                   />
                   <input
-                    class="input"
+                    class="range_input"
                     max="100"
                     min="1"
                     style="top: 8.5px; height: 21px; width: calc(100% - 21px); margin-left: 10.5px; margin-right: 10.5px;"
@@ -1319,6 +1319,68 @@ exports[`Settings view container should render settings 1`] = `
                 value=""
               />
               <label />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="settings_section"
+      >
+        <div
+          class="header_container"
+        >
+          Social
+        </div>
+        <hr />
+        <div
+          class="ui segment"
+        >
+          <div
+            class="settings_item string"
+          >
+            <span
+              class="settings_item_text"
+            >
+              <label
+                class="settings_item_name"
+              >
+                Nuclear identity service URL
+              </label>
+            </span>
+            <div
+              class="spacer"
+            />
+            <div
+              class="ui fluid input"
+            >
+              <input
+                type="text"
+                value=""
+              />
+            </div>
+          </div>
+          <div
+            class="settings_item string"
+          >
+            <span
+              class="settings_item_text"
+            >
+              <label
+                class="settings_item_name"
+              >
+                Nuclear playlists service URL
+              </label>
+            </span>
+            <div
+              class="spacer"
+            />
+            <div
+              class="ui fluid input"
+            >
+              <input
+                type="text"
+                value=""
+              />
             </div>
           </div>
         </div>

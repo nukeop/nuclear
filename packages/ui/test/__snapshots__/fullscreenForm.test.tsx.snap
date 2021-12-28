@@ -1,0 +1,107 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`(Snapshot) Fullscreen Form - error should render correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="fade fullscreen_layer visible transition"
+  >
+    <div
+      class="fullscreen_form_container nuclear"
+    >
+      <div
+        class="nuclear box fullscreen_form_box shadow"
+      >
+        <div
+          class="ui error icon message"
+        >
+          <i
+            aria-hidden="true"
+            class="warning sign icon"
+          />
+          <div
+            class="content"
+          >
+            Error message
+          </div>
+        </div>
+        <form
+          class="ui form fullscreen_form"
+        />
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`(Snapshot) Fullscreen Form - opened should render correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="fade fullscreen_layer visible transition"
+  >
+    <div
+      class="fullscreen_form_container nuclear"
+    >
+      <div
+        class="nuclear box fullscreen_form_box shadow"
+      >
+        <form
+          class="ui form fullscreen_form"
+        />
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`(Snapshot) Fullscreen Form - submitting should render correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="fade fullscreen_layer visible transition"
+  >
+    <div
+      class="fullscreen_form_container nuclear"
+    >
+      <div
+        class="nuclear box fullscreen_form_box shadow"
+      >
+        <form
+          class="ui loading form fullscreen_form"
+        />
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`(Snapshot) Fullscreen Form - success should render correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="fade fullscreen_layer visible transition"
+  >
+    <div
+      class="fullscreen_form_container nuclear"
+    >
+      <div
+        class="nuclear box fullscreen_form_box shadow"
+      >
+        <div
+          class="ui icon success message"
+        >
+          <i
+            aria-hidden="true"
+            class="checkmark icon"
+          />
+          <div
+            class="content"
+          >
+            Success message
+          </div>
+        </div>
+        <form
+          class="ui form fullscreen_form"
+        />
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

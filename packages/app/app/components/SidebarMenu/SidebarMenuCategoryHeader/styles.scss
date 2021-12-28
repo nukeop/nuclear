@@ -3,7 +3,7 @@
 .sidebar_menu_category_header {
   display: flex;
   flex-flow: row;
-  flex-shrink: 0;
+  align-items: center;
   padding: 0.5rem 1rem;
   margin-top: 1.5rem;
   font-size: 1.5rem;
@@ -11,4 +11,10 @@
 
   letter-spacing: 1.2px;
   font-variant: all-small-caps;
+
+  hr {
+    margin: 0.5rem 0 0 1rem;
+    flex: 1 1 auto;
+    border-color: $bgdefault;
+  }
 }

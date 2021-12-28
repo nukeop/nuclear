@@ -45,6 +45,7 @@ module.exports = (env: BuildEnv): import('webpack').Configuration => {
       filename: 'main.js'
     },
     mode: IS_PROD ? 'production' : 'development',
+    devtool: 'source-map',
     stats: 'errors-only',
     optimization: { namedModules: true },
     module: {

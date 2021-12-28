@@ -24,9 +24,9 @@ function toFavoriteTrack({ artist, title, thumbnail }) {
   };
 }
 
-const FavoriteIcon = ({ isFavorite, onClick, dataTestid }) =>
+const FavoriteIcon = ({ isFavorite, onClick, dataTestId }) =>
   <Icon
-    data-testid={dataTestid}
+    data-testid={dataTestId}
     className={styles.card_favorite}
     name={isFavorite ? 'star' : 'star outline'}
     size='large'
@@ -57,7 +57,7 @@ const BestNewMusicCard = ({
             {title}
           </div>
           {withFavoriteButton && <FavoriteIcon
-            dataTestid={`favorite-icon-${artist}-${title}`}
+            dataTestId={`favorite-icon-${artist}-${title}`}
             isFavorite={!!favoriteTrack}
             onClick={e => {
               e.stopPropagation();

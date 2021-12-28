@@ -15,6 +15,16 @@
     border: 1px solid transparent;
   }
 
+  &.no_caret {
+    .dropdown.icon {
+      display: none;
+    }
+  }
+
+  &.no_border {
+    border: none;
+  }
+
   .dropdown.icon {
     display: flex;
     align-items: center;

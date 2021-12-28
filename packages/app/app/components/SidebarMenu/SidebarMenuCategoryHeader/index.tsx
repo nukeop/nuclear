@@ -13,7 +13,10 @@ const SidebarMenuCategoryHeader: React.FC<SidebarMenuCategoryHeaderProps> = ({
 }) => {
   return (
     !compact && <div className={styles.sidebar_menu_category_header}>
-      {headerText}
+      <span>
+        {headerText}
+      </span>
+      <hr />
     </div>
   );
 };

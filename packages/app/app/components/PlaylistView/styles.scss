@@ -41,7 +41,7 @@
   .playlist_name {
     display: flex;
     align-items: center;
-    margin: 0 1rem 2rem 0;
+    margin: 0 1rem 1rem 0;
     font-size: 40px;
     line-height: 40px;
     font-weight: bold;
@@ -61,6 +61,17 @@
 
     i {
       color: rgba($white, 0.6);
+    }
+  }
+
+  .playlist_details {
+    display: flex;
+    flex-flow: row;
+    margin-bottom: 1em;
+    color: rgba($white, 0.6);
+
+    span {
+      margin-right: 0.5em;
     }
   }
 

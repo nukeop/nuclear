@@ -10,10 +10,11 @@ const initialStoreState = () => ({
   playlists: []
 });
 
-let mockStore = initialStoreState();
+let mockStore = {...initialStoreState()};
 
 module.exports = {
   store: {
+    init: (store: typeof mockStore) => mockStore = store,
     get: (key: string) => mockStore[key] || {},
     set: (key: string, value: any) => {
       mockStore[key] = value;
@@ -38,7 +39,8 @@ module.exports = {
       getTagArtists() {}
       getTopTags = () => Promise.resolve()
       getTopTracks = () => Promise.resolve()
-    }
+    },
+    NuclearPlaylistsService: jest.requireActual('@nuclear/core/src/rest/Nuclear/Playlists').NuclearPlaylistsService
   },
   settingsConfig: jest.requireActual('@nuclear/core/src/settings').settingsConfig,
   SettingType: {

@@ -9,7 +9,7 @@ import GithubReducer from './github';
 import GithubContribReducer from './githubContrib';
 import LyricsReducer from './lyrics';
 import PlayerReducer from './player';
-import PlaylistsReducer from './playlists';
+import {reducer as PlaylistsReducer} from './playlists';
 import PluginsReducer from './plugins';
 import QueueReducer from './queue';
 import ScrobblingReducer from './scrobbling';
@@ -21,28 +21,30 @@ import ToastsReducer from './toasts';
 import ConnectivityReducer from './connectivity';
 import { reducer as LocalLibraryReducer } from './local';
 import { reducer as MastodonReducer } from './mastodon';
+import { reducer as NuclearReducer } from './nuclear';
 
 const rootReducer = combineReducers({
+  connectivity: ConnectivityReducer,
   dashboard: DashboardReducer,
   downloads: DownloadsReducer,
   equalizer: EqualizerReducer,
   favorites: FavoritesReducer,
   github: GithubReducer,
   githubContrib: GithubContribReducer,
+  importfavs: ImportFavsReducer,
+  local: LocalLibraryReducer,
   lyrics: LyricsReducer,
+  mastodon: MastodonReducer,
+  nuclear: NuclearReducer,
   player: PlayerReducer,
   playlists: PlaylistsReducer,
   plugin: PluginsReducer,
   queue: QueueReducer,
   scrobbling: ScrobblingReducer,
-  importfavs: ImportFavsReducer,
   search: SearchReducer,
   settings: SettingsReducer,
   tags: TagReducer,
-  toasts: ToastsReducer,
-  connectivity: ConnectivityReducer,
-  local: LocalLibraryReducer,
-  mastodon: MastodonReducer
+  toasts: ToastsReducer
 });
 
 export type RootState = StateType<typeof rootReducer>;

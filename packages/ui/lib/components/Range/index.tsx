@@ -87,7 +87,7 @@ const Range = ({
           />
         )}
         <input
-          className={styles.input}
+          className={styles.range_input}
           style={{
             ...trackPosition,
             width: 'calc(100% - ' + componentHeight + 'px)',

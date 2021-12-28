@@ -44,6 +44,19 @@ exports[`Playlist view container should display a playlist 1`] = `
               </button>
             </div>
             <div
+              class="playlist_details"
+            >
+              <span>
+                2 tracks
+              </span>
+              <span>
+                ·
+              </span>
+              <span>
+                Last modified: 9/11/2001, 10:46:40 AM
+              </span>
+            </div>
+            <div
               class="playlist_buttons"
             >
               <button
