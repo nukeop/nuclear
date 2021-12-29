@@ -11,6 +11,7 @@ import trackRowStyles from '../TrackRow/styles.scss';
 import styles from './styles.scss';
 import { Track } from '@nuclear/core';
 import { getTrackArtist } from '@nuclear/ui/lib';
+import { addToQueue } from '../../actions/queue';
 
 export const EmptyState = () => {
   const { t } = useTranslation('favorites');
@@ -33,7 +34,7 @@ type FavoriteTracksViewProps = {
   clearQueue: () => void;
   selectSong: (x:number) =>void;
   startPlayback: () => void;
-  addToQueue: React.MouseEventHandler;
+  addToQueue: typeof addToQueue;
 }
 
 const FavoriteTracksView: React.FC<FavoriteTracksViewProps> = ({
@@ -106,7 +107,6 @@ const FavoriteTracksView: React.FC<FavoriteTracksViewProps> = ({
                         <TrackRow
                           data-testid={`fav-track-${track.uuid}`}
                           key={'favorite-track-' + index}
-                          index={index}
                           track={track}
                           displayCover
                           displayArtist
