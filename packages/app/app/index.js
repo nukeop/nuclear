@@ -32,8 +32,7 @@ const render = async Component => {
       type: 'languageDetector',
       detect: () => getOption('language') || remote.app.getLocale(),
       cacheUserLanguage: Function.prototype
-    },
-    react: true
+    }
   });
 
   ReactDOM.render(

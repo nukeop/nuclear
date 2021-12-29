@@ -39,10 +39,9 @@ import zh_tw from './locales/zh_tw.json';
 interface I18nOptions {
   languageDetector: LanguageDetectorModule;
   debug?: boolean;
-  react?: boolean;
 }
 
-export const setupI18n = ({ languageDetector, debug, react }: I18nOptions) => {
+export const setupI18n = ({ languageDetector, debug }: I18nOptions) => {
   return i18n.use(languageDetector).init({
     fallbackLng: 'en',
     debug,
@@ -85,9 +84,6 @@ export const setupI18n = ({ languageDetector, debug, react }: I18nOptions) => {
     },
     interpolation: {
       escapeValue: false
-    },
-    react: {
-      wait: react
     }
   });
 };
