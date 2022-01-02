@@ -1,16 +1,15 @@
 import React from 'react';
 import Img from 'react-image';
 import _ from 'lodash';
-import cx from 'classnames';
 import { Dimmer, Icon, Loader } from 'semantic-ui-react';
 import { useTranslation } from 'react-i18next';
+
 import { Loader as NuclearLoader, ContextPopup, PopupButton } from '@nuclear/ui';
 import { AlbumDetails } from '@nuclear/core/src/plugins/plugins.types';
 
-import TrackRow from '../TrackRow';
-import TrackRowHeading from '../TrackRowHeading/index';
 import styles from './styles.scss';
 import artPlaceholder from '../../../resources/media/art_placeholder.png';
+import TrackTableContainer from '../../containers/TrackTableContainer';
 
 type AlbumViewProps = {
   album?: AlbumDetails & {
@@ -133,29 +132,13 @@ export const AlbumView: React.FC<AlbumViewProps> = ({
                 </div>
               </div>
             </div>
-            <table className={styles.album_tracklist}>
-              <thead>
-                <tr>
-                  <th className={cx(styles.center, styles.position)}>
-                    <Icon name='hashtag' />
-                  </th>
-                  <th className={styles.left}>{t('tracks')}</th>
-                  <th className={cx(styles.center, styles.duration)}>
-                    <Icon name='clock outline' />
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {album.tracklist.map((track, index) => {
-                  return (!track.type || track.type === 'track') ? <TrackRow
-                    key={'album-track-row-' + index}
-                    track={track}
-                    displayTrackNumber
-                    displayDuration
-                  /> : <TrackRowHeading title={track.title} key={'album-track-heading-' + index} />;
-                })}
-              </tbody>
-            </table>
+            <TrackTableContainer 
+              tracks={album.tracklist}
+              displayDeleteButton={false}
+              displayThumbnail={false}
+              displayArtist={false}
+              displayAlbum={false}
+            />
           </div>
         )
       }

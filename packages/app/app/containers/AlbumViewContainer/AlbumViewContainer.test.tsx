@@ -39,13 +39,15 @@ describe('Album view container', () => {
   it('should add a single track to queue after clicking the button in the popup', async () => {
     const { component, store } = mountComponent();
 
-    await waitFor(() => component.getByText(/test track 1/i).click());
+    await waitFor(() => component.getAllByTestId('track-popup-trigger')[0].click());
     await waitFor(() => component.getByText(/add to queue/i).click());
 
     const state = store.getState();
     expect(state.queue.queueItems).toEqual([
       expect.objectContaining({
-        artist: 'test artist',
+        artist: {
+          name: 'test artist'
+        },
         name: 'test track 1'
       })
     ]);
@@ -54,13 +56,15 @@ describe('Album view container', () => {
   it('should start playing a single track after clicking the button in the popup', async () => {
     const { component, store } = mountComponent();
 
-    await waitFor(() => component.getByText(/test track 1/i).click());
+    await waitFor(() => component.getAllByTestId('track-popup-trigger')[0].click());
     await waitFor(() => component.getByText(/play now/i).click());
 
     const state = store.getState();
     expect(state.queue.queueItems).toEqual([
       expect.objectContaining({
-        artist: 'test artist',
+        artist: {
+          name: 'test artist'
+        },
         name: 'test track 1'
       })
     ]);
@@ -70,7 +74,7 @@ describe('Album view container', () => {
   it('should add a single track to downloads after clicking the button in the popup', async () => {
     const { component, store } = mountComponent();
 
-    await waitFor(() => component.getByText(/test track 1/i).click());
+    await waitFor(() => component.getAllByTestId('track-popup-trigger')[0].click());
     await waitFor(() => component.getByText(/download/i).click());
 
     const state = store.getState();

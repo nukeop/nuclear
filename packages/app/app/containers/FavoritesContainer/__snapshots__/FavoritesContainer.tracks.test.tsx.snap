@@ -103,7 +103,6 @@ exports[`Track view container should display favorite tracks 1`] = `
             <tr
               class="track_row"
               data-testid="fav-track-uuid1"
-              index="0"
             >
               <td
                 class="track_row_buttons"
@@ -136,7 +135,6 @@ exports[`Track view container should display favorite tracks 1`] = `
             <tr
               class="track_row"
               data-testid="fav-track-uuid2"
-              index="1"
             >
               <td
                 class="track_row_buttons"
@@ -242,7 +240,6 @@ exports[`Track view container should show popup when a track is clicked 1`] = `
             <tr
               class="track_row"
               data-testid="fav-track-uuid1"
-              index="0"
             >
               <td
                 class="track_row_buttons"
@@ -275,7 +272,6 @@ exports[`Track view container should show popup when a track is clicked 1`] = `
             <tr
               class="track_row"
               data-testid="fav-track-uuid2"
-              index="1"
             >
               <td
                 class="track_row_buttons"
@@ -334,6 +330,11 @@ exports[`Track view container should show popup when a track is clicked 1`] = `
             class="popup_title"
           >
             test track 1
+          </div>
+          <div
+            class="popup_artist"
+          >
+            by test artist 1
           </div>
         </div>
       </div>
