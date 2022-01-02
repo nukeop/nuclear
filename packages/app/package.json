@@ -5,7 +5,7 @@
   "scripts": {
     "start": "webpack-dev-server --inline --env.NODE_ENV=development",
     "build": "cross-env NODE_OPTIONS=--max-old-space-size=8192 webpack --colors --progress --env.NODE_ENV=production",
-    "test": "jest",
+    "test": "cross-env TZ=GMT jest",
     "coverage": "jest --coverage",
     "lint": "eslint \"{app,test}/**/**.{js,jsx,ts,tsx}\"",
     "lint:fix": "eslint \"{app,test}/**/**.{js,jsx,ts,tsx}\" --fix",
