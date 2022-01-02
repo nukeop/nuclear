@@ -22,6 +22,7 @@
   tr {
     color: $white;
     user-select: none;
+    height: 3em;
 
     &:hover {
       background: rgba($bgdefault, 0.25);

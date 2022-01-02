@@ -2,7 +2,7 @@
 import React, { useMemo } from 'react';
 import cx from 'classnames';
 import { useTable, Column, useRowSelect } from 'react-table';
-import _ from 'lodash';
+import _, { isNumber, isString } from 'lodash';
 import { DragDropContext, Droppable, Draggable, DragDropContextProps } from 'react-beautiful-dnd';
 
 import DeleteCell from './Cells/DeleteCell';
@@ -18,6 +18,7 @@ import { TrackTableColumn, TrackTableExtraProps, TrackTableHeaders, TrackTableSe
 import styles from './styles.scss';
 import artPlaceholder from '../../../resources/media/art_placeholder.png';
 import { Track } from '../../types';
+import { formatDuration } from '../..';
 
 export type TrackTableProps = TrackTableExtraProps &
   TrackTableHeaders &
@@ -52,6 +53,7 @@ const TrackTable: React.FC<TrackTableProps> = ({
 
   ...extraProps
 }) => {
+  const shouldDisplayDuration = displayDuration && tracks.every(track => Boolean(track.duration));
   const columns = useMemo(() => [
     displayDeleteButton && {
       id: TrackTableColumn.Delete,
@@ -94,10 +96,18 @@ const TrackTable: React.FC<TrackTableProps> = ({
       accessor: 'album',
       Cell: TrackTableCell
     },
-    displayDuration && {
+    shouldDisplayDuration && {
       id: TrackTableColumn.Duration,
       Header: durationHeader,
-      accessor: 'duration',
+      accessor: track => {
+        if (isString(track.duration)) {
+          return track.duration;
+        } else if (isNumber(track.duration)) {
+          return formatDuration(track.duration);
+        } else {
+          return null;
+        }
+      },
       Cell: TrackTableCell
     },
     selectable && {
@@ -105,7 +115,7 @@ const TrackTable: React.FC<TrackTableProps> = ({
       Header: SelectionHeader,
       Cell: SelectionCell
     }
-  ].filter(Boolean) as Column<Track>[], [displayDeleteButton, displayPosition, displayThumbnail, displayFavorite, isTrackFavorite, titleHeader, displayArtist, artistHeader, displayAlbum, albumHeader, displayDuration, durationHeader, selectable, positionHeader, thumbnailHeader]);
+  ].filter(Boolean) as Column<Track>[], [displayDeleteButton, displayPosition, displayThumbnail, displayFavorite, isTrackFavorite, titleHeader, displayArtist, artistHeader, displayAlbum, albumHeader, shouldDisplayDuration, durationHeader, selectable, positionHeader, thumbnailHeader]);
 
   const data = useMemo(() => tracks, [tracks]);
 
@@ -162,7 +172,7 @@ const TrackTable: React.FC<TrackTableProps> = ({
                         {...provided.draggableProps}
                         {...provided.dragHandleProps}
                       >
-                        {row.cells.map((cell, i) => (cell.render('Cell', {...extraProps, key: i})))}
+                        {row.cells.map((cell, i) => (cell.render('Cell', { ...extraProps, key: i })))}
                       </tr>
                     )}
                   </Draggable>

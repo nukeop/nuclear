@@ -92,7 +92,7 @@ exports[`Playlists container should display all playlists 1`] = `
                   <div
                     class="modified_at_row"
                   >
-                    Last modified: Unknown
+                    Last modified: September 11, 2001
                   </div>
                   <div
                     class="modified_at_row"

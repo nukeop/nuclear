@@ -142,12 +142,6 @@ exports[`Playlist view container should display a playlist 1`] = `
                 colspan="1"
                 role="columnheader"
               >
-                Length
-              </th>
-              <th
-                colspan="1"
-                role="columnheader"
-              >
                 <span
                   class="select_header"
                 >
@@ -281,9 +275,6 @@ exports[`Playlist view container should display a playlist 1`] = `
                 test artist 1
               </td>
               <td
-                role="cell"
-              />
-              <td
                 class="select_cell narrow"
                 role="cell"
               >
@@ -409,9 +400,6 @@ exports[`Playlist view container should display a playlist 1`] = `
               >
                 test artist 2
               </td>
-              <td
-                role="cell"
-              />
               <td
                 class="select_cell narrow"
                 role="cell"
