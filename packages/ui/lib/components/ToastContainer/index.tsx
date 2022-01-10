@@ -1,12 +1,25 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import cx from 'classnames';
 import Toast from './Toast';
 
 import common from '../../common.scss';
 import styles from './styles.scss';
 
-const ToastContainer = props => {
+type Toast = {
+  title: string;
+  details: string;
+  error: boolean;
+  warning: boolean;
+  info: boolean;  
+}
+
+type ToastContainerProps = {
+  toasts: Toast[]
+}
+
+const ToastContainer: React.FC<ToastContainerProps> = ({
+  toasts = []
+}) => {
   return (
     <div
       className={cx(
@@ -14,7 +27,7 @@ const ToastContainer = props => {
         styles.toast_container
       )}
     >
-      { props.toasts.map((toast, i) => {
+      { toasts.map((toast, i) => {
         return (
           <Toast
             key={`toast-${i}`}
@@ -31,22 +44,6 @@ const ToastContainer = props => {
       })}
     </div>
   );
-};
-
-ToastContainer.propTypes = {
-  toasts: PropTypes.arrayOf(
-    PropTypes.shape({
-      title: PropTypes.string,
-      details: PropTypes.string,
-      error: PropTypes.bool,
-      warning: PropTypes.bool,
-      info: PropTypes.bool
-    })
-  )
-};
-
-ToastContainer.defaultProps = {
-  toasts: []
 };
 
 export default ToastContainer;
