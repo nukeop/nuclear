@@ -27,14 +27,14 @@
     "settings": "Einstellungen",
     "visualizer": "Visualisierung",
     "user-panel": {
-      "actions-tooltip": "User actions",
-      "sign-up": "Sign up / Sign in",
-      "sign-out": "Sign out"
+      "actions-tooltip": "Benutzeraktionen",
+      "sign-up": "Registrieren/Login",
+      "sign-out": "Abmelden"
     },
     "version": "Version"
   },
   "artist": {
-    "add-all": "Add all",
+    "add-all": "Alle hinzufügen",
     "count": "Wiedergabeanzahl",
     "queue": "Alle Lieder zur Warteschlange hinzufügen",
     "similar": "Ähnliche Künstler",
@@ -169,11 +169,11 @@
     "tracks-selected-singular": "Titel ausgewählt",
     "tracks-singular": "track",
     "tracks-plural": "tracks",
-    "modified-at": "Last modified: ",
-    "never-modified": "Unknown",
-    "server-modified-at": "Server modified: ",
-    "upload-to-server": "Upload to server",
-    "download-from-server": "Download from server",
+    "modified-at": "Zuletzt geändert: ",
+    "never-modified": "Unbekannt",
+    "server-modified-at": "Server geändert: ",
+    "upload-to-server": "Zum Server hochladen",
+    "download-from-server": "Vom Server herunterladen",
     "number-of-tracks": "tracks"
   },
   "plugins": {
@@ -336,35 +336,35 @@
   },
   "forms": {
     "nuclear-sign-up": {
-      "header": "Sign up",
-      "secondary-header": "Sign up to Nuclear Web Services",
-      "side-paragraph-1": "NWS enables you to backup your playlists online and share them.",
-      "side-paragraph-2": "Providing your email is optional; it will allow you to recover your account if you forget your password.",
-      "username-label": "Username",
-      "email-label": "Email",
-      "password-label": "Password",
-      "sign-up-button": "Sign up",
+      "header": "Registrierung",
+      "secondary-header": "Bei Nuclear Web Services anmelden",
+      "side-paragraph-1": "Mit NWS kannst du deine Playlisten online sichern und teilen.",
+      "side-paragraph-2": "Die Angabe Ihrer E-Mail ist optional; Sie können Ihr Konto wiederherstellen, wenn Sie Ihr Passwort vergessen.",
+      "username-label": "Benutzername",
+      "email-label": "E-Mail",
+      "password-label": "Passwort",
+      "sign-up-button": "Registrierung",
       "validation": {
         "username": {
           "length": "Username must be 4 characters or more",
-          "required": "Username is required"
+          "required": "Der Benutzername ist erforderlich"
         },
         "email": {
-          "invalid": "Email must be a valid email"
+          "invalid": "Es muss eine gültige Email Adresse angegeben werden"
         },
         "password": {
           "length": "Password must be 6 characters or more",
-          "required": "Password is required"
+          "required": "Ein Passwort ist erforderlich"
         }
       }
     },
     "nuclear-sign-in": {
-      "header": " Sign in",
-      "username-label": "Username",
-      "password-label": "Password",
+      "header": " Anmelden",
+      "username-label": "Benutzername",
+      "password-label": "Passwort",
       "no-account-label": "Don't have an account?",
-      "no-account-link": "Sign up",
-      "sign-in-button": "Sign in"
+      "no-account-link": "Registrierung",
+      "sign-in-button": "Anmelden"
     }
   }
 }
