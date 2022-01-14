@@ -86,7 +86,6 @@ export const QueuePopup = ({
       position={isQueueItemCompact ? 'bottom right' : 'bottom center'}
       hideOnScroll
       on={null}
-      popperModifiers={{ preventOverflow: { boundariesElement: 'window' } }}
     >
       <StreamInfo
         dropdownOptions={dropdownOptions}
