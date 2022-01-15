@@ -643,7 +643,7 @@ export const buildStoreState = () => {
 
       return this as StoreStateBuilder;
     },
-    withTrackInPlayQueue() {
+    withTracksInPlayQueue() {
       state = {
         ...state,
         queue: {
@@ -702,6 +702,24 @@ export const buildStoreState = () => {
                 }
               ],
               uuid: 'uuid2',
+              loading: false,
+              error: false
+            },
+            {
+              artist: 'test artist 3',
+              name: 'test track 3',
+              thumbnail: undefined,
+              streams: [{
+                source: 'Test Stream Provider',
+                id: 'CuklIb9d3fI',
+                stream: 'https://test-track-stream-url',
+                duration: 300,
+                title: 'test track 3',
+                thumbnail: 'https://test-track-thumb-url',
+                format: 'webm',
+                skipSegments: []
+              }],
+              uuid: 'uuid3',
               loading: false,
               error: false
             }
