@@ -40,7 +40,10 @@ ToastContainer.propTypes = {
       details: PropTypes.string,
       error: PropTypes.bool,
       warning: PropTypes.bool,
-      info: PropTypes.bool
+      info: PropTypes.bool,
+      onclick: PropTypes.func,
+      icon: PropTypes.node,
+      success: PropTypes.bool
     })
   )
 };

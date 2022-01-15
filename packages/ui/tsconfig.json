@@ -12,9 +12,11 @@
       "../../node_modules/@types",
       "./lib/typings"
     ],
-    "jsx": "react"
+    "jsx": "react",
+    "noEmitOnError": true
   },
   "include": [
-    "lib"
+    "lib",
+    "/packages/ui/stories/components"
   ]
 }

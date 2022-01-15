@@ -62,6 +62,9 @@ storiesOf('Components/Toasts', module)
   })
   .add('With add/remove button', () => {
     class Demo extends React.Component {
+      state: {
+        toasts: []
+      }
       constructor(props) {
         super(props);
         this.state = {
@@ -137,7 +140,9 @@ storiesOf('Components/Toasts', module)
             {
               title: 'Example clickable toast',
               details: 'Example toast description',
-              onClick: () => alert('You clicked me')
+              onclick: () => {
+                alert('You clicked me');
+              }
             }
           ]}
         />
