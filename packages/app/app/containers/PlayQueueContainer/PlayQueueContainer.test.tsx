@@ -25,6 +25,13 @@ describe('Play Queue container', () => {
     expect(component.asFragment()).toMatchSnapshot();
   });
 
+  it('should display a context popup on right click for tracks without thumbnails', async () => {
+    const { component } = mountComponent();
+    const track = component.getByTestId('queue-popup-uuid3');
+    await waitFor(() => fireEvent.contextMenu(track));
+    expect(component.asFragment()).toMatchSnapshot();
+  });
+
   it('should copy original track url to clipboard', async () => {
     const { component } = mountComponent();
     // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -88,7 +95,7 @@ describe('Play Queue container', () => {
   const mountComponent = mountedPlayQueueFactory(
     ['/dashboard'],
     buildStoreState()
-      .withTrackInPlayQueue()
+      .withTracksInPlayQueue()
       .withPlugins()
       .withConnectivity()
       .build()
