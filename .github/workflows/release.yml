@@ -22,10 +22,9 @@ jobs:
       with:
         version: 12.x
         cache: npm
-    - name: npm install and build
-      run: |
-        npm ci
-        npm run build:linux
+    - run: npm ci
+    - name: npm build
+      run: npm run build:linux
       shell: bash
       env:
         GITHASH: ${{github.event.inputs.tag}}
@@ -46,10 +45,9 @@ jobs:
       with:
         version: 12.x
         cache: npm
-    - name: npm install and build
-      run: |
-        npm ci
-        npm run build:macos
+    - run: npm ci
+    - name: npm build
+      run: npm run build:macos
       shell: bash
       env:
         GITHASH: ${{github.event.inputs.tag}}
@@ -74,10 +72,9 @@ jobs:
       run: |
         echo "C:\Program Files\Git\usr\bin" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
         echo "C:\Program Files\Git\mingw64\libexec\git-core" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
-    - name: npm install and build
-      run: |
-        npm ci
-        npm run build:windows
+    - run: npm ci
+    - name: npm build
+      run: npm run build:windows
       shell: bash
       env:
         GITHASH: ${{github.event.inputs.tag}}

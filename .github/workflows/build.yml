@@ -20,11 +20,10 @@ jobs:
       with:
         version: 12.x
         cache: npm
-    - name: npm install, build, and test
-      run: |
-        npm ci
-        npm test
-        npm run build:linux
+    - run: npm ci
+    - run: npm test
+    - name: npm build
+      run: npm run build:linux
       shell: bash
       env:
         GITHASH: ${GITHUB_SHA}
@@ -39,11 +38,10 @@ jobs:
       uses: actions/setup-node@v1
       with:
         version: 12.x
-    - name: npm install, build, and test
-      run: |
-        npm ci
-        npm test
-        npm run build:macos
+    - run: npm ci
+    - run: npm test
+    - name: npm build
+      run: npm run build:macos
       shell: bash
       env:
         GITHASH: ${GITHUB_SHA}
@@ -73,11 +71,10 @@ jobs:
       run: |
         echo "C:\Program Files\Git\usr\bin" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
         echo "C:\Program Files\Git\mingw64\libexec\git-core" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
-    - name: npm install, build, and test
-      run: |
-        npm ci
-        npm test
-        npm run build:windows
+    - run: npm ci
+    - run: npm test
+    - name: npm build
+      run: npm run build:windows
       shell: bash
       env:
         GITHASH: ${GITHUB_SHA}
