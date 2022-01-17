@@ -795,7 +795,7 @@ export const buildStoreState = () => {
       };
       return this as StoreStateBuilder;
     },
-    withSettings(settings: { [key: string]: string | number }) {
+    withSettings(settings: { [key: string]: string | number | boolean }) {
       state.settings = {
         ...state.settings,
         ...settings

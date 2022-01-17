@@ -16,7 +16,6 @@ const PlayerBarContainer = () => {
   const trackInfoProps = useTrackInfoProps();
   const volumeControlsProps = useVolumeControlsProps();
   const trackDurationProp = useTrackDurationProp();
-  
 
   return (
     <PlayerBar

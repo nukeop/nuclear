@@ -5,6 +5,7 @@ import { Icon, SemanticICONS, SemanticSIZES } from 'semantic-ui-react';
 import styles from './styles.scss';
 
 export type PlayerButtonProps = {
+  'data-testid'?: string;
   icon: SemanticICONS;
   size?: Exclude<SemanticSIZES, 'medium'>;
   ariaLabel?: string;
@@ -19,18 +20,20 @@ const PlayerButton: React.FC<PlayerButtonProps> = ({
   ariaLabel,
   onClick,
   disabled = false,
-  loading = false
+  loading = false,
+  ...rest
 }) => (
-    <button
-      className={cx(
-        styles.player_button, 
-        { [styles.disabled]: disabled }
-        )}
-      aria-label={ariaLabel}
-      onClick={disabled ? undefined : onClick}
-    >
-      <Icon inverted loading={loading} name={icon} size={size} />
-    </button>
-  );
+  <button
+    data-testid={rest['data-testid']}
+    className={cx(
+      styles.player_button,
+      { [styles.disabled]: disabled }
+    )}
+    aria-label={ariaLabel}
+    onClick={disabled ? undefined : onClick}
+  >
+    <Icon inverted loading={loading} name={icon} size={size} />
+  </button>
+);
 
 export default PlayerButton;

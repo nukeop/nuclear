@@ -66,6 +66,7 @@ export const usePlayerControlsProps = () => {
   const dispatch = useDispatch();
   const queue = useSelector(queueSelector);
   const playbackStatus = useSelector(playerSelectors.playbackStatus);
+  const currentTrackLoading: boolean = queue?.queueItems[queue.currentSong]?.loading;
   const playbackStreamLoading: boolean = useSelector(playerSelectors.playbackStreamLoading);
   const seek = useSelector(playerSelectors.seek);
 
@@ -101,7 +102,7 @@ export const usePlayerControlsProps = () => {
     goForwardDisabled: !couldForward,
     playDisabled: !couldPlay,
     isPlaying: playbackStatus === Sound.status.PLAYING,
-    isLoading: playbackStreamLoading,
+    isLoading: currentTrackLoading || playbackStreamLoading,
     togglePlay,
     goForward,
     goBack
