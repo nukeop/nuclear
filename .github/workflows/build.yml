@@ -16,20 +16,10 @@ jobs:
     steps:
     - uses: actions/checkout@master
     - name: Use Node.js 12.x
-      uses: actions/setup-node@v1
+      uses: actions/setup-node@v2
       with:
         version: 12.x
-    - name: Cache node modules
-      uses: actions/cache@v2
-      env:
-        cache-name: cache-node-modules
-      with:
-        path: ~/.npm
-        key: linux-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
-        restore-keys: |
-          linux-build-${{ env.cache-name }}-
-          linux-build-
-          linux-
+        cache: npm
     - name: npm install, build, and test
       run: |
         npm ci
