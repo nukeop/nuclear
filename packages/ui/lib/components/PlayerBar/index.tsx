@@ -66,6 +66,7 @@ const PlayerBar: React.FC<PlayerBarProps> = ({
       styles.player_bar
     )}>
       <Seekbar
+        isLoading={isLoading}
         fill={isLivestream ? 100 : fill}
         seek={seek}
         queue={queue}
@@ -77,8 +78,8 @@ const PlayerBar: React.FC<PlayerBarProps> = ({
         {hasTracks &&
           renderTrackDuration &&
           <div className={styles.track_duration}>
-            <div>{isLivestream ? timePlayed : formatDuration(timePlayed)}</div>
-            <div>{isLivestream ? timeToEnd : '-'+formatDuration(timeToEnd)}</div> 
+            <div data-testid='track-duration-played'>{isLivestream ? timePlayed : formatDuration(timePlayed)}</div>
+            <div data-testid='track-duration-to-end'>{isLivestream ? timeToEnd : '-' + formatDuration(timeToEnd)}</div>
           </div>}
       </Seekbar>
       <div className={styles.player_bar_bottom}>
