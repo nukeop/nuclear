@@ -4,6 +4,7 @@ import Toast from './Toast';
 
 import common from '../../common.scss';
 import styles from './styles.scss';
+import _ from 'lodash';
 
 type Toast = {
   title: string;
