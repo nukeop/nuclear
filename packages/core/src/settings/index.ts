@@ -6,25 +6,26 @@ export enum SettingType {
   NODE = 'node',
   NUMBER = 'number',
   STRING = 'string',
-  DIRECTORY = 'directory'
+  DIRECTORY = 'directory',
 }
 
-type SettingCategory = 'audio' |
-  'playback' |
-  'program-settings' |
-  'display' |
-  'http' |
-  'streaming' |
-  'downloads' |
-  'developer' |
-  'visualizer' |
-  'social';
+type SettingCategory =
+  | 'audio'
+  | 'playback'
+  | 'program-settings'
+  | 'display'
+  | 'http'
+  | 'streaming'
+  | 'downloads'
+  | 'developer'
+  | 'visualizer'
+  | 'social';
 
 type SettingOption = {
   key: string;
   text: string;
   value: string;
-}
+};
 
 export type Setting = {
   name: string;
@@ -42,7 +43,7 @@ export type Setting = {
   unit?: string;
   buttonText?: string;
   buttonIcon?: string;
-}
+};
 
 export const settingsConfig: Array<Setting> = [
   {
@@ -198,33 +199,41 @@ export const settingsConfig: Array<Setting> = [
       { key: 'cs', text: 'Česky', value: 'cs' },
       { key: 'de', text: 'Deutsch', value: 'de' },
       { key: 'dk', text: 'Dansk', value: 'dk' },
-      { key: 'en', text: 'English', value: 'en' },
       { key: 'en-US', text: 'English (US)', value: 'en-US' },
+      { key: 'en', text: 'English', value: 'en' },
       { key: 'es', text: 'Español', value: 'es' },
-      { key: 'fr', text: 'Français', value: 'fr' },
-      { key: 'it', text: 'Italiano', value: 'it' },
-      { key: 'nl', text: 'Nederlands', value: 'nl' },
-      { key: 'pl', text: 'Polski', value: 'pl' },
-      { key: 'pt_br', text: 'Português (Brasil)', value: 'pt_br' },
-      { key: 'ru', text: 'Русский', value: 'ru' },
-      { key: 'tr', text: 'Türkçe', value: 'tr' },
-      { key: 'zh', text: '简体中文', value: 'zh' },
-      { key: 'zh_tw', text: '繁體中文', value: 'zh_tw' },
-      { key: 'id', text: 'Bahasa Indonesia', value: 'id' },
-      { key: 'sk', text: 'Slovenčina', value: 'sk' },
-      { key: 'ko', text: '한국어', value: 'ko' },
-      { key: 'tl', text: 'Tagalog (Filipino)', value: 'tl' },
-      { key: 'se', text: 'Svenska', value: 'se' },
-      { key: 'gr', text: 'Greek', value: 'gr' },
-      { key: 'hr', text: 'Hrvatski', value: 'hr' },
-      { key: 'is', text: 'Íslenska', value: 'is' },
       { key: 'fi', text: 'Suomi', value: 'fi' },
-      { key: 'sq', text: 'Albanian', value: 'sq' },
+      { key: 'fr', text: 'Français', value: 'fr' },
+      { key: 'gr', text: 'Greek', value: 'gr' },
+      { key: 'he_IL', text: 'עברית', value: 'he_IL' },
       { key: 'hi_IN', text: 'Hindi', value: 'hi_IN' },
-      { key: 'vi', text: 'Vietnamese', value: 'vi' }
+      { key: 'hr', text: 'Hrvatski', value: 'hr' },
+      { key: 'id', text: 'Bahasa Indonesia', value: 'id' },
+      { key: 'is', text: 'Íslenska', value: 'is' },
+      { key: 'it', text: 'Italiano', value: 'it' },
+      { key: 'ja_JP', text: '日本語', value: 'ja_JP' },
+      { key: 'ko', text: '한국어', value: 'ko' },
+      { key: 'ku_KMR', text: 'Kurdî', value: 'ku_KMR' },
+      { key: 'lt_LT', text: 'Lietuvių', value: 'lt_LT' },
+      { key: 'lv_LV', text: 'Latviešu', value: 'lv_LV' },
+      { key: 'nl', text: 'Nederlands', value: 'nl' },
+      { key: 'no_NO', text: 'Norsk', value: 'no_NO' },
+      { key: 'pl', text: 'Polski', value: 'pl' },
+      { key: 'pt_BR', text: 'Português (Brasil)', value: 'pt_BR' },
+      { key: 'ru', text: 'Русский', value: 'ru' },
+      { key: 'se', text: 'Svenska', value: 'se' },
+      { key: 'sk', text: 'Slovenčina', value: 'sk' },
+      { key: 'sq', text: 'Shqip', value: 'sq' },
+      { key: 'tl', text: 'Tagalog (Filipino)', value: 'tl' },
+      { key: 'tr', text: 'Türkçe', value: 'tr' },
+      { key: 'vi', text: 'Vietnamese', value: 'vi' },
+      { key: 'yue_CN', text: '粵語', value: 'yue_CN' },
+      { key: 'zh_TW', text: '繁體中文', value: 'zh_TW' },
+      { key: 'zh_CN', text: '简体中文', value: 'zh_CN' }
     ],
     default: undefined
-  }, {
+  },
+  {
     name: 'downloads.dir',
     category: 'downloads',
     type: SettingType.DIRECTORY,
@@ -289,7 +298,8 @@ export const settingsConfig: Array<Setting> = [
     prettyName: 'mastodon-post-format',
     category: 'social',
     type: SettingType.STRING,
-    default: '#nowplaying {{artist}} - {{title}} #nuclear https://nuclear.js.org',
+    default:
+      '#nowplaying {{artist}} - {{title}} #nuclear https://nuclear.js.org',
     hide: true
   },
   {
