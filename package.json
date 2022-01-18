@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/nukeop/nuclear#readme",
   "scripts": {
-    "postinstall": "lerna bootstrap --hoist && electron-builder install-app-deps && electron-rebuild",
+    "postinstall": "lerna bootstrap --hoist",
     "start": "lerna run start --stream",
     "build": "shx rm -rf dist && lerna run build && npm run pack",
     "test": "lerna run lint && lerna run build && lerna run test",
