@@ -6,13 +6,6 @@ import styles from './styles.scss';
 
 
 type NewType = {
-  // title: string;
-  // details: string;
-  // error: string;
-  // warning: string;
-  // info: string;
-  // success: string;
-  // onClick: React.MouseEvent;
   error: boolean;
   warning: boolean;
   info: boolean;
@@ -59,16 +52,6 @@ const Toast = (props: NewType) => {
   );
 };
 
-// Toast.propTypes = {
-//   error: PropTypes.bool,
-//   warning: PropTypes.bool,
-//   info: PropTypes.bool,
-//   success: PropTypes.bool,
-//   icon: PropTypes.node,
-//   title: PropTypes.string,
-//   details: PropTypes.string,
-//   onClick: PropTypes.func
-// };
 
 Toast.defaultProps = {
   error: false,
