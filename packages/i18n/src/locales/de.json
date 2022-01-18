@@ -19,15 +19,22 @@
     "favorite-artists": "Lieblingskünstler",
     "favorite-tracks": "Lieblingslieder",
     "library": "Lokale Bibliothek",
-    "lyrics": "Liedtexte",
+    "lyrics": "Songtext",
     "main": "Start",
     "playlists": "Wiedergabelisten",
     "plugins": "Plugins",
     "search": "Suchergebnisse",
     "settings": "Einstellungen",
-    "visualizer": "Visualisierung"
+    "visualizer": "Visualisierung",
+    "user-panel": {
+      "actions-tooltip": "Benutzeraktionen",
+      "sign-up": "Registrieren/Login",
+      "sign-out": "Abmelden"
+    },
+    "version": "Version"
   },
   "artist": {
+    "add-all": "Alle hinzufügen",
     "count": "Wiedergabeanzahl",
     "queue": "Alle Lieder zur Warteschlange hinzufügen",
     "similar": "Ähnliche Künstler",
@@ -56,6 +63,18 @@
     "name": "Name",
     "status": "Status, Stellenwert"
   },
+  "equalizer": {
+    "classical": "Klassisch",
+    "club": "Discothek",
+    "custom": "Benutzerdefiniert",
+    "default": "Standard",
+    "full-bass": "Voller Bäß",
+    "full-treble": "Volle Höhen",
+    "pop": "Pop",
+    "presets": "Voreinstellungen",
+    "reggae": "Reggae",
+    "rock": "Rock"
+  },
   "favorite-albums": {
     "empty": "Keine Lieblingsalben vorhanden",
     "empty-help": "Favorisierte Alben werden hier erscheinen!",
@@ -75,6 +94,7 @@
   },
   "help": {
     "about": "Über Nuclear Music Player",
+    "contributors": "Unsere Top 10 Mitwirkenden",
     "header": "Desktop Musikplayer für Streaming aus freien Quellen",
     "released": "veröffentlicht unter AGPL-3.0",
     "report": "Sende eine Fehlermeldung oder eine Idee für eine neue Funktion",
@@ -146,7 +166,15 @@
     "songs_plural": "{{total}} Lieder",
     "title": "Titel",
     "tracks-selected-plural": "Titel ausgewählt",
-    "tracks-selected-singular": "Titel ausgewählt"
+    "tracks-selected-singular": "Titel ausgewählt",
+    "tracks-singular": "track",
+    "tracks-plural": "tracks",
+    "modified-at": "Zuletzt geändert: ",
+    "never-modified": "Unbekannt",
+    "server-modified-at": "Server geändert: ",
+    "upload-to-server": "Zum Server hochladen",
+    "download-from-server": "Vom Server herunterladen",
+    "number-of-tracks": "tracks"
   },
   "plugins": {
     "add-a-plugin": "Plugin hinzufügen",
@@ -179,25 +207,30 @@
     "playlist-add": "Zur Wiedergabeliste hinzufügen",
     "playlist-toast-content": "Wiedergabeliste {{name}} wurde erstellt.",
     "playlist-toast-title": "Wiedergabeliste erstellt",
-    "title": "Titel:"
+    "title": "Titel:",
+    "live": "Live"
   },
   "search": {
     "album": "Album",
     "album_plural": "Alben",
+    "all": "Alle",
     "artist": "Künstler",
     "artist_plural": "Künstler",
     "clear-history": "Verlauf leeren",
     "empty": "Nichts gefunden.",
     "last-searches": "Letzte Suchanfragen",
+    "live-stream": "LiveStream",
     "placeholder": "Suchen...",
     "playlist": "Wiedergabeliste",
     "playlist_plural": "Wiedergabelisten",
+    "podcast": "Podcast",
     "queue-add": "Alle Lieder zur Warteschlange hinzufügen",
     "track": "Lied",
     "track_plural": "Lieder",
     "you-can-search-for": "Du kannst suchen nach:"
   },
   "seekbar": {
+    "live": "Live",
     "segment-popup": "Nicht-Musik"
   },
   "settings": {
@@ -232,6 +265,7 @@
     "lastfm-description": "Um das Scrobbeln zu aktivieren, musst Du Dich zuerst mit Nuclear auf Last.fm verbinden, Nuclear autorisieren und dann auf Anmeldung klicken.",
     "lastfm-enable": "Scrobbeln zu Last.fm aktivieren",
     "lastfm-title": "Last.fm",
+    "less": "Weniger",
     "login": "Anmelden",
     "logout": "Abmelden",
     "loop-after-queue-end": "Schleife nach Abspielen des letzten Warteschlangenelements",
@@ -244,12 +278,16 @@
     "mastodon-post-format-description": "Nuclear wird nach jedem abgespielten Lied einen Status auf Mastodon posten. Der obere Text dient als Vorlage für jeden Beitrag. {{artist}} und {{title}} werden durch den Interpreten und Titel des Liedes ersetzt.",
     "mastodon-post-format-label": "Beitragsformat",
     "mastodon-title": "",
+    "nuclear-identity-service-url": "Nuclear identity service URL",
+    "nuclear-playlists-service-url": "Nuclear playlists service URL",
     "mini-player": "Mini-Player Stil verwenden",
+    "more": "Mehr",
     "discord-rich-presence": "Umfangreiche Discord Präsenz umschalten (erfordert Neustart)",
     "notification-timeout": "Ablauf von Benachrichtigungen",
     "notlogged": "Nicht angemeldet",
     "playback": "Wiedergabe",
     "program-settings": "Programmeinstellungen",
+    "saving-in": "Speichern in:",
     "seek-iteration": "Anzahl der Sekunden, die beim Drücken der Pfeiltasten vorwärts/rückwärts suchen",
     "shuffle-queue": "Titel mischen",
     "shuffle-when-going-back": "Shuffle von vorherigen Liedern",
@@ -295,5 +333,38 @@
   },
   "visualizer": {
     "exit-fullscreen": "Drücke ESC, um den Vollbildmodus zu beenden"
+  },
+  "forms": {
+    "nuclear-sign-up": {
+      "header": "Registrierung",
+      "secondary-header": "Bei Nuclear Web Services anmelden",
+      "side-paragraph-1": "Mit NWS kannst du deine Playlisten online sichern und teilen.",
+      "side-paragraph-2": "Die Angabe Ihrer E-Mail ist optional; Sie können Ihr Konto wiederherstellen, wenn Sie Ihr Passwort vergessen.",
+      "username-label": "Benutzername",
+      "email-label": "E-Mail",
+      "password-label": "Passwort",
+      "sign-up-button": "Registrierung",
+      "validation": {
+        "username": {
+          "length": "Username must be 4 characters or more",
+          "required": "Der Benutzername ist erforderlich"
+        },
+        "email": {
+          "invalid": "Es muss eine gültige Email Adresse angegeben werden"
+        },
+        "password": {
+          "length": "Password must be 6 characters or more",
+          "required": "Ein Passwort ist erforderlich"
+        }
+      }
+    },
+    "nuclear-sign-in": {
+      "header": " Anmelden",
+      "username-label": "Benutzername",
+      "password-label": "Passwort",
+      "no-account-label": "Don't have an account?",
+      "no-account-link": "Registrierung",
+      "sign-in-button": "Anmelden"
+    }
   }
 }

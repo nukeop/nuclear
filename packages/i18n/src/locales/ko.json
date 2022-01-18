@@ -25,9 +25,16 @@
     "plugins": "플러그인",
     "search": "검색 결과",
     "settings": "설정",
-    "visualizer": "비주얼라이저"
+    "visualizer": "비주얼라이저",
+    "user-panel": {
+      "actions-tooltip": "User actions",
+      "sign-up": "로그인 / 회원가입",
+      "sign-out": "로그아웃"
+    },
+    "version": "버전"
   },
   "artist": {
+    "add-all": "모두 추가",
     "count": "총 재생 횟수",
     "queue": "모든 음악을 재생 목록에 추가",
     "similar": "비슷한 아티스트",
@@ -35,7 +42,7 @@
     "tour": "투어 중"
   },
   "dashboard": {
-    "add-all": "Add all",
+    "add-all": "모두 추가",
     "artist": "아티스트",
     "best": "새롭게 뜨는",
     "best-new-albums": "새롭게 뜨는 앨범",
@@ -56,25 +63,38 @@
     "name": "이름",
     "status": "상태"
   },
+  "equalizer": {
+    "classical": "클래식",
+    "club": "클럽",
+    "custom": "사용자 정의",
+    "default": "기본값",
+    "full-bass": "최저 음역",
+    "full-treble": "최고 음역",
+    "pop": "팝",
+    "presets": "사전설정",
+    "reggae": "레게",
+    "rock": "락"
+  },
   "favorite-albums": {
     "empty": "좋아하는 앨범 없음.",
     "empty-help": "'좋아요'한 앨범이 여기에 표시됩니다!",
     "header": "즐겨찾는 앨범"
   },
   "favorite-artists": {
-    "empty": "좋아하는 아티스트",
+    "empty": "좋아하는 아티스트 없음",
     "empty-help": "'좋아요'한 아티스트가 여기에 표시됩니다!",
     "header": "내가 좋아하는 아티스트"
   },
   "favorites": {
     "artist": "아티스트",
     "empty": "좋아하는 음악 없음.",
-    "empty-help": "Try adding some tracks to favorites and they will appear here!",
+    "empty-help": "즐겨찾기에 추가한 곡들이 여기에 표시됩니다!",
     "header": "좋아하는 음악",
     "title": "제목"
   },
   "help": {
     "about": "Nuclear Music Player에 대하여",
+    "contributors": "상위 10명의 기여자",
     "header": "무료 음악 스트리밍을 위한 데스크탑 음악 재생 프로그램",
     "released": "AGPL-3.0 라이선스로 배포되었습니다.",
     "report": "버그 신고/새로운 기능 제안",
@@ -105,7 +125,7 @@
     "autoradio": "자동 재생",
     "loop": "반복",
     "mini-player": "미니 플레이어",
-    "shuffle": "셔플"
+    "shuffle": "랜덤 재생"
   },
   "player": {
     "next-button": "다음 재생 버튼",
@@ -131,9 +151,9 @@
     "export-fail-title": "재생목록 내보내기 실패",
     "export-success-title": "재생목록을 성공적으로 내보내었습니다",
     "header": "내 재생목록",
-    "dialog-accept": "Save",
-    "create-button": "Create new playlist",
-    "new-playlist": "New playlist",
+    "dialog-accept": "저장",
+    "create-button": "플레이리스트 생성",
+    "new-playlist": "새 플레이리스트",
     "import-button": "파일에서 가져오기 (JSON)",
     "import-fail-title": "재생목록 내보내기 실패",
     "import-success-title": "재생목록을 성공적으로 불러왔습니다",
@@ -146,7 +166,15 @@
     "songs_plural": "{{total}}곡",
     "title": "제목",
     "tracks-selected-plural": "트랙 선택됨",
-    "tracks-selected-singular": "트랙 선택됨"
+    "tracks-selected-singular": "트랙 선택됨",
+    "tracks-singular": "트랙",
+    "tracks-plural": "트랙",
+    "modified-at": "Last modified: ",
+    "never-modified": "알 수 없음",
+    "server-modified-at": "Server modified: ",
+    "upload-to-server": "Upload to server",
+    "download-from-server": "Download from server",
+    "number-of-tracks": "트랙"
   },
   "plugins": {
     "add-a-plugin": "플러그인 추가",
@@ -173,31 +201,36 @@
     "header": "재생 목록",
     "header-track": "재생 중인 음악",
     "id": "스트림 ID:",
-    "source": "Source:",
-    "copy-track-url": "Copy track url to clipboard",
+    "source": "소스:",
+    "copy-track-url": "클립보드로 웹페이지주소 복사",
     "loading": "스트림 로딩 중.",
     "playlist-add": "플레이리스트에 추가",
     "playlist-toast-content": "플레이리스트 \"{{name}}\"(이)가 생성되었습니다.",
     "playlist-toast-title": "플레이리스트 생성 완료",
-    "title": "제목:"
+    "title": "제목:",
+    "live": "라이브"
   },
   "search": {
     "album": "앨범",
     "album_plural": "앨범",
+    "all": "통합 검색",
     "artist": "아티스트",
     "artist_plural": "아티스트",
     "clear-history": "재생 기록 삭제",
     "empty": "검색 결과가 없습니다.",
     "last-searches": "최근 검색",
+    "live-stream": "라이브 스트림",
     "placeholder": "검색...",
     "playlist": "플레이리스트",
     "playlist_plural": "재생목록",
+    "podcast": "팟캐스트",
     "queue-add": "재생 목록에 모든 음악 추가",
     "track": "음악",
     "track_plural": "트랙",
     "you-can-search-for": "다음 항목을 검색할 수 있습니다:"
   },
   "seekbar": {
+    "live": "라이브",
     "segment-popup": "음악이 아님"
   },
   "settings": {
@@ -232,6 +265,7 @@
     "lastfm-description": "Scrobbling을 활성화하려면 먼저 Last.fm에서 Nuclear를 연결 및 인증한 후 로그인을 누르십시오.",
     "lastfm-enable": "Last.fm에서 Scrobbling 활성화",
     "lastfm-title": "Last.fm",
+    "less": "덜",
     "login": "로그인",
     "logout": "로그아웃",
     "loop-after-queue-end": "재생 목록의 마지막 음악을 재생한 후 전체 반복",
@@ -244,19 +278,23 @@
     "mastodon-post-format-description": "Nuclear가 각 트랙 재생이 완료된 후 Mastodon에 상태를 게시합니다. 위의 문자열은 각 게시물의 템플릿이 되고, {{artist}} 및 {{title}}은 아티스트 및 트랙 제목으로 대체됩니다.",
     "mastodon-post-format-label": "게시 형식",
     "mastodon-title": "",
+    "nuclear-identity-service-url": "Nuclear identity service URL",
+    "nuclear-playlists-service-url": "Nuclear playlists service URL",
     "mini-player": "미니 플레이어 모드 사용",
-    "discord-rich-presence": "Toggle discord rich presence (requires restart)",
+    "more": "강하게",
+    "discord-rich-presence": "디스코드 현재 재생 음악 보이기 (재시작 필요)",
     "notification-timeout": "알림 시간 초과",
     "notlogged": "로그인하지 않았습니다.",
     "playback": "재생",
     "program-settings": "프로그램 설정",
+    "saving-in": "저장 경로:",
     "seek-iteration": "화살표 키를 눌렀을 때 탐색할 시간 (초)",
     "shuffle-queue": "음악 셔플",
     "shuffle-when-going-back": "이전 음악 재생 시 셔플",
     "shuffle-when-going-back-description": "셔플 활성화 시, 이전 재생 버튼 누르면 임의로 음악 재생",
     "social": "소셜 네트워크",
-    "skip-sponsorblock": "Skip non-music segment",
-    "skip-sponsorblock-description": "Playback skips non-music segment from SponsorBlock (https://sponsor.ajay.app/)",
+    "skip-sponsorblock": "스폰서블럭 끄기",
+    "skip-sponsorblock-description": "SponsorBlock (https://sponsor.ajay.app/) 에서 음악이 아닌 곡은 재생 건너뛰기",
     "streaming": "스트리밍",
     "track-duration": "화면에 남은 재생 시간 표시",
     "user": "유저:",
@@ -272,28 +310,61 @@
     "title": "제목"
   },
   "track-popup": {
-    "add-to-favorite": "Add to favorites",
-    "add-to-playlist": "Add to playlist",
-    "add-to-queue": "Add to queue",
-    "download": "Download",
-    "download-toast-body": "{{artist}} - {{track}} has been added to downloads.",
-    "download-toast-title": "Track added to downloads",
-    "favorite-toast-body": "{{artist}} - {{track}} has been added to favorites.",
-    "favorite-toast-title": "Favorite track added",
-    "play-next": "Play next",
-    "play-now": "Play now",
-    "playlist-toast-body": "{{artist}} - {{track}} has been added to playlist.",
-    "playlist-toast-title": "Track added to playlist"
+    "add-to-favorite": "즐겨찾기에 추가",
+    "add-to-playlist": "플레이리스트에 추가",
+    "add-to-queue": "재생목록에 추가",
+    "download": "다운로드",
+    "download-toast-body": "{{artist}} - {{track}}(이)가 다운로드 목록에 추가되었습니다.",
+    "download-toast-title": "다운로드 목록에 추가된 곡",
+    "favorite-toast-body": "{{artist}} - {{track}}(이)가 즐겨찾기 목록에 추가되었습니다.",
+    "favorite-toast-title": "좋아하는 곡 추가",
+    "play-next": "다음 곡으로 재생",
+    "play-now": "지금 재생",
+    "playlist-toast-body": "{{artist}} - {{track}}(이)가 재생목록에 추가되었습니다.",
+    "playlist-toast-title": "재생목록에 추가된 곡"
   },
   "track-table": {
-    "add-selected-tracks-to-queue": "Add selected to queue",
-    "add-selected-tracks-to-downloads": "Add selected to downloads",
-    "add-selected-tracks-to-favorites": "Add selected to favorites",
-    "play-selected-tracks-now": "Play selected now",
-    "tracks-selected-label-singular": "track selected",
-    "tracks-selected-label-plural": "tracks selected"
+    "add-selected-tracks-to-queue": "선택한 항목을 대기열에 추가",
+    "add-selected-tracks-to-downloads": "선택한 항목을 다운로드에 추가",
+    "add-selected-tracks-to-favorites": "선택한 항목을 좋아하는 곡에 추가",
+    "play-selected-tracks-now": "선택한 항목을 지금 재생",
+    "tracks-selected-label-singular": "곡 선택됨",
+    "tracks-selected-label-plural": "곡 선택됨"
   },
   "visualizer": {
     "exit-fullscreen": "전체 화면 모드를 종료하려면 Esc 키를 누르십시오."
+  },
+  "forms": {
+    "nuclear-sign-up": {
+      "header": "Sign up",
+      "secondary-header": "Sign up to Nuclear Web Services",
+      "side-paragraph-1": "NWS enables you to backup your playlists online and share them.",
+      "side-paragraph-2": "Providing your email is optional; it will allow you to recover your account if you forget your password.",
+      "username-label": "Username",
+      "email-label": "이메일",
+      "password-label": "비밀번호",
+      "sign-up-button": "회원가입",
+      "validation": {
+        "username": {
+          "length": "Username must be 4 characters or more",
+          "required": "Username is required"
+        },
+        "email": {
+          "invalid": "Email must be a valid email"
+        },
+        "password": {
+          "length": "비밀번호는 최소 6자 이상이어야 합니다",
+          "required": "비밀번호가 필요합니다."
+        }
+      }
+    },
+    "nuclear-sign-in": {
+      "header": " 로그인",
+      "username-label": "사용자 이름",
+      "password-label": "비밀번호",
+      "no-account-label": "계정이 없으신가요?",
+      "no-account-link": "회원가입",
+      "sign-in-button": "로그인"
+    }
   }
 }
