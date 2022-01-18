@@ -1,19 +1,11 @@
 name: Release job
 
-on: 
-  workflow_dispatch:
-    inputs:
-      tag:
-        description: 'tag to build'
-        required: true
-      release_name:
-        description: 'release name'
-        required: true
+on: workflow_dispatch
 
 jobs:
   linux_release:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 30
 
     steps:
     - uses: actions/checkout@master
@@ -23,8 +15,7 @@ jobs:
         version: 12.x
         cache: npm
     - run: npm ci
-    - name: npm build
-      run: npm run build:linux
+    - run: npm run build:linux
       shell: bash
       env:
         GITHASH: ${{github.event.inputs.tag}}
@@ -36,7 +27,7 @@ jobs:
 
   mac_release:
     runs-on: macOS-latest
-    timeout-minutes: 20
+    timeout-minutes: 30
 
     steps:
     - uses: actions/checkout@master
@@ -46,8 +37,7 @@ jobs:
         version: 12.x
         cache: npm
     - run: npm ci
-    - name: npm build
-      run: npm run build:macos
+    - run: npm run build:macos
       shell: bash
       env:
         GITHASH: ${{github.event.inputs.tag}}
@@ -59,7 +49,7 @@ jobs:
 
   windows_release:
     runs-on: windows-latest
-    timeout-minutes: 20
+    timeout-minutes: 30
 
     steps:
     - uses: actions/checkout@master
@@ -73,8 +63,7 @@ jobs:
         echo "C:\Program Files\Git\usr\bin" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
         echo "C:\Program Files\Git\mingw64\libexec\git-core" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
     - run: npm ci
-    - name: npm build
-      run: npm run build:windows
+    - run: npm run build:windows
       shell: bash
       env:
         GITHASH: ${{github.event.inputs.tag}}
