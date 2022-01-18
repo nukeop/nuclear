@@ -25,9 +25,16 @@
     "plugins": "插件",
     "search": "搜索结果",
     "settings": "设置",
-    "visualizer": "可视化"
+    "visualizer": "可视化",
+    "user-panel": {
+      "actions-tooltip": "User actions",
+      "sign-up": "Sign up / Sign in",
+      "sign-out": "Sign out"
+    },
+    "version": "Version"
   },
   "artist": {
+    "add-all": "Add all",
     "count": "播放次数",
     "queue": "将全部歌曲添加到播放列表",
     "similar": "相似的艺术家",
@@ -56,6 +63,18 @@
     "name": "名字",
     "status": "状态"
   },
+  "equalizer": {
+    "classical": "Classical",
+    "club": "Club",
+    "custom": "Custom",
+    "default": "Default",
+    "full-bass": "Full Bass",
+    "full-treble": "Full Treble",
+    "pop": "Pop",
+    "presets": "Presets",
+    "reggae": "Reggae",
+    "rock": "Rock"
+  },
   "favorite-albums": {
     "empty": "没有收藏的专辑",
     "empty-help": "添加至收藏的专辑将显示在这里！",
@@ -75,6 +94,7 @@
   },
   "help": {
     "about": "关于核音乐播放器",
+    "contributors": "Our top 10 Contributors",
     "header": "从免费源进行流媒体播放的桌面级音乐播放器",
     "released": "基于 AGPL 3.0 协议发布",
     "report": "提交问题或新特性",
@@ -146,7 +166,15 @@
     "songs_plural": "{{total}} 首歌曲",
     "title": "音乐标题",
     "tracks-selected-plural": "曲目已选中",
-    "tracks-selected-singular": "曲目已选中"
+    "tracks-selected-singular": "曲目已选中",
+    "tracks-singular": "track",
+    "tracks-plural": "tracks",
+    "modified-at": "Last modified: ",
+    "never-modified": "Unknown",
+    "server-modified-at": "Server modified: ",
+    "upload-to-server": "Upload to server",
+    "download-from-server": "Download from server",
+    "number-of-tracks": "tracks"
   },
   "plugins": {
     "add-a-plugin": "添加插件",
@@ -179,25 +207,30 @@
     "playlist-add": "添加到播放列表",
     "playlist-toast-content": "播放列表 {{name}} 已创建。",
     "playlist-toast-title": "已创建播放列表",
-    "title": "音乐标题:"
+    "title": "音乐标题:",
+    "live": "Live"
   },
   "search": {
     "album": "专辑",
     "album_plural": "专辑",
+    "all": "All",
     "artist": "艺人",
     "artist_plural": "艺术家",
     "clear-history": "清除历史记录",
     "empty": "未找到任何内容。",
     "last-searches": "最近搜索记录",
+    "live-stream": "LiveStream",
     "placeholder": "搜索...",
     "playlist": "播放列表",
     "playlist_plural": "播放列表",
+    "podcast": "Podcast",
     "queue-add": "将全部歌曲添加到播放列表",
     "track": "音乐标题",
     "track_plural": "曲目",
     "you-can-search-for": "你可以搜索："
   },
   "seekbar": {
+    "live": "Live",
     "segment-popup": "无音乐"
   },
   "settings": {
@@ -232,6 +265,7 @@
     "lastfm-description": "要启用喜好记录，你需要先在 Last.fm 授权 Nuclear，然后点击登录。",
     "lastfm-enable": "启用 Last.fm 的播放统计",
     "lastfm-title": "Last.fm",
+    "less": "Less",
     "login": "登录",
     "logout": "推出",
     "loop-after-queue-end": "播放到末尾后循环",
@@ -244,12 +278,16 @@
     "mastodon-post-format-description": "当每首曲目播放完毕时，Nuclear 会在 Mastodon 上发布一条动态。上面的字符串会被作为帖子的模板，{{artist}} 和 {{title}} 会被作曲家和曲目名称替代。",
     "mastodon-post-format-label": "文章格式",
     "mastodon-title": "",
+    "nuclear-identity-service-url": "Nuclear identity service URL",
+    "nuclear-playlists-service-url": "Nuclear playlists service URL",
     "mini-player": "使用迷你播放器风格",
+    "more": "More",
     "discord-rich-presence": "开启discord 富存在（需要重启）",
     "notification-timeout": "通知超时",
     "notlogged": "没有登陆",
     "playback": "回放",
     "program-settings": "Program设置",
+    "saving-in": "Saving in:",
     "seek-iteration": "按住箭头按钮几秒可以进行快进/快退操作",
     "shuffle-queue": "随机播放歌曲",
     "shuffle-when-going-back": "对之前的曲目进行随机播放",
@@ -295,5 +333,38 @@
   },
   "visualizer": {
     "exit-fullscreen": "按 ESC 键退出全屏"
+  },
+  "forms": {
+    "nuclear-sign-up": {
+      "header": "Sign up",
+      "secondary-header": "Sign up to Nuclear Web Services",
+      "side-paragraph-1": "NWS enables you to backup your playlists online and share them.",
+      "side-paragraph-2": "Providing your email is optional; it will allow you to recover your account if you forget your password.",
+      "username-label": "Username",
+      "email-label": "Email",
+      "password-label": "Password",
+      "sign-up-button": "Sign up",
+      "validation": {
+        "username": {
+          "length": "Username must be 4 characters or more",
+          "required": "Username is required"
+        },
+        "email": {
+          "invalid": "Email must be a valid email"
+        },
+        "password": {
+          "length": "Password must be 6 characters or more",
+          "required": "Password is required"
+        }
+      }
+    },
+    "nuclear-sign-in": {
+      "header": " Sign in",
+      "username-label": "Username",
+      "password-label": "Password",
+      "no-account-label": "Don't have an account?",
+      "no-account-link": "Sign up",
+      "sign-in-button": "Sign in"
+    }
   }
 }
