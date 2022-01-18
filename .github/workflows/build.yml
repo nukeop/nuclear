@@ -22,15 +22,14 @@ jobs:
         cache: npm
     - run: npm ci
     - run: npm test
-    - name: npm build
-      run: npm run build:linux
+    - run: npm run build:linux
       shell: bash
       env:
         GITHASH: ${GITHUB_SHA}
   
   mac_build:
     runs-on: macOS-latest
-    timeout-minutes: 25
+    timeout-minutes: 30
 
     steps:
     - uses: actions/checkout@master
@@ -41,15 +40,14 @@ jobs:
         cache: npm
     - run: npm ci
     - run: npm test
-    - name: npm build
-      run: npm run build:macos
+    - run: npm run build:macos
       shell: bash
       env:
         GITHASH: ${GITHUB_SHA}
   
   windows_build:
     runs-on: windows-latest
-    timeout-minutes: 25
+    timeout-minutes: 30
 
     steps:
     - uses: actions/checkout@master
@@ -64,8 +62,7 @@ jobs:
         echo "C:\Program Files\Git\mingw64\libexec\git-core" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
     - run: npm ci
     - run: npm test
-    - name: npm build
-      run: npm run build:windows
+    - run: npm run build:windows
       shell: bash
       env:
         GITHASH: ${GITHUB_SHA}
