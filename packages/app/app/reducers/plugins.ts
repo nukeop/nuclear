@@ -1,4 +1,6 @@
 import _ from 'lodash';
+import { config } from '@nuclear/core/src/plugins/config';
+
 import {
   CREATE_PLUGINS,
   SELECT_STREAM_PROVIDER,
@@ -11,7 +13,7 @@ import {
 } from '../actions/plugins';
 
 const initialState = {
-  plugins: {},
+  plugins: {} as typeof config.plugins,
   selected: {},
   userPlugins: {}
 };
