@@ -116,9 +116,9 @@ export const useTrackInfoProps = () => {
   const hasTracks = queue.queueItems.length > 0;
   const currentSong = _.get(queue.queueItems, queue.currentSong);
 
-  const track = _.get(currentSong, 'name');
-  const artist = _.get(currentSong, 'artist');
-  const cover = _.get(currentSong, 'thumbnail');
+  const track = currentSong?.name;
+  const artist = currentSong?.artist;
+  const cover = currentSong?.thumbnail;
 
   const favorite = useSelector(s => getFavoriteTrack(s, artist, track));
   const isFavorite = !_.isNil(favorite);
