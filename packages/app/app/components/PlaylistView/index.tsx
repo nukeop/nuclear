@@ -1,17 +1,19 @@
 import React, { useCallback } from 'react';
 import _ from 'lodash';
+import { TFunction } from 'i18next';
 import { useTranslation } from 'react-i18next';
+import { useHistory } from 'react-router';
 import { Icon } from 'semantic-ui-react';
+
+import { Playlist } from '@nuclear/core';
 import { Button, ContextPopup, PopupButton, timestampToTimeString } from '@nuclear/ui';
-import { Playlist, Track, TrackType } from '@nuclear/core';
+import { Track } from '@nuclear/ui/lib/types';
 
 import InputDialog from '../InputDialog';
 import artPlaceholder from '../../../resources/media/art_placeholder.png';
 
 import styles from './styles.scss';
-import { useHistory } from 'react-router';
 import TrackTableContainer from '../../containers/TrackTableContainer';
-import { TFunction } from 'i18next';
 
 export type PlaylistViewProps = {
   playlist: Playlist;
@@ -169,7 +171,7 @@ const PlaylistView: React.FC<PlaylistViewProps> = ({
           </div>
         </div>
         <TrackTableContainer
-          tracks={playlist.tracks as TrackType[]}
+          tracks={playlist.tracks as Track[]}
           onDelete={onDeleteTrack}
           onReorder={onReorderTracks}
           displayAlbum={false}

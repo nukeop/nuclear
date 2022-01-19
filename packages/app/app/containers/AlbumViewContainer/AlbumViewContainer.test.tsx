@@ -45,9 +45,7 @@ describe('Album view container', () => {
     const state = store.getState();
     expect(state.queue.queueItems).toEqual([
       expect.objectContaining({
-        artist: {
-          name: 'test artist'
-        },
+        artist: 'test artist',
         name: 'test track 1'
       })
     ]);
@@ -62,9 +60,29 @@ describe('Album view container', () => {
     const state = store.getState();
     expect(state.queue.queueItems).toEqual([
       expect.objectContaining({
-        artist: {
-          name: 'test artist'
-        },
+        artist: 'test artist',
+        name: 'test track 1'
+      })
+    ]);
+    expect(state.player.playbackStatus).toEqual('PLAYING');
+  });
+
+  it('should queue a single track to be played next after clicking the button in the popup', async () => {
+    const { component, store } = mountComponent();
+
+    await waitFor(() => component.getAllByTestId('track-popup-trigger')[1].click());
+    await waitFor(() => component.getByText(/play now/i).click());
+    await waitFor(() => component.getAllByTestId('track-popup-trigger')[0].click());
+    await waitFor(() => component.getByText(/play next/i).click());
+
+    const state = store.getState();
+    expect(state.queue.queueItems).toEqual([
+      expect.objectContaining({
+        artist: 'test artist',
+        name: 'test track 2'
+      }),
+      expect.objectContaining({
+        artist: 'test artist',
         name: 'test track 1'
       })
     ]);
