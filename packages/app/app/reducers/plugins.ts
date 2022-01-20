@@ -12,6 +12,10 @@ import {
   DELETE_USER_PLUGIN
 } from '../actions/plugins';
 
+type UserPlugin = {
+  path: string;
+}
+
 const initialState = {
   plugins: {} as typeof config.plugins,
   selected: {},
@@ -83,7 +87,7 @@ export default function PluginsReducer(state=initialState, action) {
   case DELETE_USER_PLUGIN:
     return {
       ...state,
-      userPlugins: _.pickBy(state.userPlugins, plugin => plugin.path !== action.payload.path)
+      userPlugins: _.pickBy(state.userPlugins, (plugin: UserPlugin) => plugin.path !== action.payload.path)
     };
   default:
     return state;
