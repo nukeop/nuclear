@@ -1,0 +1,72 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Search box container should render the search box 1`] = `
+<DocumentFragment>
+  <div
+    class="nuclear search_box_container"
+  >
+    <div
+      class="nuclear search_box"
+    >
+      <i
+        aria-hidden="true"
+        class="search icon"
+      />
+      <input
+        class=""
+        placeholder="Search..."
+      />
+      <div
+        aria-disabled="false"
+        aria-expanded="false"
+        class="ui dropdown"
+        role="listbox"
+        tabindex="0"
+      >
+        <div
+          aria-atomic="true"
+          aria-live="polite"
+          class="divider text"
+          role="alert"
+        >
+          Test Metadata Provider
+        </div>
+        <i
+          aria-hidden="true"
+          class="dropdown icon"
+        />
+        <div
+          class="menu transition"
+        >
+          <div
+            aria-checked="true"
+            aria-selected="true"
+            class="active selected item"
+            role="option"
+            style="pointer-events: all;"
+          >
+            <span
+              class="text"
+            >
+              Test Metadata Provider
+            </span>
+          </div>
+          <div
+            aria-checked="false"
+            aria-selected="false"
+            class="item"
+            role="option"
+            style="pointer-events: all;"
+          >
+            <span
+              class="text"
+            >
+              Another Metadata Provider
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
