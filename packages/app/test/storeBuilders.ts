@@ -255,6 +255,9 @@ export const buildStoreState = () => {
                 isDefault: true,
                 sourceName: 'Test Metadata Provider',
                 searchName: 'Test Metadata Provider',
+                searchForArtists: jest.fn().mockResolvedValue([]),
+                searchForReleases: jest.fn().mockResolvedValue([]),
+                searchForPodcast: jest.fn().mockResolvedValue([]),
                 fetchArtistDetailsByName: (artistName) => {
                   switch (artistName) {
                   case 'artist-similar-1':
