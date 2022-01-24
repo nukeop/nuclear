@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { SemanticICONS } from 'semantic-ui-react';
 
 import { PlayerButton } from '../..';
 
@@ -7,7 +8,7 @@ export default {
 };
 
 export const PlayButton = () => {
-  const [icon, setIcon] = useState('play');
+  const [icon, setIcon] = useState<SemanticICONS>('play');
   const onClick = () => {
     if (icon === 'play') {
       setIcon('pause');

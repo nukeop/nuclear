@@ -84,6 +84,7 @@
 		"react-full-screen": "^1.0.1",
 		"react-image": "^2.2.2",
 		"react-measure": "^2.5.2",
+		"react-resizable": "^3.0.4",
 		"react-table": "^7.7.0",
 		"recompose": "^0.30.0",
 		"semantic-ui-react": "^2.0.3",
