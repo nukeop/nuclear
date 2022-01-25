@@ -25,9 +25,16 @@
     "plugins": "プラグイン",
     "search": "検索結果",
     "settings": "設定",
-    "visualizer": "ビジュアライザー"
+    "visualizer": "ビジュアライザー",
+    "user-panel": {
+      "actions-tooltip": "User actions",
+      "sign-up": "Sign up / Sign in",
+      "sign-out": "Sign out"
+    },
+    "version": "Version"
   },
   "artist": {
+    "add-all": "Add all",
     "count": "再生回数",
     "queue": "すべてのトラックをキューに追加",
     "similar": "類似のアーティスト",
@@ -56,6 +63,18 @@
     "name": "名前",
     "status": "ステータス"
   },
+  "equalizer": {
+    "classical": "Classical",
+    "club": "Club",
+    "custom": "Custom",
+    "default": "Default",
+    "full-bass": "Full Bass",
+    "full-treble": "Full Treble",
+    "pop": "Pop",
+    "presets": "Presets",
+    "reggae": "Reggae",
+    "rock": "Rock"
+  },
   "favorite-albums": {
     "empty": "お気に入りのアルバムがありません",
     "empty-help": "お気に入りにアルバムを追加すると、ここに表示されます！",
@@ -75,6 +94,7 @@
   },
   "help": {
     "about": "Nuclear Music Playerについて",
+    "contributors": "Our top 10 Contributors",
     "header": "無料ソースから音楽再生するデスクトップ音楽プレイヤー",
     "released": "AGPL-3.0でリリースされました",
     "report": "問題や新機能の依頼を送信する",
@@ -146,7 +166,15 @@
     "songs_plural": "{{total}} 曲",
     "title": "タイトル",
     "tracks-selected-plural": "tracks selected",
-    "tracks-selected-singular": "track selected"
+    "tracks-selected-singular": "track selected",
+    "tracks-singular": "track",
+    "tracks-plural": "tracks",
+    "modified-at": "Last modified: ",
+    "never-modified": "Unknown",
+    "server-modified-at": "Server modified: ",
+    "upload-to-server": "Upload to server",
+    "download-from-server": "Download from server",
+    "number-of-tracks": "tracks"
   },
   "plugins": {
     "add-a-plugin": "プラグインを追加",
@@ -179,25 +207,30 @@
     "playlist-add": "プレイリストに追加",
     "playlist-toast-content": "プレイリスト {{name}} を作成しました。",
     "playlist-toast-title": "プレイリストを作成しました",
-    "title": "タイトル:"
+    "title": "タイトル:",
+    "live": "Live"
   },
   "search": {
     "album": "アルバム",
     "album_plural": "アルバム",
+    "all": "All",
     "artist": "アーティスト",
     "artist_plural": "アーティスト",
     "clear-history": "全履歴を削除",
     "empty": "何も見つかりませんでした",
     "last-searches": "最近検索",
+    "live-stream": "LiveStream",
     "placeholder": "検索...",
     "playlist": "プレイリスト",
     "playlist_plural": "プレイリスト",
+    "podcast": "Podcast",
     "queue-add": "すべての曲をキューに追加",
     "track": "曲",
     "track_plural": "曲",
     "you-can-search-for": "以下を検索できます:"
   },
   "seekbar": {
+    "live": "Live",
     "segment-popup": "Non-music"
   },
   "settings": {
@@ -232,6 +265,7 @@
     "lastfm-description": "Scrobblingを有効にするには、まずNuclear を Last.fm に接続して認証し、ログインをクリックする必要があります。",
     "lastfm-enable": "Enable scrobbling to Last.fm",
     "lastfm-title": "Last.fm",
+    "less": "Less",
     "login": "ログイン",
     "logout": "ログアウト",
     "loop-after-queue-end": "最後のキューアイテムを再生した後にループする",
@@ -244,12 +278,16 @@
     "mastodon-post-format-description": "Nuclear will post a status on Mastodon after each track completes playing. The above string will be the template for each post, with {{artist}} and {{title}} replaced with the artist and title of the track.",
     "mastodon-post-format-label": "ポストの形式",
     "mastodon-title": "",
+    "nuclear-identity-service-url": "Nuclear identity service URL",
+    "nuclear-playlists-service-url": "Nuclear playlists service URL",
     "mini-player": "ミニプレーヤーを使用",
+    "more": "More",
     "discord-rich-presence": "Toggle discord rich presence (requires restart)",
     "notification-timeout": "通知のタイムアウト",
     "notlogged": "ログインしていません",
     "playback": "再生",
     "program-settings": "設定",
+    "saving-in": "Saving in:",
     "seek-iteration": "Number of seconds to seek forward/backwards when pressing arrow keys",
     "shuffle-queue": "曲をシャッフル",
     "shuffle-when-going-back": "Shuffle on previous track",
@@ -295,5 +333,38 @@
   },
   "visualizer": {
     "exit-fullscreen": "ESCで全画面表示終了"
+  },
+  "forms": {
+    "nuclear-sign-up": {
+      "header": "Sign up",
+      "secondary-header": "Sign up to Nuclear Web Services",
+      "side-paragraph-1": "NWS enables you to backup your playlists online and share them.",
+      "side-paragraph-2": "Providing your email is optional; it will allow you to recover your account if you forget your password.",
+      "username-label": "Username",
+      "email-label": "Email",
+      "password-label": "Password",
+      "sign-up-button": "Sign up",
+      "validation": {
+        "username": {
+          "length": "Username must be 4 characters or more",
+          "required": "Username is required"
+        },
+        "email": {
+          "invalid": "Email must be a valid email"
+        },
+        "password": {
+          "length": "Password must be 6 characters or more",
+          "required": "Password is required"
+        }
+      }
+    },
+    "nuclear-sign-in": {
+      "header": " Sign in",
+      "username-label": "Username",
+      "password-label": "Password",
+      "no-account-label": "Don't have an account?",
+      "no-account-link": "Sign up",
+      "sign-in-button": "Sign in"
+    }
   }
 }

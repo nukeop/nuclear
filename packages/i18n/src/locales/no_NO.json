@@ -25,9 +25,16 @@
     "plugins": "Utvidelser",
     "search": "Resultat av søket",
     "settings": "Innstillinger",
-    "visualizer": "Visualiser"
+    "visualizer": "Visualiser",
+    "user-panel": {
+      "actions-tooltip": "User actions",
+      "sign-up": "Sign up / Sign in",
+      "sign-out": "Sign out"
+    },
+    "version": "Version"
   },
   "artist": {
+    "add-all": "Add all",
     "count": "Spill teller",
     "queue": "Legg til alle spor i køen",
     "similar": "Lignende artister",
@@ -56,6 +63,18 @@
     "name": "Navn",
     "status": "Status:"
   },
+  "equalizer": {
+    "classical": "Classical",
+    "club": "Club",
+    "custom": "Custom",
+    "default": "Default",
+    "full-bass": "Full Bass",
+    "full-treble": "Full Treble",
+    "pop": "Pop",
+    "presets": "Presets",
+    "reggae": "Reggae",
+    "rock": "Rock"
+  },
   "favorite-albums": {
     "empty": "Ingen favoritt album",
     "empty-help": "Prøv å legge til noen album i favoritter og de vil vises her!",
@@ -75,6 +94,7 @@
   },
   "help": {
     "about": "Om Nuclear Music Player",
+    "contributors": "Our top 10 Contributors",
     "header": "Skrivebord musikkspiller for å strømme fra gratis kilder",
     "released": "frigjort under AGPL-3,0",
     "report": "Send problemer eller nye funksjoner",
@@ -146,7 +166,15 @@
     "songs_plural": "{{total}} sanger",
     "title": "Tittel",
     "tracks-selected-plural": "Spor valgt",
-    "tracks-selected-singular": "spor valgt"
+    "tracks-selected-singular": "spor valgt",
+    "tracks-singular": "track",
+    "tracks-plural": "tracks",
+    "modified-at": "Last modified: ",
+    "never-modified": "Unknown",
+    "server-modified-at": "Server modified: ",
+    "upload-to-server": "Upload to server",
+    "download-from-server": "Download from server",
+    "number-of-tracks": "tracks"
   },
   "plugins": {
     "add-a-plugin": "Legg til en plugin",
@@ -179,25 +207,30 @@
     "playlist-add": "Legg til i spilleliste",
     "playlist-toast-content": "Spilleliste {{name}} er opprettet.",
     "playlist-toast-title": "Spilleliste opprettet",
-    "title": "Tittel:"
+    "title": "Tittel:",
+    "live": "Live"
   },
   "search": {
     "album": "album",
     "album_plural": "Album",
+    "all": "All",
     "artist": "Kunstner",
     "artist_plural": "Artister",
     "clear-history": "Tøm logg",
     "empty": "Fant ingenting.",
     "last-searches": "Siste søk",
+    "live-stream": "LiveStream",
     "placeholder": "Søk...",
     "playlist": "Spilleliste",
     "playlist_plural": "Spillelister",
+    "podcast": "Podcast",
     "queue-add": "Legg til alle spor i køen",
     "track": "Spor",
     "track_plural": "Spor",
     "you-can-search-for": "Du kan søke etter:"
   },
   "seekbar": {
+    "live": "Live",
     "segment-popup": "Ikke-musikk"
   },
   "settings": {
@@ -232,6 +265,7 @@
     "lastfm-description": "For å aktivere scrobbling, må du først koble til og godkjenne Nuclear på Last.fm, og deretter klikke på Logg inn.",
     "lastfm-enable": "Aktiver scrobbling til Last.fm",
     "lastfm-title": "Last.fm",
+    "less": "Less",
     "login": "Logg inn",
     "logout": "Logg ut",
     "loop-after-queue-end": "Sløyfe etter siste kø-objekt",
@@ -244,12 +278,16 @@
     "mastodon-post-format-description": "Kjerneprøver vil poste statusen på Mastodon etter hver enkelt sang er ferdig. Teksten over vil være malen for hvert innlegg, med {{artist}} og {{title}} erstattet med artisten og tittelen på sporet.",
     "mastodon-post-format-label": "Post format",
     "mastodon-title": "",
+    "nuclear-identity-service-url": "Nuclear identity service URL",
+    "nuclear-playlists-service-url": "Nuclear playlists service URL",
     "mini-player": "Bruk mini spiller stil",
+    "more": "More",
     "discord-rich-presence": "Toggle discord rich presence (requires restart)",
     "notification-timeout": "Tidsavbrudd for varsel",
     "notlogged": "Ikke logget inn",
     "playback": "Avspilling",
     "program-settings": "Programmets innstillinger",
+    "saving-in": "Saving in:",
     "seek-iteration": "Antall sekunder å søke fremover eller bakover når du trykker på piltastene",
     "shuffle-queue": "Shuffle sanger",
     "shuffle-when-going-back": "Bland på forrige spor",
@@ -295,5 +333,38 @@
   },
   "visualizer": {
     "exit-fullscreen": "Trykk ESC for å avslutte fullskjerm"
+  },
+  "forms": {
+    "nuclear-sign-up": {
+      "header": "Sign up",
+      "secondary-header": "Sign up to Nuclear Web Services",
+      "side-paragraph-1": "NWS enables you to backup your playlists online and share them.",
+      "side-paragraph-2": "Providing your email is optional; it will allow you to recover your account if you forget your password.",
+      "username-label": "Username",
+      "email-label": "Email",
+      "password-label": "Password",
+      "sign-up-button": "Sign up",
+      "validation": {
+        "username": {
+          "length": "Username must be 4 characters or more",
+          "required": "Username is required"
+        },
+        "email": {
+          "invalid": "Email must be a valid email"
+        },
+        "password": {
+          "length": "Password must be 6 characters or more",
+          "required": "Password is required"
+        }
+      }
+    },
+    "nuclear-sign-in": {
+      "header": " Sign in",
+      "username-label": "Username",
+      "password-label": "Password",
+      "no-account-label": "Don't have an account?",
+      "no-account-link": "Sign up",
+      "sign-in-button": "Sign in"
+    }
   }
 }

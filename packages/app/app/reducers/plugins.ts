@@ -1,4 +1,6 @@
 import _ from 'lodash';
+import { config } from '@nuclear/core/src/plugins/config';
+
 import {
   CREATE_PLUGINS,
   SELECT_STREAM_PROVIDER,
@@ -10,8 +12,12 @@ import {
   DELETE_USER_PLUGIN
 } from '../actions/plugins';
 
+type UserPlugin = {
+  path: string;
+}
+
 const initialState = {
-  plugins: {},
+  plugins: {} as typeof config.plugins,
   selected: {},
   userPlugins: {}
 };
@@ -81,7 +87,7 @@ export default function PluginsReducer(state=initialState, action) {
   case DELETE_USER_PLUGIN:
     return {
       ...state,
-      userPlugins: _.pickBy(state.userPlugins, plugin => plugin.path !== action.payload.path)
+      userPlugins: _.pickBy(state.userPlugins, (plugin: UserPlugin) => plugin.path !== action.payload.path)
     };
   default:
     return state;

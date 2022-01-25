@@ -25,9 +25,16 @@
     "plugins": "प्लगइन्स",
     "search": "खोज परिणाम",
     "settings": "सेटिंग्स",
-    "visualizer": "विजुआलाइज़र"
+    "visualizer": "विजुआलाइज़र",
+    "user-panel": {
+      "actions-tooltip": "उपयोगकर्ता क्रियाएं",
+      "sign-up": "साइन अप / साइन इन करें",
+      "sign-out": "साइन आउट करें"
+    },
+    "version": "संस्करण"
   },
   "artist": {
+    "add-all": "सभी जोड़ें",
     "count": "प्ले काउंट",
     "queue": "कतार में सभी ट्रैक जोड़ें",
     "similar": "समान कलाकार",
@@ -56,6 +63,18 @@
     "name": "नाम",
     "status": "स्थिति"
   },
+  "equalizer": {
+    "classical": "शास्त्रीय",
+    "club": "क्लब",
+    "custom": "निजीकृत",
+    "default": "पूर्व निर्धारित",
+    "full-bass": "पूर्ण बास",
+    "full-treble": "पूर्ण ट्रेब्ल",
+    "pop": "पॉप",
+    "presets": "प्रीसेट",
+    "reggae": "रेगी",
+    "rock": "रॉक"
+  },
   "favorite-albums": {
     "empty": "कोई पसंदीदा एल्बम नहीं",
     "empty-help": "पसंदीदा में कुछ एल्बम जोड़ने का प्रयास करें और वे यहां दिखाई देंगे!",
@@ -75,6 +94,7 @@
   },
   "help": {
     "about": "न्यूक्लियर म्यूजिक प्लेयर के बारे में",
+    "contributors": "हमारे शीर्ष 10 योगदानकर्ता",
     "header": "मुफ्त स्रोतों से स्ट्रीमिंग के लिए डेस्कटॉप म्यूजिक प्लेयर",
     "released": "AGPL-3.0 के तहत जारी",
     "report": "समस्याएं या नई सुविधाएं सबमिट करें",
@@ -146,7 +166,15 @@
     "songs_plural": "{{total}} गीत",
     "title": "शीर्षक",
     "tracks-selected-plural": "चयनित ट्रैक",
-    "tracks-selected-singular": "चयनित ट्रैक"
+    "tracks-selected-singular": "चयनित ट्रैक",
+    "tracks-singular": "ट्रैक",
+    "tracks-plural": "ट्रैक",
+    "modified-at": "पिछली बार संशोधित: ",
+    "never-modified": "अज्ञात",
+    "server-modified-at": "सर्वर संशोधित ",
+    "upload-to-server": "सर्वर पर अपलोड करें",
+    "download-from-server": "सर्वर से डाउनलोड करें",
+    "number-of-tracks": "ट्रैक"
   },
   "plugins": {
     "add-a-plugin": "प्लगइन जोड़ें",
@@ -179,25 +207,30 @@
     "playlist-add": "प्‍लेलिस्‍ट में जोड़ें",
     "playlist-toast-content": "प्लेलिस्ट {{name}} बन गई है।",
     "playlist-toast-title": "प्लेलिस्ट बनाई गई!",
-    "title": "शीर्षक:"
+    "title": "शीर्षक:",
+    "live": "लाइव"
   },
   "search": {
     "album": "एल्बम",
     "album_plural": "एल्बम्स",
+    "all": "सभी",
     "artist": "कलाकार",
     "artist_plural": "कलाकार",
     "clear-history": "इतिहास साफ करें",
     "empty": "कुछ भी नहीं मिला",
     "last-searches": "पिछली खोजें",
+    "live-stream": "लाइव स्ट्रीम",
     "placeholder": "खोज़े...",
     "playlist": "प्लेलिस्ट",
     "playlist_plural": "प्लेलिस्ट",
+    "podcast": "पॉडकास्ट",
     "queue-add": "सभी ट्रैक कतार में जोड़ें",
     "track": "ट्रैक",
     "track_plural": "ट्रैक",
     "you-can-search-for": "आप खोज सकते हैं:"
   },
   "seekbar": {
+    "live": "लाइव",
     "segment-popup": "गैर-संगीत"
   },
   "settings": {
@@ -232,6 +265,7 @@
     "lastfm-description": "स्क्रोब्लिंग को सक्षम करने के लिए, आपको पहले Last.fm पर न्यूक्लियर को कनेक्ट और अधिकृत करना होगा, फिर लॉग इन पर क्लिक करना होगा।",
     "lastfm-enable": "स्क्रोब्लिंग को Last.fm पे सक्षम करें",
     "lastfm-title": "Last.fm",
+    "less": "कम",
     "login": "लौग इन",
     "logout": "लॉग आउट",
     "loop-after-queue-end": "अंतिम कतार आइटम खेलने के बाद लूप करें",
@@ -244,12 +278,16 @@
     "mastodon-post-format-description": "प्रत्येक ट्रैक के चलने के बाद न्यूक्लियर मास्टोडन पर एक स्टेटस पोस्ट करेगा। उपरोक्त स्ट्रिंग प्रत्येक पोस्ट के लिए टेम्प्लेट होगी, जिसमें {{artist}} और {{title}} को कलाकार और ट्रैक के शीर्षक से बदल दिया जाएगा।",
     "mastodon-post-format-label": "पोस्ट फॉर्मेट",
     "mastodon-title": "",
+    "nuclear-identity-service-url": "नुक्लेअर पहचान सेवा यूआरएल",
+    "nuclear-playlists-service-url": "नुक्लेअर प्लेलिस्ट सेवा यूआरएल",
     "mini-player": "मिनी प्लेयर शैली का प्रयोग करें",
+    "more": "अधिक",
     "discord-rich-presence": "डिस्कॉर्ड रिच प्रजेंस टॉगल करें (पुनरारंभ करने की आवश्यकता है)",
     "notification-timeout": "सूचना समयबाह्य",
     "notlogged": "लॉगिन नहीं हैं",
     "playback": "प्लेबैक",
     "program-settings": "कार्यक्रम सेटिंग्‍स",
+    "saving-in": "सहेजा जा रहा है...",
     "seek-iteration": "तीर कुंजियों को दबाते समय आगे/पीछे जाने के लिए सेकंड की संख्या",
     "shuffle-queue": "गीत शफल करे",
     "shuffle-when-going-back": "पिछले ट्रैक पर शफल करें",
@@ -295,5 +333,38 @@
   },
   "visualizer": {
     "exit-fullscreen": "फुलस्क्रीन मोड से बाहर निकलने के लिए Esc दबाएं।"
+  },
+  "forms": {
+    "nuclear-sign-up": {
+      "header": "साइन अप करें",
+      "secondary-header": "नुक्लेअर वेब सर्विस पे साइन अप करें",
+      "side-paragraph-1": "NWS आपको अपनी प्लेलिस्ट का ऑनलाइन बैकअप लेने और उन्हें साझा करने में सक्षम बनाता है।",
+      "side-paragraph-2": "अपना ईमेल प्रदान करना वैकल्पिक है; यदि आप अपना पासवर्ड भूल जाते हैं तो यह आपको अपना खाता पुनर्प्राप्त करने की अनुमति देगा।",
+      "username-label": "उपयोगकर्ता नाम",
+      "email-label": "ईमेल",
+      "password-label": "पासवर्ड",
+      "sign-up-button": "साइन अप करें",
+      "validation": {
+        "username": {
+          "length": "यूजरनेम 4 या इससे अधिक अक्षरों का होना चाहिए.",
+          "required": "उपयोगकर्ता नाम आवश्यक है"
+        },
+        "email": {
+          "invalid": "ईमेल एक वैध ईमेल होना चाहिए"
+        },
+        "password": {
+          "length": "पासवर्ड 6 कैरेक्टर या उससे बड़ा होना चाहिए",
+          "required": "पासवर्ड आवश्यक है"
+        }
+      }
+    },
+    "nuclear-sign-in": {
+      "header": " साइन इन",
+      "username-label": "उपयोगकर्ता नाम",
+      "password-label": "पासवर्ड",
+      "no-account-label": "क्या आपका कोई अकाउंट नहीं है?",
+      "no-account-link": "साइन अप करें",
+      "sign-in-button": "साइन इन"
+    }
   }
 }

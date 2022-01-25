@@ -19,7 +19,7 @@ export const getTrackThumbnail = track => {
 };
 
 export type TrackRowProps = {
-  track: Track;
+  track: Partial<Track>;
 
   mini?: boolean;
 

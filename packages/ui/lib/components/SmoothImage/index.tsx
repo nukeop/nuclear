@@ -1,10 +1,17 @@
 import React, { useCallback, useState } from 'react';
-import PropTypes from 'prop-types';
 
-import artPlaceholder from '../../../resources/media/art_placeholder.png';
 import styles from './styles.scss';
 
-const SmoothImage = ({
+type SmoothImageProps = {
+  src: string;
+  placeholder?: string;
+  alt?: string;
+}
+
+const artPlaceholder = '../../../resources/media/art_placeholder.png';
+
+
+const SmoothImage: React.FC<SmoothImageProps> = ({
   placeholder = artPlaceholder,
   src,
   alt,
@@ -33,12 +40,6 @@ const SmoothImage = ({
       />
     </div>
   );
-};
-
-SmoothImage.propTypes = {
-  src: PropTypes.string.isRequired,
-  placeholder: PropTypes.string,
-  alt: PropTypes.string
 };
 
 export default SmoothImage;

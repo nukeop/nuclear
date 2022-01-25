@@ -25,9 +25,16 @@
     "plugins": "Insticksmoduler",
     "search": "Sökresultat",
     "settings": "Inställningar",
-    "visualizer": "Visualiserare"
+    "visualizer": "Visualiserare",
+    "user-panel": {
+      "actions-tooltip": "User actions",
+      "sign-up": "Sign up / Sign in",
+      "sign-out": "Sign out"
+    },
+    "version": "Version"
   },
   "artist": {
+    "add-all": "Add all",
     "count": "Antal spelningar",
     "queue": "Lägg till alla spår i kö",
     "similar": "Liknande artister",
@@ -56,6 +63,18 @@
     "name": "Namn",
     "status": "Status"
   },
+  "equalizer": {
+    "classical": "Classical",
+    "club": "Club",
+    "custom": "Custom",
+    "default": "Default",
+    "full-bass": "Full Bass",
+    "full-treble": "Full Treble",
+    "pop": "Pop",
+    "presets": "Presets",
+    "reggae": "Reggae",
+    "rock": "Rock"
+  },
   "favorite-albums": {
     "empty": "Inga favoritalbum",
     "empty-help": "Testa att favoritmarkera några album så kommer de dyka upp här!",
@@ -75,6 +94,7 @@
   },
   "help": {
     "about": "Om Nuclear-musikspelare",
+    "contributors": "Our top 10 Contributors",
     "header": "Musikspelare som streamar från avgiftsfria källor",
     "released": "släppt under AGPL-3.0",
     "report": "Skicka in problem eller nya funktioner",
@@ -146,7 +166,15 @@
     "songs_plural": "{{total}} spår",
     "title": "Titel",
     "tracks-selected-plural": "spår valda",
-    "tracks-selected-singular": "spår vald"
+    "tracks-selected-singular": "spår vald",
+    "tracks-singular": "track",
+    "tracks-plural": "tracks",
+    "modified-at": "Last modified: ",
+    "never-modified": "Unknown",
+    "server-modified-at": "Server modified: ",
+    "upload-to-server": "Upload to server",
+    "download-from-server": "Download from server",
+    "number-of-tracks": "tracks"
   },
   "plugins": {
     "add-a-plugin": "Lägg till en insticksmodul",
@@ -179,25 +207,30 @@
     "playlist-add": "Lägg till i spellista",
     "playlist-toast-content": "Spellistan {{name}} har skapats.",
     "playlist-toast-title": "Spellista skapad",
-    "title": "Titel:"
+    "title": "Titel:",
+    "live": "Live"
   },
   "search": {
     "album": "Album",
     "album_plural": "Album",
+    "all": "All",
     "artist": "Artist",
     "artist_plural": "Artister",
     "clear-history": "Rensa historik",
     "empty": "Hittade inget.",
     "last-searches": "Senaste sökningar",
+    "live-stream": "LiveStream",
     "placeholder": "Sök...",
     "playlist": "Spellista",
     "playlist_plural": "Spellistor",
+    "podcast": "Podcast",
     "queue-add": "Lägg till alla spår i kö",
     "track": "Spår",
     "track_plural": "Spår",
     "you-can-search-for": "Du kan söka efter:"
   },
   "seekbar": {
+    "live": "Live",
     "segment-popup": "Inte music"
   },
   "settings": {
@@ -232,6 +265,7 @@
     "lastfm-description": "För att aktivera skrobbling måste du först ansluta och auktorisera Nuclear på Last.fm, klicka sedan på logga in.",
     "lastfm-enable": "Aktivera skrobbling till Last.fm",
     "lastfm-title": "Last.fm",
+    "less": "Less",
     "login": "Logga in",
     "logout": "Logga ut",
     "loop-after-queue-end": "Upprepa kön efter att sista låten i kön spelats",
@@ -244,12 +278,16 @@
     "mastodon-post-format-description": "Nuclear kommer att lägga upp en status på Mastodon efter varje spår som slutar spela. Ovanstående sträng kommer att vara mallen för varje inlägg, med {{artist}} och {{title}} ersatt med artisten och titeln för spåret.",
     "mastodon-post-format-label": "Postformat",
     "mastodon-title": "",
+    "nuclear-identity-service-url": "Nuclear identity service URL",
+    "nuclear-playlists-service-url": "Nuclear playlists service URL",
     "mini-player": "Använd minispelarstil",
+    "more": "More",
     "discord-rich-presence": "Växla Discord rich närvaro (kräver omstart)",
     "notification-timeout": "Tidsgräns för notifikationer",
     "notlogged": "Inte inloggad",
     "playback": "Uppspelning",
     "program-settings": "Programinställningar",
+    "saving-in": "Saving in:",
     "seek-iteration": "Antal sekunder att hoppa framåt/bakåt när du trycker på piltangenterna",
     "shuffle-queue": "Blanda spår",
     "shuffle-when-going-back": "Blanda på föregående låt",
@@ -295,5 +333,38 @@
   },
   "visualizer": {
     "exit-fullscreen": "Tryck på Esc för att avsluta helskärmsläge"
+  },
+  "forms": {
+    "nuclear-sign-up": {
+      "header": "Sign up",
+      "secondary-header": "Sign up to Nuclear Web Services",
+      "side-paragraph-1": "NWS enables you to backup your playlists online and share them.",
+      "side-paragraph-2": "Providing your email is optional; it will allow you to recover your account if you forget your password.",
+      "username-label": "Username",
+      "email-label": "Email",
+      "password-label": "Password",
+      "sign-up-button": "Sign up",
+      "validation": {
+        "username": {
+          "length": "Username must be 4 characters or more",
+          "required": "Username is required"
+        },
+        "email": {
+          "invalid": "Email must be a valid email"
+        },
+        "password": {
+          "length": "Password must be 6 characters or more",
+          "required": "Password is required"
+        }
+      }
+    },
+    "nuclear-sign-in": {
+      "header": " Sign in",
+      "username-label": "Username",
+      "password-label": "Password",
+      "no-account-label": "Don't have an account?",
+      "no-account-link": "Sign up",
+      "sign-in-button": "Sign in"
+    }
   }
 }

@@ -25,9 +25,16 @@
     "plugins": "Spraudņi",
     "search": "Meklēšanas rezultāti",
     "settings": "Iestatijumi",
-    "visualizer": "Vizualizētājs"
+    "visualizer": "Vizualizētājs",
+    "user-panel": {
+      "actions-tooltip": "User actions",
+      "sign-up": "Sign up / Sign in",
+      "sign-out": "Sign out"
+    },
+    "version": "Version"
   },
   "artist": {
+    "add-all": "Add all",
     "count": "Spēļu skaits",
     "queue": "Pievienot atlasīto rindai",
     "similar": "Līdzīgi izpildītāji",
@@ -56,6 +63,18 @@
     "name": "Nosaukums",
     "status": "Statuss"
   },
+  "equalizer": {
+    "classical": "Classical",
+    "club": "Club",
+    "custom": "Custom",
+    "default": "Default",
+    "full-bass": "Full Bass",
+    "full-treble": "Full Treble",
+    "pop": "Pop",
+    "presets": "Presets",
+    "reggae": "Reggae",
+    "rock": "Rock"
+  },
   "favorite-albums": {
     "empty": "Nav iecienītāko albumu",
     "empty-help": "Pievienjiet dažus albumus izlasei, un tie tiks parādīti šeit!",
@@ -75,6 +94,7 @@
   },
   "help": {
     "about": "Par Nuclear Music Player",
+    "contributors": "Our top 10 Contributors",
     "header": "Darbvirsmas mūzikas atskaņotājs straumēšanai no bezmaksas avotiem",
     "released": "izlaists saskaņā ar licenci AGPL-3.0",
     "report": "Ziņot par problēmam vai jaunam funkcijam",
@@ -146,7 +166,15 @@
     "songs_plural": "{{total}} dziesmas",
     "title": "Nosaukums",
     "tracks-selected-plural": "dziesmas atlasīti",
-    "tracks-selected-singular": "dziesma atlasīta"
+    "tracks-selected-singular": "dziesma atlasīta",
+    "tracks-singular": "track",
+    "tracks-plural": "tracks",
+    "modified-at": "Last modified: ",
+    "never-modified": "Unknown",
+    "server-modified-at": "Server modified: ",
+    "upload-to-server": "Upload to server",
+    "download-from-server": "Download from server",
+    "number-of-tracks": "tracks"
   },
   "plugins": {
     "add-a-plugin": "Pievienot spraudni",
@@ -179,25 +207,30 @@
     "playlist-add": "Pievienot atskaņošanas sarakstam",
     "playlist-toast-content": "Atskaņošanas saraksts {{name}} izveidots.",
     "playlist-toast-title": "Atskaņošanas saraksts izveidots",
-    "title": "Nosaukums:"
+    "title": "Nosaukums:",
+    "live": "Live"
   },
   "search": {
     "album": "Albums",
     "album_plural": "Albumi",
+    "all": "All",
     "artist": "Izpildītājs",
     "artist_plural": "Izpildītāji",
     "clear-history": "Dzēst vēsturi",
     "empty": "Nekas nav atrasts.",
     "last-searches": "Pēdējā meklēšana",
+    "live-stream": "LiveStream",
     "placeholder": "Meklēt...",
     "playlist": "Atskaņošanas saraksts",
     "playlist_plural": "Atskaņošanas saraksti",
+    "podcast": "Podcast",
     "queue-add": "Pievienot atlasīto rindai",
     "track": "Dziesma",
     "track_plural": "Dziesmas",
     "you-can-search-for": "Jūs varat meklēt:"
   },
   "seekbar": {
+    "live": "Live",
     "segment-popup": "Ne-mūzika"
   },
   "settings": {
@@ -232,6 +265,7 @@
     "lastfm-description": "Lai iespējotu skrubēšanu, vispirms ir jāizveido savienojums un jāautorizē Nuclear vietnē Last.fm, pēc tam noklikšķiniet uz Pieteikties.",
     "lastfm-enable": "Iespējot skrubēšanu uz Last.fm",
     "lastfm-title": "Last.fm",
+    "less": "Less",
     "login": "Pieslēgties",
     "logout": "Iziet",
     "loop-after-queue-end": "Cilpa pēc pēdējā rindas vienuma atskaņošanas",
@@ -244,12 +278,16 @@
     "mastodon-post-format-description": "Pēc katra ieraksta atskaņošanas pabeigšanas Nuclear publicēs statusu uz Mastodon. Iepriekš minētā virkne būs katras ziņas veidne, un {{artist}} un {{title}} tiks aizstātas ar izpildītājs un dziesmas nosaukums.",
     "mastodon-post-format-label": "Ziņas formāts",
     "mastodon-title": "",
+    "nuclear-identity-service-url": "Nuclear identity service URL",
+    "nuclear-playlists-service-url": "Nuclear playlists service URL",
     "mini-player": "Izmantojiet mini atskaņotāja stilu",
+    "more": "More",
     "discord-rich-presence": "Pārslēgt discord bagātīgo klātbūtni (nepieciešams restartēt)",
     "notification-timeout": "Paziņojuma pārtraukums",
     "notlogged": "Jūs neesat pieslēdzies",
     "playback": "Atskaņošana",
     "program-settings": "Programmas iestatījumi",
+    "saving-in": "Saving in:",
     "seek-iteration": "Sekunžu skaits, kas jāmeklē uz priekšu/atpakaļ, nospiežot bulttaustiņus",
     "shuffle-queue": "Jauktā secībā dziesmas",
     "shuffle-when-going-back": "Jauktā secībā iepriekšējā ierakstā",
@@ -295,5 +333,38 @@
   },
   "visualizer": {
     "exit-fullscreen": "Nospiediet ESC, lai izietu no pilna ekrāna"
+  },
+  "forms": {
+    "nuclear-sign-up": {
+      "header": "Sign up",
+      "secondary-header": "Sign up to Nuclear Web Services",
+      "side-paragraph-1": "NWS enables you to backup your playlists online and share them.",
+      "side-paragraph-2": "Providing your email is optional; it will allow you to recover your account if you forget your password.",
+      "username-label": "Username",
+      "email-label": "Email",
+      "password-label": "Password",
+      "sign-up-button": "Sign up",
+      "validation": {
+        "username": {
+          "length": "Username must be 4 characters or more",
+          "required": "Username is required"
+        },
+        "email": {
+          "invalid": "Email must be a valid email"
+        },
+        "password": {
+          "length": "Password must be 6 characters or more",
+          "required": "Password is required"
+        }
+      }
+    },
+    "nuclear-sign-in": {
+      "header": " Sign in",
+      "username-label": "Username",
+      "password-label": "Password",
+      "no-account-label": "Don't have an account?",
+      "no-account-link": "Sign up",
+      "sign-in-button": "Sign in"
+    }
   }
 }

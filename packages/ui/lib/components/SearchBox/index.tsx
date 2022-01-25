@@ -54,6 +54,7 @@ const SearchBox = ({
       >
         <Icon name='search' disabled={disabled} />
         <input
+          data-testid='search-input'
           autoFocus
           placeholder={placeholder}
           onChange={onChange}
