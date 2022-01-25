@@ -25,9 +25,16 @@
     "plugins": "Doplnky",
     "search": "Výsledky vyhľadávania",
     "settings": "Nastavenia",
-    "visualizer": "Visualizer"
+    "visualizer": "Visualizer",
+    "user-panel": {
+      "actions-tooltip": "User actions",
+      "sign-up": "Sign up / Sign in",
+      "sign-out": "Sign out"
+    },
+    "version": "Version"
   },
   "artist": {
+    "add-all": "Add all",
     "count": "Počet prehratí",
     "queue": "Pridať všetky skladby do poradia",
     "similar": "Podobný umelci",
@@ -56,6 +63,18 @@
     "name": "Meno",
     "status": "Stav"
   },
+  "equalizer": {
+    "classical": "Classical",
+    "club": "Club",
+    "custom": "Custom",
+    "default": "Default",
+    "full-bass": "Full Bass",
+    "full-treble": "Full Treble",
+    "pop": "Pop",
+    "presets": "Presets",
+    "reggae": "Reggae",
+    "rock": "Rock"
+  },
   "favorite-albums": {
     "empty": "Žiadne obľúbené albumy",
     "empty-help": "Skúste pridať album medzi obľubené a objaví sa tu!",
@@ -75,6 +94,7 @@
   },
   "help": {
     "about": "O Nuclear Music Player",
+    "contributors": "Our top 10 Contributors",
     "header": "Desktopový prehrávač hudby na streamovanie hudby z voľne dostupnyých zdrojov",
     "released": "vydaný pod AGPL-3.0",
     "report": "Submit issues or new features",
@@ -146,7 +166,15 @@
     "songs_plural": "{{total}} songs",
     "title": "Názov",
     "tracks-selected-plural": "tracks selected",
-    "tracks-selected-singular": "track selected"
+    "tracks-selected-singular": "track selected",
+    "tracks-singular": "track",
+    "tracks-plural": "tracks",
+    "modified-at": "Last modified: ",
+    "never-modified": "Unknown",
+    "server-modified-at": "Server modified: ",
+    "upload-to-server": "Upload to server",
+    "download-from-server": "Download from server",
+    "number-of-tracks": "tracks"
   },
   "plugins": {
     "add-a-plugin": "Add a plugin",
@@ -179,25 +207,30 @@
     "playlist-add": "Pridať do playlistu",
     "playlist-toast-content": "Playlist {{name}} bol vytvorený.",
     "playlist-toast-title": "Playlist vytvorený",
-    "title": "Názov:"
+    "title": "Názov:",
+    "live": "Live"
   },
   "search": {
     "album": "Album",
     "album_plural": "Albums",
+    "all": "All",
     "artist": "Umelec",
     "artist_plural": "Artists",
     "clear-history": "Clear history",
     "empty": "Nič sa nenašlo.",
     "last-searches": "Last searches",
+    "live-stream": "LiveStream",
     "placeholder": "Hľadať...",
     "playlist": "Playlist",
     "playlist_plural": "Playlisty",
+    "podcast": "Podcast",
     "queue-add": "Pridať všetky skladby do poradia",
     "track": "Track",
     "track_plural": "Tracks",
     "you-can-search-for": "You can search for:"
   },
   "seekbar": {
+    "live": "Live",
     "segment-popup": "Non-music"
   },
   "settings": {
@@ -232,6 +265,7 @@
     "lastfm-description": "Aby Ste mohli odosielať dáta o skladbách a tak dostávať relevantnejšie tipy, musíte pripojiť a autorizovať Nuclear na Last.fm, potom kliknite na prihlásenie",
     "lastfm-enable": "Povoliť odosielanie dát do Last.fm",
     "lastfm-title": "Last.fm",
+    "less": "Less",
     "login": "Prihlásiť sa",
     "logout": "Odhlásiť sa",
     "loop-after-queue-end": "Slučka po prehratí poslednej skladby z poradia",
@@ -244,12 +278,16 @@
     "mastodon-post-format-description": "Nuclear will post a status on Mastodon after each track completes playing. The above string will be the template for each post, with {{artist}} and {{title}} replaced with the artist and title of the track.",
     "mastodon-post-format-label": "Post format",
     "mastodon-title": "",
+    "nuclear-identity-service-url": "Nuclear identity service URL",
+    "nuclear-playlists-service-url": "Nuclear playlists service URL",
     "mini-player": "Use mini player style",
+    "more": "More",
     "discord-rich-presence": "Toggle discord rich presence (requires restart)",
     "notification-timeout": "Oznámenie o vypršaní času",
     "notlogged": "Neprihlásený",
     "playback": "Prehrávanie",
     "program-settings": "Programové nastavenia",
+    "saving-in": "Saving in:",
     "seek-iteration": "Počet sekúnd, ktoré majú ubehnúť pri pretáčaní vpred-vzad pri stláčaní šipiek",
     "shuffle-queue": "Poprehadzovať skladby",
     "shuffle-when-going-back": "Poprehadzovať na predošlej skladbe",
@@ -295,5 +333,38 @@
   },
   "visualizer": {
     "exit-fullscreen": "Press ESC to exit full screen"
+  },
+  "forms": {
+    "nuclear-sign-up": {
+      "header": "Sign up",
+      "secondary-header": "Sign up to Nuclear Web Services",
+      "side-paragraph-1": "NWS enables you to backup your playlists online and share them.",
+      "side-paragraph-2": "Providing your email is optional; it will allow you to recover your account if you forget your password.",
+      "username-label": "Username",
+      "email-label": "Email",
+      "password-label": "Password",
+      "sign-up-button": "Sign up",
+      "validation": {
+        "username": {
+          "length": "Username must be 4 characters or more",
+          "required": "Username is required"
+        },
+        "email": {
+          "invalid": "Email must be a valid email"
+        },
+        "password": {
+          "length": "Password must be 6 characters or more",
+          "required": "Password is required"
+        }
+      }
+    },
+    "nuclear-sign-in": {
+      "header": " Sign in",
+      "username-label": "Username",
+      "password-label": "Password",
+      "no-account-label": "Don't have an account?",
+      "no-account-link": "Sign up",
+      "sign-in-button": "Sign in"
+    }
   }
 }

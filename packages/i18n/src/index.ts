@@ -1,8 +1,5 @@
 import i18n, { LanguageDetectorModule } from 'i18next';
 
-import af_ZA from './locales/af_ZA.json';
-import ar_SA from './locales/ar_SA.json';
-import bn_BD from './locales/bn_BD.json';
 import cs from './locales/cs.json';
 import de from './locales/de.json';
 import dk from './locales/dk.json';
@@ -19,22 +16,23 @@ import is from './locales/is.json';
 import it from './locales/it.json';
 import ja_JP from './locales/ja_JP.json';
 import ko from './locales/ko.json';
+import ku_KMR from './locales/ku_KMR.json';
+import lt_LT from './locales/lt_LT.json';
+import lv_LV from './locales/lv_LV.json';
 import nl from './locales/nl.json';
 import no_NO from './locales/no_NO.json';
-import pa_IN from './locales/pa_IN.json';
 import pl from './locales/pl.json';
-import pt_br from './locales/pt_br.json';
-import ro_RO from './locales/ro_RO.json';
+import pt_BR from './locales/pt_BR.json';
 import ru from './locales/ru.json';
 import se from './locales/se.json';
 import sk from './locales/sk.json';
 import sq from './locales/sq.json';
-import te_IN from './locales/te_IN.json';
 import tl from './locales/tl.json';
 import tr from './locales/tr.json';
 import vi from './locales/vi.json';
-import zh from './locales/zh.json';
-import zh_tw from './locales/zh_tw.json';
+import yue_CN from './locales/yue_CN.json';
+import zh_TW from './locales/zh_TW.json';
+import zh_CN from './locales/zh_CN.json';
 
 interface I18nOptions {
   languageDetector: LanguageDetectorModule;
@@ -46,41 +44,39 @@ export const setupI18n = ({ languageDetector, debug }: I18nOptions) => {
     fallbackLng: 'en',
     debug,
     resources: {
-      en,
-      fr,
-      nl,
-      zh,
+      cs,
       de,
       dk,
+      en,
       es,
-      ru,
-      pl,
-      pt_br,
-      tr,
-      it,
-      id,
-      sk,
-      cs,
-      ko,
-      tl,
-      zh_tw,
-      se,
-      gr,
-      hr,
-      is,
-      vi,
       fi,
-      af_ZA,
-      ar_SA,
-      bn_BD,
+      fr,
+      gr,
       he_IL,
       hi_IN,
+      hr,
+      id,
+      is,
+      it,
       ja_JP,
+      ko,
+      ku_KMR,
+      lt_LT,
+      lv_LV,
+      nl,
       no_NO,
-      pa_IN,
-      ro_RO,
+      pl,
+      pt_BR,
+      ru,
+      se,
+      sk,
       sq,
-      te_IN
+      tl,
+      tr,
+      vi,
+      yue_CN,
+      zh_TW,
+      zh_CN
     },
     interpolation: {
       escapeValue: false

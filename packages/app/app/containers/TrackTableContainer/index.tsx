@@ -43,15 +43,15 @@ const TrackTableContainer: React.FC<TrackTableContainerProps> = ({
   const isTrackFavorite = (track: Track) => !_.isNil(favoriteTracks.find(t => areTracksEqualByName(t, track)));
 
   const onAddToQueue = useCallback((track: Track) => {
-    dispatch(queueActions.addToQueue(track));
+    dispatch(queueActions.addToQueue(queueActions.toQueueItem(track)));
   }, [dispatch]);
 
   const onPlayNow = useCallback((track: Track) => {
-    dispatch(queueActions.playTrack(null, track));
+    dispatch(queueActions.playTrack(null, queueActions.toQueueItem(track)));
   }, [dispatch]);
 
   const onPlayNext = useCallback((track: Track) => {
-    dispatch(queueActions.playNext(track));
+    dispatch(queueActions.playNext(queueActions.toQueueItem(track)));
   }, [dispatch]);
 
   const onPlayAll = useCallback((tracks: Track[]) => {

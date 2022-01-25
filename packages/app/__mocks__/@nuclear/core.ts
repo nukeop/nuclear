@@ -12,6 +12,10 @@ const initialStoreState = () => ({
 
 let mockStore = {...initialStoreState()};
 
+const LastFmApi = {
+  searchTracks: jest.fn().mockResolvedValue([])
+};
+
 module.exports = {
   store: {
     init: (store: typeof mockStore) => mockStore = store,
@@ -37,8 +41,13 @@ module.exports = {
       getTagTracks() {}
       getTagAlbums() {}
       getTagArtists() {}
-      getTopTags = () => Promise.resolve()
-      getTopTracks = () => Promise.resolve()
+      getTopTags = jest.fn().mockResolvedValue([])
+      getTopTracks = jest.fn().mockResolvedValue([])
+      searchTracks = LastFmApi.searchTracks
+    },
+    Youtube: {
+      urlSearch: jest.fn().mockResolvedValue([]),
+      liveStreamSearch: jest.fn().mockResolvedValue([])
     },
     NuclearPlaylistsService: jest.requireActual('@nuclear/core/src/rest/Nuclear/Playlists').NuclearPlaylistsService
   },

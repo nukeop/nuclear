@@ -57,10 +57,12 @@ exports[`(Snapshot) Mini player should render correctly 1`] = `
       </div>
       <div
         class="nuclear seekbar"
+        data-testid="seekbar"
         style="height: 0.5em;"
       >
         <div
           class="nuclear seekbar_progress"
+          data-testid="seekbar-fill"
           style="width: 66%;"
         />
       </div>

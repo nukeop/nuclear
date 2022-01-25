@@ -254,7 +254,10 @@ export const buildStoreState = () => {
                 image: null,
                 isDefault: true,
                 sourceName: 'Test Metadata Provider',
-                searchName: 'Test',
+                searchName: 'Test Metadata Provider',
+                searchForArtists: jest.fn().mockResolvedValue([]),
+                searchForReleases: jest.fn().mockResolvedValue([]),
+                searchForPodcast: jest.fn().mockResolvedValue([]),
                 fetchArtistDetailsByName: (artistName) => {
                   switch (artistName) {
                   case 'artist-similar-1':
@@ -271,7 +274,7 @@ export const buildStoreState = () => {
                 image: null,
                 isDefault: true,
                 sourceName: 'Another Metadata Provider',
-                searchName: 'Test',
+                searchName: 'Another Metadata Provider',
                 fetchArtistDetailsByName: () => ({
                   id: 'test-artist-id'
                 })
@@ -795,7 +798,7 @@ export const buildStoreState = () => {
       };
       return this as StoreStateBuilder;
     },
-    withSettings(settings: { [key: string]: string | number }) {
+    withSettings(settings: { [key: string]: string | number | boolean }) {
       state.settings = {
         ...state.settings,
         ...settings

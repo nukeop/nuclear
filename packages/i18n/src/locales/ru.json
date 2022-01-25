@@ -25,9 +25,16 @@
     "plugins": "Плагины",
     "search": "Результаты Поиска",
     "settings": "Настройки",
-    "visualizer": "Визуализатор"
+    "visualizer": "Визуализатор",
+    "user-panel": {
+      "actions-tooltip": "User actions",
+      "sign-up": "Sign up / Sign in",
+      "sign-out": "Sign out"
+    },
+    "version": "Версия"
   },
   "artist": {
+    "add-all": "Добавить все",
     "count": "Счетчик проигрываний",
     "queue": "Добавить все треки в очередь",
     "similar": "Похожие исполнители",
@@ -56,6 +63,18 @@
     "name": "Название",
     "status": "Статус"
   },
+  "equalizer": {
+    "classical": "Классика",
+    "club": "Клубная",
+    "custom": "Настраиваемые",
+    "default": "По умолчанию",
+    "full-bass": "Полный бас",
+    "full-treble": "Полные высокие",
+    "pop": "Поп",
+    "presets": "Предустановки",
+    "reggae": "Регги",
+    "rock": "Рок"
+  },
   "favorite-albums": {
     "empty": "Нет избранных альбомов",
     "empty-help": "Добавьте пару альбомов в избранные, и они появятся здесь.",
@@ -75,6 +94,7 @@
   },
   "help": {
     "about": "О программе Nuclear Music Player",
+    "contributors": "10 наших лучших участников",
     "header": "Проигрыватель музыки из свободных источников",
     "released": "выпущен под лицензией AGPL-3.0",
     "report": "Сообщить о проблеме или предложить улучшения",
@@ -146,7 +166,15 @@
     "songs_plural": "{{total}} треков",
     "title": "Название",
     "tracks-selected-plural": "треков выбрано",
-    "tracks-selected-singular": "трек выбран"
+    "tracks-selected-singular": "трек выбран",
+    "tracks-singular": "track",
+    "tracks-plural": "tracks",
+    "modified-at": "Last modified: ",
+    "never-modified": "Unknown",
+    "server-modified-at": "Server modified: ",
+    "upload-to-server": "Upload to server",
+    "download-from-server": "Download from server",
+    "number-of-tracks": "tracks"
   },
   "plugins": {
     "add-a-plugin": "Добавить плагин",
@@ -179,25 +207,30 @@
     "playlist-add": "Добавить в плейлист",
     "playlist-toast-content": "Плейлист {{name}} создан.",
     "playlist-toast-title": "Плейлист создан",
-    "title": "Название:"
+    "title": "Название:",
+    "live": "Сейчас"
   },
   "search": {
     "album": "Альбом",
     "album_plural": "Альбомы",
+    "all": "Все",
     "artist": "Исполнитель",
     "artist_plural": "Исполнители",
     "clear-history": "Очистить историю",
     "empty": "Ничего не найдено.",
     "last-searches": "Последние запросы",
+    "live-stream": "Трансляция",
     "placeholder": "Поиск...",
     "playlist": "Плейлист",
     "playlist_plural": "Плейлисты",
+    "podcast": "Подкаст",
     "queue-add": "Добавить все треки в очередь",
     "track": "Трек",
     "track_plural": "Треки",
     "you-can-search-for": "Вы можете искать:"
   },
   "seekbar": {
+    "live": "Сейчас",
     "segment-popup": "Немузыка"
   },
   "settings": {
@@ -232,6 +265,7 @@
     "lastfm-description": "Чтобы включить скробблинг, надо подключить и авторизовать Nuclear на Last.fm, а затем нажать \"Войти\".",
     "lastfm-enable": "Включить скробблинг на Last.fm",
     "lastfm-title": "Last.fm",
+    "less": "Меньше",
     "login": "Войти",
     "logout": "Выйти",
     "loop-after-queue-end": "Повторять очередь, когда она закончится",
@@ -244,12 +278,16 @@
     "mastodon-post-format-description": "Nuclear будет постить статус на Mastodon каждый раз, когда заканчивается трек. Строка сверху является шаблоном для этих постов, {{artist}} и {{title}} в ней будут заменены исполнителем и названием трека.",
     "mastodon-post-format-label": "Формат поста",
     "mastodon-title": "",
+    "nuclear-identity-service-url": "Nuclear identity service URL",
+    "nuclear-playlists-service-url": "Nuclear playlists service URL",
     "mini-player": "Режим мини-плеера",
+    "more": "Больше",
     "discord-rich-presence": "Интеграция с Discord (понадобится перезапуск)",
     "notification-timeout": "Время показа уведомлений",
     "notlogged": "Вход не выполнен",
     "playback": "Проигрывание",
     "program-settings": "Программные настройки",
+    "saving-in": "Сохраняется в:",
     "seek-iteration": "Сколько секунд перематывать при нажатии клавиш-стрелок",
     "shuffle-queue": "Случайный порядок",
     "shuffle-when-going-back": "Назад вперемешку",
@@ -295,5 +333,38 @@
   },
   "visualizer": {
     "exit-fullscreen": "Нажмите Esc, чтобы выйти из полноэкранного режима"
+  },
+  "forms": {
+    "nuclear-sign-up": {
+      "header": "Sign up",
+      "secondary-header": "Sign up to Nuclear Web Services",
+      "side-paragraph-1": "NWS enables you to backup your playlists online and share them.",
+      "side-paragraph-2": "Providing your email is optional; it will allow you to recover your account if you forget your password.",
+      "username-label": "Username",
+      "email-label": "Email",
+      "password-label": "Password",
+      "sign-up-button": "Sign up",
+      "validation": {
+        "username": {
+          "length": "Username must be 4 characters or more",
+          "required": "Username is required"
+        },
+        "email": {
+          "invalid": "Email must be a valid email"
+        },
+        "password": {
+          "length": "Password must be 6 characters or more",
+          "required": "Password is required"
+        }
+      }
+    },
+    "nuclear-sign-in": {
+      "header": " Sign in",
+      "username-label": "Username",
+      "password-label": "Password",
+      "no-account-label": "Don't have an account?",
+      "no-account-link": "Sign up",
+      "sign-in-button": "Sign in"
+    }
   }
 }

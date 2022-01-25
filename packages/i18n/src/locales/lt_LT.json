@@ -25,9 +25,16 @@
     "plugins": "Įskiepiai",
     "search": "Paieškos rezultatai",
     "settings": "Nustatymai",
-    "visualizer": "Virtulizavimas"
+    "visualizer": "Virtulizavimas",
+    "user-panel": {
+      "actions-tooltip": "User actions",
+      "sign-up": "Sign up / Sign in",
+      "sign-out": "Sign out"
+    },
+    "version": "Version"
   },
   "artist": {
+    "add-all": "Add all",
     "count": "Paleidimo kartai",
     "queue": "Pridėti visas dainas į eilę",
     "similar": "Panašūs atlikėjai",
@@ -56,6 +63,18 @@
     "name": "Pavadinimas",
     "status": "Būsena"
   },
+  "equalizer": {
+    "classical": "Classical",
+    "club": "Club",
+    "custom": "Custom",
+    "default": "Default",
+    "full-bass": "Full Bass",
+    "full-treble": "Full Treble",
+    "pop": "Pop",
+    "presets": "Presets",
+    "reggae": "Reggae",
+    "rock": "Rock"
+  },
   "favorite-albums": {
     "empty": "Nėra jokių mėgstamiausių albumų",
     "empty-help": "Pabandykite įdėti mėgstamiausių albumų ir jie atsiras čia!",
@@ -75,6 +94,7 @@
   },
   "help": {
     "about": "Apie Nuclear Muzikos leidėją",
+    "contributors": "Our top 10 Contributors",
     "header": "Kompiuterinis muzikos grotuvas, skirtas srautiniam perdavimui iš nemokamų šaltinių",
     "released": "išleista ant AGPL-3.0",
     "report": "Praneškite klaidas arba sukurkite naujų galimybių",
@@ -146,7 +166,15 @@
     "songs_plural": "{{total}} dainos",
     "title": "Pavadinimas",
     "tracks-selected-plural": "dainos pasirinktos",
-    "tracks-selected-singular": "daina pasirinkta"
+    "tracks-selected-singular": "daina pasirinkta",
+    "tracks-singular": "track",
+    "tracks-plural": "tracks",
+    "modified-at": "Last modified: ",
+    "never-modified": "Unknown",
+    "server-modified-at": "Server modified: ",
+    "upload-to-server": "Upload to server",
+    "download-from-server": "Download from server",
+    "number-of-tracks": "tracks"
   },
   "plugins": {
     "add-a-plugin": "Pridėti įskiepį",
@@ -179,25 +207,30 @@
     "playlist-add": "Pridėti į grojaraštį",
     "playlist-toast-content": "Grojaraštis {{name}} buvo sukurtas.",
     "playlist-toast-title": "Grojaraštis sukurtas",
-    "title": "Pavadinimas:"
+    "title": "Pavadinimas:",
+    "live": "Live"
   },
   "search": {
     "album": "Albumas",
     "album_plural": "Albumai",
+    "all": "All",
     "artist": "Atlikėjas",
     "artist_plural": "Atlikėjai",
     "clear-history": "Išvalyti istoriją",
     "empty": "Nieko nerasta.",
     "last-searches": "Paskutinės paieškos",
+    "live-stream": "LiveStream",
     "placeholder": "Ieškoma...",
     "playlist": "Grojaraštis",
     "playlist_plural": "Grojaraščiai",
+    "podcast": "Podcast",
     "queue-add": "Pridėti visas dainas į eilę",
     "track": "Daina",
     "track_plural": "Dainos",
     "you-can-search-for": "Jūs galite ieškoti:"
   },
   "seekbar": {
+    "live": "Live",
     "segment-popup": "Ne-muzika"
   },
   "settings": {
@@ -232,6 +265,7 @@
     "lastfm-description": "Kad galėtumėte naudotis scrobbling pirmiausia turite prisijungti ir autorizuoti Nuclear su Last.fm ir paspauskite prisijungti.",
     "lastfm-enable": "Įgalinti scrobbling į Last.fm",
     "lastfm-title": "Last.fm",
+    "less": "Less",
     "login": "Prisijungti",
     "logout": "Atsijungti",
     "loop-after-queue-end": "Įjungti ciklą kai eilė baigsis",
@@ -244,12 +278,16 @@
     "mastodon-post-format-description": "„Nuclear“ paskelbs būseną „Mastodon“, kai kiekvienas kūrinys bus baigtas. Aukščiau pateikta eilutė bus kiekvieno įrašo šablonas, o {{artist}} ir {{title}} bus pakeistas atlikėjo ir takelio pavadinimu.",
     "mastodon-post-format-label": "Skelbimo formatas",
     "mastodon-title": "",
+    "nuclear-identity-service-url": "Nuclear identity service URL",
+    "nuclear-playlists-service-url": "Nuclear playlists service URL",
     "mini-player": "Naudoti Mini grotuvo stilių",
+    "more": "More",
     "discord-rich-presence": "Toggle discord rich presence (requires restart)",
     "notification-timeout": "Pranešimų laikas",
     "notlogged": "Esate neprisijunges",
     "playback": "Grojimas",
     "program-settings": "Programos nustatymai",
+    "saving-in": "Saving in:",
     "seek-iteration": "Sekundžių, kurių reikia ieškoti paspaudus rodyklių klavišus, skaičius",
     "shuffle-queue": "Maišyti Dainas",
     "shuffle-when-going-back": "Maišyti praėjusią dainą",
@@ -295,5 +333,38 @@
   },
   "visualizer": {
     "exit-fullscreen": "Spauskite ESC, kad išeitumėte iš pilno ekrano režimo"
+  },
+  "forms": {
+    "nuclear-sign-up": {
+      "header": "Sign up",
+      "secondary-header": "Sign up to Nuclear Web Services",
+      "side-paragraph-1": "NWS enables you to backup your playlists online and share them.",
+      "side-paragraph-2": "Providing your email is optional; it will allow you to recover your account if you forget your password.",
+      "username-label": "Username",
+      "email-label": "Email",
+      "password-label": "Password",
+      "sign-up-button": "Sign up",
+      "validation": {
+        "username": {
+          "length": "Username must be 4 characters or more",
+          "required": "Username is required"
+        },
+        "email": {
+          "invalid": "Email must be a valid email"
+        },
+        "password": {
+          "length": "Password must be 6 characters or more",
+          "required": "Password is required"
+        }
+      }
+    },
+    "nuclear-sign-in": {
+      "header": " Sign in",
+      "username-label": "Username",
+      "password-label": "Password",
+      "no-account-label": "Don't have an account?",
+      "no-account-link": "Sign up",
+      "sign-in-button": "Sign in"
+    }
   }
 }
