@@ -3,6 +3,7 @@ import _ from 'lodash';
 import { Button } from 'semantic-ui-react';
 
 import { getThumbnail } from '../..';
+import { Track } from '../../types';
 import ContextPopup from '../ContextPopup';
 import TrackRow from '../TrackRow';
 import artPlaceholder from '../../../resources/media/art_placeholder.png';
@@ -10,15 +11,6 @@ import styles from './styles.scss';
 
 type Artist = {
   name: string;
-};
-
-type Track = {
-  album?: string;
-  artist?: Artist;
-  name?: string;
-  duration?: number;
-  position?: number;
-  playcount?: number;
 };
 
 type Image = {
