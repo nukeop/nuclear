@@ -42,12 +42,9 @@ type Handlers = {
   handlePlayAll: () => void;
 };
 
-const AlbumPreview: React.FC<AlbumPreviewProps & Handlers> = ({
-  album,
-  trackButtons,
-  handleAddToQueue,
-  handlePlayAll
-}) => {
+const AlbumPreview: React.FC<AlbumPreviewProps & Handlers> = (props) => {
+
+  const { album, trackButtons, handleAddToQueue, handlePlayAll } = props;
 
   const thumb = _.defaultTo(getThumbnail(album), artPlaceholder);
   const TrackButtons = trackButtons;
