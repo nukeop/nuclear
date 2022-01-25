@@ -4,8 +4,8 @@ import styles from './styles.scss';
 
 type SmoothImageProps = {
   src: string;
-  placeholder: string;
-  alt: string;
+  placeholder?: string;
+  alt?: string;
 }
 
 const artPlaceholder = '../../../resources/media/art_placeholder.png';
