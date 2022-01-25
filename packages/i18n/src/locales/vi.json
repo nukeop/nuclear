@@ -22,12 +22,19 @@
     "lyrics": "Lời bài hát",
     "main": "Main",
     "playlists": "playlist",
-    "plugins": "Plugins",
+    "plugins": "Bộ công cụ bổ sung",
     "search": "Kết quả tìm kím",
     "settings": "Cài đặt",
-    "visualizer": "Visualizer"
+    "visualizer": "Visualizer",
+    "user-panel": {
+      "actions-tooltip": "User actions",
+      "sign-up": "Sign up / Sign in",
+      "sign-out": "Sign out"
+    },
+    "version": "Phiên bản"
   },
   "artist": {
+    "add-all": "Thêm tất cả",
     "count": "Số lượt nghe",
     "queue": "Thêm tất cả bài hát vào playlist",
     "similar": "Nghệ sỹ tương tự",
@@ -35,9 +42,9 @@
     "tour": "Đang lưu diễn"
   },
   "dashboard": {
-    "add-all": "Add all",
+    "add-all": "Thêm tất cả",
     "artist": "Nghệ sỹ",
-    "best": "Best new music",
+    "best": "Nhạc mới hay nhất",
     "best-new-albums": "Album mới thịnh hành",
     "best-new-tracks": "Bài hát mới thịnh hành",
     "genres": "Thể loại",
@@ -55,6 +62,18 @@
     "header": "Tải xuống",
     "name": "Tên",
     "status": "Trạng thái"
+  },
+  "equalizer": {
+    "classical": "Cổ điển",
+    "club": "Câu lạc bộ",
+    "custom": "Tùy chỉnh",
+    "default": "Mặc định",
+    "full-bass": "Full Bass",
+    "full-treble": "Full Treble",
+    "pop": "Nhạc Pop",
+    "presets": "Presets",
+    "reggae": "Reggae",
+    "rock": "Nhạc Rock"
   },
   "favorite-albums": {
     "empty": "Không có album ưa thích",
@@ -75,6 +94,7 @@
   },
   "help": {
     "about": "Giới thiệu về Nuclear Music Player",
+    "contributors": "Our top 10 Contributors",
     "header": "Trình phát nhạc miễn phí cho việc streaming trên máy tính.",
     "released": "Phát hành dựa trên tiêu chuẩn AGPL-3.0",
     "report": "Báo cáo lỗi hoặc cải tiến chức năng",
@@ -85,7 +105,7 @@
   },
   "library": {
     "add": "Thêm thư mục",
-    "album": "Album",
+    "album": "Bộ sưu tập",
     "artist": "Nghệ sỹ",
     "empty": "Không có bản nhạc nào trong thư viện",
     "empty-help": "Thêm bản nhạc vào thư viện bằng nút ở trên.",
@@ -116,7 +136,7 @@
     "add-selected-tracks-to-downloads": "Thêm bài hát đã chọn vào tải về",
     "add-selected-tracks-to-favorites": "Thêm bài hát đã chọn vào ưa thích",
     "add-selected-tracks-to-queue": "Thêm bài hát đã chọn vào danh sách phát",
-    "album": "Album",
+    "album": "Bộ sưu tập",
     "artist": "Nghệ sỹ",
     "delete": "Xóa playlist này",
     "dialog-placeholder": "Tên playlist...",
@@ -131,9 +151,9 @@
     "export-fail-title": "Xuất playlist thất bại",
     "export-success-title": "Xuất playlist thành công",
     "header": "Playlist của bạn",
-    "dialog-accept": "Save",
-    "create-button": "Create new playlist",
-    "new-playlist": "New playlist",
+    "dialog-accept": "Lưu",
+    "create-button": "Tạo danh sách phát mới",
+    "new-playlist": "Danh sách phát mới",
     "import-button": "Nhập playlist từ file (JSON)",
     "import-fail-title": "Thêm Playlist thất bại",
     "import-success-title": "Thêm Playlist thành công",
@@ -143,10 +163,18 @@
     "queue": "Thêm playlist vào hàng chờ",
     "rename": "Đổi tên playlist",
     "songs": "{{total}} bài hát",
-    "songs_plural": "{{total}} songs",
+    "songs_plural": "{{total}} bài hát",
     "title": "Tên bài hát",
     "tracks-selected-plural": "bài hát đã chọn",
-    "tracks-selected-singular": "bài hát đã chọn"
+    "tracks-selected-singular": "bài hát đã chọn",
+    "tracks-singular": "track",
+    "tracks-plural": "tracks",
+    "modified-at": "Last modified: ",
+    "never-modified": "Unknown",
+    "server-modified-at": "Server modified: ",
+    "upload-to-server": "Upload to server",
+    "download-from-server": "Download from server",
+    "number-of-tracks": "tracks"
   },
   "plugins": {
     "add-a-plugin": "Thêm plugin",
@@ -173,31 +201,36 @@
     "header": "Danh sách đang phát",
     "header-track": "Bản nhạc đang phát",
     "id": "Stream ID:",
-    "source": "Source:",
-    "copy-track-url": "Copy track url to clipboard",
+    "source": "Nguồn:",
+    "copy-track-url": "Sao chép url bản nhạc vào bộ nhớ tạm",
     "loading": "Stream đang tải.",
     "playlist-add": "Thêm vào playlist",
     "playlist-toast-content": "Playlist {{name}} đã được tạo.",
     "playlist-toast-title": "Playlist đã được tạo",
-    "title": "Tên bài hát:"
+    "title": "Tên bài hát:",
+    "live": "Trực tiếp"
   },
   "search": {
-    "album": "Album",
-    "album_plural": "Albums",
+    "album": "Bộ sưu tập",
+    "album_plural": "Bộ sưu tập",
+    "all": "Tất cả",
     "artist": "Nghệ sỹ",
-    "artist_plural": "Artists",
+    "artist_plural": "Nghệ sĩ",
     "clear-history": "Xoá lịch sử",
     "empty": "Không tìm thấy.",
     "last-searches": "Lần tìm kiếm cuối",
+    "live-stream": "Quay trực tiếp",
     "placeholder": "Tìm kiếm...",
-    "playlist": "Playlist",
+    "playlist": "Danh sách phát",
     "playlist_plural": "Playlists",
+    "podcast": "Podcast",
     "queue-add": "Thêm tất cả vào danh sách đang ",
     "track": "Bài hát",
-    "track_plural": "Tracks",
+    "track_plural": "Bản nhạc",
     "you-can-search-for": "Bạn có thể tìm cho:"
   },
   "seekbar": {
+    "live": "Live",
     "segment-popup": "Phần không phải bài hát "
   },
   "settings": {
@@ -232,24 +265,29 @@
     "lastfm-description": "Để bật chế độ scrobbling, bạn phải kết nối nuclear với Last.fm bằng cách đăng nhập.",
     "lastfm-enable": "Để bật chế độ scrobbling cho Last.fm",
     "lastfm-title": "Last.fm",
+    "less": "Thu bớt",
     "login": "Đăng nhập",
     "logout": "Đăng xuất",
     "loop-after-queue-end": "Lặp lại sau khi kết thúc bài hát cuối trong danh sách phát",
     "mastodon-authorization-token-label": "Authorization token",
     "mastodon-authorize": "Authorize",
-    "mastodon-authorized": "Nuclear is authorized to post on ",
+    "mastodon-authorized": "Nuclear được phép đăng trên ",
     "mastodon-awaiting-authorization": "Nuclear is registered on {{instanceUrl}}. Awaiting authorization.",
     "mastodon-description": "",
     "mastodon-instance-label": "Mastodon instance URL",
     "mastodon-post-format-description": "Nuclear will post a status on Mastodon after each track completes playing. The above string will be the template for each post, with {{artist}} and {{title}} replaced with the artist and title of the track.",
     "mastodon-post-format-label": "Post format",
     "mastodon-title": "",
+    "nuclear-identity-service-url": "Nuclear identity service URL",
+    "nuclear-playlists-service-url": "Nuclear playlists service URL",
     "mini-player": "Dùng chế độ mini cho trình phát",
+    "more": "More",
     "discord-rich-presence": "Toggle discord rich presence (requires restart)",
     "notification-timeout": "Thời gian hiển thị thông báo",
     "notlogged": "Chưa đăng nhập",
     "playback": "Lặp lại",
     "program-settings": "Cài đặt chương trình",
+    "saving-in": "Saving in:",
     "seek-iteration": "Số giây sẽ tua tới/lui khi nhấn phím mũi tên qua phải/ qua trái",
     "shuffle-queue": "Phát ngẫu nhiên",
     "shuffle-when-going-back": "Phát ngẫu nhiên cả bài hát trước đó",
@@ -295,5 +333,38 @@
   },
   "visualizer": {
     "exit-fullscreen": "Nhấn ESC để thoát khỏi chế độ toàn màn hình"
+  },
+  "forms": {
+    "nuclear-sign-up": {
+      "header": "Sign up",
+      "secondary-header": "Sign up to Nuclear Web Services",
+      "side-paragraph-1": "NWS enables you to backup your playlists online and share them.",
+      "side-paragraph-2": "Providing your email is optional; it will allow you to recover your account if you forget your password.",
+      "username-label": "Username",
+      "email-label": "Email",
+      "password-label": "Password",
+      "sign-up-button": "Sign up",
+      "validation": {
+        "username": {
+          "length": "Username must be 4 characters or more",
+          "required": "Username is required"
+        },
+        "email": {
+          "invalid": "Email must be a valid email"
+        },
+        "password": {
+          "length": "Password must be 6 characters or more",
+          "required": "Password is required"
+        }
+      }
+    },
+    "nuclear-sign-in": {
+      "header": " Sign in",
+      "username-label": "Username",
+      "password-label": "Password",
+      "no-account-label": "Don't have an account?",
+      "no-account-link": "Sign up",
+      "sign-in-button": "Sign in"
+    }
   }
 }

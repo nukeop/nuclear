@@ -26,32 +26,35 @@ const PlayerControls: React.FC<PlayerControlsProps> = ({
   goForwardDisabled=false,
   playDisabled=false
 }) => (
-    <div className={styles.player_controls}>
-      <PlayerButton
-        icon='step backward'
-        size='large'
-        onClick={goBack}
-        disabled={goBackDisabled}
-      />
-      <PlayerButton
+  <div className={styles.player_controls}>
+    <PlayerButton
+      data-testid='player-controls-back'
+      icon='step backward'
+      size='large'
+      onClick={goBack}
+      disabled={goBackDisabled}
+    />
+    <PlayerButton
+      data-testid='player-controls-play'
       loading={isLoading}
-        icon={
-          isLoading
+      icon={
+        isLoading
           ? 'circle notch'
           : isPlaying
-          ? 'pause'
-          : 'play'
-        }
-        onClick={togglePlay}
-        disabled={playDisabled}
-      />
-      <PlayerButton
-        icon='step forward'
-        size='large'
-        onClick={goForward}
-        disabled={goForwardDisabled}
-      />
-    </div>
-  )
+            ? 'pause'
+            : 'play'
+      }
+      onClick={togglePlay}
+      disabled={playDisabled}
+    />
+    <PlayerButton
+      data-testid='player-controls-forward'
+      icon='step forward'
+      size='large'
+      onClick={goForward}
+      disabled={goForwardDisabled}
+    />
+  </div>
+);
 
 export default PlayerControls;

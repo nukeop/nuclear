@@ -1,45 +1,90 @@
 import React from 'react';
-import { render } from '@testing-library/react';
-import { SemanticICONS } from 'semantic-ui-react/dist/commonjs/generic';
-import { AnyProps, setupI18Next, TestStoreProvider } from '../../../test/testUtils';
+import { fireEvent, render } from '@testing-library/react';
+
+import { AnyProps, configureMockStore, setupI18Next, TestStoreProvider } from '../../../test/testUtils';
+import { getMouseEvent } from '../../../test/mockMouseEvent';
 import PlayerBarContainer from '.';
+import { buildStoreState } from '../../../test/storeBuilders';
 
 describe('PlayerBar container', () => {
   beforeAll(() => {
     setupI18Next();
   });
 
-  it('should display no time stamp if rendertrackDuration is false', () => {
-    const component = mountComponent({
-      renderTrackDuration: false
+  it('should display no time stamp if trackDuration is false', async () => {
+    const { component } = mountComponent({
+      settings: {
+        trackDuration: false
+      }
     });
 
-    expect(component.queryByText('00:00')).toBeNull();
+    const timePlayed = component.queryByTestId('track-duration-played');
+    expect(timePlayed).toBeNull();
+  });
+
+  it('should have an empty seekbar if the current track is still loading', () => {
+    const { component } = mountComponent({
+      queue: {
+        queueItems: [{
+          loading: true
+        }]
+      }
+    });
+
+    const fill = component.getByTestId('seekbar-fill');
+    const timePlayed = component.queryByTestId('track-duration-played');
+    const timeToEnd = component.queryByTestId('track-duration-to-end');
+
+    expect(fill.style.width).toBe('0%');
+    expect(timePlayed).toBeNull();
+    expect(timeToEnd).toBeNull();
+  });
+
+  it('should show a loading play button if the current track is still loading', () => {
+    const { component } = mountComponent({
+      queue: {
+        queueItems: [{
+          loading: true
+        }]
+      }
+    });
+
+    const playButton = component.queryByTestId('player-controls-play');
+    expect(playButton.children[0].className).toContain('circle notch');
+  });
+
+  // Has to be skipped until jsdom supports setting clientWidth on the body
+  xit('should seek to a particular place in the current track when the seekbar is clicked', async () => {
+    const { component, store } = mountComponent();
+
+    const seekbar = await component.findByTestId('seekbar');
+    fireEvent(seekbar, getMouseEvent('click', {
+      pageX: 100
+    }));
+    const state = store.getState();
+
+    const documentWidth = 200;
+    // set document width to the above value here
+
+    expect(state.player.seek).toBe(100 / documentWidth);
   });
 
   const mountComponent = (initialStore?: AnyProps) => {
+    const store = configureMockStore({
+      ...buildStoreState()
+        .withTracksInPlayQueue()
+        .withSettings({
+          trackDuration: true
+        })
+        .build(),
+      ...initialStore
+    });
+
     const component = render(<TestStoreProvider
-      initialState={initialStore ?? { 
-        renderTrackDuration: true,
-        timePlayed: '-3:14',
-        timeToEnd: '2:43',
-        fill: 66,
-        track: 'Test song',
-        artist: 'Test artist',
-        cover: 'https://i.imgur.com/4euOws2.jpg',
-        volume: 60,
-        queue: { queueItems: [] },
-        playOptions: [
-          { icon: ('repeat' as SemanticICONS), enabled: false, name: 'Repeat' },
-          { icon: ('magic' as SemanticICONS), name: 'Autoradio' },
-          { icon: ('random' as SemanticICONS), enabled: false, name: 'Shuffle' }
-        ],
-        isMuted: false
-      }
-      }
+      store={store}
     >
       <PlayerBarContainer />
     </TestStoreProvider>);
-    return component;
+    return { component, store };
   };
 });

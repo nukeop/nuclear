@@ -3,58 +3,77 @@
     "download": "Daxe",
     "download-toast-content": "{{artist}} - {{title}} li daxistinan hate tevlîkirin.",
     "download-toast-title": "Album li daxistinan hate tevlîkirin",
-    "error-load": "Bibore, ev album nehate barkirin. Paşê dîsa biceribîne an jî li ser Github pirsgirêkekê nû veke",
+    "error-load": "Bibore, ev album nehate barkirin. Paşê dîsa biceribîne an jî li ser Github pirsgirêkeke nû veke",
     "genre": "Cure:",
     "play": "Lêde",
     "queue": "Albumê tevlî rêzê bike",
-    "tracks": "Herîk:",
+    "tracks": "Stran:",
     "year": "Sal:"
   },
   "app": {
     "collection": "Berhevok",
     "dashboard": "Destgeh",
-    "downloads": "Daxistî",
+    "downloads": "Daxistin",
     "equalizer": "Yeksaneker",
-    "favorite-albums": "Albumên bijarte",
-    "favorite-artists": "Hunermendên bijarte",
-    "favorite-tracks": "Herîkên bijarte",
-    "library": "Pirtûxaneya herêmî",
-    "lyrics": "Peyvê stranan",
+    "favorite-albums": "Albumên Bijarte",
+    "favorite-artists": "Hunermendên Bijarte",
+    "favorite-tracks": "Stranên Bijarte",
+    "library": "Pirtûxaneya Herêmî",
+    "lyrics": "Gotinên Stranan",
     "main": "Sereke",
     "playlists": "Rêzoka lêdanan",
     "plugins": "Pêvek",
-    "search": "Encamên lêgerînê",
+    "search": "Encamên Lêgerînê",
     "settings": "Sazkarî",
-    "visualizer": "Dîtbarî"
+    "visualizer": "Dîtbarî",
+    "user-panel": {
+      "actions-tooltip": "Çalakiyên bikarhêner",
+      "sign-up": "Tomar bibe / Têkeve",
+      "sign-out": "Derkeve"
+    },
+    "version": "Guherto"
   },
   "artist": {
+    "add-all": "Hemû tevlî bike",
     "count": "Hejmarê lêdanan",
-    "queue": "Hemû herîkan tevlî rêzê bike",
+    "queue": "Hemû stranan tevlî rêzê bike",
     "similar": "Hunermendên wekhev",
     "title": "Sernav",
-    "tour": "Di geştê de"
+    "tour": "Di gerê de"
   },
   "dashboard": {
     "add-all": "Hemû tevlî bike",
     "artist": "Hunermend",
     "best": "Çêtirîn muzîka nû",
     "best-new-albums": "Çêtirîn albumên nû",
-    "best-new-tracks": "Çêtirîn herîkên nû",
+    "best-new-tracks": "Çêtirîn stranên nû",
     "genres": "Cure",
     "news": "Nûçe",
     "playcounts": "Hejmarê lêdanan",
-    "popular-track-title": "Baştirîn herîkên nû ji Deezer",
+    "popular-track-title": "Baştirîn stranên nû ji Deezer",
     "title": "Sernav",
-    "top": "Baştirîn herîk"
+    "top": "Baştirîn stran"
   },
   "downloads": {
-    "clear": "Herîkên qedandî pake bike",
+    "clear": "Stranên qedandî pake bike",
     "completion": "Qedandin",
     "empty": "Daxistin vala ne.",
     "empty-help": "Tiştekî tevlî rêza xwe ya daxistinê bike û tu yê li vir bibînî!",
-    "header": "Daxistî",
+    "header": "Daxistin",
     "name": "Nav",
     "status": "Rewş"
+  },
+  "equalizer": {
+    "classical": "Klasîk",
+    "club": "Club",
+    "custom": "Kesanekirî",
+    "default": "Berdest",
+    "full-bass": "Full Bass",
+    "full-treble": "Full Treble",
+    "pop": "Pop",
+    "presets": "Pêş sazkarî",
+    "reggae": "Reggae",
+    "rock": "Rock"
   },
   "favorite-albums": {
     "empty": "Albumên bijare tune ne",
@@ -69,12 +88,13 @@
   "favorites": {
     "artist": "Hunermend",
     "empty": "Tu bijarte nehatin tevlîkirin",
-    "empty-help": "Hinek herîkan tevlî bijarteyên xwe bike û û ew ê li vir xuya bibin!",
-    "header": "Herîkên te yên bijarte",
+    "empty-help": "Hinek stranan tevlî bijarteyên xwe bike û û ew ê li vir xuya bibin!",
+    "header": "Stranên te yên bijarte",
     "title": "Sernav"
   },
   "help": {
     "about": "Derbarê Nuclear Music Player",
+    "contributors": "10 beşdarên me yên herî baş",
     "header": "Lêdera muzîkê ya sermaseyê ji bo weşanê ji çavkaniyên belaş",
     "released": "hatiye weşandin di bin AGPL-3.0 de",
     "report": "Pirsgirêkan ragihîne an jî taybetmendiyên nû bişîne",
@@ -92,7 +112,7 @@
     "filter-placeholder": "Parzûn...",
     "header": "Pirtûxaneya herêmî",
     "no-search-results": "Encamên lêgerînê tune ne",
-    "no-search-results-help": "Di bin nav, album an jî hunermendê hatî dayîn re tu herîk nehatin dîtin.",
+    "no-search-results-help": "Tu stran, album an hunermend têkildarî peyva lêgerînê nehate dîtin.",
     "title": "Sernav"
   },
   "lyrics": {
@@ -103,7 +123,7 @@
   },
   "option-control": {
     "autoradio": "Autoradio",
-    "loop": "Gilover",
+    "loop": "Dubare bike",
     "mini-player": "Lêdera piçûk",
     "shuffle": "Tevlihev bike"
   },
@@ -145,8 +165,16 @@
     "songs": "{{total}} stran",
     "songs_plural": "{{total}} stran",
     "title": "Sernav",
-    "tracks-selected-plural": "herîk hatin hilbijartin",
-    "tracks-selected-singular": "herîk hate hilbijartin"
+    "tracks-selected-plural": "stran hatin hilbijartin",
+    "tracks-selected-singular": "stran hate hilbijartin",
+    "tracks-singular": "stran",
+    "tracks-plural": "stran",
+    "modified-at": "Guhertina herî dawî: ",
+    "never-modified": "Nenas",
+    "server-modified-at": "Rajekar hate guhertin: ",
+    "upload-to-server": "Li rajekar bar bike",
+    "download-from-server": "Ji rajekar daxe",
+    "number-of-tracks": "stran"
   },
   "plugins": {
     "add-a-plugin": "Pêvekekê tevlî bike",
@@ -168,37 +196,42 @@
     "dialog-trigger": "Wekî rêzoka lêdanan tomar bike",
     "download": "Daxe",
     "download-toast-content": "{{artist}} - {{title}} li daxistinan hate tevlîkirin.",
-    "download-toast-title": "Herîk li daxistinan hate tevlîkirin",
+    "download-toast-title": "Stran li daxistinan hate tevlîkirin",
     "favorite-add": "Tevlî bijarteyan bike",
     "header": "Rêz",
-    "header-track": "Herîka heyî",
+    "header-track": "Strana heyî",
     "id": "Navnîşana weşanê:",
     "source": "Çavkanî:",
-    "copy-track-url": "Girêdana herîkê jê bigire bo tûrikê",
+    "copy-track-url": "Girêdana stranê jê bigire bo tûrikê",
     "loading": "Barkirina weşanê didome.",
     "playlist-add": "Tevlî rêzoka lêdanan bike",
     "playlist-toast-content": "Rêzoka lêdanan {{name}} hate afirandin.",
     "playlist-toast-title": "Rêzoka lêdanan hate afirandin",
-    "title": "Sernav:"
+    "title": "Sernav:",
+    "live": "Zindî"
   },
   "search": {
     "album": "Album",
     "album_plural": "Album",
+    "all": "Hemû",
     "artist": "Hunermend",
     "artist_plural": "Hunermend",
     "clear-history": "Dîrokê pak bike",
     "empty": "Tiştek nehate dîtin.",
     "last-searches": "Lêgerînên dawî",
+    "live-stream": "Weşana zindî",
     "placeholder": "Bigere...",
     "playlist": "Rêzoka lêdanan",
     "playlist_plural": "Rêzoka lêdanan",
-    "queue-add": "Hemû herîkan tevlî rêzê bike",
-    "track": "Herîk",
-    "track_plural": "Herîk",
+    "podcast": "Podcast",
+    "queue-add": "Hemû stranan tevlî rêzê bike",
+    "track": "Stran",
+    "track_plural": "Stran",
     "you-can-search-for": "Tu dikarî bigerî bo:"
   },
   "seekbar": {
-    "segment-popup": "No-muzîkî"
+    "live": "Zindî",
+    "segment-popup": "Ne-muzîkî"
   },
   "settings": {
     "api-port": "Dergeha ku ji alîyê Api ve tê bikaranîn",
@@ -206,7 +239,7 @@
     "autoradio": "Autoradio",
     "autoradio-craziness": "Dînbûna Autoradio",
     "autoradio-craziness-description": "Autoradio wê stranên ku kêmtir mîna yên ku di rêza de ne hilbijêre",
-    "autoradio-description": "Dema ku rêz diqede, herîkên bi vî rengî bixweber teevlî bike",
+    "autoradio-description": "Dema ku rêz diqede, stranên bi vî rengî bixweber tevlî bike",
     "compact-menu-bar": "Ji bo darika kulînê şêwaza pêkhatî bi kar bîne",
     "compact-queue-bar": "Ji bo darika rêzê şêwaza pêkhatî bi kar bîne",
     "developer": "Sazkariyên pêşdebir",
@@ -232,28 +265,33 @@
     "lastfm-description": "Ji bo ku tu barkirina bixweber çalak bikî, pêşî divê tu Nuclear-ê bi Last.fm ve girê bidî û mafê bidî, paşê jî têketinê bike.",
     "lastfm-enable": "Barkirina bixweber a stranên ku li Last.fm hatine guhdarîkirin çalak bike",
     "lastfm-title": "Last.fm",
+    "less": "Kêm",
     "login": "Têkeve",
     "logout": "Derkeve",
-    "loop-after-queue-end": "Gilover piştî lêdana hêmana rêzê ya dawî",
+    "loop-after-queue-end": "Dubare bike piştî lêdana hêmana rêzê ya dawî",
     "mastodon-authorization-token-label": "Nîşana mafdayînê",
     "mastodon-authorize": "Mafê bide",
     "mastodon-authorized": "Mafê weşanê bo Nuclear hatiye dayîn li ser ",
     "mastodon-awaiting-authorization": "Nuclear li ser {{instanceUrl}} hatiye tomarkirin. Li benda mafdayînê ye.",
     "mastodon-description": "",
     "mastodon-instance-label": "Mînaka girêdanê Mastodon",
-    "mastodon-post-format-description": "Nuclear piştî ku lêdana her herîk qediya ew êli ser Mastodon rewşekê biweşîne. Rêza jorîn wê bibe kirasek ji bo her şandiyê, li şûna {{artist}} û {{title}} hunermend û sernavê herîkê wê werin guhertin.",
+    "mastodon-post-format-description": "Nuclear piştî ku lêdana her herîk qediya ew ê li ser Mastodon rewşekê biweşîne. Rêza jorîn wê bibe kirasek ji bo her şandiyê, li şûna {{artist}} û {{title}} hunermend û sernavê stranê wê werin guhertin.",
     "mastodon-post-format-label": "Awayê şandinê",
     "mastodon-title": "",
+    "nuclear-identity-service-url": "Navnîşana girêdanê karûbarên nasnameya Nuclear",
+    "nuclear-playlists-service-url": "Navnîşana girêdanê karûbarên rêzoka lêdanan a Nuclear",
     "mini-player": "Şêwazê lêdera piçûk bi kar bîne",
+    "more": "Bêtir",
     "discord-rich-presence": "Muzîka ku di dema heyî tê lêdan nîşan bide ( ji nû ve destpêkirin pêdivî dike)",
     "notification-timeout": "Bergeya agahdarkirinê",
     "notlogged": "Ne têketî",
     "playback": "Lêdan",
     "program-settings": "Sazkariyên bernameyê",
+    "saving-in": "Cihê tomarkirinê:",
     "seek-iteration": "Dema pê li bişkokên tîrê tê kirin ji bo ku li pêş/paş biçe hejmara çirkeyan",
     "shuffle-queue": "Stranan tevlihev bike",
-    "shuffle-when-going-back": "Li ser herîka paş tevlihev bike",
-    "shuffle-when-going-back-description": "Dema ku tevlihevkirin çalak e û bişkoka herîka berê tê tikandin, lêdaneke rasthatî lê bide",
+    "shuffle-when-going-back": "Li ser strana paş tevlihev bike",
+    "shuffle-when-going-back-description": "Dema ku tevlihevkirin çalak e û bişkoka strana berê hatiye tikandin, lêdaneke rasthatî lê bide",
     "social": "Civakî",
     "skip-sponsorblock": "Beşa ne muzîkî derbas bike",
     "skip-sponsorblock-description": "Lêdan beşa ne muzîkî ji SponsorBlock (https://sponsor.ajay.app/) derbas dike",
@@ -268,7 +306,7 @@
     "artist": "Hunermend",
     "artists": "Baştirîn hunermend",
     "duration": "Dirêjî",
-    "queue-add": "Hemû herîkan tevlî rêzê bike",
+    "queue-add": "Hemû stranan tevlî rêzê bike",
     "title": "Sernav"
   },
   "track-popup": {
@@ -277,23 +315,56 @@
     "add-to-queue": "Tevlî rêzê bike",
     "download": "Daxe",
     "download-toast-body": "{{artist}} - {{track}} li daxistinan hate tevlîkirin.",
-    "download-toast-title": "Herîk li daxistinan hate tevlîkirin",
+    "download-toast-title": "Stran li daxistinan hate tevlîkirin",
     "favorite-toast-body": "{{artist}} - {{track}} li bijarteyan hate tevlîkirin.",
-    "favorite-toast-title": "Herîka bijarte hate tevlîkirin",
-    "play-next": "Pêş lêde",
+    "favorite-toast-title": "Strana bijarte hate tevlîkirin",
+    "play-next": "Strana pêşî lêde",
     "play-now": "Niha lêde",
     "playlist-toast-body": "{{artist}} - {{track}} li rêzoka lêdanan hate tevlîkirin.",
-    "playlist-toast-title": "Herîk li rêzoka lêdanan hate tevlîkirin"
+    "playlist-toast-title": "Stran li rêzoka lêdanan hate tevlîkirin"
   },
   "track-table": {
     "add-selected-tracks-to-queue": "Ên hilbijartî tevlî rêzê bike",
     "add-selected-tracks-to-downloads": "Ên hilbijartî tevlî daxistinan bike",
     "add-selected-tracks-to-favorites": "Ên hilbijartî tevlî bijarteyan bike",
     "play-selected-tracks-now": "Ên hilbijartî niha lêde",
-    "tracks-selected-label-singular": "herîk hate hilbijartin",
-    "tracks-selected-label-plural": "herîk hatin hilbijartin"
+    "tracks-selected-label-singular": "stran hate hilbijartin",
+    "tracks-selected-label-plural": "stran hatin hilbijartin"
   },
   "visualizer": {
     "exit-fullscreen": "Bo ji dîmendera tije derkevî pê li bişkoka ESC-yê bike"
+  },
+  "forms": {
+    "nuclear-sign-up": {
+      "header": "Tomar bibe",
+      "secondary-header": "Tomar bibe bo karûbarên tevnê ya Nuclear",
+      "side-paragraph-1": "NWS dihêle ku tu rêzoka lêdanan xwe serhêl hilînî û wan parve bikiî.",
+      "side-paragraph-2": "Nivisandina e-nameya xwe vebijêrkî ye; heke tu pêborîna xwe ji bîr bikî ew ê bihêle ku tu ajimêra xwe vegerînî.",
+      "username-label": "Navê bikarhêner",
+      "email-label": "E-name",
+      "password-label": "Pêborîn",
+      "sign-up-button": "Tomar bibe",
+      "validation": {
+        "username": {
+          "length": "Navê bikarhêner divê ji 4 tîpan an bêtir pêk bê",
+          "required": "Navê bikarhêner pêdivî ye"
+        },
+        "email": {
+          "invalid": "E-name divê e-nameyeke derbasdar be"
+        },
+        "password": {
+          "length": "Pêborîn divê ji 6 tîpan an bêtir pêk bê",
+          "required": "Pêborîn pêdivî ye"
+        }
+      }
+    },
+    "nuclear-sign-in": {
+      "header": " Têkeve",
+      "username-label": "Navê bikarhêner",
+      "password-label": "Pêborîn",
+      "no-account-label": "Ajimêreke te tune ye?",
+      "no-account-link": "Tomar bibe",
+      "sign-in-button": "Têkeve"
+    }
   }
 }

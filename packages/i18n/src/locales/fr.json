@@ -25,9 +25,16 @@
     "plugins": "Plugins",
     "search": "Recherches",
     "settings": "Réglages",
-    "visualizer": "Visualiseur"
+    "visualizer": "Visualiseur",
+    "user-panel": {
+      "actions-tooltip": "User actions",
+      "sign-up": "Sign up / Sign in",
+      "sign-out": "Sign out"
+    },
+    "version": "Version"
   },
   "artist": {
+    "add-all": "Add all",
     "count": "Nombre d'écoutes",
     "queue": "Ajouter tous les morceaux à la file de lecture",
     "similar": "Artistes similaires",
@@ -56,6 +63,18 @@
     "name": "Nom",
     "status": "État"
   },
+  "equalizer": {
+    "classical": "Classical",
+    "club": "Club",
+    "custom": "Custom",
+    "default": "Default",
+    "full-bass": "Full Bass",
+    "full-treble": "Full Treble",
+    "pop": "Pop",
+    "presets": "Presets",
+    "reggae": "Reggae",
+    "rock": "Rock"
+  },
   "favorite-albums": {
     "empty": "Aucun album favoris",
     "empty-help": "Essayez d'ajouter des albums à vos favoris, ils apparaîtront ici !",
@@ -75,6 +94,7 @@
   },
   "help": {
     "about": "À propos de \"Nuclear Music Player\"",
+    "contributors": "Our top 10 Contributors",
     "header": "Application de bureau jouant de la musique à partir de sources libres",
     "released": "distribué sous licence AGPL-3.0",
     "report": "Soumettre un problème ou une nouvelle fonctionnalité",
@@ -146,7 +166,15 @@
     "songs_plural": "{{total}} morceaux",
     "title": "Titre",
     "tracks-selected-plural": "morceaux sélectionnés",
-    "tracks-selected-singular": "morceau sélectionné"
+    "tracks-selected-singular": "morceau sélectionné",
+    "tracks-singular": "track",
+    "tracks-plural": "tracks",
+    "modified-at": "Last modified: ",
+    "never-modified": "Unknown",
+    "server-modified-at": "Server modified: ",
+    "upload-to-server": "Upload to server",
+    "download-from-server": "Download from server",
+    "number-of-tracks": "tracks"
   },
   "plugins": {
     "add-a-plugin": "Ajouter un plugin",
@@ -179,25 +207,30 @@
     "playlist-add": "Ajouter à la playlist",
     "playlist-toast-content": "La playlist {{name}} a été créé.",
     "playlist-toast-title": "Playliste créé",
-    "title": "Titre :"
+    "title": "Titre :",
+    "live": "En direct"
   },
   "search": {
     "album": "Album",
     "album_plural": "Albums",
+    "all": "All",
     "artist": "Artiste",
     "artist_plural": "Artistes",
     "clear-history": "Effacer l’historique",
     "empty": "Aucun résultat.",
     "last-searches": "Dernières recherches",
+    "live-stream": "LiveStream",
     "placeholder": "Rechercher...",
     "playlist": "Playlist",
     "playlist_plural": "Playlists",
+    "podcast": "Podcast",
     "queue-add": "Ajouter tous les morceaux à la file de lecture",
     "track": "Morceau",
     "track_plural": "Morceaux",
     "you-can-search-for": "Vous pouvez rechercher :"
   },
   "seekbar": {
+    "live": "En direct",
     "segment-popup": "Hors musique"
   },
   "settings": {
@@ -232,6 +265,7 @@
     "lastfm-description": "Afin d'activer le scrobbler, vous devez vous connecter et authoriser Nuclear sur lastfm.",
     "lastfm-enable": "Activer le scrobbler de Last.fm",
     "lastfm-title": "Last.fm",
+    "less": "Less",
     "login": "Se connecter",
     "logout": "Se déconnecter",
     "loop-after-queue-end": "Lecture en boucle à la fin de la liste de lecture",
@@ -244,12 +278,16 @@
     "mastodon-post-format-description": "Nuclear va poster un statut sur Mastodon après chaque fin de morceau. Le phrase ci-dessus sera un modèle pour chaque message, avec {{artist}} et {{title}} remplacé par l'artiste et le titre du morceau.",
     "mastodon-post-format-label": "Format de publication",
     "mastodon-title": "",
+    "nuclear-identity-service-url": "Nuclear identity service URL",
+    "nuclear-playlists-service-url": "Nuclear playlists service URL",
     "mini-player": "Utiliser le style de mini-lecteur",
+    "more": "More",
     "discord-rich-presence": "Activer/Désactiver la Rich Presence de Discord (nécessite un redémarrage)",
     "notification-timeout": "Temps d'affichage des notifications",
     "notlogged": "Non connecté",
     "playback": "Relire",
     "program-settings": "Application",
+    "saving-in": "Saving in:",
     "seek-iteration": "Nombre de seconde à avancer/reculer en appuyant sur les flèches",
     "shuffle-queue": "Ordre aléatoire",
     "shuffle-when-going-back": "Mélanger les morceaux précédents",
@@ -295,5 +333,38 @@
   },
   "visualizer": {
     "exit-fullscreen": "Appuyez sur ÉCHAP pour quitter le mode plein écran"
+  },
+  "forms": {
+    "nuclear-sign-up": {
+      "header": "Sign up",
+      "secondary-header": "Sign up to Nuclear Web Services",
+      "side-paragraph-1": "NWS enables you to backup your playlists online and share them.",
+      "side-paragraph-2": "Providing your email is optional; it will allow you to recover your account if you forget your password.",
+      "username-label": "Username",
+      "email-label": "Email",
+      "password-label": "Password",
+      "sign-up-button": "Sign up",
+      "validation": {
+        "username": {
+          "length": "Username must be 4 characters or more",
+          "required": "Username is required"
+        },
+        "email": {
+          "invalid": "Email must be a valid email"
+        },
+        "password": {
+          "length": "Password must be 6 characters or more",
+          "required": "Password is required"
+        }
+      }
+    },
+    "nuclear-sign-in": {
+      "header": " Sign in",
+      "username-label": "Username",
+      "password-label": "Password",
+      "no-account-label": "Don't have an account?",
+      "no-account-link": "Sign up",
+      "sign-in-button": "Sign in"
+    }
   }
 }

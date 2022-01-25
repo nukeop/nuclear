@@ -7,9 +7,11 @@ exports[`(Snapshot) Player bar should render correctly 1`] = `
   >
     <div
       class="nuclear seekbar"
+      data-testid="seekbar"
     >
       <div
         class="nuclear seekbar_progress"
+        data-testid="seekbar-fill"
         style="width: 66%;"
       />
     </div>
@@ -32,6 +34,7 @@ exports[`(Snapshot) Player bar should render correctly 1`] = `
       >
         <button
           class="player_button"
+          data-testid="player-controls-back"
         >
           <i
             aria-hidden="true"
@@ -40,6 +43,7 @@ exports[`(Snapshot) Player bar should render correctly 1`] = `
         </button>
         <button
           class="player_button"
+          data-testid="player-controls-play"
         >
           <i
             aria-hidden="true"
@@ -48,6 +52,7 @@ exports[`(Snapshot) Player bar should render correctly 1`] = `
         </button>
         <button
           class="player_button"
+          data-testid="player-controls-forward"
         >
           <i
             aria-hidden="true"

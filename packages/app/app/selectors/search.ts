@@ -4,6 +4,9 @@ export const searchSelectors = createStateSelectors(
   'search',
   [
     'albumDetails',
-    'artistDetails'
+    'artistDetails', 
+    'searchHistory',
+    'unifiedSearchStarted',
+    'isFocused'
   ]
 );

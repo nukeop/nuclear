@@ -66,6 +66,7 @@ export const usePlayerControlsProps = () => {
   const dispatch = useDispatch();
   const queue = useSelector(queueSelector);
   const playbackStatus = useSelector(playerSelectors.playbackStatus);
+  const currentTrackLoading: boolean = queue?.queueItems[queue.currentSong]?.loading;
   const playbackStreamLoading: boolean = useSelector(playerSelectors.playbackStreamLoading);
   const seek = useSelector(playerSelectors.seek);
 
@@ -101,7 +102,7 @@ export const usePlayerControlsProps = () => {
     goForwardDisabled: !couldForward,
     playDisabled: !couldPlay,
     isPlaying: playbackStatus === Sound.status.PLAYING,
-    isLoading: playbackStreamLoading,
+    isLoading: currentTrackLoading || playbackStreamLoading,
     togglePlay,
     goForward,
     goBack
@@ -115,9 +116,9 @@ export const useTrackInfoProps = () => {
   const hasTracks = queue.queueItems.length > 0;
   const currentSong = _.get(queue.queueItems, queue.currentSong);
 
-  const track = _.get(currentSong, 'name');
-  const artist = _.get(currentSong, 'artist');
-  const cover = _.get(currentSong, 'thumbnail');
+  const track = currentSong?.name;
+  const artist = currentSong?.artist;
+  const cover = currentSong?.thumbnail;
 
   const favorite = useSelector(s => getFavoriteTrack(s, artist, track));
   const isFavorite = !_.isNil(favorite);

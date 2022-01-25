@@ -25,9 +25,16 @@
     "plugins": "תוספים",
     "search": "תוצאות החיפוש",
     "settings": "הגדרות",
-    "visualizer": "הנפשה"
+    "visualizer": "הנפשה",
+    "user-panel": {
+      "actions-tooltip": "User actions",
+      "sign-up": "Sign up / Sign in",
+      "sign-out": "Sign out"
+    },
+    "version": "גרסה"
   },
   "artist": {
+    "add-all": "Add all",
     "count": "מספר השמעות",
     "queue": "הוספת כל הרצועות לתור",
     "similar": "אומנים דומים",
@@ -56,6 +63,18 @@
     "name": "שם",
     "status": "מצב"
   },
+  "equalizer": {
+    "classical": "קלאסי",
+    "club": "מועדון",
+    "custom": "מותאם אישית",
+    "default": "ברירת מחדל",
+    "full-bass": "Full Bass",
+    "full-treble": "Full Treble",
+    "pop": "Pop",
+    "presets": "Presets",
+    "reggae": "Reggae",
+    "rock": "Rock"
+  },
   "favorite-albums": {
     "empty": "אין אלבומים מועדפים",
     "empty-help": "אפשר להוסיף כמה אלבומים למועדפים ואז הם יופיעו כאן!",
@@ -75,6 +94,7 @@
   },
   "help": {
     "about": "על אודות נגן המוזיקה Nuclear",
+    "contributors": "Our top 10 Contributors",
     "header": "נגן מוזיקה עבור שולחן העבודה להזרמה ממקורות חופשיים",
     "released": "מופץ בכפוף לרישיון AGPL-3.0",
     "report": "דיווח על בעיות או בקשת תכונות חדשות",
@@ -146,7 +166,15 @@
     "songs_plural": "{{total}} שירים",
     "title": "כותרת",
     "tracks-selected-plural": "רצועות שנבחרו",
-    "tracks-selected-singular": "רצועה שנבחרה"
+    "tracks-selected-singular": "רצועה שנבחרה",
+    "tracks-singular": "track",
+    "tracks-plural": "tracks",
+    "modified-at": "Last modified: ",
+    "never-modified": "Unknown",
+    "server-modified-at": "Server modified: ",
+    "upload-to-server": "Upload to server",
+    "download-from-server": "Download from server",
+    "number-of-tracks": "tracks"
   },
   "plugins": {
     "add-a-plugin": "הורדת תוסף",
@@ -179,25 +207,30 @@
     "playlist-add": "הוספה לפלייליסט",
     "playlist-toast-content": "נוצר הפלייליסט {{name}}.",
     "playlist-toast-title": "הפלייליסט נוצר",
-    "title": "כותרת:"
+    "title": "כותרת:",
+    "live": "Live"
   },
   "search": {
     "album": "אלבום",
     "album_plural": "אלבומים",
+    "all": "All",
     "artist": "אומן/ית",
     "artist_plural": "אומנים",
     "clear-history": "ניקוי ההיסטוריה",
     "empty": "לא נמצא דבר.",
     "last-searches": "החיפושים האחרונים",
+    "live-stream": "LiveStream",
     "placeholder": "חיפוש...",
     "playlist": "פלייליסט",
     "playlist_plural": "פלייליסטים",
+    "podcast": "Podcast",
     "queue-add": "הוספת כל הרצועות לתור",
     "track": "רצועה",
     "track_plural": "רצועות",
     "you-can-search-for": "אפשר לחפש אחר:"
   },
   "seekbar": {
+    "live": "Live",
     "segment-popup": "לא מוזיקה"
   },
   "settings": {
@@ -232,6 +265,7 @@
     "lastfm-description": "על מנת לאפשר scrobbling עליך להתחבר ולאשר את Nuclear ב- Last.fm ולאחר מכן ללחוץ על התחבר.",
     "lastfm-enable": "אפשר scrobbling ל- Last.fm",
     "lastfm-title": "Last.fm",
+    "less": "Less",
     "login": "כניסה",
     "logout": "יציאה",
     "loop-after-queue-end": "לולאה לאחר השמעת הפריט האחרון בתור",
@@ -244,12 +278,16 @@
     "mastodon-post-format-description": "Nuclear תפרסם סטטוס ב- Mastodon לאחר שכל רצועה תסיים את ההשמעה. המחרוזת שלמעלה תהיה התבנית עבור כל פוסט, כאשר {{artist}} ו- {{title}} יוחלפו באמן ובכותרת של הרצועה.",
     "mastodon-post-format-label": "מבנה פרסום",
     "mastodon-title": "",
+    "nuclear-identity-service-url": "Nuclear identity service URL",
+    "nuclear-playlists-service-url": "Nuclear playlists service URL",
     "mini-player": "שימוש בסגנון הנגן הממוזער",
+    "more": "עוד",
     "discord-rich-presence": "סמן נוכחות גבוהה בדיסקורד (דורש הפעלה מחדש)",
     "notification-timeout": "זמן קצוב להתראה",
     "notlogged": "לא מחובר",
     "playback": "השמעה",
     "program-settings": "הגדרות התוכנית",
+    "saving-in": "Saving in:",
     "seek-iteration": "מספר שניות לחיפוש קדימה/אחורה בעת לחיצה על מקשי החצים",
     "shuffle-queue": "ערבוב השירים",
     "shuffle-when-going-back": "ערבב ברצועה הקודמת",
@@ -295,5 +333,38 @@
   },
   "visualizer": {
     "exit-fullscreen": "יש ללחוץ על ESC כדי לצאת ממסך מלא"
+  },
+  "forms": {
+    "nuclear-sign-up": {
+      "header": "Sign up",
+      "secondary-header": "Sign up to Nuclear Web Services",
+      "side-paragraph-1": "NWS enables you to backup your playlists online and share them.",
+      "side-paragraph-2": "Providing your email is optional; it will allow you to recover your account if you forget your password.",
+      "username-label": "Username",
+      "email-label": "Email",
+      "password-label": "Password",
+      "sign-up-button": "Sign up",
+      "validation": {
+        "username": {
+          "length": "Username must be 4 characters or more",
+          "required": "Username is required"
+        },
+        "email": {
+          "invalid": "Email must be a valid email"
+        },
+        "password": {
+          "length": "Password must be 6 characters or more",
+          "required": "Password is required"
+        }
+      }
+    },
+    "nuclear-sign-in": {
+      "header": " Sign in",
+      "username-label": "Username",
+      "password-label": "Password",
+      "no-account-label": "Don't have an account?",
+      "no-account-link": "Sign up",
+      "sign-in-button": "Sign in"
+    }
   }
 }

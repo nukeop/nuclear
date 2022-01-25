@@ -700,19 +700,6 @@ exports[`Settings view container should render settings 1`] = `
                   </span>
                 </div>
                 <div
-                  aria-checked="true"
-                  aria-selected="true"
-                  class="active selected item"
-                  role="option"
-                  style="pointer-events: all;"
-                >
-                  <span
-                    class="text"
-                  >
-                    English
-                  </span>
-                </div>
-                <div
                   aria-checked="false"
                   aria-selected="false"
                   class="item"
@@ -723,6 +710,19 @@ exports[`Settings view container should render settings 1`] = `
                     class="text"
                   >
                     English (US)
+                  </span>
+                </div>
+                <div
+                  aria-checked="true"
+                  aria-selected="true"
+                  class="active selected item"
+                  role="option"
+                  style="pointer-events: all;"
+                >
+                  <span
+                    class="text"
+                  >
+                    English
                   </span>
                 </div>
                 <div
@@ -748,7 +748,98 @@ exports[`Settings view container should render settings 1`] = `
                   <span
                     class="text"
                   >
+                    Suomi
+                  </span>
+                </div>
+                <div
+                  aria-checked="false"
+                  aria-selected="false"
+                  class="item"
+                  role="option"
+                  style="pointer-events: all;"
+                >
+                  <span
+                    class="text"
+                  >
                     Français
+                  </span>
+                </div>
+                <div
+                  aria-checked="false"
+                  aria-selected="false"
+                  class="item"
+                  role="option"
+                  style="pointer-events: all;"
+                >
+                  <span
+                    class="text"
+                  >
+                    Greek
+                  </span>
+                </div>
+                <div
+                  aria-checked="false"
+                  aria-selected="false"
+                  class="item"
+                  role="option"
+                  style="pointer-events: all;"
+                >
+                  <span
+                    class="text"
+                  >
+                    עברית
+                  </span>
+                </div>
+                <div
+                  aria-checked="false"
+                  aria-selected="false"
+                  class="item"
+                  role="option"
+                  style="pointer-events: all;"
+                >
+                  <span
+                    class="text"
+                  >
+                    Hindi
+                  </span>
+                </div>
+                <div
+                  aria-checked="false"
+                  aria-selected="false"
+                  class="item"
+                  role="option"
+                  style="pointer-events: all;"
+                >
+                  <span
+                    class="text"
+                  >
+                    Hrvatski
+                  </span>
+                </div>
+                <div
+                  aria-checked="false"
+                  aria-selected="false"
+                  class="item"
+                  role="option"
+                  style="pointer-events: all;"
+                >
+                  <span
+                    class="text"
+                  >
+                    Bahasa Indonesia
+                  </span>
+                </div>
+                <div
+                  aria-checked="false"
+                  aria-selected="false"
+                  class="item"
+                  role="option"
+                  style="pointer-events: all;"
+                >
+                  <span
+                    class="text"
+                  >
+                    Íslenska
                   </span>
                 </div>
                 <div
@@ -774,7 +865,85 @@ exports[`Settings view container should render settings 1`] = `
                   <span
                     class="text"
                   >
+                    日本語
+                  </span>
+                </div>
+                <div
+                  aria-checked="false"
+                  aria-selected="false"
+                  class="item"
+                  role="option"
+                  style="pointer-events: all;"
+                >
+                  <span
+                    class="text"
+                  >
+                    한국어
+                  </span>
+                </div>
+                <div
+                  aria-checked="false"
+                  aria-selected="false"
+                  class="item"
+                  role="option"
+                  style="pointer-events: all;"
+                >
+                  <span
+                    class="text"
+                  >
+                    Kurdî
+                  </span>
+                </div>
+                <div
+                  aria-checked="false"
+                  aria-selected="false"
+                  class="item"
+                  role="option"
+                  style="pointer-events: all;"
+                >
+                  <span
+                    class="text"
+                  >
+                    Lietuvių
+                  </span>
+                </div>
+                <div
+                  aria-checked="false"
+                  aria-selected="false"
+                  class="item"
+                  role="option"
+                  style="pointer-events: all;"
+                >
+                  <span
+                    class="text"
+                  >
+                    Latviešu
+                  </span>
+                </div>
+                <div
+                  aria-checked="false"
+                  aria-selected="false"
+                  class="item"
+                  role="option"
+                  style="pointer-events: all;"
+                >
+                  <span
+                    class="text"
+                  >
                     Nederlands
+                  </span>
+                </div>
+                <div
+                  aria-checked="false"
+                  aria-selected="false"
+                  class="item"
+                  role="option"
+                  style="pointer-events: all;"
+                >
+                  <span
+                    class="text"
+                  >
+                    Norsk
                   </span>
                 </div>
                 <div
@@ -826,46 +995,7 @@ exports[`Settings view container should render settings 1`] = `
                   <span
                     class="text"
                   >
-                    Türkçe
-                  </span>
-                </div>
-                <div
-                  aria-checked="false"
-                  aria-selected="false"
-                  class="item"
-                  role="option"
-                  style="pointer-events: all;"
-                >
-                  <span
-                    class="text"
-                  >
-                    简体中文
-                  </span>
-                </div>
-                <div
-                  aria-checked="false"
-                  aria-selected="false"
-                  class="item"
-                  role="option"
-                  style="pointer-events: all;"
-                >
-                  <span
-                    class="text"
-                  >
-                    繁體中文
-                  </span>
-                </div>
-                <div
-                  aria-checked="false"
-                  aria-selected="false"
-                  class="item"
-                  role="option"
-                  style="pointer-events: all;"
-                >
-                  <span
-                    class="text"
-                  >
-                    Bahasa Indonesia
+                    Svenska
                   </span>
                 </div>
                 <div
@@ -891,7 +1021,7 @@ exports[`Settings view container should render settings 1`] = `
                   <span
                     class="text"
                   >
-                    한국어
+                    Shqip
                   </span>
                 </div>
                 <div
@@ -917,85 +1047,7 @@ exports[`Settings view container should render settings 1`] = `
                   <span
                     class="text"
                   >
-                    Svenska
-                  </span>
-                </div>
-                <div
-                  aria-checked="false"
-                  aria-selected="false"
-                  class="item"
-                  role="option"
-                  style="pointer-events: all;"
-                >
-                  <span
-                    class="text"
-                  >
-                    Greek
-                  </span>
-                </div>
-                <div
-                  aria-checked="false"
-                  aria-selected="false"
-                  class="item"
-                  role="option"
-                  style="pointer-events: all;"
-                >
-                  <span
-                    class="text"
-                  >
-                    Hrvatski
-                  </span>
-                </div>
-                <div
-                  aria-checked="false"
-                  aria-selected="false"
-                  class="item"
-                  role="option"
-                  style="pointer-events: all;"
-                >
-                  <span
-                    class="text"
-                  >
-                    Íslenska
-                  </span>
-                </div>
-                <div
-                  aria-checked="false"
-                  aria-selected="false"
-                  class="item"
-                  role="option"
-                  style="pointer-events: all;"
-                >
-                  <span
-                    class="text"
-                  >
-                    Suomi
-                  </span>
-                </div>
-                <div
-                  aria-checked="false"
-                  aria-selected="false"
-                  class="item"
-                  role="option"
-                  style="pointer-events: all;"
-                >
-                  <span
-                    class="text"
-                  >
-                    Albanian
-                  </span>
-                </div>
-                <div
-                  aria-checked="false"
-                  aria-selected="false"
-                  class="item"
-                  role="option"
-                  style="pointer-events: all;"
-                >
-                  <span
-                    class="text"
-                  >
-                    Hindi
+                    Türkçe
                   </span>
                 </div>
                 <div
@@ -1009,6 +1061,45 @@ exports[`Settings view container should render settings 1`] = `
                     class="text"
                   >
                     Vietnamese
+                  </span>
+                </div>
+                <div
+                  aria-checked="false"
+                  aria-selected="false"
+                  class="item"
+                  role="option"
+                  style="pointer-events: all;"
+                >
+                  <span
+                    class="text"
+                  >
+                    粵語
+                  </span>
+                </div>
+                <div
+                  aria-checked="false"
+                  aria-selected="false"
+                  class="item"
+                  role="option"
+                  style="pointer-events: all;"
+                >
+                  <span
+                    class="text"
+                  >
+                    繁體中文
+                  </span>
+                </div>
+                <div
+                  aria-checked="false"
+                  aria-selected="false"
+                  class="item"
+                  role="option"
+                  style="pointer-events: all;"
+                >
+                  <span
+                    class="text"
+                  >
+                    简体中文
                   </span>
                 </div>
               </div>
