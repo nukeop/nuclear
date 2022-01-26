@@ -5,19 +5,19 @@ import common from '../../../common.scss';
 import styles from './styles.scss';
 
 
-type NewType = {
-  error: boolean;
-  warning: boolean;
-  info: boolean;
-  success: boolean;
-  icon: Node;
-  title: string;
-  details: string;
-  onClick: () => {} ;
+type ToastProps = {
+  error?: boolean;
+  warning?: boolean;
+  info?: boolean;
+  success?: boolean;
+  icon?: Node;
+  title?: string;
+  details?: string;
+  onClick?: () => {} ;
 };
 
 
-const Toast = (props: NewType) => {
+const Toast = (props: ToastProps) => {
   return (
     <div
       className={cx(

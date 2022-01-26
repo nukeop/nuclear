@@ -109,8 +109,8 @@ type Track = {
 }
 
 type RequiredProps = {
-  selectedStream?: SelectedStream,
-  track?: Track,
+  selectedStream: SelectedStream,
+  track: Track,
 };
 
 type DefaultProps = {

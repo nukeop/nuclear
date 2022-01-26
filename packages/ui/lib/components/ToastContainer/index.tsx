@@ -7,11 +7,11 @@ import styles from './styles.scss';
 import _ from 'lodash';
 
 type Toast = {
-  title: string;
-  details: string;
-  error: boolean;
-  warning: boolean;
-  info: boolean;  
+  title?: string;
+  details?: string;
+  error?: boolean;
+  warning?: boolean;
+  info?: boolean;  
 }
 
 type ToastContainerProps = {
