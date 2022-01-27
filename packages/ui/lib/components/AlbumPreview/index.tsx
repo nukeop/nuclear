@@ -3,29 +3,15 @@ import _ from 'lodash';
 import { Button } from 'semantic-ui-react';
 
 import { getThumbnail } from '../..';
-import { Track } from '../../types';
+import { Album } from '../../types';
 import ContextPopup from '../ContextPopup';
 import TrackRow from '../TrackRow';
 import artPlaceholder from '../../../resources/media/art_placeholder.png';
 import styles from './styles.scss';
 
-type Artist = {
-  name: string;
-};
-
-type Image = {
-  '#text'?: string;
-};
-
-type AlbumProps = {
-  artist?: Artist;
-  title: string;
-  tracks?: Track[];
-  image?: Image[];
-};
 
 type AlbumPreviewProps = {
-  album?: AlbumProps;
+  album?: Album;
   trackButtons?: React.ElementType ;
 };
 

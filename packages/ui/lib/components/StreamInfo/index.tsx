@@ -3,6 +3,7 @@ import Img from 'react-image';
 import { Dropdown, Icon } from 'semantic-ui-react';
 import _ from 'lodash';
 
+import { SelectedStream } from '../../types';
 import artPlaceholder from '../../../resources/media/art_placeholder.png';
 import Tooltip from '../Tooltip';
 
@@ -77,24 +78,6 @@ const StreamInfo = (props: StreamInfoProps & Handlers) => {
     </>
   );
 };
-
-type SkipSegments = {
-  category?: string,
-  endTime?: number,
-  startTime?: number
-}
-
-type SelectedStream = {
-  duration?: number,
-  format?: string,
-  id?: string,
-  originalUrl?: string,
-  source?: string,
-  stream?: string,
-  thumbnail?: string,
-  title?: string,
-  skipSegments?: SkipSegments[],
-}
 
 type DropdownProps = {
   [key: string]: any
