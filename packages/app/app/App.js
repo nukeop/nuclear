@@ -1,8 +1,7 @@
 import React from 'react';
-import { Icon } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { NavLink, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 import classnames from 'classnames';
 import Sound from 'react-hifi';
@@ -44,11 +43,8 @@ import ShortcutsContainer from './containers/ShortcutsContainer';
 import ErrorBoundary from './containers/ErrorBoundary';
 
 import NavButtons from './components/NavButtons';
-import SidebarMenu from './components/SidebarMenu';
-import SidebarMenuItem from './components/SidebarMenu/SidebarMenuItem';
-import SidebarMenuCategoryHeader from './components/SidebarMenu/SidebarMenuCategoryHeader';
 import WindowControls from './components/WindowControls';
-import { UserPanelContainer } from './containers/UserPanelContainer';
+import SidebarMenuContainer from './containers/SidebarMenuContainer';
 
 @withTranslation('app')
 class App extends React.PureComponent {
@@ -119,75 +115,6 @@ class App extends React.PureComponent {
     );
   }
 
-  renderSidebarMenu() {
-
-    return (
-      <VerticalPanel
-        className={classnames(styles.left_panel, {
-          [`${compact.compact_panel}`]: this.props.settings.compactMenuBar
-        })}
-      >
-        <SidebarMenu>
-          <div className={styles.sidebar_menus}>
-            {
-              this.renderMenuCategory('main', [
-                { name: 'dashboard', path: 'dashboard', icon: 'dashboard' },
-                { name: 'downloads', path: 'downloads', icon: 'download' },
-                { name: 'lyrics', path: 'lyrics', icon: 'microphone' },
-                { name: 'plugins', path: 'plugins', icon: 'flask' },
-                { name: 'search', path: 'search', icon: 'search' },
-                { name: 'settings', path: 'settings', icon: 'cog' },
-                { name: 'equalizer', path: 'equalizer', icon: 'align right rotated' },
-                { name: 'visualizer', path: 'visualizer', icon: 'tint' }
-              ])
-            }
-
-            {
-              this.renderMenuCategory('collection', [
-                { name: 'favorite-albums', path: 'favorites/albums', icon: 'dot circle' },
-                { name: 'favorite-tracks', path: 'favorites/tracks', icon: 'music' },
-                { name: 'favorite-artists', path: 'favorites/artists', icon: 'user' },
-                { name: 'library', path: 'library', icon: 'file audio outline' },
-                { name: 'playlists', path: 'playlists', icon: 'list alternate outline' }
-              ])
-            }
-          </div>
-        </SidebarMenu>
-        {
-          !this.props.settings.compactMenuBar &&
-          <UserPanelContainer />
-        }
-      </VerticalPanel>
-    );
-  }
-
-  renderMenuCategory(headerText, links) {
-    return <React.Fragment>
-      <SidebarMenuCategoryHeader
-        compact={this.props.settings.compactMenuBar}
-        headerText={this.props.t(headerText)}
-      />
-      {
-        links.map(
-          link => this.renderNavLink(link.name, link.path, link.icon)
-        )
-      }
-    </React.Fragment>;
-  }
-
-  renderNavLink(name, path, icon) {
-    return (
-      <NavLink key={path} to={'/' + path} activeClassName={styles.active_nav_link}>
-        <SidebarMenuItem
-          name={this.props.t(name)}
-          compact={this.props.settings.compactMenuBar}
-        >
-          <Icon name={icon} />{!this.props.settings.compactMenuBar && this.props.t(name)}
-        </SidebarMenuItem>
-      </NavLink>
-    );
-  }
-
   getCurrentSongParameter(parameter) {
     return this.props.queue.queueItems[this.props.queue.currentSong]
       ? this.props.queue.queueItems[this.props.queue.currentSong][parameter]
@@ -217,7 +144,7 @@ class App extends React.PureComponent {
               )}
             </Navbar>
             <div className={styles.panel_container}>
-              {this.renderSidebarMenu()}
+              <SidebarMenuContainer />
               <VerticalPanel className={styles.center_panel}>
                 <MainContentContainer />
               </VerticalPanel>
