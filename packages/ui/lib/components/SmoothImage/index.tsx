@@ -1,15 +1,13 @@
 import React, { useCallback, useState } from 'react';
 
+import artPlaceholder from '../../../resources/media/art_placeholder.png';
 import styles from './styles.scss';
 
 type SmoothImageProps = {
   src: string;
-  placeholder?: string;
+  placeholder?: string | NodeModule;
   alt?: string;
 }
-
-const artPlaceholder = '../../../resources/media/art_placeholder.png';
-
 
 const SmoothImage: React.FC<SmoothImageProps> = ({
   placeholder = artPlaceholder,
@@ -17,6 +15,7 @@ const SmoothImage: React.FC<SmoothImageProps> = ({
   alt,
   ...props
 }) => {
+
   const [loaded, setLoaded] = useState(false);
   const handleLoaded = useCallback(() => {
     setLoaded(true);
@@ -31,7 +30,7 @@ const SmoothImage: React.FC<SmoothImageProps> = ({
         onLoad={handleLoaded}
       />
       <img
-        src={placeholder}
+        src={placeholder as string}
         alt={alt}
         className={styles.placeholder}
         style={{
