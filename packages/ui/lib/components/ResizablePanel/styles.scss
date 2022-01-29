@@ -1,0 +1,16 @@
+.resizable_panel {
+    position: relative;
+    display: flex;
+    flex-flow: row;
+
+    .content {
+        display: flex;
+        flex-flow: column;
+        flex: 1 1 auto;
+    }
+
+    .resizable_panel_resize_handle {
+        position: absolute;
+        right: -1em;
+    }
+}
