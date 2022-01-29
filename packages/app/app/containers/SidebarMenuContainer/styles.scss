@@ -1,0 +1,44 @@
+@import '../../vars.scss';
+
+.sidebar_menu_container {
+    z-index: 11;
+
+    display: flex;
+    flex: 0 0 auto;
+    flex-flow: column;
+
+    background-color: $background;
+    box-shadow: 5px 0px 5px 0px rgba(0, 0, 0, 0.18), 5px 0px 20px 0px rgba(0, 0, 0, 0.09);
+
+    &.collapsed {
+        width: 3rem;
+
+        .sidebar_brand {
+            padding: 1rem 0;
+        }
+
+        .sidebar_menu_item_container {
+            display: flex;
+            justify-content: center;
+            padding: 0.5rem 0.25rem;
+        }
+
+        .active_nav_link {
+            border: none;
+            background: rgba($background3, 0.6);
+        }
+
+        span {
+            margin: 0 !important;
+        }
+    }
+
+    .content {
+        overflow: hidden;
+    }
+}
+
+.active_nav_link {
+    color: $white !important;
+    border-left: 0.5rem solid $green;
+  }
