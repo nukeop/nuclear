@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 
 import { ResizablePanel } from '../..';
 
@@ -8,38 +8,58 @@ export default {
   title: 'Components/ResizablePanel'
 };
 
-const useResizablePanel = (initialWidth: number, collapsedWidth: number, collapseThreshold: number) => {
-  const [width, setWidth] = React.useState(initialWidth);
-  const [isCollapsed, setIsCollapsed] = React.useState(false);
+type UseResizablePanelArgs = {
+  initialWidth: number;
+  collapsedWidth: number;
+  collapseThreshold: number;
+  isCollapsed: boolean;
+  onCollapse: (isCollapsed: boolean) => void;
+};
 
-  const onSetWidth = useCallback((width) => {
-    if (!isCollapsed && width < collapseThreshold) {
-      setIsCollapsed(true);
-      setWidth(collapsedWidth);
-    }
+const useResizablePanel = ({
+  initialWidth,
+  collapsedWidth,
+  collapseThreshold,
+  isCollapsed,
+  onCollapse
+}: UseResizablePanelArgs) => {
+  const [width, setWidth] = useState(initialWidth);
 
-    if (isCollapsed && width >= collapseThreshold) {
-      setIsCollapsed(false);
-      setWidth(collapseThreshold);
-    } else {
-      setWidth(width);
-    }
-  }, [collapseThreshold, collapsedWidth, isCollapsed]);
+  const onSetWidth = useCallback(
+    (width) => {
+      if (!isCollapsed && width < collapseThreshold) {
+        onCollapse(true);
+        setWidth(collapsedWidth);
+      }
+
+      if (isCollapsed && width >= collapseThreshold) {
+        onCollapse(false);
+        setWidth(collapseThreshold);
+      } else {
+        setWidth(width);
+      }
+    },
+    [collapseThreshold, collapsedWidth, isCollapsed, onCollapse]
+  );
 
   return {
     width,
-    isCollapsed,
     onSetWidth
   };
 };
 
 export const Left = () => {
-
+  const [isCollapsed, onCollapse] = useState(false);
   const {
     width,
-    isCollapsed,
     onSetWidth
-  } = useResizablePanel(300, 100, 200);
+  } = useResizablePanel({
+    initialWidth: 300,
+    collapsedWidth: 100,
+    collapseThreshold: 200,
+    isCollapsed,
+    onCollapse
+  });
 
   return <div className='bg'>
     <ResizablePanel

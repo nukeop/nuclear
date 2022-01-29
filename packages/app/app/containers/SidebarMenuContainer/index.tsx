@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Icon } from 'semantic-ui-react';
 import cx from 'classnames';
 import { ResizablePanel } from '@nuclear/ui';
@@ -18,18 +18,19 @@ import { UserPanelContainer } from '../UserPanelContainer';
 
 const SidebarMenuContainer: React.FC = () => {
   const { t } = useTranslation('app');
+  const dispatch = useDispatch();
   const settings = useSelector(settingsSelector);
   const isCollapsed = settings.compactMenuBar;
 
   const onCollapse = useCallback((collapsedState: boolean) => {
-    setBooleanOption('compactMenuBar', collapsedState);
-  }, []);
+    dispatch(setBooleanOption('compactMenuBar', collapsedState));
+  }, [dispatch]);
   const {
     width,
     onSetWidth
   } = useResizablePanel({
     initialWidth: 300,
-    collapsedWidth: 100,
+    collapsedWidth: 42,
     collapseThreshold: 200,
     onCollapse,
     isCollapsed
@@ -45,7 +46,8 @@ const SidebarMenuContainer: React.FC = () => {
         root: cx(
           styles.sidebar_menu_container,
           { [styles.collapsed]: isCollapsed }
-        )
+        ),
+        content: styles.content
       }
     }
   >

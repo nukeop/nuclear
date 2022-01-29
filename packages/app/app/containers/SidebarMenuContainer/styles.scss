@@ -10,7 +10,7 @@
     background-color: $background;
     box-shadow: 5px 0px 5px 0px rgba(0, 0, 0, 0.18), 5px 0px 20px 0px rgba(0, 0, 0, 0.09);
 
-    &.compact {
+    &.collapsed {
         width: 3rem;
 
         .sidebar_brand {
@@ -31,6 +31,10 @@
         span {
             margin: 0 !important;
         }
+    }
+
+    .content {
+        overflow: hidden;
     }
 }
 
