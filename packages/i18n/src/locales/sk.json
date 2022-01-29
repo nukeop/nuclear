@@ -16,7 +16,7 @@
     "downloads": "Stiahnuté",
     "equalizer": "Ekvalizér",
     "favorite-albums": "Obľúbené albumy",
-    "favorite-artists": "Favorite Artists",
+    "favorite-artists": "Obľúbení umelci",
     "favorite-tracks": "Obľúbené skladby",
     "library": "Lokálna knižnica",
     "lyrics": "Titulky",
@@ -25,16 +25,16 @@
     "plugins": "Doplnky",
     "search": "Výsledky vyhľadávania",
     "settings": "Nastavenia",
-    "visualizer": "Visualizer",
+    "visualizer": "Vizualizér",
     "user-panel": {
       "actions-tooltip": "User actions",
-      "sign-up": "Sign up / Sign in",
-      "sign-out": "Sign out"
+      "sign-up": "Zaregistrovať sa / Prihlásiť sa",
+      "sign-out": "Odhlásiť sa"
     },
-    "version": "Version"
+    "version": "Verzia"
   },
   "artist": {
-    "add-all": "Add all",
+    "add-all": "Pridať všetko",
     "count": "Počet prehratí",
     "queue": "Pridať všetky skladby do poradia",
     "similar": "Podobný umelci",
@@ -42,7 +42,7 @@
     "tour": "Na tour"
   },
   "dashboard": {
-    "add-all": "Add all",
+    "add-all": "Pridať všetko",
     "artist": "Umelec",
     "best": "Najlepšia nová hudba",
     "best-new-albums": "Najlepšie nové albumy",
@@ -64,14 +64,14 @@
     "status": "Stav"
   },
   "equalizer": {
-    "classical": "Classical",
-    "club": "Club",
-    "custom": "Custom",
-    "default": "Default",
+    "classical": "Klasická hudba",
+    "club": "Klub",
+    "custom": "Vlastné",
+    "default": "Predvolené",
     "full-bass": "Full Bass",
     "full-treble": "Full Treble",
     "pop": "Pop",
-    "presets": "Presets",
+    "presets": "Predvoľby",
     "reggae": "Reggae",
     "rock": "Rock"
   },
@@ -81,14 +81,14 @@
     "header": "Vaše obľúbené albumy"
   },
   "favorite-artists": {
-    "empty": "No favorite artists",
-    "empty-help": "Try adding some artists to favorites and they will appear here!",
-    "header": "Your favorite artists"
+    "empty": "Žiadni obľúbení umelci",
+    "empty-help": "Skúste pridať umelca do obľúbených a objaví sa tu!",
+    "header": "Vaši obľúbení umelci"
   },
   "favorites": {
     "artist": "Umelec",
     "empty": "Žiadne obľubené",
-    "empty-help": "Try adding some tracks to favorites and they will appear here!",
+    "empty-help": "Skúste pridať skladbu do obľúbených a objaví sa tu!",
     "header": "Vaše obľubené skladby",
     "title": "Názov"
   },
@@ -109,10 +109,10 @@
     "artist": "Umelec",
     "empty": "Knižnica je prázdna",
     "empty-help": "Skúste pridať hudbu kliknutím na horné tlačidlo.",
-    "filter-placeholder": "Filter...",
+    "filter-placeholder": "Hľadať...",
     "header": "Lokálna knižnica",
-    "no-search-results": "No search results",
-    "no-search-results-help": "No tracks found with the given name, album, or artist.",
+    "no-search-results": "Žiadne výsledky",
+    "no-search-results-help": "Neboli nájdené žiadne skladby so zadaným názvom, albumom alebo umelcom.",
     "title": "Názov"
   },
   "lyrics": {
@@ -124,7 +124,7 @@
   "option-control": {
     "autoradio": "Autorádio",
     "loop": "Slučka",
-    "mini-player": "Miniplayer",
+    "mini-player": "Miniprehrávač",
     "shuffle": "Náhodné poradie"
   },
   "player": {
@@ -133,37 +133,37 @@
     "previous-button": "Predošlá skladba"
   },
   "playlists": {
-    "add-selected-tracks-to-downloads": "Add selected to downloads",
-    "add-selected-tracks-to-favorites": "Add selected to favorites",
-    "add-selected-tracks-to-queue": "Add selected to queue",
+    "add-selected-tracks-to-downloads": "Stiahnuť označené",
+    "add-selected-tracks-to-favorites": "Pridať označené do obľúbených",
+    "add-selected-tracks-to-queue": "Pridať označené do poradia",
     "album": "Album",
     "artist": "Umelec",
     "delete": "Vymazať tento playlist",
     "dialog-placeholder": "Názov playlistu...",
-    "duration": "Length",
+    "duration": "Dĺžka",
     "empty": "Žiadne playlisty.",
     "empty-help": "Try create some playlists or import by url and they will appear here!",
-    "error-empty-data": "Empty data",
-    "error-invalid-data": "Invalid data",
-    "error-open-file": "Can not open file",
-    "error-save-file": "Can not save file",
-    "export-button": "Export playlist (JSON)",
-    "export-fail-title": "Playlist export fail",
-    "export-success-title": "Playlist exported successfully",
-    "header": "Your playlists",
-    "dialog-accept": "Save",
-    "create-button": "Create new playlist",
-    "new-playlist": "New playlist",
-    "import-button": "Import from file (JSON)",
-    "import-fail-title": "Playlist import fail",
-    "import-success-title": "Playlist imported successfully",
-    "play-selected-tracks-now": "Play selected now",
-    "playlist-created": "{{name}} created",
-    "playlist-exported": "{{name}} saved to local file",
-    "queue": "Add playlist to queue",
+    "error-empty-data": "Prázdny playlist",
+    "error-invalid-data": "Neplatné údaje",
+    "error-open-file": "Nepodarilo sa otvoriť súbor",
+    "error-save-file": "Nepodarilo sa uložiť súbor",
+    "export-button": "Exportovať playlist (JSON)",
+    "export-fail-title": "Nepodarilo sa exportovať playlist",
+    "export-success-title": "Playlist bol úspešne exportovaný",
+    "header": "Vaše playlisty",
+    "dialog-accept": "Vytvoriť",
+    "create-button": "Vytvoriť nový playlist",
+    "new-playlist": "Nový playlist",
+    "import-button": "Importovať zo súboru (JSON)",
+    "import-fail-title": "Nepodarilo sa importovať playlist",
+    "import-success-title": "Playlist bol úspešne importovaný",
+    "play-selected-tracks-now": "Prehrať označené",
+    "playlist-created": "Playlist {{name}} bol vytvorený",
+    "playlist-exported": "Playlist {{name}} bol uložený do súboru",
+    "queue": "Pridať playlist do poradia",
     "rename": "Premenovať tento playlist",
-    "songs": "{{total}} song",
-    "songs_plural": "{{total}} songs",
+    "songs": "{{total}} skladba",
+    "songs_plural": "{{total}} skladieb",
     "title": "Názov",
     "tracks-selected-plural": "tracks selected",
     "tracks-selected-singular": "track selected",
@@ -354,17 +354,17 @@
         },
         "password": {
           "length": "Password must be 6 characters or more",
-          "required": "Password is required"
+          "required": "Heslo je povinné"
         }
       }
     },
     "nuclear-sign-in": {
-      "header": " Sign in",
-      "username-label": "Username",
-      "password-label": "Password",
-      "no-account-label": "Don't have an account?",
-      "no-account-link": "Sign up",
-      "sign-in-button": "Sign in"
+      "header": " Prihlásenie",
+      "username-label": "Užívateľské meno",
+      "password-label": "Heslo",
+      "no-account-label": "Ešte nemáte účet?",
+      "no-account-link": "Zaregistrovať sa",
+      "sign-in-button": "Prihlásiť sa"
     }
   }
 }
