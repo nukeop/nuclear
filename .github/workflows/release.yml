@@ -18,7 +18,7 @@ jobs:
     - run: npm run build:linux
       shell: bash
       env:
-        GITHASH: ${{github.event.inputs.tag}}
+        GITHASH: latest
     - name: Upload binaries
       uses: actions/upload-artifact@v2
       with:
@@ -46,7 +46,7 @@ jobs:
     - run: npm run build:macos
       shell: bash
       env:
-        GITHASH: ${{github.event.inputs.tag}}
+        GITHASH: latest
     - name: Upload binaries
       uses: actions/upload-artifact@v2
       with:
@@ -78,7 +78,7 @@ jobs:
     - run: npm run build:windows
       shell: bash
       env:
-        GITHASH: ${{github.event.inputs.tag}}
+        GITHASH: latest
     - name: Upload binaries
       uses: actions/upload-artifact@v2
       with:
