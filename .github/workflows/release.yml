@@ -24,6 +24,12 @@ jobs:
       with:
         name: nuclear-binaries-linux
         path: release/*.*
+    - name: Create a release
+      uses: softprops/action-gh-release@v1
+      with:
+        name: latest
+        prerelease: true
+        files: release/*.*
 
   mac_release:
     runs-on: macOS-latest
@@ -46,6 +52,12 @@ jobs:
       with:
         name: nuclear-binaries-mac
         path: release/*.*
+    - name: Create a release
+      uses: softprops/action-gh-release@v1
+      with:
+        name: latest
+        prerelease: true
+        files: release/*.*
 
   windows_release:
     runs-on: windows-latest
@@ -72,3 +84,9 @@ jobs:
       with:
         name: nuclear-binaries-windows
         path: release/*.*
+    - name: Create a release
+      uses: softprops/action-gh-release@v1
+      with:
+        name: latest
+        prerelease: true
+        files: release/*.*
