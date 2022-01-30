@@ -28,6 +28,7 @@ jobs:
       uses: softprops/action-gh-release@v1
       with:
         name: latest
+        tag_name: latest
         prerelease: true
         files: release/*.*
 
@@ -56,6 +57,7 @@ jobs:
       uses: softprops/action-gh-release@v1
       with:
         name: latest
+        tag_name: latest
         prerelease: true
         files: release/*.*
 
@@ -88,5 +90,6 @@ jobs:
       uses: softprops/action-gh-release@v1
       with:
         name: latest
+        tag_name: latest
         prerelease: true
         files: release/*.*
