@@ -8,6 +8,7 @@
     height: 1em;
     align-items: center;
     justify-content: center;
+    z-index: 100;
 
     &::before {
         @include roundCorners;
