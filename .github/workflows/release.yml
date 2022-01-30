@@ -18,7 +18,7 @@ jobs:
     - run: npm run build:linux
       shell: bash
       env:
-        GITHASH: latest
+        GITHASH: nightly
     - name: Upload binaries
       uses: actions/upload-artifact@v2
       with:
@@ -27,8 +27,8 @@ jobs:
     - name: Create a release
       uses: softprops/action-gh-release@v1
       with:
-        name: latest
-        tag_name: latest
+        name: nightly
+        tag_name: nightly
         prerelease: true
         files: release/*.*
 
@@ -47,7 +47,7 @@ jobs:
     - run: npm run build:macos
       shell: bash
       env:
-        GITHASH: latest
+        GITHASH: nightly
     - name: Upload binaries
       uses: actions/upload-artifact@v2
       with:
@@ -56,8 +56,8 @@ jobs:
     - name: Create a release
       uses: softprops/action-gh-release@v1
       with:
-        name: latest
-        tag_name: latest
+        name: nightly
+        tag_name: nightly
         prerelease: true
         files: release/*.*
 
@@ -80,7 +80,7 @@ jobs:
     - run: npm run build:windows
       shell: bash
       env:
-        GITHASH: latest
+        GITHASH: nightly
     - name: Upload binaries
       uses: actions/upload-artifact@v2
       with:
@@ -89,7 +89,7 @@ jobs:
     - name: Create a release
       uses: softprops/action-gh-release@v1
       with:
-        name: latest
-        tag_name: latest
+        name: nightly
+        tag_name: nightly
         prerelease: true
         files: release/*.*
