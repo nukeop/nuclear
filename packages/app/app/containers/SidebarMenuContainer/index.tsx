@@ -74,7 +74,8 @@ const SidebarMenuContainer: React.FC = () => {
         ))}
     </SidebarMenu>
     {
-      !isCollapsed &&
+      // !isCollapsed &&
+      false &&
       <UserPanelContainer />
     }
   </ResizablePanel>;
