@@ -31,6 +31,12 @@ jobs:
         tag_name: nightly
         prerelease: true
         files: release/*.*
+    - name: Inform AUR updater
+      uses: peter-evans/repository-dispatch@v1
+      with:
+        repository: NuclearPlayer/nuclear-nightly-aur
+        token: ${{ secrets.REPO_ACCESS_TOKEN }}
+        event-type: release
 
   mac_release:
     runs-on: macOS-latest
