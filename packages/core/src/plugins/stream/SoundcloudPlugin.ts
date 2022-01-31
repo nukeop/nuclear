@@ -1,9 +1,7 @@
-import logger from 'electron-timber';
-import _ from 'lodash';
+import SoundcloudScraper from 'soundcloud-scraper';
 
 import { StreamData, StreamQuery } from '../plugins.types';
 import StreamProviderPlugin from '../streamProvider';
-import * as Soundcloud from '../../rest/Soundcloud';
 
 class SoundcloudPlugin extends StreamProviderPlugin {
   constructor() {
@@ -15,55 +13,34 @@ class SoundcloudPlugin extends StreamProviderPlugin {
   }
 
   resultToStream(result): StreamData {
+    
     return {
       source: this.sourceName,
-      id: result.id,
-      stream: result.stream_url + `?client_id=${process.env.SOUNDCLOUD_API_KEY}`,
+      id: result.trackURL,
+      stream: result.streamURL,
       duration: result.duration/1000,
       title: result.title,
-      thumbnail: result.user.avatar_url,
-      originalUrl: result.permalink_url
+      thumbnail: result.thumbnail,
+      originalUrl: result.trackURL
     };
   }
 
-  search(query: StreamQuery): Promise<StreamData | void> {
+  async search(query: StreamQuery): Promise<StreamData | void> {
     const terms = query.artist + ' ' + query.track;
-    return Soundcloud.soundcloudSearch(terms)
-      .then(data => data.json())
-      .then(results => {
-        const info = results[0];
-        return info ? this.resultToStream(info) : null;
-      })
-      .catch(err => {
-        logger.error(`Error while looking up streams for ${terms} on Soundcloud`);
-        logger.error(err);
-      });
+    const client = new SoundcloudScraper.Client(undefined, { fetchAPIKey: true });
+    const searchResult = (await client.search(terms, 'track'))[0];
+    const result = client.getSongInfo(searchResult.url);
+    return this.resultToStream(result);
   }
 
-  getAlternateStream(query: StreamQuery, currentStream: { id: string }): Promise<StreamData | void> {
-    const terms = query.artist + ' ' + query.track;
-    return Soundcloud.soundcloudSearch(terms)
-      .then(data => data.json())
-      .then(results => {
-        const info = _.find(results, result => result && result.id !== currentStream.id);
-        return info ? this.resultToStream(info) : null;
-      })
-      .catch(err => {
-        logger.error(`Error while looking up streams for ${terms} on Soundcloud`);
-        logger.error(err);
-      });
+  getAlternateStream(query: StreamQuery): Promise<StreamData | void> {
+    return this.search(query);
   }
 
   async getStreamForId(id: string): Promise<void | StreamData> {
-    return Soundcloud.getTrackById(id)
-      .then(data => data.json())
-      .then(result => {
-        return result.id ? this.resultToStream(result) : null;
-      })
-      .catch(err => {
-        logger.error(`Error while looking up streams id: ${id} on Soundcloud`);
-        logger.error(err);
-      });
+    const client = new SoundcloudScraper.Client(undefined, { fetchAPIKey: true });
+    const result = client.getSongInfo(id);
+    return this.resultToStream(result);
   }
 }
 
