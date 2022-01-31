@@ -1,6 +1,6 @@
 ---
 name: Bug report
-about: Information before opening a new issue
+about: I want to report a bug
 title: ''
 labels: bug
 assignees: ''
