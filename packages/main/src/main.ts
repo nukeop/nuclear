@@ -96,7 +96,7 @@ app.on('window-all-closed', async () => {
       await httpApi.close();
     }
 
-    discord.clear();
+    await discord.clear();
     await localDb.cleanUnusedThumbnail();
   } catch (err) {
     logger.error('Something failed during app close');
