@@ -3,7 +3,7 @@
     "download": "Herunterladen",
     "download-toast-content": "{{artist}} - {{title}} wurde zu den Downloads hinzugefügt.",
     "download-toast-title": "Album zu Downloads hinzugefügt",
-    "error-load": "Leider konnte dieses Album nicht geladen werden. Versuche es später erneut oder öffne ein neues Problem auf GitHub",
+    "error-load": "Leider konnte dieses Album nicht geladen werden. Versuche es später erneut oder eröffne eine neue Issue auf GitHub",
     "genre": "Genre:",
     "play": "Abspielen",
     "queue": "Album zur Warteschlange hinzufügen",
@@ -77,11 +77,11 @@
   },
   "favorite-albums": {
     "empty": "Keine Lieblingsalben vorhanden",
-    "empty-help": "Favorisierte Alben werden hier erscheinen!",
-    "header": "Lieblingsalben"
+    "empty-help": "Versuche ein paar Alben zu den Favoriten hinzuzufügen und sie werden hier erscheinen!",
+    "header": "Deine Lieblingsalben"
   },
   "favorite-artists": {
-    "empty": "Keine Lieblingskünstler",
+    "empty": "Keine Lieblingskünstler vorhanden",
     "empty-help": "Versuche ein paar Künstler zu den Favoriten hinzuzufügen und sie werden hier erscheinen!",
     "header": "Deine Lieblingskünstler"
   },
@@ -98,7 +98,7 @@
     "header": "Desktop Musikplayer für Streaming aus freien Quellen",
     "released": "veröffentlicht unter AGPL-3.0",
     "report": "Sende eine Fehlermeldung oder eine Idee für eine neue Funktion",
-    "thanks": "Vielen Dank an unsere Mitwirkenden auf GitHub. Ihre Hilfe war das Entscheidende für die Entwicklung dieses Programms."
+    "thanks": "Vielen Dank an unsere Mitwirkenden auf GitHub. Ihre Hilfe war entscheidend für die Entwicklung dieses Programms."
   },
   "input-dialog": {
     "cancel": "Abbrechen"
@@ -112,7 +112,7 @@
     "filter-placeholder": "Filter...",
     "header": "Lokale Bibliothek",
     "no-search-results": "Keine Suchergebnisse",
-    "no-search-results-help": "Keine Lieder gefunden, mit den gegebenen Namen, Album oder Künstlers.",
+    "no-search-results-help": "Keine Lieder gefunden für den angegebenen Namen, Album oder Künstler.",
     "title": "Titel"
   },
   "lyrics": {
@@ -128,9 +128,9 @@
     "shuffle": "Zufallswiedergabe"
   },
   "player": {
-    "next-button": "Nächster Titel Taste",
-    "play-pause-button": "Wiedergabe-/Pausentaste",
-    "previous-button": "Vorheriger Lied-Taste"
+    "next-button": "\"Nächster Titel\" Taste",
+    "play-pause-button": "\"Wiedergabe/Pause\" Taste",
+    "previous-button": "\"Vorheriger Titel\" Taste"
   },
   "playlists": {
     "add-selected-tracks-to-downloads": "Auswahl zu Downloads hinzufügen",
@@ -142,13 +142,13 @@
     "dialog-placeholder": "Wiedergabelistenname...",
     "duration": "Länge",
     "empty": "Keine Wiedergabelisten.",
-    "empty-help": "Versuche ein paar Playlisten zu erstellen oder importiere Sie per URL und sie werden hier erscheinen!",
+    "empty-help": "Versuche ein paar Playlisten zu erstellen oder importiere welche per URL und sie werden hier erscheinen!",
     "error-empty-data": "Leere Daten",
     "error-invalid-data": "Ungültige Daten",
     "error-open-file": "Datei kann nicht geöffnet werden",
     "error-save-file": "Datei konnte nicht gespeichert werden",
     "export-button": "Wiedergabeliste exportieren (JSON)",
-    "export-fail-title": "Wiedergabelisten-Export fehlgeschlagen",
+    "export-fail-title": "Export von Wiedergabeliste fehlgeschlagen",
     "export-success-title": "Wiedergabeliste erfolgreich exportiert",
     "header": "Deine Wiedergabelisten",
     "dialog-accept": "Speichern",
@@ -167,14 +167,14 @@
     "title": "Titel",
     "tracks-selected-plural": "Titel ausgewählt",
     "tracks-selected-singular": "Titel ausgewählt",
-    "tracks-singular": "track",
-    "tracks-plural": "tracks",
+    "tracks-singular": "Titel",
+    "tracks-plural": "Titel",
     "modified-at": "Zuletzt geändert: ",
     "never-modified": "Unbekannt",
     "server-modified-at": "Server geändert: ",
     "upload-to-server": "Zum Server hochladen",
     "download-from-server": "Vom Server herunterladen",
-    "number-of-tracks": "tracks"
+    "number-of-tracks": "Titel"
   },
   "plugins": {
     "add-a-plugin": "Plugin hinzufügen",
@@ -186,7 +186,7 @@
     "select-meta-provider": "Wähle einen Standardanbieter für Metadaten:",
     "stream-providers": "Stream Anbieter",
     "user-plugins": "Benutzer Plugins",
-    "user-plugins-warning-desc": "Plugins funktionieren, indem Sie Code auf Deinem Computer ausführen. Lade Plugins nur aus Quellen, denen Du vertraust!",
+    "user-plugins-warning-desc": "Plugins arbeiten durch das Ausführen von Code auf Deinem Computer. Lade Plugins nur aus vertrauenswürdigen Quellen!",
     "user-plugins-warning-title": "Gefährlicher Bereich!"
   },
   "queue": {
@@ -234,7 +234,7 @@
     "segment-popup": "Nicht-Musik"
   },
   "settings": {
-    "api-port": "Port wird von der API verwendet",
+    "api-port": "API Port",
     "api-url": "",
     "autoradio": "Autoradio",
     "autoradio-craziness": "Autoradio-Verrücktheit",
@@ -332,28 +332,28 @@
     "tracks-selected-label-plural": "Lieder ausgewählt"
   },
   "visualizer": {
-    "exit-fullscreen": "Drücke ESC, um den Vollbildmodus zu beenden"
+    "exit-fullscreen": "ESC Taste drücken, um den Vollbildmodus zu beenden"
   },
   "forms": {
     "nuclear-sign-up": {
       "header": "Registrierung",
       "secondary-header": "Bei Nuclear Web Services anmelden",
       "side-paragraph-1": "Mit NWS kannst du deine Playlisten online sichern und teilen.",
-      "side-paragraph-2": "Die Angabe Ihrer E-Mail ist optional; Sie können Ihr Konto wiederherstellen, wenn Sie Ihr Passwort vergessen.",
+      "side-paragraph-2": "Die Angabe deiner E-Mail ist optional, erlaubt allerdings im Falle eines vergessenen Passwortes eine Wiederherstellung deines Kontos.",
       "username-label": "Benutzername",
       "email-label": "E-Mail",
       "password-label": "Passwort",
       "sign-up-button": "Registrierung",
       "validation": {
         "username": {
-          "length": "Username must be 4 characters or more",
+          "length": "Benutzername muss aus mindestens 4 Zeichen bestehen",
           "required": "Der Benutzername ist erforderlich"
         },
         "email": {
           "invalid": "Es muss eine gültige Email Adresse angegeben werden"
         },
         "password": {
-          "length": "Password must be 6 characters or more",
+          "length": "Passwort muss aus mindestens 6 Zeichen bestehen",
           "required": "Ein Passwort ist erforderlich"
         }
       }
@@ -362,7 +362,7 @@
       "header": " Anmelden",
       "username-label": "Benutzername",
       "password-label": "Passwort",
-      "no-account-label": "Don't have an account?",
+      "no-account-label": "Noch kein Konto?",
       "no-account-link": "Registrierung",
       "sign-in-button": "Anmelden"
     }

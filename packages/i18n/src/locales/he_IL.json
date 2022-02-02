@@ -68,12 +68,12 @@
     "club": "מועדון",
     "custom": "מותאם אישית",
     "default": "ברירת מחדל",
-    "full-bass": "Full Bass",
+    "full-bass": "בס מלא",
     "full-treble": "Full Treble",
     "pop": "Pop",
     "presets": "Presets",
     "reggae": "Reggae",
-    "rock": "Rock"
+    "rock": "רוק"
   },
   "favorite-albums": {
     "empty": "אין אלבומים מועדפים",
@@ -94,7 +94,7 @@
   },
   "help": {
     "about": "על אודות נגן המוזיקה Nuclear",
-    "contributors": "Our top 10 Contributors",
+    "contributors": "טופ 10 המומלצים שלנו",
     "header": "נגן מוזיקה עבור שולחן העבודה להזרמה ממקורות חופשיים",
     "released": "מופץ בכפוף לרישיון AGPL-3.0",
     "report": "דיווח על בעיות או בקשת תכונות חדשות",
@@ -171,8 +171,8 @@
     "tracks-plural": "tracks",
     "modified-at": "Last modified: ",
     "never-modified": "Unknown",
-    "server-modified-at": "Server modified: ",
-    "upload-to-server": "Upload to server",
+    "server-modified-at": "השרת שונה: ",
+    "upload-to-server": "להעלות לשרת",
     "download-from-server": "Download from server",
     "number-of-tracks": "tracks"
   },
@@ -208,29 +208,29 @@
     "playlist-toast-content": "נוצר הפלייליסט {{name}}.",
     "playlist-toast-title": "הפלייליסט נוצר",
     "title": "כותרת:",
-    "live": "Live"
+    "live": "שידור חי"
   },
   "search": {
     "album": "אלבום",
     "album_plural": "אלבומים",
-    "all": "All",
+    "all": "הכל",
     "artist": "אומן/ית",
     "artist_plural": "אומנים",
     "clear-history": "ניקוי ההיסטוריה",
     "empty": "לא נמצא דבר.",
     "last-searches": "החיפושים האחרונים",
-    "live-stream": "LiveStream",
+    "live-stream": "שידור חי",
     "placeholder": "חיפוש...",
     "playlist": "פלייליסט",
     "playlist_plural": "פלייליסטים",
-    "podcast": "Podcast",
+    "podcast": "פודקאסט",
     "queue-add": "הוספת כל הרצועות לתור",
     "track": "רצועה",
     "track_plural": "רצועות",
     "you-can-search-for": "אפשר לחפש אחר:"
   },
   "seekbar": {
-    "live": "Live",
+    "live": "לייב",
     "segment-popup": "לא מוזיקה"
   },
   "settings": {
@@ -265,7 +265,7 @@
     "lastfm-description": "על מנת לאפשר scrobbling עליך להתחבר ולאשר את Nuclear ב- Last.fm ולאחר מכן ללחוץ על התחבר.",
     "lastfm-enable": "אפשר scrobbling ל- Last.fm",
     "lastfm-title": "Last.fm",
-    "less": "Less",
+    "less": "פחות",
     "login": "כניסה",
     "logout": "יציאה",
     "loop-after-queue-end": "לולאה לאחר השמעת הפריט האחרון בתור",
@@ -278,7 +278,7 @@
     "mastodon-post-format-description": "Nuclear תפרסם סטטוס ב- Mastodon לאחר שכל רצועה תסיים את ההשמעה. המחרוזת שלמעלה תהיה התבנית עבור כל פוסט, כאשר {{artist}} ו- {{title}} יוחלפו באמן ובכותרת של הרצועה.",
     "mastodon-post-format-label": "מבנה פרסום",
     "mastodon-title": "",
-    "nuclear-identity-service-url": "Nuclear identity service URL",
+    "nuclear-identity-service-url": "כתובת שירותי הזהות",
     "nuclear-playlists-service-url": "Nuclear playlists service URL",
     "mini-player": "שימוש בסגנון הנגן הממוזער",
     "more": "עוד",
@@ -287,7 +287,7 @@
     "notlogged": "לא מחובר",
     "playback": "השמעה",
     "program-settings": "הגדרות התוכנית",
-    "saving-in": "Saving in:",
+    "saving-in": "נשמר ב:",
     "seek-iteration": "מספר שניות לחיפוש קדימה/אחורה בעת לחיצה על מקשי החצים",
     "shuffle-queue": "ערבוב השירים",
     "shuffle-when-going-back": "ערבב ברצועה הקודמת",
@@ -336,8 +336,8 @@
   },
   "forms": {
     "nuclear-sign-up": {
-      "header": "Sign up",
-      "secondary-header": "Sign up to Nuclear Web Services",
+      "header": "הרשמה",
+      "secondary-header": "להירשם לשירותי האתר של nuclear",
       "side-paragraph-1": "NWS enables you to backup your playlists online and share them.",
       "side-paragraph-2": "Providing your email is optional; it will allow you to recover your account if you forget your password.",
       "username-label": "Username",
@@ -346,11 +346,11 @@
       "sign-up-button": "Sign up",
       "validation": {
         "username": {
-          "length": "Username must be 4 characters or more",
+          "length": "שם המשתמש חייב לכלול 4 תווים או יותר",
           "required": "Username is required"
         },
         "email": {
-          "invalid": "Email must be a valid email"
+          "invalid": "חובה להזין אימייל"
         },
         "password": {
           "length": "Password must be 6 characters or more",
