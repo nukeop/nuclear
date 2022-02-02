@@ -27,9 +27,9 @@
     "settings": "Postavke",
     "visualizer": "Vizualizator",
     "user-panel": {
-      "actions-tooltip": "User actions",
-      "sign-up": "Sign up / Sign in",
-      "sign-out": "Sign out"
+      "actions-tooltip": "Radnje korisnika",
+      "sign-up": "Registriraj se / Prijavi se",
+      "sign-out": "Odjavi se"
     },
     "version": "Verzija"
   },
@@ -167,14 +167,14 @@
     "title": "Naslov",
     "tracks-selected-plural": "označeni zapisi",
     "tracks-selected-singular": "označen zapis",
-    "tracks-singular": "track",
-    "tracks-plural": "tracks",
-    "modified-at": "Last modified: ",
-    "never-modified": "Unknown",
-    "server-modified-at": "Server modified: ",
-    "upload-to-server": "Upload to server",
-    "download-from-server": "Download from server",
-    "number-of-tracks": "tracks"
+    "tracks-singular": "pjesma",
+    "tracks-plural": "pjesme",
+    "modified-at": "Posljednja izmjena: ",
+    "never-modified": "Nepoznato",
+    "server-modified-at": "Modificirano na Poslužitelju: ",
+    "upload-to-server": "Učitaj na poslužitelj",
+    "download-from-server": "Preuzmi sa poslužitelja",
+    "number-of-tracks": "pjesme"
   },
   "plugins": {
     "add-a-plugin": "Dodaj dodatak",
@@ -278,8 +278,8 @@
     "mastodon-post-format-description": "Nuclear će objaviti stanje na Mastodonu nakon što je svaki zapis do kraja gotov. Gornji konop će biti prijedložak za svaku objavu, sa {{artist}} i {{title}} zamjenutim sa izvođačem i nazivom zapisa.",
     "mastodon-post-format-label": "Format objave",
     "mastodon-title": "",
-    "nuclear-identity-service-url": "Nuclear identity service URL",
-    "nuclear-playlists-service-url": "Nuclear playlists service URL",
+    "nuclear-identity-service-url": "Nuclear identity servis URL",
+    "nuclear-playlists-service-url": "Nuclear playliste servis URL",
     "mini-player": "Koristi mini player stil",
     "more": "Više",
     "discord-rich-presence": "Uključi/isključi prisutnost \"discord rich\"-a (zahtijeva ponovno pokretanje)",
@@ -336,35 +336,35 @@
   },
   "forms": {
     "nuclear-sign-up": {
-      "header": "Sign up",
-      "secondary-header": "Sign up to Nuclear Web Services",
-      "side-paragraph-1": "NWS enables you to backup your playlists online and share them.",
-      "side-paragraph-2": "Providing your email is optional; it will allow you to recover your account if you forget your password.",
-      "username-label": "Username",
+      "header": "Registriraj se",
+      "secondary-header": "Registriraj se na Nuclear Web Services",
+      "side-paragraph-1": "NWS vam omogućava da napravite sigurnosnu kopiju vaših playlista online te da ih možete podijeliti.",
+      "side-paragraph-2": "Navođenje vaše email adrese je opcionalno; omogućit će vam da oporavite svoj račun ako zaboravite lozinku.",
+      "username-label": "Korisničko ime",
       "email-label": "Email",
-      "password-label": "Password",
-      "sign-up-button": "Sign up",
+      "password-label": "Lozinka",
+      "sign-up-button": "Registriraj se",
       "validation": {
         "username": {
-          "length": "Username must be 4 characters or more",
-          "required": "Username is required"
+          "length": "Korisničko ime mora sadržavati 4 ili više znamenki",
+          "required": "Korisničko ime je obvezno"
         },
         "email": {
-          "invalid": "Email must be a valid email"
+          "invalid": "Email adresa mora biti valjana"
         },
         "password": {
-          "length": "Password must be 6 characters or more",
-          "required": "Password is required"
+          "length": "Lozinka mora sadržavati 6 ili više znamenki",
+          "required": "Lozinka je obvezna"
         }
       }
     },
     "nuclear-sign-in": {
-      "header": " Sign in",
-      "username-label": "Username",
-      "password-label": "Password",
-      "no-account-label": "Don't have an account?",
-      "no-account-link": "Sign up",
-      "sign-in-button": "Sign in"
+      "header": " Prijava",
+      "username-label": "Korisničko ime",
+      "password-label": "Lozinka",
+      "no-account-label": "Nemate korisnički račun?",
+      "no-account-link": "Registriraj se",
+      "sign-in-button": "Prijava"
     }
   }
 }

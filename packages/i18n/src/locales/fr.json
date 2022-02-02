@@ -27,14 +27,14 @@
     "settings": "Réglages",
     "visualizer": "Visualiseur",
     "user-panel": {
-      "actions-tooltip": "User actions",
-      "sign-up": "Sign up / Sign in",
-      "sign-out": "Sign out"
+      "actions-tooltip": "Actions utilisateur",
+      "sign-up": "S'inscrire / Se connecter",
+      "sign-out": "Se déconnecter"
     },
     "version": "Version"
   },
   "artist": {
-    "add-all": "Add all",
+    "add-all": "Tout ajouter",
     "count": "Nombre d'écoutes",
     "queue": "Ajouter tous les morceaux à la file de lecture",
     "similar": "Artistes similaires",
@@ -64,14 +64,14 @@
     "status": "État"
   },
   "equalizer": {
-    "classical": "Classical",
+    "classical": "Classique",
     "club": "Club",
-    "custom": "Custom",
-    "default": "Default",
-    "full-bass": "Full Bass",
-    "full-treble": "Full Treble",
+    "custom": "Personnalisé",
+    "default": "Par défaut",
+    "full-bass": "Basses",
+    "full-treble": "Aiguës",
     "pop": "Pop",
-    "presets": "Presets",
+    "presets": "Préréglages",
     "reggae": "Reggae",
     "rock": "Rock"
   },
@@ -94,7 +94,7 @@
   },
   "help": {
     "about": "À propos de \"Nuclear Music Player\"",
-    "contributors": "Our top 10 Contributors",
+    "contributors": "Nos 10 meilleurs contributeurs",
     "header": "Application de bureau jouant de la musique à partir de sources libres",
     "released": "distribué sous licence AGPL-3.0",
     "report": "Soumettre un problème ou une nouvelle fonctionnalité",
@@ -167,14 +167,14 @@
     "title": "Titre",
     "tracks-selected-plural": "morceaux sélectionnés",
     "tracks-selected-singular": "morceau sélectionné",
-    "tracks-singular": "track",
-    "tracks-plural": "tracks",
-    "modified-at": "Last modified: ",
-    "never-modified": "Unknown",
-    "server-modified-at": "Server modified: ",
-    "upload-to-server": "Upload to server",
-    "download-from-server": "Download from server",
-    "number-of-tracks": "tracks"
+    "tracks-singular": "morceau",
+    "tracks-plural": "morceaux",
+    "modified-at": "Modifié le : ",
+    "never-modified": "Inconnu",
+    "server-modified-at": "Serveur modifié le : ",
+    "upload-to-server": "Envoyer au serveur",
+    "download-from-server": "Télécharger depuis le serveur",
+    "number-of-tracks": "morceaux"
   },
   "plugins": {
     "add-a-plugin": "Ajouter un plugin",
@@ -213,13 +213,13 @@
   "search": {
     "album": "Album",
     "album_plural": "Albums",
-    "all": "All",
+    "all": "Tout",
     "artist": "Artiste",
     "artist_plural": "Artistes",
     "clear-history": "Effacer l’historique",
     "empty": "Aucun résultat.",
     "last-searches": "Dernières recherches",
-    "live-stream": "LiveStream",
+    "live-stream": "Diffusions en direct",
     "placeholder": "Rechercher...",
     "playlist": "Playlist",
     "playlist_plural": "Playlists",
@@ -265,7 +265,7 @@
     "lastfm-description": "Afin d'activer le scrobbler, vous devez vous connecter et authoriser Nuclear sur lastfm.",
     "lastfm-enable": "Activer le scrobbler de Last.fm",
     "lastfm-title": "Last.fm",
-    "less": "Less",
+    "less": "Moins",
     "login": "Se connecter",
     "logout": "Se déconnecter",
     "loop-after-queue-end": "Lecture en boucle à la fin de la liste de lecture",
@@ -278,16 +278,16 @@
     "mastodon-post-format-description": "Nuclear va poster un statut sur Mastodon après chaque fin de morceau. Le phrase ci-dessus sera un modèle pour chaque message, avec {{artist}} et {{title}} remplacé par l'artiste et le titre du morceau.",
     "mastodon-post-format-label": "Format de publication",
     "mastodon-title": "",
-    "nuclear-identity-service-url": "Nuclear identity service URL",
-    "nuclear-playlists-service-url": "Nuclear playlists service URL",
+    "nuclear-identity-service-url": "URL du service d'identité de Nuclear",
+    "nuclear-playlists-service-url": "URL du service de playlists de Nuclear",
     "mini-player": "Utiliser le style de mini-lecteur",
-    "more": "More",
+    "more": "Plus",
     "discord-rich-presence": "Activer/Désactiver la Rich Presence de Discord (nécessite un redémarrage)",
     "notification-timeout": "Temps d'affichage des notifications",
     "notlogged": "Non connecté",
     "playback": "Relire",
     "program-settings": "Application",
-    "saving-in": "Saving in:",
+    "saving-in": "Enregistrer dans :",
     "seek-iteration": "Nombre de seconde à avancer/reculer en appuyant sur les flèches",
     "shuffle-queue": "Ordre aléatoire",
     "shuffle-when-going-back": "Mélanger les morceaux précédents",
@@ -336,34 +336,34 @@
   },
   "forms": {
     "nuclear-sign-up": {
-      "header": "Sign up",
-      "secondary-header": "Sign up to Nuclear Web Services",
-      "side-paragraph-1": "NWS enables you to backup your playlists online and share them.",
-      "side-paragraph-2": "Providing your email is optional; it will allow you to recover your account if you forget your password.",
-      "username-label": "Username",
-      "email-label": "Email",
-      "password-label": "Password",
-      "sign-up-button": "Sign up",
+      "header": "S'inscrire",
+      "secondary-header": "S'inscrire à Nuclear Web Services",
+      "side-paragraph-1": "NWS permet de sauvegarder ses playlists en ligne et de les partager.",
+      "side-paragraph-2": "Renseigner son adresse mail est facultatif ; cela permet de récupérer son compte en cas d'oubli du mot de passe.",
+      "username-label": "Nom d'utilisateur",
+      "email-label": "Adresse mail",
+      "password-label": "Mot de passe",
+      "sign-up-button": "S'inscrire",
       "validation": {
         "username": {
-          "length": "Username must be 4 characters or more",
-          "required": "Username is required"
+          "length": "Le nom d'utilisateur doit contenir au moins 4 caractères",
+          "required": "Le nom d'utilisateur est requis"
         },
         "email": {
-          "invalid": "Email must be a valid email"
+          "invalid": "L'adresse mail doit être valide"
         },
         "password": {
-          "length": "Password must be 6 characters or more",
-          "required": "Password is required"
+          "length": "Le mot de passe doit contenir au moins 6 caractères",
+          "required": "Le mot de passe est requis"
         }
       }
     },
     "nuclear-sign-in": {
-      "header": " Sign in",
-      "username-label": "Username",
-      "password-label": "Password",
-      "no-account-label": "Don't have an account?",
-      "no-account-link": "Sign up",
+      "header": " Se connecter",
+      "username-label": "Nom d'utilisateur",
+      "password-label": "Mot de passe",
+      "no-account-label": "Vous n'avez pas encore de compte ?",
+      "no-account-link": "S'inscrire",
       "sign-in-button": "Sign in"
     }
   }
