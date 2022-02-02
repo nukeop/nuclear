@@ -167,14 +167,14 @@
     "title": "Titel",
     "tracks-selected-plural": "Titel ausgewählt",
     "tracks-selected-singular": "Titel ausgewählt",
-    "tracks-singular": "track",
-    "tracks-plural": "tracks",
+    "tracks-singular": "Titel",
+    "tracks-plural": "Titel",
     "modified-at": "Zuletzt geändert: ",
     "never-modified": "Unbekannt",
     "server-modified-at": "Server geändert: ",
     "upload-to-server": "Zum Server hochladen",
     "download-from-server": "Vom Server herunterladen",
-    "number-of-tracks": "tracks"
+    "number-of-tracks": "Titel"
   },
   "plugins": {
     "add-a-plugin": "Plugin hinzufügen",
