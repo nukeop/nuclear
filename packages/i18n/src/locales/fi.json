@@ -27,9 +27,9 @@
     "settings": "Asetukset",
     "visualizer": "Visualisaattori",
     "user-panel": {
-      "actions-tooltip": "User actions",
-      "sign-up": "Sign up / Sign in",
-      "sign-out": "Sign out"
+      "actions-tooltip": "Käyttäjän toimininnot",
+      "sign-up": "Rekisteröidy/Kirjaudu sisään",
+      "sign-out": "Kirjaudu ulos"
     },
     "version": "Versio"
   },
@@ -167,14 +167,14 @@
     "title": "nimi",
     "tracks-selected-plural": "kappaletta valittu",
     "tracks-selected-singular": "kappale valittu",
-    "tracks-singular": "track",
-    "tracks-plural": "tracks",
-    "modified-at": "Last modified: ",
-    "never-modified": "Unknown",
-    "server-modified-at": "Server modified: ",
-    "upload-to-server": "Upload to server",
-    "download-from-server": "Download from server",
-    "number-of-tracks": "tracks"
+    "tracks-singular": "kappale",
+    "tracks-plural": "kappaleet",
+    "modified-at": "Viimeksi muokattu: ",
+    "never-modified": "Tuntematon",
+    "server-modified-at": "Palvelimen muokkaus: ",
+    "upload-to-server": "Lataa palvelimelle",
+    "download-from-server": "Lataa palvelimelta",
+    "number-of-tracks": "kappaletta"
   },
   "plugins": {
     "add-a-plugin": "Lisää plugin",
@@ -278,8 +278,8 @@
     "mastodon-post-format-description": "Nuclear lähettää Mastodoniin tilan jokaisen kappaleen jälkeen. Yllä oleva merkkijono on malli jokaiselle viestille, {{artist}} ja {{title}} korvattiin esittäjällä ja kappaleen otsikolla.",
     "mastodon-post-format-label": "Julkaisun muoto",
     "mastodon-title": "",
-    "nuclear-identity-service-url": "Nuclear identity service URL",
-    "nuclear-playlists-service-url": "Nuclear playlists service URL",
+    "nuclear-identity-service-url": "Nuclearin identiteettipalvelun osoite",
+    "nuclear-playlists-service-url": "Nuclearin soittolistapalvelun osoite",
     "mini-player": "Käytä minisoitinta",
     "more": "Lisää",
     "discord-rich-presence": "Kytke Discordin Rich Presence päälle/pois (vaatii uudelleenkäynnistyksen)",
@@ -336,35 +336,35 @@
   },
   "forms": {
     "nuclear-sign-up": {
-      "header": "Sign up",
-      "secondary-header": "Sign up to Nuclear Web Services",
-      "side-paragraph-1": "NWS enables you to backup your playlists online and share them.",
-      "side-paragraph-2": "Providing your email is optional; it will allow you to recover your account if you forget your password.",
-      "username-label": "Username",
-      "email-label": "Email",
-      "password-label": "Password",
-      "sign-up-button": "Sign up",
+      "header": "Rekisteröidy",
+      "secondary-header": "Rekisteröidy Nuclearin verkkopalveluun",
+      "side-paragraph-1": "NWS avulla voit varmuuskopioida soittolistoja verkossa ja jakaa niitä.",
+      "side-paragraph-2": "Sähköpostiosoitteesi antaminen on valinnaista; sen avulla voit palauttaa tilisi jos unohdat salasanasi.",
+      "username-label": "Käyttäjänimi",
+      "email-label": "Sähköposti",
+      "password-label": "Salasana",
+      "sign-up-button": "Rekisteröidy",
       "validation": {
         "username": {
-          "length": "Username must be 4 characters or more",
-          "required": "Username is required"
+          "length": "Käyttäjänimen on oltava vähintään 4 merkkiä",
+          "required": "Käyttäjätunnus on pakollinen"
         },
         "email": {
-          "invalid": "Email must be a valid email"
+          "invalid": "Sähköpostin on oltava kelvollinen sähköpostiosoite"
         },
         "password": {
-          "length": "Password must be 6 characters or more",
-          "required": "Password is required"
+          "length": "Salasanan on oltava vähintään 6 merkkiä pitkä",
+          "required": "Salasana vaaditaan"
         }
       }
     },
     "nuclear-sign-in": {
-      "header": " Sign in",
-      "username-label": "Username",
-      "password-label": "Password",
-      "no-account-label": "Don't have an account?",
-      "no-account-link": "Sign up",
-      "sign-in-button": "Sign in"
+      "header": " Kirjaudu sisään",
+      "username-label": "Käyttäjätunnus",
+      "password-label": "Salasana",
+      "no-account-label": "Eikö sinulla ole tiliä?",
+      "no-account-link": "Rekisteröidy",
+      "sign-in-button": "Kirjaudu sisään"
     }
   }
 }
