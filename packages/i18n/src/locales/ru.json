@@ -28,8 +28,8 @@
     "visualizer": "Визуализатор",
     "user-panel": {
       "actions-tooltip": "User actions",
-      "sign-up": "Sign up / Sign in",
-      "sign-out": "Sign out"
+      "sign-up": "Зарегистрироваться / Войти",
+      "sign-out": "Выйти"
     },
     "version": "Версия"
   },
@@ -167,13 +167,13 @@
     "title": "Название",
     "tracks-selected-plural": "треков выбрано",
     "tracks-selected-singular": "трек выбран",
-    "tracks-singular": "track",
-    "tracks-plural": "tracks",
-    "modified-at": "Last modified: ",
+    "tracks-singular": "трек",
+    "tracks-plural": "треки",
+    "modified-at": "Последнее изменение: ",
     "never-modified": "Unknown",
     "server-modified-at": "Server modified: ",
-    "upload-to-server": "Upload to server",
-    "download-from-server": "Download from server",
+    "upload-to-server": "Загрузить на сервер",
+    "download-from-server": "Загрузить с сервера",
     "number-of-tracks": "tracks"
   },
   "plugins": {
@@ -336,35 +336,35 @@
   },
   "forms": {
     "nuclear-sign-up": {
-      "header": "Sign up",
+      "header": "Зарегистрироваться",
       "secondary-header": "Sign up to Nuclear Web Services",
       "side-paragraph-1": "NWS enables you to backup your playlists online and share them.",
       "side-paragraph-2": "Providing your email is optional; it will allow you to recover your account if you forget your password.",
-      "username-label": "Username",
+      "username-label": "Логин",
       "email-label": "Email",
-      "password-label": "Password",
+      "password-label": "Пароль",
       "sign-up-button": "Sign up",
       "validation": {
         "username": {
-          "length": "Username must be 4 characters or more",
-          "required": "Username is required"
+          "length": "Имя пользователя должно содержать 4 или более символов",
+          "required": "Требуется имя пользователя"
         },
         "email": {
-          "invalid": "Email must be a valid email"
+          "invalid": "Email должен быть настоящим"
         },
         "password": {
-          "length": "Password must be 6 characters or more",
-          "required": "Password is required"
+          "length": "Пароль должен содержать не менее 6 символов",
+          "required": "Требуется пароль"
         }
       }
     },
     "nuclear-sign-in": {
-      "header": " Sign in",
-      "username-label": "Username",
-      "password-label": "Password",
-      "no-account-label": "Don't have an account?",
-      "no-account-link": "Sign up",
-      "sign-in-button": "Sign in"
+      "header": " Войти",
+      "username-label": "Логин",
+      "password-label": "Пароль",
+      "no-account-label": "Нет аккаунта?",
+      "no-account-link": "Зарегистрироваться",
+      "sign-in-button": "Войти"
     }
   }
 }
