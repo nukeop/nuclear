@@ -27,7 +27,7 @@
     "settings": "Настройки",
     "visualizer": "Визуализатор",
     "user-panel": {
-      "actions-tooltip": "User actions",
+      "actions-tooltip": "Пользовательские действия",
       "sign-up": "Зарегистрироваться / Войти",
       "sign-out": "Выйти"
     },
@@ -170,11 +170,11 @@
     "tracks-singular": "трек",
     "tracks-plural": "треки",
     "modified-at": "Последнее изменение: ",
-    "never-modified": "Unknown",
-    "server-modified-at": "Server modified: ",
+    "never-modified": "Неизвестно",
+    "server-modified-at": "Сервер изменен: ",
     "upload-to-server": "Загрузить на сервер",
     "download-from-server": "Загрузить с сервера",
-    "number-of-tracks": "tracks"
+    "number-of-tracks": "саундтреки"
   },
   "plugins": {
     "add-a-plugin": "Добавить плагин",
@@ -278,8 +278,8 @@
     "mastodon-post-format-description": "Nuclear будет постить статус на Mastodon каждый раз, когда заканчивается трек. Строка сверху является шаблоном для этих постов, {{artist}} и {{title}} в ней будут заменены исполнителем и названием трека.",
     "mastodon-post-format-label": "Формат поста",
     "mastodon-title": "",
-    "nuclear-identity-service-url": "Nuclear identity service URL",
-    "nuclear-playlists-service-url": "Nuclear playlists service URL",
+    "nuclear-identity-service-url": "Служба идентификации URL",
+    "nuclear-playlists-service-url": "Сервис нахождения плейлистов по URL",
     "mini-player": "Режим мини-плеера",
     "more": "Больше",
     "discord-rich-presence": "Интеграция с Discord (понадобится перезапуск)",
@@ -337,13 +337,13 @@
   "forms": {
     "nuclear-sign-up": {
       "header": "Зарегистрироваться",
-      "secondary-header": "Sign up to Nuclear Web Services",
-      "side-paragraph-1": "NWS enables you to backup your playlists online and share them.",
-      "side-paragraph-2": "Providing your email is optional; it will allow you to recover your account if you forget your password.",
+      "secondary-header": "Зарегистрируйтесь в Nuclear Web Services",
+      "side-paragraph-1": "NWS позволяет создавать резервные копии плейлистов в интернете и обмениваться ими.",
+      "side-paragraph-2": "Указание электронной почты необязательно; это позволит вам восстановить свою учетную запись, если вы забудете пароль.",
       "username-label": "Логин",
       "email-label": "Email",
       "password-label": "Пароль",
-      "sign-up-button": "Sign up",
+      "sign-up-button": "Зарегистрироваться",
       "validation": {
         "username": {
           "length": "Имя пользователя должно содержать 4 или более символов",
