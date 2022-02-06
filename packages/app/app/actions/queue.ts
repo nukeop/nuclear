@@ -6,6 +6,7 @@ import { Track, TrackStream } from '@nuclear/ui/lib/types';
 
 import { safeAddUuid } from './helpers';
 import { startPlayback } from './player.js';
+import { v4 } from 'uuid';
 
 export const QUEUE_DROP = 'QUEUE_DROP';
 export const ADD_QUEUE_ITEM = 'ADD_QUEUE_ITEM';
@@ -21,6 +22,7 @@ export const STREAM_FAILED = 'STREAM_FAILED';
 export const CHANGE_TRACK_STREAM = 'CHANGE_TRACK_STREAM';
 
 export type QueueItem = {
+  uuid: string;
   loading?: boolean;
   error?:
     | boolean
@@ -37,6 +39,7 @@ export type QueueItem = {
 
 export const toQueueItem = (track: Track): QueueItem => ({
   ...track,
+  uuid: v4(),
   artist: isString(track.artist) ? track.artist : track.artist.name,
   name: track.title ? track.title : track.name
 });
