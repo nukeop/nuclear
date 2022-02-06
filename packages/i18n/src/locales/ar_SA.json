@@ -94,7 +94,7 @@
   },
   "help": {
     "about": "عن مشغل الموسيقى النوكلير",
-    "contributors": "Our top 10 Contributors",
+    "contributors": "أكبر 10 مساهمين لدينا",
     "header": "مشغل موسيقى لسطح المكتب للبث من مصادر المجانية",
     "released": "released under AGPL-3.0",
     "report": "إرسال المشكلات أو ميزات جديدة",
@@ -299,7 +299,7 @@
     "track-duration": "Display track duration over the seekbar",
     "user": "User:",
     "youtube": "Youtube",
-    "yt-api-key": "Youtube API Key"
+    "yt-api-key": "مفتاح API تبع اليوتيوب"
   },
   "tags": {
     "albums": "Top Albums",
@@ -346,25 +346,25 @@
       "sign-up-button": "Sign up",
       "validation": {
         "username": {
-          "length": "Username must be 4 characters or more",
-          "required": "Username is required"
+          "length": "يجب أن يكون اسم المستخدم 4 أحرف أو أكثر",
+          "required": "اسم المستخدم مطلوب"
         },
         "email": {
-          "invalid": "Email must be a valid email"
+          "invalid": "البريد الإلكتروني يجب أن يكون بريد صحيح"
         },
         "password": {
-          "length": "Password must be 6 characters or more",
-          "required": "Password is required"
+          "length": "يجب أن تتكون كلمة السر من 6 أحرف أو أكثر",
+          "required": "مطلوب كلمة السر"
         }
       }
     },
     "nuclear-sign-in": {
-      "header": " Sign in",
-      "username-label": "Username",
-      "password-label": "Password",
-      "no-account-label": "Don't have an account?",
-      "no-account-link": "Sign up",
-      "sign-in-button": "Sign in"
+      "header": " تسجيل الدخول",
+      "username-label": "اسم المستخدم",
+      "password-label": "كلمة السر",
+      "no-account-label": "ليس لديك حساب؟",
+      "no-account-link": "إنشاء حساب",
+      "sign-in-button": "تسجيل الدخول"
     }
   }
 }
