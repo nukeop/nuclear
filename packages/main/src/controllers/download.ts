@@ -41,13 +41,15 @@ class DownloadIpcCtrl {
       const artistName = getTrackArtist(data);
       const title = getTrackTitle(data);
 
-      const query = `${artistName} ${title}`;
       const filename = `${artistName} - ${title}`;
 
       this.logger.log(`Start Download: ${artistName} - ${title}`);
 
       await this.download.start({
-        query,
+        query: {
+          artist: artistName,
+          track: title
+        },
         filename,
         onStart: (item) => {
           this.downloadItems = this.downloadItems.filter((item) => item.uuid !== uuid);
