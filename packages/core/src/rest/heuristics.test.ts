@@ -125,8 +125,8 @@ describe('Search heuristics', () => {
     });
 
     expect(orderedTracks).toEqual([
-      tracks[2],
       tracks[1],
+      tracks[2],
       tracks[0]
     ]);
   });
@@ -162,8 +162,8 @@ describe('Search heuristics', () => {
     expect(orderedTracks).toEqual([
       tracks[1],
       tracks[0],
-      tracks[3],
-      tracks[2]
+      tracks[2],
+      tracks[3]
     ]);
   });
 
@@ -196,7 +196,7 @@ describe('Search heuristics', () => {
         title: 'Black Sabbath - Paranoid (Live)'
       }),
       ytTrack({
-        title: 'Black Sabbath - Paranoid (Random addition to the title)'
+        title: 'Black Sabbath - Paranoid (Something else)'
       })
     ];
 
@@ -219,6 +219,9 @@ describe('Search heuristics', () => {
       }),
       ytTrack({
         title: 'Black Sabbath - Paranoid (Live)'
+      }),
+      ytTrack({
+        title: 'Black Sabbath - Paranoid (Random addition to the title)'
       })
     ];
 
@@ -231,7 +234,8 @@ describe('Search heuristics', () => {
 
     expect(orderedTracks).toEqual([
       tracks[1],
-      tracks[0]
+      tracks[0],
+      tracks[2]
     ]);
   });
   it('ranks remix videos lower', () => {
