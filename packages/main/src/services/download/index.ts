@@ -3,6 +3,7 @@ import registerDownloader, { download, Progress } from 'electron-dl';
 import { inject, injectable } from 'inversify';
 import _ from 'lodash';
 import * as Youtube from '@nuclear/core/src/rest/Youtube';
+import { StreamQuery } from '@nuclear/core/src/plugins/plugins.types';
 
 import Store from '../store';
 import Config from '../config';
@@ -10,7 +11,7 @@ import Window from '../window';
 import { DownloadItem } from 'electron';
 
 interface DownloadParams {
-  query: string;
+  query: StreamQuery;
   filename: string;
   onStart: (item: DownloadItem) => void;
   onProgress: (progress: Progress) => any;
