@@ -18,7 +18,7 @@ jobs:
     - run: npm run build:linux
       shell: bash
       env:
-        GITHASH: ${GITHUB_SHA::8}
+        GITHASH: ${GITHUB_SHA}
     - name: Upload binaries
       uses: actions/upload-artifact@v2
       with:
@@ -27,8 +27,8 @@ jobs:
     - name: Create a release
       uses: softprops/action-gh-release@v1
       with:
-        name: ${GITHUB_SHA::8}
-        tag_name: ${GITHUB_SHA::8}
+        name: ${GITHUB_SHA}
+        tag_name: ${GITHUB_SHA}
         prerelease: true
         files: release/*.*
     - name: Inform AUR updater
@@ -59,7 +59,7 @@ jobs:
     - run: npm run build:macos
       shell: bash
       env:
-        GITHASH: ${GITHUB_SHA::8}
+        GITHASH: ${GITHUB_SHA}
     - name: Upload binaries
       uses: actions/upload-artifact@v2
       with:
@@ -68,8 +68,8 @@ jobs:
     - name: Create a release
       uses: softprops/action-gh-release@v1
       with:
-        name: ${GITHUB_SHA::8}
-        tag_name: ${GITHUB_SHA::8}
+        name: ${GITHUB_SHA}
+        tag_name: ${GITHUB_SHA}
         prerelease: true
         files: release/*.*
 
@@ -92,7 +92,7 @@ jobs:
     - run: npm run build:windows
       shell: bash
       env:
-        GITHASH: ${GITHUB_SHA::8}
+        GITHASH: ${GITHUB_SHA}
     - name: Upload binaries
       uses: actions/upload-artifact@v2
       with:
@@ -101,7 +101,7 @@ jobs:
     - name: Create a release
       uses: softprops/action-gh-release@v1
       with:
-        name: ${GITHUB_SHA::8}
-        tag_name: ${GITHUB_SHA::8}
+        name: ${GITHUB_SHA}
+        tag_name: ${GITHUB_SHA}
         prerelease: true
         files: release/*.*
