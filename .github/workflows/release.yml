@@ -9,6 +9,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@master
+    - name: Set short sha
+      run: echo "GITHUB_SHA_SHORT=`git rev-parse --short HEAD`" >> $GITHUB_ENV
     - name: Use Node.js 12.x
       uses: actions/setup-node@v2
       with:
@@ -18,7 +20,7 @@ jobs:
     - run: npm run build:linux
       shell: bash
       env:
-        GITHASH: ${GITHUB_SHA}
+        GITHASH: ${{ env.GITHUB_SHA_SHORT }}
     - name: Upload binaries
       uses: actions/upload-artifact@v2
       with:
@@ -27,8 +29,8 @@ jobs:
     - name: Create a release
       uses: softprops/action-gh-release@v1
       with:
-        name: ${GITHUB_SHA}
-        tag_name: ${GITHUB_SHA}
+        name: ${{ env.GITHUB_SHA_SHORT }}
+        tag_name: ${{ env.GITHUB_SHA_SHORT }}
         prerelease: true
         files: release/*.*
     - name: Inform AUR updater
