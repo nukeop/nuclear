@@ -10,9 +10,9 @@ jobs:
     steps:
     - uses: actions/checkout@master
     - uses: benjlevesque/short-sha@v1.2
-        id: short-sha
-        with:
-          length: 6
+      id: short-sha
+      with:
+        length: 6
     - name: Use Node.js 12.x
       uses: actions/setup-node@v2
       with:
@@ -55,9 +55,9 @@ jobs:
     steps:
     - uses: actions/checkout@master
     - uses: benjlevesque/short-sha@v1.2
-        id: short-sha
-        with:
-          length: 6
+      id: short-sha
+      with:
+        length: 6
     - name: Use Node.js 12.x
       uses: actions/setup-node@v2
       with:
@@ -88,9 +88,9 @@ jobs:
     steps:
     - uses: actions/checkout@master
     - uses: benjlevesque/short-sha@v1.2
-        id: short-sha
-        with:
-          length: 6
+      id: short-sha
+      with:
+        length: 6
     - name: Use Node.js 12.x
       uses: actions/setup-node@v2
       with:
