@@ -41,12 +41,14 @@ jobs:
         repository: NuclearPlayer/nuclear-nightly-aur
         token: ${{ secrets.REPO_ACCESS_TOKEN }}
         event-type: release
+        client-payload: '{"tag": "${{ steps.short-sha.outputs.sha }}"}'
     - name: Inform Snapcraft updater
       uses: peter-evans/repository-dispatch@v1
       with:
         repository: NuclearPlayer/nuclear-nightly-snapcraft
         token: ${{ secrets.REPO_ACCESS_TOKEN }}
         event-type: release
+        client-payload: '{"tag": "${{ steps.short-sha.outputs.sha }}"}'
 
   mac_release:
     runs-on: macOS-latest
