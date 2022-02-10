@@ -35,6 +35,9 @@ module.exports = (env: BuildEnv): import('webpack').Configuration => {
       alias: {
         jsbi: path.resolve(__dirname, '..', '..', 'node_modules', 'jsbi', 'dist', 'jsbi-cjs.js')
       },
+      fallback: {
+        fs: false
+      },
       symlinks: false
     },
     externals: {
@@ -47,7 +50,7 @@ module.exports = (env: BuildEnv): import('webpack').Configuration => {
     mode: IS_PROD ? 'production' : 'development',
     devtool: 'source-map',
     stats: 'errors-only',
-    optimization: { namedModules: true },
+    optimization: { moduleIds: 'named' },
     module: {
       rules: [
         {
@@ -62,7 +65,6 @@ module.exports = (env: BuildEnv): import('webpack').Configuration => {
       ]
     },
     node: {
-      fs: 'empty',
       __dirname: false,
       __filename: false
     },
