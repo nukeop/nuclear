@@ -181,7 +181,7 @@
     "header": "Doplňky",
     "lyrics-providers": "Poskytovatelé textů",
     "meta-providers": "Poskytovatelé metadat",
-    "placeholder": "Zvolte defaultní zdroj hudby:",
+    "placeholder": "Vyberte výchozí zdroj hudby:",
     "select-lyrics-provider": "Vyberte výchozího poskytovatele textů:",
     "select-meta-provider": "Vyberte výchozího poskytovatele metadat:",
     "stream-providers": "Zdroje hudby",
