@@ -315,5 +315,12 @@ export const settingsConfig: Array<Setting> = [
     category: 'social',
     type: SettingType.STRING,
     default: 'http://localhost:3010'
+  },
+  {
+    name: 'showTrayIcon',
+    category: 'program-settings',
+    type: SettingType.BOOLEAN,
+    prettyName: 'show-tray-icon',
+    default: false
   }
 ];
