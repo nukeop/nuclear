@@ -18,12 +18,16 @@ class TrayMenu {
 
   private playerContext: PlayerContext;
 
+  private initialized: Boolean;
+
   constructor(
     @inject(Config) private config: Config,
     @inject(HttpApi) private httpApi: HttpApi,
     @inject(Platform) private platform: Platform,
     @inject(Window) private window: Window
-  ) { }
+  ) {
+    this.initialized = false; 
+  }
 
   init() {
     const icon = nativeImage.createFromPath(
@@ -39,109 +43,119 @@ class TrayMenu {
     });
     this.tray.setToolTip(this.getToolTipString());
     this.tray.setContextMenu(this.getMenu());
+
+    this.initialized = true;
   }
 
   getMenu() {
-    const template = [];
+    if (this.initialized) {
+      const template = [];
 
-    // Playing status
-    if (this.playerContext.track) {
-      template.push({
-        label: `${this.playerContext.isPlaying ? 'Playing - ' : ''}${this.playerContext.track.name}`,
-        enabled: false
-      });
-      template.push({
-        label: `by ${this.playerContext.track.artist}`,
-        enabled: false
-      });
-    } else {
-      template.push({
-        label: '--/--',
-        enabled: false
-      });
-    }
-    
-    template.push({
-      type: 'separator'
-    });
-
-    // Control button
-    if (this.playerContext.track) {
-      if (this.playerContext.isPlaying) {
+      // Playing status
+      if (this.playerContext.track) {
         template.push({
-          label: 'Pause',
-          type: 'normal',
-          click: async () => {
-            this.window.send(IpcEvents.PAUSE);
-            this.update({isPlaying: false});
-          }
+          label: `${this.playerContext.isPlaying ? 'Playing - ' : ''}${this.playerContext.track.name}`,
+          enabled: false
+        });
+        template.push({
+          label: `by ${this.playerContext.track.artist}`,
+          enabled: false
         });
       } else {
         template.push({
-          label: 'Play',
-          type: 'normal',
-          click: async () => {
-            this.window.send(IpcEvents.PLAY);
-            this.update({isPlaying: true});
-          }
+          label: '--/--',
+          enabled: false
         });
       }
-
-      template.push({
-        label: 'Next',
-        type: 'normal',
-        click: async () => {
-          this.window.send(IpcEvents.NEXT);
-        }
-      });
-
-      template.push({
-        label: 'Previous',
-        type: 'normal',
-        click: async () => {
-          this.window.send(IpcEvents.PREVIOUS);
-        }
-      });
-
+      
       template.push({
         type: 'separator'
       });
-    }
 
-    // Quit button
-    template.push({
-      label: 'Quit',
-      type: 'normal',
-      click: async () => {
-        await this.httpApi.close();
+      // Control button
+      if (this.playerContext.track) {
+        if (this.playerContext.isPlaying) {
+          template.push({
+            label: 'Pause',
+            type: 'normal',
+            click: async () => {
+              this.window.send(IpcEvents.PAUSE);
+              this.update({isPlaying: false});
+            }
+          });
+        } else {
+          template.push({
+            label: 'Play',
+            type: 'normal',
+            click: async () => {
+              this.window.send(IpcEvents.PLAY);
+              this.update({isPlaying: true});
+            }
+          });
+        }
 
-        app.quit();
+        template.push({
+          label: 'Next',
+          type: 'normal',
+          click: async () => {
+            this.window.send(IpcEvents.NEXT);
+          }
+        });
+
+        template.push({
+          label: 'Previous',
+          type: 'normal',
+          click: async () => {
+            this.window.send(IpcEvents.PREVIOUS);
+          }
+        });
+
+        template.push({
+          type: 'separator'
+        });
       }
-    });
 
-    return Menu.buildFromTemplate(template);
+      // Quit button
+      template.push({
+        label: 'Quit',
+        type: 'normal',
+        click: async () => {
+          await this.httpApi.close();
+
+          app.quit();
+        }
+      });
+
+      return Menu.buildFromTemplate(template);
+    }
   }
 
   getToolTipString() {
-    return this.playerContext.track ? 
-      `${this.playerContext.isPlaying ? 'Playing: ' : ''} ${this.playerContext.track.name} - ${this.playerContext.track.artist}` :
-      this.config.title ;
+    if (this.initialized) {
+      return this.playerContext.track ? 
+        `${this.playerContext.isPlaying ? 'Playing: ' : ''} ${this.playerContext.track.name} - ${this.playerContext.track.artist}` :
+        this.config.title ;
+    }
   }
 
   setPlayerContext(playerContext: PlayerContext) {
-    this.playerContext = {
-      ...this.playerContext,
-      ...playerContext
-    };
+    if (this.initialized) {
+      this.playerContext = {
+        ...this.playerContext,
+        ...playerContext
+      };
+    }
   }
 
   update(newPlayerContext?: PlayerContext) {
-    if (newPlayerContext) {
-      this.setPlayerContext(newPlayerContext);
-    }
+    if (this.initialized) {
+      if (newPlayerContext) {
+        this.setPlayerContext(newPlayerContext);
+      }
 
-    this.tray.setContextMenu(this.getMenu());
-    this.tray.setToolTip(this.getToolTipString());
+      this.tray.setContextMenu(this.getMenu());
+      this.tray.setToolTip(this.getToolTipString());
+    }
   }
 }
 
