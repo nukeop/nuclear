@@ -3,8 +3,8 @@
   "version": "0.6.17",
   "description": "Nuclear - Renderer process",
   "scripts": {
-    "start": "webpack-dev-server --inline --env.NODE_ENV=development",
-    "build": "cross-env NODE_OPTIONS=--max-old-space-size=8192 webpack --colors --progress --env.NODE_ENV=production",
+    "start": "webpack-dev-server --env NODE_ENV=development",
+    "build": "cross-env NODE_OPTIONS=--max-old-space-size=8192 webpack --progress --env NODE_ENV=production",
     "test": "cross-env TZ=GMT jest",
     "coverage": "jest --coverage",
     "lint": "eslint \"{app,test}/**/**.{js,jsx,ts,tsx}\"",
@@ -100,7 +100,7 @@
     "babel-jest": "^26.6.3",
     "babel-loader": "^8.1.0",
     "cross-env": "^7.0.3",
-    "css-loader": "^1.0.0",
+    "css-loader": "^6.6.0",
     "electron-rebuild": "^2.0.1",
     "eslint": "^7.18.0",
     "file-loader": "^6.2.0",
@@ -113,8 +113,8 @@
     "react-beautiful-dnd-test-utils": "^4.1.0",
     "react-hot-loader": "^4.12",
     "redux-mock-store": "^1.5.4",
+    "sass": "^1.49.7",
     "sass-loader": "^12.4.0",
-		"sass": "^1.49.7",
     "style-loader": "^1.0.0",
     "svg-inline-loader": "^0.8.0",
     "ts-jest": "^26.5.5",
@@ -125,6 +125,6 @@
     "utf-8-validate": "^5.0.2",
     "webpack": "^5.68.0",
     "webpack-cli": "^4.9.2",
-    "webpack-dev-server": "^3.9.0"
+    "webpack-dev-server": "^4.7.4"
   }
 }
