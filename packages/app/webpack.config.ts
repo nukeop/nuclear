@@ -1,9 +1,9 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
-const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const path = require('path');
-const dotenv = require('dotenv');
-const fs = require('fs');
+import webpack from 'webpack';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import dotenv from 'dotenv';
+import fs from 'fs';
+import path from 'path';
+import 'webpack-dev-server';
 
 const BUILD_DIR = path.resolve(__dirname, '../../dist');
 const APP_DIR = path.resolve(__dirname, 'app');
@@ -37,14 +37,14 @@ module.exports = (env) => {
       'webpack/hot/only-dev-server',
       path.resolve(APP_DIR, 'index.js')
     ];
-  const output = {
+  const output: webpack.Configuration['output'] = {
     path: BUILD_DIR,
     filename: 'renderer.js'
   };
-  const optimization = {
-    namedModules: true
+  const optimization: webpack.Configuration['optimization'] = {
+    moduleIds: 'named' as const
   };
-  const jsxRule = {
+  const jsxRule: webpack.RuleSetRule = {
     test: /\.(js|jsx|tsx|ts)$/,
     loader: 'babel-loader',
     options: {
@@ -67,7 +67,7 @@ module.exports = (env) => {
     }
   };
   const contentSecurity = 'connect-src *; style-src \'unsafe-inline\' https:; font-src https: data:; img-src https: data: file:;';
-  const plugins = [
+  const plugins: webpack.Configuration['plugins'] = [
     new HtmlWebpackPlugin({
       meta: {
         charset: {
@@ -134,13 +134,13 @@ module.exports = (env) => {
   } else {
     output.publicPath = '/';
     jsxRule.exclude = /node_modules\/(?!@nuclear).*/;
-    plugins.push(new webpack.HotModuleReplacementPlugin());
   }
 
-  const config = {
+  const config: webpack.Configuration = {
     entry,
     output,
     devtool: 'source-map',
+    stats: 'errors-only',
     mode: IS_PROD ? 'production' : 'development',
     optimization,
     resolve: {
@@ -149,11 +149,10 @@ module.exports = (env) => {
         react: path.resolve(__dirname, '..', '..', 'node_modules', 'react'),
         'styled-component': path.resolve(__dirname, 'node_modules/styled-component')
       },
+      fallback: {
+        fs: false
+      },
       symlinks: false
-    },
-    stats: 'errors-only',
-    node: {
-      fs: 'empty'
     },
     module: {
       rules: [
@@ -166,8 +165,9 @@ module.exports = (env) => {
               loader: 'css-loader',
               options: {
                 importLoaders: 1,
-                modules: true,
-                localIdentName: '[local]'
+                modules: {
+                  localIdentName: '[local]'
+                }
               }
             },
             'sass-loader'
@@ -177,7 +177,19 @@ module.exports = (env) => {
           test: /\.css/,
           use: [
             'style-loader',
-            'css-loader'
+            {
+              loader: 'css-loader',
+              options: {
+                url: {
+                  filter: (url) => {
+                    if (url.includes('charset=utf-8;;')) {
+                      return false;
+                    }
+                    return true;
+                  }
+                }
+              }   
+            }
           ]
         },
         {
@@ -218,9 +230,10 @@ module.exports = (env) => {
   if (IS_DEV) {
     config.devServer = {
       hot: true,
-      contentBase: '/',
-      publicPath: '/',
-      disableHostCheck: true
+      static: {
+        publicPath: '/'
+      },
+      allowedHosts: 'all'
     };
   }
 
