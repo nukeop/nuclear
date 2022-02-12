@@ -27,14 +27,14 @@
     "settings": "Innstillinger",
     "visualizer": "Visualiser",
     "user-panel": {
-      "actions-tooltip": "User actions",
-      "sign-up": "Sign up / Sign in",
-      "sign-out": "Sign out"
+      "actions-tooltip": "Brukerhandlinger",
+      "sign-up": "Registrer deg/Logg inn",
+      "sign-out": "Logg ut"
     },
-    "version": "Version"
+    "version": "Versjon"
   },
   "artist": {
-    "add-all": "Add all",
+    "add-all": "Legg til alle",
     "count": "Spill teller",
     "queue": "Legg til alle spor i køen",
     "similar": "Lignende artister",
@@ -42,7 +42,7 @@
     "tour": "Sendes på tur"
   },
   "dashboard": {
-    "add-all": "Add all",
+    "add-all": "Legg til alle",
     "artist": "Kunstner",
     "best": "Beste nye musikk",
     "best-new-albums": "Beste nye album",
@@ -64,14 +64,14 @@
     "status": "Status:"
   },
   "equalizer": {
-    "classical": "Classical",
-    "club": "Club",
-    "custom": "Custom",
-    "default": "Default",
+    "classical": "Klassisk",
+    "club": "Klubb",
+    "custom": "Egendefinert",
+    "default": "Standard",
     "full-bass": "Full Bass",
-    "full-treble": "Full Treble",
+    "full-treble": "Full Diskant",
     "pop": "Pop",
-    "presets": "Presets",
+    "presets": "Forhåndsinnstillinger",
     "reggae": "Reggae",
     "rock": "Rock"
   },
@@ -88,13 +88,13 @@
   "favorites": {
     "artist": "Kunstner",
     "empty": "Ingen favoritter lagt til",
-    "empty-help": "Try adding some tracks to favorites and they will appear here!",
+    "empty-help": "Prøv å legge til noen spor i favoritter, de vil vises her!",
     "header": "Dine favorittspor",
     "title": "Tittel"
   },
   "help": {
     "about": "Om Nuclear Music Player",
-    "contributors": "Our top 10 Contributors",
+    "contributors": "Våre topp 10 bidragsytere",
     "header": "Skrivebord musikkspiller for å strømme fra gratis kilder",
     "released": "frigjort under AGPL-3,0",
     "report": "Send problemer eller nye funksjoner",
@@ -151,9 +151,9 @@
     "export-fail-title": "Eksport av spilleliste feilet",
     "export-success-title": "Vellykket eksport av spilleliste",
     "header": "Dine spillelister",
-    "dialog-accept": "Save",
-    "create-button": "Create new playlist",
-    "new-playlist": "New playlist",
+    "dialog-accept": "Lagre",
+    "create-button": "Lag ny spilleliste",
+    "new-playlist": "Ny spilleliste",
     "import-button": "Importer fra fil (JSON)",
     "import-fail-title": "Import av spilleliste feilet",
     "import-success-title": "Spilleliste importert",
@@ -167,14 +167,14 @@
     "title": "Tittel",
     "tracks-selected-plural": "Spor valgt",
     "tracks-selected-singular": "spor valgt",
-    "tracks-singular": "track",
-    "tracks-plural": "tracks",
-    "modified-at": "Last modified: ",
-    "never-modified": "Unknown",
-    "server-modified-at": "Server modified: ",
-    "upload-to-server": "Upload to server",
-    "download-from-server": "Download from server",
-    "number-of-tracks": "tracks"
+    "tracks-singular": "spor",
+    "tracks-plural": "spor",
+    "modified-at": "Sist endret: ",
+    "never-modified": "Ukjent",
+    "server-modified-at": "Server endret: ",
+    "upload-to-server": "Last opp til server",
+    "download-from-server": "Last ned fra server",
+    "number-of-tracks": "spor"
   },
   "plugins": {
     "add-a-plugin": "Legg til en plugin",
@@ -201,8 +201,8 @@
     "header": "Kø",
     "header-track": "Gjeldende spor",
     "id": "Strøm ID:",
-    "source": "Source:",
-    "copy-track-url": "Copy track url to clipboard",
+    "source": "Kilde:",
+    "copy-track-url": "Kopier spor-url til utklippstavle",
     "loading": "Strømming lastes fortsatt.",
     "playlist-add": "Legg til i spilleliste",
     "playlist-toast-content": "Spilleliste {{name}} er opprettet.",
@@ -213,7 +213,7 @@
   "search": {
     "album": "album",
     "album_plural": "Album",
-    "all": "All",
+    "all": "Alle",
     "artist": "Kunstner",
     "artist_plural": "Artister",
     "clear-history": "Tøm logg",
