@@ -219,18 +219,18 @@
     "clear-history": "Tøm logg",
     "empty": "Fant ingenting.",
     "last-searches": "Siste søk",
-    "live-stream": "LiveStream",
+    "live-stream": "Direktestrømming",
     "placeholder": "Søk...",
     "playlist": "Spilleliste",
     "playlist_plural": "Spillelister",
-    "podcast": "Podcast",
+    "podcast": "Podkast",
     "queue-add": "Legg til alle spor i køen",
     "track": "Spor",
     "track_plural": "Spor",
     "you-can-search-for": "Du kan søke etter:"
   },
   "seekbar": {
-    "live": "Live",
+    "live": "Direkte",
     "segment-popup": "Ikke-musikk"
   },
   "settings": {
@@ -265,7 +265,7 @@
     "lastfm-description": "For å aktivere scrobbling, må du først koble til og godkjenne Nuclear på Last.fm, og deretter klikke på Logg inn.",
     "lastfm-enable": "Aktiver scrobbling til Last.fm",
     "lastfm-title": "Last.fm",
-    "less": "Less",
+    "less": "Mindre",
     "login": "Logg inn",
     "logout": "Logg ut",
     "loop-after-queue-end": "Sløyfe etter siste kø-objekt",
@@ -278,23 +278,23 @@
     "mastodon-post-format-description": "Kjerneprøver vil poste statusen på Mastodon etter hver enkelt sang er ferdig. Teksten over vil være malen for hvert innlegg, med {{artist}} og {{title}} erstattet med artisten og tittelen på sporet.",
     "mastodon-post-format-label": "Post format",
     "mastodon-title": "",
-    "nuclear-identity-service-url": "Nuclear identity service URL",
-    "nuclear-playlists-service-url": "Nuclear playlists service URL",
+    "nuclear-identity-service-url": "Nuclear identitetstjeneste URL",
+    "nuclear-playlists-service-url": "Nuclear spillelistetjeneste URL",
     "mini-player": "Bruk mini spiller stil",
-    "more": "More",
-    "discord-rich-presence": "Toggle discord rich presence (requires restart)",
+    "more": "Mer",
+    "discord-rich-presence": "Veksle discord rik tilstedeværelse (krever omstart)",
     "notification-timeout": "Tidsavbrudd for varsel",
     "notlogged": "Ikke logget inn",
     "playback": "Avspilling",
     "program-settings": "Programmets innstillinger",
-    "saving-in": "Saving in:",
+    "saving-in": "Lagrer i:",
     "seek-iteration": "Antall sekunder å søke fremover eller bakover når du trykker på piltastene",
     "shuffle-queue": "Shuffle sanger",
     "shuffle-when-going-back": "Bland på forrige spor",
     "shuffle-when-going-back-description": "Spill av et tilfeldig spor når shuffle er aktiv og knappen forrige sang blir klikket",
     "social": "Sosial",
-    "skip-sponsorblock": "Skip non-music segment",
-    "skip-sponsorblock-description": "Playback skips non-music segment from SponsorBlock (https://sponsor.ajay.app/)",
+    "skip-sponsorblock": "Hopp over ikke-musikksegmenter",
+    "skip-sponsorblock-description": "Avspilling hopper over ikke-musikksegmenter fra SponsorBlock (https://sponsor.ajay.app/)",
     "streaming": "Strømming",
     "track-duration": "Vis sporets varighet over søkefeltet",
     "user": "Bruker:",
@@ -310,61 +310,61 @@
     "title": "Tittel"
   },
   "track-popup": {
-    "add-to-favorite": "Add to favorites",
-    "add-to-playlist": "Add to playlist",
-    "add-to-queue": "Add to queue",
-    "download": "Download",
-    "download-toast-body": "{{artist}} - {{track}} has been added to downloads.",
-    "download-toast-title": "Track added to downloads",
-    "favorite-toast-body": "{{artist}} - {{track}} has been added to favorites.",
-    "favorite-toast-title": "Favorite track added",
-    "play-next": "Play next",
-    "play-now": "Play now",
-    "playlist-toast-body": "{{artist}} - {{track}} has been added to playlist.",
-    "playlist-toast-title": "Track added to playlist"
+    "add-to-favorite": "Legg til favoritter",
+    "add-to-playlist": "Legg til spilleliste",
+    "add-to-queue": "Legg til kø",
+    "download": "Last ned",
+    "download-toast-body": "{{artist}} - {{track}} har blitt lagt til i nedlastinger.",
+    "download-toast-title": "Spor lagt til i nedlastinger",
+    "favorite-toast-body": "{{artist}} - {{track}} har blitt lagt til i nedlastinger.",
+    "favorite-toast-title": "Favorittspor lagt til",
+    "play-next": "Spill neste",
+    "play-now": "Spill nå",
+    "playlist-toast-body": "{{artist}} - {{track}} har blitt lagt til i spillelisten.",
+    "playlist-toast-title": "Spor lagt til i spillelisten"
   },
   "track-table": {
-    "add-selected-tracks-to-queue": "Add selected to queue",
-    "add-selected-tracks-to-downloads": "Add selected to downloads",
-    "add-selected-tracks-to-favorites": "Add selected to favorites",
-    "play-selected-tracks-now": "Play selected now",
-    "tracks-selected-label-singular": "track selected",
-    "tracks-selected-label-plural": "tracks selected"
+    "add-selected-tracks-to-queue": "Legg til valgt i køen",
+    "add-selected-tracks-to-downloads": "Legg til valgte i nedlastinger",
+    "add-selected-tracks-to-favorites": "Legg til valgt i favoritter",
+    "play-selected-tracks-now": "Spill av valgte nå",
+    "tracks-selected-label-singular": "spor valgt",
+    "tracks-selected-label-plural": "spor valgt"
   },
   "visualizer": {
     "exit-fullscreen": "Trykk ESC for å avslutte fullskjerm"
   },
   "forms": {
     "nuclear-sign-up": {
-      "header": "Sign up",
-      "secondary-header": "Sign up to Nuclear Web Services",
-      "side-paragraph-1": "NWS enables you to backup your playlists online and share them.",
-      "side-paragraph-2": "Providing your email is optional; it will allow you to recover your account if you forget your password.",
-      "username-label": "Username",
-      "email-label": "Email",
-      "password-label": "Password",
-      "sign-up-button": "Sign up",
+      "header": "Registrer deg",
+      "secondary-header": "Registrer deg til Nuclear webtjenester",
+      "side-paragraph-1": "NWS lar deg sikkerhetskopiere spillelister online og dele dem.",
+      "side-paragraph-2": "Det er valgfritt å oppgi e-post; det vil la deg gjenopprette brukeren din hvis du glemmer passordet.",
+      "username-label": "Brukernavn",
+      "email-label": "E-post",
+      "password-label": "Passord",
+      "sign-up-button": "Registrer deg",
       "validation": {
         "username": {
-          "length": "Username must be 4 characters or more",
-          "required": "Username is required"
+          "length": "Brukernavnet må være på 4 tegn eller mer",
+          "required": "Brukernavn er påkrevd"
         },
         "email": {
-          "invalid": "Email must be a valid email"
+          "invalid": "E-post må være en gyldig e-postadresse"
         },
         "password": {
-          "length": "Password must be 6 characters or more",
-          "required": "Password is required"
+          "length": "Passordet må være 6 tegn eller mer",
+          "required": "Passord er påkrevd"
         }
       }
     },
     "nuclear-sign-in": {
-      "header": " Sign in",
-      "username-label": "Username",
-      "password-label": "Password",
-      "no-account-label": "Don't have an account?",
-      "no-account-link": "Sign up",
-      "sign-in-button": "Sign in"
+      "header": " Logg inn",
+      "username-label": "Brukernavn",
+      "password-label": "Passord",
+      "no-account-label": "Har du ikke brukerkonto?",
+      "no-account-link": "Registrer deg",
+      "sign-in-button": "Logg inn"
     }
   }
 }
