@@ -1,5 +1,5 @@
 import logger from 'electron-timber';
-import _ from 'lodash';
+import { head } from 'lodash';
 import getArtistTitle from 'get-artist-title';
 import ytdl from 'ytdl-core';
 import ytlist from 'youtube-playlist';
@@ -8,6 +8,7 @@ import ytsr from 'ytsr';
 import LastFmApi from './Lastfm';
 import { StreamData, StreamQuery } from '../plugins/plugins.types';
 import * as SponsorBlock from './SponsorBlock';
+import { YoutubeHeuristics } from './heuristics';
 
 const lastfm = new LastFmApi(
   process.env.LAST_FM_API_KEY,
@@ -133,18 +134,27 @@ export async function liveStreamSearch(query: string) {
 }
 
 export async function trackSearch(query: StreamQuery, omitStreamId?: string, sourceName?: string) {
-  const terms = query.artist + ' ' + query.track;
-  return trackSearchByString(terms, omitStreamId, sourceName);
+  return trackSearchByString(query, omitStreamId, sourceName);
 }
 
-export async function trackSearchByString(query: string, omitStreamId?: string, sourceName?: string, useSponsorBlock = true): Promise<StreamData> {
-  const filterOptions = await ytsr.getFilters(query);
+export async function trackSearchByString(query: StreamQuery, omitStreamId?: string, sourceName?: string, useSponsorBlock = true): Promise<StreamData> {
+  const terms = query.artist + ' ' + query.track;
+  const filterOptions = await ytsr.getFilters(terms);
   const filterVideoOnly = filterOptions.get('Type').get('Video'); 
-  const results = await ytsr(filterVideoOnly.url, { limit: omitStreamId ? 15 : 1 });
-  const topTrack: ytsr.Video = _.find(
-    results.items as ytsr.Video[],
-    item => (!omitStreamId || item.id !== omitStreamId)
-  ) as ytsr.Video;
+  const results = await ytsr(filterVideoOnly.url, { limit: 15 });
+  const heuristics = new YoutubeHeuristics();
+
+  const itemsWithoutSkippedIds = (results.items as ytsr.Video[]).filter((item) => {
+    return omitStreamId !== item.id;
+  });
+
+  const orderedTracks = heuristics.orderTracks({
+    tracks: itemsWithoutSkippedIds as ytsr.Video[],
+    artist: query.artist,
+    title: query.track
+  });
+
+  const topTrack: ytsr.Video = head(orderedTracks) as ytsr.Video;
 
   try {
     const topTrackInfo = await ytdl.getInfo(topTrack.url);

@@ -25,9 +25,16 @@
     "plugins": "Shtojcat",
     "search": "Rezultatet e kërkimit",
     "settings": "Përcaktimet",
-    "visualizer": "Visualizer"
+    "visualizer": "Visualizer",
+    "user-panel": {
+      "actions-tooltip": "User actions",
+      "sign-up": "Sign up / Sign in",
+      "sign-out": "Sign out"
+    },
+    "version": "Version"
   },
   "artist": {
+    "add-all": "Add all",
     "count": "Numërimi i këngëve",
     "queue": "Shto të gjitha këngët në radhë",
     "similar": "Artistë të ngjashëm",
@@ -56,6 +63,18 @@
     "name": "Emri",
     "status": "Statusi"
   },
+  "equalizer": {
+    "classical": "Classical",
+    "club": "Club",
+    "custom": "Custom",
+    "default": "Default",
+    "full-bass": "Full Bass",
+    "full-treble": "Full Treble",
+    "pop": "Pop",
+    "presets": "Presets",
+    "reggae": "Reggae",
+    "rock": "Rock"
+  },
   "favorite-albums": {
     "empty": "Nuk ka albume të preferuara",
     "empty-help": "Shtoni disa albume tek të preferuarit dhe ato do shfaqen këtu!",
@@ -75,6 +94,7 @@
   },
   "help": {
     "about": "Rreth Nuclear Music Player",
+    "contributors": "Our top 10 Contributors",
     "header": "Aplikacion desktop për të dëgjuar muzikë nga burime të hapura",
     "released": "publikuar nën licensën AGPL-3.0",
     "report": "Submit issues or new features",
@@ -146,7 +166,15 @@
     "songs_plural": "{{total}} këngësh",
     "title": "Titulli",
     "tracks-selected-plural": "tracks selected",
-    "tracks-selected-singular": "track selected"
+    "tracks-selected-singular": "track selected",
+    "tracks-singular": "track",
+    "tracks-plural": "tracks",
+    "modified-at": "Last modified: ",
+    "never-modified": "Unknown",
+    "server-modified-at": "Server modified: ",
+    "upload-to-server": "Upload to server",
+    "download-from-server": "Download from server",
+    "number-of-tracks": "tracks"
   },
   "plugins": {
     "add-a-plugin": "Shto një plugin",
@@ -179,25 +207,30 @@
     "playlist-add": "Shto në listë",
     "playlist-toast-content": "Lista {{name}} është krijuar.",
     "playlist-toast-title": "U krijua lista",
-    "title": "Titulli:"
+    "title": "Titulli:",
+    "live": "Live"
   },
   "search": {
     "album": "Albumi",
     "album_plural": "Albumet",
+    "all": "All",
     "artist": "Artisti",
     "artist_plural": "Artistët",
     "clear-history": "Clear history",
     "empty": "Nuk u gjet asgjë.",
     "last-searches": "Last searches",
+    "live-stream": "LiveStream",
     "placeholder": "Kërko...",
     "playlist": "Lista e këngëve",
     "playlist_plural": "Listat e këngëve",
+    "podcast": "Podcast",
     "queue-add": "Shto të gjitha këngët në radhë",
     "track": "Kënga",
     "track_plural": "Këngët",
     "you-can-search-for": "You can search for:"
   },
   "seekbar": {
+    "live": "Live",
     "segment-popup": "Non-music"
   },
   "settings": {
@@ -232,6 +265,7 @@
     "lastfm-description": "Në mënyrë që të aktivizoni dërgimin automatik të këngëve të dëgjuara, në fillim ju duhet të lidheni dhe të autorizoni Nuclear në Last.fm, dhe pastaj klikoni kyçuni.",
     "lastfm-enable": "Aktivizoni dërgimin automatik të këngëve të dëgjuara në Last.fm",
     "lastfm-title": "Last.fm",
+    "less": "Less",
     "login": "Kyçuni",
     "logout": "Dilni",
     "loop-after-queue-end": "Rifilloni pasi të luani këngët e fundit në listë",
@@ -244,12 +278,16 @@
     "mastodon-post-format-description": "Nuclear will post a status on Mastodon after each track completes playing. The above string will be the template for each post, with {{artist}} and {{title}} replaced with the artist and title of the track.",
     "mastodon-post-format-label": "Post format",
     "mastodon-title": "",
+    "nuclear-identity-service-url": "Nuclear identity service URL",
+    "nuclear-playlists-service-url": "Nuclear playlists service URL",
     "mini-player": "Use mini player style",
+    "more": "More",
     "discord-rich-presence": "Toggle discord rich presence (requires restart)",
     "notification-timeout": "Njoftim për mbarimt ë kohës",
     "notlogged": "Nuk jeni kyçur",
     "playback": "Playback",
     "program-settings": "Cilësimet e programit",
+    "saving-in": "Saving in:",
     "seek-iteration": "Numri i sekondave për të parë përpara/pas kur shtypni butonat e shigjetave",
     "shuffle-queue": "Përzieni këngët",
     "shuffle-when-going-back": "Përzieni në këngën e mëparshme",
@@ -295,5 +333,38 @@
   },
   "visualizer": {
     "exit-fullscreen": "Press ESC to exit full screen"
+  },
+  "forms": {
+    "nuclear-sign-up": {
+      "header": "Sign up",
+      "secondary-header": "Sign up to Nuclear Web Services",
+      "side-paragraph-1": "NWS enables you to backup your playlists online and share them.",
+      "side-paragraph-2": "Providing your email is optional; it will allow you to recover your account if you forget your password.",
+      "username-label": "Username",
+      "email-label": "Email",
+      "password-label": "Password",
+      "sign-up-button": "Sign up",
+      "validation": {
+        "username": {
+          "length": "Username must be 4 characters or more",
+          "required": "Username is required"
+        },
+        "email": {
+          "invalid": "Email must be a valid email"
+        },
+        "password": {
+          "length": "Password must be 6 characters or more",
+          "required": "Password is required"
+        }
+      }
+    },
+    "nuclear-sign-in": {
+      "header": " Sign in",
+      "username-label": "Username",
+      "password-label": "Password",
+      "no-account-label": "Don't have an account?",
+      "no-account-link": "Sign up",
+      "sign-in-button": "Sign in"
+    }
   }
 }

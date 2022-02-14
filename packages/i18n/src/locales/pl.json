@@ -27,14 +27,14 @@
     "settings": "Ustawienia",
     "visualizer": "Wizualizator",
     "user-panel": {
-      "actions-tooltip": "User actions",
-      "sign-up": "Sign up / Sign in",
-      "sign-out": "Sign out"
+      "actions-tooltip": "Akcje użytkownika",
+      "sign-up": "Zarejestruj się / Zaloguj się",
+      "sign-out": "Wyloguj się"
     },
-    "version": "Version"
+    "version": "Wersja"
   },
   "artist": {
-    "add-all": "Add all",
+    "add-all": "Dodaj wszystkie",
     "count": "Liczba odtworzeń",
     "queue": "Dodaj wszystkie utwory do kolejki",
     "similar": "Podobni artyści",
@@ -42,7 +42,7 @@
     "tour": "W trasie"
   },
   "dashboard": {
-    "add-all": "Add all",
+    "add-all": "Dodaj wszystkie",
     "artist": "Artysta",
     "best": "Najlepsze nowości muzyczne",
     "best-new-albums": "Najlepsze nowe albumy",
@@ -64,14 +64,14 @@
     "status": "Status"
   },
   "equalizer": {
-    "classical": "Classical",
-    "club": "Club",
-    "custom": "Custom",
-    "default": "Default",
-    "full-bass": "Full Bass",
-    "full-treble": "Full Treble",
+    "classical": "Klasyczny",
+    "club": "Klubowy",
+    "custom": "Niestandardowy",
+    "default": "Domyślny",
+    "full-bass": "Pełny bas",
+    "full-treble": "Pełne tony wysokie",
     "pop": "Pop",
-    "presets": "Presets",
+    "presets": "Szablony",
     "reggae": "Reggae",
     "rock": "Rock"
   },
@@ -88,13 +88,13 @@
   "favorites": {
     "artist": "Artysta",
     "empty": "Brak ulubionych utworów",
-    "empty-help": "Try adding some tracks to favorites and they will appear here!",
+    "empty-help": "Spróbuj dodać trochę utworów do ulubionych wtedy one pojawią się tutaj!",
     "header": "Twoje ulubione utwory",
     "title": "Tytuł"
   },
   "help": {
     "about": "O Nuclear Music Player",
-    "contributors": "Our top 10 Contributors",
+    "contributors": "10 najlepszych współautorów",
     "header": "Desktopowy odtwarzacz muzyki do strumieniowania z darmowych źródeł",
     "released": "wydany na licencji AGPL-3.0",
     "report": "Zgłoś problemy lub nowe funkcje",
@@ -151,9 +151,9 @@
     "export-fail-title": "Błąd eksportowania listy odtwarzania",
     "export-success-title": "Lista odtwarzania wyeksportowana pomyślnie",
     "header": "Twoje listy odtwarzania",
-    "dialog-accept": "Save",
-    "create-button": "Create new playlist",
-    "new-playlist": "New playlist",
+    "dialog-accept": "Zapisz",
+    "create-button": "Utwórz nową playlistę",
+    "new-playlist": "Nowa playlista",
     "import-button": "Importuj z pliku (JSON)",
     "import-fail-title": "Błąd importowania listy odtwarzania",
     "import-success-title": "Lista odtwarzania zaimportowana pomyślnie",
@@ -167,14 +167,14 @@
     "title": "Tytuł",
     "tracks-selected-plural": "zaznaczonych utworów",
     "tracks-selected-singular": "zaznaczony utwór",
-    "tracks-singular": "track",
-    "tracks-plural": "tracks",
-    "modified-at": "Last modified: ",
-    "never-modified": "Unknown",
-    "server-modified-at": "Server modified: ",
-    "upload-to-server": "Upload to server",
-    "download-from-server": "Download from server",
-    "number-of-tracks": "tracks"
+    "tracks-singular": "utwór",
+    "tracks-plural": "utwory",
+    "modified-at": "Ostatnia modyfikacja: ",
+    "never-modified": "Nieznany",
+    "server-modified-at": "Zmodyfikowany serwer: ",
+    "upload-to-server": "Prześlij na serwer",
+    "download-from-server": "Pobierz z serwera",
+    "number-of-tracks": "utwory"
   },
   "plugins": {
     "add-a-plugin": "Dodaj plugin",
@@ -201,25 +201,25 @@
     "header": "Kolejka",
     "header-track": "Odtwarzane",
     "id": "ID strumienia:",
-    "source": "Source:",
-    "copy-track-url": "Copy track url to clipboard",
+    "source": "Źródło:",
+    "copy-track-url": "Skopiuj link utworu do schowka",
     "loading": "Strumień wciąż ładowany.",
     "playlist-add": "Dodaj do listy odtwarzania",
     "playlist-toast-content": "Lista odtwarzania {{name}} została utworzona.",
     "playlist-toast-title": "Lista odtwarzania utworzona",
     "title": "Tytuł:",
-    "live": "Live"
+    "live": "Na żywo"
   },
   "search": {
     "album": "Album",
     "album_plural": "Albumy",
-    "all": "All",
+    "all": "Wszystkie",
     "artist": "Wykonawca",
     "artist_plural": "Wykonawcy",
     "clear-history": "Wyczyść historię",
     "empty": "Brak wyników.",
     "last-searches": "Ostatnio wyszukiwane",
-    "live-stream": "LiveStream",
+    "live-stream": "Transmisja na żywo",
     "placeholder": "Wyszukaj...",
     "playlist": "Lista odtwarzania",
     "playlist_plural": "List odtwarzania",
@@ -230,7 +230,7 @@
     "you-can-search-for": "Możesz wyszukiwać:"
   },
   "seekbar": {
-    "live": "Live",
+    "live": "Na żywo",
     "segment-popup": "Brak muzyki"
   },
   "settings": {
@@ -265,36 +265,36 @@
     "lastfm-description": "Aby włączyć scrobblowanie, musisz najpierw połączyć się i autoryzować Nuclear na Last.fm, a następnie kliknąć Zaloguj.",
     "lastfm-enable": "Włącz scrobbling do Last.fm",
     "lastfm-title": "Last.fm",
-    "less": "Less",
+    "less": "Mniej",
     "login": "Zaloguj",
     "logout": "Wyloguj",
     "loop-after-queue-end": "Zapętl po odtworzeniu ostatniego utworu w kolejce",
     "mastodon-authorization-token-label": "Token autoryzacyjny",
     "mastodon-authorize": "Autoryzuj",
     "mastodon-authorized": "Nuclear może publikować wpisy na ",
-    "mastodon-awaiting-authorization": "Nuclear is registered on {{instanceUrl}}. Awaiting authorization.",
+    "mastodon-awaiting-authorization": "Nuclear jest zarejestrowany ma{{instanceUrl}}. Oczekuję na autoryzację.",
     "mastodon-description": "",
     "mastodon-instance-label": "URL instancji Mastodon",
     "mastodon-post-format-description": "Nuclear zaktualizuje status na Mastodonie po zakończeniu odtwarzania każdego utworu. Powyższy ciąg znaków będzie wzorem dla każdego wpisu, który będzie zawierał {{artist}} oraz {{title}} zastąpione artystą oraz tytułem utworu.",
     "mastodon-post-format-label": "Format wpisu",
     "mastodon-title": "",
-    "nuclear-identity-service-url": "Nuclear identity service URL",
-    "nuclear-playlists-service-url": "Nuclear playlists service URL",
+    "nuclear-identity-service-url": "Adres URL serwisu identyfikacji Nuclear",
+    "nuclear-playlists-service-url": "Adres URL serwisu playlist Nuclear",
     "mini-player": "Miniodtwarzacz",
-    "more": "More",
-    "discord-rich-presence": "Toggle discord rich presence (requires restart)",
+    "more": "Więcej",
+    "discord-rich-presence": "Użyj rich presence discord'a (wymaga restartu)",
     "notification-timeout": "Limit czasu powiadomienia",
     "notlogged": "Niezalogowany",
     "playback": "Odtwarzanie",
     "program-settings": "Ustawienia programu",
-    "saving-in": "Saving in:",
+    "saving-in": "Zapisuj w:",
     "seek-iteration": "Liczba sekund, o którą będzie przewijany utwór do przodu/wstecz, kiedy przyciski strzałek będą wciśnięte",
     "shuffle-queue": "Mieszaj utwory",
     "shuffle-when-going-back": "Mieszaj utwory wstecz",
     "shuffle-when-going-back-description": "Odtwarzaj losowy utwór, kiedy mieszanie utworów jest włączone i kliknięto przycisk Poprzedni utwór",
     "social": "Społeczność",
-    "skip-sponsorblock": "Skip non-music segment",
-    "skip-sponsorblock-description": "Playback skips non-music segment from SponsorBlock (https://sponsor.ajay.app/)",
+    "skip-sponsorblock": "Pomiń segmenty nie-muzyczne",
+    "skip-sponsorblock-description": "Odtwarzacz pomija segmenty nie-muzyczne dzięki SponsorBlock (https://sponsor.ajay.app/)",
     "streaming": "Streaming",
     "track-duration": "Wyświetl czas trwania utworu na pasku postępu odtwarzania",
     "user": "Użytkownik:",
@@ -310,61 +310,61 @@
     "title": "Tytuł"
   },
   "track-popup": {
-    "add-to-favorite": "Add to favorites",
-    "add-to-playlist": "Add to playlist",
-    "add-to-queue": "Add to queue",
-    "download": "Download",
-    "download-toast-body": "{{artist}} - {{track}} has been added to downloads.",
-    "download-toast-title": "Track added to downloads",
-    "favorite-toast-body": "{{artist}} - {{track}} has been added to favorites.",
-    "favorite-toast-title": "Favorite track added",
-    "play-next": "Play next",
-    "play-now": "Play now",
-    "playlist-toast-body": "{{artist}} - {{track}} has been added to playlist.",
-    "playlist-toast-title": "Track added to playlist"
+    "add-to-favorite": "Dodaj do ulubionych",
+    "add-to-playlist": "Dodaj do playlisty",
+    "add-to-queue": "Dodaj do kolejki",
+    "download": "Pobierz",
+    "download-toast-body": "{{artist}} - {{track}} został dodany do pobierania.",
+    "download-toast-title": "Utwór dodany do pobierania",
+    "favorite-toast-body": "{{artist}} - {{track}} został dodany do ulubionych.",
+    "favorite-toast-title": "Ulubiony utwór dodany",
+    "play-next": "Odtwarzaj następne",
+    "play-now": "Odtwórz teraz",
+    "playlist-toast-body": "{{artist}} - {{track}} został dodany do playlisty.",
+    "playlist-toast-title": "Utwór został dodany do playlisty"
   },
   "track-table": {
-    "add-selected-tracks-to-queue": "Add selected to queue",
-    "add-selected-tracks-to-downloads": "Add selected to downloads",
-    "add-selected-tracks-to-favorites": "Add selected to favorites",
-    "play-selected-tracks-now": "Play selected now",
-    "tracks-selected-label-singular": "track selected",
-    "tracks-selected-label-plural": "tracks selected"
+    "add-selected-tracks-to-queue": "Dodaj zaznaczone do kolejki",
+    "add-selected-tracks-to-downloads": "Dodaj zaznaczone do pobierania",
+    "add-selected-tracks-to-favorites": "Dodaj zaznaczone do ulubionych",
+    "play-selected-tracks-now": "Odtwórz zaznaczone teraz",
+    "tracks-selected-label-singular": "wybrano utwór",
+    "tracks-selected-label-plural": "wybrano utwory"
   },
   "visualizer": {
     "exit-fullscreen": "Naciśnij ESC, aby wyjść z trybu pełnoekranowego"
   },
   "forms": {
     "nuclear-sign-up": {
-      "header": "Sign up",
-      "secondary-header": "Sign up to Nuclear Web Services",
-      "side-paragraph-1": "NWS enables you to backup your playlists online and share them.",
-      "side-paragraph-2": "Providing your email is optional; it will allow you to recover your account if you forget your password.",
-      "username-label": "Username",
-      "email-label": "Email",
-      "password-label": "Password",
-      "sign-up-button": "Sign up",
+      "header": "Zarejestruj się",
+      "secondary-header": "Zarejestruj się w Nuclear Web Services",
+      "side-paragraph-1": "NWS pozwala na tworzenie kopii zapasowych twoich playlist online oraz na udostępnianie ich.",
+      "side-paragraph-2": "Podanie adresu e-mail jest opcjonalne; pozwoli Ci to odzyskać twoje konto, jeśli zapomnisz hasła.",
+      "username-label": "Nazwa użytkownika",
+      "email-label": "Adres e-mail",
+      "password-label": "Hasło",
+      "sign-up-button": "Zarejestruj się",
       "validation": {
         "username": {
-          "length": "Username must be 4 characters or more",
-          "required": "Username is required"
+          "length": "Nazwa użytkownika musi mieć 4 znaki lub więcej",
+          "required": "Nazwa użytkownika jest wymagana"
         },
         "email": {
-          "invalid": "Email must be a valid email"
+          "invalid": "E-mail musi być prawidłowym adresem e-mail"
         },
         "password": {
-          "length": "Password must be 6 characters or more",
-          "required": "Password is required"
+          "length": "Hasło musi mieć minimum 6 znaków",
+          "required": "Hasło jest wymagane"
         }
       }
     },
     "nuclear-sign-in": {
-      "header": " Sign in",
-      "username-label": "Username",
-      "password-label": "Password",
-      "no-account-label": "Don't have an account?",
-      "no-account-link": "Sign up",
-      "sign-in-button": "Sign in"
+      "header": " Zaloguj się",
+      "username-label": "Nazwa użytkownika",
+      "password-label": "Hasło",
+      "no-account-label": "Nie masz konta?",
+      "no-account-link": "Zarejestruj się",
+      "sign-in-button": "Zaloguj się"
     }
   }
 }

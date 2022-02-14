@@ -28,6 +28,7 @@
     "deezer-public-api": "^1.0.4",
     "electron-store": "^5.1.0",
     "electron-timber": "^0.5.1",
+    "fast-levenshtein": "^3.0.0",
     "get-artist-title": "^1.2.0",
     "get-lyrics-hd": "^0.0.1",
     "isomorphic-fetch": "^2.2.1",
@@ -44,6 +45,7 @@
     "ytsr": "^3.5.0"
   },
   "devDependencies": {
+    "@types/fast-levenshtein": "^0.0.2",
     "@types/isomorphic-fetch": "0.0.35",
     "@types/jest": "^26.0.22",
     "@types/lodash": "^4.14.158",

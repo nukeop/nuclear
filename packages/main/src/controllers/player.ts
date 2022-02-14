@@ -8,6 +8,7 @@ import Window from '../services/window';
 import { ipcEvent, ipcController } from '../utils/decorators';
 import Discord from '../services/discord';
 import TrayMenu from '../services/trayMenu';
+import Logger, { $mainLogger } from '../services/logger';
 
 @ipcController()
 class IpcPlayer {
@@ -15,7 +16,8 @@ class IpcPlayer {
     @inject(Discord) private discord: Discord,
     @inject(TrayMenu) private trayMenu: TrayMenu,
     @inject(SystemApi) private systemApi: NuclearApi,
-    @inject(Window) private window: Window
+    @inject(Window) private window: Window,
+    @inject($mainLogger) private logger: Logger
   ) {}
 
   @ipcEvent(IpcEvents.PLAY)
@@ -58,10 +60,14 @@ class IpcPlayer {
   }
 
   @ipcEvent(IpcEvents.QUEUE_CLEAR)
-  onClearTrackList() {
-    this.systemApi.clearTrackList && this.systemApi.clearTrackList();
-    this.discord.clear();
-    this.trayMenu.update({isPlaying: false, track: null});
+  async onClearTrackList() {
+    try {
+      this.systemApi.clearTrackList && this.systemApi.clearTrackList();
+      await this.discord.clear();
+      this.trayMenu.update({isPlaying: false, track: null});
+    } catch (e) {
+      this.logger.error('Main process failed to react to IPC clear queue event');
+    }
   }
 
   @ipcEvent(IpcEvents.SONG_CHANGE)

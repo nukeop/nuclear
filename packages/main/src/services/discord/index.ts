@@ -90,11 +90,11 @@ class Discord {
     }
   }
 
-  clear() {
+  async clear() {
     delete this.activity;
     if (this.isReady) {
       this.logger.log('clear discord activity');
-      this.rpc.clearActivity();
+      await this.rpc.clearActivity();
     }
   }
 }
