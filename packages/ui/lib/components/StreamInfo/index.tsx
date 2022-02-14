@@ -12,11 +12,11 @@ import styles from './styles.scss';
 const StreamInfo = (props: StreamInfoProps & Handlers) => {
 
   const { selectedStream,
-    handleRerollTrack,
-    handleSelectStream,
-    handleImageLoaded,
-    handleCopyTrackUrl,
-    track,
+    onRerollTrack,
+    onSelectStream,
+    onImageLoaded,
+    onCopyTrackUrl,
+    thumbnail,
     dropdownOptions,
     idLabel,
     titleLabel,
@@ -29,9 +29,9 @@ const StreamInfo = (props: StreamInfoProps & Handlers) => {
         <div className={styles.stream_thumbnail}>
           <Img
             alt=''
-            src={_.get(selectedStream, 'thumbnail') || _.get(track, 'thumbnail')}
+            src={_.get(selectedStream, 'thumbnail') || thumbnail}
             unloader={<img src={String(artPlaceholder)} />}
-            onLoad={handleImageLoaded}
+            onLoad={onImageLoaded}
           />
         </div>
         <div className={styles.stream_text_info}>
@@ -44,7 +44,7 @@ const StreamInfo = (props: StreamInfoProps & Handlers) => {
                 _.find(dropdownOptions, o => o.value === selectedStream.source),
                 'value'
               )}
-              onChange={handleSelectStream}
+              onChange={onSelectStream}
             />
           </div>
           <div className={styles.stream_title}>
@@ -64,13 +64,13 @@ const StreamInfo = (props: StreamInfoProps & Handlers) => {
               on='hover'
               content={copyTrackUrlLabel}
               trigger={
-                <a href='#' data-testid='copy-original-url' onClick={handleCopyTrackUrl}>
+                <a href='#' data-testid='copy-original-url' onClick={onCopyTrackUrl}>
                   <Icon name='linkify' />
                 </a>
               }
             />
           ) : null}
-          <a href='#' onClick={handleRerollTrack}>
+          <a href='#' onClick={onRerollTrack}>
             <Icon name='refresh' />
           </a>
         </div>
@@ -83,17 +83,9 @@ type DropdownProps = {
   [key: string]: any
 }
 
-type Track = {
-  artist?: string,
-  name?: string
-  thumbnail?: string,
-  uuid?: string,
-  loading?: boolean,
-}
-
 type RequiredProps = {
   selectedStream: SelectedStream,
-  track: Track,
+  thumbnail: string | undefined,
 };
 
 type DefaultProps = {
@@ -105,10 +97,10 @@ type DefaultProps = {
 };
 
 type Handlers = {
-  handleRerollTrack: React.MouseEventHandler<HTMLAnchorElement>,
-  handleSelectStream: () => void,
-  handleImageLoaded: () => any,
-  handleCopyTrackUrl: () => void,
+  onRerollTrack: React.MouseEventHandler<HTMLAnchorElement>,
+  onSelectStream: () => void,
+  onImageLoaded: () => any,
+  onCopyTrackUrl: () => void,
 }
 
 type StreamInfoProps = RequiredProps & DefaultProps;
