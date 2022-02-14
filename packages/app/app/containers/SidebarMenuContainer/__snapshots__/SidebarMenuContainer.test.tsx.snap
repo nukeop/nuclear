@@ -1,0 +1,194 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Sidebar menu container should render the sidebar menu 1`] = `
+<div
+  class="sidebar_menu"
+  data-testid="sidebar-menu"
+>
+  <div
+    class="sidebar_menu_category_header"
+  >
+    <span>
+      Main
+    </span>
+    <hr />
+  </div>
+  <a
+    href="/dashboard"
+  >
+    <div
+      class="sidebar_menu_item_container"
+    >
+      <i
+        aria-hidden="true"
+        class="dashboard icon"
+      />
+      Dashboard
+    </div>
+  </a>
+  <a
+    href="/downloads"
+  >
+    <div
+      class="sidebar_menu_item_container"
+    >
+      <i
+        aria-hidden="true"
+        class="download icon"
+      />
+      Downloads
+    </div>
+  </a>
+  <a
+    href="/lyrics"
+  >
+    <div
+      class="sidebar_menu_item_container"
+    >
+      <i
+        aria-hidden="true"
+        class="microphone icon"
+      />
+      Lyrics
+    </div>
+  </a>
+  <a
+    href="/plugins"
+  >
+    <div
+      class="sidebar_menu_item_container"
+    >
+      <i
+        aria-hidden="true"
+        class="flask icon"
+      />
+      Plugins
+    </div>
+  </a>
+  <a
+    href="/search"
+  >
+    <div
+      class="sidebar_menu_item_container"
+    >
+      <i
+        aria-hidden="true"
+        class="search icon"
+      />
+      Search Results
+    </div>
+  </a>
+  <a
+    href="/settings"
+  >
+    <div
+      class="sidebar_menu_item_container"
+    >
+      <i
+        aria-hidden="true"
+        class="cog icon"
+      />
+      Settings
+    </div>
+  </a>
+  <a
+    href="/equalizer"
+  >
+    <div
+      class="sidebar_menu_item_container"
+    >
+      <i
+        aria-hidden="true"
+        class="align right rotated icon"
+      />
+      Equalizer
+    </div>
+  </a>
+  <a
+    href="/visualizer"
+  >
+    <div
+      class="sidebar_menu_item_container"
+    >
+      <i
+        aria-hidden="true"
+        class="tint icon"
+      />
+      Visualizer
+    </div>
+  </a>
+  <div
+    class="sidebar_menu_category_header"
+  >
+    <span>
+      Collection
+    </span>
+    <hr />
+  </div>
+  <a
+    href="/favorites/albums"
+  >
+    <div
+      class="sidebar_menu_item_container"
+    >
+      <i
+        aria-hidden="true"
+        class="dot circle icon"
+      />
+      Favorite Albums
+    </div>
+  </a>
+  <a
+    href="/favorites/tracks"
+  >
+    <div
+      class="sidebar_menu_item_container"
+    >
+      <i
+        aria-hidden="true"
+        class="music icon"
+      />
+      Favorite Tracks
+    </div>
+  </a>
+  <a
+    href="/favorites/artists"
+  >
+    <div
+      class="sidebar_menu_item_container"
+    >
+      <i
+        aria-hidden="true"
+        class="user icon"
+      />
+      Favorite Artists
+    </div>
+  </a>
+  <a
+    href="/library"
+  >
+    <div
+      class="sidebar_menu_item_container"
+    >
+      <i
+        aria-hidden="true"
+        class="file audio outline icon"
+      />
+      Local Library
+    </div>
+  </a>
+  <a
+    href="/playlists"
+  >
+    <div
+      class="sidebar_menu_item_container"
+    >
+      <i
+        aria-hidden="true"
+        class="list alternate outline icon"
+      />
+      Playlists
+    </div>
+  </a>
+</div>
+`;

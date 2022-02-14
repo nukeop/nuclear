@@ -27,6 +27,7 @@ Readme 번역 목록:
 <kbd>[<img title="Italiano" alt="Italiano" src="https://cdn.staticaly.com/gh/hjnilsson/country-flags/master/svg/it.svg" width="22">](docs/README-it.md)</kbd>
 <kbd>[<img title="Korean" alt="Korean" src="https://cdn.staticaly.com/gh/hjnilsson/country-flags/master/svg/kr.svg" width="22">](docs/README-ko.md)</kbd>
 <kbd>[<img title="Indonesia" alt="Indonesia" src="https://cdn.staticaly.com/gh/hjnilsson/country-flags/master/svg/id.svg" width="22">](docs/README-id.md)</kbd>
+<kbd>[<img title="Français" alt="Français" src="https://cdn.staticaly.com/gh/hjnilsson/country-flags/master/svg/fr.svg" width="22">](docs/README-fr.md)</kbd>
 
 
 ## nuclear는 어떤 프로그램인가요?
