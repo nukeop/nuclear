@@ -3,7 +3,7 @@
     "download": "Télécharger",
     "download-toast-content": "{{artist}} - {{title}} a été ajouté aux téléchargements.",
     "download-toast-title": "L'album a été ajouté aux téléchargements",
-    "error-load": "Désolé, cet album n'a pas pu être chargé. Réessayez plus tard ou ouvrez une nouvelle issue sur Github",
+    "error-load": "Désolé, cet album n'a pas pu être chargé. Réessayez plus tard ou ouvrez une nouvelle demande d'aide sur Github",
     "genre": "Genre :",
     "play": "Lire",
     "queue": "Ajouter l'album à la liste de lecture",
@@ -364,7 +364,7 @@
       "password-label": "Mot de passe",
       "no-account-label": "Vous n'avez pas encore de compte ?",
       "no-account-link": "S'inscrire",
-      "sign-in-button": "Sign in"
+      "sign-in-button": "Connexion"
     }
   }
 }
