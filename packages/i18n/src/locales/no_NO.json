@@ -43,7 +43,7 @@
   },
   "dashboard": {
     "add-all": "Legg til alle",
-    "artist": "Kunstner",
+    "artist": "Artist",
     "best": "Beste nye musikk",
     "best-new-albums": "Beste nye album",
     "best-new-tracks": "Beste nye spor",
@@ -86,7 +86,7 @@
     "header": "Favorittartistene dine"
   },
   "favorites": {
-    "artist": "Kunstner",
+    "artist": "Artist",
     "empty": "Ingen favoritter lagt til",
     "empty-help": "Prøv å legge til noen spor i favoritter, de vil vises her!",
     "header": "Dine favorittspor",
@@ -106,7 +106,7 @@
   "library": {
     "add": "Legg til mapper",
     "album": "album",
-    "artist": "Kunstner",
+    "artist": "Artist",
     "empty": "Biblioteket er tomt",
     "empty-help": "Legg til musikk ved hjelp av knappen ovenfor.",
     "filter-placeholder": "Filtrer...",
@@ -137,7 +137,7 @@
     "add-selected-tracks-to-favorites": "Legg valgte til i favoritter",
     "add-selected-tracks-to-queue": "Legg til valgte i køen",
     "album": "album",
-    "artist": "Kunstner",
+    "artist": "Artist",
     "delete": "Slett denne spillelisten",
     "dialog-placeholder": "Navn på spilleliste...",
     "duration": "Lengde",
@@ -214,7 +214,7 @@
     "album": "album",
     "album_plural": "Album",
     "all": "Alle",
-    "artist": "Kunstner",
+    "artist": "Artist",
     "artist_plural": "Artister",
     "clear-history": "Tøm logg",
     "empty": "Fant ingenting.",
@@ -303,7 +303,7 @@
   },
   "tags": {
     "albums": "Topp Album",
-    "artist": "Kunstner",
+    "artist": "Artist",
     "artists": "Topp artister",
     "duration": "Varighet",
     "queue-add": "Legg til alle spor i køen",
