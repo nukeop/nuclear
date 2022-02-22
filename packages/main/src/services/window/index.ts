@@ -56,6 +56,7 @@ class Window {
       webPreferences: {
         nodeIntegration: true,
         webSecurity: false,
+        webviewTag: true,
         enableRemoteModule: true,
         contextIsolation: false,
         additionalArguments: [
