@@ -28,13 +28,13 @@
     "visualizer": "Visualizador",
     "user-panel": {
       "actions-tooltip": "Ações do usuário",
-      "sign-up": "Sign up / Sign in",
-      "sign-out": "Sign out"
+      "sign-up": "Cadastre-se ou Entre",
+      "sign-out": "Sair"
     },
-    "version": "Version"
+    "version": "Versão"
   },
   "artist": {
-    "add-all": "Add all",
+    "add-all": "Adicionar Tudo",
     "count": "Reproduções",
     "queue": "Adicione todas as faixas à fila",
     "similar": "Artistas similares",
@@ -64,14 +64,14 @@
     "status": "Status"
   },
   "equalizer": {
-    "classical": "Classical",
+    "classical": "Clássica",
     "club": "Club",
-    "custom": "Custom",
-    "default": "Default",
+    "custom": "Personalizar",
+    "default": "Padrão",
     "full-bass": "Full Bass",
     "full-treble": "Full Treble",
     "pop": "Pop",
-    "presets": "Presets",
+    "presets": "Predefinições",
     "reggae": "Reggae",
     "rock": "Rock"
   },
@@ -167,7 +167,7 @@
     "title": "Título",
     "tracks-selected-plural": "tracks selected",
     "tracks-selected-singular": "track selected",
-    "tracks-singular": "track",
+    "tracks-singular": "faixa",
     "tracks-plural": "tracks",
     "modified-at": "Last modified: ",
     "never-modified": "Unknown",
