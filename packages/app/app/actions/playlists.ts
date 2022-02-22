@@ -124,6 +124,38 @@ export const exportPlaylist = (playlist, t) => async (dispatch) => {
   }
 };
 
+export function addPlaylistFromUrl(data: string, t) {
+  return async dispatch => {
+    try {
+      const parsed = JSON.parse(data);
+      const name = _.get(parsed, 'name', null);
+      const tracks = _.get(parsed, 'tracks', null);
+      const source = _.get(parsed, 'source', null);
+
+      if (!name || !tracks) {
+        throw new Error('missing tracks or name');
+      }
+
+      let playlists = store.get('playlists') || [];
+      const playlist = PlaylistHelper.formatPlaylistForStorage(name, tracks, v4(), source);
+
+      if (_.isEmpty(tracks)) {
+        dispatch(error(t('import-fail-title'), t('error-empty-data'), null, null));
+        return;
+      }
+
+      playlists = [...playlists, playlist];
+
+      store.set('playlists', playlists);
+      dispatch(success(t('import-success-title'), t('playlist-created', { name }), null, null));
+      dispatch(updatePlaylistsAction(playlists));
+
+    } catch (e) {
+      dispatch(error(t('import-fail-title'), t('error-invalid-data'), null, null));
+    }
+  };
+}
+
 export function addPlaylistFromFile(filePath, t) {
   return async dispatch => {
     fs.readFile(filePath, (err, data) => {
