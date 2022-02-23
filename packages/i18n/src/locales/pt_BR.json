@@ -65,14 +65,14 @@
   },
   "equalizer": {
     "classical": "Clássica",
-    "club": "Club",
+    "club": "Clube",
     "custom": "Personalizar",
     "default": "Padrão",
-    "full-bass": "Full Bass",
-    "full-treble": "Full Treble",
+    "full-bass": "Grave",
+    "full-treble": "Agudo",
     "pop": "Pop",
     "presets": "Predefinições",
-    "reggae": "Reggae",
+    "reggae": "Reggaeton",
     "rock": "Rock"
   },
   "favorite-albums": {
@@ -94,7 +94,7 @@
   },
   "help": {
     "about": "Sobre o Player de Música Nuclear",
-    "contributors": "Our top 10 Contributors",
+    "contributors": "Nosso top 10 colaboradores",
     "header": "Desktop music player for streaming from free sources",
     "released": "released under AGPL-3.0",
     "report": "Submit issues or new features",
@@ -168,12 +168,12 @@
     "tracks-selected-plural": "tracks selected",
     "tracks-selected-singular": "track selected",
     "tracks-singular": "faixa",
-    "tracks-plural": "tracks",
-    "modified-at": "Last modified: ",
-    "never-modified": "Unknown",
-    "server-modified-at": "Server modified: ",
-    "upload-to-server": "Upload to server",
-    "download-from-server": "Download from server",
+    "tracks-plural": "musicas",
+    "modified-at": "Última alteração:",
+    "never-modified": "Desconhecido",
+    "server-modified-at": "Servidor modificado: ",
+    "upload-to-server": "Upload para o servidor",
+    "download-from-server": "Download do servidor",
     "number-of-tracks": "tracks"
   },
   "plugins": {
