@@ -9,6 +9,10 @@ jobs:
 
     steps:
     - uses: actions/checkout@master
+    - uses: benjlevesque/short-sha@v1.2
+      id: short-sha
+      with:
+        length: 6
     - name: Use Node.js 12.x
       uses: actions/setup-node@v2
       with:
@@ -18,7 +22,7 @@ jobs:
     - run: npm run build:linux
       shell: bash
       env:
-        GITHASH: ${GITHUB_SHA}
+        GITHASH: ${{ steps.short-sha.outputs.sha }}
     - name: Upload binaries
       uses: actions/upload-artifact@v2
       with:
@@ -27,8 +31,8 @@ jobs:
     - name: Create a release
       uses: softprops/action-gh-release@v1
       with:
-        name: ${GITHUB_SHA}
-        tag_name: ${GITHUB_SHA}
+        name: ${{ steps.short-sha.outputs.sha }}
+        tag_name: ${{ steps.short-sha.outputs.sha }}
         prerelease: true
         files: release/*.*
     - name: Inform AUR updater
@@ -37,12 +41,14 @@ jobs:
         repository: NuclearPlayer/nuclear-nightly-aur
         token: ${{ secrets.REPO_ACCESS_TOKEN }}
         event-type: release
+        client-payload: '{"tag": "${{ steps.short-sha.outputs.sha }}"}'
     - name: Inform Snapcraft updater
       uses: peter-evans/repository-dispatch@v1
       with:
         repository: NuclearPlayer/nuclear-nightly-snapcraft
         token: ${{ secrets.REPO_ACCESS_TOKEN }}
         event-type: release
+        client-payload: '{"tag": "${{ steps.short-sha.outputs.sha }}"}'
 
   mac_release:
     runs-on: macOS-latest
@@ -50,6 +56,10 @@ jobs:
 
     steps:
     - uses: actions/checkout@master
+    - uses: benjlevesque/short-sha@v1.2
+      id: short-sha
+      with:
+        length: 6
     - name: Use Node.js 12.x
       uses: actions/setup-node@v2
       with:
@@ -59,7 +69,7 @@ jobs:
     - run: npm run build:macos
       shell: bash
       env:
-        GITHASH: ${GITHUB_SHA}
+        GITHASH: ${{ steps.short-sha.outputs.sha }}
     - name: Upload binaries
       uses: actions/upload-artifact@v2
       with:
@@ -68,8 +78,8 @@ jobs:
     - name: Create a release
       uses: softprops/action-gh-release@v1
       with:
-        name: ${GITHUB_SHA}
-        tag_name: ${GITHUB_SHA}
+        name: ${{ steps.short-sha.outputs.sha }}
+        tag_name: ${{ steps.short-sha.outputs.sha }}
         prerelease: true
         files: release/*.*
 
@@ -79,6 +89,10 @@ jobs:
 
     steps:
     - uses: actions/checkout@master
+    - uses: benjlevesque/short-sha@v1.2
+      id: short-sha
+      with:
+        length: 6
     - name: Use Node.js 12.x
       uses: actions/setup-node@v2
       with:
@@ -92,7 +106,7 @@ jobs:
     - run: npm run build:windows
       shell: bash
       env:
-        GITHASH: ${GITHUB_SHA}
+        GITHASH: ${{ steps.short-sha.outputs.sha }}
     - name: Upload binaries
       uses: actions/upload-artifact@v2
       with:
@@ -101,7 +115,7 @@ jobs:
     - name: Create a release
       uses: softprops/action-gh-release@v1
       with:
-        name: ${GITHUB_SHA}
-        tag_name: ${GITHUB_SHA}
+        name: ${{ steps.short-sha.outputs.sha }}
+        tag_name: ${{ steps.short-sha.outputs.sha }}
         prerelease: true
         files: release/*.*
