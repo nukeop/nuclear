@@ -48,7 +48,7 @@ export default (async function () {
 
   function getTracksFromDOM(processedIndex) {
 
-    const nodeTracks: any = document.querySelector('div[data-testid="top-sentinel"] + div').childNodes;
+    const nodeTracks = document.querySelector('div[data-testid="top-sentinel"] + div').childNodes as NodeListOf<Element>;
     const tracks = [];
 
     for (let i = 0; i < nodeTracks.length; i += 1) {
@@ -56,7 +56,7 @@ export default (async function () {
         const index = parseInt(nodeTracks[i].getAttribute('aria-rowindex'));
 
         if (index > processedIndex) {
-          const nodeDetails = nodeTracks[i].childNodes[0];
+          const nodeDetails = nodeTracks[i].childNodes[0] as HTMLElement;
           const track: Track = {
             index: 0,
             thumbnail: '',
@@ -72,12 +72,12 @@ export default (async function () {
             .getAttribute('src');
 
           const titleAndArtist = nodeDetails
-            .querySelector('div[aria-colindex="2"]')
+            .querySelector<HTMLElement>('div[aria-colindex="2"]')
             .innerText.split('\n');
           const artistArray = titleAndArtist[titleAndArtist.length - 1].split(', ');
 
           track.title = titleAndArtist[0];
-          track.album = nodeDetails.querySelector('div[aria-colindex="3"]').innerText;
+          track.album = nodeDetails.querySelector<HTMLElement>('div[aria-colindex="3"]').innerText;
           track.duration = nodeDetails.innerText.split('\n').pop();
           track.artist = artistArray[0];
           track.otherArtists = artistArray.slice(1);
