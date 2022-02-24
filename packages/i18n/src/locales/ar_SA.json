@@ -96,9 +96,9 @@
     "about": "عن مشغل الموسيقى النوكلير",
     "contributors": "أكبر 10 مساهمين لدينا",
     "header": "مشغل موسيقى لسطح المكتب للبث من مصادر المجانية",
-    "released": "released under AGPL-3.0",
+    "released": "صدر بموجب AGPL-3.0",
     "report": "إرسال المشكلات أو ميزات جديدة",
-    "thanks": "Many thanks to our contributors on Github, your help was vital in creating this program."
+    "thanks": "شكرا جزيلا لمساهمينا علي جيت هب، إسهاماتك كانت لها دور مهم في إنشاء هذا البرنامج."
   },
   "input-dialog": {
     "cancel": "إلغاء"
@@ -116,9 +116,9 @@
     "title": "عنوان"
   },
   "lyrics": {
-    "by-artist": "by {{artist}}",
+    "by-artist": "بواسطة {{artist}}",
     "empty": "لا شيء يلعب.",
-    "empty-help": "Add some music to the queue to display the lyrics here!",
+    "empty-help": "أضف بعض الموسيقى إلى قائمة الانتظار لعرض كلمات الأغاني هنا!",
     "not-found": "لم يتم العثور على أي كلمات لهذه الأغنية."
   },
   "option-control": {
@@ -130,11 +130,11 @@
   "player": {
     "next-button": "العب الاغنية التالي",
     "play-pause-button": "أزرار التشغيل/ الإيقاف",
-    "previous-button": "Previous track button"
+    "previous-button": "زر المقطع السابق"
   },
   "playlists": {
     "add-selected-tracks-to-downloads": "إضافة المحدد للتحميلات",
-    "add-selected-tracks-to-favorites": "Add selected to favorites",
+    "add-selected-tracks-to-favorites": "أضف المحدد إلى المفضلة",
     "add-selected-tracks-to-queue": "إضافة المحدد إلى قائمة الانتظار",
     "album": "ألبوم",
     "artist": "فنان",
@@ -159,16 +159,16 @@
     "import-success-title": "تم استيراد قائمة التشغيل بنجاح",
     "play-selected-tracks-now": "العب المحدد الآن",
     "playlist-created": "تم إنشاء {{name}}",
-    "playlist-exported": "{{name}} saved to local file",
+    "playlist-exported": "تم حفظ {{name}} في ملف محلي",
     "queue": "إضافة قائمة التشغيل إلى قائمة الانتظار",
     "rename": "إعادة تسمية قائمة التشغيل هذه",
     "songs": "{{total}} أغنية",
     "songs_plural": "{{total}} أغاني",
     "title": "العنوان",
-    "tracks-selected-plural": "tracks selected",
-    "tracks-selected-singular": "track selected",
-    "tracks-singular": "track",
-    "tracks-plural": "tracks",
+    "tracks-selected-plural": "المقاطع المحددة",
+    "tracks-selected-singular": "المقطع المحدد",
+    "tracks-singular": "مقطع",
+    "tracks-plural": "مقاطع",
     "modified-at": "آخر تعديل: ",
     "never-modified": "مجهول",
     "server-modified-at": "Server modified: ",
