@@ -27,14 +27,14 @@
     "settings": "Ayarlar",
     "visualizer": "Görselleştirici",
     "user-panel": {
-      "actions-tooltip": "User actions",
-      "sign-up": "Sign up / Sign in",
-      "sign-out": "Sign out"
+      "actions-tooltip": "Kullanıcı Eylemleri",
+      "sign-up": "Giriş yap / Kayıt ol",
+      "sign-out": "Oturumu Kapat"
     },
     "version": "Versiyon"
   },
   "artist": {
-    "add-all": "Add all",
+    "add-all": "Tümünü ekle",
     "count": "Dinlenme Sayısı",
     "queue": "Tüm şarkıları kuyruğa ekle",
     "similar": "Benzer şarkıcılar",
@@ -167,14 +167,14 @@
     "title": "Şarkı Adı",
     "tracks-selected-plural": "şarkı seçildi",
     "tracks-selected-singular": "şarkı seçildi",
-    "tracks-singular": "track",
-    "tracks-plural": "tracks",
-    "modified-at": "Last modified: ",
-    "never-modified": "Unknown",
-    "server-modified-at": "Server modified: ",
-    "upload-to-server": "Upload to server",
-    "download-from-server": "Download from server",
-    "number-of-tracks": "tracks"
+    "tracks-singular": "iz",
+    "tracks-plural": "izler",
+    "modified-at": "Son değişiklik: ",
+    "never-modified": "Bilinmiyor",
+    "server-modified-at": "Sunucu düzenlendi: ",
+    "upload-to-server": "Sunucuya yükle",
+    "download-from-server": "Sunucudan indir",
+    "number-of-tracks": "izler"
   },
   "plugins": {
     "add-a-plugin": "Eklenti ekle",
@@ -336,35 +336,35 @@
   },
   "forms": {
     "nuclear-sign-up": {
-      "header": "Sign up",
+      "header": "Kayıt ol",
       "secondary-header": "Sign up to Nuclear Web Services",
       "side-paragraph-1": "NWS enables you to backup your playlists online and share them.",
       "side-paragraph-2": "Providing your email is optional; it will allow you to recover your account if you forget your password.",
-      "username-label": "Username",
-      "email-label": "Email",
-      "password-label": "Password",
-      "sign-up-button": "Sign up",
+      "username-label": "Kullanıcı adı",
+      "email-label": "E-posta",
+      "password-label": "Şifre",
+      "sign-up-button": "Kayıt ol",
       "validation": {
         "username": {
-          "length": "Username must be 4 characters or more",
-          "required": "Username is required"
+          "length": "Kullanıcı adının 4 veya daha fazla karakterden oluşmalıdır",
+          "required": "Kullanıcı adı gereklidir"
         },
         "email": {
-          "invalid": "Email must be a valid email"
+          "invalid": "Geçerli bir e-posta olmalıdır"
         },
         "password": {
-          "length": "Password must be 6 characters or more",
-          "required": "Password is required"
+          "length": "Şifre 6 veya daha fazla karakterden oluşmalıdır",
+          "required": "Şifre gerekli"
         }
       }
     },
     "nuclear-sign-in": {
-      "header": " Sign in",
-      "username-label": "Username",
-      "password-label": "Password",
-      "no-account-label": "Don't have an account?",
-      "no-account-link": "Sign up",
-      "sign-in-button": "Sign in"
+      "header": " Giriş yap",
+      "username-label": "Kullanıcı adı",
+      "password-label": "Şifre",
+      "no-account-label": "Hesabın yok mu?",
+      "no-account-link": "Kaydol",
+      "sign-in-button": "Giriş yap"
     }
   }
 }
