@@ -19,7 +19,7 @@
     "favorite-artists": "Hunermendên Bijarte",
     "favorite-tracks": "Stranên Bijarte",
     "library": "Pirtûxaneya Herêmî",
-    "lyrics": "Gotinên Stranan",
+    "lyrics": "Peyvên Stranê",
     "main": "Sereke",
     "playlists": "Rêzoka lêdanan",
     "plugins": "Pêvek",
@@ -116,7 +116,7 @@
     "title": "Sernav"
   },
   "lyrics": {
-    "by-artist": "bi {{artist}}",
+    "by-artist": "bi riya {{artist}}",
     "empty": "Tiştek nayê lêdan.",
     "empty-help": "Hinek muzîk tevlî rêzê bike da ku li vir peyvê stranan werin nîşandan!",
     "not-found": "Ji bo vê stranê peyvên stranê nehatin dîtin."
