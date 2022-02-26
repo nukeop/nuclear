@@ -179,8 +179,8 @@
   "plugins": {
     "add-a-plugin": "Pêvekekê tevlî bike",
     "header": "Pêvek",
-    "lyrics-providers": "Peydakarê peyvê stranan",
-    "meta-providers": "Peydakarê Metadata",
+    "lyrics-providers": "Peydekarên peyvê stranan",
+    "meta-providers": "Peydekarên Metadata",
     "placeholder": "Çavkaniya muzîkê ya berdest hilbijêre:",
     "select-lyrics-provider": "Peydekarê peyvê stranan a berdest hilbijêre:",
     "select-meta-provider": "Peydekarê metadata ya berdest hilbijêre:",
