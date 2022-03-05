@@ -4,8 +4,8 @@
     "download-toast-content": "{{artist}} - {{title}} προστέθηκε στην λίστα μεταφορτώσεων.",
     "download-toast-title": "Το άλμπουμ προστέθηκε στην λίστα μεταφορτώσεων",
     "error-load": "Sorry, this album could not be loaded. Try again later or open a new issue on Github",
-    "genre": "Genre:",
-    "play": "Play",
+    "genre": "Είδος:",
+    "play": "Αναπαραγωγή",
     "queue": "Προσθήκη του άλμπουμ στην λίστα αναπαραγωγής",
     "tracks": "Tracks:",
     "year": "Year:"
