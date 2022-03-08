@@ -173,11 +173,11 @@
     "never-modified": "Desconhecido",
     "server-modified-at": "Servidor modificado: ",
     "upload-to-server": "Upload para o servidor",
-    "download-from-server": "Download do servidor",
+    "download-from-server": "Baixar do servidor",
     "number-of-tracks": "tracks"
   },
   "plugins": {
-    "add-a-plugin": "Add a plugin",
+    "add-a-plugin": "Adicionar um plugin",
     "header": "Plugins",
     "lyrics-providers": "Lyrics providers",
     "meta-providers": "Metadata providers",
@@ -318,17 +318,17 @@
     "download-toast-title": "Track added to downloads",
     "favorite-toast-body": "{{artist}} - {{track}} foi adicionado aos favoritos.",
     "favorite-toast-title": "Favorite track added",
-    "play-next": "Play next",
+    "play-next": "Reproduzir a próxima",
     "play-now": "Play now",
-    "playlist-toast-body": "{{artist}} - {{track}} has been added to playlist.",
-    "playlist-toast-title": "Track added to playlist"
+    "playlist-toast-body": "{{artist}} — {{track}} foi adicionado à playlist.",
+    "playlist-toast-title": "Música adicionada à playlist"
   },
   "track-table": {
-    "add-selected-tracks-to-queue": "Add selected to queue",
-    "add-selected-tracks-to-downloads": "Add selected to downloads",
-    "add-selected-tracks-to-favorites": "Add selected to favorites",
-    "play-selected-tracks-now": "Play selected now",
-    "tracks-selected-label-singular": "track selected",
+    "add-selected-tracks-to-queue": "Adicionar selecionados à fila",
+    "add-selected-tracks-to-downloads": "Adicionar selecionados aos downloads",
+    "add-selected-tracks-to-favorites": "Adicionar selecionados aos favoritos",
+    "play-selected-tracks-now": "Tocar selecionados agora",
+    "tracks-selected-label-singular": "música selecionada",
     "tracks-selected-label-plural": "tracks selected"
   },
   "visualizer": {
@@ -336,8 +336,8 @@
   },
   "forms": {
     "nuclear-sign-up": {
-      "header": "Sign up",
-      "secondary-header": "Sign up to Nuclear Web Services",
+      "header": "Cadastre-se",
+      "secondary-header": "Cadastrar-se aos serviços Web da Nuclear",
       "side-paragraph-1": "NWS enables you to backup your playlists online and share them.",
       "side-paragraph-2": "Providing your email is optional; it will allow you to recover your account if you forget your password.",
       "username-label": "Username",
@@ -362,7 +362,7 @@
       "header": " Sign in",
       "username-label": "Username",
       "password-label": "Password",
-      "no-account-label": "Don't have an account?",
+      "no-account-label": "Não possui uma conta?",
       "no-account-link": "Sign up",
       "sign-in-button": "Sign in"
     }
