@@ -27,14 +27,14 @@
     "settings": "הגדרות",
     "visualizer": "הנפשה",
     "user-panel": {
-      "actions-tooltip": "User actions",
-      "sign-up": "Sign up / Sign in",
-      "sign-out": "Sign out"
+      "actions-tooltip": "פעולות משתמש",
+      "sign-up": "הרשמה / כניסה",
+      "sign-out": "התנתק"
     },
     "version": "גרסה"
   },
   "artist": {
-    "add-all": "Add all",
+    "add-all": "הוסף הכל",
     "count": "מספר השמעות",
     "queue": "הוספת כל הרצועות לתור",
     "similar": "אומנים דומים",
@@ -70,8 +70,8 @@
     "default": "ברירת מחדל",
     "full-bass": "בס מלא",
     "full-treble": "Full Treble",
-    "pop": "Pop",
-    "presets": "Presets",
+    "pop": "פופ",
+    "presets": "הגדרות קבועות מראש",
     "reggae": "Reggae",
     "rock": "רוק"
   },
@@ -167,9 +167,9 @@
     "title": "כותרת",
     "tracks-selected-plural": "רצועות שנבחרו",
     "tracks-selected-singular": "רצועה שנבחרה",
-    "tracks-singular": "track",
-    "tracks-plural": "tracks",
-    "modified-at": "Last modified: ",
+    "tracks-singular": "רצועה",
+    "tracks-plural": "רצועות",
+    "modified-at": "עודכן לאחרונה: ",
     "never-modified": "Unknown",
     "server-modified-at": "השרת שונה: ",
     "upload-to-server": "להעלות לשרת",
@@ -364,7 +364,7 @@
       "password-label": "Password",
       "no-account-label": "Don't have an account?",
       "no-account-link": "Sign up",
-      "sign-in-button": "Sign in"
+      "sign-in-button": "התחבר"
     }
   }
 }
