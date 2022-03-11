@@ -118,8 +118,8 @@
   "lyrics": {
     "by-artist": "bi riya {{artist}}",
     "empty": "Tiştek nayê lêdan.",
-    "empty-help": "Hinek muzîk tevlî rêzê bike da ku li vir peyvê stranan werin nîşandan!",
-    "not-found": "Ji bo vê stranê peyvên stranê nehatin dîtin."
+    "empty-help": "Hinek muzîk tevlî rêzê bike da ku li vir peyvên stranan werin nîşandan!",
+    "not-found": "Peyvên stranê ji bo vê stranê nehatin dîtin."
   },
   "option-control": {
     "autoradio": "Autoradio",
@@ -179,10 +179,10 @@
   "plugins": {
     "add-a-plugin": "Pêvekekê tevlî bike",
     "header": "Pêvek",
-    "lyrics-providers": "Peydekarên peyvê stranan",
+    "lyrics-providers": "Peydekarên peyvên stranan",
     "meta-providers": "Peydekarên Metadata",
     "placeholder": "Çavkaniya muzîkê ya berdest hilbijêre:",
-    "select-lyrics-provider": "Peydekarê peyvê stranan a berdest hilbijêre:",
+    "select-lyrics-provider": "Peydekarê peyvên stranan a berdest hilbijêre:",
     "select-meta-provider": "Peydekarê metadata ya berdest hilbijêre:",
     "stream-providers": "Peydekarên weşanê",
     "user-plugins": "Pêvekên bikarhêner",
