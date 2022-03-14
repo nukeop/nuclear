@@ -27,7 +27,7 @@
     "settings": "設定",
     "visualizer": "ビジュアライザー",
     "user-panel": {
-      "actions-tooltip": "User actions",
+      "actions-tooltip": "ユーザーアクション",
       "sign-up": "サインアップ/ログイン",
       "sign-out": "サインアウト"
     },
@@ -44,24 +44,24 @@
   "dashboard": {
     "add-all": "すべて追加",
     "artist": "アーティスト",
-    "best": "最高の新曲",
-    "best-new-albums": "最高の新しいアルバム",
-    "best-new-tracks": "最高の新曲",
+    "best": "人気の新曲",
+    "best-new-albums": "人気の新着アルバム",
+    "best-new-tracks": "人気の新曲",
     "genres": "ジャンル",
     "news": "お知らせ",
     "playcounts": "再生回数",
-    "popular-track-title": "Deezerの人気の曲",
+    "popular-track-title": "Deezerで人気の曲",
     "title": "タイトル",
     "top": "人気の曲"
   },
   "downloads": {
-    "clear": "終了したトラックを消去",
-    "completion": "進捗状況",
+    "clear": "再生済みのトラックを消去",
+    "completion": "進捗",
     "empty": "ダウンロードは空です。",
     "empty-help": "ダウンロードキューに何かを追加すると、ここに表示されます！",
     "header": "ダウンロード",
     "name": "名前",
-    "status": "ステータス"
+    "status": "状態"
   },
   "equalizer": {
     "classical": "クラシック",
@@ -95,10 +95,10 @@
   "help": {
     "about": "Nuclear Music Playerについて",
     "contributors": "トップ10 貢献者",
-    "header": "無料ソースから音楽再生するデスクトップ音楽プレイヤー",
+    "header": "無料ソースを用いたデスクトップ音楽プレイヤー",
     "released": "AGPL-3.0でリリースされました",
-    "report": "問題や新機能の依頼を送信する",
-    "thanks": "Github の貢献者のおかげで、このプローグラムを作成できました。ご提供いただき、誠にありがとうございました。"
+    "report": "問題を報告するか、新機能を提案",
+    "thanks": "Github の貢献者のおかげで、このプログラムを作成できました。皆様の貢献に感謝いたします。"
   },
   "input-dialog": {
     "cancel": "キャンセル"
@@ -117,7 +117,7 @@
   },
   "lyrics": {
     "by-artist": "作成者: {{artist}}",
-    "empty": "何も再生していません。",
+    "empty": "何も再生されていません。",
     "empty-help": "歌詞を表示するには、キューに音楽を追加してください！",
     "not-found": "この曲の歌詞が見つかりませんでした。"
   },
@@ -128,32 +128,32 @@
     "shuffle": "シャッフル"
   },
   "player": {
-    "next-button": "次の曲ボタン",
+    "next-button": "次の曲を再生するボタン",
     "play-pause-button": "再生/一時停止 ボタン",
-    "previous-button": "前の曲　ボタン"
+    "previous-button": "前の曲に戻るボタン"
   },
   "playlists": {
-    "add-selected-tracks-to-downloads": "選択をダウンロードリストに追加",
-    "add-selected-tracks-to-favorites": "選択をお気に入りに追加",
-    "add-selected-tracks-to-queue": "選択をキューに追加",
+    "add-selected-tracks-to-downloads": "選択されたものをダウンロードに追加",
+    "add-selected-tracks-to-favorites": "選択されたものをお気に入りに追加",
+    "add-selected-tracks-to-queue": "選択されたものをキューに追加",
     "album": "アルバム",
     "artist": "アーティスト",
     "delete": "プレイリストを削除",
-    "dialog-placeholder": "プレイリストの名...",
+    "dialog-placeholder": "プレイリストの名前...",
     "duration": "長さ",
-    "empty": "プレイリストがありません",
-    "empty-help": "いくつかのプレイリストを作成するか、URLでインポートしてみてください。するとここに表示されます！",
-    "error-empty-data": "データが空です",
-    "error-invalid-data": "無効なデータです",
+    "empty": "プレイリストがありません。",
+    "empty-help": "プレイリストを作成するかURLでインポートすると、ここに表示されます！",
+    "error-empty-data": "データがありません",
+    "error-invalid-data": "無効なデータ",
     "error-open-file": "ファイルを開くことができません",
     "error-save-file": "ファイルを保存できません",
     "export-button": "プレイリストをエクスポート (JSON)",
-    "export-fail-title": "プレイリストインポート失敗",
+    "export-fail-title": "プレイリストのエクスポートに失敗",
     "export-success-title": "プレイリストのインポートに成功しました",
     "header": "プレイリスト",
     "dialog-accept": "保存",
-    "create-button": "新しいプレイリストを作成する",
-    "new-playlist": "新しいプレイリスト",
+    "create-button": "新規プレイリストを作成",
+    "new-playlist": "新規プレイリスト",
     "import-button": "ファイル（JSON）からインポート",
     "import-fail-title": "プレイリストインポート失敗",
     "import-success-title": "プレイリストのインポートに成功しました",
@@ -290,13 +290,13 @@
     "saving-in": "保存先:",
     "seek-iteration": "矢印キーを押したときに巻き戻す/早送りする秒数",
     "shuffle-queue": "曲をシャッフル",
-    "shuffle-when-going-back": "Shuffle on previous track",
-    "shuffle-when-going-back-description": "Play a random track when shuffle is active and the previous track button is clicked",
+    "shuffle-when-going-back": "前の曲をシャッフル",
+    "shuffle-when-going-back-description": "シャッフルがアクティブな場合、前のトラックボタンがクリックされたときにランダムなトラックを再生",
     "social": "ソーシャル",
-    "skip-sponsorblock": "Skip non-music segment",
-    "skip-sponsorblock-description": "Playback skips non-music segment from SponsorBlock (https://sponsor.ajay.app/)",
+    "skip-sponsorblock": "音楽以外の部分をスキップ",
+    "skip-sponsorblock-description": "SponsorBlock (https://sponsor.ajay.app/) を用いて、音楽以外の部分をスキップします",
     "streaming": "配信",
-    "track-duration": "Display track duration over the seekbar",
+    "track-duration": "シークバーにトラックの長さを表示",
     "user": "ユーザー:",
     "youtube": "YouTube",
     "yt-api-key": "YouTube API キー"
@@ -314,9 +314,9 @@
     "add-to-playlist": "プレイリストに追加",
     "add-to-queue": "キューに追加",
     "download": "ダウンロード",
-    "download-toast-body": "{{artist}} - {{track}} has been added to downloads.",
+    "download-toast-body": "{{artist}} - {{track}} がダウンロードに追加されました。",
     "download-toast-title": "曲をダウンロードリストに追加しました",
-    "favorite-toast-body": "{{artist}} - {{track}} has been added to favorites.",
+    "favorite-toast-body": "{{artist}} - {{track}} がお気に入りに追加されました。",
     "favorite-toast-title": "お気に入りのリストに追加しました",
     "play-next": "次に再生する",
     "play-now": "今すぐ再生",
@@ -328,43 +328,43 @@
     "add-selected-tracks-to-downloads": "選択をダウンロードリストに追加",
     "add-selected-tracks-to-favorites": "選択をお気に入りに追加",
     "play-selected-tracks-now": "選択した曲を再生",
-    "tracks-selected-label-singular": "track selected",
-    "tracks-selected-label-plural": "tracks selected"
+    "tracks-selected-label-singular": "選択されたトラック",
+    "tracks-selected-label-plural": "選択されたトラック"
   },
   "visualizer": {
     "exit-fullscreen": "ESCで全画面表示終了"
   },
   "forms": {
     "nuclear-sign-up": {
-      "header": "Sign up",
-      "secondary-header": "Sign up to Nuclear Web Services",
-      "side-paragraph-1": "NWS enables you to backup your playlists online and share them.",
-      "side-paragraph-2": "Providing your email is optional; it will allow you to recover your account if you forget your password.",
-      "username-label": "Username",
-      "email-label": "Email",
-      "password-label": "Password",
-      "sign-up-button": "Sign up",
+      "header": "サインアップ",
+      "secondary-header": "Nuclear Web サービスにサインアップ",
+      "side-paragraph-1": "NWSを使用すると、プレイリストをオンラインでバックアップして共有できます。",
+      "side-paragraph-2": "メールアドレスの入力は任意です。パスワードを忘れた場合、アカウントを回復することができます。",
+      "username-label": "ユーザー名",
+      "email-label": "メールアドレス",
+      "password-label": "パスワード",
+      "sign-up-button": "サインアップ",
       "validation": {
         "username": {
-          "length": "Username must be 4 characters or more",
-          "required": "Username is required"
+          "length": "ユーザー名は4文字以上でなければなりません",
+          "required": "ユーザー名が必要です"
         },
         "email": {
-          "invalid": "Email must be a valid email"
+          "invalid": "メールアドレスは有効なメールアドレスでなければなりません"
         },
         "password": {
-          "length": "Password must be 6 characters or more",
-          "required": "Password is required"
+          "length": "パスワードは 6 文字以上にする必要があります。",
+          "required": "パスワードは必須です"
         }
       }
     },
     "nuclear-sign-in": {
-      "header": " Sign in",
-      "username-label": "Username",
-      "password-label": "Password",
-      "no-account-label": "Don't have an account?",
-      "no-account-link": "Sign up",
-      "sign-in-button": "Sign in"
+      "header": " サインイン",
+      "username-label": "ユーザー名",
+      "password-label": "パスワード",
+      "no-account-label": "アカウントがありませんか？",
+      "no-account-link": "サインアップ",
+      "sign-in-button": "サインイン"
     }
   }
 }
