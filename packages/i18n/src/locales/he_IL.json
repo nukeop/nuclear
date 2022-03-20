@@ -47,7 +47,7 @@
     "best": "מיטב המוזיקה החדשה",
     "best-new-albums": "מיטב האלבומים החדשים",
     "best-new-tracks": "מיטב הרצועות החדשות",
-    "genres": "סוגות",
+    "genres": "סגנונות",
     "news": "חדשות",
     "playcounts": "מספר השמעות",
     "popular-track-title": "הרצועות המובילות מתוך Deezer",
@@ -72,7 +72,7 @@
     "full-treble": "Full Treble",
     "pop": "פופ",
     "presets": "הגדרות קבועות מראש",
-    "reggae": "Reggae",
+    "reggae": "רגאי",
     "rock": "רוק"
   },
   "favorite-albums": {
@@ -170,11 +170,11 @@
     "tracks-singular": "רצועה",
     "tracks-plural": "רצועות",
     "modified-at": "עודכן לאחרונה: ",
-    "never-modified": "Unknown",
+    "never-modified": "לא ידוע",
     "server-modified-at": "השרת שונה: ",
     "upload-to-server": "להעלות לשרת",
-    "download-from-server": "Download from server",
-    "number-of-tracks": "tracks"
+    "download-from-server": "הורדה מהשרת",
+    "number-of-tracks": "רצועות"
   },
   "plugins": {
     "add-a-plugin": "הורדת תוסף",
@@ -315,7 +315,7 @@
     "add-to-queue": "הוסף לתור",
     "download": "הורד",
     "download-toast-body": "‏{{artist}} - {{track}} נוסף להורדות.",
-    "download-toast-title": "רצועה נוספה להורדות",
+    "download-toast-title": "הרצועה נוספה להורדות",
     "favorite-toast-body": "‏{{artist}} - {{track}} נוסף למועדפים.",
     "favorite-toast-title": "נוספה רצועה מועדפת",
     "play-next": "נגן אחרי שיר זה",
@@ -325,7 +325,7 @@
   },
   "track-table": {
     "add-selected-tracks-to-queue": "הוסף את הנבחרים לתור",
-    "add-selected-tracks-to-downloads": "הוסף את הנבחרים להורדות",
+    "add-selected-tracks-to-downloads": "הוספת הרצועות הנבחרות להורדות",
     "add-selected-tracks-to-favorites": "הוסף את הנבחרים למועדפים",
     "play-selected-tracks-now": "הפעל נבחרים כעת",
     "tracks-selected-label-singular": "רצועה שנבחרה",
@@ -340,14 +340,14 @@
       "secondary-header": "להירשם לשירותי האתר של nuclear",
       "side-paragraph-1": "NWS enables you to backup your playlists online and share them.",
       "side-paragraph-2": "Providing your email is optional; it will allow you to recover your account if you forget your password.",
-      "username-label": "Username",
-      "email-label": "Email",
-      "password-label": "Password",
-      "sign-up-button": "Sign up",
+      "username-label": "שם משתמש",
+      "email-label": "דוא״ל",
+      "password-label": "סיסמה",
+      "sign-up-button": "הרשמה",
       "validation": {
         "username": {
           "length": "שם המשתמש חייב לכלול 4 תווים או יותר",
-          "required": "Username is required"
+          "required": "נדרש שם משתמש"
         },
         "email": {
           "invalid": "חובה להזין אימייל"
@@ -359,11 +359,11 @@
       }
     },
     "nuclear-sign-in": {
-      "header": " Sign in",
-      "username-label": "Username",
-      "password-label": "Password",
-      "no-account-label": "Don't have an account?",
-      "no-account-link": "Sign up",
+      "header": " התחברות",
+      "username-label": "שם משתמש",
+      "password-label": "סיסמה",
+      "no-account-label": "אין לך חשבון?",
+      "no-account-link": "הרשמה",
       "sign-in-button": "התחבר"
     }
   }
