@@ -60,8 +60,8 @@
     "empty": "ডাউনলোড শেষ হয়ে গিয়েছে।",
     "empty-help": "আপনার ডাউনলোড সারিতে কিছু যোগ করুন এবং আপনি এটি এখানে দেখতে পাবেন!",
     "header": "ডাউনলোড",
-    "name": "Name",
-    "status": "Status"
+    "name": "নাম",
+    "status": "অবস্থা"
   },
   "equalizer": {
     "classical": "Classical",
