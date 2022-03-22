@@ -16,9 +16,11 @@ const buildIncludedPaths = () => {
   const paths = [];
   const modules = ['core', 'i18n', 'ui'];
   const srcs = ['src', 'lib', 'index.js', 'index.ts'];
-  modules.forEach(module => {
-    srcs.forEach(src => {
-      paths.push(path.resolve(__dirname, 'node_modules', '@nuclear', module, src));
+  modules.forEach((module) => {
+    srcs.forEach((src) => {
+      paths.push(
+        path.resolve(__dirname, 'node_modules', '@nuclear', module, src)
+      );
     });
   });
   return paths;
@@ -50,23 +52,27 @@ module.exports = (env) => {
     options: {
       cacheDirectory: true,
       presets: [
-        ['@babel/preset-env', {
-          targets: {
-            electron: '4.2'
+        [
+          '@babel/preset-env',
+          {
+            targets: {
+              electron: '4.2'
+            }
           }
-        }],
+        ],
         '@babel/preset-react',
         '@babel/preset-typescript'
       ],
       plugins: [
-        ['@babel/plugin-proposal-decorators', { 'legacy': true }],
+        ['@babel/plugin-proposal-decorators', { legacy: true }],
         '@babel/plugin-proposal-class-properties',
         '@babel/plugin-proposal-object-rest-spread'
       ],
       ignore: [/node_modules\/(?!@nuclear).*/]
     }
   };
-  const contentSecurity = 'connect-src *; style-src \'unsafe-inline\' https:; font-src https: data:; img-src https: data: file:;';
+  const contentSecurity =
+    'connect-src *; style-src \'unsafe-inline\' https:; font-src https: data:; img-src https: data: file:;';
   const plugins: webpack.Configuration['plugins'] = [
     new HtmlWebpackPlugin({
       meta: {
@@ -95,24 +101,21 @@ module.exports = (env) => {
     }),
     new webpack.DefinePlugin(
       Object.entries(
-        dotenv.parse(
-          fs.readFileSync(path.resolve(__dirname, '../../.env'))
-        )
-      )
-        .reduce((acc, [key, value]) => ({
+        dotenv.parse(fs.readFileSync(path.resolve(__dirname, '../../.env')))
+      ).reduce(
+        (acc, [key, value]) => ({
           ...acc,
           [`process.env.${key}`]: JSON.stringify(value)
-        }), {})
+        }),
+        {}
+      )
     )
   ];
 
   if (IS_PROD) {
     jsxRule.loader = 'ts-loader';
     jsxRule.options = {};
-    jsxRule.include = [
-      APP_DIR,
-      ...NUCLEAR_MODULES
-    ];
+    jsxRule.include = [APP_DIR, ...NUCLEAR_MODULES];
     jsxRule.exclude = [
       /node_modules\/electron-timber\/preload\.js/,
       /node_modules\/(?!@nuclear).*/
@@ -147,13 +150,17 @@ module.exports = (env) => {
       extensions: ['*', '.js', '.ts', '.jsx', '.tsx', '.json'],
       alias: {
         react: path.resolve(__dirname, '..', '..', 'node_modules', 'react'),
-        'styled-component': path.resolve(__dirname, 'node_modules/styled-component')
+        'styled-component': path.resolve(
+          __dirname,
+          'node_modules/styled-component'
+        )
       },
       fallback: {
         fs: false
       },
       symlinks: false
     },
+    externals: ['bufferutil', 'utf-8-validate'],
     module: {
       rules: [
         jsxRule,
@@ -180,36 +187,25 @@ module.exports = (env) => {
             {
               loader: 'css-loader',
               options: {
-                url: {
-                  filter: (url) => {
-                    if (url.includes('charset=utf-8;;')) {
-                      return false;
-                    }
-                    return true;
+                url: (url) => {
+                  if (url.includes('charset=utf-8;;')) {
+                    return false;
                   }
+                  return true;
                 }
-              }   
+              }
             }
           ]
         },
         {
           test: /\.(png|jpg|gif)$/,
           loader: 'url-loader',
-          include: [
-            RESOURCES_DIR,
-            APP_DIR,
-            UI_DIR,
-            VENDOR_DIR
-          ]
+          include: [RESOURCES_DIR, APP_DIR, UI_DIR, VENDOR_DIR]
         },
         {
           test: /\.(ttf|eot|woff|woff2|svg)$/,
           loader: 'url-loader',
-          include: [
-            UI_DIR,
-            APP_DIR,
-            VENDOR_DIR
-          ]
+          include: [UI_DIR, APP_DIR, VENDOR_DIR]
         },
         {
           test: /\.svg$/,
@@ -236,7 +232,6 @@ module.exports = (env) => {
       allowedHosts: 'all'
     };
   }
-
 
   return config;
 };
