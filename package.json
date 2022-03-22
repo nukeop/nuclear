@@ -231,8 +231,5 @@
     "nsis": {
       "artifactName": "${productName} Setup ${env.GITHASH}.${ext}"
     }
-  },
-  "dependencies": {
-    "sqlite3": "^4.2.0"
   }
 }
