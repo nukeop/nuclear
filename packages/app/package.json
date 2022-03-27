@@ -49,7 +49,6 @@
     "electron-timber": "^0.5.1",
     "fetch-mock": "^9.11.0",
     "font-awesome": "^4.7.0",
-    "get-artist-title": "^1.2.0",
     "i18next": "^21.3.3",
     "immer": "^7.0.9",
     "lodash": "^4.17.15",
