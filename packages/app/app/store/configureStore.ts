@@ -17,7 +17,7 @@ export default function configureStore(initialState) {
     rootReducer,
     initialState,
     composeEnhancers(
-      applyMiddleware(ReduxPromise, thunk, ipcConnect),
+      applyMiddleware(thunk, ReduxPromise, ipcConnect),
       syncStore([
         'downloads', 
         'local.expandedFolders', 
