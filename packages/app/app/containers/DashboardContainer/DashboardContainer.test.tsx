@@ -1,10 +1,45 @@
 
 import { waitFor } from '@testing-library/react';
+import pitchforkBnm from 'pitchfork-bnm';
+import { Deezer } from '@nuclear/core/src/rest';
+
 import { buildStoreState } from '../../../test/storeBuilders';
 import { mountedComponentFactory, setupI18Next } from '../../../test/testUtils';
+
+jest.mock('pitchfork-bnm');
+jest.mock('@nuclear/core/src/rest');
+
 describe('Dashboard container', () => {
   beforeAll(() => {
     setupI18Next();
+  });
+
+  beforeEach(() => {
+    const mockState = buildStoreState()
+      .withDashboard()
+      .build();
+
+    pitchforkBnm.getBestNewAlbums = jest.fn().mockResolvedValue(mockState.dashboard.bestNewAlbums);
+    pitchforkBnm.getBestNewTracks = jest.fn().mockResolvedValue(mockState.dashboard.bestNewTracks);
+
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    Deezer.getTopTracks = jest.fn().mockResolvedValue({ data: mockState.dashboard.topTracks.map(track => ({
+      ...track,
+      title: track.name,
+      artist: {
+        ...track.artist,
+        picture_medium: track.thumbnail
+      }
+    })) });
+    
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    Deezer.mapDeezerTrackToInternal = jest.requireActual('@nuclear/core/src/rest').Deezer.mapDeezerTrackToInternal;
+  });
+
+  afterAll(() => {
+    jest.clearAllMocks();
   });
 
   it('should display the best new music page of the dashboard', () => {
@@ -97,6 +132,7 @@ describe('Dashboard container', () => {
     buildStoreState()
       .withDashboard()
       .withPlugins()
+      .withConnectivity()
       .build()
   );
 });
