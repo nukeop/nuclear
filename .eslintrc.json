@@ -17,8 +17,7 @@
   },
   "plugins": [
     "node",
-    "react",
-    "react-hooks"
+    "react"
   ],
   "settings": {
     "react": {
@@ -98,8 +97,6 @@
     "react/self-closing-comp": 2,
     "node/no-unpublished-require": 0,
     "node/no-unsupported-features/es-syntax": 0,
-    "react-hooks/rules-of-hooks": "error",
-    "react-hooks/exhaustive-deps": "warn",
 
     // Node
     "node/no-unpublished-import": 0,

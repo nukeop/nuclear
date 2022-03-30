@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import { Tab } from 'semantic-ui-react';
 import FontAwesome from 'react-fontawesome';
 import cx from 'classnames';
@@ -9,7 +9,6 @@ import { AddAllButton } from '../../ArtistView/PopularTracks';
 import trackRowStyles from '../../TrackRow/styles.scss';
 import styles from './styles.scss';
 import { useTranslation } from 'react-i18next';
-import { useDispatch } from 'react-redux';
 
 type ChartsTabProps = {
   topTracks: any[];
@@ -21,14 +20,13 @@ const ChartsTab: React.FC<ChartsTabProps> = ({
   addToQueue
 }) => {
   const { t } = useTranslation('dashboard');
-  const dispatch = useDispatch();
-  const addAllToQueue = useCallback(() => topTracks.forEach(track =>
-    dispatch(addToQueue({
+  const addAllToQueue = () => topTracks.forEach((track) => {
+    addToQueue({
       artist: (track.artist as any).name,
       name: track.title ?? track.name,
       thumbnail: track.thumbnail
-    }))
-  ), [addToQueue, dispatch, topTracks]);
+    });
+  });
 
   return (
     <Tab.Pane attached={false}>

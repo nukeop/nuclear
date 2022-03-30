@@ -171,12 +171,10 @@ export function playTrack(streamProviders, item: QueueItem) {
   };
 }
 
-export function removeFromQueue(item: QueueItem) {
-  return {
-    type: REMOVE_QUEUE_ITEM,
-    payload: item
-  };
-}
+export const removeFromQueue = (item: QueueItem) => ({
+  type: REMOVE_QUEUE_ITEM,
+  payload: item
+});
 
 export function addPlaylistTracksToQueue(tracks) {
   return async (dispatch) => {

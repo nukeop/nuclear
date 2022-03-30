@@ -1,9 +1,7 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/no-var-requires */
-const path = require('path');
-const CopyPlugin = require('copy-webpack-plugin');
-const { NormalModuleReplacementPlugin } = require('webpack');
-const os = require('os');
+import webpack from 'webpack';
+import os from 'os';
+import path from 'path';
+import CopyPlugin from 'copy-webpack-plugin';
 
 interface BuildEnv {
   NODE_ENV: 'development' | 'production' | 'test';
@@ -20,7 +18,7 @@ const MAIN_DIR = path.resolve(__dirname, 'src');
 const CORE_DIR = path.resolve(__dirname, '..', 'core', 'src');
 const CORE_DIR_SYMLINKED = path.resolve(__dirname, 'node_modules', '@nuclear', 'core', 'src');
 
-module.exports = (env: BuildEnv): import('webpack').Configuration => {
+module.exports = (env: BuildEnv): webpack.Configuration => {
   if (!env.TARGET) {
     env.TARGET = osMapper[os.platform() as string];
   }
@@ -35,6 +33,9 @@ module.exports = (env: BuildEnv): import('webpack').Configuration => {
       alias: {
         jsbi: path.resolve(__dirname, '..', '..', 'node_modules', 'jsbi', 'dist', 'jsbi-cjs.js')
       },
+      fallback: {
+        fs: false
+      },
       symlinks: false
     },
     externals: {
@@ -47,7 +48,7 @@ module.exports = (env: BuildEnv): import('webpack').Configuration => {
     mode: IS_PROD ? 'production' : 'development',
     devtool: 'source-map',
     stats: 'errors-only',
-    optimization: { namedModules: true },
+    optimization: { moduleIds: 'named' },
     module: {
       rules: [
         {
@@ -62,7 +63,6 @@ module.exports = (env: BuildEnv): import('webpack').Configuration => {
       ]
     },
     node: {
-      fs: 'empty',
       __dirname: false,
       __filename: false
     },
@@ -72,7 +72,7 @@ module.exports = (env: BuildEnv): import('webpack').Configuration => {
         { from: 'preload.js' },
         { from: path.resolve(__dirname, '../../.env') }
       ]),
-      new NormalModuleReplacementPlugin(/(.*)system-api(\.*)/, (resource: any) => {
+      new webpack.NormalModuleReplacementPlugin(/(.*)system-api(\.*)/, (resource: any) => {
         resource.request = resource.request.replace(/system-api/, `@${env.TARGET}/system-api`);
       })
     ]
