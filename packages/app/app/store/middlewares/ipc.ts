@@ -10,6 +10,7 @@ import { changeConnectivity } from '../../actions/connectivity';
 import { ADD_TO_DOWNLOADS, DOWNLOAD_RESUMED, DOWNLOAD_PAUSED, DOWNLOAD_FINISHED, DOWNLOAD_ERROR } from '../../actions/downloads';
 import { CLOSE_WINDOW, MINIMIZE_WINDOW, MAXIMIZE_WINDOW, OPEN_DEVTOOLS } from '../../actions/window';
 import { getType } from 'typesafe-actions';
+import { Middleware } from 'redux';
 
 type IpcActionType = {
   type: string;
@@ -19,7 +20,7 @@ type IpcActionType = {
   };
 }
 
-const ipcConnect = () => next => {
+const ipcConnect: Middleware = () => next => {
   next({
     type: LocalLibrary.UPDATE_LOCAL_FOLDERS,
     payload: ipcRenderer.sendSync(IpcEvents.LOCALFOLDERS_GET)

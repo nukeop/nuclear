@@ -1,6 +1,6 @@
 import React from 'react';
 import _ from 'lodash';
-import {Card} from '@nuclear/ui';
+import { Card } from '@nuclear/ui';
 
 import artPlaceholder from '../../../../resources/media/art_placeholder.png';
 
@@ -15,7 +15,7 @@ class AllResults extends React.Component {
   constructor(props) {
     super(props);
   }
-  renderResults (collection, onClick) {
+  renderResults(collection, onClick) {
     const selectedProvider = _.find(this.props.metaProviders, { sourceName: this.props.selectedPlugins.metaProviders });
 
     return collection.slice(0, 5).map((el, i) => {
@@ -24,9 +24,9 @@ class AllResults extends React.Component {
       return (
         <Card
           small
-          header={el.title||el.name}
+          header={el.title || el.name}
           image={
-            el.coverImage || 
+            el.coverImage ||
             el.thumb ||
             el.thumbnail ||
             artPlaceholder
@@ -39,7 +39,7 @@ class AllResults extends React.Component {
     });
   }
 
-  renderTracks (arr = [], limit = 5) {
+  renderTracks(arr = [], limit = 5) {
     return (<TracksResults
       clearQueue={this.props.clearQueue}
       addToQueue={this.props.addToQueue}
@@ -52,25 +52,23 @@ class AllResults extends React.Component {
 
   }
 
-  renderPlaylistSection () {
-    return (
-      <div className={styles.column}>
-        <h3>{this.props.t('playlist', { count: this.props.playlistSearchResults.length })}</h3>
-        <div className={styles.row}>
-          <PlaylistResults
-            playlistSearchStarted={this.props.playlistSearchStarted}
-            playlistSearchResults={this.props.playlistSearchResults}
-            addToQueue={this.props.addToQueue}
-            clearQueue={this.props.clearQueue}
-            startPlayback={this.props.startPlayback}
-            selectSong={this.props.selectSong}
-            streamProviders={this.props.streamProviders}
-          />
-        </div>
-      </div>);
-  }
+  renderPlaylistSection = () =>
+    <div className={styles.column}>
+      <h3>{this.props.t('playlist', { count: this.props.playlistSearchResults.length })}</h3>
+      <div className={styles.row}>
+        <PlaylistResults
+          playlistSearchStarted={this.props.playlistSearchStarted}
+          playlistSearchResults={this.props.playlistSearchResults}
+          addToQueue={this.props.addToQueue}
+          clearQueue={this.props.clearQueue}
+          startPlayback={this.props.startPlayback}
+          selectSong={this.props.selectSong}
+          streamProviders={this.props.streamProviders}
+        />
+      </div>
+    </div>
 
-  renderSection (title, collection, onClick) {
+  renderSection(title, collection, onClick) {
     return (<div className={styles.column}>
       <h3>{title}</h3>
       <div className={styles.row}>
@@ -82,19 +80,19 @@ class AllResults extends React.Component {
     </div>);
   }
 
-  renderArtistsSection () {
+  renderArtistsSection() {
     const { t, artistSearchResults, artistInfoSearch } = this.props;
 
     return this.renderSection(t('artist', { count: artistSearchResults.length }), artistSearchResults, artistInfoSearch);
   }
 
-  renderAlbumsSection () {
+  renderAlbumsSection() {
     const { t, albumSearchResults, albumInfoSearch } = this.props;
 
     return this.renderSection(t('album', { count: albumSearchResults.length }), albumSearchResults, albumInfoSearch);
   }
 
-  renderTracksSection () {
+  renderTracksSection() {
     return (<div className={styles.column}>
       <h3>{this.props.t('track_plural')}</h3>
       <div className={styles.row}>
@@ -103,7 +101,7 @@ class AllResults extends React.Component {
     </div>);
   }
 
-  render () {
+  render() {
     const tracksLength = _.get(this.props.trackSearchResults, ['info', 'length'], 0);
     const artistsLength = _.get(this.props.artistSearchResults, ['length'], 0);
     const albumsLength = _.get(this.props.albumSearchResults, ['length'], 0);
