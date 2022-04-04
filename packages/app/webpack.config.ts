@@ -41,9 +41,9 @@ module.exports = (env) => {
     ];
   const output: webpack.Configuration['output'] = {
     path: BUILD_DIR,
-    filename: '[name].[hash:8].js',
-    sourceMapFilename: '[name].[hash:8].map',
-    chunkFilename: '[id].[hash:8].js'
+    filename: '[name].[fullhash:8].js',
+    sourceMapFilename: '[name].[fullhash:8].map',
+    chunkFilename: '[id].[fullhash:8].js'
   };
   const optimization: webpack.Configuration['optimization'] = {
     moduleIds: 'named' as const
@@ -111,6 +111,10 @@ module.exports = (env) => {
         }),
         {}
       )
+    ),
+    new webpack.ContextReplacementPlugin(
+      /\/(ytpl|ytsr|bandcamp-scraper)\//,
+      false
     )
   ];
 

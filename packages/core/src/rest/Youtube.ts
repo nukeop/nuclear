@@ -43,8 +43,8 @@ function formatPlaylistTrack(track: ytpl.Item) {
   return {
     streams: [{source: 'Youtube', id: track.id}],
     name: track.title,
-    thumbnail: track.thumbnails[track.thumbnails.length - 1].url,
-    artist: {name: track.author.name}
+    thumbnail: track.thumbnails[0].url,
+    artist: track.author.name
   };
 }
 
