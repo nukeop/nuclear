@@ -14,7 +14,7 @@ import { selectMetaProvider } from '../../actions/plugins';
 
 const MIN_SEARCH_LENGTH = 2;
 
-const providerToOption = (provider: MetaProvider) => ({
+const providerToOption = (provider?: MetaProvider) => provider && ({
   key: provider.sourceName.toLowerCase(),
   text: provider.searchName,
   value: provider.sourceName
@@ -26,18 +26,15 @@ const SearchBoxContainer: React.FC = () => {
   const dispatch = useDispatch();
   const unifiedSearchStarted = useSelector(searchSelectors.unifiedSearchStarted);
   const isConnected = useSelector(connectivity);
-  const searchProviders = useSelector(pluginsSelectors.plugins).metaProviders as {
-    [sourceName: string]: MetaProvider;
-  };
+  const searchProviders = useSelector(pluginsSelectors.plugins).metaProviders as MetaProvider[];
   const searchHistory = useSelector(searchSelectors.searchHistory);
   const selectedSearchProvider = useSelector(pluginsSelectors.selected)?.metaProviders;
   const isFocused = useSelector(searchSelectors.isFocused);
   const handleFocus = useCallback((focusState: boolean) => dispatch(SearchActions.setSearchDropdownVisibility(focusState)), [dispatch]);
 
-
-  const searchProvidersOptions = _.map(searchProviders, providerToOption);
+  const searchProvidersOptions = searchProviders?.map(providerToOption) ?? [];
   const selectedSearchProviderOption = providerToOption(
-    _.find(searchProviders, { sourceName: selectedSearchProvider })
+    searchProviders?.find(provider => provider.sourceName === selectedSearchProvider)
   );
 
   const handleSearch = useCallback(value =>
@@ -48,7 +45,7 @@ const SearchBoxContainer: React.FC = () => {
   );
   const handleClearSearchHistory = useCallback(() => dispatch(SearchActions.updateSearchHistory([])), [dispatch]);
   const handleSelectSearchProvider = useCallback((provider: ReturnType<typeof providerToOption>) =>
-    dispatch(selectMetaProvider(provider.value)),
+    provider && dispatch(selectMetaProvider(provider.value)),
   [dispatch]);
 
   return <SearchBox 
