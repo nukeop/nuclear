@@ -17,7 +17,7 @@ export type DeezerTopTrack = {
 export const getChart = (): Promise<any> => deezer.chart();
 
 export const getTopTracks = (limit = 50): Promise<{ data: DeezerTopTrack[] }> => {
-  return deezer.chart.tracks(limit);
+  return (deezer.chart as any).tracks(limit);
 };
 
 export const mapDeezerTrackToInternal = (track: DeezerTopTrack) => ({

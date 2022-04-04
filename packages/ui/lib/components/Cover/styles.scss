@@ -1,4 +1,4 @@
-@import '../../common.scss';
+@import "../../common.scss";
 
 .nuclear.cover_container {
   width: 76px;
@@ -10,4 +10,5 @@
 .nuclear.cover_container img {
   width: 76px;
   height: 76px;
+  object-fit: cover;
 }

@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { removeQuotes } from '../../utils';
 import * as FavoritesActions from '../../actions/favorites';
 import * as ToastActions from '../../actions/toasts';
 import { getFavoriteTrack } from '../../selectors/favorites';
@@ -24,7 +23,7 @@ BestNewMusicCardContainer.defaultProps = {
 function mapStateToProps(state, ownProps) {
   return {
     favoriteTrack: ownProps.item
-      ? getFavoriteTrack(state, ownProps.item.artist, removeQuotes(ownProps.item.title))
+      ? getFavoriteTrack(state, ownProps.item.artist, ownProps.item.title)
       : null,
     settings: state.settings
   };
