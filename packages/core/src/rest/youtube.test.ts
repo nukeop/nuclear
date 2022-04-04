@@ -13,7 +13,7 @@ describe('Youtube tests', () => {
     const oneTrack = tracks[0];
     expect(oneTrack.name.length).not.toEqual(0);
     expect(oneTrack.thumbnail.length).not.toEqual(0);
-    expect(oneTrack.artist.name.length).not.toEqual(0);
+    expect(oneTrack.artist.length).not.toEqual(0);
     expect(oneTrack.streams.length).toEqual(1);
     expect(oneTrack.streams[0].id.length).not.toEqual(0);
     expect(oneTrack.streams[0].source).toBe('Youtube');
@@ -26,7 +26,7 @@ describe('Youtube tests', () => {
     const oneTrack = tracks[0];
     expect(oneTrack.name.length).not.toEqual(0);
     expect(oneTrack.thumbnail.length).not.toEqual(0);
-    expect(oneTrack.artist.name.length).not.toEqual(0);
+    expect(oneTrack.artist.length).not.toEqual(0);
     expect(oneTrack.streams.length).toEqual(1);
     expect(oneTrack.streams[0].id.length).not.toEqual(0);
     expect(oneTrack.streams[0].source).toBe('Youtube');
