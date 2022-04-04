@@ -1,4 +1,4 @@
-@import '../../vars.scss';
+@import "../../vars.scss";
 
 .sidebar_menu_container {
     z-index: 11;
@@ -21,6 +21,10 @@
             display: flex;
             justify-content: center;
             padding: 0.5rem 0.25rem;
+
+            i {
+                margin: 0;
+            }
         }
 
         .active_nav_link {
@@ -41,4 +45,4 @@
 .active_nav_link {
     color: $white !important;
     border-left: 0.5rem solid $green;
-  }
+}

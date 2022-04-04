@@ -1,4 +1,4 @@
-@import '../../../vars.scss';
+@import "../../../vars.scss";
 
 .sidebar_menu_item_container {
   display: flex;
@@ -21,7 +21,7 @@
   }
 
   i {
-    margin: 0;
+    margin: 0 0.5em 0 0;
   }
 
   span {
@@ -30,5 +30,5 @@
 }
 
 .left_panel:not(.compact_panel) .sidebar_menu_item_container .fa {
-    width: 20px;
+  width: 20px;
 }
