@@ -7,6 +7,7 @@ export type NeumorphicBoxProps = {
   borderRadius?: string;
   small?: boolean;
   pressed?: boolean;
+  children?: React.ReactNode;
 };
 
 const NeumorphicBox: React.FC<NeumorphicBoxProps> = ({
@@ -22,7 +23,7 @@ const NeumorphicBox: React.FC<NeumorphicBoxProps> = ({
   )}
   style={{ borderRadius }}
 >
-    {children}
-  </div>;
+  {children}
+</div>;
 
 export default NeumorphicBox;

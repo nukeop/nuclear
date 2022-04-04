@@ -1,6 +1,7 @@
 import React from 'react';
 import { waitFor } from '@testing-library/dom';
 import userEvent from '@testing-library/user-event';
+import { act } from '@testing-library/react';
 
 import { UserPanelContainer } from '.';
 import { buildStoreState } from '../../../test/storeBuilders';
@@ -55,7 +56,9 @@ describe('User panel container', () => {
     userEvent.type(component.getByPlaceholderText(/email/i), 'not.an.email');
     userEvent.type(component.queryAllByPlaceholderText(/password/i)[1], 'short');
 
-    await waitFor(() => userEvent.tab());
+    await act(async () => {
+      await waitFor(() => userEvent.tab());
+    }); // Needed to flush the microtask queue
     await component.findByText(/Username must be 4 characters or more/i);
     await component.findByText(/Email must be a valid email/i);
     await component.findByText(/Password must be 6 characters or more/i);
