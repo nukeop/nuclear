@@ -70,6 +70,7 @@ const PlayListDialog: React.FC<PlayListDialogProps> = ({
         {displayView && <webview
           ref={webviewRef}
           src={inputString}
+          data-testid={testIdPrefix && `${testIdPrefix}-webview`}
           webpreferences='nodeIntegration=yes,javascript=yes,contextIsolation=no'
           useragent='Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.175 Safari/537.36'
           style={{ width: '500px', height: '500px' }}
