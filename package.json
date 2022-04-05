@@ -44,7 +44,6 @@
     "cross-env": "^7.0.3",
     "electron": "^12.1.0",
     "electron-builder": "^21.2.0",
-    "electron-rebuild": "^2.0.1",
     "eslint": "^7.18.0",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-react": "^7.12.4",
@@ -231,5 +230,8 @@
     "nsis": {
       "artifactName": "${productName} Setup ${env.GITHASH}.${ext}"
     }
+  },
+  "dependencies": {
+    "node-gyp": "^9.0.0"
   }
 }

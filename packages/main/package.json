@@ -78,7 +78,6 @@
     "electron-builder": "^21.2.0",
     "eslint": "^7.18.0",
     "jest": "^27.5.1",
-    "node-gyp": "^7.0.0",
     "node-loader": "^0.6.0",
     "shx": "^0.3.3",
     "ts-jest": "^27.1.3",
