@@ -60,6 +60,7 @@ jobs:
         run: |
           echo "C:\Program Files\Git\usr\bin" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
           echo "C:\Program Files\Git\mingw64\libexec\git-core" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
+          npm install --g --production windows-build-tools
       - run: npm ci
       - run: npm test
       - run: npm run build:windows
