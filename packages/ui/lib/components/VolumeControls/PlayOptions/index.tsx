@@ -7,6 +7,7 @@ import Tooltip from '../../Tooltip';
 
 export type PlayOptionControlProps = {
   name: string;
+  dataTestId?: string;
   icon: SemanticICONS;
   enabled?: boolean;
   onToggle?: () => void;
@@ -14,6 +15,7 @@ export type PlayOptionControlProps = {
 
 const PlayOptionControl: React.FC<PlayOptionControlProps> = ({
   name,
+  dataTestId,
   icon,
   enabled = true,
   onToggle
@@ -27,6 +29,7 @@ const PlayOptionControl: React.FC<PlayOptionControlProps> = ({
           styles.play_option_icon,
           { disabled: !enabled }
         )}
+        data-testid={dataTestId}
         name={icon}
         onClick={onToggle}
         size='large'
