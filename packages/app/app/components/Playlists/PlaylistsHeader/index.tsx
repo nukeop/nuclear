@@ -63,7 +63,7 @@ const PlaylistsHeader: React.FC<PlaylistsHeaderProps> = ({
                     const ipcRenderer = window.require('electron').ipcRenderer;
                     (${extractPlaylist.toString()})()
                     }
-                    )()`.replace('electron__WEBPACK_IMPORTED_MODULE_0__["ipcRenderer"]', 'ipcRenderer'));
+                    )()`.replace('electron__WEBPACK_IMPORTED_MODULE_0__["ipcRenderer"]', 'ipcRenderer').replace('electron__WEBPACK_IMPORTED_MODULE_0__.', ''));
                 }, 1500);
               });
             }
