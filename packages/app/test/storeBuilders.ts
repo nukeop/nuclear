@@ -1,3 +1,4 @@
+import Sound from 'react-hifi';
 import { UserAccountState } from '@nuclear/core/src/rest/Nuclear/Identity.types';
 
 import { RootState } from '../app/reducers';
@@ -23,6 +24,14 @@ export const buildStoreState = () => {
     playlists: {
       localPlaylists: { ...startingStateMeta },
       remotePlaylists: { ...startingStateMeta }
+    },
+    player: {
+      playbackStatus: Sound.status.PAUSED,
+      playbackStreamLoading: false,
+      playbackProgress: 0,
+      seek: 0,
+      volume: 0.5,
+      muted: false
     },
     dashboard: {
       bestNewAlbums: [],
