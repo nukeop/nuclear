@@ -153,6 +153,12 @@
 
     .button {
       margin: 0;
+      width: 2.5em;
+      height: 2.5em;
+
+      i.icon {
+        margin: 1px 0 0 -1px !important;
+      }
     }
   }
 
