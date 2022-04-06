@@ -27,7 +27,11 @@ const PlayListDialog: React.FC<PlayListDialogProps> = ({
   const { t } = useTranslation('input-dialog');
 
   const handleOpen = useCallback(() => setIsOpen(true), []);
-  const handleClose = useCallback(() => setIsOpen(false), []);
+  const handleClose = useCallback(() => {
+    setIsOpen(false);
+    setInputString('');
+    setDisplay(false);
+  }, []);
   const handleChange = useCallback(e => setInputString(e.target.value), []);
   const onClick = useCallback(() => {
     // setInputString(e.target.value);
