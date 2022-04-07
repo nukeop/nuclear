@@ -102,6 +102,7 @@ jobs:
         run: |
           echo "C:\Program Files\Git\usr\bin" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
           echo "C:\Program Files\Git\mingw64\libexec\git-core" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
+          npm config set msvs_version 2022
       - run: npm ci
       - run: npm run build:windows
         shell: bash
