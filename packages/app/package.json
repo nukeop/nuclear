@@ -6,7 +6,7 @@
     "start": "webpack-dev-server --env NODE_ENV=development",
     "build": "cross-env NODE_OPTIONS=--max-old-space-size=8192 webpack --progress --env NODE_ENV=production",
     "test": "cross-env TZ=GMT jest",
-    "coverage": "jest --coverage",
+    "coverage": "cross-env TZ=GMT jest --coverage",
     "lint": "eslint \"{app,test}/**/**.{js,jsx,ts,tsx}\"",
     "lint:fix": "eslint \"{app,test}/**/**.{js,jsx,ts,tsx}\" --fix",
     "i18n": "sync-i18n --files 'app/locales/*.json' --primary en --languages fr tl nl de dk es pl zh ru tr id sk ko zh_tw se gr hr is --space 2"
@@ -55,7 +55,7 @@
     "lodash": "^4.17.15",
     "mousetrap": "^1.6.2",
     "numeral": "^2.0.6",
-    "pitchfork-bnm": "^1.1.1",
+    "pitchfork-bnm": "^1.1.2",
     "react": "^16.14.0",
     "react-base-table": "^1.9.2",
     "react-beautiful-dnd": "^13.1.0",
