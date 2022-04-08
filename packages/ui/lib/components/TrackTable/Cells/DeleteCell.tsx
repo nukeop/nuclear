@@ -13,6 +13,7 @@ const DeleteCell: React.FC<CellProps<Track> & TrackTableExtraProps> = ({
   onDelete
 }) => <td {...cell.getCellProps()} className={cx(styles.narrow, styles.delete_cell)}>
   <Button
+    data-testid='delete-button'
     basic
     borderless
     circular
