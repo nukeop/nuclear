@@ -8,6 +8,7 @@ export type Track = {
   title?: string;
   name?: string;
   thumbnail?: string;
+  image?: { '#text'?: string }[];
   streams?: TrackStream[];
   uuid?: string;
 };

@@ -211,6 +211,7 @@ exports[`(Snapshot) Track table - example data with all rows should render corre
         >
           <button
             class="ui tiny basic circular icon button nuclear button borderless"
+            data-testid="delete-button"
           >
             <i
               aria-hidden="true"
@@ -342,6 +343,7 @@ exports[`(Snapshot) Track table - example data with all rows should render corre
         >
           <button
             class="ui tiny basic circular icon button nuclear button borderless"
+            data-testid="delete-button"
           >
             <i
               aria-hidden="true"
@@ -473,6 +475,7 @@ exports[`(Snapshot) Track table - example data with all rows should render corre
         >
           <button
             class="ui tiny basic circular icon button nuclear button borderless"
+            data-testid="delete-button"
           >
             <i
               aria-hidden="true"
