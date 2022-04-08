@@ -13,7 +13,7 @@ export const addTrackToPlaylist = (updatePlaylist, playlist, track) => {
     if (track.artist.name) {
       _.set(track, 'artist', track.artist.name);
     }
-    
+
     playlist.tracks.push(PlaylistHelper.extractTrackData(track));
     updatePlaylist(playlist);
   }
@@ -32,7 +32,7 @@ export const QueueMenuMore = ({
   const { t } = useTranslation('queue');
 
   return (
-    <Dropdown item icon='ellipsis vertical' data-testid='queue-more-container' className={styles.queue_menu_more} disabled={disabled}>
+    <Dropdown item icon='ellipsis vertical' data-testid='queue-menu-more-container' className={styles.queue_menu_more} disabled={disabled}>
       <Dropdown.Menu>
         <Dropdown.Header>{t('header')}</Dropdown.Header>
         <Dropdown.Item onClick={handleClearClick}>
@@ -45,26 +45,27 @@ export const QueueMenuMore = ({
         <Dropdown.Header>{t('header-track')}</Dropdown.Header>
         <Dropdown.Item>
           <Dropdown text={t('playlist-add')} className='left'>
-            <Dropdown.Menu className={cx('left', styles.playlists_menu)}>
-              {_.map(playlists, (playlist, i) => {
-                return (
-                  <Dropdown.Item
-                    key={i}
-                    onClick={() =>
-                      addTrackToPlaylist(updatePlaylist, playlist, currentItem)
-                    }
-                  >
-                    <Icon name='music' />
-                    {playlist.name}
-                  </Dropdown.Item>
-                );
-              })}
+            <Dropdown.Menu
+              className={cx('left', styles.playlists_menu)}
+            >
+              {
+                playlists.map(
+                  (playlist, i) => (
+                    <Dropdown.Item
+                      key={i}
+                      onClick={() => addTrackToPlaylist(updatePlaylist, playlist, currentItem)}
+                    >
+                      <Icon name='music' />
+                      {playlist.name}
+                    </Dropdown.Item>
+                  ))
+              }
             </Dropdown.Menu>
           </Dropdown>
         </Dropdown.Item>
         <Dropdown.Item
           onClick={handleAddFavoriteTrack}
-          data-testid='queue-more-favorite'
+          data-testid='queue-menu-more-favorite'
         >
           <Icon name='star' />
           {t('favorite-add')}
@@ -92,11 +93,11 @@ QueueMenuMore.propTypes = {
 
 QueueMenuMore.defaultProps = {
   disabled: true,
-  clearQueue: () => {},
-  resetPlayer: () => {},
-  addFavoriteTrack: () => {},
-  addToDownloads: () => {},
-  updatePlaylist: () => {},
+  clearQueue: () => { },
+  resetPlayer: () => { },
+  addFavoriteTrack: () => { },
+  addToDownloads: () => { },
+  updatePlaylist: () => { },
   savePlaylistDialog: null,
   playlists: [],
   currentItem: {}
@@ -104,8 +105,8 @@ QueueMenuMore.defaultProps = {
 
 export const enhance = compose(
   withHandlers({
-    handleAddToDownloads: ({addToDownloads, currentItem}) => () => addToDownloads(currentItem),
-    handleAddFavoriteTrack: ({addFavoriteTrack, currentItem}) => () => {
+    handleAddToDownloads: ({ addToDownloads, currentItem }) => () => addToDownloads(currentItem),
+    handleAddFavoriteTrack: ({ addFavoriteTrack, currentItem }) => () => {
       if (currentItem.name) {
         addFavoriteTrack({
           artist: {
@@ -121,7 +122,7 @@ export const enhance = compose(
         });
       }
     },
-    handleClearClick: ({clearQueue, resetPlayer}) => () => {
+    handleClearClick: ({ clearQueue, resetPlayer }) => () => {
       clearQueue();
       resetPlayer();
     }

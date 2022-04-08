@@ -1,4 +1,4 @@
-@import '../../../../vars.scss';
+@import "../../../../vars.scss";
 
 .queue_menu_more {
   margin-left: auto;
@@ -9,7 +9,7 @@
     right: 0;
   }
 
-  .divider {
+  .divider:not(.text) {
     border-top: 1px solid rgba($background2, 0.6) !important;
   }
 
