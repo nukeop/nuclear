@@ -24,7 +24,7 @@
     "playlists": "Плэйлісты",
     "plugins": "Плагiны",
     "search": "Вынікі пошуку",
-    "settings": "Settings",
+    "settings": "Параметры",
     "visualizer": "Візуалізатар",
     "user-panel": {
       "actions-tooltip": "User actions",
@@ -106,12 +106,12 @@
   "library": {
     "add": "Add folders",
     "album": "Альбом",
-    "artist": "Artist",
-    "empty": "The library is empty",
+    "artist": "Выканаўца",
+    "empty": "Бібліятэка пустая",
     "empty-help": "Паспрабуйце дадаць музыку з дапамогай кнопкі вышэй.",
-    "filter-placeholder": "Filter...",
+    "filter-placeholder": "Фільтр...",
     "header": "Лакальная бібліятэка",
-    "no-search-results": "No search results",
+    "no-search-results": "Нічога не знойдзена",
     "no-search-results-help": "No tracks found with the given name, album, or artist.",
     "title": "Title"
   },
@@ -123,20 +123,20 @@
   },
   "option-control": {
     "autoradio": "Autoradio",
-    "loop": "Loop",
+    "loop": "Паўтор",
     "mini-player": "Miniplayer",
-    "shuffle": "Shuffle"
+    "shuffle": "Змяшаць"
   },
   "player": {
-    "next-button": "Next track button",
+    "next-button": "Наступны трэк",
     "play-pause-button": "Play/Pause button",
     "previous-button": "Previous track button"
   },
   "playlists": {
-    "add-selected-tracks-to-downloads": "Add selected to downloads",
-    "add-selected-tracks-to-favorites": "Add selected to favorites",
-    "add-selected-tracks-to-queue": "Add selected to queue",
-    "album": "Album",
+    "add-selected-tracks-to-downloads": "Дадаць выбранае да загрузак",
+    "add-selected-tracks-to-favorites": "Дадаць выбранае да абранага",
+    "add-selected-tracks-to-queue": "Дадаць выбранае ў чаргу",
+    "album": "Альбом",
     "artist": "Выканаўца",
     "delete": "Delete this playlist",
     "dialog-placeholder": "Назва плэйліста...",
@@ -156,20 +156,20 @@
     "new-playlist": "New playlist",
     "import-button": "Import from file (JSON)",
     "import-fail-title": "Playlist import fail",
-    "import-success-title": "Playlist imported successfully",
-    "play-selected-tracks-now": "Play selected now",
+    "import-success-title": "Плэйліст імпартаваны паспяхова",
+    "play-selected-tracks-now": "Прайграць выбранае зараз",
     "playlist-created": "{{name}} created",
     "playlist-exported": "{{name}} saved to local file",
-    "queue": "Add playlist to queue",
-    "rename": "Rename this playlist",
+    "queue": "Дадаць плэйліст у чаргу",
+    "rename": "Змяніць назву плэйліста",
     "songs": "{{total}} song",
     "songs_plural": "{{total}} songs",
-    "title": "Title",
+    "title": "Назва",
     "tracks-selected-plural": "tracks selected",
     "tracks-selected-singular": "track selected",
     "tracks-singular": "track",
     "tracks-plural": "tracks",
-    "modified-at": "Last modified: ",
+    "modified-at": "Апошняе змяненне:",
     "never-modified": "Unknown",
     "server-modified-at": "Server modified: ",
     "upload-to-server": "Upload to server",
@@ -201,7 +201,7 @@
     "header": "Чарга",
     "header-track": "Current track",
     "id": "Stream ID:",
-    "source": "Source:",
+    "source": "Крыніца:",
     "copy-track-url": "Скапіраваць адрас трэка ў буфер абмену",
     "loading": "Stream still loading.",
     "playlist-add": "Дадаць у плэйліст",
@@ -260,7 +260,7 @@
     "http": "HTTP API",
     "invidious-url": "Invidious instance url",
     "language": "Мова",
-    "language-placeholder": "Pick a language",
+    "language-placeholder": "Выбраць мову",
     "lastfm-connect": "Connect with Last.fm",
     "lastfm-description": "In order to enable scrobbling, you first have to connect and authorize Nuclear on Last.fm, then click log in.",
     "lastfm-enable": "Enable scrobbling to Last.fm",
@@ -311,14 +311,14 @@
   },
   "track-popup": {
     "add-to-favorite": "Add to favorites",
-    "add-to-playlist": "Add to playlist",
-    "add-to-queue": "Add to queue",
+    "add-to-playlist": "Дадаць у плэйліст",
+    "add-to-queue": "Дадаць у чаргу",
     "download": "Download",
     "download-toast-body": "{{artist}} - {{track}} дададзены да загрузак.",
     "download-toast-title": "Трэк дададзены да загрузак",
     "favorite-toast-body": "{{artist}} - {{track}} дададзены да абраных.",
     "favorite-toast-title": "Favorite track added",
-    "play-next": "Play next",
+    "play-next": "Прайграць наступнае",
     "play-now": "Прайграць зараз",
     "playlist-toast-body": "{{artist}} - {{track}} дададзены ў плэйліст.",
     "playlist-toast-title": "Трэк дададзены ў плэйліст"
@@ -332,7 +332,7 @@
     "tracks-selected-label-plural": "tracks selected"
   },
   "visualizer": {
-    "exit-fullscreen": "Press ESC to exit full screen"
+    "exit-fullscreen": "Націсьніце на ESC, каб выйсьці з поўнага экрану"
   },
   "forms": {
     "nuclear-sign-up": {
@@ -362,7 +362,7 @@
       "header": "Увайсці",
       "username-label": "Username",
       "password-label": "Пароль",
-      "no-account-label": "Don't have an account?",
+      "no-account-label": "Не маеце ўліковага запісу?",
       "no-account-link": "Зарэгістравацца",
       "sign-in-button": "Увайсці"
     }
