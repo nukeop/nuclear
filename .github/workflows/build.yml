@@ -51,10 +51,10 @@ jobs:
 
     steps:
       - uses: actions/checkout@master
-      - name: Use Node.js 16.x
+      - name: Use Node.js 14.x
         uses: actions/setup-node@v2
         with:
-          version: 16.x
+          version: 14.x
           cache: npm
       - name: add git binaries to PATH
         run: |
