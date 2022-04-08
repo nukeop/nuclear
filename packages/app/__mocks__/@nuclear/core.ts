@@ -17,6 +17,7 @@ const LastFmApi = {
 };
 
 module.exports = {
+  isArtistObject: jest.requireActual('@nuclear/core/src/types').isArtistObject,
   store: {
     init: (store: typeof mockStore) => mockStore = store,
     get: (key: string) => mockStore[key] || {},
