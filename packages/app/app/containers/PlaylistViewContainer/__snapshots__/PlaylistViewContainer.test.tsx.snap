@@ -185,6 +185,7 @@ exports[`Playlist view container should display a playlist 1`] = `
               >
                 <button
                   class="ui tiny basic circular icon button nuclear button borderless"
+                  data-testid="delete-button"
                 >
                   <i
                     aria-hidden="true"
@@ -311,6 +312,7 @@ exports[`Playlist view container should display a playlist 1`] = `
               >
                 <button
                   class="ui tiny basic circular icon button nuclear button borderless"
+                  data-testid="delete-button"
                 >
                   <i
                     aria-hidden="true"
