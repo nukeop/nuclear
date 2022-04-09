@@ -210,7 +210,7 @@ describe('Playlist view container', () => {
           name: 'test track 1',
           streams: []
         }, {
-          uuid: 'test-track-uuid-2',
+          uuid: 'test-track-uuid-1',
           artist: 'test artist 1',
           name: 'test track 1',
           streams: []
@@ -234,6 +234,7 @@ describe('Playlist view container', () => {
         name: 'test track 1'
       }),
       expect.objectContaining({
+        uuid: 'test-track-uuid-3',
         artist: 'test artist 2',
         name: 'test track 2'
       })
