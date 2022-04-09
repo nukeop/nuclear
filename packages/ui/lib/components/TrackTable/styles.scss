@@ -165,8 +165,13 @@
   .delete_cell {
     padding-right: 0;
 
-    i.icon {
-      margin: 0 !important;
+    button {
+      width: 2.5em;
+      height: 2.5em;
+
+      i.icon {
+        margin: 0 0 0 -0.5px !important;
+      }
     }
   }
 
