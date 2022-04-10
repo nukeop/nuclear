@@ -1,11 +1,10 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import _ from 'lodash';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { MetaProvider } from '@nuclear/core';
 import { SearchBox } from '@nuclear/ui';
-
 import { SearchActions, unifiedSearch } from '../../actions/search';
 import { pluginsSelectors } from '../../selectors/plugins';
 import { searchSelectors } from '../../selectors/search';
@@ -48,6 +47,26 @@ const SearchBoxContainer: React.FC = () => {
     provider && dispatch(selectMetaProvider(provider.value)),
   [dispatch]);
 
+  const [input, setInput] = useState('');
+ 
+  const debouncedSearch = useCallback(_.debounce(handleSearch, 500), [handleSearch]);
+
+  useEffect(() => {
+    if (input.length > MIN_SEARCH_LENGTH) {
+      debouncedSearch(input);
+    }
+  }, [input, debouncedSearch]);
+
+  
+  const onKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      handleSearch(input);
+    }
+    if (e.key === 'Escape') {
+      handleFocus(false);
+    }
+  };
+
   return <SearchBox 
     loading={unifiedSearchStarted}
     disabled={!isConnected}
@@ -55,7 +74,6 @@ const SearchBoxContainer: React.FC = () => {
     lastSearchesLabel={t('last-searches')}
     clearHistoryLabel={t('clear-history')}
     footerLabel={t('you-can-search-for')}
-    onChange={_.debounce(handleSearch, 500)}
     onSearch={handleSearch}
     searchProviders={searchProvidersOptions}
     searchHistory={searchHistory}
@@ -64,6 +82,9 @@ const SearchBoxContainer: React.FC = () => {
     onSearchProviderSelect={handleSelectSearchProvider}
     isFocused={isFocused}
     handleFocus={handleFocus}
+    onKeyDown={onKeyDown}
+    input={input}
+    setInput={setInput}
   />;
 };
 
