@@ -16,6 +16,7 @@ exports[`Search box container should render the search box 1`] = `
         class=""
         data-testid="search-input"
         placeholder="Search..."
+        value=""
       />
       <div
         aria-disabled="false"
