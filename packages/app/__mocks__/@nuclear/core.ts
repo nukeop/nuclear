@@ -7,6 +7,7 @@ const LastFmApi = {
 };
 
 module.exports = {
+  isArtistObject: jest.requireActual('@nuclear/core/src/types').isArtistObject,
   store: mockElectronStore(mockStore),
   createApi: () => ({
     app: {},
