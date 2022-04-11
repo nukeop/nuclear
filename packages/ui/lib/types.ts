@@ -46,3 +46,9 @@ export type TrackStream = {
   thumbnail?: string;
   stream?: string;
 };
+
+export type SearchProviderOption = {
+  key: string
+  text: string
+  value: string
+}

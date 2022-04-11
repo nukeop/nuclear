@@ -1,11 +1,9 @@
 import React, { useCallback } from 'react';
-import _ from 'lodash';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { MetaProvider } from '@nuclear/core';
 import { SearchBox } from '@nuclear/ui';
-
 import { SearchActions, unifiedSearch } from '../../actions/search';
 import { pluginsSelectors } from '../../selectors/plugins';
 import { searchSelectors } from '../../selectors/search';
@@ -48,6 +46,7 @@ const SearchBoxContainer: React.FC = () => {
     provider && dispatch(selectMetaProvider(provider.value)),
   [dispatch]);
 
+
   return <SearchBox 
     loading={unifiedSearchStarted}
     disabled={!isConnected}
@@ -55,7 +54,6 @@ const SearchBoxContainer: React.FC = () => {
     lastSearchesLabel={t('last-searches')}
     clearHistoryLabel={t('clear-history')}
     footerLabel={t('you-can-search-for')}
-    onChange={_.debounce(handleSearch, 500)}
     onSearch={handleSearch}
     searchProviders={searchProvidersOptions}
     searchHistory={searchHistory}
@@ -64,6 +62,7 @@ const SearchBoxContainer: React.FC = () => {
     onSearchProviderSelect={handleSelectSearchProvider}
     isFocused={isFocused}
     handleFocus={handleFocus}
+    minSearchLength={MIN_SEARCH_LENGTH}
   />;
 };
 

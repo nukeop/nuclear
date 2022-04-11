@@ -20,7 +20,7 @@ storiesOf('Components/Search box', module)
       <SearchBox 
         {...commonProps} 
         selectedSearchProvider={selectedSearchProvider}
-        onSearchProviderSelect={onSearchProviderSelect}
+        onSearchProviderSelect={(_, data) => onSearchProviderSelect(searchProviders.find((provider) => provider.value === data.value))}
       />
     </div>;
   })
@@ -29,7 +29,7 @@ storiesOf('Components/Search box', module)
     return <div className='bg'><SearchBox 
       {...commonProps} 
       selectedSearchProvider={selectedSearchProvider}
-      onSearchProviderSelect={onSearchProviderSelect}
+      onSearchProviderSelect={(_, data) => onSearchProviderSelect(searchProviders.find((provider) => provider.value === data.value))}
       loading
     />
     </div>;
@@ -39,7 +39,7 @@ storiesOf('Components/Search box', module)
     return <div className='bg'><SearchBox 
       {...commonProps} 
       selectedSearchProvider={selectedSearchProvider}
-      onSearchProviderSelect={onSearchProviderSelect}
+      onSearchProviderSelect={(_, data) => onSearchProviderSelect(searchProviders.find((provider) => provider.value === data.value))}
       disabled
     />
     </div>;
