@@ -5,6 +5,7 @@ import { RootState } from '../app/reducers';
 import { startingStateMeta } from '../app/reducers/helpers';
 import { PlaylistsStore } from '../app/reducers/playlists';
 import { DownloadStatus } from '../app/actions/downloads';
+import { AnyProps } from './testUtils';
 
 type StoreStateBuilder = ReturnType<typeof buildStoreState>;
 export const buildStoreState = () => {
@@ -820,7 +821,7 @@ export const buildStoreState = () => {
   };
 };
 
-export const buildElectronStoreState = () => {
+export const buildElectronStoreState = (overrides?: AnyProps) => {
   return {
     equalizer: {
       selected: 'Default'
@@ -830,6 +831,7 @@ export const buildElectronStoreState = () => {
       albums: [],
       tracks: []
     },
-    playlists: []
+    playlists: [],
+    ...overrides
   };
 };

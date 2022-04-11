@@ -1,12 +1,14 @@
-import _, { flow } from 'lodash';
-import { store } from '@nuclear/core';
+import _, { flow, unionWith } from 'lodash';
+import { store, Track } from '@nuclear/core';
 import { areTracksEqualByName, getTrackItem, removeTrackStreamUrl } from '@nuclear/ui';
 
 import { safeAddUuid } from './helpers';
+import { createStandardAction } from 'typesafe-actions';
 
 export const READ_FAVORITES = 'READ_FAVORITES';
 export const ADD_FAVORITE_TRACK = 'ADD_FAVORITE_TRACK';
 export const REMOVE_FAVORITE_TRACK = 'REMOVE_FAVORITE_TRACK';
+export const BULK_ADD_FAVORITE_TRACKS = 'BULK_ADD_FAVORITE_TRACKS';
 
 export const ADD_FAVORITE_ALBUM = 'ADD_FAVORITE_ALBUM';
 export const REMOVE_FAVORITE_ALBUM = 'REMOVE_FAVORITE_ALBUM';
@@ -24,18 +26,28 @@ export function readFavorites() {
 
 export function addFavoriteTrack(track) {
   const clonedTrack = flow(safeAddUuid, getTrackItem, removeTrackStreamUrl)(track);
-
+  
   const favorites = store.get('favorites');
   const filteredTracks = favorites.tracks.filter(t => !areTracksEqualByName(t, track));
   favorites.tracks = [...filteredTracks, clonedTrack];
-
+  
   store.set('favorites', favorites);
-
+  
   return {
     type: ADD_FAVORITE_TRACK,
     payload: favorites
   };
 }
+
+const bulkAddFavoriteTracksAction = createStandardAction(BULK_ADD_FAVORITE_TRACKS)<Track[]>();
+
+export const bulkAddFavoriteTracks = (tracks: Track[]) => {
+  const favorites = store.get('favorites');
+  favorites.tracks = unionWith(favorites.tracks, tracks, areTracksEqualByName);
+  store.set('favorites', favorites);
+
+  return bulkAddFavoriteTracksAction(favorites);
+};
 
 export function removeFavoriteTrack(track) {
   const favorites = store.get('favorites');
