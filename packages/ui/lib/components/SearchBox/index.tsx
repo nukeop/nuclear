@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import cx from 'classnames';
 import _ from 'lodash';
 import { Dropdown, Icon } from 'semantic-ui-react';
@@ -21,11 +21,9 @@ type SearchBarProps = {
   onSearch: (entry: string) => void
   selectedSearchProvider: SearchProviderOption
   onSearchProviderSelect: (provider: SearchProviderOption) => void
-  onKeyDown: React.KeyboardEventHandler<HTMLInputElement>
   handleFocus: (bool: boolean) => void
   isFocused: boolean
-  input: string
-  setInput: (v: string) => void
+  minSearchLength: number
 }
 
 const SearchBox: React.FC<SearchBarProps> = ({
@@ -41,11 +39,10 @@ const SearchBox: React.FC<SearchBarProps> = ({
   onSearch,
   selectedSearchProvider,
   onSearchProviderSelect,
-  onKeyDown,
   handleFocus,
   isFocused,
-  input,
-  setInput
+  minSearchLength
+  
 }) => {
   const searchRef = useRef(null);
   useEffect(() => {
@@ -60,9 +57,30 @@ const SearchBox: React.FC<SearchBarProps> = ({
     }
   }, [handleFocus, isFocused, searchRef]);
 
+
+  const [input, setInput] = useState('');
+ 
+  const debouncedSearch = useCallback(_.debounce(onSearch, 500), [onSearch]);
+
+  useEffect(() => {
+    debouncedSearch.cancel();
+    if (input.length > minSearchLength) {
+      debouncedSearch(input);
+    }
+  }, [input, debouncedSearch]);
+
+  
+  const onKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      onSearch(input);
+    }
+    if (e.key === 'Escape') {
+      handleFocus(false);
+    }
+  };
+
   return (
     <div className={cx(common.nuclear, styles.search_box_container)}>
-
       <div
         className={cx(
           common.nuclear,
