@@ -1,7 +1,6 @@
 import logger from 'electron-timber';
 import { rest } from '@nuclear/core';
 import { getBestNewAlbums, getBestNewTracks } from 'pitchfork-bnm';
-import { Deezer } from '@nuclear/core/src/rest';
 
 import globals from '../globals';
 import { Dashboard } from './actionTypes';
@@ -84,8 +83,8 @@ export const loadTopTracks = () => async (dispatch) => {
   dispatch(loadTopTracksAction.request());
 
   try {
-    const tracks = await Deezer.getTopTracks();
-    dispatch(loadTopTracksAction.success(tracks.data.map(Deezer.mapDeezerTrackToInternal)));
+    const tracks = await rest.Deezer.getTopTracks();
+    dispatch(loadTopTracksAction.success(tracks.data.map(rest.Deezer.mapDeezerTrackToInternal)));
   } catch (error) {
     dispatch(loadTopTracksAction.failure());
     logger.error(error);

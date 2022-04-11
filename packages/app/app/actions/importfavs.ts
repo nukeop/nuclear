@@ -5,8 +5,7 @@ import globals from '../globals';
 import * as FavoritesActions from './favorites';
 import { ImportFavs } from './actionTypes';
 
-const lastfm = new rest.LastFmApi(globals.lastfmApiKey, globals.lastfmApiSecret);
-
+const MAX_TRACKS_PER_PAGE = 1000;
 export function FavImportInit() {
   return {
     type: ImportFavs.FAV_IMPORT_INIT,
@@ -43,41 +42,34 @@ function FmSuccessFinal(count) {
 export function fetchAllFmFavorites() {
   const storage = store.get('lastFm');
   if (storage) {
-    return dispatch => {
+    return async dispatch => {
       dispatch({ type: ImportFavs.LASTFM_FAV_IMPORT_START });
-      lastfm.getNumberOfLovedTracks(storage.lastFmName, 1)
-        .then((resp) => resp.json())
-        .then(req => {
-          if (!req.lovedtracks) {
+      try {
+        const lastfm = new rest.LastFmApi(globals.lastfmApiKey, globals.lastfmApiSecret);
+        const numberOfTracksResponse = await(await lastfm.getLovedTracks(storage.lastFmName, 1)).json();
+      
+        if (!numberOfTracksResponse.lovedtracks) {
+          throw new Error;
+        }
+        const totalLovedTracks = Number.parseInt(numberOfTracksResponse.lovedtracks['@attr'].total);
+        const totalPages = Math.ceil(totalLovedTracks / MAX_TRACKS_PER_PAGE);
+        dispatch(FmSuccess1(totalLovedTracks));
+        let lovedTracks = [];
+        for (let i = 1; i <= totalPages; i++) {
+          const lovedTracksResponse = await(await lastfm.getLovedTracks(storage.lastFmName, Math.min(MAX_TRACKS_PER_PAGE, totalLovedTracks), i)).json();
+          if (!lovedTracksResponse.lovedtracks) {
             throw new Error;
           }
-          const totalLovedTracks = req.lovedtracks['@attr'].total;
-          if (totalLovedTracks <= 0 || totalLovedTracks > 1000) {
-            throw totalLovedTracks;
-          }
-          dispatch(FmSuccess1(totalLovedTracks));
-          return lastfm.getNumberOfLovedTracks(storage.lastFmName, totalLovedTracks);
-        })
-        .then((resp) => resp.json())
-        .then((req) => {
-          if (!req.lovedtracks || !req.lovedtracks.track) {
-            throw new Error;
-          }
-          req.lovedtracks.track.forEach(favtrack => {
-            FavoritesActions.addFavoriteTrack(favtrack);
-          });
-          dispatch(FmSuccessFinal(req.lovedtracks.track.length));
-        })
-        .catch((error) => {
-          if (error <= 0 || error > 1000) {
-            dispatch(FmFavError(' Invalid number of favorites [' + error + ']'));
-          } else {
-            dispatch(FmFavError());
-            logger.error(error);
-          }
-        });
+          lovedTracks = [...lovedTracks, ...lovedTracksResponse.lovedtracks.track];
+        }
+
+        dispatch(FavoritesActions.bulkAddFavoriteTracks(lovedTracks));
+
+        dispatch(FmSuccessFinal(lovedTracks.length));
+      } catch (error) {
+        dispatch(FmFavError(error.message));
+        logger.error(error);
+      }
     };
-  } else {
-    return FmFavError();
   }
 }
