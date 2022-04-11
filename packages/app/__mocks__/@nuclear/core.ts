@@ -1,31 +1,13 @@
-const initialStoreState = () => ({
-  equalizer: {
-    selected: 'Default'
-  },
-  downloads: [],
-  favorites: {
-    albums: [],
-    tracks: []
-  },
-  playlists: []
-});
+import { initialStoreState, mockElectronStore } from '../../test/mockElectronStore';
 
-let mockStore = {...initialStoreState()};
+const mockStore = {...initialStoreState()};
 
 const LastFmApi = {
   searchTracks: jest.fn().mockResolvedValue([])
 };
 
 module.exports = {
-  isArtistObject: jest.requireActual('@nuclear/core/src/types').isArtistObject,
-  store: {
-    init: (store: typeof mockStore) => mockStore = store,
-    get: (key: string) => mockStore[key] || {},
-    set: (key: string, value: any) => {
-      mockStore[key] = value;
-    },
-    clear: () => mockStore = initialStoreState()
-  },
+  store: mockElectronStore(mockStore),
   createApi: () => ({
     app: {},
     store: {},
@@ -35,17 +17,15 @@ module.exports = {
   setOption: jest.fn(),
   getOption: () => '',
   rest: {
-    LastFmApi: class {
-      constructor() {}
-
-      getTagInfo() {}
-      getTagTracks() {}
-      getTagAlbums() {}
-      getTagArtists() {}
-      getTopTags = jest.fn().mockResolvedValue([])
-      getTopTracks = jest.fn().mockResolvedValue([])
-      searchTracks = LastFmApi.searchTracks
-    },
+    LastFmApi: jest.fn(() =>  ({
+      getTagInfo() {},
+      getTagTracks() {},
+      getTagAlbums() {},
+      getTagArtists() {},
+      getTopTags: jest.fn().mockResolvedValue([]),
+      getTopTracks: jest.fn().mockResolvedValue([]),
+      searchTracks: LastFmApi.searchTracks
+    })),
     Youtube: {
       urlSearch: jest.fn().mockResolvedValue([]),
       liveStreamSearch: jest.fn().mockResolvedValue([])

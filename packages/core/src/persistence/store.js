@@ -8,10 +8,10 @@ import { settingsConfig } from '../settings';
  * @param {String[]} items array of keys
  * @return {Object} key,value pair of items
  */
-ElectronStore.prototype.getItems = function(items){
-  items = Array.isArray(items)?items:[items];
-  const data ={};
-  for (const item of items){
+ElectronStore.prototype.getItems = function (items) {
+  items = Array.isArray(items) ? items : [items];
+  const data = {};
+  for (const item of items) {
     data[item] = this.get(item);
   }
   return data;
@@ -22,9 +22,9 @@ ElectronStore.prototype.getItems = function(items){
  * @param {Object} items key value pairs to set
  * @return {void}
  */
-ElectronStore.prototype.setItems = function(items){
+ElectronStore.prototype.setItems = function (items) {
   const keys = Object.keys(items);
-  for (const key of keys){
+  for (const key of keys) {
     this.set(key, items[key]);
   }
 };
