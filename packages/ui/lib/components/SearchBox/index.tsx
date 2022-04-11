@@ -63,7 +63,6 @@ const SearchBox: React.FC<SearchBarProps> = ({
   const debouncedSearch = useCallback(_.debounce(onSearch, 500), [onSearch]);
 
   useEffect(() => {
-    debouncedSearch.cancel();
     if (input.length > minSearchLength) {
       debouncedSearch(input);
     }
