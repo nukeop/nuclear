@@ -72,6 +72,7 @@ const SearchBox: React.FC<SearchBarProps> = ({
   const onKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
       onSearch(input);
+      handleFocus(false);
     }
     if (e.key === 'Escape') {
       handleFocus(false);
@@ -96,8 +97,8 @@ const SearchBox: React.FC<SearchBarProps> = ({
           onKeyDown={onKeyDown}
           disabled={disabled}
           className={cx({ [styles.disabled]: disabled })}
-          onClick={() => handleFocus(true)}
-          value={input}
+          onClick={() => handleFocus(true)}    
+          value={input}  
         />
         {loading && <Icon name='spinner' loading />}
         {
