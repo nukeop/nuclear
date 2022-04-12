@@ -31,7 +31,8 @@ const PlaylistsHeader: React.FC<PlaylistsHeaderProps> = ({
         <InputDialog
           header={<h4>Input playlist name:</h4>}
           placeholder={t('dialog-placeholder')}
-          accept={t('dialog-accept')}
+          acceptLabel={t('dialog-accept')}
+          cancelLabel={t('dialog-cancel')}
           onAccept={onCreate}
           testIdPrefix='create-playlist'
           trigger={

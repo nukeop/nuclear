@@ -147,7 +147,7 @@
     "export-fail-title": "Playlist export fail",
     "export-success-title": "Playlist exported successfully",
     "header": "Your playlists",
-    "spotify-import-placeholder": ",",
+    "spotify-import-placeholder": "Paste a Spotify playlist URL here",
     "dialog-placeholder": "Playlist name...",
     "dialog-accept": "Save",
     "dialog-cancel": "Cancel",
@@ -359,7 +359,7 @@
       }
     },
     "nuclear-sign-in": {
-      "header":" Sign in",
+      "header": " Sign in",
       "username-label": "Username",
       "password-label": "Password",
       "no-account-label": "Don't have an account?",

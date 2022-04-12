@@ -15,6 +15,7 @@ const SpotifyPlaylistImporter: React.FC= () => {
   const [isOpen, setIsOpen] = useState(false);
   const [displayView, setDisplay] = useState(false);
   const [inputString, setInputString] = useState('');
+  const [hasError, setError] = useState(false);
 
   const handleOpen = useCallback(() => setIsOpen(true), []);
   const handleClose = useCallback(() => {
@@ -23,14 +24,21 @@ const SpotifyPlaylistImporter: React.FC= () => {
     setDisplay(false);
   }, []);
   const handleChange = useCallback(e => {
-    const playlistUrl = new URL(e.target.value);
-    playlistUrl.search = '';    
-    setInputString(playlistUrl.toString());
+    try {
+      const playlistUrl = new URL(e.target.value);
+      playlistUrl.search = '';
+      setInputString(playlistUrl.toString());
+      setError(false);
+    } catch (error) {
+      setError(true);
+      setInputString(e.target.value);
+    }
   }, []);
+
   const onClick = useCallback(() => {
     setDisplay(true);
   }, []);
-
+  
   const webviewRef = useCallback((w: WebviewTag) => {
     if (w !== null) {
       onAccept(w, handleClose);
@@ -66,6 +74,7 @@ const SpotifyPlaylistImporter: React.FC= () => {
           placeholder={t('spotify-import-placeholder')}
           onChange={handleChange}
           value={inputString}
+          error={hasError}
           data-testid='spotify-playlist-importer-input'
         />}
         {displayView && <webview
@@ -80,7 +89,7 @@ const SpotifyPlaylistImporter: React.FC= () => {
       <Modal.Actions>
         {!displayView && <>
           <Button
-            basic 
+            basic
             inverted
             color='red'
             onClick={handleClose}
@@ -89,10 +98,10 @@ const SpotifyPlaylistImporter: React.FC= () => {
             {t('dialog-cancel')}
           </Button>
           <Button
-            inverted
             color='green'
             onClick={onClick}
             data-testid='spotify-playlist-importer-accept'
+            disabled={hasError}
           >
             {t('dialog-accept')}
           </Button>
