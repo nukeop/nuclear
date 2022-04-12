@@ -1,30 +1,20 @@
-import React, { useState, useCallback, useEffect } from 'react';
-import { Button, Input, Modal, ModalProps } from 'semantic-ui-react';
+import React, { useState, useCallback } from 'react';
+import { Icon, Input, Modal } from 'semantic-ui-react';
 import { useTranslation } from 'react-i18next';
 import { WebviewTag } from 'electron';
+import { URL } from 'url';
 
-type PlayListDialogProps = {
-  initialString: string;
-  trigger: ModalProps['trigger'];
-  header: React.ReactElement;
-  placeholder: string;
-  accept: string;
-  onAccept: (webview: WebviewTag, handleClose: () => void) => void;
-  testIdPrefix?: string;
-}
+import { Button } from '@nuclear/ui';
 
-const PlayListDialog: React.FC<PlayListDialogProps> = ({
-  initialString,
-  trigger,
-  header,
-  placeholder,
-  accept,
-  onAccept,
-  testIdPrefix = null }) => {
+import { useSpotifyPlaylistImporterProps } from './hooks';
+
+const SpotifyPlaylistImporter: React.FC= () => {
+  const { t } = useTranslation('playlists');
+  const { onAccept } = useSpotifyPlaylistImporterProps(t);
+
   const [isOpen, setIsOpen] = useState(false);
   const [displayView, setDisplay] = useState(false);
-  const [inputString, setInputString] = useState(initialString);
-  const { t } = useTranslation('input-dialog');
+  const [inputString, setInputString] = useState('');
 
   const handleOpen = useCallback(() => setIsOpen(true), []);
   const handleClose = useCallback(() => {
@@ -32,9 +22,12 @@ const PlayListDialog: React.FC<PlayListDialogProps> = ({
     setInputString('');
     setDisplay(false);
   }, []);
-  const handleChange = useCallback(e => setInputString(e.target.value), []);
+  const handleChange = useCallback(e => {
+    const playlistUrl = new URL(e.target.value);
+    playlistUrl.search = '';    
+    setInputString(playlistUrl.toString());
+  }, []);
   const onClick = useCallback(() => {
-    // setInputString(e.target.value);
     setDisplay(true);
   }, []);
 
@@ -44,37 +37,41 @@ const PlayListDialog: React.FC<PlayListDialogProps> = ({
     }
   }, [handleClose, onAccept]);
 
-  useEffect(() => {
-    setInputString(initialString);
-  }, [initialString]);
-
   return (
     <Modal
       basic
       closeIcon
       dimmer='blurring'
-      trigger={trigger}
+      trigger={
+        <Button
+          basic
+          data-testid='import-from-url'
+        >
+          <Icon name='file text' />
+          {t('import-url-button')}
+        </Button>
+      }
       onClose={handleClose}
       onOpen={handleOpen}
       open={isOpen}
     >
       <Modal.Content>
-        {!displayView && header}
+        {!displayView && <h4>Input playlist url:</h4>}
         {!displayView && <Input
           fluid
           inverted
           ref={input => {
             input && input.focus();
           }}
-          placeholder={placeholder}
+          placeholder={t('spotify-import-placeholder')}
           onChange={handleChange}
           value={inputString}
-          data-testid={testIdPrefix && `${testIdPrefix}-input`}
+          data-testid='spotify-playlist-importer-input'
         />}
         {displayView && <webview
           ref={webviewRef}
           src={inputString}
-          data-testid={testIdPrefix && `${testIdPrefix}-webview`}
+          data-testid='spotify-playlist-importer-webview'
           webpreferences='nodeIntegration=yes,javascript=yes,contextIsolation=no'
           useragent='Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.175 Safari/537.36'
           style={{ width: '500px', height: '500px' }}
@@ -83,15 +80,21 @@ const PlayListDialog: React.FC<PlayListDialogProps> = ({
       <Modal.Actions>
         {!displayView && <>
           <Button
-            basic color='red' inverted
+            basic 
+            inverted
+            color='red'
             onClick={handleClose}
-            data-testid={testIdPrefix && `${testIdPrefix}-cancel`}>
-            {t('cancel')}
+            data-testid='spotify-playlist-importer-cancel'
+          >
+            {t('dialog-cancel')}
           </Button>
-          <Button color='green' inverted
+          <Button
+            inverted
+            color='green'
             onClick={onClick}
-            data-testid={testIdPrefix && `${testIdPrefix}-accept`}>
-            {accept}
+            data-testid='spotify-playlist-importer-accept'
+          >
+            {t('dialog-accept')}
           </Button>
         </>
         }
@@ -100,4 +103,4 @@ const PlayListDialog: React.FC<PlayListDialogProps> = ({
   );
 };
 
-export default PlayListDialog;
+export default SpotifyPlaylistImporter;

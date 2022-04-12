@@ -6,21 +6,18 @@ import Header from '../../Header';
 import styles from './styles.scss';
 import { Icon } from 'semantic-ui-react';
 import InputDialog from '../../InputDialog';
-import PlayListDialog from '../../PlayListDialog';
 
-import extractPlaylist from '@nuclear/core/src/helpers/playlist/spotify';
+import SpotifyPlaylistImporter from '../../../containers/SpotifyPlaylistImporter/SpotifyPlaylistImporter';
 
 type PlaylistsHeaderProps = {
   showText: boolean;
   onImportFromFile: React.MouseEventHandler;
-  onImportFromUrl: (data: string) => void,
   onCreate: (name: string) => void;
 }
 
 const PlaylistsHeader: React.FC<PlaylistsHeaderProps> = ({
   showText,
   onImportFromFile,
-  onImportFromUrl,
   onCreate
 }) => {
   const { t } = useTranslation('playlists');
@@ -48,37 +45,7 @@ const PlaylistsHeader: React.FC<PlaylistsHeaderProps> = ({
           }
           initialString={t('new-playlist')}
         />
-        <PlayListDialog header={<h4>Input playlist url:</h4>}
-          placeholder={t('dialog-placeholder')}
-          accept={t('dialog-accept')}
-          onAccept={(w, handleClose) => {
-            if (w !== null) {
-              w.addEventListener('dom-ready', () => {
-                w.addEventListener('ipc-message', event => {
-                  onImportFromUrl(event.channel);
-                  handleClose();
-                });
-                setTimeout(() => {
-                  w.executeJavaScript(`(function() {
-                    const ipcRenderer = window.require('electron').ipcRenderer;
-                    (${extractPlaylist.toString()})()
-                    }
-                    )()`.replace('electron__WEBPACK_IMPORTED_MODULE_0__["ipcRenderer"]', 'ipcRenderer').replace('electron__WEBPACK_IMPORTED_MODULE_0__.', ''));
-                }, 1500);
-              });
-            }
-          }}
-          testIdPrefix='import-playlist-by-url'
-          trigger={// //
-            <Button
-              basic
-              data-testid='import-from-url'
-            >
-              <Icon name='file text' />
-              {t('import-url-button')}
-            </Button>
-          }
-          initialString={t('new-playlist')} />
+        <SpotifyPlaylistImporter />
         <Button
           basic
           onClick={onImportFromFile}

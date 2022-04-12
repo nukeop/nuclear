@@ -29,7 +29,6 @@ type PlaylistsProps = {
   isLoading: boolean;
   playlists: Playlist[];
   onImportFromFile: React.MouseEventHandler;
-  onImportFromUrl: (data: string) => void;
   onCreate: (name: string) => void;
 }
 
@@ -37,7 +36,6 @@ const Playlists: React.FC<PlaylistsProps> = ({
   isLoading = false,
   playlists,
   onImportFromFile,
-  onImportFromUrl,
   onCreate
 }) => {
   const dispatch = useDispatch();
@@ -83,7 +81,6 @@ const Playlists: React.FC<PlaylistsProps> = ({
             <PlaylistsHeader
               showText={isPlaylistsReallyNotEmpty()}
               onImportFromFile={onImportFromFile}
-              onImportFromUrl={onImportFromUrl}
               onCreate={onCreate}
             />
             {
@@ -94,7 +91,6 @@ const Playlists: React.FC<PlaylistsProps> = ({
             {
               isPlaylistsReallyNotEmpty() &&
               <PlaylistsTable
-                displayModificationDates
                 playlists={playlists}
 
                 {...strings}
