@@ -5,7 +5,7 @@ import { StreamProvider } from '@nuclear/core';
 import { Track, TrackStream } from '@nuclear/ui/lib/types';
 
 import { safeAddUuid } from './helpers';
-import { startPlayback } from './player.js';
+import { pausePlayback, startPlayback } from './player.js';
 
 export const QUEUE_DROP = 'QUEUE_DROP';
 export const ADD_QUEUE_ITEM = 'ADD_QUEUE_ITEM';
@@ -171,12 +171,10 @@ export function playTrack(streamProviders, item: QueueItem) {
   };
 }
 
-export function removeFromQueue(item: QueueItem) {
-  return {
-    type: REMOVE_QUEUE_ITEM,
-    payload: item
-  };
-}
+export const removeFromQueue = (item: QueueItem) => ({
+  type: REMOVE_QUEUE_ITEM,
+  payload: item
+});
 
 export function addPlaylistTracksToQueue(tracks) {
   return async (dispatch) => {
@@ -219,14 +217,14 @@ export function clearQueue() {
   };
 }
 
-function nextSongAction() {
+export function nextSongAction() {
   return {
     type: NEXT_SONG,
     payload: null
   };
 }
 
-function previousSongAction() {
+export function previousSongAction() {
   return {
     type: PREVIOUS_SONG,
     payload: null
@@ -279,6 +277,8 @@ export function previousSong() {
 export function nextSong() {
   return (dispatch, getState) => {
     dispatchWithShuffle(dispatch, getState, nextSongAction);
+    dispatch(pausePlayback());
+    setImmediate(() => dispatch(startPlayback()));
   };
 }
 

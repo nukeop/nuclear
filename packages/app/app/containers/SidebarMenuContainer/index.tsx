@@ -54,7 +54,9 @@ const SidebarMenuContainer: React.FC = () => {
     <SidebarMenu>
       {
         categories.map(({ name, items }) => (
-          <>
+          <React.Fragment
+            key={name}
+          >
             <SidebarMenuCategoryHeader
               compact={settings.compactMenuBar}
               headerText={t(name)}
@@ -70,7 +72,7 @@ const SidebarMenuContainer: React.FC = () => {
                   </SidebarMenuItem>
                 </NavLink>
               ))}
-          </>
+          </React.Fragment>
         ))}
     </SidebarMenu>
     {/* {

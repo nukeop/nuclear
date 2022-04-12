@@ -1,5 +1,5 @@
 import React from 'react';
-import { fireEvent, render } from '@testing-library/react';
+import { fireEvent, render, waitFor } from '@testing-library/react';
 
 import { AnyProps, configureMockStore, setupI18Next, TestStoreProvider } from '../../../test/testUtils';
 import { getMouseEvent } from '../../../test/mockMouseEvent';
@@ -51,6 +51,26 @@ describe('PlayerBar container', () => {
 
     const playButton = component.queryByTestId('player-controls-play');
     expect(playButton.children[0].className).toContain('circle notch');
+  });
+
+  it.each([
+    ['loop', 'loopAfterQueueEnd'], 
+    ['shuffle', 'shuffleQueue'],
+    ['autoradio', 'autoradio'],
+    ['mini-player', 'miniPlayer']
+  ])('should enable %s option', async (option, setting) => {
+    const { component, store } = mountComponent({
+      settings: {
+        loopAfterQueueEnd: false,
+        shuffleQueue: false,
+        autoradio: false,
+        miniPlayer: false
+      }
+    });
+
+    await waitFor(() => component.getByTestId(`${option}-play-option`).click());
+    const state = store.getState();
+    expect(state.settings[setting]).toBe(true);
   });
 
   // Has to be skipped until jsdom supports setting clientWidth on the body

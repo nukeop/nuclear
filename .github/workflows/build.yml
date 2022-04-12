@@ -1,6 +1,6 @@
 name: CI job
 
-on: 
+on:
   push:
     branches-ignore:
       - crowdin
@@ -14,55 +14,56 @@ jobs:
     timeout-minutes: 30
 
     steps:
-    - uses: actions/checkout@master
-    - name: Use Node.js 12.x
-      uses: actions/setup-node@v2
-      with:
-        version: 12.x
-        cache: npm
-    - run: npm ci
-    - run: npm test
-    - run: npm run build:linux
-      shell: bash
-      env:
-        GITHASH: ${GITHUB_SHA}
-  
+      - uses: actions/checkout@master
+      - name: Use Node.js 16
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16
+          cache: npm
+      - run: npm ci
+      - run: npm test
+      - run: npm run build:linux
+        shell: bash
+        env:
+          GITHASH: ${GITHUB_SHA}
+
   mac_build:
     runs-on: macOS-latest
     timeout-minutes: 30
 
     steps:
-    - uses: actions/checkout@master
-    - name: Use Node.js 12.x
-      uses: actions/setup-node@v2
-      with:
-        version: 12.x
-        cache: npm
-    - run: npm ci
-    - run: npm test
-    - run: npm run build:macos
-      shell: bash
-      env:
-        GITHASH: ${GITHUB_SHA}
-  
+      - uses: actions/checkout@master
+      - name: Use Node.js 16
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16
+          cache: npm
+      - run: npm ci
+      - run: npm test
+      - run: npm run build:macos
+        shell: bash
+        env:
+          GITHASH: ${GITHUB_SHA}
+
   windows_build:
     runs-on: windows-latest
     timeout-minutes: 30
 
     steps:
-    - uses: actions/checkout@master
-    - name: Use Node.js 12.x
-      uses: actions/setup-node@v2
-      with:
-        version: 12.x
-        cache: npm
-    - name: add git binaries to PATH
-      run: |
-        echo "C:\Program Files\Git\usr\bin" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
-        echo "C:\Program Files\Git\mingw64\libexec\git-core" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
-    - run: npm ci
-    - run: npm test
-    - run: npm run build:windows
-      shell: bash
-      env:
-        GITHASH: ${GITHUB_SHA}
+      - uses: actions/checkout@master
+      - name: Use Node.js 14
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14
+          cache: npm
+      - name: add git binaries to PATH
+        run: |
+          echo "C:\Program Files\Git\usr\bin" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
+          echo "C:\Program Files\Git\mingw64\libexec\git-core" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
+          npm config set msvs_version 2022
+      - run: npm ci
+      - run: npm test
+      - run: npm run build:windows
+        shell: bash
+        env:
+          GITHASH: ${GITHUB_SHA}

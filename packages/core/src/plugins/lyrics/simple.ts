@@ -13,7 +13,7 @@ class SimpleLyricsProvider extends LyricsProvider {
     this.isDefault = true;
   }
 
-  search(artistName: string, trackName: string): string {
+  search(artistName: string, trackName: string): Promise<string | void> {
     return lyrics.search(artistName, trackName)
       .then(result => result.lyrics).catch(function (err) {
         logger.log('error', err);

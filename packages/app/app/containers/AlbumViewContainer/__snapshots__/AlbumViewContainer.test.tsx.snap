@@ -241,7 +241,7 @@ exports[`Album view container should display an album 1`] = `
                       class="title_cell_buttons"
                     >
                       <button
-                        class="ui tiny basic circular icon button nuclear button borderless"
+                        class="ui tiny basic circular icon button nuclear button borderless title_cell_button"
                         data-testid="add-to-queue"
                       >
                         <i
@@ -250,7 +250,7 @@ exports[`Album view container should display an album 1`] = `
                         />
                       </button>
                       <button
-                        class="ui tiny basic circular icon button nuclear button borderless"
+                        class="ui tiny basic circular icon button nuclear button borderless title_cell_button"
                         data-testid="track-popup-trigger"
                       >
                         <i
@@ -340,7 +340,7 @@ exports[`Album view container should display an album 1`] = `
                       class="title_cell_buttons"
                     >
                       <button
-                        class="ui tiny basic circular icon button nuclear button borderless"
+                        class="ui tiny basic circular icon button nuclear button borderless title_cell_button"
                         data-testid="add-to-queue"
                       >
                         <i
@@ -349,7 +349,7 @@ exports[`Album view container should display an album 1`] = `
                         />
                       </button>
                       <button
-                        class="ui tiny basic circular icon button nuclear button borderless"
+                        class="ui tiny basic circular icon button nuclear button borderless title_cell_button"
                         data-testid="track-popup-trigger"
                       >
                         <i
@@ -439,7 +439,7 @@ exports[`Album view container should display an album 1`] = `
                       class="title_cell_buttons"
                     >
                       <button
-                        class="ui tiny basic circular icon button nuclear button borderless"
+                        class="ui tiny basic circular icon button nuclear button borderless title_cell_button"
                         data-testid="add-to-queue"
                       >
                         <i
@@ -448,7 +448,7 @@ exports[`Album view container should display an album 1`] = `
                         />
                       </button>
                       <button
-                        class="ui tiny basic circular icon button nuclear button borderless"
+                        class="ui tiny basic circular icon button nuclear button borderless title_cell_button"
                         data-testid="track-popup-trigger"
                       >
                         <i

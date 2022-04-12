@@ -98,8 +98,9 @@ class IpcContainer extends React.Component {
 
       try {
         const { artist, name, thumbnail } = this.props.queue.queueItems[this.props.queue.currentSong];
+        const duration = this.props.queue.queueItems[this.props.queue.currentSong].streams?.[0]?.duration;
 
-        ipcRenderer.send(IpcEvents.PLAYING_STATUS, { ...this.props.player, artist, name, thumbnail, loopAfterQueueEnd, shuffleQueue });
+        ipcRenderer.send(IpcEvents.PLAYING_STATUS, { ...this.props.player, artist, name, thumbnail, loopAfterQueueEnd, shuffleQueue, duration });
       } catch (err) {
         ipcRenderer.send(IpcEvents.PLAYING_STATUS, { ...this.props.player, loopAfterQueueEnd, shuffleQueue });
       }

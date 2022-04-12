@@ -93,6 +93,17 @@ describe('Playlists container', () => {
         })]));
   });
 
+  it('should load webview after clicking on Import from url (Spotify)', async () => {
+    const { component } = mountComponent();
+    await waitFor(() => component.getByTestId('import-from-url').click());
+    const input = component.getByTestId('import-playlist-by-url-input').firstChild;
+    fireEvent.change(input, { target: { value: 'https://open.spotify.com/playlist/37i9dQZF1EtkaNAuJY7Tph' } });
+    await waitFor(() => component.getByTestId('import-playlist-by-url-accept').click());
+    const title = await waitFor(() => component.getByTestId('import-playlist-by-url-webview').title);
+
+    expect(title).toEqual('Spotify – Your Top Songs 2019');
+  });
+
   it('should create an empty playlist with default name', async () => {
     const { component, store } = mountComponent();
     await waitFor(() => component.getByTestId('create-new').click());

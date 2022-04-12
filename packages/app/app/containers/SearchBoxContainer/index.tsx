@@ -1,11 +1,9 @@
 import React, { useCallback } from 'react';
-import _ from 'lodash';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { MetaProvider } from '@nuclear/core';
 import { SearchBox } from '@nuclear/ui';
-
 import { SearchActions, unifiedSearch } from '../../actions/search';
 import { pluginsSelectors } from '../../selectors/plugins';
 import { searchSelectors } from '../../selectors/search';
@@ -14,7 +12,7 @@ import { selectMetaProvider } from '../../actions/plugins';
 
 const MIN_SEARCH_LENGTH = 2;
 
-const providerToOption = (provider: MetaProvider) => ({
+const providerToOption = (provider?: MetaProvider) => provider && ({
   key: provider.sourceName.toLowerCase(),
   text: provider.searchName,
   value: provider.sourceName
@@ -26,18 +24,15 @@ const SearchBoxContainer: React.FC = () => {
   const dispatch = useDispatch();
   const unifiedSearchStarted = useSelector(searchSelectors.unifiedSearchStarted);
   const isConnected = useSelector(connectivity);
-  const searchProviders = useSelector(pluginsSelectors.plugins).metaProviders as {
-    [sourceName: string]: MetaProvider;
-  };
+  const searchProviders = useSelector(pluginsSelectors.plugins).metaProviders as MetaProvider[];
   const searchHistory = useSelector(searchSelectors.searchHistory);
   const selectedSearchProvider = useSelector(pluginsSelectors.selected)?.metaProviders;
   const isFocused = useSelector(searchSelectors.isFocused);
   const handleFocus = useCallback((focusState: boolean) => dispatch(SearchActions.setSearchDropdownVisibility(focusState)), [dispatch]);
 
-
-  const searchProvidersOptions = _.map(searchProviders, providerToOption);
+  const searchProvidersOptions = searchProviders?.map(providerToOption) ?? [];
   const selectedSearchProviderOption = providerToOption(
-    _.find(searchProviders, { sourceName: selectedSearchProvider })
+    searchProviders?.find(provider => provider.sourceName === selectedSearchProvider)
   );
 
   const handleSearch = useCallback(value =>
@@ -48,8 +43,9 @@ const SearchBoxContainer: React.FC = () => {
   );
   const handleClearSearchHistory = useCallback(() => dispatch(SearchActions.updateSearchHistory([])), [dispatch]);
   const handleSelectSearchProvider = useCallback((provider: ReturnType<typeof providerToOption>) =>
-    dispatch(selectMetaProvider(provider.value)),
+    provider && dispatch(selectMetaProvider(provider.value)),
   [dispatch]);
+
 
   return <SearchBox 
     loading={unifiedSearchStarted}
@@ -58,7 +54,6 @@ const SearchBoxContainer: React.FC = () => {
     lastSearchesLabel={t('last-searches')}
     clearHistoryLabel={t('clear-history')}
     footerLabel={t('you-can-search-for')}
-    onChange={_.debounce(handleSearch, 500)}
     onSearch={handleSearch}
     searchProviders={searchProvidersOptions}
     searchHistory={searchHistory}
@@ -67,6 +62,7 @@ const SearchBoxContainer: React.FC = () => {
     onSearchProviderSelect={handleSelectSearchProvider}
     isFocused={isFocused}
     handleFocus={handleFocus}
+    minSearchLength={MIN_SEARCH_LENGTH}
   />;
 };
 

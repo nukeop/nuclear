@@ -1,6 +1,8 @@
 import { fireEvent, waitFor } from '@testing-library/react';
-import { mountedPlayQueueFactory, setupI18Next } from '../../../test/testUtils';
-import { buildStoreState } from '../../../test/storeBuilders';
+import { store as electronStore } from '@nuclear/core';
+
+import { AnyProps, mountedPlayQueueFactory, setupI18Next } from '../../../test/testUtils';
+import { buildElectronStoreState, buildStoreState } from '../../../test/storeBuilders';
 
 describe('Play Queue container', () => {
   beforeAll(() => {
@@ -43,7 +45,7 @@ describe('Play Queue container', () => {
     expect(clipboard.writeText).toHaveBeenCalledWith('https://test-track-original-url');
   });
 
-  it('should not display copy button', async () => {
+  it('should not display copy original track url button if the url is not included in the current stream', async () => {
     const { component } = mountComponent();
     const track = component.getByTestId('queue-popup-uuid2');
     await waitFor(() => fireEvent.contextMenu(track));
@@ -72,11 +74,11 @@ describe('Play Queue container', () => {
     ]));
   });
 
-  it('should favorite track with stream data (queue more popup)', async () => {
+  it('should favorite track with stream data (queue menu popup)', async () => {
     const { component, store } = mountComponent();
 
-    await waitFor(() => component.getByTestId('queue-more-container').click());
-    await waitFor(() => component.getByTestId('queue-more-favorite').click());
+    await waitFor(() => component.getByTestId('queue-menu-more-container').click());
+    await waitFor(() => component.getByTestId('queue-menu-more-favorite').click());
 
     const state = store.getState();
     expect(state.favorites.tracks).toEqual(expect.arrayContaining([
@@ -92,12 +94,45 @@ describe('Play Queue container', () => {
     ]));
   });
 
-  const mountComponent = mountedPlayQueueFactory(
-    ['/dashboard'],
-    buildStoreState()
+  it('should add the current track to a playlist (queue menu popup)', async () => {
+    const { component, store } = mountComponent();
+
+    await waitFor(() => component.getByTestId('queue-menu-more-container').click());
+    await waitFor(() => component.getByText(/Add to playlist/i).click());
+    await waitFor(() => component.getByText('test playlist').click());
+
+    const state = store.getState();
+
+    expect(state.playlists.localPlaylists.data[0].tracks).toEqual([
+      expect.objectContaining({
+        artist: 'test artist 1',
+        name: 'test track 1'
+      })
+    ]);
+  });
+
+  const mountComponent = (initialStore?: AnyProps) => {
+    const initialState = initialStore || buildStoreState()
       .withTracksInPlayQueue()
+      .withPlaylists([{
+        id: 'test-playlist-id',
+        name: 'test playlist',
+        tracks: []
+      }])
       .withPlugins()
       .withConnectivity()
-      .build()
-  );
+      .build();
+
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    electronStore.init({
+      ...buildElectronStoreState(),
+      playlists: initialState.playlists.localPlaylists.data
+    });
+    
+    return mountedPlayQueueFactory(
+      ['/dashboard'],
+      initialState      
+    )();
+  };
 });

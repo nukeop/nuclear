@@ -14,16 +14,16 @@ class PlaylistResults extends React.Component {
     super(props);
   }
 
-  addTrack (track) {
+  addTrack(track) {
     if (typeof track !== 'undefined') {
       this.props.addToQueue({
         artist: track.artist,
         name: track.name,
-        thumbnail: _.get(track, 'image[1][\'#text\']', artPlaceholder)
+        thumbnail: track.thumbnail ?? _.get(track, 'image[1][\'#text\']', artPlaceholder)
       });
     }
   }
-  renderAddAllButton (tracks) {
+  renderAddAllButton(tracks) {
     return (tracks.length > 0 ? <a
       key='add-all-tracks-to-queue'
       href='#'
@@ -41,12 +41,12 @@ class PlaylistResults extends React.Component {
     );
   }
 
-  renderLoading () {
+  renderLoading() {
     return (<div>Loading... <FontAwesome name='spinner' pulse /></div>);
   }
 
-  renderResults () {
-    return (<div>
+  renderResults = () =>
+    <div>
       {this.renderAddAllButton(this.props.playlistSearchResults.info)}
       <TracksResults
         clearQueue={this.props.clearQueue}
@@ -56,13 +56,12 @@ class PlaylistResults extends React.Component {
         tracks={this.props.playlistSearchResults.info}
         limit='100'
         streamProviders={this.props.streamProviders}
-      /></div>);
-  }
+      /></div>
 
-  renderNoResult () {
+  renderNoResult() {
     return (<div>{this.props.t('empty')}</div>);
   }
-  render () {
+  render() {
     return (
       this.props.playlistSearchStarted ? ((this.props.playlistSearchStarted.length > 0 && typeof this.props.playlistSearchResults.info === 'undefined') ? this.renderLoading() : this.renderResults()) : this.renderNoResult()
     );

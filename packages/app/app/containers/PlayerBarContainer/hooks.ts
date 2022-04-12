@@ -188,24 +188,28 @@ export const useVolumeControlsProps = () => {
   const playOptions = [
     {
       name: t('loop'),
+      dataTestId: 'loop-play-option',
       icon: 'repeat' as SemanticICONS,
       enabled: _.get(settings, 'loopAfterQueueEnd'),
       onToggle: useToggleOptionCallback(toggleOption, 'loopAfterQueueEnd', settings)
     },
     {
       name: t('shuffle'),
+      dataTestId: 'shuffle-play-option',
       icon: 'random' as SemanticICONS,
       enabled: _.get(settings, 'shuffleQueue'),
       onToggle: useToggleOptionCallback(toggleOption, 'shuffleQueue', settings)
     },
     {
       name: t('autoradio'),
+      dataTestId: 'autoradio-play-option',
       icon: 'magic' as SemanticICONS,
       enabled: _.get(settings, 'autoradio'),
       onToggle: useToggleOptionCallback(toggleOption, 'autoradio', settings)
     },
     {
       name: t('mini-player'),
+      dataTestId: 'mini-player-play-option',
       icon: 'compress' as SemanticICONS,
       enabled: _.get(settings, 'miniPlayer'),
       onToggle: useToggleOptionCallback(toggleOption, 'miniPlayer', settings)

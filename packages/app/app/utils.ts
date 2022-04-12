@@ -46,10 +46,6 @@ export function getTrackDuration(track, selectedStreamProvider) {
     : _.get(localStream, 'duration');
 }
 
-export function removeQuotes(text) {
-  return String(text).replace(/[“”]/g, '');
-}
-
 export function createLastFMLink(artist, track) {
   if (!artist) {
     throw Error('"createLastFMLink" function requires at least "artist" argument');

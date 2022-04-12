@@ -1,19 +1,12 @@
 import logger from 'electron-timber';
 import { head } from 'lodash';
-import getArtistTitle from 'get-artist-title';
 import ytdl from 'ytdl-core';
-import ytlist from 'youtube-playlist';
+import ytpl from 'ytpl';
 import ytsr from 'ytsr';
 
-import LastFmApi from './Lastfm';
 import { StreamData, StreamQuery } from '../plugins/plugins.types';
 import * as SponsorBlock from './SponsorBlock';
 import { YoutubeHeuristics } from './heuristics';
-
-const lastfm = new LastFmApi(
-  process.env.LAST_FM_API_KEY,
-  process.env.LAST_FM_API_SECRET
-);
 
 const baseUrl = 'http://www.youtube.com/watch?v=';
 
@@ -46,36 +39,41 @@ function analyseUrlType(url) {
   return analysisResult;
 }
 
-function getTrackFromTitle(title): Promise<Record<string, any>> {
-  const result = getArtistTitle(title);
-  if (result) {
-    return lastfm.searchTracks(result[0] + ' ' + result[1], 1)
-      .then(tracks => tracks.json())
-      .then(tracksJson => {
-        return new Promise((resolve) => {
-          resolve(tracksJson.results.trackmatches.track[0]);
-        });
-      });
-  } else {
-    return new Promise((resolve) => {
-      resolve({});
-    });
-  }
+function formatPlaylistTrack(track: ytpl.Item) {
+  return {
+    streams: [{source: 'Youtube', id: track.id}],
+    name: track.title,
+    thumbnail: track.thumbnails[0].url,
+    artist: track.author.name
+  };
 }
 
-function handleYoutubePlaylist(url) {
-  return ytlist(url, 'name')
-    .then(res => {
-      const allTracks = res.data.playlist.map((elt) => {
-        return getTrackFromTitle(elt);
-      });
-      return Promise.all(allTracks);
-    })
-    .catch(function () {
-      return new Promise((resolve) => {
-        resolve([]);
-      });
-    });
+export async function handleYoutubePlaylist(url: string) {
+  try {
+    const playlistID = await ytpl.getPlaylistID(url);
+    if (ytpl.validateID(playlistID)) {
+      const playlistResult = await ytpl(playlistID, { pages: 1 });
+      const totalTrackCount = playlistResult.estimatedItemCount;
+      const allTracks = playlistResult.items;
+      let trackCount = allTracks.length;
+      let haveMoreTrack = playlistResult.continuation;
+      while (trackCount < totalTrackCount && haveMoreTrack) {
+        const moreTracks = await ytpl.continueReq(haveMoreTrack);
+        trackCount += moreTracks.items.length;
+        allTracks.push(...moreTracks.items);
+        haveMoreTrack = moreTracks.continuation;
+      }
+
+      return allTracks.map(formatPlaylistTrack);
+    }
+    return [];
+
+  } catch (e) {
+    logger.error('youtube fetch playlist error');
+    logger.error(e);
+    return [];
+  }
+
 }
 
 function handleYoutubeVideo(url) {
@@ -98,7 +96,7 @@ function handleYoutubeVideo(url) {
     });
 }
 
-export function urlSearch(url) {
+export function urlSearch(url: string) {
   const urlAnalysis = analyseUrlType(url);
   if (urlAnalysis.isYoutubePlaylist) {
     return handleYoutubePlaylist(url);

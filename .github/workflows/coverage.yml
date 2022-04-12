@@ -1,6 +1,6 @@
 name: Generate coverage
 
-on: 
+on:
   push:
     branches-ignore:
       - crowdin
@@ -14,18 +14,18 @@ jobs:
     timeout-minutes: 20
 
     steps:
-    - uses: actions/checkout@master
-    - name: Use Node.js 14
-      uses: actions/setup-node@master
-      with:
-        version: '14'
-        cache: npm
-    - name: Install dependencies
-      run: npm ci
-    - name: Run coverage
-      run: npm run coverage
-    - name: Upload coverage to Codecov
-      uses: codecov/codecov-action@v1
-      with:
-        token: ${{ secrets.CODECOV_TOKEN }}
-        files: ./packages/app/coverage/clover.xml,./packages/core/coverage/clover.xml,./packages/ui/coverage/clover.xml
+      - uses: actions/checkout@master
+      - name: Use Node.js 16
+        uses: actions/setup-node@master
+        with:
+          version: "16"
+          cache: npm
+      - name: Install dependencies
+        run: npm ci
+      - name: Run coverage
+        run: npm run coverage
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: ./packages/app/coverage/clover.xml,./packages/core/coverage/clover.xml,./packages/ui/coverage/clover.xml

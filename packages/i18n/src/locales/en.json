@@ -154,6 +154,7 @@
     "dialog-accept": "Save",
     "create-button": "Create new playlist",
     "new-playlist": "New playlist",
+    "import-url-button": "Import from url (Spotify)",
     "import-button": "Import from file (JSON)",
     "import-fail-title": "Playlist import fail",
     "import-success-title": "Playlist imported successfully",

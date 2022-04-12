@@ -48,7 +48,7 @@
         .position_cell_value {
           display: none;
         }
-        
+
         .add_button {
           display: inline-block;
         }
@@ -91,6 +91,12 @@
     .add_button {
       display: none;
       margin: 0;
+      width: 2.5em;
+      height: 2.5em;
+
+      .icon {
+        margin: 1px 0 0 0.5px !important;
+      }
     }
   }
 
@@ -130,14 +136,14 @@
       justify-content: center;
       align-items: center;
       padding: 0;
-      width: 2em;
-      height: 2em;
+      width: 2.5em;
+      height: 2.5em;
       margin: 0;
       border: none;
       background: none;
 
       i.icon {
-        margin: 0 !important;
+        margin: 0 0 0.5px 0 !important;
       }
     }
   }
@@ -147,14 +153,25 @@
 
     .button {
       margin: 0;
+      width: 2.5em;
+      height: 2.5em;
+
+      i.icon {
+        margin: 1px 0 0 -1px !important;
+      }
     }
   }
 
   .delete_cell {
     padding-right: 0;
 
-    i.icon {
-      margin: 0 !important;
+    button {
+      width: 2.5em;
+      height: 2.5em;
+
+      i.icon {
+        margin: 0 0 0 -0.5px !important;
+      }
     }
   }
 

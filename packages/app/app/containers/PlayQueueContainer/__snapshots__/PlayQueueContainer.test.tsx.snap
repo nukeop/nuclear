@@ -24,7 +24,7 @@ exports[`Play Queue container should display a context popup on right click 1`] 
           aria-disabled="false"
           aria-expanded="false"
           class="ui item dropdown queue_menu_more"
-          data-testid="queue-more-container"
+          data-testid="queue-menu-more-container"
           role="listbox"
           tabindex="0"
         >
@@ -92,12 +92,23 @@ exports[`Play Queue container should display a context popup on right click 1`] 
                 />
                 <div
                   class="menu transition left playlists_menu"
-                />
+                >
+                  <div
+                    class="item"
+                    role="option"
+                  >
+                    <i
+                      aria-hidden="true"
+                      class="music icon"
+                    />
+                    test playlist
+                  </div>
+                </div>
               </div>
             </div>
             <div
               class="item"
-              data-testid="queue-more-favorite"
+              data-testid="queue-menu-more-favorite"
               role="option"
             >
               <i
@@ -446,6 +457,39 @@ exports[`Play Queue container should display a context popup on right click 1`] 
           />
            Play now
         </a>
+        <div
+          aria-expanded="false"
+          class="ui dropdown nuclear dropdown popup_button left"
+          role="listbox"
+          tabindex="0"
+        >
+          <div
+            aria-atomic="true"
+            aria-live="polite"
+            class="divider text"
+            role="alert"
+          >
+            Add to playlist
+          </div>
+          <i
+            aria-hidden="true"
+            class="dropdown icon"
+          />
+          <div
+            class="menu transition"
+          >
+            <div
+              class="item"
+              role="option"
+            >
+              <i
+                aria-hidden="true"
+                class="music icon"
+              />
+              test playlist
+            </div>
+          </div>
+        </div>
         <a
           aria-label="Add this track to favorites"
           class="popup_button"
@@ -499,7 +543,7 @@ exports[`Play Queue container should display a context popup on right click for 
           aria-disabled="false"
           aria-expanded="false"
           class="ui item dropdown queue_menu_more"
-          data-testid="queue-more-container"
+          data-testid="queue-menu-more-container"
           role="listbox"
           tabindex="0"
         >
@@ -567,12 +611,23 @@ exports[`Play Queue container should display a context popup on right click for 
                 />
                 <div
                   class="menu transition left playlists_menu"
-                />
+                >
+                  <div
+                    class="item"
+                    role="option"
+                  >
+                    <i
+                      aria-hidden="true"
+                      class="music icon"
+                    />
+                    test playlist
+                  </div>
+                </div>
               </div>
             </div>
             <div
               class="item"
-              data-testid="queue-more-favorite"
+              data-testid="queue-menu-more-favorite"
               role="option"
             >
               <i
@@ -912,6 +967,39 @@ exports[`Play Queue container should display a context popup on right click for 
           />
            Play now
         </a>
+        <div
+          aria-expanded="false"
+          class="ui dropdown nuclear dropdown popup_button left"
+          role="listbox"
+          tabindex="0"
+        >
+          <div
+            aria-atomic="true"
+            aria-live="polite"
+            class="divider text"
+            role="alert"
+          >
+            Add to playlist
+          </div>
+          <i
+            aria-hidden="true"
+            class="dropdown icon"
+          />
+          <div
+            class="menu transition"
+          >
+            <div
+              class="item"
+              role="option"
+            >
+              <i
+                aria-hidden="true"
+                class="music icon"
+              />
+              test playlist
+            </div>
+          </div>
+        </div>
         <a
           aria-label="Add this track to favorites"
           class="popup_button"
@@ -965,7 +1053,7 @@ exports[`Play Queue container should display with track in queue 1`] = `
           aria-disabled="false"
           aria-expanded="false"
           class="ui item dropdown queue_menu_more"
-          data-testid="queue-more-container"
+          data-testid="queue-menu-more-container"
           role="listbox"
           tabindex="0"
         >
@@ -1033,12 +1121,23 @@ exports[`Play Queue container should display with track in queue 1`] = `
                 />
                 <div
                   class="menu transition left playlists_menu"
-                />
+                >
+                  <div
+                    class="item"
+                    role="option"
+                  >
+                    <i
+                      aria-hidden="true"
+                      class="music icon"
+                    />
+                    test playlist
+                  </div>
+                </div>
               </div>
             </div>
             <div
               class="item"
-              data-testid="queue-more-favorite"
+              data-testid="queue-menu-more-favorite"
               role="option"
             >
               <i

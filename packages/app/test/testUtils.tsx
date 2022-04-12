@@ -103,41 +103,35 @@ export const mountedComponentFactory = (
   initialHistoryEntries: string[],
   defaultInitialStore?: AnyProps
 ) =>
-  (initialStore?: AnyProps) => {
-    return mountComponent(
-      <MainContentContainer />, 
-      initialHistoryEntries, 
-      initialStore, 
-      defaultInitialStore
-    );
-  };
+  (initialStore?: AnyProps) => mountComponent(
+    <MainContentContainer />,
+    initialHistoryEntries,
+    initialStore,
+    defaultInitialStore
+  );
 
 export const mountedNavbarFactory= (
   initialHistoryEntries: string[],
   defaultInitialStore?: AnyProps
 ) =>
-  (initialStore?: AnyProps) => {
-    return mountComponent(
-      <Navbar>
-        <NavButtons />
-        <HelpModalContainer />
-      </Navbar>, 
-      initialHistoryEntries, 
-      initialStore, 
-      defaultInitialStore
-    );
-  };
+  (initialStore?: AnyProps) => mountComponent(
+    <Navbar>
+      <NavButtons />
+      <HelpModalContainer />
+    </Navbar>,
+    initialHistoryEntries,
+    initialStore,
+    defaultInitialStore
+  );
   
 export const mountedPlayQueueFactory= (
   initialHistoryEntries: string[],
   defaultInitialStore?: AnyProps
 ) =>
-  (initialStore?: AnyProps) => {
-    return mountComponent(
-      <PlayQueueContainer />, 
-      initialHistoryEntries, 
-      initialStore, 
-      defaultInitialStore,
-      { container: document.body }
-    );
-  };
+  (initialStore?: AnyProps) => mountComponent(
+    <PlayQueueContainer />,
+    initialHistoryEntries,
+    initialStore,
+    defaultInitialStore,
+    { container: document.body }
+  );

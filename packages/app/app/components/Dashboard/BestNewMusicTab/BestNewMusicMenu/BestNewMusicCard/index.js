@@ -2,16 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Icon } from 'semantic-ui-react';
 
-import { removeQuotes, createLastFMLink } from '../../../../../utils';
+import { createLastFMLink } from '../../../../../utils';
 import { favoriteTrackShape } from '../../../../../constants/propTypes';
 import styles from './styles.scss';
 
 function toFavoriteTrack({ artist, title, thumbnail }) {
-  const name = removeQuotes(title);
   const url = createLastFMLink(artist, name);
 
   return {
-    name,
+    name: title,
     artist: {
       name: artist
     },
