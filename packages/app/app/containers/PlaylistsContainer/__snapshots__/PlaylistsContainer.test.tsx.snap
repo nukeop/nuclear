@@ -29,6 +29,16 @@ exports[`Playlists container should display all playlists 1`] = `
           </button>
           <button
             class="ui basic button nuclear button"
+            data-testid="import-from-url"
+          >
+            <i
+              aria-hidden="true"
+              class="file text icon"
+            />
+            Import from url (Spotify)
+          </button>
+          <button
+            class="ui basic button nuclear button"
             data-testid="import-from-file"
           >
             <i
@@ -237,6 +247,16 @@ exports[`Playlists container should display empty playlists view 1`] = `
               class="plus icon"
             />
             Create new playlist
+          </button>
+          <button
+            class="ui basic button nuclear button"
+            data-testid="import-from-url"
+          >
+            <i
+              aria-hidden="true"
+              class="file text icon"
+            />
+            Import from url (Spotify)
           </button>
           <button
             class="ui basic button nuclear button"
