@@ -8,6 +8,7 @@ export type Track = {
   title?: string;
   name?: string;
   thumbnail?: string;
+  image?: { '#text'?: string }[];
   streams?: TrackStream[];
   uuid?: string;
 };
@@ -45,3 +46,9 @@ export type TrackStream = {
   thumbnail?: string;
   stream?: string;
 };
+
+export type SearchProviderOption = {
+  key: string
+  text: string
+  value: string
+}

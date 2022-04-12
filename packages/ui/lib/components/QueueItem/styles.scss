@@ -56,7 +56,6 @@
       align-items: center;
       margin: 0;
     }
-
   }
 
   &.current_song {
@@ -84,6 +83,7 @@
       height: auto;
       width: 100%;
       min-width: auto;
+      aspect-ratio: 1 / 1;
     }
 
     .thumbnail_overlay {
@@ -142,4 +142,3 @@
     color: rgba($white, 0.5);
   }
 }
-

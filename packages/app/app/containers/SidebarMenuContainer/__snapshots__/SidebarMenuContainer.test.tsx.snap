@@ -99,7 +99,7 @@ exports[`Sidebar menu container should render the sidebar menu 1`] = `
     >
       <i
         aria-hidden="true"
-        class="align right rotated icon"
+        class="align right icon"
       />
       Equalizer
     </div>

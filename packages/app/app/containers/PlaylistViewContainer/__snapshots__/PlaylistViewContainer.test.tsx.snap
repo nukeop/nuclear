@@ -185,6 +185,7 @@ exports[`Playlist view container should display a playlist 1`] = `
               >
                 <button
                   class="ui tiny basic circular icon button nuclear button borderless"
+                  data-testid="delete-button"
                 >
                   <i
                     aria-hidden="true"
@@ -249,7 +250,7 @@ exports[`Playlist view container should display a playlist 1`] = `
                     class="title_cell_buttons"
                   >
                     <button
-                      class="ui tiny basic circular icon button nuclear button borderless"
+                      class="ui tiny basic circular icon button nuclear button borderless title_cell_button"
                       data-testid="add-to-queue"
                     >
                       <i
@@ -258,7 +259,7 @@ exports[`Playlist view container should display a playlist 1`] = `
                       />
                     </button>
                     <button
-                      class="ui tiny basic circular icon button nuclear button borderless"
+                      class="ui tiny basic circular icon button nuclear button borderless title_cell_button"
                       data-testid="track-popup-trigger"
                     >
                       <i
@@ -311,6 +312,7 @@ exports[`Playlist view container should display a playlist 1`] = `
               >
                 <button
                   class="ui tiny basic circular icon button nuclear button borderless"
+                  data-testid="delete-button"
                 >
                   <i
                     aria-hidden="true"
@@ -375,7 +377,7 @@ exports[`Playlist view container should display a playlist 1`] = `
                     class="title_cell_buttons"
                   >
                     <button
-                      class="ui tiny basic circular icon button nuclear button borderless"
+                      class="ui tiny basic circular icon button nuclear button borderless title_cell_button"
                       data-testid="add-to-queue"
                     >
                       <i
@@ -384,7 +386,7 @@ exports[`Playlist view container should display a playlist 1`] = `
                       />
                     </button>
                     <button
-                      class="ui tiny basic circular icon button nuclear button borderless"
+                      class="ui tiny basic circular icon button nuclear button borderless title_cell_button"
                       data-testid="track-popup-trigger"
                     >
                       <i

@@ -46,3 +46,5 @@ export type TrackType = {
   name?: string;
   thumbnail?: string;
 };
+
+export const isArtistObject = (artist: TrackType['artist']): artist is { name: string } => typeof artist === 'object' && 'name' in artist;

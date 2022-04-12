@@ -183,6 +183,64 @@ describe('Playlist view container', () => {
     ]);
   });
 
+  it('should delete a single track from the playlist', async () => {
+    const { component, store } = mountComponent();
+    await waitFor(() => component.getAllByTestId('delete-button')[0].click());
+
+    const state = store.getState();
+    expect(state.playlists.localPlaylists.data[0].tracks).toHaveLength(1);
+    expect(state.playlists.localPlaylists.data[0].tracks).toEqual([
+      expect.objectContaining({
+        artist: 'test artist 2',
+        name: 'test track 22'
+      })
+    ]);
+  });
+
+  it('should delete a single track from the playlist when there are its duplicates', async () => {
+    const initialStore = buildStoreState()
+      .withPlugins()
+      .withPlaylists([{
+        id: 'test-playlist-id',
+        name: 'test playlist',
+        lastModified: 1000198000000,
+        tracks: [{
+          uuid: 'test-track-uuid-1',
+          artist: 'test artist 1',
+          name: 'test track 1',
+          streams: []
+        }, {
+          uuid: 'test-track-uuid-1',
+          artist: 'test artist 1',
+          name: 'test track 1',
+          streams: []
+        }, {
+          uuid: 'test-track-uuid-3',
+          artist: 'test artist 2',
+          name: 'test track 2',
+          streams: []
+        }]}])
+      .withConnectivity()
+      .build();
+    const { component, store } = mountComponent(initialStore);
+    await waitFor(() => component.getAllByTestId('delete-button')[1].click());
+
+    const state = store.getState();
+    expect(state.playlists.localPlaylists.data[0].tracks).toHaveLength(2);
+    expect(state.playlists.localPlaylists.data[0].tracks).toEqual([
+      expect.objectContaining({
+        uuid: 'test-track-uuid-1',
+        artist: 'test artist 1',
+        name: 'test track 1'
+      }),
+      expect.objectContaining({
+        uuid: 'test-track-uuid-3',
+        artist: 'test artist 2',
+        name: 'test track 2'
+      })
+    ]);
+  });
+
   const mountComponent = (initialStore?: AnyProps, initStore = true) => {
     const initialState = initialStore ||
       buildStoreState()

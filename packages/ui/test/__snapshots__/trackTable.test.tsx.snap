@@ -211,6 +211,7 @@ exports[`(Snapshot) Track table - example data with all rows should render corre
         >
           <button
             class="ui tiny basic circular icon button nuclear button borderless"
+            data-testid="delete-button"
           >
             <i
               aria-hidden="true"
@@ -275,7 +276,7 @@ exports[`(Snapshot) Track table - example data with all rows should render corre
               class="title_cell_buttons"
             >
               <button
-                class="ui tiny basic circular icon button nuclear button borderless"
+                class="ui tiny basic circular icon button nuclear button borderless title_cell_button"
                 data-testid="add-to-queue"
               >
                 <i
@@ -284,7 +285,7 @@ exports[`(Snapshot) Track table - example data with all rows should render corre
                 />
               </button>
               <button
-                class="ui tiny basic circular icon button nuclear button borderless"
+                class="ui tiny basic circular icon button nuclear button borderless title_cell_button"
                 data-testid="track-popup-trigger"
               >
                 <i
@@ -342,6 +343,7 @@ exports[`(Snapshot) Track table - example data with all rows should render corre
         >
           <button
             class="ui tiny basic circular icon button nuclear button borderless"
+            data-testid="delete-button"
           >
             <i
               aria-hidden="true"
@@ -406,7 +408,7 @@ exports[`(Snapshot) Track table - example data with all rows should render corre
               class="title_cell_buttons"
             >
               <button
-                class="ui tiny basic circular icon button nuclear button borderless"
+                class="ui tiny basic circular icon button nuclear button borderless title_cell_button"
                 data-testid="add-to-queue"
               >
                 <i
@@ -415,7 +417,7 @@ exports[`(Snapshot) Track table - example data with all rows should render corre
                 />
               </button>
               <button
-                class="ui tiny basic circular icon button nuclear button borderless"
+                class="ui tiny basic circular icon button nuclear button borderless title_cell_button"
                 data-testid="track-popup-trigger"
               >
                 <i
@@ -473,6 +475,7 @@ exports[`(Snapshot) Track table - example data with all rows should render corre
         >
           <button
             class="ui tiny basic circular icon button nuclear button borderless"
+            data-testid="delete-button"
           >
             <i
               aria-hidden="true"
@@ -537,7 +540,7 @@ exports[`(Snapshot) Track table - example data with all rows should render corre
               class="title_cell_buttons"
             >
               <button
-                class="ui tiny basic circular icon button nuclear button borderless"
+                class="ui tiny basic circular icon button nuclear button borderless title_cell_button"
                 data-testid="add-to-queue"
               >
                 <i
@@ -546,7 +549,7 @@ exports[`(Snapshot) Track table - example data with all rows should render corre
                 />
               </button>
               <button
-                class="ui tiny basic circular icon button nuclear button borderless"
+                class="ui tiny basic circular icon button nuclear button borderless title_cell_button"
                 data-testid="track-popup-trigger"
               >
                 <i

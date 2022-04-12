@@ -21,7 +21,7 @@ export default [
       { name: 'plugins', path: 'plugins', icon: 'flask' },
       { name: 'search', path: 'search', icon: 'search' },
       { name: 'settings', path: 'settings', icon: 'cog' },
-      { name: 'equalizer', path: 'equalizer', icon: 'align right rotated' },
+      { name: 'equalizer', path: 'equalizer', icon: 'align right' },
       { name: 'visualizer', path: 'visualizer', icon: 'tint' }
     ]
   }, {

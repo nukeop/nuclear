@@ -25,7 +25,8 @@ const TitleCell: React.FC<CellProps<Track> & TrackTableExtraProps> = ({
       {value}
     </span>
     <span className={styles.title_cell_buttons}>
-      <Button 
+      <Button
+        className={styles.title_cell_button}
         basic 
         borderless 
         circular 
@@ -38,6 +39,7 @@ const TitleCell: React.FC<CellProps<Track> & TrackTableExtraProps> = ({
       <TrackPopup
         trigger={
           <Button
+            className={styles.title_cell_button}
             basic
             borderless
             circular
