@@ -40,12 +40,6 @@ export const usePlaylistsProps = () => {
     dispatch(PlaylistActions.addPlaylistFromFile(filePath[0], t));
   }, [dispatch, t]);
 
-  const onImportFromUrl = useCallback((data: string) => {
-
-    dispatch(PlaylistActions.addPlaylistFromUrl(data, t));
-
-  }, [dispatch, t]);
-
   const onCreate = useCallback(
     (name: string) => {
       dispatch(PlaylistActions.addPlaylist([], name));
@@ -62,7 +56,6 @@ export const usePlaylistsProps = () => {
     playlists: localPlaylists.data,
     remotePlaylists,
     onImportFromFile,
-    onImportFromUrl,
     onCreate
   };
 };

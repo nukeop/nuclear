@@ -101,6 +101,8 @@ describe('Playlists container', () => {
     await waitFor(() => component.getByTestId('import-playlist-by-url-accept').click());
     const title = await waitFor(() => component.getByTestId('import-playlist-by-url-webview').title);
 
+    expect(component.asFragment()).toMatchSnapshot();
+
     expect(title).toEqual('Spotify – Your Top Songs 2019');
   });
 

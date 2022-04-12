@@ -100,9 +100,6 @@
     "report": "Submit issues or new features",
     "thanks": "Many thanks to our contributors on Github, your help was vital in creating this program."
   },
-  "input-dialog": {
-    "cancel": "Cancel"
-  },
   "library": {
     "add": "Add folders",
     "album": "Album",
@@ -139,7 +136,6 @@
     "album": "Album",
     "artist": "Artist",
     "delete": "Delete this playlist",
-    "dialog-placeholder": "Playlist name...",
     "duration": "Length",
     "empty": "No playlists.",
     "empty-help": "Try to create some playlists or import by url and they will appear here!",
@@ -151,7 +147,10 @@
     "export-fail-title": "Playlist export fail",
     "export-success-title": "Playlist exported successfully",
     "header": "Your playlists",
+    "spotify-import-placeholder": ",",
+    "dialog-placeholder": "Playlist name...",
     "dialog-accept": "Save",
+    "dialog-cancel": "Cancel",
     "create-button": "Create new playlist",
     "new-playlist": "New playlist",
     "import-url-button": "Import from url (Spotify)",
