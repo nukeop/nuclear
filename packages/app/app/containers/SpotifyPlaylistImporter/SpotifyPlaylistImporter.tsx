@@ -117,7 +117,7 @@ const SpotifyPlaylistImporter: React.FC= () => {
             data-testid='spotify-playlist-importer-accept'
             disabled={hasError}
           >
-            {t('dialog-accept')}
+            {t('dialog-import')}
           </Button>
         </>
         }

@@ -93,7 +93,8 @@ const PlaylistView: React.FC<PlaylistViewProps> = ({
               <InputDialog
                 header={<h4>Input new playlist name:</h4>}
                 placeholder={t('dialog-placeholder')}
-                accept='Rename'
+                acceptLabel={t('dialog-rename')}
+                cancelLabel={t('dialog-cancel')}
                 initialString={playlist.name}
                 onAccept={onRenamePlaylist}
                 trigger={
