@@ -7,29 +7,32 @@ import styles from './styles.scss';
 import { Icon } from 'semantic-ui-react';
 import InputDialog from '../../InputDialog';
 
+import SpotifyPlaylistImporter from '../../../containers/SpotifyPlaylistImporter/SpotifyPlaylistImporter';
+
 type PlaylistsHeaderProps = {
   showText: boolean;
   onImportFromFile: React.MouseEventHandler;
   onCreate: (name: string) => void;
 }
 
-const PlaylistsHeader: React.FC<PlaylistsHeaderProps> = ({ 
-  showText, 
-  onImportFromFile, 
-  onCreate 
+const PlaylistsHeader: React.FC<PlaylistsHeaderProps> = ({
+  showText,
+  onImportFromFile,
+  onCreate
 }) => {
   const { t } = useTranslation('playlists');
 
   return (
-    <div className={styles.header_container}>
+    <div className={styles.playlists_header_container}>
       {showText && <Header>{t('header')}</Header>}
       {!showText && <span />}
 
-      <div>
+      <div className={styles.playlist_header_buttons}>
         <InputDialog
           header={<h4>Input playlist name:</h4>}
           placeholder={t('dialog-placeholder')}
-          accept={t('dialog-accept')}
+          acceptLabel={t('dialog-accept')}
+          cancelLabel={t('dialog-cancel')}
           onAccept={onCreate}
           testIdPrefix='create-playlist'
           trigger={
@@ -43,6 +46,7 @@ const PlaylistsHeader: React.FC<PlaylistsHeaderProps> = ({
           }
           initialString={t('new-playlist')}
         />
+        <SpotifyPlaylistImporter />
         <Button
           basic
           onClick={onImportFromFile}

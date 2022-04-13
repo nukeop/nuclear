@@ -1,6 +1,22 @@
-.header_container{
+.playlists_header_container {
   display: flex;
-  flex-flow: row;
-  justify-content: space-between;
+  flex-flow: column;
+  justify-content: center;
   align-items: center;
+
+  .header_container {
+    margin: 1em;
+  }
+
+  .playlist_header_buttons {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+
+    button {
+      margin-bottom: 1em;
+    }
+  }
 }
