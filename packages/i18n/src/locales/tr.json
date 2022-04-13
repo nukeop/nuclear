@@ -100,9 +100,6 @@
     "report": "Sorun raporla veya bir istek yap",
     "thanks": "Github'taki katılımcılarımıza çok teşekkür ederim. Katkılarınız bu programı yaratmada çok büyük destek oldu."
   },
-  "input-dialog": {
-    "cancel": "İptal Et"
-  },
   "library": {
     "add": "Klasör ekle",
     "album": "Albüm",
@@ -139,7 +136,6 @@
     "album": "Albüm",
     "artist": "Şarkıcı",
     "delete": "Bu çalma listesini sil",
-    "dialog-placeholder": "Çalma listesi adı...",
     "duration": "Uzunluk",
     "empty": "Çalma listesi yok.",
     "empty-help": "Yeni bir çalma listesi oluşturur veya bir link ile içe aktarırsan, burada gözükecekler!",
@@ -151,9 +147,16 @@
     "export-fail-title": "Çalma Listesi dışa aktarılamadı",
     "export-success-title": "Çalma listesi başarıyla dışa aktarıldı",
     "header": "Çalma listelerim",
+    "import-progress": "Import progress",
+    "spotify-import-placeholder": "Paste a Spotify playlist URL here",
+    "dialog-placeholder": "Çalma listesi adı...",
     "dialog-accept": "Kaydet",
+    "dialog-cancel": "Cancel",
+    "dialog-rename": "Rename",
+    "dialog-import": "Import",
     "create-button": "Yeni çalma listesi oluştur",
     "new-playlist": "Yeni çalma listesi",
+    "import-url-button": "Import from url (Spotify)",
     "import-button": "Dosyadan içe aktar (JSON)",
     "import-fail-title": "Çalma listesi içe aktarılamadı",
     "import-success-title": "Çalma listesi başarıyla içe aktarıldı",
