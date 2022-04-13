@@ -95,22 +95,20 @@ describe('Playlists container', () => {
 
   it('should load webview after clicking on Import from url (Spotify)', async () => {
     const { component } = mountComponent();
-    await waitFor(() => component.getByTestId('import-from-url').click());
-    const input = component.getByTestId('import-playlist-by-url-input').firstChild;
+    await waitFor(() => component.getByText('Import from url (Spotify)').click());
+    const input = component.getByTestId('spotify-playlist-importer-input').firstChild;
     fireEvent.change(input, { target: { value: 'https://open.spotify.com/playlist/37i9dQZF1EtkaNAuJY7Tph' } });
-    await waitFor(() => component.getByTestId('import-playlist-by-url-accept').click());
-    const title = await waitFor(() => component.getByTestId('import-playlist-by-url-webview').title);
+    await waitFor(() => component.getByText('Import').click());
+    const webview: HTMLWebViewElement = await waitFor(() => component.getByTestId('spotify-playlist-importer-webview'));
 
-    expect(component.asFragment()).toMatchSnapshot();
-
-    expect(title).toEqual('Spotify – Your Top Songs 2019');
+    expect(webview).toMatchSnapshot();
   });
 
   it('should create an empty playlist with default name', async () => {
     const { component, store } = mountComponent();
     await waitFor(() => component.getByTestId('create-new').click());
     await waitFor(() =>
-      component.getByTestId('create-playlist-accept').click()
+      component.getByText('').click()
     );
     const state = store.getState();
     expect(state.playlists.localPlaylists.data).toEqual(

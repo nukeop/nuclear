@@ -152,6 +152,8 @@
     "dialog-placeholder": "Playlist name...",
     "dialog-accept": "Save",
     "dialog-cancel": "Cancel",
+    "dialog-rename": "Rename",
+    "dialog-import": "Import",
     "create-button": "Create new playlist",
     "new-playlist": "New playlist",
     "import-url-button": "Import from url (Spotify)",
