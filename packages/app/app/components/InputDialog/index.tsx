@@ -1,15 +1,16 @@
 import React, { useState, useCallback, useEffect } from 'react';
-import { Button, Input, Modal, ModalProps } from 'semantic-ui-react';
-import { useTranslation } from 'react-i18next';
+import { Input, Modal, ModalProps } from 'semantic-ui-react';
+import { Button } from '@nuclear/ui';
 
 type InputDialogProps = {
-initialString:string;
-trigger:ModalProps['trigger'];
+initialString: string;
+trigger: ModalProps['trigger'];
 header: React.ReactElement;
-placeholder:string;
-accept:string;
+placeholder: string;
+acceptLabel: string;
+cancelLabel: string;
 onAccept: (inputString: string) => void;
-testIdPrefix?:string;
+testIdPrefix?: string;
 }
 
 const InputDialog:React.FC<InputDialogProps> = ({ 
@@ -17,12 +18,12 @@ const InputDialog:React.FC<InputDialogProps> = ({
   trigger, 
   header, 
   placeholder, 
-  accept, 
+  acceptLabel, 
+  cancelLabel,
   onAccept, 
   testIdPrefix = null }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [inputString, setInputString] = useState(initialString);
-  const { t } = useTranslation('input-dialog');
 
   const handleOpen = useCallback(() => setIsOpen(true), []);
   const handleClose = useCallback(() => setIsOpen(false), []);
@@ -63,15 +64,18 @@ const InputDialog:React.FC<InputDialogProps> = ({
       </Modal.Content>
       <Modal.Actions>
         <Button 
-          basic color='red' inverted
+          basic 
+          inverted
+          color='red' 
           onClick={handleClose}
           data-testid={testIdPrefix && `${testIdPrefix}-cancel`}>
-          {t('cancel')}
+          {cancelLabel}
         </Button>
-        <Button color='green' inverted 
+        <Button 
+          color='green'
           onClick={onClick}
           data-testid={testIdPrefix && `${testIdPrefix}-accept`}>
-          {accept}
+          {acceptLabel}
         </Button>
       </Modal.Actions>
     </Modal>

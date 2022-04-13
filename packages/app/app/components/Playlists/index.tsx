@@ -91,7 +91,6 @@ const Playlists: React.FC<PlaylistsProps> = ({
             {
               isPlaylistsReallyNotEmpty() &&
               <PlaylistsTable
-                displayModificationDates
                 playlists={playlists}
 
                 {...strings}
