@@ -100,9 +100,6 @@
     "report": "Indsend problemer eller nye funktioner",
     "thanks": "Mange tak til Githubs brugere der har bidraget til projektet. Jeres hjælp har været afgørende i skabelsen af dette program."
   },
-  "input-dialog": {
-    "cancel": "Annuller"
-  },
   "library": {
     "add": "Tilføj mapper",
     "album": "Album",
@@ -139,7 +136,6 @@
     "album": "Album",
     "artist": "Kunstner",
     "delete": "Slet denne afspilningsliste",
-    "dialog-placeholder": "Afspilningslistens navn...",
     "duration": "Længde",
     "empty": "Ingen afspilningsliste.",
     "empty-help": "Try create some playlists or import by url and they will appear here!",
@@ -151,9 +147,16 @@
     "export-fail-title": "Eksport af spilleliste mislykkedes",
     "export-success-title": "Spilleliste eksporterede succesfuldt",
     "header": "Dine spillelister",
+    "import-progress": "Import progress",
+    "spotify-import-placeholder": "Paste a Spotify playlist URL here",
+    "dialog-placeholder": "Afspilningslistens navn...",
     "dialog-accept": "Gem",
+    "dialog-cancel": "Cancel",
+    "dialog-rename": "Rename",
+    "dialog-import": "Import",
     "create-button": "Opret ny spilleliste",
     "new-playlist": "Ny playliste",
+    "import-url-button": "Import from url (Spotify)",
     "import-button": "Importer fra fil (JSON)",
     "import-fail-title": "Import af spilleliste mislykkedes",
     "import-success-title": "Spilleliste importerede succesfuldt",
