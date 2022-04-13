@@ -100,9 +100,6 @@
     "report": "সমস্যা বা নতুন ফিচারের জন্য আবেদন করুন",
     "thanks": "আমাদের গিটহাবের অবদানকারীদের অসংখ্য ধন্যবাদ, এই প্রজেক্ট সৃষ্টিতে আপনাদের অবদান ছিল অপরিহার্য।"
   },
-  "input-dialog": {
-    "cancel": "বাতিল করুন"
-  },
   "library": {
     "add": "ফোল্ডার সংযোজন করুন",
     "album": "অ্যালবাম",
@@ -139,7 +136,6 @@
     "album": "Album",
     "artist": "Artist",
     "delete": "Delete this playlist",
-    "dialog-placeholder": "Playlist name...",
     "duration": "Length",
     "empty": "No playlists.",
     "empty-help": "Try to create some playlists or import by url and they will appear here!",
@@ -151,9 +147,16 @@
     "export-fail-title": "Playlist export fail",
     "export-success-title": "Playlist exported successfully",
     "header": "Your playlists",
+    "import-progress": "Import progress",
+    "spotify-import-placeholder": "Paste a Spotify playlist URL here",
+    "dialog-placeholder": "Playlist name...",
     "dialog-accept": "Save",
+    "dialog-cancel": "Cancel",
+    "dialog-rename": "Rename",
+    "dialog-import": "Import",
     "create-button": "Create new playlist",
     "new-playlist": "New playlist",
+    "import-url-button": "Import from url (Spotify)",
     "import-button": "Import from file (JSON)",
     "import-fail-title": "Playlist import fail",
     "import-success-title": "Playlist imported successfully",
