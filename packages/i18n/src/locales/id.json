@@ -100,9 +100,6 @@
     "report": "Laporkan masalah atau fitur baru",
     "thanks": "Terima kasih untuk para kontributor di Github atas peran pentingnya dalam pengembangan program ini."
   },
-  "input-dialog": {
-    "cancel": "Batal"
-  },
   "library": {
     "add": "Tambahkan folder",
     "album": "Album",
@@ -139,7 +136,6 @@
     "album": "Album",
     "artist": "Musisi",
     "delete": "Hapus daftar putar ini",
-    "dialog-placeholder": "Nama daftar putar...",
     "duration": "Durasi",
     "empty": "Tidak ada daftar putar.",
     "empty-help": "Try create some playlists or import by url and they will appear here!",
@@ -151,9 +147,16 @@
     "export-fail-title": "Eksport daftar putar gagal",
     "export-success-title": "Daftar putar berhasil diekspor",
     "header": "Daftar putarmu",
+    "import-progress": "Import progress",
+    "spotify-import-placeholder": "Paste a Spotify playlist URL here",
+    "dialog-placeholder": "Nama daftar putar...",
     "dialog-accept": "Simpan",
+    "dialog-cancel": "Cancel",
+    "dialog-rename": "Rename",
+    "dialog-import": "Import",
     "create-button": "Buat daftar putar baru",
     "new-playlist": "Daftar putar baru",
+    "import-url-button": "Import from url (Spotify)",
     "import-button": "Impor berkas (JSON)",
     "import-fail-title": "Impor daftar putar gagal",
     "import-success-title": "Daftar putar berhasil diimpor",
