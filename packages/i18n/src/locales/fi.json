@@ -100,9 +100,6 @@
     "report": "Ilmoita ongelmasta tai ehdota uusia ominaisuuksia",
     "thanks": "Iso kiitos auttajille Githubissa. Apunne oli tärkeää tämän sovelluksen luomisessa."
   },
-  "input-dialog": {
-    "cancel": "Peruuta"
-  },
   "library": {
     "add": "Lisää kansioita",
     "album": "Albumi",
@@ -139,7 +136,6 @@
     "album": "Albumi",
     "artist": "Artisti",
     "delete": "Poista tämä soittolista",
-    "dialog-placeholder": "Soittolistan nimi...",
     "duration": "Kesto",
     "empty": "Ei soittolistoja.",
     "empty-help": "Try create some playlists or import by url and they will appear here!",
@@ -151,9 +147,16 @@
     "export-fail-title": "Soittolistan vienti epäonnistui",
     "export-success-title": "Soittolistan vienti onnistui",
     "header": "Soittolistasi",
+    "import-progress": "Import progress",
+    "spotify-import-placeholder": "Paste a Spotify playlist URL here",
+    "dialog-placeholder": "Soittolistan nimi...",
     "dialog-accept": "Tallenna",
+    "dialog-cancel": "Cancel",
+    "dialog-rename": "Rename",
+    "dialog-import": "Import",
     "create-button": "Luo uusi soittolista",
     "new-playlist": "Uusi soittolista",
+    "import-url-button": "Import from url (Spotify)",
     "import-button": "Tuo tiedostosta (JSON)",
     "import-fail-title": "Soittolistan tuonti epäonnistui",
     "import-success-title": "Soittolistan tuonti onnistui",
