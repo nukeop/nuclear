@@ -11,11 +11,11 @@ import { createChart} from './chart';
 
 import styles from './styles.scss';
 
-const mapGraphValueToData = value => value - 10;
-const mapDataValueToGraph = value => value + 10;
+const mapGraphValueToData = (value: number) => value - 10;
+const mapDataValueToGraph = (value: number) => value + 10;
 
 
-const useChart = ({values, onEqualizerChange, preAmp, spectrum}) => {
+const useChart = ({values, onEqualizerChange, preAmp, spectrum} : {values: number[], onEqualizerChange:({index, value}: {index: number, value: number}) => void, preAmp: number, spectrum: number[] | null} ) => {
   // Proper usage of useRef with typescript https://github.com/typescript-cheatsheets/react/issues/187
   const canvasRef = useRef(null);
   const chartRef = useRef(null);
@@ -73,7 +73,7 @@ type EqualizerProps = {
   spectrum: Array<number>;
   onToggleSpectrum: RadioProps['onChange'];
   onPreampChange: (n: number) => void;
-  onEqualizerChange: () => void;  
+  onEqualizerChange: ({index, value}: {index: number, value: number}) => void;  
 }
 
 const Equalizer: React.FC<EqualizerProps> = ({values, preAmp, enableSpectrum, spectrum, onEqualizerChange, onToggleSpectrum, onPreampChange}) => {
