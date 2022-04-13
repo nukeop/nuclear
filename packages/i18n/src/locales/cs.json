@@ -100,9 +100,6 @@
     "report": "Nahlásit chybu nebo poslat návrh",
     "thanks": "Mnoho díků všem našim přispěvatelům na GitHubu, vaše pomoc byla při vytváření tohoto programu velmi důležitá."
   },
-  "input-dialog": {
-    "cancel": "Storno"
-  },
   "library": {
     "add": "Přidat složky",
     "album": "Album",
@@ -139,7 +136,6 @@
     "album": "Album",
     "artist": "Umělec",
     "delete": "Odstranit tento seznam skladeb",
-    "dialog-placeholder": "Název seznamu skladeb...",
     "duration": "Délka",
     "empty": "Žádné seznamy skladeb.",
     "empty-help": "Try create some playlists or import by url and they will appear here!",
@@ -151,9 +147,16 @@
     "export-fail-title": "Chyba exportu playlistu",
     "export-success-title": "Playlist úspěšně exportován",
     "header": "Vaše playlisty",
+    "import-progress": "Import progress",
+    "spotify-import-placeholder": "Paste a Spotify playlist URL here",
+    "dialog-placeholder": "Název seznamu skladeb...",
     "dialog-accept": "Uložit",
+    "dialog-cancel": "Cancel",
+    "dialog-rename": "Rename",
+    "dialog-import": "Import",
     "create-button": "Vytvořit nový playlist",
     "new-playlist": "Nový playlist",
+    "import-url-button": "Import from url (Spotify)",
     "import-button": "Importovat ze souboru (JSON)",
     "import-fail-title": "Chyba při importu playlistu",
     "import-success-title": "Playlist úspěšně importován",
