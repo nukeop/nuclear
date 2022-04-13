@@ -147,6 +147,7 @@
     "export-fail-title": "Playlist export fail",
     "export-success-title": "Playlist exported successfully",
     "header": "Your playlists",
+    "import-progress": "Import progress",
     "spotify-import-placeholder": "Paste a Spotify playlist URL here",
     "dialog-placeholder": "Playlist name...",
     "dialog-accept": "Save",

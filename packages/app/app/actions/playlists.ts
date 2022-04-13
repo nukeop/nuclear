@@ -18,6 +18,7 @@ import {
 import { success, error } from './toasts';
 import { IdentityStore } from '../reducers/nuclear/identity';
 import { PlaylistsStore } from '../reducers/playlists';
+import { SpotifyPlaylist } from '../containers/SpotifyPlaylistImporter/hooks';
 
 export const updatePlaylistsAction = createStandardAction(Playlists.UPDATE_LOCAL_PLAYLISTS)<PlaylistsStore['localPlaylists']['data']>();
 
@@ -124,30 +125,25 @@ export const exportPlaylist = (playlist, t) => async (dispatch) => {
   }
 };
 
-export function addPlaylistFromUrl(data: string, t) {
+export function addPlaylistFromUrl(playlist: SpotifyPlaylist, t) {
   return async dispatch => {
     try {
-      const parsed = JSON.parse(data);
-      const name = _.get(parsed, 'name', null);
-      const tracks = _.get(parsed, 'tracks', null);
-      const source = _.get(parsed, 'source', null);
-
-      if (!name || !tracks) {
+      if (!playlist.name || !playlist.tracks) {
         throw new Error('missing tracks or name');
       }
 
       let playlists = store.get('playlists') || [];
-      const playlist = PlaylistHelper.formatPlaylistForStorage(name, tracks, v4(), source);
+      const importedPlaylist = PlaylistHelper.formatPlaylistForStorage(playlist.name, playlist.tracks, v4(), playlist.source);
 
-      if (_.isEmpty(tracks)) {
+      if (_.isEmpty(playlist.tracks)) {
         dispatch(error(t('import-fail-title'), t('error-empty-data'), null, null));
         return;
       }
 
-      playlists = [...playlists, playlist];
+      playlists = [...playlists, importedPlaylist];
 
       store.set('playlists', playlists);
-      dispatch(success(t('import-success-title'), t('playlist-created', { name }), null, null));
+      dispatch(success(t('import-success-title'), t('playlist-created', { name: playlist.name }), null, null));
       dispatch(updatePlaylistsAction(playlists));
 
     } catch (e) {
