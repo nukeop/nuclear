@@ -100,9 +100,6 @@
     "report": "提交issues或新的功能",
     "thanks": "非常感謝 Github 上貢獻者的貢獻，您的貢獻對本程式的誕生至關重要。"
   },
-  "input-dialog": {
-    "cancel": "取消"
-  },
   "library": {
     "add": "新建資料夾",
     "album": "專輯",
@@ -139,7 +136,6 @@
     "album": "專輯",
     "artist": "演出者",
     "delete": "删除播放清單",
-    "dialog-placeholder": "播放清單名稱...",
     "duration": "長度",
     "empty": "没有播放清單",
     "empty-help": "Try create some playlists or import by url and they will appear here!",
@@ -151,9 +147,16 @@
     "export-fail-title": "導出播放列表失敗",
     "export-success-title": "播放列表導出成功",
     "header": "你的播放列表",
+    "import-progress": "Import progress",
+    "spotify-import-placeholder": "Paste a Spotify playlist URL here",
+    "dialog-placeholder": "播放清單名稱...",
     "dialog-accept": "保存",
+    "dialog-cancel": "Cancel",
+    "dialog-rename": "Rename",
+    "dialog-import": "Import",
     "create-button": "建立新的播放清單",
     "new-playlist": "新增播放清單",
+    "import-url-button": "Import from url (Spotify)",
     "import-button": "從文件導入(JSON)",
     "import-fail-title": "導入播放列表失敗",
     "import-success-title": "播放列表導入成功",
