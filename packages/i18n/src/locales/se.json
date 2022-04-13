@@ -100,9 +100,6 @@
     "report": "Skicka in problem eller nya funktioner",
     "thanks": "Stort tack till alla som bidragit på GitHub, er hjälp har varit ovärderlig i skapandet av detta program."
   },
-  "input-dialog": {
-    "cancel": "Avbryt"
-  },
   "library": {
     "add": "Lägg till mappar",
     "album": "Album",
@@ -139,7 +136,6 @@
     "album": "Album",
     "artist": "Artist",
     "delete": "Ta bort denna spellista",
-    "dialog-placeholder": "Namn på spellistan...",
     "duration": "Längd",
     "empty": "Inga spellistor.",
     "empty-help": "Försök skapa några spellistor eller importera med URL och de kommer att visas här!",
@@ -151,9 +147,16 @@
     "export-fail-title": "Export av spellista misslyckades",
     "export-success-title": "Export av spellista lyckades",
     "header": "Dina spellistor",
+    "import-progress": "Import progress",
+    "spotify-import-placeholder": "Paste a Spotify playlist URL here",
+    "dialog-placeholder": "Namn på spellistan...",
     "dialog-accept": "Spara",
+    "dialog-cancel": "Cancel",
+    "dialog-rename": "Rename",
+    "dialog-import": "Import",
     "create-button": "Skapa ny spellista",
     "new-playlist": "Ny spellista",
+    "import-url-button": "Import from url (Spotify)",
     "import-button": "Importera från fil (JSON)",
     "import-fail-title": "Importering av spellista misslyckades",
     "import-success-title": "Spellistan importerades",
