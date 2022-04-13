@@ -129,7 +129,7 @@ const persist = (state: EqualizerState) => store.set('equalizer', {
 type EqualizerReducerActions = ActionType<typeof EqualizerActions>
 
 export default function EqualizerReducer(state = getInitialState(), action:EqualizerReducerActions): EqualizerState {
-  let newState;
+  let newState: EqualizerState;
 
   switch (action.type) {
   case getType(EqualizerActions.changeValue): {
