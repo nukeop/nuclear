@@ -100,9 +100,6 @@
     "report": "Pošaljite probleme, ili nove značajke",
     "thanks": "Puno hvala svim našim suradnicima na Githubu, vaša pomoć je bila ključna u stvaranju ovog programa."
   },
-  "input-dialog": {
-    "cancel": "Odustani"
-  },
   "library": {
     "add": "Dodaj mapu",
     "album": "Album",
@@ -139,7 +136,6 @@
     "album": "Album",
     "artist": "Izvođač",
     "delete": "Obriši ovaj popis za reprodukciju",
-    "dialog-placeholder": "Ime popisa za reprodukciju...",
     "duration": "Duljina",
     "empty": "Nema popisa za reprodukciju.",
     "empty-help": "Try create some playlists or import by url and they will appear here!",
@@ -151,9 +147,16 @@
     "export-fail-title": "Neuspješno je izvezen popis",
     "export-success-title": "Uspješno je izvezen popis",
     "header": "Vaši popisi",
+    "import-progress": "Import progress",
+    "spotify-import-placeholder": "Paste a Spotify playlist URL here",
+    "dialog-placeholder": "Ime popisa za reprodukciju...",
     "dialog-accept": "Spremi",
+    "dialog-cancel": "Cancel",
+    "dialog-rename": "Rename",
+    "dialog-import": "Import",
     "create-button": "Kreirajte novi popis za reprodukciju",
     "new-playlist": "Novi popis",
+    "import-url-button": "Import from url (Spotify)",
     "import-button": "Unesite popis iz datoteke (JSON)",
     "import-fail-title": "Neuspješno je unesen popis",
     "import-success-title": "Uspješno je unesen popis",
