@@ -100,9 +100,6 @@
     "report": "Sende eine Fehlermeldung oder eine Idee für eine neue Funktion",
     "thanks": "Vielen Dank an unsere Mitwirkenden auf GitHub. Ihre Hilfe war entscheidend für die Entwicklung dieses Programms."
   },
-  "input-dialog": {
-    "cancel": "Abbrechen"
-  },
   "library": {
     "add": "Ordner hinzufügen",
     "album": "Album",
@@ -139,7 +136,6 @@
     "album": "Album",
     "artist": "Künstler",
     "delete": "Diese Wiedergabeliste löschen",
-    "dialog-placeholder": "Wiedergabelistenname...",
     "duration": "Länge",
     "empty": "Keine Wiedergabelisten.",
     "empty-help": "Versuche ein paar Playlisten zu erstellen oder importiere welche per URL und sie werden hier erscheinen!",
@@ -151,9 +147,16 @@
     "export-fail-title": "Export von Wiedergabeliste fehlgeschlagen",
     "export-success-title": "Wiedergabeliste erfolgreich exportiert",
     "header": "Deine Wiedergabelisten",
+    "import-progress": "Import progress",
+    "spotify-import-placeholder": "Paste a Spotify playlist URL here",
+    "dialog-placeholder": "Wiedergabelistenname...",
     "dialog-accept": "Speichern",
+    "dialog-cancel": "Cancel",
+    "dialog-rename": "Rename",
+    "dialog-import": "Import",
     "create-button": "Neue Wiedergabeliste erstellen",
     "new-playlist": "Neue Wiedergabeliste",
+    "import-url-button": "Import from url (Spotify)",
     "import-button": "Aus Datei importieren (JSON)",
     "import-fail-title": "Import der Wiedergabeliste fehlgeschlagen",
     "import-success-title": "Wiedergabeliste erfolgreich importiert",
