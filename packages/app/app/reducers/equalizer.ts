@@ -1,14 +1,32 @@
 import _ from 'lodash';
 import { store } from '@nuclear/core';
-import {
-  TOGGLE_SPECTRUM,
-  SET_SPECTRUM,
-  CHANGE_VALUE,
-  SELECT_PRESET,
-  SET_PREAMP
-} from '../actions/equalizer';
+import * as EqualizerActions from '../actions/equalizer';
+import { ActionType, getType } from 'typesafe-actions';
 
-const getPresets = (custom) => [
+type CustomPreset = {
+  values: number[]
+  preAmp: number
+}
+
+type Preset = {
+  label: string
+  id: string
+  values: number[]
+  preAmp: number
+}
+
+type EqualizerState = {
+  presets: {
+    [id: string]: Preset
+  }
+  presetIDs: string[]
+  selected: string
+  enableSpectrum: boolean
+  spectrum: number[]
+  custom?: Preset
+}
+
+const getPresets = (custom:CustomPreset): Preset[] => [
   {
     label: 'default',
     id: 'default',
@@ -64,12 +82,12 @@ const getPresets = (custom) => [
   }
 ];
 
-const normalize = list => list.reduce(({ids, map}, item) => ({
+const normalize = (list: Preset[]): {ids: string[], map: {[id: string]: Preset}} => list.reduce(({ids, map}, item) => ({
   ids: [...ids, item.id],
   map: {...map, [item.id]: item}
 }), {ids: [], map: {}});
 
-const getSelected = (selected, presets) => {
+const getSelected = (selected: string, presets: Preset[]) => {
   if (selected.toLowerCase() === selected) {
     return selected;
   }
@@ -77,18 +95,18 @@ const getSelected = (selected, presets) => {
   return legacySelected ? legacySelected.id : presets[0].id;
 };
 
-const getLegacyCustom = ({presets}) => {
+const getLegacyCustom = ({presets}: { [id: string]: Preset }): CustomPreset => {
   return {
     values: _.get(presets, 'Custom.values', []),
     preAmp: _.get(presets, 'Custom.preAmp', 0)
   };
 };
 
-const getSpectrumStatus = (otherConfig) => {
+const getSpectrumStatus = (otherConfig: Omit<EqualizerState, 'custom' | 'selected'>) => {
   return _.get(otherConfig, 'enableSpectrum', false);
 };
 
-const getInitialState = () => {
+const getInitialState = (): EqualizerState => {
   const {custom, selected, ...other} = store.get('equalizer');
   const customPreset = custom ? custom : getLegacyCustom(other);
   const presets = getPresets(customPreset);
@@ -102,17 +120,19 @@ const getInitialState = () => {
   };
 };
 
-const persist = state => store.set('equalizer', {
+const persist = (state: EqualizerState) => store.set('equalizer', {
   custom: state.presets.custom,
   selected: state.selected,
   enableSpectrum: state.enableSpectrum
 });
 
-export default function EqualizerReducer(state = getInitialState(), action) {
-  let newState;
+type EqualizerReducerActions = ActionType<typeof EqualizerActions>
+
+export default function EqualizerReducer(state = getInitialState(), action:EqualizerReducerActions): EqualizerState {
+  let newState: EqualizerState;
 
   switch (action.type) {
-  case CHANGE_VALUE: {
+  case getType(EqualizerActions.changeValue): {
     const {index, value} = action.payload;
     const values = [...state.presets[state.selected].values];
     values[index] = value;
@@ -130,7 +150,7 @@ export default function EqualizerReducer(state = getInitialState(), action) {
     persist(newState);
     return newState;
   }
-  case SET_PREAMP: {
+  case getType(EqualizerActions.setPreAmp): {
     newState = {
       ...state,
       selected: 'custom',
@@ -146,21 +166,21 @@ export default function EqualizerReducer(state = getInitialState(), action) {
     persist(newState);
     return newState;
   }
-  case SELECT_PRESET:
+  case getType(EqualizerActions.selectPreset):
     newState = {
       ...state,
       selected: action.payload
     };
     persist(newState);
     return newState;
-  case TOGGLE_SPECTRUM:
+  case getType(EqualizerActions.toggleSpectrum):
     newState = {
       ...state,
       enableSpectrum: !state.enableSpectrum
     };
     persist(newState);
     return newState;
-  case SET_SPECTRUM:
+  case getType(EqualizerActions.setSpectrum):
     return {
       ...state,
       spectrum: action.payload
