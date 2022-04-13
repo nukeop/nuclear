@@ -8,17 +8,18 @@ import EqualizerPresetList from '../../components/EqualizerPresetList';
 import { useTranslation } from 'react-i18next';
 
 import styles from './styles.scss';
+import { RootState } from '../../reducers';
 
 const usePresets = () => {
-  const map = useSelector(state => state.equalizer.presets);
-  const ids = useSelector(state => state.equalizer.presetIDs);
+  const map = useSelector((state: RootState) => state.equalizer.presets);
+  const ids = useSelector((state: RootState) => state.equalizer.presetIDs);
   return useMemo(() => denormalize({ids, map}), [ids, map]);
 };
 
 const denormalize = ({map, ids}) => ids.map(id => map[id]);
 
-const EqualizerViewContainer = () => {
-  const equalizer = useSelector(state => state.equalizer);
+const EqualizerViewContainer: React.FC = () => {
+  const equalizer = useSelector((state: RootState) => state.equalizer);
   const preset = equalizer.presets[equalizer.selected];
   const dispatch = useDispatch();
   const actions = useMemo(() => bindActionCreators(EqualizerActions, dispatch), [dispatch]);
