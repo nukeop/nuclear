@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from 'react';
-import { Icon, Input, Modal } from 'semantic-ui-react';
+import { Icon, Input, Modal, Progress } from 'semantic-ui-react';
 import { useTranslation } from 'react-i18next';
 import { WebviewTag } from 'electron';
 import { URL } from 'url';
@@ -7,13 +7,15 @@ import { URL } from 'url';
 import { Button } from '@nuclear/ui';
 
 import { useSpotifyPlaylistImporterProps } from './hooks';
+import styles from './styles.scss';
 
 const SpotifyPlaylistImporter: React.FC= () => {
   const { t } = useTranslation('playlists');
-  const { onAccept } = useSpotifyPlaylistImporterProps(t);
+  const { onAccept, importProgress, playlistMeta, onClose } = useSpotifyPlaylistImporterProps(t);
+  const progressPercent = Math.round((playlistMeta?.totalTracks ? importProgress/playlistMeta.totalTracks : 0) * 100);
 
   const [isOpen, setIsOpen] = useState(false);
-  const [displayView, setDisplay] = useState(false);
+  const [displayImportProgress, setDisplayImportProgress] = useState(false);
   const [inputString, setInputString] = useState('');
   const [hasError, setError] = useState(false);
 
@@ -21,7 +23,8 @@ const SpotifyPlaylistImporter: React.FC= () => {
   const handleClose = useCallback(() => {
     setIsOpen(false);
     setInputString('');
-    setDisplay(false);
+    setDisplayImportProgress(false);
+    onClose();
   }, []);
   const handleChange = useCallback(e => {
     try {
@@ -36,7 +39,7 @@ const SpotifyPlaylistImporter: React.FC= () => {
   }, []);
 
   const onClick = useCallback(() => {
-    setDisplay(true);
+    setDisplayImportProgress(true);
   }, []);
   
   const webviewRef = useCallback((w: WebviewTag) => {
@@ -64,8 +67,8 @@ const SpotifyPlaylistImporter: React.FC= () => {
       open={isOpen}
     >
       <Modal.Content>
-        {!displayView && <h4>Input playlist url:</h4>}
-        {!displayView && <Input
+        {!displayImportProgress && <h4>Input playlist url:</h4>}
+        {!displayImportProgress && <Input
           fluid
           inverted
           ref={input => {
@@ -77,17 +80,28 @@ const SpotifyPlaylistImporter: React.FC= () => {
           error={hasError}
           data-testid='spotify-playlist-importer-input'
         />}
-        {displayView && <webview
+        {displayImportProgress && <webview
+          className={styles.spotify_import_webview}
           ref={webviewRef}
           src={inputString}
           data-testid='spotify-playlist-importer-webview'
           webpreferences='nodeIntegration=yes,javascript=yes,contextIsolation=no'
           useragent='Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.175 Safari/537.36'
-          style={{ width: '500px', height: '500px' }}
         />}
+        {
+          displayImportProgress && 
+          <Progress
+            className={styles.spotify_import_progress_bar}
+            indicating
+            progress
+            autoSuccess
+            label={t('import-progress')}
+            percent={progressPercent} 
+          />
+        }
       </Modal.Content>
       <Modal.Actions>
-        {!displayView && <>
+        {!displayImportProgress && <>
           <Button
             basic
             inverted

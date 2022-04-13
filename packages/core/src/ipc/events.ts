@@ -54,6 +54,10 @@ enum IpcEvents {
   PLAYLIST_ACTIVATE = 'activate-playlist',
   PLAYLIST_ADD_QUEUE = 'add-queue-playlist',
 
+  IMPORT_SPOTIFY_PLAYLIST_METADATA = 'import-spotify-playlist-metadata',
+  IMPORT_SPOTIFY_PLAYLIST_PROGRESS = 'import-spotify-playlist-progress',
+  IMPORT_SPOTIFY_PLAYLIST_SUCCESS = 'import-spotify-playlist-success',
+
   EQUALIZER_UPDATE = 'update-equalizer',
   EQUALIZER_SET = 'set-equalizer',
 

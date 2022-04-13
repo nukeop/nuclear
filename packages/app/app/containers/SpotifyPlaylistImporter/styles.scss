@@ -1,0 +1,16 @@
+@import "../../vars.scss";
+
+.spotify_import_webview {
+    opacity: 0;
+    width: 100%;
+    height: 1px;
+}
+
+:global(.ui.indicating.progress).spotify_import_progress_bar {
+    margin-top: 3em;
+
+    div.label {
+        color: $white;
+        margin-top: 1em;
+    }
+}

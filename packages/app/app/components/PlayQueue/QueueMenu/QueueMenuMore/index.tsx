@@ -95,7 +95,7 @@ export const QueueMenuMore: React.FC<QueueMenuMoreProps> = ({
               className={cx('left', styles.playlists_menu)}
             >
               {
-                playlists.map(
+                playlists?.map(
                   (playlist, i) => (
                     <Dropdown.Item
                       key={i}

@@ -1,5 +1,6 @@
+import { ipcRenderer } from 'electron';
 
-type Track = {
+type SpotifyTrack = {
   index: number;
   id?: string;
   thumbnail: string;
@@ -10,29 +11,26 @@ type Track = {
   otherArtists?: string[];
 }
 
-type Playlist = {
-  name: string,
-  numberOfTrack: number,
-  source: string,
-  tracks: Track[]
+type SpotifyPlaylist = {
+  name: string;
+  totalTracks: number;
+  source: 'Spotify';
+  tracks: SpotifyTrack[];
 }
 
-import { ipcRenderer } from 'electron';
-
 export default (async function () {
-
   function getPlaylistGeneralInfo() {
     const tracklistContainer = document.querySelector('div[data-testid="playlist-tracklist"]');
-    const numberOfTrack = parseInt(
+    const totalTracks = parseInt(
       tracklistContainer.getAttribute('aria-rowcount')
     );
-    const playlistName = tracklistContainer.getAttribute('aria-label');
+    const name = tracklistContainer.getAttribute('aria-label');
 
     return {
-      name: playlistName,
-      numberOfTrack,
+      name,
+      totalTracks,
       tracks: [],
-      source: 'Spotify'
+      source: 'Spotify' as const
     };
   }
 
@@ -57,7 +55,7 @@ export default (async function () {
 
         if (index > processedIndex) {
           const nodeDetails = nodeTracks[i].childNodes[0] as HTMLElement;
-          const track: Track = {
+          const track: SpotifyTrack = {
             index: 0,
             thumbnail: '',
             title: '',
@@ -88,7 +86,6 @@ export default (async function () {
     }
 
     return tracks;
-
   }
 
   const wait = async (time) => {
@@ -99,8 +96,10 @@ export default (async function () {
     });
   };
 
-  async function extractPlaylist(): Promise<Playlist> {
+  async function extractPlaylist(): Promise<SpotifyPlaylist> {
     const playlist = getPlaylistGeneralInfo();
+    
+    ipcRenderer.sendToHost('import-spotify-playlist-metadata', playlist);
 
     const scrollBar = getScrollBar();
     const scrollHeight = scrollBar.height;
@@ -112,14 +111,13 @@ export default (async function () {
 
     const scrollBarElement = document.querySelectorAll('.os-scrollbar-track')[1];
 
-    while (processedIndex < playlist.numberOfTrack) {
+    while (processedIndex < playlist.totalTracks) {
+      ipcRenderer.sendToHost('import-spotify-playlist-progress', processedIndex);
       const newTracks = getTracksFromDOM(processedIndex);
       if (newTracks.length) {
         processedIndex = newTracks[newTracks.length - 1].index;
         extractedTracks.push(...newTracks);
       }
-
-      // console.log('Process: ' + processedIndex + '\n');
 
       const evt = new MouseEvent('mousedown', {
         bubbles: true,
@@ -145,11 +143,10 @@ export default (async function () {
     }
 
     playlist.tracks = extractedTracks;
-
     return playlist;
   }
 
   const playlists = await extractPlaylist();
 
-  ipcRenderer.sendToHost(JSON.stringify(playlists));
+  ipcRenderer.sendToHost('import-spotify-playlist-success', playlists);
 });
