@@ -35,10 +35,13 @@ const SearchBoxContainer: React.FC = () => {
     searchProviders?.find(provider => provider.sourceName === selectedSearchProvider)
   );
 
-  const handleSearch = useCallback(value =>
-    value.length >= MIN_SEARCH_LENGTH
-      ? dispatch(unifiedSearch(value, history))
-      : null,
+  const handleSearch = useCallback((value: string) => {
+    if (value.length >= MIN_SEARCH_LENGTH) {
+      handleFocus(false);
+      return dispatch(unifiedSearch(value, history));
+    }
+    return null;
+  },
   [dispatch, history]
   );
   const handleClearSearchHistory = useCallback(() => dispatch(SearchActions.updateSearchHistory([])), [dispatch]);
@@ -62,7 +65,6 @@ const SearchBoxContainer: React.FC = () => {
     onSearchProviderSelect={handleSelectSearchProvider}
     isFocused={isFocused}
     handleFocus={handleFocus}
-    minSearchLength={MIN_SEARCH_LENGTH}
   />;
 };
 
