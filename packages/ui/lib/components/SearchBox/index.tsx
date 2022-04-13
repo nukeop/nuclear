@@ -23,7 +23,6 @@ type SearchBarProps = {
   onSearchProviderSelect: (provider: SearchProviderOption) => void
   handleFocus: (bool: boolean) => void
   isFocused: boolean
-  minSearchLength: number
 }
 
 const SearchBox: React.FC<SearchBarProps> = ({
@@ -40,9 +39,7 @@ const SearchBox: React.FC<SearchBarProps> = ({
   selectedSearchProvider,
   onSearchProviderSelect,
   handleFocus,
-  isFocused,
-  minSearchLength
-  
+  isFocused
 }) => {
   const searchRef = useRef(null);
   useEffect(() => {
@@ -57,17 +54,13 @@ const SearchBox: React.FC<SearchBarProps> = ({
     }
   }, [handleFocus, isFocused, searchRef]);
 
-
   const [input, setInput] = useState('');
  
-  const debouncedSearch = useCallback(_.debounce(onSearch, 500), [onSearch]);
+  const debouncedSearch = useCallback(_.debounce(onSearch, 750), [onSearch]);
 
   useEffect(() => {
-    if (input.length > minSearchLength) {
-      debouncedSearch(input);
-    }
+    debouncedSearch(input);
   }, [input, debouncedSearch]);
-
   
   const onKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
