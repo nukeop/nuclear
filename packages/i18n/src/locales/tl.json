@@ -100,9 +100,6 @@
     "report": "Magpasa ng mga isyu o mga bagong feature",
     "thanks": "Salamat sa mga nag-aambag sa Github. Ang iyong tulong ay mahalaga sa paggawa nitong programa."
   },
-  "input-dialog": {
-    "cancel": "Kanselahin"
-  },
   "library": {
     "add": "Magdagdag ng folders",
     "album": "Mga Album",
@@ -139,7 +136,6 @@
     "album": "Mga Album",
     "artist": "Artista",
     "delete": "Alisin itong playlist",
-    "dialog-placeholder": "Pangalan ng playlist...",
     "duration": "Katagalan",
     "empty": "Walang playlists.",
     "empty-help": "Try create some playlists or import by url and they will appear here!",
@@ -151,9 +147,16 @@
     "export-fail-title": "Ang pagexport ng playlist ay nabigo",
     "export-success-title": "Tuluyang naexport ang playlist",
     "header": "Aking mga playlists",
+    "import-progress": "Import progress",
+    "spotify-import-placeholder": "Paste a Spotify playlist URL here",
+    "dialog-placeholder": "Pangalan ng playlist...",
     "dialog-accept": "I-save",
+    "dialog-cancel": "Cancel",
+    "dialog-rename": "Rename",
+    "dialog-import": "Import",
     "create-button": "Gumawa ng bagong playlist",
     "new-playlist": "Bagong playlist",
+    "import-url-button": "Import from url (Spotify)",
     "import-button": "Mag-angkat mula sa file (JSON)",
     "import-fail-title": "Ang pag-import ng playlist ay nabigo",
     "import-success-title": "Tuluyang naimport ang playlist",
