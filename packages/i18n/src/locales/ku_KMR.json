@@ -100,9 +100,6 @@
     "report": "Pirsgirêkan ragihîne an jî taybetmendiyên nû bişîne",
     "thanks": "Gelek spas ji bo hevkarên me yên Github, alîkariya we di afirandina vê bernameyê de girîng bû."
   },
-  "input-dialog": {
-    "cancel": "Dev jê berde"
-  },
   "library": {
     "add": "Peldandkan tevlî bike",
     "album": "Album",
@@ -139,7 +136,6 @@
     "album": "Album",
     "artist": "Hunermend",
     "delete": "Vê rêzika lêdanê jê bibe",
-    "dialog-placeholder": "Navê rêzoka lêdanan...",
     "duration": "Dirêjî",
     "empty": "Rêzoka lêdanan tune ne.",
     "empty-help": "Hinek rêzokên lêdanan biafirîne an jî bi girêdanê ve têxisitinê bike û ew ê li vir xuya bibin!",
@@ -151,9 +147,16 @@
     "export-fail-title": "Derxistina rêzoka lêdanê têkçû",
     "export-success-title": "Derxistina rêzoka lêdanê serkeftî bû",
     "header": "Rêzokên te yên lêdanan",
+    "import-progress": "Import progress",
+    "spotify-import-placeholder": "Paste a Spotify playlist URL here",
+    "dialog-placeholder": "Navê rêzoka lêdanan...",
     "dialog-accept": "Tomar bike",
+    "dialog-cancel": "Cancel",
+    "dialog-rename": "Rename",
+    "dialog-import": "Import",
     "create-button": "Rêzokeke nû ya lêdanê biafirîne",
     "new-playlist": "Rêzoka lêdanê ya nû",
+    "import-url-button": "Import from url (Spotify)",
     "import-button": "Têxistin ji pelê (JSON)",
     "import-fail-title": "Têxistina rêzoka lêdanê têkçû",
     "import-success-title": "Têxistina rêzoka lêdanê serkeftî bû",
