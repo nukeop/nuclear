@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/nukeop/nuclear#readme",
   "scripts": {
-    "postinstall": "lerna bootstrap --hoist",
+    "postinstall": "lerna bootstrap --hoist && electron-builder install-app-deps",
     "start": "lerna run start --stream",
     "build": "shx rm -rf dist && lerna run build && npm run pack",
     "test": "lerna run lint && lerna run build && lerna run test",
@@ -168,14 +168,6 @@
           "filter": [
             "**/*"
           ]
-        },
-        {
-          "from": "node_modules/sqlite3",
-          "to": "resources/node_modules/sqlite3",
-          "filter": [
-            "package.json",
-            "lib/*"
-          ]
         }
       ]
     },
@@ -193,14 +185,6 @@
           "filter": [
             "**/*"
           ]
-        },
-        {
-          "from": "node_modules/sqlite3",
-          "to": "Resources/node_modules/sqlite3",
-          "filter": [
-            "package.json",
-            "lib/*"
-          ]
         }
       ]
     },
@@ -216,14 +200,6 @@
           "filter": [
             "**/*"
           ]
-        },
-        {
-          "from": "node_modules/sqlite3",
-          "to": "resources/node_modules/sqlite3",
-          "filter": [
-            "package.json",
-            "lib/*"
-          ]
         }
       ]
     },
@@ -232,6 +208,7 @@
     }
   },
   "dependencies": {
-    "node-gyp": "^9.0.0"
+    "node-gyp": "^9.0.0",
+    "sqlite3": "^5.0.3"
   }
 }
