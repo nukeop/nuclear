@@ -9,14 +9,16 @@ exports[`Playlists container should display all playlists 1`] = `
       class="playlists_container"
     >
       <div
-        class="header_container"
+        class="playlists_header_container"
       >
         <div
           class="header_container"
         >
           Your playlists
         </div>
-        <div>
+        <div
+          class="playlist_header_buttons"
+        >
           <button
             class="ui basic button nuclear button"
             data-testid="create-new"
@@ -33,7 +35,7 @@ exports[`Playlists container should display all playlists 1`] = `
           >
             <i
               aria-hidden="true"
-              class="file text icon"
+              class="spotify icon"
             />
             Import from url (Spotify)
           </button>
@@ -89,54 +91,6 @@ exports[`Playlists container should display all playlists 1`] = `
             >
               2 tracks
             </td>
-            <td
-              class="modification_date_cell"
-              role="cell"
-            >
-              <div
-                class="modification_date_cell_content"
-              >
-                <div
-                  class="modified_dates"
-                >
-                  <div
-                    class="modified_at_row"
-                  >
-                    Last modified: September 11, 2001
-                  </div>
-                  <div
-                    class="modified_at_row"
-                  >
-                    Server modified: Unknown
-                  </div>
-                </div>
-              </div>
-            </td>
-            <td
-              class="sync_cell"
-              role="cell"
-            >
-              <div
-                class="sync_cell_content"
-              >
-                <button
-                  class="ui basic icon button nuclear button borderless"
-                >
-                  <i
-                    aria-hidden="true"
-                    class="upload icon"
-                  />
-                </button>
-                <button
-                  class="ui basic icon button nuclear button borderless"
-                >
-                  <i
-                    aria-hidden="true"
-                    class="download icon"
-                  />
-                </button>
-              </div>
-            </td>
           </tr>
           <tr
             aria-describedby="rbd-hidden-text-0-hidden-text-0"
@@ -169,54 +123,6 @@ exports[`Playlists container should display all playlists 1`] = `
             >
               2 tracks
             </td>
-            <td
-              class="modification_date_cell"
-              role="cell"
-            >
-              <div
-                class="modification_date_cell_content"
-              >
-                <div
-                  class="modified_dates"
-                >
-                  <div
-                    class="modified_at_row"
-                  >
-                    Last modified: Unknown
-                  </div>
-                  <div
-                    class="modified_at_row"
-                  >
-                    Server modified: Unknown
-                  </div>
-                </div>
-              </div>
-            </td>
-            <td
-              class="sync_cell"
-              role="cell"
-            >
-              <div
-                class="sync_cell_content"
-              >
-                <button
-                  class="ui basic icon button nuclear button borderless"
-                >
-                  <i
-                    aria-hidden="true"
-                    class="upload icon"
-                  />
-                </button>
-                <button
-                  class="ui basic icon button nuclear button borderless"
-                >
-                  <i
-                    aria-hidden="true"
-                    class="download icon"
-                  />
-                </button>
-              </div>
-            </td>
           </tr>
         </tbody>
       </table>
@@ -234,10 +140,12 @@ exports[`Playlists container should display empty playlists view 1`] = `
       class="playlists_container"
     >
       <div
-        class="header_container"
+        class="playlists_header_container"
       >
         <span />
-        <div>
+        <div
+          class="playlist_header_buttons"
+        >
           <button
             class="ui basic button nuclear button"
             data-testid="create-new"
@@ -254,7 +162,7 @@ exports[`Playlists container should display empty playlists view 1`] = `
           >
             <i
               aria-hidden="true"
-              class="file text icon"
+              class="spotify icon"
             />
             Import from url (Spotify)
           </button>
