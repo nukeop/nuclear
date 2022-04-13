@@ -58,7 +58,7 @@ const SpotifyPlaylistImporter: React.FC= () => {
           basic
           data-testid='import-from-url'
         >
-          <Icon name='file text' />
+          <Icon name='spotify' />
           {t('import-url-button')}
         </Button>
       }
