@@ -100,9 +100,6 @@
     "report": "問題を報告するか、新機能を提案",
     "thanks": "Github の貢献者のおかげで、このプログラムを作成できました。皆様の貢献に感謝いたします。"
   },
-  "input-dialog": {
-    "cancel": "キャンセル"
-  },
   "library": {
     "add": "フォルダーを追加",
     "album": "アルバム",
@@ -139,7 +136,6 @@
     "album": "アルバム",
     "artist": "アーティスト",
     "delete": "プレイリストを削除",
-    "dialog-placeholder": "プレイリストの名前...",
     "duration": "長さ",
     "empty": "プレイリストがありません。",
     "empty-help": "プレイリストを作成するかURLでインポートすると、ここに表示されます！",
@@ -151,9 +147,16 @@
     "export-fail-title": "プレイリストのエクスポートに失敗",
     "export-success-title": "プレイリストのインポートに成功しました",
     "header": "プレイリスト",
+    "import-progress": "Import progress",
+    "spotify-import-placeholder": "Paste a Spotify playlist URL here",
+    "dialog-placeholder": "プレイリストの名前...",
     "dialog-accept": "保存",
+    "dialog-cancel": "Cancel",
+    "dialog-rename": "Rename",
+    "dialog-import": "Import",
     "create-button": "新規プレイリストを作成",
     "new-playlist": "新規プレイリスト",
+    "import-url-button": "Import from url (Spotify)",
     "import-button": "ファイル（JSON）からインポート",
     "import-fail-title": "プレイリストインポート失敗",
     "import-success-title": "プレイリストのインポートに成功しました",
