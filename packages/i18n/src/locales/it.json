@@ -100,9 +100,6 @@
     "report": "Invia problemi o nuove funzionalità",
     "thanks": "Mille grazie ai nostri collaboratori su GitHub. Il tuo aiuto è stato vitale nella creazione di questo programma."
   },
-  "input-dialog": {
-    "cancel": "Annulla"
-  },
   "library": {
     "add": "Aggiungi cartelle",
     "album": "Album",
@@ -139,7 +136,6 @@
     "album": "Album",
     "artist": "Artista",
     "delete": "Elimina questa scaletta",
-    "dialog-placeholder": "Nome scaletta...",
     "duration": "Durata",
     "empty": "Nessuna scaletta.",
     "empty-help": "Prova a creare alcune scalette o importa per URL e appariranno qui!",
@@ -151,9 +147,16 @@
     "export-fail-title": "Esportazione scaletta fallita",
     "export-success-title": "Scaletta esportata con successo",
     "header": "Tue scalette",
+    "import-progress": "Import progress",
+    "spotify-import-placeholder": "Paste a Spotify playlist URL here",
+    "dialog-placeholder": "Nome scaletta...",
     "dialog-accept": "Salva",
+    "dialog-cancel": "Cancel",
+    "dialog-rename": "Rename",
+    "dialog-import": "Import",
     "create-button": "Crea nuova scaletta",
     "new-playlist": "Nuova scaletta",
+    "import-url-button": "Import from url (Spotify)",
     "import-button": "Importa da file (JSON)",
     "import-fail-title": "Importazione scaletta fallita",
     "import-success-title": "Scaletta importata con successo",
