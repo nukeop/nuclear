@@ -100,9 +100,6 @@
     "report": "Υποβολή θεμάτων ή νέων δυνατοτήτων",
     "thanks": "Πολλές ευχαριστίες στους συνεργάτες μας στο Github, η βοήθειά σας ήταν ζωτικής σημασίας για τη δημιουργία αυτού του προγράμματος."
   },
-  "input-dialog": {
-    "cancel": "Ακύρωση"
-  },
   "library": {
     "add": "Προσθήκη φακέλων",
     "album": "Άλμπουμ",
@@ -139,7 +136,6 @@
     "album": "Άλμπουμ",
     "artist": "Καλλιτέχνης",
     "delete": "Διαγραφή της λίστας αναπαραγωγής",
-    "dialog-placeholder": "Όνομα λίστας...",
     "duration": "Μήκος",
     "empty": "Καμία λίστα αναπαραγωγής.",
     "empty-help": "Προσπαθήστε να δημιουργήσετε μερικές λίστες αναπαραγωγής ή να εισαγάγετε από url και θα εμφανιστούν εδώ!",
@@ -151,9 +147,16 @@
     "export-fail-title": "Απέτυχε η εξαγωγή της λίστας αναπαραγωγής",
     "export-success-title": "Επιτυχής εξαγωγή της λίστας αναπαραγωγής",
     "header": "Οι λίστες αναπαραγωγής σας",
+    "import-progress": "Import progress",
+    "spotify-import-placeholder": "Paste a Spotify playlist URL here",
+    "dialog-placeholder": "Όνομα λίστας...",
     "dialog-accept": "Αποθήκευση",
+    "dialog-cancel": "Cancel",
+    "dialog-rename": "Rename",
+    "dialog-import": "Import",
     "create-button": "Δημιουργία νέας λίστας αναπαραγωγής",
     "new-playlist": "Νέα λίστα αναπαραγωγής",
+    "import-url-button": "Import from url (Spotify)",
     "import-button": "Εισαγωγή από αρχείο (JSON)",
     "import-fail-title": "Αποτυχία εισαγωγής λίστας αναπαραγωγής",
     "import-success-title": "Η λίστα αναπαραγωγής εισήχθη επιτυχώς",
