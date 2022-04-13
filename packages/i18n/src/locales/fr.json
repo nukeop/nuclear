@@ -100,9 +100,6 @@
     "report": "Soumettre un problème ou une nouvelle fonctionnalité",
     "thanks": "Un grand merci à tous nos contributeurs sur Github."
   },
-  "input-dialog": {
-    "cancel": "Annuler"
-  },
   "library": {
     "add": "Ajouter des dossiers",
     "album": "Album",
@@ -139,7 +136,6 @@
     "album": "Album",
     "artist": "Artiste",
     "delete": "Supprimer cette playlist",
-    "dialog-placeholder": "Nom de la playlist...",
     "duration": "Durée",
     "empty": "Aucune playlist.",
     "empty-help": "Try create some playlists or import by url and they will appear here!",
@@ -151,9 +147,16 @@
     "export-fail-title": "L'exportation de la playlist a échoué",
     "export-success-title": "Playlist exportée avec succès",
     "header": "Vos playlists",
+    "import-progress": "Import progress",
+    "spotify-import-placeholder": "Paste a Spotify playlist URL here",
+    "dialog-placeholder": "Nom de la playlist...",
     "dialog-accept": "Enregistrer",
+    "dialog-cancel": "Cancel",
+    "dialog-rename": "Rename",
+    "dialog-import": "Import",
     "create-button": "Créer une nouvelle playlist",
     "new-playlist": "Nouvelle playlist",
+    "import-url-button": "Import from url (Spotify)",
     "import-button": "Importer depuis un fichier (JSON)",
     "import-fail-title": "L'importation de la playlist a échoué",
     "import-success-title": "Playlist importée avec succès",
