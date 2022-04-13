@@ -100,9 +100,6 @@
     "report": "Submit issues or new features",
     "thanks": "Many thanks to our contributors on Github, your help was vital in creating this program."
   },
-  "input-dialog": {
-    "cancel": "Cancelar"
-  },
   "library": {
     "add": "Adicionar pastas",
     "album": "Álbum",
@@ -139,7 +136,6 @@
     "album": "Album",
     "artist": "Artista",
     "delete": "Excluir Esta Lista de Reprodução",
-    "dialog-placeholder": "Nome da Lista de Reprodução...",
     "duration": "Length",
     "empty": "Nenhuma Lista de Reprodução encontrada.",
     "empty-help": "Try create some playlists or import by url and they will appear here!",
@@ -151,9 +147,16 @@
     "export-fail-title": "Playlist export fail",
     "export-success-title": "Playlist exported successfully",
     "header": "Your playlists",
+    "import-progress": "Import progress",
+    "spotify-import-placeholder": "Paste a Spotify playlist URL here",
+    "dialog-placeholder": "Nome da Lista de Reprodução...",
     "dialog-accept": "Save",
+    "dialog-cancel": "Cancel",
+    "dialog-rename": "Rename",
+    "dialog-import": "Import",
     "create-button": "Create new playlist",
     "new-playlist": "New playlist",
+    "import-url-button": "Import from url (Spotify)",
     "import-button": "Import from file (JSON)",
     "import-fail-title": "Playlist import fail",
     "import-success-title": "Playlist imported successfully",
