@@ -108,7 +108,7 @@ describe('Playlists container', () => {
     const { component, store } = mountComponent();
     await waitFor(() => component.getByTestId('create-new').click());
     await waitFor(() =>
-      component.getByText('').click()
+      component.getByTestId('create-playlist-accept').click()
     );
     const state = store.getState();
     expect(state.playlists.localPlaylists.data).toEqual(
