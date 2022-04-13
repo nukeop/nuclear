@@ -23,11 +23,11 @@ const PlaylistsHeader: React.FC<PlaylistsHeaderProps> = ({
   const { t } = useTranslation('playlists');
 
   return (
-    <div className={styles.header_container}>
+    <div className={styles.playlists_header_container}>
       {showText && <Header>{t('header')}</Header>}
       {!showText && <span />}
 
-      <div>
+      <div className={styles.playlist_header_buttons}>
         <InputDialog
           header={<h4>Input playlist name:</h4>}
           placeholder={t('dialog-placeholder')}
