@@ -1,5 +1,5 @@
-import { ipcRenderer } from 'electron';
-
+/* eslint-disable node/no-extraneous-require */
+/* eslint-disable @typescript-eslint/no-var-requires */
 type SpotifyTrack = {
   index: number;
   id?: string;
@@ -19,6 +19,8 @@ type SpotifyPlaylist = {
 }
 
 export default (async function () {
+  const { ipcRenderer } = window.require('electron');
+
   function getPlaylistGeneralInfo() {
     const tracklistContainer = document.querySelector('div[data-testid="playlist-tracklist"]');
     const totalTracks = parseInt(
@@ -45,7 +47,6 @@ export default (async function () {
   }
 
   function getTracksFromDOM(processedIndex) {
-
     const nodeTracks = document.querySelector('div[data-testid="top-sentinel"] + div').childNodes as NodeListOf<Element>;
     const tracks = [];
 
@@ -139,7 +140,6 @@ export default (async function () {
       y += scrollHeight;
 
       await wait(1000);
-
     }
 
     playlist.tracks = extractedTracks;
