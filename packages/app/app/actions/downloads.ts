@@ -1,175 +1,172 @@
 import _ from 'lodash';
-import { store } from '@nuclear/core';
+import { store, StreamProvider } from '@nuclear/core';
 import { getTrackItem } from '@nuclear/ui';
-
 import { safeAddUuid } from './helpers';
+import { Download, DownloadStatus, Track, TrackItem } from '@nuclear/ui/lib/types';
+import { createStandardAction } from 'typesafe-actions';
+import { Download as DownloadActionTypes }  from './actionTypes';
 
-export const READ_DOWNLOADS = 'READ_DOWNLOADS';
-export const ADD_TO_DOWNLOADS = 'ADD_TO_DOWNLOADS';
-export const DOWNLOAD_STARTED = 'DOWNLOAD_STARTED';
-export const DOWNLOAD_PAUSED = 'DOWNLOAD_PAUSED';
-export const DOWNLOAD_RESUMED = 'DOWNLOAD_RESUMED';
-export const DOWNLOAD_PROGRESS = 'DOWNLOAD_PROGRESS';
-export const DOWNLOAD_FINISHED = 'DOWNLOAD_FINISHED';
-export const DOWNLOAD_ERROR = 'DOWNLOAD_ERROR';
-export const DOWNLOAD_REMOVED = 'DOWNLOAD_REMOVED';
-export const CLEAR_FINISHED_DOWNLOADS = 'CLEAR_FINISHED_DOWNLOADS';
 
-export enum DownloadStatus {
-  WAITING = 'Waiting',
-  STARTED = 'Started',
-  PAUSED = 'Paused',
-  FINISHED = 'Finished',
-  ERROR = 'Error'
+type ChangePropertyForItemParams = {
+  downloads: Download[]
+  uuid: string
+  propertyName?: 'completion' | 'status'
+  value: number | DownloadStatus
 }
 
-const changePropertyForItem = ({downloads, uuid, propertyName='status', value}) => {
+
+const changePropertyForItem = ({downloads, uuid, propertyName='status', value}:ChangePropertyForItemParams): Download[] => {
   const changedItem = _.find(downloads, (item) => item.track.uuid === uuid);
   _.set(changedItem, propertyName, value);
 
   return downloads;
 };
 
-export function readDownloads() {
-  const downloads = store.get('downloads');
-  return {
-    type: READ_DOWNLOADS,
-    payload: downloads
-  };
-}
+export const readDownloads = createStandardAction(DownloadActionTypes.READ_DOWNLOADS).map(
+  () => {
+    const downloads: Download[] = store.get('downloads');
+    return  { payload: downloads };
+  } 
+);
 
-export function addToDownloads(streamProviders, track) {
-  const clonedTrack = safeAddUuid(getTrackItem(track));
-  let downloads = store.get('downloads');
+export const addToDownloads = createStandardAction(DownloadActionTypes.ADD_TO_DOWNLOADS).map(
+  (_:StreamProvider[], track: Track) => {
+    const clonedTrack: TrackItem = safeAddUuid(getTrackItem(track));
+    let downloads: Download[] = store.get('downloads');
+  
+    const existingTrack = downloads.find(({track}) => {
+      const {name, artist} = track;
+      return artist === clonedTrack.artist && name === clonedTrack.name;
+    });
+  
+    if (!existingTrack ){
+      const newDownload = {
+        status: DownloadStatus.WAITING,
+        completion: 0,
+        track: clonedTrack
+      };
+    
+      downloads = [...downloads, newDownload];
 
-  const existingTrack = downloads.find(({track}) => {
-    const {title, artist} = track;
-    return artist.name === clonedTrack.artist && title === clonedTrack.title;
-  });
-
-  if (!existingTrack ){
-    const newDownload = {
-      status: DownloadStatus.WAITING,
-      completion: 0,
-      track: clonedTrack
+      return {
+        payload: { downloads, track: clonedTrack.uuid }
+      };
+    }
+    return {
+      payload: { downloads }
     };
-  
-    downloads = [...downloads, newDownload];
   }
+);
 
-  return {
-    type: ADD_TO_DOWNLOADS,
-    payload: { downloads, track: clonedTrack.uuid }
-  };
-}
+export const onDownloadStarted = createStandardAction(DownloadActionTypes.DOWNLOAD_STARTED).map(
+  (uuid: string) => {
+    const downloads: Download[] = store.get('downloads');
+    const payload = changePropertyForItem({
+      downloads,
+      uuid,
+      value: DownloadStatus.STARTED
+    });
+    return {
+      payload
+    };
+  }); 
 
-export function onDownloadStarted(uuid) {
-  const downloads = store.get('downloads');
-  const payload = changePropertyForItem({
-    downloads,
-    uuid,
-    value: 'Started'
-  });
-  return {
-    type: DOWNLOAD_STARTED,
-    payload
-  };
-}
-
-export function onDownloadPause(uuid) {
-  const downloads = store.get('downloads');
-  const payload = changePropertyForItem({
-    downloads,
-    uuid,
-    value: DownloadStatus.PAUSED
-  });
-  return {
-    type: DOWNLOAD_PAUSED,
-    payload: { downloads: payload, track: uuid }
-  };
-}
-
-export function onDownloadResume(uuid) {
-  const downloads = store.get('downloads');
-  const payload = changePropertyForItem({
-    downloads,
-    uuid,
-    value: DownloadStatus.WAITING
+export const onDownloadPause =  createStandardAction(DownloadActionTypes.DOWNLOAD_PAUSED).map(
+  (uuid: string) => {
+    const downloads: Download[] = store.get('downloads');
+    const payload = changePropertyForItem({
+      downloads,
+      uuid,
+      value: DownloadStatus.PAUSED
+    });
+    return {
+      payload: { downloads: payload, track: uuid }
+    };
   });
 
-  return {
-    type: DOWNLOAD_RESUMED,
-    payload: { downloads: payload, track: uuid }
-  };
-}
-
-export function onDownloadProgress(uuid, progress) {
-  const downloads = store.get('downloads');
-  let payload = changePropertyForItem({
-    downloads,
-    uuid,
-    propertyName: 'completion',
-    value: progress
-  });
+export const onDownloadResume = createStandardAction(DownloadActionTypes.DOWNLOAD_RESUMED).map(
+  (uuid: string) => {
+    const downloads: Download[] = store.get('downloads');
+    const payload = changePropertyForItem({
+      downloads,
+      uuid,
+      value: DownloadStatus.WAITING
+    });
   
-  payload = changePropertyForItem({
-    downloads: payload,
-    uuid,
-    value: progress < 1 ? DownloadStatus.STARTED : DownloadStatus.FINISHED
+    return {
+      payload: { downloads: payload, track: uuid }
+    };
   });
+
+
+export const onDownloadProgress = createStandardAction(DownloadActionTypes.DOWNLOAD_PROGRESS).map(
+  (uuid: string, progress: number) => {
+    const downloads = store.get('downloads');
+    let payload = changePropertyForItem({
+      downloads,
+      uuid,
+      propertyName: 'completion',
+      value: progress
+    });
   
-  return {
-    type: DOWNLOAD_PROGRESS,
-    payload
-  };
-}
-
-export function onDownloadError(uuid){
-  const downloads = store.get('downloads');
-  const payload = changePropertyForItem({
-    downloads,
-    uuid,
-    value: DownloadStatus.ERROR
-  });
-
-  return {
-    type: DOWNLOAD_ERROR,
-    payload
-  };
-}
-
-export function onDownloadRemoved(uuid) {
-  const downloads = store.get('downloads');
-  const filteredTracks = downloads.filter(item => item.track.uuid !== uuid);
-  return {
-    type: DOWNLOAD_REMOVED,
-    payload: filteredTracks
-  };
-}
-
-export function onDownloadFinished(uuid) {
-  const downloads = store.get('downloads');
-  const payload = changePropertyForItem({
-    downloads,
-    uuid,
-    value: DownloadStatus.FINISHED
-  });
-
-  return {
-    type: DOWNLOAD_FINISHED,
-    payload
-  };
-}
-
-export function clearFinishedDownloads() {
-  const downloads = store.get('downloads');
+    payload = changePropertyForItem({
+      downloads: payload,
+      uuid,
+      value: progress < 1 ? DownloadStatus.STARTED : DownloadStatus.FINISHED
+    });
   
-  const filteredTracks = downloads.filter(( item ) => 
-    item.status !== DownloadStatus.FINISHED && item.status !== DownloadStatus.ERROR
-  );
+    return {
+      payload
+    };
+  });
 
-  return {
-    type: CLEAR_FINISHED_DOWNLOADS,
-    payload: filteredTracks
-  };
-}
+export const onDownloadError = createStandardAction(DownloadActionTypes.DOWNLOAD_ERROR).map(
+  (uuid: string) => {
+    const downloads: Download[] = store.get('downloads');
+    const payload = changePropertyForItem({
+      downloads,
+      uuid,
+      value: DownloadStatus.ERROR
+    });
+  
+    return {
+      payload
+    };
+  });
+
+
+export const onDownloadRemoved = createStandardAction(DownloadActionTypes.DOWNLOAD_REMOVED).map(
+  (uuid: string) => {
+    const downloads: Download[] = store.get('downloads');
+    const filteredTracks = downloads.filter(item => item.track.uuid !== uuid);
+    return {
+      payload: filteredTracks
+    };
+  });
+
+export const onDownloadFinished = createStandardAction(DownloadActionTypes.DOWNLOAD_FINISHED).map(
+  (uuid: string) => {
+    const downloads: Download[] = store.get('downloads');
+    const payload = changePropertyForItem({
+      downloads,
+      uuid,
+      value: DownloadStatus.FINISHED
+    });
+
+    return {
+      payload
+    };
+  });
+
+export const clearFinishedDownloads = createStandardAction(DownloadActionTypes.CLEAR_FINISHED_DOWNLOADS).map(
+  () => {
+    const downloads: Download[] = store.get('downloads');
+  
+    const filteredTracks = downloads.filter(( item ) => 
+      item.status !== DownloadStatus.FINISHED && item.status !== DownloadStatus.ERROR
+    );
+
+    return {
+      payload: filteredTracks
+    };
+  });

@@ -36,8 +36,6 @@ export type SelectedStream = {
   }[],
 }
 
-export { ContextPopupProps } from './components/ContextPopup';
-
 export type TrackStream = {
   source: string;
   id: string;
@@ -52,3 +50,26 @@ export type SearchProviderOption = {
   text: string
   value: string
 }
+
+export type TrackItem = {
+  artist: string
+  name: string
+  thumbnail?: string
+  local?: boolean
+  streams?: TrackStream[],
+  uuid?: string
+}
+
+export type Download = {
+  status: DownloadStatus
+  completion: number
+  track: TrackItem
+}
+export enum DownloadStatus {
+  WAITING = 'Waiting',
+  STARTED = 'Started',
+  PAUSED = 'Paused',
+  FINISHED = 'Finished',
+  ERROR = 'Error'
+}
+
