@@ -61,7 +61,8 @@ export const useSpotifyPlaylistImporterProps = (t: TFunction<string>) => {
             const ipcRenderer = window.require('electron').ipcRenderer;
             (${extractPlaylist.toString()})()
             })()`
-            .replaceAll('electron__WEBPACK_IMPORTED_MODULE_0__.', '');
+            .replaceAll('electron__WEBPACK_IMPORTED_MODULE_0__.', '')
+            .replaceAll('a(\'electron\')', 'window.require(\'electron\'))');
 
           w.executeJavaScript(js);
         }, 1500);
