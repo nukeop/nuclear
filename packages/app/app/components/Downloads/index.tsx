@@ -1,13 +1,12 @@
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 import { useTranslation } from 'react-i18next';
-
 import Header from '../Header';
 import DownloadsList from './DownloadsList';
 import DownloadsHeader from './DownloadsHeader';
 import styles from './styles.scss';
-import { DownloadsItemProps } from './DownloadsItem';
 import { setStringOption } from '../../actions/settings';
+import { Download } from '@nuclear/ui/lib/types';
 
 const EmptyState: React.FC = () => {
   const { t } = useTranslation('downloads');
@@ -22,7 +21,7 @@ const EmptyState: React.FC = () => {
 };
 
 type DownloadsProps = {
-  downloads: DownloadsItemProps['item'][];
+  downloads: Download[];
   downloadsDir: string;
   setStringOption: typeof setStringOption;
   clearFinishedTracks: React.MouseEventHandler;

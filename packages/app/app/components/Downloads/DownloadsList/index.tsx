@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { Button, Icon, Segment, Table } from 'semantic-ui-react';
 import { useTranslation } from 'react-i18next';
-
-import DownloadsItem, { DownloadsItemProps } from '../DownloadsItem';
+import DownloadsItem from '../DownloadsItem';
 import styles from './styles.scss';
+import { Download } from '@nuclear/ui/lib/types';
 
 type DownloadsListProps = {
-  items: DownloadsItemProps['item'][];
+  items: Download[];
   clearFinishedTracks: React.MouseEventHandler;
   resumeDownload: (id: string) => void;
   pauseDownload: (id: string) => void;

@@ -5,7 +5,7 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { ipcRenderer } from 'electron';
-
+import {getType} from 'typesafe-actions';
 import * as PlayerActions from '../../actions/player';
 import * as QueueActions from '../../actions/queue';
 import * as SettingsActions from '../../actions/settings';
@@ -62,16 +62,16 @@ class IpcContainer extends React.Component {
     });
 
 
-    ipcRenderer.on(IpcEvents.DOWNLOAD_STARTED, (event, data) => {
+    ipcRenderer.on(IpcEvents[getType(DownloadsActions.onDownloadStarted)], (event, data) => {
       this.props.actions.onDownloadStarted(data);
     });
-    ipcRenderer.on(IpcEvents.DOWNLOAD_PROGRESS, (event, data) => {
+    ipcRenderer.on(IpcEvents[getType(DownloadsActions.onDownloadProgress)], (event, data) => {
       this.props.actions.onDownloadProgress(data.uuid, data.progress);
     });
-    ipcRenderer.on(IpcEvents.DOWNLOAD_FINISHED, (event, data) => {
+    ipcRenderer.on(IpcEvents[getType(DownloadsActions.onDownloadFinished)], (event, data) => {
       this.props.actions.onDownloadFinished(data);
     });
-    ipcRenderer.on(IpcEvents.DOWNLOAD_ERROR, (event, data) => {
+    ipcRenderer.on(IpcEvents[getType(DownloadsActions.onDownloadError)], (event, data) => {
       this.props.actions.onDownloadError(data.uuid);
       logger.error(data);
     });
