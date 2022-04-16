@@ -55,7 +55,7 @@ class IpcContainer extends React.Component {
 
     ipcRenderer.on(IpcEvents.LOCAL_FILES, (event, data) => actions.scanLocalFoldersSuccess(data));
     ipcRenderer.on(IpcEvents.LOCAL_FILES_PROGRESS, (event, { scanProgress, scanTotal }) => actions.scanLocalFoldersProgress(scanProgress, scanTotal));
-    ipcRenderer.on(IpcEvents.LOCAL_FILES_ERROR, (event, err) => actions.scanLocalFoldersFailed(err));
+    ipcRenderer.on(IpcEvents.LOCAL_FILES_ERROR, (event, err) => actions.scanLocalFoldersFailure(err));
     ipcRenderer.on(IpcEvents.PLAY_STARTUP_TRACK, (event, meta) => {
       this.props.actions.playTrack([], meta);
       this.props.history.push('/library');
