@@ -1,0 +1,17 @@
+{
+  "extends": "../../.eslintrc.json",
+  "env": {
+    "browser": true,
+    "commonjs": true,
+    "es6": true,
+    "mocha": true
+  },
+  "globals": {
+    "_": true
+  },
+  "rules": {
+    "react/no-unused-prop-types": 0,
+    "node/no-missing-import": 0,
+    "node/no-extraneous-import": 0
+  }
+}

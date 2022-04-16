@@ -1,4 +1,4 @@
-@import "../../common.scss";
+@import "../../common.module.scss";
 
 $smallDisplacement: 10px;
 $smallBlur: 30px;
@@ -10,24 +10,24 @@ $contrast: 5%;
   height: 100%;
   border-radius: 25px;
   background: transparent;
-  box-shadow: $bigDisplacement $bigDisplacement $bigBlur darken($background, $contrast), 
-  (-$bigDisplacement) (-$bigDisplacement) $bigBlur lighten($background, $contrast);
+  box-shadow: $bigDisplacement $bigDisplacement $bigBlur darken($background, $contrast),
+    (-$bigDisplacement) (-$bigDisplacement) $bigBlur lighten($background, $contrast);
   color: $white;
   padding: 1em;
   margin: 1em;
 
   &.small {
-    box-shadow: $smallDisplacement $smallDisplacement $smallBlur darken($background, $contrast), 
-  (-$smallDisplacement) (-$smallDisplacement) $smallBlur lighten($background, $contrast);
+    box-shadow: $smallDisplacement $smallDisplacement $smallBlur darken($background, $contrast),
+      (-$smallDisplacement) (-$smallDisplacement) $smallBlur lighten($background, $contrast);
   }
 
   &.pressed {
-    box-shadow: inset $bigDisplacement $bigDisplacement $bigBlur darken($background, $contrast), 
-    inset (-$bigDisplacement) (-$bigDisplacement) $bigBlur lighten($background, $contrast);
+    box-shadow: inset $bigDisplacement $bigDisplacement $bigBlur darken($background, $contrast),
+      inset (-$bigDisplacement) (-$bigDisplacement) $bigBlur lighten($background, $contrast);
   }
 
   &.small.pressed {
-    box-shadow: inset $smallDisplacement $smallDisplacement $smallBlur darken($background, $contrast), 
-    inset (-$smallDisplacement) (-$smallDisplacement) $smallBlur lighten($background, $contrast);
+    box-shadow: inset $smallDisplacement $smallDisplacement $smallBlur darken($background, $contrast),
+      inset (-$smallDisplacement) (-$smallDisplacement) $smallBlur lighten($background, $contrast);
   }
 }

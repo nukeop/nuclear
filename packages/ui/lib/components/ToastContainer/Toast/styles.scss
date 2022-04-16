@@ -1,4 +1,4 @@
-@import '../../../common.scss';
+@import "../../../common.module.scss";
 
 .toast {
   @include roundCorners;
@@ -44,7 +44,7 @@
     flex-flow: column;
     flex: 1 1 auto;
     max-width: 100%;
-  
+
     white-space: nowrap;
     overflow: hidden;
   }

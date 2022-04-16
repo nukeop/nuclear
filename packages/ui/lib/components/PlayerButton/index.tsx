@@ -2,7 +2,7 @@ import React from 'react';
 import cx from 'classnames';
 import { Icon, SemanticICONS, SemanticSIZES } from 'semantic-ui-react';
 
-import styles from './styles.scss';
+import styles from './styles.module.scss';
 
 export type PlayerButtonProps = {
   'data-testid'?: string;

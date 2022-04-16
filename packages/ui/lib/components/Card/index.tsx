@@ -4,7 +4,7 @@ import _ from 'lodash';
 import { Dropdown, DropdownItemProps, DropdownHeaderProps, DropdownDividerProps } from 'semantic-ui-react';
 
 import artPlaceholder from '../../../resources/media/art_placeholder.png';
-import common from '../../common.scss';
+import common from '../../common.module.scss';
 import styles from './styles.scss';
 
 export type CardMenuEntry = {

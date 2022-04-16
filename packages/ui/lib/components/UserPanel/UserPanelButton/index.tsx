@@ -6,7 +6,7 @@ import {
 } from 'semantic-ui-react';
 
 import Tooltip, { TooltipProps } from '../../Tooltip';
-import common from '../../../common.scss';
+import common from '../../../common.module.scss';
 import styles from './styles.scss';
 
 export type UserPanelButtonProps = SUIButtonProps & {

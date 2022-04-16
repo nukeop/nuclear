@@ -1,4 +1,4 @@
-@import "../../common.scss";
+@import "../../common.module.scss";
 
 .fullscreen_form_container {
     position: relative;
@@ -49,7 +49,7 @@
             }
 
             &::after {
-                border-color: $green rgba($bgdarker,.25) rgba($bgdarker,.25) rgba($bgdarker,.25);
+                border-color: $green rgba($bgdarker, 0.25) rgba($bgdarker, 0.25) rgba($bgdarker, 0.25);
             }
         }
     }

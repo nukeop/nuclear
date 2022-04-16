@@ -2,7 +2,7 @@ import React from 'react';
 import cx from 'classnames';
 import Toast from './Toast';
 
-import common from '../../common.scss';
+import common from '../../common.module.scss';
 import styles from './styles.scss';
 import _ from 'lodash';
 

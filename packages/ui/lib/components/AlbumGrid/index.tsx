@@ -7,7 +7,7 @@ import { compose, withState, withHandlers } from 'recompose';
 
 import AlbumPreview from '../AlbumPreview';
 import Card from '../Card';
-import common from '../../common.scss';
+import common from '../../common.module.scss';
 import styles from './styles.scss';
 import { getThumbnail, getTrackItem } from '../..';
 

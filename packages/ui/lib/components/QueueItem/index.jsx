@@ -6,7 +6,7 @@ import { compose, withHandlers } from 'recompose';
 import _ from 'lodash';
 
 import Loader from '../Loader';
-import common from '../../common.scss';
+import common from '../../common.module.scss';
 import styles from './styles.scss';
 
 import artPlaceholder from '../../../resources/media/art_placeholder.png';
@@ -34,47 +34,39 @@ export const QueueItem = ({
     onDoubleClick={handleSelectSong}
   >
     <div className={styles.thumbnail}>
-      {
-        isLoading
-          ? <Loader type='small' />
-          : <img src={_.defaultTo(track.thumbnail, artPlaceholder)} />
-      }
+      {isLoading ? (
+        <Loader type='small' />
+      ) : (
+        <img src={_.defaultTo(track.thumbnail, artPlaceholder)} />
+      )}
 
-      <div
-        className={styles.thumbnail_overlay}
-        onClick={handleRemoveFromQueue}
-      >
-        <Icon name='trash alternate outline' size={isCompact ? 'large' : 'big'} />
+      <div className={styles.thumbnail_overlay} onClick={handleRemoveFromQueue}>
+        <Icon
+          name='trash alternate outline'
+          size={isCompact ? 'large' : 'big'}
+        />
       </div>
     </div>
 
-    {
-      !error && 
+    {!error && (
       <>
         <div className={styles.item_info_container}>
-          <div className={styles.name_container}>
-            {getTrackTitle(track)}
-          </div>
-          <div className={styles.artist_container}>
-            {getTrackArtist(track)}
-          </div>
+          <div className={styles.name_container}>{getTrackTitle(track)}</div>
+          <div className={styles.artist_container}>{getTrackArtist(track)}</div>
         </div>
 
         <div className={styles.item_duration_container}>
-          <div className={styles.item_duration}>
-            {duration}
-          </div>
+          <div className={styles.item_duration}>{duration}</div>
         </div>
       </>
-    }
+    )}
 
-    {
-      Boolean(error) &&
-        <div className={styles.error_overlay}>
-          <div className={styles.error_message}>{error.message}</div>
-          <div className={styles.error_details}>{error.details}</div>
-        </div>
-    }
+    {Boolean(error) && (
+      <div className={styles.error_overlay}>
+        <div className={styles.error_message}>{error.message}</div>
+        <div className={styles.error_details}>{error.details}</div>
+      </div>
+    )}
   </div>
 );
 
@@ -103,13 +95,18 @@ QueueItem.propTypes = {
 
 export const enhance = compose(
   withHandlers({
-    handleRemoveFromQueue: ({ removeFromQueue, track, resetPlayer }) => () => {
-      removeFromQueue(track);
-      if (resetPlayer) {
-        resetPlayer();
-      }
-    },
-    handleSelectSong: ({ selectSong, index }) => () => selectSong(index)
+    handleRemoveFromQueue:
+      ({ removeFromQueue, track, resetPlayer }) =>
+        () => {
+          removeFromQueue(track);
+          if (resetPlayer) {
+            resetPlayer();
+          }
+        },
+    handleSelectSong:
+      ({ selectSong, index }) =>
+        () =>
+          selectSong(index)
   })
 );
 

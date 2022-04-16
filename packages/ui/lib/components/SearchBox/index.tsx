@@ -3,7 +3,7 @@ import cx from 'classnames';
 import _ from 'lodash';
 import { Dropdown, Icon } from 'semantic-ui-react';
 import SearchBoxDropdown from '../SearchBoxDropbown';
-import common from '../../common.scss';
+import common from '../../common.module.scss';
 import styles from './styles.scss';
 import { SearchProviderOption } from '../../types';
 

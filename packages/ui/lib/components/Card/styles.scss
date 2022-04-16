@@ -1,4 +1,4 @@
-@import "../../common";
+@import "../../common.module.scss";
 
 .card_container {
   width: 100%;
@@ -19,7 +19,7 @@
     &.animated:hover {
       box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.2);
       transform: scale(1.1);
-      
+
       .overlay {
         opacity: 1;
       }
@@ -34,7 +34,7 @@
       height: 100%;
       width: 100%;
       opacity: 0;
-      transition: .5s ease;
+      transition: 0.5s ease;
       background-color: rgba(0, 0, 0, 0.4);
     }
 

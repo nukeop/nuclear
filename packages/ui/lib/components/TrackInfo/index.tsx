@@ -2,7 +2,7 @@ import React from 'react';
 import { Icon } from 'semantic-ui-react';
 
 import Cover from '../Cover';
-import styles from './styles.scss';
+import styles from './styles.module.scss';
 
 export type TrackInfoProps = {
   cover?: string;
@@ -41,15 +41,16 @@ const TrackInfo: React.FC<TrackInfoProps> = ({
             </div>
           </div>
           <div className={styles.favorite_part}>
-            <Icon name={
-              isFavorite ? 'heart' : 'heart outline'
-            }
+            <Icon 
+              name={
+                isFavorite ? 'heart' : 'heart outline'
+              }
               size='large'
               onClick={
-              isFavorite
-                ? removeFromFavorites
-                : addToFavorites
-            }
+                isFavorite
+                  ? removeFromFavorites
+                  : addToFavorites
+              }
             />
           </div>
         </>

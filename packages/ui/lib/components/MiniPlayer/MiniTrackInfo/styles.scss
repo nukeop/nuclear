@@ -1,9 +1,6 @@
-
-
-@import "../.../../../../common.scss";
+@import "../.../../../../common.module.scss";
 
 .mini_track_info {
-
   width: 100%;
   flex: auto;
 
@@ -11,18 +8,17 @@
 
   flex-flow: column;
   margin-top: 100px;
- 
+
   .mini_cover {
     max-width: 250px;
     max-height: 250px;
     position: absolute;
     top: 25%;
-    left:50%;
+    left: 50%;
     transform: translate(-50%, -50%);
     height: 85%;
     aspect-ratio: 1;
 
-    
     overflow: hidden;
     border-radius: 1em;
     background: transparent;
@@ -50,7 +46,7 @@
     width: 22vh;
     font-size: 1.5vh;
     justify-content: space-between;
-    
+
     .left {
       flex: 1 1 auto;
     }
@@ -74,7 +70,7 @@
     text-align: left;
     line-height: 1em;
   }
-  
+
   .mini_artist {
     font-size: 1.5em;
     color: rgba($white, 0.6);
@@ -82,4 +78,3 @@
     line-height: 1em;
   }
 }
-

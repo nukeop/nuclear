@@ -5,7 +5,7 @@ import {
   ButtonProps as SUIButtonProps
 } from 'semantic-ui-react';
 
-import common from '../../common.scss';
+import common from '../../common.module.scss';
 import styles from './styles.scss';
 
 export type ButtonProps = SUIButtonProps & {

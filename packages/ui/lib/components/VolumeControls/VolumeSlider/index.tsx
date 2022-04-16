@@ -2,7 +2,7 @@ import React from 'react';
 
 import Range from '../../Range';
 
-import styles from './styles.scss';
+import styles from './styles.module.scss';
 
 export type VolumeSliderProps = {
   volume: number;

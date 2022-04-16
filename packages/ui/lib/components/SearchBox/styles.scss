@@ -1,4 +1,4 @@
-@import "../../common.scss";
+@import "../../common.module.scss";
 
 $input_height: 30px;
 
@@ -51,7 +51,7 @@ $input_height: 30px;
       }
 
       &.disabled {
-        opacity: .45;
+        opacity: 0.45;
       }
     }
 
@@ -71,4 +71,3 @@ $input_height: 30px;
     }
   }
 }
-

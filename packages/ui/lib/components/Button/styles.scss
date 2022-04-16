@@ -1,9 +1,8 @@
-
-@import "../../common.scss";
+@import "../../common.module.scss";
 
 button.nuclear.ui.button {
   position: relative;
-  
+
   background: $bglight;
   color: $white;
   white-space: nowrap;
@@ -84,7 +83,9 @@ button.nuclear.ui.button {
     padding: 0;
     margin: 0 0.5em;
 
-    &:hover, &:focus, &:active {
+    &:hover,
+    &:focus,
+    &:active {
       background: transparent;
     }
 

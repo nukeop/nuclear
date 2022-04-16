@@ -1,11 +1,11 @@
-@import '../../common.scss';
+@import "../../common.module.scss";
 
 .track_info {
   display: flex;
   flex-flow: row;
   flex: 1 1 50%;
 
-  &>*:not(:first-child) {
+  & > *:not(:first-child) {
     padding-left: 1em;
   }
 

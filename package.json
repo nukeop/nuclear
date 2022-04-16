@@ -60,6 +60,9 @@
     "node": ">=12.14.0",
     "npm": ">=6.0.0"
   },
+  "workspaces": [
+    "packages/*"
+  ],
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged"

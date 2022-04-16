@@ -1,4 +1,4 @@
-@import "../../common.scss";
+@import "../../common.module.scss";
 
 .search_box_dropdown {
   position: absolute;
@@ -65,7 +65,7 @@
     align-items: center;
     padding: 8px;
     background: rgba($background2, 0.4);
-    
+
     label {
       width: auto;
       margin-bottom: 12px;

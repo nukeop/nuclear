@@ -1,7 +1,7 @@
-@import '../../common';
+@import "../../common.module.scss";
 
-  $padding: 1em;
-  $miniPadding: 0.5em;
+$padding: 1em;
+$miniPadding: 0.5em;
 
 .track_row {
   transition: $short-duration;

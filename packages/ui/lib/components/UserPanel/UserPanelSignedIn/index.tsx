@@ -7,7 +7,7 @@ import { UserPanelProps } from '..';
 import { Dropdown } from '../../..';
 
 import styles from '../styles.scss';
-import common from '../../../common.scss';
+import common from '../../../common.module.scss';
 import { DropdownProps } from '../../Dropdown';
 
 type User = {

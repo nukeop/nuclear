@@ -7,7 +7,7 @@ import { FieldsPropsType } from '../../hooks/types';
 import { Button, FormInput } from '../..';
 import nuclearLogo from '../../../resources/media/logo_full_light.png';
 import styles from '../styles.scss';
-import common from '../../common.scss';
+import common from '../../common.module.scss';
 
 type NuclearSignUpFormContentProps = {
   fieldsProps: FieldsPropsType;

@@ -1,4 +1,4 @@
-@import '../../common.scss';
+@import "../../common.module.scss";
 
 .stream_info {
   position: relative;
@@ -27,35 +27,35 @@
     background: rgba($black, 0.85);
     border-radius: 0.25rem;
   }
-  
+
   label {
     color: rgba($white, 0.25);
     font-size: 12px;
   }
-  
+
   .stream_source {
     display: flex;
     flex-flow: column;
   }
-  
+
   .stream_title {
     display: flex;
     flex-flow: column;
-  
+
     span {
       @include ellipsis;
     }
   }
-  
+
   .stream_id {
     display: flex;
     flex-flow: column;
 
-    &>* {
+    & > * {
       @include ellipsis;
     }
   }
-  
+
   .stream_thumbnail {
     display: flex;
     flex-flow: row;
@@ -66,12 +66,12 @@
     height: 155px;
     width: 205px;
   }
-  
+
   img {
     width: 100%;
     height: auto;
   }
-  
+
   .stream_buttons {
     position: absolute;
     top: 0;
@@ -82,7 +82,7 @@
     align-items: flex-end;
     padding: 0.5rem;
     pointer-events: none;
-  
+
     a {
       background: rgba($black, 0.5);
       padding: 0.5rem 0.75rem;

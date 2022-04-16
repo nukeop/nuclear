@@ -1,4 +1,4 @@
-@import '../../common.scss';
+@import "../../common.module.scss";
 
 .loader {
   @include roundCorners;
@@ -10,7 +10,7 @@
 
   &.default {
     @include shadow;
-    background: linear-gradient(45deg, #43CBFF 0%, #9708CC 100%);
+    background: linear-gradient(45deg, #43cbff 0%, #9708cc 100%);
     background-size: 100% 100%;
     border-radius: 1em;
 
@@ -46,7 +46,8 @@
     }
 
     @keyframes triangle-anim {
-      0%, 100% {
+      0%,
+      100% {
         opacity: 1;
       }
 
@@ -68,8 +69,6 @@
       border-left: 5px solid transparent;
       animation: circle-anim 1s cubic-bezier(0.55, 0.15, 0.45, 0.85) infinite;
     }
-
-
   }
 
   &.small {
@@ -96,7 +95,6 @@
 
 @keyframes circle-anim {
   0% {
-
   }
 
   100% {

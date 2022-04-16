@@ -1,4 +1,4 @@
-@import "../../common.scss";
+@import "../../common.module.scss";
 
 .seekbar {
   position: relative;
@@ -18,7 +18,6 @@
     background-color: rgba($blue, 0.75);
     height: 100%;
   }
-
 }
 
 .seekbar_popup {

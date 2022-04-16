@@ -1,4 +1,4 @@
-@import '../../../common.scss';
+@import "../../../common.module.scss";
 
 .mini_play_options {
   position: absolute;
@@ -8,28 +8,28 @@
   flex-flow: row;
   justify-content: space-between;
   width: 100%;
-  
+
   button {
     @include center;
     display: flex;
-    
+
     background: transparent;
     border: none;
     outline: none;
     cursor: pointer;
     width: 2em;
     height: 2em;
-    
+
     padding: 0;
     margin: 0;
-    
+
     &:not(:first-child) {
       margin-top: 1em;
     }
-    
+
     i {
       color: $white;
-     margin: 0;
-   }
- }
+      margin: 0;
+    }
+  }
 }

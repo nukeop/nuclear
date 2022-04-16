@@ -4,7 +4,7 @@ import cx from 'classnames';
 import Button from '../../Button';
 
 import styles from '../styles.scss';
-import common from '../../../common.scss';
+import common from '../../../common.module.scss';
 
 export type UserPanelSignedOutProps = {
     signUpButtonLabel: string;

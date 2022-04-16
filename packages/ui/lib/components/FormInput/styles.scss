@@ -1,4 +1,4 @@
-@import "../../common.scss";
+@import "../../common.module.scss";
 
 .nuclear.field.input {
     position: relative;
@@ -48,7 +48,7 @@
             color: $red;
         }
 
-        :global(.ui.pointing.below.prompt.label)[role=alert] {
+        :global(.ui.pointing.below.prompt.label)[role="alert"] {
             position: absolute;
             top: 0;
             right: 0;

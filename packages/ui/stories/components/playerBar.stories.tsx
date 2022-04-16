@@ -38,5 +38,6 @@ export const DefaultStyle = () => <div
     updateVolume={() => {}}
     toggleMute={() => {}}
     isMuted={false}
+    segmentPopupMessage='Non-music'
   />
 </div>;

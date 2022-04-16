@@ -1,4 +1,4 @@
-@import "../../common.scss";
+@import "../../common.module.scss";
 
 .nuclear.ui.dropdown {
   color: $white;
@@ -32,7 +32,8 @@
     color: $white;
   }
 
-  .text, input {
+  .text,
+  input {
     color: $white;
   }
 

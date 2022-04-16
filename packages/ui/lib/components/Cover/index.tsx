@@ -3,8 +3,8 @@ import cx from 'classnames';
 
 import artPlaceholder from '../../../resources/media/art_placeholder.png';
 
-import common from '../../common.scss';
-import styles from './styles.scss';
+import common from '../../common.module.scss';
+import styles from './styles.module.scss';
 
 type CoverProps = {
   cover?: string;

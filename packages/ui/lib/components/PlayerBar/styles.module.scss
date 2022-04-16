@@ -1,4 +1,4 @@
-@import "../../common.scss";
+@import "../../common.module.scss";
 
 .player_bar {
   display: flex;
@@ -48,14 +48,13 @@
   .volume_popup_button {
     background: transparent !important;
     color: $white !important;
-
   }
 }
 
 .volume_popup {
   position: relative !important;
   right: 1em !important;
-  
+
   background: $bgdarker !important;
   border: 1px solid rgba($bgdefault, 0.6) !important;
   box-shadow: 0rem 0.125rem 0.5rem 0.25rem rgba($black, 0.1) !important;

@@ -1,10 +1,10 @@
-@import '../../common.scss';
+@import "../../common.module.scss";
 
 .nuclear.box {
     position: relative;
     display: flex;
     flex-flow: column;
-    
+
     padding: 2em;
 
     border-radius: 0.5em;
