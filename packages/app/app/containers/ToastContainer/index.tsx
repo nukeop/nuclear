@@ -1,26 +1,11 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import * as ToastActions from '../../actions/toasts';
-
+import { useSelector } from 'react-redux';
 import ToastComponent from '../../components/ToastComponent';
 import { RootState } from '../../reducers';
 
-const ToastContainer = ({ toasts }) => <ToastComponent toasts={toasts.notifications} />;
+const ToastContainer: React.FC = () => {
+  const notifications = useSelector((state: RootState) => state.toasts.notifications); 
+  return  <ToastComponent toasts={notifications} />;
+};
 
-function mapStateToProps(state: RootState) {
-  return {
-    toasts: state.toasts
-  };
-}
-
-function mapDispatchToProps(dispatch) {
-  return {
-    actions: bindActionCreators(Object.assign({}, ToastActions), dispatch)
-  };
-}
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(ToastContainer);
+export default ToastContainer;
