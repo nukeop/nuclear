@@ -71,7 +71,7 @@
     "full-bass": "Hel bas",
     "full-treble": "Hel diskant",
     "pop": "Pop",
-    "presets": "Presets",
+    "presets": "Förinställningar",
     "reggae": "Reggae",
     "rock": "Rock"
   },
@@ -172,12 +172,12 @@
     "tracks-selected-singular": "spår vald",
     "tracks-singular": "spår",
     "tracks-plural": "spår",
-    "modified-at": "Last modified: ",
-    "never-modified": "Unknown",
-    "server-modified-at": "Server modified: ",
-    "upload-to-server": "Upload to server",
-    "download-from-server": "Download from server",
-    "number-of-tracks": "tracks"
+    "modified-at": "Senast ändrad: ",
+    "never-modified": "Okänd",
+    "server-modified-at": "Server ändrad: ",
+    "upload-to-server": "Ladda upp till servern",
+    "download-from-server": "Hämta från servern",
+    "number-of-tracks": "spår"
   },
   "plugins": {
     "add-a-plugin": "Lägg till en insticksmodul",
@@ -216,7 +216,7 @@
   "search": {
     "album": "Album",
     "album_plural": "Album",
-    "all": "All",
+    "all": "Alla",
     "artist": "Artist",
     "artist_plural": "Artister",
     "clear-history": "Rensa historik",
@@ -226,7 +226,7 @@
     "placeholder": "Sök...",
     "playlist": "Spellista",
     "playlist_plural": "Spellistor",
-    "podcast": "Podcast",
+    "podcast": "Poddsändning",
     "queue-add": "Lägg till alla spår i kö",
     "track": "Spår",
     "track_plural": "Spår",
@@ -268,7 +268,7 @@
     "lastfm-description": "För att aktivera skrobbling måste du först ansluta och auktorisera Nuclear på Last.fm, klicka sedan på logga in.",
     "lastfm-enable": "Aktivera skrobbling till Last.fm",
     "lastfm-title": "Last.fm",
-    "less": "Less",
+    "less": "Mindre",
     "login": "Logga in",
     "logout": "Logga ut",
     "loop-after-queue-end": "Upprepa kön efter att sista låten i kön spelats",
@@ -281,16 +281,16 @@
     "mastodon-post-format-description": "Nuclear kommer att lägga upp en status på Mastodon efter varje spår som slutar spela. Ovanstående sträng kommer att vara mallen för varje inlägg, med {{artist}} och {{title}} ersatt med artisten och titeln för spåret.",
     "mastodon-post-format-label": "Postformat",
     "mastodon-title": "",
-    "nuclear-identity-service-url": "Nuclear identity service URL",
-    "nuclear-playlists-service-url": "Nuclear playlists service URL",
+    "nuclear-identity-service-url": "Nuclears webbadress för identitetstjänst",
+    "nuclear-playlists-service-url": "Nuclears webbadress för spellistor",
     "mini-player": "Använd minispelarstil",
-    "more": "More",
+    "more": "Mera",
     "discord-rich-presence": "Växla Discord rich närvaro (kräver omstart)",
     "notification-timeout": "Tidsgräns för notifikationer",
     "notlogged": "Inte inloggad",
     "playback": "Uppspelning",
     "program-settings": "Programinställningar",
-    "saving-in": "Saving in:",
+    "saving-in": "Sparar i:",
     "seek-iteration": "Antal sekunder att hoppa framåt/bakåt när du trycker på piltangenterna",
     "shuffle-queue": "Blanda spår",
     "shuffle-when-going-back": "Blanda på föregående låt",
@@ -339,35 +339,35 @@
   },
   "forms": {
     "nuclear-sign-up": {
-      "header": "Sign up",
-      "secondary-header": "Sign up to Nuclear Web Services",
-      "side-paragraph-1": "NWS enables you to backup your playlists online and share them.",
-      "side-paragraph-2": "Providing your email is optional; it will allow you to recover your account if you forget your password.",
-      "username-label": "Username",
-      "email-label": "Email",
-      "password-label": "Password",
-      "sign-up-button": "Sign up",
+      "header": "Registrera dig",
+      "secondary-header": "Registrera dig till Nuclear Web Services",
+      "side-paragraph-1": "NWS gör att du kan säkerhetskopiera dina spellistor på nätet och dela dem.",
+      "side-paragraph-2": "Att tillhandahålla din e-post är valfritt; det gör att du kan återställa ditt konto om du glömmer ditt lösenord.",
+      "username-label": "Användarnamn",
+      "email-label": "E-post",
+      "password-label": "Lösenord",
+      "sign-up-button": "Registrera dig",
       "validation": {
         "username": {
-          "length": "Username must be 4 characters or more",
-          "required": "Username is required"
+          "length": "Användarnamnet måste vara 4 tecken eller mer",
+          "required": "Användarnamn krävs"
         },
         "email": {
-          "invalid": "Email must be a valid email"
+          "invalid": "E-post måste vara en giltig e-postadress"
         },
         "password": {
-          "length": "Password must be 6 characters or more",
-          "required": "Password is required"
+          "length": "Lösenordet måste vara 6 tecken eller mer",
+          "required": "Lösenord krävs"
         }
       }
     },
     "nuclear-sign-in": {
-      "header": " Sign in",
-      "username-label": "Username",
-      "password-label": "Password",
-      "no-account-label": "Don't have an account?",
-      "no-account-link": "Sign up",
-      "sign-in-button": "Sign in"
+      "header": " Logga in",
+      "username-label": "Användarnamn",
+      "password-label": "Lösenord",
+      "no-account-label": "Har du inget konto?",
+      "no-account-link": "Registrera dig",
+      "sign-in-button": "Logga in"
     }
   }
 }
