@@ -4,10 +4,11 @@ import { bindActionCreators } from 'redux';
 import * as ToastActions from '../../actions/toasts';
 
 import ToastComponent from '../../components/ToastComponent';
+import { RootState } from '../../reducers';
 
 const ToastContainer = ({ toasts }) => <ToastComponent toasts={toasts.notifications} />;
 
-function mapStateToProps(state) {
+function mapStateToProps(state: RootState) {
   return {
     toasts: state.toasts
   };
