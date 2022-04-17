@@ -73,3 +73,16 @@ export enum DownloadStatus {
   ERROR = 'Error'
 }
 
+export type Notification = {
+  id?:string
+  title?: string;
+  details?: string;
+  error?: boolean;
+  warning?: boolean;
+  info?: boolean; 
+  success?: boolean;
+  onClick?:() => void
+  icon?:  Node | React.ReactElement<{
+    src: string;
+  }>
+}
