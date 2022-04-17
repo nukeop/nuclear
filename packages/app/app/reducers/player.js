@@ -47,6 +47,12 @@ export default function PlayerReducer(state=initialState, action) {
       seek: action.payload
     });
   case UPDATE_VOLUME:
+    if (action.payload === 0) {
+      return Object.assign({}, state, {
+        volume: action.payload,
+        muted: true
+      });
+    }
     return Object.assign({}, state, {
       volume: action.payload
     });
@@ -55,9 +61,12 @@ export default function PlayerReducer(state=initialState, action) {
       muted: true
     });
   case UNMUTE:
-    return Object.assign({}, state, {
-      muted: false
-    });
+    if (state.volume !== 0) {
+      return Object.assign({}, state, {
+        muted: false
+      });
+    }
+    return state;
   case NEXT_SONG:
   case PREVIOUS_SONG:
   case SELECT_SONG:
