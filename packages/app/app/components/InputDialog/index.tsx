@@ -28,6 +28,14 @@ const InputDialog:React.FC<InputDialogProps> = ({
   const handleOpen = useCallback(() => setIsOpen(true), []);
   const handleClose = useCallback(() => setIsOpen(false), []);
   const handleChange = useCallback(e => setInputString(e.target.value), []);
+  const handleKeyPress = useCallback(e => {
+    if (e.key === 'Enter'){ 
+      setInputString(e.target.value);
+      onAccept(inputString);
+      handleClose();
+    }
+  }, [handleClose, inputString, onAccept]);
+
   const onClick = useCallback(e => {
     setInputString(e.target.value);
     onAccept(inputString);
@@ -58,6 +66,7 @@ const InputDialog:React.FC<InputDialogProps> = ({
           }}
           placeholder={placeholder}
           onChange={handleChange}
+          onKeyPress={handleKeyPress}
           value={inputString}
           data-testid={testIdPrefix && `${testIdPrefix}-input`}
         />

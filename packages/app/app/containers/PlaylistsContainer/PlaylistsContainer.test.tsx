@@ -135,6 +135,48 @@ describe('Playlists container', () => {
       })
     ]);
   });
+  
+  it('should create an empty playlist with a custom name on enter keypress', async () => {
+    const { component, store } = mountComponent();
+    await waitFor(() => component.getByTestId('create-new').click());
+    const input = component.getByTestId('create-playlist-input').firstChild;
+    fireEvent.change(input, { target: { value: 'new-empty-playlist' } });
+    fireEvent.keyPress(input, { key: 'Enter', code: 13, charCode: 13 });
+    const state = store.getState();
+    expect(state.playlists.localPlaylists.data).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          name: 'new-empty-playlist'
+        })]));
+  });
+
+  it('should create an empty playlist with default name on enter keypress', async () => {
+    const { component, store } = mountComponent();
+    await waitFor(() => component.getByTestId('create-new').click());
+    const input = component.getByTestId('create-playlist-input').firstChild;
+    fireEvent.keyPress(input, { key: 'Enter', code: 13, charCode: 13 });
+    const state = store.getState();
+    expect(state.playlists.localPlaylists.data).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          name: 'New playlist'
+        })
+      ]));
+  });
+
+  it('should not create an empty playlist with an empty name on enter keypress', async () => {
+    const { component, store } = mountComponent();
+    await waitFor(() => component.getByTestId('create-new').click());
+    const input = component.getByTestId('create-playlist-input').firstChild;
+    fireEvent.change(input, { target: { value: '' } });
+    fireEvent.keyPress(input, { key: 'Enter', code: 13, charCode: 13 });
+    const state = store.getState();
+    expect(state.playlists.localPlaylists.data).not.toEqual([
+      expect.objectContaining({
+        name: ''
+      })
+    ]);
+  });
 
   it('should reorder playlists', async () => {
     mockGetComputedStyle();
