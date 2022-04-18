@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
-import {compose, withProps} from 'recompose';
-import {AlbumGrid} from '@nuclear/ui';
+import { compose, withProps } from 'recompose';
+import { AlbumGrid } from '@nuclear/ui';
 
 import TrackPopupButtons from '../../../containers/TrackPopupButtons';
 
@@ -13,7 +13,7 @@ LibraryAlbumGrid.propTypes = {
 };
 
 export default compose(
-  withProps(({tracks}) => ({
+  withProps(({ tracks }) => ({
     albums: _(tracks)
       .groupBy('album')
       .map((group, key) => ({
@@ -31,6 +31,6 @@ export default compose(
         tracks: group
       }))
       .value(),
-    trackButtons: TrackPopupButtons
+    TrackButtons: TrackPopupButtons
   }))
 )(LibraryAlbumGrid);

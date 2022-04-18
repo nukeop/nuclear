@@ -12,7 +12,7 @@ type ArtistGridProps = {
   artists: {
     name: string
   } [];
-  removeFavoriteArtist: (artist) => void;
+  removeFavoriteArtist?: (artist) => void;
   onArtistClick: (artist) => void
   loading?: boolean;
   autoSize?: boolean;
@@ -48,7 +48,7 @@ export const ArtistGrid: React.FC<ArtistGridProps> = ({
                 {
                   type: 'item', props: {
                     children: 'Remove',
-                    onClick: () => removeFavoriteArtist(artist)
+                    onClick: () => removeFavoriteArtist && removeFavoriteArtist(artist)
                   }
                 }
               ]}

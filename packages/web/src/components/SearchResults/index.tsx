@@ -3,7 +3,8 @@ import React from 'react';
 type SearchResult = {}
 
 type SearchResultsProps = {
-searchResults?: SearchResult[];
+  searchResults?: SearchResult[];
+  isLoading?: boolean;
 };
 
 export const SearchResults: React.FC<SearchResultsProps> = () => <div>

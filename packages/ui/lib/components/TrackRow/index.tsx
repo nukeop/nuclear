@@ -88,7 +88,7 @@ const TrackRow: React.FC<TrackRowProps> = ({
         { 
           _.isString(track.artist) 
             ? track.artist
-            : track.artist.name 
+            : track.artist?.name 
         }
       </td>
     }

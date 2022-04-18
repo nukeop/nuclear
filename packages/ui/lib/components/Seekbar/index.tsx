@@ -22,7 +22,7 @@ export type SeekbarProps = {
   seek: (arg0: number) => void;
   queue: {
     queueItems: QueueItem[];
-    currentSong?: number;
+    currentSong: number;
   };
   height?: string;
   skipSegments?: Segment[];

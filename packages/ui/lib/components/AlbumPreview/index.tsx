@@ -12,7 +12,7 @@ import styles from './styles.scss';
 
 type AlbumPreviewProps = {
   album?: Album;
-  trackButtons?: React.ElementType ;
+  TrackButtons?: React.ElementType<any>;
 };
 
 type Handlers = {
@@ -22,10 +22,9 @@ type Handlers = {
 
 const AlbumPreview: React.FC<AlbumPreviewProps & Handlers> = (props) => {
 
-  const { album, trackButtons, handleAddToQueue, handlePlayAll } = props;
+  const { album, TrackButtons, handleAddToQueue, handlePlayAll } = props;
 
   const thumb = _.defaultTo(getThumbnail(album), artPlaceholder);
-  const TrackButtons = trackButtons;
 
   return (
     <div className={styles.album_preview}>
@@ -54,7 +53,7 @@ const AlbumPreview: React.FC<AlbumPreviewProps & Handlers> = (props) => {
         <table>
           <tbody>
             {
-              album.tracks.map((track, index) => (
+              album?.tracks?.map((track, index) => (
                 <ContextPopup
                   trigger={
                     <TrackRow
@@ -69,13 +68,16 @@ const AlbumPreview: React.FC<AlbumPreviewProps & Handlers> = (props) => {
                   }
                   key={index}
                   thumb={thumb}
-                  title={track.name}
+                  title={track.name ?? ''}
                   artist={_.get(album, 'artist.name')}
                 >
-                  <TrackButtons
-                    track={track}
-                    withAddToDownloads={false}
-                  />
+                  {
+                    TrackButtons &&
+                    <TrackButtons
+                      track={track}
+                      withAddToDownloads={false}
+                    />
+                  }
                 </ContextPopup>
               ))
             }

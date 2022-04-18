@@ -8,13 +8,8 @@
     "skipLibCheck": true,
     "strict": false,
     "allowJs": true,
-    "typeRoots": [
-      "../../node_modules/@types",
-      "./lib/typings"
-    ],
+    "typeRoots": ["../../node_modules/@types", "./lib/typings"],
     "jsx": "react"
   },
-  "include": [
-    "lib"
-  ]
+  "include": ["lib"]
 }

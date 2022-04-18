@@ -102,14 +102,14 @@ const PlayerBar: React.FC<PlayerBarProps> = ({
           goBackDisabled={goBackDisabled}
           goForwardDisabled={goForwardDisabled}
           playDisabled={playDisabled} />
-        {windowWidth < VOLUME_POPUP_BREAKPOINT &&
+        {(windowWidth ?? 0) < VOLUME_POPUP_BREAKPOINT &&
           <VolumePopUp
             volume={volume}
             updateVolume={updateVolume}
             toggleMute={toggleMute}
             isMuted={isMuted}
             playOptions={playOptions} />}
-        {windowWidth > VOLUME_POPUP_BREAKPOINT &&
+        {(windowWidth ?? 0) > VOLUME_POPUP_BREAKPOINT &&
           <VolumeControls
             volume={volume}
             updateVolume={updateVolume}

@@ -89,7 +89,7 @@ export const WithTrackButtons = ({
           }
         )).value()
       }}
-      trackButtons={[
+      TrackButtons={[
         {
           onClick: () => alert('Button 1 clicked'),
           icon: 'share',

@@ -7,9 +7,9 @@ import { compose, withState, withHandlers } from 'recompose';
 
 import AlbumPreview from '../AlbumPreview';
 import Card from '../Card';
-import common from '../../common.module.scss';
-import styles from './styles.scss';
 import { getThumbnail, getTrackItem } from '../..';
+import common from '../../common.module.scss';
+import styles from './styles.module.scss';
 
 const AlbumGrid = ({
   albums,
@@ -17,7 +17,7 @@ const AlbumGrid = ({
   removeFavoriteAlbum,
   selectedAlbum,
   loading,
-  trackButtons,
+  TrackButtons,
   onAddToQueue,
   onPlayAll,
   autoSize,
@@ -61,7 +61,7 @@ const AlbumGrid = ({
           <hr />
           <AlbumPreview
             album={selectedAlbum}
-            trackButtons={trackButtons}
+            TrackButtons={TrackButtons}
             handleAddToQueue={onAddToQueue}
             handlePlayAll={onPlayAll}
           />
@@ -88,7 +88,7 @@ AlbumGrid.propTypes = {
   withArtistNames: PropTypes.bool,
   withAlbumPreview: PropTypes.bool,
 
-  trackButtons: PropTypes.object
+  TrackButtons: PropTypes.object
 };
 
 export default compose(

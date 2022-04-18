@@ -12,7 +12,7 @@ export type VisualizerProps = {
   audioContext?: AudioContext;
   previousNode?: AudioNode;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  location?: Location<any>;
+  location?: Location;
   trackName?: string;
   presetName: string;
 }
