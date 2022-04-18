@@ -179,7 +179,8 @@ module.exports = (env) => {
               options: {
                 importLoaders: 1,
                 modules: {
-                  localIdentName: '[local]'
+                  localIdentName: '[local]',
+                  exportGlobals: true
                 }
               }
             },
