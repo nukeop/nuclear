@@ -1,4 +1,3 @@
-import logger from 'electron-timber';
 import { head } from 'lodash';
 import ytdl from 'ytdl-core';
 import ytpl from 'ytpl';
@@ -7,6 +6,7 @@ import ytsr from 'ytsr';
 import { StreamData, StreamQuery } from '../plugins/plugins.types';
 import * as SponsorBlock from './SponsorBlock';
 import { YoutubeHeuristics } from './heuristics';
+import { Logger } from '../types';
 
 const baseUrl = 'http://www.youtube.com/watch?v=';
 
@@ -48,7 +48,7 @@ function formatPlaylistTrack(track: ytpl.Item) {
   };
 }
 
-export async function handleYoutubePlaylist(url: string) {
+export const handleYoutubePlaylist = (logger: Logger) => async (url: string) => {
   try {
     const playlistID = await ytpl.getPlaylistID(url);
     if (ytpl.validateID(playlistID)) {
@@ -67,14 +67,12 @@ export async function handleYoutubePlaylist(url: string) {
       return allTracks.map(formatPlaylistTrack);
     }
     return [];
-
   } catch (e) {
     logger.error('youtube fetch playlist error');
     logger.error(e);
     return [];
   }
-
-}
+};
 
 function handleYoutubeVideo(url) {
   return ytdl.getInfo(url)
@@ -96,10 +94,10 @@ function handleYoutubeVideo(url) {
     });
 }
 
-export function urlSearch(url: string) {
+export const urlSearch = (logger: Logger) => (url: string) => {
   const urlAnalysis = analyseUrlType(url);
   if (urlAnalysis.isYoutubePlaylist) {
-    return handleYoutubePlaylist(url);
+    return handleYoutubePlaylist(logger)(url);
   } else if (urlAnalysis.isYoutubeVideo) {
     return handleYoutubeVideo(url);
   } else {
@@ -107,7 +105,7 @@ export function urlSearch(url: string) {
       resolve([]);
     });
   }
-}
+};
 
 export async function liveStreamSearch(query: string) {
   if (isValidURL(query)) {
@@ -131,11 +129,17 @@ export async function liveStreamSearch(query: string) {
   });
 }
 
-export async function trackSearch(query: StreamQuery, omitStreamId?: string, sourceName?: string) {
-  return trackSearchByString(query, omitStreamId, sourceName);
-}
+export const trackSearch = (logger: Logger) => (query: StreamQuery, omitStreamId?: string, sourceName?: string, useSponsorBlock = true) => {
+  return trackSearchByQuery(logger)(query, omitStreamId, sourceName, useSponsorBlock);
+};
 
-export async function trackSearchByString(query: StreamQuery, omitStreamId?: string, sourceName?: string, useSponsorBlock = true): Promise<StreamData> {
+export const trackListSearchByString = () => async (query: string) => {
+  const filterOptions = await ytsr.getFilters(query);
+  const filterVideoOnly = filterOptions.get('Type').get('Video'); 
+  return ytsr(filterVideoOnly.url, { limit: 15 });
+};
+
+export const trackSearchByQuery = (logger: Logger) => async (query: StreamQuery, omitStreamId?: string, sourceName?: string, useSponsorBlock = true): Promise<StreamData> => {
   const terms = query.artist + ' ' + query.track;
   const filterOptions = await ytsr.getFilters(terms);
   const filterVideoOnly = filterOptions.get('Type').get('Video'); 
@@ -175,9 +179,9 @@ export async function trackSearchByString(query: StreamQuery, omitStreamId?: str
     logger.error(e);
     throw new Error('Warning: topTrack.url is undefined, removing song');    
   }
-}
+};
 
-export const getStreamForId = async (id: string, sourceName: string): Promise<StreamData> => {
+export const getStreamForId = (logger: Logger) => async (id: string, sourceName: string): Promise<StreamData> => {
   try {
     const videoUrl = baseUrl + id;
     const trackInfo = await ytdl.getInfo(videoUrl);

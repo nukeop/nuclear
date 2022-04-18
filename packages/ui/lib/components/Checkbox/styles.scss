@@ -1,6 +1,6 @@
 @import "../../common.module.scss";
 
-.nuclear.checkbox {
+:global(.nuclear).checkbox {
   input ~ label {
     &,
     &:hover,

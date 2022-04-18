@@ -1,0 +1,10 @@
+@import "../../../../ui/lib/common.module.scss";
+
+.navbar {
+    @include shadow;
+    position: relative;
+    display: flex;
+    flex-flow: row;
+    background: $bgdark;
+    padding: 1em;
+}

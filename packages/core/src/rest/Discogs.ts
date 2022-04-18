@@ -4,8 +4,6 @@ import { DiscogsSearchType, DiscogsRelease } from './Discogs.types';
 
 const apiUrl = 'https://api.discogs.com/';
 const userToken = 'QDUeFOZNwIwOePlxpVziEHzamhbIHUdfENAJTnLR';
-// const key = 'EZaGPpKGBbTkjwmpjmNY';
-// const secret = 'uluhDSPtelRtLUvjrvQhRBnNwpZMtkZq';
 
 function addToken(query: string, first = false): string {
   const newQuery: string = query + '&token=' + userToken;

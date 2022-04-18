@@ -1,6 +1,6 @@
 @import "../../common.module.scss";
 
-.nuclear.field.input {
+:global(.nuclear).field.input {
     position: relative;
 
     .input input {

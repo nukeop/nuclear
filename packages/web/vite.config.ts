@@ -1,12 +1,13 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
+import {resolve} from 'path';
 
 export default defineConfig({
   plugins: [react()],
   resolve: {
     alias: {
-      'react-image': '../../../node_modules/react-image/cjs/index.js'
+      'react-image': resolve(__dirname, '..', '..', 'node_modules/react-image/cjs/index.js')
     }
   },
   optimizeDeps: {

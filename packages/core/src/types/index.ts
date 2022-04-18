@@ -48,3 +48,9 @@ export type TrackType = {
 };
 
 export const isArtistObject = (artist: TrackType['artist']): artist is { name: string } => typeof artist === 'object' && 'name' in artist;
+
+export type Logger = {
+  log: (...args: any[]) => void;
+  warn: (...args: any[]) => void;
+  error: (...args: any[]) => void;
+}

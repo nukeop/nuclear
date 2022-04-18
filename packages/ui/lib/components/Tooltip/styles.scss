@@ -1,6 +1,6 @@
 @import "../../common.module.scss";
 
-.nuclear.tooltip {
+:global(.nuclear).tooltip {
   background: $bgdarker !important;
   color: $white !important;
   border-color: $bgdefault !important;

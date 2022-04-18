@@ -28,7 +28,7 @@ module.exports = {
       searchTracks: LastFmApi.searchTracks
     })),
     Youtube: {
-      urlSearch: jest.fn().mockResolvedValue([]),
+      urlSearch: jest.fn(() => jest.fn().mockResolvedValue([])),
       liveStreamSearch: jest.fn().mockResolvedValue([])
     },
     NuclearPlaylistsService: jest.requireActual('@nuclear/core/src/rest/Nuclear/Playlists').NuclearPlaylistsService

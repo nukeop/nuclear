@@ -8,15 +8,15 @@
   transition: $short-duration;
   user-select: none;
 
-  &.nuclear.dropdown {
+  &:global(.nuclear).dropdown {
     background: none;
     border: none;
     transition: $short-duration;
   }
 
-  &.nuclear.dropdown:hover,
-  &.nuclear.dropdown:active,
-  &.nuclear.dropdown:focus,
+  &:global(.nuclear).dropdown:hover,
+  &:global(.nuclear).dropdown:active,
+  &:global(.nuclear).dropdown:focus,
   &:hover {
     background: $pink;
     text-decoration: none;

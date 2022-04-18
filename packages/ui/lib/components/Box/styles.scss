@@ -1,6 +1,6 @@
 @import "../../common.module.scss";
 
-.nuclear.box {
+:global(.nuclear).box {
     position: relative;
     display: flex;
     flex-flow: column;

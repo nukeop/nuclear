@@ -123,7 +123,7 @@ export function lastFmTrackSearch(terms) {
 export function youtubePlaylistSearch(terms) {
   return dispatch => {
     dispatch(SearchActions.youtubePlaylistSearchStart(terms));
-    rest.Youtube.urlSearch(terms)
+    rest.Youtube.urlSearch(logger)(terms)
       .then(results => {
         dispatch(
           SearchActions.youtubePlaylistSearchSuccess(terms, results)

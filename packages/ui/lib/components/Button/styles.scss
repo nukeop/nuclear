@@ -1,6 +1,6 @@
 @import "../../common.module.scss";
 
-button.nuclear.ui.button {
+button:global(.nuclear).ui.button {
   position: relative;
 
   background: $bglight;

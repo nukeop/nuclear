@@ -15,17 +15,20 @@ type Toast = {
 }
 
 type ToastContainerProps = {
-  toasts: Toast[]
+  className?: string;
+  toasts: Toast[];
 }
 
 const ToastContainer: React.FC<ToastContainerProps> = ({
+  className,
   toasts = []
 }) => {
   return (
     <div
       className={cx(
         common.nuclear,
-        styles.toast_container
+        styles.toast_container,
+        className
       )}
     >
       { toasts.map((toast, i) => {

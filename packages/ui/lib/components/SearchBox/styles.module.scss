@@ -12,7 +12,7 @@ $input_height: 30px;
     position: relative;
     flex: 1 1 auto;
 
-    i.icon {
+    i:global(.icon) {
       display: flex;
       justify-content: center;
       align-items: center;
@@ -23,12 +23,12 @@ $input_height: 30px;
       margin: 0;
     }
 
-    i.search.icon {
+    i:global(.search.icon) {
       border-radius: 0;
       background-color: $blue;
     }
 
-    i.spinner.icon {
+    i:global(.spinner.icon) {
       margin-left: -$input_height;
     }
 
@@ -47,7 +47,8 @@ $input_height: 30px;
       font-size: 16px;
 
       &::selection {
-        background: rgba($lightbg, 0.85);
+        background: rgba($bglight, 1);
+        color: $white;
       }
 
       &.disabled {

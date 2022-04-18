@@ -4,25 +4,28 @@ import _ from 'lodash';
 import { Dropdown, Icon } from 'semantic-ui-react';
 import SearchBoxDropdown from '../SearchBoxDropbown';
 import common from '../../common.module.scss';
-import styles from './styles.scss';
+import styles from './styles.module.scss';
 import { SearchProviderOption } from '../../types';
 
 
 type SearchBarProps = {
-  loading: boolean
-  disabled: boolean
-  placeholder: string 
-  searchProviders: SearchProviderOption[]
-  searchHistory: string[]
-  lastSearchesLabel: string
-  clearHistoryLabel: string
-  footerLabel: string
-  onClearHistory: React.MouseEventHandler;
-  onSearch: (entry: string) => void
-  selectedSearchProvider: SearchProviderOption
-  onSearchProviderSelect: (provider: SearchProviderOption) => void
-  handleFocus: (bool: boolean) => void
-  isFocused: boolean
+  loading: boolean;
+  disabled: boolean;
+  placeholder: string ;
+
+  onSearch: (entry: string) => void;
+  searchProviders?: SearchProviderOption[];
+  onSearchProviderSelect?: (provider: SearchProviderOption) => void;
+  selectedSearchProvider?: SearchProviderOption;
+  
+  searchHistory?: string[];
+  clearHistoryLabel?: string;
+  lastSearchesLabel?: string;
+  footerLabel?: string;
+  displayHistory?: boolean;
+  onClearHistory?: React.MouseEventHandler;
+  handleFocus?: (bool: boolean) => void;
+  isFocused?: boolean;
 }
 
 const SearchBox: React.FC<SearchBarProps> = ({
@@ -39,7 +42,8 @@ const SearchBox: React.FC<SearchBarProps> = ({
   selectedSearchProvider,
   onSearchProviderSelect,
   handleFocus,
-  isFocused
+  isFocused,
+  displayHistory
 }) => {
   const searchRef = useRef(null);
   useEffect(() => {
@@ -103,7 +107,7 @@ const SearchBox: React.FC<SearchBarProps> = ({
           />
         }
         {
-          isFocused && <SearchBoxDropdown
+          isFocused && displayHistory && <SearchBoxDropdown
             display={isFocused}
             searchHistory={searchHistory}
             lastSearchesLabel={lastSearchesLabel}

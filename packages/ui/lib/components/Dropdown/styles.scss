@@ -1,6 +1,6 @@
 @import "../../common.module.scss";
 
-.nuclear.ui.dropdown {
+:global(.nuclear).ui.dropdown {
   color: $white;
   background: $background3;
   border: 1px solid rgba($background2, 0.6);

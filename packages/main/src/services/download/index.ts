@@ -2,6 +2,7 @@
 import registerDownloader, { download, Progress } from 'electron-dl';
 import { inject, injectable } from 'inversify';
 import _ from 'lodash';
+import logger from 'electron-timber';
 import * as Youtube from '@nuclear/core/src/rest/Youtube';
 import { StreamQuery } from '@nuclear/core/src/plugins/plugins.types';
 
@@ -32,7 +33,7 @@ class Download {
   }
 
   /**
-   * Download a soud using Youtube
+   * Download a track using Youtube
    */
   async start({
     query,
@@ -40,7 +41,7 @@ class Download {
     onStart,
     onProgress
   }: DownloadParams): Promise<any> {
-    const track = await Youtube.trackSearchByString(query, undefined, undefined, false);
+    const track = await Youtube.trackSearch(logger)(query, undefined, undefined, false);
 
     return download(this.window.getBrowserWindow(), track.stream, {
       filename: `${filename}.${track.format}`,

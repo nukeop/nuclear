@@ -1,6 +1,6 @@
 @import "../../common.module.scss";
 
-.nuclear.user_panel {
+:global(.nuclear).user_panel {
     display: flex;
     flex-flow: row;
     align-items: center;

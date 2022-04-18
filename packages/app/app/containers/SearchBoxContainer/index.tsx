@@ -63,8 +63,9 @@ const SearchBoxContainer: React.FC = () => {
     onClearHistory={handleClearSearchHistory}
     selectedSearchProvider={selectedSearchProviderOption}
     onSearchProviderSelect={handleSelectSearchProvider}
-    isFocused={isFocused}
     handleFocus={handleFocus}
+    isFocused={isFocused}
+    displayHistory
   />;
 };
 

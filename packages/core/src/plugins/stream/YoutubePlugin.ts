@@ -16,7 +16,7 @@ class YoutubePlugin extends StreamProviderPlugin {
   async search(query: StreamQuery): Promise<void | StreamData> {
     const terms = query.artist + ' ' + query.track;
     try {
-      return await Youtube.trackSearch(query, undefined, this.sourceName);
+      return await Youtube.trackSearch(logger)(query, undefined, this.sourceName);
     } catch (e) {
       logger.error(`Error while searching  for ${terms} on Youtube`);
       logger.error(e);
@@ -26,7 +26,7 @@ class YoutubePlugin extends StreamProviderPlugin {
   async getAlternateStream(query: StreamQuery, currentStream: { id: string }): Promise<void | StreamData> {
     const terms = query.artist + ' ' + query.track;
     try {
-      return await Youtube.trackSearch(query, currentStream.id, this.sourceName);
+      return await Youtube.trackSearch(logger)(query, currentStream.id, this.sourceName);
     } catch (e) {
       logger.error(`Error while looking up streams for ${terms} on Youtube`);
       logger.error(e);
@@ -35,7 +35,7 @@ class YoutubePlugin extends StreamProviderPlugin {
 
   async getStreamForId(id: string): Promise<void | StreamData> {
     try {
-      return await Youtube.getStreamForId(id, this.sourceName);
+      return await Youtube.getStreamForId(logger)(id, this.sourceName);
     } catch (e) {
       logger.error(`Error while looking up streams for id: ${id} on Youtube`);
       logger.error(e);
