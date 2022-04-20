@@ -26,44 +26,38 @@ class SoundcloudPlugin extends StreamProviderPlugin {
     };
   }
 
-  search(query: StreamQuery): Promise<StreamData | void> {
+  async search(query: StreamQuery): Promise<StreamData | undefined> {
     const terms = query.artist + ' ' + query.track;
-    return Soundcloud.soundcloudSearch(terms)
-      .then(data => data.json())
-      .then(results => {
-        const info = results[0];
-        return info ? this.resultToStream(info) : null;
-      })
-      .catch(err => {
-        logger.error(`Error while looking up streams for ${terms} on Soundcloud`);
-        logger.error(err);
-      });
+    try {
+      const results = await(await Soundcloud.soundcloudSearch(terms)).json();
+      const info = results[0];
+      return info ? this.resultToStream(info) : null;
+    } catch (err) {
+      logger.error(`Error while looking up streams for ${terms} on Soundcloud`);
+      logger.error(err);
+    }
   }
 
-  getAlternateStream(query: StreamQuery, currentStream: { id: string }): Promise<StreamData | void> {
+  async getAlternateStream(query: StreamQuery, currentStream: { id: string }): Promise<StreamData | undefined> {
     const terms = query.artist + ' ' + query.track;
-    return Soundcloud.soundcloudSearch(terms)
-      .then(data => data.json())
-      .then(results => {
-        const info = _.find(results, result => result && result.id !== currentStream.id);
-        return info ? this.resultToStream(info) : null;
-      })
-      .catch(err => {
-        logger.error(`Error while looking up streams for ${terms} on Soundcloud`);
-        logger.error(err);
-      });
+    try {
+      const results = await(await Soundcloud.soundcloudSearch(terms)).json();
+      const info = _.find(results, result => result && result.id !== currentStream.id);
+      return info && this.resultToStream(info);
+    } catch (err) {
+      logger.error(`Error while looking up streams for ${terms} on Soundcloud`);
+      logger.error(err);
+    }
   }
 
-  async getStreamForId(id: string): Promise<void | StreamData> {
-    return Soundcloud.getTrackById(id)
-      .then(data => data.json())
-      .then(result => {
-        return result.id ? this.resultToStream(result) : null;
-      })
-      .catch(err => {
-        logger.error(`Error while looking up streams id: ${id} on Soundcloud`);
-        logger.error(err);
-      });
+  async getStreamForId(id: string): Promise<undefined | StreamData> {
+    try { 
+      const result = await(await Soundcloud.getTrackById(id)).json();
+      return result.id && this.resultToStream(result);
+    } catch (err) {
+      logger.error(`Error while looking up streams id: ${id} on Soundcloud`);
+      logger.error(err);
+    }
   }
 }
 

@@ -13,7 +13,7 @@ class YoutubePlugin extends StreamProviderPlugin {
     this.isDefault = true;
   }
 
-  async search(query: StreamQuery): Promise<void | StreamData> {
+  async search(query: StreamQuery): Promise<undefined | StreamData> {
     const terms = query.artist + ' ' + query.track;
     try {
       return await Youtube.trackSearch(query, undefined, this.sourceName);
@@ -23,7 +23,7 @@ class YoutubePlugin extends StreamProviderPlugin {
     }
   }
 
-  async getAlternateStream(query: StreamQuery, currentStream: { id: string }): Promise<void | StreamData> {
+  async getAlternateStream(query: StreamQuery, currentStream: { id: string }): Promise<undefined | StreamData> {
     const terms = query.artist + ' ' + query.track;
     try {
       return await Youtube.trackSearch(query, currentStream.id, this.sourceName);
@@ -33,7 +33,7 @@ class YoutubePlugin extends StreamProviderPlugin {
     }
   }
 
-  async getStreamForId(id: string): Promise<void | StreamData> {
+  async getStreamForId(id: string): Promise<undefined | StreamData> {
     try {
       return await Youtube.getStreamForId(id, this.sourceName);
     } catch (e) {

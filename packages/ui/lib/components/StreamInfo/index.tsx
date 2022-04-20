@@ -70,7 +70,10 @@ const StreamInfo = (props: StreamInfoProps & Handlers) => {
               }
             />
           ) : null}
-          <a href='#' onClick={onRerollTrack}>
+          <a 
+            href='#' 
+            onClick={onRerollTrack}
+          >
             <Icon name='refresh' />
           </a>
         </div>
