@@ -106,6 +106,23 @@ describe('Dashboard container', () => {
     expect(component.asFragment()).toMatchSnapshot();
   });
 
+  it('should add a single track to the queue', async () => {
+    const { component, store } = mountComponent();
+
+    await waitFor(() => component.getByText(/top tracks/i).click());
+    await waitFor(() => component.getByText(/top track 1/i).click());
+    await waitFor(() => component.getByText(/Add to queue/i).click());
+
+    const state = store.getState();
+    expect(state.queue.queueItems).toEqual([
+      expect.objectContaining({
+        artist: 'top track artist 1',
+        name: 'top track 1'
+      })
+    ]);
+
+  });
+
   it('should add all top tracks to the queue', async () => {
     const { component, store } = mountComponent();
 
