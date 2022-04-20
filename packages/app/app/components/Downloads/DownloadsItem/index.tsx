@@ -1,23 +1,11 @@
 import React, { useCallback } from 'react';
 import { Icon, SemanticICONS, Table } from 'semantic-ui-react';
 import _ from 'lodash';
-
-import { DownloadStatus } from '../../../actions/downloads';
 import styles from './styles.scss';
+import { Download } from '@nuclear/ui/lib/types';
 
-export type DownloadsItemProps = {
-  item: {
-    status: DownloadStatus;
-    completion: number;
-    track: {
-      uuid: string;
-      name: string;
-      artist: string | {
-        name: string;
-      };
-    }
-  };
-
+type DownloadsItemProps = {
+  item: Download
   resumeDownload: (id: string) => void;
   pauseDownload: (id: string) => void;
   removeDownload: (id: string) => void;

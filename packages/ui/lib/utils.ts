@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import { Track } from './types';
+import { Track, TrackItem } from './types';
 
 export function formatDuration(duration) {
   if (typeof duration === 'string') {
@@ -42,7 +42,7 @@ export const getThumbnail = albumOrTrack => _.get(albumOrTrack, 'coverImage')
   || _.get(albumOrTrack, 'thumb')
   || _.get(albumOrTrack, 'thumbnail');
 
-export const getTrackItem = (track: Track) => ({
+export const getTrackItem = (track: Track): TrackItem => ({
   artist: getTrackArtist(track),
   name: getTrackTitle(track),
   thumbnail: getThumbnail(track),

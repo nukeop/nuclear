@@ -1,9 +1,9 @@
 import React from 'react';
 
 import { TrackPopup } from '@nuclear/ui';
-import { ContextPopupProps } from '@nuclear/ui/lib/types';
 import { useTrackPopupProps } from './hooks';
 import { Track } from '@nuclear/core';
+import { ContextPopupProps } from '@nuclear/ui/lib/components/ContextPopup';
 
 export type TrackPopupContainerProps = {
   track: Track;
