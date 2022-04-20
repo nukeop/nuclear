@@ -7,7 +7,7 @@ import { LocalLibrary } from '../../actions/actionTypes';
 import { ADD_QUEUE_ITEM, CLEAR_QUEUE, REMOVE_QUEUE_ITEM, QUEUE_DROP } from '../../actions/queue';
 import { Settings } from '../../actions/actionTypes';
 import { changeConnectivity } from '../../actions/connectivity';
-import { ADD_TO_DOWNLOADS, DOWNLOAD_RESUMED, DOWNLOAD_PAUSED, DOWNLOAD_FINISHED, DOWNLOAD_ERROR } from '../../actions/downloads';
+import * as DownloadActions from '../../actions/downloads';
 import { CLOSE_WINDOW, MINIMIZE_WINDOW, MAXIMIZE_WINDOW, OPEN_DEVTOOLS } from '../../actions/window';
 import { getType } from 'typesafe-actions';
 import { Middleware } from 'redux';
@@ -93,10 +93,14 @@ const ipcConnect: Middleware = () => next => {
       ipcRenderer.send(IpcEvents.CONNECTIVITY, payload);
       break;
 
-    case ADD_TO_DOWNLOADS:
-    case DOWNLOAD_RESUMED: {
-      const {track} =_.find(payload.downloads, (item) => item.track.uuid === payload.track);
+    case getType(DownloadActions.addToDownloads):
+    case getType(DownloadActions.onDownloadResume): {
+      if (!payload.track) {
+        break;
+      }
 
+      const {track} =_.find(payload.downloads, (item) => item.track.uuid === payload.track);
+      
       let maxDownloads;
       try {
         maxDownloads = Number(getOption('max.downloads'));
@@ -106,17 +110,18 @@ const ipcConnect: Middleware = () => next => {
       if (payload.downloads.filter(({status}) => status === 'Started' || status === 'Waiting').length > maxDownloads) {
         break;
       }
+      
       ipcRenderer.send(IpcEvents.DOWNLOAD_START, track);
       break;
     }
-    case DOWNLOAD_PAUSED: {
+    case getType(DownloadActions.onDownloadPause): {
       const {track} =_.find(payload.downloads, (item) => item.track.uuid === payload.track);
 
       ipcRenderer.send(IpcEvents.DOWNLOAD_PAUSE, track);
       break;
     }
-    case DOWNLOAD_FINISHED:
-    case DOWNLOAD_ERROR: {
+    case getType(DownloadActions.onDownloadFinished):
+    case getType(DownloadActions.onDownloadError): {
       const nextDownload = payload.find((download) =>
         download.status==='Waiting'
       );

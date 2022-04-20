@@ -1,44 +1,48 @@
 import { v4 } from 'uuid';
 import _ from 'lodash';
+import { createStandardAction } from 'typesafe-actions';
+import { Notification } from '@nuclear/ui/lib/types';
+import { Toast } from './actionTypes';
+import { Setting } from '@nuclear/core';
+import React from 'react';
 
-export const ADD_NOTIFICATION = 'ADD_NOTIFICATION';
-export const REMOVE_NOTIFICATION = 'REMOVE_NOTIFICATION';
+export const addNotification = createStandardAction(Toast.ADD_NOTIFICATION)<Notification>();
 
-export function addNotification(notification) {
-  return {
-    type: ADD_NOTIFICATION,
-    payload: notification
-  };
-}
+export const removeNotification = createStandardAction(Toast.REMOVE_NOTIFICATION)<string>();
 
-export function removeNotification(id) {
-  return {
-    type: REMOVE_NOTIFICATION,
-    payload: id
-  };
-}
-
-export function notify(title, details, icon, settings) {
+export function notify(title: string, details: string, icon:  Node | React.ReactElement<{
+  src: string;
+}>, settings: Setting[] | { [key: string]: unknown }) {
   return generateNotification(title, details, icon, {}, settings);
 }
 
-export function error(title, details, icon, settings) {
+export function error(title: string, details: string, icon:  Node | React.ReactElement<{
+  src: string;
+}>, settings: Setting[] | { [key: string]: unknown }) {
   return generateNotification(title, details, icon, {error: true}, settings);
 }
 
-export function warning(title, details, icon, settings) {
+export function warning(title: string, details: string, icon:  Node | React.ReactElement<{
+  src: string;
+}>, settings: Setting[] | { [key: string]: unknown }) {
   return generateNotification(title, details, icon, {warning: true}, settings);
 }
 
-export function success(title, details, icon, settings) {
+export function success(title: string, details: string, icon:  Node | React.ReactElement<{
+  src: string;
+}>, settings: Setting[] | { [key: string]: unknown }) {
   return generateNotification(title, details, icon, {success: true}, settings);
 }
 
-export function info(title, details, icon, settings) {
+export function info(title: string, details: string, icon:  Node | React.ReactElement<{
+  src: string;
+}>, settings: Setting[] | { [key: string]: unknown }) {
   return generateNotification(title, details, icon, {info: true}, settings);
 }
 
-function generateNotification(title, details, icon, type, settings) {
+function generateNotification(title: string, details: string, icon:  Node | React.ReactElement<{
+  src: string;
+}>, type: {[type:string]: boolean}, settings: Setting[] | { [key: string]: unknown }) {
   return dispatch => {
     const id = v4();
     dispatch(addNotification(Object.assign({}, {

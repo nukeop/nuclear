@@ -4,8 +4,8 @@ import { UserAccountState } from '@nuclear/core/src/rest/Nuclear/Identity.types'
 import { RootState } from '../app/reducers';
 import { startingStateMeta } from '../app/reducers/helpers';
 import { PlaylistsStore } from '../app/reducers/playlists';
-import { DownloadStatus } from '../app/actions/downloads';
 import { AnyProps } from './testUtils';
+import { DownloadStatus } from '@nuclear/ui/lib/types';
 
 type StoreStateBuilder = ReturnType<typeof buildStoreState>;
 export const buildStoreState = () => {
@@ -589,9 +589,7 @@ export const buildStoreState = () => {
             completion: 1,
             track: {
               uuid: '1',
-              artist: {
-                name: 'test artist 1'
-              },
+              artist: 'test artist 1',
               name: 'finished track'
             }
           },
@@ -600,9 +598,7 @@ export const buildStoreState = () => {
             completion: 0.1,
             track: {
               uuid: '2',
-              artist: {
-                name: 'test artist 2'
-              },
+              artist: 'test artist 2',
               name: 'track with errorx'
             }
           },
@@ -611,9 +607,7 @@ export const buildStoreState = () => {
             completion: 0.3,
             track: {
               uuid: '3',
-              artist: {
-                name: 'test artist 3'
-              },
+              artist: 'test artist 3',
               name: 'paused track'
             }
           },
@@ -622,9 +616,7 @@ export const buildStoreState = () => {
             completion: 0.5,
             track: {
               uuid: '4',
-              artist: {
-                name: 'test artist 4'
-              },
+              artist: 'test artist 4',
               name: 'started track'
             }
           },
@@ -633,9 +625,7 @@ export const buildStoreState = () => {
             completion: 0,
             track: {
               uuid: '5',
-              artist: {
-                name: 'test artist 5'
-              },
+              artist: 'test artist 5',
               name: 'waiting track'
             }
           }

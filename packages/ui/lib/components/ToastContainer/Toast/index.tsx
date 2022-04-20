@@ -1,20 +1,11 @@
 import React from 'react';
 import cx from 'classnames';
-
+import { Notification } from '../../../types';
 import common from '../../../common.scss';
 import styles from './styles.scss';
 
 
-type ToastProps = {
-  error?: boolean;
-  warning?: boolean;
-  info?: boolean;
-  success?: boolean;
-  icon?: Node;
-  title?: string;
-  details?: string;
-  onClick?: () => {} ;
-};
+type ToastProps = Notification
 
 
 const Toast = (props: ToastProps) => {

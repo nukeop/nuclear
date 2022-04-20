@@ -1,21 +1,12 @@
 import React from 'react';
 import cx from 'classnames';
 import Toast from './Toast';
-
+import { Notification }  from '../../types';
 import common from '../../common.scss';
 import styles from './styles.scss';
-import _ from 'lodash';
-
-type Toast = {
-  title?: string;
-  details?: string;
-  error?: boolean;
-  warning?: boolean;
-  info?: boolean;  
-}
 
 type ToastContainerProps = {
-  toasts: Toast[]
+  toasts: Notification[]
 }
 
 const ToastContainer: React.FC<ToastContainerProps> = ({
@@ -32,14 +23,14 @@ const ToastContainer: React.FC<ToastContainerProps> = ({
         return (
           <Toast
             key={`toast-${i}`}
-            icon={_.get(toast, 'icon')}
-            title={_.get(toast, 'title')}
-            details={_.get(toast, 'details')}
-            error={_.get(toast, 'error')}
-            warning={_.get(toast, 'warning')}
-            info={_.get(toast, 'info')}
-            success={_.get(toast, 'success')}
-            onClick={_.get(toast, 'onClick')}
+            icon={toast.icon}
+            title={toast.title}
+            details={toast.details}
+            error={toast.error}
+            warning={toast.warning}
+            info={toast.info}
+            success={toast.success}
+            onClick={toast.onClick}
           />
         );
       })}
