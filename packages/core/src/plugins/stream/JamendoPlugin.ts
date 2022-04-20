@@ -14,7 +14,7 @@ class JamendoPlugin extends StreamProviderPlugin {
     this.image = null;
   }
 
-  search(query: StreamQuery): Promise<void | StreamData>  {
+  search(query: StreamQuery): Promise<undefined | StreamData>  {
     return this.getSearchResults(query).then(responseJson => {
       if (responseJson.results.length === 0) {
         return null;
@@ -48,7 +48,7 @@ class JamendoPlugin extends StreamProviderPlugin {
     });
   }
 
-  async getStreamForId(id: string): Promise<void | StreamData> {
+  async getStreamForId(id: string): Promise<undefined | StreamData> {
     return this.getTrackById(id).then(responseJson => {
       if (responseJson.results.length === 0) {
         return null;
@@ -75,7 +75,6 @@ class JamendoPlugin extends StreamProviderPlugin {
         logger.error(err);
       });
   }
-
 }
 
 export default JamendoPlugin;

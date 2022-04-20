@@ -43,7 +43,7 @@ class BandcampPlugin extends StreamProviderPlugin {
     };
   }
 
-  async search(query: StreamQuery): Promise<void | StreamData> {
+  async search(query: StreamQuery): Promise<undefined | StreamData> {
     try {
       const track = await this.findTrackUrl(query);
       const { stream, duration } = await Bandcamp.getTrackData(track.url);
@@ -55,11 +55,11 @@ class BandcampPlugin extends StreamProviderPlugin {
     }
   }
 
-  async getAlternateStream(query: StreamQuery): Promise<void | StreamData> {
+  async getAlternateStream(query: StreamQuery): Promise<undefined | StreamData> {
     return this.search(query);
   }
 
-  async getStreamForId(id: string): Promise<void | StreamData> {
+  async getStreamForId(id: string): Promise<undefined | StreamData> {
     try {
       const trackUrl = atob(id);
       const track = await Bandcamp.getTrackData(trackUrl);

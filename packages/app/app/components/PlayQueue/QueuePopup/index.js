@@ -29,7 +29,7 @@ export const QueuePopup = ({
   copyToClipboard
 }) => {
   const triggerElement = useRef(null);
-  
+
   const handleOpen = useCallback(
     event => {
       event.preventDefault();
@@ -43,11 +43,6 @@ export const QueuePopup = ({
   );
 
   const handleImageLoaded = useCallback(() => setImageReady(true), [setImageReady]);
-
-  const handleRerollTrack = track => {
-    const selectedStreamProvider = _.find(plugins.plugins.streamProviders, { sourceName: plugins.selected.streamProviders });
-    actions.rerollTrack(selectedStreamProvider, selectedStream, track);
-  };
 
   const handleSelectStream = ({ track, stream }) => {
     actions.changeTrackStream(track, stream);
@@ -66,6 +61,11 @@ export const QueuePopup = ({
     value: s.sourceName,
     content: s.sourceName
   }));
+
+  const handleReroll = useCallback(() => {
+    actions.rerollTrack(track);
+    handleClose();
+  }, [track, actions, handleClose]);
 
   return (
     <Popup
@@ -95,7 +95,7 @@ export const QueuePopup = ({
         sourceLabel={sourceLabel}
         selectedStream={selectedStream}
         thumbnail={track.thumbnail}
-        onRerollTrack={handleRerollTrack}
+        onRerollTrack={handleReroll}
         onSelectStream={handleSelectStream}
         onImageLoaded={handleImageLoaded}
         onCopyTrackUrl={handleCopyTrackUrl}

@@ -1,5 +1,7 @@
 import _ from 'lodash';
+import { LyricsProvider, MetaProvider } from '@nuclear/core';
 import { config } from '@nuclear/core/src/plugins/config';
+import StreamProviderPlugin from '@nuclear/core/src/plugins/streamProvider';
 
 import {
   CREATE_PLUGINS,
@@ -16,13 +18,29 @@ type UserPlugin = {
   path: string;
 }
 
-const initialState = {
+type PluginKey = keyof typeof config.plugins;
+
+type PluginsState = {
+  plugins: {
+    streamProviders: StreamProviderPlugin[];
+    metaProviders: MetaProvider[];
+    lyricsProviders: LyricsProvider[];
+  };
+  selected: {
+    [key in PluginKey]?: string;
+  };
+  userPlugins: {
+    [key: string]: UserPlugin;
+  };
+}
+
+const initialState: PluginsState = {
   plugins: {} as typeof config.plugins,
   selected: {},
   userPlugins: {}
 };
 
-export default function PluginsReducer(state=initialState, action) {
+export default function PluginsReducer(state=initialState, action): PluginsState {
   switch (action.type) {
   case CREATE_PLUGINS:
     return {

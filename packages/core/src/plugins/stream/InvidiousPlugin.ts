@@ -15,7 +15,7 @@ class InvidiousPlugin extends StreamProviderPlugin {
     this.image = null;
   }
 
-  async search(query: StreamQuery): Promise<void | StreamData> {
+  async search(query: StreamQuery): Promise<undefined | StreamData> {
     const terms = query.artist + ' ' + query.track;
     try {
       const res = await Invidious.trackSearch(terms);
@@ -27,7 +27,7 @@ class InvidiousPlugin extends StreamProviderPlugin {
     }
   }
 
-  async getAlternateStream(query: StreamQuery, currentStream): Promise<void | StreamData> {
+  async getAlternateStream(query: StreamQuery, currentStream): Promise<undefined | StreamData> {
     const terms = query.artist + ' ' + query.track;
     try {
       const {
@@ -53,7 +53,7 @@ class InvidiousPlugin extends StreamProviderPlugin {
     }
   }
 
-  async getStreamForId(id: string): Promise<void | StreamData> {
+  async getStreamForId(id: string): Promise<undefined | StreamData> {
     try {
       const res = await Invidious.getTrackInfo(id);
 

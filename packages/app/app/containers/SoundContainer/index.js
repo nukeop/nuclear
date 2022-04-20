@@ -153,7 +153,9 @@ class SoundContainer extends React.Component {
 
   handleError(err) {
     logger.error(err.message);
-    this.props.actions.streamFailed();
+    const { queue } = this.props;
+    const currentTrack = queue.queueItems[queue.currentSong];
+    this.props.actions.rerollTrack(currentTrack);
   }
 
   shouldComponentUpdate(nextProps) {
@@ -177,7 +179,7 @@ class SoundContainer extends React.Component {
     const currentTrack = queue.queueItems[queue.currentSong];
     const usedEqualizer = enableSpectrum ? equalizer : defaultEqualizer;
     return Boolean(currentStream) && (this.isHlsStream(currentStream.stream) ? (
-      <HlsPlayer 
+      <HlsPlayer
         source={currentStream.stream}
         onError={this.handleError}
         playStatus={player.playbackStatus}

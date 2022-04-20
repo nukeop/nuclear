@@ -6,6 +6,7 @@ import { Track, TrackStream } from '@nuclear/ui/lib/types';
 
 import { safeAddUuid } from './helpers';
 import { pausePlayback, startPlayback } from './player.js';
+import { RootState } from '../reducers';
 
 export const QUEUE_DROP = 'QUEUE_DROP';
 export const ADD_QUEUE_ITEM = 'ADD_QUEUE_ITEM';
@@ -184,29 +185,36 @@ export function addPlaylistTracksToQueue(tracks) {
   };
 }
 
-export function rerollTrack(streamProvider, selectedStream, track) {
-  return (dispatch) => {
-    dispatch(updateQueueItem({ ...track, loading: true, error: false }));
+export function rerollTrack(track: QueueItem) {
+  return async (dispatch, getState) => {
+    const { plugin }: RootState = getState();
+    const selectedStreamProvider = _.find(plugin.plugins.streamProviders, { sourceName: plugin.selected.streamProviders });
+    const selectedStream = track.streams.find(stream => stream.source === selectedStreamProvider.sourceName);
 
-    streamProvider
+    dispatch(updateQueueItem({ 
+      ...track,
+      loading: true, 
+      error: false 
+    }));
+
+    const newStream = await selectedStreamProvider
       .getAlternateStream(
         { artist: track.artist, track: track.name },
         selectedStream
-      )
-      .then((newStream) => {
-        const streams = _.map(track.streams, (stream) => {
-          return stream.source === newStream.source ? newStream : stream;
-        });
+      );
+      
+    const streams = _.map(track.streams, (stream) => {
+      return stream.source === newStream?.source ? newStream : stream;
+    });
 
-        dispatch(
-          updateQueueItem({
-            ...track,
-            loading: false,
-            error: false,
-            streams
-          })
-        );
-      });
+    dispatch(
+      updateQueueItem({
+        ...track,
+        loading: false,
+        error: false,
+        streams
+      })
+    );
   };
 }
 
