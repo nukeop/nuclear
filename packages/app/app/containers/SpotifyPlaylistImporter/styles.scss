@@ -1,9 +1,10 @@
 @import "../../vars.scss";
 
 .spotify_import_webview {
+    position: absolute;
     opacity: 0;
     width: 100%;
-    height: 1px;
+    height: 500px;
 }
 
 :global(.ui.indicating.progress).spotify_import_progress_bar {
