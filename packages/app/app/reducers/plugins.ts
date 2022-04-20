@@ -16,6 +16,9 @@ import {
 
 type UserPlugin = {
   path: string;
+  name: string;
+  description: string;
+  image: string;
 }
 
 type PluginKey = keyof typeof config.plugins;
@@ -35,7 +38,11 @@ type PluginsState = {
 }
 
 const initialState: PluginsState = {
-  plugins: {} as typeof config.plugins,
+  plugins: {
+    streamProviders: [],
+    metaProviders: [],
+    lyricsProviders: []
+  },
   selected: {},
   userPlugins: {}
 };

@@ -1,11 +1,12 @@
 import Sound from 'react-hifi';
 import { UserAccountState } from '@nuclear/core/src/rest/Nuclear/Identity.types';
+import { DownloadStatus } from '@nuclear/ui/lib/types';
 
 import { RootState } from '../app/reducers';
 import { startingStateMeta } from '../app/reducers/helpers';
 import { PlaylistsStore } from '../app/reducers/playlists';
 import { AnyProps } from './testUtils';
-import { DownloadStatus } from '@nuclear/ui/lib/types';
+import { LyricsProvider, MetaProvider } from '@nuclear/core';
 
 type StoreStateBuilder = ReturnType<typeof buildStoreState>;
 export const buildStoreState = () => {
@@ -18,9 +19,13 @@ export const buildStoreState = () => {
       artistSearchResults: []
     },
     plugin: {
-      plugins: [],
-      selected: [],
-      userPlugins: []
+      plugins: {
+        streamProviders: [],
+        metaProviders: [],
+        lyricsProviders: []
+      },
+      selected: {},
+      userPlugins: {}
     },
     playlists: {
       localPlaylists: { ...startingStateMeta },
@@ -268,7 +273,7 @@ export const buildStoreState = () => {
                 searchForArtists: jest.fn().mockResolvedValue([]),
                 searchForReleases: jest.fn().mockResolvedValue([]),
                 searchForPodcast: jest.fn().mockResolvedValue([]),
-                fetchArtistDetailsByName: (artistName) => {
+                fetchArtistDetailsByName: jest.fn(artistName => {
                   switch (artistName) {
                   case 'artist-similar-1':
                     return { id: 'artist-similar-id' };
@@ -276,8 +281,8 @@ export const buildStoreState = () => {
                   default:
                     return { id: 'test-artist-id' };
                   }
-                }
-              },
+                })
+              } as any as MetaProvider,
               {
                 name: 'Another Meta Provider',
                 description: 'Another metadata provider for testing.',
@@ -285,22 +290,22 @@ export const buildStoreState = () => {
                 isDefault: true,
                 sourceName: 'Another Metadata Provider',
                 searchName: 'Another Metadata Provider',
-                fetchArtistDetailsByName: () => ({
+                fetchArtistDetailsByName: jest.fn().mockResolvedValue({
                   id: 'test-artist-id'
                 })
-              }
+              } as unknown as MetaProvider
             ],
             lyricsProviders: [
               {
                 name: 'Test Lyrics Provider',
                 description: 'Lyrics provider for testing.',
                 sourceName: 'Test Lyrics Provider'
-              },
+              } as unknown as LyricsProvider,
               {
                 name: 'Different Lyrics Provider',
                 description: 'A different lyrics provider for testing.',
                 sourceName: 'Different Lyrics Provider'
-              }
+              } as unknown as LyricsProvider
             ]
           },
           selected: {
