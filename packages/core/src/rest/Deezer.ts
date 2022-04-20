@@ -6,11 +6,21 @@ export type DeezerTopTrack = {
   id: number;
   title: string;
   position: number;
+  duration: number;
   preview: string;
   artist: {
     name: string;
     picture_small: string;
     picture_medium: string;
+    picture_big: string;
+    picture_xl: string;
+  };
+  album: {
+    title: string;
+    cover_small: string;
+    cover_medium: string;
+    cover_big: string;
+    cover_xl: string;
   };
 }
 

@@ -12,7 +12,7 @@ import styles from './styles.scss';
 @withTranslation('dashboard')
 class Dashboard extends React.Component {
 
-  panes () {
+  panes() {
     const {
       actions,
       dashboardData,
@@ -52,7 +52,6 @@ class Dashboard extends React.Component {
         render: () => (
           <ChartsTab
             topTracks={dashboardData.topTracks}
-            addToQueue={actions.addToQueue}
           />
         )
       },
@@ -68,7 +67,7 @@ class Dashboard extends React.Component {
     ];
   }
 
-  componentDidMount () {
+  componentDidMount() {
     if (this.props.isConnected) {
       this.props.actions.loadBestNewTracks();
       this.props.actions.loadBestNewAlbums();
@@ -77,7 +76,7 @@ class Dashboard extends React.Component {
     }
   }
 
-  render () {
+  render() {
     const { isConnected } = this.props;
 
     return (
