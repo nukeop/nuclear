@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/ban-ts-ignore */
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import React from 'react';
 import { HeaderProps, UseRowSelectInstanceProps } from 'react-table';
 
@@ -31,7 +31,13 @@ const SelectionHeader: React.FC<
         <span className={styles.select_header_buttons}>
           <ContextPopup
             trigger={
-              <Button basic circular size='tiny' icon='ellipsis horizontal' />
+              <Button 
+                basic
+                circular
+                size='tiny'
+                icon='ellipsis horizontal'
+                data-testid='select-all-popup-trigger'
+              />
             }
             title={`${selectedTracks.length} ${selectedTracks.length > 1 ? strings.tracksSelectedLabelPlural : strings.tracksSelectedLabelSingular}`}
           >

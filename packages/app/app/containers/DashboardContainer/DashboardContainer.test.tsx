@@ -126,20 +126,22 @@ describe('Dashboard container', () => {
   it('should add all top tracks to the queue', async () => {
     const { component, store } = mountComponent();
 
-    await waitFor(() => component.getByText(/top tracks/i).click());
-    await waitFor(() => component.getByText(/add all/i).click());
+    await waitFor(() => component.getByText(/Top tracks/i).click());
+    await waitFor(() => component.getByTitle(/Toggle All Rows Selected/i).click());
+    await waitFor(() => component.getByTestId('select-all-popup-trigger').click());
+    await waitFor(() => component.getByText(/Add selected to queue/i).click());
 
     const state = store.getState();
     expect(state.queue.queueItems).toEqual([
       expect.objectContaining({
         artist: 'top track artist 1',
         name: 'top track 1',
-        thumbnail: 'top track thumbnail 1'
+        thumbnail: 'top track album cover 1'
       }),
       expect.objectContaining({
         artist: 'top track artist 2',
         name: 'top track 2',
-        thumbnail: 'top track thumbnail 2'
+        thumbnail: 'top track album cover 2'
       })
     ]);
   });
