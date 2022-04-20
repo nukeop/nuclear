@@ -553,17 +553,29 @@ export const buildStoreState = () => {
           ],
           topTracks: [
             {
-              name: 'top track 1',
+              id: 1,
+              title: 'top track 1',
               artist: {
                 name: 'top track artist 1'
+              },
+              duration: 100,
+              album: {
+                title: 'top track album 1',
+                cover_medium: 'top track album cover 1'
               },
               playcount: '1000000',
               thumbnail: 'top track thumbnail 1'
             },
             {
-              name: 'top track 2',
+              id: 2,
+              title: 'top track 2',
               artist: {
                 name: 'top track artist 2'
+              },
+              duration: 78,
+              album: {
+                title: 'top track album 2',
+                cover_medium: 'top track album cover 2'
               },
               playcount: '7899543',
               thumbnail: 'top track thumbnail 2'

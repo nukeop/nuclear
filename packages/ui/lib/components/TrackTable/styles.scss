@@ -39,7 +39,6 @@
     }
 
     td {
-      @include ellipsis;
       padding: 0 1em;
     }
 
@@ -50,7 +49,7 @@
         }
 
         .add_button {
-          display: inline-block;
+          display: inline-flex;
         }
       }
 
@@ -90,12 +89,14 @@
 
     .add_button {
       display: none;
+      justify-content: center;
+      align-items: center;
       margin: 0;
       width: 2.5em;
       height: 2.5em;
 
       .icon {
-        margin: 1px 0 0 0.5px !important;
+        margin: 0 0 0 1.5px !important;
       }
     }
   }
@@ -121,6 +122,8 @@
     }
 
     .title_cell_value {
+      @include ellipsis;
+      white-space: normal;
       flex: 1 1 auto;
     }
 
