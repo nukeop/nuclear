@@ -63,105 +63,306 @@ exports[`Track view container should display favorite tracks 1`] = `
         </a>
       </div>
       <div
-        class="ui segment tracks_container"
+        class="ui segment"
       >
         <table
-          class="ui table favorite_tracks_table table"
+          class="track_table"
+          role="table"
         >
-          <thead
-            class="thead"
-          >
+          <thead>
             <tr
-              class=""
+              role="row"
             >
               <th
-                class=""
-              />
-              <th
-                class=""
+                colspan="1"
+                role="columnheader"
               >
-                <i
-                  aria-hidden="true"
-                  class="image icon"
-                />
+                 
               </th>
               <th
-                class=""
+                colspan="1"
+                role="columnheader"
+              >
+                <span
+                  class="center_aligned"
+                >
+                  <i
+                    aria-hidden="true"
+                    class="hashtag icon"
+                  />
+                </span>
+              </th>
+              <th
+                colspan="1"
+                role="columnheader"
+              >
+                <span
+                  class="center_aligned"
+                >
+                  <i
+                    aria-hidden="true"
+                    class="image icon"
+                  />
+                </span>
+              </th>
+              <th
+                colspan="1"
+                role="columnheader"
+              >
+                Title
+              </th>
+              <th
+                colspan="1"
+                role="columnheader"
               >
                 Artist
               </th>
               <th
-                class=""
+                colspan="1"
+                role="columnheader"
               >
-                Title
+                <span
+                  class="select_header"
+                >
+                  <div
+                    class="ui fitted checkbox nuclear checkbox"
+                    style="cursor: pointer;"
+                  >
+                    <input
+                      class="hidden"
+                      readonly=""
+                      tabindex="0"
+                      title="Toggle All Rows Selected"
+                      type="checkbox"
+                      value=""
+                    />
+                    <label />
+                  </div>
+                </span>
               </th>
             </tr>
           </thead>
           <tbody
-            class="tbody"
+            data-rbd-droppable-context-id="0"
+            data-rbd-droppable-id="track_table"
+            role="rowgroup"
           >
             <tr
-              class="track_row"
-              data-testid="fav-track-uuid1"
+              class=""
+              data-rbd-draggable-context-id="0"
+              data-rbd-draggable-id="test track 1 0"
+              role="row"
             >
               <td
-                class="track_row_buttons"
+                class="narrow delete_cell"
+                role="cell"
               >
-                <a>
+                <button
+                  class="ui tiny basic circular icon button nuclear button borderless"
+                  data-testid="delete-button"
+                >
                   <i
                     aria-hidden="true"
-                    class="close icon"
+                    class="times icon"
                   />
-                </a>
+                </button>
               </td>
               <td
-                class="track_row_thumbnail"
+                class="position_cell narrow"
+                role="cell"
+              >
+                <button
+                  class="ui pink tiny circular icon button nuclear button add_button"
+                  data-testid="play-now"
+                >
+                  <i
+                    aria-hidden="true"
+                    class="play icon"
+                  />
+                </button>
+                <span
+                  class="position_cell_value"
+                >
+                  1
+                </span>
+              </td>
+              <td
+                class="thumbnail_cell narrow"
+                role="cell"
               >
                 <img
+                  class="thumbnail"
                   src="https://test-track-thumb-url"
                 />
               </td>
               <td
-                class="track_row_artist"
+                class="title_cell"
+                role="cell"
+              >
+                <span
+                  class="title_cell_content"
+                >
+                  <span
+                    class="title_cell_value"
+                  >
+                    test track 1
+                  </span>
+                  <span
+                    class="title_cell_buttons"
+                  >
+                    <button
+                      class="ui tiny basic circular icon button nuclear button borderless title_cell_button"
+                      data-testid="add-to-queue"
+                    >
+                      <i
+                        aria-hidden="true"
+                        class="plus icon"
+                      />
+                    </button>
+                    <button
+                      class="ui tiny basic circular icon button nuclear button borderless title_cell_button"
+                      data-testid="track-popup-trigger"
+                    >
+                      <i
+                        aria-hidden="true"
+                        class="ellipsis horizontal icon"
+                      />
+                    </button>
+                  </span>
+                </span>
+              </td>
+              <td
+                role="cell"
               >
                 test artist 1
               </td>
               <td
-                class="track_row_name"
+                class="select_cell narrow"
+                role="cell"
               >
-                test track 1
+                <div
+                  class="ui fitted checkbox nuclear checkbox"
+                  style="cursor: pointer;"
+                >
+                  <input
+                    class="hidden"
+                    readonly=""
+                    tabindex="0"
+                    title="Toggle Row Selected"
+                    type="checkbox"
+                    value=""
+                  />
+                  <label />
+                </div>
               </td>
             </tr>
             <tr
-              class="track_row"
-              data-testid="fav-track-uuid2"
+              class=""
+              data-rbd-draggable-context-id="0"
+              data-rbd-draggable-id="test track 2 1"
+              role="row"
             >
               <td
-                class="track_row_buttons"
+                class="narrow delete_cell"
+                role="cell"
               >
-                <a>
+                <button
+                  class="ui tiny basic circular icon button nuclear button borderless"
+                  data-testid="delete-button"
+                >
                   <i
                     aria-hidden="true"
-                    class="close icon"
+                    class="times icon"
                   />
-                </a>
+                </button>
               </td>
               <td
-                class="track_row_thumbnail"
+                class="position_cell narrow"
+                role="cell"
+              >
+                <button
+                  class="ui pink tiny circular icon button nuclear button add_button"
+                  data-testid="play-now"
+                >
+                  <i
+                    aria-hidden="true"
+                    class="play icon"
+                  />
+                </button>
+                <span
+                  class="position_cell_value"
+                >
+                  2
+                </span>
+              </td>
+              <td
+                class="thumbnail_cell narrow"
+                role="cell"
               >
                 <img
+                  class="thumbnail"
                   src="https://test-track-thumb-url"
                 />
               </td>
               <td
-                class="track_row_artist"
+                class="title_cell"
+                role="cell"
+              >
+                <span
+                  class="title_cell_content"
+                >
+                  <span
+                    class="title_cell_value"
+                  >
+                    test track 2
+                  </span>
+                  <span
+                    class="title_cell_buttons"
+                  >
+                    <button
+                      class="ui tiny basic circular icon button nuclear button borderless title_cell_button"
+                      data-testid="add-to-queue"
+                    >
+                      <i
+                        aria-hidden="true"
+                        class="plus icon"
+                      />
+                    </button>
+                    <button
+                      class="ui tiny basic circular icon button nuclear button borderless title_cell_button"
+                      data-testid="track-popup-trigger"
+                    >
+                      <i
+                        aria-hidden="true"
+                        class="ellipsis horizontal icon"
+                      />
+                    </button>
+                  </span>
+                </span>
+              </td>
+              <td
+                role="cell"
               >
                 test artist 2
               </td>
               <td
-                class="track_row_name"
+                class="select_cell narrow"
+                role="cell"
               >
-                test track 2
+                <div
+                  class="ui fitted checkbox nuclear checkbox"
+                  style="cursor: pointer;"
+                >
+                  <input
+                    class="hidden"
+                    readonly=""
+                    tabindex="0"
+                    title="Toggle Row Selected"
+                    type="checkbox"
+                    value=""
+                  />
+                  <label />
+                </div>
               </td>
             </tr>
           </tbody>
@@ -169,10 +370,26 @@ exports[`Track view container should display favorite tracks 1`] = `
       </div>
     </div>
   </div>
+  <div
+    aria-atomic="true"
+    aria-live="assertive"
+    id="rbd-announcement-0"
+    style="position: absolute; width: 1px; height: 1px; margin: -1px; border: 0px; padding: 0px; overflow: hidden; clip-path: inset(100%);"
+  />
+  <div
+    id="rbd-hidden-text-0-hidden-text-0"
+    style="display: none;"
+  >
+    
+  Press space bar to start a drag.
+  When dragging you can use the arrow keys to move the item around and escape to cancel.
+  Some screen readers may require you to be in focus mode or to use your pass through key
+
+  </div>
 </DocumentFragment>
 `;
 
-exports[`Track view container should show popup when a track is clicked 1`] = `
+exports[`Track view container should show a popup when a track is clicked 1`] = `
 <DocumentFragment>
   <div
     class="main_layout_container"
@@ -200,111 +417,328 @@ exports[`Track view container should show popup when a track is clicked 1`] = `
         </a>
       </div>
       <div
-        class="ui segment tracks_container"
+        class="ui segment"
       >
         <table
-          class="ui table favorite_tracks_table table"
+          class="track_table"
+          role="table"
         >
-          <thead
-            class="thead"
-          >
+          <thead>
             <tr
-              class=""
+              role="row"
             >
               <th
-                class=""
-              />
-              <th
-                class=""
+                colspan="1"
+                role="columnheader"
               >
-                <i
-                  aria-hidden="true"
-                  class="image icon"
-                />
+                 
               </th>
               <th
-                class=""
+                colspan="1"
+                role="columnheader"
+              >
+                <span
+                  class="center_aligned"
+                >
+                  <i
+                    aria-hidden="true"
+                    class="hashtag icon"
+                  />
+                </span>
+              </th>
+              <th
+                colspan="1"
+                role="columnheader"
+              >
+                <span
+                  class="center_aligned"
+                >
+                  <i
+                    aria-hidden="true"
+                    class="image icon"
+                  />
+                </span>
+              </th>
+              <th
+                colspan="1"
+                role="columnheader"
+              >
+                Title
+              </th>
+              <th
+                colspan="1"
+                role="columnheader"
               >
                 Artist
               </th>
               <th
-                class=""
+                colspan="1"
+                role="columnheader"
               >
-                Title
+                <span
+                  class="select_header"
+                >
+                  <div
+                    class="ui fitted checkbox nuclear checkbox"
+                    style="cursor: pointer;"
+                  >
+                    <input
+                      class="hidden"
+                      readonly=""
+                      tabindex="0"
+                      title="Toggle All Rows Selected"
+                      type="checkbox"
+                      value=""
+                    />
+                    <label />
+                  </div>
+                </span>
               </th>
             </tr>
           </thead>
           <tbody
-            class="tbody"
+            data-rbd-droppable-context-id="0"
+            data-rbd-droppable-id="track_table"
+            role="rowgroup"
           >
             <tr
-              class="track_row"
-              data-testid="fav-track-uuid1"
+              class=""
+              data-rbd-draggable-context-id="0"
+              data-rbd-draggable-id="test track 1 0"
+              role="row"
             >
               <td
-                class="track_row_buttons"
+                class="narrow delete_cell"
+                role="cell"
               >
-                <a>
+                <button
+                  class="ui tiny basic circular icon button nuclear button borderless"
+                  data-testid="delete-button"
+                >
                   <i
                     aria-hidden="true"
-                    class="close icon"
+                    class="times icon"
                   />
-                </a>
+                </button>
               </td>
               <td
-                class="track_row_thumbnail"
+                class="position_cell narrow"
+                role="cell"
+              >
+                <button
+                  class="ui pink tiny circular icon button nuclear button add_button"
+                  data-testid="play-now"
+                >
+                  <i
+                    aria-hidden="true"
+                    class="play icon"
+                  />
+                </button>
+                <span
+                  class="position_cell_value"
+                >
+                  1
+                </span>
+              </td>
+              <td
+                class="thumbnail_cell narrow"
+                role="cell"
               >
                 <img
+                  class="thumbnail"
                   src="https://test-track-thumb-url"
                 />
               </td>
               <td
-                class="track_row_artist"
+                class="title_cell"
+                role="cell"
+              >
+                <span
+                  class="title_cell_content"
+                >
+                  <span
+                    class="title_cell_value"
+                  >
+                    test track 1
+                  </span>
+                  <span
+                    class="title_cell_buttons"
+                  >
+                    <button
+                      class="ui tiny basic circular icon button nuclear button borderless title_cell_button"
+                      data-testid="add-to-queue"
+                    >
+                      <i
+                        aria-hidden="true"
+                        class="plus icon"
+                      />
+                    </button>
+                    <button
+                      class="ui tiny basic circular icon button nuclear button borderless title_cell_button"
+                      data-testid="track-popup-trigger"
+                    >
+                      <i
+                        aria-hidden="true"
+                        class="ellipsis horizontal icon"
+                      />
+                    </button>
+                  </span>
+                </span>
+              </td>
+              <td
+                role="cell"
               >
                 test artist 1
               </td>
               <td
-                class="track_row_name"
+                class="select_cell narrow"
+                role="cell"
               >
-                test track 1
+                <div
+                  class="ui fitted checkbox nuclear checkbox"
+                  style="cursor: pointer;"
+                >
+                  <input
+                    class="hidden"
+                    readonly=""
+                    tabindex="0"
+                    title="Toggle Row Selected"
+                    type="checkbox"
+                    value=""
+                  />
+                  <label />
+                </div>
               </td>
             </tr>
             <tr
-              class="track_row"
-              data-testid="fav-track-uuid2"
+              class=""
+              data-rbd-draggable-context-id="0"
+              data-rbd-draggable-id="test track 2 1"
+              role="row"
             >
               <td
-                class="track_row_buttons"
+                class="narrow delete_cell"
+                role="cell"
               >
-                <a>
+                <button
+                  class="ui tiny basic circular icon button nuclear button borderless"
+                  data-testid="delete-button"
+                >
                   <i
                     aria-hidden="true"
-                    class="close icon"
+                    class="times icon"
                   />
-                </a>
+                </button>
               </td>
               <td
-                class="track_row_thumbnail"
+                class="position_cell narrow"
+                role="cell"
+              >
+                <button
+                  class="ui pink tiny circular icon button nuclear button add_button"
+                  data-testid="play-now"
+                >
+                  <i
+                    aria-hidden="true"
+                    class="play icon"
+                  />
+                </button>
+                <span
+                  class="position_cell_value"
+                >
+                  2
+                </span>
+              </td>
+              <td
+                class="thumbnail_cell narrow"
+                role="cell"
               >
                 <img
+                  class="thumbnail"
                   src="https://test-track-thumb-url"
                 />
               </td>
               <td
-                class="track_row_artist"
+                class="title_cell"
+                role="cell"
+              >
+                <span
+                  class="title_cell_content"
+                >
+                  <span
+                    class="title_cell_value"
+                  >
+                    test track 2
+                  </span>
+                  <span
+                    class="title_cell_buttons"
+                  >
+                    <button
+                      class="ui tiny basic circular icon button nuclear button borderless title_cell_button"
+                      data-testid="add-to-queue"
+                    >
+                      <i
+                        aria-hidden="true"
+                        class="plus icon"
+                      />
+                    </button>
+                    <button
+                      class="ui tiny basic circular icon button nuclear button borderless title_cell_button"
+                      data-testid="track-popup-trigger"
+                    >
+                      <i
+                        aria-hidden="true"
+                        class="ellipsis horizontal icon"
+                      />
+                    </button>
+                  </span>
+                </span>
+              </td>
+              <td
+                role="cell"
               >
                 test artist 2
               </td>
               <td
-                class="track_row_name"
+                class="select_cell narrow"
+                role="cell"
               >
-                test track 2
+                <div
+                  class="ui fitted checkbox nuclear checkbox"
+                  style="cursor: pointer;"
+                >
+                  <input
+                    class="hidden"
+                    readonly=""
+                    tabindex="0"
+                    title="Toggle Row Selected"
+                    type="checkbox"
+                    value=""
+                  />
+                  <label />
+                </div>
               </td>
             </tr>
           </tbody>
         </table>
       </div>
     </div>
+  </div>
+  <div
+    aria-atomic="true"
+    aria-live="assertive"
+    id="rbd-announcement-0"
+    style="position: absolute; width: 1px; height: 1px; margin: -1px; border: 0px; padding: 0px; overflow: hidden; clip-path: inset(100%);"
+  />
+  <div
+    id="rbd-hidden-text-0-hidden-text-0"
+    style="display: none;"
+  >
+    
+  Press space bar to start a drag.
+  When dragging you can use the arrow keys to move the item around and escape to cancel.
+  Some screen readers may require you to be in focus mode or to use your pass through key
+
   </div>
   <div
     style="display: flex; position: absolute; left: 0px; top: 0px; bottom: 0px; transform: translate(0px, 0px);"
@@ -377,6 +811,17 @@ exports[`Track view container should show popup when a track is clicked 1`] = `
           />
            Play now
         </a>
+        <a
+          aria-label="Add this track to favorites"
+          class="popup_button"
+          href="#"
+        >
+          <i
+            aria-hidden="true"
+            class="heart icon"
+          />
+           Add to favorites
+        </a>
         <div
           aria-expanded="false"
           class="ui dropdown nuclear dropdown popup_button left"
@@ -397,7 +842,521 @@ exports[`Track view container should show popup when a track is clicked 1`] = `
           />
           <div
             class="menu transition"
+          >
+            <div
+              class="item"
+              role="option"
+            >
+              <i
+                aria-hidden="true"
+                class="music icon"
+              />
+              test playlist
+            </div>
+            <div
+              class="item"
+              role="option"
+            >
+              <i
+                aria-hidden="true"
+                class="music icon"
+              />
+              test playlist 2
+            </div>
+          </div>
+        </div>
+        <a
+          aria-label="Download this track"
+          class="popup_button"
+          href="#"
+        >
+          <i
+            aria-hidden="true"
+            class="download icon"
           />
+           Download
+        </a>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Track view container should show popup when a track is clicked 1`] = `
+<DocumentFragment>
+  <div
+    class="main_layout_container"
+  >
+    <div
+      class="favorite_tracks_view"
+    >
+      <div
+        class="header_container"
+      >
+        Your favorite tracks
+      </div>
+      <div
+        class="button_container"
+      >
+        <a
+          class="play_button"
+          href="#"
+        >
+          <i
+            aria-hidden="true"
+            class="play icon"
+          />
+           Play
+        </a>
+      </div>
+      <div
+        class="ui segment"
+      >
+        <table
+          class="track_table"
+          role="table"
+        >
+          <thead>
+            <tr
+              role="row"
+            >
+              <th
+                colspan="1"
+                role="columnheader"
+              >
+                 
+              </th>
+              <th
+                colspan="1"
+                role="columnheader"
+              >
+                <span
+                  class="center_aligned"
+                >
+                  <i
+                    aria-hidden="true"
+                    class="hashtag icon"
+                  />
+                </span>
+              </th>
+              <th
+                colspan="1"
+                role="columnheader"
+              >
+                <span
+                  class="center_aligned"
+                >
+                  <i
+                    aria-hidden="true"
+                    class="image icon"
+                  />
+                </span>
+              </th>
+              <th
+                colspan="1"
+                role="columnheader"
+              >
+                Title
+              </th>
+              <th
+                colspan="1"
+                role="columnheader"
+              >
+                Artist
+              </th>
+              <th
+                colspan="1"
+                role="columnheader"
+              >
+                <span
+                  class="select_header"
+                >
+                  <div
+                    class="ui fitted checkbox nuclear checkbox"
+                    style="cursor: pointer;"
+                  >
+                    <input
+                      class="hidden"
+                      readonly=""
+                      tabindex="0"
+                      title="Toggle All Rows Selected"
+                      type="checkbox"
+                      value=""
+                    />
+                    <label />
+                  </div>
+                </span>
+              </th>
+            </tr>
+          </thead>
+          <tbody
+            data-rbd-droppable-context-id="0"
+            data-rbd-droppable-id="track_table"
+            role="rowgroup"
+          >
+            <tr
+              class=""
+              data-rbd-draggable-context-id="0"
+              data-rbd-draggable-id="test track 1 0"
+              role="row"
+            >
+              <td
+                class="narrow delete_cell"
+                role="cell"
+              >
+                <button
+                  class="ui tiny basic circular icon button nuclear button borderless"
+                  data-testid="delete-button"
+                >
+                  <i
+                    aria-hidden="true"
+                    class="times icon"
+                  />
+                </button>
+              </td>
+              <td
+                class="position_cell narrow"
+                role="cell"
+              >
+                <button
+                  class="ui pink tiny circular icon button nuclear button add_button"
+                  data-testid="play-now"
+                >
+                  <i
+                    aria-hidden="true"
+                    class="play icon"
+                  />
+                </button>
+                <span
+                  class="position_cell_value"
+                >
+                  1
+                </span>
+              </td>
+              <td
+                class="thumbnail_cell narrow"
+                role="cell"
+              >
+                <img
+                  class="thumbnail"
+                  src="https://test-track-thumb-url"
+                />
+              </td>
+              <td
+                class="title_cell"
+                role="cell"
+              >
+                <span
+                  class="title_cell_content"
+                >
+                  <span
+                    class="title_cell_value"
+                  >
+                    test track 1
+                  </span>
+                  <span
+                    class="title_cell_buttons"
+                  >
+                    <button
+                      class="ui tiny basic circular icon button nuclear button borderless title_cell_button"
+                      data-testid="add-to-queue"
+                    >
+                      <i
+                        aria-hidden="true"
+                        class="plus icon"
+                      />
+                    </button>
+                    <button
+                      class="ui tiny basic circular icon button nuclear button borderless title_cell_button"
+                      data-testid="track-popup-trigger"
+                    >
+                      <i
+                        aria-hidden="true"
+                        class="ellipsis horizontal icon"
+                      />
+                    </button>
+                  </span>
+                </span>
+              </td>
+              <td
+                role="cell"
+              >
+                test artist 1
+              </td>
+              <td
+                class="select_cell narrow"
+                role="cell"
+              >
+                <div
+                  class="ui fitted checkbox nuclear checkbox"
+                  style="cursor: pointer;"
+                >
+                  <input
+                    class="hidden"
+                    readonly=""
+                    tabindex="0"
+                    title="Toggle Row Selected"
+                    type="checkbox"
+                    value=""
+                  />
+                  <label />
+                </div>
+              </td>
+            </tr>
+            <tr
+              class=""
+              data-rbd-draggable-context-id="0"
+              data-rbd-draggable-id="test track 2 1"
+              role="row"
+            >
+              <td
+                class="narrow delete_cell"
+                role="cell"
+              >
+                <button
+                  class="ui tiny basic circular icon button nuclear button borderless"
+                  data-testid="delete-button"
+                >
+                  <i
+                    aria-hidden="true"
+                    class="times icon"
+                  />
+                </button>
+              </td>
+              <td
+                class="position_cell narrow"
+                role="cell"
+              >
+                <button
+                  class="ui pink tiny circular icon button nuclear button add_button"
+                  data-testid="play-now"
+                >
+                  <i
+                    aria-hidden="true"
+                    class="play icon"
+                  />
+                </button>
+                <span
+                  class="position_cell_value"
+                >
+                  2
+                </span>
+              </td>
+              <td
+                class="thumbnail_cell narrow"
+                role="cell"
+              >
+                <img
+                  class="thumbnail"
+                  src="https://test-track-thumb-url"
+                />
+              </td>
+              <td
+                class="title_cell"
+                role="cell"
+              >
+                <span
+                  class="title_cell_content"
+                >
+                  <span
+                    class="title_cell_value"
+                  >
+                    test track 2
+                  </span>
+                  <span
+                    class="title_cell_buttons"
+                  >
+                    <button
+                      class="ui tiny basic circular icon button nuclear button borderless title_cell_button"
+                      data-testid="add-to-queue"
+                    >
+                      <i
+                        aria-hidden="true"
+                        class="plus icon"
+                      />
+                    </button>
+                    <button
+                      class="ui tiny basic circular icon button nuclear button borderless title_cell_button"
+                      data-testid="track-popup-trigger"
+                    >
+                      <i
+                        aria-hidden="true"
+                        class="ellipsis horizontal icon"
+                      />
+                    </button>
+                  </span>
+                </span>
+              </td>
+              <td
+                role="cell"
+              >
+                test artist 2
+              </td>
+              <td
+                class="select_cell narrow"
+                role="cell"
+              >
+                <div
+                  class="ui fitted checkbox nuclear checkbox"
+                  style="cursor: pointer;"
+                >
+                  <input
+                    class="hidden"
+                    readonly=""
+                    tabindex="0"
+                    title="Toggle Row Selected"
+                    type="checkbox"
+                    value=""
+                  />
+                  <label />
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div
+    aria-atomic="true"
+    aria-live="assertive"
+    id="rbd-announcement-0"
+    style="position: absolute; width: 1px; height: 1px; margin: -1px; border: 0px; padding: 0px; overflow: hidden; clip-path: inset(100%);"
+  />
+  <div
+    id="rbd-hidden-text-0-hidden-text-0"
+    style="display: none;"
+  >
+    
+  Press space bar to start a drag.
+  When dragging you can use the arrow keys to move the item around and escape to cancel.
+  Some screen readers may require you to be in focus mode or to use your pass through key
+
+  </div>
+  <div
+    style="display: flex; position: absolute; left: 0px; top: 0px; bottom: 0px; transform: translate(0px, 0px);"
+  >
+    <div
+      class="ui top left popup transition visible context_popup"
+      style="position: initial;"
+    >
+      <div
+        class="popup_header"
+      >
+        <div
+          class="popup_thumb"
+        >
+          <img
+            src="https://test-track-thumb-url"
+          />
+        </div>
+        <div
+          class="popup_info"
+        >
+          <div
+            class="popup_title"
+          >
+            test track 1
+          </div>
+          <div
+            class="popup_artist"
+          >
+            by test artist 1
+          </div>
+        </div>
+      </div>
+      <hr />
+      <div
+        class="popup_buttons"
+      >
+        <a
+          aria-label="Add track to queue"
+          class="popup_button"
+          data-testid="track-popup-add-queue"
+          href="#"
+        >
+          <i
+            aria-hidden="true"
+            class="plus icon"
+          />
+           Add to queue
+        </a>
+        <a
+          aria-label="Add track to play next"
+          class="popup_button"
+          href="#"
+        >
+          <i
+            aria-hidden="true"
+            class="play icon"
+          />
+           Play next
+        </a>
+        <a
+          aria-label="Play this track now"
+          class="popup_button"
+          data-testid="track-popup-play-now"
+          href="#"
+        >
+          <i
+            aria-hidden="true"
+            class="play icon"
+          />
+           Play now
+        </a>
+        <a
+          aria-label="Add this track to favorites"
+          class="popup_button"
+          href="#"
+        >
+          <i
+            aria-hidden="true"
+            class="heart icon"
+          />
+           Add to favorites
+        </a>
+        <div
+          aria-expanded="false"
+          class="ui dropdown nuclear dropdown popup_button left"
+          role="listbox"
+          tabindex="0"
+        >
+          <div
+            aria-atomic="true"
+            aria-live="polite"
+            class="divider text"
+            role="alert"
+          >
+            Add to playlist
+          </div>
+          <i
+            aria-hidden="true"
+            class="dropdown icon"
+          />
+          <div
+            class="menu transition"
+          >
+            <div
+              class="item"
+              role="option"
+            >
+              <i
+                aria-hidden="true"
+                class="music icon"
+              />
+              test playlist
+            </div>
+            <div
+              class="item"
+              role="option"
+            >
+              <i
+                aria-hidden="true"
+                class="music icon"
+              />
+              test playlist 2
+            </div>
+          </div>
         </div>
         <a
           aria-label="Download this track"

@@ -1,17 +1,14 @@
 import React from 'react';
-import cx from 'classnames';
 import _ from 'lodash';
-import { Icon, Segment, Table } from 'semantic-ui-react';
+import { Icon, Segment } from 'semantic-ui-react';
 import { useTranslation } from 'react-i18next';
-import { TrackRow, getTrackItem } from '@nuclear/ui';
-import TrackPopupContainer from '../../containers/TrackPopupContainer';
+import { getTrackItem } from '@nuclear/ui';
 import Header from '../Header';
 
-import trackRowStyles from '../TrackRow/styles.scss';
 import styles from './styles.scss';
 import { Track } from '@nuclear/core';
-import { getTrackArtist } from '@nuclear/ui/lib';
 import { addToQueue } from '../../actions/queue';
+import TrackTableContainer from '../../containers/TrackTableContainer';
 
 export const EmptyState = () => {
   const { t } = useTranslation('favorites');
@@ -76,59 +73,22 @@ const FavoriteTracksView: React.FC<FavoriteTracksViewProps> = ({
       }
       {
         !_.isEmpty(tracks) &&
-        <React.Fragment>
+        <>
           <Header>
             {t('header')}
           </Header>
           <div className={styles.button_container}>
             {renderPlayAllButton()}
           </div>
-          <Segment className={trackRowStyles.tracks_container}>
-            <Table
-              className={cx(
-                styles.favorite_tracks_table,
-                styles.table
-              )}
-            >
-              <Table.Header className={styles.thead}>
-                <Table.Row>
-                  <Table.HeaderCell />
-                  <Table.HeaderCell><Icon name='image' /></Table.HeaderCell>
-                  <Table.HeaderCell>{t('artist')}</Table.HeaderCell>
-                  <Table.HeaderCell>{t('title')}</Table.HeaderCell>
-                </Table.Row>
-              </Table.Header>
-              <Table.Body className={styles.tbody}>
-                {
-                  tracks.map((track, index) => 
-                    <TrackPopupContainer
-                      key={'popular-track-row-' + index}
-                      trigger={
-                        <TrackRow
-                          data-testid={`fav-track-${track.uuid}`}
-                          key={'favorite-track-' + index}
-                          track={track}
-                          displayCover
-                          displayArtist
-                          withDeleteButton
-                          onDelete={e => {
-                            e.stopPropagation();
-                            removeFavoriteTrack(track);
-                          }}
-                        />
-                      }
-                      track={track}
-                      artist={getTrackArtist(track)}
-                      title={track.name}
-                      thumb={track.thumbnail}
-                      withAddToFavorites={false}
-                    />
-                  )
-                }
-              </Table.Body>
-            </Table>
+          <Segment>
+            <TrackTableContainer 
+              tracks={tracks}
+              onDelete={removeFavoriteTrack}
+              displayAlbum={false}
+              displayFavorite={false}
+            />
           </Segment>
-        </React.Fragment>
+        </>
       }
     </div>
   );
