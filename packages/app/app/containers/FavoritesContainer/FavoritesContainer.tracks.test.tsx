@@ -40,7 +40,7 @@ describe('Track view container', () => {
     expect(component.asFragment()).toMatchSnapshot();
   });
 
-  it('should show popup when a track is clicked', async () => {
+  it('should show a popup when a track is clicked', async () => {
     const favorites = buildStoreState()
       .withFavorites()
       .build()
@@ -48,11 +48,11 @@ describe('Track view container', () => {
     updateStore('favorites', favorites);
     const { component } = mountComponent();
 
-    await waitFor(() => component.getByTestId('fav-track-uuid1').click());
+    await waitFor(() => component.getAllByTestId('track-popup-trigger')[0].click());
     expect(component.asFragment()).toMatchSnapshot();
   });
 
-  it('should call provider.search when play track with no stream', async () => {
+  it('should call provider.search when playing a track with no streams', async () => {
     const favorites = buildStoreState()
       .withFavorites()
       .build()
@@ -65,14 +65,13 @@ describe('Track view container', () => {
       state.plugin.plugins.streamProviders, 
       { sourceName: state.plugin.selected.streamProviders });
 
-    await waitFor(() => component.getByTestId('fav-track-uuid2').click());
-    await waitFor(() => component.getByTestId('track-popup-add-queue').click());
+    await waitFor(() => component.getAllByTestId('play-now')[1].click());
 
     expect(selectedStreamProvider.search).toBeCalled();
     expect(selectedStreamProvider.getStreamForId).not.toBeCalled();
   });
 
-  it('should call provider.getStreamForId when play track with known stream', async () => {
+  it('should call provider.getStreamForId when playing a track with a stream', async () => {
     const favorites = buildStoreState()
       .withFavorites()
       .build()
@@ -85,8 +84,7 @@ describe('Track view container', () => {
       state.plugin.plugins.streamProviders, 
       { sourceName: state.plugin.selected.streamProviders });
 
-    await waitFor(() => component.getByTestId('fav-track-uuid1').click());
-    await waitFor(() => component.getByTestId('track-popup-add-queue').click());
+    await waitFor(() => component.getAllByTestId('play-now')[0].click());
 
     expect(selectedStreamProvider.search).not.toBeCalled();
     expect(selectedStreamProvider.getStreamForId).toBeCalled();
