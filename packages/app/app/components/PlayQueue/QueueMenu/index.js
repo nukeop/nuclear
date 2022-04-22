@@ -15,7 +15,7 @@ import settingsConst from '../../../constants/settings';
 
 @withTranslation('queue')
 class QueueMenu extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
   }
 
@@ -53,37 +53,42 @@ class QueueMenu extends React.Component {
     return (
       <div className={styles.queue_menu_container}>
         <div className={styles.queue_menu_buttons}>
-          <a href='#' className='compactButton' onClick={() => toggleOption(_.find(settingsConst, ['name', 'compactQueueBar']), settings)}>
+          <a
+            href='#'
+            className='compactButton'
+            data-testid='queue-menu-collapse'
+            onClick={() => toggleOption(_.find(settingsConst, ['name', 'compactQueueBar']), settings)}
+          >
             <Icon name={settings.compactQueueBar ? 'angle left' : 'angle right'} />
           </a>
 
           {
             !compact &&
-              <QueueMenuMore
-                disabled={_.isEmpty(items)}
-                clearQueue={clearQueue}
-                resetPlayer={resetPlayer}
-                updatePlaylist={updatePlaylist}
-                addFavoriteTrack={addFavoriteTrack}
-                addToDownloads={addToDownloads}
-                playlists={playlists}
-                currentItem={_.get(items, currentSong)}
-                savePlaylistDialog={
-                  <InputDialog
-                    header={<h4>Input playlist name:</h4>}
-                    placeholder={t('dialog-placeholder')}
-                    accept={t('dialog-accept')}
-                    onAccept={this.handleAddPlaylist(addPlaylist, success, items, settings)}
-                    trigger={
-                      <Dropdown.Item>
-                        <Icon name='save'/>
-                        {t('dialog-trigger')}
-                      </Dropdown.Item>
-                    }
-                    initialString={firstTitle}
-                  />
-                }
-              />
+            <QueueMenuMore
+              disabled={_.isEmpty(items)}
+              clearQueue={clearQueue}
+              resetPlayer={resetPlayer}
+              updatePlaylist={updatePlaylist}
+              addFavoriteTrack={addFavoriteTrack}
+              addToDownloads={addToDownloads}
+              playlists={playlists}
+              currentItem={_.get(items, currentSong)}
+              savePlaylistDialog={
+                <InputDialog
+                  header={<h4>Input playlist name:</h4>}
+                  placeholder={t('dialog-placeholder')}
+                  accept={t('dialog-accept')}
+                  onAccept={this.handleAddPlaylist(addPlaylist, success, items, settings)}
+                  trigger={
+                    <Dropdown.Item>
+                      <Icon name='save' />
+                      {t('dialog-trigger')}
+                    </Dropdown.Item>
+                  }
+                  initialString={firstTitle}
+                />
+              }
+            />
           }
 
         </div>

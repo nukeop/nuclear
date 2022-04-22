@@ -53,7 +53,6 @@ const ActionIcon = props => {
   }
 };
 
-
 const DownloadsItem: React.FC<DownloadsItemProps> = ({
   item,
   resumeDownload,

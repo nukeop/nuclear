@@ -15,15 +15,41 @@ import {
 } from '../actions/queue';
 import { SELECT_STREAM_PROVIDER } from '../actions/plugins';
 
-
-const initialState = {
-  queueItems: [],
-  currentSong: 0
+export type TrackStream = {
+  source: string;
+  id: string;
+  duration?: number;
+  title?: string;
+  thumbnail?: string;
+  stream?: string;
 };
 
-function findQueueItemIndex(queueItems, item) {
-  return _.findIndex(queueItems, i => i.uuid === item.uuid);
+export type QueueItem = {
+  uuid?: string;
+  loading?: boolean;
+  error?:
+    | boolean
+    | {
+        message: string;
+        details: string;
+      };
+  local?: boolean;
+  artist: string | { name: string };
+  name: string;
+  thumbnail?: string;
+  streams?: TrackStream[];
+};
+
+export class QueueStore {
+  queueItems: QueueItem[] = [];
+  currentSong = 0;
 }
+
+const defaultState = {...new QueueStore()};
+
+const findQueueItemIndex = (queueItems: QueueItem[], item: QueueItem) => {
+  return _.findIndex(queueItems, i => i.uuid === item.uuid);
+};
 
 function reduceRemoveFromQueue(state, action) {
   let newQueue;
@@ -34,7 +60,7 @@ function reduceRemoveFromQueue(state, action) {
   if (removeIx < state.currentSong) {
     newCurrent--;
   }
-  return { 
+  return {
     ...state,
     queueItems: newQueue,
     currentSong: newCurrent
@@ -155,20 +181,20 @@ const reduceAddPlayNextItem = (state, action) => {
   return {
     ...state,
     queueItems: [
-      ...state.queueItems.slice(0, 1), 
+      ...state.queueItems.slice(0, 1),
       action.payload.item,
       ...state.queueItems.slice(1)
     ]
   };
 };
 
-export default function QueueReducer(state = initialState, action) {
+export default function QueueReducer(state = defaultState, action) {
   switch (action.type) {
   case ADD_QUEUE_ITEM:
     return {
       ...state,
       queueItems: [
-        ...state.queueItems, 
+        ...state.queueItems,
         action.payload.item
       ]
     };

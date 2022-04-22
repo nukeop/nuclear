@@ -2,10 +2,11 @@ import logger from 'electron-timber';
 import _, { isString } from 'lodash';
 
 import { StreamProvider } from '@nuclear/core';
-import { Track, TrackStream } from '@nuclear/ui/lib/types';
+import { Track } from '@nuclear/ui/lib/types';
 
 import { safeAddUuid } from './helpers';
-import { pausePlayback, startPlayback } from './player.js';
+import { pausePlayback, startPlayback } from './player';
+import { QueueItem } from '../reducers/queue';
 import { RootState } from '../reducers';
 
 export const QUEUE_DROP = 'QUEUE_DROP';
@@ -20,21 +21,6 @@ export const SELECT_SONG = 'SELECT_SONG';
 export const REPOSITION_SONG = 'REPOSITION_SONG';
 export const STREAM_FAILED = 'STREAM_FAILED';
 export const CHANGE_TRACK_STREAM = 'CHANGE_TRACK_STREAM';
-
-export type QueueItem = {
-  loading?: boolean;
-  error?:
-    | boolean
-    | {
-        message: string;
-        details: string;
-      };
-  local?: boolean;
-  artist: string;
-  name: string;
-  thumbnail?: string;
-  streams?: TrackStream[];
-};
 
 export const toQueueItem = (track: Track): QueueItem => ({
   ...track,
@@ -199,7 +185,7 @@ export function rerollTrack(track: QueueItem) {
 
     const newStream = await selectedStreamProvider
       .getAlternateStream(
-        { artist: track.artist, track: track.name },
+        { artist: isString(track.artist) ? track.artist : track.artist.name, track: track.name },
         selectedStream
       );
       
