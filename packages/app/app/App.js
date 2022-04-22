@@ -110,7 +110,7 @@ class App extends React.PureComponent {
           [`${compact.compact_panel}`]: this.props.settings.compactQueueBar
         })}
       >
-        <PlayQueueContainer compact={this.props.settings.compactQueueBar} />
+        <PlayQueueContainer />
       </VerticalPanel>
     );
   }

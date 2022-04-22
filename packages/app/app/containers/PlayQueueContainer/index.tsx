@@ -20,8 +20,7 @@ const PlayQueueContainer = props => {
     actions,
     queue,
     plugins,
-    settings,
-    compact
+    settings
   } = props;
   
   const { localPlaylists: playlists } = useLocalPlaylists();
@@ -29,12 +28,10 @@ const PlayQueueContainer = props => {
   return (
     <PlayQueue
       actions={actions}
-      items={queue.queueItems}
-      currentSong={queue.currentSong}
+      queue={queue}
       plugins={plugins}
       settings={settings}
       playlists={playlists.data}
-      compact={compact}
     />
   );
 };

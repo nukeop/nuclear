@@ -20,6 +20,18 @@ describe('Play Queue container', () => {
     expect(component.asFragment()).toMatchSnapshot();
   });
 
+  it('should collapse and expand the queue sidebar on click', async () => {
+    const { component, store } = mountComponent();
+    await waitFor(() => component.getByTestId('queue-menu-collapse').click());
+
+    let state = store.getState();
+    expect(state.settings.compactQueueBar).toBe(true);
+
+    await waitFor(() => component.getByTestId('queue-menu-collapse').click());
+    state = store.getState();
+    expect(state.settings.compactQueueBar).toBe(false);
+  });
+
   it('should display a context popup on right click', async () => {
     const { component } = mountComponent();
     const track = component.getByTestId('queue-popup-uuid1');
@@ -132,7 +144,7 @@ describe('Play Queue container', () => {
     
     return mountedPlayQueueFactory(
       ['/dashboard'],
-      initialState      
+      initialState
     )();
   };
 });
