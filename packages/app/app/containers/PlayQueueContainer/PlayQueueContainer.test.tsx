@@ -15,7 +15,7 @@ describe('Play Queue container', () => {
     store.clear();
   });
 
-  it('should display with track in queue', async () => {
+  it('should display tracks in the queue', async () => {
     const { component } = mountComponent();
     expect(component.asFragment()).toMatchSnapshot();
   });
@@ -46,7 +46,7 @@ describe('Play Queue container', () => {
     expect(component.asFragment()).toMatchSnapshot();
   });
 
-  it('should copy original track url to clipboard', async () => {
+  it('should copy the original track url to clipboard', async () => {
     const { component } = mountComponent();
     // eslint-disable-next-line @typescript-eslint/no-var-requires
     const clipboard = require('electron').clipboard;
@@ -57,7 +57,7 @@ describe('Play Queue container', () => {
     expect(clipboard.writeText).toHaveBeenCalledWith('https://test-track-original-url');
   });
 
-  it('should not display copy original track url button if the url is not included in the current stream', async () => {
+  it('should not display the copy original track url button if the url is not included in the current stream', async () => {
     const { component } = mountComponent();
     const track = component.getByTestId('queue-popup-uuid2');
     await waitFor(() => fireEvent.contextMenu(track));
@@ -121,6 +121,16 @@ describe('Play Queue container', () => {
         name: 'test track 1'
       })
     ]);
+  });
+
+  it('should clear the queue', async () => {
+    const { component, store } = mountComponent();
+
+    await waitFor(() => component.getByTestId('queue-menu-more-container').click());
+    await waitFor(() => component.getByText(/Clear queue/i).click());
+
+    const state = store.getState();
+    expect(state.queue.queueItems).toEqual([]);
   });
 
   const mountComponent = (initialStore?: AnyProps) => {
