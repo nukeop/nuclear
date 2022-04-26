@@ -71,11 +71,8 @@ describe('Artist view container', () => {
 
     initialState.search.artistDetails['test-artist-id'].topTracks = [{
       artist: {
-        mbid: 'test mbid',
-        name: 'test artist',
-        url: 'test artist url'
+        name: 'test artist'
       },
-      name: 'test artist top track 1',
       title: 'test artist top track 1'
     }];
     const { component, store } = mountComponent(initialState);

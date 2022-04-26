@@ -13,16 +13,17 @@ import { favoritesSelectors } from '../../selectors/favorites';
 import { pluginsSelectors } from '../../selectors/plugins';
 import { searchSelectors } from '../../selectors/search';
 import { stringDurationToSeconds } from '../../utils';
+import { AlbumDetailsState } from '../../reducers/search';
 
 export const useAlbumViewProps = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const { albumId } = useParams<{ albumId: string }>();
 
-  const albumDetails = useSelector(searchSelectors.albumDetails);
+  const albumDetails: {[key:string]: AlbumDetailsState} = useSelector(searchSelectors.albumDetails);
   // TODO replace this any with a proper type
   const plugins: any = useSelector(pluginsSelectors.plugins);
-  const favoriteAlbums: { id: string }[] = useSelector(favoritesSelectors.albums);
+  const favoriteAlbums = useSelector(favoritesSelectors.albums);
 
   const albumFromFavorites = favoriteAlbums.find(album => album.id === albumId);
   const album = albumFromFavorites || albumDetails[albumId];

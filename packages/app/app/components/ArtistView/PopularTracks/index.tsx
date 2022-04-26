@@ -11,7 +11,7 @@ import TrackPopupContainer from '../../../containers/TrackPopupContainer';
 
 import trackRowStyles from '../../TrackRow/styles.scss';
 import styles from './styles.scss';
-import { Track } from '@nuclear/core';
+import { ArtistTopTrack } from '@nuclear/core/src/plugins/plugins.types';
 
 type AddAllButtonProps = {
   handleAddAll: React.MouseEventHandler;
@@ -35,13 +35,12 @@ export const AddAllButton: React.FC<AddAllButtonProps> = ({
   );
 };
 
-type PopularTrack = Track & { thumb?: string };
 
 type PopularTracksProps = {
   artist: {
     name: string;
   };
-  tracks: PopularTrack[];
+  tracks: ArtistTopTrack[];
   addToQueue: (track) => Promise<void> ;
 }
 
@@ -60,7 +59,7 @@ const PopularTracks: React.FC<PopularTracksProps> = ({
         addToQueue({
           artist: artist.name,
           name: track.title,
-          thumbnail: track.thumbnail ?? track.thumb
+          thumbnail: track.thumb
         });
       });
   };
@@ -98,7 +97,7 @@ const PopularTracks: React.FC<PopularTracksProps> = ({
                         track={{
                           playcount: _.get(track, 'playcount'),
                           name: track.title,
-                          thumbnail: track.thumbnail ?? track.thumb
+                          thumbnail: track.thumb
                         }}
                         displayCover
                         displayPlayCount
@@ -107,7 +106,7 @@ const PopularTracks: React.FC<PopularTracksProps> = ({
                     title={track.title}
                     track={track}
                     artist={artist.name}
-                    thumb={track.thumbnail ?? track.thumb}
+                    thumb={track.thumb}
                   />
                 ))
             }
