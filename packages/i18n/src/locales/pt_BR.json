@@ -148,15 +148,15 @@
     "export-success-title": "Playlist exported successfully",
     "header": "Your playlists",
     "import-progress": "Import progress",
-    "spotify-import-placeholder": "Paste a Spotify playlist URL here",
+    "spotify-import-placeholder": "Cole o link da playlist do Spotify aqui",
     "dialog-placeholder": "Nome da Lista de Reprodução...",
     "dialog-accept": "Save",
-    "dialog-cancel": "Cancel",
-    "dialog-rename": "Rename",
-    "dialog-import": "Import",
+    "dialog-cancel": "Cancelar",
+    "dialog-rename": "Renomear",
+    "dialog-import": "Importar",
     "create-button": "Create new playlist",
     "new-playlist": "New playlist",
-    "import-url-button": "Import from url (Spotify)",
+    "import-url-button": "Importar a partir de link (Spotify)",
     "import-button": "Import from file (JSON)",
     "import-fail-title": "Playlist import fail",
     "import-success-title": "Playlist imported successfully",
@@ -177,7 +177,7 @@
     "server-modified-at": "Servidor modificado: ",
     "upload-to-server": "Upload para o servidor",
     "download-from-server": "Baixar do servidor",
-    "number-of-tracks": "tracks"
+    "number-of-tracks": "faixas"
   },
   "plugins": {
     "add-a-plugin": "Adicionar um plugin",
@@ -216,13 +216,13 @@
   "search": {
     "album": "Álbum",
     "album_plural": "Álbuns",
-    "all": "All",
+    "all": "Tudo",
     "artist": "Artista",
     "artist_plural": "Artistas",
     "clear-history": "Clear history",
     "empty": "Nada Encontrado.",
     "last-searches": "Last searches",
-    "live-stream": "LiveStream",
+    "live-stream": "Transmissão",
     "placeholder": "Procurando...",
     "playlist": "Lista de Reprodução",
     "playlist_plural": "Listas de Reprodução",
@@ -234,7 +234,7 @@
   },
   "seekbar": {
     "live": "Live",
-    "segment-popup": "Non-music"
+    "segment-popup": "Não musical"
   },
   "settings": {
     "api-port": "Porta usada pela api",
