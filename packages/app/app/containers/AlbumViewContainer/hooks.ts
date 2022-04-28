@@ -3,8 +3,8 @@ import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router';
 
-import * as SearchActions from '../../actions/search';
-import * as DownloadsActions from '../../actions/downloads';
+import { artistInfoSearchByName } from '../../actions/search';
+import { addToDownloads } from '../../actions/downloads';
 import * as QueueActions from '../../actions/queue';
 import * as PlayerActions from '../../actions/player';
 import * as FavoritesActions from '../../actions/favorites';
@@ -51,7 +51,7 @@ export const useAlbumViewProps = () => {
   const isFavorite = getIsFavorite(album, favoriteAlbums);
 
   const searchAlbumArtist = useCallback(() => dispatch(
-    SearchActions.artistInfoSearchByName(
+    artistInfoSearchByName(
       album?.artist,
       history
     )), [album, dispatch, history]);
@@ -59,7 +59,7 @@ export const useAlbumViewProps = () => {
   const addAlbumToDownloads = useCallback(async () => {
     await album?.tracklist.forEach(async track => {
       const clonedTrack = { ...safeAddUuid(track) };
-      dispatch(DownloadsActions.addToDownloads(plugins.streamProviders, clonedTrack));
+      dispatch(addToDownloads(plugins.streamProviders, clonedTrack));
     });
   }, [album, dispatch, plugins]);
 

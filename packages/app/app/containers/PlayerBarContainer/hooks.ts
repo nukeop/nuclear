@@ -6,7 +6,7 @@ import _ from 'lodash';
 
 import { normalizeTrack } from '../../utils';
 import settingsConst from '../../constants/settings';
-import * as searchActions from '../../actions/search';
+import { artistInfoSearchByName } from '../../actions/search';
 import * as playerActions from '../../actions/player';
 import * as queueActions from '../../actions/queue';
 import * as settingsActions from '../../actions/settings';
@@ -137,7 +137,7 @@ export const useTrackInfoProps = () => {
   );
 
   const onArtistClick = useCallback(
-    () => dispatch(searchActions.artistInfoSearchByName(artist, history)),
+    () => dispatch(artistInfoSearchByName(artist, history)),
     [dispatch, artist, history]
   );
 
