@@ -8,8 +8,35 @@ describe('Library view container', () => {
     setupI18Next();
   });
 
-  it('should display local library', () => {
+  it('should display an empty local library', () => {
+    const initialState = buildStoreState()
+      .withPlugins()
+      .withConnectivity()
+      .withLocal([])
+      .build();
+    const { component } = mountComponent(initialState);
+
+    expect(component.asFragment()).toMatchSnapshot();
+  });
+
+  it('should display local library in simple list mode', () => {
     const { component } = mountComponent();
+
+    expect(component.asFragment()).toMatchSnapshot();
+  });
+
+  it('should display local library in album grid mode', () => {
+    const { component } = mountComponent();
+
+    waitFor(() => component.getByTestId('library-list-type-toggle-album-grid').click());
+
+    expect(component.asFragment()).toMatchSnapshot();
+  });
+
+  it('should display local library in folder tree mode', () => {
+    const { component } = mountComponent();
+
+    waitFor(() => component.getByTestId('library-list-type-toggle-folder-tree').click());
 
     expect(component.asFragment()).toMatchSnapshot();
   });

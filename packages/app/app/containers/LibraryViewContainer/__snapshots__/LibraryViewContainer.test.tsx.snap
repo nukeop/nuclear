@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Library view container should display local library 1`] = `
+exports[`Library view container should display an empty local library 1`] = `
 <DocumentFragment>
   <div
     class="main_layout_container"
@@ -41,15 +41,39 @@ exports[`Library view container should display local library 1`] = `
             Add folders
           </button>
           <button
-            class="ui icon inverted disabled button refresh_icon"
-            disabled=""
-            tabindex="-1"
+            class="ui icon inverted button refresh_icon"
           >
             <i
               aria-hidden="true"
               class="refresh icon"
             />
           </button>
+        </div>
+        <div
+          class="ui divider"
+        />
+        <div
+          class="ui divided middle aligned list equalizer_list"
+          role="list"
+        >
+          <div
+            class="item"
+            role="listitem"
+          >
+            <div
+              class="right floated content"
+            >
+              <i
+                aria-hidden="true"
+                class="close icon folder_remove_icon"
+              />
+            </div>
+            <div
+              class="content"
+            >
+              /home/nuclear/Music
+            </div>
+          </div>
         </div>
       </div>
       <div
@@ -75,6 +99,7 @@ exports[`Library view container should display local library 1`] = `
           >
             <button
               class="ui active icon inverted button"
+              data-testid="library-list-type-toggle-simple-list"
             >
               <i
                 aria-hidden="true"
@@ -83,6 +108,7 @@ exports[`Library view container should display local library 1`] = `
             </button>
             <button
               class="ui icon inverted button"
+              data-testid="library-list-type-toggle-album-grid"
             >
               <i
                 aria-hidden="true"
@@ -91,6 +117,7 @@ exports[`Library view container should display local library 1`] = `
             </button>
             <button
               class="ui icon inverted button"
+              data-testid="library-list-type-toggle-folder-tree"
             >
               <i
                 aria-hidden="true"
@@ -111,6 +138,660 @@ exports[`Library view container should display local library 1`] = `
           </h2>
           <div>
             Try adding some music using the button above.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Library view container should display local library in album grid mode 1`] = `
+<DocumentFragment>
+  <div
+    class="main_layout_container"
+  >
+    <div
+      class="local_files_view"
+    >
+      <div
+        class="library_header_row"
+      >
+        <div
+          class="header_container"
+        >
+          Local Library
+        </div>
+        <button
+          class="ui basic icon button"
+        >
+          <i
+            aria-hidden="true"
+            class="chevron up icon"
+          />
+        </button>
+      </div>
+      <div
+        class="ui segment library_folders"
+      >
+        <div
+          class="ui segment control_bar"
+        >
+          <button
+            class="ui icon inverted left labeled button add_folder"
+          >
+            <i
+              aria-hidden="true"
+              class="folder open icon"
+            />
+            Add folders
+          </button>
+          <button
+            class="ui icon inverted button refresh_icon"
+          >
+            <i
+              aria-hidden="true"
+              class="refresh icon"
+            />
+          </button>
+        </div>
+        <div
+          class="ui divider"
+        />
+        <div
+          class="ui divided middle aligned list equalizer_list"
+          role="list"
+        >
+          <div
+            class="item"
+            role="listitem"
+          >
+            <div
+              class="right floated content"
+            >
+              <i
+                aria-hidden="true"
+                class="close icon folder_remove_icon"
+              />
+            </div>
+            <div
+              class="content"
+            >
+              /home/nuclear/Music
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="ui segment library_contents"
+      >
+        <div
+          class="search_field_row"
+        >
+          <div
+            class="ui inverted transparent left icon input"
+          >
+            <input
+              placeholder="Filter..."
+              type="text"
+            />
+            <i
+              aria-hidden="true"
+              class="search icon"
+            />
+          </div>
+          <div
+            class="ui buttons library_list_type_toggle"
+          >
+            <button
+              class="ui icon inverted button"
+              data-testid="library-list-type-toggle-simple-list"
+            >
+              <i
+                aria-hidden="true"
+                class="unordered list icon"
+              />
+            </button>
+            <button
+              class="ui active icon inverted button"
+              data-testid="library-list-type-toggle-album-grid"
+            >
+              <i
+                aria-hidden="true"
+                class="th icon"
+              />
+            </button>
+            <button
+              class="ui icon inverted button"
+              data-testid="library-list-type-toggle-folder-tree"
+            >
+              <i
+                aria-hidden="true"
+                class="folder icon"
+              />
+            </button>
+          </div>
+        </div>
+        <div
+          class="ui inverted segment tracks_container"
+        >
+          <div
+            class="ui dimmer"
+            loading="false"
+          />
+          <div
+            class="nuclear album_grid"
+          >
+            <div
+              class="album_cards"
+            >
+              <div
+                class="nuclear card_container"
+              >
+                <div
+                  class="card animated"
+                >
+                  <div
+                    class="thumbnail"
+                  >
+                    <div
+                      class="overlay"
+                    />
+                  </div>
+                  <div
+                    class="card_content"
+                  >
+                    <h4>
+                      local album 1
+                    </h4>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="nuclear card_container"
+              >
+                <div
+                  class="card animated"
+                >
+                  <div
+                    class="thumbnail"
+                  >
+                    <div
+                      class="overlay"
+                    />
+                  </div>
+                  <div
+                    class="card_content"
+                  >
+                    <h4>
+                      local album 2
+                    </h4>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <hr />
+            <div
+              class="album_preview"
+            >
+              <div
+                class="album_cover"
+              >
+                <div
+                  class="album_cover_overlay"
+                >
+                  <button
+                    class="ui huge basic icon button"
+                  >
+                    <i
+                      aria-hidden="true"
+                      class="plus icon"
+                    />
+                  </button>
+                  <button
+                    class="ui huge basic icon button"
+                  >
+                    <i
+                      aria-hidden="true"
+                      class="play icon"
+                    />
+                  </button>
+                </div>
+              </div>
+              <div
+                class="track_list"
+              >
+                <table>
+                  <tbody>
+                    <tr
+                      class="track_row mini"
+                    >
+                      <td
+                        class="track_row_position"
+                      />
+                      <td
+                        class="track_row_artist"
+                      >
+                        local artist 1
+                      </td>
+                      <td
+                        class="track_row_name"
+                      >
+                        local track 1
+                      </td>
+                      <td
+                        class="track_row_album"
+                      >
+                        local album 1
+                      </td>
+                      <td
+                        class="track_row_duration"
+                      >
+                        05:00
+                      </td>
+                    </tr>
+                    <tr
+                      class="track_row mini"
+                    >
+                      <td
+                        class="track_row_position"
+                      />
+                      <td
+                        class="track_row_artist"
+                      >
+                        local artist 1
+                      </td>
+                      <td
+                        class="track_row_name"
+                      >
+                        local track 2
+                      </td>
+                      <td
+                        class="track_row_album"
+                      >
+                        local album 1
+                      </td>
+                      <td
+                        class="track_row_duration"
+                      >
+                        03:20
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Library view container should display local library in folder tree mode 1`] = `
+<DocumentFragment>
+  <div
+    class="main_layout_container"
+  >
+    <div
+      class="local_files_view"
+    >
+      <div
+        class="library_header_row"
+      >
+        <div
+          class="header_container"
+        >
+          Local Library
+        </div>
+        <button
+          class="ui basic icon button"
+        >
+          <i
+            aria-hidden="true"
+            class="chevron up icon"
+          />
+        </button>
+      </div>
+      <div
+        class="ui segment library_folders"
+      >
+        <div
+          class="ui segment control_bar"
+        >
+          <button
+            class="ui icon inverted left labeled button add_folder"
+          >
+            <i
+              aria-hidden="true"
+              class="folder open icon"
+            />
+            Add folders
+          </button>
+          <button
+            class="ui icon inverted button refresh_icon"
+          >
+            <i
+              aria-hidden="true"
+              class="refresh icon"
+            />
+          </button>
+        </div>
+        <div
+          class="ui divider"
+        />
+        <div
+          class="ui divided middle aligned list equalizer_list"
+          role="list"
+        >
+          <div
+            class="item"
+            role="listitem"
+          >
+            <div
+              class="right floated content"
+            >
+              <i
+                aria-hidden="true"
+                class="close icon folder_remove_icon"
+              />
+            </div>
+            <div
+              class="content"
+            >
+              /home/nuclear/Music
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="ui segment library_contents"
+      >
+        <div
+          class="search_field_row"
+        >
+          <div
+            class="ui inverted transparent left icon input"
+          >
+            <input
+              placeholder="Filter..."
+              type="text"
+            />
+            <i
+              aria-hidden="true"
+              class="search icon"
+            />
+          </div>
+          <div
+            class="ui buttons library_list_type_toggle"
+          >
+            <button
+              class="ui icon inverted button"
+              data-testid="library-list-type-toggle-simple-list"
+            >
+              <i
+                aria-hidden="true"
+                class="unordered list icon"
+              />
+            </button>
+            <button
+              class="ui icon inverted button"
+              data-testid="library-list-type-toggle-album-grid"
+            >
+              <i
+                aria-hidden="true"
+                class="th icon"
+              />
+            </button>
+            <button
+              class="ui active icon inverted button"
+              data-testid="library-list-type-toggle-folder-tree"
+            >
+              <i
+                aria-hidden="true"
+                class="folder icon"
+              />
+            </button>
+          </div>
+        </div>
+        <div
+          class="ui inverted segment tracks_container"
+        >
+          <div
+            class="ui dimmer"
+            loading="false"
+          />
+          <div
+            style="overflow: visible; height: 0px; width: 0px;"
+          />
+          <div
+            class="resize-triggers"
+          >
+            <div
+              class="expand-trigger"
+            >
+              <div
+                style="width: 1px; height: 1px;"
+              />
+            </div>
+            <div
+              class="contract-trigger"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Library view container should display local library in simple list mode 1`] = `
+<DocumentFragment>
+  <div
+    class="main_layout_container"
+  >
+    <div
+      class="local_files_view"
+    >
+      <div
+        class="library_header_row"
+      >
+        <div
+          class="header_container"
+        >
+          Local Library
+        </div>
+        <button
+          class="ui basic icon button"
+        >
+          <i
+            aria-hidden="true"
+            class="chevron up icon"
+          />
+        </button>
+      </div>
+      <div
+        class="ui segment library_folders"
+      >
+        <div
+          class="ui segment control_bar"
+        >
+          <button
+            class="ui icon inverted left labeled button add_folder"
+          >
+            <i
+              aria-hidden="true"
+              class="folder open icon"
+            />
+            Add folders
+          </button>
+          <button
+            class="ui icon inverted button refresh_icon"
+          >
+            <i
+              aria-hidden="true"
+              class="refresh icon"
+            />
+          </button>
+        </div>
+        <div
+          class="ui divider"
+        />
+        <div
+          class="ui divided middle aligned list equalizer_list"
+          role="list"
+        >
+          <div
+            class="item"
+            role="listitem"
+          >
+            <div
+              class="right floated content"
+            >
+              <i
+                aria-hidden="true"
+                class="close icon folder_remove_icon"
+              />
+            </div>
+            <div
+              class="content"
+            >
+              /home/nuclear/Music
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="ui segment library_contents"
+      >
+        <div
+          class="search_field_row"
+        >
+          <div
+            class="ui inverted transparent left icon input"
+          >
+            <input
+              placeholder="Filter..."
+              type="text"
+            />
+            <i
+              aria-hidden="true"
+              class="search icon"
+            />
+          </div>
+          <div
+            class="ui buttons library_list_type_toggle"
+          >
+            <button
+              class="ui active icon inverted button"
+              data-testid="library-list-type-toggle-simple-list"
+            >
+              <i
+                aria-hidden="true"
+                class="unordered list icon"
+              />
+            </button>
+            <button
+              class="ui icon inverted button"
+              data-testid="library-list-type-toggle-album-grid"
+            >
+              <i
+                aria-hidden="true"
+                class="th icon"
+              />
+            </button>
+            <button
+              class="ui icon inverted button"
+              data-testid="library-list-type-toggle-folder-tree"
+            >
+              <i
+                aria-hidden="true"
+                class="folder icon"
+              />
+            </button>
+          </div>
+        </div>
+        <div
+          class="ui inverted segment tracks_container"
+        >
+          <div
+            class="ui dimmer"
+            loading="false"
+          />
+          <div
+            class="library_simple_list_container"
+            style="position: relative;"
+          >
+            <div
+              style="transform: translate(0px, 0px);"
+            >
+              <table
+                class="ui sortable table library_simple_list table"
+              >
+                <thead
+                  class="thead"
+                >
+                  <tr
+                    class=""
+                  >
+                    <th
+                      class=""
+                    >
+                      <i
+                        aria-hidden="true"
+                        class="image icon"
+                      />
+                    </th>
+                    <th
+                      class="ascending sorted"
+                    >
+                      Artist
+                    </th>
+                    <th
+                      class=""
+                    >
+                      Title
+                    </th>
+                    <th
+                      class=""
+                    >
+                      Album
+                    </th>
+                  </tr>
+                </thead>
+                <tbody
+                  class="tbody"
+                >
+                  <tr
+                    class="track_row"
+                  >
+                    <td
+                      class="track_row_thumbnail"
+                    >
+                      <img
+                        src="local track thumbnail 1"
+                      />
+                    </td>
+                    <td
+                      class="track_row_artist"
+                    >
+                      local artist 1
+                    </td>
+                    <td
+                      class="track_row_name"
+                    >
+                      local track 1
+                    </td>
+                    <td
+                      class="track_row_album"
+                    >
+                      local album 1
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>
