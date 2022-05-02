@@ -8,6 +8,7 @@ import { PlaylistsStore } from '../app/reducers/playlists';
 import { AnyProps } from './testUtils';
 import { LyricsProvider, MetaProvider } from '@nuclear/core';
 import { TrackStream } from '../app/reducers/queue';
+import { LocalLibraryState } from '../app/actions/local';
 
 type StoreStateBuilder = ReturnType<typeof buildStoreState>;
 export const buildStoreState = () => {
@@ -773,19 +774,52 @@ export const buildStoreState = () => {
       };
       return this as StoreStateBuilder;
     },
-    withLocal() {
+    withLocal(tracks?: LocalLibraryState['tracks']) {
       state = {
         ...state,
         local: {
           pending: false,
           error: false,
-          folders: [],
+          folders: ['/home/nuclear/Music'],
           page: 0,
           sortBy: 'artist',
           direction: 'ascending',
           filter: '',
           listType: 'simple-list',
-          tracks: [],
+          tracks: tracks ?? [{
+            uuid: 'local-track-1',
+            artist: 'local artist 1',
+            name: 'local track 1',
+            album: 'local album 1',
+            thumbnail: 'local track thumbnail 1',
+            duration: 300,
+            path: '/home/nuclear/Music/local artist 1/local album 1/local track 1.mp3',
+            folder: {
+              path: '/home/nuclear/Music/local artist 1/local album 1'
+            }
+          }, {
+            uuid: 'local-track-2',
+            artist: 'local artist 1',
+            name: 'local track 2',
+            album: 'local album 1',
+            thumbnail: 'local track thumbnail 2',
+            duration: 200,
+            path: '/home/nuclear/Music/local artist 1/local album 1/local track 2.mp3',
+            folder: {
+              path: '/home/nuclear/Music/local artist 1/local album 1'
+            }
+          }, {
+            uuid: 'local-track-3',
+            artist: 'local artist 2',
+            name: 'local track 3',
+            album: 'local album 2',
+            thumbnail: 'local track thumbnail 3',
+            duration: 100,
+            path: '/home/nuclear/Music/local artist 2/local album 2/local track 3.mp3',
+            folder: {
+              path: '/home/nuclear/Music/local artist 2/local album 2'
+            }
+          }],
           scanProgress: null,
           scanTotal: null,
           expandedFolders: []
