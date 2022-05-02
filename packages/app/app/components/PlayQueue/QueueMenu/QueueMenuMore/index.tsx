@@ -3,10 +3,11 @@ import cx from 'classnames';
 import { Dropdown, Icon } from 'semantic-ui-react';
 import { useTranslation } from 'react-i18next';
 import { isArtistObject, Playlist, PlaylistHelper } from '@nuclear/core';
-import { getTrackArtist, getTrackTitle } from '@nuclear/ui';
+import { getTrackArtist } from '@nuclear/ui';
 import { Track } from '@nuclear/ui/lib/types';
 
 import styles from './styles.scss';
+import { normalizeTrack } from '../../../../utils';
 
 export const addTrackToPlaylist = (updatePlaylist, playlist: Playlist, track: Track) => {
   if (track && track.name) {
@@ -61,14 +62,7 @@ export const QueueMenuMore: React.FC<QueueMenuMoreProps> = ({
 
   const onAddFavoriteTrack = useCallback(() => {
     if (currentItem.name) {
-      addFavoriteTrack({
-        artist: {
-          name: getTrackArtist(currentItem)
-        },
-        name: getTrackTitle(currentItem),
-        image: [{'#text': currentItem.thumbnail}],
-        streams: currentItem.streams
-      });
+      addFavoriteTrack(normalizeTrack(currentItem));
     }
   }, [addFavoriteTrack, currentItem]);
 

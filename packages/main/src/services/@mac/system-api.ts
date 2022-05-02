@@ -66,7 +66,7 @@ export default MacOsMediaService;
 //       albumArt: track.thumbnail,
 //       artist: track.artist,
 //       title: track.name,
-//       duration: track.streams[0].duration
+//       duration: track.stream.duration
 //     };
 //   }
 

@@ -6,8 +6,10 @@ import { Track } from '@nuclear/ui/lib/types';
 
 import { safeAddUuid } from './helpers';
 import { pausePlayback, startPlayback } from './player';
-import { QueueItem } from '../reducers/queue';
+import { QueueItem, TrackStream } from '../reducers/queue';
 import { RootState } from '../reducers';
+import { createStandardAction } from 'typesafe-actions';
+import { getTrackArtist } from '@nuclear/ui';
 
 export const QUEUE_DROP = 'QUEUE_DROP';
 export const ADD_QUEUE_ITEM = 'ADD_QUEUE_ITEM';
@@ -21,6 +23,7 @@ export const SELECT_SONG = 'SELECT_SONG';
 export const REPOSITION_SONG = 'REPOSITION_SONG';
 export const STREAM_FAILED = 'STREAM_FAILED';
 export const CHANGE_TRACK_STREAM = 'CHANGE_TRACK_STREAM';
+export const ADD_NEW_STREAM = 'ADD_NEW_STREAM';
 
 export const toQueueItem = (track: Track): QueueItem => ({
   ...track,
@@ -39,39 +42,13 @@ const getSelectedStreamProvider = (getState) => {
   return _.find(streamProviders, { sourceName: selected.streamProviders });
 };
 
-const getTrackStream = async (
+export const getTrackStream = async (
   track: Track,
-  selectedStreamProvider: StreamProvider,
-  streamProviders: StreamProvider[]
-) => {
-  let streamData;
-  if (track?.streams && track.streams.length) {
-    const matchSelectedProvider = track.streams.find(
-      (s) => s.source === selectedStreamProvider.sourceName
-    );
-
-    if (matchSelectedProvider && matchSelectedProvider.id) {
-      streamData = await selectedStreamProvider.getStreamForId(
-        matchSelectedProvider.id
-      );
-    } else {
-      const firstKnownProvider = streamProviders.find(
-        (s) => s.sourceName === track.streams[0].source
-      );
-      streamData = await firstKnownProvider.getStreamForId(track.streams[0].id);
-    }
-  }
-
-  if (!streamData) {
-    streamData = await selectedStreamProvider.search({
-      artist:
-        typeof track.artist === 'string' ? track.artist : track.artist.name,
-      track: track.name
-    });
-  }
-
-  return streamData;
-};
+  selectedStreamProvider: StreamProvider
+) => selectedStreamProvider.search({
+  artist: getTrackArtist(track),
+  track: track.name
+});
 
 const addQueueItem = (item: QueueItem) => ({
   type: ADD_QUEUE_ITEM,
@@ -95,10 +72,7 @@ export const addToQueue =
       item.loading = !item.local;
 
       const {
-        connectivity,
-        plugin: {
-          plugins: { streamProviders }
-        }
+        connectivity
       } = getState();
       const isAbleToAdd = (!connectivity && item.local) || connectivity;
 
@@ -109,13 +83,8 @@ export const addToQueue =
         const selectedStreamProvider = getSelectedStreamProvider(getState);
         try {
           const streamData = await getTrackStream(
-            {
-              artist: item.artist,
-              name: item.name,
-              streams: item.streams
-            },
-            selectedStreamProvider,
-            streamProviders
+            item,
+            selectedStreamProvider
           );
 
           if (streamData === undefined) {
@@ -126,7 +95,7 @@ export const addToQueue =
                 ...item,
                 loading: false,
                 error: false,
-                streams: [streamData]
+                stream: streamData
               })
             );
           }
@@ -175,7 +144,6 @@ export function rerollTrack(track: QueueItem) {
   return async (dispatch, getState) => {
     const { plugin }: RootState = getState();
     const selectedStreamProvider = _.find(plugin.plugins.streamProviders, { sourceName: plugin.selected.streamProviders });
-    const selectedStream = track.streams.find(stream => stream.source === selectedStreamProvider.sourceName);
 
     dispatch(updateQueueItem({ 
       ...track,
@@ -186,19 +154,15 @@ export function rerollTrack(track: QueueItem) {
     const newStream = await selectedStreamProvider
       .getAlternateStream(
         { artist: isString(track.artist) ? track.artist : track.artist.name, track: track.name },
-        selectedStream
+        track.stream
       );
-      
-    const streams = _.map(track.streams, (stream) => {
-      return stream.source === newStream?.source ? newStream : stream;
-    });
 
     dispatch(
       updateQueueItem({
         ...track,
         loading: false,
         error: false,
-        streams
+        stream: newStream
       })
     );
   };
@@ -280,15 +244,50 @@ export const streamFailed = () => ({
   type: STREAM_FAILED
 });
 
-export function changeTrackStream(track, stream) {
-  return {
-    type: CHANGE_TRACK_STREAM,
-    payload: {
-      track,
-      stream
+export const changeTrackStream = createStandardAction(CHANGE_TRACK_STREAM)<{
+  item: QueueItem;
+  stream: TrackStream;
+}>();
+
+export const switchStreamProvider = ({
+  item,
+  streamProviderName
+}: {
+  item: QueueItem;
+  streamProviderName: string;
+}) => {
+  return async (dispatch, getState) => {
+    const {
+      plugin: {
+        plugins: { streamProviders }
+      }
+    }: RootState = getState();
+
+    dispatch(updateQueueItem({ 
+      ...item,
+      loading: true, 
+      error: false 
+    }));
+
+    const streamProvider = streamProviders.find(provider => provider.sourceName === streamProviderName);
+
+    if (item && streamProvider) {
+      const streamData = await getTrackStream(
+        item,
+        streamProvider
+      );
+
+      if (streamData !== undefined) {
+        dispatch(
+          changeTrackStream({
+            item,
+            stream: streamData
+          })
+        );
+      }
     }
   };
-}
+};
 
 export const queueDrop = (paths) => ({
   type: QUEUE_DROP,

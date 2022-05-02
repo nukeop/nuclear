@@ -1,23 +1,38 @@
-import React, { useRef, useCallback } from 'react';
-import PropTypes from 'prop-types';
+import React, { useRef, useCallback, useState } from 'react';
 import cs from 'classnames';
-import _ from 'lodash';
-import { withState, withHandlers, withProps, compose } from 'recompose';
 import { Popup } from 'semantic-ui-react';
+
 import { StreamInfo } from '@nuclear/ui';
 
-import styles from './styles.scss';
 import QueuePopupButtons from '../../../containers/QueuePopupButtons';
+import { QueueItem } from '../../../reducers/queue';
+import * as QueueActions from '../../../actions/queue';
+import styles from './styles.scss';
+import { PluginsState } from '../../../reducers/plugins';
+import { StreamData } from '@nuclear/core/src/plugins/plugins.types';
 
-export const QueuePopup = ({
+
+type QueuePopupProps = {
+trigger: React.ReactNode;
+isQueueItemCompact: boolean;
+
+idLabel: string;
+titleLabel: string;
+copyTrackUrlLabel: string;
+sourceLabel: string;
+
+track: QueueItem;
+index: number;
+
+actions: typeof QueueActions;
+plugins: PluginsState;
+copyToClipboard: (text: string) => void;
+}
+
+export const QueuePopup: React.FC<QueuePopupProps> = ({
   trigger,
   isQueueItemCompact,
   idLabel,
-  isOpen,
-  handleClose,
-  imageReady,
-  setImageReady,
-  setOpen,
   titleLabel,
   copyTrackUrlLabel,
   sourceLabel,
@@ -25,10 +40,14 @@ export const QueuePopup = ({
   index,
   actions,
   plugins,
-  selectedStream,
   copyToClipboard
 }) => {
   const triggerElement = useRef(null);
+  
+  const [isOpen, setIsOpen] = useState(false);
+  const [imageReady, setImageReady] = useState(false);
+
+  const selectedStream = track.stream as StreamData;
 
   const handleOpen = useCallback(
     event => {
@@ -37,25 +56,25 @@ export const QueuePopup = ({
         return;
       }
       triggerElement.current.click();
-      setOpen(true);
+      setIsOpen(true);
     },
-    [selectedStream, setOpen]
+    [selectedStream, setIsOpen]
   );
 
   const handleImageLoaded = useCallback(() => setImageReady(true), [setImageReady]);
 
-  const handleSelectStream = ({ track, stream }) => {
-    actions.changeTrackStream(track, stream);
+  const handleSelectStream = (streamProviderName: string) => {
+    actions.switchStreamProvider({item: track, streamProviderName});
   };
 
   const handleCopyTrackUrl = useCallback(() => {
     if (selectedStream?.originalUrl?.length) {
       copyToClipboard(selectedStream.originalUrl);
     }
-    handleClose();
-  }, [selectedStream, handleClose, copyToClipboard]);
+    setIsOpen(false);
+  }, [selectedStream, setIsOpen, copyToClipboard]);
 
-  const dropdownOptions = _.map(plugins.plugins.streamProviders, s => ({
+  const dropdownOptions = plugins.plugins.streamProviders.map(s => ({
     key: s.sourceName,
     text: s.sourceName,
     value: s.sourceName,
@@ -64,8 +83,8 @@ export const QueuePopup = ({
 
   const handleReroll = useCallback(() => {
     actions.rerollTrack(track);
-    handleClose();
-  }, [track, actions, handleClose]);
+    setIsOpen(false);
+  }, [track, actions, setIsOpen]);
 
   return (
     <Popup
@@ -82,7 +101,7 @@ export const QueuePopup = ({
         </div>
       }
       open={isOpen}
-      onClose={handleClose}
+      onClose={() => setIsOpen(false)}
       position={isQueueItemCompact ? 'bottom right' : 'bottom center'}
       hideOnScroll
       on={null}
@@ -108,27 +127,4 @@ export const QueuePopup = ({
   );
 };
 
-QueuePopup.propTypes = {
-  trigger: PropTypes.node.isRequired,
-  isQueueItemCompact: PropTypes.bool,
-  idLabel: PropTypes.string,
-  titleLabel: PropTypes.string,
-  copyTrackUrlLabel: PropTypes.string,
-  sourceLabel: PropTypes.string,
-  track: PropTypes.object,
-  index: PropTypes.number,
-  actions: PropTypes.object,
-  plugins: PropTypes.object,
-  copyToClipboard: PropTypes.func
-};
-
-export default compose(
-  withState('isOpen', 'setOpen', false),
-  withState('imageReady', 'setImageReady', false),
-  withHandlers({
-    handleClose: ({ setOpen }) => () => setOpen(false)
-  }),
-  withProps(({ track, plugins }) => ({
-    selectedStream: _.find(track.streams, { source: plugins.selected.streamProviders })
-  }))
-)(QueuePopup);
+export default QueuePopup;
