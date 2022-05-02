@@ -1,10 +1,8 @@
-import { Setting } from '@nuclear/core';
-
 import { Settings } from '../actions/actionTypes';
 import settingsOptions from '../constants/settings';
 
 export type SettingsState = {
-  [key: string]: Setting;
+  [key: string]: boolean | string | number;
 };
 
 const initialState: SettingsState = {};

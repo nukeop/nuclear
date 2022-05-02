@@ -208,17 +208,17 @@ describe('Playlist view container', () => {
           uuid: 'test-track-uuid-1',
           artist: 'test artist 1',
           name: 'test track 1',
-          streams: []
+          stream: undefined
         }, {
           uuid: 'test-track-uuid-1',
           artist: 'test artist 1',
           name: 'test track 1',
-          streams: []
+          stream: undefined
         }, {
           uuid: 'test-track-uuid-3',
           artist: 'test artist 2',
           name: 'test track 2',
-          streams: []
+          stream: undefined
         }]}])
       .withConnectivity()
       .build();

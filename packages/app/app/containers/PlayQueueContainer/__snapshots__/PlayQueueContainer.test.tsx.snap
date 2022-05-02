@@ -246,7 +246,7 @@ exports[`Play Queue container should display a context popup on right click 1`] 
               <div
                 class="item_duration"
               >
-                Live
+                05:00
               </div>
             </div>
           </div>
@@ -353,6 +353,7 @@ exports[`Play Queue container should display a context popup on right click 1`] 
             <div
               aria-expanded="false"
               class="ui inline dropdown"
+              data-testid="stream-info-dropdown"
               role="listbox"
               tabindex="0"
             >
@@ -766,7 +767,7 @@ exports[`Play Queue container should display a context popup on right click for 
               <div
                 class="item_duration"
               >
-                Live
+                05:00
               </div>
             </div>
           </div>
@@ -873,6 +874,7 @@ exports[`Play Queue container should display a context popup on right click for 
             <div
               aria-expanded="false"
               class="ui inline dropdown"
+              data-testid="stream-info-dropdown"
               role="listbox"
               tabindex="0"
             >
@@ -1031,7 +1033,7 @@ exports[`Play Queue container should display a context popup on right click for 
 </DocumentFragment>
 `;
 
-exports[`Play Queue container should display with track in queue 1`] = `
+exports[`Play Queue container should display tracks in the queue 1`] = `
 <DocumentFragment>
   <div
     class="play_queue_container"
@@ -1277,7 +1279,7 @@ exports[`Play Queue container should display with track in queue 1`] = `
               <div
                 class="item_duration"
               >
-                Live
+                05:00
               </div>
             </div>
           </div>

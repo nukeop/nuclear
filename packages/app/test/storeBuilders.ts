@@ -7,6 +7,7 @@ import { startingStateMeta } from '../app/reducers/helpers';
 import { PlaylistsStore } from '../app/reducers/playlists';
 import { AnyProps } from './testUtils';
 import { LyricsProvider, MetaProvider } from '@nuclear/core';
+import { TrackStream } from '../app/reducers/queue';
 
 type StoreStateBuilder = ReturnType<typeof buildStoreState>;
 export const buildStoreState = () => {
@@ -255,11 +256,15 @@ export const buildStoreState = () => {
                 name: 'Different Stream Provider',
                 sourceName: 'Different Stream Provider',
                 search: jest.fn(() => ({
-                  data: 'different-test-stream-data'
-                })),
+                  id: 'test-stream-id-1',
+                  data: 'different-test-stream-data',
+                  source: 'Different Stream Provider'
+                }) as TrackStream),
                 getStreamForId: jest.fn((id: string) => ({
-                  data: id
-                }))
+                  id: 'test-stream-id-1',
+                  data: id,
+                  source: 'Different Stream Provider'
+                }) as TrackStream)
               }
             ],
             metaProviders: [
@@ -347,34 +352,24 @@ export const buildStoreState = () => {
                     artist: 'test artist 1',
                     name: 'test track',
                     thumbnail: 'test thumbnail',
-                    streams: [
-                      {
-                        id: 'test-stream-id',
-                        source: 'Test source',
-                        title: 'stream title 1',
-                        duration: 100
-                      },
-                      {
-                        id: 'test-stream-id-2',
-                        source: 'Another test source',
-                        title: 'another stream title 2',
-                        duration: 200
-                      }
-                    ]
+                    stream: {
+                      id: 'test-stream-id',
+                      source: 'Test source',
+                      title: 'stream title 1',
+                      duration: 100
+                    }
                   },
                   {
                     uuid: 'test-track-2',
                     artist: 'test artist 2',
                     name: 'test track 22',
                     thumbnail: 'test thumbnail 2',
-                    streams: [
-                      {
-                        id: 'test-stream-id-3',
-                        source: 'Test source',
-                        title: 'stream title 3',
-                        duration: 20
-                      }
-                    ]
+                    stream: {
+                      id: 'test-stream-id-3',
+                      source: 'Test source',
+                      title: 'stream title 3',
+                      duration: 20
+                    }
                   }
                 ]
               },
@@ -387,34 +382,25 @@ export const buildStoreState = () => {
                     artist: 'test artist 1',
                     name: 'test track',
                     thumbnail: 'test thumbnail',
-                    streams: [
+                    stream: 
                       {
                         id: 'test-stream-id',
                         source: 'Test source',
                         title: 'stream title 1',
                         duration: 100
-                      },
-                      {
-                        id: 'test-stream-id-2',
-                        source: 'Another test source',
-                        title: 'another stream title 2',
-                        duration: 200
                       }
-                    ]
                   },
                   {
                     uuid: 'test-track-22',
                     artist: 'test artist 2',
                     name: 'test track 22',
                     thumbnail: 'test thumbnail 2',
-                    streams: [
-                      {
-                        id: 'test-stream-id-3',
-                        source: 'Test source',
-                        title: 'stream title 3',
-                        duration: 20
-                      }
-                    ]
+                    stream: {
+                      id: 'test-stream-id-3',
+                      source: 'Test source',
+                      title: 'stream title 3',
+                      duration: 20
+                    }
                   }
                 ]
               }
@@ -433,41 +419,39 @@ export const buildStoreState = () => {
               artist: 'test artist 1',
               name: 'test track 1',
               thumbnail: 'https://test-track-thumb-url',
-              streams: [
-                {
-                  source: 'Test Stream Provider',
-                  id: 'CuklIb9d3fI',
-                  duration: 300,
-                  title: 'test track 1',
-                  thumbnail: 'https://test-track-thumb-url',
-                  format: 'webm',
-                  skipSegments: [
-                    {
-                      category: 'intro',
-                      startTime: 0,
-                      endTime: 5
-                    },
-                    {
-                      category: 'music_offtopic',
-                      startTime: 5,
-                      endTime: 22
-                    },
-                    {
-                      category: 'music_offtopic',
-                      startTime: 239,
-                      endTime: 299
-                    }
-                  ],
-                  originalUrl: 'https://test-track-original-url'
-                }
-              ],
+              stream: {
+                source: 'Test Stream Provider',
+                id: 'CuklIb9d3fI',
+                duration: 300,
+                title: 'test track 1',
+                thumbnail: 'https://test-track-thumb-url',
+                format: 'webm',
+                skipSegments: [
+                  {
+                    category: 'intro',
+                    startTime: 0,
+                    endTime: 5
+                  },
+                  {
+                    category: 'music_offtopic',
+                    startTime: 5,
+                    endTime: 22
+                  },
+                  {
+                    category: 'music_offtopic',
+                    startTime: 239,
+                    endTime: 299
+                  }
+                ],
+                originalUrl: 'https://test-track-original-url'
+              },
               uuid: 'uuid1'
             },
             {
               artist: 'test artist 2',
               name: 'test track 2',
               thumbnail: 'https://test-track-thumb-url',
-              streams: [],
+              stream: undefined,
               uuid: 'uuid2'
             }
           ],
@@ -672,35 +656,33 @@ export const buildStoreState = () => {
               artist: 'test artist 1',
               name: 'test track 1',
               thumbnail: 'https://test-track-thumb-url',
-              streams: [
-                {
-                  source: 'Test Stream Provider',
-                  id: 'CuklIb9d3fI',
-                  stream: 'https://test-track-stream-url',
-                  duration: 300,
-                  title: 'test track 1',
-                  thumbnail: 'https://test-track-thumb-url',
-                  format: 'webm',
-                  skipSegments: [
-                    {
-                      category: 'intro',
-                      startTime: 0,
-                      endTime: 5
-                    },
-                    {
-                      category: 'music_offtopic',
-                      startTime: 5,
-                      endTime: 22
-                    },
-                    {
-                      category: 'music_offtopic',
-                      startTime: 239,
-                      endTime: 299
-                    }
-                  ],
-                  originalUrl: 'https://test-track-original-url'
-                }
-              ],
+              stream: {
+                source: 'Test Stream Provider',
+                id: 'CuklIb9d3fI',
+                stream: 'https://test-track-stream-url',
+                duration: 300,
+                title: 'test track 1',
+                thumbnail: 'https://test-track-thumb-url',
+                format: 'webm',
+                skipSegments: [
+                  {
+                    category: 'intro',
+                    startTime: 0,
+                    endTime: 5
+                  },
+                  {
+                    category: 'music_offtopic',
+                    startTime: 5,
+                    endTime: 22
+                  },
+                  {
+                    category: 'music_offtopic',
+                    startTime: 239,
+                    endTime: 299
+                  }
+                ],
+                originalUrl: 'https://test-track-original-url'
+              },
               uuid: 'uuid1',
               loading: false,
               error: false
@@ -709,18 +691,16 @@ export const buildStoreState = () => {
               artist: 'test artist 2',
               name: 'test track 2',
               thumbnail: 'https://test-track-thumb-url',
-              streams: [
-                {
-                  source: 'Different Stream Provider',
-                  id: '_CuklIb9d3fI',
-                  stream: 'https://test-track-stream-url',
-                  duration: 300,
-                  title: 'test track 2',
-                  thumbnail: 'https://test-track-thumb-url',
-                  format: 'webm',
-                  skipSegments: []
-                }
-              ],
+              stream: {
+                source: 'Different Stream Provider',
+                id: '_CuklIb9d3fI',
+                stream: 'https://test-track-stream-url',
+                duration: 300,
+                title: 'test track 2',
+                thumbnail: 'https://test-track-thumb-url',
+                format: 'webm',
+                skipSegments: []
+              },
               uuid: 'uuid2',
               loading: false,
               error: false
@@ -729,7 +709,7 @@ export const buildStoreState = () => {
               artist: 'test artist 3',
               name: 'test track 3',
               thumbnail: undefined,
-              streams: [{
+              stream: {
                 source: 'Test Stream Provider',
                 id: 'CuklIb9d3fI',
                 stream: 'https://test-track-stream-url',
@@ -738,7 +718,7 @@ export const buildStoreState = () => {
                 thumbnail: 'https://test-track-thumb-url',
                 format: 'webm',
                 skipSegments: []
-              }],
+              },
               uuid: 'uuid3',
               loading: false,
               error: false
@@ -765,12 +745,10 @@ export const buildStoreState = () => {
           id: 'test',
           info: [
             {
-              streams: [
-                {
-                  source: 'Test LiveStream Provider',
-                  id: '_CuklIb9d3fI'
-                }
-              ],
+              streams: {
+                source: 'Test LiveStream Provider',
+                id: '_CuklIb9d3fI'
+              },
               name: 'Test LiveStream',
               thumbnail: 'https://test-thumb-url',
               artist: {

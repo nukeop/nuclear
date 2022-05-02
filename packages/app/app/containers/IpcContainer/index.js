@@ -5,7 +5,7 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { ipcRenderer } from 'electron';
-import {getType} from 'typesafe-actions';
+import { getType } from 'typesafe-actions';
 import * as PlayerActions from '../../actions/player';
 import * as QueueActions from '../../actions/queue';
 import * as SettingsActions from '../../actions/settings';
@@ -39,7 +39,7 @@ class IpcContainer extends React.Component {
     ipcRenderer.on(IpcEvents.QUEUE_CLEAR, () => actions.clearQueue());
     ipcRenderer.on(IpcEvents.QUEUE, () => ipcRenderer.send(IpcEvents.QUEUE, this.props.queue.queueItems));
     ipcRenderer.on(IpcEvents.TRACK_SELECT, (event, index) => actions.selectSong(index));
-  
+
     ipcRenderer.on(IpcEvents.PLAYLIST_CREATE, (event, name) => actions.addPlaylist(name, this.props.queue.queueItems));
     ipcRenderer.on(IpcEvents.PLAYLIST_REFRESH, () => actions.loadLocalPlaylists());
     ipcRenderer.on(IpcEvents.PLAYLIST_ACTIVATE, (event, playlistName) => {
@@ -79,7 +79,7 @@ class IpcContainer extends React.Component {
     ipcRenderer.on(IpcEvents.SETTINGS, (event, data) => {
       const key = Object.keys(data).pop();
       const value = Object.values(data).pop();
-    
+
       switch (typeof value) {
       case 'boolean':
         actions.setBooleanOption(key, value, true);
@@ -98,7 +98,7 @@ class IpcContainer extends React.Component {
 
       try {
         const { artist, name, thumbnail } = this.props.queue.queueItems[this.props.queue.currentSong];
-        const duration = this.props.queue.queueItems[this.props.queue.currentSong].streams?.[0]?.duration;
+        const duration = this.props.queue.queueItems[this.props.queue.currentSong].stream?.duration;
 
         ipcRenderer.send(IpcEvents.PLAYING_STATUS, { ...this.props.player, artist, name, thumbnail, loopAfterQueueEnd, shuffleQueue, duration });
       } catch (err) {
@@ -116,7 +116,7 @@ class IpcContainer extends React.Component {
     if (
       (!previousSong && currentSong) ||
       (previousSong && currentSong && currentSong.name !== previousSong.name)
-    ){
+    ) {
       ipcRenderer.send(IpcEvents.SONG_CHANGE, currentSong);
     }
   }

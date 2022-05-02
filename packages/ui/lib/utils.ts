@@ -47,24 +47,11 @@ export const getTrackItem = (track: Track): TrackItem => ({
   name: getTrackTitle(track),
   thumbnail: getThumbnail(track),
   local: track.local,
-  streams: track.streams,
+  stream: track.stream,
   uuid: track.uuid
 });
 
 export const areTracksEqualByName = (trackA: Track, trackB: Track) => getTrackArtist(trackA) === getTrackArtist(trackB) && getTrackTitle(trackA) === getTrackTitle(trackB);
-
-export const removeTrackStreamUrl = (track: Track) => {
-  if (track.streams) {
-    track.streams = track.streams.map(s => {
-      delete s.stream;
-      return s;
-    });
-  } else {
-    track.streams = [];
-  }
-
-  return track;
-};
 
 export const timestampToDateString = (timestamp: number, locale: string) => new Date(timestamp).toLocaleDateString(
   locale, {

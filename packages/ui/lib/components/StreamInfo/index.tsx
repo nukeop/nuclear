@@ -1,7 +1,6 @@
 import React, { memo } from 'react';
 import Img from 'react-image';
 import { Dropdown, Icon } from 'semantic-ui-react';
-import _ from 'lodash';
 
 import { SelectedStream } from '../../types';
 import artPlaceholder from '../../../resources/media/art_placeholder.png';
@@ -10,8 +9,8 @@ import Tooltip from '../Tooltip';
 import styles from './styles.scss';
 
 const StreamInfo = (props: StreamInfoProps & Handlers) => {
-
-  const { selectedStream,
+  const { 
+    selectedStream,
     onRerollTrack,
     onSelectStream,
     onImageLoaded,
@@ -21,7 +20,8 @@ const StreamInfo = (props: StreamInfoProps & Handlers) => {
     idLabel,
     titleLabel,
     copyTrackUrlLabel,
-    sourceLabel } = props;
+    sourceLabel 
+  } = props;
 
   return (
     <>
@@ -29,7 +29,7 @@ const StreamInfo = (props: StreamInfoProps & Handlers) => {
         <div className={styles.stream_thumbnail}>
           <Img
             alt=''
-            src={_.get(selectedStream, 'thumbnail') || thumbnail}
+            src={selectedStream?.thumbnail ?? thumbnail}
             unloader={<img src={String(artPlaceholder)} />}
             onLoad={onImageLoaded}
           />
@@ -38,13 +38,11 @@ const StreamInfo = (props: StreamInfoProps & Handlers) => {
           <div className={styles.stream_source}>
             <label>{sourceLabel}</label>{' '}
             <Dropdown
+              data-testid='stream-info-dropdown'
               inline
               options={dropdownOptions}
-              defaultValue={_.get(
-                _.find(dropdownOptions, o => o.value === selectedStream.source),
-                'value'
-              )}
-              onChange={onSelectStream}
+              defaultValue={dropdownOptions.find(o => o.value === selectedStream.source)?.value}
+              onChange={(e, data) => onSelectStream(data.value as string)}
             />
           </div>
           <div className={styles.stream_title}>
@@ -100,10 +98,10 @@ type DefaultProps = {
 };
 
 type Handlers = {
-  onRerollTrack: React.MouseEventHandler<HTMLAnchorElement>,
-  onSelectStream: () => void,
-  onImageLoaded: () => any,
-  onCopyTrackUrl: () => void,
+  onRerollTrack: React.MouseEventHandler<HTMLAnchorElement>;
+  onSelectStream: (streamKey: string) => void;
+  onImageLoaded: React.ReactEventHandler<HTMLImageElement>;
+  onCopyTrackUrl: () => void;
 }
 
 type StreamInfoProps = RequiredProps & DefaultProps;

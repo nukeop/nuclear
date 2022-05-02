@@ -46,6 +46,16 @@ describe('Play Queue container', () => {
     expect(component.asFragment()).toMatchSnapshot();
   });
 
+  it('should select a new stream from the popup', async () => {
+    const { component, store } = mountComponent();
+    const track = component.getByTestId('queue-popup-uuid1');
+    await waitFor(() => fireEvent.contextMenu(track));
+
+    await waitFor(() => component.getByText(/Different Stream Provider/i).click());
+    const state = store.getState();
+    expect(state.queue.queueItems[0].stream.source).toBe('Different Stream Provider');
+  });
+
   it('should copy the original track url to clipboard', async () => {
     const { component } = mountComponent();
     // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -65,7 +75,7 @@ describe('Play Queue container', () => {
     expect(copyButton).toEqual(null);
   });
 
-  it('should favorite track with stream data (track queue popup)', async () => {
+  it('should favorite track without stream data (track queue popup)', async () => {
     const { component, store } = mountComponent();
 
     const track = component.getByTestId('queue-popup-uuid1');
@@ -73,37 +83,31 @@ describe('Play Queue container', () => {
     await waitFor(() => component.getByTestId('queue-popup-favorite').click());
 
     const state = store.getState();
-    expect(state.favorites.tracks).toEqual(expect.arrayContaining([
-      expect.objectContaining({
-        artist: expect.stringMatching('test artist 1'),
-        name: expect.stringMatching('test track 1'),
-        streams: expect.arrayContaining([
-          expect.objectContaining({
-            source: expect.stringMatching('Test Stream Provider'),
-            id: expect.stringMatching('CuklIb9d3fI')
-          })])
-      })
-    ]));
+    expect(state.favorites.tracks).toEqual(expect.arrayContaining([{
+      uuid: expect.any(String),
+      artist: expect.stringMatching('test artist 1'),
+      name: expect.stringMatching('test track 1'),
+      thumbnail: 'https://test-track-thumb-url'
+    }]));
+
+    expect(state.favorites.tracks[0].stream).toBeUndefined();
   });
 
-  it('should favorite track with stream data (queue menu popup)', async () => {
+  it('should favorite track without stream data (queue menu popup)', async () => {
     const { component, store } = mountComponent();
 
     await waitFor(() => component.getByTestId('queue-menu-more-container').click());
     await waitFor(() => component.getByTestId('queue-menu-more-favorite').click());
 
     const state = store.getState();
-    expect(state.favorites.tracks).toEqual(expect.arrayContaining([
-      expect.objectContaining({
-        artist: expect.stringMatching('test artist 1'),
-        name: expect.stringMatching('test track 1'),
-        streams: expect.arrayContaining([
-          expect.objectContaining({
-            source: expect.stringMatching('Test Stream Provider'),
-            id: expect.stringMatching('CuklIb9d3fI')
-          })])
-      })
-    ]));
+    expect(state.favorites.tracks).toEqual(expect.arrayContaining([{
+      uuid: expect.any(String),
+      artist: expect.stringMatching('test artist 1'),
+      name: expect.stringMatching('test track 1'),
+      thumbnail: 'https://test-track-thumb-url'
+    }]));
+
+    expect(state.favorites.tracks[0].stream).toBeUndefined();
   });
 
   it('should add the current track to a playlist (queue menu popup)', async () => {

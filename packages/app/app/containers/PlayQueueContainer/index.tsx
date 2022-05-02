@@ -15,6 +15,15 @@ import * as PlayerActions from '../../actions/player';
 
 import PlayQueue from '../../components/PlayQueue';
 
+export type PlayQueueActions = typeof DownloadsActions &
+typeof FavoritesActions &
+ typeof PlaylistsActions &
+ typeof PluginsActions &
+  typeof QueueActions &
+   typeof SettingsActions &
+    typeof ToastActions &
+     typeof PlayerActions;
+
 const PlayQueueContainer = props => {
   const {
     actions,

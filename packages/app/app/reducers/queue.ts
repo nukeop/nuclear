@@ -37,7 +37,7 @@ export type QueueItem = {
   artist: string | { name: string };
   name: string;
   thumbnail?: string;
-  streams?: TrackStream[];
+  stream?: TrackStream;
 };
 
 export class QueueStore {
@@ -146,21 +146,24 @@ function reduceSelectStreamProviders(state) {
   };
 }
 
-function reduceChangeTrackStream(state, action) {
-  const { track, stream } = action.payload;
+function reduceChangeTrackStream(state: QueueStore, action) {
+  const { item, stream }: {
+    item: QueueItem,
+    stream: TrackStream
+  } = action.payload;
 
   return {
     ...state,
-    queueItems: state.queueItems.map((item) => {
-      if (item.uuid === track.uuid) {
+    queueItems: state.queueItems.map((track) => {
+      if (item.uuid === track.uuid) {  
         return {
           ...item,
           failed: false,
-          selectedStream: stream
+          stream
         };
       }
 
-      return item;
+      return track;
     })
   };
 }

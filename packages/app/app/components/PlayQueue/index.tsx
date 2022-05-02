@@ -8,41 +8,18 @@ import { Icon } from 'semantic-ui-react';
 import { Playlist } from '@nuclear/core';
 import { formatDuration, QueueItem } from '@nuclear/ui';
 
-import { getTrackDuration } from '../../utils';
 import { PluginsState } from '../../reducers/plugins';
 import { QueueItem as QueueItemType, QueueStore } from '../../reducers/queue';
 import { SettingsState } from '../../reducers/settings';
 import { safeAddUuid } from '../../actions/helpers';
-import { addToDownloads } from '../../actions/downloads';
-import { addFavoriteTrack } from '../../actions/favorites';
-import { resetPlayer } from '../../actions/player';
-import { addPlaylist, updatePlaylist } from '../../actions/playlists';
-import { clearQueue, queueDrop, removeFromQueue, repositionSong, selectSong } from '../../actions/queue';
-import { toggleOption } from '../../actions/settings';
-import { info, success } from '../../actions/toasts';
 import QueueMenu from './QueueMenu';
+import { PlayQueueActions } from '../../containers/PlayQueueContainer';
 import QueuePopupContainer from '../../containers/QueuePopupContainer';
 
 import styles from './styles.scss';
 
 type PlayQueueProps = {
-  actions: {
-    queueDrop: typeof queueDrop;
-    repositionSong: typeof repositionSong;
-    addToDownloads: typeof addToDownloads;
-    info: typeof info;
-    success: typeof success;
-    selectSong: typeof selectSong;
-    removeFromQueue: typeof removeFromQueue;
-    clearQueue: typeof clearQueue;
-    resetPlayer: typeof resetPlayer;
-    addFavoriteTrack: typeof addFavoriteTrack;
-
-    addPlaylist: typeof addPlaylist;
-    updatePlaylist: typeof updatePlaylist;
-
-    toggleOption: typeof toggleOption;
-  };
+  actions: PlayQueueActions;
   playlists?: Playlist[];
   plugins: PluginsState;
   settings: SettingsState;
@@ -132,12 +109,16 @@ const PlayQueue: React.FC<PlayQueueProps> = ({
       return null;
     }
 
-    return queue.queueItems.map((el, i) => {
+    return queue.queueItems.map((item, i) => {
+      const trackDuration = formatDuration(item.stream?.duration) === '00:00' && !item.loading
+        ? t('live')
+        : formatDuration(item.stream?.duration);
+
       return (
         <Draggable
-          key={`${el.uuid}+${i}`}
+          key={`${item.uuid}+${i}`}
           index={i}
-          draggableId={`${el.uuid}+${i}`}
+          draggableId={`${item.uuid}+${i}`}
         >
           {provided => (
             <div
@@ -149,20 +130,20 @@ const PlayQueue: React.FC<PlayQueueProps> = ({
                 trigger={
                   <QueueItem
                     index={i}
-                    track={el}
-                    isLoading={el.loading}
+                    track={item}
+                    isLoading={item.loading}
                     isCompact={settings.compactQueueBar}
                     isCurrent={queue.currentSong === i}
-                    error={el.error}
+                    error={item.error}
                     selectSong={selectSong}
                     removeFromQueue={removeFromQueue}
-                    duration={formatDuration(getTrackDuration(el, plugins.selected.streamProviders)) === '00:00' && !el.loading ? t('live') : formatDuration(getTrackDuration(el, plugins.selected.streamProviders))}
+                    duration={trackDuration}
                     resetPlayer={queue.queueItems.length === 1 ? resetPlayer : undefined}
                   />
                 }
                 isQueueItemCompact={settings.compactQueueBar}
                 index={i}
-                track={el}
+                track={item}
                 titleLabel={t('title')}
                 idLabel={t('id')}
                 copyTrackUrlLabel={t('copy-track-url')}
@@ -196,7 +177,7 @@ const PlayQueue: React.FC<PlayQueueProps> = ({
           settings={settings}
           playlists={playlists}
           items={queue.queueItems}
-          compact={settings.compactQueueBar}
+          compact={Boolean(settings.compactQueueBar)}
         />
 
         <Droppable droppableId='play_queue'>
