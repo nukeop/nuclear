@@ -9,21 +9,20 @@ import AlbumList from '../AlbumList';
 import ArtistTags from './ArtistTags';
 import SimilarArtists from './SimilarArtists';
 import PopularTracks from './PopularTracks';
-import { Artist } from '@nuclear/core';
 
 import styles from './styles.scss';
 import artPlaceholder from '../../../resources/media/art_placeholder.png';
+import { ArtistDetailsState } from '../../reducers/search';
+import { SearchResultsAlbum } from '@nuclear/core/src/plugins/plugins.types';
 
 type ReleaseTypeProps = 'master' | 'release'
 
 type ArtistViewProps = {
-  artist: Artist & {
-    loading?: boolean;
-  };
+  artist: ArtistDetailsState
   isFavorite: boolean;
   addTrackToQueue: (item: any) => Promise<void>;
-  artistInfoSearchByName: (artistName: any) => Promise<void>;
-  albumInfoSearch: (albumId: string, releaseType: ReleaseTypeProps, release: string) => Promise<void>;
+  artistInfoSearchByName: (artistName: string) => Promise<void>;
+  albumInfoSearch: (albumId: string, releaseType: ReleaseTypeProps, release: SearchResultsAlbum) => Promise<void>;
   removeFavoriteArtist: React.MouseEventHandler;
   addFavoriteArtist: React.MouseEventHandler;
 }

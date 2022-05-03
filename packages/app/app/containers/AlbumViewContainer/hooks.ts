@@ -3,8 +3,8 @@ import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router';
 
-import * as SearchActions from '../../actions/search';
-import * as DownloadsActions from '../../actions/downloads';
+import { artistInfoSearchByName } from '../../actions/search';
+import { addToDownloads } from '../../actions/downloads';
 import * as QueueActions from '../../actions/queue';
 import * as PlayerActions from '../../actions/player';
 import * as FavoritesActions from '../../actions/favorites';
@@ -13,16 +13,17 @@ import { favoritesSelectors } from '../../selectors/favorites';
 import { pluginsSelectors } from '../../selectors/plugins';
 import { searchSelectors } from '../../selectors/search';
 import { stringDurationToSeconds } from '../../utils';
+import { AlbumDetailsState } from '../../reducers/search';
 
 export const useAlbumViewProps = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const { albumId } = useParams<{ albumId: string }>();
 
-  const albumDetails = useSelector(searchSelectors.albumDetails);
+  const albumDetails: {[key:string]: AlbumDetailsState} = useSelector(searchSelectors.albumDetails);
   // TODO replace this any with a proper type
   const plugins: any = useSelector(pluginsSelectors.plugins);
-  const favoriteAlbums: { id: string }[] = useSelector(favoritesSelectors.albums);
+  const favoriteAlbums = useSelector(favoritesSelectors.albums);
 
   const albumFromFavorites = favoriteAlbums.find(album => album.id === albumId);
   const album = albumFromFavorites || albumDetails[albumId];
@@ -50,7 +51,7 @@ export const useAlbumViewProps = () => {
   const isFavorite = getIsFavorite(album, favoriteAlbums);
 
   const searchAlbumArtist = useCallback(() => dispatch(
-    SearchActions.artistInfoSearchByName(
+    artistInfoSearchByName(
       album?.artist,
       history
     )), [album, dispatch, history]);
@@ -58,7 +59,7 @@ export const useAlbumViewProps = () => {
   const addAlbumToDownloads = useCallback(async () => {
     await album?.tracklist.forEach(async track => {
       const clonedTrack = { ...safeAddUuid(track) };
-      dispatch(DownloadsActions.addToDownloads(plugins.streamProviders, clonedTrack));
+      dispatch(addToDownloads(plugins.streamProviders, clonedTrack));
     });
   }, [album, dispatch, plugins]);
 

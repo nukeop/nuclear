@@ -47,3 +47,15 @@ export type LastfmTopTracks = {
     artist: 'string';
   };
 }
+
+export type LastfmTrackMatch = {
+  name: string
+  artist: string
+  image: LastfmImage[]
+  listeners: string
+  mbid: string
+  streamable: string
+  url: string
+}
+
+export type LastfmTrackMatchInternal  = LastfmTrackMatch & { thumbnail: string }
