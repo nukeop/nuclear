@@ -15,10 +15,19 @@ export const buildStoreState = () => {
   let state: Partial<RootState> = {
     connectivity: true,
     search: {
+      artistSearchResults: [],
+      albumSearchResults: [],
+      podcastSearchResults: [],
+      trackSearchResults: [],
+      playlistSearchResults: [],
+      liveStreamSearchResults: [],
       albumDetails: {},
       artistDetails: {},
-      liveStreamSearchResults: {},
-      artistSearchResults: []
+      searchHistory: [],
+      unifiedSearchStarted: false,
+      playlistSearchStarted: false,
+      liveStreamSearchStarted: false,
+      isFocused: false
     },
     plugin: {
       plugins: {
@@ -72,7 +81,7 @@ export const buildStoreState = () => {
   };
 
   return {
-    withAlbumDetails(data?: object) {
+    withAlbumDetails(data?: any) {
       state.search = {
         ...state.search,
         albumDetails: data || {
@@ -115,7 +124,7 @@ export const buildStoreState = () => {
       };
       return this as StoreStateBuilder;
     },
-    withArtistDetails(data?: object) {
+    withArtistDetails(data?: any) {
       state = {
         ...state,
         search: {
@@ -739,7 +748,9 @@ export const buildStoreState = () => {
             uuid: 'test-uuid',
             name: 'Test Artist',
             coverImage: 'https://test-cover-url',
-            thumbnail: 'https://test-thumb-url'
+            thumbnail: 'https://test-thumb-url',
+            cleanName: () => {},
+            addSearchResultData: () => {}
           }
         ],
         liveStreamSearchResults: {

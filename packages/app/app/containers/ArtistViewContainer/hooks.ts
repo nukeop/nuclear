@@ -4,10 +4,11 @@ import { useHistory, useParams } from 'react-router';
 import _ from 'lodash';
 
 import * as QueueActions from '../../actions/queue';
-import * as SearchActions from '../../actions/search';
+import { artistInfoSearchByName, albumInfoSearch } from '../../actions/search';
 import * as FavoritesActions from '../../actions/favorites';
 import { searchSelectors } from '../../selectors/search';
 import { favoritesSelectors } from '../../selectors/favorites';
+import { SearchResultsAlbum } from '@nuclear/core/src/plugins/plugins.types';
 
 export const useArtistViewProps = () => {
   const dispatch = useDispatch();
@@ -20,12 +21,12 @@ export const useArtistViewProps = () => {
     dispatch(QueueActions.addToQueue(item));
   }, [dispatch]);
 
-  const artistInfoSearchByName = useCallback(async (artistName) => {
-    dispatch(SearchActions.artistInfoSearchByName(artistName, history));
+  const artistInfoSearchByNameCallback = useCallback(async (artistName: string) => {
+    dispatch(artistInfoSearchByName(artistName, history));
   }, [history, dispatch]);
 
-  const albumInfoSearch = useCallback(async (albumId, releaseType, release) => {
-    dispatch(SearchActions.albumInfoSearch(albumId, releaseType, release));
+  const albumInfoSearchCallback = useCallback(async (albumId: string, releaseType: 'master' | 'release', release: SearchResultsAlbum) => {
+    dispatch(albumInfoSearch(albumId, releaseType, release));
   }, [dispatch]);
 
   const favoriteArtists: { id: string }[] = useSelector(favoritesSelectors.artists);
@@ -51,8 +52,8 @@ export const useArtistViewProps = () => {
     artist,
     isFavorite,
     addTrackToQueue,
-    artistInfoSearchByName,
-    albumInfoSearch,
+    artistInfoSearchByName: artistInfoSearchByNameCallback,
+    albumInfoSearch: albumInfoSearchCallback,
     removeFavoriteArtist,
     addFavoriteArtist
   };
