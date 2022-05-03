@@ -3,18 +3,14 @@ import Img from 'react-image';
 import _ from 'lodash';
 import { Dimmer, Icon, Loader } from 'semantic-ui-react';
 import { useTranslation } from 'react-i18next';
-
 import { Loader as NuclearLoader, ContextPopup, PopupButton } from '@nuclear/ui';
-import { AlbumDetails } from '@nuclear/core/src/plugins/plugins.types';
-
 import styles from './styles.scss';
 import artPlaceholder from '../../../resources/media/art_placeholder.png';
 import TrackTableContainer from '../../containers/TrackTableContainer';
+import { AlbumDetailsState } from '../../reducers/search';
 
 type AlbumViewProps = {
-  album?: AlbumDetails & {
-    loading?: boolean;
-  };
+  album?: AlbumDetailsState 
   isFavorite: boolean;
   searchAlbumArtist: React.MouseEventHandler;
   addAlbumToDownloads: React.MouseEventHandler;

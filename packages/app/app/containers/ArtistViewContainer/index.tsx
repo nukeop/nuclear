@@ -3,23 +3,24 @@ import { useParams } from 'react-router';
 import { useDispatch } from 'react-redux';
 
 import ArtistView from '../../components/ArtistView';
-import * as SearchActions from '../../actions/search';
+import { artistReleasesSearch } from '../../actions/search';
 import { useArtistViewProps } from './hooks';
+import { SearchResultsSource } from '@nuclear/core/src/plugins/plugins.types';
 
 const ArtistViewContainer: React.FC = () => {
   const props = useArtistViewProps();
   const { artistId } = useParams<{ artistId: string }>();
   const source = props.artist?.source;
   const dispatch = useDispatch();
-  const artistReleasesSearch = useCallback(async (artistId, source) => {
-    dispatch(SearchActions.artistReleasesSearch(artistId, source));
+  const artistReleasesSearchCallback = useCallback(async (artistId: string, source: SearchResultsSource) => {
+    dispatch(artistReleasesSearch(artistId, source));
   }, [dispatch]);
 
   useEffect(() => {
     if (artistId !== 'loading') {
-      artistReleasesSearch(artistId, source);
+      artistReleasesSearchCallback(artistId, source);
     }
-  }, [artistId, source, artistReleasesSearch]);
+  }, [artistId, source, artistReleasesSearchCallback]);
 
   return <ArtistView
     {...props}
