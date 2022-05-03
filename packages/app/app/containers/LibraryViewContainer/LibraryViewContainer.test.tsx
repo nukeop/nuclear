@@ -56,6 +56,17 @@ describe('Library view container', () => {
     );
   });
 
+  it('should add a track from the local library to the queue', () => {
+    const { component, store } = mountComponent();
+
+    waitFor(() => component.getByText(/local track 1/i).click());
+    waitFor(() => component.getByText(/add to queue/i).click());
+
+    const state = store.getState();
+
+    expect(state.queue.queueItems.length).toBe(1);
+  });
+
   const mountComponent = mountedComponentFactory(
     ['/library'],
     buildStoreState()

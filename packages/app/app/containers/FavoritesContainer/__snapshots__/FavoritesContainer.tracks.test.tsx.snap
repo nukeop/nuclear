@@ -49,20 +49,6 @@ exports[`Track view container should display favorite tracks 1`] = `
         Your favorite tracks
       </div>
       <div
-        class="button_container"
-      >
-        <a
-          class="play_button"
-          href="#"
-        >
-          <i
-            aria-hidden="true"
-            class="play icon"
-          />
-           Play
-        </a>
-      </div>
-      <div
         class="ui segment"
       >
         <table
@@ -401,20 +387,6 @@ exports[`Track view container should show a popup when a track is clicked 1`] = 
         class="header_container"
       >
         Your favorite tracks
-      </div>
-      <div
-        class="button_container"
-      >
-        <a
-          class="play_button"
-          href="#"
-        >
-          <i
-            aria-hidden="true"
-            class="play icon"
-          />
-           Play
-        </a>
       </div>
       <div
         class="ui segment"
