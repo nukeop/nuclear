@@ -757,10 +757,10 @@ export const buildStoreState = () => {
           id: 'test',
           info: [
             {
-              streams: {
+              streams: [{
                 source: 'Test LiveStream Provider',
                 id: '_CuklIb9d3fI'
-              },
+              }],
               name: 'Test LiveStream',
               thumbnail: 'https://test-thumb-url',
               artist: {
