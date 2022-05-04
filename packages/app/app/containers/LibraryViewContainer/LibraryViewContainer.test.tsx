@@ -56,11 +56,11 @@ describe('Library view container', () => {
     );
   });
 
-  it('should add a track from the local library to the queue', () => {
+  it('should add a track from the local library to the queue', async () => {
     const { component, store } = mountComponent();
 
-    waitFor(() => component.getByText(/local track 1/i).click());
-    waitFor(() => component.getByText(/add to queue/i).click());
+    await waitFor(() => component.getAllByTestId('track-popup-trigger')[0].click());
+    await waitFor(() => component.getByText(/add to queue/i).click());
 
     const state = store.getState();
 
