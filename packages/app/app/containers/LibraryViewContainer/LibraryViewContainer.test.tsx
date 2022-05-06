@@ -64,7 +64,57 @@ describe('Library view container', () => {
 
     const state = store.getState();
 
-    expect(state.queue.queueItems.length).toBe(1);
+    expect(state.queue.queueItems).toBe([
+      expect.objectContaining({
+        uuid: 'local-track-1',
+        artist: 'local artist 1',
+        name: 'local track 1',
+        duration: 300,
+        local: true
+      })
+    ]);
+  });
+
+  it('should add a track from the local library with the old format stream to the queue', async () => {
+    const initialState = buildStoreState()
+      .withPlugins()
+      .withConnectivity()
+      .withLocal([{
+        uuid: 'local-track-1',
+        artist: 'local artist 1',
+        name: 'local track 1',
+        duration: 250,
+        path: '/path/to/local/track/1',
+        local: true,
+        streams: [{
+          id: 'old-format-stream',
+          source: 'Local',
+          duration: 250,
+          stream: 'file:///path/to/local/track/1'
+        }]
+      }])
+      .build();
+    const { component, store } = mountComponent(initialState);
+
+    await waitFor(() => component.getAllByTestId('track-popup-trigger')[0].click());
+    await waitFor(() => component.getByText(/add to queue/i).click());
+
+    const state = store.getState();
+
+    expect(state.queue.queueItems).toStrictEqual([
+      expect.objectContaining({
+        uuid: 'local-track-1',
+        artist: 'local artist 1',
+        name: 'local track 1',
+        duration: 250,
+        stream: {
+          id: 'old-format-stream',
+          source: 'Local',
+          duration: 250,
+          stream: 'file:///path/to/local/track/1'
+        }
+      })
+    ]);
   });
 
   const mountComponent = mountedComponentFactory(

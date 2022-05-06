@@ -807,7 +807,9 @@ export const buildStoreState = () => {
             path: '/home/nuclear/Music/local artist 1/local album 1/local track 1.mp3',
             folder: {
               path: '/home/nuclear/Music/local artist 1/local album 1'
-            }
+            },
+            local: true
+            
           }, {
             uuid: 'local-track-2',
             artist: 'local artist 1',
@@ -818,7 +820,8 @@ export const buildStoreState = () => {
             path: '/home/nuclear/Music/local artist 1/local album 1/local track 2.mp3',
             folder: {
               path: '/home/nuclear/Music/local artist 1/local album 1'
-            }
+            },
+            local: true
           }, {
             uuid: 'local-track-3',
             artist: 'local artist 2',
@@ -829,7 +832,8 @@ export const buildStoreState = () => {
             path: '/home/nuclear/Music/local artist 2/local album 2/local track 3.mp3',
             folder: {
               path: '/home/nuclear/Music/local artist 2/local album 2'
-            }
+            },
+            local: true
           }],
           scanProgress: null,
           scanTotal: null,
