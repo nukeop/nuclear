@@ -166,7 +166,7 @@ class SoundContainer extends React.Component {
       this.props.queue.currentSong !== nextProps.queue.currentSong ||
       this.props.player.playbackStatus !== nextProps.player.playbackStatus ||
       this.props.player.seek !== nextProps.player.seek ||
-      (!!currentSong && !!currentSong.streams && currentSong.streams.length > 0)
+      (!!currentSong && !!currentSong.stream)
     );
   }
 
@@ -258,7 +258,7 @@ export default compose(
   withProps(({ queue }) => ({
     currentTrack: queue.queueItems[queue.currentSong]
   })),
-  withProps(({ currentTrack, plugins }) => ({
-    currentStream: Boolean(currentTrack) && (_.find(currentTrack.streams, { source: plugins.selected.streamProviders }) || _.head(currentTrack.streams))
+  withProps(({ currentTrack }) => ({
+    currentStream: currentTrack?.stream
   }))
 )(SoundContainer);

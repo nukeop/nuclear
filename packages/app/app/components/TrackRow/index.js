@@ -16,15 +16,15 @@ import styles from './styles.scss';
 
 class TrackRow extends React.Component {
   // this function should be moved onto interface for 'track'
-  renderAlbum (track) {
+  renderAlbum(track) {
     return (
       <td className={styles.track_album}>
-        { track.album }
+        {track.album}
       </td>
     );
   }
 
-  renderDuration (track) {
+  renderDuration(track) {
     if (track.duration === 0) {
       return <td className={styles.track_duration} />;
     }
@@ -35,13 +35,13 @@ class TrackRow extends React.Component {
     );
   }
 
-  playTrack () {
+  playTrack() {
     this.props.actions.playTrack(this.props.streamProviders, {
       artist: this.props.track.artist.name,
       name: this.props.track.name,
       thumbnail: this.getTrackThumbnail(),
       local: this.props.track.local,
-      streams: this.props.track.streams
+      stream: this.props.track.stream
     });
   }
 
@@ -53,8 +53,8 @@ class TrackRow extends React.Component {
         this.props.track,
         'thumbnail',
         _.get(
-          this.props.track, 
-          'image[0][#text]', 
+          this.props.track,
+          'image[0][#text]',
           artPlaceholder
         )
       )
@@ -69,7 +69,7 @@ class TrackRow extends React.Component {
     }) < 0;
   }
 
-  renderTrigger (track) {
+  renderTrigger(track) {
     const {
       displayCover,
       displayTrackNumber,
@@ -84,29 +84,29 @@ class TrackRow extends React.Component {
       <tr className={styles.track} onDoubleClick={this.playTrack.bind(this)}>
         {
           withDeleteButton &&
-            <td className={styles.track_row_buttons}>
-              <a onClick={onDelete}>
-                <Icon name='close' />
-              </a>
-            </td>
+          <td className={styles.track_row_buttons}>
+            <a onClick={onDelete}>
+              <Icon name='close' />
+            </a>
+          </td>
         }
         {
           displayCover &&
-            <td className={styles.track_thumbnail}>
-              <img src={this.getTrackThumbnail()}/>
-            </td>
+          <td className={styles.track_thumbnail}>
+            <img src={this.getTrackThumbnail()} />
+          </td>
         }
-        { displayTrackNumber && <td className={styles.track_number}>{track.position}</td> }
-        { displayArtist && <td className={styles.track_artist}>{track.artist.name}</td> }
-        <td className={styles.track_name}>{ track.name }</td>
-        { displayAlbum && this.renderAlbum(track) }
-        { displayDuration && this.renderDuration(track) }
-        { displayPlayCount && <td className={styles.playcount}>{numeral(track.playcount).format('0,0')}</td> }
+        {displayTrackNumber && <td className={styles.track_number}>{track.position}</td>}
+        {displayArtist && <td className={styles.track_artist}>{track.artist.name}</td>}
+        <td className={styles.track_name}>{track.name}</td>
+        {displayAlbum && this.renderAlbum(track)}
+        {displayDuration && this.renderDuration(track)}
+        {displayPlayCount && <td className={styles.playcount}>{numeral(track.playcount).format('0,0')}</td>}
       </tr>
     );
   }
 
-  render () {
+  render() {
 
     const {
       track,
@@ -166,7 +166,7 @@ TrackRow.defaultProps = {
   withDeleteButton: false
 };
 
-function mapStateToProps (state, { track }) {
+function mapStateToProps(state, { track }) {
   return {
     streamProviders: track.local
       ? state.plugin.plugins.streamProviders.filter(({ sourceName }) => {
@@ -178,7 +178,7 @@ function mapStateToProps (state, { track }) {
   };
 }
 
-function mapDispatchToProps (dispatch) {
+function mapDispatchToProps(dispatch) {
   return {
     actions: bindActionCreators(
       QueueActions,

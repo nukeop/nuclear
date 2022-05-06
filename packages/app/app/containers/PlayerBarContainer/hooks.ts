@@ -6,7 +6,7 @@ import _ from 'lodash';
 
 import { normalizeTrack } from '../../utils';
 import settingsConst from '../../constants/settings';
-import * as searchActions from '../../actions/search';
+import { artistInfoSearchByName } from '../../actions/search';
 import * as playerActions from '../../actions/player';
 import * as queueActions from '../../actions/queue';
 import * as settingsActions from '../../actions/settings';
@@ -24,16 +24,8 @@ export const useSeekbarProps = () => {
   const queue = useSelector(queueSelector);
   const seek: number = useSelector(playerSelectors.seek);
   const playbackProgress: number = useSelector(playerSelectors.playbackProgress);
-  const currentTrackStream = _.head(
-    _.get(
-      queue.queueItems[queue.currentSong],
-      'streams'
-    )
-  );
-  const currentTrackDuration: number = _.get(
-    currentTrackStream,
-    'duration'
-  );
+  const currentTrackStream = queue.queueItems[queue.currentSong]?.stream;
+  const currentTrackDuration: number | undefined = currentTrackStream?.duration;
   const timeToEnd = currentTrackDuration - seek;
 
   const seekCallback = useCallback(
@@ -42,13 +34,9 @@ export const useSeekbarProps = () => {
   );
 
   const settings = useSelector(settingsSelector);
-  const allowSkipSegment = _.get(settings, 'skipSponsorblock', true);
+  const allowSkipSegment = settings.skipSponsorblock ?? true;
 
-  const skipSegments = _.get(
-    currentTrackStream,
-    'skipSegments',
-    []
-  );
+  const skipSegments = currentTrackStream?.skipSegments ?? [];
 
   return {
     queue,
@@ -137,7 +125,7 @@ export const useTrackInfoProps = () => {
   );
 
   const onArtistClick = useCallback(
-    () => dispatch(searchActions.artistInfoSearchByName(artist, history)),
+    () => dispatch(artistInfoSearchByName(artist, history)),
     [dispatch, artist, history]
   );
 

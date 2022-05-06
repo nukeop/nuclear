@@ -1,8 +1,12 @@
 import { Settings } from '../actions/actionTypes';
 import settingsOptions from '../constants/settings';
 
-const initialState = {};
-const defaultSettings = settingsOptions.reduce((acc, option) => ({
+export type SettingsState = {
+  [key: string]: boolean | string | number;
+};
+
+const initialState: SettingsState = {};
+const defaultSettings: SettingsState = settingsOptions.reduce((acc, option) => ({
   ...acc,
   [option.name]: option.default
 }), {});

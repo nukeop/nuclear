@@ -1,11 +1,14 @@
-import React, {useMemo, useEffect, useRef} from 'react';
-import {useDispatch} from 'react-redux';
 import PropTypes from 'prop-types';
-import { ContextPopup, getThumbnail } from '@nuclear/ui';
-import TrackPopupButtons from '../../../containers/TrackPopupButtons';
-import './styles.scss';
+import React, { useMemo, useEffect, useRef } from 'react';
+import { useDispatch } from 'react-redux';
 import BaseTable, { AutoResizer } from 'react-base-table';
+import _ from 'lodash';
+
+import { ContextPopup, getThumbnail } from '@nuclear/ui';
+
+import TrackPopupButtons from '../../../containers/TrackPopupButtons';
 import { localLibraryActions } from '../../../actions/local';
+import './styles.scss';
 
 const useTreeData = (tracks, localFolders) => {
   return useMemo(() => {
@@ -18,7 +21,7 @@ const useTreeData = (tracks, localFolders) => {
           name: path.split('/').slice(-1)[0],
           children: []
         };
-  
+
         if (localFolders.includes(path)) {
           newEntry.parentId = -1;
         } else if (path.includes('/')) {
@@ -32,12 +35,12 @@ const useTreeData = (tracks, localFolders) => {
           // (Can also happen if the path-separators are not normalized consistently; check this if making code changes.)
           newEntry.parentId = -1;
         }
-  
+
         pathToEntryMap[path] = newEntry;
       }
       return pathToEntryMap[path];
     }
-  
+
     for (const track of tracks) {
       const folderPath = track.path.split('/').slice(0, -1).join('/');
       const folderEntry = getEntryForFolder(folderPath);
@@ -60,7 +63,7 @@ const useTreeData = (tracks, localFolders) => {
     for (const entry of rowEntries) {
       idToEntryMap[entry.id] = entry;
     }
-  
+
     return {
       rootEntries,
       columns: [
@@ -96,7 +99,7 @@ const LibraryFolderTree = ({
   localFolders,
   expandedFolders
 }) => {
-  const {rootEntries, columns} = useTreeData(tracks, localFolders);
+  const { rootEntries, columns } = useTreeData(tracks, localFolders);
 
   const tableRef = useRef();
   const dispatch = useDispatch();
@@ -123,18 +126,18 @@ const LibraryFolderTree = ({
           width={width}
           height={height}
           rowRenderer={rowProps => {
-            const {cells, rowData: entry} = rowProps;
+            const { cells, rowData: entry } = rowProps;
             const key = 'library-track-' + tracks.indexOf(entry.track);
             if (entry.track) {
               return (
                 <ContextPopup
                   key={key}
-                  trigger={<div style={{flex: 1, display: 'flex'}}>{cells}</div>}
+                  trigger={<div style={{ flex: 1, display: 'flex' }}>{cells}</div>}
                   thumb={getThumbnail(entry.track)}
                   title={_.get(entry.track, ['name'])}
                   artist={_.get(entry.track, ['artist', 'name'])}
                 >
-                  <TrackPopupButtons track={entry.track} withAddToDownloads={false}/>
+                  <TrackPopupButtons track={entry.track} withAddToDownloads={false} />
                 </ContextPopup>
               );
             }
@@ -143,7 +146,7 @@ const LibraryFolderTree = ({
                 {cells}
               </React.Fragment>
             );
-          }}/>
+          }} />
       )}
     </AutoResizer>
   );

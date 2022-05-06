@@ -1,6 +1,6 @@
-import _, { flow, unionWith } from 'lodash';
+import _, { flow, omit, unionWith } from 'lodash';
 import { store, Track } from '@nuclear/core';
-import { areTracksEqualByName, getTrackItem, removeTrackStreamUrl } from '@nuclear/ui';
+import { areTracksEqualByName, getTrackItem } from '@nuclear/ui';
 
 import { safeAddUuid } from './helpers';
 import { createStandardAction } from 'typesafe-actions';
@@ -25,11 +25,11 @@ export function readFavorites() {
 }
 
 export function addFavoriteTrack(track) {
-  const clonedTrack = flow(safeAddUuid, getTrackItem, removeTrackStreamUrl)(track);
+  const clonedTrack = flow(safeAddUuid, getTrackItem)(track);
   
   const favorites = store.get('favorites');
   const filteredTracks = favorites.tracks.filter(t => !areTracksEqualByName(t, track));
-  favorites.tracks = [...filteredTracks, clonedTrack];
+  favorites.tracks = [...filteredTracks, omit(clonedTrack, 'stream')];
   
   store.set('favorites', favorites);
   

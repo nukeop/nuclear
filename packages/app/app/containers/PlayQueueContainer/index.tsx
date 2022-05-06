@@ -15,13 +15,21 @@ import * as PlayerActions from '../../actions/player';
 
 import PlayQueue from '../../components/PlayQueue';
 
+export type PlayQueueActions = typeof DownloadsActions &
+typeof FavoritesActions &
+ typeof PlaylistsActions &
+ typeof PluginsActions &
+  typeof QueueActions &
+   typeof SettingsActions &
+    typeof ToastActions &
+     typeof PlayerActions;
+
 const PlayQueueContainer = props => {
   const {
     actions,
     queue,
     plugins,
-    settings,
-    compact
+    settings
   } = props;
   
   const { localPlaylists: playlists } = useLocalPlaylists();
@@ -29,12 +37,10 @@ const PlayQueueContainer = props => {
   return (
     <PlayQueue
       actions={actions}
-      items={queue.queueItems}
-      currentSong={queue.currentSong}
+      queue={queue}
       plugins={plugins}
       settings={settings}
       playlists={playlists.data}
-      compact={compact}
     />
   );
 };

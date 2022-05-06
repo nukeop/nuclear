@@ -13,7 +13,7 @@ export class PlaylistTrack {
   album?: string;
   thumbnail?: string;
   duration?: number | string;
-  streams: PlaylistTrackStream[];
+  stream: PlaylistTrackStream;
 }
 
 export class PlaylistTrackStream {

@@ -8,6 +8,13 @@ import { StreamData, StreamQuery } from '../plugins/plugins.types';
 import * as SponsorBlock from './SponsorBlock';
 import { YoutubeHeuristics } from './heuristics';
 
+export type YoutubeResult = {
+  streams: { source: string, id: string }[]
+  name: string
+  thumbnail: string
+  artist: string | { name: string }
+}
+
 const baseUrl = 'http://www.youtube.com/watch?v=';
 
 function isValidURL(str) {
@@ -48,7 +55,7 @@ function formatPlaylistTrack(track: ytpl.Item) {
   };
 }
 
-export async function handleYoutubePlaylist(url: string) {
+export async function handleYoutubePlaylist(url: string): Promise<YoutubeResult[]> {
   try {
     const playlistID = await ytpl.getPlaylistID(url);
     if (ytpl.validateID(playlistID)) {
@@ -76,7 +83,7 @@ export async function handleYoutubePlaylist(url: string) {
 
 }
 
-function handleYoutubeVideo(url) {
+async function handleYoutubeVideo(url: string): Promise<YoutubeResult[]> {
   return ytdl.getInfo(url)
     .then(info => {
       if (info.videoDetails) {
@@ -96,12 +103,12 @@ function handleYoutubeVideo(url) {
     });
 }
 
-export function urlSearch(url: string) {
+export async function urlSearch(url: string): Promise<YoutubeResult[]> {
   const urlAnalysis = analyseUrlType(url);
   if (urlAnalysis.isYoutubePlaylist) {
-    return handleYoutubePlaylist(url);
+    return await handleYoutubePlaylist(url);
   } else if (urlAnalysis.isYoutubeVideo) {
-    return handleYoutubeVideo(url);
+    return await handleYoutubeVideo(url);
   } else {
     return new Promise((resolve) => {
       resolve([]);
@@ -109,7 +116,7 @@ export function urlSearch(url: string) {
   }
 }
 
-export async function liveStreamSearch(query: string) {
+export async function liveStreamSearch(query: string): Promise<YoutubeResult[]> {
   if (isValidURL(query)) {
     return [];
   }
