@@ -36,7 +36,7 @@ const localTrackToQueueItem = (track: LocalTrack): QueueItem => {
   const { streams, stream, ...rest } = track;
   return toQueueItem({
     ...rest,
-    stream: stream ?? streams.find(stream => stream.source === 'Local')
+    stream: stream ?? streams?.find(stream => stream.source === 'Local')
   });
 };
 

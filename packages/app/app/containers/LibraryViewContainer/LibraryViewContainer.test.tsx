@@ -64,7 +64,7 @@ describe('Library view container', () => {
 
     const state = store.getState();
 
-    expect(state.queue.queueItems).toBe([
+    expect(state.queue.queueItems).toStrictEqual([
       expect.objectContaining({
         uuid: 'local-track-1',
         artist: 'local artist 1',
