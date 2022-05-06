@@ -5,16 +5,16 @@ import styles from './styles.scss';
 
 const Seekbar = ({ seek, queue, fill, children }) => {
   const handleClick = useCallback(event => {
-    const percent = (event.pageX - event.target.offsetLeft)/document.body.clientWidth;
-    const duration = queue.queueItems[queue.currentSong].streams[0].duration;
+    const percent = (event.pageX - event.target.offsetLeft) / document.body.clientWidth;
+    const duration = queue.queueItems[queue.currentSong].stream?.duration;
 
     seek(percent * duration);
   }, [queue.queueItems, queue.currentSong, seek]);
 
   return (
     <div onClick={handleClick} className={styles.seekbar_container}>
-      <div style={{width: fill}} className={styles.seekbar_fill} />
-      { children || <div className={styles.seekbar_placeholder}>00:00</div> }
+      <div style={{ width: fill }} className={styles.seekbar_fill} />
+      {children || <div className={styles.seekbar_placeholder}>00:00</div>}
     </div>
   );
 };
@@ -30,7 +30,7 @@ Seekbar.propTypes = {
 };
 
 Seekbar.defaultProps = {
-  seek: () => {},
+  seek: () => { },
   queue: {},
   fill: '0%',
   children: null

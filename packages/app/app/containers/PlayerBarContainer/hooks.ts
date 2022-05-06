@@ -24,16 +24,8 @@ export const useSeekbarProps = () => {
   const queue = useSelector(queueSelector);
   const seek: number = useSelector(playerSelectors.seek);
   const playbackProgress: number = useSelector(playerSelectors.playbackProgress);
-  const currentTrackStream = _.head(
-    _.get(
-      queue.queueItems[queue.currentSong],
-      'streams'
-    )
-  );
-  const currentTrackDuration: number = _.get(
-    currentTrackStream,
-    'duration'
-  );
+  const currentTrackStream = queue.queueItems[queue.currentSong]?.stream;
+  const currentTrackDuration: number | undefined = currentTrackStream?.duration;
   const timeToEnd = currentTrackDuration - seek;
 
   const seekCallback = useCallback(
@@ -42,13 +34,9 @@ export const useSeekbarProps = () => {
   );
 
   const settings = useSelector(settingsSelector);
-  const allowSkipSegment = _.get(settings, 'skipSponsorblock', true);
+  const allowSkipSegment = settings.skipSponsorblock ?? true;
 
-  const skipSegments = _.get(
-    currentTrackStream,
-    'skipSegments',
-    []
-  );
+  const skipSegments = currentTrackStream?.skipSegments ?? [];
 
   return {
     queue,

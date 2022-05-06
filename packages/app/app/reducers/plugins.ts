@@ -23,7 +23,7 @@ type UserPlugin = {
 
 type PluginKey = keyof typeof config.plugins;
 
-type PluginsState = {
+export type PluginsState = {
   plugins: {
     streamProviders: StreamProviderPlugin[];
     metaProviders: MetaProvider[];

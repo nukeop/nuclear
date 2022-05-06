@@ -71,7 +71,7 @@ describe('Track view container', () => {
     expect(selectedStreamProvider.getStreamForId).not.toBeCalled();
   });
 
-  it('should call provider.getStreamForId when playing a track with a stream', async () => {
+  it('should call provider.search when playing a track from favorites', async () => {
     const favorites = buildStoreState()
       .withFavorites()
       .build()
@@ -86,8 +86,10 @@ describe('Track view container', () => {
 
     await waitFor(() => component.getAllByTestId('play-now')[0].click());
 
-    expect(selectedStreamProvider.search).not.toBeCalled();
-    expect(selectedStreamProvider.getStreamForId).toBeCalled();
+    expect(selectedStreamProvider.search).toHaveBeenCalledWith({
+      artist: 'test artist 1',
+      track: 'test track 1'
+    });
   });
 
   const mountComponent = (initialStore?: AnyProps) => {

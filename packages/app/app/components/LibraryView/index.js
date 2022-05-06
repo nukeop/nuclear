@@ -15,7 +15,7 @@ import LibraryAlbumGrid from './LibraryAlbumGrid';
 import LibraryHeader from './LibraryHeader';
 import { sortTracks } from './utils';
 
-const LibraryView = ({tracksMap, filter, expandedFolders, streamProviders, pending, scanProgress, scanTotal, localFolders, sortBy, direction, listType, actions, queueActions, playerActions}) => {
+const LibraryView = ({ tracksMap, filter, expandedFolders, streamProviders, pending, scanProgress, scanTotal, localFolders, sortBy, direction, listType, actions, queueActions, playerActions }) => {
   const localStreamProviders = useMemo(() => _.filter(streamProviders, { sourceName: 'Local' }), [streamProviders]);
 
   const unfilteredTracks = useMemo(() => _.values(tracksMap), [tracksMap]);
@@ -78,7 +78,12 @@ const LibraryView = ({tracksMap, filter, expandedFolders, streamProviders, pendi
               <Dimmer active={pending} loading={pending.toString()} />
 
               {!pending && listType === LIST_TYPE.SIMPLE_LIST && (
-                <LibrarySimpleList tracks={tracks} sortBy={sortBy} direction={direction} handleSort={handleSort} />
+                <LibrarySimpleList
+                  tracks={tracks}
+                  sortBy={sortBy}
+                  direction={direction}
+                  handleSort={handleSort}
+                />
               )}
 
               {!pending && !_.isEmpty(localFolders) && listType === LIST_TYPE.ALBUM_GRID && (
@@ -95,7 +100,11 @@ const LibraryView = ({tracksMap, filter, expandedFolders, streamProviders, pendi
               )}
 
               {!pending && listType === LIST_TYPE.FOLDER_TREE && (
-                <LibraryFolderTree tracks={tracks} localFolders={localFolders} expandedFolders={expandedFolders} />
+                <LibraryFolderTree
+                  tracks={tracks}
+                  localFolders={localFolders}
+                  expandedFolders={expandedFolders}
+                />
               )}
             </Segment>
           )}

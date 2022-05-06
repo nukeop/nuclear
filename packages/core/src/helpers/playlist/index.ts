@@ -10,22 +10,11 @@ const formatPlaylistForStorage = (name: string, tracks: Array<any>, id: string =
   };
 };
 
-const formatTrackList = (tracks, streamSource: string = null): PlaylistTrack[] => {
-  const formattedTrack: PlaylistTrack[] = [];
-  if (tracks) {
-    tracks.forEach(track => {
-      const formattedData = extractTrackData(track, streamSource);
-      if (formattedData) {
-        formattedTrack.push(formattedData);
-      }
-    });
-  }
-
-  return formattedTrack;
-};
+const formatTrackList = (tracks, streamSource: string = null): PlaylistTrack[] => (tracks) ?
+  tracks.map(track => extractTrackData(track, streamSource)) : [];
 
 const extractTrackData = (track, streamSource: string = null): PlaylistTrack => {
-  const trackStreams = track.streams || streamSource ? [{ source: streamSource, id: track.id }] : [];
+  const trackStreams = track.stream || streamSource ? [{ source: streamSource, id: track.id }] : [];
 
   return track && (track.name || track.title) && (!track.type || track.type === 'track') ?
     {
@@ -35,23 +24,9 @@ const extractTrackData = (track, streamSource: string = null): PlaylistTrack => 
       thumbnail: track.thumbnail,
       duration: track.duration,
       uuid: track.uuid,
-      streams: formatTrackStreamList(trackStreams)
+      stream: extractStreamData(trackStreams)
     } :
     null;
-};
-
-const formatTrackStreamList = (streams): PlaylistTrackStream[] => {
-  const formattedStreams: PlaylistTrackStream[] = [];
-  if (streams) {
-    streams.forEach(stream => {
-      const formattedData = extractStreamData(stream);
-      if (formattedData) {
-        formattedStreams.push(formattedData);
-      }
-    });
-  }
-
-  return formattedStreams;
 };
 
 const extractStreamData = (stream): PlaylistTrackStream => {
@@ -70,6 +45,5 @@ export default {
   formatPlaylistForStorage,
   formatTrackList,
   extractTrackData,
-  formatTrackStreamList,
   extractStreamData
 };

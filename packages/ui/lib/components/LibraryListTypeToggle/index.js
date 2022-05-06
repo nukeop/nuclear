@@ -21,23 +21,32 @@ const LibraryListTypeToggle = ({
 }) => (
   <Button.Group className={styles.library_list_type_toggle}>
     <Button
-      inverted icon='unordered list' onClick={toggleSimpleList}
+      data-testid='library-list-type-toggle-simple-list'
+      inverted
+      icon='unordered list'
+      onClick={toggleSimpleList}
       active={listType === LIST_TYPE.SIMPLE_LIST}
     />
     <Button
-      inverted icon='th' onClick={toggleAlbumGrid}
+      data-testid='library-list-type-toggle-album-grid'
+      inverted
+      icon='th'
+      onClick={toggleAlbumGrid}
       active={listType === LIST_TYPE.ALBUM_GRID}
     />
     {
-    // TODO: To be developed and re-enabled later
-    // <Button
-    //   inverted icon='bars' onClick={toggleAlbumList}
-    //   active={listType === LIST_TYPE.ALBUM_LIST}
-    //
-    // />
+      // TODO: To be developed and re-enabled later
+      // <Button
+      //   inverted icon='bars' onClick={toggleAlbumList}
+      //   active={listType === LIST_TYPE.ALBUM_LIST}
+      //
+      // />
     }
     <Button
-      inverted icon='folder' onClick={toggleFolderTree}
+      data-testid='library-list-type-toggle-folder-tree'
+      inverted
+      icon='folder'
+      onClick={toggleFolderTree}
       active={listType === LIST_TYPE.FOLDER_TREE}
     />
   </Button.Group>
@@ -51,8 +60,8 @@ LibraryListTypeToggle.propTypes = {
 };
 
 export default withHandlers({
-  toggleSimpleList: ({toggleListType}) => () => toggleListType(LIST_TYPE.SIMPLE_LIST),
-  toggleAlbumGrid: ({toggleListType}) => () => toggleListType(LIST_TYPE.ALBUM_GRID),
-  toggleAlbumList: ({toggleListType}) => () => toggleListType(LIST_TYPE.ALBUM_LIST),
-  toggleFolderTree: ({toggleListType}) => () => toggleListType(LIST_TYPE.FOLDER_TREE)
+  toggleSimpleList: ({ toggleListType }) => () => toggleListType(LIST_TYPE.SIMPLE_LIST),
+  toggleAlbumGrid: ({ toggleListType }) => () => toggleListType(LIST_TYPE.ALBUM_GRID),
+  toggleAlbumList: ({ toggleListType }) => () => toggleListType(LIST_TYPE.ALBUM_LIST),
+  toggleFolderTree: ({ toggleListType }) => () => toggleListType(LIST_TYPE.FOLDER_TREE)
 })(LibraryListTypeToggle);
