@@ -25,6 +25,22 @@ export const STREAM_FAILED = 'STREAM_FAILED';
 export const CHANGE_TRACK_STREAM = 'CHANGE_TRACK_STREAM';
 export const ADD_NEW_STREAM = 'ADD_NEW_STREAM';
 
+type LocalTrack = Track & {
+  local: true;
+  streams: TrackStream[];
+};
+
+const isLocalTrack = (track: Track): track is LocalTrack => track.local;
+
+const localTrackToQueueItem = (track: LocalTrack): QueueItem => {
+  const { streams, stream, ...rest } = track;
+  return toQueueItem({
+    ...rest,
+    stream: stream ?? streams.find(stream => stream.source === 'Local')
+  });
+};
+
+
 export const toQueueItem = (track: Track): QueueItem => ({
   ...track,
   artist: isString(track.artist) ? track.artist : track.artist.name,
@@ -43,12 +59,18 @@ const getSelectedStreamProvider = (getState) => {
 };
 
 export const getTrackStream = async (
-  track: Track,
+  track: Track | LocalTrack,
   selectedStreamProvider: StreamProvider
-) => selectedStreamProvider.search({
-  artist: getTrackArtist(track),
-  track: track.name
-});
+) => {
+  if (isLocalTrack(track)) {
+    return track.streams.find((stream) => stream.source === 'Local');
+  } else {  
+    return selectedStreamProvider.search({
+      artist: getTrackArtist(track),
+      track: track.name
+    });
+  }
+};
 
 const addQueueItem = (item: QueueItem) => ({
   type: ADD_QUEUE_ITEM,
@@ -76,8 +98,12 @@ export const addToQueue =
       } = getState();
       const isAbleToAdd = (!connectivity && item.local) || connectivity;
 
-      isAbleToAdd &&
-      dispatch(!asNextItem ? addQueueItem(item) : playNextItem(item));
+      if (isAbleToAdd && item.local) {
+        dispatch(!asNextItem ? addQueueItem(localTrackToQueueItem(item as LocalTrack)) : playNextItem(localTrackToQueueItem(item as LocalTrack)));
+      } else {
+        isAbleToAdd &&
+        dispatch(!asNextItem ? addQueueItem(item) : playNextItem(item));
+      }
 
       if (!item.local && isAbleToAdd) {
         const selectedStreamProvider = getSelectedStreamProvider(getState);
