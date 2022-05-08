@@ -392,13 +392,13 @@ export const buildStoreState = () => {
                     artist: 'test artist 1',
                     name: 'test track',
                     thumbnail: 'test thumbnail',
-                    stream: 
-                      {
-                        id: 'test-stream-id',
-                        source: 'Test source',
-                        title: 'stream title 1',
-                        duration: 100
-                      }
+                    stream:
+                    {
+                      id: 'test-stream-id',
+                      source: 'Test source',
+                      title: 'stream title 1',
+                      duration: 100
+                    }
                   },
                   {
                     uuid: 'test-track-22',
@@ -420,7 +420,7 @@ export const buildStoreState = () => {
       };
       return this as StoreStateBuilder;
     },
-    withFavorites() {
+    withFavorites(favorites: RootState['favorites'] = {}) {
       state = {
         ...state,
         favorites: {
@@ -498,7 +498,8 @@ export const buildStoreState = () => {
                 }
               ]
             }
-          ]
+          ],
+          ...favorites
         }
       };
       return this as StoreStateBuilder;
@@ -749,8 +750,8 @@ export const buildStoreState = () => {
             name: 'Test Artist',
             coverImage: 'https://test-cover-url',
             thumbnail: 'https://test-thumb-url',
-            cleanName: () => {},
-            addSearchResultData: () => {}
+            cleanName: () => { },
+            addSearchResultData: () => { }
           }
         ],
         liveStreamSearchResults: {
@@ -809,7 +810,7 @@ export const buildStoreState = () => {
               path: '/home/nuclear/Music/local artist 1/local album 1'
             },
             local: true
-            
+
           }, {
             uuid: 'local-track-2',
             artist: 'local artist 1',
