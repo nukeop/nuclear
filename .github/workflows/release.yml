@@ -49,6 +49,13 @@ jobs:
           token: ${{ secrets.REPO_ACCESS_TOKEN }}
           event-type: release
           client-payload: '{"tag": "${{ steps.short-sha.outputs.sha }}"}'
+      - name: Inform Flatpak updater
+        uses: peter-evans/repository-dispatch@v1
+        with:
+          repository: NuclearPlayer/nuclear-nightly-flatpak
+          token: ${{ secrets.REPO_ACCESS_TOKEN }}
+          event-type: release
+          client-payload: '{"tag": "${{ steps.short-sha.outputs.sha }}"}'
 
   mac_release:
     runs-on: macOS-latest
