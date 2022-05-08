@@ -10,6 +10,7 @@ import { QueueItem, TrackStream } from '../reducers/queue';
 import { RootState } from '../reducers';
 import { createStandardAction } from 'typesafe-actions';
 import { getTrackArtist } from '@nuclear/ui';
+import { LocalLibraryState } from './local';
 
 export const QUEUE_DROP = 'QUEUE_DROP';
 export const ADD_QUEUE_ITEM = 'ADD_QUEUE_ITEM';
@@ -32,11 +33,22 @@ type LocalTrack = Track & {
 
 const isLocalTrack = (track: Track): track is LocalTrack => track.local;
 
-const localTrackToQueueItem = (track: LocalTrack): QueueItem => {
+const localTrackToQueueItem = (track: LocalTrack, local: LocalLibraryState): QueueItem => {
   const { streams, stream, ...rest } = track;
+
+  const matchingLocalTrack = local.tracks.find(localTrack => localTrack.uuid === track.uuid);
+
+  const resolvedStream = stream ??
+    streams?.find(stream => stream.source === 'Local') ??
+    {
+      source: 'Local',
+      stream: `file://${matchingLocalTrack.path}`,
+      duration: matchingLocalTrack.duration
+    } as TrackStream;
+
   return toQueueItem({
     ...rest,
-    stream: stream ?? streams?.find(stream => stream.source === 'Local')
+    stream: resolvedStream
   });
 };
 
@@ -64,7 +76,7 @@ export const getTrackStream = async (
 ) => {
   if (isLocalTrack(track)) {
     return track.streams.find((stream) => stream.source === 'Local');
-  } else {  
+  } else {
     return selectedStreamProvider.search({
       artist: getTrackArtist(track),
       track: track.name
@@ -90,6 +102,7 @@ const playNextItem = (item: QueueItem) => ({
 export const addToQueue =
   (item: QueueItem, asNextItem = false) =>
     async (dispatch, getState) => {
+      const { local }: RootState = getState();
       item = safeAddUuid(item);
       item.loading = !item.local;
 
@@ -99,10 +112,10 @@ export const addToQueue =
       const isAbleToAdd = (!connectivity && item.local) || connectivity;
 
       if (isAbleToAdd && item.local) {
-        dispatch(!asNextItem ? addQueueItem(localTrackToQueueItem(item as LocalTrack)) : playNextItem(localTrackToQueueItem(item as LocalTrack)));
+        dispatch(!asNextItem ? addQueueItem(localTrackToQueueItem(item as LocalTrack, local)) : playNextItem(localTrackToQueueItem(item as LocalTrack, local)));
       } else {
         isAbleToAdd &&
-        dispatch(!asNextItem ? addQueueItem(item) : playNextItem(item));
+          dispatch(!asNextItem ? addQueueItem(item) : playNextItem(item));
       }
 
       if (!item.local && isAbleToAdd) {
@@ -171,10 +184,10 @@ export function rerollTrack(track: QueueItem) {
     const { plugin }: RootState = getState();
     const selectedStreamProvider = _.find(plugin.plugins.streamProviders, { sourceName: plugin.selected.streamProviders });
 
-    dispatch(updateQueueItem({ 
+    dispatch(updateQueueItem({
       ...track,
-      loading: true, 
-      error: false 
+      loading: true,
+      error: false
     }));
 
     const newStream = await selectedStreamProvider
@@ -289,10 +302,10 @@ export const switchStreamProvider = ({
       }
     }: RootState = getState();
 
-    dispatch(updateQueueItem({ 
+    dispatch(updateQueueItem({
       ...item,
-      loading: true, 
-      error: false 
+      loading: true,
+      error: false
     }));
 
     const streamProvider = streamProviders.find(provider => provider.sourceName === streamProviderName);

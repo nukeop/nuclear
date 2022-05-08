@@ -21,10 +21,11 @@ export enum LocalLibraryKeyNames {
   ScanTotal = 'scanTotal'
 }
 
+
 export class LocalLibraryState {
   [LocalLibraryKeyNames.Pending] = false;
   [LocalLibraryKeyNames.Error] = false;
-  [LocalLibraryKeyNames.Folders] = [];
+  [LocalLibraryKeyNames.Folders]: string[] = [];
   [LocalLibraryKeyNames.Page] = 0;
   [LocalLibraryKeyNames.SortBy] = 'artist';
   [LocalLibraryKeyNames.Direction] = 'ascending';
@@ -43,7 +44,7 @@ export const localLibraryActions = {
   scanLocalFoldersProgress: createAction(LocalLibrary.SCAN_LOCAL_FOLDERS_PROGRESS, (scanProgress: number, scanTotal: number) => ({ scanProgress, scanTotal })),
   scanLocalFoldersSuccess: createAction(LocalLibrary.SCAN_LOCAL_FOLDERS_SUCCESS, (payload: Track[]) => payload),
   scanLocalFoldersFailure: VoidAction(LocalLibrary.SCAN_LOCAL_FOLDERS_FAILURE),
-  updateFilter: createAction(LocalLibrary.UPDATE_LOCAL_FILTER, (event: { target: { value: string }}) => ({ filter: event.target.value })),
+  updateFilter: createAction(LocalLibrary.UPDATE_LOCAL_FILTER, (event: { target: { value: string } }) => ({ filter: event.target.value })),
   updateLocalSort: createAction(LocalLibrary.UPDATE_LOCAL_SORT, (sortBy, column, direction) => ({
     sortBy,
     direction: column !== sortBy
@@ -86,7 +87,7 @@ export const openLocalFolderPicker = () => async dispatch => {
 export const openLocalFilePicker = async () => {
   let filePaths = await (await remote.dialog.showOpenDialog(remote.getCurrentWindow(), {
     filters: [
-      {name: 'json', extensions: ['json']}
+      { name: 'json', extensions: ['json'] }
     ],
     properties: ['openFile']
   })).filePaths;

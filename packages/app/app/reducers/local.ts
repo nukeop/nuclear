@@ -19,7 +19,7 @@ export const reducer = handleActions<LocalLibraryState, LocalLibraryPayload>({
     }),
   [LocalLibrary.REMOVE_LOCAL_FOLDER]: (state, { payload }) =>
     produce(state, draft => {
-      draft.folders = draft.folders?.filter(folder => folder !== payload);
+      draft.folders = draft.folders?.filter(folder => folder !== String(payload));
     }),
   [LocalLibrary.SCAN_LOCAL_FOLDERS]: (state) =>
     produce(state, draft => {
@@ -42,7 +42,7 @@ export const reducer = handleActions<LocalLibraryState, LocalLibraryPayload>({
       draft.scanTotal = null;
       draft.tracks = payload as Track[];
     }),
-  [LocalLibrary.SCAN_LOCAL_FOLDERS_FAILURE]: (state) => 
+  [LocalLibrary.SCAN_LOCAL_FOLDERS_FAILURE]: (state) =>
     produce(state, draft => {
       draft.pending = false;
       draft.scanProgress = null;

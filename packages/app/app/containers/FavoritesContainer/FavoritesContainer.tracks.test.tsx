@@ -92,12 +92,43 @@ describe('Track view container', () => {
     });
   });
 
+  it('should play a favorited local library track from a local stream', async () => {
+    const favorites = buildStoreState()
+      .withFavorites({
+        tracks: [{
+          uuid: 'local-track-1',
+          artist: 'test artist 1',
+          name: 'test track 1',
+          local: true
+        }]
+      })
+      .build()
+      .favorites;
+    updateStore('favorites', favorites);
+
+    const { component, store } = mountComponent();
+    await waitFor(() => component.getAllByTestId('play-now')[0].click());
+    const state = store.getState();
+    expect(state.queue.queueItems[0]).toEqual(expect.objectContaining({
+      uuid: 'local-track-1',
+      artist: 'test artist 1',
+      name: 'test track 1',
+      local: true,
+      stream: {
+        source: 'Local',
+        stream: 'file:///home/nuclear/Music/local artist 1/local album 1/local track 1.mp3',
+        duration: 300
+      }
+    }));
+  });
+
   const mountComponent = (initialStore?: AnyProps) => {
     const initialState = initialStore ||
       buildStoreState()
         .withPlugins()
         .withConnectivity()
         .withPlaylists()
+        .withLocal()
         .build();
 
     const history = createMemoryHistory({
