@@ -9,6 +9,7 @@ import Config from './services/config';
 import Discord from './services/discord';
 import Store from './services/store';
 import TrayMenu from './services/trayMenu';
+import TouchbarMenu from './services/touchbar';
 import Window from './services/window';
 import Container from './utils/container';
 import LocalLibrary from './services/local-library';
@@ -48,6 +49,7 @@ app.on('ready', async () => {
     const localLibrary = container.get<LocalLibrary>(LocalLibrary);
     const store = container.get<Store>(Store);
     const trayMenu = container.get<TrayMenu>(TrayMenu);
+    const touchbarMenu = container.get<TouchbarMenu>(TouchbarMenu);
     const window = container.get<Window>(Window);
     const discord = container.get<Discord>(Discord);
     const localLibraryDb = container.get<LocalLibraryDb>(LocalLibraryDb);
@@ -68,6 +70,7 @@ app.on('ready', async () => {
     container.listen();
     await window.load();
     trayMenu.init();
+    touchbarMenu.init();
     if (store.getOption('discordRichPresence')) {
       discord.init();
     }

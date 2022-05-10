@@ -23,6 +23,7 @@ import SystemApi from './services/system-api';
 import TrayMenu from './services/trayMenu';
 
 import { ServiceProvider } from './utils/types';
+import TouchbarMenu from './services/touchbar';
 
 const services: ServiceProvider[] = [
   { useClass: AcousticId },
@@ -37,6 +38,7 @@ const services: ServiceProvider[] = [
   { useClass: Platform },
   { useClass: SystemApi },
   { useClass: TrayMenu },
+  { useClass: TouchbarMenu },
 
   { provide: $ipc, useValue: ipcMain },
   { provide: $mainLogger, useValue: new Logger() },

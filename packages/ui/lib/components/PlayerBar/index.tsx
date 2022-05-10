@@ -21,7 +21,7 @@ export type PlayerBarProps = PlayerControlsProps &
     timeToEnd?: any;
   };
 
-const VOLUME_POPUP_BREAKPOINT = 570;
+const VOLUME_POPUP_BREAKPOINT = 870;
 const PlayerBar: React.FC<PlayerBarProps> = ({
   cover,
   track,

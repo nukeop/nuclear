@@ -3,7 +3,7 @@
   justify-content: flex-end;
 
   padding-right: 1em;
-  flex: 1 1 50%;
+  width: calc(50% - 65px);
 
   .volume_controls {
     display: flex;
