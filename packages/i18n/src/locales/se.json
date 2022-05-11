@@ -1,8 +1,8 @@
 {
   "album": {
     "download": "Hämta",
-    "download-toast-content": "{{artist}} - {{title}} har lagts till i hämtningar.",
-    "download-toast-title": "Albumet tillagt i hämtningar",
+    "download-toast-content": "{{artist}} - {{title}} har lagts till i Hämtningar.",
+    "download-toast-title": "Albumet tillagt i Hämtningar",
     "error-load": "Tyvärr, det här albumet kunde inte läsas in. Försök igen senare eller öppna en ny rapport på GitHub",
     "genre": "Genre:",
     "play": "Spela",
@@ -36,7 +36,7 @@
   "artist": {
     "add-all": "Lägg till alla",
     "count": "Antal spelningar",
-    "queue": "Lägg till alla spår i kö",
+    "queue": "Lägg till alla spår i kön",
     "similar": "Liknande artister",
     "title": "Titel",
     "tour": "På turné"
@@ -58,7 +58,7 @@
     "clear": "Rensa lyssnade spår",
     "completion": "Klart",
     "empty": "Inget hämtat.",
-    "empty-help": "Lägg till något i hämtningskön så kommer det dyka upp här!",
+    "empty-help": "Lägg till något i hämtningskön så kommer det att dyka upp här!",
     "header": "Hämtningar",
     "name": "Namn",
     "status": "Status"
@@ -68,8 +68,8 @@
     "club": "Klubb",
     "custom": "Anpassad",
     "default": "Standard",
-    "full-bass": "Hel bas",
-    "full-treble": "Hel diskant",
+    "full-bass": "Full bas",
+    "full-treble": "Full diskant",
     "pop": "Pop",
     "presets": "Förinställningar",
     "reggae": "Reggae",
@@ -77,7 +77,7 @@
   },
   "favorite-albums": {
     "empty": "Inga favoritalbum",
-    "empty-help": "Testa att favoritmarkera några album så kommer de dyka upp här!",
+    "empty-help": "Testa att favoritmarkera några album så kommer de att dyka upp här!",
     "header": "Dina favoritalbum"
   },
   "favorite-artists": {
@@ -93,7 +93,7 @@
     "title": "Titel"
   },
   "help": {
-    "about": "Om Nuclear-musikspelare",
+    "about": "Om Nuclear musikspelare",
     "contributors": "Våra topp 10 bidragsgivare",
     "header": "Musikspelare som streamar från avgiftsfria källor",
     "released": "släppt under AGPL-3.0",
@@ -130,9 +130,9 @@
     "previous-button": "Föregående spår-knapp"
   },
   "playlists": {
-    "add-selected-tracks-to-downloads": "Lägg till valda för hämtningar",
-    "add-selected-tracks-to-favorites": "Lägg till valda i favoriter",
-    "add-selected-tracks-to-queue": "Lägg till valda i kö",
+    "add-selected-tracks-to-downloads": "Lägg till markerade till Hämtningar",
+    "add-selected-tracks-to-favorites": "Lägg till markerade i favoriter",
+    "add-selected-tracks-to-queue": "Lägg till markerade i kön",
     "album": "Album",
     "artist": "Artist",
     "delete": "Ta bort denna spellista",
@@ -158,13 +158,13 @@
     "new-playlist": "Ny spellista",
     "import-url-button": "Importera från url (Spotify)",
     "import-button": "Importera från fil (JSON)",
-    "import-fail-title": "Importering av spellista misslyckades",
+    "import-fail-title": "Import av spellista misslyckades",
     "import-success-title": "Spellistan importerades",
     "play-selected-tracks-now": "Spela valda nu",
     "playlist-created": "{{name}} skapad",
     "playlist-exported": "{{name}} sparad till lokal fil",
-    "queue": "Lägg till spellistan i kö",
-    "rename": "Byt namn på spellista",
+    "queue": "Lägg till spellistan i kön",
+    "rename": "Byt namn på spellistan",
     "songs": "{{total}} spår",
     "songs_plural": "{{total}} spår",
     "title": "Titel",
@@ -193,17 +193,17 @@
     "user-plugins-warning-title": "Farozon!"
   },
   "queue": {
-    "clear": "Rensa kö",
+    "clear": "Rensa kön",
     "dialog-accept": "Spara",
     "dialog-placeholder": "Namn på spellistan...",
     "dialog-trigger": "Spara som spellista",
     "download": "Hämta",
-    "download-toast-content": "{{artist}} - {{title}} har lagts till i hämtningar.",
-    "download-toast-title": "Spår tillagt i hämtningar",
-    "favorite-add": "Lägg till i favoriter",
+    "download-toast-content": "{{artist}} - {{title}} har lagts till i Hämtningar.",
+    "download-toast-title": "Spår tillagt i Hämtningar",
+    "favorite-add": "Lägg till i Favoriter",
     "header": "Kö",
     "header-track": "Spelas just nu",
-    "id": "StreamID:",
+    "id": "Stream-ID:",
     "source": "Källa:",
     "copy-track-url": "Kopiera spåradress till urklipp",
     "loading": "Strömmen läses fortfarande.",
@@ -227,7 +227,7 @@
     "playlist": "Spellista",
     "playlist_plural": "Spellistor",
     "podcast": "Poddsändning",
-    "queue-add": "Lägg till alla spår i kö",
+    "queue-add": "Lägg till alla spår i kön",
     "track": "Spår",
     "track_plural": "Spår",
     "you-can-search-for": "Du kan söka efter:"
@@ -257,7 +257,7 @@
     "fmfav-btn": "Importera",
     "fmfav-msg": "Importera dina Last.fm-favoriter",
     "frameless-window": "Ramlöst fönster (kräver omstart)",
-    "github-connect": "Logga in via Github",
+    "github-connect": "Logga in via GitHub",
     "github-description": "Logga in via GitHub för att kunna skapa och dela spellistor på nätet (framtida funktion).",
     "github-title": "GitHub",
     "http": "HTTP API",
@@ -272,7 +272,7 @@
     "login": "Logga in",
     "logout": "Logga ut",
     "loop-after-queue-end": "Upprepa kön efter att sista låten i kön spelats",
-    "mastodon-authorization-token-label": "Auktorisationstoken",
+    "mastodon-authorization-token-label": "Auktoriseringsstoken",
     "mastodon-authorize": "Auktorisera",
     "mastodon-authorized": "Nuclear är auktoriserad att posta på ",
     "mastodon-awaiting-authorization": "Nuclear är registrerad på {{instanceUrl}}. Väntar på auktorisation.",
@@ -309,17 +309,17 @@
     "artist": "Artist",
     "artists": "Toppartister",
     "duration": "Längd",
-    "queue-add": "Lägg till alla spår i kö",
+    "queue-add": "Lägg till alla spår i kön",
     "title": "Titel"
   },
   "track-popup": {
-    "add-to-favorite": "Lägg till i favoriter",
+    "add-to-favorite": "Lägg till i Favoriter",
     "add-to-playlist": "Lägg till i spellista",
     "add-to-queue": "Lägg till kö",
     "download": "Hämta",
-    "download-toast-body": "{{artist}} - {{track}} har lagts till hämtningar.",
+    "download-toast-body": "{{artist}} - {{track}} har lagts till Hämtningar.",
     "download-toast-title": "Spår lades till hämtningar",
-    "favorite-toast-body": "{{artist}} - {{track}} har lagts till i favoriter.",
+    "favorite-toast-body": "{{artist}} - {{track}} har lagts till i Favoriter.",
     "favorite-toast-title": "Favoritspår tillagt",
     "play-next": "Spela nästa",
     "play-now": "Spela nu",
@@ -327,12 +327,12 @@
     "playlist-toast-title": "Spår tillagt i spellista"
   },
   "track-table": {
-    "add-selected-tracks-to-queue": "Lägg till valda i kö",
-    "add-selected-tracks-to-downloads": "Lägg till valda till hämtningar",
-    "add-selected-tracks-to-favorites": "Lägg till valda i favoriter",
-    "play-selected-tracks-now": "Spela valda nu",
-    "tracks-selected-label-singular": "spår valt",
-    "tracks-selected-label-plural": "spår valda"
+    "add-selected-tracks-to-queue": "Lägg till markerade i kön",
+    "add-selected-tracks-to-downloads": "Lägg till markerade till Hämtningar",
+    "add-selected-tracks-to-favorites": "Lägg till markerade i Favoriter",
+    "play-selected-tracks-now": "Spela markerade nu",
+    "tracks-selected-label-singular": "spår markerat",
+    "tracks-selected-label-plural": "spår markerade"
   },
   "visualizer": {
     "exit-fullscreen": "Tryck på Esc för att avsluta helskärmsläge"
