@@ -17,7 +17,7 @@ Desktopowy odtwarzacz muzyki skoncentrowany na streamingu z otwartych źródeł
 
 [Twitter](https://twitter.com/nuclear_player)
 
-Potrzebujesz pomocy? (Matrix): `#nuclear:matrix.org`
+Potrzebujesz pomocy? Wejdź na kanał (Matrix): `#nuclear:matrix.org`
 
 Discord chat: https://discord.gg/JqPjKxE
 
