@@ -1,4 +1,4 @@
-@import '../../../vars.scss';
+@import "../../../vars.scss";
 
 .queue_popup {
   background-color: $background !important;
@@ -29,6 +29,7 @@
     height: max-content;
     background-color: $background2;
     padding: 0;
+    left: -68px;
   }
 
   hr {
