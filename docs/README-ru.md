@@ -37,6 +37,7 @@ Discord чат: https://discord.gg/JqPjKxE
 <kbd>[<img title="Français" alt="Français" src="https://cdn.staticaly.com/gh/hjnilsson/country-flags/master/svg/fr.svg" width="22">](docs/README-fr.md)</kbd>
 <kbd>[<img title="Chinese" alt="Chinese" src="https://cdn.staticaly.com/gh/hjnilsson/country-flags/master/svg/cn.svg" width="22">](docs/README-zh-cn.md)</kbd>
 <kbd>[<img title="Russian" alt="Russian" src="https://cdn.staticaly.com/gh/hjnilsson/country-flags/master/svg/ru.svg" width="22">](docs/README-ru.md)</kbd>
+<kbd>[<img title="Polski" alt="Polski" src="https://cdn.staticaly.com/gh/hjnilsson/country-flags/master/svg/pl.svg" width="22">](docs/README-pl.md)</kbd>
 
 ## Что это?
 Nuclear - это бесплатная программа для потоковой передачи музыки, которая извлекает контент из бесплатных источников по всему Интернету.
@@ -45,7 +46,7 @@ Nuclear - это бесплатная программа для потоково
 Он также больше специализируется на аудио. Представьте себе Spotify с большой библиотекой за который не нужно платить.
 
 ## Что если мне не нравится Electron?
-Посмотрите [здесь](docs/electron.md).
+Посмотрите [здесь](docs/electron-ru.md).
 
 ## Особенности
 
