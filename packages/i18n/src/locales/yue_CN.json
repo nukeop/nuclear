@@ -27,14 +27,14 @@
     "settings": "設置",
     "visualizer": "可视器（？）",
     "user-panel": {
-      "actions-tooltip": "User actions",
-      "sign-up": "Sign up / Sign in",
-      "sign-out": "Sign out"
+      "actions-tooltip": "操作记录",
+      "sign-up": "注册/登入",
+      "sign-out": "登出"
     },
-    "version": "Version"
+    "version": "版本"
   },
   "artist": {
-    "add-all": "Add all",
+    "add-all": "添加所有",
     "count": "播放计数",
     "queue": "将所有曲目加入播放列表",
     "similar": "类似嘅艺术家",
@@ -64,10 +64,10 @@
     "status": "状态"
   },
   "equalizer": {
-    "classical": "Classical",
+    "classical": "古典",
     "club": "Club",
-    "custom": "Custom",
-    "default": "Default",
+    "custom": "自定义",
+    "default": "默认",
     "full-bass": "Full Bass",
     "full-treble": "Full Treble",
     "pop": "Pop",
