@@ -1,14 +1,32 @@
-import { getType } from 'typesafe-actions';
-import {loadBestNewAlbumsAction, loadBestNewTracksAction, loadTopTagsAction, loadTopTracksAction} from '../actions/dashboard';
+import { DeezerTopTrack } from '@nuclear/core/src/rest/Deezer';
+import { LastfmTopTag } from '@nuclear/core/src/rest/Lastfm.types';
+import { ActionType, getType } from 'typesafe-actions';
+import {loadBestNewAlbumsAction, loadBestNewTracksAction, loadTopTagsAction, loadTopTracksAction, PitchforkAlbum, PitchforkTrack} from '../actions/dashboard';
 
-const initialState = {
+type DashboardReducerState = {
+  bestNewAlbums: PitchforkAlbum[]
+  bestNewTracks: PitchforkTrack[]
+  topTracks: DeezerTopTrack[]
+  topTags: LastfmTopTag[]
+}
+
+const initialState: DashboardReducerState = {
   bestNewAlbums: [],
   bestNewTracks: [],
   topTracks: [],
   topTags: []
 };
 
-export default function DashboardReducer(state = initialState, action) {
+const dashboardActions = {
+  loadBestNewAlbumsAction,
+  loadBestNewTracksAction,
+  loadTopTagsAction,
+  loadTopTracksAction
+};
+
+type DashboardReducerActions = ActionType<typeof dashboardActions>
+
+export default function DashboardReducer(state = initialState, action: DashboardReducerActions): DashboardReducerState {
   switch (action.type) {
   case getType(loadBestNewAlbumsAction.success):
     return Object.assign({}, state, {
@@ -30,3 +48,4 @@ export default function DashboardReducer(state = initialState, action) {
     return state;
   }
 }
+

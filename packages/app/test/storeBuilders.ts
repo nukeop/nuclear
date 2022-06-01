@@ -551,29 +551,44 @@ export const buildStoreState = () => {
               id: 1,
               title: 'top track 1',
               artist: {
-                name: 'top track artist 1'
+                name: 'top track artist 1',
+                picture_small: 'top track artist picture small 1',
+                picture_medium: 'top track artist picture medium 1',
+                picture_big: 'top track artist picture big 1',
+                picture_xl: 'top track artist picture xl 1'
               },
               duration: 100,
               album: {
                 title: 'top track album 1',
-                cover_medium: 'top track album cover 1'
+                cover_small: 'top track album cover small 1',
+                cover_medium: 'top track album cover 1',
+                cover_big: 'top track album cover big 1',
+                cover_xl: 'top track album cover xl 1'
               },
-              playcount: '1000000',
-              thumbnail: 'top track thumbnail 1'
+              position: 1,
+              preview: 'top track preview 1'
+              
             },
             {
               id: 2,
               title: 'top track 2',
               artist: {
-                name: 'top track artist 2'
+                name: 'top track artist 2',
+                picture_small: 'top track artist picture small 2',
+                picture_medium: 'top track artist picture medium 2',
+                picture_big: 'top track artist picture big 2',
+                picture_xl: 'top track artist picture xl 2'
               },
               duration: 78,
               album: {
                 title: 'top track album 2',
-                cover_medium: 'top track album cover 2'
+                cover_small: 'top track album cover small 2',
+                cover_medium: 'top track album cover 2',
+                cover_big: 'top track album cover big 2',
+                cover_xl: 'top track album cover xl 2'
               },
-              playcount: '7899543',
-              thumbnail: 'top track thumbnail 2'
+              position: 2,
+              preview: 'top track preview 2'
             }
           ],
           topTags: [
