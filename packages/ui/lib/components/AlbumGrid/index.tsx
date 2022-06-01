@@ -107,7 +107,7 @@ export default compose(
     onPlayAll: ({ selectSong, startPlayback, onAddToQueue }) => () => {
       onAddToQueue();
       selectSong(0);
-      startPlayback();
+      startPlayback(false);
     }
   })
 )(AlbumGrid);

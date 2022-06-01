@@ -12,6 +12,7 @@ import { createStandardAction } from 'typesafe-actions';
 import { getTrackArtist } from '@nuclear/ui';
 import { LocalLibraryState } from './local';
 
+
 export const QUEUE_DROP = 'QUEUE_DROP';
 export const ADD_QUEUE_ITEM = 'ADD_QUEUE_ITEM';
 export const PLAY_NEXT_ITEM = 'PLAY_NEXT_ITEM';
@@ -162,7 +163,7 @@ export function playTrack(streamProviders, item: QueueItem) {
     dispatch(clearQueue());
     dispatch(addToQueue(item));
     dispatch(selectSong(0));
-    dispatch(startPlayback());
+    dispatch(startPlayback(false));
   };
 }
 
@@ -207,33 +208,13 @@ export function rerollTrack(track: QueueItem) {
   };
 }
 
-export function clearQueue() {
-  return {
-    type: CLEAR_QUEUE,
-    payload: null
-  };
-}
+export const clearQueue = createStandardAction(CLEAR_QUEUE)();
 
-export function nextSongAction() {
-  return {
-    type: NEXT_SONG,
-    payload: null
-  };
-}
+export const nextSongAction = createStandardAction(NEXT_SONG)();
 
-export function previousSongAction() {
-  return {
-    type: PREVIOUS_SONG,
-    payload: null
-  };
-}
+export const previousSongAction = createStandardAction(PREVIOUS_SONG)();
 
-export function selectSong(index) {
-  return {
-    type: SELECT_SONG,
-    payload: index
-  };
-}
+export const selectSong = createStandardAction(SELECT_SONG)<number>();
 
 export function repositionSong(itemFrom, itemTo) {
   return {
@@ -274,8 +255,8 @@ export function previousSong() {
 export function nextSong() {
   return (dispatch, getState) => {
     dispatchWithShuffle(dispatch, getState, nextSongAction);
-    dispatch(pausePlayback());
-    setImmediate(() => dispatch(startPlayback()));
+    dispatch(pausePlayback(false));
+    setImmediate(() => dispatch(startPlayback(false)));
   };
 }
 

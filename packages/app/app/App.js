@@ -73,7 +73,7 @@ class App extends React.PureComponent {
     if (this.props.player.playbackStatus === Sound.status.PAUSED) {
       this.scrobbleLastFmIfAble();
     }
-    this.props.actions.togglePlayback(this.props.player.playbackStatus);
+    this.props.actions.togglePlayback(this.props.player.playbackStatus, false);
   }
 
   nextSong() {
