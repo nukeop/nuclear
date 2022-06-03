@@ -39,9 +39,9 @@ class Shortcuts extends React.Component {
 
     if (queue.queueItems.length > 0) {
       if (player.playbackStatus === Sound.status.PLAYING) {
-        actions.pausePlayback();
+        actions.pausePlayback(false);
       } else {
-        actions.startPlayback();
+        actions.startPlayback(false);
       }
     }
     return false;
@@ -54,7 +54,7 @@ class Shortcuts extends React.Component {
       queue.queueItems.length > 0 && 
       player.playbackStatus !== Sound.status.PLAYING
     ) {
-      actions.startPlayback();
+      actions.startPlayback(false);
     }
     return false;
   }
@@ -63,7 +63,7 @@ class Shortcuts extends React.Component {
     const { player, actions } = this.props;
 
     if (player.volume < 100) {
-      actions.updateVolume(player.volume + VOLUME_ITERATION * this.coef);
+      actions.updateVolume(player.volume + VOLUME_ITERATION * this.coef, false);
       this.incrementCoef();
     }
     return false;
@@ -73,7 +73,7 @@ class Shortcuts extends React.Component {
     const { player, actions } = this.props;
 
     if (player.volume > 0) {
-      actions.updateVolume(player.volume - VOLUME_ITERATION * this.coef);
+      actions.updateVolume(player.volume - VOLUME_ITERATION * this.coef, false);
       this.incrementCoef();
     }
     return false;

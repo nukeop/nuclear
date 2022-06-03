@@ -21,7 +21,7 @@ export type PlaylistViewProps = {
   deletePlaylist: (id: string) => void;
   exportPlaylist: (playlist: Playlist, t: TFunction) => void;
   clearQueue: () => void;
-  startPlayback: () => void;
+  startPlayback: (fromMain: boolean) => void;
   selectSong: (i: number) => void;
   addTracks: (tracks: Playlist['tracks']) => void;
   onReorderTracks: (isource: number, idest: number) => void;
@@ -56,7 +56,7 @@ const PlaylistView: React.FC<PlaylistViewProps> = ({
     clearQueue();
     addTracks(playlist.tracks);
     selectSong(0);
-    startPlayback();
+    startPlayback(false);
   }, [addTracks, clearQueue, playlist, selectSong, startPlayback]);
 
   const onDeleteTrack = useCallback((trackToRemove: Track, trackIndex: number) => {

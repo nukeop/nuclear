@@ -91,7 +91,7 @@ class SoundContainer extends React.Component {
     ) {
       this.props.actions.nextSong();
     } else {
-      this.props.actions.pausePlayback();
+      this.props.actions.pausePlayback(false);
     }
 
     if (this.props.settings.mastodonAccessToken &&

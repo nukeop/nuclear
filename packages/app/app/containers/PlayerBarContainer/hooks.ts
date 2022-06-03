@@ -63,7 +63,7 @@ export const usePlayerControlsProps = () => {
   const couldBack = couldPlay && queue.currentSong > 0;
 
   const togglePlay = useCallback(
-    () => dispatch(playerActions.togglePlayback(playbackStatus)),
+    () => dispatch(playerActions.togglePlayback(playbackStatus, false)),
     [dispatch, playbackStatus]
   );
 
@@ -205,7 +205,7 @@ export const useVolumeControlsProps = () => {
   ];
 
   const updateVolume = useCallback(
-    (value) => dispatch(playerActions.updateVolume(value)),
+    (value) => dispatch(playerActions.updateVolume(value, false)),
     [dispatch]
   );
 

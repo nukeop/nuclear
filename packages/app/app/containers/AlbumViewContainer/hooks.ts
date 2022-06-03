@@ -77,7 +77,7 @@ export const useAlbumViewProps = () => {
     dispatch(QueueActions.clearQueue());
     await addAlbumToQueue();
     dispatch(QueueActions.selectSong(0));
-    dispatch(PlayerActions.startPlayback());
+    dispatch(PlayerActions.startPlayback(false));
   }, [addAlbumToQueue, dispatch]);
 
   const addFavoriteAlbum = useCallback(async () => {

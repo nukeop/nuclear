@@ -1,13 +1,12 @@
 import { getOption, IpcEvents, isValidPort } from '@nuclear/core';
 import { ipcRenderer } from 'electron';
 import _ from 'lodash';
-
-import { PAUSE_PLAYBACK, START_PLAYBACK, UPDATE_VOLUME } from '../../actions/player';
 import { LocalLibrary } from '../../actions/actionTypes';
 import { ADD_QUEUE_ITEM, CLEAR_QUEUE, REMOVE_QUEUE_ITEM, QUEUE_DROP } from '../../actions/queue';
 import { Settings } from '../../actions/actionTypes';
 import { changeConnectivity } from '../../actions/connectivity';
 import * as DownloadActions from '../../actions/downloads';
+import * as PlayerActions from '../../actions/player';
 import { CLOSE_WINDOW, MINIMIZE_WINDOW, MAXIMIZE_WINDOW, OPEN_DEVTOOLS } from '../../actions/window';
 import { getType } from 'typesafe-actions';
 import { Middleware } from 'redux';
@@ -38,13 +37,13 @@ const ipcConnect: Middleware = () => next => {
     }
   
     switch (type) {
-    case START_PLAYBACK:
+    case getType(PlayerActions.startPlayback):
       ipcRenderer.send(IpcEvents.PLAY);
       break;
-    case UPDATE_VOLUME:
+    case getType(PlayerActions.updateVolume):
       ipcRenderer.send(IpcEvents.VOLUME, payload);
       break;
-    case PAUSE_PLAYBACK:
+    case getType(PlayerActions.pausePlayback):
       ipcRenderer.send(IpcEvents.PAUSE);
       break;
     
