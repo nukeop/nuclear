@@ -58,7 +58,7 @@ const TrackTableContainer: React.FC<TrackTableContainerProps> = ({
     dispatch(queueActions.clearQueue());
     dispatch(queueActions.addPlaylistTracksToQueue(tracks));
     dispatch(queueActions.selectSong(0));
-    dispatch(playerActions.startPlayback());
+    dispatch(playerActions.startPlayback(false));
   }, [dispatch]);
 
   const onAddToFavorites = useCallback((track: Track) => {
