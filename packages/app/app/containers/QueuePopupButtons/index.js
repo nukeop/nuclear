@@ -38,7 +38,7 @@ const QueuePopupButtons = ({
       />
     )}
     {withAddToPlaylist && Boolean(playlists.length) && (
-      <PopupDropdown text='Add to playlist'>
+      <PopupDropdown text='Add to playlist' direction='left'>
         {_.map(playlists, (playlist, i) => {
           return (
             <Dropdown.Item
