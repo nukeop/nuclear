@@ -81,10 +81,14 @@ class DiscogsMetaProvider extends MetaProvider {
     const coverImage = this.getCoverImage(release);
     const tracklist: Track[] = [];
 
-    release.tracklist.forEach(track => {
+    release.tracklist.map(track => {
       if (track.sub_tracks) {
-        track.sub_tracks.forEach(subTrack => tracklist.push(this.discogsTrackToGeneric(subTrack, artist)));
-      } else {
+        track.sub_tracks.map(subTrack => {
+          if (subTrack.type_ === 'track') {
+            tracklist.push(this.discogsTrackToGeneric(subTrack, artist));
+          }
+        });
+      } else if (track.type_ === 'track') {
         tracklist.push(this.discogsTrackToGeneric(track, artist));
       }
     });
@@ -105,6 +109,7 @@ class DiscogsMetaProvider extends MetaProvider {
   }
 
   discogsTrackToGeneric(discogsTrack: DiscogsTrack, artist: string): Track {
+
     const track = new Track();
     track.artist = artist;
     track.title = discogsTrack.title;
