@@ -147,7 +147,7 @@
     "export-fail-title": "プレイリストのエクスポートに失敗",
     "export-success-title": "プレイリストのインポートに成功しました",
     "header": "プレイリスト",
-    "import-progress": "Import progress",
+    "import-progress": "インポートの進捗",
     "spotify-import-placeholder": "Paste a Spotify playlist URL here",
     "dialog-placeholder": "プレイリストの名前...",
     "dialog-accept": "保存",
