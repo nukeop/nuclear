@@ -478,7 +478,7 @@ exports[`Play Queue container should display a context popup on right click 1`] 
             class="dropdown icon"
           />
           <div
-            class="menu transition"
+            class="menu transition left"
           >
             <div
               class="item"
@@ -990,7 +990,7 @@ exports[`Play Queue container should display a context popup on right click for 
             class="dropdown icon"
           />
           <div
-            class="menu transition"
+            class="menu transition left"
           >
             <div
               class="item"
