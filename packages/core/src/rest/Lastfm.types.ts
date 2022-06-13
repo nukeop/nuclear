@@ -59,3 +59,9 @@ export type LastfmTrackMatch = {
 }
 
 export type LastfmTrackMatchInternal  = LastfmTrackMatch & { thumbnail: string }
+
+export type LastfmTopTag = {
+  name: string
+  count: number
+  reach: number
+}

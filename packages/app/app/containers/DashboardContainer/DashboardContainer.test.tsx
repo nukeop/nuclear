@@ -26,10 +26,8 @@ describe('Dashboard container', () => {
     // @ts-ignore
     Deezer.getTopTracks = jest.fn().mockResolvedValue({ data: mockState.dashboard.topTracks.map(track => ({
       ...track,
-      title: track.name,
       artist: {
-        ...track.artist,
-        picture_medium: track.thumbnail
+        ...track.artist    
       }
     })) });
     

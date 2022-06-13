@@ -5,17 +5,38 @@ import { getBestNewAlbums, getBestNewTracks } from 'pitchfork-bnm';
 import globals from '../globals';
 import { Dashboard } from './actionTypes';
 import { createAsyncAction } from 'typesafe-actions';
+import { LastfmTopTag } from '@nuclear/core/src/rest/Lastfm.types';
+import { DeezerTopTrack } from '@nuclear/core/src/rest/Deezer';
 
 const lastfm = new rest.LastFmApi(
   globals.lastfmApiKey,
   globals.lastfmApiSecret
 );
 
+export type PitchforkAlbum = {
+  abstract: string
+  artist: string
+  genres: string[]
+  review: string
+  reviewUrl: string
+  score: string
+  thumbnail: string
+  title: string
+}
+
+export type PitchforkTrack = {
+  artist: string
+  review: string
+  reviewUrl: string
+  thumbnail: string
+  title: string
+}
+
 export const loadTopTagsAction = createAsyncAction(
   Dashboard.LOAD_TOP_TAGS_START,
   Dashboard.LOAD_TOP_TAGS_SUCCESS,
   Dashboard.LOAD_TOP_TAGS_ERROR
-)<undefined, unknown, undefined>();
+)<undefined, LastfmTopTag[], undefined>();
 
 export function loadTopTags() {
   return dispatch => {
@@ -37,7 +58,7 @@ export const loadBestNewAlbumsAction = createAsyncAction(
   Dashboard.LOAD_BEST_NEW_ALBUMS_START,
   Dashboard.LOAD_BEST_NEW_ALBUMS_SUCCESS,
   Dashboard.LOAD_BEST_NEW_ALBUMS_ERROR
-)<undefined, unknown, undefined>();
+)<undefined, PitchforkAlbum[], undefined>();
 
 export function loadBestNewAlbums() {
   return dispatch => {
@@ -57,7 +78,7 @@ export const loadBestNewTracksAction = createAsyncAction(
   Dashboard.LOAD_BEST_NEW_TRACKS_START,
   Dashboard.LOAD_BEST_NEW_TRACKS_SUCCESS,
   Dashboard.LOAD_BEST_NEW_TRACKS_ERROR
-)<undefined, unknown, undefined>();
+)<undefined, PitchforkTrack[], undefined>();
 
 export function loadBestNewTracks() {
   return dispatch => {
@@ -77,7 +98,7 @@ export const loadTopTracksAction = createAsyncAction(
   Dashboard.LOAD_TOP_TRACKS_START,
   Dashboard.LOAD_TOP_TRACKS_SUCCESS,
   Dashboard.LOAD_TOP_TRACKS_ERROR
-)<undefined, unknown, undefined>();
+)<undefined, DeezerTopTrack[], undefined>();
 
 export const loadTopTracks = () => async (dispatch) => {
   dispatch(loadTopTracksAction.request());

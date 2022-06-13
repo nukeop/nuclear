@@ -8,12 +8,14 @@ import './styles.scss';
 
 export type PopupDropdownProps = {
   text: DropdownProps['text'];
-pointing?: DropdownProps['pointing'];
+  pointing?: DropdownProps['pointing'];
+  direction?: DropdownProps['direction'];
 };
 
 const PopupDropdown: React.FC<PopupDropdownProps> = ({
   text,
   pointing,
+  direction,
   children
 }) => {
   return (
@@ -24,6 +26,7 @@ const PopupDropdown: React.FC<PopupDropdownProps> = ({
         'left'
       )}
       pointing={pointing}
+      direction={direction}
     >
       <SemanticDropdown.Menu>
         {children}
