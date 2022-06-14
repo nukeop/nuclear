@@ -47,8 +47,10 @@ export class YoutubeHeuristics implements SearchHeuristics<Partial<Video>> {
   }: ScoreTrackArgs<Partial<Video>>) => {
     const trackTitle = YoutubeHeuristics.createTitle({ artist, title });
     const lowercaseResultTitle = track.title.toLowerCase();
-
+    
     const titleScore = (1 - (levenshtein.get(trackTitle, lowercaseResultTitle)/trackTitle.length)) * 100;
+    
+    const verbatimSubstringScore = lowercaseResultTitle.includes(trackTitle) ? 100 : 0;
 
     const durationDelta = Math.abs(Number.parseFloat(track.duration) - duration);
     const durationScore = track.duration && duration
@@ -66,6 +68,7 @@ export class YoutubeHeuristics implements SearchHeuristics<Partial<Video>> {
 
     return mean([
       titleScore,
+      verbatimSubstringScore,
       durationScore,
       promotedWordsScore,
       penalizedWordsScore,
