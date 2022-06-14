@@ -37,6 +37,29 @@ describe('Search heuristics', () => {
     expect(orderedTracks[0]).toEqual(tracks[2]);
   });
 
+  it('prefers titles that contain the artist and title verbatim', () => {
+    const tracks = [
+      ytTrack({
+        title: 'Rammstein - Zick Zack (Official Video)'
+      }),
+      ytTrack({
+        title: 'Rammstein - Zeit (Official Video)'
+      }),
+      ytTrack({
+        title: 'Rammstein - Zeig Dich (Official Lyric Video)'
+      })
+    ];
+
+    const heuristics = new YoutubeHeuristics();
+    const orderedTracks = heuristics.orderTracks({
+      tracks,
+      artist: 'Rammstein',
+      title: 'Zeig Dich'
+    });
+    
+    expect(orderedTracks[0]).toEqual(tracks[2]);
+  });
+
 
   it('prefers a closer match in case of a partial match', () => {
     const tracks = [
