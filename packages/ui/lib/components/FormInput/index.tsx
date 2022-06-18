@@ -6,7 +6,7 @@ import common from '../../common.scss';
 import styles from './styles.scss';
 import { FieldsPropsType } from '../../hooks/types';
 
-export type FormInputProps = Omit<SUIInputProps, 'error'> & FieldsPropsType[keyof FieldsPropsType];
+export type FormInputProps = Omit<SUIInputProps, 'error'> & Partial<FieldsPropsType[keyof FieldsPropsType]>;
 
 const FormInput: React.FC<FormInputProps> = (props) => <SUIInput 
   className={cx(

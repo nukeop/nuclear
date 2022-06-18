@@ -1,0 +1,37 @@
+@import "../../../common.scss";
+
+.command_palette_action {
+    display: flex;
+    flex-flow: row;
+    width: 100%;
+    padding: 0.5em 1em;
+    cursor: pointer;
+
+    &.selected {
+        @include roundCorners;
+        background: rgba($blue, 0.8);
+    }
+
+    kbd {
+        @include roundCorners;
+        font-size: 12px;
+        background: $bgdefault;
+        padding: 0.5em;
+    }
+
+    .action_left {
+        display: flex;
+        flex-flow: row;
+        flex: 1 1 auto;
+        align-items: flex-start;
+
+        i {
+            margin-right: 1em;
+        }
+
+        .action_name {
+            display: flex;
+            flex-flow: column;
+        }
+    }
+}

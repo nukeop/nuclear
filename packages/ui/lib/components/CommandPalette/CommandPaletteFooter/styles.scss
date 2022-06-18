@@ -1,0 +1,26 @@
+@import "../../../common.scss";
+
+footer.command_palette_footer {
+    position: relative;
+    width: 100%;
+    padding: 1em;
+    font-size: 12px;
+
+    .protip {
+        display: flex;
+        flex-flow: row;
+        justify-content: flex-start;
+        width: 100%;
+        user-select: none;
+
+        .protip_text {
+            color: $pink;
+            font-weight: bold;
+            margin-right: 0.5em;
+        }
+
+        .protip_content {
+            color: rgba($white, 0.6);
+        }
+    }
+}
