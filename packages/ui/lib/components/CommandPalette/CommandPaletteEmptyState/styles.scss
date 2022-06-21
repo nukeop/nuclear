@@ -1,0 +1,19 @@
+@import "../../../common.scss";
+
+.command_palette_empty_state {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1em;
+
+    p {
+        margin: 1em 0;
+    }
+
+    hr {
+        width: 100%;
+        border: 1px solid rgba($bglight, 0.4);
+        border-bottom: 0;
+    }
+}

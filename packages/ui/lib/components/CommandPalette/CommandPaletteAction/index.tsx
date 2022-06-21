@@ -1,15 +1,34 @@
 import React from 'react';
 import { Icon } from 'semantic-ui-react';
-import { CommandPaletteAction as CommandPaletteActionProps } from '..';
+import cx from 'classnames';
 
+import { CommandPaletteAction as CommandPaletteActionType } from '..';
+
+import common from '../../../common.scss';
 import styles from './styles.scss';
+
+type CommandPaletteActionProps = CommandPaletteActionType & {
+    onSelect: () => void;
+    isSelected?: boolean;
+};
 
 export const CommandPaletteAction: React.FC<CommandPaletteActionProps> = ({
   icon,
   name,
-  shortcut
+  shortcut,
+  onUse,
+  onSelect,
+  isSelected
 }) => {
-  return <div className={styles.command_palette_action} >
+  return <button 
+    className={cx(
+      common.nuclear, 
+      styles.command_palette_action,
+      { [styles.selected]: isSelected }
+    )}
+    onMouseEnter={onSelect}
+    onClick={() => isSelected && onUse()}
+  >
     <div className={styles.action_left}>
       {icon && <Icon name={icon} />}
       <div className={styles.action_name}>
@@ -22,5 +41,5 @@ export const CommandPaletteAction: React.FC<CommandPaletteActionProps> = ({
         <kbd className={styles.shortcut}>{shortcut}</kbd>
       }
     </div>
-  </div>;
+  </button>;
 };

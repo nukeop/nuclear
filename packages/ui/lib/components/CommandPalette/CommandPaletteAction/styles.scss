@@ -6,6 +6,9 @@
     width: 100%;
     padding: 0.5em 1em;
     cursor: pointer;
+    background: transparent;
+    border: none;
+    height: 3em;
 
     &.selected {
         @include roundCorners;
@@ -23,7 +26,7 @@
         display: flex;
         flex-flow: row;
         flex: 1 1 auto;
-        align-items: flex-start;
+        align-items: center;
 
         i {
             margin-right: 1em;
@@ -33,5 +36,11 @@
             display: flex;
             flex-flow: column;
         }
+    }
+
+    .action_right {
+        display: flex;
+        flex-flow: row;
+        align-items: center;
     }
 }
