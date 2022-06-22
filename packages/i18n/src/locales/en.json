@@ -337,6 +337,12 @@
   "visualizer": {
     "exit-fullscreen": "Press ESC to exit full screen"
   },
+  "command-palette": {
+    "search-placeholder": "What would you like to do?",
+    "empty-state-help": "Can't seem to find what you're looking for? Try the help command.",
+    "protip-text": "PROTIP:",
+    "protip-content": "Use the arrow keys to navigate the command palette. Use the enter key to execute a command."
+  },
   "forms": {
     "nuclear-sign-up": {
       "header": "Sign up",

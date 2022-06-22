@@ -71,6 +71,7 @@ export const Loading = () => (
   <div className='bg'>
     <CommandPalette 
       isLoading 
+      emptyStateText='Searching for commands...'
     />
   </div>
 );
@@ -81,6 +82,7 @@ export const Empty = () => (
       actions={[]}
       protipText='PROTIP:'
       protipContent='Narrow down the list of commands by typing in the search box.'
+      emptyStateText='No commands found.'
     />
   </div>
 );
@@ -97,6 +99,7 @@ export const WithActions = (callbacks: {
       actions={actions(callbacks)}
       protipText='PROTIP:'
       protipContent='Use the keyboard to navigate the command palette.'
+      emptyStateText="Can't find what you're looking for?"
     />
   </div>
 );
@@ -118,6 +121,7 @@ export const Interactive = (callbacks: {
       protipContent='Use the keyboard to navigate the command palette.'
       inputValue={input}
       onInputChange={e => setInput(e.target.value)}
+      emptyStateText="Can't find what you're looking for?"
     />
   </div>;
 };

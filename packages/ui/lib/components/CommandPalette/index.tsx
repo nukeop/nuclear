@@ -1,13 +1,14 @@
-import React, { useCallback, useState } from 'react';
+import React, { LegacyRef, useCallback, useState } from 'react';
 import cx from 'classnames';
-import { Input, SemanticICONS } from 'semantic-ui-react';
-import { CommandPaletteFooter } from './CommandPaletteFooter';
-
-import common from '../../common.scss';
-import styles from './styles.scss';
-import { CommandPaletteAction } from './CommandPaletteAction';
 import { isEmpty, take } from 'lodash';
+import { Input, SemanticICONS, Transition } from 'semantic-ui-react';
+import useOutsideClick from 'react-cool-onclickoutside';
+
+import { CommandPaletteFooter } from './CommandPaletteFooter';
+import { CommandPaletteAction } from './CommandPaletteAction';
 import { CommandPaletteEmptyState } from './CommandPaletteEmptyState';
+import styles from './styles.scss';
+import common from '../../common.scss';
 
 export type CommandPaletteAction = {
     id: string;
@@ -18,12 +19,18 @@ export type CommandPaletteAction = {
     onUse?: () => void;
 }
 
-export type CommandPaletteProps = React.ComponentProps<typeof CommandPaletteFooter> & {
+export type CommandPaletteProps = React.ComponentProps<typeof CommandPaletteFooter> & 
+React.ComponentProps<typeof CommandPaletteEmptyState> & {
     searchPlaceholder?: string;
     actions?: CommandPaletteAction[];
     isLoading?: boolean;
     inputValue?: string;
-    onInputChange?: React.ChangeEventHandler<HTMLInputElement>;
+    onInputChange?: (text: string) => void;
+
+    isOpen?: boolean;
+    onClose?: () => void;
+
+    inputRef?: LegacyRef<Input>;
 };
 
 const CommandPalette: React.FC<CommandPaletteProps> = ({
@@ -32,6 +39,10 @@ const CommandPalette: React.FC<CommandPaletteProps> = ({
   actions=[],
   inputValue,
   onInputChange,
+  emptyStateText,
+  isOpen,
+  onClose,
+  inputRef,
   ...footerProps
 }) => {
   const [selected, setSelected] = useState<CommandPaletteAction | null>(null);
@@ -50,53 +61,75 @@ const CommandPalette: React.FC<CommandPaletteProps> = ({
     setSelected(actions[previousIndex]);
   }, [actions, currentIndex]);
 
-  return <div
-    className={cx(styles.command_palette_container, common.nuclear)}
+  const closeRef = useOutsideClick(onClose);
+
+  return <Transition
+    visible={isOpen}
+    animation='fade'
+    duration={200}
   >
-    <div 
-      className={styles.command_palette}
-      onKeyDown={(e) => {
-        if (e.key === 'ArrowDown') {
-          selectNext();
-        } else if (e.key === 'ArrowUp') {
-          selectPrevious();
-        } else if (e.key === 'Enter' && selected) {
-          selected.onUse();
-        }
-      }}
-    >
-      <Input 
-        className={styles.input}
-        autoFocus
-        iconPosition='left'
-        icon={isLoading ? 'circle notch loading' : 'search'}
-        size='big'
-        placeholder={searchPlaceholder}
-        value={inputValue}
-        onChange={onInputChange}
-      />
-      <div 
-        className={styles.actions}
-      >
-        {
-          !isLoading &&
+    <div className={styles.transition_container}>
+      {
+        isOpen &&      <div
+          data-testid='command-palette'
+          className={cx(
+            styles.command_palette_container,
+            common.nuclear
+          )}
+        >
+          <div 
+            className={styles.command_palette}
+            onKeyDown={(e) => {
+              if (e.key === 'ArrowDown') {
+                selectNext();
+              } else if (e.key === 'ArrowUp') {
+                selectPrevious();
+              } else if (e.key === 'Enter' && selected) {
+                selected.onUse();
+              } else if (e.key === 'Escape') {
+                onInputChange('');
+                onClose();
+              }
+            }}
+            ref={closeRef}
+          >
+            <Input 
+              className={styles.input}
+              ref={inputRef}
+              autoFocus
+              iconPosition='left'
+              icon={isLoading ? 'circle notch loading' : 'search'}
+              size='big'
+              placeholder={searchPlaceholder}
+              value={inputValue}
+              onChange={e => onInputChange(e.target.value)}
+            />
+            <div 
+              className={styles.actions}
+            >
+              {
+                !isLoading &&
             isEmpty(actions)
-            ? <CommandPaletteEmptyState />
-            : take(actions, 5).map(action => (
-              <CommandPaletteAction 
-                key={action.id} 
-                onSelect={() => setSelected(action)}
-                isSelected={selected === action}
-                {...action} 
-              /> 
-            ))
-        }
-      </div>
-      <CommandPaletteFooter 
-        {...footerProps}
-      />
+                  ? <CommandPaletteEmptyState emptyStateText={emptyStateText}/>
+                  : take(actions, 5).map(action => (
+                    <CommandPaletteAction 
+                      key={action.id} 
+                      onSelect={() => setSelected(action)}
+                      isSelected={selected === action}
+                      {...action} 
+                    /> 
+                  ))
+              }
+            </div>
+            <CommandPaletteFooter 
+              {...footerProps}
+            />
+          </div>
+        </div>
+      }
     </div>
-  </div>;
+  </Transition>;
 };
 
 export default CommandPalette;
+
