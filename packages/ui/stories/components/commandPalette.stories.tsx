@@ -120,7 +120,7 @@ export const Interactive = (callbacks: {
       protipText='PROTIP:'
       protipContent='Use the keyboard to navigate the command palette.'
       inputValue={input}
-      onInputChange={e => setInput(e.target.value)}
+      onInputChange={text => setInput(text)}
       emptyStateText="Can't find what you're looking for?"
     />
   </div>;

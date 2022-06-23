@@ -1,6 +1,6 @@
-import React, { LegacyRef, useCallback, useState } from 'react';
+import React, { LegacyRef, useCallback, useEffect, useState } from 'react';
 import cx from 'classnames';
-import { isEmpty, take } from 'lodash';
+import { head, isEmpty, take } from 'lodash';
 import { Input, SemanticICONS, Transition } from 'semantic-ui-react';
 import useOutsideClick from 'react-cool-onclickoutside';
 
@@ -63,70 +63,78 @@ const CommandPalette: React.FC<CommandPaletteProps> = ({
 
   const closeRef = useOutsideClick(onClose);
 
+  useEffect(() => {
+    if (isOpen) {
+      setSelected(head(actions));
+    }
+  }, [inputValue]);
+
   return <Transition
     visible={isOpen}
     animation='fade'
     duration={200}
   >
     <div className={styles.transition_container}>
-      {
-        isOpen &&      <div
-          data-testid='command-palette'
-          className={cx(
-            styles.command_palette_container,
-            common.nuclear
-          )}
+      <div
+        data-testid='command-palette'
+        className={cx(
+          styles.command_palette_container,
+          common.nuclear
+        )}
+      >
+        <div 
+          className={styles.command_palette}
+          onKeyDown={(e) => {
+            if (e.key === 'ArrowDown') {
+              selectNext();
+            } else if (e.key === 'ArrowUp') {
+              selectPrevious();
+            } else if (e.key === 'Enter' && selected) {
+              selected.onUse();
+              onClose();
+            } else if (e.key === 'Escape') {
+              setSelected(null);
+              onClose();
+            }
+          }}
+          ref={closeRef}
         >
-          <div 
-            className={styles.command_palette}
-            onKeyDown={(e) => {
-              if (e.key === 'ArrowDown') {
-                selectNext();
-              } else if (e.key === 'ArrowUp') {
-                selectPrevious();
-              } else if (e.key === 'Enter' && selected) {
-                selected.onUse();
-              } else if (e.key === 'Escape') {
-                onInputChange('');
-                onClose();
-              }
+          <Input 
+            className={styles.input}
+            ref={inputRef}
+            autoFocus
+            iconPosition='left'
+            icon={isLoading ? 'circle notch loading' : 'search'}
+            size='big'
+            placeholder={searchPlaceholder}
+            value={inputValue}
+            onChange={e => {
+              onInputChange(e.target.value);
             }}
-            ref={closeRef}
+          />
+          <div 
+            className={styles.actions}
           >
-            <Input 
-              className={styles.input}
-              ref={inputRef}
-              autoFocus
-              iconPosition='left'
-              icon={isLoading ? 'circle notch loading' : 'search'}
-              size='big'
-              placeholder={searchPlaceholder}
-              value={inputValue}
-              onChange={e => onInputChange(e.target.value)}
-            />
-            <div 
-              className={styles.actions}
-            >
-              {
-                !isLoading &&
-            isEmpty(actions)
-                  ? <CommandPaletteEmptyState emptyStateText={emptyStateText}/>
-                  : take(actions, 5).map(action => (
-                    <CommandPaletteAction 
-                      key={action.id} 
-                      onSelect={() => setSelected(action)}
-                      isSelected={selected === action}
-                      {...action} 
-                    /> 
-                  ))
-              }
-            </div>
-            <CommandPaletteFooter 
-              {...footerProps}
-            />
+            {
+              !isLoading &&
+                isEmpty(actions)
+                ? <CommandPaletteEmptyState emptyStateText={emptyStateText}/>
+                : take(actions, 5).map(action => (
+                  <CommandPaletteAction 
+                    key={action.id} 
+                    onSelect={() => setSelected(action)}
+                    isSelected={selected === action}
+                    onClose={onClose}
+                    {...action} 
+                  /> 
+                ))
+            }
           </div>
+          <CommandPaletteFooter 
+            {...footerProps}
+          />
         </div>
-      }
+      </div>
     </div>
   </Transition>;
 };

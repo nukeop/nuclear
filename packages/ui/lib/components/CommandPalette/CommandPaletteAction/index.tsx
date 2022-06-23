@@ -10,6 +10,7 @@ import styles from './styles.scss';
 type CommandPaletteActionProps = CommandPaletteActionType & {
     onSelect: () => void;
     isSelected?: boolean;
+    onClose: () => void;
 };
 
 export const CommandPaletteAction: React.FC<CommandPaletteActionProps> = ({
@@ -18,6 +19,7 @@ export const CommandPaletteAction: React.FC<CommandPaletteActionProps> = ({
   shortcut,
   onUse,
   onSelect,
+  onClose,
   isSelected
 }) => {
   return <button 
@@ -26,8 +28,13 @@ export const CommandPaletteAction: React.FC<CommandPaletteActionProps> = ({
       styles.command_palette_action,
       { [styles.selected]: isSelected }
     )}
-    onMouseEnter={onSelect}
-    onClick={() => isSelected && onUse()}
+    onMouseOver={onSelect}
+    onClick={() => {
+      if (isSelected){
+        onUse();
+        onClose();
+      } 
+    }}
   >
     <div className={styles.action_left}>
       {icon && <Icon name={icon} />}
