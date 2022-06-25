@@ -3,7 +3,12 @@ import React, { useCallback, useState } from 'react';
 import { Button, FullscreenLayer } from '../..';
 
 export default {
-  title: 'Components/Fullscreen layer'
+  title: 'Components/Fullscreen layer',
+  parameters: {
+    percy: {
+      skip: true
+    }
+  }
 };
 
 export const FullscreenLayerStory = () => {
