@@ -91,6 +91,7 @@ const CommandPalette: React.FC<CommandPaletteProps> = ({
               selectPrevious();
             } else if (e.key === 'Enter' && selected) {
               selected.onUse();
+              setSelected(null);
               onClose();
             } else if (e.key === 'Escape') {
               setSelected(null);
@@ -124,7 +125,10 @@ const CommandPalette: React.FC<CommandPaletteProps> = ({
                     key={action.id} 
                     onSelect={() => setSelected(action)}
                     isSelected={selected === action}
-                    onClose={onClose}
+                    onClose={() => {
+                      setSelected(null);
+                      onClose();
+                    }}
                     {...action} 
                   /> 
                 ))
