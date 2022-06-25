@@ -45,6 +45,7 @@ import ErrorBoundary from './containers/ErrorBoundary';
 import NavButtons from './components/NavButtons';
 import WindowControls from './components/WindowControls';
 import SidebarMenuContainer from './containers/SidebarMenuContainer';
+import { CommandPaletteContainer } from './containers/CommandPaletteContainer';
 
 @withTranslation('app')
 class App extends React.PureComponent {
@@ -123,41 +124,40 @@ class App extends React.PureComponent {
 
   render() {
     return (
-      <>
-        <ErrorBoundary>
-          <div className={styles.app_container}>
-            <MiniPlayerContainer />
-            <Navbar>
-              <div className={styles.sidebar_brand}>
-                <img src={logoIcon} />
-              </div>
-              <NavButtons />
-              <SearchBoxContainer />
-              <Spacer className={styles.navbar_spacer} />
-              <HelpModalContainer />
-              {this.props.settings.framelessWindow && (
-                <WindowControls
-                  onCloseClick={this.props.actions.closeWindow}
-                  onMaxClick={this.props.actions.maximizeWindow}
-                  onMinClick={this.props.actions.minimizeWindow}
-                />
-              )}
-            </Navbar>
-            <div className={styles.panel_container}>
-              <SidebarMenuContainer />
-              <VerticalPanel className={styles.center_panel}>
-                <MainContentContainer />
-              </VerticalPanel>
-              {this.renderRightPanel()}
+      <ErrorBoundary>
+        <div className={styles.app_container}>
+          <MiniPlayerContainer />
+          <Navbar>
+            <div className={styles.sidebar_brand}>
+              <img src={logoIcon} />
             </div>
-            <PlayerBarContainer />
-            <SoundContainer />
-            <IpcContainer />
+            <NavButtons />
+            <SearchBoxContainer />
+            <Spacer className={styles.navbar_spacer} />
+            <HelpModalContainer />
+            {this.props.settings.framelessWindow && (
+              <WindowControls
+                onCloseClick={this.props.actions.closeWindow}
+                onMaxClick={this.props.actions.maximizeWindow}
+                onMinClick={this.props.actions.minimizeWindow}
+              />
+            )}
+          </Navbar>
+          <div className={styles.panel_container}>
+            <SidebarMenuContainer />
+            <VerticalPanel className={styles.center_panel}>
+              <MainContentContainer />
+            </VerticalPanel>
+            {this.renderRightPanel()}
           </div>
-        </ErrorBoundary>
+          <PlayerBarContainer />
+          <SoundContainer />
+          <IpcContainer />
+        </div>
+        <CommandPaletteContainer />
         <ShortcutsContainer />
         <ToastContainer />
-      </>
+      </ErrorBoundary>
     );
   }
 }

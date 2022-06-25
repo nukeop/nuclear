@@ -53,11 +53,9 @@ export const updateVolume = createStandardAction(Player.UPDATE_VOLUME).map((volu
   };
 });
 
-
 export const mute = createStandardAction(Player.MUTE)();
 
 export const unMute = createStandardAction(Player.UNMUTE)();
-
 
 export function toggleMute(muted: boolean) {
   return dispatch => {

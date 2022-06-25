@@ -1,0 +1,269 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`(Snapshot) Command palette - empty should render correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="fade transition_container visible transition"
+  >
+    <div
+      class="command_palette_container nuclear"
+      data-testid="command-palette"
+    >
+      <div
+        class="command_palette"
+      >
+        <div
+          class="ui big left icon input input"
+        >
+          <input
+            placeholder="What would you like to do?"
+            type="text"
+            value=""
+          />
+          <i
+            aria-hidden="true"
+            class="search icon"
+          />
+        </div>
+        <div
+          class="actions"
+        >
+          <div
+            class="nuclear command_palette_empty_state"
+          >
+            <i
+              aria-hidden="true"
+              class="searchengin massive icon"
+            />
+            <p />
+            <hr />
+          </div>
+        </div>
+        <footer
+          class="command_palette_footer"
+        >
+          <div
+            class="protip"
+          >
+            <div
+              class="protip_text"
+            >
+              PROTIP:
+            </div>
+            <div
+              class="protip_content"
+            >
+              Narrow down the list of commands by typing in the search box.
+            </div>
+          </div>
+        </footer>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`(Snapshot) Command palette - loading should render correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="fade transition_container visible transition"
+  >
+    <div
+      class="command_palette_container nuclear"
+      data-testid="command-palette"
+    >
+      <div
+        class="command_palette"
+      >
+        <div
+          class="ui big left icon input input"
+        >
+          <input
+            placeholder="What would you like to do?"
+            type="text"
+            value=""
+          />
+          <i
+            aria-hidden="true"
+            class="circle notch loading icon"
+          />
+        </div>
+        <div
+          class="actions"
+        />
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`(Snapshot) Command palette - with actions should render correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="fade transition_container visible transition"
+  >
+    <div
+      class="command_palette_container nuclear"
+      data-testid="command-palette"
+    >
+      <div
+        class="command_palette"
+      >
+        <div
+          class="ui big left icon input input"
+        >
+          <input
+            placeholder="What would you like to do?"
+            type="text"
+            value=""
+          />
+          <i
+            aria-hidden="true"
+            class="search icon"
+          />
+        </div>
+        <div
+          class="actions"
+        >
+          <button
+            class="nuclear command_palette_action"
+          >
+            <div
+              class="action_left"
+            >
+              <i
+                aria-hidden="true"
+                class="play icon"
+              />
+              <div
+                class="action_name"
+              >
+                Play
+              </div>
+            </div>
+            <div
+              class="action_right"
+            >
+              <kbd
+                class="shortcut"
+              >
+                space
+              </kbd>
+            </div>
+          </button>
+          <button
+            class="nuclear command_palette_action"
+          >
+            <div
+              class="action_left"
+            >
+              <i
+                aria-hidden="true"
+                class="forward icon"
+              />
+              <div
+                class="action_name"
+              >
+                Next
+              </div>
+            </div>
+            <div
+              class="action_right"
+            >
+              <kbd
+                class="shortcut"
+              >
+                right arrow
+              </kbd>
+            </div>
+          </button>
+          <button
+            class="nuclear command_palette_action"
+          >
+            <div
+              class="action_left"
+            >
+              <i
+                aria-hidden="true"
+                class="backward icon"
+              />
+              <div
+                class="action_name"
+              >
+                Previous
+              </div>
+            </div>
+            <div
+              class="action_right"
+            >
+              <kbd
+                class="shortcut"
+              >
+                left arrow
+              </kbd>
+            </div>
+          </button>
+          <button
+            class="nuclear command_palette_action"
+          >
+            <div
+              class="action_left"
+            >
+              <i
+                aria-hidden="true"
+                class="random icon"
+              />
+              <div
+                class="action_name"
+              >
+                Shuffle
+              </div>
+            </div>
+            <div
+              class="action_right"
+            />
+          </button>
+          <button
+            class="nuclear command_palette_action"
+          >
+            <div
+              class="action_left"
+            >
+              <i
+                aria-hidden="true"
+                class="repeat icon"
+              />
+              <div
+                class="action_name"
+              >
+                Repeat
+              </div>
+            </div>
+            <div
+              class="action_right"
+            />
+          </button>
+        </div>
+        <footer
+          class="command_palette_footer"
+        >
+          <div
+            class="protip"
+          >
+            <div
+              class="protip_text"
+            >
+              PROTIP:
+            </div>
+            <div
+              class="protip_content"
+            >
+              Use the keyboard to navigate the command palette.
+            </div>
+          </div>
+        </footer>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

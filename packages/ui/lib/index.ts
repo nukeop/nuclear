@@ -7,6 +7,7 @@ export { default as Box } from './components/Box';
 export { default as Button } from './components/Button';
 export { default as Card } from './components/Card';
 export { default as Checkbox } from './components/Checkbox';
+export { default as CommandPalette } from './components/CommandPalette';
 export { default as ContextPopup } from './components/ContextPopup';
 export { default as Cover } from './components/Cover';
 export { default as Dropdown } from './components/Dropdown';
