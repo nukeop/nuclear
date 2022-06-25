@@ -4,7 +4,12 @@ import { Button } from 'semantic-ui-react';
 import { TrackPopup } from '../..';
 
 export default {
-  title: 'Components/Track popup'
+  title: 'Components/Track popup',
+  parameters: {
+    percy: {
+      skip: true
+    }
+  }
 };
 
 const track = {

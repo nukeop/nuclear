@@ -1,0 +1,18 @@
+name: Visual testing (Percy)
+
+on:
+  push:
+    branches-ignore:
+      - crowdin
+  pull_request:
+    branches-ignore:
+      - crowdin
+
+jobs:
+  visuals:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Percy Test
+        run: cd packages/ui && npm run percy
