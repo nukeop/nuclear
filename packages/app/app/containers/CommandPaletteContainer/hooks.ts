@@ -9,7 +9,6 @@ import { nextSong, previousSong } from '../../actions/queue';
 import * as windowActions from '../../actions/window';
 import { useToggleOptionCallback } from '../PlayerBarContainer/hooks';
 import { settingsSelector } from '../../selectors/settings';
-import { playerSelectors } from '../../selectors/player';
 import { useTranslation } from 'react-i18next';
 import { isMac } from '../../hooks/usePlatform';
 
@@ -26,7 +25,7 @@ export const useCommandPaletteActions = (): CommandPaletteAction[] => {
   );
 
   const settings = useSelector(settingsSelector);
-  const volume: number = useSelector(playerSelectors.volume);
+  const volume = settings.volume;
 
   return [{
     id: 'play',
