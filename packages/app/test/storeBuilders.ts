@@ -47,7 +47,7 @@ export const buildStoreState = () => {
       playbackStreamLoading: false,
       playbackProgress: 0,
       seek: 0,
-      volume: 0.5,
+      volume: 50,
       muted: false
     },
     dashboard: {

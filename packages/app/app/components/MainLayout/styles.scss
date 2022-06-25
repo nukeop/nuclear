@@ -1,4 +1,4 @@
-@import '../../vars';
+@import "../../vars";
 
 .main_layout_container {
   position: relative;
@@ -14,13 +14,13 @@
   width: 100%;
   height: 100%;
   margin: 0;
-}
 
-.transition > div {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  margin: 0;
+  & > div {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+  }
 }
 
 .visible.dimmer {

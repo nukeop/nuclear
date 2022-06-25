@@ -1,12 +1,11 @@
 import React from 'react';
-import {withRouter} from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as Mousetrap from 'mousetrap';
 import Sound from 'react-hifi';
 import _ from 'lodash';
 import { compose } from 'recompose';
-
 
 import * as PlayerActions from '../../actions/player';
 import * as QueueActions from '../../actions/queue';
@@ -25,7 +24,7 @@ class Shortcuts extends React.Component {
     const { settings } = this.props;
     return _.defaultTo(settings.seekIteration, SEEK_ITERATION);
   }
-  
+
   incrementCoef() {
     clearTimeout(this.timeout);
     this.coef = this.coef + COEF_ITERATION;
@@ -51,7 +50,7 @@ class Shortcuts extends React.Component {
     const { queue, player, actions } = this.props;
 
     if (
-      queue.queueItems.length > 0 && 
+      queue.queueItems.length > 0 &&
       player.playbackStatus !== Sound.status.PLAYING
     ) {
       actions.startPlayback(false);
@@ -81,7 +80,7 @@ class Shortcuts extends React.Component {
 
   increaseSeek = () => {
     const { player, actions } = this.props;
-    
+
     if (player.playbackProgress < 100) {
       actions.updateSeek(player.seek + this.getSeekIteration() * this.coef);
       this.incrementCoef();
@@ -90,7 +89,7 @@ class Shortcuts extends React.Component {
   }
 
   decreaseSeek = () => {
-    const { player, actions} = this.props;
+    const { player, actions } = this.props;
 
     if (player.playbackProgress > 0) {
       actions.updateSeek(player.seek - this.getSeekIteration() * this.coef);
@@ -100,14 +99,14 @@ class Shortcuts extends React.Component {
   }
 
   goToPreviousPage = () => {
-    const {history} = this.props;
-    if (history.index > 1 ) {
+    const { history } = this.props;
+    if (history.index > 1) {
       history.goBack();
     }
   }
 
   goToNextPage = () => {
-    const {history} = this.props;
+    const { history } = this.props;
     if (history.index < history.length - 1) {
       history.goForward();
     }
