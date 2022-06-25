@@ -22,3 +22,5 @@ jobs:
       - run: npm ci
       - name: Percy Test
         run: cd packages/ui && npm run percy
+        env:
+          PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
