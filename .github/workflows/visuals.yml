@@ -19,5 +19,6 @@ jobs:
         with:
           node-version: 16
           cache: npm
+      - run: npm ci
       - name: Percy Test
         run: cd packages/ui && npm run percy
