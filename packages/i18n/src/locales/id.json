@@ -195,6 +195,7 @@
   "queue": {
     "clear": "Bersihkan antrian",
     "dialog-accept": "Simpan",
+    "dialog-cancel": "Cancel",
     "dialog-placeholder": "Nama daftar putar...",
     "dialog-trigger": "Simpan sebagai daftar putar",
     "download": "Unduh",
