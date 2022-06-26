@@ -195,6 +195,7 @@
   "queue": {
     "clear": "Alisin lahat ng nakapilang kanta",
     "dialog-accept": "I-save",
+    "dialog-cancel": "Cancel",
     "dialog-placeholder": "Pangalan ng playlist...",
     "dialog-trigger": "I-save bilang playlist",
     "download": "I-download",
