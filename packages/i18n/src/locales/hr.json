@@ -195,6 +195,7 @@
   "queue": {
     "clear": "Očisti red čekanja",
     "dialog-accept": "Sačuvaj",
+    "dialog-cancel": "Cancel",
     "dialog-placeholder": "Ime popisa za reprodukciju...",
     "dialog-trigger": "Sačuvaj kao popis za reprodukciju",
     "download": "Preuzmi",
