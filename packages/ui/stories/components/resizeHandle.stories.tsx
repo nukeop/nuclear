@@ -4,7 +4,12 @@ import { ResizeHandle } from '../..';
 
 export default {
   title: 'Components/Resize Handle',
-  component: ResizeHandle
+  component: ResizeHandle,
+  parameters: {
+    percy: {
+      skip: true
+    }
+  }
 };
 
 export const Vertical = () => <div className='bg'>
