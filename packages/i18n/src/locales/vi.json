@@ -195,6 +195,7 @@
   "queue": {
     "clear": "Làm trống danh sách đang phát",
     "dialog-accept": "Lưu",
+    "dialog-cancel": "Cancel",
     "dialog-placeholder": "Tên playlist...",
     "dialog-trigger": "Lưu playlist",
     "download": "Tải về",
