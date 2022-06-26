@@ -3,6 +3,7 @@ import { store as electronStore } from '@nuclear/core';
 
 import { AnyProps, mountedPlayQueueFactory, setupI18Next } from '../../../test/testUtils';
 import { buildElectronStoreState, buildStoreState } from '../../../test/storeBuilders';
+import userEvent from '@testing-library/user-event';
 
 describe('Play Queue container', () => {
   beforeAll(() => {
@@ -123,6 +124,35 @@ describe('Play Queue container', () => {
       expect.objectContaining({
         artist: 'test artist 1',
         name: 'test track 1'
+      })
+    ]);
+  });
+
+  it('should create a new playlist from the queue', async () => {
+    const { component, store } = mountComponent();
+
+    await waitFor(() => component.getByTestId('queue-menu-more-container').click());
+    await waitFor(() => component.getByText(/Save as playlist/i).click());
+    userEvent.type(
+      component.getByPlaceholderText('Playlist name...'), 
+      '{selectall}{backspace}my  new playlist{enter}'
+    );
+
+    const state = store.getState();
+
+    expect(state.playlists.localPlaylists.data[1].name).toBe('my new playlist');
+    expect(state.playlists.localPlaylists.data[1].tracks).toEqual([
+      expect.objectContaining({
+        artist: 'test artist 1',
+        name: 'test track 1'
+      }), 
+      expect.objectContaining({
+        artist: 'test artist 2',
+        name: 'test track 2'
+      }),
+      expect.objectContaining({
+        artist: 'test artist 3',
+        name: 'test track 3'
       })
     ]);
   });
