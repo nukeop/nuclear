@@ -195,6 +195,7 @@
   "queue": {
     "clear": "Išvalyti eilę",
     "dialog-accept": "Išsaugoti",
+    "dialog-cancel": "Cancel",
     "dialog-placeholder": "Grojaraščio pavadinimas...",
     "dialog-trigger": "Įšsaugoti kaip grojaraštį",
     "download": "Atsisiųsti",
