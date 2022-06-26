@@ -195,6 +195,7 @@
   "queue": {
     "clear": "সারি পরিষ্কার করুন",
     "dialog-accept": "সেভ",
+    "dialog-cancel": "Cancel",
     "dialog-placeholder": "প্লেলিস্টের নাম...",
     "dialog-trigger": "প্লেলিস্ট হিসাবে সেভ করুন",
     "download": "ডাউনলোড",
