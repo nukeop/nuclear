@@ -195,6 +195,7 @@
   "queue": {
     "clear": "Cancella coda",
     "dialog-accept": "Salva",
+    "dialog-cancel": "Cancel",
     "dialog-placeholder": "Nome scaletta...",
     "dialog-trigger": "Salva come scaletta",
     "download": "Scarica",
