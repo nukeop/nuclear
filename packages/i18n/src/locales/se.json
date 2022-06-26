@@ -195,6 +195,7 @@
   "queue": {
     "clear": "Rensa kön",
     "dialog-accept": "Spara",
+    "dialog-cancel": "Cancel",
     "dialog-placeholder": "Namn på spellistan...",
     "dialog-trigger": "Spara som spellista",
     "download": "Hämta",
