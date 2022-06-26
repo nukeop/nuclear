@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import _, { take } from 'lodash';
 
 import MetaProvider from '../metaProvider';
 import * as Discogs from '../../rest/Discogs';
@@ -26,6 +26,7 @@ import {
 } from '../../rest/Discogs.types';
 import { LastFmArtistInfo, LastfmTopTracks, LastfmTrack } from '../../rest/Lastfm.types';
 import { cleanName } from '../../structs/Artist';
+import { getToken, searchArtists } from '../../rest/Spotify';
 
 class DiscogsMetaProvider extends MetaProvider {
   lastfm: LastFmApi;
@@ -177,7 +178,17 @@ class DiscogsMetaProvider extends MetaProvider {
 
     const coverImage = this.getCoverImage(discogsInfo);
 
-    return Promise.resolve({
+    const spotifyToken = await getToken();
+    const similarArtists = await Promise.all(take(lastFmInfo.similar.artist, 5).map(async artist => {
+      const similarArtist = await searchArtists(spotifyToken, artist.name);
+
+      return {
+        name: artist.name,
+        thumbnail: similarArtist.images[0].url
+      };
+    }));
+
+    return {
       id: discogsInfo.id,
       name: discogsInfo.name,
       description: _.get(lastFmInfo, 'bio.summary'),
@@ -194,12 +205,9 @@ class DiscogsMetaProvider extends MetaProvider {
         listeners: track.listeners,
         artist: track.artist
       })),
-      similar: _.map(lastFmInfo.similar.artist, artist => ({
-        name: artist.name,
-        thumbnail: _.get(_.find(artist.image, { size: 'large' }), '#text')
-      })),
+      similar: similarArtists,
       source: SearchResultsSource.Discogs
-    });
+    };
   }
 
   async fetchArtistDetailsByName(artistName: string): Promise<ArtistDetails> {
