@@ -195,6 +195,7 @@
   "queue": {
     "clear": "Kuyruğu temizle",
     "dialog-accept": "Kaydet",
+    "dialog-cancel": "Cancel",
     "dialog-placeholder": "Çalma listesi adı...",
     "dialog-trigger": "Çalma listesi olarak kaydet",
     "download": "İndir",
