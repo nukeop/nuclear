@@ -195,6 +195,7 @@
   "queue": {
     "clear": "Ачысціць чаргу",
     "dialog-accept": "Захаваць",
+    "dialog-cancel": "Cancel",
     "dialog-placeholder": "Назва плэйліста...",
     "dialog-trigger": "Захаваць як спіс плэйліст",
     "download": "Загрузіць",
