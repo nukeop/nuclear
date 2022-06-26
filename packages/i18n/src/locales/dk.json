@@ -195,6 +195,7 @@
   "queue": {
     "clear": "Ryd kø",
     "dialog-accept": "Gem",
+    "dialog-cancel": "Cancel",
     "dialog-placeholder": "Afspilningslistens navn...",
     "dialog-trigger": "Gem som afspilningsliste",
     "download": "Hent",
