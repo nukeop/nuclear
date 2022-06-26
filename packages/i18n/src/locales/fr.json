@@ -195,6 +195,7 @@
   "queue": {
     "clear": "Vider la file le lecture",
     "dialog-accept": "Sauvegarder",
+    "dialog-cancel": "Cancel",
     "dialog-placeholder": "Nom de la playlist...",
     "dialog-trigger": "Sauvegarder en tant que playlist",
     "download": "Télécharger",
