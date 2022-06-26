@@ -195,6 +195,7 @@
   "queue": {
     "clear": "Wyczyść kolejkę",
     "dialog-accept": "Zapisz",
+    "dialog-cancel": "Cancel",
     "dialog-placeholder": "Nazwa listy odtwarzania...",
     "dialog-trigger": "Zapisz listę odtwarzania",
     "download": "Pobierz",
