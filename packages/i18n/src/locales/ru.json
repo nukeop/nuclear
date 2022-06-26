@@ -195,6 +195,7 @@
   "queue": {
     "clear": "Очистить очередь",
     "dialog-accept": "Сохранить",
+    "dialog-cancel": "Cancel",
     "dialog-placeholder": "Название...",
     "dialog-trigger": "Сохранить как плейлист",
     "download": "Загрузить",
