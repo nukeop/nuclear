@@ -1,0 +1,26 @@
+name: Visual testing (Percy)
+
+on:
+  push:
+    branches-ignore:
+      - crowdin
+  pull_request:
+    branches-ignore:
+      - crowdin
+
+jobs:
+  visuals:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@master
+      - name: Use Node.js 16
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16
+          cache: npm
+      - run: npm ci
+      - name: Percy Test
+        run: cd packages/ui && npm run percy
+        env:
+          PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
