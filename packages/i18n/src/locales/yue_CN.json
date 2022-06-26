@@ -195,6 +195,7 @@
   "queue": {
     "clear": "Clear queue",
     "dialog-accept": "Save",
+    "dialog-cancel": "Cancel",
     "dialog-placeholder": "Playlist name...",
     "dialog-trigger": "Save as playlist",
     "download": "Download",
