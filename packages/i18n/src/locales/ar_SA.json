@@ -119,7 +119,7 @@
     "not-found": "لم يتم العثور على أي كلمات لهذه الأغنية."
   },
   "option-control": {
-    "autoradio": "Autoradio",
+    "autoradio": "مذياع تلقائي",
     "loop": "تكرار",
     "mini-player": "مشغل صغير",
     "shuffle": "عشوائي"
@@ -147,8 +147,8 @@
     "export-fail-title": "فشل تصدير قائمة التشغيل",
     "export-success-title": "تم تصدير قائمة التشغيل بنجاح",
     "header": "قوائم التشغيل الخاصة بك",
-    "import-progress": "Import progress",
-    "spotify-import-placeholder": "Paste a Spotify playlist URL here",
+    "import-progress": "تقدم الاستيراد",
+    "spotify-import-placeholder": "لصق رابط المقطوعات الموسيقية بسبوتيفاي هنا",
     "dialog-placeholder": "اسم قائمة التشغيل...",
     "dialog-accept": "حفظ",
     "dialog-cancel": "Cancel",
@@ -195,6 +195,7 @@
   "queue": {
     "clear": "مسح قائمة انتظار",
     "dialog-accept": "حفظ",
+    "dialog-cancel": "Cancel",
     "dialog-placeholder": "اسم قائمة التشغيل...",
     "dialog-trigger": "حفظ كقائمة تشغيل",
     "download": "التنزيل",
