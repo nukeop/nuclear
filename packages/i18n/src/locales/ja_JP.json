@@ -195,6 +195,7 @@
   "queue": {
     "clear": "キューをクリア",
     "dialog-accept": "保存",
+    "dialog-cancel": "Cancel",
     "dialog-placeholder": "プレイリストの名...",
     "dialog-trigger": "プレイリストとして保存",
     "download": "ダウンロード",
