@@ -195,6 +195,7 @@
   "queue": {
     "clear": "Tyhjennä jono",
     "dialog-accept": "Tallenna",
+    "dialog-cancel": "Cancel",
     "dialog-placeholder": "Soittolistan nimi...",
     "dialog-trigger": "Tallenna soittolistana",
     "download": "Lataa",
