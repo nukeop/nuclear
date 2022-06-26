@@ -195,6 +195,7 @@
   "queue": {
     "clear": "Vaciar cola",
     "dialog-accept": "Guardar",
+    "dialog-cancel": "Cancel",
     "dialog-placeholder": "Nombre de la lista de reproduccion...",
     "dialog-trigger": "Guardar como lista de reproducción",
     "download": "Descargar",
