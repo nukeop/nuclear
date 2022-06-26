@@ -195,6 +195,7 @@
   "queue": {
     "clear": "Notīrīt rindu",
     "dialog-accept": "Saglabāt",
+    "dialog-cancel": "Cancel",
     "dialog-placeholder": "Atskaņošanas saraksta nosaukums...",
     "dialog-trigger": "Saglabāt kā atskaņošanas sarakstu",
     "download": "Lejupielādēt",
