@@ -195,6 +195,7 @@
   "queue": {
     "clear": "Vymazať poradie",
     "dialog-accept": "Uložiť",
+    "dialog-cancel": "Cancel",
     "dialog-placeholder": "Názov playlistu...",
     "dialog-trigger": "Uložiť ako playlist",
     "download": "Stiahnuť",
