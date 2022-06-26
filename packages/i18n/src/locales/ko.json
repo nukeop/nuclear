@@ -195,6 +195,7 @@
   "queue": {
     "clear": "재생 목록 삭제",
     "dialog-accept": "저장",
+    "dialog-cancel": "Cancel",
     "dialog-placeholder": "플레이리스트 제목...",
     "dialog-trigger": "플레이리스트로 저장",
     "download": "다운로드",
