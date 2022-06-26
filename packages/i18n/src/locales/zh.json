@@ -195,6 +195,7 @@
   "queue": {
     "clear": "清除播放队列",
     "dialog-accept": "保存",
+    "dialog-cancel": "Cancel",
     "dialog-placeholder": "播放列表名称...",
     "dialog-trigger": "另存为播放列表",
     "download": "下载",
