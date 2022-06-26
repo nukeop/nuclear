@@ -195,6 +195,7 @@
   "queue": {
     "clear": "कतार खाली करें",
     "dialog-accept": "सहेजें",
+    "dialog-cancel": "Cancel",
     "dialog-placeholder": "प्लेलिस्ट का नाम",
     "dialog-trigger": "प्लेलिस्ट के रूप में सहेजें",
     "download": "डाउनलोड",
