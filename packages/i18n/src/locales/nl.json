@@ -195,6 +195,7 @@
   "queue": {
     "clear": "Wachtrij legen",
     "dialog-accept": "Opslaan",
+    "dialog-cancel": "Cancel",
     "dialog-placeholder": "Naam van afspeellijst...",
     "dialog-trigger": "Opslaan als afspeellijst",
     "download": "Downloaden",
