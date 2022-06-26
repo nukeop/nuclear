@@ -195,6 +195,7 @@
   "queue": {
     "clear": "Slett kø",
     "dialog-accept": "Lagre",
+    "dialog-cancel": "Cancel",
     "dialog-placeholder": "Navn på spilleliste...",
     "dialog-trigger": "Lagre som spilleliste",
     "download": "Nedlasting",
