@@ -195,6 +195,7 @@
   "queue": {
     "clear": "Hreinsa biðröð",
     "dialog-accept": "Vista",
+    "dialog-cancel": "Cancel",
     "dialog-placeholder": "Nafn lagalista...",
     "dialog-trigger": "Vista sem lagalista",
     "download": "Hlaða niður",
