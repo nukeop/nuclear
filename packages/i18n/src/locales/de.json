@@ -195,6 +195,7 @@
   "queue": {
     "clear": "Warteschlange leeren",
     "dialog-accept": "Speichern",
+    "dialog-cancel": "Cancel",
     "dialog-placeholder": "Wiedergabeliste Name...",
     "dialog-trigger": "Als Wiedergabeliste speichern",
     "download": "Herunterladen",
