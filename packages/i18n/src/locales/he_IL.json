@@ -195,6 +195,7 @@
   "queue": {
     "clear": "ניקוי התור",
     "dialog-accept": "שמירה",
+    "dialog-cancel": "Cancel",
     "dialog-placeholder": "שם הפלייליסט...",
     "dialog-trigger": "שמירה כפלייליסט",
     "download": "הורדה",
