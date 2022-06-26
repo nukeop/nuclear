@@ -195,6 +195,7 @@
   "queue": {
     "clear": "Pastro radhën",
     "dialog-accept": "Ruaj",
+    "dialog-cancel": "Cancel",
     "dialog-placeholder": "Emri i listës...",
     "dialog-trigger": "Ruaj si listë këngësh",
     "download": "Shkarko",
