@@ -195,6 +195,7 @@
   "queue": {
     "clear": "Limpar Fila",
     "dialog-accept": "Salvar",
+    "dialog-cancel": "Cancel",
     "dialog-placeholder": "Nome da Lista de Reprodução...",
     "dialog-trigger": "Salvar como Lista de Reprodução",
     "download": "Download",
