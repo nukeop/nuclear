@@ -195,6 +195,7 @@
   "queue": {
     "clear": "Smazat frontu",
     "dialog-accept": "Uložit",
+    "dialog-cancel": "Cancel",
     "dialog-placeholder": "Název seznamu skladeb...",
     "dialog-trigger": "Uložit jako seznam skladeb",
     "download": "Stáhnout",
