@@ -14,21 +14,17 @@ class Dashboard extends React.Component {
 
   panes() {
     const {
-      actions,
-      dashboardData,
-      history,
-      streamProviders,
-      t
-    } = this.props;
-
-    const {
       artistInfoSearchByName,
       albumInfoSearchByName,
       addToQueue,
       selectSong,
       clearQueue,
-      startPlayback
-    } = actions;
+      startPlayback,
+      dashboardData,
+      history,
+      streamProviders,
+      t
+    } = this.props;
 
     return [
       {
@@ -69,10 +65,10 @@ class Dashboard extends React.Component {
 
   componentDidMount() {
     if (this.props.isConnected) {
-      this.props.actions.loadBestNewTracks();
-      this.props.actions.loadBestNewAlbums();
-      this.props.actions.loadTopTags();
-      this.props.actions.loadTopTracks();
+      this.props.loadBestNewTracks();
+      this.props.loadBestNewAlbums();
+      this.props.loadTopTags();
+      this.props.loadTopTracks();
     }
   }
 
