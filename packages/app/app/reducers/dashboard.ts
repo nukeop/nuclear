@@ -1,4 +1,4 @@
-import { DeezerTopTrack } from '@nuclear/core/src/rest/Deezer';
+import { DeezerTrack } from '@nuclear/core/src/rest/Deezer';
 import { LastfmTopTag } from '@nuclear/core/src/rest/Lastfm.types';
 import { ActionType, getType } from 'typesafe-actions';
 import {loadBestNewAlbumsAction, loadBestNewTracksAction, loadTopTagsAction, loadTopTracksAction, PitchforkAlbum, PitchforkTrack} from '../actions/dashboard';
@@ -6,7 +6,7 @@ import {loadBestNewAlbumsAction, loadBestNewTracksAction, loadTopTagsAction, loa
 type DashboardReducerState = {
   bestNewAlbums: PitchforkAlbum[]
   bestNewTracks: PitchforkTrack[]
-  topTracks: DeezerTopTrack[]
+  topTracks: DeezerTrack[]
   topTags: LastfmTopTag[]
 }
 

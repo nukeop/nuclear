@@ -6,7 +6,7 @@ import globals from '../globals';
 import { Dashboard } from './actionTypes';
 import { createAsyncAction } from 'typesafe-actions';
 import { LastfmTopTag } from '@nuclear/core/src/rest/Lastfm.types';
-import { DeezerTopTrack } from '@nuclear/core/src/rest/Deezer';
+import { DeezerTrack } from '@nuclear/core/src/rest/Deezer';
 
 const lastfm = new rest.LastFmApi(
   globals.lastfmApiKey,
@@ -98,13 +98,14 @@ export const loadTopTracksAction = createAsyncAction(
   Dashboard.LOAD_TOP_TRACKS_START,
   Dashboard.LOAD_TOP_TRACKS_SUCCESS,
   Dashboard.LOAD_TOP_TRACKS_ERROR
-)<undefined, DeezerTopTrack[], undefined>();
+)<undefined, DeezerTrack[], undefined>();
 
 export const loadTopTracks = () => async (dispatch) => {
   dispatch(loadTopTracksAction.request());
 
   try {
     const tracks = await rest.Deezer.getTopTracks();
+
     dispatch(loadTopTracksAction.success(tracks.data.map(rest.Deezer.mapDeezerTrackToInternal)));
   } catch (error) {
     dispatch(loadTopTracksAction.failure());

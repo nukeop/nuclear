@@ -1,6 +1,6 @@
 import React from 'react';
 import { Tab } from 'semantic-ui-react';
-import { DeezerTopTrack } from '@nuclear/core/src/rest/Deezer';
+import { DeezerTrack } from '@nuclear/core/src/rest/Deezer';
 import { Track } from '@nuclear/ui/lib/types';
 
 import TrackTableContainer from '../../../containers/TrackTableContainer';
@@ -8,10 +8,10 @@ import styles from './styles.scss';
 import { useTranslation } from 'react-i18next';
 
 type ChartsTabProps = {
-  topTracks: DeezerTopTrack[];
+  topTracks: DeezerTrack[];
 }
 
-const mapDeezerTopTrackToTrack = (topTrack: DeezerTopTrack): Track => ({
+const mapDeezerTopTrackToTrack = (topTrack: DeezerTrack): Track => ({
   artist: topTrack.artist?.name,
   title: topTrack.title,
   album: topTrack.album?.title,
