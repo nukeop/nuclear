@@ -10,7 +10,6 @@ import * as PlayerActions from '../../actions/player';
 import Dashboard from '../../components/Dashboard';
 import { dashboardSelector } from '../../selectors/dashboard';
 import { useHistory } from 'react-router';
-import { settingsSelector } from '../../selectors/settings';
 import { connectivity } from '../../selectors/connectivity';
 import { pluginsSelectors } from '../../selectors/plugins';
 import { QueueItem } from '../../reducers/queue';
@@ -20,7 +19,6 @@ const DashboardContainer: React.FC = () => {
   const history = useHistory();
 
   const dashboard = useSelector(dashboardSelector);
-  const settings = useSelector(settingsSelector);
   const streamProviders = useSelector(pluginsSelectors.plugins).streamProviders;
   const isConnected = useSelector(connectivity);
   
@@ -40,19 +38,20 @@ const DashboardContainer: React.FC = () => {
     dispatch(FavoritesActions.readFavorites());
   }, [dispatch]);
 
+  useEffect(() => {
+    if (isConnected) {
+      loadBestNewTracks();
+      loadBestNewAlbums();
+      loadTopTags();
+      loadTopTracks();
+    }
+  }, [isConnected]);
 
   return (
     <Dashboard
-      history={history}
       dashboardData={dashboard}
-      settings={settings}
       streamProviders={streamProviders}
       isConnected={isConnected}
-
-      loadBestNewTracks={loadBestNewTracks}
-      loadBestNewAlbums={loadBestNewAlbums}
-      loadTopTags={loadTopTags}
-      loadTopTracks={loadTopTracks}
 
       artistInfoSearchByName={artistInfoSearchByName}
       albumInfoSearchByName={albumInfoSearchByName}
