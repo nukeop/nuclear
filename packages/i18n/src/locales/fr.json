@@ -3,7 +3,7 @@
     "download": "Télécharger",
     "download-toast-content": "{{artist}} - {{title}} a été ajouté aux téléchargements.",
     "download-toast-title": "L'album a été ajouté aux téléchargements",
-    "error-load": "Désolé, cet album n'a pas pu être chargé. Réessayez plus tard ou ouvrez une nouvelle issue sur Github",
+    "error-load": "Désolé, cet album n'a pas pu être chargé. Réessayez plus tard ou ouvrez une nouvelle demande d'aide sur Github",
     "genre": "Genre :",
     "play": "Lire",
     "queue": "Ajouter l'album à la liste de lecture",
@@ -46,7 +46,7 @@
     "artist": "Artiste",
     "best": "Nouveautés",
     "best-new-albums": "Meilleurs albums",
-    "best-new-tracks": "Meilleurs morceaux",
+    "best-new-tracks": "Meilleurs nouveaux morceaux",
     "genres": "Genres",
     "news": "Actualités",
     "playcounts": "Nombre d'écoute",
@@ -100,9 +100,6 @@
     "report": "Soumettre un problème ou une nouvelle fonctionnalité",
     "thanks": "Un grand merci à tous nos contributeurs sur Github."
   },
-  "input-dialog": {
-    "cancel": "Annuler"
-  },
   "library": {
     "add": "Ajouter des dossiers",
     "album": "Album",
@@ -139,7 +136,6 @@
     "album": "Album",
     "artist": "Artiste",
     "delete": "Supprimer cette playlist",
-    "dialog-placeholder": "Nom de la playlist...",
     "duration": "Durée",
     "empty": "Aucune playlist.",
     "empty-help": "Try create some playlists or import by url and they will appear here!",
@@ -151,9 +147,16 @@
     "export-fail-title": "L'exportation de la playlist a échoué",
     "export-success-title": "Playlist exportée avec succès",
     "header": "Vos playlists",
+    "import-progress": "Import progress",
+    "spotify-import-placeholder": "Paste a Spotify playlist URL here",
+    "dialog-placeholder": "Nom de la playlist...",
     "dialog-accept": "Enregistrer",
+    "dialog-cancel": "Cancel",
+    "dialog-rename": "Rename",
+    "dialog-import": "Import",
     "create-button": "Créer une nouvelle playlist",
     "new-playlist": "Nouvelle playlist",
+    "import-url-button": "Import from url (Spotify)",
     "import-button": "Importer depuis un fichier (JSON)",
     "import-fail-title": "L'importation de la playlist a échoué",
     "import-success-title": "Playlist importée avec succès",
@@ -192,6 +195,7 @@
   "queue": {
     "clear": "Vider la file le lecture",
     "dialog-accept": "Sauvegarder",
+    "dialog-cancel": "Cancel",
     "dialog-placeholder": "Nom de la playlist...",
     "dialog-trigger": "Sauvegarder en tant que playlist",
     "download": "Télécharger",
@@ -334,6 +338,47 @@
   "visualizer": {
     "exit-fullscreen": "Appuyez sur ÉCHAP pour quitter le mode plein écran"
   },
+  "command-palette": {
+    "search-placeholder": "What would you like to do?",
+    "empty-state-help": "Can't seem to find what you're looking for? Try the help command.",
+    "protip-text": "PROTIP:",
+    "protip-content": "Arrows to navigate, Enter to select, Esc to close",
+    "categories": {
+      "playback": "Playback",
+      "queue": "Queue",
+      "navigation": "Navigation",
+      "application": "Application"
+    },
+    "actions": {
+      "play": "Play",
+      "pause": "Pause",
+      "next": "Next",
+      "previous": "Previous",
+      "go-to-next-page": "Go to next page",
+      "go-to-previous-page": "Go to previous page",
+      "shuffle": "Shuffle",
+      "loop": "Loop",
+      "autoradio": "Autoradio",
+      "raise-volume": "Raise volume",
+      "lower-volume": "Lower volume",
+      "mute": "Mute",
+      "unmute": "Unmute",
+      "quit": "Quit",
+      "minimize": "Minimize",
+      "maximize": "Maximize",
+      "go-to-dashboard": "Go to dashboard",
+      "go-to-downloads": "Go to downloads",
+      "go-to-lyrics": "Go to lyrics",
+      "go-to-plugins": "Go to plugins",
+      "go-to-search": "Go to search",
+      "go-to-settings": "Go to settings",
+      "go-to-equalizer": "Go to equalizer",
+      "go-to-visualizer": "Go to visualizer",
+      "go-to-playlists": "Go to playlists",
+      "go-to-favorite-tracks": "Go to favorite tracks",
+      "go-to-library": "Go to local library"
+    }
+  },
   "forms": {
     "nuclear-sign-up": {
       "header": "S'inscrire",
@@ -364,7 +409,7 @@
       "password-label": "Mot de passe",
       "no-account-label": "Vous n'avez pas encore de compte ?",
       "no-account-link": "S'inscrire",
-      "sign-in-button": "Sign in"
+      "sign-in-button": "Connexion"
     }
   }
 }

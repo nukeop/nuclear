@@ -100,9 +100,6 @@
     "report": "Zgłoś problemy lub nowe funkcje",
     "thanks": "Podziękowania dla współtwórców z serwisu Github, Wasza pomoc była nieoceniona w tworzeniu tego programu."
   },
-  "input-dialog": {
-    "cancel": "Anuluj"
-  },
   "library": {
     "add": "Dodaj katalogi",
     "album": "Album",
@@ -139,7 +136,6 @@
     "album": "Album",
     "artist": "Artysta",
     "delete": "Usuń tę listę odtwarzania",
-    "dialog-placeholder": "Nazwa listy odtwarzania...",
     "duration": "Długość",
     "empty": "Brak list odtwarzania.",
     "empty-help": "Utwórz kilka list odtwarzania lub zaimportuj poprzez adres URL, aby się tu pojawiły!",
@@ -151,9 +147,16 @@
     "export-fail-title": "Błąd eksportowania listy odtwarzania",
     "export-success-title": "Lista odtwarzania wyeksportowana pomyślnie",
     "header": "Twoje listy odtwarzania",
+    "import-progress": "Import progress",
+    "spotify-import-placeholder": "Paste a Spotify playlist URL here",
+    "dialog-placeholder": "Nazwa listy odtwarzania...",
     "dialog-accept": "Zapisz",
+    "dialog-cancel": "Cancel",
+    "dialog-rename": "Rename",
+    "dialog-import": "Import",
     "create-button": "Utwórz nową playlistę",
     "new-playlist": "Nowa playlista",
+    "import-url-button": "Import from url (Spotify)",
     "import-button": "Importuj z pliku (JSON)",
     "import-fail-title": "Błąd importowania listy odtwarzania",
     "import-success-title": "Lista odtwarzania zaimportowana pomyślnie",
@@ -192,6 +195,7 @@
   "queue": {
     "clear": "Wyczyść kolejkę",
     "dialog-accept": "Zapisz",
+    "dialog-cancel": "Cancel",
     "dialog-placeholder": "Nazwa listy odtwarzania...",
     "dialog-trigger": "Zapisz listę odtwarzania",
     "download": "Pobierz",
@@ -333,6 +337,47 @@
   },
   "visualizer": {
     "exit-fullscreen": "Naciśnij ESC, aby wyjść z trybu pełnoekranowego"
+  },
+  "command-palette": {
+    "search-placeholder": "What would you like to do?",
+    "empty-state-help": "Can't seem to find what you're looking for? Try the help command.",
+    "protip-text": "PROTIP:",
+    "protip-content": "Arrows to navigate, Enter to select, Esc to close",
+    "categories": {
+      "playback": "Playback",
+      "queue": "Queue",
+      "navigation": "Navigation",
+      "application": "Application"
+    },
+    "actions": {
+      "play": "Play",
+      "pause": "Pause",
+      "next": "Next",
+      "previous": "Previous",
+      "go-to-next-page": "Go to next page",
+      "go-to-previous-page": "Go to previous page",
+      "shuffle": "Shuffle",
+      "loop": "Loop",
+      "autoradio": "Autoradio",
+      "raise-volume": "Raise volume",
+      "lower-volume": "Lower volume",
+      "mute": "Mute",
+      "unmute": "Unmute",
+      "quit": "Quit",
+      "minimize": "Minimize",
+      "maximize": "Maximize",
+      "go-to-dashboard": "Go to dashboard",
+      "go-to-downloads": "Go to downloads",
+      "go-to-lyrics": "Go to lyrics",
+      "go-to-plugins": "Go to plugins",
+      "go-to-search": "Go to search",
+      "go-to-settings": "Go to settings",
+      "go-to-equalizer": "Go to equalizer",
+      "go-to-visualizer": "Go to visualizer",
+      "go-to-playlists": "Go to playlists",
+      "go-to-favorite-tracks": "Go to favorite tracks",
+      "go-to-library": "Go to local library"
+    }
   },
   "forms": {
     "nuclear-sign-up": {

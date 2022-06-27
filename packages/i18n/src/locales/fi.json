@@ -27,9 +27,9 @@
     "settings": "Asetukset",
     "visualizer": "Visualisaattori",
     "user-panel": {
-      "actions-tooltip": "User actions",
-      "sign-up": "Sign up / Sign in",
-      "sign-out": "Sign out"
+      "actions-tooltip": "Käyttäjän toimininnot",
+      "sign-up": "Rekisteröidy/Kirjaudu sisään",
+      "sign-out": "Kirjaudu ulos"
     },
     "version": "Versio"
   },
@@ -100,9 +100,6 @@
     "report": "Ilmoita ongelmasta tai ehdota uusia ominaisuuksia",
     "thanks": "Iso kiitos auttajille Githubissa. Apunne oli tärkeää tämän sovelluksen luomisessa."
   },
-  "input-dialog": {
-    "cancel": "Peruuta"
-  },
   "library": {
     "add": "Lisää kansioita",
     "album": "Albumi",
@@ -139,7 +136,6 @@
     "album": "Albumi",
     "artist": "Artisti",
     "delete": "Poista tämä soittolista",
-    "dialog-placeholder": "Soittolistan nimi...",
     "duration": "Kesto",
     "empty": "Ei soittolistoja.",
     "empty-help": "Try create some playlists or import by url and they will appear here!",
@@ -151,9 +147,16 @@
     "export-fail-title": "Soittolistan vienti epäonnistui",
     "export-success-title": "Soittolistan vienti onnistui",
     "header": "Soittolistasi",
+    "import-progress": "Tuonnin edistyminen",
+    "spotify-import-placeholder": "Liitä Spotify-soittoluettelon URL-osoite tähän",
+    "dialog-placeholder": "Soittolistan nimi...",
     "dialog-accept": "Tallenna",
+    "dialog-cancel": "Keskeytä",
+    "dialog-rename": "Nimeä uudelleen",
+    "dialog-import": "Tuo",
     "create-button": "Luo uusi soittolista",
     "new-playlist": "Uusi soittolista",
+    "import-url-button": "Tuo url-osoitteesta (Spotify)",
     "import-button": "Tuo tiedostosta (JSON)",
     "import-fail-title": "Soittolistan tuonti epäonnistui",
     "import-success-title": "Soittolistan tuonti onnistui",
@@ -167,14 +170,14 @@
     "title": "nimi",
     "tracks-selected-plural": "kappaletta valittu",
     "tracks-selected-singular": "kappale valittu",
-    "tracks-singular": "track",
-    "tracks-plural": "tracks",
-    "modified-at": "Last modified: ",
-    "never-modified": "Unknown",
-    "server-modified-at": "Server modified: ",
-    "upload-to-server": "Upload to server",
-    "download-from-server": "Download from server",
-    "number-of-tracks": "tracks"
+    "tracks-singular": "kappale",
+    "tracks-plural": "kappaleet",
+    "modified-at": "Viimeksi muokattu: ",
+    "never-modified": "Tuntematon",
+    "server-modified-at": "Palvelimen muokkaus: ",
+    "upload-to-server": "Lataa palvelimelle",
+    "download-from-server": "Lataa palvelimelta",
+    "number-of-tracks": "kappaletta"
   },
   "plugins": {
     "add-a-plugin": "Lisää plugin",
@@ -192,6 +195,7 @@
   "queue": {
     "clear": "Tyhjennä jono",
     "dialog-accept": "Tallenna",
+    "dialog-cancel": "Cancel",
     "dialog-placeholder": "Soittolistan nimi...",
     "dialog-trigger": "Tallenna soittolistana",
     "download": "Lataa",
@@ -278,8 +282,8 @@
     "mastodon-post-format-description": "Nuclear lähettää Mastodoniin tilan jokaisen kappaleen jälkeen. Yllä oleva merkkijono on malli jokaiselle viestille, {{artist}} ja {{title}} korvattiin esittäjällä ja kappaleen otsikolla.",
     "mastodon-post-format-label": "Julkaisun muoto",
     "mastodon-title": "",
-    "nuclear-identity-service-url": "Nuclear identity service URL",
-    "nuclear-playlists-service-url": "Nuclear playlists service URL",
+    "nuclear-identity-service-url": "Nuclearin identiteettipalvelun osoite",
+    "nuclear-playlists-service-url": "Nuclearin soittolistapalvelun osoite",
     "mini-player": "Käytä minisoitinta",
     "more": "Lisää",
     "discord-rich-presence": "Kytke Discordin Rich Presence päälle/pois (vaatii uudelleenkäynnistyksen)",
@@ -334,37 +338,78 @@
   "visualizer": {
     "exit-fullscreen": "Paina ESC poistuaksesi koko näytön tilasta"
   },
+  "command-palette": {
+    "search-placeholder": "What would you like to do?",
+    "empty-state-help": "Can't seem to find what you're looking for? Try the help command.",
+    "protip-text": "PROTIP:",
+    "protip-content": "Arrows to navigate, Enter to select, Esc to close",
+    "categories": {
+      "playback": "Playback",
+      "queue": "Queue",
+      "navigation": "Navigation",
+      "application": "Application"
+    },
+    "actions": {
+      "play": "Play",
+      "pause": "Pause",
+      "next": "Next",
+      "previous": "Previous",
+      "go-to-next-page": "Go to next page",
+      "go-to-previous-page": "Go to previous page",
+      "shuffle": "Shuffle",
+      "loop": "Loop",
+      "autoradio": "Autoradio",
+      "raise-volume": "Raise volume",
+      "lower-volume": "Lower volume",
+      "mute": "Mute",
+      "unmute": "Unmute",
+      "quit": "Quit",
+      "minimize": "Minimize",
+      "maximize": "Maximize",
+      "go-to-dashboard": "Go to dashboard",
+      "go-to-downloads": "Go to downloads",
+      "go-to-lyrics": "Go to lyrics",
+      "go-to-plugins": "Go to plugins",
+      "go-to-search": "Go to search",
+      "go-to-settings": "Go to settings",
+      "go-to-equalizer": "Go to equalizer",
+      "go-to-visualizer": "Go to visualizer",
+      "go-to-playlists": "Go to playlists",
+      "go-to-favorite-tracks": "Go to favorite tracks",
+      "go-to-library": "Go to local library"
+    }
+  },
   "forms": {
     "nuclear-sign-up": {
-      "header": "Sign up",
-      "secondary-header": "Sign up to Nuclear Web Services",
-      "side-paragraph-1": "NWS enables you to backup your playlists online and share them.",
-      "side-paragraph-2": "Providing your email is optional; it will allow you to recover your account if you forget your password.",
-      "username-label": "Username",
-      "email-label": "Email",
-      "password-label": "Password",
-      "sign-up-button": "Sign up",
+      "header": "Rekisteröidy",
+      "secondary-header": "Rekisteröidy Nuclearin verkkopalveluun",
+      "side-paragraph-1": "NWS avulla voit varmuuskopioida soittolistoja verkossa ja jakaa niitä.",
+      "side-paragraph-2": "Sähköpostiosoitteesi antaminen on valinnaista; sen avulla voit palauttaa tilisi jos unohdat salasanasi.",
+      "username-label": "Käyttäjänimi",
+      "email-label": "Sähköposti",
+      "password-label": "Salasana",
+      "sign-up-button": "Rekisteröidy",
       "validation": {
         "username": {
-          "length": "Username must be 4 characters or more",
-          "required": "Username is required"
+          "length": "Käyttäjänimen on oltava vähintään 4 merkkiä",
+          "required": "Käyttäjätunnus on pakollinen"
         },
         "email": {
-          "invalid": "Email must be a valid email"
+          "invalid": "Sähköpostin on oltava kelvollinen sähköpostiosoite"
         },
         "password": {
-          "length": "Password must be 6 characters or more",
-          "required": "Password is required"
+          "length": "Salasanan on oltava vähintään 6 merkkiä pitkä",
+          "required": "Salasana vaaditaan"
         }
       }
     },
     "nuclear-sign-in": {
-      "header": " Sign in",
-      "username-label": "Username",
-      "password-label": "Password",
-      "no-account-label": "Don't have an account?",
-      "no-account-link": "Sign up",
-      "sign-in-button": "Sign in"
+      "header": " Kirjaudu sisään",
+      "username-label": "Käyttäjätunnus",
+      "password-label": "Salasana",
+      "no-account-label": "Eikö sinulla ole tiliä?",
+      "no-account-link": "Rekisteröidy",
+      "sign-in-button": "Kirjaudu sisään"
     }
   }
 }

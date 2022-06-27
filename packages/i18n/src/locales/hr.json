@@ -100,9 +100,6 @@
     "report": "Pošaljite probleme, ili nove značajke",
     "thanks": "Puno hvala svim našim suradnicima na Githubu, vaša pomoć je bila ključna u stvaranju ovog programa."
   },
-  "input-dialog": {
-    "cancel": "Odustani"
-  },
   "library": {
     "add": "Dodaj mapu",
     "album": "Album",
@@ -139,7 +136,6 @@
     "album": "Album",
     "artist": "Izvođač",
     "delete": "Obriši ovaj popis za reprodukciju",
-    "dialog-placeholder": "Ime popisa za reprodukciju...",
     "duration": "Duljina",
     "empty": "Nema popisa za reprodukciju.",
     "empty-help": "Try create some playlists or import by url and they will appear here!",
@@ -151,9 +147,16 @@
     "export-fail-title": "Neuspješno je izvezen popis",
     "export-success-title": "Uspješno je izvezen popis",
     "header": "Vaši popisi",
+    "import-progress": "Napredak uvoza",
+    "spotify-import-placeholder": "Ovdje zalijepite URL popisa za reprodukciju od Spotify-a",
+    "dialog-placeholder": "Ime popisa za reprodukciju...",
     "dialog-accept": "Spremi",
+    "dialog-cancel": "Otkaži",
+    "dialog-rename": "Preimenuj",
+    "dialog-import": "Uvezi",
     "create-button": "Kreirajte novi popis za reprodukciju",
     "new-playlist": "Novi popis",
+    "import-url-button": "Uvezi iz URL-a (Spotify)",
     "import-button": "Unesite popis iz datoteke (JSON)",
     "import-fail-title": "Neuspješno je unesen popis",
     "import-success-title": "Uspješno je unesen popis",
@@ -192,6 +195,7 @@
   "queue": {
     "clear": "Očisti red čekanja",
     "dialog-accept": "Sačuvaj",
+    "dialog-cancel": "Cancel",
     "dialog-placeholder": "Ime popisa za reprodukciju...",
     "dialog-trigger": "Sačuvaj kao popis za reprodukciju",
     "download": "Preuzmi",
@@ -333,6 +337,47 @@
   },
   "visualizer": {
     "exit-fullscreen": "Pritisnite ESC da bi ste izašli iz punog zaslona"
+  },
+  "command-palette": {
+    "search-placeholder": "What would you like to do?",
+    "empty-state-help": "Can't seem to find what you're looking for? Try the help command.",
+    "protip-text": "PROTIP:",
+    "protip-content": "Arrows to navigate, Enter to select, Esc to close",
+    "categories": {
+      "playback": "Playback",
+      "queue": "Queue",
+      "navigation": "Navigation",
+      "application": "Application"
+    },
+    "actions": {
+      "play": "Play",
+      "pause": "Pause",
+      "next": "Next",
+      "previous": "Previous",
+      "go-to-next-page": "Go to next page",
+      "go-to-previous-page": "Go to previous page",
+      "shuffle": "Shuffle",
+      "loop": "Loop",
+      "autoradio": "Autoradio",
+      "raise-volume": "Raise volume",
+      "lower-volume": "Lower volume",
+      "mute": "Mute",
+      "unmute": "Unmute",
+      "quit": "Quit",
+      "minimize": "Minimize",
+      "maximize": "Maximize",
+      "go-to-dashboard": "Go to dashboard",
+      "go-to-downloads": "Go to downloads",
+      "go-to-lyrics": "Go to lyrics",
+      "go-to-plugins": "Go to plugins",
+      "go-to-search": "Go to search",
+      "go-to-settings": "Go to settings",
+      "go-to-equalizer": "Go to equalizer",
+      "go-to-visualizer": "Go to visualizer",
+      "go-to-playlists": "Go to playlists",
+      "go-to-favorite-tracks": "Go to favorite tracks",
+      "go-to-library": "Go to local library"
+    }
   },
   "forms": {
     "nuclear-sign-up": {

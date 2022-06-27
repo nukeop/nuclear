@@ -100,9 +100,6 @@
     "report": "버그 신고/새로운 기능 제안",
     "thanks": "이 프로그램 개발에 중요한 역할을 해주신 Github 기여자분들께 감사를 전합니다."
   },
-  "input-dialog": {
-    "cancel": "취소"
-  },
   "library": {
     "add": "폴더 추가",
     "album": "앨범",
@@ -139,7 +136,6 @@
     "album": "앨범",
     "artist": "아티스트",
     "delete": "플레이리스트 삭제",
-    "dialog-placeholder": "플레이리스트 제목...",
     "duration": "길이",
     "empty": "플레이리스트 없음.",
     "empty-help": "Try create some playlists or import by url and they will appear here!",
@@ -151,9 +147,16 @@
     "export-fail-title": "재생목록 내보내기 실패",
     "export-success-title": "재생목록을 성공적으로 내보내었습니다",
     "header": "내 재생목록",
+    "import-progress": "Import progress",
+    "spotify-import-placeholder": "Paste a Spotify playlist URL here",
+    "dialog-placeholder": "플레이리스트 제목...",
     "dialog-accept": "저장",
+    "dialog-cancel": "Cancel",
+    "dialog-rename": "Rename",
+    "dialog-import": "Import",
     "create-button": "플레이리스트 생성",
     "new-playlist": "새 플레이리스트",
+    "import-url-button": "Import from url (Spotify)",
     "import-button": "파일에서 가져오기 (JSON)",
     "import-fail-title": "재생목록 내보내기 실패",
     "import-success-title": "재생목록을 성공적으로 불러왔습니다",
@@ -192,6 +195,7 @@
   "queue": {
     "clear": "재생 목록 삭제",
     "dialog-accept": "저장",
+    "dialog-cancel": "Cancel",
     "dialog-placeholder": "플레이리스트 제목...",
     "dialog-trigger": "플레이리스트로 저장",
     "download": "다운로드",
@@ -333,6 +337,47 @@
   },
   "visualizer": {
     "exit-fullscreen": "전체 화면 모드를 종료하려면 Esc 키를 누르십시오."
+  },
+  "command-palette": {
+    "search-placeholder": "What would you like to do?",
+    "empty-state-help": "Can't seem to find what you're looking for? Try the help command.",
+    "protip-text": "PROTIP:",
+    "protip-content": "Arrows to navigate, Enter to select, Esc to close",
+    "categories": {
+      "playback": "Playback",
+      "queue": "Queue",
+      "navigation": "Navigation",
+      "application": "Application"
+    },
+    "actions": {
+      "play": "Play",
+      "pause": "Pause",
+      "next": "Next",
+      "previous": "Previous",
+      "go-to-next-page": "Go to next page",
+      "go-to-previous-page": "Go to previous page",
+      "shuffle": "Shuffle",
+      "loop": "Loop",
+      "autoradio": "Autoradio",
+      "raise-volume": "Raise volume",
+      "lower-volume": "Lower volume",
+      "mute": "Mute",
+      "unmute": "Unmute",
+      "quit": "Quit",
+      "minimize": "Minimize",
+      "maximize": "Maximize",
+      "go-to-dashboard": "Go to dashboard",
+      "go-to-downloads": "Go to downloads",
+      "go-to-lyrics": "Go to lyrics",
+      "go-to-plugins": "Go to plugins",
+      "go-to-search": "Go to search",
+      "go-to-settings": "Go to settings",
+      "go-to-equalizer": "Go to equalizer",
+      "go-to-visualizer": "Go to visualizer",
+      "go-to-playlists": "Go to playlists",
+      "go-to-favorite-tracks": "Go to favorite tracks",
+      "go-to-library": "Go to local library"
+    }
   },
   "forms": {
     "nuclear-sign-up": {
