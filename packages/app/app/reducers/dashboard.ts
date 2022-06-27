@@ -3,7 +3,7 @@ import { LastfmTopTag } from '@nuclear/core/src/rest/Lastfm.types';
 import { ActionType, getType } from 'typesafe-actions';
 import {loadBestNewAlbumsAction, loadBestNewTracksAction, loadTopTagsAction, loadTopTracksAction, PitchforkAlbum, PitchforkTrack} from '../actions/dashboard';
 
-type DashboardReducerState = {
+export type DashboardReducerState = {
   bestNewAlbums: PitchforkAlbum[]
   bestNewTracks: PitchforkTrack[]
   topTracks: DeezerTrack[]
