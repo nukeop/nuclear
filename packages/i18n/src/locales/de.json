@@ -12,7 +12,7 @@
   },
   "app": {
     "collection": "Sammlung",
-    "dashboard": "Übersichtsseite",
+    "dashboard": "Startseite",
     "downloads": "Downloads",
     "equalizer": "Equalizer",
     "favorite-albums": "Lieblingsalben",
@@ -100,9 +100,6 @@
     "report": "Sende eine Fehlermeldung oder eine Idee für eine neue Funktion",
     "thanks": "Vielen Dank an unsere Mitwirkenden auf GitHub. Ihre Hilfe war entscheidend für die Entwicklung dieses Programms."
   },
-  "input-dialog": {
-    "cancel": "Abbrechen"
-  },
   "library": {
     "add": "Ordner hinzufügen",
     "album": "Album",
@@ -139,7 +136,6 @@
     "album": "Album",
     "artist": "Künstler",
     "delete": "Diese Wiedergabeliste löschen",
-    "dialog-placeholder": "Wiedergabelistenname...",
     "duration": "Länge",
     "empty": "Keine Wiedergabelisten.",
     "empty-help": "Versuche ein paar Playlisten zu erstellen oder importiere welche per URL und sie werden hier erscheinen!",
@@ -151,9 +147,16 @@
     "export-fail-title": "Export von Wiedergabeliste fehlgeschlagen",
     "export-success-title": "Wiedergabeliste erfolgreich exportiert",
     "header": "Deine Wiedergabelisten",
+    "import-progress": "Import-Fortschritt",
+    "spotify-import-placeholder": "Spotify Playlist-URL hier einfügen",
+    "dialog-placeholder": "Wiedergabelistenname...",
     "dialog-accept": "Speichern",
+    "dialog-cancel": "Abbrechen",
+    "dialog-rename": "Umbenennen",
+    "dialog-import": "Importieren",
     "create-button": "Neue Wiedergabeliste erstellen",
     "new-playlist": "Neue Wiedergabeliste",
+    "import-url-button": "Import aus URL (Spotify)",
     "import-button": "Aus Datei importieren (JSON)",
     "import-fail-title": "Import der Wiedergabeliste fehlgeschlagen",
     "import-success-title": "Wiedergabeliste erfolgreich importiert",
@@ -192,6 +195,7 @@
   "queue": {
     "clear": "Warteschlange leeren",
     "dialog-accept": "Speichern",
+    "dialog-cancel": "Cancel",
     "dialog-placeholder": "Wiedergabeliste Name...",
     "dialog-trigger": "Als Wiedergabeliste speichern",
     "download": "Herunterladen",
@@ -278,8 +282,8 @@
     "mastodon-post-format-description": "Nuclear wird nach jedem abgespielten Lied einen Status auf Mastodon posten. Der obere Text dient als Vorlage für jeden Beitrag. {{artist}} und {{title}} werden durch den Interpreten und Titel des Liedes ersetzt.",
     "mastodon-post-format-label": "Beitragsformat",
     "mastodon-title": "",
-    "nuclear-identity-service-url": "Nuclear identity service URL",
-    "nuclear-playlists-service-url": "Nuclear playlists service URL",
+    "nuclear-identity-service-url": "URL des Nuclear Identitäts-Dienstes",
+    "nuclear-playlists-service-url": "URL des Nuclear Playlist-Dienstes",
     "mini-player": "Mini-Player Stil verwenden",
     "more": "Mehr",
     "discord-rich-presence": "Umfangreiche Discord Präsenz umschalten (erfordert Neustart)",
@@ -333,6 +337,47 @@
   },
   "visualizer": {
     "exit-fullscreen": "ESC Taste drücken, um den Vollbildmodus zu beenden"
+  },
+  "command-palette": {
+    "search-placeholder": "What would you like to do?",
+    "empty-state-help": "Can't seem to find what you're looking for? Try the help command.",
+    "protip-text": "PROTIP:",
+    "protip-content": "Arrows to navigate, Enter to select, Esc to close",
+    "categories": {
+      "playback": "Playback",
+      "queue": "Queue",
+      "navigation": "Navigation",
+      "application": "Application"
+    },
+    "actions": {
+      "play": "Play",
+      "pause": "Pause",
+      "next": "Next",
+      "previous": "Previous",
+      "go-to-next-page": "Go to next page",
+      "go-to-previous-page": "Go to previous page",
+      "shuffle": "Shuffle",
+      "loop": "Loop",
+      "autoradio": "Autoradio",
+      "raise-volume": "Raise volume",
+      "lower-volume": "Lower volume",
+      "mute": "Mute",
+      "unmute": "Unmute",
+      "quit": "Quit",
+      "minimize": "Minimize",
+      "maximize": "Maximize",
+      "go-to-dashboard": "Go to dashboard",
+      "go-to-downloads": "Go to downloads",
+      "go-to-lyrics": "Go to lyrics",
+      "go-to-plugins": "Go to plugins",
+      "go-to-search": "Go to search",
+      "go-to-settings": "Go to settings",
+      "go-to-equalizer": "Go to equalizer",
+      "go-to-visualizer": "Go to visualizer",
+      "go-to-playlists": "Go to playlists",
+      "go-to-favorite-tracks": "Go to favorite tracks",
+      "go-to-library": "Go to local library"
+    }
   },
   "forms": {
     "nuclear-sign-up": {

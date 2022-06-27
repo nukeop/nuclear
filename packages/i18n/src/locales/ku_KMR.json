@@ -19,7 +19,7 @@
     "favorite-artists": "Hunermendên Bijarte",
     "favorite-tracks": "Stranên Bijarte",
     "library": "Pirtûxaneya Herêmî",
-    "lyrics": "Gotinên Stranan",
+    "lyrics": "Peyvên Stranê",
     "main": "Sereke",
     "playlists": "Rêzoka lêdanan",
     "plugins": "Pêvek",
@@ -100,9 +100,6 @@
     "report": "Pirsgirêkan ragihîne an jî taybetmendiyên nû bişîne",
     "thanks": "Gelek spas ji bo hevkarên me yên Github, alîkariya we di afirandina vê bernameyê de girîng bû."
   },
-  "input-dialog": {
-    "cancel": "Dev jê berde"
-  },
   "library": {
     "add": "Peldandkan tevlî bike",
     "album": "Album",
@@ -116,10 +113,10 @@
     "title": "Sernav"
   },
   "lyrics": {
-    "by-artist": "bi {{artist}}",
+    "by-artist": "bi riya {{artist}}",
     "empty": "Tiştek nayê lêdan.",
-    "empty-help": "Hinek muzîk tevlî rêzê bike da ku li vir peyvê stranan werin nîşandan!",
-    "not-found": "Ji bo vê stranê peyvên stranê nehatin dîtin."
+    "empty-help": "Hinek muzîk tevlî rêzê bike da ku li vir peyvên stranan werin nîşandan!",
+    "not-found": "Peyvên stranê ji bo vê stranê nehatin dîtin."
   },
   "option-control": {
     "autoradio": "Autoradio",
@@ -139,7 +136,6 @@
     "album": "Album",
     "artist": "Hunermend",
     "delete": "Vê rêzika lêdanê jê bibe",
-    "dialog-placeholder": "Navê rêzoka lêdanan...",
     "duration": "Dirêjî",
     "empty": "Rêzoka lêdanan tune ne.",
     "empty-help": "Hinek rêzokên lêdanan biafirîne an jî bi girêdanê ve têxisitinê bike û ew ê li vir xuya bibin!",
@@ -151,9 +147,16 @@
     "export-fail-title": "Derxistina rêzoka lêdanê têkçû",
     "export-success-title": "Derxistina rêzoka lêdanê serkeftî bû",
     "header": "Rêzokên te yên lêdanan",
+    "import-progress": "Pêvajoyê têxe",
+    "spotify-import-placeholder": "URL ya rêzoka lêdanê ya Spotify li bir pêve bike",
+    "dialog-placeholder": "Navê rêzoka lêdanan...",
     "dialog-accept": "Tomar bike",
+    "dialog-cancel": "Dev jê berde",
+    "dialog-rename": "Ji nû ve bi nav bike",
+    "dialog-import": "Têxistin",
     "create-button": "Rêzokeke nû ya lêdanê biafirîne",
     "new-playlist": "Rêzoka lêdanê ya nû",
+    "import-url-button": "Têxistin ji girêdanê (Spotify)",
     "import-button": "Têxistin ji pelê (JSON)",
     "import-fail-title": "Têxistina rêzoka lêdanê têkçû",
     "import-success-title": "Têxistina rêzoka lêdanê serkeftî bû",
@@ -179,10 +182,10 @@
   "plugins": {
     "add-a-plugin": "Pêvekekê tevlî bike",
     "header": "Pêvek",
-    "lyrics-providers": "Peydakarê peyvê stranan",
-    "meta-providers": "Peydakarê Metadata",
+    "lyrics-providers": "Peydekarên peyvên stranan",
+    "meta-providers": "Peydekarên Metadata",
     "placeholder": "Çavkaniya muzîkê ya berdest hilbijêre:",
-    "select-lyrics-provider": "Peydekarê peyvê stranan a berdest hilbijêre:",
+    "select-lyrics-provider": "Peydekarê peyvên stranan a berdest hilbijêre:",
     "select-meta-provider": "Peydekarê metadata ya berdest hilbijêre:",
     "stream-providers": "Peydekarên weşanê",
     "user-plugins": "Pêvekên bikarhêner",
@@ -192,6 +195,7 @@
   "queue": {
     "clear": "Rêzê pak bike",
     "dialog-accept": "Tomar bike",
+    "dialog-cancel": "Cancel",
     "dialog-placeholder": "Navê rêzoka lêdanan...",
     "dialog-trigger": "Wekî rêzoka lêdanan tomar bike",
     "download": "Daxe",
@@ -258,7 +262,7 @@
     "github-description": "Bi riya Github-ê têkeve da ku tu rêzoka lêdanên xwe yên serhêl biafirîne û parve bike (taybetmendiya pêşerojê).",
     "github-title": "Github",
     "http": "HTTP API",
-    "invidious-url": "Girêdana mînaka nefretê",
+    "invidious-url": "Girêdana mînakî ya Invidious",
     "language": "Ziman",
     "language-placeholder": "Zimanekî hilbijêre",
     "lastfm-connect": "Bi Last.fm ve girê bide",
@@ -274,12 +278,12 @@
     "mastodon-authorized": "Mafê weşanê bo Nuclear hatiye dayîn li ser ",
     "mastodon-awaiting-authorization": "Nuclear li ser {{instanceUrl}} hatiye tomarkirin. Li benda mafdayînê ye.",
     "mastodon-description": "",
-    "mastodon-instance-label": "Mînaka girêdanê Mastodon",
+    "mastodon-instance-label": "Girêdana mînakî ya Mastodon",
     "mastodon-post-format-description": "Nuclear piştî ku lêdana her herîk qediya ew ê li ser Mastodon rewşekê biweşîne. Rêza jorîn wê bibe kirasek ji bo her şandiyê, li şûna {{artist}} û {{title}} hunermend û sernavê stranê wê werin guhertin.",
     "mastodon-post-format-label": "Awayê şandinê",
     "mastodon-title": "",
-    "nuclear-identity-service-url": "Navnîşana girêdanê karûbarên nasnameya Nuclear",
-    "nuclear-playlists-service-url": "Navnîşana girêdanê karûbarên rêzoka lêdanan a Nuclear",
+    "nuclear-identity-service-url": "Girêdana rajeyên nasnameya Nuclear",
+    "nuclear-playlists-service-url": "Girêdana rajeyên rêzoka lêdanan a Nuclear",
     "mini-player": "Şêwazê lêdera piçûk bi kar bîne",
     "more": "Bêtir",
     "discord-rich-presence": "Muzîka ku di dema heyî tê lêdan nîşan bide ( ji nû ve destpêkirin pêdivî dike)",
@@ -333,6 +337,47 @@
   },
   "visualizer": {
     "exit-fullscreen": "Bo ji dîmendera tije derkevî pê li bişkoka ESC-yê bike"
+  },
+  "command-palette": {
+    "search-placeholder": "Tu dixwazî çi bikî?",
+    "empty-state-help": "Tu tiştê ku lê digerî nikarî bibînî? Fermana alîkariyê taqî bike.",
+    "protip-text": "PROTIP:",
+    "protip-content": "Tîr bo rêgehê, Enter bo hilbijartin, Esc bo girtin",
+    "categories": {
+      "playback": "Lêdan",
+      "queue": "Rêz",
+      "navigation": "Rêgeh",
+      "application": "Sepan"
+    },
+    "actions": {
+      "play": "Lêde",
+      "pause": "Rawestîne",
+      "next": "Pêş",
+      "previous": "Paş",
+      "go-to-next-page": "Biçe rûpela pêş",
+      "go-to-previous-page": "Biçe rûpela paş",
+      "shuffle": "Tevlihev bike",
+      "loop": "Dubare bike",
+      "autoradio": "Autoradio",
+      "raise-volume": "Dengê rake",
+      "lower-volume": "Dengê daxe",
+      "mute": "Bêdeng bike",
+      "unmute": "Bêdeng neke",
+      "quit": "Derkeve",
+      "minimize": "Biçûk bike",
+      "maximize": "Mezin bike",
+      "go-to-dashboard": "Biçe destgehê",
+      "go-to-downloads": "Biçe daxistinan",
+      "go-to-lyrics": "Biçe peyvên stranê",
+      "go-to-plugins": "Biçe pêvekan",
+      "go-to-search": "Biçe lêgerînê",
+      "go-to-settings": "Biçe sazkariyan",
+      "go-to-equalizer": "Biçe yeksaneker",
+      "go-to-visualizer": "Biçe dîtbarî",
+      "go-to-playlists": "Biçe rêzokên lêdanê",
+      "go-to-favorite-tracks": "Biçe stranên bijarte",
+      "go-to-library": "Biçe pirtukxaneya herêmî"
+    }
   },
   "forms": {
     "nuclear-sign-up": {

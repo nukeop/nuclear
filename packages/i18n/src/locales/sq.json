@@ -100,9 +100,6 @@
     "report": "Submit issues or new features",
     "thanks": "Shumë falenderime për kontribuesit në Github, ndihma juaj ishte e rëndësishme për krijimin e këtij programi."
   },
-  "input-dialog": {
-    "cancel": "Anullo"
-  },
   "library": {
     "add": "Shto skedar",
     "album": "Album",
@@ -139,7 +136,6 @@
     "album": "Album",
     "artist": "Artisti",
     "delete": "Fshi këtë listë këngësh",
-    "dialog-placeholder": "Emri i listës...",
     "duration": "Length",
     "empty": "Nuk ka lista këngësh.",
     "empty-help": "Try create some playlists or import by url and they will appear here!",
@@ -151,9 +147,16 @@
     "export-fail-title": "Playlist export fail",
     "export-success-title": "Playlist exported successfully",
     "header": "Your playlists",
+    "import-progress": "Import progress",
+    "spotify-import-placeholder": "Paste a Spotify playlist URL here",
+    "dialog-placeholder": "Emri i listës...",
     "dialog-accept": "Save",
+    "dialog-cancel": "Cancel",
+    "dialog-rename": "Rename",
+    "dialog-import": "Import",
     "create-button": "Create new playlist",
     "new-playlist": "New playlist",
+    "import-url-button": "Import from url (Spotify)",
     "import-button": "Import from file (JSON)",
     "import-fail-title": "Playlist import fail",
     "import-success-title": "Playlist imported successfully",
@@ -192,6 +195,7 @@
   "queue": {
     "clear": "Pastro radhën",
     "dialog-accept": "Ruaj",
+    "dialog-cancel": "Cancel",
     "dialog-placeholder": "Emri i listës...",
     "dialog-trigger": "Ruaj si listë këngësh",
     "download": "Shkarko",
@@ -333,6 +337,47 @@
   },
   "visualizer": {
     "exit-fullscreen": "Press ESC to exit full screen"
+  },
+  "command-palette": {
+    "search-placeholder": "What would you like to do?",
+    "empty-state-help": "Can't seem to find what you're looking for? Try the help command.",
+    "protip-text": "PROTIP:",
+    "protip-content": "Arrows to navigate, Enter to select, Esc to close",
+    "categories": {
+      "playback": "Playback",
+      "queue": "Queue",
+      "navigation": "Navigation",
+      "application": "Application"
+    },
+    "actions": {
+      "play": "Play",
+      "pause": "Pause",
+      "next": "Next",
+      "previous": "Previous",
+      "go-to-next-page": "Go to next page",
+      "go-to-previous-page": "Go to previous page",
+      "shuffle": "Shuffle",
+      "loop": "Loop",
+      "autoradio": "Autoradio",
+      "raise-volume": "Raise volume",
+      "lower-volume": "Lower volume",
+      "mute": "Mute",
+      "unmute": "Unmute",
+      "quit": "Quit",
+      "minimize": "Minimize",
+      "maximize": "Maximize",
+      "go-to-dashboard": "Go to dashboard",
+      "go-to-downloads": "Go to downloads",
+      "go-to-lyrics": "Go to lyrics",
+      "go-to-plugins": "Go to plugins",
+      "go-to-search": "Go to search",
+      "go-to-settings": "Go to settings",
+      "go-to-equalizer": "Go to equalizer",
+      "go-to-visualizer": "Go to visualizer",
+      "go-to-playlists": "Go to playlists",
+      "go-to-favorite-tracks": "Go to favorite tracks",
+      "go-to-library": "Go to local library"
+    }
   },
   "forms": {
     "nuclear-sign-up": {
