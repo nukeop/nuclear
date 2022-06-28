@@ -6,7 +6,7 @@ import globals from '../globals';
 import { Dashboard } from './actionTypes';
 import { createAsyncAction } from 'typesafe-actions';
 import { LastfmTopTag } from '@nuclear/core/src/rest/Lastfm.types';
-import { DeezerTrack } from '@nuclear/core/src/rest/Deezer';
+import { DeezerEditorialCharts, DeezerTrack } from '@nuclear/core/src/rest/Deezer';
 
 const lastfm = new rest.LastFmApi(
   globals.lastfmApiKey,
@@ -112,3 +112,23 @@ export const loadTopTracks = () => async (dispatch) => {
     logger.error(error);
   }
 };
+
+export const loadEditorialChartsAction = createAsyncAction(
+  Dashboard.LOAD_EDITORIAL_CHARTS_START,
+  Dashboard.LOAD_EDITORIAL_CHARTS_SUCCESS,
+  Dashboard.LOAD_EDITORIAL_CHARTS_ERROR
+)<undefined, DeezerEditorialCharts, string>();
+
+export const loadEditorialCharts = () => async (dispatch) => {
+  dispatch(loadEditorialChartsAction.request());
+
+  try {
+    const charts = await rest.Deezer.getEditorialCharts();
+
+    dispatch(loadEditorialChartsAction.success(charts));
+  } catch (error) {
+    dispatch(loadEditorialChartsAction.failure(error.message));
+    logger.error(error);
+  }
+};
+

@@ -6,6 +6,7 @@ export { default as AlbumPreview } from './components/AlbumPreview';
 export { default as Box } from './components/Box';
 export { default as Button } from './components/Button';
 export { default as Card } from './components/Card';
+export { default as CardsRow } from './components/CardsRow';
 export { default as Checkbox } from './components/Checkbox';
 export { default as CommandPalette } from './components/CommandPalette';
 export { default as ContextPopup } from './components/ContextPopup';

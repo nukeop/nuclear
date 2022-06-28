@@ -31,7 +31,7 @@ const ChartsTab: React.FC<ChartsTabProps> = ({
         className={styles.popular_tracks_container}
       >
         <div className='popular_tracks_header'>
-          <h3>{t('popular-track-title')}</h3>
+          <h2>{t('popular-track-title')}</h2>
         </div>
         <TrackTableContainer 
           tracks={topTracks.map(mapDeezerTopTrackToTrack)}

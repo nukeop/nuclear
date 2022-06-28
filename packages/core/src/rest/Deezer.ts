@@ -35,12 +35,18 @@ type DeezerPlaylist = {
 
 type DeezerPlaylistTracklist = DeezerTrack[];
 
-type DeezerEditorialCharts = {
-  albums: unknown[];
-  artists: unknown[];
-  playlists: DeezerPlaylist[];
-  podcasts: unknown[];
-  tracks: DeezerTrack[];
+export type DeezerEditorialCharts = {
+  albums?: unknown[];
+  artists?: unknown[];
+  playlists: {
+    data: DeezerPlaylist[];
+    total: number;
+  }
+  podcasts?: unknown[];
+  tracks: {
+    data: DeezerTrack[];
+    total: number;
+  }
 }
 
 export const getChart = (): Promise<any> => deezer.chart();

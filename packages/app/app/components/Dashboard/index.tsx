@@ -11,6 +11,7 @@ import styles from './styles.scss';
 import { DashboardReducerState } from '../../reducers/dashboard';
 import StreamProviderPlugin from '@nuclear/core/src/plugins/streamProvider';
 import { QueueItem } from '../../reducers/queue';
+import EditorialsTab from './EditorialsTab';
 
 type DashboardProps = {
   dashboardData: DashboardReducerState;
@@ -46,6 +47,13 @@ export const Dashboard: React.FC<DashboardProps> = ({
         <Tab
           menu={{ secondary: true, pointing: true }}
           panes={[
+            {
+              menuItem: t('playlists'),
+              render: () => (
+                <EditorialsTab
+                  playlists={dashboardData.editorialCharts.playlists.data} />
+              )
+            },
             {
               menuItem: t('best'),
               render: () => (

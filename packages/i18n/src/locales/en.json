@@ -50,9 +50,12 @@
     "genres": "Genres",
     "news": "News",
     "playcounts": "Playcounts",
+    "playlists": "Trending",
     "popular-track-title": "Top Tracks from Deezer",
     "title": "Title",
-    "top": "Top Tracks"
+    "top": "Top Tracks",
+    "trending-playlists": "Trending playlists",
+    "filter-playlists": "Filter..."
   },
   "downloads": {
     "clear": "Clear finished tracks",
