@@ -55,7 +55,8 @@
     "title": "Title",
     "top": "Top Tracks",
     "trending-playlists": "Trending playlists",
-    "filter-playlists": "Filter..."
+    "trending-artists": "Trending artists",
+    "filter": "Filter..."
   },
   "downloads": {
     "clear": "Clear finished tracks",
