@@ -6,6 +6,8 @@ import { LastfmTopTag } from '@nuclear/core/src/rest/Lastfm.types';
 
 import {loadBestNewAlbumsAction, loadBestNewTracksAction, loadEditorialChartsAction, loadTopTagsAction, loadTopTracksAction, PitchforkAlbum, PitchforkTrack} from '../actions/dashboard';
 import { Dashboard } from '../actions/actionTypes';
+import { handleLoadableActionSuccess, loadingStateMeta, startingStateMeta } from './helpers';
+import { Loadable } from './types';
 
 export type DashboardReducerState = {
   bestNewAlbums: PitchforkAlbum[];
@@ -13,7 +15,7 @@ export type DashboardReducerState = {
   topTracks: DeezerTrack[];
   topTags: LastfmTopTag[];
 
-  editorialCharts?: DeezerEditorialCharts;
+  editorialCharts?: Loadable<DeezerEditorialCharts>;
 }
 
 const initialState: DashboardReducerState = {
@@ -21,16 +23,7 @@ const initialState: DashboardReducerState = {
   bestNewTracks: [],
   topTracks: [],
   topTags: [],
-  editorialCharts: {
-    playlists: {
-      data: [],
-      total: 0
-    },
-    tracks: {
-      data: [],
-      total: 0
-    }
-  }
+  editorialCharts: {...startingStateMeta}
 };
 
 const dashboardActions = {
@@ -43,6 +36,7 @@ const dashboardActions = {
 
 type DashboardReducerActions = ActionType<typeof dashboardActions>
 
+const editorialChartsKeyCreator = () => 'editorialCharts';
 const DashboardReducer = createReducer<DashboardReducerState, DashboardReducerActions>(initialState, {
   [Dashboard.LOAD_BEST_NEW_ALBUMS_SUCCESS]: (state, action) => produce(state, draft => {
     draft.bestNewAlbums = action.payload;
@@ -56,9 +50,10 @@ const DashboardReducer = createReducer<DashboardReducerState, DashboardReducerAc
   [Dashboard.LOAD_TOP_TAGS_SUCCESS]: (state, action) => produce(state, draft => {
     draft.topTags = action.payload;
   }),
-  [Dashboard.LOAD_EDITORIAL_CHARTS_SUCCESS]: (state, action) => produce(state, draft => {
-    draft.editorialCharts = action.payload;
-  })
+  [Dashboard.LOAD_EDITORIAL_CHARTS_START]: (state) => produce(state, draft => {
+    draft.editorialCharts = {...loadingStateMeta};
+  }),
+  [Dashboard.LOAD_EDITORIAL_CHARTS_SUCCESS]: handleLoadableActionSuccess(editorialChartsKeyCreator)
 });
 
 export default DashboardReducer;

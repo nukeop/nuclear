@@ -24,7 +24,7 @@ export type DeezerTrack = {
   };
 }
 
-type DeezerPlaylist = {
+export type DeezerPlaylist = {
   id: number;
   link: string;
   picture_big: string;
@@ -33,11 +33,34 @@ type DeezerPlaylist = {
   tracklist: string;
 }
 
-type DeezerPlaylistTracklist = DeezerTrack[];
+export type DeezerPlaylistTracklist = DeezerTrack[];
+
+export type DeezerArtist = {
+  id: number;
+  name: string;
+  picture_big: string;
+  picture_medium: string;
+  type: 'artist';
+}
+
+export type DeezerAlbum = {
+  id: number;
+  title: string;
+  cover_big: string;
+  cover_medium: string;
+  artist: DeezerArtist;
+  type: 'album';
+}
 
 export type DeezerEditorialCharts = {
-  albums?: unknown[];
-  artists?: unknown[];
+  albums: {
+    data: DeezerAlbum[];
+    total: number;
+  };
+  artists: {
+    data: DeezerArtist[];
+    total: number;
+  };
   playlists: {
     data: DeezerPlaylist[];
     total: number;

@@ -7,12 +7,15 @@ import { useTranslation } from 'react-i18next';
 
 type EditorialsTabProps = {
     playlists: DeezerEditorialCharts['playlists']['data'];
+    artists: DeezerEditorialCharts['artists']['data'];
+
+    artistInfoSearchByName: (artistName: string) => void;
 }
 
-const EditorialsTab: React.FC<EditorialsTabProps> = ({playlists}) => {
+const EditorialsTab: React.FC<EditorialsTabProps> = ({playlists, artists, artistInfoSearchByName}) => {
   const { t } = useTranslation('dashboard');
   return <div className={styles.editorials_tab}>
-    <div className={styles.playlists_row}>
+    <div className={styles.row}>
       <CardsRow 
         cards={playlists.map(playlist => ({
           id: playlist.id.toString(),
@@ -21,7 +24,19 @@ const EditorialsTab: React.FC<EditorialsTabProps> = ({playlists}) => {
         })
         )}
         header={t('trending-playlists')}
-        filterPlaceholder={t('filter-playlists')}
+        filterPlaceholder={t('filter')}
+      />
+    </div>
+    <div className={styles.row}>
+      <CardsRow 
+        cards={artists.map(artist => ({
+          id: artist.id.toString(),
+          header: artist.name,
+          image: artist.picture_medium,
+          onClick: () => artistInfoSearchByName(artist.name)
+        }))}
+        header={t('trending-artists')}
+        filterPlaceholder={t('filter')}
       />
     </div>
   </div>;

@@ -41,6 +41,8 @@ export const Dashboard: React.FC<DashboardProps> = ({
   const { t } = useTranslation('dashboard');
   const history = useHistory();
 
+  const {editorialCharts} = dashboardData;
+
   return (
     <div className={styles.dashboard}>
       {isConnected && (
@@ -50,8 +52,13 @@ export const Dashboard: React.FC<DashboardProps> = ({
             {
               menuItem: t('playlists'),
               render: () => (
+                !editorialCharts.isLoading && editorialCharts.isReady &&  
                 <EditorialsTab
-                  playlists={dashboardData.editorialCharts.playlists.data} />
+                  playlists={dashboardData.editorialCharts.data.playlists.data}
+                  artists={dashboardData.editorialCharts.data.artists.data}
+
+                  artistInfoSearchByName={artistInfoSearchByName}
+                />
               )
             },
             {
