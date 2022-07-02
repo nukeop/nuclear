@@ -10,9 +10,10 @@ type EditorialsTabProps = {
     artists: DeezerEditorialCharts['artists']['data'];
 
     artistInfoSearchByName: (artistName: string) => void;
+    onEditorialPlaylistClick: (playlistId: number) => void;
 }
 
-const EditorialsTab: React.FC<EditorialsTabProps> = ({playlists, artists, artistInfoSearchByName}) => {
+const EditorialsTab: React.FC<EditorialsTabProps> = ({playlists, artists, artistInfoSearchByName, onEditorialPlaylistClick}) => {
   const { t } = useTranslation('dashboard');
   return <div className={styles.editorials_tab}>
     <div className={styles.row}>
@@ -20,7 +21,8 @@ const EditorialsTab: React.FC<EditorialsTabProps> = ({playlists, artists, artist
         cards={playlists.map(playlist => ({
           id: playlist.id.toString(),
           header: playlist.title,
-          image: playlist.picture_medium
+          image: playlist.picture_medium,
+          onClick: () => onEditorialPlaylistClick(playlist.id)
         })
         )}
         header={t('trending-playlists')}

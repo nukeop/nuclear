@@ -25,6 +25,7 @@ export type PlaylistViewProps = {
   selectSong: (i: number) => void;
   addTracks: (tracks: Playlist['tracks']) => void;
   onReorderTracks: (isource: number, idest: number) => void;
+  isEditable?: boolean;
 }
 
 const PlaylistView: React.FC<PlaylistViewProps> = ({
@@ -36,7 +37,8 @@ const PlaylistView: React.FC<PlaylistViewProps> = ({
   addTracks,
   onReorderTracks,
   selectSong,
-  startPlayback
+  startPlayback,
+  isEditable = true
 }) => {
   const { t, i18n } = useTranslation('playlists');
   const history = useHistory();
@@ -98,6 +100,7 @@ const PlaylistView: React.FC<PlaylistViewProps> = ({
                 initialString={playlist.name}
                 onAccept={onRenamePlaylist}
                 trigger={
+                  isEditable &&
                   <Button
                     basic
                     aria-label={t('rename')}
@@ -155,12 +158,15 @@ const PlaylistView: React.FC<PlaylistViewProps> = ({
                   icon='plus'
                   label={t('queue')}
                 />
-                <PopupButton
-                  onClick={onDeletePlaylist}
-                  ariaLabel={t('delete')}
-                  icon='trash'
-                  label={t('delete')}
-                />
+                {
+                  isEditable &&
+                  <PopupButton
+                    onClick={onDeletePlaylist}
+                    ariaLabel={t('delete')}
+                    icon='trash'
+                    label={t('delete')}
+                  />
+                }
                 <PopupButton
                   onClick={onExportPlaylist}
                   ariaLabel={t('export-button')}

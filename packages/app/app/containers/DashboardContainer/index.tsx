@@ -34,6 +34,7 @@ const DashboardContainer: React.FC = () => {
   const selectSong = (song: number) => dispatch(QueueActions.selectSong(song));
   const clearQueue = () => dispatch(QueueActions.clearQueue());
   const startPlayback = () => dispatch(PlayerActions.startPlayback(false));
+  const onEditorialPlaylistClick = (playlistId: number) => history.push(`/editorial-playlist/${playlistId}`);
 
   useEffect(() => {
     dispatch(FavoritesActions.readFavorites());
@@ -61,6 +62,7 @@ const DashboardContainer: React.FC = () => {
       selectSong={selectSong}
       clearQueue={clearQueue}
       startPlayback={startPlayback}
+      onEditorialPlaylistClick={onEditorialPlaylistClick}
     />
   );
 };
