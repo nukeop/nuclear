@@ -80,7 +80,9 @@ export const getTopTracks = (limit = 50): Promise<{ data: DeezerTrack[] }> => {
 
 export const getEditorialCharts = (limit=50): Promise<DeezerEditorialCharts> => deezer.editorial.charts(0, limit);
 
-export const getPlaylistTracks = (playlistId: number, limit=50): Promise<DeezerPlaylistTracklist> => {
+export const getPlaylistTracks = (playlistId: number, limit=50): Promise<{
+    data: DeezerPlaylistTracklist;
+}> => {
   return deezer.playlist.tracks(playlistId, limit);
 };
 

@@ -6,7 +6,7 @@ import globals from '../globals';
 import { Dashboard } from './actionTypes';
 import { createAsyncAction } from 'typesafe-actions';
 import { LastfmTopTag } from '@nuclear/core/src/rest/Lastfm.types';
-import { DeezerEditorialCharts, DeezerTrack } from '@nuclear/core/src/rest/Deezer';
+import { DeezerEditorialCharts, DeezerTrack, mapDeezerTrackToInternal } from '@nuclear/core/src/rest/Deezer';
 
 const lastfm = new rest.LastFmApi(
   globals.lastfmApiKey,
@@ -124,7 +124,6 @@ export const loadEditorialCharts = () => async (dispatch) => {
 
   try {
     const charts = await rest.Deezer.getEditorialCharts();
-
     dispatch(loadEditorialChartsAction.success(charts));
   } catch (error) {
     dispatch(loadEditorialChartsAction.failure(error.message));
@@ -132,3 +131,22 @@ export const loadEditorialCharts = () => async (dispatch) => {
   }
 };
 
+export const loadEditorialPlaylistAction = createAsyncAction(
+  Dashboard.LOAD_EDITORIAL_PLAYLIST_START,
+  Dashboard.LOAD_EDITORIAL_PLAYLIST_SUCCESS,
+  Dashboard.LOAD_EDITORIAL_PLAYLIST_ERROR
+)<{id: number}, {id: number; tracklist: DeezerTrack[]}, { id: number;  error: string; }>();
+
+export const loadEditorialPlaylist = (id: number) => async (dispatch) => {
+  dispatch(loadEditorialPlaylistAction.request({id}));
+  try {
+    const tracklist = await rest.Deezer.getPlaylistTracks(id);
+    dispatch(loadEditorialPlaylistAction.success({
+      id,
+      tracklist: tracklist.data.map(mapDeezerTrackToInternal)
+    }));
+  } catch (error) {
+    dispatch(loadEditorialPlaylistAction.failure({ id, error: error.message }));
+    logger.error(error);
+  }
+};

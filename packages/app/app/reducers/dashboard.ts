@@ -4,10 +4,11 @@ import { ActionType, createReducer } from 'typesafe-actions';
 import { DeezerEditorialCharts, DeezerTrack } from '@nuclear/core/src/rest/Deezer';
 import { LastfmTopTag } from '@nuclear/core/src/rest/Lastfm.types';
 
-import {loadBestNewAlbumsAction, loadBestNewTracksAction, loadEditorialChartsAction, loadTopTagsAction, loadTopTracksAction, PitchforkAlbum, PitchforkTrack} from '../actions/dashboard';
+import {loadBestNewAlbumsAction, loadBestNewTracksAction, loadEditorialChartsAction, loadEditorialPlaylistAction, loadTopTagsAction, loadTopTracksAction, PitchforkAlbum, PitchforkTrack} from '../actions/dashboard';
 import { Dashboard } from '../actions/actionTypes';
-import { handleLoadableActionSuccess, loadingStateMeta, startingStateMeta } from './helpers';
+import { handleLoadableActionStart, handleLoadableActionSuccess, handleLoadableEmptyActionStart, startingStateMeta } from './helpers';
 import { Loadable } from './types';
+import { PlaylistTrack } from '@nuclear/core';
 
 export type DashboardReducerState = {
   bestNewAlbums: PitchforkAlbum[];
@@ -16,6 +17,12 @@ export type DashboardReducerState = {
   topTags: LastfmTopTag[];
 
   editorialCharts?: Loadable<DeezerEditorialCharts>;
+  editorialPlaylists?: {
+    [id: string]: Loadable<{
+      id: number;
+      tracklist: PlaylistTrack[];
+    }>;
+  }
 }
 
 const initialState: DashboardReducerState = {
@@ -23,7 +30,8 @@ const initialState: DashboardReducerState = {
   bestNewTracks: [],
   topTracks: [],
   topTags: [],
-  editorialCharts: {...startingStateMeta}
+  editorialCharts: {...startingStateMeta},
+  editorialPlaylists: {}
 };
 
 const dashboardActions = {
@@ -31,12 +39,14 @@ const dashboardActions = {
   loadBestNewTracksAction,
   loadTopTagsAction,
   loadTopTracksAction,
-  loadEditorialChartsAction
+  loadEditorialChartsAction,
+  loadEditorialPlaylistAction
 };
 
 type DashboardReducerActions = ActionType<typeof dashboardActions>
 
 const editorialChartsKeyCreator = () => 'editorialCharts';
+export const editorialPlaylistKeyCreator = ({id}: {id: number}) => `editorialPlaylists.${id}`;
 const DashboardReducer = createReducer<DashboardReducerState, DashboardReducerActions>(initialState, {
   [Dashboard.LOAD_BEST_NEW_ALBUMS_SUCCESS]: (state, action) => produce(state, draft => {
     draft.bestNewAlbums = action.payload;
@@ -50,10 +60,10 @@ const DashboardReducer = createReducer<DashboardReducerState, DashboardReducerAc
   [Dashboard.LOAD_TOP_TAGS_SUCCESS]: (state, action) => produce(state, draft => {
     draft.topTags = action.payload;
   }),
-  [Dashboard.LOAD_EDITORIAL_CHARTS_START]: (state) => produce(state, draft => {
-    draft.editorialCharts = {...loadingStateMeta};
-  }),
-  [Dashboard.LOAD_EDITORIAL_CHARTS_SUCCESS]: handleLoadableActionSuccess(editorialChartsKeyCreator)
+  [Dashboard.LOAD_EDITORIAL_CHARTS_START]: handleLoadableEmptyActionStart(editorialChartsKeyCreator),
+  [Dashboard.LOAD_EDITORIAL_CHARTS_SUCCESS]: handleLoadableActionSuccess(editorialChartsKeyCreator),
+  [Dashboard.LOAD_EDITORIAL_PLAYLIST_START]: handleLoadableActionStart(editorialPlaylistKeyCreator),
+  [Dashboard.LOAD_EDITORIAL_PLAYLIST_SUCCESS]: handleLoadableActionSuccess(editorialPlaylistKeyCreator)
 });
 
 export default DashboardReducer;

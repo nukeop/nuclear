@@ -24,6 +24,7 @@ type DashboardProps = {
   selectSong: (song: number) => void;
   clearQueue: () => void;
   startPlayback: () => void;
+  onEditorialPlaylistClick: (playlistId: number) => void;
 };
 
 export const Dashboard: React.FC<DashboardProps> = ({
@@ -36,7 +37,8 @@ export const Dashboard: React.FC<DashboardProps> = ({
   addToQueue,
   selectSong,
   clearQueue,
-  startPlayback
+  startPlayback,
+  onEditorialPlaylistClick
 }) => {
   const { t } = useTranslation('dashboard');
   const history = useHistory();
@@ -58,6 +60,7 @@ export const Dashboard: React.FC<DashboardProps> = ({
                   artists={dashboardData.editorialCharts.data.artists.data}
 
                   artistInfoSearchByName={artistInfoSearchByName}
+                  onEditorialPlaylistClick={onEditorialPlaylistClick}
                 />
               )
             },
