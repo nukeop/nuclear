@@ -26,13 +26,15 @@ const DeezerPlaylistAdapter: React.FC = () => {
   const playlist = useSelector(editorialPlaylistSelector(parseInt(playlistId)));
   const tracks = useSelector(playlistTracksSelector(parseInt(playlistId)));
 
-  return tracks?.isReady && dashboardData.editorialCharts.isReady && <PlaylistViewContainer 
-    playlist={{
-      id: playlist.id.toString(),
-      name: playlist.title,
-      tracks
-    }}
-  />;
+  return tracks?.isReady && dashboardData.editorialCharts.isReady ?
+    <PlaylistViewContainer 
+      playlist={{
+        id: playlist.id.toString(),
+        name: playlist.title,
+        tracks: tracks.data.tracklist
+      }}
+    />
+    : null;
 };
 
 export default DeezerPlaylistAdapter;

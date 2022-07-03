@@ -88,6 +88,8 @@ export const getPlaylistTracks = (playlistId: number, limit=50): Promise<{
 
 export const mapDeezerTrackToInternal = (track: DeezerTrack) => ({
   ...track,
+  uuid: track.id.toString(),
   name: track.title,
+  artist: track.artist.name,
   thumbnail: track.artist.picture_medium
 });

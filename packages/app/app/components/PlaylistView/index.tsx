@@ -61,13 +61,15 @@ const PlaylistView: React.FC<PlaylistViewProps> = ({
     startPlayback(false);
   }, [addTracks, clearQueue, playlist, selectSong, startPlayback]);
 
-  const onDeleteTrack = useCallback((trackToRemove: Track, trackIndex: number) => {
-    const newPlaylist = {
-      ...playlist,
-      tracks: playlist.tracks.filter((_, index) => index !== trackIndex)
-    };
-    updatePlaylist(newPlaylist);
-  }, [playlist, updatePlaylist]);
+  const onDeleteTrack = isEditable
+    ? useCallback((trackToRemove: Track, trackIndex: number) => {
+      const newPlaylist = {
+        ...playlist,
+        tracks: playlist.tracks.filter((_, index) => index !== trackIndex)
+      };
+      updatePlaylist(newPlaylist);
+    }, [playlist, updatePlaylist])
+    : undefined;
 
   const onDeletePlaylist = useCallback(() => {
     deletePlaylist(playlist.id);
