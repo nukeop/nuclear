@@ -54,10 +54,10 @@ export const Dashboard: React.FC<DashboardProps> = ({
             {
               menuItem: t('playlists'),
               render: () => (
-                !editorialCharts.isLoading && editorialCharts.isReady &&  
                 <EditorialsTab
-                  playlists={dashboardData.editorialCharts.data.playlists.data}
-                  artists={dashboardData.editorialCharts.data.artists.data}
+                  isLoading={editorialCharts.isLoading || !editorialCharts.isReady}
+                  playlists={dashboardData.editorialCharts.data?.playlists.data}
+                  artists={dashboardData.editorialCharts.data?.artists.data}
 
                   artistInfoSearchByName={artistInfoSearchByName}
                   onEditorialPlaylistClick={onEditorialPlaylistClick}
