@@ -56,7 +56,8 @@
     "top": "Top Tracks",
     "trending-playlists": "Trending playlists",
     "trending-artists": "Trending artists",
-    "filter": "Filter..."
+    "filter": "Filter...",
+    "nothing-found": "Nothing found."
   },
   "downloads": {
     "clear": "Clear finished tracks",

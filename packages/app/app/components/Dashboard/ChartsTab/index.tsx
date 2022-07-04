@@ -6,13 +6,14 @@ import { Track } from '@nuclear/ui/lib/types';
 import TrackTableContainer from '../../../containers/TrackTableContainer';
 import styles from './styles.scss';
 import { useTranslation } from 'react-i18next';
+import { isString } from 'lodash';
 
 type ChartsTabProps = {
   topTracks: DeezerTrack[];
 }
 
 const mapDeezerTopTrackToTrack = (topTrack: DeezerTrack): Track => ({
-  artist: topTrack.artist?.name,
+  artist: isString(topTrack.artist) ? topTrack.artist : topTrack.artist.name,
   title: topTrack.title,
   album: topTrack.album?.title,
   duration: topTrack.duration,

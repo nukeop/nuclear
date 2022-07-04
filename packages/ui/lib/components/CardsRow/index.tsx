@@ -1,5 +1,5 @@
 import React, { ComponentProps, useCallback, useEffect, useState } from 'react';
-import { Input } from 'semantic-ui-react';
+import { Icon, Input } from 'semantic-ui-react';
 
 import Button from '../Button';
 import Card from '../Card';
@@ -13,13 +13,27 @@ type CardRowProps = {
   cards: CardWithId[];
   header?: string;
   filterPlaceholder?: string;
+  nothingFoundLabel?: string;
 }
+
+const EmptyState: React.FC<{nothingFoundLabel: string}> = ({nothingFoundLabel}) => (
+  <div className={styles.empty_state}>
+    <Icon.Group size='massive'>
+      <Icon name='search' />
+      <Icon corner='bottom left' name='times' color='red' />
+    </Icon.Group>
+    <h2>{nothingFoundLabel}</h2>
+  </div>
+
+);
+
 
 const SCROLL_INCREMENT = 240;
 const CardsRow: React.FC<CardRowProps> = ({
   cards,
   header,
-  filterPlaceholder
+  filterPlaceholder,
+  nothingFoundLabel
 }) => {
   const cardsRow = React.useRef<HTMLDivElement>(null);
   const onScrollButtonClick = (direction: 1 | -1) => () => {
@@ -92,11 +106,13 @@ const CardsRow: React.FC<CardRowProps> = ({
       ref={cardsRow}
     >
       {
-        displayedCards.map(card => <Card 
-          key={card.id}
-          className={styles.row_card}
-          {...card} 
-        />)
+        displayedCards.length > 0 ?
+          displayedCards.map(card => <Card 
+            key={card.id}
+            className={styles.row_card}
+            {...card} 
+          />)
+          : <EmptyState nothingFoundLabel={nothingFoundLabel}/>
       }
     </div>
   </div>;

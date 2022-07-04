@@ -41,9 +41,9 @@ module.exports = (env) => {
     ];
   const output: webpack.Configuration['output'] = {
     path: BUILD_DIR,
-    filename: '[name].[chunkhash].js',
-    sourceMapFilename: '[name].[chunkhash].map',
-    chunkFilename: '[id].[chunkhash].js'
+    filename: '[name].[contenthash].js',
+    sourceMapFilename: '[name].[contenthash].map',
+    chunkFilename: '[id].[contenthash].js'
   };
   const optimization: webpack.Configuration['optimization'] = {
     moduleIds: 'named' as const

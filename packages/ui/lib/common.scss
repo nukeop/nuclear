@@ -1,8 +1,8 @@
-$bgdarker: #1F212D;
-$bgdark: #2C2E3A;
+$bgdarker: #1f212d;
+$bgdark: #2c2e3a;
 $bgdefault: #424557;
 $bglight: #555977;
-$bglighter: #6A6F95;
+$bglighter: #6a6f95;
 
 $background: $bgdark;
 $background2: $bgdefault;
@@ -12,9 +12,9 @@ $lightbg: $bglighter;
 $grey: #f8f8f2;
 $blue: #6272a4;
 $cyan: #8be9fd;
-$green: #3CDD65;
+$green: #3cdd65;
 $orange: #ffb86c;
-$pink: #FC83D3;
+$pink: #fc83d3;
 $purple: #bd93f9;
 $red: #ff5555;
 $yellow: #f1fa8c;
@@ -58,20 +58,13 @@ $small_screen: 600px;
 }
 
 @mixin shadow {
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.12), 
-              0 2px 2px rgba(0, 0, 0, 0.12), 
-              0 4px 4px rgba(0, 0, 0, 0.12), 
-              0 8px 8px rgba(0, 0, 0, 0.12), 
-              0 16px 16px rgba(0, 0, 0, 0.12) !important;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.12), 0 2px 2px rgba(0, 0, 0, 0.12), 0 4px 4px rgba(0, 0, 0, 0.12),
+    0 8px 8px rgba(0, 0, 0, 0.12), 0 16px 16px rgba(0, 0, 0, 0.12) !important;
 }
 
 @mixin high-shadow {
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.10), 
-              0 2px 2px rgba(0, 0, 0, 0.10), 
-              0 4px 4px rgba(0, 0, 0, 0.10), 
-              0 8px 8px rgba(0, 0, 0, 0.10), 
-              0 16px 16px rgba(0, 0, 0, 0.10),
-              0 32px 32px rgba(0, 0, 0, 0.10) !important;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1), 0 2px 2px rgba(0, 0, 0, 0.1), 0 4px 4px rgba(0, 0, 0, 0.1),
+    0 8px 8px rgba(0, 0, 0, 0.1), 0 16px 16px rgba(0, 0, 0, 0.1), 0 32px 32px rgba(0, 0, 0, 0.1) !important;
 }
 
 .nuclear {
@@ -104,14 +97,14 @@ $small_screen: 600px;
   }
 
   to {
-    transform: scale(1.0);
+    transform: scale(1);
     opacity: 1;
   }
 }
 
 @keyframes zoom-out {
   from {
-    transform: scale(1.0);
+    transform: scale(1);
     opacity: 1;
   }
 
