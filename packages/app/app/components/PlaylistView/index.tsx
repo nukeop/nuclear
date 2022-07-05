@@ -184,6 +184,7 @@ const PlaylistView: React.FC<PlaylistViewProps> = ({
           onDelete={onDeleteTrack}
           onReorder={onReorderTracks}
           displayAlbum={false}
+          displayDeleteButton={isEditable}
         />
       </div>
     </div>
