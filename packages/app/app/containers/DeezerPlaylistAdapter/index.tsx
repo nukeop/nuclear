@@ -6,6 +6,7 @@ import { loadEditorialCharts, loadEditorialPlaylist } from '../../actions/dashbo
 import { isNil } from 'lodash';
 import { dashboardSelector, editorialPlaylistSelector, playlistTracksSelector } from '../../selectors/dashboard';
 import PlaylistViewContainer from '../PlaylistViewContainer';
+import { Dimmer, Loader } from 'semantic-ui-react';
 
 
 const DeezerPlaylistAdapter: React.FC = () => {
@@ -26,7 +27,9 @@ const DeezerPlaylistAdapter: React.FC = () => {
   const playlist = useSelector(editorialPlaylistSelector(parseInt(playlistId)));
   const tracks = useSelector(playlistTracksSelector(parseInt(playlistId)));
 
-  return tracks?.isReady && dashboardData.editorialCharts.isReady ?
+  const isLoading = !(tracks?.isReady && dashboardData.editorialCharts.isReady);
+
+  return !isLoading ?
     <PlaylistViewContainer 
       playlist={{
         id: playlist.id.toString(),
@@ -34,7 +37,7 @@ const DeezerPlaylistAdapter: React.FC = () => {
         tracks: tracks.data.tracklist
       }}
     />
-    : null;
+    : <Dimmer active><Loader /></Dimmer>;
 };
 
 export default DeezerPlaylistAdapter;
