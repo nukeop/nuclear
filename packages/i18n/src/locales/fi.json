@@ -195,7 +195,7 @@
   "queue": {
     "clear": "Tyhjennä jono",
     "dialog-accept": "Tallenna",
-    "dialog-cancel": "Cancel",
+    "dialog-cancel": "Peruuta",
     "dialog-placeholder": "Soittolistan nimi...",
     "dialog-trigger": "Tallenna soittolistana",
     "download": "Lataa",
@@ -322,7 +322,7 @@
     "download-toast-title": "Kappale lisätty latauksiin",
     "favorite-toast-body": "{{artist}} - {{track}} on lisätty suosikeihin.",
     "favorite-toast-title": "Suosikkikappale lisätty",
-    "play-next": "Toista seuraava",
+    "play-next": "Toista seuraavaksi",
     "play-now": "Toista nyt",
     "playlist-toast-body": "{{artist}} - {{track}} on lisätty soittolistaan.",
     "playlist-toast-title": "Kappale lisätty soittolistaan"
@@ -339,8 +339,8 @@
     "exit-fullscreen": "Paina ESC poistuaksesi koko näytön tilasta"
   },
   "command-palette": {
-    "search-placeholder": "What would you like to do?",
-    "empty-state-help": "Can't seem to find what you're looking for? Try the help command.",
+    "search-placeholder": "Mitä haluaisit tehdä?",
+    "empty-state-help": "Etkö löydä etsimääsi? Kokeile ohjetta.",
     "protip-text": "PROTIP:",
     "protip-content": "Arrows to navigate, Enter to select, Esc to close",
     "categories": {
