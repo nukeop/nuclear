@@ -151,7 +151,7 @@
     "spotify-import-placeholder": "URL ya rêzoka lêdanê ya Spotify li bir pêve bike",
     "dialog-placeholder": "Navê rêzoka lêdanan...",
     "dialog-accept": "Tomar bike",
-    "dialog-cancel": "Dev jê berde",
+    "dialog-cancel": "Têk bibe",
     "dialog-rename": "Ji nû ve bi nav bike",
     "dialog-import": "Têxistin",
     "create-button": "Rêzokeke nû ya lêdanê biafirîne",
@@ -195,7 +195,7 @@
   "queue": {
     "clear": "Rêzê pak bike",
     "dialog-accept": "Tomar bike",
-    "dialog-cancel": "Cancel",
+    "dialog-cancel": "Têk bibe",
     "dialog-placeholder": "Navê rêzoka lêdanan...",
     "dialog-trigger": "Wekî rêzoka lêdanan tomar bike",
     "download": "Daxe",
