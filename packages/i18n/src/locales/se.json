@@ -1,8 +1,8 @@
 {
   "album": {
     "download": "Hämta",
-    "download-toast-content": "{{artist}} - {{title}} har lagts till i hämtningar.",
-    "download-toast-title": "Albumet tillagt i hämtningar",
+    "download-toast-content": "{{artist}} - {{title}} har lagts till i Hämtningar.",
+    "download-toast-title": "Albumet tillagt i Hämtningar",
     "error-load": "Tyvärr, det här albumet kunde inte läsas in. Försök igen senare eller öppna en ny rapport på GitHub",
     "genre": "Genre:",
     "play": "Spela",
@@ -27,16 +27,16 @@
     "settings": "Inställningar",
     "visualizer": "Visualiserare",
     "user-panel": {
-      "actions-tooltip": "User actions",
-      "sign-up": "Sign up / Sign in",
-      "sign-out": "Sign out"
+      "actions-tooltip": "Användaråtgärder",
+      "sign-up": "Registrera dig / Logga in",
+      "sign-out": "Logga ut"
     },
     "version": "Version"
   },
   "artist": {
-    "add-all": "Add all",
+    "add-all": "Lägg till alla",
     "count": "Antal spelningar",
-    "queue": "Lägg till alla spår i kö",
+    "queue": "Lägg till alla spår i kön",
     "similar": "Liknande artister",
     "title": "Titel",
     "tour": "På turné"
@@ -58,26 +58,26 @@
     "clear": "Rensa lyssnade spår",
     "completion": "Klart",
     "empty": "Inget hämtat.",
-    "empty-help": "Lägg till något i hämtningskön så kommer det dyka upp här!",
+    "empty-help": "Lägg till något i hämtningskön så kommer det att dyka upp här!",
     "header": "Hämtningar",
     "name": "Namn",
     "status": "Status"
   },
   "equalizer": {
-    "classical": "Classical",
-    "club": "Club",
-    "custom": "Custom",
-    "default": "Default",
-    "full-bass": "Full Bass",
-    "full-treble": "Full Treble",
+    "classical": "Klassisk",
+    "club": "Klubb",
+    "custom": "Anpassad",
+    "default": "Standard",
+    "full-bass": "Full bas",
+    "full-treble": "Full diskant",
     "pop": "Pop",
-    "presets": "Presets",
+    "presets": "Förinställningar",
     "reggae": "Reggae",
     "rock": "Rock"
   },
   "favorite-albums": {
     "empty": "Inga favoritalbum",
-    "empty-help": "Testa att favoritmarkera några album så kommer de dyka upp här!",
+    "empty-help": "Testa att favoritmarkera några album så kommer de att dyka upp här!",
     "header": "Dina favoritalbum"
   },
   "favorite-artists": {
@@ -93,15 +93,12 @@
     "title": "Titel"
   },
   "help": {
-    "about": "Om Nuclear-musikspelare",
-    "contributors": "Our top 10 Contributors",
+    "about": "Om Nuclear musikspelare",
+    "contributors": "Våra topp 10 bidragsgivare",
     "header": "Musikspelare som streamar från avgiftsfria källor",
     "released": "släppt under AGPL-3.0",
     "report": "Skicka in problem eller nya funktioner",
     "thanks": "Stort tack till alla som bidragit på GitHub, er hjälp har varit ovärderlig i skapandet av detta program."
-  },
-  "input-dialog": {
-    "cancel": "Avbryt"
   },
   "library": {
     "add": "Lägg till mappar",
@@ -133,13 +130,12 @@
     "previous-button": "Föregående spår-knapp"
   },
   "playlists": {
-    "add-selected-tracks-to-downloads": "Lägg till valda för hämtningar",
-    "add-selected-tracks-to-favorites": "Lägg till valda i favoriter",
-    "add-selected-tracks-to-queue": "Lägg till valda i kö",
+    "add-selected-tracks-to-downloads": "Lägg till markerade till Hämtningar",
+    "add-selected-tracks-to-favorites": "Lägg till markerade i favoriter",
+    "add-selected-tracks-to-queue": "Lägg till markerade i kön",
     "album": "Album",
     "artist": "Artist",
     "delete": "Ta bort denna spellista",
-    "dialog-placeholder": "Namn på spellistan...",
     "duration": "Längd",
     "empty": "Inga spellistor.",
     "empty-help": "Försök skapa några spellistor eller importera med URL och de kommer att visas här!",
@@ -151,30 +147,37 @@
     "export-fail-title": "Export av spellista misslyckades",
     "export-success-title": "Export av spellista lyckades",
     "header": "Dina spellistor",
+    "import-progress": "Importförlopp",
+    "spotify-import-placeholder": "Klistra in webbadressen till en Spotify-spellista här",
+    "dialog-placeholder": "Namn på spellistan...",
     "dialog-accept": "Spara",
+    "dialog-cancel": "Avbryt",
+    "dialog-rename": "Byt namn",
+    "dialog-import": "Importera",
     "create-button": "Skapa ny spellista",
     "new-playlist": "Ny spellista",
+    "import-url-button": "Importera från url (Spotify)",
     "import-button": "Importera från fil (JSON)",
-    "import-fail-title": "Importering av spellista misslyckades",
+    "import-fail-title": "Import av spellista misslyckades",
     "import-success-title": "Spellistan importerades",
     "play-selected-tracks-now": "Spela valda nu",
     "playlist-created": "{{name}} skapad",
     "playlist-exported": "{{name}} sparad till lokal fil",
-    "queue": "Lägg till spellistan i kö",
-    "rename": "Byt namn på spellista",
+    "queue": "Lägg till spellistan i kön",
+    "rename": "Byt namn på spellistan",
     "songs": "{{total}} spår",
     "songs_plural": "{{total}} spår",
     "title": "Titel",
     "tracks-selected-plural": "spår valda",
     "tracks-selected-singular": "spår vald",
-    "tracks-singular": "track",
-    "tracks-plural": "tracks",
-    "modified-at": "Last modified: ",
-    "never-modified": "Unknown",
-    "server-modified-at": "Server modified: ",
-    "upload-to-server": "Upload to server",
-    "download-from-server": "Download from server",
-    "number-of-tracks": "tracks"
+    "tracks-singular": "spår",
+    "tracks-plural": "spår",
+    "modified-at": "Senast ändrad: ",
+    "never-modified": "Okänd",
+    "server-modified-at": "Server ändrad: ",
+    "upload-to-server": "Ladda upp till servern",
+    "download-from-server": "Hämta från servern",
+    "number-of-tracks": "spår"
   },
   "plugins": {
     "add-a-plugin": "Lägg till en insticksmodul",
@@ -190,17 +193,18 @@
     "user-plugins-warning-title": "Farozon!"
   },
   "queue": {
-    "clear": "Rensa kö",
+    "clear": "Rensa kön",
     "dialog-accept": "Spara",
+    "dialog-cancel": "Cancel",
     "dialog-placeholder": "Namn på spellistan...",
     "dialog-trigger": "Spara som spellista",
     "download": "Hämta",
-    "download-toast-content": "{{artist}} - {{title}} har lagts till i hämtningar.",
-    "download-toast-title": "Spår tillagt i hämtningar",
-    "favorite-add": "Lägg till i favoriter",
+    "download-toast-content": "{{artist}} - {{title}} har lagts till i Hämtningar.",
+    "download-toast-title": "Spår tillagt i Hämtningar",
+    "favorite-add": "Lägg till i Favoriter",
     "header": "Kö",
     "header-track": "Spelas just nu",
-    "id": "StreamID:",
+    "id": "Stream-ID:",
     "source": "Källa:",
     "copy-track-url": "Kopiera spåradress till urklipp",
     "loading": "Strömmen läses fortfarande.",
@@ -213,7 +217,7 @@
   "search": {
     "album": "Album",
     "album_plural": "Album",
-    "all": "All",
+    "all": "Alla",
     "artist": "Artist",
     "artist_plural": "Artister",
     "clear-history": "Rensa historik",
@@ -223,8 +227,8 @@
     "placeholder": "Sök...",
     "playlist": "Spellista",
     "playlist_plural": "Spellistor",
-    "podcast": "Podcast",
-    "queue-add": "Lägg till alla spår i kö",
+    "podcast": "Poddsändning",
+    "queue-add": "Lägg till alla spår i kön",
     "track": "Spår",
     "track_plural": "Spår",
     "you-can-search-for": "Du kan söka efter:"
@@ -254,7 +258,7 @@
     "fmfav-btn": "Importera",
     "fmfav-msg": "Importera dina Last.fm-favoriter",
     "frameless-window": "Ramlöst fönster (kräver omstart)",
-    "github-connect": "Logga in via Github",
+    "github-connect": "Logga in via GitHub",
     "github-description": "Logga in via GitHub för att kunna skapa och dela spellistor på nätet (framtida funktion).",
     "github-title": "GitHub",
     "http": "HTTP API",
@@ -265,11 +269,11 @@
     "lastfm-description": "För att aktivera skrobbling måste du först ansluta och auktorisera Nuclear på Last.fm, klicka sedan på logga in.",
     "lastfm-enable": "Aktivera skrobbling till Last.fm",
     "lastfm-title": "Last.fm",
-    "less": "Less",
+    "less": "Mindre",
     "login": "Logga in",
     "logout": "Logga ut",
     "loop-after-queue-end": "Upprepa kön efter att sista låten i kön spelats",
-    "mastodon-authorization-token-label": "Auktorisationstoken",
+    "mastodon-authorization-token-label": "Auktoriseringsstoken",
     "mastodon-authorize": "Auktorisera",
     "mastodon-authorized": "Nuclear är auktoriserad att posta på ",
     "mastodon-awaiting-authorization": "Nuclear är registrerad på {{instanceUrl}}. Väntar på auktorisation.",
@@ -278,16 +282,16 @@
     "mastodon-post-format-description": "Nuclear kommer att lägga upp en status på Mastodon efter varje spår som slutar spela. Ovanstående sträng kommer att vara mallen för varje inlägg, med {{artist}} och {{title}} ersatt med artisten och titeln för spåret.",
     "mastodon-post-format-label": "Postformat",
     "mastodon-title": "",
-    "nuclear-identity-service-url": "Nuclear identity service URL",
-    "nuclear-playlists-service-url": "Nuclear playlists service URL",
+    "nuclear-identity-service-url": "Nuclears webbadress för identitetstjänst",
+    "nuclear-playlists-service-url": "Nuclears webbadress för spellistor",
     "mini-player": "Använd minispelarstil",
-    "more": "More",
+    "more": "Mera",
     "discord-rich-presence": "Växla Discord rich närvaro (kräver omstart)",
     "notification-timeout": "Tidsgräns för notifikationer",
     "notlogged": "Inte inloggad",
     "playback": "Uppspelning",
     "program-settings": "Programinställningar",
-    "saving-in": "Saving in:",
+    "saving-in": "Sparar i:",
     "seek-iteration": "Antal sekunder att hoppa framåt/bakåt när du trycker på piltangenterna",
     "shuffle-queue": "Blanda spår",
     "shuffle-when-going-back": "Blanda på föregående låt",
@@ -306,17 +310,17 @@
     "artist": "Artist",
     "artists": "Toppartister",
     "duration": "Längd",
-    "queue-add": "Lägg till alla spår i kö",
+    "queue-add": "Lägg till alla spår i kön",
     "title": "Titel"
   },
   "track-popup": {
-    "add-to-favorite": "Lägg till i favoriter",
+    "add-to-favorite": "Lägg till i Favoriter",
     "add-to-playlist": "Lägg till i spellista",
     "add-to-queue": "Lägg till kö",
     "download": "Hämta",
-    "download-toast-body": "{{artist}} - {{track}} har lagts till hämtningar.",
+    "download-toast-body": "{{artist}} - {{track}} har lagts till Hämtningar.",
     "download-toast-title": "Spår lades till hämtningar",
-    "favorite-toast-body": "{{artist}} - {{track}} har lagts till i favoriter.",
+    "favorite-toast-body": "{{artist}} - {{track}} har lagts till i Favoriter.",
     "favorite-toast-title": "Favoritspår tillagt",
     "play-next": "Spela nästa",
     "play-now": "Spela nu",
@@ -324,47 +328,88 @@
     "playlist-toast-title": "Spår tillagt i spellista"
   },
   "track-table": {
-    "add-selected-tracks-to-queue": "Lägg till valda i kö",
-    "add-selected-tracks-to-downloads": "Lägg till valda till hämtningar",
-    "add-selected-tracks-to-favorites": "Lägg till valda i favoriter",
-    "play-selected-tracks-now": "Spela valda nu",
-    "tracks-selected-label-singular": "spår valt",
-    "tracks-selected-label-plural": "spår valda"
+    "add-selected-tracks-to-queue": "Lägg till markerade i kön",
+    "add-selected-tracks-to-downloads": "Lägg till markerade till Hämtningar",
+    "add-selected-tracks-to-favorites": "Lägg till markerade i Favoriter",
+    "play-selected-tracks-now": "Spela markerade nu",
+    "tracks-selected-label-singular": "spår markerat",
+    "tracks-selected-label-plural": "spår markerade"
   },
   "visualizer": {
     "exit-fullscreen": "Tryck på Esc för att avsluta helskärmsläge"
   },
+  "command-palette": {
+    "search-placeholder": "What would you like to do?",
+    "empty-state-help": "Can't seem to find what you're looking for? Try the help command.",
+    "protip-text": "PROTIP:",
+    "protip-content": "Arrows to navigate, Enter to select, Esc to close",
+    "categories": {
+      "playback": "Playback",
+      "queue": "Queue",
+      "navigation": "Navigation",
+      "application": "Application"
+    },
+    "actions": {
+      "play": "Play",
+      "pause": "Pause",
+      "next": "Next",
+      "previous": "Previous",
+      "go-to-next-page": "Go to next page",
+      "go-to-previous-page": "Go to previous page",
+      "shuffle": "Shuffle",
+      "loop": "Loop",
+      "autoradio": "Autoradio",
+      "raise-volume": "Raise volume",
+      "lower-volume": "Lower volume",
+      "mute": "Mute",
+      "unmute": "Unmute",
+      "quit": "Quit",
+      "minimize": "Minimize",
+      "maximize": "Maximize",
+      "go-to-dashboard": "Go to dashboard",
+      "go-to-downloads": "Go to downloads",
+      "go-to-lyrics": "Go to lyrics",
+      "go-to-plugins": "Go to plugins",
+      "go-to-search": "Go to search",
+      "go-to-settings": "Go to settings",
+      "go-to-equalizer": "Go to equalizer",
+      "go-to-visualizer": "Go to visualizer",
+      "go-to-playlists": "Go to playlists",
+      "go-to-favorite-tracks": "Go to favorite tracks",
+      "go-to-library": "Go to local library"
+    }
+  },
   "forms": {
     "nuclear-sign-up": {
-      "header": "Sign up",
-      "secondary-header": "Sign up to Nuclear Web Services",
-      "side-paragraph-1": "NWS enables you to backup your playlists online and share them.",
-      "side-paragraph-2": "Providing your email is optional; it will allow you to recover your account if you forget your password.",
-      "username-label": "Username",
-      "email-label": "Email",
-      "password-label": "Password",
-      "sign-up-button": "Sign up",
+      "header": "Registrera dig",
+      "secondary-header": "Registrera dig till Nuclear Web Services",
+      "side-paragraph-1": "NWS gör att du kan säkerhetskopiera dina spellistor på nätet och dela dem.",
+      "side-paragraph-2": "Att tillhandahålla din e-post är valfritt; det gör att du kan återställa ditt konto om du glömmer ditt lösenord.",
+      "username-label": "Användarnamn",
+      "email-label": "E-post",
+      "password-label": "Lösenord",
+      "sign-up-button": "Registrera dig",
       "validation": {
         "username": {
-          "length": "Username must be 4 characters or more",
-          "required": "Username is required"
+          "length": "Användarnamnet måste vara 4 tecken eller mer",
+          "required": "Användarnamn krävs"
         },
         "email": {
-          "invalid": "Email must be a valid email"
+          "invalid": "E-post måste vara en giltig e-postadress"
         },
         "password": {
-          "length": "Password must be 6 characters or more",
-          "required": "Password is required"
+          "length": "Lösenordet måste vara 6 tecken eller mer",
+          "required": "Lösenord krävs"
         }
       }
     },
     "nuclear-sign-in": {
-      "header": " Sign in",
-      "username-label": "Username",
-      "password-label": "Password",
-      "no-account-label": "Don't have an account?",
-      "no-account-link": "Sign up",
-      "sign-in-button": "Sign in"
+      "header": " Logga in",
+      "username-label": "Användarnamn",
+      "password-label": "Lösenord",
+      "no-account-label": "Har du inget konto?",
+      "no-account-link": "Registrera dig",
+      "sign-in-button": "Logga in"
     }
   }
 }

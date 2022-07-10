@@ -27,9 +27,9 @@
     "settings": "Настройки",
     "visualizer": "Визуализатор",
     "user-panel": {
-      "actions-tooltip": "User actions",
-      "sign-up": "Sign up / Sign in",
-      "sign-out": "Sign out"
+      "actions-tooltip": "Пользовательские действия",
+      "sign-up": "Зарегистрироваться / Войти",
+      "sign-out": "Выйти"
     },
     "version": "Версия"
   },
@@ -100,9 +100,6 @@
     "report": "Сообщить о проблеме или предложить улучшения",
     "thanks": "Большое спасибо всем, сделавшим вклад на GitHub, ваша помощь чрезвычайно важна в создании этой программы."
   },
-  "input-dialog": {
-    "cancel": "Отмена"
-  },
   "library": {
     "add": "Добавить папки",
     "album": "Альбом",
@@ -139,7 +136,6 @@
     "album": "Альбом",
     "artist": "Исполнитель",
     "delete": "Удалить этот плейлист",
-    "dialog-placeholder": "Название...",
     "duration": "Длительность",
     "empty": "Нет плейлистов.",
     "empty-help": "Создайте несколько или импортируйте, а они появятся здесь.",
@@ -151,9 +147,16 @@
     "export-fail-title": "Ошибка при экспорте",
     "export-success-title": "Плейлист экспортирован",
     "header": "Ваши плейлисты",
+    "import-progress": "Прогресс импорта",
+    "spotify-import-placeholder": "Вставьте ссылку на плейлист Spotify сюда",
+    "dialog-placeholder": "Название...",
     "dialog-accept": "Сохранить",
+    "dialog-cancel": "Отменить",
+    "dialog-rename": "Переименовать",
+    "dialog-import": "Импортировать",
     "create-button": "Новый плейлист",
     "new-playlist": "Новый плейлист",
+    "import-url-button": "Импортировать из (Spotify)",
     "import-button": "Импорт из файла (JSON)",
     "import-fail-title": "Ошибка при импорте",
     "import-success-title": "Плейлист импортирован",
@@ -167,14 +170,14 @@
     "title": "Название",
     "tracks-selected-plural": "треков выбрано",
     "tracks-selected-singular": "трек выбран",
-    "tracks-singular": "track",
-    "tracks-plural": "tracks",
-    "modified-at": "Last modified: ",
-    "never-modified": "Unknown",
-    "server-modified-at": "Server modified: ",
-    "upload-to-server": "Upload to server",
-    "download-from-server": "Download from server",
-    "number-of-tracks": "tracks"
+    "tracks-singular": "трек",
+    "tracks-plural": "треки",
+    "modified-at": "Последнее изменение: ",
+    "never-modified": "Неизвестно",
+    "server-modified-at": "Сервер изменен: ",
+    "upload-to-server": "Загрузить на сервер",
+    "download-from-server": "Загрузить с сервера",
+    "number-of-tracks": "саундтреки"
   },
   "plugins": {
     "add-a-plugin": "Добавить плагин",
@@ -192,6 +195,7 @@
   "queue": {
     "clear": "Очистить очередь",
     "dialog-accept": "Сохранить",
+    "dialog-cancel": "Cancel",
     "dialog-placeholder": "Название...",
     "dialog-trigger": "Сохранить как плейлист",
     "download": "Загрузить",
@@ -278,8 +282,8 @@
     "mastodon-post-format-description": "Nuclear будет постить статус на Mastodon каждый раз, когда заканчивается трек. Строка сверху является шаблоном для этих постов, {{artist}} и {{title}} в ней будут заменены исполнителем и названием трека.",
     "mastodon-post-format-label": "Формат поста",
     "mastodon-title": "",
-    "nuclear-identity-service-url": "Nuclear identity service URL",
-    "nuclear-playlists-service-url": "Nuclear playlists service URL",
+    "nuclear-identity-service-url": "Служба идентификации URL",
+    "nuclear-playlists-service-url": "Сервис нахождения плейлистов по URL",
     "mini-player": "Режим мини-плеера",
     "more": "Больше",
     "discord-rich-presence": "Интеграция с Discord (понадобится перезапуск)",
@@ -334,37 +338,78 @@
   "visualizer": {
     "exit-fullscreen": "Нажмите Esc, чтобы выйти из полноэкранного режима"
   },
+  "command-palette": {
+    "search-placeholder": "What would you like to do?",
+    "empty-state-help": "Can't seem to find what you're looking for? Try the help command.",
+    "protip-text": "PROTIP:",
+    "protip-content": "Arrows to navigate, Enter to select, Esc to close",
+    "categories": {
+      "playback": "Playback",
+      "queue": "Queue",
+      "navigation": "Navigation",
+      "application": "Application"
+    },
+    "actions": {
+      "play": "Play",
+      "pause": "Pause",
+      "next": "Next",
+      "previous": "Previous",
+      "go-to-next-page": "Go to next page",
+      "go-to-previous-page": "Go to previous page",
+      "shuffle": "Shuffle",
+      "loop": "Loop",
+      "autoradio": "Autoradio",
+      "raise-volume": "Raise volume",
+      "lower-volume": "Lower volume",
+      "mute": "Mute",
+      "unmute": "Unmute",
+      "quit": "Quit",
+      "minimize": "Minimize",
+      "maximize": "Maximize",
+      "go-to-dashboard": "Go to dashboard",
+      "go-to-downloads": "Go to downloads",
+      "go-to-lyrics": "Go to lyrics",
+      "go-to-plugins": "Go to plugins",
+      "go-to-search": "Go to search",
+      "go-to-settings": "Go to settings",
+      "go-to-equalizer": "Go to equalizer",
+      "go-to-visualizer": "Go to visualizer",
+      "go-to-playlists": "Go to playlists",
+      "go-to-favorite-tracks": "Go to favorite tracks",
+      "go-to-library": "Go to local library"
+    }
+  },
   "forms": {
     "nuclear-sign-up": {
-      "header": "Sign up",
-      "secondary-header": "Sign up to Nuclear Web Services",
-      "side-paragraph-1": "NWS enables you to backup your playlists online and share them.",
-      "side-paragraph-2": "Providing your email is optional; it will allow you to recover your account if you forget your password.",
-      "username-label": "Username",
+      "header": "Зарегистрироваться",
+      "secondary-header": "Зарегистрируйтесь в Nuclear Web Services",
+      "side-paragraph-1": "NWS позволяет создавать резервные копии плейлистов в интернете и обмениваться ими.",
+      "side-paragraph-2": "Указание электронной почты необязательно; это позволит вам восстановить свою учетную запись, если вы забудете пароль.",
+      "username-label": "Логин",
       "email-label": "Email",
-      "password-label": "Password",
-      "sign-up-button": "Sign up",
+      "password-label": "Пароль",
+      "sign-up-button": "Зарегистрироваться",
       "validation": {
         "username": {
-          "length": "Username must be 4 characters or more",
-          "required": "Username is required"
+          "length": "Имя пользователя должно содержать 4 или более символов",
+          "required": "Требуется имя пользователя"
         },
         "email": {
-          "invalid": "Email must be a valid email"
+          "invalid": "Email должен быть настоящим"
         },
         "password": {
-          "length": "Password must be 6 characters or more",
-          "required": "Password is required"
+          "length": "Пароль должен содержать не менее 6 символов",
+          "required": "Требуется пароль"
         }
       }
     },
     "nuclear-sign-in": {
-      "header": " Sign in",
-      "username-label": "Username",
-      "password-label": "Password",
-      "no-account-label": "Don't have an account?",
-      "no-account-link": "Sign up",
-      "sign-in-button": "Sign in"
+      "header": " Войти",
+      "username-label": "Логин",
+      "password-label": "Пароль",
+      "no-account-label": "Нет аккаунта?",
+      "no-account-link": "Зарегистрироваться",
+      "sign-in-button": "Войти"
     }
   }
 }

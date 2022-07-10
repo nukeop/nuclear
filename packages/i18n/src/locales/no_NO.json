@@ -27,14 +27,14 @@
     "settings": "Innstillinger",
     "visualizer": "Visualiser",
     "user-panel": {
-      "actions-tooltip": "User actions",
-      "sign-up": "Sign up / Sign in",
-      "sign-out": "Sign out"
+      "actions-tooltip": "Brukerhandlinger",
+      "sign-up": "Registrer deg/Logg inn",
+      "sign-out": "Logg ut"
     },
-    "version": "Version"
+    "version": "Versjon"
   },
   "artist": {
-    "add-all": "Add all",
+    "add-all": "Legg til alle",
     "count": "Spill teller",
     "queue": "Legg til alle spor i køen",
     "similar": "Lignende artister",
@@ -42,8 +42,8 @@
     "tour": "Sendes på tur"
   },
   "dashboard": {
-    "add-all": "Add all",
-    "artist": "Kunstner",
+    "add-all": "Legg til alle",
+    "artist": "Artist",
     "best": "Beste nye musikk",
     "best-new-albums": "Beste nye album",
     "best-new-tracks": "Beste nye spor",
@@ -64,14 +64,14 @@
     "status": "Status:"
   },
   "equalizer": {
-    "classical": "Classical",
-    "club": "Club",
-    "custom": "Custom",
-    "default": "Default",
+    "classical": "Klassisk",
+    "club": "Klubb",
+    "custom": "Egendefinert",
+    "default": "Standard",
     "full-bass": "Full Bass",
-    "full-treble": "Full Treble",
+    "full-treble": "Full Diskant",
     "pop": "Pop",
-    "presets": "Presets",
+    "presets": "Forhåndsinnstillinger",
     "reggae": "Reggae",
     "rock": "Rock"
   },
@@ -86,27 +86,24 @@
     "header": "Favorittartistene dine"
   },
   "favorites": {
-    "artist": "Kunstner",
+    "artist": "Artist",
     "empty": "Ingen favoritter lagt til",
-    "empty-help": "Try adding some tracks to favorites and they will appear here!",
+    "empty-help": "Prøv å legge til noen spor i favoritter, de vil vises her!",
     "header": "Dine favorittspor",
     "title": "Tittel"
   },
   "help": {
     "about": "Om Nuclear Music Player",
-    "contributors": "Our top 10 Contributors",
+    "contributors": "Våre topp 10 bidragsytere",
     "header": "Skrivebord musikkspiller for å strømme fra gratis kilder",
     "released": "frigjort under AGPL-3,0",
     "report": "Send problemer eller nye funksjoner",
     "thanks": "Mange takk til våre bidragsytere på Github, så var hjelpen viktig for å lage dette programmet."
   },
-  "input-dialog": {
-    "cancel": "Avbryt"
-  },
   "library": {
     "add": "Legg til mapper",
     "album": "album",
-    "artist": "Kunstner",
+    "artist": "Artist",
     "empty": "Biblioteket er tomt",
     "empty-help": "Legg til musikk ved hjelp av knappen ovenfor.",
     "filter-placeholder": "Filtrer...",
@@ -137,9 +134,8 @@
     "add-selected-tracks-to-favorites": "Legg valgte til i favoritter",
     "add-selected-tracks-to-queue": "Legg til valgte i køen",
     "album": "album",
-    "artist": "Kunstner",
+    "artist": "Artist",
     "delete": "Slett denne spillelisten",
-    "dialog-placeholder": "Navn på spilleliste...",
     "duration": "Lengde",
     "empty": "Ingen spillelister.",
     "empty-help": "Prøv å lage noen spillelister eller urlimporter, og de vil vises her!",
@@ -151,9 +147,16 @@
     "export-fail-title": "Eksport av spilleliste feilet",
     "export-success-title": "Vellykket eksport av spilleliste",
     "header": "Dine spillelister",
-    "dialog-accept": "Save",
-    "create-button": "Create new playlist",
-    "new-playlist": "New playlist",
+    "import-progress": "Import progress",
+    "spotify-import-placeholder": "Paste a Spotify playlist URL here",
+    "dialog-placeholder": "Navn på spilleliste...",
+    "dialog-accept": "Lagre",
+    "dialog-cancel": "Cancel",
+    "dialog-rename": "Rename",
+    "dialog-import": "Import",
+    "create-button": "Lag ny spilleliste",
+    "new-playlist": "Ny spilleliste",
+    "import-url-button": "Import from url (Spotify)",
     "import-button": "Importer fra fil (JSON)",
     "import-fail-title": "Import av spilleliste feilet",
     "import-success-title": "Spilleliste importert",
@@ -167,14 +170,14 @@
     "title": "Tittel",
     "tracks-selected-plural": "Spor valgt",
     "tracks-selected-singular": "spor valgt",
-    "tracks-singular": "track",
-    "tracks-plural": "tracks",
-    "modified-at": "Last modified: ",
-    "never-modified": "Unknown",
-    "server-modified-at": "Server modified: ",
-    "upload-to-server": "Upload to server",
-    "download-from-server": "Download from server",
-    "number-of-tracks": "tracks"
+    "tracks-singular": "spor",
+    "tracks-plural": "spor",
+    "modified-at": "Sist endret: ",
+    "never-modified": "Ukjent",
+    "server-modified-at": "Server endret: ",
+    "upload-to-server": "Last opp til server",
+    "download-from-server": "Last ned fra server",
+    "number-of-tracks": "spor"
   },
   "plugins": {
     "add-a-plugin": "Legg til en plugin",
@@ -192,6 +195,7 @@
   "queue": {
     "clear": "Slett kø",
     "dialog-accept": "Lagre",
+    "dialog-cancel": "Cancel",
     "dialog-placeholder": "Navn på spilleliste...",
     "dialog-trigger": "Lagre som spilleliste",
     "download": "Nedlasting",
@@ -201,8 +205,8 @@
     "header": "Kø",
     "header-track": "Gjeldende spor",
     "id": "Strøm ID:",
-    "source": "Source:",
-    "copy-track-url": "Copy track url to clipboard",
+    "source": "Kilde:",
+    "copy-track-url": "Kopier spor-url til utklippstavle",
     "loading": "Strømming lastes fortsatt.",
     "playlist-add": "Legg til i spilleliste",
     "playlist-toast-content": "Spilleliste {{name}} er opprettet.",
@@ -213,24 +217,24 @@
   "search": {
     "album": "album",
     "album_plural": "Album",
-    "all": "All",
-    "artist": "Kunstner",
+    "all": "Alle",
+    "artist": "Artist",
     "artist_plural": "Artister",
     "clear-history": "Tøm logg",
     "empty": "Fant ingenting.",
     "last-searches": "Siste søk",
-    "live-stream": "LiveStream",
+    "live-stream": "Direktestrømming",
     "placeholder": "Søk...",
     "playlist": "Spilleliste",
     "playlist_plural": "Spillelister",
-    "podcast": "Podcast",
+    "podcast": "Podkast",
     "queue-add": "Legg til alle spor i køen",
     "track": "Spor",
     "track_plural": "Spor",
     "you-can-search-for": "Du kan søke etter:"
   },
   "seekbar": {
-    "live": "Live",
+    "live": "Direkte",
     "segment-popup": "Ikke-musikk"
   },
   "settings": {
@@ -265,7 +269,7 @@
     "lastfm-description": "For å aktivere scrobbling, må du først koble til og godkjenne Nuclear på Last.fm, og deretter klikke på Logg inn.",
     "lastfm-enable": "Aktiver scrobbling til Last.fm",
     "lastfm-title": "Last.fm",
-    "less": "Less",
+    "less": "Mindre",
     "login": "Logg inn",
     "logout": "Logg ut",
     "loop-after-queue-end": "Sløyfe etter siste kø-objekt",
@@ -278,23 +282,23 @@
     "mastodon-post-format-description": "Kjerneprøver vil poste statusen på Mastodon etter hver enkelt sang er ferdig. Teksten over vil være malen for hvert innlegg, med {{artist}} og {{title}} erstattet med artisten og tittelen på sporet.",
     "mastodon-post-format-label": "Post format",
     "mastodon-title": "",
-    "nuclear-identity-service-url": "Nuclear identity service URL",
-    "nuclear-playlists-service-url": "Nuclear playlists service URL",
+    "nuclear-identity-service-url": "Nuclear identitetstjeneste URL",
+    "nuclear-playlists-service-url": "Nuclear spillelistetjeneste URL",
     "mini-player": "Bruk mini spiller stil",
-    "more": "More",
-    "discord-rich-presence": "Toggle discord rich presence (requires restart)",
+    "more": "Mer",
+    "discord-rich-presence": "Veksle discord rik tilstedeværelse (krever omstart)",
     "notification-timeout": "Tidsavbrudd for varsel",
     "notlogged": "Ikke logget inn",
     "playback": "Avspilling",
     "program-settings": "Programmets innstillinger",
-    "saving-in": "Saving in:",
+    "saving-in": "Lagrer i:",
     "seek-iteration": "Antall sekunder å søke fremover eller bakover når du trykker på piltastene",
     "shuffle-queue": "Shuffle sanger",
     "shuffle-when-going-back": "Bland på forrige spor",
     "shuffle-when-going-back-description": "Spill av et tilfeldig spor når shuffle er aktiv og knappen forrige sang blir klikket",
     "social": "Sosial",
-    "skip-sponsorblock": "Skip non-music segment",
-    "skip-sponsorblock-description": "Playback skips non-music segment from SponsorBlock (https://sponsor.ajay.app/)",
+    "skip-sponsorblock": "Hopp over ikke-musikksegmenter",
+    "skip-sponsorblock-description": "Avspilling hopper over ikke-musikksegmenter fra SponsorBlock (https://sponsor.ajay.app/)",
     "streaming": "Strømming",
     "track-duration": "Vis sporets varighet over søkefeltet",
     "user": "Bruker:",
@@ -303,68 +307,109 @@
   },
   "tags": {
     "albums": "Topp Album",
-    "artist": "Kunstner",
+    "artist": "Artist",
     "artists": "Topp artister",
     "duration": "Varighet",
     "queue-add": "Legg til alle spor i køen",
     "title": "Tittel"
   },
   "track-popup": {
-    "add-to-favorite": "Add to favorites",
-    "add-to-playlist": "Add to playlist",
-    "add-to-queue": "Add to queue",
-    "download": "Download",
-    "download-toast-body": "{{artist}} - {{track}} has been added to downloads.",
-    "download-toast-title": "Track added to downloads",
-    "favorite-toast-body": "{{artist}} - {{track}} has been added to favorites.",
-    "favorite-toast-title": "Favorite track added",
-    "play-next": "Play next",
-    "play-now": "Play now",
-    "playlist-toast-body": "{{artist}} - {{track}} has been added to playlist.",
-    "playlist-toast-title": "Track added to playlist"
+    "add-to-favorite": "Legg til favoritter",
+    "add-to-playlist": "Legg til spilleliste",
+    "add-to-queue": "Legg til kø",
+    "download": "Last ned",
+    "download-toast-body": "{{artist}} - {{track}} har blitt lagt til i nedlastinger.",
+    "download-toast-title": "Spor lagt til i nedlastinger",
+    "favorite-toast-body": "{{artist}} - {{track}} har blitt lagt til i nedlastinger.",
+    "favorite-toast-title": "Favorittspor lagt til",
+    "play-next": "Spill neste",
+    "play-now": "Spill nå",
+    "playlist-toast-body": "{{artist}} - {{track}} har blitt lagt til i spillelisten.",
+    "playlist-toast-title": "Spor lagt til i spillelisten"
   },
   "track-table": {
-    "add-selected-tracks-to-queue": "Add selected to queue",
-    "add-selected-tracks-to-downloads": "Add selected to downloads",
-    "add-selected-tracks-to-favorites": "Add selected to favorites",
-    "play-selected-tracks-now": "Play selected now",
-    "tracks-selected-label-singular": "track selected",
-    "tracks-selected-label-plural": "tracks selected"
+    "add-selected-tracks-to-queue": "Legg til valgt i køen",
+    "add-selected-tracks-to-downloads": "Legg til valgte i nedlastinger",
+    "add-selected-tracks-to-favorites": "Legg til valgt i favoritter",
+    "play-selected-tracks-now": "Spill av valgte nå",
+    "tracks-selected-label-singular": "spor valgt",
+    "tracks-selected-label-plural": "spor valgt"
   },
   "visualizer": {
     "exit-fullscreen": "Trykk ESC for å avslutte fullskjerm"
   },
+  "command-palette": {
+    "search-placeholder": "What would you like to do?",
+    "empty-state-help": "Can't seem to find what you're looking for? Try the help command.",
+    "protip-text": "PROTIP:",
+    "protip-content": "Arrows to navigate, Enter to select, Esc to close",
+    "categories": {
+      "playback": "Playback",
+      "queue": "Queue",
+      "navigation": "Navigation",
+      "application": "Application"
+    },
+    "actions": {
+      "play": "Play",
+      "pause": "Pause",
+      "next": "Next",
+      "previous": "Previous",
+      "go-to-next-page": "Go to next page",
+      "go-to-previous-page": "Go to previous page",
+      "shuffle": "Shuffle",
+      "loop": "Loop",
+      "autoradio": "Autoradio",
+      "raise-volume": "Raise volume",
+      "lower-volume": "Lower volume",
+      "mute": "Mute",
+      "unmute": "Unmute",
+      "quit": "Quit",
+      "minimize": "Minimize",
+      "maximize": "Maximize",
+      "go-to-dashboard": "Go to dashboard",
+      "go-to-downloads": "Go to downloads",
+      "go-to-lyrics": "Go to lyrics",
+      "go-to-plugins": "Go to plugins",
+      "go-to-search": "Go to search",
+      "go-to-settings": "Go to settings",
+      "go-to-equalizer": "Go to equalizer",
+      "go-to-visualizer": "Go to visualizer",
+      "go-to-playlists": "Go to playlists",
+      "go-to-favorite-tracks": "Go to favorite tracks",
+      "go-to-library": "Go to local library"
+    }
+  },
   "forms": {
     "nuclear-sign-up": {
-      "header": "Sign up",
-      "secondary-header": "Sign up to Nuclear Web Services",
-      "side-paragraph-1": "NWS enables you to backup your playlists online and share them.",
-      "side-paragraph-2": "Providing your email is optional; it will allow you to recover your account if you forget your password.",
-      "username-label": "Username",
-      "email-label": "Email",
-      "password-label": "Password",
-      "sign-up-button": "Sign up",
+      "header": "Registrer deg",
+      "secondary-header": "Registrer deg til Nuclear webtjenester",
+      "side-paragraph-1": "NWS lar deg sikkerhetskopiere spillelister online og dele dem.",
+      "side-paragraph-2": "Det er valgfritt å oppgi e-post; det vil la deg gjenopprette brukeren din hvis du glemmer passordet.",
+      "username-label": "Brukernavn",
+      "email-label": "E-post",
+      "password-label": "Passord",
+      "sign-up-button": "Registrer deg",
       "validation": {
         "username": {
-          "length": "Username must be 4 characters or more",
-          "required": "Username is required"
+          "length": "Brukernavnet må være på 4 tegn eller mer",
+          "required": "Brukernavn er påkrevd"
         },
         "email": {
-          "invalid": "Email must be a valid email"
+          "invalid": "E-post må være en gyldig e-postadresse"
         },
         "password": {
-          "length": "Password must be 6 characters or more",
-          "required": "Password is required"
+          "length": "Passordet må være 6 tegn eller mer",
+          "required": "Passord er påkrevd"
         }
       }
     },
     "nuclear-sign-in": {
-      "header": " Sign in",
-      "username-label": "Username",
-      "password-label": "Password",
-      "no-account-label": "Don't have an account?",
-      "no-account-link": "Sign up",
-      "sign-in-button": "Sign in"
+      "header": " Logg inn",
+      "username-label": "Brukernavn",
+      "password-label": "Passord",
+      "no-account-label": "Har du ikke brukerkonto?",
+      "no-account-link": "Registrer deg",
+      "sign-in-button": "Logg inn"
     }
   }
 }

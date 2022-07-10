@@ -27,14 +27,14 @@
     "settings": "Ajustes",
     "visualizer": "Visualizador",
     "user-panel": {
-      "actions-tooltip": "User actions",
-      "sign-up": "Sign up / Sign in",
-      "sign-out": "Sign out"
+      "actions-tooltip": "Acciones de usuario",
+      "sign-up": "Regístrate / Accede",
+      "sign-out": "Cerrar sesión"
     },
-    "version": "Version"
+    "version": "Versión"
   },
   "artist": {
-    "add-all": "Add all",
+    "add-all": "Añadir todos",
     "count": "Conteo de reproducciones",
     "queue": "Añadir todas las pistas a la cola",
     "similar": "Artistas similares",
@@ -64,14 +64,14 @@
     "status": "Estado"
   },
   "equalizer": {
-    "classical": "Classical",
+    "classical": "Clásico",
     "club": "Club",
-    "custom": "Custom",
-    "default": "Default",
+    "custom": "Personalizado",
+    "default": "Predeterminado",
     "full-bass": "Full Bass",
     "full-treble": "Full Treble",
     "pop": "Pop",
-    "presets": "Presets",
+    "presets": "Predefinidos",
     "reggae": "Reggae",
     "rock": "Rock"
   },
@@ -94,14 +94,11 @@
   },
   "help": {
     "about": "Acerca de Nuclear Music Player",
-    "contributors": "Our top 10 Contributors",
+    "contributors": "Nuestro top 10 contribuidores",
     "header": "Reproductor de música de escritorio para transmitir desde fuentes gratuitas",
     "released": "publicado bajo AGPL-3.0",
     "report": "Enviar incidencias o nuevas funcionalidades",
     "thanks": "Muchas gracias a nuestros colaboradores en GitHub, su ayuda ha sido vital en la creación de este programa."
-  },
-  "input-dialog": {
-    "cancel": "Cancelar"
   },
   "library": {
     "add": "Añadir carpetas",
@@ -139,7 +136,6 @@
     "album": "Álbum",
     "artist": "Artista",
     "delete": "Eliminar esta lista de reproducción",
-    "dialog-placeholder": "Nombre de la lista de reproducción...",
     "duration": "Duración",
     "empty": "No hay listas de reproducción.",
     "empty-help": "¡Prueba crear algunas listas de reproducción o impórtalas por URL y aparecerán aquí!",
@@ -151,9 +147,16 @@
     "export-fail-title": "Exportación de lista de reproducción fallida",
     "export-success-title": "Lista de reproducción exportada exitosamente",
     "header": "Tus listas de reproducción",
+    "import-progress": "Importar progreso",
+    "spotify-import-placeholder": "Pega aquí una URL de una lista de reproducción de Spotify",
+    "dialog-placeholder": "Nombre de la lista de reproducción...",
     "dialog-accept": "Guardar",
+    "dialog-cancel": "Cancelar",
+    "dialog-rename": "Renombrar",
+    "dialog-import": "Importar",
     "create-button": "Crear una nueva lista de reproducción",
     "new-playlist": "Nueva lista de reproducción",
+    "import-url-button": "Importar desde URL (Spotify)",
     "import-button": "Importar desde archivo (JSON)",
     "import-fail-title": "Importación de lista de reproducción fallida",
     "import-success-title": "Lista de reproducción importada exitosamente",
@@ -167,14 +170,14 @@
     "title": "Título",
     "tracks-selected-plural": "pistas seleccionadas",
     "tracks-selected-singular": "pista seleccionada",
-    "tracks-singular": "track",
-    "tracks-plural": "tracks",
-    "modified-at": "Last modified: ",
-    "never-modified": "Unknown",
-    "server-modified-at": "Server modified: ",
-    "upload-to-server": "Upload to server",
-    "download-from-server": "Download from server",
-    "number-of-tracks": "tracks"
+    "tracks-singular": "canción",
+    "tracks-plural": "canciones",
+    "modified-at": "Última modificación: ",
+    "never-modified": "Desconocido",
+    "server-modified-at": "Modificado en el servidor: ",
+    "upload-to-server": "Subir al servidor",
+    "download-from-server": "Descargar desde el servidor",
+    "number-of-tracks": "canciones"
   },
   "plugins": {
     "add-a-plugin": "Añadir un plugin",
@@ -192,6 +195,7 @@
   "queue": {
     "clear": "Vaciar cola",
     "dialog-accept": "Guardar",
+    "dialog-cancel": "Cancel",
     "dialog-placeholder": "Nombre de la lista de reproduccion...",
     "dialog-trigger": "Guardar como lista de reproducción",
     "download": "Descargar",
@@ -208,18 +212,18 @@
     "playlist-toast-content": "La lista de reproducción '{{name}}' ha sido creada.",
     "playlist-toast-title": "Lista de reproducción creada",
     "title": "Título:",
-    "live": "Live"
+    "live": "En directo"
   },
   "search": {
     "album": "Álbum",
     "album_plural": "Álbumes",
-    "all": "All",
+    "all": "Todo",
     "artist": "Artista",
     "artist_plural": "Artistas",
     "clear-history": "Limpiar el historial",
     "empty": "No se ha encontrado nada.",
     "last-searches": "Últimas búsquedas",
-    "live-stream": "LiveStream",
+    "live-stream": "Retransmisión en vivo",
     "placeholder": "Buscar...",
     "playlist": "Lista de reproducción",
     "playlist_plural": "Listas de reproducción",
@@ -230,7 +234,7 @@
     "you-can-search-for": "Puedes buscar:"
   },
   "seekbar": {
-    "live": "Live",
+    "live": "En directo",
     "segment-popup": "Sin Música"
   },
   "settings": {
@@ -265,7 +269,7 @@
     "lastfm-description": "Para habilitar el scrobbling, primero debes conectar y autorizar Nuclear en Last.fm, y luego hacer clic en iniciar sesión.",
     "lastfm-enable": "Habilitar scrobbling a Last.fm",
     "lastfm-title": "Last.fm",
-    "less": "Less",
+    "less": "Menos",
     "login": "Iniciar sesión",
     "logout": "Cerrar sesión",
     "loop-after-queue-end": "Repetir al terminar el último elemento de la cola",
@@ -278,23 +282,23 @@
     "mastodon-post-format-description": "Nuclear publicará un estado en Mastodon después de que cada pista termine de reproducirse. La cadena anterior será la plantilla para cada publicación, siendo {{artist}} y {{title}} reemplazados por el artista y título de la pista.",
     "mastodon-post-format-label": "Formato de la publicación",
     "mastodon-title": "",
-    "nuclear-identity-service-url": "Nuclear identity service URL",
-    "nuclear-playlists-service-url": "Nuclear playlists service URL",
+    "nuclear-identity-service-url": "URL del servicio de identidad de Nuclear",
+    "nuclear-playlists-service-url": "URL del servicio de listas de reproducción de Nuclear",
     "mini-player": "Usar estilo de minireproductor",
-    "more": "More",
-    "discord-rich-presence": "Toggle discord rich presence (requires restart)",
+    "more": "Más",
+    "discord-rich-presence": "Alternar Rich Presence de Discord (requiere reinicio)",
     "notification-timeout": "Tiempo de espera de notificaciones",
     "notlogged": "Sesión no iniciada",
     "playback": "Reproducción",
     "program-settings": "Ajustes del programa",
-    "saving-in": "Saving in:",
+    "saving-in": "Guardando en:",
     "seek-iteration": "Cantidad de segundos a desplazar al presionar las flechas direccionales",
     "shuffle-queue": "Reproducción aleatoria",
     "shuffle-when-going-back": "Aleatorizar en pista previa",
     "shuffle-when-going-back-description": "Reproduce una pista aleatoria cuando está activada la reproducción aleatoria y se presiona el botón de pista previa",
     "social": "Social",
-    "skip-sponsorblock": "Skip non-music segment",
-    "skip-sponsorblock-description": "Playback skips non-music segment from SponsorBlock (https://sponsor.ajay.app/)",
+    "skip-sponsorblock": "Omitir segmento no musical",
+    "skip-sponsorblock-description": "La reproducción omite el segmento no musical de SponsorBlock (https://sponsor.ajay.app/)",
     "streaming": "Transmisión",
     "track-duration": "Mostrar duración de la pista sobre la barra de búsqueda",
     "user": "Usuario:",
@@ -334,37 +338,78 @@
   "visualizer": {
     "exit-fullscreen": "Presiona ESC para salir de la pantalla completa"
   },
+  "command-palette": {
+    "search-placeholder": "What would you like to do?",
+    "empty-state-help": "Can't seem to find what you're looking for? Try the help command.",
+    "protip-text": "PROTIP:",
+    "protip-content": "Arrows to navigate, Enter to select, Esc to close",
+    "categories": {
+      "playback": "Playback",
+      "queue": "Queue",
+      "navigation": "Navigation",
+      "application": "Application"
+    },
+    "actions": {
+      "play": "Play",
+      "pause": "Pause",
+      "next": "Next",
+      "previous": "Previous",
+      "go-to-next-page": "Go to next page",
+      "go-to-previous-page": "Go to previous page",
+      "shuffle": "Shuffle",
+      "loop": "Loop",
+      "autoradio": "Autoradio",
+      "raise-volume": "Raise volume",
+      "lower-volume": "Lower volume",
+      "mute": "Mute",
+      "unmute": "Unmute",
+      "quit": "Quit",
+      "minimize": "Minimize",
+      "maximize": "Maximize",
+      "go-to-dashboard": "Go to dashboard",
+      "go-to-downloads": "Go to downloads",
+      "go-to-lyrics": "Go to lyrics",
+      "go-to-plugins": "Go to plugins",
+      "go-to-search": "Go to search",
+      "go-to-settings": "Go to settings",
+      "go-to-equalizer": "Go to equalizer",
+      "go-to-visualizer": "Go to visualizer",
+      "go-to-playlists": "Go to playlists",
+      "go-to-favorite-tracks": "Go to favorite tracks",
+      "go-to-library": "Go to local library"
+    }
+  },
   "forms": {
     "nuclear-sign-up": {
-      "header": "Sign up",
-      "secondary-header": "Sign up to Nuclear Web Services",
-      "side-paragraph-1": "NWS enables you to backup your playlists online and share them.",
-      "side-paragraph-2": "Providing your email is optional; it will allow you to recover your account if you forget your password.",
-      "username-label": "Username",
-      "email-label": "Email",
-      "password-label": "Password",
-      "sign-up-button": "Sign up",
+      "header": "Registrarse",
+      "secondary-header": "Registrarse a los servicios web de Nuclear",
+      "side-paragraph-1": "NWS le permite hacer copias de seguridad de sus listas en línea y compartirlas.",
+      "side-paragraph-2": "Proporcionar su correo electrónico es opcional; le permitirá recuperar su cuenta si olvida la contraseña.",
+      "username-label": "Nombre de usuario",
+      "email-label": "Correo electrónico",
+      "password-label": "Contraseña",
+      "sign-up-button": "Registrarse",
       "validation": {
         "username": {
-          "length": "Username must be 4 characters or more",
-          "required": "Username is required"
+          "length": "El nombre de usuario debe tener al menos 4 caracteres",
+          "required": "El nombre de usuario es necesario"
         },
         "email": {
-          "invalid": "Email must be a valid email"
+          "invalid": "El correo electrónico debe ser uno válido"
         },
         "password": {
-          "length": "Password must be 6 characters or more",
-          "required": "Password is required"
+          "length": "La contraseña debe tener al menos 6 caracteres",
+          "required": "La contraseña es necesaria"
         }
       }
     },
     "nuclear-sign-in": {
-      "header": " Sign in",
-      "username-label": "Username",
-      "password-label": "Password",
-      "no-account-label": "Don't have an account?",
-      "no-account-link": "Sign up",
-      "sign-in-button": "Sign in"
+      "header": " Iniciar sesión",
+      "username-label": "Nombre de usuario",
+      "password-label": "Contraseña",
+      "no-account-label": "¿No tienes una cuenta?",
+      "no-account-link": "Registrarse",
+      "sign-in-button": "Iniciar sesión"
     }
   }
 }
