@@ -1,31 +1,17 @@
 import logger from 'electron-timber';
 import _, { isString } from 'lodash';
+import { createStandardAction } from 'typesafe-actions';
 
 import { StreamProvider } from '@nuclear/core';
+import { getTrackArtist } from '@nuclear/ui';
 import { Track } from '@nuclear/ui/lib/types';
 
 import { safeAddUuid } from './helpers';
 import { pausePlayback, startPlayback } from './player';
 import { QueueItem, TrackStream } from '../reducers/queue';
 import { RootState } from '../reducers';
-import { createStandardAction } from 'typesafe-actions';
-import { getTrackArtist } from '@nuclear/ui';
 import { LocalLibraryState } from './local';
-
-
-export const QUEUE_DROP = 'QUEUE_DROP';
-export const ADD_QUEUE_ITEM = 'ADD_QUEUE_ITEM';
-export const PLAY_NEXT_ITEM = 'PLAY_NEXT_ITEM';
-export const REMOVE_QUEUE_ITEM = 'REMOVE_QUEUE_ITEM';
-export const UPDATE_QUEUE_ITEM = 'UPDATE_QUEUE_ITEM';
-export const CLEAR_QUEUE = 'CLEAR_QUEUE';
-export const NEXT_SONG = 'NEXT_SONG';
-export const PREVIOUS_SONG = 'PREVIOUS_SONG';
-export const SELECT_SONG = 'SELECT_SONG';
-export const REPOSITION_SONG = 'REPOSITION_SONG';
-export const STREAM_FAILED = 'STREAM_FAILED';
-export const CHANGE_TRACK_STREAM = 'CHANGE_TRACK_STREAM';
-export const ADD_NEW_STREAM = 'ADD_NEW_STREAM';
+import { Queue } from './actionTypes';
 
 type LocalTrack = Track & {
   local: true;
@@ -86,19 +72,44 @@ export const getTrackStream = async (
 };
 
 const addQueueItem = (item: QueueItem) => ({
-  type: ADD_QUEUE_ITEM,
+  type: Queue.ADD_QUEUE_ITEM,
   payload: { item }
 });
 
 const updateQueueItem = (item: QueueItem) => ({
-  type: UPDATE_QUEUE_ITEM,
+  type: Queue.UPDATE_QUEUE_ITEM,
   payload: { item }
 });
 
 const playNextItem = (item: QueueItem) => ({
-  type: PLAY_NEXT_ITEM,
+  type: Queue.PLAY_NEXT_ITEM,
   payload: { item }
 });
+
+export const queueDrop = (paths) => ({
+  type: Queue.QUEUE_DROP,
+  payload: paths
+});
+
+export const streamFailed = () => ({
+  type: Queue.STREAM_FAILED
+});
+
+export function repositionSong(itemFrom, itemTo) {
+  return {
+    type: Queue.REPOSITION_TRACK,
+    payload: {
+      itemFrom,
+      itemTo
+    }
+  };
+}
+
+export const clearQueue = createStandardAction(Queue.CLEAR_QUEUE)();
+export const nextSongAction = createStandardAction(Queue.NEXT_TRACK)();
+export const previousSongAction = createStandardAction(Queue.PREVIOUS_TRACK)();
+export const selectSong = createStandardAction(Queue.SELECT_TRACK)<number>();
+export const playNext = (item: QueueItem) => addToQueue(item, true);
 
 export const addToQueue =
   (item: QueueItem, asNextItem = false) =>
@@ -168,7 +179,7 @@ export function playTrack(streamProviders, item: QueueItem) {
 }
 
 export const removeFromQueue = (item: QueueItem) => ({
-  type: REMOVE_QUEUE_ITEM,
+  type: Queue.REMOVE_QUEUE_ITEM,
   payload: item
 });
 
@@ -208,24 +219,6 @@ export function rerollTrack(track: QueueItem) {
   };
 }
 
-export const clearQueue = createStandardAction(CLEAR_QUEUE)();
-
-export const nextSongAction = createStandardAction(NEXT_SONG)();
-
-export const previousSongAction = createStandardAction(PREVIOUS_SONG)();
-
-export const selectSong = createStandardAction(SELECT_SONG)<number>();
-
-export function repositionSong(itemFrom, itemTo) {
-  return {
-    type: REPOSITION_SONG,
-    payload: {
-      itemFrom,
-      itemTo
-    }
-  };
-}
-
 function dispatchWithShuffle(dispatch, getState, action) {
   const state = getState();
   const settings = state.settings;
@@ -260,11 +253,8 @@ export function nextSong() {
   };
 }
 
-export const streamFailed = () => ({
-  type: STREAM_FAILED
-});
 
-export const changeTrackStream = createStandardAction(CHANGE_TRACK_STREAM)<{
+export const changeTrackStream = createStandardAction(Queue.CHANGE_TRACK_STREAM)<{
   item: QueueItem;
   stream: TrackStream;
 }>();
@@ -308,10 +298,3 @@ export const switchStreamProvider = ({
     }
   };
 };
-
-export const queueDrop = (paths) => ({
-  type: QUEUE_DROP,
-  payload: paths
-});
-
-export const playNext = (item: QueueItem) => addToQueue(item, true);

@@ -3,7 +3,7 @@
     "download": "डाउनलोड",
     "download-toast-content": "{{artist}} - {{title}} को डाउनलोड में जोड़ा गया है |",
     "download-toast-title": "एल्बम को डाउनलोड में जोड़ा गया है |",
-    "error-load": "क्षमा कीजिए!, यह एल्बम लोड नहीं किया जा सका. बाद में पुन: प्रयास करें, या फिर Github पर एक नया issue खोलें |",
+    "error-load": "क्षमा कीजिए!, यह एल्बम लोड नहीं किया जा सका. बाद में पुन: प्रयास करें, या फिर \"गिटहब\" पर एक नया \" इशू \" खोलें |",
     "genre": "शैली",
     "play": "प्ले",
     "queue": "एल्बम को कतार में जोड़ें",
@@ -100,9 +100,6 @@
     "report": "समस्याएं या नई सुविधाएं सबमिट करें",
     "thanks": "Github पर हमारे योगदानकर्ताओं को बहुत-बहुत धन्यवाद, इस कार्यक्रम को बनाने में आपकी मदद महत्वपूर्ण थी।"
   },
-  "input-dialog": {
-    "cancel": "रद्द करें"
-  },
   "library": {
     "add": "फ़ोल्डर जोड़ें",
     "album": "एल्बम",
@@ -139,7 +136,6 @@
     "album": "एल्बम",
     "artist": "कलाकार",
     "delete": "यह प्लेलिस्ट हटाएँ",
-    "dialog-placeholder": "प्लेलिस्ट का नाम",
     "duration": "अवधि",
     "empty": "कोई प्लेलिस्ट नही",
     "empty-help": "कुछ प्लेलिस्ट बनाने या 'url' द्वारा आयात करने का प्रयास करें और वे यहां दिखाई देंगी!",
@@ -151,9 +147,16 @@
     "export-fail-title": "प्लेलिस्ट आयात विफल",
     "export-success-title": "प्लेलिस्ट आयात सफल",
     "header": "आपकी प्लेलिस्ट",
+    "import-progress": "इम्पोर्ट प्रोग्रेस",
+    "spotify-import-placeholder": "स्पॉटीफाई  प्लेलिस्ट यूआरएल यहां पेस्ट करें",
+    "dialog-placeholder": "प्लेलिस्ट का नाम",
     "dialog-accept": "सहेजें",
+    "dialog-cancel": "रद्द करें",
+    "dialog-rename": "नाम बदलें",
+    "dialog-import": "इंपोर्ट",
     "create-button": "नया प्लेलिस्ट बनाएं",
     "new-playlist": "नई प्लेलिस्ट",
+    "import-url-button": "यूआरएल से आयात करें (स्पॉटीफाई)",
     "import-button": "फ़ाइल (JSON) से आयात करें",
     "import-fail-title": "प्लेलिस्ट आयात विफल",
     "import-success-title": "प्लेलिस्ट आयात सफल",
@@ -192,6 +195,7 @@
   "queue": {
     "clear": "कतार खाली करें",
     "dialog-accept": "सहेजें",
+    "dialog-cancel": "Cancel",
     "dialog-placeholder": "प्लेलिस्ट का नाम",
     "dialog-trigger": "प्लेलिस्ट के रूप में सहेजें",
     "download": "डाउनलोड",
@@ -333,6 +337,47 @@
   },
   "visualizer": {
     "exit-fullscreen": "फुलस्क्रीन मोड से बाहर निकलने के लिए Esc दबाएं।"
+  },
+  "command-palette": {
+    "search-placeholder": "What would you like to do?",
+    "empty-state-help": "Can't seem to find what you're looking for? Try the help command.",
+    "protip-text": "PROTIP:",
+    "protip-content": "Arrows to navigate, Enter to select, Esc to close",
+    "categories": {
+      "playback": "Playback",
+      "queue": "Queue",
+      "navigation": "Navigation",
+      "application": "Application"
+    },
+    "actions": {
+      "play": "Play",
+      "pause": "Pause",
+      "next": "Next",
+      "previous": "Previous",
+      "go-to-next-page": "Go to next page",
+      "go-to-previous-page": "Go to previous page",
+      "shuffle": "Shuffle",
+      "loop": "Loop",
+      "autoradio": "Autoradio",
+      "raise-volume": "Raise volume",
+      "lower-volume": "Lower volume",
+      "mute": "Mute",
+      "unmute": "Unmute",
+      "quit": "Quit",
+      "minimize": "Minimize",
+      "maximize": "Maximize",
+      "go-to-dashboard": "Go to dashboard",
+      "go-to-downloads": "Go to downloads",
+      "go-to-lyrics": "Go to lyrics",
+      "go-to-plugins": "Go to plugins",
+      "go-to-search": "Go to search",
+      "go-to-settings": "Go to settings",
+      "go-to-equalizer": "Go to equalizer",
+      "go-to-visualizer": "Go to visualizer",
+      "go-to-playlists": "Go to playlists",
+      "go-to-favorite-tracks": "Go to favorite tracks",
+      "go-to-library": "Go to local library"
+    }
   },
   "forms": {
     "nuclear-sign-up": {

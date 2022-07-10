@@ -27,8 +27,8 @@
     "settings": "Instellingen",
     "visualizer": "Visualizer",
     "user-panel": {
-      "actions-tooltip": "User actions",
-      "sign-up": "Sign up / Sign in",
+      "actions-tooltip": "Gebruikersacties",
+      "sign-up": "Registreren / Aanmelden",
       "sign-out": "Afmelden"
     },
     "version": "Versie"
@@ -100,9 +100,6 @@
     "report": "Issues of nieuwe functies indienen",
     "thanks": "Hartelijk dank aan alle bijdragers op GitHub; zonder jullie was het niet gelukt."
   },
-  "input-dialog": {
-    "cancel": "Annuleren"
-  },
   "library": {
     "add": "Mappen toevoegen",
     "album": "Album",
@@ -139,10 +136,9 @@
     "album": "Album",
     "artist": "Artiest",
     "delete": "Verwijderen",
-    "dialog-placeholder": "Naam van afspeellijst...",
     "duration": "Duur",
     "empty": "Geen afspeellijsten.",
-    "empty-help": "Try create some playlists or import by url and they will appear here!",
+    "empty-help": "Probeer enkele afspeellijsten te maken, of importeer op url, en ze zullen hier verschijnen!",
     "error-empty-data": "Lege gegevens",
     "error-invalid-data": "Ongeldige gegevens",
     "error-open-file": "Kan bestand niet openen",
@@ -151,9 +147,16 @@
     "export-fail-title": "Afspeellijst exporteren mislukt",
     "export-success-title": "Afspeellijst succesvol geëxporteerd",
     "header": "Uw afspeellijsten",
+    "import-progress": "Import voortgang",
+    "spotify-import-placeholder": "Plak een Spotify-afspeellijst URL hier",
+    "dialog-placeholder": "Naam van afspeellijst...",
     "dialog-accept": "Opslaan",
+    "dialog-cancel": "Annuleren",
+    "dialog-rename": "Hernoemen",
+    "dialog-import": "Importeren",
     "create-button": "Nieuwe afspeellijst aanmaken",
     "new-playlist": "Nieuwe afspeellijst",
+    "import-url-button": "Importeren van URL (Spotify)",
     "import-button": "Uit één bestand importeren (JSON)",
     "import-fail-title": "Afspeellijst importeren mislukt",
     "import-success-title": "Afspeellijst succesvol geïmporteerd",
@@ -166,15 +169,15 @@
     "songs_plural": "{{total}} nummers",
     "title": "Titel",
     "tracks-selected-plural": "geselecteerde nummers",
-    "tracks-selected-singular": "geselecteerde track",
-    "tracks-singular": "track",
-    "tracks-plural": "tracks",
-    "modified-at": "Last modified: ",
-    "never-modified": "Unknown",
-    "server-modified-at": "Server modified: ",
-    "upload-to-server": "Upload to server",
-    "download-from-server": "Download from server",
-    "number-of-tracks": "tracks"
+    "tracks-selected-singular": "geselecteerde nummer",
+    "tracks-singular": "nummer",
+    "tracks-plural": "nummers",
+    "modified-at": "Laatst gewijzigd: ",
+    "never-modified": "Onbekend",
+    "server-modified-at": "Server gewijzigd: ",
+    "upload-to-server": "Naar server uploaden",
+    "download-from-server": "Van server downloaden",
+    "number-of-tracks": "nummers"
   },
   "plugins": {
     "add-a-plugin": "Een plug-in toevoegen",
@@ -192,6 +195,7 @@
   "queue": {
     "clear": "Wachtrij legen",
     "dialog-accept": "Opslaan",
+    "dialog-cancel": "Cancel",
     "dialog-placeholder": "Naam van afspeellijst...",
     "dialog-trigger": "Opslaan als afspeellijst",
     "download": "Downloaden",
@@ -278,8 +282,8 @@
     "mastodon-post-format-description": "Nuclear zal een status op Mastodon posten nadat elk nummer klaar is met spelen. De bovenstaande tekenreeks zal de sjabloon zijn voor elk bericht, met {{artist}} en {{title}} vervangen door de artiest en titel van het spoor.",
     "mastodon-post-format-label": "Post formaat",
     "mastodon-title": "",
-    "nuclear-identity-service-url": "Nuclear identity service URL",
-    "nuclear-playlists-service-url": "Nuclear playlists service URL",
+    "nuclear-identity-service-url": "URL voor Nuclear-Identitieitsdienst",
+    "nuclear-playlists-service-url": "URL voor Nuclear-Afspeellijstdienst",
     "mini-player": "Gebruik mini speler-stijl",
     "more": "Meer",
     "discord-rich-presence": "Discord rich presence in-/uitschakelen (herstart vereist)",
@@ -334,37 +338,78 @@
   "visualizer": {
     "exit-fullscreen": "Druk op ESC om volledig scherm af te sluiten"
   },
+  "command-palette": {
+    "search-placeholder": "What would you like to do?",
+    "empty-state-help": "Can't seem to find what you're looking for? Try the help command.",
+    "protip-text": "PROTIP:",
+    "protip-content": "Arrows to navigate, Enter to select, Esc to close",
+    "categories": {
+      "playback": "Playback",
+      "queue": "Queue",
+      "navigation": "Navigation",
+      "application": "Application"
+    },
+    "actions": {
+      "play": "Play",
+      "pause": "Pause",
+      "next": "Next",
+      "previous": "Previous",
+      "go-to-next-page": "Go to next page",
+      "go-to-previous-page": "Go to previous page",
+      "shuffle": "Shuffle",
+      "loop": "Loop",
+      "autoradio": "Autoradio",
+      "raise-volume": "Raise volume",
+      "lower-volume": "Lower volume",
+      "mute": "Mute",
+      "unmute": "Unmute",
+      "quit": "Quit",
+      "minimize": "Minimize",
+      "maximize": "Maximize",
+      "go-to-dashboard": "Go to dashboard",
+      "go-to-downloads": "Go to downloads",
+      "go-to-lyrics": "Go to lyrics",
+      "go-to-plugins": "Go to plugins",
+      "go-to-search": "Go to search",
+      "go-to-settings": "Go to settings",
+      "go-to-equalizer": "Go to equalizer",
+      "go-to-visualizer": "Go to visualizer",
+      "go-to-playlists": "Go to playlists",
+      "go-to-favorite-tracks": "Go to favorite tracks",
+      "go-to-library": "Go to local library"
+    }
+  },
   "forms": {
     "nuclear-sign-up": {
-      "header": "Sign up",
-      "secondary-header": "Sign up to Nuclear Web Services",
-      "side-paragraph-1": "NWS enables you to backup your playlists online and share them.",
-      "side-paragraph-2": "Providing your email is optional; it will allow you to recover your account if you forget your password.",
-      "username-label": "Username",
-      "email-label": "Email",
-      "password-label": "Password",
-      "sign-up-button": "Sign up",
+      "header": "Registreren",
+      "secondary-header": "Naar Nuclear Web Services Registreren",
+      "side-paragraph-1": "Met NWS kunt u online een back-up maken van uw afspeellijsten en deze delen.",
+      "side-paragraph-2": "Het verstrekken van uw e-mailadres is optioneel; hiermee kunt u uw account herstellen als u uw wachtwoord bent vergeten.",
+      "username-label": "Gebruikersnaam",
+      "email-label": "E-mail",
+      "password-label": "Wachtwoord",
+      "sign-up-button": "Registreren",
       "validation": {
         "username": {
-          "length": "Username must be 4 characters or more",
-          "required": "Username is required"
+          "length": "Gebruikersnaam moet 4 tekens of meer bevatten",
+          "required": "Gebruikersnaam is verplicht"
         },
         "email": {
-          "invalid": "Email must be a valid email"
+          "invalid": "E-mail moet een geldig e-mailadres zijn"
         },
         "password": {
-          "length": "Password must be 6 characters or more",
-          "required": "Password is required"
+          "length": "Wachtwoord moet 6 tekens of meer bevatten",
+          "required": "Wachtwoord is verplicht"
         }
       }
     },
     "nuclear-sign-in": {
-      "header": " Sign in",
-      "username-label": "Username",
-      "password-label": "Password",
-      "no-account-label": "Don't have an account?",
-      "no-account-link": "Sign up",
-      "sign-in-button": "Sign in"
+      "header": "Aanmelden",
+      "username-label": "Gebruikersnaam",
+      "password-label": "Wachtwoord",
+      "no-account-label": "Hebt u geen account?",
+      "no-account-link": "Registreren",
+      "sign-in-button": "Aanmelden"
     }
   }
 }

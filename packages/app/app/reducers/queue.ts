@@ -1,18 +1,6 @@
 import _ from 'lodash';
 
-import {
-  ADD_QUEUE_ITEM,
-  REMOVE_QUEUE_ITEM,
-  UPDATE_QUEUE_ITEM,
-  PLAY_NEXT_ITEM,
-  CLEAR_QUEUE,
-  NEXT_SONG,
-  PREVIOUS_SONG,
-  SELECT_SONG,
-  REPOSITION_SONG,
-  STREAM_FAILED,
-  CHANGE_TRACK_STREAM
-} from '../actions/queue';
+import { Queue } from '../actions/actionTypes';
 import { SELECT_STREAM_PROVIDER } from '../actions/plugins';
 
 export type TrackStream = {
@@ -193,7 +181,7 @@ const reduceAddPlayNextItem = (state, action) => {
 
 export default function QueueReducer(state = defaultState, action) {
   switch (action.type) {
-  case ADD_QUEUE_ITEM:
+  case Queue.ADD_QUEUE_ITEM:
     return {
       ...state,
       queueItems: [
@@ -201,27 +189,27 @@ export default function QueueReducer(state = defaultState, action) {
         action.payload.item
       ]
     };
-  case REMOVE_QUEUE_ITEM:
+  case Queue.REMOVE_QUEUE_ITEM:
     return reduceRemoveFromQueue(state, action);
-  case UPDATE_QUEUE_ITEM:
+  case Queue.UPDATE_QUEUE_ITEM:
     return reduceUpdateQueueItem(state, action);
-  case PLAY_NEXT_ITEM:
+  case Queue.PLAY_NEXT_ITEM:
     return reduceAddPlayNextItem(state, action);
-  case CLEAR_QUEUE:
+  case Queue.CLEAR_QUEUE:
     return { ...state, queueItems: [] };
-  case NEXT_SONG:
+  case Queue.NEXT_TRACK:
     return reduceNextSong(state);
-  case PREVIOUS_SONG:
+  case Queue.PREVIOUS_TRACK:
     return reducePreviousSong(state);
-  case SELECT_SONG:
+  case Queue.SELECT_TRACK:
     return reduceSelectSong(state, action);
-  case REPOSITION_SONG:
+  case Queue.REPOSITION_TRACK:
     return reduceRepositionSong(state, action);
-  case STREAM_FAILED:
+  case Queue.STREAM_FAILED:
     return reduceStreamFailed(state);
   case SELECT_STREAM_PROVIDER:
     return reduceSelectStreamProviders(state);
-  case CHANGE_TRACK_STREAM:
+  case Queue.CHANGE_TRACK_STREAM:
     return reduceChangeTrackStream(state, action);
   default:
     return state;
