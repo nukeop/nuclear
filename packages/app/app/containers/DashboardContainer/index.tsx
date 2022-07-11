@@ -27,6 +27,7 @@ const DashboardContainer: React.FC = () => {
   const loadTopTags = () => dispatch(DashboardActions.loadTopTags());
   const loadTopTracks = () => dispatch(DashboardActions.loadTopTracks());
   const loadEditorialCharts = () => dispatch(DashboardActions.loadEditorialCharts());
+  const loadPromotedArtists = () => dispatch(DashboardActions.loadPromotedArtists());
   
   const artistInfoSearchByName = (artistName: string) => dispatch(SearchActions.artistInfoSearchByName(artistName, history));
   const albumInfoSearchByName = (albumName: string) => dispatch(SearchActions.albumInfoSearchByName(albumName, history));
@@ -47,6 +48,7 @@ const DashboardContainer: React.FC = () => {
       loadTopTags();
       loadTopTracks();
       loadEditorialCharts();
+      loadPromotedArtists();
     }
   }, [isConnected]);
 

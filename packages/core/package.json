@@ -22,6 +22,7 @@
     "@babel/core": "^7.9.0",
     "@babel/preset-env": "^7.9.5",
     "@babel/preset-react": "^7.9.4",
+    "@supabase/supabase-js": "^1.35.4",
     "ajv": "^6.12.5",
     "bandcamp-scraper": "1.4.1",
     "cheerio": "^1.0.0-rc.5",

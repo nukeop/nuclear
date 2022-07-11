@@ -1,10 +1,10 @@
 import produce from 'immer';
 import { ActionType, createReducer } from 'typesafe-actions';
 
-import { DeezerEditorialCharts, DeezerTrack } from '@nuclear/core/src/rest/Deezer';
+import { DeezerEditorialCharts, mapDeezerTrackToInternal } from '@nuclear/core/src/rest/Deezer';
 import { LastfmTopTag } from '@nuclear/core/src/rest/Lastfm.types';
 
-import {loadBestNewAlbumsAction, loadBestNewTracksAction, loadEditorialChartsAction, loadEditorialPlaylistAction, loadTopTagsAction, loadTopTracksAction, PitchforkAlbum, PitchforkTrack} from '../actions/dashboard';
+import {loadBestNewAlbumsAction, loadBestNewTracksAction, loadEditorialChartsAction, loadEditorialPlaylistAction, loadTopTagsAction, loadTopTracksAction, PitchforkAlbum, PitchforkTrack, loadPromotedArtistsAction} from '../actions/dashboard';
 import { Dashboard } from '../actions/actionTypes';
 import { handleLoadableActionStart, handleLoadableActionSuccess, handleLoadableEmptyActionStart, startingStateMeta } from './helpers';
 import { Loadable } from './types';
@@ -13,7 +13,7 @@ import { PlaylistTrack } from '@nuclear/core';
 export type DashboardReducerState = {
   bestNewAlbums: PitchforkAlbum[];
   bestNewTracks: PitchforkTrack[];
-  topTracks: DeezerTrack[];
+  topTracks: ReturnType<typeof mapDeezerTrackToInternal>[];
   topTags: LastfmTopTag[];
 
   editorialCharts?: Loadable<DeezerEditorialCharts>;
@@ -22,7 +22,9 @@ export type DashboardReducerState = {
       id: number;
       tracklist: PlaylistTrack[];
     }>;
-  }
+  };
+
+  promotedArtists?: Loadable<string[]>;
 }
 
 const initialState: DashboardReducerState = {
@@ -40,13 +42,16 @@ const dashboardActions = {
   loadTopTagsAction,
   loadTopTracksAction,
   loadEditorialChartsAction,
-  loadEditorialPlaylistAction
+  loadEditorialPlaylistAction,
+  loadPromotedArtistsAction
 };
 
 type DashboardReducerActions = ActionType<typeof dashboardActions>
 
 const editorialChartsKeyCreator = () => 'editorialCharts';
 export const editorialPlaylistKeyCreator = ({id}: {id: number}) => `editorialPlaylists.${id}`;
+const promotedArtistsKeyCreator = () => 'promotedArtists';
+
 const DashboardReducer = createReducer<DashboardReducerState, DashboardReducerActions>(initialState, {
   [Dashboard.LOAD_BEST_NEW_ALBUMS_SUCCESS]: (state, action) => produce(state, draft => {
     draft.bestNewAlbums = action.payload;
@@ -60,10 +65,16 @@ const DashboardReducer = createReducer<DashboardReducerState, DashboardReducerAc
   [Dashboard.LOAD_TOP_TAGS_SUCCESS]: (state, action) => produce(state, draft => {
     draft.topTags = action.payload;
   }),
+  
   [Dashboard.LOAD_EDITORIAL_CHARTS_START]: handleLoadableEmptyActionStart(editorialChartsKeyCreator),
   [Dashboard.LOAD_EDITORIAL_CHARTS_SUCCESS]: handleLoadableActionSuccess(editorialChartsKeyCreator),
+
   [Dashboard.LOAD_EDITORIAL_PLAYLIST_START]: handleLoadableActionStart(editorialPlaylistKeyCreator),
-  [Dashboard.LOAD_EDITORIAL_PLAYLIST_SUCCESS]: handleLoadableActionSuccess(editorialPlaylistKeyCreator)
+  [Dashboard.LOAD_EDITORIAL_PLAYLIST_SUCCESS]: handleLoadableActionSuccess(editorialPlaylistKeyCreator),
+
+  [Dashboard.LOAD_PROMOTED_ARTISTS_START]: handleLoadableEmptyActionStart(promotedArtistsKeyCreator),
+  [Dashboard.LOAD_PROMOTED_ARTISTS_SUCCESS]: handleLoadableActionSuccess(promotedArtistsKeyCreator)
+
 });
 
 export default DashboardReducer;
