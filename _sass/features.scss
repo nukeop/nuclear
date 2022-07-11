@@ -11,13 +11,24 @@ section.feature {
 
     @media screen and (max-width: $md) {
         height: 1080px;
-
+        
         .fade-in-small, .fade-out-small {
             display: none;
         }
-
+        
         .fade-in, .fade-out {
             display: block;
+        }
+    }
+    
+    @media screen and (max-width: $xsm) {
+        height: 640px;
+        .fade-in-small, .fade-out-small {
+            display: block;
+        }
+
+        .fade-in, .fade-out {
+            display: none;
         }
     }
 
@@ -36,6 +47,10 @@ section.feature {
             &.reverse-md {
                 flex-flow: column;
             }
+        }
+
+        @media screen and (max-width: $xsm) {
+            margin: 0 16px;
         }
 
         svg {
@@ -58,9 +73,14 @@ section.feature {
                 font-size: 64px;
                 margin-top: 0;
                 margin-bottom: 18px;
-
+                
                 @media screen and (max-width: $sm) {
                     font-size: 48px;
+                }
+                
+                @media screen and (max-width: $xsm) {
+                    font-size: 36px;
+                    margin-bottom: 8px;
                 }
             }
 
@@ -69,6 +89,11 @@ section.feature {
 
                 @media screen and (max-width: $sm) {
                     font-size: 28px;
+                }
+
+                @media screen and (max-width: $xsm) {
+                    font-size: 20px;
+                    margin: 8px 0;
                 }
 
                 em {

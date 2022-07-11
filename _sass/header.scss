@@ -47,3 +47,28 @@ header {
       }
     }
   }
+
+  @media screen and (max-width: $xsm) {
+    header {
+      padding: 16px;
+      height: auto;
+    }
+
+    div.header-container {
+      img {
+        height: 32px;
+        margin-right: 24px;
+      }
+
+      span.buttons {
+        &>*:not(:last-child) {
+          margin-right: 16px;
+        }
+
+        a {
+          width: 32px;
+          height: 32px;
+        }
+      }
+    }
+  }

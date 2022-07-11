@@ -31,6 +31,10 @@ section.intro {
             margin: 0 48px;
             padding-top: 64px;
         }
+        @media screen and (max-width: $xsm) {
+            margin: 0 16px;
+            padding-top: 32px;
+        }
     }
 
     .intro-left {
@@ -43,6 +47,11 @@ section.intro {
 
             @media screen and (max-width: $md) {
                 font-size: 64px;
+                text-align: center;
+            }
+
+            @media screen and (max-width: $md) {
+                font-size: 40px;
                 text-align: center;
             }
 
@@ -64,6 +73,11 @@ section.intro {
                 text-align: center;
             }
 
+            @media screen and (max-width: $xsm) {
+                font-size: 18px;
+                text-align: center;
+            }
+
             em {
                 font-style: normal;
                 font-weight: bold;
@@ -82,10 +96,14 @@ section.intro {
             height: auto;
             justify-content: center;
             padding: 96px 0;
-
+            
             img {
                 max-width: 100%;
             }
+        }
+        
+        @media screen and (max-width: $xsm) {
+            padding: 48px 0;
         }
 
         img {
@@ -99,6 +117,13 @@ section.intro {
         font-size: 22px;
         font-variant: all-small-caps;
         font-family: "Raleway";
+    }
+
+    @media screen and (max-width: $xsm) {
+        .social-proof,
+        .featured-on {
+            font-size: 18px;
+        }
     }
 
     .cta {
@@ -248,10 +273,20 @@ section.intro {
         .secondary {
             display: flex;
             align-items: center;
+
+            @media screen and (max-width: $xsm) {
+                flex-flow: row wrap;
+                justify-content: center;
+            }
+
             a {
                 font-size: 18px;
                 opacity: 0.6;
                 margin-right: 0;
+
+                @media screen and (max-width: $xsm) {
+                    font-size: 16px;
+                }
 
                 &:hover {
                     opacity: 1;

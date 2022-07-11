@@ -19,6 +19,11 @@ section.ask-us {
         h2 {
             font-size: 64px;
             text-align: center;
+
+            @media screen and (max-width: $xsm) {
+                font-size: 36px;
+                margin-bottom: 16px;
+            }
         }
 
         .soc-buttons {
@@ -52,8 +57,22 @@ section.ask-us {
             height: 80px;
             width: 480px;
 
+            @media screen and (max-width: $xsm) {
+                font-size: 22px;
+                padding: 8px;
+                height: auto;
+                width: 100%;
+                max-width: 480px;
+                height: 50px;
+            }
+
             svg {
                 margin-right: 16px;
+
+                @media screen and (max-width: $xsm) {
+                    width: 32px;
+                    height: 32px;
+                }
             }
         }
     }

@@ -19,6 +19,11 @@ section.testimonials-section {
             margin-top: 0;
             margin-bottom: 64px;
             text-align: center;
+
+            @media screen and (max-width: $xsm) {
+                font-size: 36px;
+                margin-bottom: 16px;
+            }
         }
 
         .testimonials {
@@ -54,6 +59,12 @@ section.testimonials-section {
                     width: auto;
                     margin-left: 32px;
                     margin-right: 32px;
+                }
+
+                @media screen and (max-width: $xsm) {
+                    margin: 16px;
+                    padding: 16px;
+                    font-size: 20px;
                 }
 
                 a {
