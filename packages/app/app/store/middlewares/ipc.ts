@@ -2,8 +2,7 @@ import { getOption, IpcEvents, isValidPort } from '@nuclear/core';
 import { ipcRenderer } from 'electron';
 import _ from 'lodash';
 import { LocalLibrary } from '../../actions/actionTypes';
-import { ADD_QUEUE_ITEM, CLEAR_QUEUE, REMOVE_QUEUE_ITEM, QUEUE_DROP } from '../../actions/queue';
-import { Settings } from '../../actions/actionTypes';
+import { Queue, Settings } from '../../actions/actionTypes';
 import { changeConnectivity } from '../../actions/connectivity';
 import * as DownloadActions from '../../actions/downloads';
 import * as PlayerActions from '../../actions/player';
@@ -57,16 +56,16 @@ const ipcConnect: Middleware = () => next => {
       ipcRenderer.send(IpcEvents.LOCALFOLDERS_SET, payload);
       break;
   
-    case ADD_QUEUE_ITEM:
+    case Queue.ADD_QUEUE_ITEM:
       ipcRenderer.send(IpcEvents.TRACK_ADD, payload.item);
       break;
-    case CLEAR_QUEUE:
+    case Queue.CLEAR_QUEUE:
       ipcRenderer.send(IpcEvents.QUEUE_CLEAR);
       break;
-    case REMOVE_QUEUE_ITEM:
+    case Queue.REMOVE_QUEUE_ITEM:
       ipcRenderer.send(IpcEvents.TRACK_REMOVE, payload);
       break;
-    case QUEUE_DROP:
+    case Queue.QUEUE_DROP:
       return ipcRenderer.send(IpcEvents.QUEUE_DROP, payload);
   
     case Settings.SET_BOOLEAN_OPTION:

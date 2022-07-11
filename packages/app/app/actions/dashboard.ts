@@ -1,12 +1,13 @@
 import logger from 'electron-timber';
-import { rest } from '@nuclear/core';
 import { getBestNewAlbums, getBestNewTracks } from 'pitchfork-bnm';
+import { createAsyncAction } from 'typesafe-actions';
+
+import { rest } from '@nuclear/core';
+import { LastfmTopTag } from '@nuclear/core/src/rest/Lastfm.types';
+import { DeezerEditorialCharts, mapDeezerTrackToInternal } from '@nuclear/core/src/rest/Deezer';
 
 import globals from '../globals';
 import { Dashboard } from './actionTypes';
-import { createAsyncAction } from 'typesafe-actions';
-import { LastfmTopTag } from '@nuclear/core/src/rest/Lastfm.types';
-import { DeezerEditorialCharts, DeezerTrack, mapDeezerTrackToInternal } from '@nuclear/core/src/rest/Deezer';
 
 const lastfm = new rest.LastFmApi(
   globals.lastfmApiKey,
@@ -98,7 +99,7 @@ export const loadTopTracksAction = createAsyncAction(
   Dashboard.LOAD_TOP_TRACKS_START,
   Dashboard.LOAD_TOP_TRACKS_SUCCESS,
   Dashboard.LOAD_TOP_TRACKS_ERROR
-)<undefined, DeezerTrack[], undefined>();
+)<undefined, ReturnType<typeof mapDeezerTrackToInternal>[], undefined>();
 
 export const loadTopTracks = () => async (dispatch) => {
   dispatch(loadTopTracksAction.request());
@@ -135,7 +136,7 @@ export const loadEditorialPlaylistAction = createAsyncAction(
   Dashboard.LOAD_EDITORIAL_PLAYLIST_START,
   Dashboard.LOAD_EDITORIAL_PLAYLIST_SUCCESS,
   Dashboard.LOAD_EDITORIAL_PLAYLIST_ERROR
-)<{id: number}, {id: number; tracklist: DeezerTrack[]}, { id: number;  error: string; }>();
+)<{id: number}, {id: number; tracklist: ReturnType<typeof mapDeezerTrackToInternal>[]}, { id: number;  error: string; }>();
 
 export const loadEditorialPlaylist = (id: number) => async (dispatch) => {
   dispatch(loadEditorialPlaylistAction.request({id}));
@@ -147,6 +148,27 @@ export const loadEditorialPlaylist = (id: number) => async (dispatch) => {
     }));
   } catch (error) {
     dispatch(loadEditorialPlaylistAction.failure({ id, error: error.message }));
+    logger.error(error);
+  }
+};
+
+export const loadPromotedArtistsAction = createAsyncAction(
+  Dashboard.LOAD_PROMOTED_ARTISTS_START,
+  Dashboard.LOAD_PROMOTED_ARTISTS_SUCCESS,
+  Dashboard.LOAD_PROMOTED_ARTISTS_ERROR
+)<undefined, string[], string>();
+
+export const loadPromotedArtists = () => async (dispatch) => {
+  dispatch(loadPromotedArtistsAction.request());
+  try {
+    const service = new rest.NuclearPromotionService(
+      process.env.NUCLEAR_PROMOTION_URL,
+      process.env.NUCLEAR_PROMOTION_ANON_KEY
+    );
+    const artists = await service.getPromotedArtists();
+    dispatch(loadPromotedArtistsAction.success(artists.data.map(artist => artist.name)));
+  } catch (error) {
+    dispatch(loadPromotedArtistsAction.failure(error.message));
     logger.error(error);
   }
 };
