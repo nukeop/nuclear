@@ -16,6 +16,14 @@ section.intro {
         overflow-x: hidden;
     }
 
+    .announcement {
+        padding: 0.5em;
+        background: #f1c40f;
+        color: $black;
+        text-align: center;
+        font-variant: all-small-caps;
+    }
+
     .intro-content {
         display: flex;
         flex-flow: row;
