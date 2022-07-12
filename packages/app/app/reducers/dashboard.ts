@@ -6,9 +6,10 @@ import { LastfmTopTag } from '@nuclear/core/src/rest/Lastfm.types';
 
 import {loadBestNewAlbumsAction, loadBestNewTracksAction, loadEditorialChartsAction, loadEditorialPlaylistAction, loadTopTagsAction, loadTopTracksAction, PitchforkAlbum, PitchforkTrack, loadPromotedArtistsAction} from '../actions/dashboard';
 import { Dashboard } from '../actions/actionTypes';
-import { handleLoadableActionStart, handleLoadableActionSuccess, handleLoadableEmptyActionStart, startingStateMeta } from './helpers';
+import { handleLoadableActionError, handleLoadableActionStart, handleLoadableActionSuccess, handleLoadableEmptyActionStart, startingStateMeta } from './helpers';
 import { Loadable } from './types';
 import { PlaylistTrack } from '@nuclear/core';
+import { PromotedArtist } from '@nuclear/core/src/rest/Nuclear/Promotion';
 
 export type DashboardReducerState = {
   bestNewAlbums: PitchforkAlbum[];
@@ -24,7 +25,7 @@ export type DashboardReducerState = {
     }>;
   };
 
-  promotedArtists?: Loadable<string[]>;
+  promotedArtists?: Loadable<PromotedArtist[]>;
 }
 
 const initialState: DashboardReducerState = {
@@ -73,7 +74,8 @@ const DashboardReducer = createReducer<DashboardReducerState, DashboardReducerAc
   [Dashboard.LOAD_EDITORIAL_PLAYLIST_SUCCESS]: handleLoadableActionSuccess(editorialPlaylistKeyCreator),
 
   [Dashboard.LOAD_PROMOTED_ARTISTS_START]: handleLoadableEmptyActionStart(promotedArtistsKeyCreator),
-  [Dashboard.LOAD_PROMOTED_ARTISTS_SUCCESS]: handleLoadableActionSuccess(promotedArtistsKeyCreator)
+  [Dashboard.LOAD_PROMOTED_ARTISTS_SUCCESS]: handleLoadableActionSuccess(promotedArtistsKeyCreator),
+  [Dashboard.LOAD_PROMOTED_ARTISTS_ERROR]: handleLoadableActionError(promotedArtistsKeyCreator)
 
 });
 

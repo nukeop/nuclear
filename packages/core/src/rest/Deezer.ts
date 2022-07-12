@@ -1,4 +1,5 @@
 import DeezerPublicApi from 'deezer-public-api';
+import { isString } from 'lodash';
 
 const deezer = new DeezerPublicApi();
 
@@ -8,7 +9,7 @@ export type DeezerTrack = {
   position: number;
   duration: number;
   preview: string;
-  artist: {
+  artist: string | {
     name: string;
     picture_small: string;
     picture_medium: string;
@@ -90,6 +91,6 @@ export const mapDeezerTrackToInternal = (track: DeezerTrack) => ({
   ...track,
   uuid: track.id.toString(),
   name: track.title,
-  artist: track.artist.name,
-  thumbnail: track.artist.picture_medium
+  artist: isString(track.artist) ? track.artist : track.artist.name,
+  thumbnail: isString(track.artist) ? null : track.artist.picture_medium
 });

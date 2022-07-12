@@ -5,11 +5,13 @@ import styles from './styles.scss';
 import { CardsRow } from '@nuclear/ui';
 import { useTranslation } from 'react-i18next';
 import { Tab } from 'semantic-ui-react';
+import { PromotedArtist } from '@nuclear/core/src/rest/Nuclear/Promotion';
 
 type EditorialsTabProps = { 
   isLoading: boolean;
     playlists?: DeezerEditorialCharts['playlists']['data'];
     artists?: DeezerEditorialCharts['artists']['data'];
+    promotedArtists?: PromotedArtist[];
 
     artistInfoSearchByName: (artistName: string) => void;
     onEditorialPlaylistClick: (playlistId: number) => void;

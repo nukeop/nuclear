@@ -19,3 +19,11 @@ export const isErrorBody = (
 ): body is ErrorBody => {
   return has(body, 'errors');
 };
+
+export type SupabaseResponse<T> = {
+  data: T;
+  count: number;
+  error: string;
+  status: number;
+  statusText: string;
+}

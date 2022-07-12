@@ -1,6 +1,6 @@
 import React from 'react';
 import cx from 'classnames';
-import _ from 'lodash';
+import _, { isEmpty } from 'lodash';
 import { Dimmer, Loader, Icon } from 'semantic-ui-react';
 import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router';
@@ -157,17 +157,21 @@ const ArtistView: React.FC<ArtistViewProps> = ({
           </>
         )}
 
-        <div className={
-          cx(
-            styles.artist_related_container,
-            { [styles.loading]: isLoading() }
-          )
-        }>
-          {renderPopularTracks()}
-
-          {renderSimilarArtists()}
-        </div>
-        <hr />
+        {
+          (!isEmpty(artist?.topTracks) || !isEmpty(artist?.similar) || isLoading()) &&
+          <>
+            <div className={
+              cx(
+                styles.artist_related_container,
+                { [styles.loading]: isLoading() }
+              )
+            }>
+              {renderPopularTracks()}
+              {renderSimilarArtists()}
+            </div>
+            <hr />
+          </>
+        }
         <AlbumList
           albums={_.get(artist, 'releases', []).sort((a, b) => {
             return b.year - a.year;
