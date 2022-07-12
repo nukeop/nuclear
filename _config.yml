@@ -4,3 +4,5 @@ description: Homepage of the Nuclear music player
 
 exclude:
   - LICENSE
+
+include: [".well-known"]
