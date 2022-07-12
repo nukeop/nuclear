@@ -8,6 +8,7 @@ import { DeezerEditorialCharts, mapDeezerTrackToInternal } from '@nuclear/core/s
 
 import globals from '../globals';
 import { Dashboard } from './actionTypes';
+import { PromotedArtist } from '@nuclear/core/src/rest/Nuclear/Promotion';
 
 const lastfm = new rest.LastFmApi(
   globals.lastfmApiKey,
@@ -156,7 +157,7 @@ export const loadPromotedArtistsAction = createAsyncAction(
   Dashboard.LOAD_PROMOTED_ARTISTS_START,
   Dashboard.LOAD_PROMOTED_ARTISTS_SUCCESS,
   Dashboard.LOAD_PROMOTED_ARTISTS_ERROR
-)<undefined, string[], string>();
+)<undefined, PromotedArtist[], string>();
 
 export const loadPromotedArtists = () => async (dispatch) => {
   dispatch(loadPromotedArtistsAction.request());
@@ -166,7 +167,7 @@ export const loadPromotedArtists = () => async (dispatch) => {
       process.env.NUCLEAR_PROMOTION_ANON_KEY
     );
     const artists = await service.getPromotedArtists();
-    dispatch(loadPromotedArtistsAction.success(artists.data.map(artist => artist.name)));
+    dispatch(loadPromotedArtistsAction.success(artists?.data));
   } catch (error) {
     dispatch(loadPromotedArtistsAction.failure(error.message));
     logger.error(error);

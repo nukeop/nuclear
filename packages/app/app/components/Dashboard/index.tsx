@@ -43,7 +43,7 @@ export const Dashboard: React.FC<DashboardProps> = ({
   const { t } = useTranslation('dashboard');
   const history = useHistory();
 
-  const {editorialCharts} = dashboardData;
+  const {editorialCharts, promotedArtists} = dashboardData;
 
   return (
     <div className={styles.dashboard}>
@@ -58,6 +58,7 @@ export const Dashboard: React.FC<DashboardProps> = ({
                   isLoading={editorialCharts.isLoading || !editorialCharts.isReady}
                   playlists={dashboardData.editorialCharts.data?.playlists.data}
                   artists={dashboardData.editorialCharts.data?.artists.data}
+                  promotedArtists={promotedArtists?.data}
 
                   artistInfoSearchByName={artistInfoSearchByName}
                   onEditorialPlaylistClick={onEditorialPlaylistClick}
