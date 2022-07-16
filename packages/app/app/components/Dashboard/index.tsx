@@ -19,7 +19,7 @@ type DashboardProps = {
   isConnected: boolean;
 
   artistInfoSearchByName: (artistName: string) => void;
-  albumInfoSearchByName: (albumName: string) => void;
+  albumInfoSearchByName: (albumName: string, artistName: string) => void;
   addToQueue: (item: QueueItem) => void;
   selectSong: (song: number) => void;
   clearQueue: () => void;
