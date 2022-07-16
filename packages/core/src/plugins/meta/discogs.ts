@@ -241,9 +241,10 @@ class DiscogsMetaProvider extends MetaProvider {
 
   async fetchAlbumDetailsByName(
     albumName: string,
-    albumType: 'master' | 'release' = 'master'
+    albumType: 'master' | 'release' = 'master',
+    artist: string
   ): Promise<AlbumDetails> {
-    const albumSearch: DiscogsReleaseSearchResponse = await (await Discogs.search(albumName, albumType)).json();
+    const albumSearch: DiscogsReleaseSearchResponse = await (await Discogs.search(albumName, albumType, {artist})).json();
     const matchingAlbum: DiscogsReleaseSearchResult = _.head(albumSearch.results);
     const albumData: DiscogsReleaseInfo = await (await Discogs.releaseInfo(
       `${matchingAlbum.id}`,

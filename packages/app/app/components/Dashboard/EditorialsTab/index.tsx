@@ -11,9 +11,11 @@ type EditorialsTabProps = {
   isLoading: boolean;
     playlists?: DeezerEditorialCharts['playlists']['data'];
     artists?: DeezerEditorialCharts['artists']['data'];
+    albums?: DeezerEditorialCharts['albums']['data'];
     promotedArtists?: PromotedArtist[];
 
     artistInfoSearchByName: (artistName: string) => void;
+    albumInfoSearchByName: (albumName: string) => void;
     onEditorialPlaylistClick: (playlistId: number) => void;
 }
 
@@ -21,7 +23,9 @@ const EditorialsTab: React.FC<EditorialsTabProps> = ({
   isLoading,
   playlists,
   artists, 
+  albums,
   artistInfoSearchByName,
+  albumInfoSearchByName,
   onEditorialPlaylistClick
 }) => {
   const { t } = useTranslation('dashboard');
@@ -59,6 +63,21 @@ const EditorialsTab: React.FC<EditorialsTabProps> = ({
               }))
             }
             header={t('trending-artists')}
+            filterPlaceholder={t('filter')}
+            nothingFoundLabel={t('nothing-found')}
+          />
+        </div>
+        <div className={styles.row}>
+          <CardsRow 
+            cards={
+              albums?.map(album => ({
+                id: album.id.toString(),
+                header: album.title,
+                image: album.cover_medium,
+                onClick: () => albumInfoSearchByName(album.title)
+              }))
+            }
+            header={t('trending-albums')}
             filterPlaceholder={t('filter')}
             nothingFoundLabel={t('nothing-found')}
           />
