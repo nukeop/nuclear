@@ -15,7 +15,7 @@ type EditorialsTabProps = {
     promotedArtists?: PromotedArtist[];
 
     artistInfoSearchByName: (artistName: string) => void;
-    albumInfoSearchByName: (albumName: string) => void;
+    albumInfoSearchByName: (albumName: string, artistName: string) => void;
     onEditorialPlaylistClick: (playlistId: number) => void;
 }
 
@@ -74,7 +74,7 @@ const EditorialsTab: React.FC<EditorialsTabProps> = ({
                 id: album.id.toString(),
                 header: album.title,
                 image: album.cover_medium,
-                onClick: () => albumInfoSearchByName(album.title)
+                onClick: () => albumInfoSearchByName(album.title, album.artist.name)
               }))
             }
             header={t('trending-albums')}

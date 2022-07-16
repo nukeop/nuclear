@@ -30,7 +30,7 @@ const DashboardContainer: React.FC = () => {
   const loadPromotedArtists = () => dispatch(DashboardActions.loadPromotedArtists());
   
   const artistInfoSearchByName = (artistName: string) => dispatch(SearchActions.artistInfoSearchByName(artistName, history));
-  const albumInfoSearchByName = (albumName: string) => dispatch(SearchActions.albumInfoSearchByName(albumName, history));
+  const albumInfoSearchByName = (albumName: string, artistName: string) => dispatch(SearchActions.albumInfoSearchByName(albumName, artistName, history));
   const addToQueue = (item: QueueItem) => dispatch(QueueActions.addToQueue(item));
   const selectSong = (song: number) => dispatch(QueueActions.selectSong(song));
   const clearQueue = () => dispatch(QueueActions.clearQueue());
