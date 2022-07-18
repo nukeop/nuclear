@@ -18,13 +18,17 @@ section.intro {
 
     .announcement {
         padding: 0.5em;
-        background: #f1c40f;
+        background: #f6e58d;
         color: $black;
         text-align: center;
         font-variant: all-small-caps;
         font-size: 22px;
         @media screen and (max-width: $xsm) {
             font-size: 16px;
+        }
+
+        a {
+            color: $linkblue;
         }
     }
 
