@@ -47,9 +47,16 @@ const DashboardContainer: React.FC = () => {
       loadBestNewAlbums();
       loadTopTags();
       loadTopTracks();
-      loadEditorialCharts();
       loadPromotedArtists();
+
+      if (!dashboard.editorialCharts.isReady && !dashboard.editorialCharts.isLoading) {
+        loadEditorialCharts();
+      }
     }
+  }, [isConnected]);
+
+  useEffect(() => {
+
   }, [isConnected]);
 
   return (

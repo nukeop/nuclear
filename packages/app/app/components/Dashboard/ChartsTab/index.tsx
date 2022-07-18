@@ -1,19 +1,18 @@
 import React from 'react';
 import { Tab } from 'semantic-ui-react';
-import { DeezerTrack } from '@nuclear/core/src/rest/Deezer';
 import { Track } from '@nuclear/ui/lib/types';
 
 import TrackTableContainer from '../../../containers/TrackTableContainer';
 import styles from './styles.scss';
 import { useTranslation } from 'react-i18next';
-import { isString } from 'lodash';
+import { InternalTopTrack } from '../../../reducers/dashboard';
 
 type ChartsTabProps = {
-  topTracks: DeezerTrack[];
+  topTracks: InternalTopTrack[];
 }
 
-const mapDeezerTopTrackToTrack = (topTrack: DeezerTrack): Track => ({
-  artist: isString(topTrack.artist) ? topTrack.artist : topTrack.artist.name,
+const mapDeezerTopTrackToTrack = (topTrack: InternalTopTrack): Track => ({
+  artist: topTrack.artist,
   title: topTrack.title,
   album: topTrack.album?.title,
   duration: topTrack.duration,

@@ -24,12 +24,7 @@ describe('Dashboard container', () => {
 
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
-    Deezer.getTopTracks = jest.fn().mockResolvedValue({ data: mockState.dashboard.topTracks.map(track => ({
-      ...track,
-      artist: {
-        ...track.artist    
-      }
-    })) });
+    Deezer.getTopTracks = jest.fn().mockResolvedValue({ data: mockState.dashboard.topTracks });
     
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
@@ -40,13 +35,15 @@ describe('Dashboard container', () => {
     jest.clearAllMocks();
   });
 
-  it('should display the best new music page of the dashboard', () => {
+  it('should display the best new music page of the dashboard', async () => {
     const { component } = mountComponent();
+    await waitFor(() => component.getByText(/Best new music/i).click());
     expect(component.asFragment()).toMatchSnapshot();
   });
 
   it('should go to best new album review after clicking it', () => {
     const { component } = mountComponent();
+    waitFor(() => component.getByText(/Best new music/i).click());
 
     waitFor(() => component.getByText(/test title 2/i).click());
 
@@ -56,6 +53,7 @@ describe('Dashboard container', () => {
 
   it('should go to best new track review after clicking it', () => {
     const { component } = mountComponent();
+    waitFor(() => component.getByText(/Best new music/i).click());
 
     waitFor(() => component.getByText(/test track title 2/i).click());
 
@@ -65,6 +63,7 @@ describe('Dashboard container', () => {
 
   it('should add/remove a best new track to favorites after clicking its star', async () => {
     const { component, store } = mountComponent();
+    await waitFor(() => component.getByText(/Best new music/i).click());
 
     const addOrRemove = async () => waitFor(
       () => component
@@ -86,6 +85,11 @@ describe('Dashboard container', () => {
     state = store.getState();
 
     expect(state.favorites.tracks).toEqual([]);
+  });
+
+  it('should display the trending music', async () => {
+    const { component } = mountComponent();
+    expect(component.asFragment()).toMatchSnapshot();
   });
 
   it('should display top tracks after going to top tracks tab', async () => {

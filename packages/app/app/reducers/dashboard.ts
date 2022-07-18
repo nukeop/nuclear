@@ -1,7 +1,7 @@
 import produce from 'immer';
 import { ActionType, createReducer } from 'typesafe-actions';
 
-import { DeezerEditorialCharts, mapDeezerTrackToInternal } from '@nuclear/core/src/rest/Deezer';
+import { DeezerEditorialCharts, DeezerTrack } from '@nuclear/core/src/rest/Deezer';
 import { LastfmTopTag } from '@nuclear/core/src/rest/Lastfm.types';
 
 import {loadBestNewAlbumsAction, loadBestNewTracksAction, loadEditorialChartsAction, loadEditorialPlaylistAction, loadTopTagsAction, loadTopTracksAction, PitchforkAlbum, PitchforkTrack, loadPromotedArtistsAction} from '../actions/dashboard';
@@ -11,10 +11,15 @@ import { Loadable } from './types';
 import { PlaylistTrack } from '@nuclear/core';
 import { PromotedArtist } from '@nuclear/core/src/rest/Nuclear/Promotion';
 
+export type InternalTopTrack = Pick<DeezerTrack, 'id' | 'title' | 'duration' | 'album' | 'position'> & {
+  artist: string;
+  thumbnail: string;
+};
+
 export type DashboardReducerState = {
   bestNewAlbums: PitchforkAlbum[];
   bestNewTracks: PitchforkTrack[];
-  topTracks: ReturnType<typeof mapDeezerTrackToInternal>[];
+  topTracks: InternalTopTrack[];
   topTags: LastfmTopTag[];
 
   editorialCharts?: Loadable<DeezerEditorialCharts>;
