@@ -195,7 +195,7 @@
   "queue": {
     "clear": "Smazat frontu",
     "dialog-accept": "Uložit",
-    "dialog-cancel": "Cancel",
+    "dialog-cancel": "Storno",
     "dialog-placeholder": "Název seznamu skladeb...",
     "dialog-trigger": "Uložit jako seznam skladeb",
     "download": "Stáhnout",
@@ -339,7 +339,7 @@
     "exit-fullscreen": "Stiskněte ESC pro opuštění celé obrazovky"
   },
   "command-palette": {
-    "search-placeholder": "What would you like to do?",
+    "search-placeholder": "Co chcete udělat?",
     "empty-state-help": "Can't seem to find what you're looking for? Try the help command.",
     "protip-text": "PROTIP:",
     "protip-content": "Arrows to navigate, Enter to select, Esc to close",
