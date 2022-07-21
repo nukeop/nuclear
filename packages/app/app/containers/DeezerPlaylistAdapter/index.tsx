@@ -13,21 +13,21 @@ const DeezerPlaylistAdapter: React.FC = () => {
   const dispatch = useDispatch();
   const { playlistId } = useParams<{ playlistId: string }>();
 
+  const dashboardData = useSelector(dashboardSelector);
+  const playlist = useSelector(editorialPlaylistSelector(parseInt(playlistId)));
+  const tracks = useSelector(playlistTracksSelector(parseInt(playlistId)));
+  const isLoading = !(tracks?.isReady && dashboardData.editorialCharts.isReady);
+
   useEffect(() => {
     dispatch(loadEditorialCharts());
   }, []);
 
   useEffect(() => {
-    if (!isNil(playlistId)) {
+    if (!isNil(playlistId) && !tracks?.isReady && !tracks?.isLoading) {
       dispatch(loadEditorialPlaylist(parseInt(playlistId)));
     }
   }, [playlistId]);
-
-  const dashboardData = useSelector(dashboardSelector);
-  const playlist = useSelector(editorialPlaylistSelector(parseInt(playlistId)));
-  const tracks = useSelector(playlistTracksSelector(parseInt(playlistId)));
-
-  const isLoading = !(tracks?.isReady && dashboardData.editorialCharts.isReady);
+  
 
   return !isLoading ?
     <PlaylistViewContainer 

@@ -81,7 +81,10 @@ const PlaylistView: React.FC<PlaylistViewProps> = ({
   }, [exportPlaylist, playlist, t]);
 
   return (
-    <div className={styles.playlist_view_container}>
+    <div 
+      data-testid='playlist-view'
+      className={styles.playlist_view_container}
+    >
       <div className={styles.playlist}>
         <div className={styles.playlist_view_info}>
           <div>
