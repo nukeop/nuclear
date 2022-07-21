@@ -641,7 +641,27 @@ export const buildStoreState = () => {
                 total: 2
               }
             }
-          } as Loadable<DeezerEditorialCharts>
+          } as Loadable<DeezerEditorialCharts>,
+          editorialPlaylists: {
+            1: {
+              isLoading: false,
+              isReady: true,
+              data: {
+                id: 1,
+                tracklist: [{
+                  uuid: '1',
+                  name: 'track 1',
+                  artist: 'artist 1',
+                  stream: undefined
+                }, {
+                  uuid: '2',
+                  name: 'track 2',
+                  artist: 'artist 2',
+                  stream: undefined
+                }]
+              }
+            }
+          }
         }
       };
       return this as StoreStateBuilder;
