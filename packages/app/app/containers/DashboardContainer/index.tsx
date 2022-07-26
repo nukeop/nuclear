@@ -6,6 +6,7 @@ import * as DashboardActions from '../../actions/dashboard';
 import * as FavoritesActions from '../../actions/favorites';
 import * as QueueActions from '../../actions/queue';
 import * as PlayerActions from '../../actions/player';
+import * as NuclearConfigActions from '../../actions/nuclear/configuration';
 
 import Dashboard from '../../components/Dashboard';
 import { dashboardSelector } from '../../selectors/dashboard';
@@ -28,6 +29,7 @@ const DashboardContainer: React.FC = () => {
   const loadTopTracks = () => dispatch(DashboardActions.loadTopTracks());
   const loadEditorialCharts = () => dispatch(DashboardActions.loadEditorialCharts());
   const loadPromotedArtists = () => dispatch(DashboardActions.loadPromotedArtists());
+  const fetchNuclearConfiguration = () => dispatch(NuclearConfigActions.fetchNuclearConfiguration());
   
   const artistInfoSearchByName = (artistName: string) => dispatch(SearchActions.artistInfoSearchByName(artistName, history));
   const albumInfoSearchByName = (albumName: string, artistName: string) => dispatch(SearchActions.albumInfoSearchByName(albumName, artistName, history));
@@ -48,6 +50,7 @@ const DashboardContainer: React.FC = () => {
       loadTopTags();
       loadTopTracks();
       loadPromotedArtists();
+      fetchNuclearConfiguration();
 
       if (!dashboard.editorialCharts.isReady && !dashboard.editorialCharts.isLoading) {
         loadEditorialCharts();

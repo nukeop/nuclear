@@ -32,3 +32,6 @@ export { NuclearIdentityService };
 
 import { NuclearPromotionService } from './Nuclear/Promotion';
 export { NuclearPromotionService };
+
+import { NuclearConfigurationService } from './Nuclear/Configuration';
+export { NuclearConfigurationService };

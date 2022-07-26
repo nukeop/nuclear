@@ -163,8 +163,8 @@ export const loadPromotedArtists = () => async (dispatch) => {
   dispatch(loadPromotedArtistsAction.request());
   try {
     const service = new rest.NuclearPromotionService(
-      process.env.NUCLEAR_PROMOTION_URL,
-      process.env.NUCLEAR_PROMOTION_ANON_KEY
+      process.env.NUCLEAR_SERVICES_URL,
+      process.env.NUCLEAR_SERVICES_ANON_KEY
     );
     const artists = await service.getPromotedArtists();
     dispatch(loadPromotedArtistsAction.success(artists?.data));
