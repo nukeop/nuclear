@@ -73,7 +73,7 @@ const PromotedArtist: React.FC<PromotedArtistProps> = ({
         }}
       />
       <img
-        src={blobMaskShadow}
+        src={blobMaskShadow as unknown as string}
         className={styles.mask_shadow}
       />
     </div>
