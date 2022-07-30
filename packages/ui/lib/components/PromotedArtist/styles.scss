@@ -3,10 +3,11 @@
 .promoted_artist {
     @include high_shadow;
     border-radius: 1em 3em 1em 3em;
-    width: 42em;
+    width: 50em;
     height: 18em;
     background: $purple;
     color: $white;
+    background-size: cover;
 
     display: flex;
     flex-flow: row;
@@ -48,7 +49,7 @@
         flex-flow: row;
     }
 
-    .button {
+    .promoted_artist_button {
         text-transform: uppercase;
         font-size: 12px;
         font-weight: bold;
@@ -64,19 +65,21 @@
         position: relative;
         width: 18em;
         height: 18em;
+        min-width: 18em;
         top: -2em;
 
-        img.image {
-            @include shadow;
-            width: 100%;
+        div.image {
             height: 100%;
             mask-repeat: no-repeat;
             -webkit-mask-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
         }
 
         img.mask_shadow {
             position: absolute;
             left: -24px;
+            top: 0;
         }
     }
 }

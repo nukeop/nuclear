@@ -1,11 +1,13 @@
 import React from 'react';
-import { DeezerEditorialCharts } from '@nuclear/core/src/rest/Deezer';
-
-import styles from './styles.scss';
-import { CardsRow } from '@nuclear/ui';
 import { useTranslation } from 'react-i18next';
 import { Tab } from 'semantic-ui-react';
+
+import { CardsRow } from '@nuclear/ui';
+import { DeezerEditorialCharts } from '@nuclear/core/src/rest/Deezer';
 import { PromotedArtist } from '@nuclear/core/src/rest/Nuclear/Promotion';
+
+import styles from './styles.scss';
+import { PromotedArtistsContainer } from '../../../containers/PromotedArtistsContainer';
 
 type EditorialsTabProps = { 
   isLoading: boolean;
@@ -52,6 +54,7 @@ const EditorialsTab: React.FC<EditorialsTabProps> = ({
             nothingFoundLabel={t('nothing-found')}
           />
         </div>
+        <PromotedArtistsContainer />
         <div className={styles.row}>
           <CardsRow 
             cards={

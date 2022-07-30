@@ -55,10 +55,7 @@ const DashboardContainer: React.FC = () => {
     }
   }, [isConnected]);
 
-  useEffect(() => {
-
-  }, [isConnected]);
-
+  
   return (
     <Dashboard
       dashboardData={dashboard}

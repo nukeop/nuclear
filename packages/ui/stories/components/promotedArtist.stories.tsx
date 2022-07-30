@@ -10,8 +10,8 @@ export const OnlyName = () => (
     <PromotedArtist
       name='Test artist'
       imageUrl='https://via.placeholder.com/300'
-      externalUrl='https://nuclear.js.org'
       onListenClick={() => {}}
+      onExternalUrlClick={() => {}}
     />
   </div>
 );
@@ -21,10 +21,10 @@ export const WithDescription = () => (
     <PromotedArtist
       name='Test artist'
       description='Test description'
-      imageUrl='https://via.placeholder.com/300'
+      imageUrl='https://via.placeholder.com/300x200/fc83d3/fafafa'
       backgroundImageUrl='https://via.placeholder.com/600x250'
-      externalUrl='https://nuclear.js.org'
       onListenClick={() => {}}
+      onExternalUrlClick={() => {}}
     />
   </div>
 );

@@ -1,4 +1,5 @@
 import React from 'react';
+import cx from 'classnames';
 import { Icon } from 'semantic-ui-react';
 import Button from '../Button';
 
@@ -11,8 +12,8 @@ type PromotedArtistProps = {
     description?: string;
     imageUrl: string;
     backgroundImageUrl?: string;
-    externalUrl: string;
-  onListenClick: React.MouseEventHandler;
+    onExternalUrlClick: React.MouseEventHandler;
+    onListenClick: React.MouseEventHandler;
 }
 
 const PromotedArtist: React.FC<PromotedArtistProps> = ({
@@ -20,7 +21,7 @@ const PromotedArtist: React.FC<PromotedArtistProps> = ({
   description,
   imageUrl,
   backgroundImageUrl,
-  externalUrl,
+  onExternalUrlClick,
   onListenClick
 }) => {
   return <div 
@@ -51,12 +52,9 @@ const PromotedArtist: React.FC<PromotedArtistProps> = ({
           Check out 
         </Button>
         <Button 
-          className={styles.promoted_artist_button}
+          className={cx(styles.promoted_artist_button, styles.external_link)}
           text
-          as={'a'}
-          href={externalUrl}
-          target='_blank'
-          rel='noopener noreferrer'
+          onClick={onExternalUrlClick}
         >
           <Icon name='external' />
           External link
@@ -64,10 +62,10 @@ const PromotedArtist: React.FC<PromotedArtistProps> = ({
       </div>
     </div>
     <div className={styles.promoted_artist_image}>
-      <img
-        src={imageUrl} 
+      <div
         className={styles.image}
         style={{
+          backgroundImage: `url(${imageUrl})`,
           maskImage: `url(${blobMask})`,
           WebkitMask: `url(${blobMask})`
         }}
