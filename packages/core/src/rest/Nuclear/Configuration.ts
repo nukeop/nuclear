@@ -1,10 +1,10 @@
 import { NuclearSupabaseService } from './NuclearSupabaseService';
 
-enum ConfigFlag {
+export enum ConfigFlag {
     PROMOTED_ARTISTS = 'PROMOTED_ARTISTS',
 }
 
-enum ParamKey {
+export enum ParamKey {
     PROMOTED_ARTIST_BACKGROUND = 'PROMOTED_ARTIST_BACKGROUND',
 }
 
