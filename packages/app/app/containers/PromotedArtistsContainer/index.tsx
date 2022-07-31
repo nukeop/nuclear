@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import { shell } from 'electron';
 import { sample } from 'lodash';
-import {  useSelector } from 'react-redux';
+import {  useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router';
 import { Loader } from 'semantic-ui-react';
 
 import { PromotedArtist } from '@nuclear/ui';
@@ -10,9 +12,19 @@ import { PromotedArtist as PromotedArtistType } from '@nuclear/core/src/rest/Nuc
 import { isConfigFlagEnabled, nuclearSelectors, paramValue } from '../../selectors/nuclear';
 import { dashboardSelector } from '../../selectors/dashboard';
 import styles from './styles.scss';
-import { shell } from 'electron';
+import { selectMetaProvider } from '../../actions/plugins';
+import { unifiedSearch } from '../../actions/search';
+
+const mapMetaProvider = (name: PromotedArtistType['metaProvider']) => ({
+  bandcamp: 'Bandcamp Meta Provider',
+  discogs: 'Discogs Metadata Provider',
+  musicbrainz: 'Musicbrainz Meta Provider',
+  soundcloud: 'Soundcloud Meta Provider'
+})[name];
 
 export const PromotedArtistsContainer: React.FC = () => {
+  const dispatch = useDispatch();
+  const history = useHistory();
   const isPromotedArtistFeatureEnabled = useSelector(isConfigFlagEnabled(ConfigFlag.PROMOTED_ARTISTS));
   const promotedArtistBackground = useSelector(paramValue(ParamKey.PROMOTED_ARTIST_BACKGROUND));
   const [promotedArtist, setPromotedArtist] = useState<PromotedArtistType | null>(null);
@@ -26,6 +38,13 @@ export const PromotedArtistsContainer: React.FC = () => {
   
   const isLoading = nuclearConfig.configuration.isLoading || nuclearConfig.params.isLoading || dashboard.promotedArtists.isLoading;
 
+  const onListenClick = () => {
+    if (promotedArtist) {
+      dispatch(selectMetaProvider(mapMetaProvider(promotedArtist.metaProvider)));
+      dispatch(unifiedSearch(promotedArtist.name, history));
+    }
+  };
+
   return isPromotedArtistFeatureEnabled && promotedArtist && ( 
     isLoading 
       ? <Loader /> 
@@ -35,7 +54,7 @@ export const PromotedArtistsContainer: React.FC = () => {
           description={promotedArtist.description}
           imageUrl={promotedArtist.picture}
           backgroundImageUrl={promotedArtistBackground}
-          onListenClick={() => {}}
+          onListenClick={onListenClick}
           onExternalUrlClick={() => shell.openExternal(promotedArtist.link)}
         />
       </div>
