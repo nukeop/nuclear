@@ -34,28 +34,23 @@ exports[`(Snapshot) PromotedArtist (name and description) should render correctl
           />
           Check out
         </button>
-        <a
-          class="ui button nuclear button text promoted_artist_button"
-          href="https://nuclear.js.org"
-          rel="noopener noreferrer"
-          role="button"
-          target="_blank"
+        <button
+          class="ui button nuclear button text promoted_artist_button external_link"
         >
           <i
             aria-hidden="true"
             class="external icon"
           />
           External link
-        </a>
+        </button>
       </div>
     </div>
     <div
       class="promoted_artist_image"
     >
-      <img
+      <div
         class="image"
-        src="https://via.placeholder.com/300"
-        style="mask-image: url(test-file-stub);"
+        style="background-image: url(https://via.placeholder.com/300); mask-image: url(test-file-stub);"
       />
       <img
         class="mask_shadow"
@@ -94,28 +89,23 @@ exports[`(Snapshot) PromotedArtist (name only) should render correctly 1`] = `
           />
           Check out
         </button>
-        <a
-          class="ui button nuclear button text promoted_artist_button"
-          href="https://nuclear.js.org"
-          rel="noopener noreferrer"
-          role="button"
-          target="_blank"
+        <button
+          class="ui button nuclear button text promoted_artist_button external_link"
         >
           <i
             aria-hidden="true"
             class="external icon"
           />
           External link
-        </a>
+        </button>
       </div>
     </div>
     <div
       class="promoted_artist_image"
     >
-      <img
+      <div
         class="image"
-        src="https://via.placeholder.com/300"
-        style="mask-image: url(test-file-stub);"
+        style="background-image: url(https://via.placeholder.com/300); mask-image: url(test-file-stub);"
       />
       <img
         class="mask_shadow"
