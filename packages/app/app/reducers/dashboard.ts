@@ -22,15 +22,15 @@ export type DashboardReducerState = {
   topTracks: InternalTopTrack[];
   topTags: LastfmTopTag[];
 
-  editorialCharts?: Loadable<DeezerEditorialCharts>;
-  editorialPlaylists?: {
+  editorialCharts: Loadable<DeezerEditorialCharts>;
+  editorialPlaylists: {
     [id: string]: Loadable<{
       id: number;
       tracklist: PlaylistTrack[];
     }>;
   };
 
-  promotedArtists?: Loadable<PromotedArtist[]>;
+  promotedArtists: Loadable<PromotedArtist[]>;
 }
 
 const initialState: DashboardReducerState = {
@@ -39,7 +39,8 @@ const initialState: DashboardReducerState = {
   topTracks: [],
   topTags: [],
   editorialCharts: {...startingStateMeta},
-  editorialPlaylists: {}
+  editorialPlaylists: {},
+  promotedArtists: {...startingStateMeta}
 };
 
 const dashboardActions = {

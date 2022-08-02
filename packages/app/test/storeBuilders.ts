@@ -58,7 +58,8 @@ export const buildStoreState = () => {
       topTracks: [],
       topTags: [],
       editorialCharts: { ...startingStateMeta },
-      editorialPlaylists: {}
+      editorialPlaylists: {},
+      promotedArtists: { ...startingStateMeta }
     },
     downloads: [],
     favorites: {
@@ -79,6 +80,22 @@ export const buildStoreState = () => {
       identity: {
         token: null,
         signedInUser: null
+      },
+      configuration: {
+        configuration: {
+          isLoading: false,
+          isReady: true,
+          data: {
+            PROMOTED_ARTISTS: true
+          }
+        },
+        params: {
+          isLoading: false,
+          isReady: true,
+          data: {
+            PROMOTED_ARTIST_BACKGROUND: 'https://nuclear.js.org/background.jpg'
+          }
+        }
       }
     },
     settings: {}
@@ -661,6 +678,11 @@ export const buildStoreState = () => {
                 }]
               }
             }
+          },
+          promotedArtists: {
+            isLoading: false,
+            isReady: true,
+            data: []
           }
         }
       };
