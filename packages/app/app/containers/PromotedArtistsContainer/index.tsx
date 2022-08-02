@@ -45,7 +45,11 @@ export const PromotedArtistsContainer: React.FC = () => {
     }
   };
 
-  return isPromotedArtistFeatureEnabled && promotedArtist && ( 
+  if (!isPromotedArtistFeatureEnabled || !promotedArtist) {
+    return null;
+  }
+
+  return ( 
     isLoading 
       ? <Loader /> 
       : <div className={styles.promoted_artist_row}>
