@@ -195,7 +195,7 @@
   "queue": {
     "clear": "Cancella coda",
     "dialog-accept": "Salva",
-    "dialog-cancel": "Cancel",
+    "dialog-cancel": "Cancella",
     "dialog-placeholder": "Nome scaletta...",
     "dialog-trigger": "Salva come scaletta",
     "download": "Scarica",
@@ -339,13 +339,13 @@
     "exit-fullscreen": "Premi ESC per uscire dallo schermo intero"
   },
   "command-palette": {
-    "search-placeholder": "What would you like to do?",
-    "empty-state-help": "Can't seem to find what you're looking for? Try the help command.",
-    "protip-text": "PROTIP:",
+    "search-placeholder": "Che cosa vorresti fare?",
+    "empty-state-help": "Non trovi quello che stai cercando? Prova il comando aiuto.",
+    "protip-text": "Suggerimento:",
     "protip-content": "Arrows to navigate, Enter to select, Esc to close",
     "categories": {
       "playback": "Playback",
-      "queue": "Queue",
+      "queue": "Coda",
       "navigation": "Navigation",
       "application": "Application"
     },
