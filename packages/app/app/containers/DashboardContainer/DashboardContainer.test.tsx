@@ -92,6 +92,25 @@ describe('Dashboard container', () => {
     expect(component.asFragment()).toMatchSnapshot();
   });
 
+  it('should search for the promoted artist using his meta provider', async () => {
+    const { component, store, history } = mountComponent();
+    await waitFor(() => component.getByText(/Check out/i).click());
+
+    const state = store.getState();
+    waitFor(() => expect(history.location.pathname).toBe('/search'));
+    expect(state.plugin.selected.metaProviders).toEqual('Bandcamp Meta Provider');
+    expect(state.search.unifiedSearchStarted).toBe(true);
+  });
+
+  it('should open the promoted artist link in an external browser', async () => {
+    const { component } = mountComponent();
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    const shell = require('electron').shell;
+    await waitFor(() => component.getByText(/External link/i).click());
+
+    expect(shell.openExternal).toHaveBeenCalledWith('https://promoted-artist-1.example');
+  });
+
   it('should display top tracks after going to top tracks tab', async () => {
     const { component } = mountComponent();
 
@@ -154,6 +173,9 @@ describe('Dashboard container', () => {
       .withDashboard()
       .withPlugins()
       .withConnectivity()
+      .withSettings({
+        promotedArtists: true
+      })
       .build()
   );
 });

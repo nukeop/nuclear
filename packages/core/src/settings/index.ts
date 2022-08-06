@@ -168,6 +168,14 @@ export const settingsConfig: Array<Setting> = [
     default: true
   },
   {
+    name: 'promotedArtists',
+    category: 'display',
+    type: SettingType.BOOLEAN,
+    prettyName: 'promoted-artists',
+    description: 'promoted-artists-description',
+    default: true
+  },
+  {
     name: 'api.enabled',
     category: 'http',
     type: SettingType.BOOLEAN,

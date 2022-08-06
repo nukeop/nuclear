@@ -51,7 +51,7 @@ export const PromotedArtistsContainer: React.FC = () => {
 
   return ( 
     isLoading 
-      ? <Loader /> 
+      ? <Loader />
       : <div className={styles.promoted_artist_row}>
         <PromotedArtist
           name={promotedArtist.name}

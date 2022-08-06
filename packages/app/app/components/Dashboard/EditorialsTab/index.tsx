@@ -4,7 +4,6 @@ import { Tab } from 'semantic-ui-react';
 
 import { CardsRow } from '@nuclear/ui';
 import { DeezerEditorialCharts } from '@nuclear/core/src/rest/Deezer';
-import { PromotedArtist } from '@nuclear/core/src/rest/Nuclear/Promotion';
 
 import styles from './styles.scss';
 import { PromotedArtistsContainer } from '../../../containers/PromotedArtistsContainer';
@@ -14,7 +13,7 @@ type EditorialsTabProps = {
     playlists?: DeezerEditorialCharts['playlists']['data'];
     artists?: DeezerEditorialCharts['artists']['data'];
     albums?: DeezerEditorialCharts['albums']['data'];
-    promotedArtists?: PromotedArtist[];
+    isPromotedArtistsEnabled: boolean;
 
     artistInfoSearchByName: (artistName: string) => void;
     albumInfoSearchByName: (albumName: string, artistName: string) => void;
@@ -26,6 +25,7 @@ const EditorialsTab: React.FC<EditorialsTabProps> = ({
   playlists,
   artists, 
   albums,
+  isPromotedArtistsEnabled,
   artistInfoSearchByName,
   albumInfoSearchByName,
   onEditorialPlaylistClick
@@ -54,7 +54,10 @@ const EditorialsTab: React.FC<EditorialsTabProps> = ({
             nothingFoundLabel={t('nothing-found')}
           />
         </div>
-        <PromotedArtistsContainer />
+        {
+          isPromotedArtistsEnabled &&
+          <PromotedArtistsContainer />
+        }
         <div className={styles.row}>
           <CardsRow 
             cards={
