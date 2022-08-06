@@ -5,12 +5,7 @@ import butterchurnPresets from 'butterchurn-presets';
 import { Visualizer, VisualizerOverlay } from '../..';
 
 export default {
-  title: 'Components/Visualizer',
-  parameters: {
-    percy: {
-      skip: true
-    }
-  }
+  title: 'Components/Visualizer'
 };
 
 export const Mic = () => {
