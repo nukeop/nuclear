@@ -1,4 +1,4 @@
-@import '../../common.scss';
+@import "../../common.scss";
 
 .artist_grid {
   display: flex;
@@ -47,7 +47,7 @@
       grid-template-columns: 16.6% 16.6% 16.6% 16.6% 16.6% 16.6%;
     }
 
-    @media screen and(max-width: 1750px) {
+    @media screen and (max-width: 1750px) {
       grid-template-columns: 20% 20% 20% 20% 20%;
     }
 
