@@ -17,6 +17,7 @@ type DashboardProps = {
   dashboardData: DashboardReducerState;
   streamProviders: StreamProviderPlugin[];
   isConnected: boolean;
+  isPromotedArtistsEnabled: boolean;
 
   artistInfoSearchByName: (artistName: string) => void;
   albumInfoSearchByName: (albumName: string, artistName: string) => void;
@@ -31,6 +32,7 @@ export const Dashboard: React.FC<DashboardProps> = ({
   dashboardData,
   streamProviders,
   isConnected,
+  isPromotedArtistsEnabled,
 
   artistInfoSearchByName,
   albumInfoSearchByName,
@@ -43,7 +45,7 @@ export const Dashboard: React.FC<DashboardProps> = ({
   const { t } = useTranslation('dashboard');
   const history = useHistory();
 
-  const {editorialCharts, promotedArtists} = dashboardData;
+  const {editorialCharts} = dashboardData;
 
   return (
     <div className={styles.dashboard}>
@@ -59,7 +61,7 @@ export const Dashboard: React.FC<DashboardProps> = ({
                   playlists={dashboardData.editorialCharts.data?.playlists.data}
                   artists={dashboardData.editorialCharts.data?.artists.data}
                   albums={dashboardData.editorialCharts.data?.albums.data}
-                  promotedArtists={promotedArtists?.data}
+                  isPromotedArtistsEnabled={isPromotedArtistsEnabled}
 
                   artistInfoSearchByName={artistInfoSearchByName}
                   albumInfoSearchByName={albumInfoSearchByName}

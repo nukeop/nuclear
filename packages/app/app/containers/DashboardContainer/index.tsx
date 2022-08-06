@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router';
 
 import * as SearchActions from '../../actions/search';
 import * as DashboardActions from '../../actions/dashboard';
@@ -9,10 +10,10 @@ import * as PlayerActions from '../../actions/player';
 
 import Dashboard from '../../components/Dashboard';
 import { dashboardSelector } from '../../selectors/dashboard';
-import { useHistory } from 'react-router';
 import { connectivity } from '../../selectors/connectivity';
 import { pluginsSelectors } from '../../selectors/plugins';
 import { QueueItem } from '../../reducers/queue';
+import { settingsSelector } from '../../selectors/settings';
 
 const DashboardContainer: React.FC = () => {
   const dispatch = useDispatch();
@@ -21,6 +22,7 @@ const DashboardContainer: React.FC = () => {
   const dashboard = useSelector(dashboardSelector);
   const streamProviders = useSelector(pluginsSelectors.plugins).streamProviders;
   const isConnected = useSelector(connectivity);
+  const settings = useSelector(settingsSelector);
   
   const loadBestNewTracks = () => dispatch(DashboardActions.loadBestNewTracks());
   const loadBestNewAlbums = () => dispatch(DashboardActions.loadBestNewAlbums());
@@ -36,6 +38,7 @@ const DashboardContainer: React.FC = () => {
   const clearQueue = () => dispatch(QueueActions.clearQueue());
   const startPlayback = () => dispatch(PlayerActions.startPlayback(false));
   const onEditorialPlaylistClick = (playlistId: number) => history.push(`/editorial-playlist/${playlistId}`);
+  const isPromotedArtistsEnabled = settings.promotedArtists;
 
   useEffect(() => {
     dispatch(FavoritesActions.readFavorites());
@@ -61,6 +64,7 @@ const DashboardContainer: React.FC = () => {
       dashboardData={dashboard}
       streamProviders={streamProviders}
       isConnected={isConnected}
+      isPromotedArtistsEnabled={isPromotedArtistsEnabled}
 
       artistInfoSearchByName={artistInfoSearchByName}
       albumInfoSearchByName={albumInfoSearchByName}

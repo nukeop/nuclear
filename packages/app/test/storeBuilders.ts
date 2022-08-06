@@ -682,7 +682,14 @@ export const buildStoreState = () => {
           promotedArtists: {
             isLoading: false,
             isReady: true,
-            data: []
+            data: [{
+              id: '1',
+              name: 'Promoted artist 1',
+              description: 'Promoted artist 1 description',
+              link: 'https://promoted-artist-1.example',
+              picture: 'https://promoted-artist-1.example/picture.jpg',
+              metaProvider: 'bandcamp'              
+            }]
           }
         }
       };
