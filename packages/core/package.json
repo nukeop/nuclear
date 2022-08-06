@@ -50,7 +50,6 @@
     "@types/jest": "^27.4.1",
     "@types/lodash": "^4.14.158",
     "@types/md5": "^2.1.33",
-    "@types/react": "^16.9.43",
     "eslint": "^7.18.0",
     "mock-require": "^3.0.3",
     "ts-node": "^10.7.0",
