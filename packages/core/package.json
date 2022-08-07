@@ -15,8 +15,8 @@
   "scripts": {
     "lint": "eslint \"{test,src}/**/**.{js,ts}\"",
     "lint:fix": "eslint \"{test,src}/**/**.{js,ts}\" --fix",
-    "test": "jest",
-    "coverage": "jest --coverage"
+    "test": "jest --silent",
+    "coverage": "jest --silent --coverage"
   },
   "dependencies": {
     "@babel/core": "^7.9.0",
