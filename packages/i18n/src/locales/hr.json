@@ -195,7 +195,7 @@
   "queue": {
     "clear": "Očisti red čekanja",
     "dialog-accept": "Sačuvaj",
-    "dialog-cancel": "Cancel",
+    "dialog-cancel": "Otkaži",
     "dialog-placeholder": "Ime popisa za reprodukciju...",
     "dialog-trigger": "Sačuvaj kao popis za reprodukciju",
     "download": "Preuzmi",
@@ -339,8 +339,8 @@
     "exit-fullscreen": "Pritisnite ESC da bi ste izašli iz punog zaslona"
   },
   "command-palette": {
-    "search-placeholder": "What would you like to do?",
-    "empty-state-help": "Can't seem to find what you're looking for? Try the help command.",
+    "search-placeholder": "Što biste željeli uraditi?",
+    "empty-state-help": "Ne možete naći šta tražite? Probajte pomoćnu komandu.",
     "protip-text": "PROTIP:",
     "protip-content": "Arrows to navigate, Enter to select, Esc to close",
     "categories": {
