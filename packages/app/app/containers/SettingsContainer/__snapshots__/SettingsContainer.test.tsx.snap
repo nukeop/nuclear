@@ -647,10 +647,10 @@ exports[`Settings view container should render settings 1`] = `
               <div
                 aria-atomic="true"
                 aria-live="polite"
-                class="divider default text"
+                class="divider text"
                 role="alert"
               >
-                Pick a language
+                English
               </div>
               <i
                 aria-hidden="true"
@@ -662,8 +662,8 @@ exports[`Settings view container should render settings 1`] = `
               >
                 <div
                   aria-checked="false"
-                  aria-selected="true"
-                  class="selected item"
+                  aria-selected="false"
+                  class="item"
                   role="option"
                   style="pointer-events: all;"
                 >
@@ -713,9 +713,9 @@ exports[`Settings view container should render settings 1`] = `
                   </span>
                 </div>
                 <div
-                  aria-checked="false"
-                  aria-selected="false"
-                  class="item"
+                  aria-checked="true"
+                  aria-selected="true"
+                  class="active selected item"
                   role="option"
                   style="pointer-events: all;"
                 >
