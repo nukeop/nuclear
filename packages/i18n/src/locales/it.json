@@ -15,7 +15,7 @@
     "dashboard": "Cruscotto",
     "downloads": "Trasferimenti",
     "equalizer": "Equalizzatore",
-    "favorite-albums": "Albums preferiti",
+    "favorite-albums": "Album preferiti",
     "favorite-artists": "Artisti preferiti",
     "favorite-tracks": "Tracce preferite",
     "library": "Libreria locale",
@@ -44,8 +44,8 @@
   "dashboard": {
     "add-all": "Aggiungi tutte",
     "artist": "Artista",
-    "best": "Nuova musica migliora",
-    "best-new-albums": "Nuovi albums migliori",
+    "best": "Nuova musica migliore",
+    "best-new-albums": "Nuovi album migliori",
     "best-new-tracks": "Nuovi brani migliori",
     "genres": "Generi",
     "news": "Novità",
@@ -77,8 +77,8 @@
   },
   "favorite-albums": {
     "empty": "Nessun album preferito",
-    "empty-help": "Prova ad aggiungere alcuni albums ai preferiti e appariranno qui!",
-    "header": "Tuoi albums preferiti"
+    "empty-help": "Prova ad aggiungere degli album nei preferiti e li vedrai apparire qui!",
+    "header": "I tuoi album preferiti"
   },
   "favorite-artists": {
     "empty": "Nessun artista preferito",
@@ -216,7 +216,7 @@
   },
   "search": {
     "album": "Album",
-    "album_plural": "Albums",
+    "album_plural": "Album",
     "all": "Tutte",
     "artist": "Artista",
     "artist_plural": "Artisti",
@@ -306,7 +306,7 @@
     "yt-api-key": "Chiave API di YouTube"
   },
   "tags": {
-    "albums": "Migliori albums",
+    "albums": "Migliori album",
     "artist": "Artista",
     "artists": "Migliori artisti",
     "duration": "Durata",
@@ -347,7 +347,7 @@
       "playback": "Riproduci",
       "queue": "Coda",
       "navigation": "Naviga",
-      "application": "Application"
+      "application": "Applicazione"
     },
     "actions": {
       "play": "Riproduci",
