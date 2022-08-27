@@ -1,0 +1,4 @@
+This is a Brave Rewards publisher verification file.
+
+Domain: nuclear.js.org
+Token: 33242ef05e586619580b2e2ff5a28f0d59d95b36eb9c2215f74900a9fd27d87c
