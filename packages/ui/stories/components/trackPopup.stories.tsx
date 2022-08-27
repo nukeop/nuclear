@@ -4,12 +4,7 @@ import { Button } from 'semantic-ui-react';
 import { TrackPopup } from '../..';
 
 export default {
-  title: 'Components/Track popup',
-  parameters: {
-    percy: {
-      skip: true
-    }
-  }
+  title: 'Components/Track popup'
 };
 
 const track = {
@@ -34,9 +29,9 @@ export const WithAllButtons = () => <div className='bg'>
   <TrackPopup
     trigger={<Button>Click here</Button>}
     playlists={[
-      { name: 'playlist 1'},
-      { name: 'playlist 2'},
-      { name: 'another playlist'}
+      { name: 'playlist 1' },
+      { name: 'playlist 2' },
+      { name: 'another playlist' }
     ]}
     {...track}
   />
