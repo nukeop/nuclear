@@ -41,18 +41,29 @@
       "error",
       "always"
     ],
-
     "no-undef": 0,
-
     // Best practice
     "eqeqeq": 2,
     "curly": 2,
-    "dot-location": [2, "property"],
+    "dot-location": [
+      2,
+      "property"
+    ],
     "dot-notation": 2,
     "no-alert": 2,
-    "object-shorthand": [2, "always"],
-    "no-console": ["error", { "allow": ["warn", "error"] }],
-
+    "object-shorthand": [
+      2,
+      "always"
+    ],
+    "no-console": [
+      "error",
+      {
+        "allow": [
+          "warn",
+          "error"
+        ]
+      }
+    ],
     // Style
     "array-bracket-spacing": 2,
     "brace-style": 2,
@@ -65,20 +76,46 @@
     "no-lonely-if": 2,
     "no-multiple-empty-lines": 2,
     "no-tabs": 2,
-    "semi-style": [2, "last"],
-    "spaced-comment": [2, "always"],
-
+    "semi-style": [
+      2,
+      "last"
+    ],
+    "spaced-comment": [
+      2,
+      "always"
+    ],
     // ES 6
     "arrow-spacing": 2,
     "no-var": 2,
-
     // React
-    "jsx-quotes": [2, "prefer-single"],
-    "react/forbid-prop-types": [1, { "forbid": ["any"] }],
-    "react/jsx-curly-spacing": [2, "never"],
-    "react/jsx-equals-spacing": [2, "never"],
-    "react/jsx-indent": [2, 2],
-    "react/jsx-indent-props": [2, 2],
+    "jsx-quotes": [
+      2,
+      "prefer-single"
+    ],
+    "react/forbid-prop-types": [
+      1,
+      {
+        "forbid": [
+          "any"
+        ]
+      }
+    ],
+    "react/jsx-curly-spacing": [
+      2,
+      "never"
+    ],
+    "react/jsx-equals-spacing": [
+      2,
+      "never"
+    ],
+    "react/jsx-indent": [
+      2,
+      2
+    ],
+    "react/jsx-indent-props": [
+      2,
+      2
+    ],
     "react/jsx-key": 1,
     "react/jsx-no-duplicate-props": 2,
     "react/jsx-no-undef": 2,
@@ -97,15 +134,13 @@
     "react/self-closing-comp": 2,
     "node/no-unpublished-require": 0,
     "node/no-unsupported-features/es-syntax": 0,
-
     // Node
     "node/no-unpublished-import": 0,
-
     // Typescript
     "@typescript-eslint/explicit-function-return-type": 0,
     "@typescript-eslint/no-empty-function": 0,
     "@typescript-eslint/no-use-before-define": 0,
-    "@typescript-eslint/no-unused-vars": "error",
+    "@typescript-eslint/no-unused-vars": 0,
     "@typescript-eslint/no-explicit-any": 0,
     "@typescript-eslint/explicit-module-boundary-types": 0,
     "@typescript-eslint/ban-types": 0
