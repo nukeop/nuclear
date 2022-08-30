@@ -27,11 +27,11 @@ const TitleCell: React.FC<CellProps<Track> & TrackTableExtraProps> = ({
     <span className={styles.title_cell_buttons}>
       <Button
         className={styles.title_cell_button}
-        basic 
-        borderless 
-        circular 
-        size='tiny' 
-        icon='plus' 
+        basic
+        borderless
+        circular
+        size='tiny'
+        icon='plus'
         onClick={() => onAddToQueue(row.original)}
         data-testid='add-to-queue'
       />
@@ -57,7 +57,7 @@ const TitleCell: React.FC<CellProps<Track> & TrackTableExtraProps> = ({
         onPlayNext={() => onPlayNext(row.original)}
         onAddToQueue={() => onAddToQueue(row.original)}
         onAddToFavorites={() => onAddToFavorites(row.original)}
-        onAddToPlaylist={(playlist: {name: string}) => onAddToPlaylist(row.original, playlist)}
+        onAddToPlaylist={(playlist: { name: string }) => onAddToPlaylist(row.original, playlist)}
         onAddToDownloads={() => onAddToDownloads(row.original)}
 
         withPlayNow={Boolean(onPlay)}
