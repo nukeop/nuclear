@@ -21,8 +21,8 @@
 		"storybook": "start-storybook -p 9001 -c .storybook",
 		"lint": "eslint \"{lib,stories}/**.{ts,tsx,js,jsx}\"",
 		"lint:fix": "eslint \"{lib,stories}/**.{ts,tsx,js,jsx}\" --fix",
-		"test": "jest --silent",
-		"coverage": "jest --silent --coverage"
+		"test": "jest",
+		"coverage": "jest --coverage"
 	},
 	"peerDependencies": {
 		"react": "16.14.0",
@@ -49,7 +49,7 @@
 		"@types/numeral": "0.0.28",
 		"@types/react-beautiful-dnd": "^13.0.0",
 		"@types/react-measure": "^2.0.6",
-		"@types/react-table": "^7.7.0",
+		"@types/react-table": "^7.7.12",
 		"babel-eslint": "^10.0.3",
 		"babel-loader": "^8.1.0",
 		"copyfiles": "^2.2.0",
@@ -84,7 +84,7 @@
 		"react-image": "^2.2.2",
 		"react-measure": "^2.5.2",
 		"react-resizable": "^3.0.4",
-		"react-table": "^7.7.0",
+		"react-table": "^7.8.0",
 		"recompose": "^0.30.0",
 		"semantic-ui-react": "^2.0.4",
 		"styled-components": "^4.4.1",

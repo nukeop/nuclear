@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { TdHTMLAttributes } from 'react';
 import { CellProps } from 'react-table';
 import { Icon } from 'semantic-ui-react';
 
@@ -18,7 +18,7 @@ const SyncCell: React.FC<CellProps<PlaylistWithLoadingState> & PlaylistsStrings 
   onPlaylistDownload,
   onPlaylistUpload
 }) => <td
-  {...cell.getCellProps()}
+  {...cell.getCellProps() as TdHTMLAttributes<HTMLTableCellElement>}
   className={styles.sync_cell}
 >
   <div className={styles.sync_cell_content}>

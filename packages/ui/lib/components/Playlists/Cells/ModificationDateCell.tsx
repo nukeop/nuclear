@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { TdHTMLAttributes } from 'react';
 import { CellProps } from 'react-table';
 
 import { Playlist } from '@nuclear/core';
@@ -16,7 +16,7 @@ const ModificationDateCell: React.FC<CellProps<Playlist> & PlaylistsStrings & Pl
   neverModified,
   serverModifiedAt  
 }) => <td
-  {...cell.getCellProps()}
+  {...cell.getCellProps() as TdHTMLAttributes<HTMLTableCellElement>}
   className={styles.modification_date_cell}
 >
   <div className={styles.modification_date_cell_content}>

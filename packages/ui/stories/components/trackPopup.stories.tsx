@@ -29,9 +29,9 @@ export const WithAllButtons = () => <div className='bg'>
   <TrackPopup
     trigger={<Button>Click here</Button>}
     playlists={[
-      { name: 'playlist 1'},
-      { name: 'playlist 2'},
-      { name: 'another playlist'}
+      { name: 'playlist 1' },
+      { name: 'playlist 2' },
+      { name: 'another playlist' }
     ]}
     {...track}
   />

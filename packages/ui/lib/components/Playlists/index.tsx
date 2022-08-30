@@ -13,6 +13,7 @@ import ModificationDateCell from './Cells/ModificationDateCell';
 import SyncCell from './Cells/SyncCell';
 import artPlaceholder from '../../../resources/media/art_placeholder.png';
 import styles from './styles.scss';
+import { TableHTMLAttributes } from 'react';
 
 export type PlaylistsStrings = {
   tracksSingular: string;
@@ -90,7 +91,7 @@ const Playlists: React.FC<PlaylistsProps> = ({
   } = useTable<PlaylistWithLoadingState>({ columns, data });
 
   return <table
-    {...getTableProps()}
+    {...getTableProps() as TableHTMLAttributes<HTMLTableElement>}
     className={styles.playlists_table}
   >
     <DragDropContext onDragEnd={onDragEnd}>
@@ -98,7 +99,7 @@ const Playlists: React.FC<PlaylistsProps> = ({
         {(provided) => (
           <tbody
             ref={provided.innerRef}
-            {...getTableBodyProps()}
+            {...getTableBodyProps() as TableHTMLAttributes<HTMLTableSectionElement>}
             {...provided.droppableProps}
           >
             {
@@ -116,7 +117,7 @@ const Playlists: React.FC<PlaylistsProps> = ({
                         ref={provided.innerRef}
                         className={cx({ [styles.is_dragging]: snapshot.isDragging })}
                         onClick={() => extra.onPlaylistClick(row.original.id)}
-                        {...row.getRowProps()}
+                        {...row.getRowProps() as TableHTMLAttributes<HTMLTableRowElement>}
                         {...provided.draggableProps}
                         {...provided.dragHandleProps}
                       >

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { TdHTMLAttributes } from 'react';
 import cx from 'classnames';
 import { CellProps } from 'react-table';
 
@@ -11,7 +11,7 @@ const DeleteCell: React.FC<CellProps<Track> & TrackTableExtraProps> = ({
   cell,
   row,
   onDelete
-}) => <td {...cell.getCellProps()} className={cx(styles.narrow, styles.delete_cell)}>
+}) => <td {...cell.getCellProps() as TdHTMLAttributes<HTMLTableCellElement>} className={cx(styles.narrow, styles.delete_cell)}>
   <Button
     data-testid='delete-button'
     basic
