@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-key */
-import React, { useMemo } from 'react';
+import React, { TableHTMLAttributes, useMemo } from 'react';
 import cx from 'classnames';
 import { useTable, Column, useRowSelect } from 'react-table';
 import _, { isNumber, isString } from 'lodash';
@@ -19,6 +19,7 @@ import styles from './styles.scss';
 import artPlaceholder from '../../../resources/media/art_placeholder.png';
 import { Track } from '../../types';
 import { formatDuration } from '../..';
+import { ThHTMLAttributes } from 'react';
 
 export type TrackTableProps = TrackTableExtraProps &
   TrackTableHeaders &
@@ -129,14 +130,14 @@ const TrackTable: React.FC<TrackTableProps> = ({
     prepareRow
   } = table;
 
-  return <table {...getTableProps()} className={styles.track_table}>
+  return <table {...getTableProps() as TableHTMLAttributes<HTMLTableElement>} className={styles.track_table}>
     <thead>
       {
         headerGroups.map(headerGroup => (
-          <tr {...headerGroup.getHeaderGroupProps()}>
+          <tr {...headerGroup.getHeaderGroupProps() as TableHTMLAttributes<HTMLTableRowElement>}>
             {
               headerGroup.headers.map(column => (
-                <th {...column.getHeaderProps()}>
+                <th {...column.getHeaderProps() as ThHTMLAttributes<HTMLTableCellElement>}>
                   {column.render('Header', extraProps)}
                 </th>
               ))
@@ -151,7 +152,7 @@ const TrackTable: React.FC<TrackTableProps> = ({
 
           <tbody
             ref={provided.innerRef}
-            {...getTableBodyProps()}
+            {...getTableBodyProps() as TableHTMLAttributes<HTMLTableSectionElement>}
             {...provided.droppableProps}
           >
             {
@@ -168,7 +169,7 @@ const TrackTable: React.FC<TrackTableProps> = ({
                       <tr
                         ref={provided.innerRef}
                         className={cx({ [styles.is_dragging]: snapshot.isDragging })}
-                        {...row.getRowProps()}
+                        {...row.getRowProps() as TableHTMLAttributes<HTMLTableRowElement>}
                         {...provided.draggableProps}
                         {...provided.dragHandleProps}
                       >

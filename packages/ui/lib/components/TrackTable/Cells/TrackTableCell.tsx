@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { TdHTMLAttributes } from 'react';
 import { CellProps } from 'react-table';
 
 import { Track } from '../../../types';
@@ -6,7 +6,7 @@ import { Track } from '../../../types';
 const TrackTableCell: React.FC<CellProps<Track>> = ({
   cell,
   value
-}) => <td {...cell.getCellProps()}>
+}) => <td {...cell.getCellProps() as TdHTMLAttributes<HTMLTableCellElement>}>
   {value}
 </td>;
 
