@@ -17,11 +17,11 @@ export const FullscreenLayerStory = () => {
       Open layer
     </Button>
     <FullscreenLayer isOpen={isOpen} onClose={onClose}>
-      <span style={{color: '#fff'}}>
+      <span style={{ color: '#fff' }}>
         Layer content
       </span>
 
-      <div style={{background: '#fff', width: 200, height: 200, marginLeft: 200}} />
+      <div style={{ background: '#fff', width: 200, height: 200, marginLeft: 200 }} />
     </FullscreenLayer>
   </div>;
 };

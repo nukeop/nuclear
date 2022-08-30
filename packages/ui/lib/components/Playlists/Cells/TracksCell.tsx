@@ -4,6 +4,7 @@ import { CellProps } from 'react-table';
 import { Playlist } from '@nuclear/core';
 
 import { PlaylistsStrings } from '..';
+import { TdHTMLAttributes } from 'react';
 
 const TracksCell: React.FC<CellProps<Playlist> & PlaylistsStrings> = ({
   cell,
@@ -11,7 +12,7 @@ const TracksCell: React.FC<CellProps<Playlist> & PlaylistsStrings> = ({
   tracksSingular,
   tracksPlural
 }) => <td
-  {...cell.getCellProps()}
+  {...cell.getCellProps() as TdHTMLAttributes<HTMLTableCellElement>}
 >
   {value}
   {' '}

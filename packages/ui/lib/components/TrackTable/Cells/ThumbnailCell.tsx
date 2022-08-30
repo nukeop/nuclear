@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { TdHTMLAttributes } from 'react';
 import cx from 'classnames';
 import { CellProps } from 'react-table';
 
@@ -14,7 +14,7 @@ export type ThumbnailCellClassnames = {
 const ThumbnailCell: (classnames?: ThumbnailCellClassnames) => React.FC<CellProps<Track>> = (classnames = styles) => ({
   cell,
   value
-}) => <td {...cell.getCellProps()} className={cx(classnames.thumbnail_cell, classnames.narrow)}>
+}) => <td {...cell.getCellProps() as TdHTMLAttributes<HTMLTableCellElement>} className={cx(classnames.thumbnail_cell, classnames.narrow)}>
   <img className={classnames.thumbnail} src={value} />
 </td>;
 

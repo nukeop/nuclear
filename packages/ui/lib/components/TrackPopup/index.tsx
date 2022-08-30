@@ -30,7 +30,7 @@ export type TrackPopupProps = {
   onPlayNext?: () => void;
   onPlayNow?: () => void;
   onAddToFavorites?: () => void;
-  onAddToPlaylist?: ({ name: string }) => void;
+  onAddToPlaylist?: ({ name }: { name: string }) => void;
   onAddToDownloads?: () => void;
 };
 
