@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { TdHTMLAttributes } from 'react';
 import { CellProps } from 'react-table';
 
 import { Button, TrackPopup } from '../../..';
@@ -19,7 +19,7 @@ const TitleCell: React.FC<CellProps<Track> & TrackTableExtraProps> = ({
   onAddToDownloads,
   playlists,
   popupActionStrings
-}) => <td {...cell.getCellProps()} className={styles.title_cell}>
+}) => <td {...cell.getCellProps() as TdHTMLAttributes<HTMLTableCellElement>} className={styles.title_cell}>
   <span className={styles.title_cell_content}>
     <span className={styles.title_cell_value}>
       {value}

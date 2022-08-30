@@ -7,7 +7,7 @@ import styles from './styles.scss';
 export type VisualizerOverlayProps = {
   presets: string[];
   selectedPreset: string;
-  onPresetChange: (e: SyntheticEvent, { value: string }) => void;
+  onPresetChange: (e: SyntheticEvent, { value }: { value: string }) => void;
   onEnterFullscreen: React.MouseEventHandler;
   exitFullscreenLabel?: string;
   isFullscreen?: boolean;
@@ -37,11 +37,13 @@ const VisualizerOverlay: React.FC<VisualizerOverlayProps> = ({
     {
       isFullscreen
         ? <p>{exitFullscreenLabel}</p>
-        : <Button
-          basic
-          icon='expand'
-          onClick={onEnterFullscreen}
-        />
+        : (
+          <Button
+            basic
+            icon='expand'
+            onClick={onEnterFullscreen} 
+          />
+        )
     }
   </div>;
 };

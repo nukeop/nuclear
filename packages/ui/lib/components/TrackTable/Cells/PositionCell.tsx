@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { TdHTMLAttributes } from 'react';
 import cx from 'classnames';
 import { CellProps } from 'react-table';
 
@@ -12,7 +12,7 @@ const PositionCell: React.FC<CellProps<Track> & TrackTableExtraProps> = ({
   row,
   value,
   onPlay
-}) => <td {...cell.getCellProps()} className={cx(styles.position_cell, styles.narrow)}>
+}) => <td {...cell.getCellProps() as TdHTMLAttributes<HTMLTableCellElement>} className={cx(styles.position_cell, styles.narrow)}>
   <Button 
     circular 
     size='tiny'
