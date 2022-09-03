@@ -24,7 +24,7 @@ export interface NuclearMeta {
   album?: string;
   folder?: any;
   lastScanned?: number;
-
+  local?: boolean;
   imageData?: Buffer;
 }
 
