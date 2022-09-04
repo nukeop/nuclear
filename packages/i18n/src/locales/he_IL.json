@@ -69,7 +69,7 @@
     "custom": "מותאם אישית",
     "default": "ברירת מחדל",
     "full-bass": "בס מלא",
-    "full-treble": "Full Treble",
+    "full-treble": "טרבל מלא",
     "pop": "פופ",
     "presets": "הגדרות קבועות מראש",
     "reggae": "רגאי",
@@ -147,8 +147,8 @@
     "export-fail-title": "ייצוא הפלייליסט נכשל",
     "export-success-title": "הפלייליסט יוצָא בהצלחה",
     "header": "הפלייליסטים שלך",
-    "import-progress": "Import progress",
-    "spotify-import-placeholder": "Paste a Spotify playlist URL here",
+    "import-progress": "הליך ייבוא",
+    "spotify-import-placeholder": "הדבק את קישור הפלייליסט ספוטיפיי כאן",
     "dialog-placeholder": "שם הפלייליסט...",
     "dialog-accept": "שמירה",
     "dialog-cancel": "ביטול",
@@ -283,7 +283,7 @@
     "mastodon-post-format-label": "מבנה פרסום",
     "mastodon-title": "",
     "nuclear-identity-service-url": "כתובת שירותי הזהות",
-    "nuclear-playlists-service-url": "Nuclear playlists service URL",
+    "nuclear-playlists-service-url": "קישור שירותי פלייליסט ניוקליר",
     "mini-player": "שימוש בסגנון הנגן הממוזער",
     "more": "עוד",
     "discord-rich-presence": "סמן נוכחות גבוהה בדיסקורד (דורש הפעלה מחדש)",
@@ -365,26 +365,26 @@
       "unmute": "בטל השתק",
       "quit": "יציאה",
       "minimize": "מזער",
-      "maximize": "Maximize",
-      "go-to-dashboard": "Go to dashboard",
-      "go-to-downloads": "Go to downloads",
-      "go-to-lyrics": "Go to lyrics",
-      "go-to-plugins": "Go to plugins",
-      "go-to-search": "Go to search",
-      "go-to-settings": "Go to settings",
-      "go-to-equalizer": "Go to equalizer",
-      "go-to-visualizer": "Go to visualizer",
-      "go-to-playlists": "Go to playlists",
-      "go-to-favorite-tracks": "Go to favorite tracks",
-      "go-to-library": "Go to local library"
+      "maximize": "הגדל",
+      "go-to-dashboard": "עבור ללוח המכוונים",
+      "go-to-downloads": "עבור לההורדות",
+      "go-to-lyrics": "עבור למילות השיר",
+      "go-to-plugins": "עבור לתוספים",
+      "go-to-search": "עבור לחיפוש",
+      "go-to-settings": "עבור להגדרות",
+      "go-to-equalizer": "עבור לאקולייזר",
+      "go-to-visualizer": "עבור להשמעה ויזואלית",
+      "go-to-playlists": "עבור לפלייליסטים",
+      "go-to-favorite-tracks": "עבור לשירים המועדפים",
+      "go-to-library": "עבור לסיפרייה המקומית"
     }
   },
   "forms": {
     "nuclear-sign-up": {
       "header": "הרשמה",
       "secondary-header": "להירשם לשירותי האתר של nuclear",
-      "side-paragraph-1": "NWS enables you to backup your playlists online and share them.",
-      "side-paragraph-2": "Providing your email is optional; it will allow you to recover your account if you forget your password.",
+      "side-paragraph-1": "השירות NWS מאפשר לכם לגבות את הפלייליסטים שלכם באופן מקוון ולשתף אותם.",
+      "side-paragraph-2": "הזנת כתובת אימייל הינה אופציונלית; ניתן באמצעות זה לשחזר את המשתמש במקרה של שכיחת הסיסמא.",
       "username-label": "שם משתמש",
       "email-label": "דוא״ל",
       "password-label": "סיסמה",
@@ -398,8 +398,8 @@
           "invalid": "חובה להזין אימייל"
         },
         "password": {
-          "length": "Password must be 6 characters or more",
-          "required": "Password is required"
+          "length": "סיסמא הינה חייבת להיות בעלת 6 תווים או יותר",
+          "required": "סיסמא הינה חובה"
         }
       }
     },
