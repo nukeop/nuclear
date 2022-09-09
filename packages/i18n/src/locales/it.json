@@ -340,7 +340,7 @@
   },
   "command-palette": {
     "search-placeholder": "Che cosa vorresti fare?",
-    "empty-state-help": "Non trovi quello che stai cercando? Prova il comando aiuto.",
+    "empty-state-help": "Non riesci a trovare quello che stai cercando? Prova il comando aiuto.",
     "protip-text": "Suggerimento:",
     "protip-content": "Frecce per navigare, Invio per selezionare, Esc per chiudere",
     "categories": {
