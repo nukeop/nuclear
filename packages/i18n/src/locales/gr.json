@@ -195,7 +195,7 @@
   "queue": {
     "clear": "Εκκαθάριση ουράς",
     "dialog-accept": "Αποθήκευση",
-    "dialog-cancel": "Cancel",
+    "dialog-cancel": "Ακύρωση",
     "dialog-placeholder": "Όνομα λίστας αναπαραγωγής...",
     "dialog-trigger": "Αποθήκευση ως λίστα αναπαραγωγής",
     "download": "Λήψη",
