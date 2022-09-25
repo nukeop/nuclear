@@ -133,6 +133,13 @@ export const settingsConfig: Array<Setting> = [
     default: true
   },
   {
+    name: 'showTrayIcon',
+    category: 'program-settings',
+    type: SettingType.BOOLEAN,
+    prettyName: 'show-tray-icon',
+    default: true
+  },
+  {
     name: 'miniPlayer',
     category: 'display',
     type: SettingType.BOOLEAN,
