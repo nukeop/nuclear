@@ -69,7 +69,9 @@ app.on('ready', async () => {
     await localLibraryDb.connect();
     container.listen();
     await window.load();
-    trayMenu.init();
+    if (store.getOption('showTrayIcon')) {
+      trayMenu.init();
+    }
     touchbarMenu.init();
     if (store.getOption('discordRichPresence')) {
       discord.init();

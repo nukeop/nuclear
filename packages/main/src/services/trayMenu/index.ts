@@ -60,7 +60,7 @@ class TrayMenu {
         enabled: false
       });
     }
-    
+
     template.push({
       type: 'separator'
     });
@@ -136,12 +136,14 @@ class TrayMenu {
   }
 
   update(newPlayerContext?: PlayerContext) {
-    if (newPlayerContext) {
-      this.setPlayerContext(newPlayerContext);
-    }
+    if (this.tray) {
+      if (newPlayerContext) {
+        this.setPlayerContext(newPlayerContext);
+      }
 
-    this.tray.setContextMenu(this.getMenu());
-    this.tray.setToolTip(this.getToolTipString());
+      this.tray.setContextMenu(this.getMenu());
+      this.tray.setToolTip(this.getToolTipString());
+    }
   }
 }
 
