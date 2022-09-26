@@ -114,6 +114,14 @@ class Shortcuts extends React.Component {
 
 
   componentDidMount() {
+    Mousetrap.addKeycodes({
+      179: 'MediaPlayPause',
+      177: 'MediaTrackPrevious',
+      176: 'MediaTrackNext'
+
+
+    });
+
     Mousetrap.bind('space', this.handleSpaceBar);
     Mousetrap.bind('enter', this.playCurrentSong);
     Mousetrap.bind('up', this.increaseVolume);
@@ -126,6 +134,9 @@ class Shortcuts extends React.Component {
     Mousetrap.bind(['ctrl+left', 'command+left'], this.props.actions.previousSong);
     Mousetrap.bind(['ctrl+top', 'command+top'], this.props.actions.unmute);
     Mousetrap.bind(['ctrl+down', 'command+down'], this.props.actions.mute);
+    Mousetrap.bind('MediaPlayPause',  this.handleSpaceBar);
+    Mousetrap.bind('MediaTrackPrevious',  this.props.actions.previousSong);
+    Mousetrap.bind('MediaTrackNext',  this.props.actions.nextSong);
   }
 
   componentWillUnmount() {
@@ -147,7 +158,12 @@ class Shortcuts extends React.Component {
       'ctrl+down',
       'command+down',
       'f12',
-      'command+i'
+      'command+i',
+      'MediaPlayPause',
+      'MediaTrackPrevious',
+      'MediaTrackNext'
+
+
     ]);
   }
 
