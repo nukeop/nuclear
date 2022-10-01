@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import _ from 'lodash';
-import { Icon, Segment } from 'semantic-ui-react';
+import { Button, Icon, Segment } from 'semantic-ui-react';
 import { useTranslation } from 'react-i18next';
 
 import { Track } from '@nuclear/core';
@@ -8,6 +8,8 @@ import { Track } from '@nuclear/core';
 import TrackTableContainer from '../../containers/TrackTableContainer';
 import Header from '../Header';
 import styles from './styles.scss';
+import { useDispatch } from 'react-redux';
+import * as queueActions from '../../actions/queue';
 
 export const EmptyState = () => {
   const { t } = useTranslation('favorites');
@@ -34,6 +36,14 @@ const FavoriteTracksView: React.FC<FavoriteTracksViewProps> = ({
   removeFavoriteTrack
 }) => {
   const { t } = useTranslation('favorites');
+  const dispatch = useDispatch();
+
+  const addToQueue = useCallback(( tracks: Track[]) => {
+    _.shuffle(tracks).map(async (track) => {
+      dispatch(queueActions.addToQueue(queueActions.toQueueItem(track)));
+    });
+  }, [dispatch]);
+
 
   return (
     <div className={styles.favorite_tracks_view}>
@@ -44,6 +54,9 @@ const FavoriteTracksView: React.FC<FavoriteTracksViewProps> = ({
             <Header>
               {t('header')}
             </Header>
+            <Button onClick={() => {
+              addToQueue(tracks);
+            }}>Shuffle Play</Button>
             <Segment>
               <TrackTableContainer 
                 tracks={tracks}
