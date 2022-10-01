@@ -11,6 +11,7 @@ import styles from './styles.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import * as queueActions from '../../actions/queue';
 import * as settingsActions from '../../actions/settings';
+import * as playerActions from '../../actions/player';
 import { settingsSelector } from '../../selectors/settings';
 import { useToggleOptionCallback } from '../../containers/PlayerBarContainer/hooks';
 import settingsConst from '../../constants/settings';
@@ -50,10 +51,13 @@ const FavoriteTracksView: React.FC<FavoriteTracksViewProps> = ({
   const toggleShuffle = useToggleOptionCallback(toggleOption, 'shuffleQueue', settings);
 
 
-  const addToQueue = useCallback(( tracks: Track[]) => {
+  const addToQueue = useCallback(async( tracks: Track[]) => {
+    dispatch(queueActions.clearQueue());
     tracks.map(async (track) => {
       dispatch(queueActions.addToQueue(queueActions.toQueueItem(track)));
     });
+    dispatch(queueActions.selectSong(0));
+    dispatch(playerActions.startPlayback(false));
   }, [dispatch]);
 
 
@@ -68,8 +72,9 @@ const FavoriteTracksView: React.FC<FavoriteTracksViewProps> = ({
             </Header>
             <Button onClick={() => {
               addToQueue(tracks);
+              // if shuffleQueue is false then shuffle
               toggleShuffle();
-            }}>Shuffle Play</Button>
+            }}>Shuffle</Button>
             <Segment>
               <TrackTableContainer 
                 tracks={tracks}
