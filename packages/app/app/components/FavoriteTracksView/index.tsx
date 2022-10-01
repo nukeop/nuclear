@@ -8,8 +8,12 @@ import { Track } from '@nuclear/core';
 import TrackTableContainer from '../../containers/TrackTableContainer';
 import Header from '../Header';
 import styles from './styles.scss';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import * as queueActions from '../../actions/queue';
+import * as settingsActions from '../../actions/settings';
+import { settingsSelector } from '../../selectors/settings';
+import { useToggleOptionCallback } from '../../containers/PlayerBarContainer/hooks';
+import settingsConst from '../../constants/settings';
 
 export const EmptyState = () => {
   const { t } = useTranslation('favorites');
@@ -37,9 +41,17 @@ const FavoriteTracksView: React.FC<FavoriteTracksViewProps> = ({
 }) => {
   const { t } = useTranslation('favorites');
   const dispatch = useDispatch();
+  const settings = useSelector(settingsSelector);
+
+  const toggleOption = useCallback(
+    (option, state) => dispatch(settingsActions.toggleOption(option, state)), [dispatch]
+  );
+
+  const toggleShuffle = useToggleOptionCallback(toggleOption, 'shuffleQueue', settings);
+
 
   const addToQueue = useCallback(( tracks: Track[]) => {
-    _.shuffle(tracks).map(async (track) => {
+    tracks.map(async (track) => {
       dispatch(queueActions.addToQueue(queueActions.toQueueItem(track)));
     });
   }, [dispatch]);
@@ -56,6 +68,7 @@ const FavoriteTracksView: React.FC<FavoriteTracksViewProps> = ({
             </Header>
             <Button onClick={() => {
               addToQueue(tracks);
+              toggleShuffle();
             }}>Shuffle Play</Button>
             <Segment>
               <TrackTableContainer 
