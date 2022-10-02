@@ -59,6 +59,13 @@ const FavoriteTracksView: React.FC<FavoriteTracksViewProps> = ({
     dispatch(playerActions.startPlayback(false));
   }, [dispatch]);
 
+  const shufflePlay = () => {
+    addToQueue(tracks);
+    if (settings.shuffleQueue === false){
+      toggleShuffle();
+    }
+  };
+
 
   return (
     <div className={styles.favorite_tracks_view}>
@@ -69,12 +76,7 @@ const FavoriteTracksView: React.FC<FavoriteTracksViewProps> = ({
             <Header>
               {t('header')}
             </Header>
-            <Button onClick={() => {
-              addToQueue(tracks);
-              if (settings.shuffleQueue === false){
-                toggleShuffle();
-              }
-            }}>Shuffle</Button>
+            <Button data-testid='shuffle_play_button' onClick={shufflePlay}>Shuffle</Button>
             <Segment>
               <TrackTableContainer 
                 tracks={tracks}
