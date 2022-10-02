@@ -14,7 +14,6 @@ import * as settingsActions from '../../actions/settings';
 import * as playerActions from '../../actions/player';
 import { settingsSelector } from '../../selectors/settings';
 import { useToggleOptionCallback } from '../../containers/PlayerBarContainer/hooks';
-import settingsConst from '../../constants/settings';
 
 export const EmptyState = () => {
   const { t } = useTranslation('favorites');
@@ -72,8 +71,9 @@ const FavoriteTracksView: React.FC<FavoriteTracksViewProps> = ({
             </Header>
             <Button onClick={() => {
               addToQueue(tracks);
-              // if shuffleQueue is false then shuffle
-              toggleShuffle();
+              if (settings.shuffleQueue === false){
+                toggleShuffle();
+              }
             }}>Shuffle</Button>
             <Segment>
               <TrackTableContainer 
