@@ -49,7 +49,6 @@ const FavoriteTracksView: React.FC<FavoriteTracksViewProps> = ({
 
   const toggleShuffle = useToggleOptionCallback(toggleOption, 'shuffleQueue', settings);
 
-
   const addToQueue = useCallback(async( tracks: Track[]) => {
     dispatch(queueActions.clearQueue());
     tracks.map(async (track) => {
@@ -66,7 +65,6 @@ const FavoriteTracksView: React.FC<FavoriteTracksViewProps> = ({
     }
   };
 
-
   return (
     <div className={styles.favorite_tracks_view}>
       {
@@ -76,7 +74,11 @@ const FavoriteTracksView: React.FC<FavoriteTracksViewProps> = ({
             <Header>
               {t('header')}
             </Header>
-            <Button data-testid='shuffle_play_button' onClick={shufflePlay}>Shuffle</Button>
+            <Segment>
+              <Button className={styles.play_button} data-testid='shuffle_play_button' onClick={shufflePlay}>
+                <Icon name='shuffle' /> {t('shuffle')}
+              </Button>
+            </Segment>
             <Segment>
               <TrackTableContainer 
                 tracks={tracks}

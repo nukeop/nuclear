@@ -51,6 +51,20 @@ exports[`Track view container should display favorite tracks 1`] = `
       <div
         class="ui segment"
       >
+        <button
+          class="ui button play_button"
+          data-testid="shuffle_play_button"
+        >
+          <i
+            aria-hidden="true"
+            class="shuffle icon"
+          />
+           shuffle
+        </button>
+      </div>
+      <div
+        class="ui segment"
+      >
         <table
           class="track_table"
           role="table"
@@ -391,6 +405,20 @@ exports[`Track view container should show a popup when a track is clicked 1`] = 
       <div
         class="ui segment"
       >
+        <button
+          class="ui button play_button"
+          data-testid="shuffle_play_button"
+        >
+          <i
+            aria-hidden="true"
+            class="shuffle icon"
+          />
+           shuffle
+        </button>
+      </div>
+      <div
+        class="ui segment"
+      >
         <table
           class="track_table"
           role="table"
@@ -469,13 +497,13 @@ exports[`Track view container should show a popup when a track is clicked 1`] = 
             </tr>
           </thead>
           <tbody
-            data-rbd-droppable-context-id="1"
+            data-rbd-droppable-context-id="0"
             data-rbd-droppable-id="track_table"
             role="rowgroup"
           >
             <tr
               class=""
-              data-rbd-draggable-context-id="1"
+              data-rbd-draggable-context-id="0"
               data-rbd-draggable-id="test track 1 0"
               role="row"
             >
@@ -584,7 +612,7 @@ exports[`Track view container should show a popup when a track is clicked 1`] = 
             </tr>
             <tr
               class=""
-              data-rbd-draggable-context-id="1"
+              data-rbd-draggable-context-id="0"
               data-rbd-draggable-id="test track 2 1"
               role="row"
             >
@@ -699,11 +727,11 @@ exports[`Track view container should show a popup when a track is clicked 1`] = 
   <div
     aria-atomic="true"
     aria-live="assertive"
-    id="rbd-announcement-1"
+    id="rbd-announcement-0"
     style="position: absolute; width: 1px; height: 1px; margin: -1px; border: 0px; padding: 0px; overflow: hidden; clip-path: inset(100%);"
   />
   <div
-    id="rbd-hidden-text-1-hidden-text-4"
+    id="rbd-hidden-text-0-hidden-text-0"
     style="display: none;"
   >
     
