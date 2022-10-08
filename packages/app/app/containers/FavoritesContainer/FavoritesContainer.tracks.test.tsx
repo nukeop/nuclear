@@ -4,6 +4,7 @@ import { render, waitFor } from '@testing-library/react';
 import { createMemoryHistory } from 'history';
 import _ from 'lodash';
 
+import FavoriteTracksView from '.';
 import { buildStoreState } from '../../../test/storeBuilders';
 import { AnyProps, configureMockStore, setupI18Next, TestRouterProvider, TestStoreProvider } from '../../../test/testUtils';
 import MainContentContainer from '../MainContentContainer';
@@ -121,7 +122,54 @@ describe('Track view container', () => {
       }
     }));
   });
-
+  
+  describe('the shuffle play button', () => {
+    it('should queue all the favorite tracks', async () => {
+      const initialState = buildStoreState()
+        .withFavorites()
+        .build();
+      updateStore('favorites', initialState.favorites);
+  
+      const { component, store } = mountComponent(initialState);
+      component.getByTestId('shuffle_play_button').click();
+      const state = store.getState();
+  
+      expect(state.queue.queueItems.length).toEqual(initialState.favorites.tracks.length);
+    });
+  
+    it('toggles the shuffle settings ', async () => {
+      const initialState = buildStoreState()
+        .withFavorites()
+        .withSettings({
+          shuffleQueue: false
+        })
+        .build();
+      updateStore('favorites', initialState.favorites);
+  
+      const { component, store } = mountComponent(initialState);
+      component.getByTestId('shuffle_play_button').click();
+      const state = store.getState();
+      
+      expect(state.settings.shuffleQueue).toEqual(true);
+    });
+  
+    it('does not toggle the shuffle when shuffle is already toggled', async () => {
+      const initialState = buildStoreState()
+        .withFavorites()
+        .withSettings({
+          shuffleQueue: true
+        })
+        .build();
+      updateStore('favorites', initialState.favorites);
+  
+      const { component, store } = mountComponent(initialState);
+      component.getByTestId('shuffle_play_button').click();
+      const state = store.getState();
+      
+      expect(state.settings.shuffleQueue).toEqual(true);
+    });
+  });
+ 
   const mountComponent = (initialStore?: AnyProps) => {
     const initialState = initialStore ||
       buildStoreState()
@@ -149,3 +197,4 @@ describe('Track view container', () => {
     return { component, history, store };
   };
 });
+
