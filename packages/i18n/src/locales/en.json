@@ -317,6 +317,7 @@
     "add-to-favorite": "Add to favorites",
     "add-to-playlist": "Add to playlist",
     "add-to-queue": "Add to queue",
+    "create-playlist": "Create new playlist",
     "download": "Download",
     "download-toast-body": "{{artist}} - {{track}} has been added to downloads.",
     "download-toast-title": "Track added to downloads",

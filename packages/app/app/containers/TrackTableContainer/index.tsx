@@ -86,6 +86,13 @@ const TrackTableContainer: React.FC<TrackTableContainerProps> = ({
     dispatch(playlistActions.updatePlaylist(newPlaylist));
   }, [dispatch, playlists]);
 
+  const onCreatePlaylist = useCallback(
+    (name: string) => {
+      dispatch(playlistActions.addPlaylist([], name));
+    },
+    [dispatch]
+  );
+
   const onDragEnd = useCallback<TrackTableProps['onDragEnd']>((result) => {
     const { source, destination } = result;
     onReorder(source.index, destination.index);
@@ -98,6 +105,7 @@ const TrackTableContainer: React.FC<TrackTableContainerProps> = ({
     textPlayNext: popupTranstation('play-next'),
     textAddToFavorites: popupTranstation('add-to-favorite'),
     textAddToPlaylist: popupTranstation('add-to-playlist'),
+    textCreatePlaylist: popupTranstation('create-playlist'),
     textAddToDownloads: popupTranstation('download')
   };
 
@@ -130,6 +138,7 @@ const TrackTableContainer: React.FC<TrackTableContainerProps> = ({
     onRemoveFromFavorites={onRemoveFromFavorites}
     onAddToDownloads={onAddToDownloads}
     onAddToPlaylist={onAddToPlaylist}
+    onCreatePlaylist={onCreatePlaylist}
     onDelete={onDelete}
     onDragEnd={Boolean(onReorder) && onDragEnd}
     popupActionStrings={popupStrings}

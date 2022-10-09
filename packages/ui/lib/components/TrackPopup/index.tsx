@@ -31,6 +31,7 @@ export type TrackPopupProps = {
   onPlayNow?: () => void;
   onAddToFavorites?: () => void;
   onAddToPlaylist?: ({ name }: { name: string }) => void;
+  onCreatePlaylist?: (playlistName: string) => void;
   onAddToDownloads?: () => void;
 };
 
@@ -40,6 +41,7 @@ export type TrackPopupStrings = {
   textPlayNext: string;
   textAddToFavorites: string;
   textAddToPlaylist: string;
+  textCreatePlaylist: string;
   textAddToDownloads: string;
 }
 
@@ -62,6 +64,7 @@ const TrackPopup: React.FC<TrackPopupProps> = ({
     textPlayNext: 'Play next',
     textAddToFavorites: 'Add to favorites',
     textAddToPlaylist: 'Add to playlist',
+    textCreatePlaylist: 'Create new playlist',
     textAddToDownloads: 'Download'
   },
   onAddToQueue,
@@ -69,6 +72,7 @@ const TrackPopup: React.FC<TrackPopupProps> = ({
   onPlayNow,
   onAddToFavorites,
   onAddToPlaylist,
+  onCreatePlaylist,
   onAddToDownloads
 }) => 
   <ContextPopup
@@ -126,6 +130,15 @@ const TrackPopup: React.FC<TrackPopupProps> = ({
             {playlist.name}
           </Dropdown.Item>
         ))}
+        <Dropdown.Item
+          onClick={() => {
+            onCreatePlaylist(title); // TODO this uses song title as playlist name for now
+            onAddToPlaylist({ name: title });
+          }}
+        >
+          <Icon name='plus' />
+          {strings.textCreatePlaylist}
+        </Dropdown.Item>
       </PopupDropdown>
     )}
 

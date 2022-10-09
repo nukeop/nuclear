@@ -96,12 +96,20 @@ export const useTrackPopupProps = (track, thumb) => {
     ));
   }, [track, dispatch, playlistToastTitle, playlistToastBody, toastThumb, settings]);
 
+  const onCreatePlaylist = useCallback(
+    (name: string) => {
+      dispatch(PlaylistsActions.addPlaylist([], name));
+    },
+    [dispatch]
+  );
+
   const strings: TrackPopupStrings = {
     textAddToQueue: t('add-to-queue'),
     textPlayNow: t('play-now'),
     textPlayNext: t('play-next'),
     textAddToFavorites: t('add-to-favorite'),
     textAddToPlaylist: t('add-to-playlist'),
+    textCreatePlaylist: t('create-playlist'),
     textAddToDownloads: t('download')
   };
 
@@ -113,6 +121,7 @@ export const useTrackPopupProps = (track, thumb) => {
     onPlayNow,
     onAddToFavorites,
     onAddToPlaylist,
+    onCreatePlaylist,
     onAddToDownloads
   };
 };
