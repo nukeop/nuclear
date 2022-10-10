@@ -261,6 +261,7 @@ describe('Search heuristics', () => {
       tracks[2]
     ]);
   });
+
   it('ranks remix videos lower', () => {
     const tracks = [
       ytTrack({
@@ -276,6 +277,35 @@ describe('Search heuristics', () => {
       tracks,
       artist: 'Black Sabbath',
       title: 'Paranoid'
+    });
+
+    expect(orderedTracks).toEqual([
+      tracks[1],
+      tracks[0]
+    ]);
+  });
+
+  it('ranks videos whose channel names include the artist name higher', () => {
+    const tracks = [
+      ytTrack({
+        title: 'Savant - Wildstyle',
+        author: {
+          name: 'Tasty'
+        } as Video['author']
+      }),
+      ytTrack({
+        title: 'Firestarter',
+        author: {
+          name: 'SAVANT'
+        } as Video['author']
+      })
+    ];
+
+    const heuristics = new YoutubeHeuristics();
+    const orderedTracks = heuristics.orderTracks({
+      tracks,
+      artist: 'Savant',
+      title: 'Firestarter'
     });
 
     expect(orderedTracks).toEqual([
