@@ -51,8 +51,8 @@ const FavoriteTracksView: React.FC<FavoriteTracksViewProps> = ({
 
   const addToQueue = useCallback(async( tracks: Track[]) => {
     dispatch(queueActions.clearQueue());
-    tracks.map(async (track) => {
-      dispatch(queueActions.addToQueue(queueActions.toQueueItem(track)));
+    await tracks.map(async (track) => {
+      await dispatch(queueActions.addToQueue(queueActions.toQueueItem(track)));
     });
     dispatch(queueActions.selectSong(0));
     dispatch(playerActions.startPlayback(false));
