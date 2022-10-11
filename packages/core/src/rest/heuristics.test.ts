@@ -285,7 +285,37 @@ describe('Search heuristics', () => {
     ]);
   });
 
+
   it('ranks videos whose channel names include the artist name higher', () => {
+    const tracks = [
+      ytTrack({
+        title: 'Savant - Valkyrie',
+        author: {
+          name: 'EssentialEDMusic'
+        } as Video['author']
+      }),
+      ytTrack({
+        title: 'Savant - Orakel - Valkyrie',
+        author: {
+          name: 'SAVANT'
+        } as Video['author']
+      })
+    ];
+
+    const heuristics = new YoutubeHeuristics();
+    const orderedTracks = heuristics.orderTracks({
+      tracks,
+      artist: 'Savant',
+      title: 'Valkyrie'
+    });
+
+    expect(orderedTracks).toEqual([
+      tracks[1],
+      tracks[0]
+    ]);
+  });
+
+  it('ranks videos whose names match the track title exactly, and channel names match artist name exactly higher', () => {
     const tracks = [
       ytTrack({
         title: 'Savant - Wildstyle',
