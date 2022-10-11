@@ -66,7 +66,7 @@ export class YoutubeHeuristics implements SearchHeuristics<Partial<Video>> {
       liveVideoScore = 0;
     }
 
-    const channelNameScore = track.author.name.toLowerCase().includes(artist.toLowerCase()) && title.toLowerCase() === lowercaseResultTitle ? 200 : 0;
+    const channelNameScore = track.author.name.toLowerCase().includes(artist.toLowerCase()) ? 200 : 0;
 
     return mean([
       titleScore,
