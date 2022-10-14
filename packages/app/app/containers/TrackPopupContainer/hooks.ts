@@ -97,8 +97,13 @@ export const useTrackPopupProps = (track, thumb) => {
   }, [track, dispatch, playlistToastTitle, playlistToastBody, toastThumb, settings]);
 
   const onCreatePlaylist = useCallback(
-    (name: string) => {
-      dispatch(PlaylistsActions.addPlaylist([], name));
+    ({ name }: { name: string }) => {
+      // console.log('create playlist in the hooks popupcontainer'); // TODO remove
+      const clonedTrack = {...safeAddUuid(track)};
+      if (clonedTrack.artist.name) {
+        _.set(clonedTrack, 'artist', clonedTrack.artist.name);
+      }
+      dispatch(PlaylistsActions.addPlaylist([PlaylistHelper.extractTrackData(track)], name));
     },
     [dispatch]
   );

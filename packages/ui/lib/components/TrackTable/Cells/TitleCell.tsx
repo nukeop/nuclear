@@ -59,7 +59,7 @@ const TitleCell: React.FC<CellProps<Track> & TrackTableExtraProps> = ({
         onAddToQueue={() => onAddToQueue(row.original)}
         onAddToFavorites={() => onAddToFavorites(row.original)}
         onAddToPlaylist={(playlist: { name: string }) => onAddToPlaylist(row.original, playlist)}
-        onCreatePlaylist={(playlistName: string) => onCreatePlaylist(playlistName)}
+        onCreatePlaylist={(options: { name: string }) => onCreatePlaylist(row.original, options)}
         onAddToDownloads={() => onAddToDownloads(row.original)}
 
         withPlayNow={Boolean(onPlay)}

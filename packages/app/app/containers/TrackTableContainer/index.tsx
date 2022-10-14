@@ -87,8 +87,13 @@ const TrackTableContainer: React.FC<TrackTableContainerProps> = ({
   }, [dispatch, playlists]);
 
   const onCreatePlaylist = useCallback(
-    (name: string) => {
-      dispatch(playlistActions.addPlaylist([], name));
+    (track: Track, {name}: {name: string} ) => {
+      // console.log('create playlist in the tablecontainer'); // TODO remove 
+      const clonedTrack = {...safeAddUuid(track)};
+      if (clonedTrack.artist.name) {
+        _.set(clonedTrack, 'artist', clonedTrack.artist.name);
+      }
+      dispatch(playlistActions.addPlaylist([clonedTrack], name));
     },
     [dispatch]
   );

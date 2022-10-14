@@ -31,7 +31,7 @@ export type TrackPopupProps = {
   onPlayNow?: () => void;
   onAddToFavorites?: () => void;
   onAddToPlaylist?: ({ name }: { name: string }) => void;
-  onCreatePlaylist?: (playlistName: string) => void;
+  onCreatePlaylist?: ({ name }: { name: string }) => void;
   onAddToDownloads?: () => void;
 };
 
@@ -132,8 +132,7 @@ const TrackPopup: React.FC<TrackPopupProps> = ({
         ))}
         <Dropdown.Item
           onClick={() => {
-            onCreatePlaylist(title); // TODO this uses song title as playlist name for now
-            onAddToPlaylist({ name: title });
+            onCreatePlaylist({ name: title }); // TODO this uses song title as playlist name for now
           }}
         >
           <Icon name='plus' />
