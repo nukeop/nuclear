@@ -173,17 +173,16 @@
     },
     "mac": {
       "category": "public.app-category.music",
-      "target": {
-        "target": [
-          "zip",
-          "pkg",
-          "dmg"
-        ],
-        "arch": [
-          "x64",
-          "arm64"
-        ]
-      },
+      "target": [
+        "zip",
+        "pkg",
+        "dmg"
+      ],
+      "arch": [
+        "x64",
+        "arm64"
+      ],
+      "artifactName": "${productName}-${arch}-${env.GITHASH}.${ext}",
       "extraFiles": [
         {
           "from": "packages/main/bin/mac",
