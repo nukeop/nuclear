@@ -195,7 +195,7 @@
   "queue": {
     "clear": "Rensa kön",
     "dialog-accept": "Spara",
-    "dialog-cancel": "Cancel",
+    "dialog-cancel": "Avbryt",
     "dialog-placeholder": "Namn på spellistan...",
     "dialog-trigger": "Spara som spellista",
     "download": "Hämta",
@@ -345,15 +345,15 @@
     "protip-content": "Arrows to navigate, Enter to select, Esc to close",
     "categories": {
       "playback": "Playback",
-      "queue": "Queue",
+      "queue": "Kö",
       "navigation": "Navigation",
       "application": "Application"
     },
     "actions": {
       "play": "Play",
-      "pause": "Pause",
-      "next": "Next",
-      "previous": "Previous",
+      "pause": "Pausa",
+      "next": "Nästa",
+      "previous": "Föregående",
       "go-to-next-page": "Go to next page",
       "go-to-previous-page": "Go to previous page",
       "shuffle": "Shuffle",
