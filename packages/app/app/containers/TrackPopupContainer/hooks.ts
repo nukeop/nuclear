@@ -85,9 +85,11 @@ export const useTrackPopupProps = (track, thumb) => {
     if (clonedTrack.artist.name) {
       _.set(clonedTrack, 'artist', clonedTrack.artist.name);
     }
-    
-    playlist.tracks.push(PlaylistHelper.extractTrackData(track));
-    dispatch(PlaylistsActions.updatePlaylist(playlist));
+
+    dispatch(PlaylistsActions.updatePlaylist({
+      ...playlist,
+      tracks: [...playlist.tracks, PlaylistHelper.extractTrackData(clonedTrack)]
+    }));
     dispatch(ToastActions.info(
       playlistToastTitle,
       `${playlistToastBody} ${playlist.name}.`,
