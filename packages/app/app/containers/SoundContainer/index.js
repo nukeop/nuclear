@@ -19,6 +19,7 @@ import * as Autoradio from './autoradio';
 import VisualizerContainer from '../../containers/VisualizerContainer';
 import globals from '../../globals';
 import HlsPlayer from '../../components/HLSPlayer';
+import { isEmpty } from 'lodash';
 
 const lastfm = new rest.LastFmApi(globals.lastfmApiKey, globals.lastfmApiSecret);
 
@@ -156,6 +157,13 @@ class SoundContainer extends React.Component {
     const { queue } = this.props;
     const currentTrack = queue.queueItems[queue.currentSong];
     this.props.actions.rerollTrack(currentTrack);
+  }
+
+  componentDidUpdate() {
+    const currentSong = this.props.queue.queueItems[this.props.queue.currentSong];
+    if (isEmpty(currentSong?.stream)) {
+      this.props.actions.findStreamForCurrentTrack();
+    }
   }
 
   shouldComponentUpdate(nextProps) {
