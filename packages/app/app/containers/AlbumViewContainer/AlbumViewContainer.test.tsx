@@ -186,6 +186,33 @@ describe('Album view container', () => {
     ]);
   });
 
+  it('should load the stream source only for the current track in the queue', async () => {
+    const { component, store } = mountComponent();
+    await waitFor(() => component.getByTestId('more-button').click());
+    await waitFor(() => component.getByText(/Add album to queue/i).click());
+    const state = store.getState();
+
+    expect(state?.queue?.queueItems[1].stream).toBeUndefined();
+    expect(state?.queue?.queueItems[2].stream).toBeUndefined();
+    expect(state?.queue?.queueItems).toEqual([
+      expect.objectContaining({
+        artist: 'test artist',
+        name: 'test track 1',
+        stream: {
+          'data': 'test-stream-data'
+        }
+      }),
+      expect.objectContaining({
+        artist: 'test artist',
+        name: 'test track 2'
+      }),
+      expect.objectContaining({
+        artist: 'test artist',
+        name: 'test track 3'
+      })
+    ]);
+  });
+
   it('should add album to downloads after clicking the button', async () => {
     const { component, store } = mountComponent();
     await waitFor(() => component.getByTestId('more-button').click());
