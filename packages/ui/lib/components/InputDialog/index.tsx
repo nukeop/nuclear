@@ -2,7 +2,7 @@ import React, { useState, useCallback, useEffect } from 'react';
 import { Input, Modal, ModalProps } from 'semantic-ui-react';
 import Button from '../Button';
 
-type InputDialogProps = {
+export interface InputDialogProps {
   initialString: string;
   trigger: ModalProps['trigger'];
   header: React.ReactElement;
@@ -21,7 +21,8 @@ const InputDialog: React.FC<InputDialogProps> = ({
   acceptLabel, 
   cancelLabel,
   onAccept, 
-  testIdPrefix = null }) => {
+  testIdPrefix = null 
+}) => {
   const [isOpen, setIsOpen] = useState(false);
   const [inputString, setInputString] = useState(initialString);
 
@@ -36,7 +37,7 @@ const InputDialog: React.FC<InputDialogProps> = ({
     }
   }, [handleClose, inputString, onAccept]);
 
-  const onClick = useCallback(e => {
+  const onSubmit = useCallback(e => {
     setInputString(e.target.value);
     onAccept(inputString);
     handleClose();
@@ -82,7 +83,7 @@ const InputDialog: React.FC<InputDialogProps> = ({
         </Button>
         <Button 
           color='green'
-          onClick={onClick}
+          onClick={onSubmit}
           data-testid={testIdPrefix && `${testIdPrefix}-accept`}>
           {acceptLabel}
         </Button>

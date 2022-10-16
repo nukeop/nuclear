@@ -1,18 +1,12 @@
 import React, { useState, useCallback, useEffect } from 'react';
-import { Input, Modal, ModalProps } from 'semantic-ui-react';
+import { Input, Modal } from 'semantic-ui-react';
+import { InputDialogProps } from './index';
 import Button from '../Button';
 
-type ControlledInputDialogProps = {
+interface ControlledInputDialogProps extends Omit<InputDialogProps, 'trigger'> {
   isOpen: boolean
   handleOpen?: () => void
   handleClose: () => void
-  onAccept: (inputString: string) => void
-  initialString: string
-  header: React.ReactElement
-  placeholder: string
-  acceptLabel: string
-  cancelLabel: string
-  testIdPrefix?: string
 }
 
 const ControlledInputDialog: React.FC<ControlledInputDialogProps> = ({
@@ -28,9 +22,7 @@ const ControlledInputDialog: React.FC<ControlledInputDialogProps> = ({
   testIdPrefix = null
 }) => {
   const [inputString, setInputString] = useState(initialString);
-
   const handleChange = useCallback((e) => setInputString(e.target.value), []);
-
   const handleKeyPress = useCallback(
     (e) => {
       if (e.key === 'Enter') {
@@ -42,7 +34,7 @@ const ControlledInputDialog: React.FC<ControlledInputDialogProps> = ({
     [handleClose, inputString, onAccept]
   );
 
-  const onClick = useCallback(
+  const onSubmit = useCallback(
     (e) => {
       setInputString(e.target.value);
       onAccept(inputString);
@@ -91,7 +83,7 @@ const ControlledInputDialog: React.FC<ControlledInputDialogProps> = ({
         </Button>
         <Button
           color='green'
-          onClick={onClick}
+          onClick={onSubmit}
           data-testid={testIdPrefix && `${testIdPrefix}-accept`}
         >
           {acceptLabel}
