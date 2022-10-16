@@ -44,6 +44,12 @@ export type TrackPopupStrings = {
   textAddToPlaylist: string;
   textCreatePlaylist: string;
   textAddToDownloads: string;
+  createPlaylistDialog: {
+    title: string;
+    placeholder: string;
+    accept: string;
+    cancel: string;
+  }
 }
 
 const TrackPopup: React.FC<TrackPopupProps> = ({
@@ -66,7 +72,13 @@ const TrackPopup: React.FC<TrackPopupProps> = ({
     textAddToFavorites: 'Add to favorites',
     textAddToPlaylist: 'Add to playlist',
     textCreatePlaylist: 'Create new playlist',
-    textAddToDownloads: 'Download'
+    textAddToDownloads: 'Download',
+    createPlaylistDialog: {
+      title: 'Input playlist name:',
+      placeholder: 'Playlist name',
+      accept: 'Save',
+      cancel: 'Cancel'
+    }
   },
   onAddToQueue,
   onPlayNext,
@@ -160,10 +172,10 @@ const TrackPopup: React.FC<TrackPopupProps> = ({
         handleClose={() => {
           setIsCreatePlaylistDialogOpen(false);
         }}
-        header={<h4>Input playlist name:</h4>}
-        placeholder={'dialog-placeholder'}
-        acceptLabel={'accept'}
-        cancelLabel={'cancel'}
+        header={<h4>{strings.createPlaylistDialog.title}</h4>}
+        placeholder={strings.createPlaylistDialog.placeholder}
+        acceptLabel={strings.createPlaylistDialog.accept}
+        cancelLabel={strings.createPlaylistDialog.cancel}
         onAccept={(input) => {
           onCreatePlaylist({ name: input });
         }}

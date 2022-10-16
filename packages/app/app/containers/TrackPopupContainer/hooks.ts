@@ -114,7 +114,13 @@ export const useTrackPopupProps = (track, thumb) => {
     textAddToFavorites: t('add-to-favorite'),
     textAddToPlaylist: t('add-to-playlist'),
     textCreatePlaylist: t('create-playlist'),
-    textAddToDownloads: t('download')
+    textAddToDownloads: t('download'),
+    createPlaylistDialog: {
+      title: t('create-playlist-dialog-title'),
+      placeholder: t('create-playlist-dialog-placeholder'),
+      accept: t('create-playlist-dialog-accept'),
+      cancel: t('create-playlist-dialog-cancel')
+    }
   };
 
   return {

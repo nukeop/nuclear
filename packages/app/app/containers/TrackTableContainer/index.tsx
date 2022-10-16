@@ -110,7 +110,13 @@ const TrackTableContainer: React.FC<TrackTableContainerProps> = ({
     textAddToFavorites: popupTranstation('add-to-favorite'),
     textAddToPlaylist: popupTranstation('add-to-playlist'),
     textCreatePlaylist: popupTranstation('create-playlist'),
-    textAddToDownloads: popupTranstation('download')
+    textAddToDownloads: popupTranstation('download'),
+    createPlaylistDialog: {
+      title: popupTranstation('create-playlist-dialog-title'),
+      placeholder: popupTranstation('create-playlist-dialog-placeholder'),
+      accept: popupTranstation('create-playlist-dialog-accept'),
+      cancel: popupTranstation('create-playlist-dialog-cancel')
+    }
   };
 
   const trackTableTranslation = useTranslation('track-table').t;
