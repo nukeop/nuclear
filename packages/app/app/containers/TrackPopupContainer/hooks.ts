@@ -98,7 +98,6 @@ export const useTrackPopupProps = (track, thumb) => {
 
   const onCreatePlaylist = useCallback(
     ({ name }: { name: string }) => {
-      // console.log('create playlist in the hooks popupcontainer'); // TODO remove
       const clonedTrack = {...safeAddUuid(track)};
       if (clonedTrack.artist.name) {
         _.set(clonedTrack, 'artist', clonedTrack.artist.name);

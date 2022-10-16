@@ -1,19 +1,19 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import { Input, Modal, ModalProps } from 'semantic-ui-react';
-import { Button } from '@nuclear/ui';
+import Button from '../Button';
 
 type InputDialogProps = {
-initialString: string;
-trigger: ModalProps['trigger'];
-header: React.ReactElement;
-placeholder: string;
-acceptLabel: string;
-cancelLabel: string;
-onAccept: (inputString: string) => void;
-testIdPrefix?: string;
+  initialString: string;
+  trigger: ModalProps['trigger'];
+  header: React.ReactElement;
+  placeholder: string;
+  acceptLabel: string;
+  cancelLabel: string;
+  onAccept: (inputString: string) => void;
+  testIdPrefix?: string;
 }
 
-const InputDialog:React.FC<InputDialogProps> = ({ 
+const InputDialog: React.FC<InputDialogProps> = ({ 
   initialString,
   trigger, 
   header, 

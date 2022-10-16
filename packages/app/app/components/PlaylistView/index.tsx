@@ -6,10 +6,9 @@ import { useHistory } from 'react-router';
 import { Icon } from 'semantic-ui-react';
 
 import { Playlist } from '@nuclear/core';
-import { Button, ContextPopup, PopupButton, timestampToTimeString } from '@nuclear/ui';
+import { Button, ContextPopup, PopupButton, InputDialog, timestampToTimeString } from '@nuclear/ui';
 import { Track } from '@nuclear/ui/lib/types';
 
-import InputDialog from '../InputDialog';
 import artPlaceholder from '../../../resources/media/art_placeholder.png';
 
 import styles from './styles.scss';
