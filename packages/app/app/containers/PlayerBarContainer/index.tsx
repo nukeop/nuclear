@@ -4,6 +4,7 @@ import { PlayerBar } from '@nuclear/ui';
 import { 
   usePlayerControlsProps,
   useSeekbarProps,
+  useStreamLookup,
   useTrackDurationProp,
   useTrackInfoProps,
   useVolumeControlsProps
@@ -16,6 +17,7 @@ const PlayerBarContainer = () => {
   const trackInfoProps = useTrackInfoProps();
   const volumeControlsProps = useVolumeControlsProps();
   const trackDurationProp = useTrackDurationProp();
+  useStreamLookup();
 
   return (
     <PlayerBar
