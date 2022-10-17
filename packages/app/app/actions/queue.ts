@@ -109,7 +109,6 @@ export const clearQueue = createStandardAction(Queue.CLEAR_QUEUE)();
 export const nextSongAction = createStandardAction(Queue.NEXT_TRACK)();
 export const previousSongAction = createStandardAction(Queue.PREVIOUS_TRACK)();
 export const selectSong = createStandardAction(Queue.SELECT_TRACK)<number>();
-export const setTrackLoading = createStandardAction(Queue.SET_TRACK_LOADING)<number>();
 export const playNext = (item: QueueItem) => addToQueue(item, true);
 
 export const addToQueue =
@@ -118,6 +117,7 @@ export const addToQueue =
       const { local }: RootState = getState();
       item = {
         ...safeAddUuid(item),
+        stream: item.local ? item.stream : undefined,
         loading: false
       };
 
@@ -134,25 +134,28 @@ export const addToQueue =
       }
     };
 
-export const findStreamForCurrentTrack = () => async (dispatch, getState) => {
+export const findStreamForTrack = (idx: number) => async (dispatch, getState) => {
   const {queue}: RootState = getState();
 
-  const currentTrack = queue.queueItems[queue.currentSong];
-  if (!currentTrack.local && !currentTrack.stream) {
-    dispatch(setTrackLoading(queue.currentSong));
+  const track = queue.queueItems[idx];
+  if (track && !track.local && !track.stream) {
+    dispatch(updateQueueItem({
+      ...track,
+      loading: true
+    }));
     const selectedStreamProvider = getSelectedStreamProvider(getState);
     try {
       const streamData = await getTrackStream(
-        currentTrack,
+        track,
         selectedStreamProvider
       );
 
       if (streamData === undefined) {
-        dispatch(removeFromQueue(currentTrack));
+        dispatch(removeFromQueue(track));
       } else {
         dispatch(
           updateQueueItem({
-            ...currentTrack,
+            ...track,
             loading: false,
             error: false,
             stream: streamData
@@ -161,12 +164,12 @@ export const findStreamForCurrentTrack = () => async (dispatch, getState) => {
       }
     } catch (e) {
       logger.error(
-        `An error has occurred when searching for a stream with ${selectedStreamProvider.sourceName} for "${currentTrack.artist} - ${currentTrack.name}."`
+        `An error has occurred when searching for a stream with ${selectedStreamProvider.sourceName} for "${track.artist} - ${track.name}."`
       );
       logger.error(e);
       dispatch(
         updateQueueItem({
-          ...currentTrack,
+          ...track,
           loading: false,
           error: {
             message: `An error has occurred when searching for a stream with ${selectedStreamProvider.sourceName}.`,

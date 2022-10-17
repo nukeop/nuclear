@@ -211,19 +211,6 @@ export default function QueueReducer(state = defaultState, action) {
     return reduceSelectStreamProviders(state);
   case Queue.CHANGE_TRACK_STREAM:
     return reduceChangeTrackStream(state, action);
-  case Queue.SET_TRACK_LOADING:
-    return {
-      ...state,
-      queueItems: state.queueItems.map((item, idx) => {
-        if (idx === state.currentSong) {
-          return {
-            ...item,
-            loading: true
-          };
-        }
-        return item;
-      })
-    };
   default:
     return state;
   }

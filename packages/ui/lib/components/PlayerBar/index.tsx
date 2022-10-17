@@ -67,7 +67,7 @@ const PlayerBar: React.FC<PlayerBarProps> = ({
     )}>
       <Seekbar
         isLoading={isLoading}
-        fill={isLivestream ? 100 : fill}
+        fill={isLivestream ? 0 : fill}
         seek={seek}
         queue={queue}
         timePlayed={timePlayed}
@@ -75,12 +75,15 @@ const PlayerBar: React.FC<PlayerBarProps> = ({
         allowSkipSegment={allowSkipSegment}
         segmentPopupMessage={segmentPopupMessage}
       >
-        {hasTracks &&
+        {
+          hasTracks &&
           renderTrackDuration &&
+          !isLivestream &&
           <div className={styles.track_duration}>
             <div data-testid='track-duration-played'>{isLivestream ? timePlayed : formatDuration(timePlayed)}</div>
             <div data-testid='track-duration-to-end'>{isLivestream ? timeToEnd : '-' + formatDuration(timeToEnd)}</div>
-          </div>}
+          </div>
+        }
       </Seekbar>
       <div className={styles.player_bar_bottom}>
         <TrackInfo

@@ -2,7 +2,7 @@ import Sound from 'react-hifi';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import _ from 'lodash';
+import _, { isEmpty } from 'lodash';
 
 import { normalizeTrack } from '../../utils';
 import settingsConst from '../../constants/settings';
@@ -15,7 +15,7 @@ import { playerSelectors } from '../../selectors/player';
 import { queue as queueSelector } from '../../selectors/queue';
 import { settingsSelector } from '../../selectors/settings';
 import { getFavoriteTrack } from '../../selectors/favorites';
-import { useCallback } from 'react';
+import { useCallback, useEffect } from 'react';
 import { SemanticICONS } from 'semantic-ui-react/dist/commonjs/generic';
 
 export const useSeekbarProps = () => {
@@ -221,4 +221,28 @@ export const useVolumeControlsProps = () => {
     toggleMute,
     playOptions
   };
+};
+
+export const useStreamLookup = () => {
+  const dispatch = useDispatch();
+  const queue = useSelector(queueSelector);
+
+  useEffect(() => {
+    const isStreamLoading = Boolean(queue.queueItems.find((item) => item.loading));
+
+    if (!isStreamLoading) {
+      const currentSong = queue.queueItems[queue.currentSong];
+
+      if (isEmpty(currentSong?.stream)) {
+        dispatch(queueActions.findStreamForTrack(queue.currentSong));
+        return;
+      }
+    
+      const nextTrackWithNoStream = queue.queueItems.findIndex((item) => isEmpty(item.stream));
+    
+      if (nextTrackWithNoStream !== -1) {
+        dispatch(queueActions.findStreamForTrack(nextTrackWithNoStream));
+      }
+    }
+  }, [queue]);
 };

@@ -159,13 +159,6 @@ class SoundContainer extends React.Component {
     this.props.actions.rerollTrack(currentTrack);
   }
 
-  componentDidUpdate() {
-    const currentSong = this.props.queue.queueItems[this.props.queue.currentSong];
-    if (isEmpty(currentSong?.stream)) {
-      this.props.actions.findStreamForCurrentTrack();
-    }
-  }
-
   shouldComponentUpdate(nextProps) {
     const currentSong = nextProps.queue.queueItems[nextProps.queue.currentSong];
 
