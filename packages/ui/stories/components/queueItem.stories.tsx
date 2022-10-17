@@ -10,7 +10,8 @@ const commonProps = {
   track: {
     thumbnail: 'https://i.imgur.com/4euOws2.jpg',
     name: 'Test track name',
-    artist: 'Test artist'
+    artist: 'Test artist',
+    stream: {}
   },
   isLoading: false,
   isCurrent: false,
@@ -35,7 +36,8 @@ storiesOf('Components/Queue item', module)
           track={{
             thumbnail: 'https://i.imgur.com/aVNWf3j.jpg',
             name: 'Small thumbnail',
-            artist: 'Test artist'
+            artist: 'Test artist',
+            stream: {}
           }}
         />
       </div>
@@ -58,7 +60,7 @@ storiesOf('Components/Queue item', module)
   .add('Compact', () => (
     <div className='bg'>
       <div
-        style={{ width: '3rem' }}
+        style={{ width: '4rem' }}
       >
         <QueueItem {...commonProps} isCompact />
         <QueueItem {...commonProps}
@@ -80,7 +82,8 @@ storiesOf('Components/Queue item', module)
       <QueueItem {...commonProps}
         track={{
           name: 'Test track name',
-          artist: 'Test artist'
+          artist: 'Test artist',
+          stream: {}
         }}
       />
       <div
