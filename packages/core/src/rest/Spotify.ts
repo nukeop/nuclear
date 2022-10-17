@@ -1,8 +1,3 @@
-
-'https://open.spotify.com/get_access_token?reason=transport&productType=web_player';
-
-'https://api.spotify.com/v1/search?type=artist&q=Metallica&decorate_restrictions=false&best_match=true&include_external=audio&limit=1';
-
 const SPOTIFY_API_OPEN_URL = 'https://open.spotify.com';
 const SPOTIFY_API_URL = 'https://api.spotify.com/v1';
 
