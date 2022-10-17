@@ -1,6 +1,7 @@
 import { waitFor } from '@testing-library/react';
 import { mountedComponentFactory, setupI18Next } from '../../../test/testUtils';
 import { buildStoreState } from '../../../test/storeBuilders';
+import PlayerBarContainer from '../PlayerBarContainer';
 
 describe('Album view container', () => {
   beforeAll(() => {
@@ -186,15 +187,15 @@ describe('Album view container', () => {
     ]);
   });
 
-  it('should load the stream source only for the current track in the queue', async () => {
+  it('should load the stream sources one by one', async () => {
     const { component, store } = mountComponent();
     await waitFor(() => component.getByTestId('more-button').click());
-    await waitFor(() => component.getByText(/Add album to queue/i).click());
+    component.getByText(/Add album to queue/i).click();
     const state = store.getState();
 
     expect(state?.queue?.queueItems[1].stream).toBeUndefined();
     expect(state?.queue?.queueItems[2].stream).toBeUndefined();
-    expect(state?.queue?.queueItems).toEqual([
+    waitFor(() => expect(state?.queue?.queueItems).toEqual([
       expect.objectContaining({
         artist: 'test artist',
         name: 'test track 1',
@@ -210,7 +211,7 @@ describe('Album view container', () => {
         artist: 'test artist',
         name: 'test track 3'
       })
-    ]);
+    ]));
   });
 
   it('should add album to downloads after clicking the button', async () => {
@@ -256,6 +257,7 @@ describe('Album view container', () => {
       .withArtistDetails()
       .withPlugins()
       .withConnectivity()
-      .build()
+      .build(),
+    PlayerBarContainer
   );
 });
