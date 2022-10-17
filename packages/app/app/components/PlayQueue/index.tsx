@@ -110,7 +110,9 @@ const PlayQueue: React.FC<PlayQueueProps> = ({
     }
 
     return queue.queueItems.map((item, i) => {
-      const trackDuration = formatDuration(item.stream?.duration) === '00:00' && !item.loading
+      const trackDuration = formatDuration(item.stream?.duration) === '00:00' && 
+      !item.loading && 
+      Boolean(item.stream)
         ? t('live')
         : formatDuration(item.stream?.duration);
 
