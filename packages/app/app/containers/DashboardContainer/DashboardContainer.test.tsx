@@ -41,21 +41,21 @@ describe('Dashboard container', () => {
     expect(component.asFragment()).toMatchSnapshot();
   });
 
-  it('should go to best new album review after clicking it', () => {
+  it('should go to best new album review after clicking it', async () => {
     const { component } = mountComponent();
-    waitFor(() => component.getByText(/Best new music/i).click());
+    await waitFor(() => component.getByText(/Best new music/i).click());
 
-    waitFor(() => component.getByText(/test title 2/i).click());
+    await waitFor(() => component.getByText(/test title 2/i).click());
 
     expect(component.queryByText(/test review 2/i)).not.toBeNull();
     expect(component.asFragment()).toMatchSnapshot();
   });
 
-  it('should go to best new track review after clicking it', () => {
+  it('should go to best new track review after clicking it', async () => {
     const { component } = mountComponent();
-    waitFor(() => component.getByText(/Best new music/i).click());
+    await waitFor(() => component.getByText(/Best new music/i).click());
 
-    waitFor(() => component.getByText(/test track title 2/i).click());
+    await waitFor(() => component.getByText(/test track title 2/i).click());
 
     expect(component.queryByText(/track review 2/i)).not.toBeNull();
     expect(component.asFragment()).toMatchSnapshot();
@@ -97,7 +97,6 @@ describe('Dashboard container', () => {
     await waitFor(() => component.getByText(/Check out/i).click());
 
     const state = store.getState();
-    waitFor(() => expect(history.location.pathname).toBe('/search'));
     expect(state.plugin.selected.metaProviders).toEqual('Bandcamp Meta Provider');
     expect(state.search.unifiedSearchStarted).toBe(true);
   });
