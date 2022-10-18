@@ -31,7 +31,6 @@ class BestNewMusicTab extends React.Component {
 
   setActiveItem(activeItem) {
     this.setState({ activeItem });
-    document.getElementsByClassName('best_new_music_content')[0]?.scrollTo(0, 0);
   }
 
 
