@@ -507,6 +507,66 @@ exports[`Dashboard container should display the trending music 1`] = `
             </div>
           </div>
           <div
+            class="promoted_artist_row"
+          >
+            <div
+              class="promoted_artist"
+              style="background-image: url(https://nuclear.js.org/background.jpg);"
+            >
+              <div
+                class="promoted_artist_info"
+              >
+                <div
+                  class="name"
+                >
+                  Promoted artist 1
+                </div>
+                <div
+                  class="description"
+                >
+                  Promoted artist 1 description
+                </div>
+                <div
+                  class="spacer"
+                />
+                <div
+                  class="button_row"
+                >
+                  <button
+                    class="ui pink circular button nuclear button promoted_artist_button"
+                  >
+                    <i
+                      aria-hidden="true"
+                      class="itunes note icon"
+                    />
+                    Check out
+                  </button>
+                  <button
+                    class="ui button nuclear button text promoted_artist_button external_link"
+                  >
+                    <i
+                      aria-hidden="true"
+                      class="external icon"
+                    />
+                    External link
+                  </button>
+                </div>
+              </div>
+              <div
+                class="promoted_artist_image"
+              >
+                <div
+                  class="image"
+                  style="background-image: url(https://promoted-artist-1.example/picture.jpg); mask-image: url(test-file-stub);"
+                />
+                <img
+                  class="mask_shadow"
+                  src="test-file-stub"
+                />
+              </div>
+            </div>
+          </div>
+          <div
             class="row"
           >
             <div

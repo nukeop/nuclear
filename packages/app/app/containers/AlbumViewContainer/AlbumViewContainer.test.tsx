@@ -195,7 +195,7 @@ describe('Album view container', () => {
 
     expect(state?.queue?.queueItems[1].stream).toBeUndefined();
     expect(state?.queue?.queueItems[2].stream).toBeUndefined();
-    waitFor(() => expect(state?.queue?.queueItems).toEqual([
+    await waitFor(() => expect(state?.queue?.queueItems).toEqual([
       expect.objectContaining({
         artist: 'test artist',
         name: 'test track 1',
