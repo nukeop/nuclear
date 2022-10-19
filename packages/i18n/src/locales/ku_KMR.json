@@ -50,9 +50,15 @@
     "genres": "Cure",
     "news": "Nûçe",
     "playcounts": "Hejmarê lêdanan",
+    "playlists": "Trending",
     "popular-track-title": "Baştirîn stranên nû ji Deezer",
     "title": "Sernav",
-    "top": "Baştirîn stran"
+    "top": "Baştirîn stran",
+    "trending-playlists": "Trending playlists",
+    "trending-artists": "Trending artists",
+    "trending-albums": "Trending albums",
+    "filter": "Filter...",
+    "nothing-found": "Nothing found."
   },
   "downloads": {
     "clear": "Stranên qedandî pake bike",
@@ -291,6 +297,8 @@
     "notlogged": "Ne têketî",
     "playback": "Lêdan",
     "program-settings": "Sazkariyên bernameyê",
+    "promoted-artists": "Show promoted artists in the dashboard",
+    "promoted-artists-description": "This is a reel of interesting, handpicked indie artists you might like. No one's receiving any compensation for this.",
     "saving-in": "Cihê tomarkirinê:",
     "seek-iteration": "Dema pê li bişkokên tîrê tê kirin ji bo ku li pêş/paş biçe hejmara çirkeyan",
     "shuffle-queue": "Stranan tevlihev bike",
