@@ -50,9 +50,15 @@
     "genres": "Genrer",
     "news": "Nyheder",
     "playcounts": "Antal afspilninger",
+    "playlists": "Trending",
     "popular-track-title": "Bedste sange fra Deezer",
     "title": "Titel",
-    "top": "Populære sange"
+    "top": "Populære sange",
+    "trending-playlists": "Trending playlists",
+    "trending-artists": "Trending artists",
+    "trending-albums": "Trending albums",
+    "filter": "Filter...",
+    "nothing-found": "Nothing found."
   },
   "downloads": {
     "clear": "Klare færdige sange",
@@ -291,6 +297,8 @@
     "notlogged": "Ikke logget ind",
     "playback": "Afspilning",
     "program-settings": "Programindstillinger",
+    "promoted-artists": "Show promoted artists in the dashboard",
+    "promoted-artists-description": "This is a reel of interesting, handpicked indie artists you might like. No one's receiving any compensation for this.",
     "saving-in": "Gemmer i:",
     "seek-iteration": "Antal sekunder at søge fremad/baglæns når piletasterne trykkes.",
     "shuffle-queue": "Shuffle sange",
