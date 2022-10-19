@@ -50,9 +50,15 @@
     "genres": "Žanrovi",
     "news": "Novosti",
     "playcounts": "Broj sviranja",
+    "playlists": "Trending",
     "popular-track-title": "Najbolji zapisi iz Deezera",
     "title": "Naslov",
-    "top": "Top pjesme"
+    "top": "Top pjesme",
+    "trending-playlists": "Trending playlists",
+    "trending-artists": "Trending artists",
+    "trending-albums": "Trending albums",
+    "filter": "Filter...",
+    "nothing-found": "Nothing found."
   },
   "downloads": {
     "clear": "Očisti preuzete pjesme",
@@ -291,6 +297,8 @@
     "notlogged": "Niste prijavljeni",
     "playback": "Reprodukcija",
     "program-settings": "Postavke programa",
+    "promoted-artists": "Show promoted artists in the dashboard",
+    "promoted-artists-description": "This is a reel of interesting, handpicked indie artists you might like. No one's receiving any compensation for this.",
     "saving-in": "Spremanje u:",
     "seek-iteration": "Broj preskočenih sekundi naprijed/nazad kada se koriste tipke sa strelicama",
     "shuffle-queue": "Izmješaj redoslijed pjesama",
