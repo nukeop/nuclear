@@ -50,9 +50,15 @@
     "genres": "Žanri",
     "news": "Jaunumi",
     "playcounts": "Spēļu skaitītājs",
+    "playlists": "Trending",
     "popular-track-title": "Mūzikas topi no Deezer",
     "title": "Nosaukums",
-    "top": "Top dziesmas"
+    "top": "Top dziesmas",
+    "trending-playlists": "Trending playlists",
+    "trending-artists": "Trending artists",
+    "trending-albums": "Trending albums",
+    "filter": "Filter...",
+    "nothing-found": "Nothing found."
   },
   "downloads": {
     "clear": "Dzēst pabeigtos",
@@ -291,6 +297,8 @@
     "notlogged": "Jūs neesat pieslēdzies",
     "playback": "Atskaņošana",
     "program-settings": "Programmas iestatījumi",
+    "promoted-artists": "Show promoted artists in the dashboard",
+    "promoted-artists-description": "This is a reel of interesting, handpicked indie artists you might like. No one's receiving any compensation for this.",
     "saving-in": "Saving in:",
     "seek-iteration": "Sekunžu skaits, kas jāmeklē uz priekšu/atpakaļ, nospiežot bulttaustiņus",
     "shuffle-queue": "Jauktā secībā dziesmas",
