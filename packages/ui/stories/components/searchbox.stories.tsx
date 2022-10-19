@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { storiesOf } from '@storybook/react';
 
 import { SearchBox } from '../..';
+import { SearchProviderOption } from '../../lib/types';
 
 const searchProviders = [
   { key: 'discogs', text: 'Discogs', value: 'discogs' },
@@ -10,7 +11,17 @@ const searchProviders = [
 
 const commonProps = {
   placeholder: 'Search...',
-  searchProviders
+  searchProviders,
+  loading: false,
+  disabled: false,
+  searchHistory: ['test', 'test2'],
+  lastSearchesLabel: 'Last searches',
+  clearHistoryLabel: 'Clear history',
+  footerLabel: 'Footer',
+  onClearHistory: () => {},
+  onSearch: () => {},
+  handleFocus: () => {},
+  isFocused: false
 };
 
 storiesOf('Components/Search box', module)
@@ -20,7 +31,7 @@ storiesOf('Components/Search box', module)
       <SearchBox 
         {...commonProps} 
         selectedSearchProvider={selectedSearchProvider}
-        onSearchProviderSelect={(data) => onSearchProviderSelect(searchProviders.find((provider) => provider.value === data.value))}
+        onSearchProviderSelect={(data) => onSearchProviderSelect(searchProviders.find((provider) => provider.value === data.value) as SearchProviderOption)}
       />
     </div>;
   })
@@ -29,7 +40,7 @@ storiesOf('Components/Search box', module)
     return <div className='bg'><SearchBox 
       {...commonProps} 
       selectedSearchProvider={selectedSearchProvider}
-      onSearchProviderSelect={(data) => onSearchProviderSelect(searchProviders.find((provider) => provider.value === data.value))}
+      onSearchProviderSelect={(data) => onSearchProviderSelect(searchProviders.find((provider) => provider.value === data.value) as SearchProviderOption)}
       loading
     />
     </div>;
@@ -39,7 +50,7 @@ storiesOf('Components/Search box', module)
     return <div className='bg'><SearchBox 
       {...commonProps} 
       selectedSearchProvider={selectedSearchProvider}
-      onSearchProviderSelect={(data) => onSearchProviderSelect(searchProviders.find((provider) => provider.value === data.value))}
+      onSearchProviderSelect={(data) => onSearchProviderSelect(searchProviders.find((provider) => provider.value === data.value) as SearchProviderOption)}
       disabled
     />
     </div>;

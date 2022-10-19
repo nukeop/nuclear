@@ -1,4 +1,3 @@
-
 export default async () => ({
   transform: {
     '^.+\\.(ts|tsx|js|jsx)$': 'ts-jest'
@@ -8,6 +7,7 @@ export default async () => ({
     '\\.(css|scss)$': 'identity-obj-proxy',
     '^react$': '<rootDir>/../../node_modules/react'
   },
+  setupFilesAfterEnv: ['./test/jest-setup.ts'],
   testEnvironment: 'jsdom',
   testTimeout: 100000
 });
