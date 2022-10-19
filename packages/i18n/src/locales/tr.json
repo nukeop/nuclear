@@ -50,9 +50,15 @@
     "genres": "Türler",
     "news": "Haberler",
     "playcounts": "Dinlenme sayısı",
+    "playlists": "Trending",
     "popular-track-title": "Deezer'de en popüler şarkılar",
     "title": "Şarkı Adı",
-    "top": "Popüler Şarkılar"
+    "top": "Popüler Şarkılar",
+    "trending-playlists": "Trending playlists",
+    "trending-artists": "Trending artists",
+    "trending-albums": "Trending albums",
+    "filter": "Filter...",
+    "nothing-found": "Nothing found."
   },
   "downloads": {
     "clear": "İndirilenleri temizle",
@@ -291,6 +297,8 @@
     "notlogged": "Giriş yapılmadı",
     "playback": "Oynatıcı",
     "program-settings": "Program Ayarları",
+    "promoted-artists": "Show promoted artists in the dashboard",
+    "promoted-artists-description": "This is a reel of interesting, handpicked indie artists you might like. No one's receiving any compensation for this.",
     "saving-in": "Kaydedildiği yer:",
     "seek-iteration": "Ok tuşlarına basıldığında ileri/geri oynayan saniye sayısı",
     "shuffle-queue": "Şarkıları karıştır",
