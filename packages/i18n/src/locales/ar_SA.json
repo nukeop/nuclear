@@ -50,9 +50,15 @@
     "genres": "الأنواع",
     "news": "الأخبَار",
     "playcounts": "مرات التشغيل",
+    "playlists": "Trending",
     "popular-track-title": "الاكثر تشغيلا من ديزر",
     "title": "العنوان",
-    "top": "أفضل المقاطع"
+    "top": "أفضل المقاطع",
+    "trending-playlists": "Trending playlists",
+    "trending-artists": "Trending artists",
+    "trending-albums": "Trending albums",
+    "filter": "Filter...",
+    "nothing-found": "Nothing found."
   },
   "downloads": {
     "clear": "مسح الاغاني المنتهية",
@@ -291,6 +297,8 @@
     "notlogged": "ليس مسجيل لالدخول",
     "playback": "التشغيل",
     "program-settings": "إعدادات البرنامج",
+    "promoted-artists": "Show promoted artists in the dashboard",
+    "promoted-artists-description": "This is a reel of interesting, handpicked indie artists you might like. No one's receiving any compensation for this.",
     "saving-in": "Saving in:",
     "seek-iteration": "Number of seconds to seek forward/backwards when pressing arrow keys",
     "shuffle-queue": "Shuffle songs",
