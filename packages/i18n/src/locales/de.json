@@ -50,9 +50,15 @@
     "genres": "Genres",
     "news": "Neuigkeiten",
     "playcounts": "Spielen Zählt",
+    "playlists": "Trending",
     "popular-track-title": "Beliebte Lieder von Deezer",
     "title": "Titel",
-    "top": "Beliebte Lieder"
+    "top": "Beliebte Lieder",
+    "trending-playlists": "Trending playlists",
+    "trending-artists": "Trending artists",
+    "trending-albums": "Trending albums",
+    "filter": "Filter...",
+    "nothing-found": "Nothing found."
   },
   "downloads": {
     "clear": "Abgespielte Lieder entfernen",
@@ -291,6 +297,8 @@
     "notlogged": "Nicht angemeldet",
     "playback": "Wiedergabe",
     "program-settings": "Programmeinstellungen",
+    "promoted-artists": "Show promoted artists in the dashboard",
+    "promoted-artists-description": "This is a reel of interesting, handpicked indie artists you might like. No one's receiving any compensation for this.",
     "saving-in": "Speichern in:",
     "seek-iteration": "Anzahl der Sekunden, die beim Drücken der Pfeiltasten vorwärts/rückwärts suchen",
     "shuffle-queue": "Titel mischen",
