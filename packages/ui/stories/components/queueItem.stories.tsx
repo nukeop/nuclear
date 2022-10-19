@@ -60,7 +60,7 @@ storiesOf('Components/Queue item', module)
   .add('Compact', () => (
     <div className='bg'>
       <div
-        style={{ width: '4rem' }}
+        style={{ width: '2.5rem' }}
       >
         <QueueItem {...commonProps} isCompact />
         <QueueItem {...commonProps}
@@ -87,7 +87,7 @@ storiesOf('Components/Queue item', module)
         }}
       />
       <div
-        style={{ width: '3rem' }}
+        style={{ width: '2.5rem' }}
       >
         <QueueItem {...commonProps}
           isCompact

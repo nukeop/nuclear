@@ -36,7 +36,7 @@ export const QueueItem = ({
     <div className={styles.thumbnail}>
       {
         isLoading
-          ? <Loader type='small' />
+          ? <Loader type='small' className={isCompact && styles.compact_loader} />
           : <img src={_.defaultTo(track.thumbnail, artPlaceholder)} />
       }
 
