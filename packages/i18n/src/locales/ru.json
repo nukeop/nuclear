@@ -50,9 +50,15 @@
     "genres": "Жанры",
     "news": "Новости",
     "playcounts": "Количество прослушиваний",
+    "playlists": "Trending",
     "popular-track-title": "Топ-треки в Deezer",
     "title": "Название",
-    "top": "Топ"
+    "top": "Топ",
+    "trending-playlists": "Trending playlists",
+    "trending-artists": "Trending artists",
+    "trending-albums": "Trending albums",
+    "filter": "Filter...",
+    "nothing-found": "Nothing found."
   },
   "downloads": {
     "clear": "Убрать завершённые",
@@ -291,6 +297,8 @@
     "notlogged": "Вход не выполнен",
     "playback": "Проигрывание",
     "program-settings": "Программные настройки",
+    "promoted-artists": "Show promoted artists in the dashboard",
+    "promoted-artists-description": "This is a reel of interesting, handpicked indie artists you might like. No one's receiving any compensation for this.",
     "saving-in": "Сохраняется в:",
     "seek-iteration": "Сколько секунд перематывать при нажатии клавиш-стрелок",
     "shuffle-queue": "Случайный порядок",
