@@ -50,9 +50,15 @@
     "genres": "Genres",
     "news": "Nyheter",
     "playcounts": "Spillelister",
+    "playlists": "Trending",
     "popular-track-title": "Topp slepestreker fra Deezer",
     "title": "Tittel",
-    "top": "Topp sporing"
+    "top": "Topp sporing",
+    "trending-playlists": "Trending playlists",
+    "trending-artists": "Trending artists",
+    "trending-albums": "Trending albums",
+    "filter": "Filter...",
+    "nothing-found": "Nothing found."
   },
   "downloads": {
     "clear": "Fjern ferdige spor",
@@ -291,6 +297,8 @@
     "notlogged": "Ikke logget inn",
     "playback": "Avspilling",
     "program-settings": "Programmets innstillinger",
+    "promoted-artists": "Show promoted artists in the dashboard",
+    "promoted-artists-description": "This is a reel of interesting, handpicked indie artists you might like. No one's receiving any compensation for this.",
     "saving-in": "Lagrer i:",
     "seek-iteration": "Antall sekunder å søke fremover eller bakover når du trykker på piltastene",
     "shuffle-queue": "Shuffle sanger",
