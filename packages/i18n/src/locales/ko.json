@@ -50,9 +50,15 @@
     "genres": "장르",
     "news": "뉴스",
     "playcounts": "총 재생 횟수",
+    "playlists": "Trending",
     "popular-track-title": "Last.fm 인기 음악",
     "title": "제목",
-    "top": "인기 음악"
+    "top": "인기 음악",
+    "trending-playlists": "Trending playlists",
+    "trending-artists": "Trending artists",
+    "trending-albums": "Trending albums",
+    "filter": "Filter...",
+    "nothing-found": "Nothing found."
   },
   "downloads": {
     "clear": "다운로드 완료된 음악 삭제",
@@ -291,6 +297,8 @@
     "notlogged": "로그인하지 않았습니다.",
     "playback": "재생",
     "program-settings": "프로그램 설정",
+    "promoted-artists": "Show promoted artists in the dashboard",
+    "promoted-artists-description": "This is a reel of interesting, handpicked indie artists you might like. No one's receiving any compensation for this.",
     "saving-in": "저장 경로:",
     "seek-iteration": "화살표 키를 눌렀을 때 탐색할 시간 (초)",
     "shuffle-queue": "음악 셔플",
