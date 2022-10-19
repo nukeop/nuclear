@@ -72,10 +72,26 @@ $input_height: 30px;
 
     .search_box_loader {
       margin-left: -30px;
-      padding: 0.375em;
+      width: 30px;
+      height: 30px;
+      padding: 0.3em;
 
       span {
         border-width: 3px;
+      }
+    }
+
+    button.button.search_box_clear {
+      height: 30px;
+      padding: 0;
+      margin-left: -33px;
+
+      background: transparent;
+
+      &:hover,
+      &:focus,
+      &:active {
+        background: transparent !important;
       }
     }
   }
