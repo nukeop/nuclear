@@ -50,9 +50,15 @@
     "genres": "Genrer",
     "news": "Nyheter",
     "playcounts": "Antal spelningar",
+    "playlists": "Trending",
     "popular-track-title": "Toppspår från Deezer",
     "title": "Titel",
-    "top": "Toppspår"
+    "top": "Toppspår",
+    "trending-playlists": "Trending playlists",
+    "trending-artists": "Trending artists",
+    "trending-albums": "Trending albums",
+    "filter": "Filter...",
+    "nothing-found": "Nothing found."
   },
   "downloads": {
     "clear": "Rensa lyssnade spår",
@@ -291,6 +297,8 @@
     "notlogged": "Inte inloggad",
     "playback": "Uppspelning",
     "program-settings": "Programinställningar",
+    "promoted-artists": "Show promoted artists in the dashboard",
+    "promoted-artists-description": "This is a reel of interesting, handpicked indie artists you might like. No one's receiving any compensation for this.",
     "saving-in": "Sparar i:",
     "seek-iteration": "Antal sekunder att hoppa framåt/bakåt när du trycker på piltangenterna",
     "shuffle-queue": "Blanda spår",
