@@ -6,6 +6,7 @@ import SearchBoxDropdown from '../SearchBoxDropbown';
 import common from '../../common.scss';
 import styles from './styles.scss';
 import { SearchProviderOption } from '../../types';
+import Loader from '../Loader';
 
 
 type SearchBarProps = {
@@ -92,7 +93,7 @@ const SearchBox: React.FC<SearchBarProps> = ({
           onClick={() => handleFocus(true)}
           value={input}
         />
-        {loading && <Icon name='spinner' loading />}
+        {loading && <Loader type='small' className={styles.search_box_loader}/>}
         {
           !_.isNil(searchProviders) && !_.isEmpty(searchProviders) &&
           <Dropdown
