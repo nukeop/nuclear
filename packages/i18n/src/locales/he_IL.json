@@ -50,9 +50,15 @@
     "genres": "סגנונות",
     "news": "חדשות",
     "playcounts": "מספר השמעות",
+    "playlists": "Trending",
     "popular-track-title": "הרצועות המובילות מתוך Deezer",
     "title": "כותרת",
-    "top": "הרצועות המובילות"
+    "top": "הרצועות המובילות",
+    "trending-playlists": "Trending playlists",
+    "trending-artists": "Trending artists",
+    "trending-albums": "Trending albums",
+    "filter": "Filter...",
+    "nothing-found": "Nothing found."
   },
   "downloads": {
     "clear": "ניקוי רצועות שניגונן הסתיים",
@@ -291,6 +297,8 @@
     "notlogged": "לא מחובר",
     "playback": "השמעה",
     "program-settings": "הגדרות התוכנית",
+    "promoted-artists": "Show promoted artists in the dashboard",
+    "promoted-artists-description": "This is a reel of interesting, handpicked indie artists you might like. No one's receiving any compensation for this.",
     "saving-in": "נשמר ב:",
     "seek-iteration": "מספר שניות לחיפוש קדימה/אחורה בעת לחיצה על מקשי החצים",
     "shuffle-queue": "ערבוב השירים",
