@@ -50,9 +50,15 @@
     "genres": "Жанры",
     "news": "Навіны",
     "playcounts": "Колькасць прайграванняў",
+    "playlists": "Trending",
     "popular-track-title": "Найлепшыя трэкі з Deezer",
     "title": "Назва",
-    "top": "Найлепшыя трэкі"
+    "top": "Найлепшыя трэкі",
+    "trending-playlists": "Trending playlists",
+    "trending-artists": "Trending artists",
+    "trending-albums": "Trending albums",
+    "filter": "Filter...",
+    "nothing-found": "Nothing found."
   },
   "downloads": {
     "clear": "Ачысціць скончаныя трэкі",
@@ -291,6 +297,8 @@
     "notlogged": "Вы не ўвайшлі ў сістэму",
     "playback": "Прайграванне",
     "program-settings": "Налады праграмы",
+    "promoted-artists": "Show promoted artists in the dashboard",
+    "promoted-artists-description": "This is a reel of interesting, handpicked indie artists you might like. No one's receiving any compensation for this.",
     "saving-in": "Будзе захавана ў:",
     "seek-iteration": "Колькасць секунд для пошуку наперад / назад пры націску клавіш са стрэлкамі",
     "shuffle-queue": "Змяшаць трэкi",
