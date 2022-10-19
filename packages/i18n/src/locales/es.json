@@ -50,9 +50,15 @@
     "genres": "Géneros",
     "news": "Noticias",
     "playcounts": "Número de reproducciones",
+    "playlists": "Trending",
     "popular-track-title": "Las Mejores Pistas de Deezer",
     "title": "Título",
-    "top": "Las Mejores Pistas"
+    "top": "Las Mejores Pistas",
+    "trending-playlists": "Trending playlists",
+    "trending-artists": "Trending artists",
+    "trending-albums": "Trending albums",
+    "filter": "Filter...",
+    "nothing-found": "Nothing found."
   },
   "downloads": {
     "clear": "Borrar pistas completadas",
@@ -291,6 +297,8 @@
     "notlogged": "Sesión no iniciada",
     "playback": "Reproducción",
     "program-settings": "Ajustes del programa",
+    "promoted-artists": "Show promoted artists in the dashboard",
+    "promoted-artists-description": "This is a reel of interesting, handpicked indie artists you might like. No one's receiving any compensation for this.",
     "saving-in": "Guardando en:",
     "seek-iteration": "Cantidad de segundos a desplazar al presionar las flechas direccionales",
     "shuffle-queue": "Reproducción aleatoria",
