@@ -50,9 +50,15 @@
     "genres": "Mga Genre",
     "news": "Balita",
     "playcounts": "Bilang ng pagtugtog",
+    "playlists": "Trending",
     "popular-track-title": "Nangungunang kanta mula sa Deezer",
     "title": "Titulado",
-    "top": "Nangungunang mga kanta"
+    "top": "Nangungunang mga kanta",
+    "trending-playlists": "Trending playlists",
+    "trending-artists": "Trending artists",
+    "trending-albums": "Trending albums",
+    "filter": "Filter...",
+    "nothing-found": "Nothing found."
   },
   "downloads": {
     "clear": "Alisin ang mga natapos na kanta",
@@ -291,6 +297,8 @@
     "notlogged": "Hindi naka log in",
     "playback": "Playback",
     "program-settings": "Program settings",
+    "promoted-artists": "Show promoted artists in the dashboard",
+    "promoted-artists-description": "This is a reel of interesting, handpicked indie artists you might like. No one's receiving any compensation for this.",
     "saving-in": "Saving in:",
     "seek-iteration": "Bilang ng segunda sa pag-seek forward/backward pag nakapindot ang arrow keys",
     "shuffle-queue": "I-shuffle ang mga kanta",
