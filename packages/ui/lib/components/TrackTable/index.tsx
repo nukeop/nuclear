@@ -2,7 +2,7 @@
 import React, { TableHTMLAttributes, useMemo } from 'react';
 import cx from 'classnames';
 import { useTable, Column, useRowSelect } from 'react-table';
-import _, { isNumber, isString } from 'lodash';
+import { isNumber, isString } from 'lodash';
 import { DragDropContext, Droppable, Draggable, DragDropContextProps } from 'react-beautiful-dnd';
 
 import DeleteCell from './Cells/DeleteCell';
@@ -86,7 +86,7 @@ const TrackTable: React.FC<TrackTableProps> = ({
     displayArtist && {
       id: TrackTableColumn.Artist,
       Header: artistHeader,
-      accessor: (track) => _.isString(track.artist)
+      accessor: (track) => isString(track.artist)
         ? track.artist
         : track.artist.name,
       Cell: TrackTableCell

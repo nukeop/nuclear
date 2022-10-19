@@ -1,18 +1,18 @@
 import React from 'react';
 import { Tab } from 'semantic-ui-react';
-import { DeezerTopTrack } from '@nuclear/core/src/rest/Deezer';
 import { Track } from '@nuclear/ui/lib/types';
 
 import TrackTableContainer from '../../../containers/TrackTableContainer';
 import styles from './styles.scss';
 import { useTranslation } from 'react-i18next';
+import { InternalTopTrack } from '../../../reducers/dashboard';
 
 type ChartsTabProps = {
-  topTracks: DeezerTopTrack[];
+  topTracks: InternalTopTrack[];
 }
 
-const mapDeezerTopTrackToTrack = (topTrack: DeezerTopTrack): Track => ({
-  artist: topTrack.artist?.name,
+const mapDeezerTopTrackToTrack = (topTrack: InternalTopTrack): Track => ({
+  artist: topTrack.artist,
   title: topTrack.title,
   album: topTrack.album?.title,
   duration: topTrack.duration,
@@ -31,7 +31,7 @@ const ChartsTab: React.FC<ChartsTabProps> = ({
         className={styles.popular_tracks_container}
       >
         <div className='popular_tracks_header'>
-          <h3>{t('popular-track-title')}</h3>
+          <h2>{t('popular-track-title')}</h2>
         </div>
         <TrackTableContainer 
           tracks={topTracks.map(mapDeezerTopTrackToTrack)}
