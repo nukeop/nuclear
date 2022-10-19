@@ -50,9 +50,15 @@
     "genres": "Genre",
     "news": "Berita",
     "playcounts": "Jumlah pemutaran",
+    "playlists": "Trending",
     "popular-track-title": "Lagu Teratas dari Deezer",
     "title": "Judul",
-    "top": "Lagu Teratas"
+    "top": "Lagu Teratas",
+    "trending-playlists": "Trending playlists",
+    "trending-artists": "Trending artists",
+    "trending-albums": "Trending albums",
+    "filter": "Filter...",
+    "nothing-found": "Nothing found."
   },
   "downloads": {
     "clear": "Hapus unduhan yang selesai",
@@ -291,6 +297,8 @@
     "notlogged": "Kamu belum masuk",
     "playback": "Pemutaran",
     "program-settings": "Pengaturan program",
+    "promoted-artists": "Show promoted artists in the dashboard",
+    "promoted-artists-description": "This is a reel of interesting, handpicked indie artists you might like. No one's receiving any compensation for this.",
     "saving-in": "Simpan di:",
     "seek-iteration": "Rentang detik yang di-skip/dikembalikan ketika menekan tombol arah",
     "shuffle-queue": "Acak lagu",
