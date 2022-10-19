@@ -50,9 +50,15 @@
     "genres": "流派",
     "news": "消息",
     "playcounts": "播放次数",
+    "playlists": "Trending",
     "popular-track-title": "Deezer 的最新单曲 ",
     "title": "标题",
-    "top": "排行榜"
+    "top": "排行榜",
+    "trending-playlists": "Trending playlists",
+    "trending-artists": "Trending artists",
+    "trending-albums": "Trending albums",
+    "filter": "Filter...",
+    "nothing-found": "Nothing found."
   },
   "downloads": {
     "clear": "清除已完成的曲目",
@@ -291,6 +297,8 @@
     "notlogged": "没有登陆",
     "playback": "回放",
     "program-settings": "Program设置",
+    "promoted-artists": "Show promoted artists in the dashboard",
+    "promoted-artists-description": "This is a reel of interesting, handpicked indie artists you might like. No one's receiving any compensation for this.",
     "saving-in": "Saving in:",
     "seek-iteration": "按住箭头按钮几秒可以进行快进/快退操作",
     "shuffle-queue": "随机播放歌曲",
