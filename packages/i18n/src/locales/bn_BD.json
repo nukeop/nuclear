@@ -50,9 +50,15 @@
     "genres": "ধরনসমূহ",
     "news": "খবর",
     "playcounts": "প্লে কাউন্ট",
+    "playlists": "Trending",
     "popular-track-title": "Deezer থেকে সেরা ট্র্যাক",
     "title": "টাইটেল",
-    "top": "শীর্ষ ট্র্যাক"
+    "top": "শীর্ষ ট্র্যাক",
+    "trending-playlists": "Trending playlists",
+    "trending-artists": "Trending artists",
+    "trending-albums": "Trending albums",
+    "filter": "Filter...",
+    "nothing-found": "Nothing found."
   },
   "downloads": {
     "clear": "সমাপ্ত ট্র্যাক মুছে ফেলুন",
@@ -291,6 +297,8 @@
     "notlogged": "লগ ইন করা নেই",
     "playback": "প্লেব্যাক",
     "program-settings": "প্রোগাম সেটিংস",
+    "promoted-artists": "Show promoted artists in the dashboard",
+    "promoted-artists-description": "This is a reel of interesting, handpicked indie artists you might like. No one's receiving any compensation for this.",
     "saving-in": "সেভ হচ্ছে:",
     "seek-iteration": "কত সেকেন্ড সামনে বা পিছনে যাবে যখন তীরচিহ্ন চাপা হবে",
     "shuffle-queue": "গানগুলো এলোমেলো করুন",
