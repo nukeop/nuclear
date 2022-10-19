@@ -50,9 +50,15 @@
     "genres": "Gatunki",
     "news": "Aktualności",
     "playcounts": "Liczba odtworzeń",
+    "playlists": "Trending",
     "popular-track-title": "Top utwory z Deezera",
     "title": "Tytuł",
-    "top": "Top utwory"
+    "top": "Top utwory",
+    "trending-playlists": "Trending playlists",
+    "trending-artists": "Trending artists",
+    "trending-albums": "Trending albums",
+    "filter": "Filter...",
+    "nothing-found": "Nothing found."
   },
   "downloads": {
     "clear": "Wyczyść pobrane utwory",
@@ -291,6 +297,8 @@
     "notlogged": "Niezalogowany",
     "playback": "Odtwarzanie",
     "program-settings": "Ustawienia programu",
+    "promoted-artists": "Show promoted artists in the dashboard",
+    "promoted-artists-description": "This is a reel of interesting, handpicked indie artists you might like. No one's receiving any compensation for this.",
     "saving-in": "Zapisuj w:",
     "seek-iteration": "Liczba sekund, o którą będzie przewijany utwór do przodu/wstecz, kiedy przyciski strzałek będą wciśnięte",
     "shuffle-queue": "Mieszaj utwory",
