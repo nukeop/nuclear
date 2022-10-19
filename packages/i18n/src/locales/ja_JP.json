@@ -50,9 +50,15 @@
     "genres": "ジャンル",
     "news": "お知らせ",
     "playcounts": "再生回数",
+    "playlists": "Trending",
     "popular-track-title": "Deezerで人気の曲",
     "title": "タイトル",
-    "top": "人気の曲"
+    "top": "人気の曲",
+    "trending-playlists": "Trending playlists",
+    "trending-artists": "Trending artists",
+    "trending-albums": "Trending albums",
+    "filter": "Filter...",
+    "nothing-found": "Nothing found."
   },
   "downloads": {
     "clear": "再生済みのトラックを消去",
@@ -291,6 +297,8 @@
     "notlogged": "ログインしていません",
     "playback": "再生",
     "program-settings": "設定",
+    "promoted-artists": "Show promoted artists in the dashboard",
+    "promoted-artists-description": "This is a reel of interesting, handpicked indie artists you might like. No one's receiving any compensation for this.",
     "saving-in": "保存先:",
     "seek-iteration": "矢印キーを押したときに巻き戻す/早送りする秒数",
     "shuffle-queue": "曲をシャッフル",
