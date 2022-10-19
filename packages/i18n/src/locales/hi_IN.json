@@ -50,9 +50,15 @@
     "genres": "शैलियाँ",
     "news": "समाचार",
     "playcounts": "प्लेकाउंट्स",
+    "playlists": "Trending",
     "popular-track-title": "डीज़र के शीर्ष ट्रैक",
     "title": "शीर्षक",
-    "top": "शीर्ष ट्रैक्स"
+    "top": "शीर्ष ट्रैक्स",
+    "trending-playlists": "Trending playlists",
+    "trending-artists": "Trending artists",
+    "trending-albums": "Trending albums",
+    "filter": "Filter...",
+    "nothing-found": "Nothing found."
   },
   "downloads": {
     "clear": "समाप्त ट्रैक साफ़ करें",
@@ -291,6 +297,8 @@
     "notlogged": "लॉगिन नहीं हैं",
     "playback": "प्लेबैक",
     "program-settings": "कार्यक्रम सेटिंग्‍स",
+    "promoted-artists": "Show promoted artists in the dashboard",
+    "promoted-artists-description": "This is a reel of interesting, handpicked indie artists you might like. No one's receiving any compensation for this.",
     "saving-in": "सहेजा जा रहा है...",
     "seek-iteration": "तीर कुंजियों को दबाते समय आगे/पीछे जाने के लिए सेकंड की संख्या",
     "shuffle-queue": "गीत शफल करे",
