@@ -50,9 +50,15 @@
     "genres": "Είδη",
     "news": "Νέα",
     "playcounts": "Αριθμός αναπαραγωγών",
+    "playlists": "Trending",
     "popular-track-title": "Κορυφαία κομμάτια από Deezer",
     "title": "Τίτλος",
-    "top": "Κορυφαία Κομμάτια"
+    "top": "Κορυφαία Κομμάτια",
+    "trending-playlists": "Trending playlists",
+    "trending-artists": "Trending artists",
+    "trending-albums": "Trending albums",
+    "filter": "Filter...",
+    "nothing-found": "Nothing found."
   },
   "downloads": {
     "clear": "Εκκαθάριση ολοκληρωμένων κομματιών",
@@ -291,6 +297,8 @@
     "notlogged": "Αποσυνδεδεμένος/η",
     "playback": "Αναπαραγωγή",
     "program-settings": "Ρυθμίσεις προγράμματος",
+    "promoted-artists": "Show promoted artists in the dashboard",
+    "promoted-artists-description": "This is a reel of interesting, handpicked indie artists you might like. No one's receiving any compensation for this.",
     "saving-in": "Αποθηκεύεται σε:",
     "seek-iteration": "Αριθμός δευτερολέπτων που προχωρούν/επιστρέφουν τα βέλη",
     "shuffle-queue": "Τυχαία σειρά",
