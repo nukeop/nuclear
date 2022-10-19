@@ -50,9 +50,15 @@
     "genres": "Žánre",
     "news": "Novinky",
     "playcounts": "Počet prehratí",
+    "playlists": "Trending",
     "popular-track-title": "Top skladby z Deezer",
     "title": "Názov",
-    "top": "Top skladby"
+    "top": "Top skladby",
+    "trending-playlists": "Trending playlists",
+    "trending-artists": "Trending artists",
+    "trending-albums": "Trending albums",
+    "filter": "Filter...",
+    "nothing-found": "Nothing found."
   },
   "downloads": {
     "clear": "Vymazať prehraté skladby",
@@ -291,6 +297,8 @@
     "notlogged": "Neprihlásený",
     "playback": "Prehrávanie",
     "program-settings": "Programové nastavenia",
+    "promoted-artists": "Show promoted artists in the dashboard",
+    "promoted-artists-description": "This is a reel of interesting, handpicked indie artists you might like. No one's receiving any compensation for this.",
     "saving-in": "Saving in:",
     "seek-iteration": "Počet sekúnd, ktoré majú ubehnúť pri pretáčaní vpred-vzad pri stláčaní šipiek",
     "shuffle-queue": "Poprehadzovať skladby",
