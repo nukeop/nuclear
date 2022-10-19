@@ -50,9 +50,15 @@
     "genres": "Zhanri",
     "news": "Të reja",
     "playcounts": "Numërimet",
+    "playlists": "Trending",
     "popular-track-title": "Këngët më të kërkuara nga Deezer",
     "title": "Titulli",
-    "top": "Këngët më të kërkuara"
+    "top": "Këngët më të kërkuara",
+    "trending-playlists": "Trending playlists",
+    "trending-artists": "Trending artists",
+    "trending-albums": "Trending albums",
+    "filter": "Filter...",
+    "nothing-found": "Nothing found."
   },
   "downloads": {
     "clear": "Fshi këngët e përfunduara",
@@ -291,6 +297,8 @@
     "notlogged": "Nuk jeni kyçur",
     "playback": "Playback",
     "program-settings": "Cilësimet e programit",
+    "promoted-artists": "Show promoted artists in the dashboard",
+    "promoted-artists-description": "This is a reel of interesting, handpicked indie artists you might like. No one's receiving any compensation for this.",
     "saving-in": "Saving in:",
     "seek-iteration": "Numri i sekondave për të parë përpara/pas kur shtypni butonat e shigjetave",
     "shuffle-queue": "Përzieni këngët",
