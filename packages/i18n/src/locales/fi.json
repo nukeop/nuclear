@@ -50,9 +50,15 @@
     "genres": "Genret",
     "news": "Uutiset",
     "playcounts": "Soittokerrat",
+    "playlists": "Trending",
     "popular-track-title": "Suosituimmat kappaleet Deezeristä",
     "title": "Nimi",
-    "top": "Parhaimmat kappaleet"
+    "top": "Parhaimmat kappaleet",
+    "trending-playlists": "Trending playlists",
+    "trending-artists": "Trending artists",
+    "trending-albums": "Trending albums",
+    "filter": "Filter...",
+    "nothing-found": "Nothing found."
   },
   "downloads": {
     "clear": "Tyhjennä jo ladatut kappaleet",
@@ -291,6 +297,8 @@
     "notlogged": "Ei kirjautunut sisään",
     "playback": "Toisto",
     "program-settings": "Sovelluksen asetukset",
+    "promoted-artists": "Show promoted artists in the dashboard",
+    "promoted-artists-description": "This is a reel of interesting, handpicked indie artists you might like. No one's receiving any compensation for this.",
     "saving-in": "Tallennetaan:",
     "seek-iteration": "Eteen/taaksepäin etsimisen sekuntien lukumäärä nuolinäppäimiä painettaessa",
     "shuffle-queue": "Sekoita kappaleet",
