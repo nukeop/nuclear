@@ -50,9 +50,15 @@
     "genres": "Žanrai",
     "news": "Naujienos",
     "playcounts": "Paleidimo kartai",
+    "playlists": "Trending",
     "popular-track-title": "Populiariausios Deezer dainos",
     "title": "Pavadinimas",
-    "top": "Top dainos"
+    "top": "Top dainos",
+    "trending-playlists": "Trending playlists",
+    "trending-artists": "Trending artists",
+    "trending-albums": "Trending albums",
+    "filter": "Filter...",
+    "nothing-found": "Nothing found."
   },
   "downloads": {
     "clear": "Išvalyti pasibaigusias dainas",
@@ -291,6 +297,8 @@
     "notlogged": "Esate neprisijunges",
     "playback": "Grojimas",
     "program-settings": "Programos nustatymai",
+    "promoted-artists": "Show promoted artists in the dashboard",
+    "promoted-artists-description": "This is a reel of interesting, handpicked indie artists you might like. No one's receiving any compensation for this.",
     "saving-in": "Saving in:",
     "seek-iteration": "Sekundžių, kurių reikia ieškoti paspaudus rodyklių klavišus, skaičius",
     "shuffle-queue": "Maišyti Dainas",
