@@ -1,29 +1,30 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import cx from 'classnames';
-import _ from 'lodash';
+import _, { isEmpty } from 'lodash';
 import { Dropdown, Icon } from 'semantic-ui-react';
 import SearchBoxDropdown from '../SearchBoxDropbown';
 import common from '../../common.scss';
 import styles from './styles.scss';
 import { SearchProviderOption } from '../../types';
 import Loader from '../Loader';
+import Button from '../Button';
 
 
 type SearchBarProps = {
-  loading: boolean
-  disabled: boolean
-  placeholder: string 
-  searchProviders: SearchProviderOption[]
-  searchHistory: string[]
-  lastSearchesLabel: string
-  clearHistoryLabel: string
-  footerLabel: string
-  onClearHistory: React.MouseEventHandler;
-  onSearch: (entry: string) => void
-  selectedSearchProvider: SearchProviderOption
-  onSearchProviderSelect: (provider: SearchProviderOption) => void
-  handleFocus: (bool: boolean) => void
+  loading: boolean;
+  disabled: boolean;
   isFocused: boolean
+  placeholder: string;
+  searchProviders: SearchProviderOption[];
+  searchHistory: string[];
+  lastSearchesLabel: string;
+  clearHistoryLabel: string;
+  footerLabel: string;
+  onClearHistory: React.MouseEventHandler;
+  onSearch: (entry: string) => void;
+  selectedSearchProvider: SearchProviderOption
+  onSearchProviderSelect: (provider: SearchProviderOption) => void;
+  handleFocus: (bool: boolean) => void;
 }
 
 const SearchBox: React.FC<SearchBarProps> = ({
@@ -72,6 +73,8 @@ const SearchBox: React.FC<SearchBarProps> = ({
     }
   };
 
+  const onClear = () => setInput('');
+
   return (
     <div className={cx(common.nuclear, styles.search_box_container)}>
       <div
@@ -93,6 +96,16 @@ const SearchBox: React.FC<SearchBarProps> = ({
           onClick={() => handleFocus(true)}
           value={input}
         />
+        {
+          !loading && !isEmpty(input) && <Button 
+            className={styles.search_box_clear}
+            data-testid='search-box-clear'
+            borderless 
+            basic
+            icon='times'
+            onClick={onClear}
+          />
+        }
         {loading && <Loader type='small' className={styles.search_box_loader}/>}
         {
           !_.isNil(searchProviders) && !_.isEmpty(searchProviders) &&
