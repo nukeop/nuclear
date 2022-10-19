@@ -12,6 +12,10 @@ export type DiscogsRelease = {
 
 export type DiscogsSearchType = 'release' | 'master' | 'artist';
 
+export type DiscogsSearchArgs = {
+  [key: string]: string | string[];
+}
+
 export type DiscogsPagination = {
   items: number;
   page: number;

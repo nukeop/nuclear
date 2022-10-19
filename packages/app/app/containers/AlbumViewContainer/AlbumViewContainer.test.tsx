@@ -195,23 +195,26 @@ describe('Album view container', () => {
 
     expect(state?.queue?.queueItems[1].stream).toBeUndefined();
     expect(state?.queue?.queueItems[2].stream).toBeUndefined();
-    waitFor(() => expect(state?.queue?.queueItems).toEqual([
-      expect.objectContaining({
-        artist: 'test artist',
-        name: 'test track 1',
-        stream: {
-          'data': 'test-stream-data'
-        }
-      }),
-      expect.objectContaining({
-        artist: 'test artist',
-        name: 'test track 2'
-      }),
-      expect.objectContaining({
-        artist: 'test artist',
-        name: 'test track 3'
-      })
-    ]));
+    await waitFor(() => {
+      const currentState = store.getState();
+      return expect(currentState?.queue?.queueItems).toEqual([
+        expect.objectContaining({
+          artist: 'test artist',
+          name: 'test track 1',
+          stream: {
+            'data': 'test-stream-data'
+          }
+        }),
+        expect.objectContaining({
+          artist: 'test artist',
+          name: 'test track 2'
+        }),
+        expect.objectContaining({
+          artist: 'test artist',
+          name: 'test track 3'
+        })
+      ]);
+    });
   });
 
   it('should add album to downloads after clicking the button', async () => {

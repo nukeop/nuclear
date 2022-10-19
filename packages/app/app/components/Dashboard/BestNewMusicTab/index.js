@@ -15,30 +15,26 @@ class BestNewMusicTab extends React.Component {
     };
   }
 
-  UNSAFE_componentWillReceiveProps(nextProps) {
+  componentDidMount() {
     if (this.state.activeItem === null) {
-      const firstAlbum = _.head(
-        _.get(nextProps, 'dashboardData.bestNewAlbums')
-      );
+      const firstAlbum = _.head(this.props.dashboardData.bestNewAlbums);
 
       if (firstAlbum) {
-        this.setState({
-          activeItem: firstAlbum
-        });
+        this.setActiveItem(firstAlbum);
       }
     }
   }
 
-  isLoading () {
-    return (this.props.dashboardData.bestNewAlbums && this.props.dashboardData.bestNewTracks) ? this.props.dashboardData.bestNewAlbums.length < 1  || this.props.dashboardData.bestNewTracks.length < 1 : true;
+  isLoading() {
+    return (this.props.dashboardData.bestNewAlbums && this.props.dashboardData.bestNewTracks) ? this.props.dashboardData.bestNewAlbums.length < 1 || this.props.dashboardData.bestNewTracks.length < 1 : true;
   }
 
   setActiveItem(activeItem) {
     this.setState({ activeItem });
-    document.getElementsByClassName('best_new_music_content')[0]?.scrollTo(0, 0);
   }
 
-  render () {
+
+  render() {
     const {
       dashboardData,
       artistInfoSearchByName,
@@ -74,7 +70,7 @@ class BestNewMusicTab extends React.Component {
           history={history}
         />
       </Tab.Pane>
-    );      
+    );
   }
 }
 

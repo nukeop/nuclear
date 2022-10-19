@@ -7,7 +7,7 @@
     "build": "cross-env NODE_OPTIONS=--max-old-space-size=8192 webpack --env NODE_ENV=production",
     "lint": "eslint src/**/**.ts",
     "lint:fix": "eslint src/**/**.ts --fix",
-    "test": "jest"
+    "test": "jest --silent"
   },
   "repository": {
     "type": "git",

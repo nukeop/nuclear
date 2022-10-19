@@ -17,6 +17,11 @@ exports[`Dashboard container should display genres after going to genres tab 1`]
           <a
             class="item"
           >
+            Trending
+          </a>
+          <a
+            class="item"
+          >
             Best new music
           </a>
           <a
@@ -120,6 +125,11 @@ exports[`Dashboard container should display the best new music page of the dashb
         <div
           class="ui pointing secondary menu"
         >
+          <a
+            class="item"
+          >
+            Trending
+          </a>
           <a
             class="active item"
           >
@@ -303,6 +313,467 @@ exports[`Dashboard container should display the best new music page of the dashb
               </div>
             </div>
           </div>
+          <div
+            class="best_new_music_content"
+          >
+            <div
+              class="review_header"
+            >
+              <div
+                class="thumbnail"
+              >
+                <img
+                  alt="test title 1"
+                  src="test thumbnail 1"
+                />
+              </div>
+              <div
+                class="review_headings"
+              >
+                <div
+                  class="artist"
+                >
+                  test artist 1
+                </div>
+                <div
+                  class="title"
+                >
+                  test title 1
+                </div>
+              </div>
+              <div
+                class="score"
+              >
+                <div
+                  class="score_box"
+                >
+                  5.0
+                </div>
+              </div>
+            </div>
+            <p
+              class="paragraph"
+            >
+              test review 1
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Dashboard container should display the trending music 1`] = `
+<DocumentFragment>
+  <div
+    class="main_layout_container"
+  >
+    <div
+      class="dashboard"
+    >
+      <div
+        class="dashboard_tabs"
+      >
+        <div
+          class="ui pointing secondary menu"
+        >
+          <a
+            class="active item"
+          >
+            Trending
+          </a>
+          <a
+            class="item"
+          >
+            Best new music
+          </a>
+          <a
+            class="item"
+          >
+            Top Tracks
+          </a>
+          <a
+            class="item"
+          >
+            Genres
+          </a>
+        </div>
+        <div
+          class="ui segment active tab editorials_tab"
+        >
+          <div
+            class="row"
+          >
+            <div
+              class="cards_row_container"
+            >
+              <div
+                class="header_row"
+              >
+                <h2>
+                  Trending playlists
+                </h2>
+                <div
+                  class="scroll_buttons"
+                >
+                  <div
+                    class="filter_container"
+                  >
+                    <div
+                      class="ui input cards_filter"
+                    >
+                      <input
+                        placeholder="Filter..."
+                        type="text"
+                        value=""
+                      />
+                    </div>
+                    <button
+                      class="ui blue icon button nuclear button borderless filter_button"
+                    >
+                      <i
+                        aria-hidden="true"
+                        class="filter icon"
+                      />
+                    </button>
+                  </div>
+                  <button
+                    class="ui blue tiny circular icon button nuclear button borderless scroll_button"
+                  >
+                    <i
+                      aria-hidden="true"
+                      class="chevron left icon"
+                    />
+                  </button>
+                  <button
+                    class="ui blue tiny circular icon button nuclear button borderless scroll_button"
+                  >
+                    <i
+                      aria-hidden="true"
+                      class="chevron right icon"
+                    />
+                  </button>
+                </div>
+              </div>
+              <div
+                class="cards_row"
+              >
+                <div
+                  class="nuclear card_container row_card"
+                >
+                  <div
+                    class="card animated"
+                  >
+                    <div
+                      class="thumbnail"
+                    >
+                      <div
+                        class="overlay"
+                      />
+                    </div>
+                    <div
+                      class="card_content"
+                    >
+                      <h4>
+                        playlist 1
+                      </h4>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="nuclear card_container row_card"
+                >
+                  <div
+                    class="card animated"
+                  >
+                    <div
+                      class="thumbnail"
+                    >
+                      <div
+                        class="overlay"
+                      />
+                    </div>
+                    <div
+                      class="card_content"
+                    >
+                      <h4>
+                        playlist 2
+                      </h4>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="promoted_artist_row"
+          >
+            <div
+              class="promoted_artist"
+              style="background-image: url(https://nuclear.js.org/background.jpg);"
+            >
+              <div
+                class="promoted_artist_info"
+              >
+                <div
+                  class="name"
+                >
+                  Promoted artist 1
+                </div>
+                <div
+                  class="description"
+                >
+                  Promoted artist 1 description
+                </div>
+                <div
+                  class="spacer"
+                />
+                <div
+                  class="button_row"
+                >
+                  <button
+                    class="ui pink circular button nuclear button promoted_artist_button"
+                  >
+                    <i
+                      aria-hidden="true"
+                      class="itunes note icon"
+                    />
+                    Check out
+                  </button>
+                  <button
+                    class="ui button nuclear button text promoted_artist_button external_link"
+                  >
+                    <i
+                      aria-hidden="true"
+                      class="external icon"
+                    />
+                    External link
+                  </button>
+                </div>
+              </div>
+              <div
+                class="promoted_artist_image"
+              >
+                <div
+                  class="image"
+                  style="background-image: url(https://promoted-artist-1.example/picture.jpg); mask-image: url(test-file-stub);"
+                />
+                <img
+                  class="mask_shadow"
+                  src="test-file-stub"
+                />
+              </div>
+            </div>
+          </div>
+          <div
+            class="row"
+          >
+            <div
+              class="cards_row_container"
+            >
+              <div
+                class="header_row"
+              >
+                <h2>
+                  Trending artists
+                </h2>
+                <div
+                  class="scroll_buttons"
+                >
+                  <div
+                    class="filter_container"
+                  >
+                    <div
+                      class="ui input cards_filter"
+                    >
+                      <input
+                        placeholder="Filter..."
+                        type="text"
+                        value=""
+                      />
+                    </div>
+                    <button
+                      class="ui blue icon button nuclear button borderless filter_button"
+                    >
+                      <i
+                        aria-hidden="true"
+                        class="filter icon"
+                      />
+                    </button>
+                  </div>
+                  <button
+                    class="ui blue tiny circular icon button nuclear button borderless scroll_button"
+                  >
+                    <i
+                      aria-hidden="true"
+                      class="chevron left icon"
+                    />
+                  </button>
+                  <button
+                    class="ui blue tiny circular icon button nuclear button borderless scroll_button"
+                  >
+                    <i
+                      aria-hidden="true"
+                      class="chevron right icon"
+                    />
+                  </button>
+                </div>
+              </div>
+              <div
+                class="cards_row"
+              >
+                <div
+                  class="nuclear card_container row_card"
+                >
+                  <div
+                    class="card animated"
+                  >
+                    <div
+                      class="thumbnail"
+                    >
+                      <div
+                        class="overlay"
+                      />
+                    </div>
+                    <div
+                      class="card_content"
+                    >
+                      <h4>
+                        artist 1
+                      </h4>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="nuclear card_container row_card"
+                >
+                  <div
+                    class="card animated"
+                  >
+                    <div
+                      class="thumbnail"
+                    >
+                      <div
+                        class="overlay"
+                      />
+                    </div>
+                    <div
+                      class="card_content"
+                    >
+                      <h4>
+                        artist 2
+                      </h4>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="row"
+          >
+            <div
+              class="cards_row_container"
+            >
+              <div
+                class="header_row"
+              >
+                <h2>
+                  Trending albums
+                </h2>
+                <div
+                  class="scroll_buttons"
+                >
+                  <div
+                    class="filter_container"
+                  >
+                    <div
+                      class="ui input cards_filter"
+                    >
+                      <input
+                        placeholder="Filter..."
+                        type="text"
+                        value=""
+                      />
+                    </div>
+                    <button
+                      class="ui blue icon button nuclear button borderless filter_button"
+                    >
+                      <i
+                        aria-hidden="true"
+                        class="filter icon"
+                      />
+                    </button>
+                  </div>
+                  <button
+                    class="ui blue tiny circular icon button nuclear button borderless scroll_button"
+                  >
+                    <i
+                      aria-hidden="true"
+                      class="chevron left icon"
+                    />
+                  </button>
+                  <button
+                    class="ui blue tiny circular icon button nuclear button borderless scroll_button"
+                  >
+                    <i
+                      aria-hidden="true"
+                      class="chevron right icon"
+                    />
+                  </button>
+                </div>
+              </div>
+              <div
+                class="cards_row"
+              >
+                <div
+                  class="nuclear card_container row_card"
+                >
+                  <div
+                    class="card animated"
+                  >
+                    <div
+                      class="thumbnail"
+                    >
+                      <div
+                        class="overlay"
+                      />
+                    </div>
+                    <div
+                      class="card_content"
+                    >
+                      <h4>
+                        album 1
+                      </h4>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="nuclear card_container row_card"
+                >
+                  <div
+                    class="card animated"
+                  >
+                    <div
+                      class="thumbnail"
+                    >
+                      <div
+                        class="overlay"
+                      />
+                    </div>
+                    <div
+                      class="card_content"
+                    >
+                      <h4>
+                        album 2
+                      </h4>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -324,6 +795,11 @@ exports[`Dashboard container should display top tracks after going to top tracks
         <div
           class="ui pointing secondary menu"
         >
+          <a
+            class="item"
+          >
+            Trending
+          </a>
           <a
             class="item"
           >
@@ -349,9 +825,9 @@ exports[`Dashboard container should display top tracks after going to top tracks
             <div
               class="popular_tracks_header"
             >
-              <h3>
+              <h2>
                 Top Tracks from Deezer
-              </h3>
+              </h2>
             </div>
             <table
               class="track_table"
@@ -692,6 +1168,11 @@ exports[`Dashboard container should go to best new album review after clicking i
           class="ui pointing secondary menu"
         >
           <a
+            class="item"
+          >
+            Trending
+          </a>
+          <a
             class="active item"
           >
             Best new music
@@ -939,6 +1420,11 @@ exports[`Dashboard container should go to best new track review after clicking i
         <div
           class="ui pointing secondary menu"
         >
+          <a
+            class="item"
+          >
+            Trending
+          </a>
           <a
             class="active item"
           >

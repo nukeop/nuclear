@@ -1,0 +1,97 @@
+@import "../../common.scss";
+
+.cards_row_container {
+    display: flex;
+    flex-flow: column;
+    align-items: flex-start;
+    width: 100%;
+
+    .header_row {
+        display: flex;
+        flex-flow: row;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 0 1em 1em;
+        width: 100%;
+
+        h2 {
+            margin: 0;
+        }
+    }
+
+    .filter_container {
+        display: inline-flex;
+        margin-right: 1em;
+
+        .icon {
+            color: $white;
+        }
+
+        .cards_filter input {
+            background: rgba($bglighter, 0.25);
+            color: $white;
+            border: 1px solid transparent;
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+
+            &::placeholder {
+                color: rgba($white, 0.5);
+            }
+
+            &::selection {
+                background-color: $blue;
+                color: $white;
+            }
+
+            &:active,
+            &:focus {
+                &::placeholder {
+                    color: rgba($white, 0.2);
+                }
+            }
+        }
+
+        .filter_button {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+    }
+
+    .scroll_buttons {
+        display: flex;
+        align-items: center;
+        .scroll_button {
+            &:not(:last-child) {
+                margin-right: 1em;
+            }
+        }
+    }
+
+    .cards_row {
+        display: flex;
+        flex-flow: row;
+        align-items: center;
+        flex: 1 1 auto;
+        width: 100%;
+        min-height: 288px;
+        overflow-x: auto;
+        scroll-behavior: smooth;
+        &::-webkit-scrollbar {
+            display: none;
+        }
+    }
+
+    .row_card {
+        min-width: 240px;
+    }
+
+    .empty_state {
+        position: relative;
+        width: 100%;
+        height: 100%;
+
+        display: flex;
+        align-items: center;
+        flex-flow: column;
+    }
+}
