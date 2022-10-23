@@ -29,9 +29,10 @@ class LocalLibraryDb {
 
   async connect() {
     try {
-      const database = path.join(app.getPath('userData'), this.config.sqliteDbName);
+      const database = path.join(app.getPath('userData'), this.config.localLibraryDbName);
       this.connection = await createConnection({
         type: 'sqlite',
+        name: 'local-library',
         database,
         entities: [
           LocalFolder,
@@ -44,9 +45,9 @@ class LocalLibraryDb {
       this.folderRepository = this.connection.getRepository<LocalFolder>(LocalFolder);
       this.trackRepository = this.connection.getRepository<LocalTrack>(LocalTrack);
 
-      this.logger.log(`Sqlite database created at ${database}`);
+      this.logger.log(`Local library database created at ${database}`);
     } catch (err) {
-      this.logger.error('Sqlite database creation failed');
+      this.logger.error('Could not connect to the sqlite database for local library');
       this.logger.error(err.stack);
     }
   }

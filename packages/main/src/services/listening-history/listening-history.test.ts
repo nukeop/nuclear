@@ -12,7 +12,7 @@ describe('Listening history', () => {
     }));
 
     Db = new ListeningHistoryDb(new TestLogger(), {
-      sqliteDbName: ':memory:'
+      listeningHistoryDbName: ':memory:'
     } as Config);
   });
 

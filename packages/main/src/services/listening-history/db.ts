@@ -26,10 +26,11 @@ class ListeningHistoryDb{
 
     async connect() {
       try {
-        const database = path.join(app.getPath('userData'), this.config.sqliteDbName);
+        const database = path.join(app.getPath('userData'), this.config.listeningHistoryDbName);
 
         this.connection = await createConnection({
           type: 'sqlite',
+          name: 'listening-history',
           database,
           entities: [ListeningHistoryEntry],
           synchronize: true,
@@ -37,8 +38,9 @@ class ListeningHistoryDb{
         });
         
         this.listeningHistoryRepository = this.connection.getRepository<ListeningHistoryEntry>(ListeningHistoryEntry);
-      } catch (e) {
 
+        this.logger.log(`Listening history database created at ${database}`);
+      } catch (e) {
         console.error(e);
         this.logger.error('Could not connect to the sqlite database for listening history');
         this.logger.error(e.stack);
@@ -46,6 +48,7 @@ class ListeningHistoryDb{
     }
 
     async postEntry(artist: string, title: string) {
+      
       return this.listeningHistoryRepository.save({
         artist,
         title

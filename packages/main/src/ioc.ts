@@ -26,6 +26,7 @@ import { ServiceProvider } from './utils/types';
 import TouchbarMenu from './services/touchbar';
 import ListeningHistoryService from './services/listening-history';
 import ListeningHistoryDb from './services/listening-history/db';
+import ListeningHistoryController from './controllers/listening-history';
 
 const services: ServiceProvider[] = [
   { useClass: AcousticId },
@@ -53,6 +54,7 @@ const services: ServiceProvider[] = [
 const controllers: Class[] = [
   DownloadCtrl,
   LocalLibraryCtrl,
+  ListeningHistoryController,
   LoggerCtrl,
   PlayerCtrl,
   SettingsCtrl
