@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 import { compose, withProps } from 'recompose';
 import Sound, { Volume, Equalizer, AnalyserByFrequency } from 'react-hifi';
 import logger from 'electron-timber';
-import { rest } from '@nuclear/core';
+import { IpcEvents, rest } from '@nuclear/core';
 import { post as mastodonPost } from '@nuclear/core/src/rest/Mastodon';
 
 import * as SearchActions from '../../actions/search';
@@ -19,6 +19,7 @@ import * as Autoradio from './autoradio';
 import VisualizerContainer from '../../containers/VisualizerContainer';
 import globals from '../../globals';
 import HlsPlayer from '../../components/HLSPlayer';
+import { ipcRenderer } from 'electron';
 
 const lastfm = new rest.LastFmApi(globals.lastfmApiKey, globals.lastfmApiSecret);
 
@@ -79,9 +80,16 @@ class SoundContainer extends React.Component {
     ) {
       this.props.actions.scrobbleAction(
         currentSong.artist,
-        currentSong.name,
+        currentSong.title,
         this.props.scrobbling.lastFmSessionKey
       );
+    }
+
+    if (this.props.settings.listeningHistory) {
+      ipcRenderer.send(IpcEvents.POST_LISTENING_HISTORY_ENTRY, {
+        artist: currentSong.artist,
+        title: currentSong.title
+      });
     }
 
     if (
