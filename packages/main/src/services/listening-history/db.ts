@@ -4,7 +4,7 @@ import { Between, Connection, createConnection, FindOneOptions, LessThan, MoreTh
 import path from 'path';
 
 import Config from '../config';
-import Logger, { $mainLogger, ILogger } from '../logger';
+import { $mainLogger, ILogger } from '../logger';
 import { ListeningHistoryEntry } from './model/ListeningHistoryEntry';
 
 type ListeningHistoryFilters = {
