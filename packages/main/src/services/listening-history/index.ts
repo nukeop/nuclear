@@ -1,4 +1,5 @@
 import { inject, injectable } from 'inversify';
+import { ListeningHistoryRequest } from '../../controllers/listening-history';
 import ListeningHistoryDb from './db';
 
 @injectable()
@@ -11,8 +12,8 @@ class ListeningHistoryService {
     return this.db.postEntry(entry.artist, entry.title);
   }
 
-  getListeningHistory() {
-    return this.db.getEntries();
+  getListeningHistory(request: ListeningHistoryRequest) {
+    return this.db.getEntries(request);
   }
 }
 

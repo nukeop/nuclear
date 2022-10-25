@@ -1,18 +1,14 @@
 import { app } from 'electron';
 import { inject, injectable } from 'inversify';
-import { Between, Connection, createConnection, FindOneOptions, LessThan, MoreThan, Repository } from 'typeorm';
+import { Between, Connection, createConnection, DataSource, FindOneOptions, LessThan, MoreThan, Repository } from 'typeorm';
 import path from 'path';
 
 import Config from '../config';
 import { $mainLogger, ILogger } from '../logger';
 import { ListeningHistoryEntry } from './model/ListeningHistoryEntry';
+import { ListeningHistoryRequest } from '../../controllers/listening-history';
+import { buildPaginator, Cursor, PagingResult } from 'typeorm-cursor-pagination';
 
-type ListeningHistoryFilters = {
-  artist?: string;
-  title?: string;
-  dateFrom?: Date;
-  dateTo?: Date;
-}
 
 @injectable()
 class ListeningHistoryDb{
@@ -28,7 +24,7 @@ class ListeningHistoryDb{
       try {
         const database = path.join(app.getPath('userData'), this.config.listeningHistoryDbName);
 
-        this.connection = await createConnection({
+        this.connection = new DataSource({
           type: 'sqlite',
           name: 'listening-history',
           database,
@@ -36,6 +32,7 @@ class ListeningHistoryDb{
           synchronize: true,
           logging: false
         });
+        await this.connection.initialize();
         
         this.listeningHistoryRepository = this.connection.getRepository<ListeningHistoryEntry>(ListeningHistoryEntry);
 
@@ -55,46 +52,48 @@ class ListeningHistoryDb{
       });
     }
 
-    async getEntries(): Promise<ListeningHistoryEntry[]> {
-      return this.listeningHistoryRepository.find();
+    async getEntries(request?: ListeningHistoryRequest): Promise<PagingResult<ListeningHistoryEntry>> {
+      const qb = this.listeningHistoryRepository.createQueryBuilder('entry');
+
+      if (request?.artist) {
+        qb.andWhere(`entry.artist = '${request.artist}'`);
+      }
+
+      if (request?.title) {
+        qb.andWhere(`entry.title = '${request.title}'`);
+      }
+
+      if (request?.dateFrom && !request?.dateTo) {
+        qb.andWhere(`entry.createdAt > '${request.dateFrom.toISOString()}'`);
+      }
+
+      if (request?.dateTo && !request?.dateFrom) {
+        qb.andWhere(`entry.createdAt < '${request.dateTo.toISOString()}'`);
+      }
+
+      if (request?.dateFrom && request?.dateTo) {
+        qb.andWhere(`entry.createdAt BETWEEN '${request.dateFrom.toISOString()}' AND '${request.dateTo.toISOString()}'`);
+      }
+
+      const paginator = buildPaginator({
+        entity: ListeningHistoryEntry,
+        alias: 'entry',
+        paginationKeys: ['createdAt'],
+        query: {
+          limit: request?.limit,
+          order: request?.order ?? 'ASC',
+          beforeCursor: request?.beforeCursor,
+          afterCursor: request?.afterCursor
+        }
+      });
+
+      return paginator.paginate(qb);
     }
 
-    async getEntriesWithFilters(filters: ListeningHistoryFilters): Promise<ListeningHistoryEntry[]> {
-      const where: FindOneOptions<ListeningHistoryEntry>['where'] = {};
+    async deleteEntries(request: ListeningHistoryRequest): Promise<void> {
+      const entries = await this.getEntries(request);
 
-      if (filters.artist) {
-        where.artist = filters.artist;
-      }
-
-      if (filters.title) {
-        where.title = filters.title;
-      }
-
-      if (filters.dateFrom && !filters.dateTo) {
-        where.createdAt = MoreThan(filters.dateFrom);
-      }
-
-      if (filters.dateTo && !filters.dateFrom) {
-        where.createdAt = LessThan(filters.dateTo);
-      }
-
-      if (filters.dateFrom && filters.dateTo) {
-        where.createdAt = Between(filters.dateFrom, filters.dateTo);
-      }
-
-      return this.listeningHistoryRepository.find({ where });
-    }
-
-    async getEntriesForDates(from: Date, to: Date): Promise<ListeningHistoryEntry[]> {
-      return this.listeningHistoryRepository.createQueryBuilder('entry')
-        .where(`entry.createdAt BETWEEN '${from.toISOString()}' AND '${to.toISOString()}'`)
-        .getMany();
-    }
-
-    async deleteEntriesWithFilters(filters: ListeningHistoryFilters): Promise<void> {
-      const entries = await this.getEntriesWithFilters(filters);
-
-      await this.listeningHistoryRepository.remove(entries);
+      await this.listeningHistoryRepository.remove(entries.data);
     }
 
     async getRepository(): Promise<Repository<ListeningHistoryEntry>> {

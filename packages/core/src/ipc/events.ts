@@ -20,7 +20,7 @@ enum IpcEvents {
   LOCAL_METAS = 'get-metas',
 
   POST_LISTENING_HISTORY_ENTRY = 'post-listening-history-entry',
-  GET_LISTENING_HISTORY = 'get-listening-history',
+  FETCH_LISTENING_HISTORY = 'fetch-listening-history',
 
   TRACK_ADD = 'add-track',
   TRACK_REMOVE = 'remove-track',

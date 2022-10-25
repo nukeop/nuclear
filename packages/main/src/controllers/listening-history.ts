@@ -4,6 +4,22 @@ import { inject } from 'inversify';
 import ListeningHistoryService from '../services/listening-history';
 import { ipcController, ipcEvent } from '../utils/decorators';
 
+export type ListeningHistoryFilters = {
+  artist?: string;
+  title?: string;
+  dateFrom?: Date;
+  dateTo?: Date;
+}
+
+export type ListeningHistoryPaginationSettings = {
+  limit?: number;
+  order?: 'ASC' | 'DESC';
+  beforeCursor?: string | null;
+  afterCursor?: string | null;
+}
+
+export type ListeningHistoryRequest = ListeningHistoryFilters & ListeningHistoryPaginationSettings;
+
 @ipcController()
 export default class ListeningHistoryController {
   constructor(
@@ -15,8 +31,8 @@ export default class ListeningHistoryController {
     return this.listeningHistory.postListeningHistoryEntry(entry);
   }
 
-  @ipcEvent(IpcEvents.GET_LISTENING_HISTORY)
-  async getListeningHistory(event: IpcMessageEvent) {
-    return this.listeningHistory.getListeningHistory();
+  @ipcEvent(IpcEvents.FETCH_LISTENING_HISTORY)
+  async getListeningHistory(event: IpcMessageEvent, request: ListeningHistoryRequest) {
+    return this.listeningHistory.getListeningHistory(request);
   }
 }

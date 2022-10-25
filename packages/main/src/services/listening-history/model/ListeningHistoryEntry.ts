@@ -11,6 +11,8 @@ export class ListeningHistoryEntry {
     @Column()
     title: string;
 
-    @CreateDateColumn()
+    @CreateDateColumn({
+        precision: 3,
+    })
     createdAt: Date;
 }
