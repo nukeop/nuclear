@@ -22,6 +22,7 @@ import SettingsContainer from '../SettingsContainer';
 import TagViewContainer from '../TagViewContainer';
 import VisualizerNode from '../VisualizerContainer/VisualizerNode';
 import DeezerPlaylistAdapter from '../DeezerPlaylistAdapter';
+import { ListeningHistoryContainer } from '../ListeningHistoryContainer';
 
 class MainContentContainer extends React.Component {
   componentDidMount() {
@@ -56,6 +57,7 @@ class MainContentContainer extends React.Component {
               <Route path='/equalizer' component={EqualizerViewContainer} />
               <Route path='/visualizer' component={VisualizerNode} />
               <Route path='/library' component={LibraryViewContainer} />
+              <Route path='/listening-history' component={ListeningHistoryContainer} />
             </Switch>
           </MainLayout>
         );

@@ -1,6 +1,7 @@
 import Config from '../config';
 import { TestLogger } from '../../../tests/test-logger';
 import ListeningHistoryDb from './db';
+import { range } from 'lodash';
 
 describe('Listening history', () => {
   let Db: ListeningHistoryDb;
@@ -18,31 +19,63 @@ describe('Listening history', () => {
 
   beforeEach(async () => {
     await Db.connect();
-    await Db.deleteEntriesWithFilters({});
+    await Db.deleteEntries({});
   });
 
   it('should post an entry', async () => {
     const now = new Date();
     await Db.postEntry('artist', 'title');
     const entries = await Db.getEntries();
-    expect(entries.length).toBe(1);
-    expect(entries[0].artist).toBe('artist');
-    expect(entries[0].title).toBe('title');
-    expect(Math.abs(entries[0].createdAt.valueOf() - now.valueOf())).toBeLessThan(1000);
+    expect(entries.data.length).toBe(1);
+    expect(entries.data[0].artist).toBe('artist');
+    expect(entries.data[0].title).toBe('title');
+    expect(Math.abs(entries.data[0].createdAt.valueOf() - now.valueOf())).toBeLessThan(1000);
   });
+
+  it('should get paginated entries (1st page)', async () => {
+    const repository = await Db.getRepository();
+    await Promise.all(range(20).map(async i => {
+      const entry = await Db.postEntry(`artist${i}`, `title${i}`);
+      await repository.update(entry.uuid, {
+        createdAt: new Date(2019, 1, i + 1)
+      });
+    }));
+    const entries = await Db.getEntries({ limit: 10 });
+
+    expect(entries.data.length).toBe(10);
+    expect(entries.data[0].createdAt).toEqual(new Date(2019, 1, 1));
+    expect(entries.data[9].createdAt).toEqual(new Date(2019, 1, 10));
+  });
+
+  it('should get paginated entries (2nd page)', async () => {
+    const repository = await Db.getRepository();
+    await Promise.all(range(20).map(async i => {
+      const entry = await Db.postEntry(`artist${i}`, `title${i}`);
+      await repository.update(entry.uuid, {
+        createdAt: new Date(2019, 1, i + 1)
+      });
+    }));
+    let entries = await Db.getEntries({ limit: 10 });
+    
+    entries = await Db.getEntries({ limit: 10, afterCursor: entries.cursor.afterCursor });
+
+    expect(entries.data.length).toBe(10);
+    expect(entries.data[0].createdAt).toEqual(new Date(2019, 1, 10));
+    expect(entries.data[9].createdAt).toEqual(new Date(2019, 1, 19));
+  });  
 
   it('should get entries with filters', async () => {
     await Db.postEntry('artist', 'title');
     await Db.postEntry('artist', 'title2');
     await Db.postEntry('artist2', 'title');
     await Db.postEntry('artist2', 'title2');
-    const entries = await Db.getEntriesWithFilters({
+    const entries = await Db.getEntries({
       artist: 'artist',
       title: 'title'
     });
-    expect(entries.length).toBe(1);
-    expect(entries[0].artist).toBe('artist');
-    expect(entries[0].title).toBe('title');
+    expect(entries.data.length).toBe(1);
+    expect(entries.data[0].artist).toBe('artist');
+    expect(entries.data[0].title).toBe('title');
   });
 
   it('should delete entries with filters', async () => {
@@ -50,16 +83,16 @@ describe('Listening history', () => {
     await Db.postEntry('artist', 'title2');
     await Db.postEntry('artist2', 'title');
     await Db.postEntry('artist2', 'title2');
-    await Db.deleteEntriesWithFilters({
+    await Db.deleteEntries({
       artist: 'artist'
     });
     const entries = await Db.getEntries();
-    expect(entries.length).toBe(2);
-    expect(entries[0]).toEqual(expect.objectContaining({
+    expect(entries.data.length).toBe(2);
+    expect(entries.data[0]).toEqual(expect.objectContaining({
       artist: 'artist2',
       title: 'title'
     }));
-    expect(entries[1]).toEqual(expect.objectContaining({
+    expect(entries.data[1]).toEqual(expect.objectContaining({
       artist: 'artist2',
       title: 'title2'
     }));
@@ -85,18 +118,18 @@ describe('Listening history', () => {
       createdAt: new Date(2019, 1, 4)
     });
 
-    const entries = await Db.getEntriesForDates(
-      new Date(2019, 1, 1), 
-      new Date(2019, 1, 3)
-    );
+    const entries = await Db.getEntries({
+      dateFrom: new Date(2019, 1, 1), 
+      dateTo: new Date(2019, 1, 3)
+    });
 
-    expect(entries.length).toBe(2);
-    expect(entries[0]).toEqual(expect.objectContaining({
+    expect(entries.data.length).toBe(2);
+    expect(entries.data[0]).toEqual(expect.objectContaining({
       artist: 'artist',
       title: 'title2'
     }));
 
-    expect(entries[1]).toEqual(expect.objectContaining({
+    expect(entries.data[1]).toEqual(expect.objectContaining({
       artist: 'artist2',
       title: 'title'
     }));
