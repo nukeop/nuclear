@@ -134,5 +134,4 @@ describe('Listening history', () => {
       title: 'title'
     }));
   });
-
 });

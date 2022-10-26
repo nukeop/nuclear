@@ -12,7 +12,7 @@ import { buildPaginator, Cursor, PagingResult } from 'typeorm-cursor-pagination'
 
 @injectable()
 class ListeningHistoryDb{
-    private connection: Connection;
+    private connection: DataSource;
     private listeningHistoryRepository: Repository<ListeningHistoryEntry>;
 
     constructor(
@@ -45,7 +45,6 @@ class ListeningHistoryDb{
     }
 
     async postEntry(artist: string, title: string) {
-      
       return this.listeningHistoryRepository.save({
         artist,
         title

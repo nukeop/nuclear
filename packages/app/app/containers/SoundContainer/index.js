@@ -80,7 +80,7 @@ class SoundContainer extends React.Component {
     ) {
       this.props.actions.scrobbleAction(
         currentSong.artist,
-        currentSong.title,
+        currentSong.title ?? currentSong.name,
         this.props.scrobbling.lastFmSessionKey
       );
     }
@@ -88,7 +88,7 @@ class SoundContainer extends React.Component {
     if (this.props.settings.listeningHistory) {
       ipcRenderer.send(IpcEvents.POST_LISTENING_HISTORY_ENTRY, {
         artist: currentSong.artist,
-        title: currentSong.title
+        title: currentSong.title ?? currentSong.name
       });
     }
 

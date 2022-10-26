@@ -2,7 +2,7 @@ import { IpcEvents } from '@nuclear/core';
 import { IpcMessageEvent } from 'electron';
 import { inject } from 'inversify';
 import ListeningHistoryService from '../services/listening-history';
-import { ipcController, ipcEvent } from '../utils/decorators';
+import { ipcController, ipcEvent, ipcInvokeHandler } from '../utils/decorators';
 
 export type ListeningHistoryFilters = {
   artist?: string;
@@ -31,7 +31,7 @@ export default class ListeningHistoryController {
     return this.listeningHistory.postListeningHistoryEntry(entry);
   }
 
-  @ipcEvent(IpcEvents.FETCH_LISTENING_HISTORY)
+  @ipcInvokeHandler(IpcEvents.FETCH_LISTENING_HISTORY)
   async getListeningHistory(event: IpcMessageEvent, request: ListeningHistoryRequest) {
     return this.listeningHistory.getListeningHistory(request);
   }

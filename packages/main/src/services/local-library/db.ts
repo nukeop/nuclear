@@ -6,7 +6,7 @@ import glob from 'glob';
 import { injectable, inject } from 'inversify';
 import _ from 'lodash';
 import path from 'path';
-import { createConnection, Connection, Repository } from 'typeorm';
+import { Repository, DataSource } from 'typeorm';
 import { promisify } from 'util';
 
 import Logger, { $mainLogger } from '../logger';
@@ -17,7 +17,7 @@ import Store from '../store';
 
 @injectable()
 class LocalLibraryDb {
-  private connection: Connection;
+  private connection: DataSource;
   private trackRepository: Repository<LocalTrack>;
   private folderRepository: Repository<LocalFolder>;
 
@@ -30,7 +30,7 @@ class LocalLibraryDb {
   async connect() {
     try {
       const database = path.join(app.getPath('userData'), this.config.localLibraryDbName);
-      this.connection = await createConnection({
+      this.connection = new DataSource({
         type: 'sqlite',
         name: 'local-library',
         database,
@@ -41,6 +41,7 @@ class LocalLibraryDb {
         synchronize: true,
         logging: false
       });
+      await this.connection.initialize();
 
       this.folderRepository = this.connection.getRepository<LocalFolder>(LocalFolder);
       this.trackRepository = this.connection.getRepository<LocalTrack>(LocalTrack);
@@ -138,7 +139,10 @@ class LocalLibraryDb {
 
   async getTracksFromPath(filePaths: string[]): Promise<LocalTrack[]> {
     const tracks = await Promise.all(
-      filePaths.map((filePath) => this.trackRepository.find({ where: { folder: filePath } }))
+      filePaths.map((filePath) => this.trackRepository.find({ 
+        relations: ['folder'],
+        where: { folder: {path: filePath } } 
+      }))
     );
 
     return tracks.flat();
