@@ -12,6 +12,8 @@ export { default as CommandPalette } from './components/CommandPalette';
 export { default as ContextPopup } from './components/ContextPopup';
 export { default as Cover } from './components/Cover';
 export { default as Dropdown } from './components/Dropdown';
+export { default as HistoryTable } from './components/TrackTable/HistoryTable';
+export { default as HistoryTableDate } from './components/TrackTable/HistoryTableDate';
 export { default as LibraryListTypeToggle } from './components/LibraryListTypeToggle';
 export { default as Loader } from './components/Loader';
 export { default as MiniPlayer } from './components/MiniPlayer';
