@@ -10,8 +10,14 @@ export class Normalizer implements Plugin<NormalizerProps, GainNode> {
     this.createNode = this.createNode.bind(this);
   }
 
+  shouldNotUpdate(prevProps: NormalizerProps, nextProps: NormalizerProps) {
+    return prevProps.url === nextProps.url;
+  }
+
   createNode(audioContext: AudioContext, { url }: NormalizerProps) {
     const gainNode = audioContext.createGain();
+
+    audioContext.suspend();
 
     fetch(url)
       .then((res) => res.arrayBuffer())
@@ -34,11 +40,11 @@ export class Normalizer implements Plugin<NormalizerProps, GainNode> {
             }
           }
 
-          averages.sort(function (a, b) {
-            return a - b;
-          });
-
-          const a = averages[Math.floor(averages.length * 0.95)];
+          sum = 0;
+          for (let i = 0; i< averages.length; i++){
+            sum += averages[i];
+          }
+          const a = sum/averages.length;
 
           let gain = 1.0 / a;
           // Perform some clamping
@@ -55,20 +61,18 @@ export class Normalizer implements Plugin<NormalizerProps, GainNode> {
 
           gain = parseFloat(gain.toFixed(3));
 
-          gainNode.gain.value = gain;
-
+          this.updateNode(gainNode, gain);
+          audioContext.resume();
         });
       });
-
     return gainNode;
   }
 
-  /* updateNode(node: GainNode, gainValue: number) {
-    console.log("value below");
-    console.log(gainValue);
-    console.log(isFinite(gainValue));
-    node.gain.value = 0.1;
-  }*/
+  updateNode(node: GainNode, gainValue: number) {
+    if (isFinite(gainValue)) {
+      node.gain.value = gainValue;
+    }
+  }
 }
 
 export default pluginFactory<NormalizerProps, GainNode>(new Normalizer());
