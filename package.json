@@ -209,6 +209,6 @@
   },
   "dependencies": {
     "node-gyp": "^9.0.0",
-    "sqlite3": "^5.0.3"
+    "sqlite3": "^5.1.2"
   }
 }
