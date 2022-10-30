@@ -7,6 +7,15 @@ import { buildElectronStoreState, buildStoreState } from '../../../test/storeBui
 import { AnyProps, mountedComponentFactory, setupI18Next } from '../../../test/testUtils';
 import { range } from 'lodash';
 
+jest.mock('electron-store', () => {
+  return jest.fn().mockImplementation(() => {
+    return {
+      get: jest.fn(),
+      set: jest.fn()
+    };
+  });
+});
+
 jest.mock('../../globals', () => ({
   lastfmApiKey: 'last_fm_key',
   lastfmApiSecret: 'last_fm_secret'

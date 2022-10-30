@@ -24,6 +24,7 @@ import { ThHTMLAttributes } from 'react';
 export type TrackTableProps<T extends Track> = TrackTableExtraProps<T> &
   TrackTableHeaders &
   TrackTableSettings & {
+    className?: string;
     tracks: T[];
     isTrackFavorite: (track: T) => boolean;
     onDragEnd?: DragDropContextProps['onDragEnd'];
@@ -32,6 +33,7 @@ export type TrackTableProps<T extends Track> = TrackTableExtraProps<T> &
   }
 
 function TrackTable<T extends Track>({
+  className,
   tracks,
   customColumns=[],
   isTrackFavorite,
@@ -120,7 +122,7 @@ function TrackTable<T extends Track>({
       Header: SelectionHeader,
       Cell: SelectionCell
     }
-  ].filter(Boolean) as Column<T>[], [displayDeleteButton, displayPosition, displayThumbnail, displayFavorite, isTrackFavorite, titleHeader, displayArtist, artistHeader, displayAlbum, albumHeader, shouldDisplayDuration, durationHeader, selectable, positionHeader, thumbnailHeader, customColumns]);
+  ].filter(Boolean) as Column<T>[], [displayDeleteButton, displayPosition, displayThumbnail, displayFavorite, isTrackFavorite, titleHeader, displayArtist, artistHeader, displayAlbum, albumHeader, shouldDisplayDuration, durationHeader, selectable, positionHeader, thumbnailHeader]);
 
   const data = useMemo(() => tracks, [tracks]);
 
@@ -134,7 +136,7 @@ function TrackTable<T extends Track>({
     prepareRow
   } = table;
 
-  return <table {...getTableProps() as TableHTMLAttributes<HTMLTableElement>} className={styles.track_table}>
+  return <table {...getTableProps() as TableHTMLAttributes<HTMLTableElement>} className={cx(className, styles.track_table)}>
     {
       displayHeaders && <thead>
         {

@@ -18,7 +18,9 @@ export const ListeningHistoryContainer: React.FC = () => {
   const [listeningHistory, setListeningHistory] = useState<ListeningHistory>();
 
   useEffect(() => {
-    ipcRenderer.invoke(IpcEvents.FETCH_LISTENING_HISTORY, { limit: entriesPerPage }).then(setListeningHistory);
+    ipcRenderer.invoke(IpcEvents.FETCH_LISTENING_HISTORY, { limit: entriesPerPage }).then(data => {
+      setListeningHistory(data);
+    });
   }, [entriesPerPage, afterCursor]);
 
   return <ListeningHistoryView tracks={listeningHistory?.data ?? []} />;

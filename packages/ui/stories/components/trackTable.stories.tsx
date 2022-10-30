@@ -121,13 +121,7 @@ export const DragAndDrop = () => {
 };
 
 const Template = (args) => <HistoryTable 
-  {...args} 
-  positionHeader={<Icon name='hashtag' />}
-  thumbnailHeader={<Icon name='image' />}
-  artistHeader='Artist'
-  titleHeader='Title'
-  albumHeader='Album'
-  durationHeader='Length'
+  {...args}
   isTrackFavorite={() => false}
   playlists={playlists}
   strings={trackTableStrings}

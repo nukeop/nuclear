@@ -5,8 +5,14 @@ exports[`Listening history container renders the listening history 1`] = `
   <div
     class="main_layout_container"
   >
-    <div>
-      Test
+    <div
+      class="listening_history_view"
+    >
+      <div
+        class="header_container"
+      >
+        title
+      </div>
     </div>
   </div>
 </DocumentFragment>
