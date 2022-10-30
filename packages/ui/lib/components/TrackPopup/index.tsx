@@ -6,7 +6,7 @@ import { Icon, Dropdown } from 'semantic-ui-react';
 import ContextPopup, { ContextPopupProps } from '../ContextPopup';
 import PopupButton from '../PopupButton';
 import PopupDropdown from '../PopupDropdown';
-import ControlledInputDialog from '../InputDialog/ControlledInputDialog';
+import InputDialog from '../InputDialog';
 
 export type TrackPopupProps = {
   trigger: ContextPopupProps['trigger'];
@@ -167,9 +167,9 @@ const TrackPopup: React.FC<TrackPopupProps> = ({
           />
         )}
       </ContextPopup>
-      <ControlledInputDialog
+      <InputDialog
         isOpen={isCreatePlaylistDialogOpen}
-        handleClose={() => {
+        onClose={() => {
           setIsCreatePlaylistDialogOpen(false);
         }}
         header={<h4>{strings.createPlaylistDialog.title}</h4>}

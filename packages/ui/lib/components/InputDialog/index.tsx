@@ -2,46 +2,70 @@ import React, { useState, useCallback, useEffect } from 'react';
 import { Input, Modal, ModalProps } from 'semantic-ui-react';
 import Button from '../Button';
 
-export interface InputDialogProps {
-  initialString: string;
-  trigger: ModalProps['trigger'];
-  header: React.ReactElement;
-  placeholder: string;
-  acceptLabel: string;
-  cancelLabel: string;
-  onAccept: (inputString: string) => void;
-  testIdPrefix?: string;
+interface CoreInputDialogProps {
+  initialString: string
+  header: React.ReactElement
+  placeholder: string
+  acceptLabel: string
+  cancelLabel: string
+  onAccept: (inputString: string) => void
+  testIdPrefix?: string
 }
 
-const InputDialog: React.FC<InputDialogProps> = ({ 
+interface UncontrolledInputDialogProps extends CoreInputDialogProps {
+  trigger: ModalProps['trigger']
+}
+
+interface ControlledInputDialogProps extends CoreInputDialogProps {
+  isOpen: boolean
+  onOpen?: () => void
+  onClose: () => void
+}
+
+type InputDialogProps = UncontrolledInputDialogProps | ControlledInputDialogProps
+
+const InputDialog: React.VFC<InputDialogProps> = ({
   initialString,
-  trigger, 
-  header, 
-  placeholder, 
-  acceptLabel, 
+  header,
+  placeholder,
+  acceptLabel,
   cancelLabel,
-  onAccept, 
-  testIdPrefix = null 
+  onAccept,
+  testIdPrefix = null,
+  ...props
 }) => {
+  const isControlled = 'isOpen' in props;
   const [isOpen, setIsOpen] = useState(false);
   const [inputString, setInputString] = useState(initialString);
 
-  const handleOpen = useCallback(() => setIsOpen(true), []);
-  const handleClose = useCallback(() => setIsOpen(false), []);
-  const handleChange = useCallback(e => setInputString(e.target.value), []);
-  const handleKeyPress = useCallback(e => {
-    if (e.key === 'Enter'){ 
+  const handleOpen = useCallback(
+    () => (isControlled ? props.onOpen() : setIsOpen(true)),
+    [isControlled, props]
+  );
+  const handleClose = useCallback(
+    () => (isControlled ? props.onClose() : setIsOpen(false)),
+    [isControlled, props]
+  );
+  const handleChange = useCallback((e) => setInputString(e.target.value), []);
+  const handleKeyPress = useCallback(
+    (e) => {
+      if (e.key === 'Enter') {
+        setInputString(e.target.value);
+        onAccept(inputString);
+        handleClose();
+      }
+    },
+    [handleClose, inputString, onAccept]
+  );
+
+  const onSubmit = useCallback(
+    (e) => {
       setInputString(e.target.value);
       onAccept(inputString);
       handleClose();
-    }
-  }, [handleClose, inputString, onAccept]);
-
-  const onSubmit = useCallback(e => {
-    setInputString(e.target.value);
-    onAccept(inputString);
-    handleClose();
-  }, [handleClose, inputString, onAccept]);
+    },
+    [handleClose, inputString, onAccept]
+  );
 
   useEffect(() => {
     setInputString(initialString);
@@ -52,17 +76,18 @@ const InputDialog: React.FC<InputDialogProps> = ({
       basic
       closeIcon
       dimmer='blurring'
-      trigger={trigger}
       onClose={handleClose}
       onOpen={handleOpen}
       open={isOpen}
+      {...({ open: isControlled ? props.isOpen: isOpen })}
+      {...(isControlled ? {} : { trigger: props.trigger })}
     >
       <Modal.Content>
         {header}
         <Input
           fluid
           inverted
-          ref={input => {
+          ref={(input) => {
             input && input.focus();
           }}
           placeholder={placeholder}
@@ -73,18 +98,20 @@ const InputDialog: React.FC<InputDialogProps> = ({
         />
       </Modal.Content>
       <Modal.Actions>
-        <Button 
-          basic 
+        <Button
+          basic
           inverted
-          color='red' 
+          color='red'
           onClick={handleClose}
-          data-testid={testIdPrefix && `${testIdPrefix}-cancel`}>
+          data-testid={testIdPrefix && `${testIdPrefix}-cancel`}
+        >
           {cancelLabel}
         </Button>
-        <Button 
+        <Button
           color='green'
           onClick={onSubmit}
-          data-testid={testIdPrefix && `${testIdPrefix}-accept`}>
+          data-testid={testIdPrefix && `${testIdPrefix}-accept`}
+        >
           {acceptLabel}
         </Button>
       </Modal.Actions>
