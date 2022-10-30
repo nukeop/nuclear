@@ -1,13 +1,13 @@
 import { app } from 'electron';
 import { inject, injectable } from 'inversify';
-import { Between, Connection, createConnection, DataSource, FindOneOptions, LessThan, MoreThan, Repository } from 'typeorm';
+import { DataSource, Repository } from 'typeorm';
 import path from 'path';
 
 import Config from '../config';
 import { $mainLogger, ILogger } from '../logger';
 import { ListeningHistoryEntry } from './model/ListeningHistoryEntry';
 import { ListeningHistoryRequest } from '../../controllers/listening-history';
-import { buildPaginator, Cursor, PagingResult } from 'typeorm-cursor-pagination';
+import { buildPaginator, PagingResult } from 'typeorm-cursor-pagination';
 
 
 @injectable()

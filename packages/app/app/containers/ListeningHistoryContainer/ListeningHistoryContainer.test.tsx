@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import { waitFor } from '@testing-library/react';
-import { store as electronStore } from '@nuclear/core';
+import { IpcEvents, store as electronStore } from '@nuclear/core';
 
 import { buildElectronStoreState, buildStoreState } from '../../../test/storeBuilders';
-import { AnyProps, mountedComponentFactory } from '../../../test/testUtils';
+import { AnyProps, mountedComponentFactory, setupI18Next } from '../../../test/testUtils';
 import { ipcRenderer } from 'electron';
 
 jest.mock('electron-store', () => jest.fn().mockImplementation(() => ({
@@ -24,8 +24,13 @@ jest.mock('electron', () => ({
         artist: 'test artist2',
         title: 'test title 2',
         createdAt: new Date('2020-01-02')
-      }]
-    })
+      }],
+      cursor: {
+        beforeCursor: null,
+        afterCursor: null
+      }
+    }),
+    send: jest.fn()
   }
 }));
 
@@ -49,9 +54,10 @@ describe('Listening history container', () => {
   it('can clear history', async () => {
     const { component } = mountComponent();
 
-    component.getByText('Clear').click();
+    component.getByText('Clear history').click();
+    component.getByText('Confirm').click();
 
-    expect(component.getByText('test artist - test title')).not.toBeInTheDocument();
+    await waitFor(() => expect(ipcRenderer.send).toHaveBeenCalledWith(IpcEvents.CLEAR_LISTENING_HISTORY));
   });
 
   const mountComponent = (electronStoreState?: AnyProps) => {
@@ -59,7 +65,7 @@ describe('Listening history container', () => {
     electronStore.init({
       ...buildElectronStoreState(electronStoreState)
     });
-    
+    setupI18Next();
     return mountedComponentFactory(
       ['/listening-history'],
       buildStoreState()

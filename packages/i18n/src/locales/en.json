@@ -395,8 +395,8 @@
     "empty-state": "You haven't listened to anything yet.",
     "clear-history": "Clear history",
     "clear-history-confirm": "Are you sure you want to clear your listening history?",
-    "clear-history-confirm-yes": "Yes",
-    "clear-history-confirm-no": "No",
+    "clear-history-confirm-yes": "Confirm",
+    "clear-history-confirm-no": "Cancel",
     "clear-history-toast": "Listening history cleared"
   },
   "forms": {
