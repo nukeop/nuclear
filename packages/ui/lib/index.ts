@@ -9,6 +9,7 @@ export { default as Card } from './components/Card';
 export { default as CardsRow } from './components/CardsRow';
 export { default as Checkbox } from './components/Checkbox';
 export { default as CommandPalette } from './components/CommandPalette';
+export { default as ConfirmationModal } from './components/ConfirmationModal';
 export { default as ContextPopup } from './components/ContextPopup';
 export { default as Cover } from './components/Cover';
 export { default as Dropdown } from './components/Dropdown';
