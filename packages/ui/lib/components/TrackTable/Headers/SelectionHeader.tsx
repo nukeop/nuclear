@@ -10,7 +10,7 @@ import styles from '../styles.scss';
 const SelectionHeader: React.FC<
   HeaderProps<Track> &
   UseRowSelectInstanceProps<Track> &
-  TrackTableExtraProps &
+  TrackTableExtraProps<Track> &
   { strings: TrackTableStrings }
 > = ({
   getToggleAllRowsSelectedProps,

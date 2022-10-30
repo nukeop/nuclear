@@ -80,7 +80,7 @@ class ListeningHistoryDb{
         paginationKeys: ['createdAt'],
         query: {
           limit: request?.limit,
-          order: request?.order ?? 'ASC',
+          order: request?.order ?? 'DESC',
           beforeCursor: request?.beforeCursor,
           afterCursor: request?.afterCursor
         }

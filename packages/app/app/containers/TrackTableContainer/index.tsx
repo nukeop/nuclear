@@ -23,12 +23,14 @@ export type TrackTableContainerProps<T extends Track> = TrackTableSettings & {
   tracks: TrackTableProps<T>['tracks'];
   onDelete?: TrackTableProps<T>['onDelete'];
   onReorder?: (indexSource: number, indexDest: number) => void;
+  TrackTableComponent?: React.ComponentType<TrackTableProps<T>>;
 };
 
 function TrackTableContainer<T extends Track> ({
   tracks,
   onDelete,
   onReorder,
+  TrackTableComponent = TrackTable,
   ...settings
 }: TrackTableContainerProps<T>) {
   const { t } = useTranslation('playlists');
@@ -111,7 +113,7 @@ function TrackTableContainer<T extends Track> ({
     tracksSelectedLabelPlural: trackTableTranslation('tracks-selected-label-plural')
   };
 
-  return <TrackTable
+  return <TrackTableComponent
     {...settings}
     tracks={tracks}
     positionHeader={<Icon name='hashtag' />}

@@ -19,6 +19,7 @@
     "favorite-artists": "Favorite Artists",
     "favorite-tracks": "Favorite Tracks",
     "library": "Local Library",
+    "listening-history": "Listening History",
     "lyrics": "Lyrics",
     "main": "Main",
     "playlists": "Playlists",
@@ -388,6 +389,15 @@
       "go-to-favorite-tracks": "Go to favorite tracks",
       "go-to-library": "Go to local library"
     }
+  },
+  "listening-history": {
+    "title": "Listening history",
+    "empty-state": "You haven't listened to anything yet.",
+    "clear-history": "Clear history",
+    "clear-history-confirm": "Are you sure you want to clear your listening history?",
+    "clear-history-confirm-yes": "Yes",
+    "clear-history-confirm-no": "No",
+    "clear-history-toast": "Listening history cleared"
   },
   "forms": {
     "nuclear-sign-up": {
