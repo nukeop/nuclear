@@ -7,11 +7,18 @@ import * as PlaylistActions from '../../actions/playlists';
 import PlaylistView from '../../components/PlaylistView';
 import { usePlaylistsProps } from '../PlaylistsContainer/hooks';
 import { useDispatchedCallback } from '../../hooks/useDispatchedCallback';
+import { Playlist } from '@nuclear/core';
 
-const PlaylistViewContainer: React.FC = () => {
+type PlaylistViewContainerProps = {
+  playlist?: Playlist;
+}
+
+const PlaylistViewContainer: React.FC<PlaylistViewContainerProps> = ({
+  playlist
+}) => {
   const match = useRouteMatch<{playlistId: string}>();
   const { playlists } = usePlaylistsProps();
-  const currentPlaylist = playlists.find(playlist => playlist.id === match.params.playlistId);
+  const currentPlaylist = playlist ?? playlists.find(playlist => playlist.id === match.params.playlistId);
 
   const updatePlaylist = useDispatchedCallback(PlaylistActions.updatePlaylist);
   const deletePlaylist = useDispatchedCallback(PlaylistActions.deletePlaylist);
@@ -21,7 +28,7 @@ const PlaylistViewContainer: React.FC = () => {
   const selectSong = useDispatchedCallback(QueueActions.selectSong);
   const addTracks = useDispatchedCallback(QueueActions.addPlaylistTracksToQueue);
 
-  const onReorderTracks = useCallback(
+  const onReorderTracks = !playlist && useCallback(
     onReorder(
       currentPlaylist,
       updatePlaylist
@@ -40,6 +47,7 @@ const PlaylistViewContainer: React.FC = () => {
       updatePlaylist={updatePlaylist}
       exportPlaylist={exportPlaylist}
       onReorderTracks={onReorderTracks}
+      isEditable={!playlist}
     />
   );
 };

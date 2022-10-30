@@ -1,5 +1,5 @@
 import produce from 'immer';
-import { KeyCreator, LoadableMeta } from './types';
+import { EmptyPayloadKeyCreator as EmptyActionKeyCreator, KeyCreator, LoadableMeta } from './types';
 
 export const startingStateMeta: LoadableMeta = {
   isLoading: false,
@@ -31,9 +31,14 @@ export const handleSpreadAction = <S extends {}, P = any>(state: S, { payload }:
   }
 });
 
-export const handleLoadableActionStart = <P, S>(keyCreator: KeyCreator<P>) => (state: S, { payload }: { payload: P }) =>
+export const handleLoadableActionStart = <P, S>(keyCreator: KeyCreator<P> | EmptyActionKeyCreator) => (state: S, { payload }: { payload: P } | undefined) =>
   produce(state, draft => {
     draft[keyCreator(payload)] = loadingStateMeta;
+  });
+
+export const handleLoadableEmptyActionStart = <S>(keyCreator: EmptyActionKeyCreator) => (state: S) =>
+  produce(state, draft => { 
+    draft[keyCreator()] = loadingStateMeta;
   });
 
 export const handleLoadableActionSuccess = <P, S>(keyCreator: KeyCreator<P>) => (state: S, { payload }: { payload: P }) =>

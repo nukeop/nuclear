@@ -1,4 +1,4 @@
-@import './vars.scss';
+@import "./vars.scss";
 
 html {
   position: absolute;
@@ -159,7 +159,6 @@ table {
     background-color: darken($blue, 10%);
   }
 
-
   &:active {
     background-color: darken($blue, 20%);
   }
@@ -277,4 +276,8 @@ hr {
     background: lighten($background2, 20%);
     color: $white !important;
   }
+}
+
+i.red.icon {
+  color: $red !important;
 }

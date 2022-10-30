@@ -19,6 +19,7 @@ import * as Autoradio from './autoradio';
 import VisualizerContainer from '../../containers/VisualizerContainer';
 import globals from '../../globals';
 import HlsPlayer from '../../components/HLSPlayer';
+import { isEmpty } from 'lodash';
 
 const lastfm = new rest.LastFmApi(globals.lastfmApiKey, globals.lastfmApiSecret);
 

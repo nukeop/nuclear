@@ -7,6 +7,7 @@ import _ from 'lodash';
 import { buildStoreState } from '../../../test/storeBuilders';
 import { AnyProps, configureMockStore, setupI18Next, TestRouterProvider, TestStoreProvider } from '../../../test/testUtils';
 import MainContentContainer from '../MainContentContainer';
+import PlayerBarContainer from '../PlayerBarContainer';
 
 const updateStore = (key: string, value: object) => {
   // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -86,10 +87,10 @@ describe('Track view container', () => {
 
     await waitFor(() => component.getAllByTestId('play-now')[0].click());
 
-    expect(selectedStreamProvider.search).toHaveBeenCalledWith({
+    await waitFor(() => expect(selectedStreamProvider.search).toHaveBeenCalledWith({
       artist: 'test artist 1',
       track: 'test track 1'
-    });
+    }));
   });
 
   it('should play a favorited local library track from a local stream', async () => {
@@ -143,6 +144,7 @@ describe('Track view container', () => {
           store={store}
         >
           <MainContentContainer />
+          <PlayerBarContainer />
         </TestStoreProvider>
       </TestRouterProvider >, {container: document.body}
     );

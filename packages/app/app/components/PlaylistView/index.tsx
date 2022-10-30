@@ -24,6 +24,7 @@ export type PlaylistViewProps = {
   selectSong: (i: number) => void;
   addTracks: (tracks: Playlist['tracks']) => void;
   onReorderTracks: (isource: number, idest: number) => void;
+  isEditable?: boolean;
 }
 
 const PlaylistView: React.FC<PlaylistViewProps> = ({
@@ -35,7 +36,8 @@ const PlaylistView: React.FC<PlaylistViewProps> = ({
   addTracks,
   onReorderTracks,
   selectSong,
-  startPlayback
+  startPlayback,
+  isEditable = true
 }) => {
   const { t, i18n } = useTranslation('playlists');
   const history = useHistory();
@@ -58,13 +60,15 @@ const PlaylistView: React.FC<PlaylistViewProps> = ({
     startPlayback(false);
   }, [addTracks, clearQueue, playlist, selectSong, startPlayback]);
 
-  const onDeleteTrack = useCallback((trackToRemove: Track, trackIndex: number) => {
-    const newPlaylist = {
-      ...playlist,
-      tracks: playlist.tracks.filter((_, index) => index !== trackIndex)
-    };
-    updatePlaylist(newPlaylist);
-  }, [playlist, updatePlaylist]);
+  const onDeleteTrack = isEditable
+    ? useCallback((trackToRemove: Track, trackIndex: number) => {
+      const newPlaylist = {
+        ...playlist,
+        tracks: playlist.tracks.filter((_, index) => index !== trackIndex)
+      };
+      updatePlaylist(newPlaylist);
+    }, [playlist, updatePlaylist])
+    : undefined;
 
   const onDeletePlaylist = useCallback(() => {
     deletePlaylist(playlist.id);
@@ -76,7 +80,10 @@ const PlaylistView: React.FC<PlaylistViewProps> = ({
   }, [exportPlaylist, playlist, t]);
 
   return (
-    <div className={styles.playlist_view_container}>
+    <div 
+      data-testid='playlist-view'
+      className={styles.playlist_view_container}
+    >
       <div className={styles.playlist}>
         <div className={styles.playlist_view_info}>
           <div>
@@ -97,6 +104,7 @@ const PlaylistView: React.FC<PlaylistViewProps> = ({
                 initialString={playlist.name}
                 onAccept={onRenamePlaylist}
                 trigger={
+                  isEditable &&
                   <Button
                     basic
                     aria-label={t('rename')}
@@ -154,12 +162,15 @@ const PlaylistView: React.FC<PlaylistViewProps> = ({
                   icon='plus'
                   label={t('queue')}
                 />
-                <PopupButton
-                  onClick={onDeletePlaylist}
-                  ariaLabel={t('delete')}
-                  icon='trash'
-                  label={t('delete')}
-                />
+                {
+                  isEditable &&
+                  <PopupButton
+                    onClick={onDeletePlaylist}
+                    ariaLabel={t('delete')}
+                    icon='trash'
+                    label={t('delete')}
+                  />
+                }
                 <PopupButton
                   onClick={onExportPlaylist}
                   ariaLabel={t('export-button')}
@@ -175,6 +186,7 @@ const PlaylistView: React.FC<PlaylistViewProps> = ({
           onDelete={onDeleteTrack}
           onReorder={onReorderTracks}
           displayAlbum={false}
+          displayDeleteButton={isEditable}
         />
       </div>
     </div>

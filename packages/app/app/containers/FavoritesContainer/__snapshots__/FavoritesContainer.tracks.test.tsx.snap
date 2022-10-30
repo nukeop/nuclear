@@ -32,6 +32,139 @@ exports[`Track view container should display empty state 1`] = `
       </div>
     </div>
   </div>
+  <div
+    class="nuclear player_bar"
+  >
+    <div
+      class="nuclear seekbar"
+      data-testid="seekbar"
+    >
+      <div
+        class="nuclear seekbar_progress"
+        data-testid="seekbar-fill"
+        style="width: 0%;"
+      />
+    </div>
+    <div
+      class="player_bar_bottom"
+    >
+      <div
+        class="track_info"
+      >
+        <div
+          class="nuclear cover_container"
+        >
+          <img
+            src="test-file-stub"
+          />
+        </div>
+      </div>
+      <div
+        class="player_controls"
+      >
+        <button
+          class="player_button disabled"
+          data-testid="player-controls-back"
+        >
+          <i
+            aria-hidden="true"
+            class="step backward large inverted icon"
+          />
+        </button>
+        <button
+          class="player_button disabled"
+          data-testid="player-controls-play"
+        >
+          <i
+            aria-hidden="true"
+            class="play big inverted icon"
+          />
+        </button>
+        <button
+          class="player_button disabled"
+          data-testid="player-controls-forward"
+        >
+          <i
+            aria-hidden="true"
+            class="step forward large inverted icon"
+          />
+        </button>
+      </div>
+      <div
+        class="volume_controls_container"
+      >
+        <div
+          class="play_options"
+        >
+          <i
+            aria-hidden="true"
+            class="repeat large icon play_option_icon"
+            data-testid="loop-play-option"
+          />
+          <i
+            aria-hidden="true"
+            class="random large icon play_option_icon"
+            data-testid="shuffle-play-option"
+          />
+          <i
+            aria-hidden="true"
+            class="magic large icon play_option_icon"
+            data-testid="autoradio-play-option"
+          />
+          <i
+            aria-hidden="true"
+            class="compress large icon play_option_icon"
+            data-testid="mini-player-play-option"
+          />
+        </div>
+        <div
+          class="volume_controls"
+        >
+          <div
+            class="volume_icon"
+          >
+            <i
+              aria-hidden="true"
+              class="volume up large icon"
+            />
+          </div>
+          <div
+            class="volume_slider"
+          >
+            <div
+              class="range"
+              style="width: 100%;"
+            >
+              <div
+                class="baseDiv"
+                style="height: 12px;"
+              >
+                <div
+                  class="track"
+                  style="border-radius: 4px; background: rgb(68, 71, 90); top: 4px; height: 4px;"
+                />
+                <div
+                  class="fill"
+                  style="border-radius: 4px; background: rgb(248, 248, 242); width: calc(100% * 0.5 + 6px); top: 4px; height: 4px;"
+                />
+                <div
+                  class="thumb"
+                  style="width: 12px; height: 12px; border-radius: 12px; background: rgb(248, 248, 242);"
+                />
+                <input
+                  class="range_input"
+                  max="100"
+                  min="0"
+                  style="top: 4px; height: 12px; width: calc(100% - 12px); margin-left: 6px; margin-right: 6px;"
+                  type="range"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </DocumentFragment>
 `;
 
@@ -353,6 +486,139 @@ exports[`Track view container should display favorite tracks 1`] = `
             </tr>
           </tbody>
         </table>
+      </div>
+    </div>
+  </div>
+  <div
+    class="nuclear player_bar"
+  >
+    <div
+      class="nuclear seekbar"
+      data-testid="seekbar"
+    >
+      <div
+        class="nuclear seekbar_progress"
+        data-testid="seekbar-fill"
+        style="width: 0%;"
+      />
+    </div>
+    <div
+      class="player_bar_bottom"
+    >
+      <div
+        class="track_info"
+      >
+        <div
+          class="nuclear cover_container"
+        >
+          <img
+            src="test-file-stub"
+          />
+        </div>
+      </div>
+      <div
+        class="player_controls"
+      >
+        <button
+          class="player_button disabled"
+          data-testid="player-controls-back"
+        >
+          <i
+            aria-hidden="true"
+            class="step backward large inverted icon"
+          />
+        </button>
+        <button
+          class="player_button disabled"
+          data-testid="player-controls-play"
+        >
+          <i
+            aria-hidden="true"
+            class="play big inverted icon"
+          />
+        </button>
+        <button
+          class="player_button disabled"
+          data-testid="player-controls-forward"
+        >
+          <i
+            aria-hidden="true"
+            class="step forward large inverted icon"
+          />
+        </button>
+      </div>
+      <div
+        class="volume_controls_container"
+      >
+        <div
+          class="play_options"
+        >
+          <i
+            aria-hidden="true"
+            class="repeat large icon play_option_icon"
+            data-testid="loop-play-option"
+          />
+          <i
+            aria-hidden="true"
+            class="random large icon play_option_icon"
+            data-testid="shuffle-play-option"
+          />
+          <i
+            aria-hidden="true"
+            class="magic large icon play_option_icon"
+            data-testid="autoradio-play-option"
+          />
+          <i
+            aria-hidden="true"
+            class="compress large icon play_option_icon"
+            data-testid="mini-player-play-option"
+          />
+        </div>
+        <div
+          class="volume_controls"
+        >
+          <div
+            class="volume_icon"
+          >
+            <i
+              aria-hidden="true"
+              class="volume up large icon"
+            />
+          </div>
+          <div
+            class="volume_slider"
+          >
+            <div
+              class="range"
+              style="width: 100%;"
+            >
+              <div
+                class="baseDiv"
+                style="height: 12px;"
+              >
+                <div
+                  class="track"
+                  style="border-radius: 4px; background: rgb(68, 71, 90); top: 4px; height: 4px;"
+                />
+                <div
+                  class="fill"
+                  style="border-radius: 4px; background: rgb(248, 248, 242); width: calc(100% * 0.5 + 6px); top: 4px; height: 4px;"
+                />
+                <div
+                  class="thumb"
+                  style="width: 12px; height: 12px; border-radius: 12px; background: rgb(248, 248, 242);"
+                />
+                <input
+                  class="range_input"
+                  max="100"
+                  min="0"
+                  style="top: 4px; height: 12px; width: calc(100% - 12px); margin-left: 6px; margin-right: 6px;"
+                  type="range"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -693,6 +959,139 @@ exports[`Track view container should show a popup when a track is clicked 1`] = 
             </tr>
           </tbody>
         </table>
+      </div>
+    </div>
+  </div>
+  <div
+    class="nuclear player_bar"
+  >
+    <div
+      class="nuclear seekbar"
+      data-testid="seekbar"
+    >
+      <div
+        class="nuclear seekbar_progress"
+        data-testid="seekbar-fill"
+        style="width: 0%;"
+      />
+    </div>
+    <div
+      class="player_bar_bottom"
+    >
+      <div
+        class="track_info"
+      >
+        <div
+          class="nuclear cover_container"
+        >
+          <img
+            src="test-file-stub"
+          />
+        </div>
+      </div>
+      <div
+        class="player_controls"
+      >
+        <button
+          class="player_button disabled"
+          data-testid="player-controls-back"
+        >
+          <i
+            aria-hidden="true"
+            class="step backward large inverted icon"
+          />
+        </button>
+        <button
+          class="player_button disabled"
+          data-testid="player-controls-play"
+        >
+          <i
+            aria-hidden="true"
+            class="play big inverted icon"
+          />
+        </button>
+        <button
+          class="player_button disabled"
+          data-testid="player-controls-forward"
+        >
+          <i
+            aria-hidden="true"
+            class="step forward large inverted icon"
+          />
+        </button>
+      </div>
+      <div
+        class="volume_controls_container"
+      >
+        <div
+          class="play_options"
+        >
+          <i
+            aria-hidden="true"
+            class="repeat large icon play_option_icon"
+            data-testid="loop-play-option"
+          />
+          <i
+            aria-hidden="true"
+            class="random large icon play_option_icon"
+            data-testid="shuffle-play-option"
+          />
+          <i
+            aria-hidden="true"
+            class="magic large icon play_option_icon"
+            data-testid="autoradio-play-option"
+          />
+          <i
+            aria-hidden="true"
+            class="compress large icon play_option_icon"
+            data-testid="mini-player-play-option"
+          />
+        </div>
+        <div
+          class="volume_controls"
+        >
+          <div
+            class="volume_icon"
+          >
+            <i
+              aria-hidden="true"
+              class="volume up large icon"
+            />
+          </div>
+          <div
+            class="volume_slider"
+          >
+            <div
+              class="range"
+              style="width: 100%;"
+            >
+              <div
+                class="baseDiv"
+                style="height: 12px;"
+              >
+                <div
+                  class="track"
+                  style="border-radius: 4px; background: rgb(68, 71, 90); top: 4px; height: 4px;"
+                />
+                <div
+                  class="fill"
+                  style="border-radius: 4px; background: rgb(248, 248, 242); width: calc(100% * 0.5 + 6px); top: 4px; height: 4px;"
+                />
+                <div
+                  class="thumb"
+                  style="width: 12px; height: 12px; border-radius: 12px; background: rgb(248, 248, 242);"
+                />
+                <input
+                  class="range_input"
+                  max="100"
+                  min="0"
+                  style="top: 4px; height: 12px; width: calc(100% - 12px); margin-left: 6px; margin-right: 6px;"
+                  type="range"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

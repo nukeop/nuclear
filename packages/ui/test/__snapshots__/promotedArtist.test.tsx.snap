@@ -1,0 +1,117 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`(Snapshot) PromotedArtist (name and description) should render correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="promoted_artist"
+    style="background-image: url(https://via.placeholder.com/600x250);"
+  >
+    <div
+      class="promoted_artist_info"
+    >
+      <div
+        class="name"
+      >
+        Test artist
+      </div>
+      <div
+        class="description"
+      >
+        Test description
+      </div>
+      <div
+        class="spacer"
+      />
+      <div
+        class="button_row"
+      >
+        <button
+          class="ui pink circular button nuclear button promoted_artist_button"
+        >
+          <i
+            aria-hidden="true"
+            class="itunes note icon"
+          />
+          Check out
+        </button>
+        <button
+          class="ui button nuclear button text promoted_artist_button external_link"
+        >
+          <i
+            aria-hidden="true"
+            class="external icon"
+          />
+          External link
+        </button>
+      </div>
+    </div>
+    <div
+      class="promoted_artist_image"
+    >
+      <div
+        class="image"
+        style="background-image: url(https://via.placeholder.com/300); mask-image: url(test-file-stub);"
+      />
+      <img
+        class="mask_shadow"
+        src="test-file-stub"
+      />
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`(Snapshot) PromotedArtist (name only) should render correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="promoted_artist"
+  >
+    <div
+      class="promoted_artist_info"
+    >
+      <div
+        class="name"
+      >
+        Test artist
+      </div>
+      <div
+        class="spacer"
+      />
+      <div
+        class="button_row"
+      >
+        <button
+          class="ui pink circular button nuclear button promoted_artist_button"
+        >
+          <i
+            aria-hidden="true"
+            class="itunes note icon"
+          />
+          Check out
+        </button>
+        <button
+          class="ui button nuclear button text promoted_artist_button external_link"
+        >
+          <i
+            aria-hidden="true"
+            class="external icon"
+          />
+          External link
+        </button>
+      </div>
+    </div>
+    <div
+      class="promoted_artist_image"
+    >
+      <div
+        class="image"
+        style="background-image: url(https://via.placeholder.com/300); mask-image: url(test-file-stub);"
+      />
+      <img
+        class="mask_shadow"
+        src="test-file-stub"
+      />
+    </div>
+  </div>
+</DocumentFragment>
+`;

@@ -300,11 +300,11 @@ export const artistInfoSearchByName = (artistName: string, history: History) => 
   }
 };
 
-export const albumInfoSearchByName = (albumName: string, history: History) => async (dispatch, getState: () => RootState) => {
+export const albumInfoSearchByName = (albumName: string, artistName: string, history: History) => async (dispatch, getState: () => RootState) => {
   const selectedProvider = getSelectedMetaProvider(getState);
   const { settings } = getState();
   try {
-    const albumDetails = await selectedProvider.fetchAlbumDetailsByName(albumName);
+    const albumDetails = await selectedProvider.fetchAlbumDetailsByName(albumName, 'master', artistName);
     dispatch(SearchActions.albumInfoSuccess(albumDetails.id, albumDetails));
     _.invoke(history, 'push', `/album/${albumDetails.id}`);
   } catch (e) {

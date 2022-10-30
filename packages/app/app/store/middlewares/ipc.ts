@@ -1,8 +1,8 @@
 import { getOption, IpcEvents, isValidPort } from '@nuclear/core';
 import { ipcRenderer } from 'electron';
 import _ from 'lodash';
-import { LocalLibrary, Queue } from '../../actions/actionTypes';
-import { Settings } from '../../actions/actionTypes';
+import { LocalLibrary } from '../../actions/actionTypes';
+import { Queue, Settings } from '../../actions/actionTypes';
 import { changeConnectivity } from '../../actions/connectivity';
 import * as DownloadActions from '../../actions/downloads';
 import * as PlayerActions from '../../actions/player';
