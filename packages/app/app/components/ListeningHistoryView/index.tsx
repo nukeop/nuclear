@@ -7,15 +7,18 @@ import { ListeningHistorySection } from './ListeningHistorySection';
 import styles from './styles.scss';
 import Header from '../Header';
 import { useTranslation } from 'react-i18next';
-import { Button } from '@nuclear/ui';
-import { Icon } from 'semantic-ui-react';
+import { Button, ConfirmationModal } from '@nuclear/ui';
 
 export type ListeningHistoryView = {
   tracks: HistoryTableTrack[];
+  refreshHistory: React.MouseEventHandler;
+  clearHistory: () => void;
 }
 
 export const ListeningHistoryView: React.FC<ListeningHistoryView> = ({
-  tracks
+  tracks,
+  refreshHistory,
+  clearHistory
 }) => {
   const { t } = useTranslation('listening-history');
   const tracksGroupedByDays = groupBy(tracks, track => track.createdAt.toLocaleDateString());
@@ -28,17 +31,25 @@ export const ListeningHistoryView: React.FC<ListeningHistoryView> = ({
         <div className={styles.listening_history_header_actions}>
           <Button
             data-testid='refresh-history'
-            onClick={() => {}}
+            onClick={refreshHistory}
             basic
             icon='refresh'
           />
-          <Button
-            data-testid='clear-history'
-            onClick={() => {}}
-            basic
-          >
-            {t('clear-history')}
-          </Button>
+          <ConfirmationModal 
+            header={t('clear-history-confirm')}
+            acceptLabel={t('clear-history-confirm-yes')}
+            cancelLabel={t('clear-history-confirm-no')}
+            onAccept={clearHistory}
+            trigger={
+              <Button
+                data-testid='clear-history'
+                onClick={() => {}}
+                basic
+              >
+                {t('clear-history')}
+              </Button>
+            }
+          />
         </div>
       </div>
     </Header>

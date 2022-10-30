@@ -21,6 +21,7 @@ enum IpcEvents {
 
   POST_LISTENING_HISTORY_ENTRY = 'post-listening-history-entry',
   FETCH_LISTENING_HISTORY = 'fetch-listening-history',
+  CLEAR_LISTENING_HISTORY = 'clear-listening-history',
 
   TRACK_ADD = 'add-track',
   TRACK_REMOVE = 'remove-track',
