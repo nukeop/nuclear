@@ -1,20 +1,16 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import { waitFor } from '@testing-library/react';import fetchMock from 'fetch-mock';
+import { waitFor } from '@testing-library/react'; import fetchMock from 'fetch-mock';
 import { store as electronStore } from '@nuclear/core';
 
 import { buildElectronStoreState, buildStoreState } from '../../../test/storeBuilders';
 import { AnyProps, mountedComponentFactory, setupI18Next } from '../../../test/testUtils';
 import { range } from 'lodash';
 
-jest.mock('electron-store', () => {
-  return jest.fn().mockImplementation(() => {
-    return {
-      get: jest.fn(),
-      set: jest.fn()
-    };
-  });
-});
+jest.mock('electron-store', () => jest.fn().mockImplementation(() => ({
+  get: jest.fn(),
+  set: jest.fn()
+})));
 
 jest.mock('../../globals', () => ({
   lastfmApiKey: 'last_fm_key',
@@ -25,7 +21,7 @@ describe('Settings view container', () => {
   beforeAll(() => {
     setupI18Next();
   });
-  
+
   beforeEach(() => {
     fetchMock.reset();
     electronStore.clear();
@@ -42,7 +38,7 @@ describe('Settings view container', () => {
     const coreMock = require('@nuclear/core');
     const LastFmApi = jest.requireActual('@nuclear/core/src/rest/Lastfm');
     coreMock.rest.LastFmApi.mockImplementation(
-      (key, secret) => 
+      (key, secret) =>
         new LastFmApi.default(key, secret)
     );
     const totalTracks = 3;
@@ -64,12 +60,12 @@ describe('Settings view container', () => {
       tracks: tracksFromLastfm
     }));
   });
-  
+
   it('should import last.fm favorites (more than 1000)', async () => {
     const coreMock = require('@nuclear/core');
     const LastFmApi = jest.requireActual('@nuclear/core/src/rest/Lastfm');
     coreMock.rest.LastFmApi.mockImplementation(
-      (key, secret) => 
+      (key, secret) =>
         new LastFmApi.default(key, secret)
     );
     const totalTracks = 4500;
