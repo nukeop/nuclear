@@ -41,6 +41,9 @@ export const ListeningHistoryContainer: React.FC = () => {
   return <ListeningHistoryView 
     tracks={listeningHistory?.data ?? []} 
     refreshHistory={refreshHistory}
-    clearHistory={clearHistory}
+    clearHistory={() => {
+      clearHistory();
+      setImmediate(() => refreshHistory());
+    }}
   />;
 };

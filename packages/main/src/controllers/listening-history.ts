@@ -35,4 +35,9 @@ export default class ListeningHistoryController {
   async getListeningHistory(event: IpcMessageEvent, request: ListeningHistoryRequest) {
     return this.listeningHistory.getListeningHistory(request);
   }
+
+  @ipcEvent(IpcEvents.CLEAR_LISTENING_HISTORY)
+  async clearListeningHistory(event: IpcMessageEvent) {
+    return this.listeningHistory.clearListeningHistory();
+  }
 }
