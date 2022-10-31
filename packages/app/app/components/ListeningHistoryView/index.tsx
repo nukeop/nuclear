@@ -13,12 +13,20 @@ export type ListeningHistoryView = {
   tracks: HistoryTableTrack[];
   refreshHistory: React.MouseEventHandler;
   clearHistory: () => void;
+  nextPage: () => void;
+  previousPage: () => void;
+  isNextPageAvailable: boolean;
+  isPreviousPageAvailable: boolean;
 }
 
 export const ListeningHistoryView: React.FC<ListeningHistoryView> = ({
   tracks,
   refreshHistory,
-  clearHistory
+  clearHistory,
+  nextPage,
+  previousPage,
+  isNextPageAvailable,
+  isPreviousPageAvailable
 }) => {
   const { t } = useTranslation('listening-history');
   const tracksGroupedByDays = groupBy(tracks, track => track.createdAt.toLocaleDateString());
@@ -35,7 +43,7 @@ export const ListeningHistoryView: React.FC<ListeningHistoryView> = ({
             basic
             icon='refresh'
           />
-          <ConfirmationModal 
+          <ConfirmationModal
             header={t('clear-history-confirm')}
             acceptLabel={t('clear-history-confirm-yes')}
             cancelLabel={t('clear-history-confirm-no')}
@@ -43,7 +51,7 @@ export const ListeningHistoryView: React.FC<ListeningHistoryView> = ({
             trigger={
               <Button
                 data-testid='clear-history'
-                onClick={() => {}}
+                onClick={() => { }}
                 basic
               >
                 {t('clear-history')}
@@ -54,11 +62,28 @@ export const ListeningHistoryView: React.FC<ListeningHistoryView> = ({
       </div>
     </Header>
     {
-      map(tracksGroupedByDays, (tracksSubset, date) => <ListeningHistorySection 
+      map(tracksGroupedByDays, (tracksSubset, date) => <ListeningHistorySection
         key={date}
-        tracks={tracksSubset} 
+        tracks={tracksSubset}
       />
       )
     }
+    <div className={styles.listening_history_pagination}>
+      <Button
+        data-testid='previous-page'
+        onClick={previousPage}
+        basic
+        icon='chevron left'
+        disabled={!isPreviousPageAvailable}
+      />
+
+      <Button
+        data-testid='next-page'
+        onClick={nextPage}
+        basic
+        icon='chevron right'
+        disabled={!isNextPageAvailable}
+      />
+    </div>
   </div>;
 };
