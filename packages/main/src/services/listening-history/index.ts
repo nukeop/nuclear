@@ -15,6 +15,10 @@ class ListeningHistoryService {
   getListeningHistory(request: ListeningHistoryRequest) {
     return this.db.getEntries(request);
   }
+
+  clearListeningHistory() {
+    return this.db.deleteEntries({});
+  }
 }
 
 export default ListeningHistoryService;
