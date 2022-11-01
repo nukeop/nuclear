@@ -1,4 +1,3 @@
-/* eslint-disable node/no-missing-import */
 import React, { useState } from 'react';
 import _ from 'lodash';
 import { Icon, Dropdown } from 'semantic-ui-react';
