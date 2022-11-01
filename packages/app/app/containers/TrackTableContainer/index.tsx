@@ -86,6 +86,17 @@ const TrackTableContainer: React.FC<TrackTableContainerProps> = ({
     dispatch(playlistActions.updatePlaylist(newPlaylist));
   }, [dispatch, playlists]);
 
+  const onCreatePlaylist = useCallback(
+    (track: Track, { name }: { name: string } ) => {
+      const clonedTrack = {...safeAddUuid(track)};
+      if (clonedTrack.artist.name) {
+        _.set(clonedTrack, 'artist', clonedTrack.artist.name);
+      }
+      dispatch(playlistActions.addPlaylist([clonedTrack], name));
+    },
+    [dispatch]
+  );
+
   const onDragEnd = useCallback<TrackTableProps['onDragEnd']>((result) => {
     const { source, destination } = result;
     onReorder(source.index, destination.index);
@@ -98,7 +109,14 @@ const TrackTableContainer: React.FC<TrackTableContainerProps> = ({
     textPlayNext: popupTranstation('play-next'),
     textAddToFavorites: popupTranstation('add-to-favorite'),
     textAddToPlaylist: popupTranstation('add-to-playlist'),
-    textAddToDownloads: popupTranstation('download')
+    textCreatePlaylist: popupTranstation('create-playlist'),
+    textAddToDownloads: popupTranstation('download'),
+    createPlaylistDialog: {
+      title: popupTranstation('create-playlist-dialog-title'),
+      placeholder: popupTranstation('create-playlist-dialog-placeholder'),
+      accept: popupTranstation('create-playlist-dialog-accept'),
+      cancel: popupTranstation('create-playlist-dialog-cancel')
+    }
   };
 
   const trackTableTranslation = useTranslation('track-table').t;
@@ -130,6 +148,7 @@ const TrackTableContainer: React.FC<TrackTableContainerProps> = ({
     onRemoveFromFavorites={onRemoveFromFavorites}
     onAddToDownloads={onAddToDownloads}
     onAddToPlaylist={onAddToPlaylist}
+    onCreatePlaylist={onCreatePlaylist}
     onDelete={onDelete}
     onDragEnd={Boolean(onReorder) && onDragEnd}
     popupActionStrings={popupStrings}

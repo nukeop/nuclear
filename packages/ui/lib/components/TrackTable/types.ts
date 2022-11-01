@@ -21,6 +21,7 @@ export type TrackTableExtraProps = {
   onAddToFavorites?: (track: Track) => void;
   onRemoveFromFavorites?: (track: Track) => void;
   onAddToPlaylist?: (track: Track, { name }: { name: string }) => void;
+  onCreatePlaylist?: (track: Track, { name }: { name: string }) => void;
   onAddToDownloads?: (track: Track) => void;
   onDelete?: (track: Track, idx: number) => void;
   playlists?: Array<{

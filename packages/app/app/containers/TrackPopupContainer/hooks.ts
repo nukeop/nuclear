@@ -98,13 +98,31 @@ export const useTrackPopupProps = (track, thumb) => {
     ));
   }, [track, dispatch, playlistToastTitle, playlistToastBody, toastThumb, settings]);
 
+  const onCreatePlaylist = useCallback(
+    ({ name }: { name: string }) => {
+      const clonedTrack = {...safeAddUuid(track)};
+      if (clonedTrack.artist.name) {
+        _.set(clonedTrack, 'artist', clonedTrack.artist.name);
+      }
+      dispatch(PlaylistsActions.addPlaylist([PlaylistHelper.extractTrackData(track)], name));
+    },
+    [dispatch]
+  );
+
   const strings: TrackPopupStrings = {
     textAddToQueue: t('add-to-queue'),
     textPlayNow: t('play-now'),
     textPlayNext: t('play-next'),
     textAddToFavorites: t('add-to-favorite'),
     textAddToPlaylist: t('add-to-playlist'),
-    textAddToDownloads: t('download')
+    textCreatePlaylist: t('create-playlist'),
+    textAddToDownloads: t('download'),
+    createPlaylistDialog: {
+      title: t('create-playlist-dialog-title'),
+      placeholder: t('create-playlist-dialog-placeholder'),
+      accept: t('create-playlist-dialog-accept'),
+      cancel: t('create-playlist-dialog-cancel')
+    }
   };
 
   return {
@@ -115,6 +133,7 @@ export const useTrackPopupProps = (track, thumb) => {
     onPlayNow,
     onAddToFavorites,
     onAddToPlaylist,
+    onCreatePlaylist,
     onAddToDownloads
   };
 };
