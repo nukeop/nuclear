@@ -3,32 +3,6 @@ import ElectronStore from 'electron-store';
 
 import { settingsConfig } from '../settings';
 
-/**
- * return multiple items from store
- * @param {String[]} items array of keys
- * @return {Object} key,value pair of items
- */
-ElectronStore.prototype.getItems = function (items) {
-  items = Array.isArray(items) ? items : [items];
-  const data = {};
-  for (const item of items) {
-    data[item] = this.get(item);
-  }
-  return data;
-};
-
-/**
- * sets multiple items
- * @param {Object} items key value pairs to set
- * @return {void}
- */
-ElectronStore.prototype.setItems = function (items) {
-  const keys = Object.keys(items);
-  for (const key of keys) {
-    this.set(key, items[key]);
-  }
-};
-
 const store = new ElectronStore();
 
 function setIfUnset(key, value) {
