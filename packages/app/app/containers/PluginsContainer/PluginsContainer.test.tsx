@@ -7,6 +7,7 @@ import { AnyProps, configureMockStore, setupI18Next, TestRouterProvider, TestSto
 import MainContentContainer from '../MainContentContainer';
 
 jest.mock('fs');
+jest.mock('electron-store');
 
 describe('Plugins container', () => {
   beforeAll(() => {

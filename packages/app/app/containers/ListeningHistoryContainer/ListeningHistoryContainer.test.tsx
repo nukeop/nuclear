@@ -44,11 +44,11 @@ describe('Listening history container', () => {
       '1/1/2020',
       'test title',
       'test artist',
-      '1/1/2020, 1:00:00 AM',
+      '1/1/2020, 12:00:00 AM',
       '1/2/2020',
       'test title 2',
       'test artist2',
-      '1/2/2020, 1:00:00 AM'
+      '1/2/2020, 12:00:00 AM'
     ].map(async text => {
       expect(await component.findByText(text)).toBeInTheDocument();
     }));

@@ -11,6 +11,7 @@ import MainContentContainer from '../MainContentContainer';
 import { onReorder } from '.';
 
 jest.mock('fs');
+jest.mock('electron-store');
 
 describe('Playlist view container', () => {
   beforeAll(() => {
