@@ -37,19 +37,28 @@ jest.mock('electron', () => ({
 
 describe('Listening history container', () => {
 
-  it('renders the listening history', () => {
+  it('renders the listening history', async () => {
     const { component } = mountComponent();
 
-    waitFor(() => expect(component.getByText('test artist - test title')).toBeInTheDocument());
-    waitFor(() => expect(component.getByText('test artist2 - test title 2')).toBeInTheDocument());
+    await Promise.all([
+      '1/1/2020',
+      'test title',
+      'test artist',
+      '1/1/2020, 1:00:00 AM',
+      '1/2/2020',
+      'test title 2',
+      'test artist2',
+      '1/2/2020, 1:00:00 AM'
+    ].map(async text => {
+      expect(await component.findByText(text)).toBeInTheDocument();
+    }));
   });
 
   it('can refresh history', async () => {
     const { component } = mountComponent();
 
     component.getByTestId('refresh-history').click();
-
-    expect(ipcRenderer.invoke).toHaveBeenCalledTimes(2);
+    expect(ipcRenderer.invoke).toHaveBeenNthCalledWith(2, IpcEvents.FETCH_LISTENING_HISTORY, { limit: 10 });
   });
 
   it('can clear history', async () => {
@@ -87,21 +96,24 @@ describe('Listening history container', () => {
           }],
           cursor: {
             beforeCursor: null,
-            afterCursor: 'test'
+            afterCursor: btoa('createdAt:1000')
           }
         });
       }
     });
     const { component } = mountComponent();
 
-    waitFor(() => expect(component.getByText('test artist - test title')).toBeInTheDocument());
-
+    expect(await component.findByText('test artist')).toBeInTheDocument();
+    expect(await component.findByText('test title')).toBeInTheDocument();
+    
     component.getByTestId('next-page').click();
-
+    
     await waitFor(() => expect(ipcRenderer.invoke).toHaveBeenCalledWith(IpcEvents.FETCH_LISTENING_HISTORY, {
-      beforeCursor: null,
-      afterCursor: 'test'
+      limit: 10,
+      afterCursor: btoa('createdAt:999')
     }));
+    expect(await component.findByText('test artist1')).toBeInTheDocument();
+    expect(await component.findByText('test title1')).toBeInTheDocument();
   });
 
   it('can go to the previous page', async () => {
@@ -112,7 +124,7 @@ describe('Listening history container', () => {
           data: [{
             uuid: 'test3',
             artist: 'test artist3',
-            title: 'test title 3',
+            title: 'test title3',
             createdAt: new Date('2020-01-03')
           }],
           cursor: {
@@ -122,9 +134,14 @@ describe('Listening history container', () => {
         });
       } else {
         return Promise.resolve({
-          data: [],
+          data: [{
+            uuid: 'test',
+            artist: 'test artist',
+            title: 'test title',
+            createdAt: new Date('2020-01-03')
+          }],
           cursor: {
-            beforeCursor: 'test',
+            beforeCursor: btoa('createdAt:1000'),
             afterCursor: null
           }
         });
@@ -132,12 +149,17 @@ describe('Listening history container', () => {
     });
     const { component } = mountComponent();
 
+    expect(await component.findByText('test artist')).toBeInTheDocument();
+    expect(await component.findByText('test title')).toBeInTheDocument();
+    
     component.getByTestId('previous-page').click();
-
+    
     await waitFor(() => expect(ipcRenderer.invoke).toHaveBeenCalledWith(IpcEvents.FETCH_LISTENING_HISTORY, {
-      beforeCursor: 'test',
-      afterCursor: null
+      beforeCursor: btoa('createdAt:1000'),
+      limit: 10
     }));
+    expect(await component.findByText('test artist3')).toBeInTheDocument();
+    expect(await component.findByText('test title3')).toBeInTheDocument();
   });
 
   const mountComponent = (electronStoreState?: AnyProps) => {
