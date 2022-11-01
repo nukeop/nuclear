@@ -110,6 +110,7 @@ const TrackPopup: React.FC<TrackPopupProps> = ({
 
         {withPlayNext && (
           <PopupButton
+            data-testid='track-popup-play-next'
             onClick={onPlayNext}
             ariaLabel='Add track to play next'
             icon='play'
@@ -129,6 +130,7 @@ const TrackPopup: React.FC<TrackPopupProps> = ({
 
         {withAddToFavorites && (
           <PopupButton
+            data-testid='track-popup-add-favorites'
             onClick={onAddToFavorites}
             ariaLabel='Add this track to favorites'
             icon='heart'
@@ -137,7 +139,9 @@ const TrackPopup: React.FC<TrackPopupProps> = ({
         )}
 
         {withAddToPlaylist && Boolean(playlists) && (
-          <PopupDropdown text={strings.textAddToPlaylist}>
+          <PopupDropdown 
+            data-testid='track-popup-add-playlist'
+            text={strings.textAddToPlaylist}>
             {_.map(playlists, (playlist, i) => (
               <Dropdown.Item
                 key={i}
@@ -151,6 +155,7 @@ const TrackPopup: React.FC<TrackPopupProps> = ({
               onClick={() => {
                 setIsCreatePlaylistDialogOpen(true);
               }}
+              data-testid='track-popup-create-playlist'
             >
               <Icon name='plus' />
               {strings.textCreatePlaylist}
@@ -160,6 +165,7 @@ const TrackPopup: React.FC<TrackPopupProps> = ({
 
         {withAddToDownloads && (
           <PopupButton
+            data-testid='track-popup-download'
             onClick={onAddToDownloads}
             ariaLabel='Download this track'
             icon='download'
@@ -180,6 +186,7 @@ const TrackPopup: React.FC<TrackPopupProps> = ({
           onCreatePlaylist({ name: input });
         }}
         initialString={title}
+        testIdPrefix='track-popup-create-playlist-dialog'
       />
     </>
   );
