@@ -4,11 +4,12 @@ import { useSelector } from 'react-redux';
 
 import { IpcEvents } from '@nuclear/core';
 import { ListeningHistoryEntry } from '@nuclear/main/src/services/listening-history/model/ListeningHistoryEntry';
+import { ListeningHistoryRequest } from '@nuclear/main/src/controllers/listening-history';
 
 import { ListeningHistoryView } from '../../components/ListeningHistoryView';
 import { queue as queueSelector } from '../../selectors/queue';
 
-type ListeningHistory = {
+type ListeningHistoryResult = {
   data: ListeningHistoryEntry[];
   cursor: {
     beforeCursor: string | null;
@@ -17,46 +18,61 @@ type ListeningHistory = {
 }
 
 const clearHistory = () => ipcRenderer.send(IpcEvents.CLEAR_LISTENING_HISTORY);
-const fetchHistory = (limit: number, beforeCursor?: string, afterCursor?: string) => ipcRenderer.invoke(IpcEvents.FETCH_LISTENING_HISTORY, { limit, beforeCursor, afterCursor });
+const fetchHistory = (request: ListeningHistoryRequest) => ipcRenderer.invoke(IpcEvents.FETCH_LISTENING_HISTORY, request);
+
+/**
+ * The cursor is a base64 encoded string in the form of "createdAt:1667239617000". 
+ * We need to extract the timestamp and subtract 1ms from it then encode it back.
+ * This is needed so that the next page of results doesn't contain the last item of the current page
+ */
+const processAfterCursor = (afterCursor: string | null) => {
+  if (afterCursor) {
+    const [attr, timestamp] = atob(afterCursor).split(':');
+    const newCursor = btoa(`${attr}:${parseInt(timestamp, 10) - 1}`);
+    return newCursor;
+  }
+  return null;
+};
 
 export const ListeningHistoryContainer: React.FC = () => {
   const queue = useSelector(queueSelector);
-  const [entriesPerPage, setEntriesPerPage] = useState(10);
+  const [limit, setLimit] = useState(10);
   const [afterCursor, setAfterCursor] = useState(undefined);
   const [beforeCursor, setBeforeCursor] = useState(undefined);
-  const [listeningHistory, setListeningHistory] = useState<ListeningHistory>();
+  const [listeningHistory, setListeningHistory] = useState<ListeningHistoryResult>();
+  const [lastSearchQuery, setLastSearchQuery] = useState<ListeningHistoryRequest | undefined>();
 
-  useEffect(() => {
-    fetchHistory(entriesPerPage).then(data => {
-      setListeningHistory(data);
-      setAfterCursor(data.cursor.afterCursor);
-      setBeforeCursor(data.cursor.beforeCursor);
-    });
+  const setFetchResult = useCallback((result: ListeningHistoryResult) => {
+    setListeningHistory(result);
+    setAfterCursor(processAfterCursor(result.cursor.afterCursor));
+    setBeforeCursor(result.cursor.beforeCursor);
   }, []);
 
+  useEffect(() => {
+    const query = lastSearchQuery ?? {limit};
+    fetchHistory(query).then(setFetchResult);
+  }, [queue]);
+
   const refreshHistory = useCallback(() => {
-    fetchHistory(entriesPerPage).then(data => {
-      setListeningHistory(data);
-      setAfterCursor(data.cursor.afterCursor);
-      setBeforeCursor(data.cursor.beforeCursor);
+    fetchHistory({limit}).then(data => {
+      setFetchResult(data);
+      setLastSearchQuery({limit});
     });
-  }, [entriesPerPage, afterCursor]);
+  }, [limit]);
 
   const nextPage = useCallback(() => {
-    fetchHistory(entriesPerPage, undefined, afterCursor).then(data => {
-      setListeningHistory(data);
-      setAfterCursor(data.cursor.afterCursor);
-      setBeforeCursor(data.cursor.beforeCursor);
+    fetchHistory({limit, afterCursor}).then(data => {
+      setFetchResult(data);
+      setLastSearchQuery({limit, afterCursor});
     });
-  }, [entriesPerPage, afterCursor]);
+  }, [limit, afterCursor]);
 
   const previousPage = useCallback(() => {
-    fetchHistory(entriesPerPage, beforeCursor).then(data => {
-      setListeningHistory(data);
-      setAfterCursor(data.cursor.afterCursor);
-      setBeforeCursor(data.cursor.beforeCursor);
+    fetchHistory({limit, beforeCursor}).then(data => {
+      setFetchResult(data);
+      setLastSearchQuery({limit, beforeCursor});
     });
-  }, [entriesPerPage, beforeCursor]);
+  }, [limit, beforeCursor]);
 
   return <ListeningHistoryView
     tracks={listeningHistory?.data ?? []}
