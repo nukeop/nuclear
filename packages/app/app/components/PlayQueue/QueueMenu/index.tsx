@@ -5,10 +5,8 @@ import {
   Icon
 } from 'semantic-ui-react';
 import { useTranslation } from 'react-i18next';
-
 import { Playlist, PlaylistTrack } from '@nuclear/core';
-
-import InputDialog from '../../InputDialog';
+import { InputDialog } from '@nuclear/ui';
 import QueueMenuMore from './QueueMenuMore';
 import settingsConst from '../../../constants/settings';
 import { PlayQueueActions } from '../../../containers/PlayQueueContainer';

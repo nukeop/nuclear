@@ -1,0 +1,329 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Track Popup container creating new playlist should open Input Dialog 1`] = `
+<body
+  class="dimmable dimmed blurring"
+>
+  <div>
+    <button
+      data-testid="trigger-button"
+    >
+      Trigger
+    </button>
+  </div>
+  <div
+    style="display: flex; position: absolute; left: 0px; top: 0px;"
+  >
+    <div
+      class="ui bottom center popup transition visible context_popup"
+      style="position: initial;"
+    >
+      <div
+        class="popup_header"
+      >
+        <div
+          class="popup_info"
+        >
+          <div
+            class="popup_title"
+          >
+            Track title
+          </div>
+          
+        </div>
+      </div>
+      <hr />
+      <div
+        class="popup_buttons"
+      >
+        <a
+          aria-label="Add track to queue"
+          class="popup_button"
+          data-testid="track-popup-add-queue"
+          href="#"
+        >
+          <i
+            aria-hidden="true"
+            class="plus icon"
+          />
+           
+          Add to queue
+        </a>
+        <a
+          aria-label="Add track to play next"
+          class="popup_button"
+          data-testid="track-popup-play-next"
+          href="#"
+        >
+          <i
+            aria-hidden="true"
+            class="play icon"
+          />
+           
+          Play next
+        </a>
+        <a
+          aria-label="Play this track now"
+          class="popup_button"
+          data-testid="track-popup-play-now"
+          href="#"
+        >
+          <i
+            aria-hidden="true"
+            class="play icon"
+          />
+           
+          Play now
+        </a>
+        <a
+          aria-label="Add this track to favorites"
+          class="popup_button"
+          data-testid="track-popup-add-favorites"
+          href="#"
+        >
+          <i
+            aria-hidden="true"
+            class="heart icon"
+          />
+           
+          Add to favorites
+        </a>
+        <div
+          aria-expanded="false"
+          class="ui dropdown nuclear dropdown popup_button left"
+          data-testid="track-popup-add-playlist"
+          role="listbox"
+          tabindex="0"
+        >
+          <div
+            aria-atomic="true"
+            aria-live="polite"
+            class="divider text"
+            role="alert"
+          >
+            Add to playlist
+          </div>
+          <i
+            aria-hidden="true"
+            class="dropdown icon"
+          />
+          <div
+            class="menu transition"
+          >
+            <div
+              class="item"
+              data-testid="track-popup-create-playlist"
+              role="option"
+            >
+              <i
+                aria-hidden="true"
+                class="plus icon"
+              />
+              Create new playlist
+            </div>
+          </div>
+        </div>
+        <a
+          aria-label="Download this track"
+          class="popup_button"
+          data-testid="track-popup-download"
+          href="#"
+        >
+          <i
+            aria-hidden="true"
+            class="download icon"
+          />
+           
+          Download
+        </a>
+      </div>
+    </div>
+  </div>
+  <div
+    class="ui page modals dimmer transition visible active"
+    style="display: flex;"
+  >
+    <div
+      class="ui basic modal transition visible active"
+    >
+      <i
+        aria-hidden="true"
+        class="close icon"
+      />
+      <div
+        class="content"
+      >
+        <h4>
+          Input playlist name:
+        </h4>
+        <div
+          class="ui fluid inverted input"
+          data-testid="track-popup-create-playlist-dialog-input"
+        >
+          <input
+            placeholder="Playlist name..."
+            type="text"
+            value="Track title"
+          />
+        </div>
+      </div>
+      <div
+        class="actions"
+      >
+        <button
+          class="ui red basic inverted button nuclear button"
+          data-testid="track-popup-create-playlist-dialog-cancel"
+        >
+          Cancel
+        </button>
+        <button
+          class="ui green button nuclear button"
+          data-testid="track-popup-create-playlist-dialog-accept"
+        >
+          Save
+        </button>
+      </div>
+    </div>
+  </div>
+</body>
+`;
+
+exports[`Track Popup container should render the Track Popup container 1`] = `
+<body>
+  <div>
+    <button
+      data-testid="trigger-button"
+    >
+      Trigger
+    </button>
+  </div>
+  <div
+    style="display: flex; position: absolute; left: 0px; top: 0px;"
+  >
+    <div
+      class="ui top left popup transition visible context_popup"
+      style="position: initial;"
+    >
+      <div
+        class="popup_header"
+      >
+        <div
+          class="popup_info"
+        >
+          <div
+            class="popup_title"
+          >
+            Track title
+          </div>
+          
+        </div>
+      </div>
+      <hr />
+      <div
+        class="popup_buttons"
+      >
+        <a
+          aria-label="Add track to queue"
+          class="popup_button"
+          data-testid="track-popup-add-queue"
+          href="#"
+        >
+          <i
+            aria-hidden="true"
+            class="plus icon"
+          />
+           
+          Add to queue
+        </a>
+        <a
+          aria-label="Add track to play next"
+          class="popup_button"
+          data-testid="track-popup-play-next"
+          href="#"
+        >
+          <i
+            aria-hidden="true"
+            class="play icon"
+          />
+           
+          Play next
+        </a>
+        <a
+          aria-label="Play this track now"
+          class="popup_button"
+          data-testid="track-popup-play-now"
+          href="#"
+        >
+          <i
+            aria-hidden="true"
+            class="play icon"
+          />
+           
+          Play now
+        </a>
+        <a
+          aria-label="Add this track to favorites"
+          class="popup_button"
+          data-testid="track-popup-add-favorites"
+          href="#"
+        >
+          <i
+            aria-hidden="true"
+            class="heart icon"
+          />
+           
+          Add to favorites
+        </a>
+        <div
+          aria-expanded="false"
+          class="ui dropdown nuclear dropdown popup_button left"
+          data-testid="track-popup-add-playlist"
+          role="listbox"
+          tabindex="0"
+        >
+          <div
+            aria-atomic="true"
+            aria-live="polite"
+            class="divider text"
+            role="alert"
+          >
+            Add to playlist
+          </div>
+          <i
+            aria-hidden="true"
+            class="dropdown icon"
+          />
+          <div
+            class="menu transition"
+          >
+            <div
+              class="item"
+              data-testid="track-popup-create-playlist"
+              role="option"
+            >
+              <i
+                aria-hidden="true"
+                class="plus icon"
+              />
+              Create new playlist
+            </div>
+          </div>
+        </div>
+        <a
+          aria-label="Download this track"
+          class="popup_button"
+          data-testid="track-popup-download"
+          href="#"
+        >
+          <i
+            aria-hidden="true"
+            class="download icon"
+          />
+           
+          Download
+        </a>
+      </div>
+    </div>
+  </div>
+</body>
+`;
