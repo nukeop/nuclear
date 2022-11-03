@@ -6,7 +6,7 @@ import glob from 'glob';
 import { injectable, inject } from 'inversify';
 import _ from 'lodash';
 import path from 'path';
-import { createConnection, Connection, Repository } from 'typeorm';
+import { Repository, DataSource } from 'typeorm';
 import { promisify } from 'util';
 
 import Logger, { $mainLogger } from '../logger';
@@ -17,7 +17,7 @@ import Store from '../store';
 
 @injectable()
 class LocalLibraryDb {
-  private connection: Connection;
+  private connection: DataSource;
   private trackRepository: Repository<LocalTrack>;
   private folderRepository: Repository<LocalFolder>;
 
@@ -29,9 +29,10 @@ class LocalLibraryDb {
 
   async connect() {
     try {
-      const database = path.join(app.getPath('userData'), this.config.sqliteDbName);
-      this.connection = await createConnection({
+      const database = path.join(app.getPath('userData'), this.config.localLibraryDbName);
+      this.connection = new DataSource({
         type: 'sqlite',
+        name: 'local-library',
         database,
         entities: [
           LocalFolder,
@@ -40,13 +41,14 @@ class LocalLibraryDb {
         synchronize: true,
         logging: false
       });
+      await this.connection.initialize();
 
       this.folderRepository = this.connection.getRepository<LocalFolder>(LocalFolder);
       this.trackRepository = this.connection.getRepository<LocalTrack>(LocalTrack);
 
-      this.logger.log(`Sqlite database created at ${database}`);
+      this.logger.log(`Local library database created at ${database}`);
     } catch (err) {
-      this.logger.error('Sqlite database creation failed');
+      this.logger.error('Could not connect to the sqlite database for local library');
       this.logger.error(err.stack);
     }
   }
@@ -137,7 +139,10 @@ class LocalLibraryDb {
 
   async getTracksFromPath(filePaths: string[]): Promise<LocalTrack[]> {
     const tracks = await Promise.all(
-      filePaths.map((filePath) => this.trackRepository.find({ where: { folder: filePath } }))
+      filePaths.map((filePath) => this.trackRepository.find({ 
+        relations: ['folder'],
+        where: { folder: {path: filePath } } 
+      }))
     );
 
     return tracks.flat();

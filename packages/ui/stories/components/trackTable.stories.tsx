@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { Icon } from 'semantic-ui-react';
 import { action } from '@storybook/addon-actions';
 
-import { TrackTable } from '../..';
+import { TrackTable, HistoryTable, HistoryTableDate } from '../..';
 import { swap } from '../storyUtils';
 import { Track } from '../../lib/types';
 
@@ -119,3 +119,55 @@ export const DragAndDrop = () => {
       {...callbacks} />
   </div>;
 };
+
+const Template = (args) => <HistoryTable 
+  {...args}
+  isTrackFavorite={() => false}
+  playlists={playlists}
+  strings={trackTableStrings}
+  displayHeaders={false}
+  displayPosition={false}
+  displayThumbnail={false}
+  displayAlbum={false}
+  displayDuration={false}
+/>;
+
+export const ListeningHistory = () => <div className='bg'>
+  <HistoryTableDate>
+    {new Date().toLocaleDateString()}
+  </HistoryTableDate>
+  <Template
+    tracks={[{
+      artist: 'Test Artist',
+      title: 'Test Title',
+      createdAt: new Date()
+    }]}
+    displayDeleteButton={false}
+  />
+  <HistoryTableDate>
+    {new Date(new Date().setDate(new Date().getDate() - 1)).toLocaleDateString()}
+  </HistoryTableDate>
+  <Template
+    tracks={[{
+      artist: 'Test Artist 2',
+      title: 'Test Title 2',
+      createdAt: new Date(new Date().setDate(new Date().getDate() - 1))
+    }, {
+      artist: 'Test Artist 4',
+      title: 'Test Title 4',
+      createdAt: new Date(new Date().setDate(new Date().getDate() - 1))
+    }]}
+    displayDeleteButton={false}
+  />
+  <HistoryTableDate>
+    {new Date(new Date().setDate(new Date().getDate() - 2)).toLocaleDateString()}
+  </HistoryTableDate>
+  <Template
+    tracks={[{
+      artist: 'Test Artist 3',
+      title: 'Test Title 3',
+      createdAt: new Date(new Date().setDate(new Date().getDate() - 2))
+    }]}
+    displayDeleteButton={false}
+  />
+</div>;

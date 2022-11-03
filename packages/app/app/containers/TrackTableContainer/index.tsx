@@ -19,18 +19,20 @@ import * as favoritesActions from '../../actions/favorites';
 import { favoritesSelectors } from '../../selectors/favorites';
 import { safeAddUuid } from '../../actions/helpers';
 
-export type TrackTableContainerProps = TrackTableSettings & {
-  tracks: TrackTableProps['tracks'];
-  onDelete?: TrackTableProps['onDelete'];
+export type TrackTableContainerProps<T extends Track> = TrackTableSettings & {
+  tracks: TrackTableProps<T>['tracks'];
+  onDelete?: TrackTableProps<T>['onDelete'];
   onReorder?: (indexSource: number, indexDest: number) => void;
+  TrackTableComponent?: React.ComponentType<TrackTableProps<T>>;
 };
 
-const TrackTableContainer: React.FC<TrackTableContainerProps> = ({
+function TrackTableContainer<T extends Track> ({
   tracks,
   onDelete,
   onReorder,
+  TrackTableComponent = TrackTable,
   ...settings
-}) => {
+}: TrackTableContainerProps<T>) {
   const { t } = useTranslation('playlists');
   const dispatch = useDispatch();
   const playlists = useSelector(playlistsSelectors.localPlaylists);
@@ -97,7 +99,7 @@ const TrackTableContainer: React.FC<TrackTableContainerProps> = ({
     [dispatch]
   );
 
-  const onDragEnd = useCallback<TrackTableProps['onDragEnd']>((result) => {
+  const onDragEnd = useCallback<TrackTableProps<Track>['onDragEnd']>((result) => {
     const { source, destination } = result;
     onReorder(source.index, destination.index);
   }, [onReorder]);
@@ -129,7 +131,7 @@ const TrackTableContainer: React.FC<TrackTableContainerProps> = ({
     tracksSelectedLabelPlural: trackTableTranslation('tracks-selected-label-plural')
   };
 
-  return <TrackTable
+  return <TrackTableComponent
     {...settings}
     tracks={tracks}
     positionHeader={<Icon name='hashtag' />}
@@ -155,6 +157,6 @@ const TrackTableContainer: React.FC<TrackTableContainerProps> = ({
 
     isTrackFavorite={isTrackFavorite}
   />;
-};
+}
 
 export default TrackTableContainer;

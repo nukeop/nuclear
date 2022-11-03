@@ -193,10 +193,28 @@
     }
   }
 
+  .date_cell {
+    text-align: right;
+    color: rgba($white, 0.4);
+  }
+
   .select_cell {
     text-align: end;
     .checkbox {
       margin-top: 5px;
     }
+  }
+}
+
+.history_table_date {
+  color: rgba($white, 0.4);
+  font-weight: normal;
+  font-size: 1.25em;
+  margin: 1em 0 0 0.5em;
+}
+
+.history_table {
+  td {
+    width: 30%;
   }
 }

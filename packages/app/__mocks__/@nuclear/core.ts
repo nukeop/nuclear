@@ -42,5 +42,6 @@ module.exports = {
     STRING: 'string',
     DIRECTORY: 'directory'
   },
-  PlaylistHelper: jest.requireActual('@nuclear/core/src/helpers').PlaylistHelper
+  PlaylistHelper: jest.requireActual('@nuclear/core/src/helpers').PlaylistHelper,
+  IpcEvents: jest.requireActual('@nuclear/core').IpcEvents
 };

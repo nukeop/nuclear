@@ -22,7 +22,8 @@ export default [
       { name: 'search', path: 'search', icon: 'search' },
       { name: 'settings', path: 'settings', icon: 'cog' },
       { name: 'equalizer', path: 'equalizer', icon: 'align right' },
-      { name: 'visualizer', path: 'visualizer', icon: 'tint' }
+      { name: 'visualizer', path: 'visualizer', icon: 'tint' },
+      { name: 'listening-history', path: 'listening-history', icon: 'history' }
     ]
   }, {
     name: 'collection',

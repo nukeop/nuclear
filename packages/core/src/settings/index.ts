@@ -93,6 +93,14 @@ export const settingsConfig: Array<Setting> = [
     default: 10
   },
   {
+    name: 'listeningHistory',
+    category: 'playback',
+    description: 'listening-history-description',
+    type: SettingType.BOOLEAN,
+    prettyName: 'listening-history',
+    default: true
+  },
+  {
     name: 'notificationTimeout',
     category: 'program-settings',
     type: SettingType.NUMBER,
