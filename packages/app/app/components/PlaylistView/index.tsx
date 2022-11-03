@@ -89,7 +89,7 @@ const PlaylistView: React.FC<PlaylistViewProps> = ({
           <div>
             <img
               className={styles.playlist_thumbnail}
-              src={playlist?.tracks?.[0].thumbnail ?? artPlaceholder as string}
+              src={playlist?.tracks?.[0].thumbnail ?? artPlaceholder as unknown as string}
             />
           </div>
           <div className={styles.playlist_header}>
@@ -154,7 +154,7 @@ const PlaylistView: React.FC<PlaylistViewProps> = ({
                 }
                 artist={null}
                 title={playlist.name}
-                thumb={playlist?.tracks?.[0].thumbnail ?? artPlaceholder as string}
+                thumb={playlist?.tracks?.[0].thumbnail ?? artPlaceholder as unknown as string}
               >
                 <PopupButton
                   onClick={onAddAll}
