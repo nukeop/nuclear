@@ -1,11 +1,10 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Button } from '@nuclear/ui';
+import { Button, InputDialog } from '@nuclear/ui';
 
 import Header from '../../Header';
 import styles from './styles.scss';
 import { Icon } from 'semantic-ui-react';
-import InputDialog from '../../InputDialog';
 
 import SpotifyPlaylistImporter from '../../../containers/SpotifyPlaylistImporter/SpotifyPlaylistImporter';
 

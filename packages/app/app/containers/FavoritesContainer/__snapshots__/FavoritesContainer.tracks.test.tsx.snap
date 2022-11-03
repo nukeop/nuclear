@@ -1162,6 +1162,7 @@ exports[`Track view container should show a popup when a track is clicked 1`] = 
         <a
           aria-label="Add track to play next"
           class="popup_button"
+          data-testid="track-popup-play-next"
           href="#"
         >
           <i
@@ -1185,6 +1186,7 @@ exports[`Track view container should show a popup when a track is clicked 1`] = 
         <a
           aria-label="Add this track to favorites"
           class="popup_button"
+          data-testid="track-popup-add-favorites"
           href="#"
         >
           <i
@@ -1196,6 +1198,7 @@ exports[`Track view container should show a popup when a track is clicked 1`] = 
         <div
           aria-expanded="false"
           class="ui dropdown nuclear dropdown popup_button left"
+          data-testid="track-popup-add-playlist"
           role="listbox"
           tabindex="0"
         >
@@ -1234,11 +1237,23 @@ exports[`Track view container should show a popup when a track is clicked 1`] = 
               />
               test playlist 2
             </div>
+            <div
+              class="item"
+              data-testid="track-popup-create-playlist"
+              role="option"
+            >
+              <i
+                aria-hidden="true"
+                class="plus icon"
+              />
+              Create new playlist
+            </div>
           </div>
         </div>
         <a
           aria-label="Download this track"
           class="popup_button"
+          data-testid="track-popup-download"
           href="#"
         >
           <i
