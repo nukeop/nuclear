@@ -17,16 +17,17 @@ export class Normalizer implements Plugin<NormalizerProps, GainNode> {
   createNode(audioContext: AudioContext, { url }: NormalizerProps) {
     const gainNode = audioContext.createGain();
 
+    // delay workaround with suspending audiocontext until fetch is finished
     audioContext.suspend();
 
     fetch(url)
       .then((res) => res.arrayBuffer())
       .then((arrayBuffer) => {
         // use ArrayBuffer
-        // console.log(arrayBuffer);
         audioContext.decodeAudioData(arrayBuffer).then((audioBuffer) => {
           // use AudioBuffer
-          // console.log(audioBuffer);
+
+          // perform calculations on audio data
           const decodedBuffer = audioBuffer.getChannelData(0);
           const sliceLen = Math.floor(audioBuffer.sampleRate * 0.05);
           const averages = [];
@@ -40,6 +41,7 @@ export class Normalizer implements Plugin<NormalizerProps, GainNode> {
             }
           }
 
+          // get average
           sum = 0;
           for (let i = 0; i< averages.length; i++){
             sum += averages[i];
