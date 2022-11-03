@@ -19,6 +19,10 @@ enum IpcEvents {
   LOCALFOLDERS_SET = 'set-localfolders',
   LOCAL_METAS = 'get-metas',
 
+  POST_LISTENING_HISTORY_ENTRY = 'post-listening-history-entry',
+  FETCH_LISTENING_HISTORY = 'fetch-listening-history',
+  CLEAR_LISTENING_HISTORY = 'clear-listening-history',
+
   TRACK_ADD = 'add-track',
   TRACK_REMOVE = 'remove-track',
   TRACK_SELECT = 'select-track',

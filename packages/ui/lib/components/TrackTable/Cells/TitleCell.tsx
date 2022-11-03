@@ -6,7 +6,7 @@ import { TrackTableColumn, TrackTableExtraProps } from '../types';
 import { Track } from '../../../types';
 import styles from '../styles.scss';
 
-const TitleCell: React.FC<CellProps<Track> & TrackTableExtraProps> = ({
+const TitleCell: React.FC<CellProps<Track> & TrackTableExtraProps<Track>> = ({
   cell,
   row,
   value,

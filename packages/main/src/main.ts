@@ -15,6 +15,7 @@ import Container from './utils/container';
 import LocalLibrary from './services/local-library';
 import HttpApi from './services/http';
 import LocalLibraryDb from './services/local-library/db';
+import ListeningHistoryDb from './services/listening-history/db';
 
 app.commandLine.appendSwitch('autoplay-policy', 'no-user-gesture-required');
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -53,6 +54,7 @@ app.on('ready', async () => {
     const window = container.get<Window>(Window);
     const discord = container.get<Discord>(Discord);
     const localLibraryDb = container.get<LocalLibraryDb>(LocalLibraryDb);
+    const listeningHistoryDb = container.get<ListeningHistoryDb>(ListeningHistoryDb);
 
     protocol.registerFileProtocol('file', (request, callback) => {
       const pathname = decodeURI(request.url.replace('file:///', ''));
@@ -67,6 +69,7 @@ app.on('ready', async () => {
     }
 
     await localLibraryDb.connect();
+    await listeningHistoryDb.connect();
     container.listen();
     await window.load();
     if (store.getOption('showTrayIcon')) {

@@ -10,6 +10,11 @@ import { IpcEvents } from '@nuclear/core';
 export const IPC_EVENT_KEY = Symbol('$$ipc-event-prefix');
 
 /**
+ * the key of ipc invoke handlers
+ */
+export const IPC_INVOKE_KEY = Symbol('$$ipc-invoke-prefix');
+
+/**
  * the key of the system media metadata
  */
 export const SYSTEM_MEDIA_EVENT_KEY = Symbol('$$system-media-event-prefix');
@@ -81,6 +86,7 @@ const eventListenerFactory = <T>(metadataKey: symbol): MethodDecorator<T, IpcEve
 
 export const ipcController = eventEmitterControllerFactory(IPC_EVENT_KEY);
 export const ipcEvent = eventListenerFactory<IpcEvents>(IPC_EVENT_KEY);
+export const ipcInvokeHandler = eventListenerFactory<IpcEvents>(IPC_INVOKE_KEY);
 
 export const systemMediaController = eventEmitterControllerFactory(SYSTEM_MEDIA_EVENT_KEY);
 export const systemMediaEvent = eventListenerFactory<MediaEventName>(SYSTEM_MEDIA_EVENT_KEY);

@@ -7,7 +7,7 @@ import { Button } from '../../..';
 import { Track } from '../../../types';
 import styles from '../styles.scss';
 
-const FavoriteCell: React.FC<CellProps<Track> & TrackTableExtraProps> = ({
+const FavoriteCell: React.FC<CellProps<Track> & TrackTableExtraProps<Track>> = ({
   cell,
   row,
   value,
