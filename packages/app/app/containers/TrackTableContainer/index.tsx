@@ -99,7 +99,7 @@ function TrackTableContainer<T extends Track> ({
     [dispatch]
   );
 
-  const onDragEnd = useCallback<TrackTableProps['onDragEnd']>((result) => {
+  const onDragEnd = useCallback<TrackTableProps<Track>['onDragEnd']>((result) => {
     const { source, destination } = result;
     onReorder(source.index, destination.index);
   }, [onReorder]);
