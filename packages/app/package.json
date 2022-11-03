@@ -37,7 +37,6 @@
     "@nuclear/core": "^0.6.17",
     "@nuclear/i18n": "^0.6.17",
     "@nuclear/ui": "^0.6.17",
-    "@nuclear/main": "^0.6.17",
     "@testing-library/jest-dom": "^5.16.4",
     "ajv": "^6.12.5",
     "billboard-top-100": "^2.0.8",
