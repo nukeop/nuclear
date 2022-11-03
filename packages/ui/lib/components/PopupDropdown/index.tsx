@@ -16,7 +16,8 @@ const PopupDropdown: React.FC<PopupDropdownProps> = ({
   text,
   pointing,
   direction,
-  children
+  children,
+  ...rest
 }) => {
   return (
     <Dropdown
@@ -27,6 +28,7 @@ const PopupDropdown: React.FC<PopupDropdownProps> = ({
       )}
       pointing={pointing}
       direction={direction}
+      {...rest}
     >
       <SemanticDropdown.Menu>
         {children}
