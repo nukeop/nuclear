@@ -43,8 +43,8 @@ describe('Listening history', () => {
     const entries = await Db.getEntries({ limit: 10 });
 
     expect(entries.data.length).toBe(10);
-    expect(entries.data[0].createdAt).toEqual(new Date(2019, 1, 1));
-    expect(entries.data[9].createdAt).toEqual(new Date(2019, 1, 10));
+    expect(entries.data[0].createdAt).toEqual(new Date(2019, 1, 20));
+    expect(entries.data[9].createdAt).toEqual(new Date(2019, 1, 11));
   });
 
   it('should get paginated entries (2nd page)', async () => {
@@ -60,8 +60,8 @@ describe('Listening history', () => {
     entries = await Db.getEntries({ limit: 10, afterCursor: entries.cursor.afterCursor });
 
     expect(entries.data.length).toBe(10);
-    expect(entries.data[0].createdAt).toEqual(new Date(2019, 1, 10));
-    expect(entries.data[9].createdAt).toEqual(new Date(2019, 1, 19));
+    expect(entries.data[0].createdAt).toEqual(new Date(2019, 1, 11));
+    expect(entries.data[9].createdAt).toEqual(new Date(2019, 1, 2));
   });  
 
   it('should get entries with filters', async () => {
@@ -125,13 +125,13 @@ describe('Listening history', () => {
 
     expect(entries.data.length).toBe(2);
     expect(entries.data[0]).toEqual(expect.objectContaining({
-      artist: 'artist',
-      title: 'title2'
+      artist: 'artist2',
+      title: 'title'
     }));
 
     expect(entries.data[1]).toEqual(expect.objectContaining({
-      artist: 'artist2',
-      title: 'title'
+      artist: 'artist',
+      title: 'title2'
     }));
   });
 });
