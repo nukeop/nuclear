@@ -3,11 +3,24 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import { IpcEvents } from '@nuclear/core';
-import { ListeningHistoryEntry } from '@nuclear/main/src/services/listening-history/model/ListeningHistoryEntry';
-import { ListeningHistoryRequest } from '@nuclear/main/src/controllers/listening-history';
 
 import { ListeningHistoryView } from '../../components/ListeningHistoryView';
 import { queue as queueSelector } from '../../selectors/queue';
+
+// Duplication of the types from the @nuclear/main package
+// Importing them causes issues with the dev server
+type ListeningHistoryEntry = {
+  uuid: string;
+  artist: string;
+  title: string;
+  createdAt: Date;
+}
+
+type ListeningHistoryRequest = {
+  limit?: number;
+  beforeCursor?: string | null;
+  afterCursor?: string | null;
+}
 
 type ListeningHistoryResult = {
   data: ListeningHistoryEntry[];
