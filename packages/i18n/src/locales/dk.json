@@ -19,6 +19,7 @@
     "favorite-artists": "Yndlingskunstnere",
     "favorite-tracks": "Favoritsange",
     "library": "Lokalt bibliotek",
+    "listening-history": "Listening History",
     "lyrics": "Sangtekster",
     "main": "Primær",
     "playlists": "Afspilningslister",
@@ -250,6 +251,8 @@
     "autoradio-craziness": "Autoradio vanvittighed",
     "autoradio-craziness-description": "Autoradio vælger sange som er mindre som de sange der allerede er i køen jo mere skør den er.",
     "autoradio-description": "Tilføj automatisk lignende sange når køen slutter.",
+    "listening-history": "Listening history",
+    "listening-history-description": "Log the tracks you listen to, a la Last.fm. The history is stored offline.",
     "compact-menu-bar": "Benyt kompakt stil til menu",
     "compact-queue-bar": "Benyt kompakt stil til kø",
     "developer": "Udviklingsindstillinger",
@@ -391,6 +394,15 @@
       "go-to-favorite-tracks": "Gå til foretrukne numre",
       "go-to-library": "Gå til lokalt bibliotek"
     }
+  },
+  "listening-history": {
+    "title": "Listening history",
+    "empty-state": "You haven't listened to anything yet.",
+    "clear-history": "Clear history",
+    "clear-history-confirm": "Are you sure you want to clear your listening history?",
+    "clear-history-confirm-yes": "Confirm",
+    "clear-history-confirm-no": "Cancel",
+    "clear-history-toast": "Listening history cleared"
   },
   "forms": {
     "nuclear-sign-up": {
