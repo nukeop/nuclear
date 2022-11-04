@@ -19,6 +19,7 @@
     "favorite-artists": "প্রিয় শিল্পী",
     "favorite-tracks": "প্রিয় ট্র্যাক",
     "library": "লোকাল লাইব্রেরি\n",
+    "listening-history": "Listening History",
     "lyrics": "লিরিক্স",
     "main": "প্রধান",
     "playlists": "প্লেলিস্ট",
@@ -250,6 +251,8 @@
     "autoradio-craziness": "অটোরেডিওর পাগলামি",
     "autoradio-craziness-description": "অটোরেডিও সেসব গান সিলেক্ট করবে যেগুলো ইতমধ্যে সারিতে থাকা গানের সাথে পার্থক্যপূর্ণ।",
     "autoradio-description": "সারি শেষ হয়ে গেলে স্বয়ংক্রিয়ভাবে সামঞ্জস্যপূর্ণ ট্র্যাক যুক্ত কর",
+    "listening-history": "Listening history",
+    "listening-history-description": "Log the tracks you listen to, a la Last.fm. The history is stored offline.",
     "compact-menu-bar": "কম্প্যাক্ট স্টাইল ব্যবহার করুন মেনু বারের জন্য",
     "compact-queue-bar": "কম্প্যাক্ট স্টাইল ব্যবহার করুন সারি বারের জন্য",
     "developer": "ডেভেলপার সেটিংস",
@@ -391,6 +394,15 @@
       "go-to-favorite-tracks": "প্রিয় গানগুলোতে যান",
       "go-to-library": "লোকাল লাইব্রেরীতে যান"
     }
+  },
+  "listening-history": {
+    "title": "Listening history",
+    "empty-state": "You haven't listened to anything yet.",
+    "clear-history": "Clear history",
+    "clear-history-confirm": "Are you sure you want to clear your listening history?",
+    "clear-history-confirm-yes": "Confirm",
+    "clear-history-confirm-no": "Cancel",
+    "clear-history-toast": "Listening history cleared"
   },
   "forms": {
     "nuclear-sign-up": {
