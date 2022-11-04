@@ -19,6 +19,7 @@
     "favorite-artists": "Favorite Artists",
     "favorite-tracks": "Uppáhalds lög",
     "library": "Þitt lagasafn",
+    "listening-history": "Listening History",
     "lyrics": "Lagatexti",
     "main": "Aðalsíður",
     "playlists": "Lagalistar",
@@ -250,6 +251,8 @@
     "autoradio-craziness": "Brjálæði sjálfvirkt útvarps",
     "autoradio-craziness-description": "Sjálfvirka útvarpið velur lög sem eru minna lík en þau sem eru núþegar í biðröð því brjálaðar verður það",
     "autoradio-description": "Sjálfkrafa bætir við svipuðum lögum þegar biðröð er að ljúka",
+    "listening-history": "Listening history",
+    "listening-history-description": "Log the tracks you listen to, a la Last.fm. The history is stored offline.",
     "compact-menu-bar": "Nota þéttan stíl fyrir aðalrimil",
     "compact-queue-bar": "Nota þéttan stíl fyrir biðröðsrimil",
     "developer": "Stillingar fyrir forritara",
@@ -391,6 +394,15 @@
       "go-to-favorite-tracks": "Go to favorite tracks",
       "go-to-library": "Go to local library"
     }
+  },
+  "listening-history": {
+    "title": "Listening history",
+    "empty-state": "You haven't listened to anything yet.",
+    "clear-history": "Clear history",
+    "clear-history-confirm": "Are you sure you want to clear your listening history?",
+    "clear-history-confirm-yes": "Confirm",
+    "clear-history-confirm-no": "Cancel",
+    "clear-history-toast": "Listening history cleared"
   },
   "forms": {
     "nuclear-sign-up": {
