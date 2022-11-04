@@ -19,6 +19,7 @@
     "favorite-artists": "Mga Paboritong Artista",
     "favorite-tracks": "Paboritong mga Kanta",
     "library": "Lokal na Library",
+    "listening-history": "Listening History",
     "lyrics": "Liriko",
     "main": "Pangunahin",
     "playlists": "Mga Playlist",
@@ -250,6 +251,8 @@
     "autoradio-craziness": "Kabaliwan ng Autoradio",
     "autoradio-craziness-description": "Ang Autoradio ay mamimili ng mga kanta na lalong kakaiba sa mga kanta na nasa pila",
     "autoradio-description": "Kusang magdagdag ng katulad na kanta pag paubos na ang nasa pila",
+    "listening-history": "Listening history",
+    "listening-history-description": "Log the tracks you listen to, a la Last.fm. The history is stored offline.",
     "compact-menu-bar": "Gamitin ang compact style para sa menu bar",
     "compact-queue-bar": "Gamitin ang compact style para sa bar ng mga nakapilang kanta",
     "developer": "Mga setting ng mga developer",
@@ -391,6 +394,15 @@
       "go-to-favorite-tracks": "Go to favorite tracks",
       "go-to-library": "Go to local library"
     }
+  },
+  "listening-history": {
+    "title": "Listening history",
+    "empty-state": "You haven't listened to anything yet.",
+    "clear-history": "Clear history",
+    "clear-history-confirm": "Are you sure you want to clear your listening history?",
+    "clear-history-confirm-yes": "Confirm",
+    "clear-history-confirm-no": "Cancel",
+    "clear-history-toast": "Listening history cleared"
   },
   "forms": {
     "nuclear-sign-up": {
