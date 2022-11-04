@@ -19,6 +19,7 @@
     "favorite-artists": "Obľúbení umelci",
     "favorite-tracks": "Obľúbené skladby",
     "library": "Lokálna knižnica",
+    "listening-history": "Listening History",
     "lyrics": "Titulky",
     "main": "Hlavné",
     "playlists": "Playlisty",
@@ -250,6 +251,8 @@
     "autoradio-craziness": "Autorádiové šialenstvo",
     "autoradio-craziness-description": "Autorádio zvolí skladby, ktoré sú menej podobné skladbám, ktoré už v poradí sú",
     "autoradio-description": "Pridať podobné skladby automaticky, keď sa poradie končí",
+    "listening-history": "Listening history",
+    "listening-history-description": "Log the tracks you listen to, a la Last.fm. The history is stored offline.",
     "compact-menu-bar": "Stlačíť miesto pre menu",
     "compact-queue-bar": "Stlačiť miesto pre poradie",
     "developer": "Developer settings",
@@ -391,6 +394,15 @@
       "go-to-favorite-tracks": "Go to favorite tracks",
       "go-to-library": "Go to local library"
     }
+  },
+  "listening-history": {
+    "title": "Listening history",
+    "empty-state": "You haven't listened to anything yet.",
+    "clear-history": "Clear history",
+    "clear-history-confirm": "Are you sure you want to clear your listening history?",
+    "clear-history-confirm-yes": "Confirm",
+    "clear-history-confirm-no": "Cancel",
+    "clear-history-toast": "Listening history cleared"
   },
   "forms": {
     "nuclear-sign-up": {
