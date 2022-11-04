@@ -19,6 +19,7 @@
     "favorite-artists": "Αγαπημένοι Καλλιτέχνες",
     "favorite-tracks": "Αγαπημένα κομμάτια",
     "library": "Τοπική βιβλιοθήκη",
+    "listening-history": "Listening History",
     "lyrics": "Στίχοι",
     "main": "Κεντρικό",
     "playlists": "Λίστες αναπαραγωγής",
@@ -250,6 +251,8 @@
     "autoradio-craziness": "Τρέλα του ράδιο αυτοκινήτου",
     "autoradio-craziness-description": "Αυξάνοντας το επίπεδο διαφοροποίησης, μειώνετε την ομοιότητα των τραγουδιών με αυτά της ουράς αναπαραγωγής",
     "autoradio-description": "Προσθέστε παρόμοια τραγούδια μόλις η τρέχουσα λίστα αναπαραγωγής φτάσει στο τέλος της",
+    "listening-history": "Listening history",
+    "listening-history-description": "Log the tracks you listen to, a la Last.fm. The history is stored offline.",
     "compact-menu-bar": "Χρησιμοποιήστε το συμπαγές μενού",
     "compact-queue-bar": "Χρησιμοποιήστε την συμπαγή λίστα αναπαραγωγής",
     "developer": "Επιλογές για προγραμματιστές",
@@ -391,6 +394,15 @@
       "go-to-favorite-tracks": "Μετάβαση στα αγαπημένα κομμάτια",
       "go-to-library": "Μετάβαση στην τοπική βιβλιοθήκη"
     }
+  },
+  "listening-history": {
+    "title": "Listening history",
+    "empty-state": "You haven't listened to anything yet.",
+    "clear-history": "Clear history",
+    "clear-history-confirm": "Are you sure you want to clear your listening history?",
+    "clear-history-confirm-yes": "Confirm",
+    "clear-history-confirm-no": "Cancel",
+    "clear-history-toast": "Listening history cleared"
   },
   "forms": {
     "nuclear-sign-up": {
