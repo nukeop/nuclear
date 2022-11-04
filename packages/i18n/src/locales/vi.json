@@ -19,6 +19,7 @@
     "favorite-artists": "Nghệ sĩ yêu thích",
     "favorite-tracks": "Bản nhạc yêu thích",
     "library": "Thư viện trên máy",
+    "listening-history": "Listening History",
     "lyrics": "Lời bài hát",
     "main": "Main",
     "playlists": "playlist",
@@ -250,6 +251,8 @@
     "autoradio-craziness": "Autoradio craziness",
     "autoradio-craziness-description": "Autoradio sẽ chọn các bài khác không tương tự với các bài hát trong danh sách đang phát",
     "autoradio-description": "Tự động thêm các bài hát tương tự khi danh sách phát kết thúc",
+    "listening-history": "Listening history",
+    "listening-history-description": "Log the tracks you listen to, a la Last.fm. The history is stored offline.",
     "compact-menu-bar": "Sử dụng thanh menu dạng nhỏ",
     "compact-queue-bar": "Sử dụng danh sách phát dạng nhỏ",
     "developer": "Cài đặt cho nhà phát triển",
@@ -391,6 +394,15 @@
       "go-to-favorite-tracks": "Go to favorite tracks",
       "go-to-library": "Go to local library"
     }
+  },
+  "listening-history": {
+    "title": "Listening history",
+    "empty-state": "You haven't listened to anything yet.",
+    "clear-history": "Clear history",
+    "clear-history-confirm": "Are you sure you want to clear your listening history?",
+    "clear-history-confirm-yes": "Confirm",
+    "clear-history-confirm-no": "Cancel",
+    "clear-history-toast": "Listening history cleared"
   },
   "forms": {
     "nuclear-sign-up": {
