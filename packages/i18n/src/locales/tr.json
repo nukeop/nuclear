@@ -19,6 +19,7 @@
     "favorite-artists": "Favori Şarkıcılar",
     "favorite-tracks": "Favori Şarkılar",
     "library": "Yerel Kütüphane",
+    "listening-history": "Listening History",
     "lyrics": "Şarkı sözleri",
     "main": "Ana",
     "playlists": "Çalma Listeleri",
@@ -250,6 +251,8 @@
     "autoradio-craziness": "Autoradio Çılgınlığı",
     "autoradio-craziness-description": "Autoradio çılgınlaştıkça kuyruktaki şarkılara daha az benzeyen şarkıları seçer",
     "autoradio-description": "Eğer kuyruk bitiyorsa otomatik olarak benzer şarkılar ekle",
+    "listening-history": "Listening history",
+    "listening-history-description": "Log the tracks you listen to, a la Last.fm. The history is stored offline.",
     "compact-menu-bar": "Menü için kompakt stili kullan",
     "compact-queue-bar": "Kuyruk barı için kompakt stili kullan",
     "developer": "Geliştirici ayarları",
@@ -391,6 +394,15 @@
       "go-to-favorite-tracks": "Favori parçalara git",
       "go-to-library": "Yerel kütüphaneye git"
     }
+  },
+  "listening-history": {
+    "title": "Listening history",
+    "empty-state": "You haven't listened to anything yet.",
+    "clear-history": "Clear history",
+    "clear-history-confirm": "Are you sure you want to clear your listening history?",
+    "clear-history-confirm-yes": "Confirm",
+    "clear-history-confirm-no": "Cancel",
+    "clear-history-toast": "Listening history cleared"
   },
   "forms": {
     "nuclear-sign-up": {
