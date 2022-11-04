@@ -19,6 +19,7 @@
     "favorite-artists": "Избранные Исполнители",
     "favorite-tracks": "Избранные Треки",
     "library": "Локальная Библиотека",
+    "listening-history": "Listening History",
     "lyrics": "Текст",
     "main": "Основное",
     "playlists": "Плейлисты",
@@ -250,6 +251,8 @@
     "autoradio-craziness": "Сумасшествие авто подборки",
     "autoradio-craziness-description": "Чем выше уровень балдежа, тем менее похожие треки будет предлагать авторадио",
     "autoradio-description": "Автоматически добавлять похожие треки, когда очередь заканчивается",
+    "listening-history": "Listening history",
+    "listening-history-description": "Log the tracks you listen to, a la Last.fm. The history is stored offline.",
     "compact-menu-bar": "Компактное меню",
     "compact-queue-bar": "Компактная очередь",
     "developer": "Настройки для разработчиков",
@@ -391,6 +394,15 @@
       "go-to-favorite-tracks": "Перейти к любимым трекам",
       "go-to-library": "Перейти к локальной библиотеке"
     }
+  },
+  "listening-history": {
+    "title": "Listening history",
+    "empty-state": "You haven't listened to anything yet.",
+    "clear-history": "Clear history",
+    "clear-history-confirm": "Are you sure you want to clear your listening history?",
+    "clear-history-confirm-yes": "Confirm",
+    "clear-history-confirm-no": "Cancel",
+    "clear-history-toast": "Listening history cleared"
   },
   "forms": {
     "nuclear-sign-up": {
