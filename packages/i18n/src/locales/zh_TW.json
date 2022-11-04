@@ -19,6 +19,7 @@
     "favorite-artists": "最喜歡的藝術家",
     "favorite-tracks": "我的最愛",
     "library": "本機音樂庫",
+    "listening-history": "Listening History",
     "lyrics": "歌詞",
     "main": "主要設定",
     "playlists": "播放清單",
@@ -250,6 +251,8 @@
     "autoradio-craziness": "Autoradio瘋狂度",
     "autoradio-craziness-description": "Autoradio 會自動選擇與crazier中更不相似的歌曲",
     "autoradio-description": "當隊列結束時自動添加相似音軌",
+    "listening-history": "Listening history",
+    "listening-history-description": "Log the tracks you listen to, a la Last.fm. The history is stored offline.",
     "compact-menu-bar": "使用最小化工具列",
     "compact-queue-bar": "使用最小化播放佇列",
     "developer": "開發者設定",
@@ -391,6 +394,15 @@
       "go-to-favorite-tracks": "前往我的最愛",
       "go-to-library": "Go to local library"
     }
+  },
+  "listening-history": {
+    "title": "Listening history",
+    "empty-state": "You haven't listened to anything yet.",
+    "clear-history": "Clear history",
+    "clear-history-confirm": "Are you sure you want to clear your listening history?",
+    "clear-history-confirm-yes": "Confirm",
+    "clear-history-confirm-no": "Cancel",
+    "clear-history-toast": "Listening history cleared"
   },
   "forms": {
     "nuclear-sign-up": {
