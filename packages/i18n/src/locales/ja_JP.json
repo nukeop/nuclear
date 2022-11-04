@@ -19,6 +19,7 @@
     "favorite-artists": "お気に入りのアーティスト",
     "favorite-tracks": "お気に入りのトラック",
     "library": "ローカルライブラリ",
+    "listening-history": "Listening History",
     "lyrics": "歌詞",
     "main": "メイン",
     "playlists": "プレイリスト",
@@ -50,9 +51,15 @@
     "genres": "ジャンル",
     "news": "お知らせ",
     "playcounts": "再生回数",
+    "playlists": "Trending",
     "popular-track-title": "Deezerで人気の曲",
     "title": "タイトル",
-    "top": "人気の曲"
+    "top": "人気の曲",
+    "trending-playlists": "Trending playlists",
+    "trending-artists": "Trending artists",
+    "trending-albums": "Trending albums",
+    "filter": "Filter...",
+    "nothing-found": "Nothing found."
   },
   "downloads": {
     "clear": "再生済みのトラックを消去",
@@ -244,6 +251,8 @@
     "autoradio-craziness": "ラジオのヤバさ",
     "autoradio-craziness-description": "ラジオのヤバさが高ければ高いほど今のキューした曲ともっと違う曲を選択します",
     "autoradio-description": "キューにある曲と似たような曲を自動的にキューに追加します",
+    "listening-history": "Listening history",
+    "listening-history-description": "Log the tracks you listen to, a la Last.fm. The history is stored offline.",
     "compact-menu-bar": "メニューバーにコンパクトなスタイルを使用",
     "compact-queue-bar": "キューバーにコンパクトなスタイルを使用",
     "developer": "開発者向けの設定",
@@ -291,6 +300,8 @@
     "notlogged": "ログインしていません",
     "playback": "再生",
     "program-settings": "設定",
+    "promoted-artists": "Show promoted artists in the dashboard",
+    "promoted-artists-description": "This is a reel of interesting, handpicked indie artists you might like. No one's receiving any compensation for this.",
     "saving-in": "保存先:",
     "seek-iteration": "矢印キーを押したときに巻き戻す/早送りする秒数",
     "shuffle-queue": "曲をシャッフル",
@@ -317,6 +328,11 @@
     "add-to-favorite": "お気に入りに追加",
     "add-to-playlist": "プレイリストに追加",
     "add-to-queue": "キューに追加",
+    "create-playlist": "Create new playlist",
+    "create-playlist-dialog-title": "Input playlist name:",
+    "create-playlist-dialog-placeholder": "Playlist name...",
+    "create-playlist-dialog-accept": "Save",
+    "create-playlist-dialog-cancel": "Cancel",
     "download": "ダウンロード",
     "download-toast-body": "{{artist}} - {{track}} がダウンロードに追加されました。",
     "download-toast-title": "曲をダウンロードリストに追加しました",
@@ -378,6 +394,15 @@
       "go-to-favorite-tracks": "Go to favorite tracks",
       "go-to-library": "Go to local library"
     }
+  },
+  "listening-history": {
+    "title": "Listening history",
+    "empty-state": "You haven't listened to anything yet.",
+    "clear-history": "Clear history",
+    "clear-history-confirm": "Are you sure you want to clear your listening history?",
+    "clear-history-confirm-yes": "Confirm",
+    "clear-history-confirm-no": "Cancel",
+    "clear-history-toast": "Listening history cleared"
   },
   "forms": {
     "nuclear-sign-up": {
