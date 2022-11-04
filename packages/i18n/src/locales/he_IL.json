@@ -19,6 +19,7 @@
     "favorite-artists": "אומנים מועדפים",
     "favorite-tracks": "רצועות מועדפות",
     "library": "ספרייה מקומית",
+    "listening-history": "Listening History",
     "lyrics": "מילות שיר",
     "main": "ראשי",
     "playlists": "רשימות השמעה",
@@ -250,6 +251,8 @@
     "autoradio-craziness": "טרוף רדיו אוטומטי",
     "autoradio-craziness-description": "הרדיו האוטומטי יבחר שירים שפחות דומים לאלו שכבר נמצאים בתור ככל שזה מטורף יותר",
     "autoradio-description": "הוסף רצועות דומות באופן אוטומטי כאשר התור מסתיים",
+    "listening-history": "Listening history",
+    "listening-history-description": "Log the tracks you listen to, a la Last.fm. The history is stored offline.",
     "compact-menu-bar": "שימוש בסגנון חסכוני לסרגל התפריט",
     "compact-queue-bar": "שימוש בסגנון חסכוני לסרגל התור",
     "developer": "הגדרות למפתחים",
@@ -391,6 +394,15 @@
       "go-to-favorite-tracks": "עבור לשירים המועדפים",
       "go-to-library": "עבור לסיפרייה המקומית"
     }
+  },
+  "listening-history": {
+    "title": "Listening history",
+    "empty-state": "You haven't listened to anything yet.",
+    "clear-history": "Clear history",
+    "clear-history-confirm": "Are you sure you want to clear your listening history?",
+    "clear-history-confirm-yes": "Confirm",
+    "clear-history-confirm-no": "Cancel",
+    "clear-history-toast": "Listening history cleared"
   },
   "forms": {
     "nuclear-sign-up": {
