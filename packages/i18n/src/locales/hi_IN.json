@@ -19,6 +19,7 @@
     "favorite-artists": "पसंदीदा कलाकार",
     "favorite-tracks": "पसंदीदा ट्रैक",
     "library": "स्थानीय संग्रह",
+    "listening-history": "Listening History",
     "lyrics": "गीतिकाव्य",
     "main": "प्रमुख",
     "playlists": "गानों की सूचीयाँ",
@@ -250,6 +251,8 @@
     "autoradio-craziness": "ऑटोरेडियो पागलपन",
     "autoradio-craziness-description": "ऑटोरेडियो उन गानों का चयन करेगा जो पहले से कतार में लगे गानों से कम मिलते-जुलते हैं",
     "autoradio-description": "कतार समाप्त होने पर स्वचालित रूप से समान ट्रैक जोड़ें",
+    "listening-history": "Listening history",
+    "listening-history-description": "Log the tracks you listen to, a la Last.fm. The history is stored offline.",
     "compact-menu-bar": "मेनू बार के लिए कॉम्पैक्ट शैली का प्रयोग करें",
     "compact-queue-bar": "क्यू बार के लिए कॉम्पैक्ट स्टाइल का प्रयोग करें",
     "developer": "डेवलपर सेटिंग्स",
@@ -391,6 +394,15 @@
       "go-to-favorite-tracks": "पसंदीदा ट्रैक पर जाएं",
       "go-to-library": "स्थानीय लाइब्रेरी में जाओ"
     }
+  },
+  "listening-history": {
+    "title": "Listening history",
+    "empty-state": "You haven't listened to anything yet.",
+    "clear-history": "Clear history",
+    "clear-history-confirm": "Are you sure you want to clear your listening history?",
+    "clear-history-confirm-yes": "Confirm",
+    "clear-history-confirm-no": "Cancel",
+    "clear-history-toast": "Listening history cleared"
   },
   "forms": {
     "nuclear-sign-up": {
