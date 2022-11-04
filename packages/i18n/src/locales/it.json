@@ -19,6 +19,7 @@
     "favorite-artists": "Artisti preferiti",
     "favorite-tracks": "Tracce preferite",
     "library": "Libreria locale",
+    "listening-history": "Listening History",
     "lyrics": "Testi",
     "main": "Principale",
     "playlists": "Scalette",
@@ -250,6 +251,8 @@
     "autoradio-craziness": "Livello di follia della radio automatica",
     "autoradio-craziness-description": "La radio automatica, più folle è, più selezionerà canzoni meno simili a quelle già nella coda",
     "autoradio-description": "Aggiungere automaticamente tracce simili quando la coda termina",
+    "listening-history": "Listening history",
+    "listening-history-description": "Log the tracks you listen to, a la Last.fm. The history is stored offline.",
     "compact-menu-bar": "Usa lo stile compatto per la barra dei menù",
     "compact-queue-bar": "Usa lo stile compatto per la barra della coda",
     "developer": "Impostazioni sviluppatore",
@@ -391,6 +394,15 @@
       "go-to-favorite-tracks": "Vai alle tracce preferite",
       "go-to-library": "Vai alla libreria locale"
     }
+  },
+  "listening-history": {
+    "title": "Listening history",
+    "empty-state": "You haven't listened to anything yet.",
+    "clear-history": "Clear history",
+    "clear-history-confirm": "Are you sure you want to clear your listening history?",
+    "clear-history-confirm-yes": "Confirm",
+    "clear-history-confirm-no": "Cancel",
+    "clear-history-toast": "Listening history cleared"
   },
   "forms": {
     "nuclear-sign-up": {
