@@ -19,6 +19,7 @@
     "favorite-artists": "お気に入りのアーティスト",
     "favorite-tracks": "お気に入りのトラック",
     "library": "ローカルライブラリ",
+    "listening-history": "Listening History",
     "lyrics": "歌詞",
     "main": "メイン",
     "playlists": "プレイリスト",
@@ -250,6 +251,8 @@
     "autoradio-craziness": "ラジオのヤバさ",
     "autoradio-craziness-description": "ラジオのヤバさが高ければ高いほど今のキューした曲ともっと違う曲を選択します",
     "autoradio-description": "キューにある曲と似たような曲を自動的にキューに追加します",
+    "listening-history": "Listening history",
+    "listening-history-description": "Log the tracks you listen to, a la Last.fm. The history is stored offline.",
     "compact-menu-bar": "メニューバーにコンパクトなスタイルを使用",
     "compact-queue-bar": "キューバーにコンパクトなスタイルを使用",
     "developer": "開発者向けの設定",
@@ -391,6 +394,15 @@
       "go-to-favorite-tracks": "Go to favorite tracks",
       "go-to-library": "Go to local library"
     }
+  },
+  "listening-history": {
+    "title": "Listening history",
+    "empty-state": "You haven't listened to anything yet.",
+    "clear-history": "Clear history",
+    "clear-history-confirm": "Are you sure you want to clear your listening history?",
+    "clear-history-confirm-yes": "Confirm",
+    "clear-history-confirm-no": "Cancel",
+    "clear-history-toast": "Listening history cleared"
   },
   "forms": {
     "nuclear-sign-up": {
