@@ -19,6 +19,7 @@
     "favorite-artists": "Suosikkiartistit",
     "favorite-tracks": "Suosikkikappaleet",
     "library": "Paikallinen kirjasto",
+    "listening-history": "Listening History",
     "lyrics": "Sanoitukset",
     "main": "Pääsivu",
     "playlists": "Soittolistat",
@@ -250,6 +251,8 @@
     "autoradio-craziness": "Autoradio hulluus",
     "autoradio-craziness-description": "Autoradio valitsee kappaleet jotka ovat vähemmän samanlaisia kuin ne jotka on jo jonossa",
     "autoradio-description": "Lisää samankaltaisia kappaleita automaattisesti kun jono on loppumassa",
+    "listening-history": "Listening history",
+    "listening-history-description": "Log the tracks you listen to, a la Last.fm. The history is stored offline.",
     "compact-menu-bar": "Käytä kompaktia valikon palkkia",
     "compact-queue-bar": "Käytä kompaktia jonon palkkia",
     "developer": "Kehittäjän asetukset",
@@ -391,6 +394,15 @@
       "go-to-favorite-tracks": "Siirry suosikkikappaleisiin",
       "go-to-library": "Siirry paikalliseen kirjastoon"
     }
+  },
+  "listening-history": {
+    "title": "Listening history",
+    "empty-state": "You haven't listened to anything yet.",
+    "clear-history": "Clear history",
+    "clear-history-confirm": "Are you sure you want to clear your listening history?",
+    "clear-history-confirm-yes": "Confirm",
+    "clear-history-confirm-no": "Cancel",
+    "clear-history-toast": "Listening history cleared"
   },
   "forms": {
     "nuclear-sign-up": {
