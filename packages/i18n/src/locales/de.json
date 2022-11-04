@@ -19,6 +19,7 @@
     "favorite-artists": "Lieblingskünstler",
     "favorite-tracks": "Lieblingslieder",
     "library": "Lokale Bibliothek",
+    "listening-history": "Listening History",
     "lyrics": "Songtext",
     "main": "Start",
     "playlists": "Wiedergabelisten",
@@ -250,6 +251,8 @@
     "autoradio-craziness": "Autoradio-Verrücktheit",
     "autoradio-craziness-description": "Autoradio wählt Lieder, aus die anders sind, als die Lieder, die bereits in der Warteschlange sind",
     "autoradio-description": "Fügt ähnliche Lieder automatisch hinzu, falls die Warteschlange beendet wird",
+    "listening-history": "Listening history",
+    "listening-history-description": "Log the tracks you listen to, a la Last.fm. The history is stored offline.",
     "compact-menu-bar": "Kompakten Stil für Menüleiste verwenden",
     "compact-queue-bar": "Kompakten Stil für Warteschlange verwenden",
     "developer": "Entwicklereinstellungen",
@@ -391,6 +394,15 @@
       "go-to-favorite-tracks": "Zu Lieblingslieder",
       "go-to-library": "Zur lokalen Bibliothek"
     }
+  },
+  "listening-history": {
+    "title": "Listening history",
+    "empty-state": "You haven't listened to anything yet.",
+    "clear-history": "Clear history",
+    "clear-history-confirm": "Are you sure you want to clear your listening history?",
+    "clear-history-confirm-yes": "Confirm",
+    "clear-history-confirm-no": "Cancel",
+    "clear-history-toast": "Listening history cleared"
   },
   "forms": {
     "nuclear-sign-up": {
