@@ -19,6 +19,7 @@
     "favorite-artists": "Favoriete Artiesten",
     "favorite-tracks": "Favoriete nummers",
     "library": "Lokale verzameling",
+    "listening-history": "Listening History",
     "lyrics": "Songteksten",
     "main": "Hoofdpagina",
     "playlists": "Afspeellijsten",
@@ -250,6 +251,8 @@
     "autoradio-craziness": "Automatische radio - gekte",
     "autoradio-craziness-description": "Autoradio wil nummers selecteren die minder lijken op die welke al in de wachtrij staan hoe gekker het is",
     "autoradio-description": "Voeg soortgelijke nummers automatisch toe wanneer de wachtrij eindigt",
+    "listening-history": "Listening history",
+    "listening-history-description": "Log the tracks you listen to, a la Last.fm. The history is stored offline.",
     "compact-menu-bar": "Compacte menubalk",
     "compact-queue-bar": "Compacte wachtrijbalk",
     "developer": "Ontwikkelaarsinstellingen",
@@ -391,6 +394,15 @@
       "go-to-favorite-tracks": "Ga naar favoriete nummers",
       "go-to-library": "Ga naar lokale bibliotheek"
     }
+  },
+  "listening-history": {
+    "title": "Listening history",
+    "empty-state": "You haven't listened to anything yet.",
+    "clear-history": "Clear history",
+    "clear-history-confirm": "Are you sure you want to clear your listening history?",
+    "clear-history-confirm-yes": "Confirm",
+    "clear-history-confirm-no": "Cancel",
+    "clear-history-toast": "Listening history cleared"
   },
   "forms": {
     "nuclear-sign-up": {
