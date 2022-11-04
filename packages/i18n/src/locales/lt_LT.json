@@ -19,6 +19,7 @@
     "favorite-artists": "Mėgstamiausi atlikėjai",
     "favorite-tracks": "Mėgstamiausios dainos",
     "library": "Vietinė biblioteka",
+    "listening-history": "Listening History",
     "lyrics": "Lyrikos",
     "main": "Pagrindinis",
     "playlists": "Grojaraščiai",
@@ -50,9 +51,15 @@
     "genres": "Žanrai",
     "news": "Naujienos",
     "playcounts": "Paleidimo kartai",
+    "playlists": "Trending",
     "popular-track-title": "Populiariausios Deezer dainos",
     "title": "Pavadinimas",
-    "top": "Top dainos"
+    "top": "Top dainos",
+    "trending-playlists": "Trending playlists",
+    "trending-artists": "Trending artists",
+    "trending-albums": "Trending albums",
+    "filter": "Filter...",
+    "nothing-found": "Nothing found."
   },
   "downloads": {
     "clear": "Išvalyti pasibaigusias dainas",
@@ -244,6 +251,8 @@
     "autoradio-craziness": "Autoradio linksmumas",
     "autoradio-craziness-description": "Autoradijas pasirinks dainas kurios yra ne panašios į dainas kurios yra eilėje",
     "autoradio-description": "Pridėti panašias dainas automatiškai kai eilė baigiasi",
+    "listening-history": "Listening history",
+    "listening-history-description": "Log the tracks you listen to, a la Last.fm. The history is stored offline.",
     "compact-menu-bar": "Naudoti kompaktinį meniu stilių",
     "compact-queue-bar": "Naudoti kompaktinį stilių eilės barui",
     "developer": "Kūrėjo nustatymai",
@@ -291,6 +300,8 @@
     "notlogged": "Esate neprisijunges",
     "playback": "Grojimas",
     "program-settings": "Programos nustatymai",
+    "promoted-artists": "Show promoted artists in the dashboard",
+    "promoted-artists-description": "This is a reel of interesting, handpicked indie artists you might like. No one's receiving any compensation for this.",
     "saving-in": "Saving in:",
     "seek-iteration": "Sekundžių, kurių reikia ieškoti paspaudus rodyklių klavišus, skaičius",
     "shuffle-queue": "Maišyti Dainas",
@@ -317,6 +328,11 @@
     "add-to-favorite": "Pridėti į mėgstamiausius",
     "add-to-playlist": "Pridėti į grojaraštį",
     "add-to-queue": "Pridėti į eilę",
+    "create-playlist": "Create new playlist",
+    "create-playlist-dialog-title": "Input playlist name:",
+    "create-playlist-dialog-placeholder": "Playlist name...",
+    "create-playlist-dialog-accept": "Save",
+    "create-playlist-dialog-cancel": "Cancel",
     "download": "Atsisiųsti",
     "download-toast-body": "{{artist}} - {{track}} buvo pridėta į atsisiuntimų skiltį.",
     "download-toast-title": "Daina buvo pridėta į atsisiuntimus",
@@ -378,6 +394,15 @@
       "go-to-favorite-tracks": "Go to favorite tracks",
       "go-to-library": "Go to local library"
     }
+  },
+  "listening-history": {
+    "title": "Listening history",
+    "empty-state": "You haven't listened to anything yet.",
+    "clear-history": "Clear history",
+    "clear-history-confirm": "Are you sure you want to clear your listening history?",
+    "clear-history-confirm-yes": "Confirm",
+    "clear-history-confirm-no": "Cancel",
+    "clear-history-toast": "Listening history cleared"
   },
   "forms": {
     "nuclear-sign-up": {

@@ -19,6 +19,7 @@
     "favorite-artists": "Favoritartister",
     "favorite-tracks": "Favoritspår",
     "library": "Lokalt bibliotek",
+    "listening-history": "Listening History",
     "lyrics": "Låttexter",
     "main": "Huvudmeny",
     "playlists": "Spellistor",
@@ -50,9 +51,15 @@
     "genres": "Genrer",
     "news": "Nyheter",
     "playcounts": "Antal spelningar",
+    "playlists": "Trending",
     "popular-track-title": "Toppspår från Deezer",
     "title": "Titel",
-    "top": "Toppspår"
+    "top": "Toppspår",
+    "trending-playlists": "Trending playlists",
+    "trending-artists": "Trending artists",
+    "trending-albums": "Trending albums",
+    "filter": "Filter...",
+    "nothing-found": "Nothing found."
   },
   "downloads": {
     "clear": "Rensa lyssnade spår",
@@ -195,7 +202,7 @@
   "queue": {
     "clear": "Rensa kön",
     "dialog-accept": "Spara",
-    "dialog-cancel": "Cancel",
+    "dialog-cancel": "Avbryt",
     "dialog-placeholder": "Namn på spellistan...",
     "dialog-trigger": "Spara som spellista",
     "download": "Hämta",
@@ -244,6 +251,8 @@
     "autoradio-craziness": "Autoradiogalenskap",
     "autoradio-craziness-description": "Autoradion kommer välja spår som skiljer sig från de som redan är tillagda i kön, ju mer ju galnare",
     "autoradio-description": "Lägg till liknande spår automatiskt när kön är färdigspelad",
+    "listening-history": "Listening history",
+    "listening-history-description": "Log the tracks you listen to, a la Last.fm. The history is stored offline.",
     "compact-menu-bar": "Använd en kompakt stil för menyfältet",
     "compact-queue-bar": "Använd en kompakt stil för köfältet",
     "developer": "Inställningar för utvecklare",
@@ -291,6 +300,8 @@
     "notlogged": "Inte inloggad",
     "playback": "Uppspelning",
     "program-settings": "Programinställningar",
+    "promoted-artists": "Show promoted artists in the dashboard",
+    "promoted-artists-description": "This is a reel of interesting, handpicked indie artists you might like. No one's receiving any compensation for this.",
     "saving-in": "Sparar i:",
     "seek-iteration": "Antal sekunder att hoppa framåt/bakåt när du trycker på piltangenterna",
     "shuffle-queue": "Blanda spår",
@@ -317,6 +328,11 @@
     "add-to-favorite": "Lägg till i Favoriter",
     "add-to-playlist": "Lägg till i spellista",
     "add-to-queue": "Lägg till kö",
+    "create-playlist": "Create new playlist",
+    "create-playlist-dialog-title": "Input playlist name:",
+    "create-playlist-dialog-placeholder": "Playlist name...",
+    "create-playlist-dialog-accept": "Save",
+    "create-playlist-dialog-cancel": "Cancel",
     "download": "Hämta",
     "download-toast-body": "{{artist}} - {{track}} har lagts till Hämtningar.",
     "download-toast-title": "Spår lades till hämtningar",
@@ -345,15 +361,15 @@
     "protip-content": "Arrows to navigate, Enter to select, Esc to close",
     "categories": {
       "playback": "Playback",
-      "queue": "Queue",
+      "queue": "Kö",
       "navigation": "Navigation",
       "application": "Application"
     },
     "actions": {
       "play": "Play",
-      "pause": "Pause",
-      "next": "Next",
-      "previous": "Previous",
+      "pause": "Pausa",
+      "next": "Nästa",
+      "previous": "Föregående",
       "go-to-next-page": "Go to next page",
       "go-to-previous-page": "Go to previous page",
       "shuffle": "Shuffle",
@@ -378,6 +394,15 @@
       "go-to-favorite-tracks": "Go to favorite tracks",
       "go-to-library": "Go to local library"
     }
+  },
+  "listening-history": {
+    "title": "Listening history",
+    "empty-state": "You haven't listened to anything yet.",
+    "clear-history": "Clear history",
+    "clear-history-confirm": "Are you sure you want to clear your listening history?",
+    "clear-history-confirm-yes": "Confirm",
+    "clear-history-confirm-no": "Cancel",
+    "clear-history-toast": "Listening history cleared"
   },
   "forms": {
     "nuclear-sign-up": {

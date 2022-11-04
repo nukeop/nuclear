@@ -19,6 +19,7 @@
     "favorite-artists": "좋아하는 아티스트",
     "favorite-tracks": "좋아하는 음악",
     "library": "음악",
+    "listening-history": "Listening History",
     "lyrics": "가사",
     "main": "주요 메뉴",
     "playlists": "플레이리스트",
@@ -50,9 +51,15 @@
     "genres": "장르",
     "news": "뉴스",
     "playcounts": "총 재생 횟수",
+    "playlists": "Trending",
     "popular-track-title": "Last.fm 인기 음악",
     "title": "제목",
-    "top": "인기 음악"
+    "top": "인기 음악",
+    "trending-playlists": "Trending playlists",
+    "trending-artists": "Trending artists",
+    "trending-albums": "Trending albums",
+    "filter": "Filter...",
+    "nothing-found": "Nothing found."
   },
   "downloads": {
     "clear": "다운로드 완료된 음악 삭제",
@@ -244,6 +251,8 @@
     "autoradio-craziness": "무작위 자동 재생",
     "autoradio-craziness-description": "얼마나 재생 목록과 비슷하지 않은 음악을 재생할지 조절할 수 있습니다.",
     "autoradio-description": "재생 목록이 끝나면 자동으로 비슷한 음악 연속 재생",
+    "listening-history": "Listening history",
+    "listening-history-description": "Log the tracks you listen to, a la Last.fm. The history is stored offline.",
     "compact-menu-bar": "축소된 메뉴 바 사용",
     "compact-queue-bar": "축소된 재생 목록 바 사용",
     "developer": "개발자 설정",
@@ -291,6 +300,8 @@
     "notlogged": "로그인하지 않았습니다.",
     "playback": "재생",
     "program-settings": "프로그램 설정",
+    "promoted-artists": "Show promoted artists in the dashboard",
+    "promoted-artists-description": "This is a reel of interesting, handpicked indie artists you might like. No one's receiving any compensation for this.",
     "saving-in": "저장 경로:",
     "seek-iteration": "화살표 키를 눌렀을 때 탐색할 시간 (초)",
     "shuffle-queue": "음악 셔플",
@@ -317,6 +328,11 @@
     "add-to-favorite": "즐겨찾기에 추가",
     "add-to-playlist": "플레이리스트에 추가",
     "add-to-queue": "재생목록에 추가",
+    "create-playlist": "Create new playlist",
+    "create-playlist-dialog-title": "Input playlist name:",
+    "create-playlist-dialog-placeholder": "Playlist name...",
+    "create-playlist-dialog-accept": "Save",
+    "create-playlist-dialog-cancel": "Cancel",
     "download": "다운로드",
     "download-toast-body": "{{artist}} - {{track}}(이)가 다운로드 목록에 추가되었습니다.",
     "download-toast-title": "다운로드 목록에 추가된 곡",
@@ -378,6 +394,15 @@
       "go-to-favorite-tracks": "Go to favorite tracks",
       "go-to-library": "Go to local library"
     }
+  },
+  "listening-history": {
+    "title": "Listening history",
+    "empty-state": "You haven't listened to anything yet.",
+    "clear-history": "Clear history",
+    "clear-history-confirm": "Are you sure you want to clear your listening history?",
+    "clear-history-confirm-yes": "Confirm",
+    "clear-history-confirm-no": "Cancel",
+    "clear-history-toast": "Listening history cleared"
   },
   "forms": {
     "nuclear-sign-up": {
