@@ -19,6 +19,7 @@
     "favorite-artists": "좋아하는 아티스트",
     "favorite-tracks": "좋아하는 음악",
     "library": "음악",
+    "listening-history": "Listening History",
     "lyrics": "가사",
     "main": "주요 메뉴",
     "playlists": "플레이리스트",
@@ -250,6 +251,8 @@
     "autoradio-craziness": "무작위 자동 재생",
     "autoradio-craziness-description": "얼마나 재생 목록과 비슷하지 않은 음악을 재생할지 조절할 수 있습니다.",
     "autoradio-description": "재생 목록이 끝나면 자동으로 비슷한 음악 연속 재생",
+    "listening-history": "Listening history",
+    "listening-history-description": "Log the tracks you listen to, a la Last.fm. The history is stored offline.",
     "compact-menu-bar": "축소된 메뉴 바 사용",
     "compact-queue-bar": "축소된 재생 목록 바 사용",
     "developer": "개발자 설정",
@@ -391,6 +394,15 @@
       "go-to-favorite-tracks": "Go to favorite tracks",
       "go-to-library": "Go to local library"
     }
+  },
+  "listening-history": {
+    "title": "Listening history",
+    "empty-state": "You haven't listened to anything yet.",
+    "clear-history": "Clear history",
+    "clear-history-confirm": "Are you sure you want to clear your listening history?",
+    "clear-history-confirm-yes": "Confirm",
+    "clear-history-confirm-no": "Cancel",
+    "clear-history-toast": "Listening history cleared"
   },
   "forms": {
     "nuclear-sign-up": {
