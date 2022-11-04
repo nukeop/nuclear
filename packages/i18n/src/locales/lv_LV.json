@@ -19,6 +19,7 @@
     "favorite-artists": "Iecienītie izpildītāji",
     "favorite-tracks": "Iecienītākās dziesmas",
     "library": "Vietējā bibliotēka",
+    "listening-history": "Listening History",
     "lyrics": "Lirika",
     "main": "Galvenais",
     "playlists": "Atskaņošanas saraksti",
@@ -250,6 +251,8 @@
     "autoradio-craziness": "Autoradio trakums",
     "autoradio-craziness-description": "Autoradio atlasīs dziesmas, kas ir mazāk līdzīgas tām, kas jau atrodas rindā, jo trakāka tā būs",
     "autoradio-description": "Automātiski pievienot līdzīgus ierakstus, kad rinda beidzas",
+    "listening-history": "Listening history",
+    "listening-history-description": "Log the tracks you listen to, a la Last.fm. The history is stored offline.",
     "compact-menu-bar": "Izmantojiet kompakto stilu izvēlņu joslai",
     "compact-queue-bar": "Izmantot kompakto stilu rindas joslai",
     "developer": "Izstrādātāja iestatījumi",
@@ -391,6 +394,15 @@
       "go-to-favorite-tracks": "Go to favorite tracks",
       "go-to-library": "Go to local library"
     }
+  },
+  "listening-history": {
+    "title": "Listening history",
+    "empty-state": "You haven't listened to anything yet.",
+    "clear-history": "Clear history",
+    "clear-history-confirm": "Are you sure you want to clear your listening history?",
+    "clear-history-confirm-yes": "Confirm",
+    "clear-history-confirm-no": "Cancel",
+    "clear-history-toast": "Listening history cleared"
   },
   "forms": {
     "nuclear-sign-up": {
