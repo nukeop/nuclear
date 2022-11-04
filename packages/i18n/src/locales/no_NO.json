@@ -19,6 +19,7 @@
     "favorite-artists": "Favoritt Artister",
     "favorite-tracks": "Favoritt spor",
     "library": "Lokalt bibliotek",
+    "listening-history": "Listening History",
     "lyrics": "Tekster",
     "main": "Hoved",
     "playlists": "Spillelister",
@@ -250,6 +251,8 @@
     "autoradio-craziness": "Autoradio galskap",
     "autoradio-craziness-description": "Autoradio vil velge sanger som er mindre likt de som allerede er i køen den er det",
     "autoradio-description": "Legg til lignende spor automatisk ved avslutning av køen",
+    "listening-history": "Listening history",
+    "listening-history-description": "Log the tracks you listen to, a la Last.fm. The history is stored offline.",
     "compact-menu-bar": "Bruk kompakt stil for menylinje",
     "compact-queue-bar": "Bruk kompakt stil for kølinje",
     "developer": "Utvikler innstillinger",
@@ -391,6 +394,15 @@
       "go-to-favorite-tracks": "Go to favorite tracks",
       "go-to-library": "Go to local library"
     }
+  },
+  "listening-history": {
+    "title": "Listening history",
+    "empty-state": "You haven't listened to anything yet.",
+    "clear-history": "Clear history",
+    "clear-history-confirm": "Are you sure you want to clear your listening history?",
+    "clear-history-confirm-yes": "Confirm",
+    "clear-history-confirm-no": "Cancel",
+    "clear-history-toast": "Listening history cleared"
   },
   "forms": {
     "nuclear-sign-up": {
