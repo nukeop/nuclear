@@ -19,6 +19,7 @@
     "favorite-artists": "最喜欢的艺术家",
     "favorite-tracks": "收藏的曲目",
     "library": "本地曲库",
+    "listening-history": "Listening History",
     "lyrics": "歌词",
     "main": "主界面",
     "playlists": "播放列表",
@@ -250,6 +251,8 @@
     "autoradio-craziness": "变化",
     "autoradio-craziness-description": "得到",
     "autoradio-description": "似是而非",
+    "listening-history": "Listening history",
+    "listening-history-description": "Log the tracks you listen to, a la Last.fm. The history is stored offline.",
     "compact-menu-bar": "大道至简",
     "compact-queue-bar": "队列栏使用简洁风格",
     "developer": "开发者设置",
@@ -391,6 +394,15 @@
       "go-to-favorite-tracks": "Go to favorite tracks",
       "go-to-library": "Go to local library"
     }
+  },
+  "listening-history": {
+    "title": "Listening history",
+    "empty-state": "You haven't listened to anything yet.",
+    "clear-history": "Clear history",
+    "clear-history-confirm": "Are you sure you want to clear your listening history?",
+    "clear-history-confirm-yes": "Confirm",
+    "clear-history-confirm-no": "Cancel",
+    "clear-history-toast": "Listening history cleared"
   },
   "forms": {
     "nuclear-sign-up": {
