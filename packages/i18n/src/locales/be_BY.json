@@ -19,6 +19,7 @@
     "favorite-artists": "Абраныя выканаўцы",
     "favorite-tracks": "Абраныя трэкі",
     "library": "Лакальная бібліятэка",
+    "listening-history": "Listening History",
     "lyrics": "Тэкст",
     "main": "Галоўная",
     "playlists": "Плэйлісты",
@@ -250,6 +251,8 @@
     "autoradio-craziness": "Вар'яцкае Аўтарадыё",
     "autoradio-craziness-description": "Аўтарадыё абярэ песні, якія менш падобныя на тыя, што ўжо ёсць у чарзе, тым больш шалёна гэта будзе",
     "autoradio-description": "Дадаваць падобныя трэкі аўтаматычна, калі чарга заканчваецца",
+    "listening-history": "Listening history",
+    "listening-history-description": "Log the tracks you listen to, a la Last.fm. The history is stored offline.",
     "compact-menu-bar": "Выкарыстоўваць кампактны стыль для радкоў меню",
     "compact-queue-bar": "Выкарыстоўваць кампактны стыль для панэлі чэргаў",
     "developer": "Налады распрацоўніка",
@@ -391,6 +394,15 @@
       "go-to-favorite-tracks": "Перайсці да любімых трэкаў",
       "go-to-library": "Перайсці да лакальнай бібліятэцы"
     }
+  },
+  "listening-history": {
+    "title": "Listening history",
+    "empty-state": "You haven't listened to anything yet.",
+    "clear-history": "Clear history",
+    "clear-history-confirm": "Are you sure you want to clear your listening history?",
+    "clear-history-confirm-yes": "Confirm",
+    "clear-history-confirm-no": "Cancel",
+    "clear-history-toast": "Listening history cleared"
   },
   "forms": {
     "nuclear-sign-up": {
