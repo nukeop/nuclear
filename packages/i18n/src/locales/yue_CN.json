@@ -19,6 +19,7 @@
     "favorite-artists": "鍾意嘅藝人",
     "favorite-tracks": "鍾意嘅曲目",
     "library": "本地曲庫",
+    "listening-history": "Listening History",
     "lyrics": "歌詞",
     "main": "主頁",
     "playlists": "播放列表",
@@ -250,6 +251,8 @@
     "autoradio-craziness": "Autoradio craziness",
     "autoradio-craziness-description": "Autoradio will select songs that are less similar to the ones already in the queue the crazier it is",
     "autoradio-description": "Add similar tracks automatically when the queue is ending",
+    "listening-history": "Listening history",
+    "listening-history-description": "Log the tracks you listen to, a la Last.fm. The history is stored offline.",
     "compact-menu-bar": "Use compact style for menu bar",
     "compact-queue-bar": "Use compact style for queue bar",
     "developer": "Developer settings",
@@ -391,6 +394,15 @@
       "go-to-favorite-tracks": "Go to favorite tracks",
       "go-to-library": "Go to local library"
     }
+  },
+  "listening-history": {
+    "title": "Listening history",
+    "empty-state": "You haven't listened to anything yet.",
+    "clear-history": "Clear history",
+    "clear-history-confirm": "Are you sure you want to clear your listening history?",
+    "clear-history-confirm-yes": "Confirm",
+    "clear-history-confirm-no": "Cancel",
+    "clear-history-toast": "Listening history cleared"
   },
   "forms": {
     "nuclear-sign-up": {
