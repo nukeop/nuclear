@@ -19,6 +19,7 @@
     "favorite-artists": "Omiljeni Izvođači",
     "favorite-tracks": "Omiljene Pjesme",
     "library": "Lokalna Knjižnica",
+    "listening-history": "Listening History",
     "lyrics": "Stihovi",
     "main": "Početna",
     "playlists": "Popis za reprodukciju",
@@ -250,6 +251,8 @@
     "autoradio-craziness": "Autoradio ludilo",
     "autoradio-craziness-description": "Autoradio će odabrati pjesme koje su manje slične onima koje su već u redu čekanja što je luđe",
     "autoradio-description": "Automatski dodaj slične pjesme kad se red čekanja završava",
+    "listening-history": "Listening history",
+    "listening-history-description": "Log the tracks you listen to, a la Last.fm. The history is stored offline.",
     "compact-menu-bar": "Koristi kompaktni stil za traku izbornika",
     "compact-queue-bar": "Koristi kompaktni stil za traku reda čekanja",
     "developer": "Developerske postavke",
@@ -391,6 +394,15 @@
       "go-to-favorite-tracks": "Idite na omiljene pjesme",
       "go-to-library": "Idite na lokalnu knjižnicu"
     }
+  },
+  "listening-history": {
+    "title": "Listening history",
+    "empty-state": "You haven't listened to anything yet.",
+    "clear-history": "Clear history",
+    "clear-history-confirm": "Are you sure you want to clear your listening history?",
+    "clear-history-confirm-yes": "Confirm",
+    "clear-history-confirm-no": "Cancel",
+    "clear-history-toast": "Listening history cleared"
   },
   "forms": {
     "nuclear-sign-up": {
