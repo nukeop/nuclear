@@ -1,17 +1,17 @@
-## What if I am religiously opposed to using Electron?
+## क्या होगा यदि मैं इलेक्ट्रॉन का उपयोग करने के लिए धार्मिक रूप से विरोध कर रहा हूँ?
 
-Then you are not the target audience of this program. See [mps-youtube](https://github.com/mps-youtube/mps-youtube) for a similar program that will not taint your machine with a library you happen to dislike.
+तब आप इस कार्यक्रम के लक्षित दर्शक नहीं हैं. इसी तरह के प्रोग्राम के लिए [mps-youtube](https://github.com/mps-youtube/mps-youtube) देखें जो आपकी मशीन को उस लाइब्रेरी से कलंकित नहीं करेगा जिसे आप नापसंद करते हैं।
 
-It's clear that highly polarized opinions about languages and frameworks are characteristic of people who lack real-world programming experience and are more interested in building an identity than creating computer programs. When pressed for reasons what exactly is so bad about Electron, they can rarely offer anything than vaguely mumbled "memory usage" or "b-but it's an entire browser" (both of which have not been true for years, for example Electron's memory usage has improved dramatically, but the meme stuck). The programming world is filled with people who read angry rants about why library X or Y sucks and you should hate it, then repeat whatever they remember because they think whining makes them seem smart, without critically examining whether it makes sense or not.
+यह स्पष्ट है कि भाषाओं और ढांचे के बारे में अत्यधिक ध्रुवीकृत राय उन लोगों की विशेषता है जिनके पास वास्तविक-विश्व प्रोग्रामिंग अनुभव की कमी है और कंप्यूटर प्रोग्राम बनाने की तुलना में पहचान बनाने में अधिक रुचि रखते हैं। जब उन कारणों के लिए दबाया जाता है जो वास्तव में इलेक्ट्रॉन के बारे में इतना बुरा है, तो वे शायद ही कभी अस्पष्ट "स्मृति उपयोग" या "बी-लेकिन यह एक संपूर्ण ब्राउज़र" के अलावा कुछ भी पेश कर सकते हैं (दोनों ही वर्षों से सच नहीं हैं, उदाहरण के लिए इलेक्ट्रॉन की स्मृति उपयोग नाटकीय रूप से सुधार हुआ है, लेकिन मेम अटक गया)। प्रोग्रामिंग की दुनिया ऐसे लोगों से भरी पड़ी है, जो पुस्तकालय X या Y के बेकार होने के बारे में गुस्सा करते हैं और आपको इससे नफरत करनी चाहिए, फिर उन्हें जो कुछ भी याद है उसे दोहराएं क्योंकि उन्हें लगता है कि रोना उन्हें स्मार्ट लगता है, गंभीर रूप से जांच किए बिना कि यह समझ में आता है या नहीं।
 
-## The reasons behind Electron
+## इलेक्ट्रॉन के पीछे के कारण
 
-* It's fun to develop for
-* It uses as much resources as a single browser tab, if used in a sane way
-* It provides a low barrier to entry for contributors
-* It lets us easily build and deploy to all major desktop platforms (various Linux distros, MacOS, Windows)
-* It lets us use React for managing the GUI
-* There is no good alternative that would provide all these benefits (don't get me started on qt - try using their designer)
-* The users don't care about the technology you use to build your app
+* इसके लिए विकसित करना मजेदार है
+* यह एक ब्राउज़र टैब के रूप में अधिक संसाधनों का उपयोग करता है, अगर इसे एक समझदार तरीके से उपयोग किया जाता है
+* यह योगदानकर्ताओं के लिए प्रवेश के लिए एक कम अवरोध प्रदान करता है
+* यह हमें सभी प्रमुख डेस्कटॉप प्लेटफार्मों को आसानी से बनाने और तैनात करने देता है(विभिन्न लिनक्स डिस्ट्रो, मैकोज़, विंडोज़)
+* यह हमें GUI के प्रबंधन के लिए React का उपयोग करने देता है
+* कोई अच्छा विकल्प नहीं है जो इन सभी लाभों को प्रदान करे (मुझे qt पर शुरू मत करो। - उनके designer का उपयोग करने का प्रयास करें)
+* उपयोगकर्ता उस तकनीक की परवाह नहीं करते हैं जिसका उपयोग आप अपना ऐप बनाने के लिए करते हैं
 
-With experience comes a certain appreciation of tradeoffs you take when building software and while Electron is not the perfect solution for every use case, it's certainly good enough for what I was trying to achieve with Nuclear.
+अनुभव के साथ सॉफ्टवेयर का निर्माण करते समय आपके द्वारा किए जाने वाले ट्रेडऑफ़ की एक निश्चित सराहना होती है और जबकि इलेक्ट्रॉन हर उपयोग के मामले के लिए सही समाधान नहीं है, यह निश्चित रूप से पर्याप्त है जो मैं न्यूक्लियर के साथ हासिल करने की कोशिश कर रहा था।
