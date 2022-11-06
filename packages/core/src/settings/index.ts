@@ -56,6 +56,14 @@ export const settingsConfig: Array<Setting> = [
     hide: true
   },
   {
+    name: 'normalize',
+    category: 'audio',
+    description: 'normalize-description',
+    type: SettingType.BOOLEAN,
+    prettyName: 'normalize',
+    default: false
+  },
+  {
     name: 'loopAfterQueueEnd',
     category: 'playback',
     type: SettingType.BOOLEAN,
@@ -314,13 +322,15 @@ export const settingsConfig: Array<Setting> = [
     prettyName: 'nuclear-identity-service-url',
     category: 'social',
     type: SettingType.STRING,
-    default: 'http://localhost:3000'
+    default: 'http://localhost:3000',
+    hide: true
   },
   {
     name: 'nuclearPlaylistsServiceUrl',
     prettyName: 'nuclear-playlists-service-url',
     category: 'social',
     type: SettingType.STRING,
-    default: 'http://localhost:3010'
+    default: 'http://localhost:3010',
+    hide: true
   }
 ];

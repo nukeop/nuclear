@@ -201,6 +201,7 @@ class SoundContainer extends React.Component {
       >
         <Normalizer
           url={currentStream.stream}
+          normalize={this.props.settings.normalize}
         />
         <Volume value={player.muted ? 0 : player.volume} />
         <Equalizer

@@ -3,6 +3,7 @@ import { pluginFactory, Plugin } from 'react-hifi';
 export interface NormalizerProps {
   /** url of stream that is played */
   url: string;
+  normalize: boolean;
 }
 
 export class Normalizer implements Plugin<NormalizerProps, GainNode> {
@@ -14,8 +15,13 @@ export class Normalizer implements Plugin<NormalizerProps, GainNode> {
     return prevProps.url === nextProps.url;
   }
 
-  createNode(audioContext: AudioContext, { url }: NormalizerProps) {
+  createNode(audioContext: AudioContext, { url, normalize }: NormalizerProps) {
     const gainNode = audioContext.createGain();
+
+    if (!normalize) {
+      gainNode.gain.value = 1;
+      return gainNode;
+    }
 
     // delay workaround with suspending audiocontext until fetch is finished
     audioContext.suspend();
