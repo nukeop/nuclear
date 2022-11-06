@@ -17,6 +17,7 @@ import * as LyricsActions from '../../actions/lyrics';
 import { filterFrequencies } from '../../components/Equalizer/chart';
 import * as Autoradio from './autoradio';
 import VisualizerContainer from '../../containers/VisualizerContainer';
+import Normalizer from '../../components/Normalizer';
 import globals from '../../globals';
 import HlsPlayer from '../../components/HLSPlayer';
 
@@ -198,6 +199,10 @@ class SoundContainer extends React.Component {
         position={player.seek}
         onError={this.handleError}
       >
+        <Normalizer
+          url={currentStream.stream}
+          normalize={this.props.settings.normalize}
+        />
         <Volume value={player.muted ? 0 : player.volume} />
         <Equalizer
           data={filterFrequencies.reduce((acc, freq, idx) => ({
