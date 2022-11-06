@@ -7,7 +7,7 @@ import { Button } from '../../..';
 import { Track } from '../../../types';
 import styles from '../styles.scss';
 
-const PositionCell: React.FC<CellProps<Track> & TrackTableExtraProps> = ({
+const PositionCell: React.FC<CellProps<Track> & TrackTableExtraProps<Track>> = ({
   cell,
   row,
   value,

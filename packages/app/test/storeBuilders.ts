@@ -9,6 +9,8 @@ import { AnyProps } from './testUtils';
 import { LyricsProvider, MetaProvider } from '@nuclear/core';
 import { TrackStream } from '../app/reducers/queue';
 import { LocalLibraryState } from '../app/actions/local';
+import { DeezerEditorialCharts } from '@nuclear/core/src/rest/Deezer';
+import { Loadable } from '../app/reducers/types';
 
 type StoreStateBuilder = ReturnType<typeof buildStoreState>;
 export const buildStoreState = () => {
@@ -54,7 +56,10 @@ export const buildStoreState = () => {
       bestNewAlbums: [],
       bestNewTracks: [],
       topTracks: [],
-      topTags: []
+      topTags: [],
+      editorialCharts: { ...startingStateMeta },
+      editorialPlaylists: {},
+      promotedArtists: { ...startingStateMeta }
     },
     downloads: [],
     favorites: {
@@ -75,6 +80,22 @@ export const buildStoreState = () => {
       identity: {
         token: null,
         signedInUser: null
+      },
+      configuration: {
+        configuration: {
+          isLoading: false,
+          isReady: true,
+          data: {
+            PROMOTED_ARTISTS: true
+          }
+        },
+        params: {
+          isLoading: false,
+          isReady: true,
+          data: {
+            PROMOTED_ARTIST_BACKGROUND: 'https://nuclear.js.org/background.jpg'
+          }
+        }
       }
     },
     settings: {}
@@ -549,46 +570,33 @@ export const buildStoreState = () => {
           topTracks: [
             {
               id: 1,
+              position: 1,
               title: 'top track 1',
-              artist: {
-                name: 'top track artist 1',
-                picture_small: 'top track artist picture small 1',
-                picture_medium: 'top track artist picture medium 1',
-                picture_big: 'top track artist picture big 1',
-                picture_xl: 'top track artist picture xl 1'
-              },
+              artist: 'top track artist 1',
+              thumbnail: 'top track thumbnail 1',
               duration: 100,
               album: {
                 title: 'top track album 1',
-                cover_small: 'top track album cover small 1',
+                cover_small: 'top track cover small 1',
                 cover_medium: 'top track album cover 1',
-                cover_big: 'top track album cover big 1',
-                cover_xl: 'top track album cover xl 1'
-              },
-              position: 1,
-              preview: 'top track preview 1'
-              
+                cover_big: 'top track cover big 1',
+                cover_xl: 'top track cover xl 1'
+              }
             },
             {
               id: 2,
+              position: 2,
               title: 'top track 2',
-              artist: {
-                name: 'top track artist 2',
-                picture_small: 'top track artist picture small 2',
-                picture_medium: 'top track artist picture medium 2',
-                picture_big: 'top track artist picture big 2',
-                picture_xl: 'top track artist picture xl 2'
-              },
+              artist: 'top track artist 2',
+              thumbnail: 'top track thumbnail 2',
               duration: 78,
               album: {
                 title: 'top track album 2',
-                cover_small: 'top track album cover small 2',
+                cover_small: 'top track cover small 2',
                 cover_medium: 'top track album cover 2',
-                cover_big: 'top track album cover big 2',
-                cover_xl: 'top track album cover xl 2'
-              },
-              position: 2,
-              preview: 'top track preview 2'
+                cover_big: 'top track cover big 2',
+                cover_xl: 'top track cover xl 2'
+              }
             }
           ],
           topTags: [
@@ -602,7 +610,87 @@ export const buildStoreState = () => {
               count: 2345,
               reach: 899
             }
-          ]
+          ],
+          editorialCharts: {
+            isLoading: false,
+            isReady: true,
+            data: {
+              artists: {
+                data: [{
+                  id: 1,
+                  name: 'artist 1',
+                  picture_medium: 'artist 1 picture medium'
+                }, {
+                  id: 2,
+                  name: 'artist 2',
+                  picture_medium: 'artist 2 picture medium'
+                }],
+                total: 2
+              },
+              albums: {
+                data: [{
+                  id: 1,
+                  title: 'album 1',
+                  artist: {
+                    name: 'artist 1'
+                  },
+                  cover_medium: 'album 1 cover medium'
+                }, {
+                  id: 2,
+                  title: 'album 2',
+                  artist: {
+                    name: 'artist 2'
+                  },
+                  cover_medium: 'album 2 cover medium'
+                }],
+                total: 2
+              },
+              playlists: {
+                data: [{
+                  id: 1,
+                  title: 'playlist 1',
+                  picture_medium: 'playlist 1 picture medium'
+                }, {
+                  id: 2,
+                  title: 'playlist 2',
+                  picture_medium: 'playlist 2 picture medium'
+                }],
+                total: 2
+              }
+            }
+          } as Loadable<DeezerEditorialCharts>,
+          editorialPlaylists: {
+            1: {
+              isLoading: false,
+              isReady: true,
+              data: {
+                id: 1,
+                tracklist: [{
+                  uuid: '1',
+                  name: 'track 1',
+                  artist: 'artist 1',
+                  stream: undefined
+                }, {
+                  uuid: '2',
+                  name: 'track 2',
+                  artist: 'artist 2',
+                  stream: undefined
+                }]
+              }
+            }
+          },
+          promotedArtists: {
+            isLoading: false,
+            isReady: true,
+            data: [{
+              id: '1',
+              name: 'Promoted artist 1',
+              description: 'Promoted artist 1 description',
+              link: 'https://promoted-artist-1.example',
+              picture: 'https://promoted-artist-1.example/picture.jpg',
+              metaProvider: 'bandcamp'              
+            }]
+          }
         }
       };
       return this as StoreStateBuilder;

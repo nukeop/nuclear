@@ -101,6 +101,14 @@ export const settingsConfig: Array<Setting> = [
     default: 10
   },
   {
+    name: 'listeningHistory',
+    category: 'playback',
+    description: 'listening-history-description',
+    type: SettingType.BOOLEAN,
+    prettyName: 'listening-history',
+    default: true
+  },
+  {
     name: 'notificationTimeout',
     category: 'program-settings',
     type: SettingType.NUMBER,
@@ -180,6 +188,14 @@ export const settingsConfig: Array<Setting> = [
     category: 'display',
     type: SettingType.BOOLEAN,
     prettyName: 'track-duration',
+    default: true
+  },
+  {
+    name: 'promotedArtists',
+    category: 'display',
+    type: SettingType.BOOLEAN,
+    prettyName: 'promoted-artists',
+    description: 'promoted-artists-description',
     default: true
   },
   {

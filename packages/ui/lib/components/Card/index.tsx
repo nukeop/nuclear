@@ -20,6 +20,7 @@ type CardProps = {
   withMenu?: boolean;
   animated?: boolean;
   menuEntries?: CardMenuEntry[];
+  className?: string;
 };
 
 const Card: React.FC<CardProps> = ({
@@ -29,11 +30,13 @@ const Card: React.FC<CardProps> = ({
   onClick,
   withMenu = false,
   animated = true,
-  menuEntries
+  menuEntries,
+  className
 }) => (
   <div className={cx(
     common.nuclear,
-    styles.card_container
+    styles.card_container,
+    className
   )}>
     <div
       className={cx(

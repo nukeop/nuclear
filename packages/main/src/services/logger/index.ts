@@ -24,8 +24,14 @@ interface EventMessage {
   event: any;
   data?: any;
 }
+export interface ILogger {
+  log(...args: any[]): void;
+  logEvent({ direction, event, data, once }: EventMessage): void;
+  warn(...args: any[]): void;
+  error(...args: any[]): void;
+}
 
-class Logger {
+class Logger implements ILogger {
   private logger: typeof timber;
   private name: string;
 

@@ -19,6 +19,7 @@
     "favorite-artists": "Favorite Artists",
     "favorite-tracks": "Këngët e Preferuara",
     "library": "Libraria Lokale",
+    "listening-history": "Listening History",
     "lyrics": "Teskti i këngës",
     "main": "Kreu",
     "playlists": "Listat e këngëve",
@@ -50,9 +51,15 @@
     "genres": "Zhanri",
     "news": "Të reja",
     "playcounts": "Numërimet",
+    "playlists": "Trending",
     "popular-track-title": "Këngët më të kërkuara nga Deezer",
     "title": "Titulli",
-    "top": "Këngët më të kërkuara"
+    "top": "Këngët më të kërkuara",
+    "trending-playlists": "Trending playlists",
+    "trending-artists": "Trending artists",
+    "trending-albums": "Trending albums",
+    "filter": "Filter...",
+    "nothing-found": "Nothing found."
   },
   "downloads": {
     "clear": "Fshi këngët e përfunduara",
@@ -244,6 +251,8 @@
     "autoradio-craziness": "Autoradio craziness",
     "autoradio-craziness-description": "Autoradio do përzgjedhë këngë të cilat janë më pak të ngjashme me ato që janë aktualisht në radhë dhe më të çmenduara",
     "autoradio-description": "Shto këngë të ngjashme automatikisht kur radha është në përfundim",
+    "listening-history": "Listening history",
+    "listening-history-description": "Log the tracks you listen to, a la Last.fm. The history is stored offline.",
     "compact-menu-bar": "Përdor stilin kompakt për shiritin e menusë",
     "compact-queue-bar": "Përdor stilin kompakt për shiritin e radhës",
     "developer": "Developer settings",
@@ -291,6 +300,8 @@
     "notlogged": "Nuk jeni kyçur",
     "playback": "Playback",
     "program-settings": "Cilësimet e programit",
+    "promoted-artists": "Show promoted artists in the dashboard",
+    "promoted-artists-description": "This is a reel of interesting, handpicked indie artists you might like. No one's receiving any compensation for this.",
     "saving-in": "Saving in:",
     "seek-iteration": "Numri i sekondave për të parë përpara/pas kur shtypni butonat e shigjetave",
     "shuffle-queue": "Përzieni këngët",
@@ -317,6 +328,11 @@
     "add-to-favorite": "Add to favorites",
     "add-to-playlist": "Add to playlist",
     "add-to-queue": "Add to queue",
+    "create-playlist": "Create new playlist",
+    "create-playlist-dialog-title": "Input playlist name:",
+    "create-playlist-dialog-placeholder": "Playlist name...",
+    "create-playlist-dialog-accept": "Save",
+    "create-playlist-dialog-cancel": "Cancel",
     "download": "Download",
     "download-toast-body": "{{artist}} - {{track}} has been added to downloads.",
     "download-toast-title": "Track added to downloads",
@@ -378,6 +394,15 @@
       "go-to-favorite-tracks": "Go to favorite tracks",
       "go-to-library": "Go to local library"
     }
+  },
+  "listening-history": {
+    "title": "Listening history",
+    "empty-state": "You haven't listened to anything yet.",
+    "clear-history": "Clear history",
+    "clear-history-confirm": "Are you sure you want to clear your listening history?",
+    "clear-history-confirm-yes": "Confirm",
+    "clear-history-confirm-no": "Cancel",
+    "clear-history-toast": "Listening history cleared"
   },
   "forms": {
     "nuclear-sign-up": {

@@ -1,10 +1,11 @@
 import { render, waitFor } from '@testing-library/react';
 import React from 'react';
 import { createMemoryHistory } from 'history';
+import { store as electronStore } from '@nuclear/core';
 
 import { AnyProps, configureMockStore, setupI18Next, TestRouterProvider, TestStoreProvider } from '../../../test/testUtils';
 import MainContentContainer from '../MainContentContainer';
-import { buildStoreState } from '../../../test/storeBuilders';
+import { buildElectronStoreState, buildStoreState } from '../../../test/storeBuilders';
 
 describe('Artist view container', () => {
   beforeAll(() => {
@@ -127,6 +128,23 @@ describe('Artist view container', () => {
 
   it('should add a top track to favorites after clicking the button in the popup', async () => {
     const { component, store } = mountComponent();
+    
+    await waitFor(() => component.getByText(/test artist top track 1/i).click());
+    await waitFor(() => component.getByText(/add to playlist/i).click());
+    await waitFor(() => component.getByText('test playlist').click());
+    
+    const state = store.getState();
+
+    expect(state.playlists.localPlaylists.data[0].tracks).toEqual([
+      expect.objectContaining({
+        artist: 'test artist',
+        name: 'test artist top track 1'
+      })
+    ]);
+  });
+
+  it('should add a top track to a playlist after clicking the button in the popup', async () => {
+    const { component, store } = mountComponent();
     let state = store.getState();
     expect(state.favorites.tracks).toEqual([]);
 
@@ -202,9 +220,22 @@ describe('Artist view container', () => {
     const initialState = initialStore ||
       buildStoreState()
         .withArtistDetails()
+        .withPlaylists([{
+          id: 'test-playlist-id',
+          name: 'test playlist',
+          tracks: []
+        }])
         .withPlugins()
         .withConnectivity()
         .build();
+        
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    electronStore.init({
+      ...buildElectronStoreState(),
+      playlists: initialState.playlists.localPlaylists.data
+    });
+
     const history = createMemoryHistory({
       initialEntries: ['/artist/test-artist-id']
     });

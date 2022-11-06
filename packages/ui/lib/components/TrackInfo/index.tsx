@@ -41,15 +41,13 @@ const TrackInfo: React.FC<TrackInfoProps> = ({
             </div>
           </div>
           <div className={styles.favorite_part}>
-            <Icon name={
-              isFavorite ? 'heart' : 'heart outline'
-            }
+            <Icon name={isFavorite ? 'heart' : 'heart outline'}
               size='large'
               onClick={
-              isFavorite
-                ? removeFromFavorites
-                : addToFavorites
-            }
+                isFavorite
+                  ? removeFromFavorites
+                  : addToFavorites
+              }
             />
           </div>
         </>

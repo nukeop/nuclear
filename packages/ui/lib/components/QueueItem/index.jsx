@@ -36,7 +36,7 @@ export const QueueItem = ({
     <div className={styles.thumbnail}>
       {
         isLoading
-          ? <Loader type='small' />
+          ? <Loader type='small' className={isCompact && styles.compact_loader} />
           : <img src={_.defaultTo(track.thumbnail, artPlaceholder)} />
       }
 
@@ -60,16 +60,21 @@ export const QueueItem = ({
           </div>
         </div>
 
-        <div className={styles.item_duration_container}>
-          <div className={styles.item_duration}>
-            {duration}
+        {
+          !isLoading &&
+          Boolean(track.stream) &&
+          <div className={styles.item_duration_container}>
+            <div className={styles.item_duration}>
+              {duration}
+            </div>
           </div>
-        </div>
+        }
       </>
     }
 
     {
-      Boolean(error) &&
+      Boolean(error) && 
+      !isCompact &&
         <div className={styles.error_overlay}>
           <div className={styles.error_message}>{error.message}</div>
           <div className={styles.error_details}>{error.details}</div>

@@ -101,10 +101,14 @@ export const mountComponent = (
 
 export const mountedComponentFactory = (
   initialHistoryEntries: string[],
-  defaultInitialStore?: AnyProps
+  defaultInitialStore?: AnyProps,
+  AdditionalNodes?: React.FC
 ) =>
   (initialStore?: AnyProps) => mountComponent(
-    <MainContentContainer />,
+    <>
+      <MainContentContainer />
+      {AdditionalNodes && <AdditionalNodes />}
+    </>,
     initialHistoryEntries,
     initialStore,
     defaultInitialStore

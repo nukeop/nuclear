@@ -25,7 +25,7 @@ export default (async function () {
     const tracklistContainer = document.querySelector('div[data-testid="playlist-tracklist"]');
     const totalTracks = parseInt(
       tracklistContainer.getAttribute('aria-rowcount')
-    );
+    ) - 1;
     const name = tracklistContainer.getAttribute('aria-label');
 
     return {
@@ -55,6 +55,7 @@ export default (async function () {
         const index = parseInt(nodeTracks[i].getAttribute('aria-rowindex'));
 
         if (index > processedIndex) {
+          nodeTracks[i].scrollIntoView();
           const nodeDetails = nodeTracks[i].childNodes[0] as HTMLElement;
           const track: SpotifyTrack = {
             index: 0,
@@ -139,7 +140,7 @@ export default (async function () {
       scrollBarElement.dispatchEvent(evt);
       y += scrollHeight;
 
-      await wait(1000);
+      await wait(500);
     }
 
     playlist.tracks = extractedTracks;

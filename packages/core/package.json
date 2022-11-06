@@ -15,13 +15,14 @@
   "scripts": {
     "lint": "eslint \"{test,src}/**/**.{js,ts}\"",
     "lint:fix": "eslint \"{test,src}/**/**.{js,ts}\" --fix",
-    "test": "jest",
-    "coverage": "jest --coverage"
+    "test": "jest --silent",
+    "coverage": "jest --silent --coverage"
   },
   "dependencies": {
     "@babel/core": "^7.9.0",
     "@babel/preset-env": "^7.9.5",
     "@babel/preset-react": "^7.9.4",
+    "@supabase/supabase-js": "^1.35.4",
     "ajv": "^6.12.5",
     "bandcamp-scraper": "1.4.1",
     "cheerio": "^1.0.0-rc.5",
@@ -49,7 +50,6 @@
     "@types/jest": "^27.4.1",
     "@types/lodash": "^4.14.158",
     "@types/md5": "^2.1.33",
-    "@types/react": "^16.9.43",
     "eslint": "^7.18.0",
     "mock-require": "^3.0.3",
     "ts-node": "^10.7.0",

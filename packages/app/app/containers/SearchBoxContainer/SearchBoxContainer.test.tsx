@@ -46,6 +46,15 @@ describe('Search box container', () => {
     expect(state.plugin.selected.metaProviders).toEqual('Another Metadata Provider');
   });
 
+  it('should clear the input on pressing the clear button', async () => {
+    const { component } = mountComponent();
+    const searchInput = component.getByTestId('search-input');
+    fireEvent.change(searchInput, { target: { value: 'test' } });
+    await component.getByTestId('search-box-clear').click();
+
+    expect(component.queryByDisplayValue('test')).not.toBeInTheDocument();
+  });
+
   const mountComponent = (initialStore?: AnyProps) => {
     const initialState = initialStore ||
             buildStoreState()
