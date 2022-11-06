@@ -24,6 +24,9 @@ import TrayMenu from './services/trayMenu';
 
 import { ServiceProvider } from './utils/types';
 import TouchbarMenu from './services/touchbar';
+import ListeningHistoryService from './services/listening-history';
+import ListeningHistoryDb from './services/listening-history/db';
+import ListeningHistoryController from './controllers/listening-history';
 
 const services: ServiceProvider[] = [
   { useClass: AcousticId },
@@ -33,13 +36,14 @@ const services: ServiceProvider[] = [
   { useClass: HttpApi },
   { useClass: LocalLibrary },
   { useClass: LocalLibraryDb },
+  { useClass: ListeningHistoryService },
+  { useClass: ListeningHistoryDb },
   { useClass: Store },
   { useClass: Window },
   { useClass: Platform },
   { useClass: SystemApi },
   { useClass: TrayMenu },
   { useClass: TouchbarMenu },
-
   { provide: $ipc, useValue: ipcMain },
   { provide: $mainLogger, useValue: new Logger() },
   { provide: $ipcLogger, useValue: new Logger('ipc api') },
@@ -50,6 +54,7 @@ const services: ServiceProvider[] = [
 const controllers: Class[] = [
   DownloadCtrl,
   LocalLibraryCtrl,
+  ListeningHistoryController,
   LoggerCtrl,
   PlayerCtrl,
   SettingsCtrl

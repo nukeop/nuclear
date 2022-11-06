@@ -9,4 +9,5 @@ export type Loadable<T> = LoadableMeta & {
   data?: T;
 };
 
+export type EmptyPayloadKeyCreator = () => string;
 export type KeyCreator<P> = (payload: P) => string;

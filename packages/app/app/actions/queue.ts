@@ -115,8 +115,11 @@ export const addToQueue =
   (item: QueueItem, asNextItem = false) =>
     async (dispatch, getState) => {
       const { local }: RootState = getState();
-      item = safeAddUuid(item);
-      item.loading = !item.local;
+      item = {
+        ...safeAddUuid(item),
+        stream: item.local ? item.stream : undefined,
+        loading: false
+      };
 
       const {
         connectivity
@@ -129,45 +132,54 @@ export const addToQueue =
         isAbleToAdd &&
           dispatch(!asNextItem ? addQueueItem(item) : playNextItem(item));
       }
-
-      if (!item.local && isAbleToAdd) {
-        const selectedStreamProvider = getSelectedStreamProvider(getState);
-        try {
-          const streamData = await getTrackStream(
-            item,
-            selectedStreamProvider
-          );
-
-          if (streamData === undefined) {
-            dispatch(removeFromQueue(item));
-          } else {
-            dispatch(
-              updateQueueItem({
-                ...item,
-                loading: false,
-                error: false,
-                stream: streamData
-              })
-            );
-          }
-        } catch (e) {
-          logger.error(
-            `An error has occurred when searching for a stream with ${selectedStreamProvider.sourceName} for "${item.artist} - ${item.name}."`
-          );
-          logger.error(e);
-          dispatch(
-            updateQueueItem({
-              ...item,
-              loading: false,
-              error: {
-                message: `An error has occurred when searching for a stream with ${selectedStreamProvider.sourceName}.`,
-                details: e.message
-              }
-            })
-          );
-        }
-      }
     };
+
+export const findStreamForTrack = (idx: number) => async (dispatch, getState) => {
+  const {queue}: RootState = getState();
+
+  const track = queue.queueItems[idx];
+  if (track && !track.local && !track.stream) {
+    dispatch(updateQueueItem({
+      ...track,
+      loading: true
+    }));
+    const selectedStreamProvider = getSelectedStreamProvider(getState);
+    try {
+      const streamData = await getTrackStream(
+        track,
+        selectedStreamProvider
+      );
+
+      if (streamData === undefined) {
+        dispatch(removeFromQueue(track));
+      } else {
+        dispatch(
+          updateQueueItem({
+            ...track,
+            loading: false,
+            error: false,
+            stream: streamData
+          })
+        );
+      }
+    } catch (e) {
+      logger.error(
+        `An error has occurred when searching for a stream with ${selectedStreamProvider.sourceName} for "${track.artist} - ${track.name}."`
+      );
+      logger.error(e);
+      dispatch(
+        updateQueueItem({
+          ...track,
+          loading: false,
+          error: {
+            message: `An error has occurred when searching for a stream with ${selectedStreamProvider.sourceName}.`,
+            details: e.message
+          }
+        })
+      );
+    }
+  }
+};
 
 export function playTrack(streamProviders, item: QueueItem) {
   return (dispatch) => {

@@ -4,7 +4,7 @@ import { ActionType, createReducer } from 'typesafe-actions';
 
 import { Playlists } from '../actions/actionTypes';
 import * as actions from '../actions/playlists';
-import { loadingStateMeta, handleLoadableActionSuccess, handleLoadableActionError, startingStateMeta } from './helpers';
+import { handleLoadableActionSuccess, handleLoadableActionError, startingStateMeta, handleLoadableActionStart } from './helpers';
 import { Loadable } from './types';
 
 export class PlaylistsStore {
@@ -20,9 +20,7 @@ const localPlaylistsKeyCreator = () => 'localPlaylists';
 export const reducer = createReducer<PlaylistsStore, PlaylistsAction>(
   defaultState,
   {
-    [Playlists.LOAD_LOCAL_PLAYLISTS_START]: (state) => produce(state, draft => {
-      draft.localPlaylists = {...loadingStateMeta};
-    }),
+    [Playlists.LOAD_LOCAL_PLAYLISTS_START]: handleLoadableActionStart(localPlaylistsKeyCreator),
     [Playlists.LOAD_LOCAL_PLAYLISTS_SUCCESS]: handleLoadableActionSuccess(localPlaylistsKeyCreator),
     [Playlists.LOAD_LOCAL_PLAYLISTS_ERROR]: handleLoadableActionError(localPlaylistsKeyCreator),
     [Playlists.UPDATE_LOCAL_PLAYLISTS]: (state, action) => produce(state, draft => {

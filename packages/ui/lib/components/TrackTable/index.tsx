@@ -2,7 +2,7 @@
 import React, { TableHTMLAttributes, useMemo } from 'react';
 import cx from 'classnames';
 import { useTable, Column, useRowSelect } from 'react-table';
-import _, { isNumber, isString } from 'lodash';
+import { isNumber, isString } from 'lodash';
 import { DragDropContext, Droppable, Draggable, DragDropContextProps } from 'react-beautiful-dnd';
 
 import DeleteCell from './Cells/DeleteCell';
@@ -21,18 +21,21 @@ import { Track } from '../../types';
 import { formatDuration } from '../..';
 import { ThHTMLAttributes } from 'react';
 
-export type TrackTableProps = TrackTableExtraProps &
+export type TrackTableProps<T extends Track> = TrackTableExtraProps<T> &
   TrackTableHeaders &
   TrackTableSettings & {
-    tracks: Track[];
-    isTrackFavorite: (track: Track) => boolean;
+    className?: string;
+    tracks: T[];
+    isTrackFavorite: (track: T) => boolean;
     onDragEnd?: DragDropContextProps['onDragEnd'];
-
     strings: TrackTableStrings;
+    customColumns?: Column<T>[];
   }
 
-const TrackTable: React.FC<TrackTableProps> = ({
+function TrackTable<T extends Track>({
+  className,
   tracks,
+  customColumns=[],
   isTrackFavorite,
   onDragEnd,
 
@@ -43,6 +46,7 @@ const TrackTable: React.FC<TrackTableProps> = ({
   albumHeader,
   durationHeader,
 
+  displayHeaders = true,
   displayDeleteButton = true,
   displayPosition = true,
   displayThumbnail = true,
@@ -50,10 +54,11 @@ const TrackTable: React.FC<TrackTableProps> = ({
   displayArtist = true,
   displayAlbum = true,
   displayDuration = true,
+  displayCustom = true,
   selectable = true,
 
   ...extraProps
-}) => {
+}: TrackTableProps<T>) {
   const shouldDisplayDuration = displayDuration && tracks.every(track => Boolean(track.duration));
   const columns = useMemo(() => [
     displayDeleteButton && {
@@ -86,7 +91,7 @@ const TrackTable: React.FC<TrackTableProps> = ({
     displayArtist && {
       id: TrackTableColumn.Artist,
       Header: artistHeader,
-      accessor: (track) => _.isString(track.artist)
+      accessor: (track) => isString(track.artist)
         ? track.artist
         : track.artist.name,
       Cell: TrackTableCell
@@ -111,16 +116,17 @@ const TrackTable: React.FC<TrackTableProps> = ({
       },
       Cell: TrackTableCell
     },
+    ...customColumns,
     selectable && {
       id: TrackTableColumn.Selection,
       Header: SelectionHeader,
       Cell: SelectionCell
     }
-  ].filter(Boolean) as Column<Track>[], [displayDeleteButton, displayPosition, displayThumbnail, displayFavorite, isTrackFavorite, titleHeader, displayArtist, artistHeader, displayAlbum, albumHeader, shouldDisplayDuration, durationHeader, selectable, positionHeader, thumbnailHeader]);
+  ].filter(Boolean) as Column<T>[], [displayDeleteButton, displayPosition, displayThumbnail, displayFavorite, isTrackFavorite, titleHeader, displayArtist, artistHeader, displayAlbum, albumHeader, shouldDisplayDuration, durationHeader, selectable, positionHeader, thumbnailHeader]);
 
   const data = useMemo(() => tracks, [tracks]);
 
-  const table = useTable<Track>({ columns, data }, useRowSelect);
+  const table = useTable<T>({ columns, data }, useRowSelect);
 
   const {
     getTableProps,
@@ -130,22 +136,24 @@ const TrackTable: React.FC<TrackTableProps> = ({
     prepareRow
   } = table;
 
-  return <table {...getTableProps() as TableHTMLAttributes<HTMLTableElement>} className={styles.track_table}>
-    <thead>
-      {
-        headerGroups.map(headerGroup => (
-          <tr {...headerGroup.getHeaderGroupProps() as TableHTMLAttributes<HTMLTableRowElement>}>
-            {
-              headerGroup.headers.map(column => (
-                <th {...column.getHeaderProps() as ThHTMLAttributes<HTMLTableCellElement>}>
-                  {column.render('Header', extraProps)}
-                </th>
-              ))
-            }
-          </tr>
-        ))
-      }
-    </thead>
+  return <table {...getTableProps() as TableHTMLAttributes<HTMLTableElement>} className={cx(className, styles.track_table)}>
+    {
+      displayHeaders && <thead>
+        {
+          headerGroups.map(headerGroup => (
+            <tr {...headerGroup.getHeaderGroupProps() as TableHTMLAttributes<HTMLTableRowElement>}>
+              {
+                headerGroup.headers.map(column => (
+                  <th {...column.getHeaderProps() as ThHTMLAttributes<HTMLTableCellElement>}>
+                    {column.render('Header', extraProps)}
+                  </th>
+                ))
+              }
+            </tr>
+          ))
+        }
+      </thead>
+    }
     <DragDropContext onDragEnd={onDragEnd}>
       <Droppable droppableId='track_table'>
         {(provided) => (
@@ -186,6 +194,6 @@ const TrackTable: React.FC<TrackTableProps> = ({
       </Droppable>
     </DragDropContext>
   </table>;
-};
+}
 
 export default TrackTable;

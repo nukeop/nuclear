@@ -21,9 +21,11 @@ import SearchResultsContainer from '../SearchResultsContainer';
 import SettingsContainer from '../SettingsContainer';
 import TagViewContainer from '../TagViewContainer';
 import VisualizerNode from '../VisualizerContainer/VisualizerNode';
+import DeezerPlaylistAdapter from '../DeezerPlaylistAdapter';
+import { ListeningHistoryContainer } from '../ListeningHistoryContainer';
 
 class MainContentContainer extends React.Component {
-  componentDidMount () {
+  componentDidMount() {
     if (this.props.history &&
       this.props.location &&
       this.props.location.pathname === '/') {
@@ -31,7 +33,7 @@ class MainContentContainer extends React.Component {
     }
   }
 
-  render () {
+  render() {
     return (
       <Route render={({ location }) => {
         return (
@@ -45,6 +47,7 @@ class MainContentContainer extends React.Component {
               <Route path='/favorites/tracks' component={FavoritesContainer} />
               <Route path='/favorites/artists' component={FavoritesContainer} />
               <Route path='/playlists' component={PlaylistsContainer} />
+              <Route path='/editorial-playlist/:playlistId' component={DeezerPlaylistAdapter} />
               <Route path='/playlist/:playlistId' component={PlaylistViewContainer} />
               <Route path='/plugins' component={PluginsContainer} />
               <Route path='/settings' component={SettingsContainer} />
@@ -54,6 +57,7 @@ class MainContentContainer extends React.Component {
               <Route path='/equalizer' component={EqualizerViewContainer} />
               <Route path='/visualizer' component={VisualizerNode} />
               <Route path='/library' component={LibraryViewContainer} />
+              <Route path='/listening-history' component={ListeningHistoryContainer} />
             </Switch>
           </MainLayout>
         );
@@ -63,11 +67,11 @@ class MainContentContainer extends React.Component {
   }
 }
 
-function mapStateToProps () {
+function mapStateToProps() {
   return {};
 }
 
-function mapDispatchToProps (dispatch) {
+function mapDispatchToProps(dispatch) {
   return {
     searchActions: bindActionCreators(SearchActions, dispatch)
   };

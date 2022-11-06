@@ -1,0 +1,85 @@
+@import "../../common.scss";
+
+.promoted_artist {
+    @include high_shadow;
+    border-radius: 1em 3em 1em 3em;
+    width: 50em;
+    height: 18em;
+    background: $purple;
+    color: $white;
+    background-size: cover;
+
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+
+    padding: 2.5em;
+    margin-top: 2em;
+    line-height: 1;
+
+    .promoted_artist_info {
+        display: flex;
+        flex-flow: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+
+        flex: 1 1 auto;
+        height: 100%;
+    }
+
+    .name {
+        @include textShadow;
+        font-size: 36px;
+        font-weight: bold;
+        text-transform: uppercase;
+        margin-bottom: 0.5em;
+    }
+
+    .description {
+        @include textShadow;
+        font-size: 16px;
+    }
+
+    .spacer {
+        flex: 1 1 auto;
+    }
+
+    .button_row {
+        display: flex;
+        flex-flow: row;
+    }
+
+    .promoted_artist_button {
+        text-transform: uppercase;
+        font-size: 12px;
+        font-weight: bold;
+        width: 10em;
+        height: 3em;
+
+        &:first-child {
+            margin-right: 1em;
+        }
+    }
+
+    .promoted_artist_image {
+        position: relative;
+        width: 18em;
+        height: 18em;
+        min-width: 18em;
+        top: -2em;
+
+        div.image {
+            height: 100%;
+            mask-repeat: no-repeat;
+            -webkit-mask-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+        }
+
+        img.mask_shadow {
+            position: absolute;
+            left: -24px;
+            top: 0;
+        }
+    }
+}

@@ -10,19 +10,21 @@ export enum TrackTableColumn {
   Artist = 'artist',
   Album = 'album',
   Duration = 'duration',
-  Selection = 'selection'
+  Selection = 'selection',
+  Date = 'date',
 }
 
-export type TrackTableExtraProps = {
-  onPlay?: (track: Track) => void;
-  onPlayNext?: (track: Track) => void;
-  onPlayAll?: (tracks: Track[]) => void;
-  onAddToQueue?: (track: Track) => void;
-  onAddToFavorites?: (track: Track) => void;
-  onRemoveFromFavorites?: (track: Track) => void;
-  onAddToPlaylist?: (track: Track, { name }: { name: string }) => void;
-  onAddToDownloads?: (track: Track) => void;
-  onDelete?: (track: Track, idx: number) => void;
+export type TrackTableExtraProps<T extends Track> = {
+  onPlay?: (track: T) => void;
+  onPlayNext?: (track: T) => void;
+  onPlayAll?: (tracks: T[]) => void;
+  onAddToQueue?: (track: T) => void;
+  onAddToFavorites?: (track: T) => void;
+  onRemoveFromFavorites?: (track: T) => void;
+  onAddToPlaylist?: (track: T, { name }: { name: string }) => void;
+  onCreatePlaylist?: (track: T, { name }: { name: string }) => void;
+  onAddToDownloads?: (track: T) => void;
+  onDelete?: (track: T, idx: number) => void;
   playlists?: Array<{
     name: string;
   }>;
@@ -48,6 +50,7 @@ export type TrackTableHeaders = {
 }
 
 export type TrackTableSettings = {
+  displayHeaders?: boolean;
   displayDeleteButton?: boolean;
   displayPosition?: boolean;
   displayThumbnail?: boolean;
@@ -55,6 +58,7 @@ export type TrackTableSettings = {
   displayArtist?: boolean;
   displayAlbum?: boolean;
   displayDuration?: boolean;
+  displayCustom?: boolean;
   selectable?: boolean;
 };
 

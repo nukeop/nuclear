@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`(Snapshot) InputDialog - open should render correctly 1`] = `
+<body
+  class="dimmable dimmed blurring"
+>
+  <div />
+  <div
+    class="ui page modals dimmer transition visible active"
+    style="display: flex;"
+  >
+    <div
+      class="ui basic modal transition visible active"
+    >
+      <i
+        aria-hidden="true"
+        class="close icon"
+      />
+      <div
+        class="content"
+      >
+        <h4>
+          Input header
+        </h4>
+        <div
+          class="ui fluid inverted input"
+        >
+          <input
+            placeholder="Input placeholder"
+            type="text"
+            value="Initial string"
+          />
+        </div>
+      </div>
+      <div
+        class="actions"
+      >
+        <button
+          class="ui red basic inverted button nuclear button"
+        >
+          Cancel
+        </button>
+        <button
+          class="ui green button nuclear button"
+        >
+          Accept
+        </button>
+      </div>
+    </div>
+  </div>
+</body>
+`;

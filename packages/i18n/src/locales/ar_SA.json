@@ -19,6 +19,7 @@
     "favorite-artists": "الفنانين المفضلين",
     "favorite-tracks": "الاغاني المفضلة",
     "library": "اللائحة المحلية",
+    "listening-history": "Listening History",
     "lyrics": "كلمات الأغنية",
     "main": "رئيسي",
     "playlists": "قائمة التشغيل",
@@ -50,9 +51,15 @@
     "genres": "الأنواع",
     "news": "الأخبَار",
     "playcounts": "مرات التشغيل",
+    "playlists": "Trending",
     "popular-track-title": "الاكثر تشغيلا من ديزر",
     "title": "العنوان",
-    "top": "أفضل المقاطع"
+    "top": "أفضل المقاطع",
+    "trending-playlists": "Trending playlists",
+    "trending-artists": "Trending artists",
+    "trending-albums": "Trending albums",
+    "filter": "Filter...",
+    "nothing-found": "Nothing found."
   },
   "downloads": {
     "clear": "مسح الاغاني المنتهية",
@@ -244,6 +251,8 @@
     "autoradio-craziness": "Autoradio craziness",
     "autoradio-craziness-description": "Autoradio will select songs that are less similar to the ones already in the queue the crazier it is",
     "autoradio-description": "إضافة اغنية مشابهة تلقائياً عند انتهاء قائمة الانتظار",
+    "listening-history": "Listening history",
+    "listening-history-description": "Log the tracks you listen to, a la Last.fm. The history is stored offline.",
     "compact-menu-bar": "Use compact style for menu bar",
     "compact-queue-bar": "Use compact style for queue bar",
     "developer": "Developer settings",
@@ -291,6 +300,8 @@
     "notlogged": "ليس مسجيل لالدخول",
     "playback": "التشغيل",
     "program-settings": "إعدادات البرنامج",
+    "promoted-artists": "Show promoted artists in the dashboard",
+    "promoted-artists-description": "This is a reel of interesting, handpicked indie artists you might like. No one's receiving any compensation for this.",
     "saving-in": "Saving in:",
     "seek-iteration": "Number of seconds to seek forward/backwards when pressing arrow keys",
     "shuffle-queue": "Shuffle songs",
@@ -317,6 +328,11 @@
     "add-to-favorite": "إضافة إلى المفضلات",
     "add-to-playlist": "إضافة إلى قائمة التشغيل",
     "add-to-queue": "إضافة إلى قائمة الانتظار",
+    "create-playlist": "Create new playlist",
+    "create-playlist-dialog-title": "Input playlist name:",
+    "create-playlist-dialog-placeholder": "Playlist name...",
+    "create-playlist-dialog-accept": "Save",
+    "create-playlist-dialog-cancel": "Cancel",
     "download": "تنزيل",
     "download-toast-body": "{{artist}} - {{track}} تم إضافته إلى التنزيلات.",
     "download-toast-title": "تمت اضافة ا الاغنية الى التنزيلات",
@@ -378,6 +394,15 @@
       "go-to-favorite-tracks": "Go to favorite tracks",
       "go-to-library": "Go to local library"
     }
+  },
+  "listening-history": {
+    "title": "Listening history",
+    "empty-state": "You haven't listened to anything yet.",
+    "clear-history": "Clear history",
+    "clear-history-confirm": "Are you sure you want to clear your listening history?",
+    "clear-history-confirm-yes": "Confirm",
+    "clear-history-confirm-no": "Cancel",
+    "clear-history-toast": "Listening history cleared"
   },
   "forms": {
     "nuclear-sign-up": {

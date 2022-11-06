@@ -7,6 +7,7 @@ exports[`Playlist view container should display a playlist 1`] = `
   >
     <div
       class="playlist_view_container"
+      data-testid="playlist-view"
     >
       <div
         class="playlist"

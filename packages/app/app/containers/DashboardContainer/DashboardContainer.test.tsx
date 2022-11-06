@@ -24,12 +24,7 @@ describe('Dashboard container', () => {
 
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
-    Deezer.getTopTracks = jest.fn().mockResolvedValue({ data: mockState.dashboard.topTracks.map(track => ({
-      ...track,
-      artist: {
-        ...track.artist    
-      }
-    })) });
+    Deezer.getTopTracks = jest.fn().mockResolvedValue({ data: mockState.dashboard.topTracks });
     
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
@@ -40,24 +35,27 @@ describe('Dashboard container', () => {
     jest.clearAllMocks();
   });
 
-  it('should display the best new music page of the dashboard', () => {
+  it('should display the best new music page of the dashboard', async () => {
     const { component } = mountComponent();
+    await waitFor(() => component.getByText(/Best new music/i).click());
     expect(component.asFragment()).toMatchSnapshot();
   });
 
-  it('should go to best new album review after clicking it', () => {
+  it('should go to best new album review after clicking it', async () => {
     const { component } = mountComponent();
+    await waitFor(() => component.getByText(/Best new music/i).click());
 
-    waitFor(() => component.getByText(/test title 2/i).click());
+    await waitFor(() => component.getByText(/test title 2/i).click());
 
     expect(component.queryByText(/test review 2/i)).not.toBeNull();
     expect(component.asFragment()).toMatchSnapshot();
   });
 
-  it('should go to best new track review after clicking it', () => {
+  it('should go to best new track review after clicking it', async () => {
     const { component } = mountComponent();
+    await waitFor(() => component.getByText(/Best new music/i).click());
 
-    waitFor(() => component.getByText(/test track title 2/i).click());
+    await waitFor(() => component.getByText(/test track title 2/i).click());
 
     expect(component.queryByText(/track review 2/i)).not.toBeNull();
     expect(component.asFragment()).toMatchSnapshot();
@@ -65,6 +63,7 @@ describe('Dashboard container', () => {
 
   it('should add/remove a best new track to favorites after clicking its star', async () => {
     const { component, store } = mountComponent();
+    await waitFor(() => component.getByText(/Best new music/i).click());
 
     const addOrRemove = async () => waitFor(
       () => component
@@ -86,6 +85,29 @@ describe('Dashboard container', () => {
     state = store.getState();
 
     expect(state.favorites.tracks).toEqual([]);
+  });
+
+  it('should display the trending music', async () => {
+    const { component } = mountComponent();
+    expect(component.asFragment()).toMatchSnapshot();
+  });
+
+  it('should search for the promoted artist using his meta provider', async () => {
+    const { component, store, history } = mountComponent();
+    await waitFor(() => component.getByText(/Check out/i).click());
+
+    const state = store.getState();
+    expect(state.plugin.selected.metaProviders).toEqual('Bandcamp Meta Provider');
+    expect(state.search.unifiedSearchStarted).toBe(true);
+  });
+
+  it('should open the promoted artist link in an external browser', async () => {
+    const { component } = mountComponent();
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    const shell = require('electron').shell;
+    await waitFor(() => component.getByText(/External link/i).click());
+
+    expect(shell.openExternal).toHaveBeenCalledWith('https://promoted-artist-1.example');
   });
 
   it('should display top tracks after going to top tracks tab', async () => {
@@ -150,6 +172,9 @@ describe('Dashboard container', () => {
       .withDashboard()
       .withPlugins()
       .withConnectivity()
+      .withSettings({
+        promotedArtists: true
+      })
       .build()
   );
 });

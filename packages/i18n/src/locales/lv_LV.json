@@ -19,6 +19,7 @@
     "favorite-artists": "Iecienītie izpildītāji",
     "favorite-tracks": "Iecienītākās dziesmas",
     "library": "Vietējā bibliotēka",
+    "listening-history": "Listening History",
     "lyrics": "Lirika",
     "main": "Galvenais",
     "playlists": "Atskaņošanas saraksti",
@@ -50,9 +51,15 @@
     "genres": "Žanri",
     "news": "Jaunumi",
     "playcounts": "Spēļu skaitītājs",
+    "playlists": "Trending",
     "popular-track-title": "Mūzikas topi no Deezer",
     "title": "Nosaukums",
-    "top": "Top dziesmas"
+    "top": "Top dziesmas",
+    "trending-playlists": "Trending playlists",
+    "trending-artists": "Trending artists",
+    "trending-albums": "Trending albums",
+    "filter": "Filter...",
+    "nothing-found": "Nothing found."
   },
   "downloads": {
     "clear": "Dzēst pabeigtos",
@@ -244,6 +251,8 @@
     "autoradio-craziness": "Autoradio trakums",
     "autoradio-craziness-description": "Autoradio atlasīs dziesmas, kas ir mazāk līdzīgas tām, kas jau atrodas rindā, jo trakāka tā būs",
     "autoradio-description": "Automātiski pievienot līdzīgus ierakstus, kad rinda beidzas",
+    "listening-history": "Listening history",
+    "listening-history-description": "Log the tracks you listen to, a la Last.fm. The history is stored offline.",
     "compact-menu-bar": "Izmantojiet kompakto stilu izvēlņu joslai",
     "compact-queue-bar": "Izmantot kompakto stilu rindas joslai",
     "developer": "Izstrādātāja iestatījumi",
@@ -291,6 +300,8 @@
     "notlogged": "Jūs neesat pieslēdzies",
     "playback": "Atskaņošana",
     "program-settings": "Programmas iestatījumi",
+    "promoted-artists": "Show promoted artists in the dashboard",
+    "promoted-artists-description": "This is a reel of interesting, handpicked indie artists you might like. No one's receiving any compensation for this.",
     "saving-in": "Saving in:",
     "seek-iteration": "Sekunžu skaits, kas jāmeklē uz priekšu/atpakaļ, nospiežot bulttaustiņus",
     "shuffle-queue": "Jauktā secībā dziesmas",
@@ -317,6 +328,11 @@
     "add-to-favorite": "Pievienot izlasei",
     "add-to-playlist": "Pievienot atskaņošanas sarakstam",
     "add-to-queue": "Pievienot rindai",
+    "create-playlist": "Create new playlist",
+    "create-playlist-dialog-title": "Input playlist name:",
+    "create-playlist-dialog-placeholder": "Playlist name...",
+    "create-playlist-dialog-accept": "Save",
+    "create-playlist-dialog-cancel": "Cancel",
     "download": "Lejupielādēt",
     "download-toast-body": "{{artist}} - {{track}} pievienots lejupielādēm.",
     "download-toast-title": "Dziesma ir pievienota lejupielādēm",
@@ -378,6 +394,15 @@
       "go-to-favorite-tracks": "Go to favorite tracks",
       "go-to-library": "Go to local library"
     }
+  },
+  "listening-history": {
+    "title": "Listening history",
+    "empty-state": "You haven't listened to anything yet.",
+    "clear-history": "Clear history",
+    "clear-history-confirm": "Are you sure you want to clear your listening history?",
+    "clear-history-confirm-yes": "Confirm",
+    "clear-history-confirm-no": "Cancel",
+    "clear-history-toast": "Listening history cleared"
   },
   "forms": {
     "nuclear-sign-up": {

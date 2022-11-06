@@ -117,6 +117,19 @@ exports[`Sidebar menu container should render the sidebar menu 1`] = `
       Visualizer
     </div>
   </a>
+  <a
+    href="/listening-history"
+  >
+    <div
+      class="sidebar_menu_item_container"
+    >
+      <i
+        aria-hidden="true"
+        class="history icon"
+      />
+      Listening History
+    </div>
+  </a>
   <div
     class="sidebar_menu_category_header"
   >

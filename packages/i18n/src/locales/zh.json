@@ -19,6 +19,7 @@
     "favorite-artists": "最喜欢的艺术家",
     "favorite-tracks": "收藏的曲目",
     "library": "本地曲库",
+    "listening-history": "Listening History",
     "lyrics": "歌词",
     "main": "主界面",
     "playlists": "播放列表",
@@ -50,9 +51,15 @@
     "genres": "流派",
     "news": "消息",
     "playcounts": "播放次数",
+    "playlists": "Trending",
     "popular-track-title": "Deezer 的最新单曲 ",
     "title": "标题",
-    "top": "排行榜"
+    "top": "排行榜",
+    "trending-playlists": "Trending playlists",
+    "trending-artists": "Trending artists",
+    "trending-albums": "Trending albums",
+    "filter": "Filter...",
+    "nothing-found": "Nothing found."
   },
   "downloads": {
     "clear": "清除已完成的曲目",
@@ -244,6 +251,8 @@
     "autoradio-craziness": "变化",
     "autoradio-craziness-description": "得到",
     "autoradio-description": "似是而非",
+    "listening-history": "Listening history",
+    "listening-history-description": "Log the tracks you listen to, a la Last.fm. The history is stored offline.",
     "compact-menu-bar": "大道至简",
     "compact-queue-bar": "队列栏使用简洁风格",
     "developer": "开发者设置",
@@ -291,6 +300,8 @@
     "notlogged": "没有登陆",
     "playback": "回放",
     "program-settings": "Program设置",
+    "promoted-artists": "Show promoted artists in the dashboard",
+    "promoted-artists-description": "This is a reel of interesting, handpicked indie artists you might like. No one's receiving any compensation for this.",
     "saving-in": "Saving in:",
     "seek-iteration": "按住箭头按钮几秒可以进行快进/快退操作",
     "shuffle-queue": "随机播放歌曲",
@@ -317,6 +328,11 @@
     "add-to-favorite": "添加至收藏",
     "add-to-playlist": "添加到播放列表",
     "add-to-queue": "添加到队列",
+    "create-playlist": "Create new playlist",
+    "create-playlist-dialog-title": "Input playlist name:",
+    "create-playlist-dialog-placeholder": "Playlist name...",
+    "create-playlist-dialog-accept": "Save",
+    "create-playlist-dialog-cancel": "Cancel",
     "download": "下载",
     "download-toast-body": "{{artist}} - {{track}} 已被添加到下载中。",
     "download-toast-title": "单曲已被添加到下载",
@@ -378,6 +394,15 @@
       "go-to-favorite-tracks": "Go to favorite tracks",
       "go-to-library": "Go to local library"
     }
+  },
+  "listening-history": {
+    "title": "Listening history",
+    "empty-state": "You haven't listened to anything yet.",
+    "clear-history": "Clear history",
+    "clear-history-confirm": "Are you sure you want to clear your listening history?",
+    "clear-history-confirm-yes": "Confirm",
+    "clear-history-confirm-no": "Cancel",
+    "clear-history-toast": "Listening history cleared"
   },
   "forms": {
     "nuclear-sign-up": {

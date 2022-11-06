@@ -124,7 +124,7 @@ table {
 }
 
 .ui.dimmer.visible {
-  z-index: 15;
+  z-index: 2000;
 }
 
 .ui.tab.loading.segment,
@@ -282,4 +282,8 @@ hr {
     background: lighten($background2, 20%);
     color: $white !important;
   }
+}
+
+i.red.icon {
+  color: $red !important;
 }

@@ -66,13 +66,16 @@ export class YoutubeHeuristics implements SearchHeuristics<Partial<Video>> {
       liveVideoScore = 0;
     }
 
+    const channelNameScore = track.author.name.toLowerCase().includes(artist.toLowerCase()) ? 200 : 0;
+
     return mean([
       titleScore,
       verbatimSubstringScore,
       durationScore,
       promotedWordsScore,
       penalizedWordsScore,
-      liveVideoScore
+      liveVideoScore,
+      channelNameScore
     ]);
   };
 
@@ -88,6 +91,7 @@ export class YoutubeHeuristics implements SearchHeuristics<Partial<Video>> {
       title,
       duration
     }));
+
     return sortBy(tracks, track => -(scores[tracks.indexOf(track)]));
   }
 }
