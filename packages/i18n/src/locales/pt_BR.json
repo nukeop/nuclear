@@ -247,6 +247,7 @@
   "settings": {
     "api-port": "Porta usada pela api",
     "api-url": "",
+    "audio": "Audio",
     "autoradio": "Sugestões automáticas",
     "autoradio-craziness": "Autoradio Louco",
     "autoradio-craziness-description": "Quanto mais loucura, mais diferentes serão as sugestões automáticas em comparação a fila",
@@ -291,6 +292,8 @@
     "mastodon-post-format-description": "O nuclear publicará no Mastodon após completar cada faixa. A sequência de caracteres acima será o modelo para cada publicação, com {{artist}} e {{title}} substituídos pelo artista e o título da faixa.",
     "mastodon-post-format-label": "Formato da postagem",
     "mastodon-title": "",
+    "normalize": "Normalize volume",
+    "normalize-description": "Automatically adjust volume of tracks so that they are played at the same level. This needs to fetch the whole track to work, so it may cause a delay between tracks.",
     "nuclear-identity-service-url": "URL do serviço de identidade do Nuclear",
     "nuclear-playlists-service-url": "URL do serviço de playlists do Nuclear",
     "mini-player": "Usar estilo mini player",
