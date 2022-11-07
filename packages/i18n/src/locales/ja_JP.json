@@ -247,6 +247,7 @@
   "settings": {
     "api-port": "APIが使用するポート",
     "api-url": "",
+    "audio": "Audio",
     "autoradio": "ラジオ",
     "autoradio-craziness": "ラジオのヤバさ",
     "autoradio-craziness-description": "ラジオのヤバさが高ければ高いほど今のキューした曲ともっと違う曲を選択します",
@@ -291,6 +292,8 @@
     "mastodon-post-format-description": "Nuclear は各トラックの再生が終了すると、Mastodon にステータスを投稿します。上に表示されているのは、投稿のサンプルです。 {{artist}} と {{title}} はトラックのアーティストとタイトルに置き換えられます。",
     "mastodon-post-format-label": "ポストの形式",
     "mastodon-title": "",
+    "normalize": "Normalize volume",
+    "normalize-description": "Automatically adjust volume of tracks so that they are played at the same level. This needs to fetch the whole track to work, so it may cause a delay between tracks.",
     "nuclear-identity-service-url": "Nuclear 認証サービスのURL",
     "nuclear-playlists-service-url": "Nuclear プレイリストサービスのURL",
     "mini-player": "ミニプレーヤーを使用",
