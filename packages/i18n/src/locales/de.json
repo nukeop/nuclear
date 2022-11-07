@@ -247,6 +247,7 @@
   "settings": {
     "api-port": "API Port",
     "api-url": "",
+    "audio": "Audio",
     "autoradio": "Autoradio",
     "autoradio-craziness": "Autoradio-Verrücktheit",
     "autoradio-craziness-description": "Autoradio wählt Lieder, aus die anders sind, als die Lieder, die bereits in der Warteschlange sind",
@@ -291,6 +292,8 @@
     "mastodon-post-format-description": "Nuclear wird nach jedem abgespielten Lied einen Status auf Mastodon posten. Der obere Text dient als Vorlage für jeden Beitrag. {{artist}} und {{title}} werden durch den Interpreten und Titel des Liedes ersetzt.",
     "mastodon-post-format-label": "Beitragsformat",
     "mastodon-title": "",
+    "normalize": "Normalize volume",
+    "normalize-description": "Automatically adjust volume of tracks so that they are played at the same level. This needs to fetch the whole track to work, so it may cause a delay between tracks.",
     "nuclear-identity-service-url": "URL des Nuclear Identitäts-Dienstes",
     "nuclear-playlists-service-url": "URL des Nuclear Playlist-Dienstes",
     "mini-player": "Mini-Player Stil verwenden",
