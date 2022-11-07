@@ -1,3 +1,32 @@
+/*
+  Adapted from https://github.com/est31/js-audio-normalizer
+
+  The MIT License (MIT)
+  Permission is hereby granted, free of charge, to any
+  person obtaining a copy of this software and associated
+  documentation files (the "Software"), to deal in the
+  Software without restriction, including without
+  limitation the rights to use, copy, modify, merge,
+  publish, distribute, sublicense, and/or sell copies of
+  the Software, and to permit persons to whom the Software
+  is furnished to do so, subject to the following
+  conditions:
+
+  The above copyright notice and this permission notice
+  shall be included in all copies or substantial portions
+  of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF
+  ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED
+  TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A
+  PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT
+  SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+  CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+  OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+  IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+  DEALINGS IN THE SOFTWARE.
+*/
+
 import { pluginFactory, Plugin } from 'react-hifi';
 
 export interface NormalizerProps {
@@ -7,6 +36,7 @@ export interface NormalizerProps {
 }
 
 export class Normalizer implements Plugin<NormalizerProps, GainNode> {
+  private audioContext: AudioContext;
   constructor() {
     this.createNode = this.createNode.bind(this);
   }
@@ -15,23 +45,21 @@ export class Normalizer implements Plugin<NormalizerProps, GainNode> {
     return prevProps.url === nextProps.url;
   }
 
-  createNode(audioContext: AudioContext, { url, normalize }: NormalizerProps) {
-    const gainNode = audioContext.createGain();
-
+  normalizeTrack = (gainNode: GainNode, url: string, normalize) => {
     if (!normalize) {
       gainNode.gain.value = 1;
-      return gainNode;
+      return;
     }
 
     // delay workaround with suspending audiocontext until fetch is finished
-    audioContext.suspend();
+    this.audioContext.suspend();
 
     fetch(url)
       .then((res) => res.arrayBuffer())
       .then((arrayBuffer) => {
-        // use ArrayBuffer
-        audioContext.decodeAudioData(arrayBuffer).then((audioBuffer) => {
-          // use AudioBuffer
+      // use ArrayBuffer
+        this.audioContext.decodeAudioData(arrayBuffer).then((audioBuffer) => {
+        // use AudioBuffer
 
           // perform calculations on audio data
           const decodedBuffer = audioBuffer.getChannelData(0);
@@ -69,17 +97,21 @@ export class Normalizer implements Plugin<NormalizerProps, GainNode> {
 
           gain = parseFloat(gain.toFixed(3));
 
-          this.updateNode(gainNode, gain);
-          audioContext.resume();
+          gainNode.gain.value = gain;
+          this.audioContext.resume();
         });
       });
+  }
+
+  createNode = (audioContext: AudioContext, { url, normalize }: NormalizerProps) => {
+    this.audioContext = audioContext;
+    const gainNode = audioContext.createGain();
+    this.normalizeTrack(gainNode, url, normalize);
     return gainNode;
   }
 
-  updateNode(node: GainNode, gainValue: number) {
-    if (isFinite(gainValue)) {
-      node.gain.value = gainValue;
-    }
+  updateNode = (node: GainNode, {url, normalize}: NormalizerProps) => {
+    this?.normalizeTrack(node, url, normalize);
   }
 }
 
