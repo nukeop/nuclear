@@ -247,6 +247,7 @@
   "settings": {
     "api-port": "API使用端口",
     "api-url": "",
+    "audio": "Audio",
     "autoradio": "自动广播",
     "autoradio-craziness": "变化",
     "autoradio-craziness-description": "得到",
@@ -291,6 +292,8 @@
     "mastodon-post-format-description": "当每首曲目播放完毕时，Nuclear 会在 Mastodon 上发布一条动态。上面的字符串会被作为帖子的模板，{{artist}} 和 {{title}} 会被作曲家和曲目名称替代。",
     "mastodon-post-format-label": "文章格式",
     "mastodon-title": "",
+    "normalize": "Normalize volume",
+    "normalize-description": "Automatically adjust volume of tracks so that they are played at the same level. This needs to fetch the whole track to work, so it may cause a delay between tracks.",
     "nuclear-identity-service-url": "Nuclear identity service URL",
     "nuclear-playlists-service-url": "Nuclear playlists service URL",
     "mini-player": "使用迷你播放器风格",
