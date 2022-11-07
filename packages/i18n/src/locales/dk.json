@@ -247,6 +247,7 @@
   "settings": {
     "api-port": "Port benyttet af api'en",
     "api-url": "",
+    "audio": "Audio",
     "autoradio": "Autoradio",
     "autoradio-craziness": "Autoradio vanvittighed",
     "autoradio-craziness-description": "Autoradio vælger sange som er mindre som de sange der allerede er i køen jo mere skør den er.",
@@ -291,6 +292,8 @@
     "mastodon-post-format-description": "Nuclear vil skrive en status på Mastadon efter hvert nummer er færdig. Ovenstående streng vil være skabelonen for hvert indlæg, hvor {{artist}} og {{title}} er erstattet med nummerets kunstner og titel.",
     "mastodon-post-format-label": "Send format",
     "mastodon-title": "",
+    "normalize": "Normalize volume",
+    "normalize-description": "Automatically adjust volume of tracks so that they are played at the same level. This needs to fetch the whole track to work, so it may cause a delay between tracks.",
     "nuclear-identity-service-url": "Nuclear identitetstjeneste-URL",
     "nuclear-playlists-service-url": "Nuclear spillelistestjeneste URL",
     "mini-player": "Brug mini afspiller stil",
