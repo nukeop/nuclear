@@ -247,6 +247,7 @@
   "settings": {
     "api-port": "API 사용 포트",
     "api-url": "",
+    "audio": "Audio",
     "autoradio": "자동 재생",
     "autoradio-craziness": "무작위 자동 재생",
     "autoradio-craziness-description": "얼마나 재생 목록과 비슷하지 않은 음악을 재생할지 조절할 수 있습니다.",
@@ -291,6 +292,8 @@
     "mastodon-post-format-description": "Nuclear가 각 트랙 재생이 완료된 후 Mastodon에 상태를 게시합니다. 위의 문자열은 각 게시물의 템플릿이 되고, {{artist}} 및 {{title}}은 아티스트 및 트랙 제목으로 대체됩니다.",
     "mastodon-post-format-label": "게시 형식",
     "mastodon-title": "",
+    "normalize": "Normalize volume",
+    "normalize-description": "Automatically adjust volume of tracks so that they are played at the same level. This needs to fetch the whole track to work, so it may cause a delay between tracks.",
     "nuclear-identity-service-url": "Nuclear identity service URL",
     "nuclear-playlists-service-url": "Nuclear playlists service URL",
     "mini-player": "미니 플레이어 모드 사용",
