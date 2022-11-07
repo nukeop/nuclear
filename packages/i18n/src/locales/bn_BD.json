@@ -247,6 +247,7 @@
   "settings": {
     "api-port": "api দ্বারা ব্যবহৃত পোর্ট",
     "api-url": "",
+    "audio": "Audio",
     "autoradio": "অটোরেডিও",
     "autoradio-craziness": "অটোরেডিওর পাগলামি",
     "autoradio-craziness-description": "অটোরেডিও সেসব গান সিলেক্ট করবে যেগুলো ইতমধ্যে সারিতে থাকা গানের সাথে পার্থক্যপূর্ণ।",
@@ -291,6 +292,8 @@
     "mastodon-post-format-description": "নিউক্লিয়ার প্রতি ট্রেক শেষ হবার পর মাস্টারডনে একটি পোস্ট করবে। উপরোক্ত স্টিং হবে প্রতি পোস্টের টেমপ্লেট, যেখানে {{artist}} এবং {{title}} রিপ্লেস হবে ট্রেকের আর্টিস্ট এবং টাইটেলের সাথে.",
     "mastodon-post-format-label": "পোস্ট ফরম্যাট",
     "mastodon-title": "",
+    "normalize": "Normalize volume",
+    "normalize-description": "Automatically adjust volume of tracks so that they are played at the same level. This needs to fetch the whole track to work, so it may cause a delay between tracks.",
     "nuclear-identity-service-url": "নিউক্লিয়ার আইডিনটিফাই সার্ভিস URL",
     "nuclear-playlists-service-url": "নিউক্লিয়ার প্লেলিস্ট সার্ভিস URL",
     "mini-player": "মিনি প্লেয়ার স্টাইল ব্যবহার করুন",
