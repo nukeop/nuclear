@@ -247,6 +247,7 @@
   "settings": {
     "api-port": "Door de API gebruikte poort",
     "api-url": "",
+    "audio": "Audio",
     "autoradio": "Automatische radio",
     "autoradio-craziness": "Automatische radio - gekte",
     "autoradio-craziness-description": "Autoradio wil nummers selecteren die minder lijken op die welke al in de wachtrij staan hoe gekker het is",
@@ -291,6 +292,8 @@
     "mastodon-post-format-description": "Nuclear zal een status op Mastodon posten nadat elk nummer klaar is met spelen. De bovenstaande tekenreeks zal de sjabloon zijn voor elk bericht, met {{artist}} en {{title}} vervangen door de artiest en titel van het spoor.",
     "mastodon-post-format-label": "Post formaat",
     "mastodon-title": "",
+    "normalize": "Normalize volume",
+    "normalize-description": "Automatically adjust volume of tracks so that they are played at the same level. This needs to fetch the whole track to work, so it may cause a delay between tracks.",
     "nuclear-identity-service-url": "URL voor Nuclear-Identitieitsdienst",
     "nuclear-playlists-service-url": "URL voor Nuclear-Afspeellijstdienst",
     "mini-player": "Gebruik mini speler-stijl",
