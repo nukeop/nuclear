@@ -247,6 +247,7 @@
   "settings": {
     "api-port": "Порт для API",
     "api-url": "",
+    "audio": "Audio",
     "autoradio": "Авторадио",
     "autoradio-craziness": "Сумасшествие авто подборки",
     "autoradio-craziness-description": "Чем выше уровень балдежа, тем менее похожие треки будет предлагать авторадио",
@@ -291,6 +292,8 @@
     "mastodon-post-format-description": "Nuclear будет постить статус на Mastodon каждый раз, когда заканчивается трек. Строка сверху является шаблоном для этих постов, {{artist}} и {{title}} в ней будут заменены исполнителем и названием трека.",
     "mastodon-post-format-label": "Формат поста",
     "mastodon-title": "",
+    "normalize": "Normalize volume",
+    "normalize-description": "Automatically adjust volume of tracks so that they are played at the same level. This needs to fetch the whole track to work, so it may cause a delay between tracks.",
     "nuclear-identity-service-url": "Служба идентификации URL",
     "nuclear-playlists-service-url": "Сервис нахождения плейлистов по URL",
     "mini-player": "Режим мини-плеера",
