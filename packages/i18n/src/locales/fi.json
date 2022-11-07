@@ -247,6 +247,7 @@
   "settings": {
     "api-port": "Apin käyttämä portti",
     "api-url": "",
+    "audio": "Audio",
     "autoradio": "Automaattinen radio",
     "autoradio-craziness": "Autoradio hulluus",
     "autoradio-craziness-description": "Autoradio valitsee kappaleet jotka ovat vähemmän samanlaisia kuin ne jotka on jo jonossa",
@@ -291,6 +292,8 @@
     "mastodon-post-format-description": "Nuclear lähettää Mastodoniin tilan jokaisen kappaleen jälkeen. Yllä oleva merkkijono on malli jokaiselle viestille, {{artist}} ja {{title}} korvattiin esittäjällä ja kappaleen otsikolla.",
     "mastodon-post-format-label": "Julkaisun muoto",
     "mastodon-title": "",
+    "normalize": "Normalize volume",
+    "normalize-description": "Automatically adjust volume of tracks so that they are played at the same level. This needs to fetch the whole track to work, so it may cause a delay between tracks.",
     "nuclear-identity-service-url": "Nuclearin identiteettipalvelun osoite",
     "nuclear-playlists-service-url": "Nuclearin soittolistapalvelun osoite",
     "mini-player": "Käytä minisoitinta",
