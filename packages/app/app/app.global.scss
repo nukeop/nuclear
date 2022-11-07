@@ -62,16 +62,22 @@ table {
 
 ::-webkit-scrollbar {
   width: 0.5rem !important;
+  height: 0.5rem !important;
 }
 
 ::-webkit-scrollbar-track {
   background-color: $background !important;
-  border-radius: 0;
+  border-radius: 0.55rem !important;
 }
 
 ::-webkit-scrollbar-thumb {
   border-radius: 0.5rem !important;
   background-color: $background2 !important;
+  transition: $short-duration;
+}
+
+::-webkit-scrollbar-corner {
+  background-color: transparent !important;
 }
 
 //Semantic UI section
