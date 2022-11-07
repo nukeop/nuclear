@@ -247,6 +247,7 @@
   "settings": {
     "api-port": "Port yang digunakan oleh api",
     "api-url": "",
+    "audio": "Audio",
     "autoradio": "Autoradio",
     "autoradio-craziness": "Autoradio craziness",
     "autoradio-craziness-description": "Autoradio akan memilih lagu yang kurang mirip dengan yang sudah masuk ke daftar antrian",
@@ -291,6 +292,8 @@
     "mastodon-post-format-description": "Nuclear akan membagikan status di Mastodon setelah lagu selesai diputar. Tulisan di atas akan menjadi templat untuk setiap post, dengan {{artist}} dan {{title}} yang akan ditampilkan sebagai musisi dan judul lagunya.",
     "mastodon-post-format-label": "Format post",
     "mastodon-title": "",
+    "normalize": "Normalize volume",
+    "normalize-description": "Automatically adjust volume of tracks so that they are played at the same level. This needs to fetch the whole track to work, so it may cause a delay between tracks.",
     "nuclear-identity-service-url": "URL Layanan identitas Nuclear",
     "nuclear-playlists-service-url": "URL Layanan daftar putar Nuclear",
     "mini-player": "Gunakan mini player",
