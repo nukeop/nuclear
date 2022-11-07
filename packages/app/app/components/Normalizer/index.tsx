@@ -27,7 +27,8 @@
   DEALINGS IN THE SOFTWARE.
 */
 
-import { pluginFactory, Plugin } from 'react-hifi';
+import { pluginFactory } from 'react-hifi';
+import { Plugin } from 'react-hifi/dist/types/plugins/Plugin';
 
 export interface NormalizerProps {
   /** url of stream that is played */
