@@ -247,6 +247,7 @@
   "settings": {
     "api-port": "Port korišten od API'a",
     "api-url": "",
+    "audio": "Audio",
     "autoradio": "Autoradio",
     "autoradio-craziness": "Autoradio ludilo",
     "autoradio-craziness-description": "Autoradio će odabrati pjesme koje su manje slične onima koje su već u redu čekanja što je luđe",
@@ -291,6 +292,8 @@
     "mastodon-post-format-description": "Nuclear će objaviti stanje na Mastodonu nakon što je svaki zapis do kraja gotov. Gornji konop će biti prijedložak za svaku objavu, sa {{artist}} i {{title}} zamjenutim sa izvođačem i nazivom zapisa.",
     "mastodon-post-format-label": "Format objave",
     "mastodon-title": "",
+    "normalize": "Normalize volume",
+    "normalize-description": "Automatically adjust volume of tracks so that they are played at the same level. This needs to fetch the whole track to work, so it may cause a delay between tracks.",
     "nuclear-identity-service-url": "Nuclear identity servis URL",
     "nuclear-playlists-service-url": "Nuclear playliste servis URL",
     "mini-player": "Koristi mini player stil",
