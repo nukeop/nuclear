@@ -247,6 +247,7 @@
   "settings": {
     "api-port": "Порт які выкарыстоўваецца API",
     "api-url": "",
+    "audio": "Audio",
     "autoradio": "Аўтарадыё",
     "autoradio-craziness": "Вар'яцкае Аўтарадыё",
     "autoradio-craziness-description": "Аўтарадыё абярэ песні, якія менш падобныя на тыя, што ўжо ёсць у чарзе, тым больш шалёна гэта будзе",
@@ -291,6 +292,8 @@
     "mastodon-post-format-description": "Nuclear апублікуе статус на Mastodon пасля завяршэння прайгравання кожнага трэка. Прыведзеная вышэй радок будзе шаблонам для кожнага паста, пры гэтым {{artist}} і {{title}} будуць замененыя на выканаўцы і назва трэка.",
     "mastodon-post-format-label": "Фармат публікацыі",
     "mastodon-title": "",
+    "normalize": "Normalize volume",
+    "normalize-description": "Automatically adjust volume of tracks so that they are played at the same level. This needs to fetch the whole track to work, so it may cause a delay between tracks.",
     "nuclear-identity-service-url": "Nuclear URL-адрас ",
     "nuclear-playlists-service-url": "URL-адрас службы плэйлістоў Nuclear",
     "mini-player": "Выкарыстоўваць стыль міні-плэера",
