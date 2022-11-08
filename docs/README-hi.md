@@ -13,7 +13,7 @@
 
 [प्रलेखन](https://nukeop.gitbook.io/nuclear/)
 
-[मेस्टोडोन](https://mstdn.io/@nuclear)
+[मेस्टोडोन](https://fosstodon.org/@nuclearplayer)
 
 [ट्विटर](https://twitter.com/nuclear_player)
 

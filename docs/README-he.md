@@ -10,7 +10,7 @@
 
 [האתר הרשמי](https://nuclear.js.org)
 
-[Mastodon](https://mstdn.io/@nuclear)
+[Mastodon](https://fosstodon.org/@nuclearplayer)
 
 [טוויטר](https://twitter.com/nuclear_player)
 

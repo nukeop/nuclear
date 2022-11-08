@@ -9,7 +9,7 @@ Skrivbordsapp som fokuserar på att streama musik från avgiftsfria källor
 
 [Officiell hemsida](https://nuclear.js.org)
 
-[Mastodon](https://mstdn.io/@nuclear)
+[Mastodon](https://fosstodon.org/@nuclearplayer)
 
 [Twitter](https://twitter.com/nuclear_player)
 

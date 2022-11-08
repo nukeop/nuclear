@@ -8,7 +8,7 @@ Music player para desktop focado no streaming a partir de fontes gratuitas.
 
 [Website oficial](https://nuclear.js.org)
 
-[Mastodon](https://mstdn.io/@nuclear)
+[Mastodon](https://fosstodon.org/@nuclearplayer)
 
 [Twitter](https://twitter.com/nuclear_player)
 
