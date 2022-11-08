@@ -54,6 +54,6 @@ export function normalizeTrack(track: Track){
     },
     name: getTrackTitle(track),
     thumbnail: track.thumbnail,
-    stream: track.stream
+    streams: track.streams
   };
 }

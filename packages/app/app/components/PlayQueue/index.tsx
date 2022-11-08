@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import classnames from 'classnames';
-import _ from 'lodash';
+import _, { head } from 'lodash';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { useTranslation } from 'react-i18next';
 import { Icon } from 'semantic-ui-react';
@@ -110,11 +110,11 @@ const PlayQueue: React.FC<PlayQueueProps> = ({
     }
 
     return queue.queueItems.map((item, i) => {
-      const trackDuration = formatDuration(item.stream?.duration) === '00:00' && 
+      const trackDuration = formatDuration(head(item.streams)?.duration) === '00:00' && 
       !item.loading && 
-      Boolean(item.stream)
+      Boolean(item.streams)
         ? t('live')
-        : formatDuration(item.stream?.duration);
+        : formatDuration(head(item.streams)?.duration);
 
       return (
         <Draggable

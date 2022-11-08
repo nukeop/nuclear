@@ -9,7 +9,7 @@ export type Track = {
   name?: string;
   thumbnail?: string;
   image?: { '#text'?: string }[];
-  stream?: TrackStream;
+  streams?: TrackStream[];
   uuid?: string;
 };
 
@@ -56,7 +56,7 @@ export type TrackItem = {
   name: string
   thumbnail?: string
   local?: boolean
-  stream?: TrackStream,
+  streams: TrackStream[],
   uuid?: string
 }
 
