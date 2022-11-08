@@ -9,7 +9,7 @@
 
 [공식 사이트](https://nuclear.js.org)
 
-[Mastodon](https://mstdn.io/@nuclear)
+[Mastodon](https://fosstodon.org/@nuclearplayer)
 
 [트위터](https://twitter.com/nuclear_player)
 

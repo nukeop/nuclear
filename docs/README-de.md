@@ -11,7 +11,7 @@ Ein Musikplayer für Computer, mit kostenlosem Streaming.
 
 [Offizielle Webseite](https://nuclear.js.org)
 
-[Mastodon](https://mstdn.io/@nuclear)
+[Mastodon](https://fosstodon.org/@nuclearplayer)
 
 [Twitter](https://twitter.com/nuclear_player)
 

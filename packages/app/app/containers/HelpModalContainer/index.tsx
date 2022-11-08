@@ -15,7 +15,7 @@ const HelpModalContainer: React.FC<{}> = () => {
   };
 
   const handleOpenExternalLink = (link: string) => link && link.length && electron.shell.openExternal(link);
-  const handleMastodonClick = () => handleOpenExternalLink('https://mstdn.io/@nuclear');
+  const handleMastodonClick = () => handleOpenExternalLink('https://fosstodon.org/@nuclearplayer');
   const handleGithubClick = () => handleOpenExternalLink('https://github.com/nukeop/nuclear');
   const handleTwitterClick = () => handleOpenExternalLink('https://twitter.com/nuclear_player');
   const handleAuthorClick = () => handleOpenExternalLink('https://github.com/nukeop');
@@ -24,7 +24,7 @@ const HelpModalContainer: React.FC<{}> = () => {
     'https://github.com/nukeop/nuclear/issues/new?assignees=&labels=bug&template=bug_report.md&title='
   );
 
-  return (<HelpModal 
+  return (<HelpModal
     githubContrib={githubContrib}
     handleOpenExternalLink={handleOpenExternalLink}
     handleMastodonClick={handleMastodonClick}

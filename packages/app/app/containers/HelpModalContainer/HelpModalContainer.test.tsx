@@ -3,7 +3,7 @@ import { mountedNavbarFactory, setupI18Next } from '../../../test/testUtils';
 import { buildStoreState } from '../../../test/storeBuilders';
 
 const URLs = {
-  Mastodon: 'https://mstdn.io/@nuclear',
+  Mastodon: 'https://fosstodon.org/@nuclearplayer',
   Github: 'https://github.com/nukeop/nuclear',
   Twitter: 'https://twitter.com/nuclear_player',
   Author: 'https://github.com/nukeop',
@@ -25,7 +25,7 @@ describe('Album view container', () => {
   it('should show help modal', async () => {
     const { component } = mountComponent();
 
-    await waitFor(() => component.getByTestId('help-button') .click());
+    await waitFor(() => component.getByTestId('help-button').click());
 
     expect(component.asFragment()).toMatchSnapshot();
   });
@@ -38,24 +38,24 @@ describe('Album view container', () => {
     // eslint-disable-next-line @typescript-eslint/no-var-requires
     const shell = require('electron').shell;
 
-    await waitFor(() => component.getByTestId('help-button') .click());
+    await waitFor(() => component.getByTestId('help-button').click());
 
-    await waitFor(() => component.getByTestId('github-link') .click());
+    await waitFor(() => component.getByTestId('github-link').click());
     expect(shell.openExternal).toHaveBeenCalledWith(URLs.Github);
 
-    await waitFor(() => component.getByTestId('author-link') .click());
+    await waitFor(() => component.getByTestId('author-link').click());
     expect(shell.openExternal).toHaveBeenCalledWith(URLs.Author);
 
-    await waitFor(() => component.getByTestId('issue-link') .click());
+    await waitFor(() => component.getByTestId('issue-link').click());
     expect(shell.openExternal).toHaveBeenCalledWith(URLs.ReportIssue);
 
-    await waitFor(() => component.getByTestId('twitter-link') .click());
+    await waitFor(() => component.getByTestId('twitter-link').click());
     expect(shell.openExternal).toHaveBeenCalledWith(URLs.Twitter);
 
-    await waitFor(() => component.getByTestId('mastodon-link') .click());
+    await waitFor(() => component.getByTestId('mastodon-link').click());
     expect(shell.openExternal).toHaveBeenCalledWith(URLs.Mastodon);
 
-    await waitFor(() => component.getByTestId('discord-link') .click());
+    await waitFor(() => component.getByTestId('discord-link').click());
     expect(shell.openExternal).toHaveBeenCalledWith(URLs.Discord);
   });
 
