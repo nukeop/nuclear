@@ -13,7 +13,7 @@ Desktop music player focused on streaming from free sources
 
 [Documentation](https://nukeop.gitbook.io/nuclear/)
 
-[Mastodon](https://mstdn.io/@nuclear)
+[Mastodon](https://fosstodon.org/@nuclearplayer)
 
 [Twitter](https://twitter.com/nuclear_player)
 
