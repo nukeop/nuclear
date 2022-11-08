@@ -5,6 +5,8 @@ import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import numeral from 'numeral';
 import { Icon } from 'semantic-ui-react';
+import { head } from 'lodash';
+
 import { formatDuration, getTrackArtist, getTrackTitle } from '@nuclear/ui';
 
 import * as QueueActions from '../../actions/queue';
@@ -41,7 +43,7 @@ class TrackRow extends React.Component {
       name: this.props.track.name,
       thumbnail: this.getTrackThumbnail(),
       local: this.props.track.local,
-      stream: this.props.track.stream
+      stream: head(this.props.track.streams)
     });
   }
 

@@ -14,7 +14,7 @@ const formatTrackList = (tracks, streamSource: string = null): PlaylistTrack[] =
   tracks.map(track => extractTrackData(track, streamSource)) : [];
 
 const extractTrackData = (track, streamSource: string = null): PlaylistTrack => {
-  const trackStreams = track.stream || streamSource ? [{ source: streamSource, id: track.id }] : [];
+  const trackStreams = track.streams || streamSource ? [{ source: streamSource, id: track.id }] : [];
 
   return track && (track.name || track.title) && (!track.type || track.type === 'track') ?
     {

@@ -10,6 +10,7 @@ import * as QueueActions from '../../../actions/queue';
 import styles from './styles.scss';
 import { PluginsState } from '../../../reducers/plugins';
 import { StreamData } from '@nuclear/core/src/plugins/plugins.types';
+import { head } from 'lodash';
 
 
 type QueuePopupProps = {
@@ -47,7 +48,7 @@ export const QueuePopup: React.FC<QueuePopupProps> = ({
   const [isOpen, setIsOpen] = useState(false);
   const [imageReady, setImageReady] = useState(false);
 
-  const selectedStream = track.stream as StreamData;
+  const selectedStream = head(track.streams) as StreamData;
 
   const handleOpen = useCallback(
     event => {
@@ -81,11 +82,6 @@ export const QueuePopup: React.FC<QueuePopupProps> = ({
     content: s.sourceName
   }));
 
-  const handleReroll = useCallback(() => {
-    actions.rerollTrack(track);
-    setIsOpen(false);
-  }, [track, actions, setIsOpen]);
-
   return (
     <Popup
       className={cs(styles.queue_popup, {
@@ -114,7 +110,7 @@ export const QueuePopup: React.FC<QueuePopupProps> = ({
         sourceLabel={sourceLabel}
         selectedStream={selectedStream}
         thumbnail={track.thumbnail}
-        onRerollTrack={handleReroll}
+        onRerollTrack={() => {}}
         onSelectStream={handleSelectStream}
         onImageLoaded={handleImageLoaded}
         onCopyTrackUrl={handleCopyTrackUrl}

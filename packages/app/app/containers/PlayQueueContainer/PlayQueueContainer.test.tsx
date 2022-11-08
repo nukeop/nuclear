@@ -54,7 +54,7 @@ describe('Play Queue container', () => {
 
     await waitFor(() => component.getByText(/Different Stream Provider/i).click());
     const state = store.getState();
-    expect(state.queue.queueItems[0].stream.source).toBe('Different Stream Provider');
+    expect(state.queue.queueItems[0].streams[0].source).toBe('Different Stream Provider');
   });
 
   it('should copy the original track url to clipboard', async () => {
@@ -91,7 +91,7 @@ describe('Play Queue container', () => {
       thumbnail: 'https://test-track-thumb-url'
     }]));
 
-    expect(state.favorites.tracks[0].stream).toBeUndefined();
+    expect(state.favorites.tracks[0].streams).toEqual([]);
   });
 
   it('should favorite track without stream data (queue menu popup)', async () => {
@@ -108,7 +108,7 @@ describe('Play Queue container', () => {
       thumbnail: 'https://test-track-thumb-url'
     }]));
 
-    expect(state.favorites.tracks[0].stream).toBeUndefined();
+    expect(state.favorites.tracks[0].streamProviders).toEqual([]);
   });
 
   it('should add the current track to a playlist (queue menu popup)', async () => {
