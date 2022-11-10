@@ -26,11 +26,13 @@ export const EmptyState = () => {
 
 type FavoriteTracksViewProps = {
   tracks: Track[];
+  onReorderTracks: (isource: number, idest: number) => void;
   removeFavoriteTrack: (track:Track) => void;
 }
 
 const FavoriteTracksView: React.FC<FavoriteTracksViewProps> = ({
   tracks,
+  onReorderTracks,
   removeFavoriteTrack
 }) => {
   const { t } = useTranslation('favorites');
@@ -38,18 +40,19 @@ const FavoriteTracksView: React.FC<FavoriteTracksViewProps> = ({
   return (
     <div className={styles.favorite_tracks_view}>
       {
-        _.isEmpty(tracks) 
+        _.isEmpty(tracks)
           ? <EmptyState />
           :  <>
             <Header>
               {t('header')}
             </Header>
             <Segment>
-              <TrackTableContainer 
+              <TrackTableContainer
                 tracks={tracks}
                 onDelete={removeFavoriteTrack}
                 displayAlbum={false}
                 displayFavorite={false}
+                onReorder={onReorderTracks}
               />
             </Segment>
           </>

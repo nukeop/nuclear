@@ -8,6 +8,7 @@ import { createStandardAction } from 'typesafe-actions';
 export const READ_FAVORITES = 'READ_FAVORITES';
 export const ADD_FAVORITE_TRACK = 'ADD_FAVORITE_TRACK';
 export const REMOVE_FAVORITE_TRACK = 'REMOVE_FAVORITE_TRACK';
+export const REORDER_FAVORITE_TRACK = 'REORDER_FAVORITE_TRACK';
 export const BULK_ADD_FAVORITE_TRACKS = 'BULK_ADD_FAVORITE_TRACKS';
 
 export const ADD_FAVORITE_ALBUM = 'ADD_FAVORITE_ALBUM';
@@ -57,6 +58,19 @@ export function removeFavoriteTrack(track) {
 
   return {
     type: REMOVE_FAVORITE_TRACK,
+    payload: favorites
+  };
+}
+
+export function reorderFavoriteTrack(fromIndex, toIndex) {
+  const favorites = store.get('favorites');
+  // move track from fromIndex to toIndex
+  const track = favorites.tracks.splice(fromIndex, 1)[0];
+  favorites.tracks.splice(toIndex, 0, track);
+  store.set('favorites', favorites);
+
+  return {
+    type: REORDER_FAVORITE_TRACK,
     payload: favorites
   };
 }

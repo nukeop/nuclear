@@ -53,6 +53,7 @@ class FavoritesContainer extends React.Component {
         clearQueue={queueActions.clearQueue}
         selectSong={queueActions.selectSong}
         startPlayback={playerActions.startPlayback}
+        onReorderTracks={favoritesActions.reorderFavoriteTrack}
         removeFavoriteTrack={favoritesActions.removeFavoriteTrack}
       />;
     }
@@ -77,6 +78,7 @@ FavoritesContainer.propTypes = {
   }),
   favoritesActions: PropTypes.shape({
     readFavorites: PropTypes.func,
+    reorderFavoriteTrack: PropTypes.func,
     removeFavoriteTrack: PropTypes.func,
     removeFavoriteArtist: PropTypes.func
   }),
