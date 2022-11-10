@@ -267,10 +267,15 @@ exports[`Track view container should display favorite tracks 1`] = `
             role="rowgroup"
           >
             <tr
+              aria-describedby="rbd-hidden-text-0-hidden-text-0"
               class=""
+              data-rbd-drag-handle-context-id="0"
+              data-rbd-drag-handle-draggable-id="test track 1 0"
               data-rbd-draggable-context-id="0"
               data-rbd-draggable-id="test track 1 0"
-              role="row"
+              draggable="false"
+              role="button"
+              tabindex="0"
             >
               <td
                 class="narrow delete_cell"
@@ -376,10 +381,15 @@ exports[`Track view container should display favorite tracks 1`] = `
               </td>
             </tr>
             <tr
+              aria-describedby="rbd-hidden-text-0-hidden-text-0"
               class=""
+              data-rbd-drag-handle-context-id="0"
+              data-rbd-drag-handle-draggable-id="test track 2 1"
               data-rbd-draggable-context-id="0"
               data-rbd-draggable-id="test track 2 1"
-              role="row"
+              draggable="false"
+              role="button"
+              tabindex="0"
             >
               <td
                 class="narrow delete_cell"
@@ -740,10 +750,15 @@ exports[`Track view container should show a popup when a track is clicked 1`] = 
             role="rowgroup"
           >
             <tr
+              aria-describedby="rbd-hidden-text-1-hidden-text-4"
               class=""
+              data-rbd-drag-handle-context-id="1"
+              data-rbd-drag-handle-draggable-id="test track 1 0"
               data-rbd-draggable-context-id="1"
               data-rbd-draggable-id="test track 1 0"
-              role="row"
+              draggable="false"
+              role="button"
+              tabindex="0"
             >
               <td
                 class="narrow delete_cell"
@@ -849,10 +864,15 @@ exports[`Track view container should show a popup when a track is clicked 1`] = 
               </td>
             </tr>
             <tr
+              aria-describedby="rbd-hidden-text-1-hidden-text-4"
               class=""
+              data-rbd-drag-handle-context-id="1"
+              data-rbd-drag-handle-draggable-id="test track 2 1"
               data-rbd-draggable-context-id="1"
               data-rbd-draggable-id="test track 2 1"
-              role="row"
+              draggable="false"
+              role="button"
+              tabindex="0"
             >
               <td
                 class="narrow delete_cell"
