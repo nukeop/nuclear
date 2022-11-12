@@ -25,7 +25,7 @@ export const useSeekbarProps = () => {
   const queue = useSelector(queueSelector);
   const seek: number = useSelector(playerSelectors.seek);
   const playbackProgress: number = useSelector(playerSelectors.playbackProgress);
-  const currentTrackStream = queue.queueItems[queue.currentSong]?.stream;
+  const currentTrackStream = queue.queueItems[queue.currentSong]?.streams?.[0];
   const currentTrackDuration: number | undefined = currentTrackStream?.duration;
   const timeToEnd = currentTrackDuration - seek;
 
@@ -234,7 +234,7 @@ export const useStreamLookup = () => {
     if (!isStreamLoading) {
       const currentSong: QueueItem = queue.queueItems[queue.currentSong];
 
-      if (isEmpty(currentSong?.streams)) {
+      if (currentSong && isEmpty(currentSong.streams)) {
         dispatch(queueActions.findStreamsForTrack(queue.currentSong));
         return;
       }
