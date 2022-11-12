@@ -19,7 +19,7 @@
     "favorite-artists": "Artistas Favoritos",
     "favorite-tracks": "Favoritas",
     "library": "Biblioteca",
-    "listening-history": "Listening History",
+    "listening-history": "Histórico de músicas ouvidas",
     "lyrics": "Letras",
     "main": "Principal",
     "playlists": "Lista de Reprodução",
@@ -51,15 +51,15 @@
     "genres": "Gêneros",
     "news": "Novidades",
     "playcounts": "Número de reproduções",
-    "playlists": "Trending",
+    "playlists": "Tendência",
     "popular-track-title": "Mais tocadas no Deezer",
     "title": "Título",
     "top": "Mais tocadas",
-    "trending-playlists": "Trending playlists",
-    "trending-artists": "Trending artists",
-    "trending-albums": "Trending albums",
+    "trending-playlists": "Playlists em alta",
+    "trending-artists": "Artistas em alta",
+    "trending-albums": "Álbuns em alta",
     "filter": "Filter...",
-    "nothing-found": "Nothing found."
+    "nothing-found": "Nenhum resultado encontrado."
   },
   "downloads": {
     "clear": "Limpar faixas acabadas",
@@ -219,7 +219,7 @@
     "playlist-toast-content": "A Lista de Reprodução {{name}} Foi criada.",
     "playlist-toast-title": "Lista de Reprodução Criada",
     "title": "Título:",
-    "live": "Live"
+    "live": "Em direto"
   },
   "search": {
     "album": "Álbum",
@@ -241,19 +241,19 @@
     "you-can-search-for": "Pode procurar por:"
   },
   "seekbar": {
-    "live": "Live",
+    "live": "Em direto",
     "segment-popup": "Não musical"
   },
   "settings": {
     "api-port": "Porta usada pela api",
     "api-url": "",
-    "audio": "Audio",
+    "audio": "Áudio",
     "autoradio": "Sugestões automáticas",
     "autoradio-craziness": "Autoradio Louco",
     "autoradio-craziness-description": "Quanto mais loucura, mais diferentes serão as sugestões automáticas em comparação a fila",
     "autoradio-description": "Adiciona faixas similares automaticamente quando a fila estiver acabando",
-    "listening-history": "Listening history",
-    "listening-history-description": "Log the tracks you listen to, a la Last.fm. The history is stored offline.",
+    "listening-history": "Histórico de músicas ouvidas",
+    "listening-history-description": "Salve as faixas que você escutou, à la Last.fm. O histórico é armazenado localmente.",
     "compact-menu-bar": "Use estilo compacto para barra de menu",
     "compact-queue-bar": "Use estilo compacto para a barra de fila",
     "developer": "Definições do desenvolvedor",
@@ -292,8 +292,8 @@
     "mastodon-post-format-description": "O nuclear publicará no Mastodon após completar cada faixa. A sequência de caracteres acima será o modelo para cada publicação, com {{artist}} e {{title}} substituídos pelo artista e o título da faixa.",
     "mastodon-post-format-label": "Formato da postagem",
     "mastodon-title": "",
-    "normalize": "Normalize volume",
-    "normalize-description": "Automatically adjust volume of tracks so that they are played at the same level. This needs to fetch the whole track to work, so it may cause a delay between tracks.",
+    "normalize": "Normalizar volume",
+    "normalize-description": "Ajuste automaticamente o volume das faixas para elas serem tocadas no mesmo nível. Isso requer uma busca completa na faixa para funcionar, então pode causar um atraso entre as faixas.",
     "nuclear-identity-service-url": "URL do serviço de identidade do Nuclear",
     "nuclear-playlists-service-url": "URL do serviço de playlists do Nuclear",
     "mini-player": "Usar estilo mini player",
@@ -303,8 +303,8 @@
     "notlogged": "Não logado",
     "playback": "Reprodução",
     "program-settings": "Configurações do programa",
-    "promoted-artists": "Show promoted artists in the dashboard",
-    "promoted-artists-description": "This is a reel of interesting, handpicked indie artists you might like. No one's receiving any compensation for this.",
+    "promoted-artists": "Mostrar artistas promovidos no painel",
+    "promoted-artists-description": "Esses reels são de artistas independentes escolhidos à mão que podem te interessar. Ninguém está recebendo nenhuma recompensa por isso.",
     "saving-in": "Salvar em:",
     "seek-iteration": "Número de segundos para avançar/retroceder ao pressionar as teclas de seta",
     "shuffle-queue": "Reproduzir músicas aleatoriamente",
@@ -331,9 +331,9 @@
     "add-to-favorite": "Adicionar aos favoritos",
     "add-to-playlist": "Adicionar à Lista de Reprodução",
     "add-to-queue": "Adicionar à fila",
-    "create-playlist": "Create new playlist",
-    "create-playlist-dialog-title": "Input playlist name:",
-    "create-playlist-dialog-placeholder": "Playlist name...",
+    "create-playlist": "Criar uma nova playlist",
+    "create-playlist-dialog-title": "Insira o nome da playlist:",
+    "create-playlist-dialog-placeholder": "Nome da playlist...",
     "create-playlist-dialog-accept": "Salvar",
     "create-playlist-dialog-cancel": "Cancelar",
     "download": "Download",
@@ -363,7 +363,7 @@
     "protip-text": "DICA:",
     "protip-content": "Setas para navegar, Enter para selecionar, Esc para fechar",
     "categories": {
-      "playback": "Playback",
+      "playback": "Reproduzir",
       "queue": "Lista",
       "navigation": "Navegação",
       "application": "Aplicação"
@@ -399,13 +399,13 @@
     }
   },
   "listening-history": {
-    "title": "Listening history",
-    "empty-state": "You haven't listened to anything yet.",
-    "clear-history": "Clear history",
-    "clear-history-confirm": "Are you sure you want to clear your listening history?",
-    "clear-history-confirm-yes": "Confirm",
-    "clear-history-confirm-no": "Cancel",
-    "clear-history-toast": "Listening history cleared"
+    "title": "Histórico de músicas ouvidas",
+    "empty-state": "Você ainda não ouviu nada.",
+    "clear-history": "Limpar histórico",
+    "clear-history-confirm": "Tem certeza que deseja limpar seu histórico de músicas ouvidas?",
+    "clear-history-confirm-yes": "Confirmar",
+    "clear-history-confirm-no": "Cancelar",
+    "clear-history-toast": "Histórico de músicas ouvidas apagado"
   },
   "forms": {
     "nuclear-sign-up": {
