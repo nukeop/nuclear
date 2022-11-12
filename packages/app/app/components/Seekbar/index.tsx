@@ -6,7 +6,7 @@ import styles from './styles.scss';
 const Seekbar = ({ seek, queue, fill, children }) => {
   const handleClick = useCallback(event => {
     const percent = (event.pageX - event.target.offsetLeft) / document.body.clientWidth;
-    const duration = queue.queueItems[queue.currentSong].stream?.duration;
+    const duration = queue.queueItems[queue.currentSong].streams?.[0]?.duration;
 
     seek(percent * duration);
   }, [queue.queueItems, queue.currentSong, seek]);

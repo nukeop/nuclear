@@ -26,24 +26,11 @@ class SoundcloudPlugin extends StreamProviderPlugin {
     };
   }
 
-  async search(query: StreamQuery): Promise<StreamData | undefined> {
+  async search(query: StreamQuery): Promise<StreamData[] | undefined> {
     const terms = query.artist + ' ' + query.track;
     try {
       const results = await(await Soundcloud.soundcloudSearch(terms)).json();
-      const info = results[0];
-      return info ? this.resultToStream(info) : null;
-    } catch (err) {
-      logger.error(`Error while looking up streams for ${terms} on Soundcloud`);
-      logger.error(err);
-    }
-  }
-
-  async getAlternateStream(query: StreamQuery, currentStream: { id: string }): Promise<StreamData | undefined> {
-    const terms = query.artist + ' ' + query.track;
-    try {
-      const results = await(await Soundcloud.soundcloudSearch(terms)).json();
-      const info = _.find(results, result => result && result.id !== currentStream.id);
-      return info && this.resultToStream(info);
+      return results && results.map(this.resultToStream);
     } catch (err) {
       logger.error(`Error while looking up streams for ${terms} on Soundcloud`);
       logger.error(err);

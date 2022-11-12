@@ -1,5 +1,5 @@
 import logger from 'electron-timber';
-import _, { isString } from 'lodash';
+import _, { isEmpty, isString } from 'lodash';
 import { createStandardAction } from 'typesafe-actions';
 
 import { StreamProvider } from '@nuclear/core';
@@ -138,7 +138,8 @@ export const findStreamsForTrack = (idx: number) => async (dispatch, getState) =
   const {queue}: RootState = getState();
 
   const track = queue.queueItems[idx];
-  if (track && !track.local && !track.streams) {
+
+  if (track && !track.local && isEmpty(track.streams)) {
     dispatch(updateQueueItem({
       ...track,
       loading: true
