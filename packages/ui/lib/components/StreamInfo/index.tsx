@@ -1,26 +1,31 @@
 import React, { memo } from 'react';
 import Img from 'react-image';
-import { Dropdown, Icon } from 'semantic-ui-react';
+import { StreamData } from '@nuclear/core/src/plugins/plugins.types';
 
-import { SelectedStream } from '../../types';
 import artPlaceholder from '../../../resources/media/art_placeholder.png';
 import Tooltip from '../Tooltip';
 
 import styles from './styles.scss';
+import Button from '../Button';
+
+type Handlers = {
+  onImageLoaded: React.ReactEventHandler<HTMLImageElement>;
+  onCopyTrackUrl: () => void;
+}
+
+type StreamInfoProps = {
+  selectedStream: StreamData;
+  thumbnail?: string;
+  copyTrackUrlLabel: string;
+}
 
 const StreamInfo = (props: StreamInfoProps & Handlers) => {
   const { 
     selectedStream,
-    onRerollTrack,
-    onSelectStream,
     onImageLoaded,
     onCopyTrackUrl,
     thumbnail,
-    dropdownOptions,
-    idLabel,
-    titleLabel,
-    copyTrackUrlLabel,
-    sourceLabel 
+    copyTrackUrlLabel
   } = props;
 
   return (
@@ -35,75 +40,40 @@ const StreamInfo = (props: StreamInfoProps & Handlers) => {
           />
         </div>
         <div className={styles.stream_text_info}>
-          <div className={styles.stream_source}>
-            <label>{sourceLabel}</label>{' '}
-            <Dropdown
-              data-testid='stream-info-dropdown'
-              inline
-              options={dropdownOptions}
-              defaultValue={dropdownOptions.find(o => o.value === selectedStream.source)?.value}
-              onChange={(e, data) => onSelectStream(data.value as string)}
-            />
-          </div>
           <div className={styles.stream_title}>
-            <label>{titleLabel}</label>
-            <span>{selectedStream.title}</span>
+            {selectedStream?.title}
           </div>
-          {selectedStream.id ? (
+          <div className={styles.stream_author}>
+            {selectedStream?.author?.name}
+          </div>
+          {selectedStream?.id ? (
             <div className={styles.stream_id}>
-              <label>{idLabel}</label>
-              <span>{selectedStream.id}</span>
+              <span>{selectedStream?.id}</span>
+              <Tooltip 
+                on='hover'
+                content={copyTrackUrlLabel}
+                trigger={
+                  <Button 
+                    circular
+                    basic
+                    borderless
+                    icon='clone'
+                    onClick={onCopyTrackUrl}
+                  />
+                }
+              />
             </div>
           ) : null}
-        </div>
-        <div className={styles.stream_buttons}>
-          {selectedStream.originalUrl ? (
-            <Tooltip
-              on='hover'
-              content={copyTrackUrlLabel}
-              trigger={
-                <a href='#' data-testid='copy-original-url' onClick={onCopyTrackUrl}>
-                  <Icon name='linkify' />
-                </a>
-              }
-            />
-          ) : null}
-          <a 
-            href='#' 
-            onClick={onRerollTrack}
-          >
-            <Icon name='refresh' />
-          </a>
+          <div className={styles.spacer} />
+          <div className={styles.stream_source}>
+            <span>
+              {selectedStream.source}
+            </span>
+          </div>
         </div>
       </div>
     </>
   );
 };
-
-type DropdownProps = {
-  [key: string]: any
-}
-
-type RequiredProps = {
-  selectedStream: SelectedStream,
-  thumbnail: string | undefined,
-};
-
-type DefaultProps = {
-  dropdownOptions: DropdownProps[],
-  idLabel: string,
-  titleLabel: string,
-  copyTrackUrlLabel: string,
-  sourceLabel: string
-};
-
-type Handlers = {
-  onRerollTrack: React.MouseEventHandler<HTMLAnchorElement>;
-  onSelectStream: (streamKey: string) => void;
-  onImageLoaded: React.ReactEventHandler<HTMLImageElement>;
-  onCopyTrackUrl: () => void;
-}
-
-type StreamInfoProps = RequiredProps & DefaultProps;
 
 export default memo(StreamInfo);
