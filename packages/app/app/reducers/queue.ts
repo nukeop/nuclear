@@ -134,28 +134,6 @@ function reduceSelectStreamProviders(state) {
   };
 }
 
-function reduceChangeTrackStream(state: QueueStore, action) {
-  const { item, streams }: {
-    item: QueueItem,
-    streams: TrackStream[]
-  } = action.payload;
-
-  return {
-    ...state,
-    queueItems: state.queueItems.map((track) => {
-      if (item.uuid === track.uuid) {  
-        return {
-          ...item,
-          failed: false,
-          streams
-        };
-      }
-
-      return track;
-    })
-  };
-}
-
 const reduceUpdateQueueItem = (state, action) => {
   const { item } = action.payload;
   const itemIndex = _.findIndex(state.queueItems, { uuid: item.uuid });
@@ -209,8 +187,6 @@ export default function QueueReducer(state = defaultState, action) {
     return reduceStreamFailed(state);
   case SELECT_STREAM_PROVIDER:
     return reduceSelectStreamProviders(state);
-  case Queue.CHANGE_TRACK_STREAMS:
-    return reduceChangeTrackStream(state, action);
   default:
     return state;
   }

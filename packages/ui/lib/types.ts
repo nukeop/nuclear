@@ -20,22 +20,6 @@ export type Album = {
   image?: { '#text'?: string }[];
 };
 
-export type SelectedStream = {
-  duration?: number,
-  format?: string,
-  id?: string,
-  originalUrl?: string,
-  source?: string,
-  stream?: string,
-  thumbnail?: string,
-  title?: string,
-  skipSegments?: {
-    category?: string,
-    endTime?: number,
-    startTime?: number
-  }[],
-}
-
 export type TrackStream = {
   source: string;
   id: string;
