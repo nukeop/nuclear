@@ -7,26 +7,34 @@ import Tooltip from '../Tooltip';
 
 import styles from './styles.scss';
 import Button from '../Button';
+import { Dropdown } from '../..';
 
 type Handlers = {
   onImageLoaded: React.ReactEventHandler<HTMLImageElement>;
   onCopyTrackUrl: () => void;
+  onSelectStream: (stream: StreamData) => void;
 }
 
 type StreamInfoProps = {
+  streams: StreamData[];
   selectedStream: StreamData;
   thumbnail?: string;
   copyTrackUrlLabel: string;
 }
 
-const StreamInfo = (props: StreamInfoProps & Handlers) => {
-  const { 
-    selectedStream,
-    onImageLoaded,
-    onCopyTrackUrl,
-    thumbnail,
-    copyTrackUrlLabel
-  } = props;
+const StreamInfo: React.FC<StreamInfoProps & Handlers> =({
+  streams,
+  selectedStream,
+  onSelectStream,
+  onImageLoaded,
+  onCopyTrackUrl,
+  thumbnail,
+  copyTrackUrlLabel
+}) => {
+  const options = streams.map(stream => ({
+    text: stream.title,
+    value: stream.id
+  }));
 
   return (
     <>
@@ -40,9 +48,14 @@ const StreamInfo = (props: StreamInfoProps & Handlers) => {
           />
         </div>
         <div className={styles.stream_text_info}>
-          <div className={styles.stream_title}>
-            {selectedStream?.title}
-          </div>
+          <Dropdown
+            className={styles.stream_title}
+            search
+            selection
+            options={options}
+            defaultValue={selectedStream?.id}
+            onChange={(e, { value }) => onSelectStream(streams.find(stream => stream.id === value))}
+          />
           <div className={styles.stream_author}>
             {selectedStream?.author?.name}
           </div>
