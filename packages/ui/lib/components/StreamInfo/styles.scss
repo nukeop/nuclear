@@ -45,11 +45,16 @@
   }
 
   .stream_title {
+    min-width: 0 !important;
+    margin-bottom: 0.5rem;
+  }
+
+  .stream_title div {
     @include ellipsis;
     position: relative;
     display: block;
     font-weight: bold;
-    margin-bottom: 0.5rem;
+    max-width: 100%;
   }
 
   .stream_author {

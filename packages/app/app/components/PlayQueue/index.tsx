@@ -6,6 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { Icon } from 'semantic-ui-react';
 
 import { Playlist } from '@nuclear/core';
+import { StreamData } from '@nuclear/core/src/plugins/plugins.types';
 import { formatDuration, QueueItem } from '@nuclear/ui';
 
 import { PluginsState } from '../../reducers/plugins';
@@ -31,6 +32,7 @@ const PlayQueue: React.FC<PlayQueueProps> = ({
     queueDrop,
     repositionSong,
     addToDownloads,
+    updateQueueItem,
     info,
     success,
     selectSong,
@@ -104,6 +106,12 @@ const PlayQueue: React.FC<PlayQueueProps> = ({
     );
   };
 
+  // When a new stream is selected from the stream info component
+  const onSelectStream = (track: QueueItemType) => (stream: StreamData) => {
+    // eslint-disable-next-line no-console
+    console.log({track, stream});
+  };
+
   const renderQueueItems = () => {
     if (!queue.queueItems) {
       return null;
@@ -146,10 +154,8 @@ const PlayQueue: React.FC<PlayQueueProps> = ({
                 isQueueItemCompact={settings.compactQueueBar}
                 index={i}
                 track={item}
-                titleLabel={t('title')}
-                idLabel={t('id')}
                 copyTrackUrlLabel={t('copy-track-url')}
-                sourceLabel={t('source')}
+                onSelectStream={onSelectStream(item)}
               />
             </div>
           )}

@@ -10,6 +10,19 @@ export default {
 
 
 const commonProps = {
+  streams: [{
+    title: 'Stream 1',
+    id: 'stream1'
+  }, {
+    title: 'Stream 2',
+    id: 'stream2'
+  }, {
+    title: 'Stream 3',
+    id: 'stream3'
+  }, {
+    title: 'The Weeknd - Blinding Lights (Official Music Video)',
+    id: 'abcdefghijklmnopqrst1234567890'
+  }] as StreamData[],
   selectedStream: {
     thumbnail: 'https://i.imgur.com/4euOws2.jpg',
     source: 'Youtube',
@@ -21,6 +34,7 @@ const commonProps = {
   } as StreamData,
   onImageLoaded: () => {},
   onCopyTrackUrl: () => {},
+  onSelectStream: () => {},
   copyTrackUrlLabel: 'Copy track url'
 };
 

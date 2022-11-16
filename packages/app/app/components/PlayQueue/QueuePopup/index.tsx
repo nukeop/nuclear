@@ -12,36 +12,29 @@ import * as QueueActions from '../../../actions/queue';
 import styles from './styles.scss';
 import { PluginsState } from '../../../reducers/plugins';
 
-
 type QueuePopupProps = {
-trigger: React.ReactNode;
-isQueueItemCompact: boolean;
+  trigger: React.ReactNode;
+  isQueueItemCompact: boolean;
 
-idLabel: string;
-titleLabel: string;
-copyTrackUrlLabel: string;
-sourceLabel: string;
+  copyTrackUrlLabel: string;
 
-track: QueueItem;
-index: number;
+  track: QueueItem;
+  index: number;
 
-actions: typeof QueueActions;
-plugins: PluginsState;
-copyToClipboard: (text: string) => void;
+  actions: typeof QueueActions;
+  plugins: PluginsState;
+  copyToClipboard: (text: string) => void;
+  onSelectStream: (stream: StreamData) => void;
 }
 
 export const QueuePopup: React.FC<QueuePopupProps> = ({
   trigger,
   isQueueItemCompact,
-  idLabel,
-  titleLabel,
   copyTrackUrlLabel,
-  sourceLabel,
   track,
   index,
-  actions,
-  plugins,
-  copyToClipboard
+  copyToClipboard,
+  onSelectStream
 }) => {
   const triggerElement = useRef(null);
   
@@ -93,10 +86,12 @@ export const QueuePopup: React.FC<QueuePopupProps> = ({
     >
       <StreamInfo
         copyTrackUrlLabel={copyTrackUrlLabel}
+        streams={track.streams as StreamData[]}
         selectedStream={selectedStream}
         thumbnail={track.thumbnail}
         onImageLoaded={handleImageLoaded}
         onCopyTrackUrl={handleCopyTrackUrl}
+        onSelectStream={onSelectStream}
       />
       <hr />
       <div className={styles.queue_popup_buttons_container}>
