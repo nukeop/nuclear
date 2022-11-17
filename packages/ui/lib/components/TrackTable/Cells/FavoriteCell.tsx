@@ -14,13 +14,13 @@ const FavoriteCell: React.FC<CellProps<Track> & TrackTableExtraProps<Track>> = (
   onAddToFavorites,
   onRemoveFromFavorites
 }) => <td {...cell.getCellProps() as TdHTMLAttributes<HTMLTableCellElement>} className={cx(styles.favorite_cell, styles.narrow)}>
-  <Button
+  {(row.original?.type !== 'heading')&&<Button
     basic
     borderless
     circular
     size='tiny' icon={value ? 'heart' : 'heart outline'}
     onClick={() =>  value ? onRemoveFromFavorites(row.original) : onAddToFavorites(row.original)}
-  />
+  />}
 </td>;
 
 export default FavoriteCell;

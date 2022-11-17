@@ -11,6 +11,7 @@ export type Track = {
   image?: { '#text'?: string }[];
   stream?: TrackStream;
   uuid?: string;
+  type?: string;
 };
 
 export type Album = {

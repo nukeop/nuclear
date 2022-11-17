@@ -12,7 +12,7 @@ const SelectionCell: React.FC<CellProps<Track> & UseRowSelectRowProps<Track>> = 
   row
 }) => <td {...cell.getCellProps() as TdHTMLAttributes<HTMLTableCellElement>} className={cx(styles.select_cell, styles.narrow)}>
   {/* @ts-ignore */}
-  <Checkbox {...row.getToggleRowSelectedProps()}/>
+  {(row.original?.type !== 'heading') && <Checkbox {...row.getToggleRowSelectedProps()}/>}
 </td>;
 
 export default SelectionCell;
