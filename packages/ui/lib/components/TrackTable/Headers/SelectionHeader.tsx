@@ -22,8 +22,9 @@ const SelectionHeader: React.FC<
   strings
 }) => {
   const checkboxProps = getToggleAllRowsSelectedProps();
-  const selectedTracks = selectedFlatRows.map(row => row.original);
-
+  const selectedTracks = selectedFlatRows
+    .map(row => row.original)
+    .filter(row => row?.type !== 'heading');
 
   return <span className={styles.select_header}>
     {
