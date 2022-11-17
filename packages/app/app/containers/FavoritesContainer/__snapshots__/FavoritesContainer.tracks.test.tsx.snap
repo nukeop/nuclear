@@ -201,19 +201,27 @@ exports[`Track view container should display favorite tracks 1`] = `
               <th
                 colspan="1"
                 role="columnheader"
+                style="cursor: pointer;"
+                title="Toggle SortBy"
               >
                 <span
-                  class="center_aligned"
+                  class="title_with_icon"
                 >
                   <i
                     aria-hidden="true"
                     class="hashtag icon"
+                  />
+                  <i
+                    aria-hidden="true"
+                    class="sort content ascending icon"
                   />
                 </span>
               </th>
               <th
                 colspan="1"
                 role="columnheader"
+                style="cursor: pointer;"
+                title="Toggle SortBy"
               >
                 <span
                   class="center_aligned"
@@ -227,14 +235,34 @@ exports[`Track view container should display favorite tracks 1`] = `
               <th
                 colspan="1"
                 role="columnheader"
+                style="cursor: pointer;"
+                title="Toggle SortBy"
               >
-                Title
+                <span
+                  class="title_with_icon"
+                >
+                  Title
+                  <i
+                    aria-hidden="true"
+                    class="sort content ascending disabled icon"
+                  />
+                </span>
               </th>
               <th
                 colspan="1"
                 role="columnheader"
+                style="cursor: pointer;"
+                title="Toggle SortBy"
               >
-                Artist
+                <span
+                  class="title_with_icon"
+                >
+                  Artist
+                  <i
+                    aria-hidden="true"
+                    class="sort content ascending disabled icon"
+                  />
+                </span>
               </th>
               <th
                 colspan="1"
@@ -674,19 +702,27 @@ exports[`Track view container should show a popup when a track is clicked 1`] = 
               <th
                 colspan="1"
                 role="columnheader"
+                style="cursor: pointer;"
+                title="Toggle SortBy"
               >
                 <span
-                  class="center_aligned"
+                  class="title_with_icon"
                 >
                   <i
                     aria-hidden="true"
                     class="hashtag icon"
+                  />
+                  <i
+                    aria-hidden="true"
+                    class="sort content ascending icon"
                   />
                 </span>
               </th>
               <th
                 colspan="1"
                 role="columnheader"
+                style="cursor: pointer;"
+                title="Toggle SortBy"
               >
                 <span
                   class="center_aligned"
@@ -700,14 +736,34 @@ exports[`Track view container should show a popup when a track is clicked 1`] = 
               <th
                 colspan="1"
                 role="columnheader"
+                style="cursor: pointer;"
+                title="Toggle SortBy"
               >
-                Title
+                <span
+                  class="title_with_icon"
+                >
+                  Title
+                  <i
+                    aria-hidden="true"
+                    class="sort content ascending disabled icon"
+                  />
+                </span>
               </th>
               <th
                 colspan="1"
                 role="columnheader"
+                style="cursor: pointer;"
+                title="Toggle SortBy"
               >
-                Artist
+                <span
+                  class="title_with_icon"
+                >
+                  Artist
+                  <i
+                    aria-hidden="true"
+                    class="sort content ascending disabled icon"
+                  />
+                </span>
               </th>
               <th
                 colspan="1"
