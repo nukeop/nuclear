@@ -68,7 +68,7 @@ function TrackTable<T extends Track>({
     },
     displayPosition && {
       id: TrackTableColumn.Position,
-      Header: ({ column }) => <ColumnHeader column={column} text={positionHeader} />,
+      Header: ({ column }) => <ColumnHeader column={column} header={positionHeader} />,
       accessor: 'position',
       Cell: PositionCell,
       enableSorting: true
@@ -86,14 +86,14 @@ function TrackTable<T extends Track>({
     },
     {
       id: TrackTableColumn.Title,
-      Header: ({ column }) => <ColumnHeader column={column} text={titleHeader} />,
+      Header: ({ column }) => <ColumnHeader column={column} header={titleHeader} />,
       accessor: (track) => track.title ?? track.name,
       Cell: TitleCell,
       enableSorting: true
     },
     displayArtist && {
       id: TrackTableColumn.Artist,
-      Header: ({ column }) => <ColumnHeader column={column} text={artistHeader} />,
+      Header: ({ column }) => <ColumnHeader column={column} header={artistHeader} />,
       accessor: (track) => isString(track.artist)
         ? track.artist
         : track.artist.name,
