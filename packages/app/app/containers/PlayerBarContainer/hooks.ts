@@ -105,7 +105,7 @@ export const useTrackInfoProps = () => {
   const currentSong = _.get(queue.queueItems, queue.currentSong);
 
   const track = currentSong?.name;
-  const artist = currentSong?.artist;
+  const artist = currentSong?.artist?.name || currentSong?.artist;
   const cover = currentSong?.thumbnail;
 
   const favorite = useSelector(s => getFavoriteTrack(s, artist, track));
@@ -154,7 +154,7 @@ export const useToggleOptionCallback = (
   [name, settings, toggleOption]
 );
 
-export const useTrackDurationProp = () => { 
+export const useTrackDurationProp = () => {
   const settings = useSelector(settingsSelector);
   const trackDurationSetting = _.get(settings, 'trackDuration', false);
   return {
@@ -237,9 +237,9 @@ export const useStreamLookup = () => {
         dispatch(queueActions.findStreamForTrack(queue.currentSong));
         return;
       }
-    
+
       const nextTrackWithNoStream = queue.queueItems.findIndex((item) => isEmpty(item.stream));
-    
+
       if (nextTrackWithNoStream !== -1) {
         dispatch(queueActions.findStreamForTrack(nextTrackWithNoStream));
       }
