@@ -10,7 +10,7 @@ import TrackTableContainer from '../../containers/TrackTableContainer';
 import { AlbumDetailsState } from '../../reducers/search';
 
 type AlbumViewProps = {
-  album?: AlbumDetailsState 
+  album?: AlbumDetailsState
   isFavorite: boolean;
   searchAlbumArtist: React.MouseEventHandler;
   addAlbumToDownloads: React.MouseEventHandler;
@@ -88,7 +88,7 @@ export const AlbumView: React.FC<AlbumViewProps> = ({
                 }
                 <div className={styles.album_tracks}>
                   <label>{t('tracks')}</label>
-                  {album.tracklist.length}
+                  {album.tracklist.filter(track => track.type !== 'heading').length}
                 </div>
                 <div className={styles.album_buttons}>
                   <a
@@ -128,7 +128,7 @@ export const AlbumView: React.FC<AlbumViewProps> = ({
                 </div>
               </div>
             </div>
-            <TrackTableContainer 
+            <TrackTableContainer
               tracks={album.tracklist}
               displayDeleteButton={false}
               displayThumbnail={false}

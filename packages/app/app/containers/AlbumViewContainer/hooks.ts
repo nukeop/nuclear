@@ -64,7 +64,7 @@ export const useAlbumViewProps = () => {
   }, [album, dispatch, plugins]);
 
   const addAlbumToQueue = useCallback(async () => {
-    await album?.tracklist.forEach(async track => {
+    await album?.tracklist.filter(track => track.type !== 'heading').forEach(async track => {
       dispatch(QueueActions.addToQueue({
         artist: album?.artist,
         name: track.title,
