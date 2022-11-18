@@ -89,7 +89,7 @@ const PlayerBar: React.FC<PlayerBarProps> = ({
         <TrackInfo
           cover={cover}
           track={track}
-          artist={artist}
+          artist={artist || artist?.name}
           onTrackClick={onTrackClick}
           onArtistClick={onArtistClick}
           addToFavorites={addToFavorites}
