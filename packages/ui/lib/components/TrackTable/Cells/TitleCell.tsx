@@ -25,7 +25,7 @@ const TitleCell: React.FC<CellProps<Track> & TrackTableExtraProps<Track>> = ({
     <span className={styles.title_cell_value}>
       {value}
     </span>
-    <span className={styles.title_cell_buttons}>
+    {(row.original?.type !== 'heading') && <span className={styles.title_cell_buttons}>
       <Button
         className={styles.title_cell_button}
         basic
@@ -71,7 +71,7 @@ const TitleCell: React.FC<CellProps<Track> & TrackTableExtraProps<Track>> = ({
 
         strings={popupActionStrings}
       />
-    </span>
+    </span>}
   </span>
 </td>;
 
