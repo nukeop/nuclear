@@ -12,7 +12,7 @@ const DeleteCell: React.FC<CellProps<Track> & TrackTableExtraProps<Track>> = ({
   row,
   onDelete
 }) => <td {...cell.getCellProps() as TdHTMLAttributes<HTMLTableCellElement>} className={cx(styles.narrow, styles.delete_cell)}>
-  <Button
+  {(row.original?.type !== 'heading') && <Button
     data-testid='delete-button'
     basic
     borderless
@@ -20,7 +20,7 @@ const DeleteCell: React.FC<CellProps<Track> & TrackTableExtraProps<Track>> = ({
     size='tiny' 
     icon='times'
     onClick={() => onDelete(row.original, row.index)}
-  />
+  />}
 </td>;
 
 export default DeleteCell;
