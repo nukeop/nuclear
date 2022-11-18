@@ -15,12 +15,21 @@ export default {
 
 const tracks = [
   {
+    position: 0,
+    thumbnail: 'https://i.imgur.com/4euOws2.jpg',
+    artist: 'Test Artist',
+    title: 'Title',
+    album: 'Test Album',
+    duration: '1:00',
+    type: 'heading'
+  }, {
     position: 1,
     thumbnail: 'https://i.imgur.com/4euOws2.jpg',
     artist: 'Test Artist',
     title: 'Test Title',
     album: 'Test Album',
-    duration: '1:00'
+    duration: '1:00',
+    type: 'track'
   }, {
     position: 2,
     thumbnail: 'https://i.imgur.com/4euOws2.jpg',
@@ -79,7 +88,7 @@ export const Empty = () => <div className='bg'>
   />
 </div>;
 
-export const WithRows = () => <div className='bg'>
+export const WithRowsAndTitles = () => <div className='bg'>
   <TrackTable
     tracks={tracks}
     positionHeader={<Icon name='hashtag' />}
