@@ -187,22 +187,22 @@
     "number-of-tracks": "الاغاني"
   },
   "plugins": {
-    "add-a-plugin": "Add a plugin",
-    "header": "Plugins",
+    "add-a-plugin": "إضافة المكون الإضافي",
+    "header": "المكونات الإضافية",
     "lyrics-providers": "موفري الكلمات",
     "meta-providers": "موفري البيانات الوصفية",
     "placeholder": "اختر مصدر الموسيقى الافتراضي:",
     "select-lyrics-provider": "حدد موفر الكلمات الافتراضي:",
     "select-meta-provider": "حدد موفر البيانات الوصفية الافتراضي:",
     "stream-providers": "موفري البث",
-    "user-plugins": "User plugins",
-    "user-plugins-warning-desc": "Plugins work by running code on your computer. Load plugins only from sources you trust!",
+    "user-plugins": "المكونات الإضافية للمستخدم",
+    "user-plugins-warning-desc": "تعمل المكونات الإضافية عن طريق تشغيل التعليمات البرمجية على جهاز الكمبيوتر الخاص بك. قم بتحميل المكونات الإضافية فقط من المصادر التي تثق بها!",
     "user-plugins-warning-title": "منطقة الخطر!"
   },
   "queue": {
     "clear": "مسح قائمة انتظار",
     "dialog-accept": "حفظ",
-    "dialog-cancel": "Cancel",
+    "dialog-cancel": "إلغاء",
     "dialog-placeholder": "اسم قائمة التشغيل...",
     "dialog-trigger": "حفظ كقائمة تشغيل",
     "download": "التنزيل",
