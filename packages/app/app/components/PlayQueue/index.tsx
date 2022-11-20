@@ -28,11 +28,12 @@ type PlayQueueProps = {
 }
 
 const PlayQueue: React.FC<PlayQueueProps> = ({
-  actions: { 
+  actions: {
     queueDrop,
     repositionSong,
     addToDownloads,
     updateQueueItem,
+    findStreamUrl,
     info,
     success,
     selectSong,
@@ -49,7 +50,7 @@ const PlayQueue: React.FC<PlayQueueProps> = ({
   queue,
   settings
 }) => {
-  const {t} = useTranslation('queue');
+  const { t } = useTranslation('queue');
   const [isFileHovered, setFileHovered] = useState(false);
 
   const onDropFile = (event) => {
@@ -108,8 +109,17 @@ const PlayQueue: React.FC<PlayQueueProps> = ({
 
   // When a new stream is selected from the stream info component
   const onSelectStream = (track: QueueItemType) => (stream: StreamData) => {
-    // eslint-disable-next-line no-console
-    console.log({track, stream});
+    const reorderedStreams = [
+      stream,
+      ...track.streams.filter(s => s.id !== stream.id)
+    ];
+
+    updateQueueItem({
+      ...track,
+      streams: reorderedStreams
+    });
+
+    findStreamUrl(track, 0);
   };
 
   const renderQueueItems = () => {
@@ -118,9 +128,9 @@ const PlayQueue: React.FC<PlayQueueProps> = ({
     }
 
     return queue.queueItems.map((item, i) => {
-      const trackDuration = formatDuration(head(item.streams)?.duration) === '00:00' && 
-      !item.loading && 
-      Boolean(item.streams)
+      const trackDuration = formatDuration(head(item.streams)?.duration) === '00:00' &&
+        !item.loading &&
+        Boolean(item.streams)
         ? t('live')
         : formatDuration(head(item.streams)?.duration);
 
