@@ -76,7 +76,7 @@ const addQueueItem = (item: QueueItem) => ({
   payload: { item }
 });
 
-const updateQueueItem = (item: QueueItem) => ({
+export const updateQueueItem = (item: QueueItem) => ({
   type: Queue.UPDATE_QUEUE_ITEM,
   payload: { item }
 });
@@ -133,6 +133,28 @@ export const addToQueue =
           dispatch(!asNextItem ? addQueueItem(item) : playNextItem(item));
       }
     };
+
+export const findStreamUrl = (track: QueueItem, streamIdx: number) => async (dispatch, getState) => {
+  const selectedStreamProvider = getSelectedStreamProvider(getState);
+  const streamData = await selectedStreamProvider.getStreamForId(
+    track.streams[streamIdx].id
+  );
+
+  if (!streamData) {
+    dispatch(removeFromQueue(track));
+  } else {
+    dispatch(
+      updateQueueItem({
+        ...track,
+        streams: [
+          ...track.streams.slice(0, streamIdx),
+          ...streamData,
+          ...track.streams.slice(streamIdx+1)
+        ]
+      })
+    );
+  }
+};
 
 export const findStreamsForTrack = (idx: number) => async (dispatch, getState) => {
   const {queue}: RootState = getState();
