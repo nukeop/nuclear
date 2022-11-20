@@ -19,7 +19,7 @@
     "favorite-artists": "Ulubieni artyści",
     "favorite-tracks": "Ulubione utwory",
     "library": "Biblioteka lokalna",
-    "listening-history": "Listening History",
+    "listening-history": "Historia słuchania",
     "lyrics": "Tekst",
     "main": "Panel główny",
     "playlists": "Listy odtwarzania",
@@ -331,11 +331,11 @@
     "add-to-favorite": "Dodaj do ulubionych",
     "add-to-playlist": "Dodaj do playlisty",
     "add-to-queue": "Dodaj do kolejki",
-    "create-playlist": "Create new playlist",
+    "create-playlist": "Utwórz nową playlistę",
     "create-playlist-dialog-title": "Input playlist name:",
-    "create-playlist-dialog-placeholder": "Playlist name...",
-    "create-playlist-dialog-accept": "Save",
-    "create-playlist-dialog-cancel": "Cancel",
+    "create-playlist-dialog-placeholder": "Nazwa listy odtwarzania...",
+    "create-playlist-dialog-accept": "Zapisz",
+    "create-playlist-dialog-cancel": "Anuluj",
     "download": "Pobierz",
     "download-toast-body": "{{artist}} - {{track}} został dodany do pobierania.",
     "download-toast-title": "Utwór dodany do pobierania",
@@ -403,9 +403,9 @@
     "empty-state": "You haven't listened to anything yet.",
     "clear-history": "Clear history",
     "clear-history-confirm": "Are you sure you want to clear your listening history?",
-    "clear-history-confirm-yes": "Confirm",
-    "clear-history-confirm-no": "Cancel",
-    "clear-history-toast": "Listening history cleared"
+    "clear-history-confirm-yes": "Potwierdź",
+    "clear-history-confirm-no": "Anuluj",
+    "clear-history-toast": "Historia słuchania została wyczyszczona"
   },
   "forms": {
     "nuclear-sign-up": {
