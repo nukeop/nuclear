@@ -64,6 +64,11 @@ export const QueuePopup: React.FC<QueuePopupProps> = ({
     setIsOpen(false);
   }, [selectedStream, setIsOpen, copyToClipboard]);
 
+  const handleSelectStream = useCallback((stream: StreamData) => {
+    onSelectStream(stream);
+    setIsOpen(false);
+  }, [onSelectStream]);
+
   return (
     <Popup
       className={cs(styles.queue_popup, {
@@ -91,7 +96,7 @@ export const QueuePopup: React.FC<QueuePopupProps> = ({
         thumbnail={track.thumbnail}
         onImageLoaded={handleImageLoaded}
         onCopyTrackUrl={handleCopyTrackUrl}
-        onSelectStream={onSelectStream}
+        onSelectStream={handleSelectStream}
       />
       <hr />
       <div className={styles.queue_popup_buttons_container}>

@@ -32,8 +32,7 @@ const PlayQueue: React.FC<PlayQueueProps> = ({
     queueDrop,
     repositionSong,
     addToDownloads,
-    updateQueueItem,
-    findStreamUrl,
+    selectNewStream,
     info,
     success,
     selectSong,
@@ -109,17 +108,7 @@ const PlayQueue: React.FC<PlayQueueProps> = ({
 
   // When a new stream is selected from the stream info component
   const onSelectStream = (track: QueueItemType) => (stream: StreamData) => {
-    const reorderedStreams = [
-      stream,
-      ...track.streams.filter(s => s.id !== stream.id)
-    ];
-
-    updateQueueItem({
-      ...track,
-      streams: reorderedStreams
-    });
-
-    findStreamUrl(track, 0);
+    selectNewStream(track, stream.id);
   };
 
   const renderQueueItems = () => {
