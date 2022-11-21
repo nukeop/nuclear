@@ -12,6 +12,7 @@ import { QueueItem, TrackStream } from '../reducers/queue';
 import { RootState } from '../reducers';
 import { LocalLibraryState } from './local';
 import { Queue } from './actionTypes';
+import StreamProviderPlugin from '@nuclear/core/src/plugins/streamProvider';
 
 type LocalTrack = Track & {
   local: true;
@@ -134,11 +135,11 @@ export const addToQueue =
       }
     };
 
-export const findStreamUrl = (track: QueueItem, streamIdx: number) => async (dispatch, getState) => {
-  const selectedStreamProvider = getSelectedStreamProvider(getState);
-  const streamData = await selectedStreamProvider.getStreamForId(
-    track.streams[streamIdx].id
-  );
+export const selectNewStream = (track: QueueItem, streamId: string) => async (dispatch, getState) => {
+  const selectedStreamProvider: StreamProviderPlugin = getSelectedStreamProvider(getState);
+
+  const oldStreamData = track.streams.find(stream => stream.id === streamId);
+  const streamData = await selectedStreamProvider.getStreamForId(streamId);
 
   if (!streamData) {
     dispatch(removeFromQueue(track));
@@ -147,9 +148,12 @@ export const findStreamUrl = (track: QueueItem, streamIdx: number) => async (dis
       updateQueueItem({
         ...track,
         streams: [
-          ...track.streams.slice(0, streamIdx),
-          ...streamData,
-          ...track.streams.slice(streamIdx+1)
+          {
+            ...oldStreamData,
+            stream: streamData.stream,
+            duration: streamData.duration
+          },
+          ...track.streams.filter(stream => stream.id !== streamId)
         ]
       })
     );
