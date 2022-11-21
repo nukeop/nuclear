@@ -55,6 +55,7 @@ section.intro {
 
     .intro-left {
         min-width: 50%;
+        z-index: 10;
 
         h1 {
             font-size: 96px;
@@ -207,6 +208,7 @@ section.intro {
             color: $white;
             border-radius: 0 4px 4px 0;
             padding: 12px 50px;
+            cursor: pointer;
 
             @media screen and (max-width: $sm) {
                 border-radius: 4px;
