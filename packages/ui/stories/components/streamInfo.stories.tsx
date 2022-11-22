@@ -11,17 +11,33 @@ export default {
 
 const commonProps = {
   streams: [{
+    id: 'stream1',
     title: 'Stream 1',
-    id: 'stream1'
+    thumbnail: 'https://i.ibb.co/q0h4jsd/image.png',
+    author: {
+      name: 'Author 1'
+    }
   }, {
+    id: 'stream2',
     title: 'Stream 2',
-    id: 'stream2'
+    thumbnail: 'https://i.ibb.co/fqVSWSw/image.png',
+    author: {
+      name: 'Author 2'
+    }
   }, {
+    id: 'stream3',
     title: 'Stream 3',
-    id: 'stream3'
+    thumbnail: 'https://i.ibb.co/h9xyCdm/1664106623786004.png',
+    author: {
+      name: 'Author 3'
+    }
   }, {
+    thumbnail: 'https://i.imgur.com/4euOws2.jpg',
     title: 'The Weeknd - Blinding Lights (Official Music Video)',
-    id: 'abcdefghijklmnopqrst1234567890'
+    id: 'abcdefghijklmnopqrst1234567890',
+    author: {
+      name: 'Channel author'
+    }
   }] as StreamData[],
   selectedStream: {
     thumbnail: 'https://i.imgur.com/4euOws2.jpg',
