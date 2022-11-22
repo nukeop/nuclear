@@ -8,6 +8,7 @@ import Tooltip from '../Tooltip';
 import styles from './styles.scss';
 import Button from '../Button';
 import { Dropdown } from '../..';
+import { StreamOption } from './StreamOption';
 
 type Handlers = {
   onImageLoaded: React.ReactEventHandler<HTMLImageElement>;
@@ -33,7 +34,8 @@ const StreamInfo: React.FC<StreamInfoProps & Handlers> =({
 }) => {
   const options = streams.map(stream => ({
     text: stream.title,
-    value: stream.id
+    value: stream.id,
+    content: <StreamOption {...stream} />
   }));
 
   return (

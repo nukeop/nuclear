@@ -47,14 +47,20 @@
   .stream_title {
     min-width: 0 !important;
     margin-bottom: 0.5rem;
-  }
 
-  .stream_title div {
-    @include ellipsis;
-    position: relative;
-    display: block;
-    font-weight: bold;
-    max-width: 100%;
+    div.item[role="option"] {
+      // has to be !important because semantic ui
+      // sets !important on the padding
+      padding: 0.5em !important;
+    }
+
+    div[role="alert"] {
+      @include ellipsis;
+      position: relative;
+      display: block;
+      font-weight: bold;
+      max-width: 100%;
+    }
   }
 
   .stream_author {
@@ -91,10 +97,46 @@
 
   img {
     width: 100%;
-    height: auto;
+    height: 100%;
+    object-fit: cover;
   }
 
   .spacer {
     flex: 1 0 auto;
+  }
+}
+
+.stream_option {
+  display: flex;
+  flex-flow: column;
+  line-height: 1.5;
+  padding: 0;
+
+  .stream_option_title,
+  .stream_option_author {
+    @include ellipsis;
+    color: rgba($white, 0.5);
+    z-index: 1;
+  }
+
+  .stream_option_thumbnail {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+
+  .stream_option_thumbnail_overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba($black, 0.8);
+  }
+
+  &:hover .stream_option_thumbnail_overlay {
+    background: rgba($black, 0.6);
   }
 }
