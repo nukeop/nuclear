@@ -25,7 +25,7 @@ export type QueueItem = {
   artist: string | { name: string };
   name: string;
   thumbnail?: string;
-  streams: TrackStream[];
+  streams?: TrackStream[];
 };
 
 export class QueueStore {
