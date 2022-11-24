@@ -68,7 +68,8 @@ const StreamInfo: React.FC<StreamInfoProps & Handlers> =({
                 on='hover'
                 content={copyTrackUrlLabel}
                 trigger={
-                  <Button 
+                  <Button
+                    data-testid='copy-original-url'
                     circular
                     basic
                     borderless

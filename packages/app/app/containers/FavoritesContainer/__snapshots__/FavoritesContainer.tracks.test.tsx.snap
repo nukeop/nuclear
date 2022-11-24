@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Track view container should display empty state 1`] = `
+exports[`Favorite tracks view container should display empty state 1`] = `
 <DocumentFragment>
   <div
     class="main_layout_container"
@@ -168,7 +168,7 @@ exports[`Track view container should display empty state 1`] = `
 </DocumentFragment>
 `;
 
-exports[`Track view container should display favorite tracks 1`] = `
+exports[`Favorite tracks view container should display favorite tracks 1`] = `
 <DocumentFragment>
   <div
     class="main_layout_container"
@@ -641,7 +641,7 @@ exports[`Track view container should display favorite tracks 1`] = `
 </DocumentFragment>
 `;
 
-exports[`Track view container should show a popup when a track is clicked 1`] = `
+exports[`Favorite tracks view container should show a popup when a track is clicked 1`] = `
 <DocumentFragment>
   <div
     class="main_layout_container"

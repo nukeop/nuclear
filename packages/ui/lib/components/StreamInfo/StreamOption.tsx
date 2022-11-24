@@ -13,8 +13,11 @@ export const StreamOption: React.FC<StreamData> = ({ title, author, thumbnail })
     <div className={styles.stream_option_title}>
       {title}
     </div>
-    <div className={styles.stream_option_author}>
-      {author.name}
-    </div>
+    {
+      author?.name &&
+      <div className={styles.stream_option_author}>
+        {author.name}
+      </div>
+    }
   </div>
 );
