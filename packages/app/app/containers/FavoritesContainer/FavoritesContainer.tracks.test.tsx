@@ -15,7 +15,7 @@ const updateStore = (key: string, value: object) => {
   store.set(key, value);
 };
 
-describe('Track view container', () => {
+describe('Favorite tracks view container', () => {
   beforeAll(() => {
     setupI18Next();
   });
@@ -115,11 +115,11 @@ describe('Track view container', () => {
       artist: 'test artist 1',
       name: 'test track 1',
       local: true,
-      stream: {
+      streams: [{
         source: 'Local',
         stream: 'file:///home/nuclear/Music/local artist 1/local album 1/local track 1.mp3',
         duration: 300
-      }
+      }]
     }));
   });
 

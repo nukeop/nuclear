@@ -25,9 +25,9 @@ const localTrackToQueueItem = (track: LocalTrack, local: LocalLibraryState): Que
 
   const matchingLocalTrack = local.tracks.find(localTrack => localTrack.uuid === track.uuid);
 
-  const resolvedStream = streams ?
-    streams?.find(stream => stream.source === 'Local') :
-    {
+  const resolvedStream = !isEmpty(streams) 
+    ? streams?.find(stream => stream.source === 'Local') 
+    : {
       source: 'Local',
       stream: `file://${matchingLocalTrack.path}`,
       duration: matchingLocalTrack.duration
