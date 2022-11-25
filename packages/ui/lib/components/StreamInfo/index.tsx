@@ -61,7 +61,7 @@ const StreamInfo: React.FC<StreamInfoProps & Handlers> =({
           <div className={styles.stream_author}>
             {selectedStream?.author?.name}
           </div>
-          {selectedStream?.id ? (
+          {selectedStream?.id && selectedStream?.originalUrl && (
             <div className={styles.stream_id}>
               <span>{selectedStream?.id}</span>
               <Tooltip 
@@ -79,7 +79,7 @@ const StreamInfo: React.FC<StreamInfoProps & Handlers> =({
                 }
               />
             </div>
-          ) : null}
+          )}
           <div className={styles.spacer} />
           <div className={styles.stream_source}>
             <span>

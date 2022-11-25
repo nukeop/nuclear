@@ -399,6 +399,31 @@ exports[`Play Queue container should display a context popup on right click 1`] 
                   </div>
                 </div>
               </div>
+              <div
+                aria-checked="false"
+                aria-selected="false"
+                class="item"
+                role="option"
+                style="pointer-events: all;"
+              >
+                <div
+                  class="stream_option"
+                >
+                  <div
+                    class="stream_option_thumbnail"
+                  >
+                    <img />
+                    <div
+                      class="stream_option_thumbnail_overlay"
+                    />
+                  </div>
+                  <div
+                    class="stream_option_title"
+                  >
+                    test track 1 - different stream
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           <div
@@ -412,6 +437,7 @@ exports[`Play Queue container should display a context popup on right click 1`] 
             </span>
             <button
               class="ui basic circular icon button nuclear button borderless"
+              data-testid="copy-original-url"
             >
               <i
                 aria-hidden="true"
@@ -643,14 +669,14 @@ exports[`Play Queue container should display a context popup on right click for 
     </div>
     <div
       class="play_queue_items fade_in"
-      data-rbd-droppable-context-id="3"
+      data-rbd-droppable-context-id="0"
       data-rbd-droppable-id="play_queue"
     >
       <div
-        aria-describedby="rbd-hidden-text-3-hidden-text-15"
-        data-rbd-drag-handle-context-id="3"
+        aria-describedby="rbd-hidden-text-0-hidden-text-0"
+        data-rbd-drag-handle-context-id="0"
         data-rbd-drag-handle-draggable-id="uuid1+0"
-        data-rbd-draggable-context-id="3"
+        data-rbd-draggable-context-id="0"
         data-rbd-draggable-id="uuid1+0"
         draggable="false"
         role="button"
@@ -704,10 +730,10 @@ exports[`Play Queue container should display a context popup on right click for 
         </div>
       </div>
       <div
-        aria-describedby="rbd-hidden-text-3-hidden-text-15"
-        data-rbd-drag-handle-context-id="3"
+        aria-describedby="rbd-hidden-text-0-hidden-text-0"
+        data-rbd-drag-handle-context-id="0"
         data-rbd-drag-handle-draggable-id="uuid2+1"
-        data-rbd-draggable-context-id="3"
+        data-rbd-draggable-context-id="0"
         data-rbd-draggable-id="uuid2+1"
         draggable="false"
         role="button"
@@ -761,10 +787,10 @@ exports[`Play Queue container should display a context popup on right click for 
         </div>
       </div>
       <div
-        aria-describedby="rbd-hidden-text-3-hidden-text-15"
-        data-rbd-drag-handle-context-id="3"
+        aria-describedby="rbd-hidden-text-0-hidden-text-0"
+        data-rbd-drag-handle-context-id="0"
         data-rbd-drag-handle-draggable-id="uuid3+2"
-        data-rbd-draggable-context-id="3"
+        data-rbd-draggable-context-id="0"
         data-rbd-draggable-id="uuid3+2"
         draggable="false"
         role="button"
@@ -822,11 +848,11 @@ exports[`Play Queue container should display a context popup on right click for 
   <div
     aria-atomic="true"
     aria-live="assertive"
-    id="rbd-announcement-3"
+    id="rbd-announcement-0"
     style="position: absolute; width: 1px; height: 1px; margin: -1px; border: 0px; padding: 0px; overflow: hidden; clip-path: inset(100%);"
   />
   <div
-    id="rbd-hidden-text-3-hidden-text-15"
+    id="rbd-hidden-text-0-hidden-text-0"
     style="display: none;"
   >
     
@@ -912,21 +938,6 @@ exports[`Play Queue container should display a context popup on right click for 
           <div
             class="stream_author"
           />
-          <div
-            class="stream_id"
-          >
-            <span>
-              CuklIb9d3fI
-            </span>
-            <button
-              class="ui basic circular icon button nuclear button borderless"
-            >
-              <i
-                aria-hidden="true"
-                class="clone icon"
-              />
-            </button>
-          </div>
           <div
             class="spacer"
           />
