@@ -202,7 +202,10 @@ describe('Album view container', () => {
           artist: 'test artist',
           name: 'test track 1',
           streams: [{
-            'data': 'test-stream-data'
+            data: 'test-stream-data',
+            author: {
+              name: 'test author'
+            }
           }]
         }),
         expect.objectContaining({
