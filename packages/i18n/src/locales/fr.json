@@ -211,14 +211,11 @@
     "favorite-add": "Ajouter aux favoris",
     "header": "File de lecture",
     "header-track": "Morceau actuel",
-    "id": "Id du flux :",
-    "source": "Source :",
     "copy-track-url": "Copier l'URL du morceau dans le presse-papiers",
     "loading": "Chargement du flux.",
     "playlist-add": "Ajouter à la playlist",
     "playlist-toast-content": "La playlist {{name}} a été créé.",
     "playlist-toast-title": "Playliste créé",
-    "title": "Titre :",
     "live": "En direct"
   },
   "search": {
