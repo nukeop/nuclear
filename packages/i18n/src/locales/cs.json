@@ -211,14 +211,11 @@
     "favorite-add": "Přidat k oblíbeným",
     "header": "Fronta",
     "header-track": "Aktuální skladba",
-    "id": "ID Streamu:",
-    "source": "Zdroj:",
     "copy-track-url": "Zkopírovat URL skladby do schránky",
     "loading": "Stream se ještě nahrává.",
     "playlist-add": "Přidat do seznamu skladeb",
     "playlist-toast-content": "Seznam skladeb {{name}} byl vytvořen.",
     "playlist-toast-title": "Seznam skladeb vytvořen",
-    "title": "Název:",
     "live": "Živě"
   },
   "search": {
