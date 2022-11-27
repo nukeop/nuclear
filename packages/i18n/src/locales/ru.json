@@ -211,14 +211,11 @@
     "favorite-add": "Добавить в избранные",
     "header": "Очередь",
     "header-track": "Текущий трек",
-    "id": "ID потока:",
-    "source": "Источник:",
     "copy-track-url": "Скопировать ссылку на трек",
     "loading": "Поток загружается.",
     "playlist-add": "Добавить в плейлист",
     "playlist-toast-content": "Плейлист {{name}} создан.",
     "playlist-toast-title": "Плейлист создан",
-    "title": "Название:",
     "live": "Сейчас"
   },
   "search": {
