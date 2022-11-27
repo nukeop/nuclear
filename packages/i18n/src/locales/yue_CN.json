@@ -211,14 +211,11 @@
     "favorite-add": "Add to favorites",
     "header": "Queue",
     "header-track": "Current track",
-    "id": "Stream ID:",
-    "source": "Source:",
     "copy-track-url": "Copy track url to clipboard",
     "loading": "Stream still loading.",
     "playlist-add": "Add to playlist",
     "playlist-toast-content": "Playlist {{name}} has been created.",
     "playlist-toast-title": "Playlist created",
-    "title": "Title:",
     "live": "Live"
   },
   "search": {
