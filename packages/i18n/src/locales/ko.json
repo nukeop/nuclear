@@ -211,14 +211,11 @@
     "favorite-add": "좋아요",
     "header": "재생 목록",
     "header-track": "재생 중인 음악",
-    "id": "스트림 ID:",
-    "source": "소스:",
     "copy-track-url": "클립보드로 웹페이지주소 복사",
     "loading": "스트림 로딩 중.",
     "playlist-add": "플레이리스트에 추가",
     "playlist-toast-content": "플레이리스트 \"{{name}}\"(이)가 생성되었습니다.",
     "playlist-toast-title": "플레이리스트 생성 완료",
-    "title": "제목:",
     "live": "라이브"
   },
   "search": {
