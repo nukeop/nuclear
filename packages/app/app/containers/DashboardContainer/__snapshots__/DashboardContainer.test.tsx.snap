@@ -845,6 +845,7 @@ exports[`Dashboard container should display top tracks after going to top tracks
                   >
                     <span
                       class="title_with_icon"
+                      data-testid="position-header"
                     >
                       <i
                         aria-hidden="true"
@@ -953,10 +954,12 @@ exports[`Dashboard container should display top tracks after going to top tracks
                   class=""
                   data-rbd-draggable-context-id="0"
                   data-rbd-draggable-id="top track 1 0"
+                  data-testid="track-table-row"
                   role="row"
                 >
                   <td
                     class="position_cell narrow"
+                    data-testid="position-cell"
                     role="cell"
                   >
                     <button
@@ -998,6 +1001,7 @@ exports[`Dashboard container should display top tracks after going to top tracks
                   </td>
                   <td
                     class="title_cell"
+                    data-testid="title-cell"
                     role="cell"
                   >
                     <span
@@ -1066,10 +1070,12 @@ exports[`Dashboard container should display top tracks after going to top tracks
                   class=""
                   data-rbd-draggable-context-id="0"
                   data-rbd-draggable-id="top track 2 1"
+                  data-testid="track-table-row"
                   role="row"
                 >
                   <td
                     class="position_cell narrow"
+                    data-testid="position-cell"
                     role="cell"
                   >
                     <button
@@ -1111,6 +1117,7 @@ exports[`Dashboard container should display top tracks after going to top tracks
                   </td>
                   <td
                     class="title_cell"
+                    data-testid="title-cell"
                     role="cell"
                   >
                     <span

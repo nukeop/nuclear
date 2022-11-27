@@ -81,6 +81,7 @@ exports[`Deezer playlist adapter should display a Deezer playlist 1`] = `
               >
                 <span
                   class="title_with_icon"
+                  data-testid="position-header"
                 >
                   <i
                     aria-hidden="true"
@@ -181,10 +182,12 @@ exports[`Deezer playlist adapter should display a Deezer playlist 1`] = `
               class=""
               data-rbd-draggable-context-id="1"
               data-rbd-draggable-id="track 1 0"
+              data-testid="track-table-row"
               role="row"
             >
               <td
                 class="position_cell narrow"
+                data-testid="position-cell"
                 role="cell"
               >
                 <button
@@ -226,6 +229,7 @@ exports[`Deezer playlist adapter should display a Deezer playlist 1`] = `
               </td>
               <td
                 class="title_cell"
+                data-testid="title-cell"
                 role="cell"
               >
                 <span
@@ -289,10 +293,12 @@ exports[`Deezer playlist adapter should display a Deezer playlist 1`] = `
               class=""
               data-rbd-draggable-context-id="1"
               data-rbd-draggable-id="track 2 1"
+              data-testid="track-table-row"
               role="row"
             >
               <td
                 class="position_cell narrow"
+                data-testid="position-cell"
                 role="cell"
               >
                 <button
@@ -334,6 +340,7 @@ exports[`Deezer playlist adapter should display a Deezer playlist 1`] = `
               </td>
               <td
                 class="title_cell"
+                data-testid="title-cell"
                 role="cell"
               >
                 <span

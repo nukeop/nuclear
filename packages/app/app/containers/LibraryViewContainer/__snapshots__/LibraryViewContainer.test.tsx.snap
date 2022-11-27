@@ -735,6 +735,7 @@ exports[`Library view container should display local library in simple list mode
                 >
                   <span
                     class="title_with_icon"
+                    data-testid="position-header"
                   >
                     <i
                       aria-hidden="true"
@@ -843,10 +844,12 @@ exports[`Library view container should display local library in simple list mode
                 class=""
                 data-rbd-draggable-context-id="0"
                 data-rbd-draggable-id="local track 1 0"
+                data-testid="track-table-row"
                 role="row"
               >
                 <td
                   class="position_cell narrow"
+                  data-testid="position-cell"
                   role="cell"
                 >
                   <button
@@ -875,6 +878,7 @@ exports[`Library view container should display local library in simple list mode
                 </td>
                 <td
                   class="title_cell"
+                  data-testid="title-cell"
                   role="cell"
                 >
                   <span
@@ -948,10 +952,12 @@ exports[`Library view container should display local library in simple list mode
                 class=""
                 data-rbd-draggable-context-id="0"
                 data-rbd-draggable-id="local track 2 1"
+                data-testid="track-table-row"
                 role="row"
               >
                 <td
                   class="position_cell narrow"
+                  data-testid="position-cell"
                   role="cell"
                 >
                   <button
@@ -980,6 +986,7 @@ exports[`Library view container should display local library in simple list mode
                 </td>
                 <td
                   class="title_cell"
+                  data-testid="title-cell"
                   role="cell"
                 >
                   <span
@@ -1053,10 +1060,12 @@ exports[`Library view container should display local library in simple list mode
                 class=""
                 data-rbd-draggable-context-id="0"
                 data-rbd-draggable-id="local track 3 2"
+                data-testid="track-table-row"
                 role="row"
               >
                 <td
                   class="position_cell narrow"
+                  data-testid="position-cell"
                   role="cell"
                 >
                   <button
@@ -1085,6 +1094,7 @@ exports[`Library view container should display local library in simple list mode
                 </td>
                 <td
                   class="title_cell"
+                  data-testid="title-cell"
                   role="cell"
                 >
                   <span

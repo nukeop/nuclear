@@ -103,6 +103,7 @@ exports[`Playlist view container should display a playlist 1`] = `
               >
                 <span
                   class="title_with_icon"
+                  data-testid="position-header"
                 >
                   <i
                     aria-hidden="true"
@@ -206,6 +207,7 @@ exports[`Playlist view container should display a playlist 1`] = `
               data-rbd-drag-handle-draggable-id="test track 0"
               data-rbd-draggable-context-id="0"
               data-rbd-draggable-id="test track 0"
+              data-testid="track-table-row"
               draggable="false"
               role="button"
               tabindex="0"
@@ -226,6 +228,7 @@ exports[`Playlist view container should display a playlist 1`] = `
               </td>
               <td
                 class="position_cell narrow"
+                data-testid="position-cell"
                 role="cell"
               >
                 <button
@@ -267,6 +270,7 @@ exports[`Playlist view container should display a playlist 1`] = `
               </td>
               <td
                 class="title_cell"
+                data-testid="title-cell"
                 role="cell"
               >
                 <span
@@ -333,6 +337,7 @@ exports[`Playlist view container should display a playlist 1`] = `
               data-rbd-drag-handle-draggable-id="test track 22 1"
               data-rbd-draggable-context-id="0"
               data-rbd-draggable-id="test track 22 1"
+              data-testid="track-table-row"
               draggable="false"
               role="button"
               tabindex="0"
@@ -353,6 +358,7 @@ exports[`Playlist view container should display a playlist 1`] = `
               </td>
               <td
                 class="position_cell narrow"
+                data-testid="position-cell"
                 role="cell"
               >
                 <button
@@ -394,6 +400,7 @@ exports[`Playlist view container should display a playlist 1`] = `
               </td>
               <td
                 class="title_cell"
+                data-testid="title-cell"
                 role="cell"
               >
                 <span
