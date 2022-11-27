@@ -211,14 +211,11 @@
     "favorite-add": "Tilføj til farvoritter",
     "header": "Kø",
     "header-track": "Nuværende sang",
-    "id": "Stream ID:",
-    "source": "Kilde:",
     "copy-track-url": "Kopier nummer-url til udklipsholder",
     "loading": "Stream loader stadig.",
     "playlist-add": "Tilføj til afspilningsliste",
     "playlist-toast-content": "Afspilningsliste {{name}} er blevet oprettet.",
     "playlist-toast-title": "Afspilningsliste er oprettet",
-    "title": "Titel:",
     "live": "Direkte"
   },
   "search": {
