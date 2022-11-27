@@ -211,14 +211,11 @@
     "favorite-add": "הוספה למועדפים",
     "header": "תור",
     "header-track": "הרצועה הנוכחית",
-    "id": "מזהה הזרמה:",
-    "source": "מקור:",
     "copy-track-url": "העתק את קישור הרצועה",
     "loading": "ההזרמה עדיין נטענת.",
     "playlist-add": "הוספה לפלייליסט",
     "playlist-toast-content": "נוצר הפלייליסט {{name}}.",
     "playlist-toast-title": "הפלייליסט נוצר",
-    "title": "כותרת:",
     "live": "שידור חי"
   },
   "search": {
