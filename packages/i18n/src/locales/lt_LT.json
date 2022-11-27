@@ -211,14 +211,11 @@
     "favorite-add": "Pridėti į mėgstamiausius",
     "header": "Eilė",
     "header-track": "Dabartinė daina",
-    "id": "Srauto ID:",
-    "source": "Source:",
     "copy-track-url": "Copy track url to clipboard",
     "loading": "Srautas dar leidžiasi.",
     "playlist-add": "Pridėti į grojaraštį",
     "playlist-toast-content": "Grojaraštis {{name}} buvo sukurtas.",
     "playlist-toast-title": "Grojaraštis sukurtas",
-    "title": "Pavadinimas:",
     "live": "Live"
   },
   "search": {
