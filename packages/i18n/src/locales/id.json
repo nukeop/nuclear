@@ -211,14 +211,11 @@
     "favorite-add": "Tambahkan ke favorit",
     "header": "antrian",
     "header-track": "Lagu sekarang",
-    "id": "Stream ID:",
-    "source": "Sumber:",
     "copy-track-url": "Salin url lagu ke clipboard",
     "loading": "Sedang memuat.",
     "playlist-add": "Tambahkan ke daftar putar",
     "playlist-toast-content": "Daftar putar {{name}} berhasil dibuat.",
     "playlist-toast-title": "Daftar putar berhasil dibuat",
-    "title": "Judul:",
     "live": "Live"
   },
   "search": {
