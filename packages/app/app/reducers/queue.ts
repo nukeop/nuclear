@@ -4,8 +4,8 @@ import { Queue } from '../actions/actionTypes';
 import { SELECT_STREAM_PROVIDER } from '../actions/plugins';
 
 export type TrackStream = {
-  source: string;
   id: string;
+  source: string;
   duration?: number;
   title?: string;
   thumbnail?: string;
