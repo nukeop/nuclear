@@ -211,14 +211,11 @@
     "favorite-add": "お気に入りに追加",
     "header": "キュー",
     "header-track": "現在の曲",
-    "id": "ストリーム ID:",
-    "source": "ソース:",
     "copy-track-url": "トラックのURLをクリップボードにコピー",
     "loading": "ストリームが読み込み中です",
     "playlist-add": "プレイリストに追加",
     "playlist-toast-content": "プレイリスト {{name}} を作成しました。",
     "playlist-toast-title": "プレイリストを作成しました",
-    "title": "タイトル:",
     "live": "ライブ"
   },
   "search": {
