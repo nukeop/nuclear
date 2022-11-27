@@ -211,14 +211,11 @@
     "favorite-add": "Zu den Favoriten hinzufügen",
     "header": "Warteschlange",
     "header-track": "Aktuelles Lied",
-    "id": "Stream-ID:",
-    "source": "Quelle:",
     "copy-track-url": "Lied-URL in Zwischenablage kopieren",
     "loading": "Stream wird noch geladen.",
     "playlist-add": "Zur Wiedergabeliste hinzufügen",
     "playlist-toast-content": "Wiedergabeliste {{name}} wurde erstellt.",
     "playlist-toast-title": "Wiedergabeliste erstellt",
-    "title": "Titel:",
     "live": "Live"
   },
   "search": {
