@@ -19,6 +19,11 @@
     text-align: left;
   }
 
+  .title_with_icon {
+    display: flex;
+    justify-content: space-between;
+  }
+
   tr {
     color: $white;
     user-select: none;

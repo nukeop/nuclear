@@ -53,6 +53,101 @@ describe('Favorite tracks view container', () => {
     expect(component.asFragment()).toMatchSnapshot();
   });
 
+  it('should be able to sort favorite tracks by title, ascending', async () => {
+    const favorites = buildStoreState()
+      .withFavorites({
+        tracks: [
+          { name: 'DEF', artist: 'A' },
+          { name: 'ABC', artist: 'A' },
+          { name: 'GHI', artist: 'A' },
+          { name: 'abc', artist: 'A' }
+        ]
+      })
+      .build()
+      .favorites;
+    updateStore('favorites', favorites);
+    const { component } = mountComponent();
+
+    await waitFor(() => component.getByText('Title').click());
+    const tracks = component.getAllByTestId('title-cell');
+
+    expect(tracks[0].textContent).toEqual('ABC');
+    expect(tracks[1].textContent).toEqual('DEF');
+    expect(tracks[2].textContent).toEqual('GHI');
+    expect(tracks[3].textContent).toEqual('abc');
+  });
+
+  it('should be able to sort favorite tracks by title, descending', async () => {
+    const favorites = buildStoreState()
+      .withFavorites({
+        tracks: [
+          { name: 'DEF', artist: 'A' },
+          { name: 'ABC', artist: 'A' },
+          { name: 'GHI', artist: 'A' },
+          { name: 'abc', artist: 'A' }
+        ]
+      })
+      .build()
+      .favorites;
+
+    updateStore('favorites', favorites);
+    const { component } = mountComponent();
+
+    await waitFor(() => component.getByText('Title').click());
+    await waitFor(() => component.getByText('Title').click());
+    const tracks = component.getAllByTestId('title-cell');
+
+    expect(tracks[0].textContent).toEqual('abc');
+    expect(tracks[1].textContent).toEqual('GHI');
+    expect(tracks[2].textContent).toEqual('DEF');
+    expect(tracks[3].textContent).toEqual('ABC');
+  });
+
+
+  it('should be able to sort favorite tracks by artist', async () => {
+    const favorites = buildStoreState()
+      .withFavorites({
+        tracks: [
+          { name: 'A', artist: 'DEF' },
+          { name: 'B', artist: 'ABC' },
+          { name: 'C', artist: 'GHI' },
+          { name: 'D', artist: 'abc' }
+        ]
+      })
+      .build()
+      .favorites;
+    updateStore('favorites', favorites);
+    const { component } = mountComponent();
+
+    await waitFor(() => component.getByText('Artist').click());
+    const tracks = component.getAllByTestId('title-cell');
+
+    expect(tracks[0].textContent).toEqual('B');
+    expect(tracks[1].textContent).toEqual('A');
+    expect(tracks[2].textContent).toEqual('C');
+    expect(tracks[3].textContent).toEqual('D');
+  });
+
+  it('should be able to sort favorite tracks by position', async () => {
+    const favorites = buildStoreState()
+      .withFavorites()
+      .build()
+      .favorites;
+
+    updateStore('favorites', favorites);
+    const { component } = mountComponent();
+    let tracks = component.getAllByTestId('title-cell');
+    
+    expect(tracks[0].textContent).toEqual('test track 2');
+    expect(tracks[1].textContent).toEqual('test track 1');
+    
+    await waitFor(() => component.getByTestId('position-header').click());
+    tracks = component.getAllByTestId('title-cell');
+
+    expect(tracks[0].textContent).toEqual('test track 1');
+    expect(tracks[1].textContent).toEqual('test track 2');
+  });
+
   it('should call provider.search when playing a track with no streams', async () => {
     const favorites = buildStoreState()
       .withFavorites()
@@ -63,7 +158,7 @@ describe('Favorite tracks view container', () => {
     const { component, store } = mountComponent();
     const state = store.getState();
     const selectedStreamProvider = _.find(
-      state.plugin.plugins.streamProviders, 
+      state.plugin.plugins.streamProviders,
       { sourceName: state.plugin.selected.streamProviders });
 
     await waitFor(() => component.getAllByTestId('play-now')[1].click());
@@ -82,14 +177,14 @@ describe('Favorite tracks view container', () => {
     const { component, store } = mountComponent();
     const state = store.getState();
     const selectedStreamProvider = _.find(
-      state.plugin.plugins.streamProviders, 
+      state.plugin.plugins.streamProviders,
       { sourceName: state.plugin.selected.streamProviders });
 
     await waitFor(() => component.getAllByTestId('play-now')[0].click());
 
     await waitFor(() => expect(selectedStreamProvider.search).toHaveBeenCalledWith({
-      artist: 'test artist 1',
-      track: 'test track 1'
+      artist: 'test artist 2',
+      track: 'test track 2'
     }));
   });
 
@@ -146,7 +241,7 @@ describe('Favorite tracks view container', () => {
           <MainContentContainer />
           <PlayerBarContainer />
         </TestStoreProvider>
-      </TestRouterProvider >, {container: document.body}
+      </TestRouterProvider >, { container: document.body }
     );
     return { component, history, store };
   };

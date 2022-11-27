@@ -730,19 +730,28 @@ exports[`Library view container should display local library in simple list mode
                 <th
                   colspan="1"
                   role="columnheader"
+                  style="cursor: pointer;"
+                  title="Toggle SortBy"
                 >
                   <span
-                    class="center_aligned"
+                    class="title_with_icon"
+                    data-testid="position-header"
                   >
                     <i
                       aria-hidden="true"
                       class="hashtag icon"
+                    />
+                    <i
+                      aria-hidden="true"
+                      class="sort content ascending icon"
                     />
                   </span>
                 </th>
                 <th
                   colspan="1"
                   role="columnheader"
+                  style="cursor: pointer;"
+                  title="Toggle SortBy"
                 >
                   <span
                     class="center_aligned"
@@ -756,24 +765,48 @@ exports[`Library view container should display local library in simple list mode
                 <th
                   colspan="1"
                   role="columnheader"
+                  style="cursor: pointer;"
+                  title="Toggle SortBy"
                 >
-                  Title
+                  <span
+                    class="title_with_icon"
+                  >
+                    Title
+                    <i
+                      aria-hidden="true"
+                      class="sort content ascending disabled icon"
+                    />
+                  </span>
                 </th>
                 <th
                   colspan="1"
                   role="columnheader"
+                  style="cursor: pointer;"
+                  title="Toggle SortBy"
                 >
-                  Artist
+                  <span
+                    class="title_with_icon"
+                  >
+                    Artist
+                    <i
+                      aria-hidden="true"
+                      class="sort content ascending disabled icon"
+                    />
+                  </span>
                 </th>
                 <th
                   colspan="1"
                   role="columnheader"
+                  style="cursor: pointer;"
+                  title="Toggle SortBy"
                 >
                   Album
                 </th>
                 <th
                   colspan="1"
                   role="columnheader"
+                  style="cursor: pointer;"
+                  title="Toggle SortBy"
                 >
                   Length
                 </th>
@@ -811,10 +844,12 @@ exports[`Library view container should display local library in simple list mode
                 class=""
                 data-rbd-draggable-context-id="0"
                 data-rbd-draggable-id="local track 1 0"
+                data-testid="track-table-row"
                 role="row"
               >
                 <td
                   class="position_cell narrow"
+                  data-testid="position-cell"
                   role="cell"
                 >
                   <button
@@ -843,6 +878,7 @@ exports[`Library view container should display local library in simple list mode
                 </td>
                 <td
                   class="title_cell"
+                  data-testid="title-cell"
                   role="cell"
                 >
                   <span
@@ -916,10 +952,12 @@ exports[`Library view container should display local library in simple list mode
                 class=""
                 data-rbd-draggable-context-id="0"
                 data-rbd-draggable-id="local track 2 1"
+                data-testid="track-table-row"
                 role="row"
               >
                 <td
                   class="position_cell narrow"
+                  data-testid="position-cell"
                   role="cell"
                 >
                   <button
@@ -948,6 +986,7 @@ exports[`Library view container should display local library in simple list mode
                 </td>
                 <td
                   class="title_cell"
+                  data-testid="title-cell"
                   role="cell"
                 >
                   <span
@@ -1021,10 +1060,12 @@ exports[`Library view container should display local library in simple list mode
                 class=""
                 data-rbd-draggable-context-id="0"
                 data-rbd-draggable-id="local track 3 2"
+                data-testid="track-table-row"
                 role="row"
               >
                 <td
                   class="position_cell narrow"
+                  data-testid="position-cell"
                   role="cell"
                 >
                   <button
@@ -1053,6 +1094,7 @@ exports[`Library view container should display local library in simple list mode
                 </td>
                 <td
                   class="title_cell"
+                  data-testid="title-cell"
                   role="cell"
                 >
                   <span
