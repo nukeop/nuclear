@@ -17,6 +17,7 @@ import { settingsSelector } from '../../selectors/settings';
 import { getFavoriteTrack } from '../../selectors/favorites';
 import { useCallback, useEffect } from 'react';
 import { SemanticICONS } from 'semantic-ui-react/dist/commonjs/generic';
+import { QueueItem } from '../../reducers/queue';
 
 export const useSeekbarProps = () => {
   const dispatch = useDispatch();
@@ -24,7 +25,7 @@ export const useSeekbarProps = () => {
   const queue = useSelector(queueSelector);
   const seek: number = useSelector(playerSelectors.seek);
   const playbackProgress: number = useSelector(playerSelectors.playbackProgress);
-  const currentTrackStream = queue.queueItems[queue.currentSong]?.stream;
+  const currentTrackStream = queue.queueItems[queue.currentSong]?.streams?.[0];
   const currentTrackDuration: number | undefined = currentTrackStream?.duration;
   const timeToEnd = currentTrackDuration - seek;
 
@@ -231,17 +232,17 @@ export const useStreamLookup = () => {
     const isStreamLoading = Boolean(queue.queueItems.find((item) => item.loading));
 
     if (!isStreamLoading) {
-      const currentSong = queue.queueItems[queue.currentSong];
+      const currentSong: QueueItem = queue.queueItems[queue.currentSong];
 
-      if (isEmpty(currentSong?.stream)) {
-        dispatch(queueActions.findStreamForTrack(queue.currentSong));
+      if (currentSong && isEmpty(currentSong.streams)) {
+        dispatch(queueActions.findStreamsForTrack(queue.currentSong));
         return;
       }
     
-      const nextTrackWithNoStream = queue.queueItems.findIndex((item) => isEmpty(item.stream));
+      const nextTrackWithNoStream = (queue.queueItems as QueueItem[]).findIndex((item) => isEmpty(item.streams));
     
       if (nextTrackWithNoStream !== -1) {
-        dispatch(queueActions.findStreamForTrack(nextTrackWithNoStream));
+        dispatch(queueActions.findStreamsForTrack(nextTrackWithNoStream));
       }
     }
   }, [queue]);

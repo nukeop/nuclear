@@ -1,11 +1,13 @@
-import { IpcEvents } from '@nuclear/core';
 import React from 'react';
-import logger from 'electron-timber';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { head } from 'lodash';
+import logger from 'electron-timber';
 import { ipcRenderer } from 'electron';
 import { getType } from 'typesafe-actions';
+import { IpcEvents } from '@nuclear/core';
+
 import * as PlayerActions from '../../actions/player';
 import * as QueueActions from '../../actions/queue';
 import * as SettingsActions from '../../actions/settings';
@@ -98,7 +100,7 @@ class IpcContainer extends React.Component {
 
       try {
         const { artist, name, thumbnail } = this.props.queue.queueItems[this.props.queue.currentSong];
-        const duration = this.props.queue.queueItems[this.props.queue.currentSong].stream?.duration;
+        const duration = head(this.props.queue.queueItems[this.props.queue.currentSong].streams)?.duration;
 
         ipcRenderer.send(IpcEvents.PLAYING_STATUS, { ...this.props.player, artist, name, thumbnail, loopAfterQueueEnd, shuffleQueue, duration });
       } catch (err) {

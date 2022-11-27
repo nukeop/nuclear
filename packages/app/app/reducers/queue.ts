@@ -4,8 +4,8 @@ import { Queue } from '../actions/actionTypes';
 import { SELECT_STREAM_PROVIDER } from '../actions/plugins';
 
 export type TrackStream = {
-  source: string;
   id: string;
+  source: string;
   duration?: number;
   title?: string;
   thumbnail?: string;
@@ -25,7 +25,7 @@ export type QueueItem = {
   artist: string | { name: string };
   name: string;
   thumbnail?: string;
-  stream?: TrackStream;
+  streams?: TrackStream[];
 };
 
 export class QueueStore {
@@ -134,28 +134,6 @@ function reduceSelectStreamProviders(state) {
   };
 }
 
-function reduceChangeTrackStream(state: QueueStore, action) {
-  const { item, stream }: {
-    item: QueueItem,
-    stream: TrackStream
-  } = action.payload;
-
-  return {
-    ...state,
-    queueItems: state.queueItems.map((track) => {
-      if (item.uuid === track.uuid) {  
-        return {
-          ...item,
-          failed: false,
-          stream
-        };
-      }
-
-      return track;
-    })
-  };
-}
-
 const reduceUpdateQueueItem = (state, action) => {
   const { item } = action.payload;
   const itemIndex = _.findIndex(state.queueItems, { uuid: item.uuid });
@@ -209,8 +187,6 @@ export default function QueueReducer(state = defaultState, action) {
     return reduceStreamFailed(state);
   case SELECT_STREAM_PROVIDER:
     return reduceSelectStreamProviders(state);
-  case Queue.CHANGE_TRACK_STREAM:
-    return reduceChangeTrackStream(state, action);
   default:
     return state;
   }

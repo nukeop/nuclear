@@ -29,7 +29,7 @@ export function addFavoriteTrack(track) {
   
   const favorites = store.get('favorites');
   const filteredTracks = favorites.tracks.filter(t => !areTracksEqualByName(t, track));
-  favorites.tracks = [...filteredTracks, omit(clonedTrack, 'stream')];
+  favorites.tracks = [...filteredTracks, omit(clonedTrack, 'streams')];
   
   store.set('favorites', favorites);
   

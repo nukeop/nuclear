@@ -193,17 +193,20 @@ describe('Album view container', () => {
     component.getByText(/Add album to queue/i).click();
     const state = store.getState();
 
-    expect(state?.queue?.queueItems[1].stream).toBeUndefined();
-    expect(state?.queue?.queueItems[2].stream).toBeUndefined();
+    expect(state?.queue?.queueItems[1].streams).toEqual([]);
+    expect(state?.queue?.queueItems[2].streams).toEqual([]);
     await waitFor(() => {
       const currentState = store.getState();
       return expect(currentState?.queue?.queueItems).toEqual([
         expect.objectContaining({
           artist: 'test artist',
           name: 'test track 1',
-          stream: {
-            'data': 'test-stream-data'
-          }
+          streams: [{
+            data: 'test-stream-data',
+            author: {
+              name: 'test author'
+            }
+          }]
         }),
         expect.objectContaining({
           artist: 'test artist',

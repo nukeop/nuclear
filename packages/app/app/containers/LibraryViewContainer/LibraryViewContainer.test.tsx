@@ -107,12 +107,12 @@ describe('Library view container', () => {
         artist: 'local artist 1',
         name: 'local track 1',
         duration: 250,
-        stream: {
+        streams: [{
           id: 'old-format-stream',
           source: 'Local',
           duration: 250,
           stream: 'file:///path/to/local/track/1'
-        }
+        }]
       })
     ]);
   });

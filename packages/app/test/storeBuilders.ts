@@ -276,9 +276,12 @@ export const buildStoreState = () => {
               {
                 name: 'Test Stream Provider',
                 sourceName: 'Test Stream Provider',
-                search: jest.fn(() => ({
-                  data: 'test-stream-data'
-                })),
+                search: jest.fn(() => ([{
+                  data: 'test-stream-data',
+                  author: {
+                    name: 'test author'
+                  }
+                }])),
                 getStreamForId: jest.fn((id: string) => ({
                   data: id
                 }))
@@ -286,11 +289,14 @@ export const buildStoreState = () => {
               {
                 name: 'Different Stream Provider',
                 sourceName: 'Different Stream Provider',
-                search: jest.fn(() => ({
+                search: jest.fn(() => ([{
                   id: 'test-stream-id-1',
                   data: 'different-test-stream-data',
-                  source: 'Different Stream Provider'
-                }) as TrackStream),
+                  source: 'Different Stream Provider',
+                  author: {
+                    name: 'test author'
+                  }
+                }])),
                 getStreamForId: jest.fn((id: string) => ({
                   id: 'test-stream-id-1',
                   data: id,
@@ -772,7 +778,7 @@ export const buildStoreState = () => {
               artist: 'test artist 1',
               name: 'test track 1',
               thumbnail: 'https://test-track-thumb-url',
-              stream: {
+              streams: [{
                 source: 'Test Stream Provider',
                 id: 'CuklIb9d3fI',
                 stream: 'https://test-track-stream-url',
@@ -798,7 +804,10 @@ export const buildStoreState = () => {
                   }
                 ],
                 originalUrl: 'https://test-track-original-url'
-              },
+              }, {
+                source: 'Test Stream Provider',
+                title: 'test track 1 - different stream'
+              }],
               uuid: 'uuid1',
               loading: false,
               error: false
@@ -807,7 +816,7 @@ export const buildStoreState = () => {
               artist: 'test artist 2',
               name: 'test track 2',
               thumbnail: 'https://test-track-thumb-url',
-              stream: {
+              streams: [{
                 source: 'Different Stream Provider',
                 id: '_CuklIb9d3fI',
                 stream: 'https://test-track-stream-url',
@@ -816,7 +825,7 @@ export const buildStoreState = () => {
                 thumbnail: 'https://test-track-thumb-url',
                 format: 'webm',
                 skipSegments: []
-              },
+              }],
               uuid: 'uuid2',
               loading: false,
               error: false
@@ -825,7 +834,7 @@ export const buildStoreState = () => {
               artist: 'test artist 3',
               name: 'test track 3',
               thumbnail: undefined,
-              stream: {
+              streams: [{
                 source: 'Test Stream Provider',
                 id: 'CuklIb9d3fI',
                 stream: 'https://test-track-stream-url',
@@ -834,7 +843,7 @@ export const buildStoreState = () => {
                 thumbnail: 'https://test-track-thumb-url',
                 format: 'webm',
                 skipSegments: []
-              },
+              }],
               uuid: 'uuid3',
               loading: false,
               error: false

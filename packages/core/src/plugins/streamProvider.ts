@@ -9,8 +9,7 @@ abstract class StreamProviderPlugin extends Plugin {
   apiEndpoint?: string;
   baseUrl?: string;
 
-  abstract search(query: StreamQuery): Promise<StreamData|undefined>;
-  abstract getAlternateStream(query: StreamQuery, currentStream: { id: string }): Promise<StreamData|undefined>;
+  abstract search(query: StreamQuery): Promise<StreamData[]>;
   abstract getStreamForId(id: string): Promise<StreamData|undefined>;
 }
 

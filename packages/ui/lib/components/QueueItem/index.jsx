@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import cx from 'classnames';
 import { Icon } from 'semantic-ui-react';
 import { compose, withHandlers } from 'recompose';
-import _ from 'lodash';
+import { isEmpty, defaultTo } from 'lodash';
 
 import Loader from '../Loader';
 import common from '../../common.scss';
@@ -37,7 +37,7 @@ export const QueueItem = ({
       {
         isLoading
           ? <Loader type='small' className={isCompact && styles.compact_loader} />
-          : <img src={_.defaultTo(track.thumbnail, artPlaceholder)} />
+          : <img src={defaultTo(track.thumbnail, artPlaceholder)} />
       }
 
       <div
@@ -62,7 +62,7 @@ export const QueueItem = ({
 
         {
           !isLoading &&
-          Boolean(track.stream) &&
+          !isEmpty(track.streams) &&
           <div className={styles.item_duration_container}>
             <div className={styles.item_duration}>
               {duration}

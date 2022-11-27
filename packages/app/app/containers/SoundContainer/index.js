@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux';
 import { compose, withProps } from 'recompose';
 import Sound, { Volume, Equalizer, AnalyserByFrequency } from 'react-hifi';
 import logger from 'electron-timber';
+import { head } from 'lodash';
 import { IpcEvents, rest } from '@nuclear/core';
 import { post as mastodonPost } from '@nuclear/core/src/rest/Mastodon';
 
@@ -175,7 +176,7 @@ class SoundContainer extends React.Component {
       this.props.queue.currentSong !== nextProps.queue.currentSong ||
       this.props.player.playbackStatus !== nextProps.player.playbackStatus ||
       this.props.player.seek !== nextProps.player.seek ||
-      (!!currentSong && !!currentSong.stream)
+      (Boolean(currentSong) && Boolean(currentSong.streams))
     );
   }
 
@@ -187,7 +188,7 @@ class SoundContainer extends React.Component {
     const { queue, player, equalizer, actions, enableSpectrum, currentStream, location, defaultEqualizer } = this.props;
     const currentTrack = queue.queueItems[queue.currentSong];
     const usedEqualizer = enableSpectrum ? equalizer : defaultEqualizer;
-    return Boolean(currentStream) && (this.isHlsStream(currentStream.stream) ? (
+    return Boolean(currentStream) && (this.isHlsStream(head(currentStream.streams)) ? (
       <HlsPlayer
         source={currentStream.stream}
         onError={this.handleError}
@@ -272,6 +273,6 @@ export default compose(
     currentTrack: queue.queueItems[queue.currentSong]
   })),
   withProps(({ currentTrack }) => ({
-    currentStream: currentTrack?.stream
+    currentStream: head(currentTrack?.streams)
   }))
 )(SoundContainer);
