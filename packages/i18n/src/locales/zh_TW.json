@@ -211,14 +211,11 @@
     "favorite-add": "加到我的最愛",
     "header": "播放佇列",
     "header-track": "目前曲目",
-    "id": "串流 ID:",
-    "source": "來源：",
     "copy-track-url": "複製網址到剪貼簿",
     "loading": "串流處理中",
     "playlist-add": "加到播放清單",
     "playlist-toast-content": "{{name}} 已建立",
     "playlist-toast-title": "播放清單建立成功",
-    "title": "音樂標題",
     "live": "直播"
   },
   "search": {
