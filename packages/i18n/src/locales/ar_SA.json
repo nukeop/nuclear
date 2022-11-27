@@ -211,14 +211,11 @@
     "favorite-add": "إضافة إلى المفضلات",
     "header": "قائمة الإنتظار",
     "header-track": "المقطع الحالي",
-    "id": "Stream ID:",
-    "source": "المصادر:",
     "copy-track-url": "تم نسخ رابط الاغنية إلى الحافظة",
     "loading": "Stream still loading.",
     "playlist-add": "إضافة إلى قائمة التشغيل",
     "playlist-toast-content": "قائمة التشغيل {{name}} تم إنشاؤها.",
     "playlist-toast-title": "تم إنشاء قائمة التشغيل",
-    "title": "العنوان:",
     "live": "Live"
   },
   "search": {
