@@ -211,14 +211,11 @@
     "favorite-add": "Lägg till i Favoriter",
     "header": "Kö",
     "header-track": "Spelas just nu",
-    "id": "Stream-ID:",
-    "source": "Källa:",
     "copy-track-url": "Kopiera spåradress till urklipp",
     "loading": "Strömmen läses fortfarande.",
     "playlist-add": "Lägg till i spellista",
     "playlist-toast-content": "Spellistan {{name}} har skapats.",
     "playlist-toast-title": "Spellista skapad",
-    "title": "Titel:",
     "live": "Live"
   },
   "search": {
