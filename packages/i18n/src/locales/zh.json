@@ -211,14 +211,11 @@
     "favorite-add": "添加至收藏",
     "header": "队列",
     "header-track": "当前曲目",
-    "id": "流 ID：",
-    "source": "来源：",
     "copy-track-url": "复制歌曲链接到剪贴板",
     "loading": "Stream还在加载.",
     "playlist-add": "添加到播放列表",
     "playlist-toast-content": "播放列表 {{name}} 已创建。",
     "playlist-toast-title": "已创建播放列表",
-    "title": "音乐标题:",
     "live": "Live"
   },
   "search": {
