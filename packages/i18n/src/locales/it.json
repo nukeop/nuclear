@@ -211,14 +211,11 @@
     "favorite-add": "Aggiungi ai preferiti",
     "header": "Coda",
     "header-track": "Traccia corrente",
-    "id": "ID Flusso:",
-    "source": "Fonte:",
     "copy-track-url": "Copia URL traccia negli appunti",
     "loading": "Il flusso è ancora in caricamento.",
     "playlist-add": "Aggiungi a scaletta",
     "playlist-toast-content": "La scaletta '{{name}}' è stata creata.",
     "playlist-toast-title": "Scaletta creata",
-    "title": "Titolo:",
     "live": "In diretta"
   },
   "search": {
