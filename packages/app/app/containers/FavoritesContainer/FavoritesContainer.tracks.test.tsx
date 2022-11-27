@@ -136,12 +136,16 @@ describe('Track view container', () => {
 
     updateStore('favorites', favorites);
     const { component } = mountComponent();
-
-    await waitFor(() => component.getByTestId('position-header').click());
-    const tracks = component.getAllByTestId('title-cell');
-
+    let tracks = component.getAllByTestId('title-cell');
+    
     expect(tracks[0].textContent).toEqual('test track 2');
-    expect(tracks[1].textContent).toEqual('test track 1 ');
+    expect(tracks[1].textContent).toEqual('test track 1');
+    
+    await waitFor(() => component.getByTestId('position-header').click());
+    tracks = component.getAllByTestId('title-cell');
+
+    expect(tracks[0].textContent).toEqual('test track 1');
+    expect(tracks[1].textContent).toEqual('test track 2');
   });
 
   it('should call provider.search when playing a track with no streams', async () => {
@@ -179,8 +183,8 @@ describe('Track view container', () => {
     await waitFor(() => component.getAllByTestId('play-now')[0].click());
 
     await waitFor(() => expect(selectedStreamProvider.search).toHaveBeenCalledWith({
-      artist: 'test artist 1',
-      track: 'test track 1'
+      artist: 'test artist 2',
+      track: 'test track 2'
     }));
   });
 
