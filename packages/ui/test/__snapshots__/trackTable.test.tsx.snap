@@ -24,6 +24,7 @@ exports[`(Snapshot) Track table - empty should render correctly 1`] = `
         >
           <span
             class="title_with_icon"
+            data-testid="position-header"
           >
             Position
             <i
@@ -156,6 +157,7 @@ exports[`(Snapshot) Track table - example data with all rows should render corre
         >
           <span
             class="title_with_icon"
+            data-testid="position-header"
           >
             Position
             <i
@@ -269,6 +271,7 @@ exports[`(Snapshot) Track table - example data with all rows should render corre
         class=""
         data-rbd-draggable-context-id="1"
         data-rbd-draggable-id="Test Title 0"
+        data-testid="track-table-row"
         role="row"
       >
         <td
@@ -287,6 +290,7 @@ exports[`(Snapshot) Track table - example data with all rows should render corre
         </td>
         <td
           class="position_cell narrow"
+          data-testid="position-cell"
           role="cell"
         >
           <button
@@ -328,6 +332,7 @@ exports[`(Snapshot) Track table - example data with all rows should render corre
         </td>
         <td
           class="title_cell"
+          data-testid="title-cell"
           role="cell"
         >
           <span
@@ -401,6 +406,7 @@ exports[`(Snapshot) Track table - example data with all rows should render corre
         class=""
         data-rbd-draggable-context-id="1"
         data-rbd-draggable-id="Test Title 2 1"
+        data-testid="track-table-row"
         role="row"
       >
         <td
@@ -419,6 +425,7 @@ exports[`(Snapshot) Track table - example data with all rows should render corre
         </td>
         <td
           class="position_cell narrow"
+          data-testid="position-cell"
           role="cell"
         >
           <button
@@ -460,6 +467,7 @@ exports[`(Snapshot) Track table - example data with all rows should render corre
         </td>
         <td
           class="title_cell"
+          data-testid="title-cell"
           role="cell"
         >
           <span
@@ -533,6 +541,7 @@ exports[`(Snapshot) Track table - example data with all rows should render corre
         class=""
         data-rbd-draggable-context-id="1"
         data-rbd-draggable-id="Test Title 3 2"
+        data-testid="track-table-row"
         role="row"
       >
         <td
@@ -551,6 +560,7 @@ exports[`(Snapshot) Track table - example data with all rows should render corre
         </td>
         <td
           class="position_cell narrow"
+          data-testid="position-cell"
           role="cell"
         >
           <button
@@ -592,6 +602,7 @@ exports[`(Snapshot) Track table - example data with all rows should render corre
         </td>
         <td
           class="title_cell"
+          data-testid="title-cell"
           role="cell"
         >
           <span
