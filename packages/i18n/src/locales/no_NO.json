@@ -211,14 +211,11 @@
     "favorite-add": "Legg til som favoritt",
     "header": "Kø",
     "header-track": "Gjeldende spor",
-    "id": "Strøm ID:",
-    "source": "Kilde:",
     "copy-track-url": "Kopier spor-url til utklippstavle",
     "loading": "Strømming lastes fortsatt.",
     "playlist-add": "Legg til i spilleliste",
     "playlist-toast-content": "Spilleliste {{name}} er opprettet.",
     "playlist-toast-title": "Spilleliste opprettet",
-    "title": "Tittel:",
     "live": "Live"
   },
   "search": {
