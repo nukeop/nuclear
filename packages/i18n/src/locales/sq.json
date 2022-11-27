@@ -211,14 +211,11 @@
     "favorite-add": "Shto tek të preferuarat",
     "header": "Radha",
     "header-track": "Kënga aktuale",
-    "id": "ID e transmetimit:",
-    "source": "Source:",
     "copy-track-url": "Copy track url to clipboard",
     "loading": "Transmetimi akoma duke u ngarkuar.",
     "playlist-add": "Shto në listë",
     "playlist-toast-content": "Lista {{name}} është krijuar.",
     "playlist-toast-title": "U krijua lista",
-    "title": "Titulli:",
     "live": "Live"
   },
   "search": {
