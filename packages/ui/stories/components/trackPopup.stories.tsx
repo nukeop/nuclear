@@ -21,6 +21,7 @@ export const WithNoButtons = () => <div className='bg'>
     withAddToPlaylist={false}
     withAddToQueue={false}
     withPlayNow={false}
+    withPlayNext={false}
     {...track}
   />
 </div>;

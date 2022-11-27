@@ -52,9 +52,10 @@ describe('Play Queue container', () => {
     const track = component.getByTestId('queue-popup-uuid1');
     await waitFor(() => fireEvent.contextMenu(track));
 
-    await waitFor(() => component.getByText(/Different Stream Provider/i).click());
+    await waitFor(() => component.getByRole('combobox').click());
+    await waitFor(() => component.getByText(/test track 1 - different stream/i).click());
     const state = store.getState();
-    expect(state.queue.queueItems[0].stream.source).toBe('Different Stream Provider');
+    await waitFor(() => expect(state.queue.queueItems[0].streams[0].title).toBe('test track 1 - different stream'));
   });
 
   it('should copy the original track url to clipboard', async () => {
@@ -84,14 +85,14 @@ describe('Play Queue container', () => {
     await waitFor(() => component.getByTestId('queue-popup-favorite').click());
 
     const state = store.getState();
-    expect(state.favorites.tracks).toEqual(expect.arrayContaining([{
+    expect(state.favorites.tracks).toEqual(expect.arrayContaining([expect.objectContaining({
       uuid: expect.any(String),
-      artist: expect.stringMatching('test artist 1'),
-      name: expect.stringMatching('test track 1'),
+      artist: 'test artist 1',
+      name: 'test track 1',
       thumbnail: 'https://test-track-thumb-url'
-    }]));
+    })]));
 
-    expect(state.favorites.tracks[0].stream).toBeUndefined();
+    expect(state.favorites.tracks[0].streams).toBeUndefined();
   });
 
   it('should favorite track without stream data (queue menu popup)', async () => {
@@ -108,7 +109,7 @@ describe('Play Queue container', () => {
       thumbnail: 'https://test-track-thumb-url'
     }]));
 
-    expect(state.favorites.tracks[0].stream).toBeUndefined();
+    expect(state.favorites.tracks[0].streams).toBeUndefined();
   });
 
   it('should add the current track to a playlist (queue menu popup)', async () => {

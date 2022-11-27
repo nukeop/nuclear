@@ -102,11 +102,16 @@ export type StreamQuery = {
 export type StreamData = {
     source: string;
     id: string;
-    stream: string;
+    stream?: string;
     duration: number;
     title: string;
     thumbnail: string;
     originalUrl?: string;
     format?: string;
-    skipSegments?: Array<any>
+    skipSegments?: Array<any>;
+    isLive?: boolean;
+    author?: {
+        name: string;
+        thumbnail: string;
+    }
 }

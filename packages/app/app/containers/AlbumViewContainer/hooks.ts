@@ -68,7 +68,8 @@ export const useAlbumViewProps = () => {
       dispatch(QueueActions.addToQueue({
         artist: album?.artist,
         name: track.title,
-        thumbnail: album.coverImage
+        thumbnail: album.coverImage,
+        streams: []
       }));
     });
   }, [album, dispatch]);

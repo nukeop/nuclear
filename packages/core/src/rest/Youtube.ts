@@ -1,5 +1,4 @@
 import logger from 'electron-timber';
-import { head } from 'lodash';
 import ytdl from 'ytdl-core';
 import ytpl from 'ytpl';
 import ytsr from 'ytsr';
@@ -138,58 +137,37 @@ export async function liveStreamSearch(query: string): Promise<YoutubeResult[]> 
   });
 }
 
-export async function trackSearch(query: StreamQuery, omitStreamId?: string, sourceName?: string) {
-  return trackSearchByString(query, omitStreamId, sourceName);
+export async function trackSearch(query: StreamQuery, sourceName?: string) {
+  return trackSearchByString(query, sourceName);
 }
 
-export async function trackSearchByString(query: StreamQuery, omitStreamId?: string, sourceName?: string, useSponsorBlock = true): Promise<StreamData> {
+export async function trackSearchByString(query: StreamQuery, sourceName?: string, useSponsorBlock = true): Promise<StreamData[]> {
   const terms = query.artist + ' ' + query.track;
   const filterOptions = await ytsr.getFilters(terms);
-  const filterVideoOnly = filterOptions.get('Type').get('Video'); 
+  const filterVideoOnly = filterOptions.get('Type').get('Video');
   const results = await ytsr(filterVideoOnly.url, { limit: 15 });
   const heuristics = new YoutubeHeuristics();
 
-  const itemsWithoutSkippedIds = (results.items as ytsr.Video[]).filter((item) => {
-    return omitStreamId !== item.id;
-  });
-
   const orderedTracks = heuristics.orderTracks({
-    tracks: itemsWithoutSkippedIds as ytsr.Video[],
+    tracks: results.items as ytsr.Video[],
     artist: query.artist,
     title: query.track
   });
 
-  const topTrack: ytsr.Video = head(orderedTracks) as ytsr.Video;
-
-  try {
-    const topTrackInfo = await ytdl.getInfo(topTrack.url);
-    const formatInfo = ytdl.chooseFormat(topTrackInfo.formats, { quality: 'highestaudio' });
-    const segments = useSponsorBlock ? await SponsorBlock.getSegments(topTrack.id) : [];
-  
-    return {
-      source: sourceName,
-      id: topTrack.id,
-      stream: formatInfo.url,
-      duration: parseInt(topTrackInfo.videoDetails.lengthSeconds),
-      title: topTrackInfo.videoDetails.title,
-      thumbnail: topTrack.bestThumbnail.url,
-      format: formatInfo.container,
-      skipSegments: segments,
-      originalUrl: topTrack.url
-    };
-  } catch (e){
-    logger.error('youtube track search error');
-    logger.error(e);
-    throw new Error('Warning: topTrack.url is undefined, removing song');    
-  }
+  return [
+    await getStreamForId(orderedTracks[0].id, sourceName),
+    ...orderedTracks
+      .slice(1)
+      .map((track) => videoToStreamData(track as ytsr.Video, sourceName))
+  ];
 }
 
-export const getStreamForId = async (id: string, sourceName: string): Promise<StreamData> => {
+export const getStreamForId = async (id: string, sourceName: string, useSponsorBlock = true): Promise<StreamData> => {
   try {
     const videoUrl = baseUrl + id;
     const trackInfo = await ytdl.getInfo(videoUrl);
     const formatInfo = ytdl.chooseFormat(trackInfo.formats, { quality: 'highestaudio' });
-    const segments = await SponsorBlock.getSegments(id);
+    const segments = useSponsorBlock ? await SponsorBlock.getSegments(id) : [];
   
     return {
       id,
@@ -200,7 +178,12 @@ export const getStreamForId = async (id: string, sourceName: string): Promise<St
       thumbnail: trackInfo.thumbnail_url,
       format: formatInfo.container,
       skipSegments: segments,
-      originalUrl: videoUrl
+      originalUrl: videoUrl,
+      isLive: formatInfo.isLive,
+      author: {
+        name: trackInfo.videoDetails.author.name,
+        thumbnail: trackInfo.videoDetails.author.thumbnails[0].url
+      }
     };
   } catch (e) {
     logger.error('youtube track get by id');
@@ -208,3 +191,20 @@ export const getStreamForId = async (id: string, sourceName: string): Promise<St
     throw new Error(`Can not find youtube track with ${id}`);
   }
 };
+
+function videoToStreamData(video: ytsr.Video, source: string): StreamData {
+  return {
+    source,
+    id: video.id,
+    stream: undefined,
+    duration: parseInt(video.duration),
+    title: video.title,
+    thumbnail: video.bestThumbnail.url,
+    originalUrl: video.url,
+    isLive: video.isLive,
+    author: {
+      name: video.author.name,
+      thumbnail: video.author.bestAvatar.url
+    }
+  };
+}
