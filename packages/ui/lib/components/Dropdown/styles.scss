@@ -32,8 +32,14 @@
     color: $white;
   }
 
-  .text, input {
-    color: $white;
+  .text.divider {
+    color: $white !important;
+  }
+
+  .text:not(.divider),
+  input {
+    color: $white !important;
+    line-height: 1.25;
   }
 
   .menu {
