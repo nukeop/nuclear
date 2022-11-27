@@ -211,14 +211,11 @@
     "favorite-add": "Favorilere ekle",
     "header": "Kuyruk",
     "header-track": "Çalan şarkı",
-    "id": "Yayın ID:",
-    "source": "Kaynak:",
     "copy-track-url": "Şarkı linkini panoya kopyala",
     "loading": "Yayın hâlâ yükleniyor.",
     "playlist-add": "Çalma listesine ekle",
     "playlist-toast-content": "{{name}} isimli çalma listesi oluşturuldu.",
     "playlist-toast-title": "Çalma listesi oluşturuldu",
-    "title": "Şarkı Adı:",
     "live": "Canlı"
   },
   "search": {
