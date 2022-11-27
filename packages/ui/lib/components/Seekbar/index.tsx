@@ -7,7 +7,7 @@ import { Popup } from 'semantic-ui-react';
 
 type QueueItem = {
   loading?: boolean;
-  stream: { duration: number };
+  streams: { duration: number }[];
 };
 
 type Segment = {
@@ -56,7 +56,7 @@ const Seekbar: React.FC<SeekbarProps> = ({
     }
   }, [hasMounted, seek, skipSegments, timePlayed, allowSkipSegment]);
 
-  const duration = queue?.queueItems[queue.currentSong]?.stream?.duration;
+  const duration = queue?.queueItems[queue.currentSong]?.streams?.[0]?.duration;
 
   const handleClick = useCallback((seek) => {
     return event => {

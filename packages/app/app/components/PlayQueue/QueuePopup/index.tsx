@@ -1,7 +1,9 @@
 import React, { useRef, useCallback, useState } from 'react';
 import cs from 'classnames';
+import { head } from 'lodash';
 import { Popup } from 'semantic-ui-react';
 
+import { StreamData } from '@nuclear/core/src/plugins/plugins.types';
 import { StreamInfo } from '@nuclear/ui';
 
 import QueuePopupButtons from '../../../containers/QueuePopupButtons';
@@ -9,45 +11,37 @@ import { QueueItem } from '../../../reducers/queue';
 import * as QueueActions from '../../../actions/queue';
 import styles from './styles.scss';
 import { PluginsState } from '../../../reducers/plugins';
-import { StreamData } from '@nuclear/core/src/plugins/plugins.types';
-
 
 type QueuePopupProps = {
-trigger: React.ReactNode;
-isQueueItemCompact: boolean;
+  trigger: React.ReactNode;
+  isQueueItemCompact: boolean;
 
-idLabel: string;
-titleLabel: string;
-copyTrackUrlLabel: string;
-sourceLabel: string;
+  copyTrackUrlLabel: string;
 
-track: QueueItem;
-index: number;
+  track: QueueItem;
+  index: number;
 
-actions: typeof QueueActions;
-plugins: PluginsState;
-copyToClipboard: (text: string) => void;
+  actions: typeof QueueActions;
+  plugins: PluginsState;
+  copyToClipboard: (text: string) => void;
+  onSelectStream: (stream: StreamData) => void;
 }
 
 export const QueuePopup: React.FC<QueuePopupProps> = ({
   trigger,
   isQueueItemCompact,
-  idLabel,
-  titleLabel,
   copyTrackUrlLabel,
-  sourceLabel,
   track,
   index,
-  actions,
-  plugins,
-  copyToClipboard
+  copyToClipboard,
+  onSelectStream
 }) => {
   const triggerElement = useRef(null);
   
   const [isOpen, setIsOpen] = useState(false);
   const [imageReady, setImageReady] = useState(false);
 
-  const selectedStream = track.stream as StreamData;
+  const selectedStream = head(track.streams) as StreamData;
 
   const handleOpen = useCallback(
     event => {
@@ -63,10 +57,6 @@ export const QueuePopup: React.FC<QueuePopupProps> = ({
 
   const handleImageLoaded = useCallback(() => setImageReady(true), [setImageReady]);
 
-  const handleSelectStream = (streamProviderName: string) => {
-    actions.switchStreamProvider({item: track, streamProviderName});
-  };
-
   const handleCopyTrackUrl = useCallback(() => {
     if (selectedStream?.originalUrl?.length) {
       copyToClipboard(selectedStream.originalUrl);
@@ -74,17 +64,10 @@ export const QueuePopup: React.FC<QueuePopupProps> = ({
     setIsOpen(false);
   }, [selectedStream, setIsOpen, copyToClipboard]);
 
-  const dropdownOptions = plugins.plugins.streamProviders.map(s => ({
-    key: s.sourceName,
-    text: s.sourceName,
-    value: s.sourceName,
-    content: s.sourceName
-  }));
-
-  const handleReroll = useCallback(() => {
-    actions.rerollTrack(track);
+  const handleSelectStream = useCallback((stream: StreamData) => {
+    onSelectStream(stream);
     setIsOpen(false);
-  }, [track, actions, setIsOpen]);
+  }, [onSelectStream]);
 
   return (
     <Popup
@@ -107,17 +90,13 @@ export const QueuePopup: React.FC<QueuePopupProps> = ({
       on={null}
     >
       <StreamInfo
-        dropdownOptions={dropdownOptions}
-        idLabel={idLabel}
-        titleLabel={titleLabel}
         copyTrackUrlLabel={copyTrackUrlLabel}
-        sourceLabel={sourceLabel}
+        streams={track.streams as StreamData[]}
         selectedStream={selectedStream}
         thumbnail={track.thumbnail}
-        onRerollTrack={handleReroll}
-        onSelectStream={handleSelectStream}
         onImageLoaded={handleImageLoaded}
         onCopyTrackUrl={handleCopyTrackUrl}
+        onSelectStream={handleSelectStream}
       />
       <hr />
       <div className={styles.queue_popup_buttons_container}>

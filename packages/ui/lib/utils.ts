@@ -47,7 +47,7 @@ export const getTrackItem = (track: Track): TrackItem => ({
   name: getTrackTitle(track),
   thumbnail: getThumbnail(track),
   local: track.local,
-  stream: track.stream,
+  streams: track.streams ?? [],
   uuid: track.uuid
 });
 

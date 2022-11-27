@@ -9,7 +9,7 @@ export type Track = {
   name?: string;
   thumbnail?: string;
   image?: { '#text'?: string }[];
-  stream?: TrackStream;
+  streams?: TrackStream[];
   uuid?: string;
 };
 
@@ -19,22 +19,6 @@ export type Album = {
   tracks?: Track[];
   image?: { '#text'?: string }[];
 };
-
-export type SelectedStream = {
-  duration?: number,
-  format?: string,
-  id?: string,
-  originalUrl?: string,
-  source?: string,
-  stream?: string,
-  thumbnail?: string,
-  title?: string,
-  skipSegments?: {
-    category?: string,
-    endTime?: number,
-    startTime?: number
-  }[],
-}
 
 export type TrackStream = {
   source: string;
@@ -46,24 +30,24 @@ export type TrackStream = {
 };
 
 export type SearchProviderOption = {
-  key: string
-  text: string
-  value: string
+  key: string;
+  text: string;
+  value: string;
 }
 
 export type TrackItem = {
-  artist: string
-  name: string
-  thumbnail?: string
-  local?: boolean
-  stream?: TrackStream,
-  uuid?: string
+  artist: string;
+  name: string;
+  thumbnail?: string;
+  local?: boolean;
+  uuid?: string;
+  streams?: TrackStream[];
 }
 
 export type Download = {
-  status: DownloadStatus
-  completion: number
-  track: TrackItem
+  status: DownloadStatus;
+  completion: number;
+  track: TrackItem;
 }
 export enum DownloadStatus {
   WAITING = 'Waiting',

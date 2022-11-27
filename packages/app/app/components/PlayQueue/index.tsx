@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import classnames from 'classnames';
-import _ from 'lodash';
+import _, { head } from 'lodash';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { useTranslation } from 'react-i18next';
 import { Icon } from 'semantic-ui-react';
 
 import { Playlist } from '@nuclear/core';
+import { StreamData } from '@nuclear/core/src/plugins/plugins.types';
 import { formatDuration, QueueItem } from '@nuclear/ui';
 
 import { PluginsState } from '../../reducers/plugins';
@@ -27,10 +28,11 @@ type PlayQueueProps = {
 }
 
 const PlayQueue: React.FC<PlayQueueProps> = ({
-  actions: { 
+  actions: {
     queueDrop,
     repositionSong,
     addToDownloads,
+    selectNewStream,
     info,
     success,
     selectSong,
@@ -47,7 +49,7 @@ const PlayQueue: React.FC<PlayQueueProps> = ({
   queue,
   settings
 }) => {
-  const {t} = useTranslation('queue');
+  const { t } = useTranslation('queue');
   const [isFileHovered, setFileHovered] = useState(false);
 
   const onDropFile = (event) => {
@@ -104,17 +106,22 @@ const PlayQueue: React.FC<PlayQueueProps> = ({
     );
   };
 
+  // When a new stream is selected from the stream info component
+  const onSelectStream = (track: QueueItemType) => (stream: StreamData) => {
+    selectNewStream(track, stream.id);
+  };
+
   const renderQueueItems = () => {
     if (!queue.queueItems) {
       return null;
     }
 
     return queue.queueItems.map((item, i) => {
-      const trackDuration = formatDuration(item.stream?.duration) === '00:00' && 
-      !item.loading && 
-      Boolean(item.stream)
+      const trackDuration = formatDuration(head(item.streams)?.duration) === '00:00' &&
+        !item.loading &&
+        Boolean(item.streams)
         ? t('live')
-        : formatDuration(item.stream?.duration);
+        : formatDuration(head(item.streams)?.duration);
 
       return (
         <Draggable
@@ -146,10 +153,8 @@ const PlayQueue: React.FC<PlayQueueProps> = ({
                 isQueueItemCompact={settings.compactQueueBar}
                 index={i}
                 track={item}
-                titleLabel={t('title')}
-                idLabel={t('id')}
                 copyTrackUrlLabel={t('copy-track-url')}
-                sourceLabel={t('source')}
+                onSelectStream={onSelectStream(item)}
               />
             </div>
           )}

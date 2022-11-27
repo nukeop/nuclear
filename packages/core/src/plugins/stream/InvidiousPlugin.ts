@@ -15,38 +15,11 @@ class InvidiousPlugin extends StreamProviderPlugin {
     this.image = null;
   }
 
-  async search(query: StreamQuery): Promise<undefined | StreamData> {
+  async search(query: StreamQuery): Promise<undefined | StreamData[]> {
     const terms = query.artist + ' ' + query.track;
     try {
       const res = await Invidious.trackSearch(terms);
-
-      return this.resultToStream(res);
-    } catch (error) {
-      logger.error(`Error while searching  for ${terms} on Invidious`);
-      logger.error(error);
-    }
-  }
-
-  async getAlternateStream(query: StreamQuery, currentStream): Promise<undefined | StreamData> {
-    const terms = query.artist + ' ' + query.track;
-    try {
-      const {
-        adaptiveFormats,
-        lengthSeconds,
-        title,
-        videoId,
-        videoThumbnails
-      } = await Invidious.trackSearch(terms, currentStream);
-
-      return {
-        source: this.sourceName,
-        id: videoId,
-        stream: adaptiveFormats.find(({ container, type }) => type.includes('audio') && container === 'webm').url,
-        duration: lengthSeconds,
-        title,
-        thumbnail: _.get(videoThumbnails.find(({ quality }) => quality === 'maxresdefault'), 'url'),
-        originalUrl: `${this.baseUrl}/watch?v=${videoId}`
-      };
+      return Promise.all(res.map(track => this.resultToStream(track)));
     } catch (error) {
       logger.error(`Error while searching  for ${terms} on Invidious`);
       logger.error(error);

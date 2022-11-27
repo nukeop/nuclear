@@ -14,21 +14,21 @@ class BandcampPlugin extends StreamProviderPlugin {
     this.isDefault = false;
   }
 
-  async findTrackUrl(query: StreamQuery): Promise<BandcampSearchResult> {
+  async findTrackUrls(query: StreamQuery): Promise<BandcampSearchResult[]> {
     const limit = 5;
-    let track: BandcampSearchResult;
+    let tracks: BandcampSearchResult[];
 
     for (let page = 0; page < limit; page++) {
       const searchResults = await Bandcamp.search(query.track, page);
-      track = searchResults.find(item =>
+      tracks = searchResults.filter(item =>
         item.type === 'track' &&
         item.artist.toLowerCase() === query.artist.toLowerCase()
       );
-      if (track) {
+      if (tracks) {
         break;
       }
     }
-    return track;
+    return tracks;
   }
 
   resultToStream(result: BandcampSearchResult, stream: string, duration: number): StreamData {
@@ -43,20 +43,18 @@ class BandcampPlugin extends StreamProviderPlugin {
     };
   }
 
-  async search(query: StreamQuery): Promise<undefined | StreamData> {
+  async search(query: StreamQuery): Promise<undefined | StreamData[]> {
     try {
-      const track = await this.findTrackUrl(query);
-      const { stream, duration } = await Bandcamp.getTrackData(track.url);
+      const tracks = await this.findTrackUrls(query);
 
-      return this.resultToStream(track, stream, duration);
+      return Promise.all(tracks.map(async track => {
+        const { stream, duration } = await Bandcamp.getTrackData(track.url);
+        return this.resultToStream(track, stream, duration);
+      }));
     } catch (error) {
       logger.error(`Error while searching  for ${query.artist + ' ' + query.track} on Bandcamp`);
       logger.error(error);
     }
-  }
-
-  async getAlternateStream(query: StreamQuery): Promise<undefined | StreamData> {
-    return this.search(query);
   }
 
   async getStreamForId(id: string): Promise<undefined | StreamData> {
