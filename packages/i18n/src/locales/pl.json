@@ -211,14 +211,11 @@
     "favorite-add": "Dodaj do ulubionych",
     "header": "Kolejka",
     "header-track": "Odtwarzane",
-    "id": "ID strumienia:",
-    "source": "Źródło:",
     "copy-track-url": "Skopiuj link utworu do schowka",
     "loading": "Strumień wciąż ładowany.",
     "playlist-add": "Dodaj do listy odtwarzania",
     "playlist-toast-content": "Lista odtwarzania {{name}} została utworzona.",
     "playlist-toast-title": "Lista odtwarzania utworzona",
-    "title": "Tytuł:",
     "live": "Na żywo"
   },
   "search": {
