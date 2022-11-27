@@ -211,14 +211,11 @@
     "favorite-add": "पसंदीदा में जोड़े",
     "header": "कतार",
     "header-track": "वर्तमान ट्रैक",
-    "id": "स्ट्रीम आईडी",
-    "source": "स्रोत",
     "copy-track-url": "ट्रैक यूआरएल को क्लिपबोर्ड पर कॉपी करें",
     "loading": "स्ट्रीम अभी भी लोड हो रही है.",
     "playlist-add": "प्‍लेलिस्‍ट में जोड़ें",
     "playlist-toast-content": "प्लेलिस्ट {{name}} बन गई है।",
     "playlist-toast-title": "प्लेलिस्ट बनाई गई!",
-    "title": "शीर्षक:",
     "live": "लाइव"
   },
   "search": {
