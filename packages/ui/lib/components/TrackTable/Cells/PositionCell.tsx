@@ -12,9 +12,13 @@ const PositionCell: React.FC<CellProps<Track> & TrackTableExtraProps<Track>> = (
   row,
   value,
   onPlay
-}) => <td {...cell.getCellProps() as TdHTMLAttributes<HTMLTableCellElement>} className={cx(styles.position_cell, styles.narrow)}>
-  <Button 
-    circular 
+}) => <td
+  {...cell.getCellProps() as TdHTMLAttributes<HTMLTableCellElement>}
+  className={cx(styles.position_cell, styles.narrow)}
+  data-testid='position-cell'
+>
+  <Button
+    circular
     size='tiny'
     icon='play'
     color='pink'
@@ -23,7 +27,7 @@ const PositionCell: React.FC<CellProps<Track> & TrackTableExtraProps<Track>> = (
     data-testid='play-now'
   />
   <span className={styles.position_cell_value}>
-    {value ?? row.index+1}
+    {value ?? row.index + 1}
   </span>
 </td>;
 

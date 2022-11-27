@@ -36,7 +36,7 @@ export type TrackTableProps<T extends Track> = TrackTableExtraProps<T> &
 function TrackTable<T extends Track>({
   className,
   tracks,
-  customColumns=[],
+  customColumns = [],
   isTrackFavorite,
   onDragEnd,
 
@@ -68,7 +68,7 @@ function TrackTable<T extends Track>({
     },
     displayPosition && {
       id: TrackTableColumn.Position,
-      Header: ({ column }) => <ColumnHeader column={column} header={positionHeader} />,
+      Header: ({ column }) => <ColumnHeader column={column} header={positionHeader} data-testid='position-header' />,
       accessor: 'position',
       Cell: PositionCell,
       enableSorting: true
@@ -165,7 +165,6 @@ function TrackTable<T extends Track>({
     <DragDropContext onDragEnd={onDragEnd}>
       <Droppable droppableId='track_table'>
         {(provided) => (
-
           <tbody
             ref={provided.innerRef}
             {...getTableBodyProps() as TableHTMLAttributes<HTMLTableSectionElement>}
@@ -183,6 +182,7 @@ function TrackTable<T extends Track>({
                   >
                     {(provided, snapshot) => (
                       <tr
+                        data-testid='track-table-row'
                         ref={provided.innerRef}
                         className={cx({ [styles.is_dragging]: snapshot.isDragging })}
                         {...row.getRowProps() as TableHTMLAttributes<HTMLTableRowElement>}
