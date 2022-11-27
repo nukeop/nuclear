@@ -453,6 +453,7 @@ export const buildStoreState = () => {
         favorites: {
           tracks: [
             {
+              position: 2,
               artist: 'test artist 1',
               name: 'test track 1',
               thumbnail: 'https://test-track-thumb-url',
@@ -485,6 +486,7 @@ export const buildStoreState = () => {
               uuid: 'uuid1'
             },
             {
+              position: 1,
               artist: 'test artist 2',
               name: 'test track 2',
               thumbnail: 'https://test-track-thumb-url',

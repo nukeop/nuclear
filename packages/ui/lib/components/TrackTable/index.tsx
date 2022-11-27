@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-key */
 import React, { TableHTMLAttributes, useMemo } from 'react';
 import cx from 'classnames';
-import { useTable, Column, useRowSelect } from 'react-table';
+import { useTable, Column, useRowSelect, useSortBy } from 'react-table';
 import { isNumber, isString } from 'lodash';
 import { DragDropContext, Droppable, Draggable, DragDropContextProps } from 'react-beautiful-dnd';
 
@@ -13,6 +13,7 @@ import ThumbnailCell from './Cells/ThumbnailCell';
 import TitleCell from './Cells/TitleCell';
 import TrackTableCell from './Cells/TrackTableCell';
 import SelectionHeader from './Headers/SelectionHeader';
+import ColumnHeader from './Headers/ColumnHeader';
 import { getTrackThumbnail } from '../TrackRow';
 import { TrackTableColumn, TrackTableExtraProps, TrackTableHeaders, TrackTableSettings, TrackTableStrings } from './types';
 import styles from './styles.scss';
@@ -35,7 +36,7 @@ export type TrackTableProps<T extends Track> = TrackTableExtraProps<T> &
 function TrackTable<T extends Track>({
   className,
   tracks,
-  customColumns=[],
+  customColumns = [],
   isTrackFavorite,
   onDragEnd,
 
@@ -67,9 +68,10 @@ function TrackTable<T extends Track>({
     },
     displayPosition && {
       id: TrackTableColumn.Position,
-      Header: () => <span className={styles.center_aligned}>{positionHeader}</span>,
+      Header: ({ column }) => <ColumnHeader column={column} header={positionHeader} data-testid='position-header' />,
       accessor: 'position',
-      Cell: PositionCell
+      Cell: PositionCell,
+      enableSorting: true
     },
     displayThumbnail && {
       id: TrackTableColumn.Thumbnail,
@@ -84,17 +86,19 @@ function TrackTable<T extends Track>({
     },
     {
       id: TrackTableColumn.Title,
-      Header: titleHeader,
+      Header: ({ column }) => <ColumnHeader column={column} header={titleHeader} />,
       accessor: (track) => track.title ?? track.name,
-      Cell: TitleCell
+      Cell: TitleCell,
+      enableSorting: true
     },
     displayArtist && {
       id: TrackTableColumn.Artist,
-      Header: artistHeader,
+      Header: ({ column }) => <ColumnHeader column={column} header={artistHeader} />,
       accessor: (track) => isString(track.artist)
         ? track.artist
         : track.artist.name,
-      Cell: TrackTableCell
+      Cell: TrackTableCell,
+      enableSorting: true
     },
     displayAlbum && {
       id: TrackTableColumn.Album,
@@ -125,8 +129,11 @@ function TrackTable<T extends Track>({
   ].filter(Boolean) as Column<T>[], [displayDeleteButton, displayPosition, displayThumbnail, displayFavorite, isTrackFavorite, titleHeader, displayArtist, artistHeader, displayAlbum, albumHeader, shouldDisplayDuration, durationHeader, selectable, positionHeader, thumbnailHeader]);
 
   const data = useMemo(() => tracks, [tracks]);
+  const initialState = {
+    sortBy: [{ id: TrackTableColumn.Position, desc: false }]
+  };
 
-  const table = useTable<T>({ columns, data }, useRowSelect);
+  const table = useTable<T>({ columns, data, initialState }, useSortBy, useRowSelect);
 
   const {
     getTableProps,
@@ -144,10 +151,11 @@ function TrackTable<T extends Track>({
             <tr {...headerGroup.getHeaderGroupProps() as TableHTMLAttributes<HTMLTableRowElement>}>
               {
                 headerGroup.headers.map(column => (
-                  <th {...column.getHeaderProps() as ThHTMLAttributes<HTMLTableCellElement>}>
+                  <th {...column.getHeaderProps(column.getSortByToggleProps()) as ThHTMLAttributes<HTMLTableCellElement>}>
                     {column.render('Header', extraProps)}
                   </th>
-                ))
+                )
+                )
               }
             </tr>
           ))
@@ -157,7 +165,6 @@ function TrackTable<T extends Track>({
     <DragDropContext onDragEnd={onDragEnd}>
       <Droppable droppableId='track_table'>
         {(provided) => (
-
           <tbody
             ref={provided.innerRef}
             {...getTableBodyProps() as TableHTMLAttributes<HTMLTableSectionElement>}
@@ -175,6 +182,7 @@ function TrackTable<T extends Track>({
                   >
                     {(provided, snapshot) => (
                       <tr
+                        data-testid='track-table-row'
                         ref={provided.innerRef}
                         className={cx({ [styles.is_dragging]: snapshot.isDragging })}
                         {...row.getRowProps() as TableHTMLAttributes<HTMLTableRowElement>}

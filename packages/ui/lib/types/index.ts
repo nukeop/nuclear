@@ -63,7 +63,7 @@ export type Notification = {
   details?: string;
   error?: boolean;
   warning?: boolean;
-  info?: boolean; 
+  info?: boolean;
   success?: boolean;
   onClick?:() => void
   icon?:  Node | React.ReactElement<{

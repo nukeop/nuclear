@@ -20,7 +20,11 @@ const TitleCell: React.FC<CellProps<Track> & TrackTableExtraProps<Track>> = ({
   onAddToDownloads,
   playlists,
   popupActionStrings
-}) => <td {...cell.getCellProps() as TdHTMLAttributes<HTMLTableCellElement>} className={styles.title_cell}>
+}) => <td
+  {...cell.getCellProps() as TdHTMLAttributes<HTMLTableCellElement>}
+  data-testid='title-cell'
+  className={styles.title_cell}
+>
   <span className={styles.title_cell_content}>
     <span className={styles.title_cell_value}>
       {value}
