@@ -134,6 +134,7 @@ exports[`Album view container should display an album 1`] = `
                 >
                   <span
                     class="title_with_icon"
+                    data-testid="position-header"
                   >
                     <i
                       aria-hidden="true"
@@ -211,10 +212,12 @@ exports[`Album view container should display an album 1`] = `
                 class=""
                 data-rbd-draggable-context-id="0"
                 data-rbd-draggable-id="test track 1 0"
+                data-testid="track-table-row"
                 role="row"
               >
                 <td
                   class="position_cell narrow"
+                  data-testid="position-cell"
                   role="cell"
                 >
                   <button
@@ -247,6 +250,7 @@ exports[`Album view container should display an album 1`] = `
                 </td>
                 <td
                   class="title_cell"
+                  data-testid="title-cell"
                   role="cell"
                 >
                   <span
@@ -310,10 +314,12 @@ exports[`Album view container should display an album 1`] = `
                 class=""
                 data-rbd-draggable-context-id="0"
                 data-rbd-draggable-id="test track 2 1"
+                data-testid="track-table-row"
                 role="row"
               >
                 <td
                   class="position_cell narrow"
+                  data-testid="position-cell"
                   role="cell"
                 >
                   <button
@@ -346,6 +352,7 @@ exports[`Album view container should display an album 1`] = `
                 </td>
                 <td
                   class="title_cell"
+                  data-testid="title-cell"
                   role="cell"
                 >
                   <span
@@ -409,10 +416,12 @@ exports[`Album view container should display an album 1`] = `
                 class=""
                 data-rbd-draggable-context-id="0"
                 data-rbd-draggable-id="test track 3 2"
+                data-testid="track-table-row"
                 role="row"
               >
                 <td
                   class="position_cell narrow"
+                  data-testid="position-cell"
                   role="cell"
                 >
                   <button
@@ -445,6 +454,7 @@ exports[`Album view container should display an album 1`] = `
                 </td>
                 <td
                   class="title_cell"
+                  data-testid="title-cell"
                   role="cell"
                 >
                   <span
