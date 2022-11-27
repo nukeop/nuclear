@@ -211,14 +211,11 @@
     "favorite-add": "Añadir a favoritos",
     "header": "Cola de reproducción",
     "header-track": "Pista actual",
-    "id": "ID de Transmisión:",
-    "source": "Fuente:",
     "copy-track-url": "Copiar la url de la pista al portapapeles",
     "loading": "La transmisión sigue cargando.",
     "playlist-add": "Añadir a lista de reproducción",
     "playlist-toast-content": "La lista de reproducción '{{name}}' ha sido creada.",
     "playlist-toast-title": "Lista de reproducción creada",
-    "title": "Título:",
     "live": "En directo"
   },
   "search": {
