@@ -211,14 +211,11 @@
     "favorite-add": "পছন্দের তালিকায় যোগ করুন",
     "header": "সারি",
     "header-track": "বর্তমান গান",
-    "id": "স্ট্রিম আইডি:",
-    "source": "উৎস:",
     "copy-track-url": "গানের url ক্লিপবোর্ডে কপি করুন",
     "loading": "স্ট্রীম এখনো লোড হচ্ছে।",
     "playlist-add": "প্লেলিস্টে যোগ করুন",
     "playlist-toast-content": "প্লেলিস্ট {{name}} তৈরি হয়েছে।",
     "playlist-toast-title": "প্লেলিস্ট তৈরি হয়েছে",
-    "title": "টাইটেল:",
     "live": "সরাসরি"
   },
   "search": {
