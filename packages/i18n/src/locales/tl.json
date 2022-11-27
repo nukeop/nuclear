@@ -211,14 +211,11 @@
     "favorite-add": "Magdagdag sa mga paborito",
     "header": "Pila",
     "header-track": "Kasalukuyang kanta",
-    "id": "ID ng Stream:",
-    "source": "Pinagmulan:",
     "copy-track-url": "Kopyahin ang url ng track sa clipboard",
     "loading": "Stream ay inaabangan.",
     "playlist-add": "Idagdag sa playlist",
     "playlist-toast-content": "Nagawa ang playlist {{name}}.",
     "playlist-toast-title": "Nagawa ang playlist",
-    "title": "Pangalan:",
     "live": "Live"
   },
   "search": {
