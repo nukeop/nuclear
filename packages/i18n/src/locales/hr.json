@@ -211,14 +211,11 @@
     "favorite-add": "Dodaj u omiljene",
     "header": "Red čekanja",
     "header-track": "Trenutna pjesma",
-    "id": "ID streama:",
-    "source": "Izvor:",
     "copy-track-url": "Kopiraj url zapisa u međuspremnik",
     "loading": "Stream se još učitava.",
     "playlist-add": "Dodaj u popis za reprodukciju",
     "playlist-toast-content": "Popis za reprodukiju {{name}} je kreiran.",
     "playlist-toast-title": "Popis za reprodukciju kreiran",
-    "title": "Naslov:",
     "live": "Uživo"
   },
   "search": {
