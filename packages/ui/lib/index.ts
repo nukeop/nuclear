@@ -32,6 +32,7 @@ export { default as SearchBox } from './components/SearchBox';
 export { default as Seekbar } from './components/Seekbar';
 export { default as SmoothImage } from './components/SmoothImage';
 export { default as StreamInfo } from './components/StreamInfo';
+export { default as StreamVerification } from './components/StreamVerification';
 export { default as ToastContainer } from './components/ToastContainer';
 export { default as Tooltip } from './components/Tooltip';
 export { default as TrackPopup } from './components/TrackPopup';
