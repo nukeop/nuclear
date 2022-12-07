@@ -8,8 +8,10 @@
     width: 100%;
     padding: 8px;
 
+    box-shadow: 0px -5px 5px 0px rgba(0, 0, 0, 0.18), 0px -5px 20px 0px rgba(0, 0, 0, 0.09);
+
     color: $white;
-    background-color: $bgdefault;
+    background-color: $bgdark;
 
     .stream_verification_right {
         display: flex;

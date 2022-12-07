@@ -11,12 +11,8 @@ type StreamMapping = {
 }
 
 export class NuclearStreamMappingsService extends NuclearSupabaseService {
-  async getStreamMappingsByArtistAndTitle(artist: string, title: string) {
-    return this.client
-      .from<StreamMapping>('stream-mappings')
-      .select()
-      .eq('artist', artist)
-      .eq('title', title);
+  async getStreamMappingsByArtistAndTitle(artist: string, title: string, source: string) {
+    return this.client.rpc('mappings_for_track', { artist, title, source });
   }
 
   async getStreamMappingsByAuthorId(authorId: string) {
