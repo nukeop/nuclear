@@ -17,15 +17,15 @@ const Template = (args: StreamVerificationProps) => <div className='bg'>
     onUnverify={action('onUnverify')}
     tooltipStrings={{
       unknown: 'The status of this stream is unknown.',
-      unverified: 'This stream has not yet been verified by the community. Click to verify.',
-      weakly_verified: 'This stream has been verified by a couple of users. Click to verify.',
-      verified: 'This stream has been verified by the community. Click to verify.',
-      verified_by_user: 'This stream has been verified by you. Click to unverify.'
+      unverified: 'This stream has not yet been verified by the community.',
+      weakly_verified: 'This stream has been verified by a couple of users.',
+      verified: 'This stream has been verified by the community.',
+      verified_by_user: 'This stream has been verified by you.'
     }}
     streamStatusStrings={{
       unknown: 'Unknown',
       unverified: 'Unverified',
-      weakly_verified: 'Weakly Verified',
+      weakly_verified: 'Weakly verified',
       verified: 'Verified',
       verified_by_user: 'Verified by you'
     }}
@@ -51,4 +51,10 @@ Verified.args = {
 export const VerifiedByUser = Template.bind({});
 VerifiedByUser.args = {
   status: 'verified_by_user'
+};
+
+export const Loading = Template.bind({});
+Loading.args = {
+  status: 'unknown',
+  isLoading: true
 };

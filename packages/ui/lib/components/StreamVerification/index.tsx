@@ -8,6 +8,7 @@ import { Icon } from 'semantic-ui-react';
 
 export type StreamVerificationProps = {
     status: 'unknown' | 'unverified' | 'weakly_verified' | 'verified' | 'verified_by_user';
+    isLoading?: boolean;
     onVerify: () => void;
     onUnverify: () => void;
 } & StreamVerificationStrings;
@@ -24,6 +25,7 @@ type StreamVerificationStrings = {
 
 const StreamVerification: React.FC<StreamVerificationProps> = ({
   status,
+  isLoading,
   onVerify,
   onUnverify, 
   tooltipStrings,
@@ -49,6 +51,8 @@ const StreamVerification: React.FC<StreamVerificationProps> = ({
 
     <Button
       onClick={status === 'verified_by_user' ? onUnverify : onVerify}
+      loading={isLoading}
+      disabled={isLoading}
     >
       {textVerify}
     </Button>

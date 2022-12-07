@@ -216,7 +216,24 @@
     "playlist-add": "Add to playlist",
     "playlist-toast-content": "Playlist {{name}} has been created.",
     "playlist-toast-title": "Playlist created",
-    "live": "Live"
+    "live": "Live",
+    "stream-verification": {
+      "tooltip": {
+        "unknown": "The status of this stream is unknown.",
+        "unverified": "This stream has not yet been verified by the community.",
+        "weakly-verified": "This stream has been verified by a couple of users.",
+        "verified": "This stream has been verified by the community.",
+        "verified-by-user": "This stream has been verified by you."
+      },
+      "stream-status": {
+        "unknown": "Unknown",
+        "unverified": "Unverified",
+        "weakly-verified": "Weakly verified",
+        "verified": "Verified",
+        "verified-by-user": "Verified by you"
+      },
+      "verify": "Verify"
+    }
   },
   "search": {
     "album": "Album",
