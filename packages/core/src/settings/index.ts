@@ -1,4 +1,5 @@
 import { app, remote } from 'electron';
+import { v4 } from 'uuid';
 
 export enum SettingType {
   BOOLEAN = 'boolean',
@@ -347,6 +348,14 @@ export const settingsConfig: Array<Setting> = [
     category: 'social',
     type: SettingType.STRING,
     default: 'http://localhost:3010',
+    hide: true
+  },
+  {
+    name: 'userId',
+    prettyName: 'user-id',
+    category: 'program-settings',
+    type: SettingType.STRING,
+    default: v4(),
     hide: true
   }
 ];
