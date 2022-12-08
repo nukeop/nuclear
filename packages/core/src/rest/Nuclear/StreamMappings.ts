@@ -1,4 +1,3 @@
-import { StreamProvider } from '../..';
 import { NuclearSupabaseService } from './NuclearSupabaseService';
 
 type StreamMapping = {
@@ -10,9 +9,11 @@ type StreamMapping = {
     author_id: string;
 }
 
+type PostStreamMappingPayload = Omit<StreamMapping, 'id'>;
+
 export class NuclearStreamMappingsService extends NuclearSupabaseService {
-  async getStreamMappingsByArtistAndTitle(artist: string, title: string, source: string) {
-    return this.client.rpc('mappings_for_track', { artist, title, source });
+  async getStreamMappingsByArtistAndTitle(artist: string, title: string, source: string){
+    return this.client.rpc<{stream_id: string, count: number}>('mappings_for_track', { artist, title, source });
   }
 
   async getStreamMappingsByAuthorId(authorId: string) {
@@ -22,13 +23,13 @@ export class NuclearStreamMappingsService extends NuclearSupabaseService {
       .eq('author_id', authorId);
   }
 
-  async postStreamMapping(mapping: StreamMapping) {
+  async postStreamMapping(mapping: PostStreamMappingPayload) {
     return this.client
       .from<StreamMapping>('stream-mappings')
       .insert(mapping);
   }
 
-  async putStreamMapping(mapping: StreamMapping) {
+  async putStreamMapping(mapping: Partial<StreamMapping>) {
     return this.client
       .from<StreamMapping>('stream-mappings')
       .update(mapping)

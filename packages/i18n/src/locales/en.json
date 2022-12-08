@@ -330,6 +330,7 @@
     "streaming": "Streaming",
     "track-duration": "Display track duration over the seekbar",
     "user": "User:",
+    "user-id": "User ID",
     "youtube": "Youtube",
     "yt-api-key": "Youtube API Key"
   },
