@@ -30,6 +30,9 @@ class Config {
   localLibraryDbName: string;
   listeningHistoryDbName: string;
 
+  // I added this
+  // versionKey: number;
+
   constructor(
     @inject($mainLogger) logger: Logger
   ) {
@@ -64,6 +67,9 @@ class Config {
 
     this.discordClientId = process.env.DISCORD_CLIENT_ID;
     this.defaultInvidiousUrl = process.env.INVIDIOUS_URL;
+
+   
+
   }
 
   private validateEnv(): void {
@@ -89,6 +95,41 @@ class Config {
   setConnectivity(isConnected: boolean) {
     this.isConnected = isConnected;
   }
+
+  resetDefaultValues() {
+    this.env = process.env.NODE_ENV as Env || Env.DEV;
+    this.title = 'Nuclear Music Player';
+    this.appid = 'nuclear';
+    this.youtubeUrl = 'https://www.youtube.com/watch';
+    this.youtubeSearch = 'https://www.googleapis.com/youtube/v3/search?part=id,snippet&type=video&maxResults=50&q=';
+    this.supportedFormats = _.uniq(pkg.build.fileAssociations.map(({ ext }) => ext));
+
+    const iconPath = path.resolve(__dirname, this.isProd() ? '../../../resources/media' : '../resources/media');
+
+    this.icon = path.resolve(iconPath, 'icon.png');
+    this.macIcon = path.resolve(iconPath, 'icon_apple.png');
+
+    this.thumbCleanInterval = 30;
+    this.localLibraryDbName = 'nuclear-local-db.sqlite';
+    this.listeningHistoryDbName = 'nuclear-listening-history.sqlite';
+
+    dotenv.config({
+      path: path.resolve(__dirname, '.env')
+    });
+
+    //logger.log(this.env, 'Env variables loaded');
+
+    this.validateEnv();
+
+    this.acousticId = {
+      key: process.env.ACOUSTIC_ID_KEY,
+      url: 'https://api.acoustid.org/v2/lookup'
+    };
+
+    this.discordClientId = process.env.DISCORD_CLIENT_ID;
+    this.defaultInvidiousUrl = process.env.INVIDIOUS_URL;
+  }
+
 }
 
 export default Config;
