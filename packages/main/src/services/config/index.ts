@@ -31,7 +31,8 @@ class Config {
   listeningHistoryDbName: string;
 
   // I added this
-  // versionKey: number;
+  version: number;
+
 
   constructor(
     @inject($mainLogger) logger: Logger
@@ -67,9 +68,6 @@ class Config {
 
     this.discordClientId = process.env.DISCORD_CLIENT_ID;
     this.defaultInvidiousUrl = process.env.INVIDIOUS_URL;
-
-   
-
   }
 
   private validateEnv(): void {
@@ -96,6 +94,9 @@ class Config {
     this.isConnected = isConnected;
   }
 
+  // Our old method of resetting config to default values
+  // Basically just sets all class variables to be what they were made to be in the constructor
+  // We weren't sure if this was right so we switched to the new method using the set method.
   resetDefaultValues() {
     this.env = process.env.NODE_ENV as Env || Env.DEV;
     this.title = 'Nuclear Music Player';
