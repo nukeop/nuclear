@@ -65,6 +65,7 @@ export class YoutubeHeuristics implements SearchHeuristics<Partial<Video>> {
     }
 
     const channelNameScore = track.author?.name.toLowerCase().includes(artist.toLowerCase()) ? 300 : 0;
+    const verifiedChannelScore = track.author.verified ? 200 : 0;
 
     return mean([
       verbatimSubstringScore,
@@ -72,7 +73,8 @@ export class YoutubeHeuristics implements SearchHeuristics<Partial<Video>> {
       promotedWordsScore,
       penalizedWordsScore,
       liveVideoScore,
-      channelNameScore
+      channelNameScore,
+      verifiedChannelScore
     ]);
   };
 
