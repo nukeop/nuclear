@@ -48,7 +48,7 @@ export class YoutubeHeuristics implements SearchHeuristics<Partial<Video>> {
     const trackTitle = YoutubeHeuristics.createTitle({ artist, title });
     const lowercaseResultTitle = track.title.toLowerCase();
 
-    const titleScore = (1 - (levenshtein.get(trackTitle, lowercaseResultTitle)/trackTitle.length)) * 25;
+    const titleScore = (1 - (levenshtein.get(trackTitle, lowercaseResultTitle) / trackTitle.length)) * 25;
 
     const verbatimSubstringScore = lowercaseResultTitle.includes(title.toLowerCase()) ? 300 : 0;
 
@@ -67,7 +67,7 @@ export class YoutubeHeuristics implements SearchHeuristics<Partial<Video>> {
     }
 
     const channelNameScore = track.author?.name.toLowerCase().includes(artist.toLowerCase()) ? 300 : 0;
-    const verifiedChannelScore = track.author.verified ? 200 : 0;
+    const verifiedChannelScore = track.author?.verified ? 200 : 0;
 
     return mean([
       titleScore,
