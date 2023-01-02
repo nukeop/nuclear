@@ -47,7 +47,7 @@ function analyseUrlType(url) {
 
 function formatPlaylistTrack(track: ytpl.Item) {
   return {
-    streams: [{source: 'Youtube', id: track.id}],
+    streams: [{ source: 'Youtube', id: track.id }],
     name: track.title,
     thumbnail: track.thumbnails[0].url,
     artist: track.author.name
@@ -89,12 +89,12 @@ async function handleYoutubeVideo(url: string): Promise<YoutubeResult[]> {
         const videoDetails = info.videoDetails;
 
         return [{
-          streams: [{source: 'Youtube', id: videoDetails.videoId}],
+          streams: [{ source: 'Youtube', id: videoDetails.videoId }],
           name: videoDetails.title,
           thumbnail: videoDetails.thumbnails[0].url,
-          artist: {name: videoDetails.ownerChannelName}
+          artist: { name: videoDetails.ownerChannelName }
         }];
-      } 
+      }
       return [];
     })
     .catch(function () {
@@ -129,10 +129,10 @@ export async function liveStreamSearch(query: string): Promise<YoutubeResult[]> 
 
   return searchResults.items.map((video: ytsr.Video) => {
     return {
-      streams: [{source: 'Youtube', id: video.id}],
+      streams: [{ source: 'Youtube', id: video.id }],
       name: video.title,
       thumbnail: video.bestThumbnail.url,
-      artist: {name: video.author.name}
+      artist: { name: video.author.name }
     };
   });
 }
@@ -145,15 +145,20 @@ export async function trackSearchByString(query: StreamQuery, sourceName?: strin
   const terms = query.artist + ' ' + query.track;
   const filterOptions = await ytsr.getFilters(terms);
   const filterVideoOnly = filterOptions.get('Type').get('Video');
-  const results = await ytsr(filterVideoOnly.url, { limit: 15 });
+  const results = await ytsr(filterVideoOnly.url, { limit: 10 });
   const heuristics = new YoutubeHeuristics();
 
-  const orderedTracks = heuristics.orderTracks({
+  let orderedTracks = heuristics.orderTracks({
     tracks: results.items as ytsr.Video[],
     artist: query.artist,
     title: query.track
   });
 
+  // [HACK] Currently a bug exists where some tracks are returned as not defined. If this happens to the top track loading the track will fail...
+  // This is a HACK to ensure that doesn't happen 
+  while (orderedTracks[0].id === undefined) {
+    orderedTracks = orderedTracks.slice(1);
+  }
   return [
     await getStreamForId(orderedTracks[0].id, sourceName),
     ...orderedTracks
@@ -168,7 +173,7 @@ export const getStreamForId = async (id: string, sourceName: string, useSponsorB
     const trackInfo = await ytdl.getInfo(videoUrl);
     const formatInfo = ytdl.chooseFormat(trackInfo.formats, { quality: 'highestaudio' });
     const segments = useSponsorBlock ? await SponsorBlock.getSegments(id) : [];
-  
+
     return {
       id,
       source: sourceName,
@@ -199,12 +204,12 @@ function videoToStreamData(video: ytsr.Video, source: string): StreamData {
     stream: undefined,
     duration: parseInt(video.duration),
     title: video.title,
-    thumbnail: video.bestThumbnail.url,
+    thumbnail: video.bestThumbnail?.url,
     originalUrl: video.url,
     isLive: video.isLive,
     author: {
-      name: video.author.name,
-      thumbnail: video.author.bestAvatar.url
+      name: video.author?.name,
+      thumbnail: video.author?.bestAvatar.url
     }
   };
 }
