@@ -46,9 +46,6 @@ class Store extends ElectronStore {
     // Turn Config Java Object into JSON string
     let jsonString = JSON.stringify(this.config);
 
-    // Makes config json string invalid by replacing all ':' with 'LOL'
-    jsonString = jsonString.replaceAll(':', 'LOL');
-
     // Try parsing jsonString into jsonObject
     let jsonObject;
 
