@@ -43,21 +43,16 @@ class Store extends ElectronStore {
     // Add settings member to the config
     this.config['settings'] = schema1.fields.settings;
 
-    // Turn Config Java Object into JSON string
     let jsonString = JSON.stringify(this.config);
-
-    // Try parsing jsonString into jsonObject
+    
     let jsonObject;
 
     try {
       jsonObject = JSON.parse(jsonString);
     }
-
-    // If error, reset config java object to default values
+    
     catch(error) {
       console.log("BROKEN CONFIG ERROR: RESETTING CONFIG TO DEFAULT VALUES");
-
-      // Our new method to reset to default values
       this.set("config", JSON.stringify(schema1));
 
     }
@@ -75,7 +70,6 @@ class Store extends ElectronStore {
         // Add more cases here for future versions
       }
     } else {
-      // If there is no version key, assume it is version 1 and validate using the schema1
       schema1.validateSync(jsonObject);
     }  
     
