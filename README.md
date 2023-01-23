@@ -1,7 +1,7 @@
 # ![nuclear](https://i.imgur.com/oT1006i.png) 
 [![nuclear](https://snapcraft.io//nuclear/badge.svg)](https://snapcraft.io/nuclear) [![Discord](https://img.shields.io/badge/Discord-7289DA?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/JqPjKxE)
 
-Desktop music player focused on streaming from free sources
+Desktop music player focused on streaming from free sources..
 
 ![Showcase](https://i.imgur.com/8qHu66J.png)
 
@@ -53,21 +53,21 @@ See [this](docs/electron.md).
 
 - Searching for and playing music from YouTube (including integration with playlists and [SponsorBlock](https://sponsor.ajay.app/)), Jamendo, Audius and SoundCloud
 - Searching for albums (powered by Last.fm and Discogs), album view, automatic song lookup based on artist and track name (in progress, can be dodgy sometimes)
-- Song queue, which can be exported as a playlist
-- Loading saved playlists (stored in json files)
-- Scrobbling to last.fm (along with updating the 'now playing' status)
-- Newest releases with reviews - tracks and albums
-- Browsing by genre
-- Radio mode (automatically queue similar tracks)
-- Unlimited downloads (powered by youtube)
-- Realtime lyrics
-- Browsing by popularity
-- List of favorite tracks
-- Listening from local library
-- No accounts
-- No ads
-- No CoC
-- No CLA
+- Song queue, which can be exported as a playlist.
+- Loading saved playlists (stored in json files).
+- Scrobbling to last.fm (along with updating the 'now playing' status).
+- Newest releases with reviews - tracks and albums.
+- Browsing by genre.
+- Radio mode (automatically queue similar tracks).
+- Unlimited downloads (powered by youtube).
+- Realtime lyrics.
+- Browsing by popularity.
+- List of favorite tracks.
+- Listening from local library.
+- No accounts.
+- No ads.
+- No CoC.
+- No CLA.
 
 ## Development process
 
