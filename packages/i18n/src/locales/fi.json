@@ -300,8 +300,8 @@
     "notlogged": "Ei kirjautunut sisään",
     "playback": "Toisto",
     "program-settings": "Sovelluksen asetukset",
-    "promoted-artists": "Show promoted artists in the dashboard",
-    "promoted-artists-description": "This is a reel of interesting, handpicked indie artists you might like. No one's receiving any compensation for this.",
+    "promoted-artists": "Näytä ylösnostetut taiteilijat kojelaudassa",
+    "promoted-artists-description": "Tämä on jatkumo kiinnostavia, valikoituja itsenäisiä artisteja joista saattaisit pitää. Kukaan ei saa tästä mitään korvauksia.",
     "saving-in": "Tallennetaan:",
     "seek-iteration": "Eteen/taaksepäin etsimisen sekuntien lukumäärä nuolinäppäimiä painettaessa",
     "shuffle-queue": "Sekoita kappaleet",
@@ -328,11 +328,11 @@
     "add-to-favorite": "Lisää suosikkeihin",
     "add-to-playlist": "Lisää soittolistaan",
     "add-to-queue": "Lisää jonoon",
-    "create-playlist": "Create new playlist",
-    "create-playlist-dialog-title": "Input playlist name:",
-    "create-playlist-dialog-placeholder": "Playlist name...",
-    "create-playlist-dialog-accept": "Save",
-    "create-playlist-dialog-cancel": "Cancel",
+    "create-playlist": "Luo uusi soittolista",
+    "create-playlist-dialog-title": "Syötä soittolistalle nimi:",
+    "create-playlist-dialog-placeholder": "Soittolistan nimi...",
+    "create-playlist-dialog-accept": "Tallenna",
+    "create-playlist-dialog-cancel": "Keskeytä",
     "download": "Lataa",
     "download-toast-body": "{{artist}} - {{track}} on lisätty latauksiin.",
     "download-toast-title": "Kappale lisätty latauksiin",
@@ -357,11 +357,11 @@
   "command-palette": {
     "search-placeholder": "Mitä haluaisit tehdä?",
     "empty-state-help": "Etkö löydä etsimääsi? Kokeile ohjetta.",
-    "protip-text": "PROTIP:",
+    "protip-text": "ILMAINEN NEUVO:",
     "protip-content": "Navigoi nuolilla, valitse Enterillä, sulje Esc-näppäimellä",
     "categories": {
       "playback": "Toisto",
-      "queue": "Queue",
+      "queue": "Jono",
       "navigation": "Navigointi",
       "application": "Sovellus"
     },
@@ -396,13 +396,13 @@
     }
   },
   "listening-history": {
-    "title": "Listening history",
-    "empty-state": "You haven't listened to anything yet.",
-    "clear-history": "Clear history",
-    "clear-history-confirm": "Are you sure you want to clear your listening history?",
-    "clear-history-confirm-yes": "Confirm",
-    "clear-history-confirm-no": "Cancel",
-    "clear-history-toast": "Listening history cleared"
+    "title": "Kuunteluhistoria",
+    "empty-state": "Et ole vielä kuunnellut mitään.",
+    "clear-history": "Pyyhi historia",
+    "clear-history-confirm": "Oletko varma että haluat pyyhkiä kuunteluhistoriasi?",
+    "clear-history-confirm-yes": "Vahvista",
+    "clear-history-confirm-no": "Keskeytä",
+    "clear-history-toast": "Kuunteluhistoria on nyt pyyhitty"
   },
   "forms": {
     "nuclear-sign-up": {
