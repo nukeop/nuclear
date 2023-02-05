@@ -274,7 +274,7 @@
     "language-placeholder": "言語を選択",
     "lastfm-connect": "Last.fmと接続",
     "lastfm-description": "Scrobblingを有効にするには、まずNuclear を Last.fm に接続して認証し、ログインをクリックする必要があります。",
-    "lastfm-enable": "Scrobbling を Last.fm に有効化",
+    "lastfm-enable": "Last.fm Scrobbling を有効化",
     "lastfm-title": "Last.fm",
     "less": "簡易表示",
     "login": "ログイン",
