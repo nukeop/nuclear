@@ -211,14 +211,11 @@
     "favorite-add": "Lägg till i Favoriter",
     "header": "Kö",
     "header-track": "Spelas just nu",
-    "id": "Stream-ID:",
-    "source": "Källa:",
     "copy-track-url": "Kopiera spåradress till urklipp",
     "loading": "Strömmen läses fortfarande.",
     "playlist-add": "Lägg till i spellista",
     "playlist-toast-content": "Spellistan {{name}} har skapats.",
     "playlist-toast-title": "Spellista skapad",
-    "title": "Titel:",
     "live": "Live"
   },
   "search": {
@@ -247,6 +244,7 @@
   "settings": {
     "api-port": "API:ets port",
     "api-url": "",
+    "audio": "Audio",
     "autoradio": "Autoradio",
     "autoradio-craziness": "Autoradiogalenskap",
     "autoradio-craziness-description": "Autoradion kommer välja spår som skiljer sig från de som redan är tillagda i kön, ju mer ju galnare",
@@ -291,6 +289,8 @@
     "mastodon-post-format-description": "Nuclear kommer att lägga upp en status på Mastodon efter varje spår som slutar spela. Ovanstående sträng kommer att vara mallen för varje inlägg, med {{artist}} och {{title}} ersatt med artisten och titeln för spåret.",
     "mastodon-post-format-label": "Postformat",
     "mastodon-title": "",
+    "normalize": "Normalize volume",
+    "normalize-description": "Automatically adjust volume of tracks so that they are played at the same level. This needs to fetch the whole track to work, so it may cause a delay between tracks.",
     "nuclear-identity-service-url": "Nuclears webbadress för identitetstjänst",
     "nuclear-playlists-service-url": "Nuclears webbadress för spellistor",
     "mini-player": "Använd minispelarstil",

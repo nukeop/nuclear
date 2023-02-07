@@ -211,14 +211,11 @@
     "favorite-add": "הוספה למועדפים",
     "header": "תור",
     "header-track": "הרצועה הנוכחית",
-    "id": "מזהה הזרמה:",
-    "source": "מקור:",
     "copy-track-url": "העתק את קישור הרצועה",
     "loading": "ההזרמה עדיין נטענת.",
     "playlist-add": "הוספה לפלייליסט",
     "playlist-toast-content": "נוצר הפלייליסט {{name}}.",
     "playlist-toast-title": "הפלייליסט נוצר",
-    "title": "כותרת:",
     "live": "שידור חי"
   },
   "search": {
@@ -247,6 +244,7 @@
   "settings": {
     "api-port": "הפורט המשמש את ה-Api",
     "api-url": "",
+    "audio": "Audio",
     "autoradio": "רדיו אוטומטי",
     "autoradio-craziness": "טרוף רדיו אוטומטי",
     "autoradio-craziness-description": "הרדיו האוטומטי יבחר שירים שפחות דומים לאלו שכבר נמצאים בתור ככל שזה מטורף יותר",
@@ -291,6 +289,8 @@
     "mastodon-post-format-description": "Nuclear תפרסם סטטוס ב- Mastodon לאחר שכל רצועה תסיים את ההשמעה. המחרוזת שלמעלה תהיה התבנית עבור כל פוסט, כאשר {{artist}} ו- {{title}} יוחלפו באמן ובכותרת של הרצועה.",
     "mastodon-post-format-label": "מבנה פרסום",
     "mastodon-title": "",
+    "normalize": "Normalize volume",
+    "normalize-description": "Automatically adjust volume of tracks so that they are played at the same level. This needs to fetch the whole track to work, so it may cause a delay between tracks.",
     "nuclear-identity-service-url": "כתובת שירותי הזהות",
     "nuclear-playlists-service-url": "קישור שירותי פלייליסט ניוקליר",
     "mini-player": "שימוש בסגנון הנגן הממוזער",
