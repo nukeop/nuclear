@@ -1,4 +1,4 @@
-import {Entity, PrimaryColumn, Column, ManyToOne, BeforeInsert, AfterLoad, AfterInsert, AfterRemove, BeforeUpdate} from 'typeorm';
+import { Entity, PrimaryColumn, Column, ManyToOne, BeforeInsert, AfterLoad, AfterInsert, AfterRemove, BeforeUpdate } from 'typeorm';
 import fs from 'fs';
 import { promisify } from 'util';
 import path from 'path';
@@ -6,7 +6,7 @@ import { app } from 'electron';
 import crypto from 'crypto';
 import url from 'url';
 import { v4 } from 'uuid';
-import Jimp from 'jimp/es';
+import Jimp from 'jimp';
 
 import LocalFolder from './LocalFolder';
 
@@ -73,9 +73,7 @@ class LocalTrack {
   }
 
   private hashThumbFilename() {
-    return `${
-      crypto.createHash('md5').update(path.basename(this.album || this.path)).digest('hex')
-    }.webp`;
+    return `${crypto.createHash('md5').update(path.basename(this.album || this.path)).digest('hex')}.webp`;
   }
 
   @AfterInsert()
@@ -107,7 +105,7 @@ class LocalTrack {
         this.hashThumbFilename()
       );
       const existingThumb = await this.existCover(thumbPath);
-  
+
       if (existingThumb) {
         this.thumbnail = existingThumb;
       } else {
@@ -115,7 +113,7 @@ class LocalTrack {
           .resize(192, 192)
           .write(thumbPath);
       }
-  
+
       delete this.imageData;
       this.thumbnail = url.format({
         pathname: thumbPath,
@@ -125,7 +123,7 @@ class LocalTrack {
     }
   }
 
-  @AfterRemove() 
+  @AfterRemove()
   async removeThumbnail() {
     if (this.thumbnailPath) {
       try {
