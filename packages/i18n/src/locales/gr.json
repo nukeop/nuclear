@@ -286,7 +286,7 @@
     "mastodon-awaiting-authorization": "Το Nuclear έχει καταχωρηθεί στο {{instanceUrl}}. Σε αναμονή εξουσιοδότησης.",
     "mastodon-description": "",
     "mastodon-instance-label": "Mastodon instance URL",
-    "mastodon-post-format-description": "Το Nuclear θα δημοσιεύσει μια κατάσταση στο Mastodon μετά από κάθε αναπαραγωγή κομματιού. Η παραπάνω συμβολοσειρά θα είναι το πρότυπο για κάθε δημοσίευση, με την αντικατάσταση του {{artist}} και του {{title}} με τον καλλιτέχνη και τον τίτλο του κομματιού.",
+    "mastodon-post-format-description": "Nuclear will post a status on Mastodon after each track completes playing. The above string will be the template for each post, with {{artist}}, {{title}}, and {{url}} replaced with the artist, title, and a link to the track respectively.",
     "mastodon-post-format-label": "Μορφή δημοσίευσης",
     "mastodon-title": "",
     "normalize": "Normalize volume",
