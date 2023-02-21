@@ -286,7 +286,7 @@
     "mastodon-awaiting-authorization": "Nuclear está registrado en {{instanceUrl}}. Esperando autorización.",
     "mastodon-description": "",
     "mastodon-instance-label": "URL de la instancia de Mastodon",
-    "mastodon-post-format-description": "Nuclear publicará un estado en Mastodon después de que cada pista termine de reproducirse. La cadena anterior será la plantilla para cada publicación, siendo {{artist}} y {{title}} reemplazados por el artista y título de la pista.",
+    "mastodon-post-format-description": "Nuclear will post a status on Mastodon after each track completes playing. The above string will be the template for each post, with {{artist}}, {{title}}, and {{url}} replaced with the artist, title, and a link to the track respectively.",
     "mastodon-post-format-label": "Formato de la publicación",
     "mastodon-title": "",
     "normalize": "Normalize volume",
