@@ -286,7 +286,7 @@
     "mastodon-awaiting-authorization": "Nuclear は {{instanceUrl}} に登録されています。承認を待っています...",
     "mastodon-description": "",
     "mastodon-instance-label": "MastodonインスタンスのURL",
-    "mastodon-post-format-description": "Nuclear は各トラックの再生が終了すると、Mastodon にステータスを投稿します。上に表示されているのは、投稿のサンプルです。 {{artist}} と {{title}} はトラックのアーティストとタイトルに置き換えられます。",
+    "mastodon-post-format-description": "Nuclear will post a status on Mastodon after each track completes playing. The above string will be the template for each post, with {{artist}}, {{title}}, and {{url}} replaced with the artist, title, and a link to the track respectively.",
     "mastodon-post-format-label": "ポストの形式",
     "mastodon-title": "",
     "normalize": "音量を正規化",
