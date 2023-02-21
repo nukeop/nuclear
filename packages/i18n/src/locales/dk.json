@@ -286,7 +286,7 @@
     "mastodon-awaiting-authorization": "Nuclear er registreret på {{instanceUrl}}. Afventer godkendelse.",
     "mastodon-description": "",
     "mastodon-instance-label": "Mastodon instance URL",
-    "mastodon-post-format-description": "Nuclear vil skrive en status på Mastadon efter hvert nummer er færdig. Ovenstående streng vil være skabelonen for hvert indlæg, hvor {{artist}} og {{title}} er erstattet med nummerets kunstner og titel.",
+    "mastodon-post-format-description": "Nuclear will post a status on Mastodon after each track completes playing. The above string will be the template for each post, with {{artist}}, {{title}}, and {{url}} replaced with the artist, title, and a link to the track respectively.",
     "mastodon-post-format-label": "Send format",
     "mastodon-title": "",
     "normalize": "Normalize volume",
