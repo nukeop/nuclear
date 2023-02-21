@@ -286,7 +286,7 @@
     "mastodon-awaiting-authorization": "Nuclear telah terdaftar di {{instanceUrl}}. Menunggu otorisasi.",
     "mastodon-description": "",
     "mastodon-instance-label": "URL Mastodon",
-    "mastodon-post-format-description": "Nuclear akan membagikan status di Mastodon setelah lagu selesai diputar. Tulisan di atas akan menjadi templat untuk setiap post, dengan {{artist}} dan {{title}} yang akan ditampilkan sebagai musisi dan judul lagunya.",
+    "mastodon-post-format-description": "Nuclear will post a status on Mastodon after each track completes playing. The above string will be the template for each post, with {{artist}}, {{title}}, and {{url}} replaced with the artist, title, and a link to the track respectively.",
     "mastodon-post-format-label": "Format post",
     "mastodon-title": "",
     "normalize": "Normalize volume",
