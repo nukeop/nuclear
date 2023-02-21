@@ -286,7 +286,7 @@
     "mastodon-awaiting-authorization": "Nuclear רשום ב- {{instanceUrl}} ממתין לאישור.",
     "mastodon-description": "",
     "mastodon-instance-label": "קישור לדוגמה של Mastodon",
-    "mastodon-post-format-description": "Nuclear תפרסם סטטוס ב- Mastodon לאחר שכל רצועה תסיים את ההשמעה. המחרוזת שלמעלה תהיה התבנית עבור כל פוסט, כאשר {{artist}} ו- {{title}} יוחלפו באמן ובכותרת של הרצועה.",
+    "mastodon-post-format-description": "Nuclear will post a status on Mastodon after each track completes playing. The above string will be the template for each post, with {{artist}}, {{title}}, and {{url}} replaced with the artist, title, and a link to the track respectively.",
     "mastodon-post-format-label": "מבנה פרסום",
     "mastodon-title": "",
     "normalize": "Normalize volume",
