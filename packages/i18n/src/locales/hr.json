@@ -286,7 +286,7 @@
     "mastodon-awaiting-authorization": "Nuclear je zabilježen na {{instanceUrl}}. Čeka se ovlašćenje.",
     "mastodon-description": "",
     "mastodon-instance-label": "URL za instancu Mastodona",
-    "mastodon-post-format-description": "Nuclear će objaviti stanje na Mastodonu nakon što je svaki zapis do kraja gotov. Gornji konop će biti prijedložak za svaku objavu, sa {{artist}} i {{title}} zamjenutim sa izvođačem i nazivom zapisa.",
+    "mastodon-post-format-description": "Nuclear will post a status on Mastodon after each track completes playing. The above string will be the template for each post, with {{artist}}, {{title}}, and {{url}} replaced with the artist, title, and a link to the track respectively.",
     "mastodon-post-format-label": "Format objave",
     "mastodon-title": "",
     "normalize": "Normalizirajte glasnoću",
