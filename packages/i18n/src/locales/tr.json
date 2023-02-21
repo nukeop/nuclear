@@ -286,7 +286,7 @@
     "mastodon-awaiting-authorization": "Nuclear {{instanceUrl}} ile kaydedildi. Yetkilendirme bekleniyor.",
     "mastodon-description": "",
     "mastodon-instance-label": "Mastodon bağlantı URL'niz",
-    "mastodon-post-format-description": "Nuclear her şarkı bittikten sonra Mastodon'da bir gönderi paylaşacak. Yukarıdaki dizi, {{artist}} ve {{title}}'in şarkıcı ve şarkı ismiyle yer değiştirdiği bir şablon olacak.",
+    "mastodon-post-format-description": "Nuclear will post a status on Mastodon after each track completes playing. The above string will be the template for each post, with {{artist}}, {{title}}, and {{url}} replaced with the artist, title, and a link to the track respectively.",
     "mastodon-post-format-label": "Gönderi biçimi",
     "mastodon-title": "",
     "normalize": "Normalize volume",
