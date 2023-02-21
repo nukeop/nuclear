@@ -211,14 +211,11 @@
     "favorite-add": "加到我的最愛",
     "header": "播放佇列",
     "header-track": "目前曲目",
-    "id": "串流 ID:",
-    "source": "來源：",
     "copy-track-url": "複製網址到剪貼簿",
     "loading": "串流處理中",
     "playlist-add": "加到播放清單",
     "playlist-toast-content": "{{name}} 已建立",
     "playlist-toast-title": "播放清單建立成功",
-    "title": "音樂標題",
     "live": "直播"
   },
   "search": {
@@ -247,6 +244,7 @@
   "settings": {
     "api-port": "API 網路埠",
     "api-url": "",
+    "audio": "Audio",
     "autoradio": "自動播放",
     "autoradio-craziness": "Autoradio瘋狂度",
     "autoradio-craziness-description": "Autoradio 會自動選擇與crazier中更不相似的歌曲",
@@ -291,6 +289,8 @@
     "mastodon-post-format-description": "Nuclear將會在每條音軌結束播放後於Mastodon發布狀態。上述的畫線部分將會是發布狀態的模板，其中{{artist}} 和{{title}} 會被替換為具體的藝術家和音軌的標題。",
     "mastodon-post-format-label": "帖子格式",
     "mastodon-title": "",
+    "normalize": "Normalize volume",
+    "normalize-description": "Automatically adjust volume of tracks so that they are played at the same level. This needs to fetch the whole track to work, so it may cause a delay between tracks.",
     "nuclear-identity-service-url": "Nuclear 識別服務網址",
     "nuclear-playlists-service-url": "Nulear 歌單服務網址",
     "mini-player": "使用迷你樣式播放器",

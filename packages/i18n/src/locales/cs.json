@@ -19,7 +19,7 @@
     "favorite-artists": "Oblíbení umělci",
     "favorite-tracks": "Oblíbené skladby",
     "library": "Lokální knihovna",
-    "listening-history": "Listening History",
+    "listening-history": "Historie přehrávání",
     "lyrics": "Texty",
     "main": "Hlavní",
     "playlists": "Seznamy skladeb",
@@ -211,14 +211,11 @@
     "favorite-add": "Přidat k oblíbeným",
     "header": "Fronta",
     "header-track": "Aktuální skladba",
-    "id": "ID Streamu:",
-    "source": "Zdroj:",
     "copy-track-url": "Zkopírovat URL skladby do schránky",
     "loading": "Stream se ještě nahrává.",
     "playlist-add": "Přidat do seznamu skladeb",
     "playlist-toast-content": "Seznam skladeb {{name}} byl vytvořen.",
     "playlist-toast-title": "Seznam skladeb vytvořen",
-    "title": "Název:",
     "live": "Živě"
   },
   "search": {
@@ -247,12 +244,13 @@
   "settings": {
     "api-port": "Port, který používá api",
     "api-url": "",
+    "audio": "Zvuk",
     "autoradio": "Autorádio",
     "autoradio-craziness": "Bláznivost autorádia",
     "autoradio-craziness-description": "Čím bláznivější, tím spíše autorádio vybere skladby, které se méně podobají těm, které jsou již ve frontě",
     "autoradio-description": "Přidat automaticky podobné skladby po dokončení přehrávání fronty",
-    "listening-history": "Listening history",
-    "listening-history-description": "Log the tracks you listen to, a la Last.fm. The history is stored offline.",
+    "listening-history": "Historie přehrávání",
+    "listening-history-description": "Zaznamenávejte skladby, které posloucháte, a la Last.fm. Historie je ukládána offline.",
     "compact-menu-bar": "Použít kompaktní styl pro lištu menu",
     "compact-queue-bar": "Použít kompaktní styl pro lištu fronty",
     "developer": "Vývojářská nastavení",
@@ -291,6 +289,8 @@
     "mastodon-post-format-description": "Nuclear bude na Mastodon posílat stav po dokončení přehrávání každé skladby. Řetězec výše bude šablonou pro každý příspěvek, proměnné {{artist}} a {{title}} budou nahrazeny umělcem a názvem skladby.",
     "mastodon-post-format-label": "Formát příspěvků",
     "mastodon-title": "",
+    "normalize": "Normalizovat hlasitost",
+    "normalize-description": "Automaticky přizpůsobit hlasitost skladeb, aby byly přehrávány na stejné úrovni. Tato funkce musí načíst celou skladbu, což může způsobit zpoždění mezi skladbami.",
     "nuclear-identity-service-url": "URL služby identit Nuclear",
     "nuclear-playlists-service-url": "URL služby playlistů Nuclear",
     "mini-player": "Použít styl malého přehrávače",
@@ -396,13 +396,13 @@
     }
   },
   "listening-history": {
-    "title": "Listening history",
-    "empty-state": "You haven't listened to anything yet.",
-    "clear-history": "Clear history",
-    "clear-history-confirm": "Are you sure you want to clear your listening history?",
-    "clear-history-confirm-yes": "Confirm",
-    "clear-history-confirm-no": "Cancel",
-    "clear-history-toast": "Listening history cleared"
+    "title": "Historie přehrávání",
+    "empty-state": "Zatím jste nic nepřehráli.",
+    "clear-history": "Vymazat historii",
+    "clear-history-confirm": "Opravdu chcete vymazat svou historii přehrávání?",
+    "clear-history-confirm-yes": "Potvrdit",
+    "clear-history-confirm-no": "Zrušit",
+    "clear-history-toast": "Historie přehrávání vymazána"
   },
   "forms": {
     "nuclear-sign-up": {

@@ -100,10 +100,10 @@ jobs:
         id: short-sha
         with:
           length: 6
-      - name: Use Node.js 14
+      - name: Use Node.js 16
         uses: actions/setup-node@v2
         with:
-          version: 14
+          version: 16
           cache: npm
       - name: add git binaries to PATH
         run: |

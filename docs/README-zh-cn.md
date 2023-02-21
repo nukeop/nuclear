@@ -41,7 +41,7 @@ nuclear是一个从互联网的各个角落拉取免费的资源的免费流媒�
 如果你知道 [mps-youtube](https://github.com/mps-youtube/mps-youtube) 这个项目,该项目与之类似，但是我们提供了一个美观、强大的图形用户界面。nuclear更加的专注于音频。想象一下Spotify，你无须为音乐付费，而且你比Spotify有更多的音库来源的选择。
 
 ## 如果我实在觉得electron很膈应，该怎么办？
-请看这里 [点击查看](docs/electron.md).
+请看这里 [点击查看](./electron.md).
 
 ## 功能速览
 
