@@ -286,7 +286,7 @@
     "mastodon-awaiting-authorization": "Nuclear je zaregistrován na {{instanceUrl}}. Čekání na autorizaci.",
     "mastodon-description": "",
     "mastodon-instance-label": "URL instance Mastodonu",
-    "mastodon-post-format-description": "Nuclear bude na Mastodon posílat stav po dokončení přehrávání každé skladby. Řetězec výše bude šablonou pro každý příspěvek, proměnné {{artist}} a {{title}} budou nahrazeny umělcem a názvem skladby.",
+    "mastodon-post-format-description": "Nuclear will post a status on Mastodon after each track completes playing. The above string will be the template for each post, with {{artist}}, {{title}}, and {{url}} replaced with the artist, title, and a link to the track respectively.",
     "mastodon-post-format-label": "Formát příspěvků",
     "mastodon-title": "",
     "normalize": "Normalizovat hlasitost",
