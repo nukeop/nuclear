@@ -286,7 +286,7 @@
     "mastodon-awaiting-authorization": "নিউক্লিয়ার {{instanceUrl}} তে রেজিস্টারকৃত। অনুমোদনের অপেক্ষা করছে.",
     "mastodon-description": "",
     "mastodon-instance-label": "মাস্টারডোনের ইন্সটেন্স ইউআরএল",
-    "mastodon-post-format-description": "নিউক্লিয়ার প্রতি ট্রেক শেষ হবার পর মাস্টারডনে একটি পোস্ট করবে। উপরোক্ত স্টিং হবে প্রতি পোস্টের টেমপ্লেট, যেখানে {{artist}} এবং {{title}} রিপ্লেস হবে ট্রেকের আর্টিস্ট এবং টাইটেলের সাথে.",
+    "mastodon-post-format-description": "Nuclear will post a status on Mastodon after each track completes playing. The above string will be the template for each post, with {{artist}}, {{title}}, and {{url}} replaced with the artist, title, and a link to the track respectively.",
     "mastodon-post-format-label": "পোস্ট ফরম্যাট",
     "mastodon-title": "",
     "normalize": "Normalize volume",
