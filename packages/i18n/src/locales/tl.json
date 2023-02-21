@@ -286,7 +286,7 @@
     "mastodon-awaiting-authorization": "Ang Nuclear ay naka-register na sa {{instanceUrl}}. Hintayin ang awtorisasyon.",
     "mastodon-description": "",
     "mastodon-instance-label": "URL ng Mastodon Instance",
-    "mastodon-post-format-description": "Ang Nuclear ay magpopost ng kalagayan sa Mastodon pagkatapos ng pagplay ng mga tracks. Ang ibabaw ay ang template para isa't isang mga post, kabilang ang {{artist}} at {{title}} ng pinalitan na mga artist, at pamagat ng kanta.",
+    "mastodon-post-format-description": "Nuclear will post a status on Mastodon after each track completes playing. The above string will be the template for each post, with {{artist}}, {{title}}, and {{url}} replaced with the artist, title, and a link to the track respectively.",
     "mastodon-post-format-label": "Kinalabasan",
     "mastodon-title": "",
     "normalize": "Normalize volume",
