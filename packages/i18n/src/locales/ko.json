@@ -286,7 +286,7 @@
     "mastodon-awaiting-authorization": "Nuclear가 {{instanceUrl}}에 등록되어 있습니다. 권한 부여를 기다리는 중입니다.",
     "mastodon-description": "",
     "mastodon-instance-label": "마스토돈 인스턴스 URL",
-    "mastodon-post-format-description": "Nuclear가 각 트랙 재생이 완료된 후 Mastodon에 상태를 게시합니다. 위의 문자열은 각 게시물의 템플릿이 되고, {{artist}} 및 {{title}}은 아티스트 및 트랙 제목으로 대체됩니다.",
+    "mastodon-post-format-description": "Nuclear will post a status on Mastodon after each track completes playing. The above string will be the template for each post, with {{artist}}, {{title}}, and {{url}} replaced with the artist, title, and a link to the track respectively.",
     "mastodon-post-format-label": "게시 형식",
     "mastodon-title": "",
     "normalize": "볼륨 평탄화",
