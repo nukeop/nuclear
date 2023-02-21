@@ -286,7 +286,7 @@
     "mastodon-awaiting-authorization": "Nuclear li ser {{instanceUrl}} hatiye tomarkirin. Li benda mafdayînê ye.",
     "mastodon-description": "",
     "mastodon-instance-label": "Girêdana mînakî ya Mastodon",
-    "mastodon-post-format-description": "Nuclear piştî ku lêdana her herîk qediya ew ê li ser Mastodon rewşekê biweşîne. Rêza jorîn wê bibe kirasek ji bo her şandiyê, li şûna {{artist}} û {{title}} hunermend û sernavê stranê wê werin guhertin.",
+    "mastodon-post-format-description": "Nuclear will post a status on Mastodon after each track completes playing. The above string will be the template for each post, with {{artist}}, {{title}}, and {{url}} replaced with the artist, title, and a link to the track respectively.",
     "mastodon-post-format-label": "Awayê şandinê",
     "mastodon-title": "",
     "normalize": "Normalîzekirina Dengê",
