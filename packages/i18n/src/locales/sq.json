@@ -211,14 +211,11 @@
     "favorite-add": "Shto tek të preferuarat",
     "header": "Radha",
     "header-track": "Kënga aktuale",
-    "id": "ID e transmetimit:",
-    "source": "Source:",
     "copy-track-url": "Copy track url to clipboard",
     "loading": "Transmetimi akoma duke u ngarkuar.",
     "playlist-add": "Shto në listë",
     "playlist-toast-content": "Lista {{name}} është krijuar.",
     "playlist-toast-title": "U krijua lista",
-    "title": "Titulli:",
     "live": "Live"
   },
   "search": {
@@ -247,6 +244,7 @@
   "settings": {
     "api-port": "Porta është përdorur nga api",
     "api-url": "",
+    "audio": "Audio",
     "autoradio": "Autoradio",
     "autoradio-craziness": "Autoradio craziness",
     "autoradio-craziness-description": "Autoradio do përzgjedhë këngë të cilat janë më pak të ngjashme me ato që janë aktualisht në radhë dhe më të çmenduara",
@@ -291,6 +289,8 @@
     "mastodon-post-format-description": "Nuclear will post a status on Mastodon after each track completes playing. The above string will be the template for each post, with {{artist}} and {{title}} replaced with the artist and title of the track.",
     "mastodon-post-format-label": "Post format",
     "mastodon-title": "",
+    "normalize": "Normalize volume",
+    "normalize-description": "Automatically adjust volume of tracks so that they are played at the same level. This needs to fetch the whole track to work, so it may cause a delay between tracks.",
     "nuclear-identity-service-url": "Nuclear identity service URL",
     "nuclear-playlists-service-url": "Nuclear playlists service URL",
     "mini-player": "Use mini player style",

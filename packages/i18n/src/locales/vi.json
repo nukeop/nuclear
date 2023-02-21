@@ -211,14 +211,11 @@
     "favorite-add": "Thêm vào mục ưa thích",
     "header": "Danh sách đang phát",
     "header-track": "Bản nhạc đang phát",
-    "id": "Stream ID:",
-    "source": "Nguồn:",
     "copy-track-url": "Sao chép url bản nhạc vào bộ nhớ tạm",
     "loading": "Stream đang tải.",
     "playlist-add": "Thêm vào playlist",
     "playlist-toast-content": "Playlist {{name}} đã được tạo.",
     "playlist-toast-title": "Playlist đã được tạo",
-    "title": "Tên bài hát:",
     "live": "Trực tiếp"
   },
   "search": {
@@ -247,6 +244,7 @@
   "settings": {
     "api-port": "Port cho api",
     "api-url": "",
+    "audio": "Audio",
     "autoradio": "Tự động tìm kiếm bài hát",
     "autoradio-craziness": "Autoradio craziness",
     "autoradio-craziness-description": "Autoradio sẽ chọn các bài khác không tương tự với các bài hát trong danh sách đang phát",
@@ -291,6 +289,8 @@
     "mastodon-post-format-description": "Nuclear will post a status on Mastodon after each track completes playing. The above string will be the template for each post, with {{artist}} and {{title}} replaced with the artist and title of the track.",
     "mastodon-post-format-label": "Post format",
     "mastodon-title": "",
+    "normalize": "Normalize volume",
+    "normalize-description": "Automatically adjust volume of tracks so that they are played at the same level. This needs to fetch the whole track to work, so it may cause a delay between tracks.",
     "nuclear-identity-service-url": "Nuclear identity service URL",
     "nuclear-playlists-service-url": "Nuclear playlists service URL",
     "mini-player": "Dùng chế độ mini cho trình phát",

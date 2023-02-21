@@ -106,9 +106,11 @@ class SoundContainer extends React.Component {
 
     if (this.props.settings.mastodonAccessToken &&
       this.props.settings.mastodonInstance) {
+      const selectedStreamUrl = this.props.currentStream?.originalUrl || '';
       let content = this.props.settings.mastodonPostFormat + '';
       content = content.replaceAll('{{artist}}', currentSong.artist);
       content = content.replaceAll('{{title}}', currentSong.name);
+      content = content.replaceAll('{{url}}', selectedStreamUrl);
       mastodonPost(
         this.props.settings.mastodonInstance,
         this.props.settings.mastodonAccessToken,

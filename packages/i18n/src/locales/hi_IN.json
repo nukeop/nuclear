@@ -211,14 +211,11 @@
     "favorite-add": "पसंदीदा में जोड़े",
     "header": "कतार",
     "header-track": "वर्तमान ट्रैक",
-    "id": "स्ट्रीम आईडी",
-    "source": "स्रोत",
     "copy-track-url": "ट्रैक यूआरएल को क्लिपबोर्ड पर कॉपी करें",
     "loading": "स्ट्रीम अभी भी लोड हो रही है.",
     "playlist-add": "प्‍लेलिस्‍ट में जोड़ें",
     "playlist-toast-content": "प्लेलिस्ट {{name}} बन गई है।",
     "playlist-toast-title": "प्लेलिस्ट बनाई गई!",
-    "title": "शीर्षक:",
     "live": "लाइव"
   },
   "search": {
@@ -247,6 +244,7 @@
   "settings": {
     "api-port": "एपीआई द्वारा उपयोगित पोर्ट",
     "api-url": "",
+    "audio": "Audio",
     "autoradio": "ऑटोरेडियो",
     "autoradio-craziness": "ऑटोरेडियो पागलपन",
     "autoradio-craziness-description": "ऑटोरेडियो उन गानों का चयन करेगा जो पहले से कतार में लगे गानों से कम मिलते-जुलते हैं",
@@ -291,6 +289,8 @@
     "mastodon-post-format-description": "प्रत्येक ट्रैक के चलने के बाद न्यूक्लियर मास्टोडन पर एक स्टेटस पोस्ट करेगा। उपरोक्त स्ट्रिंग प्रत्येक पोस्ट के लिए टेम्प्लेट होगी, जिसमें {{artist}} और {{title}} को कलाकार और ट्रैक के शीर्षक से बदल दिया जाएगा।",
     "mastodon-post-format-label": "पोस्ट फॉर्मेट",
     "mastodon-title": "",
+    "normalize": "Normalize volume",
+    "normalize-description": "Automatically adjust volume of tracks so that they are played at the same level. This needs to fetch the whole track to work, so it may cause a delay between tracks.",
     "nuclear-identity-service-url": "नुक्लेअर पहचान सेवा यूआरएल",
     "nuclear-playlists-service-url": "नुक्लेअर प्लेलिस्ट सेवा यूआरएल",
     "mini-player": "मिनी प्लेयर शैली का प्रयोग करें",

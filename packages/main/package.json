@@ -40,7 +40,7 @@
     "get-port": "^5.0.0",
     "glob": "^7.1.6",
     "inversify": "^5.1.1",
-    "jimp": "^0.16.1",
+    "jimp": "^0.16.13",
     "lodash": "^4.17.15",
     "music-metadata": "^7.12.3",
     "node-fetch": "^2.6.0",
