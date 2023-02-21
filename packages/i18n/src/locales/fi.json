@@ -286,7 +286,7 @@
     "mastodon-awaiting-authorization": "Nuclear on rekisteröity {{instanceUrl}}. Odottaa valtuutusta.",
     "mastodon-description": "",
     "mastodon-instance-label": "Mastodon-instanssin osoite",
-    "mastodon-post-format-description": "Nuclear lähettää Mastodoniin tilan jokaisen kappaleen jälkeen. Yllä oleva merkkijono on malli jokaiselle viestille, {{artist}} ja {{title}} korvattiin esittäjällä ja kappaleen otsikolla.",
+    "mastodon-post-format-description": "Nuclear will post a status on Mastodon after each track completes playing. The above string will be the template for each post, with {{artist}}, {{title}}, and {{url}} replaced with the artist, title, and a link to the track respectively.",
     "mastodon-post-format-label": "Julkaisun muoto",
     "mastodon-title": "",
     "normalize": "Normalisoi äänenvoimakkuus",
