@@ -286,7 +286,7 @@
     "mastodon-awaiting-authorization": "Nuclear yra registruotas {{instanceUrl}}. Laukiama autorizacijos.",
     "mastodon-description": "",
     "mastodon-instance-label": "Mastodon instancijos URL",
-    "mastodon-post-format-description": "„Nuclear“ paskelbs būseną „Mastodon“, kai kiekvienas kūrinys bus baigtas. Aukščiau pateikta eilutė bus kiekvieno įrašo šablonas, o {{artist}} ir {{title}} bus pakeistas atlikėjo ir takelio pavadinimu.",
+    "mastodon-post-format-description": "Nuclear will post a status on Mastodon after each track completes playing. The above string will be the template for each post, with {{artist}}, {{title}}, and {{url}} replaced with the artist, title, and a link to the track respectively.",
     "mastodon-post-format-label": "Skelbimo formatas",
     "mastodon-title": "",
     "normalize": "Normalize volume",
