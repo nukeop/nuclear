@@ -286,7 +286,7 @@
     "mastodon-awaiting-authorization": "Nuclear 已经在 {{instanceUrl}} 上注册，正在等待批准。{{instanceUrl}}",
     "mastodon-description": "",
     "mastodon-instance-label": "Mastodon 实例 URL",
-    "mastodon-post-format-description": "当每首曲目播放完毕时，Nuclear 会在 Mastodon 上发布一条动态。上面的字符串会被作为帖子的模板，{{artist}} 和 {{title}} 会被作曲家和曲目名称替代。",
+    "mastodon-post-format-description": "Nuclear will post a status on Mastodon after each track completes playing. The above string will be the template for each post, with {{artist}}, {{title}}, and {{url}} replaced with the artist, title, and a link to the track respectively.",
     "mastodon-post-format-label": "文章格式",
     "mastodon-title": "",
     "normalize": "Normalize volume",
