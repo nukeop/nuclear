@@ -286,7 +286,7 @@
     "mastodon-awaiting-authorization": "Nuclear ir reģistrēts {{instanceUrl}}. Gaida atļauju.",
     "mastodon-description": "",
     "mastodon-instance-label": "Mastodon instances URL",
-    "mastodon-post-format-description": "Pēc katra ieraksta atskaņošanas pabeigšanas Nuclear publicēs statusu uz Mastodon. Iepriekš minētā virkne būs katras ziņas veidne, un {{artist}} un {{title}} tiks aizstātas ar izpildītājs un dziesmas nosaukums.",
+    "mastodon-post-format-description": "Nuclear will post a status on Mastodon after each track completes playing. The above string will be the template for each post, with {{artist}}, {{title}}, and {{url}} replaced with the artist, title, and a link to the track respectively.",
     "mastodon-post-format-label": "Ziņas formāts",
     "mastodon-title": "",
     "normalize": "Normalize volume",
