@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { v4 } from 'uuid';
 
 import { getTrackArtist, StreamVerification } from '@nuclear/ui';
 import { StreamVerificationProps } from '@nuclear/ui/lib/components/StreamVerification';
@@ -8,9 +9,10 @@ import { rest } from '@nuclear/core';
 
 import { queue as queueSelector } from '../../selectors/queue';
 import { QueueItem } from '../../reducers/queue';
-import { head, isString } from 'lodash';
+import { head } from 'lodash';
 import { pluginsSelectors } from '../../selectors/plugins';
 import { settingsSelector } from '../../selectors/settings';
+import { setStringOption } from '../../actions/settings';
 
 const StreamMappingsService = new rest.NuclearStreamMappingsService(
   process.env.NUCLEAR_SERVICES_URL,
@@ -21,6 +23,7 @@ const WEAK_VERIFICATION_THRESHOLD = 3;
 
 export const StreamVerificationContainer: React.FC = () => {
   const { t } = useTranslation('queue');
+  const dispatch = useDispatch();
   const queue = useSelector(queueSelector);
   const settings = useSelector(settingsSelector);
   const selectedStreamProvider = useSelector(pluginsSelectors.selected)?.streamProviders;
@@ -47,6 +50,12 @@ export const StreamVerificationContainer: React.FC = () => {
     }
   }, [currentTrack]);
 
+  useEffect(() => {
+    if (settings.isReady && !settings?.userId) {
+      dispatch(setStringOption('userId', v4()));
+    }
+  }, [settings.isLoading, settings.isReady]);
+
   const onVerify = () => {
     if (currentTrack) {
       setLoading(true);
@@ -54,12 +63,31 @@ export const StreamVerificationContainer: React.FC = () => {
         artist: getTrackArtist(currentTrack),
         title: currentTrack.name,
         source: selectedStreamProvider,
-        stream_id: head(currentTrack.streams).source,
+        stream_id: head(currentTrack.streams).id,
         author_id: settings?.userId
       }).then(() => {
         setVerificationStatus('verified_by_user');
       }).catch(() => {
         setVerificationStatus('unknown');
+      }).finally(() => {
+        setLoading(false);
+      });
+    }
+  };
+
+  const onUnverify = () => {
+    if (currentTrack && verificationStatus === 'verified_by_user') {
+      setLoading(true);
+      StreamMappingsService.deleteStreamMapping({
+        artist: getTrackArtist(currentTrack),
+        title: currentTrack.name,
+        source: selectedStreamProvider,
+        stream_id: head(currentTrack.streams).id,
+        author_id: settings?.userId
+      }).then(() => {
+        setVerificationStatus('verified');
+      }).catch(() => {
+        setVerificationStatus('verified_by_user');
       }).finally(() => {
         setLoading(false);
       });
@@ -73,8 +101,9 @@ export const StreamVerificationContainer: React.FC = () => {
   return <StreamVerification 
     status={verificationStatus}
     isLoading={isLoading}
+    isDisabled={!currentTrack?.streams?.[0]?.stream}
     onVerify={onVerify}
-    onUnverify={() => {}}
+    onUnverify={onUnverify}
     tooltipStrings={{
       unknown: t('stream-verification.tooltip.unknown'),
       unverified: t('stream-verification.tooltip.unverified'),
@@ -90,5 +119,6 @@ export const StreamVerificationContainer: React.FC = () => {
       verified_by_user: t('stream-verification.stream-status.verified-by-user')
     }}
     textVerify={t('stream-verification.verify')}
+    textUnverify={t('stream-verification.unverify')}
   />;
 };

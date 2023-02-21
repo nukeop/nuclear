@@ -232,7 +232,8 @@
         "verified": "Verified",
         "verified-by-user": "Verified by you"
       },
-      "verify": "Verify"
+      "verify": "Verify",
+      "unverify": "Unverify"
     }
   },
   "search": {

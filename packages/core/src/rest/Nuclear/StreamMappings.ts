@@ -11,6 +11,8 @@ type StreamMapping = {
 
 type PostStreamMappingPayload = Omit<StreamMapping, 'id'>;
 
+type DeleteStreamMappingPayload = Omit<StreamMapping, 'id'>;
+
 export class NuclearStreamMappingsService extends NuclearSupabaseService {
   async getStreamMappingsByArtistAndTitle(artist: string, title: string, source: string){
     return this.client.rpc<{stream_id: string, count: number}>('mappings_for_track', { artist, title, source });
@@ -39,10 +41,13 @@ export class NuclearStreamMappingsService extends NuclearSupabaseService {
       .eq('source', mapping.source);
   }
 
-  async deleteStreamMapping(mapping: StreamMapping) {
+  async deleteStreamMapping(mapping: DeleteStreamMappingPayload) {
     return this.client
       .from<StreamMapping>('stream-mappings')
       .delete()
-      .eq('id', mapping.id);
+      .eq('author_id', mapping.author_id)
+      .eq('artist', mapping.artist)
+      .eq('title', mapping.title)
+      .eq('source', mapping.source);
   }
 }
