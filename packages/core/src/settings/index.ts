@@ -355,7 +355,6 @@ export const settingsConfig: Array<Setting> = [
     prettyName: 'user-id',
     category: 'program-settings',
     type: SettingType.STRING,
-    default: v4(),
     hide: true
   }
 ];
