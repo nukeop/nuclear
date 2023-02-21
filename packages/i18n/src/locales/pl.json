@@ -286,7 +286,7 @@
     "mastodon-awaiting-authorization": "Nuclear jest zarejestrowany ma{{instanceUrl}}. Oczekuję na autoryzację.",
     "mastodon-description": "",
     "mastodon-instance-label": "URL instancji Mastodon",
-    "mastodon-post-format-description": "Nuclear zaktualizuje status na Mastodonie po zakończeniu odtwarzania każdego utworu. Powyższy ciąg znaków będzie wzorem dla każdego wpisu, który będzie zawierał {{artist}} oraz {{title}} zastąpione artystą oraz tytułem utworu.",
+    "mastodon-post-format-description": "Nuclear will post a status on Mastodon after each track completes playing. The above string will be the template for each post, with {{artist}}, {{title}}, and {{url}} replaced with the artist, title, and a link to the track respectively.",
     "mastodon-post-format-label": "Format wpisu",
     "mastodon-title": "",
     "normalize": "Normalize volume",
