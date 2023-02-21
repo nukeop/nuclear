@@ -286,7 +286,7 @@
     "mastodon-awaiting-authorization": "Kjernefysisk er registrert på {{instanceUrl}}. Venter på autorisasjon.",
     "mastodon-description": "",
     "mastodon-instance-label": "Mastodon instance URL",
-    "mastodon-post-format-description": "Kjerneprøver vil poste statusen på Mastodon etter hver enkelt sang er ferdig. Teksten over vil være malen for hvert innlegg, med {{artist}} og {{title}} erstattet med artisten og tittelen på sporet.",
+    "mastodon-post-format-description": "Nuclear will post a status on Mastodon after each track completes playing. The above string will be the template for each post, with {{artist}}, {{title}}, and {{url}} replaced with the artist, title, and a link to the track respectively.",
     "mastodon-post-format-label": "Post format",
     "mastodon-title": "",
     "normalize": "Normalize volume",
