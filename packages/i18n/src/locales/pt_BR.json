@@ -151,6 +151,7 @@
     "error-open-file": "Can not open file",
     "error-save-file": "Can not save file",
     "export-button": "Exportar playlist (JSON)",
+    "export-button-png": "(PNG)",
     "export-fail-title": "Falha na exportação da playlist",
     "export-success-title": "Sucesso na exportação da playlist",
     "header": "Suas playlists",

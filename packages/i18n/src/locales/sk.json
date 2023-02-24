@@ -151,6 +151,7 @@
     "error-open-file": "Nepodarilo sa otvoriť súbor",
     "error-save-file": "Nepodarilo sa uložiť súbor",
     "export-button": "Exportovať playlist (JSON)",
+    "export-button-png": "(PNG)",
     "export-fail-title": "Nepodarilo sa exportovať playlist",
     "export-success-title": "Playlist bol úspešne exportovaný",
     "header": "Vaše playlisty",

@@ -151,6 +151,7 @@
     "error-open-file": "Tiedostoa ei voitu avata",
     "error-save-file": "Tiedostoa ei voitu tallentaa",
     "export-button": "Vie soittolista (JSON)",
+    "export-button-png": "(PNG)",
     "export-fail-title": "Soittolistan vienti epäonnistui",
     "export-success-title": "Soittolistan vienti onnistui",
     "header": "Soittolistasi",

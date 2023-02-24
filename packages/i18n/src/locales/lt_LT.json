@@ -151,6 +151,7 @@
     "error-open-file": "Nepavyko atidaryti šio failo",
     "error-save-file": "Nepavyko išsaugoti failo",
     "export-button": "Eksportuoti grojaraštį (JSON)",
+    "export-button-png": "(PNG)",
     "export-fail-title": "Nepavyko eksportuoti grojaraščio",
     "export-success-title": "Grojaraštis eksportuotas sėkmingai",
     "header": "Jūsų grojaraščiai",

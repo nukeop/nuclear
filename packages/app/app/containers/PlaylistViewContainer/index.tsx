@@ -23,6 +23,7 @@ const PlaylistViewContainer: React.FC<PlaylistViewContainerProps> = ({
   const updatePlaylist = useDispatchedCallback(PlaylistActions.updatePlaylist);
   const deletePlaylist = useDispatchedCallback(PlaylistActions.deletePlaylist);
   const exportPlaylist = useDispatchedCallback(PlaylistActions.exportPlaylist);
+  const exportPlaylistPng = useDispatchedCallback(PlaylistActions.exportPlaylistPng);
   const startPlayback = useDispatchedCallback(PlayerActions.startPlayback);
   const clearQueue = useDispatchedCallback(QueueActions.clearQueue);
   const selectSong = useDispatchedCallback(QueueActions.selectSong);
@@ -46,6 +47,7 @@ const PlaylistViewContainer: React.FC<PlaylistViewContainerProps> = ({
       deletePlaylist={deletePlaylist}
       updatePlaylist={updatePlaylist}
       exportPlaylist={exportPlaylist}
+      exportPlaylistPng={exportPlaylistPng}
       onReorderTracks={onReorderTracks}
       isEditable={!playlist}
     />

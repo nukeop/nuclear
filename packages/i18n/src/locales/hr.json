@@ -151,6 +151,7 @@
     "error-open-file": "Ne može se datoteka otvoriti",
     "error-save-file": "Ne može se datoteka spasiti",
     "export-button": "Izvezi popis za reprodukciju (JSON)",
+    "export-button-png": "(PNG)",
     "export-fail-title": "Neuspješno je izvezen popis",
     "export-success-title": "Uspješno je izvezen popis",
     "header": "Vaši popisi",

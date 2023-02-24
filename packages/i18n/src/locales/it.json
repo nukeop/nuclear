@@ -151,6 +151,7 @@
     "error-open-file": "Impossibile aprire il file",
     "error-save-file": "Impossibile salvare il file",
     "export-button": "Esporta scaletta (JSON)",
+    "export-button-png": "(PNG)",
     "export-fail-title": "Esportazione scaletta fallita",
     "export-success-title": "Scaletta esportata con successo",
     "header": "Tue scalette",

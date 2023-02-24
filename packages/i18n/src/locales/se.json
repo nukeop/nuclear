@@ -151,6 +151,7 @@
     "error-open-file": "Kan inte öppna filen",
     "error-save-file": "Kan inte spara fil",
     "export-button": "Exportera spellista (JSON)",
+    "export-button-png": "(PNG)",
     "export-fail-title": "Export av spellista misslyckades",
     "export-success-title": "Export av spellista lyckades",
     "header": "Dina spellistor",

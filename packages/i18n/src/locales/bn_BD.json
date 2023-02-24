@@ -151,6 +151,7 @@
     "error-open-file": "ফাইল ওপেন করা যাচ্ছে না",
     "error-save-file": "ফাইল সেভ করা যাচ্ছে না",
     "export-button": "পেলিস্ট এক্সপোর্ট করুন(JSON)",
+    "export-button-png": "পেলিস্ট এক্সপোর্ট করুন(PNG)",
     "export-fail-title": "পেলিস্ট এক্সপোর্ট অসফল হয়েছে",
     "export-success-title": "প্লেলিস্ট সফলভাবে ইমপোর্ট হয়েছে",
     "header": "আপনার প্লেলিস্ট",

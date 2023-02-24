@@ -151,6 +151,7 @@
     "error-open-file": "ファイルを開くことができません",
     "error-save-file": "ファイルを保存できません",
     "export-button": "プレイリストをエクスポート (JSON)",
+    "export-button-png": "(PNG)",
     "export-fail-title": "プレイリストのエクスポートに失敗",
     "export-success-title": "プレイリストのインポートに成功しました",
     "header": "プレイリスト",

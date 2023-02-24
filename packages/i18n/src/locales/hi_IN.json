@@ -151,6 +151,7 @@
     "error-open-file": "फाइल को खोला नहीं जा सका",
     "error-save-file": "फ़ाइल को सहेजा नहीं जा सका",
     "export-button": "प्लेलिस्ट निर्यात करें (JSON)",
+    "export-button-png": "(PNG)",
     "export-fail-title": "प्लेलिस्ट आयात विफल",
     "export-success-title": "प्लेलिस्ट आयात सफल",
     "header": "आपकी प्लेलिस्ट",

@@ -151,6 +151,7 @@
     "error-open-file": "לא ניתן לפתוח את הקובץ",
     "error-save-file": "לא ניתן לשמור את הקובץ",
     "export-button": "ייצוא הפלייליסט (JSON)",
+    "export-button-png": "(PNG)",
     "export-fail-title": "ייצוא הפלייליסט נכשל",
     "export-success-title": "הפלייליסט יוצָא בהצלחה",
     "header": "הפלייליסטים שלך",

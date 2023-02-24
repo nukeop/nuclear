@@ -151,6 +151,7 @@
     "error-open-file": "Tidak bisa membuka berkas",
     "error-save-file": "Tidak bisa menyimpan berkas",
     "export-button": "Ekspor daftar putar (JSON)",
+    "export-button-png": "(PNG)",
     "export-fail-title": "Eksport daftar putar gagal",
     "export-success-title": "Daftar putar berhasil diekspor",
     "header": "Daftar putarmu",

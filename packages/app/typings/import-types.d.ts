@@ -3,7 +3,7 @@ declare module '*.scss' {
   export default content;
 }
 declare module '*.png' {
-  const src: string;
+  const src: any;
   export default src;
 }
 

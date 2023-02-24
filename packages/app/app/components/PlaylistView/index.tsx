@@ -19,6 +19,7 @@ export type PlaylistViewProps = {
   updatePlaylist: (playlist: Playlist) => void;
   deletePlaylist: (id: string) => void;
   exportPlaylist: (playlist: Playlist, t: TFunction) => void;
+  exportPlaylistPng: (playlist: Playlist, t: TFunction) => void;
   clearQueue: () => void;
   startPlayback: (fromMain: boolean) => void;
   selectSong: (i: number) => void;
@@ -32,6 +33,7 @@ const PlaylistView: React.FC<PlaylistViewProps> = ({
   updatePlaylist,
   deletePlaylist,
   exportPlaylist,
+  exportPlaylistPng,
   clearQueue,
   addTracks,
   onReorderTracks,
@@ -78,6 +80,10 @@ const PlaylistView: React.FC<PlaylistViewProps> = ({
   const onExportPlaylist = useCallback(() => {
     exportPlaylist(playlist, t);
   }, [exportPlaylist, playlist, t]);
+
+  const onExportPlaylistPng = useCallback(() => {
+    exportPlaylistPng(playlist, t);
+  }, [exportPlaylistPng, playlist, t]);
 
   return (
     <div 
@@ -177,7 +183,15 @@ const PlaylistView: React.FC<PlaylistViewProps> = ({
                   icon='download'
                   label={t('export-button')}
                 />
+
+                <PopupButton
+                  onClick={onExportPlaylistPng}
+                  ariaLabel={t('export-button-png')}
+                  icon='download'
+                  label={t('export-button-png')}
+                />
               </ContextPopup>
+              <canvas id="pngCanvas" width="800" height="600" style={{display:"none"}}></canvas> 
             </div>
           </div>
         </div>

@@ -151,6 +151,7 @@
     "error-open-file": "파일을 열 수 없습니다",
     "error-save-file": "파일을 저장할 수 없습니다",
     "export-button": "플레이리스트 내보내기 (JSON)",
+    "export-button-png": "(PNG)",
     "export-fail-title": "플레이리스트 내보내기 실패",
     "export-success-title": "플레이리스트를 성공적으로 내보내었습니다",
     "header": "내 플레이리스트",

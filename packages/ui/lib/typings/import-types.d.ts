@@ -4,7 +4,8 @@ declare module '*.scss' {
 }
 
 declare module '*.png' {
-  export = module;
+  const src: any;
+  export default src;
 }
 
 declare module '*.svg' {

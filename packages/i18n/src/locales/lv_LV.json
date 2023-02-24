@@ -151,6 +151,7 @@
     "error-open-file": "Nevar atvērt failu",
     "error-save-file": "Nevar saglabāt failu",
     "export-button": "Eksportēt atskaņošanas sarakstu (JSON)",
+    "export-button-png": "(PNG)",
     "export-fail-title": "Atskaņošanas saraksta eksportēšana neizdevās",
     "export-success-title": "Atskaņošanas saraksts veiksmīgi eksportēts",
     "header": "Jūsu saraksti",

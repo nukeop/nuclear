@@ -151,6 +151,7 @@
     "error-open-file": "Nie można otworzyć pliku",
     "error-save-file": "Nie można zapisać pliku",
     "export-button": "Eksportuj listę odtwarzania (JSON)",
+    "export-button-png": "(PNG)",
     "export-fail-title": "Błąd eksportowania listy odtwarzania",
     "export-success-title": "Lista odtwarzania wyeksportowana pomyślnie",
     "header": "Twoje listy odtwarzania",

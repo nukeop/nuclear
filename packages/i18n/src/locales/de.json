@@ -151,6 +151,7 @@
     "error-open-file": "Datei kann nicht geöffnet werden",
     "error-save-file": "Datei konnte nicht gespeichert werden",
     "export-button": "Wiedergabeliste exportieren (JSON)",
+    "export-button-png": "Wiedergabeliste exportieren (PNG)",
     "export-fail-title": "Export von Wiedergabeliste fehlgeschlagen",
     "export-success-title": "Wiedergabeliste erfolgreich exportiert",
     "header": "Deine Wiedergabelisten",

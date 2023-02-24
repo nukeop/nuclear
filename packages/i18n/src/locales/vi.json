@@ -151,6 +151,7 @@
     "error-open-file": "Không thể mở file",
     "error-save-file": "Không thể lưu file",
     "export-button": "Xuất playlist ra file (JSON)",
+    "export-button-png": "(PNG)",
     "export-fail-title": "Xuất playlist thất bại",
     "export-success-title": "Xuất playlist thành công",
     "header": "Playlist của bạn",

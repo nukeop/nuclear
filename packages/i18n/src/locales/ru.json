@@ -151,6 +151,7 @@
     "error-open-file": "Не удаётся открыть файл",
     "error-save-file": "Не удаётся сохранить файл",
     "export-button": "Экспорт плейлиста (JSON)",
+    "export-button-png": "(PNG)",
     "export-fail-title": "Ошибка при экспорте",
     "export-success-title": "Плейлист экспортирован",
     "header": "Ваши плейлисты",

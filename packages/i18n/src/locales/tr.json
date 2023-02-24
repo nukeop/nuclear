@@ -151,6 +151,7 @@
     "error-open-file": "Dosya açılamıyor",
     "error-save-file": "Dosya kaydedilemiyor",
     "export-button": "Çalma listesini dışa aktar (JSON)",
+    "export-button-png": "(PNG)",
     "export-fail-title": "Çalma Listesi dışa aktarılamadı",
     "export-success-title": "Çalma listesi başarıyla dışa aktarıldı",
     "header": "Çalma listelerim",

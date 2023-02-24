@@ -151,6 +151,7 @@
     "error-open-file": "Kan ikke åbne fil",
     "error-save-file": "Kan ikke gemme fil",
     "export-button": "Eksportér spilleliste (JSON)",
+    "export-button-png": "Eksportér spilleliste (PNG)",
     "export-fail-title": "Eksport af spilleliste mislykkedes",
     "export-success-title": "Spilleliste eksporterede succesfuldt",
     "header": "Dine spillelister",

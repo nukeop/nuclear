@@ -151,6 +151,7 @@
     "error-open-file": "無法打開文件",
     "error-save-file": "無法存檔",
     "export-button": "導出播放列表 (JSON)",
+    "export-button-png": "(PNG)",
     "export-fail-title": "導出播放列表失敗",
     "export-success-title": "播放列表導出成功",
     "header": "你的播放列表",

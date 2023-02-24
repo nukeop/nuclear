@@ -151,6 +151,7 @@
     "error-open-file": "No se puede abrir el archivo",
     "error-save-file": "No se puede guardar el archivo",
     "export-button": "Exportar lista de reproducción (JSON)",
+    "export-button-png": "Exportar lista de reproducción (PNG)",
     "export-fail-title": "Exportación de lista de reproducción fallida",
     "export-success-title": "Lista de reproducción exportada exitosamente",
     "header": "Tus listas de reproducción",
