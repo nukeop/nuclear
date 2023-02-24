@@ -170,9 +170,7 @@ export const exportPlaylistPng = (playlist, t) => async (dispatch) => {
     ynum+=165;
 
   }
-  //var img = document.createElement('img');
-  //img.src="https://e-cdns-images.dzcdn.net/images/artist/d085c55df9e089015e79bea1a064f8fc/250x250-000000-80-0-0.jpg"
-  //ctx.drawImage(img, 10, 10);
+  
   var image = new Image();
   image.src=logoIcon as unknown as string;
   ctx.drawImage(image, 10, 10,200,200);
