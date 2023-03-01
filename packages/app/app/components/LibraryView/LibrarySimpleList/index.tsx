@@ -12,7 +12,8 @@ const LibrarySimpleList: React.FC<LibrarySimpleListProps> = ({
 }) => <TrackTableContainer
   tracks={tracks}
   displayDeleteButton={false}
-  displayFavorite={false} 
+  displayFavorite={false}
+  withAddToDownload={false}
 />;
 
 export default LibrarySimpleList;
