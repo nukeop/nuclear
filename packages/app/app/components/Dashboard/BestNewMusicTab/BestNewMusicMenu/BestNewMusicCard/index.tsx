@@ -1,12 +1,41 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { MouseEventHandler } from 'react';
 import { Icon } from 'semantic-ui-react';
-
 import { createLastFMLink } from '../../../../../utils';
-import { favoriteTrackShape } from '../../../../../constants/propTypes';
 import styles from './styles.scss';
+import { PitchforkAlbum, PitchforkTrack } from '../../../../../actions/dashboard';
+import { Setting, Track } from '@nuclear/core';
 
-function toFavoriteTrack({ artist, title, thumbnail }) {
+type BestNewMusicCardProps = {
+  item: PitchforkAlbum;
+  onClick: (activeItem: PitchforkAlbum | PitchforkTrack) => void;
+  withFavoriteButton?: boolean;
+  actions?: {
+    removeFavoriteTrack: (favoriteTrack: Track) => void;
+    addFavoriteTrack: (toFavoriteTrack: ToFavoriteTrackReturn) => void;
+    info: (title: string, details: string, icon:  Node | React.ReactElement<{src: string;}>, 
+      settings: Setting[] | { [key: string]: unknown } ) => void;
+  };
+  favoriteTrack?: Track;
+  settings?: Setting[];
+}
+
+type ToFavoriteTrackArgs = {
+  artist: string;
+  title: string;
+  thumbnail: string;
+}
+
+type ToFavoriteTrackReturn = {
+  name: string;
+  artist: {
+    name: String;
+  },
+  url: string;
+  image : 
+    {'#text': string, size: string}[] 
+}
+
+const toFavoriteTrack = ({ artist, title, thumbnail }: ToFavoriteTrackArgs): ToFavoriteTrackReturn => {
   const url = createLastFMLink(artist, name);
 
   return {
@@ -21,7 +50,7 @@ function toFavoriteTrack({ artist, title, thumbnail }) {
         size
       }))
   };
-}
+};
 
 const FavoriteIcon = ({ isFavorite, onClick, dataTestId }) =>
   <Icon
@@ -32,27 +61,31 @@ const FavoriteIcon = ({ isFavorite, onClick, dataTestId }) =>
     onClick={onClick}
   />;
 
-const BestNewMusicCard = ({
-  actions,
+const BestNewMusicCard: React.FC<BestNewMusicCardProps> = ({
   item,
-  favoriteTrack,
   onClick,
-  settings,
-  withFavoriteButton
+  withFavoriteButton,
+  favoriteTrack,
+  actions,
+  settings
 }) => {
   const { artist, title, thumbnail } = item;
+
+  const handleClick = () => {
+    onClick(item);
+  };
 
   return (
     <div
       className={styles.best_new_music_card}
-      onClick={onClick}
+      onClick={handleClick}
     >
       <div className={styles.card_thumbnail}>
         <img alt={title} src={thumbnail} />
       </div>
       <div className={styles.card_info}>
         <div className={styles.card_title_row}>
-          <div className={styles.card_title}>
+          <div className={styles.card_title} data-testid={`best-new-music-card-title-${title}`}>
             {title}
           </div>
           {withFavoriteButton && <FavoriteIcon
@@ -74,45 +107,12 @@ const BestNewMusicCard = ({
               }
             }} />}
         </div>
-        <div className={styles.card_artist}>
+        <div className={styles.card_artist} data-testid={`best-new-music-card-artist-${item.artist}`}>
           {item.artist}
         </div>
       </div>
     </div>
   );
-};
-
-export const bestNewItemShape = PropTypes.shape({
-  abstract: PropTypes.string,
-  artist: PropTypes.string,
-  genres: PropTypes.arrayOf(PropTypes.string),
-  review: PropTypes.string,
-  reviewUrl: PropTypes.string,
-  score: PropTypes.string,
-  thumbnail: PropTypes.string,
-  title: PropTypes.string
-});
-
-BestNewMusicCard.propTypes = {
-  actions: PropTypes.shape({
-    addFavoriteTrack: PropTypes.func,
-    removeFavoriteTrack: PropTypes.func,
-    info: PropTypes.func
-  }),
-  item: bestNewItemShape,
-  favoriteTrack: favoriteTrackShape,
-  onClick: PropTypes.func,
-  settings: PropTypes.object,
-  withFavoriteButton: PropTypes.bool
-};
-
-BestNewMusicCard.defaultProps = {
-  actions: {},
-  item: null,
-  favoriteTrack: null,
-  onClick: () => { },
-  settings: {},
-  withFavoriteButton: false
 };
 
 export default BestNewMusicCard;
