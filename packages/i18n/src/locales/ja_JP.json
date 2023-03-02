@@ -355,8 +355,8 @@
     "exit-fullscreen": "ESCで全画面表示終了"
   },
   "command-palette": {
-    "search-placeholder": "What would you like to do?",
-    "empty-state-help": "Can't seem to find what you're looking for? Try the help command.",
+    "search-placeholder": "何をしたいですか？",
+    "empty-state-help": "お探しのものが見つかりませんか？ヘルプコマンドを試してください。",
     "protip-text": "PROTIP:",
     "protip-content": "Arrows to navigate, Enter to select, Esc to close",
     "categories": {
