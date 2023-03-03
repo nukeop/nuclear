@@ -40,18 +40,26 @@ describe('Listening history container', () => {
   it('renders the listening history', async () => {
     const { component } = mountComponent();
 
-    const makeLocalDate = (dateString) => new Date(dateString).toLocaleDateString();
-    const makeLocalTime = (dateString) => new Date(dateString).toLocaleTimeString();
+    const makeLocal = (dateString, timeString?) => {
+      const date = new Date(dateString).toLocaleDateString();
+
+      if (timeString) {
+        const time = new Date(`${dateString}, ${timeString}`).toLocaleTimeString();
+        return `${date}, ${time}`;
+      } else {
+        return date;
+      }
+    };
 
     await Promise.all([
-      makeLocalDate('2020-01-01'),
+      makeLocal('2020-01-01'),
       'test title',
       'test artist',
-      `${makeLocalDate('2020,01,01')}, ${makeLocalTime('2020,01,01, 12:00')}`,
-      makeLocalDate('2020-01-02'),
+      makeLocal('2020,01,01', '12:00'),
+      makeLocal('2020-01-02'),
       'test title 2',
       'test artist2',
-      `${makeLocalDate('2020,01,02')}, ${makeLocalTime('2020,01,02, 12:00')}`
+      makeLocal('2020,01,02', '12:00')
     ].map(async text => {
       expect(await component.findByText(text)).toBeInTheDocument();
     }));
