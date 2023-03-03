@@ -19,12 +19,12 @@ jest.mock('electron', () => ({
         uuid: 'test',
         artist: 'test artist',
         title: 'test title',
-        createdAt: new Date('2020-01-01')
+        createdAt: new Date('2020-01-01, 12:00')
       }, {
         uuid: 'test2',
         artist: 'test artist2',
         title: 'test title 2',
-        createdAt: new Date('2020-01-02')
+        createdAt: new Date('2020-01-02, 12:00')
       }],
       cursor: {
         beforeCursor: null,
@@ -40,15 +40,26 @@ describe('Listening history container', () => {
   it('renders the listening history', async () => {
     const { component } = mountComponent();
 
+    const makeLocal = (dateString, timeString?) => {
+      const date = new Date(dateString).toLocaleDateString();
+
+      if (timeString) {
+        const time = new Date(`${dateString}, ${timeString}`).toLocaleTimeString();
+        return `${date}, ${time}`;
+      } else {
+        return date;
+      }
+    };
+
     await Promise.all([
-      '1/1/2020',
+      makeLocal('2020-01-01'),
       'test title',
       'test artist',
-      '1/1/2020, 12:00:00 AM',
-      '1/2/2020',
+      makeLocal('2020,01,01', '12:00'),
+      makeLocal('2020-01-02'),
       'test title 2',
       'test artist2',
-      '1/2/2020, 12:00:00 AM'
+      makeLocal('2020,01,02', '12:00')
     ].map(async text => {
       expect(await component.findByText(text)).toBeInTheDocument();
     }));
