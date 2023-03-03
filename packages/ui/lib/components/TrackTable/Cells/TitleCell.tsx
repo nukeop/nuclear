@@ -19,7 +19,7 @@ const TitleCell: React.FC<CellProps<Track> & TrackTableExtraProps<Track>> = ({
   onAddToDownloads,
   playlists,
   popupActionStrings,
-  withAddToDownload
+  displayAddToDownloads = true
 }) => <td
   {...cell.getCellProps() as TdHTMLAttributes<HTMLTableCellElement>}
   data-testid='title-cell'
@@ -71,7 +71,7 @@ const TitleCell: React.FC<CellProps<Track> & TrackTableExtraProps<Track>> = ({
         withAddToQueue={Boolean(onAddToQueue)}
         withAddToFavorites={Boolean(onAddToFavorites)}
         withAddToPlaylist={Boolean(onAddToFavorites)}
-        withAddToDownloads={withAddToDownload}
+        withAddToDownloads={displayAddToDownloads ? Boolean(onAddToDownloads) : false}
 
         strings={popupActionStrings}
       />
