@@ -56,6 +56,7 @@
     "lodash": "^4.17.15",
     "mousetrap": "^1.6.2",
     "numeral": "^2.0.6",
+    "openai": "^3.2.1",
     "pitchfork-bnm": "^1.1.2",
     "react": "16.14.0",
     "react-base-table": "^1.9.2",
