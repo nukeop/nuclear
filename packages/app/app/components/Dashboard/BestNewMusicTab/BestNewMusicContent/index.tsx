@@ -36,7 +36,7 @@ const BestNewMusicContent: React.FC<BestNewMusicContentProps> = ({
           </div>
           <div
             className={styles.title}
-            onClick={() => albumInfoSearchByName(item.title + ' ' + item.artist, item.artist,  history)}
+            onClick={() => albumInfoSearchByName(item.title, item.artist,  history)}
           >
             {item.title}
           </div>

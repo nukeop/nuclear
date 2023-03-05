@@ -18,16 +18,15 @@ function mapStateToProps(state, ownProps) {
 }
 
 export interface BestNewMusicCardContainerProps extends ActionCreatorsMapObject {
-  FavoritesActions: ActionCreator<any>;
-  TostActions: ActionCreator<any>;
+  FavoritesActions: ActionCreator<typeof FavoritesActions>;
+  TostActions: ActionCreator<typeof ToastActions>;
 }
 
 const mapDispatchToProps = (dispatch) => ({actions: bindActionCreators<BestNewMusicCardContainerProps, any>(
-  Object.assign(
-    {},
-    FavoritesActions,
-    ToastActions
-  ),
+  {
+    ...FavoritesActions,
+    ...ToastActions
+  },
   dispatch
 ) });
 

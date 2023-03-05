@@ -1,19 +1,20 @@
-import React, { MouseEventHandler } from 'react';
+import React from 'react';
 import { Icon } from 'semantic-ui-react';
 import { createLastFMLink } from '../../../../../utils';
 import styles from './styles.scss';
 import { PitchforkAlbum, PitchforkTrack } from '../../../../../actions/dashboard';
 import { Setting, Track } from '@nuclear/core';
+import { removeFavoriteTrack, addFavoriteTrack } from '../../../../../actions/favorites';
+import { info } from '../../../../../actions/toasts';
 
 type BestNewMusicCardProps = {
   item: PitchforkAlbum;
   onClick: (activeItem: PitchforkAlbum | PitchforkTrack) => void;
   withFavoriteButton?: boolean;
   actions?: {
-    removeFavoriteTrack: (favoriteTrack: Track) => void;
-    addFavoriteTrack: (toFavoriteTrack: ToFavoriteTrackReturn) => void;
-    info: (title: string, details: string, icon:  Node | React.ReactElement<{src: string;}>, 
-      settings: Setting[] | { [key: string]: unknown } ) => void;
+    removeFavoriteTrack: typeof removeFavoriteTrack;
+    addFavoriteTrack: typeof addFavoriteTrack;
+    info: typeof info;
   };
   favoriteTrack?: Track;
   settings?: Setting[];
