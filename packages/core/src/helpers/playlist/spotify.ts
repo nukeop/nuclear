@@ -47,6 +47,14 @@ export default (async function () {
   }
 
   function getTracksFromDOM(processedIndex) {
+    const cookieOptions = document.getElementById('#onetrust-pc-btn-handler');
+
+    if (cookieOptions) {
+      cookieOptions.click();
+      const acceptMinimalCookies = document.querySelector('.save-preference-btn-handler.onetrust-close-btn-handler.button-theme') as HTMLElement;
+      acceptMinimalCookies.click();
+    }
+    
     const nodeTracks = document.querySelector('div[data-testid="top-sentinel"] + div').childNodes as NodeListOf<Element>;
     const tracks = [];
 
