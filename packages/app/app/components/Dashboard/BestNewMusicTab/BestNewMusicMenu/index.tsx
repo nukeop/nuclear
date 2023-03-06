@@ -1,14 +1,20 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Menu } from 'semantic-ui-react';
 import { useTranslation } from 'react-i18next';
 
 import BestNewMusicCardContainer from '../../../../containers/BestNewMusicCardContainer';
-import BestNewMusicCard, { bestNewItemShape } from './BestNewMusicCard';
+import BestNewMusicCard from './BestNewMusicCard';
 
 import styles from './styles.scss';
+import { PitchforkAlbum, PitchforkTrack } from '../../../../actions/dashboard';
 
-const BestNewMusicMenu = ({ albums, setActiveItem, tracks }) => {
+type BestNewMusicMenuProps = {
+  albums: PitchforkAlbum[];
+  setActiveItem: (activeItem: PitchforkAlbum | PitchforkTrack) => void;
+  tracks: PitchforkTrack[];
+}
+
+const BestNewMusicMenu: React.FC<BestNewMusicMenuProps> = ({ albums, setActiveItem, tracks }) => {
   const { t } = useTranslation('dashboard');
 
   return (
@@ -26,7 +32,7 @@ const BestNewMusicMenu = ({ albums, setActiveItem, tracks }) => {
               <Menu.Item link key={album.title}>
                 <BestNewMusicCard
                   item={album}
-                  onClick={() => setActiveItem(album)}
+                  onClick={setActiveItem}
                 />
               </Menu.Item>
             );
@@ -45,7 +51,7 @@ const BestNewMusicMenu = ({ albums, setActiveItem, tracks }) => {
               <Menu.Item link key={track.title}>
                 <BestNewMusicCardContainer
                   item={track}
-                  onClick={() => setActiveItem(track)}
+                  onClick={setActiveItem}
                   withFavoriteButton
                 />
               </Menu.Item>
@@ -55,12 +61,6 @@ const BestNewMusicMenu = ({ albums, setActiveItem, tracks }) => {
       </Menu>
     </div>
   );
-};
-
-BestNewMusicMenu.propTypes = {
-  albums: PropTypes.arrayOf(bestNewItemShape),
-  tracks: PropTypes.arrayOf(bestNewItemShape),
-  setActiveItem: PropTypes.func
 };
 
 export default BestNewMusicMenu;
