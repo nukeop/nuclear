@@ -47,12 +47,10 @@ export default (async function () {
   }
 
   function getTracksFromDOM(processedIndex) {
-    const cookieOptions = document.getElementById('#onetrust-pc-btn-handler');
+    const cookieBanner = document.getElementById('#onetrust-banner-sdk');
 
-    if (cookieOptions) {
-      cookieOptions.click();
-      const acceptMinimalCookies = document.querySelector('.save-preference-btn-handler.onetrust-close-btn-handler.button-theme') as HTMLElement;
-      acceptMinimalCookies.click();
+    if (cookieBanner) {
+      cookieBanner.style.setProperty('display', 'none', 'important');
     }
     
     const nodeTracks = document.querySelector('div[data-testid="top-sentinel"] + div').childNodes as NodeListOf<Element>;
