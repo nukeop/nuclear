@@ -14,10 +14,7 @@ import { pluginsSelectors } from '../../selectors/plugins';
 import { settingsSelector } from '../../selectors/settings';
 import { setStringOption } from '../../actions/settings';
 
-const StreamMappingsService = new rest.NuclearStreamMappingsService(
-  process.env.NUCLEAR_SERVICES_URL,
-  process.env.NUCLEAR_SERVICES_ANON_KEY
-);
+const StreamMappingsService = new rest.NuclearStreamMappingsService(process.env.NUCLEAR_VERIFICATION_SERVICE_URL);
 
 const WEAK_VERIFICATION_THRESHOLD = 3;
 

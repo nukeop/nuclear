@@ -1,4 +1,4 @@
-import { NuclearSupabaseService } from './NuclearSupabaseService';
+import { NuclearService } from './NuclearService';
 
 type StreamMapping = {
     id: string;
@@ -9,45 +9,51 @@ type StreamMapping = {
     author_id: string;
 }
 
+type TopStream = {
+  artist: string;
+  title: string;
+  source: string;
+}
+
 type PostStreamMappingPayload = Omit<StreamMapping, 'id'>;
 
 type DeleteStreamMappingPayload = Omit<StreamMapping, 'id'>;
 
-export class NuclearStreamMappingsService extends NuclearSupabaseService {
+type GetStreamMappingsResponseBody = StreamMapping[];
+
+
+type ErrorBody = {
+  message: string[];
+  error: string;
+}
+
+export class NuclearStreamMappingsService extends NuclearService {
+  constructor(baseUrl: string) {
+    super(baseUrl);
+  }
   async getStreamMappingsByArtistAndTitle(artist: string, title: string, source: string){
-    return this.client.rpc<{stream_id: string, count: number}>('mappings_for_track', { artist, title, source });
+    return this.getJson<GetStreamMappingsResponseBody, ErrorBody>(fetch(`${this.baseUrl}/stream-mappings/find-all`, {
+      headers: this.getHeaders(),
+      method: 'POST',
+      body: JSON.stringify({ artist, title, source })
+    }));
   }
 
-  async getStreamMappingsByAuthorId(authorId: string) {
-    return this.client
-      .from<StreamMapping>('stream-mappings')
-      .select()
-      .eq('author_id', authorId);
+  async getTopStream(artist: string, title: string, source: string){
+    return this.getJson<TopStream, ErrorBody>(fetch(`${this.baseUrl}/stream-mappings/top-stream`, {
+      headers: this.getHeaders(),
+      method: 'POST',
+      body: JSON.stringify({ artist, title, source })
+    }));
   }
 
   async postStreamMapping(mapping: PostStreamMappingPayload) {
-    return this.client
-      .from<StreamMapping>('stream-mappings')
-      .insert(mapping);
+    return this.getJson<StreamMapping, ErrorBody>(fetch(`${this.baseUrl}/stream-mappings/verify`, {
+      headers: this.getHeaders(),
+      method: 'POST',
+      body: JSON.stringify(mapping)
+    }));
   }
 
-  async putStreamMapping(mapping: Partial<StreamMapping>) {
-    return this.client
-      .from<StreamMapping>('stream-mappings')
-      .update(mapping)
-      .eq('author_id', mapping.author_id)
-      .eq('artist', mapping.artist)
-      .eq('title', mapping.title)
-      .eq('source', mapping.source);
-  }
-
-  async deleteStreamMapping(mapping: DeleteStreamMappingPayload) {
-    return this.client
-      .from<StreamMapping>('stream-mappings')
-      .delete()
-      .eq('author_id', mapping.author_id)
-      .eq('artist', mapping.artist)
-      .eq('title', mapping.title)
-      .eq('source', mapping.source);
-  }
+  async deleteStreamMapping(mapping: DeleteStreamMappingPayload) {}
 }
