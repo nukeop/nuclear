@@ -10,7 +10,7 @@ class YoutubePlugin extends StreamProviderPlugin {
     this.sourceName = 'Youtube';
     this.description = 'A plugin allowing Nuclear to search for music and play it from Youtube';
     this.image = null;
-    this.isDefault = true;
+    // this.isDefault = true;
   }
 
   async search(query: StreamQuery): Promise<undefined | StreamData[]> {

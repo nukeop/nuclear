@@ -183,14 +183,18 @@ class SoundContainer extends React.Component {
   }
 
   isHlsStream(url) {
-    return /http.*?\.m3u8/g.test(url);
+    if (url?.stream){
+      return url.stream?.includes('m3u8');
+    } else {
+      return url.includes('m3u8');
+    }
   }
 
   render() {
     const { queue, player, equalizer, actions, enableSpectrum, currentStream, location, defaultEqualizer } = this.props;
     const currentTrack = queue.queueItems[queue.currentSong];
     const usedEqualizer = enableSpectrum ? equalizer : defaultEqualizer;
-    return Boolean(currentStream) && (this.isHlsStream(head(currentStream.streams)) ? (
+    return Boolean(currentStream) && (this.isHlsStream(head(currentStream.streams) || currentStream) ? (
       <HlsPlayer
         source={currentStream.stream}
         onError={this.handleError}

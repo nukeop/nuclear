@@ -12,13 +12,14 @@ class SoundcloudPlugin extends StreamProviderPlugin {
     this.sourceName = 'Soundcloud';
     this.description = 'Allows Nuclear to find music streams on Soundcloud';
     this.image = null;
+    this.isDefault = true;
   }
 
   resultToStream(result): StreamData {
     return {
-      source: this.sourceName,
+      source: 'Soundcloud',
       id: result.id,
-      stream: result.stream_url + `?client_id=${process.env.SOUNDCLOUD_API_KEY}`,
+      stream: result.stream,
       duration: result.duration/1000,
       title: result.title,
       thumbnail: result.user.avatar_url,
@@ -29,7 +30,8 @@ class SoundcloudPlugin extends StreamProviderPlugin {
   async search(query: StreamQuery): Promise<StreamData[] | undefined> {
     const terms = query.artist + ' ' + query.track;
     try {
-      const results = await(await Soundcloud.soundcloudSearch(terms)).json();
+      const results = [];
+      results.push(await(await Soundcloud.soundcloudSearch(terms)));
       return results && results.map(this.resultToStream);
     } catch (err) {
       logger.error(`Error while looking up streams for ${terms} on Soundcloud`);

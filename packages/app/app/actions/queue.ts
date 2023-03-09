@@ -55,7 +55,7 @@ const getSelectedStreamProvider = (getState) => {
     }
   } = getState();
 
-  return _.find(streamProviders, { sourceName: selected.streamProviders });
+  return _.find(streamProviders, { sourceName: 'Soundcloud' });
 };
 
 export const getTrackStreams = async (
