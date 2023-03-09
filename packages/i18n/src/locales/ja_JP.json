@@ -138,8 +138,8 @@
   },
   "playlists": {
     "add-selected-tracks-to-downloads": "選択をダウンロードに追加",
-    "add-selected-tracks-to-favorites": "選択されたものをお気に入りに追加",
-    "add-selected-tracks-to-queue": "選択されたものをキューに追加",
+    "add-selected-tracks-to-favorites": "選択をお気に入りに追加",
+    "add-selected-tracks-to-queue": "選択を再生キューに追加",
     "album": "アルバム",
     "artist": "アーティスト",
     "delete": "再生リストを削除",
