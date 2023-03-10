@@ -154,6 +154,7 @@ function TrackTableContainer<T extends Track> ({
     onDelete={onDelete}
     onDragEnd={Boolean(onReorder) && onDragEnd}
     popupActionStrings={popupStrings}
+    withAddtoDownload={settings.displayDownloadButton}
 
     isTrackFavorite={isTrackFavorite}
   />;

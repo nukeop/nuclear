@@ -19,6 +19,7 @@ const SelectionHeader: React.FC<
   onPlayAll,
   onAddToFavorites,
   onAddToDownloads,
+  withAddtoDownload,
   strings
 }) => {
   const checkboxProps = getToggleAllRowsSelectedProps();
@@ -59,12 +60,12 @@ const SelectionHeader: React.FC<
               icon='heart'
               onClick={() => selectedTracks.forEach((track) => onAddToFavorites(track))}
             />
-            <PopupButton
+            {withAddtoDownload && <PopupButton
               ariaLabel={strings.addSelectedTracksToDownloads}
               label={strings.addSelectedTracksToDownloads}
               icon='download'
               onClick={() => selectedTracks.forEach((track) => onAddToDownloads(track))}
-            />
+            />}
           </ContextPopup>
         </span>
     }

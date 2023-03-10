@@ -25,6 +25,7 @@ export type TrackTableExtraProps<T extends Track> = {
   onCreatePlaylist?: (track: T, { name }: { name: string }) => void;
   onAddToDownloads?: (track: T) => void;
   onDelete?: (track: T, idx: number) => void;
+  withAddtoDownload?: boolean;
   playlists?: Array<{
     name: string;
   }>;
@@ -59,6 +60,7 @@ export type TrackTableSettings = {
   displayAlbum?: boolean;
   displayDuration?: boolean;
   displayCustom?: boolean;
+  displayDownloadButton?: boolean;
   selectable?: boolean;
 };
 
