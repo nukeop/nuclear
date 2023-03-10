@@ -175,8 +175,8 @@
     "songs": "{{total}} 曲",
     "songs_plural": "{{total}} 曲",
     "title": "タイトル",
-    "tracks-selected-plural": "選択されたトラック",
-    "tracks-selected-singular": "選択されたトラック",
+    "tracks-selected-plural": "曲を選択",
+    "tracks-selected-singular": "曲を選択",
     "tracks-singular": "トラック",
     "tracks-plural": "トラック",
     "modified-at": "最終更新日時: ",
@@ -209,7 +209,7 @@
     "download-toast-content": "{{artist}} - {{title}} をダウンロード一覧に追加しました",
     "download-toast-title": "曲をダウンロード一覧に追加しました",
     "favorite-add": "お気に入りに追加",
-    "header": "キュー",
+    "header": "再生キュー",
     "header-track": "現在の曲",
     "copy-track-url": "トラックのURLをクリップボードにコピー",
     "loading": "ストリームが読み込み中です",
@@ -344,12 +344,12 @@
     "playlist-toast-title": "1曲を再生リストに追加しました"
   },
   "track-table": {
-    "add-selected-tracks-to-queue": "選択をキューに追加",
+    "add-selected-tracks-to-queue": "選択を再生キューに追加",
     "add-selected-tracks-to-downloads": "選択をダウンロード一覧に追加",
     "add-selected-tracks-to-favorites": "選択をお気に入りに追加",
     "play-selected-tracks-now": "選択した曲を再生",
-    "tracks-selected-label-singular": "選択されたトラック",
-    "tracks-selected-label-plural": "選択されたトラック"
+    "tracks-selected-label-singular": "曲を選択",
+    "tracks-selected-label-plural": "曲を選択"
   },
   "visualizer": {
     "exit-fullscreen": "ESCで全画面表示終了"
@@ -361,7 +361,7 @@
     "protip-content": "矢印で操縦、Enterで選択、Escで閉じる",
     "categories": {
       "playback": "再生",
-      "queue": "キュー",
+      "queue": "再生キュー",
       "navigation": "ナビ",
       "application": "アプリケーション"
     },
