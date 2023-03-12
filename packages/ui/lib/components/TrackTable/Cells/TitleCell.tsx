@@ -71,7 +71,7 @@ const TitleCell: React.FC<CellProps<Track> & TrackTableExtraProps<Track>> = ({
         withAddToQueue={Boolean(onAddToQueue)}
         withAddToFavorites={Boolean(onAddToFavorites)}
         withAddToPlaylist={Boolean(onAddToFavorites)}
-        withAddToDownloads={Boolean(onAddToDownloads)}
+        withAddToDownloads={Boolean(onAddToDownloads) && !row.original.local}
 
         strings={popupActionStrings}
       />
