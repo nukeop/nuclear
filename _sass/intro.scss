@@ -102,6 +102,22 @@ section.intro {
         }
     }
 
+    .intro-mascot {
+        position: absolute;
+        left: 50px;
+        bottom: 50px;
+
+        @media screen and (max-width: $sm) {
+            width: 196;
+            height: 196px;
+        }
+
+        @media screen and (max-width: $xsm) {
+            width: 128px;
+            height: 128px;
+        }
+    }
+
     .mockup {
         position: relative;
         display: flex;
@@ -113,12 +129,12 @@ section.intro {
             height: auto;
             justify-content: center;
             padding: 96px 0;
-            
+
             img {
                 max-width: 100%;
             }
         }
-        
+
         @media screen and (max-width: $xsm) {
             padding: 48px 0;
         }
