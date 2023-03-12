@@ -13,7 +13,6 @@ const LibrarySimpleList: React.FC<LibrarySimpleListProps> = ({
   tracks={tracks}
   displayDeleteButton={false}
   displayFavorite={false} 
-  displayAddToDownloads={false}
 />;
 
 export default LibrarySimpleList;
