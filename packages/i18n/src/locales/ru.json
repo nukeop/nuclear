@@ -286,7 +286,7 @@
     "mastodon-awaiting-authorization": "Nuclear зарегистрирован на {{instanceUrl}}. Ожидание авторизации.",
     "mastodon-description": "",
     "mastodon-instance-label": "Сервер Mastodon",
-    "mastodon-post-format-description": "Nuclear will post a status on Mastodon after each track completes playing. The above string will be the template for each post, with {{artist}}, {{title}}, and {{url}} replaced with the artist, title, and a link to the track respectively.",
+    "mastodon-post-format-description": "Nuclear будет публиковать статус на Mastodon после завершения проигрывания каждого трека. Строка сверху является шаблоном для каждого сообщения, а {{artist}}, {{title}} и {{url}} будут заменены на исполнителя, название и ссылку на трек соответственно.",
     "mastodon-post-format-label": "Формат поста",
     "mastodon-title": "",
     "normalize": "Нормализовать звук",
