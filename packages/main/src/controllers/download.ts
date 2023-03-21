@@ -8,6 +8,7 @@ import { getTrackArtist, getTrackTitle } from '../utils/tracks';
 import Download from '../services/download';
 import Logger, { $mainLogger } from '../services/logger';
 import Window from '../services/window';
+import { platform } from 'os';
 
 interface DownloadRef {
   uuid: string;
@@ -22,6 +23,25 @@ class DownloadIpcCtrl {
     @inject($mainLogger) private logger: Logger,
     @inject(Window) private window: Window
   ) { }
+
+  removeInvalidCharacters(filename: string): string {
+    let invalidChars: string[];
+
+    switch (platform.toString()) {
+    case 'darwin': // Mac OS
+      invalidChars = [':', '/'];
+      break;
+    case 'linux': // Linux
+      invalidChars = ['/'];
+      break;
+    default: // Windows
+      invalidChars = ['<', '>', ':', '"', '/', '\\', '|', '?', '*'];
+      break;
+    }
+
+    const sanitizedFilename = filename.split('').filter((char) => !invalidChars.includes(char)).join('');
+    return sanitizedFilename;
+  }
 
   /**
    * Start a download using the download service
@@ -41,9 +61,10 @@ class DownloadIpcCtrl {
       const artistName = getTrackArtist(data);
       const title = getTrackTitle(data);
 
-      const filename = `${artistName} - ${title}`;
+      // .replace(/[/\\?%*:|"<>]/g, '-') or equivalent invalid characters based on platform
+      const filename = this.removeInvalidCharacters(`${artistName} - ${title}`);
 
-      this.logger.log(`Start Download: ${artistName} - ${title}`);
+      this.logger.log(`Start Download: ${filename}`);
 
       await this.download.start({
         query: {
