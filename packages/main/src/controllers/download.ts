@@ -8,7 +8,7 @@ import { getTrackArtist, getTrackTitle } from '../utils/tracks';
 import Download from '../services/download';
 import Logger, { $mainLogger } from '../services/logger';
 import Window from '../services/window';
-import { platform } from 'os';
+import Platform from '../services/platform';
 
 interface DownloadRef {
   uuid: string;
@@ -21,22 +21,19 @@ class DownloadIpcCtrl {
   constructor(
     @inject(Download) private download: Download,
     @inject($mainLogger) private logger: Logger,
-    @inject(Window) private window: Window
+    @inject(Window) private window: Window,
+    @inject(Platform) private platform: Platform
   ) { }
 
   removeInvalidCharacters(filename: string): string {
     let invalidChars: string[];
 
-    switch (platform.toString()) {
-    case 'darwin': // Mac OS
+    if (this.platform.isMac()) {
       invalidChars = [':', '/'];
-      break;
-    case 'linux': // Linux
+    } else if (this.platform.isLinux()) {
       invalidChars = ['/'];
-      break;
-    default: // Windows
+    } else { // Windows and other platforms
       invalidChars = ['<', '>', ':', '"', '/', '\\', '|', '?', '*'];
-      break;
     }
 
     const sanitizedFilename = filename.split('').filter((char) => !invalidChars.includes(char)).join('');
