@@ -103,7 +103,16 @@ describe('StreamVerificationContainer', () => {
       score: 10,
       self_verified: true
     });
-    fetchMock.delete('http://verification.nuclear/stream-mappings/CuklIb9d3fI', 204);
+    fetchMock.delete({
+      url: 'http://verification.nuclear/stream-mappings/unverify',
+      body: {
+        stream_id: 'CuklIb9d3fI',
+        artist: 'test artist 1',
+        title: 'test track 1',
+        source: 'Test Stream Provider',
+        author_id: '1'
+      }
+    }, 204);
     const store = buildStoreState()
       .withTracksInPlayQueue()
       .withPlugins()
