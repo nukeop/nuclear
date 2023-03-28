@@ -55,9 +55,7 @@ exports[`(Snapshot) StreamVerification - verified by user should render correctl
     </div>
     <button
       class="ui button nuclear button"
-    >
-      Verify
-    </button>
+    />
   </div>
 </DocumentFragment>
 `;
