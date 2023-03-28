@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { v4 } from 'uuid';
+import logger from 'electron-timber';
 
 import { getTrackArtist, StreamVerification } from '@nuclear/ui';
 import { StreamVerificationProps } from '@nuclear/ui/lib/components/StreamVerification';
@@ -13,8 +14,8 @@ import { head } from 'lodash';
 import { pluginsSelectors } from '../../selectors/plugins';
 import { settingsSelector } from '../../selectors/settings';
 import { setStringOption } from '../../actions/settings';
+import { isResponseBody } from '@nuclear/core/src/rest/Nuclear/NuclearService';
 
-const StreamMappingsService = new rest.NuclearStreamMappingsService(process.env.NUCLEAR_VERIFICATION_SERVICE_URL);
 
 const WEAK_VERIFICATION_THRESHOLD = 3;
 
@@ -27,25 +28,40 @@ export const StreamVerificationContainer: React.FC = () => {
   const currentTrack: QueueItem = queue.queueItems[queue.currentSong];
   const [isLoading, setLoading] = useState(false);
   const [verificationStatus, setVerificationStatus] = useState<StreamVerificationProps['status']>('unknown');
+  const StreamMappingsService = new rest.NuclearStreamMappingsService(process.env.NUCLEAR_VERIFICATION_SERVICE_URL);
 
   useEffect(() => {
+    setVerificationStatus('unknown');
     if (currentTrack) {
-      StreamMappingsService.getStreamMappingsByArtistAndTitle(
+      StreamMappingsService.getTopStream(
         getTrackArtist(currentTrack),
         currentTrack.name,
-        selectedStreamProvider
+        selectedStreamProvider,
+        settings?.userId
       ).then(res => {
-        const verifications = res.data?.[0]?.count;
-        if (verifications === undefined) {
-          setVerificationStatus('unverified');
-        } else if (verifications < WEAK_VERIFICATION_THRESHOLD) {
-          setVerificationStatus('weakly_verified');
+        if (isResponseBody(res) && res.body.stream_id === head(currentTrack.streams)?.id) {
+          if (res.body.score === undefined) {
+            logger.error(`Failed to verify stream: ${currentTrack.name} by ${getTrackArtist(currentTrack)}`);
+            setVerificationStatus('unverified');
+          } else if (res.body.self_verified) {
+            setVerificationStatus('verified_by_user');
+          } else if (res.body.score < WEAK_VERIFICATION_THRESHOLD) {
+            setVerificationStatus('weakly_verified');
+          } else {
+            setVerificationStatus('verified');
+          }
         } else {
-          setVerificationStatus('verified');
+          setVerificationStatus('unverified');
         }
-      });
+      })
+        .catch((e) => {
+          setVerificationStatus('unverified');
+        })
+        .finally(() => {
+          setLoading(false);
+        });
     }
-  }, [currentTrack]);
+  }, [currentTrack?.streams?.[0], settings?.userId, selectedStreamProvider]);
 
   useEffect(() => {
     if (settings.isReady && !settings?.userId) {
@@ -54,7 +70,7 @@ export const StreamVerificationContainer: React.FC = () => {
   }, [settings.isLoading, settings.isReady]);
 
   const onVerify = () => {
-    if (currentTrack) {
+    if (currentTrack && verificationStatus !== 'verified_by_user') {
       setLoading(true);
       StreamMappingsService.postStreamMapping({
         artist: getTrackArtist(currentTrack),
@@ -64,7 +80,9 @@ export const StreamVerificationContainer: React.FC = () => {
         author_id: settings?.userId
       }).then(() => {
         setVerificationStatus('verified_by_user');
-      }).catch(() => {
+      }).catch((e) => {
+        logger.error(`Failed to verify stream: ${currentTrack.name} by ${getTrackArtist(currentTrack)}`);
+        logger.error(e);
         setVerificationStatus('unknown');
       }).finally(() => {
         setLoading(false);
@@ -82,8 +100,9 @@ export const StreamVerificationContainer: React.FC = () => {
         stream_id: head(currentTrack.streams).id,
         author_id: settings?.userId
       }).then(() => {
-        setVerificationStatus('verified');
+        setVerificationStatus('unverified');
       }).catch(() => {
+        logger.error(`Failed to unverify stream: ${currentTrack.name} by ${getTrackArtist(currentTrack)}`);
         setVerificationStatus('verified_by_user');
       }).finally(() => {
         setLoading(false);

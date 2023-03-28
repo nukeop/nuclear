@@ -10,17 +10,14 @@ type StreamMapping = {
 }
 
 type TopStream = {
-  artist: string;
-  title: string;
-  source: string;
+  stream_id: string;
+  score: number;
+  self_verified: boolean;
 }
 
 type PostStreamMappingPayload = Omit<StreamMapping, 'id'>;
 
 type DeleteStreamMappingPayload = Omit<StreamMapping, 'id'>;
-
-type GetStreamMappingsResponseBody = StreamMapping[];
-
 
 type ErrorBody = {
   message: string[];
@@ -31,15 +28,8 @@ export class NuclearStreamMappingsService extends NuclearService {
   constructor(baseUrl: string) {
     super(baseUrl);
   }
-  async getStreamMappingsByArtistAndTitle(artist: string, title: string, source: string){
-    return this.getJson<GetStreamMappingsResponseBody, ErrorBody>(fetch(`${this.baseUrl}/stream-mappings/find-all`, {
-      headers: this.getHeaders(),
-      method: 'POST',
-      body: JSON.stringify({ artist, title, source })
-    }));
-  }
 
-  async getTopStream(artist: string, title: string, source: string){
+  async getTopStream(artist: string, title: string, source: string, author_id: string){
     return this.getJson<TopStream, ErrorBody>(fetch(`${this.baseUrl}/stream-mappings/top-stream`, {
       headers: this.getHeaders(),
       method: 'POST',
@@ -48,12 +38,19 @@ export class NuclearStreamMappingsService extends NuclearService {
   }
 
   async postStreamMapping(mapping: PostStreamMappingPayload) {
-    return this.getJson<StreamMapping, ErrorBody>(fetch(`${this.baseUrl}/stream-mappings/verify`, {
+    return this.getJson<void, ErrorBody>(fetch(`${this.baseUrl}/stream-mappings/verify`, {
       headers: this.getHeaders(),
       method: 'POST',
       body: JSON.stringify(mapping)
     }));
   }
 
-  async deleteStreamMapping(mapping: DeleteStreamMappingPayload) {}
+  async deleteStreamMapping(mapping: DeleteStreamMappingPayload) {
+    return this.getJson<void, ErrorBody>(fetch(`${this.baseUrl}/stream-mappings/unverify`, {
+      headers: this.getHeaders(),
+      method: 'DELETE',
+      body: JSON.stringify(mapping)
+    }));
+  }
+
 }
