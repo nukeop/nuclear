@@ -1,3 +1,4 @@
+import { has } from 'lodash';
 import { NuclearService } from './NuclearService';
 
 type StreamMapping = {
@@ -9,7 +10,7 @@ type StreamMapping = {
     author_id: string;
 }
 
-type TopStream = {
+export type TopStream = {
   stream_id: string;
   score: number;
   self_verified: boolean;
@@ -24,6 +25,10 @@ type ErrorBody = {
   error: string;
 }
 
+export const isTopStream = (data: TopStream | ErrorBody): data is TopStream => {
+  return has(data, 'stream_id');
+};
+
 export class NuclearStreamMappingsService extends NuclearService {
   constructor(baseUrl: string) {
     super(baseUrl);
@@ -33,7 +38,7 @@ export class NuclearStreamMappingsService extends NuclearService {
     return this.getJson<TopStream, ErrorBody>(fetch(`${this.baseUrl}/stream-mappings/top-stream`, {
       headers: this.getHeaders(),
       method: 'POST',
-      body: JSON.stringify({ artist, title, source })
+      body: JSON.stringify({ artist, title, source, author_id })
     }));
   }
 
