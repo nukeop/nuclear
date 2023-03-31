@@ -19,6 +19,7 @@ class iTunesPodcastPlugin extends StreamProviderPlugin {
       source: this.sourceName,
       id: result.trackId,
       stream: result.episodeUrl,
+      streamFormat: this.identifyStreamFormat(result?.episodeUrl),
       duration: result.trackTimeMillis / 1000,
       title: result.trackName,
       thumbnail: result.artworkUrl600,
@@ -28,8 +29,11 @@ class iTunesPodcastPlugin extends StreamProviderPlugin {
 
   async findPodcastId(podcast: string): Promise<string> {
     try {
-      const results = await(await iTunes.podcastSearch(podcast, '50')).json();
-      const infoPodcast = _.find(results.results, result => result && result.collectionName === podcast);
+      const results = await (await iTunes.podcastSearch(podcast, '50')).json();
+      const infoPodcast = _.find(
+        results.results,
+        (result) => result && result.collectionName === podcast
+      );
       return infoPodcast.collectionId;
     } catch (err) {
       logger.error(`Error while looking up podcast for ${podcast} on iTunes`);
@@ -43,11 +47,16 @@ class iTunesPodcastPlugin extends StreamProviderPlugin {
     const podcastId = await this.findPodcastId(podcast);
 
     try {
-      const results = await(await iTunes.getPodcastEpisodes(podcastId, '50')).json();
-      const infoEpisode = _.find(results.results, result => 
-        result && 
-          result.trackName === episode && 
-          result.wrapperType === 'podcastEpisode');
+      const results = await (
+        await iTunes.getPodcastEpisodes(podcastId, '50')
+      ).json();
+      const infoEpisode = _.find(
+        results.results,
+        (result) =>
+          result &&
+          result.trackName === episode &&
+          result.wrapperType === 'podcastEpisode'
+      );
       return infoEpisode ? [this.resultToStream(infoEpisode)] : null;
     } catch (err) {
       logger.error(`Error while looking up podcast for ${podcast} on iTunes`);

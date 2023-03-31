@@ -15,23 +15,24 @@ class SoundcloudPlugin extends StreamProviderPlugin {
     this.isDefault = true;
   }
 
-  resultToStream(result): StreamData {
+  resultToStream = (result): StreamData => {
     return {
-      source: 'Soundcloud',
+      source: this.sourceName,
       id: result.id,
+      streamFormat: this.identifyStreamFormat(result.stream),
       stream: result.stream,
-      duration: result.duration/1000,
+      duration: result.duration / 1000,
       title: result.title,
       thumbnail: result.user.avatar_url,
       originalUrl: result.permalink_url
     };
-  }
+  };
 
   async search(query: StreamQuery): Promise<StreamData[] | undefined> {
     const terms = query.artist + ' ' + query.track;
     try {
       const results = [];
-      results.push(await(await Soundcloud.soundcloudSearch(terms)));
+      results.push(await await Soundcloud.soundcloudSearch(terms));
       return results && results.map(this.resultToStream);
     } catch (err) {
       logger.error(`Error while looking up streams for ${terms} on Soundcloud`);
@@ -40,13 +41,7 @@ class SoundcloudPlugin extends StreamProviderPlugin {
   }
 
   async getStreamForId(id: string): Promise<undefined | StreamData> {
-    try { 
-      const result = await(await Soundcloud.getTrackById(id)).json();
-      return result.id && this.resultToStream(result);
-    } catch (err) {
-      logger.error(`Error while looking up streams id: ${id} on Soundcloud`);
-      logger.error(err);
-    }
+    return null;
   }
 }
 

@@ -9,7 +9,8 @@ class BandcampPlugin extends StreamProviderPlugin {
     super();
     this.name = 'Bandcamp Plugin';
     this.sourceName = 'Bandcamp';
-    this.description = 'A plugin allowing Nuclear to search for music and play it from Bandcamp';
+    this.description =
+      'A plugin allowing Nuclear to search for music and play it from Bandcamp';
     this.image = null;
     this.isDefault = false;
   }
@@ -20,9 +21,10 @@ class BandcampPlugin extends StreamProviderPlugin {
 
     for (let page = 0; page < limit; page++) {
       const searchResults = await Bandcamp.search(query.track, page);
-      tracks = searchResults.filter(item =>
-        item.type === 'track' &&
-        item.artist.toLowerCase() === query.artist.toLowerCase()
+      tracks = searchResults.filter(
+        (item) =>
+          item.type === 'track' &&
+          item.artist.toLowerCase() === query.artist.toLowerCase()
       );
       if (tracks) {
         break;
@@ -31,11 +33,16 @@ class BandcampPlugin extends StreamProviderPlugin {
     return tracks;
   }
 
-  resultToStream(result: BandcampSearchResult, stream: string, duration: number): StreamData {
+  resultToStream(
+    result: BandcampSearchResult,
+    stream: string,
+    duration: number
+  ): StreamData {
     return {
       source: this.sourceName,
       id: btoa(result.url),
       stream,
+      streamFormat: this.identifyStreamFormat(stream),
       duration,
       title: result.name,
       thumbnail: result.imageUrl,
@@ -47,12 +54,18 @@ class BandcampPlugin extends StreamProviderPlugin {
     try {
       const tracks = await this.findTrackUrls(query);
 
-      return Promise.all(tracks.map(async track => {
-        const { stream, duration } = await Bandcamp.getTrackData(track.url);
-        return this.resultToStream(track, stream, duration);
-      }));
+      return Promise.all(
+        tracks.map(async (track) => {
+          const { stream, duration } = await Bandcamp.getTrackData(track.url);
+          return this.resultToStream(track, stream, duration);
+        })
+      );
     } catch (error) {
-      logger.error(`Error while searching  for ${query.artist + ' ' + query.track} on Bandcamp`);
+      logger.error(
+        `Error while searching  for ${
+          query.artist + ' ' + query.track
+        } on Bandcamp`
+      );
       logger.error(error);
     }
   }

@@ -3,25 +3,20 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { compose, withProps } from 'recompose';
-import Sound, { Volume, Equalizer, AnalyserByFrequency } from 'react-hifi';
 import logger from 'electron-timber';
 import { head } from 'lodash';
 import { IpcEvents, rest } from '@nuclear/core';
 import { post as mastodonPost } from '@nuclear/core/src/rest/Mastodon';
-
 import * as SearchActions from '../../actions/search';
 import * as PlayerActions from '../../actions/player';
 import * as EqualizerActions from '../../actions/equalizer';
 import * as QueueActions from '../../actions/queue';
 import * as ScrobblingActions from '../../actions/scrobbling';
 import * as LyricsActions from '../../actions/lyrics';
-import { filterFrequencies } from '../../components/Equalizer/chart';
 import * as Autoradio from './autoradio';
-import VisualizerContainer from '../../containers/VisualizerContainer';
-import Normalizer from '../../components/Normalizer';
 import globals from '../../globals';
-import HlsPlayer from '../../components/HLSPlayer';
 import { ipcRenderer } from 'electron';
+import StreamStrategy from './StreamStrategy';
 
 const lastfm = new rest.LastFmApi(globals.lastfmApiKey, globals.lastfmApiSecret);
 
@@ -119,18 +114,16 @@ class SoundContainer extends React.Component {
     }
   }
 
-  addAutoradioTrackToQueue() {
+  async addAutoradioTrackToQueue() {
     const currentSong = this.props.queue.queueItems[this.props.queue.currentSong];
-    return lastfm
-      .getArtistInfo(currentSong.artist)
-      .then(artist => artist.json())
-      .then(artistJson => this.getSimilarArtists(artistJson.artist))
-      .then(similarArtists => this.getRandomElement(similarArtists))
-      .then(selectedArtist => this.getArtistTopTracks(selectedArtist))
-      .then(topTracks => this.getRandomElement(topTracks.toptracks.track))
-      .then(track => {
-        return this.addToQueue(track.artist, track);
-      });
+    const artist_1 = await lastfm
+      .getArtistInfo(currentSong.artist);
+    const artistJson = await artist_1.json();
+    const similarArtists = await this.getSimilarArtists(artistJson.artist);
+    const selectedArtist = await this.getRandomElement(similarArtists);
+    const topTracks = await this.getArtistTopTracks(selectedArtist);
+    const track = await this.getRandomElement(topTracks.toptracks.track);
+    return await this.addToQueue(track.artist, track);
   }
 
   getSimilarArtists(artistJson) {
@@ -182,60 +175,29 @@ class SoundContainer extends React.Component {
     );
   }
 
-  isHlsStream(url) {
-    if (url?.stream){
-      return url.stream?.includes('m3u8');
-    } else {
-      return url.includes('m3u8');
-    }
-  }
-
   render() {
     const { queue, player, equalizer, actions, enableSpectrum, currentStream, location, defaultEqualizer } = this.props;
     const currentTrack = queue.queueItems[queue.currentSong];
     const usedEqualizer = enableSpectrum ? equalizer : defaultEqualizer;
-    return Boolean(currentStream) && (this.isHlsStream(head(currentStream.streams) || currentStream) ? (
-      <HlsPlayer
-        source={currentStream.stream}
-        onError={this.handleError}
-        playStatus={player.playbackStatus}
-        onFinishedPlaying={this.handleFinishedPlaying}
-        muted={player.muted}
-        volume={player.volume}
+    return (
+      <StreamStrategy
+        streamType={currentStream?.streamFormat}
+        player={player}
+        usedEqualizer={usedEqualizer}
+        currentTrack={currentTrack}
+        actions={actions}
+        location={location}
+        currentStream={currentStream}
+        settings={this.props.settings}
+        methods={{
+          handleError: this.handleError,
+          handlePlaying: this.handlePlaying,
+          handleFinishedPlaying: this.handleFinishedPlaying,
+          handleLoaded: this.handleLoaded,
+          handleLoading: this.handleLoading
+        }}
       />
-    ) : (
-      <Sound
-        url={currentStream.stream}
-        playStatus={player.playbackStatus}
-        onPlaying={this.handlePlaying}
-        onFinishedPlaying={this.handleFinishedPlaying}
-        onLoading={this.handleLoading}
-        onLoad={this.handleLoaded}
-        position={player.seek}
-        onError={this.handleError}
-      >
-        <Normalizer
-          url={currentStream.stream}
-          normalize={this.props.settings.normalize}
-        />
-        <Volume value={player.muted ? 0 : player.volume} />
-        <Equalizer
-          data={filterFrequencies.reduce((acc, freq, idx) => ({
-            ...acc,
-            [freq]: usedEqualizer.values[idx] || 0
-          }), {})}
-          preAmp={usedEqualizer.preAmp}
-        />
-        <AnalyserByFrequency
-          frequencies={filterFrequencies}
-          onVisualisationData={enableSpectrum && actions.setSpectrum}
-        />
-        <VisualizerContainer
-          location={location}
-          trackName={currentTrack ? `${currentTrack.artist} - ${currentTrack.name}` : undefined}
-        />
-      </Sound>
-    ));
+    );
   }
 }
 

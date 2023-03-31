@@ -8,7 +8,8 @@ class YoutubePlugin extends StreamProviderPlugin {
     super();
     this.name = 'Youtube Plugin';
     this.sourceName = 'Youtube';
-    this.description = 'A plugin allowing Nuclear to search for music and play it from Youtube';
+    this.description =
+      'A plugin allowing Nuclear to search for music and play it from Youtube';
     this.image = null;
     // this.isDefault = true;
   }
@@ -16,7 +17,8 @@ class YoutubePlugin extends StreamProviderPlugin {
   async search(query: StreamQuery): Promise<undefined | StreamData[]> {
     const terms = query.artist + ' ' + query.track;
     try {
-      return Youtube.trackSearch(query, this.sourceName);
+      const youtubeResults = await Youtube.trackSearch(query, this.sourceName);
+      return this.mapStreamFormats(youtubeResults);
     } catch (e) {
       logger.error(`Error while searching  for ${terms} on Youtube`);
       logger.error(e);
@@ -29,7 +31,6 @@ class YoutubePlugin extends StreamProviderPlugin {
     } catch (e) {
       logger.error(`Error while looking up streams for id: ${id} on Youtube`);
       logger.error(e);
-      
     }
   }
 }

@@ -10,7 +10,8 @@ class InvidiousPlugin extends StreamProviderPlugin {
     super();
     this.name = 'Invidious Plugin';
     this.sourceName = 'Invidious';
-    this.description = 'A plugin allowing Nuclear to search for music and play it from invidious';
+    this.description =
+      'A plugin allowing Nuclear to search for music and play it from invidious';
     this.baseUrl = Invidious.baseUrl;
     this.image = null;
   }
@@ -19,7 +20,7 @@ class InvidiousPlugin extends StreamProviderPlugin {
     const terms = query.artist + ' ' + query.track;
     try {
       const res = await Invidious.trackSearch(terms);
-      return Promise.all(res.map(track => this.resultToStream(track)));
+      return Promise.all(res.map((track) => this.resultToStream(track)));
     } catch (error) {
       logger.error(`Error while searching  for ${terms} on Invidious`);
       logger.error(error);
@@ -38,18 +39,18 @@ class InvidiousPlugin extends StreamProviderPlugin {
   }
 
   resultToStream(result): StreamData {
-    const {
-      adaptiveFormats,
-      lengthSeconds,
-      title,
-      videoId,
-      videoThumbnails
-    } = result;
+    const { adaptiveFormats, lengthSeconds, title, videoId, videoThumbnails } =
+      result;
+
+    const stream = adaptiveFormats.find(
+      ({ container, type }) => type.includes('audio') && container === 'webm'
+    ).url;
 
     return {
       source: this.sourceName,
       id: videoId,
-      stream: adaptiveFormats.find(({ container, type }) => type.includes('audio') && container === 'webm').url,
+      stream,
+      streamFormat: this.identifyStreamFormat(stream),
       duration: lengthSeconds,
       title,
       thumbnail: videoThumbnails[3].url,
