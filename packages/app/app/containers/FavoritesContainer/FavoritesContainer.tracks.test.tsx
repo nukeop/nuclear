@@ -53,6 +53,33 @@ describe('Favorite tracks view container', () => {
     expect(component.asFragment()).toMatchSnapshot();
   });
 
+  it('should not display the favorite button for tracks', async () => {
+    const favorites = buildStoreState()
+      .withFavorites()
+      .build()
+      .favorites;
+    updateStore('favorites', favorites);
+    const { component } = mountComponent();
+    await waitFor(() => component.getAllByTestId('track-popup-trigger')[0].click());
+
+    expect(component.queryByText(/favorites/i)).toBeNull();
+  });
+  
+  it('should not display the add to favorites all button for selected tracks', async () => {
+    const favorites = buildStoreState()
+      .withFavorites()
+      .build()
+      .favorites;
+    updateStore('favorites', favorites);
+    const { component } = mountComponent();
+    await waitFor(() => component.getAllByTestId('track-popup-trigger')[0].click());
+    await waitFor(() => component.getByTitle('Toggle All Rows Selected').click());
+    await waitFor(() => component.getByTestId('select-all-popup-trigger').click());
+    await component.findByText(/add selected to queue/i);
+
+    expect(component.queryByText(/add selected to favorites/i)).toBeNull();
+  });
+
   it('should be able to sort favorite tracks by title, ascending', async () => {
     const favorites = buildStoreState()
       .withFavorites({
