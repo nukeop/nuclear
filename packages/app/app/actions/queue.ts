@@ -197,6 +197,11 @@ export const findStreamsForTrack = (idx: number) => async (dispatch, getState) =
       if (streamData === undefined) {
         dispatch(removeFromQueue(track));
       } else {
+        streamData = [
+          await selectedStreamProvider.getStreamForId(streamData[0].id),
+          ...streamData.slice(1)
+        ];
+
         dispatch(
           updateQueueItem({
             ...track,
