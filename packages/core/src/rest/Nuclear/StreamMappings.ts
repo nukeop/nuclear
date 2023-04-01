@@ -57,5 +57,4 @@ export class NuclearStreamMappingsService extends NuclearService {
       body: JSON.stringify(mapping)
     }));
   }
-
 }
