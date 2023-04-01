@@ -1,7 +1,7 @@
 # ![nuclear](https://i.imgur.com/oT1006i.png) 
 [![nuclear](https://snapcraft.io//nuclear/badge.svg)](https://snapcraft.io/nuclear) [![Discord](https://img.shields.io/badge/Discord-7289DA?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/JqPjKxE)
 
-Pemutar musik desktop yang berfokus pada streaming dari sumber gratis
+Aplikasi pemutar musik berbasis desktop yang berfokus pada streaming dari sumber gratis
 
 ![Showcase](https://i.imgur.com/8qHu66J.png)
 
@@ -39,12 +39,12 @@ Nuclear adalah aplikasi pemutar musik gratis yang mengambil konten dari semua su
 Jika Anda pernah mendengar pemutar [mps-youtube](https://github.com/mps-youtube/mps-youtube), Nuclear merupakan aplikasi yang sama, namun memiliki GUI.
 Nuclear juga lebih berfokus ke _audio_. Bayangkan saja bahwa Nuclear adalah aplikasi pemutar musik Spotify, namun bedanya Anda tidak perlu membayar dan jumlah koleksi musik di sini jauh lebih besar.
 
-## Bagaimana jika Saya "bersebrangan dengan elektron"?
+## Bagaimana jika Saya "secara agama/keyakinan tidak sepaham dengan elektron"?
 Lihat [ini](docs/electron.md).
 
 ## Fitur
 
-- Pencarian dan memutar lagu dari YouTube (termasuk integrasi _playlist_ dan [SponsorBlock](https://sponsor.ajay.app/), Jamendo, Audius dan SoundCloud
+- Pencarian dan pemutaran lagu dari YouTube (termasuk integrasi _playlist_ dan [SponsorBlock](https://sponsor.ajay.app/), Jamendo, Audius dan SoundCloud
 - Pencarian album (lewat Last.fm dan Discogs), melihat album, mencari lagu otomatis berdasarkan musisi dan judul lagu (sedang dalam tahap pengembangan, kadang tidak berjalan sesuai harapan)
 - _Queue_ lagu, yang bisa diekspor sebagai _playlist_
 - Memuat _playlist_ yang tersimpan (disimpan dalam json file)
@@ -83,7 +83,7 @@ Berikut adalah _list packages managers_, yang sebagian dikelola oleh pihak ketig
 | Flatpak        | https://flathub.org/apps/details/org.js.nuclear.Nuclear            | [nukeop](https://github.com/nukeop)          | flatpak install flathub org.js.nuclear.Nuclear|
 | Void Linux     | https://github.com/machadofguilherme/nuclear-template              | [machadofguilherme](https://github.com/machadofguilherme) | See readme
 
-## Alih Bahasa Dari Komunitas
+## Terjemah Bahasa Dari Komunitas
 Nuclear telah diterjemahkan ke beberapa bahasa, dan kami akan terus mencari kontributor yang selalu ingin berkontribusi.
 
 Kami menggunakan _platform_ [Crowdin](https://crowdin.com/project/nuclear) untuk mengelola alih bahasa. Anda bisa mengecek apakah bahasa yang Anda gunakan telah tersedia di sana, melihat proses alih bahasa, dan bahkan membantu kami menerjemahkan Nuclear.

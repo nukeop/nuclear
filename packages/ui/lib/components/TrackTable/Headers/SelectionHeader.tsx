@@ -59,12 +59,15 @@ const SelectionHeader: React.FC<
               icon='heart'
               onClick={() => selectedTracks.forEach((track) => onAddToFavorites(track))}
             />
-            <PopupButton
-              ariaLabel={strings.addSelectedTracksToDownloads}
-              label={strings.addSelectedTracksToDownloads}
-              icon='download'
-              onClick={() => selectedTracks.forEach((track) => onAddToDownloads(track))}
-            />
+            {
+              onAddToDownloads &&
+              <PopupButton
+                ariaLabel={strings.addSelectedTracksToDownloads}
+                label={strings.addSelectedTracksToDownloads}
+                icon='download'
+                onClick={() => selectedTracks.forEach((track) => onAddToDownloads(track))}
+              />
+            }
           </ContextPopup>
         </span>
     }
