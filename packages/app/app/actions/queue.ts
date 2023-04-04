@@ -178,21 +178,27 @@ export const findStreamsForTrack = (idx: number) => async (dispatch, getState) =
         selectedStreamProvider
       );
 
-      const StreamMappingsService = new rest.NuclearStreamMappingsService(process.env.NUCLEAR_VERIFICATION_SERVICE_URL);
-      const topStream = await StreamMappingsService.getTopStream(
-        track.artist, 
-        track.name,
-        selectedStreamProvider.sourceName,
-        settings?.userId
-      );
-
-      // Use the top stream ID and put it at the top of the list
-      if (isTopStream(topStream.body)) {
-        streamData = [
-          streamData.find(stream => stream.id === (topStream.body as TopStream).stream_id),          
-          ...streamData.filter(stream => stream.id !== (topStream.body as TopStream).stream_id)
-        ];
+      if (settings.useStreamVerification) {
+        try {
+          const StreamMappingsService = new rest.NuclearStreamMappingsService(process.env.NUCLEAR_VERIFICATION_SERVICE_URL);
+          const topStream = await StreamMappingsService.getTopStream(
+            track.artist, 
+            track.name,
+            selectedStreamProvider.sourceName,
+            settings?.userId
+          );
+            // Use the top stream ID and put it at the top of the list
+          if (isTopStream(topStream.body)) {
+            streamData = [
+              streamData.find(stream => stream.id === (topStream.body as TopStream).stream_id),          
+              ...streamData.filter(stream => stream.id !== (topStream.body as TopStream).stream_id)
+            ];
+          }
+        } catch (e) {
+          logger.error('Failed to get top stream', e);
+        }
       }
+          
 
       if (streamData === undefined) {
         dispatch(removeFromQueue(track));
