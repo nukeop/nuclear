@@ -356,5 +356,13 @@ export const settingsConfig: Array<Setting> = [
     category: 'program-settings',
     type: SettingType.STRING,
     hide: true
+  },
+  {
+    name: 'useStreamVerification',
+    prettyName: 'use-stream-verification',
+    description: 'use-stream-verification-description',
+    category: 'playback',
+    type: SettingType.BOOLEAN,
+    default: true
   }
 ];

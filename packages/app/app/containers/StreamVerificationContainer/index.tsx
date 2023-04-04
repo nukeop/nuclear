@@ -16,7 +16,6 @@ import { settingsSelector } from '../../selectors/settings';
 import { setStringOption } from '../../actions/settings';
 import { isResponseBody } from '@nuclear/core/src/rest/Nuclear/NuclearService';
 
-
 const WEAK_VERIFICATION_THRESHOLD = 3;
 
 export const StreamVerificationContainer: React.FC = () => {
@@ -114,7 +113,9 @@ export const StreamVerificationContainer: React.FC = () => {
     return null;
   }
 
-  return <StreamVerification 
+  return settings?.isReady && 
+  settings?.useStreamVerification && 
+  <StreamVerification 
     status={verificationStatus}
     isLoading={isLoading}
     isDisabled={!currentTrack?.streams?.[0]?.stream}
