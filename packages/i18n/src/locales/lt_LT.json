@@ -19,7 +19,7 @@
     "favorite-artists": "Mėgstamiausi atlikėjai",
     "favorite-tracks": "Mėgstamiausios dainos",
     "library": "Vietinė biblioteka",
-    "listening-history": "Listening History",
+    "listening-history": "Istorija",
     "lyrics": "Lyrikos",
     "main": "Pagrindinis",
     "playlists": "Grojaraščiai",
@@ -28,14 +28,14 @@
     "settings": "Nustatymai",
     "visualizer": "Virtulizavimas",
     "user-panel": {
-      "actions-tooltip": "User actions",
-      "sign-up": "Sign up / Sign in",
-      "sign-out": "Sign out"
+      "actions-tooltip": "Vartotojo veiksmai",
+      "sign-up": "Užsiregistruoti / Prisijungti",
+      "sign-out": "Atsijungti"
     },
-    "version": "Version"
+    "version": "Versija"
   },
   "artist": {
-    "add-all": "Add all",
+    "add-all": "Pridėti visus",
     "count": "Paleidimo kartai",
     "queue": "Pridėti visas dainas į eilę",
     "similar": "Panašūs atlikėjai",
@@ -51,15 +51,15 @@
     "genres": "Žanrai",
     "news": "Naujienos",
     "playcounts": "Paleidimo kartai",
-    "playlists": "Trending",
+    "playlists": "Populiariausia",
     "popular-track-title": "Populiariausios Deezer dainos",
     "title": "Pavadinimas",
     "top": "Top dainos",
-    "trending-playlists": "Trending playlists",
-    "trending-artists": "Trending artists",
-    "trending-albums": "Trending albums",
-    "filter": "Filter...",
-    "nothing-found": "Nothing found."
+    "trending-playlists": "Populiariausi grojaraščiai",
+    "trending-artists": "Populiariausi atlikėjai",
+    "trending-albums": "Populiariausi albumai",
+    "filter": "Filtruoti...",
+    "nothing-found": "Nieko nerasta."
   },
   "downloads": {
     "clear": "Išvalyti pasibaigusias dainas",
@@ -71,16 +71,16 @@
     "status": "Būsena"
   },
   "equalizer": {
-    "classical": "Classical",
-    "club": "Club",
-    "custom": "Custom",
-    "default": "Default",
+    "classical": "Klasikinis",
+    "club": "Klubas",
+    "custom": "Pasirinktinis",
+    "default": "Numatyta",
     "full-bass": "Full Bass",
     "full-treble": "Full Treble",
     "pop": "Pop",
-    "presets": "Presets",
-    "reggae": "Reggae",
-    "rock": "Rock"
+    "presets": "Ruošiniai",
+    "reggae": "Regis",
+    "rock": "Rokas"
   },
   "favorite-albums": {
     "empty": "Nėra jokių mėgstamiausių albumų",
