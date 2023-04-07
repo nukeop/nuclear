@@ -54,6 +54,6 @@
     "mock-require": "^3.0.3",
     "ts-node": "^10.7.0",
     "typescript": "^4.2.4",
-    "ytdl-core": "^4.11.2"
+    "ytdl-core": "https://github.com/khlevon/node-ytdl-core.git#v4.11.3-patch.1"
   }
 }
