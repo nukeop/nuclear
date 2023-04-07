@@ -451,7 +451,9 @@ exports[`Play Queue container should display a context popup on right click 1`] 
           <div
             class="stream_source"
           >
-            <span>
+            <span
+              class="stream_source_name"
+            >
               Test Stream Provider
             </span>
           </div>
@@ -944,7 +946,9 @@ exports[`Play Queue container should display a context popup on right click for 
           <div
             class="stream_source"
           >
-            <span>
+            <span
+              class="stream_source_name"
+            >
               Test Stream Provider
             </span>
           </div>

@@ -29,6 +29,10 @@ describe('StreamVerificationContainer', () => {
     });
     const store = buildStoreState()
       .withTracksInPlayQueue()
+      .withSettings({
+        isReady: true,
+        useStreamVerification: true
+      })
       .build();
     const { component } = mountComponent(store);
     expect(component.asFragment()).toMatchSnapshot();
@@ -41,6 +45,10 @@ describe('StreamVerificationContainer', () => {
     });
     const store = buildStoreState()
       .withTracksInPlayQueue()
+      .withSettings({
+        isReady: true,
+        useStreamVerification: true
+      })
       .build();
     const { component } = mountComponent(store);
     await component.findByText('Weakly verified');
@@ -54,6 +62,10 @@ describe('StreamVerificationContainer', () => {
     });
     const store = buildStoreState()
       .withTracksInPlayQueue()    
+      .withSettings({
+        isReady: true,
+        useStreamVerification: true
+      })
       .build();
     const { component } = mountComponent(store);
     await component.findByText('Verified');
@@ -68,7 +80,11 @@ describe('StreamVerificationContainer', () => {
     });
     const store = buildStoreState()
       .withTracksInPlayQueue()
-      .withSettings({userId: '1'})
+      .withSettings({
+        userId: '1',
+        useStreamVerification: true,
+        isReady: true
+      })
       .build();
 
     const { component } = mountComponent(store);
@@ -89,7 +105,11 @@ describe('StreamVerificationContainer', () => {
     const store = buildStoreState()
       .withTracksInPlayQueue()
       .withPlugins()
-      .withSettings({userId: '1'})
+      .withSettings({
+        userId: '1',
+        useStreamVerification: true,
+        isReady: true
+      })
       .build();
     const { component } = mountComponent(store);
     await (await component.findByText('Verify')).click();
@@ -116,7 +136,11 @@ describe('StreamVerificationContainer', () => {
     const store = buildStoreState()
       .withTracksInPlayQueue()
       .withPlugins()
-      .withSettings({userId: '1'})
+      .withSettings({
+        userId: '1',
+        useStreamVerification: true,
+        isReady: true
+      })
       .build();
     const { component } = mountComponent(store);
     
@@ -128,6 +152,10 @@ describe('StreamVerificationContainer', () => {
   const mountComponent = (initialStore?: AnyProps) => {
     const initialState = initialStore ||
       buildStoreState()
+        .withSettings({
+          isReady: true,
+          useStreamVerification: true
+        })
         .build();
     const store = configureMockStore(initialState);
     const component = render(
