@@ -10,36 +10,24 @@ import GenresTab from './GenresTab';
 import styles from './styles.scss';
 import { DashboardReducerState } from '../../reducers/dashboard';
 import StreamProviderPlugin from '@nuclear/core/src/plugins/streamProvider';
-import { QueueItem } from '../../reducers/queue';
 import EditorialsTab from './EditorialsTab';
 
 type DashboardProps = {
   dashboardData: DashboardReducerState;
-  streamProviders: StreamProviderPlugin[];
   isConnected: boolean;
   isPromotedArtistsEnabled: boolean;
 
   artistInfoSearchByName: (artistName: string) => void;
   albumInfoSearchByName: (albumName: string, artistName: string) => void;
-  addToQueue: (item: QueueItem) => void;
-  selectSong: (song: number) => void;
-  clearQueue: () => void;
-  startPlayback: () => void;
   onEditorialPlaylistClick: (playlistId: number) => void;
 };
 
 export const Dashboard: React.FC<DashboardProps> = ({
   dashboardData,
-  streamProviders,
   isConnected,
   isPromotedArtistsEnabled,
-
   artistInfoSearchByName,
   albumInfoSearchByName,
-  addToQueue,
-  selectSong,
-  clearQueue,
-  startPlayback,
   onEditorialPlaylistClick
 }) => {
   const { t } = useTranslation('dashboard');
@@ -77,11 +65,6 @@ export const Dashboard: React.FC<DashboardProps> = ({
                   artistInfoSearchByName={artistInfoSearchByName}
                   albumInfoSearchByName={albumInfoSearchByName}
                   history={history}
-                  addToQueue={addToQueue}
-                  selectSong={selectSong}
-                  clearQueue={clearQueue}
-                  startPlayback={startPlayback}
-                  streamProviders={streamProviders}
                 />
               )
             },
