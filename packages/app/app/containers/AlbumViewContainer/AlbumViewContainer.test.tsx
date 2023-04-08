@@ -263,6 +263,7 @@ describe('Album view container', () => {
       .withArtistDetails()
       .withPlugins()
       .withConnectivity()
+      .withSettings({ useStreamVerification: false})
       .build(),
     PlayerBarContainer
   );

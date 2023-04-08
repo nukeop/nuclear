@@ -198,7 +198,6 @@ export const findStreamsForTrack = (idx: number) => async (dispatch, getState) =
           logger.error('Failed to get top stream', e);
         }
       }
-          
 
       if (streamData === undefined) {
         dispatch(removeFromQueue(track));

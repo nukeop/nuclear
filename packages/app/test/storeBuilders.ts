@@ -277,13 +277,17 @@ export const buildStoreState = () => {
                 name: 'Test Stream Provider',
                 sourceName: 'Test Stream Provider',
                 search: jest.fn(() => ([{
+                  id: 'test-stream-id',
                   data: 'test-stream-data',
                   author: {
                     name: 'test author'
                   }
                 }])),
-                getStreamForId: jest.fn((id: string) => ({
-                  data: id
+                getStreamForId: jest.fn(() => ({
+                  data: 'test-stream-data',
+                  author: {
+                    name: 'test author'
+                  }
                 }))
               },
               {
@@ -457,32 +461,6 @@ export const buildStoreState = () => {
               artist: 'test artist 1',
               name: 'test track 1',
               thumbnail: 'https://test-track-thumb-url',
-              stream: {
-                source: 'Test Stream Provider',
-                id: 'CuklIb9d3fI',
-                duration: 300,
-                title: 'test track 1',
-                thumbnail: 'https://test-track-thumb-url',
-                format: 'webm',
-                skipSegments: [
-                  {
-                    category: 'intro',
-                    startTime: 0,
-                    endTime: 5
-                  },
-                  {
-                    category: 'music_offtopic',
-                    startTime: 5,
-                    endTime: 22
-                  },
-                  {
-                    category: 'music_offtopic',
-                    startTime: 239,
-                    endTime: 299
-                  }
-                ],
-                originalUrl: 'https://test-track-original-url'
-              },
               uuid: 'uuid1'
             },
             {
