@@ -1,24 +1,12 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-
+import { ActionCreator, ActionCreatorsMapObject, bindActionCreators } from 'redux';
 import * as FavoritesActions from '../../actions/favorites';
 import * as ToastActions from '../../actions/toasts';
 import { getFavoriteTrack } from '../../selectors/favorites';
-import BestNewMusicCard, { bestNewItemShape } from '../../components/Dashboard/BestNewMusicTab/BestNewMusicMenu/BestNewMusicCard';
+import BestNewMusicCard from '../../components/Dashboard/BestNewMusicTab/BestNewMusicMenu/BestNewMusicCard';
 
 const BestNewMusicCardContainer = props => <BestNewMusicCard {...props} />;
-
-BestNewMusicCardContainer.propTypes = {
-  item: bestNewItemShape,
-  onClick: PropTypes.func
-};
-
-BestNewMusicCardContainer.defaultProps = {
-  item: null,
-  onClick: () => { }
-};
 
 function mapStateToProps(state, ownProps) {
   return {
@@ -29,18 +17,18 @@ function mapStateToProps(state, ownProps) {
   };
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    actions: bindActionCreators(
-      Object.assign(
-        {},
-        FavoritesActions,
-        ToastActions
-      ),
-      dispatch
-    )
-  };
+export interface BestNewMusicCardContainerProps extends ActionCreatorsMapObject {
+  FavoritesActions: ActionCreator<typeof FavoritesActions>;
+  TostActions: ActionCreator<typeof ToastActions>;
 }
+
+const mapDispatchToProps = (dispatch) => ({actions: bindActionCreators<BestNewMusicCardContainerProps, any>(
+  {
+    ...FavoritesActions,
+    ...ToastActions
+  },
+  dispatch
+) });
 
 export default connect(
   mapStateToProps,

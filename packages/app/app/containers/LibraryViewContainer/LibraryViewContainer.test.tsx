@@ -75,6 +75,24 @@ describe('Library view container', () => {
     ]);
   });
 
+  it('should not display the download button for tracks', async () => {
+    const { component } = mountComponent();
+    await waitFor(() => component.getAllByTestId('track-popup-trigger')[0].click());
+    await component.findByText(/add to queue/i);
+
+    expect(component.queryByText(/download/i)).toBeNull();
+  });
+
+  it('should not display the download all button for selected tracks', async () => {
+    const { component } = mountComponent();
+    await waitFor(() => component.getAllByTestId('track-popup-trigger')[0].click());
+    await waitFor(() => component.getByTitle('Toggle All Rows Selected').click());
+    await waitFor(() => component.getByTestId('select-all-popup-trigger').click());
+    await component.findByText(/add selected to queue/i);
+
+    expect(component.queryByText(/add selected to downloads/i)).toBeNull();
+  });
+
   it('should add a track from the local library with the old format stream to the queue', async () => {
     const initialState = buildStoreState()
       .withPlugins()
