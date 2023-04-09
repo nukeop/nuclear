@@ -15,8 +15,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@master
-      - name: Setup tmate session
-        uses: mxschmitt/action-tmate@v3
       - name: Use Node.js 16
         uses: actions/setup-node@master
         with:
@@ -24,6 +22,8 @@ jobs:
           cache: npm
       - name: Install dependencies
         run: npm ci
+      - name: Setup tmate session
+        uses: mxschmitt/action-tmate@v3
       - name: Run coverage
         run: npm run coverage
       - name: Upload coverage to Codecov
