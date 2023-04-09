@@ -1,0 +1,52 @@
+@import "../../common.scss";
+
+.stream_verification {
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 8px;
+
+    box-shadow: 0px -5px 5px 0px rgba(0, 0, 0, 0.18), 0px -5px 20px 0px rgba(0, 0, 0, 0.09);
+
+    color: $white;
+    background-color: $bgdark;
+
+    .stream_verification_right {
+        display: flex;
+        flex-flow: row;
+    }
+
+    .stream_status_icon {
+        font-size: 18px;
+        &.unknown,
+        &.unverified {
+            i {
+                color: rgba($white, 0.6);
+            }
+        }
+
+        &.weakly_verified {
+            i {
+                color: $yellow;
+            }
+        }
+
+        &.verified {
+            i {
+                color: $green;
+            }
+        }
+
+        &.verified_by_user {
+            i {
+                color: $cyan;
+            }
+        }
+    }
+
+    .stream_status {
+        margin-left: 8px;
+    }
+}

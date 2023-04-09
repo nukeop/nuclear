@@ -1,7 +1,7 @@
 import { has } from 'lodash';
 
 export type RequestResult<TResponseBody, TErrorBody> = {
-  body: TResponseBody | TErrorBody;
+  body: TResponseBody | TErrorBody | null;
   ok: boolean;
   status: number;
 };

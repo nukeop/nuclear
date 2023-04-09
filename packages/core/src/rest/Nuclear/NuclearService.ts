@@ -22,21 +22,32 @@ export abstract class NuclearService {
     async getJson<TResponseBody, TErrorBody>(
       request: Promise<Response>
     ): Promise<RequestResult<TResponseBody, TErrorBody>> {
-      const result = await request;
-      const body = await result.json();
+      let result: Response;
+      let body;
+      
+      try {
+        result = await request;
+        body = await result.json();
+      } catch (err) {
+        body = undefined;
+      }
     
       if (result.ok) {
         return {
-          body: body as TResponseBody,
+          body: body as TResponseBody ?? null,
           status: result.status,
           ok: result.ok
         };
       } else {
         return {
-          body: body as TErrorBody,
+          body: body as TErrorBody ?? null,
           status: result.status,
           ok: result.ok
         };
       }
     }
 }
+
+export const isResponseBody = <TResponseBody, TErrorBody>(
+  result: RequestResult<TResponseBody, TErrorBody>
+): result is RequestResult<TResponseBody, never> => result.ok;

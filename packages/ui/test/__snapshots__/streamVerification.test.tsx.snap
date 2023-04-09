@@ -1,0 +1,123 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`(Snapshot) StreamVerification - unknown status should render correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="stream_verification"
+  >
+    <div
+      class="stream_verification_right"
+    >
+      <div
+        class="stream_status_icon unknown"
+      >
+        <i
+          aria-hidden="true"
+          class="check circle icon"
+        />
+      </div>
+      <div
+        class="stream_status"
+      >
+        Unknown
+      </div>
+    </div>
+    <button
+      class="ui button nuclear button"
+    >
+      Verify
+    </button>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`(Snapshot) StreamVerification - verified by user should render correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="stream_verification"
+  >
+    <div
+      class="stream_verification_right"
+    >
+      <div
+        class="stream_status_icon verified_by_user"
+      >
+        <i
+          aria-hidden="true"
+          class="check circle icon"
+        />
+      </div>
+      <div
+        class="stream_status"
+      >
+        Verified by you
+      </div>
+    </div>
+    <button
+      class="ui button nuclear button"
+    />
+  </div>
+</DocumentFragment>
+`;
+
+exports[`(Snapshot) StreamVerification - verified should render correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="stream_verification"
+  >
+    <div
+      class="stream_verification_right"
+    >
+      <div
+        class="stream_status_icon verified"
+      >
+        <i
+          aria-hidden="true"
+          class="check circle icon"
+        />
+      </div>
+      <div
+        class="stream_status"
+      >
+        Verified
+      </div>
+    </div>
+    <button
+      class="ui button nuclear button"
+    >
+      Verify
+    </button>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`(Snapshot) StreamVerification - weakly verified should render correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="stream_verification"
+  >
+    <div
+      class="stream_verification_right"
+    >
+      <div
+        class="stream_status_icon weakly_verified"
+      >
+        <i
+          aria-hidden="true"
+          class="check circle icon"
+        />
+      </div>
+      <div
+        class="stream_status"
+      >
+        Weakly Verified
+      </div>
+    </div>
+    <button
+      class="ui button nuclear button"
+    >
+      Verify
+    </button>
+  </div>
+</DocumentFragment>
+`;

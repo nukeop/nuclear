@@ -602,6 +602,40 @@ exports[`Settings view container should render settings 1`] = `
               <label />
             </div>
           </div>
+          <div
+            class="settings_item boolean"
+          >
+            <span
+              class="settings_item_text"
+            >
+              <label
+                class="settings_item_name"
+              >
+                Use stream verification
+              </label>
+              <p
+                class="settings_item_description"
+              >
+                Use stream verification. Loads the streams the community has verified as being correct for the tracks you play. Also allows you to vote on streams. See documentation for details.
+              </p>
+            </span>
+            <div
+              class="spacer"
+            />
+            <div
+              class="ui checked fitted toggle checkbox"
+            >
+              <input
+                checked=""
+                class="hidden"
+                readonly=""
+                tabindex="0"
+                type="radio"
+                value=""
+              />
+              <label />
+            </div>
+          </div>
         </div>
       </div>
       <div
@@ -706,7 +740,7 @@ exports[`Settings view container should render settings 1`] = `
               <label
                 class="settings_item_name"
               >
-                show-tray-icon
+                Show tray icon
               </label>
             </span>
             <div
