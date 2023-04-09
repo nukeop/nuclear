@@ -8,7 +8,6 @@ export default {
   title: 'Components/Stream info'
 };
 
-
 const commonProps = {
   streams: [{
     id: 'stream1',
@@ -44,6 +43,7 @@ const commonProps = {
     source: 'Youtube',
     title: 'The Weeknd - Blinding Lights (Official Music Video)',
     id: 'abcdefghijklmnopqrst1234567890',
+    originalUrl: 'https://www.youtube.com/watch?v=4NRXx6U8ABQ',
     author: {
       name: 'Channel author'
     }

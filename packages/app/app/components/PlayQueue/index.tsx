@@ -16,6 +16,7 @@ import { safeAddUuid } from '../../actions/helpers';
 import QueueMenu from './QueueMenu';
 import { PlayQueueActions } from '../../containers/PlayQueueContainer';
 import QueuePopupContainer from '../../containers/QueuePopupContainer';
+import { StreamVerificationContainer } from '../../containers/StreamVerificationContainer';
 
 import styles from './styles.scss';
 
@@ -205,6 +206,7 @@ const PlayQueue: React.FC<PlayQueueProps> = ({
             </div>
           )}
         </Droppable>
+        <StreamVerificationContainer />
       </div>
     </DragDropContext>
   );
