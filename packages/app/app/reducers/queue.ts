@@ -2,6 +2,7 @@ import _ from 'lodash';
 
 import { Queue } from '../actions/actionTypes';
 import { SELECT_STREAM_PROVIDER } from '../actions/plugins';
+import { store } from '@nuclear/core';
 
 export type TrackStream = {
   id: string;
@@ -174,6 +175,7 @@ export default function QueueReducer(state = defaultState, action) {
   case Queue.PLAY_NEXT_ITEM:
     return reduceAddPlayNextItem(state, action);
   case Queue.CLEAR_QUEUE:
+    store.set('StoredQueue', []);
     return { ...state, queueItems: [] };
   case Queue.NEXT_TRACK:
     return reduceNextSong(state);

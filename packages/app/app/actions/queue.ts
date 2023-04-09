@@ -5,7 +5,7 @@ import { createStandardAction } from 'typesafe-actions';
 import { StreamProvider } from '@nuclear/core';
 import { getTrackArtist } from '@nuclear/ui';
 import { Track } from '@nuclear/ui/lib/types';
-
+import { store } from '@nuclear/core';
 import { safeAddUuid } from './helpers';
 import { pausePlayback, startPlayback } from './player';
 import { QueueItem, TrackStream } from '../reducers/queue';
@@ -97,6 +97,15 @@ export const streamFailed = () => ({
 });
 
 export function repositionSong(itemFrom, itemTo) {
+
+  const playlists = store.get('StoredQueue');
+
+  const backup = playlists[itemFrom];
+  playlists[itemFrom] = playlists[itemTo];
+  playlists[itemTo] = backup;
+
+  store.set('StoredQueue', playlists);
+
   return {
     type: Queue.REPOSITION_TRACK,
     payload: {
@@ -121,6 +130,14 @@ export const addToQueue =
         streams: item.local ? item.streams : [],
         loading: false
       };
+
+      if (!store.has('StoredQueue')) {
+        store.set('StoredQueue', []);
+      }
+
+      const playlists = store.get('StoredQueue');
+      playlists.push(item);
+      store.set('StoredQueue', playlists);
 
       const {
         connectivity
@@ -217,10 +234,23 @@ export function playTrack(streamProviders, item: QueueItem) {
   };
 }
 
-export const removeFromQueue = (item: QueueItem) => ({
-  type: Queue.REMOVE_QUEUE_ITEM,
-  payload: item
-});
+export function removeFromQueue(item: QueueItem) {
+
+  const playlists = store.get('StoredQueue');
+
+  for (const i in playlists){
+    if (playlists[i].uuid === item.uuid){
+      playlists.splice(i, 1);
+    }
+  }
+
+  store.set('StoredQueue', playlists);
+
+  return {
+    type: Queue.REMOVE_QUEUE_ITEM,
+    payload: item
+  };
+}
 
 export function addPlaylistTracksToQueue(tracks) {
   return async (dispatch) => {
