@@ -1,7 +1,7 @@
 # ![nuclear](https://i.imgur.com/oT1006i.png) 
 [![nuclear](https://snapcraft.io//nuclear/badge.svg)](https://snapcraft.io/nuclear) [![Discord](https://img.shields.io/badge/Discord-7289DA?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/JqPjKxE)
 
-Desktop music player focused on streaming from free sources
+Desktop music player focused on streaming from free sources.
 
 ![Showcase](https://i.imgur.com/8qHu66J.png)
 
