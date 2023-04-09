@@ -1,11 +1,11 @@
 # ![nuclear](https://i.imgur.com/oT1006i.png) 
 [![nuclear](https://snapcraft.io//nuclear/badge.svg)](https://snapcraft.io/nuclear) [![Discord](https://img.shields.io/badge/Discord-7289DA?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/JqPjKxE)
 
-Aplikasi pemutar musik berbasis desktop yang berfokus pada streaming dari sumber gratis
+Aplikasi pemutar musik berbasis desktop yang berfokus pada streaming dari sumber gratis.
 
 ![Showcase](https://i.imgur.com/8qHu66J.png)
 
-# Links
+# Daftar Tautan
 
 [Website Resmi](https://nuclear.js.org)
 
@@ -17,7 +17,7 @@ Aplikasi pemutar musik berbasis desktop yang berfokus pada streaming dari sumber
 
 [Twitter](https://twitter.com/nuclear_player)
 
-Dukungan channel (Matrix): `#nuclear:matrix.org`
+Dukungan kanal (Matrix): `#nuclear:matrix.org`
 
 Chat Discord : https://discord.gg/JqPjKxE
 
@@ -72,7 +72,7 @@ Instruksi untuk menjalankan Nuclear dalam mode pengembangan dapat dibaca di [Pro
 
 Berikut adalah _list packages managers_, yang sebagian dikelola oleh pihak ketiga. Kami berterima kasih kepada para pengelola atas hasil kerjanya.
 
-| Tipe Packages   | Link                                                               | Pengelola                                   | Metode Instalasi                           |
+| Tipe Packages   | Tautan                                                               | Pengelola                                   | Metode Instalasi                           |
 |:--------------:|:------------------------------------------------------------------:|:--------------------------------------------:|:---------------------------------------------:|
 | AUR (Arch)     | https://aur.archlinux.org/packages/nuclear-player-bin/             | [nukeop](https://github.com/nukeop)          | yay -s nuclear-player-bin                     |
 | AUR (Arch)     | https://aur.archlinux.org/packages/nuclear-player-git              | [nukeop](https://github.com/nukeop)          | yay -s nuclear-player-git                     |
@@ -81,15 +81,15 @@ Berikut adalah _list packages managers_, yang sebagian dikelola oleh pihak ketig
 | Homebrew (Mac) | https://formulae.brew.sh/cask/nuclear                              | Homebrew                                     | brew install --cask nuclear                   |
 | Snap           | https://snapcraft.io/nuclear                                       | [nukeop](https://github.com/nukeop)          | sudo snap install nuclear                     |
 | Flatpak        | https://flathub.org/apps/details/org.js.nuclear.Nuclear            | [nukeop](https://github.com/nukeop)          | flatpak install flathub org.js.nuclear.Nuclear|
-| Void Linux     | https://github.com/machadofguilherme/nuclear-template              | [machadofguilherme](https://github.com/machadofguilherme) | See readme
+| Void Linux     | https://github.com/machadofguilherme/nuclear-template              | [machadofguilherme](https://github.com/machadofguilherme) | Lihat readme
 
-## Terjemah Bahasa Dari Komunitas
+## Terjemahan Bahasa Dari Komunitas
 Nuclear telah diterjemahkan ke beberapa bahasa, dan kami akan terus mencari kontributor yang selalu ingin berkontribusi.
 
 Kami menggunakan _platform_ [Crowdin](https://crowdin.com/project/nuclear) untuk mengelola alih bahasa. Anda bisa mengecek apakah bahasa yang Anda gunakan telah tersedia di sana, melihat proses alih bahasa, dan bahkan membantu kami menerjemahkan Nuclear.
 
-## Screenshot
-Screenshot akan di-_update_ seiring perkembangan aplikasi.
+## Tangkapan Layar
+Tangkapan layar akan diperbarui seiring perkembangan aplikasi.
 
 ![Album Search](https://i.imgur.com/idFVnAF.png)
 
@@ -111,5 +111,5 @@ Screenshot akan di-_update_ seiring perkembangan aplikasi.
 
 Program ini merupakan perangkat lunak gratis: Anda dapat mendistribusikannya atau memodifikasi di bawah aturan GNU Affero General Public License yang dipublikasikan oleh Free Software Foundation, terlepas versi 3 lisensi, atau versi setelahnya sesuai pilihan anda.
 
-## Attribusi
-Menggunakan data SponsorBlock dibawah [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/) from https://sponsor.ajay.app/.
+## Atribusi
+Menggunakan data SponsorBlock di bawah [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/) dari https://sponsor.ajay.app/.
