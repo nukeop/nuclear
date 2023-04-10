@@ -216,7 +216,25 @@
     "playlist-add": "Добавить в плейлист",
     "playlist-toast-content": "Плейлист {{name}} создан.",
     "playlist-toast-title": "Плейлист создан",
-    "live": "Сейчас"
+    "live": "Сейчас",
+    "stream-verification": {
+      "tooltip": {
+        "unknown": "The status of this stream is unknown.",
+        "unverified": "This stream has not yet been verified by the community.",
+        "weakly-verified": "This stream has been verified by a couple of users.",
+        "verified": "This stream has been verified by the community.",
+        "verified-by-user": "This stream has been verified by you."
+      },
+      "stream-status": {
+        "unknown": "Unknown",
+        "unverified": "Unverified",
+        "weakly-verified": "Weakly verified",
+        "verified": "Verified",
+        "verified-by-user": "Verified by you"
+      },
+      "verify": "Verify",
+      "unverify": "Unverify"
+    }
   },
   "search": {
     "album": "Альбом",
@@ -304,6 +322,7 @@
     "promoted-artists-description": "Подборка интересных инди-исполнителей, которые могли бы вам понравиться. Никто из них не получает за это денежного вознаграждения.",
     "saving-in": "Сохраняется в:",
     "seek-iteration": "Сколько секунд перематывать при нажатии клавиш-стрелок",
+    "show-tray-icon": "Show tray icon",
     "shuffle-queue": "Случайный порядок",
     "shuffle-when-going-back": "Назад вперемешку",
     "shuffle-when-going-back-description": "Кнопка \"предыдущий трек\" включает случайный, когда включена перемешка",
@@ -313,6 +332,9 @@
     "streaming": "Стриминг",
     "track-duration": "Показывать длительность трека поверх полосы перемотки",
     "user": "Пользователь:",
+    "user-id": "User ID",
+    "use-stream-verification": "Use stream verification",
+    "use-stream-verification-description": "Use stream verification. Loads the streams the community has verified as being correct for the tracks you play. Also allows you to vote on streams. See documentation for details.",
     "youtube": "YouTube",
     "yt-api-key": "Ключ YouTube API"
   },
