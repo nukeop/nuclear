@@ -216,7 +216,25 @@
     "playlist-add": "প্লেলিস্টে যোগ করুন",
     "playlist-toast-content": "প্লেলিস্ট {{name}} তৈরি হয়েছে।",
     "playlist-toast-title": "প্লেলিস্ট তৈরি হয়েছে",
-    "live": "সরাসরি"
+    "live": "সরাসরি",
+    "stream-verification": {
+      "tooltip": {
+        "unknown": "The status of this stream is unknown.",
+        "unverified": "This stream has not yet been verified by the community.",
+        "weakly-verified": "This stream has been verified by a couple of users.",
+        "verified": "This stream has been verified by the community.",
+        "verified-by-user": "This stream has been verified by you."
+      },
+      "stream-status": {
+        "unknown": "Unknown",
+        "unverified": "Unverified",
+        "weakly-verified": "Weakly verified",
+        "verified": "Verified",
+        "verified-by-user": "Verified by you"
+      },
+      "verify": "Verify",
+      "unverify": "Unverify"
+    }
   },
   "search": {
     "album": "অ্যালবাম",
@@ -304,6 +322,7 @@
     "promoted-artists-description": "This is a reel of interesting, handpicked indie artists you might like. No one's receiving any compensation for this.",
     "saving-in": "সেভ হচ্ছে:",
     "seek-iteration": "কত সেকেন্ড সামনে বা পিছনে যাবে যখন তীরচিহ্ন চাপা হবে",
+    "show-tray-icon": "Show tray icon",
     "shuffle-queue": "গানগুলো এলোমেলো করুন",
     "shuffle-when-going-back": "পূর্ববর্তী ট্রেকে অদলবদল করুন",
     "shuffle-when-going-back-description": "অদলবদল চালু এবং পূর্ববর্তী বাটান ক্লিক থাকলে রেনডম ট্রেক চালান",
@@ -313,6 +332,9 @@
     "streaming": "স্ট্রিমিং",
     "track-duration": "সিকবারের উপর ট্র্যাকের সময়সীমা প্রদর্শন করুন।",
     "user": "ব্যবহারকারী:",
+    "user-id": "User ID",
+    "use-stream-verification": "Use stream verification",
+    "use-stream-verification-description": "Use stream verification. Loads the streams the community has verified as being correct for the tracks you play. Also allows you to vote on streams. See documentation for details.",
     "youtube": "ইউটিউব",
     "yt-api-key": "ইউটিউব API Key"
   },
