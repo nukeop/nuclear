@@ -216,7 +216,25 @@
     "playlist-add": "Προσθήκη στην λίστα αναπαραγωγής",
     "playlist-toast-content": "Η λίστα αναπαραγωγής {{name}} δημιουργήθηκε.",
     "playlist-toast-title": "Η λίστα αναπαραγωγής δημιουργήθηκε",
-    "live": "Ζωντανά"
+    "live": "Ζωντανά",
+    "stream-verification": {
+      "tooltip": {
+        "unknown": "The status of this stream is unknown.",
+        "unverified": "This stream has not yet been verified by the community.",
+        "weakly-verified": "This stream has been verified by a couple of users.",
+        "verified": "This stream has been verified by the community.",
+        "verified-by-user": "This stream has been verified by you."
+      },
+      "stream-status": {
+        "unknown": "Unknown",
+        "unverified": "Unverified",
+        "weakly-verified": "Weakly verified",
+        "verified": "Verified",
+        "verified-by-user": "Verified by you"
+      },
+      "verify": "Verify",
+      "unverify": "Unverify"
+    }
   },
   "search": {
     "album": "Λεύκωμα",
@@ -304,6 +322,7 @@
     "promoted-artists-description": "This is a reel of interesting, handpicked indie artists you might like. No one's receiving any compensation for this.",
     "saving-in": "Αποθηκεύεται σε:",
     "seek-iteration": "Αριθμός δευτερολέπτων που προχωρούν/επιστρέφουν τα βέλη",
+    "show-tray-icon": "Show tray icon",
     "shuffle-queue": "Τυχαία σειρά",
     "shuffle-when-going-back": "Τυχαία αναπαραγωγή όταν πατάτε \"προηγούμενο\"",
     "shuffle-when-going-back-description": "Αναπαραγωγή ενός τυχαίου τραγουδιου που περάσατε, όταν το κουμπί \"προηγούμενο\" πατιέται",
@@ -313,6 +332,9 @@
     "streaming": "Ροή",
     "track-duration": "Εμφανιση συνολικού χρόνου τραγουδιου στην μπάρα αναπαραγωγής",
     "user": "Χρήστης :",
+    "user-id": "User ID",
+    "use-stream-verification": "Use stream verification",
+    "use-stream-verification-description": "Use stream verification. Loads the streams the community has verified as being correct for the tracks you play. Also allows you to vote on streams. See documentation for details.",
     "youtube": "YouTube",
     "yt-api-key": "Κλειδί API YouTube"
   },
