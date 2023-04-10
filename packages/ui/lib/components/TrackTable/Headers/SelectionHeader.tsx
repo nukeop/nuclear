@@ -53,12 +53,15 @@ const SelectionHeader: React.FC<
               icon='play'
               onClick={() => onPlayAll(selectedTracks)}
             />
-            <PopupButton
-              ariaLabel={strings.addSelectedTracksToFavorites}
-              label={strings.addSelectedTracksToFavorites}
-              icon='heart'
-              onClick={() => selectedTracks.forEach((track) => onAddToFavorites(track))}
-            />
+            {
+              onAddToFavorites &&
+              <PopupButton
+                ariaLabel={strings.addSelectedTracksToFavorites}
+                label={strings.addSelectedTracksToFavorites}
+                icon='heart'
+                onClick={() => selectedTracks.forEach((track) => onAddToFavorites(track))}
+              />
+            }
             {
               onAddToDownloads &&
               <PopupButton

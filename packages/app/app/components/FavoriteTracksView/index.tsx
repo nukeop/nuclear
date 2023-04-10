@@ -50,6 +50,7 @@ const FavoriteTracksView: React.FC<FavoriteTracksViewProps> = ({
                 onDelete={removeFavoriteTrack}
                 displayAlbum={false}
                 displayFavorite={false}
+                displayAddToFavorites={false}
               />
             </Segment>
           </>
