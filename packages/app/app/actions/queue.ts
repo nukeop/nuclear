@@ -2,7 +2,7 @@ import logger from 'electron-timber';
 import _, { isEmpty, isString } from 'lodash';
 import { createStandardAction } from 'typesafe-actions';
 
-import { StreamProvider } from '@nuclear/core';
+import { rest, StreamProvider } from '@nuclear/core';
 import { getTrackArtist } from '@nuclear/ui';
 import { Track } from '@nuclear/ui/lib/types';
 
@@ -13,6 +13,7 @@ import { RootState } from '../reducers';
 import { LocalLibraryState } from './local';
 import { Queue } from './actionTypes';
 import StreamProviderPlugin from '@nuclear/core/src/plugins/streamProvider';
+import { isTopStream, TopStream } from '@nuclear/core/src/rest/Nuclear/StreamMappings';
 
 type LocalTrack = Track & {
   local: true;
@@ -161,7 +162,7 @@ export const selectNewStream = (track: QueueItem, streamId: string) => async (di
 };
 
 export const findStreamsForTrack = (idx: number) => async (dispatch, getState) => {
-  const {queue}: RootState = getState();
+  const {queue, settings}: RootState = getState();
 
   const track = queue.queueItems[idx];
 
@@ -172,14 +173,40 @@ export const findStreamsForTrack = (idx: number) => async (dispatch, getState) =
     }));
     const selectedStreamProvider = getSelectedStreamProvider(getState);
     try {
-      const streamData = await getTrackStreams(
+      let streamData = await getTrackStreams(
         track,
         selectedStreamProvider
       );
 
+      if (settings.useStreamVerification) {
+        try {
+          const StreamMappingsService = new rest.NuclearStreamMappingsService(process.env.NUCLEAR_VERIFICATION_SERVICE_URL);
+          const topStream = await StreamMappingsService.getTopStream(
+            track.artist, 
+            track.name,
+            selectedStreamProvider.sourceName,
+            settings?.userId
+          );
+            // Use the top stream ID and put it at the top of the list
+          if (isTopStream(topStream.body)) {
+            streamData = [
+              streamData.find(stream => stream.id === (topStream.body as TopStream).stream_id),          
+              ...streamData.filter(stream => stream.id !== (topStream.body as TopStream).stream_id)
+            ];
+          }
+        } catch (e) {
+          logger.error('Failed to get top stream', e);
+        }
+      }
+
       if (streamData === undefined) {
         dispatch(removeFromQueue(track));
       } else {
+        streamData = [
+          await selectedStreamProvider.getStreamForId(streamData[0].id),
+          ...streamData.slice(1)
+        ];
+
         dispatch(
           updateQueueItem({
             ...track,

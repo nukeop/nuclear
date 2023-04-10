@@ -28,6 +28,14 @@ export const Basic = () => (
   </div>
 );
 
+export const Loading = () => (
+  <div>
+    Seekbar while loading a track.
+    <br/><br/>
+    <Seekbar isLoading />
+  </div>
+);
+
 export const WithSkippableSegments = () => <div style={{
   display: 'flex',
   flexFlow: 'column',

@@ -24,6 +24,8 @@ export type TrackTableContainerProps<T extends Track> = TrackTableSettings & {
   onDelete?: TrackTableProps<T>['onDelete'];
   onReorder?: (indexSource: number, indexDest: number) => void;
   TrackTableComponent?: React.ComponentType<TrackTableProps<T>>;
+  displayAddToDownloads?: boolean;
+  displayAddToFavorites?: boolean;
 };
 
 function TrackTableContainer<T extends Track> ({
@@ -31,6 +33,8 @@ function TrackTableContainer<T extends Track> ({
   onDelete,
   onReorder,
   TrackTableComponent = TrackTable,
+  displayAddToDownloads = true,
+  displayAddToFavorites = true,
   ...settings
 }: TrackTableContainerProps<T>) {
   const { t } = useTranslation('playlists');
@@ -146,9 +150,9 @@ function TrackTableContainer<T extends Track> ({
     onPlay={onPlayNow}
     onPlayNext={onPlayNext}
     onPlayAll={onPlayAll}
-    onAddToFavorites={onAddToFavorites}
+    onAddToFavorites={Boolean(displayAddToFavorites) && onAddToFavorites}
     onRemoveFromFavorites={onRemoveFromFavorites}
-    onAddToDownloads={onAddToDownloads}
+    onAddToDownloads={Boolean(displayAddToDownloads) && onAddToDownloads}
     onAddToPlaylist={onAddToPlaylist}
     onCreatePlaylist={onCreatePlaylist}
     onDelete={onDelete}

@@ -64,6 +64,7 @@ See [this](docs/electron.md).
 - Browsing by popularity
 - List of favorite tracks
 - Listening from local library
+- Audio normalization
 - No accounts
 - No ads
 - No CoC
