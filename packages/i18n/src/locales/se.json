@@ -216,7 +216,25 @@
     "playlist-add": "Lägg till i spellista",
     "playlist-toast-content": "Spellistan {{name}} har skapats.",
     "playlist-toast-title": "Spellista skapad",
-    "live": "Live"
+    "live": "Live",
+    "stream-verification": {
+      "tooltip": {
+        "unknown": "The status of this stream is unknown.",
+        "unverified": "This stream has not yet been verified by the community.",
+        "weakly-verified": "This stream has been verified by a couple of users.",
+        "verified": "This stream has been verified by the community.",
+        "verified-by-user": "This stream has been verified by you."
+      },
+      "stream-status": {
+        "unknown": "Unknown",
+        "unverified": "Unverified",
+        "weakly-verified": "Weakly verified",
+        "verified": "Verified",
+        "verified-by-user": "Verified by you"
+      },
+      "verify": "Verify",
+      "unverify": "Unverify"
+    }
   },
   "search": {
     "album": "Album",
@@ -304,6 +322,7 @@
     "promoted-artists-description": "Det här är en rulle med intressanta, handplockade indieartister som du kanske gillar. Ingen får någon ersättning för detta.",
     "saving-in": "Sparar i:",
     "seek-iteration": "Antal sekunder att hoppa framåt/bakåt när du trycker på piltangenterna",
+    "show-tray-icon": "Show tray icon",
     "shuffle-queue": "Blanda spår",
     "shuffle-when-going-back": "Blanda på föregående låt",
     "shuffle-when-going-back-description": "Spela ett slumpmässigt spår när blanda är aktivt och du klickar på knappen Föregående låt",
@@ -313,6 +332,9 @@
     "streaming": "Strömning",
     "track-duration": "Visa spårets längd över sökfältet",
     "user": "Användare:",
+    "user-id": "User ID",
+    "use-stream-verification": "Use stream verification",
+    "use-stream-verification-description": "Use stream verification. Loads the streams the community has verified as being correct for the tracks you play. Also allows you to vote on streams. See documentation for details.",
     "youtube": "YouTube",
     "yt-api-key": "YouTube API-nyckel"
   },
