@@ -70,7 +70,8 @@ const Seekbar: React.FC<SeekbarProps> = ({
       data-testid='seekbar'
       className={cx(
         common.nuclear,
-        styles.seekbar
+        styles.seekbar,
+        isLoading ? 'loading' : ''
       )}
       onClick={handleClick(seek)}
       style={{ height }}
