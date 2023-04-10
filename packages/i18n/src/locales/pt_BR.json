@@ -216,7 +216,25 @@
     "playlist-add": "Adicionar à Lista de Reprodução",
     "playlist-toast-content": "A Lista de Reprodução {{name}} Foi criada.",
     "playlist-toast-title": "Lista de Reprodução Criada",
-    "live": "Em direto"
+    "live": "Em direto",
+    "stream-verification": {
+      "tooltip": {
+        "unknown": "The status of this stream is unknown.",
+        "unverified": "This stream has not yet been verified by the community.",
+        "weakly-verified": "This stream has been verified by a couple of users.",
+        "verified": "This stream has been verified by the community.",
+        "verified-by-user": "This stream has been verified by you."
+      },
+      "stream-status": {
+        "unknown": "Unknown",
+        "unverified": "Unverified",
+        "weakly-verified": "Weakly verified",
+        "verified": "Verified",
+        "verified-by-user": "Verified by you"
+      },
+      "verify": "Verify",
+      "unverify": "Unverify"
+    }
   },
   "search": {
     "album": "Álbum",
@@ -304,6 +322,7 @@
     "promoted-artists-description": "Esses reels são de artistas independentes escolhidos à mão que podem te interessar. Ninguém está recebendo nenhuma recompensa por isso.",
     "saving-in": "Salvar em:",
     "seek-iteration": "Número de segundos para avançar/retroceder ao pressionar as teclas de seta",
+    "show-tray-icon": "Show tray icon",
     "shuffle-queue": "Reproduzir músicas aleatoriamente",
     "shuffle-when-going-back": "Aleatório ao voltar à faixa anterior",
     "shuffle-when-going-back-description": "Reproduzir uma faixa aleatória quando o aleatório está ativo e o botão de faixa anterior é clicado",
@@ -313,6 +332,9 @@
     "streaming": "Transmissão",
     "track-duration": "Exibir duração da faixa sobre a barra de reprodução",
     "user": "Usuário:",
+    "user-id": "User ID",
+    "use-stream-verification": "Use stream verification",
+    "use-stream-verification-description": "Use stream verification. Loads the streams the community has verified as being correct for the tracks you play. Also allows you to vote on streams. See documentation for details.",
     "youtube": "YouTube",
     "yt-api-key": "Chave de API do YouTube"
   },
