@@ -216,7 +216,25 @@
     "playlist-add": "再生リストに追加",
     "playlist-toast-content": "再生リスト {{name}} を作成しました。",
     "playlist-toast-title": "再生リストを作成しました",
-    "live": "ライブ"
+    "live": "ライブ",
+    "stream-verification": {
+      "tooltip": {
+        "unknown": "The status of this stream is unknown.",
+        "unverified": "This stream has not yet been verified by the community.",
+        "weakly-verified": "This stream has been verified by a couple of users.",
+        "verified": "This stream has been verified by the community.",
+        "verified-by-user": "This stream has been verified by you."
+      },
+      "stream-status": {
+        "unknown": "Unknown",
+        "unverified": "Unverified",
+        "weakly-verified": "Weakly verified",
+        "verified": "Verified",
+        "verified-by-user": "Verified by you"
+      },
+      "verify": "Verify",
+      "unverify": "Unverify"
+    }
   },
   "search": {
     "album": "アルバム",
@@ -304,6 +322,7 @@
     "promoted-artists-description": "あなたの好みかもしれない、厳選された興味深いインディーのアーティストを並べます。掲載によって誰かが報酬を得るものではありません。",
     "saving-in": "保存先:",
     "seek-iteration": "矢印キーを押したときに巻き戻す/早送りする秒数",
+    "show-tray-icon": "Show tray icon",
     "shuffle-queue": "曲をシャッフル",
     "shuffle-when-going-back": "前の曲をシャッフル",
     "shuffle-when-going-back-description": "シャッフルが有効なら「前の曲」ボタンが押された時にランダムな曲を再生",
@@ -313,6 +332,9 @@
     "streaming": "配信",
     "track-duration": "シークバーに曲の長さを表示",
     "user": "ユーザー:",
+    "user-id": "User ID",
+    "use-stream-verification": "Use stream verification",
+    "use-stream-verification-description": "Use stream verification. Loads the streams the community has verified as being correct for the tracks you play. Also allows you to vote on streams. See documentation for details.",
     "youtube": "YouTube",
     "yt-api-key": "YouTube API キー"
   },
