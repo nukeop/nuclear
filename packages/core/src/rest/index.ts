@@ -35,3 +35,6 @@ export { NuclearPromotionService };
 
 import { NuclearConfigurationService } from './Nuclear/Configuration';
 export { NuclearConfigurationService };
+
+import { NuclearStreamMappingsService } from './Nuclear/StreamMappings';
+export { NuclearStreamMappingsService };

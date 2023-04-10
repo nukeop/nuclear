@@ -37,7 +37,9 @@
     display: flex;
     justify-content: flex-end;
 
-    span {
+    .stream_source_name {
+      display: flex;
+      align-items: center;
       background: $blue;
       padding: 0.25rem 0.5rem;
       border-radius: 0.25rem;

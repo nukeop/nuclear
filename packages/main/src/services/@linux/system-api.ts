@@ -244,7 +244,7 @@ class LinuxMediaService extends MprisService implements NuclearApi {
 
         if (result instanceof Promise) {
           result.catch((err: Error) => {
-            this.logger.error(`error in event ${eventName} => ${err.message}`);
+            this.logger.error(`lo ${eventName} => ${err.message}`);
           });
         }
       });

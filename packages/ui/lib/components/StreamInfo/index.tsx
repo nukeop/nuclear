@@ -1,14 +1,15 @@
 import React, { memo } from 'react';
 import Img from 'react-image';
+import cx from 'classnames';
+
 import { StreamData } from '@nuclear/core/src/plugins/plugins.types';
 
-import artPlaceholder from '../../../resources/media/art_placeholder.png';
-import Tooltip from '../Tooltip';
-
-import styles from './styles.scss';
-import Button from '../Button';
 import { Dropdown } from '../..';
 import { StreamOption } from './StreamOption';
+import artPlaceholder from '../../../resources/media/art_placeholder.png';
+import Tooltip from '../Tooltip';
+import Button from '../Button';
+import styles from './styles.scss';
 
 type Handlers = {
   onImageLoaded: React.ReactEventHandler<HTMLImageElement>;
@@ -61,7 +62,8 @@ const StreamInfo: React.FC<StreamInfoProps & Handlers> =({
           <div className={styles.stream_author}>
             {selectedStream?.author?.name}
           </div>
-          {selectedStream?.id && selectedStream?.originalUrl && (
+          {selectedStream?.id && 
+          selectedStream?.originalUrl && (
             <div className={styles.stream_id}>
               <span>{selectedStream?.id}</span>
               <Tooltip 
@@ -82,7 +84,7 @@ const StreamInfo: React.FC<StreamInfoProps & Handlers> =({
           )}
           <div className={styles.spacer} />
           <div className={styles.stream_source}>
-            <span>
+            <span className={styles.stream_source_name}>
               {selectedStream.source}
             </span>
           </div>

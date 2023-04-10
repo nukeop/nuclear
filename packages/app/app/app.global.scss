@@ -56,6 +56,13 @@ a.disabled {
   }
 }
 
+input {
+  &::selection {
+    background: rgba($lightbg, 0.85);
+    color: $white;
+  }
+}
+
 table {
   border-collapse: collapse;
 }

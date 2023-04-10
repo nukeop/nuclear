@@ -191,7 +191,7 @@ describe('Favorite tracks view container', () => {
     await waitFor(() => component.getAllByTestId('play-now')[1].click());
 
     expect(selectedStreamProvider.search).toBeCalled();
-    expect(selectedStreamProvider.getStreamForId).not.toBeCalled();
+    expect(selectedStreamProvider.getStreamForId).toBeCalled();
   });
 
   it('should call provider.search when playing a track from favorites', async () => {
@@ -252,6 +252,7 @@ describe('Favorite tracks view container', () => {
         .withConnectivity()
         .withPlaylists()
         .withLocal()
+        .withSettings({ useStreamVerification: false })
         .build();
 
     const history = createMemoryHistory({
