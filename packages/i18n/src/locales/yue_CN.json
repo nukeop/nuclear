@@ -216,7 +216,25 @@
     "playlist-add": "Add to playlist",
     "playlist-toast-content": "Playlist {{name}} has been created.",
     "playlist-toast-title": "Playlist created",
-    "live": "Live"
+    "live": "Live",
+    "stream-verification": {
+      "tooltip": {
+        "unknown": "The status of this stream is unknown.",
+        "unverified": "This stream has not yet been verified by the community.",
+        "weakly-verified": "This stream has been verified by a couple of users.",
+        "verified": "This stream has been verified by the community.",
+        "verified-by-user": "This stream has been verified by you."
+      },
+      "stream-status": {
+        "unknown": "Unknown",
+        "unverified": "Unverified",
+        "weakly-verified": "Weakly verified",
+        "verified": "Verified",
+        "verified-by-user": "Verified by you"
+      },
+      "verify": "Verify",
+      "unverify": "Unverify"
+    }
   },
   "search": {
     "album": "Album",
@@ -304,6 +322,7 @@
     "promoted-artists-description": "This is a reel of interesting, handpicked indie artists you might like. No one's receiving any compensation for this.",
     "saving-in": "Saving in:",
     "seek-iteration": "Number of seconds to seek forward/backwards when pressing arrow keys",
+    "show-tray-icon": "Show tray icon",
     "shuffle-queue": "Shuffle songs",
     "shuffle-when-going-back": "Shuffle on previous track",
     "shuffle-when-going-back-description": "Play a random track when shuffle is active and the previous track button is clicked",
@@ -313,6 +332,9 @@
     "streaming": "Streaming",
     "track-duration": "Display track duration over the seekbar",
     "user": "User:",
+    "user-id": "User ID",
+    "use-stream-verification": "Use stream verification",
+    "use-stream-verification-description": "Use stream verification. Loads the streams the community has verified as being correct for the tracks you play. Also allows you to vote on streams. See documentation for details.",
     "youtube": "Youtube",
     "yt-api-key": "Youtube API Key"
   },
