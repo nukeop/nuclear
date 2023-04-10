@@ -216,7 +216,25 @@
     "playlist-add": "הוספה לפלייליסט",
     "playlist-toast-content": "נוצר הפלייליסט {{name}}.",
     "playlist-toast-title": "הפלייליסט נוצר",
-    "live": "שידור חי"
+    "live": "שידור חי",
+    "stream-verification": {
+      "tooltip": {
+        "unknown": "The status of this stream is unknown.",
+        "unverified": "This stream has not yet been verified by the community.",
+        "weakly-verified": "This stream has been verified by a couple of users.",
+        "verified": "This stream has been verified by the community.",
+        "verified-by-user": "This stream has been verified by you."
+      },
+      "stream-status": {
+        "unknown": "Unknown",
+        "unverified": "Unverified",
+        "weakly-verified": "Weakly verified",
+        "verified": "Verified",
+        "verified-by-user": "Verified by you"
+      },
+      "verify": "Verify",
+      "unverify": "Unverify"
+    }
   },
   "search": {
     "album": "אלבום",
@@ -304,6 +322,7 @@
     "promoted-artists-description": "This is a reel of interesting, handpicked indie artists you might like. No one's receiving any compensation for this.",
     "saving-in": "נשמר ב:",
     "seek-iteration": "מספר שניות לחיפוש קדימה/אחורה בעת לחיצה על מקשי החצים",
+    "show-tray-icon": "Show tray icon",
     "shuffle-queue": "ערבוב השירים",
     "shuffle-when-going-back": "ערבב ברצועה הקודמת",
     "shuffle-when-going-back-description": "הפעל רצועה אקראית כאשר ערבוב פעיל ולחיצה על לחצן הרצועה הקודמת",
@@ -313,6 +332,9 @@
     "streaming": "הזרמה",
     "track-duration": "הצג את אורך הרצועה על פני סרגל החיפוש",
     "user": "שם משתמש:",
+    "user-id": "User ID",
+    "use-stream-verification": "Use stream verification",
+    "use-stream-verification-description": "Use stream verification. Loads the streams the community has verified as being correct for the tracks you play. Also allows you to vote on streams. See documentation for details.",
     "youtube": "Youtube",
     "yt-api-key": "מפתח API של Youtube"
   },
