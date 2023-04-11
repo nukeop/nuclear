@@ -9,10 +9,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@master
-      - uses: benjlevesque/short-sha@v1.2
-        id: short-sha
-        with:
-          length: 6
+      - name: get-npm-version
+        id: package-version
+        uses: martinbeentjes/npm-get-version-action@v1.3.1
       - name: Use Node.js 18
         uses: actions/setup-node@master
         with:
@@ -22,7 +21,7 @@ jobs:
       - run: npm run build:linux
         shell: bash
         env:
-          GITHASH: ${{ steps.short-sha.outputs.sha }}
+          VERSION: ${{ steps.package-version.outputs.current-version }}
       - name: Upload binaries
         uses: actions/upload-artifact@v2
         with:
@@ -31,8 +30,8 @@ jobs:
       - name: Create a release
         uses: softprops/action-gh-release@v1
         with:
-          name: ${{ steps.short-sha.outputs.sha }}
-          tag_name: ${{ steps.short-sha.outputs.sha }}
+          name: v${{ steps.package-version.outputs.current-version }}
+          tag_name: v${{ steps.package-version.outputs.current-version }}
           prerelease: true
           files: release/*.*
       - name: Inform AUR updater
@@ -41,21 +40,21 @@ jobs:
           repository: NuclearPlayer/nuclear-nightly-aur
           token: ${{ secrets.REPO_ACCESS_TOKEN }}
           event-type: release
-          client-payload: '{"tag": "${{ steps.short-sha.outputs.sha }}"}'
+          client-payload: '{"tag": "v${{ steps.package-version.outputs.current-version }}"}'
       - name: Inform Snapcraft updater
         uses: peter-evans/repository-dispatch@v1
         with:
           repository: NuclearPlayer/nuclear-nightly-snapcraft
           token: ${{ secrets.REPO_ACCESS_TOKEN }}
           event-type: release
-          client-payload: '{"tag": "${{ steps.short-sha.outputs.sha }}"}'
+          client-payload: '{"tag": "v${{ steps.package-version.outputs.current-version }}"}'
       - name: Inform Flatpak updater
         uses: peter-evans/repository-dispatch@v1
         with:
           repository: NuclearPlayer/nuclear-nightly-flatpak
           token: ${{ secrets.REPO_ACCESS_TOKEN }}
           event-type: release
-          client-payload: '{"tag": "${{ steps.short-sha.outputs.sha }}"}'
+          client-payload: '{"tag": "v${{ steps.package-version.outputs.current-version }}"}'
 
   mac_release:
     runs-on: macos-11
@@ -63,10 +62,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@master
-      - uses: benjlevesque/short-sha@v1.2
-        id: short-sha
-        with:
-          length: 6
+      - name: get-npm-version
+        id: package-version
+        uses: martinbeentjes/npm-get-version-action@v1.3.1
       - name: Use Node.js 18
         uses: actions/setup-node@master
         with:
@@ -76,7 +74,7 @@ jobs:
       - run: npm run build:macos
         shell: bash
         env:
-          GITHASH: ${{ steps.short-sha.outputs.sha }}
+          VERSION: ${{ steps.package-version.outputs.current-version }}
       - name: Upload binaries
         uses: actions/upload-artifact@v2
         with:
@@ -85,8 +83,8 @@ jobs:
       - name: Create a release
         uses: softprops/action-gh-release@v1
         with:
-          name: ${{ steps.short-sha.outputs.sha }}
-          tag_name: ${{ steps.short-sha.outputs.sha }}
+          name: v${{ steps.package-version.outputs.current-version }}
+          tag_name: v${{ steps.package-version.outputs.current-version }}
           prerelease: true
           files: release/*.*
 
@@ -96,10 +94,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@master
-      - uses: benjlevesque/short-sha@v1.2
-        id: short-sha
-        with:
-          length: 6
+      - name: get-npm-version
+        id: package-version
+        uses: martinbeentjes/npm-get-version-action@v1.3.1
       - name: Use Node.js 18
         uses: actions/setup-node@master
         with:
@@ -113,7 +110,7 @@ jobs:
       - run: npm run build:windows
         shell: bash
         env:
-          GITHASH: ${{ steps.short-sha.outputs.sha }}
+          VERSION: ${{ steps.package-version.outputs.current-version }}
       - name: Upload binaries
         uses: actions/upload-artifact@v2
         with:
@@ -122,7 +119,7 @@ jobs:
       - name: Create a release
         uses: softprops/action-gh-release@v1
         with:
-          name: ${{ steps.short-sha.outputs.sha }}
-          tag_name: ${{ steps.short-sha.outputs.sha }}
+          name: v${{ steps.package-version.outputs.current-version }}
+          tag_name: v${{ steps.package-version.outputs.current-version }}
           prerelease: true
           files: release/*.*
