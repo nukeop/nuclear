@@ -15,6 +15,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@master
+      - name: get-npm-version
+        id: package-version
+        uses: martinbeentjes/npm-get-version-action@v1.3.1
       - name: Use Node.js 18
         uses: actions/setup-node@master
         with:
@@ -25,7 +28,7 @@ jobs:
       - run: npm run build:linux
         shell: bash
         env:
-          GITHASH: ${GITHUB_SHA}
+          VERSION: ${{ steps.package-version.outputs.current-version}}
 
   mac_build:
     runs-on: macos-11
@@ -33,6 +36,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@master
+      - name: get-npm-version
+        id: package-version
+        uses: martinbeentjes/npm-get-version-action@v1.3.1
       - name: Use Node.js 18
         uses: actions/setup-node@master
         with:
@@ -43,7 +49,7 @@ jobs:
       - run: npm run build:macos
         shell: bash
         env:
-          GITHASH: ${GITHUB_SHA}
+          VERSION: ${{ steps.package-version.outputs.current-version}}
 
   windows_build:
     runs-on: windows-latest
@@ -51,6 +57,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@master
+      - name: get-npm-version
+        id: package-version
+        uses: martinbeentjes/npm-get-version-action@v1.3.1
       - name: Use Node.js 18
         uses: actions/setup-node@master
         with:
@@ -65,4 +74,4 @@ jobs:
       - run: npm run build:windows
         shell: bash
         env:
-          GITHASH: ${GITHUB_SHA}
+          VERSION: ${{ steps.package-version.outputs.current-version}}

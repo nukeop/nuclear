@@ -73,7 +73,7 @@
   "build": {
     "appId": "nuclear",
     "productName": "nuclear",
-    "artifactName": "${productName}-${env.GITHASH}.${ext}",
+    "artifactName": "${productName}-${env.VERSION}.${ext}",
     "directories": {
       "output": "release"
     },
@@ -97,7 +97,7 @@
       }
     ],
     "releaseInfo": {
-      "releaseName": "Nuclear ${env.GITHASH}"
+      "releaseName": "Nuclear ${env.VERSION}"
     },
     "fileAssociations": [
       {
@@ -203,7 +203,7 @@
       ]
     },
     "nsis": {
-      "artifactName": "${productName} Setup ${env.GITHASH}.${ext}"
+      "artifactName": "${productName} Setup ${env.VERSION}.${ext}"
     }
   },
   "dependencies": {
