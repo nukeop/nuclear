@@ -11,7 +11,7 @@ jobs:
       - uses: actions/checkout@master
       - name: get-npm-version
         id: package-version
-        uses: action-get-npm-version@1.1.1
+        uses: pchynoweth/action-get-npm-version@1.1.1
       - name: Use Node.js 18
         uses: actions/setup-node@master
         with:
@@ -64,7 +64,7 @@ jobs:
       - uses: actions/checkout@master
       - name: get-npm-version
         id: package-version
-        uses: action-get-npm-version@1.1.1
+        uses: pchynoweth/action-get-npm-version@1.1.1
       - name: Use Node.js 18
         uses: actions/setup-node@master
         with:
@@ -96,7 +96,7 @@ jobs:
       - uses: actions/checkout@master
       - name: get-npm-version
         id: package-version
-        uses: action-get-npm-version@1.1.1
+        uses: pchynoweth/action-get-npm-version@1.1.1
       - name: Use Node.js 18
         uses: actions/setup-node@master
         with:
