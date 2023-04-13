@@ -1,4 +1,5 @@
 import React from 'react';
+import { useLocation } from 'react-router-dom';
 
 import PlayerButton from '../PlayerButton';
 
@@ -7,6 +8,7 @@ import styles from './styles.scss';
 export type PlayerControlsProps = {
   goForward?: () => void;
   goBack?: () => void;
+  playRandomFavoriteTrack?: () => void;
   togglePlay?: () => void;
   isPlaying?: boolean;
   isLoading?: boolean;
@@ -19,13 +21,16 @@ export type PlayerControlsProps = {
 const PlayerControls: React.FC<PlayerControlsProps> = ({
   goForward,
   goBack,
+  playRandomFavoriteTrack,
   togglePlay,
   isPlaying,
   isLoading,
   goBackDisabled=false,
   goForwardDisabled=false,
   playDisabled=false
-}) => (
+}) => {
+  const location = useLocation();
+  return (
   <div className={styles.player_controls}>
     <PlayerButton
       data-testid='player-controls-back'
@@ -54,7 +59,17 @@ const PlayerControls: React.FC<PlayerControlsProps> = ({
       onClick={goForward}
       disabled={goForwardDisabled}
     />
+    {
+      location.pathname === '/favorites/tracks' &&
+      <PlayerButton
+        data-testid='player-controls-random'
+        icon='gift'
+        size='large'
+        onClick={playRandomFavoriteTrack}
+        disabled={false}
+      />
+    }
   </div>
-);
+)};
 
 export default PlayerControls;
