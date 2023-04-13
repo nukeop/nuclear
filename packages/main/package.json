@@ -56,7 +56,7 @@
     "url": "^0.11.0",
     "uuid": "^3.3.3",
     "v8-compile-cache": "^2.3.0",
-    "ytdl-core": "https://github.com/khlevon/node-ytdl-core.git#v4.11.3-patch.1"
+    "ytdl-core": "^4.11.4"
   },
   "devDependencies": {
     "@types/body-parser": "^1.17.1",
