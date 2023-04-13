@@ -41,9 +41,10 @@ class Download {
     onProgress
   }: DownloadParams): Promise<any> {
     const tracks = await Youtube.trackSearchByString(query, undefined, false);
+    const videoWithStream = await Youtube.getStreamForId(tracks[0]?.id, undefined);
 
-    return download(this.window.getBrowserWindow(), tracks[0]?.stream, {
-      filename: `${filename}.${tracks[0]?.format}`,
+    return download(this.window.getBrowserWindow(), videoWithStream?.stream, {
+      filename: `${filename}.${videoWithStream?.format}`,
       directory: this.store.getOption('downloads.dir'),
       onStarted: onStart,
       onProgress: _.throttle(onProgress, 1000)
