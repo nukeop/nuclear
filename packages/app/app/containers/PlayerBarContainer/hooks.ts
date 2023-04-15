@@ -55,6 +55,7 @@ export const useSeekbarProps = () => {
 export const usePlayerControlsProps = () => {
   const dispatch = useDispatch();
   const queue = useSelector(queueSelector);
+  const settings = useSelector(settingsSelector);
   const playbackStatus = useSelector(playerSelectors.playbackStatus);
   const currentTrack = queue?.queueItems[queue.currentSong];
   const currentTrackStream = currentTrack?.streams?.[0];
@@ -64,7 +65,10 @@ export const usePlayerControlsProps = () => {
   const couldPlay = queue.queueItems.length > 0;
   const couldForward = couldPlay && queue.currentSong + 1 < queue.queueItems.length;
   const couldBack = couldPlay && queue.currentSong > 0;
-  const goBackThreshold = (currentTrackStream?.skipSegments.find(segment => segment.startTime === 0)?.endTime ?? 0) + 3;
+  const goBackThreshold = ((
+    settings.skipSponsorblock && 
+      currentTrackStream?.skipSegments?.find(segment => segment.startTime === 0)?.endTime) 
+    ?? 0) + 3;
 
   const togglePlay = useCallback(
     () => dispatch(playerActions.togglePlayback(playbackStatus, false)),
