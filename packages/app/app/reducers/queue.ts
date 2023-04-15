@@ -1,3 +1,4 @@
+import { Segment } from '@nuclear/core/src/rest/SponsorBlock.types';
 import _ from 'lodash';
 
 import { Queue } from '../actions/actionTypes';
@@ -10,6 +11,7 @@ export type TrackStream = {
   title?: string;
   thumbnail?: string;
   stream?: string;
+  skipSegments?: Segment[];
 };
 
 export type QueueItem = {
