@@ -219,21 +219,21 @@
     "live": "Zindî",
     "stream-verification": {
       "tooltip": {
-        "unknown": "The status of this stream is unknown.",
-        "unverified": "This stream has not yet been verified by the community.",
-        "weakly-verified": "This stream has been verified by a couple of users.",
-        "verified": "This stream has been verified by the community.",
-        "verified-by-user": "This stream has been verified by you."
+        "unknown": "Rewşa vê weşanê nenas e.",
+        "unverified": "Ev weşan hîn ji aliyê civakê ve nehatiye piştrastkirin.",
+        "weakly-verified": "Ev weşan hîn ji aliyê çend bikarhêneran ve hatiye piştrastkirin.",
+        "verified": "Ev weşan ji aliyê civakê ve hatiye piştrastkirin.",
+        "verified-by-user": "Ev weşan ji aliyê te hatiye piştrastkirin."
       },
       "stream-status": {
-        "unknown": "Unknown",
-        "unverified": "Unverified",
-        "weakly-verified": "Weakly verified",
-        "verified": "Verified",
-        "verified-by-user": "Verified by you"
+        "unknown": "Nenas",
+        "unverified": "Nepiştrastkirî",
+        "weakly-verified": "Heftane piştrastkirî",
+        "verified": "Piştrastkirî",
+        "verified-by-user": "Piştrastkirî ji aliyê te ve"
       },
-      "verify": "Verify",
-      "unverify": "Unverify"
+      "verify": "Piştrast bike",
+      "unverify": "Piştrast neke"
     }
   },
   "search": {
@@ -304,7 +304,7 @@
     "mastodon-awaiting-authorization": "Nuclear li ser {{instanceUrl}} hatiye tomarkirin. Li benda mafdayînê ye.",
     "mastodon-description": "",
     "mastodon-instance-label": "Girêdana mînakî ya Mastodon",
-    "mastodon-post-format-description": "Nuclear will post a status on Mastodon after each track completes playing. The above string will be the template for each post, with {{artist}}, {{title}}, and {{url}} replaced with the artist, title, and a link to the track respectively.",
+    "mastodon-post-format-description": "Nuclear piştî lêdana stranê diqede ew ê li ser Mastodon rewşekê biweşîne. Rêza jorîn wê bibe kirasek ji bo her şandî, li şûna {{artist}} û {{title}}, û {{url}} hunermend û sernavê stranê wê werin guhertin. û girêdanekê ji bo stranê bi rêze.",
     "mastodon-post-format-label": "Awayê şandinê",
     "mastodon-title": "",
     "normalize": "Normalîzekirina Dengê",
@@ -322,7 +322,7 @@
     "promoted-artists-description": "Ev reel balkêş ji hunermendên serbixwe ne ku belkî tu jê hez bikî. Kes ji bo vê ti berdêl nagire.",
     "saving-in": "Cihê tomarkirinê:",
     "seek-iteration": "Dema pê li bişkokên tîrê tê kirin ji bo ku li pêş/paş biçe hejmara çirkeyan",
-    "show-tray-icon": "Show tray icon",
+    "show-tray-icon": "Sembolê li ser devera agahiyan nîşan bide",
     "shuffle-queue": "Stranan tevlihev bike",
     "shuffle-when-going-back": "Li ser strana paş tevlihev bike",
     "shuffle-when-going-back-description": "Dema ku tevlihevkirin çalak e û bişkoka strana berê hatiye tikandin, lêdaneke rasthatî lê bide",
@@ -332,9 +332,9 @@
     "streaming": "Weşan",
     "track-duration": "Dirêjiya stranê li ser darikê lêgerînê nîşan bide",
     "user": "Bikarhêner:",
-    "user-id": "User ID",
-    "use-stream-verification": "Use stream verification",
-    "use-stream-verification-description": "Use stream verification. Loads the streams the community has verified as being correct for the tracks you play. Also allows you to vote on streams. See documentation for details.",
+    "user-id": "Nasnameya bikarhêner",
+    "use-stream-verification": "Piştraskirina weşanê bi kar bîne",
+    "use-stream-verification-description": "Piştraskirina weşanê bi kar bîne. Weşanên ku civatê ji bo stranên ku tu lê didî wekî rast piştrastkirine bar dike. Di heman demê de mafê dide te ku tu dengê bidî li ser weşanan. Ji bo hûrgûliyan li pelbendê binêre.",
     "youtube": "Youtube",
     "yt-api-key": "Kilîta API ya Youtube"
   },
