@@ -1,8 +1,11 @@
+import { useCallback, useEffect } from 'react';
 import Sound from 'react-hifi';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import _, { isEmpty } from 'lodash';
+import { getTrackArtist } from '@nuclear/ui';
+import { SemanticICONS } from 'semantic-ui-react/dist/commonjs/generic';
 
 import { normalizeTrack } from '../../utils';
 import settingsConst from '../../constants/settings';
@@ -15,10 +18,7 @@ import { playerSelectors } from '../../selectors/player';
 import { queue as queueSelector } from '../../selectors/queue';
 import { settingsSelector } from '../../selectors/settings';
 import { getFavoriteTrack } from '../../selectors/favorites';
-import { useCallback, useEffect } from 'react';
-import { SemanticICONS } from 'semantic-ui-react/dist/commonjs/generic';
 import { QueueItem } from '../../reducers/queue';
-import { getTrackArtist } from '@nuclear/ui';
 
 export const useSeekbarProps = () => {
   const dispatch = useDispatch();
