@@ -221,7 +221,8 @@ describe('PlayerBar container', () => {
       ...buildStoreState()
         .withTracksInPlayQueue()
         .withSettings({
-          trackDuration: true
+          trackDuration: true,
+          skipSponsorblock: true
         })
         .build(),
       ...initialStore
