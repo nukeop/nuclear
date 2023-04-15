@@ -88,6 +88,133 @@ describe('PlayerBar container', () => {
 
     expect(state.player.seek).toBe(100 / documentWidth);
   });
+  
+  it('should start playing the current track when the play button is clicked', async () => {
+    const { component, store } = mountComponent();
+    const playButton = await component.findByTestId('player-controls-play');
+    fireEvent.click(playButton);
+    const state = store.getState();
+    expect(state.player.playbackStatus).toBe('PLAYING');
+  });
+
+  it('should pause the current track when the pause button is clicked', async () => {
+    const { component, store } = mountComponent({
+      player: {
+        playbackStatus: 'PLAYING'
+      }
+    });
+    const pauseButton = await component.findByTestId('player-controls-play');
+    expect(pauseButton.children[0].className).toContain('pause');
+
+    fireEvent.click(pauseButton);
+    const state = store.getState();
+    expect(state.player.playbackStatus).toBe('PAUSED');
+  });
+
+  it('should skip to the next track when the next button is clicked', async () => {
+    const { component, store } = mountComponent();
+    const nextButton = await component.findByTestId('player-controls-forward');
+    fireEvent.click(nextButton);
+    const state = store.getState();
+    expect(state.queue.currentSong).toBe(1);
+  });
+
+  it('should rewind to the beginning of the current track when the previous button is clicked and the track has progressed past the first 3 seconds', async () => {
+    const { component, store } = mountComponent({
+      queue: {
+        currentSong: 0,
+        queueItems: [{
+          artist: 'test artist 1',
+          name: 'test track 1',
+          streams: [{
+            duration: 300,
+            title: 'test track 1',
+            skipSegments: []
+          }]
+        }]
+      },
+      player: {
+        seek: 5
+      }
+    });
+    const previousButton = await component.findByTestId('player-controls-back');
+    fireEvent.click(previousButton);
+    const state = store.getState();
+    waitFor(() => expect(state.player.seek).toBe(0));
+    expect(state.queue.currentSong).toBe(0);
+  });
+
+  it('should skip to the previous track when the previous button is clicked and the track has not progressed past the first 3 seconds', async () => {
+    const { component, store } = mountComponent({
+      queue: {
+        currentSong: 1,
+        queueItems: [{
+          artist: 'test artist 1',
+          name: 'test track 1',
+          streams: [{
+            duration: 300,
+            title: 'test track 1',
+            skipSegments: []
+          }]
+        }, {
+          artist: 'test artist 2',
+          name: 'test track 2',
+          streams: [{
+            duration: 300,
+            title: 'test track 2',
+            skipSegments: []
+          }]
+        }]
+      },
+      player: {
+        seek: 0
+      }
+    });
+    const previousButton = await component.findByTestId('player-controls-back');
+    fireEvent.click(previousButton);
+    const state = store.getState();
+    expect(state.player.seek).toBe(0);
+    expect(state.queue.currentSong).toBe(0);
+  });
+
+  it('should skip to the previous track if there is a sponsorblock segment at the beginning of the current track and the playhead is within 3 seconds of the segment', async () => {
+    const { component, store } = mountComponent({
+      queue: {
+        currentSong: 1,
+        queueItems: [{
+          artist: 'test artist 1',
+          name: 'test track 1',
+          streams: [{
+            duration: 300,
+            title: 'test track 1',
+            skipSegments: []
+          }]
+        }, {
+          artist: 'test artist 2',
+          name: 'test track 2',
+          streams: [{
+            duration: 300,
+            title: 'test track 2',
+            skipSegments: [{
+              category: 'sponsor',
+              duration: 10,
+              endTime: 10,
+              startTime: 0
+            }]
+          }]
+        }]
+      },
+      player: {
+        seek: 12
+      }
+    });
+    const previousButton = await component.findByTestId('player-controls-back');
+    fireEvent.click(previousButton);
+    const state = store.getState();
+    expect(state.player.seek).toBe(0);
+    expect(state.queue.currentSong).toBe(0); 
+  });
+
 
   const mountComponent = (initialStore?: AnyProps) => {
     const store = configureMockStore({

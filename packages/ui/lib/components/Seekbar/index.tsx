@@ -7,7 +7,7 @@ import { Popup } from 'semantic-ui-react';
 
 type QueueItem = {
   loading?: boolean;
-  streams: { duration: number }[];
+  streams?: { duration?: number }[];
 };
 
 type Segment = {
