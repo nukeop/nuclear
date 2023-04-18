@@ -63,7 +63,7 @@
   },
   "downloads": {
     "clear": "Прибрати завантажені доріжки",
-    "completion": "Хід",
+    "completion": "Поступ",
     "empty": "Тут порожньо.",
     "empty-help": "Додайте щось до завантажень і ви побачите це тут!",
     "header": "Завантаження",
@@ -154,7 +154,7 @@
     "export-fail-title": "Не вдалося експортувати грайлист",
     "export-success-title": "Грайлист успішно експортовано",
     "header": "Ваші грайлисти",
-    "import-progress": "Хід імпорту",
+    "import-progress": "Поступ імпорту",
     "spotify-import-placeholder": "Вставте посилання на грайлист Spotify тут",
     "dialog-placeholder": "Назва грайлисту...",
     "dialog-accept": "Зберегти",
