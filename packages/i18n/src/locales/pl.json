@@ -216,7 +216,25 @@
     "playlist-add": "Dodaj do listy odtwarzania",
     "playlist-toast-content": "Lista odtwarzania {{name}} została utworzona.",
     "playlist-toast-title": "Lista odtwarzania utworzona",
-    "live": "Na żywo"
+    "live": "Na żywo",
+    "stream-verification": {
+      "tooltip": {
+        "unknown": "Status tego streamu jest nieznany.",
+        "unverified": "Ten stream nie został jeszcze zweryfikowany przez społeczność.",
+        "weakly-verified": "Ten stream został zweryfikowany przez kilku użytkowników.",
+        "verified": "Ten stream został zweryfikowany przez społeczność.",
+        "verified-by-user": "Ten stream został zweryfikowany przez ciebie."
+      },
+      "stream-status": {
+        "unknown": "Nieznany",
+        "unverified": "Niezweryfikowany",
+        "weakly-verified": "Słabo zweryfikowany",
+        "verified": "Zweryfikowany",
+        "verified-by-user": "Zweryfikowany przez Ciebie"
+      },
+      "verify": "Zweryfikuj",
+      "unverify": "Cofnij weryfikację"
+    }
   },
   "search": {
     "album": "Album",
@@ -249,8 +267,8 @@
     "autoradio-craziness": "Autoradio - tryb szaleństwa",
     "autoradio-craziness-description": "Autoradio będzie wybierać tym mniej podobne utwory do tych z kolejki odtwarzania, im większe wybrano szaleństwo",
     "autoradio-description": "Dodaj automatycznie podobne utwory, kiedy kolejka odtwarzania się kończy",
-    "listening-history": "Listening history",
-    "listening-history-description": "Log the tracks you listen to, a la Last.fm. The history is stored offline.",
+    "listening-history": "Historia odtwarzania",
+    "listening-history-description": "Zapisuj utwory, których słuchasz, à la Last.fm. Historia jest przechowywana offline.",
     "compact-menu-bar": "Włącz uproszczony pasek menu",
     "compact-queue-bar": "Włącz uproszczony pasek kolejki",
     "developer": "Ustawienia deweloperskie",
@@ -286,11 +304,11 @@
     "mastodon-awaiting-authorization": "Nuclear jest zarejestrowany ma{{instanceUrl}}. Oczekuję na autoryzację.",
     "mastodon-description": "",
     "mastodon-instance-label": "URL instancji Mastodon",
-    "mastodon-post-format-description": "Nuclear zaktualizuje status na Mastodonie po zakończeniu odtwarzania każdego utworu. Powyższy ciąg znaków będzie wzorem dla każdego wpisu, który będzie zawierał {{artist}} oraz {{title}} zastąpione artystą oraz tytułem utworu.",
+    "mastodon-post-format-description": "Nuclear will post a status on Mastodon after each track completes playing. The above string will be the template for each post, with {{artist}}, {{title}}, and {{url}} replaced with the artist, title, and a link to the track respectively.",
     "mastodon-post-format-label": "Format wpisu",
     "mastodon-title": "",
-    "normalize": "Normalize volume",
-    "normalize-description": "Automatically adjust volume of tracks so that they are played at the same level. This needs to fetch the whole track to work, so it may cause a delay between tracks.",
+    "normalize": "Normalizacja głośności",
+    "normalize-description": "Automatycznie dopasuj głośność utworów, aby były one odtwarzane na tym samym poziomie. Ta funkcjonalność musi pobrać cały utwór, aby działać, więc może powodować dłuższe ładowanie między ścieżkami.",
     "nuclear-identity-service-url": "Adres URL serwisu identyfikacji Nuclear",
     "nuclear-playlists-service-url": "Adres URL serwisu playlist Nuclear",
     "mini-player": "Miniodtwarzacz",
@@ -304,6 +322,7 @@
     "promoted-artists-description": "To kolekcja ciekawych, ręcznie wybranych artystów, którzy mogą Ci się spodobać. Nikt nie otrzymuje za to żadnej rekompensaty.",
     "saving-in": "Zapisuj w:",
     "seek-iteration": "Liczba sekund, o którą będzie przewijany utwór do przodu/wstecz, kiedy przyciski strzałek będą wciśnięte",
+    "show-tray-icon": "Pokaż ikonę w trayu",
     "shuffle-queue": "Mieszaj utwory",
     "shuffle-when-going-back": "Mieszaj utwory wstecz",
     "shuffle-when-going-back-description": "Odtwarzaj losowy utwór, kiedy mieszanie utworów jest włączone i kliknięto przycisk Poprzedni utwór",
@@ -313,6 +332,9 @@
     "streaming": "Streaming",
     "track-duration": "Wyświetl czas trwania utworu na pasku postępu odtwarzania",
     "user": "Użytkownik:",
+    "user-id": "ID użytkownika",
+    "use-stream-verification": "Włącz weryfikację streamów",
+    "use-stream-verification-description": "Włącz weryfikację streamów. Streamy zweryfikowane przez społeczność będą ładowane w pierwszej kolejności. Pozwala również na weryfikację streamów. Przeczytaj dokumentację, aby uzyskać więcej informacji.",
     "youtube": "Youtube",
     "yt-api-key": "Klucz API Youtube"
   },
@@ -329,7 +351,7 @@
     "add-to-playlist": "Dodaj do playlisty",
     "add-to-queue": "Dodaj do kolejki",
     "create-playlist": "Utwórz nową playlistę",
-    "create-playlist-dialog-title": "Input playlist name:",
+    "create-playlist-dialog-title": "Nazwa playlisty:",
     "create-playlist-dialog-placeholder": "Nazwa listy odtwarzania...",
     "create-playlist-dialog-accept": "Zapisz",
     "create-playlist-dialog-cancel": "Anuluj",
@@ -396,10 +418,10 @@
     }
   },
   "listening-history": {
-    "title": "Listening history",
-    "empty-state": "You haven't listened to anything yet.",
-    "clear-history": "Clear history",
-    "clear-history-confirm": "Are you sure you want to clear your listening history?",
+    "title": "Historia odtwarzania",
+    "empty-state": "Niczego jeszcze nie słuchałeś.",
+    "clear-history": "Wyczyść historię",
+    "clear-history-confirm": "Czy jesteś pewien, że chcesz wyczyścić historię odtwarzania?",
     "clear-history-confirm-yes": "Potwierdź",
     "clear-history-confirm-no": "Anuluj",
     "clear-history-toast": "Historia słuchania została wyczyszczona"

@@ -216,7 +216,25 @@
     "playlist-add": "플레이리스트에 추가",
     "playlist-toast-content": "플레이리스트 \"{{name}}\"(이)가 생성되었습니다.",
     "playlist-toast-title": "플레이리스트 생성 완료",
-    "live": "라이브"
+    "live": "라이브",
+    "stream-verification": {
+      "tooltip": {
+        "unknown": "The status of this stream is unknown.",
+        "unverified": "This stream has not yet been verified by the community.",
+        "weakly-verified": "This stream has been verified by a couple of users.",
+        "verified": "This stream has been verified by the community.",
+        "verified-by-user": "This stream has been verified by you."
+      },
+      "stream-status": {
+        "unknown": "Unknown",
+        "unverified": "Unverified",
+        "weakly-verified": "Weakly verified",
+        "verified": "Verified",
+        "verified-by-user": "Verified by you"
+      },
+      "verify": "Verify",
+      "unverify": "Unverify"
+    }
   },
   "search": {
     "album": "앨범",
@@ -286,7 +304,7 @@
     "mastodon-awaiting-authorization": "Nuclear가 {{instanceUrl}}에 등록되어 있습니다. 권한 부여를 기다리는 중입니다.",
     "mastodon-description": "",
     "mastodon-instance-label": "마스토돈 인스턴스 URL",
-    "mastodon-post-format-description": "Nuclear가 각 트랙 재생이 완료된 후 Mastodon에 상태를 게시합니다. 위의 문자열은 각 게시물의 템플릿이 되고, {{artist}} 및 {{title}}은 아티스트 및 트랙 제목으로 대체됩니다.",
+    "mastodon-post-format-description": "Nuclear will post a status on Mastodon after each track completes playing. The above string will be the template for each post, with {{artist}}, {{title}}, and {{url}} replaced with the artist, title, and a link to the track respectively.",
     "mastodon-post-format-label": "게시 형식",
     "mastodon-title": "",
     "normalize": "볼륨 평탄화",
@@ -304,6 +322,7 @@
     "promoted-artists-description": "당신이 좋아할 만한 흥미로운 인디 아티스트들을 직접 고른 릴입니다. 여기 나온 아티스트들은 아무도 보상을 받지 않았습니다.",
     "saving-in": "저장 경로:",
     "seek-iteration": "화살표 키를 눌렀을 때 탐색할 시간 (초)",
+    "show-tray-icon": "Show tray icon",
     "shuffle-queue": "음악 셔플",
     "shuffle-when-going-back": "이전 음악 재생 시 셔플",
     "shuffle-when-going-back-description": "셔플 활성화 시, 이전 재생 버튼 누르면 임의로 음악 재생",
@@ -313,6 +332,9 @@
     "streaming": "스트리밍",
     "track-duration": "화면에 남은 재생 시간 표시",
     "user": "유저:",
+    "user-id": "User ID",
+    "use-stream-verification": "Use stream verification",
+    "use-stream-verification-description": "Use stream verification. Loads the streams the community has verified as being correct for the tracks you play. Also allows you to vote on streams. See documentation for details.",
     "youtube": "YouTube",
     "yt-api-key": "Youtube API 키"
   },
