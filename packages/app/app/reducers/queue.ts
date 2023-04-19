@@ -150,9 +150,9 @@ const reduceAddPlayNextItem = (state, action) => {
   return {
     ...state,
     queueItems: [
-      ...state.queueItems.slice(0, 1),
+      ...state.queueItems.slice(0, state.currentSong + 1),
       action.payload.item,
-      ...state.queueItems.slice(1)
+      ...state.queueItems.slice(state.currentSong + 1)
     ]
   };
 };
