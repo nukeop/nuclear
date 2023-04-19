@@ -216,7 +216,25 @@
     "playlist-add": "Tevlî rêzoka lêdanan bike",
     "playlist-toast-content": "Rêzoka lêdanan {{name}} hate afirandin.",
     "playlist-toast-title": "Rêzoka lêdanan hate afirandin",
-    "live": "Zindî"
+    "live": "Zindî",
+    "stream-verification": {
+      "tooltip": {
+        "unknown": "Rewşa vê weşanê nenas e.",
+        "unverified": "Ev weşan hîn ji aliyê civakê ve nehatiye piştrastkirin.",
+        "weakly-verified": "Ev weşan hîn ji aliyê çend bikarhêneran ve hatiye piştrastkirin.",
+        "verified": "Ev weşan ji aliyê civakê ve hatiye piştrastkirin.",
+        "verified-by-user": "Ev weşan ji aliyê te hatiye piştrastkirin."
+      },
+      "stream-status": {
+        "unknown": "Nenas",
+        "unverified": "Nepiştrastkirî",
+        "weakly-verified": "Heftane piştrastkirî",
+        "verified": "Piştrastkirî",
+        "verified-by-user": "Piştrastkirî ji aliyê te ve"
+      },
+      "verify": "Piştrast bike",
+      "unverify": "Piştrast neke"
+    }
   },
   "search": {
     "album": "Album",
@@ -286,7 +304,7 @@
     "mastodon-awaiting-authorization": "Nuclear li ser {{instanceUrl}} hatiye tomarkirin. Li benda mafdayînê ye.",
     "mastodon-description": "",
     "mastodon-instance-label": "Girêdana mînakî ya Mastodon",
-    "mastodon-post-format-description": "Nuclear piştî ku lêdana her herîk qediya ew ê li ser Mastodon rewşekê biweşîne. Rêza jorîn wê bibe kirasek ji bo her şandiyê, li şûna {{artist}} û {{title}} hunermend û sernavê stranê wê werin guhertin.",
+    "mastodon-post-format-description": "Nuclear piştî lêdana stranê diqede ew ê li ser Mastodon rewşekê biweşîne. Rêza jorîn wê bibe kirasek ji bo her şandî, li şûna {{artist}} û {{title}}, û {{url}} hunermend û sernavê stranê wê werin guhertin. û girêdanekê ji bo stranê bi rêze.",
     "mastodon-post-format-label": "Awayê şandinê",
     "mastodon-title": "",
     "normalize": "Normalîzekirina Dengê",
@@ -304,6 +322,7 @@
     "promoted-artists-description": "Ev reel balkêş ji hunermendên serbixwe ne ku belkî tu jê hez bikî. Kes ji bo vê ti berdêl nagire.",
     "saving-in": "Cihê tomarkirinê:",
     "seek-iteration": "Dema pê li bişkokên tîrê tê kirin ji bo ku li pêş/paş biçe hejmara çirkeyan",
+    "show-tray-icon": "Sembolê li ser devera agahiyan nîşan bide",
     "shuffle-queue": "Stranan tevlihev bike",
     "shuffle-when-going-back": "Li ser strana paş tevlihev bike",
     "shuffle-when-going-back-description": "Dema ku tevlihevkirin çalak e û bişkoka strana berê hatiye tikandin, lêdaneke rasthatî lê bide",
@@ -313,6 +332,9 @@
     "streaming": "Weşan",
     "track-duration": "Dirêjiya stranê li ser darikê lêgerînê nîşan bide",
     "user": "Bikarhêner:",
+    "user-id": "Nasnameya bikarhêner",
+    "use-stream-verification": "Piştraskirina weşanê bi kar bîne",
+    "use-stream-verification-description": "Piştraskirina weşanê bi kar bîne. Weşanên ku civatê ji bo stranên ku tu lê didî wekî rast piştrastkirine bar dike. Di heman demê de mafê dide te ku tu dengê bidî li ser weşanan. Ji bo hûrgûliyan li pelbendê binêre.",
     "youtube": "Youtube",
     "yt-api-key": "Kilîta API ya Youtube"
   },

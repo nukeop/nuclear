@@ -19,7 +19,7 @@
     "favorite-artists": "Artistas Favoritos",
     "favorite-tracks": "Pistas Favoritas",
     "library": "Biblioteca Local",
-    "listening-history": "Listening History",
+    "listening-history": "Historial de reproducción",
     "lyrics": "Letras",
     "main": "Principal",
     "playlists": "Listas de reproducción",
@@ -51,15 +51,15 @@
     "genres": "Géneros",
     "news": "Noticias",
     "playcounts": "Número de reproducciones",
-    "playlists": "Trending",
+    "playlists": "En tendencia",
     "popular-track-title": "Las Mejores Pistas de Deezer",
     "title": "Título",
     "top": "Las Mejores Pistas",
-    "trending-playlists": "Trending playlists",
-    "trending-artists": "Trending artists",
-    "trending-albums": "Trending albums",
-    "filter": "Filter...",
-    "nothing-found": "Nothing found."
+    "trending-playlists": "Playlists populares",
+    "trending-artists": "Artistas de moda",
+    "trending-albums": "Álbumes populares",
+    "filter": "Filtrar...",
+    "nothing-found": "Nada encontrado."
   },
   "downloads": {
     "clear": "Borrar pistas completadas",
@@ -216,7 +216,25 @@
     "playlist-add": "Añadir a lista de reproducción",
     "playlist-toast-content": "La lista de reproducción '{{name}}' ha sido creada.",
     "playlist-toast-title": "Lista de reproducción creada",
-    "live": "En directo"
+    "live": "En directo",
+    "stream-verification": {
+      "tooltip": {
+        "unknown": "The status of this stream is unknown.",
+        "unverified": "This stream has not yet been verified by the community.",
+        "weakly-verified": "This stream has been verified by a couple of users.",
+        "verified": "This stream has been verified by the community.",
+        "verified-by-user": "This stream has been verified by you."
+      },
+      "stream-status": {
+        "unknown": "Unknown",
+        "unverified": "Unverified",
+        "weakly-verified": "Weakly verified",
+        "verified": "Verified",
+        "verified-by-user": "Verified by you"
+      },
+      "verify": "Verify",
+      "unverify": "Unverify"
+    }
   },
   "search": {
     "album": "Álbum",
@@ -249,8 +267,8 @@
     "autoradio-craziness": "Nivel de locura de Autoradio",
     "autoradio-craziness-description": "Autoradio seleccionará canciones diferentes a aquellas en la cola mientras más loco esté",
     "autoradio-description": "Añadir pistas similares automáticamente cuando la cola esté terminando",
-    "listening-history": "Listening history",
-    "listening-history-description": "Log the tracks you listen to, a la Last.fm. The history is stored offline.",
+    "listening-history": "Historial de reproducción",
+    "listening-history-description": "Registre las canciones que escucha, a la Last.fm. El historial se almacena sin conexión.",
     "compact-menu-bar": "Usar el estilo compacto para la barra de menú",
     "compact-queue-bar": "Usar el estilo compacto para la barra de la cola",
     "developer": "Ajustes de desarrolladores",
@@ -286,11 +304,11 @@
     "mastodon-awaiting-authorization": "Nuclear está registrado en {{instanceUrl}}. Esperando autorización.",
     "mastodon-description": "",
     "mastodon-instance-label": "URL de la instancia de Mastodon",
-    "mastodon-post-format-description": "Nuclear publicará un estado en Mastodon después de que cada pista termine de reproducirse. La cadena anterior será la plantilla para cada publicación, siendo {{artist}} y {{title}} reemplazados por el artista y título de la pista.",
+    "mastodon-post-format-description": "Nuclear publicará un estado en Mastodon después de que cada pista haya terminado de jugar. La cadena anterior será la plantilla para cada publicación, con {{artist}}, {{title}}, y {{url}} reemplazado por el artista, el título y un enlace a la pista respectivamente.",
     "mastodon-post-format-label": "Formato de la publicación",
     "mastodon-title": "",
-    "normalize": "Normalize volume",
-    "normalize-description": "Automatically adjust volume of tracks so that they are played at the same level. This needs to fetch the whole track to work, so it may cause a delay between tracks.",
+    "normalize": "Volumen normalizado",
+    "normalize-description": "Ajuste automáticamente el volumen de las pistas para que se reproduzcan al mismo nivel. Esto necesita recuperar todo el camino para que funcione, por lo que puede causar un retraso entre pistas.",
     "nuclear-identity-service-url": "URL del servicio de identidad de Nuclear",
     "nuclear-playlists-service-url": "URL del servicio de listas de reproducción de Nuclear",
     "mini-player": "Usar estilo de minireproductor",
@@ -300,10 +318,11 @@
     "notlogged": "Sesión no iniciada",
     "playback": "Reproducción",
     "program-settings": "Ajustes del programa",
-    "promoted-artists": "Show promoted artists in the dashboard",
-    "promoted-artists-description": "This is a reel of interesting, handpicked indie artists you might like. No one's receiving any compensation for this.",
+    "promoted-artists": "Mostrar artistas promovidos en el dashboard",
+    "promoted-artists-description": "Este es un reel de algunos artistas seleccionados que te podrían gustar. Nadie recibe alguna compensación por ello.",
     "saving-in": "Guardando en:",
     "seek-iteration": "Cantidad de segundos a desplazar al presionar las flechas direccionales",
+    "show-tray-icon": "Show tray icon",
     "shuffle-queue": "Reproducción aleatoria",
     "shuffle-when-going-back": "Aleatorizar en pista previa",
     "shuffle-when-going-back-description": "Reproduce una pista aleatoria cuando está activada la reproducción aleatoria y se presiona el botón de pista previa",
@@ -313,6 +332,9 @@
     "streaming": "Transmisión",
     "track-duration": "Mostrar duración de la pista sobre la barra de búsqueda",
     "user": "Usuario:",
+    "user-id": "User ID",
+    "use-stream-verification": "Use stream verification",
+    "use-stream-verification-description": "Use stream verification. Loads the streams the community has verified as being correct for the tracks you play. Also allows you to vote on streams. See documentation for details.",
     "youtube": "YouTube",
     "yt-api-key": "Clave de la API de YouTube"
   },
@@ -328,11 +350,11 @@
     "add-to-favorite": "Añadir a favoritos",
     "add-to-playlist": "Añadir a lista de reproducción",
     "add-to-queue": "Añadir a la cola",
-    "create-playlist": "Create new playlist",
-    "create-playlist-dialog-title": "Input playlist name:",
-    "create-playlist-dialog-placeholder": "Playlist name...",
-    "create-playlist-dialog-accept": "Save",
-    "create-playlist-dialog-cancel": "Cancel",
+    "create-playlist": "Crear nueva playlist",
+    "create-playlist-dialog-title": "Introduce el nombre de la playlist:",
+    "create-playlist-dialog-placeholder": "Nombre de la lista de reproducción...",
+    "create-playlist-dialog-accept": "Guardar",
+    "create-playlist-dialog-cancel": "Cancelar",
     "download": "Descargar",
     "download-toast-body": "{{artist}} - {{track}} ha sido añadida a descargas.",
     "download-toast-title": "Pista añadida a descargas",
@@ -360,7 +382,7 @@
     "protip-text": "Consejo de pro:",
     "protip-content": "Flechas para navegar, Introducir para seleccionar, Esc para cerrar",
     "categories": {
-      "playback": "Playback",
+      "playback": "Reproducción",
       "queue": "Cola",
       "navigation": "Navegación",
       "application": "Aplicación"
@@ -396,13 +418,13 @@
     }
   },
   "listening-history": {
-    "title": "Listening history",
-    "empty-state": "You haven't listened to anything yet.",
-    "clear-history": "Clear history",
-    "clear-history-confirm": "Are you sure you want to clear your listening history?",
-    "clear-history-confirm-yes": "Confirm",
-    "clear-history-confirm-no": "Cancel",
-    "clear-history-toast": "Listening history cleared"
+    "title": "Historial de reproducción",
+    "empty-state": "No has escuchado nada aún.",
+    "clear-history": "Limpiar el historial",
+    "clear-history-confirm": "¿Seguro quieres limpiar tu historial de reproducción?",
+    "clear-history-confirm-yes": "Confirmar",
+    "clear-history-confirm-no": "Cancelar",
+    "clear-history-toast": "Historial de escucha limpiado"
   },
   "forms": {
     "nuclear-sign-up": {
