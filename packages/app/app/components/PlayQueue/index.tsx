@@ -142,7 +142,7 @@ const PlayQueue: React.FC<PlayQueueProps> = ({
                     index={i}
                     track={item}
                     isLoading={item.loading}
-                    isCompact={settings.compactQueueBar}
+                    isCompact={settings.compactQueueBar as boolean}
                     isCurrent={queue.currentSong === i}
                     error={item.error}
                     selectSong={selectSong}
