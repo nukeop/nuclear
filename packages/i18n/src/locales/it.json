@@ -216,7 +216,25 @@
     "playlist-add": "Aggiungi a scaletta",
     "playlist-toast-content": "La scaletta '{{name}}' è stata creata.",
     "playlist-toast-title": "Scaletta creata",
-    "live": "In diretta"
+    "live": "In diretta",
+    "stream-verification": {
+      "tooltip": {
+        "unknown": "Lo stato di questo flusso è sconosciuto.",
+        "unverified": "Questo flusso non è ancora stato verificato dalla comunità.",
+        "weakly-verified": "Questo flusso è stato verificato da un paio di utenti.",
+        "verified": "Questo flusso è stato verificato dalla comunità.",
+        "verified-by-user": "Questo flusso è stato verificato da te."
+      },
+      "stream-status": {
+        "unknown": "Sconosciuto",
+        "unverified": "Non Verificato",
+        "weakly-verified": "Debolmente verificato",
+        "verified": "Verificato",
+        "verified-by-user": "Verificato da te"
+      },
+      "verify": "Verifica",
+      "unverify": "Annulla verifica"
+    }
   },
   "search": {
     "album": "Album",
@@ -286,7 +304,7 @@
     "mastodon-awaiting-authorization": "Nuclear è registrato in {{instanceUrl}}. In attesa dell'autorizzazione.",
     "mastodon-description": "",
     "mastodon-instance-label": "URL istanza di Mastodon",
-    "mastodon-post-format-description": "Nuclear pubblicherà uno stato su Mastodon dopo che ogni traccia avrà completato la riproduzione. La stringa sopra sarà il modello per ogni post, con {{artist}} e {{title}} sostituiti con l'artista e il titolo della traccia.",
+    "mastodon-post-format-description": "Nuclear pubblicherà uno stato su Mastodon al termine della riproduzione di ogni brano. La stringa di cui sopra sarà il modello per ogni post, con {{artist}}, {{title}} e {{url}} sostituiti rispettivamente con l'artista, il titolo e un link al brano.",
     "mastodon-post-format-label": "Formato del post",
     "mastodon-title": "",
     "normalize": "Normalizza volume",
@@ -304,6 +322,7 @@
     "promoted-artists-description": "Questo è un elenco selezionato di interessanti artisti indie che potrebbero piacervi. Nessuno riceve alcun compenso per questo.",
     "saving-in": "Salvataggio in:",
     "seek-iteration": "Numero di secondi da mandare avanti/indietro quando si premono i tasti freccia",
+    "show-tray-icon": "Mostra icona nell'area di notifica",
     "shuffle-queue": "Mescola i brani",
     "shuffle-when-going-back": "Mescola sul brano precedente",
     "shuffle-when-going-back-description": "Riprodurre una traccia casuale quando Casuale è attivo e viene fatto clic sul pulsante della traccia precedente",
@@ -313,6 +332,9 @@
     "streaming": "Trasmissione",
     "track-duration": "Visualizza la durata della traccia sulla barra di ricerca",
     "user": "Utente:",
+    "user-id": "ID Utente",
+    "use-stream-verification": "Utilizzare la verifica del flusso",
+    "use-stream-verification-description": "Usa la verifica del flusso. Carica i flussi che la community ha verificato come corretti per le tracce che riproduci. Inoltre ti permette di votare i flussi. Vedi la documentazione per i dettagli.",
     "youtube": "YouTube",
     "yt-api-key": "Chiave API di YouTube"
   },

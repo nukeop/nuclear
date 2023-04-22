@@ -216,7 +216,25 @@
     "playlist-add": "加到播放清單",
     "playlist-toast-content": "{{name}} 已建立",
     "playlist-toast-title": "播放清單建立成功",
-    "live": "直播"
+    "live": "直播",
+    "stream-verification": {
+      "tooltip": {
+        "unknown": "The status of this stream is unknown.",
+        "unverified": "This stream has not yet been verified by the community.",
+        "weakly-verified": "This stream has been verified by a couple of users.",
+        "verified": "This stream has been verified by the community.",
+        "verified-by-user": "This stream has been verified by you."
+      },
+      "stream-status": {
+        "unknown": "Unknown",
+        "unverified": "Unverified",
+        "weakly-verified": "Weakly verified",
+        "verified": "Verified",
+        "verified-by-user": "Verified by you"
+      },
+      "verify": "Verify",
+      "unverify": "Unverify"
+    }
   },
   "search": {
     "album": "專輯",
@@ -286,7 +304,7 @@
     "mastodon-awaiting-authorization": "Nuclear已於{{instanceUrl}} 註冊。等待授權中。",
     "mastodon-description": "",
     "mastodon-instance-label": "Mastodon實例URL",
-    "mastodon-post-format-description": "Nuclear將會在每條音軌結束播放後於Mastodon發布狀態。上述的畫線部分將會是發布狀態的模板，其中{{artist}} 和{{title}} 會被替換為具體的藝術家和音軌的標題。",
+    "mastodon-post-format-description": "Nuclear will post a status on Mastodon after each track completes playing. The above string will be the template for each post, with {{artist}}, {{title}}, and {{url}} replaced with the artist, title, and a link to the track respectively.",
     "mastodon-post-format-label": "帖子格式",
     "mastodon-title": "",
     "normalize": "Normalize volume",
@@ -304,6 +322,7 @@
     "promoted-artists-description": "This is a reel of interesting, handpicked indie artists you might like. No one's receiving any compensation for this.",
     "saving-in": "儲存於:",
     "seek-iteration": "按下方向鍵時前進/後退的秒數",
+    "show-tray-icon": "Show tray icon",
     "shuffle-queue": "隨機曲目",
     "shuffle-when-going-back": "播放先前的曲目",
     "shuffle-when-going-back-description": "當隨機播放處於激活狀態且點擊上一曲目按鈕時，播放一個隨機曲目",
@@ -313,6 +332,9 @@
     "streaming": "串流",
     "track-duration": "在進度條上顯示音軌長度",
     "user": "帳號:",
+    "user-id": "User ID",
+    "use-stream-verification": "Use stream verification",
+    "use-stream-verification-description": "Use stream verification. Loads the streams the community has verified as being correct for the tracks you play. Also allows you to vote on streams. See documentation for details.",
     "youtube": "YouTube",
     "yt-api-key": "YouTube API Key"
   },

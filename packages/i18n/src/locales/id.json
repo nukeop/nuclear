@@ -216,7 +216,25 @@
     "playlist-add": "Tambahkan ke daftar putar",
     "playlist-toast-content": "Daftar putar {{name}} berhasil dibuat.",
     "playlist-toast-title": "Daftar putar berhasil dibuat",
-    "live": "Live"
+    "live": "Live",
+    "stream-verification": {
+      "tooltip": {
+        "unknown": "The status of this stream is unknown.",
+        "unverified": "This stream has not yet been verified by the community.",
+        "weakly-verified": "This stream has been verified by a couple of users.",
+        "verified": "This stream has been verified by the community.",
+        "verified-by-user": "This stream has been verified by you."
+      },
+      "stream-status": {
+        "unknown": "Unknown",
+        "unverified": "Unverified",
+        "weakly-verified": "Weakly verified",
+        "verified": "Verified",
+        "verified-by-user": "Verified by you"
+      },
+      "verify": "Verify",
+      "unverify": "Unverify"
+    }
   },
   "search": {
     "album": "Album",
@@ -286,7 +304,7 @@
     "mastodon-awaiting-authorization": "Nuclear telah terdaftar di {{instanceUrl}}. Menunggu otorisasi.",
     "mastodon-description": "",
     "mastodon-instance-label": "URL Mastodon",
-    "mastodon-post-format-description": "Nuclear akan membagikan status di Mastodon setelah lagu selesai diputar. Tulisan di atas akan menjadi templat untuk setiap post, dengan {{artist}} dan {{title}} yang akan ditampilkan sebagai musisi dan judul lagunya.",
+    "mastodon-post-format-description": "Nuclear will post a status on Mastodon after each track completes playing. The above string will be the template for each post, with {{artist}}, {{title}}, and {{url}} replaced with the artist, title, and a link to the track respectively.",
     "mastodon-post-format-label": "Format post",
     "mastodon-title": "",
     "normalize": "Normalize volume",
@@ -304,6 +322,7 @@
     "promoted-artists-description": "This is a reel of interesting, handpicked indie artists you might like. No one's receiving any compensation for this.",
     "saving-in": "Simpan di:",
     "seek-iteration": "Rentang detik yang di-skip/dikembalikan ketika menekan tombol arah",
+    "show-tray-icon": "Show tray icon",
     "shuffle-queue": "Acak lagu",
     "shuffle-when-going-back": "Acak lagu sebelumnya",
     "shuffle-when-going-back-description": "Acak lagu saat mode random aktif dan tombol lagu sebelumnya diklik",
@@ -313,6 +332,9 @@
     "streaming": "Streaming",
     "track-duration": "Tampilkan durasi lagu di atas kolom pencarian",
     "user": "Pengguna:",
+    "user-id": "User ID",
+    "use-stream-verification": "Use stream verification",
+    "use-stream-verification-description": "Use stream verification. Loads the streams the community has verified as being correct for the tracks you play. Also allows you to vote on streams. See documentation for details.",
     "youtube": "Youtube",
     "yt-api-key": "Kunci API Youtube"
   },

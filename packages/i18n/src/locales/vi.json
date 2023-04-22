@@ -216,7 +216,25 @@
     "playlist-add": "Thêm vào playlist",
     "playlist-toast-content": "Playlist {{name}} đã được tạo.",
     "playlist-toast-title": "Playlist đã được tạo",
-    "live": "Trực tiếp"
+    "live": "Trực tiếp",
+    "stream-verification": {
+      "tooltip": {
+        "unknown": "The status of this stream is unknown.",
+        "unverified": "This stream has not yet been verified by the community.",
+        "weakly-verified": "This stream has been verified by a couple of users.",
+        "verified": "This stream has been verified by the community.",
+        "verified-by-user": "This stream has been verified by you."
+      },
+      "stream-status": {
+        "unknown": "Unknown",
+        "unverified": "Unverified",
+        "weakly-verified": "Weakly verified",
+        "verified": "Verified",
+        "verified-by-user": "Verified by you"
+      },
+      "verify": "Verify",
+      "unverify": "Unverify"
+    }
   },
   "search": {
     "album": "Bộ sưu tập",
@@ -286,7 +304,7 @@
     "mastodon-awaiting-authorization": "Nuclear is registered on {{instanceUrl}}. Awaiting authorization.",
     "mastodon-description": "",
     "mastodon-instance-label": "Mastodon instance URL",
-    "mastodon-post-format-description": "Nuclear will post a status on Mastodon after each track completes playing. The above string will be the template for each post, with {{artist}} and {{title}} replaced with the artist and title of the track.",
+    "mastodon-post-format-description": "Nuclear will post a status on Mastodon after each track completes playing. The above string will be the template for each post, with {{artist}}, {{title}}, and {{url}} replaced with the artist, title, and a link to the track respectively.",
     "mastodon-post-format-label": "Post format",
     "mastodon-title": "",
     "normalize": "Normalize volume",
@@ -304,6 +322,7 @@
     "promoted-artists-description": "This is a reel of interesting, handpicked indie artists you might like. No one's receiving any compensation for this.",
     "saving-in": "Saving in:",
     "seek-iteration": "Số giây sẽ tua tới/lui khi nhấn phím mũi tên qua phải/ qua trái",
+    "show-tray-icon": "Show tray icon",
     "shuffle-queue": "Phát ngẫu nhiên",
     "shuffle-when-going-back": "Phát ngẫu nhiên cả bài hát trước đó",
     "shuffle-when-going-back-description": "Phát một bài hát ngẫu nhiên khi bật chức năng trộn bài và nhấp vào nút bài hát trước đó",
@@ -313,6 +332,9 @@
     "streaming": "Streaming",
     "track-duration": "Hiển thị thời lượng bản nhạc trên thanh điều kiển",
     "user": "User:",
+    "user-id": "User ID",
+    "use-stream-verification": "Use stream verification",
+    "use-stream-verification-description": "Use stream verification. Loads the streams the community has verified as being correct for the tracks you play. Also allows you to vote on streams. See documentation for details.",
     "youtube": "Youtube",
     "yt-api-key": "Youtube API Key"
   },

@@ -28,14 +28,14 @@
     "settings": "Inställningar",
     "visualizer": "Visualiserare",
     "user-panel": {
-      "actions-tooltip": "Användaråtgärder",
-      "sign-up": "Registrera dig / Logga in",
-      "sign-out": "Logga ut"
+      "actions-tooltip": "User actions",
+      "sign-up": "Sign up / Sign in",
+      "sign-out": "Sign out"
     },
     "version": "Version"
   },
   "artist": {
-    "add-all": "Lägg till alla",
+    "add-all": "Add all",
     "count": "Antal spelningar",
     "queue": "Lägg till alla spår i kön",
     "similar": "Liknande artister",
@@ -71,14 +71,14 @@
     "status": "Status"
   },
   "equalizer": {
-    "classical": "Klassisk",
-    "club": "Klubb",
-    "custom": "Anpassad",
-    "default": "Standard",
+    "classical": "Classical",
+    "club": "Club",
+    "custom": "Custom",
+    "default": "Default",
     "full-bass": "Full bas",
     "full-treble": "Full diskant",
     "pop": "Pop",
-    "presets": "Förinställningar",
+    "presets": "Presets",
     "reggae": "Reggae",
     "rock": "Rock"
   },
@@ -101,7 +101,7 @@
   },
   "help": {
     "about": "Om Nuclear musikspelare",
-    "contributors": "Våra topp 10 bidragsgivare",
+    "contributors": "Our top 10 Contributors",
     "header": "Musikspelare som streamar från avgiftsfria källor",
     "released": "släppt under AGPL-3.0",
     "report": "Skicka in problem eller nya funktioner",
@@ -154,16 +154,16 @@
     "export-fail-title": "Export av spellista misslyckades",
     "export-success-title": "Export av spellista lyckades",
     "header": "Dina spellistor",
-    "import-progress": "Importförlopp",
-    "spotify-import-placeholder": "Klistra in webbadressen till en Spotify-spellista här",
+    "import-progress": "Import progress",
+    "spotify-import-placeholder": "Paste a Spotify playlist URL here",
     "dialog-placeholder": "Namn på spellistan...",
     "dialog-accept": "Spara",
-    "dialog-cancel": "Avbryt",
-    "dialog-rename": "Byt namn",
-    "dialog-import": "Importera",
+    "dialog-cancel": "Cancel",
+    "dialog-rename": "Rename",
+    "dialog-import": "Import",
     "create-button": "Skapa ny spellista",
     "new-playlist": "Ny spellista",
-    "import-url-button": "Importera från url (Spotify)",
+    "import-url-button": "Import from url (Spotify)",
     "import-button": "Importera från fil (JSON)",
     "import-fail-title": "Import av spellista misslyckades",
     "import-success-title": "Spellistan importerades",
@@ -177,14 +177,14 @@
     "title": "Titel",
     "tracks-selected-plural": "spår valda",
     "tracks-selected-singular": "spår vald",
-    "tracks-singular": "spår",
-    "tracks-plural": "spår",
-    "modified-at": "Senast ändrad: ",
-    "never-modified": "Okänd",
-    "server-modified-at": "Server ändrad: ",
-    "upload-to-server": "Ladda upp till servern",
-    "download-from-server": "Hämta från servern",
-    "number-of-tracks": "spår"
+    "tracks-singular": "track",
+    "tracks-plural": "tracks",
+    "modified-at": "Last modified: ",
+    "never-modified": "Unknown",
+    "server-modified-at": "Server modified: ",
+    "upload-to-server": "Upload to server",
+    "download-from-server": "Download from server",
+    "number-of-tracks": "tracks"
   },
   "plugins": {
     "add-a-plugin": "Lägg till en insticksmodul",
@@ -216,12 +216,30 @@
     "playlist-add": "Lägg till i spellista",
     "playlist-toast-content": "Spellistan {{name}} har skapats.",
     "playlist-toast-title": "Spellista skapad",
-    "live": "Live"
+    "live": "Live",
+    "stream-verification": {
+      "tooltip": {
+        "unknown": "The status of this stream is unknown.",
+        "unverified": "This stream has not yet been verified by the community.",
+        "weakly-verified": "This stream has been verified by a couple of users.",
+        "verified": "This stream has been verified by the community.",
+        "verified-by-user": "This stream has been verified by you."
+      },
+      "stream-status": {
+        "unknown": "Unknown",
+        "unverified": "Unverified",
+        "weakly-verified": "Weakly verified",
+        "verified": "Verified",
+        "verified-by-user": "Verified by you"
+      },
+      "verify": "Verify",
+      "unverify": "Unverify"
+    }
   },
   "search": {
     "album": "Album",
     "album_plural": "Album",
-    "all": "Alla",
+    "all": "All",
     "artist": "Artist",
     "artist_plural": "Artister",
     "clear-history": "Rensa historik",
@@ -231,7 +249,7 @@
     "placeholder": "Sök...",
     "playlist": "Spellista",
     "playlist_plural": "Spellistor",
-    "podcast": "Poddsändning",
+    "podcast": "Podcast",
     "queue-add": "Lägg till alla spår i kön",
     "track": "Spår",
     "track_plural": "Spår",
@@ -276,7 +294,7 @@
     "lastfm-description": "För att aktivera skrobbling måste du först ansluta och auktorisera Nuclear på Last.fm, klicka sedan på logga in.",
     "lastfm-enable": "Aktivera skrobbling till Last.fm",
     "lastfm-title": "Last.fm",
-    "less": "Mindre",
+    "less": "Less",
     "login": "Logga in",
     "logout": "Logga ut",
     "loop-after-queue-end": "Upprepa kön efter att sista låten i kön spelats",
@@ -286,15 +304,15 @@
     "mastodon-awaiting-authorization": "Nuclear är registrerad på {{instanceUrl}}. Väntar på auktorisation.",
     "mastodon-description": "",
     "mastodon-instance-label": "Mastodon instans-URL",
-    "mastodon-post-format-description": "Nuclear kommer att lägga upp en status på Mastodon efter varje spår som slutar spela. Ovanstående sträng kommer att vara mallen för varje inlägg, med {{artist}} och {{title}} ersatt med artisten och titeln för spåret.",
+    "mastodon-post-format-description": "Nuclear will post a status on Mastodon after each track completes playing. The above string will be the template for each post, with {{artist}}, {{title}}, and {{url}} replaced with the artist, title, and a link to the track respectively.",
     "mastodon-post-format-label": "Postformat",
     "mastodon-title": "",
     "normalize": "Normalize volume",
     "normalize-description": "Automatically adjust volume of tracks so that they are played at the same level. This needs to fetch the whole track to work, so it may cause a delay between tracks.",
-    "nuclear-identity-service-url": "Nuclears webbadress för identitetstjänst",
-    "nuclear-playlists-service-url": "Nuclears webbadress för spellistor",
+    "nuclear-identity-service-url": "Nuclear identity service URL",
+    "nuclear-playlists-service-url": "Nuclear playlists service URL",
     "mini-player": "Använd minispelarstil",
-    "more": "Mera",
+    "more": "More",
     "discord-rich-presence": "Växla Discord rich närvaro (kräver omstart)",
     "notification-timeout": "Tidsgräns för notifikationer",
     "notlogged": "Inte inloggad",
@@ -302,8 +320,9 @@
     "program-settings": "Programinställningar",
     "promoted-artists": "Show promoted artists in the dashboard",
     "promoted-artists-description": "This is a reel of interesting, handpicked indie artists you might like. No one's receiving any compensation for this.",
-    "saving-in": "Sparar i:",
+    "saving-in": "Saving in:",
     "seek-iteration": "Antal sekunder att hoppa framåt/bakåt när du trycker på piltangenterna",
+    "show-tray-icon": "Show tray icon",
     "shuffle-queue": "Blanda spår",
     "shuffle-when-going-back": "Blanda på föregående låt",
     "shuffle-when-going-back-description": "Spela ett slumpmässigt spår när blanda är aktivt och du klickar på knappen Föregående låt",
@@ -313,6 +332,9 @@
     "streaming": "Strömning",
     "track-duration": "Visa spårets längd över sökfältet",
     "user": "Användare:",
+    "user-id": "User ID",
+    "use-stream-verification": "Use stream verification",
+    "use-stream-verification-description": "Use stream verification. Loads the streams the community has verified as being correct for the tracks you play. Also allows you to vote on streams. See documentation for details.",
     "youtube": "YouTube",
     "yt-api-key": "YouTube API-nyckel"
   },
@@ -406,35 +428,35 @@
   },
   "forms": {
     "nuclear-sign-up": {
-      "header": "Registrera dig",
-      "secondary-header": "Registrera dig till Nuclear Web Services",
-      "side-paragraph-1": "NWS gör att du kan säkerhetskopiera dina spellistor på nätet och dela dem.",
-      "side-paragraph-2": "Att tillhandahålla din e-post är valfritt; det gör att du kan återställa ditt konto om du glömmer ditt lösenord.",
-      "username-label": "Användarnamn",
-      "email-label": "E-post",
-      "password-label": "Lösenord",
-      "sign-up-button": "Registrera dig",
+      "header": "Sign up",
+      "secondary-header": "Sign up to Nuclear Web Services",
+      "side-paragraph-1": "NWS enables you to backup your playlists online and share them.",
+      "side-paragraph-2": "Providing your email is optional; it will allow you to recover your account if you forget your password.",
+      "username-label": "Username",
+      "email-label": "Email",
+      "password-label": "Password",
+      "sign-up-button": "Sign up",
       "validation": {
         "username": {
-          "length": "Användarnamnet måste vara 4 tecken eller mer",
-          "required": "Användarnamn krävs"
+          "length": "Username must be 4 characters or more",
+          "required": "Username is required"
         },
         "email": {
-          "invalid": "E-post måste vara en giltig e-postadress"
+          "invalid": "Email must be a valid email"
         },
         "password": {
-          "length": "Lösenordet måste vara 6 tecken eller mer",
-          "required": "Lösenord krävs"
+          "length": "Password must be 6 characters or more",
+          "required": "Password is required"
         }
       }
     },
     "nuclear-sign-in": {
-      "header": " Logga in",
-      "username-label": "Användarnamn",
-      "password-label": "Lösenord",
-      "no-account-label": "Har du inget konto?",
-      "no-account-link": "Registrera dig",
-      "sign-in-button": "Logga in"
+      "header": " Sign in",
+      "username-label": "Username",
+      "password-label": "Password",
+      "no-account-label": "Don't have an account?",
+      "no-account-link": "Sign up",
+      "sign-in-button": "Sign in"
     }
   }
 }

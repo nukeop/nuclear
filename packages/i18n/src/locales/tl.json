@@ -216,7 +216,25 @@
     "playlist-add": "Idagdag sa playlist",
     "playlist-toast-content": "Nagawa ang playlist {{name}}.",
     "playlist-toast-title": "Nagawa ang playlist",
-    "live": "Live"
+    "live": "Live",
+    "stream-verification": {
+      "tooltip": {
+        "unknown": "The status of this stream is unknown.",
+        "unverified": "This stream has not yet been verified by the community.",
+        "weakly-verified": "This stream has been verified by a couple of users.",
+        "verified": "This stream has been verified by the community.",
+        "verified-by-user": "This stream has been verified by you."
+      },
+      "stream-status": {
+        "unknown": "Unknown",
+        "unverified": "Unverified",
+        "weakly-verified": "Weakly verified",
+        "verified": "Verified",
+        "verified-by-user": "Verified by you"
+      },
+      "verify": "Verify",
+      "unverify": "Unverify"
+    }
   },
   "search": {
     "album": "Album",
@@ -286,7 +304,7 @@
     "mastodon-awaiting-authorization": "Ang Nuclear ay naka-register na sa {{instanceUrl}}. Hintayin ang awtorisasyon.",
     "mastodon-description": "",
     "mastodon-instance-label": "URL ng Mastodon Instance",
-    "mastodon-post-format-description": "Ang Nuclear ay magpopost ng kalagayan sa Mastodon pagkatapos ng pagplay ng mga tracks. Ang ibabaw ay ang template para isa't isang mga post, kabilang ang {{artist}} at {{title}} ng pinalitan na mga artist, at pamagat ng kanta.",
+    "mastodon-post-format-description": "Nuclear will post a status on Mastodon after each track completes playing. The above string will be the template for each post, with {{artist}}, {{title}}, and {{url}} replaced with the artist, title, and a link to the track respectively.",
     "mastodon-post-format-label": "Kinalabasan",
     "mastodon-title": "",
     "normalize": "Normalize volume",
@@ -304,6 +322,7 @@
     "promoted-artists-description": "This is a reel of interesting, handpicked indie artists you might like. No one's receiving any compensation for this.",
     "saving-in": "Saving in:",
     "seek-iteration": "Bilang ng segunda sa pag-seek forward/backward pag nakapindot ang arrow keys",
+    "show-tray-icon": "Show tray icon",
     "shuffle-queue": "I-shuffle ang mga kanta",
     "shuffle-when-going-back": "I-shuffle pag punta sa nakaraang kanta",
     "shuffle-when-going-back-description": "Magplay ng random na kanta pag aktiba ang shuffle at nakapindot ang pindutan ng nakaraang kanta",
@@ -313,6 +332,9 @@
     "streaming": "Streaming",
     "track-duration": "Ipakita ang track duration sa ibabaw ng seekbar",
     "user": "User:",
+    "user-id": "User ID",
+    "use-stream-verification": "Use stream verification",
+    "use-stream-verification-description": "Use stream verification. Loads the streams the community has verified as being correct for the tracks you play. Also allows you to vote on streams. See documentation for details.",
     "youtube": "Youtube",
     "yt-api-key": "Youtube API Key"
   },

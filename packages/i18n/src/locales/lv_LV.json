@@ -216,7 +216,25 @@
     "playlist-add": "Pievienot atskaņošanas sarakstam",
     "playlist-toast-content": "Atskaņošanas saraksts {{name}} izveidots.",
     "playlist-toast-title": "Atskaņošanas saraksts izveidots",
-    "live": "Live"
+    "live": "Live",
+    "stream-verification": {
+      "tooltip": {
+        "unknown": "The status of this stream is unknown.",
+        "unverified": "This stream has not yet been verified by the community.",
+        "weakly-verified": "This stream has been verified by a couple of users.",
+        "verified": "This stream has been verified by the community.",
+        "verified-by-user": "This stream has been verified by you."
+      },
+      "stream-status": {
+        "unknown": "Unknown",
+        "unverified": "Unverified",
+        "weakly-verified": "Weakly verified",
+        "verified": "Verified",
+        "verified-by-user": "Verified by you"
+      },
+      "verify": "Verify",
+      "unverify": "Unverify"
+    }
   },
   "search": {
     "album": "Albums",
@@ -286,7 +304,7 @@
     "mastodon-awaiting-authorization": "Nuclear ir reģistrēts {{instanceUrl}}. Gaida atļauju.",
     "mastodon-description": "",
     "mastodon-instance-label": "Mastodon instances URL",
-    "mastodon-post-format-description": "Pēc katra ieraksta atskaņošanas pabeigšanas Nuclear publicēs statusu uz Mastodon. Iepriekš minētā virkne būs katras ziņas veidne, un {{artist}} un {{title}} tiks aizstātas ar izpildītājs un dziesmas nosaukums.",
+    "mastodon-post-format-description": "Nuclear will post a status on Mastodon after each track completes playing. The above string will be the template for each post, with {{artist}}, {{title}}, and {{url}} replaced with the artist, title, and a link to the track respectively.",
     "mastodon-post-format-label": "Ziņas formāts",
     "mastodon-title": "",
     "normalize": "Normalize volume",
@@ -304,6 +322,7 @@
     "promoted-artists-description": "This is a reel of interesting, handpicked indie artists you might like. No one's receiving any compensation for this.",
     "saving-in": "Saving in:",
     "seek-iteration": "Sekunžu skaits, kas jāmeklē uz priekšu/atpakaļ, nospiežot bulttaustiņus",
+    "show-tray-icon": "Show tray icon",
     "shuffle-queue": "Jauktā secībā dziesmas",
     "shuffle-when-going-back": "Jauktā secībā iepriekšējā ierakstā",
     "shuffle-when-going-back-description": "Atskaņot nejaušu celiņu, kad ir aktīva jauktā secība un tiek noklikšķināts uz iepriekšējā ieraksta pogas",
@@ -313,6 +332,9 @@
     "streaming": "Straumēšana",
     "track-duration": "Rādīt ieraksta ilgumu pār attīšanas joslu",
     "user": "Lietotājs:",
+    "user-id": "User ID",
+    "use-stream-verification": "Use stream verification",
+    "use-stream-verification-description": "Use stream verification. Loads the streams the community has verified as being correct for the tracks you play. Also allows you to vote on streams. See documentation for details.",
     "youtube": "Youtube",
     "yt-api-key": "Youtube API atslēga"
   },
