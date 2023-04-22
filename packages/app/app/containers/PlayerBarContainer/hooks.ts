@@ -1,8 +1,11 @@
+import { useCallback, useEffect } from 'react';
 import Sound from 'react-hifi';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import _, { isEmpty } from 'lodash';
+import { getTrackArtist } from '@nuclear/ui';
+import { SemanticICONS } from 'semantic-ui-react/dist/commonjs/generic';
 
 import { normalizeTrack } from '../../utils';
 import settingsConst from '../../constants/settings';
@@ -15,8 +18,6 @@ import { playerSelectors } from '../../selectors/player';
 import { queue as queueSelector } from '../../selectors/queue';
 import { settingsSelector } from '../../selectors/settings';
 import { getFavoriteTrack } from '../../selectors/favorites';
-import { useCallback, useEffect } from 'react';
-import { SemanticICONS } from 'semantic-ui-react/dist/commonjs/generic';
 import { QueueItem } from '../../reducers/queue';
 
 export const useSeekbarProps = () => {
@@ -54,14 +55,20 @@ export const useSeekbarProps = () => {
 export const usePlayerControlsProps = () => {
   const dispatch = useDispatch();
   const queue = useSelector(queueSelector);
+  const settings = useSelector(settingsSelector);
   const playbackStatus = useSelector(playerSelectors.playbackStatus);
-  const currentTrackLoading: boolean = queue?.queueItems[queue.currentSong]?.loading;
+  const currentTrack = queue?.queueItems[queue.currentSong];
+  const currentTrackStream = currentTrack?.streams?.[0];
   const playbackStreamLoading: boolean = useSelector(playerSelectors.playbackStreamLoading);
   const seek = useSelector(playerSelectors.seek);
 
   const couldPlay = queue.queueItems.length > 0;
   const couldForward = couldPlay && queue.currentSong + 1 < queue.queueItems.length;
   const couldBack = couldPlay && queue.currentSong > 0;
+  const goBackThreshold = ((
+    settings.skipSponsorblock && 
+      currentTrackStream?.skipSegments?.find(segment => segment.startTime === 0)?.endTime) 
+    ?? 0) + 3;
 
   const togglePlay = useCallback(
     () => dispatch(playerActions.togglePlayback(playbackStatus, false)),
@@ -73,16 +80,15 @@ export const usePlayerControlsProps = () => {
     [dispatch]
   );
 
-
   const goBack = useCallback(
     () => {
-      if (seek > 3){
+      if (seek > goBackThreshold){
         dispatch(playerActions.updateSeek(0));
       } else {
         dispatch(queueActions.previousSong());
       }
     },
-    [dispatch, seek]
+    [dispatch, seek, goBackThreshold]
   );
 
 
@@ -91,7 +97,7 @@ export const usePlayerControlsProps = () => {
     goForwardDisabled: !couldForward,
     playDisabled: !couldPlay,
     isPlaying: playbackStatus === Sound.status.PLAYING,
-    isLoading: currentTrackLoading || playbackStreamLoading,
+    isLoading: currentTrack?.loading || playbackStreamLoading,
     togglePlay,
     goForward,
     goBack
@@ -106,7 +112,7 @@ export const useTrackInfoProps = () => {
   const currentSong = _.get(queue.queueItems, queue.currentSong);
 
   const track = currentSong?.name;
-  const artist = currentSong?.artist;
+  const artist = getTrackArtist(currentSong);
   const cover = currentSong?.thumbnail;
 
   const favorite = useSelector(s => getFavoriteTrack(s, artist, track));

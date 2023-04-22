@@ -1,6 +1,6 @@
 {
   "name": "nuclear",
-  "version": "0.6.17",
+  "version": "0.6.20",
   "description": "Streaming music player that finds music sources automatically.",
   "repository": {
     "type": "git",
@@ -12,8 +12,7 @@
     "youtube"
   ],
   "author": {
-    "name": "nukeop",
-    "email": "nuclear@gumblert.tech"
+    "name": "nukeop <12746779+nukeop@users.noreply.github.com>"
   },
   "license": "AGPL-3.0",
   "bugs": {
@@ -74,7 +73,7 @@
   "build": {
     "appId": "nuclear",
     "productName": "nuclear",
-    "artifactName": "${productName}-${env.GITHASH}.${ext}",
+    "artifactName": "${productName}-v${env.VERSION}.${ext}",
     "directories": {
       "output": "release"
     },
@@ -98,7 +97,7 @@
       }
     ],
     "releaseInfo": {
-      "releaseName": "Nuclear ${env.GITHASH}"
+      "releaseName": "Nuclear ${env.VERSION}"
     },
     "fileAssociations": [
       {
@@ -204,7 +203,7 @@
       ]
     },
     "nsis": {
-      "artifactName": "${productName} Setup ${env.GITHASH}.${ext}"
+      "artifactName": "${productName} Setup ${env.VERSION}.${ext}"
     }
   },
   "dependencies": {

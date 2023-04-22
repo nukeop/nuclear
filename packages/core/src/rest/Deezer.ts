@@ -73,18 +73,34 @@ export type DeezerEditorialCharts = {
   }
 }
 
+export type DeezerApiEditorial = {
+  charts: (index: number, limit: number) => Promise<DeezerEditorialCharts>;
+}
+
+export type DeezerApiPlaylist = {
+  tracks: (playlistId: number, limit: number) => Promise<{
+    data: DeezerPlaylistTracklist;
+  }>;
+}
+
+export type DeezerApiChart = {
+  tracks: (limit: number) => Promise<{
+    data: DeezerTrack[];
+  }>;
+}
+
 export const getChart = (): Promise<any> => deezer.chart();
 
 export const getTopTracks = (limit = 50): Promise<{ data: DeezerTrack[] }> => {
-  return (deezer.chart as any).tracks(limit);
+  return (deezer.chart as unknown as DeezerApiChart).tracks(limit);
 };
 
-export const getEditorialCharts = (limit=50): Promise<DeezerEditorialCharts> => deezer.editorial.charts(0, limit);
+export const getEditorialCharts = (limit=50): Promise<DeezerEditorialCharts> => (deezer.editorial as unknown as  DeezerApiEditorial).charts(0, limit);
 
 export const getPlaylistTracks = (playlistId: number, limit=50): Promise<{
     data: DeezerPlaylistTracklist;
 }> => {
-  return deezer.playlist.tracks(playlistId, limit);
+  return (deezer.playlist as unknown as DeezerApiPlaylist).tracks(playlistId, limit);
 };
 
 export const mapDeezerTrackToInternal = (track: DeezerTrack) => ({

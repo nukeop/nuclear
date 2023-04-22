@@ -6,15 +6,14 @@ import { useTranslation } from 'react-i18next';
 import LyricsHeader from './LyricsHeader';
 
 import styles from './styles.scss';
+import { QueueItem } from '../../reducers/queue';
+import { getTrackArtist } from '@nuclear/ui';
 
 type LyricsViewProps = {
   lyricsSearchResults: {
     type: string;
   };
-  track?: {
-    name: string;
-    artist: string;
-  };
+  track?: QueueItem;
 }
 
 export const LyricsView: React.FC<LyricsViewProps> = ({
@@ -41,7 +40,7 @@ export const LyricsView: React.FC<LyricsViewProps> = ({
       <>
         <LyricsHeader
           name={track.name}
-          artist={track.artist}
+          artist={getTrackArtist(track)}
         />
         <div className={styles.lyrics_text}>
           {lyricsStr}

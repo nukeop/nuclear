@@ -9,20 +9,19 @@ jobs:
 
     steps:
       - uses: actions/checkout@master
-      - uses: benjlevesque/short-sha@v1.2
-        id: short-sha
+      - name: get-npm-version
+        id: package-version
+        uses: pchynoweth/action-get-npm-version@1.1.1
+      - name: Use Node.js 18
+        uses: actions/setup-node@master
         with:
-          length: 6
-      - name: Use Node.js 16
-        uses: actions/setup-node@v2
-        with:
-          version: 16
+          version: 18
           cache: npm
       - run: npm ci
       - run: npm run build:linux
         shell: bash
         env:
-          GITHASH: ${{ steps.short-sha.outputs.sha }}
+          VERSION: ${{ steps.package-version.outputs.version }}
       - name: Upload binaries
         uses: actions/upload-artifact@v2
         with:
@@ -31,8 +30,8 @@ jobs:
       - name: Create a release
         uses: softprops/action-gh-release@v1
         with:
-          name: ${{ steps.short-sha.outputs.sha }}
-          tag_name: ${{ steps.short-sha.outputs.sha }}
+          name: v${{ steps.package-version.outputs.version }}
+          tag_name: v${{ steps.package-version.outputs.version }}
           prerelease: true
           files: release/*.*
       - name: Inform AUR updater
@@ -41,21 +40,21 @@ jobs:
           repository: NuclearPlayer/nuclear-nightly-aur
           token: ${{ secrets.REPO_ACCESS_TOKEN }}
           event-type: release
-          client-payload: '{"tag": "${{ steps.short-sha.outputs.sha }}"}'
+          client-payload: '{"tag": "v${{ steps.package-version.outputs.version }}"}'
       - name: Inform Snapcraft updater
         uses: peter-evans/repository-dispatch@v1
         with:
           repository: NuclearPlayer/nuclear-nightly-snapcraft
           token: ${{ secrets.REPO_ACCESS_TOKEN }}
           event-type: release
-          client-payload: '{"tag": "${{ steps.short-sha.outputs.sha }}"}'
+          client-payload: '{"tag": "v${{ steps.package-version.outputs.version }}"}'
       - name: Inform Flatpak updater
         uses: peter-evans/repository-dispatch@v1
         with:
           repository: NuclearPlayer/nuclear-nightly-flatpak
           token: ${{ secrets.REPO_ACCESS_TOKEN }}
           event-type: release
-          client-payload: '{"tag": "${{ steps.short-sha.outputs.sha }}"}'
+          client-payload: '{"tag": "v${{ steps.package-version.outputs.version }}"}'
 
   mac_release:
     runs-on: macos-11
@@ -63,20 +62,19 @@ jobs:
 
     steps:
       - uses: actions/checkout@master
-      - uses: benjlevesque/short-sha@v1.2
-        id: short-sha
+      - name: get-npm-version
+        id: package-version
+        uses: pchynoweth/action-get-npm-version@1.1.1
+      - name: Use Node.js 18
+        uses: actions/setup-node@master
         with:
-          length: 6
-      - name: Use Node.js 16
-        uses: actions/setup-node@v2
-        with:
-          version: 16
+          version: 18
           cache: npm
       - run: npm ci
       - run: npm run build:macos
         shell: bash
         env:
-          GITHASH: ${{ steps.short-sha.outputs.sha }}
+          VERSION: ${{ steps.package-version.outputs.version }}
       - name: Upload binaries
         uses: actions/upload-artifact@v2
         with:
@@ -85,8 +83,8 @@ jobs:
       - name: Create a release
         uses: softprops/action-gh-release@v1
         with:
-          name: ${{ steps.short-sha.outputs.sha }}
-          tag_name: ${{ steps.short-sha.outputs.sha }}
+          name: v${{ steps.package-version.outputs.version }}
+          tag_name: v${{ steps.package-version.outputs.version }}
           prerelease: true
           files: release/*.*
 
@@ -96,25 +94,23 @@ jobs:
 
     steps:
       - uses: actions/checkout@master
-      - uses: benjlevesque/short-sha@v1.2
-        id: short-sha
+      - name: get-npm-version
+        id: package-version
+        uses: pchynoweth/action-get-npm-version@1.1.1
+      - name: Use Node.js 18
+        uses: actions/setup-node@master
         with:
-          length: 6
-      - name: Use Node.js 16
-        uses: actions/setup-node@v2
-        with:
-          version: 16
+          version: 18
           cache: npm
       - name: add git binaries to PATH
         run: |
           echo "C:\Program Files\Git\usr\bin" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
           echo "C:\Program Files\Git\mingw64\libexec\git-core" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
-          npm config set msvs_version 2022
       - run: npm ci
       - run: npm run build:windows
         shell: bash
         env:
-          GITHASH: ${{ steps.short-sha.outputs.sha }}
+          VERSION: ${{ steps.package-version.outputs.version }}
       - name: Upload binaries
         uses: actions/upload-artifact@v2
         with:
@@ -123,7 +119,7 @@ jobs:
       - name: Create a release
         uses: softprops/action-gh-release@v1
         with:
-          name: ${{ steps.short-sha.outputs.sha }}
-          tag_name: ${{ steps.short-sha.outputs.sha }}
+          name: v${{ steps.package-version.outputs.version }}
+          tag_name: v${{ steps.package-version.outputs.version }}
           prerelease: true
           files: release/*.*

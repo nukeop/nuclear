@@ -159,12 +159,8 @@ export async function trackSearchByString(query: StreamQuery, sourceName?: strin
   while (orderedTracks[0].id === undefined) {
     orderedTracks = orderedTracks.slice(1);
   }
-  return [
-    await getStreamForId(orderedTracks[0].id, sourceName),
-    ...orderedTracks
-      .slice(1)
-      .map((track) => videoToStreamData(track as ytsr.Video, sourceName))
-  ];
+  return orderedTracks
+    .map((track) => videoToStreamData(track as ytsr.Video, sourceName));
 }
 
 export const getStreamForId = async (id: string, sourceName: string, useSponsorBlock = true): Promise<StreamData> => {

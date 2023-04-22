@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import { render, waitFor, fireEvent } from '@testing-library/react';
 import React from 'react';
+import fetchMock from 'fetch-mock';
 import { createMemoryHistory } from 'history';
 import {
   mockDndSpacing,
@@ -13,7 +14,6 @@ import { store as electronStore } from '@nuclear/core';
 import { AnyProps, configureMockStore, setupI18Next, TestRouterProvider, TestStoreProvider } from '../../../test/testUtils';
 import MainContentContainer from '../MainContentContainer';
 import { buildElectronStoreState, buildStoreState } from '../../../test/storeBuilders';
-import fetchMock from 'fetch-mock';
 import { loadLocalPlaylistsAction } from '../../actions/playlists';
 
 const stateWithPlaylists = buildStoreState()
