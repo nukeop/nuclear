@@ -110,6 +110,45 @@ describe('Track Popup container', () => {
       ]);
     });
 
+    it('should add the song to next of current song when clicking PlayNext', async () => {
+      const { component, store } = mountTrackPopupContainer({
+        queue: {
+          currentSong: 1,
+          queueItems: [{
+            artist: 'test artist 1',
+            name: 'test track 1',
+            streams: [{
+              duration: 300,
+              title: 'test track 1',
+              skipSegments: []
+            }]
+          }, {
+            artist: 'test artist 2',
+            name: 'test track 2',
+            streams: [{
+              duration: 300,
+              title: 'test track 2',
+              skipSegments: []
+            }]
+          }]
+        },
+        player: {
+          seek: 10
+        }
+      });
+      
+      openTrackPopup(component);
+      userEvent.click(component.getByTestId(TEST_IDS.PLAY_NEXT_BUTTON));
+
+      const state = store.getState();
+      expect(state.player.seek).toBe(10);
+      expect(state.queue.currentSong).toBe(1); 
+      expect(state.queue.queueItems[state.queue.currentSong + 1]).toMatchObject({
+        artist: 'Artist',
+        name: TRACK_TITLE
+      });
+    });
+
   });
 
 
