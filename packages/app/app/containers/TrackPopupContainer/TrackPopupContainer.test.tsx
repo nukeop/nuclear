@@ -110,7 +110,7 @@ describe('Track Popup container', () => {
       ]);
     });
 
-    it('should add the song to next of current song when', async () => {
+    it('should add the song to next of current song when clicking PlayNext', async () => {
       const { component, store } = mountTrackPopupContainer({
         queue: {
           currentSong: 1,
@@ -136,16 +136,17 @@ describe('Track Popup container', () => {
           seek: 10
         }
       });
+      
+      openTrackPopup(component);
       userEvent.click(component.getByTestId(TEST_IDS.PLAY_NEXT_BUTTON));
+
       const state = store.getState();
       expect(state.player.seek).toBe(10);
       expect(state.queue.currentSong).toBe(1); 
-      expect(state.queue.queueItems[state.queue.currentSong + 1]).toEqual([
-        expect.objectContaining({
-          artist: 'Artist',
-          name: TRACK_TITLE
-        })
-      ]);
+      expect(state.queue.queueItems[state.queue.currentSong + 1]).toMatchObject({
+        artist: 'Artist',
+        name: TRACK_TITLE
+      });
     });
 
   });
