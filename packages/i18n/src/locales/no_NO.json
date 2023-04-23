@@ -216,7 +216,25 @@
     "playlist-add": "Legg til i spilleliste",
     "playlist-toast-content": "Spilleliste {{name}} er opprettet.",
     "playlist-toast-title": "Spilleliste opprettet",
-    "live": "Live"
+    "live": "Live",
+    "stream-verification": {
+      "tooltip": {
+        "unknown": "The status of this stream is unknown.",
+        "unverified": "This stream has not yet been verified by the community.",
+        "weakly-verified": "This stream has been verified by a couple of users.",
+        "verified": "This stream has been verified by the community.",
+        "verified-by-user": "This stream has been verified by you."
+      },
+      "stream-status": {
+        "unknown": "Unknown",
+        "unverified": "Unverified",
+        "weakly-verified": "Weakly verified",
+        "verified": "Verified",
+        "verified-by-user": "Verified by you"
+      },
+      "verify": "Verify",
+      "unverify": "Unverify"
+    }
   },
   "search": {
     "album": "album",
@@ -286,7 +304,7 @@
     "mastodon-awaiting-authorization": "Kjernefysisk er registrert på {{instanceUrl}}. Venter på autorisasjon.",
     "mastodon-description": "",
     "mastodon-instance-label": "Mastodon instance URL",
-    "mastodon-post-format-description": "Kjerneprøver vil poste statusen på Mastodon etter hver enkelt sang er ferdig. Teksten over vil være malen for hvert innlegg, med {{artist}} og {{title}} erstattet med artisten og tittelen på sporet.",
+    "mastodon-post-format-description": "Nuclear will post a status on Mastodon after each track completes playing. The above string will be the template for each post, with {{artist}}, {{title}}, and {{url}} replaced with the artist, title, and a link to the track respectively.",
     "mastodon-post-format-label": "Post format",
     "mastodon-title": "",
     "normalize": "Normalize volume",
@@ -304,6 +322,7 @@
     "promoted-artists-description": "This is a reel of interesting, handpicked indie artists you might like. No one's receiving any compensation for this.",
     "saving-in": "Lagrer i:",
     "seek-iteration": "Antall sekunder å søke fremover eller bakover når du trykker på piltastene",
+    "show-tray-icon": "Show tray icon",
     "shuffle-queue": "Shuffle sanger",
     "shuffle-when-going-back": "Bland på forrige spor",
     "shuffle-when-going-back-description": "Spill av et tilfeldig spor når shuffle er aktiv og knappen forrige sang blir klikket",
@@ -313,6 +332,9 @@
     "streaming": "Strømming",
     "track-duration": "Vis sporets varighet over søkefeltet",
     "user": "Bruker:",
+    "user-id": "User ID",
+    "use-stream-verification": "Use stream verification",
+    "use-stream-verification-description": "Use stream verification. Loads the streams the community has verified as being correct for the tracks you play. Also allows you to vote on streams. See documentation for details.",
     "youtube": "YouTube",
     "yt-api-key": "Youtube API nøkkel"
   },

@@ -216,7 +216,25 @@
     "playlist-add": "Toevoegen aan afspeellijst",
     "playlist-toast-content": "De afspeellijst, '{{name}}', is gecreëerd.",
     "playlist-toast-title": "Afspeellijst gecreëerd",
-    "live": "Live"
+    "live": "Live",
+    "stream-verification": {
+      "tooltip": {
+        "unknown": "The status of this stream is unknown.",
+        "unverified": "This stream has not yet been verified by the community.",
+        "weakly-verified": "This stream has been verified by a couple of users.",
+        "verified": "This stream has been verified by the community.",
+        "verified-by-user": "This stream has been verified by you."
+      },
+      "stream-status": {
+        "unknown": "Unknown",
+        "unverified": "Unverified",
+        "weakly-verified": "Weakly verified",
+        "verified": "Verified",
+        "verified-by-user": "Verified by you"
+      },
+      "verify": "Verify",
+      "unverify": "Unverify"
+    }
   },
   "search": {
     "album": "Album",
@@ -286,7 +304,7 @@
     "mastodon-awaiting-authorization": "Nuclear is geregistreerd op {{instanceUrl}}. Wachten op autorisatie.",
     "mastodon-description": "",
     "mastodon-instance-label": "Mastodon instantie-URL",
-    "mastodon-post-format-description": "Nuclear zal een status op Mastodon posten nadat elk nummer klaar is met spelen. De bovenstaande tekenreeks zal de sjabloon zijn voor elk bericht, met {{artist}} en {{title}} vervangen door de artiest en titel van het spoor.",
+    "mastodon-post-format-description": "Nuclear will post a status on Mastodon after each track completes playing. The above string will be the template for each post, with {{artist}}, {{title}}, and {{url}} replaced with the artist, title, and a link to the track respectively.",
     "mastodon-post-format-label": "Post formaat",
     "mastodon-title": "",
     "normalize": "Volume normaliseren",
@@ -304,6 +322,7 @@
     "promoted-artists-description": "Dit is een opeenstapeling van interessante, zorgvuldig uitgekozen indie-artiesten die u zou misschien leuk vinden. Hier krijgt niemand een vergoeding voor.",
     "saving-in": "Opslaan in:",
     "seek-iteration": "Aantal seconden om vooruit/achteruit te zoeken bij het indrukken van pijltoetsen",
+    "show-tray-icon": "Show tray icon",
     "shuffle-queue": "Nummers willekeurig afspelen",
     "shuffle-when-going-back": "Shuffle bij het vorige nummer",
     "shuffle-when-going-back-description": "Speel een willekeurig nummer af wanneer shuffle actief is en de vorige track knop wordt aangeklikt",
@@ -313,6 +332,9 @@
     "streaming": "Streaming",
     "track-duration": "Toon de duur van de track over de zoekbalk",
     "user": "Gebruiker:",
+    "user-id": "User ID",
+    "use-stream-verification": "Use stream verification",
+    "use-stream-verification-description": "Use stream verification. Loads the streams the community has verified as being correct for the tracks you play. Also allows you to vote on streams. See documentation for details.",
     "youtube": "Youtube",
     "yt-api-key": "Youtube API-sleutel"
   },

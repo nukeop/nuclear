@@ -64,7 +64,7 @@ export const usePlayerControlsProps = () => {
 
   const couldPlay = queue.queueItems.length > 0;
   const couldForward = couldPlay && queue.currentSong + 1 < queue.queueItems.length;
-  const couldBack = couldPlay && queue.currentSong > 0;
+  const couldBack = couldPlay;
   const goBackThreshold = ((
     settings.skipSponsorblock && 
       currentTrackStream?.skipSegments?.find(segment => segment.startTime === 0)?.endTime) 
@@ -84,6 +84,8 @@ export const usePlayerControlsProps = () => {
     () => {
       if (seek > goBackThreshold){
         dispatch(playerActions.updateSeek(0));
+      } else if (queue.currentSong === 0) {
+        dispatch(playerActions.resetPlayer());
       } else {
         dispatch(queueActions.previousSong());
       }

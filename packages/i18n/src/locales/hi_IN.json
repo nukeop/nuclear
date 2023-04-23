@@ -216,7 +216,25 @@
     "playlist-add": "प्‍लेलिस्‍ट में जोड़ें",
     "playlist-toast-content": "प्लेलिस्ट {{name}} बन गई है।",
     "playlist-toast-title": "प्लेलिस्ट बनाई गई!",
-    "live": "लाइव"
+    "live": "लाइव",
+    "stream-verification": {
+      "tooltip": {
+        "unknown": "The status of this stream is unknown.",
+        "unverified": "This stream has not yet been verified by the community.",
+        "weakly-verified": "This stream has been verified by a couple of users.",
+        "verified": "This stream has been verified by the community.",
+        "verified-by-user": "This stream has been verified by you."
+      },
+      "stream-status": {
+        "unknown": "Unknown",
+        "unverified": "Unverified",
+        "weakly-verified": "Weakly verified",
+        "verified": "Verified",
+        "verified-by-user": "Verified by you"
+      },
+      "verify": "Verify",
+      "unverify": "Unverify"
+    }
   },
   "search": {
     "album": "एल्बम",
@@ -286,7 +304,7 @@
     "mastodon-awaiting-authorization": "Nuclear {{instanceUrl}} पर पंजीकृत है। प्राधिकरण की प्रतीक्षा करी जा रही है।",
     "mastodon-description": "",
     "mastodon-instance-label": "मैस्टोडाॅन इंस्टंस URL",
-    "mastodon-post-format-description": "प्रत्येक ट्रैक के चलने के बाद न्यूक्लियर मास्टोडन पर एक स्टेटस पोस्ट करेगा। उपरोक्त स्ट्रिंग प्रत्येक पोस्ट के लिए टेम्प्लेट होगी, जिसमें {{artist}} और {{title}} को कलाकार और ट्रैक के शीर्षक से बदल दिया जाएगा।",
+    "mastodon-post-format-description": "Nuclear will post a status on Mastodon after each track completes playing. The above string will be the template for each post, with {{artist}}, {{title}}, and {{url}} replaced with the artist, title, and a link to the track respectively.",
     "mastodon-post-format-label": "पोस्ट फॉर्मेट",
     "mastodon-title": "",
     "normalize": "Normalize volume",
@@ -304,6 +322,7 @@
     "promoted-artists-description": "This is a reel of interesting, handpicked indie artists you might like. No one's receiving any compensation for this.",
     "saving-in": "सहेजा जा रहा है...",
     "seek-iteration": "तीर कुंजियों को दबाते समय आगे/पीछे जाने के लिए सेकंड की संख्या",
+    "show-tray-icon": "Show tray icon",
     "shuffle-queue": "गीत शफल करे",
     "shuffle-when-going-back": "पिछले ट्रैक पर शफल करें",
     "shuffle-when-going-back-description": "जब शफल सक्रिय हो और पिछला ट्रैक बटन क्लिक किया गया हो तो एक यादृच्छिक ट्रैक चलाएं",
@@ -313,6 +332,9 @@
     "streaming": "स्ट्रीमिंग",
     "track-duration": "सीकबार पर ट्रैक की अवधि प्रदर्शित करें",
     "user": "उपयोगकर्ता:",
+    "user-id": "User ID",
+    "use-stream-verification": "Use stream verification",
+    "use-stream-verification-description": "Use stream verification. Loads the streams the community has verified as being correct for the tracks you play. Also allows you to vote on streams. See documentation for details.",
     "youtube": "यूट्यूब",
     "yt-api-key": "यूट्यूब API कुंजी"
   },
