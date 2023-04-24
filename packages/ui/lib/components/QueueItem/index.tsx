@@ -12,19 +12,12 @@ import { getTrackArtist, getTrackTitle } from '../../utils';
 import { Track } from '../../types';
 
 export type QueueItemProps = {
-  isLoading: boolean;
   isCurrent: boolean;
   isCompact: boolean;
   track: Track;
-  index: number;
   duration: string;
-  selectSong: (index: number) => void;
-  removeFromQueue: (track: {}) => void;
-  resetPlayer: () => void;
-  error: boolean | {
-    message: string;
-    details: string;
-  };
+  onSelect: () => void;
+  onRemove: () => void;
 };
 
 const isErrorWithMessage = (error: any): error is { message: string; details: string } => {
@@ -32,49 +25,39 @@ const isErrorWithMessage = (error: any): error is { message: string; details: st
 };
 
 export const QueueItem: React.FC<QueueItemProps> = ({
-  isLoading,
   isCurrent,
   isCompact,
-  index,
   track,
   duration,
-  error,
-  resetPlayer,
-  removeFromQueue,
-  selectSong
+  onRemove,
+  onSelect
 }) => {
-  const handleRemoveFromQueue = useCallback(() => {
-    removeFromQueue(track);
-    if (resetPlayer) {
-      resetPlayer();
-    }
-  }, [removeFromQueue, track, resetPlayer]);
-  const handleSelectSong = useCallback(() => selectSong(index), [selectSong, index]);
   return (
     <div
       className={cx(
         common.nuclear,
         styles.queue_item,
         { [`${styles.current_song}`]: isCurrent },
-        { [`${styles.error}`]: Boolean(error) },
+        { [`${styles.error}`]: Boolean(track.error) },
         { [`${styles.compact}`]: isCompact }
       )}
-      onDoubleClick={handleSelectSong}
+      onDoubleClick={onSelect}
     >
       <div className={styles.thumbnail}>
-        {isLoading
+        {track.loading
           ? <Loader type='small' className={isCompact && styles.compact_loader} />
           : <img src={track.thumbnail ?? artPlaceholder} />}
 
         <div
+          data-testid='queue-item-remove'
           className={styles.thumbnail_overlay}
-          onClick={handleRemoveFromQueue}
+          onClick={onRemove}
         >
           <Icon name='trash alternate outline' size={isCompact ? 'large' : 'big'} />
         </div>
       </div>
 
-      {!error &&
+      {!track.error &&
       <>
         <div className={styles.item_info_container}>
           <div className={styles.name_container}>
@@ -85,7 +68,7 @@ export const QueueItem: React.FC<QueueItemProps> = ({
           </div>
         </div>
 
-        {!isLoading &&
+        {!track.loading &&
               !isEmpty(track.streams) &&
               <div className={styles.item_duration_container}>
                 <div className={styles.item_duration}>
@@ -95,11 +78,11 @@ export const QueueItem: React.FC<QueueItemProps> = ({
       </>}
 
       {
-        isErrorWithMessage(error) &&
+        isErrorWithMessage(track.error) &&
         !isCompact &&
         <div className={styles.error_overlay}>
-          <div className={styles.error_message}>{error.message}</div>
-          <div className={styles.error_details}>{error.details}</div>
+          <div className={styles.error_message}>{track.error.message}</div>
+          <div className={styles.error_details}>{track.error.details}</div>
         </div>
       }
     </div>

@@ -107,9 +107,22 @@ const PlayQueue: React.FC<PlayQueueProps> = ({
     );
   };
 
-  // When a new stream is selected from the stream info component
-  const onSelectStream = (track: QueueItemType) => (stream: StreamData) => {
-    selectNewStream(track, stream.id);
+  // When a new stream is selected from the track context menu
+  const onSelectStream = (index: number) => (stream: StreamData) => {
+    selectNewStream(index, stream.id);
+  };
+
+  // When a track is switched to e.g. by double clicking
+  const onSelectTrack = (index: number) => () => {
+    selectSong(index);
+  };
+
+  // When a track is removed from the queue
+  const onRemoveTrack = (index: number) => () => {
+    removeFromQueue(index);
+    if (queue.queueItems.length === 1) {
+      resetPlayer();
+    }
   };
 
   const renderQueueItems = () => {
@@ -139,23 +152,19 @@ const PlayQueue: React.FC<PlayQueueProps> = ({
               <QueuePopupContainer
                 trigger={
                   <QueueItem
-                    index={i}
-                    track={item}
-                    isLoading={item.loading}
                     isCompact={settings.compactQueueBar as boolean}
                     isCurrent={queue.currentSong === i}
-                    error={item.error}
-                    selectSong={selectSong}
-                    removeFromQueue={removeFromQueue}
+                    track={item}
+                    onSelect={onSelectTrack(i)}
+                    onRemove={onRemoveTrack(i)}
                     duration={trackDuration}
-                    resetPlayer={queue.queueItems.length === 1 ? resetPlayer : undefined}
                   />
                 }
                 isQueueItemCompact={settings.compactQueueBar}
                 index={i}
                 track={item}
+                onSelectStream={onSelectStream(i)}
                 copyTrackUrlLabel={t('copy-track-url')}
-                onSelectStream={onSelectStream(item)}
               />
             </div>
           )}
