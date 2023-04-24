@@ -168,6 +168,25 @@ describe('Play Queue container', () => {
     expect(state.queue.queueItems).toEqual([]);
   });
 
+  it('should remove the clicked track from the queue', async () => {
+    const { component, store } = mountComponent();
+
+    await waitFor(() => component
+      .getAllByTestId('queue-item-remove')[0].click());
+
+    const state = store.getState();
+    expect(state.queue.queueItems).toEqual([
+      expect.objectContaining({
+        artist: 'test artist 2',
+        name: 'test track 2'
+      }),
+      expect.objectContaining({
+        artist: 'test artist 3',
+        name: 'test track 3'
+      })
+    ]);
+  });
+
   const mountComponent = (initialStore?: AnyProps) => {
     const initialState = initialStore || buildStoreState()
       .withTracksInPlayQueue()
