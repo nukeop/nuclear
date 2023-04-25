@@ -41,7 +41,6 @@ const PlayerBar: React.FC<PlayerBarProps> = ({
 
   goForward,
   goBack,
-  playRandomFavoriteTrack,
   togglePlay,
   goBackDisabled,
   goForwardDisabled,
@@ -100,7 +99,6 @@ const PlayerBar: React.FC<PlayerBarProps> = ({
         <PlayerControls
           goForward={goForward}
           goBack={goBack}
-          playRandomFavoriteTrack={playRandomFavoriteTrack}
           togglePlay={togglePlay}
           isPlaying={isPlaying}
           isLoading={isLoading}

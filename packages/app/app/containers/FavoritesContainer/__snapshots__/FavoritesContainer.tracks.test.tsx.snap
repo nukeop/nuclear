@@ -180,6 +180,15 @@ exports[`Favorite tracks view container should display favorite tracks 1`] = `
         class="header_container"
       >
         Your favorite tracks
+        <button
+          class="ui large basic icon button nuclear button"
+          data-testid="favorite-tracks-header-play-random"
+        >
+          <i
+            aria-hidden="true"
+            class="gift icon"
+          />
+        </button>
       </div>
       <div
         class="ui segment"
@@ -688,6 +697,15 @@ exports[`Favorite tracks view container should show a popup when a track is clic
         class="header_container"
       >
         Your favorite tracks
+        <button
+          class="ui large basic icon button nuclear button"
+          data-testid="favorite-tracks-header-play-random"
+        >
+          <i
+            aria-hidden="true"
+            class="gift icon"
+          />
+        </button>
       </div>
       <div
         class="ui segment"
@@ -799,13 +817,13 @@ exports[`Favorite tracks view container should show a popup when a track is clic
             </tr>
           </thead>
           <tbody
-            data-rbd-droppable-context-id="1"
+            data-rbd-droppable-context-id="2"
             data-rbd-droppable-id="track_table"
             role="rowgroup"
           >
             <tr
               class=""
-              data-rbd-draggable-context-id="1"
+              data-rbd-draggable-context-id="2"
               data-rbd-draggable-id="test track 2 1"
               data-testid="track-table-row"
               role="row"
@@ -917,7 +935,7 @@ exports[`Favorite tracks view container should show a popup when a track is clic
             </tr>
             <tr
               class=""
-              data-rbd-draggable-context-id="1"
+              data-rbd-draggable-context-id="2"
               data-rbd-draggable-id="test track 1 0"
               data-testid="track-table-row"
               role="row"
@@ -1168,11 +1186,11 @@ exports[`Favorite tracks view container should show a popup when a track is clic
   <div
     aria-atomic="true"
     aria-live="assertive"
-    id="rbd-announcement-1"
+    id="rbd-announcement-2"
     style="position: absolute; width: 1px; height: 1px; margin: -1px; border: 0px; padding: 0px; overflow: hidden; clip-path: inset(100%);"
   />
   <div
-    id="rbd-hidden-text-1-hidden-text-4"
+    id="rbd-hidden-text-2-hidden-text-8"
     style="display: none;"
   >
     

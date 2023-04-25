@@ -87,13 +87,6 @@ export const usePlayerControlsProps = () => {
     [dispatch, seek]
   );
 
-  const playRandomFavoriteTrack = useCallback(() => {
-    const randomTrack = favoriteTracks[Math.floor(Math.random() * favoriteTracks.length)];
-    dispatch(queueActions.playTrack(null, randomTrack));
-  },
-  [dispatch, favoriteTracks]
-  );
-
   return {
     goBackDisabled: !couldBack,
     goForwardDisabled: !couldForward,
@@ -102,8 +95,7 @@ export const usePlayerControlsProps = () => {
     isLoading: currentTrackLoading || playbackStreamLoading,
     togglePlay,
     goForward,
-    goBack,
-    playRandomFavoriteTrack
+    goBack
   };
 };
 

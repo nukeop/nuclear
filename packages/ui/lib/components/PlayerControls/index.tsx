@@ -1,5 +1,4 @@
 import React from 'react';
-import { useLocation } from 'react-router-dom';
 
 import PlayerButton from '../PlayerButton';
 
@@ -8,7 +7,6 @@ import styles from './styles.scss';
 export type PlayerControlsProps = {
   goForward?: () => void;
   goBack?: () => void;
-  playRandomFavoriteTrack?: () => void;
   togglePlay?: () => void;
   isPlaying?: boolean;
   isLoading?: boolean;
@@ -21,7 +19,6 @@ export type PlayerControlsProps = {
 const PlayerControls: React.FC<PlayerControlsProps> = ({
   goForward,
   goBack,
-  playRandomFavoriteTrack,
   togglePlay,
   isPlaying,
   isLoading,
@@ -29,47 +26,37 @@ const PlayerControls: React.FC<PlayerControlsProps> = ({
   goForwardDisabled=false,
   playDisabled=false
 }) => {
-  const location = useLocation();
   return (
-  <div className={styles.player_controls}>
-    <PlayerButton
-      data-testid='player-controls-back'
-      icon='step backward'
-      size='large'
-      onClick={goBack}
-      disabled={goBackDisabled}
-    />
-    <PlayerButton
-      data-testid='player-controls-play'
-      loading={isLoading}
-      icon={
-        isLoading
-          ? 'circle notch'
-          : isPlaying
-            ? 'pause'
-            : 'play'
-      }
-      onClick={togglePlay}
-      disabled={playDisabled}
-    />
-    <PlayerButton
-      data-testid='player-controls-forward'
-      icon='step forward'
-      size='large'
-      onClick={goForward}
-      disabled={goForwardDisabled}
-    />
-    {
-      location.pathname === '/favorites/tracks' &&
+    <div className={styles.player_controls}>
       <PlayerButton
-        data-testid='player-controls-random'
-        icon='gift'
+        data-testid='player-controls-back'
+        icon='step backward'
         size='large'
-        onClick={playRandomFavoriteTrack}
-        disabled={false}
+        onClick={goBack}
+        disabled={goBackDisabled}
       />
-    }
-  </div>
-)};
+      <PlayerButton
+        data-testid='player-controls-play'
+        loading={isLoading}
+        icon={
+          isLoading
+            ? 'circle notch'
+            : isPlaying
+              ? 'pause'
+              : 'play'
+        }
+        onClick={togglePlay}
+        disabled={playDisabled}
+      />
+      <PlayerButton
+        data-testid='player-controls-forward'
+        icon='step forward'
+        size='large'
+        onClick={goForward}
+        disabled={goForwardDisabled}
+      />
+    </div>
+  );
+};
 
 export default PlayerControls;
