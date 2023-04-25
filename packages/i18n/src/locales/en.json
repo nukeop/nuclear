@@ -97,6 +97,7 @@
     "empty": "No favorites added",
     "empty-help": "Try adding some tracks to favorites and they will appear here!",
     "header": "Your favorite tracks",
+    "play-random": "Play a random track from your favorites",
     "title": "Title"
   },
   "help": {
