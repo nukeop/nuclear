@@ -1,6 +1,6 @@
 {
   "name": "@nuclear/app",
-  "version": "0.6.20",
+  "version": "0.6.21",
   "description": "Nuclear - Renderer process",
   "scripts": {
     "start": "webpack-dev-server --env NODE_ENV=development",
@@ -34,9 +34,9 @@
   },
   "homepage": "https://github.com/nukeop/nuclear#readme",
   "dependencies": {
-    "@nuclear/core": "^0.6.20",
-    "@nuclear/i18n": "^0.6.20",
-    "@nuclear/ui": "^0.6.20",
+    "@nuclear/core": "^0.6.21",
+    "@nuclear/i18n": "^0.6.21",
+    "@nuclear/ui": "^0.6.21",
     "@testing-library/jest-dom": "^5.16.4",
     "ajv": "^6.12.5",
     "billboard-top-100": "^2.0.8",
