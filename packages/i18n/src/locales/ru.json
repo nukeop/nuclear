@@ -97,6 +97,7 @@
     "empty": "Список избранных пуст",
     "empty-help": "Добавьте пару треков в избранные, и они появятся здесь.",
     "header": "Ваши избранные треки",
+    "play-random": "Play a random track from your favorites",
     "title": "Название"
   },
   "help": {
