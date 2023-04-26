@@ -2,12 +2,13 @@
 import React from 'react';
 import { render, waitFor } from '@testing-library/react';
 import { createMemoryHistory } from 'history';
-import _ from 'lodash';
+import _, { pick } from 'lodash';
 
 import { buildStoreState } from '../../../test/storeBuilders';
 import { AnyProps, configureMockStore, setupI18Next, TestRouterProvider, TestStoreProvider } from '../../../test/testUtils';
 import MainContentContainer from '../MainContentContainer';
 import PlayerBarContainer from '../PlayerBarContainer';
+import { PlaybackStatus } from '@nuclear/core';
 
 const updateStore = (key: string, value: object) => {
   // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -39,6 +40,22 @@ describe('Favorite tracks view container', () => {
   it('should display empty state', () => {
     const { component } = mountComponent();
     expect(component.asFragment()).toMatchSnapshot();
+  });
+
+  it('should play a random track when the random button is clicked', async () => {
+    const favorites = buildStoreState()
+      .withFavorites()
+      .build().favorites;
+    updateStore('favorites', favorites);
+    const { component, store } = mountComponent();
+
+    await waitFor(() => component.getByTestId('favorite-tracks-header-play-random').click());
+    const state = store.getState();
+    expect(state.queue.queueItems).toHaveLength(1);
+    expect(favorites.tracks).toContainEqual(
+      expect.objectContaining(pick(state.queue.queueItems[0], ['artist', 'title', 'duration', 'source'])
+      ));
+    expect(state.player.playbackStatus).toEqual('PLAYING');
   });
 
   it('should show a popup when a track is clicked', async () => {
