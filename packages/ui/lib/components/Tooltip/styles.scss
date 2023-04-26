@@ -1,4 +1,4 @@
-@import '../../common.scss';
+@import "../../common.scss";
 
 .nuclear.tooltip {
   background: $bgdarker !important;
@@ -6,6 +6,7 @@
   border-color: $bgdefault !important;
   box-shadow: 0rem 0rem 0.5rem 0.25rem rgba($black, 0.2) !important;
   user-select: none;
+  text-align: center;
 
   &:before {
     display: none;

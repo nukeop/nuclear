@@ -14,6 +14,7 @@ import * as playerActions from '../../actions/player';
 import * as queueActions from '../../actions/queue';
 import * as settingsActions from '../../actions/settings';
 import * as favoritesActions from '../../actions/favorites';
+import { favoritesSelectors } from '../../selectors/favorites';
 import { playerSelectors } from '../../selectors/player';
 import { queue as queueSelector } from '../../selectors/queue';
 import { settingsSelector } from '../../selectors/settings';
@@ -61,6 +62,7 @@ export const usePlayerControlsProps = () => {
   const currentTrackStream = currentTrack?.streams?.[0];
   const playbackStreamLoading: boolean = useSelector(playerSelectors.playbackStreamLoading);
   const seek = useSelector(playerSelectors.seek);
+  const favoriteTracks = useSelector(favoritesSelectors.tracks);
 
   const couldPlay = queue.queueItems.length > 0;
   const couldForward = couldPlay && queue.currentSong + 1 < queue.queueItems.length;
@@ -92,7 +94,6 @@ export const usePlayerControlsProps = () => {
     },
     [dispatch, seek, goBackThreshold]
   );
-
 
   return {
     goBackDisabled: !couldBack,

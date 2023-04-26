@@ -26,6 +26,11 @@ class FavoritesContainer extends React.Component {
     this.props.favoritesActions.readFavorites();
   }
 
+  playRandomFavoriteTrack(favoriteTracks, playTrack) {
+    const randomTrack = favoriteTracks?.[Math.floor(Math.random() * favoriteTracks.length)];
+    playTrack(null, randomTrack);
+  }
+
   render() {
     const {
       favorites,
@@ -44,16 +49,17 @@ class FavoritesContainer extends React.Component {
         albumInfoSearch={searchActions.albumInfoSearch}
       />;
     }
-    
+
     if (match.path.endsWith(TRACKS_PATH)) {
       return <FavoriteTracksView
         addToQueue={queueActions.addToQueue}
         streamProviders={streamProviders}
-        tracks={_.get(favorites, 'tracks')}
+        tracks={favorites?.tracks || []}
         clearQueue={queueActions.clearQueue}
         selectSong={queueActions.selectSong}
         startPlayback={playerActions.startPlayback}
         removeFavoriteTrack={favoritesActions.removeFavoriteTrack}
+        playRandomFavoriteTrack={this.playRandomFavoriteTrack.bind(this, favorites?.tracks, queueActions.playTrack)}
       />;
     }
 
@@ -64,7 +70,7 @@ class FavoritesContainer extends React.Component {
         artistInfoSearch={searchActions.artistInfoSearch}
       />;
     }
-    
+
     return null;
   }
 }
@@ -92,14 +98,14 @@ FavoritesContainer.defaultProps = {
   searchActions: {}
 };
 
-function mapStateToProps (state) {
+function mapStateToProps(state) {
   return {
     favorites: state.favorites,
     streamProviders: state.plugin.plugins.streamProviders
   };
 }
 
-function mapDispatchToProps (dispatch) {
+function mapDispatchToProps(dispatch) {
   return {
     favoritesActions: bindActionCreators(FavoritesActions, dispatch),
     searchActions: bindActionCreators(SearchActions, dispatch),

@@ -10,6 +10,11 @@
     @include emptyState;
   }
 
+  .header_container {
+    display: flex;
+    justify-content: space-between;
+  }
+
   .button_container {
     padding-top: 1rem;
     margin-left: 1rem;
@@ -51,7 +56,9 @@
         width: 100%;
       }
 
-      th:nth-child(2) { width: 42px; }
+      th:nth-child(2) {
+        width: 42px;
+      }
     }
 
     .tbody {
