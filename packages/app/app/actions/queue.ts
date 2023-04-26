@@ -262,13 +262,20 @@ export function addPlaylistTracksToQueue(tracks) {
 function dispatchWithShuffle(dispatch, getState, action) {
   const state = getState();
   const settings = state.settings;
-  const queue = state.queue;
-  const currentSong = queue.currentSong;
+  let queue = state.queue;
 
   if (settings.shuffleQueue) {
-    const index = _.random(0, queue.queueItems.length - 1);
-    dispatch(selectSong(index));
-    dispatch(removeFromQueue(queue.queueItems[currentSong]));
+    let unplayedQueue = queue.queueItems.filter(item => !item.played);
+    if (queue.currentSong !== null) {
+      const currentSongUuid = queue.queueItems[queue.currentSong].uuid;
+      dispatch(updateQueueItem({ ...queue.queueItems[queue.currentSong], played: true, uuid: currentSongUuid }));
+      queue = getState().queue;
+    }
+    unplayedQueue = queue.queueItems.filter(item => !item.played);
+    const index = _.random(0, unplayedQueue.length - 1);
+    const selectedItem = unplayedQueue[index];
+    const selectedIndex = queue.queueItems.findIndex(item => item.uuid === selectedItem.uuid);
+    dispatch(selectSong(selectedIndex));
   } else {
     dispatch(action());
   }
