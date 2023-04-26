@@ -261,10 +261,12 @@ function dispatchWithShuffle(dispatch, getState, action) {
   const state = getState();
   const settings = state.settings;
   const queue = state.queue;
+  const currentSong = queue.currentSong;
 
   if (settings.shuffleQueue) {
     const index = _.random(0, queue.queueItems.length - 1);
     dispatch(selectSong(index));
+    dispatch(removeFromQueue(queue.queueItems[currentSong]));
   } else {
     dispatch(action());
   }
