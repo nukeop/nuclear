@@ -266,6 +266,9 @@ function dispatchWithShuffle(dispatch, getState, action) {
 
   if (settings.shuffleQueue) {
     let unplayedQueue = queue.queueItems.filter(item => !item.played);
+    if(unplayedQueue.length == 0){
+      queue.queueItems.map(item => dispatch(updateQueueItem({ ... item, played: false})));
+    }
     if (queue.currentSong !== null) {
       const currentSongUuid = queue.queueItems[queue.currentSong].uuid;
       dispatch(updateQueueItem({ ...queue.queueItems[queue.currentSong], played: true, uuid: currentSongUuid }));
