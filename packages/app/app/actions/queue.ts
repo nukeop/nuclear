@@ -45,7 +45,8 @@ export const toQueueItem = (track: Track): QueueItem => ({
   ...track,
   artist: isString(track.artist) ? track.artist : track.artist.name,
   name: track.title ? track.title : track.name,
-  streams: track.streams ?? []
+  streams: track.streams ?? [],
+  played: false
 });
 
 const getSelectedStreamProvider = (getState) => {
@@ -120,7 +121,8 @@ export const addToQueue =
       item = {
         ...safeAddUuid(item),
         streams: item.local ? item.streams : [],
-        loading: false
+        loading: false,
+        played: false
       };
 
       const {

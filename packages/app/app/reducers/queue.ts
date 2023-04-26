@@ -28,6 +28,7 @@ export type QueueItem = {
   name: string;
   thumbnail?: string;
   streams?: TrackStream[];
+  played?: boolean;
 };
 
 export class QueueStore {
