@@ -97,7 +97,7 @@
     "empty": "Список избранных пуст",
     "empty-help": "Добавьте пару треков в избранные, и они появятся здесь.",
     "header": "Ваши избранные треки",
-    "play-random": "Play a random track from your favorites",
+    "play-random": "Играть случайный трек из вашего избранного",
     "title": "Название"
   },
   "help": {
@@ -220,15 +220,15 @@
     "live": "Сейчас",
     "stream-verification": {
       "tooltip": {
-        "unknown": "The status of this stream is unknown.",
-        "unverified": "This stream has not yet been verified by the community.",
-        "weakly-verified": "This stream has been verified by a couple of users.",
-        "verified": "This stream has been verified by the community.",
-        "verified-by-user": "This stream has been verified by you."
+        "unknown": "Состояние этого потока неизвестно.",
+        "unverified": "Этот поток ещё не подтверждён сообществом.",
+        "weakly-verified": "Этот поток был подтверждён парой пользователей.",
+        "verified": "Этот поток был подтверждён сообществом.",
+        "verified-by-user": "Этот поток был подтверждён вами."
       },
       "stream-status": {
-        "unknown": "Unknown",
-        "unverified": "Unverified",
+        "unknown": "Неизвестно",
+        "unverified": "Неподтверждённый",
         "weakly-verified": "Weakly verified",
         "verified": "Verified",
         "verified-by-user": "Verified by you"
