@@ -215,6 +215,53 @@ describe('PlayerBar container', () => {
     expect(state.queue.currentSong).toBe(0); 
   });
 
+  it('should not repeat same song when there are multiple songs available in shuffle mode', async () => {
+    const { component, store } = mountComponent({
+      queue: {
+        currentSong: 1,
+        queueItems: [{
+          artist: 'test artist 1',
+          name: 'test track 1',
+          streams: [{
+            duration: 300,
+            title: 'test track 1',
+            skipSegments: []
+          }],
+          played: false
+        }, {
+          artist: 'test artist 2',
+          name: 'test track 2',
+          streams: [{
+            duration: 300,
+            title: 'test track 2',
+            skipSegments: []
+          }],
+          played: true
+        }, {
+          artist: 'test artist 3',
+          name: 'test track 3',
+          streams: [{
+            duration: 300,
+            title: 'test track 3',
+            skipSegments: []
+          }],
+          played: false
+        }]
+      },
+      settings: {
+        loopAfterQueueEnd: false,
+        shuffleQueue: true,
+        autoradio: false,
+        miniPlayer: false
+      }
+    }
+    );
+    const nextButton = await component.findByTestId('player-controls-forward');
+    fireEvent.click(nextButton);
+    const state = store.getState();
+    expect(state.queue.currentSong).not.toBe(1);
+  });
+
 
   const mountComponent = (initialStore?: AnyProps) => {
     const store = configureMockStore({
