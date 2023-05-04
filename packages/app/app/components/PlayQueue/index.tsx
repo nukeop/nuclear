@@ -2,7 +2,7 @@ import React, { useMemo, useState } from 'react';
 import classnames from 'classnames';
 import _, { head } from 'lodash';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-import { useTranslation } from 'react-i18next';
+import { TFunction, useTranslation } from 'react-i18next';
 import { Icon } from 'semantic-ui-react';
 import { areEqual, FixedSizeList as List } from 'react-window';
 
@@ -21,6 +21,7 @@ import { StreamVerificationContainer } from '../../containers/StreamVerification
 
 import styles from './styles.scss';
 import AutoSizer from 'react-virtualized-auto-sizer';
+import { QueueItemClone } from './QueueItemClone';
 
 type PlayQueueProps = {
   actions: PlayQueueActions;
@@ -29,6 +30,21 @@ type PlayQueueProps = {
   settings: SettingsState;
   queue: QueueStore;
 }
+
+type QueueRowProps = {
+  data: {
+    settings: SettingsState;
+    queue: QueueStore;
+  };
+  index: number;
+  style: Object
+};
+
+const formatTrackDuration = (t: TFunction) => (track: QueueItemType) => formatDuration(head(track.streams)?.duration) === '00:00' &&
+  !track.loading &&
+  Boolean(track.streams)
+  ? t('live')
+  : formatDuration(head(track.streams)?.duration);
 
 const PlayQueue: React.FC<PlayQueueProps> = ({
   actions: {
@@ -127,55 +143,7 @@ const PlayQueue: React.FC<PlayQueueProps> = ({
     }
   };
 
-  const renderQueueItems = (isUsingPlaceholder: boolean) => {
-    if (!queue.queueItems) {
-      return null;
-    }
-
-    return queue.queueItems.map((item, i) => {
-      const trackDuration = formatDuration(head(item.streams)?.duration) === '00:00' &&
-        !item.loading &&
-        Boolean(item.streams)
-        ? t('live')
-        : formatDuration(head(item.streams)?.duration);
-
-      return (
-        <Draggable
-          key={`${item.uuid}+${i}`}
-          index={i}
-          draggableId={`${item.uuid}+${i}`}
-        >
-          {provided => (
-            <div
-              ref={provided.innerRef}
-              {...provided.draggableProps}
-              {...provided.dragHandleProps}
-            >
-              <QueuePopupContainer
-                trigger={
-                  <QueueItem
-                    isCompact={settings.compactQueueBar as boolean}
-                    isCurrent={queue.currentSong === i}
-                    track={item}
-                    onSelect={onSelectTrack(i)}
-                    onRemove={onRemoveTrack(i)}
-                    duration={trackDuration}
-                  />
-                }
-                isQueueItemCompact={settings.compactQueueBar}
-                index={i}
-                track={item}
-                onSelectStream={onSelectStream(i)}
-                copyTrackUrlLabel={t('copy-track-url')}
-              />
-            </div>
-          )}
-        </Draggable>
-      );
-    });
-  };
-
-  const QueueRow = React.memo(({data, index, style}) => {
+  const QueueRow = React.memo(({data, index, style}: QueueRowProps) => {
     const item = data.queue.queueItems[index] as QueueItemType;
     return (
       <Draggable
@@ -202,7 +170,7 @@ const PlayQueue: React.FC<PlayQueueProps> = ({
                     track={item}
                     onSelect={onSelectTrack(index)}
                     onRemove={onRemoveTrack(index)}
-                    duration={formatDuration(head(item?.streams)?.duration)} 
+                    duration={formatTrackDuration(t)(item)} 
                   />
                 }
                 isQueueItemCompact={data.settings.compactQueueBar}
@@ -244,22 +212,13 @@ const PlayQueue: React.FC<PlayQueueProps> = ({
         <Droppable 
           droppableId='play_queue'
           mode='virtual'
-          renderClone={(provided, snapshot, rubric) => (
-            <div
-              ref={provided.innerRef}
-              {...provided.draggableProps}
-              {...provided.dragHandleProps}
-            >
-              <QueueItem
-                isCompact={settings.compactQueueBar as boolean}
-                isCurrent={queue.currentSong === rubric.source.index}
-                track={queue.queueItems[rubric.source.index]}
-                onSelect={onSelectTrack(rubric.source.index)}
-                onRemove={onRemoveTrack(rubric.source.index)}
-                duration={formatDuration(head(queue.queueItems[rubric.source.index].streams)?.duration)}
-              />
-            </div>
-          )}
+          renderClone={QueueItemClone({
+            settings,
+            queue,
+            onSelectTrack,
+            onRemoveTrack,
+            formatTrackDuration: formatTrackDuration(t)
+          })}
         >
           {(droppableProvided, snapshot) => (
             <div
