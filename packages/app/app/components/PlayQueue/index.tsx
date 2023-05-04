@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import classnames from 'classnames';
 import _, { head } from 'lodash';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { useTranslation } from 'react-i18next';
 import { Icon } from 'semantic-ui-react';
+import { areEqual, FixedSizeList as List } from 'react-window';
 
 import { Playlist } from '@nuclear/core';
 import { StreamData } from '@nuclear/core/src/plugins/plugins.types';
@@ -125,7 +126,7 @@ const PlayQueue: React.FC<PlayQueueProps> = ({
     }
   };
 
-  const renderQueueItems = () => {
+  const renderQueueItems = (isUsingPlaceholder: boolean) => {
     if (!queue.queueItems) {
       return null;
     }
@@ -173,6 +174,42 @@ const PlayQueue: React.FC<PlayQueueProps> = ({
     });
   };
 
+
+  const QueueRow = React.memo(({data, index, style}) => {
+    const item = data.queue.queueItems[index] as QueueItemType;
+    return (
+      <Draggable
+        key={index}
+        draggableId={index+''}
+        index={index}
+      >
+        {(draggableProvided, draggableSnapshot) => {
+          return (
+            <div
+              ref={draggableProvided.innerRef}
+              {...draggableProvided.draggableProps}
+              {...draggableProvided.dragHandleProps}
+            >
+              <QueuePopupContainer
+                trigger={<QueueItem
+                  isCompact={data.settings.compactQueueBar as boolean}
+                  isCurrent={data.queue.currentSong === index}
+                  track={item}
+                  onSelect={onSelectTrack(index)}
+                  onRemove={onRemoveTrack(index)}
+                  duration={formatDuration(head(item?.streams)?.duration)} />}
+                isQueueItemCompact={data.settings.compactQueueBar}
+                index={index}
+                track={item}
+                onSelectStream={onSelectStream(index)}
+                copyTrackUrlLabel={t('copy-track-url')} />
+            </div>
+          );
+        }}
+      </Draggable>
+    );
+  }, areEqual);
+
   return (
     <DragDropContext onDragEnd={onDragEnd}>
       <div
@@ -197,18 +234,45 @@ const PlayQueue: React.FC<PlayQueueProps> = ({
           compact={Boolean(settings.compactQueueBar)}
         />
 
-        <Droppable droppableId='play_queue'>
-          {(provided, snapshot) => (
+        <Droppable 
+          droppableId='play_queue'
+          mode='virtual'
+          renderClone={(provided, snapshot, rubric) => (
             <div
               ref={provided.innerRef}
+              {...provided.draggableProps}
+              {...provided.dragHandleProps}
+            >
+              <QueueItem
+                isCompact={settings.compactQueueBar as boolean}
+                isCurrent={queue.currentSong === rubric.source.index}
+                track={queue.queueItems[rubric.source.index]}
+                onSelect={onSelectTrack(rubric.source.index)}
+                onRemove={onRemoveTrack(rubric.source.index)}
+                duration={formatDuration(head(queue.queueItems[rubric.source.index].streams)?.duration)}
+              />
+            </div>
+          )}
+        >
+          {(droppableProvided, snapshot) => (
+            <div
               className={classnames(styles.play_queue_items, styles.fade_in, {
                 [styles.file_dragged_over]: isFileHovered,
                 [styles.track_dragged_over]: snapshot.isDraggingOver
               })}
-              {...provided.droppableProps}
+              {...droppableProvided.droppableProps}
             >
-              {renderQueueItems()}
-              {provided.placeholder}
+              <List
+                height={1000}
+                itemCount={queue.queueItems.length}
+                itemSize={64}
+                width='100%'
+                overscanCount={2}
+                itemData={{queue, settings}}
+                outerRef={droppableProvided.innerRef}
+              >
+                {QueueRow}
+              </List>
               {isFileHovered && (
                 <Icon name='plus' className={styles.file_icon} />
               )}
