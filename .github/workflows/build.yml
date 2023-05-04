@@ -70,7 +70,7 @@ jobs:
           version: 18
           cache: npm
       - run: npm ci
-      - run: npm run build:mac
+      - run: npm run build:macos
         shell: bash
         env:
           VERSION: ${{ steps.package-version.outputs.version}}
@@ -78,13 +78,12 @@ jobs:
   windows_tests:
     runs-on: windows-latest
     timeout-minutes: 30
-
     steps:
       - uses: actions/checkout@master
-      - name: Use Node.js 16
+      - name: Use Node.js 18
         uses: actions/setup-node@master
         with:
-          version: 16
+          version: 18
           cache: npm
       - name: add git binaries to PATH
         run: |
@@ -96,15 +95,16 @@ jobs:
   windows_build:
     runs-on: windows-latest
     needs: windows_tests
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@master
       - name: get-npm-version
         id: package-version
         uses: pchynoweth/action-get-npm-version@1.1.1
-      - name: Use Node.js 16
+      - name: Use Node.js 18
         uses: actions/setup-node@master
         with:
-          version: 16
+          version: 18
           cache: npm
       - name: add git binaries to PATH
         run: |
