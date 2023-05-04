@@ -20,6 +20,7 @@ import QueuePopupContainer from '../../containers/QueuePopupContainer';
 import { StreamVerificationContainer } from '../../containers/StreamVerificationContainer';
 
 import styles from './styles.scss';
+import AutoSizer from 'react-virtualized-auto-sizer';
 
 type PlayQueueProps = {
   actions: PlayQueueActions;
@@ -174,13 +175,12 @@ const PlayQueue: React.FC<PlayQueueProps> = ({
     });
   };
 
-
   const QueueRow = React.memo(({data, index, style}) => {
     const item = data.queue.queueItems[index] as QueueItemType;
     return (
       <Draggable
-        key={index}
-        draggableId={index+''}
+        key={item.uuid}
+        draggableId={item.uuid}
         index={index}
       >
         {(draggableProvided, draggableSnapshot) => {
@@ -189,15 +189,22 @@ const PlayQueue: React.FC<PlayQueueProps> = ({
               ref={draggableProvided.innerRef}
               {...draggableProvided.draggableProps}
               {...draggableProvided.dragHandleProps}
+              style={style ? {
+                ...draggableProvided.draggableProps.style,
+                ...style
+              } :draggableProvided.draggableProps.style}
             >
               <QueuePopupContainer
-                trigger={<QueueItem
-                  isCompact={data.settings.compactQueueBar as boolean}
-                  isCurrent={data.queue.currentSong === index}
-                  track={item}
-                  onSelect={onSelectTrack(index)}
-                  onRemove={onRemoveTrack(index)}
-                  duration={formatDuration(head(item?.streams)?.duration)} />}
+                trigger={
+                  <QueueItem
+                    isCompact={data.settings.compactQueueBar as boolean}
+                    isCurrent={data.queue.currentSong === index}
+                    track={item}
+                    onSelect={onSelectTrack(index)}
+                    onRemove={onRemoveTrack(index)}
+                    duration={formatDuration(head(item?.streams)?.duration)} 
+                  />
+                }
                 isQueueItemCompact={data.settings.compactQueueBar}
                 index={index}
                 track={item}
@@ -262,17 +269,19 @@ const PlayQueue: React.FC<PlayQueueProps> = ({
               })}
               {...droppableProvided.droppableProps}
             >
-              <List
-                height={1000}
-                itemCount={queue.queueItems.length}
-                itemSize={64}
-                width='100%'
-                overscanCount={2}
-                itemData={{queue, settings}}
-                outerRef={droppableProvided.innerRef}
-              >
-                {QueueRow}
-              </List>
+              <AutoSizer>
+                {({ height, width }) => <List
+                  height={height}
+                  width={width}
+                  itemSize={64}
+                  itemCount={queue.queueItems.length}
+                  overscanCount={2}
+                  itemData={{ queue, settings }}
+                  outerRef={droppableProvided.innerRef}
+                >
+                  {QueueRow}
+                </List>}
+              </AutoSizer>
               {isFileHovered && (
                 <Icon name='plus' className={styles.file_icon} />
               )}
