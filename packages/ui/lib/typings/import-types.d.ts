@@ -4,7 +4,7 @@ declare module '*.scss' {
 }
 
 declare module '*.png' {
-  export = module;
+  export = module as string;
 }
 
 declare module '*.svg' {

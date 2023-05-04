@@ -3,6 +3,7 @@ import _ from 'lodash';
 
 import { Queue } from '../actions/actionTypes';
 import { SELECT_STREAM_PROVIDER } from '../actions/plugins';
+import { removeFromQueue } from '../actions/queue';
 
 export type TrackStream = {
   id: string;
@@ -41,12 +42,10 @@ const findQueueItemIndex = (queueItems: QueueItem[], item: QueueItem) => {
   return _.findIndex(queueItems, i => i.uuid === item.uuid);
 };
 
-function reduceRemoveFromQueue(state, action) {
-  let newQueue;
+function reduceRemoveFromQueue(state, action: ReturnType<typeof removeFromQueue>) {
+  const removeIx = action.payload.index;
   let newCurrent = state.currentSong;
-  const removeIx = findQueueItemIndex(state.queueItems, action.payload);
-  newQueue = _.cloneDeep(state.queueItems);
-  newQueue = _.filter(newQueue, item => action.payload.uuid !== item.uuid);
+  const newQueue = [...state.queueItems.slice(0, removeIx), ...state.queueItems.slice(removeIx + 1)];
   if (removeIx < state.currentSong) {
     newCurrent--;
   }
@@ -67,7 +66,6 @@ function reduceRepositionSong(state, action) {
   const newQueue = _.cloneDeep(state.queueItems);
   const [removed] = newQueue.splice(action.payload.itemFrom, 1);
   newQueue.splice(action.payload.itemTo, 0, removed);
-
 
   let newCurrentSong = state.currentSong;
   if (action.payload.itemFrom === state.currentSong) {
@@ -111,8 +109,8 @@ function reducePreviousSong(state) {
 function reduceStreamFailed(state) {
   return {
     ...state,
-    queueItems: state.queueItems.map((item, idx) => {
-      if (idx === state.currentSong) {
+    queueItems: state.queueItems.map((item, index) => {
+      if (index === state.currentSong) {
         return {
           ...item,
           error: {
