@@ -14,6 +14,7 @@ import { LocalLibraryState } from './local';
 import { Queue } from './actionTypes';
 import StreamProviderPlugin from '@nuclear/core/src/plugins/streamProvider';
 import { isTopStream, TopStream } from '@nuclear/core/src/rest/Nuclear/StreamMappings';
+import { queue as queueSelector } from '../selectors/queue';
 
 type LocalTrack = Track & {
   local: true;
@@ -138,14 +139,15 @@ export const addToQueue =
       }
     };
 
-export const selectNewStream = (track: QueueItem, streamId: string) => async (dispatch, getState) => {
+export const selectNewStream = (index: number, streamId: string) => async (dispatch, getState) => {
+  const track = queueSelector(getState()).queueItems[index];
   const selectedStreamProvider: StreamProviderPlugin = getSelectedStreamProvider(getState);
 
   const oldStreamData = track.streams.find(stream => stream.id === streamId);
   const streamData = await selectedStreamProvider.getStreamForId(streamId);
 
   if (!streamData) {
-    dispatch(removeFromQueue(track));
+    dispatch(removeFromQueue(index));
   } else {
     dispatch(
       updateQueueItem({
@@ -163,10 +165,10 @@ export const selectNewStream = (track: QueueItem, streamId: string) => async (di
   }
 };
 
-export const findStreamsForTrack = (idx: number) => async (dispatch, getState) => {
+export const findStreamsForTrack = (index: number) => async (dispatch, getState) => {
   const {queue, settings}: RootState = getState();
 
-  const track = queue.queueItems[idx];
+  const track = queue.queueItems[index];
 
   if (track && !track.local && isEmpty(track.streams)) {
     dispatch(updateQueueItem({
@@ -202,7 +204,7 @@ export const findStreamsForTrack = (idx: number) => async (dispatch, getState) =
       }
 
       if (streamData === undefined) {
-        dispatch(removeFromQueue(track));
+        dispatch(removeFromQueue(index));
       } else {
         streamData = [
           await selectedStreamProvider.getStreamForId(streamData[0].id),
@@ -246,9 +248,9 @@ export function playTrack(streamProviders, item: QueueItem) {
   };
 }
 
-export const removeFromQueue = (item: QueueItem) => ({
+export const removeFromQueue = (index: number) => ({
   type: Queue.REMOVE_QUEUE_ITEM,
-  payload: item
+  payload: { index}
 });
 
 export function addPlaylistTracksToQueue(tracks) {

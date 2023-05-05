@@ -1,6 +1,6 @@
 {
   "name": "nuclear",
-  "version": "0.6.20",
+  "version": "0.6.21",
   "description": "Streaming music player that finds music sources automatically.",
   "repository": {
     "type": "git",
@@ -56,8 +56,8 @@
     "7zip-bin-mac": "^1.0.1"
   },
   "engines": {
-    "node": ">=12.14.0",
-    "npm": ">=6.0.0"
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
   },
   "husky": {
     "hooks": {

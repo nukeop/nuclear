@@ -1,6 +1,6 @@
 {
   "name": "@nuclear/main",
-  "version": "0.6.20",
+  "version": "0.6.21",
   "description": "Nuclear main process",
   "scripts": {
     "start": "shx rm -rf build && webpack --env NODE_ENV=development && electron build/main.js --inspect=9001",
@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/nukeop/nuclear#readme",
   "dependencies": {
-    "@nuclear/core": "^0.6.20",
+    "@nuclear/core": "^0.6.21",
     "autobind-decorator": "^2.4.0",
     "body-parser": "^1.19.0",
     "concat-stream": "^2.0.0",
@@ -55,8 +55,7 @@
     "typeorm-cursor-pagination": "^0.9.1",
     "url": "^0.11.0",
     "uuid": "^3.3.3",
-    "v8-compile-cache": "^2.3.0",
-    "ytdl-core": "^4.11.4"
+    "v8-compile-cache": "^2.3.0"
   },
   "devDependencies": {
     "@types/body-parser": "^1.17.1",

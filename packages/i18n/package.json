@@ -1,6 +1,6 @@
 {
   "name": "@nuclear/i18n",
-  "version": "0.6.20",
+  "version": "0.6.21",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/nukeop/nuclear.git"

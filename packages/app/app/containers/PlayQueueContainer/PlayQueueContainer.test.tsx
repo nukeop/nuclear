@@ -5,6 +5,11 @@ import { AnyProps, mountedPlayQueueFactory, setupI18Next } from '../../../test/t
 import { buildElectronStoreState, buildStoreState } from '../../../test/storeBuilders';
 import userEvent from '@testing-library/user-event';
 
+jest.mock(
+  'react-virtualized-auto-sizer',
+  () => ({ children }) => children({ height: 600, width: 600})
+);
+
 describe('Play Queue container', () => {
   beforeAll(() => {
     setupI18Next();
@@ -166,6 +171,25 @@ describe('Play Queue container', () => {
 
     const state = store.getState();
     expect(state.queue.queueItems).toEqual([]);
+  });
+
+  it('should remove the clicked track from the queue', async () => {
+    const { component, store } = mountComponent();
+
+    await waitFor(() => component
+      .getAllByTestId('queue-item-remove')[0].click());
+
+    const state = store.getState();
+    expect(state.queue.queueItems).toEqual([
+      expect.objectContaining({
+        artist: 'test artist 2',
+        name: 'test track 2'
+      }),
+      expect.objectContaining({
+        artist: 'test artist 3',
+        name: 'test track 3'
+      })
+    ]);
   });
 
   const mountComponent = (initialStore?: AnyProps) => {

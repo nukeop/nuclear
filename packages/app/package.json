@@ -1,6 +1,6 @@
 {
   "name": "@nuclear/app",
-  "version": "0.6.20",
+  "version": "0.6.21",
   "description": "Nuclear - Renderer process",
   "scripts": {
     "start": "webpack-dev-server --env NODE_ENV=development",
@@ -16,8 +16,8 @@
     "url": "git+https://github.com/nukeop/nuclear.git"
   },
   "engines": {
-    "node": ">=12.14.0",
-    "npm": ">=6.0.0"
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
   },
   "keywords": [
     "electron",
@@ -34,10 +34,11 @@
   },
   "homepage": "https://github.com/nukeop/nuclear#readme",
   "dependencies": {
-    "@nuclear/core": "^0.6.20",
-    "@nuclear/i18n": "^0.6.20",
-    "@nuclear/ui": "^0.6.20",
+    "@nuclear/core": "^0.6.21",
+    "@nuclear/i18n": "^0.6.21",
+    "@nuclear/ui": "^0.6.21",
     "@testing-library/jest-dom": "^5.16.4",
+    "@types/react-window": "^1.8.5",
     "ajv": "^6.12.5",
     "billboard-top-100": "^2.0.8",
     "bluebird": "3.5.3",
@@ -71,6 +72,8 @@
     "react-redux": "^7.1.0",
     "react-router": "^5.1.2",
     "react-router-dom": "^5.1.2",
+    "react-virtualized-auto-sizer": "^1.0.15",
+    "react-window": "^1.8.9",
     "recompose": "^0.30.0",
     "redux": "^4.0.5",
     "redux-actions": "^2.6.5",

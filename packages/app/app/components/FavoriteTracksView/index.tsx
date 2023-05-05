@@ -8,6 +8,7 @@ import { Track } from '@nuclear/core';
 import TrackTableContainer from '../../containers/TrackTableContainer';
 import Header from '../Header';
 import styles from './styles.scss';
+import { Button, Tooltip } from '@nuclear/ui';
 
 export const EmptyState = () => {
   const { t } = useTranslation('favorites');
@@ -27,11 +28,13 @@ export const EmptyState = () => {
 type FavoriteTracksViewProps = {
   tracks: Track[];
   removeFavoriteTrack: (track:Track) => void;
+  playRandomFavoriteTrack: () => void;
 }
 
 const FavoriteTracksView: React.FC<FavoriteTracksViewProps> = ({
   tracks,
-  removeFavoriteTrack
+  removeFavoriteTrack,
+  playRandomFavoriteTrack
 }) => {
   const { t } = useTranslation('favorites');
 
@@ -43,6 +46,18 @@ const FavoriteTracksView: React.FC<FavoriteTracksViewProps> = ({
           :  <>
             <Header>
               {t('header')}
+              <Tooltip
+                content={t('play-random')}
+                position='bottom center'
+                trigger={
+                  <Button 
+                    data-testid='favorite-tracks-header-play-random'
+                    icon='gift'
+                    size='large'
+                    basic
+                    onClick={playRandomFavoriteTrack}
+                  />
+                }/>
             </Header>
             <Segment>
               <TrackTableContainer 

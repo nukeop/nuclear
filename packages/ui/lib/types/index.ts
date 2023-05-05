@@ -1,16 +1,21 @@
 export type Track = {
+  uuid?: string;
+  loading?: boolean;
+  error?: boolean | { 
+    message: string; 
+    details: string 
+  };
   local?: boolean;
-  album?: string;
   artist: { name: string } | string;
+  name?: string;
+  title?: string;
+  album?: string;
   duration?: number | string;
   position?: number | string;
   playcount?: number | string;
-  title?: string;
-  name?: string;
   thumbnail?: string;
   image?: { '#text'?: string }[];
   streams?: TrackStream[];
-  uuid?: string;
 };
 
 export type Album = {
