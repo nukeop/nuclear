@@ -215,6 +215,31 @@ describe('PlayerBar container', () => {
     expect(state.queue.currentSong).toBe(0); 
   });
 
+  it('should go back to the beginning of current track if current track is the first song in the queue', async () => {
+    const { component, store } = mountComponent({
+      queue: {
+        currentSong: 0,
+        queueItems: [{
+          artist: 'test artist 1',
+          name: 'test track 1',
+          streams: [{
+            duration: 300,
+            title: 'test track 1',
+            skipSegments: []
+          }]
+        }]
+      },
+      player: {
+        seek: 12
+      }
+    });
+    const previousButton = await component.findByTestId('player-controls-back');
+    fireEvent.click(previousButton);
+    const state = store.getState();
+    expect(state.player.seek).toBe(0);
+    expect(state.queue.currentSong).toBe(0); 
+  });
+
   it('should not repeat same song when there are multiple songs available in shuffle mode', async () => {
     const { component, store } = mountComponent({
       queue: {
@@ -261,7 +286,6 @@ describe('PlayerBar container', () => {
     const state = store.getState();
     expect(state.queue.currentSong).not.toBe(1);
   });
-
 
   const mountComponent = (initialStore?: AnyProps) => {
     const store = configureMockStore({
