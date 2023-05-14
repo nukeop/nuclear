@@ -97,7 +97,7 @@
     "empty": "Nenhum favorito adicionado",
     "empty-help": "Tente adicionar algumas faixas aos favoritos e elas aparecerão aqui!",
     "header": "Suas faixas favoritas",
-    "play-random": "Play a random track from your favorites",
+    "play-random": "Toque uma música aleatória dos seus favoritos",
     "title": "Título"
   },
   "help": {
@@ -220,14 +220,14 @@
     "live": "Em direto",
     "stream-verification": {
       "tooltip": {
-        "unknown": "The status of this stream is unknown.",
-        "unverified": "This stream has not yet been verified by the community.",
-        "weakly-verified": "This stream has been verified by a couple of users.",
-        "verified": "This stream has been verified by the community.",
-        "verified-by-user": "This stream has been verified by you."
+        "unknown": "O status deste stream é desconhecido.",
+        "unverified": "Este stream ainda não foi confirmado pela comunidade.",
+        "weakly-verified": "Este stream foi verificado por alguns usuários.",
+        "verified": "Este stream foi verificado pela comunidade.",
+        "verified-by-user": "Este stream foi verificado por você."
       },
       "stream-status": {
-        "unknown": "Unknown",
+        "unknown": "Desconhecido",
         "unverified": "Unverified",
         "weakly-verified": "Weakly verified",
         "verified": "Verified",
