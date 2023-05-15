@@ -97,7 +97,7 @@
     "empty": "Nenhum favorito adicionado",
     "empty-help": "Tente adicionar algumas faixas aos favoritos e elas aparecerão aqui!",
     "header": "Suas faixas favoritas",
-    "play-random": "Toque uma música aleatória dos seus favoritos",
+    "play-random": "Toque uma faíxa aleatória dos seus favoritos",
     "title": "Título"
   },
   "help": {
@@ -179,7 +179,7 @@
     "tracks-selected-plural": "tracks selected",
     "tracks-selected-singular": "track selected",
     "tracks-singular": "faixa",
-    "tracks-plural": "musicas",
+    "tracks-plural": "faixas",
     "modified-at": "Última alteração: ",
     "never-modified": "Desconhecido",
     "server-modified-at": "Servidor modificado: ",
@@ -228,13 +228,13 @@
       },
       "stream-status": {
         "unknown": "Desconhecido",
-        "unverified": "Unverified",
-        "weakly-verified": "Weakly verified",
-        "verified": "Verified",
-        "verified-by-user": "Verified by you"
+        "unverified": "Não Verificado",
+        "weakly-verified": "Fraquamente verificado",
+        "verified": "Verificado",
+        "verified-by-user": "Verificado por você"
       },
-      "verify": "Verify",
-      "unverify": "Unverify"
+      "verify": "Verificar",
+      "unverify": "Desverificar"
     }
   },
   "search": {
@@ -305,7 +305,7 @@
     "mastodon-awaiting-authorization": "Nuclear está registrado em {{instanceUrl}}. Aguardando autorização.",
     "mastodon-description": "",
     "mastodon-instance-label": "URL da instância Mastodon",
-    "mastodon-post-format-description": "Nuclear will post a status on Mastodon after each track completes playing. The above string will be the template for each post, with {{artist}}, {{title}}, and {{url}} replaced with the artist, title, and a link to the track respectively.",
+    "mastodon-post-format-description": "O nuclear publicará no Mastodon após completar cada faixa. A sequência de caracteres acima será o modelo para cada publicação, com {{artist}}, {{title}} e {{url}} substituídos pelo artista e o título da faixa.",
     "mastodon-post-format-label": "Formato da postagem",
     "mastodon-title": "",
     "normalize": "Normalizar volume",
@@ -323,7 +323,7 @@
     "promoted-artists-description": "Esses reels são de artistas independentes escolhidos à mão que podem te interessar. Ninguém está recebendo nenhuma recompensa por isso.",
     "saving-in": "Salvar em:",
     "seek-iteration": "Número de segundos para avançar/retroceder ao pressionar as teclas de seta",
-    "show-tray-icon": "Show tray icon",
+    "show-tray-icon": "Mostrar ícone na bandeja",
     "shuffle-queue": "Reproduzir músicas aleatoriamente",
     "shuffle-when-going-back": "Aleatório ao voltar à faixa anterior",
     "shuffle-when-going-back-description": "Reproduzir uma faixa aleatória quando o aleatório está ativo e o botão de faixa anterior é clicado",
@@ -333,9 +333,9 @@
     "streaming": "Transmissão",
     "track-duration": "Exibir duração da faixa sobre a barra de reprodução",
     "user": "Usuário:",
-    "user-id": "User ID",
-    "use-stream-verification": "Use stream verification",
-    "use-stream-verification-description": "Use stream verification. Loads the streams the community has verified as being correct for the tracks you play. Also allows you to vote on streams. See documentation for details.",
+    "user-id": "ID do usuário",
+    "use-stream-verification": "Usar verificação de stream",
+    "use-stream-verification-description": "Use a verificação de stream. Carrega os streams que a comunidade verificou como corretos para as faixas que você toca. Também permite que você vote em streams. Consulte a documentação para detalhes.",
     "youtube": "YouTube",
     "yt-api-key": "Chave de API do YouTube"
   },
