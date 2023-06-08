@@ -75,7 +75,7 @@ export default (async function () {
           track.thumbnail = nodeDetails
             .querySelector('div[aria-colindex="2"]')
             .querySelector('img')
-            .getAttribute('src');
+            ?.getAttribute('src');
 
           const titleAndArtist = nodeDetails
             .querySelector<HTMLElement>('div[aria-colindex="2"]')
