@@ -205,7 +205,7 @@ export const findStreamsForTrack = (index: number) => async (dispatch, getState)
         dispatch(removeFromQueue(index));
       } else {
         streamData = [
-          await selectedStreamProvider.getStreamForId(streamData[0].id),
+          await selectedStreamProvider.getStreamForId(streamData.find(Boolean)?.id),
           ...streamData.slice(1)
         ];
 
