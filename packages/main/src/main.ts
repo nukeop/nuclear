@@ -92,6 +92,13 @@ app.on('ready', async () => {
   }
 });
 
+export function handleCertificateError(event, webContents, url, error, certificate, callback) {
+  event.preventDefault();
+  callback(true);
+}
+
+app.on('certificate-error', handleCertificateError);
+
 app.on('window-all-closed', async () => {
   try {
     logger.log('All windows closed, quitting');
