@@ -1,7 +1,7 @@
 import _, { isArray, mapValues } from 'lodash';
 import querystring from 'querystring';
 
-import { DiscogsSearchType, DiscogsRelease, DiscogsSearchArgs } from './Discogs.types';
+import { DiscogsSearchType, DiscogsRelease, DiscogsSearchArgs, DiscogsArtistReleaseSearchResult } from './Discogs.types';
 
 const apiUrl = 'https://api.discogs.com/';
 const userToken = 'QDUeFOZNwIwOePlxpVziEHzamhbIHUdfENAJTnLR';
@@ -50,15 +50,28 @@ function artistInfo(artistId: string): Promise<Response> {
   return fetch(apiUrl + 'artists/' + artistId + addToken({}));
 }
 
-function artistReleases(artistId: string): Promise<Response> {
-  return fetch(
-    apiUrl +
-    `artists/${artistId}/releases` +
-    addToken({
-      sort: 'year',
-      sort_order: 'desc'
-    })
-  );
+async function artistReleases(artistId: string): Promise<DiscogsArtistReleaseSearchResult[]> {
+  const LOOKUP_LIMIT = 150;
+  let hasMore = true;
+  let releasesResults = [];
+  let nextPageUrl = apiUrl + `artists/${artistId}/releases` + addToken({
+    sort: 'year',
+    sort_order: 'desc'
+  });
+
+  while (hasMore && releasesResults.length < LOOKUP_LIMIT) {
+    const releases = await (await fetch(nextPageUrl)).json();
+
+    releasesResults = [
+      ...releasesResults,
+      ...releases.releases
+    ];
+
+    hasMore = releases.pagination?.page < releases.pagination?.pages;
+    nextPageUrl = releases.pagination?.urls?.next;
+  }
+
+  return releasesResults.filter(release => release.type === 'master');
 }
 
 export {
