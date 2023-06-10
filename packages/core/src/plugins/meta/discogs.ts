@@ -63,7 +63,7 @@ class DiscogsMetaProvider extends MetaProvider {
       source: SearchResultsSource.Discogs
     };
   }
-
+  
   discogsArtistReleaseSearchResultToGeneric(release: DiscogsArtistReleaseSearchResult): SearchResultsAlbum {
     return {
       id: `${release.id}`,
@@ -184,7 +184,7 @@ class DiscogsMetaProvider extends MetaProvider {
 
       return {
         name: artist.name,
-        thumbnail: similarArtist.images[0].url
+        thumbnail: similarArtist?.images[0]?.url
       };
     }));
 
@@ -217,8 +217,8 @@ class DiscogsMetaProvider extends MetaProvider {
   }
 
   async fetchArtistAlbums(artistId: string): Promise<SearchResultsAlbum[]> {
-    const releases: DiscogsArtistReleasesSearchResponse = await (await Discogs.artistReleases(artistId)).json();
-    return Promise.resolve(releases.releases.map(this.discogsArtistReleaseSearchResultToGeneric));
+    const releases = await (await Discogs.artistReleases(artistId));
+    return releases.map(this.discogsArtistReleaseSearchResultToGeneric);
   }
 
   async fetchAlbumDetails(
