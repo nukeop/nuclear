@@ -17,6 +17,8 @@ type PlayerReducerState = {
   seek: number
   volume: number
   muted: boolean
+  // ADDED BY MISH GH
+  playbackRate: number
 }
 
 const initialState: PlayerReducerState = {
@@ -25,7 +27,9 @@ const initialState: PlayerReducerState = {
   playbackProgress: 0,
   seek: 0,
   volume: getOption('volume'),
-  muted: false
+  muted: false,
+  // ADDED BY MISH GH
+  playbackRate: 2
 };
 
 const actions = { nextSongAction, previousSongAction, selectSong, ...PlayerActions };
@@ -73,6 +77,12 @@ export default function PlayerReducer(state=initialState, action: PlayerReducerA
   case getType(PlayerActions.updateStreamLoading):
     return Object.assign({}, state, {
       playbackStreamLoading: action.payload
+    });
+  // ADDED BY MISH GH
+  // REDUCER - MANAGES THE STATE AND RETURNS UPDATED STATE
+  case getType(PlayerActions.updatePlaybackRate):
+    return Object.assign({}, state, {
+      playbackRate: action.payload.rate
     });
   default:
     return state;

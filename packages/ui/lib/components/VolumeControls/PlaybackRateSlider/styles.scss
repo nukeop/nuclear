@@ -1,0 +1,36 @@
+.rate_slider {
+    position: absolute;
+    top: -65px;
+    right: 255px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    // flex: 0 0 150px;
+    width: 300px;
+}
+
+.rate_slider > .neumorphic_box {
+    width: 100%;
+    background-color: #1f212d;
+    box-shadow: none;
+}
+
+.rate_box{
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 5px;
+    // & > * {
+    //     flex: 0 0 60px;
+    //     text-align: center;
+    // }
+
+    // &:nth-last-child(-n + 2){
+    //     text-align: right;
+    //     flex: 0 0 60px;
+    // }
+
+    // &:nth-child(-n + 2) {
+    //     text-align: left;
+    //     flex: 0 0 60px;
+    // }
+}

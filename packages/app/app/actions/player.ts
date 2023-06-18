@@ -68,3 +68,13 @@ export function toggleMute(muted: boolean) {
 }
 
 export const updateStreamLoading = createStandardAction(Player.UPDATE_PLAYBACK_STREAM_LOADING)<boolean>();
+
+// Action - 2 prop: unique ID and payload data
+// ADDED BY MISH GH
+export const updatePlaybackRate = createStandardAction(Player.UPDATE_PLAYBACK_RATE).map((rate: number) => {
+  return {
+    payload: {
+      rate
+    }
+  };
+});
