@@ -329,7 +329,7 @@
     "shuffle-when-going-back-description": "シャッフルが有効なら「前の曲」ボタンが押された時にランダムな曲を再生",
     "social": "ソーシャル",
     "skip-sponsorblock": "音楽以外の部分をスキップ",
-    "skip-sponsorblock-description": "SponsorBlock (https://sponsor.ajay.app/) を用いて、音楽以外の部分をスキップします",
+    "skip-sponsorblock-description": "SponsorBlock で音楽以外の部分を飛ばします (https://sponsor.ajay.app/)",
     "streaming": "配信",
     "track-duration": "シークバーに曲の長さを表示",
     "user": "ユーザー:",
