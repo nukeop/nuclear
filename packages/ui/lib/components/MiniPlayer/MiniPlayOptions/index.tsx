@@ -60,7 +60,7 @@ const MiniPlayOptions: React.FC<MiniPlayOptionsProps> = ({
         />
       </button>
       {
-        isExpanded && playOptions.map(playOption => <MiniPlayOptionControl {...playOption} />)
+        isExpanded && playOptions.slice(1).map(playOption => <MiniPlayOptionControl {...playOption} />)
       }
     </NeumorphicBox>
   </div>;

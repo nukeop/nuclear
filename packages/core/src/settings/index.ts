@@ -47,16 +47,14 @@ export type Setting = {
 };
 
 export const settingsConfig: Array<Setting> = [
-  // ADDED BY MISH GH
   {
     name: 'rate',
-    category: 'audio',
+    category: 'playback',
     type: SettingType.BOOLEAN,
-    // description: 'playback-rate-description',
-    prettyName: 'rate-play-option',
-    default: false
+    prettyName: 'adjust-playback-rate',
+    default: false,
+    hide: true
   },
-  // END
   {
     name: 'volume',
     category: 'audio',

@@ -1,36 +1,22 @@
+@import "../../../common.scss";
+
 .rate_slider {
     position: absolute;
-    top: -65px;
-    right: 255px;
+    top: -5.5rem;
+    right: 18rem;
     display: flex;
-    align-items: center;
     cursor: pointer;
-    // flex: 0 0 150px;
-    width: 300px;
+    width: 22rem;
 }
 
 .rate_slider > .neumorphic_box {
     width: 100%;
-    background-color: #1f212d;
+    background-color: $bgdarker;
     box-shadow: none;
 }
 
-.rate_box{
+.rates_box{
     display: flex;
     justify-content: space-between;
     padding-bottom: 5px;
-    // & > * {
-    //     flex: 0 0 60px;
-    //     text-align: center;
-    // }
-
-    // &:nth-last-child(-n + 2){
-    //     text-align: right;
-    //     flex: 0 0 60px;
-    // }
-
-    // &:nth-child(-n + 2) {
-    //     text-align: left;
-    //     flex: 0 0 60px;
-    // }
 }

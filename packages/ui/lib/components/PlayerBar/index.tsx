@@ -38,6 +38,9 @@ const PlayerBar: React.FC<PlayerBarProps> = ({
   toggleMute,
   isMuted,
   playOptions,
+  playbackRate,
+  updatePlaybackRate,
+  isPlaybackRateOpen,
 
   goForward,
   goBack,
@@ -56,12 +59,7 @@ const PlayerBar: React.FC<PlayerBarProps> = ({
   seek,
   skipSegments,
   allowSkipSegment,
-  segmentPopupMessage,
-
-  // ADDED BY MISH GH
-  playbackRate,
-  updatePlaybackRate,
-  isPlaybackRateOpen
+  segmentPopupMessage
 }) => {
   const { width: windowWidth } = useWindowSize();
   const isLivestream = (isNaN(timeToEnd) || typeof timeToEnd === 'string') && (queue.queueItems.length > 0);
@@ -117,7 +115,10 @@ const PlayerBar: React.FC<PlayerBarProps> = ({
             updateVolume={updateVolume}
             toggleMute={toggleMute}
             isMuted={isMuted}
-            playOptions={playOptions} />}
+            playOptions={playOptions} 
+            updatePlaybackRate={updatePlaybackRate}
+            playbackRate={playbackRate}
+            isPlaybackRateOpen={isPlaybackRateOpen} />}
         {windowWidth > VOLUME_POPUP_BREAKPOINT &&
           <VolumeControls
             volume={volume}
@@ -125,11 +126,9 @@ const PlayerBar: React.FC<PlayerBarProps> = ({
             toggleMute={toggleMute}
             isMuted={isMuted}
             playOptions={playOptions}
-            // ADDED BY MISH GH
             updatePlaybackRate={updatePlaybackRate}
             playbackRate={playbackRate}
-            isPlaybackRateOpen={isPlaybackRateOpen}
-          />}
+            isPlaybackRateOpen={isPlaybackRateOpen} />}
       </div>
     </div>
   );

@@ -9,6 +9,6 @@ export const playerSelectors = createStateSelectors(
     'seek',
     'volume',
     'muted',
-    'playbackRate' // ADDED NY MISH GH
+    'playbackRate'
   ]
 );

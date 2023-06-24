@@ -11,7 +11,10 @@ const VolumePopUp: React.FC<VolumeControlsProps> = ({
   updateVolume,
   toggleMute,
   isMuted,
-  playOptions
+  playOptions,
+  updatePlaybackRate,
+  playbackRate,
+  isPlaybackRateOpen
 }) => (
   <Popup
     trigger={
@@ -31,6 +34,9 @@ const VolumePopUp: React.FC<VolumeControlsProps> = ({
       toggleMute={toggleMute}
       isMuted={isMuted}
       playOptions={playOptions}
+      updatePlaybackRate={updatePlaybackRate}
+      playbackRate={playbackRate}
+      isPlaybackRateOpen={isPlaybackRateOpen}
     />
   </Popup>
 );

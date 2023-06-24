@@ -14,8 +14,6 @@ const VolumeControls: React.FC<VolumeControlsProps> = ({
   toggleMute,
   isMuted,
   playOptions,
-
-  // ADDED BY MISH GH
   playbackRate,
   updatePlaybackRate,
   isPlaybackRateOpen

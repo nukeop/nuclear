@@ -17,42 +17,38 @@ const PlaybackRateSliderColors = {
   thumbColor: { r: 248, g: 248, b: 242, a: 1 }
 };
 
+const PLAYBACK_RATES = ['0.5x', '0.75x', 'Normal', '1.25x', '1.5x'];
+
 const PlaybackRateSlider: React.FC<PlaybackRateSliderProps> = ({
   playbackRate,
   updatePlaybackRate,
   isPlaybackRateOpen
-}) => (
-  <div
-    className={styles.rate_slider}
-    // onClick={}
-  >
-    <NeumorphicBox
-      borderRadius='10px'
+}) => {
+  
+  const rateOptions = PLAYBACK_RATES.map((item, index) => <div key={index} onClick={() => updatePlaybackRate(index)}>{item}</div>);
+
+  return (
+    <div
+      className={styles.rate_slider}
     >
-      <div className={styles.rate_box}>
-        {/* <div>0.25x</div> */}
-        <div>0.5x</div>
-        <div>0.75x</div>
-        <div>Normal</div>
-        <div>1.25x</div>
-        <div>1.5x</div>
-        {/* <div>1.75x</div>
-        <div>2x</div> */}
-      </div>
-      <Range  
-        value={playbackRate}
-        height={4}
-        width='100%'
-        onChange={updatePlaybackRate}
-        min={0}
-        max={4}
-        // step={0.25}
-        fillColor={PlaybackRateSliderColors.fillColor}
-        trackColor={PlaybackRateSliderColors.trackColor}
-        thumbColor={PlaybackRateSliderColors.thumbColor}
-      />
-    </NeumorphicBox>
-  </div>
-);
+      <NeumorphicBox
+        borderRadius='10px'
+      >
+        <div className={styles.rates_box}>{rateOptions}</div>
+        <Range  
+          value={playbackRate}
+          height={4}
+          width='100%'
+          onChange={updatePlaybackRate}
+          min={0}
+          max={4}
+          fillColor={PlaybackRateSliderColors.fillColor}
+          trackColor={PlaybackRateSliderColors.trackColor}
+          thumbColor={PlaybackRateSliderColors.thumbColor}
+        />
+      </NeumorphicBox>
+    </div>
+  );
+};
 
 export default PlaybackRateSlider;

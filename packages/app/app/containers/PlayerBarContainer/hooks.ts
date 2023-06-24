@@ -178,8 +178,6 @@ export const useVolumeControlsProps = () => {
   const volume: number = useSelector(playerSelectors.volume);
   const isMuted: boolean = useSelector(playerSelectors.muted);
   const settings = useSelector(settingsSelector);
-
-  // ADDED BY MISH GH
   const playbackRate: number = useSelector(playerSelectors.playbackRate);
   const isPlaybackRateOpen = _.get(settings, 'rate');
 
@@ -188,16 +186,13 @@ export const useVolumeControlsProps = () => {
   );
 
   const playOptions = [
-    // ADDED BY MISH GH
     {
-      // name: t('rate'),
-      name: 'Rate',
+      name: t('rate'),
       dataTestId: 'rate-play-option',
       icon: 'heartbeat' as SemanticICONS,
       enabled: _.get(settings, 'rate'),
       onToggle: useToggleOptionCallback(toggleOption, 'rate', settings)
     },
-    // END
     {
       name: t('loop'),
       dataTestId: 'loop-play-option',
@@ -233,7 +228,6 @@ export const useVolumeControlsProps = () => {
     [dispatch]
   );
 
-  // ADDED BY MISH GH 
   const updatePlaybackRate = useCallback(
     (rate) => dispatch(playerActions.updatePlaybackRate(rate)),
     [dispatch]
@@ -250,7 +244,6 @@ export const useVolumeControlsProps = () => {
     isMuted,
     toggleMute,
     playOptions,
-    // ADDED BY MISH GH 
     updatePlaybackRate,
     playbackRate,
     isPlaybackRateOpen
