@@ -3,6 +3,7 @@
   "version": "0.6.23",
   "description": "Nuclear - Renderer process",
   "scripts": {
+    "postinstall": "rm -r ./node_modules/react && rm -r ./node_modules/react-dom",
     "start": "webpack-dev-server --env NODE_ENV=development",
     "build": "cross-env NODE_OPTIONS=--max-old-space-size=8192 webpack --progress --env NODE_ENV=production",
     "test": "cross-env TZ=GMT jest --silent",
