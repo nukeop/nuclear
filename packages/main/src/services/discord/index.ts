@@ -46,7 +46,7 @@ class Discord {
 
   async play() {
     if (this.isReady && this.activity) {
-      this.pausedTotal += Date.now() - (this.pauseStart || Date.now());
+      this.pausedTotal += Date.now() - this.pauseStart;
       if (this.activity) {
         if (this.isPaused) {
           // Remove "(Paused)" after song title
