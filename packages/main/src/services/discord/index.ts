@@ -78,6 +78,7 @@ class Discord {
   }
 
   async trackChange(track: NuclearMeta) {
+    this.isPaused = false;
     this.baseStart = Date.now();
     this.pausedTotal = 0;
     this.activity = {
