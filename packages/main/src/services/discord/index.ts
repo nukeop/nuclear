@@ -9,6 +9,7 @@ import Logger, { $mainLogger } from '../logger';
 class Discord {
   private rpc: DiscordRPC.Client;
   private isReady = false;
+  private isPaused = false;
   private baseStart: number;
   private pauseStart: number;
   private pausedTotal = 0;
@@ -36,7 +37,8 @@ class Discord {
     if (this.isReady && this.activity) {
       this.pauseStart = Date.now();
   
-      this.activity.details += '\nPaused';
+      this.activity.details = `${this.activity.details} (Paused)`;
+      this.isPaused = true;
       this.activity.startTimestamp = this.pauseStart;
       return this.sendActivity();
     }
@@ -46,7 +48,11 @@ class Discord {
     if (this.isReady && this.activity) {
       this.pausedTotal += Date.now() - this.pauseStart;
       if (this.activity) {
-        this.activity.details = this.activity.details.substr(0, this.activity.details.length - 8);
+        if (this.isPaused) {
+          // Remove "(Paused)" after song title
+          this.activity.details = this.activity.details.substring(0, this.activity.details.length - 9);
+          this.isPaused = false;
+        }
         this.activity.startTimestamp = this.baseStart + this.pausedTotal;
         return this.sendActivity();
       }
@@ -72,6 +78,7 @@ class Discord {
   }
 
   async trackChange(track: NuclearMeta) {
+    this.isPaused = false;
     this.baseStart = Date.now();
     this.pausedTotal = 0;
     this.activity = {
