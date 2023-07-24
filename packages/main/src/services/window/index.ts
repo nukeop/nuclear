@@ -33,6 +33,8 @@ class Window {
   private browserWindow: BrowserWindow;
   private isReady: Promise<void>;
   private resolve: () => void;
+  private defaultWidth: number;
+  private defaultHeight: number;
 
   constructor(
     @inject(Config) private config: Config,
@@ -43,10 +45,13 @@ class Window {
   ) {
     const icon = nativeImage.createFromPath(config.icon);
 
+    this.defaultWidth = config.defaultWidth;
+    this.defaultHeight = config.defaultHeight;
+
     this.browserWindow = new BrowserWindow({
       title: config.title,
-      width: 1366,
-      height: 768,
+      width: this.defaultWidth,
+      height: this.defaultHeight,
       minWidth: 330,
       minHeight: 450,
       
@@ -119,6 +124,21 @@ class Window {
     } else {
       this.browserWindow.isMaximized() ? this.browserWindow.unmaximize() : this.browserWindow.maximize();
     }
+  }
+
+  minify() {
+    // Unmaximize the window if it's maximized
+    if (this.platform.isMac()) {
+      this.browserWindow.isFullScreen() && this.browserWindow.setFullScreen(false);
+    } else {
+      this.browserWindow.isMaximized() && this.browserWindow.unmaximize();
+    }
+
+    this.browserWindow.setSize(0, 0, true);
+  }
+
+  restoreDefaultSize() {
+    this.browserWindow.setSize(this.defaultWidth, this.defaultHeight, true);
   }
 
   restore() {
