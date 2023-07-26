@@ -1,0 +1,22 @@
+@import "../../../common.scss";
+
+.rate_slider {
+    position: absolute;
+    top: -5.5rem;
+    right: 18rem;
+    display: flex;
+    cursor: pointer;
+    width: 22rem;
+}
+
+.rate_slider > .neumorphic_box {
+    width: 100%;
+    background-color: $bgdarker;
+    box-shadow: none;
+}
+
+.rates_box{
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 5px;
+}

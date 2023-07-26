@@ -34,13 +34,20 @@ class SoundContainer extends React.Component {
     this.handleLoading = this.handleLoading.bind(this);
     this.handleLoaded = this.handleLoaded.bind(this);
     this.handleError = this.handleError.bind(this);
+    this.soundRef = React.createRef();
   }
-
+  
   handlePlaying(update) {
     const seek = update.position;
     const progress = (update.position / update.duration) * 100;
+    const rate = (this.props.player.playbackRate + 2) / 4;
     this.props.actions.updatePlaybackProgress(progress, seek);
     this.props.actions.updateStreamLoading(false);
+
+    if (this.soundRef?.current?.audio){
+      this.soundRef.current.audio.setAttribute('playbackRate', '');
+      this.soundRef.current.audio.playbackRate = rate;
+    }
   }
 
   handleLoading() {
@@ -190,6 +197,7 @@ class SoundContainer extends React.Component {
     const { queue, player, equalizer, actions, enableSpectrum, currentStream, location, defaultEqualizer } = this.props;
     const currentTrack = queue.queueItems[queue.currentSong];
     const usedEqualizer = enableSpectrum ? equalizer : defaultEqualizer;
+
     return Boolean(currentStream) && (this.isHlsStream(head(currentStream.streams)) ? (
       <HlsPlayer
         source={currentStream.stream}
@@ -198,7 +206,7 @@ class SoundContainer extends React.Component {
         onFinishedPlaying={this.handleFinishedPlaying}
         muted={player.muted}
         volume={player.volume}
-      />
+      /> 
     ) : (
       <Sound
         url={currentStream.stream}
@@ -209,6 +217,7 @@ class SoundContainer extends React.Component {
         onLoad={this.handleLoaded}
         position={player.seek}
         onError={this.handleError}
+        ref={this.soundRef}
       >
         <Normalizer
           url={currentStream.stream}

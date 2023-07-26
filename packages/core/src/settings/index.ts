@@ -48,6 +48,14 @@ export type Setting = {
 
 export const settingsConfig: Array<Setting> = [
   {
+    name: 'rate',
+    category: 'playback',
+    type: SettingType.BOOLEAN,
+    prettyName: 'adjust-playback-rate',
+    default: false,
+    hide: true
+  },
+  {
     name: 'volume',
     category: 'audio',
     description: 'volume-description',
