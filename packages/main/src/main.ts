@@ -18,6 +18,7 @@ import LocalLibraryDb from './services/local-library/db';
 import ListeningHistoryDb from './services/listening-history/db';
 
 app.commandLine.appendSwitch('autoplay-policy', 'no-user-gesture-required');
+app.commandLine.appendSwitch('no-sandbox');
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 (app as any).transformSource = transformSource;
 
@@ -118,6 +119,7 @@ app.on('window-all-closed', async () => {
     logger.error('Something failed during app close');
     logger.error(err);
   } finally {
+    logger.log('Quitting app');
     app.quit();
   }
 });

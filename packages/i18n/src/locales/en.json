@@ -127,7 +127,7 @@
     "not-found": "No lyrics were found for this song."
   },
   "option-control": {
-    "rate": "Rate",
+    "rate": "Playback speed",
     "autoradio": "Autoradio",
     "loop": "Loop",
     "mini-player": "Miniplayer",

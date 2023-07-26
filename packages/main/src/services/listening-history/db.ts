@@ -38,7 +38,6 @@ class ListeningHistoryDb{
 
         this.logger.log(`Listening history database created at ${database}`);
       } catch (e) {
-        console.error(e);
         this.logger.error('Could not connect to the sqlite database for listening history');
         this.logger.error(e.stack);
       }

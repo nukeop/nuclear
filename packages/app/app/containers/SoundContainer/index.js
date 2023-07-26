@@ -65,7 +65,7 @@ class SoundContainer extends React.Component {
       this.props.queue.currentSong
     ];
 
-    if (typeof currentSong.lyrics === 'undefined') {
+    if (currentSong && typeof currentSong.lyrics === 'undefined') {
       this.props.actions.lyricsSearch(currentSong);
     }
   }
@@ -173,8 +173,7 @@ class SoundContainer extends React.Component {
   handleError(err) {
     logger.error(err.message);
     const { queue } = this.props;
-    const currentTrack = queue.queueItems[queue.currentSong];
-    this.props.actions.rerollTrack(currentTrack);
+    this.props.actions.removeFromQueue(queue.currentSong);
   }
 
   shouldComponentUpdate(nextProps) {

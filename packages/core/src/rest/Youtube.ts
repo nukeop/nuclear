@@ -7,6 +7,7 @@ import ytsr from 'ytsr';
 import { StreamData, StreamQuery } from '../plugins/plugins.types';
 import * as SponsorBlock from './SponsorBlock';
 import { YoutubeHeuristics } from './heuristics';
+import { retryWithExponentialBackoff } from '../util/retry';
 
 export type YoutubeResult = {
   streams: { source: string, id: string }[]
@@ -121,8 +122,8 @@ export async function liveStreamSearch(query: string): Promise<YoutubeResult[]> 
     return [];
   }
 
-  const videoFilter = (await ytsr.getFilters(query)).get('Type').get('Video');
-  const liveFilter = (await ytsr.getFilters(videoFilter.url)).get('Features').get('Live');
+  const videoFilter = (await retryWithExponentialBackoff(() => ytsr.getFilters(query))).get('Type').get('Video');
+  const liveFilter = (await retryWithExponentialBackoff(() => ytsr.getFilters(videoFilter.url))).get('Features').get('Live');
   const options = {
     limit: 10
   };
@@ -144,7 +145,7 @@ export async function trackSearch(query: StreamQuery, sourceName?: string) {
 
 export async function trackSearchByString(query: StreamQuery, sourceName?: string, useSponsorBlock = true): Promise<StreamData[]> {
   const terms = query.artist + ' ' + query.track;
-  const filterOptions = await ytsr.getFilters(terms);
+  const filterOptions = await retryWithExponentialBackoff(() => ytsr.getFilters(terms));
   const filterVideoOnly = filterOptions.get('Type').get('Video');
   const results = await ytsr(filterVideoOnly.url, { limit: 10 });
   const heuristics = new YoutubeHeuristics();

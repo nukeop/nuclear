@@ -1,4 +1,5 @@
 import _ from 'lodash';
+import logger from 'electron-timber';
 import { store as electronStore } from '@nuclear/core';
 
 export default function (paths) {
@@ -20,7 +21,7 @@ export default function (paths) {
         finalInitialState = _.setWith(_.clone(finalInitialState), path, persistedValue, _.clone); // deep, immutable set
       }
     } catch (e) {
-      console.warn(
+      logger.warn(
         'Failed to retrieve initialize state from electron store:',
         e
       );
@@ -40,7 +41,7 @@ export default function (paths) {
           }
         }
       } catch (e) {
-        console.warn('Unable to persist state to electron store:', e);
+        logger.warn('Unable to persist state to electron store:', e);
       }
     });
 
