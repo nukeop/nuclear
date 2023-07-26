@@ -3,7 +3,7 @@
     "download": "Stáhnout",
     "download-toast-content": "Skladba {{artist}} - {{title}} byla přidána ke stahování.",
     "download-toast-title": "Album přidáno do stažených souborů",
-    "error-load": "Omlouváme se, toto album nelze načíst. Zkuste to znovu později nebo otevřete \"Issue\" na GitHubu",
+    "error-load": "Omlouváme se, toto album nelze načíst. Zkuste to znovu později nebo si otevřete problém na GitHubu",
     "genre": "Žánr:",
     "play": "Přehrát",
     "queue": "Přidat album do fronty",
@@ -97,6 +97,7 @@
     "empty": "Nebyly přidány žádné oblíbené skladby",
     "empty-help": "Zkuste přidat pár skladeb do oblíbených a objeví se zde!",
     "header": "Vaše oblíbené skladby",
+    "play-random": "Přehrát náhodnou skladbu z vašich oblíbených",
     "title": "Název"
   },
   "help": {

@@ -97,6 +97,7 @@
     "empty": "お気に入りなし",
     "empty-help": "お気に入りに曲を追加すると、ここに表示されます！",
     "header": "お気に入りの曲",
+    "play-random": "お気に入りからランダムに曲を再生",
     "title": "タイトル"
   },
   "help": {
@@ -219,21 +220,21 @@
     "live": "ライブ",
     "stream-verification": {
       "tooltip": {
-        "unknown": "The status of this stream is unknown.",
-        "unverified": "This stream has not yet been verified by the community.",
-        "weakly-verified": "This stream has been verified by a couple of users.",
-        "verified": "This stream has been verified by the community.",
-        "verified-by-user": "This stream has been verified by you."
+        "unknown": "このストリームの状態は不明です。",
+        "unverified": "このストリームはコミュニティから確認されていません。",
+        "weakly-verified": "このストリームは複数のユーザーに確認されました。",
+        "verified": "このストリームはコミュニティにより確認済みです。",
+        "verified-by-user": "このストリームはあなたにより確認済みです。"
       },
       "stream-status": {
-        "unknown": "Unknown",
-        "unverified": "Unverified",
-        "weakly-verified": "Weakly verified",
-        "verified": "Verified",
-        "verified-by-user": "Verified by you"
+        "unknown": "不明",
+        "unverified": "未確認",
+        "weakly-verified": "弱い確認あり",
+        "verified": "確認済み",
+        "verified-by-user": "あなたが確認"
       },
-      "verify": "Verify",
-      "unverify": "Unverify"
+      "verify": "承認",
+      "unverify": "却下"
     }
   },
   "search": {
@@ -322,19 +323,19 @@
     "promoted-artists-description": "あなたの好みかもしれない、厳選された興味深いインディーのアーティストを並べます。掲載によって誰かが報酬を得るものではありません。",
     "saving-in": "保存先:",
     "seek-iteration": "矢印キーを押したときに巻き戻す/早送りする秒数",
-    "show-tray-icon": "Show tray icon",
+    "show-tray-icon": "トレイアイコンを表示",
     "shuffle-queue": "曲をシャッフル",
     "shuffle-when-going-back": "前の曲をシャッフル",
     "shuffle-when-going-back-description": "シャッフルが有効なら「前の曲」ボタンが押された時にランダムな曲を再生",
     "social": "ソーシャル",
     "skip-sponsorblock": "音楽以外の部分をスキップ",
-    "skip-sponsorblock-description": "SponsorBlock (https://sponsor.ajay.app/) を用いて、音楽以外の部分をスキップします",
+    "skip-sponsorblock-description": "SponsorBlock で音楽以外の部分を飛ばします (https://sponsor.ajay.app/)",
     "streaming": "配信",
     "track-duration": "シークバーに曲の長さを表示",
     "user": "ユーザー:",
-    "user-id": "User ID",
-    "use-stream-verification": "Use stream verification",
-    "use-stream-verification-description": "Use stream verification. Loads the streams the community has verified as being correct for the tracks you play. Also allows you to vote on streams. See documentation for details.",
+    "user-id": "ユーザーID",
+    "use-stream-verification": "ストリームの検証を使用",
+    "use-stream-verification-description": "ストリームの検証を使用します。再生した曲に対し、コミュニティが正しいものだと確認したストリームであれば読み込みます。 あなたも承認することができます。詳細は解説をご覧ください。",
     "youtube": "YouTube",
     "yt-api-key": "YouTube API キー"
   },

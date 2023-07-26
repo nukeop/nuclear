@@ -29,13 +29,13 @@
     "visualizer": "可视化",
     "user-panel": {
       "actions-tooltip": "User actions",
-      "sign-up": "Sign up / Sign in",
-      "sign-out": "Sign out"
+      "sign-up": "注册/登录",
+      "sign-out": "注销"
     },
-    "version": "Version"
+    "version": "版本"
   },
   "artist": {
-    "add-all": "Add all",
+    "add-all": "全部添加",
     "count": "播放次数",
     "queue": "将全部歌曲添加到播放列表",
     "similar": "相似的艺术家",
@@ -51,15 +51,15 @@
     "genres": "流派",
     "news": "消息",
     "playcounts": "播放次数",
-    "playlists": "Trending",
+    "playlists": "热门",
     "popular-track-title": "Deezer 的最新单曲 ",
     "title": "标题",
     "top": "排行榜",
-    "trending-playlists": "Trending playlists",
-    "trending-artists": "Trending artists",
-    "trending-albums": "Trending albums",
-    "filter": "Filter...",
-    "nothing-found": "Nothing found."
+    "trending-playlists": "热门歌单",
+    "trending-artists": "热门艺人",
+    "trending-albums": "热门专辑",
+    "filter": "筛选",
+    "nothing-found": "未找到。"
   },
   "downloads": {
     "clear": "清除已完成的曲目",
@@ -73,9 +73,9 @@
   "equalizer": {
     "classical": "Classical",
     "club": "Club",
-    "custom": "Custom",
-    "default": "Default",
-    "full-bass": "Full Bass",
+    "custom": "自定义",
+    "default": "默认",
+    "full-bass": "全低音",
     "full-treble": "Full Treble",
     "pop": "Pop",
     "presets": "Presets",
@@ -97,6 +97,7 @@
     "empty": "还没有收藏",
     "empty-help": "尝试添加一些单曲到收藏列表，然后他们将在这里显示！",
     "header": "您收藏的歌曲",
+    "play-random": "Play a random track from your favorites",
     "title": "标题"
   },
   "help": {
@@ -202,7 +203,7 @@
   "queue": {
     "clear": "清除播放队列",
     "dialog-accept": "保存",
-    "dialog-cancel": "Cancel",
+    "dialog-cancel": "取消",
     "dialog-placeholder": "播放列表名称...",
     "dialog-trigger": "另存为播放列表",
     "download": "下载",
@@ -312,7 +313,7 @@
     "nuclear-identity-service-url": "Nuclear identity service URL",
     "nuclear-playlists-service-url": "Nuclear playlists service URL",
     "mini-player": "使用迷你播放器风格",
-    "more": "More",
+    "more": "更多",
     "discord-rich-presence": "开启discord 富存在（需要重启）",
     "notification-timeout": "通知超时",
     "notlogged": "没有登陆",
@@ -332,7 +333,7 @@
     "streaming": "串流",
     "track-duration": "在搜索栏上显示曲目时长",
     "user": "用户:",
-    "user-id": "User ID",
+    "user-id": "用户ID",
     "use-stream-verification": "Use stream verification",
     "use-stream-verification-description": "Use stream verification. Loads the streams the community has verified as being correct for the tracks you play. Also allows you to vote on streams. See documentation for details.",
     "youtube": "Youtube",
@@ -350,7 +351,7 @@
     "add-to-favorite": "添加至收藏",
     "add-to-playlist": "添加到播放列表",
     "add-to-queue": "添加到队列",
-    "create-playlist": "Create new playlist",
+    "create-playlist": "创建新歌单",
     "create-playlist-dialog-title": "Input playlist name:",
     "create-playlist-dialog-placeholder": "Playlist name...",
     "create-playlist-dialog-accept": "Save",
@@ -377,7 +378,7 @@
     "exit-fullscreen": "按 ESC 键退出全屏"
   },
   "command-palette": {
-    "search-placeholder": "What would you like to do?",
+    "search-placeholder": "您想做什么？",
     "empty-state-help": "Can't seem to find what you're looking for? Try the help command.",
     "protip-text": "PROTIP:",
     "protip-content": "Arrows to navigate, Enter to select, Esc to close",
