@@ -19,7 +19,7 @@
     "favorite-artists": "אומנים מועדפים",
     "favorite-tracks": "רצועות מועדפות",
     "library": "ספרייה מקומית",
-    "listening-history": "Listening History",
+    "listening-history": "היסטוריית האזנה",
     "lyrics": "מילות שיר",
     "main": "ראשי",
     "playlists": "רשימות השמעה",
@@ -51,15 +51,15 @@
     "genres": "סגנונות",
     "news": "חדשות",
     "playcounts": "מספר השמעות",
-    "playlists": "Trending",
+    "playlists": "פופולרי",
     "popular-track-title": "הרצועות המובילות מתוך Deezer",
     "title": "כותרת",
     "top": "הרצועות המובילות",
-    "trending-playlists": "Trending playlists",
-    "trending-artists": "Trending artists",
-    "trending-albums": "Trending albums",
-    "filter": "Filter...",
-    "nothing-found": "Nothing found."
+    "trending-playlists": "פלייליסטים פופולריים",
+    "trending-artists": "אמנים פופלריים",
+    "trending-albums": "אלבומים פופלריים",
+    "filter": "סינון...",
+    "nothing-found": "לא נמצא דבר."
   },
   "downloads": {
     "clear": "ניקוי רצועות שניגונן הסתיים",
@@ -97,6 +97,7 @@
     "empty": "לא נוספו מועדפים",
     "empty-help": "נסה להוסיף כמה רצועות למועדפים והם יופיעו כאן!",
     "header": "הרצועות המועדפות שלך",
+    "play-random": "השמעת שיר אקראי מהמועדפים שלך",
     "title": "כותרת"
   },
   "help": {
@@ -219,21 +220,21 @@
     "live": "שידור חי",
     "stream-verification": {
       "tooltip": {
-        "unknown": "The status of this stream is unknown.",
-        "unverified": "This stream has not yet been verified by the community.",
-        "weakly-verified": "This stream has been verified by a couple of users.",
-        "verified": "This stream has been verified by the community.",
-        "verified-by-user": "This stream has been verified by you."
+        "unknown": "הסטטוס של הזרמה זו אינה ידועה.",
+        "unverified": "הזרמה זו טרם אומתה על ידי הקהילה.",
+        "weakly-verified": "הזרמה זו אומתה על ידי מספר מועט של משתמשים.",
+        "verified": "הזרמה זו אומתה על ידי הקהילה.",
+        "verified-by-user": "הזרמה זו טרם אומתה על ידיך."
       },
       "stream-status": {
-        "unknown": "Unknown",
-        "unverified": "Unverified",
-        "weakly-verified": "Weakly verified",
-        "verified": "Verified",
-        "verified-by-user": "Verified by you"
+        "unknown": "לא ידוע",
+        "unverified": "לא מאומת",
+        "weakly-verified": "מאומת בצורה חלשה",
+        "verified": "מאומת",
+        "verified-by-user": "מאומת על ידיך"
       },
-      "verify": "Verify",
-      "unverify": "Unverify"
+      "verify": "אמת",
+      "unverify": "הסר אימות"
     }
   },
   "search": {
@@ -262,12 +263,12 @@
   "settings": {
     "api-port": "הפורט המשמש את ה-Api",
     "api-url": "",
-    "audio": "Audio",
+    "audio": "שמע",
     "autoradio": "רדיו אוטומטי",
     "autoradio-craziness": "טרוף רדיו אוטומטי",
     "autoradio-craziness-description": "הרדיו האוטומטי יבחר שירים שפחות דומים לאלו שכבר נמצאים בתור ככל שזה מטורף יותר",
     "autoradio-description": "הוסף רצועות דומות באופן אוטומטי כאשר התור מסתיים",
-    "listening-history": "Listening history",
+    "listening-history": "היסטוריית האזנה",
     "listening-history-description": "Log the tracks you listen to, a la Last.fm. The history is stored offline.",
     "compact-menu-bar": "שימוש בסגנון חסכוני לסרגל התפריט",
     "compact-queue-bar": "שימוש בסגנון חסכוני לסרגל התור",
@@ -322,7 +323,7 @@
     "promoted-artists-description": "This is a reel of interesting, handpicked indie artists you might like. No one's receiving any compensation for this.",
     "saving-in": "נשמר ב:",
     "seek-iteration": "מספר שניות לחיפוש קדימה/אחורה בעת לחיצה על מקשי החצים",
-    "show-tray-icon": "Show tray icon",
+    "show-tray-icon": "הצג סמל בשורת המשימות",
     "shuffle-queue": "ערבוב השירים",
     "shuffle-when-going-back": "ערבב ברצועה הקודמת",
     "shuffle-when-going-back-description": "הפעל רצועה אקראית כאשר ערבוב פעיל ולחיצה על לחצן הרצועה הקודמת",
@@ -332,7 +333,7 @@
     "streaming": "הזרמה",
     "track-duration": "הצג את אורך הרצועה על פני סרגל החיפוש",
     "user": "שם משתמש:",
-    "user-id": "User ID",
+    "user-id": "מזהה משתמש",
     "use-stream-verification": "Use stream verification",
     "use-stream-verification-description": "Use stream verification. Loads the streams the community has verified as being correct for the tracks you play. Also allows you to vote on streams. See documentation for details.",
     "youtube": "Youtube",
@@ -350,11 +351,11 @@
     "add-to-favorite": "הוספה למועדפים",
     "add-to-playlist": "הוסף לרשימת ההשמעה",
     "add-to-queue": "הוסף לתור",
-    "create-playlist": "Create new playlist",
-    "create-playlist-dialog-title": "Input playlist name:",
-    "create-playlist-dialog-placeholder": "Playlist name...",
-    "create-playlist-dialog-accept": "Save",
-    "create-playlist-dialog-cancel": "Cancel",
+    "create-playlist": "צור רשימת השמעה חדשה",
+    "create-playlist-dialog-title": "הזן שם לרשימת השמעה:",
+    "create-playlist-dialog-placeholder": "שם הפלייליסט...",
+    "create-playlist-dialog-accept": "שמירה",
+    "create-playlist-dialog-cancel": "בטל",
     "download": "הורד",
     "download-toast-body": "‏{{artist}} - {{track}} נוסף להורדות.",
     "download-toast-title": "הרצועה נוספה להורדות",
@@ -418,13 +419,13 @@
     }
   },
   "listening-history": {
-    "title": "Listening history",
-    "empty-state": "You haven't listened to anything yet.",
-    "clear-history": "Clear history",
-    "clear-history-confirm": "Are you sure you want to clear your listening history?",
-    "clear-history-confirm-yes": "Confirm",
-    "clear-history-confirm-no": "Cancel",
-    "clear-history-toast": "Listening history cleared"
+    "title": "היסטוריית האזנה",
+    "empty-state": "עדיין לא הקשבת לשירים.",
+    "clear-history": "ניקוי ההיסטוריה",
+    "clear-history-confirm": "האם את/ה בטוח/ה שברצונך לנקות את היסטוריית ההאזנה?",
+    "clear-history-confirm-yes": "אשר",
+    "clear-history-confirm-no": "בטל",
+    "clear-history-toast": "היסטוריית ההשמעה נוקתה"
   },
   "forms": {
     "nuclear-sign-up": {
