@@ -41,6 +41,16 @@ class SettingsIpcCtrl {
     this.window.maximize();
   }
 
+  @ipcEvent(IpcEvents.WINDOW_MINIFY)
+  onMinify() {
+    this.window.minify();
+  }
+
+  @ipcEvent(IpcEvents.WINDOW_RESTORE)
+  onRestore() {
+    this.window.restoreDefaultSize();
+  }
+
   @ipcEvent(IpcEvents.WINDOW_OPEN_DEVTOOLS)
   openDevtools() {
     this.window.openDevTools();
