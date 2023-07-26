@@ -1,6 +1,6 @@
 {
   "name": "@nuclear/app",
-  "version": "0.6.25",
+  "version": "0.6.26",
   "description": "Nuclear - Renderer process",
   "scripts": {
     "postinstall": "rm -r ./node_modules/react && rm -r ./node_modules/react-dom",
@@ -35,9 +35,9 @@
   },
   "homepage": "https://github.com/nukeop/nuclear#readme",
   "dependencies": {
-    "@nuclear/core": "^0.6.25",
-    "@nuclear/i18n": "^0.6.25",
-    "@nuclear/ui": "^0.6.25",
+    "@nuclear/core": "^0.6.26",
+    "@nuclear/i18n": "^0.6.26",
+    "@nuclear/ui": "^0.6.26",
     "@testing-library/jest-dom": "^5.16.4",
     "@types/react-window": "^1.8.5",
     "ajv": "^6.12.5",
