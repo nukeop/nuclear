@@ -98,6 +98,11 @@ exports[`Favorite tracks view container should display empty state 1`] = `
         >
           <i
             aria-hidden="true"
+            class="heartbeat large icon play_option_icon"
+            data-testid="rate-play-option"
+          />
+          <i
+            aria-hidden="true"
             class="repeat large icon play_option_icon"
             data-testid="loop-play-option"
           />
@@ -597,6 +602,11 @@ exports[`Favorite tracks view container should display favorite tracks 1`] = `
         <div
           class="play_options"
         >
+          <i
+            aria-hidden="true"
+            class="heartbeat large icon play_option_icon"
+            data-testid="rate-play-option"
+          />
           <i
             aria-hidden="true"
             class="repeat large icon play_option_icon"
@@ -1114,6 +1124,11 @@ exports[`Favorite tracks view container should show a popup when a track is clic
         <div
           class="play_options"
         >
+          <i
+            aria-hidden="true"
+            class="heartbeat large icon play_option_icon"
+            data-testid="rate-play-option"
+          />
           <i
             aria-hidden="true"
             class="repeat large icon play_option_icon"

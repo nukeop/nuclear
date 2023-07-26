@@ -586,6 +586,11 @@ exports[`Album view container should display an album 1`] = `
         >
           <i
             aria-hidden="true"
+            class="heartbeat large icon play_option_icon"
+            data-testid="rate-play-option"
+          />
+          <i
+            aria-hidden="true"
             class="repeat large icon play_option_icon"
             data-testid="loop-play-option"
           />
@@ -746,6 +751,11 @@ exports[`Album view container should show that an album is still loading 1`] = `
         <div
           class="play_options"
         >
+          <i
+            aria-hidden="true"
+            class="heartbeat large icon play_option_icon"
+            data-testid="rate-play-option"
+          />
           <i
             aria-hidden="true"
             class="repeat large icon play_option_icon"

@@ -274,53 +274,6 @@ exports[`Settings view container should render settings 1`] = `
         <div
           class="header_container"
         >
-          Audio
-        </div>
-        <hr />
-        <div
-          class="ui segment"
-        >
-          <div
-            class="settings_item boolean"
-          >
-            <span
-              class="settings_item_text"
-            >
-              <label
-                class="settings_item_name"
-              >
-                Normalize volume
-              </label>
-              <p
-                class="settings_item_description"
-              >
-                Automatically adjust volume of tracks so that they are played at the same level. This needs to fetch the whole track to work, so it may cause a delay between tracks.
-              </p>
-            </span>
-            <div
-              class="spacer"
-            />
-            <div
-              class="ui fitted toggle checkbox"
-            >
-              <input
-                class="hidden"
-                readonly=""
-                tabindex="0"
-                type="radio"
-                value=""
-              />
-              <label />
-            </div>
-          </div>
-        </div>
-      </div>
-      <div
-        class="settings_section"
-      >
-        <div
-          class="header_container"
-        >
           Playback
         </div>
         <hr />
@@ -627,6 +580,53 @@ exports[`Settings view container should render settings 1`] = `
             >
               <input
                 checked=""
+                class="hidden"
+                readonly=""
+                tabindex="0"
+                type="radio"
+                value=""
+              />
+              <label />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="settings_section"
+      >
+        <div
+          class="header_container"
+        >
+          Audio
+        </div>
+        <hr />
+        <div
+          class="ui segment"
+        >
+          <div
+            class="settings_item boolean"
+          >
+            <span
+              class="settings_item_text"
+            >
+              <label
+                class="settings_item_name"
+              >
+                Normalize volume
+              </label>
+              <p
+                class="settings_item_description"
+              >
+                Automatically adjust volume of tracks so that they are played at the same level. This needs to fetch the whole track to work, so it may cause a delay between tracks.
+              </p>
+            </span>
+            <div
+              class="spacer"
+            />
+            <div
+              class="ui fitted toggle checkbox"
+            >
+              <input
                 class="hidden"
                 readonly=""
                 tabindex="0"
