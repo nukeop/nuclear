@@ -50,7 +50,8 @@ export const buildStoreState = () => {
       playbackProgress: 0,
       seek: 0,
       volume: 50,
-      muted: false
+      muted: false,
+      playbackRate: 1
     },
     dashboard: {
       bestNewAlbums: [],
