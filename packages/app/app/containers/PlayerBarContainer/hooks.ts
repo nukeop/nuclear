@@ -178,12 +178,21 @@ export const useVolumeControlsProps = () => {
   const volume: number = useSelector(playerSelectors.volume);
   const isMuted: boolean = useSelector(playerSelectors.muted);
   const settings = useSelector(settingsSelector);
+  const playbackRate: number = useSelector(playerSelectors.playbackRate);
+  const isPlaybackRateOpen = _.get(settings, 'rate');
 
   const toggleOption = useCallback(
     (option, state) => dispatch(settingsActions.toggleOption(option, state)), [dispatch]
   );
 
   const playOptions = [
+    {
+      name: t('rate'),
+      dataTestId: 'rate-play-option',
+      icon: 'heartbeat' as SemanticICONS,
+      enabled: _.get(settings, 'rate'),
+      onToggle: useToggleOptionCallback(toggleOption, 'rate', settings)
+    },
     {
       name: t('loop'),
       dataTestId: 'loop-play-option',
@@ -219,6 +228,11 @@ export const useVolumeControlsProps = () => {
     [dispatch]
   );
 
+  const updatePlaybackRate = useCallback(
+    (rate) => dispatch(playerActions.updatePlaybackRate(rate)),
+    [dispatch]
+  );
+
   const toggleMute = useCallback(
     () => dispatch(playerActions.toggleMute(!isMuted)),
     [dispatch, isMuted]
@@ -229,7 +243,10 @@ export const useVolumeControlsProps = () => {
     updateVolume,
     isMuted,
     toggleMute,
-    playOptions
+    playOptions,
+    updatePlaybackRate,
+    playbackRate,
+    isPlaybackRateOpen
   };
 };
 

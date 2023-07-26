@@ -29,6 +29,8 @@ class Config {
   thumbCleanInterval: number;
   localLibraryDbName: string;
   listeningHistoryDbName: string;
+  defaultWidth: number;
+  defaultHeight: number;
 
   constructor(
     @inject($mainLogger) logger: Logger
@@ -48,6 +50,9 @@ class Config {
     this.thumbCleanInterval = 30;
     this.localLibraryDbName = 'nuclear-local-db.sqlite';
     this.listeningHistoryDbName = 'nuclear-listening-history.sqlite';
+
+    this.defaultWidth = 1366;
+    this.defaultHeight = 768;
 
     dotenv.config({
       path: path.resolve(__dirname, '.env')

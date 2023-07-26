@@ -17,6 +17,7 @@ type PlayerReducerState = {
   seek: number
   volume: number
   muted: boolean
+  playbackRate: number
 }
 
 const initialState: PlayerReducerState = {
@@ -25,7 +26,8 @@ const initialState: PlayerReducerState = {
   playbackProgress: 0,
   seek: 0,
   volume: getOption('volume'),
-  muted: false
+  muted: false,
+  playbackRate: 2
 };
 
 const actions = { nextSongAction, previousSongAction, selectSong, ...PlayerActions };
@@ -73,6 +75,10 @@ export default function PlayerReducer(state=initialState, action: PlayerReducerA
   case getType(PlayerActions.updateStreamLoading):
     return Object.assign({}, state, {
       playbackStreamLoading: action.payload
+    });
+  case getType(PlayerActions.updatePlaybackRate):
+    return Object.assign({}, state, {
+      playbackRate: action.payload.rate
     });
   default:
     return state;

@@ -68,3 +68,11 @@ export function toggleMute(muted: boolean) {
 }
 
 export const updateStreamLoading = createStandardAction(Player.UPDATE_PLAYBACK_STREAM_LOADING)<boolean>();
+
+export const updatePlaybackRate = createStandardAction(Player.UPDATE_PLAYBACK_RATE).map((rate: number) => {
+  return {
+    payload: {
+      rate
+    }
+  };
+});
