@@ -100,8 +100,13 @@ class Discord {
   async clear() {
     delete this.activity;
     if (this.isReady) {
-      this.logger.log('clear discord activity');
-      await this.rpc.clearActivity();
+      try {
+        this.logger.log('Clearing Discord activity');
+        await this.rpc.clearActivity();
+      } catch (e) {
+        this.logger.error('Could not clear discord activity');
+        this.logger.error(e);
+      }
     }
   }
 }
