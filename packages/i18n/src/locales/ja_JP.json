@@ -65,7 +65,7 @@
     "clear": "再生済みの曲を消去",
     "completion": "進捗",
     "empty": "ダウンロードは空です。",
-    "empty-help": "ダウンロード待ちに何かを追加すると、ここに表示されます！",
+    "empty-help": "ダウンロード待ちに追加すると、ここに表示されます！",
     "header": "ダウンロード",
     "name": "名前",
     "status": "状態"
@@ -112,7 +112,7 @@
     "add": "フォルダーを追加",
     "album": "アルバム",
     "artist": "アーティスト",
-    "empty": "ライブラリは空です",
+    "empty": "ライブラリ内に登録なし",
     "empty-help": "上のボタンから音楽を追加してみてください。",
     "filter-placeholder": "絞り込み...",
     "header": "ローカルライブラリ",
@@ -127,6 +127,7 @@
     "not-found": "この曲の歌詞が見つかりませんでした。"
   },
   "option-control": {
+    "rate": "再生速度",
     "autoradio": "ラジオ",
     "loop": "ループ",
     "mini-player": "ミニプレイヤー",
@@ -170,7 +171,7 @@
     "import-success-title": "再生リストのインポートに成功",
     "play-selected-tracks-now": "選択した曲を再生",
     "playlist-created": "{{name}} を作成しました",
-    "playlist-exported": "{{name}} をローカルファイルに保存しました",
+    "playlist-exported": "{{name}} のファイルを端末に保存しました",
     "queue": "再生リストをキューに追加",
     "rename": "再生リストの名前を変更",
     "songs": "{{total}} 曲",
@@ -261,7 +262,7 @@
     "segment-popup": "音楽以外の部分"
   },
   "settings": {
-    "api-port": "APIが使用するポート",
+    "api-port": "API用のポート",
     "api-url": "",
     "audio": "音声",
     "autoradio": "ラジオ",
