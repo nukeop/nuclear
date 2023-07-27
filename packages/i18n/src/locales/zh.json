@@ -127,6 +127,7 @@
     "not-found": "这首歌未找到歌词"
   },
   "option-control": {
+    "rate": "Playback speed",
     "autoradio": "随便听听",
     "loop": "循环",
     "mini-player": "迷你版播放器",
