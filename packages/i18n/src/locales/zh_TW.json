@@ -127,6 +127,7 @@
     "not-found": "這首歌沒有歌詞資料"
   },
   "option-control": {
+    "rate": "Playback speed",
     "autoradio": "自動播放",
     "loop": "循環播放",
     "mini-player": "最小化播放器介面",
