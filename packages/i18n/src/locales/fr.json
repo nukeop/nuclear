@@ -127,6 +127,7 @@
     "not-found": "Aucune paroles n'ont été trouvées pour ce morceau."
   },
   "option-control": {
+    "rate": "Playback speed",
     "autoradio": "Auto-radio",
     "loop": "Boucle",
     "mini-player": "Mini-lecteur",
