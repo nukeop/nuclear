@@ -127,6 +127,7 @@
     "not-found": "لم يتم العثور على أي كلمات لهذه الأغنية."
   },
   "option-control": {
+    "rate": "Playback speed",
     "autoradio": "مذياع تلقائي",
     "loop": "تكرار",
     "mini-player": "مشغل صغير",
