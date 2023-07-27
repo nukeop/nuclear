@@ -127,6 +127,7 @@
     "not-found": "Ingen låttext hittades för detta spår."
   },
   "option-control": {
+    "rate": "Playback speed",
     "autoradio": "Autoradio",
     "loop": "Slinga",
     "mini-player": "Minispelare",
