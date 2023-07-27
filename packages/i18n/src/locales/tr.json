@@ -127,6 +127,7 @@
     "not-found": "Şarkı sözleri bulunamadı."
   },
   "option-control": {
+    "rate": "Playback speed",
     "autoradio": "Autoradio",
     "loop": "Tekrarla",
     "mini-player": "Mini Oynatıcı",
