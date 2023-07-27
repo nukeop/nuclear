@@ -127,6 +127,7 @@
     "not-found": "Ingen sangtekst blev fundet til denne sang."
   },
   "option-control": {
+    "rate": "Playback speed",
     "autoradio": "Autoradio",
     "loop": "Gentag",
     "mini-player": "Miniafspiller",
