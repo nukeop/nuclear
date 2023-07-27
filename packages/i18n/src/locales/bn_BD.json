@@ -127,6 +127,7 @@
     "not-found": "এই গানের জন্য কোনো লিরিক্স পাওয়া জায়নি।"
   },
   "option-control": {
+    "rate": "Playback speed",
     "autoradio": "অটোরেডিও",
     "loop": "লুপ",
     "mini-player": "মিনিপ্লেয়ার",
