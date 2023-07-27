@@ -127,6 +127,7 @@
     "not-found": "Nuk u gjet teksti për këtë këngë."
   },
   "option-control": {
+    "rate": "Playback speed",
     "autoradio": "Autoradio",
     "loop": "Cikël i përsëritur",
     "mini-player": "Miniplayer",
