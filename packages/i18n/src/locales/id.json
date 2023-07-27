@@ -127,6 +127,7 @@
     "not-found": "Lirik untuk lagu ini tidak ditemukan"
   },
   "option-control": {
+    "rate": "Playback speed",
     "autoradio": "Autoradio",
     "loop": "Ulang",
     "mini-player": "Miniplayer",
