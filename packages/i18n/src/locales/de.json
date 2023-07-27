@@ -127,6 +127,7 @@
     "not-found": "Keine Liedtexte für diesen Song gefunden."
   },
   "option-control": {
+    "rate": "Playback speed",
     "autoradio": "Autoradio",
     "loop": "Schleife",
     "mini-player": "Miniplayer",
