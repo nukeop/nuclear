@@ -127,6 +127,7 @@
     "not-found": "Nenhuma letra foi encontrada para esta música."
   },
   "option-control": {
+    "rate": "Playback speed",
     "autoradio": "Autoradio",
     "loop": "Loop",
     "mini-player": "Miniplayer",
