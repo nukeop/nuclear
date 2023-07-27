@@ -127,6 +127,7 @@
     "not-found": "Nije pronađen tekst ove pjesme."
   },
   "option-control": {
+    "rate": "Playback speed",
     "autoradio": "Autoradio",
     "loop": "Petlja",
     "mini-player": "Minipler",
