@@ -127,6 +127,7 @@
     "not-found": "इस गाने के कोई गीतिकाव्य नहीं मिले।"
   },
   "option-control": {
+    "rate": "Playback speed",
     "autoradio": "ऑटोरेडियो",
     "loop": "लूप",
     "mini-player": "मिनीप्लेयर",
