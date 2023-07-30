@@ -814,6 +814,45 @@ exports[`Settings view container should render settings 1`] = `
                   <span
                     class="text"
                   >
+                    العربية
+                  </span>
+                </div>
+                <div
+                  aria-checked="false"
+                  aria-selected="false"
+                  class="item"
+                  role="option"
+                  style="pointer-events: all;"
+                >
+                  <span
+                    class="text"
+                  >
+                    Беларуская
+                  </span>
+                </div>
+                <div
+                  aria-checked="false"
+                  aria-selected="false"
+                  class="item"
+                  role="option"
+                  style="pointer-events: all;"
+                >
+                  <span
+                    class="text"
+                  >
+                    বাংলা
+                  </span>
+                </div>
+                <div
+                  aria-checked="false"
+                  aria-selected="false"
+                  class="item"
+                  role="option"
+                  style="pointer-events: all;"
+                >
+                  <span
+                    class="text"
+                  >
                     Česky
                   </span>
                 </div>
@@ -1126,6 +1165,19 @@ exports[`Settings view container should render settings 1`] = `
                   <span
                     class="text"
                   >
+                    Română
+                  </span>
+                </div>
+                <div
+                  aria-checked="false"
+                  aria-selected="false"
+                  class="item"
+                  role="option"
+                  style="pointer-events: all;"
+                >
+                  <span
+                    class="text"
+                  >
                     Русский
                   </span>
                 </div>
@@ -1192,6 +1244,19 @@ exports[`Settings view container should render settings 1`] = `
                     class="text"
                   >
                     Türkçe
+                  </span>
+                </div>
+                <div
+                  aria-checked="false"
+                  aria-selected="false"
+                  class="item"
+                  role="option"
+                  style="pointer-events: all;"
+                >
+                  <span
+                    class="text"
+                  >
+                    Українська
                   </span>
                 </div>
                 <div
