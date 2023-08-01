@@ -7,6 +7,7 @@
   align-items: center;
   margin: 0 1em;
   z-index: 40;
+  -webkit-app-region: no-drag;
 
   a {
     display: flex;

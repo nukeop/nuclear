@@ -11,6 +11,8 @@
   padding: 0;
   margin-right: 12px;
   transition: $short-duration !important;
+  -webkit-app-region: no-drag;
+
 
   i {
     position: absolute;

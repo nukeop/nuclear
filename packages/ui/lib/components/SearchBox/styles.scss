@@ -6,6 +6,8 @@ $input_height: 30px;
   display: flex;
   flex-direction: column;
   flex: 1 1 auto;
+  -webkit-app-region: no-drag;
+
 
   .search_box {
     display: flex;
