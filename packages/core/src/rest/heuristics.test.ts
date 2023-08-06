@@ -1,12 +1,12 @@
-import { Video } from 'ytsr';
+import { SearchVideo } from 'youtube-ext';
 import { YoutubeHeuristics } from './heuristics';
 
-export const ytTrack = (overrides?: Partial<Video>): Partial<Video> => ({
+export const ytTrack = (overrides?: Partial<SearchVideo>): Partial<SearchVideo> => ({
   title: 'Black Sabbath - Paranoid',
-  author: {
+  channel: {
     name: 'Black Sabbath'
-  } as Video['author'],
-  duration: '172',
+  } as SearchVideo['channel'],
+  duration: { text: '172', pretty: '2:12' },
   ...overrides
 });
 
@@ -158,19 +158,19 @@ describe('Search heuristics', () => {
     const tracks = [
       ytTrack({
         title: 'Frank Zappa - Peaches en Regalia',
-        duration: '180'
+        duration: { text: '180', pretty: '3:00' }
       }),
       ytTrack({
         title: 'Frank Zappa - Peaches en Regalia',
-        duration: '219'
+        duration: { text: '219', pretty: '3:39' }
       }),
       ytTrack({
         title: 'Frank Zappa - Peaches en Regalia',
-        duration: '300'
+        duration: { text: '300', pretty: '5:00' }
       }),
       ytTrack({
         title: 'Frank Zappa - Peaches en Regalia',
-        duration: '360'
+        duration: { text: '360', pretty: '6:00' }
       })
     ];
 
@@ -290,15 +290,15 @@ describe('Search heuristics', () => {
     const tracks = [
       ytTrack({
         title: 'Savant - Valkyrie',
-        author: {
+        channel: {
           name: 'EssentialEDMusic'
-        } as Video['author']
+        } as SearchVideo['channel']
       }),
       ytTrack({
         title: 'Savant - Orakel - Valkyrie',
-        author: {
+        channel: {
           name: 'SAVANT'
-        } as Video['author']
+        } as SearchVideo['channel']
       })
     ];
 
@@ -319,15 +319,15 @@ describe('Search heuristics', () => {
     const tracks = [
       ytTrack({
         title: 'Savant - Wildstyle',
-        author: {
+        channel: {
           name: 'Tasty'
-        } as Video['author']
+        } as SearchVideo['channel']
       }),
       ytTrack({
         title: 'Firestarter',
-        author: {
+        channel: {
           name: 'SAVANT'
-        } as Video['author']
+        } as SearchVideo['channel']
       })
     ];
 
