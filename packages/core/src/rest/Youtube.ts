@@ -2,7 +2,7 @@ import logger from 'electron-timber';
 import ytdl from '@distube/ytdl-core';
 
 import ytpl from 'ytpl';
-import ytsr from 'ytsr';
+import {search, SearchVideo} from 'youtube-ext';
 
 import { StreamData, StreamQuery } from '../plugins/plugins.types';
 import * as SponsorBlock from './SponsorBlock';
@@ -122,21 +122,21 @@ export async function liveStreamSearch(query: string): Promise<YoutubeResult[]> 
     return [];
   }
 
-  const videoFilter = (await retryWithExponentialBackoff(() => ytsr.getFilters(query))).get('Type').get('Video');
-  const liveFilter = (await retryWithExponentialBackoff(() => ytsr.getFilters(videoFilter.url))).get('Features').get('Live');
-  const options = {
-    limit: 10
-  };
-  const searchResults = await ytsr(liveFilter.url, options);
+  // const videoFilter = (await retryWithExponentialBackoff(() => ytsr.getFilters(query))).get('Type').get('Video');
+  // const liveFilter = (await retryWithExponentialBackoff(() => ytsr.getFilters(videoFilter.url))).get('Features').get('Live');
+  // const options = {
+  //   limit: 10
+  // };
+  // const searchResults = await ytsr(liveFilter.url, options);
 
-  return searchResults.items.map((video: ytsr.Video) => {
-    return {
-      streams: [{ source: 'Youtube', id: video.id }],
-      name: video.title,
-      thumbnail: video.bestThumbnail.url,
-      artist: { name: video.author.name }
-    };
-  });
+  // return searchResults.items.map((video: ytsr.Video) => {
+  //   return {
+  //     streams: [{ source: 'Youtube', id: video.id }],
+  //     name: video.title,
+  //     thumbnail: video.bestThumbnail.url,
+  //     artist: { name: video.author.name }
+  //   };
+  // });
 }
 
 export async function trackSearch(query: StreamQuery, sourceName?: string) {
@@ -145,24 +145,19 @@ export async function trackSearch(query: StreamQuery, sourceName?: string) {
 
 export async function trackSearchByString(query: StreamQuery, sourceName?: string, useSponsorBlock = true): Promise<StreamData[]> {
   const terms = query.artist + ' ' + query.track;
-  const filterOptions = await retryWithExponentialBackoff(() => ytsr.getFilters(terms));
-  const filterVideoOnly = filterOptions.get('Type').get('Video');
-  const results = await ytsr(filterVideoOnly.url, { limit: 10 });
+
+  const results = await search(terms, { filterType: 'video' });
+
   const heuristics = new YoutubeHeuristics();
 
-  let orderedTracks = heuristics.orderTracks({
-    tracks: results.items as ytsr.Video[],
+  const orderedTracks = heuristics.orderTracks({
+    tracks: results.videos,
     artist: query.artist,
     title: query.track
   });
 
-  // [HACK] Currently a bug exists where some tracks are returned as not defined. If this happens to the top track loading the track will fail...
-  // This is a HACK to ensure that doesn't happen 
-  while (orderedTracks[0].id === undefined) {
-    orderedTracks = orderedTracks.slice(1);
-  }
   return orderedTracks
-    .map((track) => videoToStreamData(track as ytsr.Video, sourceName));
+    .map((track) => videoToStreamData(track as SearchVideo, sourceName));
 }
 
 export const getStreamForId = async (id: string, sourceName: string, useSponsorBlock = true): Promise<StreamData> => {
@@ -195,19 +190,18 @@ export const getStreamForId = async (id: string, sourceName: string, useSponsorB
   }
 };
 
-function videoToStreamData(video: ytsr.Video, source: string): StreamData {
+function videoToStreamData(video: SearchVideo, source: string): StreamData {
   return {
     source,
     id: video.id,
     stream: undefined,
-    duration: parseInt(video.duration),
+    duration: parseInt(video.duration.text),
     title: video.title,
-    thumbnail: video.bestThumbnail?.url,
+    thumbnail: video.thumbnails[0].url,
     originalUrl: video.url,
-    isLive: video.isLive,
     author: {
-      name: video.author?.name,
-      thumbnail: video.author?.bestAvatar.url
+      name: video.channel.name,
+      thumbnail: video.thumbnails[0].url
     }
   };
 }

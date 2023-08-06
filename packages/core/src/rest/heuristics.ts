@@ -1,5 +1,5 @@
 import { mean, sortBy } from 'lodash';
-import { Video } from 'ytsr';
+import { SearchVideo } from 'youtube-ext';
 import levenshtein from 'fast-levenshtein';
 
 type ScoreTrackArgs<Track> = {
@@ -33,7 +33,7 @@ const promotedWords = [
   'official'
 ];
 
-export class YoutubeHeuristics implements SearchHeuristics<Partial<Video>> {
+export class YoutubeHeuristics implements SearchHeuristics<Partial<SearchVideo>> {
   static createTitle = ({
     artist,
     title
@@ -44,7 +44,7 @@ export class YoutubeHeuristics implements SearchHeuristics<Partial<Video>> {
     artist,
     title,
     duration
-  }: ScoreTrackArgs<Partial<Video>>) => {
+  }: ScoreTrackArgs<Partial<SearchVideo>>) => {
     const trackTitle = YoutubeHeuristics.createTitle({ artist, title });
     const lowercaseResultTitle = track.title.toLowerCase();
 
@@ -52,7 +52,7 @@ export class YoutubeHeuristics implements SearchHeuristics<Partial<Video>> {
 
     const verbatimSubstringScore = lowercaseResultTitle.includes(title.toLowerCase()) ? 300 : 0;
 
-    const durationDelta = Math.abs(Number.parseFloat(track.duration) - duration);
+    const durationDelta = Math.abs(Number.parseFloat(track.duration.text) - duration);
     const durationScore = track.duration && duration
       ? (1 - durationDelta / duration) * 800
       : 0;
@@ -66,8 +66,7 @@ export class YoutubeHeuristics implements SearchHeuristics<Partial<Video>> {
       liveVideoScore = 0;
     }
 
-    const channelNameScore = track.author?.name.toLowerCase().includes(artist.toLowerCase()) ? 300 : 0;
-    const verifiedChannelScore = track.author?.verified ? 200 : 0;
+    const channelNameScore = track.channel?.name.toLowerCase().includes(artist.toLowerCase()) ? 300 : 0;
 
     return mean([
       titleScore,
@@ -76,8 +75,7 @@ export class YoutubeHeuristics implements SearchHeuristics<Partial<Video>> {
       promotedWordsScore,
       penalizedWordsScore,
       liveVideoScore,
-      channelNameScore,
-      verifiedChannelScore
+      channelNameScore
     ]);
   };
 
@@ -86,7 +84,7 @@ export class YoutubeHeuristics implements SearchHeuristics<Partial<Video>> {
     artist,
     title,
     duration
-  }: OrderTracksArgs<Partial<Video>>) => {
+  }: OrderTracksArgs<Partial<SearchVideo>>) => {
     const scores = tracks.map(track => this.scoreTrack({
       track,
       artist,
