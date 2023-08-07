@@ -7,7 +7,6 @@ import {search, SearchVideo} from 'youtube-ext';
 import { StreamData, StreamQuery } from '../plugins/plugins.types';
 import * as SponsorBlock from './SponsorBlock';
 import { YoutubeHeuristics } from './heuristics';
-import { retryWithExponentialBackoff } from '../util/retry';
 
 export type YoutubeResult = {
   streams: { source: string, id: string }[]
@@ -118,9 +117,13 @@ export async function urlSearch(url: string): Promise<YoutubeResult[]> {
 }
 
 export async function liveStreamSearch(query: string): Promise<YoutubeResult[]> {
-  if (isValidURL(query)) {
-    return [];
-  }
+  // FIXME: since ytsr is broken, we can't use it for now
+  // Instead, we're using youtube-ext, which doesn't support live search, so we're just returning an empty array
+  return [];
+
+  // if (isValidURL(query)) {
+  //   return [];
+  // }
 
   // const videoFilter = (await retryWithExponentialBackoff(() => ytsr.getFilters(query))).get('Type').get('Video');
   // const liveFilter = (await retryWithExponentialBackoff(() => ytsr.getFilters(videoFilter.url))).get('Features').get('Live');
