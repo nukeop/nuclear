@@ -113,7 +113,7 @@ module.exports = (env) => {
       )
     ),
     new webpack.ContextReplacementPlugin(
-      /\/(ytpl|ytsr|bandcamp-scraper)\//,
+      /\/(ytpl|ytsr|youtube-ext|bandcamp-scraper)\//,
       false
     )
   ];
