@@ -47,13 +47,13 @@ export default (async function () {
   }
 
   function getTracksFromDOM(processedIndex) {
-    const cookieBanner = document.getElementById('#onetrust-banner-sdk');
+    const cookieBanner = document.getElementById('onetrust-banner-sdk');
 
     if (cookieBanner) {
       cookieBanner.style.setProperty('display', 'none', 'important');
     }
     
-    const nodeTracks = document.querySelector('div[data-testid="top-sentinel"] + div').childNodes as NodeListOf<Element>;
+    const nodeTracks = document.querySelector('div[data-testid="playlist-tracklist"] div[data-testid="top-sentinel"] + div').childNodes as NodeListOf<Element>;
     const tracks = [];
 
     for (let i = 0; i < nodeTracks.length; i += 1) {
