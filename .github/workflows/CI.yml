@@ -4,9 +4,13 @@ on:
   push:
     branches-ignore:
       - crowdin
+    paths-ignore:
+      - "**/*.md"
   pull_request:
     branches-ignore:
       - crowdin
+    paths-ignore:
+      - "**/*.md"
 
 jobs:
   tests:
