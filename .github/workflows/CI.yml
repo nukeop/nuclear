@@ -17,12 +17,27 @@ jobs:
     timeout-minutes: 30
 
     steps:
-      - uses: actions/checkout@master
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Cache npm packages
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
       - name: Use Node.js 18
-        uses: actions/setup-node@master
+        uses: actions/setup-node@v2
         with:
           version: 18
-          cache: npm
+          cache: "npm"
+      - name: Cache Node modules
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-npm-
       - name: add git binaries to PATH
         if: runner.os == 'Windows'
         run: |
@@ -39,15 +54,30 @@ jobs:
         os: ["ubuntu-latest", "macos-latest", "windows-latest"]
         cmd: ["build:linux", "build:macos", "build:windows"]
     steps:
-      - uses: actions/checkout@master
+      - name: Checkout code
+        uses: actions/checkout@v2
       - name: get-npm-version
         id: package-version
         uses: pchynoweth/action-get-npm-version@1.1.1
+      - name: Cache npm packages
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
       - name: Use Node.js 18
-        uses: actions/setup-node@master
+        uses: actions/setup-node@v2
         with:
           version: 18
-          cache: npm
+          cache: "npm"
+      - name: Cache Node modules
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-npm-
       - name: add git binaries to PATH
         if: runner.os == 'Windows'
         run: |
