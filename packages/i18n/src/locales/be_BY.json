@@ -97,7 +97,7 @@
     "empty": "Выбраныя ня дададзеныя",
     "empty-help": "Паспрабуйце дадаць некалькі трэкаў у абранае, і яны з'явяцца тут!",
     "header": "Абраныя трэкі",
-    "play-random": "Play a random track from your favorites",
+    "play-random": "Прайграць выпадковы трэк з вашых абраных",
     "title": "Назва"
   },
   "help": {
@@ -127,7 +127,7 @@
     "not-found": "Тэкст гэтай песні не быў знойдзены."
   },
   "option-control": {
-    "rate": "Playback speed",
+    "rate": "Хуткасць прайгравання",
     "autoradio": "Аўтарадыё",
     "loop": "Паўтор",
     "mini-player": "Міні-плэер",
@@ -221,21 +221,21 @@
     "live": "У прамым эфіры",
     "stream-verification": {
       "tooltip": {
-        "unknown": "The status of this stream is unknown.",
-        "unverified": "This stream has not yet been verified by the community.",
-        "weakly-verified": "This stream has been verified by a couple of users.",
-        "verified": "This stream has been verified by the community.",
-        "verified-by-user": "This stream has been verified by you."
+        "unknown": "Статус гэтага стрыму невядомы.",
+        "unverified": "Гэты стрым яшчэ не быў пацверджаны супольнасцю.",
+        "weakly-verified": "Гэты стрым быў правераны нямногімі карыстальнікамі.",
+        "verified": "Гэты стрым быў пацверджаны супольнасцю.",
+        "verified-by-user": "Гэты стрым быў правераны вамі."
       },
       "stream-status": {
-        "unknown": "Unknown",
-        "unverified": "Unverified",
-        "weakly-verified": "Weakly verified",
-        "verified": "Verified",
-        "verified-by-user": "Verified by you"
+        "unknown": "Невядома",
+        "unverified": "Непацверджаны",
+        "weakly-verified": "Слаба пацверджаны",
+        "verified": "Пацверджаны",
+        "verified-by-user": "Пацверджаны вамі"
       },
-      "verify": "Verify",
-      "unverify": "Unverify"
+      "verify": "Пацвердзіць",
+      "unverify": "Прыбраць пацвердженіе"
     }
   },
   "search": {
@@ -324,7 +324,7 @@
     "promoted-artists-description": "Гэта падборка цікавых, адабраных ўручную індзі-выканаўцаў, якія могуць вам спадабацца. Ніхто не атрымае за гэта ніякай кампенсацыі.",
     "saving-in": "Будзе захавана ў:",
     "seek-iteration": "Колькасць секунд для пошуку наперад / назад пры націску клавіш са стрэлкамі",
-    "show-tray-icon": "Show tray icon",
+    "show-tray-icon": "Паказаць значок у латку",
     "shuffle-queue": "Змяшаць трэкi",
     "shuffle-when-going-back": "Перакартоўка на папярэднім трэку",
     "shuffle-when-going-back-description": "Прайграваць выпадковы трэк пры актыўным мяшанні і націску кнопкі папярэдняга трэка",
@@ -334,9 +334,9 @@
     "streaming": "Трансляцыі",
     "track-duration": "Адлюстраванне працягласці трэка на панэлі пошуку",
     "user": "Карыстальнік:",
-    "user-id": "User ID",
-    "use-stream-verification": "Use stream verification",
-    "use-stream-verification-description": "Use stream verification. Loads the streams the community has verified as being correct for the tracks you play. Also allows you to vote on streams. See documentation for details.",
+    "user-id": "ID Карыстальніка",
+    "use-stream-verification": "Выкарыстоўваць пацвярджэнне стрыму",
+    "use-stream-verification-description": "Выкарыстоўваць пацвярджэнне стрыму. Загружае стрымы, якія былі пацверджаны супольнасцю як правільны для трэкаў, якія вы праграваеце. Глядзіце дакументацыю для дэталей.",
     "youtube": "YouTube",
     "yt-api-key": "YouTube API ключ"
   },
