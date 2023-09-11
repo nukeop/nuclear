@@ -97,7 +97,7 @@
     "empty": "Geen favorieten toegevoegd",
     "empty-help": "Probeer wat tracks aan je favorieten toe te voegen en ze zullen hier verschijnen!",
     "header": "Jouw favoriete nummers",
-    "play-random": "Play a random track from your favorites",
+    "play-random": "Een willekeurig nummer uit je favorieten afspelen",
     "title": "Titel"
   },
   "help": {
@@ -127,7 +127,7 @@
     "not-found": "Geen songtekst gevonden bij dit nummer."
   },
   "option-control": {
-    "rate": "Playback speed",
+    "rate": "Afspeelsnelheid",
     "autoradio": "Automatische radio",
     "loop": "Herhalen",
     "mini-player": "Minispeler",
@@ -221,21 +221,21 @@
     "live": "Live",
     "stream-verification": {
       "tooltip": {
-        "unknown": "The status of this stream is unknown.",
-        "unverified": "This stream has not yet been verified by the community.",
-        "weakly-verified": "This stream has been verified by a couple of users.",
-        "verified": "This stream has been verified by the community.",
-        "verified-by-user": "This stream has been verified by you."
+        "unknown": "De status van deze stream is onbekend.",
+        "unverified": "Deze stream is nog niet gecontroleerd door de gemeenschap.",
+        "weakly-verified": "Deze stream is geverifieerd door een paar gebruikers.",
+        "verified": "Deze stream is geverifieerd door de gemeenschap.",
+        "verified-by-user": "Deze stream is door jou geverifieerd."
       },
       "stream-status": {
-        "unknown": "Unknown",
-        "unverified": "Unverified",
-        "weakly-verified": "Weakly verified",
-        "verified": "Verified",
-        "verified-by-user": "Verified by you"
+        "unknown": "Onbekend",
+        "unverified": "Niet-geverifieerd",
+        "weakly-verified": "Zwak geverifieerd",
+        "verified": "Geverifieerd",
+        "verified-by-user": "Geverifieerd door u"
       },
-      "verify": "Verify",
-      "unverify": "Unverify"
+      "verify": "Verifiëren",
+      "unverify": "Maak verificatie ongedaan"
     }
   },
   "search": {
@@ -306,7 +306,7 @@
     "mastodon-awaiting-authorization": "Nuclear is geregistreerd op {{instanceUrl}}. Wachten op autorisatie.",
     "mastodon-description": "",
     "mastodon-instance-label": "Mastodon instantie-URL",
-    "mastodon-post-format-description": "Nuclear will post a status on Mastodon after each track completes playing. The above string will be the template for each post, with {{artist}}, {{title}}, and {{url}} replaced with the artist, title, and a link to the track respectively.",
+    "mastodon-post-format-description": "Nuclear zal een status posten op Mastodon nadat elk nummer is afgespeeld. De bovenstaande string wordt het sjabloon voor elke post, met {{artist}}, {{title}} en {{url}} vervangen door respectievelijk de artiest, titel en een link naar de track.",
     "mastodon-post-format-label": "Post formaat",
     "mastodon-title": "",
     "normalize": "Volume normaliseren",
@@ -324,7 +324,7 @@
     "promoted-artists-description": "Dit is een opeenstapeling van interessante, zorgvuldig uitgekozen indie-artiesten die u zou misschien leuk vinden. Hier krijgt niemand een vergoeding voor.",
     "saving-in": "Opslaan in:",
     "seek-iteration": "Aantal seconden om vooruit/achteruit te zoeken bij het indrukken van pijltoetsen",
-    "show-tray-icon": "Show tray icon",
+    "show-tray-icon": "Toon ladepictogram",
     "shuffle-queue": "Nummers willekeurig afspelen",
     "shuffle-when-going-back": "Shuffle bij het vorige nummer",
     "shuffle-when-going-back-description": "Speel een willekeurig nummer af wanneer shuffle actief is en de vorige track knop wordt aangeklikt",
@@ -334,9 +334,9 @@
     "streaming": "Streaming",
     "track-duration": "Toon de duur van de track over de zoekbalk",
     "user": "Gebruiker:",
-    "user-id": "User ID",
-    "use-stream-verification": "Use stream verification",
-    "use-stream-verification-description": "Use stream verification. Loads the streams the community has verified as being correct for the tracks you play. Also allows you to vote on streams. See documentation for details.",
+    "user-id": "Gebruikers ID",
+    "use-stream-verification": "Gebruik streamverificatie",
+    "use-stream-verification-description": "Gebruik streamverificatie. Hiermee worden de streams geladen waarvan de community heeft gecontroleerd dat ze correct zijn voor de tracks die je afspeelt. Je kunt ook stemmen op streams. Zie documentatie voor meer informatie.",
     "youtube": "Youtube",
     "yt-api-key": "Youtube API-sleutel"
   },
@@ -453,7 +453,7 @@
       }
     },
     "nuclear-sign-in": {
-      "header": "Aanmelden",
+      "header": " Aanmelden",
       "username-label": "Gebruikersnaam",
       "password-label": "Wachtwoord",
       "no-account-label": "Hebt u geen account?",
