@@ -19,7 +19,7 @@
     "favorite-artists": "पसंदीदा कलाकार",
     "favorite-tracks": "पसंदीदा ट्रैक",
     "library": "स्थानीय संग्रह",
-    "listening-history": "Listening History",
+    "listening-history": "सुनने का इतिहास",
     "lyrics": "गीतिकाव्य",
     "main": "प्रमुख",
     "playlists": "गानों की सूचीयाँ",
@@ -51,15 +51,15 @@
     "genres": "शैलियाँ",
     "news": "समाचार",
     "playcounts": "प्लेकाउंट्स",
-    "playlists": "Trending",
+    "playlists": "चर्चित",
     "popular-track-title": "डीज़र के शीर्ष ट्रैक",
     "title": "शीर्षक",
     "top": "शीर्ष ट्रैक्स",
-    "trending-playlists": "Trending playlists",
+    "trending-playlists": "ट्रेंडिंग प्लेलिस्ट",
     "trending-artists": "Trending artists",
     "trending-albums": "Trending albums",
-    "filter": "Filter...",
-    "nothing-found": "Nothing found."
+    "filter": "फिल्टर...",
+    "nothing-found": "कुछ भी नहीं मिला"
   },
   "downloads": {
     "clear": "समाप्त ट्रैक साफ़ करें",
@@ -424,8 +424,8 @@
     "empty-state": "You haven't listened to anything yet.",
     "clear-history": "Clear history",
     "clear-history-confirm": "Are you sure you want to clear your listening history?",
-    "clear-history-confirm-yes": "Confirm",
-    "clear-history-confirm-no": "Cancel",
+    "clear-history-confirm-yes": "पुष्टि करें",
+    "clear-history-confirm-no": "रद्द करें",
     "clear-history-toast": "Listening history cleared"
   },
   "forms": {
