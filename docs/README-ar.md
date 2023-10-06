@@ -21,7 +21,7 @@
 
 قناة الدعم (Matrix): `#nuclear:matrix.org`
 
-محادثة ديسكورد: https://discord.gg/JqPjKxE
+Discord chat: https://discord.gg/JqPjKxE
 
 اقتراح والتصويت على ميزات جديدة من هنا: https://nuclear.featureupvote.com/
 
@@ -60,7 +60,7 @@ nuclear هو برنامج مشغل موسيقى مجاني يقوم بسحب ا�
 - تشغيل قوائم التشغيل المحفوظة (المخزنة في ملفات json)
 - النقل من last.fm (مع تحديث حالة "التشغيل الآن")
 - أحدث الإصدارات مع المراجعات - الأغاني والألبومات
-- التصفح حسب النوع
+- التصفح حسب التصنيف
 - حالة الراديو (تضاف الأغاني المماثلة إلى قائمة التشغيل تلقائيًا)
 - تنزيلات غير محدودة (مدعوم من اليوتيوب)
 - كلمات الأغاني في الوقت الحقيقي
@@ -73,56 +73,58 @@ nuclear هو برنامج مشغل موسيقى مجاني يقوم بسحب ا�
 - لا يوجد مدونة قواعد السلوك
 - لا يوجد CLA
 
-## Development process
+## عملية التطوير 
 
-First of all, be sure to check out the [Contribution Guidelines](https://nukeop.gitbook.io/nuclear/contributing/contribution-guidelines).
+أولًا، تأكد من قراءة [دليل المساهمة](https://nukeop.gitbook.io/nuclear/contributing/contribution-guidelines).
 
-The instructions for running Nuclear in development mode can be found in the [Development Process](https://nukeop.gitbook.io/nuclear/developer-resources/development-process) document.
+الخطوات اللازمة لتشغيل Nuclear في وضع التطوير يمكن العثور عليها في [عملية التطوير](https://nukeop.gitbook.io/nuclear/developer-resources/development-process).
 
-## Community-maintained packages
+## البرامج التي يتم إدارتها من قبل المجتمع 
 
-Here's a list of packages for various managers, some of which are maintained by third parties. We would like to thank the maintainers for their work.
-
-| Package type   | Link                                                               | Maintainer                                   | Installation Method                           |
-|:--------------:|:------------------------------------------------------------------:|:--------------------------------------------:|:---------------------------------------------:|
-| AUR (Arch)     | https://aur.archlinux.org/packages/nuclear-player-bin/             | [nukeop](https://github.com/nukeop)          | yay -S nuclear-player-bin                     |
-| AUR (Arch)     | https://aur.archlinux.org/packages/nuclear-player-git              | [nukeop](https://github.com/nukeop)          | yay -S nuclear-player-git                     |
-| Choco (Win)    | https://chocolatey.org/packages/nuclear/                           | [JourneyOver](https://github.com/JourneyOver)| choco install nuclear                         |
-| GURU (Gentoo)  | https://github.com/gentoo/guru/tree/master/media-sound/nuclear-bin | Orphaned    | emerge nuclear-bin                            |
-| Homebrew (Mac) | https://formulae.brew.sh/cask/nuclear                              | Homebrew                                     | brew install --cask nuclear                   |
-| Snap           | https://snapcraft.io/nuclear                                       | [nukeop](https://github.com/nukeop)          | sudo snap install nuclear                     |
-| Flatpak        | https://flathub.org/apps/details/org.js.nuclear.Nuclear            | [nukeop](https://github.com/nukeop)          | flatpak install flathub org.js.nuclear.Nuclear|
-| Void Linux     | https://github.com/machadofguilherme/nuclear-template              | [machadofguilherme](https://github.com/machadofguilherme) | See readme
+هذه قائمة بالبرامج التي يتم إدارتها من قبل المجتمع لمختلف المديرين، بعضها يدار من قبل أطراف ثالثة. نود أن نشكر المديرين على عملهم.
 
 
-## Community translations
-Nuclear has already been translated to several languages, and we're always looking for contributors who would like to add more.
+|  نوع البرنامج  |                               الرابط                               |                          المدير                           |                 طريقة التثبيت                  |
+|:--------------:|:------------------------------------------------------------------:|:---------------------------------------------------------:|:----------------------------------------------:|
+|   AUR (Arch)   |       https://aur.archlinux.org/packages/nuclear-player-bin/       |            [nukeop](https://github.com/nukeop)            |           yay -S nuclear-player-bin            |
+|   AUR (Arch)   |       https://aur.archlinux.org/packages/nuclear-player-git        |            [nukeop](https://github.com/nukeop)            |           yay -S nuclear-player-git            |
+|  Choco (Win)   |              https://chocolatey.org/packages/nuclear/              |       [JourneyOver](https://github.com/JourneyOver)       |             choco install nuclear              |
+| GURU (Gentoo)  | https://github.com/gentoo/guru/tree/master/media-sound/nuclear-bin |                         Orphaned                          |               emerge nuclear-bin               |                                |
+| Homebrew (Mac) |               https://formulae.brew.sh/cask/nuclear                |                         Homebrew                          |          brew install --cask nuclear           |
+|      Snap      |                    https://snapcraft.io/nuclear                    |            [nukeop](https://github.com/nukeop)            |           sudo snap install nuclear            |
+|    Flatpak     |      https://flathub.org/apps/details/org.js.nuclear.Nuclear       |            [nukeop](https://github.com/nukeop)            | flatpak install flathub org.js.nuclear.Nuclear |
+|   Void Linux   |       https://github.com/machadofguilherme/nuclear-template        | [machadofguilherme](https://github.com/machadofguilherme) |                   See readme                   |
 
-We're using [Crowdin](https://crowdin.com/project/nuclear) to manage localization. You can check if your language is supported, track localization progress, and help us translate Nuclear there.
+## ترجمعات المجتمع 
+تمت ترجمة Nuclear إلى عدة لغات، ونحن نبحث دائمًا عن المساهمين الذين يرغبون في إضافة المزيد.
 
-## Screenshots
-This will be updated as the program evolves.
+نحن نستخدم [Crowdin](https://crowdin.com/project/nuclear ) لإدارة الترجمة.
+يمكنك التحقق مما إذا كانت لغتك مدعومة، وتتبع تقدم الترجمة، ومساعدتنا في ترجمة Nuclear هناك.
 
-![Album Search](https://i.imgur.com/idFVnAF.png)
+## لقطات الشاشة 
+سيتم تحديث هذا مع تطور البرنامج.
 
-![Album Display](https://i.imgur.com/Kvzo3q7.png)
+![البحث عن الألبوم](https://i.imgur.com/idFVnAF.png)
 
-![Artist View](https://i.imgur.com/imBLYl3.png)
+![عرض الألبوم](https://i.imgur.com/Kvzo3q7.png)
 
-![Dashboard Best New Music](https://i.imgur.com/bMDrR4M.png)
+![عرض الفنان](https://i.imgur.com/imBLYl3.png)
 
-![Dashboard Genres](https://i.imgur.com/g0aCmKx.png)
+![قائمة أفضل أحدث الأغاني](https://i.imgur.com/bMDrR4M.png)
 
-![Playlist View](https://i.imgur.com/2VMXHDC.png)
+![قائمة التصنيفات](https://i.imgur.com/g0aCmKx.png)
 
-![Lyrics View](https://i.imgur.com/7e3DJKJ.png)
+![عرض قائمة التشغيل](https://i.imgur.com/2VMXHDC.png)
 
-![Equalizer View](https://i.imgur.com/WreRL0w.png)
+![عرض كلمات الأغاني](https://i.imgur.com/7e3DJKJ.png)
 
-## License
+![عرض معادل الصوت](https://i.imgur.com/WreRL0w.png)
 
-This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+## الترخيص
 
-## Attributions
-Uses SponsorBlock data licensed used under [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/) from https://sponsor.ajay.app/.
+هذا البرنامج مجاني: يمكنك إعادة توزيعه و/أو تعديله بموجب شروط ترخيص GNU Affero General Public License كما نشرتها Free Software Foundation، إما الإصدار 3 من الترخيص، أو (باختيارك) أي إصدار لاحق.
+
+## الصفات 
+يستخدم بيانات SupportBlock المرخصة المستخدمة بموجب [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)  من https://sponsor.ajay.app/ .
+
 </div>
