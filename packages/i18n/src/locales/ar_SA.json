@@ -19,7 +19,7 @@
     "favorite-artists": "الفنانين المفضلين",
     "favorite-tracks": "الاغاني المفضلة",
     "library": "اللائحة المحلية",
-    "listening-history": "Listening History",
+    "listening-history": "تاريخ الاستماع",
     "lyrics": "كلمات الأغنية",
     "main": "رئيسي",
     "playlists": "قائمة التشغيل",
@@ -51,15 +51,15 @@
     "genres": "الأنواع",
     "news": "الأخبَار",
     "playcounts": "مرات التشغيل",
-    "playlists": "Trending",
+    "playlists": "رائجاً",
     "popular-track-title": "الاكثر تشغيلا من ديزر",
     "title": "العنوان",
     "top": "أفضل المقاطع",
-    "trending-playlists": "Trending playlists",
-    "trending-artists": "Trending artists",
-    "trending-albums": "Trending albums",
-    "filter": "Filter...",
-    "nothing-found": "Nothing found."
+    "trending-playlists": "قوائم التشغيل الشائعة",
+    "trending-artists": "الفنانين المشهورين",
+    "trending-albums": "ألبومات شائعة",
+    "filter": "تصفية...",
+    "nothing-found": "لم يتم العثور على شيء."
   },
   "downloads": {
     "clear": "مسح الاغاني المنتهية",
@@ -97,7 +97,7 @@
     "empty": "لا توجد مفضلات مضافة",
     "empty-help": "حاول إضافة بعض الاغاني إلى المفضلة وسيظهرون هنا!",
     "header": "الاغاني المفضلين لديك",
-    "play-random": "Play a random track from your favorites",
+    "play-random": "تشغيل مسار عشوائي من تفضيلاتك",
     "title": "العنوان"
   },
   "help": {
@@ -127,7 +127,7 @@
     "not-found": "لم يتم العثور على أي كلمات لهذه الأغنية."
   },
   "option-control": {
-    "rate": "Playback speed",
+    "rate": "سرعة التشغيل",
     "autoradio": "مذياع تلقائي",
     "loop": "تكرار",
     "mini-player": "مشغل صغير",
@@ -160,12 +160,12 @@
     "spotify-import-placeholder": "لصق رابط المقطوعات الموسيقية بسبوتيفاي هنا",
     "dialog-placeholder": "اسم قائمة التشغيل...",
     "dialog-accept": "حفظ",
-    "dialog-cancel": "Cancel",
-    "dialog-rename": "Rename",
+    "dialog-cancel": "إلغاء",
+    "dialog-rename": "إعادة التسمية",
     "dialog-import": "Import",
     "create-button": "إنشاء قائمة تشغيل جديدة",
     "new-playlist": "قائمة تشغيل جديدة",
-    "import-url-button": "Import from url (Spotify)",
+    "import-url-button": "استيراد من الرابط (Spotify)",
     "import-button": "استيراد من ملف (JSON)",
     "import-fail-title": "فشل استيراد قائمة التشغيل",
     "import-success-title": "تم استيراد قائمة التشغيل بنجاح",
@@ -183,9 +183,9 @@
     "tracks-plural": "مقاطع",
     "modified-at": "آخر تعديل: ",
     "never-modified": "مجهول",
-    "server-modified-at": "Server modified: ",
-    "upload-to-server": "Upload to server",
-    "download-from-server": "Download from server",
+    "server-modified-at": "تم تعديل الخادم: ",
+    "upload-to-server": "تحميل إلى الخادم",
+    "download-from-server": "التنزيل من الخادم",
     "number-of-tracks": "الاغاني"
   },
   "plugins": {
@@ -208,34 +208,34 @@
     "dialog-placeholder": "اسم قائمة التشغيل...",
     "dialog-trigger": "حفظ كقائمة تشغيل",
     "download": "التنزيل",
-    "download-toast-content": "{{artist}} - {{title}} has been added to downloads.",
+    "download-toast-content": "{{artist}} - {{title}} تم إضافته إلى التنزيلات.",
     "download-toast-title": "تمت اضافة ا الاغنية الى التنزيلات",
     "favorite-add": "إضافة إلى المفضلات",
     "header": "قائمة الإنتظار",
     "header-track": "المقطع الحالي",
     "copy-track-url": "تم نسخ رابط الاغنية إلى الحافظة",
-    "loading": "Stream still loading.",
+    "loading": "لا يزال البث قيد التحميل.",
     "playlist-add": "إضافة إلى قائمة التشغيل",
     "playlist-toast-content": "قائمة التشغيل {{name}} تم إنشاؤها.",
     "playlist-toast-title": "تم إنشاء قائمة التشغيل",
-    "live": "Live",
+    "live": "بث مباشر",
     "stream-verification": {
       "tooltip": {
-        "unknown": "The status of this stream is unknown.",
+        "unknown": "حالة هذا البث غير معروفة.",
         "unverified": "This stream has not yet been verified by the community.",
-        "weakly-verified": "This stream has been verified by a couple of users.",
-        "verified": "This stream has been verified by the community.",
-        "verified-by-user": "This stream has been verified by you."
+        "weakly-verified": "تم التحقق من هذا البث من قبل اثنين من المستخدمين.",
+        "verified": "تم التحقق من هذا البث من قبل المجتمع.",
+        "verified-by-user": "تم التحقق من هذا البث من قبلك."
       },
       "stream-status": {
-        "unknown": "Unknown",
-        "unverified": "Unverified",
-        "weakly-verified": "Weakly verified",
-        "verified": "Verified",
-        "verified-by-user": "Verified by you"
+        "unknown": "غير معروف",
+        "unverified": "لم يتم التحقق",
+        "weakly-verified": "تحقق ضعيف",
+        "verified": "تم التحقق",
+        "verified-by-user": "تم التحقق من قبلك"
       },
-      "verify": "Verify",
-      "unverify": "Unverify"
+      "verify": "تحقق",
+      "unverify": "لا تحقق"
     }
   },
   "search": {
@@ -246,8 +246,8 @@
     "artist_plural": "الفنانين",
     "clear-history": "مسح التاريخ",
     "empty": "لا يوجد شيء.",
-    "last-searches": "Last searches",
-    "live-stream": "LiveStream",
+    "last-searches": "عمليات البحث الأخيرة",
+    "live-stream": "بث مباشر",
     "placeholder": "بحث...",
     "playlist": "قائمة التشغيل",
     "playlist_plural": "قوائم التشغيل",
@@ -258,15 +258,15 @@
     "you-can-search-for": "يمكنك البحث عن:"
   },
   "seekbar": {
-    "live": "Live",
+    "live": "بث مباشر",
     "segment-popup": "غير الموسيقى"
   },
   "settings": {
-    "api-port": "Port used by the api",
+    "api-port": "المنفذ المستخدم من قبل api",
     "api-url": "",
-    "audio": "Audio",
-    "autoradio": "Autoradio",
-    "autoradio-craziness": "Autoradio craziness",
+    "audio": "صوت",
+    "autoradio": "مذياع تلقائي",
+    "autoradio-craziness": "عشوائية مذياع تلقائي",
     "autoradio-craziness-description": "Autoradio will select songs that are less similar to the ones already in the queue the crazier it is",
     "autoradio-description": "إضافة اغنية مشابهة تلقائياً عند انتهاء قائمة الانتظار",
     "listening-history": "Listening history",
