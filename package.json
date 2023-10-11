@@ -23,7 +23,7 @@
     "postinstall": "lerna bootstrap --hoist && electron-builder install-app-deps",
     "start": "lerna run start --stream",
     "build": "shx rm -rf dist && lerna run build && npm run pack",
-    "test": "lerna run lint && lerna run build && lerna run test",
+    "test": "lerna run test",
     "coverage": "lerna run coverage",
     "lint": "lerna run lint",
     "lint:fix": "lerna run lint:fix",

@@ -40,6 +40,7 @@ Readme translations:
 <kbd>[<img title="Russian" alt="Russian" src="https://cdn.staticaly.com/gh/hjnilsson/country-flags/master/svg/ru.svg" width="22">](docs/README-ru.md)</kbd>
 <kbd>[<img title="Polski" alt="Polski" src="https://cdn.staticaly.com/gh/hjnilsson/country-flags/master/svg/pl.svg" width="22">](docs/README-pl.md)</kbd>
 <kbd>[<img title="Hindi" alt="Hindi" src="https://cdn.staticaly.com/gh/hjnilsson/country-flags/master/svg/in.svg" width="22">](docs/README-hi.md)</kbd>
+<kbd>[<img title="Arabic" alt="Arabic" src="https://cdn.staticaly.com/gh/hjnilsson/country-flags/master/svg/eg.svg" width="22">](docs/README-hi.md)</kbd>
 
 ## What is this?
 nuclear is a free music streaming program that pulls content from free sources all over the internet.
@@ -83,8 +84,8 @@ Here's a list of packages for various managers, some of which are maintained by 
 
 | Package type   | Link                                                               | Maintainer                                   | Installation Method                           |
 |:--------------:|:------------------------------------------------------------------:|:--------------------------------------------:|:---------------------------------------------:|
-| AUR (Arch)     | https://aur.archlinux.org/packages/nuclear-player-bin/             | [nukeop](https://github.com/nukeop)          | yay -s nuclear-player-bin                     |
-| AUR (Arch)     | https://aur.archlinux.org/packages/nuclear-player-git              | [nukeop](https://github.com/nukeop)          | yay -s nuclear-player-git                     |
+| AUR (Arch)     | https://aur.archlinux.org/packages/nuclear-player-bin/             | [nukeop](https://github.com/nukeop)          | yay -S nuclear-player-bin                     |
+| AUR (Arch)     | https://aur.archlinux.org/packages/nuclear-player-git              | [nukeop](https://github.com/nukeop)          | yay -S nuclear-player-git                     |
 | Choco (Win)    | https://chocolatey.org/packages/nuclear/                           | [JourneyOver](https://github.com/JourneyOver)| choco install nuclear                         |
 | GURU (Gentoo)  | https://github.com/gentoo/guru/tree/master/media-sound/nuclear-bin | Orphaned    | emerge nuclear-bin                            |
 | Homebrew (Mac) | https://formulae.brew.sh/cask/nuclear                              | Homebrew                                     | brew install --cask nuclear                   |
