@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/nukeop/nuclear#readme",
   "scripts": {
-    "postinstall": "lerna bootstrap --hoist && electron-builder install-app-deps",
+    "postinstall": "electron-builder install-app-deps",
     "start": "lerna run start --stream",
     "build": "shx rm -rf dist && lerna run build && npm run pack",
     "test": "lerna run test",
@@ -28,8 +28,6 @@
     "lint": "lerna run lint",
     "lint:fix": "lerna run lint:fix",
     "storybook": "lerna run storybook",
-    "docker": "docker run --rm --net=host --env=\"DISPLAY\" --volume=\"$HOME/.Xauthority:/root/.Xauthority:rw\" --device /dev/snd nuclear",
-    "build:docker": "docker build -t nuclear .",
     "pack": "cross-env NODE_OPTIONS='--max-old-space-size=8192' electron-builder --dir -c.extraMetadata.main=dist/main.js",
     "build:linux": "lerna run build && electron-builder -c.extraMetadata.main=dist/main.js --linux --publish onTag",
     "build:windows": "lerna run build && cross-env NODE_OPTIONS='--max-old-space-size=8192' electron-builder -c.extraMetadata.main=dist/main.js --windows --publish onTag",
@@ -47,7 +45,7 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-react": "^7.12.4",
     "husky": "^3.1.0",
-    "lerna": "^3.22.1",
+    "lerna": "^7.3.1",
     "lint-staged": "^10.0.0-beta.14",
     "shx": "^0.3.3",
     "typescript": "^4.2.4"
@@ -70,6 +68,9 @@
     "*.ts": "eslint --fix",
     "*.tsx": "eslint --fix"
   },
+  "workspaces": [
+    "packages/*"
+  ],
   "build": {
     "appId": "nuclear",
     "productName": "nuclear",
