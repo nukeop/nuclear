@@ -59,7 +59,7 @@
     "trending-artists": "Artistas de moda",
     "trending-albums": "Álbumes populares",
     "filter": "Filtrar...",
-    "nothing-found": "Nada encontrado."
+    "nothing-found": "No se ha encontrado nada."
   },
   "downloads": {
     "clear": "Borrar pistas completadas",
@@ -97,7 +97,7 @@
     "empty": "No hay favoritos añadidos",
     "empty-help": "¡Prueba añadir algunas pistas a favoritos y aparecerán aquí!",
     "header": "Tus pistas favoritas",
-    "play-random": "Play a random track from your favorites",
+    "play-random": "Reproducir una pista aleatoria de tus favoritos",
     "title": "Título"
   },
   "help": {
@@ -127,7 +127,7 @@
     "not-found": "No se ha encontrado ninguna letra para esta canción."
   },
   "option-control": {
-    "rate": "Playback speed",
+    "rate": "Velocidad de reproducción",
     "autoradio": "Autoradio",
     "loop": "Bucle",
     "mini-player": "Minireproductor",
@@ -221,21 +221,21 @@
     "live": "En directo",
     "stream-verification": {
       "tooltip": {
-        "unknown": "The status of this stream is unknown.",
-        "unverified": "This stream has not yet been verified by the community.",
-        "weakly-verified": "This stream has been verified by a couple of users.",
-        "verified": "This stream has been verified by the community.",
-        "verified-by-user": "This stream has been verified by you."
+        "unknown": "El estado de este origen es desconocido.",
+        "unverified": "Esta transmisión aún no ha sido verificada por la comunidad.",
+        "weakly-verified": "Esta transmisión ha sido verificada por un par de usuarios.",
+        "verified": "Esta transmisión ha sido verificada por la comunidad.",
+        "verified-by-user": "Esta transmisión ha sido verificada por usted."
       },
       "stream-status": {
-        "unknown": "Unknown",
-        "unverified": "Unverified",
-        "weakly-verified": "Weakly verified",
-        "verified": "Verified",
-        "verified-by-user": "Verified by you"
+        "unknown": "Desconocido",
+        "unverified": "Sin verificar",
+        "weakly-verified": "Poco verificado",
+        "verified": "Verificado",
+        "verified-by-user": "Verificado por ti"
       },
-      "verify": "Verify",
-      "unverify": "Unverify"
+      "verify": "Verificar",
+      "unverify": "No verificar"
     }
   },
   "search": {
@@ -324,7 +324,7 @@
     "promoted-artists-description": "Este es un reel de algunos artistas seleccionados que te podrían gustar. Nadie recibe alguna compensación por ello.",
     "saving-in": "Guardando en:",
     "seek-iteration": "Cantidad de segundos a desplazar al presionar las flechas direccionales",
-    "show-tray-icon": "Show tray icon",
+    "show-tray-icon": "Mostrar icono de la bandeja",
     "shuffle-queue": "Reproducción aleatoria",
     "shuffle-when-going-back": "Aleatorizar en pista previa",
     "shuffle-when-going-back-description": "Reproduce una pista aleatoria cuando está activada la reproducción aleatoria y se presiona el botón de pista previa",
@@ -334,9 +334,9 @@
     "streaming": "Transmisión",
     "track-duration": "Mostrar duración de la pista sobre la barra de búsqueda",
     "user": "Usuario:",
-    "user-id": "User ID",
-    "use-stream-verification": "Use stream verification",
-    "use-stream-verification-description": "Use stream verification. Loads the streams the community has verified as being correct for the tracks you play. Also allows you to vote on streams. See documentation for details.",
+    "user-id": "ID de Usuario",
+    "use-stream-verification": "Usar verificación de transmisión",
+    "use-stream-verification-description": "Utilizar verificación de flujos. Carga los streams que la comunidad ha verificado como correctos para las pistas que juegas. También le permite votar sobre los streams. Consulte la documentación para más detalles.",
     "youtube": "YouTube",
     "yt-api-key": "Clave de la API de YouTube"
   },
