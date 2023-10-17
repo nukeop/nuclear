@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-key */
 import React, { TableHTMLAttributes, useMemo } from 'react';
 import cx from 'classnames';
-import { useTable, Column, useRowSelect, useSortBy } from 'react-table';
+import { useTable, Column, useRowSelect, useSortBy, HeaderGroup, UseSortByColumnProps, TableState, UseSortByState } from 'react-table';
 import { isNumber, isString } from 'lodash';
 import { DragDropContext, Droppable, Draggable, DragDropContextProps } from 'react-beautiful-dnd';
 
@@ -129,7 +129,7 @@ function TrackTable<T extends Track>({
   ].filter(Boolean) as Column<T>[], [displayDeleteButton, displayPosition, displayThumbnail, displayFavorite, isTrackFavorite, titleHeader, displayArtist, artistHeader, displayAlbum, albumHeader, shouldDisplayDuration, durationHeader, selectable, positionHeader, thumbnailHeader]);
 
   const data = useMemo(() => tracks, [tracks]);
-  const initialState = {
+  const initialState: Partial<TableState<T> & UseSortByState<T>> = {
     sortBy: [{ id: TrackTableColumn.Position, desc: false }]
   };
 
@@ -150,7 +150,7 @@ function TrackTable<T extends Track>({
           headerGroups.map(headerGroup => (
             <tr {...headerGroup.getHeaderGroupProps() as TableHTMLAttributes<HTMLTableRowElement>}>
               {
-                headerGroup.headers.map(column => (
+                headerGroup.headers.map((column: (HeaderGroup<T> & UseSortByColumnProps<T>)) => (
                   <th {...column.getHeaderProps(column.getSortByToggleProps()) as ThHTMLAttributes<HTMLTableCellElement>}>
                     {column.render('Header', extraProps)}
                   </th>

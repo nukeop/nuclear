@@ -13,13 +13,17 @@ const UI_DIR = path.resolve(__dirname, 'node_modules', '@nuclear', 'ui');
 const VENDOR_DIR = path.resolve(__dirname, '..', '..', 'node_modules');
 
 const buildIncludedPaths = () => {
-  const paths = [];
+  const paths: string[] = [];
   const modules = ['core', 'i18n', 'ui'];
   const srcs = ['src', 'lib', 'index.js', 'index.ts'];
   modules.forEach((module) => {
     srcs.forEach((src) => {
       paths.push(
-        path.resolve(__dirname, 'node_modules', '@nuclear', module, src)
+        path.resolve(
+          __dirname, 
+          '..', '..',
+          'node_modules', '@nuclear', module, src
+        )
       );
     });
   });
@@ -120,7 +124,9 @@ module.exports = (env) => {
 
   if (IS_PROD) {
     jsxRule.loader = 'ts-loader';
-    jsxRule.options = {};
+    jsxRule.options = {
+      allowTsInNodeModules: true
+    };
     jsxRule.include = [APP_DIR, ...NUCLEAR_MODULES];
     jsxRule.exclude = [
       /node_modules\/electron-timber\/preload\.js/,
@@ -153,7 +159,7 @@ module.exports = (env) => {
     mode: IS_PROD ? 'production' : 'development',
     optimization,
     resolve: {
-      extensions: ['*', '.js', '.ts', '.jsx', '.tsx', '.json'],
+      extensions: ['.*', '.js', '.ts', '.jsx', '.tsx', '.json'],
       alias: {
         react: path.resolve(__dirname, '..', '..', 'node_modules', 'react'),
         'styled-component': path.resolve(
