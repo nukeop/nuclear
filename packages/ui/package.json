@@ -49,7 +49,7 @@
 		"@types/numeral": "0.0.28",
 		"@types/react-beautiful-dnd": "^13.0.0",
 		"@types/react-measure": "^2.0.6",
-		"@types/react-table": "^7.7.12",
+		"@types/react-table": "^7.7.16",
 		"babel-eslint": "^10.0.3",
 		"babel-loader": "^8.1.0",
 		"copyfiles": "^2.2.0",

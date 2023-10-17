@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/explicit-function-return-type */
 import { createConfigItem, transform, transformFile } from '@babel/core';
 import presetEnv from '@babel/preset-env';
 import presetReact from '@babel/preset-react';
@@ -16,7 +14,7 @@ interface TransformResult {
 }
 
 type Cb = (err: Error, result: TransformResult) => void;
-type Transformer = (input: string, babelConfig: BabelConfig, cb: Cb) => void;
+type Transformer = typeof transform | typeof transformFile;
 
 const transformGeneric = (transformer: Transformer) => 
   (input: string) => 
