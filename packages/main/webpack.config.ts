@@ -15,8 +15,7 @@ const osMapper: Record<string, BuildEnv['TARGET']> = {
 };
 
 const MAIN_DIR = path.resolve(__dirname, 'src');
-const CORE_DIR = path.resolve(__dirname, '..', 'core', 'src');
-const CORE_DIR_SYMLINKED = path.resolve(__dirname, 'node_modules', '@nuclear', 'core', 'src');
+const CORE_DIR = path.resolve(__dirname, '..', '..', 'node_modules', '@nuclear', 'core', 'src');
 
 module.exports = (env: BuildEnv): webpack.Configuration => {
   if (!env.TARGET) {
@@ -52,9 +51,12 @@ module.exports = (env: BuildEnv): webpack.Configuration => {
     module: {
       rules: [
         {
-          test: /.ts?$/,
+          test: /\.ts?$/,
           loader: 'ts-loader',
-          include: [MAIN_DIR, CORE_DIR, CORE_DIR_SYMLINKED]
+          include: [MAIN_DIR, CORE_DIR],
+          options: {
+            allowTsInNodeModules: true
+          }
         },
         {
           test: /\.node$/,
