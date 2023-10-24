@@ -4,5 +4,7 @@ export default async () => ({
   },
   moduleNameMapper: {
     '^react$': '<rootDir>/../../node_modules/react'
-  }
+  },
+  testEnvironment: 'node',
+  setupFilesAfterEnv: ['./test/jest-setup.ts']
 });
