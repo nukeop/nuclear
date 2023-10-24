@@ -2,18 +2,10 @@ import { createConfigItem, transform, transformFile } from '@babel/core';
 import presetEnv from '@babel/preset-env';
 import presetReact from '@babel/preset-react';
 
-interface BabelConfig {
-  configFile: boolean;
-  sourceType: string;
-  presets: any[];
-}
-
 interface TransformResult {
-  metadata: any;
-  options: BabelConfig;
+  [key: string]: any;
 }
 
-type Cb = (err: Error, result: TransformResult) => void;
 type Transformer = typeof transform | typeof transformFile;
 
 const transformGeneric = (transformer: Transformer) => 
@@ -23,19 +15,25 @@ const transformGeneric = (transformer: Transformer) =>
         input,
         {
           configFile: false,
-          sourceType: 'unambiguous',
+          sourceType: 'module',
           presets: [
             createConfigItem([
               presetEnv,
               {
-                targets: {electron: '4'}
+                targets: {electron: '12'}
               }
             ]),
             createConfigItem(presetReact)
           ]
         },
-        (err: Error, result: TransformResult) => {
-          err ? reject(err) : resolve(result);
+        (err: Error, result) => {
+          if (err) {
+            reject(err);
+          } else {
+            const module = { exports: {} };
+            new Function('exports', result.code)(module.exports); 
+            resolve(module.exports as TransformResult);
+          }
         }
       );
     });

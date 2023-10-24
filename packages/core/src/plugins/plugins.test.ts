@@ -13,8 +13,8 @@ describe('Plugin tests', () => {
   });
 
   it('transform some code', async () => {
-    const result: any = await transformSource('const f = (a,b) => a+b; const test = f(2,3); export default test;');
-    expect(eval(result.code)).toEqual(5);
+    const result = await transformSource('const f = (a,b) => a+b; const test = f(2,3); export default test;');
+    expect(result.default).toEqual(5);
   });
 
   it('throw an error on invalid code', async () => {
@@ -22,9 +22,10 @@ describe('Plugin tests', () => {
   });
 
   it('transform jsx', async () => {
+   
     const result: any = await transformSource(
       'import React from \'react\'; export const component = () => <div />;'
     );
-    expect(() => eval(result.code)).not.toThrow();
+    expect(result.component).toBeDefined();
   });
 });
