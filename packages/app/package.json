@@ -7,7 +7,7 @@
     "start": "webpack-dev-server --env NODE_ENV=development",
     "build": "cross-env NODE_OPTIONS=--max-old-space-size=8192 webpack --progress --env NODE_ENV=production",
     "test": "cross-env TZ=GMT jest --silent",
-    "coverage": "cross-env TZ=GMT jest --coverage",
+    "coverage": "cross-env TZ=GMT jest --coverage --silent",
     "lint": "eslint \"{app,test}/**/**.{js,jsx,ts,tsx}\"",
     "lint:fix": "eslint \"{app,test}/**/**.{js,jsx,ts,tsx}\" --fix",
     "i18n": "sync-i18n --files 'app/locales/*.json' --primary en --languages fr tl nl de dk es pl zh ru tr id sk ko zh_tw se gr hr is --space 2"
