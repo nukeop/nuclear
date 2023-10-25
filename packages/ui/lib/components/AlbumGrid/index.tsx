@@ -14,6 +14,7 @@ const AlbumGrid = ({
   removeFavoriteAlbum,
   loading,
   trackButtons,
+  onAlbumClick,
   addToQueue,
   selectSong,
   startPlayback,
@@ -22,7 +23,7 @@ const AlbumGrid = ({
   withAlbumPreview
 }) => {
   const [selectedAlbum, selectAlbum] = useState(albums?.length > 0 ? albums[0] : null);
-  const onAlbumClick = album => _.isNil(onAlbumClick) ? selectAlbum(album) : onAlbumClick(album);
+  const handleAlbumClick = album => _.isNil(onAlbumClick) ? selectAlbum(album) : onAlbumClick(album);
 
   const onAddToQueue = () => {
     selectedAlbum.tracks.map(track => addToQueue(getTrackItem(track)));
@@ -50,7 +51,7 @@ const AlbumGrid = ({
                 header={album.title}
                 content={withArtistNames && _.get(album, 'artist.name')}
                 image={getThumbnail(album)}
-                onClick={() => onAlbumClick(album)}
+                onClick={() => handleAlbumClick(album)}
                 withMenu={removeFavoriteAlbum ? true : false}
                 menuEntries={[
                   {
