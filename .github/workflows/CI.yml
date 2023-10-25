@@ -1,4 +1,4 @@
-name: CI job - new
+name: CI job
 
 on:
   push:
