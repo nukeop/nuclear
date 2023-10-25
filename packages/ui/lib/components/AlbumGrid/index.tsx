@@ -21,7 +21,7 @@ const AlbumGrid = ({
   withArtistNames,
   withAlbumPreview
 }) => {
-  const [selectedAlbum, selectAlbum] = useState(albums.length > 0 ? albums[0] : null);
+  const [selectedAlbum, selectAlbum] = useState(albums?.length > 0 ? albums[0] : null);
   const onAlbumClick = album => _.isNil(onAlbumClick) ? selectAlbum(album) : onAlbumClick(album);
 
   const onAddToQueue = () => {
