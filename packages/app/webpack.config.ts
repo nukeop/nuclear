@@ -50,7 +50,8 @@ module.exports = (env) => {
     chunkFilename: '[id].[contenthash].js'
   };
   const optimization: webpack.Configuration['optimization'] = {
-    moduleIds: 'named' as const
+    moduleIds: 'named' as const,
+    minimize: false
   };
   const jsxRule: webpack.RuleSetRule = {
     test: /\.(js|jsx|tsx|ts)$/,
