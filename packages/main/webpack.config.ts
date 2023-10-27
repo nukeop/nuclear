@@ -16,6 +16,8 @@ const osMapper: Record<string, BuildEnv['TARGET']> = {
 
 const MAIN_DIR = path.resolve(__dirname, 'src');
 const CORE_DIR = path.resolve(__dirname, '..', '..', 'node_modules', '@nuclear', 'core', 'src');
+const SCANNER_DIR = path.resolve(__dirname, '..', '..', 'node_modules', '@nuclear', 'scanner');
+const SCANNER_DIR_SYMLINKED = path.resolve(__dirname, 'node_modules', '@nuclear', 'scanner');
 
 module.exports = (env: BuildEnv): webpack.Configuration => {
   if (!env.TARGET) {
@@ -28,7 +30,7 @@ module.exports = (env: BuildEnv): webpack.Configuration => {
   return {
     entry: './src/main.ts',
     resolve: {
-      extensions: ['.ts', '.js', '.json'],
+      extensions: ['.ts', '.js', '.json', '.node'],
       alias: {
         jsbi: path.resolve(__dirname, '..', '..', 'node_modules', 'jsbi', 'dist', 'jsbi-cjs.js')
       },
@@ -60,7 +62,8 @@ module.exports = (env: BuildEnv): webpack.Configuration => {
         },
         {
           test: /\.node$/,
-          use: 'node-loader'
+          use: 'node-loader',
+          include: [MAIN_DIR, SCANNER_DIR, SCANNER_DIR_SYMLINKED]
         }
       ]
     },
