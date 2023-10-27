@@ -1,0 +1,27 @@
+{
+  "name": "@nuclear/scanner",
+  "version": "0.6.21",
+  "description": "Local library scanner",
+  "main": "index.node",
+  "types": "index.d.ts",
+  "scripts": {
+    "build": "cargo-cp-artifact -nc index.node -- cargo build --message-format=json-render-diagnostics",
+    "build-debug": "npm run build --",
+    "build-release": "npm run build -- --release",
+    "install": "npm run build-release",
+    "test": "cargo test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nukeop/nuclear.git"
+  },
+  "author": "nukeop <nukeop@gumblert.tech>",
+  "license": "AGPL-3.0",
+  "bugs": {
+    "url": "https://github.com/nukeop/nuclear/issues"
+  },
+  "homepage": "https://github.com/nukeop/nuclear#readme",
+  "devDependencies": {
+    "cargo-cp-artifact": "^0.1"
+  }
+}

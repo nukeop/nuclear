@@ -1,12 +1,13 @@
 import { inject } from 'inversify';
 import { IpcMessageEvent } from 'electron';
+import { IpcEvents } from '@nuclear/core';
+import {scanFolders} from '@nuclear/scanner';
 
 import LocalLibrary from '../services/local-library';
 import { ipcController, ipcEvent } from '../utils/decorators';
 import LocalLibraryDb from '../services/local-library/db';
 import Platform from '../services/platform';
 import Window from '../services/window';
-import { IpcEvents } from '@nuclear/core';
 
 @ipcController()
 class LocalIpcCtrl {
@@ -48,12 +49,12 @@ class LocalIpcCtrl {
    */
   @ipcEvent(IpcEvents.LOCALFOLDERS_SET)
   async setLocalFolders(event: IpcMessageEvent, directories: string[]) {
-    const localFolders = await Promise.all(
+    await Promise.all(
       directories
         .map(folder => this.localLibraryDb.addFolder(this.normalizeFolderPath(folder)))
     );
 
-    const cache = await this.localLibrary.scanFoldersAndGetMeta(localFolders, (scanProgress, scanTotal) => {
+    const cache = await scanFolders(directories, ['mp3'], (scanProgress, scanTotal) => {
       this.window.send(IpcEvents.LOCAL_FILES_PROGRESS, {scanProgress, scanTotal});
     });
 
@@ -82,12 +83,10 @@ class LocalIpcCtrl {
   async onRefreshLocalFolders() {
     try {
       const folders = await this.localLibraryDb.getLocalFolders();
-      const cache = await this.localLibrary.scanFoldersAndGetMeta(
-        folders,
-        (scanProgress, scanTotal) => {
-          this.window.send(IpcEvents.LOCAL_FILES_PROGRESS, {scanProgress, scanTotal});
-        }
-      );
+
+      const cache = await scanFolders(folders.map(folder => folder.path), ['mp3'], (scanProgress, scanTotal) => {
+        this.window.send(IpcEvents.LOCAL_FILES_PROGRESS, {scanProgress, scanTotal});
+      });
 
       this.window.send(IpcEvents.LOCAL_FILES, cache);
     } catch (err) {
