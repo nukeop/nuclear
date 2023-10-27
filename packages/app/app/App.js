@@ -47,6 +47,7 @@ import NavButtons from './components/NavButtons';
 import WindowControls from './components/WindowControls';
 import SidebarMenuContainer from './containers/SidebarMenuContainer';
 import { CommandPaletteContainer } from './containers/CommandPaletteContainer';
+import { hot } from 'react-hot-loader';
 
 @withTranslation('app')
 class App extends React.PureComponent {
@@ -202,5 +203,5 @@ export default withRouter(
   connect(
     mapStateToProps,
     mapDispatchToProps
-  )(App)
+  )(hot(module)(App))
 );
