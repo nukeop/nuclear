@@ -42,7 +42,6 @@ class TagView extends React.Component {
     );
   }
 
-
   renderTopAlbums (topAlbums) {
     return (
       <TagTopList
@@ -54,7 +53,6 @@ class TagView extends React.Component {
   }
 
   renderTagTopTracks (topTracks, addToQueue) {
-
     return (
       <TagTopTracks
         tracks={topTracks}
@@ -85,10 +83,10 @@ class TagView extends React.Component {
     const { addToQueue, tag, tags } = this.props;
     let tagInfo, topTracks, topAlbums, topArtists;
     if (tags[tag] && tags[tag].loading !== true) {
-      tagInfo = tags[tag][0].tag;
-      topTracks = tags[tag][1].tracks.track;
-      topAlbums = tags[tag][2].albums.album;
-      topArtists = tags[tag][3].topartists.artist;
+      tagInfo = tags[tag][0];
+      topTracks = tags[tag][1];
+      topAlbums = tags[tag][2];
+      topArtists = tags[tag][3];
     }
     return (
       <div className={styles.tag_view_container}>
