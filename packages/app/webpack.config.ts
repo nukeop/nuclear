@@ -39,8 +39,8 @@ module.exports = (env) => {
     ? path.resolve(APP_DIR, 'index.js')
     : [
       'react-hot-loader/patch',
-      'webpack-dev-server/client?http://localhost:8080',
-      'webpack/hot/only-dev-server',
+      'webpack/hot/dev-server.js',
+      'webpack-dev-server/client/index.js?hot=true&live-reload=true',
       path.resolve(APP_DIR, 'index.js')
     ];
   const output: webpack.Configuration['output'] = {
@@ -118,8 +118,12 @@ module.exports = (env) => {
       )
     ),
     new webpack.ContextReplacementPlugin(
-      /\/(ytpl|ytsr|youtube-ext|bandcamp-scraper)\//,
+      /\/(ytpl|ytsr|youtube-ext|bandcamp-scraper|http-cookie-agent|deasync)\//,
       false
+    ),
+    new webpack.ContextReplacementPlugin(
+      /deasync/,
+      path.resolve(__dirname, 'node_modules', 'deasync', 'index.js')
     )
   ];
 
@@ -237,6 +241,7 @@ module.exports = (env) => {
   };
 
   if (IS_DEV) {
+    config.plugins?.push(new webpack.HotModuleReplacementPlugin());
     config.devServer = {
       hot: true,
       static: {
