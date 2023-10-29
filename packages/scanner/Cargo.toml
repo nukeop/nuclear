@@ -10,6 +10,7 @@ crate-type = ["cdylib"]
 
 [dependencies]
 id3 = "1.7.0"
+mockall = "0.11.4"
 
 [dependencies.uuid]
 version = "1.3.4"

@@ -1,6 +1,7 @@
 mod error;
 mod js;
 mod local_track;
+mod scanner;
 use error::ScannerError;
 use id3::{Tag, TagLike};
 use js::{set_optional_field_str, set_optional_field_u32};
@@ -10,8 +11,11 @@ use uuid::Uuid;
 
 use local_track::LocalTrack;
 
-fn visitFile(path: String) -> Result<LocalTrack, ScannerError> {
-    let tag = Tag::read_from_path(&path);
+fn visit_file<F>(path: String, tag_reader: F) -> Result<LocalTrack, ScannerError>
+where
+    F: FnOnce(&str) -> Result<Tag, id3::Error>,
+{
+    let tag = tag_reader(&path);
 
     match tag {
         Ok(tag) => Ok(LocalTrack {
@@ -31,11 +35,11 @@ fn visitFile(path: String) -> Result<LocalTrack, ScannerError> {
     }
 }
 
-fn visitDirectory(
+fn visit_directory(
     path: String,
-    supportedFormats: Vec<String>,
-    dirsToScanQueue: &mut LinkedList<String>,
-    filesToScanQueue: &mut LinkedList<String>,
+    supported_formats: Vec<String>,
+    dirs_to_scan_queue: &mut LinkedList<String>,
+    files_to_scan_queue: &mut LinkedList<String>,
 ) {
     // Read the contents of the directory
     let dir = std::fs::read_dir(path.clone()).unwrap();
@@ -44,20 +48,20 @@ fn visitDirectory(
         let path = entry.path();
         if path.is_dir() {
             // Add the directory to the queue
-            dirsToScanQueue.push_back(path.to_str().unwrap().to_string());
+            dirs_to_scan_queue.push_back(path.to_str().unwrap().to_string());
         } else if let Some(extension) = path.extension().and_then(|ext| ext.to_str()) {
             // Add the file to the queue, if it's a supported format
-            if supportedFormats.contains(&extension.to_string()) {
-                filesToScanQueue.push_back(path.to_str().unwrap().to_string());
+            if supported_formats.contains(&extension.to_string()) {
+                files_to_scan_queue.push_back(path.to_str().unwrap().to_string());
             }
         }
     }
 }
 
-fn scanFolders(mut cx: FunctionContext) -> JsResult<JsArray> {
+fn scan_folders(mut cx: FunctionContext) -> JsResult<JsArray> {
     let folders: Handle<JsArray> = cx.argument(0)?;
     let supported_formats: Handle<JsArray> = cx.argument(1)?;
-    let onProgressCallback: Handle<JsFunction> = cx.argument(2)?;
+    let on_progress_callback: Handle<JsFunction> = cx.argument(2)?;
     let result: Handle<JsArray> = cx.empty_array();
 
     // Copy all the starting folders to a queue, which holds all the folders left to scan
@@ -69,7 +73,7 @@ fn scanFolders(mut cx: FunctionContext) -> JsResult<JsArray> {
     let folders_vec = folders.to_vec(&mut cx)?;
     let mut dirs_to_scan_queue: LinkedList<String> = LinkedList::new();
     let mut files_to_scan_queue: LinkedList<String> = LinkedList::new();
-    let mut total_files_to_scan_num;
+    let total_files_to_scan_num;
     for folder in folders_vec {
         let folder_string = folder.to_string(&mut cx)?.value(&mut cx);
         dirs_to_scan_queue.push_back(folder_string);
@@ -81,7 +85,7 @@ fn scanFolders(mut cx: FunctionContext) -> JsResult<JsArray> {
         let folder = dirs_to_scan_queue.pop_front().unwrap();
 
         // Scan the folder
-        visitDirectory(
+        visit_directory(
             folder.clone(),
             supported_formats_vec.clone(),
             &mut dirs_to_scan_queue,
@@ -95,7 +99,7 @@ fn scanFolders(mut cx: FunctionContext) -> JsResult<JsArray> {
             cx.number(files_to_scan_queue.len() as f64).upcast(),
             cx.string(folder.clone()).upcast(),
         ];
-        onProgressCallback.call(&mut cx, this, args)?;
+        on_progress_callback.call(&mut cx, this, args)?;
     }
 
     // All folders have been scanned, now scan the files
@@ -105,7 +109,24 @@ fn scanFolders(mut cx: FunctionContext) -> JsResult<JsArray> {
         let file = files_to_scan_queue.pop_front().unwrap();
 
         // Scan the file
-        let track = visitFile(file.clone()).unwrap();
+        let track = visit_file(file.clone(), |path| Tag::read_from_path(path));
+
+        if track.is_err() {
+            // Call the progress callback
+            let this = cx.undefined();
+            let args = vec![
+                cx.number((total_files_to_scan_num - files_to_scan_queue.len()) as f64)
+                    .upcast(),
+                cx.number(total_files_to_scan_num as f64).upcast(),
+                cx.string(file.clone()).upcast(),
+            ];
+            on_progress_callback.call(&mut cx, this, args)?;
+
+            continue;
+        }
+
+        let track = track.unwrap();
+
         let len = result.len(&mut cx);
         let mut track_js_object = JsObject::new(&mut cx);
         let track_uuid_js_string = cx.string(track.uuid);
@@ -143,7 +164,7 @@ fn scanFolders(mut cx: FunctionContext) -> JsResult<JsArray> {
             cx.number(total_files_to_scan_num as f64).upcast(),
             cx.string(file.clone()).upcast(),
         ];
-        onProgressCallback.call(&mut cx, this, args)?;
+        on_progress_callback.call(&mut cx, this, args)?;
     }
 
     Ok(result)
@@ -151,6 +172,67 @@ fn scanFolders(mut cx: FunctionContext) -> JsResult<JsArray> {
 
 #[neon::main]
 fn main(mut cx: ModuleContext) -> NeonResult<()> {
-    cx.export_function("scanFolders", scanFolders)?;
+    cx.export_function("scanFolders", scan_folders)?;
     Ok(())
+}
+
+#[cfg(test)]
+mod tests {
+    use std::io;
+
+    use super::*;
+
+    #[test]
+    fn test_sanity_check() {
+        assert_eq!(1, 1);
+    }
+
+    #[test]
+    fn test_visit_file_with_valid_file() {
+        // With mocked tag
+        let path = String::from("path/to/valid/file.mp3");
+        let result = visit_file(path.clone(), |inner_path| {
+            let mut tag = Tag::new();
+            tag.set_artist("Artist");
+            tag.set_title("Title");
+            tag.set_album("Album");
+            tag.set_duration(123);
+            tag.set_track(1);
+            tag.set_year(2020);
+            Ok(tag)
+        });
+
+        if let Some(track) = result.ok() {
+            //check uuid format
+            assert_eq!(
+                track.uuid,
+                Uuid::parse_str(&track.uuid).unwrap().to_string()
+            );
+            assert_eq!(track.artist, Some(String::from("Artist")));
+            assert_eq!(track.title, Some(String::from("Title")));
+            assert_eq!(track.album, Some(String::from("Album")));
+            assert_eq!(track.duration, 123);
+            assert_eq!(track.position, Some(1));
+            assert_eq!(track.year, Some(2020));
+            assert_eq!(track.filename, String::from("file.mp3"));
+            assert_eq!(track.path, path);
+        } else {
+            panic!("Result is not ok");
+        }
+    }
+
+    #[test]
+    fn test_visit_file_with_no_tags() {
+        // With mocked tag
+        let path = String::from("path/to/invalid/file.mp3");
+        let result = visit_file(path.clone(), |inner_path| {
+            Err(id3::Error::new(id3::ErrorKind::NoTag, ""))
+        });
+
+        if let Some(error) = result.err() {
+            assert_eq!(error.message, String::from("Error reading file: NoTag"));
+        } else {
+            panic!("Result is not err");
+        }
+    }
 }
