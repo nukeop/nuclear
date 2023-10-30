@@ -178,8 +178,6 @@ fn main(mut cx: ModuleContext) -> NeonResult<()> {
 
 #[cfg(test)]
 mod tests {
-    use std::io;
-
     use super::*;
 
     #[test]
@@ -191,7 +189,7 @@ mod tests {
     fn test_visit_file_with_valid_file() {
         // With mocked tag
         let path = String::from("path/to/valid/file.mp3");
-        let result = visit_file(path.clone(), |inner_path| {
+        let result = visit_file(path.clone(), |_inner_path| {
             let mut tag = Tag::new();
             tag.set_artist("Artist");
             tag.set_title("Title");
@@ -225,7 +223,7 @@ mod tests {
     fn test_visit_file_with_no_tags() {
         // With mocked tag
         let path = String::from("path/to/invalid/file.mp3");
-        let result = visit_file(path.clone(), |inner_path| {
+        let result = visit_file(path.clone(), |_inner_path| {
             Err(id3::Error::new(id3::ErrorKind::NoTag, ""))
         });
 
