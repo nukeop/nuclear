@@ -35,3 +35,21 @@ pub fn set_optional_field_u32(
         }
     }
 }
+
+pub fn set_optional_field_buffer(
+    cx: &mut FunctionContext,
+    obj: &mut Handle<JsObject>,
+    field_name: &str,
+    value: Option<Vec<u8>>,
+) {
+    match value {
+        Some(v) => {
+            let field_value = JsBuffer::external(cx, v);
+            obj.set(cx, field_name, field_value).unwrap();
+        }
+        None => {
+            let undefined = cx.undefined();
+            obj.set(cx, field_name, undefined).unwrap();
+        }
+    }
+}
