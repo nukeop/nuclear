@@ -4,6 +4,15 @@ import { Icon } from 'semantic-ui-react';
 import Cover from '../Cover';
 import styles from './styles.scss';
 
+const CopyTextToClipboard = async () => {
+  const track_element = document.getElementById('track_name');
+  try {
+    await navigator.clipboard.writeText(track_element.innerHTML);
+  } catch (err) {
+    console.error('Failed to copy: ', err);
+  }
+};
+
 export type TrackInfoProps = {
   cover?: string;
   track: string;
@@ -33,7 +42,7 @@ const TrackInfo: React.FC<TrackInfoProps> = ({
       hasTracks &&
         <>
           <div className={styles.artist_part}>
-            <div className={styles.track_name} onClick={onTrackClick}>
+            <div id='track_name' className={styles.track_name} onClick={() => CopyTextToClipboard()}>
               {track}
             </div>
             <div className={styles.artist_name} onClick={onArtistClick}>
