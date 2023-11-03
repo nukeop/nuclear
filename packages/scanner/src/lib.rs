@@ -2,16 +2,20 @@ mod error;
 mod js;
 mod local_track;
 mod scanner;
+mod thumbnails;
 use id3::Tag;
-use js::{set_optional_field_buffer, set_optional_field_str, set_optional_field_u32};
+use js::{set_optional_field_str, set_optional_field_u32};
 use neon::prelude::*;
 use scanner::{visit_directory, visit_file};
 use std::collections::LinkedList;
+use thumbnails::create_thumbnails_dir;
 
 fn scan_folders(mut cx: FunctionContext) -> JsResult<JsArray> {
     let folders: Handle<JsArray> = cx.argument(0)?;
     let supported_formats: Handle<JsArray> = cx.argument(1)?;
-    let on_progress_callback: Handle<JsFunction> = cx.argument(2)?;
+    let thumbnails_dir: Handle<JsString> = cx.argument(2)?;
+    let thumbnails_dir_str = thumbnails_dir.value(&mut cx);
+    let on_progress_callback: Handle<JsFunction> = cx.argument(3)?;
     let result: Handle<JsArray> = cx.empty_array();
 
     // Copy all the starting folders to a queue, which holds all the folders left to scan
@@ -52,6 +56,9 @@ fn scan_folders(mut cx: FunctionContext) -> JsResult<JsArray> {
         on_progress_callback.call(&mut cx, this, args)?;
     }
 
+    // First, create a directory for thumbnails
+    create_thumbnails_dir(thumbnails_dir_str.as_str());
+
     // All folders have been scanned, now scan the files
     total_files_to_scan_num = files_to_scan_queue.len();
     while !files_to_scan_queue.is_empty() {
@@ -59,7 +66,11 @@ fn scan_folders(mut cx: FunctionContext) -> JsResult<JsArray> {
         let file = files_to_scan_queue.pop_front().unwrap();
 
         // Scan the file
-        let track = visit_file(file.clone(), |path| Tag::read_from_path(path));
+        let track = visit_file(
+            file.clone(),
+            |path| Tag::read_from_path(path),
+            thumbnails_dir_str.as_str(),
+        );
 
         if track.is_err() {
             // Call the progress callback
@@ -89,7 +100,7 @@ fn scan_folders(mut cx: FunctionContext) -> JsResult<JsArray> {
         let track_duration_js_number = cx.number(track.duration);
         track_js_object.set(&mut cx, "duration", track_duration_js_number)?;
 
-        set_optional_field_buffer(&mut cx, &mut track_js_object, "thumbnail", track.thumbnail);
+        set_optional_field_str(&mut cx, &mut track_js_object, "thumbnail", track.thumbnail);
 
         set_optional_field_u32(&mut cx, &mut track_js_object, "position", track.position);
         set_optional_field_u32(&mut cx, &mut track_js_object, "disc", track.disc);

@@ -5,7 +5,7 @@ pub struct LocalTrack {
     pub title: Option<String>,
     pub album: Option<String>,
     pub duration: u32,
-    pub thumbnail: Option<Vec<u8>>,
+    pub thumbnail: Option<String>,
     pub disc: Option<u32>,
     pub position: Option<u32>,
     pub year: Option<u32>,

@@ -54,7 +54,7 @@ class LocalIpcCtrl {
         .map(folder => this.localLibraryDb.addFolder(this.normalizeFolderPath(folder)))
     );
 
-    const cache = await scanFolders(directories, ['mp3'], (scanProgress, scanTotal) => {
+    const cache = await scanFolders(directories, ['mp3'], this.localLibrary.getThumbnailsDir(), (scanProgress, scanTotal) => {
       this.window.send(IpcEvents.LOCAL_FILES_PROGRESS, {scanProgress, scanTotal});
     });
 
@@ -84,7 +84,7 @@ class LocalIpcCtrl {
     try {
       const folders = await this.localLibraryDb.getLocalFolders();
 
-      const cache = await scanFolders(folders.map(folder => folder.path), ['mp3'], (scanProgress, scanTotal) => {
+      const cache = await scanFolders(folders.map(folder => folder.path), ['mp3'], this.localLibrary.getThumbnailsDir(), (scanProgress, scanTotal) => {
         this.window.send(IpcEvents.LOCAL_FILES_PROGRESS, {scanProgress, scanTotal});
       });
 
