@@ -1,15 +1,15 @@
 import React from 'react';
 import { Icon } from 'semantic-ui-react';
+import { Tooltip } from '@nuclear/ui';
 
 import Cover from '../Cover';
 import styles from './styles.scss';
 
-const CopyTextToClipboard = async () => {
-  const track_element = document.getElementById('track_name');
+const CopyTextToClipboard = async (track) => {
   try {
-    await navigator.clipboard.writeText(track_element.innerHTML);
+    await navigator.clipboard.writeText(track);
   } catch (err) {
-    console.error('Failed to copy: ', err);
+    // alert("Failed to copy"); // Will add notification toast here
   }
 };
 
@@ -42,9 +42,14 @@ const TrackInfo: React.FC<TrackInfoProps> = ({
       hasTracks &&
         <>
           <div className={styles.artist_part}>
-            <div id='track_name' className={styles.track_name} onClick={() => CopyTextToClipboard()}>
-              {track}
-            </div>
+            <Tooltip
+              content='Click to copy'
+              trigger={
+                <div id='track_name' className={styles.track_name} onClick={() => CopyTextToClipboard(track)}>
+                  {track}
+                </div>
+              }
+            />
             <div className={styles.artist_name} onClick={onArtistClick}>
               {artist}
             </div>
