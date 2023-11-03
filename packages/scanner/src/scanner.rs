@@ -5,12 +5,17 @@ use uuid::Uuid;
 
 use crate::error::ScannerError;
 use crate::local_track::LocalTrack;
+use crate::thumbnails::generate_thumbnail;
 
 pub trait TagReader {
     fn read_from_path(path: impl AsRef<Path>) -> Result<Tag, Error>;
 }
 
-pub fn visit_file<F>(path: String, tag_reader: F) -> Result<LocalTrack, ScannerError>
+pub fn visit_file<F>(
+    path: String,
+    tag_reader: F,
+    thumbnails_dir: &str,
+) -> Result<LocalTrack, ScannerError>
 where
     F: FnOnce(&str) -> Result<Tag, id3::Error>,
 {
@@ -23,10 +28,7 @@ where
             title: tag.title().map(|s| s.to_string()),
             album: tag.album().map(|s| s.to_string()),
             duration: tag.duration().unwrap_or(0),
-            thumbnail: tag
-                .pictures()
-                .find(|p| p.picture_type == id3::frame::PictureType::CoverFront)
-                .map(|p| p.data.clone()),
+            thumbnail: generate_thumbnail(&path, thumbnails_dir),
             position: tag.track(),
             disc: tag.disc(),
             year: tag.year().map(|s| s as u32),
@@ -110,7 +112,10 @@ mod tests {
             assert_eq!(track.year, Some(2020));
             assert_eq!(track.filename, String::from("file.mp3"));
             assert_eq!(track.path, path);
-            assert_eq!(track.thumbnail, Some(vec![1, 2, 3]));
+            assert_eq!(
+                track.thumbnail,
+                Some("file://path/to/valid/file.webp".to_string())
+            );
         } else {
             panic!("Result is not ok");
         }

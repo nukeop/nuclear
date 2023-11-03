@@ -4,7 +4,7 @@ export type LocalTrack = {
     title?: string;
     album?: string;
     duration?: number;
-    thumbnail?: Buffer;
+    thumbnail?: string;
     position?: number;
     year?: string;
 
@@ -16,6 +16,10 @@ export type LocalTrack = {
 declare const scanFolders = (
   folders: string[], 
   supportedFormats: string[], 
+  thumbnailsDir: string,
   onProgress: (progress: number, total: number, lastScanned?: string) => void
 ) => new Promise<LocalTrack[]>;
-export { scanFolders };
+
+declare const generateThumbnail = (filename: string, thumbnailsDir: string) => new Promise<string>;
+
+export { scanFolders, generateThumbnail };
