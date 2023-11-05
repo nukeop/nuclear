@@ -1,0 +1,14 @@
+name: Code Review
+on:
+  pull_request:
+      types: [opened, review_requested]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Nuki Code Review
+      uses: NuclearPlayer/nuki-code-review-action@v1
+      with:
+        OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
