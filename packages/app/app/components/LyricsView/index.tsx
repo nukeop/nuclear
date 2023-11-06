@@ -1,5 +1,4 @@
 import React from 'react';
-import _ from 'lodash';
 import { Icon } from 'semantic-ui-react';
 import { useTranslation } from 'react-i18next';
 
@@ -21,7 +20,7 @@ export const LyricsView: React.FC<LyricsViewProps> = ({
   track
 }) => {
   const { t } = useTranslation('lyrics');
-  let lyricsStr = _.get(lyricsSearchResults, 'type', '');
+  let lyricsStr = lyricsSearchResults?.type ?? ''; 
   if (lyricsStr === '') {
     lyricsStr = t('not-found');
   }
