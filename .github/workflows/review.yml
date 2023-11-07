@@ -9,7 +9,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Nuki Code Review
-      uses: NuclearPlayer/nuki-code-review-action@v1
+      uses: NuclearPlayer/nuki-code-review-action@master
       with:
         OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
         GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
