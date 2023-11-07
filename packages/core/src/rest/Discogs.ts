@@ -1,4 +1,4 @@
-import _, { isArray, mapValues } from 'lodash';
+import { isArray, mapValues } from 'lodash';
 import querystring from 'querystring';
 
 import { DiscogsSearchType, DiscogsRelease, DiscogsSearchArgs, DiscogsArtistReleaseSearchResult } from './Discogs.types';
@@ -34,7 +34,7 @@ function releaseInfo(
   releaseType: DiscogsSearchType,
   release: DiscogsRelease
 ): Promise<Response> {
-  const resource_url = _.get(release, 'resource_url');
+  const resource_url = release?.resource_url);
   if (resource_url) {
     return fetch(resource_url + addToken({}));
   }
