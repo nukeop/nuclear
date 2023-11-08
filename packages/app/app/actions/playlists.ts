@@ -1,4 +1,3 @@
-if (!(playlist.tracks?.length > 0)) {
 import fs from 'fs';
 import { v4 } from 'uuid';
 import { remote } from 'electron';
