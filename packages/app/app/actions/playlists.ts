@@ -1,6 +1,5 @@
 import fs from 'fs';
 import { v4 } from 'uuid';
-import _ from 'lodash';
 import { remote } from 'electron';
 import { createAsyncAction, createStandardAction } from 'typesafe-actions';
 
