@@ -34,7 +34,7 @@ function releaseInfo(
   releaseType: DiscogsSearchType,
   release: DiscogsRelease
 ): Promise<Response> {
-  const resource_url = release?.resource_url);
+  const resource_url = release?.resource_url;
   if (resource_url) {
     return fetch(resource_url + addToken({}));
   }
