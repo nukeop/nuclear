@@ -1,6 +1,6 @@
+if (!(playlist.tracks?.length > 0)) {
 import fs from 'fs';
 import { v4 } from 'uuid';
-import _ from 'lodash';
 import { remote } from 'electron';
 import { createAsyncAction, createStandardAction } from 'typesafe-actions';
 
@@ -135,7 +135,7 @@ export function addPlaylistFromUrl(playlist: SpotifyPlaylist, t) {
       let playlists = store.get('playlists') || [];
       const importedPlaylist = PlaylistHelper.formatPlaylistForStorage(playlist.name, playlist.tracks, v4(), playlist.source);
 
-      if (_.isEmpty(playlist.tracks)) {
+      if (!(playlist.tracks?.length > 0)) {
         dispatch(error(t('import-fail-title'), t('error-empty-data'), null, null));
         return;
       }
@@ -162,9 +162,9 @@ export function addPlaylistFromFile(filePath, t) {
 
       try {
         const parsed = JSON.parse(data.toString());
-        const name = _.get(parsed, 'name', null);
-        const tracks = _.get(parsed, 'tracks', null);
-        const source = _.get(parsed, 'source', null);
+        const name = parsed && 'name' in parsed ? parsed.name : null;
+        const tracks = parsed && 'tracks' in parsed ? parsed.tracks : null;
+        const source = parsed && 'source' in parsed ? parsed.source : null;
 
         if (!name || !tracks) {
           throw new Error('missing tracks or name');
@@ -173,7 +173,7 @@ export function addPlaylistFromFile(filePath, t) {
         let playlists = store.get('playlists') || [];
         const playlist = PlaylistHelper.formatPlaylistForStorage(name, tracks, v4(), source);
 
-        if (_.isEmpty(tracks)) {
+        if (!(tracks?.length > 0)) {
           dispatch(error(t('import-fail-title'), t('error-empty-data'), null, null));
           return;
         }
