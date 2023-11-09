@@ -17,7 +17,8 @@ declare const scanFolders = (
   folders: string[], 
   supportedFormats: string[], 
   thumbnailsDir: string,
-  onProgress: (progress: number, total: number, lastScanned?: string) => void
+  onProgress: (progress: number, total: number, lastScanned?: string) => void,
+  onError: (track: string, error: string) => void
 ) => new Promise<LocalTrack[]>;
 
 declare const generateThumbnail = (filename: string, thumbnailsDir: string) => new Promise<string>;

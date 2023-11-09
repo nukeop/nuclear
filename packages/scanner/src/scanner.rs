@@ -3,8 +3,9 @@ use std::collections::LinkedList;
 use std::path::Path;
 use uuid::Uuid;
 
-use crate::error::ScannerError;
+use crate::error::{MetadataError, ScannerError};
 use crate::local_track::LocalTrack;
+use crate::metadata::AudioMetadata;
 use crate::thumbnails::generate_thumbnail;
 
 pub trait TagReader {
@@ -13,13 +14,13 @@ pub trait TagReader {
 
 pub fn visit_file<F>(
     path: String,
-    tag_reader: F,
+    metadata_reader: F,
     thumbnails_dir: &str,
 ) -> Result<LocalTrack, ScannerError>
 where
-    F: FnOnce(&str) -> Result<Tag, id3::Error>,
+    F: FnOnce(&str) -> Result<AudioMetadata, MetadataError>,
 {
-    let tag = tag_reader(&path);
+    let meta = metadata_reader(&path);
 
     match tag {
         Ok(tag) => Ok(LocalTrack {

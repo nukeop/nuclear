@@ -13,3 +13,16 @@ impl fmt::Display for ScannerError {
         write!(f, "ScannerError: {}", self.message)
     }
 }
+
+#[derive(Debug)]
+pub struct MetadataError {
+    pub message: String,
+}
+
+impl Error for MetadataError {}
+
+impl fmt::Display for MetadataError {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        write!(f, "MetadataError: {}", self.message)
+    }
+}
