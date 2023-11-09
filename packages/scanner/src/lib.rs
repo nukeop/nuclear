@@ -1,6 +1,8 @@
+#![forbid(unsafe_code)]
 mod error;
 mod js;
 mod local_track;
+mod metadata;
 mod scanner;
 mod thumbnails;
 use id3::Tag;
@@ -16,6 +18,7 @@ fn scan_folders(mut cx: FunctionContext) -> JsResult<JsArray> {
     let thumbnails_dir: Handle<JsString> = cx.argument(2)?;
     let thumbnails_dir_str = thumbnails_dir.value(&mut cx);
     let on_progress_callback: Handle<JsFunction> = cx.argument(3)?;
+    let on_error_callback: Handle<JsFunction> = cx.argument(4)?;
     let result: Handle<JsArray> = cx.empty_array();
 
     // Copy all the starting folders to a queue, which holds all the folders left to scan
@@ -83,6 +86,10 @@ fn scan_folders(mut cx: FunctionContext) -> JsResult<JsArray> {
             ];
             on_progress_callback.call(&mut cx, this, args)?;
 
+            let error = track.err().unwrap();
+            let error_string = cx.string(error.message);
+            let on_error_args = vec![cx.string(file.clone()).upcast(), error_string.upcast()];
+            on_error_callback.call(&mut cx, this, on_error_args)?;
             continue;
         }
 
@@ -93,18 +100,33 @@ fn scan_folders(mut cx: FunctionContext) -> JsResult<JsArray> {
         let track_uuid_js_string = cx.string(track.uuid);
         track_js_object.set(&mut cx, "uuid", track_uuid_js_string)?;
 
-        set_optional_field_str(&mut cx, &mut track_js_object, "artist", track.artist);
-        set_optional_field_str(&mut cx, &mut track_js_object, "title", track.title);
-        set_optional_field_str(&mut cx, &mut track_js_object, "album", track.album);
+        set_optional_field_str(
+            &mut cx,
+            &mut track_js_object,
+            "artist",
+            track.metadata.artist,
+        );
+        set_optional_field_str(&mut cx, &mut track_js_object, "title", track.metadata.title);
+        set_optional_field_str(&mut cx, &mut track_js_object, "album", track.metadata.album);
 
-        let track_duration_js_number = cx.number(track.duration);
+        let track_duration_js_number = cx.number(track.metadata.duration);
         track_js_object.set(&mut cx, "duration", track_duration_js_number)?;
 
-        set_optional_field_str(&mut cx, &mut track_js_object, "thumbnail", track.thumbnail);
+        set_optional_field_str(
+            &mut cx,
+            &mut track_js_object,
+            "thumbnail",
+            track.metadata.thumbnail,
+        );
 
-        set_optional_field_u32(&mut cx, &mut track_js_object, "position", track.position);
-        set_optional_field_u32(&mut cx, &mut track_js_object, "disc", track.disc);
-        set_optional_field_u32(&mut cx, &mut track_js_object, "year", track.year);
+        set_optional_field_u32(
+            &mut cx,
+            &mut track_js_object,
+            "position",
+            track.metadata.position,
+        );
+        set_optional_field_u32(&mut cx, &mut track_js_object, "disc", track.metadata.disc);
+        set_optional_field_u32(&mut cx, &mut track_js_object, "year", track.metadata.year);
 
         let track_filename_js_string = cx.string(track.filename);
         track_js_object.set(&mut cx, "filename", track_filename_js_string)?;

@@ -8,13 +8,17 @@ import { ipcController, ipcEvent } from '../utils/decorators';
 import LocalLibraryDb from '../services/local-library/db';
 import Platform from '../services/platform';
 import Window from '../services/window';
+import Config from '../services/config';
+import Logger, { $mainLogger } from '../services/logger';
 
 @ipcController()
 class LocalIpcCtrl {
   constructor(
+    @inject(Config) private config: Config,
     @inject(LocalLibrary) private localLibrary: LocalLibrary,
     @inject(LocalLibraryDb) private localLibraryDb: LocalLibraryDb,
     @inject(Platform) private platform: Platform,
+    @inject($mainLogger) private logger: Logger,
     @inject(Window) private window: Window
   ) {}
 
@@ -54,9 +58,9 @@ class LocalIpcCtrl {
         .map(folder => this.localLibraryDb.addFolder(this.normalizeFolderPath(folder)))
     );
 
-    const cache = await scanFolders(directories, ['mp3'], this.localLibrary.getThumbnailsDir(), (scanProgress, scanTotal) => {
+    const cache = await scanFolders(directories, this.config.supportedFormats, this.localLibrary.getThumbnailsDir(), (scanProgress, scanTotal) => {
       this.window.send(IpcEvents.LOCAL_FILES_PROGRESS, {scanProgress, scanTotal});
-    });
+    }, () => {});
 
     this.window.send(IpcEvents.LOCAL_FILES, Object.values(cache).reduce((acc, track) => ({
       ...acc,
@@ -84,9 +88,9 @@ class LocalIpcCtrl {
     try {
       const folders = await this.localLibraryDb.getLocalFolders();
 
-      const cache = await scanFolders(folders.map(folder => folder.path), ['mp3'], this.localLibrary.getThumbnailsDir(), (scanProgress, scanTotal) => {
+      const cache = await scanFolders(folders.map(folder => folder.path), this.config.supportedFormats, this.localLibrary.getThumbnailsDir(), (scanProgress, scanTotal) => {
         this.window.send(IpcEvents.LOCAL_FILES_PROGRESS, {scanProgress, scanTotal});
-      });
+      }, () => {});
 
       this.window.send(IpcEvents.LOCAL_FILES, cache);
     } catch (err) {
