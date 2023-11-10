@@ -1,7 +1,12 @@
 use id3::TagLike;
 use metaflac;
+use neon::meta;
 
-use crate::{error::MetadataError, thumbnails::generate_thumbnail};
+use crate::{
+    error::MetadataError,
+    thumbnails::ThumbnailGenerator,
+    thumbnails::{FlacThumbnailGenerator, Mp3ThumbnailGenerator},
+};
 
 pub struct AudioMetadata {
     pub artist: Option<String>,
@@ -56,7 +61,7 @@ impl MetadataExtractor for Mp3MetadataExtractor {
         metadata.position = tag.track();
         metadata.disc = tag.disc();
         metadata.year = tag.year().map(|s| s as u32);
-        metadata.thumbnail = generate_thumbnail(&path, thumbnails_dir);
+        metadata.thumbnail = Mp3ThumbnailGenerator::generate_thumbnail(&path, thumbnails_dir);
 
         Ok(metadata)
     }
@@ -106,7 +111,7 @@ impl MetadataExtractor for FlacMetadataExtractor {
         metadata.year = Self::extract_numeric_metadata(&tag, "DATE");
         let thumbnail_content = tag.pictures().next().map(|p| p.data.clone()).unwrap();
 
-        //TODO: add thumbnail generation
+        metadata.thumbnail = FlacThumbnailGenerator::generate_thumbnail(&path, thumbnails_dir);
 
         Ok(metadata)
     }
