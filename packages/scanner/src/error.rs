@@ -26,3 +26,16 @@ impl fmt::Display for MetadataError {
         write!(f, "MetadataError: {}", self.message)
     }
 }
+
+#[derive(Debug)]
+pub struct ThumbnailError {
+    pub message: String,
+}
+
+impl Error for ThumbnailError {}
+
+impl fmt::Display for ThumbnailError {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        write!(f, "ThumbnailError: {}", self.message)
+    }
+}
