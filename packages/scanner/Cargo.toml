@@ -9,6 +9,7 @@ exclude = ["index.node"]
 crate-type = ["cdylib"]
 
 [dependencies]
+derive_builder = "0.12.0"
 id3 = "1.7.0"
 md5 = "0.7.0"
 metaflac = "0.2.5"

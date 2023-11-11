@@ -8,6 +8,14 @@ pub struct ScannerError {
 
 impl Error for ScannerError {}
 
+impl ScannerError {
+    pub fn new(message: &str) -> ScannerError {
+        ScannerError {
+            message: message.to_string(),
+        }
+    }
+}
+
 impl fmt::Display for ScannerError {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         write!(f, "ScannerError: {}", self.message)
@@ -17,6 +25,14 @@ impl fmt::Display for ScannerError {
 #[derive(Debug)]
 pub struct MetadataError {
     pub message: String,
+}
+
+impl MetadataError {
+    pub fn new(message: &str) -> MetadataError {
+        MetadataError {
+            message: message.to_string(),
+        }
+    }
 }
 
 impl Error for MetadataError {}

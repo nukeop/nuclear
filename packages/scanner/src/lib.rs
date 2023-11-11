@@ -1,4 +1,5 @@
 #![forbid(unsafe_code)]
+
 mod error;
 mod js;
 mod local_track;
@@ -8,7 +9,7 @@ mod thumbnails;
 use id3::Tag;
 use js::{set_optional_field_str, set_optional_field_u32};
 use neon::prelude::*;
-use scanner::{visit_directory, visit_file};
+use scanner::{extractor_from_path, visit_directory, visit_file};
 use std::collections::LinkedList;
 use thumbnails::create_thumbnails_dir;
 
@@ -71,7 +72,7 @@ fn scan_folders(mut cx: FunctionContext) -> JsResult<JsArray> {
         // Scan the file
         let track = visit_file(
             file.clone(),
-            |path| Tag::read_from_path(path),
+            extractor_from_path,
             thumbnails_dir_str.as_str(),
         );
 
