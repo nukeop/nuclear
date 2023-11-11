@@ -21,7 +21,9 @@ impl ThumbnailGenerator for Mp3ThumbnailGenerator {
 
     fn read_image_data(filename: &str) -> Option<Vec<u8>> {
         let tag = Tag::read_from_path(filename).ok()?;
-        tag.pictures()
+        let mut pictures = tag.pictures();
+
+        pictures
             .find(|p| p.picture_type == id3::frame::PictureType::CoverFront)
             .map(|p| p.data.clone())
     }
@@ -35,7 +37,8 @@ impl ThumbnailGenerator for FlacThumbnailGenerator {
 
     fn read_image_data(filename: &str) -> Option<Vec<u8>> {
         let tag = FlacTag::read_from_path(filename).ok()?;
-        tag.pictures().next().map(|p| p.data.clone())
+        let mut pictures = tag.pictures();
+        pictures.next().map(|p| p.data.clone())
     }
 }
 
