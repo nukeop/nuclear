@@ -88,7 +88,7 @@ fn hash_thumb_filename(path: &str) -> Result<String, io::Error> {
     Ok(format!("{:x}.webp", hash))
 }
 
-fn create_thumbnails_dir(thumbnails_dir: &str) -> io::Result<()> {
+pub fn create_thumbnails_dir(thumbnails_dir: &str) -> io::Result<()> {
     let thumbnails_dir_path = Path::new(thumbnails_dir);
 
     if !thumbnails_dir_path.exists() {

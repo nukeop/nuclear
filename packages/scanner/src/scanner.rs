@@ -1,38 +1,48 @@
-use id3::{Error, Tag, TagLike};
+use id3::{Error, Tag};
 use std::collections::LinkedList;
+use std::ffi::OsStr;
 use std::path::Path;
 use uuid::Uuid;
 
 use crate::error::{MetadataError, ScannerError};
 use crate::local_track::LocalTrack;
-use crate::metadata::AudioMetadata;
-use crate::thumbnails::generate_thumbnail;
+use crate::metadata::{
+    AudioMetadata, AudioMetadataBuilder, FlacMetadataExtractor, MetadataExtractor,
+    Mp3MetadataExtractor,
+};
 
 pub trait TagReader {
     fn read_from_path(path: impl AsRef<Path>) -> Result<Tag, Error>;
 }
 
+fn get_extension(path: &str) -> Option<&str> {
+    Path::new(path).extension().and_then(OsStr::to_str)
+}
+
+pub fn extractor_from_path(path: &str) -> Option<Box<dyn MetadataExtractor>> {
+    match get_extension(path) {
+        Some("mp3") => Some(Box::new(Mp3MetadataExtractor)),
+        Some("flac") => Some(Box::new(FlacMetadataExtractor)),
+        _ => None,
+    }
+}
+
 pub fn visit_file<F>(
     path: String,
-    metadata_reader: F,
+    extractor_provider: F,
     thumbnails_dir: &str,
 ) -> Result<LocalTrack, ScannerError>
 where
-    F: FnOnce(&str) -> Result<AudioMetadata, MetadataError>,
+    F: Fn(&str) -> Option<Box<dyn MetadataExtractor>>,
 {
-    let meta = metadata_reader(&path);
+    let extractor: Box<dyn MetadataExtractor> = extractor_provider(&path)
+        .ok_or_else(|| ScannerError::new(&format!("Unsupported file format: {}", path)))?;
+    let metadata = extractor.extract_metadata(&path, thumbnails_dir);
 
-    match tag {
-        Ok(tag) => Ok(LocalTrack {
+    match metadata {
+        Ok(metadata) => Ok(LocalTrack {
             uuid: Uuid::new_v4().to_string(),
-            artist: tag.artist().map(|s| s.to_string()),
-            title: tag.title().map(|s| s.to_string()),
-            album: tag.album().map(|s| s.to_string()),
-            duration: tag.duration().unwrap_or(0),
-            thumbnail: generate_thumbnail(&path, thumbnails_dir),
-            position: tag.track(),
-            disc: tag.disc(),
-            year: tag.year().map(|s| s as u32),
+            metadata: metadata,
             filename: path.split("/").last().map(|s| s.to_string()).unwrap(),
             path: path.clone(),
         }),
@@ -67,73 +77,59 @@ pub fn visit_directory(
 
 #[cfg(test)]
 mod tests {
-    use id3::{
-        frame::{Picture, PictureType},
-        Content, Frame,
-    };
-
     use super::*;
 
-    #[test]
-    fn test_visit_file_with_valid_file() {
-        // With mocked tag
-        let path = String::from("path/to/valid/file.mp3");
-        let result = visit_file(path.clone(), |_inner_path| {
-            let mut tag = Tag::new();
-            tag.set_artist("Artist");
-            tag.set_title("Title");
-            tag.set_album("Album");
-            tag.set_duration(123);
-            tag.set_track(1);
-            tag.set_year(2020);
-            let picture = Picture {
-                mime_type: String::new(),
-                picture_type: PictureType::CoverFront,
-                description: String::new(),
-                data: vec![1, 2, 3],
-            };
-            tag.add_frame(Frame::with_content(
-                "APIC",
-                Content::Picture(picture.clone()),
-            ));
-            Ok(tag)
-        });
-
-        if let Some(track) = result.ok() {
-            //check uuid format
-            assert_eq!(
-                track.uuid,
-                Uuid::parse_str(&track.uuid).unwrap().to_string()
-            );
-            assert_eq!(track.artist, Some(String::from("Artist")));
-            assert_eq!(track.title, Some(String::from("Title")));
-            assert_eq!(track.album, Some(String::from("Album")));
-            assert_eq!(track.duration, 123);
-            assert_eq!(track.position, Some(1));
-            assert_eq!(track.year, Some(2020));
-            assert_eq!(track.filename, String::from("file.mp3"));
-            assert_eq!(track.path, path);
-            assert_eq!(
-                track.thumbnail,
-                Some("file://path/to/valid/file.webp".to_string())
-            );
-        } else {
-            panic!("Result is not ok");
+    #[derive(Debug, Clone, Default)]
+    struct TestMetadataExtractor {
+        pub test_metadata: AudioMetadata,
+    }
+    impl TestMetadataExtractor {
+        pub fn new() -> TestMetadataExtractor {
+            TestMetadataExtractor {
+                test_metadata: AudioMetadata::new(),
+            }
+        }
+    }
+    impl MetadataExtractor for TestMetadataExtractor {
+        fn extract_metadata(
+            &self,
+            _path: &str,
+            _thumbnails_dir: &str,
+        ) -> Result<AudioMetadata, MetadataError> {
+            Ok(AudioMetadataBuilder::default()
+                .artist("Test Artist".to_string())
+                .title("Test Title".to_string())
+                .album("Test Album".to_string())
+                .duration(10)
+                .position(1)
+                .disc(1)
+                .year(2020)
+                .thumbnail("http://localhost:8080/thumbnails/0b/0b0b0b0b0b0b0b0b.webp".to_string())
+                .build()
+                .unwrap())
         }
     }
 
-    #[test]
-    fn test_visit_file_with_no_tags() {
-        // With mocked tag
-        let path = String::from("path/to/invalid/file.mp3");
-        let result = visit_file(path.clone(), |_inner_path| {
-            Err(id3::Error::new(id3::ErrorKind::NoTag, ""))
-        });
+    pub fn test_extractor_from_path(_path: &str) -> Option<Box<dyn MetadataExtractor>> {
+        Some(Box::new(TestMetadataExtractor::new()))
+    }
 
-        if let Some(error) = result.err() {
-            assert_eq!(error.message, String::from("Error reading file: NoTag"));
-        } else {
-            panic!("Result is not err");
-        }
+    #[test]
+    fn test_visit_file() {
+        let path = "tests/test.mp3".to_string();
+        let thumbnails_dir = "tests/thumbnails".to_string();
+        let local_track = visit_file(path, test_extractor_from_path, &thumbnails_dir).unwrap();
+        assert_eq!(local_track.filename, "test.mp3");
+        assert_eq!(local_track.metadata.artist, Some("Test Artist".to_string()));
+        assert_eq!(local_track.metadata.title, Some("Test Title".to_string()));
+        assert_eq!(local_track.metadata.album, Some("Test Album".to_string()));
+        assert_eq!(local_track.metadata.duration, 10);
+        assert_eq!(local_track.metadata.position, Some(1));
+        assert_eq!(local_track.metadata.disc, Some(1));
+        assert_eq!(local_track.metadata.year, Some(2020));
+        assert_eq!(
+            local_track.metadata.thumbnail,
+            Some("http://localhost:8080/thumbnails/0b/0b0b0b0b0b0b0b0b.webp".to_string())
+        );
     }
 }

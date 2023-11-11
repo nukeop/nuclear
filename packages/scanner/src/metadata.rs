@@ -1,6 +1,6 @@
+use derive_builder::Builder;
 use id3::TagLike;
 use metaflac;
-use neon::meta;
 
 use crate::{
     error::MetadataError,
@@ -8,6 +8,8 @@ use crate::{
     thumbnails::{FlacThumbnailGenerator, Mp3ThumbnailGenerator},
 };
 
+#[derive(Default, Debug, Clone, Builder)]
+#[builder(setter(strip_option))]
 pub struct AudioMetadata {
     pub artist: Option<String>,
     pub title: Option<String>,
