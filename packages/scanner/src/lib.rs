@@ -6,12 +6,43 @@ mod local_track;
 mod metadata;
 mod scanner;
 mod thumbnails;
+use error::ScannerError;
 use id3::Tag;
-use js::{set_optional_field_str, set_optional_field_u32};
+use js::set_properties_from_metadata;
+use local_track::LocalTrack;
 use neon::prelude::*;
 use scanner::{extractor_from_path, visit_directory, visit_file};
 use std::collections::LinkedList;
 use thumbnails::create_thumbnails_dir;
+
+fn handle_progress<'a>(
+    cx: &mut FunctionContext<'a>,
+    total_files_to_scan_num: usize,
+    index: usize,
+    filename: String,
+    on_progress_callback: Handle<JsFunction>,
+) -> JsResult<'a, JsValue> {
+    let js_this = cx.undefined();
+    let args = vec![
+        cx.number(index as f64).upcast(),
+        cx.number(total_files_to_scan_num as f64).upcast(),
+        cx.string(filename.clone()).upcast(),
+    ];
+    on_progress_callback.call(cx, js_this, args)
+}
+
+fn handle_error<'a>(
+    cx: &mut FunctionContext<'a>,
+    error: &ScannerError,
+    on_error_callback: Handle<JsFunction>,
+) -> JsResult<'a, JsValue> {
+    let js_this = cx.undefined();
+    let on_error_args = vec![
+        cx.string(error.path.clone()).upcast(),
+        cx.string(error.message.clone()).upcast(),
+    ];
+    on_error_callback.call(cx, js_this, on_error_args)
+}
 
 fn scan_folders(mut cx: FunctionContext) -> JsResult<JsArray> {
     let folders: Handle<JsArray> = cx.argument(0)?;
@@ -61,95 +92,63 @@ fn scan_folders(mut cx: FunctionContext) -> JsResult<JsArray> {
     }
 
     // First, create a directory for thumbnails
-    create_thumbnails_dir(thumbnails_dir_str.as_str());
+    create_thumbnails_dir(thumbnails_dir_str.as_str()).unwrap();
 
-    // All folders have been scanned, now scan the files
+    // All directories have been scanned, now scan the files
     total_files_to_scan_num = files_to_scan_queue.len();
-    while !files_to_scan_queue.is_empty() {
-        // Get the next file to scan
-        let file = files_to_scan_queue.pop_front().unwrap();
+    let scanned_local_tracks: Vec<Result<LocalTrack, ScannerError>> = files_to_scan_queue
+        .iter()
+        .enumerate()
+        .map(|(index, file)| {
+            let result = visit_file(
+                file.clone(),
+                extractor_from_path,
+                thumbnails_dir_str.as_str(),
+            );
 
-        // Scan the file
-        let track = visit_file(
-            file.clone(),
-            extractor_from_path,
-            thumbnails_dir_str.as_str(),
-        );
+            // Send progress back to JS
+            handle_progress(
+                &mut cx,
+                total_files_to_scan_num,
+                index,
+                file.clone(),
+                on_progress_callback.clone(),
+            )
+            .unwrap();
+            return result;
+        })
+        .collect();
 
-        if track.is_err() {
-            // Call the progress callback
-            let this = cx.undefined();
-            let args = vec![
-                cx.number((total_files_to_scan_num - files_to_scan_queue.len()) as f64)
-                    .upcast(),
-                cx.number(total_files_to_scan_num as f64).upcast(),
-                cx.string(file.clone()).upcast(),
-            ];
-            on_progress_callback.call(&mut cx, this, args)?;
+    scanned_local_tracks.iter().for_each(|track| match track {
+        Ok(track) => {
+            let len = result.len(&mut cx);
+            let mut track_js_object = JsObject::new(&mut cx);
+            let track_uuid_js_string = cx.string(track.uuid.clone());
+            track_js_object
+                .set(&mut cx, "uuid", track_uuid_js_string)
+                .unwrap();
 
-            let error = track.err().unwrap();
-            let error_string = cx.string(error.message);
-            let on_error_args = vec![cx.string(file.clone()).upcast(), error_string.upcast()];
-            on_error_callback.call(&mut cx, this, on_error_args)?;
-            continue;
+            set_properties_from_metadata(&mut cx, &mut track_js_object, &track.metadata);
+
+            let track_filename_js_string = cx.string(track.filename.clone());
+            track_js_object
+                .set(&mut cx, "filename", track_filename_js_string)
+                .unwrap();
+
+            let track_path_js_string = cx.string(track.path.clone());
+            track_js_object
+                .set(&mut cx, "path", track_path_js_string)
+                .unwrap();
+
+            let track_local = cx.boolean(true);
+            track_js_object.set(&mut cx, "local", track_local).unwrap();
+
+            result.set(&mut cx, len, track_js_object).unwrap();
         }
-
-        let track = track.unwrap();
-
-        let len = result.len(&mut cx);
-        let mut track_js_object = JsObject::new(&mut cx);
-        let track_uuid_js_string = cx.string(track.uuid);
-        track_js_object.set(&mut cx, "uuid", track_uuid_js_string)?;
-
-        set_optional_field_str(
-            &mut cx,
-            &mut track_js_object,
-            "artist",
-            track.metadata.artist,
-        );
-        set_optional_field_str(&mut cx, &mut track_js_object, "title", track.metadata.title);
-        set_optional_field_str(&mut cx, &mut track_js_object, "album", track.metadata.album);
-
-        let track_duration_js_number = cx.number(track.metadata.duration);
-        track_js_object.set(&mut cx, "duration", track_duration_js_number)?;
-
-        set_optional_field_str(
-            &mut cx,
-            &mut track_js_object,
-            "thumbnail",
-            track.metadata.thumbnail,
-        );
-
-        set_optional_field_u32(
-            &mut cx,
-            &mut track_js_object,
-            "position",
-            track.metadata.position,
-        );
-        set_optional_field_u32(&mut cx, &mut track_js_object, "disc", track.metadata.disc);
-        set_optional_field_u32(&mut cx, &mut track_js_object, "year", track.metadata.year);
-
-        let track_filename_js_string = cx.string(track.filename);
-        track_js_object.set(&mut cx, "filename", track_filename_js_string)?;
-
-        let track_path_js_string = cx.string(track.path);
-        track_js_object.set(&mut cx, "path", track_path_js_string)?;
-
-        let track_local = cx.boolean(true);
-        track_js_object.set(&mut cx, "local", track_local)?;
-
-        result.set(&mut cx, len, track_js_object)?;
-
-        // Call the progress callback
-        let this = cx.undefined();
-        let args = vec![
-            cx.number((total_files_to_scan_num - files_to_scan_queue.len()) as f64)
-                .upcast(),
-            cx.number(total_files_to_scan_num as f64).upcast(),
-            cx.string(file.clone()).upcast(),
-        ];
-        on_progress_callback.call(&mut cx, this, args)?;
-    }
+        Err(error) => {
+            handle_error(&mut cx, error, on_error_callback.clone()).unwrap();
+        }
+    });
 
     Ok(result)
 }

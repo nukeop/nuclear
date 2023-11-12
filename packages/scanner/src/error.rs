@@ -4,14 +4,16 @@ use std::fmt;
 #[derive(Debug)]
 pub struct ScannerError {
     pub message: String,
+    pub path: String,
 }
 
 impl Error for ScannerError {}
 
 impl ScannerError {
-    pub fn new(message: &str) -> ScannerError {
+    pub fn new(message: &str, path: &str) -> ScannerError {
         ScannerError {
             message: message.to_string(),
+            path: path.to_string(),
         }
     }
 }

@@ -14,7 +14,7 @@ pub struct AudioMetadata {
     pub artist: Option<String>,
     pub title: Option<String>,
     pub album: Option<String>,
-    pub duration: u32,
+    pub duration: Option<u32>,
     pub disc: Option<u32>,
     pub position: Option<u32>,
     pub year: Option<u32>,
@@ -27,7 +27,7 @@ impl AudioMetadata {
             artist: None,
             title: None,
             album: None,
-            duration: 0,
+            duration: None,
             disc: None,
             position: None,
             year: None,
@@ -59,7 +59,7 @@ impl MetadataExtractor for Mp3MetadataExtractor {
         metadata.artist = tag.artist().map(|s| s.to_string());
         metadata.title = tag.title().map(|s| s.to_string());
         metadata.album = tag.album().map(|s| s.to_string());
-        metadata.duration = tag.duration().unwrap_or(0);
+        metadata.duration = tag.duration();
         metadata.position = tag.track();
         metadata.disc = tag.disc();
         metadata.year = tag.year().map(|s| s as u32);
@@ -107,7 +107,7 @@ impl MetadataExtractor for FlacMetadataExtractor {
         metadata.artist = Self::extract_string_metadata(&tag, "ARTIST", Some("ALBUMARTIST"));
         metadata.title = Self::extract_string_metadata(&tag, "TITLE", None);
         metadata.album = Self::extract_string_metadata(&tag, "ALBUM", None);
-        metadata.duration = Self::extract_numeric_metadata(&tag, "LENGTH").unwrap_or(0);
+        metadata.duration = Self::extract_numeric_metadata(&tag, "LENGTH");
         metadata.position = Self::extract_numeric_metadata(&tag, "TRACKNUMBER");
         metadata.disc = Self::extract_numeric_metadata(&tag, "DISCNUMBER");
         metadata.year = Self::extract_numeric_metadata(&tag, "DATE");

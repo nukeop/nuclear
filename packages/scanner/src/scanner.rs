@@ -36,7 +36,7 @@ where
     F: Fn(&str) -> Option<Box<dyn MetadataExtractor>>,
 {
     let extractor: Box<dyn MetadataExtractor> = extractor_provider(&path)
-        .ok_or_else(|| ScannerError::new(&format!("Unsupported file format: {}", path)))?;
+        .ok_or_else(|| ScannerError::new(&format!("Unsupported file format: {}", path), &path))?;
     let metadata = extractor.extract_metadata(&path, thumbnails_dir);
 
     match metadata {
@@ -46,9 +46,10 @@ where
             filename: path.split("/").last().map(|s| s.to_string()).unwrap(),
             path: path.clone(),
         }),
-        Err(e) => Err(ScannerError {
-            message: format!("Error reading file: {}", e),
-        }),
+        Err(e) => Err(ScannerError::new(
+            &format!("Error reading file: {}", e),
+            &path,
+        )),
     }
 }
 
@@ -84,9 +85,9 @@ mod tests {
         pub test_metadata: AudioMetadata,
     }
     impl TestMetadataExtractor {
-        pub fn new() -> TestMetadataExtractor {
+        pub fn new(metadata: AudioMetadata) -> TestMetadataExtractor {
             TestMetadataExtractor {
-                test_metadata: AudioMetadata::new(),
+                test_metadata: metadata,
             }
         }
     }
@@ -96,7 +97,13 @@ mod tests {
             _path: &str,
             _thumbnails_dir: &str,
         ) -> Result<AudioMetadata, MetadataError> {
-            Ok(AudioMetadataBuilder::default()
+            return Ok(self.test_metadata.clone());
+        }
+    }
+
+    pub fn test_extractor_from_path(_path: &str) -> Option<Box<dyn MetadataExtractor>> {
+        Some(Box::new(TestMetadataExtractor::new(
+            AudioMetadataBuilder::default()
                 .artist("Test Artist".to_string())
                 .title("Test Title".to_string())
                 .album("Test Album".to_string())
@@ -106,12 +113,8 @@ mod tests {
                 .year(2020)
                 .thumbnail("http://localhost:8080/thumbnails/0b/0b0b0b0b0b0b0b0b.webp".to_string())
                 .build()
-                .unwrap())
-        }
-    }
-
-    pub fn test_extractor_from_path(_path: &str) -> Option<Box<dyn MetadataExtractor>> {
-        Some(Box::new(TestMetadataExtractor::new()))
+                .unwrap(),
+        )))
     }
 
     #[test]
@@ -123,7 +126,7 @@ mod tests {
         assert_eq!(local_track.metadata.artist, Some("Test Artist".to_string()));
         assert_eq!(local_track.metadata.title, Some("Test Title".to_string()));
         assert_eq!(local_track.metadata.album, Some("Test Album".to_string()));
-        assert_eq!(local_track.metadata.duration, 10);
+        assert_eq!(local_track.metadata.duration, Some(10));
         assert_eq!(local_track.metadata.position, Some(1));
         assert_eq!(local_track.metadata.disc, Some(1));
         assert_eq!(local_track.metadata.year, Some(2020));

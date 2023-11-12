@@ -1,5 +1,7 @@
 use neon::prelude::*;
 
+use crate::metadata::AudioMetadata;
+
 pub fn set_optional_field_str(
     cx: &mut FunctionContext,
     obj: &mut Handle<JsObject>,
@@ -52,4 +54,20 @@ pub fn set_optional_field_buffer(
             obj.set(cx, field_name, undefined).unwrap();
         }
     }
+}
+
+pub fn set_properties_from_metadata(
+    cx: &mut FunctionContext,
+    obj: &mut Handle<JsObject>,
+    metadata: &AudioMetadata,
+) {
+    set_optional_field_str(cx, obj, "artist", metadata.artist.clone());
+    set_optional_field_str(cx, obj, "title", metadata.title.clone());
+    set_optional_field_str(cx, obj, "album", metadata.album.clone());
+
+    set_optional_field_u32(cx, obj, "duration", metadata.duration);
+    set_optional_field_str(cx, obj, "thumbnail", metadata.thumbnail.clone());
+    set_optional_field_u32(cx, obj, "position", metadata.position);
+    set_optional_field_u32(cx, obj, "disc", metadata.disc);
+    set_optional_field_u32(cx, obj, "year", metadata.year);
 }
