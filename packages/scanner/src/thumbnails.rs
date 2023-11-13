@@ -8,6 +8,8 @@ use metaflac::Tag as FlacTag;
 use std::io::{self, Cursor};
 use std::path::{Path, PathBuf};
 
+use crate::profiling::Profiler;
+
 pub trait ThumbnailGenerator {
     fn generate_thumbnail(filename: &str, thumbnails_dir: &str) -> Option<String>;
     fn read_image_data(filename: &str) -> Option<Vec<u8>>;
@@ -59,15 +61,26 @@ fn generate_thumbnail_common<T: ThumbnailGenerator>(
 }
 
 fn resize_and_save_thumbnail(data: &[u8], path: &Path) -> ImageResult<()> {
+    let _profiler = Profiler::start("resize_and_save_thumbnail");
     let img = get_resized_image(data)?;
     img.save_with_format(path, ImageFormat::WebP)
 }
 
 fn get_resized_image(data: &[u8]) -> Result<ImageBuffer<Rgba<u8>, Vec<u8>>, ImageError> {
-    ImageReader::new(Cursor::new(data))
-        .with_guessed_format()?
-        .decode()
-        .map(|img| resize(&img, 192, 192, FilterType::Lanczos3))
+    let img = ImageReader::new(Cursor::new(data));
+
+    let guess_format_profiler = Profiler::start("guess_format");
+    let format = img.with_guessed_format()?;
+    guess_format_profiler.end();
+
+    let decode_start = Profiler::start("decode");
+    let decoded = format.decode()?;
+    decode_start.end();
+
+    let resize_start = Profiler::start("resize");
+    let resized = resize(&decoded, 256, 256, FilterType::CatmullRom);
+    resize_start.end();
+    return Ok(resized);
 }
 
 fn create_and_get_thumbnail_path(filename: &str, thumbnails_dir: &str) -> Option<String> {
