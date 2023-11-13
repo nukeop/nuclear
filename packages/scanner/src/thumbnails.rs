@@ -37,6 +37,22 @@ impl ThumbnailGenerator for Mp3ThumbnailGenerator {
     }
 }
 
+pub struct Mp4ThumbnailGenerator;
+impl ThumbnailGenerator for Mp4ThumbnailGenerator {
+    fn generate_thumbnail(
+        filename: &str,
+        album: Option<&str>,
+        thumbnails_dir: &str,
+    ) -> Option<String> {
+        generate_thumbnail_common::<Self>(filename, album, thumbnails_dir)
+    }
+
+    fn read_image_data(filename: &str) -> Option<Vec<u8>> {
+        let mut tag = mp4ameta::Tag::read_from_path(filename).ok()?;
+        tag.artwork().map(|a| a.data.to_vec())
+    }
+}
+
 pub struct FlacThumbnailGenerator;
 impl ThumbnailGenerator for FlacThumbnailGenerator {
     fn generate_thumbnail(

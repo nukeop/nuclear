@@ -14,9 +14,11 @@ profiling = []
 [dependencies]
 derive_builder = "0.12.0"
 id3 = "1.7.0"
+lewton = "0.10.2"
 md5 = "0.7.0"
 metaflac = "0.2.5"
 mockall = "0.11.4"
+mp4ameta = "0.11.0"
 
 [dependencies.image]
 version = "0.24.7"
