@@ -1,13 +1,14 @@
-use std::collections::HashSet;
+use std::fs::File;
 
 use derive_builder::Builder;
 use id3::TagLike;
+use lewton::inside_ogg::OggStreamReader;
 use metaflac;
 
 use crate::{
     error::MetadataError,
-    thumbnails::ThumbnailGenerator,
     thumbnails::{FlacThumbnailGenerator, Mp3ThumbnailGenerator},
+    thumbnails::{Mp4ThumbnailGenerator, ThumbnailGenerator},
 };
 
 #[derive(Default, Debug, Clone, Builder)]
@@ -43,7 +44,6 @@ pub trait MetadataExtractor {
         &self,
         path: &str,
         thumbnails_dir: &str,
-        created_thumbnails_hashset: &mut HashSet<String>,
     ) -> Result<AudioMetadata, MetadataError>;
 }
 
@@ -55,7 +55,6 @@ impl MetadataExtractor for Mp3MetadataExtractor {
         &self,
         path: &str,
         thumbnails_dir: &str,
-        created_thumbnails_hashset: &mut HashSet<String>,
     ) -> Result<AudioMetadata, MetadataError> {
         let tag = id3::Tag::read_from_path(path).unwrap();
         let mut metadata = AudioMetadata::new();
@@ -109,9 +108,7 @@ impl MetadataExtractor for FlacMetadataExtractor {
         &self,
         path: &str,
         thumbnails_dir: &str,
-        created_thumbnails_hashset: &mut HashSet<String>,
     ) -> Result<AudioMetadata, MetadataError> {
-        // Extract metadata from a FLAC file.
         let tag = metaflac::Tag::read_from_path(path).unwrap();
         let mut metadata = AudioMetadata::new();
         metadata.artist = Self::extract_string_metadata(&tag, "ARTIST", Some("ALBUMARTIST"));
@@ -122,6 +119,82 @@ impl MetadataExtractor for FlacMetadataExtractor {
         metadata.disc = Self::extract_numeric_metadata(&tag, "DISCNUMBER");
         metadata.year = Self::extract_numeric_metadata(&tag, "DATE");
         metadata.thumbnail = FlacThumbnailGenerator::generate_thumbnail(
+            &path,
+            metadata.album.as_deref(),
+            thumbnails_dir,
+        );
+
+        Ok(metadata)
+    }
+}
+
+// pub struct OggMetadataExtractor;
+
+// impl OggMetadataExtractor {
+//     fn extract_vorbis_comment(metadata: &mut AudioMetadata, comments: &[(String, String)]) {
+//         for (key, value) in comments {
+//             match key.as_str() {
+//                 "ARTIST" | "PERFORMER" => metadata.artist = Some(value.clone()),
+//                 "TITLE" => metadata.title = Some(value.clone()),
+//                 "ALBUM" => metadata.album = Some(value.clone()),
+//                 "TRACKNUMBER" => metadata.position = value.parse().ok(),
+//                 "DISCNUMBER" => metadata.disc = value.parse().ok(),
+//                 "DATE" => metadata.year = value.parse().ok(),
+//                 _ => {}
+//             }
+//         }
+//     }
+// }
+
+// impl MetadataExtractor for OggMetadataExtractor {
+//     fn extract_metadata(
+//         &self,
+//         path: &str,
+//         _thumbnails_dir: &str, // Thumbnail generation is not handled here
+//     ) -> Result<AudioMetadata, MetadataError> {
+//         let file = File::open(path)?;
+//         let mut ogg_reader = OggStreamReader::new(file)?;
+
+//         let mut metadata = AudioMetadata::new();
+
+//         // Check if there are Vorbis comments, assumes Vorbis codec
+//         if let Some(comments) = ogg_reader.comment_hdrs() {
+//             Self::extract_vorbis_comment(&mut metadata, &comments.user_comments);
+//         }
+
+//         metadata.duration = ogg_reader.ident_hdr().map(|ident| {
+//             let total_samples = ogg_reader.len() as u32;
+//             let sample_rate = ident.audio_sample_rate;
+//             total_samples / sample_rate
+//         });
+
+//         Ok(metadata)
+//     }
+// }
+
+pub struct Mp4MetadataExtractor;
+
+impl Mp4MetadataExtractor {}
+
+impl MetadataExtractor for Mp4MetadataExtractor {
+    fn extract_metadata(
+        &self,
+        path: &str,
+        thumbnails_dir: &str,
+    ) -> Result<AudioMetadata, MetadataError> {
+        let tag = mp4ameta::Tag::read_from_path(path).unwrap();
+
+        let mut metadata = AudioMetadata::new();
+
+        metadata.artist = tag.artist().map(|s| s.to_string());
+        metadata.title = tag.title().map(|s| s.to_string());
+        metadata.album = tag.album().map(|s| s.to_string());
+        metadata.duration = tag.duration().map(|d| d.as_secs() as u32);
+        metadata.position = tag.track_number().map(|n| n as u32);
+        metadata.disc = tag.disc_number().map(|n| n as u32);
+        metadata.year = tag.year().map(|y: &str| y.parse().unwrap());
+
+        metadata.thumbnail = Mp4ThumbnailGenerator::generate_thumbnail(
             &path,
             metadata.album.as_deref(),
             thumbnails_dir,

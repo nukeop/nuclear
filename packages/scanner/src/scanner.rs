@@ -31,14 +31,13 @@ pub fn visit_file<F>(
     path: String,
     extractor_provider: F,
     thumbnails_dir: &str,
-    created_thumbnails_hashset: &mut HashSet<String>,
 ) -> Result<LocalTrack, ScannerError>
 where
     F: Fn(&str) -> Option<Box<dyn MetadataExtractor>>,
 {
     let extractor: Box<dyn MetadataExtractor> = extractor_provider(&path)
         .ok_or_else(|| ScannerError::new(&format!("Unsupported file format: {}", path), &path))?;
-    let metadata = extractor.extract_metadata(&path, thumbnails_dir, created_thumbnails_hashset);
+    let metadata = extractor.extract_metadata(&path, thumbnails_dir);
 
     match metadata {
         Ok(metadata) => Ok(LocalTrack {
@@ -97,7 +96,6 @@ mod tests {
             &self,
             _path: &str,
             _thumbnails_dir: &str,
-            _created_thumbnails_hashset: &mut HashSet<String>,
         ) -> Result<AudioMetadata, MetadataError> {
             return Ok(self.test_metadata.clone());
         }
@@ -124,13 +122,7 @@ mod tests {
         let path = "tests/test.mp3".to_string();
         let thumbnails_dir = "tests/thumbnails".to_string();
         let mut created_thumbnails_hashset: HashSet<String> = HashSet::new();
-        let local_track = visit_file(
-            path,
-            test_extractor_from_path,
-            &thumbnails_dir,
-            &mut created_thumbnails_hashset,
-        )
-        .unwrap();
+        let local_track = visit_file(path, test_extractor_from_path, &thumbnails_dir).unwrap();
         assert_eq!(local_track.filename, "test.mp3");
         assert_eq!(local_track.metadata.artist, Some("Test Artist".to_string()));
         assert_eq!(local_track.metadata.title, Some("Test Title".to_string()));
