@@ -4,6 +4,7 @@ mod error;
 mod js;
 mod local_track;
 mod metadata;
+mod profiling;
 mod scanner;
 mod thumbnails;
 use error::ScannerError;
