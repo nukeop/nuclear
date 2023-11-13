@@ -1,3 +1,5 @@
+use std::collections::HashSet;
+
 use derive_builder::Builder;
 use id3::TagLike;
 use metaflac;
@@ -41,6 +43,7 @@ pub trait MetadataExtractor {
         &self,
         path: &str,
         thumbnails_dir: &str,
+        created_thumbnails_hashset: &mut HashSet<String>,
     ) -> Result<AudioMetadata, MetadataError>;
 }
 
@@ -52,6 +55,7 @@ impl MetadataExtractor for Mp3MetadataExtractor {
         &self,
         path: &str,
         thumbnails_dir: &str,
+        created_thumbnails_hashset: &mut HashSet<String>,
     ) -> Result<AudioMetadata, MetadataError> {
         let tag = id3::Tag::read_from_path(path).unwrap();
         let mut metadata = AudioMetadata::new();
@@ -63,7 +67,12 @@ impl MetadataExtractor for Mp3MetadataExtractor {
         metadata.position = tag.track();
         metadata.disc = tag.disc();
         metadata.year = tag.year().map(|s| s as u32);
-        metadata.thumbnail = Mp3ThumbnailGenerator::generate_thumbnail(&path, thumbnails_dir);
+
+        metadata.thumbnail = Mp3ThumbnailGenerator::generate_thumbnail(
+            &path,
+            metadata.album.as_deref(),
+            thumbnails_dir,
+        );
 
         Ok(metadata)
     }
@@ -100,6 +109,7 @@ impl MetadataExtractor for FlacMetadataExtractor {
         &self,
         path: &str,
         thumbnails_dir: &str,
+        created_thumbnails_hashset: &mut HashSet<String>,
     ) -> Result<AudioMetadata, MetadataError> {
         // Extract metadata from a FLAC file.
         let tag = metaflac::Tag::read_from_path(path).unwrap();
@@ -111,9 +121,11 @@ impl MetadataExtractor for FlacMetadataExtractor {
         metadata.position = Self::extract_numeric_metadata(&tag, "TRACKNUMBER");
         metadata.disc = Self::extract_numeric_metadata(&tag, "DISCNUMBER");
         metadata.year = Self::extract_numeric_metadata(&tag, "DATE");
-        let thumbnail_content = tag.pictures().next().map(|p| p.data.clone()).unwrap();
-
-        metadata.thumbnail = FlacThumbnailGenerator::generate_thumbnail(&path, thumbnails_dir);
+        metadata.thumbnail = FlacThumbnailGenerator::generate_thumbnail(
+            &path,
+            metadata.album.as_deref(),
+            thumbnails_dir,
+        );
 
         Ok(metadata)
     }

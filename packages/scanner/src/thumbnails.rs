@@ -1,7 +1,5 @@
 use id3::Tag;
-use image::{
-    imageops::resize, imageops::FilterType, io::Reader as ImageReader, DynamicImage, ImageFormat,
-};
+use image::{imageops::resize, imageops::FilterType, io::Reader as ImageReader, ImageFormat};
 use image::{ImageBuffer, ImageError, ImageResult, Rgba};
 use md5;
 use metaflac::Tag as FlacTag;
@@ -11,14 +9,22 @@ use std::path::{Path, PathBuf};
 use crate::profiling::Profiler;
 
 pub trait ThumbnailGenerator {
-    fn generate_thumbnail(filename: &str, thumbnails_dir: &str) -> Option<String>;
+    fn generate_thumbnail(
+        filename: &str,
+        album: Option<&str>,
+        thumbnails_dir: &str,
+    ) -> Option<String>;
     fn read_image_data(filename: &str) -> Option<Vec<u8>>;
 }
 
 pub struct Mp3ThumbnailGenerator;
 impl ThumbnailGenerator for Mp3ThumbnailGenerator {
-    fn generate_thumbnail(filename: &str, thumbnails_dir: &str) -> Option<String> {
-        generate_thumbnail_common::<Self>(filename, thumbnails_dir)
+    fn generate_thumbnail(
+        filename: &str,
+        album: Option<&str>,
+        thumbnails_dir: &str,
+    ) -> Option<String> {
+        generate_thumbnail_common::<Self>(filename, album, thumbnails_dir)
     }
 
     fn read_image_data(filename: &str) -> Option<Vec<u8>> {
@@ -33,8 +39,12 @@ impl ThumbnailGenerator for Mp3ThumbnailGenerator {
 
 pub struct FlacThumbnailGenerator;
 impl ThumbnailGenerator for FlacThumbnailGenerator {
-    fn generate_thumbnail(filename: &str, thumbnails_dir: &str) -> Option<String> {
-        generate_thumbnail_common::<Self>(filename, thumbnails_dir)
+    fn generate_thumbnail(
+        filename: &str,
+        album: Option<&str>,
+        thumbnails_dir: &str,
+    ) -> Option<String> {
+        generate_thumbnail_common::<Self>(filename, album, thumbnails_dir)
     }
 
     fn read_image_data(filename: &str) -> Option<Vec<u8>> {
@@ -46,9 +56,11 @@ impl ThumbnailGenerator for FlacThumbnailGenerator {
 
 fn generate_thumbnail_common<T: ThumbnailGenerator>(
     filename: &str,
+    album: Option<&str>,
     thumbnails_dir: &str,
 ) -> Option<String> {
-    let thumbnail_path = create_and_get_thumbnail_path(filename, thumbnails_dir)?;
+    let filename_for_thumbnail = album.unwrap_or(filename);
+    let thumbnail_path = create_and_get_thumbnail_path(filename_for_thumbnail, thumbnails_dir)?;
 
     if Path::new(&thumbnail_path).exists() {
         Some(url_path_from_path(&thumbnail_path))

@@ -13,7 +13,7 @@ use js::set_properties_from_metadata;
 use local_track::LocalTrack;
 use neon::prelude::*;
 use scanner::{extractor_from_path, visit_directory, visit_file};
-use std::collections::LinkedList;
+use std::collections::{HashSet, LinkedList};
 use thumbnails::create_thumbnails_dir;
 
 fn handle_progress<'a>(
@@ -97,6 +97,9 @@ fn scan_folders(mut cx: FunctionContext) -> JsResult<JsArray> {
 
     // All directories have been scanned, now scan the files
     total_files_to_scan_num = files_to_scan_queue.len();
+
+    let mut created_thumbnails_hashset: HashSet<String> = HashSet::new();
+
     let scanned_local_tracks: Vec<Result<LocalTrack, ScannerError>> = files_to_scan_queue
         .iter()
         .enumerate()
@@ -105,6 +108,7 @@ fn scan_folders(mut cx: FunctionContext) -> JsResult<JsArray> {
                 file.clone(),
                 extractor_from_path,
                 thumbnails_dir_str.as_str(),
+                &mut created_thumbnails_hashset,
             );
 
             // Send progress back to JS
