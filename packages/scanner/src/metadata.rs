@@ -62,7 +62,12 @@ impl MetadataExtractor for Mp3MetadataExtractor {
         metadata.artist = tag.artist().map(|s| s.to_string());
         metadata.title = tag.title().map(|s| s.to_string());
         metadata.album = tag.album().map(|s| s.to_string());
-        metadata.duration = tag.duration();
+        let duration = mp3_duration::from_path(&path).map(|duration| duration.as_secs() as u32);
+
+        match duration {
+            Ok(duration) => metadata.duration = Some(duration),
+            Err(_) => metadata.duration = None,
+        }
         metadata.position = tag.track();
         metadata.disc = tag.disc();
         metadata.year = tag.year().map(|s| s as u32);
