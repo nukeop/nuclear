@@ -8,7 +8,7 @@ use crate::error::{MetadataError, ScannerError};
 use crate::local_track::LocalTrack;
 use crate::metadata::{
     AudioMetadata, AudioMetadataBuilder, FlacMetadataExtractor, MetadataExtractor,
-    Mp3MetadataExtractor,
+    Mp3MetadataExtractor, Mp4MetadataExtractor,
 };
 
 pub trait TagReader {
@@ -23,6 +23,8 @@ pub fn extractor_from_path(path: &str) -> Option<Box<dyn MetadataExtractor>> {
     match get_extension(path) {
         Some("mp3") => Some(Box::new(Mp3MetadataExtractor)),
         Some("flac") => Some(Box::new(FlacMetadataExtractor)),
+        Some("mp4") => Some(Box::new(Mp4MetadataExtractor)),
+        Some("m4a") => Some(Box::new(Mp4MetadataExtractor)),
         _ => None,
     }
 }

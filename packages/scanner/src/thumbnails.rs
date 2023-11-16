@@ -48,7 +48,7 @@ impl ThumbnailGenerator for Mp4ThumbnailGenerator {
     }
 
     fn read_image_data(filename: &str) -> Option<Vec<u8>> {
-        let mut tag = mp4ameta::Tag::read_from_path(filename).ok()?;
+        let tag = mp4ameta::Tag::read_from_path(filename).ok()?;
         tag.artwork().map(|a| a.data.to_vec())
     }
 }
