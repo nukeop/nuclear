@@ -114,7 +114,9 @@ impl MetadataExtractor for FlacMetadataExtractor {
         metadata.artist = Self::extract_string_metadata(&tag, "ARTIST", Some("ALBUMARTIST"));
         metadata.title = Self::extract_string_metadata(&tag, "TITLE", None);
         metadata.album = Self::extract_string_metadata(&tag, "ALBUM", None);
-        metadata.duration = Self::extract_numeric_metadata(&tag, "LENGTH");
+        let total_samples = tag.get_streaminfo().unwrap().total_samples;
+        let sample_rate = tag.get_streaminfo().unwrap().sample_rate;
+        metadata.duration = Some(total_samples as u32 / (sample_rate as u32));
         metadata.position = Self::extract_numeric_metadata(&tag, "TRACKNUMBER");
         metadata.disc = Self::extract_numeric_metadata(&tag, "DISCNUMBER");
         metadata.year = Self::extract_numeric_metadata(&tag, "DATE");
