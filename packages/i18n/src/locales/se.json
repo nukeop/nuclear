@@ -181,12 +181,12 @@
     "tracks-selected-singular": "spår vald",
     "tracks-singular": "spår",
     "tracks-plural": "spår",
-    "modified-at": "Last modified: ",
-    "never-modified": "Unknown",
-    "server-modified-at": "Server modified: ",
-    "upload-to-server": "Upload to server",
-    "download-from-server": "Download from server",
-    "number-of-tracks": "tracks"
+    "modified-at": "Senast modifierad: ",
+    "never-modified": "Okänd",
+    "server-modified-at": "Server ändrad: ",
+    "upload-to-server": "Ladda upp till server",
+    "download-from-server": "Ladda ned från server",
+    "number-of-tracks": "spår"
   },
   "plugins": {
     "add-a-plugin": "Lägg till en insticksmodul",
@@ -221,21 +221,21 @@
     "live": "Live",
     "stream-verification": {
       "tooltip": {
-        "unknown": "The status of this stream is unknown.",
-        "unverified": "This stream has not yet been verified by the community.",
-        "weakly-verified": "This stream has been verified by a couple of users.",
-        "verified": "This stream has been verified by the community.",
-        "verified-by-user": "This stream has been verified by you."
+        "unknown": "Statusen för denna ström är okänd.",
+        "unverified": "Denna ström har ännu inte verifierats av communityn.",
+        "weakly-verified": "Denna ström har verifierats av några användare.",
+        "verified": "Denna ström har blivit verifierad av communityn.",
+        "verified-by-user": "Denna ström har blivit verifierad av dig."
       },
       "stream-status": {
-        "unknown": "Unknown",
-        "unverified": "Unverified",
-        "weakly-verified": "Weakly verified",
-        "verified": "Verified",
-        "verified-by-user": "Verified by you"
+        "unknown": "Okänd",
+        "unverified": "Icke verifierad",
+        "weakly-verified": "Svagt verifierad",
+        "verified": "Verifierad",
+        "verified-by-user": "Verifierad av dig"
       },
-      "verify": "Verify",
-      "unverify": "Unverify"
+      "verify": "Verifiera",
+      "unverify": "Avverifiera"
     }
   },
   "search": {
@@ -407,20 +407,20 @@
       "minimize": "Minimize",
       "maximize": "Maximize",
       "go-to-dashboard": "Go to dashboard",
-      "go-to-downloads": "Go to downloads",
-      "go-to-lyrics": "Go to lyrics",
-      "go-to-plugins": "Go to plugins",
-      "go-to-search": "Go to search",
-      "go-to-settings": "Go to settings",
-      "go-to-equalizer": "Go to equalizer",
-      "go-to-visualizer": "Go to visualizer",
-      "go-to-playlists": "Go to playlists",
-      "go-to-favorite-tracks": "Go to favorite tracks",
-      "go-to-library": "Go to local library"
+      "go-to-downloads": "Gå till nerladdningar",
+      "go-to-lyrics": "Gå till låttext",
+      "go-to-plugins": "Gå till tillägg",
+      "go-to-search": "Hoppa till sökrutan",
+      "go-to-settings": "Gå till inställningar",
+      "go-to-equalizer": "Gå till equalizer",
+      "go-to-visualizer": "Gå till visualiserare",
+      "go-to-playlists": "Gå till spellistor",
+      "go-to-favorite-tracks": "Gå till favoritspår",
+      "go-to-library": "Gå till det lokala biblioteket"
     }
   },
   "listening-history": {
-    "title": "Listening history",
+    "title": "Lyssnings historik",
     "empty-state": "You haven't listened to anything yet.",
     "clear-history": "Clear history",
     "clear-history-confirm": "Are you sure you want to clear your listening history?",
