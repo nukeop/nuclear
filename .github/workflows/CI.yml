@@ -12,6 +12,9 @@ on:
     paths-ignore:
       - "**/*.md"
 
+env:
+  PYTHON_VERSION: "3.11"
+
 jobs:
   tests:
     runs-on: ${{ matrix.os }}
@@ -22,21 +25,25 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
+      - name: Set up Python ${{ env.PYTHON_VERSION }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
       - name: Cache npm packages
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: ~/.npm
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
       - name: Use Node.js 18
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v4
         with:
-          version: 18
+          node-version: 18
           cache: "npm"
       - name: Cache Node modules
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: node_modules
           key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
@@ -64,24 +71,28 @@ jobs:
           ]
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
+      - name: Set up Python ${{ env.PYTHON_VERSION }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
       - name: get-npm-version
         id: package-version
         uses: pchynoweth/action-get-npm-version@1.1.1
       - name: Cache npm packages
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: ~/.npm
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
       - name: Use Node.js 18
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v4
         with:
-          version: 18
+          node-version: 18
           cache: "npm"
       - name: Cache Node modules
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: node_modules
           key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
