@@ -1,9 +1,14 @@
-use std::fs::File;
+use std::{fs::File, io::BufReader};
 
 use derive_builder::Builder;
 use id3::TagLike;
-use lewton::inside_ogg::OggStreamReader;
 use metaflac;
+use symphonia::core::{
+    formats::FormatOptions,
+    io::MediaSourceStream,
+    meta::{MetadataOptions, MetadataRevision, StandardTagKey},
+    probe::Hint,
+};
 
 use crate::{
     error::MetadataError,
@@ -135,49 +140,80 @@ impl MetadataExtractor for FlacMetadataExtractor {
     }
 }
 
-// pub struct OggMetadataExtractor;
+pub struct OggMetadataExtractor;
 
-// impl OggMetadataExtractor {
-//     fn extract_vorbis_comment(metadata: &mut AudioMetadata, comments: &[(String, String)]) {
-//         for (key, value) in comments {
-//             match key.as_str() {
-//                 "ARTIST" | "PERFORMER" => metadata.artist = Some(value.clone()),
-//                 "TITLE" => metadata.title = Some(value.clone()),
-//                 "ALBUM" => metadata.album = Some(value.clone()),
-//                 "TRACKNUMBER" => metadata.position = value.parse().ok(),
-//                 "DISCNUMBER" => metadata.disc = value.parse().ok(),
-//                 "DATE" => metadata.year = value.parse().ok(),
-//                 _ => {}
-//             }
-//         }
-//     }
-// }
+impl OggMetadataExtractor {}
 
-// impl MetadataExtractor for OggMetadataExtractor {
-//     fn extract_metadata(
-//         &self,
-//         path: &str,
-//         _thumbnails_dir: &str, // Thumbnail generation is not handled here
-//     ) -> Result<AudioMetadata, MetadataError> {
-//         let file = File::open(path)?;
-//         let mut ogg_reader = OggStreamReader::new(file)?;
+impl MetadataExtractor for OggMetadataExtractor {
+    fn extract_metadata(
+        &self,
+        path: &str,
+        _thumbnails_dir: &str, // Thumbnail generation is not handled here
+    ) -> Result<AudioMetadata, MetadataError> {
+        let file = File::open(path);
+        if file.is_err() {
+            return Err(MetadataError::new(
+                format!("Could not open file {}", path).as_str(),
+            ));
+        }
 
-//         let mut metadata = AudioMetadata::new();
+        let file = File::open(path);
 
-//         // Check if there are Vorbis comments, assumes Vorbis codec
-//         if let Some(comments) = ogg_reader.comment_hdrs() {
-//             Self::extract_vorbis_comment(&mut metadata, &comments.user_comments);
-//         }
+        if let Err(_) = file {
+            return Err(MetadataError::new(
+                format!("Could not open file {}", path).as_str(),
+            ));
+        }
 
-//         metadata.duration = ogg_reader.ident_hdr().map(|ident| {
-//             let total_samples = ogg_reader.len() as u32;
-//             let sample_rate = ident.audio_sample_rate;
-//             total_samples / sample_rate
-//         });
+        let mss = MediaSourceStream::new(Box::new(file.unwrap()), Default::default());
 
-//         Ok(metadata)
-//     }
-// }
+        let meta_opts: MetadataOptions = Default::default();
+        let fmt_opts: FormatOptions = Default::default();
+
+        let mut hint = Hint::new();
+        hint.with_extension("ogg");
+
+        let mut probed = symphonia::default::get_probe()
+            .format(&hint, mss, &fmt_opts, &meta_opts)
+            .expect("unsupported format");
+
+        if let Some(metadata_rev) = probed.format.metadata().current() {
+            let tags = metadata_rev.tags();
+        }
+
+        let mut metadata = AudioMetadata::new();
+
+        if let Some(mut meta) = probed.format.metadata().current() {
+            for tag in meta.tags().iter() {
+                if tag.is_known() {
+                    match tag.std_key {
+                        Some(StandardTagKey::TrackTitle) => {
+                            metadata.title = Some(tag.value.to_string());
+                        }
+                        Some(StandardTagKey::Artist) => {
+                            metadata.artist = Some(tag.value.to_string());
+                        }
+                        Some(StandardTagKey::Album) => {
+                            metadata.album = Some(tag.value.to_string());
+                        }
+                        Some(StandardTagKey::TrackNumber) => {
+                            metadata.position = Some(tag.value.to_string().parse::<u32>().unwrap());
+                        }
+                        Some(StandardTagKey::DiscNumber) => {
+                            metadata.disc = Some(tag.value.to_string().parse::<u32>().unwrap());
+                        }
+                        Some(StandardTagKey::Date) => {
+                            println!("Year: {:?}", tag.value);
+                            metadata.year = Some(tag.value.to_string().parse::<u32>().unwrap());
+                        }
+                        _ => {}
+                    }
+                }
+            }
+        }
+        Ok(metadata)
+    }
+}
 
 pub struct Mp4MetadataExtractor;
 
