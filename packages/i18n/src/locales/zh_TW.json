@@ -12,21 +12,21 @@
   },
   "app": {
     "collection": "收藏",
-    "dashboard": "控制台",
+    "dashboard": "主頁",
     "downloads": "下載",
     "equalizer": "等化器",
     "favorite-albums": "最喜歡的專輯",
     "favorite-artists": "最喜歡的藝術家",
     "favorite-tracks": "我的最愛",
-    "library": "本機音樂庫",
-    "listening-history": "Listening History",
+    "library": "本機媒體庫",
+    "listening-history": "聆聽紀錄",
     "lyrics": "歌詞",
     "main": "主要設定",
     "playlists": "播放清單",
     "plugins": "擴充套件",
-    "search": "搜尋",
+    "search": "搜尋結果",
     "settings": "設定",
-    "visualizer": "視覺化工具",
+    "visualizer": "視覺效果",
     "user-panel": {
       "actions-tooltip": "使用者操作",
       "sign-up": "註冊/登入",
@@ -37,8 +37,8 @@
   "artist": {
     "add-all": "新增全部",
     "count": "播放次數",
-    "queue": "將所有歌曲新增到播放清單",
-    "similar": "相關歌手",
+    "queue": "將所有歌曲新增到播放佇列",
+    "similar": "類似的藝人",
     "title": "音樂標題",
     "tour": "巡迴演出"
   },
@@ -64,19 +64,19 @@
   "downloads": {
     "clear": "清除已完成歌曲",
     "completion": "完成",
-    "empty": "下載列為空",
-    "empty-help": "把歌曲下載後,會顯示在這裡。",
+    "empty": "還沒有下載任何歌曲",
+    "empty-help": "您下載的曲目將會顯示在這裡",
     "header": "下載",
     "name": "名字",
     "status": "狀態"
   },
   "equalizer": {
     "classical": "古典",
-    "club": "Club",
-    "custom": "Custom",
+    "club": "俱樂部",
+    "custom": "自訂",
     "default": "預設",
-    "full-bass": "Full Bass",
-    "full-treble": "Full Treble",
+    "full-bass": "重低音",
+    "full-treble": "重高音",
     "pop": "流行",
     "presets": "預設值",
     "reggae": "雷鬼",
@@ -97,13 +97,13 @@
     "empty": "我的最愛為空",
     "empty-help": "嘗試將一些藝術家添加到收藏夾，他們會出現在這裡！",
     "header": "我的最愛",
-    "play-random": "Play a random track from your favorites",
+    "play-random": "隨機播放喜好曲目",
     "title": "音樂標題"
   },
   "help": {
-    "about": "關於",
+    "about": "關於 Nuclear 音樂播放器",
     "contributors": "前十位貢獻者",
-    "header": "免費的串流播放軟體",
+    "header": "免費且開源的串流播放媒體（桌面端）",
     "released": "遵循 AGPL-3.0 發行",
     "report": "提交issues或新的功能",
     "thanks": "非常感謝 Github 上貢獻者的貢獻，您的貢獻對本程式的誕生至關重要。"
@@ -112,7 +112,7 @@
     "add": "新建資料夾",
     "album": "專輯",
     "artist": "演出者",
-    "empty": "資料庫為空",
+    "empty": "媒體庫是空的",
     "empty-help": "嘗試使用上方按鈕添加一些音樂",
     "filter-placeholder": "篩選...",
     "header": "本機",
@@ -127,19 +127,19 @@
     "not-found": "這首歌沒有歌詞資料"
   },
   "option-control": {
-    "rate": "Playback speed",
-    "autoradio": "自動播放",
+    "rate": "播放速度",
+    "autoradio": "自動接續播放",
     "loop": "循環播放",
     "mini-player": "最小化播放器介面",
     "shuffle": "隨機播放"
   },
   "player": {
-    "next-button": "下一曲",
+    "next-button": "[下一首曲目] 按鈕",
     "play-pause-button": "播放/暫停",
     "previous-button": "上一曲"
   },
   "playlists": {
-    "add-selected-tracks-to-downloads": "將選中的添加到下載中",
+    "add-selected-tracks-to-downloads": "下載當前選中的曲目",
     "add-selected-tracks-to-favorites": "將選中的添加到最喜歡的",
     "add-selected-tracks-to-queue": "將所選加入至隊列",
     "album": "專輯",
@@ -156,7 +156,7 @@
     "export-fail-title": "導出播放列表失敗",
     "export-success-title": "播放列表導出成功",
     "header": "你的播放列表",
-    "import-progress": "Import progress",
+    "import-progress": "匯入進度",
     "spotify-import-placeholder": "貼上一個 Spotify 歌單網址",
     "dialog-placeholder": "播放清單名稱...",
     "dialog-accept": "保存",
@@ -179,18 +179,18 @@
     "title": "音樂標題",
     "tracks-selected-plural": "音軌已選中",
     "tracks-selected-singular": "音軌已選中",
-    "tracks-singular": "track",
-    "tracks-plural": "tracks",
+    "tracks-singular": "曲目",
+    "tracks-plural": "曲目",
     "modified-at": "上次修改時間: ",
     "never-modified": "未知的",
-    "server-modified-at": "Server modified: ",
-    "upload-to-server": "Upload to server",
-    "download-from-server": "Download from server",
-    "number-of-tracks": "tracks"
+    "server-modified-at": "伺服器已編輯: ",
+    "upload-to-server": "上傳到伺服器",
+    "download-from-server": "從伺服器下載",
+    "number-of-tracks": "曲目"
   },
   "plugins": {
     "add-a-plugin": "新增插件",
-    "header": "插件",
+    "header": "擴充套件",
     "lyrics-providers": "歌詞提供者",
     "meta-providers": "元數據提供者",
     "placeholder": "選擇預設音樂串流來源:",
@@ -221,21 +221,21 @@
     "live": "直播",
     "stream-verification": {
       "tooltip": {
-        "unknown": "The status of this stream is unknown.",
-        "unverified": "This stream has not yet been verified by the community.",
-        "weakly-verified": "This stream has been verified by a couple of users.",
-        "verified": "This stream has been verified by the community.",
-        "verified-by-user": "This stream has been verified by you."
+        "unknown": "此串流狀態未知",
+        "unverified": "此串流尚未得到社群的認證",
+        "weakly-verified": "此串流已由部分使用者認證",
+        "verified": "此串流已得到社群的認證",
+        "verified-by-user": "此串流已由您認證"
       },
       "stream-status": {
-        "unknown": "Unknown",
-        "unverified": "Unverified",
-        "weakly-verified": "Weakly verified",
-        "verified": "Verified",
-        "verified-by-user": "Verified by you"
+        "unknown": "未知的",
+        "unverified": "未認證",
+        "weakly-verified": "較為薄弱的驗證",
+        "verified": "已驗證",
+        "verified-by-user": "已由您驗證"
       },
-      "verify": "Verify",
-      "unverify": "Unverify"
+      "verify": "驗證",
+      "unverify": "未驗證"
     }
   },
   "search": {
@@ -264,13 +264,13 @@
   "settings": {
     "api-port": "API 網路埠",
     "api-url": "",
-    "audio": "Audio",
+    "audio": "音訊",
     "autoradio": "自動播放",
     "autoradio-craziness": "Autoradio瘋狂度",
     "autoradio-craziness-description": "Autoradio 會自動選擇與crazier中更不相似的歌曲",
-    "autoradio-description": "當隊列結束時自動添加相似音軌",
-    "listening-history": "Listening history",
-    "listening-history-description": "Log the tracks you listen to, a la Last.fm. The history is stored offline.",
+    "autoradio-description": "當佇列結束時自動添加相似曲目",
+    "listening-history": "聆聽紀錄",
+    "listening-history-description": "儲存你的聆聽記錄，就像Last.fm一樣。\n此聆聽記錄是離線儲存的。",
     "compact-menu-bar": "使用最小化工具列",
     "compact-queue-bar": "使用最小化播放佇列",
     "developer": "開發者設定",
@@ -289,7 +289,7 @@
     "github-description": "登入 GitHub 並將歌曲清單分享到網路 (即將期待).",
     "github-title": "Github",
     "http": "HTTP API",
-    "invidious-url": "有害的url實例",
+    "invidious-url": "Invidious 事件 URL",
     "language": "語言",
     "language-placeholder": "設定語言",
     "lastfm-connect": "連接到 Last.fm",
@@ -299,44 +299,44 @@
     "less": "收起",
     "login": "登入",
     "logout": "登出",
-    "loop-after-queue-end": "到達最後曲目後自動循環",
+    "loop-after-queue-end": "重複播放佇列",
     "mastodon-authorization-token-label": "授權token",
     "mastodon-authorize": "授權",
     "mastodon-authorized": "Nuclear獲授權發表於 ",
     "mastodon-awaiting-authorization": "Nuclear已於{{instanceUrl}} 註冊。等待授權中。",
     "mastodon-description": "",
     "mastodon-instance-label": "Mastodon實例URL",
-    "mastodon-post-format-description": "Nuclear will post a status on Mastodon after each track completes playing. The above string will be the template for each post, with {{artist}}, {{title}}, and {{url}} replaced with the artist, title, and a link to the track respectively.",
+    "mastodon-post-format-description": "每首曲目播放完畢後，Nuclear將在Mastodon上顯示狀態。 上述字串將是每篇帖子的範本， {{artist}}、{{title}} 和{{url}} 分別替換為藝術家、標題和曲目連結。",
     "mastodon-post-format-label": "帖子格式",
     "mastodon-title": "",
-    "normalize": "Normalize volume",
-    "normalize-description": "Automatically adjust volume of tracks so that they are played at the same level. This needs to fetch the whole track to work, so it may cause a delay between tracks.",
+    "normalize": "音量平衡",
+    "normalize-description": "自動音量平衡：讓曲目間在相同音量播放。但這需要獲取整個曲目才能工作，因此可能會導致曲目之間的延遲。",
     "nuclear-identity-service-url": "Nuclear 識別服務網址",
     "nuclear-playlists-service-url": "Nulear 歌單服務網址",
     "mini-player": "使用迷你樣式播放器",
     "more": "更多",
-    "discord-rich-presence": "Toggle discord rich presence (requires restart)",
-    "notification-timeout": "超時提醒",
+    "discord-rich-presence": "在Discord中顯示正在播放的音樂 (需要重新啟動)",
+    "notification-timeout": "通知逾時",
     "notlogged": "未登入",
-    "playback": "播放",
+    "playback": "重播",
     "program-settings": "程式設定",
-    "promoted-artists": "Show promoted artists in the dashboard",
-    "promoted-artists-description": "This is a reel of interesting, handpicked indie artists you might like. No one's receiving any compensation for this.",
+    "promoted-artists": "在主頁中顯示推薦的藝術家",
+    "promoted-artists-description": "這是一系列您可能會感興趣的、精挑細選的獨立藝術家。沒有人會因此得到任何報酬。",
     "saving-in": "儲存於:",
-    "seek-iteration": "按下方向鍵時前進/後退的秒數",
-    "show-tray-icon": "Show tray icon",
-    "shuffle-queue": "隨機曲目",
-    "shuffle-when-going-back": "播放先前的曲目",
-    "shuffle-when-going-back-description": "當隨機播放處於激活狀態且點擊上一曲目按鈕時，播放一個隨機曲目",
+    "seek-iteration": "按下鍵盤方向鍵時，曲目搜尋快轉/後退的秒數",
+    "show-tray-icon": "顯示系統匣圖示",
+    "shuffle-queue": "隨機播放歌曲",
+    "shuffle-when-going-back": "對之前的曲目進行隨機播放",
+    "shuffle-when-going-back-description": "當隨機播放啟用時，點擊上一首曲目按鈕，將隨機播放歌曲。",
     "social": "社交",
     "skip-sponsorblock": "跳過非音樂片段",
-    "skip-sponsorblock-description": "Playback skips non-music segment from SponsorBlock (https://sponsor.ajay.app/)",
+    "skip-sponsorblock-description": "跳過非音樂片段\n由 SponsorBlock (https://sponsor.ajay.app/)提供。",
     "streaming": "串流",
     "track-duration": "在進度條上顯示音軌長度",
     "user": "帳號:",
-    "user-id": "User ID",
-    "use-stream-verification": "Use stream verification",
-    "use-stream-verification-description": "Use stream verification. Loads the streams the community has verified as being correct for the tracks you play. Also allows you to vote on streams. See documentation for details.",
+    "user-id": "使用者ID",
+    "use-stream-verification": "使用串流驗證",
+    "use-stream-verification-description": "使用串流驗證。將您正在播放的歌曲載入社群的正確驗證，並且允許您對串流進行投票。有關詳細訊息，請參閱文件。",
     "youtube": "YouTube",
     "yt-api-key": "YouTube API Key"
   },
@@ -362,13 +362,13 @@
     "download-toast-title": "歌曲下載中",
     "favorite-toast-body": "{{artist}} - {{track}} 已加入最愛.",
     "favorite-toast-title": "歌曲已新增到我的最愛",
-    "play-next": "播放下一首",
+    "play-next": "插播",
     "play-now": "立即播放",
     "playlist-toast-body": "{{artist}} - {{track}} 已加入歌單.",
     "playlist-toast-title": "曲目已加入播放清單"
   },
   "track-table": {
-    "add-selected-tracks-to-queue": "Add selected to queue",
+    "add-selected-tracks-to-queue": "將所選加入至佇列",
     "add-selected-tracks-to-downloads": "將選中的增加到下載項目中",
     "add-selected-tracks-to-favorites": "將選中的加到我的最愛",
     "play-selected-tracks-now": "播放所選歌曲",
@@ -380,14 +380,14 @@
   },
   "command-palette": {
     "search-placeholder": "您想做什麼呢？",
-    "empty-state-help": "Can't seem to find what you're looking for? Try the help command.",
-    "protip-text": "PROTIP:",
+    "empty-state-help": "找不到你要找的東西嗎？ 嘗試使用幫助命令。",
+    "protip-text": "小提示:",
     "protip-content": "方向鍵瀏覽, Enter 鍵選取, Esc鍵關閉",
     "categories": {
-      "playback": "Playback",
-      "queue": "Queue",
-      "navigation": "Navigation",
-      "application": "Application"
+      "playback": "重播",
+      "queue": "佇列",
+      "navigation": "導覽",
+      "application": "應用程式"
     },
     "actions": {
       "play": "播放",
@@ -409,56 +409,56 @@
       "go-to-dashboard": "前往控制臺",
       "go-to-downloads": "前往下載",
       "go-to-lyrics": "前往歌詞頁面",
-      "go-to-plugins": "Go to plugins",
+      "go-to-plugins": "移至擴充套件",
       "go-to-search": "前往搜尋",
       "go-to-settings": "前往設定",
       "go-to-equalizer": "前往等化器",
-      "go-to-visualizer": "Go to visualizer",
+      "go-to-visualizer": "移至視覺效果",
       "go-to-playlists": "前往播放清單",
       "go-to-favorite-tracks": "前往我的最愛",
-      "go-to-library": "Go to local library"
+      "go-to-library": "移至本地媒體庫"
     }
   },
   "listening-history": {
-    "title": "Listening history",
-    "empty-state": "You haven't listened to anything yet.",
-    "clear-history": "Clear history",
-    "clear-history-confirm": "Are you sure you want to clear your listening history?",
-    "clear-history-confirm-yes": "Confirm",
-    "clear-history-confirm-no": "Cancel",
-    "clear-history-toast": "Listening history cleared"
+    "title": "聆聽紀錄",
+    "empty-state": "您尚未播放任何歌曲",
+    "clear-history": "清除歷史紀錄",
+    "clear-history-confirm": "您確定要清除聆聽記錄嗎？",
+    "clear-history-confirm-yes": "確認",
+    "clear-history-confirm-no": "取消",
+    "clear-history-toast": "聆聽紀錄已清除"
   },
   "forms": {
     "nuclear-sign-up": {
       "header": "註冊",
-      "secondary-header": "Sign up to Nuclear Web Services",
-      "side-paragraph-1": "NWS enables you to backup your playlists online and share them.",
-      "side-paragraph-2": "Providing your email is optional; it will allow you to recover your account if you forget your password.",
+      "secondary-header": "註冊 Nuclear 的網頁服務",
+      "side-paragraph-1": "使用NWS服務，您可以線上備份和共享播放列表。",
+      "side-paragraph-2": "提供電子郵件是可選的；如果您忘記密碼，它將允許您恢復您的帳戶。",
       "username-label": "帳號",
       "email-label": "電子信箱",
       "password-label": "密碼",
       "sign-up-button": "註冊",
       "validation": {
         "username": {
-          "length": "Username must be 4 characters or more",
-          "required": "Username is required"
+          "length": "使用者名稱必須為4個字元或以上",
+          "required": "使用者名稱為必填欄位"
         },
         "email": {
-          "invalid": "Email must be a valid email"
+          "invalid": "必須為有效的電子郵件地址"
         },
         "password": {
-          "length": "Password must be 6 characters or more",
-          "required": "Password is required"
+          "length": "密碼必須為 6 個字元或以上",
+          "required": "密碼為必填欄位"
         }
       }
     },
     "nuclear-sign-in": {
-      "header": " Sign in",
-      "username-label": "Username",
-      "password-label": "Password",
-      "no-account-label": "Don't have an account?",
-      "no-account-link": "Sign up",
-      "sign-in-button": "Sign in"
+      "header": " 登入",
+      "username-label": "使用者名稱",
+      "password-label": "密碼",
+      "no-account-label": "還沒有帳戶嗎？",
+      "no-account-link": "註冊",
+      "sign-in-button": "登入"
     }
   }
 }
