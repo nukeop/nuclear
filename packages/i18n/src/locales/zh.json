@@ -28,7 +28,7 @@
     "settings": "设置",
     "visualizer": "可视化",
     "user-panel": {
-      "actions-tooltip": "User actions",
+      "actions-tooltip": "用户操作",
       "sign-up": "注册/登录",
       "sign-out": "注销"
     },
@@ -71,14 +71,14 @@
     "status": "状态"
   },
   "equalizer": {
-    "classical": "Classical",
+    "classical": "古典",
     "club": "Club",
     "custom": "自定义",
     "default": "默认",
     "full-bass": "全低音",
     "full-treble": "Full Treble",
     "pop": "Pop",
-    "presets": "Presets",
+    "presets": "默认",
     "reggae": "Reggae",
     "rock": "Rock"
   },
@@ -251,7 +251,7 @@
     "placeholder": "搜索...",
     "playlist": "播放列表",
     "playlist_plural": "播放列表",
-    "podcast": "Podcast",
+    "podcast": "播客",
     "queue-add": "将全部歌曲添加到播放列表",
     "track": "音乐标题",
     "track_plural": "曲目",
