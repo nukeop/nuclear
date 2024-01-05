@@ -19,7 +19,7 @@
     "favorite-artists": "Musisi Favorit",
     "favorite-tracks": "Lagu Favorit",
     "library": "Daftar Koleksi",
-    "listening-history": "Listening History",
+    "listening-history": "Riwayat Mendengarkan",
     "lyrics": "Lirik",
     "main": "Main",
     "playlists": "Daftar Putar",
@@ -51,15 +51,15 @@
     "genres": "Genre",
     "news": "Berita",
     "playcounts": "Jumlah pemutaran",
-    "playlists": "Trending",
+    "playlists": "Sedang Tren",
     "popular-track-title": "Lagu Teratas dari Deezer",
     "title": "Judul",
     "top": "Lagu Teratas",
-    "trending-playlists": "Trending playlists",
-    "trending-artists": "Trending artists",
-    "trending-albums": "Trending albums",
+    "trending-playlists": "Daftar Putar yang Lagi Tren",
+    "trending-artists": "Artis yang sedang hangat",
+    "trending-albums": "Album yang lagi ngetren",
     "filter": "Filter...",
-    "nothing-found": "Nothing found."
+    "nothing-found": "Tidak ditemukan."
   },
   "downloads": {
     "clear": "Hapus unduhan yang selesai",
@@ -97,7 +97,7 @@
     "empty": "Belum ada lagu favorit",
     "empty-help": "Tambahkan lagu ke dalam daftar favorit agar muncul di halaman ini!",
     "header": "Lagu favoritmu",
-    "play-random": "Play a random track from your favorites",
+    "play-random": "Putar trek acak dari favoritmu",
     "title": "Judul"
   },
   "help": {
@@ -127,7 +127,7 @@
     "not-found": "Lirik untuk lagu ini tidak ditemukan"
   },
   "option-control": {
-    "rate": "Playback speed",
+    "rate": "Kecepatan pemutaran",
     "autoradio": "Autoradio",
     "loop": "Ulang",
     "mini-player": "Miniplayer",
@@ -221,21 +221,21 @@
     "live": "Live",
     "stream-verification": {
       "tooltip": {
-        "unknown": "The status of this stream is unknown.",
-        "unverified": "This stream has not yet been verified by the community.",
+        "unknown": "Status stream ini tidak diketahui.",
+        "unverified": "Stream ini tidak diverifikasi oleh komunitas.",
         "weakly-verified": "This stream has been verified by a couple of users.",
-        "verified": "This stream has been verified by the community.",
-        "verified-by-user": "This stream has been verified by you."
+        "verified": "Stream ini sudah diverifikasi oleh komunitas.",
+        "verified-by-user": "Stream ini sudah diverifikasi oleh anda."
       },
       "stream-status": {
-        "unknown": "Unknown",
-        "unverified": "Unverified",
-        "weakly-verified": "Weakly verified",
-        "verified": "Verified",
-        "verified-by-user": "Verified by you"
+        "unknown": "Tidak diketahui",
+        "unverified": "Tidak diverifikasi",
+        "weakly-verified": "Verifikasi mingguan",
+        "verified": "Diverifikasi",
+        "verified-by-user": "Diverifikasi oleh anda"
       },
-      "verify": "Verify",
-      "unverify": "Unverify"
+      "verify": "Verifikasi",
+      "unverify": "Tidak diverifikasi"
     }
   },
   "search": {
@@ -269,8 +269,8 @@
     "autoradio-craziness": "Autoradio craziness",
     "autoradio-craziness-description": "Autoradio akan memilih lagu yang kurang mirip dengan yang sudah masuk ke daftar antrian",
     "autoradio-description": "Tambahkan lagu yang mirip secara otomatis di akhir daftar antrian",
-    "listening-history": "Listening history",
-    "listening-history-description": "Log the tracks you listen to, a la Last.fm. The history is stored offline.",
+    "listening-history": "Riwayat mendengarkan",
+    "listening-history-description": "Log trek yang anda dengarkan ke, Last.fm. Riwayat akan disimpan secara luring.",
     "compact-menu-bar": "Gunakan gaya ringkas untuk papan menu",
     "compact-queue-bar": "Gunakan gaya ringkas untuk papan antrian",
     "developer": "Pengaturan pengembang",
