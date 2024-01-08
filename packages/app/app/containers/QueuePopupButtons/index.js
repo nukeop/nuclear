@@ -23,6 +23,7 @@ const QueuePopupButtons = ({
   withAddToFavorites,
   withAddToDownloads,
   withAddToPlaylist,
+  withAddToBlacklist,
   handlePlayNow,
   handleAddFavorite,
   handleAddToDownloads,
@@ -69,6 +70,14 @@ const QueuePopupButtons = ({
         label='Download'
       />
     )}
+    {withAddToBlacklist && (
+      <PopupButton
+        onClick={null}
+        ariaLabel='Blacklist this track'
+        icon='lock'
+        label='Blacklist'
+      />
+    )}
   </>
 );
 
@@ -104,7 +113,8 @@ QueuePopupButtons.propTypes = {
   withPlayNow: PropTypes.bool,
   withAddToFavorites: PropTypes.bool,
   withAddToDownloads: PropTypes.bool,
-  withAddToPlaylist: PropTypes.bool
+  withAddToPlaylist: PropTypes.bool,
+  withAddToBlacklist: PropTypes.bool
 };
 
 QueuePopupButtons.defaultProps = {
@@ -115,7 +125,8 @@ QueuePopupButtons.defaultProps = {
   withAddToPlaylist: true,
   withPlayNow: true,
   withAddToFavorites: true,
-  withAddToDownloads: true
+  withAddToDownloads: true,
+  withAddToBlacklist: true
 };
 
 export default compose(
