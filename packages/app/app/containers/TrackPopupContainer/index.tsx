@@ -18,6 +18,7 @@ export type TrackPopupContainerProps = {
   withAddToFavorites?: boolean;
   withAddToPlaylist?: boolean;
   withAddToDownloads?: boolean;
+  withAddToBlacklist?: boolean;
 };
 
 const TrackPopupContainer: React.FC<TrackPopupContainerProps> = ({
@@ -31,7 +32,8 @@ const TrackPopupContainer: React.FC<TrackPopupContainerProps> = ({
   withPlayNow=true,
   withAddToFavorites=true,
   withAddToPlaylist=true,
-  withAddToDownloads=true
+  withAddToDownloads=true,
+  withAddToBlacklist=true
 }) => {
   const props = useTrackPopupProps(track, thumb);
 
@@ -47,6 +49,7 @@ const TrackPopupContainer: React.FC<TrackPopupContainerProps> = ({
     withAddToFavorites={withAddToFavorites}
     withAddToPlaylist={withAddToPlaylist}
     withAddToDownloads={withAddToDownloads}
+    withAddToBlacklist={withAddToBlacklist}
 
     {...props}
   />;

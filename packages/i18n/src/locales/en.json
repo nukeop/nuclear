@@ -360,6 +360,7 @@
     "download": "Download",
     "download-toast-body": "{{artist}} - {{track}} has been added to downloads.",
     "download-toast-title": "Track added to downloads",
+    "blacklist": "Blacklist",
     "favorite-toast-body": "{{artist}} - {{track}} has been added to favorites.",
     "favorite-toast-title": "Favorite track added",
     "play-next": "Play next",

@@ -25,6 +25,7 @@ export type TrackPopupProps = {
   withAddToFavorites?: boolean;
   withAddToPlaylist?: boolean;
   withAddToDownloads?: boolean;
+  withAddToBlacklist?: boolean;
 
   onAddToQueue?: () => void;
   onPlayNext?: () => void;
@@ -43,6 +44,7 @@ export type TrackPopupStrings = {
   textAddToPlaylist: string;
   textCreatePlaylist: string;
   textAddToDownloads: string;
+  textAddToBlacklist: string;
   createPlaylistDialog: {
     title: string;
     placeholder: string;
@@ -64,6 +66,7 @@ const TrackPopup: React.FC<TrackPopupProps> = ({
   withAddToFavorites=true,
   withAddToPlaylist=true,
   withAddToDownloads=true,
+  withAddToBlacklist=true,
   strings={
     textAddToQueue: 'Add to queue',
     textPlayNow: 'Play now',
@@ -72,6 +75,7 @@ const TrackPopup: React.FC<TrackPopupProps> = ({
     textAddToPlaylist: 'Add to playlist',
     textCreatePlaylist: 'Create new playlist',
     textAddToDownloads: 'Download',
+    textAddToBlacklist: 'Blacklist',
     createPlaylistDialog: {
       title: 'Input playlist name:',
       placeholder: 'Playlist name',
@@ -169,6 +173,16 @@ const TrackPopup: React.FC<TrackPopupProps> = ({
             ariaLabel='Download this track'
             icon='download'
             label={strings.textAddToDownloads}
+          />
+        )}
+
+        {withAddToBlacklist && (
+          <PopupButton
+            data-testid='track-popup-blacklist'
+            onClick={null}
+            ariaLabel='Blacklist this track'
+            icon='lock'
+            label={strings.textAddToBlacklist}
           />
         )}
       </ContextPopup>

@@ -117,6 +117,7 @@ function TrackTableContainer<T extends Track> ({
     textAddToPlaylist: popupTranstation('add-to-playlist'),
     textCreatePlaylist: popupTranstation('create-playlist'),
     textAddToDownloads: popupTranstation('download'),
+    textAddToBlacklist: popupTranstation('blacklist'),
     createPlaylistDialog: {
       title: popupTranstation('create-playlist-dialog-title'),
       placeholder: popupTranstation('create-playlist-dialog-placeholder'),

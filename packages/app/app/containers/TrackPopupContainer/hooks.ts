@@ -117,6 +117,7 @@ export const useTrackPopupProps = (track, thumb) => {
     textAddToPlaylist: t('add-to-playlist'),
     textCreatePlaylist: t('create-playlist'),
     textAddToDownloads: t('download'),
+    textAddToBlacklist: t('blacklist'),
     createPlaylistDialog: {
       title: t('create-playlist-dialog-title'),
       placeholder: t('create-playlist-dialog-placeholder'),
