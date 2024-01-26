@@ -114,14 +114,14 @@
     "artist": "Előadó",
     "empty": "A könyvtár üres",
     "empty-help": "Try adding some music using the button above.",
-    "filter-placeholder": "Filter...",
-    "header": "Local Library",
-    "no-search-results": "No search results",
-    "no-search-results-help": "No tracks found with the given name, album, or artist.",
-    "title": "Title"
+    "filter-placeholder": "Szűrő...",
+    "header": "Helyi könyvtár",
+    "no-search-results": "Nincsenek találatok",
+    "no-search-results-help": "Nincsenek találatok ezzel a névvel, albummal, vagy előadóval.",
+    "title": "Cím"
   },
   "lyrics": {
-    "by-artist": "by {{artist}}",
+    "by-artist": "{{artist}} által",
     "empty": "Nothing is playing.",
     "empty-help": "Add some music to the queue to display the lyrics here!",
     "not-found": "No lyrics were found for this song."
