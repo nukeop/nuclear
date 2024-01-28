@@ -162,6 +162,23 @@ section.intro {
     .cta {
         width: 85%;
 
+        .arrow {
+            position: absolute;
+            transform: translateX(200px);
+
+            @media screen and (max-width: $sm) {
+                transform: translate(180px, -20px) scale(0.75, 0.75);
+            }
+            @media screen and (max-width: $xsm) {
+                transform: translate(150px, -30px) scale(0.6, 0.6);
+            }
+
+            // Special exception breakpoint
+            @media screen and (max-width: 480px) {
+                transform: translate(100px, -40px) scale(0.5, 0.5);
+            }
+        }
+
         @media screen and (max-width: $md) {
             width: 600px;
 
