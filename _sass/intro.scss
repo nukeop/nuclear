@@ -160,7 +160,6 @@ section.intro {
     }
 
     .cta {
-        padding-top: 48px;
         width: 85%;
 
         @media screen and (max-width: $md) {
@@ -175,6 +174,7 @@ section.intro {
             width: auto;
         }
     }
+
 
     .social-proof {
         display: flex;
@@ -249,15 +249,25 @@ section.intro {
             border-radius: 4px;
             flex: 1 1 auto;
             text-decoration: none;
+            transition: all 0.2s ease-in-out;
 
             &:first-child {
-                background: $blue;
+                background: linear-gradient(90deg, $pink 0%, $purple 100%);
                 margin-right: 24px;
+                border: 3px solid lighten($pink, 10);
+
+                &:hover {
+                    background: linear-gradient(90deg, lighten($pink, 2) 0%, lighten($purple, 2) 100%);
+                }
             }
 
             &:last-child {
                 background: transparent;
                 border: 2px solid $white;
+
+                &:hover {
+                    background: rgba($white, 0.1);
+                }
             }
         }
     }

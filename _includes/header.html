@@ -1,7 +1,9 @@
 <header>
   <div class='header-container'>
 
-    <img src="{{ "/assets/images/logo_full_light.png" | relative_url }}" alt="Nuclear logo">
+    <a href="/">
+      <img src="{{ "/assets/images/logo_full_light.png" | relative_url }}" alt="Nuclear logo">
+    </a>
     <span class='spacer'></span>
     <span class="buttons">
       {% for button in site.data.header-buttons %}
