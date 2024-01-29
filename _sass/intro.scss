@@ -165,6 +165,7 @@ section.intro {
         .arrow {
             position: absolute;
             transform: translateX(200px);
+            pointer-events: none;
 
             @media screen and (max-width: $sm) {
                 transform: translate(180px, -20px) scale(0.75, 0.75);
@@ -191,7 +192,6 @@ section.intro {
             width: auto;
         }
     }
-
 
     .social-proof {
         display: flex;
