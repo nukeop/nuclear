@@ -1,5 +1,5 @@
 import React from 'react';
-import { remote } from 'electron';
+import { ipcRenderer, remote } from 'electron';
 import { Button, Input, Radio, Segment, Icon } from 'semantic-ui-react';
 import cx from 'classnames';
 import _ from 'lodash';
@@ -99,7 +99,16 @@ const Settings: React.FC<SettingsProps> = ({
       placeholder={t(placeholder)}
       value={i18n.language}
       options={options}
-      onChange={(e, { value }) => i18n.changeLanguage(value as string)}
+      onChange={(e, { value }) => {
+        i18n.changeLanguage(value as string);
+        ipcRenderer.send('tray-menu-translations-update', {
+          'play': i18n.t('command-palette:actions.play'),
+          'pause': i18n.t('command-palette:actions.pause'),
+          'next': i18n.t('command-palette:actions.next'),
+          'previous': i18n.t('command-palette:actions.previous'),
+          'quit': i18n.t('command-palette:actions.quit')
+        });
+      }}
     />
   );
 

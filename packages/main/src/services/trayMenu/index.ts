@@ -1,11 +1,10 @@
 import { injectable, inject } from 'inversify';
-import { Menu, app, Tray, nativeImage } from 'electron';
+import { Menu, app, Tray, nativeImage, ipcMain } from 'electron';
 import { NuclearMeta, IpcEvents} from '@nuclear/core';
 import HttpApi from '../http';
 import Config from '../config';
 import Platform from '../platform';
 import Window from '../window';
-
 
 type PlayerContext = {
   isPlaying?: boolean;
@@ -17,6 +16,14 @@ class TrayMenu {
   private tray: Tray;
 
   private playerContext: PlayerContext;
+
+  private trayMenuTranslations = {
+    'pause': 'Pause',
+    'play': 'Play',
+    'next': 'Next',
+    'previous': 'Previous',
+    'quit': 'Quit'
+  };
 
   constructor(
     @inject(Config) private config: Config,
@@ -39,6 +46,12 @@ class TrayMenu {
     });
     this.tray.setToolTip(this.getToolTipString());
     this.tray.setContextMenu(this.getMenu());
+
+    // apply tray menu translations when user changes language from language settings
+    ipcMain.on('tray-menu-translations-update', (e, translations) => {
+      this.trayMenuTranslations = translations;
+      this.update();
+    });
   }
 
   getMenu() {
@@ -69,7 +82,7 @@ class TrayMenu {
     if (this.playerContext.track) {
       if (this.playerContext.isPlaying) {
         template.push({
-          label: 'Pause',
+          label: this.trayMenuTranslations.pause,
           type: 'normal',
           click: async () => {
             this.window.send(IpcEvents.PAUSE);
@@ -78,7 +91,7 @@ class TrayMenu {
         });
       } else {
         template.push({
-          label: 'Play',
+          label: this.trayMenuTranslations.play,
           type: 'normal',
           click: async () => {
             this.window.send(IpcEvents.PLAY);
@@ -88,7 +101,7 @@ class TrayMenu {
       }
 
       template.push({
-        label: 'Next',
+        label: this.trayMenuTranslations.next,
         type: 'normal',
         click: async () => {
           this.window.send(IpcEvents.NEXT);
@@ -96,7 +109,7 @@ class TrayMenu {
       });
 
       template.push({
-        label: 'Previous',
+        label: this.trayMenuTranslations.previous,
         type: 'normal',
         click: async () => {
           this.window.send(IpcEvents.PREVIOUS);
@@ -110,7 +123,7 @@ class TrayMenu {
 
     // Quit button
     template.push({
-      label: 'Quit',
+      label: this.trayMenuTranslations.quit,
       type: 'normal',
       click: async () => {
         await this.httpApi.close();
