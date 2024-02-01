@@ -122,31 +122,31 @@
   },
   "lyrics": {
     "by-artist": "by {{artist}}",
-    "empty": "Nothing is playing.",
-    "empty-help": "Add some music to the queue to display the lyrics here!",
-    "not-found": "No lyrics were found for this song."
+    "empty": "Nu rulează nimic.",
+    "empty-help": "Adaugă niște muzică la coadă pentru a afișa versurile aici!",
+    "not-found": "Nu au fost găsite versuri pentru această piesă."
   },
   "option-control": {
-    "rate": "Playback speed",
+    "rate": "Viteza de redare",
     "autoradio": "Autoradio",
-    "loop": "Loop",
+    "loop": "Buclă",
     "mini-player": "Miniplayer",
-    "shuffle": "Shuffle"
+    "shuffle": "Amestecare"
   },
   "player": {
-    "next-button": "Next track button",
-    "play-pause-button": "Play/Pause button",
-    "previous-button": "Previous track button"
+    "next-button": "Butonul Piesa următoare",
+    "play-pause-button": "Butonul Redare/Pauză",
+    "previous-button": "Butonul Piesa anterioară"
   },
   "playlists": {
-    "add-selected-tracks-to-downloads": "Add selected to downloads",
-    "add-selected-tracks-to-favorites": "Add selected to favorites",
-    "add-selected-tracks-to-queue": "Add selected to queue",
+    "add-selected-tracks-to-downloads": "Adaugă selecția la Descărcări",
+    "add-selected-tracks-to-favorites": "Adaugă selecţia la favorite",
+    "add-selected-tracks-to-queue": "Adaugă selecția la coadă",
     "album": "Album",
     "artist": "Artist",
-    "delete": "Delete this playlist",
-    "duration": "Length",
-    "empty": "No playlists.",
+    "delete": "Șterge acest playlist",
+    "duration": "Durată",
+    "empty": "Niciun playlist.",
     "empty-help": "Try to create some playlists or import by url and they will appear here!",
     "error-empty-data": "Empty data",
     "error-invalid-data": "Invalid data",
