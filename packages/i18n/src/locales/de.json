@@ -97,7 +97,7 @@
     "empty": "Keine Favoriten hinzugefügt",
     "empty-help": "Versuche ein paar Lieder hinzuzufügen, dann werden sie hier auftauchen!",
     "header": "Deine Lieblingslieder",
-    "play-random": "Play a random track from your favorites",
+    "play-random": "Wiedergabe eines zufälligen Titels aus Ihren Favoriten",
     "title": "Titel"
   },
   "help": {
@@ -127,6 +127,7 @@
     "not-found": "Keine Liedtexte für diesen Song gefunden."
   },
   "option-control": {
+    "rate": "Wiedergabegeschwindigkeit",
     "autoradio": "Autoradio",
     "loop": "Schleife",
     "mini-player": "Miniplayer",
@@ -220,21 +221,21 @@
     "live": "Live",
     "stream-verification": {
       "tooltip": {
-        "unknown": "The status of this stream is unknown.",
-        "unverified": "This stream has not yet been verified by the community.",
-        "weakly-verified": "This stream has been verified by a couple of users.",
-        "verified": "This stream has been verified by the community.",
-        "verified-by-user": "This stream has been verified by you."
+        "unknown": "Der Status von dieser Stream ist unbekannt.",
+        "unverified": "Dieser Stream wurde noch nicht von der Gemeinschaft überprüft.",
+        "weakly-verified": "Dieser Stream wurde von einigen Nutzern verifiziert.",
+        "verified": "Dieser Stream wurde von der Community überprüft.",
+        "verified-by-user": "Dieser Stream wurde von Ihnen verifiziert."
       },
       "stream-status": {
-        "unknown": "Unknown",
-        "unverified": "Unverified",
-        "weakly-verified": "Weakly verified",
-        "verified": "Verified",
-        "verified-by-user": "Verified by you"
+        "unknown": "Unbekannt",
+        "unverified": "Unbestätigt",
+        "weakly-verified": "Schwach verifiziert",
+        "verified": "Verifiziert",
+        "verified-by-user": "Verifiziert durch Sie"
       },
-      "verify": "Verify",
-      "unverify": "Unverify"
+      "verify": "Verifizieren",
+      "unverify": "Bestätigung entfernen"
     }
   },
   "search": {
@@ -305,7 +306,7 @@
     "mastodon-awaiting-authorization": "Nuclear ist auf {{instanceUrl}} registriert. Warte auf Autorisierung.",
     "mastodon-description": "",
     "mastodon-instance-label": "Mastodon-Instanz-URL",
-    "mastodon-post-format-description": "Nuclear will post a status on Mastodon after each track completes playing. The above string will be the template for each post, with {{artist}}, {{title}}, and {{url}} replaced with the artist, title, and a link to the track respectively.",
+    "mastodon-post-format-description": "Nuclear wird einen Status auf Mastodon posten, nachdem jeder Track fertig abgespielt wurde. Die obige Zeichenkette wird die Vorlage für jeden Beitrag sein, wobei {{artist}}, {{title}} und {{url}} jeweils durch den Künstler, den Titel und einen Link zum Track ersetzt werden.",
     "mastodon-post-format-label": "Beitragsformat",
     "mastodon-title": "",
     "normalize": "Lautstärke normalisieren",
@@ -323,7 +324,7 @@
     "promoted-artists-description": "Dies ist eine Rolle von interessanten, handverlesenen Indie-Künstlern, die Ihnen gefallen könnten. Niemand erhält dafür eine Vergütung.",
     "saving-in": "Speichern in:",
     "seek-iteration": "Anzahl der Sekunden, die beim Drücken der Pfeiltasten vorwärts/rückwärts suchen",
-    "show-tray-icon": "Show tray icon",
+    "show-tray-icon": "Taskleistensymbol anzeigen",
     "shuffle-queue": "Titel mischen",
     "shuffle-when-going-back": "Shuffle von vorherigen Liedern",
     "shuffle-when-going-back-description": "Spiele zufälliges Lied, wenn Zufallswiedergabe aktiv ist und der vorherige Titel Button geklickt wird",
@@ -333,9 +334,9 @@
     "streaming": "Streamen",
     "track-duration": "Laufzeit über der Suchleiste anzeigen",
     "user": "Benutzer:",
-    "user-id": "User ID",
-    "use-stream-verification": "Use stream verification",
-    "use-stream-verification-description": "Use stream verification. Loads the streams the community has verified as being correct for the tracks you play. Also allows you to vote on streams. See documentation for details.",
+    "user-id": "Benutzer ID",
+    "use-stream-verification": "Stream-Überprüfung verwenden",
+    "use-stream-verification-description": "Stream-Überprüfung verwenden. Lädt die Streams, die von der Community als korrekt für die von Ihnen gespielten Titel bestätigt wurden. Außerdem können Sie über Streams abstimmen. Siehe Dokumentation für Details.",
     "youtube": "YouTube",
     "yt-api-key": "YouTube API-Schlüssel"
   },

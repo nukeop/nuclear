@@ -19,7 +19,7 @@
     "favorite-artists": "Musisi Favorit",
     "favorite-tracks": "Lagu Favorit",
     "library": "Daftar Koleksi",
-    "listening-history": "Listening History",
+    "listening-history": "Riwayat Mendengarkan",
     "lyrics": "Lirik",
     "main": "Main",
     "playlists": "Daftar Putar",
@@ -51,15 +51,15 @@
     "genres": "Genre",
     "news": "Berita",
     "playcounts": "Jumlah pemutaran",
-    "playlists": "Trending",
+    "playlists": "Sedang Tren",
     "popular-track-title": "Lagu Teratas dari Deezer",
     "title": "Judul",
     "top": "Lagu Teratas",
-    "trending-playlists": "Trending playlists",
-    "trending-artists": "Trending artists",
-    "trending-albums": "Trending albums",
+    "trending-playlists": "Daftar Putar yang Lagi Tren",
+    "trending-artists": "Artis yang sedang hangat",
+    "trending-albums": "Album yang lagi ngetren",
     "filter": "Filter...",
-    "nothing-found": "Nothing found."
+    "nothing-found": "Tidak ditemukan."
   },
   "downloads": {
     "clear": "Hapus unduhan yang selesai",
@@ -97,7 +97,7 @@
     "empty": "Belum ada lagu favorit",
     "empty-help": "Tambahkan lagu ke dalam daftar favorit agar muncul di halaman ini!",
     "header": "Lagu favoritmu",
-    "play-random": "Play a random track from your favorites",
+    "play-random": "Putar trek acak dari favoritmu",
     "title": "Judul"
   },
   "help": {
@@ -123,10 +123,11 @@
   "lyrics": {
     "by-artist": "oleh {{artist}}",
     "empty": "Tidak ada lagu yang diputar.",
-    "empty-help": "Tambahkan lagu ke daftar antrian agar liriknya ditampilkan di sini!",
+    "empty-help": "Tambahkan beberapa lagu ke daftar antrian agar liriknya ditampilkan di sini!",
     "not-found": "Lirik untuk lagu ini tidak ditemukan"
   },
   "option-control": {
+    "rate": "Kecepatan pemutaran",
     "autoradio": "Autoradio",
     "loop": "Ulang",
     "mini-player": "Miniplayer",
@@ -220,21 +221,21 @@
     "live": "Live",
     "stream-verification": {
       "tooltip": {
-        "unknown": "The status of this stream is unknown.",
-        "unverified": "This stream has not yet been verified by the community.",
-        "weakly-verified": "This stream has been verified by a couple of users.",
-        "verified": "This stream has been verified by the community.",
-        "verified-by-user": "This stream has been verified by you."
+        "unknown": "Status stream ini tidak diketahui.",
+        "unverified": "Stream ini tidak diverifikasi oleh komunitas.",
+        "weakly-verified": "Stream ini sudah diverifikasi oleh beberapa pengguna.",
+        "verified": "Stream ini sudah diverifikasi oleh komunitas.",
+        "verified-by-user": "Stream ini sudah diverifikasi oleh anda."
       },
       "stream-status": {
-        "unknown": "Unknown",
-        "unverified": "Unverified",
-        "weakly-verified": "Weakly verified",
-        "verified": "Verified",
-        "verified-by-user": "Verified by you"
+        "unknown": "Tidak diketahui",
+        "unverified": "Tidak diverifikasi",
+        "weakly-verified": "Verifikasi mingguan",
+        "verified": "Diverifikasi",
+        "verified-by-user": "Diverifikasi oleh anda"
       },
-      "verify": "Verify",
-      "unverify": "Unverify"
+      "verify": "Verifikasi",
+      "unverify": "Tidak diverifikasi"
     }
   },
   "search": {
@@ -268,8 +269,8 @@
     "autoradio-craziness": "Autoradio craziness",
     "autoradio-craziness-description": "Autoradio akan memilih lagu yang kurang mirip dengan yang sudah masuk ke daftar antrian",
     "autoradio-description": "Tambahkan lagu yang mirip secara otomatis di akhir daftar antrian",
-    "listening-history": "Listening history",
-    "listening-history-description": "Log the tracks you listen to, a la Last.fm. The history is stored offline.",
+    "listening-history": "Riwayat mendengarkan",
+    "listening-history-description": "Log trek yang anda dengarkan ke, Last.fm. Riwayat akan disimpan secara luring.",
     "compact-menu-bar": "Gunakan gaya ringkas untuk papan menu",
     "compact-queue-bar": "Gunakan gaya ringkas untuk papan antrian",
     "developer": "Pengaturan pengembang",
@@ -305,11 +306,11 @@
     "mastodon-awaiting-authorization": "Nuclear telah terdaftar di {{instanceUrl}}. Menunggu otorisasi.",
     "mastodon-description": "",
     "mastodon-instance-label": "URL Mastodon",
-    "mastodon-post-format-description": "Nuclear will post a status on Mastodon after each track completes playing. The above string will be the template for each post, with {{artist}}, {{title}}, and {{url}} replaced with the artist, title, and a link to the track respectively.",
+    "mastodon-post-format-description": "Nuclear akan memposting status di Mastodon setelah trek lagu selesai diputar. String di atas akan menjadi templat setiap post, dengan {{artist}}, {{title}}, dan {{url}} dan akan ditimpa dengan artist, title, dan tautan trek masing-masing.",
     "mastodon-post-format-label": "Format post",
     "mastodon-title": "",
-    "normalize": "Normalize volume",
-    "normalize-description": "Automatically adjust volume of tracks so that they are played at the same level. This needs to fetch the whole track to work, so it may cause a delay between tracks.",
+    "normalize": "Normalkan volume",
+    "normalize-description": "Otomatis menyesuaikan volume trek yang mereka putar dalam level bersamaan. Ini membutuhkan  untuk mengambil keseluruhan trek untuk bekerja, sehingga dapat menyebabkan penundaan antar trek.",
     "nuclear-identity-service-url": "URL Layanan identitas Nuclear",
     "nuclear-playlists-service-url": "URL Layanan daftar putar Nuclear",
     "mini-player": "Gunakan mini player",
@@ -319,11 +320,11 @@
     "notlogged": "Kamu belum masuk",
     "playback": "Pemutaran",
     "program-settings": "Pengaturan program",
-    "promoted-artists": "Show promoted artists in the dashboard",
-    "promoted-artists-description": "This is a reel of interesting, handpicked indie artists you might like. No one's receiving any compensation for this.",
+    "promoted-artists": "Tampilkan artis yang dipromosikan di dasbor",
+    "promoted-artists-description": "Reel ini ini sangat menarik, pilih artis indie yang anda suka. Tidak ada yang menerima kompensasi untuk ini.",
     "saving-in": "Simpan di:",
     "seek-iteration": "Rentang detik yang di-skip/dikembalikan ketika menekan tombol arah",
-    "show-tray-icon": "Show tray icon",
+    "show-tray-icon": "Tampilkan ikon baki",
     "shuffle-queue": "Acak lagu",
     "shuffle-when-going-back": "Acak lagu sebelumnya",
     "shuffle-when-going-back-description": "Acak lagu saat mode random aktif dan tombol lagu sebelumnya diklik",
@@ -333,8 +334,8 @@
     "streaming": "Streaming",
     "track-duration": "Tampilkan durasi lagu di atas kolom pencarian",
     "user": "Pengguna:",
-    "user-id": "User ID",
-    "use-stream-verification": "Use stream verification",
+    "user-id": "ID Pengguna",
+    "use-stream-verification": "Gunakan verifikasi stream",
     "use-stream-verification-description": "Use stream verification. Loads the streams the community has verified as being correct for the tracks you play. Also allows you to vote on streams. See documentation for details.",
     "youtube": "Youtube",
     "yt-api-key": "Kunci API Youtube"
@@ -351,11 +352,11 @@
     "add-to-favorite": "Tambahkan ke favorit",
     "add-to-playlist": "Tambahkan ke daftar putar",
     "add-to-queue": "Tambahkan ke daftar antri",
-    "create-playlist": "Create new playlist",
-    "create-playlist-dialog-title": "Input playlist name:",
-    "create-playlist-dialog-placeholder": "Playlist name...",
-    "create-playlist-dialog-accept": "Save",
-    "create-playlist-dialog-cancel": "Cancel",
+    "create-playlist": "Buat playlist baru",
+    "create-playlist-dialog-title": "Masukkan nama playlist:",
+    "create-playlist-dialog-placeholder": "Nama playlist...",
+    "create-playlist-dialog-accept": "Simpan",
+    "create-playlist-dialog-cancel": "Batal",
     "download": "Unduh",
     "download-toast-body": "{{artist}} - {{track}} berhasil ditambah ke unduhan.",
     "download-toast-title": "Lagu ditambahkan ke unduhan",
@@ -378,10 +379,10 @@
     "exit-fullscreen": "Tekan ESC untuk keluar dari layar penuh"
   },
   "command-palette": {
-    "search-placeholder": "What would you like to do?",
+    "search-placeholder": "Apa yang ingin anda lakukan?",
     "empty-state-help": "Tidak dapat menemukan apa yang anda inginkan? Coba dengan perintah bantuan.",
     "protip-text": "PROTIP:",
-    "protip-content": "Arrows to navigate, Enter to select, Esc to close",
+    "protip-content": "Arrows untuk menavigasikan, Enter untuk memilih, Esc untuk menutup",
     "categories": {
       "playback": "Pemutaran Belakang",
       "queue": "Antrian",
@@ -419,13 +420,13 @@
     }
   },
   "listening-history": {
-    "title": "Listening history",
-    "empty-state": "You haven't listened to anything yet.",
-    "clear-history": "Clear history",
-    "clear-history-confirm": "Are you sure you want to clear your listening history?",
-    "clear-history-confirm-yes": "Confirm",
-    "clear-history-confirm-no": "Cancel",
-    "clear-history-toast": "Listening history cleared"
+    "title": "Riwayat mendengarkan",
+    "empty-state": "Anda belum mendengarkan apapun.",
+    "clear-history": "Hapus riwayat",
+    "clear-history-confirm": "Apa anda yakin ingin menghapus riwayat mendengarkanmu?",
+    "clear-history-confirm-yes": "Konfirmasi",
+    "clear-history-confirm-no": "Batal",
+    "clear-history-toast": "Riwayat mendengarkanmu sudah dihapus"
   },
   "forms": {
     "nuclear-sign-up": {

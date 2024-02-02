@@ -19,7 +19,7 @@
     "favorite-artists": "Favori Şarkıcılar",
     "favorite-tracks": "Favori Şarkılar",
     "library": "Yerel Kütüphane",
-    "listening-history": "Listening History",
+    "listening-history": "Dinleme Geçmişi",
     "lyrics": "Şarkı sözleri",
     "main": "Ana",
     "playlists": "Çalma Listeleri",
@@ -51,15 +51,15 @@
     "genres": "Türler",
     "news": "Haberler",
     "playcounts": "Dinlenme sayısı",
-    "playlists": "Trending",
+    "playlists": "Öne Çıkanlar",
     "popular-track-title": "Deezer'de en popüler şarkılar",
     "title": "Şarkı Adı",
     "top": "Popüler Şarkılar",
-    "trending-playlists": "Trending playlists",
-    "trending-artists": "Trending artists",
-    "trending-albums": "Trending albums",
-    "filter": "Filter...",
-    "nothing-found": "Nothing found."
+    "trending-playlists": "Trend Oynatma listesi",
+    "trending-artists": "Trend sanatçılar",
+    "trending-albums": "Trend albümler",
+    "filter": "Filtrele...",
+    "nothing-found": "Bulunamadı."
   },
   "downloads": {
     "clear": "İndirilenleri temizle",
@@ -97,7 +97,7 @@
     "empty": "Favori eklenmedi",
     "empty-help": "Şarkıları favorilerine eklediğinde burada görebilirsin!",
     "header": "Favori Şarkıların",
-    "play-random": "Play a random track from your favorites",
+    "play-random": "Favoriler listenden rastgele bir şarkı çal",
     "title": "Şarkı Adı"
   },
   "help": {
@@ -127,6 +127,7 @@
     "not-found": "Şarkı sözleri bulunamadı."
   },
   "option-control": {
+    "rate": "Oynatma hızı",
     "autoradio": "Autoradio",
     "loop": "Tekrarla",
     "mini-player": "Mini Oynatıcı",
@@ -220,21 +221,21 @@
     "live": "Canlı",
     "stream-verification": {
       "tooltip": {
-        "unknown": "The status of this stream is unknown.",
-        "unverified": "This stream has not yet been verified by the community.",
-        "weakly-verified": "This stream has been verified by a couple of users.",
-        "verified": "This stream has been verified by the community.",
-        "verified-by-user": "This stream has been verified by you."
+        "unknown": "Bu akışın durumu bilinmiyor.",
+        "unverified": "Bu akış topluluk tarafından henüz doğrulanmadı.",
+        "weakly-verified": "Bu akış birkaç kullanıcı tarafından doğrulandı.",
+        "verified": "Bu akış topluluk tarafından doğrulandı.",
+        "verified-by-user": "Bu akış senin tarafından doğrulandı."
       },
       "stream-status": {
-        "unknown": "Unknown",
-        "unverified": "Unverified",
-        "weakly-verified": "Weakly verified",
-        "verified": "Verified",
-        "verified-by-user": "Verified by you"
+        "unknown": "Bilinmiyor",
+        "unverified": "Doğrulanmamış",
+        "weakly-verified": "Zayıf olarak doğrulandı",
+        "verified": "Doğrulandı",
+        "verified-by-user": "Senin tarafından doğrulandı"
       },
-      "verify": "Verify",
-      "unverify": "Unverify"
+      "verify": "Doğrula",
+      "unverify": "Doğrulamayı kaldır"
     }
   },
   "search": {
@@ -263,13 +264,13 @@
   "settings": {
     "api-port": "Api tarafından kullanılan port",
     "api-url": "",
-    "audio": "Audio",
+    "audio": "Ses",
     "autoradio": "Autoradio",
     "autoradio-craziness": "Autoradio Çılgınlığı",
     "autoradio-craziness-description": "Autoradio çılgınlaştıkça kuyruktaki şarkılara daha az benzeyen şarkıları seçer",
     "autoradio-description": "Eğer kuyruk bitiyorsa otomatik olarak benzer şarkılar ekle",
-    "listening-history": "Listening history",
-    "listening-history-description": "Log the tracks you listen to, a la Last.fm. The history is stored offline.",
+    "listening-history": "Dinleme Geçmişi",
+    "listening-history-description": "Dinlediğin parçaları la Last.fm e kaydet. Geçmiş çevrimdışı kaydedilir.",
     "compact-menu-bar": "Menü için kompakt stili kullan",
     "compact-queue-bar": "Kuyruk barı için kompakt stili kullan",
     "developer": "Geliştirici ayarları",
@@ -305,11 +306,11 @@
     "mastodon-awaiting-authorization": "Nuclear {{instanceUrl}} ile kaydedildi. Yetkilendirme bekleniyor.",
     "mastodon-description": "",
     "mastodon-instance-label": "Mastodon bağlantı URL'niz",
-    "mastodon-post-format-description": "Nuclear will post a status on Mastodon after each track completes playing. The above string will be the template for each post, with {{artist}}, {{title}}, and {{url}} replaced with the artist, title, and a link to the track respectively.",
+    "mastodon-post-format-description": "Nuclear her parça çalındıktan sonra Mastodon'a durum gönderir. Yukarıdaki dizi her gönderi için şablon olarak kullanılır. {{artist}}, {{title}}, ve {{url}} kısımları sırasıyla sanatçı, başlık ve bağlantıyla değiştirilir.",
     "mastodon-post-format-label": "Gönderi biçimi",
     "mastodon-title": "",
-    "normalize": "Normalize volume",
-    "normalize-description": "Automatically adjust volume of tracks so that they are played at the same level. This needs to fetch the whole track to work, so it may cause a delay between tracks.",
+    "normalize": "Sesi Normalleştir",
+    "normalize-description": "Aynı ses düzeyinde çalınması için parçaların sesini otomatik olarak ayarla. Bu tüm parçayı indireceğinden parçalar arasında gecikmeye yol açabilir.",
     "nuclear-identity-service-url": "Nuclear kimlik servis bağlantısı",
     "nuclear-playlists-service-url": "Nuclear oynatma listesi servis bağlantısı",
     "mini-player": "Mini-oynatıcıyı kullan",
@@ -319,11 +320,11 @@
     "notlogged": "Giriş yapılmadı",
     "playback": "Oynatıcı",
     "program-settings": "Program Ayarları",
-    "promoted-artists": "Show promoted artists in the dashboard",
-    "promoted-artists-description": "This is a reel of interesting, handpicked indie artists you might like. No one's receiving any compensation for this.",
+    "promoted-artists": "Desteklenen sanatçıları gösterge panelinde göster",
+    "promoted-artists-description": "Bu gerçekten sevebileceğin, özenle seçilmiş bir sanatçı. Hiç kimse bunun için bir karşılık almıyor.",
     "saving-in": "Kaydedildiği yer:",
     "seek-iteration": "Ok tuşlarına basıldığında ileri/geri oynayan saniye sayısı",
-    "show-tray-icon": "Show tray icon",
+    "show-tray-icon": "Tepsi simgesini göster",
     "shuffle-queue": "Şarkıları karıştır",
     "shuffle-when-going-back": "Önceki şarkıya dönerken de karıştır",
     "shuffle-when-going-back-description": "Eğer karışık çalma aktifse önceki şarkı butonuna bastığında da karıştır",
@@ -333,9 +334,9 @@
     "streaming": "Yayın Akışı",
     "track-duration": "Şarkı uzunluğunu oynatma çubuğu üzerinde göster",
     "user": "Kullanıcı:",
-    "user-id": "User ID",
-    "use-stream-verification": "Use stream verification",
-    "use-stream-verification-description": "Use stream verification. Loads the streams the community has verified as being correct for the tracks you play. Also allows you to vote on streams. See documentation for details.",
+    "user-id": "Kullanıcı Kimliği",
+    "use-stream-verification": "Akış doğrulaması kullan",
+    "use-stream-verification-description": "Akış doğrulama kullan. Kullanıcıların doğru olduğunu onayladığı akışları yükler. Aynı zamanda akışlara oy vermenizi sağlar. Detaylar için belgelere bakınız.",
     "youtube": "Youtube",
     "yt-api-key": "Youtube API Anahtarı"
   },
@@ -351,11 +352,11 @@
     "add-to-favorite": "Favorilere ekle",
     "add-to-playlist": "Çalma listesine ekle",
     "add-to-queue": "Kuyruğa ekle",
-    "create-playlist": "Create new playlist",
-    "create-playlist-dialog-title": "Input playlist name:",
-    "create-playlist-dialog-placeholder": "Playlist name...",
-    "create-playlist-dialog-accept": "Save",
-    "create-playlist-dialog-cancel": "Cancel",
+    "create-playlist": "Yeni çalma listesi oluştur",
+    "create-playlist-dialog-title": "Çalma listesi adı girin:",
+    "create-playlist-dialog-placeholder": "Çalma listesi adı...",
+    "create-playlist-dialog-accept": "Kaydet",
+    "create-playlist-dialog-cancel": "İptal Et",
     "download": "İndir",
     "download-toast-body": "{{artist}} - {{track}} indirilenlere eklendi.",
     "download-toast-title": "Şarkı indirilenlere eklendi",
@@ -419,13 +420,13 @@
     }
   },
   "listening-history": {
-    "title": "Listening history",
-    "empty-state": "You haven't listened to anything yet.",
-    "clear-history": "Clear history",
-    "clear-history-confirm": "Are you sure you want to clear your listening history?",
-    "clear-history-confirm-yes": "Confirm",
-    "clear-history-confirm-no": "Cancel",
-    "clear-history-toast": "Listening history cleared"
+    "title": "Dinleme Geçmişi",
+    "empty-state": "Henüz bir şey dinlemedin.",
+    "clear-history": "Geçmişi temizle",
+    "clear-history-confirm": "Arama geçmişinizi silmek istediğinizden emin misiniz?",
+    "clear-history-confirm-yes": "Onayla",
+    "clear-history-confirm-no": "İptal Et",
+    "clear-history-toast": "Dinleme geçmişi silindi"
   },
   "forms": {
     "nuclear-sign-up": {

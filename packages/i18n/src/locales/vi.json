@@ -127,6 +127,7 @@
     "not-found": "Không tìm thấy lời bài hát."
   },
   "option-control": {
+    "rate": "Playback speed",
     "autoradio": "Tự động tìm kiếm bài hát",
     "loop": "Phát lặp lại",
     "mini-player": "Thu nhỏ trình phát",

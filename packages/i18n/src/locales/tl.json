@@ -127,6 +127,7 @@
     "not-found": "Walang liriko nahanap para sa kantang ito."
   },
   "option-control": {
+    "rate": "Playback speed",
     "autoradio": "Autoradio",
     "loop": "Paulit",
     "mini-player": "Miniplayer",
