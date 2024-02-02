@@ -127,6 +127,7 @@
     "not-found": "Nie znaleziono tekstu dla tego utworu."
   },
   "option-control": {
+    "rate": "Playback speed",
     "autoradio": "Autoradio",
     "loop": "Powtarzaj",
     "mini-player": "Miniodtwarzacz",

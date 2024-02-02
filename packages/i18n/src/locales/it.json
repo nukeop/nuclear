@@ -59,7 +59,7 @@
     "trending-artists": "Artisti di tendenza",
     "trending-albums": "Album di tendenza",
     "filter": "Filtra...",
-    "nothing-found": "Non è stato trovato nulla."
+    "nothing-found": "Nessun risultato."
   },
   "downloads": {
     "clear": "Cancella tracce completate",
@@ -97,7 +97,7 @@
     "empty": "Nessun preferito aggiunto",
     "empty-help": "Prova ad aggiungere alcune tracce ai preferiti e appariranno qui!",
     "header": "Tue tracce preferite",
-    "play-random": "Play a random track from your favorites",
+    "play-random": "Riproduce una traccia casuale dai tuoi preferiti",
     "title": "Titolo"
   },
   "help": {
@@ -127,6 +127,7 @@
     "not-found": "Non sono stati trovati testi per questa canzone."
   },
   "option-control": {
+    "rate": "Velocità di riproduzione",
     "autoradio": "Radio automatica",
     "loop": "Ciclo continuo",
     "mini-player": "Mini lettore",
@@ -392,7 +393,7 @@
       "play": "Riproduci",
       "pause": "Pausa",
       "next": "Successivo",
-      "previous": "Precendente",
+      "previous": "Precedente",
       "go-to-next-page": "Vai alla pagina successiva",
       "go-to-previous-page": "Vai alla pagina precedente",
       "shuffle": "Casuale",

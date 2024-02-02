@@ -127,6 +127,7 @@
     "not-found": "Δεν βρέθηκαν στοίχοι για αυτό το κομμάτι."
   },
   "option-control": {
+    "rate": "Playback speed",
     "autoradio": "Αυτόματο ράδιο",
     "loop": "Επανάληψη",
     "mini-player": "Μίνι Παίκτης",

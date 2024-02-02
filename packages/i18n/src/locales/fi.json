@@ -97,7 +97,7 @@
     "empty": "Ei suosikkeja lisätty",
     "empty-help": "Kokeile lisätä joitakin kappaleita suosikeihin ja ne näkyvät täällä!",
     "header": "Suosikki kappaleesi",
-    "play-random": "Play a random track from your favorites",
+    "play-random": "Toista satunnainen kappale suosikeistasi",
     "title": "Nimi"
   },
   "help": {
@@ -127,6 +127,7 @@
     "not-found": "Sanoituksia ei löytynyt tähän kappaleeseen."
   },
   "option-control": {
+    "rate": "Toiston nopeus",
     "autoradio": "Automaattinen radio",
     "loop": "Uudelleentoisto",
     "mini-player": "Minisoitin",
@@ -220,21 +221,21 @@
     "live": "Suora",
     "stream-verification": {
       "tooltip": {
-        "unknown": "The status of this stream is unknown.",
-        "unverified": "This stream has not yet been verified by the community.",
-        "weakly-verified": "This stream has been verified by a couple of users.",
-        "verified": "This stream has been verified by the community.",
-        "verified-by-user": "This stream has been verified by you."
+        "unknown": "Tämän streamin tila on tuntematon.",
+        "unverified": "Tämä stream ei ole vielä yhteisön vahvistama.",
+        "weakly-verified": "Tämä stream on muutaman käyttäjän vahvistama.",
+        "verified": "Tämä stream on yhteisön vahvistama.",
+        "verified-by-user": "Olet vahvistanut tämän streamin."
       },
       "stream-status": {
-        "unknown": "Unknown",
-        "unverified": "Unverified",
-        "weakly-verified": "Weakly verified",
-        "verified": "Verified",
-        "verified-by-user": "Verified by you"
+        "unknown": "Tuntematon",
+        "unverified": "Vahvistamaton",
+        "weakly-verified": "Heikosti vahvistettu",
+        "verified": "Vahvistettu",
+        "verified-by-user": "Sinun vahvistamasi"
       },
-      "verify": "Verify",
-      "unverify": "Unverify"
+      "verify": "Vahvista",
+      "unverify": "Poista vahvistus"
     }
   },
   "search": {
@@ -305,7 +306,7 @@
     "mastodon-awaiting-authorization": "Nuclear on rekisteröity {{instanceUrl}}. Odottaa valtuutusta.",
     "mastodon-description": "",
     "mastodon-instance-label": "Mastodon-instanssin osoite",
-    "mastodon-post-format-description": "Nuclear will post a status on Mastodon after each track completes playing. The above string will be the template for each post, with {{artist}}, {{title}}, and {{url}} replaced with the artist, title, and a link to the track respectively.",
+    "mastodon-post-format-description": "Nuclear lähettää Mastodoniin tilan jokaisen kappaleen jälkeen. Yllä oleva merkkijono on malli jokaiselle viestille, {{artist}}, {{title}} ja {{url}} korvattiin esittäjällä, kappaleen otsikolla ja linkillä.",
     "mastodon-post-format-label": "Julkaisun muoto",
     "mastodon-title": "",
     "normalize": "Normalisoi äänenvoimakkuus",
@@ -323,7 +324,7 @@
     "promoted-artists-description": "Tämä on jatkumo kiinnostavia, valikoituja itsenäisiä artisteja joista saattaisit pitää. Kukaan ei saa tästä mitään korvauksia.",
     "saving-in": "Tallennetaan:",
     "seek-iteration": "Eteen/taaksepäin etsimisen sekuntien lukumäärä nuolinäppäimiä painettaessa",
-    "show-tray-icon": "Show tray icon",
+    "show-tray-icon": "Näytä ilmoitusalueen kuvake",
     "shuffle-queue": "Sekoita kappaleet",
     "shuffle-when-going-back": "Sekoita edellinen kappale napilla",
     "shuffle-when-going-back-description": "Soita satunnainen kappale kun sekoitus on päällä ja edellinen kappale nappia on painettu",
@@ -333,9 +334,9 @@
     "streaming": "Suoratoisto",
     "track-duration": "Näytä kappaleen pituus edistymispalkissa",
     "user": "Käyttäjä:",
-    "user-id": "User ID",
-    "use-stream-verification": "Use stream verification",
-    "use-stream-verification-description": "Use stream verification. Loads the streams the community has verified as being correct for the tracks you play. Also allows you to vote on streams. See documentation for details.",
+    "user-id": "Käyttäjän ID",
+    "use-stream-verification": "Käytä streamin vahvistusta",
+    "use-stream-verification-description": "Käytä streamin varmennusta. Lataa yhteisön varmentamat streamit, jotka ovat osoittautuneet oikeiksi soittamiesi kappaleiden osalta. Mahdollistaa myös äänestämisen streamien suhteen. Katso lisätietoja dokumentaatiosta.",
     "youtube": "YouTube",
     "yt-api-key": "Youtube API Avain"
   },
