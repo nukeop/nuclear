@@ -22,11 +22,11 @@
     "listening-history": "Historique d'écoute",
     "lyrics": "Paroles",
     "main": "Accueil",
-    "playlists": "Playlists",
-    "plugins": "Plugins",
+    "playlists": "Listes de lecture",
+    "plugins": "Modules complémentaires",
     "search": "Recherches",
     "settings": "Réglages",
-    "visualizer": "Visualiseur",
+    "visualizer": "Aperçu",
     "user-panel": {
       "actions-tooltip": "Actions utilisateur",
       "sign-up": "S'inscrire / Se connecter",
@@ -45,7 +45,7 @@
   "dashboard": {
     "add-all": "Ajouter tout",
     "artist": "Artiste",
-    "best": "Nouveautés",
+    "best": "Meilleures nouveautés",
     "best-new-albums": "Meilleurs albums",
     "best-new-tracks": "Meilleurs morceaux récents",
     "genres": "Genres",
