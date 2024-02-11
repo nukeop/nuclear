@@ -1,8 +1,8 @@
-import {BandcampPlugin} from '.';
+import { BandcampPlugin } from '.';
 import fn = jest.fn;
-import {Bandcamp} from '../../rest';
+import { Bandcamp } from '../../rest';
 import spyOn = jest.spyOn;
-import {BandcampSearchResult} from '../../rest/Bandcamp';
+import { BandcampSearchResult } from '../../rest/Bandcamp';
 
 describe('Bandcamp plugin tests', () => {
   let plugin: BandcampPlugin;
@@ -36,9 +36,9 @@ describe('Bandcamp plugin tests', () => {
         type: 'track',
         artist: 'Artist Name',
         name: 'Track Name',
-        url: null,
-        imageUrl: null,
-        tags: null
+        url: 'URL',
+        imageUrl: 'image URL',
+        tags: []
       };
       bandcampSearch.mockResolvedValueOnce([])
         .mockResolvedValueOnce([])
