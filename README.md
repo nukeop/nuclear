@@ -1,31 +1,11 @@
-# ![nuclear](https://i.imgur.com/oT1006i.png) 
-[![nuclear](https://snapcraft.io//nuclear/badge.svg)](https://snapcraft.io/nuclear) [![Discord](https://img.shields.io/badge/Discord-7289DA?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/JqPjKxE)
+# [![nuclear](https://i.imgur.com/oT1006i.png)](https://nuclear.js.org/)
 
-Desktop music player focused on streaming from free sources
+**Desktop music player focused on streaming from free sources**
 
-![Showcase](https://i.imgur.com/8qHu66J.png)
+[![Discord](https://img.shields.io/badge/Discord-7289DA?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/JqPjKxE) [![Mastodon](https://img.shields.io/badge/Mastodon-6364FF?style=for-the-badge&logo=Mastodon&logoColor=white)](https://fosstodon.org/@nuclearplayer) [![X](https://img.shields.io/badge/X-000000?style=for-the-badge&logo=x&logoColor=white)](https://twitter.com/nuclear_player) [![nuclear](https://snapcraft.io//nuclear/badge.svg)](https://snapcraft.io/nuclear) ![GitHub Downloads (all assets, all releases)](https://img.shields.io/github/downloads/nukeop/nuclear/total)
+ ![Stars](https://img.shields.io/github/stars/nukeop/nuclear)
 
-# Links
-
-[Official website](https://nuclear.js.org)
-
-[Downloads](https://github.com/nukeop/nuclear/releases)
-
-[Documentation](https://nukeop.gitbook.io/nuclear/)
-
-[Mastodon](https://fosstodon.org/@nuclearplayer)
-
-[Twitter](https://twitter.com/nuclear_player)
-
-Support channel (Matrix): `#nuclear:matrix.org`
-
-Discord chat: https://discord.gg/JqPjKxE
-
-Suggest and vote on new features here: https://nuclear.featureupvote.com/
-
-Readme translations: 
-
-<kbd>[<img title="Deutsch" alt="Deutsch" src="https://cdn.staticaly.com/gh/hjnilsson/country-flags/master/svg/de.svg" width="22">](docs/README-de.md)</kbd>
+<kbd>[<img title="Deutsch" alt="Deutsch" src="[https://cdn.staticaly.com/gh/hjnilsson/country-flags/master/svg/de.svg](https://cdn.staticaly.com/gh/hjnilsson/country-flags/master/svg/de.svg)" width="22">](docs/README-de.md)</kbd>
 <kbd>[<img title="Português" alt="Português" src="https://cdn.staticaly.com/gh/hjnilsson/country-flags/master/svg/br.svg" width="22">](docs/README-ptbr.md)</kbd>
 <kbd>[<img title="Svenska" alt="Svenska" src="https://cdn.staticaly.com/gh/hjnilsson/country-flags/master/svg/se.svg" width="22">](docs/README-se.md)</kbd>
 <kbd>[<img title="English" alt="English" src="https://cdn.staticaly.com/gh/hjnilsson/country-flags/master/svg/us.svg" width="22">](README.md)</kbd>
@@ -42,14 +22,19 @@ Readme translations:
 <kbd>[<img title="Hindi" alt="Hindi" src="https://cdn.staticaly.com/gh/hjnilsson/country-flags/master/svg/in.svg" width="22">](docs/README-hi.md)</kbd>
 <kbd>[<img title="Arabic" alt="Arabic" src="https://cdn.staticaly.com/gh/hjnilsson/country-flags/master/svg/eg.svg" width="22">](docs/README-ar.md)</kbd>
 
+![Showcase](https://i.imgur.com/8qHu66J.png)
+
 ## What is this?
-nuclear is a free music streaming program that pulls content from free sources all over the internet.
+nuclear is a free music streaming program that pulls content from free sources all over the internet. It aims to improve music accessibility and listener experience through a user-friendly desktop application.
 
 If you know [mps-youtube](https://github.com/mps-youtube/mps-youtube), this is a similar music player but with a GUI.
-It's also focusing more on audio. Imagine Spotify which you don't have to pay for and with a bigger library.
+It also focuses more on supporting audio quality. Imagine a Spotify that you don't have to pay for with a bigger library.
 
 ## What if I am religiously opposed to Electron?
 See [this](docs/electron.md).
+
+## Installation
+nuclear is available for download [here](https://nuclear.js.org/downloads) on Linux, Windows, or Mac OS.
 
 ## Features
 
@@ -72,11 +57,13 @@ See [this](docs/electron.md).
 - No CoC
 - No CLA
 
+Learn more about and vote on our [proposed features](https://nuclear.featureupvote.com/)
+
 ## Development process
 
 First of all, be sure to check out the [Contribution Guidelines](https://nukeop.gitbook.io/nuclear/contributing/contribution-guidelines).
 
-The instructions for running Nuclear in development mode can be found in the [Development Process](https://nukeop.gitbook.io/nuclear/developer-resources/development-process) document.
+The instructions for running nuclear in development mode can be found in the [Development Process](https://nukeop.gitbook.io/nuclear/developer-resources/development-process) document.
 
 ## Community-maintained packages
 
@@ -117,6 +104,24 @@ This will be updated as the program evolves.
 ![Lyrics View](https://i.imgur.com/7e3DJKJ.png)
 
 ![Equalizer View](https://i.imgur.com/WreRL0w.png)
+
+## Links
+
+[Official website](https://nuclear.js.org)
+
+[Downloads](https://github.com/nukeop/nuclear/releases)
+
+[Documentation](https://nukeop.gitbook.io/nuclear/)
+
+[Mastodon](https://fosstodon.org/@nuclearplayer)
+
+[Twitter](https://twitter.com/nuclear_player)
+
+[Discord](https://discord.gg/JqPjKxE)
+
+Support channel (Matrix): `#nuclear:matrix.org`
+
+Suggest and vote on new features here: https://nuclear.featureupvote.com/
 
 ## License
 
