@@ -24,7 +24,7 @@ class BandcampPlugin extends StreamProviderPlugin {
         item.type === 'track' &&
         item.artist.toLowerCase() === query.artist.toLowerCase()
       );
-      if (tracks) {
+      if (tracks.length > 0) {
         break;
       }
     }
