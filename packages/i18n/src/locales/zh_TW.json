@@ -84,18 +84,18 @@
   },
   "favorite-albums": {
     "empty": "最喜歡的專輯為空",
-    "empty-help": "嘗試添加一些專輯到最喜歡的中，它們會在這裡出現",
+    "empty-help": "嘗試將一些藝術家添加到收藏夾，它們會出現在這裡！",
     "header": "你最喜歡的專輯"
   },
   "favorite-artists": {
     "empty": "沒有最喜歡的藝術家",
-    "empty-help": "嘗試將一些藝術家添加到收藏夾，他們會出現在這裡！",
+    "empty-help": "嘗試將一些藝術家添加到收藏夾，它們會出現在這裡！",
     "header": "你最喜歡的藝術家"
   },
   "favorites": {
     "artist": "演出者",
     "empty": "我的最愛為空",
-    "empty-help": "嘗試將一些藝術家添加到收藏夾，他們會出現在這裡！",
+    "empty-help": "嘗試將一些曲目添加到收藏夾，它們會出現在這裡！",
     "header": "我的最愛",
     "play-random": "隨機播放喜好曲目",
     "title": "音樂標題"
