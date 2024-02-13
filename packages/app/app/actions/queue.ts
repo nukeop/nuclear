@@ -49,6 +49,7 @@ export const toQueueItem = (track: Track): QueueItem => ({
   streams: track.streams ?? []
 });
 
+// Exported to facilitate testing.
 export const getSelectedStreamProvider = (getState) => {
   const {
     plugin: {

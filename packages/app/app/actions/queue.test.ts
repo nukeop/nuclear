@@ -14,8 +14,13 @@ describe('Queue actions tests', () => {
     });
 
     test('remote track is removed from the queue when no streams are available', () => {
+      // Mock an empty search result for streams.
       getTrackStreams.mockResolvedValueOnce([]);
+
+      // Configure a stream provider which will throw an error if an attempt is made
+      // to search a stream with an invalid ID.
       const streamProvider = {
+        sourceName: 'Mocked Stream Provider',
         getStreamForId: async (streamId: string) => {
           if (!streamId) {
             throw new Error('The stream ID must not be undefined');
@@ -26,6 +31,7 @@ describe('Queue actions tests', () => {
       getSelectedStreamProvider
         .mockReturnValueOnce(streamProvider);
 
+      // Set up the queue with an arbitrary track, which doesn't have any stream.
       const trackIndex = 123;
       const queueItems: QueueItem[] = [];
       queueItems[trackIndex] = {
@@ -47,19 +53,28 @@ describe('Queue actions tests', () => {
       const findStreamsForTrackOperation = QueueOperations.findStreamsForTrack(trackIndex);
       findStreamsForTrackOperation(dispatchOperation, stateResolver)
         .then(() => {
-          // no error should have been dispatched
+          // No error should have been dispatched:
+          // {
+          //   'payload': {
+          //     'item': {
+          //       'error': {}
+          //     }
+          //   }
+          // }
           expect(dispatchOperation).not.toHaveBeenCalledWith(
             expect.objectContaining({
-              payload: expect.not.objectContaining({
-                error: expect.anything()
+              payload: expect.objectContaining({
+                item: expect.objectContaining({
+                  error: expect.anything()
+                })
               })
             })
           );
-          // assumption:
-          // track without streams should have been removed from the queue
+          // Assumption:
+          // The track without streams should have been removed from the queue.
           expect(dispatchOperation).toHaveBeenCalledWith({
             type: Queue.REMOVE_QUEUE_ITEM,
-            payload: { trackIndex }
+            payload: { index: trackIndex }
           });
         });
     });
