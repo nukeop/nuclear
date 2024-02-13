@@ -49,7 +49,7 @@ export const toQueueItem = (track: Track): QueueItem => ({
   streams: track.streams ?? []
 });
 
-const getSelectedStreamProvider = (getState) => {
+export const getSelectedStreamProvider = (getState) => {
   const {
     plugin: {
       plugins: { streamProviders },
