@@ -84,7 +84,7 @@
   },
   "favorite-albums": {
     "empty": "最喜歡的專輯為空",
-    "empty-help": "嘗試將一些藝術家添加到收藏夾，它們會出現在這裡！",
+    "empty-help": "嘗試將一些專輯添加到收藏夾，它們會出現在這裡！",
     "header": "你最喜歡的專輯"
   },
   "favorite-artists": {
@@ -147,7 +147,7 @@
     "delete": "删除播放清單",
     "duration": "長度",
     "empty": "没有播放清單",
-    "empty-help": "Try create some playlists or import by url and they will appear here!",
+    "empty-help": "嘗試創建一些播放清單或通過URL連結加入，它們會在這裡出現！",
     "error-empty-data": "空數據",
     "error-invalid-data": "無效數據",
     "error-open-file": "無法打開文件",
