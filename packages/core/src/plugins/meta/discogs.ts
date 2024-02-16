@@ -16,7 +16,6 @@ import {
 import {
   DiscogsReleaseSearchResponse,
   DiscogsArtistSearchResponse,
-  DiscogsArtistReleasesSearchResponse,
   DiscogsArtistInfo,
   DiscogsArtistSearchResult,
   DiscogsReleaseSearchResult,
@@ -175,29 +174,19 @@ class DiscogsMetaProvider extends MetaProvider {
 
     const lastFmInfo: LastFmArtistInfo = (await (await this.lastfm.getArtistInfo(discogsInfo.name)).json()).artist;
     const lastFmTopTracks: LastfmTopTracks = (await (await this.lastfm.getArtistTopTracks(discogsInfo.name)).json()).toptracks;
-
     const coverImage = this.getCoverImage(discogsInfo);
-
-    const spotifyToken = await getToken();
-    const similarArtists = await Promise.all(take(lastFmInfo.similar.artist, 5).map(async artist => {
-      const similarArtist = await searchArtists(spotifyToken, artist.name);
-
-      return {
-        name: artist.name,
-        thumbnail: similarArtist?.images[0]?.url
-      };
-    }));
+    const similarArtists = await this.getSimilarArtists(lastFmInfo);
 
     return {
       id: discogsInfo.id,
       name: discogsInfo.name,
       description: _.get(lastFmInfo, 'bio.summary'),
       tags: _.map(_.get(lastFmInfo, 'tags.tag'), 'name'),
-      onTour: lastFmInfo.ontour === '1',
+      onTour: this.isArtistOnTour(lastFmInfo),
       coverImage,
       thumb: coverImage,
       images: _.map(discogsInfo.images, 'resource_url'),
-      topTracks: _.map(lastFmTopTracks.track, (track: LastfmTrack) => ({
+      topTracks: _.map(lastFmTopTracks?.track, (track: LastfmTrack) => ({
         name: track.name,
         title: track.name,
         thumb: coverImage,
@@ -208,6 +197,30 @@ class DiscogsMetaProvider extends MetaProvider {
       similar: similarArtists,
       source: SearchResultsSource.Discogs
     };
+  }
+
+  async getSimilarArtists(artistInfo: LastFmArtistInfo | undefined) {
+    if (!artistInfo) {
+      return [];
+    }
+    const spotifyToken = await getToken();
+    return await Promise.all(
+      take(artistInfo.similar.artist, 5)
+        .map(async artist => {
+          const similarArtist = await searchArtists(spotifyToken, artist.name);
+          return {
+            name: artist.name,
+            thumbnail: similarArtist?.images[0]?.url
+          };
+        })
+    );
+  }
+
+  isArtistOnTour(artistInfo: LastFmArtistInfo | undefined): boolean {
+    if (!artistInfo) {
+      return false;
+    }
+    return artistInfo?.ontour === '1';
   }
 
   async fetchArtistDetailsByName(artistName: string): Promise<ArtistDetails> {
