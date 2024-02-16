@@ -1,8 +1,8 @@
 import { BandcampPlugin } from '.';
-import fn = jest.fn;
 import { Bandcamp } from '../../rest';
-import spyOn = jest.spyOn;
 import { BandcampSearchResult } from '../../rest/Bandcamp';
+import fn = jest.fn;
+import spyOn = jest.spyOn;
 
 describe('Bandcamp plugin tests', () => {
   let plugin: BandcampPlugin;
@@ -88,8 +88,8 @@ describe('Bandcamp plugin tests', () => {
       tags: []
     };
     const streamQuery = {
-      artist: 'Artist Name',
-      track: 'Track Name',
+      artist: '  Artist Name',
+      track: 'Track Name  ',
       ...irrelevantSearchResultAttributes
     };
     const matcher = plugin.createTrackMatcher(streamQuery);
@@ -129,5 +129,12 @@ describe('Bandcamp plugin tests', () => {
     ];
     const tracks = searchResults.filter(matcher);
     expect(tracks).toEqual([matchingResult, matchingResult]);
+  });
+
+  test('normalizes value for matching search results', () => {
+    // mixed case search term padded with spaces
+    const termToNormalize = '   Search Term   ';
+    const normalizedTerm = plugin.normalizeForMatching(termToNormalize);
+    expect(normalizedTerm).toEqual('search term');
   });
 });
