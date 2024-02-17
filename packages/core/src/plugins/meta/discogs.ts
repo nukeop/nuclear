@@ -217,9 +217,6 @@ class DiscogsMetaProvider extends MetaProvider {
   }
 
   isArtistOnTour(artistInfo: LastFmArtistInfo | undefined): boolean {
-    if (!artistInfo) {
-      return false;
-    }
     return artistInfo?.ontour === '1';
   }
 
