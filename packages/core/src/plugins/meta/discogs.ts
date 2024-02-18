@@ -1,4 +1,4 @@
-import _, { take } from 'lodash';
+import _ from 'lodash';
 
 import MetaProvider from '../metaProvider';
 import * as Discogs from '../../rest/Discogs';
@@ -11,7 +11,8 @@ import {
   SearchResultsSource,
   ArtistDetails,
   AlbumDetails,
-  AlbumType
+  AlbumType,
+  SimilarArtist
 } from '../plugins.types';
 import {
   DiscogsReleaseSearchResponse,
@@ -23,9 +24,10 @@ import {
   DiscogsReleaseInfo,
   DiscogsTrack
 } from '../../rest/Discogs.types';
-import { LastFmArtistInfo, LastfmTopTracks, LastfmTrack } from '../../rest/Lastfm.types';
+import { LastFmArtistInfo, LastfmTopTracks, LastfmTrack, LastfmArtistShort } from '../../rest/Lastfm.types';
 import { cleanName } from '../../structs/Artist';
 import { getToken, searchArtists } from '../../rest/Spotify';
+import logger from 'electron-timber';
 
 class DiscogsMetaProvider extends MetaProvider {
   lastfm: LastFmApi;
@@ -199,21 +201,45 @@ class DiscogsMetaProvider extends MetaProvider {
     };
   }
 
-  async getSimilarArtists(artistInfo: LastFmArtistInfo | undefined) {
-    if (!artistInfo) {
-      return [];
+  async getSimilarArtists(artist: LastFmArtistInfo | undefined): Promise<SimilarArtist[]> {
+    if (!artist?.similar?.artist) {
+      return Promise.resolve([]);
     }
-    const spotifyToken = await getToken();
-    return await Promise.all(
-      take(artistInfo.similar.artist, 5)
-        .map(async artist => {
-          const similarArtist = await searchArtists(spotifyToken, artist.name);
-          return {
-            name: artist.name,
-            thumbnail: similarArtist?.images[0]?.url
-          };
-        })
+    const similarArtists = artist.similar.artist;
+    return getToken()
+      .then(spotifyToken => this.fetchTopSimilarArtistsFromSpotify(similarArtists, spotifyToken))
+      .catch(error => {
+        logger.error(`Failed to fetch similar artists for '${artist.name}'`);
+        logger.error(error);
+        return [];
+      });
+  }
+
+  async fetchTopSimilarArtistsFromSpotify(artists: LastfmArtistShort[], spotifyToken: string) {
+    return Promise.all(
+      artists
+        .filter(artist => artist?.name)
+        .slice(0, 5)
+        .map(artist => this.fetchSimilarArtistFromSpotify(artist.name, spotifyToken))
     );
+  }
+
+  async fetchSimilarArtistFromSpotify(artistName: string, spotifyToken: string): Promise<SimilarArtist> {
+    return searchArtists(spotifyToken, artistName)
+      .then(spotifyArtist => {
+        return {
+          name: artistName,
+          thumbnail: spotifyArtist?.images[0]?.url
+        };
+      })
+      .catch(error => {
+        logger.error(`Failed to fetch artist from Spotify: '${artistName}'`);
+        logger.error(error);
+        return {
+          name: artistName,
+          thumbnail: null
+        };
+      });
   }
 
   isArtistOnTour(artistInfo: LastFmArtistInfo | undefined): boolean {
