@@ -1,6 +1,8 @@
 import DiscogsMetaProvider from './discogs';
 import { SimilarArtist } from '../plugins.types';
 import * as SpotifyApi from '../../rest/Spotify';
+import { SpotifyArtist } from '../../rest/Spotify';
+import { LastFmArtistInfo, LastfmArtistShort } from '../../rest/Lastfm.types';
 
 describe('Tests for DiscogsMetaProvider', () => {
   const provider = new DiscogsMetaProvider();
@@ -46,7 +48,7 @@ describe('Tests for DiscogsMetaProvider', () => {
         similar: {
           artist: null
         }
-      } as any)).toEqual([]);
+      } as LastFmArtistInfo)).toEqual([]);
     });
 
     test('Should fetch similar artist', async () => {
@@ -58,7 +60,7 @@ describe('Tests for DiscogsMetaProvider', () => {
         similar: {
           artist: similarArtistsOnLastFm
         }
-      } as any;
+      } as LastFmArtistInfo;
 
       getToken.mockResolvedValueOnce(spotifyToken);
 
@@ -80,7 +82,7 @@ describe('Tests for DiscogsMetaProvider', () => {
         similar: {
           artist: []
         }
-      } as any)).toEqual([]);
+      } as LastFmArtistInfo)).toEqual([]);
     });
 
     test('Should return empty result set if fetching the artists from Spotify fails', async () => {
@@ -90,7 +92,7 @@ describe('Tests for DiscogsMetaProvider', () => {
         similar: {
           artist: []
         }
-      } as any)).toEqual([]);
+      } as LastFmArtistInfo)).toEqual([]);
     });
   });
 
@@ -101,7 +103,7 @@ describe('Tests for DiscogsMetaProvider', () => {
         .mockImplementation((artistName, token) => {
           return Promise.resolve({
             name: `Spotify: ${artistName}`
-          } as any);
+          } as SimilarArtist);
         });
 
       const spotifyToken = 'Spotify token';
@@ -114,7 +116,7 @@ describe('Tests for DiscogsMetaProvider', () => {
         { name: 'Artist 4' },
         { name: 'Artist 5' },
         { name: 'Artist 6' }
-      ] as any;
+      ] as LastfmArtistShort[];
 
       expect(await provider.fetchTopSimilarArtistsFromSpotify(artistsFromLastfm, spotifyToken))
         .toEqual([
@@ -143,7 +145,7 @@ describe('Tests for DiscogsMetaProvider', () => {
     test('Should fetch similar artist', async () => {
       searchArtists.mockResolvedValueOnce({
         images: [{ url: 'the thumbnail URL' }]
-      } as any);
+      } as SpotifyArtist);
       expect(await provider.fetchSimilarArtistFromSpotify('Artist Name', 'Spotify token'))
         .toEqual({
           name: 'Artist Name',
