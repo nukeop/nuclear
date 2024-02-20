@@ -36,6 +36,7 @@ const PlayerControls: React.FC<PlayerControlsProps> = ({
         disabled={goBackDisabled}
       />
       <PlayerButton
+        style-margin={{marginRight: '4px'}}
         data-testid='player-controls-play'
         loading={isLoading}
         icon={

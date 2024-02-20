@@ -22,18 +22,21 @@ const PlayerButton: React.FC<PlayerButtonProps> = ({
   disabled = false,
   loading = false,
   ...rest
-}) => (
-  <button
-    data-testid={rest['data-testid']}
-    className={cx(
-      styles.player_button,
-      { [styles.disabled]: disabled }
-    )}
-    aria-label={ariaLabel}
-    onClick={disabled ? undefined : onClick}
-  >
-    <Icon inverted loading={loading} name={icon} size={size} />
-  </button>
-);
+}) => {
+  return (
+    <button
+      style={rest['style-margin']}
+      data-testid={rest['data-testid']}
+      className={cx(
+        styles.player_button,
+        { [styles.disabled]: disabled }
+      )}
+      aria-label={ariaLabel}
+      onClick={disabled ? undefined : onClick}
+    >
+      <Icon inverted loading={loading} name={icon} size={size} />
+    </button>
+  );
+};
 
 export default PlayerButton;
