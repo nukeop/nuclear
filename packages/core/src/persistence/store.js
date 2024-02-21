@@ -24,6 +24,8 @@ function initStore() {
 
   setIfUnset('downloads', []);
 
+  setIfUnset('blacklist', []);
+
   setIfUnset('equalizer', {
     selected: 'Default'
   });

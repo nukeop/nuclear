@@ -34,6 +34,7 @@ export type TrackPopupProps = {
   onAddToPlaylist?: ({ name }: { name: string }) => void;
   onCreatePlaylist?: ({ name }: { name: string }) => void;
   onAddToDownloads?: () => void;
+  onAddToBlacklist?: () => void;
 };
 
 export type TrackPopupStrings = {
@@ -89,7 +90,8 @@ const TrackPopup: React.FC<TrackPopupProps> = ({
   onAddToFavorites,
   onAddToPlaylist,
   onCreatePlaylist,
-  onAddToDownloads
+  onAddToDownloads,
+  onAddToBlacklist
 }) => {
   const [isCreatePlaylistDialogOpen, setIsCreatePlaylistDialogOpen] = useState(false);
 
@@ -179,7 +181,7 @@ const TrackPopup: React.FC<TrackPopupProps> = ({
         {withAddToBlacklist && (
           <PopupButton
             data-testid='track-popup-blacklist'
-            onClick={null}
+            onClick={onAddToBlacklist}
             ariaLabel='Blacklist this track'
             icon='lock'
             label={strings.textAddToBlacklist}

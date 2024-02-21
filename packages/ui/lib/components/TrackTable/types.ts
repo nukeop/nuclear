@@ -20,6 +20,7 @@ export type TrackTableExtraProps<T extends Track> = {
   onPlayAll?: (tracks: T[]) => void;
   onAddToQueue?: (track: T) => void;
   onAddToFavorites?: (track: T) => void;
+  onAddToBlacklist?: (track: T) => void,
   onRemoveFromFavorites?: (track: T) => void;
   onAddToPlaylist?: (track: T, { name }: { name: string }) => void;
   onCreatePlaylist?: (track: T, { name }: { name: string }) => void;
@@ -55,6 +56,7 @@ export type TrackTableSettings = {
   displayPosition?: boolean;
   displayThumbnail?: boolean;
   displayFavorite?: boolean;
+  displayBlacklist?: boolean;
   displayArtist?: boolean;
   displayAlbum?: boolean;
   displayDuration?: boolean;

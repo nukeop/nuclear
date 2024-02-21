@@ -18,6 +18,7 @@ const TitleCell: React.FC<CellProps<Track> & TrackTableExtraProps<Track>> = ({
   onAddToPlaylist,
   onCreatePlaylist,
   onAddToDownloads,
+  onAddToBlacklist,
   playlists,
   popupActionStrings
 }) => <td
@@ -65,6 +66,7 @@ const TitleCell: React.FC<CellProps<Track> & TrackTableExtraProps<Track>> = ({
         onAddToPlaylist={(playlist: { name: string }) => onAddToPlaylist(row.original, playlist)}
         onCreatePlaylist={(options: { name: string }) => onCreatePlaylist(row.original, options)}
         onAddToDownloads={() => onAddToDownloads(row.original)}
+        onAddToBlacklist={() => onAddToBlacklist(row.original)}
 
         withPlayNow={Boolean(onPlay)}
         withPlayNext={Boolean(onPlayNext)}

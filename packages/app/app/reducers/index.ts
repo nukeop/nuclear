@@ -5,6 +5,7 @@ import DashboardReducer from './dashboard';
 import DownloadsReducer from './downloads';
 import EqualizerReducer from './equalizer';
 import FavoritesReducer from './favorites';
+import BlacklistReducer from './blacklist';
 import GithubReducer from './github';
 import GithubContribReducer from './githubContrib';
 import LyricsReducer from './lyrics';
@@ -29,6 +30,7 @@ const rootReducer = combineReducers({
   downloads: DownloadsReducer,
   equalizer: EqualizerReducer,
   favorites: FavoritesReducer,
+  blacklist: BlacklistReducer,
   github: GithubReducer,
   githubContrib: GithubContribReducer,
   importfavs: ImportFavsReducer,

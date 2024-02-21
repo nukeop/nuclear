@@ -52,6 +52,7 @@ function TrackTable<T extends Track>({
   displayPosition = true,
   displayThumbnail = true,
   displayFavorite = true,
+  displayBlacklist = true,
   displayArtist = true,
   displayAlbum = true,
   displayDuration = true,

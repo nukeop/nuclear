@@ -12,6 +12,7 @@ import * as QueueActions from '../../actions/queue';
 import * as FavoritesActions from '../../actions/favorites';
 import * as ToastActions from '../../actions/toasts';
 import * as PlaylistsActions from '../../actions/playlists';
+import * as BlacklistActions from '../../actions/blacklist';
 import { safeAddUuid } from '../../actions/helpers';
 import { normalizeTrack } from '../../utils';
 import { addTrackToPlaylist } from '../../components/PlayQueue/QueueMenu/QueueMenuMore';
@@ -27,7 +28,8 @@ const QueuePopupButtons = ({
   handlePlayNow,
   handleAddFavorite,
   handleAddToDownloads,
-  handleAddToPlaylist
+  handleAddToPlaylist,
+  handleAddToBlacklist
 }) => (
   <>
     {withPlayNow && (
@@ -72,7 +74,7 @@ const QueuePopupButtons = ({
     )}
     {withAddToBlacklist && (
       <PopupButton
-        onClick={null}
+        onClick={handleAddToBlacklist}
         ariaLabel='Blacklist this track'
         icon='lock'
         label='Blacklist'
@@ -95,6 +97,7 @@ const mapDispatchToProps = dispatch => ({
   downloadsActions: bindActionCreators(DownloadsActions, dispatch),
   queueActions: bindActionCreators(QueueActions, dispatch),
   favoritesActions: bindActionCreators(FavoritesActions, dispatch),
+  blacklistActions: bindActionCreators(BlacklistActions, dispatch),
   playlistsActions: bindActionCreators(PlaylistsActions, dispatch),
   toastActions: bindActionCreators(ToastActions, dispatch)
 });
@@ -148,6 +151,21 @@ export default compose(
       toastActions.info(
         'Favorite track added',
         `${track.artist} - ${track.name} has been added to favorites.`,
+        <img src={getThumbnail(normalizedTrack)} />,
+        settings
+      );
+    },
+    handleAddToBlacklist: ({
+      track,
+      settings,
+      blacklistActions,
+      toastActions
+    }) => () => {
+      const normalizedTrack = normalizeTrack(track);
+      blacklistActions.addToBlacklist(normalizedTrack);
+      toastActions.info(
+        'Track added to blacklist',
+        `${track.artist} - ${track.name} has been added to blacklist.`,
         <img src={getThumbnail(normalizedTrack)} />,
         settings
       );
