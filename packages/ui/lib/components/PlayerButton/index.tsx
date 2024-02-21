@@ -25,11 +25,11 @@ const PlayerButton: React.FC<PlayerButtonProps> = ({
 }) => {
   return (
     <button
-      style={rest['style-margin']}
       data-testid={rest['data-testid']}
       className={cx(
         styles.player_button,
-        { [styles.disabled]: disabled }
+        { [styles.disabled]: disabled },
+        { [styles.player_button_with_margin]: rest['data-testid'] === 'player-controls-play' } // Apply the margin conditionally based on test-id if needed
       )}
       aria-label={ariaLabel}
       onClick={disabled ? undefined : onClick}
