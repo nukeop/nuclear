@@ -1,9 +1,8 @@
-import _, { flow, omit, unionWith } from 'lodash';
-import { store, Track } from '@nuclear/core';
+import _, { flow, omit } from 'lodash';
+import { store } from '@nuclear/core';
 import { areTracksEqualByName, getTrackItem } from '@nuclear/ui';
 
 import { safeAddUuid } from './helpers';
-import { createStandardAction } from 'typesafe-actions';
 
 export const READ_BLACKLISTED = 'READ_BLACKLISTED';
 export const BLACKLIST_TRACK = 'BLACKLIST_TRACK';
