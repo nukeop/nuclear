@@ -203,16 +203,17 @@ class DiscogsMetaProvider extends MetaProvider {
 
   async getSimilarArtists(artist: LastFmArtistInfo | undefined): Promise<SimilarArtist[]> {
     if (!artist?.similar?.artist) {
-      return Promise.resolve([]);
+      return [];
     }
     const similarArtists = artist.similar.artist;
-    return getToken()
-      .then(spotifyToken => this.fetchTopSimilarArtistsFromSpotify(similarArtists, spotifyToken))
-      .catch(error => {
-        logger.error(`Failed to fetch similar artists for '${artist.name}'`);
-        logger.error(error);
-        return [];
-      });
+    try {
+      const spotifyToken = await getToken();
+      return await this.fetchTopSimilarArtistsFromSpotify(similarArtists, spotifyToken);
+    } catch (error) {
+      logger.error(`Failed to fetch similar artists for '${artist.name}'`);
+      logger.error(error);
+    }
+    return [];
   }
 
   async fetchTopSimilarArtistsFromSpotify(artists: LastfmArtistShort[], spotifyToken: string) {
