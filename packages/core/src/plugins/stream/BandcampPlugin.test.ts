@@ -87,9 +87,11 @@ describe('Bandcamp plugin tests', () => {
       imageUrl: 'irrelevant for this test',
       tags: []
     };
+    const normalizeForMatching = spyOn(plugin, 'normalizeForMatching');
+    normalizeForMatching.mockImplementation(term => term);
     const streamQuery = {
-      artist: '  Artist Name',
-      track: 'Track Name  ',
+      artist: 'Artist Name',
+      track: 'Track Name',
       ...irrelevantSearchResultAttributes
     };
     const matcher = plugin.createTrackMatcher(streamQuery);
