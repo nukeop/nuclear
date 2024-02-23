@@ -131,7 +131,7 @@ describe('Bandcamp plugin tests', () => {
     expect(tracks).toEqual([matchingResult, matchingResult]);
   });
 
-  test('normalizes value for matching search results', () => {
+  test('normalizeForMatching trims and converts the term to lowercase', () => {
     // mixed case search term padded with spaces
     const termToNormalize = '   Search Term   ';
     const normalizedTerm = plugin.normalizeForMatching(termToNormalize);
