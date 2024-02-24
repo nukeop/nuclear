@@ -1,11 +1,12 @@
 const SPOTIFY_API_OPEN_URL = 'https://open.spotify.com';
 const SPOTIFY_API_URL = 'https://api.spotify.com/v1';
 
-type SpotifyArtist = {
-    images: {
-        height: number;
-        url: string;
-    }[];
+export type SpotifyArtist = {
+  name: string;
+  images: {
+    height: number;
+    url: string;
+  }[];
 }
 
 export const getToken = async (): Promise<string> => {
