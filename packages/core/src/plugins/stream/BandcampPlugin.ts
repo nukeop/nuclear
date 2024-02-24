@@ -35,12 +35,16 @@ class BandcampPlugin extends StreamProviderPlugin {
   }
 
   createTrackMatcher(query: StreamQuery): (item: BandcampSearchResult) => boolean {
-    const lowerCaseTrack: string = query.track.toLowerCase();
-    const lowerCaseArtist: string = query.artist.toLowerCase();
+    const normalizedTrack: string = this.normalizeForMatching(query.track);
+    const normalizedArtist: string = this.normalizeForMatching(query.artist);
     return (searchResult) =>
       searchResult.type === 'track' &&
-      searchResult.artist.toLowerCase() === lowerCaseArtist &&
-      searchResult.name.toLowerCase() === lowerCaseTrack;
+      this.normalizeForMatching(searchResult.artist) === normalizedArtist &&
+      this.normalizeForMatching(searchResult.name) === normalizedTrack;
+  }
+
+  normalizeForMatching(term: string): string {
+    return term.trim().toLowerCase();
   }
 
   resultToStream(result: BandcampSearchResult, stream: string, duration: number): StreamData {
