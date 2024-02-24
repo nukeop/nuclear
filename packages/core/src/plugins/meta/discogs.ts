@@ -1,4 +1,4 @@
-import _, { take } from 'lodash';
+import _ from 'lodash';
 
 import MetaProvider from '../metaProvider';
 import * as Discogs from '../../rest/Discogs';
@@ -11,12 +11,12 @@ import {
   SearchResultsSource,
   ArtistDetails,
   AlbumDetails,
-  AlbumType
+  AlbumType,
+  SimilarArtist
 } from '../plugins.types';
 import {
   DiscogsReleaseSearchResponse,
   DiscogsArtistSearchResponse,
-  DiscogsArtistReleasesSearchResponse,
   DiscogsArtistInfo,
   DiscogsArtistSearchResult,
   DiscogsReleaseSearchResult,
@@ -24,9 +24,10 @@ import {
   DiscogsReleaseInfo,
   DiscogsTrack
 } from '../../rest/Discogs.types';
-import { LastFmArtistInfo, LastfmTopTracks, LastfmTrack } from '../../rest/Lastfm.types';
+import { LastFmArtistInfo, LastfmTopTracks, LastfmTrack, LastfmArtistShort } from '../../rest/Lastfm.types';
 import { cleanName } from '../../structs/Artist';
 import { getToken, searchArtists } from '../../rest/Spotify';
+import logger from 'electron-timber';
 
 class DiscogsMetaProvider extends MetaProvider {
   lastfm: LastFmApi;
@@ -175,29 +176,19 @@ class DiscogsMetaProvider extends MetaProvider {
 
     const lastFmInfo: LastFmArtistInfo = (await (await this.lastfm.getArtistInfo(discogsInfo.name)).json()).artist;
     const lastFmTopTracks: LastfmTopTracks = (await (await this.lastfm.getArtistTopTracks(discogsInfo.name)).json()).toptracks;
-
     const coverImage = this.getCoverImage(discogsInfo);
-
-    const spotifyToken = await getToken();
-    const similarArtists = await Promise.all(take(lastFmInfo.similar.artist, 5).map(async artist => {
-      const similarArtist = await searchArtists(spotifyToken, artist.name);
-
-      return {
-        name: artist.name,
-        thumbnail: similarArtist?.images[0]?.url
-      };
-    }));
+    const similarArtists = await this.getSimilarArtists(lastFmInfo);
 
     return {
       id: discogsInfo.id,
       name: discogsInfo.name,
       description: _.get(lastFmInfo, 'bio.summary'),
       tags: _.map(_.get(lastFmInfo, 'tags.tag'), 'name'),
-      onTour: lastFmInfo.ontour === '1',
+      onTour: this.isArtistOnTour(lastFmInfo),
       coverImage,
       thumb: coverImage,
       images: _.map(discogsInfo.images, 'resource_url'),
-      topTracks: _.map(lastFmTopTracks.track, (track: LastfmTrack) => ({
+      topTracks: _.map(lastFmTopTracks?.track, (track: LastfmTrack) => ({
         name: track.name,
         title: track.name,
         thumb: coverImage,
@@ -208,6 +199,52 @@ class DiscogsMetaProvider extends MetaProvider {
       similar: similarArtists,
       source: SearchResultsSource.Discogs
     };
+  }
+
+  async getSimilarArtists(artist: LastFmArtistInfo | undefined): Promise<SimilarArtist[]> {
+    if (!artist?.similar?.artist) {
+      return [];
+    }
+    const similarArtists = artist.similar.artist;
+    try {
+      const spotifyToken = await getToken();
+      return await this.fetchTopSimilarArtistsFromSpotify(similarArtists, spotifyToken);
+    } catch (error) {
+      logger.error(`Failed to fetch similar artists for '${artist.name}'`);
+      logger.error(error);
+    }
+    return [];
+  }
+
+  async fetchTopSimilarArtistsFromSpotify(artists: LastfmArtistShort[], spotifyToken: string) {
+    return Promise.all(
+      artists
+        .filter(artist => artist?.name)
+        .slice(0, 5)
+        .map(artist => this.fetchSimilarArtistFromSpotify(artist.name, spotifyToken))
+    );
+  }
+
+  async fetchSimilarArtistFromSpotify(artistName: string, spotifyToken: string): Promise<SimilarArtist> {
+    return searchArtists(spotifyToken, artistName)
+      .then(spotifyArtist => {
+        return {
+          name: artistName,
+          thumbnail: spotifyArtist?.images[0]?.url
+        };
+      })
+      .catch(error => {
+        logger.error(`Failed to fetch artist from Spotify: '${artistName}'`);
+        logger.error(error);
+        return {
+          name: artistName,
+          thumbnail: null
+        };
+      });
+  }
+
+  isArtistOnTour(artistInfo: LastFmArtistInfo | undefined): boolean {
+    return artistInfo?.ontour === '1';
   }
 
   async fetchArtistDetailsByName(artistName: string): Promise<ArtistDetails> {
