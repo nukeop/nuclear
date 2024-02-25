@@ -338,7 +338,9 @@
     "use-stream-verification": "Use stream verification",
     "use-stream-verification-description": "Use stream verification. Loads the streams the community has verified as being correct for the tracks you play. Also allows you to vote on streams. See documentation for details.",
     "youtube": "Youtube",
-    "yt-api-key": "Youtube API Key"
+    "yt-api-key": "Youtube API Key",
+    "blacklist": "Blacklisted tracks",
+    "blacklist-description": "Remove tracks from blacklist"
   },
   "tags": {
     "albums": "Top Albums",

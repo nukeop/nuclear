@@ -29,7 +29,8 @@ export type TrackTableExtraProps<T extends Track> = {
   playlists?: Array<{
     name: string;
   }>;
-  popupActionStrings?: TrackPopupStrings
+  popupActionStrings?: TrackPopupStrings,
+  displayButtons?: boolean
 }
 
 export type TrackTableStrings = {
@@ -63,5 +64,3 @@ export type TrackTableSettings = {
   displayCustom?: boolean;
   selectable?: boolean;
 };
-
-

@@ -11,7 +11,7 @@ const BlacklistReducer = (state = initialState, action) => {
   case READ_BLACKLISTED:
   case BLACKLIST_TRACK:
   case REMOVE_BLACKLISTED_TRACK:
-    return { ...action.payload };
+    return [...action.payload];
   default:
     return state;
   }

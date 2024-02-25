@@ -1,20 +1,25 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { remote } from 'electron';
 import { Button, Input, Radio, Segment, Icon } from 'semantic-ui-react';
 import cx from 'classnames';
 import _ from 'lodash';
 import { useTranslation } from 'react-i18next';
 import { SettingType } from '@nuclear/core';
-import { Dropdown, Range } from '@nuclear/ui';
+import { Dropdown, Range, TrackTable } from '@nuclear/ui';
 import i18n from '@nuclear/i18n';
-
 import Header from '../Header';
 import Spacer from '../Spacer';
-
+import { connect } from 'react-redux';
 import styles from './styles.scss';
 import { LastFmSocialIntegration } from './Integrations/LastFmSocialIntegration';
 import { MastodonSocialIntegration } from './Integrations/MastodonSocialIntegration';
 import { RootState } from '../../reducers';
+import { playlistsSelectors } from '../../selectors/playlists';
+import { useSelector } from 'react-redux';
+import { blacklistSelector } from '../../selectors/blacklist';
+import * as BlacklistActions from '../../actions/blacklist';
+import { useDispatch } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 const volumeSliderColors = {
   fillColor: { r: 248, g: 248, b: 242, a: 1 },
@@ -45,6 +50,7 @@ export type SettingsProps = {
   mastodon: RootState['mastodon'];
   settings: RootState['settings'];
   options: object;
+  blacklistActions: any;
 }
 
 const Settings: React.FC<SettingsProps> = ({
@@ -54,8 +60,16 @@ const Settings: React.FC<SettingsProps> = ({
   importfavs,
   mastodon,
   settings,
-  options
+  options,
+  blacklistActions
 }) => {
+  const dispatch = useDispatch();
+  const blacklisted = useSelector(blacklistSelector);
+
+  useEffect(() => {
+    dispatch(BlacklistActions.readBlacklist());
+  }, [dispatch]);
+
   const isChecked = (option) => {
     return typeof settings[option.name] !== 'undefined'
       ? settings[option.name]
@@ -136,6 +150,58 @@ const Settings: React.FC<SettingsProps> = ({
     </span>
   );
 
+  const trackTableTranslation = useTranslation('track-table').t;
+  const trackTableStrings = {
+    addSelectedTracksToQueue: trackTableTranslation('add-selected-tracks-to-queue'),
+    addSelectedTracksToDownloads: trackTableTranslation('add-selected-tracks-to-downloads'),
+    addSelectedTracksToFavorites: trackTableTranslation('add-selected-tracks-to-favorites'),
+    playSelectedTracksNow: trackTableTranslation('play-selected-tracks-now'),
+    tracksSelectedLabelSingular: trackTableTranslation('tracks-selected-label-singular'),
+    tracksSelectedLabelPlural: trackTableTranslation('tracks-selected-label-plural')
+  };
+  const playlists = useSelector(playlistsSelectors.localPlaylists);
+  const popupTranstation = useTranslation('track-popup').t;
+  const popupStrings = {
+    textAddToQueue: popupTranstation('add-to-queue'),
+    textPlayNow: popupTranstation('play-now'),
+    textPlayNext: popupTranstation('play-next'),
+    textAddToFavorites: popupTranstation('add-to-favorite'),
+    textAddToPlaylist: popupTranstation('add-to-playlist'),
+    textCreatePlaylist: popupTranstation('create-playlist'),
+    textAddToDownloads: popupTranstation('download'),
+    textAddToBlacklist: popupTranstation('blacklist'),
+    createPlaylistDialog: {
+      title: popupTranstation('create-playlist-dialog-title'),
+      placeholder: popupTranstation('create-playlist-dialog-placeholder'),
+      accept: popupTranstation('create-playlist-dialog-accept'),
+      cancel: popupTranstation('create-playlist-dialog-cancel')
+    }
+  };
+  const renderTableOption = () => (
+    <TrackTable
+      tracks={blacklisted}
+      positionHeader={<Icon name='hashtag' />}
+      thumbnailHeader={<Icon name='image' />}
+      artistHeader={t('artist')}
+      titleHeader={t('title')}
+      albumHeader={t('album')}
+      durationHeader={t('duration')}
+      strings={trackTableStrings}
+      playlists={playlists.data}
+      popupActionStrings={popupStrings}
+      isTrackFavorite={null}
+      onDelete={blacklistActions}
+      displayPosition={false}
+      displayThumbnail={false}
+      displayAlbum={false}
+      displayDuration={false}
+      displayFavorite={false}
+      displayCustom={false}
+      selectable={false}
+      displayButtons={false}
+    />
+  );
+
   const renderSliderOption = (option) => (
     <div className={styles.slider_container}>
       <label>{t('less')}</label>
@@ -203,6 +269,8 @@ const Settings: React.FC<SettingsProps> = ({
         renderNodeOption(option)}
       {option.type === SettingType.DIRECTORY &&
         renderDirectoryOption(option)}
+      {option.type === SettingType.TABLE &&
+        renderTableOption()}   
     </div>
   );
 
@@ -252,4 +320,19 @@ const Settings: React.FC<SettingsProps> = ({
   );
 };
 
-export default Settings;
+function mapStateToProps(state) {
+  return {
+    blacklist: state.blacklist
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    blacklistActions: bindActionCreators(BlacklistActions.removeBlacklistedTrack, dispatch)
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Settings);

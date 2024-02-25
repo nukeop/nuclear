@@ -8,6 +8,7 @@ export enum SettingType {
   NUMBER = 'number',
   STRING = 'string',
   DIRECTORY = 'directory',
+  TABLE = 'table'
 }
 
 type SettingCategory =
@@ -20,7 +21,8 @@ type SettingCategory =
   | 'downloads'
   | 'developer'
   | 'visualizer'
-  | 'social';
+  | 'social'
+  | 'blacklist';
 
 type SettingOption = {
   key: string;
@@ -377,5 +379,11 @@ export const settingsConfig: Array<Setting> = [
     category: 'playback',
     type: SettingType.BOOLEAN,
     default: true
+  },
+  {
+    name: 'blacklist',
+    prettyName: '',
+    category: 'blacklist',
+    type: SettingType.TABLE
   }
 ];
