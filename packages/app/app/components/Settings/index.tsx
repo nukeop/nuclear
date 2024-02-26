@@ -50,7 +50,7 @@ export type SettingsProps = {
   mastodon: RootState['mastodon'];
   settings: RootState['settings'];
   options: object;
-  blacklistActions: any;
+  blacklistActions: object;
 }
 
 const Settings: React.FC<SettingsProps> = ({
