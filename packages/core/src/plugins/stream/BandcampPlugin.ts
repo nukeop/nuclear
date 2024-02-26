@@ -18,17 +18,33 @@ class BandcampPlugin extends StreamProviderPlugin {
     const limit = 5;
     let tracks: BandcampSearchResult[];
 
+    const searchTerm: string = this.createSearchTerm(query);
+    const isMatchingTrack = this.createTrackMatcher(query);
     for (let page = 0; page < limit; page++) {
-      const searchResults = await Bandcamp.search(query.track, page);
-      tracks = searchResults.filter(item =>
-        item.type === 'track' &&
-        item.artist.toLowerCase() === query.artist.toLowerCase()
-      );
-      if (tracks) {
+      const searchResults = await Bandcamp.search(searchTerm, page);
+      tracks = searchResults.filter(isMatchingTrack);
+      if (tracks.length > 0) {
         break;
       }
     }
     return tracks;
+  }
+
+  createSearchTerm(query: StreamQuery): string {
+    return `${query.artist} ${query.track}`;
+  }
+
+  createTrackMatcher(query: StreamQuery): (item: BandcampSearchResult) => boolean {
+    const normalizedTrack: string = this.normalizeForMatching(query.track);
+    const normalizedArtist: string = this.normalizeForMatching(query.artist);
+    return (searchResult) =>
+      searchResult.type === 'track' &&
+      this.normalizeForMatching(searchResult.artist) === normalizedArtist &&
+      this.normalizeForMatching(searchResult.name) === normalizedTrack;
+  }
+
+  normalizeForMatching(term: string): string {
+    return term.trim().toLowerCase();
   }
 
   resultToStream(result: BandcampSearchResult, stream: string, duration: number): StreamData {

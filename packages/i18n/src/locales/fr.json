@@ -47,7 +47,7 @@
     "artist": "Artiste",
     "best": "Nouveautés",
     "best-new-albums": "Meilleurs albums",
-    "best-new-tracks": "Meilleurs nouveaux morceaux",
+    "best-new-tracks": "Meilleurs morceaux récents",
     "genres": "Genres",
     "news": "Actualités",
     "playcounts": "Nombre d'écoute",
@@ -97,7 +97,7 @@
     "empty": "Aucun favoris",
     "empty-help": "Essayez d'ajouter quelques morceaux à vos favoris et ils apparaîtront ici !",
     "header": "Vos morceaux favoris",
-    "play-random": "Play a random track from your favorites",
+    "play-random": "Jouer un morceau aléatoire à partir de vos favoris",
     "title": "Titre"
   },
   "help": {
@@ -127,6 +127,7 @@
     "not-found": "Aucune paroles n'ont été trouvées pour ce morceau."
   },
   "option-control": {
+    "rate": "Vitesse de lecture",
     "autoradio": "Auto-radio",
     "loop": "Boucle",
     "mini-player": "Mini-lecteur",
@@ -220,21 +221,21 @@
     "live": "En direct",
     "stream-verification": {
       "tooltip": {
-        "unknown": "The status of this stream is unknown.",
-        "unverified": "This stream has not yet been verified by the community.",
-        "weakly-verified": "This stream has been verified by a couple of users.",
-        "verified": "This stream has been verified by the community.",
-        "verified-by-user": "This stream has been verified by you."
+        "unknown": "L'état de ce flux est inconnu.",
+        "unverified": "Ce flux n'a pas encore été vérifié par la communauté.",
+        "weakly-verified": "Ce flux n'a été vérifié que par quelques utilisateurs.",
+        "verified": "Ce flux a été vérifié par la communauté.",
+        "verified-by-user": "Ce flux a été vérifié par vous."
       },
       "stream-status": {
-        "unknown": "Unknown",
-        "unverified": "Unverified",
-        "weakly-verified": "Weakly verified",
-        "verified": "Verified",
-        "verified-by-user": "Verified by you"
+        "unknown": "Inconnu",
+        "unverified": "Non vérifié",
+        "weakly-verified": "Faiblement vérifié",
+        "verified": "Vérifié",
+        "verified-by-user": "Vérifié par vous"
       },
-      "verify": "Verify",
-      "unverify": "Unverify"
+      "verify": "Vérifier",
+      "unverify": "Ne plus vérifier"
     }
   },
   "search": {
@@ -323,7 +324,7 @@
     "promoted-artists-description": "Il s'agit d'un ensemble d'artistes indie que vous pourriez aimer et choisis sur le volet. Personne ne recevant aucune compensation pour cela.",
     "saving-in": "Enregistrer dans :",
     "seek-iteration": "Nombre de seconde à avancer/reculer en appuyant sur les flèches",
-    "show-tray-icon": "Show tray icon",
+    "show-tray-icon": "Afficher l'icône dans la barre des tâches",
     "shuffle-queue": "Ordre aléatoire",
     "shuffle-when-going-back": "Mélanger les morceaux précédents",
     "shuffle-when-going-back-description": "Joue un morceau aléatoire lorsque le bouton de morceau précédent est cliqué",
@@ -333,9 +334,9 @@
     "streaming": "Diffusion",
     "track-duration": "Afficher la durée du morceau sur la barre d'avancement de lecture",
     "user": "Utilisateur :",
-    "user-id": "User ID",
-    "use-stream-verification": "Use stream verification",
-    "use-stream-verification-description": "Use stream verification. Loads the streams the community has verified as being correct for the tracks you play. Also allows you to vote on streams. See documentation for details.",
+    "user-id": "Identifiant de l'utilisateur",
+    "use-stream-verification": "Utiliser la vérification de flux",
+    "use-stream-verification-description": "Utilisez la vérification de flux. Charge les flux que la communauté a vérifiés comme étant corrects pour les musiques que vous jouez. Permet également de voter sur les flux. Consultez la documentation pour plus de détails.",
     "youtube": "YouTube",
     "yt-api-key": "Clé d'API YouTube"
   },

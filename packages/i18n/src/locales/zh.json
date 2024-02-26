@@ -19,7 +19,7 @@
     "favorite-artists": "最喜欢的艺术家",
     "favorite-tracks": "收藏的曲目",
     "library": "本地曲库",
-    "listening-history": "Listening History",
+    "listening-history": "聆听历史记录",
     "lyrics": "歌词",
     "main": "主界面",
     "playlists": "播放列表",
@@ -28,7 +28,7 @@
     "settings": "设置",
     "visualizer": "可视化",
     "user-panel": {
-      "actions-tooltip": "User actions",
+      "actions-tooltip": "用户操作",
       "sign-up": "注册/登录",
       "sign-out": "注销"
     },
@@ -71,14 +71,14 @@
     "status": "状态"
   },
   "equalizer": {
-    "classical": "Classical",
+    "classical": "古典",
     "club": "Club",
     "custom": "自定义",
     "default": "默认",
     "full-bass": "全低音",
     "full-treble": "Full Treble",
     "pop": "Pop",
-    "presets": "Presets",
+    "presets": "默认",
     "reggae": "Reggae",
     "rock": "Rock"
   },
@@ -127,6 +127,7 @@
     "not-found": "这首歌未找到歌词"
   },
   "option-control": {
+    "rate": "Playback speed",
     "autoradio": "随便听听",
     "loop": "循环",
     "mini-player": "迷你版播放器",
@@ -250,7 +251,7 @@
     "placeholder": "搜索...",
     "playlist": "播放列表",
     "playlist_plural": "播放列表",
-    "podcast": "Podcast",
+    "podcast": "播客",
     "queue-add": "将全部歌曲添加到播放列表",
     "track": "音乐标题",
     "track_plural": "曲目",

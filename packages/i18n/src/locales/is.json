@@ -127,6 +127,7 @@
     "not-found": "Enginn texti fannst fyrir þetta lag."
   },
   "option-control": {
+    "rate": "Playback speed",
     "autoradio": "Sjálfvirkt útvarp",
     "loop": "Lykkja",
     "mini-player": "Miniplayer",

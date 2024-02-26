@@ -127,6 +127,7 @@
     "not-found": "이 음악의 가사를 찾을 수 없습니다."
   },
   "option-control": {
+    "rate": "Playback speed",
     "autoradio": "자동 재생",
     "loop": "반복",
     "mini-player": "미니 플레이어",

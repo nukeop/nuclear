@@ -127,6 +127,7 @@
     "not-found": "לא נמצאו מילות שיר לשיר הזה."
   },
   "option-control": {
+    "rate": "Playback speed",
     "autoradio": "רדיו אוטומטי",
     "loop": "חזרה",
     "mini-player": "נגן ממוזער",

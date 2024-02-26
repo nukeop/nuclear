@@ -127,6 +127,7 @@
     "not-found": "Ingen sangtekster ble funnet for denne sangen."
   },
   "option-control": {
+    "rate": "Playback speed",
     "autoradio": "Autostart",
     "loop": "Sløyfe",
     "mini-player": "Smittespiller",

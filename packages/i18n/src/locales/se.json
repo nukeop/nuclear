@@ -19,7 +19,7 @@
     "favorite-artists": "Favoritartister",
     "favorite-tracks": "Favoritspår",
     "library": "Lokalt bibliotek",
-    "listening-history": "Listening History",
+    "listening-history": "Lyssnings historik",
     "lyrics": "Låttexter",
     "main": "Huvudmeny",
     "playlists": "Spellistor",
@@ -28,14 +28,14 @@
     "settings": "Inställningar",
     "visualizer": "Visualiserare",
     "user-panel": {
-      "actions-tooltip": "User actions",
-      "sign-up": "Sign up / Sign in",
-      "sign-out": "Sign out"
+      "actions-tooltip": "Användaråtgärder",
+      "sign-up": "Registrera / Logga in",
+      "sign-out": "Logga ut"
     },
     "version": "Version"
   },
   "artist": {
-    "add-all": "Add all",
+    "add-all": "Lägg till alla",
     "count": "Antal spelningar",
     "queue": "Lägg till alla spår i kön",
     "similar": "Liknande artister",
@@ -51,15 +51,15 @@
     "genres": "Genrer",
     "news": "Nyheter",
     "playcounts": "Antal spelningar",
-    "playlists": "Trending",
+    "playlists": "Trendar",
     "popular-track-title": "Toppspår från Deezer",
     "title": "Titel",
     "top": "Toppspår",
-    "trending-playlists": "Trending playlists",
-    "trending-artists": "Trending artists",
-    "trending-albums": "Trending albums",
-    "filter": "Filter...",
-    "nothing-found": "Nothing found."
+    "trending-playlists": "Trendiga spellistor",
+    "trending-artists": "Trendiga artister",
+    "trending-albums": "Trendiga album",
+    "filter": "Filtrera...",
+    "nothing-found": "Inget kunde hittas."
   },
   "downloads": {
     "clear": "Rensa lyssnade spår",
@@ -71,14 +71,14 @@
     "status": "Status"
   },
   "equalizer": {
-    "classical": "Classical",
-    "club": "Club",
-    "custom": "Custom",
-    "default": "Default",
+    "classical": "Klassiskt",
+    "club": "Klubb",
+    "custom": "Anpassad",
+    "default": "Standard",
     "full-bass": "Full bas",
     "full-treble": "Full diskant",
     "pop": "Pop",
-    "presets": "Presets",
+    "presets": "Förval",
     "reggae": "Reggae",
     "rock": "Rock"
   },
@@ -97,12 +97,12 @@
     "empty": "Inga favoritspår",
     "empty-help": "Försök lägga till några spår till favoriter och de kommer att visas här!",
     "header": "Dina favoritspår",
-    "play-random": "Play a random track from your favorites",
+    "play-random": "Spela ett slumpmässigt spår från dina favoriter",
     "title": "Titel"
   },
   "help": {
     "about": "Om Nuclear musikspelare",
-    "contributors": "Our top 10 Contributors",
+    "contributors": "Våra 10 bästa bidragsgivare",
     "header": "Musikspelare som streamar från avgiftsfria källor",
     "released": "släppt under AGPL-3.0",
     "report": "Skicka in problem eller nya funktioner",
@@ -127,6 +127,7 @@
     "not-found": "Ingen låttext hittades för detta spår."
   },
   "option-control": {
+    "rate": "Uppspelningshastighet",
     "autoradio": "Autoradio",
     "loop": "Slinga",
     "mini-player": "Minispelare",
@@ -155,12 +156,12 @@
     "export-fail-title": "Export av spellista misslyckades",
     "export-success-title": "Export av spellista lyckades",
     "header": "Dina spellistor",
-    "import-progress": "Import progress",
-    "spotify-import-placeholder": "Paste a Spotify playlist URL here",
+    "import-progress": "Importeringsframsteg",
+    "spotify-import-placeholder": "Klistra in en Spotify-spellistURL här",
     "dialog-placeholder": "Namn på spellistan...",
     "dialog-accept": "Spara",
-    "dialog-cancel": "Cancel",
-    "dialog-rename": "Rename",
+    "dialog-cancel": "Avbryt",
+    "dialog-rename": "Döp om",
     "dialog-import": "Import",
     "create-button": "Skapa ny spellista",
     "new-playlist": "Ny spellista",
@@ -178,14 +179,14 @@
     "title": "Titel",
     "tracks-selected-plural": "spår valda",
     "tracks-selected-singular": "spår vald",
-    "tracks-singular": "track",
-    "tracks-plural": "tracks",
-    "modified-at": "Last modified: ",
-    "never-modified": "Unknown",
-    "server-modified-at": "Server modified: ",
-    "upload-to-server": "Upload to server",
-    "download-from-server": "Download from server",
-    "number-of-tracks": "tracks"
+    "tracks-singular": "spår",
+    "tracks-plural": "spår",
+    "modified-at": "Senast modifierad: ",
+    "never-modified": "Okänd",
+    "server-modified-at": "Server ändrad: ",
+    "upload-to-server": "Ladda upp till server",
+    "download-from-server": "Ladda ned från server",
+    "number-of-tracks": "spår"
   },
   "plugins": {
     "add-a-plugin": "Lägg till en insticksmodul",
@@ -220,21 +221,21 @@
     "live": "Live",
     "stream-verification": {
       "tooltip": {
-        "unknown": "The status of this stream is unknown.",
-        "unverified": "This stream has not yet been verified by the community.",
-        "weakly-verified": "This stream has been verified by a couple of users.",
-        "verified": "This stream has been verified by the community.",
-        "verified-by-user": "This stream has been verified by you."
+        "unknown": "Statusen för denna ström är okänd.",
+        "unverified": "Denna ström har ännu inte verifierats av communityn.",
+        "weakly-verified": "Denna ström har verifierats av några användare.",
+        "verified": "Denna ström har blivit verifierad av communityn.",
+        "verified-by-user": "Denna ström har blivit verifierad av dig."
       },
       "stream-status": {
-        "unknown": "Unknown",
-        "unverified": "Unverified",
-        "weakly-verified": "Weakly verified",
-        "verified": "Verified",
-        "verified-by-user": "Verified by you"
+        "unknown": "Okänd",
+        "unverified": "Icke verifierad",
+        "weakly-verified": "Svagt verifierad",
+        "verified": "Verifierad",
+        "verified-by-user": "Verifierad av dig"
       },
-      "verify": "Verify",
-      "unverify": "Unverify"
+      "verify": "Verifiera",
+      "unverify": "Avverifiera"
     }
   },
   "search": {
@@ -406,20 +407,20 @@
       "minimize": "Minimize",
       "maximize": "Maximize",
       "go-to-dashboard": "Go to dashboard",
-      "go-to-downloads": "Go to downloads",
-      "go-to-lyrics": "Go to lyrics",
-      "go-to-plugins": "Go to plugins",
-      "go-to-search": "Go to search",
-      "go-to-settings": "Go to settings",
-      "go-to-equalizer": "Go to equalizer",
-      "go-to-visualizer": "Go to visualizer",
-      "go-to-playlists": "Go to playlists",
-      "go-to-favorite-tracks": "Go to favorite tracks",
-      "go-to-library": "Go to local library"
+      "go-to-downloads": "Gå till nerladdningar",
+      "go-to-lyrics": "Gå till låttext",
+      "go-to-plugins": "Gå till tillägg",
+      "go-to-search": "Hoppa till sökrutan",
+      "go-to-settings": "Gå till inställningar",
+      "go-to-equalizer": "Gå till equalizer",
+      "go-to-visualizer": "Gå till visualiserare",
+      "go-to-playlists": "Gå till spellistor",
+      "go-to-favorite-tracks": "Gå till favoritspår",
+      "go-to-library": "Gå till det lokala biblioteket"
     }
   },
   "listening-history": {
-    "title": "Listening history",
+    "title": "Lyssnings historik",
     "empty-state": "You haven't listened to anything yet.",
     "clear-history": "Clear history",
     "clear-history-confirm": "Are you sure you want to clear your listening history?",
