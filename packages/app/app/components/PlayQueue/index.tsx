@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import classnames from 'classnames';
 import _, { head } from 'lodash';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
@@ -8,7 +8,7 @@ import { areEqual, FixedSizeList as List } from 'react-window';
 
 import { Playlist } from '@nuclear/core';
 import { StreamData } from '@nuclear/core/src/plugins/plugins.types';
-import { formatDuration, QueueItem } from '@nuclear/ui';
+import { areTracksEqualByName, formatDuration, QueueItem } from '@nuclear/ui';
 
 import { PluginsState } from '../../reducers/plugins';
 import { QueueItem as QueueItemType, QueueStore } from '../../reducers/queue';
@@ -22,6 +22,8 @@ import { StreamVerificationContainer } from '../../containers/StreamVerification
 import styles from './styles.scss';
 import AutoSizer from 'react-virtualized-auto-sizer';
 import { QueueItemClone } from './QueueItemClone';
+import { useSelector } from 'react-redux';
+import { blacklistSelector } from '../../selectors/blacklist';
 
 type PlayQueueProps = {
   actions: PlayQueueActions;
@@ -70,6 +72,18 @@ const PlayQueue: React.FC<PlayQueueProps> = ({
 }) => {
   const { t } = useTranslation('queue');
   const [isFileHovered, setFileHovered] = useState(false);
+  const blacklisted = useSelector(blacklistSelector);
+
+  useEffect(() => {
+    for (let i = 0; i < queue.queueItems.length; i++){
+      for (let j = 0; j < blacklisted.length; j++) {
+        if (areTracksEqualByName(queue.queueItems[i], blacklisted[j])){
+          removeFromQueue(i);
+          return;
+        }
+      }
+    }
+  }, [queue.queueItems]);
 
   const onDropFile = (event) => {
     event.preventDefault();
