@@ -209,6 +209,12 @@ export const findStreamsForTrack = (index: number) => async (dispatch, getState)
           ...streamData.slice(1)
         ];
 
+        const firstStream = streamData[0];
+        if (!firstStream?.stream) {
+          removeFirstStream(track, index, streamData, dispatch);
+          return;
+        }
+
         dispatch(
           updateQueueItem({
             ...track,
@@ -236,6 +242,21 @@ export const findStreamsForTrack = (index: number) => async (dispatch, getState)
     }
   }
 };
+
+function removeFirstStream(track: QueueItem, trackIndex: number, streams: TrackStream[], dispatch) {
+  if (streams.length === 1) {
+    // no more streams are available
+    dispatch(removeFromQueue(trackIndex));
+  } else {
+    // remove the first (unavailable) stream
+    dispatch(updateQueueItem({
+      ...track,
+      loading: true,
+      error: false,
+      streams: streams.slice(1)
+    }));
+  }
+}
 
 export function playTrack(streamProviders, item: QueueItem) {
   return (dispatch) => {
