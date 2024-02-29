@@ -286,6 +286,7 @@ export const buildStoreState = () => {
                 }])),
                 getStreamForId: jest.fn(() => ({
                   data: 'test-stream-data',
+                  stream: 'test-stream-url',
                   author: {
                     name: 'test author'
                   }
@@ -305,6 +306,7 @@ export const buildStoreState = () => {
                 getStreamForId: jest.fn((id: string) => ({
                   id: 'test-stream-id-1',
                   data: id,
+                  stream: 'different-test-stream-url',
                   source: 'Different Stream Provider'
                 }) as TrackStream)
               }
