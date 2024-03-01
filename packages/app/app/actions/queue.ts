@@ -211,7 +211,8 @@ export const findStreamsForTrack = (index: number) => async (dispatch, getState)
 
         const firstStream = streamData[0];
         if (!firstStream?.stream) {
-          removeFirstStream(track, index, streamData, dispatch);
+          const remainingStreams = streamData.slice(1);
+          removeFirstStream(track, index, remainingStreams, dispatch);
           return;
         }
 
@@ -243,8 +244,8 @@ export const findStreamsForTrack = (index: number) => async (dispatch, getState)
   }
 };
 
-function removeFirstStream(track: QueueItem, trackIndex: number, streams: TrackStream[], dispatch) {
-  if (streams.length === 1) {
+function removeFirstStream(track: QueueItem, trackIndex: number, remainingStreams: TrackStream[], dispatch): void {
+  if (remainingStreams.length === 0) {
     // no more streams are available
     dispatch(removeFromQueue(trackIndex));
   } else {
@@ -253,7 +254,7 @@ function removeFirstStream(track: QueueItem, trackIndex: number, streams: TrackS
       ...track,
       loading: true,
       error: false,
-      streams: streams.slice(1)
+      streams: remainingStreams
     }));
   }
 }
