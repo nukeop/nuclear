@@ -1,4 +1,4 @@
-import React, { SyntheticEvent } from 'react';
+import React, { useState, useEffect, SyntheticEvent } from 'react';
 
 import { Button, Dropdown } from '../..';
 
@@ -21,32 +21,56 @@ const VisualizerOverlay: React.FC<VisualizerOverlayProps> = ({
   exitFullscreenLabel,
   isFullscreen = false
 }) => {
-  const presetOptions = presets.map(preset => ({
+  // State for managing overlay opacity
+  const [isHovered, setIsHovered] = useState(false);
+
+  // Establish timer for overlay opacity
+  useEffect(() => {
+    let timeoutId: NodeJS.Timeout;
+    if (isHovered) {
+      // Set the timeout to remove the hover effect after 3 seconds
+      timeoutId = setTimeout(() => {
+        setIsHovered(false);
+      }, 3000);
+    }
+    return () => clearTimeout(timeoutId); // Clear the timeout if the component unmounts or if isHovered changes
+  }, [isHovered]);
+
+  // Handler definitions for relevant mouse events
+  const handleMouseEnter = () => setIsHovered(true);
+  const handleMouseMove = () => setIsHovered(true);
+  const handleMouseLeave = () => setIsHovered(false);
+
+  const presetOptions = presets.map((preset) => ({
     text: preset,
     value: preset
   }));
 
-  return <div className={styles.visualizer_overlay}>
-    <Dropdown
-      search
-      selection
-      options={presetOptions}
-      defaultValue={selectedPreset}
-      onChange={onPresetChange}
-    />
-    {
-      isFullscreen
-        ? <p>{exitFullscreenLabel}</p>
-        : (
-          <Button
-            basic
-            icon='expand'
-            onClick={onEnterFullscreen} 
-          />
-        )
-    }
-  </div>;
+  return (
+    <div
+      className={`${styles.visualizer_overlay}${
+        isHovered ? ' ' + styles.hover : ''
+      }`}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      onMouseMove={handleMouseMove}
+    >
+      <Dropdown
+        search
+        selection
+        options={presetOptions}
+        defaultValue={selectedPreset}
+        onChange={onPresetChange}
+      />
+      {isFullscreen ? (
+        <p>{exitFullscreenLabel}</p>
+      ) : (
+        <Button basic icon='expand' onClick={onEnterFullscreen} />
+      )}
+    </div>
+  );
 };
+
 VisualizerOverlay.displayName = 'VisualizerOverlay';
 
 export default VisualizerOverlay;
