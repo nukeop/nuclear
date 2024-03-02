@@ -202,7 +202,7 @@ export const findStreamsForTrack = (index: number) => async (dispatch, getState)
         }
       }
 
-      if (streamData === undefined) {
+      if (streamData?.length === 0) {
         dispatch(removeFromQueue(index));
       } else {
         streamData = [
