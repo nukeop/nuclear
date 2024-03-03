@@ -69,5 +69,5 @@ pub fn set_properties_from_metadata(
     set_optional_field_str(cx, obj, "thumbnail", metadata.thumbnail.clone());
     set_optional_field_u32(cx, obj, "position", metadata.position);
     set_optional_field_u32(cx, obj, "disc", metadata.disc);
-    set_optional_field_u32(cx, obj, "year", metadata.year);
+    set_optional_field_str(cx, obj, "year", metadata.year.clone());
 }

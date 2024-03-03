@@ -4,6 +4,7 @@ use derive_builder::Builder;
 use id3::TagLike;
 use metaflac;
 use symphonia::core::{
+    codecs::DecoderOptions,
     formats::FormatOptions,
     io::MediaSourceStream,
     meta::{MetadataOptions, MetadataRevision, StandardTagKey},
@@ -25,7 +26,7 @@ pub struct AudioMetadata {
     pub duration: Option<u32>,
     pub disc: Option<u32>,
     pub position: Option<u32>,
-    pub year: Option<u32>,
+    pub year: Option<String>,
     pub thumbnail: Option<String>,
 }
 
@@ -75,7 +76,7 @@ impl MetadataExtractor for Mp3MetadataExtractor {
         }
         metadata.position = tag.track();
         metadata.disc = tag.disc();
-        metadata.year = tag.year().map(|s| s as u32);
+        metadata.year = tag.year().map(|y| y.to_string());
 
         metadata.thumbnail = Mp3ThumbnailGenerator::generate_thumbnail(
             &path,
@@ -176,16 +177,21 @@ impl MetadataExtractor for OggMetadataExtractor {
         let mut probed = symphonia::default::get_probe()
             .format(&hint, mss, &fmt_opts, &meta_opts)
             .expect("unsupported format");
-
-        if let Some(metadata_rev) = probed.format.metadata().current() {
-            let tags = metadata_rev.tags();
-        }
-
         let mut metadata = AudioMetadata::new();
 
-        if let Some(mut meta) = probed.format.metadata().current() {
+        let track = probed.format.default_track().unwrap();
+        let time_base = track.codec_params.time_base.unwrap();
+        let duration = track
+            .codec_params
+            .n_frames
+            .map(|frames| track.codec_params.start_ts + frames);
+
+        metadata.duration = duration.map(|d| ((d as u32) * time_base.numer / time_base.denom));
+
+        if let Some(meta) = probed.format.metadata().current() {
             for tag in meta.tags().iter() {
                 if tag.is_known() {
+                    println!("{:?}", tag.std_key);
                     match tag.std_key {
                         Some(StandardTagKey::TrackTitle) => {
                             metadata.title = Some(tag.value.to_string());
@@ -203,8 +209,7 @@ impl MetadataExtractor for OggMetadataExtractor {
                             metadata.disc = Some(tag.value.to_string().parse::<u32>().unwrap());
                         }
                         Some(StandardTagKey::Date) => {
-                            println!("Year: {:?}", tag.value);
-                            metadata.year = Some(tag.value.to_string().parse::<u32>().unwrap());
+                            metadata.year = Some(tag.value.to_string());
                         }
                         _ => {}
                     }
