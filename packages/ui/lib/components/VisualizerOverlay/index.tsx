@@ -1,8 +1,7 @@
 import React, { useState, useEffect, SyntheticEvent } from 'react';
-
 import { Button, Dropdown } from '../..';
-
 import styles from './styles.scss';
+import cx from 'classnames';
 
 export type VisualizerOverlayProps = {
   presets: string[];
@@ -48,9 +47,7 @@ const VisualizerOverlay: React.FC<VisualizerOverlayProps> = ({
 
   return (
     <div
-      className={`${styles.visualizer_overlay}${
-        isHovered ? ' ' + styles.hover : ''
-      }`}
+      className={cx(styles.visualizer_overlay, { [styles.hover]: isHovered })}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       onMouseMove={handleMouseMove}
