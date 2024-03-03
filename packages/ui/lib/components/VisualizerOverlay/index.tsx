@@ -4,8 +4,6 @@ import { Button, Dropdown } from '../..';
 
 import styles from './styles.scss';
 
-import classNames from 'classnames';
-
 export type VisualizerOverlayProps = {
   presets: string[];
   selectedPreset: string;
@@ -28,18 +26,14 @@ const VisualizerOverlay: React.FC<VisualizerOverlayProps> = ({
 
   // Establish timer for overlay opacity
   useEffect(() => {
-    let timeoutId: number | undefined;
+    let timeoutId: NodeJS.Timeout;
     if (isHovered) {
       // Set the timeout to remove the hover effect after 3 seconds
-      timeoutId = window.setTimeout(() => {
+      timeoutId = setTimeout(() => {
         setIsHovered(false);
       }, 3000);
     }
-    return () => {
-      if (timeoutId !== undefined) {
-        clearTimeout(timeoutId);
-      }
-    };
+    return () => clearTimeout(timeoutId); // Clear the timeout if the component unmounts or if isHovered changes
   }, [isHovered]);
 
   // Handler definitions for relevant mouse events
@@ -52,16 +46,11 @@ const VisualizerOverlay: React.FC<VisualizerOverlayProps> = ({
     value: preset
   }));
 
-  const stylesMod = classNames.bind(styles);
-
-  const ovClasses = stylesMod({
-    visualizer_overlay: true,
-    hover: isHovered
-  });
-
   return (
     <div
-      className={ovClasses}
+      className={`${styles.visualizer_overlay}${
+        isHovered ? ' ' + styles.hover : ''
+      }`}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       onMouseMove={handleMouseMove}
