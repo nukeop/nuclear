@@ -22,18 +22,21 @@ const PlayerButton: React.FC<PlayerButtonProps> = ({
   disabled = false,
   loading = false,
   ...rest
-}) => (
-  <button
-    data-testid={rest['data-testid']}
-    className={cx(
-      styles.player_button,
-      { [styles.disabled]: disabled }
-    )}
-    aria-label={ariaLabel}
-    onClick={disabled ? undefined : onClick}
-  >
-    <Icon inverted loading={loading} name={icon} size={size} />
-  </button>
-);
+}) => {
+  return (
+    <button
+      data-testid={rest['data-testid']}
+      className={cx(
+        styles.player_button,
+        { [styles.disabled]: disabled },
+        { [styles.player_button_with_margin]: rest['data-testid'] === 'player-controls-play' } // Apply the margin conditionally based on test-id if needed
+      )}
+      aria-label={ariaLabel}
+      onClick={disabled ? undefined : onClick}
+    >
+      <Icon inverted loading={loading} name={icon} size={size} />
+    </button>
+  );
+};
 
 export default PlayerButton;
