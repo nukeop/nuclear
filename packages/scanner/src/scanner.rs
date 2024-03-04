@@ -25,7 +25,6 @@ pub fn extractor_from_path(path: &str) -> Option<Box<dyn MetadataExtractor>> {
         Some("ogg") => Some(Box::new(OggMetadataExtractor)),
         Some("flac") => Some(Box::new(FlacMetadataExtractor)),
         Some("mp4") => Some(Box::new(Mp4MetadataExtractor)),
-        Some("m4a") => Some(Box::new(Mp4MetadataExtractor)),
         _ => None,
     }
 }

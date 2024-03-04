@@ -130,10 +130,6 @@
         "mimeType": "audio/x-wav"
       },
       {
-        "ext": "m4a",
-        "mimeType": "audio/m4a"
-      },
-      {
         "ext": "weba",
         "mimeType": "audio/weba"
       },
