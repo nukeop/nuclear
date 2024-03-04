@@ -31,9 +31,7 @@ impl ThumbnailGenerator for Mp3ThumbnailGenerator {
         let tag = Tag::read_from_path(filename).ok()?;
         let mut pictures = tag.pictures();
 
-        pictures
-            .find(|p| p.picture_type == id3::frame::PictureType::CoverFront)
-            .map(|p| p.data.clone())
+        pictures.next().map(|p| p.data.clone())
     }
 }
 
