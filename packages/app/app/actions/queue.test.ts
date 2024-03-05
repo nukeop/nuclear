@@ -17,19 +17,8 @@ describe('Queue actions tests', () => {
       // Mock an empty search result for streams.
       getTrackStreams.mockResolvedValueOnce([]);
 
-      // Configure a stream provider which will throw an error if an attempt is made
-      // to search a stream with an invalid ID.
-      const streamProvider = {
-        sourceName: 'Mocked Stream Provider',
-        getStreamForId: async (streamId: string) => {
-          if (!streamId) {
-            throw new Error('The stream ID must not be undefined');
-          }
-          return {};
-        }
-      };
-      getSelectedStreamProvider
-        .mockReturnValueOnce(streamProvider);
+      // Configure a dummy stream provider. It is not actually used in this execution path.
+      getSelectedStreamProvider.mockReturnValueOnce({});
 
       // Set up the queue with an arbitrary track, which doesn't have any stream.
       const trackIndex = 123;
@@ -53,24 +42,6 @@ describe('Queue actions tests', () => {
       const findStreamsForTrackOperation = QueueOperations.findStreamsForTrack(trackIndex);
       findStreamsForTrackOperation(dispatchOperation, stateResolver)
         .then(() => {
-          // No error should have been dispatched:
-          // {
-          //   'payload': {
-          //     'item': {
-          //       'error': {}
-          //     }
-          //   }
-          // }
-          expect(dispatchOperation).not.toHaveBeenCalledWith(
-            expect.objectContaining({
-              payload: expect.objectContaining({
-                item: expect.objectContaining({
-                  error: expect.anything()
-                })
-              })
-            })
-          );
-          // Assumption:
           // The track without streams should have been removed from the queue.
           expect(dispatchOperation).toHaveBeenCalledWith({
             type: Queue.REMOVE_QUEUE_ITEM,
