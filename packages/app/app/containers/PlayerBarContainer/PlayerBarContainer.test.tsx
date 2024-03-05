@@ -240,6 +240,37 @@ describe('PlayerBar container', () => {
     expect(state.queue.currentSong).toBe(0); 
   });
 
+  it('should remove the track when now streams are available for the track', async () => {
+    // TODO this generates an endless loop. seems to be caused by actions/queue.ts:173 dispatch(updateQueueItem({ ...track, loading: true }))
+    const { component, store } = mountComponent({
+      queue: {
+        currentSong: 0,
+        queueItems: [
+          {
+            artist: 'test artist name',
+            name: 'track without streams'
+          }
+        ]
+      },
+      plugin: {
+        plugins: {
+          streamProviders: [
+            {
+              sourceName: 'Mocked Stream Provider',
+              search: jest.fn().mockResolvedValue([])
+            }
+          ]
+        },
+        selected: {
+          streamProviders: 'Mocked Stream Provider'
+        }
+      }
+    });
+    // TODO this point is reached before the track removal is dispatched. how do we wait for the queue to be updated?
+    const state = store.getState();
+    expect(state.queue.queueItems.length).toBe(0);
+  });
+
   const mountComponent = (initialStore?: AnyProps) => {
     const store = configureMockStore({
       ...buildStoreState()
