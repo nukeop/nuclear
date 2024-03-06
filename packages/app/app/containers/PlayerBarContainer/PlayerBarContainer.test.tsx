@@ -240,7 +240,7 @@ describe('PlayerBar container', () => {
     expect(state.queue.currentSong).toBe(0); 
   });
 
-  it('should remove the track when now streams are available for the track', async () => {
+  it('should remove the track when no streams are available for the track', async () => {
     // TODO this generates an endless loop. seems to be caused by actions/queue.ts:173 dispatch(updateQueueItem({ ...track, loading: true }))
     const { component, store } = mountComponent({
       queue: {
