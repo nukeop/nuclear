@@ -118,28 +118,12 @@
         "mimeType": "audio/ogg"
       },
       {
-        "ext": "aac",
-        "mimeType": "audio/aac"
-      },
-      {
         "ext": "flac",
         "mimeType": "audio/flac"
       },
       {
-        "ext": "wav",
-        "mimeType": "audio/x-wav"
-      },
-      {
-        "ext": "weba",
-        "mimeType": "audio/weba"
-      },
-      {
         "ext": "mp4",
         "mimeType": "audio/mp4"
-      },
-      {
-        "ext": "webm",
-        "mimeType": "audio/webm"
       }
     ],
     "linux": {
