@@ -14,6 +14,9 @@ import { pluginsSelectors } from '../../selectors/plugins';
 import { searchSelectors } from '../../selectors/search';
 import { stringDurationToSeconds } from '../../utils';
 import { AlbumDetailsState } from '../../reducers/search';
+import { playlistsSelectors } from '../../selectors/playlists';
+import * as playlistActions from '../../actions/playlists';
+import { PlaylistTrack } from '@nuclear/core';
 
 export const useAlbumViewProps = () => {
   const dispatch = useDispatch();
@@ -24,6 +27,7 @@ export const useAlbumViewProps = () => {
   // TODO replace this any with a proper type
   const plugins: any = useSelector(pluginsSelectors.plugins);
   const favoriteAlbums = useSelector(favoritesSelectors.albums);
+  const localPlaylists = useSelector(playlistsSelectors.localPlaylists);
 
   const albumFromFavorites = favoriteAlbums.find(album => album.id === albumId);
   const album = albumFromFavorites || albumDetails[albumId];
@@ -74,6 +78,20 @@ export const useAlbumViewProps = () => {
     });
   }, [album, dispatch]);
 
+  const addAlbumToPlaylist = useCallback(async (playlistName: string) => {
+    const tracksWithId: PlaylistTrack[] = [];
+    await album?.tracklist.forEach((track: PlaylistTrack) => tracksWithId.push(safeAddUuid(track)));
+    const originalPlaylist = localPlaylists.data?.find(playlist => playlist.name === playlistName);
+    const playlistWithAlbumTracks = {
+      ...originalPlaylist,
+      tracks: [
+        ...originalPlaylist.tracks,
+        ...tracksWithId
+      ]
+    };
+    dispatch(playlistActions.updatePlaylist(playlistWithAlbumTracks));
+  }, [album, localPlaylists, dispatch]);
+
   const playAll = useCallback(async () => {
     dispatch(QueueActions.clearQueue());
     await addAlbumToQueue();
@@ -89,14 +107,18 @@ export const useAlbumViewProps = () => {
     dispatch(FavoritesActions.removeFavoriteAlbum(album));
   }, [album, dispatch]);
 
+  const playlistNames = localPlaylists.data?.map(playlist => playlist.name);
+
   return {
     album,
     isFavorite,
     searchAlbumArtist,
     addAlbumToDownloads,
     addAlbumToQueue,
+    addAlbumToPlaylist,
     playAll,
     addFavoriteAlbum,
-    removeFavoriteAlbum
+    removeFavoriteAlbum,
+    playlistNames
   };
 };

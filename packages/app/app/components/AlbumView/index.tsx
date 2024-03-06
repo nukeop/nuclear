@@ -1,9 +1,9 @@
 import React from 'react';
 import Img from 'react-image';
 import _ from 'lodash';
-import { Dimmer, Icon, Loader } from 'semantic-ui-react';
+import { Dimmer, Icon, Loader, Dropdown } from 'semantic-ui-react';
 import { useTranslation } from 'react-i18next';
-import { Loader as NuclearLoader, ContextPopup, PopupButton } from '@nuclear/ui';
+import { Loader as NuclearLoader, ContextPopup, PopupButton, PopupDropdown } from '@nuclear/ui';
 import styles from './styles.scss';
 import artPlaceholder from '../../../resources/media/art_placeholder.png';
 import TrackTableContainer from '../../containers/TrackTableContainer';
@@ -15,9 +15,11 @@ type AlbumViewProps = {
   searchAlbumArtist: React.MouseEventHandler;
   addAlbumToDownloads: React.MouseEventHandler;
   addAlbumToQueue: React.MouseEventHandler;
+  addAlbumToPlaylist: (playlistName: string) => void;
   playAll: React.MouseEventHandler;
   removeFavoriteAlbum: React.MouseEventHandler;
   addFavoriteAlbum: React.MouseEventHandler;
+  playlistNames: string[];
 }
 
 export const AlbumView: React.FC<AlbumViewProps> = ({
@@ -26,9 +28,11 @@ export const AlbumView: React.FC<AlbumViewProps> = ({
   searchAlbumArtist,
   addAlbumToDownloads,
   addAlbumToQueue,
+  addAlbumToPlaylist,
   playAll,
   removeFavoriteAlbum,
-  addFavoriteAlbum
+  addFavoriteAlbum,
+  playlistNames
 }) => {
   const { t } = useTranslation('album');
   const release_date: Date = new Date(album.year);
@@ -124,6 +128,21 @@ export const AlbumView: React.FC<AlbumViewProps> = ({
                       icon='download'
                       label={t('download')}
                     />
+                    <PopupDropdown
+                      text={t('add-to-playlist')}
+                    >
+                      {
+                        playlistNames?.map((playlistName, i) => (
+                          <Dropdown.Item
+                            key={i}
+                            onClick={() => addAlbumToPlaylist(playlistName)}
+                          >
+                            <Icon name='music'/>
+                            {playlistName}
+                          </Dropdown.Item>
+                        ))
+                      }
+                    </PopupDropdown>
                   </ContextPopup>
                 </div>
               </div>
