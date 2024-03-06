@@ -1,5 +1,5 @@
 use id3::{Error, Tag};
-use std::collections::{HashSet, LinkedList};
+use std::collections::LinkedList;
 use std::ffi::OsStr;
 use std::path::Path;
 use uuid::Uuid;
@@ -7,8 +7,8 @@ use uuid::Uuid;
 use crate::error::{MetadataError, ScannerError};
 use crate::local_track::LocalTrack;
 use crate::metadata::{
-    AudioMetadata, AudioMetadataBuilder, FlacMetadataExtractor, MetadataExtractor,
-    Mp3MetadataExtractor, Mp4MetadataExtractor, OggMetadataExtractor,
+    AudioMetadata, FlacMetadataExtractor, MetadataExtractor, Mp3MetadataExtractor,
+    Mp4MetadataExtractor, OggMetadataExtractor,
 };
 
 pub trait TagReader {
@@ -80,6 +80,8 @@ pub fn visit_directory(
 
 #[cfg(test)]
 mod tests {
+    use crate::metadata::AudioMetadataBuilder;
+
     use super::*;
 
     #[derive(Debug, Clone, Default)]
@@ -112,7 +114,7 @@ mod tests {
                 .duration(10)
                 .position(1)
                 .disc(1)
-                .year(2020)
+                .year("2020".to_string())
                 .thumbnail("http://localhost:8080/thumbnails/0b/0b0b0b0b0b0b0b0b.webp".to_string())
                 .build()
                 .unwrap(),
@@ -122,8 +124,7 @@ mod tests {
     #[test]
     fn test_visit_file() {
         let path = "tests/test.mp3".to_string();
-        let thumbnails_dir = "tests/thumbnails".to_string();
-        let mut created_thumbnails_hashset: HashSet<String> = HashSet::new();
+        let thumbnails_dir: String = "tests/thumbnails".to_string();
         let local_track = visit_file(path, test_extractor_from_path, &thumbnails_dir).unwrap();
         assert_eq!(local_track.filename, "test.mp3");
         assert_eq!(local_track.metadata.artist, Some("Test Artist".to_string()));
@@ -132,7 +133,7 @@ mod tests {
         assert_eq!(local_track.metadata.duration, Some(10));
         assert_eq!(local_track.metadata.position, Some(1));
         assert_eq!(local_track.metadata.disc, Some(1));
-        assert_eq!(local_track.metadata.year, Some(2020));
+        assert_eq!(local_track.metadata.year, Some("2020".to_string()));
         assert_eq!(
             local_track.metadata.thumbnail,
             Some("http://localhost:8080/thumbnails/0b/0b0b0b0b0b0b0b0b.webp".to_string())

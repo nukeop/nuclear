@@ -1,13 +1,12 @@
-use std::{fs::File, io::BufReader};
+use std::fs::File;
 
 use derive_builder::Builder;
 use id3::TagLike;
 use metaflac;
 use symphonia::core::{
-    codecs::DecoderOptions,
     formats::FormatOptions,
     io::MediaSourceStream,
-    meta::{MetadataOptions, MetadataRevision, StandardTagKey},
+    meta::{MetadataOptions, StandardTagKey},
     probe::Hint,
 };
 
@@ -191,7 +190,6 @@ impl MetadataExtractor for OggMetadataExtractor {
         if let Some(meta) = probed.format.metadata().current() {
             for tag in meta.tags().iter() {
                 if tag.is_known() {
-                    println!("{:?}", tag.std_key);
                     match tag.std_key {
                         Some(StandardTagKey::TrackTitle) => {
                             metadata.title = Some(tag.value.to_string());
