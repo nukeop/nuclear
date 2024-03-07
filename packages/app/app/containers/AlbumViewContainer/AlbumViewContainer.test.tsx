@@ -256,6 +256,29 @@ describe('Album view container', () => {
     ]);
   });
 
+  it('should add album tracks to an existing playlist using the album menu popup', async () => {
+    const { component, store } = mountComponent(
+      buildStoreState()
+        .withAlbumDetails()
+        .withPlaylists([{
+          id: 'test playlist id',
+          name: 'test playlist',
+          tracks: []
+        }])
+        .build()
+    );
+    await waitFor(() => component.getByTestId('more-button').click());
+    await waitFor(() => component.getByText(/Add album to playlist/i).click());
+    await waitFor(() => component.getByText('test playlist').click());
+
+    const state = store.getState();
+    expect(state.playlists.localPlaylists.data[0].tracks).toEqual([
+      expect.objectContaining({ uuid: 'track-1-id' }),
+      expect.objectContaining({ uuid: 'track-2-id' }),
+      expect.objectContaining({ uuid: 'track-3-id' })
+    ]);
+  });
+
   const mountComponent = mountedComponentFactory(
     ['/album/test-album-id'],
     buildStoreState()
