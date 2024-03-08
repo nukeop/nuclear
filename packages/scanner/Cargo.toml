@@ -1,0 +1,38 @@
+[package]
+name = "scanner"
+version = "0.1.0"
+license = "AGPL-3.0"
+edition = "2018"
+exclude = ["index.node"]
+
+[lib]
+crate-type = ["cdylib"]
+
+[features]
+profiling = []
+
+[dependencies]
+derive_builder = "0.12.0"
+id3 = "1.7.0"
+md5 = "0.7.0"
+metaflac = "0.2.5"
+mockall = "0.11.4"
+mp3-duration = "0.1.10"
+mp4ameta = "0.11.0"
+
+[dependencies.symphonia]
+version = "0.5.3"
+features = ["aac", "mp3", "flac", "ogg", "isomp4", "wav"]
+
+[dependencies.image]
+version = "0.24.7"
+features = ["webp-encoder"]
+
+[dependencies.uuid]
+version = "1.3.4"
+features = ["v4", "fast-rng"]
+
+[dependencies.neon]
+version = "0.10"
+default-features = false
+features = ["napi-6"]

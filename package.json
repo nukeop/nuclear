@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/nukeop/nuclear#readme",
   "scripts": {
-    "postinstall": "electron-builder install-app-deps",
+    "postinstall": "electron-builder install-app-deps && lerna run build --scope @nuclear/scanner",
     "start": "lerna run start --stream",
     "build": "shx rm -rf dist && lerna run build && npm run pack",
     "test": "lerna run test",
@@ -118,32 +118,12 @@
         "mimeType": "audio/ogg"
       },
       {
-        "ext": "aac",
-        "mimeType": "audio/aac"
-      },
-      {
         "ext": "flac",
         "mimeType": "audio/flac"
       },
       {
-        "ext": "wav",
-        "mimeType": "audio/x-wav"
-      },
-      {
-        "ext": "m4a",
-        "mimeType": "audio/m4a"
-      },
-      {
-        "ext": "weba",
-        "mimeType": "audio/weba"
-      },
-      {
         "ext": "mp4",
         "mimeType": "audio/mp4"
-      },
-      {
-        "ext": "webm",
-        "mimeType": "audio/webm"
       }
     ],
     "linux": {
