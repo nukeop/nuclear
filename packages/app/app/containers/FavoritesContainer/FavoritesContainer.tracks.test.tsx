@@ -5,7 +5,7 @@ import { createMemoryHistory } from 'history';
 import _, { pick } from 'lodash';
 
 import { buildStoreState } from '../../../test/storeBuilders';
-import { AnyProps, configureMockStore, setupI18Next, TestRouterProvider, TestStoreProvider } from '../../../test/testUtils';
+import { AnyProps, configureMockStore, setupI18Next, TestRouterProvider, TestStoreProvider, uuidRegex } from '../../../test/testUtils';
 import MainContentContainer from '../MainContentContainer';
 import PlayerBarContainer from '../PlayerBarContainer';
 import { PlaybackStatus } from '@nuclear/core';
@@ -250,7 +250,7 @@ describe('Favorite tracks view container', () => {
     await waitFor(() => component.getAllByTestId('play-now')[0].click());
     const state = store.getState();
     expect(state.queue.queueItems[0]).toEqual(expect.objectContaining({
-      uuid: 'local-track-1',
+      uuid: expect.stringMatching(uuidRegex),
       artist: 'test artist 1',
       name: 'test track 1',
       local: true,

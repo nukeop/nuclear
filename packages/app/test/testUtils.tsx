@@ -24,6 +24,8 @@ export type AnyProps = {
   [k: string]: any;
 }
 
+export const uuidRegex = /\w{8}-\w{4}-\w{4}-\w{4}-\w{12}/;
+
 type TestRouteProviderProps = {
   children: React.ReactNode;
   history: ReturnType<typeof createMemoryHistory>;
