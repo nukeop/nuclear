@@ -1,7 +1,7 @@
 import { waitFor } from '@testing-library/react';
 
 import { buildStoreState } from '../../../test/storeBuilders';
-import { mountedComponentFactory, setupI18Next } from '../../../test/testUtils';
+import { mountedComponentFactory, setupI18Next, uuidRegex } from '../../../test/testUtils';
 
 describe('Library view container', () => {
   beforeAll(() => {
@@ -66,7 +66,7 @@ describe('Library view container', () => {
 
     expect(state.queue.queueItems).toStrictEqual([
       expect.objectContaining({
-        uuid: 'local-track-1',
+        uuid: expect.stringMatching(uuidRegex),
         artist: 'local artist 1',
         name: 'local track 1',
         duration: 300,
@@ -121,7 +121,7 @@ describe('Library view container', () => {
 
     expect(state.queue.queueItems).toStrictEqual([
       expect.objectContaining({
-        uuid: 'local-track-1',
+        uuid: expect.stringMatching(uuidRegex),
         artist: 'local artist 1',
         name: 'local track 1',
         duration: 250,
