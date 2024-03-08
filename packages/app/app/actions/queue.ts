@@ -1,6 +1,7 @@
 import logger from 'electron-timber';
 import _, { isEmpty, isString } from 'lodash';
 import { createStandardAction } from 'typesafe-actions';
+import { v4 } from 'uuid';
 
 import { rest, StreamProvider } from '@nuclear/core';
 import { getTrackArtist } from '@nuclear/ui';
@@ -37,6 +38,7 @@ const localTrackToQueueItem = (track: LocalTrack, local: LocalLibraryState): Que
 
   return toQueueItem({
     ...rest,
+    uuid: v4(),
     streams: [resolvedStream]
   });
 };
