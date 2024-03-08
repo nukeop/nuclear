@@ -49,7 +49,8 @@ export const toQueueItem = (track: Track): QueueItem => ({
   streams: track.streams ?? []
 });
 
-const getSelectedStreamProvider = (getState) => {
+// Exported to facilitate testing.
+export const getSelectedStreamProvider = (getState) => {
   const {
     plugin: {
       plugins: { streamProviders },
@@ -201,7 +202,7 @@ export const findStreamsForTrack = (index: number) => async (dispatch, getState)
         }
       }
 
-      if (streamData === undefined) {
+      if (streamData?.length === 0) {
         dispatch(removeFromQueue(index));
       } else {
         streamData = [
