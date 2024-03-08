@@ -1,0 +1,25 @@
+{
+    "extends": "../../tsconfig.json",
+    "compilerOptions": {
+      "module": "commonjs",
+      "lib": ["ESNext"],
+      "outDir": "dist",
+      "allowJs": true,
+      "strict": false,
+      "typeRoots": [
+        "typings",
+        "../../node_modules/@types"
+      ]
+    },
+    "include": [
+        "./index.d.ts"
+    ],
+    "exclude": [
+      "node_modules/@nuclear/*/test",
+      "node_modules/@nuclear/**/*.test*",
+      "node_modules/@nuclear/ui/stories",
+      "../ui/stories",
+      "../*/test"
+    ]
+  }
+  

@@ -42,7 +42,7 @@ export class NuclearConfigurationService extends NuclearSupabaseService {
       .from<ParamDbType>('params')
       .select();
 
-    return dbParams?.data.reduce((acc, curr) => {
+    return dbParams?.data?.reduce((acc, curr) => {
       acc[curr.key] = curr.value;
       return acc;
     }, {} as Parameters);
