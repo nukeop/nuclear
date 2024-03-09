@@ -19,7 +19,7 @@ export type Track = {
 };
 
 export type Album = {
-  artist?: { name: string };
+  artist?: string;
   title: string;
   tracks?: Track[];
   image?: { '#text'?: string }[];

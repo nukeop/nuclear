@@ -1,6 +1,7 @@
 import logger from 'electron-timber';
 import _, { isEmpty, isString } from 'lodash';
 import { createStandardAction } from 'typesafe-actions';
+import { v4 } from 'uuid';
 
 import { rest, StreamProvider } from '@nuclear/core';
 import { getTrackArtist } from '@nuclear/ui';
@@ -37,6 +38,7 @@ const localTrackToQueueItem = (track: LocalTrack, local: LocalLibraryState): Que
 
   return toQueueItem({
     ...rest,
+    uuid: v4(),
     streams: [resolvedStream]
   });
 };
@@ -49,7 +51,8 @@ export const toQueueItem = (track: Track): QueueItem => ({
   streams: track.streams ?? []
 });
 
-const getSelectedStreamProvider = (getState) => {
+// Exported to facilitate testing.
+export const getSelectedStreamProvider = (getState) => {
   const {
     plugin: {
       plugins: { streamProviders },
@@ -201,7 +204,7 @@ export const findStreamsForTrack = (index: number) => async (dispatch, getState)
         }
       }
 
-      if (streamData === undefined) {
+      if (streamData?.length === 0) {
         dispatch(removeFromQueue(index));
       } else {
         streamData = [

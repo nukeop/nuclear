@@ -15,7 +15,22 @@ import LibraryAlbumGrid from './LibraryAlbumGrid';
 import LibraryHeader from './LibraryHeader';
 import { sortTracks } from './utils';
 
-const LibraryView = ({ tracksMap, filter, expandedFolders, streamProviders, pending, scanProgress, scanTotal, localFolders, sortBy, direction, listType, actions, queueActions, playerActions }) => {
+const LibraryView = ({ 
+  tracksMap, 
+  filter, 
+  expandedFolders, 
+  streamProviders, 
+  pending, 
+  scanProgress, 
+  scanTotal,
+  localFolders, 
+  sortBy, 
+  direction, 
+  listType, 
+  actions, 
+  queueActions, 
+  playerActions 
+}) => {
   const localStreamProviders = useMemo(() => _.filter(streamProviders, { sourceName: 'Local' }), [streamProviders]);
 
   const unfilteredTracks = useMemo(() => _.values(tracksMap), [tracksMap]);

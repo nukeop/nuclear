@@ -240,6 +240,38 @@ describe('PlayerBar container', () => {
     expect(state.queue.currentSong).toBe(0); 
   });
 
+  it('should remove the track when no streams are available for the track', async () => {
+    const { component, store } = mountComponent({
+      queue: {
+        currentSong: 0,
+        queueItems: [
+          {
+            uuid: 'uuid1',
+            artist: 'test artist name',
+            name: 'track without streams'
+          }
+        ]
+      },
+      plugin: {
+        plugins: {
+          streamProviders: [
+            {
+              sourceName: 'Mocked Stream Provider',
+              search: jest.fn().mockResolvedValueOnce([])
+            }
+          ]
+        },
+        selected: {
+          streamProviders: 'Mocked Stream Provider'
+        }
+      }
+    });
+    await waitFor(() => {
+      const state = store.getState();
+      return expect(state.queue.queueItems.length).toBe(0);
+    });
+  });
+
   const mountComponent = (initialStore?: AnyProps) => {
     const store = configureMockStore({
       ...buildStoreState()
