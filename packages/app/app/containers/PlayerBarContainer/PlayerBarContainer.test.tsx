@@ -266,8 +266,10 @@ describe('PlayerBar container', () => {
         }
       }
     });
-    const state = store.getState();
-    waitFor(() => expect(state.queue.queueItems.length).toBe(0));
+    await waitFor(() => {
+      const state = store.getState();
+      return expect(state.queue.queueItems.length).toBe(0);
+    });
   });
 
   const mountComponent = (initialStore?: AnyProps) => {
