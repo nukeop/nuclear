@@ -79,6 +79,16 @@ class Window {
       this.browserWindow.once('focus', () => this.browserWindow.flashFrame(false));
     }
 
+    this.browserWindow.on('app-command', (e, cmd) => {
+      if (cmd === 'browser-backward') {
+        this.browserWindow.webContents.send('navigate-back');
+        
+      }
+      if (cmd === 'browser-forward') {
+        this.browserWindow.webContents.send('navigate-forward');
+      }
+    });
+
     this.isReady = new Promise((resolve) => {
       this.resolve = resolve;
     });
