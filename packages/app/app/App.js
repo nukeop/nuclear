@@ -48,15 +48,11 @@ import WindowControls from './components/WindowControls';
 import SidebarMenuContainer from './containers/SidebarMenuContainer';
 import { CommandPaletteContainer } from './containers/CommandPaletteContainer';
 import { hot } from 'react-hot-loader';
-import { ipcRenderer } from 'electron';
 
 @withTranslation('app')
 class App extends React.PureComponent {
   constructor(props) {
     super(props);
-
-    this.handleBack = this.handleBack.bind(this);
-    this.handleForward = this.handleForward.bind(this);
   }
 
   componentDidMount() {
@@ -71,27 +67,7 @@ class App extends React.PureComponent {
 
     this.updateConnectivityStatus(navigator.onLine);
     window.addEventListener('online', () => this.updateConnectivityStatus(true));
-    window.addEventListener('offline', () => this.updateConnectivityStatus(false));
-
-    ipcRenderer.on('navigate-back', this.handleBack);
-    ipcRenderer.on('navigate-forward', this.handleForward);
-  }
-
-  componentWillUnmount() {
-    ipcRenderer.off('navigate-back', this.handleBack);
-    ipcRenderer.off('navigate-forward', this.handleForward);
-  }
-
-  handleBack() {
-    if (this.props.history.index > 1) {
-      this.props.history.goBack();
-    }
-  }
-  
-  handleForward() {
-    if (this.props.history.index < (this.props.history.length - 1)) {
-      this.props.history.goForward();
-    }
+    window.addEventListener('offline', () => this.updateConnectivityStatus(false)); 
   }
 
   updateConnectivityStatus = (isConnected) => {

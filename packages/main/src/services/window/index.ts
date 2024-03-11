@@ -9,6 +9,7 @@ import Config from '../config';
 import Logger, { $mainLogger, $ipcLogger } from '../logger';
 import Platform from '../platform';
 import Store from '../store';
+import { IpcEvents } from '@nuclear/core';
 
 const urlMapper: Record<Env, string> = {
   [Env.DEV]: url.format({
@@ -81,11 +82,11 @@ class Window {
 
     this.browserWindow.on('app-command', (e, cmd) => {
       if (cmd === 'browser-backward') {
-        this.browserWindow.webContents.send('navigate-back');
+        this.browserWindow.webContents.send(IpcEvents.NAVIGATE_BACK);
         
       }
       if (cmd === 'browser-forward') {
-        this.browserWindow.webContents.send('navigate-forward');
+        this.browserWindow.webContents.send(IpcEvents.NAVIGATE_FORWARD);
       }
     });
 
