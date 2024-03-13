@@ -272,6 +272,53 @@ describe('PlayerBar container', () => {
     });
   });
 
+  it('should remove the track when no more stream URLs can be resolved', async () => {
+    const { component, store } = mountComponent({
+      queue: {
+        currentSong: 0,
+        queueItems: [
+          {
+            uuid: 'uuid1',
+            artist: 'test artist name',
+            name: 'track without streams'
+          }
+        ]
+      },
+      plugin: {
+        plugins: {
+          streamProviders: [
+            {
+              sourceName: 'Mocked Stream Provider',
+              search: jest.fn().mockResolvedValueOnce([
+                {
+                  id: 'stream 1 ID',
+                  source: 'Mocked Stream Provider'
+                },
+                {
+                  id: 'stream 2 ID',
+                  source: 'Mocked Stream Provider'
+                }
+              ]),
+              getStreamForId: jest.fn()
+                .mockResolvedValueOnce(null)
+                .mockResolvedValueOnce({
+                  stream: null,
+                  source: 'Mocked Stream Provider'
+                })
+            }
+          ]
+        },
+        selected: {
+          streamProviders: 'Mocked Stream Provider'
+        }
+      }
+    });
+    await waitFor(() => {
+      const state = store.getState();
+      expect(state.queue.queueItems.length).toBe(0);
+    });
+  });
+
   const mountComponent = (initialStore?: AnyProps) => {
     const store = configureMockStore({
       ...buildStoreState()
