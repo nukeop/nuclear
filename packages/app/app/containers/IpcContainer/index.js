@@ -108,6 +108,17 @@ class IpcContainer extends React.Component {
       }
     });
 
+    ipcRenderer.on(IpcEvents.NAVIGATE_BACK, () => {
+      if (this.props.history.index > 1) {
+        this.props.history.goBack();
+      }
+    });
+    ipcRenderer.on(IpcEvents.NAVIGATE_FORWARD, () => {
+      if (this.props.history.index < (this.props.history.length - 1)) {
+        this.props.history.goForward();
+      }
+    });
+
   }
 
   componentDidUpdate({ queue: prevQueue }) {
