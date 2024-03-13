@@ -102,7 +102,7 @@ export function loadUserPlugin(path) {
     try {
       const api = createApi();
       const pluginContents = await fs.promises.readFile(path, 'utf8');
-      const transformedPluginContents = await remote.app.transformSource(pluginContents);
+      const transformedPluginContents = await remote.app.g(pluginContents);
 
       const plugin = eval(transformedPluginContents.code);
 
