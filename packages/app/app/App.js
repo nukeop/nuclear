@@ -67,7 +67,7 @@ class App extends React.PureComponent {
 
     this.updateConnectivityStatus(navigator.onLine);
     window.addEventListener('online', () => this.updateConnectivityStatus(true));
-    window.addEventListener('offline', () => this.updateConnectivityStatus(false));
+    window.addEventListener('offline', () => this.updateConnectivityStatus(false)); 
   }
 
   updateConnectivityStatus = (isConnected) => {
