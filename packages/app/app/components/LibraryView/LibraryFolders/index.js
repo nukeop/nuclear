@@ -14,7 +14,6 @@ import { compose, withHandlers } from 'recompose';
 
 import styles from './styles.scss';
 
-
 const LibraryFolders = ({
   openLocalFolderPicker,
   scanLocalFolders,
