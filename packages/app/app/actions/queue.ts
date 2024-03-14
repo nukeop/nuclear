@@ -168,20 +168,26 @@ export const selectNewStream = (index: number, streamId: string) => async (dispa
 
 export const findStreamsForTrack = (index: number) => async (dispatch, getState) => {
   const {queue, settings}: RootState = getState();
-
   const track = queue.queueItems[index];
 
-  if (track && !track.local && isEmpty(track.streams)) {
-    dispatch(updateQueueItem({
-      ...track,
-      loading: true
-    }));
+  if (track && !track.local && trackHasNoFirstStream(track)) {
+    if (!track.loading) {
+      dispatch(updateQueueItem({
+        ...track,
+        loading: true
+      }));
+    }
     const selectedStreamProvider = getSelectedStreamProvider(getState);
     try {
-      let streamData = await getTrackStreams(
-        track,
-        selectedStreamProvider
-      );
+      let streamData: TrackStream[];
+      if (isEmpty(track.streams)) {
+        streamData = await getTrackStreams(
+          track,
+          selectedStreamProvider
+        );
+      } else {
+        streamData = track.streams;
+      }
 
       if (settings.useStreamVerification) {
         try {
@@ -246,6 +252,10 @@ export const findStreamsForTrack = (index: number) => async (dispatch, getState)
     }
   }
 };
+
+export function trackHasNoFirstStream(track: QueueItem): boolean {
+  return isEmpty(track?.streams) || isEmpty(track.streams[0].stream);
+}
 
 function removeFirstStream(track: QueueItem, trackIndex: number, remainingStreams: TrackStream[], dispatch): void {
   if (remainingStreams.length === 0) {
