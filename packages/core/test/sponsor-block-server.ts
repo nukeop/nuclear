@@ -1,4 +1,4 @@
-const MockServer = {
+export const MockServer = {
   request: (videoId) => {
     switch (videoId) {
     case VIDEO_ID.HAS_NO_SEGMENT:
@@ -63,11 +63,9 @@ const MockServer = {
   }
 };
 
-const VIDEO_ID = {
+export const VIDEO_ID = {
   HAS_NO_SEGMENT: 0,
   HAS_SEGMENT: 1,
   HAS_SEGMENT_NOT_ORDER: 2,
   HAS_SEGMENT_CONTAIN_OTHER_SEGMENT: 3
 };
-
-module.exports = { MockServer, VIDEO_ID };
