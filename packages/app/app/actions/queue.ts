@@ -213,10 +213,12 @@ export const findStreamsForTrack = (index: number) => async (dispatch, getState)
       if (streamData?.length === 0) {
         dispatch(removeFromQueue(index));
       } else {
-        streamData = [
-          await selectedStreamProvider.getStreamForId(streamData.find(Boolean)?.id),
-          ...streamData.slice(1)
-        ];
+        if (!streamData[0].stream) {
+          streamData = [
+            await selectedStreamProvider.getStreamForId(streamData.find(Boolean)?.id),
+            ...streamData.slice(1)
+          ];
+        }
 
         const firstStream = streamData[0];
         if (!firstStream?.stream) {
