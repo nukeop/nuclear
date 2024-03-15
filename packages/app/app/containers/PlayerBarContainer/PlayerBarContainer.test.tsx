@@ -129,7 +129,8 @@ describe('PlayerBar container', () => {
           streams: [{
             duration: 300,
             title: 'test track 1',
-            skipSegments: []
+            skipSegments: [],
+            stream: 'stream URL'
           }]
         }]
       },
@@ -154,7 +155,8 @@ describe('PlayerBar container', () => {
           streams: [{
             duration: 300,
             title: 'test track 1',
-            skipSegments: []
+            skipSegments: [],
+            stream: 'stream URL 1'
           }]
         }, {
           artist: 'test artist 2',
@@ -162,7 +164,8 @@ describe('PlayerBar container', () => {
           streams: [{
             duration: 300,
             title: 'test track 2',
-            skipSegments: []
+            skipSegments: [],
+            stream: 'stream URL 2'
           }]
         }]
       },
@@ -187,7 +190,8 @@ describe('PlayerBar container', () => {
           streams: [{
             duration: 300,
             title: 'test track 1',
-            skipSegments: []
+            skipSegments: [],
+            stream: 'stream URL 1'
           }]
         }, {
           artist: 'test artist 2',
@@ -200,7 +204,8 @@ describe('PlayerBar container', () => {
               duration: 10,
               endTime: 10,
               startTime: 0
-            }]
+            }],
+            stream: 'stream URL 2'
           }]
         }]
       },
@@ -225,7 +230,8 @@ describe('PlayerBar container', () => {
           streams: [{
             duration: 300,
             title: 'test track 1',
-            skipSegments: []
+            skipSegments: [],
+            stream: 'stream URL'
           }]
         }]
       },
