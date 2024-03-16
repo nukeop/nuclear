@@ -10,6 +10,7 @@ import Platform from '../services/platform';
 import Window from '../services/window';
 import Config from '../services/config';
 import Logger, { $mainLogger } from '../services/logger';
+import { scannerTrackToNuclearMeta } from '@nuclear/core/src/helpers/scanner';
 
 @ipcController()
 class LocalIpcCtrl {
@@ -88,9 +89,15 @@ class LocalIpcCtrl {
     try {
       const folders = await this.localLibraryDb.getLocalFolders();
 
-      const cache = await scanFolders(folders.map(folder => folder.path), this.config.supportedFormats, this.localLibrary.getThumbnailsDir(), (scanProgress, scanTotal) => {
-        this.window.send(IpcEvents.LOCAL_FILES_PROGRESS, {scanProgress, scanTotal});
-      }, () => {});
+      const cache = await scanFolders(
+        folders.map(folder => folder.path), 
+        this.config.supportedFormats, 
+        this.localLibrary.getThumbnailsDir(), 
+        (scanProgress, scanTotal) => {
+          this.window.send(IpcEvents.LOCAL_FILES_PROGRESS, {scanProgress, scanTotal});
+        }, () => {});
+
+      this.localLibraryDb.updateTracks(cache.map(scannerTrackToNuclearMeta));
 
       this.window.send(IpcEvents.LOCAL_FILES, cache);
     } catch (err) {
