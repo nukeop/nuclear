@@ -14,12 +14,11 @@ import * as playerActions from '../../actions/player';
 import * as queueActions from '../../actions/queue';
 import * as settingsActions from '../../actions/settings';
 import * as favoritesActions from '../../actions/favorites';
-import { favoritesSelectors } from '../../selectors/favorites';
+import { favoritesSelectors, getFavoriteTrack } from '../../selectors/favorites';
 import { playerSelectors } from '../../selectors/player';
 import { queue as queueSelector } from '../../selectors/queue';
 import { settingsSelector } from '../../selectors/settings';
-import { getFavoriteTrack } from '../../selectors/favorites';
-import { QueueItem } from '../../reducers/queue';
+import { QueueItem, QueueStore } from '../../reducers/queue';
 
 export const useSeekbarProps = () => {
   const dispatch = useDispatch();
@@ -255,12 +254,10 @@ export const useStreamLookup = () => {
   const queue = useSelector(queueSelector);
 
   useEffect(() => {
-    const isStreamLoading = Boolean(queue.queueItems.find((item) => item.loading));
-
-    if (!isStreamLoading) {
+    if (shouldSearchForStreams(queue)) {
       const currentSong: QueueItem = queue.queueItems[queue.currentSong];
 
-      if (currentSong && isEmpty(currentSong.streams)) {
+      if (currentSong && queueActions.trackHasNoFirstStream(currentSong)) {
         dispatch(queueActions.findStreamsForTrack(queue.currentSong));
         return;
       }
@@ -272,4 +269,20 @@ export const useStreamLookup = () => {
       }
     }
   }, [queue]);
+};
+
+const shouldSearchForStreams = (queue: QueueStore): boolean => {
+  const currentlyLoadingTrack = queue.queueItems.find((item) => item.loading);
+  if (!currentlyLoadingTrack) {
+    // No track is currently "loading": start searching for steams.
+    return true;
+  }
+  if (isEmpty(currentlyLoadingTrack.streams)) {
+    // Streams are not yet resolved: this happens when the track is being marked as "loading"
+    // while still resolving streams. We don't need to start a search until that operation completes or fails.
+    return false;
+  }
+  const firstStream = currentlyLoadingTrack.streams[0];
+  // A search should be performed if the first stream URL wasn't yet resolved.
+  return !firstStream?.stream;
 };

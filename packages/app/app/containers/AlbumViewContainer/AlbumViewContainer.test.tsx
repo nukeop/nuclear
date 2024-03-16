@@ -202,7 +202,7 @@ describe('Album view container', () => {
           artist: 'test artist',
           name: 'test track 1',
           streams: [{
-            data: 'test-stream-data',
+            stream: 'test-stream-url',
             author: {
               name: 'test author'
             }
