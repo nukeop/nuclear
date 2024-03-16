@@ -24,8 +24,6 @@ import './app.global.scss';
 import styles from './styles.scss';
 import compact from './compact.scss';
 
-import logoIcon from '../resources/media/512x512.png';
-
 import Navbar from './components/Navbar';
 import VerticalPanel from './components/VerticalPanel';
 import Spacer from './components/Spacer';
@@ -48,6 +46,7 @@ import WindowControls from './components/WindowControls';
 import SidebarMenuContainer from './containers/SidebarMenuContainer';
 import { CommandPaletteContainer } from './containers/CommandPaletteContainer';
 import { hot } from 'react-hot-loader';
+import SidebarBrand from './components/SidebarBrand';
 
 @withTranslation('app')
 class App extends React.PureComponent {
@@ -132,9 +131,7 @@ class App extends React.PureComponent {
         <div className={styles.app_container}>
           <MiniPlayerContainer />
           <Navbar>
-            <div className={styles.sidebar_brand}>
-              <img src={logoIcon} />
-            </div>
+            <SidebarBrand />
             <NavButtons />
             <SearchBoxContainer />
             <Spacer className={styles.navbar_spacer} />
