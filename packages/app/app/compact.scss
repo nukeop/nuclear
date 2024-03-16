@@ -1,11 +1,7 @@
-@import './vars';
+@import "./vars";
 
 .compact_panel {
   width: 3rem;
-
-  .sidebar_brand {
-    padding: 1rem 0;
-  }
 
   .sidebar_menu_item_container {
     display: flex;
@@ -21,5 +17,4 @@
   span {
     margin: 0 !important;
   }
-
 }
