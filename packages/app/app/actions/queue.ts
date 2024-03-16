@@ -63,7 +63,8 @@ export const getSelectedStreamProvider = (getState) => {
   return _.find(streamProviders, { sourceName: selected.streamProviders });
 };
 
-export const getTrackStreams = async (
+// Exported to facilitate testing.
+export const resolveTrackStreams = async (
   track: Track | LocalTrack,
   selectedStreamProvider: StreamProvider
 ) => {
@@ -179,15 +180,7 @@ export const findStreamsForTrack = (index: number) => async (dispatch, getState)
     }
     const selectedStreamProvider = getSelectedStreamProvider(getState);
     try {
-      let streamData: TrackStream[];
-      if (isEmpty(track.streams)) {
-        streamData = await getTrackStreams(
-          track,
-          selectedStreamProvider
-        );
-      } else {
-        streamData = track.streams;
-      }
+      let streamData: TrackStream[] = await getTrackStreams(track, selectedStreamProvider);
 
       if (settings.useStreamVerification) {
         try {
@@ -213,12 +206,7 @@ export const findStreamsForTrack = (index: number) => async (dispatch, getState)
       if (streamData?.length === 0) {
         dispatch(removeFromQueue(index));
       } else {
-        if (!streamData[0].stream) {
-          streamData = [
-            await selectedStreamProvider.getStreamForId(streamData.find(Boolean)?.id),
-            ...streamData.slice(1)
-          ];
-        }
+        streamData = await resolveSourceUrlForTheFirstStream(streamData, selectedStreamProvider);
 
         const firstStream = streamData[0];
         if (!firstStream?.stream) {
@@ -254,6 +242,27 @@ export const findStreamsForTrack = (index: number) => async (dispatch, getState)
     }
   }
 };
+
+async function getTrackStreams(track: QueueItem, streamProvider: StreamProvider): Promise<TrackStream[]> {
+  if (isEmpty(track.streams)) {
+    return resolveTrackStreams(
+      track,
+      streamProvider
+    );
+  }
+  return track.streams;
+}
+
+async function resolveSourceUrlForTheFirstStream(trackStreams: TrackStream[], streamProvider: StreamProvider): Promise<TrackStream[]> {
+  if (isEmpty(trackStreams[0].stream)) {
+    return [
+      await streamProvider.getStreamForId(trackStreams.find(Boolean)?.id),
+      ...trackStreams.slice(1)
+    ];
+  }
+  // The stream URL might already be resolved, for example for a previously played track.
+  return trackStreams;
+}
 
 export function trackHasNoFirstStream(track: QueueItem): boolean {
   return isEmpty(track?.streams) || isEmpty(track.streams[0].stream);
