@@ -379,6 +379,7 @@
     "exit-fullscreen": "Spauskite ESC, kad išeitumėte iš pilno ekrano režimo"
   },
   "command-palette": {
+    "reminder": "to open the command palette",
     "search-placeholder": "What would you like to do?",
     "empty-state-help": "Can't seem to find what you're looking for? Try the help command.",
     "protip-text": "PROTIP:",
