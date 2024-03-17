@@ -379,6 +379,7 @@
     "exit-fullscreen": "ফুলস্ক্রিন থেকে বের হতে ECS চাপুন"
   },
   "command-palette": {
+    "reminder": "to open the command palette",
     "search-placeholder": "আপনি কি করতে চান?",
     "empty-state-help": "আপনি যা খুজছেন তা পাচ্ছেন না? হেল্প কমান্ড ট্রাই করুন।",
     "protip-text": "প্রো-টিপ:",
