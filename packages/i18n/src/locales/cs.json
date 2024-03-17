@@ -379,6 +379,7 @@
     "exit-fullscreen": "Stiskněte ESC pro opuštění celé obrazovky"
   },
   "command-palette": {
+    "reminder": "to open the command palette",
     "search-placeholder": "Co chcete udělat?",
     "empty-state-help": "Nemůžete najít to, co hledáte? Zkuste příkaz nápovědy.",
     "protip-text": "PROTIP:",
