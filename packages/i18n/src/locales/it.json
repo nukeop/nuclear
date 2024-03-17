@@ -379,6 +379,7 @@
     "exit-fullscreen": "Premi ESC per uscire dallo schermo intero"
   },
   "command-palette": {
+    "reminder": "to open the command palette",
     "search-placeholder": "Che cosa vorresti fare?",
     "empty-state-help": "Non riesci a trovare quello che stai cercando? Prova il comando aiuto.",
     "protip-text": "Suggerimento:",
