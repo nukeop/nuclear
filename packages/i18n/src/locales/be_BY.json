@@ -379,6 +379,7 @@
     "exit-fullscreen": "Націсьніце на ESC, каб выйсьці з поўнага экрану"
   },
   "command-palette": {
+    "reminder": "to open the command palette",
     "search-placeholder": "Што б Вы хацелі зрабіць далей?",
     "empty-state-help": "Здаецца, вы не можаце знайсці тое, што шукаеце? Паспрабуйце скарыстацца камандай help.",
     "protip-text": "ПРАФЕСІЙНЫ САВЕТ:",
