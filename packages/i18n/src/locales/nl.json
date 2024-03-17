@@ -379,6 +379,7 @@
     "exit-fullscreen": "Druk op ESC om volledig scherm af te sluiten"
   },
   "command-palette": {
+    "reminder": "to open the command palette",
     "search-placeholder": "Wat wilt u doen?",
     "empty-state-help": "Kunt u niet vinden wat u zoekt? Probeer de hulpcommando.",
     "protip-text": "PROTIP:",
