@@ -379,6 +379,7 @@
     "exit-fullscreen": "Tekan ESC untuk keluar dari layar penuh"
   },
   "command-palette": {
+    "reminder": "to open the command palette",
     "search-placeholder": "Apa yang ingin anda lakukan?",
     "empty-state-help": "Tidak dapat menemukan apa yang anda inginkan? Coba dengan perintah bantuan.",
     "protip-text": "PROTIP:",
