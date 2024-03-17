@@ -379,6 +379,7 @@
     "exit-fullscreen": "Tam ekrandan çıkmak için ESC'ye basın"
   },
   "command-palette": {
+    "reminder": "to open the command palette",
     "search-placeholder": "Ne yapmak istiyorsunuz?",
     "empty-state-help": "Aradığınız şey bulunamıyor, yardım komutunu deneyin.",
     "protip-text": "İPUCU:",
