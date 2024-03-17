@@ -379,6 +379,7 @@
     "exit-fullscreen": "按ESC鍵退出全畫面"
   },
   "command-palette": {
+    "reminder": "to open the command palette",
     "search-placeholder": "您想做什麼呢？",
     "empty-state-help": "找不到你要找的東西嗎？ 嘗試使用幫助命令。",
     "protip-text": "小提示:",
