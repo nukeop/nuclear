@@ -279,13 +279,12 @@ export const buildStoreState = () => {
                 sourceName: 'Test Stream Provider',
                 search: jest.fn(() => ([{
                   id: 'test-stream-id',
-                  data: 'test-stream-data',
                   author: {
                     name: 'test author'
                   }
                 }])),
                 getStreamForId: jest.fn(() => ({
-                  data: 'test-stream-data',
+                  stream: 'test-stream-url',
                   author: {
                     name: 'test author'
                   }
@@ -296,7 +295,6 @@ export const buildStoreState = () => {
                 sourceName: 'Different Stream Provider',
                 search: jest.fn(() => ([{
                   id: 'test-stream-id-1',
-                  data: 'different-test-stream-data',
                   source: 'Different Stream Provider',
                   author: {
                     name: 'test author'
@@ -304,7 +302,7 @@ export const buildStoreState = () => {
                 }])),
                 getStreamForId: jest.fn((id: string) => ({
                   id: 'test-stream-id-1',
-                  data: id,
+                  stream: 'different-test-stream-url',
                   source: 'Different Stream Provider'
                 }) as TrackStream)
               }

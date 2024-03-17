@@ -6,16 +6,16 @@ describe('Queue actions tests', () => {
 
   describe('finds streams for track', () => {
     const getSelectedStreamProvider = jest.spyOn(QueueOperations, 'getSelectedStreamProvider');
-    const getTrackStreams = jest.spyOn(QueueOperations, 'getTrackStreams');
+    const resolveTrackStreams = jest.spyOn(QueueOperations, 'resolveTrackStreams');
 
     afterEach(() => {
       getSelectedStreamProvider.mockReset();
-      getTrackStreams.mockReset();
+      resolveTrackStreams.mockReset();
     });
 
     test('remote track is removed from the queue when no streams are available', () => {
       // Mock an empty search result for streams.
-      getTrackStreams.mockResolvedValueOnce([]);
+      resolveTrackStreams.mockResolvedValueOnce([]);
 
       // Configure a dummy stream provider. It is not actually used in this execution path.
       getSelectedStreamProvider.mockReturnValueOnce({});
