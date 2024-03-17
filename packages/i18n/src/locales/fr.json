@@ -379,6 +379,7 @@
     "exit-fullscreen": "Appuyez sur ÉCHAP pour quitter le mode plein écran"
   },
   "command-palette": {
+    "reminder": "to open the command palette",
     "search-placeholder": "Que souhaitez-vous faire ?",
     "empty-state-help": "Vous ne semblez pas trouver ce que vous cherchez ? Essayez la commande d'aide.",
     "protip-text": "CONSEIL DE PRO :",
