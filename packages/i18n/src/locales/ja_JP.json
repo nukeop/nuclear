@@ -379,6 +379,7 @@
     "exit-fullscreen": "ESCで全画面表示終了"
   },
   "command-palette": {
+    "reminder": "to open the command palette",
     "search-placeholder": "何をしたいですか？",
     "empty-state-help": "お探しのものが見つかりませんか？ヘルプコマンドを試してください。",
     "protip-text": "アドバイス:",
