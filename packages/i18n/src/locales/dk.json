@@ -379,6 +379,7 @@
     "exit-fullscreen": "Tryk på ESC for at afslutte fuld skærm"
   },
   "command-palette": {
+    "reminder": "to open the command palette",
     "search-placeholder": "Hvad ønsker du at gøre?",
     "empty-state-help": "Kan du ikke finde det, du leder efter? Prøv hjælpekommandoen.",
     "protip-text": "PROTIP:",
