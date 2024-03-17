@@ -379,6 +379,7 @@
     "exit-fullscreen": "יש ללחוץ על ESC כדי לצאת ממסך מלא"
   },
   "command-palette": {
+    "reminder": "to open the command palette",
     "search-placeholder": "מה תרצו לעשות?",
     "empty-state-help": "לא נמצא מה שחיפשתם? נסו את פקודת העזרה.",
     "protip-text": "טיפ חשוב:",
