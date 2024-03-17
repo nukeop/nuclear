@@ -43,6 +43,7 @@ import ErrorBoundary from './containers/ErrorBoundary';
 
 import NavButtons from './components/NavButtons';
 import WindowControls from './components/WindowControls';
+import CommandPaletteReminder from './components/CommandPaletteReminder';
 import SidebarMenuContainer from './containers/SidebarMenuContainer';
 import { CommandPaletteContainer } from './containers/CommandPaletteContainer';
 import { hot } from 'react-hot-loader';
@@ -134,6 +135,7 @@ class App extends React.PureComponent {
             <SidebarBrand />
             <NavButtons />
             <SearchBoxContainer />
+            <CommandPaletteReminder />
             <Spacer className={styles.navbar_spacer} />
             <HelpModalContainer />
             {this.props.settings.framelessWindow && (

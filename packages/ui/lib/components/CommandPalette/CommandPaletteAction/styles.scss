@@ -24,7 +24,9 @@
         @include roundCorners;
         font-size: 12px;
         background: $bgdefault;
-        padding: 0.5em;
+        padding: 0.3em 0.5em;
+        border: 1px solid rgba($bgdark, 0.4);
+        box-shadow: 0 1px 0 1px rgba($bgdark, 0.07);
     }
 
     .action_left {
