@@ -379,6 +379,7 @@
     "exit-fullscreen": "Bo ji dîmendera tije derkevî pê li bişkoka ESC-yê bike"
   },
   "command-palette": {
+    "reminder": "to open the command palette",
     "search-placeholder": "Tu dixwazî çi bikî?",
     "empty-state-help": "Tu tiştê ku lê digerî nikarî bibînî? Fermana alîkariyê taqî bike.",
     "protip-text": "PROTIP:",
