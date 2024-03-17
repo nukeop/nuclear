@@ -379,6 +379,7 @@
     "exit-fullscreen": "Nhấn ESC để thoát khỏi chế độ toàn màn hình"
   },
   "command-palette": {
+    "reminder": "to open the command palette",
     "search-placeholder": "Bạn muốn làm gì?",
     "empty-state-help": "Không thể tìm thấy cái bạn cần? Hãy thử lệnh trợ giúp.",
     "protip-text": "MẸO CHUYÊN NGHIỆP:",
