@@ -379,6 +379,7 @@
     "exit-fullscreen": "A teljes képernyőből való kilépéshez nyomd meg az ESC gombot"
   },
   "command-palette": {
+    "reminder": "to open the command palette",
     "search-placeholder": "Mit szeretnél csinálni?",
     "empty-state-help": "Can't seem to find what you're looking for? Try the help command.",
     "protip-text": "Haladó Tanács:",
