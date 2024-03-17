@@ -379,6 +379,7 @@
     "exit-fullscreen": "Paina ESC poistuaksesi koko näytön tilasta"
   },
   "command-palette": {
+    "reminder": "to open the command palette",
     "search-placeholder": "Mitä haluaisit tehdä?",
     "empty-state-help": "Etkö löydä etsimääsi? Kokeile ohjetta.",
     "protip-text": "ILMAINEN NEUVO:",
