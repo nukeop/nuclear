@@ -379,6 +379,7 @@
     "exit-fullscreen": "按 ESC 键退出全屏"
   },
   "command-palette": {
+    "reminder": "to open the command palette",
     "search-placeholder": "您想做什么？",
     "empty-state-help": "Can't seem to find what you're looking for? Try the help command.",
     "protip-text": "PROTIP:",
