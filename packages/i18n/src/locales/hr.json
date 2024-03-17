@@ -379,6 +379,7 @@
     "exit-fullscreen": "Pritisnite ESC da bi ste izašli iz punog zaslona"
   },
   "command-palette": {
+    "reminder": "to open the command palette",
     "search-placeholder": "Što biste željeli uraditi?",
     "empty-state-help": "Ne možete naći šta tražite? Probajte pomoćnu komandu.",
     "protip-text": "PRO-SAVJET:",
