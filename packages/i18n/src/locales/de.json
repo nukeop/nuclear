@@ -379,6 +379,7 @@
     "exit-fullscreen": "ESC Taste drücken, um den Vollbildmodus zu beenden"
   },
   "command-palette": {
+    "reminder": "to open the command palette",
     "search-placeholder": "Was möchtest du machen?",
     "empty-state-help": "Kann nicht finden, was du suchst? Probiere den Hilfe-Befehl.",
     "protip-text": "PROTIP:",
