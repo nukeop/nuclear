@@ -7,9 +7,14 @@
     "genre": "Genre:",
     "play": "Play",
     "queue": "Add album to queue",
-    "add-to-playlist": "Add album to playlist",
     "tracks": "Tracks:",
-    "year": "Year:"
+    "year": "Year:",
+    "add-to-playlist": "Add album to playlist",
+    "create-playlist": "Create new playlist",
+    "create-playlist-dialog-title": "Input playlist name:",
+    "create-playlist-dialog-placeholder": "Playlist name...",
+    "create-playlist-dialog-accept": "Save",
+    "create-playlist-dialog-cancel": "Cancel"
   },
   "app": {
     "collection": "Collection",

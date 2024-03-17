@@ -15,8 +15,8 @@ import { searchSelectors } from '../../selectors/search';
 import { stringDurationToSeconds } from '../../utils';
 import { AlbumDetailsState } from '../../reducers/search';
 import { playlistsSelectors } from '../../selectors/playlists';
-import * as playlistActions from '../../actions/playlists';
-import { PlaylistTrack } from '@nuclear/core';
+import * as PlaylistActions from '../../actions/playlists';
+import { PlaylistTrack, Track } from '@nuclear/core';
 
 export const useAlbumViewProps = () => {
   const dispatch = useDispatch();
@@ -78,20 +78,6 @@ export const useAlbumViewProps = () => {
     });
   }, [album, dispatch]);
 
-  const addAlbumToPlaylist = useCallback(async (playlistName: string) => {
-    const tracksWithId: PlaylistTrack[] = [];
-    await album?.tracklist.forEach((track: PlaylistTrack) => tracksWithId.push(safeAddUuid(track)));
-    const originalPlaylist = localPlaylists.data?.find(playlist => playlist.name === playlistName);
-    const playlistWithAlbumTracks = {
-      ...originalPlaylist,
-      tracks: [
-        ...originalPlaylist.tracks,
-        ...tracksWithId
-      ]
-    };
-    dispatch(playlistActions.updatePlaylist(playlistWithAlbumTracks));
-  }, [album, localPlaylists, dispatch]);
-
   const playAll = useCallback(async () => {
     dispatch(QueueActions.clearQueue());
     await addAlbumToQueue();
@@ -109,16 +95,41 @@ export const useAlbumViewProps = () => {
 
   const playlistNames = localPlaylists.data?.map(playlist => playlist.name);
 
+  function getPlaylistTracks() {
+    const tracksWithId: PlaylistTrack[] = [];
+    album.tracklist?.forEach((track: Track) => tracksWithId.push(safeAddUuid(track)));
+    return tracksWithId;
+  }
+
+  const addAlbumToPlaylist = useCallback(async (playlistName: string) => {
+    const tracksWithId: PlaylistTrack[] = getPlaylistTracks();
+    const originalPlaylist = localPlaylists.data?.find(playlist => playlist.name === playlistName);
+    const playlistWithAlbumTracks = {
+      ...originalPlaylist,
+      tracks: [
+        ...originalPlaylist.tracks,
+        ...tracksWithId
+      ]
+    };
+    dispatch(PlaylistActions.updatePlaylist(playlistWithAlbumTracks));
+  }, [album, localPlaylists, dispatch]);
+
+  const addAlbumToNewPlaylist = useCallback(async (playlistName: string) => {
+    dispatch(PlaylistActions.addPlaylist(getPlaylistTracks(), playlistName));
+  }, [album, dispatch]);
+
+
   return {
     album,
     isFavorite,
     searchAlbumArtist,
     addAlbumToDownloads,
     addAlbumToQueue,
-    addAlbumToPlaylist,
     playAll,
     addFavoriteAlbum,
     removeFavoriteAlbum,
-    playlistNames
+    addAlbumToPlaylist,
+    playlistNames,
+    addAlbumToNewPlaylist
   };
 };
