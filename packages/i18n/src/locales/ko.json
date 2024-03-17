@@ -379,6 +379,7 @@
     "exit-fullscreen": "전체 화면 모드를 종료하려면 Esc 키를 누르십시오."
   },
   "command-palette": {
+    "reminder": "to open the command palette",
     "search-placeholder": "무엇을 하시겠어요?",
     "empty-state-help": "Can't seem to find what you're looking for? Try the help command.",
     "protip-text": "꿀팁:",
