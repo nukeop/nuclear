@@ -379,6 +379,7 @@
     "exit-fullscreen": "फुलस्क्रीन मोड से बाहर निकलने के लिए Esc दबाएं।"
   },
   "command-palette": {
+    "reminder": "to open the command palette",
     "search-placeholder": "आप क्या करना चाहेंगे?",
     "empty-state-help": "क्या आप जो पता करना चाहते हैं वह आपको नहीं मिल रहा है? \"सहायता\" कमांड कोशिश करें",
     "protip-text": "प्रो टिप:",
