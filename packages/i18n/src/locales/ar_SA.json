@@ -379,6 +379,7 @@
     "exit-fullscreen": "اضغط ESC للخروج من ملء الشاشة"
   },
   "command-palette": {
+    "reminder": "to open the command palette",
     "search-placeholder": "ماذا تريد أن تفعل؟",
     "empty-state-help": "لم تجد الذي تبحث عنه؟ استعمل أمر المساعدة.",
     "protip-text": "نصيحة:",
