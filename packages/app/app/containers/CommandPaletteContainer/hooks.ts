@@ -52,28 +52,28 @@ export const useCommandPaletteActions = (): CommandPaletteAction[] => {
     }, {
       id: 'next',
       name: t('actions.next'),
-      shortcut: [isMac() ? 'cmd+right arrow' : 'ctrl+right arrow'],
+      shortcut: [isMac() ? '⌘ + →' : 'ctrl + →'],
       icon: 'forward',
       category: t('categories.queue'),
       onUse: () => dispatch(nextSong())
     }, {
       id: 'previous',
       name: t('actions.previous'),
-      shortcut: [isMac() ? 'cmd+left arrow' : 'ctrl+left arrow'],
+      shortcut: [isMac() ? '⌘ + ←' : 'ctrl + ←'],
       icon: 'backward',
       category: t('categories.queue'),
       onUse: () => dispatch(previousSong())
     }, {
       id: 'go-to-next-page',
       name: t('actions.go-to-next-page'),
-      shortcut: [isMac() ? 'option+right arrow' : 'alt+right arrow'],
+      shortcut: [isMac() ? '⌥ + →' : 'alt + →'],
       icon: 'chevron right',
       category: t('categories.navigation'),
       onUse: () => history.goForward()
     }, {
       id: 'go-to-previous-page',
       name: t('actions.go-to-previous-page'),
-      shortcut: [isMac() ? 'option+left arrow' : 'alt+left arrow'],
+      shortcut: [isMac() ? '⌥ + ←' : 'alt + ←'],
       icon: 'chevron left',
       category: t('categories.navigation'),
       onUse: () => history.goBack()
