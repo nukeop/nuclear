@@ -8,7 +8,13 @@
     "play": "Lire",
     "queue": "Ajouter l'album à la liste de lecture",
     "tracks": "Morceaux :",
-    "year": "Année :"
+    "year": "Année :",
+    "add-to-playlist": "Add album to playlist",
+    "create-playlist": "Create new playlist",
+    "create-playlist-dialog-title": "Input playlist name:",
+    "create-playlist-dialog-placeholder": "Playlist name...",
+    "create-playlist-dialog-accept": "Save",
+    "create-playlist-dialog-cancel": "Cancel"
   },
   "app": {
     "collection": "Collection",
