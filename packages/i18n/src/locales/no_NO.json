@@ -8,7 +8,13 @@
     "play": "Spill",
     "queue": "Legg til album i køen",
     "tracks": "Spor:",
-    "year": "År:"
+    "year": "År:",
+    "add-to-playlist": "Add album to playlist",
+    "create-playlist": "Create new playlist",
+    "create-playlist-dialog-title": "Input playlist name:",
+    "create-playlist-dialog-placeholder": "Playlist name...",
+    "create-playlist-dialog-accept": "Save",
+    "create-playlist-dialog-cancel": "Cancel"
   },
   "app": {
     "collection": "Samling",
