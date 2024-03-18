@@ -8,7 +8,13 @@
     "play": "Грати",
     "queue": "Додати збірку до черги",
     "tracks": "Доріжки:",
-    "year": "Рік:"
+    "year": "Рік:",
+    "add-to-playlist": "Add album to playlist",
+    "create-playlist": "Create new playlist",
+    "create-playlist-dialog-title": "Input playlist name:",
+    "create-playlist-dialog-placeholder": "Playlist name...",
+    "create-playlist-dialog-accept": "Save",
+    "create-playlist-dialog-cancel": "Cancel"
   },
   "app": {
     "collection": "Колекція",
