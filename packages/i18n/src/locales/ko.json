@@ -8,7 +8,13 @@
     "play": "재생",
     "queue": "재생 목록에 앨범 추가",
     "tracks": "트랙:",
-    "year": "연도:"
+    "year": "연도:",
+    "add-to-playlist": "Add album to playlist",
+    "create-playlist": "Create new playlist",
+    "create-playlist-dialog-title": "Input playlist name:",
+    "create-playlist-dialog-placeholder": "Playlist name...",
+    "create-playlist-dialog-accept": "Save",
+    "create-playlist-dialog-cancel": "Cancel"
   },
   "app": {
     "collection": "보관함",
