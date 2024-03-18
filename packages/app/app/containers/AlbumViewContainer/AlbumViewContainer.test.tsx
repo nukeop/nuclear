@@ -2,6 +2,7 @@ import { waitFor } from '@testing-library/react';
 import { mountedComponentFactory, setupI18Next } from '../../../test/testUtils';
 import { buildStoreState } from '../../../test/storeBuilders';
 import PlayerBarContainer from '../PlayerBarContainer';
+import userEvent from '@testing-library/user-event';
 
 describe('Album view container', () => {
   beforeAll(() => {
@@ -253,6 +254,53 @@ describe('Album view container', () => {
           name: 'test track 3'
         })
       }
+    ]);
+  });
+
+  it('should add album tracks to an existing playlist using the album menu popup', async () => {
+    const { component, store } = mountComponent(
+      buildStoreState()
+        .withAlbumDetails()
+        .withPlaylists([{
+          id: 'test playlist id',
+          name: 'test playlist',
+          tracks: []
+        }])
+        .build()
+    );
+    userEvent.click(component.getByTestId('more-button'));
+    userEvent.click(component.getByTestId('add-album-to-playlist'));
+    userEvent.click(component.getByText('test playlist'));
+
+    const state = store.getState();
+    expect(state.playlists.localPlaylists.data[0].tracks).toEqual([
+      expect.objectContaining({ uuid: 'track-1-id' }),
+      expect.objectContaining({ uuid: 'track-2-id' }),
+      expect.objectContaining({ uuid: 'track-3-id' })
+    ]);
+  });
+
+  it('should add album tracks to a new playlist using the album menu popup', async () => {
+    const { component, store } = mountComponent();
+    userEvent.click(component.getByTestId('more-button'));
+    userEvent.click(component.getByTestId('add-album-to-playlist'));
+    userEvent.click(component.getByTestId('playlist-popup-create-playlist'));
+    
+    expect(component.getByTestId('create-playlist-dialog-input')).toBeVisible();
+    expect(component.getByTestId('create-playlist-dialog-accept')).toBeVisible();
+    expect(component.getByTestId('create-playlist-dialog-cancel')).toBeVisible();
+
+    userEvent.click(component.getByTestId('create-playlist-dialog-accept'));
+
+    const state = store.getState();
+    expect(state.playlists.localPlaylists.data).toHaveLength(1);
+
+    const firstPlaylist = state.playlists.localPlaylists.data[0];
+    expect(firstPlaylist.name).toBe('test artist - test album');
+    expect(firstPlaylist.tracks).toEqual([
+      expect.objectContaining({ uuid: 'track-1-id' }),
+      expect.objectContaining({ uuid: 'track-2-id' }),
+      expect.objectContaining({ uuid: 'track-3-id' })
     ]);
   });
 
