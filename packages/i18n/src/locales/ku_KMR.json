@@ -8,7 +8,13 @@
     "play": "Lêde",
     "queue": "Albumê tevlî rêzê bike",
     "tracks": "Stran:",
-    "year": "Sal:"
+    "year": "Sal:",
+    "add-to-playlist": "Add album to playlist",
+    "create-playlist": "Create new playlist",
+    "create-playlist-dialog-title": "Input playlist name:",
+    "create-playlist-dialog-placeholder": "Playlist name...",
+    "create-playlist-dialog-accept": "Save",
+    "create-playlist-dialog-cancel": "Cancel"
   },
   "app": {
     "collection": "Berhevok",
