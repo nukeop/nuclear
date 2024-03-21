@@ -6,13 +6,7 @@ import { createMemoryHistory } from 'history';
 import { store as electronStore } from '@nuclear/core';
 
 import { buildElectronStoreState, buildStoreState } from '../../../test/storeBuilders';
-import {
-  AnyProps,
-  configureMockStore,
-  setupI18Next,
-  TestRouterProvider,
-  TestStoreProvider
-} from '../../../test/testUtils';
+import { AnyProps, configureMockStore, setupI18Next, TestRouterProvider, TestStoreProvider } from '../../../test/testUtils';
 import MainContentContainer from '../MainContentContainer';
 import { onReorder } from '.';
 
@@ -191,13 +185,7 @@ describe('Playlist view container', () => {
   });
 
   it('should delete a single track from the playlist', async () => {
-    const { component, history, store } = mountComponent(
-      undefined,
-      [
-        '/playlist/test-playlist-id',
-        '/previous-location'
-      ]
-    );
+    const { component, store } = mountComponent();
     await waitFor(() => component.getAllByTestId('delete-button')[0].click());
 
     const state = store.getState();
@@ -208,9 +196,6 @@ describe('Playlist view container', () => {
         name: 'test track 22'
       })
     ]);
-    // FIXME: the expectations below don't work because the history instance is only the initial state, and not the modified state
-    expect(history.length).toBe(1);
-    expect(history.location).toBe('/previous-location');
   });
 
   it('should delete a single track from the playlist when there are its duplicates', async () => {
@@ -257,7 +242,7 @@ describe('Playlist view container', () => {
     ]);
   });
 
-  const mountComponent = (initialStore?: AnyProps, initialHistory?: string[], initStore = true) => {
+  const mountComponent = (initialStore?: AnyProps, initStore = true) => {
     const initialState = initialStore ||
       buildStoreState()
         .withPlugins()
@@ -272,7 +257,7 @@ describe('Playlist view container', () => {
     });
 
     const history = createMemoryHistory({
-      initialEntries: initialHistory || ['/playlist/test-playlist-id']
+      initialEntries: ['/playlist/test-playlist-id']
     });
 
     const store = configureMockStore(initialState);
