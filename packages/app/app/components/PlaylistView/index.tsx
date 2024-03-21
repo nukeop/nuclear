@@ -1,5 +1,4 @@
 import React, { useCallback } from 'react';
-import _ from 'lodash';
 import { TFunction } from 'i18next';
 import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router';
@@ -72,7 +71,13 @@ const PlaylistView: React.FC<PlaylistViewProps> = ({
 
   const onDeletePlaylist = useCallback(() => {
     deletePlaylist(playlist.id);
-    history.push('/playlists');
+    if (history.length > 1) {
+      // The current playlist is the top of the navigation stack, go back to the previous view
+      history.goBack();
+    } else {
+      // Fallback in case we can't navigate back to a previous view
+      history.push('/playlists');
+    }
   }, [playlist, history, deletePlaylist]);
 
   const onExportPlaylist = useCallback(() => {
