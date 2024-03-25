@@ -9,12 +9,12 @@
     "queue": "アルバムをキューに追加",
     "tracks": "曲:",
     "year": "年:",
-    "add-to-playlist": "Add album to playlist",
-    "create-playlist": "Create new playlist",
-    "create-playlist-dialog-title": "Input playlist name:",
-    "create-playlist-dialog-placeholder": "Playlist name...",
-    "create-playlist-dialog-accept": "Save",
-    "create-playlist-dialog-cancel": "Cancel"
+    "add-to-playlist": "再生リストにアルバムを追加",
+    "create-playlist": "新しい再生リストの作成",
+    "create-playlist-dialog-title": "再生リスト名を入力:",
+    "create-playlist-dialog-placeholder": "再生リストの名前...",
+    "create-playlist-dialog-accept": "保存",
+    "create-playlist-dialog-cancel": "キャンセル"
   },
   "app": {
     "collection": "コレクション",
@@ -385,7 +385,7 @@
     "exit-fullscreen": "ESCで全画面表示終了"
   },
   "command-palette": {
-    "reminder": "to open the command palette",
+    "reminder": "コマンドパレットを開く",
     "search-placeholder": "何をしたいですか？",
     "empty-state-help": "お探しのものが見つかりませんか？ヘルプコマンドを試してください。",
     "protip-text": "アドバイス:",
