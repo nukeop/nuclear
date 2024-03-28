@@ -9,18 +9,18 @@
     "queue": "Додати збірку до черги",
     "tracks": "Доріжки:",
     "year": "Рік:",
-    "add-to-playlist": "Add album to playlist",
-    "create-playlist": "Create new playlist",
-    "create-playlist-dialog-title": "Input playlist name:",
-    "create-playlist-dialog-placeholder": "Playlist name...",
-    "create-playlist-dialog-accept": "Save",
-    "create-playlist-dialog-cancel": "Cancel"
+    "add-to-playlist": "Додати альбом до плейлиста",
+    "create-playlist": "Створити новий плейлист",
+    "create-playlist-dialog-title": "Введіть назву плейлиста:",
+    "create-playlist-dialog-placeholder": "Назва плейлиста...",
+    "create-playlist-dialog-accept": "Зберегти",
+    "create-playlist-dialog-cancel": "Скасувати"
   },
   "app": {
     "collection": "Колекція",
     "dashboard": "Головна",
     "downloads": "Завантаження",
-    "equalizer": "Рівні",
+    "equalizer": "Еквалайзер",
     "favorite-albums": "Вподобані Збірки",
     "favorite-artists": "Вподобані Виконавці",
     "favorite-tracks": "Вподобані Доріжки",
@@ -385,7 +385,7 @@
     "exit-fullscreen": "Натисніть ESC, щоб вийти з повноекранного режиму"
   },
   "command-palette": {
-    "reminder": "to open the command palette",
+    "reminder": "відкрити палітру команд",
     "search-placeholder": "Що б ви хотіли зробити?",
     "empty-state-help": "Не вдається знайти те, що шукали? Спробуйте команду допомоги.",
     "protip-text": "ПОРАДА:",
