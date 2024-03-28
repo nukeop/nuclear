@@ -8,7 +8,13 @@
     "play": "Lêde",
     "queue": "Albumê tevlî rêzê bike",
     "tracks": "Stran:",
-    "year": "Sal:"
+    "year": "Sal:",
+    "add-to-playlist": "Add album to playlist",
+    "create-playlist": "Create new playlist",
+    "create-playlist-dialog-title": "Input playlist name:",
+    "create-playlist-dialog-placeholder": "Playlist name...",
+    "create-playlist-dialog-accept": "Save",
+    "create-playlist-dialog-cancel": "Cancel"
   },
   "app": {
     "collection": "Berhevok",
@@ -379,6 +385,7 @@
     "exit-fullscreen": "Bo ji dîmendera tije derkevî pê li bişkoka ESC-yê bike"
   },
   "command-palette": {
+    "reminder": "to open the command palette",
     "search-placeholder": "Tu dixwazî çi bikî?",
     "empty-state-help": "Tu tiştê ku lê digerî nikarî bibînî? Fermana alîkariyê taqî bike.",
     "protip-text": "PROTIP:",

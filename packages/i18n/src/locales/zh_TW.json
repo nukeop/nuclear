@@ -8,7 +8,13 @@
     "play": "播放",
     "queue": "將專輯新增到播放清單",
     "tracks": "曲目",
-    "year": "年份"
+    "year": "年份",
+    "add-to-playlist": "Add album to playlist",
+    "create-playlist": "Create new playlist",
+    "create-playlist-dialog-title": "Input playlist name:",
+    "create-playlist-dialog-placeholder": "Playlist name...",
+    "create-playlist-dialog-accept": "Save",
+    "create-playlist-dialog-cancel": "Cancel"
   },
   "app": {
     "collection": "收藏",
@@ -84,18 +90,18 @@
   },
   "favorite-albums": {
     "empty": "最喜歡的專輯為空",
-    "empty-help": "嘗試添加一些專輯到最喜歡的中，它們會在這裡出現",
+    "empty-help": "嘗試將一些專輯添加到收藏夾，它們會出現在這裡！",
     "header": "你最喜歡的專輯"
   },
   "favorite-artists": {
     "empty": "沒有最喜歡的藝術家",
-    "empty-help": "嘗試將一些藝術家添加到收藏夾，他們會出現在這裡！",
+    "empty-help": "嘗試將一些藝術家添加到收藏夾，它們會出現在這裡！",
     "header": "你最喜歡的藝術家"
   },
   "favorites": {
     "artist": "演出者",
     "empty": "我的最愛為空",
-    "empty-help": "嘗試將一些藝術家添加到收藏夾，他們會出現在這裡！",
+    "empty-help": "嘗試將一些曲目添加到收藏夾，它們會出現在這裡！",
     "header": "我的最愛",
     "play-random": "隨機播放喜好曲目",
     "title": "音樂標題"
@@ -147,7 +153,7 @@
     "delete": "删除播放清單",
     "duration": "長度",
     "empty": "没有播放清單",
-    "empty-help": "Try create some playlists or import by url and they will appear here!",
+    "empty-help": "嘗試創建一些播放清單或通過URL連結加入，它們會在這裡出現！",
     "error-empty-data": "空數據",
     "error-invalid-data": "無效數據",
     "error-open-file": "無法打開文件",
@@ -379,6 +385,7 @@
     "exit-fullscreen": "按ESC鍵退出全畫面"
   },
   "command-palette": {
+    "reminder": "to open the command palette",
     "search-placeholder": "您想做什麼呢？",
     "empty-state-help": "找不到你要找的東西嗎？ 嘗試使用幫助命令。",
     "protip-text": "小提示:",

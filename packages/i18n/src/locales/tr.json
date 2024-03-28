@@ -8,7 +8,13 @@
     "play": "Çal",
     "queue": "Albümü kuyruğa ekle",
     "tracks": "Şarkılar:",
-    "year": "Yıl:"
+    "year": "Yıl:",
+    "add-to-playlist": "Add album to playlist",
+    "create-playlist": "Create new playlist",
+    "create-playlist-dialog-title": "Input playlist name:",
+    "create-playlist-dialog-placeholder": "Playlist name...",
+    "create-playlist-dialog-accept": "Save",
+    "create-playlist-dialog-cancel": "Cancel"
   },
   "app": {
     "collection": "Koleksiyon",
@@ -379,6 +385,7 @@
     "exit-fullscreen": "Tam ekrandan çıkmak için ESC'ye basın"
   },
   "command-palette": {
+    "reminder": "to open the command palette",
     "search-placeholder": "Ne yapmak istiyorsunuz?",
     "empty-state-help": "Aradığınız şey bulunamıyor, yardım komutunu deneyin.",
     "protip-text": "İPUCU:",

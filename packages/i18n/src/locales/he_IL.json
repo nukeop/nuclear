@@ -8,7 +8,13 @@
     "play": "ניגון",
     "queue": "הוספת האלבום לתור",
     "tracks": "רצועות:",
-    "year": "שנה:"
+    "year": "שנה:",
+    "add-to-playlist": "Add album to playlist",
+    "create-playlist": "Create new playlist",
+    "create-playlist-dialog-title": "Input playlist name:",
+    "create-playlist-dialog-placeholder": "Playlist name...",
+    "create-playlist-dialog-accept": "Save",
+    "create-playlist-dialog-cancel": "Cancel"
   },
   "app": {
     "collection": "אוסף",
@@ -379,6 +385,7 @@
     "exit-fullscreen": "יש ללחוץ על ESC כדי לצאת ממסך מלא"
   },
   "command-palette": {
+    "reminder": "to open the command palette",
     "search-placeholder": "מה תרצו לעשות?",
     "empty-state-help": "לא נמצא מה שחיפשתם? נסו את פקודת העזרה.",
     "protip-text": "טיפ חשוב:",

@@ -8,7 +8,13 @@
     "play": "Reproducir",
     "queue": "Añadir álbum a la cola",
     "tracks": "Pistas:",
-    "year": "Año:"
+    "year": "Año:",
+    "add-to-playlist": "Add album to playlist",
+    "create-playlist": "Create new playlist",
+    "create-playlist-dialog-title": "Input playlist name:",
+    "create-playlist-dialog-placeholder": "Playlist name...",
+    "create-playlist-dialog-accept": "Save",
+    "create-playlist-dialog-cancel": "Cancel"
   },
   "app": {
     "collection": "Colección",
@@ -379,6 +385,7 @@
     "exit-fullscreen": "Presiona ESC para salir de la pantalla completa"
   },
   "command-palette": {
+    "reminder": "to open the command palette",
     "search-placeholder": "¿Qué te gustaría hacer?",
     "empty-state-help": "¿No encuentras lo que estás buscando? Prueba el comando de ayuda.",
     "protip-text": "Consejo de pro:",

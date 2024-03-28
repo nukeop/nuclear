@@ -8,7 +8,13 @@
     "play": "Abspielen",
     "queue": "Album zur Warteschlange hinzufügen",
     "tracks": "Lieder:",
-    "year": "Jahr:"
+    "year": "Jahr:",
+    "add-to-playlist": "Add album to playlist",
+    "create-playlist": "Create new playlist",
+    "create-playlist-dialog-title": "Input playlist name:",
+    "create-playlist-dialog-placeholder": "Playlist name...",
+    "create-playlist-dialog-accept": "Save",
+    "create-playlist-dialog-cancel": "Cancel"
   },
   "app": {
     "collection": "Sammlung",
@@ -379,6 +385,7 @@
     "exit-fullscreen": "ESC Taste drücken, um den Vollbildmodus zu beenden"
   },
   "command-palette": {
+    "reminder": "to open the command palette",
     "search-placeholder": "Was möchtest du machen?",
     "empty-state-help": "Kann nicht finden, was du suchst? Probiere den Hilfe-Befehl.",
     "protip-text": "PROTIP:",

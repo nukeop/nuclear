@@ -8,7 +8,13 @@
     "play": "প্লে",
     "queue": "এলবামগুলো সারিতে যোগ করুন",
     "tracks": "ট্র্যাক:",
-    "year": "বছরঃ"
+    "year": "বছরঃ",
+    "add-to-playlist": "Add album to playlist",
+    "create-playlist": "Create new playlist",
+    "create-playlist-dialog-title": "Input playlist name:",
+    "create-playlist-dialog-placeholder": "Playlist name...",
+    "create-playlist-dialog-accept": "Save",
+    "create-playlist-dialog-cancel": "Cancel"
   },
   "app": {
     "collection": "সংগ্রহ",
@@ -379,6 +385,7 @@
     "exit-fullscreen": "ফুলস্ক্রিন থেকে বের হতে ECS চাপুন"
   },
   "command-palette": {
+    "reminder": "to open the command palette",
     "search-placeholder": "আপনি কি করতে চান?",
     "empty-state-help": "আপনি যা খুজছেন তা পাচ্ছেন না? হেল্প কমান্ড ট্রাই করুন।",
     "protip-text": "প্রো-টিপ:",
