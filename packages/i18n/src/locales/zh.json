@@ -9,7 +9,7 @@
     "queue": "将专辑添加到播放列表",
     "tracks": "曲目：",
     "year": "年份​​：",
-    "add-to-playlist": "Add album to playlist",
+    "add-to-playlist": "",
     "create-playlist": "Create new playlist",
     "create-playlist-dialog-title": "Input playlist name:",
     "create-playlist-dialog-placeholder": "Playlist name...",
