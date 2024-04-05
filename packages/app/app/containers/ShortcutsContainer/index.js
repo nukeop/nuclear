@@ -6,6 +6,7 @@ import * as Mousetrap from 'mousetrap';
 import Sound from 'react-hifi';
 import _ from 'lodash';
 import { compose } from 'recompose';
+import { isMac } from '../../hooks/usePlatform';
 
 import * as PlayerActions from '../../actions/player';
 import * as QueueActions from '../../actions/queue';
@@ -137,6 +138,11 @@ class Shortcuts extends React.Component {
     Mousetrap.bind('MediaPlayPause',  this.handleSpaceBar);
     Mousetrap.bind('MediaTrackPrevious',  this.props.actions.previousSong);
     Mousetrap.bind('MediaTrackNext',  this.props.actions.nextSong);
+    if (isMac()){
+      Mousetrap.bind('f7', this.props.actions.previousSong);
+      Mousetrap.bind('f8', this.handleSpaceBar);
+      Mousetrap.bind('f9', this.props.actions.nextSong);
+    }
   }
 
   componentWillUnmount() {
@@ -157,6 +163,9 @@ class Shortcuts extends React.Component {
       'command+top',
       'ctrl+down',
       'command+down',
+      'f7',
+      'f8',
+      'f9',
       'f12',
       'command+i',
       'MediaPlayPause',
