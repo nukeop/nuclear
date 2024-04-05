@@ -1,4 +1,4 @@
-import { LastFmArtistInfo, LastfmArtistShort } from '../../rest/Lastfm.types';
+import { LastFmArtistInfo } from '../../rest/Lastfm.types';
 import { SimilarArtist } from '../plugins.types';
 import { getToken, searchArtists } from '../../rest/Spotify';
 import logger from 'electron-timber';
@@ -14,9 +14,9 @@ class SimilarArtistsService {
     if (!artist?.similar?.artist) {
       return [];
     }
-    const similarArtists = artist.similar.artist;
+    const similarArtistNames = this.extractTopSimilarArtistNames(artist);
     try {
-      return await this.createTopSimilarArtists(similarArtists);
+      return await this.createTopSimilarArtists(similarArtistNames);
     } catch (error) {
       logger.error(`Failed to fetch similar artists for '${artist.name}'`);
       logger.error(error);
@@ -24,13 +24,17 @@ class SimilarArtistsService {
     return [];
   }
 
-  async createTopSimilarArtists(artists: LastfmArtistShort[]) {
+  extractTopSimilarArtistNames(artist: LastFmArtistInfo) {
+    return artist.similar.artist
+      .filter(artist => artist?.name)
+      .slice(0, SimilarArtistsService.TOP_ARTIST_COUNT)
+      .map(artist => artist.name);
+  }
+
+  async createTopSimilarArtists(artistNames: string[]) {
     const spotifyToken = await getToken();
     return Promise.all(
-      artists
-        .filter(artist => artist?.name)
-        .slice(0, SimilarArtistsService.TOP_ARTIST_COUNT)
-        .map(artist => this.createSimilarArtist(artist.name, spotifyToken))
+      artistNames.map(artistName => this.createSimilarArtist(artistName, spotifyToken))
     );
   }
 

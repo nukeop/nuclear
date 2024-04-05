@@ -1,7 +1,7 @@
 import { SimilarArtist } from '../plugins.types';
 import * as SpotifyApi from '../../rest/Spotify';
 import { SpotifyArtist } from '../../rest/Spotify';
-import { LastFmArtistInfo, LastfmArtistShort } from '../../rest/Lastfm.types';
+import { LastFmArtistInfo } from '../../rest/Lastfm.types';
 import SimilarArtistsService from './SimilarArtistsService';
 
 describe('Tests for SimilarArtistsService', () => {
@@ -27,13 +27,12 @@ describe('Tests for SimilarArtistsService', () => {
     });
 
     test('Should fetch similar artist', async () => {
-      const similarArtistsOnLastFm = [{
-        name: 'Similar Artist on LastFm'
-      }];
       const artistInfoFromLastFm = {
         name: 'Artist Name',
         similar: {
-          artist: similarArtistsOnLastFm
+          artist: [{
+            name: 'Similar Artist on LastFm'
+          }]
         }
       } as LastFmArtistInfo;
 
@@ -42,7 +41,6 @@ describe('Tests for SimilarArtistsService', () => {
         thumbnail: 'the thumbnail'
       };
       createTopSimilarArtists.mockImplementationOnce((artists) => {
-        expect(artists).toEqual(similarArtistsOnLastFm);
         return Promise.resolve([similarArtist]);
       });
       expect(await underTest.createSimilarArtists(artistInfoFromLastFm)).toEqual([similarArtist]);
@@ -56,6 +54,26 @@ describe('Tests for SimilarArtistsService', () => {
         }
       } as LastFmArtistInfo)).toEqual([]);
     });
+  });
+
+  test('Should extract the top similar artist names', () => {
+    const artistInfoFromLastFm = {
+      name: 'Artist Name',
+      similar: {
+        artist: [
+          { name: null },
+          { name: 'Artist 1' },
+          { name: 'Artist 2' },
+          { name: 'Artist 3' },
+          { name: null },
+          { name: 'Artist 4' },
+          { name: 'Artist 5' },
+          { name: 'Artist 6' }
+        ]
+      }
+    } as LastFmArtistInfo;
+    expect(underTest.extractTopSimilarArtistNames(artistInfoFromLastFm))
+      .toEqual(['Artist 1', 'Artist 2', 'Artist 3', 'Artist 4', 'Artist 5']);
   });
 
   describe('Create top similar artists', () => {
@@ -79,18 +97,7 @@ describe('Tests for SimilarArtistsService', () => {
           return Promise.resolve(`Thumbnail of ${artistName}`);
         });
 
-      const artistsFromLastfm = [
-        { name: null },
-        { name: 'Artist 1' },
-        { name: 'Artist 2' },
-        { name: 'Artist 3' },
-        { name: null },
-        { name: 'Artist 4' },
-        { name: 'Artist 5' },
-        { name: 'Artist 6' }
-      ] as LastfmArtistShort[];
-
-      expect(await underTest.createTopSimilarArtists(artistsFromLastfm))
+      expect(await underTest.createTopSimilarArtists(['Artist 1', 'Artist 2', 'Artist 3', 'Artist 4', 'Artist 5']))
         .toEqual([
           { 'name': 'Artist 1', thumbnail: 'Thumbnail of Artist 1' },
           { 'name': 'Artist 2', thumbnail: 'Thumbnail of Artist 2' },
