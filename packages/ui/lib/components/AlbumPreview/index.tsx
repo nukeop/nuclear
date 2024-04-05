@@ -69,8 +69,8 @@ const AlbumPreview: React.FC<AlbumPreviewProps & Handlers> = (props) => {
                   }
                   key={index}
                   thumb={thumb}
-                  title={track.name}
-                  artist={_.get(album, 'artist.name')}
+                  title={track.title}
+                  artist={album.artist}
                 >
                   <TrackButtons
                     track={track}

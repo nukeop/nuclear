@@ -53,6 +53,10 @@ class LocalLibrary {
     }
   }
 
+  getThumbnailsDir() {
+    return this.mediaDir;
+  }
+
   /**
    * Format metadata from files to nuclear format
    */

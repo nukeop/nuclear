@@ -1,6 +1,4 @@
-import {
-  GITHUB_REPO_CONTRIB_ENDPOINT
-} from '../rest/Github';
+const GITHUB_REPO_CONTRIB_ENDPOINT = 'https://api.github.com/repos/nukeop/nuclear/stats/contributors';
   
 export const GITHUB_CONTRIB_START = 'GITHUB_CONTRIB_START';
 export const GITHUB_CONTRIB_SUCCESS = 'GITHUB_CONTRIB_SUCCESS';

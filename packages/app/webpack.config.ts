@@ -241,7 +241,6 @@ module.exports = (env) => {
   };
 
   if (IS_DEV) {
-    config.plugins?.push(new webpack.HotModuleReplacementPlugin());
     config.devServer = {
       hot: true,
       static: {

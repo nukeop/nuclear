@@ -110,9 +110,7 @@ exports[`Artist view container should display an artist 1`] = `
               />
                Add all
             </a>
-            <table
-              class="popular_tracks_table"
-            >
+            <table>
               <thead>
                 <tr>
                   <th>

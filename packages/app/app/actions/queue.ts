@@ -1,6 +1,7 @@
 import logger from 'electron-timber';
 import _, { isEmpty, isString } from 'lodash';
 import { createStandardAction } from 'typesafe-actions';
+import { v4 } from 'uuid';
 
 import { rest, StreamProvider } from '@nuclear/core';
 import { getTrackArtist } from '@nuclear/ui';
@@ -37,6 +38,7 @@ const localTrackToQueueItem = (track: LocalTrack, local: LocalLibraryState): Que
 
   return toQueueItem({
     ...rest,
+    uuid: v4(),
     streams: [resolvedStream]
   });
 };
@@ -49,7 +51,8 @@ export const toQueueItem = (track: Track): QueueItem => ({
   streams: track.streams ?? []
 });
 
-const getSelectedStreamProvider = (getState) => {
+// Exported to facilitate testing.
+export const getSelectedStreamProvider = (getState) => {
   const {
     plugin: {
       plugins: { streamProviders },
@@ -60,7 +63,8 @@ const getSelectedStreamProvider = (getState) => {
   return _.find(streamProviders, { sourceName: selected.streamProviders });
 };
 
-export const getTrackStreams = async (
+// Exported to facilitate testing.
+export const resolveTrackStreams = async (
   track: Track | LocalTrack,
   selectedStreamProvider: StreamProvider
 ) => {
@@ -165,20 +169,18 @@ export const selectNewStream = (index: number, streamId: string) => async (dispa
 
 export const findStreamsForTrack = (index: number) => async (dispatch, getState) => {
   const {queue, settings}: RootState = getState();
-
   const track = queue.queueItems[index];
 
-  if (track && !track.local && isEmpty(track.streams)) {
-    dispatch(updateQueueItem({
-      ...track,
-      loading: true
-    }));
+  if (track && !track.local && trackHasNoFirstStream(track)) {
+    if (!track.loading) {
+      dispatch(updateQueueItem({
+        ...track,
+        loading: true
+      }));
+    }
     const selectedStreamProvider = getSelectedStreamProvider(getState);
     try {
-      let streamData = await getTrackStreams(
-        track,
-        selectedStreamProvider
-      );
+      let streamData: TrackStream[] = await getTrackStreams(track, selectedStreamProvider);
 
       if (settings.useStreamVerification) {
         try {
@@ -201,13 +203,17 @@ export const findStreamsForTrack = (index: number) => async (dispatch, getState)
         }
       }
 
-      if (streamData === undefined) {
+      if (streamData?.length === 0) {
         dispatch(removeFromQueue(index));
       } else {
-        streamData = [
-          await selectedStreamProvider.getStreamForId(streamData.find(Boolean)?.id),
-          ...streamData.slice(1)
-        ];
+        streamData = await resolveSourceUrlForTheFirstStream(streamData, selectedStreamProvider);
+
+        const firstStream = streamData[0];
+        if (!firstStream?.stream) {
+          const remainingStreams = streamData.slice(1);
+          removeFirstStream(track, index, remainingStreams, dispatch);
+          return;
+        }
 
         dispatch(
           updateQueueItem({
@@ -236,6 +242,46 @@ export const findStreamsForTrack = (index: number) => async (dispatch, getState)
     }
   }
 };
+
+async function getTrackStreams(track: QueueItem, streamProvider: StreamProvider): Promise<TrackStream[]> {
+  if (isEmpty(track.streams)) {
+    return resolveTrackStreams(
+      track,
+      streamProvider
+    );
+  }
+  return track.streams;
+}
+
+async function resolveSourceUrlForTheFirstStream(trackStreams: TrackStream[], streamProvider: StreamProvider): Promise<TrackStream[]> {
+  if (isEmpty(trackStreams[0].stream)) {
+    return [
+      await streamProvider.getStreamForId(trackStreams.find(Boolean)?.id),
+      ...trackStreams.slice(1)
+    ];
+  }
+  // The stream URL might already be resolved, for example for a previously played track.
+  return trackStreams;
+}
+
+export function trackHasNoFirstStream(track: QueueItem): boolean {
+  return isEmpty(track?.streams) || isEmpty(track.streams[0].stream);
+}
+
+function removeFirstStream(track: QueueItem, trackIndex: number, remainingStreams: TrackStream[], dispatch): void {
+  if (remainingStreams.length === 0) {
+    // no more streams are available
+    dispatch(removeFromQueue(trackIndex));
+  } else {
+    // remove the first (unavailable) stream
+    dispatch(updateQueueItem({
+      ...track,
+      loading: true,
+      error: false,
+      streams: remainingStreams
+    }));
+  }
+}
 
 export function playTrack(streamProviders, item: QueueItem) {
   return (dispatch) => {

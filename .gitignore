@@ -78,3 +78,4 @@ build-dir
 #Travis/IDE stuff
 .travis.yml
 .vs/
+target/*

@@ -14,6 +14,9 @@ import { pluginsSelectors } from '../../selectors/plugins';
 import { searchSelectors } from '../../selectors/search';
 import { stringDurationToSeconds } from '../../utils';
 import { AlbumDetailsState } from '../../reducers/search';
+import { playlistsSelectors } from '../../selectors/playlists';
+import * as PlaylistActions from '../../actions/playlists';
+import { PlaylistTrack, Track } from '@nuclear/core';
 
 export const useAlbumViewProps = () => {
   const dispatch = useDispatch();
@@ -24,6 +27,7 @@ export const useAlbumViewProps = () => {
   // TODO replace this any with a proper type
   const plugins: any = useSelector(pluginsSelectors.plugins);
   const favoriteAlbums = useSelector(favoritesSelectors.albums);
+  const localPlaylists = useSelector(playlistsSelectors.localPlaylists);
 
   const albumFromFavorites = favoriteAlbums.find(album => album.id === albumId);
   const album = albumFromFavorites || albumDetails[albumId];
@@ -89,6 +93,32 @@ export const useAlbumViewProps = () => {
     dispatch(FavoritesActions.removeFavoriteAlbum(album));
   }, [album, dispatch]);
 
+  const playlistNames = localPlaylists.data?.map(playlist => playlist.name);
+
+  function getPlaylistTracks() {
+    const tracksWithId: PlaylistTrack[] = [];
+    album.tracklist?.forEach((track: Track) => tracksWithId.push(safeAddUuid(track)));
+    return tracksWithId;
+  }
+
+  const addAlbumToPlaylist = useCallback(async (playlistName: string) => {
+    const tracksWithId: PlaylistTrack[] = getPlaylistTracks();
+    const originalPlaylist = localPlaylists.data?.find(playlist => playlist.name === playlistName);
+    const playlistWithAlbumTracks = {
+      ...originalPlaylist,
+      tracks: [
+        ...originalPlaylist.tracks,
+        ...tracksWithId
+      ]
+    };
+    dispatch(PlaylistActions.updatePlaylist(playlistWithAlbumTracks));
+  }, [album, localPlaylists, dispatch]);
+
+  const addAlbumToNewPlaylist = useCallback(async (playlistName: string) => {
+    dispatch(PlaylistActions.addPlaylist(getPlaylistTracks(), playlistName));
+  }, [album, dispatch]);
+
+
   return {
     album,
     isFavorite,
@@ -97,6 +127,9 @@ export const useAlbumViewProps = () => {
     addAlbumToQueue,
     playAll,
     addFavoriteAlbum,
-    removeFavoriteAlbum
+    removeFavoriteAlbum,
+    addAlbumToPlaylist,
+    playlistNames,
+    addAlbumToNewPlaylist
   };
 };

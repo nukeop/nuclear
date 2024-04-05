@@ -1,4 +1,4 @@
-@import "../../common.scss";
+@import '../../common.scss';
 
 .visualizer_overlay {
   position: absolute;
@@ -27,18 +27,17 @@
     }
   }
 
-  &:hover {
-    background: rgba($background3, 0.75);
-    & > * {
-      opacity: 1;
-    }
-  }
-
   button {
     margin: 0 !important;
   }
 
   p {
     line-height: 2.71428571em;
+  }
+  &.hover {
+    background: rgba($background3, 0.75);
+    & > * {
+      opacity: 1;
+    }
   }
 }

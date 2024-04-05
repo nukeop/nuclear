@@ -75,7 +75,7 @@ const PopularTracks: React.FC<PopularTracksProps> = ({
           handleAddAll={handleAddAll}
           t={t}
         />
-        <table className={styles.popular_tracks_table}>
+        <table>
           <thead>
             <tr>
               <th>

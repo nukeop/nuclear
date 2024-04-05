@@ -25,20 +25,20 @@ Discord チャット: https://discord.gg/JqPjKxE
 
 説明の翻訳:
 
-<kbd>[<img title="Deutsch" alt="Deutsch (ドイツ語)" src="https://cdn.staticaly.com/gh/hjnilsson/country-flags/master/svg/de.svg" width="22">](README-de.md)</kbd>
-<kbd>[<img title="Português" alt="Português (ポルトガル語)" src="https://cdn.staticaly.com/gh/hjnilsson/country-flags/master/svg/br.svg" width="22">](README-ptbr.md)</kbd>
-<kbd>[<img title="Svenska" alt="Svenska" src="https://cdn.staticaly.com/gh/hjnilsson/country-flags/master/svg/se.svg" width="22">](README-se.md)</kbd>
-<kbd>[<img title="English" alt="English (英語)" src="https://cdn.staticaly.com/gh/hjnilsson/country-flags/master/svg/us.svg" width="22">](../README.md)</kbd>
-<kbd>[<img title="Hebrew" alt="Hebrew (ヘブライ語)" src="https://cdn.staticaly.com/gh/hjnilsson/country-flags/master/svg/il.svg" width="22">](README-he.md)</kbd>
-<kbd>[<img title="Italiano" alt="Italiano" src="https://cdn.staticaly.com/gh/hjnilsson/country-flags/master/svg/it.svg" width="22">](README-it.md)</kbd>
-<kbd>[<img title="Türkçe" alt="Türkçe" src="https://cdn.staticaly.com/gh/hjnilsson/country-flags/master/svg/tr.svg" width="22">](README-tr.md)</kbd>
-<kbd>[<img title="Español" alt="Español" src="https://cdn.staticaly.com/gh/hjnilsson/country-flags/master/svg/es.svg" width="22">](README-es.md)</kbd>
-<kbd>[<img title="Indonesia" alt="Indonesia" src="https://cdn.staticaly.com/gh/hjnilsson/country-flags/master/svg/id.svg" width="22">](README-id.md)</kbd>
-<kbd>[<img title="Français" alt="Français (フランス語)" src="https://cdn.staticaly.com/gh/hjnilsson/country-flags/master/svg/fr.svg" width="22">](README-fr.md)</kbd>
-<kbd>[<img title="Chinese" alt="Chinese (中国語)" src="https://cdn.staticaly.com/gh/hjnilsson/country-flags/master/svg/cn.svg" width="22">](README-zh-cn.md)</kbd>
-<kbd>[<img title="Russian" alt="Russian" src="https://cdn.staticaly.com/gh/hjnilsson/country-flags/master/svg/ru.svg" width="22">](README-ru.md)</kbd>
-<kbd>[<img title="Polski" alt="Polski" src="https://cdn.staticaly.com/gh/hjnilsson/country-flags/master/svg/pl.svg" width="22">](README-pl.md)</kbd>
-<kbd>[<img title="Hindi" alt="Hindi" src="https://cdn.staticaly.com/gh/hjnilsson/country-flags/master/svg/in.svg" width="22">](README-hi.md)</kbd>
+<kbd>[<img title="Deutsch" alt="Deutsch (ドイツ語)" src="https://cdn.statically.io/gh/hjnilsson/country-flags/master/svg/de.svg" width="22">](README-de.md)</kbd>
+<kbd>[<img title="Português" alt="Português (ポルトガル語)" src="https://cdn.statically.io/gh/hjnilsson/country-flags/master/svg/br.svg" width="22">](README-ptbr.md)</kbd>
+<kbd>[<img title="Svenska" alt="Svenska" src="https://cdn.statically.io/gh/hjnilsson/country-flags/master/svg/se.svg" width="22">](README-se.md)</kbd>
+<kbd>[<img title="English" alt="English (英語)" src="https://cdn.statically.io/gh/hjnilsson/country-flags/master/svg/us.svg" width="22">](../README.md)</kbd>
+<kbd>[<img title="Hebrew" alt="Hebrew (ヘブライ語)" src="https://cdn.statically.io/gh/hjnilsson/country-flags/master/svg/il.svg" width="22">](README-he.md)</kbd>
+<kbd>[<img title="Italiano" alt="Italiano" src="https://cdn.statically.io/gh/hjnilsson/country-flags/master/svg/it.svg" width="22">](README-it.md)</kbd>
+<kbd>[<img title="Türkçe" alt="Türkçe" src="https://cdn.statically.io/gh/hjnilsson/country-flags/master/svg/tr.svg" width="22">](README-tr.md)</kbd>
+<kbd>[<img title="Español" alt="Español" src="https://cdn.statically.io/gh/hjnilsson/country-flags/master/svg/es.svg" width="22">](README-es.md)</kbd>
+<kbd>[<img title="Indonesia" alt="Indonesia" src="https://cdn.statically.io/gh/hjnilsson/country-flags/master/svg/id.svg" width="22">](README-id.md)</kbd>
+<kbd>[<img title="Français" alt="Français (フランス語)" src="https://cdn.statically.io/gh/hjnilsson/country-flags/master/svg/fr.svg" width="22">](README-fr.md)</kbd>
+<kbd>[<img title="Chinese" alt="Chinese (中国語)" src="https://cdn.statically.io/gh/hjnilsson/country-flags/master/svg/cn.svg" width="22">](README-zh-cn.md)</kbd>
+<kbd>[<img title="Russian" alt="Russian" src="https://cdn.statically.io/gh/hjnilsson/country-flags/master/svg/ru.svg" width="22">](README-ru.md)</kbd>
+<kbd>[<img title="Polski" alt="Polski" src="https://cdn.statically.io/gh/hjnilsson/country-flags/master/svg/pl.svg" width="22">](README-pl.md)</kbd>
+<kbd>[<img title="Hindi" alt="Hindi" src="https://cdn.statically.io/gh/hjnilsson/country-flags/master/svg/in.svg" width="22">](README-hi.md)</kbd>
 
 ## 何これ？　
 nuclear は、インターネット上の無料の提供元からコンテンツを取得する、無料の音楽ストリーミングプログラムです。

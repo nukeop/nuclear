@@ -1,4 +1,4 @@
-@import 'vars';
+@import "vars";
 
 .app_container {
   position: absolute;
@@ -44,7 +44,8 @@
   height: 50px;
 
   background-color: $background;
-  box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.18),
+  box-shadow:
+    0px 5px 5px 0px rgba(0, 0, 0, 0.18),
     0px 5px 20px 0px rgba(0, 0, 0, 0.09);
 }
 
@@ -64,7 +65,8 @@
   width: 300px;
 
   background-color: $background;
-  box-shadow: 5px 0px 5px 0px rgba(0, 0, 0, 0.18),
+  box-shadow:
+    5px 0px 5px 0px rgba(0, 0, 0, 0.18),
     5px 0px 20px 0px rgba(0, 0, 0, 0.09);
 }
 
@@ -85,7 +87,8 @@
   width: 300px;
 
   background-color: $background;
-  box-shadow: -5px 0px 5px 0px rgba(0, 0, 0, 0.18),
+  box-shadow:
+    -5px 0px 5px 0px rgba(0, 0, 0, 0.18),
     -5px 0px 20px 0px rgba(0, 0, 0, 0.09);
 }
 
@@ -101,7 +104,8 @@
   max-width: 100%;
 
   background-color: $background3;
-  box-shadow: 0px -5px 5px 0px rgba(0, 0, 0, 0.18),
+  box-shadow:
+    0px -5px 5px 0px rgba(0, 0, 0, 0.18),
     0px -10px 20px 0px rgba(0, 0, 0, 0.09);
 }
 
@@ -139,18 +143,6 @@
   flex: 1 1 auto;
   overflow: auto;
   height: 0;
-}
-
-.sidebar_brand {
-  display: flex;
-  height: 100%;
-  align-items: center;
-  margin-left: 1em;
-
-  img {
-    width: 30px;
-    height: 30px;
-  }
 }
 
 .sidebar_footer {

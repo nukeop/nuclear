@@ -1,7 +1,7 @@
 import { rest } from '..';
 import { OriginalSegment } from './SponsorBlock.types';
 
-import { MockServer, VIDEO_ID } from '../../__mocks__/sponsor-block-server';
+import { MockServer, VIDEO_ID } from '../../test/sponsor-block-server';
 
 describe('Sponsorblock tests', () => {
   it('has empty result', () => {

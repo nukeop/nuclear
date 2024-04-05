@@ -73,7 +73,11 @@ enum IpcEvents {
 
   PLAY_STARTUP_TRACK = 'play-startup-track',
 
-  ELECTRON_TIMBER_ERROR_EVENT = '__ELECTRON_TIMBER_ERROR__'
+  ELECTRON_TIMBER_ERROR_EVENT = '__ELECTRON_TIMBER_ERROR__',
+
+  NAVIGATE_BACK = 'navigate-back',
+  NAVIGATE_FORWARD = 'navigate-forward',
+
 }
 
 export default IpcEvents;
