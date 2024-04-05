@@ -8,6 +8,7 @@ import logger from 'electron-timber';
  * Artist image URLs are fetched from Spotify.
  */
 class SimilarArtistsService {
+  static readonly TOP_ARTIST_COUNT = 5;
 
   async createSimilarArtists(artist: LastFmArtistInfo | undefined): Promise<SimilarArtist[]> {
     if (!artist?.similar?.artist) {
@@ -16,7 +17,7 @@ class SimilarArtistsService {
     const similarArtists = artist.similar.artist;
     try {
       const spotifyToken = await getToken();
-      return await this.fetchTopSimilarArtistsFromSpotify(similarArtists, spotifyToken);
+      return await this.createTopSimilarArtists(similarArtists, spotifyToken);
     } catch (error) {
       logger.error(`Failed to fetch similar artists for '${artist.name}'`);
       logger.error(error);
@@ -24,33 +25,32 @@ class SimilarArtistsService {
     return [];
   }
 
-  async fetchTopSimilarArtistsFromSpotify(artists: LastfmArtistShort[], spotifyToken: string) {
+  async createTopSimilarArtists(artists: LastfmArtistShort[], spotifyToken: string) {
     return Promise.all(
       artists
         .filter(artist => artist?.name)
-        .slice(0, 5)
-        .map(artist => this.fetchSimilarArtistFromSpotify(artist.name, spotifyToken))
+        .slice(0, SimilarArtistsService.TOP_ARTIST_COUNT)
+        .map(artist => this.createSimilarArtist(artist.name, spotifyToken))
     );
   }
 
-  async fetchSimilarArtistFromSpotify(artistName: string, spotifyToken: string): Promise<SimilarArtist> {
-    return searchArtists(spotifyToken, artistName)
-      .then(spotifyArtist => {
-        return {
-          name: artistName,
-          thumbnail: spotifyArtist?.images[0]?.url
-        };
-      })
-      .catch(error => {
-        logger.error(`Failed to fetch artist from Spotify: '${artistName}'`);
-        logger.error(error);
-        return {
-          name: artistName,
-          thumbnail: null
-        };
-      });
+  async createSimilarArtist(artistName: string, spotifyToken: string): Promise<SimilarArtist> {
+    return {
+      name: artistName,
+      thumbnail: await this.fetchSimilarArtistThumbnailUrlFromSpotify(artistName, spotifyToken)
+    };
   }
 
+  async fetchSimilarArtistThumbnailUrlFromSpotify(artistName: string, spotifyToken: string) {
+    try {
+      const spotifyArtist = await searchArtists(spotifyToken, artistName);
+      return spotifyArtist?.images[0].url;
+    } catch (error) {
+      logger.error(`Failed to fetch artist thumbnail from Spotify: '${artistName}'`);
+      logger.error(error);
+    }
+    return null;
+  }
 }
 
 export default SimilarArtistsService;
