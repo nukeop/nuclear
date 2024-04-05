@@ -16,8 +16,7 @@ class SimilarArtistsService {
     }
     const similarArtists = artist.similar.artist;
     try {
-      const spotifyToken = await getToken();
-      return await this.createTopSimilarArtists(similarArtists, spotifyToken);
+      return await this.createTopSimilarArtists(similarArtists);
     } catch (error) {
       logger.error(`Failed to fetch similar artists for '${artist.name}'`);
       logger.error(error);
@@ -25,7 +24,8 @@ class SimilarArtistsService {
     return [];
   }
 
-  async createTopSimilarArtists(artists: LastfmArtistShort[], spotifyToken: string) {
+  async createTopSimilarArtists(artists: LastfmArtistShort[]) {
+    const spotifyToken = await getToken();
     return Promise.all(
       artists
         .filter(artist => artist?.name)

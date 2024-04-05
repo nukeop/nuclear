@@ -7,18 +7,14 @@ import SimilarArtistsService from './SimilarArtistsService';
 describe('Tests for SimilarArtistsService', () => {
   const underTest = new SimilarArtistsService();
 
-  describe('Get similar artists', () => {
-    const spotifyToken = 'spotify token';
-    const getToken = jest.spyOn(SpotifyApi, 'getToken');
+  describe('Create similar artists', () => {
     const createTopSimilarArtists = jest.spyOn(underTest, 'createTopSimilarArtists');
 
     afterEach(() => {
-      getToken.mockReset();
       createTopSimilarArtists.mockReset();
     });
 
     afterAll(() => {
-      getToken.mockRestore();
       createTopSimilarArtists.mockRestore();
     });
 
@@ -41,31 +37,18 @@ describe('Tests for SimilarArtistsService', () => {
         }
       } as LastFmArtistInfo;
 
-      getToken.mockResolvedValueOnce(spotifyToken);
-
       const similarArtist: SimilarArtist = {
         name: 'Similar Artist Name',
         thumbnail: 'the thumbnail'
       };
-      createTopSimilarArtists.mockImplementationOnce((artists, token) => {
-        expect(token).toEqual(spotifyToken);
+      createTopSimilarArtists.mockImplementationOnce((artists) => {
         expect(artists).toEqual(similarArtistsOnLastFm);
         return Promise.resolve([similarArtist]);
       });
       expect(await underTest.createSimilarArtists(artistInfoFromLastFm)).toEqual([similarArtist]);
     });
 
-    test('Should return empty result set if fetching the Spotify token fails', async () => {
-      getToken.mockRejectedValueOnce('Failed to fetch Spotify token');
-      expect(await underTest.createSimilarArtists({
-        similar: {
-          artist: []
-        }
-      } as LastFmArtistInfo)).toEqual([]);
-    });
-
     test('Should return empty result set if creating the top similar artists fails', async () => {
-      getToken.mockResolvedValueOnce(spotifyToken);
       createTopSimilarArtists.mockRejectedValueOnce('Failed to fetch similar artists');
       expect(await underTest.createSimilarArtists({
         similar: {
@@ -76,14 +59,26 @@ describe('Tests for SimilarArtistsService', () => {
   });
 
   describe('Create top similar artists', () => {
+    const spotifyToken = 'spotify token';
+    const getToken = jest.spyOn(SpotifyApi, 'getToken');
+
+    afterEach(() => {
+      getToken.mockReset();
+    });
+
+    afterAll(() => {
+      getToken.mockRestore();
+    });
 
     test('Should create top similar artists', async () => {
+      getToken.mockResolvedValueOnce(spotifyToken);
+
       const fetchSimilarArtistThumbnailUrlFromSpotify = jest.spyOn(underTest, 'fetchSimilarArtistThumbnailUrlFromSpotify')
         .mockImplementation((artistName, token) => {
+          expect(token).toEqual(spotifyToken);
           return Promise.resolve(`Thumbnail of ${artistName}`);
         });
 
-      const spotifyToken = 'Spotify token';
       const artistsFromLastfm = [
         { name: null },
         { name: 'Artist 1' },
@@ -95,7 +90,7 @@ describe('Tests for SimilarArtistsService', () => {
         { name: 'Artist 6' }
       ] as LastfmArtistShort[];
 
-      expect(await underTest.createTopSimilarArtists(artistsFromLastfm, spotifyToken))
+      expect(await underTest.createTopSimilarArtists(artistsFromLastfm))
         .toEqual([
           { 'name': 'Artist 1', thumbnail: 'Thumbnail of Artist 1' },
           { 'name': 'Artist 2', thumbnail: 'Thumbnail of Artist 2' },
