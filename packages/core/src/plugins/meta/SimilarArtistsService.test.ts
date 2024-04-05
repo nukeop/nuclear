@@ -2,10 +2,10 @@ import { SimilarArtist } from '../plugins.types';
 import * as SpotifyApi from '../../rest/Spotify';
 import { SpotifyArtist } from '../../rest/Spotify';
 import { LastFmArtistInfo, LastfmArtistShort } from '../../rest/Lastfm.types';
-import SimilarArtistsFactory from './SimilarArtistsFactory';
+import SimilarArtistsService from './SimilarArtistsService';
 
-describe('Tests for SimilarArtistsResolver', () => {
-  const underTest = new SimilarArtistsFactory();
+describe('Tests for SimilarArtistsService', () => {
+  const underTest = new SimilarArtistsService();
 
   describe('Get similar artists', () => {
     const spotifyToken = 'spotify token';

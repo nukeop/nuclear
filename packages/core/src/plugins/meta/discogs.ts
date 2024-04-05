@@ -25,11 +25,11 @@ import {
 } from '../../rest/Discogs.types';
 import { LastFmArtistInfo, LastfmTopTracks, LastfmTrack } from '../../rest/Lastfm.types';
 import { cleanName } from '../../structs/Artist';
-import SimilarArtistsFactory from './SimilarArtistsFactory';
+import SimilarArtistsService from './SimilarArtistsService';
 
 class DiscogsMetaProvider extends MetaProvider {
   lastfm: LastFmApi;
-  similarArtistsFactory: SimilarArtistsFactory;
+  similarArtistsService: SimilarArtistsService;
 
   constructor() {
     super();
@@ -40,7 +40,7 @@ class DiscogsMetaProvider extends MetaProvider {
     this.image = null;
     this.isDefault = true;
     this.lastfm = new LastFmApi(process.env.LAST_FM_API_KEY, process.env.LASTFM_API_SECRET);
-    this.similarArtistsFactory = new SimilarArtistsFactory();
+    this.similarArtistsService = new SimilarArtistsService();
   }
 
   getCoverImage(entity: DiscogsReleaseInfo | DiscogsArtistInfo) {
@@ -178,7 +178,7 @@ class DiscogsMetaProvider extends MetaProvider {
     const lastFmInfo: LastFmArtistInfo = (await (await this.lastfm.getArtistInfo(discogsInfo.name)).json()).artist;
     const lastFmTopTracks: LastfmTopTracks = (await (await this.lastfm.getArtistTopTracks(discogsInfo.name)).json()).toptracks;
     const coverImage = this.getCoverImage(discogsInfo);
-    const similarArtists = await this.similarArtistsFactory.createSimilarArtists(lastFmInfo);
+    const similarArtists = await this.similarArtistsService.createSimilarArtists(lastFmInfo);
 
     return {
       id: discogsInfo.id,

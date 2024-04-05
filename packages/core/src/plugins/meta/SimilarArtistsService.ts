@@ -7,7 +7,7 @@ import logger from 'electron-timber';
  * Creates SimilarArtist instances using the provided LastFmArtistInfo.
  * Artist image URLs are fetched from Spotify.
  */
-class SimilarArtistsFactory {
+class SimilarArtistsService {
 
   async createSimilarArtists(artist: LastFmArtistInfo | undefined): Promise<SimilarArtist[]> {
     if (!artist?.similar?.artist) {
@@ -53,4 +53,4 @@ class SimilarArtistsFactory {
 
 }
 
-export default SimilarArtistsFactory;
+export default SimilarArtistsService;
