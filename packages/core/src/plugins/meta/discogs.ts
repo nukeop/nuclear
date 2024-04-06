@@ -29,7 +29,7 @@ import SimilarArtistsService from './SimilarArtistsService';
 
 class DiscogsMetaProvider extends MetaProvider {
   lastfm: LastFmApi;
-  similarArtistsService: SimilarArtistsService;
+  readonly similarArtistsService: SimilarArtistsService = new SimilarArtistsService();
 
   constructor() {
     super();
@@ -40,7 +40,6 @@ class DiscogsMetaProvider extends MetaProvider {
     this.image = null;
     this.isDefault = true;
     this.lastfm = new LastFmApi(process.env.LAST_FM_API_KEY, process.env.LASTFM_API_SECRET);
-    this.similarArtistsService = new SimilarArtistsService();
   }
 
   getCoverImage(entity: DiscogsReleaseInfo | DiscogsArtistInfo) {

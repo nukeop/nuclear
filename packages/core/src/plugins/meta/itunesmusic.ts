@@ -2,21 +2,24 @@ import _ from 'lodash';
 
 import MetaProvider from '../metaProvider';
 import * as iTunes from '../../rest/iTunes';
-import { 
-  SearchResultsArtist, 
-  SearchResultsAlbum, 
-  SearchResultsTrack, 
-  ArtistDetails, 
+import {
+  SearchResultsArtist,
+  SearchResultsAlbum,
+  SearchResultsTrack,
+  ArtistDetails,
   AlbumDetails,
-  SearchResultsSource, 
+  SearchResultsSource,
   AlbumType
 } from '../plugins.types';
 import LastFmApi from '../../rest/Lastfm';
 import Track from '../../structs/Track';
 import { LastFmArtistInfo, LastfmTopTracks } from '../../rest/Lastfm.types';
+import SimilarArtistsService from './SimilarArtistsService';
 
 class iTunesMusicMetaProvider extends MetaProvider {
   lastfm: LastFmApi;
+  readonly similarArtistsService: SimilarArtistsService = new SimilarArtistsService();
+
   constructor() {
     super();
     this.name = 'iTunesMusic Meta Provider';
@@ -79,17 +82,15 @@ class iTunesMusicMetaProvider extends MetaProvider {
     const artistDetails = (await ((await iTunes.artistDetailsSearch(artistId, '1')).json()));
     const lastFmInfo: LastFmArtistInfo = 
       (await (await this.lastfm.getArtistInfo(artistDetails.results[0].artistName)).json()).artist;
-    const lastFmTopTracks: LastfmTopTracks = 
+    const similarArtists = await this.similarArtistsService.createSimilarArtists(lastFmInfo);
+    const lastFmTopTracks: LastfmTopTracks =
       (await (await this.lastfm.getArtistTopTracks(artistDetails.results[0].artistName)).json()).toptracks;
 
     return ({
       id: artistId,
       name: artistDetails.results[0].artistName,
       coverImage: artistDetails.results[1].artworkUrl100.replace('100x100bb.jpg', '1600x1600bb.jpg'),
-      similar: _.map(lastFmInfo.similar.artist, artist => ({
-        name: artist.name,
-        thumbnail: _.get(_.find(artist.image, { size: 'large' }), '#text')
-      })),
+      similar: similarArtists,
       topTracks: _.map(lastFmTopTracks.track, (track) => ({
         name: track.name,
         title: track.name,
