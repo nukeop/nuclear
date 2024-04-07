@@ -119,8 +119,6 @@ class Shortcuts extends React.Component {
       179: 'MediaPlayPause',
       177: 'MediaTrackPrevious',
       176: 'MediaTrackNext'
-
-
     });
 
     Mousetrap.bind('space', this.handleSpaceBar);
