@@ -28,7 +28,7 @@ const PlaylistsHeader: React.FC<PlaylistsHeaderProps> = ({
 
       <div className={styles.playlist_header_buttons}>
         <InputDialog
-          header={<h4>Input playlist name:</h4>}
+          header={t('create-playlist-dialog-title')}
           placeholder={t('dialog-placeholder')}
           acceptLabel={t('dialog-accept')}
           cancelLabel={t('dialog-cancel')}
