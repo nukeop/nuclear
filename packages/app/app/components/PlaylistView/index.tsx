@@ -102,7 +102,7 @@ const PlaylistView: React.FC<PlaylistViewProps> = ({
             <div className={styles.playlist_name}>
               {playlist.name}
               <InputDialog
-                header={<h4>Input new playlist name:</h4>}
+                header={t('create-playlist-dialog-title')}
                 placeholder={t('dialog-placeholder')}
                 acceptLabel={t('dialog-rename')}
                 cancelLabel={t('dialog-cancel')}
