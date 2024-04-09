@@ -37,7 +37,9 @@ export const usePlaylistsProps = () => {
 
   const onImportFromFile = useCallback(async () => {
     const filePath = await openLocalFilePicker();
-    dispatch(PlaylistActions.addPlaylistFromFile(filePath[0], t));
+    if (filePath.length > 0) {
+      dispatch(PlaylistActions.addPlaylistFromFile(filePath[0], t));
+    }
   }, [dispatch, t]);
 
   const onCreate = useCallback(
