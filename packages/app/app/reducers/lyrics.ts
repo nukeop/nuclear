@@ -13,8 +13,7 @@ const initialState: LyricsState = {
 
 type LyricsActions = ActionType<typeof LyricsActions>
 
-export default function LyricsReducer (state = initialState, action) {
-
+export default function LyricsReducer (state = initialState, action: LyricsActions) {
   switch (action.type) {
   case getType(LyricsActions.lyricsSearchStart):
     return Object.assign({}, state, {
