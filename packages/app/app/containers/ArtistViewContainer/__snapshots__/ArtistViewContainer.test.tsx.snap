@@ -96,7 +96,7 @@ exports[`Artist view container should display an artist 1`] = `
             <div
               class="header"
             >
-              Popular tracks 
+              Popular tracks
             </div>
             <a
               aria-label="Add all"
