@@ -70,7 +70,7 @@ const PopularTracks: React.FC<PopularTracksProps> = ({
         styles.popular_tracks_container,
         trackRowStyles.tracks_container
       )}>
-        <div className={styles.header}>Popular tracks </div>
+        <div className={styles.header}>{t('popular-tracks')}</div>
         <AddAllButton 
           handleAddAll={handleAddAll}
           t={t}
