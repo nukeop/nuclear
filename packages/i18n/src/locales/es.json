@@ -46,7 +46,8 @@
     "queue": "Añadir todas las pistas a la cola",
     "similar": "Artistas similares",
     "title": "Título",
-    "tour": "En tour"
+    "tour": "En tour",
+    "popular-tracks": "Popular tracks"
   },
   "dashboard": {
     "add-all": "Añadir todo",
