@@ -46,7 +46,8 @@
     "queue": "Добавить все дорожки в очередь",
     "similar": "Похожие исполнители",
     "title": "Название",
-    "tour": "В туре"
+    "tour": "В туре",
+    "popular-tracks": "Popular tracks"
   },
   "dashboard": {
     "add-all": "Добавить все в очередь",
