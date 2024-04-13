@@ -46,7 +46,8 @@
     "queue": "Ajouter tous les morceaux à la file de lecture",
     "similar": "Artistes similaires",
     "title": "Titre",
-    "tour": "En tournée"
+    "tour": "En tournée",
+    "popular-tracks": "Popular tracks"
   },
   "dashboard": {
     "add-all": "Ajouter tout",
