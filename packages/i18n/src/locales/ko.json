@@ -46,7 +46,8 @@
     "queue": "모든 음악을 재생 목록에 추가",
     "similar": "비슷한 아티스트",
     "title": "제목",
-    "tour": "투어 중"
+    "tour": "투어 중",
+    "popular-tracks": "Popular tracks"
   },
   "dashboard": {
     "add-all": "모두 추가",
