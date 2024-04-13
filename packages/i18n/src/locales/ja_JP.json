@@ -46,7 +46,8 @@
     "queue": "すべての曲をキューに追加",
     "similar": "似ているアーティスト",
     "title": "タイトル",
-    "tour": "ツアー中"
+    "tour": "ツアー中",
+    "popular-tracks": "Popular tracks"
   },
   "dashboard": {
     "add-all": "すべて追加",
