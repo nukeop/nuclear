@@ -46,7 +46,8 @@
     "queue": "將所有歌曲新增到播放佇列",
     "similar": "類似的藝人",
     "title": "音樂標題",
-    "tour": "巡迴演出"
+    "tour": "巡迴演出",
+    "popular-tracks": "Popular tracks"
   },
   "dashboard": {
     "add-all": "新增所有",
