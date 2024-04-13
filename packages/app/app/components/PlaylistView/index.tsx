@@ -98,7 +98,7 @@ const PlaylistView: React.FC<PlaylistViewProps> = ({
             />
           </div>
           <div className={styles.playlist_header}>
-            <label className={styles.playlist_header_label}>Playlist</label>
+            <label className={styles.playlist_header_label}>{t('playlist')}</label>
             <div className={styles.playlist_name}>
               {playlist.name}
               <InputDialog
@@ -143,7 +143,7 @@ const PlaylistView: React.FC<PlaylistViewProps> = ({
                 circular
                 className={styles.play_button}
               >
-                <Icon name='play' /> Play
+                <Icon name='play' /> {t('play')}
               </Button>
 
               <ContextPopup
