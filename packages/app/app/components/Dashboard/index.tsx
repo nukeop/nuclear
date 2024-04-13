@@ -9,7 +9,6 @@ import GenresTab from './GenresTab';
 
 import styles from './styles.scss';
 import { DashboardReducerState } from '../../reducers/dashboard';
-import StreamProviderPlugin from '@nuclear/core/src/plugins/streamProvider';
 import EditorialsTab from './EditorialsTab';
 
 type DashboardProps = {
