@@ -46,7 +46,8 @@
     "queue": "Minden szám hozzáadása a várólistához",
     "similar": "Hasonló előadók",
     "title": "Cím",
-    "tour": "Turnén van"
+    "tour": "Turnén van",
+    "popular-tracks": "Popular tracks"
   },
   "dashboard": {
     "add-all": "Összes hozzáadása",
