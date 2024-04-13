@@ -46,7 +46,8 @@
     "queue": "Legg til alle spor i køen",
     "similar": "Lignende artister",
     "title": "Tittel",
-    "tour": "Sendes på tur"
+    "tour": "Sendes på tur",
+    "popular-tracks": "Popular tracks"
   },
   "dashboard": {
     "add-all": "Legg til alle",
