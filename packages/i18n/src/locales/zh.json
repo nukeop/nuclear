@@ -46,7 +46,8 @@
     "queue": "将全部歌曲添加到播放列表",
     "similar": "相似的艺术家",
     "title": "标题",
-    "tour": "巡回演出"
+    "tour": "巡回演出",
+    "popular-tracks": "Popular tracks"
   },
   "dashboard": {
     "add-all": "添加所有",
