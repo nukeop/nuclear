@@ -46,7 +46,8 @@
     "queue": "Lisää kaikki kappaleet jonoon",
     "similar": "Samankaltaisia artisteja",
     "title": "Nimi",
-    "tour": "Kiertueella"
+    "tour": "Kiertueella",
+    "popular-tracks": "Popular tracks"
   },
   "dashboard": {
     "add-all": "Lisää kaikki",
