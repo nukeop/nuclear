@@ -46,7 +46,8 @@
     "queue": "Tüm şarkıları kuyruğa ekle",
     "similar": "Benzer şarkıcılar",
     "title": "Şarkı Adı",
-    "tour": "Turnede"
+    "tour": "Turnede",
+    "popular-tracks": "Popular tracks"
   },
   "dashboard": {
     "add-all": "Hepsini kuyruğa ekle",
