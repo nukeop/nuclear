@@ -85,7 +85,7 @@ const QueueMenu: React.FC<QueueMenuProps> = ({
               currentItem={items[currentSong]}
               savePlaylistDialog={
                 <InputDialog
-                  header={<h4>Input playlist name:</h4>}
+                  header={<h4>{t('create-playlist-dialog-title')}</h4>}
                   placeholder={t('dialog-placeholder')}
                   acceptLabel={t('dialog-accept')}
                   cancelLabel={t('dialog-cancel')}
