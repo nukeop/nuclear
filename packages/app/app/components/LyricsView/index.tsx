@@ -9,21 +9,15 @@ import { QueueItem } from '../../reducers/queue';
 import { getTrackArtist } from '@nuclear/ui';
 
 type LyricsViewProps = {
-  lyricsSearchResults: {
-    type: string;
-  };
+  lyricsSearchResult: string
   track?: QueueItem;
 }
 
 export const LyricsView: React.FC<LyricsViewProps> = ({
-  lyricsSearchResults,
+  lyricsSearchResult,
   track
 }) => {
   const { t } = useTranslation('lyrics');
-  let lyricsStr = lyricsSearchResults?.type ?? ''; 
-  if (lyricsStr === '') {
-    lyricsStr = t('not-found');
-  }
 
   return <div className={styles.lyrics_view}>
     {
@@ -42,7 +36,7 @@ export const LyricsView: React.FC<LyricsViewProps> = ({
           artist={getTrackArtist(track)}
         />
         <div className={styles.lyrics_text}>
-          {lyricsStr}
+          {lyricsSearchResult || t('not-found')}
         </div>
       </>
     }
