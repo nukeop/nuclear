@@ -1,10 +1,17 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 
 import styles from './styles.scss';
 
-const LyricsHeader = ({ name, artist }) => {
+type LyricsHeaderProps ={
+  name : string;
+  artist : string;
+}
+
+const LyricsHeader:React.FC<LyricsHeaderProps> = ({
+  name = '',
+  artist = ''
+}) => {
   const { t } = useTranslation('lyrics');
 
   return (
@@ -14,16 +21,6 @@ const LyricsHeader = ({ name, artist }) => {
       <hr/>
     </div>
   );
-};
-
-LyricsHeader.propTypes = {
-  name: PropTypes.string,
-  artist: PropTypes.string
-};
-
-LyricsHeader.defaultProps = {
-  name: '',
-  artist: ''
 };
 
 export default LyricsHeader;
