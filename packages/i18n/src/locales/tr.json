@@ -193,7 +193,11 @@
     "server-modified-at": "Sunucu düzenlendi: ",
     "upload-to-server": "Sunucuya yükle",
     "download-from-server": "Sunucudan indir",
-    "number-of-tracks": "izler"
+    "number-of-tracks": "izler",
+    "input-playlists-url": "Input playlist url:",
+    "create-playlist-dialog-title": "Input playlist name:",
+    "playlist": "Playlist",
+    "play": "Play"
   },
   "plugins": {
     "add-a-plugin": "Eklenti ekle",
@@ -243,7 +247,9 @@
       },
       "verify": "Doğrula",
       "unverify": "Doğrulamayı kaldır"
-    }
+    },
+    "create-playlist-dialog-title": "Input playlist name:",
+    "play-now": "Play now"
   },
   "search": {
     "album": "Albüm",
