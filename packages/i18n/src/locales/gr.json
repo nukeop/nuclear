@@ -193,7 +193,11 @@
     "server-modified-at": "Ο διακομιστής τροποποιήθηκε: ",
     "upload-to-server": "Μεταφόρτωση στον διακομιστή",
     "download-from-server": "Λήψη από τον διακομιστή",
-    "number-of-tracks": "κομμάτια"
+    "number-of-tracks": "κομμάτια",
+    "input-playlists-url": "Input playlist url:",
+    "create-playlist-dialog-title": "Input playlist name:",
+    "playlist": "Playlist",
+    "play": "Play"
   },
   "plugins": {
     "add-a-plugin": "Προσθήκη πρόσθετων",
@@ -243,7 +247,9 @@
       },
       "verify": "Verify",
       "unverify": "Unverify"
-    }
+    },
+    "create-playlist-dialog-title": "Input playlist name:",
+    "play-now": "Play now"
   },
   "search": {
     "album": "Λεύκωμα",
