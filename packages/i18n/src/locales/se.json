@@ -193,7 +193,11 @@
     "server-modified-at": "Server ändrad: ",
     "upload-to-server": "Ladda upp till server",
     "download-from-server": "Ladda ned från server",
-    "number-of-tracks": "spår"
+    "number-of-tracks": "spår",
+    "input-playlists-url": "Input playlist url:",
+    "create-playlist-dialog-title": "Input playlist name:",
+    "playlist": "Playlist",
+    "play": "Play"
   },
   "plugins": {
     "add-a-plugin": "Lägg till en insticksmodul",
@@ -243,7 +247,9 @@
       },
       "verify": "Verifiera",
       "unverify": "Avverifiera"
-    }
+    },
+    "create-playlist-dialog-title": "Input playlist name:",
+    "play-now": "Play now"
   },
   "search": {
     "album": "Album",
