@@ -193,7 +193,11 @@
     "server-modified-at": "サーバーの変更日時: ",
     "upload-to-server": "サーバーにアップロード",
     "download-from-server": "サーバーからダウンロード",
-    "number-of-tracks": "曲"
+    "number-of-tracks": "曲",
+    "input-playlists-url": "Input playlist url:",
+    "create-playlist-dialog-title": "Input playlist name:",
+    "playlist": "Playlist",
+    "play": "Play"
   },
   "plugins": {
     "add-a-plugin": "プラグインを追加",
@@ -243,7 +247,9 @@
       },
       "verify": "承認",
       "unverify": "却下"
-    }
+    },
+    "create-playlist-dialog-title": "Input playlist name:",
+    "play-now": "Play now"
   },
   "search": {
     "album": "アルバム",
