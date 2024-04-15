@@ -193,7 +193,11 @@
     "server-modified-at": "Server endret: ",
     "upload-to-server": "Last opp til server",
     "download-from-server": "Last ned fra server",
-    "number-of-tracks": "spor"
+    "number-of-tracks": "spor",
+    "input-playlists-url": "Input playlist url:",
+    "create-playlist-dialog-title": "Input playlist name:",
+    "playlist": "Playlist",
+    "play": "Play"
   },
   "plugins": {
     "add-a-plugin": "Legg til en plugin",
@@ -243,7 +247,9 @@
       },
       "verify": "Verify",
       "unverify": "Unverify"
-    }
+    },
+    "create-playlist-dialog-title": "Input playlist name:",
+    "play-now": "Play now"
   },
   "search": {
     "album": "album",
