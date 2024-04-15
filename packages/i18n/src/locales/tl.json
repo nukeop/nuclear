@@ -193,7 +193,11 @@
     "server-modified-at": "Binagong server: ",
     "upload-to-server": "I-upload sa server",
     "download-from-server": "I-download mula sa server",
-    "number-of-tracks": "mga track"
+    "number-of-tracks": "mga track",
+    "input-playlists-url": "Input playlist url:",
+    "create-playlist-dialog-title": "Input playlist name:",
+    "playlist": "Playlist",
+    "play": "Play"
   },
   "plugins": {
     "add-a-plugin": "Magdagdag ng isang plugin",
@@ -243,7 +247,9 @@
       },
       "verify": "Verify",
       "unverify": "Unverify"
-    }
+    },
+    "create-playlist-dialog-title": "Input playlist name:",
+    "play-now": "Play now"
   },
   "search": {
     "album": "Album",
