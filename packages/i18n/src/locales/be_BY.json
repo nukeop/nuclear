@@ -193,7 +193,11 @@
     "server-modified-at": "Сервер зменены: ",
     "upload-to-server": "Загрузіць на сервер",
     "download-from-server": "Загрузіць з сервера",
-    "number-of-tracks": "трэкі"
+    "number-of-tracks": "трэкі",
+    "input-playlists-url": "Input playlist url:",
+    "create-playlist-dialog-title": "Input playlist name:",
+    "playlist": "Playlist",
+    "play": "Play"
   },
   "plugins": {
     "add-a-plugin": "Дадаць плагiн",
@@ -243,7 +247,9 @@
       },
       "verify": "Пацвердзіць",
       "unverify": "Прыбраць пацвердженіе"
-    }
+    },
+    "create-playlist-dialog-title": "Input playlist name:",
+    "play-now": "Play now"
   },
   "search": {
     "album": "Альбом",
