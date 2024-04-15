@@ -193,7 +193,11 @@
     "server-modified-at": "Rajekar hate guhertin: ",
     "upload-to-server": "Li rajekar bar bike",
     "download-from-server": "Ji rajekar daxe",
-    "number-of-tracks": "stran"
+    "number-of-tracks": "stran",
+    "input-playlists-url": "Input playlist url:",
+    "create-playlist-dialog-title": "Input playlist name:",
+    "playlist": "Playlist",
+    "play": "Play"
   },
   "plugins": {
     "add-a-plugin": "Pêvekekê tevlî bike",
@@ -243,7 +247,9 @@
       },
       "verify": "Piştrast bike",
       "unverify": "Piştrast neke"
-    }
+    },
+    "create-playlist-dialog-title": "Input playlist name:",
+    "play-now": "Play now"
   },
   "search": {
     "album": "Album",
