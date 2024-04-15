@@ -193,7 +193,11 @@
     "server-modified-at": "সার্ভার মডিফাইড: ",
     "upload-to-server": "সার্ভারে আপলোট করুন",
     "download-from-server": "সার্ভার থেকে ডাউনলোড করুন",
-    "number-of-tracks": "ট্র্যাকগুলি"
+    "number-of-tracks": "ট্র্যাকগুলি",
+    "input-playlists-url": "Input playlist url:",
+    "create-playlist-dialog-title": "Input playlist name:",
+    "playlist": "Playlist",
+    "play": "Play"
   },
   "plugins": {
     "add-a-plugin": "প্লাগইন যোগ করুন",
@@ -243,7 +247,9 @@
       },
       "verify": "Verify",
       "unverify": "Unverify"
-    }
+    },
+    "create-playlist-dialog-title": "Input playlist name:",
+    "play-now": "Play now"
   },
   "search": {
     "album": "অ্যালবাম",
