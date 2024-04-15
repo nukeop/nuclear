@@ -193,7 +193,11 @@
     "server-modified-at": "Palvelimen muokkaus: ",
     "upload-to-server": "Lataa palvelimelle",
     "download-from-server": "Lataa palvelimelta",
-    "number-of-tracks": "kappaletta"
+    "number-of-tracks": "kappaletta",
+    "input-playlists-url": "Input playlist url:",
+    "create-playlist-dialog-title": "Input playlist name:",
+    "playlist": "Playlist",
+    "play": "Play"
   },
   "plugins": {
     "add-a-plugin": "Lisää plugin",
@@ -243,7 +247,9 @@
       },
       "verify": "Vahvista",
       "unverify": "Poista vahvistus"
-    }
+    },
+    "create-playlist-dialog-title": "Input playlist name:",
+    "play-now": "Play now"
   },
   "search": {
     "album": "Albumi",
