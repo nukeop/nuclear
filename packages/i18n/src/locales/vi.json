@@ -193,7 +193,11 @@
     "server-modified-at": "Chỉnh sửa máy chủ: ",
     "upload-to-server": "Tải lên máy chủ",
     "download-from-server": "Tải về từ máy chủ",
-    "number-of-tracks": "bài hát"
+    "number-of-tracks": "bài hát",
+    "input-playlists-url": "Input playlist url:",
+    "create-playlist-dialog-title": "Input playlist name:",
+    "playlist": "Playlist",
+    "play": "Play"
   },
   "plugins": {
     "add-a-plugin": "Thêm plugin",
@@ -243,7 +247,9 @@
       },
       "verify": "Xác minh",
       "unverify": "Huỷ xác minh"
-    }
+    },
+    "create-playlist-dialog-title": "Input playlist name:",
+    "play-now": "Play now"
   },
   "search": {
     "album": "Bộ sưu tập",
