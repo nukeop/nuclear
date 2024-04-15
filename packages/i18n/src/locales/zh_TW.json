@@ -193,7 +193,11 @@
     "server-modified-at": "伺服器已編輯: ",
     "upload-to-server": "上傳到伺服器",
     "download-from-server": "從伺服器下載",
-    "number-of-tracks": "曲目"
+    "number-of-tracks": "曲目",
+    "input-playlists-url": "Input playlist url:",
+    "create-playlist-dialog-title": "Input playlist name:",
+    "playlist": "Playlist",
+    "play": "Play"
   },
   "plugins": {
     "add-a-plugin": "新增插件",
@@ -243,7 +247,9 @@
       },
       "verify": "驗證",
       "unverify": "未驗證"
-    }
+    },
+    "create-playlist-dialog-title": "Input playlist name:",
+    "play-now": "Play now"
   },
   "search": {
     "album": "專輯",
