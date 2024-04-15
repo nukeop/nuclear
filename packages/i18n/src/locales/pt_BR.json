@@ -193,7 +193,11 @@
     "server-modified-at": "Servidor modificado: ",
     "upload-to-server": "Upload para o servidor",
     "download-from-server": "Baixar do servidor",
-    "number-of-tracks": "faixas"
+    "number-of-tracks": "faixas",
+    "input-playlists-url": "Input playlist url:",
+    "create-playlist-dialog-title": "Input playlist name:",
+    "playlist": "Playlist",
+    "play": "Play"
   },
   "plugins": {
     "add-a-plugin": "Adicionar um plugin",
@@ -243,7 +247,9 @@
       },
       "verify": "Verificar",
       "unverify": "Desverificar"
-    }
+    },
+    "create-playlist-dialog-title": "Input playlist name:",
+    "play-now": "Play now"
   },
   "search": {
     "album": "Álbum",
