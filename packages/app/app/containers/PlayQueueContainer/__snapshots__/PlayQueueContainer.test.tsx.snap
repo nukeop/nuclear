@@ -94,7 +94,7 @@ exports[`Play Queue container should display a context popup on right click 1`] 
                       aria-hidden="true"
                       class="music icon"
                     />
-                    test playlist for queue
+                    test playlist
                   </div>
                 </div>
               </div>
@@ -682,7 +682,7 @@ exports[`Play Queue container should display a context popup on right click for 
                       aria-hidden="true"
                       class="music icon"
                     />
-                    test playlist for queue
+                    test playlist
                   </div>
                 </div>
               </div>
@@ -1229,7 +1229,7 @@ exports[`Play Queue container should display tracks in the queue 1`] = `
                       aria-hidden="true"
                       class="music icon"
                     />
-                    test playlist for queue
+                    test playlist
                   </div>
                 </div>
               </div>
