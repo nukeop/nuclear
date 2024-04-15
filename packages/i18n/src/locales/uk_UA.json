@@ -193,7 +193,11 @@
     "server-modified-at": "Сервер змінено: ",
     "upload-to-server": "Завантажити на сервер",
     "download-from-server": "Завантажити з сервера",
-    "number-of-tracks": "доріжки"
+    "number-of-tracks": "доріжки",
+    "input-playlists-url": "Input playlist url:",
+    "create-playlist-dialog-title": "Input playlist name:",
+    "playlist": "Playlist",
+    "play": "Play"
   },
   "plugins": {
     "add-a-plugin": "Додати втулок",
@@ -243,7 +247,9 @@
       },
       "verify": "Підтвердити",
       "unverify": "Знепідтвердити"
-    }
+    },
+    "create-playlist-dialog-title": "Input playlist name:",
+    "play-now": "Play now"
   },
   "search": {
     "album": "Збірка",
