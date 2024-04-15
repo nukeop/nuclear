@@ -193,7 +193,11 @@
     "server-modified-at": "השרת שונה: ",
     "upload-to-server": "להעלות לשרת",
     "download-from-server": "הורדה מהשרת",
-    "number-of-tracks": "רצועות"
+    "number-of-tracks": "רצועות",
+    "input-playlists-url": "Input playlist url:",
+    "create-playlist-dialog-title": "Input playlist name:",
+    "playlist": "Playlist",
+    "play": "Play"
   },
   "plugins": {
     "add-a-plugin": "הורדת תוסף",
@@ -243,7 +247,9 @@
       },
       "verify": "אמת",
       "unverify": "הסר אימות"
-    }
+    },
+    "create-playlist-dialog-title": "Input playlist name:",
+    "play-now": "Play now"
   },
   "search": {
     "album": "אלבום",
