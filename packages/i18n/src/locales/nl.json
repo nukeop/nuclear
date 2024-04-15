@@ -193,7 +193,11 @@
     "server-modified-at": "Server gewijzigd: ",
     "upload-to-server": "Naar server uploaden",
     "download-from-server": "Van server downloaden",
-    "number-of-tracks": "nummers"
+    "number-of-tracks": "nummers",
+    "input-playlists-url": "Input playlist url:",
+    "create-playlist-dialog-title": "Input playlist name:",
+    "playlist": "Playlist",
+    "play": "Play"
   },
   "plugins": {
     "add-a-plugin": "Een plug-in toevoegen",
@@ -243,7 +247,9 @@
       },
       "verify": "Verifiëren",
       "unverify": "Maak verificatie ongedaan"
-    }
+    },
+    "create-playlist-dialog-title": "Input playlist name:",
+    "play-now": "Play now"
   },
   "search": {
     "album": "Album",
