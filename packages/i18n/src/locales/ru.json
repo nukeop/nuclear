@@ -193,7 +193,11 @@
     "server-modified-at": "Сервер изменён: ",
     "upload-to-server": "Загрузить на сервер",
     "download-from-server": "Загрузить с сервера",
-    "number-of-tracks": "саундтреки"
+    "number-of-tracks": "саундтреки",
+    "input-playlists-url": "Input playlist url:",
+    "create-playlist-dialog-title": "Input playlist name:",
+    "playlist": "Playlist",
+    "play": "Play"
   },
   "plugins": {
     "add-a-plugin": "Добавить плагин",
@@ -243,7 +247,9 @@
       },
       "verify": "Подтвердить",
       "unverify": "Снять подтверждение"
-    }
+    },
+    "create-playlist-dialog-title": "Input playlist name:",
+    "play-now": "Play now"
   },
   "search": {
     "album": "Альбом",
