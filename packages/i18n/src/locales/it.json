@@ -193,7 +193,11 @@
     "server-modified-at": "Modifica server: ",
     "upload-to-server": "Carica sul server",
     "download-from-server": "Scarica dal server",
-    "number-of-tracks": "tracce"
+    "number-of-tracks": "tracce",
+    "input-playlists-url": "Input playlist url:",
+    "create-playlist-dialog-title": "Input playlist name:",
+    "playlist": "Playlist",
+    "play": "Play"
   },
   "plugins": {
     "add-a-plugin": "Aggiungi plug-in",
@@ -243,7 +247,9 @@
       },
       "verify": "Verifica",
       "unverify": "Annulla verifica"
-    }
+    },
+    "create-playlist-dialog-title": "Input playlist name:",
+    "play-now": "Play now"
   },
   "search": {
     "album": "Album",
