@@ -193,7 +193,11 @@
     "server-modified-at": "Modificirano na Poslužitelju: ",
     "upload-to-server": "Učitaj na poslužitelj",
     "download-from-server": "Preuzmi sa poslužitelja",
-    "number-of-tracks": "pjesme"
+    "number-of-tracks": "pjesme",
+    "input-playlists-url": "Input playlist url:",
+    "create-playlist-dialog-title": "Input playlist name:",
+    "playlist": "Playlist",
+    "play": "Play"
   },
   "plugins": {
     "add-a-plugin": "Dodaj dodatak",
@@ -243,7 +247,9 @@
       },
       "verify": "Potvrdi",
       "unverify": "Poništi potvrdu"
-    }
+    },
+    "create-playlist-dialog-title": "Input playlist name:",
+    "play-now": "Play now"
   },
   "search": {
     "album": "Album",
