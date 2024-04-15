@@ -193,7 +193,11 @@
     "server-modified-at": "Server modified: ",
     "upload-to-server": "Įkelti į serverį",
     "download-from-server": "Atsisiųsti iš serverio",
-    "number-of-tracks": "dainos"
+    "number-of-tracks": "dainos",
+    "input-playlists-url": "Input playlist url:",
+    "create-playlist-dialog-title": "Input playlist name:",
+    "playlist": "Playlist",
+    "play": "Play"
   },
   "plugins": {
     "add-a-plugin": "Pridėti įskiepį",
@@ -243,7 +247,9 @@
       },
       "verify": "Verify",
       "unverify": "Unverify"
-    }
+    },
+    "create-playlist-dialog-title": "Input playlist name:",
+    "play-now": "Play now"
   },
   "search": {
     "album": "Albumas",
