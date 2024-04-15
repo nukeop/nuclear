@@ -193,7 +193,11 @@
     "server-modified-at": "Server diedit: ",
     "upload-to-server": "Unggah ke server",
     "download-from-server": "Unduh dari server",
-    "number-of-tracks": "lagu"
+    "number-of-tracks": "lagu",
+    "input-playlists-url": "Input playlist url:",
+    "create-playlist-dialog-title": "Input playlist name:",
+    "playlist": "Playlist",
+    "play": "Play"
   },
   "plugins": {
     "add-a-plugin": "Tambahkan plugin",
@@ -243,7 +247,9 @@
       },
       "verify": "Verifikasi",
       "unverify": "Tidak diverifikasi"
-    }
+    },
+    "create-playlist-dialog-title": "Input playlist name:",
+    "play-now": "Play now"
   },
   "search": {
     "album": "Album",
