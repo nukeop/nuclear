@@ -193,7 +193,11 @@
     "server-modified-at": "सर्वर संशोधित ",
     "upload-to-server": "सर्वर पर अपलोड करें",
     "download-from-server": "सर्वर से डाउनलोड करें",
-    "number-of-tracks": "ट्रैक"
+    "number-of-tracks": "ट्रैक",
+    "input-playlists-url": "Input playlist url:",
+    "create-playlist-dialog-title": "Input playlist name:",
+    "playlist": "Playlist",
+    "play": "Play"
   },
   "plugins": {
     "add-a-plugin": "प्लगइन जोड़ें",
@@ -243,7 +247,9 @@
       },
       "verify": "Verify",
       "unverify": "Unverify"
-    }
+    },
+    "create-playlist-dialog-title": "Input playlist name:",
+    "play-now": "Play now"
   },
   "search": {
     "album": "एल्बम",
