@@ -1,9 +1,6 @@
 import React from 'react';
 import { head, isEmpty } from 'lodash';
-import {
-  Dropdown,
-  Icon
-} from 'semantic-ui-react';
+import { Dropdown, Icon } from 'semantic-ui-react';
 import { useTranslation } from 'react-i18next';
 import { Playlist, PlaylistTrack } from '@nuclear/core';
 import { InputDialog } from '@nuclear/ui';
@@ -22,13 +19,13 @@ type QueueMenuProps = {
   addFavoriteTrack: PlayQueueActions['addFavoriteTrack'];
   addToDownloads: (track: QueueItem) => void;
   currentSong: number;
-  success : PlayQueueActions['success'];
+  success: PlayQueueActions['success'];
   items: QueueItem[];
   toggleOption: PlayQueueActions['toggleOption'];
   settings: SettingsState;
   playlists: Playlist[];
   compact: boolean;
-}
+};
 
 const QueueMenu: React.FC<QueueMenuProps> = ({
   addPlaylist,
@@ -45,8 +42,8 @@ const QueueMenu: React.FC<QueueMenuProps> = ({
   playlists,
   compact
 }) => {
-  const {t} = useTranslation('queue');
-  const handleAddPlaylist = name => {
+  const { t } = useTranslation('queue');
+  const handleAddPlaylist = (name) => {
     addPlaylist(items as PlaylistTrack[], name);
     success(
       t('playlist-toast-title'),
@@ -64,44 +61,49 @@ const QueueMenu: React.FC<QueueMenuProps> = ({
           href='#'
           className='compactButton'
           data-testid='queue-menu-collapse'
-          onClick={() => toggleOption(
-            settingsConst.find(setting => setting.name === 'compactQueueBar'),
-            settings
-          )}
+          onClick={() =>
+            toggleOption(
+              settingsConst.find(
+                (setting) => setting.name === 'compactQueueBar'
+              ),
+              settings
+            )
+          }
         >
-          <Icon name={settings.compactQueueBar ? 'angle left' : 'angle right'} />
+          <Icon
+            name={settings.compactQueueBar ? 'angle left' : 'angle right'}
+          />
         </a>
 
-        {
-          !compact &&
-            <QueueMenuMore
-              disabled={isEmpty(items)}
-              clearQueue={clearQueue}
-              resetPlayer={resetPlayer}
-              updatePlaylist={updatePlaylist}
-              addFavoriteTrack={addFavoriteTrack}
-              addToDownloads={addToDownloads}
-              playlists={playlists}
-              currentItem={items[currentSong]}
-              savePlaylistDialog={
-                <InputDialog
-                  header={<h4>Input playlist name:</h4>}
-                  placeholder={t('dialog-placeholder')}
-                  acceptLabel={t('dialog-accept')}
-                  cancelLabel={t('dialog-cancel')}
-                  onAccept={handleAddPlaylist}
-                  trigger={
-                    <Dropdown.Item>
-                      <Icon name='save' />
-                      {t('dialog-trigger')}
-                    </Dropdown.Item>
-                  }
-                  initialString={firstTitle}
-                />
-              }
-            />
-        }
-
+        {!compact && (
+          <QueueMenuMore
+            disabled={isEmpty(items)}
+            clearQueue={clearQueue}
+            resetPlayer={resetPlayer}
+            updatePlaylist={updatePlaylist}
+            addFavoriteTrack={addFavoriteTrack}
+            addToDownloads={addToDownloads}
+            playlists={playlists}
+            currentItem={items[currentSong]}
+            items={items}
+            savePlaylistDialog={
+              <InputDialog
+                header={<h4>Input playlist name:</h4>}
+                placeholder={t('dialog-placeholder')}
+                acceptLabel={t('dialog-accept')}
+                cancelLabel={t('dialog-cancel')}
+                onAccept={handleAddPlaylist}
+                trigger={
+                  <Dropdown.Item>
+                    <Icon name='save' />
+                    {t('dialog-trigger')}
+                  </Dropdown.Item>
+                }
+                initialString={firstTitle}
+              />
+            }
+          />
+        )}
       </div>
       <hr />
     </div>
