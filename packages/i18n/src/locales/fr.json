@@ -193,7 +193,11 @@
     "server-modified-at": "Serveur modifié le : ",
     "upload-to-server": "Envoyer au serveur",
     "download-from-server": "Télécharger depuis le serveur",
-    "number-of-tracks": "morceaux"
+    "number-of-tracks": "morceaux",
+    "input-playlists-url": "Input playlist url:",
+    "create-playlist-dialog-title": "Input playlist name:",
+    "playlist": "Playlist",
+    "play": "Play"
   },
   "plugins": {
     "add-a-plugin": "Ajouter un module complémentaire",
@@ -243,7 +247,9 @@
       },
       "verify": "Vérifier",
       "unverify": "Annuler la vérification"
-    }
+    },
+    "create-playlist-dialog-title": "Input playlist name:",
+    "play-now": "Play now"
   },
   "search": {
     "album": "Album",
