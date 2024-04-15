@@ -74,7 +74,7 @@ export const Dashboard: React.FC<DashboardProps> = ({
             {
               menuItem: t('genres'),
               render: () => (
-                <GenresTab genres={dashboardData.topTags} history={history} />
+                <GenresTab genres={dashboardData.topTags}/>
               )
             }
           ]}

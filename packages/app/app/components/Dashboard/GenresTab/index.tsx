@@ -6,7 +6,7 @@ import _ from 'lodash';
 import genreToIcon from './mapGenres';
 import styles from './styles.scss';
 import { LastfmTopTag } from '@nuclear/core/src/rest/Lastfm.types';
-import { History } from 'history';
+import { useHistory } from 'react-router-dom';
 
 const bannedGenres = [
   'seen live'
@@ -14,13 +14,10 @@ const bannedGenres = [
 
 type GenresTabProps = {
   genres: LastfmTopTag[]
-  history: History
 }
 
-const GenresTab: React.FC<GenresTabProps> = ({
-  genres,
-  history
-}) => {
+const GenresTab: React.FC<GenresTabProps> = ({ genres }) => {
+  const history = useHistory();
 
   function onGenreClick(genreName: string) {
     history.push(`/tag/${genreName}`);
