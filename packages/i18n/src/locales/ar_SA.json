@@ -193,7 +193,11 @@
     "server-modified-at": "تم تعديل الخادم: ",
     "upload-to-server": "تحميل إلى الخادم",
     "download-from-server": "التنزيل من الخادم",
-    "number-of-tracks": "الاغاني"
+    "number-of-tracks": "الاغاني",
+    "input-playlists-url": "Input playlist url:",
+    "create-playlist-dialog-title": "Input playlist name:",
+    "playlist": "Playlist",
+    "play": "Play"
   },
   "plugins": {
     "add-a-plugin": "إضافة المكون الإضافي",
@@ -243,7 +247,9 @@
       },
       "verify": "تحقق",
       "unverify": "لا تحقق"
-    }
+    },
+    "create-playlist-dialog-title": "Input playlist name:",
+    "play-now": "Play now"
   },
   "search": {
     "album": "ألبوم",
