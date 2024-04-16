@@ -26,7 +26,7 @@ export const addTrackToPlaylist = (
   }
 };
 
-export const addTrackListToPlaylist = (
+export const addQueueToPlaylist = (
   updatePlaylist,
   playlist: Playlist,
   tracks: Track[]
@@ -110,7 +110,7 @@ export const QueueMenuMore: React.FC<QueueMenuMoreProps> = ({
                 <Dropdown.Item
                   key={i}
                   onClick={() =>
-                    addTrackListToPlaylist(updatePlaylist, playlist, items)
+                    addQueueToPlaylist(updatePlaylist, playlist, items)
                   }
                 >
                   <Icon name='music' />
