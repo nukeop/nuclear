@@ -216,6 +216,7 @@
     "copy-track-url": "Copy track url to clipboard",
     "loading": "Stream still loading.",
     "playlist-add": "Add to playlist",
+    "playlist-add-queue": "Add queue to playlist",
     "playlist-toast-content": "Playlist {{name}} has been created.",
     "playlist-toast-title": "Playlist created",
     "live": "Live",

@@ -216,6 +216,7 @@
     "copy-track-url": "Copy track url to clipboard",
     "loading": "Transmetimi akoma duke u ngarkuar.",
     "playlist-add": "Shto në listë",
+    "playlist-add-queue": "Shto në radhën e listës",
     "playlist-toast-content": "Lista {{name}} është krijuar.",
     "playlist-toast-title": "U krijua lista",
     "live": "Live",

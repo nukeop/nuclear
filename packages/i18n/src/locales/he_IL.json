@@ -216,6 +216,7 @@
     "copy-track-url": "העתק את קישור הרצועה",
     "loading": "ההזרמה עדיין נטענת.",
     "playlist-add": "הוספה לפלייליסט",
+    "playlist-add-queue": "הוספת תור לפלייליסט",
     "playlist-toast-content": "נוצר הפלייליסט {{name}}.",
     "playlist-toast-title": "הפלייליסט נוצר",
     "live": "שידור חי",
