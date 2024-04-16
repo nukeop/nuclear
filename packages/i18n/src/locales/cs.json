@@ -216,6 +216,7 @@
     "copy-track-url": "Zkopírovat URL skladby do schránky",
     "loading": "Stream se ještě načítá.",
     "playlist-add": "Přidat do seznamu skladeb",
+    "playlist-add-queue": "Přidat frontu do seznamu skladeb",
     "playlist-toast-content": "Seznam skladeb {{name}} byl vytvořen.",
     "playlist-toast-title": "Seznam skladeb vytvořen",
     "live": "Živě",

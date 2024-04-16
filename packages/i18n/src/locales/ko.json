@@ -216,6 +216,7 @@
     "copy-track-url": "클립보드로 웹페이지주소 복사",
     "loading": "스트림 로딩 중.",
     "playlist-add": "플레이리스트에 추가",
+    "playlist-add-queue": "재생목록 플레이리스트에 추가",
     "playlist-toast-content": "플레이리스트 \"{{name}}\"(이)가 생성되었습니다.",
     "playlist-toast-title": "플레이리스트 생성 완료",
     "live": "라이브",

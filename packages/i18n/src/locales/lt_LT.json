@@ -216,6 +216,7 @@
     "copy-track-url": "Kopijuoti dainos nuorodą į iškarpinę",
     "loading": "Srautas dar leidžiasi.",
     "playlist-add": "Pridėti į grojaraštį",
+    "playlist-add-queue": "Pridėti eilę į grojaraštį",
     "playlist-toast-content": "Grojaraštis {{name}} buvo sukurtas.",
     "playlist-toast-title": "Grojaraštis sukurtas",
     "live": "Tiesiogiai",

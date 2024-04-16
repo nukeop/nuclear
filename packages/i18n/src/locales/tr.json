@@ -216,6 +216,7 @@
     "copy-track-url": "Şarkı linkini panoya kopyala",
     "loading": "Yayın hâlâ yükleniyor.",
     "playlist-add": "Çalma listesine ekle",
+    "playlist-add-queue": "Çalma listesine sıra ekle",
     "playlist-toast-content": "{{name}} isimli çalma listesi oluşturuldu.",
     "playlist-toast-title": "Çalma listesi oluşturuldu",
     "live": "Canlı",

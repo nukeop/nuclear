@@ -216,6 +216,7 @@
     "copy-track-url": "Copiar la url de la pista al portapapeles",
     "loading": "La transmisión sigue cargando.",
     "playlist-add": "Añadir a lista de reproducción",
+    "playlist-add-queue": "Añadir cola a lista de reproducción",
     "playlist-toast-content": "La lista de reproducción '{{name}}' ha sido creada.",
     "playlist-toast-title": "Lista de reproducción creada",
     "live": "En directo",

@@ -216,6 +216,7 @@
     "copy-track-url": "Скопировать ссылку на трек",
     "loading": "Поток загружается.",
     "playlist-add": "Добавить в плейлист",
+    "playlist-add-queue": "Добавить в очередь плейлиста",
     "playlist-toast-content": "Плейлист {{name}} создан.",
     "playlist-toast-title": "Плейлист создан",
     "live": "Сейчас",
