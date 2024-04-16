@@ -74,36 +74,36 @@ const QueueMenu: React.FC<QueueMenuProps> = ({
             name={settings.compactQueueBar ? 'angle left' : 'angle right'}
           />
         </a>
-
-        {!compact && (
-          <QueueMenuMore
-            disabled={isEmpty(items)}
-            clearQueue={clearQueue}
-            resetPlayer={resetPlayer}
-            updatePlaylist={updatePlaylist}
-            addFavoriteTrack={addFavoriteTrack}
-            addToDownloads={addToDownloads}
-            playlists={playlists}
-            currentItem={items[currentSong]}
-            items={items}
-            savePlaylistDialog={
-              <InputDialog
-                header={<h4>Input playlist name:</h4>}
-                placeholder={t('dialog-placeholder')}
-                acceptLabel={t('dialog-accept')}
-                cancelLabel={t('dialog-cancel')}
-                onAccept={handleAddPlaylist}
-                trigger={
-                  <Dropdown.Item>
-                    <Icon name='save' />
-                    {t('dialog-trigger')}
-                  </Dropdown.Item>
-                }
-                initialString={firstTitle}
-              />
-            }
-          />
-        )}
+        {
+          !compact &&
+            <QueueMenuMore
+              disabled={isEmpty(items)}
+              clearQueue={clearQueue}
+              resetPlayer={resetPlayer}
+              updatePlaylist={updatePlaylist}
+              addFavoriteTrack={addFavoriteTrack}
+              addToDownloads={addToDownloads}
+              playlists={playlists}
+              currentItem={items[currentSong]}
+              items={items}
+              savePlaylistDialog={
+                <InputDialog
+                  header={<h4>{t('create-playlist-dialog-title')}</h4>}
+                  placeholder={t('dialog-placeholder')}
+                  acceptLabel={t('dialog-accept')}
+                  cancelLabel={t('dialog-cancel')}
+                  onAccept={handleAddPlaylist}
+                  trigger={
+                    <Dropdown.Item>
+                      <Icon name='save' />
+                      {t('dialog-trigger')}
+                    </Dropdown.Item>
+                  }
+                  initialString={firstTitle}
+                />
+              }
+            />
+        }
       </div>
       <hr />
     </div>

@@ -6,6 +6,7 @@ import { bindActionCreators } from 'redux';
 import { compose, withHandlers } from 'recompose';
 import { Icon, Dropdown } from 'semantic-ui-react';
 import { PopupButton, PopupDropdown, getThumbnail } from '@nuclear/ui';
+import { withTranslation } from 'react-i18next';
 
 import * as DownloadsActions from '../../actions/downloads';
 import * as QueueActions from '../../actions/queue';
@@ -26,7 +27,8 @@ const QueuePopupButtons = ({
   handlePlayNow,
   handleAddFavorite,
   handleAddToDownloads,
-  handleAddToPlaylist
+  handleAddToPlaylist,
+  t
 }) => (
   <>
     {withPlayNow && (
@@ -34,11 +36,11 @@ const QueuePopupButtons = ({
         onClick={handlePlayNow}
         ariaLabel='Play this track now'
         icon='play'
-        label='Play now'
+        label={t('play-now')}
       />
     )}
     {withAddToPlaylist && Boolean(playlists.length) && (
-      <PopupDropdown text='Add to playlist' direction='left'>
+      <PopupDropdown text={t('playlist-add')} direction='left'>
         {_.map(playlists, (playlist, i) => {
           return (
             <Dropdown.Item
@@ -58,7 +60,7 @@ const QueuePopupButtons = ({
         ariaLabel='Add this track to favorites'
         icon='star'
         data-testid='queue-popup-favorite'
-        label='Add to favorites'
+        label={t('favorite-add')}
       />
     )}
     {withAddToDownloads && (
@@ -66,7 +68,7 @@ const QueuePopupButtons = ({
         onClick={handleAddToDownloads}
         ariaLabel='Download this track'
         icon='download'
-        label='Download'
+        label={t('download')}
       />
     )}
   </>
@@ -172,5 +174,6 @@ export default compose(
         settings
       );
     }
-  })
+  }),
+  withTranslation('queue')
 )(QueuePopupButtons);
