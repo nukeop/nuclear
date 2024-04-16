@@ -216,6 +216,7 @@
     "copy-track-url": "Lied-URL in Zwischenablage kopieren",
     "loading": "Stream wird noch geladen.",
     "playlist-add": "Zur Wiedergabeliste hinzufügen",
+    "playlist-add-queue": "Warteschlange zur Wiedergabeliste hinzufügen",
     "playlist-toast-content": "Wiedergabeliste {{name}} wurde erstellt.",
     "playlist-toast-title": "Wiedergabeliste erstellt",
     "live": "Live",

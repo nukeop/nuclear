@@ -62,6 +62,44 @@ exports[`Play Queue container should display a context popup on right click 1`] 
               Save as playlist
             </div>
             <div
+              class="item"
+              role="option"
+            >
+              <div
+                aria-expanded="false"
+                class="ui dropdown left"
+                role="listbox"
+                tabindex="0"
+              >
+                <div
+                  aria-atomic="true"
+                  aria-live="polite"
+                  class="divider text"
+                  role="alert"
+                >
+                  Add queue to playlist
+                </div>
+                <i
+                  aria-hidden="true"
+                  class="dropdown icon"
+                />
+                <div
+                  class="menu transition left playlists_menu"
+                >
+                  <div
+                    class="item"
+                    role="option"
+                  >
+                    <i
+                      aria-hidden="true"
+                      class="music icon"
+                    />
+                    test playlist
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
               class="divider"
             />
             <div
@@ -612,6 +650,44 @@ exports[`Play Queue container should display a context popup on right click for 
               Save as playlist
             </div>
             <div
+              class="item"
+              role="option"
+            >
+              <div
+                aria-expanded="false"
+                class="ui dropdown left"
+                role="listbox"
+                tabindex="0"
+              >
+                <div
+                  aria-atomic="true"
+                  aria-live="polite"
+                  class="divider text"
+                  role="alert"
+                >
+                  Add queue to playlist
+                </div>
+                <i
+                  aria-hidden="true"
+                  class="dropdown icon"
+                />
+                <div
+                  class="menu transition left playlists_menu"
+                >
+                  <div
+                    class="item"
+                    role="option"
+                  >
+                    <i
+                      aria-hidden="true"
+                      class="music icon"
+                    />
+                    test playlist
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
               class="divider"
             />
             <div
@@ -1119,6 +1195,44 @@ exports[`Play Queue container should display tracks in the queue 1`] = `
                 class="save icon"
               />
               Save as playlist
+            </div>
+            <div
+              class="item"
+              role="option"
+            >
+              <div
+                aria-expanded="false"
+                class="ui dropdown left"
+                role="listbox"
+                tabindex="0"
+              >
+                <div
+                  aria-atomic="true"
+                  aria-live="polite"
+                  class="divider text"
+                  role="alert"
+                >
+                  Add queue to playlist
+                </div>
+                <i
+                  aria-hidden="true"
+                  class="dropdown icon"
+                />
+                <div
+                  class="menu transition left playlists_menu"
+                >
+                  <div
+                    class="item"
+                    role="option"
+                  >
+                    <i
+                      aria-hidden="true"
+                      class="music icon"
+                    />
+                    test playlist
+                  </div>
+                </div>
+              </div>
             </div>
             <div
               class="divider"
