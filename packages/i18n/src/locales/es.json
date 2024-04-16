@@ -13,8 +13,8 @@
     "create-playlist": "Create new playlist",
     "create-playlist-dialog-title": "Input playlist name:",
     "create-playlist-dialog-placeholder": "Playlist name...",
-    "create-playlist-dialog-accept": "Save",
-    "create-playlist-dialog-cancel": "Cancel"
+    "create-playlist-dialog-accept": "Guardar",
+    "create-playlist-dialog-cancel": "Cancelar"
   },
   "app": {
     "collection": "Colección",
@@ -47,7 +47,7 @@
     "similar": "Artistas similares",
     "title": "Título",
     "tour": "En tour",
-    "popular-tracks": "Popular tracks"
+    "popular-tracks": "Canciones populares"
   },
   "dashboard": {
     "add-all": "Añadir todo",
