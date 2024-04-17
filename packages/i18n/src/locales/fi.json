@@ -227,6 +227,7 @@
     "copy-track-url": "Kopioi kappaleen osoite leikepöydälle",
     "loading": "Streami lataa vieläkin.",
     "playlist-add": "Lisää soittolistaan",
+    "playlist-add-queue": "Add queue to playlist",
     "playlist-toast-content": "Soittolista {{name}} on luotu",
     "playlist-toast-title": "Soittolista luotu",
     "live": "Suora",
