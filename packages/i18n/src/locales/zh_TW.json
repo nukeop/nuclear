@@ -227,6 +227,7 @@
     "copy-track-url": "複製網址到剪貼簿",
     "loading": "串流處理中",
     "playlist-add": "加到播放清單",
+    "playlist-add-queue": "Add queue to playlist",
     "playlist-toast-content": "{{name}} 已建立",
     "playlist-toast-title": "播放清單建立成功",
     "live": "直播",
