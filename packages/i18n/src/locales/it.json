@@ -227,6 +227,7 @@
     "copy-track-url": "Copia URL traccia negli appunti",
     "loading": "Il flusso è ancora in caricamento.",
     "playlist-add": "Aggiungi a scaletta",
+    "playlist-add-queue": "Add queue to playlist",
     "playlist-toast-content": "La scaletta '{{name}}' è stata creata.",
     "playlist-toast-title": "Scaletta creata",
     "live": "In diretta",
