@@ -227,6 +227,7 @@
     "copy-track-url": "Kopiraj url zapisa u međuspremnik",
     "loading": "Stream se još učitava.",
     "playlist-add": "Dodaj u popis za reprodukciju",
+    "playlist-add-queue": "Add queue to playlist",
     "playlist-toast-content": "Popis za reprodukiju {{name}} je kreiran.",
     "playlist-toast-title": "Popis za reprodukciju kreiran",
     "live": "Uživo",
