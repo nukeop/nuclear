@@ -227,6 +227,7 @@
     "copy-track-url": "Копіювати посилання доріжки до буфера обміну",
     "loading": "Потік завантажується.",
     "playlist-add": "Додати до грайлисту",
+    "playlist-add-queue": "Add queue to playlist",
     "playlist-toast-content": "Грайлист {{name}} створено.",
     "playlist-toast-title": "Плейлист створено",
     "live": "Наживо",
