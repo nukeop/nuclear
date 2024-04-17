@@ -227,6 +227,7 @@
     "copy-track-url": "העתק את קישור הרצועה",
     "loading": "ההזרמה עדיין נטענת.",
     "playlist-add": "הוספה לפלייליסט",
+    "playlist-add-queue": "Add queue to playlist",
     "playlist-toast-content": "נוצר הפלייליסט {{name}}.",
     "playlist-toast-title": "הפלייליסט נוצר",
     "live": "שידור חי",
