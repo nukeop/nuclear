@@ -227,6 +227,7 @@
     "copy-track-url": "Скапіраваць адрас трэка ў буфер абмену",
     "loading": "Стрым усё яшчэ загружаецца.",
     "playlist-add": "Дадаць у плэйліст",
+    "playlist-add-queue": "Add queue to playlist",
     "playlist-toast-content": "Плэйліст {{name}} створаны.",
     "playlist-toast-title": "Плэйліст створаны",
     "live": "У прамым эфіры",
