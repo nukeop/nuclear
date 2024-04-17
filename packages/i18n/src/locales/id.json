@@ -227,6 +227,7 @@
     "copy-track-url": "Salin url lagu ke clipboard",
     "loading": "Sedang memuat.",
     "playlist-add": "Tambahkan ke daftar putar",
+    "playlist-add-queue": "Add queue to playlist",
     "playlist-toast-content": "Daftar putar {{name}} berhasil dibuat.",
     "playlist-toast-title": "Daftar putar berhasil dibuat",
     "live": "Live",
