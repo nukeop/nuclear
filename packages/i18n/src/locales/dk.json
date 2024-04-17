@@ -227,6 +227,7 @@
     "copy-track-url": "Kopier nummer-url til udklipsholder",
     "loading": "Stream loader stadig.",
     "playlist-add": "Tilføj til afspilningsliste",
+    "playlist-add-queue": "Add queue to playlist",
     "playlist-toast-content": "Afspilningsliste {{name}} er blevet oprettet.",
     "playlist-toast-title": "Afspilningsliste er oprettet",
     "live": "Direkte",
