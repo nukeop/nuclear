@@ -227,6 +227,7 @@
     "copy-track-url": "Kopier spor-url til utklippstavle",
     "loading": "Strømming lastes fortsatt.",
     "playlist-add": "Legg til i spilleliste",
+    "playlist-add-queue": "Add queue to playlist",
     "playlist-toast-content": "Spilleliste {{name}} er opprettet.",
     "playlist-toast-title": "Spilleliste opprettet",
     "live": "Live",
