@@ -227,6 +227,7 @@
     "copy-track-url": "Kopyahin ang url ng track sa clipboard",
     "loading": "Stream ay inaabangan.",
     "playlist-add": "Idagdag sa playlist",
+    "playlist-add-queue": "Add queue to playlist",
     "playlist-toast-content": "Nagawa ang playlist {{name}}.",
     "playlist-toast-title": "Nagawa ang playlist",
     "live": "Live",
