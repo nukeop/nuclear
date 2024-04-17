@@ -227,6 +227,7 @@
     "copy-track-url": "Copiar url da faixa",
     "loading": "Transmissão ainda carregando.",
     "playlist-add": "Adicionar à Lista de Reprodução",
+    "playlist-add-queue": "Add queue to playlist",
     "playlist-toast-content": "A Lista de Reprodução {{name}} Foi criada.",
     "playlist-toast-title": "Lista de Reprodução Criada",
     "live": "Em direto",
