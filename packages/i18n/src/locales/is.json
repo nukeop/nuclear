@@ -227,6 +227,7 @@
     "copy-track-url": "Copy track url to clipboard",
     "loading": "Streymi er ennþá að hlaða.",
     "playlist-add": "Bæta í lagalista",
+    "playlist-add-queue": "Add queue to playlist",
     "playlist-toast-content": "Lagalisti {{name}} hefur verið stofnaður.",
     "playlist-toast-title": "Lagalisti stofnaður",
     "live": "Live",
