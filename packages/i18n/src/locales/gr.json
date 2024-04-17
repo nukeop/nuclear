@@ -227,6 +227,7 @@
     "copy-track-url": "Αντιγραφή διεύθυνσης url στο πρόχειρο",
     "loading": "Η ροή φορτώνει.",
     "playlist-add": "Προσθήκη στην λίστα αναπαραγωγής",
+    "playlist-add-queue": "Add queue to playlist",
     "playlist-toast-content": "Η λίστα αναπαραγωγής {{name}} δημιουργήθηκε.",
     "playlist-toast-title": "Η λίστα αναπαραγωγής δημιουργήθηκε",
     "live": "Ζωντανά",
