@@ -227,6 +227,7 @@
     "copy-track-url": "تم نسخ رابط الاغنية إلى الحافظة",
     "loading": "لا يزال البث قيد التحميل.",
     "playlist-add": "إضافة إلى قائمة التشغيل",
+    "playlist-add-queue": "Add queue to playlist",
     "playlist-toast-content": "قائمة التشغيل {{name}} تم إنشاؤها.",
     "playlist-toast-title": "تم إنشاء قائمة التشغيل",
     "live": "بث مباشر",
