@@ -17,7 +17,7 @@ import * as ScrobblingActions from '../../actions/scrobbling';
 import * as LyricsActions from '../../actions/lyrics';
 import { filterFrequencies } from '../../components/Equalizer/chart';
 import * as Autoradio from './autoradio';
-import VisualizerContainer from '../../containers/VisualizerContainer';
+import VisualizerContainer from '../VisualizerContainer';
 import Normalizer from '../../components/Normalizer';
 import globals from '../../globals';
 import HlsPlayer from '../../components/HLSPlayer';

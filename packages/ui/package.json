@@ -8,8 +8,7 @@
 	"files": [
 		"lib"
 	],
-	"main": "dist/index.js",
-	"typings": "dist/index.d.ts",
+	"main": "lib/index.ts",
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/nukeop/nuclear.git"
@@ -24,6 +23,7 @@
 		"test": "jest",
 		"coverage": "jest --coverage"
 	},
+	"type": "module",
 	"peerDependencies": {
 		"react": "16.14.0",
 		"react-dom": "16.14.0"

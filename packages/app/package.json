@@ -4,8 +4,8 @@
   "description": "Nuclear - Renderer process",
   "scripts": {
     "postinstall": "rm -rf ./node_modules/react && rm -rf ./node_modules/react-dom",
-    "start": "webpack-dev-server --env NODE_ENV=development",
-    "build": "cross-env NODE_OPTIONS=--max-old-space-size=8192 webpack --progress --env NODE_ENV=production",
+    "start": "vite serve --port 8080",
+    "build": "cross-env NODE_OPTIONS=--max-old-space-size=8192 vite build",
     "test": "cross-env TZ=GMT jest --silent",
     "coverage": "cross-env TZ=GMT jest --coverage --silent",
     "lint": "eslint \"{app,test}/**/**.{js,jsx,ts,tsx}\"",
@@ -34,6 +34,7 @@
     "url": "https://github.com/nukeop/nuclear/issues"
   },
   "homepage": "https://github.com/nukeop/nuclear#readme",
+  "type": "module",
   "dependencies": {
     "@nuclear/core": "^0.6.30",
     "@nuclear/i18n": "^0.6.30",
@@ -68,7 +69,7 @@
     "react-hifi": "^2.2.1",
     "react-hls-player": "^3.0.1",
     "react-i18next": "^11.12.0",
-    "react-image": "^2.2.2",
+    "react-image": "^4.1.0",
     "react-list": "^0.8.13",
     "react-redux": "^7.1.0",
     "react-router": "^5.1.2",
@@ -101,6 +102,7 @@
     "@types/react-redux": "^7.1.16",
     "@types/react-router-dom": "^5.1.7",
     "@types/redux-actions": "^2.6.1",
+    "@vitejs/plugin-react": "^4.2.1",
     "ava": "^2.4.0",
     "babel-loader": "^8.1.0",
     "cross-env": "^7.0.3",
@@ -126,6 +128,8 @@
     "typescript": "^4.2.4",
     "url-loader": "^4.1.1",
     "utf-8-validate": "^5.0.2",
+    "vite": "^5.2.9",
+    "vite-plugin-simple-html": "^0.1.2",
     "webpack": "^5.89.0",
     "webpack-cli": "^4.10.0",
     "webpack-dev-server": "^4.15.1"
