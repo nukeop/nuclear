@@ -8,7 +8,6 @@ import { withTranslation } from 'react-i18next';
 
 import styles from './styles.scss';
 
-@withTranslation('search')
 class PlaylistResults extends React.Component {
   constructor(props) {
     super(props);
@@ -68,4 +67,4 @@ class PlaylistResults extends React.Component {
   }
 }
 
-export default PlaylistResults;
+export default withTranslation('search')(PlaylistResults);

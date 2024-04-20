@@ -3,6 +3,7 @@ import simpleHtmlPlugin from 'vite-plugin-simple-html';
 import react from '@vitejs/plugin-react';
 import path from 'path';
 
+
 export default defineConfig({
   root: './',
   build: {
@@ -16,7 +17,8 @@ export default defineConfig({
   ],
   resolve: {
     alias: {
-      '@nuclear/ui': path.resolve(__dirname, '../packages/ui')
+      '@nuclear/ui': path.resolve(__dirname, '../ui'),
+      '@nuclear/core': path.resolve(__dirname, '../core')
     }
   }
 });

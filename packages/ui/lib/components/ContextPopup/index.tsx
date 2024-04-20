@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Popup, PopupProps } from 'semantic-ui-react';
 
-import styles from './styles.scss';
+import styles from './styles.module.scss';
 
 export type ContextPopupProps = {
   trigger: PopupProps['trigger'];

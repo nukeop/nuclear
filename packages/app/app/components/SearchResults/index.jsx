@@ -10,7 +10,7 @@ import PlaylistResults from './PlaylistResults';
 
 import styles from './styles.scss';
 
-@withTranslation('search')
+
 class SearchResults extends React.Component {
   renderAllResultsPane() {
     return (
@@ -179,4 +179,4 @@ class SearchResults extends React.Component {
   }
 }
 
-export default SearchResults;
+export default withTranslation('search')(SearchResults);

@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   invidiousUrl: process.env.INVIDIOUS_URL,
   lastfmApiKey: process.env.LAST_FM_API_KEY,
   lastfmApiSecret: process.env.LAST_FM_API_SECRET,

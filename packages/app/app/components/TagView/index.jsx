@@ -8,7 +8,6 @@ import TagTopList from './TagTopList';
 import TagTopTracks from './TagTopTracks';
 import styles from './styles.scss';
 
-@withTranslation('tags')
 class TagView extends React.Component {
   constructor(props) {
     super(props);
@@ -106,4 +105,4 @@ class TagView extends React.Component {
   }
 }
 
-export default TagView;
+export default withTranslation('tags')(TagView);

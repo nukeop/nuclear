@@ -10,7 +10,6 @@ import TracksResults from '../TracksResults';
 import styles from './styles.scss';
 import { withTranslation } from 'react-i18next';
 
-@withTranslation('search')
 class AllResults extends React.Component {
   constructor(props) {
     super(props);
@@ -121,4 +120,4 @@ class AllResults extends React.Component {
   }
 }
 
-export default AllResults;
+export default withTranslation('search')(AllResults);

@@ -49,7 +49,7 @@ import { CommandPaletteContainer } from './containers/CommandPaletteContainer';
 import { hot } from 'react-hot-loader';
 import SidebarBrand from './components/SidebarBrand';
 
-@withTranslation('app')
+
 class App extends React.PureComponent {
   constructor(props) {
     super(props);
@@ -202,5 +202,5 @@ export default withRouter(
   connect(
     mapStateToProps,
     mapDispatchToProps
-  )(hot(module)(App))
+  )(hot(module)(withTranslation('app')(App)))
 );

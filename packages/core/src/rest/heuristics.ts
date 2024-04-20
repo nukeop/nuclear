@@ -34,10 +34,12 @@ const promotedWords = [
 ];
 
 export class YoutubeHeuristics implements SearchHeuristics<Partial<SearchVideo>> {
-  static createTitle = ({
+  static createTitle({
     artist,
     title
-  }: { artist: string; title: string; }) => `${artist} - ${title}`.toLowerCase();
+  }: { artist: string; title: string; }) {
+    return `${artist} - ${title}`.toLowerCase();
+  }
 
   scoreTrack = ({
     track,

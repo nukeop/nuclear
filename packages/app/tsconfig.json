@@ -2,7 +2,10 @@
   "extends": "../../tsconfig.json",
   "compilerOptions": {
     "module": "commonjs",
-    "lib": ["DOM"],
+    "target": "ESNext",
+    "lib": [
+      "DOM"
+    ],
     "outDir": "dist",
     "esModuleInterop": true,
     "skipLibCheck": true,
@@ -12,7 +15,8 @@
       "../../node_modules/@types",
       "typings"
     ],
-    "jsx": "react"
+    "jsx": "react",
+    "experimentalDecorators": true
   },
   "include": [
     "app",
