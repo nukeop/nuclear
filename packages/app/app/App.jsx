@@ -21,8 +21,8 @@ import * as WindowActions from './actions/window';
 import * as NuclearConfigActions from './actions/nuclear/configuration';
 
 import './app.global.scss';
-import styles from './styles.scss';
-import compact from './compact.scss';
+import styles from './styles.module.scss';
+import compact from './compact.module.scss';
 
 import Navbar from './components/Navbar';
 import VerticalPanel from './components/VerticalPanel';
@@ -67,7 +67,7 @@ class App extends React.PureComponent {
 
     this.updateConnectivityStatus(navigator.onLine);
     window.addEventListener('online', () => this.updateConnectivityStatus(true));
-    window.addEventListener('offline', () => this.updateConnectivityStatus(false)); 
+    window.addEventListener('offline', () => this.updateConnectivityStatus(false));
   }
 
   updateConnectivityStatus = (isConnected) => {

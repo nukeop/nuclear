@@ -1,6 +1,6 @@
 import React from 'react';
 import { ToastContainer } from '@nuclear/ui';
-import './styles.scss';
+import './styles.module.scss';
 import { Notification } from '@nuclear/ui/lib/types';
 
 type ToastComponentProps = {

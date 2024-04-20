@@ -8,7 +8,7 @@ import { ContextPopup, getThumbnail } from '@nuclear/ui';
 
 import TrackPopupButtons from '../../../containers/TrackPopupButtons';
 import { localLibraryActions } from '../../../actions/local';
-import './styles.scss';
+import './styles.module.scss';
 
 const useTreeData = (tracks, localFolders) => {
   return useMemo(() => {

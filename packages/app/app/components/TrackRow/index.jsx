@@ -14,7 +14,7 @@ import * as QueueActions from '../../actions/queue';
 import TrackPopupContainer from '../../containers/TrackPopupContainer';
 import artPlaceholder from '../../../resources/media/art_placeholder.png';
 
-import styles from './styles.scss';
+import styles from './styles.module.scss';
 
 class TrackRow extends React.Component {
   // this function should be moved onto interface for 'track'

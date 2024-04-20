@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './styles.scss';
+import styles from './styles.module.scss';
 import { MusicContentTrackAndAlbum } from '..';
 import { History } from 'history';
 

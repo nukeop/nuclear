@@ -6,7 +6,7 @@ import { Button } from '@nuclear/ui';
 import SocialIntegration from '../SocialIntegration';
 import { RootState } from '../../../reducers';
 import MastodonLogo from '../../../../resources/media/mastodon_logo_full.svg';
-import styles from '../styles.scss';
+import styles from '../styles.module.scss';
 import Spacer from '../../Spacer';
 import { useCallback } from 'react';
 

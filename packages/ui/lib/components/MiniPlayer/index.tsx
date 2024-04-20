@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-import styles from './styles.scss';
+import styles from './styles.module.scss';
 import Seekbar, { SeekbarProps } from '../Seekbar';
 import MiniTrackInfo, { MiniTrackInfoProps } from './MiniTrackInfo';
 import MiniPlayerControls from './MiniPlayerControls';

@@ -7,8 +7,8 @@ import { Box } from '../..';
 import FullscreenLayer, { FullscreenLayerProps } from '../FullscreenLayer';
 import { UseFormProps } from '../../hooks/useForm';
 
-import common from '../../common.scss';
-import styles from './styles.scss';
+import common from '../../common.module.scss';
+import styles from './styles.module.scss';
 
 export type FullscreenFormProps = FullscreenLayerProps & {
   onSubmit?: UseFormProps['onSubmit'];

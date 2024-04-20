@@ -9,7 +9,7 @@ import { remote } from 'electron';
 import { useTranslation } from 'react-i18next';
 
 import { setStringOption } from '../../../actions/settings';
-import styles from './styles.scss';
+import styles from './styles.module.scss';
 
 type DownloadsHeaderProps = {
   directory: string;

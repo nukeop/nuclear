@@ -10,7 +10,7 @@ import { Track } from '@nuclear/ui/lib/types';
 
 import artPlaceholder from '../../../resources/media/art_placeholder.png';
 
-import styles from './styles.scss';
+import styles from './styles.module.scss';
 import TrackTableContainer from '../../containers/TrackTableContainer';
 
 export type PlaylistViewProps = {

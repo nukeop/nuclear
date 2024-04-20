@@ -1,7 +1,7 @@
 import React from 'react';
 import cx from 'classnames';
 
-import styles from './styles.scss';
+import styles from './styles.module.scss';
 
 const MainLayout = ({ className, children }) => (
   <div className={cx(styles.main_layout_container, className)}>

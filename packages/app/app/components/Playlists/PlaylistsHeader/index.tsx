@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Button, InputDialog } from '@nuclear/ui';
 
 import Header from '../../Header';
-import styles from './styles.scss';
+import styles from './styles.module.scss';
 import { Icon } from 'semantic-ui-react';
 
 import SpotifyPlaylistImporter from '../../../containers/SpotifyPlaylistImporter/SpotifyPlaylistImporter';

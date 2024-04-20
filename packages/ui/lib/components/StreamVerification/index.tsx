@@ -2,7 +2,7 @@ import React from 'react';
 import cx from 'classnames';
 
 import Button from '../Button';
-import styles from './styles.scss';
+import styles from './styles.module.scss';
 import Tooltip from '../Tooltip';
 import { Icon } from 'semantic-ui-react';
 

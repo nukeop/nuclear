@@ -1,6 +1,5 @@
 import React, { memo } from 'react';
-import Img from 'react-image';
-import cx from 'classnames';
+import { Img } from 'react-image';
 
 import { StreamData } from '@nuclear/core/src/plugins/plugins.types';
 
@@ -9,7 +8,7 @@ import { StreamOption } from './StreamOption';
 import artPlaceholder from '../../../resources/media/art_placeholder.png';
 import Tooltip from '../Tooltip';
 import Button from '../Button';
-import styles from './styles.scss';
+import styles from './styles.module.scss';
 
 type Handlers = {
   onImageLoaded: React.ReactEventHandler<HTMLImageElement>;

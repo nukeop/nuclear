@@ -7,7 +7,7 @@ import { URL } from 'url';
 import { Button } from '@nuclear/ui';
 
 import { useSpotifyPlaylistImporterProps } from './hooks';
-import styles from './styles.scss';
+import styles from './styles.module.scss';
 
 const SpotifyPlaylistImporter: React.FC= () => {
   const { t } = useTranslation('playlists');

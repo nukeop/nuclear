@@ -7,7 +7,7 @@ import BestNewMusicTab from './BestNewMusicTab';
 import ChartsTab from './ChartsTab';
 import GenresTab from './GenresTab';
 
-import styles from './styles.scss';
+import styles from './styles.module.scss';
 import { DashboardReducerState } from '../../reducers/dashboard';
 import EditorialsTab from './EditorialsTab';
 

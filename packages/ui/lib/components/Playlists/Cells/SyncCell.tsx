@@ -6,7 +6,7 @@ import { PlaylistsCallbacks, PlaylistsStrings, PlaylistWithLoadingState } from '
 import Button from '../../Button';
 import Tooltip from '../../Tooltip';
 import Loader from '../../Loader';
-import styles from '../styles.scss';
+import styles from '../styles.module.scss';
 
 const SyncCell: React.FC<CellProps<PlaylistWithLoadingState> & PlaylistsStrings & PlaylistsCallbacks> = ({
   cell,

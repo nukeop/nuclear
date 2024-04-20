@@ -12,7 +12,7 @@ import {
 import { withTranslation } from 'react-i18next';
 import { compose, withHandlers } from 'recompose';
 
-import styles from './styles.scss';
+import styles from './styles.module.scss';
 
 const LibraryFolders = ({
   openLocalFolderPicker,
@@ -91,6 +91,6 @@ LibraryFolders.propTypes = {
 export default compose(
   withTranslation('library'),
   withHandlers({
-    onRemoveClick: ({removeLocalFolder}) => folder => removeLocalFolder(folder)
+    onRemoveClick: ({ removeLocalFolder }) => folder => removeLocalFolder(folder)
   })
 )(LibraryFolders);

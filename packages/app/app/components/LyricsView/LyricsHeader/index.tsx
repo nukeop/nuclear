@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
-import styles from './styles.scss';
+import styles from './styles.module.scss';
 
 type LyricsHeaderProps ={
   name : string;

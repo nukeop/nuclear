@@ -1,7 +1,7 @@
 import React from 'react';
 import { Icon } from 'semantic-ui-react';
 
-import styles from './styles.scss';
+import styles from './styles.module.scss';
 import artPlaceholder from '../../../../resources/media/art_placeholder.png';
 
 import { TrackInfoProps } from '../../TrackInfo';

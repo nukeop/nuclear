@@ -3,7 +3,7 @@ import { SmoothImage } from '@nuclear/ui';
 import classnames from 'classnames';
 import _ from 'lodash';
 
-import styles from './styles.scss';
+import styles from './styles.module.scss';
 
 const TagTopList = ({ topList, onClick, header }) => (
   <div className={styles.tag_top_list}>

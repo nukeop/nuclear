@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Icon } from 'semantic-ui-react';
 
-import styles from './styles.scss';
+import styles from './styles.module.scss';
 
 const HelpButton = props => {
   return (
@@ -10,7 +10,7 @@ const HelpButton = props => {
       className={styles.help_button}
       {...props}
     >
-      <Icon name='question circle outline'/>
+      <Icon name='question circle outline' />
     </Button>
   );
 };

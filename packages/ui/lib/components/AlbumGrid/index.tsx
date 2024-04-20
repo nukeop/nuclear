@@ -5,8 +5,8 @@ import { Dimmer, Loader } from 'semantic-ui-react';
 
 import AlbumPreview from '../AlbumPreview';
 import Card from '../Card';
-import common from '../../common.scss';
-import styles from './styles.scss';
+import common from '../../common.module.scss';
+import styles from './styles.module.scss';
 import { getThumbnail, getTrackItem } from '../..';
 
 const AlbumGrid = ({

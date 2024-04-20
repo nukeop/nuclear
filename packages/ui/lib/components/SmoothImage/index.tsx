@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from 'react';
 
 import artPlaceholder from '../../../resources/media/art_placeholder.png';
-import styles from './styles.scss';
+import styles from './styles.module.scss';
 
 type SmoothImageProps = {
   src: string;

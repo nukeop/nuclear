@@ -9,8 +9,8 @@ import { TrackRow } from '@nuclear/ui';
 
 import TrackPopupContainer from '../../../containers/TrackPopupContainer';
 
-import trackRowStyles from '../../TrackRow/styles.scss';
-import styles from './styles.scss';
+import trackRowStyles from '../../TrackRow/styles.module.scss';
+import styles from './styles.module.scss';
 import { ArtistTopTrack } from '@nuclear/core/src/plugins/plugins.types';
 
 type AddAllButtonProps = {

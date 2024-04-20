@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 
-import styles from './styles.scss';
+import styles from './styles.module.scss';
 import TrackTable, { TrackTableProps } from '.';
 import { Track } from '../../types';
 import DateCell from './Cells/DateCell';

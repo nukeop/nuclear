@@ -4,7 +4,7 @@ import { FullScreen, useFullScreenHandle } from 'react-full-screen';
 import { VisualizerOverlay } from '@nuclear/ui';
 import { useTranslation } from 'react-i18next';
 
-import styles from './styles.scss';
+import styles from './styles.module.scss';
 import { useVisualizerOverlayProps, useVisualizerProps } from '../hooks';
 
 const VisualizerNode: React.FC = () => {

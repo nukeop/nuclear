@@ -1,7 +1,7 @@
 import React from 'react';
 import { Icon } from 'semantic-ui-react';
 import { createLastFMLink } from '../../../../../utils';
-import styles from './styles.scss';
+import styles from './styles.module.scss';
 import { PitchforkAlbum, PitchforkTrack } from '../../../../../actions/dashboard';
 import { Setting, Track } from '@nuclear/core';
 import { removeFavoriteTrack, addFavoriteTrack } from '../../../../../actions/favorites';

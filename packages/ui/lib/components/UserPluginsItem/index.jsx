@@ -4,8 +4,8 @@ import cx from 'classnames';
 import { Button, Icon } from 'semantic-ui-react';
 
 import Loader from '../Loader';
-import common from '../../common.scss';
-import styles from './styles.scss';
+import common from '../../common.module.scss';
+import styles from './styles.module.scss';
 
 const UserPluginsItem = ({
   path,
@@ -22,7 +22,7 @@ const UserPluginsItem = ({
   const handleAuthorClick = () => {
     onAuthorClick(author);
   };
-  
+
   return (
     <div
       className={cx(
@@ -32,13 +32,13 @@ const UserPluginsItem = ({
       )}
     >
       {image && !loading &&
-      <div className={styles.plugin_icon}>
-        <img src={image} />
-      </div>}
+        <div className={styles.plugin_icon}>
+          <img src={image} />
+        </div>}
       {loading &&
-      <div className={styles.plugin_icon}>
-        <Loader type='small' />
-      </div>}
+        <div className={styles.plugin_icon}>
+          <Loader type='small' />
+        </div>}
 
       <div className={styles.plugin_info}>
         <div className={styles.plugin_name}>
@@ -70,9 +70,9 @@ const UserPluginsItem = ({
 
         <div className={styles.error_footer}>
           {error &&
-          <div className={styles.error_message}>
-            This plugin could not be loaded correctly.
-          </div>}
+            <div className={styles.error_message}>
+              This plugin could not be loaded correctly.
+            </div>}
         </div>
       </div>
     </div>

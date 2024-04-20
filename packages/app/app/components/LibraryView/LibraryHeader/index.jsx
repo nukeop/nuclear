@@ -8,7 +8,7 @@ import { withHandlers, withState, compose } from 'recompose';
 import Header from '../../Header';
 import LibraryFolders from '../LibraryFolders';
 
-import styles from './styles.scss';
+import styles from './styles.module.scss';
 
 const LibraryHeader = ({
   t,
@@ -21,14 +21,14 @@ const LibraryHeader = ({
       styles.library_header_row,
       { collapsed }
     )}>
-      <Header>{ t('header') }</Header>
+      <Header>{t('header')}</Header>
       <Button
         basic
         icon={`chevron ${collapsed ? 'down' : 'up'}`}
         onClick={toggleCollapsed}
       />
     </div>
-    { !collapsed && <LibraryFolders {...rest}/> }
+    {!collapsed && <LibraryFolders {...rest} />}
   </>
 );
 
@@ -39,7 +39,7 @@ LibraryHeader.propTypes = {
 
 LibraryHeader.defaultProps = {
   collapsed: false,
-  setCollapsed: () => {}
+  setCollapsed: () => { }
 };
 
 export default compose(

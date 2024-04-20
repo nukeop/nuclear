@@ -5,7 +5,7 @@ import _ from 'lodash';
 import {History} from 'history';
 import BestNewMusicMenu from './BestNewMusicMenu';
 import BestNewMusicContent from './BestNewMusicContent';
-import styles from './styles.scss';
+import styles from './styles.module.scss';
 import { PitchforkAlbum, PitchforkTrack } from '../../../actions/dashboard';
 
 type BestNewMusicContentProps = {

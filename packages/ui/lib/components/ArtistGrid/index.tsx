@@ -5,8 +5,8 @@ import { Dimmer, Loader } from 'semantic-ui-react';
 
 import { getThumbnail } from '../../utils';
 import Card from '../Card';
-import common from '../../common.scss';
-import styles from './styles.scss';
+import common from '../../common.module.scss';
+import styles from './styles.module.scss';
 
 type ArtistGridProps = {
   artists: {

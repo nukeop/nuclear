@@ -7,7 +7,7 @@ import { Album } from '../../types';
 import ContextPopup from '../ContextPopup';
 import TrackRow from '../TrackRow';
 import artPlaceholder from '../../../resources/media/art_placeholder.png';
-import styles from './styles.scss';
+import styles from './styles.module.scss';
 
 
 type AlbumPreviewProps = {

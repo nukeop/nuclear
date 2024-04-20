@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import BestNewMusicCardContainer from '../../../../containers/BestNewMusicCardContainer';
 import BestNewMusicCard from './BestNewMusicCard';
 
-import styles from './styles.scss';
+import styles from './styles.module.scss';
 import { PitchforkAlbum, PitchforkTrack } from '../../../../actions/dashboard';
 
 type BestNewMusicMenuProps = {

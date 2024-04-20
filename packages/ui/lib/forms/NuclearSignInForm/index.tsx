@@ -5,7 +5,7 @@ import Button from '../../components/Button';
 import { FormInput, FullscreenForm } from '../..';
 import { FullscreenFormProps } from '../../components/FullscreenForm';
 import { FieldsPropsType } from '../../hooks/types';
-import styles from '../styles.scss';
+import styles from '../styles.module.scss';
 
 type NuclearSignInFormContentProps = {
   header: string;

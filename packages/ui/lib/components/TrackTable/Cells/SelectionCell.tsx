@@ -5,7 +5,7 @@ import { CellProps, UseRowSelectRowProps } from 'react-table';
 
 import { Checkbox } from '../../..';
 import { Track } from '../../../types';
-import styles from '../styles.scss';
+import styles from '../styles.module.scss';
 
 const SelectionCell: React.FC<CellProps<Track> & UseRowSelectRowProps<Track>> = ({
   cell,

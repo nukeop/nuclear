@@ -7,8 +7,8 @@ import useOutsideClick from 'react-cool-onclickoutside';
 import { CommandPaletteFooter } from './CommandPaletteFooter';
 import { CommandPaletteAction } from './CommandPaletteAction';
 import { CommandPaletteEmptyState } from './CommandPaletteEmptyState';
-import styles from './styles.scss';
-import common from '../../common.scss';
+import styles from './styles.module.scss';
+import common from '../../common.module.scss';
 
 export type CommandPaletteAction = {
     id: string;

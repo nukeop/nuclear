@@ -10,7 +10,7 @@ import { Playlists as PlaylistsTable } from '@nuclear/ui';
 
 import PlaylistsHeader from './PlaylistsHeader';
 import { reorderPlaylists } from '../../actions/playlists';
-import styles from './styles.scss';
+import styles from './styles.module.scss';
 
 const EmptyState = () => {
   const { t } = useTranslation('playlists');

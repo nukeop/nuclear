@@ -6,7 +6,7 @@ import { isArtistObject, Playlist, PlaylistHelper } from '@nuclear/core';
 import { getTrackArtist } from '@nuclear/ui';
 import { Track } from '@nuclear/ui/lib/types';
 
-import styles from './styles.scss';
+import styles from './styles.module.scss';
 import { normalizeTrack } from '../../../../utils';
 
 export const addTrackToPlaylist = (

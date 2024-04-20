@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next';
 import AlbumList from '../AlbumList';
 import Header from '../Header';
 
-import styles from './styles.scss';
+import styles from './styles.module.scss';
 
 type Tracklist = { 
   uuid:string;

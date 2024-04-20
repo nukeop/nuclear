@@ -1,7 +1,7 @@
 import React from 'react';
 import { Grid } from 'semantic-ui-react';
 
-import styles from './styles.scss';
+import styles from './styles.module.scss';
 
 type SocialIntegrationProps = {
   logo: React.ReactElement;

@@ -3,7 +3,7 @@ import FontAwesome from 'react-fontawesome';
 
 import Spacer from '../../Spacer';
 
-import styles from './styles.scss';
+import styles from './styles.module.scss';
 
 type AlbumOverlayProps = {
   handlePlay: React.MouseEventHandler;

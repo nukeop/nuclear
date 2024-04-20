@@ -19,7 +19,7 @@ import { PlayQueueActions } from '../../containers/PlayQueueContainer';
 import QueuePopupContainer from '../../containers/QueuePopupContainer';
 import { StreamVerificationContainer } from '../../containers/StreamVerificationContainer';
 
-import styles from './styles.scss';
+import styles from './styles.module.scss';
 import AutoSizer from 'react-virtualized-auto-sizer';
 import { QueueItemClone } from './QueueItemClone';
 

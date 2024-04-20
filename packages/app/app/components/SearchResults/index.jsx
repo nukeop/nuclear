@@ -8,7 +8,7 @@ import AllResults from './AllResults';
 import TracksResults from './TracksResults';
 import PlaylistResults from './PlaylistResults';
 
-import styles from './styles.scss';
+import styles from './styles.module.scss';
 
 
 class SearchResults extends React.Component {

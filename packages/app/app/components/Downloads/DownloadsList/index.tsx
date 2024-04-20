@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Button, Icon, Segment, Table } from 'semantic-ui-react';
 import { useTranslation } from 'react-i18next';
 import DownloadsItem from '../DownloadsItem';
-import styles from './styles.scss';
+import styles from './styles.module.scss';
 import { Download } from '@nuclear/ui/lib/types';
 
 type DownloadsListProps = {

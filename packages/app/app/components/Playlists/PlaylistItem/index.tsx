@@ -2,7 +2,7 @@ import React from 'react';
 import { useHistory } from 'react-router';
 import { useTranslation } from 'react-i18next';
 
-import styles from './styles.scss';
+import styles from './styles.module.scss';
 import artPlaceholder from '../../../../resources/media/art_placeholder.png';
 import { Playlist } from '@nuclear/core/src/helpers/playlist/types';
 

@@ -6,7 +6,7 @@ import artPlaceholder from '../../../../resources/media/art_placeholder.png';
 import _ from 'lodash';
 import { withTranslation } from 'react-i18next';
 
-import styles from './styles.scss';
+import styles from './styles.module.scss';
 
 class PlaylistResults extends React.Component {
   constructor(props) {

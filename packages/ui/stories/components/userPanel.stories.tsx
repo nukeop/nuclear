@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { UserPanel } from '../..';
 
-import styles from './styles.scss';
+import styles from './styles.module.scss';
 
 export default {
   title: 'Components/User panel',

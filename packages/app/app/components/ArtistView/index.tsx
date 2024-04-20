@@ -10,7 +10,7 @@ import ArtistTags from './ArtistTags';
 import SimilarArtists from './SimilarArtists';
 import PopularTracks from './PopularTracks';
 
-import styles from './styles.scss';
+import styles from './styles.module.scss';
 import artPlaceholder from '../../../resources/media/art_placeholder.png';
 import { ArtistDetailsState } from '../../reducers/search';
 import { SearchResultsAlbum } from '@nuclear/core/src/plugins/plugins.types';

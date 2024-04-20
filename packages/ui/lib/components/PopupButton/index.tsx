@@ -1,7 +1,7 @@
 import React from 'react';
 import { Icon, IconProps } from 'semantic-ui-react';
 
-import styles from './styles.scss';
+import styles from './styles.module.scss';
 
 export type PopupButtonProps = {
   onClick: React.MouseEventHandler;

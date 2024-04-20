@@ -1,7 +1,7 @@
 import React from 'react';
 import _ from 'lodash';
 
-import styles from './styles.scss';
+import styles from './styles.module.scss';
 
 const TagHeader = ({ tag, topArtists }) => (
   <div className={styles.tag_header_container}>

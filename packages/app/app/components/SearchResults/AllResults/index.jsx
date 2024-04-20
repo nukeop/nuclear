@@ -7,7 +7,7 @@ import artPlaceholder from '../../../../resources/media/art_placeholder.png';
 import PlaylistResults from '../PlaylistResults';
 import TracksResults from '../TracksResults';
 
-import styles from './styles.scss';
+import styles from './styles.module.scss';
 import { withTranslation } from 'react-i18next';
 
 class AllResults extends React.Component {

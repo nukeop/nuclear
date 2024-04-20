@@ -1,8 +1,8 @@
 import React from 'react';
 import cx from 'classnames';
 import { Notification } from '../../../types';
-import common from '../../../common.scss';
-import styles from './styles.scss';
+import common from '../../../common.module.scss';
+import styles from './styles.module.scss';
 
 
 type ToastProps = Notification

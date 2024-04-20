@@ -6,8 +6,8 @@ import { LIST_TYPE } from '@nuclear/ui/lib/components/LibraryListTypeToggle';
 import _ from 'lodash';
 import PropTypes from 'prop-types';
 import EmptyState from './EmptyState';
-import trackRowStyles from '../TrackRow/styles.scss';
-import styles from './index.scss';
+import trackRowStyles from '../TrackRow/styles.module.scss';
+import styles from './styles.module.scss';
 import NoSearchResults from './NoSearchResults';
 import LibrarySimpleList from './LibrarySimpleList';
 import LibraryFolderTree from './LibraryFolderTree';
@@ -16,20 +16,20 @@ import LibraryHeader from './LibraryHeader';
 import { sortTracks } from './utils';
 
 const LibraryView = ({ 
-  tracksMap, 
-  filter, 
-  expandedFolders, 
-  streamProviders, 
-  pending, 
-  scanProgress, 
+  tracksMap,
+  filter,
+  expandedFolders,
+  streamProviders,
+  pending,
+  scanProgress,
   scanTotal,
-  localFolders, 
-  sortBy, 
-  direction, 
-  listType, 
-  actions, 
-  queueActions, 
-  playerActions 
+  localFolders,
+  sortBy,
+  direction,
+  listType,
+  actions,
+  queueActions,
+  playerActions
 }) => {
   const localStreamProviders = useMemo(() => _.filter(streamProviders, { sourceName: 'Local' }), [streamProviders]);
 

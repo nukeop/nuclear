@@ -4,7 +4,7 @@ import { Resizable } from 'react-resizable';
 
 import ResizeHandle from '../ResizeHandle';
 import { ResizablePanelProps } from './types';
-import styles from './styles.scss';
+import styles from './styles.module.scss';
 
 const ResizablePanel: React.FC<ResizablePanelProps> = ({
   children,

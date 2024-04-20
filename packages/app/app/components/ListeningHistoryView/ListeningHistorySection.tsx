@@ -2,7 +2,7 @@ import React from 'react';
 import { HistoryTableDate } from '@nuclear/ui';
 import { HistoryTableTrack } from '@nuclear/ui/lib/components/TrackTable/HistoryTable';
 
-import styles from './styles.scss';
+import styles from './styles.module.scss';
 import TrackTableContainer from '../../containers/TrackTableContainer';
 import { HistoryTable } from '@nuclear/ui';
 
