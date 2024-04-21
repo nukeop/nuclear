@@ -47,7 +47,7 @@
     "similar": "Artistes similaires",
     "title": "Titre",
     "tour": "En tournée",
-    "popular-tracks": "Popular tracks"
+    "popular-tracks": "Pistes populaires"
   },
   "dashboard": {
     "add-all": "Ajouter tout",
@@ -194,10 +194,10 @@
     "upload-to-server": "Envoyer au serveur",
     "download-from-server": "Télécharger depuis le serveur",
     "number-of-tracks": "morceaux",
-    "input-playlists-url": "Input playlist url:",
-    "create-playlist-dialog-title": "Input playlist name:",
-    "playlist": "Playlist",
-    "play": "Play"
+    "input-playlists-url": "Entrer l'url de la liste de lecture :",
+    "create-playlist-dialog-title": "Enter le nom de la liste de lecture :",
+    "playlist": "Liste de lecture",
+    "play": "Lire"
   },
   "plugins": {
     "add-a-plugin": "Ajouter un module complémentaire",
@@ -227,7 +227,7 @@
     "copy-track-url": "Copier l'url du morceau dans le presse-papiers",
     "loading": "Chargement du flux.",
     "playlist-add": "Ajouter à la liste de lecture",
-    "playlist-add-queue": "Add queue to playlist",
+    "playlist-add-queue": "Ajouter la liste de lecture à la file d'attente",
     "playlist-toast-content": "La liste de lecture {{name}} a été créé.",
     "playlist-toast-title": "Liste de lecture créé",
     "live": "Direct",
@@ -249,7 +249,7 @@
       "verify": "Vérifier",
       "unverify": "Annuler la vérification"
     },
-    "create-playlist-dialog-title": "Input playlist name:",
+    "create-playlist-dialog-title": "Enter le nom de la liste de lecture :",
     "play-now": "Play now"
   },
   "search": {
