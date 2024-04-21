@@ -18,7 +18,8 @@ $contrast: 5%;
 
   &.small {
     box-shadow: $smallDisplacement $smallDisplacement $smallBlur darken($background, $contrast), 
-  (-$smallDisplacement) (-$smallDisplacement) $smallBlur lighten($background, $contrast);
+    (-$smallDisplacement) (-$smallDisplacement) $smallBlur lighten($background, $contrast);
+    z-index:1000;
   }
 
   &.pressed {
