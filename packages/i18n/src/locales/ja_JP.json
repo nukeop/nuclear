@@ -194,10 +194,10 @@
     "upload-to-server": "サーバーにアップロード",
     "download-from-server": "サーバーからダウンロード",
     "number-of-tracks": "曲",
-    "input-playlists-url": "Input playlist url:",
-    "create-playlist-dialog-title": "Input playlist name:",
-    "playlist": "Playlist",
-    "play": "Play"
+    "input-playlists-url": "再生リストURLを入力:",
+    "create-playlist-dialog-title": "再生リスト名を入力:",
+    "playlist": "再生リスト",
+    "play": "再生"
   },
   "plugins": {
     "add-a-plugin": "プラグインを追加",
@@ -227,7 +227,7 @@
     "copy-track-url": "曲のURLをクリップボードにコピー",
     "loading": "ストリームが読み込み中です",
     "playlist-add": "再生リストに追加",
-    "playlist-add-queue": "Add queue to playlist",
+    "playlist-add-queue": "再生リストにキューを追加",
     "playlist-toast-content": "再生リスト {{name}} を作成しました。",
     "playlist-toast-title": "再生リストを作成しました",
     "live": "ライブ",
@@ -249,8 +249,8 @@
       "verify": "承認",
       "unverify": "却下"
     },
-    "create-playlist-dialog-title": "Input playlist name:",
-    "play-now": "Play now"
+    "create-playlist-dialog-title": "再生リスト名を入力:",
+    "play-now": "今すぐ再生"
   },
   "search": {
     "album": "アルバム",
