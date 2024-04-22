@@ -1,5 +1,4 @@
-import { app, remote } from 'electron';
-import { v4 } from 'uuid';
+import { app } from 'electron';
 
 export enum SettingType {
   BOOLEAN = 'boolean',
@@ -285,11 +284,7 @@ export const settingsConfig: Array<Setting> = [
     prettyName: 'downloads-dir',
     buttonText: 'downloads-dir-button',
     buttonIcon: 'folder open',
-    default: app
-      ? app.getPath('downloads')
-      : remote
-        ? remote.app.getPath('downloads')
-        : ''
+    default: app ? app.getPath('downloads') : ''
   },
   {
     name: 'max.downloads',

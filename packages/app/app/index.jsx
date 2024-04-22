@@ -9,7 +9,7 @@ import ReactDOM from 'react-dom';
 import { MemoryRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { I18nextProvider } from 'react-i18next';
-import { remote } from 'electron';
+import { app } from '@electron/remote';
 import { getOption, setOption } from '@nuclear/core';
 import i18n, { setupI18n } from '@nuclear/i18n';
 
@@ -26,7 +26,7 @@ const render = async Component => {
     languageDetector: {
       init: Function.prototype,
       type: 'languageDetector',
-      detect: () => getOption('language') || remote.app.getLocale(),
+      detect: () => getOption('language') || app.getLocale(),
       cacheUserLanguage: Function.prototype
     }
   });

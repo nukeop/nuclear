@@ -63,7 +63,6 @@ class Window {
         nodeIntegration: true,
         webSecurity: false,
         webviewTag: true,
-        enableRemoteModule: true,
         contextIsolation: false,
         additionalArguments: [
           store.getOption('disableGPU') && '--disable-gpu'

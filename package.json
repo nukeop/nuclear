@@ -39,8 +39,8 @@
     "@typescript-eslint/parser": "^4.33.0",
     "babel-eslint": "^10.0.3",
     "cross-env": "^7.0.3",
-    "electron": "^12.1.0",
-    "electron-builder": "^21.2.0",
+    "electron": "^30.0.1",
+    "electron-builder": "^24.13.3",
     "eslint": "^7.18.0",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-react": "^7.12.4",
@@ -188,6 +188,7 @@
     }
   },
   "dependencies": {
+    "@electron/remote": "^2.1.2",
     "node-gyp": "^9.0.0",
     "sqlite3": "^5.1.2"
   }

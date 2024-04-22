@@ -6,7 +6,7 @@ import ReactDOM from 'react-dom';
 import electron from 'electron';
 
 export default () => ({
-  app: electron.remote.app,
+  app: electron.app,
   store: (window as any).store,
   React, ReactDOM
 });

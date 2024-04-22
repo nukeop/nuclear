@@ -1,6 +1,6 @@
 import fs from 'fs';
 import { v4 } from 'uuid';
-import { remote } from 'electron';
+import { dialog } from '@electron/remote';
 import { createAsyncAction, createStandardAction } from 'typesafe-actions';
 
 import { store, PlaylistHelper, Playlist, PlaylistTrack, rest } from '@nuclear/core';
@@ -99,7 +99,7 @@ export const reorderPlaylists = (source: number, destination: number) => async (
 
 export const exportPlaylist = (playlist, t) => async (dispatch) => {
   const name = playlist.name;
-  const dialogResult = await remote.dialog.showSaveDialog({
+  const dialogResult = await dialog.showSaveDialog({
     defaultPath: name,
     filters: [
       { name: 'file', extensions: ['json'] }

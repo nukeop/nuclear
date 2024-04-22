@@ -1,5 +1,6 @@
 import React from 'react';
-import { ipcRenderer, remote } from 'electron';
+import { ipcRenderer } from 'electron';
+import { dialog } from '@electron/remote';
 import { Button, Input, Radio, Segment, Icon } from 'semantic-ui-react';
 import cx from 'classnames';
 import _ from 'lodash';
@@ -72,7 +73,7 @@ const Settings: React.FC<SettingsProps> = ({
   };
 
   const setDirectoryOption = async (option) => {
-    const dialogResult = await remote.dialog.showOpenDialog({
+    const dialogResult = await dialog.showOpenDialog({
       properties: ['openDirectory']
     });
     if (!dialogResult.canceled && !_.isEmpty(dialogResult.filePaths)) {

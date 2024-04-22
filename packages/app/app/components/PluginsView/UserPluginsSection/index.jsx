@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import electron, { remote } from 'electron';
+import { dialog, shell } from '@electron/remote';
 import _ from 'lodash';
 import { Button, Icon, Segment } from 'semantic-ui-react';
 import { compose, withHandlers } from 'recompose';
@@ -60,7 +60,7 @@ UserPluginsSectionComponent.propTypes = {
 export default compose(
   withHandlers({
     handleAddPlugin: ({ loadUserPlugin }) => async () => {
-      const dialogResult = await remote.dialog.showOpenDialog({
+      const dialogResult = await dialog.showOpenDialog({
         filters: [{ name: 'Javascript files', extensions: ['js', 'jsx'] }]
       });
 
@@ -69,7 +69,7 @@ export default compose(
       }
     },
     handleAuthorClick: () => author => {
-      electron.shell.openExternal(`https://github.com/${author}`);
+      shell.openExternal(`https://github.com/${author}`);
     }
   }),
   withTranslation('plugins')
