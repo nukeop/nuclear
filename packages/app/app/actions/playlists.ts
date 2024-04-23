@@ -154,6 +154,9 @@ export function addPlaylistFromUrl(playlist: SpotifyPlaylist, t) {
 export function addPlaylistFromFile(filePath = '', t) {
   return async dispatch => {
     fs.readFile(filePath, (err, data) => {
+      if(filePath === ''){
+        return;
+      }
       if (err) {
         dispatch(error(t('import-fail-title'), t('error-open-file'), null, null));
         return;
