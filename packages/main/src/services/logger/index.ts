@@ -9,8 +9,9 @@ timber.hookConsole();
 const errorLogStream = rts.createStream(
   path.join(app.getPath('userData'), 'logs', 'nuclear-error.log'),
   {
-    size: '5M',
-    compress: 'gzip'
+    size: '1M',
+    compress: 'gzip',
+    rotate: 5 // arbitrary value to specify the number of rotations
   }
 );
 
