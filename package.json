@@ -189,6 +189,7 @@
   },
   "dependencies": {
     "node-gyp": "^9.0.0",
+    "recharts": "^2.12.6",
     "sqlite3": "^5.1.2"
   }
 }
