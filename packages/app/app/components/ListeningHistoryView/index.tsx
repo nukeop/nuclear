@@ -4,6 +4,8 @@ import { groupBy, map } from 'lodash';
 import { HistoryTableTrack } from '@nuclear/ui/lib/components/TrackTable/HistoryTable';
 
 import { ListeningHistorySection } from './ListeningHistorySection';
+import { PieChartTopArtists } from './PieChartTopArtists';  // Import the graph component
+
 import styles from './styles.scss';
 import Header from '../Header';
 import { useTranslation } from 'react-i18next';
@@ -30,6 +32,12 @@ export const ListeningHistoryView: React.FC<ListeningHistoryView> = ({
 }) => {
   const { t } = useTranslation('listening-history');
   const tracksGroupedByDays = groupBy(tracks, track => track.createdAt.toLocaleDateString());
+  
+  const tracksGroupedByArtist = groupBy(tracks, track => track.artist);
+  const trackByArtistData = map(tracksGroupedByArtist, (tracksSubset, artist) => ({
+    name: artist,
+    count: tracksSubset.length
+  }));
 
   return <div className={styles.listening_history_view}>
     <Header>
@@ -67,7 +75,8 @@ export const ListeningHistoryView: React.FC<ListeningHistoryView> = ({
         tracks={tracksSubset}
       />
       )
-    }
+    }   
+
     <div className={styles.listening_history_pagination}>
       <Button
         data-testid='previous-page'
@@ -85,5 +94,21 @@ export const ListeningHistoryView: React.FC<ListeningHistoryView> = ({
         disabled={!isNextPageAvailable}
       />
     </div>
+
+    <div
+      style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '100px',
+        fontSize: '30px'
+      }}
+    >
+      <p>Recent Artists</p>
+    </div>
+
+    <PieChartTopArtists
+      data={trackByArtistData}
+    />
   </div>;
 };
