@@ -9,12 +9,12 @@
     "queue": "Добавить альбом в очередь",
     "tracks": "Треки:",
     "year": "Год:",
-    "add-to-playlist": "Add album to playlist",
-    "create-playlist": "Create new playlist",
-    "create-playlist-dialog-title": "Input playlist name:",
-    "create-playlist-dialog-placeholder": "Playlist name...",
-    "create-playlist-dialog-accept": "Save",
-    "create-playlist-dialog-cancel": "Cancel"
+    "add-to-playlist": "Добавить альбом в плейлист",
+    "create-playlist": "Создать новый плейлист",
+    "create-playlist-dialog-title": "Введите название плейлиста:",
+    "create-playlist-dialog-placeholder": "Название плейлиста…",
+    "create-playlist-dialog-accept": "Сохранить",
+    "create-playlist-dialog-cancel": "Отмена"
   },
   "app": {
     "collection": "Фонотека",
@@ -47,7 +47,7 @@
     "similar": "Похожие исполнители",
     "title": "Название",
     "tour": "В туре",
-    "popular-tracks": "Popular tracks"
+    "popular-tracks": "Популярные треки"
   },
   "dashboard": {
     "add-all": "Добавить все в очередь",
@@ -194,10 +194,10 @@
     "upload-to-server": "Загрузить на сервер",
     "download-from-server": "Загрузить с сервера",
     "number-of-tracks": "саундтреки",
-    "input-playlists-url": "Input playlist url:",
-    "create-playlist-dialog-title": "Input playlist name:",
-    "playlist": "Playlist",
-    "play": "Play"
+    "input-playlists-url": "Введите url плейлиста:",
+    "create-playlist-dialog-title": "Введите название плейлиста:",
+    "playlist": "Плейлист",
+    "play": "Воспроизвести"
   },
   "plugins": {
     "add-a-plugin": "Добавить плагин",
@@ -227,7 +227,7 @@
     "copy-track-url": "Скопировать ссылку на трек",
     "loading": "Поток загружается.",
     "playlist-add": "Добавить в плейлист",
-    "playlist-add-queue": "Add queue to playlist",
+    "playlist-add-queue": "Добавить очередь в плейлист",
     "playlist-toast-content": "Плейлист {{name}} создан.",
     "playlist-toast-title": "Плейлист создан",
     "live": "Сейчас",
@@ -249,8 +249,8 @@
       "verify": "Подтвердить",
       "unverify": "Снять подтверждение"
     },
-    "create-playlist-dialog-title": "Input playlist name:",
-    "play-now": "Play now"
+    "create-playlist-dialog-title": "Введите название плейлиста:",
+    "play-now": "Играть"
   },
   "search": {
     "album": "Альбом",
