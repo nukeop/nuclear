@@ -2,18 +2,10 @@
 import { app } from 'electron';
 import timber from 'electron-timber';
 import path from 'path';
-import * as rts from 'rotating-file-stream';
+import {RotatingFileStream, createStream} from 'rotating-file-stream';
 
 timber.hookConsole();
 
-const errorLogStream = rts.createStream(
-  path.join(app.getPath('userData'), 'logs', 'nuclear-error.log'),
-  {
-    size: '1M',
-    compress: 'gzip',
-    rotate: 5 // arbitrary value to specify the number of rotations
-  }
-);
 
 /**
  * @see {@link https://github.com/sindresorhus/electron-timber}
@@ -35,10 +27,19 @@ export interface ILogger {
 class Logger implements ILogger {
   private logger: typeof timber;
   private name: string;
+  private errorLogStream: RotatingFileStream;
 
   constructor(name?: string) {
     this.name = name || 'main';
     this.logger = name ? timber.create({ name }) : timber;
+    this.errorLogStream = createStream(
+      path.join(app.getPath('userData'), 'logs', 'nuclear-error.log'),
+      {
+        size: '1M',
+        compress: 'gzip',
+        rotate: 5 // arbitrary value to specify the number of rotations
+      }
+    );
   }
 
   private getDate() {
@@ -55,13 +56,17 @@ class Logger implements ILogger {
   writeToFile(name: string, ...args: any[]) {
     args.forEach((log) => {
       if (log.stack) {
-        errorLogStream.write(`${this.getDate()}${name} > ${log.stack}`);
+        this.errorLogStream.write(`${this.getDate()}${name} > ${log.stack}`);
       } else if (log.message) {
-        errorLogStream.write(`${this.getDate()}${name} > ${log.message}\n`);
+        this.errorLogStream.write(`${this.getDate()}${name} > ${log.message}\n`);
       } else if (log.toString) {
-        errorLogStream.write(`${this.getDate()}${name} > ${log.toString()}\n`);
+        this.errorLogStream.write(`${this.getDate()}${name} > ${log.toString()}\n`);
       }
     });
+  }
+
+  getErrorLogStream() {
+    return this.errorLogStream;
   }
 
   log(...args: any[]): void {
