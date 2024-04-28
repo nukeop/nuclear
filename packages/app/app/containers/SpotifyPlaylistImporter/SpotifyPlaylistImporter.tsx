@@ -67,7 +67,7 @@ const SpotifyPlaylistImporter: React.FC= () => {
       open={isOpen}
     >
       <Modal.Content>
-        {!displayImportProgress && <h4>Input playlist url:</h4>}
+        {!displayImportProgress && <h4>{t('input-playlist-url')}</h4>}
         {!displayImportProgress && <Input
           fluid
           inverted

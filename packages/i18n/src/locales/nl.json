@@ -216,6 +216,7 @@
     "copy-track-url": "Kopieer de track-url naar het klembord",
     "loading": "Bezig met laden van stream...",
     "playlist-add": "Toevoegen aan afspeellijst",
+    "playlist-add-queue": "Wachtrij toevoegen aan afspeellijst",
     "playlist-toast-content": "De afspeellijst, '{{name}}', is gecreëerd.",
     "playlist-toast-title": "Afspeellijst gecreëerd",
     "live": "Live",

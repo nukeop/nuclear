@@ -216,6 +216,7 @@
     "copy-track-url": "Copier l'URL du morceau dans le presse-papiers",
     "loading": "Chargement du flux.",
     "playlist-add": "Ajouter à la playlist",
+    "playlist-add-queue": "Ajouter la file d'attente à la playlist",
     "playlist-toast-content": "La playlist {{name}} a été créé.",
     "playlist-toast-title": "Playliste créé",
     "live": "En direct",

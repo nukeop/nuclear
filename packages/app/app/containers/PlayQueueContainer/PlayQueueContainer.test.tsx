@@ -1,13 +1,22 @@
 import { fireEvent, waitFor } from '@testing-library/react';
 import { store as electronStore } from '@nuclear/core';
 
-import { AnyProps, mountedPlayQueueFactory, setupI18Next } from '../../../test/testUtils';
-import { buildElectronStoreState, buildStoreState } from '../../../test/storeBuilders';
+import {
+  AnyProps,
+  mountedPlayQueueFactory,
+  setupI18Next
+} from '../../../test/testUtils';
+import {
+  buildElectronStoreState,
+  buildStoreState
+} from '../../../test/storeBuilders';
 import userEvent from '@testing-library/user-event';
 
 jest.mock(
   'react-virtualized-auto-sizer',
-  () => ({ children }) => children({ height: 600, width: 600})
+  () =>
+    ({ children }) =>
+      children({ height: 600, width: 600 })
 );
 
 describe('Play Queue container', () => {
@@ -58,9 +67,15 @@ describe('Play Queue container', () => {
     await waitFor(() => fireEvent.contextMenu(track));
 
     await waitFor(() => component.getByRole('combobox').click());
-    await waitFor(() => component.getByText(/test track 1 - different stream/i).click());
+    await waitFor(() =>
+      component.getByText(/test track 1 - different stream/i).click()
+    );
     const state = store.getState();
-    await waitFor(() => expect(state.queue.queueItems[0].streams[0].title).toBe('test track 1 - different stream'));
+    await waitFor(() =>
+      expect(state.queue.queueItems[0].streams[0].title).toBe(
+        'test track 1 - different stream'
+      )
+    );
   });
 
   it('should copy the original track url to clipboard', async () => {
@@ -71,7 +86,9 @@ describe('Play Queue container', () => {
     const track = component.getByTestId('queue-popup-uuid1');
     await waitFor(() => fireEvent.contextMenu(track));
     await waitFor(() => component.getByTestId('copy-original-url').click());
-    expect(clipboard.writeText).toHaveBeenCalledWith('https://test-track-original-url');
+    expect(clipboard.writeText).toHaveBeenCalledWith(
+      'https://test-track-original-url'
+    );
   });
 
   it('should not display the copy original track url button if the url is not included in the current stream', async () => {
@@ -90,12 +107,16 @@ describe('Play Queue container', () => {
     await waitFor(() => component.getByTestId('queue-popup-favorite').click());
 
     const state = store.getState();
-    expect(state.favorites.tracks).toEqual(expect.arrayContaining([expect.objectContaining({
-      uuid: expect.any(String),
-      artist: 'test artist 1',
-      name: 'test track 1',
-      thumbnail: 'https://test-track-thumb-url'
-    })]));
+    expect(state.favorites.tracks).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          uuid: expect.any(String),
+          artist: 'test artist 1',
+          name: 'test track 1',
+          thumbnail: 'https://test-track-thumb-url'
+        })
+      ])
+    );
 
     expect(state.favorites.tracks[0].streams).toBeUndefined();
   });
@@ -103,16 +124,24 @@ describe('Play Queue container', () => {
   it('should favorite track without stream data (queue menu popup)', async () => {
     const { component, store } = mountComponent();
 
-    await waitFor(() => component.getByTestId('queue-menu-more-container').click());
-    await waitFor(() => component.getByTestId('queue-menu-more-favorite').click());
+    await waitFor(() =>
+      component.getByTestId('queue-menu-more-container').click()
+    );
+    await waitFor(() =>
+      component.getByTestId('queue-menu-more-favorite').click()
+    );
 
     const state = store.getState();
-    expect(state.favorites.tracks).toEqual(expect.arrayContaining([{
-      uuid: expect.any(String),
-      artist: expect.stringMatching('test artist 1'),
-      name: expect.stringMatching('test track 1'),
-      thumbnail: 'https://test-track-thumb-url'
-    }]));
+    expect(state.favorites.tracks).toEqual(
+      expect.arrayContaining([
+        {
+          uuid: expect.any(String),
+          artist: expect.stringMatching('test artist 1'),
+          name: expect.stringMatching('test track 1'),
+          thumbnail: 'https://test-track-thumb-url'
+        }
+      ])
+    );
 
     expect(state.favorites.tracks[0].streams).toBeUndefined();
   });
@@ -120,9 +149,11 @@ describe('Play Queue container', () => {
   it('should add the current track to a playlist (queue menu popup)', async () => {
     const { component, store } = mountComponent();
 
-    await waitFor(() => component.getByTestId('queue-menu-more-container').click());
+    await waitFor(() =>
+      component.getByTestId('queue-menu-more-container').click()
+    );
     await waitFor(() => component.getByText(/Add to playlist/i).click());
-    await waitFor(() => component.getByText('test playlist').click());
+    await waitFor(() => component.getAllByText('test playlist')[1].click());
 
     const state = store.getState();
 
@@ -137,10 +168,12 @@ describe('Play Queue container', () => {
   it('should create a new playlist from the queue', async () => {
     const { component, store } = mountComponent();
 
-    await waitFor(() => component.getByTestId('queue-menu-more-container').click());
+    await waitFor(() =>
+      component.getByTestId('queue-menu-more-container').click()
+    );
     await waitFor(() => component.getByText(/Save as playlist/i).click());
     userEvent.type(
-      component.getByPlaceholderText('Playlist name...'), 
+      component.getByPlaceholderText('Playlist name...'),
       '{selectall}{backspace}my  new playlist{enter}'
     );
 
@@ -151,7 +184,35 @@ describe('Play Queue container', () => {
       expect.objectContaining({
         artist: 'test artist 1',
         name: 'test track 1'
-      }), 
+      }),
+      expect.objectContaining({
+        artist: 'test artist 2',
+        name: 'test track 2'
+      }),
+      expect.objectContaining({
+        artist: 'test artist 3',
+        name: 'test track 3'
+      })
+    ]);
+  });
+
+  it('should add all tracks from the queue to the existing playlist', async () => {
+    const { component, store } = mountComponent();
+
+    await waitFor(() =>
+      component.getByTestId('queue-menu-more-container').click()
+    );
+    await waitFor(() => component.getByText(/Add queue to playlist/i).click());
+    await waitFor(() => component.getAllByText('test playlist')[0].click());
+
+    const state = store.getState();
+
+    expect(state.playlists.localPlaylists.data[0].name).toBe('test playlist');
+    expect(state.playlists.localPlaylists.data[0].tracks).toEqual([
+      expect.objectContaining({
+        artist: 'test artist 1',
+        name: 'test track 1'
+      }),
       expect.objectContaining({
         artist: 'test artist 2',
         name: 'test track 2'
@@ -166,7 +227,9 @@ describe('Play Queue container', () => {
   it('should clear the queue', async () => {
     const { component, store } = mountComponent();
 
-    await waitFor(() => component.getByTestId('queue-menu-more-container').click());
+    await waitFor(() =>
+      component.getByTestId('queue-menu-more-container').click()
+    );
     await waitFor(() => component.getByText(/Clear queue/i).click());
 
     const state = store.getState();
@@ -176,8 +239,9 @@ describe('Play Queue container', () => {
   it('should remove the clicked track from the queue', async () => {
     const { component, store } = mountComponent();
 
-    await waitFor(() => component
-      .getAllByTestId('queue-item-remove')[0].click());
+    await waitFor(() =>
+      component.getAllByTestId('queue-item-remove')[0].click()
+    );
 
     const state = store.getState();
     expect(state.queue.queueItems).toEqual([
@@ -193,16 +257,20 @@ describe('Play Queue container', () => {
   });
 
   const mountComponent = (initialStore?: AnyProps) => {
-    const initialState = initialStore || buildStoreState()
-      .withTracksInPlayQueue()
-      .withPlaylists([{
-        id: 'test-playlist-id',
-        name: 'test playlist',
-        tracks: []
-      }])
-      .withPlugins()
-      .withConnectivity()
-      .build();
+    const initialState =
+      initialStore ||
+      buildStoreState()
+        .withTracksInPlayQueue()
+        .withPlaylists([
+          {
+            id: 'test-playlist-id',
+            name: 'test playlist',
+            tracks: []
+          }
+        ])
+        .withPlugins()
+        .withConnectivity()
+        .build();
 
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
@@ -210,10 +278,7 @@ describe('Play Queue container', () => {
       ...buildElectronStoreState(),
       playlists: initialState.playlists.localPlaylists.data
     });
-    
-    return mountedPlayQueueFactory(
-      ['/dashboard'],
-      initialState
-    )();
+
+    return mountedPlayQueueFactory(['/dashboard'], initialState)();
   };
 });

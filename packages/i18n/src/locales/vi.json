@@ -216,6 +216,7 @@
     "copy-track-url": "Sao chép url bản nhạc vào bộ nhớ tạm",
     "loading": "Stream đang tải.",
     "playlist-add": "Thêm vào playlist",
+    "playlist-add-queue": "Thêm vào hàng đợi playlist",
     "playlist-toast-content": "Playlist {{name}} đã được tạo.",
     "playlist-toast-title": "Playlist đã được tạo",
     "live": "Trực tiếp",

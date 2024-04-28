@@ -29,7 +29,7 @@ describe('Lyrics container', () => {
   it('should say lyrics could not be found if they are not downloaded', () => {
     const component = mountComponent({
       lyrics: {
-        lyricsSearchResults: {}
+        lyricsSearchResult: ''
       },
       queue: {
         currentSong: 0,
@@ -44,9 +44,7 @@ describe('Lyrics container', () => {
     const component = render(<TestStoreProvider
       initialState={initialStore ?? {
         lyrics: {
-          lyricsSearchResults: {
-            type: 'test song lyrics'
-          }
+          lyricsSearchResult: 'test song lyrics'
         },
         queue: {
           currentSong: 0,

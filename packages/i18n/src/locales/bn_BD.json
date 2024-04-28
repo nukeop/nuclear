@@ -216,6 +216,7 @@
     "copy-track-url": "গানের url ক্লিপবোর্ডে কপি করুন",
     "loading": "স্ট্রীম এখনো লোড হচ্ছে।",
     "playlist-add": "প্লেলিস্টে যোগ করুন",
+    "playlist-add-queue": "প্লেলিস্টে কিউ যোগ করুন",
     "playlist-toast-content": "প্লেলিস্ট {{name}} তৈরি হয়েছে।",
     "playlist-toast-title": "প্লেলিস্ট তৈরি হয়েছে",
     "live": "সরাসরি",

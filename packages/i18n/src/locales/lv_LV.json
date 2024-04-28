@@ -216,6 +216,7 @@
     "copy-track-url": "Kopēt ieraksta Url starpliktuvē",
     "loading": "Straume joprojām tiek ielādēta.",
     "playlist-add": "Pievienot atskaņošanas sarakstam",
+    "playlist-add-queue": "Pievienot rindu atskaņošanas sarakstam",
     "playlist-toast-content": "Atskaņošanas saraksts {{name}} izveidots.",
     "playlist-toast-title": "Atskaņošanas saraksts izveidots",
     "live": "Live",

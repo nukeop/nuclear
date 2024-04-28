@@ -9,7 +9,6 @@ import GenresTab from './GenresTab';
 
 import styles from './styles.scss';
 import { DashboardReducerState } from '../../reducers/dashboard';
-import StreamProviderPlugin from '@nuclear/core/src/plugins/streamProvider';
 import EditorialsTab from './EditorialsTab';
 
 type DashboardProps = {
@@ -75,7 +74,7 @@ export const Dashboard: React.FC<DashboardProps> = ({
             {
               menuItem: t('genres'),
               render: () => (
-                <GenresTab genres={dashboardData.topTags} history={history} />
+                <GenresTab genres={dashboardData.topTags}/>
               )
             }
           ]}

@@ -1,9 +1,10 @@
-import rock from '../../../../resources/musicgenresicons/outline/rock.svg';
 import eighties from '../../../../resources/musicgenresicons/outline/80\'s.svg';
 import nineties from '../../../../resources/musicgenresicons/outline/90\'s.svg';
 import acoustic from '../../../../resources/musicgenresicons/outline/acoustic.svg';
 import blues from '../../../../resources/musicgenresicons/outline/blues.svg';
 import chillout from '../../../../resources/musicgenresicons/outline/chill_out.svg';
+// import childrens from '../../../../resources/musicgenresicons/outline/childrens_music.svg';
+// import christmas from '../../../../resources/musicgenresicons/outline/christmas_carols.svg';
 import classical from '../../../../resources/musicgenresicons/outline/classical.svg';
 import country from '../../../../resources/musicgenresicons/outline/country.svg';
 import disco from '../../../../resources/musicgenresicons/outline/disco.svg';
@@ -22,11 +23,13 @@ import pop from '../../../../resources/musicgenresicons/outline/pop.svg';
 import punk from '../../../../resources/musicgenresicons/outline/punk.svg';
 import rnb from '../../../../resources/musicgenresicons/outline/R&B.svg';
 // import reggae from '../../../../resources/musicgenresicons/outline/reggae.svg';
+import rock from '../../../../resources/musicgenresicons/outline/rock.svg';
 // import romantic from '../../../../resources/musicgenresicons/outline/romantic.svg';
+// import tango from '../../../../resources/musicgenresicons/outline/tango.svg';
 import trending from '../../../../resources/musicgenresicons/outline/trending.svg';
 import vocal from '../../../../resources/musicgenresicons/outline/vocal.svg';
 
-export default genre => {
+const genreToIcon = (genre: string): string => {
   switch (genre.toLowerCase()) {
   case 'blues':
     return blues;
@@ -68,9 +71,6 @@ export default genre => {
   case 'funk':
   case 'jazz':
     return jazz;
-  case 'ambient':
-  case 'experimental':
-    return trending;
   case 'singer-songwriter':
   case 'female vocalists':
     return vocal;
@@ -101,7 +101,11 @@ export default genre => {
     return rnb;
   case 'chillout':
     return chillout;
+  case 'ambient':
+  case 'experimental':
   default:
-    return null;
+    return trending;
   }
 };
+
+export default genreToIcon;
