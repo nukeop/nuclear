@@ -12,9 +12,12 @@ import {
 import { Bandcamp, LastFmApi } from '../../rest';
 import { Track } from '../..';
 import { LastFmArtistInfo, LastfmTopTracks } from '../../rest/Lastfm.types';
+import SimilarArtistsService from './SimilarArtistsService';
 
 class BandcampMetaProvider extends MetaProvider {
   lastfm: LastFmApi;
+  readonly similarArtistsService: SimilarArtistsService = new SimilarArtistsService();
+
   constructor() {
     super();
     this.name = 'Bandcamp Meta Provider';
@@ -100,6 +103,7 @@ class BandcampMetaProvider extends MetaProvider {
   async fetchArtistDetails(artistId: string): Promise<ArtistDetails> {
     const bandcampArtistDetails = await Bandcamp.getArtistInfo(atob(artistId));
     const lastFmInfo: LastFmArtistInfo = (await (await this.lastfm.getArtistInfo(bandcampArtistDetails.name)).json()).artist;
+    const similarArtists = await this.similarArtistsService.createSimilarArtists(lastFmInfo);
     const lastFmTopTracks: LastfmTopTracks = (await (await this.lastfm.getArtistTopTracks(bandcampArtistDetails.name)).json()).toptracks;
 
     return ({
@@ -108,10 +112,7 @@ class BandcampMetaProvider extends MetaProvider {
       description: bandcampArtistDetails.description,
       coverImage: bandcampArtistDetails.coverImage,
       onTour: bandcampArtistDetails.shows.length > 0,
-      similar: _.map(lastFmInfo?.similar.artist, artist => ({
-        name: artist.name,
-        thumbnail: _.get(_.find(artist.image, { size: 'large' }), '#text')
-      })),
+      similar: similarArtists,
       topTracks: _.map(lastFmTopTracks?.track, (track) => ({
         name: track.name,
         title: track.name,

@@ -23,17 +23,14 @@ import {
   AlbumDetails,
   AlbumType
 } from '../plugins.types';
-import {
-  LastFmArtistInfo,
-  LastfmTopTracks,
-  LastfmTrack
-} from '../../rest/Lastfm.types';
-import {
-  MusicbrainzArtist, MusicbrainzReleaseGroup
-} from '../../rest/Musicbrainz.types';
+import { LastFmArtistInfo, LastfmTopTracks, LastfmTrack } from '../../rest/Lastfm.types';
+import { MusicbrainzArtist, MusicbrainzReleaseGroup } from '../../rest/Musicbrainz.types';
+import SimilarArtistsService from './SimilarArtistsService';
 
 class MusicbrainzMetaProvider extends MetaProvider {
   lastfm: LastFmApi;
+  readonly similarArtistsService: SimilarArtistsService = new SimilarArtistsService();
+
   constructor() {
     super();
     this.name = 'Musicbrainz Meta Provider';
@@ -98,6 +95,7 @@ class MusicbrainzMetaProvider extends MetaProvider {
   async fetchArtistDetails(artistId: string): Promise<ArtistDetails> {
     const mbArtist: MusicbrainzArtist = await getArtist(artistId);
     const lastFmInfo: LastFmArtistInfo = (await (await this.lastfm.getArtistInfo(mbArtist.name)).json()).artist;
+    const similarArtists = await this.similarArtistsService.createSimilarArtists(lastFmInfo);
     const lastFmTopTracks: LastfmTopTracks = (await (await this.lastfm.getArtistTopTracks(mbArtist.name)).json()).toptracks;
       
     return Promise.resolve({
@@ -112,10 +110,7 @@ class MusicbrainzMetaProvider extends MetaProvider {
         playcount: track.playcount,
         listeners: track.listeners
       })),
-      similar: _.map(lastFmInfo.similar.artist, artist => ({
-        name: artist.name,
-        thumbnail: _.get(_.find(artist.image, { size: 'large' }), '#text')
-      })),
+      similar: similarArtists,
       source: SearchResultsSource.Musicbrainz
     });
   }
@@ -166,4 +161,3 @@ class MusicbrainzMetaProvider extends MetaProvider {
   
   
 export default MusicbrainzMetaProvider;
-  
