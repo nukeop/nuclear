@@ -46,7 +46,7 @@
     "music-metadata": "^7.12.3",
     "node-fetch": "^2.6.0",
     "reflect-metadata": "^0.1.13",
-    "rotating-file-stream": "^2.0.2",
+    "rotating-file-stream": "^3.2.1",
     "sqlite3": "^5.1.2",
     "stream-filter": "^2.1.0",
     "stream-reduce": "^1.0.3",
