@@ -11,8 +11,7 @@ import {
   SearchResultsSource,
   ArtistDetails,
   AlbumDetails,
-  AlbumType,
-  SimilarArtist
+  AlbumType
 } from '../plugins.types';
 import {
   DiscogsReleaseSearchResponse,
@@ -24,13 +23,14 @@ import {
   DiscogsReleaseInfo,
   DiscogsTrack
 } from '../../rest/Discogs.types';
-import { LastFmArtistInfo, LastfmTopTracks, LastfmTrack, LastfmArtistShort } from '../../rest/Lastfm.types';
+import { LastFmArtistInfo, LastfmTopTracks, LastfmTrack } from '../../rest/Lastfm.types';
 import { cleanName } from '../../structs/Artist';
-import { getToken, searchArtists } from '../../rest/Spotify';
-import logger from 'electron-timber';
+import SimilarArtistsService from './SimilarArtistsService';
 
 class DiscogsMetaProvider extends MetaProvider {
   lastfm: LastFmApi;
+  readonly similarArtistsService: SimilarArtistsService = new SimilarArtistsService();
+
   constructor() {
     super();
     this.name = 'Discogs Meta Provider';
@@ -177,7 +177,7 @@ class DiscogsMetaProvider extends MetaProvider {
     const lastFmInfo: LastFmArtistInfo = (await (await this.lastfm.getArtistInfo(discogsInfo.name)).json()).artist;
     const lastFmTopTracks: LastfmTopTracks = (await (await this.lastfm.getArtistTopTracks(discogsInfo.name)).json()).toptracks;
     const coverImage = this.getCoverImage(discogsInfo);
-    const similarArtists = await this.getSimilarArtists(lastFmInfo);
+    const similarArtists = await this.similarArtistsService.createSimilarArtists(lastFmInfo);
 
     return {
       id: discogsInfo.id,
@@ -199,48 +199,6 @@ class DiscogsMetaProvider extends MetaProvider {
       similar: similarArtists,
       source: SearchResultsSource.Discogs
     };
-  }
-
-  async getSimilarArtists(artist: LastFmArtistInfo | undefined): Promise<SimilarArtist[]> {
-    if (!artist?.similar?.artist) {
-      return [];
-    }
-    const similarArtists = artist.similar.artist;
-    try {
-      const spotifyToken = await getToken();
-      return await this.fetchTopSimilarArtistsFromSpotify(similarArtists, spotifyToken);
-    } catch (error) {
-      logger.error(`Failed to fetch similar artists for '${artist.name}'`);
-      logger.error(error);
-    }
-    return [];
-  }
-
-  async fetchTopSimilarArtistsFromSpotify(artists: LastfmArtistShort[], spotifyToken: string) {
-    return Promise.all(
-      artists
-        .filter(artist => artist?.name)
-        .slice(0, 5)
-        .map(artist => this.fetchSimilarArtistFromSpotify(artist.name, spotifyToken))
-    );
-  }
-
-  async fetchSimilarArtistFromSpotify(artistName: string, spotifyToken: string): Promise<SimilarArtist> {
-    return searchArtists(spotifyToken, artistName)
-      .then(spotifyArtist => {
-        return {
-          name: artistName,
-          thumbnail: spotifyArtist?.images[0]?.url
-        };
-      })
-      .catch(error => {
-        logger.error(`Failed to fetch artist from Spotify: '${artistName}'`);
-        logger.error(error);
-        return {
-          name: artistName,
-          thumbnail: null
-        };
-      });
   }
 
   isArtistOnTour(artistInfo: LastFmArtistInfo | undefined): boolean {
