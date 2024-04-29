@@ -63,7 +63,7 @@ describe('Playlists container', () => {
       .withPlugins()
       .withConnectivity()
       .build();
-    // @ts-ignore
+    // @ts-expect-error
     electronStore.init({
       ...buildElectronStoreState(),
       playlists: stateWithPlaylists.playlists.localPlaylists.data
@@ -213,43 +213,27 @@ describe('Playlists container', () => {
     expect(fetchMock.done());
   });
 
-  it('should dispatch an error notification when filePath is empty or not a string', async () => {
+  it.each([{
+    kind: 'undefined',
+    filePath: undefined
+  }, {
+    kind: 'null',
+    filePath: null
+  }, {
+    kind: 'not a string',
+    filePath: 123
+  }])('should dispatch an error notification when filePath is $kind', async ({ filePath }) => {
     const { store } = mountComponent();
   
-    await store.dispatch<any>(addPlaylistFromFile(null, (key) => key));
-    let state = store.getState();
+    await store.dispatch<any>(addPlaylistFromFile(filePath, (key) => key));
+    const state = store.getState();
     expect(state.toasts.notifications).toContainEqual({
       title: 'import-fail-title',
       details: 'error-empty-data',
       id: expect.any(String),
       icon: null,
       error: true,
-      onClick: expect.any(Function) 
-
-    });
-  
-    await store.dispatch<any>(addPlaylistFromFile(undefined, (key) => key));
-    state = store.getState();
-    expect(state.toasts.notifications).toContainEqual({
-      title: 'import-fail-title',
-      details: 'error-empty-data',
-      id: expect.any(String),
-      icon: null,
-      error: true,
-      onClick: expect.any(Function) 
-
-    });
-
-    await store.dispatch<any>(addPlaylistFromFile(123, (key) => key));
-    state = store.getState();
-    expect(state.toasts.notifications).toContainEqual({
-      title: 'import-fail-title',
-      details: 'error-empty-data',
-      id: expect.any(String),
-      icon: null,
-      error: true,
-      onClick: expect.any(Function)  
-
+      onClick: expect.any(Function)
     });
   });
 
