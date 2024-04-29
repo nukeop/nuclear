@@ -14,7 +14,7 @@ import { store as electronStore } from '@nuclear/core';
 import { AnyProps, configureMockStore, setupI18Next, TestRouterProvider, TestStoreProvider } from '../../../test/testUtils';
 import MainContentContainer from '../MainContentContainer';
 import { buildElectronStoreState, buildStoreState } from '../../../test/storeBuilders';
-import { loadLocalPlaylistsAction } from '../../actions/playlists';
+import { loadLocalPlaylistsAction, addPlaylistFromFile } from '../../actions/playlists';
 
 const stateWithPlaylists = buildStoreState()
   .withPlaylists()
@@ -211,6 +211,46 @@ describe('Playlists container', () => {
       .build();
     mountComponent(initialState);
     expect(fetchMock.done());
+  });
+
+  it('should dispatch an error notification when filePath is empty or not a string', async () => {
+    const { store } = mountComponent();
+  
+    await store.dispatch<any>(addPlaylistFromFile(null, (key) => key));
+    let state = store.getState();
+    expect(state.toasts.notifications).toContainEqual({
+      title: 'import-fail-title',
+      details: 'error-empty-data',
+      id: expect.any(String),
+      icon: null,
+      error: true,
+      onClick: expect.any(Function) 
+
+    });
+  
+    await store.dispatch<any>(addPlaylistFromFile(undefined, (key) => key));
+    state = store.getState();
+    expect(state.toasts.notifications).toContainEqual({
+      title: 'import-fail-title',
+      details: 'error-empty-data',
+      id: expect.any(String),
+      icon: null,
+      error: true,
+      onClick: expect.any(Function) 
+
+    });
+
+    await store.dispatch<any>(addPlaylistFromFile(123, (key) => key));
+    state = store.getState();
+    expect(state.toasts.notifications).toContainEqual({
+      title: 'import-fail-title',
+      details: 'error-empty-data',
+      id: expect.any(String),
+      icon: null,
+      error: true,
+      onClick: expect.any(Function)  
+
+    });
   });
 
   it('should not get the user\'s playlists on mount if the user is not logged in', async () => {
