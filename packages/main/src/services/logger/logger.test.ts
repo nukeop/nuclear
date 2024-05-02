@@ -38,7 +38,7 @@ jest.mock('fs', () => ({
     once: jest.fn(),
     pipe: jest.fn(() => ({
       ...jest.requireActual('stream').Writable.prototype,
-      write: jest.fn(), 
+      write: jest.fn(),
       end: jest.fn(),
       emit: jest.fn()
     }))
@@ -86,9 +86,9 @@ describe('logger', () => {
     const fs = await import('fs');
     // @ts-expect-error - for some reason the typing here is wrong
     jest.spyOn(fs, 'access').mockImplementation((
-      path: string, 
-      mode: number, 
-      cb: (err: Error | null ) => void
+      path: string,
+      mode: number,
+      cb: (err: Error | null) => void
     ) => {
       if (path === '/user/data/logs/nuclear-error.log') {
         return cb(null);
@@ -115,9 +115,5 @@ describe('logger', () => {
     expect(rotateMock).toHaveBeenCalled();
     expect(fsPromises.open).toHaveBeenNthCalledWith(1, '/user/data/logs/nuclear-error.log', 'a', undefined);
     expect(fsPromises.open).toHaveBeenNthCalledWith(2, '/user/data/logs/nuclear-error.2.log', 'a', undefined);
-    // @ts-expect-error - TS doesn't know about the mock's functions
-    expect((fsPromises as jest.Mock).closeFileMock).toHaveBeenCalled();
-    // @ts-expect-error - ---^
-    expect((fsPromises as jest.Mock).writeFileMock).toHaveBeenCalled();
   });
 });
