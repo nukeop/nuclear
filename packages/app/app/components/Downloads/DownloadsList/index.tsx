@@ -38,7 +38,7 @@ const DownloadsList: React.FC<DownloadsListProps> = ({
         <Icon name='trash' />
         {t('clear')}
       </Button>
-      <Table inverted className={styles.downloads_list}>
+      <Table inverted unstackable className={styles.downloads_list}>
         <Table.Header>
           <Table.Row>
             <Table.HeaderCell>{t('status')}</Table.HeaderCell>
