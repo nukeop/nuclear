@@ -2,6 +2,9 @@ import { NuclearMeta, IpcEvents } from '@nuclear/core';
 
 import { IpcMessageEvent, DownloadItem } from 'electron';
 import { inject } from 'inversify';
+import prism from 'prism-media';
+import { createWriteStream } from 'fs';
+import { rm } from 'fs/promises';
 
 import { ipcController, ipcEvent } from '../utils/decorators';
 import { getTrackArtist, getTrackTitle } from '../utils/tracks';
@@ -61,30 +64,55 @@ class DownloadIpcCtrl {
       // .replace(/[/\\?%*:|"<>]/g, '-') or equivalent invalid characters based on platform
       const filename = this.removeInvalidCharacters(`${artistName} - ${title}`);
 
-      this.logger.log(`Start Download: ${filename}`);
-
+      
       await this.download.start({
         query: {
           artist: artistName,
           track: title
         },
         filename,
-        onStart: (item) => {
+        onStarted: (item) => {
           this.downloadItems = this.downloadItems.filter((item) => item.uuid !== uuid);
           this.downloadItems.push({ uuid, ref: item });
+          this.logger.log(`Download started: ${filename}`);
         },
         onProgress: (progress) => {
-          if (progress.transferredBytes === progress.totalBytes) {
-            this.window.send(IpcEvents.DOWNLOAD_FINISHED, uuid);
-            this.downloadItems = this.downloadItems.filter((item) => item.uuid !== uuid);
-          }
           this.window.send(IpcEvents.DOWNLOAD_PROGRESS, {
             uuid,
             progress: progress.percent
           });
+        },
+        onCompleted: (file) => {
+          this.window?.send(IpcEvents.DOWNLOAD_FINISHED, uuid);
+          this.logger.log(`Download success: ${artistName} - ${title}, path: ${file.path}`);
+          this.logger.log('');
+          this.downloadItems = this.downloadItems.filter((item) => item.uuid !== uuid);
+          const outputFilename = file.path.replace(/\.[^.]+$/, '.mp3');
+          const transcoder = new prism.FFmpeg({args: [
+            '-i', file.path,
+            '-f', 'mp3',
+            '-vn',
+            '-q:a', '2',
+            '-ac', '2',
+            '-ar', '48000',
+            '-y',
+            '-',
+            outputFilename
+          ]});
+
+          transcoder
+            .on('error', (error) => {
+              this.logger.error(`Conversion error: ${error}`);
+            })
+            .on('end', async () => {
+              this.logger.log(`Conversion success: ${outputFilename}`);
+              await rm(file.path);
+              this.logger.log(`Removed after conversion: ${file.path}`);
+            });
+
+          transcoder.pipe(createWriteStream(outputFilename));
         }
       });
-      this.logger.log(`Download success: ${artistName} - ${title}`);
     } catch (error) {
       this.window.send(IpcEvents.DOWNLOAD_ERROR, { uuid: data.uuid, error });
       throw error;

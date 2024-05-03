@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import registerDownloader, { download, Progress } from 'electron-dl';
+import registerDownloader, { download, Options } from 'electron-dl';
 import { inject, injectable } from 'inversify';
 import _ from 'lodash';
 import * as Youtube from '@nuclear/core/src/rest/Youtube';
@@ -10,12 +10,10 @@ import Config from '../config';
 import Window from '../window';
 import { DownloadItem } from 'electron';
 
-interface DownloadParams {
+type DownloadParams = {
   query: StreamQuery;
   filename: string;
-  onStart: (item: DownloadItem) => void;
-  onProgress: (progress: Progress) => any;
-}
+} & Pick<Options, 'onStarted' | 'onProgress' | 'onCompleted'>
 
 /**
  * Download file via youtube api with electron-dl
@@ -32,13 +30,14 @@ class Download {
   }
 
   /**
-   * Download a soud using Youtube
+   * Download a son using Youtube
    */
   async start({
     query,
     filename,
-    onStart,
-    onProgress
+    onStarted,
+    onProgress,
+    onCompleted
   }: DownloadParams): Promise<any> {
     const tracks = await Youtube.trackSearchByString(query, undefined, false);
     const videoWithStream = await Youtube.getStreamForId(tracks[0]?.id, undefined);
@@ -46,8 +45,9 @@ class Download {
     return download(this.window.getBrowserWindow(), videoWithStream?.stream, {
       filename: `${filename}.${videoWithStream?.format}`,
       directory: this.store.getOption('downloads.dir'),
-      onStarted: onStart,
-      onProgress: _.throttle(onProgress, 1000)
+      onStarted,
+      onProgress: _.throttle(onProgress, 1000),
+      onCompleted
     });
   }
 }
