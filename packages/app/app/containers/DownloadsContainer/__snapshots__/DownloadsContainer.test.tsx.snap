@@ -9,6 +9,11 @@ exports[`Downloads container should display downloads 1`] = `
       class="downloads_container"
     >
       <div
+        class="header_container"
+      >
+        Downloads
+      </div>
+      <div
         class="ui segment downloads_header"
       >
         <span
@@ -30,11 +35,6 @@ exports[`Downloads container should display downloads 1`] = `
         </button>
       </div>
       <div
-        class="header_container"
-      >
-        Downloads
-      </div>
-      <div
         class="ui inverted segment"
       >
         <button
@@ -47,7 +47,7 @@ exports[`Downloads container should display downloads 1`] = `
           Clear finished tracks
         </button>
         <table
-          class="ui inverted table downloads_list"
+          class="ui inverted unstackable table downloads_list"
         >
           <thead
             class=""
