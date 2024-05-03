@@ -43,14 +43,14 @@ const Downloads: React.FC<DownloadsProps> = ({
 
   return (
     <div className={styles.downloads_container}>
-      <DownloadsHeader
-        directory={downloadsDir}
-        setStringOption={setStringOption}
-      />
       {downloads.length === 0 && <EmptyState />}
       {downloads.length > 0 && (
-        <React.Fragment>
+        <>
           <Header>{t('header')}</Header>
+          <DownloadsHeader
+            directory={downloadsDir}
+            setStringOption={setStringOption}
+          />
           <DownloadsList
             items={downloads}
             clearFinishedTracks={clearFinishedTracks}
@@ -58,7 +58,7 @@ const Downloads: React.FC<DownloadsProps> = ({
             pauseDownload={pauseDownload}
             removeDownload={removeDownload}
           />
-        </React.Fragment>
+        </>
       )}
     </div>
   );
