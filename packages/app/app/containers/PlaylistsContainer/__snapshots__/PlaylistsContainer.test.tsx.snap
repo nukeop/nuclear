@@ -15,39 +15,14 @@ exports[`Playlists container should display all playlists 1`] = `
           class="header_container"
         >
           Your playlists
-        </div>
-        <div
-          class="playlist_header_buttons"
-        >
           <button
-            class="ui basic button nuclear button"
-            data-testid="create-new"
+            class="ui pink circular button nuclear button playlists_header_add_button"
           >
             <i
               aria-hidden="true"
               class="plus icon"
             />
-            Create new playlist
-          </button>
-          <button
-            class="ui basic button nuclear button"
-            data-testid="import-from-url"
-          >
-            <i
-              aria-hidden="true"
-              class="spotify icon"
-            />
-            Import from url (Spotify)
-          </button>
-          <button
-            class="ui basic button nuclear button"
-            data-testid="import-from-file"
-          >
-            <i
-              aria-hidden="true"
-              class="file text icon"
-            />
-            Import from file (JSON)
+            Add
           </button>
         </div>
       </div>
@@ -143,40 +118,6 @@ exports[`Playlists container should display empty playlists view 1`] = `
         class="playlists_header_container"
       >
         <span />
-        <div
-          class="playlist_header_buttons"
-        >
-          <button
-            class="ui basic button nuclear button"
-            data-testid="create-new"
-          >
-            <i
-              aria-hidden="true"
-              class="plus icon"
-            />
-            Create new playlist
-          </button>
-          <button
-            class="ui basic button nuclear button"
-            data-testid="import-from-url"
-          >
-            <i
-              aria-hidden="true"
-              class="spotify icon"
-            />
-            Import from url (Spotify)
-          </button>
-          <button
-            class="ui basic button nuclear button"
-            data-testid="import-from-file"
-          >
-            <i
-              aria-hidden="true"
-              class="file text icon"
-            />
-            Import from file (JSON)
-          </button>
-        </div>
       </div>
       <div
         class="empty_state"
@@ -193,7 +134,7 @@ exports[`Playlists container should display empty playlists view 1`] = `
           No playlists.
         </h2>
         <div>
-          Try to create some playlists or import by url and they will appear here!
+          Try creating playlists, or import by URL, and they will appear here!
         </div>
       </div>
     </div>
@@ -201,7 +142,7 @@ exports[`Playlists container should display empty playlists view 1`] = `
 </DocumentFragment>
 `;
 
-exports[`Playlists container should load webview after clicking on Import from url (Spotify) 1`] = `
+exports[`Playlists container should load webview after clicking on Import from Spotify 1`] = `
 <webview
   class="spotify_import_webview"
   data-testid="spotify-playlist-importer-webview"

@@ -165,7 +165,7 @@
     "dialog-import": "Import",
     "create-button": "创建播放列表",
     "new-playlist": "新建播放列表",
-    "import-url-button": "Import from url (Spotify)",
+    "import-url-button": "Import from Spotify",
     "import-button": "从文件 (JSON) 导入",
     "import-fail-title": "导入播放列表失败",
     "import-success-title": "成功导入播放列表",

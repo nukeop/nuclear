@@ -165,7 +165,7 @@
     "dialog-import": "Import",
     "create-button": "Izveidot atskaņošanas sarakstu",
     "new-playlist": "Jauns atskaņošanas saraksts",
-    "import-url-button": "Import from url (Spotify)",
+    "import-url-button": "Import from Spotify",
     "import-button": "Importēt no faila (JSON)",
     "import-fail-title": "Atskaņošanas saraksta eksportēšana neizdevās",
     "import-success-title": "Atskaņošanas saraksts ir veiksmīgi importēts",

@@ -165,7 +165,7 @@
     "dialog-import": "Import",
     "create-button": "Skapa ny spellista",
     "new-playlist": "Ny spellista",
-    "import-url-button": "Import from url (Spotify)",
+    "import-url-button": "Import from Spotify",
     "import-button": "Importera från fil (JSON)",
     "import-fail-title": "Import av spellista misslyckades",
     "import-success-title": "Spellistan importerades",

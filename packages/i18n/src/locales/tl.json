@@ -165,7 +165,7 @@
     "dialog-import": "Import",
     "create-button": "Gumawa ng bagong playlist",
     "new-playlist": "Bagong playlist",
-    "import-url-button": "Import from url (Spotify)",
+    "import-url-button": "Import from Spotify",
     "import-button": "Mag-angkat mula sa file (JSON)",
     "import-fail-title": "Ang pag-import ng playlist ay nabigo",
     "import-success-title": "Tuluyang naimport ang playlist",
