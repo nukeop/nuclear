@@ -285,11 +285,11 @@ export const artistInfoSearchByName = (artistName: string, history: History) => 
   const selectedProvider = getSelectedMetaProvider(getState);
   const { settings } = getState();
   try {
-    _.invoke(history, 'push', '/artist/loading');
+    history.push('/artist/loading');
     dispatch(SearchActions.artistInfoStart('loading'));
     const artistDetails = await selectedProvider.fetchArtistDetailsByName(artistName);
     dispatch(SearchActions.artistInfoSuccess(artistDetails.id, artistDetails));
-    _.invoke(history, 'push', `/artist/${artistDetails.id}`);
+    history.replace(`/artist/${artistDetails.id}`);
   } catch (e) {
     logger.error(e);
     dispatch(error(
