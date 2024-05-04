@@ -11,9 +11,13 @@ import styles from './styles.scss';
 
 type SpotifyPlaylistImporterProps = {
   trigger: React.ReactNode;
+  onClose: () => void;
 }
 
-const SpotifyPlaylistImporter: React.FC<SpotifyPlaylistImporterProps> = ({trigger}) => {
+const SpotifyPlaylistImporter: React.FC<SpotifyPlaylistImporterProps> = ({ 
+  trigger,
+  onClose: onCloseProp
+}) => {
   const { t } = useTranslation('playlists');
   const { onAccept, importProgress, playlistMeta, onClose } = useSpotifyPlaylistImporterProps(t);
   const progressPercent = Math.round((playlistMeta?.totalTracks ? importProgress/playlistMeta.totalTracks : 0) * 100);
@@ -29,6 +33,7 @@ const SpotifyPlaylistImporter: React.FC<SpotifyPlaylistImporterProps> = ({trigge
     setInputString('');
     setDisplayImportProgress(false);
     onClose();
+    onCloseProp();
   }, []);
   const handleChange = useCallback(e => {
     try {
