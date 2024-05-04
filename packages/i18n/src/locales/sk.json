@@ -165,7 +165,7 @@
     "dialog-import": "Import",
     "create-button": "Vytvoriť nový playlist",
     "new-playlist": "Nový playlist",
-    "import-url-button": "Import from url (Spotify)",
+    "import-url-button": "Import from Spotify",
     "import-button": "Importovať zo súboru (JSON)",
     "import-fail-title": "Nepodarilo sa importovať playlist",
     "import-success-title": "Playlist bol úspešne importovaný",

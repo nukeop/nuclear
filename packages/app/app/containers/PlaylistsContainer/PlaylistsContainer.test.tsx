@@ -93,9 +93,9 @@ describe('Playlists container', () => {
         })]));
   });
 
-  it('should load webview after clicking on Import from url (Spotify)', async () => {
+  it('should load webview after clicking on Import from Spotify', async () => {
     const { component } = mountComponent();
-    await waitFor(() => component.getByText('Import from url (Spotify)').click());
+    await waitFor(() => component.getByText('Import from Spotify').click());
     const input = component.getByTestId('spotify-playlist-importer-input').firstChild;
     fireEvent.change(input, { target: { value: 'https://open.spotify.com/playlist/37i9dQZF1EtkaNAuJY7Tph' } });
     await waitFor(() => component.getByText('Import').click());

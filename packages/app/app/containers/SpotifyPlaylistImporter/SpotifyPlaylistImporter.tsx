@@ -9,7 +9,11 @@ import { Button } from '@nuclear/ui';
 import { useSpotifyPlaylistImporterProps } from './hooks';
 import styles from './styles.scss';
 
-const SpotifyPlaylistImporter: React.FC= () => {
+type SpotifyPlaylistImporterProps = {
+  trigger: React.ReactNode;
+}
+
+const SpotifyPlaylistImporter: React.FC<SpotifyPlaylistImporterProps> = ({trigger}) => {
   const { t } = useTranslation('playlists');
   const { onAccept, importProgress, playlistMeta, onClose } = useSpotifyPlaylistImporterProps(t);
   const progressPercent = Math.round((playlistMeta?.totalTracks ? importProgress/playlistMeta.totalTracks : 0) * 100);
@@ -53,15 +57,7 @@ const SpotifyPlaylistImporter: React.FC= () => {
       basic
       closeIcon
       dimmer='blurring'
-      trigger={
-        <Button
-          basic
-          data-testid='import-from-url'
-        >
-          <Icon name='spotify' />
-          {t('import-url-button')}
-        </Button>
-      }
+      trigger={trigger}
       onClose={handleClose}
       onOpen={handleOpen}
       open={isOpen}

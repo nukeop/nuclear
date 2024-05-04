@@ -165,7 +165,7 @@
     "dialog-import": "Import",
     "create-button": "Create new playlist",
     "new-playlist": "New playlist",
-    "import-url-button": "Import from url (Spotify)",
+    "import-url-button": "Import from Spotify",
     "import-button": "Import from file (JSON)",
     "import-fail-title": "Playlist import fail",
     "import-success-title": "Playlist imported successfully",

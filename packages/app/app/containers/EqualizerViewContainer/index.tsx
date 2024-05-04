@@ -9,6 +9,7 @@ import { useTranslation } from 'react-i18next';
 
 import styles from './styles.scss';
 import { RootState } from '../../reducers';
+import Header from '../../components/Header';
 
 const usePresets = () => {
   const map = useSelector((state: RootState) => state.equalizer.presets);
@@ -27,7 +28,7 @@ const EqualizerViewContainer: React.FC = () => {
   const { t } = useTranslation('app');
   return (
     <div className={styles.equalizer_view}>
-      <h1>{t('equalizer')}</h1>
+      <Header>{t('equalizer')}</Header>
       <div className={styles.equalizer_components}>
         <Equalizer
           values={preset.values}

@@ -165,7 +165,7 @@
     "dialog-import": "Importuoti",
     "create-button": "Sukurti naują grojaraštį",
     "new-playlist": "Naujas grojaraštis",
-    "import-url-button": "Import from url (Spotify)",
+    "import-url-button": "Import from Spotify",
     "import-button": "Importuoti failą (JSON)",
     "import-fail-title": "Nepavyko importuoti grojaraščio",
     "import-success-title": "Grojaraštis importuotas sėkmingai",

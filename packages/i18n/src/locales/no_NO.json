@@ -165,7 +165,7 @@
     "dialog-import": "Import",
     "create-button": "Lag ny spilleliste",
     "new-playlist": "Ny spilleliste",
-    "import-url-button": "Import from url (Spotify)",
+    "import-url-button": "Import from Spotify",
     "import-button": "Importer fra fil (JSON)",
     "import-fail-title": "Import av spilleliste feilet",
     "import-success-title": "Spilleliste importert",

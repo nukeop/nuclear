@@ -1,22 +1,60 @@
+@import "../../../vars";
+
 .playlists_header_container {
   display: flex;
   flex-flow: column;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
 
   .header_container {
-    margin: 1em;
+    display: flex;
+    flex-flow: row;
+    gap: 0.5em;
+  }
+
+  .playlists_header_add_button {
+    display: flex;
+    flex-flow: row;
+    border-radius: 100%;
+    margin: 0;
+    gap: 0.5em;
+
+    i.icon {
+      margin: 0 !important;
+    }
+  }
+}
+
+.add_playlist_popup {
+  box-shadow:
+    0 1px 1px rgba(0, 0, 0, 0.12),
+    0 2px 2px rgba(0, 0, 0, 0.12),
+    0 4px 4px rgba(0, 0, 0, 0.12),
+    0 8px 8px rgba(0, 0, 0, 0.12),
+    0 16px 16px rgba(0, 0, 0, 0.12) !important;
+  display: flex;
+  flex-flow: column;
+  background-color: $background !important;
+  color: $white;
+  border-color: $background2 !important;
+  user-select: none;
+
+  &:before {
+    background-color: $background !important;
+  }
+
+  &.bottom:before {
+    box-shadow: -1px -1px 0 0 $bgdefault !important;
+  }
+
+  &.top:before {
+    box-shadow: 1px 1px 0 0 $bgdefault !important;
   }
 
   .playlist_header_buttons {
     display: flex;
-    flex-flow: row wrap;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-
-    button {
-      margin-bottom: 1em;
-    }
+    flex-flow: column;
+    flex: 0 0 auto;
+    height: auto;
   }
 }

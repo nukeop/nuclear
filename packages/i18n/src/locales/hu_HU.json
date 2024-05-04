@@ -147,7 +147,7 @@
     "delete": "Lejátszási lista törlése",
     "duration": "Hossz",
     "empty": "Nincsenek lejátszási listák.",
-    "empty-help": "Try to create some playlists or import by url and they will appear here!",
+    "empty-help": "Try creating playlists, or import by URL, and they will appear here!",
     "error-empty-data": "Nincs adat",
     "error-invalid-data": "Érvénytelen adat",
     "error-open-file": "A fájl nem nyitható meg",
