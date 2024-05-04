@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Button, InputDialog, PopupButton } from '@nuclear/ui';
 
@@ -7,7 +7,6 @@ import styles from './styles.scss';
 import { Icon, Popup } from 'semantic-ui-react';
 
 import SpotifyPlaylistImporter from '../../../containers/SpotifyPlaylistImporter/SpotifyPlaylistImporter';
-import {noop} from 'lodash';
 
 type PlaylistsHeaderProps = {
   showText: boolean;
@@ -21,6 +20,12 @@ const PlaylistsHeader: React.FC<PlaylistsHeaderProps> = ({
   onCreate
 }) => {
   const { t } = useTranslation('playlists');
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const onOpen = () => setIsPopupOpen(true);
+
+  const onChildClose = () => {
+    setIsPopupOpen(false);
+  };
 
   return (
     <div className={styles.playlists_header_container}>
@@ -28,7 +33,6 @@ const PlaylistsHeader: React.FC<PlaylistsHeaderProps> = ({
         {t('header')}
         <Popup
           on='click'
-          hideOnScroll
           trigger={
             <Button 
               data-testid='playlists-header-add-button'
@@ -41,6 +45,8 @@ const PlaylistsHeader: React.FC<PlaylistsHeaderProps> = ({
             </Button>
           }
           className={styles.add_playlist_popup}
+          open={isPopupOpen}
+          onOpen={onOpen}
         >
           <div className={styles.playlist_header_buttons}>
             <InputDialog
@@ -49,10 +55,10 @@ const PlaylistsHeader: React.FC<PlaylistsHeaderProps> = ({
               acceptLabel={t('dialog-accept')}
               cancelLabel={t('dialog-cancel')}
               onAccept={onCreate}
+              onClose={onChildClose}
               testIdPrefix='create-playlist'
               trigger={
                 <PopupButton
-                  onClick={noop}
                   data-testid='create-new'
                   ariaLabel={t('create-button')}
                   icon='plus' 
@@ -64,13 +70,13 @@ const PlaylistsHeader: React.FC<PlaylistsHeaderProps> = ({
             <SpotifyPlaylistImporter 
               trigger={
                 <PopupButton 
-                  onClick={noop}
                   data-testid='import-from-url'
                   icon='spotify'
                   label={t('import-url-button')}
                   ariaLabel={t('import-url-button')}
                 />
               }
+              onClose={onChildClose}
             />
             <PopupButton
               onClick={onImportFromFile}

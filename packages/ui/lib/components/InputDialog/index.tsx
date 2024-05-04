@@ -13,13 +13,14 @@ interface CoreInputDialogProps {
 }
 
 interface UncontrolledInputDialogProps extends CoreInputDialogProps {
-  trigger: ModalProps['trigger']
+  trigger: ModalProps['trigger'];
+  onClose: () => void;
 }
 
 interface ControlledInputDialogProps extends CoreInputDialogProps {
-  isOpen: boolean
-  onOpen?: () => void
-  onClose: () => void
+  isOpen: boolean;
+  onOpen?: () => void;
+  onClose: () => void;
 }
 
 type InputDialogProps = UncontrolledInputDialogProps | ControlledInputDialogProps
@@ -43,7 +44,16 @@ const InputDialog: React.VFC<InputDialogProps> = ({
     [isControlled, props]
   );
   const handleClose = useCallback(
-    () => (isControlled ? props.onClose() : setIsOpen(false)),
+    () => {
+      if (isControlled) {
+        props.onClose();
+      } else {
+        if (props.onClose) {
+          props.onClose();
+        }
+        setIsOpen(false);
+      }
+    },
     [isControlled, props]
   );
   const handleChange = useCallback((e) => setInputString(e.target.value), []);
@@ -83,7 +93,9 @@ const InputDialog: React.VFC<InputDialogProps> = ({
       {...(isControlled ? {} : { trigger: props.trigger })}
     >
       <Modal.Content>
-        {header}
+        <h4>
+          {header}
+        </h4>
         <Input
           fluid
           inverted

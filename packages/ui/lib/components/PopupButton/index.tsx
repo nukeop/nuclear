@@ -4,7 +4,7 @@ import { Icon, IconProps } from 'semantic-ui-react';
 import styles from './styles.scss';
 
 export type PopupButtonProps = {
-  onClick: React.MouseEventHandler;
+  onClick?: React.MouseEventHandler;
   ariaLabel: string;
   label: string;
   icon: IconProps['name'];
