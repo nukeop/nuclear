@@ -119,7 +119,7 @@ exports[`Track Popup container creating new playlist should open Input Dialog 1`
                 aria-hidden="true"
                 class="plus icon"
               />
-              Create new playlist
+              Create a new playlist
             </div>
           </div>
         </div>
@@ -305,7 +305,7 @@ exports[`Track Popup container should render the Track Popup container 1`] = `
                 aria-hidden="true"
                 class="plus icon"
               />
-              Create new playlist
+              Create a new playlist
             </div>
           </div>
         </div>

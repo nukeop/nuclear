@@ -70,7 +70,7 @@ const TrackPopup: React.FC<TrackPopupProps> = ({
     textPlayNext: 'Play next',
     textAddToFavorites: 'Add to favorites',
     textAddToPlaylist: 'Add to playlist',
-    textCreatePlaylist: 'Create new playlist',
+    textCreatePlaylist: 'Create a new playlist',
     textAddToDownloads: 'Download',
     createPlaylistDialog: {
       title: 'Input playlist name:',

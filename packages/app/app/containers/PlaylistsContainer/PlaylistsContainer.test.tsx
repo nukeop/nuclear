@@ -81,7 +81,8 @@ describe('Playlists container', () => {
 
   it('should create an empty playlist with a custom name', async () => {
     const { component, store } = mountComponent();
-    await waitFor(() => component.getByTestId('create-new').click());
+    await waitFor(() => component.getByText('Add').click());
+    await waitFor(() => component.getByText('Create a new playlist').click());
     const input = component.getByTestId('create-playlist-input').firstChild;
     fireEvent.change(input, { target: { value: 'new-empty-playlist' } });
     await waitFor(() => component.getByTestId('create-playlist-accept').click());
@@ -95,6 +96,7 @@ describe('Playlists container', () => {
 
   it('should load webview after clicking on Import from Spotify', async () => {
     const { component } = mountComponent();
+    await waitFor(() => component.getByText('Add').click());
     await waitFor(() => component.getByText('Import from Spotify').click());
     const input = component.getByTestId('spotify-playlist-importer-input').firstChild;
     fireEvent.change(input, { target: { value: 'https://open.spotify.com/playlist/37i9dQZF1EtkaNAuJY7Tph' } });
@@ -106,7 +108,8 @@ describe('Playlists container', () => {
 
   it('should create an empty playlist with default name', async () => {
     const { component, store } = mountComponent();
-    await waitFor(() => component.getByTestId('create-new').click());
+    await waitFor(() => component.getByText('Add').click());
+    await waitFor(() => component.getByText('Create a new playlist').click());
     await waitFor(() =>
       component.getByTestId('create-playlist-accept').click()
     );
@@ -121,7 +124,8 @@ describe('Playlists container', () => {
 
   it('should not create an empty playlist with an empty name', async () => {
     const { component, store } = mountComponent();
-    await waitFor(() => component.getByTestId('create-new').click());
+    await waitFor(() => component.getByText('Add').click());
+    await waitFor(() => component.getByText('Create a new playlist').click());
     const input = component.getByTestId('create-playlist-input').firstChild;
     fireEvent.change(input, { target: { value: '' } });
     await waitFor(() =>
@@ -138,7 +142,8 @@ describe('Playlists container', () => {
   
   it('should create an empty playlist with a custom name on enter keypress', async () => {
     const { component, store } = mountComponent();
-    await waitFor(() => component.getByTestId('create-new').click());
+    await waitFor(() => component.getByText('Add').click());
+    await waitFor(() => component.getByText('Create a new playlist').click());
     const input = component.getByTestId('create-playlist-input').firstChild;
     fireEvent.change(input, { target: { value: 'new-empty-playlist' } });
     fireEvent.keyPress(input, { key: 'Enter', code: 13, charCode: 13 });
@@ -152,7 +157,8 @@ describe('Playlists container', () => {
 
   it('should create an empty playlist with default name on enter keypress', async () => {
     const { component, store } = mountComponent();
-    await waitFor(() => component.getByTestId('create-new').click());
+    await waitFor(() => component.getByText('Add').click());
+    await waitFor(() => component.getByText('Create a new playlist').click());
     const input = component.getByTestId('create-playlist-input').firstChild;
     fireEvent.keyPress(input, { key: 'Enter', code: 13, charCode: 13 });
     const state = store.getState();
@@ -166,7 +172,8 @@ describe('Playlists container', () => {
 
   it('should not create an empty playlist with an empty name on enter keypress', async () => {
     const { component, store } = mountComponent();
-    await waitFor(() => component.getByTestId('create-new').click());
+    await waitFor(() => component.getByText('Add').click());
+    await waitFor(() => component.getByText('Create a new playlist').click());
     const input = component.getByTestId('create-playlist-input').firstChild;
     fireEvent.change(input, { target: { value: '' } });
     fireEvent.keyPress(input, { key: 'Enter', code: 13, charCode: 13 });
