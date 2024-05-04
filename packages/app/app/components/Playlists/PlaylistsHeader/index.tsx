@@ -30,7 +30,12 @@ const PlaylistsHeader: React.FC<PlaylistsHeaderProps> = ({
           on='click'
           hideOnScroll
           trigger={
-            <Button color='pink' circular className={styles.playlists_header_add_button}>
+            <Button 
+              data-testid='playlists-header-add-button'
+              color='pink'
+              circular
+              className={styles.playlists_header_add_button}
+            >
               <Icon name='plus' />
               {t('header-add-button')}
             </Button>
