@@ -50,7 +50,7 @@ const PlaylistsHeader: React.FC<PlaylistsHeaderProps> = ({
         >
           <div className={styles.playlist_header_buttons}>
             <InputDialog
-              header={t('create-playlist-dialog-title')}
+              header={<h4>t('create-playlist-dialog-title')</h4>}
               placeholder={t('dialog-placeholder')}
               acceptLabel={t('dialog-accept')}
               cancelLabel={t('dialog-cancel')}

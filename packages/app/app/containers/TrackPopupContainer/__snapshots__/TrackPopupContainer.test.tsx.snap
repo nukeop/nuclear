@@ -154,9 +154,7 @@ exports[`Track Popup container creating new playlist should open Input Dialog 1`
         class="content"
       >
         <h4>
-          <h4>
-            Input playlist name:
-          </h4>
+          Input playlist name:
         </h4>
         <div
           class="ui fluid inverted input"

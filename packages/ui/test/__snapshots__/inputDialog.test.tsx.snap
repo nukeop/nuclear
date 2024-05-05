@@ -19,9 +19,7 @@ exports[`(Snapshot) InputDialog - open should render correctly 1`] = `
       <div
         class="content"
       >
-        <h4>
-          Input header
-        </h4>
+        Input header
         <div
           class="ui fluid inverted input"
         >
