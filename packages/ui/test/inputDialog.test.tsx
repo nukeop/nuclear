@@ -7,7 +7,7 @@ describe('(Snapshot) InputDialog - open', () => {
   it('should render correctly', () => {
     render(<InputDialog 
       isOpen
-      header={<h4>Input header</h4>}
+      header={<>Input header</>}
       acceptLabel='Accept'
       cancelLabel='Cancel'
       initialString='Initial string'
