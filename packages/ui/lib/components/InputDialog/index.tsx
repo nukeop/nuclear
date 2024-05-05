@@ -14,7 +14,7 @@ interface CoreInputDialogProps {
 
 interface UncontrolledInputDialogProps extends CoreInputDialogProps {
   trigger: ModalProps['trigger'];
-  onClose: () => void;
+  onClose?: () => void;
 }
 
 interface ControlledInputDialogProps extends CoreInputDialogProps {
@@ -93,9 +93,7 @@ const InputDialog: React.VFC<InputDialogProps> = ({
       {...(isControlled ? {} : { trigger: props.trigger })}
     >
       <Modal.Content>
-        <h4>
-          {header}
-        </h4>
+        {header}
         <Input
           fluid
           inverted
