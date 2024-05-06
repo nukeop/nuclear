@@ -12,10 +12,10 @@ jobs:
       - name: get-npm-version
         id: package-version
         uses: pchynoweth/action-get-npm-version@1.1.1
-      - name: Use Node.js 18
+      - name: Use Node.js 20
         uses: actions/setup-node@master
         with:
-          version: 18
+          version: 20
           cache: npm
       - run: npm ci
       - run: npm run build:linux
@@ -65,10 +65,10 @@ jobs:
       - name: get-npm-version
         id: package-version
         uses: pchynoweth/action-get-npm-version@1.1.1
-      - name: Use Node.js 18
+      - name: Use Node.js 20
         uses: actions/setup-node@master
         with:
-          version: 18
+          version: 20
           cache: npm
       - run: npm ci
       - run: npm run build:macos
@@ -97,10 +97,10 @@ jobs:
       - name: get-npm-version
         id: package-version
         uses: pchynoweth/action-get-npm-version@1.1.1
-      - name: Use Node.js 18
+      - name: Use Node.js 20
         uses: actions/setup-node@master
         with:
-          version: 18
+          version: 20
           cache: npm
       - name: add git binaries to PATH
         run: |
