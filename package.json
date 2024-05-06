@@ -40,7 +40,7 @@
     "babel-eslint": "^10.0.3",
     "cross-env": "^7.0.3",
     "electron": "^12.1.0",
-    "electron-builder": "^21.2.0",
+    "electron-builder": "^24.13.3",
     "eslint": "^7.18.0",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-react": "^7.12.4",
@@ -154,10 +154,27 @@
     "mac": {
       "category": "public.app-category.music",
       "target": [
-        "zip",
-        "pkg",
-        "dmg"
+        {
+          "target": "zip",
+          "arch": [
+            "universal"
+          ]
+        },
+        {
+          "target": "pkg",
+          "arch": [
+            "universal"
+          ]
+        },
+        {
+          "target": "dmg",
+          "arch": [
+            "universal"
+          ]
+        }
       ],
+      "mergeASARs": true,
+      "x64ArchFiles": "Contents/Resources/bin/fpcalc",
       "extraFiles": [
         {
           "from": "packages/main/bin/mac",
