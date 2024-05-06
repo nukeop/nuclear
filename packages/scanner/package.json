@@ -5,10 +5,13 @@
   "main": "index.node",
   "types": "index.d.ts",
   "scripts": {
-    "build": "cargo-cp-artifact -nc index.node -- cargo build --message-format=json-render-diagnostics",
+    "build": "if [ \"$npm_config_target_arch\" == \"arm64\" ]; then npm run build-macos-arm64; elif [ \"$npm_config_target_arch\" == \"x64\" ]; then npm run build-macos; else npm run build-linux-windows; fi",
     "build-profiling": "npm run build -- --features profiling --release",
     "build-debug": "npm run build --",
     "build-release": "npm run build -- --release",
+    "build-linux-windows": "cargo-cp-artifact -nc index.node -- cargo build --release --message-format=json-render-diagnostics",
+    "build-macos": "cargo-cp-artifact -nc index.node -- cargo build --target x86_64-apple-darwin --release --message-format=json-render-diagnostics",
+    "build-macos-arm64": "cargo-cp-artifact -nc index.node -- cargo build --target aarch64-apple-darwin --release --message-format=json-render-diagnostics",
     "install": "npm run build-release",
     "test": "cargo test"
   },
@@ -16,7 +19,7 @@
     "type": "git",
     "url": "git+https://github.com/nukeop/nuclear.git"
   },
-  "author": "nukeop <nukeop@gumblert.tech>",
+  "author": "nukeop <12746779+nukeop@users.noreply.github.com>",
   "license": "AGPL-3.0",
   "bugs": {
     "url": "https://github.com/nukeop/nuclear/issues"
