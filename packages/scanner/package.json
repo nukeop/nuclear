@@ -5,13 +5,13 @@
   "main": "index.node",
   "types": "index.d.ts",
   "scripts": {
-    "build": "if [ \"$npm_config_target_arch\" == \"arm64\" ]; then npm run build-macos-arm64; elif [ \"$npm_config_target_arch\" == \"x64\" ]; then npm run build-macos; else npm run build-linux-windows; fi",
-    "build-profiling": "npm run build -- --features profiling --release",
-    "build-debug": "npm run build --",
-    "build-release": "npm run build -- --release",
+    "build": "cargo-cp-artifact -nc index.node -- cargo build --message-format=json-render-diagnostics",
+    "build-release": "if [ \"$npm_config_target_arch\" == \"arm64\" ]; then npm run build-macos-arm64; elif [ \"$npm_config_target_arch\" == \"x64\" ]; then npm run build-macos; else npm run build-linux-windows; fi",
     "build-linux-windows": "cargo-cp-artifact -nc index.node -- cargo build --release --message-format=json-render-diagnostics",
     "build-macos": "cargo-cp-artifact -nc index.node -- cargo build --target x86_64-apple-darwin --release --message-format=json-render-diagnostics",
     "build-macos-arm64": "cargo-cp-artifact -nc index.node -- cargo build --target aarch64-apple-darwin --release --message-format=json-render-diagnostics",
+    "build-profiling": "npm run build -- --features profiling --release",
+    "build-debug": "npm run build -- --debug",
     "install": "npm run build-release",
     "test": "cargo test"
   },
