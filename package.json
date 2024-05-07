@@ -203,9 +203,5 @@
     "nsis": {
       "artifactName": "${productName} Setup ${env.VERSION}.${ext}"
     }
-  },
-  "dependencies": {
-    "node-gyp": "^9.0.0",
-    "sqlite3": "^5.1.2"
   }
 }
