@@ -4,7 +4,7 @@ import { ActionType, createReducer } from 'typesafe-actions';
 import { DeezerEditorialCharts, DeezerTrack } from '@nuclear/core/src/rest/Deezer';
 import { LastfmTopTag } from '@nuclear/core/src/rest/Lastfm.types';
 
-import {loadBestNewAlbumsAction, loadBestNewTracksAction, loadEditorialChartsAction, loadEditorialPlaylistAction, loadTopTagsAction, loadTopTracksAction, PitchforkAlbum, PitchforkTrack, loadPromotedArtistsAction} from '../actions/dashboard';
+import {loadEditorialChartsAction, loadEditorialPlaylistAction, loadTopTagsAction, loadTopTracksAction, loadPromotedArtistsAction} from '../actions/dashboard';
 import { Dashboard } from '../actions/actionTypes';
 import { handleLoadableActionError, handleLoadableActionStart, handleLoadableActionSuccess, handleLoadableEmptyActionStart, startingStateMeta } from './helpers';
 import { Loadable } from './types';
@@ -17,8 +17,6 @@ export type InternalTopTrack = Pick<DeezerTrack, 'id' | 'title' | 'duration' | '
 };
 
 export type DashboardReducerState = {
-  bestNewAlbums: PitchforkAlbum[];
-  bestNewTracks: PitchforkTrack[];
   topTracks: InternalTopTrack[];
   topTags: LastfmTopTag[];
 
@@ -34,8 +32,6 @@ export type DashboardReducerState = {
 }
 
 const initialState: DashboardReducerState = {
-  bestNewAlbums: [],
-  bestNewTracks: [],
   topTracks: [],
   topTags: [],
   editorialCharts: {...startingStateMeta},
@@ -44,8 +40,6 @@ const initialState: DashboardReducerState = {
 };
 
 const dashboardActions = {
-  loadBestNewAlbumsAction,
-  loadBestNewTracksAction,
   loadTopTagsAction,
   loadTopTracksAction,
   loadEditorialChartsAction,
@@ -60,12 +54,6 @@ export const editorialPlaylistKeyCreator = ({id}: {id: number}) => `editorialPla
 const promotedArtistsKeyCreator = () => 'promotedArtists';
 
 const DashboardReducer = createReducer<DashboardReducerState, DashboardReducerActions>(initialState, {
-  [Dashboard.LOAD_BEST_NEW_ALBUMS_SUCCESS]: (state, action) => produce(state, draft => {
-    draft.bestNewAlbums = action.payload;
-  }),
-  [Dashboard.LOAD_BEST_NEW_TRACKS_SUCCESS]: (state, action) => produce(state, draft => {
-    draft.bestNewTracks = action.payload;
-  }),
   [Dashboard.LOAD_TOP_TRACKS_SUCCESS]: (state, action) => produce(state, draft => {
     draft.topTracks = action.payload;
   }),

@@ -18,7 +18,6 @@ import { normalizeTrack } from '../../utils';
 import { addTrackToPlaylist } from '../../components/PlayQueue/QueueMenu/QueueMenuMore';
 
 const QueuePopupButtons = ({
-  // track,
   playlists,
   withPlayNow,
   withAddToFavorites,

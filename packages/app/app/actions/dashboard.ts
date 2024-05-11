@@ -1,5 +1,4 @@
 import logger from 'electron-timber';
-import { getBestNewAlbums, getBestNewTracks } from 'pitchfork-bnm';
 import { createAsyncAction } from 'typesafe-actions';
 
 import { rest } from '@nuclear/core';
@@ -14,25 +13,6 @@ const lastfm = new rest.LastFmApi(
   globals.lastfmApiKey,
   globals.lastfmApiSecret
 );
-
-export type PitchforkAlbum = {
-  abstract: string
-  artist: string
-  genres: string[]
-  review: string
-  reviewUrl: string
-  score: string
-  thumbnail: string
-  title: string
-}
-
-export type PitchforkTrack = {
-  artist: string
-  review: string
-  reviewUrl: string
-  thumbnail: string
-  title: string
-}
 
 export const loadTopTagsAction = createAsyncAction(
   Dashboard.LOAD_TOP_TAGS_START,
@@ -51,46 +31,6 @@ export function loadTopTags() {
       })
       .catch(error => {
         dispatch(loadTopTagsAction.failure());
-        logger.error(error);
-      });
-  };
-}
-
-export const loadBestNewAlbumsAction = createAsyncAction(
-  Dashboard.LOAD_BEST_NEW_ALBUMS_START,
-  Dashboard.LOAD_BEST_NEW_ALBUMS_SUCCESS,
-  Dashboard.LOAD_BEST_NEW_ALBUMS_ERROR
-)<undefined, PitchforkAlbum[], undefined>();
-
-export function loadBestNewAlbums() {
-  return dispatch => {
-    dispatch(loadBestNewAlbumsAction.request());
-    getBestNewAlbums()
-      .then(albums => {
-        dispatch(loadBestNewAlbumsAction.success(albums));
-      })
-      .catch(error => {
-        dispatch(loadBestNewAlbumsAction.failure());
-        logger.error(error);
-      });
-  };
-}
-
-export const loadBestNewTracksAction = createAsyncAction(
-  Dashboard.LOAD_BEST_NEW_TRACKS_START,
-  Dashboard.LOAD_BEST_NEW_TRACKS_SUCCESS,
-  Dashboard.LOAD_BEST_NEW_TRACKS_ERROR
-)<undefined, PitchforkTrack[], undefined>();
-
-export function loadBestNewTracks() {
-  return dispatch => {
-    dispatch(loadBestNewTracksAction.request());
-    getBestNewTracks()
-      .then(tracks => {
-        dispatch(loadBestNewTracksAction.success(tracks));
-      })
-      .catch(error => {
-        dispatch(loadBestNewTracksAction.failure());
         logger.error(error);
       });
   };

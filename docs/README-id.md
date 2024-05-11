@@ -97,8 +97,6 @@ Tangkapan layar akan diperbarui seiring perkembangan aplikasi.
 
 ![Artist View](https://i.imgur.com/imBLYl3.png)
 
-![Dashboard Best New Music](https://i.imgur.com/bMDrR4M.png)
-
 ![Dashboard Genres](https://i.imgur.com/g0aCmKx.png)
 
 ![Playlist View](https://i.imgur.com/2VMXHDC.png)
