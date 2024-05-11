@@ -52,9 +52,6 @@
   "dashboard": {
     "add-all": "添加所有",
     "artist": "艺术家",
-    "best": "最佳新音乐",
-    "best-new-albums": "最佳新专辑",
-    "best-new-tracks": "最佳新曲目",
     "genres": "流派",
     "news": "消息",
     "playcounts": "播放次数",
