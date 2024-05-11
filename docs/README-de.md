@@ -156,8 +156,6 @@ Diese werden mit der Entwicklung des Projektes aktualisiert.
 
 ![Künstleransicht](https://i.imgur.com/imBLYl3.png)
 
-![Dashboard beste neue Musik](https://i.imgur.com/bMDrR4M.png)
-
 ![Dashboard Genres](https://i.imgur.com/g0aCmKx.png)
 
 ![Playlists](https://i.imgur.com/2VMXHDC.png)

@@ -54,8 +54,6 @@ export const buildStoreState = () => {
       playbackRate: 1
     },
     dashboard: {
-      bestNewAlbums: [],
-      bestNewTracks: [],
       topTracks: [],
       topTags: [],
       editorialCharts: { ...startingStateMeta },
@@ -514,44 +512,6 @@ export const buildStoreState = () => {
       state = {
         ...state,
         dashboard: {
-          bestNewAlbums: [
-            {
-              thumbnail: 'test thumbnail 1',
-              artist: 'test artist 1',
-              title: 'test title 1',
-              reviewUrl: 'test review url 1',
-              score: '5.0',
-              abstract: 'test abstract 1',
-              review: 'test review 1',
-              genres: ['Rock']
-            },
-            {
-              thumbnail: 'test thumbnail 2',
-              artist: 'test artist 2',
-              title: 'test title 2',
-              reviewUrl: 'test review url 2',
-              score: '8.0',
-              abstract: 'test abstract 2',
-              review: 'test review 2',
-              genres: ['Pop']
-            }
-          ],
-          bestNewTracks: [
-            {
-              thumbnail: 'test track thumbnail 1',
-              artist: 'test track artist 1',
-              title: 'test track title 1',
-              reviewUrl: 'test track review url 1',
-              review: 'track review 1'
-            },
-            {
-              thumbnail: 'test track thumbnail 2',
-              artist: 'test track artist 2',
-              title: 'test track title 2',
-              reviewUrl: 'test track review url 2',
-              review: 'track review 2'
-            }
-          ],
           topTracks: [
             {
               id: 1,

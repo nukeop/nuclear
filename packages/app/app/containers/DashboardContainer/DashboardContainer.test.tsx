@@ -1,12 +1,10 @@
 
 import { waitFor } from '@testing-library/react';
-import pitchforkBnm from 'pitchfork-bnm';
 import { Deezer } from '@nuclear/core/src/rest';
 
 import { buildStoreState } from '../../../test/storeBuilders';
 import { mountedComponentFactory, setupI18Next } from '../../../test/testUtils';
 
-jest.mock('pitchfork-bnm');
 jest.mock('@nuclear/core/src/rest');
 
 describe('Dashboard container', () => {
@@ -19,9 +17,6 @@ describe('Dashboard container', () => {
       .withDashboard()
       .build();
 
-    pitchforkBnm.getBestNewAlbums = jest.fn().mockResolvedValue(mockState.dashboard.bestNewAlbums);
-    pitchforkBnm.getBestNewTracks = jest.fn().mockResolvedValue(mockState.dashboard.bestNewTracks);
-
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     Deezer.getTopTracks = jest.fn().mockResolvedValue({ data: mockState.dashboard.topTracks });
@@ -33,58 +28,6 @@ describe('Dashboard container', () => {
 
   afterAll(() => {
     jest.clearAllMocks();
-  });
-
-  it('should display the best new music page of the dashboard', async () => {
-    const { component } = mountComponent();
-    await waitFor(() => component.getByText(/Best new music/i).click());
-    expect(component.asFragment()).toMatchSnapshot();
-  });
-
-  it('should go to best new album review after clicking it', async () => {
-    const { component } = mountComponent();
-    await waitFor(() => component.getByText(/Best new music/i).click());
-
-    await waitFor(() => component.getByText(/test title 2/i).click());
-
-    expect(component.queryByText(/test review 2/i)).not.toBeNull();
-    expect(component.asFragment()).toMatchSnapshot();
-  });
-
-  it('should go to best new track review after clicking it', async () => {
-    const { component } = mountComponent();
-    await waitFor(() => component.getByText(/Best new music/i).click());
-
-    await waitFor(() => component.getByText(/test track title 2/i).click());
-
-    expect(component.queryByText(/track review 2/i)).not.toBeNull();
-    expect(component.asFragment()).toMatchSnapshot();
-  });
-
-  it('should add/remove a best new track to favorites after clicking its star', async () => {
-    const { component, store } = mountComponent();
-    await waitFor(() => component.getByText(/Best new music/i).click());
-
-    const addOrRemove = async () => waitFor(
-      () => component
-        .getByTestId('favorite-icon-test track artist 1-test track title 1')
-        .click()
-    );
-
-    await addOrRemove();
-
-    let state = store.getState();
-    expect(state.favorites.tracks).toEqual([
-      expect.objectContaining({
-        artist: 'test track artist 1',
-        name: 'test track title 1'
-      })
-    ]);
-
-    await addOrRemove();
-    state = store.getState();
-
-    expect(state.favorites.tracks).toEqual([]);
   });
 
   it('should display the trending music', async () => {

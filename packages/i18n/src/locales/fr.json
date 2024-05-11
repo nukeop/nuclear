@@ -45,9 +45,6 @@
   "dashboard": {
     "add-all": "Ajouter tout",
     "artist": "Artiste",
-    "best": "Nouveautés",
-    "best-new-albums": "Meilleurs albums",
-    "best-new-tracks": "Meilleurs morceaux récents",
     "genres": "Genres",
     "news": "Actualités",
     "playcounts": "Nombre d'écoute",

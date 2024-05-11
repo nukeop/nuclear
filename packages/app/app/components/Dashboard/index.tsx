@@ -3,7 +3,6 @@ import { Tab } from 'semantic-ui-react';
 import { useTranslation } from 'react-i18next';
 import { Redirect, useHistory } from 'react-router-dom';
 
-import BestNewMusicTab from './BestNewMusicTab';
 import ChartsTab from './ChartsTab';
 import GenresTab from './GenresTab';
 
@@ -53,17 +52,6 @@ export const Dashboard: React.FC<DashboardProps> = ({
                   artistInfoSearchByName={artistInfoSearchByName}
                   albumInfoSearchByName={albumInfoSearchByName}
                   onEditorialPlaylistClick={onEditorialPlaylistClick}
-                />
-              )
-            },
-            {
-              menuItem: t('best'),
-              render: () => (
-                <BestNewMusicTab
-                  dashboardData={dashboardData}
-                  artistInfoSearchByName={artistInfoSearchByName}
-                  albumInfoSearchByName={albumInfoSearchByName}
-                  history={history}
                 />
               )
             },
