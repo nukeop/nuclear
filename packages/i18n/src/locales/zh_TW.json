@@ -52,9 +52,6 @@
   "dashboard": {
     "add-all": "新增所有",
     "artist": "演出者",
-    "best": "熱門新音樂",
-    "best-new-albums": "熱門新專輯",
-    "best-new-tracks": "熱門新單曲",
     "genres": "類型",
     "news": "新聞",
     "playcounts": "播放次數",
