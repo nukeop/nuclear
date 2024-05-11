@@ -52,9 +52,6 @@
   "dashboard": {
     "add-all": "すべて追加",
     "artist": "アーティスト",
-    "best": "人気の新曲",
-    "best-new-albums": "人気の新着アルバム",
-    "best-new-tracks": "人気の新曲",
     "genres": "ジャンル",
     "news": "お知らせ",
     "playcounts": "再生回数",
