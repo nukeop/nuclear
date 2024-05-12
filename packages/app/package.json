@@ -46,6 +46,7 @@
     "classnames": "^2.2.6",
     "d3-drag": "^1.2.3",
     "d3-selection": "^1.4.0",
+    "deasync": "^0.1.28",
     "dotenv": "^8.2.0",
     "electron": "^12.1.0",
     "electron-timber": "^0.5.1",
