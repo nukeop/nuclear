@@ -43,7 +43,7 @@
 		"@storybook/cli": "^6.3.8",
 		"@storybook/preset-typescript": "^3.0.0",
 		"@storybook/react": "^6.3.8",
-		"@testing-library/react": "^11.2.7",
+		"@testing-library/react": "15.0.7",
 		"@types/jest": "^27.4.1",
 		"@types/lodash": "^4.14.158",
 		"@types/numeral": "0.0.28",
