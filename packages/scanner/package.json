@@ -6,7 +6,7 @@
   "types": "index.d.ts",
   "scripts": {
     "build": "cargo-cp-artifact -nc index.node -- cargo build --message-format=json-render-diagnostics",
-    "build-release": "if [ \"$npm_config_target_arch\" == \"arm64\" ]; then npm run build-macos-arm64; elif [ \"$npm_config_target_arch\" == \"x64\" ]; then npm run build-macos; else npm run build-linux-windows; fi",
+    "build-release": "ts-node build-selector.ts",
     "build-linux-windows": "cargo-cp-artifact -nc index.node -- cargo build --release --message-format=json-render-diagnostics",
     "build-macos": "cargo-cp-artifact -nc index.node -- cargo build --target x86_64-apple-darwin --release --message-format=json-render-diagnostics",
     "build-macos-arm64": "cargo-cp-artifact -nc index.node -- cargo build --target aarch64-apple-darwin --release --message-format=json-render-diagnostics",
@@ -26,6 +26,7 @@
   },
   "homepage": "https://github.com/nukeop/nuclear#readme",
   "devDependencies": {
-    "cargo-cp-artifact": "^0.1"
+    "cargo-cp-artifact": "^0.1",
+    "ts-node": "^10.9.2"
   }
 }
