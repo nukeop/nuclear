@@ -7,7 +7,7 @@ use uuid::Uuid;
 use crate::error::{MetadataError, ScannerError};
 use crate::local_track::LocalTrack;
 use crate::metadata::{
-    AudioMetadata, FlacMetadataExtractor, MetadataExtractor, Mp3MetadataExtractor,
+    self, AudioMetadata, FlacMetadataExtractor, MetadataExtractor, Mp3MetadataExtractor,
     Mp4MetadataExtractor, OggMetadataExtractor,
 };
 
@@ -40,18 +40,22 @@ where
     let extractor: Box<dyn MetadataExtractor> = extractor_provider(&path)
         .ok_or_else(|| ScannerError::new(&format!("Unsupported file format: {}", path), &path))?;
     let metadata = extractor.extract_metadata(&path, thumbnails_dir);
+    let filename = path.split("/").last().map(|s| s.to_string()).unwrap();
 
-    match metadata {
-        Ok(metadata) => Ok(LocalTrack {
+    if let Ok(mut metadata) = metadata {
+        metadata.title = metadata.title.clone().or(Some(filename.clone()));
+        metadata.artist = metadata.artist.clone().or(Some("unknown".to_string()));
+        Ok(LocalTrack {
             uuid: Uuid::new_v4().to_string(),
             metadata: metadata,
             filename: path.split("/").last().map(|s| s.to_string()).unwrap(),
             path: path.clone(),
-        }),
-        Err(e) => Err(ScannerError::new(
-            &format!("Error reading file: {}", e),
+        })
+    } else {
+        Err(ScannerError::new(
+            &format!("Error reading file: {}", metadata.unwrap_err()),
             &path,
-        )),
+        ))
     }
 }
 
@@ -138,5 +142,28 @@ mod tests {
             local_track.metadata.thumbnail,
             Some("http://localhost:8080/thumbnails/0b/0b0b0b0b0b0b0b0b.webp".to_string())
         );
+    }
+
+    pub fn test_extractor_from_path_no_metadata(_path: &str) -> Option<Box<dyn MetadataExtractor>> {
+        Some(Box::new(TestMetadataExtractor::new(
+            AudioMetadata::default(),
+        )))
+    }
+
+    #[test]
+    fn test_visit_file_with_no_metadata() {
+        let path = "tests/test.mp3".to_string();
+        let thumbnails_dir: String = "tests/thumbnails".to_string();
+        let local_track =
+            visit_file(path, test_extractor_from_path_no_metadata, &thumbnails_dir).unwrap();
+        assert_eq!(local_track.filename, "test.mp3");
+        assert_eq!(local_track.metadata.artist, Some("unknown".to_string()));
+        assert_eq!(local_track.metadata.title, Some("test.mp3".to_string()));
+        assert_eq!(local_track.metadata.album, None);
+        assert_eq!(local_track.metadata.duration, None);
+        assert_eq!(local_track.metadata.position, None);
+        assert_eq!(local_track.metadata.disc, None);
+        assert_eq!(local_track.metadata.year, None);
+        assert_eq!(local_track.metadata.thumbnail, None);
     }
 }
