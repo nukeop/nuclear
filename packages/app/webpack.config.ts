@@ -118,12 +118,8 @@ module.exports = (env) => {
       )
     ),
     new webpack.ContextReplacementPlugin(
-      /\/(ytpl|ytsr|youtube-ext|bandcamp-scraper|http-cookie-agent|deasync)\//,
+      /\/(ytpl|ytsr|youtube-ext|bandcamp-scraper|http-cookie-agent)\//,
       false
-    ),
-    new webpack.ContextReplacementPlugin(
-      /deasync/,
-      path.resolve(__dirname, 'node_modules', 'deasync', 'index.js')
     )
   ];
 
