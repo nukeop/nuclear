@@ -917,6 +917,10 @@ export const buildElectronStoreState = (overrides?: AnyProps) => {
       albums: [],
       tracks: []
     },
+    queue: {
+      queueItems: [],
+      currentSong: 0
+    },
     playlists: [],
     ...overrides
   };
