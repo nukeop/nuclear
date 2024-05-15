@@ -228,7 +228,14 @@ impl MetadataExtractor for Mp4MetadataExtractor {
         path: &str,
         thumbnails_dir: &str,
     ) -> Result<AudioMetadata, MetadataError> {
-        let tag = mp4ameta::Tag::read_from_path(path).unwrap();
+        let tag = match mp4ameta::Tag::read_from_path(path) {
+            Ok(tag) => tag,
+            Err(_) => {
+                return Err(MetadataError::new(
+                    format!("Could not read metadata from file {}", path).as_str(),
+                ))
+            }
+        };
 
         let mut metadata = AudioMetadata::new();
 
@@ -238,7 +245,7 @@ impl MetadataExtractor for Mp4MetadataExtractor {
         metadata.duration = tag.duration().map(|d| d.as_secs() as u32);
         metadata.position = tag.track_number().map(|n| n as u32);
         metadata.disc = tag.disc_number().map(|n| n as u32);
-        metadata.year = tag.year().map(|y: &str| y.parse().unwrap());
+        metadata.year = tag.year().map(|y: &str| y.to_string());
 
         metadata.thumbnail = Mp4ThumbnailGenerator::generate_thumbnail(
             &path,
