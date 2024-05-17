@@ -13,9 +13,11 @@ export const lyricsSearchSuccess = createStandardAction(Lyrics.LYRICS_SEARCH_SUC
   };
 });
 
+export const lyricsResetScroll = createStandardAction(Lyrics.LYRICS_RESET_SCROLL)();
 
 export function lyricsSearch(track: Track) {
   return (dispatch, getState) => {
+    dispatch(lyricsResetScroll());
     dispatch(lyricsSearchStart(true));
     const providers = getState().plugin.plugins.lyricsProviders;
     const selectedProvider = getState().plugin.selected.lyricsProviders;
