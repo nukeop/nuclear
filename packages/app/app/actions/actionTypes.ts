@@ -78,6 +78,7 @@ export enum ImportFavs {
 export enum Lyrics {
   LYRICS_SEARCH_START = 'LYRICS_SEARCH_START',
   LYRICS_SEARCH_SUCCESS = 'LYRICS_SEARCH_SUCCESS',
+  LYRICS_RESET_SCROLL = 'LYRICS_RESET_SCROLL',
 }
 
 export enum Mastodon {
