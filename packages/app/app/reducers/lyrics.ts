@@ -17,11 +17,15 @@ export default function LyricsReducer (state = initialState, action: LyricsActio
   switch (action.type) {
   case getType(LyricsActions.lyricsSearchStart):
     return Object.assign({}, state, {
-      playbackStreamLoading: action.payload
+      lyricsSearchStarted: true
     });
   case getType(LyricsActions.lyricsSearchSuccess):
     return Object.assign({}, state, {
       lyricsSearchResult: action.payload
+    });
+  case getType(LyricsActions.lyricsResetScroll):
+    return Object.assign({}, state, {
+      lyricsSearchResult: ''
     });
   default:
     return state;
