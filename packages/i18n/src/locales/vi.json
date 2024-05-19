@@ -9,12 +9,12 @@
     "queue": "Thêm album vào playlist",
     "tracks": "Bài hát:",
     "year": "Năm:",
-    "add-to-playlist": "Add album to playlist",
-    "create-playlist": "Create a new playlist",
-    "create-playlist-dialog-title": "Input playlist name:",
-    "create-playlist-dialog-placeholder": "Playlist name...",
-    "create-playlist-dialog-accept": "Save",
-    "create-playlist-dialog-cancel": "Cancel"
+    "add-to-playlist": "Thêm album vào danh sách phát",
+    "create-playlist": "Tạo một danh sách phát mới",
+    "create-playlist-dialog-title": "Nhập tên danh sách phát:",
+    "create-playlist-dialog-placeholder": "Tên danh sách phát...",
+    "create-playlist-dialog-accept": "Lưu",
+    "create-playlist-dialog-cancel": "Huỷ"
   },
   "app": {
     "collection": "Bộ sưu tập",
@@ -47,7 +47,7 @@
     "similar": "Nghệ sỹ tương tự",
     "title": "Tên bài hát",
     "tour": "Đang lưu diễn",
-    "popular-tracks": "Popular tracks"
+    "popular-tracks": "Các bài hát phổ biến"
   },
   "dashboard": {
     "add-all": "Thêm tất cả",
@@ -131,7 +131,7 @@
     "not-found": "Không tìm thấy lời bài hát."
   },
   "option-control": {
-    "rate": "Playback speed",
+    "rate": "Tốc độ phát lại",
     "autoradio": "Tự động tìm kiếm bài hát",
     "loop": "Phát lặp lại",
     "mini-player": "Thu nhỏ trình phát",
@@ -151,7 +151,7 @@
     "delete": "Xóa playlist này",
     "duration": "Thời lượng",
     "empty": "Không có playlist nào.",
-    "empty-help": "Try creating playlists, or import by URL, and they will appear here!",
+    "empty-help": "Hãy thử tạo các danh sách phát, hoặc nhập một liên kết, và chúng sẽ xuất hiện tại đây!",
     "error-empty-data": "Không có dữ liệu",
     "error-invalid-data": "Dữ liệu lỗi",
     "error-open-file": "Không thể mở file",
@@ -160,7 +160,7 @@
     "export-fail-title": "Xuất playlist thất bại",
     "export-success-title": "Xuất playlist thành công",
     "header": "Playlist của bạn",
-    "header-add-button": "Add",
+    "header-add-button": "Thêm",
     "import-progress": "Tiến độ nhập",
     "spotify-import-placeholder": "Dán liên kết danh sách phát nhạc Spotify của bạn ở đây",
     "dialog-placeholder": "Tên playlist...",
@@ -168,9 +168,9 @@
     "dialog-cancel": "Huỷ",
     "dialog-rename": "Đổi tên",
     "dialog-import": "Thêm",
-    "create-button": "Create a new playlist",
+    "create-button": "Tạo một danh sách phát mới",
     "new-playlist": "Danh sách phát mới",
-    "import-url-button": "Import from Spotify",
+    "import-url-button": "Nhập từ Spotify",
     "import-button": "Nhập playlist từ file (JSON)",
     "import-fail-title": "Thêm Playlist thất bại",
     "import-success-title": "Thêm Playlist thành công",
@@ -192,10 +192,10 @@
     "upload-to-server": "Tải lên máy chủ",
     "download-from-server": "Tải về từ máy chủ",
     "number-of-tracks": "bài hát",
-    "input-playlist-url": "Paste playlist URL:",
-    "create-playlist-dialog-title": "Input playlist name:",
-    "playlist": "Playlist",
-    "play": "Play"
+    "input-playlist-url": "Dán một liên kết của danh sách phát:",
+    "create-playlist-dialog-title": "Nhập tên của danh sách phát:",
+    "playlist": "Danh sách phát",
+    "play": "Phát"
   },
   "plugins": {
     "add-a-plugin": "Thêm plugin",
@@ -222,7 +222,7 @@
     "favorite-add": "Thêm vào mục ưa thích",
     "header": "Danh sách đang phát",
     "header-track": "Bản nhạc đang phát",
-    "copy-track-url": "Copy track URL to clipboard",
+    "copy-track-url": "Sao chép liên kết của bài hát đến bảng nhớ tạm",
     "loading": "Stream đang tải.",
     "playlist-add": "Thêm vào playlist",
     "playlist-add-queue": "Add queue to playlist",
@@ -248,7 +248,7 @@
       "unverify": "Huỷ xác minh"
     },
     "create-playlist-dialog-title": "Input playlist name:",
-    "play-now": "Play now"
+    "play-now": "Phát ngay"
   },
   "search": {
     "album": "Bộ sưu tập",
