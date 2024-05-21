@@ -143,7 +143,7 @@ const PlayQueue: React.FC<PlayQueueProps> = ({
     }
   };
 
-  const QueueRow = React.memo(({data, index, style}: QueueRowProps) => {
+  const QueueRow = React.memo(({ data, index, style }: QueueRowProps) => {
     const item = data.queue.queueItems[index] as QueueItemType;
     return (
       <Draggable
@@ -160,7 +160,7 @@ const PlayQueue: React.FC<PlayQueueProps> = ({
               style={style ? {
                 ...draggableProvided.draggableProps.style,
                 ...style
-              } :draggableProvided.draggableProps.style}
+              } : draggableProvided.draggableProps.style}
             >
               <QueuePopupContainer
                 trigger={
@@ -170,7 +170,7 @@ const PlayQueue: React.FC<PlayQueueProps> = ({
                     track={item}
                     onSelect={onSelectTrack(index)}
                     onRemove={onRemoveTrack(index)}
-                    duration={formatTrackDuration(t)(item)} 
+                    duration={formatTrackDuration(t)(item)}
                   />
                 }
                 isQueueItemCompact={data.settings.compactQueueBar}
@@ -209,7 +209,7 @@ const PlayQueue: React.FC<PlayQueueProps> = ({
           compact={Boolean(settings.compactQueueBar)}
         />
 
-        <Droppable 
+        <Droppable
           droppableId='play_queue'
           mode='virtual'
           renderClone={QueueItemClone({
@@ -247,7 +247,10 @@ const PlayQueue: React.FC<PlayQueueProps> = ({
             </div>
           )}
         </Droppable>
-        <StreamVerificationContainer />
+        {
+          settings?.useStreamVerification &&
+          <StreamVerificationContainer />
+        }
       </div>
     </DragDropContext>
   );

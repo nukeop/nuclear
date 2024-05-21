@@ -113,29 +113,28 @@ export const StreamVerificationContainer: React.FC = () => {
     return null;
   }
 
-  return settings?.isReady && 
-  settings?.useStreamVerification && 
-  <StreamVerification 
-    status={verificationStatus}
-    isLoading={isLoading}
-    isDisabled={!currentTrack?.streams?.[0]?.stream}
-    onVerify={onVerify}
-    onUnverify={onUnverify}
-    tooltipStrings={{
-      unknown: t('stream-verification.tooltip.unknown'),
-      unverified: t('stream-verification.tooltip.unverified'),
-      weakly_verified: t('stream-verification.tooltip.weakly-verified'),
-      verified: t('stream-verification.tooltip.verified'),
-      verified_by_user: t('stream-verification.tooltip.verified-by-user')
-    }}
-    streamStatusStrings={{
-      unknown: t('stream-verification.stream-status.unknown'),
-      unverified: t('stream-verification.stream-status.unverified'),
-      weakly_verified: t('stream-verification.stream-status.weakly-verified'),
-      verified: t('stream-verification.stream-status.verified'),
-      verified_by_user: t('stream-verification.stream-status.verified-by-user')
-    }}
-    textVerify={t('stream-verification.verify')}
-    textUnverify={t('stream-verification.unverify')}
-  />;
+  return settings?.isReady &&
+    <StreamVerification
+      status={verificationStatus}
+      isLoading={isLoading}
+      isDisabled={!currentTrack?.streams?.[0]?.stream}
+      onVerify={onVerify}
+      onUnverify={onUnverify}
+      tooltipStrings={{
+        unknown: t('stream-verification.tooltip.unknown'),
+        unverified: t('stream-verification.tooltip.unverified'),
+        weakly_verified: t('stream-verification.tooltip.weakly-verified'),
+        verified: t('stream-verification.tooltip.verified'),
+        verified_by_user: t('stream-verification.tooltip.verified-by-user')
+      }}
+      streamStatusStrings={{
+        unknown: t('stream-verification.stream-status.unknown'),
+        unverified: t('stream-verification.stream-status.unverified'),
+        weakly_verified: t('stream-verification.stream-status.weakly-verified'),
+        verified: t('stream-verification.stream-status.verified'),
+        verified_by_user: t('stream-verification.stream-status.verified-by-user')
+      }}
+      textVerify={t('stream-verification.verify')}
+      textUnverify={t('stream-verification.unverify')}
+    />;
 };
