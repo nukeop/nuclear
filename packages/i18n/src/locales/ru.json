@@ -391,7 +391,7 @@
     "exit-fullscreen": "Нажмите Esc, чтобы выйти из полноэкранного режима"
   },
   "command-palette": {
-    "reminder": "to open the command palette",
+    "reminder": "чтобы открыть командную строку",
     "search-placeholder": "Что вас интересует?",
     "empty-state-help": "Не удаётся найти желаемое? Попробуйте команду справки.",
     "protip-text": "СОВЕТ:",
