@@ -42,6 +42,10 @@ button.nuclear.ui.button {
     }
   }
 
+  &.toggled {
+    background: darken(mix($bglight, $bgdark, 90%), 7.5%) !important;
+  }
+
   $colors: ("green", "blue", "purple", "pink", "orange", "red");
   $colorvars: (
     "green": $green,
