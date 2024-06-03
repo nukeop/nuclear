@@ -8,7 +8,13 @@
     "play": "Αναπαραγωγή",
     "queue": "Προσθήκη άλμπουμ στην ουρά",
     "tracks": "Κομμάτια:",
-    "year": "Έτος:"
+    "year": "Έτος:",
+    "add-to-playlist": "Add album to playlist",
+    "create-playlist": "Create a new playlist",
+    "create-playlist-dialog-title": "Input playlist name:",
+    "create-playlist-dialog-placeholder": "Playlist name...",
+    "create-playlist-dialog-accept": "Save",
+    "create-playlist-dialog-cancel": "Cancel"
   },
   "app": {
     "collection": "Συλλογή",
@@ -40,7 +46,8 @@
     "queue": "Προσθήκη όλων των κομματιών σε ουρά",
     "similar": "Παρόμοιοι καλλιτέχνες",
     "title": "Τίτλος",
-    "tour": "Περιοδίες"
+    "tour": "Περιοδίες",
+    "popular-tracks": "Popular tracks"
   },
   "dashboard": {
     "add-all": "Προσθήκη όλων",
@@ -144,7 +151,7 @@
     "delete": "Διαγραφή της λίστας αναπαραγωγής",
     "duration": "Διάρκεια",
     "empty": "Καμία λίστα αναπαραγωγής.",
-    "empty-help": "Προσπαθήστε να δημιουργήσετε μερικές λίστες αναπαραγωγής ή να εισαγάγετε από url και θα εμφανιστούν εδώ!",
+    "empty-help": "Try creating playlists, or import by URL, and they will appear here!",
     "error-empty-data": "Κενά δεδομένα",
     "error-invalid-data": "Μη έγκυρα δεδομένα",
     "error-open-file": "Αδυναμία ανοίγματος αρχείου",
@@ -153,6 +160,7 @@
     "export-fail-title": "Απέτυχε η εξαγωγή της λίστας αναπαραγωγής",
     "export-success-title": "Επιτυχής εξαγωγή της λίστας αναπαραγωγής",
     "header": "Οι λίστες αναπαραγωγής σας",
+    "header-add-button": "Add",
     "import-progress": "Πρόοδος εισαγωγής",
     "spotify-import-placeholder": "Επικολλήστε ένα url λίστας αναπαραγωγής Spotify εδώ",
     "dialog-placeholder": "Όνομα λίστας αναπαραγωγής...",
@@ -160,9 +168,9 @@
     "dialog-cancel": "Ακύρωση",
     "dialog-rename": "Μετονομασία",
     "dialog-import": "Εισαγωγή",
-    "create-button": "Δημιουργία νέας λίστας αναπαραγωγής",
+    "create-button": "Create a new playlist",
     "new-playlist": "Νέα λίστα αναπαραγωγής",
-    "import-url-button": "Εισαγωγή από url (Spotify)",
+    "import-url-button": "Import from Spotify",
     "import-button": "Εισαγωγή από αρχείο (JSON)",
     "import-fail-title": "Αποτυχία εισαγωγής λίστας αναπαραγωγής",
     "import-success-title": "Η λίστα αναπαραγωγής εισήχθη επιτυχώς",
@@ -183,7 +191,11 @@
     "server-modified-at": "Ο διακομιστής τροποποιήθηκε: ",
     "upload-to-server": "Μεταφόρτωση στον διακομιστή",
     "download-from-server": "Λήψη από τον διακομιστή",
-    "number-of-tracks": "κομμάτια"
+    "number-of-tracks": "κομμάτια",
+    "input-playlist-url": "Paste playlist URL:",
+    "create-playlist-dialog-title": "Input playlist name:",
+    "playlist": "Playlist",
+    "play": "Play"
   },
   "plugins": {
     "add-a-plugin": "Προσθήκη πρόσθετων",
@@ -210,7 +222,7 @@
     "favorite-add": "Προσθήκη στα αγαπημένα",
     "header": "Ουρά",
     "header-track": "Τρέχον κομμάτι",
-    "copy-track-url": "Αντιγραφή διεύθυνσης url στο πρόχειρο",
+    "copy-track-url": "Copy track URL to clipboard",
     "loading": "Η ροή φορτώνει.",
     "playlist-add": "Προσθήκη στην λίστα αναπαραγωγής",
     "playlist-add-queue": "Προσθήκη ουράς στην λίστα αναπαραγωγής",
@@ -234,7 +246,9 @@
       },
       "verify": "Verify",
       "unverify": "Unverify"
-    }
+    },
+    "create-playlist-dialog-title": "Input playlist name:",
+    "play-now": "Play now"
   },
   "search": {
     "album": "Λεύκωμα",
@@ -287,7 +301,7 @@
     "github-description": "Συνδεση με Github για να μοιραστείτε τις λίστες σας στο διαδίκτυο (υπο κατασκευή).",
     "github-title": "GitHub",
     "http": "HTTP API",
-    "invidious-url": "url μιας εφαρμογής invidious",
+    "invidious-url": "Invidious instance URL",
     "language": "Γλώσσα",
     "language-placeholder": "Επιλέξτε μια γλώσσα",
     "lastfm-connect": "Συνδεθείτε με Last.fm",
@@ -377,6 +391,7 @@
     "exit-fullscreen": "Πατήστε ESC για έξοδο από πλήρη οθόνη"
   },
   "command-palette": {
+    "reminder": "to open the command palette",
     "search-placeholder": "Τι θα θέλατε να κάνετε;",
     "empty-state-help": "Δεν φαίνεται να βρίσκετε αυτό που ψάχνετε? Δοκιμάστε την εντολή βοήθειας.",
     "protip-text": "PROTIP:",

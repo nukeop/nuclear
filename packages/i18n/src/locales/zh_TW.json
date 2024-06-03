@@ -8,7 +8,13 @@
     "play": "播放",
     "queue": "將專輯新增到播放清單",
     "tracks": "曲目",
-    "year": "年份"
+    "year": "年份",
+    "add-to-playlist": "Add album to playlist",
+    "create-playlist": "Create a new playlist",
+    "create-playlist-dialog-title": "Input playlist name:",
+    "create-playlist-dialog-placeholder": "Playlist name...",
+    "create-playlist-dialog-accept": "Save",
+    "create-playlist-dialog-cancel": "Cancel"
   },
   "app": {
     "collection": "收藏",
@@ -40,7 +46,8 @@
     "queue": "將所有歌曲新增到播放佇列",
     "similar": "類似的藝人",
     "title": "音樂標題",
-    "tour": "巡迴演出"
+    "tour": "巡迴演出",
+    "popular-tracks": "Popular tracks"
   },
   "dashboard": {
     "add-all": "新增所有",
@@ -81,18 +88,18 @@
   },
   "favorite-albums": {
     "empty": "最喜歡的專輯為空",
-    "empty-help": "嘗試添加一些專輯到最喜歡的中，它們會在這裡出現",
+    "empty-help": "嘗試將一些專輯添加到收藏夾，它們會出現在這裡！",
     "header": "你最喜歡的專輯"
   },
   "favorite-artists": {
     "empty": "沒有最喜歡的藝術家",
-    "empty-help": "嘗試將一些藝術家添加到收藏夾，他們會出現在這裡！",
+    "empty-help": "嘗試將一些藝術家添加到收藏夾，它們會出現在這裡！",
     "header": "你最喜歡的藝術家"
   },
   "favorites": {
     "artist": "演出者",
     "empty": "我的最愛為空",
-    "empty-help": "嘗試將一些藝術家添加到收藏夾，他們會出現在這裡！",
+    "empty-help": "嘗試將一些曲目添加到收藏夾，它們會出現在這裡！",
     "header": "我的最愛",
     "play-random": "隨機播放喜好曲目",
     "title": "音樂標題"
@@ -144,7 +151,7 @@
     "delete": "删除播放清單",
     "duration": "長度",
     "empty": "没有播放清單",
-    "empty-help": "Try create some playlists or import by url and they will appear here!",
+    "empty-help": "Try creating playlists, or import by URL, and they will appear here!",
     "error-empty-data": "空數據",
     "error-invalid-data": "無效數據",
     "error-open-file": "無法打開文件",
@@ -153,6 +160,7 @@
     "export-fail-title": "導出播放列表失敗",
     "export-success-title": "播放列表導出成功",
     "header": "你的播放列表",
+    "header-add-button": "Add",
     "import-progress": "匯入進度",
     "spotify-import-placeholder": "貼上一個 Spotify 歌單網址",
     "dialog-placeholder": "播放清單名稱...",
@@ -160,9 +168,9 @@
     "dialog-cancel": "取消",
     "dialog-rename": "重新命名",
     "dialog-import": "匯入",
-    "create-button": "建立新的播放清單",
+    "create-button": "Create a new playlist",
     "new-playlist": "新增播放清單",
-    "import-url-button": "從 (Spotify) url 匯入",
+    "import-url-button": "Import from Spotify",
     "import-button": "從文件導入(JSON)",
     "import-fail-title": "導入播放列表失敗",
     "import-success-title": "播放列表導入成功",
@@ -183,7 +191,11 @@
     "server-modified-at": "伺服器已編輯: ",
     "upload-to-server": "上傳到伺服器",
     "download-from-server": "從伺服器下載",
-    "number-of-tracks": "曲目"
+    "number-of-tracks": "曲目",
+    "input-playlist-url": "Paste playlist URL:",
+    "create-playlist-dialog-title": "Input playlist name:",
+    "playlist": "Playlist",
+    "play": "Play"
   },
   "plugins": {
     "add-a-plugin": "新增插件",
@@ -210,7 +222,7 @@
     "favorite-add": "加到我的最愛",
     "header": "播放佇列",
     "header-track": "目前曲目",
-    "copy-track-url": "複製網址到剪貼簿",
+    "copy-track-url": "Copy track URL to clipboard",
     "loading": "串流處理中",
     "playlist-add": "加到播放清單",
     "playlist-add-queue": "將佇列加入播放清單",
@@ -234,7 +246,9 @@
       },
       "verify": "驗證",
       "unverify": "未驗證"
-    }
+    },
+    "create-playlist-dialog-title": "Input playlist name:",
+    "play-now": "Play now"
   },
   "search": {
     "album": "專輯",
@@ -287,7 +301,7 @@
     "github-description": "登入 GitHub 並將歌曲清單分享到網路 (即將期待).",
     "github-title": "Github",
     "http": "HTTP API",
-    "invidious-url": "Invidious 事件 URL",
+    "invidious-url": "Invidious instance URL",
     "language": "語言",
     "language-placeholder": "設定語言",
     "lastfm-connect": "連接到 Last.fm",
@@ -350,7 +364,7 @@
     "add-to-favorite": "加到我的最愛",
     "add-to-playlist": "加到播放清單",
     "add-to-queue": "加入佇列清單",
-    "create-playlist": "建立新的播放清單",
+    "create-playlist": "Create a new playlist",
     "create-playlist-dialog-title": "輸入播放清單名稱:",
     "create-playlist-dialog-placeholder": "播放清單名稱...",
     "create-playlist-dialog-accept": "儲存",
@@ -377,6 +391,7 @@
     "exit-fullscreen": "按ESC鍵退出全畫面"
   },
   "command-palette": {
+    "reminder": "to open the command palette",
     "search-placeholder": "您想做什麼呢？",
     "empty-state-help": "找不到你要找的東西嗎？ 嘗試使用幫助命令。",
     "protip-text": "小提示:",

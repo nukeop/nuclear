@@ -8,7 +8,13 @@
     "play": "I-play",
     "queue": "Idagdag ang album sa pila",
     "tracks": "Mga Track:",
-    "year": "Taon:"
+    "year": "Taon:",
+    "add-to-playlist": "Add album to playlist",
+    "create-playlist": "Create a new playlist",
+    "create-playlist-dialog-title": "Input playlist name:",
+    "create-playlist-dialog-placeholder": "Playlist name...",
+    "create-playlist-dialog-accept": "Save",
+    "create-playlist-dialog-cancel": "Cancel"
   },
   "app": {
     "collection": "Koleksyon",
@@ -40,7 +46,8 @@
     "queue": "Idagdag lahat sa pila",
     "similar": "Katulad na artist",
     "title": "Titulado",
-    "tour": "Nasa tour"
+    "tour": "Nasa tour",
+    "popular-tracks": "Popular tracks"
   },
   "dashboard": {
     "add-all": "Idagdag lahat",
@@ -144,7 +151,7 @@
     "delete": "Alisin itong playlist",
     "duration": "Katagalan",
     "empty": "Walang playlists.",
-    "empty-help": "Try create some playlists or import by url and they will appear here!",
+    "empty-help": "Try creating playlists, or import by URL, and they will appear here!",
     "error-empty-data": "Walang datos",
     "error-invalid-data": "Di angkop na datos",
     "error-open-file": "Hindi mabuksan ang file na ito",
@@ -153,6 +160,7 @@
     "export-fail-title": "Ang pagexport ng playlist ay nabigo",
     "export-success-title": "Tuluyang naexport ang playlist",
     "header": "Aking mga playlists",
+    "header-add-button": "Add",
     "import-progress": "Import progress",
     "spotify-import-placeholder": "Paste a Spotify playlist URL here",
     "dialog-placeholder": "Pangalan ng playlist...",
@@ -160,7 +168,7 @@
     "dialog-cancel": "Cancel",
     "dialog-rename": "Rename",
     "dialog-import": "Import",
-    "create-button": "Gumawa ng bagong playlist",
+    "create-button": "Create a new playlist",
     "new-playlist": "Bagong playlist",
     "import-url-button": "Import from Spotify",
     "import-button": "Mag-angkat mula sa file (JSON)",
@@ -183,7 +191,11 @@
     "server-modified-at": "Binagong server: ",
     "upload-to-server": "I-upload sa server",
     "download-from-server": "I-download mula sa server",
-    "number-of-tracks": "mga track"
+    "number-of-tracks": "mga track",
+    "input-playlist-url": "Paste playlist URL:",
+    "create-playlist-dialog-title": "Input playlist name:",
+    "playlist": "Playlist",
+    "play": "Play"
   },
   "plugins": {
     "add-a-plugin": "Magdagdag ng isang plugin",
@@ -210,7 +222,7 @@
     "favorite-add": "Magdagdag sa mga paborito",
     "header": "Pila",
     "header-track": "Kasalukuyang kanta",
-    "copy-track-url": "Kopyahin ang url ng track sa clipboard",
+    "copy-track-url": "Copy track URL to clipboard",
     "loading": "Stream ay inaabangan.",
     "playlist-add": "Idagdag sa playlist",
     "playlist-add-queue": "Idagdag sa pila sa playlist",
@@ -234,7 +246,9 @@
       },
       "verify": "Verify",
       "unverify": "Unverify"
-    }
+    },
+    "create-playlist-dialog-title": "Input playlist name:",
+    "play-now": "Play now"
   },
   "search": {
     "album": "Album",
@@ -287,7 +301,7 @@
     "github-description": "Log in gamit ang Github para makagawa at makabahagi ng iyong mga playlist online (upcoming feature).",
     "github-title": "Github",
     "http": "HTTP APU",
-    "invidious-url": "Url ng Invidious instance",
+    "invidious-url": "Invidious instance URL",
     "language": "Wika",
     "language-placeholder": "Mamili ng wika",
     "lastfm-connect": "Ikonekta sa Last.fm",
@@ -377,6 +391,7 @@
     "exit-fullscreen": "Press ESC to exit full screen"
   },
   "command-palette": {
+    "reminder": "to open the command palette",
     "search-placeholder": "What would you like to do?",
     "empty-state-help": "Can't seem to find what you're looking for? Try the help command.",
     "protip-text": "PROTIP:",

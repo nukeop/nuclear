@@ -8,7 +8,13 @@
     "play": "Přehrát",
     "queue": "Přidat album do fronty",
     "tracks": "Skladby:",
-    "year": "Rok:"
+    "year": "Rok:",
+    "add-to-playlist": "Add album to playlist",
+    "create-playlist": "Create a new playlist",
+    "create-playlist-dialog-title": "Input playlist name:",
+    "create-playlist-dialog-placeholder": "Playlist name...",
+    "create-playlist-dialog-accept": "Save",
+    "create-playlist-dialog-cancel": "Cancel"
   },
   "app": {
     "collection": "Kolekce",
@@ -40,7 +46,8 @@
     "queue": "Přidat všechny skladby do fronty",
     "similar": "Podobní umělci",
     "title": "Název",
-    "tour": "Na turné"
+    "tour": "Na turné",
+    "popular-tracks": "Popular tracks"
   },
   "dashboard": {
     "add-all": "Přidat vše",
@@ -144,7 +151,7 @@
     "delete": "Odstranit tento seznam skladeb",
     "duration": "Délka",
     "empty": "Žádné seznamy skladeb.",
-    "empty-help": "Zkuste vytvořit nějáké Playlisty nebo importovat z URL a oni se pak zde objeví!",
+    "empty-help": "Try creating playlists, or import by URL, and they will appear here!",
     "error-empty-data": "Prázdná data",
     "error-invalid-data": "Neplatná data",
     "error-open-file": "Nelze otevřít soubor",
@@ -153,6 +160,7 @@
     "export-fail-title": "Chyba exportu playlistu",
     "export-success-title": "Playlist úspěšně exportován",
     "header": "Vaše playlisty",
+    "header-add-button": "Add",
     "import-progress": "Importovat postup",
     "spotify-import-placeholder": "Sem vložte odkaz na Spotify playlist",
     "dialog-placeholder": "Název seznamu skladeb...",
@@ -160,9 +168,9 @@
     "dialog-cancel": "Storno",
     "dialog-rename": "Přejmenovat",
     "dialog-import": "Importovat",
-    "create-button": "Vytvořit nový playlist",
+    "create-button": "Create a new playlist",
     "new-playlist": "Nový playlist",
-    "import-url-button": "Importovat z adresy URL (Spotify)",
+    "import-url-button": "Import from Spotify",
     "import-button": "Importovat ze souboru (JSON)",
     "import-fail-title": "Chyba při importu playlistu",
     "import-success-title": "Playlist úspěšně importován",
@@ -183,7 +191,11 @@
     "server-modified-at": "Serverově upraveno: ",
     "upload-to-server": "Nahrát na server",
     "download-from-server": "Stáhnout ze serveru",
-    "number-of-tracks": "skladeb"
+    "number-of-tracks": "skladeb",
+    "input-playlist-url": "Paste playlist URL:",
+    "create-playlist-dialog-title": "Input playlist name:",
+    "playlist": "Playlist",
+    "play": "Play"
   },
   "plugins": {
     "add-a-plugin": "Přidat plugin",
@@ -210,7 +222,7 @@
     "favorite-add": "Přidat k oblíbeným",
     "header": "Fronta",
     "header-track": "Aktuální skladba",
-    "copy-track-url": "Zkopírovat URL skladby do schránky",
+    "copy-track-url": "Copy track URL to clipboard",
     "loading": "Stream se ještě načítá.",
     "playlist-add": "Přidat do seznamu skladeb",
     "playlist-add-queue": "Přidat frontu do seznamu skladeb",
@@ -234,7 +246,9 @@
       },
       "verify": "Ověřit",
       "unverify": "Zrušit ověření"
-    }
+    },
+    "create-playlist-dialog-title": "Input playlist name:",
+    "play-now": "Play now"
   },
   "search": {
     "album": "Album",
@@ -287,7 +301,7 @@
     "github-description": "Přihlaste se přes Github, abyste mohli vytvářet a sdílet vaše seznamy skladeb online (chystaná funkce).",
     "github-title": "GitHub",
     "http": "HTTP API",
-    "invidious-url": "URL instance Invidious",
+    "invidious-url": "Invidious instance URL",
     "language": "Jazyk",
     "language-placeholder": "Vyberte jazyk",
     "lastfm-connect": "Propojit s Last.fm",
@@ -350,7 +364,7 @@
     "add-to-favorite": "Přidat do oblíbených",
     "add-to-playlist": "Přidat do playlistu",
     "add-to-queue": "Přidat do fronty",
-    "create-playlist": "Vytvořit nový playlist",
+    "create-playlist": "Create a new playlist",
     "create-playlist-dialog-title": "Zadejte název playlistu:",
     "create-playlist-dialog-placeholder": "Název playlistu...",
     "create-playlist-dialog-accept": "Uložit",
@@ -377,6 +391,7 @@
     "exit-fullscreen": "Stiskněte ESC pro opuštění celé obrazovky"
   },
   "command-palette": {
+    "reminder": "to open the command palette",
     "search-placeholder": "Co chcete udělat?",
     "empty-state-help": "Nemůžete najít to, co hledáte? Zkuste příkaz nápovědy.",
     "protip-text": "PROTIP:",

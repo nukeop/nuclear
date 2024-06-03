@@ -8,7 +8,13 @@
     "play": "Abspielen",
     "queue": "Album zur Warteschlange hinzufügen",
     "tracks": "Lieder:",
-    "year": "Jahr:"
+    "year": "Jahr:",
+    "add-to-playlist": "Add album to playlist",
+    "create-playlist": "Create a new playlist",
+    "create-playlist-dialog-title": "Input playlist name:",
+    "create-playlist-dialog-placeholder": "Playlist name...",
+    "create-playlist-dialog-accept": "Save",
+    "create-playlist-dialog-cancel": "Cancel"
   },
   "app": {
     "collection": "Sammlung",
@@ -40,7 +46,8 @@
     "queue": "Alle Lieder zur Warteschlange hinzufügen",
     "similar": "Ähnliche Künstler",
     "title": "Titel",
-    "tour": "Auf Tour"
+    "tour": "Auf Tour",
+    "popular-tracks": "Popular tracks"
   },
   "dashboard": {
     "add-all": "Alle hinzufügen",
@@ -144,7 +151,7 @@
     "delete": "Diese Wiedergabeliste löschen",
     "duration": "Länge",
     "empty": "Keine Wiedergabelisten.",
-    "empty-help": "Versuche ein paar Playlisten zu erstellen oder importiere welche per URL und sie werden hier erscheinen!",
+    "empty-help": "Try creating playlists, or import by URL, and they will appear here!",
     "error-empty-data": "Leere Daten",
     "error-invalid-data": "Ungültige Daten",
     "error-open-file": "Datei kann nicht geöffnet werden",
@@ -153,6 +160,7 @@
     "export-fail-title": "Export von Wiedergabeliste fehlgeschlagen",
     "export-success-title": "Wiedergabeliste erfolgreich exportiert",
     "header": "Deine Wiedergabelisten",
+    "header-add-button": "Add",
     "import-progress": "Import-Fortschritt",
     "spotify-import-placeholder": "Spotify Playlist-URL hier einfügen",
     "dialog-placeholder": "Wiedergabelistenname...",
@@ -160,9 +168,9 @@
     "dialog-cancel": "Abbrechen",
     "dialog-rename": "Umbenennen",
     "dialog-import": "Importieren",
-    "create-button": "Neue Wiedergabeliste erstellen",
+    "create-button": "Create a new playlist",
     "new-playlist": "Neue Wiedergabeliste",
-    "import-url-button": "Import aus URL (Spotify)",
+    "import-url-button": "Import from Spotify",
     "import-button": "Aus Datei importieren (JSON)",
     "import-fail-title": "Import der Wiedergabeliste fehlgeschlagen",
     "import-success-title": "Wiedergabeliste erfolgreich importiert",
@@ -183,7 +191,11 @@
     "server-modified-at": "Server geändert: ",
     "upload-to-server": "Zum Server hochladen",
     "download-from-server": "Vom Server herunterladen",
-    "number-of-tracks": "Titel"
+    "number-of-tracks": "Titel",
+    "input-playlist-url": "Paste playlist URL:",
+    "create-playlist-dialog-title": "Input playlist name:",
+    "playlist": "Playlist",
+    "play": "Play"
   },
   "plugins": {
     "add-a-plugin": "Plugin hinzufügen",
@@ -210,7 +222,7 @@
     "favorite-add": "Zu den Favoriten hinzufügen",
     "header": "Warteschlange",
     "header-track": "Aktuelles Lied",
-    "copy-track-url": "Lied-URL in Zwischenablage kopieren",
+    "copy-track-url": "Copy track URL to clipboard",
     "loading": "Stream wird noch geladen.",
     "playlist-add": "Zur Wiedergabeliste hinzufügen",
     "playlist-add-queue": "Warteschlange zur Wiedergabeliste hinzufügen",
@@ -234,7 +246,9 @@
       },
       "verify": "Verifizieren",
       "unverify": "Bestätigung entfernen"
-    }
+    },
+    "create-playlist-dialog-title": "Input playlist name:",
+    "play-now": "Play now"
   },
   "search": {
     "album": "Album",
@@ -287,7 +301,7 @@
     "github-description": "Melde dich über GitHub an, um deine Wiedergabelisten online erstellen und teilen zu können (kommende Funktion).",
     "github-title": "GitHub",
     "http": "HTTP API",
-    "invidious-url": "Invidious Instanz URL",
+    "invidious-url": "Invidious instance URL",
     "language": "Sprache",
     "language-placeholder": "Wähle eine Sprache",
     "lastfm-connect": "Mit Last.fm verbinden",
@@ -350,7 +364,7 @@
     "add-to-favorite": "Zu den Favoriten hinzufügen",
     "add-to-playlist": "Zur Wiedergabeliste hinzufügen",
     "add-to-queue": "Zur Warteschlange hinzufügen",
-    "create-playlist": "Neue Wiedergabeliste erstellen",
+    "create-playlist": "Create a new playlist",
     "create-playlist-dialog-title": "Name der Wiedergabeliste eingeben:",
     "create-playlist-dialog-placeholder": "Name der Wiedergabeliste...",
     "create-playlist-dialog-accept": "Speichern",
@@ -377,6 +391,7 @@
     "exit-fullscreen": "ESC Taste drücken, um den Vollbildmodus zu beenden"
   },
   "command-palette": {
+    "reminder": "to open the command palette",
     "search-placeholder": "Was möchtest du machen?",
     "empty-state-help": "Kann nicht finden, was du suchst? Probiere den Hilfe-Befehl.",
     "protip-text": "PROTIP:",

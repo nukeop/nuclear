@@ -8,7 +8,13 @@
     "play": "Putar",
     "queue": "Tambahkan album ke daftar antrian",
     "tracks": "Lagu:",
-    "year": "Tahun:"
+    "year": "Tahun:",
+    "add-to-playlist": "Add album to playlist",
+    "create-playlist": "Create a new playlist",
+    "create-playlist-dialog-title": "Input playlist name:",
+    "create-playlist-dialog-placeholder": "Playlist name...",
+    "create-playlist-dialog-accept": "Save",
+    "create-playlist-dialog-cancel": "Cancel"
   },
   "app": {
     "collection": "Koleksi",
@@ -40,7 +46,8 @@
     "queue": "Tambahkan semua lagu ke daftar antrian",
     "similar": "Musisi yang mirip",
     "title": "Judul",
-    "tour": "Dalam tur"
+    "tour": "Dalam tur",
+    "popular-tracks": "Popular tracks"
   },
   "dashboard": {
     "add-all": "Tambahkan semua",
@@ -144,7 +151,7 @@
     "delete": "Hapus daftar putar ini",
     "duration": "Durasi",
     "empty": "Tidak ada daftar putar.",
-    "empty-help": "Try create some playlists or import by url and they will appear here!",
+    "empty-help": "Try creating playlists, or import by URL, and they will appear here!",
     "error-empty-data": "Data kosong",
     "error-invalid-data": "Data tidak valid",
     "error-open-file": "Tidak bisa membuka berkas",
@@ -153,6 +160,7 @@
     "export-fail-title": "Eksport daftar putar gagal",
     "export-success-title": "Daftar putar berhasil diekspor",
     "header": "Daftar putarmu",
+    "header-add-button": "Add",
     "import-progress": "Impor perkembangan",
     "spotify-import-placeholder": "Tempelkan tautan playlist Spotify di sini",
     "dialog-placeholder": "Nama daftar putar...",
@@ -160,9 +168,9 @@
     "dialog-cancel": "Batal",
     "dialog-rename": "Ubah Nama",
     "dialog-import": "Impor",
-    "create-button": "Buat daftar putar baru",
+    "create-button": "Create a new playlist",
     "new-playlist": "Daftar putar baru",
-    "import-url-button": "Impor dari url (Spotify)",
+    "import-url-button": "Import from Spotify",
     "import-button": "Impor berkas (JSON)",
     "import-fail-title": "Impor daftar putar gagal",
     "import-success-title": "Daftar putar berhasil diimpor",
@@ -183,7 +191,11 @@
     "server-modified-at": "Server diedit: ",
     "upload-to-server": "Unggah ke server",
     "download-from-server": "Unduh dari server",
-    "number-of-tracks": "lagu"
+    "number-of-tracks": "lagu",
+    "input-playlist-url": "Paste playlist URL:",
+    "create-playlist-dialog-title": "Input playlist name:",
+    "playlist": "Playlist",
+    "play": "Play"
   },
   "plugins": {
     "add-a-plugin": "Tambahkan plugin",
@@ -210,7 +222,7 @@
     "favorite-add": "Tambahkan ke favorit",
     "header": "antrian",
     "header-track": "Lagu sekarang",
-    "copy-track-url": "Salin url lagu ke clipboard",
+    "copy-track-url": "Copy track URL to clipboard",
     "loading": "Sedang memuat.",
     "playlist-add": "Tambahkan ke daftar putar",
     "playlist-add-queue": "Tambahkan antrian ke daftar putar",
@@ -234,7 +246,9 @@
       },
       "verify": "Verifikasi",
       "unverify": "Tidak diverifikasi"
-    }
+    },
+    "create-playlist-dialog-title": "Input playlist name:",
+    "play-now": "Play now"
   },
   "search": {
     "album": "Album",
@@ -287,7 +301,7 @@
     "github-description": "Masuk melalui Github agar dapat membuat dan berbagi daftar putar secara daring (fitur yang akan datang).",
     "github-title": "Github",
     "http": "HTTP API",
-    "invidious-url": "Url Invidious",
+    "invidious-url": "Invidious instance URL",
     "language": "Bahasa",
     "language-placeholder": "Pilih bahasa",
     "lastfm-connect": "Hubungkan dengan Last.fm",
@@ -350,7 +364,7 @@
     "add-to-favorite": "Tambahkan ke favorit",
     "add-to-playlist": "Tambahkan ke daftar putar",
     "add-to-queue": "Tambahkan ke daftar antri",
-    "create-playlist": "Buat playlist baru",
+    "create-playlist": "Create a new playlist",
     "create-playlist-dialog-title": "Masukkan nama playlist:",
     "create-playlist-dialog-placeholder": "Nama playlist...",
     "create-playlist-dialog-accept": "Simpan",
@@ -377,6 +391,7 @@
     "exit-fullscreen": "Tekan ESC untuk keluar dari layar penuh"
   },
   "command-palette": {
+    "reminder": "to open the command palette",
     "search-placeholder": "Apa yang ingin anda lakukan?",
     "empty-state-help": "Tidak dapat menemukan apa yang anda inginkan? Coba dengan perintah bantuan.",
     "protip-text": "PROTIP:",

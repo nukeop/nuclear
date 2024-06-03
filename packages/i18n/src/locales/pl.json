@@ -8,7 +8,13 @@
     "play": "Odtwórz",
     "queue": "Dodaj album do kolejki",
     "tracks": "Utwory:",
-    "year": "Rok:"
+    "year": "Rok:",
+    "add-to-playlist": "Add album to playlist",
+    "create-playlist": "Create a new playlist",
+    "create-playlist-dialog-title": "Input playlist name:",
+    "create-playlist-dialog-placeholder": "Playlist name...",
+    "create-playlist-dialog-accept": "Save",
+    "create-playlist-dialog-cancel": "Cancel"
   },
   "app": {
     "collection": "Kolekcja",
@@ -40,7 +46,8 @@
     "queue": "Dodaj wszystkie utwory do kolejki",
     "similar": "Podobni artyści",
     "title": "Tytuł",
-    "tour": "W trasie"
+    "tour": "W trasie",
+    "popular-tracks": "Popular tracks"
   },
   "dashboard": {
     "add-all": "Dodaj wszystkie",
@@ -144,7 +151,7 @@
     "delete": "Usuń tę listę odtwarzania",
     "duration": "Długość",
     "empty": "Brak list odtwarzania.",
-    "empty-help": "Utwórz kilka list odtwarzania lub zaimportuj poprzez adres URL, aby się tu pojawiły!",
+    "empty-help": "Try creating playlists, or import by URL, and they will appear here!",
     "error-empty-data": "Brak danych",
     "error-invalid-data": "Nieprawidłowe dane",
     "error-open-file": "Nie można otworzyć pliku",
@@ -153,6 +160,7 @@
     "export-fail-title": "Błąd eksportowania listy odtwarzania",
     "export-success-title": "Lista odtwarzania wyeksportowana pomyślnie",
     "header": "Twoje listy odtwarzania",
+    "header-add-button": "Add",
     "import-progress": "Postęp importu",
     "spotify-import-placeholder": "Tu wklej link do playlisty ze Spotify",
     "dialog-placeholder": "Nazwa listy odtwarzania...",
@@ -160,9 +168,9 @@
     "dialog-cancel": "Anuluj",
     "dialog-rename": "Zmień nazwę",
     "dialog-import": "Import",
-    "create-button": "Utwórz nową playlistę",
+    "create-button": "Create a new playlist",
     "new-playlist": "Nowa playlista",
-    "import-url-button": "Importuj z URL (Spotify)",
+    "import-url-button": "Import from Spotify",
     "import-button": "Importuj z pliku (JSON)",
     "import-fail-title": "Błąd importowania listy odtwarzania",
     "import-success-title": "Lista odtwarzania zaimportowana pomyślnie",
@@ -183,7 +191,11 @@
     "server-modified-at": "Zmodyfikowany serwer: ",
     "upload-to-server": "Prześlij na serwer",
     "download-from-server": "Pobierz z serwera",
-    "number-of-tracks": "utwory"
+    "number-of-tracks": "utwory",
+    "input-playlist-url": "Paste playlist URL:",
+    "create-playlist-dialog-title": "Input playlist name:",
+    "playlist": "Playlist",
+    "play": "Play"
   },
   "plugins": {
     "add-a-plugin": "Dodaj plugin",
@@ -210,10 +222,10 @@
     "favorite-add": "Dodaj do ulubionych",
     "header": "Kolejka",
     "header-track": "Odtwarzane",
-    "copy-track-url": "Skopiuj link utworu do schowka",
+    "copy-track-url": "Copy track URL to clipboard",
     "loading": "Strumień wciąż ładowany.",
     "playlist-add": "Dodaj do listy odtwarzania",
-    "playlist-add-queue": "Dodaj do kolejki do listy odtwarzania",
+    "playlist-add-queue": "Add queue to playlist",
     "playlist-toast-content": "Lista odtwarzania {{name}} została utworzona.",
     "playlist-toast-title": "Lista odtwarzania utworzona",
     "live": "Na żywo",
@@ -234,7 +246,9 @@
       },
       "verify": "Zweryfikuj",
       "unverify": "Cofnij weryfikację"
-    }
+    },
+    "create-playlist-dialog-title": "Input playlist name:",
+    "play-now": "Play now"
   },
   "search": {
     "album": "Album",
@@ -287,7 +301,7 @@
     "github-description": "Zaloguj się za pomocą Github, aby móc tworzyć i dzielić się twoimi playlistami online (planowana funkcja).",
     "github-title": "Github",
     "http": "HTTP API",
-    "invidious-url": "URL instancji Invidious",
+    "invidious-url": "Invidious instance URL",
     "language": "Język",
     "language-placeholder": "Wybierz język",
     "lastfm-connect": "Połącz z Last.fm",
@@ -350,7 +364,7 @@
     "add-to-favorite": "Dodaj do ulubionych",
     "add-to-playlist": "Dodaj do playlisty",
     "add-to-queue": "Dodaj do kolejki",
-    "create-playlist": "Utwórz nową playlistę",
+    "create-playlist": "Create a new playlist",
     "create-playlist-dialog-title": "Nazwa playlisty:",
     "create-playlist-dialog-placeholder": "Nazwa listy odtwarzania...",
     "create-playlist-dialog-accept": "Zapisz",
@@ -377,6 +391,7 @@
     "exit-fullscreen": "Naciśnij ESC, aby wyjść z trybu pełnoekranowego"
   },
   "command-palette": {
+    "reminder": "to open the command palette",
     "search-placeholder": "Co chciałbyś zrobić?",
     "empty-state-help": "Nie możesz znaleźć tego, czego szukasz? Spójrz na pomoc na dole.",
     "protip-text": "PROTIP:",

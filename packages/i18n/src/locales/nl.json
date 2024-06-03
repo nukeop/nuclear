@@ -8,7 +8,13 @@
     "play": "Afspelen",
     "queue": "Album toevoegen aan wachtrij",
     "tracks": "Nummers:",
-    "year": "Jaar:"
+    "year": "Jaar:",
+    "add-to-playlist": "Add album to playlist",
+    "create-playlist": "Create a new playlist",
+    "create-playlist-dialog-title": "Input playlist name:",
+    "create-playlist-dialog-placeholder": "Playlist name...",
+    "create-playlist-dialog-accept": "Save",
+    "create-playlist-dialog-cancel": "Cancel"
   },
   "app": {
     "collection": "Verzameling",
@@ -40,7 +46,8 @@
     "queue": "Alle nummers toevoegen aan wachtrij",
     "similar": "Vergelijkbare artiesten",
     "title": "Titel",
-    "tour": "Aan het touren"
+    "tour": "Aan het touren",
+    "popular-tracks": "Popular tracks"
   },
   "dashboard": {
     "add-all": "Alles toevoegen",
@@ -144,7 +151,7 @@
     "delete": "Verwijderen",
     "duration": "Duur",
     "empty": "Geen afspeellijsten.",
-    "empty-help": "Probeer enkele afspeellijsten te maken, of importeer op url, en ze zullen hier verschijnen!",
+    "empty-help": "Try creating playlists, or import by URL, and they will appear here!",
     "error-empty-data": "Lege gegevens",
     "error-invalid-data": "Ongeldige gegevens",
     "error-open-file": "Kan bestand niet openen",
@@ -153,6 +160,7 @@
     "export-fail-title": "Afspeellijst exporteren mislukt",
     "export-success-title": "Afspeellijst succesvol geëxporteerd",
     "header": "Uw afspeellijsten",
+    "header-add-button": "Add",
     "import-progress": "Import voortgang",
     "spotify-import-placeholder": "Plak een Spotify-afspeellijst URL hier",
     "dialog-placeholder": "Naam van afspeellijst...",
@@ -160,9 +168,9 @@
     "dialog-cancel": "Annuleren",
     "dialog-rename": "Hernoemen",
     "dialog-import": "Importeren",
-    "create-button": "Nieuwe afspeellijst aanmaken",
+    "create-button": "Create a new playlist",
     "new-playlist": "Nieuwe afspeellijst",
-    "import-url-button": "Importeren van URL (Spotify)",
+    "import-url-button": "Import from Spotify",
     "import-button": "Uit één bestand importeren (JSON)",
     "import-fail-title": "Afspeellijst importeren mislukt",
     "import-success-title": "Afspeellijst succesvol geïmporteerd",
@@ -183,7 +191,11 @@
     "server-modified-at": "Server gewijzigd: ",
     "upload-to-server": "Naar server uploaden",
     "download-from-server": "Van server downloaden",
-    "number-of-tracks": "nummers"
+    "number-of-tracks": "nummers",
+    "input-playlist-url": "Paste playlist URL:",
+    "create-playlist-dialog-title": "Input playlist name:",
+    "playlist": "Playlist",
+    "play": "Play"
   },
   "plugins": {
     "add-a-plugin": "Een plug-in toevoegen",
@@ -210,7 +222,7 @@
     "favorite-add": "Toevoegen aan favorieten",
     "header": "Wachtrij",
     "header-track": "Huidige nummer",
-    "copy-track-url": "Kopieer de track-url naar het klembord",
+    "copy-track-url": "Copy track URL to clipboard",
     "loading": "Bezig met laden van stream...",
     "playlist-add": "Toevoegen aan afspeellijst",
     "playlist-add-queue": "Wachtrij toevoegen aan afspeellijst",
@@ -234,7 +246,9 @@
       },
       "verify": "Verifiëren",
       "unverify": "Maak verificatie ongedaan"
-    }
+    },
+    "create-playlist-dialog-title": "Input playlist name:",
+    "play-now": "Play now"
   },
   "search": {
     "album": "Album",
@@ -287,7 +301,7 @@
     "github-description": "Log in met je GitHub-account om online-afspeellijsten te creëren en delen (binnenkort).",
     "github-title": "GitHub",
     "http": "HTTP-API",
-    "invidious-url": "Invidious instantie-url",
+    "invidious-url": "Invidious instance URL",
     "language": "Taal",
     "language-placeholder": "Kies een taal",
     "lastfm-connect": "Koppelen aan Last.fm",
@@ -350,7 +364,7 @@
     "add-to-favorite": "Toevoegen aan favorieten",
     "add-to-playlist": "Toevoegen aan afspeellijst",
     "add-to-queue": "Toevoegen aan wachtrij",
-    "create-playlist": "Nieuwe afspeellijst aanmaken",
+    "create-playlist": "Create a new playlist",
     "create-playlist-dialog-title": "Naam van afspeellijst invoeren:",
     "create-playlist-dialog-placeholder": "Naam van afspeellijst...",
     "create-playlist-dialog-accept": "Opslaan",
@@ -377,6 +391,7 @@
     "exit-fullscreen": "Druk op ESC om volledig scherm af te sluiten"
   },
   "command-palette": {
+    "reminder": "to open the command palette",
     "search-placeholder": "Wat wilt u doen?",
     "empty-state-help": "Kunt u niet vinden wat u zoekt? Probeer de hulpcommando.",
     "protip-text": "PROTIP:",
