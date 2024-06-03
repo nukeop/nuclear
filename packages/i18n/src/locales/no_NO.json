@@ -8,7 +8,13 @@
     "play": "Spill",
     "queue": "Legg til album i køen",
     "tracks": "Spor:",
-    "year": "År:"
+    "year": "År:",
+    "add-to-playlist": "Legg til album i spilleliste",
+    "create-playlist": "Create a new playlist",
+    "create-playlist-dialog-title": "Input playlist name:",
+    "create-playlist-dialog-placeholder": "Playlist name...",
+    "create-playlist-dialog-accept": "Save",
+    "create-playlist-dialog-cancel": "Cancel"
   },
   "app": {
     "collection": "Samling",
@@ -40,7 +46,8 @@
     "queue": "Legg til alle spor i køen",
     "similar": "Lignende artister",
     "title": "Tittel",
-    "tour": "Sendes på tur"
+    "tour": "Sendes på tur",
+    "popular-tracks": "Popular tracks"
   },
   "dashboard": {
     "add-all": "Legg til alle",
@@ -144,7 +151,7 @@
     "delete": "Slett denne spillelisten",
     "duration": "Lengde",
     "empty": "Ingen spillelister.",
-    "empty-help": "Prøv å lage noen spillelister eller urlimporter, og de vil vises her!",
+    "empty-help": "Try creating playlists, or import by URL, and they will appear here!",
     "error-empty-data": "Tom data",
     "error-invalid-data": "Ugyldige data",
     "error-open-file": "Kan ikke åpne fil",
@@ -153,6 +160,7 @@
     "export-fail-title": "Eksport av spilleliste feilet",
     "export-success-title": "Vellykket eksport av spilleliste",
     "header": "Dine spillelister",
+    "header-add-button": "Add",
     "import-progress": "Import progress",
     "spotify-import-placeholder": "Paste a Spotify playlist URL here",
     "dialog-placeholder": "Navn på spilleliste...",
@@ -160,7 +168,7 @@
     "dialog-cancel": "Cancel",
     "dialog-rename": "Rename",
     "dialog-import": "Import",
-    "create-button": "Lag ny spilleliste",
+    "create-button": "Create a new playlist",
     "new-playlist": "Ny spilleliste",
     "import-url-button": "Import from Spotify",
     "import-button": "Importer fra fil (JSON)",
@@ -183,7 +191,11 @@
     "server-modified-at": "Server endret: ",
     "upload-to-server": "Last opp til server",
     "download-from-server": "Last ned fra server",
-    "number-of-tracks": "spor"
+    "number-of-tracks": "spor",
+    "input-playlist-url": "Paste playlist URL:",
+    "create-playlist-dialog-title": "Input playlist name:",
+    "playlist": "Playlist",
+    "play": "Play"
   },
   "plugins": {
     "add-a-plugin": "Legg til en plugin",
@@ -210,7 +222,7 @@
     "favorite-add": "Legg til som favoritt",
     "header": "Kø",
     "header-track": "Gjeldende spor",
-    "copy-track-url": "Kopier spor-url til utklippstavle",
+    "copy-track-url": "Copy track URL to clipboard",
     "loading": "Strømming lastes fortsatt.",
     "playlist-add": "Legg til i spilleliste",
     "playlist-add-queue": "Legg til i spilleliste kø",
@@ -234,7 +246,9 @@
       },
       "verify": "Verify",
       "unverify": "Unverify"
-    }
+    },
+    "create-playlist-dialog-title": "Input playlist name:",
+    "play-now": "Play now"
   },
   "search": {
     "album": "album",
@@ -287,7 +301,7 @@
     "github-description": "Logg inn via Github for å kunne lage og dele spillelister på nett (kommende funksjon).",
     "github-title": "Github",
     "http": "HTTP API",
-    "invidious-url": "Invivert instans URL",
+    "invidious-url": "Invidious instance URL",
     "language": "Språk",
     "language-placeholder": "Velg et språk",
     "lastfm-connect": "Koble til Last.fm",
@@ -377,6 +391,7 @@
     "exit-fullscreen": "Trykk ESC for å avslutte fullskjerm"
   },
   "command-palette": {
+    "reminder": "to open the command palette",
     "search-placeholder": "What would you like to do?",
     "empty-state-help": "Can't seem to find what you're looking for? Try the help command.",
     "protip-text": "PROTIP:",

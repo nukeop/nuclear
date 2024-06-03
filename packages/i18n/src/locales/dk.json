@@ -8,7 +8,13 @@
     "play": "Afspil",
     "queue": "Tilføj album til kø",
     "tracks": "Numre:",
-    "year": "Årstal:"
+    "year": "Årstal:",
+    "add-to-playlist": "Add album to playlist",
+    "create-playlist": "Create a new playlist",
+    "create-playlist-dialog-title": "Input playlist name:",
+    "create-playlist-dialog-placeholder": "Playlist name...",
+    "create-playlist-dialog-accept": "Save",
+    "create-playlist-dialog-cancel": "Cancel"
   },
   "app": {
     "collection": "Samling",
@@ -40,7 +46,8 @@
     "queue": "Tilføj alle sange til kø",
     "similar": "Lignende artister",
     "title": "Titel",
-    "tour": "På turné"
+    "tour": "På turné",
+    "popular-tracks": "Popular tracks"
   },
   "dashboard": {
     "add-all": "Tilføj alle",
@@ -144,7 +151,7 @@
     "delete": "Slet denne afspilningsliste",
     "duration": "Længde",
     "empty": "Ingen afspilningsliste.",
-    "empty-help": "Try create some playlists or import by url and they will appear here!",
+    "empty-help": "Try creating playlists, or import by URL, and they will appear here!",
     "error-empty-data": "Ingen data",
     "error-invalid-data": "Ugyldige data",
     "error-open-file": "Kan ikke åbne fil",
@@ -153,6 +160,7 @@
     "export-fail-title": "Eksport af spilleliste mislykkedes",
     "export-success-title": "Spilleliste eksporterede succesfuldt",
     "header": "Dine spillelister",
+    "header-add-button": "Add",
     "import-progress": "Importer fremskridt",
     "spotify-import-placeholder": "Indsæt et Spotify spilleliste URL her",
     "dialog-placeholder": "Afspilningslistens navn...",
@@ -160,9 +168,9 @@
     "dialog-cancel": "Annuller",
     "dialog-rename": "Omdøb",
     "dialog-import": "Importer",
-    "create-button": "Opret ny spilleliste",
+    "create-button": "Create a new playlist",
     "new-playlist": "Ny playliste",
-    "import-url-button": "Importer fra url (Spotify)",
+    "import-url-button": "Import from Spotify",
     "import-button": "Importer fra fil (JSON)",
     "import-fail-title": "Import af spilleliste mislykkedes",
     "import-success-title": "Spilleliste importerede succesfuldt",
@@ -183,7 +191,11 @@
     "server-modified-at": "Server ændret: ",
     "upload-to-server": "Upload til server",
     "download-from-server": "Hent fra server",
-    "number-of-tracks": "numre"
+    "number-of-tracks": "numre",
+    "input-playlist-url": "Paste playlist URL:",
+    "create-playlist-dialog-title": "Input playlist name:",
+    "playlist": "Playlist",
+    "play": "Play"
   },
   "plugins": {
     "add-a-plugin": "tilføj udvidelse",
@@ -210,7 +222,7 @@
     "favorite-add": "Tilføj til farvoritter",
     "header": "Kø",
     "header-track": "Nuværende sang",
-    "copy-track-url": "Kopier nummer-url til udklipsholder",
+    "copy-track-url": "Copy track URL to clipboard",
     "loading": "Stream loader stadig.",
     "playlist-add": "Tilføj til afspilningsliste",
     "playlist-add-queue": "Tilføj kø til afspilningsliste",
@@ -234,7 +246,9 @@
       },
       "verify": "Verify",
       "unverify": "Unverify"
-    }
+    },
+    "create-playlist-dialog-title": "Input playlist name:",
+    "play-now": "Play now"
   },
   "search": {
     "album": "Album",
@@ -287,7 +301,7 @@
     "github-description": "Log ind via Github for at kunne oprette og dele dine afspilningslister online (Kommende funktion).",
     "github-title": "Github",
     "http": "HTTP API",
-    "invidious-url": "Invidious instans url",
+    "invidious-url": "Invidious instance URL",
     "language": "Sprog",
     "language-placeholder": "Vælg et sprog",
     "lastfm-connect": "Forbind med Last.fm",
@@ -377,6 +391,7 @@
     "exit-fullscreen": "Tryk på ESC for at afslutte fuld skærm"
   },
   "command-palette": {
+    "reminder": "to open the command palette",
     "search-placeholder": "Hvad ønsker du at gøre?",
     "empty-state-help": "Kan du ikke finde det, du leder efter? Prøv hjælpekommandoen.",
     "protip-text": "PROTIP:",

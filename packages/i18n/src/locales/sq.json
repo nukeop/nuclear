@@ -8,7 +8,13 @@
     "play": "Play",
     "queue": "Shto album në radhë",
     "tracks": "Tracks:",
-    "year": "Year:"
+    "year": "Year:",
+    "add-to-playlist": "Add album to playlist",
+    "create-playlist": "Create a new playlist",
+    "create-playlist-dialog-title": "Input playlist name:",
+    "create-playlist-dialog-placeholder": "Playlist name...",
+    "create-playlist-dialog-accept": "Save",
+    "create-playlist-dialog-cancel": "Cancel"
   },
   "app": {
     "collection": "Koleksion",
@@ -40,7 +46,8 @@
     "queue": "Shto të gjitha këngët në radhë",
     "similar": "Artistë të ngjashëm",
     "title": "Titulli",
-    "tour": "Në turn"
+    "tour": "Në turn",
+    "popular-tracks": "Popular tracks"
   },
   "dashboard": {
     "add-all": "Add all",
@@ -144,7 +151,7 @@
     "delete": "Fshi këtë listë këngësh",
     "duration": "Length",
     "empty": "Nuk ka lista këngësh.",
-    "empty-help": "Try create some playlists or import by url and they will appear here!",
+    "empty-help": "Try creating playlists, or import by URL, and they will appear here!",
     "error-empty-data": "Empty data",
     "error-invalid-data": "Invalid data",
     "error-open-file": "Can not open file",
@@ -153,6 +160,7 @@
     "export-fail-title": "Playlist export fail",
     "export-success-title": "Playlist exported successfully",
     "header": "Your playlists",
+    "header-add-button": "Add",
     "import-progress": "Import progress",
     "spotify-import-placeholder": "Paste a Spotify playlist URL here",
     "dialog-placeholder": "Emri i listës...",
@@ -183,7 +191,11 @@
     "server-modified-at": "Server modified: ",
     "upload-to-server": "Upload to server",
     "download-from-server": "Download from server",
-    "number-of-tracks": "tracks"
+    "number-of-tracks": "tracks",
+    "input-playlist-url": "Paste playlist URL:",
+    "create-playlist-dialog-title": "Input playlist name:",
+    "playlist": "Playlist",
+    "play": "Play"
   },
   "plugins": {
     "add-a-plugin": "Shto një plugin",
@@ -210,10 +222,10 @@
     "favorite-add": "Shto tek të preferuarat",
     "header": "Radha",
     "header-track": "Kënga aktuale",
-    "copy-track-url": "Copy track url to clipboard",
+    "copy-track-url": "Copy track URL to clipboard",
     "loading": "Transmetimi akoma duke u ngarkuar.",
     "playlist-add": "Shto në listë",
-    "playlist-add-queue": "Shto në radhën e listës",
+    "playlist-add-queue": "Add queue to playlist",
     "playlist-toast-content": "Lista {{name}} është krijuar.",
     "playlist-toast-title": "U krijua lista",
     "live": "Live",
@@ -234,7 +246,9 @@
       },
       "verify": "Verify",
       "unverify": "Unverify"
-    }
+    },
+    "create-playlist-dialog-title": "Input playlist name:",
+    "play-now": "Play now"
   },
   "search": {
     "album": "Albumi",
@@ -287,7 +301,7 @@
     "github-description": "Kyçuni nëpërmjet Github në mënyrë që të krijoni dhe të ndani listat tuaja online (veçori e ardshme).",
     "github-title": "Github",
     "http": "HTTP API",
-    "invidious-url": "Invidious instance url",
+    "invidious-url": "Invidious instance URL",
     "language": "Gjuha",
     "language-placeholder": "Zgjidhni një gjuhë",
     "lastfm-connect": "Lidhuni me Last.fm",
@@ -377,6 +391,7 @@
     "exit-fullscreen": "Press ESC to exit full screen"
   },
   "command-palette": {
+    "reminder": "to open the command palette",
     "search-placeholder": "What would you like to do?",
     "empty-state-help": "Can't seem to find what you're looking for? Try the help command.",
     "protip-text": "PROTIP:",

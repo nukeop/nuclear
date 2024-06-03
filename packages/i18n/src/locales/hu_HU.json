@@ -8,7 +8,13 @@
     "play": "Lejátszás",
     "queue": "Album hozzáadása a várólistához",
     "tracks": "Számok:",
-    "year": "Év:"
+    "year": "Év:",
+    "add-to-playlist": "Add album to playlist",
+    "create-playlist": "Create a new playlist",
+    "create-playlist-dialog-title": "Input playlist name:",
+    "create-playlist-dialog-placeholder": "Playlist name...",
+    "create-playlist-dialog-accept": "Save",
+    "create-playlist-dialog-cancel": "Cancel"
   },
   "app": {
     "collection": "Gyűjtemény",
@@ -40,7 +46,8 @@
     "queue": "Minden szám hozzáadása a várólistához",
     "similar": "Hasonló előadók",
     "title": "Cím",
-    "tour": "Turnén van"
+    "tour": "Turnén van",
+    "popular-tracks": "Popular tracks"
   },
   "dashboard": {
     "add-all": "Összes hozzáadása",
@@ -153,6 +160,7 @@
     "export-fail-title": "Nem sikerült kiírni a lejátszási listát",
     "export-success-title": "Sikeresen fájlba lett írva a lejátszási lista",
     "header": "Lejátszási listáid",
+    "header-add-button": "Add",
     "import-progress": "Beolvasás folyamatban...",
     "spotify-import-placeholder": "Spotify URL beillesztése ide",
     "dialog-placeholder": "Lejátszási lista neve...",
@@ -160,9 +168,9 @@
     "dialog-cancel": "Mégsem",
     "dialog-rename": "Átnevezés",
     "dialog-import": "Beolvasás",
-    "create-button": "Új lejátszási lista létrehozása",
+    "create-button": "Create a new playlist",
     "new-playlist": "Új lejátszási lista",
-    "import-url-button": "Beolvasás URL-ből (Spotify)",
+    "import-url-button": "Import from Spotify",
     "import-button": "Beolvasás fájlból (JSON)",
     "import-fail-title": "Lejátszási lista beolvasása sikertelen",
     "import-success-title": "Sikeresen fájlba lett írva a lejátszási lista",
@@ -183,7 +191,11 @@
     "server-modified-at": "Server modified: ",
     "upload-to-server": "Upload to server",
     "download-from-server": "Letöltetés a szerverről",
-    "number-of-tracks": "számok"
+    "number-of-tracks": "számok",
+    "input-playlist-url": "Paste playlist URL:",
+    "create-playlist-dialog-title": "Input playlist name:",
+    "playlist": "Playlist",
+    "play": "Play"
   },
   "plugins": {
     "add-a-plugin": "Bővítmény hozzáadása",
@@ -210,7 +222,7 @@
     "favorite-add": "Hozzáadás a kedvencekhez",
     "header": "Várólista",
     "header-track": "Current track",
-    "copy-track-url": "Copy track url to clipboard",
+    "copy-track-url": "Copy track URL to clipboard",
     "loading": "Stream still loading.",
     "playlist-add": "Hozzáadás a lejátszási listához",
     "playlist-add-queue": "Sor hozzáadása a lejátszási listához",
@@ -234,7 +246,9 @@
       },
       "verify": "Ellenőrzés",
       "unverify": "Nem ellenőrzött"
-    }
+    },
+    "create-playlist-dialog-title": "Input playlist name:",
+    "play-now": "Play now"
   },
   "search": {
     "album": "Album",
@@ -287,7 +301,7 @@
     "github-description": "Log in via Github to be able to create and share your playlists online (upcoming feature).",
     "github-title": "Github",
     "http": "HTTP API",
-    "invidious-url": "Invidious instance url",
+    "invidious-url": "Invidious instance URL",
     "language": "Language",
     "language-placeholder": "Pick a language",
     "lastfm-connect": "Connect with Last.fm",
@@ -350,7 +364,7 @@
     "add-to-favorite": "Hozzáadás a kedvencekhez",
     "add-to-playlist": "Hozzáadás a lejátszási listához",
     "add-to-queue": "Hozzáadás a várólistához",
-    "create-playlist": "Új lejátszási lista létrehozása",
+    "create-playlist": "Create a new playlist",
     "create-playlist-dialog-title": "Input playlist name:",
     "create-playlist-dialog-placeholder": "Lejátszási lista neve...",
     "create-playlist-dialog-accept": "Mentés",
@@ -377,6 +391,7 @@
     "exit-fullscreen": "A teljes képernyőből való kilépéshez nyomd meg az ESC gombot"
   },
   "command-palette": {
+    "reminder": "to open the command palette",
     "search-placeholder": "Mit szeretnél csinálni?",
     "empty-state-help": "Can't seem to find what you're looking for? Try the help command.",
     "protip-text": "Haladó Tanács:",

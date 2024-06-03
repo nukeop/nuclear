@@ -8,7 +8,13 @@
     "play": "Играть",
     "queue": "Добавить альбом в очередь",
     "tracks": "Треки:",
-    "year": "Год:"
+    "year": "Год:",
+    "add-to-playlist": "Добавить альбом в плейлист",
+    "create-playlist": "Создать новый плейлист",
+    "create-playlist-dialog-title": "Введите название плейлиста:",
+    "create-playlist-dialog-placeholder": "Название плейлиста…",
+    "create-playlist-dialog-accept": "Сохранить",
+    "create-playlist-dialog-cancel": "Отмена"
   },
   "app": {
     "collection": "Фонотека",
@@ -40,7 +46,8 @@
     "queue": "Добавить все дорожки в очередь",
     "similar": "Похожие исполнители",
     "title": "Название",
-    "tour": "В туре"
+    "tour": "В туре",
+    "popular-tracks": "Популярные треки"
   },
   "dashboard": {
     "add-all": "Добавить все в очередь",
@@ -144,7 +151,7 @@
     "delete": "Удалить этот плейлист",
     "duration": "Длительность",
     "empty": "Нет плейлистов.",
-    "empty-help": "Создайте плейлисты или импортируйте их по ссылке, и они появятся здесь!",
+    "empty-help": "Попробуйте создать плейлисты или импортировать их с помощью URL, и они появятся здесь!",
     "error-empty-data": "Данные отсутствуют",
     "error-invalid-data": "Некорректные данные",
     "error-open-file": "Не удаётся открыть файл",
@@ -153,6 +160,7 @@
     "export-fail-title": "Ошибка при экспорте",
     "export-success-title": "Плейлист экспортирован",
     "header": "Ваши плейлисты",
+    "header-add-button": "Добавить",
     "import-progress": "Прогресс импорта",
     "spotify-import-placeholder": "Вставьте ссылку на плейлист Spotify сюда",
     "dialog-placeholder": "Название плейлиста…",
@@ -160,9 +168,9 @@
     "dialog-cancel": "Отмена",
     "dialog-rename": "Переименовать",
     "dialog-import": "Импортировать",
-    "create-button": "Новый плейлист",
+    "create-button": "Создать новый плейлист",
     "new-playlist": "Новый плейлист",
-    "import-url-button": "Импорт по ссылке (Spotify)",
+    "import-url-button": "Импортировать из Spotify",
     "import-button": "Импорт из файла (JSON)",
     "import-fail-title": "Ошибка при импорте",
     "import-success-title": "Плейлист импортирован",
@@ -183,7 +191,11 @@
     "server-modified-at": "Сервер изменён: ",
     "upload-to-server": "Загрузить на сервер",
     "download-from-server": "Загрузить с сервера",
-    "number-of-tracks": "саундтреки"
+    "number-of-tracks": "саундтреки",
+    "input-playlist-url": "Вставить URL плейлиста:",
+    "create-playlist-dialog-title": "Введите название плейлиста:",
+    "playlist": "Плейлист",
+    "play": "Воспроизвести"
   },
   "plugins": {
     "add-a-plugin": "Добавить плагин",
@@ -210,10 +222,10 @@
     "favorite-add": "Добавить в избранные",
     "header": "Очередь",
     "header-track": "Текущий трек",
-    "copy-track-url": "Скопировать ссылку на трек",
+    "copy-track-url": "Копировать URL трека",
     "loading": "Поток загружается.",
     "playlist-add": "Добавить в плейлист",
-    "playlist-add-queue": "Добавить в очередь плейлиста",
+    "playlist-add-queue": "Добавить очередь в плейлист",
     "playlist-toast-content": "Плейлист {{name}} создан.",
     "playlist-toast-title": "Плейлист создан",
     "live": "Сейчас",
@@ -234,7 +246,9 @@
       },
       "verify": "Подтвердить",
       "unverify": "Снять подтверждение"
-    }
+    },
+    "create-playlist-dialog-title": "Введите название плейлиста:",
+    "play-now": "Играть"
   },
   "search": {
     "album": "Альбом",
@@ -287,7 +301,7 @@
     "github-description": "Войдите через GitHub, чтобы создавать и делиться плейлистами онлайн (функция в разработке).",
     "github-title": "GitHub",
     "http": "API доступа по HTTP",
-    "invidious-url": "Сервер Invidious",
+    "invidious-url": "Invidious instance URL",
     "language": "Язык",
     "language-placeholder": "Выберите язык",
     "lastfm-connect": "Подключить Last.fm",
@@ -377,6 +391,7 @@
     "exit-fullscreen": "Нажмите Esc, чтобы выйти из полноэкранного режима"
   },
   "command-palette": {
+    "reminder": "чтобы открыть командную строку",
     "search-placeholder": "Что вас интересует?",
     "empty-state-help": "Не удаётся найти желаемое? Попробуйте команду справки.",
     "protip-text": "СОВЕТ:",

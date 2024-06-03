@@ -8,7 +8,13 @@
     "play": "Phát",
     "queue": "Thêm album vào playlist",
     "tracks": "Bài hát:",
-    "year": "Năm:"
+    "year": "Năm:",
+    "add-to-playlist": "Thêm album vào danh sách phát",
+    "create-playlist": "Tạo một danh sách phát mới",
+    "create-playlist-dialog-title": "Nhập tên danh sách phát:",
+    "create-playlist-dialog-placeholder": "Tên danh sách phát...",
+    "create-playlist-dialog-accept": "Lưu",
+    "create-playlist-dialog-cancel": "Huỷ"
   },
   "app": {
     "collection": "Bộ sưu tập",
@@ -40,7 +46,8 @@
     "queue": "Thêm tất cả bài hát vào playlist",
     "similar": "Nghệ sỹ tương tự",
     "title": "Tên bài hát",
-    "tour": "Đang lưu diễn"
+    "tour": "Đang lưu diễn",
+    "popular-tracks": "Các bài hát phổ biến"
   },
   "dashboard": {
     "add-all": "Thêm tất cả",
@@ -124,7 +131,7 @@
     "not-found": "Không tìm thấy lời bài hát."
   },
   "option-control": {
-    "rate": "Playback speed",
+    "rate": "Tốc độ phát lại",
     "autoradio": "Tự động tìm kiếm bài hát",
     "loop": "Phát lặp lại",
     "mini-player": "Thu nhỏ trình phát",
@@ -144,7 +151,7 @@
     "delete": "Xóa playlist này",
     "duration": "Thời lượng",
     "empty": "Không có playlist nào.",
-    "empty-help": "Tạo hoặc nhập playlist bằng link!",
+    "empty-help": "Hãy thử tạo các danh sách phát, hoặc nhập một liên kết, và chúng sẽ xuất hiện tại đây!",
     "error-empty-data": "Không có dữ liệu",
     "error-invalid-data": "Dữ liệu lỗi",
     "error-open-file": "Không thể mở file",
@@ -153,6 +160,7 @@
     "export-fail-title": "Xuất playlist thất bại",
     "export-success-title": "Xuất playlist thành công",
     "header": "Playlist của bạn",
+    "header-add-button": "Thêm",
     "import-progress": "Tiến độ nhập",
     "spotify-import-placeholder": "Dán liên kết danh sách phát nhạc Spotify của bạn ở đây",
     "dialog-placeholder": "Tên playlist...",
@@ -160,9 +168,9 @@
     "dialog-cancel": "Huỷ",
     "dialog-rename": "Đổi tên",
     "dialog-import": "Thêm",
-    "create-button": "Tạo danh sách phát mới",
+    "create-button": "Tạo một danh sách phát mới",
     "new-playlist": "Danh sách phát mới",
-    "import-url-button": "Thêm từ liên kết (Spotify)",
+    "import-url-button": "Nhập từ Spotify",
     "import-button": "Nhập playlist từ file (JSON)",
     "import-fail-title": "Thêm Playlist thất bại",
     "import-success-title": "Thêm Playlist thành công",
@@ -183,7 +191,11 @@
     "server-modified-at": "Chỉnh sửa máy chủ: ",
     "upload-to-server": "Tải lên máy chủ",
     "download-from-server": "Tải về từ máy chủ",
-    "number-of-tracks": "bài hát"
+    "number-of-tracks": "bài hát",
+    "input-playlist-url": "Dán một liên kết của danh sách phát:",
+    "create-playlist-dialog-title": "Nhập tên của danh sách phát:",
+    "playlist": "Danh sách phát",
+    "play": "Phát"
   },
   "plugins": {
     "add-a-plugin": "Thêm plugin",
@@ -210,7 +222,7 @@
     "favorite-add": "Thêm vào mục ưa thích",
     "header": "Danh sách đang phát",
     "header-track": "Bản nhạc đang phát",
-    "copy-track-url": "Sao chép url bản nhạc vào bộ nhớ tạm",
+    "copy-track-url": "Sao chép liên kết của bài hát đến bảng nhớ tạm",
     "loading": "Stream đang tải.",
     "playlist-add": "Thêm vào playlist",
     "playlist-add-queue": "Thêm vào hàng đợi playlist",
@@ -234,7 +246,9 @@
       },
       "verify": "Xác minh",
       "unverify": "Huỷ xác minh"
-    }
+    },
+    "create-playlist-dialog-title": "Input playlist name:",
+    "play-now": "Phát ngay"
   },
   "search": {
     "album": "Bộ sưu tập",
@@ -287,7 +301,7 @@
     "github-description": "Đăng nhập bằng Github cho phép tạo vào chia playlists của bạn trực tuyến (sắp mở).",
     "github-title": "Github",
     "http": "HTTP API",
-    "invidious-url": "Invidious instance url",
+    "invidious-url": "Invidious instance URL",
     "language": "Ngôn ngữ",
     "language-placeholder": "Chọn ngôn ngữ",
     "lastfm-connect": "Kết nối với Last.fm",
@@ -377,6 +391,7 @@
     "exit-fullscreen": "Nhấn ESC để thoát khỏi chế độ toàn màn hình"
   },
   "command-palette": {
+    "reminder": "to open the command palette",
     "search-placeholder": "Bạn muốn làm gì?",
     "empty-state-help": "Không thể tìm thấy cái bạn cần? Hãy thử lệnh trợ giúp.",
     "protip-text": "MẸO CHUYÊN NGHIỆP:",

@@ -8,7 +8,13 @@
     "play": "Spela",
     "queue": "Lägg till albumet i kön",
     "tracks": "Spår:",
-    "year": "År:"
+    "year": "År:",
+    "add-to-playlist": "Add album to playlist",
+    "create-playlist": "Create a new playlist",
+    "create-playlist-dialog-title": "Input playlist name:",
+    "create-playlist-dialog-placeholder": "Playlist name...",
+    "create-playlist-dialog-accept": "Save",
+    "create-playlist-dialog-cancel": "Cancel"
   },
   "app": {
     "collection": "Samlingar",
@@ -40,7 +46,8 @@
     "queue": "Lägg till alla spår i kön",
     "similar": "Liknande artister",
     "title": "Titel",
-    "tour": "På turné"
+    "tour": "På turné",
+    "popular-tracks": "Popular tracks"
   },
   "dashboard": {
     "add-all": "Lägg till alla",
@@ -144,7 +151,7 @@
     "delete": "Ta bort denna spellista",
     "duration": "Längd",
     "empty": "Inga spellistor.",
-    "empty-help": "Försök skapa några spellistor eller importera med URL och de kommer att visas här!",
+    "empty-help": "Try creating playlists, or import by URL, and they will appear here!",
     "error-empty-data": "Tomma data",
     "error-invalid-data": "Ogiltiga data",
     "error-open-file": "Kan inte öppna filen",
@@ -153,6 +160,7 @@
     "export-fail-title": "Export av spellista misslyckades",
     "export-success-title": "Export av spellista lyckades",
     "header": "Dina spellistor",
+    "header-add-button": "Add",
     "import-progress": "Importeringsframsteg",
     "spotify-import-placeholder": "Klistra in en Spotify-spellistURL här",
     "dialog-placeholder": "Namn på spellistan...",
@@ -160,7 +168,7 @@
     "dialog-cancel": "Avbryt",
     "dialog-rename": "Döp om",
     "dialog-import": "Import",
-    "create-button": "Skapa ny spellista",
+    "create-button": "Create a new playlist",
     "new-playlist": "Ny spellista",
     "import-url-button": "Import from Spotify",
     "import-button": "Importera från fil (JSON)",
@@ -183,7 +191,11 @@
     "server-modified-at": "Server ändrad: ",
     "upload-to-server": "Ladda upp till server",
     "download-from-server": "Ladda ned från server",
-    "number-of-tracks": "spår"
+    "number-of-tracks": "spår",
+    "input-playlist-url": "Paste playlist URL:",
+    "create-playlist-dialog-title": "Input playlist name:",
+    "playlist": "Playlist",
+    "play": "Play"
   },
   "plugins": {
     "add-a-plugin": "Lägg till en insticksmodul",
@@ -210,7 +222,7 @@
     "favorite-add": "Lägg till i Favoriter",
     "header": "Kö",
     "header-track": "Spelas just nu",
-    "copy-track-url": "Kopiera spåradress till urklipp",
+    "copy-track-url": "Copy track URL to clipboard",
     "loading": "Strömmen läses fortfarande.",
     "playlist-add": "Lägg till i spellista",
     "playlist-add-queue": "Lägg till i spellista kö",
@@ -234,7 +246,9 @@
       },
       "verify": "Verifiera",
       "unverify": "Avverifiera"
-    }
+    },
+    "create-playlist-dialog-title": "Input playlist name:",
+    "play-now": "Play now"
   },
   "search": {
     "album": "Album",
@@ -287,7 +301,7 @@
     "github-description": "Logga in via GitHub för att kunna skapa och dela spellistor på nätet (framtida funktion).",
     "github-title": "GitHub",
     "http": "HTTP API",
-    "invidious-url": "Webbadress till Invidious-instans",
+    "invidious-url": "Invidious instance URL",
     "language": "Språk",
     "language-placeholder": "Välj språk",
     "lastfm-connect": "Anslut till Last.fm",
@@ -377,6 +391,7 @@
     "exit-fullscreen": "Tryck på Esc för att avsluta helskärmsläge"
   },
   "command-palette": {
+    "reminder": "to open the command palette",
     "search-placeholder": "What would you like to do?",
     "empty-state-help": "Can't seem to find what you're looking for? Try the help command.",
     "protip-text": "PROTIP:",

@@ -8,7 +8,13 @@
     "play": "Riproduci",
     "queue": "Aggiungi album alla coda",
     "tracks": "Tracce:",
-    "year": "Anno:"
+    "year": "Anno:",
+    "add-to-playlist": "Add album to playlist",
+    "create-playlist": "Create a new playlist",
+    "create-playlist-dialog-title": "Input playlist name:",
+    "create-playlist-dialog-placeholder": "Playlist name...",
+    "create-playlist-dialog-accept": "Save",
+    "create-playlist-dialog-cancel": "Cancel"
   },
   "app": {
     "collection": "Collezione",
@@ -40,7 +46,8 @@
     "queue": "Aggiungi tutte le tracce alla coda",
     "similar": "Artisti simili",
     "title": "Titolo",
-    "tour": "In tour"
+    "tour": "In tour",
+    "popular-tracks": "Popular tracks"
   },
   "dashboard": {
     "add-all": "Aggiungi tutte",
@@ -144,7 +151,7 @@
     "delete": "Elimina questa scaletta",
     "duration": "Durata",
     "empty": "Nessuna scaletta.",
-    "empty-help": "Prova a creare alcune scalette o importa per URL e appariranno qui!",
+    "empty-help": "Try creating playlists, or import by URL, and they will appear here!",
     "error-empty-data": "Dati vuoti",
     "error-invalid-data": "Dati non validi",
     "error-open-file": "Impossibile aprire il file",
@@ -153,6 +160,7 @@
     "export-fail-title": "Esportazione scaletta fallita",
     "export-success-title": "Scaletta esportata con successo",
     "header": "Tue scalette",
+    "header-add-button": "Add",
     "import-progress": "Avanzamento importazione",
     "spotify-import-placeholder": "Incolla qui l'URL di una playlist di Spotify",
     "dialog-placeholder": "Nome scaletta...",
@@ -160,9 +168,9 @@
     "dialog-cancel": "Annulla",
     "dialog-rename": "Rinomina",
     "dialog-import": "Importa",
-    "create-button": "Crea nuova scaletta",
+    "create-button": "Create a new playlist",
     "new-playlist": "Nuova scaletta",
-    "import-url-button": "Importa da URL (Spotify)",
+    "import-url-button": "Import from Spotify",
     "import-button": "Importa da file (JSON)",
     "import-fail-title": "Importazione scaletta fallita",
     "import-success-title": "Scaletta importata con successo",
@@ -183,7 +191,11 @@
     "server-modified-at": "Modifica server: ",
     "upload-to-server": "Carica sul server",
     "download-from-server": "Scarica dal server",
-    "number-of-tracks": "tracce"
+    "number-of-tracks": "tracce",
+    "input-playlist-url": "Paste playlist URL:",
+    "create-playlist-dialog-title": "Input playlist name:",
+    "playlist": "Playlist",
+    "play": "Play"
   },
   "plugins": {
     "add-a-plugin": "Aggiungi plug-in",
@@ -210,7 +222,7 @@
     "favorite-add": "Aggiungi ai preferiti",
     "header": "Coda",
     "header-track": "Traccia corrente",
-    "copy-track-url": "Copia URL traccia negli appunti",
+    "copy-track-url": "Copy track URL to clipboard",
     "loading": "Il flusso è ancora in caricamento.",
     "playlist-add": "Aggiungi a scaletta",
     "playlist-add-queue": "Aggiungi coda a scaletta",
@@ -234,7 +246,9 @@
       },
       "verify": "Verifica",
       "unverify": "Annulla verifica"
-    }
+    },
+    "create-playlist-dialog-title": "Input playlist name:",
+    "play-now": "Play now"
   },
   "search": {
     "album": "Album",
@@ -287,7 +301,7 @@
     "github-description": "Accedere tramite GitHub per poter creare e condividere le tue playlist online (funzionalità in arrivo).",
     "github-title": "GitHub",
     "http": "API HTTP",
-    "invidious-url": "URL istanza di Invidious",
+    "invidious-url": "Invidious instance URL",
     "language": "Lingua",
     "language-placeholder": "Scegli una lingua",
     "lastfm-connect": "Collega a Last.fm",
@@ -350,7 +364,7 @@
     "add-to-favorite": "Aggiungi ai preferiti",
     "add-to-playlist": "Aggiungi a scaletta",
     "add-to-queue": "Aggiungi alla coda",
-    "create-playlist": "Crea nuova scaletta",
+    "create-playlist": "Create a new playlist",
     "create-playlist-dialog-title": "Nome scaletta in ingresso:",
     "create-playlist-dialog-placeholder": "Nome scaletta...",
     "create-playlist-dialog-accept": "Salva",
@@ -377,6 +391,7 @@
     "exit-fullscreen": "Premi ESC per uscire dallo schermo intero"
   },
   "command-palette": {
+    "reminder": "to open the command palette",
     "search-placeholder": "Che cosa vorresti fare?",
     "empty-state-help": "Non riesci a trovare quello che stai cercando? Prova il comando aiuto.",
     "protip-text": "Suggerimento:",
