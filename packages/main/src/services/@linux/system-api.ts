@@ -35,7 +35,7 @@ const loopStatusMapper: Record<string, LoopStatus> = {
  * @see {@link https://github.com/altdesktop/playerctl}
  */
 
-@systemMediaController() 
+@systemMediaController()
 class LinuxMediaService extends MprisService implements NuclearApi {
   tracks: MprisMeta[];
 
@@ -87,7 +87,7 @@ class LinuxMediaService extends MprisService implements NuclearApi {
     return {
       Id: this.objectPath(`playlist/${index}`),
       Name: playlist.name,
-      Icon: playlist.tracks[0].thumbnail || ''
+      Icon: playlist.tracks?.[0]?.thumbnail || ''
     };
   }
 
@@ -118,7 +118,7 @@ class LinuxMediaService extends MprisService implements NuclearApi {
     this.loopStatus = this.loopStatus === MprisService.LOOP_STATUS_PLAYLIST
       ? MprisService.LOOP_STATUS_NONE
       : MprisService.LOOP_STATUS_PLAYLIST;
-  
+
     this.window.send(IpcEvents.SETTINGS, { loopAfterQueueEnd: this.loopStatus === MprisService.LOOP_STATUS_PLAYLIST });
   }
 
@@ -231,7 +231,7 @@ class LinuxMediaService extends MprisService implements NuclearApi {
     this.playbackStatus = statusMapper[status.playbackStatus];
     this.volume = status.volume / 100;
     this.shuffle = status.shuffleQueue;
-    this.loopStatus =loopStatusMapper[status.loopAfterQueueEnd.toString()];
+    this.loopStatus = loopStatusMapper[status.loopAfterQueueEnd.toString()];
 
     const meta: ControllerMeta[] = Reflect.getMetadata(SYSTEM_MEDIA_EVENT_KEY, LinuxMediaService.prototype);
 
