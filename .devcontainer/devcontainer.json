@@ -1,0 +1,16 @@
+{
+  "image": "mcr.microsoft.com/devcontainers/universal:2",
+  "features": {
+  },
+  "build": {
+		"dockerfile": "Dockerfile"
+	},
+  "extensions": [
+		"rust-lang.rust",
+		"bungcip.better-toml",
+		"vadimcn.vscode-lldb",
+		"mutantdino.resourcemonitor",
+    "GitHub.copilot",
+    "GitHub.copilot-chat",
+	]
+}
