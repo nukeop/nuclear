@@ -12,8 +12,6 @@
         "workbench.colorTheme": "Dracula"
       },
       "extensions": [
-        "rust-lang.rust",
-        "bungcip.better-toml",
         "vadimcn.vscode-lldb",
         "mutantdino.resourcemonitor",
         "GitHub.copilot",
