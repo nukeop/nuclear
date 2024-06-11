@@ -5,18 +5,20 @@
       "profile": "minimal"
     }
   },
-  "build": {
-		"dockerfile": "Dockerfile"
-	},
   "customizations": {
     "vscode": {
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "fish",
+        "workbench.colorTheme": "Dracula"
+      },
       "extensions": [
         "rust-lang.rust",
         "bungcip.better-toml",
         "vadimcn.vscode-lldb",
         "mutantdino.resourcemonitor",
         "GitHub.copilot",
-        "GitHub.copilot-chat"
+        "GitHub.copilot-chat",
+        "dracula-theme.theme-dracula"
       ]
     }
   }
