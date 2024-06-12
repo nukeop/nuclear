@@ -58,7 +58,7 @@ jobs:
         if: runner.os == 'macOS'
         run: |
           sudo -H pip install setuptools
-      - run: npm ci
+      - run: npm ci --force
       - run: npm run lint
       - run: npm test
 
