@@ -58,8 +58,6 @@ jobs:
         if: runner.os == 'macOS'
         run: |
           sudo -H pip install setuptools
-      - if: runner.os == 'Windows'
-        run: Remove-Item -Recurse -Force node_modules
       - run: npm ci
       - run: npm run lint
       - run: npm test
