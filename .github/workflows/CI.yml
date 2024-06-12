@@ -59,7 +59,7 @@ jobs:
         run: |
           sudo -H pip install setuptools
       - if: runner.os == 'Windows'
-        run: rmdir /s /q node_modules
+        run: Remove-Item -Recurse -Force node_modules
       - run: npm ci
       - run: npm run lint
       - run: npm test
