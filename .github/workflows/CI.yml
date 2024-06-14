@@ -58,8 +58,28 @@ jobs:
         if: runner.os == 'macOS'
         run: |
           sudo -H pip install setuptools
-      - run: |
-          for i in {1..3}; do npm ci && break || sleep 15; done
+      - name: npm ci
+        if: runner.os != 'Windows'
+        run: npm ci
+      - name: npm ci (Windows)
+        if: runner.os == 'Windows'
+        run: |
+          $maxRetries = 3
+          $counter = 0
+          while ($counter -lt $maxRetries) {
+            try {
+              npm ci
+              break
+            } catch {
+              Write-Host "Attempt $($counter + 1) failed. Retrying..."
+              Start-Sleep -Seconds 15
+              $counter++
+            }
+          }
+          if ($counter -eq $maxRetries) {
+            throw "npm ci failed after $maxRetries attempts."
+          }
+        shell: pwsh
       - run: npm run lint
       - run: npm test
 
