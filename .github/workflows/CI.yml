@@ -60,7 +60,7 @@ jobs:
           sudo -H pip install setuptools
       - name: npm ci
         if: runner.os != 'Windows'
-        run: npm ci
+        run: npm ci --cache .npm --prefer-offline
       - name: npm ci (Windows)
         if: runner.os == 'Windows'
         run: |
@@ -68,7 +68,7 @@ jobs:
           $counter = 0
           while ($counter -lt $maxRetries) {
             try {
-              npm ci
+              npm ci --cache .npm --prefer-offline
               break
             } catch {
               Write-Host "Attempt $($counter + 1) failed. Retrying..."
