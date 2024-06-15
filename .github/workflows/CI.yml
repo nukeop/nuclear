@@ -36,6 +36,8 @@ jobs:
           node-version: 20
           cache: "npm"
       - uses: pnpm/action-setup@v4
+        with:
+          version: 9
       - name: add git binaries to PATH
         if: runner.os == 'Windows'
         run: |
