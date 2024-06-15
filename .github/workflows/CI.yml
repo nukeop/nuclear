@@ -44,8 +44,7 @@ jobs:
         if: runner.os == 'macOS'
         run: |
           sudo -H pip install setuptools
-      - name: npm ci
-        run: npm ci --cache .npm --prefer-offline --include=optional
+      - run: yarn install
       - run: npm run lint
       - run: npm test
 

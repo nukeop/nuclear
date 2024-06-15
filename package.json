@@ -66,6 +66,7 @@
       "pre-commit": "lint-staged"
     }
   },
+  "private": true,
   "lint-staged": {
     "*.js": "eslint --fix",
     "*.jsx": "eslint --fix",
