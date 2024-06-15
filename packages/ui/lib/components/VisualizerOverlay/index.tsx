@@ -73,6 +73,7 @@ const VisualizerOverlay: React.FC<VisualizerOverlayProps> = ({
         icon='shuffle' 
         className={cx({ 'toggled': shuffleState })}
         onClick={(e) => handleClickNoFocus(e, onShuffleChange)}
+        data-testid='shuffle-button'
       />
       {isFullscreen ? (
         <p>{exitFullscreenLabel}</p>
