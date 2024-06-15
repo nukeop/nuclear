@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unknown-property */
 import React, { useState, useCallback } from 'react';
 import { Icon, Input, Modal, Progress } from 'semantic-ui-react';
 import { useTranslation } from 'react-i18next';
