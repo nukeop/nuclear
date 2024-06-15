@@ -35,9 +35,6 @@ jobs:
         with:
           node-version: 20
           cache: "npm"
-      - uses: pnpm/action-setup@v4
-        with:
-          version: 9
       - name: add git binaries to PATH
         if: runner.os == 'Windows'
         run: |
@@ -49,26 +46,7 @@ jobs:
           sudo -H pip install setuptools
       - name: npm ci
         if: runner.os != 'Windows'
-        run: pnpm install
-      - name: npm ci (Windows)
-        if: runner.os == 'Windows'
-        run: |
-          $maxRetries = 3
-          $counter = 0
-          while ($counter -lt $maxRetries) {
-            try {
-              pnpm install
-              break
-            } catch {
-              Write-Host "Attempt $($counter + 1) failed. Retrying..."
-              Start-Sleep -Seconds 15
-              $counter++
-            }
-          }
-          if ($counter -eq $maxRetries) {
-            throw "npm ci failed after $maxRetries attempts."
-          }
-        shell: pwsh
+        run: npm ci --cache .npm --prefer-offline
       - run: npm run lint
       - run: npm test
 
