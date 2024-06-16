@@ -1,17 +1,12 @@
-/* eslint-disable node/no-unsupported-features/node-builtins */
-import * as util from 'util';
+import { TextDecoder, TextEncoder } from 'node:util';
+import { Readable } from 'stream';
 
 // ref: https://jestjs.io/docs/manual-mocks#mocking-methods-which-are-not-implemented-in-jsdom
 // ref: https://github.com/jsdom/jsdom/issues/2524
-Object.defineProperty(global, 'TextEncoder', {
-  writable: true,
-  value: util.TextEncoder
-});
-Object.defineProperty(global, 'TextDecoder', {
-  writable: true,
-  value: util.TextDecoder
-});
-Object.defineProperty(global, 'require', {
-  writable: true,
-  value: require
+// ref: https://github.com/mswjs/msw/discussions/1934
+Object.defineProperties(globalThis, {
+  TextDecoder: { writable: true, value: TextDecoder },
+  TextEncoder: { writable: true, value: TextEncoder },
+  ReadableStream: { writable: true, value: Readable },
+  require: { writable: true, value: require }
 });

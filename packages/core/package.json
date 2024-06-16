@@ -18,6 +18,10 @@
     "test": "jest --silent",
     "coverage": "jest --silent --coverage"
   },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  },
   "dependencies": {
     "@babel/core": "^7.9.0",
     "@babel/preset-env": "^7.9.5",
