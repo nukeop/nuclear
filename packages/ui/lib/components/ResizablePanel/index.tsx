@@ -3,8 +3,21 @@ import cx from 'classnames';
 import { Resizable } from 'react-resizable';
 
 import ResizeHandle from '../ResizeHandle';
-import { ResizablePanelProps } from './types';
 import styles from './styles.scss';
+
+type ResizablePanelClasses = {
+  root: string;
+  content: string;
+}
+
+export type ResizablePanelProps = {
+  children: React.ReactNode;
+  classes?: Partial<ResizablePanelClasses>;
+  width: number;
+  onSetWidth?: (width: number) => void;
+  isCollapsed?: boolean;
+  collapsedWidth: number;
+};
 
 const ResizablePanel: React.FC<ResizablePanelProps> = ({
   children,

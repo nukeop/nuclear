@@ -4,6 +4,7 @@ import { Popup, PopupProps } from 'semantic-ui-react';
 import styles from './styles.scss';
 
 export type ContextPopupProps = {
+  children: React.ReactNode;
   trigger: PopupProps['trigger'];
   thumb?: string;
   title: string;

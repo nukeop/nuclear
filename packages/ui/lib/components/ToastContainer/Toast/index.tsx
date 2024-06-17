@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import cx from 'classnames';
 import { Notification } from '../../../types';
 import common from '../../../common.scss';
 import styles from './styles.scss';
 
 
-type ToastProps = Notification
+type ToastProps = Notification;
 
 
 const Toast = (props: ToastProps) => {
@@ -29,7 +29,7 @@ const Toast = (props: ToastProps) => {
           <div
             className={styles.toast_icon}
           >
-            { props.icon }
+            { props.icon as ReactNode }
           </div>
         }
         <div

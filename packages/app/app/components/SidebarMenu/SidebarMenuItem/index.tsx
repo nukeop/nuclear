@@ -4,6 +4,7 @@ import { Tooltip } from '@nuclear/ui';
 import styles from './styles.scss';
 
 type SidebarMenuItemProps = {
+  children: React.ReactNode;
   name: string;
   compact?: boolean;
 }

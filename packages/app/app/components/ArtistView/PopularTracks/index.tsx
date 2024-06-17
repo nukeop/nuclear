@@ -30,7 +30,7 @@ export const AddAllButton: React.FC<AddAllButtonProps> = ({
       className={styles.add_button}
       aria-label={t('add-all')}
     >
-      <FontAwesome name='plus' /> {t('add-all')}
+      <FontAwesome name='plus' /> { t('add-all') as string }
     </Button>
   );
 };

@@ -14,6 +14,7 @@ import SyncCell from './Cells/SyncCell';
 import artPlaceholder from '../../../resources/media/art_placeholder.png';
 import styles from './styles.scss';
 import { TableHTMLAttributes } from 'react';
+import PlaylistThumbnailCell from './Cells/PlaylistThumbnailCell';
 
 export type PlaylistsStrings = {
   tracksSingular: string;
@@ -52,11 +53,11 @@ const Playlists: React.FC<PlaylistsProps> = ({
   displayModificationDates=false,
   ...extra
 }) => {
-  const columns = useMemo((): Column<Playlist>[] => [
+  const columns = useMemo((): Column<PlaylistWithLoadingState>[] => [
     {
       id: PlaylistsColumn.Thumbnail,
       accessor: (playlist: PlaylistWithLoadingState) => playlist.tracks?.[0]?.thumbnail || artPlaceholder,
-      Cell: ThumbnailCell(styles)
+      Cell: PlaylistThumbnailCell(styles)
     },
     {
       id: PlaylistsColumn.Title,

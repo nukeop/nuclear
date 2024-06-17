@@ -17,6 +17,7 @@ type Segment = {
 };
 
 export type SeekbarProps = {
+  children?: React.ReactNode;
   isLoading?: boolean;
   fill: number;
   seek: (arg0: number) => void;

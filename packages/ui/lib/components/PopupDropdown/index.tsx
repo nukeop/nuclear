@@ -7,6 +7,7 @@ import popupButtonStyles from '../PopupButton/styles.scss';
 import './styles.scss';
 
 export type PopupDropdownProps = {
+  children: React.ReactNode;
   text: DropdownProps['text'];
   pointing?: DropdownProps['pointing'];
   direction?: DropdownProps['direction'];

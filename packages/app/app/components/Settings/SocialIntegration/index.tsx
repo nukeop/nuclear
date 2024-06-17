@@ -7,6 +7,7 @@ type SocialIntegrationProps = {
   logo: React.ReactElement;
   title: string;
   description: string;
+  children: React.ReactNode;
 };
 
 const SocialIntegration: React.FC<SocialIntegrationProps> = ({

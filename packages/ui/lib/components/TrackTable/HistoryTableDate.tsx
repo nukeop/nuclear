@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './styles.scss';
 
-const HistoryTableDate: React.FC = ({children}) => {
+const HistoryTableDate: React.FC<{ children: React.ReactNode; }> = ({children}) => {
   return <h2 className={styles.history_table_date}>{children}</h2>;
 };
 

@@ -6,7 +6,7 @@ import common from '../../common.scss';
 import styles from './styles.scss';
 
 type ToastContainerProps = {
-  toasts: Notification[]
+  toasts: Notification[];
 }
 
 const ToastContainer: React.FC<ToastContainerProps> = ({

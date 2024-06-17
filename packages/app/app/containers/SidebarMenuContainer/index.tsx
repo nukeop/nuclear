@@ -14,7 +14,6 @@ import { setBooleanOption } from '../../actions/settings';
 import { useResizablePanel } from './hooks';
 import categories from './categories';
 import styles from './styles.scss';
-// import { UserPanelContainer } from '../UserPanelContainer';
 
 const SidebarMenuContainer: React.FC = () => {
   const { t } = useTranslation('app');
@@ -75,10 +74,6 @@ const SidebarMenuContainer: React.FC = () => {
           </React.Fragment>
         ))}
     </SidebarMenu>
-    {/* {
-      !isCollapsed &&
-      <UserPanelContainer />
-    } */}
   </ResizablePanel>;
 };
 

@@ -43,6 +43,7 @@ export const configureMockStore = (initialState?: AnyProps) => createStore(
 export const TestStoreProvider: React.FC<{
   initialState?: AnyProps;
   store?: ReturnType<typeof configureMockStore>;
+  children: React.ReactNode;
 }> = ({ initialState = {}, store, children }) => {
   return <Provider store={store || configureMockStore(initialState)}>
     {children}

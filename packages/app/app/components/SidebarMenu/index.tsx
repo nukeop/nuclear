@@ -2,7 +2,9 @@ import React from 'react';
 
 import styles from './styles.scss';
 
-const SidebarMenu: React.FC = ({ children }) => (
+const SidebarMenu: React.FC<{
+  children: React.ReactNode;
+}> = ({ children }) => (
   <div
     data-testid='sidebar-menu'
     className={styles.sidebar_menu}

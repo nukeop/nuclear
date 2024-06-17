@@ -7,6 +7,7 @@ import styles from './styles.scss';
 export type FullscreenLayerProps = {
     isOpen?: boolean;
     onClose?: (e?: KeyboardEvent) => void;
+    children?: React.ReactNode;
 }
 
 const FullscreenLayer: React.FC<FullscreenLayerProps> = ({
