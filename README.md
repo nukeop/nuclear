@@ -84,13 +84,13 @@ Here's a list of packages for various managers, some of which are maintained by 
 
 | Package type   | Link                                                               | Maintainer                                   | Installation Method                           |
 |:--------------:|:------------------------------------------------------------------:|:--------------------------------------------:|:---------------------------------------------:|
-| AUR (Arch)     | https://aur.archlinux.org/packages/nuclear-player-bin/             | [nukeop](https://github.com/nukeop)          | yay -S nuclear-player-bin                     |
-| AUR (Arch)     | https://aur.archlinux.org/packages/nuclear-player-git              | [nukeop](https://github.com/nukeop)          | yay -S nuclear-player-git                     |
-| Choco (Win)    | https://chocolatey.org/packages/nuclear/                           | [JourneyOver](https://github.com/JourneyOver)| choco install nuclear                         |
-| GURU (Gentoo)  | https://github.com/gentoo/guru/tree/master/media-sound/nuclear-bin | Orphaned                                     | emerge nuclear-bin                            |
-| Homebrew (Mac) | https://formulae.brew.sh/cask/nuclear                              | Homebrew                                     | brew install --cask nuclear                   |
-| Snap           | https://snapcraft.io/nuclear                                       | [nukeop](https://github.com/nukeop)          | sudo snap install nuclear                     |
-| Flatpak        | https://flathub.org/apps/details/org.js.nuclear.Nuclear            | [nukeop](https://github.com/nukeop)          | flatpak install flathub org.js.nuclear.Nuclear|
+| AUR (Arch)     | https://aur.archlinux.org/packages/nuclear-player-bin/             | [nukeop](https://github.com/nukeop)          | `yay -S nuclear-player-bin`                   |
+| AUR (Arch)     | https://aur.archlinux.org/packages/nuclear-player-git              | [nukeop](https://github.com/nukeop)          | `yay -S nuclear-player-git`                   |
+| Choco (Win)    | https://chocolatey.org/packages/nuclear/                           | [JourneyOver](https://github.com/JourneyOver)| `choco install nuclear`                       |
+| GURU (Gentoo)  | https://github.com/gentoo/guru/tree/master/media-sound/nuclear-bin | Orphaned                                     | `emerge nuclear-bin`                          |
+| Homebrew (Mac) | https://formulae.brew.sh/cask/nuclear                              | Homebrew                                     | `brew install --cask nuclear`                 |
+| Snap           | https://snapcraft.io/nuclear                                       | [nukeop](https://github.com/nukeop)          | `sudo snap install nuclear`                   |
+| Flatpak        | https://flathub.org/apps/details/org.js.nuclear.Nuclear            | [nukeop](https://github.com/nukeop)          | `flatpak install flathub org.js.nuclear.Nuclear`|
 | Void Linux     | https://github.com/machadofguilherme/nuclear-template              | [machadofguilherme](https://github.com/machadofguilherme) | See readme                       |
 | Nix/NixOS      | [https://search.nixos.org/packages?query=nuclear](https://search.nixos.org/packages?channel=unstable&show=nuclear&from=0&size=50&sort=relevance&type=packages&query=nuclear) | [raf](https://github.com/NotAShelf) | See the Link |
 
