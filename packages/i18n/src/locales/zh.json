@@ -8,7 +8,13 @@
     "play": "播放",
     "queue": "将专辑添加到播放列表",
     "tracks": "曲目：",
-    "year": "年份​​："
+    "year": "年份​​：",
+    "add-to-playlist": "",
+    "create-playlist": "Create a new playlist",
+    "create-playlist-dialog-title": "Input playlist name:",
+    "create-playlist-dialog-placeholder": "Playlist name...",
+    "create-playlist-dialog-accept": "Save",
+    "create-playlist-dialog-cancel": "Cancel"
   },
   "app": {
     "collection": "收藏",
@@ -40,7 +46,8 @@
     "queue": "将全部歌曲添加到播放列表",
     "similar": "相似的艺术家",
     "title": "标题",
-    "tour": "巡回演出"
+    "tour": "巡回演出",
+    "popular-tracks": "Popular tracks"
   },
   "dashboard": {
     "add-all": "添加所有",
@@ -144,7 +151,7 @@
     "delete": "删除播放列表",
     "duration": "曲目长度",
     "empty": "没有任何播放列表。",
-    "empty-help": "创建或通过 URL 导入的播放列表将出现在这里，试试看！",
+    "empty-help": "Try creating playlists, or import by URL, and they will appear here!",
     "error-empty-data": "空数据",
     "error-invalid-data": "无效数据",
     "error-open-file": "无法打开文件",
@@ -153,6 +160,7 @@
     "export-fail-title": "导出播放列表失败",
     "export-success-title": "成功导出播放列表",
     "header": "您的播放列表",
+    "header-add-button": "Add",
     "import-progress": "Import progress",
     "spotify-import-placeholder": "Paste a Spotify playlist URL here",
     "dialog-placeholder": "播放列表名称...",
@@ -160,7 +168,7 @@
     "dialog-cancel": "Cancel",
     "dialog-rename": "Rename",
     "dialog-import": "Import",
-    "create-button": "创建播放列表",
+    "create-button": "Create a new playlist",
     "new-playlist": "新建播放列表",
     "import-url-button": "Import from Spotify",
     "import-button": "从文件 (JSON) 导入",
@@ -183,7 +191,11 @@
     "server-modified-at": "Server modified: ",
     "upload-to-server": "Upload to server",
     "download-from-server": "Download from server",
-    "number-of-tracks": "tracks"
+    "number-of-tracks": "tracks",
+    "input-playlist-url": "Paste playlist URL:",
+    "create-playlist-dialog-title": "Input playlist name:",
+    "playlist": "Playlist",
+    "play": "Play"
   },
   "plugins": {
     "add-a-plugin": "添加插件",
@@ -210,7 +222,7 @@
     "favorite-add": "添加至收藏",
     "header": "队列",
     "header-track": "当前曲目",
-    "copy-track-url": "复制歌曲链接到剪贴板",
+    "copy-track-url": "Copy track URL to clipboard",
     "loading": "Stream还在加载.",
     "playlist-add": "添加到播放列表",
     "playlist-add-queue": "將佇列添加到播放列表",
@@ -234,7 +246,9 @@
       },
       "verify": "Verify",
       "unverify": "Unverify"
-    }
+    },
+    "create-playlist-dialog-title": "Input playlist name:",
+    "play-now": "Play now"
   },
   "search": {
     "album": "专辑",
@@ -287,7 +301,7 @@
     "github-description": "通过 Github 登录以便能够创建和分享您的在线播放列表 (即将推出的功能)。",
     "github-title": "Github",
     "http": "HTTP API",
-    "invidious-url": "Invidious 实例 URL",
+    "invidious-url": "Invidious instance URL",
     "language": "语言",
     "language-placeholder": "选择一个语言",
     "lastfm-connect": "关联 Last.fm 帐号",
@@ -350,7 +364,7 @@
     "add-to-favorite": "添加至收藏",
     "add-to-playlist": "添加到播放列表",
     "add-to-queue": "添加到队列",
-    "create-playlist": "创建新歌单",
+    "create-playlist": "Create a new playlist",
     "create-playlist-dialog-title": "Input playlist name:",
     "create-playlist-dialog-placeholder": "Playlist name...",
     "create-playlist-dialog-accept": "Save",
@@ -377,6 +391,7 @@
     "exit-fullscreen": "按 ESC 键退出全屏"
   },
   "command-palette": {
+    "reminder": "to open the command palette",
     "search-placeholder": "您想做什么？",
     "empty-state-help": "Can't seem to find what you're looking for? Try the help command.",
     "protip-text": "PROTIP:",

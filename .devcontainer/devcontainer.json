@@ -1,0 +1,23 @@
+{
+  "features": {
+    "ghcr.io/devcontainers/features/rust:1": {
+      "version": "latest",
+      "profile": "minimal"
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "fish",
+        "workbench.colorTheme": "Dracula"
+      },
+      "extensions": [
+        "vadimcn.vscode-lldb",
+        "mutantdino.resourcemonitor",
+        "GitHub.copilot",
+        "GitHub.copilot-chat",
+        "dracula-theme.theme-dracula"
+      ]
+    }
+  }
+}

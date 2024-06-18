@@ -8,13 +8,19 @@
     "play": "Грати",
     "queue": "Додати збірку до черги",
     "tracks": "Доріжки:",
-    "year": "Рік:"
+    "year": "Рік:",
+    "add-to-playlist": "Додати альбом до плейлиста",
+    "create-playlist": "Create a new playlist",
+    "create-playlist-dialog-title": "Введіть назву плейлиста:",
+    "create-playlist-dialog-placeholder": "Назва плейлиста...",
+    "create-playlist-dialog-accept": "Зберегти",
+    "create-playlist-dialog-cancel": "Скасувати"
   },
   "app": {
     "collection": "Колекція",
     "dashboard": "Головна",
     "downloads": "Завантаження",
-    "equalizer": "Рівні",
+    "equalizer": "Еквалайзер",
     "favorite-albums": "Вподобані Збірки",
     "favorite-artists": "Вподобані Виконавці",
     "favorite-tracks": "Вподобані Доріжки",
@@ -22,11 +28,11 @@
     "listening-history": "Раніше Прослухані",
     "lyrics": "Слова",
     "main": "Головна",
-    "playlists": "Грайлисти",
-    "plugins": "Втулки",
+    "playlists": "Плейлисти",
+    "plugins": "Плагіни",
     "search": "Результати Пошуку",
     "settings": "Налаштування",
-    "visualizer": "Унаочник",
+    "visualizer": "Візуалізатор",
     "user-panel": {
       "actions-tooltip": "Дії користувача",
       "sign-up": "Реєстрація / Вхід",
@@ -40,7 +46,8 @@
     "queue": "Додати всі доріжки до черги",
     "similar": "Схожі виконавці",
     "title": "Назва",
-    "tour": "У подорожі"
+    "tour": "На гастролі",
+    "popular-tracks": "Popular tracks"
   },
   "dashboard": {
     "add-all": "Додати все",
@@ -52,16 +59,16 @@
     "popular-track-title": "Найкращі Доріжки з Deezer",
     "title": "Назва",
     "top": "Найкращі Доріжки",
-    "trending-playlists": "Популярні грайлисти",
+    "trending-playlists": "Популярні плейлисти",
     "trending-artists": "Популярні виконавці",
     "trending-albums": "Популярні збірки",
-    "filter": "Відсіяти...",
+    "filter": "Фільтр...",
     "nothing-found": "Нічого не знайдено."
   },
   "downloads": {
     "clear": "Прибрати завантажені доріжки",
-    "completion": "Поступ",
-    "empty": "Тут порожньо.",
+    "completion": "Завершення",
+    "empty": "Завантажень немає.",
     "empty-help": "Додайте щось до завантажень і ви побачите це тут!",
     "header": "Завантаження",
     "name": "Назва",
@@ -141,10 +148,10 @@
     "add-selected-tracks-to-queue": "Додати вибрані до черги",
     "album": "Збірка",
     "artist": "Виконавець",
-    "delete": "Видалити цей грайлист",
+    "delete": "Видалити цей плейлист",
     "duration": "Тривалість",
     "empty": "Нема грайлистів.",
-    "empty-help": "Створіть власні грайлисти або імпортуйте за посиланням і вони з'являться тут!",
+    "empty-help": "Try creating playlists, or import by URL, and they will appear here!",
     "error-empty-data": "Порожньо",
     "error-invalid-data": "Хибні дані",
     "error-open-file": "Не вдалося відкрити файл",
@@ -153,6 +160,7 @@
     "export-fail-title": "Не вдалося експортувати грайлист",
     "export-success-title": "Грайлист успішно експортовано",
     "header": "Ваші грайлисти",
+    "header-add-button": "Add",
     "import-progress": "Поступ імпорту",
     "spotify-import-placeholder": "Вставте посилання на грайлист Spotify тут",
     "dialog-placeholder": "Назва грайлисту...",
@@ -160,9 +168,9 @@
     "dialog-cancel": "Скасувати",
     "dialog-rename": "Перейменувати",
     "dialog-import": "Імпорт",
-    "create-button": "Створити новий грайлист",
+    "create-button": "Create a new playlist",
     "new-playlist": "Новий грайлист",
-    "import-url-button": "Імпорт із посилання (Spotify)",
+    "import-url-button": "Import from Spotify",
     "import-button": "Імпорт із файлу (JSON)",
     "import-fail-title": "Збій імпорту грайлисту",
     "import-success-title": "Грайлист успішно імпортовано",
@@ -170,7 +178,7 @@
     "playlist-created": "{{name}} створено",
     "playlist-exported": "{{name}} збережено до локального файлу",
     "queue": "Додати грайлист до черги",
-    "rename": "Перейменувати цей грайлист",
+    "rename": "Перейменувати цей плейлист",
     "songs": "{{total}} пісня",
     "songs_plural": "{{total}} пісень",
     "title": "Назва",
@@ -183,7 +191,11 @@
     "server-modified-at": "Сервер змінено: ",
     "upload-to-server": "Завантажити на сервер",
     "download-from-server": "Завантажити з сервера",
-    "number-of-tracks": "доріжки"
+    "number-of-tracks": "доріжки",
+    "input-playlist-url": "Paste playlist URL:",
+    "create-playlist-dialog-title": "Input playlist name:",
+    "playlist": "Playlist",
+    "play": "Play"
   },
   "plugins": {
     "add-a-plugin": "Додати втулок",
@@ -210,12 +222,12 @@
     "favorite-add": "Додати до вподобаних",
     "header": "Черга",
     "header-track": "Поточна доріжка",
-    "copy-track-url": "Копіювати посилання доріжки до буфера обміну",
+    "copy-track-url": "Copy track URL to clipboard",
     "loading": "Потік завантажується.",
     "playlist-add": "Додати до грайлисту",
     "playlist-add-queue": "Додати до черги грайлисту",
     "playlist-toast-content": "Грайлист {{name}} створено.",
-    "playlist-toast-title": "Грайлист створено",
+    "playlist-toast-title": "Плейлист створено",
     "live": "Наживо",
     "stream-verification": {
       "tooltip": {
@@ -234,7 +246,9 @@
       },
       "verify": "Підтвердити",
       "unverify": "Знепідтвердити"
-    }
+    },
+    "create-playlist-dialog-title": "Input playlist name:",
+    "play-now": "Play now"
   },
   "search": {
     "album": "Збірка",
@@ -284,10 +298,10 @@
     "fmfav-msg": "Імпортувати вподобане з Last.fm",
     "frameless-window": "Вікно без рамки (необхідний перезапуск)",
     "github-connect": "Увійти за допомогою Github",
-    "github-description": "Увійдіть за допомогою Github, щоб створювати та ділитися своїми грайлистами онлайн (майбутня функція).",
+    "github-description": "Увійдіть за допомогою Github, щоб створювати та ділитися своїми плейлистами онлайн (майбутня функція).",
     "github-title": "Github",
     "http": "HTTP API",
-    "invidious-url": "Посилання на примірник Invidious",
+    "invidious-url": "Invidious instance URL",
     "language": "Мова",
     "language-placeholder": "Вибрати мову",
     "lastfm-connect": "Увійти за допомогою Last.fm",
@@ -350,9 +364,9 @@
     "add-to-favorite": "Додати до вподобаних",
     "add-to-playlist": "Додати до грайлисту",
     "add-to-queue": "Додати до черги",
-    "create-playlist": "Створити новий грайлист",
+    "create-playlist": "Create a new playlist",
     "create-playlist-dialog-title": "Введіть назву грайлисту:",
-    "create-playlist-dialog-placeholder": "Назва грайлисту...",
+    "create-playlist-dialog-placeholder": "Назва плейлисту...",
     "create-playlist-dialog-accept": "Зберегти",
     "create-playlist-dialog-cancel": "Скасувати",
     "download": "Завантажити",
@@ -362,8 +376,8 @@
     "favorite-toast-title": "Доріжка додана до вподобаних",
     "play-next": "Грати наступне",
     "play-now": "Грати зараз",
-    "playlist-toast-body": "{{artist}} - {{track}} додано до грайлисту.",
-    "playlist-toast-title": "Доріжку додано до грайлисту"
+    "playlist-toast-body": "{{artist}} - {{track}} додано до плейлисту.",
+    "playlist-toast-title": "Доріжку додано до плейлисту"
   },
   "track-table": {
     "add-selected-tracks-to-queue": "Додати вибрані до черги",
@@ -377,6 +391,7 @@
     "exit-fullscreen": "Натисніть ESC, щоб вийти з повноекранного режиму"
   },
   "command-palette": {
+    "reminder": "відкрити палітру команд",
     "search-placeholder": "Що б ви хотіли зробити?",
     "empty-state-help": "Не вдається знайти те, що шукали? Спробуйте команду допомоги.",
     "protip-text": "ПОРАДА:",
@@ -412,7 +427,7 @@
       "go-to-settings": "Перейти до налаштувань",
       "go-to-equalizer": "Перейти до рівнів",
       "go-to-visualizer": "Перейти до унаочника",
-      "go-to-playlists": "Перейти до грайлистів",
+      "go-to-playlists": "Перейти до плейлистів",
       "go-to-favorite-tracks": "Перейти до вподобаних доріжок",
       "go-to-library": "Перейти до локальної бібліотеки"
     }
@@ -430,7 +445,7 @@
     "nuclear-sign-up": {
       "header": "Реєстрація",
       "secondary-header": "Реєстрація на Nuclear Web Services",
-      "side-paragraph-1": "NWS дозволить Вам створювати резервні копії Ваших грайлистів онлайн та ділитися ними.",
+      "side-paragraph-1": "NWS дозволить Вам створювати резервні копії Ваших плейлистів онлайн та ділитися ними.",
       "side-paragraph-2": "Вказувати адресу електронної пошти необов'язково; це дозволить Вам відновити обліковку, якщо Ви забудете пароль.",
       "username-label": "Ім'я користувача",
       "email-label": "Ел. пошта",

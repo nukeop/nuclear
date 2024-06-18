@@ -203,5 +203,8 @@
     "nsis": {
       "artifactName": "${productName} Setup ${env.VERSION}.${ext}"
     }
+  },
+  "dependencies": {
+    "sqlite3": "^5.1.6"
   }
 }

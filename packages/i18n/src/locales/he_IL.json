@@ -8,7 +8,13 @@
     "play": "ניגון",
     "queue": "הוספת האלבום לתור",
     "tracks": "רצועות:",
-    "year": "שנה:"
+    "year": "שנה:",
+    "add-to-playlist": "Add album to playlist",
+    "create-playlist": "Create a new playlist",
+    "create-playlist-dialog-title": "Input playlist name:",
+    "create-playlist-dialog-placeholder": "Playlist name...",
+    "create-playlist-dialog-accept": "Save",
+    "create-playlist-dialog-cancel": "Cancel"
   },
   "app": {
     "collection": "אוסף",
@@ -40,7 +46,8 @@
     "queue": "הוספת כל הרצועות לתור",
     "similar": "אומנים דומים",
     "title": "כותרת",
-    "tour": "בסיור"
+    "tour": "בסיור",
+    "popular-tracks": "Popular tracks"
   },
   "dashboard": {
     "add-all": "הוסף הכל",
@@ -144,7 +151,7 @@
     "delete": "מחיקת פלייליסט זה",
     "duration": "אורך",
     "empty": "אין פלייליסטים.",
-    "empty-help": "אפשר ליצור כמה פלייליסטים או לייבא מכתובת ואז הם יופיעו כאן!",
+    "empty-help": "Try creating playlists, or import by URL, and they will appear here!",
     "error-empty-data": "לא סופקו נתונים",
     "error-invalid-data": "נתונים בלתי‏־תקינים",
     "error-open-file": "לא ניתן לפתוח את הקובץ",
@@ -153,6 +160,7 @@
     "export-fail-title": "ייצוא הפלייליסט נכשל",
     "export-success-title": "הפלייליסט יוצָא בהצלחה",
     "header": "הפלייליסטים שלך",
+    "header-add-button": "Add",
     "import-progress": "הליך ייבוא",
     "spotify-import-placeholder": "הדבק את קישור הפלייליסט ספוטיפיי כאן",
     "dialog-placeholder": "שם הפלייליסט...",
@@ -160,9 +168,9 @@
     "dialog-cancel": "ביטול",
     "dialog-rename": "שינוי שם",
     "dialog-import": "ייבוא",
-    "create-button": "צור רשימת השמעה חדשה",
+    "create-button": "Create a new playlist",
     "new-playlist": "רשימת השמעה חדשה",
-    "import-url-button": "ייבוא מקישור (ספוטיפיי)",
+    "import-url-button": "Import from Spotify",
     "import-button": "ייבוא מקובץ (JSON)",
     "import-fail-title": "ייבוא הפלייליסט נכשל",
     "import-success-title": "הפלייליסט יובא בהצלחה",
@@ -183,7 +191,11 @@
     "server-modified-at": "השרת שונה: ",
     "upload-to-server": "להעלות לשרת",
     "download-from-server": "הורדה מהשרת",
-    "number-of-tracks": "רצועות"
+    "number-of-tracks": "רצועות",
+    "input-playlist-url": "Paste playlist URL:",
+    "create-playlist-dialog-title": "Input playlist name:",
+    "playlist": "Playlist",
+    "play": "Play"
   },
   "plugins": {
     "add-a-plugin": "הורדת תוסף",
@@ -210,7 +222,7 @@
     "favorite-add": "הוספה למועדפים",
     "header": "תור",
     "header-track": "הרצועה הנוכחית",
-    "copy-track-url": "העתק את קישור הרצועה",
+    "copy-track-url": "Copy track URL to clipboard",
     "loading": "ההזרמה עדיין נטענת.",
     "playlist-add": "הוספה לפלייליסט",
     "playlist-add-queue": "הוספת תור לפלייליסט",
@@ -234,7 +246,9 @@
       },
       "verify": "אמת",
       "unverify": "הסר אימות"
-    }
+    },
+    "create-playlist-dialog-title": "Input playlist name:",
+    "play-now": "Play now"
   },
   "search": {
     "album": "אלבום",
@@ -287,7 +301,7 @@
     "github-description": "היכנס דרך Github כדי שתוכל ליצור ולשתף את הפלייליסטים שלך באינטרנט (תכונה קרובה).",
     "github-title": "Github",
     "http": "‏API של HTTP",
-    "invidious-url": "דוגמה לקישור של instance",
+    "invidious-url": "Invidious instance URL",
     "language": "שפה",
     "language-placeholder": "נא לבחור שפה",
     "lastfm-connect": "התחברות עם Last.fm",
@@ -350,7 +364,7 @@
     "add-to-favorite": "הוספה למועדפים",
     "add-to-playlist": "הוסף לרשימת ההשמעה",
     "add-to-queue": "הוסף לתור",
-    "create-playlist": "צור רשימת השמעה חדשה",
+    "create-playlist": "Create a new playlist",
     "create-playlist-dialog-title": "הזן שם לרשימת השמעה:",
     "create-playlist-dialog-placeholder": "שם הפלייליסט...",
     "create-playlist-dialog-accept": "שמירה",
@@ -377,6 +391,7 @@
     "exit-fullscreen": "יש ללחוץ על ESC כדי לצאת ממסך מלא"
   },
   "command-palette": {
+    "reminder": "to open the command palette",
     "search-placeholder": "מה תרצו לעשות?",
     "empty-state-help": "לא נמצא מה שחיפשתם? נסו את פקודת העזרה.",
     "protip-text": "טיפ חשוב:",

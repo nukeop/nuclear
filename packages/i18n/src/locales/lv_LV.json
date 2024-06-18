@@ -8,7 +8,13 @@
     "play": "Atskaņot",
     "queue": "Pievienot albumus rindai",
     "tracks": "Dziesmas:",
-    "year": "Gads:"
+    "year": "Gads:",
+    "add-to-playlist": "Add album to playlist",
+    "create-playlist": "Create a new playlist",
+    "create-playlist-dialog-title": "Input playlist name:",
+    "create-playlist-dialog-placeholder": "Playlist name...",
+    "create-playlist-dialog-accept": "Save",
+    "create-playlist-dialog-cancel": "Cancel"
   },
   "app": {
     "collection": "Kolekcija",
@@ -40,7 +46,8 @@
     "queue": "Pievienot atlasīto rindai",
     "similar": "Līdzīgi izpildītāji",
     "title": "Nosaukums",
-    "tour": "Tūrē"
+    "tour": "Tūrē",
+    "popular-tracks": "Popular tracks"
   },
   "dashboard": {
     "add-all": "Pievienot visas",
@@ -144,7 +151,7 @@
     "delete": "Dzēst atskaņošanas saraksti",
     "duration": "Ilgums",
     "empty": "Nav atskaņošanas sarakstu.",
-    "empty-help": "Izveidojiet atskaņošanas sarakstus vai importēt pēc Url, un tie tiks parādīti šeit!",
+    "empty-help": "Try creating playlists, or import by URL, and they will appear here!",
     "error-empty-data": "Tukši dati",
     "error-invalid-data": "Nederīgi dati",
     "error-open-file": "Nevar atvērt failu",
@@ -153,6 +160,7 @@
     "export-fail-title": "Atskaņošanas saraksta eksportēšana neizdevās",
     "export-success-title": "Atskaņošanas saraksts veiksmīgi eksportēts",
     "header": "Jūsu saraksti",
+    "header-add-button": "Add",
     "import-progress": "Import progress",
     "spotify-import-placeholder": "Paste a Spotify playlist URL here",
     "dialog-placeholder": "Atskaņošanas saraksta nosaukums...",
@@ -160,7 +168,7 @@
     "dialog-cancel": "Cancel",
     "dialog-rename": "Rename",
     "dialog-import": "Import",
-    "create-button": "Izveidot atskaņošanas sarakstu",
+    "create-button": "Create a new playlist",
     "new-playlist": "Jauns atskaņošanas saraksts",
     "import-url-button": "Import from Spotify",
     "import-button": "Importēt no faila (JSON)",
@@ -183,7 +191,11 @@
     "server-modified-at": "Server modified: ",
     "upload-to-server": "Upload to server",
     "download-from-server": "Download from server",
-    "number-of-tracks": "tracks"
+    "number-of-tracks": "tracks",
+    "input-playlist-url": "Paste playlist URL:",
+    "create-playlist-dialog-title": "Input playlist name:",
+    "playlist": "Playlist",
+    "play": "Play"
   },
   "plugins": {
     "add-a-plugin": "Pievienot spraudni",
@@ -210,7 +222,7 @@
     "favorite-add": "Pievienot izlasei",
     "header": "Rinda",
     "header-track": "Cašreizējā dziesma",
-    "copy-track-url": "Kopēt ieraksta Url starpliktuvē",
+    "copy-track-url": "Copy track URL to clipboard",
     "loading": "Straume joprojām tiek ielādēta.",
     "playlist-add": "Pievienot atskaņošanas sarakstam",
     "playlist-add-queue": "Pievienot rindu atskaņošanas sarakstam",
@@ -234,7 +246,9 @@
       },
       "verify": "Verify",
       "unverify": "Unverify"
-    }
+    },
+    "create-playlist-dialog-title": "Input playlist name:",
+    "play-now": "Play now"
   },
   "search": {
     "album": "Albums",
@@ -287,7 +301,7 @@
     "github-description": "Piesakieties, izmantojot Github, lai varētu tiešsaistē izveidot un koplietot atskaņošanas sarakstus (gaidāmā funkcija).",
     "github-title": "GitHub",
     "http": "HTTP API",
-    "invidious-url": "Invidious instance url",
+    "invidious-url": "Invidious instance URL",
     "language": "Valoda",
     "language-placeholder": "Izvēlieties valodu",
     "lastfm-connect": "Savienot ar Last.fm",
@@ -377,6 +391,7 @@
     "exit-fullscreen": "Nospiediet ESC, lai izietu no pilna ekrāna"
   },
   "command-palette": {
+    "reminder": "to open the command palette",
     "search-placeholder": "What would you like to do?",
     "empty-state-help": "Can't seem to find what you're looking for? Try the help command.",
     "protip-text": "PROTIP:",

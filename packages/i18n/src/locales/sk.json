@@ -8,7 +8,13 @@
     "play": "Prehrať",
     "queue": "Pridať album do poradia",
     "tracks": "Skladby:",
-    "year": "Rok:"
+    "year": "Rok:",
+    "add-to-playlist": "Add album to playlist",
+    "create-playlist": "Create a new playlist",
+    "create-playlist-dialog-title": "Input playlist name:",
+    "create-playlist-dialog-placeholder": "Playlist name...",
+    "create-playlist-dialog-accept": "Save",
+    "create-playlist-dialog-cancel": "Cancel"
   },
   "app": {
     "collection": "Zbierka",
@@ -40,7 +46,8 @@
     "queue": "Pridať všetky skladby do poradia",
     "similar": "Podobný umelci",
     "title": "Názov",
-    "tour": "Na tour"
+    "tour": "Na tour",
+    "popular-tracks": "Popular tracks"
   },
   "dashboard": {
     "add-all": "Pridať všetko",
@@ -144,7 +151,7 @@
     "delete": "Vymazať tento playlist",
     "duration": "Dĺžka",
     "empty": "Žiadne playlisty.",
-    "empty-help": "Try create some playlists or import by url and they will appear here!",
+    "empty-help": "Try creating playlists, or import by URL, and they will appear here!",
     "error-empty-data": "Prázdny playlist",
     "error-invalid-data": "Neplatné údaje",
     "error-open-file": "Nepodarilo sa otvoriť súbor",
@@ -153,6 +160,7 @@
     "export-fail-title": "Nepodarilo sa exportovať playlist",
     "export-success-title": "Playlist bol úspešne exportovaný",
     "header": "Vaše playlisty",
+    "header-add-button": "Add",
     "import-progress": "Import progress",
     "spotify-import-placeholder": "Paste a Spotify playlist URL here",
     "dialog-placeholder": "Názov playlistu...",
@@ -160,7 +168,7 @@
     "dialog-cancel": "Cancel",
     "dialog-rename": "Rename",
     "dialog-import": "Import",
-    "create-button": "Vytvoriť nový playlist",
+    "create-button": "Create a new playlist",
     "new-playlist": "Nový playlist",
     "import-url-button": "Import from Spotify",
     "import-button": "Importovať zo súboru (JSON)",
@@ -183,7 +191,11 @@
     "server-modified-at": "Server modified: ",
     "upload-to-server": "Upload to server",
     "download-from-server": "Download from server",
-    "number-of-tracks": "tracks"
+    "number-of-tracks": "tracks",
+    "input-playlist-url": "Paste playlist URL:",
+    "create-playlist-dialog-title": "Input playlist name:",
+    "playlist": "Playlist",
+    "play": "Play"
   },
   "plugins": {
     "add-a-plugin": "Add a plugin",
@@ -210,7 +222,7 @@
     "favorite-add": "Pridať do obľúbených",
     "header": "Poradie",
     "header-track": "Aktuálna skladba",
-    "copy-track-url": "Copy track url to clipboard",
+    "copy-track-url": "Copy track URL to clipboard",
     "loading": "Stream sa stále načítava.",
     "playlist-add": "Pridať do playlistu",
     "playlist-add-queue": "Pridať do fronty do playlistu",
@@ -234,7 +246,9 @@
       },
       "verify": "Verify",
       "unverify": "Unverify"
-    }
+    },
+    "create-playlist-dialog-title": "Input playlist name:",
+    "play-now": "Play now"
   },
   "search": {
     "album": "Album",
@@ -287,7 +301,7 @@
     "github-description": "Prihláste sa cez Github aby Ste mohli vytvárať a zdieľať playlisty online (nadchádzajúca funkcia).",
     "github-title": "Github",
     "http": "HTTP API",
-    "invidious-url": "Invidious instance url",
+    "invidious-url": "Invidious instance URL",
     "language": "Jazyk",
     "language-placeholder": "Zvoliť jazyk",
     "lastfm-connect": "Pripojiť s Last.fm",
@@ -377,6 +391,7 @@
     "exit-fullscreen": "Press ESC to exit full screen"
   },
   "command-palette": {
+    "reminder": "to open the command palette",
     "search-placeholder": "What would you like to do?",
     "empty-state-help": "Can't seem to find what you're looking for? Try the help command.",
     "protip-text": "PROTIP:",

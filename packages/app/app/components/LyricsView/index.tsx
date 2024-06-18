@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Icon } from 'semantic-ui-react';
 import { useTranslation } from 'react-i18next';
 
@@ -18,8 +18,15 @@ export const LyricsView: React.FC<LyricsViewProps> = ({
   track
 }) => {
   const { t } = useTranslation('lyrics');
+  const lyricsRef = useRef<HTMLDivElement>(null);
 
-  return <div className={styles.lyrics_view}>
+  useEffect(() => {
+    if (lyricsRef.current) {
+      lyricsRef.current.scrollTop = 0;
+    }
+  }, [lyricsSearchResult]);
+
+  return <div className={styles.lyrics_view} ref={lyricsRef}>
     {
       !track &&
       <div className={styles.empty_state}>

@@ -8,7 +8,13 @@
     "play": "Reproducir",
     "queue": "Añadir álbum a la cola",
     "tracks": "Pistas:",
-    "year": "Año:"
+    "year": "Año:",
+    "add-to-playlist": "Add album to playlist",
+    "create-playlist": "Create a new playlist",
+    "create-playlist-dialog-title": "Input playlist name:",
+    "create-playlist-dialog-placeholder": "Playlist name...",
+    "create-playlist-dialog-accept": "Guardar",
+    "create-playlist-dialog-cancel": "Cancelar"
   },
   "app": {
     "collection": "Colección",
@@ -40,7 +46,8 @@
     "queue": "Añadir todas las pistas a la cola",
     "similar": "Artistas similares",
     "title": "Título",
-    "tour": "En tour"
+    "tour": "En tour",
+    "popular-tracks": "Canciones populares"
   },
   "dashboard": {
     "add-all": "Añadir todo",
@@ -144,7 +151,7 @@
     "delete": "Eliminar esta lista de reproducción",
     "duration": "Duración",
     "empty": "No hay listas de reproducción.",
-    "empty-help": "¡Prueba crear algunas listas de reproducción o impórtalas por URL y aparecerán aquí!",
+    "empty-help": "Try creating playlists, or import by URL, and they will appear here!",
     "error-empty-data": "Datos vacíos",
     "error-invalid-data": "Datos inválidos",
     "error-open-file": "No se puede abrir el archivo",
@@ -153,6 +160,7 @@
     "export-fail-title": "Exportación de lista de reproducción fallida",
     "export-success-title": "Lista de reproducción exportada exitosamente",
     "header": "Tus listas de reproducción",
+    "header-add-button": "Add",
     "import-progress": "Importar progreso",
     "spotify-import-placeholder": "Pega aquí una URL de una lista de reproducción de Spotify",
     "dialog-placeholder": "Nombre de la lista de reproducción...",
@@ -160,9 +168,9 @@
     "dialog-cancel": "Cancelar",
     "dialog-rename": "Renombrar",
     "dialog-import": "Importar",
-    "create-button": "Crear una nueva lista de reproducción",
+    "create-button": "Create a new playlist",
     "new-playlist": "Nueva lista de reproducción",
-    "import-url-button": "Importar desde URL (Spotify)",
+    "import-url-button": "Import from Spotify",
     "import-button": "Importar desde archivo (JSON)",
     "import-fail-title": "Importación de lista de reproducción fallida",
     "import-success-title": "Lista de reproducción importada exitosamente",
@@ -183,7 +191,11 @@
     "server-modified-at": "Modificado en el servidor: ",
     "upload-to-server": "Subir al servidor",
     "download-from-server": "Descargar desde el servidor",
-    "number-of-tracks": "canciones"
+    "number-of-tracks": "canciones",
+    "input-playlist-url": "Paste playlist URL:",
+    "create-playlist-dialog-title": "Input playlist name:",
+    "playlist": "Playlist",
+    "play": "Play"
   },
   "plugins": {
     "add-a-plugin": "Añadir un plugin",
@@ -210,7 +222,7 @@
     "favorite-add": "Añadir a favoritos",
     "header": "Cola de reproducción",
     "header-track": "Pista actual",
-    "copy-track-url": "Copiar la url de la pista al portapapeles",
+    "copy-track-url": "Copy track URL to clipboard",
     "loading": "La transmisión sigue cargando.",
     "playlist-add": "Añadir a lista de reproducción",
     "playlist-add-queue": "Añadir cola a lista de reproducción",
@@ -234,7 +246,9 @@
       },
       "verify": "Verificar",
       "unverify": "No verificar"
-    }
+    },
+    "create-playlist-dialog-title": "Input playlist name:",
+    "play-now": "Play now"
   },
   "search": {
     "album": "Álbum",
@@ -287,7 +301,7 @@
     "github-description": "Inicia sesión en GitHub para crear y compartir tus listas de reproducción en línea (próximamente disponible).",
     "github-title": "GitHub",
     "http": "API HTTP",
-    "invidious-url": "URL de la instancia de Invidious",
+    "invidious-url": "Invidious instance URL",
     "language": "Idioma",
     "language-placeholder": "Elige un idioma",
     "lastfm-connect": "Conectar con Last.fm",
@@ -350,7 +364,7 @@
     "add-to-favorite": "Añadir a favoritos",
     "add-to-playlist": "Añadir a lista de reproducción",
     "add-to-queue": "Añadir a la cola",
-    "create-playlist": "Crear nueva playlist",
+    "create-playlist": "Create a new playlist",
     "create-playlist-dialog-title": "Introduce el nombre de la playlist:",
     "create-playlist-dialog-placeholder": "Nombre de la lista de reproducción...",
     "create-playlist-dialog-accept": "Guardar",
@@ -377,6 +391,7 @@
     "exit-fullscreen": "Presiona ESC para salir de la pantalla completa"
   },
   "command-palette": {
+    "reminder": "to open the command palette",
     "search-placeholder": "¿Qué te gustaría hacer?",
     "empty-state-help": "¿No encuentras lo que estás buscando? Prueba el comando de ayuda.",
     "protip-text": "Consejo de pro:",
