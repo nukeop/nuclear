@@ -42,7 +42,10 @@ export const localLibraryActions = {
   removeLocalFolder: createAction(LocalLibrary.REMOVE_LOCAL_FOLDER, (folder: string[]) => folder),
   scanLocalFolders: VoidAction(LocalLibrary.SCAN_LOCAL_FOLDERS),
   scanLocalFoldersProgress: createAction(LocalLibrary.SCAN_LOCAL_FOLDERS_PROGRESS, (scanProgress: number, scanTotal: number) => ({ scanProgress, scanTotal })),
-  scanLocalFoldersSuccess: createAction(LocalLibrary.SCAN_LOCAL_FOLDERS_SUCCESS, (payload: Track[]) => payload),
+  scanLocalFoldersSuccess: createAction(LocalLibrary.SCAN_LOCAL_FOLDERS_SUCCESS, (payload: Track[]) => {
+    const tracks = Array.isArray(payload) ? payload : Object.values(payload);
+    return tracks;
+  }),
   scanLocalFoldersFailure: VoidAction(LocalLibrary.SCAN_LOCAL_FOLDERS_FAILURE),
   updateFilter: createAction(LocalLibrary.UPDATE_LOCAL_FILTER, (event: { target: { value: string } }) => ({ filter: event.target.value })),
   updateLocalSort: createAction(LocalLibrary.UPDATE_LOCAL_SORT, (sortBy, column, direction) => ({
