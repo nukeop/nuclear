@@ -10,11 +10,11 @@
     "tracks": "Lagu:",
     "year": "Tahun:",
     "add-to-playlist": "Add album to playlist",
-    "create-playlist": "Create a new playlist",
-    "create-playlist-dialog-title": "Input playlist name:",
-    "create-playlist-dialog-placeholder": "Playlist name...",
-    "create-playlist-dialog-accept": "Save",
-    "create-playlist-dialog-cancel": "Cancel"
+    "create-playlist": "Buat daftar putar baru",
+    "create-playlist-dialog-title": "Masukkan nama playlist:",
+    "create-playlist-dialog-placeholder": "Nama playlist...",
+    "create-playlist-dialog-accept": "Simpan",
+    "create-playlist-dialog-cancel": "Batal"
   },
   "app": {
     "collection": "Koleksi",
@@ -47,7 +47,7 @@
     "similar": "Musisi yang mirip",
     "title": "Judul",
     "tour": "Dalam tur",
-    "popular-tracks": "Popular tracks"
+    "popular-tracks": "Track populer"
   },
   "dashboard": {
     "add-all": "Tambahkan semua",
@@ -160,7 +160,7 @@
     "export-fail-title": "Eksport daftar putar gagal",
     "export-success-title": "Daftar putar berhasil diekspor",
     "header": "Daftar putarmu",
-    "header-add-button": "Add",
+    "header-add-button": "Tambah",
     "import-progress": "Impor perkembangan",
     "spotify-import-placeholder": "Tempelkan tautan playlist Spotify di sini",
     "dialog-placeholder": "Nama daftar putar...",
@@ -168,7 +168,7 @@
     "dialog-cancel": "Batal",
     "dialog-rename": "Ubah Nama",
     "dialog-import": "Impor",
-    "create-button": "Create a new playlist",
+    "create-button": "Buat daftar putar baru",
     "new-playlist": "Daftar putar baru",
     "import-url-button": "Import from Spotify",
     "import-button": "Impor berkas (JSON)",
@@ -193,9 +193,9 @@
     "download-from-server": "Unduh dari server",
     "number-of-tracks": "lagu",
     "input-playlist-url": "Paste playlist URL:",
-    "create-playlist-dialog-title": "Input playlist name:",
-    "playlist": "Playlist",
-    "play": "Play"
+    "create-playlist-dialog-title": "Masukkan nama playlist:",
+    "playlist": "Daftar Putar",
+    "play": "Putar"
   },
   "plugins": {
     "add-a-plugin": "Tambahkan plugin",
@@ -222,10 +222,10 @@
     "favorite-add": "Tambahkan ke favorit",
     "header": "antrian",
     "header-track": "Lagu sekarang",
-    "copy-track-url": "Copy track URL to clipboard",
+    "copy-track-url": "Salin url lagu ke clipboard",
     "loading": "Sedang memuat.",
     "playlist-add": "Tambahkan ke daftar putar",
-    "playlist-add-queue": "Tambahkan antrian ke daftar putar",
+    "playlist-add-queue": "Simpan antrean ke daftar putar",
     "playlist-toast-content": "Daftar putar {{name}} berhasil dibuat.",
     "playlist-toast-title": "Daftar putar berhasil dibuat",
     "live": "Live",
@@ -247,8 +247,8 @@
       "verify": "Verifikasi",
       "unverify": "Tidak diverifikasi"
     },
-    "create-playlist-dialog-title": "Input playlist name:",
-    "play-now": "Play now"
+    "create-playlist-dialog-title": "Masukkan nama playlist:",
+    "play-now": "Putar sekarang"
   },
   "search": {
     "album": "Album",
@@ -364,7 +364,7 @@
     "add-to-favorite": "Tambahkan ke favorit",
     "add-to-playlist": "Tambahkan ke daftar putar",
     "add-to-queue": "Tambahkan ke daftar antri",
-    "create-playlist": "Create a new playlist",
+    "create-playlist": "Buat daftar putar baru",
     "create-playlist-dialog-title": "Masukkan nama playlist:",
     "create-playlist-dialog-placeholder": "Nama playlist...",
     "create-playlist-dialog-accept": "Simpan",
