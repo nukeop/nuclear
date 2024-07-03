@@ -56,7 +56,7 @@ jobs:
         run: |
           sudo -H pip install setuptools
       - run: npm ci
-      - run: npm run build:${{ matrix.platform }}:debug
+      - run: npm run build:${{ matrix.platform }}
         shell: bash
         env:
           VERSION: ${{ steps.package-version.outputs.version }}
