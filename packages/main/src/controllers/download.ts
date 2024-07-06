@@ -49,7 +49,7 @@ class DownloadIpcCtrl {
   @ipcEvent(IpcEvents.DOWNLOAD_START)
   async onStartDownload(event: IpcMessageEvent, data: NuclearMeta) {
     try {
-      const { uuid } = data;
+      const { uuid,selectedStreamId } = data;
       const downloadRef = this.downloadItems.find((item => item.uuid === uuid));
       if (downloadRef) {
         if (downloadRef.ref.canResume()) {
@@ -71,6 +71,7 @@ class DownloadIpcCtrl {
           track: title
         },
         filename,
+        selectedStreamId,
         onStarted: (item) => {
           this.downloadItems = this.downloadItems.filter((item) => item.uuid !== uuid);
           this.downloadItems.push({ uuid, ref: item });

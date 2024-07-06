@@ -38,7 +38,6 @@ const StreamInfo: React.FC<StreamInfoProps & Handlers> =({
     value: stream.id,
     content: <StreamOption {...stream} />
   }));
-
   return (
     <>
       <div className={styles.stream_info}>

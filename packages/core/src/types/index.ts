@@ -15,6 +15,7 @@ export interface NuclearStatus {
 export interface NuclearMeta {
   uuid: string;
   artist: string;
+  selectedStreamId?:string;
   streams?: Array<{ duration: number }>;
   name?: string;
   position?: number;

@@ -28,6 +28,7 @@ export type QueueItem = {
   artist: string | { name: string };
   name: string;
   thumbnail?: string;
+  selectedStreamId?:string;
   streams?: TrackStream[];
 };
 

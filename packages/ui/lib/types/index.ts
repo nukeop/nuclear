@@ -15,6 +15,7 @@ export type Track = {
   playcount?: number | string;
   thumbnail?: string;
   image?: { '#text'?: string }[];
+  selectedStreamId?:string;
   streams?: TrackStream[];
 };
 
@@ -47,6 +48,7 @@ export type TrackItem = {
   local?: boolean;
   uuid?: string;
   streams?: TrackStream[];
+  selectedStreamId?:string;
 }
 
 export type Download = {

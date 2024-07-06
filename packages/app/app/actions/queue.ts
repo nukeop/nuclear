@@ -147,13 +147,14 @@ export const selectNewStream = (index: number, streamId: string) => async (dispa
 
   const oldStreamData = track.streams.find(stream => stream.id === streamId);
   const streamData = await selectedStreamProvider.getStreamForId(streamId);
-
+    console.log(streamData,streamId,"stream data and stream id from selectNewStream")
   if (!streamData) {
     dispatch(removeFromQueue(index));
   } else {
     dispatch(
       updateQueueItem({
         ...track,
+        selectedStreamId:streamId,
         streams: [
           {
             ...oldStreamData,

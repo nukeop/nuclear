@@ -48,7 +48,8 @@ export const getTrackItem = (track: Track): TrackItem => ({
   thumbnail: getThumbnail(track),
   local: track.local,
   streams: track.streams ?? [],
-  uuid: track.uuid
+  selectedStreamId: track.selectedStreamId,
+  uuid: track.uuid,
 });
 
 export const areTracksEqualByName = (trackA: Track, trackB: Track) => getTrackArtist(trackA) === getTrackArtist(trackB) && getTrackTitle(trackA) === getTrackTitle(trackB);

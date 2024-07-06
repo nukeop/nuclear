@@ -13,6 +13,7 @@ import { DownloadItem } from 'electron';
 type DownloadParams = {
   query: StreamQuery;
   filename: string;
+  selectedStreamId?:string;
 } & Pick<Options, 'onStarted' | 'onProgress' | 'onCompleted'>
 
 /**
@@ -37,11 +38,29 @@ class Download {
     filename,
     onStarted,
     onProgress,
-    onCompleted
+    onCompleted,
+    selectedStreamId
   }: DownloadParams): Promise<any> {
-    const tracks = await Youtube.trackSearchByString(query, undefined, false);
-    const videoWithStream = await Youtube.getStreamForId(tracks[0]?.id, undefined);
 
+     
+  //  const videoWithStream = await Youtube.getStreamForId(tracks[0]?.id, undefined);
+    //const videoWithStream = await Youtube.getStreamForId(selectedStreamId, undefined);
+  //instaid of tracks[0].id we are using specific slectedstream id from user 
+
+     let videoWithStream:any;
+     if (selectedStreamId) {
+       videoWithStream = await Youtube.getStreamForId(
+         selectedStreamId,
+         undefined
+       );
+     } else {
+       const tracks = await Youtube.trackSearchByString(
+         query,
+         undefined,
+         false
+       );
+       videoWithStream = await Youtube.getStreamForId(tracks[0]?.id, undefined);
+     }
     return download(this.window.getBrowserWindow(), videoWithStream?.stream, {
       filename: `${filename}.${videoWithStream?.format}`,
       directory: this.store.getOption('downloads.dir'),

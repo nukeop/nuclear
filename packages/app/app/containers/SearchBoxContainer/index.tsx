@@ -49,7 +49,6 @@ const SearchBoxContainer: React.FC = () => {
     provider && dispatch(selectMetaProvider(provider.value)),
   [dispatch]);
 
-
   return <SearchBox 
     loading={unifiedSearchStarted}
     disabled={!isConnected}
