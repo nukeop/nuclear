@@ -75,7 +75,7 @@
   "build": {
     "appId": "nuclear",
     "productName": "nuclear",
-    "artifactName": "${productName}-v${env.VERSION}-{arch}.${ext}",
+    "artifactName": "${productName}-v${env.VERSION}-${arch}.${ext}",
     "directories": {
       "output": "release"
     },
@@ -93,13 +93,6 @@
       {
         "from": "packages/main/resources",
         "to": "resources",
-        "filter": [
-          "**/*"
-        ]
-      },
-      {
-        "from": "packages/scanner",
-        "to": "node_modules/@nuclear/scanner",
         "filter": [
           "**/*"
         ]
