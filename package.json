@@ -156,20 +156,6 @@
       "category": "public.app-category.music",
       "target": [
         {
-          "target": "zip",
-          "arch": [
-            "x64",
-            "arm64"
-          ]
-        },
-        {
-          "target": "pkg",
-          "arch": [
-            "x64",
-            "arm64"
-          ]
-        },
-        {
           "target": "dmg",
           "arch": [
             "x64",
