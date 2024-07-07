@@ -71,6 +71,7 @@ jobs:
           [
             { os: "ubuntu-latest", cmd: "build:linux" },
             { os: "macos-latest", cmd: "build:macos" },
+            { os: "macos-latest-xlarge", cmd: "build:macos-arm64" },
             { os: "windows-latest", cmd: "build:windows" },
           ]
     steps:
