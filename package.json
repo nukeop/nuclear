@@ -75,7 +75,7 @@
   "build": {
     "appId": "nuclear",
     "productName": "nuclear",
-    "artifactName": "${productName}-v${env.VERSION}.${ext}",
+    "artifactName": "${productName}-v${env.VERSION}-{arch}.${ext}",
     "directories": {
       "output": "release"
     },
