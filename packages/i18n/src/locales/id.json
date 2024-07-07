@@ -9,7 +9,7 @@
     "queue": "Tambahkan album ke daftar antrian",
     "tracks": "Lagu:",
     "year": "Tahun:",
-    "add-to-playlist": "Add album to playlist",
+    "add-to-playlist": "Tambahkan album ke daftar putar",
     "create-playlist": "Buat daftar putar baru",
     "create-playlist-dialog-title": "Masukkan nama playlist:",
     "create-playlist-dialog-placeholder": "Nama playlist...",
@@ -151,7 +151,7 @@
     "delete": "Hapus daftar putar ini",
     "duration": "Durasi",
     "empty": "Tidak ada daftar putar.",
-    "empty-help": "Try creating playlists, or import by URL, and they will appear here!",
+    "empty-help": "Coba membuat daftar putar, atau impor URL, dan mereka akan ditampilkan disini!",
     "error-empty-data": "Data kosong",
     "error-invalid-data": "Data tidak valid",
     "error-open-file": "Tidak bisa membuka berkas",
@@ -170,7 +170,7 @@
     "dialog-import": "Impor",
     "create-button": "Buat daftar putar baru",
     "new-playlist": "Daftar putar baru",
-    "import-url-button": "Import from Spotify",
+    "import-url-button": "Impor dari Spotify",
     "import-button": "Impor berkas (JSON)",
     "import-fail-title": "Impor daftar putar gagal",
     "import-success-title": "Daftar putar berhasil diimpor",
@@ -192,7 +192,7 @@
     "upload-to-server": "Unggah ke server",
     "download-from-server": "Unduh dari server",
     "number-of-tracks": "lagu",
-    "input-playlist-url": "Paste playlist URL:",
+    "input-playlist-url": "Tempelkan URL daftar putar:",
     "create-playlist-dialog-title": "Masukkan nama playlist:",
     "playlist": "Daftar Putar",
     "play": "Putar"
@@ -348,7 +348,7 @@
     "user": "Pengguna:",
     "user-id": "ID Pengguna",
     "use-stream-verification": "Gunakan verifikasi stream",
-    "use-stream-verification-description": "Use stream verification. Loads the streams the community has verified as being correct for the tracks you play. Also allows you to vote on streams. See documentation for details.",
+    "use-stream-verification-description": "Gunakan verifikasi stream. Memuat stream yang diverifikasi oleh komunitas sebagai benar untuk trek yang Anda mainkan. Selain itu, Anda juga bisa memberi suara untuk stream. Lihat dokumentasi untuk detail.",
     "youtube": "Youtube",
     "yt-api-key": "Kunci API Youtube"
   },
@@ -391,7 +391,7 @@
     "exit-fullscreen": "Tekan ESC untuk keluar dari layar penuh"
   },
   "command-palette": {
-    "reminder": "to open the command palette",
+    "reminder": "untuk membuka palet perintah",
     "search-placeholder": "Apa yang ingin anda lakukan?",
     "empty-state-help": "Tidak dapat menemukan apa yang anda inginkan? Coba dengan perintah bantuan.",
     "protip-text": "PROTIP:",
