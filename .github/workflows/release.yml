@@ -57,7 +57,7 @@ jobs:
           client-payload: '{"tag": "v${{ steps.package-version.outputs.version }}"}'
 
   mac_release:
-    runs-on: macos-11
+    runs-on: macos-latest
     timeout-minutes: 30
 
     steps:
