@@ -88,6 +88,38 @@ jobs:
           prerelease: true
           files: release/*.*
 
+  mac_arm64_release:
+    runs-on: macos-latest-xlarge
+    timeout-minutes: 30
+
+    steps:
+      - uses: actions/checkout@master
+      - name: get-npm-version
+        id: package-version
+        uses: pchynoweth/action-get-npm-version@1.1.1
+      - name: Use Node.js 20
+        uses: actions/setup-node@master
+        with:
+          version: 20
+          cache: npm
+      - run: npm ci
+      - run: npm run build:macos-arm64
+        shell: bash
+        env:
+          VERSION: ${{ steps.package-version.outputs.version }}
+      - name: Upload binaries
+        uses: actions/upload-artifact@v2
+        with:
+          name: nuclear-binaries-mac-arm64
+          path: release/*.*
+      - name: Create a release
+        uses: softprops/action-gh-release@v1
+        with:
+          name: v${{ steps.package-version.outputs.version }}
+          tag_name: v${{ steps.package-version.outputs.version }}
+          prerelease: true
+          files: release/*.*
+
   windows_release:
     runs-on: windows-latest
     timeout-minutes: 30
