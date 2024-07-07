@@ -37,7 +37,7 @@ class Download {
     onStarted,
     onProgress,
     onCompleted,
-    selectedStreamId,
+    selectedStreamId
   }: DownloadParams): Promise<any> {
     //  const videoWithStream = await Youtube.getStreamForId(tracks[0]?.id, undefined);
     // instaid of tracks[0].id we are using specific slectedstream id ,its created on streamChange event on queueItems
@@ -53,10 +53,10 @@ class Download {
     }
     return download(this.window.getBrowserWindow(), videoWithStream?.stream, {
       filename: `${filename}.${videoWithStream?.format}`,
-      directory: this.store.getOption("downloads.dir"),
+      directory: this.store.getOption('downloads.dir'),
       onStarted,
       onProgress: _.throttle(onProgress, 1000),
-      onCompleted,
+      onCompleted
     });
   }
 }

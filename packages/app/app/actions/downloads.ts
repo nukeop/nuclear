@@ -32,10 +32,7 @@ export const readDownloads = createStandardAction(DownloadActionTypes.READ_DOWNL
 export const addToDownloads = createStandardAction(DownloadActionTypes.ADD_TO_DOWNLOADS).map(
   (_:StreamProvider[], track: Track) => {
     const clonedTrack: TrackItem = safeAddUuid(getTrackItem(track));
-    let downloads: Download[] = store.get('downloads');
-  //we are looking for existingTrack based on track.name and track.artist but 
-  //same track.name but track.artist can have multiple streams 
-  //track should have property selectedStreamId to check properly which strem we want to download  
+    let downloads: Download[] = store.get('downloads'); 
     const existingTrack = downloads.find(({track}) => {
       const {name, artist} = track;
       return artist === clonedTrack.artist && name === clonedTrack.name;

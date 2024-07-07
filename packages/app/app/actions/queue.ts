@@ -152,7 +152,7 @@ export const selectNewStream = (index: number, streamId: string) => async (dispa
     dispatch(
       updateQueueItem({
         ...track,
-        selectedStreamId:streamId,
+        selectedStreamId: streamId,
         streams: [
           {
             ...oldStreamData,
