@@ -75,9 +75,10 @@ module.exports = (env: BuildEnv): webpack.Configuration => {
     plugins: [
       new CopyPlugin([
         { from: 'preload.js' },
-        { from: path.resolve(__dirname, '../../.env') }
+        { from: path.resolve(__dirname, '../../.env') },
+        { from: SCANNER_DIR }
       ]),
-      new webpack.NormalModuleReplacementPlugin(/(.*)system-api(\.*)/, (resource: any) => {
+      new webpack.NormalModuleReplacementPlugin(/(.*)system-api(\.*)/, (resource) => {
         resource.request = resource.request.replace(/system-api/, `@${env.TARGET}/system-api`);
       })
     ]
