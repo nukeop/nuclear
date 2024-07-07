@@ -40,7 +40,7 @@ class Download {
     selectedStreamId,
   }: DownloadParams): Promise<any> {
     //  const videoWithStream = await Youtube.getStreamForId(tracks[0]?.id, undefined);
-    // instaid of tracks[0].id we are using specific slectedstream id ,its created on streamChange event in queueItems
+    // instaid of tracks[0].id we are using specific slectedstream id ,its created on streamChange event on queueItems
     let videoWithStream: any;
     if (selectedStreamId) {
       videoWithStream = await Youtube.getStreamForId(

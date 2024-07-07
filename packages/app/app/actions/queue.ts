@@ -144,10 +144,8 @@ export const addToQueue =
 export const selectNewStream = (index: number, streamId: string) => async (dispatch, getState) => {
   const track = queueSelector(getState()).queueItems[index];
   const selectedStreamProvider: StreamProviderPlugin = getSelectedStreamProvider(getState);
-
   const oldStreamData = track.streams.find(stream => stream.id === streamId);
   const streamData = await selectedStreamProvider.getStreamForId(streamId);
-    console.log(streamData,streamId,"stream data and stream id from selectNewStream")
   if (!streamData) {
     dispatch(removeFromQueue(index));
   } else {

@@ -149,10 +149,8 @@ export default compose(
       toastActions,
       streamProviders
     }) => () => {
-           
       const normalizedTrack = normalizeTrack(track);
       const clonedTrack = safeAddUuid(normalizedTrack);
-
       downloadsActions.addToDownloads(streamProviders, clonedTrack);
       toastActions.info(
         'Track added to downloads',

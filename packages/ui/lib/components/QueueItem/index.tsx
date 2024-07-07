@@ -43,7 +43,6 @@ export const QueueItem: React.FC<QueueItemProps> = ({
       )}
       onDoubleClick={onSelect}
     >
-     
       <div className={styles.thumbnail}>
         {track.loading
           ? <Loader type='small' className={isCompact && styles.compact_loader} />
