@@ -182,7 +182,6 @@
         }
       ],
       "mergeASARs": true,
-      "x64ArchFiles": "Contents/Resources/bin/fpcalc",
       "extraFiles": [
         {
           "from": "packages/main/bin/mac",
