@@ -23,12 +23,14 @@ jobs:
 
     strategy:
       matrix:
-        os: [ubuntu-latest, macos-latest, windows-latest]
+        os: [ubuntu-latest, macos-latest, macos-latest-xlarge, windows-latest]
         include:
           - os: ubuntu-latest
             platform: linux
           - os: macos-latest
             platform: macos
+          - os: macos-latest-xlarge
+            platform: macos-arm64
           - os: windows-latest
             platform: windows
 
