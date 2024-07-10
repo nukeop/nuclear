@@ -18,8 +18,3 @@ Object.defineProperties(global, {
   ReadableStream: { value: ReadableStream },
   TransformStream: { value: TransformStream }
 });
-
-Object.defineProperty(global, 'require', {
-  writable: true,
-  value: require
-});
