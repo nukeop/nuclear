@@ -3,6 +3,12 @@
 
 Desktop music player focused on streaming from free sources
 
+## IMPORTANT!
+
+There's currently an issue with playback caused by changes made by Google, we're tracking progress here: https://github.com/nukeop/nuclear/issues/1629
+
+----
+
 ![Showcase](https://i.imgur.com/8qHu66J.png)
 
 # Links
