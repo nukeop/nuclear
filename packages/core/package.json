@@ -22,7 +22,7 @@
     "@babel/core": "^7.9.0",
     "@babel/preset-env": "^7.9.5",
     "@babel/preset-react": "^7.9.4",
-    "@distube/ytdl-core": "^4.13.3",
+    "@distube/ytdl-core": "4.13.5",
     "@nuclear/scanner": "^0.6.21",
     "@supabase/supabase-js": "^1.35.4",
     "ajv": "^6.12.5",

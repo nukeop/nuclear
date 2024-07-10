@@ -1,0 +1,36 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"name": "main",
+			"path": "packages/main"
+		},
+		{
+			"name": "i18n",
+			"path": "packages/i18n"
+		},
+		{
+			"name": "app",
+			"path": "packages/app"
+		},
+		{
+			"name": "core",
+			"path": "packages/core"
+		},
+		{
+			"name": "ui",
+			"path": "packages/ui"
+		}
+	],
+	"settings": {
+		"jest.disabledWorkspaceFolders": [
+			"main",
+			"i18n",
+			"app",
+			"core",
+			"ui"
+		]
+	}
+}
