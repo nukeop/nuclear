@@ -1,5 +1,5 @@
 import logger from 'electron-timber';
-import ytdl from '@distube/ytdl-core';
+import ytdl from '../ytdl-core';
 
 import ytpl from 'ytpl';
 import {search, SearchVideo} from 'youtube-ext';
