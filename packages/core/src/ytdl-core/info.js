@@ -1,5 +1,5 @@
 import sax from 'sax';
-import {applyDefaultAgent, applyDefaultHeaders, applyIPv6Rotations, applyOldLocalAddress, playError, requestUtil, between, cutAfterJS, tryParseBetween, saveDebugFile} from './utils';
+import {applyDefaultAgent, applyDefaultHeaders, applyIPv6Rotations, applyOldLocalAddress, playError, requestUtil, between, cutAfterJS, tryParseBetween, saveDebugFile, setPropInsensitive} from './utils';
 // Forces Node JS version of setTimeout for Electron based applications
 import { setTimeout } from 'timers';
 import {addFormatMeta, sortFormats} from './format-utils';
@@ -356,13 +356,13 @@ const getM3U8 = async(url, options) => {
 const cachedGetBasicInfo = async (link, options = {}) => {
   let id = await getVideoID(link);
   const key = ['getBasicInfo', id, options.lang].join('-');
-  return cache.getOrSet(key, () => originalGetBasicInfo(id, options));
+  return cache.getOrSet(key, () => getBasicInfo(id, options));
 };
 
 const cachedGetInfo = async (link, options = {}) => {
   let id = await getVideoID(link);
   const key = ['getInfo', id, options.lang].join('-');
-  return cache.getOrSet(key, () => originalGetInfo(id, options));
+  return cache.getOrSet(key, () => getInfo(id, options));
 };
 
 // Export the functions

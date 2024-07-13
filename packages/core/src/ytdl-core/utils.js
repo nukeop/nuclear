@@ -1,6 +1,6 @@
 import {request} from 'undici';
 import { writeFileSync } from 'fs';
-import {defaultAgent, addCookiesFromString} from './cookie';
+import {defaultAgent, createAgent, addCookiesFromString} from './cookie';
 
 
 /**
@@ -335,7 +335,7 @@ export const applyDefaultAgent = options => {
         '(https://github.com/distubejs/ytdl-core#how-to-implement-ytdlagent-with-your-own-dispatcher)'
       );
     }
-    options.agent = cookie.defaultAgent;
+    options.agent = defaultAgent;
   }
 };
 
@@ -348,7 +348,7 @@ export const applyOldLocalAddress = options => {
   ) {
     return;
   }
-  options.agent = cookie.createAgent(undefined, { localAddress: options.requestOptions.localAddress });
+  options.agent = createAgent(undefined, { localAddress: options.requestOptions.localAddress });
   if (oldLocalAddressWarning) {
     oldLocalAddressWarning = false;
     console.warn(
