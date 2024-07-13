@@ -1,9 +1,9 @@
 import sax from 'sax';
-import * as utils from './utils';
+import {applyDefaultAgent, applyDefaultHeaders, applyIPv6Rotations, applyOldLocalAddress, playError, requestUtil, between, cutAfterJS, tryParseBetween, saveDebugFile} from './utils';
 // Forces Node JS version of setTimeout for Electron based applications
 import { setTimeout } from 'timers';
-import * as formatUtils from './format-utils';
-import * as urlUtils from './url-utils';
+import {addFormatMeta, sortFormats} from './format-utils';
+import {validateId, validateURL, getURLVideoID, getVideoID}  from './url-utils';
 import * as extras from './info-extras';
 import * as sig from './sig';
 import Cache from './cache';
@@ -37,20 +37,20 @@ const AGE_RESTRICTED_URLS = [
  * @param {Object} options
  * @returns {Promise<Object>}
  */
-export const getBasicInfo = async(id, options) => {
-  utils.applyIPv6Rotations(options);
+const getBasicInfo = async(id, options) => {
+  applyIPv6Rotations(options);
   const retryOptions = Object.assign({}, options.requestOptions);
-  utils.applyDefaultHeaders(options);
-  utils.applyDefaultAgent(options);
-  utils.applyOldLocalAddress(options);
+  applyDefaultHeaders(options);
+  applyDefaultAgent(options);
+  applyOldLocalAddress(options);
   const { jar, dispatcher } = options.agent;
-  utils.setPropInsensitive(
+  setPropInsensitive(
     options.requestOptions.headers, 'cookie', jar.getCookieStringSync('https://www.youtube.com')
   );
   options.requestOptions.dispatcher = dispatcher;
   const info = await retryFunc(getWatchHTMLPage, [id, options], retryOptions);
 
-  const playErr = utils.playError(info.player_response, ['ERROR'], UnrecoverableError);
+  const playErr = playError(info.player_response, ['ERROR'], UnrecoverableError);
   if (playErr) {
     throw playErr;
   }
@@ -110,14 +110,14 @@ const getWatchHTMLURL = (id, options) =>
   `${BASE_URL + id}&hl=${options.lang || 'en'}&bpctr=${Math.ceil(Date.now() / 1000)}&has_verified=1`;
 const getWatchHTMLPageBody = (id, options) => {
   const url = getWatchHTMLURL(id, options);
-  return watchPageCache.getOrSet(url, () => utils.request(url, options));
+  return watchPageCache.getOrSet(url, () => requestUtil(url, options));
 };
 
 
 const EMBED_URL = 'https://www.youtube.com/embed/';
 const getEmbedPageBody = (id, options) => {
   const embedUrl = `${EMBED_URL + id}?hl=${options.lang || 'en'}`;
-  return utils.request(embedUrl, options);
+  return requestUtil(embedUrl, options);
 };
 
 
@@ -181,11 +181,11 @@ const parseJSON = (source, varName, json) => {
 
 
 const findJSON = (source, varName, body, left, right, prependJSON) => {
-  let jsonStr = utils.between(body, left, right);
+  let jsonStr = between(body, left, right);
   if (!jsonStr) {
     throw Error(`Could not find ${varName} in ${source}`);
   }
-  return parseJSON(source, varName, utils.cutAfterJS(`${prependJSON}${jsonStr}`));
+  return parseJSON(source, varName, cutAfterJS(`${prependJSON}${jsonStr}`));
 };
 
 
@@ -202,9 +202,9 @@ const getWatchHTMLPage = async(id, options) => {
   try {
     try {
       info.player_response =
-        utils.tryParseBetween(body, 'var ytInitialPlayerResponse = ', '}};', '', '}}') ||
-        utils.tryParseBetween(body, 'var ytInitialPlayerResponse = ', ';var') ||
-        utils.tryParseBetween(body, 'var ytInitialPlayerResponse = ', ';</script>') ||
+        tryParseBetween(body, 'var ytInitialPlayerResponse = ', '}};', '', '}}') ||
+        tryParseBetween(body, 'var ytInitialPlayerResponse = ', ';var') ||
+        tryParseBetween(body, 'var ytInitialPlayerResponse = ', ';</script>') ||
         findJSON('watch.html', 'player_response', body, /\bytInitialPlayerResponse\s*=\s*\{/i, '</script>', '{');
     } catch (_e) {
       let args = findJSON('watch.html', 'player_response', body, /\bytplayer\.config\s*=\s*{/, '</script>', '{');
@@ -212,17 +212,17 @@ const getWatchHTMLPage = async(id, options) => {
     }
 
     info.response =
-      utils.tryParseBetween(body, 'var ytInitialData = ', '}};', '', '}}') ||
-      utils.tryParseBetween(body, 'var ytInitialData = ', ';</script>') ||
-      utils.tryParseBetween(body, 'window["ytInitialData"] = ', '}};', '', '}}') ||
-      utils.tryParseBetween(body, 'window["ytInitialData"] = ', ';</script>') ||
+      tryParseBetween(body, 'var ytInitialData = ', '}};', '', '}}') ||
+      tryParseBetween(body, 'var ytInitialData = ', ';</script>') ||
+      tryParseBetween(body, 'window["ytInitialData"] = ', '}};', '', '}}') ||
+      tryParseBetween(body, 'window["ytInitialData"] = ', ';</script>') ||
       findJSON('watch.html', 'response', body, /\bytInitialData("\])?\s*=\s*\{/i, '</script>', '{');
     info.html5player = getHTML5player(body);
   } catch (_) {
     throw Error(
       'Error when parsing watch.html, maybe YouTube made a change.\n' +
       `Please report this issue with the "${
-        utils.saveDebugFile('watch.html', body)
+        saveDebugFile('watch.html', body)
       }" file on https://github.com/distubejs/ytdl-core/issues.`
     );
   }
@@ -251,7 +251,7 @@ const parseFormats = player_response => {
  * @param {Object} options
  * @returns {Promise<Object>}
  */
-export const getInfo = async(id, options) => {
+const getInfo = async(id, options) => {
   let info = await getBasicInfo(id, options);
   const hasManifest =
     info.player_response && info.player_response.streamingData && (
@@ -279,8 +279,8 @@ export const getInfo = async(id, options) => {
 
   let results = await Promise.all(funcs);
   info.formats = Object.values(Object.assign({}, ...results));
-  info.formats = info.formats.map(formatUtils.addFormatMeta);
-  info.formats.sort(formatUtils.sortFormats);
+  info.formats = info.formats.map(addFormatMeta);
+  info.formats.sort(sortFormats);
   info.full = true;
   return info;
 };
@@ -322,7 +322,7 @@ const getDashManifest = (url, options) => new Promise((resolve, reject) => {
   parser.onend = () => {
     resolve(formats);
   };
-  utils.request(new URL(url, BASE_URL).toString(), options).then(res => {
+  requestUtil(new URL(url, BASE_URL).toString(), options).then(res => {
     parser.write(res);
     parser.close();
   }).catch(reject);
@@ -338,7 +338,7 @@ const getDashManifest = (url, options) => new Promise((resolve, reject) => {
  */
 const getM3U8 = async(url, options) => {
   url = new URL(url, BASE_URL);
-  const body = await utils.request(url.toString(), options);
+  const body = await requestUtil(url.toString(), options);
   let formats = {};
   body
     .split('\n')
@@ -351,25 +351,23 @@ const getM3U8 = async(url, options) => {
 };
 
 
-// Cache get info functions.
-// In case a user wants to get a video's info before downloading.
-for (let funcName of ['getBasicInfo', 'getInfo']) {
-  /**
-   * @param {string} link
-   * @param {Object} options
-   * @returns {Promise<Object>}
-   */
-  const func = exports[funcName];
-  exports[funcName] = async(link, options = {}) => {
-    let id = await urlUtils.getVideoID(link);
-    const key = [funcName, id, options.lang].join('-');
-    return exports.cache.getOrSet(key, () => func(id, options));
-  };
-}
+// // Cache get info functions.
+// // In case a user wants to get a video's info before downloading.
+const cachedGetBasicInfo = async (link, options = {}) => {
+  let id = await getVideoID(link);
+  const key = ['getBasicInfo', id, options.lang].join('-');
+  return cache.getOrSet(key, () => originalGetBasicInfo(id, options));
+};
+
+const cachedGetInfo = async (link, options = {}) => {
+  let id = await getVideoID(link);
+  const key = ['getInfo', id, options.lang].join('-');
+  return cache.getOrSet(key, () => originalGetInfo(id, options));
+};
+
+// Export the functions
+export { cachedGetBasicInfo as getBasicInfo,  cachedGetInfo as getInfo };
 
 
 // Export a few helpers.
-exports.validateID = urlUtils.validateID;
-exports.validateURL = urlUtils.validateURL;
-exports.getURLVideoID = urlUtils.getURLVideoID;
-exports.getVideoID = urlUtils.getVideoID;
+export {validateID, validateURL, getURLVideoID, getVideoID} from './url-utils';

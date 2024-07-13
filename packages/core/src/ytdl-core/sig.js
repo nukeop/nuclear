@@ -1,6 +1,6 @@
 import querystring from 'querystring';
 import Cache from './cache';
-import utils from './utils';
+import {requestUtil, saveDebugFile} from './utils';
 import vm from 'vm';
 import { URL } from 'url';
 
@@ -15,7 +15,7 @@ export const cache = new Cache(1000 * 60);
  * @returns {Promise<Array.<string>>}
  */
 export const getFunctions = (html5playerfile, options) => cache.getOrSet(html5playerfile, async() => {
-  const body = await utils.request(html5playerfile, options);
+  const body = await requestUtil(html5playerfile, options);
   const functions = extractFunctions(body);
   cache.set(html5playerfile, functions);
   return functions;
@@ -147,7 +147,7 @@ const extractDecipher = body => {
   if (!decipherFunc && !decipherWarning) {
     console.warn('\x1b[33mWARNING:\x1B[0m Could not parse decipher function.\n' +
       `Please report this issue with the "${
-        utils.saveDebugFile('base.js', body)
+        saveDebugFile('base.js', body)
       }" file on https://github.com/distubejs/ytdl-core/issues.\nStream URL will be missing.`);
     decipherWarning = true;
   }
@@ -174,7 +174,7 @@ const extractNTransform = body => {
     // This is optional, so we can continue if it's not found, but it will bottleneck the download.
     console.warn('\x1b[33mWARNING:\x1B[0m Could not parse n transform function.\n' +
       `Please report this issue with the "${
-        utils.saveDebugFile('base.js', body)
+        saveDebugFile('base.js', body)
       }" file on https://github.com/distubejs/ytdl-core/issues.`);
     nTransformWarning = true;
   }

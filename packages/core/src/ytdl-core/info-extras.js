@@ -1,4 +1,4 @@
-import utils from './utils';
+import {parseAbbreviatedNumber, deprecate} from './utils';
 import qs from 'querystring';
 import { parseTimestamp } from 'm3u8stream';
 import { URL } from 'url';
@@ -18,7 +18,7 @@ const getText = obj => obj ? obj.runs ? obj.runs[0].text : obj.simpleText : null
  * @param {Object} info
  * @returns {Object}
  */
-exports.getMedia = info => {
+export const getMedia = info => {
   let media = {};
   let results = [];
   try {
@@ -90,7 +90,7 @@ const isVerified = badges => !!(badges && badges.find(b => b.metadataBadgeRender
  * @param {Object} info
  * @returns {Object}
  */
-exports.getAuthor = info => {
+export const getAuthor = info => {
   let channelId, thumbnails = [], subscriberCount, verified = false;
   try {
     let results = info.response.contents.twoColumnWatchNextResults.results.results.contents;
@@ -104,7 +104,7 @@ exports.getAuthor = info => {
       thumbnail.url = new URL(thumbnail.url, BASE_URL).toString();
       return thumbnail;
     });
-    subscriberCount = utils.parseAbbreviatedNumber(getText(videoOwnerRenderer.subscriberCountText));
+    subscriberCount = parseAbbreviatedNumber(getText(videoOwnerRenderer.subscriberCountText));
     verified = isVerified(videoOwnerRenderer.badges);
   } catch (err) {
     // Do nothing.
@@ -124,7 +124,7 @@ exports.getAuthor = info => {
       subscriber_count: subscriberCount
     };
     if (thumbnails.length) {
-      utils.deprecate(author, 'avatar', author.thumbnails[0].url, 'author.avatar', 'author.thumbnails[0].url');
+      deprecate(author, 'avatar', author.thumbnails[0].url, 'author.avatar', 'author.thumbnails[0].url');
     }
     return author;
   } catch (err) {
@@ -183,10 +183,10 @@ const parseRelatedVideo = (details, rvsParams) => {
       isLive: !!(details.badges && details.badges.find(b => b.metadataBadgeRenderer.label === 'LIVE NOW'))
     };
 
-    utils.deprecate(video, 'author_thumbnail', video.author.thumbnails[0].url,
+    deprecate(video, 'author_thumbnail', video.author.thumbnails[0].url,
       'relatedVideo.author_thumbnail', 'relatedVideo.author.thumbnails[0].url');
-    utils.deprecate(video, 'ucid', video.author.id, 'relatedVideo.ucid', 'relatedVideo.author.id');
-    utils.deprecate(video, 'video_thumbnail', video.thumbnails[0].url,
+    deprecate(video, 'ucid', video.author.id, 'relatedVideo.ucid', 'relatedVideo.author.id');
+    deprecate(video, 'video_thumbnail', video.thumbnails[0].url,
       'relatedVideo.video_thumbnail', 'relatedVideo.thumbnails[0].url');
     return video;
   } catch (err) {
@@ -200,7 +200,7 @@ const parseRelatedVideo = (details, rvsParams) => {
  * @param {Object} info
  * @returns {Array.<Object>}
  */
-exports.getRelatedVideos = info => {
+export const getRelatedVideos = info => {
   let rvsParams = [], secondaryResults = [];
   try {
     rvsParams = info.response.webWatchNextResponseExtensionData.relatedVideoArgs.split(',').map(e => qs.parse(e));
@@ -242,7 +242,7 @@ exports.getRelatedVideos = info => {
  * @param {Object} info
  * @returns {number}
  */
-exports.getLikes = info => {
+export const getLikes = info => {
   try {
     let contents = info.response.contents.twoColumnWatchNextResults.results.results.contents;
     let video = contents.find(r => r.videoPrimaryInfoRenderer);
@@ -263,14 +263,14 @@ exports.getLikes = info => {
  * @param {Object} info
  * @returns {Object}
  */
-exports.cleanVideoDetails = (videoDetails, info) => {
+export const cleanVideoDetails = (videoDetails, info) => {
   videoDetails.thumbnails = videoDetails.thumbnail.thumbnails;
   delete videoDetails.thumbnail;
-  utils.deprecate(videoDetails, 'thumbnail', { thumbnails: videoDetails.thumbnails },
+  deprecate(videoDetails, 'thumbnail', { thumbnails: videoDetails.thumbnails },
     'videoDetails.thumbnail.thumbnails', 'videoDetails.thumbnails');
   videoDetails.description = videoDetails.shortDescription || getText(videoDetails.description);
   delete videoDetails.shortDescription;
-  utils.deprecate(videoDetails, 'shortDescription', videoDetails.description,
+  deprecate(videoDetails, 'shortDescription', videoDetails.description,
     'videoDetails.shortDescription', 'videoDetails.description');
 
   // Use more reliable `lengthSeconds` from `playerMicroformatRenderer`.
@@ -287,7 +287,7 @@ exports.cleanVideoDetails = (videoDetails, info) => {
  * @param {Object} info
  * @returns {Array.<Object>}
  */
-exports.getStoryboards = info => {
+export const getStoryboards = info => {
   const parts = info.player_response.storyboards &&
     info.player_response.storyboards.playerStoryboardSpecRenderer &&
     info.player_response.storyboards.playerStoryboardSpecRenderer.spec &&
@@ -338,7 +338,7 @@ exports.getStoryboards = info => {
  * @param {Object} info
  * @returns {Array.<Object>}
  */
-exports.getChapters = info => {
+export const getChapters = info => {
   const playerOverlayRenderer = info.response &&
     info.response.playerOverlays &&
     info.response.playerOverlays.playerOverlayRenderer;

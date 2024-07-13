@@ -1,6 +1,6 @@
 import {request} from 'undici';
 import { writeFileSync } from 'fs';
-import cookie from './cookie';
+import {defaultAgent, addCookiesFromString} from './cookie';
 
 
 /**
@@ -11,7 +11,7 @@ import cookie from './cookie';
  * @param {string} right
  * @returns {string}
  */
-const between = exports.between = (haystack, left, right) => {
+export const between = (haystack, left, right) => {
   let pos;
   if (left instanceof RegExp) {
     const match = haystack.match(left);
@@ -35,7 +35,7 @@ const between = exports.between = (haystack, left, right) => {
   return haystack;
 };
 
-exports.tryParseBetween = (body, left, right, prepend = '', append = '') => {
+export const tryParseBetween = (body, left, right, prepend = '', append = '') => {
   try {
     let data = between(body, left, right);
     if (!data) {
@@ -53,7 +53,7 @@ exports.tryParseBetween = (body, left, right, prepend = '', append = '') => {
  * @param {string} string
  * @returns {number}
  */
-exports.parseAbbreviatedNumber = string => {
+export const parseAbbreviatedNumber = string => {
   const match = string
     .replace(',', '.')
     .replace(' ', '')
@@ -88,7 +88,7 @@ const ESCAPING_SEQUENZES = [
  * @param {string} mixedJson
  * @returns {string}
 */
-exports.cutAfterJS = mixedJson => {
+export const cutAfterJS = mixedJson => {
   // Define the general open and closing tag
   let open, close;
   if (mixedJson[0] === '[') {
@@ -170,7 +170,7 @@ exports.cutAfterJS = mixedJson => {
  * @param {Error} ErrorType
  * @returns {!Error}
  */
-exports.playError = (player_response, statuses, ErrorType = Error) => {
+export const playError = (player_response, statuses, ErrorType = Error) => {
   let playability = player_response && player_response.playabilityStatus;
   if (playability && statuses.includes(playability.status)) {
     return new ErrorType(playability.reason || (playability.messages && playability.messages[0]));
@@ -179,7 +179,7 @@ exports.playError = (player_response, statuses, ErrorType = Error) => {
 };
 
 // Undici request
-exports.request = async(url, options = {}) => {
+export const requestUtil = async(url, options = {}) => {
   const { requestOptions } = options;
   const req = await request(url, requestOptions);
   const code = req.statusCode.toString();
@@ -190,7 +190,7 @@ exports.request = async(url, options = {}) => {
     return req.body.text();
   }
   if (code.startsWith('3')) {
-    return exports.request(req.headers.location, options);
+    return requestUtil(req.headers.location, options);
   }
   const e = new Error(`Status code: ${code}`);
   e.statusCode = req.statusCode;
@@ -206,7 +206,7 @@ exports.request = async(url, options = {}) => {
  * @param {string} oldPath
  * @param {string} newPath
  */
-exports.deprecate = (obj, prop, value, oldPath, newPath) => {
+export const deprecate = (obj, prop, value, oldPath, newPath) => {
   Object.defineProperty(obj, prop, {
     get: () => {
       console.warn(`\`${oldPath}\` will be removed in a near future release, ` +
@@ -222,7 +222,7 @@ exports.deprecate = (obj, prop, value, oldPath, newPath) => {
  * @param {string} ip the IPv6 block in CIDR-Notation
  * @returns {string}
  */
-const getRandomIPv6 = exports.getRandomIPv6 = ip => {
+export const getRandomIPv6 = ip => {
   // Start with a fast Regex-Check
   if (!isIPv6(ip)) {
     throw Error('Invalid IPv6 format');
@@ -263,7 +263,7 @@ const IPV6_REGEX = /^(([0-9a-f]{1,4}:)(:[0-9a-f]{1,4}){1,6}|([0-9a-f]{1,4}:){1,2
  * @param {string} ip the IPv6 block in CIDR-Notation to test
  * @returns {boolean} true if valid
  */
-const isIPv6 = exports.isIPv6 = ip => IPV6_REGEX.test(ip);
+export const isIPv6 = ip => IPV6_REGEX.test(ip);
 
 /**
  * Normalise an IP Address
@@ -271,7 +271,7 @@ const isIPv6 = exports.isIPv6 = ip => IPV6_REGEX.test(ip);
  * @param {string} ip the IPv6 Addr
  * @returns {number[]} the 8 parts of the IPv6 as Integers
  */
-const normalizeIP = exports.normalizeIP = ip => {
+export const normalizeIP = ip => {
   // Split by fill position
   const parts = ip.split('::').map(x => x.split(':'));
   // Normalize start and end
@@ -290,7 +290,7 @@ const normalizeIP = exports.normalizeIP = ip => {
   return fullIP;
 };
 
-exports.saveDebugFile = (name, body) => {
+export const saveDebugFile = (name, body) => {
   const filename = `${+new Date()}-${name}`;
   writeFileSync(filename, body);
   return filename;
@@ -299,12 +299,12 @@ exports.saveDebugFile = (name, body) => {
 const findPropKeyInsensitive = (obj, prop) =>
   Object.keys(obj).find(p => p.toLowerCase() === prop.toLowerCase()) || null;
 
-exports.getPropInsensitive = (obj, prop) => {
+export const getPropInsensitive = (obj, prop) => {
   const key = findPropKeyInsensitive(obj, prop);
   return key && obj[key];
 };
 
-exports.setPropInsensitive = (obj, prop, value) => {
+export const setPropInsensitive = (obj, prop, value) => {
   const key = findPropKeyInsensitive(obj, prop);
   obj[key || prop] = value;
   return key;
@@ -312,13 +312,13 @@ exports.setPropInsensitive = (obj, prop, value) => {
 
 let oldCookieWarning = true;
 let oldDispatcherWarning = true;
-exports.applyDefaultAgent = options => {
+export const applyDefaultAgent = options => {
   if (!options.agent) {
-    const { jar } = cookie.defaultAgent;
-    const c = exports.getPropInsensitive(options.requestOptions.headers, 'cookie');
+    const { jar } = defaultAgent;
+    const c = getPropInsensitive(options.requestOptions.headers, 'cookie');
     if (c) {
       jar.removeAllCookiesSync();
-      cookie.addCookiesFromString(jar, c);
+      addCookiesFromString(jar, c);
       if (oldCookieWarning) {
         oldCookieWarning = false;
         console.warn(
@@ -340,7 +340,7 @@ exports.applyDefaultAgent = options => {
 };
 
 let oldLocalAddressWarning = true;
-exports.applyOldLocalAddress = options => {
+export const applyOldLocalAddress = options => {
   if (
     !options.requestOptions ||
     !options.requestOptions.localAddress ||
@@ -359,7 +359,7 @@ exports.applyOldLocalAddress = options => {
 };
 
 let oldIpRotationsWarning = true;
-exports.applyIPv6Rotations = options => {
+export const applyIPv6Rotations = options => {
   if (options.IPv6Block) {
     options.requestOptions = Object.assign({}, options.requestOptions, {
       localAddress: getRandomIPv6(options.IPv6Block)
@@ -375,7 +375,7 @@ exports.applyIPv6Rotations = options => {
   }
 };
 
-exports.applyDefaultHeaders = options => {
+export const applyDefaultHeaders = options => {
   options.requestOptions = Object.assign({}, options.requestOptions);
   options.requestOptions.headers = Object.assign({}, {
     // eslint-disable-next-line max-len
