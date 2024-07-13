@@ -36,6 +36,13 @@ jobs:
             platform: windows
 
     steps:
+      - name: Check platform
+        shell: bash
+        run: |
+          if [[ "${{ matrix.platform }}" != "${{ github.event.inputs.platform }}" ]]; then
+            echo "Platform '${{ matrix.platform }}' does not match selected platform '${{ github.event.inputs.platform }}'. Ending job."
+            exit 1
+          fi
       - uses: actions/checkout@master
       - name: Set up Python ${{ env.PYTHON_VERSION }}
         uses: actions/setup-python@v4
