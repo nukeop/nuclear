@@ -61,7 +61,15 @@ impl MetadataExtractor for Mp3MetadataExtractor {
         path: &str,
         thumbnails_dir: &str,
     ) -> Result<AudioMetadata, MetadataError> {
-        let tag = id3::Tag::read_from_path(path).unwrap();
+        let tag = id3::Tag::read_from_path(path);
+
+        if let Err(e) = tag {
+            return Err(MetadataError::new(
+                format!("Could not read metadata from file {}: {}", path, e).as_str(),
+            ));
+        }
+
+        let tag = tag.unwrap();
         let mut metadata = AudioMetadata::new();
 
         metadata.artist = tag.artist().map(|s| s.to_string());
@@ -119,7 +127,15 @@ impl MetadataExtractor for FlacMetadataExtractor {
         path: &str,
         thumbnails_dir: &str,
     ) -> Result<AudioMetadata, MetadataError> {
-        let tag = metaflac::Tag::read_from_path(path).unwrap();
+        let tag = metaflac::Tag::read_from_path(path);
+
+        if let Err(e) = tag {
+            return Err(MetadataError::new(
+                format!("Could not read metadata from file {}: {}", path, e).as_str(),
+            ));
+        }
+
+        let tag = tag.unwrap();
         let mut metadata = AudioMetadata::new();
         metadata.artist = Self::extract_string_metadata(&tag, "ARTIST", Some("ALBUMARTIST"));
         metadata.title = Self::extract_string_metadata(&tag, "TITLE", None);
@@ -228,8 +244,15 @@ impl MetadataExtractor for Mp4MetadataExtractor {
         path: &str,
         thumbnails_dir: &str,
     ) -> Result<AudioMetadata, MetadataError> {
-        let tag = mp4ameta::Tag::read_from_path(path).unwrap();
+        let tag = mp4ameta::Tag::read_from_path(path);
 
+        if let Err(e) = tag {
+            return Err(MetadataError::new(
+                format!("Could not read metadata from file {}: {}", path, e).as_str(),
+            ));
+        }
+
+        let tag = tag.unwrap();
         let mut metadata = AudioMetadata::new();
 
         metadata.artist = tag.artist().map(|s| s.to_string());
