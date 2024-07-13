@@ -1,6 +1,6 @@
 import { PassThrough } from 'stream';
 import {getBasicInfo, getInfo, cache as getInfoCache, watchPageCache} from './info';
-import utils from './utils';
+import {playError, applyDefaultHeaders, getRandomIPv6, setPropInsensitive} from './utils';
 import {chooseFormat, filterFormats} from './format-utils';
 import {getURLVideoID, getVideoID, validateID, validateURL} from './url-utils';
 import {cache as sigCache} from './sig';
@@ -72,7 +72,7 @@ const pipeAndSetEvents = (req, stream, end) => {
 const downloadFromInfoCallback = (stream, info, options) => {
   options = options || {};
 
-  let err = utils.playError(info.player_response, ['UNPLAYABLE', 'LIVE_STREAM_OFFLINE', 'LOGIN_REQUIRED']);
+  let err = playError(info.player_response, ['UNPLAYABLE', 'LIVE_STREAM_OFFLINE', 'LOGIN_REQUIRED']);
   if (err) {
     stream.emit('error', err);
     return;
@@ -101,15 +101,15 @@ const downloadFromInfoCallback = (stream, info, options) => {
     stream.emit('progress', chunk.length, downloaded, contentLength);
   };
 
-  utils.applyDefaultHeaders(options);
+  applyDefaultHeaders(options);
   if (options.IPv6Block) {
     options.requestOptions = Object.assign({}, options.requestOptions, {
-      localAddress: utils.getRandomIPv6(options.IPv6Block)
+      localAddress: getRandomIPv6(options.IPv6Block)
     });
   }
   if (options.agent) {
     if (options.agent.jar) {
-      utils.setPropInsensitive(
+      setPropInsensitive(
         options.requestOptions.headers, 'cookie', options.agent.jar.getCookieStringSync('https://www.youtube.com')
       );
     }

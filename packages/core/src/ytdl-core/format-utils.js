@@ -1,4 +1,4 @@
-import utils from './utils';
+import {between} from './utils';
 import FORMATS from './formats';
 
 
@@ -192,7 +192,7 @@ const getFormatByQuality = (quality, formats) => {
  * @param {Function} filter
  * @returns {Array.<Object>}
  */
-const filterFormats = (formats, filter) => {
+export const filterFormats = (formats, filter) => {
   let fn;
   switch (filter) {
   case 'videoandaudio':
@@ -238,7 +238,7 @@ export const addFormatMeta = format => {
   format.container = format.mimeType ?
     format.mimeType.split(';')[0].split('/')[1] : null;
   format.codecs = format.mimeType ?
-    utils.between(format.mimeType, 'codecs="', '"') : null;
+    between(format.mimeType, 'codecs="', '"') : null;
   format.videoCodec = format.hasVideo && format.codecs ?
     format.codecs.split(', ')[0] : null;
   format.audioCodec = format.hasAudio && format.codecs ?
