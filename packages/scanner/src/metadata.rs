@@ -16,6 +16,9 @@ use crate::{
     thumbnails::{Mp4ThumbnailGenerator, ThumbnailGenerator},
 };
 
+// TODO: There's a lot of code duplication in the metadata extractors for
+// different formats. It should be possible to refactor this later.
+
 #[derive(Default, Debug, Clone, Builder)]
 #[builder(setter(strip_option))]
 pub struct AudioMetadata {
@@ -53,7 +56,6 @@ pub trait MetadataExtractor {
 }
 
 #[derive(Debug, Clone)]
-
 pub struct Mp3MetadataExtractor;
 impl MetadataExtractor for Mp3MetadataExtractor {
     fn extract_metadata(
