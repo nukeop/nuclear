@@ -75,5 +75,3 @@ jobs:
         with:
           name: nuclear-binaries-${{ matrix.platform }}-debug
           path: release/*.*
-      - name: Notify Debug Build
-        run: echo "Debug build for ${{ matrix.platform }} is complete. Artifacts are uploaded."
