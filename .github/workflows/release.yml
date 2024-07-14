@@ -2,6 +2,9 @@ name: Release job
 
 on: workflow_dispatch
 
+env:
+  PYTHON_VERSION: "3.11"
+
 jobs:
   linux_release:
     runs-on: ubuntu-latest
@@ -97,6 +100,10 @@ jobs:
 
     steps:
       - uses: actions/checkout@master
+      - name: Set up Python ${{ env.PYTHON_VERSION }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
       - name: get-npm-version
         id: package-version
         uses: pchynoweth/action-get-npm-version@1.1.1
