@@ -70,6 +70,9 @@ jobs:
         with:
           version: 20
           cache: npm
+      - name: install setup tools
+        run: |
+          sudo -H pip install setuptools
       - run: npm ci
       - run: npm run build:macos
         shell: bash
@@ -102,6 +105,9 @@ jobs:
         with:
           version: 20
           cache: npm
+      - name: install setup tools
+        run: |
+          sudo -H pip install setuptools
       - run: npm ci
       - run: npm run build:macos-arm64
         shell: bash
