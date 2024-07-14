@@ -23,6 +23,7 @@ jobs:
     timeout-minutes: 30
 
     strategy:
+      fail-fast: false
       matrix:
         os: [ubuntu-latest, macos-12, macos-14, windows-latest]
         include:
