@@ -7,6 +7,8 @@ export type VisualizerOverlayProps = {
   presets: string[];
   selectedPreset: string;
   onPresetChange: (e: SyntheticEvent, { value }: { value: string }) => void;
+  shuffleState: boolean;
+  onShuffleChange: () => void;
   onEnterFullscreen: React.MouseEventHandler;
   exitFullscreenLabel?: string;
   isFullscreen?: boolean;
@@ -17,6 +19,8 @@ const VisualizerOverlay: React.FC<VisualizerOverlayProps> = ({
   selectedPreset,
   onPresetChange,
   onEnterFullscreen,
+  shuffleState,
+  onShuffleChange,
   exitFullscreenLabel,
   isFullscreen = false
 }) => {
@@ -45,6 +49,11 @@ const VisualizerOverlay: React.FC<VisualizerOverlayProps> = ({
     value: preset
   }));
 
+  const handleClickNoFocus = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>, handler: () => void) => {
+    handler();
+    event.currentTarget.blur();
+  };
+
   return (
     <div
       className={cx(styles.visualizer_overlay, { [styles.hover]: isHovered })}
@@ -56,8 +65,15 @@ const VisualizerOverlay: React.FC<VisualizerOverlayProps> = ({
         search
         selection
         options={presetOptions}
-        defaultValue={selectedPreset}
+        value={selectedPreset}
         onChange={onPresetChange}
+      />
+      <Button 
+        basic
+        icon='shuffle' 
+        className={cx({ 'toggled': shuffleState })}
+        onClick={(e) => handleClickNoFocus(e, onShuffleChange)}
+        data-testid='shuffle-button'
       />
       {isFullscreen ? (
         <p>{exitFullscreenLabel}</p>

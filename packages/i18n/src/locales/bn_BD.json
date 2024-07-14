@@ -8,7 +8,13 @@
     "play": "প্লে",
     "queue": "এলবামগুলো সারিতে যোগ করুন",
     "tracks": "ট্র্যাক:",
-    "year": "বছরঃ"
+    "year": "বছরঃ",
+    "add-to-playlist": "Add album to playlist",
+    "create-playlist": "Create a new playlist",
+    "create-playlist-dialog-title": "Input playlist name:",
+    "create-playlist-dialog-placeholder": "Playlist name...",
+    "create-playlist-dialog-accept": "Save",
+    "create-playlist-dialog-cancel": "Cancel"
   },
   "app": {
     "collection": "সংগ্রহ",
@@ -40,7 +46,8 @@
     "queue": "সারিতে সমস্ত ট্র্যাক যোগ করুন",
     "similar": "অনুরূপ শিল্পী",
     "title": "টাইটেল",
-    "tour": "ভ্রমণে"
+    "tour": "ভ্রমণে",
+    "popular-tracks": "Popular tracks"
   },
   "dashboard": {
     "add-all": "সবকটি যোগ করুন",
@@ -144,7 +151,7 @@
     "delete": "প্লেলিস্টটি ডিলিট করুন",
     "duration": "দৈর্ঘ্য",
     "empty": "কোনো প্লেলিস্ট নেই.",
-    "empty-help": "কিছু প্লেলিস্ট তৈরী করুন বা ইউআরএল থেকে ইম্পোর্ট করুন, সেগুলো এখানে দেখা যাবে!",
+    "empty-help": "Try creating playlists, or import by URL, and they will appear here!",
     "error-empty-data": "খালি ডাটা",
     "error-invalid-data": "ইন্ভালিড ডাটা",
     "error-open-file": "ফাইল ওপেন করা যাচ্ছে না",
@@ -153,6 +160,7 @@
     "export-fail-title": "পেলিস্ট এক্সপোর্ট অসফল হয়েছে",
     "export-success-title": "প্লেলিস্ট সফলভাবে ইমপোর্ট হয়েছে",
     "header": "আপনার প্লেলিস্ট",
+    "header-add-button": "Add",
     "import-progress": "ইমপোর্ট প্রোগেস",
     "spotify-import-placeholder": "Spotify প্লেলিস্ট এখানে পেস্ট করুন",
     "dialog-placeholder": "প্লেলিস্টের নাম...",
@@ -160,9 +168,9 @@
     "dialog-cancel": "বাতিল",
     "dialog-rename": "নাম পরিবর্তন",
     "dialog-import": "ইম্পোর্ট",
-    "create-button": "নতুন প্লেলিস্ট তৈরি করুন",
+    "create-button": "Create a new playlist",
     "new-playlist": "নতুন প্লেলিস্ট",
-    "import-url-button": "ইউআরএল থেকে ইম্পোর্ট করুন(Spotify)",
+    "import-url-button": "Import from Spotify",
     "import-button": "ফাইল থেকে ইম্পোর্ট করুন(JSON)",
     "import-fail-title": "পেলিস্ট এক্সপোর্ট অসফল হয়েছে",
     "import-success-title": "প্লেলিস্ট সফলভাবে ইমপোর্ট হয়েছে",
@@ -183,7 +191,11 @@
     "server-modified-at": "সার্ভার মডিফাইড: ",
     "upload-to-server": "সার্ভারে আপলোট করুন",
     "download-from-server": "সার্ভার থেকে ডাউনলোড করুন",
-    "number-of-tracks": "ট্র্যাকগুলি"
+    "number-of-tracks": "ট্র্যাকগুলি",
+    "input-playlist-url": "Paste playlist URL:",
+    "create-playlist-dialog-title": "Input playlist name:",
+    "playlist": "Playlist",
+    "play": "Play"
   },
   "plugins": {
     "add-a-plugin": "প্লাগইন যোগ করুন",
@@ -210,7 +222,7 @@
     "favorite-add": "পছন্দের তালিকায় যোগ করুন",
     "header": "সারি",
     "header-track": "বর্তমান গান",
-    "copy-track-url": "গানের url ক্লিপবোর্ডে কপি করুন",
+    "copy-track-url": "Copy track URL to clipboard",
     "loading": "স্ট্রীম এখনো লোড হচ্ছে।",
     "playlist-add": "প্লেলিস্টে যোগ করুন",
     "playlist-add-queue": "প্লেলিস্টে কিউ যোগ করুন",
@@ -234,7 +246,9 @@
       },
       "verify": "Verify",
       "unverify": "Unverify"
-    }
+    },
+    "create-playlist-dialog-title": "Input playlist name:",
+    "play-now": "Play now"
   },
   "search": {
     "album": "অ্যালবাম",
@@ -287,7 +301,7 @@
     "github-description": "Github এ লগইন করুন প্লেলিস্ট তৈরী এবং অনলাইনে সেয়ার করতে (আসন্ন ফিচার).",
     "github-title": "Github",
     "http": "HTTP API",
-    "invidious-url": "ইনবিডিআস ইউআরএল ইনস্টেনস",
+    "invidious-url": "Invidious instance URL",
     "language": "ভাষা",
     "language-placeholder": "একটি ভাষা নির্বাচন করুন",
     "lastfm-connect": "Last.fm এর সাথে সংযোগ করুন",
@@ -377,6 +391,7 @@
     "exit-fullscreen": "ফুলস্ক্রিন থেকে বের হতে ECS চাপুন"
   },
   "command-palette": {
+    "reminder": "to open the command palette",
     "search-placeholder": "আপনি কি করতে চান?",
     "empty-state-help": "আপনি যা খুজছেন তা পাচ্ছেন না? হেল্প কমান্ড ট্রাই করুন।",
     "protip-text": "প্রো-টিপ:",

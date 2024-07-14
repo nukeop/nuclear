@@ -1,4 +1,5 @@
 import 'reflect-metadata';
+import 'v8-compile-cache';
 
 import { transformSource } from '@nuclear/core';
 import { app, protocol } from 'electron';

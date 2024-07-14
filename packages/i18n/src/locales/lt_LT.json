@@ -8,7 +8,13 @@
     "play": "Paleisti",
     "queue": "Pridėti albumą į eilę",
     "tracks": "Dainos:",
-    "year": "Metai:"
+    "year": "Metai:",
+    "add-to-playlist": "Add album to playlist",
+    "create-playlist": "Create a new playlist",
+    "create-playlist-dialog-title": "Input playlist name:",
+    "create-playlist-dialog-placeholder": "Playlist name...",
+    "create-playlist-dialog-accept": "Save",
+    "create-playlist-dialog-cancel": "Cancel"
   },
   "app": {
     "collection": "Kolekcija",
@@ -40,7 +46,8 @@
     "queue": "Pridėti visas dainas į eilę",
     "similar": "Panašūs atlikėjai",
     "title": "Pavadinimas",
-    "tour": "Turas"
+    "tour": "Turas",
+    "popular-tracks": "Popular tracks"
   },
   "dashboard": {
     "add-all": "Pridėti visus",
@@ -144,7 +151,7 @@
     "delete": "Ištrinti grojaraštį",
     "duration": "Trukmė",
     "empty": "Jokių grojaraščių.",
-    "empty-help": "Pabandykite sukurti grojaraščių ir jie atsiras čia!",
+    "empty-help": "Try creating playlists, or import by URL, and they will appear here!",
     "error-empty-data": "Nėra duomenų",
     "error-invalid-data": "Neteisingi duomenys",
     "error-open-file": "Nepavyko atidaryti šio failo",
@@ -153,6 +160,7 @@
     "export-fail-title": "Nepavyko eksportuoti grojaraščio",
     "export-success-title": "Grojaraštis eksportuotas sėkmingai",
     "header": "Jūsų grojaraščiai",
+    "header-add-button": "Add",
     "import-progress": "Import progress",
     "spotify-import-placeholder": "Paste a Spotify playlist URL here",
     "dialog-placeholder": "Grojaraščio pavadinimas...",
@@ -160,7 +168,7 @@
     "dialog-cancel": "Atšaukti",
     "dialog-rename": "Pervadinti",
     "dialog-import": "Importuoti",
-    "create-button": "Sukurti naują grojaraštį",
+    "create-button": "Create a new playlist",
     "new-playlist": "Naujas grojaraštis",
     "import-url-button": "Import from Spotify",
     "import-button": "Importuoti failą (JSON)",
@@ -183,7 +191,11 @@
     "server-modified-at": "Server modified: ",
     "upload-to-server": "Įkelti į serverį",
     "download-from-server": "Atsisiųsti iš serverio",
-    "number-of-tracks": "dainos"
+    "number-of-tracks": "dainos",
+    "input-playlist-url": "Paste playlist URL:",
+    "create-playlist-dialog-title": "Input playlist name:",
+    "playlist": "Playlist",
+    "play": "Play"
   },
   "plugins": {
     "add-a-plugin": "Pridėti įskiepį",
@@ -210,7 +222,7 @@
     "favorite-add": "Pridėti į mėgstamiausius",
     "header": "Eilė",
     "header-track": "Dabartinė daina",
-    "copy-track-url": "Kopijuoti dainos nuorodą į iškarpinę",
+    "copy-track-url": "Copy track URL to clipboard",
     "loading": "Srautas dar leidžiasi.",
     "playlist-add": "Pridėti į grojaraštį",
     "playlist-add-queue": "Pridėti eilę į grojaraštį",
@@ -234,7 +246,9 @@
       },
       "verify": "Verify",
       "unverify": "Unverify"
-    }
+    },
+    "create-playlist-dialog-title": "Input playlist name:",
+    "play-now": "Play now"
   },
   "search": {
     "album": "Albumas",
@@ -287,7 +301,7 @@
     "github-description": "Prisijungti su GitHub, kad galėtumėte kurti ir skleisti grojaraščius online (būsima galimybė).",
     "github-title": "GitHub",
     "http": "HTTP API",
-    "invidious-url": "Invidious instance url",
+    "invidious-url": "Invidious instance URL",
     "language": "Kalba",
     "language-placeholder": "Pasirinkti kalbą",
     "lastfm-connect": "Prisijungti su last.fm",
@@ -377,6 +391,7 @@
     "exit-fullscreen": "Spauskite ESC, kad išeitumėte iš pilno ekrano režimo"
   },
   "command-palette": {
+    "reminder": "to open the command palette",
     "search-placeholder": "What would you like to do?",
     "empty-state-help": "Can't seem to find what you're looking for? Try the help command.",
     "protip-text": "PROTIP:",

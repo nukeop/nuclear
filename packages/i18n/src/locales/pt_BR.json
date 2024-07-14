@@ -8,7 +8,13 @@
     "play": "Reproduzir",
     "queue": "Adicionar à Fila",
     "tracks": "Faixas:",
-    "year": "Ano:"
+    "year": "Ano:",
+    "add-to-playlist": "Add album to playlist",
+    "create-playlist": "Create a new playlist",
+    "create-playlist-dialog-title": "Input playlist name:",
+    "create-playlist-dialog-placeholder": "Playlist name...",
+    "create-playlist-dialog-accept": "Save",
+    "create-playlist-dialog-cancel": "Cancel"
   },
   "app": {
     "collection": "Coleção",
@@ -40,7 +46,8 @@
     "queue": "Adicione todas as faixas à fila",
     "similar": "Artistas similares",
     "title": "Título",
-    "tour": "Turnê"
+    "tour": "Turnê",
+    "popular-tracks": "Popular tracks"
   },
   "dashboard": {
     "add-all": "Adicionar tudo",
@@ -144,7 +151,7 @@
     "delete": "Excluir esta playlist",
     "duration": "Duração",
     "empty": "Nenhuma Playlist encontrada.",
-    "empty-help": "Tente criar alguma playlist ou importar por Url e elas aparecerão aqui!",
+    "empty-help": "Try creating playlists, or import by URL, and they will appear here!",
     "error-empty-data": "Empty data",
     "error-invalid-data": "Invalid data",
     "error-open-file": "Can not open file",
@@ -153,6 +160,7 @@
     "export-fail-title": "Falha na exportação da playlist",
     "export-success-title": "Sucesso na exportação da playlist",
     "header": "Suas playlists",
+    "header-add-button": "Add",
     "import-progress": "Progresso de importação",
     "spotify-import-placeholder": "Cole o link da playlist do Spotify aqui",
     "dialog-placeholder": "Nome da Lista de Reprodução...",
@@ -160,9 +168,9 @@
     "dialog-cancel": "Cancelar",
     "dialog-rename": "Renomear",
     "dialog-import": "Importar",
-    "create-button": "Criar uma nova playlist",
+    "create-button": "Create a new playlist",
     "new-playlist": "New playlist",
-    "import-url-button": "Importar a partir de link (Spotify)",
+    "import-url-button": "Import from Spotify",
     "import-button": "Import from file (JSON)",
     "import-fail-title": "Playlist import fail",
     "import-success-title": "Playlist imported successfully",
@@ -183,7 +191,11 @@
     "server-modified-at": "Servidor modificado: ",
     "upload-to-server": "Upload para o servidor",
     "download-from-server": "Baixar do servidor",
-    "number-of-tracks": "faixas"
+    "number-of-tracks": "faixas",
+    "input-playlist-url": "Paste playlist URL:",
+    "create-playlist-dialog-title": "Input playlist name:",
+    "playlist": "Playlist",
+    "play": "Play"
   },
   "plugins": {
     "add-a-plugin": "Adicionar um plugin",
@@ -210,7 +222,7 @@
     "favorite-add": "Adiconar aos favoritos",
     "header": "Lista",
     "header-track": "Faixa Atual",
-    "copy-track-url": "Copiar url da faixa",
+    "copy-track-url": "Copy track URL to clipboard",
     "loading": "Transmissão ainda carregando.",
     "playlist-add": "Adicionar à Lista de Reprodução",
     "playlist-add-queue": "Adicionar fila à Lista de Reprodução",
@@ -234,7 +246,9 @@
       },
       "verify": "Verificar",
       "unverify": "Desverificar"
-    }
+    },
+    "create-playlist-dialog-title": "Input playlist name:",
+    "play-now": "Play now"
   },
   "search": {
     "album": "Álbum",
@@ -287,7 +301,7 @@
     "github-description": "Faça o login Através do Github para Poder Criar e Compartilhar suas Playlists (próximo recurso).",
     "github-title": "GitHub",
     "http": "API HTTP",
-    "invidious-url": "URL da instância Invidious",
+    "invidious-url": "Invidious instance URL",
     "language": "Idioma",
     "language-placeholder": "Escolha um idioma",
     "lastfm-connect": "Conectar com o Last.fm",
@@ -350,7 +364,7 @@
     "add-to-favorite": "Adicionar aos favoritos",
     "add-to-playlist": "Adicionar à Lista de Reprodução",
     "add-to-queue": "Adicionar à fila",
-    "create-playlist": "Criar uma nova playlist",
+    "create-playlist": "Create a new playlist",
     "create-playlist-dialog-title": "Insira o nome da playlist:",
     "create-playlist-dialog-placeholder": "Nome da playlist...",
     "create-playlist-dialog-accept": "Salvar",
@@ -377,6 +391,7 @@
     "exit-fullscreen": "Press ESC to exit full screen"
   },
   "command-palette": {
+    "reminder": "to open the command palette",
     "search-placeholder": "O que gostaria de fazer?",
     "empty-state-help": "Não encontrou o que está procurando? Tente o comando de ajuda.",
     "protip-text": "DICA:",

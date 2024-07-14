@@ -2,6 +2,9 @@ name: Release job
 
 on: workflow_dispatch
 
+env:
+  PYTHON_VERSION: "3.11"
+
 jobs:
   linux_release:
     runs-on: ubuntu-latest
@@ -57,7 +60,7 @@ jobs:
           client-payload: '{"tag": "v${{ steps.package-version.outputs.version }}"}'
 
   mac_release:
-    runs-on: macos-11
+    runs-on: macos-12
     timeout-minutes: 30
 
     steps:
@@ -70,6 +73,9 @@ jobs:
         with:
           version: 20
           cache: npm
+      - name: install setup tools
+        run: |
+          sudo -H pip install setuptools
       - run: npm ci
       - run: npm run build:macos
         shell: bash
@@ -79,6 +85,45 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: nuclear-binaries-mac
+          path: release/*.*
+      - name: Create a release
+        uses: softprops/action-gh-release@v1
+        with:
+          name: v${{ steps.package-version.outputs.version }}
+          tag_name: v${{ steps.package-version.outputs.version }}
+          prerelease: true
+          files: release/*.*
+
+  mac_arm64_release:
+    runs-on: macos-14
+    timeout-minutes: 30
+
+    steps:
+      - uses: actions/checkout@master
+      - name: Set up Python ${{ env.PYTHON_VERSION }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+      - name: get-npm-version
+        id: package-version
+        uses: pchynoweth/action-get-npm-version@1.1.1
+      - name: Use Node.js 20
+        uses: actions/setup-node@master
+        with:
+          version: 20
+          cache: npm
+      - name: install setup tools
+        run: |
+          sudo -H pip install setuptools
+      - run: npm ci
+      - run: npm run build:macos-arm64
+        shell: bash
+        env:
+          VERSION: ${{ steps.package-version.outputs.version }}
+      - name: Upload binaries
+        uses: actions/upload-artifact@v2
+        with:
+          name: nuclear-binaries-mac-arm64
           path: release/*.*
       - name: Create a release
         uses: softprops/action-gh-release@v1

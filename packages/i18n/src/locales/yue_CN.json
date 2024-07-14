@@ -8,7 +8,13 @@
     "play": "播放",
     "queue": "添加專輯到播放列表",
     "tracks": "曲目：",
-    "year": "年份："
+    "year": "年份：",
+    "add-to-playlist": "Add album to playlist",
+    "create-playlist": "Create a new playlist",
+    "create-playlist-dialog-title": "Input playlist name:",
+    "create-playlist-dialog-placeholder": "Playlist name...",
+    "create-playlist-dialog-accept": "Save",
+    "create-playlist-dialog-cancel": "Cancel"
   },
   "app": {
     "collection": "收藏",
@@ -40,7 +46,8 @@
     "queue": "将所有曲目加入播放列表",
     "similar": "类似嘅艺术家",
     "title": "标题",
-    "tour": "On tour"
+    "tour": "On tour",
+    "popular-tracks": "Popular tracks"
   },
   "dashboard": {
     "add-all": "添加所有",
@@ -153,6 +160,7 @@
     "export-fail-title": "导出播放列表失败",
     "export-success-title": "成功导出播放列表",
     "header": "你嘅播放列表",
+    "header-add-button": "Add",
     "import-progress": "Import progress",
     "spotify-import-placeholder": "Paste a Spotify playlist URL here",
     "dialog-placeholder": "Playlist name...",
@@ -183,7 +191,11 @@
     "server-modified-at": "Server modified: ",
     "upload-to-server": "Upload to server",
     "download-from-server": "Download from server",
-    "number-of-tracks": "tracks"
+    "number-of-tracks": "tracks",
+    "input-playlist-url": "Paste playlist URL:",
+    "create-playlist-dialog-title": "Input playlist name:",
+    "playlist": "Playlist",
+    "play": "Play"
   },
   "plugins": {
     "add-a-plugin": "Add a plugin",
@@ -210,10 +222,10 @@
     "favorite-add": "Add to favorites",
     "header": "Queue",
     "header-track": "Current track",
-    "copy-track-url": "Copy track url to clipboard",
+    "copy-track-url": "Copy track URL to clipboard",
     "loading": "Stream still loading.",
     "playlist-add": "Add to playlist",
-    "playlist-add-queue": "Add to playlist queue",
+    "playlist-add-queue": "Add queue to playlist",
     "playlist-toast-content": "Playlist {{name}} has been created.",
     "playlist-toast-title": "Playlist created",
     "live": "Live",
@@ -234,7 +246,9 @@
       },
       "verify": "Verify",
       "unverify": "Unverify"
-    }
+    },
+    "create-playlist-dialog-title": "Input playlist name:",
+    "play-now": "Play now"
   },
   "search": {
     "album": "Album",
@@ -287,7 +301,7 @@
     "github-description": "Log in via Github to be able to create and share your playlists online (upcoming feature).",
     "github-title": "Github",
     "http": "HTTP API",
-    "invidious-url": "Invidious instance url",
+    "invidious-url": "Invidious instance URL",
     "language": "Language",
     "language-placeholder": "Pick a language",
     "lastfm-connect": "Connect with Last.fm",
@@ -377,6 +391,7 @@
     "exit-fullscreen": "Press ESC to exit full screen"
   },
   "command-palette": {
+    "reminder": "to open the command palette",
     "search-placeholder": "What would you like to do?",
     "empty-state-help": "Can't seem to find what you're looking for? Try the help command.",
     "protip-text": "PROTIP:",

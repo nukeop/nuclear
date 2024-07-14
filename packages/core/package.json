@@ -1,6 +1,6 @@
 {
   "name": "@nuclear/core",
-  "version": "0.6.30",
+  "version": "0.6.31",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/nukeop/nuclear.git"
@@ -22,8 +22,7 @@
     "@babel/core": "^7.9.0",
     "@babel/preset-env": "^7.9.5",
     "@babel/preset-react": "^7.9.4",
-    "@distube/ytdl-core": "^4.13.3",
-    "@nuclear/scanner": "^0.6.21",
+    "@nuclear/scanner": "^0.6.31",
     "@supabase/supabase-js": "^1.35.4",
     "ajv": "^6.12.5",
     "bandcamp-scraper": "1.4.1",
@@ -33,8 +32,10 @@
     "electron-timber": "^0.5.1",
     "fast-levenshtein": "^3.0.0",
     "get-lyrics-hd": "^0.0.1",
+    "http-cookie-agent": "^6.0.5",
     "isomorphic-fetch": "^2.2.1",
     "jest": "^27.5.1",
+    "m3u8stream": "^0.8.6",
     "md5": "^2.2.1",
     "megalodon": "^3.6.1",
     "nodebrainz": "^2.1.1",
@@ -42,7 +43,9 @@
     "react-dom": "16.14.0",
     "redux": "^4.0.5",
     "search-azlyrics": "0.0.3",
+    "tough-cookie": "^4.1.4",
     "ts-jest": "^27.1.3",
+    "undici": "^5.28.4",
     "uuid": "^9.0.0",
     "youtube-ext": "^1.1.6",
     "ytpl": "^2.3.0",

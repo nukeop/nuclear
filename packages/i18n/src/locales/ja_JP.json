@@ -8,7 +8,13 @@
     "play": "再生",
     "queue": "アルバムをキューに追加",
     "tracks": "曲:",
-    "year": "年:"
+    "year": "年:",
+    "add-to-playlist": "再生リストにアルバムを追加",
+    "create-playlist": "新規プレイリストを作成",
+    "create-playlist-dialog-title": "再生リスト名を入力:",
+    "create-playlist-dialog-placeholder": "再生リストの名前...",
+    "create-playlist-dialog-accept": "保存",
+    "create-playlist-dialog-cancel": "キャンセル"
   },
   "app": {
     "collection": "コレクション",
@@ -40,7 +46,8 @@
     "queue": "すべての曲をキューに追加",
     "similar": "似ているアーティスト",
     "title": "タイトル",
-    "tour": "ツアー中"
+    "tour": "ツアー中",
+    "popular-tracks": "人気の曲"
   },
   "dashboard": {
     "add-all": "すべて追加",
@@ -144,7 +151,7 @@
     "delete": "再生リストを削除",
     "duration": "長さ",
     "empty": "再生リストがありません。",
-    "empty-help": "再生リストを作成するかURLでインポートすると、ここに表示されます！",
+    "empty-help": "再生リストを作成するかURLとしてインポートすると、ここに表示されます！",
     "error-empty-data": "データがありません",
     "error-invalid-data": "無効なデータ",
     "error-open-file": "ファイルを開くことができません",
@@ -153,6 +160,7 @@
     "export-fail-title": "再生リストのエクスポートに失敗",
     "export-success-title": "再生リストのインポートに成功",
     "header": "再生リスト",
+    "header-add-button": "追加",
     "import-progress": "インポートの進捗",
     "spotify-import-placeholder": "ここにSpotifyの再生リストのURLを貼り付け",
     "dialog-placeholder": "再生リストの名前...",
@@ -160,9 +168,9 @@
     "dialog-cancel": "キャンセル",
     "dialog-rename": "名前を変更",
     "dialog-import": "インポート",
-    "create-button": "新規再生リストを作成",
+    "create-button": "新規プレイリストを作成",
     "new-playlist": "新規再生リスト",
-    "import-url-button": "URLからインポート (Spotify)",
+    "import-url-button": "Spotifyからインポート",
     "import-button": "ファイル（JSON）からインポート",
     "import-fail-title": "再生リストのインポート失敗",
     "import-success-title": "再生リストのインポートに成功",
@@ -183,7 +191,11 @@
     "server-modified-at": "サーバーの変更日時: ",
     "upload-to-server": "サーバーにアップロード",
     "download-from-server": "サーバーからダウンロード",
-    "number-of-tracks": "曲"
+    "number-of-tracks": "曲",
+    "input-playlist-url": "再生リストのURLを貼り付け:",
+    "create-playlist-dialog-title": "再生リスト名を入力:",
+    "playlist": "再生リスト",
+    "play": "再生"
   },
   "plugins": {
     "add-a-plugin": "プラグインを追加",
@@ -234,7 +246,9 @@
       },
       "verify": "承認",
       "unverify": "却下"
-    }
+    },
+    "create-playlist-dialog-title": "再生リスト名を入力:",
+    "play-now": "今すぐ再生"
   },
   "search": {
     "album": "アルバム",
@@ -350,7 +364,7 @@
     "add-to-favorite": "お気に入りに追加",
     "add-to-playlist": "再生リストに追加",
     "add-to-queue": "再生キューに追加",
-    "create-playlist": "新規再生リストを作成",
+    "create-playlist": "新規プレイリストを作成",
     "create-playlist-dialog-title": "再生リスト名を入力:",
     "create-playlist-dialog-placeholder": "再生リストの名前...",
     "create-playlist-dialog-accept": "保存",
@@ -377,6 +391,7 @@
     "exit-fullscreen": "ESCで全画面表示終了"
   },
   "command-palette": {
+    "reminder": "コマンドパレットを開く",
     "search-placeholder": "何をしたいですか？",
     "empty-state-help": "お探しのものが見つかりませんか？ヘルプコマンドを試してください。",
     "protip-text": "アドバイス:",

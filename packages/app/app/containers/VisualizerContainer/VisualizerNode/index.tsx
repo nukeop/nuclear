@@ -5,7 +5,7 @@ import { VisualizerOverlay } from '@nuclear/ui';
 import { useTranslation } from 'react-i18next';
 
 import styles from './styles.scss';
-import { useVisualizerOverlayProps, useVisualizerProps } from '../hooks';
+import { useVisualizerOverlayProps, useVisualizerProps, useVisualizerShuffleProps, useVisualizerOverlayShuffleProps} from '../hooks';
 
 const VisualizerNode: React.FC = () => {
   const handle = useFullScreenHandle();
@@ -13,7 +13,8 @@ const VisualizerNode: React.FC = () => {
   const { t } = useTranslation('visualizer');
   const { presetName } = useVisualizerProps();
   const { onPresetChange } = useVisualizerOverlayProps();
-
+  const { shuffleValue } = useVisualizerShuffleProps();
+  const { onShuffleChange } = useVisualizerOverlayShuffleProps();
   // The id is a hack to allow the visualizer to render in a portal in the correct place
   return <FullScreen
     className={styles.visualizer_fullscreen}
@@ -27,6 +28,8 @@ const VisualizerNode: React.FC = () => {
         presets={Object.keys(presets)}
         selectedPreset={presetName}
         onPresetChange={onPresetChange}
+        shuffleState={shuffleValue}
+        onShuffleChange={onShuffleChange}
         onEnterFullscreen={handle.enter}
         exitFullscreenLabel={t('exit-fullscreen')}
         isFullscreen={handle.active}

@@ -8,7 +8,13 @@
     "play": "Toista",
     "queue": "Lisää albumi jonoon",
     "tracks": "Kappaleet:",
-    "year": "Vuosi:"
+    "year": "Vuosi:",
+    "add-to-playlist": "Add album to playlist",
+    "create-playlist": "Create a new playlist",
+    "create-playlist-dialog-title": "Input playlist name:",
+    "create-playlist-dialog-placeholder": "Playlist name...",
+    "create-playlist-dialog-accept": "Save",
+    "create-playlist-dialog-cancel": "Cancel"
   },
   "app": {
     "collection": "Kokoelma",
@@ -40,7 +46,8 @@
     "queue": "Lisää kaikki kappaleet jonoon",
     "similar": "Samankaltaisia artisteja",
     "title": "Nimi",
-    "tour": "Kiertueella"
+    "tour": "Kiertueella",
+    "popular-tracks": "Popular tracks"
   },
   "dashboard": {
     "add-all": "Lisää kaikki",
@@ -144,7 +151,7 @@
     "delete": "Poista tämä soittolista",
     "duration": "Kesto",
     "empty": "Ei soittolistoja.",
-    "empty-help": "Try create some playlists or import by url and they will appear here!",
+    "empty-help": "Try creating playlists, or import by URL, and they will appear here!",
     "error-empty-data": "Tyhjä tietue",
     "error-invalid-data": "Virheellinen data",
     "error-open-file": "Tiedostoa ei voitu avata",
@@ -153,6 +160,7 @@
     "export-fail-title": "Soittolistan vienti epäonnistui",
     "export-success-title": "Soittolistan vienti onnistui",
     "header": "Soittolistasi",
+    "header-add-button": "Add",
     "import-progress": "Tuonnin edistyminen",
     "spotify-import-placeholder": "Liitä Spotify-soittoluettelon URL-osoite tähän",
     "dialog-placeholder": "Soittolistan nimi...",
@@ -160,9 +168,9 @@
     "dialog-cancel": "Keskeytä",
     "dialog-rename": "Nimeä uudelleen",
     "dialog-import": "Tuo",
-    "create-button": "Luo uusi soittolista",
+    "create-button": "Create a new playlist",
     "new-playlist": "Uusi soittolista",
-    "import-url-button": "Tuo url-osoitteesta (Spotify)",
+    "import-url-button": "Import from Spotify",
     "import-button": "Tuo tiedostosta (JSON)",
     "import-fail-title": "Soittolistan tuonti epäonnistui",
     "import-success-title": "Soittolistan tuonti onnistui",
@@ -183,7 +191,11 @@
     "server-modified-at": "Palvelimen muokkaus: ",
     "upload-to-server": "Lataa palvelimelle",
     "download-from-server": "Lataa palvelimelta",
-    "number-of-tracks": "kappaletta"
+    "number-of-tracks": "kappaletta",
+    "input-playlist-url": "Paste playlist URL:",
+    "create-playlist-dialog-title": "Input playlist name:",
+    "playlist": "Playlist",
+    "play": "Play"
   },
   "plugins": {
     "add-a-plugin": "Lisää plugin",
@@ -210,7 +222,7 @@
     "favorite-add": "Lisää suosikkeihin",
     "header": "Jono",
     "header-track": "Tämänhetkinen kappale",
-    "copy-track-url": "Kopioi kappaleen osoite leikepöydälle",
+    "copy-track-url": "Copy track URL to clipboard",
     "loading": "Streami lataa vieläkin.",
     "playlist-add": "Lisää soittolistaan",
     "playlist-add-queue": "Lisää jono soittolistaan",
@@ -234,7 +246,9 @@
       },
       "verify": "Vahvista",
       "unverify": "Poista vahvistus"
-    }
+    },
+    "create-playlist-dialog-title": "Input playlist name:",
+    "play-now": "Play now"
   },
   "search": {
     "album": "Albumi",
@@ -287,7 +301,7 @@
     "github-description": "Kirjaudu sisään Githubilla jotta voit luoda ja jakaa soittolistoja (ominaisuus tulossa).",
     "github-title": "GitHub",
     "http": "HTTP API",
-    "invidious-url": "Invidious-instanssin linkki",
+    "invidious-url": "Invidious instance URL",
     "language": "Kieli",
     "language-placeholder": "Valitse kieli",
     "lastfm-connect": "Kirjaudu käyttäen Last.fm tiliäsi",
@@ -350,7 +364,7 @@
     "add-to-favorite": "Lisää suosikkeihin",
     "add-to-playlist": "Lisää soittolistaan",
     "add-to-queue": "Lisää jonoon",
-    "create-playlist": "Luo uusi soittolista",
+    "create-playlist": "Create a new playlist",
     "create-playlist-dialog-title": "Syötä soittolistalle nimi:",
     "create-playlist-dialog-placeholder": "Soittolistan nimi...",
     "create-playlist-dialog-accept": "Tallenna",
@@ -377,6 +391,7 @@
     "exit-fullscreen": "Paina ESC poistuaksesi koko näytön tilasta"
   },
   "command-palette": {
+    "reminder": "to open the command palette",
     "search-placeholder": "Mitä haluaisit tehdä?",
     "empty-state-help": "Etkö löydä etsimääsi? Kokeile ohjetta.",
     "protip-text": "ILMAINEN NEUVO:",

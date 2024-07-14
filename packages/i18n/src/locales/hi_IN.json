@@ -8,7 +8,13 @@
     "play": "प्ले",
     "queue": "एल्बम को कतार में जोड़ें",
     "tracks": "ट्रैक",
-    "year": "वर्ष"
+    "year": "वर्ष",
+    "add-to-playlist": "Add album to playlist",
+    "create-playlist": "Create a new playlist",
+    "create-playlist-dialog-title": "Input playlist name:",
+    "create-playlist-dialog-placeholder": "Playlist name...",
+    "create-playlist-dialog-accept": "Save",
+    "create-playlist-dialog-cancel": "Cancel"
   },
   "app": {
     "collection": "संग्रह",
@@ -40,7 +46,8 @@
     "queue": "कतार में सभी ट्रैक जोड़ें",
     "similar": "समान कलाकार",
     "title": "शीर्षक",
-    "tour": "दौरे पर"
+    "tour": "दौरे पर",
+    "popular-tracks": "Popular tracks"
   },
   "dashboard": {
     "add-all": "सभी जोड़ें",
@@ -144,7 +151,7 @@
     "delete": "यह प्लेलिस्ट हटाएँ",
     "duration": "अवधि",
     "empty": "कोई प्लेलिस्ट नही",
-    "empty-help": "कुछ प्लेलिस्ट बनाने या 'url' द्वारा आयात करने का प्रयास करें और वे यहां दिखाई देंगी!",
+    "empty-help": "Try creating playlists, or import by URL, and they will appear here!",
     "error-empty-data": "खाली डेटा",
     "error-invalid-data": "अमान्य डेटा",
     "error-open-file": "फाइल को खोला नहीं जा सका",
@@ -153,6 +160,7 @@
     "export-fail-title": "प्लेलिस्ट आयात विफल",
     "export-success-title": "प्लेलिस्ट आयात सफल",
     "header": "आपकी प्लेलिस्ट",
+    "header-add-button": "Add",
     "import-progress": "इम्पोर्ट प्रोग्रेस",
     "spotify-import-placeholder": "स्पॉटीफाई  प्लेलिस्ट यूआरएल यहां पेस्ट करें",
     "dialog-placeholder": "प्लेलिस्ट का नाम",
@@ -160,9 +168,9 @@
     "dialog-cancel": "रद्द करें",
     "dialog-rename": "नाम बदलें",
     "dialog-import": "इंपोर्ट",
-    "create-button": "नया प्लेलिस्ट बनाएं",
+    "create-button": "Create a new playlist",
     "new-playlist": "नई प्लेलिस्ट",
-    "import-url-button": "यूआरएल से आयात करें (स्पॉटीफाई)",
+    "import-url-button": "Import from Spotify",
     "import-button": "फ़ाइल (JSON) से आयात करें",
     "import-fail-title": "प्लेलिस्ट आयात विफल",
     "import-success-title": "प्लेलिस्ट आयात सफल",
@@ -183,7 +191,11 @@
     "server-modified-at": "सर्वर संशोधित ",
     "upload-to-server": "सर्वर पर अपलोड करें",
     "download-from-server": "सर्वर से डाउनलोड करें",
-    "number-of-tracks": "ट्रैक"
+    "number-of-tracks": "ट्रैक",
+    "input-playlist-url": "Paste playlist URL:",
+    "create-playlist-dialog-title": "Input playlist name:",
+    "playlist": "Playlist",
+    "play": "Play"
   },
   "plugins": {
     "add-a-plugin": "प्लगइन जोड़ें",
@@ -210,7 +222,7 @@
     "favorite-add": "पसंदीदा में जोड़े",
     "header": "कतार",
     "header-track": "वर्तमान ट्रैक",
-    "copy-track-url": "ट्रैक यूआरएल को क्लिपबोर्ड पर कॉपी करें",
+    "copy-track-url": "Copy track URL to clipboard",
     "loading": "स्ट्रीम अभी भी लोड हो रही है.",
     "playlist-add": "प्‍लेलिस्‍ट में जोड़ें",
     "playlist-add-queue": "प्‍लेलिस्‍ट में कतार जोड़ें",
@@ -234,7 +246,9 @@
       },
       "verify": "Verify",
       "unverify": "Unverify"
-    }
+    },
+    "create-playlist-dialog-title": "Input playlist name:",
+    "play-now": "Play now"
   },
   "search": {
     "album": "एल्बम",
@@ -287,7 +301,7 @@
     "github-description": "अपनी प्लेलिस्ट ऑनलाइन (आगामी फीचर) बनाने और साझा करने में सक्षम होने के लिए Github के माध्यम से लॉग इन करें।",
     "github-title": "Github",
     "http": "HTTP API",
-    "invidious-url": "Invidious instance url",
+    "invidious-url": "Invidious instance URL",
     "language": "भाषा",
     "language-placeholder": "भाषा चुनें।",
     "lastfm-connect": "Last. fm के साथ साइन इन करें",
@@ -377,6 +391,7 @@
     "exit-fullscreen": "फुलस्क्रीन मोड से बाहर निकलने के लिए Esc दबाएं।"
   },
   "command-palette": {
+    "reminder": "to open the command palette",
     "search-placeholder": "आप क्या करना चाहेंगे?",
     "empty-state-help": "क्या आप जो पता करना चाहते हैं वह आपको नहीं मिल रहा है? \"सहायता\" कमांड कोशिश करें",
     "protip-text": "प्रो टिप:",

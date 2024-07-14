@@ -1,6 +1,6 @@
 {
   "name": "nuclear",
-  "version": "0.6.30",
+  "version": "0.6.31",
   "description": "Streaming music player that finds music sources automatically.",
   "repository": {
     "type": "git",
@@ -31,7 +31,8 @@
     "pack": "cross-env NODE_OPTIONS='--max-old-space-size=8192' electron-builder --dir -c.extraMetadata.main=dist/main.js",
     "build:linux": "lerna run build && electron-builder -c.extraMetadata.main=dist/main.js --linux --publish onTag",
     "build:windows": "lerna run build && cross-env NODE_OPTIONS='--max-old-space-size=8192' electron-builder -c.extraMetadata.main=dist/main.js --windows --publish onTag",
-    "build:macos": "lerna run build && cross-env NODE_OPTIONS='--max-old-space-size=8192' electron-builder -c.extraMetadata.main=dist/main.js --macos --publish onTag",
+    "build:macos": "lerna run build && lerna run build-macos && cross-env NODE_OPTIONS='--max-old-space-size=8192' electron-builder -c.extraMetadata.main=dist/main.js --macos --x64 --publish onTag",
+    "build:macos-arm64": "lerna run build && lerna run build-macos-arm64 && cross-env NODE_OPTIONS='--max-old-space-size=8192' electron-builder -c.extraMetadata.main=dist/main.js --macos --arm64 --publish onTag",
     "build:all": "lerna run build && cross-env NODE_OPTIONS='--max-old-space-size=8192' electron-builder -c.extraMetadata.main=dist/main.js -mwl"
   },
   "devDependencies": {
@@ -74,7 +75,7 @@
   "build": {
     "appId": "nuclear",
     "productName": "nuclear",
-    "artifactName": "${productName}-v${env.VERSION}.${ext}",
+    "artifactName": "${productName}-v${env.VERSION}-${arch}.${ext}",
     "directories": {
       "output": "release"
     },
@@ -155,26 +156,10 @@
       "category": "public.app-category.music",
       "target": [
         {
-          "target": "zip",
-          "arch": [
-            "universal"
-          ]
-        },
-        {
-          "target": "pkg",
-          "arch": [
-            "universal"
-          ]
-        },
-        {
-          "target": "dmg",
-          "arch": [
-            "universal"
-          ]
+          "target": "dmg"
         }
       ],
       "mergeASARs": true,
-      "x64ArchFiles": "Contents/Resources/bin/fpcalc",
       "extraFiles": [
         {
           "from": "packages/main/bin/mac",
@@ -203,5 +188,8 @@
     "nsis": {
       "artifactName": "${productName} Setup ${env.VERSION}.${ext}"
     }
+  },
+  "dependencies": {
+    "sqlite3": "^5.1.6"
   }
 }
