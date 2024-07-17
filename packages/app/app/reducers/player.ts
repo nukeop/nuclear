@@ -20,21 +20,23 @@ type PlayerReducerState = {
   playbackRate: number
 }
 
-const initialState: PlayerReducerState = {
-  playbackStatus: Sound.status.PAUSED,
-  playbackStreamLoading: false,
-  playbackProgress: 0,
-  seek: 0,
-  volume: getOption('volume'),
-  muted: false,
-  playbackRate: 2
+const initialState: () => PlayerReducerState = () => {
+  return ({
+    playbackStatus: Sound.status.PAUSED,
+    playbackStreamLoading: false,
+    playbackProgress: 0,
+    seek: 0,
+    volume: getOption('volume'),
+    muted: false,
+    playbackRate: 2
+  });
 };
 
 const actions = { nextSongAction, previousSongAction, selectSong, ...PlayerActions };
 
 type PlayerReducerActions = ActionType<typeof actions>
 
-export default function PlayerReducer(state=initialState, action: PlayerReducerActions): PlayerReducerState {
+export default function PlayerReducer(state=initialState(), action: PlayerReducerActions): PlayerReducerState {
   switch (action.type) {
   case getType(PlayerActions.startPlayback):
     return Object.assign({}, state, {

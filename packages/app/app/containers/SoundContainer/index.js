@@ -202,7 +202,7 @@ class SoundContainer extends React.Component {
     const currentTrack = queue.queueItems[queue.currentSong];
     const usedEqualizer = enableSpectrum ? equalizer : defaultEqualizer;
 
-    return Boolean(currentStream) && (this.isHlsStream(head(currentStream.streams)) ? (
+    return Boolean(currentStream) && (this.isHlsStream(currentStream.stream) ? (
       <HlsPlayer
         source={currentStream.stream}
         onError={this.handleError}

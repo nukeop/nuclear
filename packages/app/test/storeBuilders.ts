@@ -901,6 +901,13 @@ export const buildStoreState = () => {
       };
       return this as StoreStateBuilder;
     },
+    withPlayer(playerState: Partial<RootState['player']>) {
+      state.player = {
+        ...state.player,
+        ...playerState
+      };
+      return this as StoreStateBuilder;
+    },
     build() {
       return state;
     }
