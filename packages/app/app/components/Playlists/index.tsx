@@ -79,7 +79,6 @@ const Playlists: React.FC<PlaylistsProps> = ({
           </Dimmer>
           : <>
             <PlaylistsHeader
-              showText={isPlaylistsReallyNotEmpty()}
               onImportFromFile={onImportFromFile}
               onCreate={onCreate}
             />

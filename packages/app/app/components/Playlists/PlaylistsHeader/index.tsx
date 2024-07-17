@@ -9,13 +9,11 @@ import { Icon, Popup } from 'semantic-ui-react';
 import SpotifyPlaylistImporter from '../../../containers/SpotifyPlaylistImporter/SpotifyPlaylistImporter';
 
 type PlaylistsHeaderProps = {
-  showText: boolean;
   onImportFromFile: React.MouseEventHandler;
   onCreate: (name: string) => void;
 }
 
 const PlaylistsHeader: React.FC<PlaylistsHeaderProps> = ({
-  showText,
   onImportFromFile,
   onCreate
 }) => {
@@ -29,12 +27,12 @@ const PlaylistsHeader: React.FC<PlaylistsHeaderProps> = ({
 
   return (
     <div className={styles.playlists_header_container}>
-      {showText && <Header>
+      <Header>
         {t('header')}
         <Popup
           on='click'
           trigger={
-            <Button 
+            <Button
               data-testid='playlists-header-add-button'
               color='pink'
               circular
@@ -50,7 +48,7 @@ const PlaylistsHeader: React.FC<PlaylistsHeaderProps> = ({
         >
           <div className={styles.playlist_header_buttons}>
             <InputDialog
-              header={<h4>t('create-playlist-dialog-title')</h4>}
+              header={<h4>{t('create-playlist-dialog-title')}</h4>}
               placeholder={t('dialog-placeholder')}
               acceptLabel={t('dialog-accept')}
               cancelLabel={t('dialog-cancel')}
@@ -61,15 +59,15 @@ const PlaylistsHeader: React.FC<PlaylistsHeaderProps> = ({
                 <PopupButton
                   data-testid='create-new'
                   ariaLabel={t('create-button')}
-                  icon='plus' 
+                  icon='plus'
                   label={t('create-button')}
                 />
               }
               initialString={t('new-playlist')}
             />
-            <SpotifyPlaylistImporter 
+            <SpotifyPlaylistImporter
               trigger={
-                <PopupButton 
+                <PopupButton
                   data-testid='import-from-url'
                   icon='spotify'
                   label={t('import-url-button')}
@@ -86,11 +84,9 @@ const PlaylistsHeader: React.FC<PlaylistsHeaderProps> = ({
             />
           </div>
         </Popup>
-      
-      </Header>}
-      {!showText && <span />}
-      
 
+      </Header>
+      <span />
     </div>
   );
 };
