@@ -26,6 +26,7 @@ exports[`Playlists container should display all playlists 1`] = `
             Add
           </button>
         </div>
+        <span />
       </div>
       <table
         class="playlists_table"
@@ -118,6 +119,21 @@ exports[`Playlists container should display empty playlists view 1`] = `
       <div
         class="playlists_header_container"
       >
+        <div
+          class="header_container"
+        >
+          Your playlists
+          <button
+            class="ui pink circular button nuclear button playlists_header_add_button"
+            data-testid="playlists-header-add-button"
+          >
+            <i
+              aria-hidden="true"
+              class="plus icon"
+            />
+            Add
+          </button>
+        </div>
         <span />
       </div>
       <div
