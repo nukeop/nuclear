@@ -13,10 +13,10 @@ jest.mock('react-hls-player', () => {
 });
 
 jest.mock('react-hifi', () => {
-  let finishPlayingCallback: () => void;
+  let _finishPlayingCallback: () => void;
 
   const MockReactHifi = ({ onFinishedPlaying }: { onFinishedPlaying: () => void }) => {
-    finishPlayingCallback = onFinishedPlaying;
+    _finishPlayingCallback = onFinishedPlaying;
     return null;
   };
 
@@ -24,24 +24,30 @@ jest.mock('react-hifi', () => {
     PAUSED: 'PAUSED'
   };
 
+  const _default = jest.fn().mockImplementation(MockReactHifi);
+  (_default as unknown as ReactHiFiMock['default']).status = {
+    PAUSED: 'PAUSED'
+  };
+
   return {
     ...jest.requireActual('react-hifi'),
     __esModule: true,
-    default: jest.fn().mockImplementation(MockReactHifi),
-    status: {
-      PAUSED: 'PAUSED'
-    },
+    default: _default,
     finishPlaying: () => {
-      if (finishPlayingCallback) {
-        finishPlayingCallback();
+      if (_finishPlayingCallback) {
+        _finishPlayingCallback();
       }
     },
-    finishPlayingCallback
+    finishPlayingCallback: () => _finishPlayingCallback
   };
 });
 
 type ReactHiFiMock = {
-  default: React.FC<{ onFinishedPlaying: () => void }>;
+  default: React.FC<{ onFinishedPlaying: () => void }> & {
+    status: {
+      PAUSED: 'PAUSED'
+    }
+  };
   finishPlaying: () => void;
   finishPlayingCallback: () => void;
 }
@@ -49,16 +55,17 @@ type ReactHiFiMock = {
 describe('Sound Container - visualizer shuffle functionality', () => {
   it('Should change visualizer preset on song end, if the setting is enabled', async () => {
     const { store, component } = mountSoundContainer();
-    const state = store.getState();
+    let state = store.getState();
     const reactHifiMock = (await import('react-hifi')) as unknown as ReactHiFiMock;
 
     await waitFor(() => expect(state.settings['visualizer.preset']).toBe('test preset'));
     
-    await waitFor(() => expect(reactHifiMock.finishPlayingCallback).toBeDefined());
-    await waitFor(() => expect(reactHifiMock.finishPlaying).toBeDefined());
+    await waitFor(async () => expect(reactHifiMock.finishPlayingCallback()).toBeDefined());
+    await waitFor(async () => expect(reactHifiMock.finishPlaying).toBeDefined());
 
     reactHifiMock.finishPlaying();
 
+    state = store.getState();
     await waitFor(() => expect(state.settings['visualizer.preset']).not.toBe('test preset'), { timeout: 2000 });
   });
 
