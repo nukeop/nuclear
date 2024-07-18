@@ -4,16 +4,17 @@ import FontAwesome from 'react-fontawesome';
 import styles from './styles.scss';
 import TrackRow from '../../TrackRow';
 import { useTranslation } from 'react-i18next';
+import { Button } from '@nuclear/ui';
 
 const TagTopTracks = ({ tracks, addToQueue }) => {
   const { t } = useTranslation('tags');
 
   return (
     <div className={styles.tag_top_tracks}>
-      <a
+      <Button
+        primary
         href='#'
-        key='add-all-tag-tracks-to-queue'
-        className='add_all_button'
+        aria-label={t('queue-add')}
         onClick={() => {
           tracks.map((track) => {
             addToQueue({
@@ -23,10 +24,10 @@ const TagTopTracks = ({ tracks, addToQueue }) => {
             });
           });
         }}
-        aria-label={t('queue-add')}
+        className={styles.add_all_button}
       >
         <FontAwesome name='plus' /> {t('queue-add')}
-      </a>
+      </Button>
       <table>
         <thead>
           <tr>

@@ -1,4 +1,4 @@
-@import '../../../vars';
+@import "../../../vars";
 
 .tag_top_tracks {
   position: relative;
@@ -13,6 +13,13 @@
   .track_thumbnail {
     width: 3rem;
     height: 3rem;
+  }
+
+  .add_all_button {
+    margin-right: 0;
+    margin-bottom: 0.5em;
+
+    max-width: 50%;
   }
 
   table {
