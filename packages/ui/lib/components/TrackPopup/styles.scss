@@ -1,0 +1,22 @@
+@import "../../common.scss";
+
+.nuclear.ui.dropdown.playlists_dropdown {
+    .menu {
+        .divider {
+            border-top: 1px solid rgba($lightbg, 0.4) !important;
+        }
+
+        .icon {
+            color: $white;
+        }
+
+        .input .ui.icon.input {
+            padding: 0;
+            width: 100%;
+        }
+
+        .scrolling.menu {
+            box-shadow: none !important;
+        }
+    }
+}
