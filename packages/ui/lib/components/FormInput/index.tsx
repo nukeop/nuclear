@@ -8,18 +8,17 @@ import { FieldsPropsType } from '../../hooks/types';
 
 export type FormInputProps = Omit<SUIInputProps, 'error'> & Partial<FieldsPropsType[keyof FieldsPropsType]>;
 
-const FormInput: React.FC<FormInputProps> = (props) => <SUIInput 
-  className={cx(
-    common.nuclear,
-    styles.input
-  )}
-  {...props}
-  value={props.value as string}
-  onChange={e => props.onChange(e.target.value)}
-  error={props.error && {
-    content: props.error,
-    pointing: 'below'
-  }}
-/>;
-
+const FormInput = React.forwardRef<HTMLInputElement, FormInputProps>((props, ref) => (
+  <SUIInput
+    className={cx(common.nuclear, styles.input)}
+    {...props}
+    value={props.value as string}
+    onChange={(e) => props.onChange(e.target.value)}
+    error={props.error && {
+      content: props.error,
+      pointing: 'below'
+    }}
+    input={{ref}}
+  />
+));
 export default FormInput;
