@@ -90,7 +90,7 @@ exports[`Track Popup container creating new playlist should open Input Dialog 1`
         </a>
         <div
           aria-expanded="false"
-          class="ui dropdown nuclear dropdown popup_button left"
+          class="ui left pointing dropdown nuclear dropdown popup_button left playlists_dropdown"
           data-testid="track-popup-add-playlist"
           role="listbox"
           tabindex="0"
@@ -110,6 +110,32 @@ exports[`Track Popup container creating new playlist should open Input Dialog 1`
           <div
             class="menu transition"
           >
+            <div
+              class="field nuclear input"
+            >
+              <div
+                class="ui icon input"
+              >
+                <input
+                  placeholder="Search playlists..."
+                  type="text"
+                  value=""
+                />
+                <i
+                  aria-hidden="true"
+                  class="filter icon"
+                />
+              </div>
+            </div>
+            <div
+              class="divider"
+            />
+            <div
+              class="scrolling menu transition"
+            />
+            <div
+              class="divider"
+            />
             <div
               class="item"
               data-testid="track-popup-create-playlist"
@@ -276,7 +302,7 @@ exports[`Track Popup container should render the Track Popup container 1`] = `
         </a>
         <div
           aria-expanded="false"
-          class="ui dropdown nuclear dropdown popup_button left"
+          class="ui left pointing dropdown nuclear dropdown popup_button left playlists_dropdown"
           data-testid="track-popup-add-playlist"
           role="listbox"
           tabindex="0"
@@ -296,6 +322,32 @@ exports[`Track Popup container should render the Track Popup container 1`] = `
           <div
             class="menu transition"
           >
+            <div
+              class="field nuclear input"
+            >
+              <div
+                class="ui icon input"
+              >
+                <input
+                  placeholder="Search playlists..."
+                  type="text"
+                  value=""
+                />
+                <i
+                  aria-hidden="true"
+                  class="filter icon"
+                />
+              </div>
+            </div>
+            <div
+              class="divider"
+            />
+            <div
+              class="scrolling menu transition"
+            />
+            <div
+              class="divider"
+            />
             <div
               class="item"
               data-testid="track-popup-create-playlist"
