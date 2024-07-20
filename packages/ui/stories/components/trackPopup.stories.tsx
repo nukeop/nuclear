@@ -2,6 +2,7 @@ import React from 'react';
 import { Button } from 'semantic-ui-react';
 
 import { TrackPopup } from '../..';
+import { range } from 'lodash';
 
 export default {
   title: 'Components/Track popup'
@@ -34,6 +35,14 @@ export const WithAllButtons = () => <div className='bg'>
       { name: 'playlist 2' },
       { name: 'another playlist' }
     ]}
+    {...track}
+  />
+</div>;
+
+export const WithLotsOfPlaylists = () => <div className='bg'>
+  <TrackPopup
+    trigger={<Button>Click here</Button>}
+    playlists={range(20).map(i => ({ name: `playlist ${i}` }))}
     {...track}
   />
 </div>;

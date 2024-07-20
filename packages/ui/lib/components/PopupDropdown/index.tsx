@@ -10,13 +10,15 @@ export type PopupDropdownProps = {
   text: DropdownProps['text'];
   pointing?: DropdownProps['pointing'];
   direction?: DropdownProps['direction'];
-};
+  className?: string;
+} & DropdownProps;
 
 const PopupDropdown: React.FC<PopupDropdownProps> = ({
   text,
   pointing,
   direction,
   children,
+  className,
   ...rest
 }) => {
   return (
@@ -24,7 +26,8 @@ const PopupDropdown: React.FC<PopupDropdownProps> = ({
       text={text}
       className={cx(
         popupButtonStyles.popup_button,
-        'left'
+        'left',
+        className
       )}
       pointing={pointing}
       direction={direction}
