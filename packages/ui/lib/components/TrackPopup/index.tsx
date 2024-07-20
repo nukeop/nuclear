@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import _ from 'lodash';
-import { Icon, Dropdown } from 'semantic-ui-react';
 
 import ContextPopup, { ContextPopupProps } from '../ContextPopup';
 import PopupButton from '../PopupButton';
 import PopupDropdown from '../PopupDropdown';
 import InputDialog from '../InputDialog';
+import { PlaylistsDropdown } from './PlaylistsDropdown';
 
 export type TrackPopupProps = {
   trigger: ContextPopupProps['trigger'];
@@ -138,28 +138,15 @@ const TrackPopup: React.FC<TrackPopupProps> = ({
         )}
 
         {withAddToPlaylist && Boolean(playlists) && (
-          <PopupDropdown 
-            data-testid='track-popup-add-playlist'
-            text={strings.textAddToPlaylist}>
-            {_.map(playlists, (playlist, i) => (
-              <Dropdown.Item
-                key={i}
-                onClick={() => onAddToPlaylist(playlist)}
-              >
-                <Icon name='music' />
-                {playlist.name}
-              </Dropdown.Item>
-            ))}
-            <Dropdown.Item
-              onClick={() => {
-                setIsCreatePlaylistDialogOpen(true);
-              }}
-              data-testid='track-popup-create-playlist'
-            >
-              <Icon name='plus' />
-              {strings.textCreatePlaylist}
-            </Dropdown.Item>
-          </PopupDropdown>
+          <PlaylistsDropdown
+            playlists={playlists}
+            strings={{
+              textAddToPlaylist: strings.textAddToPlaylist,
+              textCreatePlaylist: strings.textCreatePlaylist
+            }}
+            onAddToPlaylist={onAddToPlaylist}
+            setIsCreatePlaylistDialogOpen={setIsCreatePlaylistDialogOpen}
+          />
         )}
 
         {withAddToDownloads && (

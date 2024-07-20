@@ -27,7 +27,6 @@ const EmptyState: React.FC<{nothingFoundLabel: string}> = ({nothingFoundLabel}) 
 
 );
 
-
 const SCROLL_INCREMENT = 240;
 const CardsRow: React.FC<CardRowProps> = ({
   cards,

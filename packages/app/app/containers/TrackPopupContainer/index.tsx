@@ -34,7 +34,7 @@ const TrackPopupContainer: React.FC<TrackPopupContainerProps> = ({
   withAddToDownloads=true
 }) => {
   const props = useTrackPopupProps(track, thumb);
-
+  
   return <TrackPopup
     trigger={trigger}
     artist={artist}
