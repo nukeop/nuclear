@@ -114,9 +114,9 @@ const ArtistView: React.FC<ArtistViewProps> = ({
 
   function renderSimilarArtists() {
     return (
-      !isLoading() &&
+      !isLoading() && !isEmpty(artist.similar) &&
       <SimilarArtists
-        artists={_.get(artist, 'similar', [])}
+        artists={artist.similar}
         artistInfoSearchByName={artistInfoSearchByName}
       />
     );
