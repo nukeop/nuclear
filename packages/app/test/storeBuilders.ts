@@ -11,6 +11,8 @@ import { TrackStream } from '../app/reducers/queue';
 import { LocalLibraryState } from '../app/actions/local';
 import { DeezerEditorialCharts } from '@nuclear/core/src/rest/Deezer';
 import { Loadable } from '../app/reducers/types';
+import { ArtistDetailsState } from '../app/reducers/search';
+import { SearchResultsSource } from '@nuclear/core/src/plugins/plugins.types';
 
 type StoreStateBuilder = ReturnType<typeof buildStoreState>;
 export const buildStoreState = () => {
@@ -144,7 +146,7 @@ export const buildStoreState = () => {
       };
       return this as StoreStateBuilder;
     },
-    withArtistDetails(data?: any) {
+    withArtistDetails(data?: {[key: string]: ArtistDetailsState }) {
       state = {
         ...state,
         search: {
@@ -162,11 +164,7 @@ export const buildStoreState = () => {
                 {
                   id: 'test-album-1',
                   title: ' Test album 1',
-                  artists: [
-                    {
-                      name: 'test artist 1'
-                    }
-                  ],
+                  artist: 'test artist 1',
                   genres: ['genre 1', 'genre 2'],
                   images: ['image 1'],
                   thumb: 'image 1',
@@ -174,23 +172,18 @@ export const buildStoreState = () => {
                   tracklist: [
                     {
                       uuid: 'track-1',
-                      artist: {
-                        name: 'test artist 1'
-                      },
+                      artist: 'test artist 1',                      
                       title: 'test track 1',
                       duration: 10
                     }
                   ],
-                  year: 2019
+                  year: '2019',
+                  source: SearchResultsSource.Discogs
                 },
                 {
                   id: 'test-album-2',
                   title: ' Test album 2',
-                  artists: [
-                    {
-                      name: 'test artist 2'
-                    }
-                  ],
+                  artist: 'test artist 2',
                   genres: ['genre 2', 'genre 3'],
                   images: ['image 2'],
                   thumb: 'image 2',
@@ -198,14 +191,13 @@ export const buildStoreState = () => {
                   tracklist: [
                     {
                       uuid: 'track-2',
-                      artist: {
-                        name: 'test artist 2'
-                      },
+                      artist: 'test artist 2',
                       title: 'test track 2',
                       duration: 40
                     }
                   ],
-                  year: 2021
+                  year: '2021',
+                  source: SearchResultsSource.Discogs
                 }
               ],
               releasesLoading: false,
@@ -224,37 +216,28 @@ export const buildStoreState = () => {
               topTracks: [
                 {
                   artist: {
-                    mbid: 'test mbid',
-                    name: 'test artist',
-                    url: 'test artist url'
+                    name: 'test artist'
                   },
-                  listeners: '771858',
-                  name: 'test artist top track 1',
-                  playcount: '6900237',
+                  listeners: 771858,
+                  playcount: 6900237,
                   thumb: '',
                   title: 'test artist top track 1'
                 },
                 {
                   artist: {
-                    mbid: 'test mbid',
-                    name: 'test artist',
-                    url: 'test artist url'
+                    name: 'test artist'
                   },
-                  listeners: '123',
-                  name: 'test artist top track 2',
-                  playcount: '6969',
+                  listeners: 123,
+                  playcount: 6969,
                   thumb: '',
                   title: 'test artist top track 2'
                 },
                 {
                   artist: {
-                    mbid: 'test mbid',
-                    name: 'test artist',
-                    url: 'test artist url'
+                    name: 'test artist'
                   },
-                  listeners: '9',
-                  name: 'test artist top track 3',
-                  playcount: '1',
+                  listeners: 9,
+                  playcount: 1,
                   thumb: '',
                   title: 'test artist top track 3'
                 }

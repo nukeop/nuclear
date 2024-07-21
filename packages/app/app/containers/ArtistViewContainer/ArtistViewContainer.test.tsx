@@ -48,6 +48,27 @@ describe('Artist view container', () => {
     expect(history.location.pathname).toBe('/artist/artist-similar-id');
   });
 
+  it('should not render similar artists section if there are no similar artists', async () => {
+    const stateWithArtistDetails = buildStoreState()
+      .withArtistDetails()
+      .build();
+    const initialState = buildStoreState()
+      .withArtistDetails({
+        ['test-artist-id']: {
+          ...stateWithArtistDetails.search.artistDetails['test-artist-id'],
+          similar: []
+        } 
+      })
+      .withPlugins()
+      .withConnectivity()
+      .build();
+
+    const { component } = mountComponent(initialState);
+    await waitFor(() => component.findByText(/popular tracks/i));
+    const similarArtists = component.queryByText(/similar artists/i);
+    expect(similarArtists).toBeNull();
+  });
+
   it('should add a single track to queue after clicking the button in the popup', async () => {
     const { component, store } = mountComponent();
 

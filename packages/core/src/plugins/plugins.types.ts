@@ -28,10 +28,19 @@ export type SearchResultsAlbum = {
     id: string;
     coverImage?: string;
     thumb?: string;
+    genres?: string[];
+    images?: string[];
     title: string;
     artist: string;
     resourceUrl?: string;
     type?: string;
+    tracklist?: {
+        uuid: string;
+        artist: string;
+        title: string;
+        duration: number;
+    }[];
+    year?: string;
     source: SearchResultsSource;
 }
 
