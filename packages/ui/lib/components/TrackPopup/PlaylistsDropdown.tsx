@@ -15,11 +15,11 @@ type PlaylistsDropdownProps = {
     setIsCreatePlaylistDialogOpen: (value: boolean) => void;
 }
 
-export const PlaylistsDropdown: React.FC<PlaylistsDropdownProps> = ({ playlists, strings, onAddToPlaylist, setIsCreatePlaylistDialogOpen }) => {
+export const PlaylistsDropdown: React.FC<PlaylistsDropdownProps> = ({ playlists=[], strings, onAddToPlaylist, setIsCreatePlaylistDialogOpen }) => {
   const [filter, setFilter] = useState('');
-  const filteredPlaylists = playlists.filter(playlist => playlist.name.toLowerCase().includes(filter.toLowerCase()));
   const filterInputRef = React.createRef<HTMLInputElement>();
   const [isOpen, setOpen] = useState(false);
+  const filteredPlaylists = playlists.filter(playlist => playlist.name.toLowerCase().includes(filter.toLowerCase()));
 
   useEffect(() => {
     if (filterInputRef.current && isOpen) {

@@ -18,6 +18,7 @@ import { success, error } from './toasts';
 import { IdentityStore } from '../reducers/nuclear/identity';
 import { PlaylistsStore } from '../reducers/playlists';
 import { SpotifyPlaylist } from '../containers/SpotifyPlaylistImporter/hooks';
+import { isEmpty } from 'lodash';
 
 export const updatePlaylistsAction = createStandardAction(Playlists.UPDATE_LOCAL_PLAYLISTS)<PlaylistsStore['localPlaylists']['data']>();
 
@@ -56,7 +57,7 @@ export const loadLocalPlaylists = () => dispatch => {
 
   try {
     const playlists: Playlist[] = store.get('playlists');
-    dispatch(loadLocalPlaylistsAction.success(playlists ?? []));
+    dispatch(loadLocalPlaylistsAction.success(isEmpty(playlists) ? [] : playlists));
   } catch (error) {
     dispatch(loadLocalPlaylistsAction.failure());
   }
