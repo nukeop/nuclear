@@ -1,17 +1,19 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import FontAwesome from 'react-fontawesome';
 import cx from 'classnames';
 import _ from 'lodash';
 import { Button } from 'semantic-ui-react';
 import { useTranslation } from 'react-i18next';
 import { TFunction } from 'i18next';
-import { TrackRow } from '@nuclear/ui';
 
-import TrackPopupContainer from '../../../containers/TrackPopupContainer';
 
 import trackRowStyles from '../../TrackRow/styles.scss';
 import styles from './styles.scss';
 import { ArtistTopTrack } from '@nuclear/core/src/plugins/plugins.types';
+import TrackTableContainer from '../../../containers/TrackTableContainer';
+import TrackTableCell from '@nuclear/ui/lib/components/TrackTable/Cells/TrackTableCell';
+import { Cell, CellProps } from 'react-table';
+import { Track } from '@nuclear/ui/lib/types';
 
 type AddAllButtonProps = {
   handleAddAll: React.MouseEventHandler;
@@ -44,6 +46,8 @@ type PopularTracksProps = {
   addToQueue: (track) => Promise<void> ;
 }
 
+const PlaycountColumnId = 'playcount';
+
 const PopularTracks: React.FC<PopularTracksProps> = ({
   artist,
   tracks,
@@ -64,6 +68,13 @@ const PopularTracks: React.FC<PopularTracksProps> = ({
       });
   };
 
+  const customColumns = useMemo(() => [{
+    id: PlaycountColumnId,
+    Header: t('count'),
+    accessor: (track: ArtistTopTrack) => track.playcount,
+    Cell: ({value, ...rest}: CellProps<Track, string>) => <TrackTableCell value={Number(value).toLocaleString()} {...rest} />
+  }], []);
+
   return (
     !_.isEmpty(tracks) &&
       <div className={cx(
@@ -75,43 +86,19 @@ const PopularTracks: React.FC<PopularTracksProps> = ({
           handleAddAll={handleAddAll}
           t={t}
         />
-        <table>
-          <thead>
-            <tr>
-              <th>
-                <FontAwesome name='photo' />
-              </th>
-              <th>{t('title')}</th>
-              <th>{t('count')}</th>
-            </tr>
-          </thead>
-          <tbody>
-            {
-              tracks
-                .slice(0, expanded ? 15 : 5)
-                .map((track, index) => (
-                  <TrackPopupContainer
-                    key={'popular-track-row-' + index}
-                    trigger={
-                      <TrackRow
-                        track={{
-                          playcount: _.get(track, 'playcount'),
-                          name: track.title,
-                          thumbnail: track.thumb
-                        }}
-                        displayCover
-                        displayPlayCount
-                      />
-                    }
-                    title={track.title}
-                    track={track}
-                    artist={artist.name}
-                    thumb={track.thumb}
-                  />
-                ))
-            }
-          </tbody>
-        </table>
+        <TrackTableContainer
+          tracks={
+            _(tracks)
+              .sortBy('playcount')
+              .takeRight(expanded ? 15 : 5)
+              .value()
+          }
+          displayDeleteButton={false}
+          displayAlbum={false}
+          displayPosition={false}
+          displayArtist={false}
+          customColumns={customColumns}
+        />
         <div className='expand_button' onClick={toggleExpand}>
           <FontAwesome
             name={expanded ? 'angle-double-up' : 'angle-double-down'}

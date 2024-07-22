@@ -1,4 +1,4 @@
-@import '../../../vars';
+@import "../../../vars";
 
 .popular_tracks_container {
   display: flex;
@@ -28,6 +28,8 @@
   }
 }
 
-.add_button {
+.ui.button.add_button {
   text-align: left;
+  margin-bottom: 0.5rem;
+  max-width: 10em;
 }

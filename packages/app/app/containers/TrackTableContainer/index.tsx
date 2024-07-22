@@ -24,6 +24,7 @@ export type TrackTableContainerProps<T extends Track> = TrackTableSettings & {
   onDelete?: TrackTableProps<T>['onDelete'];
   onReorder?: (indexSource: number, indexDest: number) => void;
   TrackTableComponent?: React.ComponentType<TrackTableProps<T>>;
+  customColumns?: TrackTableProps<T>['customColumns'];
   displayAddToDownloads?: boolean;
   displayAddToFavorites?: boolean;
 };
@@ -33,6 +34,7 @@ function TrackTableContainer<T extends Track> ({
   onDelete,
   onReorder,
   TrackTableComponent = TrackTable,
+  customColumns,
   displayAddToDownloads = true,
   displayAddToFavorites = true,
   ...settings
@@ -146,6 +148,7 @@ function TrackTableContainer<T extends Track> ({
     durationHeader={t('duration')}
     strings={trackTableStrings}
     playlists={playlists.data}
+    customColumns={customColumns}
     onAddToQueue={onAddToQueue}
     onPlay={onPlayNow}
     onPlayNext={onPlayNext}
