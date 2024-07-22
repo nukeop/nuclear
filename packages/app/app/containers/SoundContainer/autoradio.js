@@ -198,7 +198,7 @@ function addToQueue (artist, track) {
     props.actions.addToQueue({
       artist: artist.name,
       name: track.name,
-      thumbnail: track.thumbnail || track.image[0]['#text']
+      thumbnail: track.thumbnail ?? track.image[0]['#text'] ?? track.thumb
     });
     resolve(true);
   });
