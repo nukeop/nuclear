@@ -1,4 +1,4 @@
-import { render, waitFor } from '@testing-library/react';
+import { render, RenderResult, waitFor, within, screen } from '@testing-library/react';
 import React from 'react';
 import { createMemoryHistory } from 'history';
 import { store as electronStore } from '@nuclear/core';
@@ -72,8 +72,8 @@ describe('Artist view container', () => {
   it('should add a single track to queue after clicking the button in the popup', async () => {
     const { component, store } = mountComponent();
 
-    await waitFor(() => component.getByText(/test artist top track 1/i).click());
-    await waitFor(() => component.getByText(/add to queue/i).click());
+    const firstTrack = await getTrackCell(component, 'test artist top track 1');
+    await waitFor(() => within(firstTrack).getByTestId('add-to-queue').click());
 
     const state = store.getState();
     expect(state.queue.queueItems).toEqual([
@@ -99,24 +99,25 @@ describe('Artist view container', () => {
     }];
     const { component, store } = mountComponent(initialState);
 
-    await waitFor(() => component.getByText(/test artist top track 1/i).click());
-    await waitFor(() => component.getByText(/add to queue/i).click());
+    const firstTrack = await getTrackCell(component, 'test artist top track 1');
+    await waitFor(() => within(firstTrack).getByTestId('add-to-queue').click());
 
     const state = store.getState();
     expect(state.queue.queueItems).toEqual([
       expect.objectContaining({
         artist: 'test artist',
-        name: 'test artist top track 1',
-        thumbnail: undefined
+        title: 'test artist top track 1'
       })
     ]);
+    expect(state.queue.queueItems[0].thumbnail).toBeUndefined();
   });
 
   it('should start playing a single track after clicking the button in the popup', async () => {
     const { component, store } = mountComponent();
 
-    await waitFor(() => component.getByText(/test artist top track 1/i).click());
-    await waitFor(() => component.getByText(/play now/i).click());
+    const firstTrack = await getTrackCell(component, 'test artist top track 1');
+    await waitFor(() => within(firstTrack).getByTestId('track-popup-trigger').click());
+    await waitFor(() => screen.getByText(/play now/i).click());
 
     const state = store.getState();
     expect(state.queue.queueItems).toEqual([
@@ -131,8 +132,9 @@ describe('Artist view container', () => {
   it('should add a single track to downloads after clicking the button in the popup', async () => {
     const { component, store } = mountComponent();
 
-    await waitFor(() => component.getByText(/test artist top track 1/i).click());
-    await waitFor(() => component.getByText(/download/i).click());
+    const firstTrack = await getTrackCell(component, 'test artist top track 1');
+    await waitFor(() => within(firstTrack).getByTestId('track-popup-trigger').click());
+    await waitFor(() => screen.getByText(/download/i).click());
 
     const state = store.getState();
     expect(state.downloads).toEqual([
@@ -147,30 +149,32 @@ describe('Artist view container', () => {
     ]);
   });
 
-  it('should add a top track to favorites after clicking the button in the popup', async () => {
+  it('should add a top track to a playlist after clicking the button in the popup', async () => {
     const { component, store } = mountComponent();
     
-    await waitFor(() => component.getByText(/test artist top track 1/i).click());
-    await waitFor(() => component.getByText(/add to playlist/i).click());
-    await waitFor(() => component.getByText('test playlist').click());
+    const firstTrack = await getTrackCell(component, 'test artist top track 1');
+    await waitFor(() => within(firstTrack).getByTestId('track-popup-trigger').click());
+    await waitFor(() => screen.getByText(/add to playlist/i).click());
+    await waitFor(() => screen.getByText('test playlist').click());
     
     const state = store.getState();
-
+    
     expect(state.playlists.localPlaylists.data[0].tracks).toEqual([
       expect.objectContaining({
-        artist: 'test artist',
-        name: 'test artist top track 1'
+        artist: { name: 'test artist' },
+        title: 'test artist top track 1'
       })
     ]);
   });
-
-  it('should add a top track to a playlist after clicking the button in the popup', async () => {
+  
+  it('should add a top track to favorites after clicking the button in the popup', async () => {
     const { component, store } = mountComponent();
     let state = store.getState();
     expect(state.favorites.tracks).toEqual([]);
 
-    await waitFor(() => component.getByText(/test artist top track 1/i).click());
-    await waitFor(() => component.getByText(/add to favorites/i).click());
+    const firstTrack = await getTrackCell(component, 'test artist top track 1');
+    await waitFor(() => within(firstTrack).getByTestId('track-popup-trigger').click());
+    await waitFor(() => screen.getByText(/add to favorites/i).click());
 
     state = store.getState();
     expect(state.favorites.tracks).toEqual([
@@ -273,5 +277,10 @@ describe('Artist view container', () => {
       </TestRouterProvider >
     );
     return { component, history, store };
+  };
+
+  const getTrackCell = async (component: RenderResult, trackName: string) => {
+    const trackCells = await component.findAllByRole('cell');
+    return trackCells.find(cell => cell.textContent === trackName);
   };
 });
