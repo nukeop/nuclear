@@ -42,7 +42,7 @@
   },
   "artist": {
     "add-all": "সবকটি যোগ করুন",
-    "count": "প্লে কাউন্ট",
+    "count": "Playcount",
     "queue": "সারিতে সমস্ত ট্র্যাক যোগ করুন",
     "similar": "অনুরূপ শিল্পী",
     "title": "টাইটেল",
@@ -225,7 +225,7 @@
     "copy-track-url": "Copy track URL to clipboard",
     "loading": "স্ট্রীম এখনো লোড হচ্ছে।",
     "playlist-add": "প্লেলিস্টে যোগ করুন",
-    "playlist-add-queue": "প্লেলিস্টে কিউ যোগ করুন",
+    "playlist-add-queue": "Add queue to playlist",
     "playlist-toast-content": "প্লেলিস্ট {{name}} তৈরি হয়েছে।",
     "playlist-toast-title": "প্লেলিস্ট তৈরি হয়েছে",
     "live": "সরাসরি",
