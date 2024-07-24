@@ -42,7 +42,7 @@
   },
   "artist": {
     "add-all": "すべて追加",
-    "count": "再生回数",
+    "count": "Playcount",
     "queue": "すべての曲をキューに追加",
     "similar": "似ているアーティスト",
     "title": "タイトル",
