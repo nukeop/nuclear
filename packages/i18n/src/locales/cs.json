@@ -42,7 +42,7 @@
   },
   "artist": {
     "add-all": "Přidat vše",
-    "count": "Počet přehrání",
+    "count": "Playcount",
     "queue": "Přidat všechny skladby do fronty",
     "similar": "Podobní umělci",
     "title": "Název",
@@ -225,7 +225,7 @@
     "copy-track-url": "Copy track URL to clipboard",
     "loading": "Stream se ještě načítá.",
     "playlist-add": "Přidat do seznamu skladeb",
-    "playlist-add-queue": "Přidat frontu do seznamu skladeb",
+    "playlist-add-queue": "Add queue to playlist",
     "playlist-toast-content": "Seznam skladeb {{name}} byl vytvořen.",
     "playlist-toast-title": "Seznam skladeb vytvořen",
     "live": "Živě",
