@@ -42,7 +42,7 @@
   },
   "artist": {
     "add-all": "Legg til alle",
-    "count": "Spill teller",
+    "count": "Playcount",
     "queue": "Legg til alle spor i køen",
     "similar": "Lignende artister",
     "title": "Tittel",
@@ -225,7 +225,7 @@
     "copy-track-url": "Copy track URL to clipboard",
     "loading": "Strømming lastes fortsatt.",
     "playlist-add": "Legg til i spilleliste",
-    "playlist-add-queue": "Legg til i spilleliste kø",
+    "playlist-add-queue": "Add queue to playlist",
     "playlist-toast-content": "Spilleliste {{name}} er opprettet.",
     "playlist-toast-title": "Spilleliste opprettet",
     "live": "Live",
