@@ -42,7 +42,7 @@
   },
   "artist": {
     "add-all": "הוסף הכל",
-    "count": "מספר השמעות",
+    "count": "Playcount",
     "queue": "הוספת כל הרצועות לתור",
     "similar": "אומנים דומים",
     "title": "כותרת",
@@ -225,7 +225,7 @@
     "copy-track-url": "Copy track URL to clipboard",
     "loading": "ההזרמה עדיין נטענת.",
     "playlist-add": "הוספה לפלייליסט",
-    "playlist-add-queue": "הוספת תור לפלייליסט",
+    "playlist-add-queue": "Add queue to playlist",
     "playlist-toast-content": "נוצר הפלייליסט {{name}}.",
     "playlist-toast-title": "הפלייליסט נוצר",
     "live": "שידור חי",
