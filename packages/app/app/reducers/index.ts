@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
 import { StateType } from 'typesafe-actions';
 
+import ConnectivityReducer from './connectivity';
 import DashboardReducer from './dashboard';
 import DownloadsReducer from './downloads';
 import EqualizerReducer from './equalizer';
@@ -17,7 +18,6 @@ import SearchReducer from './search';
 import SettingsReducer from './settings';
 import TagReducer from './tag';
 import ToastsReducer from './toasts';
-import ConnectivityReducer from './connectivity';
 import { reducer as LocalLibraryReducer } from './local';
 import { reducer as MastodonReducer } from './mastodon';
 import { reducer as NuclearReducer } from './nuclear';

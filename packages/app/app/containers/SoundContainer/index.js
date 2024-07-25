@@ -15,6 +15,7 @@ import * as EqualizerActions from '../../actions/equalizer';
 import * as QueueActions from '../../actions/queue';
 import * as ScrobblingActions from '../../actions/scrobbling';
 import * as LyricsActions from '../../actions/lyrics';
+import * as VisualizerActions from '../../actions/visualizer'; 
 import { filterFrequencies } from '../../components/Equalizer/chart';
 import * as Autoradio from './autoradio';
 import VisualizerContainer from '../../containers/VisualizerContainer';
@@ -80,6 +81,10 @@ class SoundContainer extends React.Component {
   }
 
   handleFinishedPlaying() {
+    if (this.props.settings['visualizer.shuffle']) {
+      this.props.actions.randomizePreset();
+    }
+
     const currentSong = this.props.queue.queueItems[
       this.props.queue.currentSong
     ];
@@ -197,7 +202,7 @@ class SoundContainer extends React.Component {
     const currentTrack = queue.queueItems[queue.currentSong];
     const usedEqualizer = enableSpectrum ? equalizer : defaultEqualizer;
 
-    return Boolean(currentStream) && (this.isHlsStream(head(currentStream.streams)) ? (
+    return Boolean(currentStream) && (this.isHlsStream(currentStream.stream) ? (
       <HlsPlayer
         source={currentStream.stream}
         onError={this.handleError}
@@ -266,7 +271,8 @@ function mapDispatchToProps(dispatch) {
         QueueActions,
         ScrobblingActions,
         LyricsActions,
-        EqualizerActions
+        EqualizerActions,
+        VisualizerActions
       ),
       dispatch
     )
