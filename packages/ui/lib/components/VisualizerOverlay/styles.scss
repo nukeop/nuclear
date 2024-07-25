@@ -29,6 +29,9 @@
 
   button {
     margin: 0 !important;
+    &:last-child{
+      margin-left: 1em !important;
+    }
   }
 
   p {

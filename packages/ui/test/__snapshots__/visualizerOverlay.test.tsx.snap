@@ -75,6 +75,15 @@ exports[`(Snapshot) Visualizer overlay - full screen should render correctly 1`]
         </div>
       </div>
     </div>
+    <button
+      class="ui basic icon button nuclear button"
+      data-testid="shuffle-button"
+    >
+      <i
+        aria-hidden="true"
+        class="shuffle icon"
+      />
+    </button>
     <p>
       Press ESC to exit full screen
     </p>
@@ -157,6 +166,15 @@ exports[`(Snapshot) Visualizer overlay should render correctly 1`] = `
         </div>
       </div>
     </div>
+    <button
+      class="ui basic icon button nuclear button"
+      data-testid="shuffle-button"
+    >
+      <i
+        aria-hidden="true"
+        class="shuffle icon"
+      />
+    </button>
     <button
       class="ui basic icon button nuclear button"
     >
