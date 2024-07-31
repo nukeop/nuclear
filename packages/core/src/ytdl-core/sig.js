@@ -5,7 +5,7 @@ import vm from 'vm';
 import { URL } from 'url';
 
 // A shared cache to keep track of html5player js functions.
-export const cache = new Cache(1000 * 60);
+export const cache = new Cache(1);
 
 /**
  * Extract signature deciphering and n parameter transform functions from html5player file.
@@ -23,11 +23,40 @@ export const getFunctions = (html5playerfile, options) => cache.getOrSet(html5pl
 
 // NewPipeExtractor regexps
 const DECIPHER_NAME_REGEXPS = [
-  '\\bm=([a-zA-Z0-9$]{2,})\\(decodeURIComponent\\(h\\.s\\)\\);',
+  '\\bm=([a-zA-Z0-9$]{2,})\\(decodeURIComponent\\(h\\.s\\)\\)',
   '\\bc&&\\(c=([a-zA-Z0-9$]{2,})\\(decodeURIComponent\\(c\\)\\)',
   // eslint-disable-next-line max-len
   '(?:\\b|[^a-zA-Z0-9$])([a-zA-Z0-9$]{2,})\\s*=\\s*function\\(\\s*a\\s*\\)\\s*\\{\\s*a\\s*=\\s*a\\.split\\(\\s*""\\s*\\)',
   '([\\w$]+)\\s*=\\s*function\\((\\w+)\\)\\{\\s*\\2=\\s*\\2\\.split\\(""\\)\\s*;'
+];
+
+const SCVR = '[a-zA-Z0-9$_]';
+const FNR = `${SCVR}+`;
+const AAR = '\\[(\\d+)]';
+const N_TRANSFORM_NAME_REGEXPS = [
+  // NewPipeExtractor regexps
+  `${SCVR}+="nn"\\[\\+${
+    SCVR}+\\.${SCVR}+],${
+    SCVR}+=${SCVR
+  }+\\.get\\(${SCVR}+\\)\\)&&\\(${
+    SCVR}+=(${SCVR
+  }+)\\[(\\d+)]`,
+  `${SCVR}+="nn"\\[\\+${
+    SCVR}+\\.${SCVR}+],${
+    SCVR}+=${SCVR}+\\.get\\(${
+    SCVR}+\\)\\).+\\|\\|(${SCVR
+  }+)\\(""\\)`,
+  `\\(${SCVR}=String\\.fromCharCode\\(110\\),${
+    SCVR}=${SCVR}\\.get\\(${
+    SCVR}\\)\\)&&\\(${SCVR
+  }=(${FNR})(?:${AAR})?\\(${
+    SCVR}\\)`,
+  `\\.get\\("n"\\)\\)&&\\(${SCVR
+  }=(${FNR})(?:${AAR})?\\(${
+    SCVR}\\)`,
+  // Skick regexps
+  '(\\w+).length\\|\\|\\w+\\(""\\)',
+  '\\w+.length\\|\\|(\\w+)\\(""\\)'
 ];
 
 // LavaPlayer regexps
@@ -81,9 +110,10 @@ const getFuncName = (body, regexps) => {
   for (const regex of regexps) {
     try {
       fn = matchGroup1(regex, body);
-      const idx = fn.indexOf('[0]');
-      if (idx > -1) {
-        fn = matchGroup1(`${fn.substring(idx, 0).replace(/\$/g, '\\$')}=\\[([a-zA-Z0-9$\\[\\]]{2,})\\]`, body);
+      try {
+        fn = matchGroup1(`${fn.replace(/\$/g, '\\$')}=\\[([a-zA-Z0-9$\\[\\]]{2,})\\]`, body);
+      } catch (err) {
+        // Function name is not inside an array
       }
       break;
     } catch (err) {
@@ -166,10 +196,25 @@ const extractNTransformFunc = body => {
   }
 };
 
+const extractNTransformWithName = body => {
+  try {
+    const nFuncName = getFuncName(body, N_TRANSFORM_NAME_REGEXPS);
+    const funcPattern = `(${
+      nFuncName.replace(/\$/g, '\\$')
+    // eslint-disable-next-line max-len
+    }=\\s*function([\\S\\s]*?\\}\\s*return (([\\w$]+?\\.join\\(""\\))|(Array\\.prototype\\.join\\.call\\([\\w$]+?,[\\n\\s]*(("")|(\\("",""\\)))\\)))\\s*\\}))`;
+    const nTransformFunc = `var ${matchGroup1(funcPattern, body)};`;
+    const callerFunc = `${nFuncName}(${N_ARGUMENT});`;
+    return nTransformFunc + callerFunc;
+  } catch (e) {
+    return null;
+  }
+};
+
 let nTransformWarning = false;
 const extractNTransform = body => {
   // Faster: extractNTransformFunc
-  const nTransformFunc = getExtractFunctions([extractNTransformFunc], body);
+  const nTransformFunc = getExtractFunctions([extractNTransformFunc, extractNTransformWithName], body);
   if (!nTransformFunc && !nTransformWarning) {
     // This is optional, so we can continue if it's not found, but it will bottleneck the download.
     console.warn('\x1b[33mWARNING:\x1B[0m Could not parse n transform function.\n' +
@@ -228,7 +273,7 @@ export const setDownloadURL = (format, decipherScript, nTransformScript) => {
   };
   const cipher = !format.url;
   const url = format.url || format.signatureCipher || format.cipher;
-  format.url = cipher ? nTransform(decipher(url)) : nTransform(url);
+  format.url = nTransform(cipher ? decipher(url) : url);
   delete format.signatureCipher;
   delete format.cipher;
 };
