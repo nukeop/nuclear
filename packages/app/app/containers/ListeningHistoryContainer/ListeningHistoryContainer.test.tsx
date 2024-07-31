@@ -35,34 +35,30 @@ jest.mock('electron', () => ({
   }
 }));
 
+const makeLocal = (dateString, timeString?) => {
+  const date = new Date(dateString).toLocaleDateString();
+
+  if (timeString) {
+    const time = new Date(`${dateString}, ${timeString}`).toLocaleTimeString();
+    return `${date}, ${time}`;
+  } else {
+    return date;
+  }
+};
+
 describe('Listening history container', () => {
 
-  it('renders the listening history', async () => {
+  it.each([
+    makeLocal('2020-01-01'),
+    'test title',
+    'test artist',
+    makeLocal('2020-01-02'),
+    'test title 2',
+    'test artist2'
+  ])('renders the listening history text: %s', async (text) => {
     const { component } = mountComponent();
-
-    const makeLocal = (dateString, timeString?) => {
-      const date = new Date(dateString).toLocaleDateString();
-
-      if (timeString) {
-        const time = new Date(`${dateString}, ${timeString}`).toLocaleTimeString();
-        return `${date}, ${time}`;
-      } else {
-        return date;
-      }
-    };
-
-    await Promise.all([
-      makeLocal('2020-01-01'),
-      'test title',
-      'test artist',
-      makeLocal('2020,01,01', '12:00'),
-      makeLocal('2020-01-02'),
-      'test title 2',
-      'test artist2',
-      makeLocal('2020,01,02', '12:00')
-    ].map(async text => {
-      expect(await component.findByText(text)).toBeInTheDocument();
-    }));
+    
+    expect(await component.findByText(text)).toBeInTheDocument();
   });
 
   it('can refresh history', async () => {
