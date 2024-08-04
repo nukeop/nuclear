@@ -1,6 +1,6 @@
 import {request} from 'undici';
 import { writeFileSync } from 'fs';
-import {defaultAgent, createAgent, addCookiesFromString} from './cookie';
+import {defaultAgent, createAgent, addCookiesFromString} from './agent';
 
 
 /**
@@ -381,4 +381,9 @@ export const applyDefaultHeaders = options => {
     // eslint-disable-next-line max-len
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.101 Safari/537.36'
   }, options.requestOptions.headers);
+};
+
+export const generateClientPlaybackNonce = length => {
+  const CPN_CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_';
+  return Array.from({ length }, () => CPN_CHARS[Math.floor(Math.random() * CPN_CHARS.length)]).join('');
 };

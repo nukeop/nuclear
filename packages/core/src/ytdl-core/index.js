@@ -6,7 +6,7 @@ import {getURLVideoID, getVideoID, validateID, validateURL} from './url-utils';
 import {cache as sigCache} from './sig';
 import miniget from 'miniget';
 import m3u8stream, { parseTimestamp } from 'm3u8stream';
-import {createAgent, createProxyAgent} from './cookie';
+import {createAgent, createProxyAgent} from './agent';
 
 
 /**
