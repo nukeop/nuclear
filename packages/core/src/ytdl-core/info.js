@@ -1,11 +1,10 @@
 import sax from 'sax';
-import {applyDefaultAgent, applyDefaultHeaders, applyIPv6Rotations, applyOldLocalAddress, playError, requestUtil, between, cutAfterJS, tryParseBetween, saveDebugFile, setPropInsensitive} from './utils';
+import {applyDefaultAgent, applyDefaultHeaders, applyIPv6Rotations, applyOldLocalAddress, playError, requestUtil, between, cutAfterJS, tryParseBetween, saveDebugFile, setPropInsensitive, generateClientPlaybackNonce} from './utils';
+import {addFormatMeta, sortFormats} from './format-utils';
 // Forces Node JS version of setTimeout for Electron based applications
 import { setTimeout } from 'timers';
-import {addFormatMeta, sortFormats} from './format-utils';
-import {validateId, validateURL, getURLVideoID, getVideoID}  from './url-utils';
+import {getVideoID}  from './url-utils';
 import * as extras from './info-extras';
-import * as sig from './sig';
 import Cache from './cache';
 import { URL } from 'url';
 
@@ -61,7 +60,7 @@ const getBasicInfo = async(id, options) => {
 
 
   Object.assign(info, {
-    formats: parseFormats(info.player_response),
+    // formats: parseFormats(info.player_response),
     related_videos: extras.getRelatedVideos(info)
   });
 
@@ -252,28 +251,32 @@ const parseFormats = player_response => {
  * @returns {Promise<Object>}
  */
 const getInfo = async(id, options) => {
-  let info = await getBasicInfo(id, options);
+  const info = await getBasicInfo(id, options);
+  const iosPlayerResponse = await fetchIosJsonPlayer(id, options);
+  info.formats = parseFormats(iosPlayerResponse);
   const hasManifest =
-    info.player_response && info.player_response.streamingData && (
-      info.player_response.streamingData.dashManifestUrl ||
-      info.player_response.streamingData.hlsManifestUrl
+    iosPlayerResponse && iosPlayerResponse.streamingData && (
+      iosPlayerResponse.streamingData.dashManifestUrl ||
+      iosPlayerResponse.streamingData.hlsManifestUrl
     );
   let funcs = [];
   if (info.formats.length) {
-    info.html5player = info.html5player ||
-      getHTML5player(await getWatchHTMLPageBody(id, options)) || getHTML5player(await getEmbedPageBody(id, options));
-    if (!info.html5player) {
-      throw Error('Unable to find html5player file');
-    }
-    const html5player = new URL(info.html5player, BASE_URL).toString();
-    funcs.push(sig.decipherFormats(info.formats, html5player, options));
+    // Stream from ios player doesn't need to be deciphered.
+    // info.html5player = info.html5player ||
+    //   getHTML5player(await getWatchHTMLPageBody(id, options)) || getHTML5player(await getEmbedPageBody(id, options));
+    // if (!info.html5player) {
+    //   throw Error('Unable to find html5player file');
+    // }
+    // const html5player = new URL(info.html5player, BASE_URL).toString();
+    // funcs.push(sig.decipherFormats(info.formats, html5player, options));
+    funcs.push(info.formats);
   }
-  if (hasManifest && info.player_response.streamingData.dashManifestUrl) {
-    let url = info.player_response.streamingData.dashManifestUrl;
+  if (hasManifest && iosPlayerResponse.streamingData.dashManifestUrl) {
+    let url = iosPlayerResponse.streamingData.dashManifestUrl;
     funcs.push(getDashManifest(url, options));
   }
-  if (hasManifest && info.player_response.streamingData.hlsManifestUrl) {
-    let url = info.player_response.streamingData.hlsManifestUrl;
+  if (hasManifest && iosPlayerResponse.streamingData.hlsManifestUrl) {
+    let url = iosPlayerResponse.streamingData.hlsManifestUrl;
     funcs.push(getM3U8(url, options));
   }
 
@@ -281,8 +284,74 @@ const getInfo = async(id, options) => {
   info.formats = Object.values(Object.assign({}, ...results));
   info.formats = info.formats.map(addFormatMeta);
   info.formats.sort(sortFormats);
+
+
   info.full = true;
   return info;
+};
+
+// TODO: Clean up this code to impliment Android player.
+const IOS_CLIENT_VERSION = '19.28.1',
+  IOS_DEVICE_MODEL = 'iPhone16,2',
+  IOS_USER_AGENT_VERSION = '17_5_1',
+  IOS_OS_VERSION = '17.5.1.21F90';
+
+const fetchIosJsonPlayer = async(videoId, options) => {
+  const cpn = generateClientPlaybackNonce(16);
+  const payload = {
+    videoId,
+    cpn,
+    contentCheckOk: true,
+    racyCheckOk: true,
+    context: {
+      client: {
+        clientName: 'IOS',
+        clientVersion: IOS_CLIENT_VERSION,
+        deviceMake: 'Apple',
+        deviceModel: IOS_DEVICE_MODEL,
+        platform: 'MOBILE',
+        osName: 'iOS',
+        osVersion: IOS_OS_VERSION,
+        hl: 'en',
+        gl: 'US',
+        utcOffsetMinutes: -240
+      },
+      request: {
+        internalExperimentFlags: [],
+        useSsl: true
+      },
+      user: {
+        lockedSafetyMode: false
+      }
+    }
+  };
+
+  const { jar, dispatcher } = options.agent;
+  const opts = {
+    requestOptions: {
+      method: 'POST',
+      dispatcher,
+      query: {
+        prettyPrint: false,
+        t: generateClientPlaybackNonce(12),
+        id: videoId
+      },
+      headers: {
+        'Content-Type': 'application/json',
+        cookie: jar.getCookieStringSync('https://www.youtube.com'),
+        'User-Agent': `com.google.ios.youtube/${IOS_CLIENT_VERSION}(${
+          IOS_DEVICE_MODEL
+        }; U; CPU iOS ${IOS_USER_AGENT_VERSION} like Mac OS X; en_US)`,
+        'X-Goog-Api-Format-Version': '2'
+      },
+      body: JSON.stringify(payload)
+    }
+  };
+  const response = await requestUtil('https://youtubei.googleapis.com/youtubei/v1/player', opts);
+  if (videoId !== response.videoDetails.videoId) {
+    throw Error('Video ID mismatch');
+  }
+  return response;
 };
 
 
