@@ -30,7 +30,7 @@ class Download {
   }
 
   /**
-   * Download a son using Youtube
+   * Download a track using Youtube
    */
   async start({
     query,

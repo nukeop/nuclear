@@ -32,8 +32,7 @@ module.exports = (env: BuildEnv): webpack.Configuration => {
     resolve: {
       extensions: ['.ts', '.js', '.json', '.node'],
       alias: {
-        jsbi: path.resolve(__dirname, '..', '..', 'node_modules', 'jsbi', 'dist', 'jsbi-cjs.js'),
-        ...(IS_PROD ?  {'@nuclear/scanner': 'scanner.node' } : {})
+        jsbi: path.resolve(__dirname, '..', '..', 'node_modules', 'jsbi', 'dist', 'jsbi-cjs.js')
       },
       fallback: {
         fs: false
@@ -42,7 +41,8 @@ module.exports = (env: BuildEnv): webpack.Configuration => {
     },
     externals: {
       'sqlite3': 'commonjs sqlite3',
-      '@nuclear/scanner': 'commonjs ./scanner.node'
+      '@nuclear/scanner': 'commonjs ./scanner.node',
+      'ffmpeg-static': 'commonjs ffmpeg-static'
     },
     output: {
       path: path.resolve(__dirname, outputDir),
