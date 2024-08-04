@@ -10,7 +10,8 @@ const errorLogStream = rts.createStream(
   path.join(app.getPath('userData'), 'logs', 'nuclear-error.log'),
   {
     size: '5M',
-    compress: 'gzip'
+    compress: 'gzip',
+    rotate: 5
   }
 );
 
