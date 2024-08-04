@@ -82,7 +82,6 @@ export const QueueItem: React.FC<QueueItemProps> = ({
         !isCompact &&
         <div className={styles.error_overlay}>
           <div className={styles.error_message}>{track.error.message}</div>
-          <div className={styles.error_details}>{track.error.details}</div>
         </div>
       }
     </div>

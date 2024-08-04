@@ -13,15 +13,14 @@ const commonProps = {
     artist: 'Test artist',
     stream: {}
   },
-  isLoading: false,
   isCurrent: false,
   isCompact: false,
   duration: formatDuration(123),
   defaultMusicSource: {},
-  selectSong: () => {
+  onSelect: () => {
     alert('Item selected');
   },
-  removeFromQueue: () => {
+  onRemove: () => {
     alert('Item removed from queue');
   }
 };
@@ -36,8 +35,7 @@ storiesOf('Components/Queue item', module)
           track={{
             thumbnail: 'https://i.imgur.com/aVNWf3j.jpg',
             name: 'Small thumbnail',
-            artist: 'Test artist',
-            stream: {}
+            artist: 'Test artist'
           }}
         />
       </div>
@@ -46,7 +44,9 @@ storiesOf('Components/Queue item', module)
   .add('Loading', () => {
     return (
       <div className='bg'>
-        <QueueItem {...commonProps} isLoading />
+        <QueueItem {...commonProps}
+          track={{...commonProps.track, loading: true}}
+        />
       </div>
     );
   })
@@ -71,9 +71,13 @@ storiesOf('Components/Queue item', module)
           }}
           isCompact
         />
-        <QueueItem {...commonProps} isCompact isLoading />
+        <QueueItem {...commonProps} isCompact 
+          track={{...commonProps.track, loading: true}}
+        />
         <QueueItem {...commonProps} isCompact isCurrent />
-        <QueueItem {...commonProps} isCompact error />
+        <QueueItem {...commonProps} isCompact 
+          track={{...commonProps.track, error: { message: 'An error has occurred.', details: 'Error details are available here.' }}}
+        />
       </div>
     </div>
   ))
@@ -82,8 +86,7 @@ storiesOf('Components/Queue item', module)
       <QueueItem {...commonProps}
         track={{
           name: 'Test track name',
-          artist: 'Test artist',
-          stream: {}
+          artist: 'Test artist'
         }}
       />
       <div
@@ -102,10 +105,10 @@ storiesOf('Components/Queue item', module)
   .add('Error', () => (
     <div className='bg'>
       <QueueItem {...commonProps}
-        error={{
-          message: 'An error has occurred.',
-          details: 'Error details are available here.'
-        }}
+        track={{...commonProps.track, error: { message: 'An error has occurred.', details: '' }}}
+      />
+      <QueueItem {...commonProps}
+        track={{...commonProps.track, error: { message: 'An error has occurred. This is a longer message containing several lines that will be truncated.', details: '' }}}
       />
     </div>
   ));
