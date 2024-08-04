@@ -79,7 +79,8 @@ module.exports = (env: BuildEnv): webpack.Configuration => {
         { from: 'preload.js' },
         { from: path.resolve(__dirname, '../../.env') },
         { from: path.resolve(SCANNER_DIR, 'index.node'), to: 'scanner.node' },
-        { from: '../../node_modules/ffmpeg-static', to: 'ffmpeg-static' }
+        { from: '../../node_modules/ffmpeg-static', to: 'ffmpeg-static' },
+        { from: '../../node_modules/ffmpeg-static/ffmpeg', to: 'ffmpeg' }
       ]
     }),
     new webpack.NormalModuleReplacementPlugin(/(.*)system-api(\.*)/, (resource) => {
