@@ -29,7 +29,7 @@ export const AddAllButton: React.FC<AddAllButtonProps> = ({
       primary
       href='#'
       onClick={handleAddAll}
-      className={styles.add_button}
+      className={styles.add_all_button}
       aria-label={t('add-all')}
     >
       <FontAwesome name='plus' /> {t('add-all')}
