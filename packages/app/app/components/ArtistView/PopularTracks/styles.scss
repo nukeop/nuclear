@@ -26,10 +26,10 @@
       background: lighten($background, 5%);
     }
   }
-}
 
-.ui.button.add_button {
-  text-align: left;
-  margin-bottom: 0.5rem;
-  max-width: 10em;
+  .ui.button.add_all_button {
+    text-align: left;
+    margin-bottom: 0.5rem;
+    max-width: 10em;
+  }
 }
