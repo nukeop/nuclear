@@ -100,7 +100,7 @@ exports[`Artist view container should display an artist 1`] = `
             </div>
             <a
               aria-label="Add all"
-              class="ui primary button add_button"
+              class="ui primary button add_all_button"
               href="#"
               role="button"
             >
