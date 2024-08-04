@@ -111,9 +111,15 @@
     font-size: 12px;
     pointer-events: none;
     margin: 0.5em;
+    overflow: hidden;
 
     .error_message {
       font-weight: bold;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+
+      width: 100%;
     }
   }
 }
