@@ -41,8 +41,7 @@ module.exports = (env: BuildEnv): webpack.Configuration => {
     },
     externals: {
       'sqlite3': 'commonjs sqlite3',
-      '@nuclear/scanner': 'commonjs ./scanner.node',
-      'ffmpeg-static': 'commonjs ./ffmpeg-static'
+      '@nuclear/scanner': 'commonjs ./scanner.node'
     },
     output: {
       path: path.resolve(__dirname, outputDir),
@@ -78,9 +77,7 @@ module.exports = (env: BuildEnv): webpack.Configuration => {
       patterns: [
         { from: 'preload.js' },
         { from: path.resolve(__dirname, '../../.env') },
-        { from: path.resolve(SCANNER_DIR, 'index.node'), to: 'scanner.node' },
-        { from: '../../node_modules/ffmpeg-static', to: 'ffmpeg-static' },
-        { from: '../../node_modules/ffmpeg-static/ffmpeg', to: 'ffmpeg' }
+        { from: path.resolve(SCANNER_DIR, 'index.node'), to: 'scanner.node' }
       ]
     }),
     new webpack.NormalModuleReplacementPlugin(/(.*)system-api(\.*)/, (resource) => {

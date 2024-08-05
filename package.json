@@ -96,6 +96,13 @@
         "filter": [
           "**/*"
         ]
+      },
+      {
+        "from": "node_modules/ffmpeg-static",
+        "to": "resources/bin",
+        "filter": [
+          "ffmpeg"
+        ]
       }
     ],
     "releaseInfo": {
