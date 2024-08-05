@@ -1091,12 +1091,11 @@
        inkscape:collect="always"
        xlink:href="#linearGradient10059"
        id="linearGradient5875-5-8-0-0"
-       x1="-572.3053"
-       y1="251.81032"
-       x2="-471.43039"
-       y2="150.93538"
-       gradientUnits="userSpaceOnUse"
-       gradientTransform="translate(1081.4582,1341.7282)" />
+       x1="-0.70855"
+       y1="101.17622"
+       x2="100.16636"
+       y2="0.30128"
+       gradientUnits="userSpaceOnUse" />
     <filter
        style="color-interpolation-filters:sRGB"
        inkscape:label="Drop Shadow"
@@ -1168,15 +1167,12 @@
   <g
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
-     id="layer1"
-     transform="translate(-509.86145,-1492.3623)">
+     id="layer1">
     <rect
        style="opacity:1;fill:url(#linearGradient5875-5-8-0-0);fill-opacity:1;stroke:none"
        id="rect5859-6-8-8-0"
        width="100"
        height="100"
-       x="509.86145"
-       y="1492.3623"
        rx="20"
        ry="20"
        inkscape:export-filename="/home/jcd/Desktop/logo.png"
@@ -1184,7 +1180,7 @@
        inkscape:export-ydpi="90" />
     <path
        style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;filter:url(#filter8807-9-9-0)"
-       d="m 539.86144,1515.9619 20,26.4004 20.00001,-26.4004 z m 20,26.4004 20.00001,26.4004 20,-26.4004 z m 0,0 h -40 l 20,26.4004 z"
+       d="m 29.99999,23.5996 20,26.4004 20.00001,-26.4004 z m 20,26.4004 20.00001,26.4004 20,-26.4004 z m 0,0 h -40 l 20,26.4004 z"
        id="path7917-0-6-2-9-4-8-7-4"
        inkscape:connector-curvature="0"
        inkscape:export-filename="/home/jcd/Desktop/logo.png"
@@ -1193,16 +1189,16 @@
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#2d2d2d;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       x="632.57281"
-       y="1567.2361"
+       x="122.71136"
+       y="74.8738"
        id="text10208"
        inkscape:export-filename="/home/jcd/Desktop/logo.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90"><tspan
          sodipodi:role="line"
          id="tspan10210"
-         x="632.57281"
-         y="1567.2361"
+         x="122.71136"
+         y="74.8738"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:67.5px;font-family:TimeBurner;-inkscape-font-specification:TimeBurner;fill:#2d2d2d">nuclear</tspan></text>
   </g>
 </svg>
