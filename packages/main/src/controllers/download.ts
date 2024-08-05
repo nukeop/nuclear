@@ -1,6 +1,6 @@
 import { NuclearMeta, IpcEvents } from '@nuclear/core';
 
-import { IpcMessageEvent, DownloadItem } from 'electron';
+import { IpcMessageEvent, DownloadItem, app } from 'electron';
 import { inject } from 'inversify';
 import prism from 'prism-media';
 import { createWriteStream, createReadStream } from 'fs';
@@ -12,6 +12,7 @@ import Download from '../services/download';
 import Logger, { $mainLogger } from '../services/logger';
 import Window from '../services/window';
 import Platform from '../services/platform';
+import path from 'path';
 
 interface DownloadRef {
   uuid: string;
@@ -26,7 +27,9 @@ class DownloadIpcCtrl {
     @inject($mainLogger) private logger: Logger,
     @inject(Window) private window: Window,
     @inject(Platform) private platform: Platform
-  ) { }
+  ) { 
+    process.env.FFMPEG_BIN = path.join(path.dirname(app.getAppPath()), '../resources/bin/ffmpeg');
+  }
 
   removeInvalidCharacters(filename: string): string {
     let invalidChars: string[];
@@ -83,6 +86,7 @@ class DownloadIpcCtrl {
           });
         },
         onCompleted: (file) => {
+          
           this.window?.send(IpcEvents.DOWNLOAD_FINISHED, uuid);
           this.logger.log(`Download success: ${artistName} - ${title}, path: ${file.path}`);
           this.downloadItems = this.downloadItems.filter((item) => item.uuid !== uuid);
