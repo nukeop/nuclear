@@ -1,6 +1,6 @@
 {
   "name": "@nuclear/scanner",
-  "version": "0.6.33",
+  "version": "0.6.34",
   "description": "Local library scanner",
   "main": "index.node",
   "types": "index.d.ts",
