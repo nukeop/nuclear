@@ -42,7 +42,7 @@
   },
   "artist": {
     "add-all": "Προσθήκη όλων",
-    "count": "Συνολικός αριθμός αναπαραγωγών",
+    "count": "Playcount",
     "queue": "Προσθήκη όλων των κομματιών σε ουρά",
     "similar": "Παρόμοιοι καλλιτέχνες",
     "title": "Τίτλος",
@@ -225,7 +225,7 @@
     "copy-track-url": "Copy track URL to clipboard",
     "loading": "Η ροή φορτώνει.",
     "playlist-add": "Προσθήκη στην λίστα αναπαραγωγής",
-    "playlist-add-queue": "Προσθήκη ουράς στην λίστα αναπαραγωγής",
+    "playlist-add-queue": "Add queue to playlist",
     "playlist-toast-content": "Η λίστα αναπαραγωγής {{name}} δημιουργήθηκε.",
     "playlist-toast-title": "Η λίστα αναπαραγωγής δημιουργήθηκε",
     "live": "Ζωντανά",

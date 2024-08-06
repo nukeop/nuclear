@@ -42,7 +42,7 @@
   },
   "artist": {
     "add-all": "Add all",
-    "count": "Spēļu skaits",
+    "count": "Playcount",
     "queue": "Pievienot atlasīto rindai",
     "similar": "Līdzīgi izpildītāji",
     "title": "Nosaukums",
@@ -225,7 +225,7 @@
     "copy-track-url": "Copy track URL to clipboard",
     "loading": "Straume joprojām tiek ielādēta.",
     "playlist-add": "Pievienot atskaņošanas sarakstam",
-    "playlist-add-queue": "Pievienot rindu atskaņošanas sarakstam",
+    "playlist-add-queue": "Add queue to playlist",
     "playlist-toast-content": "Atskaņošanas saraksts {{name}} izveidots.",
     "playlist-toast-title": "Atskaņošanas saraksts izveidots",
     "live": "Live",

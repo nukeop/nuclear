@@ -42,7 +42,7 @@
   },
   "artist": {
     "add-all": "Pridať všetko",
-    "count": "Počet prehratí",
+    "count": "Playcount",
     "queue": "Pridať všetky skladby do poradia",
     "similar": "Podobný umelci",
     "title": "Názov",
@@ -225,7 +225,7 @@
     "copy-track-url": "Copy track URL to clipboard",
     "loading": "Stream sa stále načítava.",
     "playlist-add": "Pridať do playlistu",
-    "playlist-add-queue": "Pridať do fronty do playlistu",
+    "playlist-add-queue": "Add queue to playlist",
     "playlist-toast-content": "Playlist {{name}} bol vytvorený.",
     "playlist-toast-title": "Playlist vytvorený",
     "live": "Live",

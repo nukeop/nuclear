@@ -42,7 +42,7 @@
   },
   "artist": {
     "add-all": "Pridėti visus",
-    "count": "Paleidimo kartai",
+    "count": "Playcount",
     "queue": "Pridėti visas dainas į eilę",
     "similar": "Panašūs atlikėjai",
     "title": "Pavadinimas",
@@ -225,7 +225,7 @@
     "copy-track-url": "Copy track URL to clipboard",
     "loading": "Srautas dar leidžiasi.",
     "playlist-add": "Pridėti į grojaraštį",
-    "playlist-add-queue": "Pridėti eilę į grojaraštį",
+    "playlist-add-queue": "Add queue to playlist",
     "playlist-toast-content": "Grojaraštis {{name}} buvo sukurtas.",
     "playlist-toast-title": "Grojaraštis sukurtas",
     "live": "Tiesiogiai",

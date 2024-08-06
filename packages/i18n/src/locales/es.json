@@ -42,7 +42,7 @@
   },
   "artist": {
     "add-all": "Añadir todos",
-    "count": "Conteo de reproducciones",
+    "count": "Playcount",
     "queue": "Añadir todas las pistas a la cola",
     "similar": "Artistas similares",
     "title": "Título",
@@ -225,7 +225,7 @@
     "copy-track-url": "Copy track URL to clipboard",
     "loading": "La transmisión sigue cargando.",
     "playlist-add": "Añadir a lista de reproducción",
-    "playlist-add-queue": "Añadir cola a lista de reproducción",
+    "playlist-add-queue": "Add queue to playlist",
     "playlist-toast-content": "La lista de reproducción '{{name}}' ha sido creada.",
     "playlist-toast-title": "Lista de reproducción creada",
     "live": "En directo",

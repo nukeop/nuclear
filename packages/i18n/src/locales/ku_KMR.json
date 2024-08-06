@@ -42,7 +42,7 @@
   },
   "artist": {
     "add-all": "Hemû tevlî bike",
-    "count": "Hejmarê lêdanan",
+    "count": "Playcount",
     "queue": "Hemû stranan tevlî rêzê bike",
     "similar": "Hunermendên wekhev",
     "title": "Sernav",
@@ -225,7 +225,7 @@
     "copy-track-url": "Copy track URL to clipboard",
     "loading": "Barkirina weşanê didome.",
     "playlist-add": "Tevlî rêzoka lêdanan bike",
-    "playlist-add-queue": "Rêzoka tevlî lêdananê bike",
+    "playlist-add-queue": "Add queue to playlist",
     "playlist-toast-content": "Rêzoka lêdanan {{name}} hate afirandin.",
     "playlist-toast-title": "Rêzoka lêdanan hate afirandin",
     "live": "Zindî",

@@ -42,7 +42,7 @@
   },
   "artist": {
     "add-all": "Tout ajouter",
-    "count": "Nombre d'écoutes",
+    "count": "Playcount",
     "queue": "Ajouter tous les morceaux à la file de lecture",
     "similar": "Artistes similaires",
     "title": "Titre",

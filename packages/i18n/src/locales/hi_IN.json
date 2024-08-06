@@ -42,7 +42,7 @@
   },
   "artist": {
     "add-all": "सभी जोड़ें",
-    "count": "प्ले काउंट",
+    "count": "Playcount",
     "queue": "कतार में सभी ट्रैक जोड़ें",
     "similar": "समान कलाकार",
     "title": "शीर्षक",
@@ -225,7 +225,7 @@
     "copy-track-url": "Copy track URL to clipboard",
     "loading": "स्ट्रीम अभी भी लोड हो रही है.",
     "playlist-add": "प्‍लेलिस्‍ट में जोड़ें",
-    "playlist-add-queue": "प्‍लेलिस्‍ट में कतार जोड़ें",
+    "playlist-add-queue": "Add queue to playlist",
     "playlist-toast-content": "प्लेलिस्ट {{name}} बन गई है।",
     "playlist-toast-title": "प्लेलिस्ट बनाई गई!",
     "live": "लाइव",

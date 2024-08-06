@@ -42,7 +42,7 @@
   },
   "artist": {
     "add-all": "新增全部",
-    "count": "播放次數",
+    "count": "Playcount",
     "queue": "將所有歌曲新增到播放佇列",
     "similar": "類似的藝人",
     "title": "音樂標題",
@@ -225,7 +225,7 @@
     "copy-track-url": "Copy track URL to clipboard",
     "loading": "串流處理中",
     "playlist-add": "加到播放清單",
-    "playlist-add-queue": "將佇列加入播放清單",
+    "playlist-add-queue": "Add queue to playlist",
     "playlist-toast-content": "{{name}} 已建立",
     "playlist-toast-title": "播放清單建立成功",
     "live": "直播",

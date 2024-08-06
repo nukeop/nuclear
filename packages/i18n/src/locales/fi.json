@@ -42,7 +42,7 @@
   },
   "artist": {
     "add-all": "Lisää kaikki",
-    "count": "Soittokerrat",
+    "count": "Playcount",
     "queue": "Lisää kaikki kappaleet jonoon",
     "similar": "Samankaltaisia artisteja",
     "title": "Nimi",
@@ -225,7 +225,7 @@
     "copy-track-url": "Copy track URL to clipboard",
     "loading": "Streami lataa vieläkin.",
     "playlist-add": "Lisää soittolistaan",
-    "playlist-add-queue": "Lisää jono soittolistaan",
+    "playlist-add-queue": "Add queue to playlist",
     "playlist-toast-content": "Soittolista {{name}} on luotu",
     "playlist-toast-title": "Soittolista luotu",
     "live": "Suora",
