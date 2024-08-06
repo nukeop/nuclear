@@ -28,7 +28,9 @@ class DownloadIpcCtrl {
     @inject(Window) private window: Window,
     @inject(Platform) private platform: Platform
   ) { 
-    process.env.FFMPEG_BIN = path.join(path.dirname(app.getAppPath()), '../resources/bin/ffmpeg');
+    const ffmpegFilename = platform.isWindows() ? 'ffmpeg.exe' : 'ffmpeg';
+
+    process.env.FFMPEG_BIN = path.join(path.dirname(app.getAppPath()), '../resources/bin/', ffmpegFilename);
   }
 
   removeInvalidCharacters(filename: string): string {
