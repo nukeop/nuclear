@@ -15,7 +15,8 @@ class AZLyricsProvider extends LyricsProvider {
 
   search(artistName: string, trackName: string): Promise<string | void> {
     return az.search(artistName, trackName)
-      .then(result => result as string).catch(function (err) {
+      .then(result => result as string)
+      .catch(function (err) {
         logger.log('error', err);
       });
   }
