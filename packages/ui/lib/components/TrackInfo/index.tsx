@@ -1,5 +1,9 @@
 import React from 'react';
 import { Icon } from 'semantic-ui-react';
+import { Tooltip } from '@nuclear/ui';
+import * as ActionToast from '../../../../app/app/actions/toasts'
+import { useDispatch } from 'react-redux'
+import { useTranslation } from 'react-i18next';
 
 import Cover from '../Cover';
 import styles from './styles.scss';
@@ -26,16 +30,46 @@ const TrackInfo: React.FC<TrackInfoProps> = ({
   removeFromFavorites,
   isFavorite = false,
   hasTracks = false
-}) => (
-  <div className={styles.track_info}>
-    <Cover cover={cover} />
-    {
-      hasTracks &&
+}) => {
+  const dispatch = useDispatch();
+  const { t } = useTranslation('track-popup');
+
+  const CopyTextToClipboard = async () => {
+    try {
+      await navigator.clipboard.writeText(track);
+      dispatch(ActionToast.
+        success(t('track-toast-clipboard-success-title'),
+          t('track-toast-clipboard-success-subtitle'),
+          null,
+          {}
+        )
+      );
+    } catch (err) {
+      dispatch(ActionToast.
+        error(t('track-toast-clipboard-error-title'),
+          t('track-toast-clipboard-error-subtitle'),
+          null,
+          {}
+        )
+      );
+    }
+  };
+
+  return (
+    <div className={styles.track_info}>
+      <Cover cover={cover} />
+      {
+        hasTracks &&
         <>
           <div className={styles.artist_part}>
-            <div className={styles.track_name} onClick={onTrackClick}>
-              {track}
-            </div>
+            <Tooltip
+              content='Click to copy'
+              trigger={
+                <div data-testid='track_name' id='track_name' className={styles.track_name} onClick={() => CopyTextToClipboard()}>
+                  {track}
+                </div>
+              }
+            />
             <div className={styles.artist_name} onClick={onArtistClick}>
               {artist}
             </div>
@@ -51,8 +85,9 @@ const TrackInfo: React.FC<TrackInfoProps> = ({
             />
           </div>
         </>
-    }
-  </div>
-);
+      }
+    </div>
+  );
+}
 
 export default TrackInfo;
