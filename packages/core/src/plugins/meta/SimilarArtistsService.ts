@@ -1,6 +1,6 @@
 import { LastFmArtistInfo } from '../../rest/Lastfm.types';
+import { SpotifyClientProvider } from '../../rest/Spotify';
 import { SimilarArtist } from '../plugins.types';
-import { getToken, searchArtists } from '../../rest/Spotify';
 import logger from 'electron-timber';
 
 /**
@@ -32,22 +32,21 @@ class SimilarArtistsService {
   }
 
   async createTopSimilarArtists(artistNames: string[]) {
-    const spotifyToken = await getToken();
     return Promise.all(
-      artistNames.map(artistName => this.createSimilarArtist(artistName, spotifyToken))
+      artistNames.map(artistName => this.createSimilarArtist(artistName))
     );
   }
 
-  async createSimilarArtist(artistName: string, spotifyToken: string): Promise<SimilarArtist> {
+  async createSimilarArtist(artistName: string): Promise<SimilarArtist> {
     return {
       name: artistName,
-      thumbnail: await this.fetchSimilarArtistThumbnailUrlFromSpotify(artistName, spotifyToken)
+      thumbnail: await this.fetchSimilarArtistThumbnailUrlFromSpotify(artistName)
     };
   }
 
-  async fetchSimilarArtistThumbnailUrlFromSpotify(artistName: string, spotifyToken: string) {
+  async fetchSimilarArtistThumbnailUrlFromSpotify(artistName: string) {
     try {
-      const spotifyArtist = await searchArtists(spotifyToken, artistName);
+      const spotifyArtist = await SpotifyClientProvider.get().getTopArtist(artistName);
       return spotifyArtist?.images[0].url;
     } catch (error) {
       logger.error(`Failed to fetch artist thumbnail from Spotify: '${artistName}'`);
