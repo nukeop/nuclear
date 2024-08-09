@@ -61,6 +61,7 @@ export type SearchResultsTrack = {
     title: string;
     artist: string;
     source: SearchResultsSource;
+    thumb?: string;
 }
 
 export type ArtistTopTrack = {
