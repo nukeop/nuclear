@@ -46,7 +46,7 @@ class SimilarArtistsService {
 
   async fetchSimilarArtistThumbnailUrlFromSpotify(artistName: string) {
     try {
-      const spotifyArtist = await SpotifyClientProvider.get().getTopArtist(artistName);
+      const spotifyArtist = await (await SpotifyClientProvider.get()).getTopArtist(artistName);
       return spotifyArtist?.images[0].url;
     } catch (error) {
       logger.error(`Failed to fetch artist thumbnail from Spotify: '${artistName}'`);
