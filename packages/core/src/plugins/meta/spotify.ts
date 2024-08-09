@@ -1,4 +1,5 @@
-import { SpotifyArtist, SpotifyClientProvider, SpotifySimplifiedAlbum, SpotifyTrack } from '../../rest/Spotify';
+import { SpotifyArtist, SpotifyClientProvider, SpotifyImage, SpotifySimplifiedAlbum, SpotifyTrack } from '../../rest/Spotify';
+import Track from '../../structs/Track';
 import MetaProvider from '../metaProvider';
 import { SearchResultsArtist, SearchResultsAlbum, SearchResultsTrack, ArtistDetails, AlbumDetails, SearchResultsSource, ArtistTopTrack, SimilarArtist } from '../plugins.types';
 
@@ -93,16 +94,13 @@ export class SpotifyMetaProvider extends MetaProvider {
   }
 
   mapSpotifyArtistDetails(spotifyArtist: SpotifyArtist): ArtistDetails {
-    const largestImage = spotifyArtist.images.reduce((prev, current) => {
-      return (prev.height * prev.width) > (current.height * current.width) ? prev : current;
-    });
-    const thumbnail = spotifyArtist.images.find(image => image.height < 400 && image.width < 400);
+    const { thumb, coverImage } = getImageSet(spotifyArtist.images);
 
     return {
       id: spotifyArtist.id,
       name: spotifyArtist.name,
-      coverImage: largestImage?.url,
-      thumb: thumbnail?.url,
+      coverImage,
+      thumb,
       source: SearchResultsSource.Spotify,
       images: spotifyArtist.images.map(image => image.url),
       topTracks: [],
@@ -127,8 +125,17 @@ export class SpotifyMetaProvider extends MetaProvider {
     };
   }
 
-  fetchArtistDetailsByName(artistName: string): Promise<ArtistDetails> {
-    throw new Error('');
+  async fetchArtistDetailsByName(artistName: string): Promise<ArtistDetails> {
+    const client = await SpotifyClientProvider.get();
+    const result = await client.getTopArtist(artistName);
+    const topTracks = await client.getArtistTopTracks(result.id);
+    const similarArtists = await client.getSimilarArtists(result.id);
+
+    return {
+      ...this.mapSpotifyArtistDetails(result),
+      topTracks: topTracks.map(this.mapSpotifyTopTrack),
+      similar: similarArtists.map(this.mapSpotifySimilarArtist)
+    };
   }
 
   async fetchArtistAlbums(artistId: string): Promise<SearchResultsAlbum[]> {
@@ -138,11 +145,44 @@ export class SpotifyMetaProvider extends MetaProvider {
     return results.map(this.mapSpotifyRelease);
   }
 
-  fetchAlbumDetails(albumId: string, albumType: 'master' | 'release', resourceUrl?: string): Promise<AlbumDetails> {
-    throw new Error('');
+  async fetchAlbumDetails(albumId: string, albumType: 'master' | 'release', resourceUrl?: string): Promise<AlbumDetails> {
+    const client = await SpotifyClientProvider.get();
+    const result = await client.getAlbum(albumId);
+
+    const { thumb, coverImage } = getImageSet(result.images);
+
+    return {
+      id: result.id,
+      artist: result.artists[0].name,
+      title: result.name,
+      coverImage,
+      thumb,
+      images: result.images.map(image => image.url),
+      genres: result.genres,
+      tracklist: result.tracks.items.map(track => new Track({
+        title: track.name,
+        artist: result.artists[0].name,
+        duration: track.duration_ms/1000,
+        position: track.track_number,
+        thumbnail: thumb
+      }))
+    };
   }
+
   fetchAlbumDetailsByName(albumName: string, albumType?: 'master' | 'release', artist?: string): Promise<AlbumDetails> {
     throw new Error('');
   }
   
 }
+
+const getImageSet = (images: SpotifyImage[]): { thumb?: string; coverImage?: string; } => {
+  const largestImage = images.reduce((prev, current) => {
+    return (prev.height * prev.width) > (current.height * current.width) ? prev : current;
+  });
+  const thumbnail = images.find(image => image.height < 400 && image.width < 400);
+
+  return {
+    thumb: thumbnail?.url,
+    coverImage: largestImage?.url
+  };
+};
