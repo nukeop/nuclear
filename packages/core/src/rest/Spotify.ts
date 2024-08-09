@@ -17,11 +17,8 @@ export type SpotifySimplifiedArtist = {
   name: string;
 }
 
-export type SpotifyFullArtist = {
-  id: string;
+export type SpotifyFullArtist = SpotifyArtist & {
   genres: string[];
-  images: SpotifyImage[];
-  name: string;
   popularity: number;
 }
 
@@ -36,6 +33,19 @@ export type SpotifySimplifiedAlbum = {
   artists: SpotifySimplifiedArtist[];
 }
 
+export type SpotifyFullAlbum = SpotifySimplifiedAlbum & {
+  genres: string[];
+  tracks: {
+    href: string;
+    limit: number;
+    next: string | null;
+    offset: number;
+    previous: string | null;
+    total: number;
+    items: Omit<SpotifyTrack, 'album' | 'popularity'>[];
+  };
+}
+
 export type SpotifyTrack = {
   id: string;
   name: string;
@@ -47,6 +57,7 @@ export type SpotifyTrack = {
   artists: SpotifySimplifiedArtist[];
   popularity: number;
   track_number: number;
+  duration_ms: number;
 }
 
 
@@ -148,7 +159,7 @@ class SpotifyClient {
 
   async getArtistsAlbums(id: string): Promise<SpotifySimplifiedAlbum[]> {
     const data = await (
-      await fetch(`${SPOTIFY_API_URL}/artists/${id}/albums`, {
+      await fetch(`${SPOTIFY_API_URL}/artists/${id}/albums?include_groups=album`, {
         headers: {
           Authorization: `Bearer ${this._token}`
         }})
@@ -166,6 +177,17 @@ class SpotifyClient {
     ).json();
 
     return data.best_match.items[0];
+  }
+
+  async getAlbum(id: string): Promise<SpotifyFullAlbum> {
+    const data = await (
+      await fetch(`${SPOTIFY_API_URL}/albums/${id}`, {
+        headers: {
+          Authorization: `Bearer ${this._token}`
+        }})
+    ).json();
+
+    return data;
   }
 }
 
