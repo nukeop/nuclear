@@ -22,10 +22,11 @@ export class SpotifyMetaProvider extends MetaProvider {
   }
 
   mapSpotifyArtist(spotifyArtist: SpotifyArtist): SearchResultsArtist {
+    const { thumb, coverImage } = getImageSet(spotifyArtist.images);
     return {
       id: spotifyArtist.id,
-      coverImage: spotifyArtist.images[0]?.url,
-      thumb: spotifyArtist.images[0]?.url,
+      coverImage,
+      thumb,
       name: spotifyArtist.name,
       source: SearchResultsSource.Spotify
     };
@@ -39,10 +40,11 @@ export class SpotifyMetaProvider extends MetaProvider {
   }
 
   mapSpotifyRelease(spotifyRelease: SpotifySimplifiedAlbum): SearchResultsAlbum {
+    const { thumb, coverImage } = getImageSet(spotifyRelease.images);
     return {
       id: spotifyRelease.id,
-      thumb: spotifyRelease.images[0]?.url,
-      coverImage: spotifyRelease.images[0]?.url,
+      thumb,
+      coverImage,
       images: spotifyRelease.images.map(image => image.url),
       title: spotifyRelease.name,
       artist: spotifyRelease.artists[0].name,
@@ -60,12 +62,13 @@ export class SpotifyMetaProvider extends MetaProvider {
   }
 
   mapSpotifyTrack(spotifyTrack: SpotifyTrack): SearchResultsTrack {
+    const { thumb } = getImageSet(spotifyTrack.album.images);
     return {
       id: spotifyTrack.id,
       title: spotifyTrack.name,
       artist: spotifyTrack.artists[0].name,
       source: SearchResultsSource.Spotify,
-      thumb: spotifyTrack.album.images[0]?.url
+      thumb
     };
   }
 
@@ -109,19 +112,21 @@ export class SpotifyMetaProvider extends MetaProvider {
   }
 
   mapSpotifyTopTrack(spotifyTrack: SpotifyTrack): ArtistTopTrack {
+    const { thumb } = getImageSet(spotifyTrack.album.images);
     return {
       artist: {name: spotifyTrack.artists[0].name},
       title: spotifyTrack.name,
-      thumb: spotifyTrack.album.images[0]?.url,
+      thumb,
       playcount: spotifyTrack.popularity,
       listeners: spotifyTrack.popularity
     };
   }
 
   mapSpotifySimilarArtist(spotifyArtist: SpotifyArtist): SimilarArtist {
+    const { thumb } = getImageSet(spotifyArtist.images);
     return {
       name: spotifyArtist.name,
-      thumbnail: spotifyArtist.images[0]?.url
+      thumbnail: thumb
     };
   }
 
@@ -159,6 +164,7 @@ export class SpotifyMetaProvider extends MetaProvider {
       thumb,
       images: result.images.map(image => image.url),
       genres: result.genres,
+      year: result.release_date,
       tracklist: result.tracks.items.map(track => new Track({
         title: track.name,
         artist: result.artists[0].name,
@@ -179,10 +185,11 @@ export class SpotifyMetaProvider extends MetaProvider {
 }
 
 const getImageSet = (images: SpotifyImage[]): { thumb?: string; coverImage?: string; } => {
-  const largestImage = images.reduce((prev, current) => {
+  const isNotEmpty = images.length > 0;
+  const largestImage = isNotEmpty && images.reduce((prev, current) => {
     return (prev.height * prev.width) > (current.height * current.width) ? prev : current;
   });
-  const thumbnail = images.find(image => image.height < 400 && image.width < 400);
+  const thumbnail = isNotEmpty && images.find(image => image.height < 400 && image.width < 400);
 
   return {
     thumb: thumbnail?.url,
