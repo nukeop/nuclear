@@ -1,8 +1,8 @@
 import { LastFmArtistInfo } from '../../rest/Lastfm.types';
 import SimilarArtistsService from './SimilarArtistsService';
-import { SpotifyMock } from '../../rest/Spotify.test';
 import { range } from 'lodash';
 import fetchMock from 'fetch-mock';
+import { SpotifyMock } from '../../../test/spotify-mock';
 
 
 describe('Tests for SimilarArtistsService', () => {
