@@ -78,7 +78,7 @@ class SpotifyClient {
 
   async searchArtists(query: string, limit=10): Promise<SpotifyArtist[]> {
     const data = await (
-      await fetch(`${SPOTIFY_API_URL}/search?type=artist&q=${query}&decorate_restrictions=false&best_match=true&include_external=audio&limit=${limit}`, {
+      await fetch(`${SPOTIFY_API_URL}/search?type=artist&q=${query}&decorate_restrictions=false&include_external=audio&limit=${limit}`, {
         headers: {
           Authorization: `Bearer ${this._token}`
         }})
@@ -89,7 +89,7 @@ class SpotifyClient {
 
   async searchReleases(query: string, limit=10): Promise<SpotifySimplifiedAlbum[]> {
     const data = await (
-      await fetch(`${SPOTIFY_API_URL}/search?type=album&q=${query}&decorate_restrictions=false&best_match=true&include_external=audio&limit=${limit}`, {
+      await fetch(`${SPOTIFY_API_URL}/search?type=album&q=${query}&decorate_restrictions=false&include_external=audio&limit=${limit}`, {
         headers: {
           Authorization: `Bearer ${this._token}`
         }})
@@ -100,7 +100,7 @@ class SpotifyClient {
 
   async searchTracks(query: string, limit=20): Promise<SpotifyTrack[]> {
     const data = await (
-      await fetch(`${SPOTIFY_API_URL}/search?type=track&q=${query}&decorate_restrictions=false&best_match=true&include_external=audio&limit=${limit}`, {
+      await fetch(`${SPOTIFY_API_URL}/search?type=track&q=${query}&decorate_restrictions=false&include_external=audio&limit=${limit}`, {
         headers: {
           Authorization: `Bearer ${this._token}`
         }})
@@ -111,7 +111,7 @@ class SpotifyClient {
 
   async searchAll(query: string): Promise<{ artists: SpotifyArtist[]; releases: SpotifySimplifiedAlbum[]; tracks: SpotifyTrack[]; }> {
     const data = await (
-      await fetch(`${SPOTIFY_API_URL}/search?q=${query}&type=artist,album,track&decorate_restrictions=false&best_match=true&include_external=audio`, {
+      await fetch(`${SPOTIFY_API_URL}/search?q=${query}&type=artist,album,track&decorate_restrictions=false&include_external=audio`, {
         headers: {
           Authorization: `Bearer ${this._token}`
         }})
@@ -124,7 +124,7 @@ class SpotifyClient {
     };
   }
 
-  async getArtistDetails(id: string): Promise<SpotifyArtist> {
+  async getArtistDetails(id: string): Promise<SpotifyFullArtist> {
     const data = await (
       await fetch(`${SPOTIFY_API_URL}/artists/${id}`, {
         headers: {
@@ -148,7 +148,7 @@ class SpotifyClient {
 
   async getSimilarArtists(id: string): Promise<SpotifyFullArtist[]> {
     const data = await (
-      await fetch(`${SPOTIFY_API_URL}/artists/${id}/related-artists?limit=5`, {
+      await fetch(`${SPOTIFY_API_URL}/artists/${id}/related-artists`, {
         headers: {
           Authorization: `Bearer ${this._token}`
         }})
@@ -188,6 +188,17 @@ class SpotifyClient {
     ).json();
 
     return data;
+  }
+
+  async getTopAlbum(query: string): Promise<SpotifyFullAlbum> {
+    const data = await (
+      await fetch(`${SPOTIFY_API_URL}/search?type=album&q=${query}&decorate_restrictions=false&best_match=true&include_external=audio&limit=1`, {
+        headers: {
+          Authorization: `Bearer ${this._token}`
+        }})
+    ).json();
+
+    return data.best_match.items[0];
   }
 }
 

@@ -169,8 +169,11 @@ export class SpotifyMetaProvider extends MetaProvider {
     };
   }
 
-  fetchAlbumDetailsByName(albumName: string, albumType?: 'master' | 'release', artist?: string): Promise<AlbumDetails> {
-    throw new Error('');
+  async fetchAlbumDetailsByName(albumName: string, albumType?: 'master' | 'release', artist?: string): Promise<AlbumDetails> {
+    const client = await SpotifyClientProvider.get();
+    const result = await client.getTopAlbum(`${albumName} ${artist}`);
+
+    return this.fetchAlbumDetails(result.id, albumType);
   }
   
 }
