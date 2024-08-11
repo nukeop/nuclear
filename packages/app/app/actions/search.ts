@@ -80,6 +80,7 @@ export const SearchActions = {
       }
     };
   }),
+  trackSearchSuccess: createStandardAction(Search.TRACK_SEARCH_SUCCESS)<SearchResultsAlbum[]>(),
   artistSearchSuccess: createStandardAction(Search.ARTIST_SEARCH_SUCCESS)<SearchResultsArtist[]>(),
   artistInfoStart: createStandardAction(Search.ARTIST_INFO_SEARCH_START)<string>(),
   artistInfoSuccess: createStandardAction(Search.ARTIST_INFO_SEARCH_SUCCESS).map((artistId: string, info: ArtistDetails) => {
@@ -145,6 +146,12 @@ export const albumSearch = (terms: string) => async (dispatch, getState: () => R
   const selectedProvider = getSelectedMetaProvider(getState);
   const results = await selectedProvider.searchForReleases(terms);
   dispatch(SearchActions.albumSearchSuccess(results));
+};
+
+export const trackSearch = (terms: string) => async (dispatch, getState: () => RootState) => {
+  const selectedProvider = getSelectedMetaProvider(getState);
+  const results = await selectedProvider.searchForTracks(terms);
+  dispatch(SearchActions.trackSearchSuccess(results));
 };
 
 export const podcastSearch = (terms: string) => async (dispatch, getState: () => RootState) => {

@@ -22,6 +22,16 @@ export type SpotifyFullArtist = SpotifyArtist & {
   popularity: number;
 }
 
+export type SpotifyArtistAlbumsResponse = {
+  href: string;
+  items: SpotifySimplifiedAlbum[];
+  limit: number;
+  next: string | null;
+  offset: number;
+  previous: string | null;
+  total: number;
+}
+
 export type SpotifySimplifiedAlbum = {
   id: string;
   album_type: 'single' | 'album' | 'compilation';
@@ -158,14 +168,27 @@ class SpotifyClient {
   }
 
   async getArtistsAlbums(id: string): Promise<SpotifySimplifiedAlbum[]> {
-    const data = await (
+    let albums: SpotifySimplifiedAlbum[] = [];
+    let data: SpotifyArtistAlbumsResponse = await (
       await fetch(`${SPOTIFY_API_URL}/artists/${id}/albums?include_groups=album`, {
         headers: {
           Authorization: `Bearer ${this._token}`
         }})
     ).json();
+    albums = data.items;
 
-    return data.items;
+    while (data.next) {
+      const nextData: SpotifyArtistAlbumsResponse = await (
+        await fetch(data.next, {
+          headers: {
+            Authorization: `Bearer ${this._token}`
+          }})
+      ).json();
+      albums = [...albums, ...nextData.items];
+      data = nextData;
+    }
+
+    return albums;
   }
 
   async getTopArtist(query: string): Promise<SpotifyFullArtist> {
