@@ -103,7 +103,7 @@ export function loadUserPlugin(path) {
     try {
       const api = createApi();
       const pluginContents = await fs.promises.readFile(path, 'utf8');
-      const transformedPluginContents = await remote.app.g(pluginContents);
+      const transformedPluginContents = await remote.app.transformSource(pluginContents);
 
       const plugin = eval(transformedPluginContents.code);
 
@@ -161,7 +161,7 @@ export function serializePlugins(plugins) {
 export function deserializePlugins() {
   return dispatch => {
     const plugins = store.get('plugins') || [];
-    _.forEach(plugins, plugin => {
+    forEach(plugins, plugin => {
       dispatch(loadUserPlugin(plugin.path));
     });
   };
