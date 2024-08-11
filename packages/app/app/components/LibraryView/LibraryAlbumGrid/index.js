@@ -28,7 +28,7 @@ export default compose(
           .filter(el => !_.isNil(el))
           .thru(result => _.isEmpty(result) ? null : result)
           .value(),
-        tracks: group
+        tracklist: group
       }))
       .value(),
     trackButtons: TrackPopupButtons
