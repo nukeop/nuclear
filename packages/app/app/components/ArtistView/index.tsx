@@ -1,6 +1,6 @@
 import React from 'react';
 import cx from 'classnames';
-import _, { isEmpty, take } from 'lodash';
+import { get, isEmpty, take } from 'lodash';
 import { Dimmer, Loader, Icon } from 'semantic-ui-react';
 import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router';
@@ -57,7 +57,7 @@ const ArtistView: React.FC<ArtistViewProps> = ({
             >
               <div
                 style={{
-                  background: `url('${_.get(artist, 'coverImage', artPlaceholder)
+                  background: `url('${get(artist, 'coverImage', artPlaceholder)
                   }')`,
                   backgroundRepeat: 'noRepeat',
                   backgroundPosition: 'center',
@@ -107,7 +107,7 @@ const ArtistView: React.FC<ArtistViewProps> = ({
           </>
         }
         <AlbumList
-          albums={_.get(artist, 'releases', []).sort((a, b) => {
+          albums={get(artist, 'releases', []).sort((a, b) => {
             return b.year - a.year;
           })}
           albumInfoSearch={albumInfoSearch}
