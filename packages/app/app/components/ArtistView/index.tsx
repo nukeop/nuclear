@@ -36,7 +36,6 @@ const ArtistView: React.FC<ArtistViewProps> = ({
   removeFavoriteArtist,
   addFavoriteArtist
 }) => {
-  const { t }= useTranslation('artist');
   const history = useHistory();
   
   const isLoading = () => artist.loading || false;
