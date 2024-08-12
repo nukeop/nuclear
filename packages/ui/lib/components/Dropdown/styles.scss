@@ -10,9 +10,11 @@
   &:active,
   &:focus,
   &.ui.selection.active.dropdown {
-    @include shadow;
-    color: $white;
-    border: 1px solid transparent;
+    &:not(.no_background) {
+      @include shadow;
+      color: $white;
+      border: 1px solid transparent;
+    }
   }
 
   &.no_caret {
@@ -23,6 +25,11 @@
 
   &.no_border {
     border: none;
+  }
+
+  &.no_background {
+    background: none;
+    box-shadow: none;
   }
 
   .dropdown.icon {
@@ -68,6 +75,31 @@
 
     &.visible {
       animation: fade-in $short-duration normal forwards ease-in-out;
+    }
+  }
+
+  &.lighter {
+    background: rgba($bglighter, 0.25);
+    border: none;
+    min-height: 0;
+
+    &:hover,
+    &:active,
+    &:focus,
+    &.ui.selection.active.dropdown {
+      border: none;
+    }
+
+    .menu {
+      margin: 0;
+      width: 100%;
+      min-width: 100%;
+      border-top: 1px solid rgba($bglighter, 0.6) !important;
+    }
+
+    .active.selected.item,
+    .message {
+      color: $white !important;
     }
   }
 }
