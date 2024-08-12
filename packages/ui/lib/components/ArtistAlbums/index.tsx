@@ -83,31 +83,33 @@ export const ArtistAlbums: React.FC<ArtistAlbumsProps> = ({
 
   return (
     <div className={styles.artist_albums}>
-      <div className={styles.artist_albums_toolbar}>
-        <h3>{strings.header}</h3>
-        <hr />
-        
-        <Dropdown
-          className={styles.artist_albums_sort_dropdown} 
-          selection
-          variant='lighter'
-          options={sortOptions}
-          value={sortBy}
-          onChange={(e, { value }) => setSortBy(value as SortBy)}
-        />
-        <div className={styles.artist_albums_filter}>
-          <FormInput 
-            className={styles.artist_albums_filter_input} 
-            placeholder={strings.filterPlaceholder}
-            onChange={setFilter}
+      {
+        !isLoading &&
+        <div className={styles.artist_albums_toolbar}>
+          <h3>{strings.header}</h3>
+          <hr />
+          <Dropdown
+            className={styles.artist_albums_sort_dropdown} 
+            selection
+            variant='lighter'
+            options={sortOptions}
+            value={sortBy}
+            onChange={(e, { value }) => setSortBy(value as SortBy)}
           />
-          <Button 
-            className={styles.artist_albums_filter_button}
-            color='blue'
-            icon='filter'
-          />
+          <div className={styles.artist_albums_filter}>
+            <FormInput 
+              className={styles.artist_albums_filter_input} 
+              placeholder={strings.filterPlaceholder}
+              onChange={setFilter}
+            />
+            <Button 
+              className={styles.artist_albums_filter_button}
+              color='blue'
+              icon='filter'
+            />
+          </div>
         </div>
-      </div>
+      }
 
       <AlbumGrid
         albums={sortedAlbums}

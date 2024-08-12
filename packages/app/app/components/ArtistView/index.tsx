@@ -14,6 +14,7 @@ import artPlaceholder from '../../../resources/media/art_placeholder.png';
 import { ArtistDetailsState } from '../../reducers/search';
 import { SearchResultsAlbum } from '@nuclear/core/src/plugins/plugins.types';
 import { ArtistHeader } from './ArtistHeader';
+import { ArtistAlbums } from '@nuclear/ui';
 
 type ReleaseTypeProps = 'master' | 'release'
 
@@ -37,10 +38,13 @@ const ArtistView: React.FC<ArtistViewProps> = ({
   addFavoriteArtist
 }) => {
   const history = useHistory();
-  
+  const { t } = useTranslation('artist');
   const isLoading = () => artist.loading || false;
-  
   const isOnTour = () => artist.onTour || false;
+  const onAlbumClick = (album) => {
+    albumInfoSearch(album.id, album.type, album);
+    history.push('/album/' + album.id);
+  };
 
   return (
     <div className={styles.artist_view_container}>
@@ -105,13 +109,19 @@ const ArtistView: React.FC<ArtistViewProps> = ({
             <hr />
           </>
         }
-        <AlbumList
-          albums={get(artist, 'releases', []).sort((a, b) => {
-            return b.year - a.year;
-          })}
-          albumInfoSearch={albumInfoSearch}
-          history={history}
-          loading={isLoading()}
+        <ArtistAlbums 
+          albums={artist?.releases ?? []}
+          onAlbumClick={onAlbumClick}
+          isLoading={isLoading()}
+          strings={{
+            header: t('artist-albums.header'),
+            sortByReleaseDate: t('artist-albums.sort-by-release-date'),
+            sortByAZ: t('artist-albums.sort-by-az'),
+            sortByMostPlayed: t('artist-albums.sort-by-most-played'),
+            filterPlaceholder: t('artist-albums.filter-placeholder')
+          }}
+          withSortByAZ
+          withSortByReleaseDate
         />
       </Dimmer.Dimmable>
     </div>
