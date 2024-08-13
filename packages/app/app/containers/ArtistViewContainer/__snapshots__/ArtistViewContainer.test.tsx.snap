@@ -511,11 +511,97 @@ exports[`Artist view container should display an artist 1`] = `
         </div>
         <hr />
         <div
-          class="nuclear album_grid auto_size"
+          class="artist_albums"
         >
           <div
-            class="album_cards"
-          />
+            class="artist_albums_toolbar"
+          >
+            <h3>
+              Albums
+            </h3>
+            <hr />
+            <div
+              aria-expanded="false"
+              class="ui selection dropdown nuclear dropdown lighter artist_albums_sort_dropdown"
+              role="listbox"
+              tabindex="0"
+            >
+              <div
+                aria-atomic="true"
+                aria-live="polite"
+                class="divider text"
+                role="alert"
+              >
+                Sort by release date
+              </div>
+              <i
+                aria-hidden="true"
+                class="dropdown icon"
+              />
+              <div
+                class="menu transition"
+              >
+                <div
+                  aria-checked="true"
+                  aria-selected="true"
+                  class="active selected item"
+                  role="option"
+                  style="pointer-events: all;"
+                >
+                  <span
+                    class="text"
+                  >
+                    Sort by release date
+                  </span>
+                </div>
+                <div
+                  aria-checked="false"
+                  aria-selected="false"
+                  class="item"
+                  role="option"
+                  style="pointer-events: all;"
+                >
+                  <span
+                    class="text"
+                  >
+                    Sort by A-Z
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div
+              class="artist_albums_filter"
+            >
+              <div
+                class="field nuclear input artist_albums_filter_input"
+              >
+                <div
+                  class="ui input"
+                >
+                  <input
+                    placeholder="Filter..."
+                    type="text"
+                    value=""
+                  />
+                </div>
+              </div>
+              <button
+                class="ui blue icon button nuclear button artist_albums_filter_button"
+              >
+                <i
+                  aria-hidden="true"
+                  class="filter icon"
+                />
+              </button>
+            </div>
+          </div>
+          <div
+            class="nuclear album_grid auto_size"
+          >
+            <div
+              class="album_cards"
+            />
+          </div>
         </div>
       </div>
     </div>
@@ -551,21 +637,25 @@ exports[`Artist view container should show that an artist is still loading 1`] =
         />
         <hr />
         <div
-          class="nuclear album_grid loading"
+          class="artist_albums"
         >
           <div
-            class="album_cards"
-          />
-          <div
-            class="ui active transition visible dimmer"
-            style="display: flex;"
+            class="nuclear album_grid loading"
           >
             <div
-              class="content"
+              class="album_cards"
+            />
+            <div
+              class="ui active transition visible dimmer"
+              style="display: flex;"
             >
               <div
-                class="ui loader"
-              />
+                class="content"
+              >
+                <div
+                  class="ui loader"
+                />
+              </div>
             </div>
           </div>
         </div>

@@ -152,7 +152,7 @@ exports[`Play Queue container should display a context popup on right click 1`] 
             >
               <i
                 aria-hidden="true"
-                class="star icon"
+                class="heart icon"
               />
               Add to favorites
             </div>
@@ -567,7 +567,7 @@ exports[`Play Queue container should display a context popup on right click 1`] 
         >
           <i
             aria-hidden="true"
-            class="star icon"
+            class="heart icon"
           />
            Add to favorites
         </a>
@@ -740,7 +740,7 @@ exports[`Play Queue container should display a context popup on right click for 
             >
               <i
                 aria-hidden="true"
-                class="star icon"
+                class="heart icon"
               />
               Add to favorites
             </div>
@@ -1114,7 +1114,7 @@ exports[`Play Queue container should display a context popup on right click for 
         >
           <i
             aria-hidden="true"
-            class="star icon"
+            class="heart icon"
           />
            Add to favorites
         </a>
@@ -1287,7 +1287,7 @@ exports[`Play Queue container should display tracks in the queue 1`] = `
             >
               <i
                 aria-hidden="true"
-                class="star icon"
+                class="heart icon"
               />
               Add to favorites
             </div>

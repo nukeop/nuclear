@@ -86,7 +86,7 @@ const TrackPopupButtons = ({
         <PopupButton
           onClick={handleAddFavorite}
           ariaLabel='Add this track to favorites'
-          icon='star'
+          icon='heart'
           label='Add to favorites'
         />
       }

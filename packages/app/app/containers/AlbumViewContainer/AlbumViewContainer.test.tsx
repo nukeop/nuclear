@@ -110,7 +110,7 @@ describe('Album view container', () => {
     ]);
   });
 
-  it('should add album to favorites after clicking the star', async () => {
+  it('should add album to favorites after clicking the heart', async () => {
     const { component, store } = mountComponent();
     let state = store.getState();
     expect(state.favorites.albums).toEqual([]);
