@@ -68,7 +68,7 @@ export const AlbumView: React.FC<AlbumViewProps> = ({
                     }
                   >
                     <Icon
-                      name={isFavorite ? 'star' : 'star outline'}
+                      name={isFavorite ? 'heart' : 'heart outline'}
                       size='big'
                     />
                   </a>

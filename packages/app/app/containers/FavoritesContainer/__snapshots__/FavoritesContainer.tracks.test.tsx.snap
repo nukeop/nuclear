@@ -16,7 +16,7 @@ exports[`Favorite tracks view container should display empty state 1`] = `
         >
           <i
             aria-hidden="true"
-            class="star icon"
+            class="heart icon"
           />
           <i
             aria-hidden="true"

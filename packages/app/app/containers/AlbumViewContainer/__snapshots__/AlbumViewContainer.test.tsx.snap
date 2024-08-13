@@ -54,7 +54,7 @@ exports[`Album view container should display an album 1`] = `
                 >
                   <i
                     aria-hidden="true"
-                    class="star outline big icon"
+                    class="heart outline big icon"
                   />
                 </a>
               </div>

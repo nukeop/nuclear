@@ -222,7 +222,7 @@ describe('Artist view container', () => {
     ]);
   });
 
-  it('should remove artist from favorites after clicking the star if already in favorites', async () => {
+  it('should remove artist from favorites after clicking the heart if already in favorites', async () => {
     const { component, store } = mountComponent();
     let state = store.getState();
     expect(state.favorites.artists).toEqual([]);
@@ -240,6 +240,16 @@ describe('Artist view container', () => {
     state = store.getState();
     expect(state.favorites.artists).toEqual([]);
   });
+
+  it('should filter artist\'s albums', async () => {
+    const { component } = mountComponent();
+    await waitFor(() => component.getByPlaceholderText(/filter/i).focus());
+    await waitFor(() => component.getByPlaceholderText(/filter/i).type('album 1'));
+    const albumCells = await component.findAllByRole('cell');
+    expect(albumCells).toHaveLength(1);
+    expect(albumCells[0]).toHaveTextContent('album 1');
+  });
+
 
   const mountComponent = (initialStore?: AnyProps) => {
     const initialState = initialStore ||
