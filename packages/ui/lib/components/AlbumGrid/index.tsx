@@ -64,6 +64,7 @@ const AlbumGrid: React.FC<AlbumGridProps> = ({
             albums.map((album, i) => (
               <Card
                 key={i}
+                data-testid='album-card'
                 header={album.title}
                 content={withArtistNames && _.get(album, 'artist.name')}
                 image={getThumbnail(album)}
