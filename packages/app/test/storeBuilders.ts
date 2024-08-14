@@ -248,13 +248,13 @@ export const buildStoreState = () => {
       };
       return this as StoreStateBuilder;
     },
-    withPlugins(data?: { streamProviders: any[] }) {
+    withPlugins(data?: { streamProviders?: any[], metaProviders?: any[] }) {
       state = {
         ...state,
         plugin: {
           userPlugins: {},
           plugins: {
-            streamProviders: data?.streamProviders || [
+            streamProviders: data?.streamProviders ?? [
               {
                 name: 'Test Stream Provider',
                 sourceName: 'Test Stream Provider',
@@ -288,7 +288,7 @@ export const buildStoreState = () => {
                 }) as TrackStream)
               }
             ],
-            metaProviders: [
+            metaProviders: data?.metaProviders ?? [
               {
                 name: 'Test Meta Provider',
                 description: 'Metadata provider for testing.',

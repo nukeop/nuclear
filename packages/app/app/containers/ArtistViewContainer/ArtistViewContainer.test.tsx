@@ -6,6 +6,8 @@ import { store as electronStore } from '@nuclear/core';
 import { AnyProps, configureMockStore, setupI18Next, TestRouterProvider, TestStoreProvider } from '../../../test/testUtils';
 import MainContentContainer from '../MainContentContainer';
 import { buildElectronStoreState, buildStoreState } from '../../../test/storeBuilders';
+import userEvent from '@testing-library/user-event';
+import { SearchResultsSource } from '@nuclear/core/src/plugins/plugins.types';
 
 describe('Artist view container', () => {
   beforeAll(() => {
@@ -242,12 +244,74 @@ describe('Artist view container', () => {
   });
 
   it('should filter artist\'s albums', async () => {
-    const { component } = mountComponent();
-    await waitFor(() => component.getByPlaceholderText(/filter/i).focus());
-    await waitFor(() => component.getByPlaceholderText(/filter/i).type('album 1'));
-    const albumCells = await component.findAllByRole('cell');
+    const protoState = buildStoreState()
+      .withPlugins().build();
+
+    const mockFetchArtistAlbums = jest.fn().mockResolvedValue([
+      {
+        id: 'test-album-1',
+        title: ' Test album 1',
+        artist: 'test artist 1',
+        genres: ['genre 1', 'genre 2'],
+        images: ['image 1'],
+        thumb: 'image 1',
+        coverImage: 'image 1',
+        tracklist: [
+          {
+            uuid: 'track-1',
+            artist: 'test artist 1',                      
+            title: 'test track 1',
+            duration: 10
+          }
+        ],
+        year: '2019',
+        source: SearchResultsSource.Discogs
+      },
+      {
+        id: 'test-album-2',
+        title: ' Test album 2',
+        artist: 'test artist 2',
+        genres: ['genre 2', 'genre 3'],
+        images: ['image 2'],
+        thumb: 'image 2',
+        coverImage: 'image 2',
+        tracklist: [
+          {
+            uuid: 'track-2',
+            artist: 'test artist 2',
+            title: 'test track 2',
+            duration: 40
+          }
+        ],
+        year: '2021',
+        source: SearchResultsSource.Discogs
+      }
+    ]);
+
+    const { component, store } = mountComponent(
+      buildStoreState()
+        .withArtistDetails()
+        .withPlaylists([{
+          id: 'test-playlist-id',
+          name: 'test playlist',
+          tracks: []
+        }])
+        .withPlugins({
+          metaProviders: [{
+            ...protoState.plugin.plugins.metaProviders[0],
+            fetchArtistAlbums: mockFetchArtistAlbums
+          }]
+        })
+        .withConnectivity()
+        .build()
+    );
+
+    await waitFor(() => expect(store.getState().search.artistDetails['test-artist-id'].releases).toHaveLength(2));
+
+    await userEvent.type(component.getByPlaceholderText('Filter...'), 'album 1');
+    const albumCells = await component.findAllByTestId('album-card');
     expect(albumCells).toHaveLength(1);
-    expect(albumCells[0]).toHaveTextContent('album 1');
+    expect(albumCells[0]).toHaveTextContent('Test album 1');
   });
 
 
