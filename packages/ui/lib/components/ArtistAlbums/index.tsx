@@ -97,7 +97,7 @@ export const ArtistAlbums: React.FC<ArtistAlbumsProps> = ({
             onChange={(e, { value }) => setSortBy(value as SortBy)}
           />
           <div className={styles.artist_albums_filter}>
-            <FormInput 
+            <FormInput
               className={styles.artist_albums_filter_input} 
               placeholder={strings.filterPlaceholder}
               onChange={setFilter}

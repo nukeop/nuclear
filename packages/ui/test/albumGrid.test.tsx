@@ -1,5 +1,6 @@
 import { makeSnapshotTest } from './helpers';
 import { AlbumGrid } from '../lib';
+import { SearchResultsAlbum } from '@nuclear/core/src/plugins/plugins.types';
 
 makeSnapshotTest(
   AlbumGrid, { loading: true }, '(Snapshot) AlbumGrid (loading)'
@@ -11,5 +12,5 @@ makeSnapshotTest(
     { title: 'test' },
     { title: 'test' },
     { title: 'test' }
-  ]}, '(Snapshot) AlbumGrid (basic)'
+  ] as SearchResultsAlbum[]}, '(Snapshot) AlbumGrid (basic)'
 );
