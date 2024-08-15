@@ -37,7 +37,7 @@ class Config {
   ) {
     this.env = process.env.NODE_ENV as Env || Env.DEV;
     this.title = 'Nuclear Music Player';
-    this.appid = 'nuclear';
+    this.appid = 'org.js.nuclear.Nuclear';
     this.youtubeUrl = 'https://www.youtube.com/watch';
     this.youtubeSearch = 'https://www.googleapis.com/youtube/v3/search?part=id,snippet&type=video&maxResults=50&q=';
     this.supportedFormats = _.uniq(pkg.build.fileAssociations.map(({ ext }) => ext));
