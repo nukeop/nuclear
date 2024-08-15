@@ -144,7 +144,7 @@ export const QueueMenuMore: React.FC<QueueMenuMoreProps> = ({
           onClick={onAddFavoriteTrack}
           data-testid='queue-menu-more-favorite'
         >
-          <Icon name='star' />
+          <Icon name='heart' />
           {t('favorite-add')}
         </Dropdown.Item>
         <Dropdown.Item onClick={onAddToDownloads}>

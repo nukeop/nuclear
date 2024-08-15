@@ -1,5 +1,6 @@
 import '../resources/Lato.scss';
 
+export { ArtistAlbums } from './components/ArtistAlbums';
 export { default as AlbumGrid } from './components/AlbumGrid';
 export { default as ArtistGrid } from './components/ArtistGrid';
 export { default as AlbumPreview } from './components/AlbumPreview';

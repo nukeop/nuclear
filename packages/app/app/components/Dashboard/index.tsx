@@ -29,7 +29,6 @@ export const Dashboard: React.FC<DashboardProps> = ({
   onEditorialPlaylistClick
 }) => {
   const { t } = useTranslation('dashboard');
-  const history = useHistory();
 
   const {editorialCharts} = dashboardData;
 

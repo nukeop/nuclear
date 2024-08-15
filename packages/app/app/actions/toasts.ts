@@ -1,5 +1,5 @@
 import { v4 } from 'uuid';
-import _ from 'lodash';
+import { get } from 'lodash';
 import { createStandardAction } from 'typesafe-actions';
 import { Notification } from '@nuclear/ui/lib/types';
 import { Toast } from './actionTypes';
@@ -10,39 +10,39 @@ export const addNotification = createStandardAction(Toast.ADD_NOTIFICATION)<Noti
 
 export const removeNotification = createStandardAction(Toast.REMOVE_NOTIFICATION)<string>();
 
-export function notify(title: string, details: string, icon:  Node | React.ReactElement<{
+export function notify(title: string, details: string, icon?:  Node | React.ReactElement<{
   src: string;
-}>, settings: Setting[] | { [key: string]: unknown }) {
+}>, settings?: Setting[] | { [key: string]: unknown }) {
   return generateNotification(title, details, icon, {}, settings);
 }
 
-export function error(title: string, details: string, icon:  Node | React.ReactElement<{
+export function error(title: string, details: string, icon?:  Node | React.ReactElement<{
   src: string;
-}>, settings: Setting[] | { [key: string]: unknown }) {
+}>, settings?: Setting[] | { [key: string]: unknown }) {
   return generateNotification(title, details, icon, {error: true}, settings);
 }
 
-export function warning(title: string, details: string, icon:  Node | React.ReactElement<{
+export function warning(title: string, details: string, icon?:  Node | React.ReactElement<{
   src: string;
-}>, settings: Setting[] | { [key: string]: unknown }) {
+}>, settings?: Setting[] | { [key: string]: unknown }) {
   return generateNotification(title, details, icon, {warning: true}, settings);
 }
 
-export function success(title: string, details: string, icon:  Node | React.ReactElement<{
+export function success(title: string, details: string, icon?:  Node | React.ReactElement<{
   src: string;
-}>, settings: Setting[] | { [key: string]: unknown }) {
+}>, settings?: Setting[] | { [key: string]: unknown }) {
   return generateNotification(title, details, icon, {success: true}, settings);
 }
 
-export function info(title: string, details: string, icon:  Node | React.ReactElement<{
+export function info(title: string, details: string, icon?:  Node | React.ReactElement<{
   src: string;
-}>, settings: Setting[] | { [key: string]: unknown }) {
+}>, settings?: Setting[] | { [key: string]: unknown }) {
   return generateNotification(title, details, icon, {info: true}, settings);
 }
 
-function generateNotification(title: string, details: string, icon:  Node | React.ReactElement<{
+function generateNotification(title: string, details: string, icon?:  Node | React.ReactElement<{
   src: string;
-}>, type: {[type:string]: boolean}, settings: Setting[] | { [key: string]: unknown }) {
+}>, type?: {[type:string]: boolean}, settings?: Setting[] | { [key: string]: unknown }) {
   return dispatch => {
     const id = v4();
     dispatch(addNotification(Object.assign({}, {
@@ -53,7 +53,7 @@ function generateNotification(title: string, details: string, icon:  Node | Reac
     },
     type)));
 
-    const timeout = _.get(settings, 'notificationTimeout') ?? 3;
+    const timeout = get(settings, 'notificationTimeout') ?? 3;
     setTimeout(() => dispatch(removeNotification(id)), timeout * 1000);
   };
 }

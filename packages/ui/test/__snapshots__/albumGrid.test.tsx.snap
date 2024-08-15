@@ -10,6 +10,7 @@ exports[`(Snapshot) AlbumGrid (basic) should render correctly 1`] = `
     >
       <div
         class="nuclear card_container"
+        data-testid="album-card"
       >
         <div
           class="card animated"
@@ -33,6 +34,7 @@ exports[`(Snapshot) AlbumGrid (basic) should render correctly 1`] = `
       </div>
       <div
         class="nuclear card_container"
+        data-testid="album-card"
       >
         <div
           class="card animated"
@@ -56,6 +58,7 @@ exports[`(Snapshot) AlbumGrid (basic) should render correctly 1`] = `
       </div>
       <div
         class="nuclear card_container"
+        data-testid="album-card"
       >
         <div
           class="card animated"
@@ -79,6 +82,7 @@ exports[`(Snapshot) AlbumGrid (basic) should render correctly 1`] = `
       </div>
       <div
         class="nuclear card_container"
+        data-testid="album-card"
       >
         <div
           class="card animated"

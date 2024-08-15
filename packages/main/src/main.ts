@@ -20,8 +20,7 @@ import ListeningHistoryDb from './services/listening-history/db';
 
 app.commandLine.appendSwitch('autoplay-policy', 'no-user-gesture-required');
 app.commandLine.appendSwitch('no-sandbox');
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-(app as any).transformSource = transformSource;
+app.transformSource = transformSource;
 
 let container: Container;
 

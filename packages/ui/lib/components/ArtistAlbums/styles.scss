@@ -1,0 +1,47 @@
+@import "../../common.scss";
+
+.artist_albums {
+    display: flex;
+    flex-flow: column;
+
+    .artist_albums_toolbar {
+        display: flex;
+        flex-flow: row;
+        justify-items: flex-end;
+        align-items: center;
+    }
+
+    .artist_albums_filter {
+        display: flex;
+        flex-flow: row;
+    }
+
+    .artist_albums_filter_input {
+        input {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+    }
+
+    .artist_albums_filter_button {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+
+    .artist_albums_sort_dropdown {
+        margin-right: 1em;
+    }
+
+    h3 {
+        font-size: 20px;
+        margin: 0;
+        color: $white;
+    }
+
+    hr {
+        border: 0;
+        border-bottom: 1px solid rgba($white, 40%);
+        margin: 0 1em;
+        width: 100%;
+    }
+}

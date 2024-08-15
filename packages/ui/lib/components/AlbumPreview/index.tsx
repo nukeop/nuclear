@@ -2,8 +2,9 @@ import React from 'react';
 import _ from 'lodash';
 import { Button } from 'semantic-ui-react';
 
+import { SearchResultsAlbum } from '@nuclear/core/src/plugins/plugins.types';
+
 import { getThumbnail } from '../..';
-import { Album } from '../../types';
 import ContextPopup from '../ContextPopup';
 import TrackRow from '../TrackRow';
 import artPlaceholder from '../../../resources/media/art_placeholder.png';
@@ -11,7 +12,7 @@ import styles from './styles.scss';
 
 
 type AlbumPreviewProps = {
-  album?: Album;
+  album?: SearchResultsAlbum;
   trackButtons?: React.ElementType ;
 };
 
@@ -54,7 +55,7 @@ const AlbumPreview: React.FC<AlbumPreviewProps & Handlers> = (props) => {
         <table>
           <tbody>
             {
-              album.tracks.map((track, index) => (
+              album.tracklist.map((track, index) => (
                 <ContextPopup
                   trigger={
                     <TrackRow
