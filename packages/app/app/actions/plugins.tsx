@@ -6,6 +6,7 @@ import { store } from '@nuclear/core';
 import UserPlugin from '../structs/userPlugin';
 import { error } from './toasts';
 import { createApi } from '@nuclear/core';
+import { find, forEach, isNil } from 'lodash';
 
 export const CREATE_PLUGINS = 'CREATE_PLUGINS';
 export const SELECT_STREAM_PROVIDER = 'SELECT_STREAM_PROVIDER';
@@ -40,8 +41,8 @@ export function createPlugins (pluginClasses) {
 
   const categories = Object.keys(pluginClasses);
   const selected = {};
-  _.forEach(categories, category => {
-    const selectedForCategory = _.find(plugins[category], { isDefault: true });
+  forEach(categories, category => {
+    const selectedForCategory = find(plugins[category], { isDefault: true });
     selected[category] = selectedForCategory.sourceName;
   });
 
@@ -102,11 +103,11 @@ export function loadUserPlugin(path) {
     try {
       const api = createApi();
       const pluginContents = await fs.promises.readFile(path, 'utf8');
-      const transformedPluginContents = await remote.app.g(pluginContents);
+      const transformedPluginContents = await remote.app.transformSource(pluginContents);
 
       const plugin = eval(transformedPluginContents.code);
 
-      if (_.isNil(plugin)) {
+      if (isNil(plugin)) {
         throw new Error('Invalid plugin file');
       }
 
@@ -119,7 +120,7 @@ export function loadUserPlugin(path) {
         plugin.onLoad
       );
 
-      if (_.isNil(pluginStruct.name)) {
+      if (isNil(pluginStruct.name)) {
         throw new Error('Unnamed plugins are not allowed');
       }
 
@@ -160,7 +161,7 @@ export function serializePlugins(plugins) {
 export function deserializePlugins() {
   return dispatch => {
     const plugins = store.get('plugins') || [];
-    _.forEach(plugins, plugin => {
+    forEach(plugins, plugin => {
       dispatch(loadUserPlugin(plugin.path));
     });
   };

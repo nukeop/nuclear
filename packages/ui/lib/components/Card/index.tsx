@@ -21,6 +21,7 @@ type CardProps = {
   animated?: boolean;
   menuEntries?: CardMenuEntry[];
   className?: string;
+  'data-testid'?: string;
 };
 
 const Card: React.FC<CardProps> = ({
@@ -31,13 +32,17 @@ const Card: React.FC<CardProps> = ({
   withMenu = false,
   animated = true,
   menuEntries,
-  className
+  className,
+  'data-testid': dataTestId
 }) => (
-  <div className={cx(
-    common.nuclear,
-    styles.card_container,
-    className
-  )}>
+  <div 
+    className={cx(
+      common.nuclear,
+      styles.card_container,
+      className
+    )}
+    data-testid={dataTestId}
+  >
     <div
       className={cx(
         styles.card,

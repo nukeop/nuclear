@@ -2,7 +2,7 @@ import { createConfigItem, transform, transformFile } from '@babel/core';
 import presetEnv from '@babel/preset-env';
 import presetReact from '@babel/preset-react';
 
-interface TransformResult {
+export interface TransformResult {
   [key: string]: any;
 }
 

@@ -6,6 +6,8 @@ import { store as electronStore } from '@nuclear/core';
 import { AnyProps, configureMockStore, setupI18Next, TestRouterProvider, TestStoreProvider } from '../../../test/testUtils';
 import MainContentContainer from '../MainContentContainer';
 import { buildElectronStoreState, buildStoreState } from '../../../test/storeBuilders';
+import userEvent from '@testing-library/user-event';
+import { SearchResultsSource } from '@nuclear/core/src/plugins/plugins.types';
 
 describe('Artist view container', () => {
   beforeAll(() => {
@@ -222,7 +224,7 @@ describe('Artist view container', () => {
     ]);
   });
 
-  it('should remove artist from favorites after clicking the star if already in favorites', async () => {
+  it('should remove artist from favorites after clicking the heart if already in favorites', async () => {
     const { component, store } = mountComponent();
     let state = store.getState();
     expect(state.favorites.artists).toEqual([]);
@@ -240,6 +242,80 @@ describe('Artist view container', () => {
     state = store.getState();
     expect(state.favorites.artists).toEqual([]);
   });
+
+  it('should filter artist\'s albums', async () => {
+    const protoState = buildStoreState()
+      .withArtistDetails()
+      .withPlugins()
+      .build();
+
+    const mockFetchArtistAlbums = jest.fn().mockResolvedValue(
+      protoState.search.artistDetails['test-artist-id'].releases
+    );
+
+    const { component, store } = mountComponent(
+      buildStoreState()
+        .withArtistDetails()
+        .withPlugins({
+          metaProviders: [{
+            ...protoState.plugin.plugins.metaProviders[0],
+            fetchArtistAlbums: mockFetchArtistAlbums
+          }]
+        })
+        .withConnectivity()
+        .build()
+    );
+
+    await waitFor(() => expect(store.getState().search.artistDetails['test-artist-id'].releases).toHaveLength(3));
+
+    userEvent.type(await component.findByPlaceholderText('Filter...'), 'album 1');
+    const albumCells = await component.findAllByTestId('album-card');
+    expect(albumCells).toHaveLength(1);
+    expect(albumCells[0]).toHaveTextContent('Test album 1');
+  });
+
+  it.each([{
+    name: 'release date',
+    text: 'Sort by release date',
+    order: ['First test album', 'Test album 2', 'Test album 1']
+  }, {
+    name: 'A-Z',
+    text: 'Sort A-Z',
+    order: ['First test album', 'Test album 1', 'Test album 2']
+  }])('should sort artist\'s albums by $name', async ({ text, order }) => {
+    const protoState = buildStoreState()
+      .withArtistDetails()
+      .withPlugins()
+      .build();
+
+    const mockFetchArtistAlbums = jest.fn().mockResolvedValue(
+      protoState.search.artistDetails['test-artist-id'].releases
+    );
+
+    const { component, store } = mountComponent(
+      buildStoreState()
+        .withArtistDetails()
+        .withPlugins({
+          metaProviders: [{
+            ...protoState.plugin.plugins.metaProviders[0],
+            fetchArtistAlbums: mockFetchArtistAlbums
+          }]
+        })
+        .withConnectivity()
+        .build()
+    );
+
+    await waitFor(() => expect(store.getState().search.artistDetails['test-artist-id'].releases).toHaveLength(3));
+
+    userEvent.click(await component.findByRole('listbox'));
+    const options = await component.findAllByRole('option');
+    const targetOption = options.find(el => el.textContent === text);
+    userEvent.click(targetOption);
+
+    const albumCells = await component.findAllByTestId('album-card');
+    await waitFor(() => expect(albumCells.map(cell => cell.textContent)).toEqual(order));
+  });
+
 
   const mountComponent = (initialStore?: AnyProps) => {
     const initialState = initialStore ||

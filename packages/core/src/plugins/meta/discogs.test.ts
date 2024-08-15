@@ -1,6 +1,6 @@
 import DiscogsMetaProvider from './discogs';
 
-describe('Tests for DiscogsMetaProvider', () => {
+describe('DiscogsMetaProvider', () => {
   const provider = new DiscogsMetaProvider();
 
   describe('Verify if an artist is on tour', () => {

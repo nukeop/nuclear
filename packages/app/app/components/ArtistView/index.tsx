@@ -1,12 +1,11 @@
 import React from 'react';
 import cx from 'classnames';
-import _, { isEmpty } from 'lodash';
+import { get, isEmpty, take } from 'lodash';
 import { Dimmer, Loader, Icon } from 'semantic-ui-react';
 import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router';
 
 import AlbumList from '../AlbumList';
-import ArtistTags from './ArtistTags';
 import SimilarArtists from './SimilarArtists';
 import PopularTracks from './PopularTracks';
 
@@ -14,6 +13,8 @@ import styles from './styles.scss';
 import artPlaceholder from '../../../resources/media/art_placeholder.png';
 import { ArtistDetailsState } from '../../reducers/search';
 import { SearchResultsAlbum } from '@nuclear/core/src/plugins/plugins.types';
+import { ArtistHeader } from './ArtistHeader';
+import { ArtistAlbums } from '@nuclear/ui';
 
 type ReleaseTypeProps = 'master' | 'release'
 
@@ -36,108 +37,14 @@ const ArtistView: React.FC<ArtistViewProps> = ({
   removeFavoriteArtist,
   addFavoriteArtist
 }) => {
-  const { t }= useTranslation('artist');
   const history = useHistory();
-  
+  const { t } = useTranslation('artist');
   const isLoading = () => artist.loading || false;
-  
   const isOnTour = () => artist.onTour || false;
-
-  function renderArtistHeader() {
-    return (
-      <div className={styles.artist_header_overlay}>
-        <div className={styles.artist_header_container}>
-          {
-            artist.images &&
-            <div
-              className={styles.artist_avatar}
-              style={{
-                background: `url('${_.get(artist, 'images[1]', artPlaceholder)
-                }')`,
-                backgroundRepeat: 'noRepeat',
-                backgroundPosition: 'center',
-                backgroundSize: 'cover'
-              }}
-            />
-          }
-
-          <div className={styles.artist_name_container}>
-            <div className={styles.artist_name_line}>
-              <h1>{artist.name}</h1>
-              {
-                isOnTour() &&
-                <span
-                  className={styles.on_tour}
-                >
-                  { t('tour') }
-                </span>
-              }
-
-              <a
-                href='#'
-                className={styles.artist_favorites_button_wrap}
-                data-testid='add-remove-favorite'
-                onClick={
-                  isFavorite
-                    ? removeFavoriteArtist
-                    : addFavoriteArtist
-                }
-              >
-                <Icon
-                  name={isFavorite ? 'heart' : 'heart outline'}
-                  size='big'
-                />
-              </a>
-            </div>
-
-            <ArtistTags
-              tags={artist.tags}
-            />
-          </div>
-        </div>
-      </div>
-    );
-  }
-
-  function renderPopularTracks() {
-    return (
-      !isLoading() &&
-      artist.topTracks && (
-        <PopularTracks
-          tracks={artist.topTracks}
-          artist={{name: artist.name}}
-          addToQueue={addTrackToQueue}
-        />
-      )
-    );
-  }
-
-  function renderSimilarArtists() {
-    return (
-      !isLoading() && !isEmpty(artist.similar) &&
-      <SimilarArtists
-        artists={artist.similar}
-        artistInfoSearchByName={artistInfoSearchByName}
-      />
-    );
-  }
-
-  function renderHeaderBanner() {
-    return (
-      <div
-        style={{
-          background: `url('${_.get(artist, 'coverImage', artPlaceholder)
-          }')`,
-          backgroundRepeat: 'noRepeat',
-          backgroundPosition: 'center',
-          backgroundSize: 'cover'
-        }}
-        className={styles.artist_header}
-      >
-        {renderArtistHeader()}
-      </div>
-    );
-  }
+  const onAlbumClick = (album) => {
+    albumInfoSearch(album.id, album.type, album);
+    history.push('/album/' + album.id);
+  };
 
   return (
     <div className={styles.artist_view_container}>
@@ -151,7 +58,24 @@ const ArtistView: React.FC<ArtistViewProps> = ({
             <div
               className={styles.artist}
             >
-              {renderHeaderBanner()}
+              <div
+                style={{
+                  background: `url('${get(artist, 'coverImage', artPlaceholder)
+                  }')`,
+                  backgroundRepeat: 'noRepeat',
+                  backgroundPosition: 'center',
+                  backgroundSize: 'cover'
+                }}
+                className={styles.artist_header}
+              >
+                <ArtistHeader 
+                  isOnTour={isOnTour()}
+                  isFavorite={isFavorite}
+                  artist={artist}
+                  removeFavoriteArtist={removeFavoriteArtist}
+                  addFavoriteArtist={addFavoriteArtist}
+                />
+              </div>
             </div>
             <hr />
           </>
@@ -166,19 +90,38 @@ const ArtistView: React.FC<ArtistViewProps> = ({
                 { [styles.loading]: isLoading() }
               )
             }>
-              {renderPopularTracks()}
-              {renderSimilarArtists()}
+              { 
+                !isLoading() && artist.topTracks && 
+                  <PopularTracks
+                    tracks={artist.topTracks}
+                    artist={{name: artist.name}}
+                    addToQueue={addTrackToQueue}
+                  />
+              }
+              {
+                !isLoading() && !isEmpty(artist.similar) &&
+                <SimilarArtists
+                  artists={take(artist.similar, 5)}
+                  artistInfoSearchByName={artistInfoSearchByName}
+                />
+              }
             </div>
             <hr />
           </>
         }
-        <AlbumList
-          albums={_.get(artist, 'releases', []).sort((a, b) => {
-            return b.year - a.year;
-          })}
-          albumInfoSearch={albumInfoSearch}
-          history={history}
-          loading={isLoading()}
+        <ArtistAlbums 
+          albums={artist?.releases ?? []}
+          onAlbumClick={onAlbumClick}
+          isLoading={isLoading()}
+          strings={{
+            header: t('artist-albums.header'),
+            sortByReleaseDate: t('artist-albums.sort-by-release-date'),
+            sortByAZ: t('artist-albums.sort-by-az'),
+            sortByMostPlayed: t('artist-albums.sort-by-most-played'),
+            filterPlaceholder: t('artist-albums.filter-placeholder')
+          }}
+          withSortByAZ
+          withSortByReleaseDate
         />
       </Dimmer.Dimmable>
     </div>

@@ -287,6 +287,7 @@ exports[`Library view container should display local library in album grid mode 
             >
               <div
                 class="nuclear card_container"
+                data-testid="album-card"
               >
                 <div
                   class="card animated"
@@ -309,6 +310,7 @@ exports[`Library view container should display local library in album grid mode 
               </div>
               <div
                 class="nuclear card_container"
+                data-testid="album-card"
               >
                 <div
                   class="card animated"

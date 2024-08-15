@@ -8,8 +8,24 @@ import Card from '../Card';
 import common from '../../common.scss';
 import styles from './styles.scss';
 import { getThumbnail, getTrackItem } from '../..';
+import { SearchResultsAlbum } from '@nuclear/core/src/plugins/plugins.types';
+import { Album, Track } from '@nuclear/core';
 
-const AlbumGrid = ({
+type AlbumGridProps = {
+  albums?: SearchResultsAlbum[];
+  removeFavoriteAlbum?: (album: SearchResultsAlbum) => void;
+  loading?: boolean;
+  trackButtons?: React.ElementType;
+  onAlbumClick?: (album: SearchResultsAlbum) => void;
+  addToQueue?: (track: Track) => void;
+  selectSong?: (index: number) => void;
+  startPlayback?: (play: boolean) => void;
+  autoSize?: boolean;
+  withArtistNames?: boolean;
+  withAlbumPreview?: boolean;
+};
+
+const AlbumGrid: React.FC<AlbumGridProps> = ({
   albums,
   removeFavoriteAlbum,
   loading,
@@ -26,7 +42,7 @@ const AlbumGrid = ({
   const handleAlbumClick = album => _.isNil(onAlbumClick) ? selectAlbum(album) : onAlbumClick(album);
 
   const onAddToQueue = () => {
-    selectedAlbum.tracks.map(track => addToQueue(getTrackItem(track)));
+    selectedAlbum.tracklist.map(track => addToQueue(getTrackItem(track) as Track));
   };
 
   const onPlayAll = () => {
@@ -48,6 +64,7 @@ const AlbumGrid = ({
             albums.map((album, i) => (
               <Card
                 key={i}
+                data-testid='album-card'
                 header={album.title}
                 content={withArtistNames && _.get(album, 'artist.name')}
                 image={getThumbnail(album)}

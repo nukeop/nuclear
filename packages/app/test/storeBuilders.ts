@@ -163,8 +163,8 @@ export const buildStoreState = () => {
               releases: [
                 {
                   id: 'test-album-1',
-                  title: ' Test album 1',
-                  artist: 'test artist 1',
+                  title: 'Test album 1',
+                  artist: 'test artist',
                   genres: ['genre 1', 'genre 2'],
                   images: ['image 1'],
                   thumb: 'image 1',
@@ -177,12 +177,12 @@ export const buildStoreState = () => {
                       duration: 10
                     }
                   ],
-                  year: '2019',
+                  year: '2020',
                   source: SearchResultsSource.Discogs
                 },
                 {
                   id: 'test-album-2',
-                  title: ' Test album 2',
+                  title: 'Test album 2',
                   artist: 'test artist 2',
                   genres: ['genre 2', 'genre 3'],
                   images: ['image 2'],
@@ -196,7 +196,26 @@ export const buildStoreState = () => {
                       duration: 40
                     }
                   ],
-                  year: '2021',
+                  year: '2019',
+                  source: SearchResultsSource.Discogs
+                },
+                {
+                  id: 'test-album-3',
+                  title: 'First test album',
+                  artist: 'test artist',
+                  genres: ['genre 4', 'genre 5'],
+                  images: ['image 3'],
+                  thumb: 'image 3',
+                  coverImage: 'image 3',
+                  tracklist: [
+                    {
+                      uuid: 'track-3',
+                      artist: 'test artist',
+                      title: 'test track 3',
+                      duration: 40
+                    }
+                  ],
+                  year: '2010',
                   source: SearchResultsSource.Discogs
                 }
               ],
@@ -248,13 +267,13 @@ export const buildStoreState = () => {
       };
       return this as StoreStateBuilder;
     },
-    withPlugins(data?: { streamProviders: any[] }) {
+    withPlugins(data?: { streamProviders?: any[], metaProviders?: any[] }) {
       state = {
         ...state,
         plugin: {
           userPlugins: {},
           plugins: {
-            streamProviders: data?.streamProviders || [
+            streamProviders: data?.streamProviders ?? [
               {
                 name: 'Test Stream Provider',
                 sourceName: 'Test Stream Provider',
@@ -288,7 +307,7 @@ export const buildStoreState = () => {
                 }) as TrackStream)
               }
             ],
-            metaProviders: [
+            metaProviders: data?.metaProviders ?? [
               {
                 name: 'Test Meta Provider',
                 description: 'Metadata provider for testing.',

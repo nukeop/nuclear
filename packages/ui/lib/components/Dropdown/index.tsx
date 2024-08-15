@@ -8,12 +8,16 @@ import styles from './styles.scss';
 export type DropdownProps = SUIDropdownProps & {
   noCaret?: boolean;
   noBorder?: boolean;
+  noBackground?: boolean;
+  variant?: 'lighter' | 'darker';
 }
 
 const Dropdown: React.FC<DropdownProps> = ({
   className,
   noCaret = false,
   noBorder = false,
+  noBackground = false,
+  variant = 'darker',
   ...props
 }) => <SemanticDropdown
   {...props}
@@ -22,7 +26,9 @@ const Dropdown: React.FC<DropdownProps> = ({
     styles.dropdown,
     { 
       [styles.no_caret]: noCaret, 
-      [styles.no_border]: noBorder
+      [styles.no_border]: noBorder,
+      [styles.no_background]: noBackground,
+      [styles.lighter]: variant === 'lighter'
     },
     className
   )}
