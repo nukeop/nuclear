@@ -23,7 +23,9 @@
 
   .track_name {
     @include ellipsis;
-    line-height: 1;
+    overflow-x: hidden;
+    overflow-y: visible;
+    line-height: 1.25;
     max-width: 100%;
     font-size: 22px;
   }
