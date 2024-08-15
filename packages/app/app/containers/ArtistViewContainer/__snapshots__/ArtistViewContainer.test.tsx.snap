@@ -564,7 +564,7 @@ exports[`Artist view container should display an artist 1`] = `
                   <span
                     class="text"
                   >
-                    Sort by A-Z
+                    Sort A-Z
                   </span>
                 </div>
               </div>

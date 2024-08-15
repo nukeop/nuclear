@@ -245,57 +245,17 @@ describe('Artist view container', () => {
 
   it('should filter artist\'s albums', async () => {
     const protoState = buildStoreState()
-      .withPlugins().build();
+      .withArtistDetails()
+      .withPlugins()
+      .build();
 
-    const mockFetchArtistAlbums = jest.fn().mockResolvedValue([
-      {
-        id: 'test-album-1',
-        title: ' Test album 1',
-        artist: 'test artist 1',
-        genres: ['genre 1', 'genre 2'],
-        images: ['image 1'],
-        thumb: 'image 1',
-        coverImage: 'image 1',
-        tracklist: [
-          {
-            uuid: 'track-1',
-            artist: 'test artist 1',                      
-            title: 'test track 1',
-            duration: 10
-          }
-        ],
-        year: '2019',
-        source: SearchResultsSource.Discogs
-      },
-      {
-        id: 'test-album-2',
-        title: ' Test album 2',
-        artist: 'test artist 2',
-        genres: ['genre 2', 'genre 3'],
-        images: ['image 2'],
-        thumb: 'image 2',
-        coverImage: 'image 2',
-        tracklist: [
-          {
-            uuid: 'track-2',
-            artist: 'test artist 2',
-            title: 'test track 2',
-            duration: 40
-          }
-        ],
-        year: '2021',
-        source: SearchResultsSource.Discogs
-      }
-    ]);
+    const mockFetchArtistAlbums = jest.fn().mockResolvedValue(
+      protoState.search.artistDetails['test-artist-id'].releases
+    );
 
     const { component, store } = mountComponent(
       buildStoreState()
         .withArtistDetails()
-        .withPlaylists([{
-          id: 'test-playlist-id',
-          name: 'test playlist',
-          tracks: []
-        }])
         .withPlugins({
           metaProviders: [{
             ...protoState.plugin.plugins.metaProviders[0],
@@ -306,12 +266,54 @@ describe('Artist view container', () => {
         .build()
     );
 
-    await waitFor(() => expect(store.getState().search.artistDetails['test-artist-id'].releases).toHaveLength(2));
+    await waitFor(() => expect(store.getState().search.artistDetails['test-artist-id'].releases).toHaveLength(3));
 
-    await userEvent.type(component.getByPlaceholderText('Filter...'), 'album 1');
+    userEvent.type(await component.findByPlaceholderText('Filter...'), 'album 1');
     const albumCells = await component.findAllByTestId('album-card');
     expect(albumCells).toHaveLength(1);
     expect(albumCells[0]).toHaveTextContent('Test album 1');
+  });
+
+  it.each([{
+    name: 'release date',
+    text: 'Sort by release date',
+    order: ['First test album', 'Test album 2', 'Test album 1']
+  }, {
+    name: 'A-Z',
+    text: 'Sort A-Z',
+    order: ['First test album', 'Test album 1', 'Test album 2']
+  }])('should sort artist\'s albums by $name', async ({ text, order }) => {
+    const protoState = buildStoreState()
+      .withArtistDetails()
+      .withPlugins()
+      .build();
+
+    const mockFetchArtistAlbums = jest.fn().mockResolvedValue(
+      protoState.search.artistDetails['test-artist-id'].releases
+    );
+
+    const { component, store } = mountComponent(
+      buildStoreState()
+        .withArtistDetails()
+        .withPlugins({
+          metaProviders: [{
+            ...protoState.plugin.plugins.metaProviders[0],
+            fetchArtistAlbums: mockFetchArtistAlbums
+          }]
+        })
+        .withConnectivity()
+        .build()
+    );
+
+    await waitFor(() => expect(store.getState().search.artistDetails['test-artist-id'].releases).toHaveLength(3));
+
+    userEvent.click(await component.findByRole('listbox'));
+    const options = await component.findAllByRole('option');
+    const targetOption = options.find(el => el.textContent === text);
+    userEvent.click(targetOption);
+
+    const albumCells = await component.findAllByTestId('album-card');
+    await waitFor(() => expect(albumCells.map(cell => cell.textContent)).toEqual(order));
   });
 
 
