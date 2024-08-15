@@ -47,7 +47,14 @@
     "similar": "Artistes similaires",
     "title": "Titre",
     "tour": "En tournée",
-    "popular-tracks": "Pistes populaires"
+    "popular-tracks": "Pistes populaires",
+    "artist-albums": {
+      "header": "Albums",
+      "sort-by-release-date": "Sort by release date",
+      "sort-by-az": "Sort A-Z",
+      "sort-by-most-played": "Sort by most played",
+      "filter-placeholder": "Filter..."
+    }
   },
   "dashboard": {
     "add-all": "Ajouter tout",
