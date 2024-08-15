@@ -47,7 +47,14 @@
     "similar": "Nghệ sỹ tương tự",
     "title": "Tên bài hát",
     "tour": "Đang lưu diễn",
-    "popular-tracks": "Các bài hát phổ biến"
+    "popular-tracks": "Các bài hát phổ biến",
+    "artist-albums": {
+      "header": "Albums",
+      "sort-by-release-date": "Sort by release date",
+      "sort-by-az": "Sort A-Z",
+      "sort-by-most-played": "Sort by most played",
+      "filter-placeholder": "Filter..."
+    }
   },
   "dashboard": {
     "add-all": "Thêm tất cả",
