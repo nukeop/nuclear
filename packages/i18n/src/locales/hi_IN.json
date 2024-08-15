@@ -47,7 +47,14 @@
     "similar": "समान कलाकार",
     "title": "शीर्षक",
     "tour": "दौरे पर",
-    "popular-tracks": "Popular tracks"
+    "popular-tracks": "Popular tracks",
+    "artist-albums": {
+      "header": "Albums",
+      "sort-by-release-date": "Sort by release date",
+      "sort-by-az": "Sort A-Z",
+      "sort-by-most-played": "Sort by most played",
+      "filter-placeholder": "Filter..."
+    }
   },
   "dashboard": {
     "add-all": "सभी जोड़ें",
