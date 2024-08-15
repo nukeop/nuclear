@@ -17,6 +17,7 @@ import { AlbumDetailsState } from '../../reducers/search';
 import { playlistsSelectors } from '../../selectors/playlists';
 import * as PlaylistActions from '../../actions/playlists';
 import { PlaylistTrack, Track } from '@nuclear/core';
+import { PluginsState } from '../../reducers/plugins';
 
 export const useAlbumViewProps = () => {
   const dispatch = useDispatch();
@@ -24,12 +25,11 @@ export const useAlbumViewProps = () => {
   const { albumId } = useParams<{ albumId: string }>();
 
   const albumDetails: {[key:string]: AlbumDetailsState} = useSelector(searchSelectors.albumDetails);
-  // TODO replace this any with a proper type
-  const plugins: any = useSelector(pluginsSelectors.plugins);
+  const plugins: PluginsState['plugins'] = useSelector(pluginsSelectors.plugins);
   const favoriteAlbums = useSelector(favoritesSelectors.albums);
   const localPlaylists = useSelector(playlistsSelectors.localPlaylists);
 
-  const albumFromFavorites = favoriteAlbums.find(album => album.id === albumId);
+  const albumFromFavorites = favoriteAlbums.find(album => String(album.id) === albumId);
   const album = albumFromFavorites || albumDetails[albumId];
 
   if (album) {
