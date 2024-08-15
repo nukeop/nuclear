@@ -59,6 +59,7 @@ exports[`Album view container should display favorite albums 1`] = `
           >
             <div
               class="nuclear card_container"
+              data-testid="album-card"
             >
               <div
                 class="card animated"
