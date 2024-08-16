@@ -42,18 +42,18 @@
   },
   "artist": {
     "add-all": "Összes hozzáadása",
-    "count": "Playcount",
+    "count": "Lejátszások száma",
     "queue": "Minden szám hozzáadása a várólistához",
     "similar": "Hasonló előadók",
     "title": "Cím",
     "tour": "Turnén van",
     "popular-tracks": "Népszerű Zenék",
     "artist-albums": {
-      "header": "Albums",
-      "sort-by-release-date": "Sort by release date",
-      "sort-by-az": "Sort A-Z",
-      "sort-by-most-played": "Sort by most played",
-      "filter-placeholder": "Filter..."
+      "header": "Albumok",
+      "sort-by-release-date": "Rendezés a kiadás dátuma szerint",
+      "sort-by-az": "Rendezés A-Z",
+      "sort-by-most-played": "Rendezés Lejátszások száma alapján",
+      "filter-placeholder": "Szűrő..."
     }
   },
   "dashboard": {
@@ -186,8 +186,8 @@
     "playlist-exported": "{{name}} elmentve a lokális fájlok közé",
     "queue": "Lejátszási lista hozzáadása a várólistához",
     "rename": "Lejátszási lista átnevezése",
-    "songs": "{{total}} song",
-    "songs_plural": "{{total}} songs",
+    "songs": "{{total}} zene",
+    "songs_plural": "{{total}} zene",
     "title": "Cím",
     "tracks-selected-plural": "számok kiválasztva",
     "tracks-selected-singular": "szám kiválasztva",
@@ -213,7 +213,7 @@
     "select-lyrics-provider": "Select the default lyrics provider:",
     "select-meta-provider": "Select the default metadata provider:",
     "stream-providers": "Stream providers",
-    "user-plugins": "User plugins",
+    "user-plugins": "Felhasználói pluginok",
     "user-plugins-warning-desc": "Plugins work by running code on your computer. Load plugins only from sources you trust!",
     "user-plugins-warning-title": "Veszélyzóna!"
   },
@@ -255,7 +255,7 @@
       "unverify": "Nem ellenőrzött"
     },
     "create-playlist-dialog-title": "Input playlist name:",
-    "play-now": "Play now"
+    "play-now": "Lejátszás most"
   },
   "search": {
     "album": "Album",
@@ -292,21 +292,21 @@
     "listening-history-description": "Log the tracks you listen to, a la Last.fm. The history is stored offline.",
     "compact-menu-bar": "Use compact style for menu bar",
     "compact-queue-bar": "Use compact style for queue bar",
-    "developer": "Developer settings",
-    "devtools": "Developer tools",
+    "developer": "Fejlesztői beállítások",
+    "devtools": "Fejlesztői eszközök",
     "disable-gpu": "Disable hardware rendering (might fix issues with dragging elements and flashing screen)",
-    "display": "Display",
+    "display": "Megjelenítés",
     "downloads": "Letöltések",
-    "downloads-count": "Max simultaneous downloads",
-    "downloads-dir": "Downloads directory",
+    "downloads-count": "Max. egyidejű letöltés",
+    "downloads-dir": "Letöltési mappa",
     "downloads-dir-button": "Choose a directory...",
     "enable-api": "Enable the api",
     "fmfav-btn": "Import",
     "fmfav-msg": "Import your Last.fm Favorites",
     "frameless-window": "Frameless window (requires restart)",
-    "github-connect": "Log in with Github",
+    "github-connect": "Belépés Githubbal",
     "github-description": "Log in via Github to be able to create and share your playlists online (upcoming feature).",
-    "github-title": "Github",
+    "github-title": "GitHub",
     "http": "HTTP API",
     "invidious-url": "Invidious instance URL",
     "language": "Nyelv",
