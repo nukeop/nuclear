@@ -1,3 +1,7 @@
+import logger from 'electron-timber';
+
+import { PlaylistTrack } from '../helpers';
+
 const SPOTIFY_API_OPEN_URL = 'https://open.spotify.com';
 const SPOTIFY_API_URL = 'https://api.spotify.com/v1';
 
@@ -22,9 +26,9 @@ export type SpotifyFullArtist = SpotifyArtist & {
   popularity: number;
 }
 
-export type SpotifyArtistAlbumsResponse = {
+export type SpotifyPaginatedResponse<T> = {
   href: string;
-  items: SpotifySimplifiedAlbum[];
+  items: T[];
   limit: number;
   next: string | null;
   offset: number;
@@ -45,15 +49,7 @@ export type SpotifySimplifiedAlbum = {
 
 export type SpotifyFullAlbum = SpotifySimplifiedAlbum & {
   genres: string[];
-  tracks: {
-    href: string;
-    limit: number;
-    next: string | null;
-    offset: number;
-    previous: string | null;
-    total: number;
-    items: Omit<SpotifyTrack, 'album' | 'popularity'>[];
-  };
+  tracks: SpotifyPaginatedResponse<Omit<SpotifyTrack, 'album' | 'popularity'>>;
 }
 
 export type SpotifyTrack = {
@@ -63,6 +59,7 @@ export type SpotifyTrack = {
   album: {
     id: string;
     images: SpotifyImage[];
+    name: string;
   };
   artists: SpotifySimplifiedArtist[];
   popularity: number;
@@ -70,6 +67,27 @@ export type SpotifyTrack = {
   duration_ms: number;
 }
 
+export type SpotifyPlaylistResponse = {
+  id: string;
+  name: string;
+  images: SpotifyImage[];
+  uri: string;
+  tracks: SpotifyPaginatedResponse<SpotifyPlaylistTrackObject>;
+}
+
+export type SpotifyPlaylist = {
+  id: string;
+  name: string;
+  tracks: SpotifyTrack[];
+  images: SpotifyImage[];
+  uri: string;
+}
+
+export type SpotifyPlaylistTrackObject = {
+  track: SpotifyTrack;
+}
+
+export type SpotifyPlaylistTracksResponse = SpotifyPaginatedResponse<SpotifyPlaylistTrackObject>;
 
 class SpotifyClient {
   private _token: string | undefined;
@@ -153,11 +171,11 @@ class SpotifyClient {
 
   async getArtistsAlbums(id: string): Promise<SpotifySimplifiedAlbum[]> {
     let albums: SpotifySimplifiedAlbum[] = [];
-    let data: SpotifyArtistAlbumsResponse = await this.get(`${SPOTIFY_API_URL}/artists/${id}/albums?include_groups=album`);
+    let data: SpotifyPaginatedResponse<SpotifySimplifiedAlbum> = await this.get(`${SPOTIFY_API_URL}/artists/${id}/albums?include_groups=album`);
     albums = data.items;
 
     while (data.next) {
-      const nextData: SpotifyArtistAlbumsResponse = await this.get(data.next);
+      const nextData: SpotifyPaginatedResponse<SpotifySimplifiedAlbum> = await this.get(data.next);
       albums = [...albums, ...nextData.items];
       data = nextData;
     }
@@ -182,7 +200,60 @@ class SpotifyClient {
 
     return data.best_match.items[0];
   }
+
+  async getPlaylist(id: string): Promise<SpotifyPlaylist> {
+    const playlistResponse: SpotifyPlaylistResponse = await this.get(`${SPOTIFY_API_URL}/playlists/${id}`);
+    let tracks = playlistResponse.tracks.items.map(item => item.track);
+    let data = playlistResponse.tracks;
+
+    while (data.next) {
+      const nextData: SpotifyPaginatedResponse<SpotifyPlaylistTrackObject>  = await this.get(data.next);
+      tracks = [...tracks, ...(nextData.items.map(item => item.track))];
+      data = nextData;
+    }
+
+    return {
+      ...playlistResponse,
+      tracks
+    };
+  }
 }
+
+export const getImageSet = (images: SpotifyImage[]): { thumb?: string; coverImage?: string; } => {
+  const isNotEmpty = images.length > 0;
+  const largestImage = isNotEmpty && images.reduce((prev, current) => {
+    return (prev.height * prev.width) > (current.height * current.width) ? prev : current;
+  });
+  const thumbnail = isNotEmpty && images.find(image => image.height < 400 && image.width < 400);
+
+  return {
+    thumb: thumbnail?.url,
+    coverImage: largestImage?.url
+  };
+};
+
+
+export const mapSpotifyTrack = (track: SpotifyTrack): PlaylistTrack | null => {
+  const { thumb } = getImageSet(track.album?.images ?? []);
+  try {
+
+    return {
+      uuid: track.id,
+      artist: track.artists[0].name,
+      name: track.name,
+      album: track.album.name,
+      thumbnail: thumb,
+      duration: track.duration_ms/1000,
+      stream: undefined
+    };
+  } catch (e) {
+    // If for any reason the track is malformed, we just ignore it
+    // At some point, we could show errors on a per-track basis
+    logger.error(e);
+    return null;
+  }
+};
+
 
 export class SpotifyClientProvider {
   private static client: SpotifyClient;

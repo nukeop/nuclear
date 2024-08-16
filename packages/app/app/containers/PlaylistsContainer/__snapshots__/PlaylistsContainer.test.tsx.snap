@@ -158,13 +158,3 @@ exports[`Playlists container should display empty playlists view 1`] = `
   </div>
 </DocumentFragment>
 `;
-
-exports[`Playlists container should load webview after clicking on Import from Spotify 1`] = `
-<webview
-  class="spotify_import_webview"
-  data-testid="spotify-playlist-importer-webview"
-  src="https://open.spotify.com/playlist/37i9dQZF1EtkaNAuJY7Tph"
-  useragent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.175 Safari/537.36"
-  webpreferences="nodeIntegration=yes,javascript=yes,contextIsolation=no"
-/>
-`;

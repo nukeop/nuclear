@@ -17,7 +17,6 @@ import {
 import { success, error } from './toasts';
 import { IdentityStore } from '../reducers/nuclear/identity';
 import { PlaylistsStore } from '../reducers/playlists';
-import { SpotifyPlaylist } from '../containers/SpotifyPlaylistImporter/hooks';
 import { isEmpty } from 'lodash';
 
 export const updatePlaylistsAction = createStandardAction(Playlists.UPDATE_LOCAL_PLAYLISTS)<PlaylistsStore['localPlaylists']['data']>();
@@ -124,33 +123,6 @@ export const exportPlaylist = (playlist, t) => async (dispatch) => {
     }
   }
 };
-
-export function addPlaylistFromUrl(playlist: SpotifyPlaylist, t) {
-  return async dispatch => {
-    try {
-      if (!playlist.name || !playlist.tracks) {
-        throw new Error('missing tracks or name');
-      }
-
-      let playlists = store.get('playlists') || [];
-      const importedPlaylist = PlaylistHelper.formatPlaylistForStorage(playlist.name, playlist.tracks, v4(), playlist.source);
-
-      if (!(playlist.tracks?.length > 0)) {
-        dispatch(error(t('import-fail-title'), t('error-empty-data'), null, null));
-        return;
-      }
-
-      playlists = [...playlists, importedPlaylist];
-
-      store.set('playlists', playlists);
-      dispatch(success(t('import-success-title'), t('playlist-created', { name: playlist.name }), null, null));
-      dispatch(updatePlaylistsAction(playlists));
-
-    } catch (e) {
-      dispatch(error(t('import-fail-title'), t('error-invalid-data'), null, null));
-    }
-  };
-}
 
 export function addPlaylistFromFile(filePath, t) {
   return async dispatch => {

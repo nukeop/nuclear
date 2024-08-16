@@ -26,7 +26,7 @@ const DashboardContainer: React.FC = () => {
   
   const artistInfoSearchByName = (artistName: string) => dispatch(SearchActions.artistInfoSearchByName(artistName, history));
   const albumInfoSearchByName = (albumName: string, artistName: string) => dispatch(SearchActions.albumInfoSearchByName(albumName, artistName, history));
-  const onEditorialPlaylistClick = (playlistId: number) => history.push(`/editorial-playlist/${playlistId}`);
+  const onEditorialPlaylistClick = (playlistId: number) => history.push(`/playlists/deezer/${playlistId}`);
   const isPromotedArtistsEnabled = settings.promotedArtists;
 
   useEffect(() => {

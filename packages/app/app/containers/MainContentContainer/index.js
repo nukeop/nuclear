@@ -23,6 +23,7 @@ import TagViewContainer from '../TagViewContainer';
 import VisualizerNode from '../VisualizerContainer/VisualizerNode';
 import DeezerPlaylistAdapter from '../DeezerPlaylistAdapter';
 import { ListeningHistoryContainer } from '../ListeningHistoryContainer';
+import { SpotifyPlaylistAdapter } from '../SpotifyPlaylistAdapter';
 
 class MainContentContainer extends React.Component {
   componentDidMount() {
@@ -46,8 +47,9 @@ class MainContentContainer extends React.Component {
               <Route path='/favorites/albums' component={FavoritesContainer} />
               <Route path='/favorites/tracks' component={FavoritesContainer} />
               <Route path='/favorites/artists' component={FavoritesContainer} />
+              <Route path='/playlists/spotify/:playlistId' component={SpotifyPlaylistAdapter} />
+              <Route path='/playlists/deezer/:playlistId' component={DeezerPlaylistAdapter} />
               <Route path='/playlists' component={PlaylistsContainer} />
-              <Route path='/editorial-playlist/:playlistId' component={DeezerPlaylistAdapter} />
               <Route path='/playlist/:playlistId' component={PlaylistViewContainer} />
               <Route path='/plugins' component={PluginsContainer} />
               <Route path='/settings' component={SettingsContainer} />
