@@ -78,54 +78,53 @@ class SpotifyClient {
   }
 
   async init() {
-    const tokenData = await (await fetch(`${SPOTIFY_API_OPEN_URL}/get_access_token?reason=transport&productType=web_player`)).json();
-    this._token = tokenData.accessToken;
+    return this.refreshToken();
   }
 
   get token() {
     return this._token;
   }
 
+  async refreshToken() {
+    const tokenData = await (await fetch(`${SPOTIFY_API_OPEN_URL}/get_access_token?reason=transport&productType=web_player`)).json();
+    this._token = tokenData.accessToken;
+  }
+
+  async get(url: string) {
+    const result = await fetch(url, {
+      headers: {
+        Authorization: `Bearer ${this._token}`
+      }
+    });
+      
+    if (result.ok) {
+      return result.json();
+    } else if (result.status === 401) {
+      await this.refreshToken();
+      return this.get(url);
+    }
+  }
+
   async searchArtists(query: string, limit=10): Promise<SpotifyArtist[]> {
-    const data = await (
-      await fetch(`${SPOTIFY_API_URL}/search?type=artist&q=${query}&decorate_restrictions=false&include_external=audio&limit=${limit}`, {
-        headers: {
-          Authorization: `Bearer ${this._token}`
-        }})
-    ).json();
+    const data = await this.get(`${SPOTIFY_API_URL}/search?type=artist&q=${query}&decorate_restrictions=false&include_external=audio&limit=${limit}`);
 
     return data.artists.items;
   }
 
   async searchReleases(query: string, limit=10): Promise<SpotifySimplifiedAlbum[]> {
-    const data = await (
-      await fetch(`${SPOTIFY_API_URL}/search?type=album&q=${query}&decorate_restrictions=false&include_external=audio&limit=${limit}`, {
-        headers: {
-          Authorization: `Bearer ${this._token}`
-        }})
-    ).json();
+    const data = await this.get(`${SPOTIFY_API_URL}/search?type=album&q=${query}&decorate_restrictions=false&include_external=audio&limit=${limit}`);
 
     return data.albums.items;
   }
 
   async searchTracks(query: string, limit=20): Promise<SpotifyTrack[]> {
-    const data = await (
-      await fetch(`${SPOTIFY_API_URL}/search?type=track&q=${query}&decorate_restrictions=false&include_external=audio&limit=${limit}`, {
-        headers: {
-          Authorization: `Bearer ${this._token}`
-        }})
-    ).json();
+    const data = await this.get(`${SPOTIFY_API_URL}/search?type=track&q=${query}&decorate_restrictions=false&include_external=audio&limit=${limit}`);
 
     return data.tracks.items;
   }
 
   async searchAll(query: string): Promise<{ artists: SpotifyArtist[]; releases: SpotifySimplifiedAlbum[]; tracks: SpotifyTrack[]; }> {
-    const data = await (
-      await fetch(`${SPOTIFY_API_URL}/search?q=${query}&type=artist,album,track&decorate_restrictions=false&include_external=audio`, {
-        headers: {
-          Authorization: `Bearer ${this._token}`
-        }})
-    ).json();
+    const data = await this.get(`${SPOTIFY_API_URL}/search?q=${query}&type=artist,album,track&decorate_restrictions=false&include_external=audio`);
 
     return {
       artists: data.artists.items,
@@ -135,55 +134,30 @@ class SpotifyClient {
   }
 
   async getArtistDetails(id: string): Promise<SpotifyFullArtist> {
-    const data = await (
-      await fetch(`${SPOTIFY_API_URL}/artists/${id}`, {
-        headers: {
-          Authorization: `Bearer ${this._token}`
-        }})
-    ).json();
+    const data = await this.get(`${SPOTIFY_API_URL}/artists/${id}`);
 
     return data;
   }
 
   async getArtistTopTracks(id: string): Promise<SpotifyTrack[]> {
-    const data = await (
-      await fetch(`${SPOTIFY_API_URL}/artists/${id}/top-tracks`, {
-        headers: {
-          Authorization: `Bearer ${this._token}`
-        }})
-    ).json();
+    const data = await this.get(`${SPOTIFY_API_URL}/artists/${id}/top-tracks`);
 
     return data.tracks;
   }
 
   async getSimilarArtists(id: string): Promise<SpotifyFullArtist[]> {
-    const data = await (
-      await fetch(`${SPOTIFY_API_URL}/artists/${id}/related-artists`, {
-        headers: {
-          Authorization: `Bearer ${this._token}`
-        }})
-    ).json();
+    const data = await this.get(`${SPOTIFY_API_URL}/artists/${id}/related-artists`);
 
     return data.artists;
   }
 
   async getArtistsAlbums(id: string): Promise<SpotifySimplifiedAlbum[]> {
     let albums: SpotifySimplifiedAlbum[] = [];
-    let data: SpotifyArtistAlbumsResponse = await (
-      await fetch(`${SPOTIFY_API_URL}/artists/${id}/albums?include_groups=album`, {
-        headers: {
-          Authorization: `Bearer ${this._token}`
-        }})
-    ).json();
+    let data: SpotifyArtistAlbumsResponse = await this.get(`${SPOTIFY_API_URL}/artists/${id}/albums?include_groups=album`);
     albums = data.items;
 
     while (data.next) {
-      const nextData: SpotifyArtistAlbumsResponse = await (
-        await fetch(data.next, {
-          headers: {
-            Authorization: `Bearer ${this._token}`
-          }})
-      ).json();
+      const nextData: SpotifyArtistAlbumsResponse = await this.get(data.next);
       albums = [...albums, ...nextData.items];
       data = nextData;
     }
@@ -192,34 +166,19 @@ class SpotifyClient {
   }
 
   async getTopArtist(query: string): Promise<SpotifyFullArtist> {
-    const data = await (
-      await fetch(`${SPOTIFY_API_URL}/search?type=artist&q=${query}&decorate_restrictions=false&best_match=true&include_external=audio&limit=1`, {
-        headers: {
-          Authorization: `Bearer ${this._token}`
-        }})
-    ).json();
+    const data = await this.get(`${SPOTIFY_API_URL}/search?type=artist&q=${query}&decorate_restrictions=false&best_match=true&include_external=audio&limit=1`);
 
     return data.best_match.items[0];
   }
 
   async getAlbum(id: string): Promise<SpotifyFullAlbum> {
-    const data = await (
-      await fetch(`${SPOTIFY_API_URL}/albums/${id}`, {
-        headers: {
-          Authorization: `Bearer ${this._token}`
-        }})
-    ).json();
+    const data = await this.get(`${SPOTIFY_API_URL}/albums/${id}`);
 
     return data;
   }
 
   async getTopAlbum(query: string): Promise<SpotifyFullAlbum> {
-    const data = await (
-      await fetch(`${SPOTIFY_API_URL}/search?type=album&q=${query}&decorate_restrictions=false&best_match=true&include_external=audio&limit=1`, {
-        headers: {
-          Authorization: `Bearer ${this._token}`
-        }})
-    ).json();
+    const data = await this.get(`${SPOTIFY_API_URL}/search?type=album&q=${query}&decorate_restrictions=false&best_match=true&include_external=audio&limit=1`);
 
     return data.best_match.items[0];
   }
