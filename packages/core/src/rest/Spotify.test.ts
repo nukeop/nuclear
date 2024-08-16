@@ -78,6 +78,7 @@ describe('Spotify tests', () => {
       href: 'track-href',
       album: {
         id: 'album-id',
+        name: 'test album',
         images: []
       },
       artists: [{ name: 'test artist' }],
@@ -120,6 +121,7 @@ describe('Spotify tests', () => {
       href: 'track-href',
       album: {
         id: 'album-id',
+        name: 'test album',
         images: []
       },
       artists: [{ name: 'test artist' }],
@@ -184,6 +186,7 @@ describe('Spotify tests', () => {
       href: 'track-href',
       album: {
         id: 'album-id',
+        name: 'test album',
         images: []
       },
       artists: [{ name: 'test artist' }],

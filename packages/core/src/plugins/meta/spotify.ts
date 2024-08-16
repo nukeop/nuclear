@@ -1,4 +1,4 @@
-import { SpotifyArtist, SpotifyClientProvider, SpotifyImage, SpotifySimplifiedAlbum, SpotifyTrack } from '../../rest/Spotify';
+import { SpotifyArtist, SpotifyClientProvider, SpotifyImage, SpotifySimplifiedAlbum, SpotifyTrack, getImageSet } from '../../rest/Spotify';
 import Track from '../../structs/Track';
 import MetaProvider from '../metaProvider';
 import { SearchResultsArtist, SearchResultsAlbum, SearchResultsTrack, ArtistDetails, AlbumDetails, SearchResultsSource, ArtistTopTrack, SimilarArtist } from '../plugins.types';
@@ -184,15 +184,3 @@ export class SpotifyMetaProvider extends MetaProvider {
   
 }
 
-const getImageSet = (images: SpotifyImage[]): { thumb?: string; coverImage?: string; } => {
-  const isNotEmpty = images.length > 0;
-  const largestImage = isNotEmpty && images.reduce((prev, current) => {
-    return (prev.height * prev.width) > (current.height * current.width) ? prev : current;
-  });
-  const thumbnail = isNotEmpty && images.find(image => image.height < 400 && image.width < 400);
-
-  return {
-    thumb: thumbnail?.url,
-    coverImage: largestImage?.url
-  };
-};

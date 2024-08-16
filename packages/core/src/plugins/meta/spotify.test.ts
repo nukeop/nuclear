@@ -89,6 +89,7 @@ describe('SpotifyMetaProvider', () => {
       href: 'track-href',
       album: {
         id: 'album-id',
+        name: 'test album',
         images: [{
           height: 300,
           width: 300,
@@ -138,6 +139,7 @@ describe('SpotifyMetaProvider', () => {
       href: 'track-href',
       album: {
         id: 'album-id',
+        name: 'test album',
         images: []
       },
       artists: [{ name: 'test artist' }],
@@ -150,6 +152,7 @@ describe('SpotifyMetaProvider', () => {
       href: 'track-href-2',
       album: {
         id: 'album-id',
+        name: 'test album',
         images: []
       },
       artists: [{ name: 'test artist' }],
@@ -223,6 +226,7 @@ describe('SpotifyMetaProvider', () => {
       href: 'track-href',
       album: {
         id: 'album-id',
+        name: 'test album',
         images: []
       },
       artists: [{ name: 'test artist' }],
@@ -235,6 +239,7 @@ describe('SpotifyMetaProvider', () => {
       href: 'track-href-2',
       album: {
         id: 'album-id',
+        name: 'test album',
         images: []
       },
       artists: [{ name: 'test artist' }],

@@ -34,7 +34,7 @@ describe('Deezer playlist adapter', () => {
   });
 
   const mountComponent = mountedComponentFactory(
-    ['/editorial-playlist/1'],
+    ['/playlists/deezer/1'],
     buildStoreState()
       .withDashboard()
       .withPlugins()

@@ -1,13 +1,10 @@
 import React, { useState, useCallback } from 'react';
-import { Icon, Input, Modal, Progress } from 'semantic-ui-react';
+import { Input, Modal } from 'semantic-ui-react';
 import { useTranslation } from 'react-i18next';
-import { WebviewTag } from 'electron';
+import { useHistory } from 'react-router';
 import { URL } from 'url';
 
 import { Button } from '@nuclear/ui';
-
-import { useSpotifyPlaylistImporterProps } from './hooks';
-import styles from './styles.scss';
 
 type SpotifyPlaylistImporterProps = {
   trigger: React.ReactNode;
@@ -19,20 +16,15 @@ const SpotifyPlaylistImporter: React.FC<SpotifyPlaylistImporterProps> = ({
   onClose: onCloseProp
 }) => {
   const { t } = useTranslation('playlists');
-  const { onAccept, importProgress, playlistMeta, onClose } = useSpotifyPlaylistImporterProps(t);
-  const progressPercent = Math.round((playlistMeta?.totalTracks ? importProgress/playlistMeta.totalTracks : 0) * 100);
+  const history = useHistory();
 
   const [isOpen, setIsOpen] = useState(false);
-  const [displayImportProgress, setDisplayImportProgress] = useState(false);
   const [inputString, setInputString] = useState('');
-  const [hasError, setError] = useState(false);
 
   const handleOpen = useCallback(() => setIsOpen(true), []);
   const handleClose = useCallback(() => {
     setIsOpen(false);
     setInputString('');
-    setDisplayImportProgress(false);
-    onClose();
     onCloseProp();
   }, []);
   const handleChange = useCallback(e => {
@@ -40,22 +32,15 @@ const SpotifyPlaylistImporter: React.FC<SpotifyPlaylistImporterProps> = ({
       const playlistUrl = new URL(e.target.value);
       playlistUrl.search = '';
       setInputString(playlistUrl.toString());
-      setError(false);
     } catch (error) {
-      setError(true);
       setInputString(e.target.value);
     }
   }, []);
 
   const onClick = useCallback(() => {
-    setDisplayImportProgress(true);
-  }, []);
-  
-  const webviewRef = useCallback((w: WebviewTag) => {
-    if (w !== null) {
-      onAccept(w, handleClose);
-    }
-  }, [handleClose, onAccept]);
+    const playlistId = inputString.split('/').pop();
+    return history.push(`/playlists/spotify/${playlistId}`);
+  }, [inputString, history]);
 
   return (
     <Modal
@@ -68,8 +53,8 @@ const SpotifyPlaylistImporter: React.FC<SpotifyPlaylistImporterProps> = ({
       open={isOpen}
     >
       <Modal.Content>
-        {!displayImportProgress && <h4>{t('input-playlist-url')}</h4>}
-        {!displayImportProgress && <Input
+        <h4>{t('input-playlist-url')}</h4>
+        <Input
           fluid
           inverted
           ref={input => {
@@ -78,50 +63,26 @@ const SpotifyPlaylistImporter: React.FC<SpotifyPlaylistImporterProps> = ({
           placeholder={t('spotify-import-placeholder')}
           onChange={handleChange}
           value={inputString}
-          error={hasError}
           data-testid='spotify-playlist-importer-input'
-        />}
-        {displayImportProgress && <webview
-          className={styles.spotify_import_webview}
-          ref={webviewRef}
-          src={inputString}
-          data-testid='spotify-playlist-importer-webview'
-          webpreferences='nodeIntegration=yes,javascript=yes,contextIsolation=no'
-          useragent='Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.175 Safari/537.36'
-        />}
-        {
-          displayImportProgress && 
-          <Progress
-            className={styles.spotify_import_progress_bar}
-            indicating
-            progress
-            autoSuccess
-            label={t('import-progress')}
-            percent={progressPercent} 
-          />
-        }
+        />
       </Modal.Content>
       <Modal.Actions>
-        {!displayImportProgress && <>
-          <Button
-            basic
-            inverted
-            color='red'
-            onClick={handleClose}
-            data-testid='spotify-playlist-importer-cancel'
-          >
-            {t('dialog-cancel')}
-          </Button>
-          <Button
-            color='green'
-            onClick={onClick}
-            data-testid='spotify-playlist-importer-accept'
-            disabled={hasError}
-          >
-            {t('dialog-import')}
-          </Button>
-        </>
-        }
+        <Button
+          basic
+          inverted
+          color='red'
+          onClick={handleClose}
+          data-testid='spotify-playlist-importer-cancel'
+        >
+          {t('dialog-cancel')}
+        </Button>
+        <Button
+          color='green'
+          onClick={onClick}
+          data-testid='spotify-playlist-importer-accept'
+        >
+          {t('dialog-import')}
+        </Button>
       </Modal.Actions>
     </Modal>
   );
