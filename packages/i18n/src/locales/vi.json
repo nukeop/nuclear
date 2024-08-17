@@ -202,7 +202,9 @@
     "input-playlist-url": "Dán một liên kết của danh sách phát:",
     "create-playlist-dialog-title": "Nhập tên của danh sách phát:",
     "playlist": "Danh sách phát",
-    "play": "Phát"
+    "play": "Phát",
+    "external-source-tooltip": "This playlist is from an external source: {{source}}. You can't edit it. Save it locally using the playlist menu to make changes.",
+    "save-external-playlist": "Save playlist locally"
   },
   "plugins": {
     "add-a-plugin": "Thêm plugin",
