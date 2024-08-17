@@ -202,7 +202,9 @@
     "input-playlist-url": "Çalma listesi linkini yapıştır:",
     "create-playlist-dialog-title": "Çalma listesi adını girin:",
     "playlist": "Çalma listesi",
-    "play": "Oynat"
+    "play": "Oynat",
+    "external-source-tooltip": "This playlist is from an external source: {{source}}. You can't edit it. Save it locally using the playlist menu to make changes.",
+    "save-external-playlist": "Save playlist locally"
   },
   "plugins": {
     "add-a-plugin": "Eklenti ekle",
